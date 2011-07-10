@@ -1,0 +1,675 @@
+Source: kdepim-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31),
+ cdparanoia, gawk, gettext, kdelibs4-kde3-dev (>= 4:3.5.10), bison, byacc, bzip2,
+ flex, groff-base, libopensync0-dev, gcc-4.3, g++-4.3, libogg-dev-la,
+ libboost-dev (>= 1.33.1), libgpgme11-dev, liblockdev1-dev,
+ libpisock-dev, libreadline5-dev, libsasl2-dev, libssl-dev,
+ libtool (>= 1.5), libxpm-dev, libxss-dev, sharutils, texinfo, dpkg-dev (>= 1.14.4),
+ libgpg-error-dev (>= 1.4-2), gpgsm, libical-dev,
+ libcaldav-dev (>= 0.6.5), libcarddav-dev (>= 0.6.2), libcurl4-gnutls-dev,
+ automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, qt3-doc, kdelibs4-kde3-doc
+Build-Conflicts: libkleopatra0-kde3-dev
+Standards-Version: 3.8.3
+
+Package: kdepim-kde3
+Section: kde
+Architecture: all
+Depends: akregator-kde3 (>= ${Source-Version}), kaddressbook-kde3 (>= ${Source-Version}), kalarm-kde3 (>= ${Source-Version}), kandy-kde3 (>= ${Source-Version}), karm-kde3 (>= ${Source-Version}), kdepim-kfile-plugins-kde3 (>= ${Source-Version}), kdepim-kio-plugins-kde3 (>= ${Source-Version}), kdepim-kresources-kde3 (>= ${Source-Version}), kdepim-wizards-kde3 (>= ${Source-Version}), kitchensync-kde3 (>= ${Source-Version}), kleopatra-kde3 (>= ${Source-Version}), kmail-kde3 (>= ${Source-Version}), kmailcvt-kde3 (>= ${Source-Version}), knode-kde3 (>= ${Source-Version}), knotes-kde3 (>= ${Source-Version}), konsolekalendar-kde3 (>= ${Source-Version}), kontact-kde3 (>= ${Source-Version}), korganizer-kde3 (>= ${Source-Version}), korn-kde3 (>= ${Source-Version}), kpilot-kde3 (>= ${Source-Version}), ktnef-kde3 (>= ${Source-Version}), libindex0-kde3 (>= ${Source-Version}), libkcal2b-kde3 (>= ${Source-Version}), libkdepim1a-kde3 (>= ${Source-Version}), libkgantt0-kde3 (>= ${Source-Version}), libkleopatra1-kde3 (>= ${Source-Version}), libkpimexchange1-kde3 (>= ${Source-Version}), libkpimidentities1-kde3 (>= ${Source-Version}), libksieve0-kde3 (>= ${Source-Version}), libktnef1-kde3 (>= ${Source-Version}), libmimelib1c2a-kde3 (>= ${Source-Version})
+Suggests: kdepim-kde3-doc-html
+Description: Personal Information Management apps from the official KDE3 release
+ KDE (the K Desktop Environment) is a powerful Open Source graphical
+ desktop environment for Unix workstations. It combines ease of use,
+ contemporary functionality, and outstanding graphical design with the
+ technological superiority of the Unix operating system.
+ .
+ This metapackage includes a collection of Personal Information Management
+ (PIM) applications provided with the official release of KDE3.
+ .
+  Homepage: http://pim.kde.org/
+
+Package: kdepim-kde3-dbg
+Priority: extra
+Section: libdevel
+Depends: kdelibs-kde3-dbg
+Architecture: any
+Description: debugging symbols for kdepim-kde3
+ This package contains the debugging symbols associated with kdepim-kde3.
+ They will automatically be used by gdb for debugging kdepim-related
+ issues.
+
+Package: kdepim-kde3-dev
+Section: devel
+Architecture: any
+Depends: kaddressbook-kde3 (= ${Source-Version}), kalarm-kde3 (= ${Source-Version}), kdepim-kresources-kde3 (= ${Source-Version}), kmail-kde3 (= ${Source-Version}), knotes-kde3 (= ${Source-Version}), kontact-kde3 (= ${Source-Version}), korganizer-kde3 (= ${Source-Version}), kpilot-kde3 (= ${Source-Version}), libkpimidentities1-kde3 (= ${Source-Version}), libkcal2-kde3-dev (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version}), libkgantt0-kde3-dev (= ${Source-Version}), libkleopatra1-kde3-dev (= ${Source-Version}), libkpimexchange1-kde3-dev (= ${Source-Version}), libksieve0-kde3-dev (= ${Source-Version}), libktnef1-kde3-dev (= ${Source-Version}), libmimelib1-kde3-dev (= ${Source-Version})
+Replaces: libkcal2-kde3-dev (<< 4:3.4.1), libmimelib1-kde3-dev (<< 4:3.4.2)
+Description: KDE Personal Information Management [development]
+ This package contains development files needed to compile kdepim applications.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+ . 
+  Homepage: http://pim.kde.org/
+  
+Package: kdepim-kde3-doc
+Section: doc
+Architecture: all
+Suggests: konqueror-kde3 | www-browser, doc-base
+Description: KDE Personal Information Management library documentation
+ KDE core library documentation. You need this documentation to develop KDE PIM
+ applications.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+ . 
+  Homepage: http://pim.kde.org/
+  
+Package: kdepim-kde3-doc-html
+Section: doc
+Architecture: all
+Suggests: konqueror-kde3 | www-browser, kdepim-kde3
+Description: KDE PIM documentation in HTML format
+ By default the Personal Information Management applications provided with
+ KDE only provide their documentation in KDE docbook format, which can only
+ be read by Konqueror or KHelpCenter. This package provides all of the
+ KDE PIM documentation converted to HTML format so it can be read with any
+ web browser.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+ . 
+  Homepage: http://pim.kde.org/
+
+Package: akregator-kde3
+Section: web
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: RSS feed aggregator for KDE
+ aKregator is a fast, lightweight, and intuitive feed reader program
+ for KDE.  It allows you to quickly browse through hundreds of
+ thousands of internet feeds in a quick, efficient, and familiar way.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+ .
+  Homepage: http://akregator.kde.org/
+
+Package: kaddressbook-kde3
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Conflicts: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Suggests: kdepim-kresources-kde3, kdebase-kio-plugins-kde3
+Description: KDE NG addressbook application
+ KAddressBook is the main address book application for KDE; it enables you
+ to manage your contacts efficiently and comfortably. It can load and save
+ your contacts to many different locations, including the local file system,
+ LDAP servers, and SQL databases.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kalarm-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: kmix-kde3, kttsd-kde3
+Description: KDE3 alarm message, command and email scheduler
+ KAlarm provides a graphical interface to schedule personal timed events -
+ pop-up alarm messages, command execution and sending emails. There is a
+ range of options for configuring recurring events.
+ .
+ A pop-up alarm can show either a simple text message, or the contents of a
+ text or image file, It can optionally be spoken, or play a sound file. You
+ can choose its appearance, and set reminders. Among KAlarm's other
+ facilities, you can set up templates to allow KAlarm to be used as a 'tea
+ timer'.
+ .
+ As an alternative to using the graphical interface, alarms can be scheduled
+ from the command line or via DCOP calls from other programs. KAlarm is
+ KDE-based, but will also run on other desktops.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kandy-kde3
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE3 mobile phone utility
+ At the moment Kandy is more or less a terminal program with some special
+ features to store commands and their parameters, but is also has a simple GUI
+ to access the phone book of a mobile phone and it is able to save this phone
+ book to the KDE address book.
+ .
+ Kandy is aimed at mobile phones with integrated (GSM) modems.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: karm-kde3
+Section: utils
+Architecture: any
+Replaces: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Conflicts: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Depends: ${shlibs:Depends}
+Description: KDE3 time tracker tool
+ KArm is a time tracker for busy people who need to keep track of the amount of
+ time they spend on various tasks.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kdepim-kfile-plugins-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE File dialog plugins for palm and vcf files
+ File dialog plugins for palm and vcf files.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kdepim-kio-plugins-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: kdebase-kio-plugins-kde3 (<< 4:3.4.0)
+Description: KDE3 pim I/O Slaves
+ This package includes the pim kioslaves. This includes imap4, sieve,
+ and mbox.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kdepim-kresources-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: libkcal2a-kde3 (<< 4:3.4.1), kaddressbook-kde3 (<< 4:3.4.1), knotes-kde3 (<< 4:3.4.1)
+Recommends: ${shlibs:Recommends}, korganizer-kde3
+Suggests: knotes-kde3
+Description: KDE3 pim resource plugins
+ This package includes several plugins needed to interface with groupware
+ servers. It also includes plugins for features such as blogging and
+ tracking feature plans.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kdepim-wizards-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: kdepim-kde3-dev (<< 4:3.4.1-2)
+Suggests: egroupware
+Description: KDE3 server configuration wizards
+ This package contains KDE-based wizards for configuring eGroupware,
+ Kolab, and SUSE Linux Openexchange servers.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kitchensync-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: konqueror-kde3
+Conflicts: kdebluetooth-irmcsync-kde3 (<< 0.99+1.0beta2-4.1), ksync-kde3
+Replaces: ksync-kde3
+Description: Synchronization framework
+ This package contains a synchronization framework, still under heavy
+ development (?).  Kitchensync uses opensync.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kleopatra-kde3
+Section: net
+Architecture: any
+Depends: ${shlibs:Depends}, gnupg-agent, gnupg2, gpgsm, dirmngr, pinentry-qt | pinentry-x11
+Description: KDE3 Certificate Manager
+ Kleopatra is the KDE tool for managing X.509 certificates in the gpgsm
+ keybox and for retrieving certificates from LDAP servers.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kmail-kde3
+Section: mail
+Architecture: any
+Depends: ${shlibs:Depends}, ${perl:Depends}, kdepim-kio-plugins-kde3, kdebase-kio-plugins-kde3, gpgsm, gnupg-agent, pinentry-qt | pinentry-x11
+Recommends: procmail
+Suggests: gnupg, gnupg-agent, pinentry-qt | pinentry-x11, kaddressbook-kde3, kleopatra-kde3, spamassassin | bogofilter | annoyance-filter | spambayes | bsfilter | crm114, clamav | f-prot-installer
+Conflicts: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Replaces: kdepim-kde3-dev (<< 4:3.4.0), kdebase-kde3-data (<< 4:3.4.0), kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Provides: imap-client, mail-reader
+Description: KDE3 Email client
+ KMail is a fully-featured email client that fits nicely into the KDE
+ desktop. It has features such as support for IMAP, POP3, multiple accounts,
+ mail filtering and sorting, PGP/GnuPG privacy, and inline attachments.
+ .
+ You need to install kdepim-kio-plugins if you want to use IMAP or
+ mbox files, and/or kdebase-kio-plugins if you want to use POP3.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+ .
+  Homepage: http://kmail.kde.org/
+ 
+Package: kmailcvt-kde3
+Section: mail
+Architecture: any
+Depends: ${shlibs:Depends}, kmail-kde3
+Description: KDE3 KMail mail folder converter
+ Converts mail folders to KMail format.  Formats supported for import
+ include Outlook Express, Evolution, and plain mbox.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: knode-kde3
+Section: news
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: kdepim-kde3-dev (<< 4:3.4.0), kontact-kde3 (<< 4:3.5.7-1ubuntu2)
+Provides: news-reader
+Description: KDE3 news reader
+ KNode is an easy-to-use, convenient newsreader. It is intended to be usable
+ by inexperienced users, but also includes support for such features as
+ MIME attachments, article scoring, and creating and verifying GnuPG
+ signatures.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: knotes-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: kdepim-kresources-kde3
+Replaces: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Conflicts: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Description: KDE3 sticky notes
+ KNotes is a program that lets you write sticky notes. The notes are saved
+ automatically when you exit the program, and they display when you open the
+ program.  The program supports printing and mailing your notes.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kode-kde3
+Section: devel
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Helper library for programmatic generation of C++ code
+ This package includes a program kode for generation of C++ template files
+ and kxml_compiler for generation of C++ classes representing XML data
+ described by RelaxNG schemes.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: konsolekalendar-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE3 konsole personal organizer
+ KonsoleKalendar is a command-line interface to KDE calendars.
+ Konsolekalendar complements the KDE KOrganizer by providing a console
+ frontend to manage your calendars.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kontact-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}, kmail-kde3, korganizer-kde3, kaddressbook-kde3
+Recommends: ${shlibs:Recommends}, kmail-kde3, knode-kde3, knotes-kde3
+Suggests: ${shlibs:Suggests}, akregator-kde3, knewsticker-kde3, kweather-kde3, gnokii
+Replaces: akregator-kde3 (<< 4:3.4.0), akregator-kontact-plugin-kde3
+Conflicts: akregator-kontact-plugin-kde3
+Description: KDE3 pim application
+ Kontact is the integrated solution to your personal information management
+ needs. It combines KDE applications like KMail, KOrganizer, and
+ KAddressBook into a single interface to provide easy access to mail,
+ scheduling, address book and other PIM functionality.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+ .
+  Homepage: http://kontact.kde.org/
+
+Package: korganizer-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}, ${perl:Depends}
+Recommends: kghostview-kde3
+Replaces: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Conflicts: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
+Description: KDE3 personal organizer
+ This package contains KOrganizer, a calendar and scheduling program.
+ .
+ KOrganizer aims to be a complete program for organizing appointments,
+ contacts, projects, etc. KOrganizer natively supports information interchange
+ with other calendar applications, through the industry standard vCalendar
+ personal data interchange file format. This eases the move from other
+ modern PIMs to KOrganizer.
+ .
+ KOrganizer offers full synchronization with Palm Pilots, if kpilot is
+ installed.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: korn-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}, kdepim-kio-plugins-kde3, kdebase-kio-plugins-kde3
+Description: KDE3 mail checker
+ Korn is a KDE mail checker that can display a small summary in the Kicker
+ tray.  It supports checking mbox, pop3, imap4, and nntp sources.
+ .
+ Once mail is received you can have Korn run a third party program or change
+ the color/icon of the Kicker display.  In addition to this you can have
+ Korn run a program once you click on the docked icon in Kicker.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: kpilot-kde3
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, debconf (>= 0.5) | debconf-2.0
+Suggests: knotes-kde3, korganizer-kde3
+Description: KDE3 Palm Pilot hot-sync tool
+ KPilot is an application that synchronizes your Palm Pilot or similar device
+ (like the Handspring Visor) with your KDE desktop, much like the Palm HotSync
+ software does for Windows.  KPilot can back-up and restore your Palm Pilot
+ and synchronize the built-in applications with their KDE counterparts.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: ktnef-kde3
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE3 TNEF viewer
+ The TNEF File Viewer allows you to handle mail attachments using the TNEF
+ format. These attachments are usually found in mails coming from Microsoft
+ mail servers and embed the mail properties as well as the actual attachments.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libindex0-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE3 indexing library
+ This library provides text indexing and is currently used by KMail
+ to implement fast searches in mail bodies.
+ .
+ This is the runtime package for programs that use the libindex-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libindex0-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libindex0-kde3 (= ${Source-Version})
+Description: KDE3 indexing library [development]
+ This library provides text indexing and is currently used by KMail
+ to implement searching through mail text.
+ .
+ This is the development package which contains the headers for the libindex-kde3
+ library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkcal2b-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Recommends: ${shlibs:Recommends}
+Conflicts: libkcal2-kde3, libkcal2a-kde3
+Replaces: libkcal2a-kde3
+Suggests: kdepim-kresources-kde3
+Description: KDE3 calendaring library
+ This library provides a C++ API for handling the vCalendar and iCalendar
+ formats.
+ .
+ This is the runtime package for programs that use the libkcal-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkcal2-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libkcal2b-kde3 (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version}), libktnef1-kde3-dev (= ${Source-Version})
+Replaces: kdepim-kde3-dev (<= 4:3.5.4-1)
+Description: KDE3 calendaring library [development]
+ This library provides a C++ API for handling the vCalendar and iCalendar
+ formats.
+ .
+ This is the development package which contains the headers for the libkcal-kde3
+ library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkdepim1a-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: akregator-kde3 (<< 4:3.4.0), libkdepim1-kde3, korganizer-kde3 (<< 4:3.5.7-1ubuntu3)
+Description: KDE3 PIM library
+ This is the runtime package for programs that use the libkdepim-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkdepim1-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libkdepim1a-kde3 (= ${Source-Version}), kdelibs4-kde3-dev (>= 4:3.5.7)
+Replaces: kdepim-kde3-dev (<< 4:3.4.1)
+Description: KDE3 PIM library [development]
+ This is the development package which contains the headers for the libkdepim-kde3
+ library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkgantt0-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE3 gantt charting library
+ This is the runtime package for programs that use the libkgantt-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkgantt0-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libkgantt0-kde3 (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version})
+Description: KDE3 gantt charting library [development]
+ This is the development package which contains the headers for the libkgantt-kde3
+ library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkleopatra1-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${perl:Depends}, gnupg
+Conflicts: libkleopatra0-kde3
+Replaces: libkdenetwork2-kde33, libkleopatra0a-kde3
+Description: KDE GnuPG interface libraries
+ This library is used by several KDE applications to interface to the
+ GnuPG program.
+ .
+ This is the runtime package for programs that use the libkleopatra-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkleopatra1-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libkleopatra1-kde3 (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version})
+Conflicts: libkleopatra0-kde3-dev
+Replaces: libkleopatra0-kde3-dev
+Description: KDE3 GnuPG interface libraries [development]
+ This library is used by several KDE applications to interface to the
+ GnuPG program.
+ .
+ This is the development package which contains the headers for the
+ libkleopatra-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkmime2-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Conflicts: libmimelib1a-kde3
+Replaces: libmimelib1a-kde3
+Description: KDE3 MIME interface library
+ This library provides a C++ interface to MIME messages, parsing them into
+ an object tree.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkpimexchange1-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE3 PIM Exchange library
+ This is the runtime package for programs that use the libkpimexchange-kde3
+ library. 
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkpimexchange1-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libkpimexchange1-kde3 (= ${Source-Version}), libkcal2-kde3-dev (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version})
+Description: KDE3 PIM Exchange library [development]
+ This is the development package which contains the headers for the
+ libkpimexchange-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libkpimidentities1-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE3 PIM user identity information library
+ This library provides information to KDE programs about user identity,
+ such as email address, organization, etc.
+ .
+ This is the runtime package for programs that use the libkpimidentities-kde3
+ library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libksieve0-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: KDE3 mail/news message filtering library
+ This is the runtime package for programs that use the libksieve-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libksieve0-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libksieve0-kde3 (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version})
+Description: KDE3 mail/news message filtering library [development]
+ This is the development package which contains the headers for the libksieve-kde3
+ library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libktnef1-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: ktnef-kde3 (<< 4:3.4.0)
+Description: Library for handling KTNEF email attachments
+ This library handles mail attachments using the TNEF format. These
+ attachments are usually found in mails coming from Microsoft mail
+ servers and embed the mail properties as well as the actual
+ attachments.
+ .
+ This is the runtime library for packages using the ktnef-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libktnef1-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libktnef1-kde3 (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version})
+Replaces: kdepim-kde3-dev (<< 4:3.4.0)
+Description: KTNEF handler library [development]
+ This library handles mail attachments using the TNEF format. These
+ attachments are usually found in mails coming from Microsoft mail
+ servers and embed the mail properties as well as the actual
+ attachments.
+ .
+ This is the development package which contains the headers for the
+ ktnef-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libmimelib1c2a-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Conflicts: libmimelib1a-kde3
+Replaces: libmimelib1a-kde3
+Description: KDE3 mime library
+ This library is used by several KDE3 applications to handle mime types.
+ .
+ This is the runtime package for programs that use the libmimelib-kde3 library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
+
+Package: libmimelib1-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libmimelib1c2a-kde3 (= ${Source-Version})
+Description: KDE3 mime library [development]
+ This library is used by several KDE applications to handle mime types.
+ .
+ This is the development package which contains the headers for the
+ libmimelib library.
+ .
+ This package is part of KDE3, and a component of the KDE PIM module.
+ See the 'kde-kde3' and 'kdepim-kde3' packages for more information.

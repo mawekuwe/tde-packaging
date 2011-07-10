@@ -1,0 +1,11 @@
+debian/tmp/opt/kde3/lib/libqtjavasupport.la
+debian/tmp/opt/kde3/lib/libqtjavasupport.so
+debian/tmp/opt/kde3/lib/libqtjavasupport.so.1
+debian/tmp/opt/kde3/lib/libqtjavasupport.so.1.0.0
+
+debian/tmp/opt/kde3/lib/jni/libqtjava.la
+debian/tmp/opt/kde3/lib/jni/libqtjava.so
+debian/tmp/opt/kde3/lib/jni/libqtjava.so.1
+debian/tmp/opt/kde3/lib/jni/libqtjava.so.1.0.0
+
+qtjava/ChangeLog /opt/kde3/share/doc/libqt3-jni

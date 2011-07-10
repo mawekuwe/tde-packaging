@@ -1,0 +1,15 @@
+Source: kio-umountwrapper-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>> 5), cdbs, kdelibs4-kde3-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: kio-umountwrapper-kde3
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: progress dialog for safely removing devices in KDE3.
+ Wrapper around kio_media_mountwrapper.
+ Provides a progress dialog for Safely Removing of devices in KDE3.
+ .
+  Homepage: http://frode.kde.no/misc/kio_umountwrapper/

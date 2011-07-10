@@ -1,0 +1,32 @@
+.TH MLT 1 "January  17, 2007"
+.SH NAME
+mlt-config \- script to get information about the installed version of Mlt
+.SH SYNOPSIS
+.B mlt-config [ \-\-version ] | [ \-\-prefix=dir ] [ [ package ] [ \-\-cflags ] [ \-\-libs ] ]
+.SH DESCRIPTION
+\fImlt-config\fP is a tool that is used by configure to determine the
+availability of mlt and the compiler and linker flags that should be used to
+compile programs using it.
+.SH OPTIONS
+\fImlt-config\fP accepts the following options:
+.TP
+.B \-\-version
+Print the currently installed version of \fMlt\fP on the standard output.
+.TP
+.B \-\-prefix=dir
+Set the prefix mlt-config uses to find its configuration files
+.TP
+.B package
+Print informations for the given package ( packages are: framework modules 
+inigo valerie miracle humperdink )
+.TP
+.B \-\-libs
+Print the linker flags that are necessary to link a \fMlt\fP\-program.
+.TP
+.B \-\-cflags
+Print the compiler flags that are necessary to link a \fMlt\fP\-program.
+.SH SEE ALSO
+.BR Mlt (1).
+.SH AUTHOR
+This manual page was written by Albin Tonnerre <lut1n.tne@gmail.com>
+for the Debian GNU/Linux system (but may be used by others).

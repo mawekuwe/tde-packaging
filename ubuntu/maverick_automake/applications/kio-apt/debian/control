@@ -1,0 +1,21 @@
+Source: kio-apt-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Emmanuel Bouthenot <kolter@openics.org>
+Build-Depends: debhelper (>= 5), cdbs, kdelibs-kde3-dev, sharutils, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: kio-apt-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, apt, adept-batch-kde3
+Description: an apt-cache ioslave for KDE3
+ kio-apt is an ioslave which provides the apt:/ protocol. It
+ integrates apt-cache functionalities into Konqueror, making
+ browsing the packages easier. It provides:
+  - apt-cache search: apt:/search?expression
+  - apt-cache show: apt:/show?package . The show? target
+    prints the policy too.
+  - apt-cache policy: apt:/policy?package
+ .
+ Homepage : http://lpnotfr.free.fr/

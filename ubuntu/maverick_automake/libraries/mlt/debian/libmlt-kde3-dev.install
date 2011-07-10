@@ -1,0 +1,5 @@
+opt/kde3/bin/mlt-config
+/opt/kde3/include
+opt/kde3/lib/pkgconfig
+opt/kde3/lib/*.so
+/opt/kde3/share/mlt/packages.dat

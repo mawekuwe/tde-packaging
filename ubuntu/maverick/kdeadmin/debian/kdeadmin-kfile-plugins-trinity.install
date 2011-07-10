@@ -1,0 +1,6 @@
+debian/tmp/opt/trinity/lib/kde3/kfile_deb.la
+debian/tmp/opt/trinity/lib/kde3/kfile_deb.so
+debian/tmp/opt/trinity/lib/kde3/kfile_rpm.la
+debian/tmp/opt/trinity/lib/kde3/kfile_rpm.so
+debian/tmp/opt/trinity/share/services/kfile_deb.desktop
+debian/tmp/opt/trinity/share/services/kfile_rpm.desktop

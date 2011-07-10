@@ -1,0 +1,16 @@
+Source: kima-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: cdbs, debhelper (>= 5), kdelibs4-kde3-dev, libhal-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: kima-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: kicker monitoring applet [KDE3]
+ This applet monitors various temperature,
+ frequency and fan sources in your kicker
+ panel.
+ .
+  Homepage: http://www.elliptique.net/~ken/kima/

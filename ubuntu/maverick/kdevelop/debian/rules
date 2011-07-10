@@ -1,0 +1,59 @@
+#!/usr/bin/make -f
+
+# work around debian/cdbs/uploaders.mk
+makebuilddir::
+	[ -f debian/control.tmp ] || cp debian/control debian/control.tmp
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+PACKAGES_WITH_LIBS := kdevelop-trinity
+
+DEB_KDE_ENABLE_FINAL :=
+DEB_INSTALL_DOCS_kdevelop = AUTHORS
+DEB_MAKE_INSTALL_TARGET := install DESTDIR=$(CURDIR)/debian/tmp
+DEB_CONFIGURE_EXTRA_FLAGS := \
+				--disable-debug \
+				--enable-docbase \
+				--enable-scripting \
+				--enable-ada \
+				--enable-bash \
+				--enable-cpp \
+				--enable-fortran \
+				--enable-haskell \
+				--enable-java \
+				--enable-pascal \
+				--enable-perl \
+				--enable-php \
+				--enable-python \
+				--enable-ruby \
+				--enable-sql \
+				--enable-antproject \
+				--enable-autoproject \
+				--enable-customproject \
+				--enable-genericproject \
+				--enable-scriptproject \
+				--enable-trollproject \
+				--enable-cvs \
+				--enable-vba \
+				--enable-subversion \
+				--with-pic \
+				--with-kdelibsdoxy-dir=/opt/trinity/share/doc/kde/HTML/en/kdelibs-apidocs \
+				--with-pythondir=/usr \
+				--with-qtdoc-dir=/usr/share/qt3/doc/html \
+				--prefix=/opt/trinity \
+				--with-extra-libs=/opt/trinity/lib
+
+binary-install/kdevelop-trinity::
+	mkdir -p debian/kdevelop-trinity/opt/trinity/share/pixmaps
+	cp debian/kdevelop.xpm debian/kdevelop-trinity/opt/trinity/share/pixmaps
+

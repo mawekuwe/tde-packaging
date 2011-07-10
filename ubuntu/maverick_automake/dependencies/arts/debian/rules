@@ -1,0 +1,33 @@
+#! /usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include debian/cdbs/debian-qt-kde.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_SKIP_RPATH=OFF -DCMAKE_LIBRARY_PATH="/opt/kde3/lib" -DCMAKE_INCLUDE_PATH="/opt/kde3/include/kde" -DCMAKE_CXX_FLAGS="-I/opt/kde3/include/kde" -DCMAKE_LDFLAGS="-L/opt/kde3/lib"
+DEB_DH_STRIP_ARGS := --dbg-package=arts-kde3-dbg
+
+PACKAGES_WITH_LIBS := libarts1c2a-kde3 libartsc0-kde3
+
+DEB_DH_MAKESHLIBS_ARGS_libarts1c2a-kde3	:= -V'libarts1c2a-kde3 (>= 1.5.9)'
+DEB_DH_MAKESHLIBS_ARGS_libartsc0-kde3	:= -V'libartsc0-kde3 (>= 1.5.9)'
+
+#shlibs_ver = 1.5.0-1
+#$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
+
+DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+
+binary-predeb/libarts1-kde3-dev::
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	    echo "libasound2-kde3-dev=libasound2-kde3-dev" >> debian/libarts1-dev.substvars
+endif
+

@@ -1,0 +1,43 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS = --with-extra-libs=/opt/kde3/lib
+
+install/soundkonverter-kde3::
+	install -D -p -m0644 debian/soundkonverter-kde3.lintian-overrides \
+	    debian/soundkonverter-kde3/usr/share/lintian/overrides/soundkonverter-kde3
+
+install/soundkonverter-amarok-kde3::
+	chmod 0755 debian/tmp/opt/kde3/share/apps/soundkonverter/amarokscript/soundKonverter.rb
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap

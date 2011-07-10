@@ -1,0 +1,10 @@
+?package(wlassistant):\
+        needs="X11"\
+        section="Applications/Network/Monitoring"\
+        hints="KDE"\
+        icon32x32="/usr/share/pixmaps/wlassistant.xpm"\
+        icon16x16="/usr/share/pixmaps/wlassistant-16.xpm"\
+        title="wlassistant"\
+        command="/opt/trinity/bin/kdesu -X -c /opt/trinity/bin/wlassistant"
+
+

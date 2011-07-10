@@ -1,0 +1,16 @@
+Source: kopete-otr-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Harald Sitter <apachelogger@ubuntu.com>
+Build-Depends: cdbs, debhelper (>= 5), kdenetwork-kde3-dev, libotr2-dev (>= 3.0.0), automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+Homepage: http://kopete-otr.follefuder.org/
+
+Package: kopete-otr-kde3
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Off-The-Record encryption for Kopete [KDE3]
+ This plugin enables Off-The-Record encryption for the KDE instant
+ messenger Kopete. Using this plugin you can encrypt chatsessions to other
+ users with IM-Cients supporting the OTR encryption method.

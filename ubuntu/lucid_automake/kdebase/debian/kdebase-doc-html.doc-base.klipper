@@ -1,0 +1,10 @@
+Document: kdebase-doc-html-klipper
+Title: Klipper Handbook
+Author: Philip.Rodrigues
+Abstract: Klipper is the KDE clipboard cut and paste utility.
+Section: Apps/Utils
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/klipper/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/klipper/*.html
+

@@ -1,0 +1,7 @@
+--- kdebase/kdeprint/kdeprintfax/kdeprintfax.desktop	2005-11-08 22:36:23.000000000 +0000
++++ kdebase/kdeprint/kdeprintfax/kdeprintfax.desktop	2005-12-15 16:22:28.000000000 +0000
+@@ -90,3 +90,4 @@
+ Terminal=false
+ X-DCOP-ServiceType=Multi
+ Categories=Qt;KDE;Utility;X-KDE-Utilities-Peripherals;
++NoDisplay=true

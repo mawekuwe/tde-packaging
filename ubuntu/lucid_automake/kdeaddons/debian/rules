@@ -1,0 +1,43 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS := --without-xmms --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib --mandir=/opt/kde3/share/man
+
+DEB_DH_STRIP_ARGS := --dbg-package=kdeaddons-kde3-dbg
+
+DOC_HTML_PRUNE := konq-plugins-kde3/smbmounter
+
+binary-install/konq-plugins-kde3::
+	mkdir -p debian/konq-plugins-kde3/opt/kde3/share/
+#	mv -f debian/konq-plugins-kde3/opt/kde3/share/man debian/konq-plugins-kde3/opt/kde3/share/
+#	rm -rf debian/konq-plugins-kde3/opt/kde3/share/man
+#	mv -f debian/konq-plugins-kde3/opt/kde3/share/man/py/man1/exif.1 \
+#		debian/konq-plugins-kde3/opt/kde3/share/man/man1/exif.py.1; \
+#	mv -f debian/konq-plugins-kde3/opt/kde3/share/man/py/man1/orient.1 \
+#		debian/konq-plugins-kde3/opt/kde3/share/man/man1/orient.py.1; \
+#	rm -rf debian/konq-plugins-kde3/opt/kde3/share/man/py;
+
+binary-install/kdeaddons-kfile-plugins-kde3::
+	install -p -D -m644 renamedlgplugins/README \
+		debian/kdeaddons-kfile-plugins-kde3/opt/kde3/share/doc/kdeaddons-kfile-plugins/README.renamedlgplugins
+
+binary-install/knewsticker-scripts-kde3::
+	chmod 755 debian/knewsticker-scripts-kde3/opt/kde3/share/apps/knewsticker/scripts/*.pl
+	chmod 755 debian/knewsticker-scripts-kde3/opt/kde3/share/apps/knewsticker/scripts/*.py
+
+binary-install/kate-plugins-kde3::
+	chmod 755 debian/kate-plugins-kde3/opt/kde3/share/apps/kate/scripts/html-tidy.sh
+
+install/konq-plugins-kde3::
+	rm -f debian/tmp/opt/kde3/share/apps/konqueror/servicemenus/media_realfolder.desktop

@@ -1,0 +1,116 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+-include debian/debiandirs
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+debian/debiandirs: admin/debianrules
+	perl -w admin/debianrules echodirs > debian/debiandirs
+
+debian/ktechlab.xpm: icons/hi32-app-ktechlab.png
+	convert $< $@
+
+config.status: configure.in
+	dh_testdir
+	dpatch apply-all
+
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+	cp -f /usr/share/misc/config.sub config.sub
+endif
+ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+	cp -f /usr/share/misc/config.guess config.guess
+endif
+	PATH=/opt/kde3/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/kde3/lib CMAKE_INCLUDE_PATH=/opt/kde3/include/kde CFLAGS="$(CFLAGS) -Wl,-z,defs" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) $(configkde) --prefix=/opt/kde3
+
+build: build-stamp debian/ktechlab.xpm
+
+build-stamp:  config.status
+	dh_testdir
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+	env PATH=/opt/kde3/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/kde3/lib CMAKE_INCLUDE_PATH=/opt/kde3/include/kde $(MAKE)
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	[ ! -f po/Makefile ] || $(MAKE) -C po clean
+	dpatch deapply-all
+	rm -rf debian/patched
+
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+	[ ! -f Makefile ] || $(MAKE) distclean
+	rm -f config.log debian/ktechlab.xpm config.sub config.guess
+
+	dh_clean 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+	env PATH=/opt/kde3/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/kde3/lib CMAKE_INCLUDE_PATH=/opt/kde3/include/kde $(MAKE) install DESTDIR=$(CURDIR)/debian/ktechlab-kde3
+	env PATH=/opt/kde3/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/kde3/lib CMAKE_INCLUDE_PATH=/opt/kde3/include/kde $(MAKE) -C po install DESTDIR=$(CURDIR)/debian/ktechlab-kde3
+	install -D -m 644 debian/ktechlab.xpm debian/ktechlab-kde3/opt/kde3/share/pixmaps/ktechlab.xpm
+	chrpath -d $(CURDIR)/debian/ktechlab-kde3/opt/kde3/bin/ktechlab
+	chrpath -d $(CURDIR)/debian/ktechlab-kde3/opt/kde3/bin/microbe
+
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs ChangeLog
+	dh_installdocs
+	dh_installexamples
+	dh_installmenu
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install unpatch

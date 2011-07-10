@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+ServiceTypes=Kaffeine/CodecInstall
+X-KDE-Kaffeine-codec=ffmpeg
+X-KDE-Kaffeine-engine=xine-engine
+Exec=/opt/trinity/lib/kaffeine/install-codecs ffmpeg
+

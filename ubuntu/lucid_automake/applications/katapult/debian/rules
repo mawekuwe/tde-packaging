@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+export KUBUNTU_DESKTOP_POT=extragear-utils_katapult
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib
+
+cleanbuilddir/katapult-kde3::
+	rm -f katapult.1
+
+build/katapult-kde3::
+	docbook2x-man debian/katapult.1.docbook
+
+DEB_INSTALL_MANPAGES_katapult-kde3 = katapult.1
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+		cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+install/katapult-kde3::
+	rm -f $(CURDIR)/debian/katapult-kde3/opt/kde3/lib/libkatapult*.so
+	rm -f $(CURDIR)/debian/katapult-kde3/opt/kde3/lib/libkatapult*.la
+	dh_install $(DEB_SRCDIR)/debian/lintian opt/kde3/share/lintian/overrides/katapult
+#	dh_install $(DEB_SRCDIR)/katapult/katapult/katapult.desktop opt/kde3/share/autostart
+#	echo 'X-KDE-autostart-condition=katapultrc:General:Autostart:true' >> $(DEB_DESTDIR)/opt/kde3/share/autostart/katapult.desktop

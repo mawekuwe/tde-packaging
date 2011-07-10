@@ -1,0 +1,4 @@
+noatun: shlib-missing-in-control-file libwinskinvis.so opt/kde3/lib/libwinskinvis.so
+noatun: shlib-missing-in-control-file libartseffects.so opt/kde3/lib/libartseffects.so
+noatun: shlib-missing-in-control-file libnoatunarts.so opt/kde3/lib/libnoatunarts.so
+noatun: shlib-missing-in-control-file libkdeinit_noatun.so opt/kde3/lib/libkdeinit_noatun.so

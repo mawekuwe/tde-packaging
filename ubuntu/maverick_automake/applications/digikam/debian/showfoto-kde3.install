@@ -1,0 +1,6 @@
+opt/kde3/bin/showfoto
+/opt/kde3/share/apps/showfoto
+/opt/kde3/share/applications/kde/showfoto.desktop
+/opt/kde3/share/icons/hicolor/*/apps/showfoto.png
+debian/xpm.d/showfoto.xpm /opt/kde3/share/pixmaps/
+debian/xpm.d/showfoto-16.xpm /opt/kde3/share/pixmaps/

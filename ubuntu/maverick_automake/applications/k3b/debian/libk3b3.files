@@ -1,0 +1,3 @@
+usr/lib/*.so.*
+usr/lib/libk3baudio*.{so,la}
+usr/lib/kde3/*

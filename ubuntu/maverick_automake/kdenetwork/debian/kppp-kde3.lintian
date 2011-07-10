@@ -1,0 +1,3 @@
+kppp: setuid-binary opt/kde3/bin/kppp 4754 root/dip
+kppp: non-standard-executable-perm opt/kde3/bin/kppplogview 0754 != 0755
+kppp: non-standard-file-perm etc/ppp/peers/kppp-options 0640 != 0644

@@ -1,0 +1,7 @@
+--- kdebase-3.5.7/kfind/Kfind.desktop~	2007-05-14 08:55:33.000000000 +0100
++++ kdebase-3.5.7/kfind/Kfind.desktop	2007-08-31 15:22:09.000000000 +0100
+@@ -73,3 +73,4 @@
+ X-KDE-StartupNotify=true
+ OnlyShowIn=KDE;
+ Categories=Qt;KDE;Core;
++NoDisplay=true

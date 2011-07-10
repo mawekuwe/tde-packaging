@@ -1,0 +1,20 @@
+Source: bibletime-kde3
+Section: kde
+Build-Depends: bzip2, autotools-dev, quilt, patchutils (>= 0.2.25), cdbs (>= 0.4.27), debhelper (>= 4.1.0), kdelibs4-kde3-dev, libsword-dev, libclucene-dev, poxml, libboost-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Standards-Version: 3.8.3
+
+Package: bibletime-kde3
+Architecture: any
+Section: kde
+Depends: ${shlibs:Depends}
+Recommends: sword-text, sword-dict, sword-comm
+Suggests: bibletime-i18n-kde3
+Provides: sword-frontend
+Description: A bible study tool for KDE3
+ BibleTime is a free and easy to use bible study tool for UNIX systems.
+ It requires a working KDE environment and the SWORD library.
+ BibleTime provides easy handling of digitized texts (Bibles, commentaries
+ and lexicons) and powerful features to work with these texts (search in
+ texts, write own notes, save, print etc.).

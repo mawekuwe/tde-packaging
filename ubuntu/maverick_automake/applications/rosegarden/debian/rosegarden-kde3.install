@@ -1,0 +1,4 @@
+debian/tmp/opt/kde3/bin/rosegarden*
+debian/tmp/opt/kde3/bin/rosegardensequencer*
+debian/tmp/opt/kde3/share/mimelnk
+debian/tmp/opt/kde3/share/applications

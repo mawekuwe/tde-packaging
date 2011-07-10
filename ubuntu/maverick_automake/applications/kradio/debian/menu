@@ -1,0 +1,7 @@
+?package(kradio):needs="X11" \
+  section="Applications/TV and Radio" \
+  hints="KDE" \
+  title="KRadio" \
+  longtitle="K-Radio Application" \
+  command="/opt/kde3/bin/kradio" \
+  icon="/opt/kde3/share/pixmaps/kradio.xpm"

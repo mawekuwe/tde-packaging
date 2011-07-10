@@ -1,0 +1,10 @@
+Document: kdebase-doc-html-kdm
+Title: KDM Handbook
+Author: Oswald Buddenhagen 
+Abstract: This document describes KDM, the KDE Display Manager, an X session manager.
+Section: System 
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/kdm/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/kdm/*.html
+

@@ -1,0 +1,7 @@
+--- kdebase/knetattach/knetattach.desktop	2005-03-17 02:33:16.506855480 +0000
++++ kdebase/knetattach/knetattach.desktop	2005-03-17 02:33:22.186991968 +0000
+@@ -45,3 +45,4 @@
+ X-KDE-StartupNotify=true
+ Categories=Qt;KDE;Network;
+ DocPath=knetattach/index.html
++OnlyShowIn=Old;

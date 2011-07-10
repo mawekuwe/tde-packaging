@@ -1,0 +1,12 @@
+opt/kde3/bin/digi*
+/opt/kde3/include/kde
+opt/kde3/lib
+/opt/kde3/share/apps/digikam
+/opt/kde3/share/apps/konqueror/servicemenus/digikam*.desktop
+/opt/kde3/share/applications/kde/digikam.desktop
+/opt/kde3/share/icons/hicolor/*/apps/digikam.png
+/opt/kde3/share/locale
+/opt/kde3/share/servicetypes/digikamimageplugin.desktop
+/opt/kde3/share/services
+debian/xpm.d/digikam.xpm /opt/kde3/share/pixmaps/
+debian/xpm.d/digikam-16.xpm /opt/kde3/share/pixmaps/

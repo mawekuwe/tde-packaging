@@ -1,0 +1,10 @@
+Document: kdenetwork-doc-html-kget
+Title: KGet Handbook
+Author: Jonathan E. Drews
+Abstract: KGet allows you to group and manage downloads.
+Section: Apps/Web
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/kget/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/kget/*.html
+

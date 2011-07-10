@@ -1,0 +1,7 @@
+?package(kvirc-kde3):\
+ needs="x11"\
+ section="Applications/Network/Communication"\
+ title="KVIrc"\
+ command="/opt/kde3/bin/kvirc"\
+ hints="irc,scripting"\
+ icon="/opt/kde3/share/icons/hicolor/32x32/apps/kvirc.xpm"

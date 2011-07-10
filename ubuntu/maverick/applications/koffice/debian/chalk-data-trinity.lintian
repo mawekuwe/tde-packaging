@@ -1,0 +1,17 @@
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/torturepainting/torture-painting.rb
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/reshapehisto/reshapehisto.rc
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/changecs/changecs.rc
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/randompaint/randompaint.rb
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/filterstest/filterstest.rb
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/invertpython/invert.py
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/invertpython/invertpython.rc
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/torturefilters/torture-filters.rc
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/reshapehisto/reshapehisto.py
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/invertruby/invertruby.rc
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/filterstest/filterstest.rc
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/torturepainting/torture-painting.rc
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/torturefilters/torture-filters.rb
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/changecs/changecs.rb
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/invertruby/invert.rb
+chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/randompaint/randompaint.rc
+chalk-data: desktop-command-not-in-package /usr/share/applications/kde/chalk.desktop chalk

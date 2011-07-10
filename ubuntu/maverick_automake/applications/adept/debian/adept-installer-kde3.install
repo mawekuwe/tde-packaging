@@ -1,0 +1,4 @@
+debian/tmp/opt/kde3/bin/adept_installer
+debian/tmp/opt/kde3/share/icons/hicolor/*/apps/adept_installer.*
+debian/tmp/opt/kde3/share/apps/adept_installer/adept_installerui.rc
+debian/tmp/opt/kde3/share/applications/kde/adept_installer.desktop

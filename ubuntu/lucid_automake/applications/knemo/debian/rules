@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include debian/cdbs/kde.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_INSTALL_DOCS_knemo = -XNEWS
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib --with-extra-includes=/opt/kde3/include/kde
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+get-orig-source:
+	@@dh_testdir
+	@@[ -d ../tarballs/. ]||mkdir -p ../tarballs
+	@@dpatch-get-origtargz ../tarballs
+

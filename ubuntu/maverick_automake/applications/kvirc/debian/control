@@ -1,0 +1,48 @@
+Source: kvirc-kde3
+Build-Depends: cdbs (>= 0.4.12), debhelper (>= 4.1.46), kdelibs4-kde3-dev (>= 4:3.1.3), libesd0-dev, libperl-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Section: net
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Raúl Sánchez Siles <rasasi78@gmail.com>
+Standards-Version: 3.8.3
+Homepage: http://kvirc.net/
+
+Package: kvirc-kde3
+Architecture: any
+Depends: kvirc-data-kde3 (= ${source:Version}), ${shlibs:Depends}
+Description:  KDE3 based next generation IRC client with module support
+ A highly configurable graphical IRC client with an MDI interface,
+ built-in scripting language, support for IRC DCC, drag & drop file
+ browsing, and much more. KVIrc uses the KDE widget set, can be extended
+ using its own scripting language, integrates with KDE, and supports
+ custom plugins.
+ .
+ If you are a developer and you want to write a custom module for KVIrc,
+ you need to install the kvirc-dev package.
+
+Package: kvirc-data-kde3
+Section: net
+Architecture: all
+Depends: kvirc-kde3 (>= ${source:Version})
+Description: Data files for KVIrc
+ This package contains the architecture-independent data needed by KVIrc in
+ order to run, such as icons and images, language files, and shell scripts.
+ It also contains complete reference guides on scripting and functions
+ within KVIrc in its internal help format. Unless you want to use KVIrc only
+ as a very simple IRC client you are likely to want to write scripts to
+ tailor KVIrc to your needs.
+ .
+ KVIrc is a graphical IRC client based on the KDE widget set which integrates
+ with the K Desktop Environment version 3.
+
+Package: kvirc-kde3-dev
+Section: devel
+Architecture: any
+Depends: kvirc-kde3 (>= ${source:Version})
+Description: Development files for KVIrc
+ This package contains KVIrc libraries and include files you need if you
+ want to develop plugins for KVIrc.
+ .
+ KVIrc is a graphical IRC client based on the KDE widget set which integrates
+ with the K Desktop Environment version 3.

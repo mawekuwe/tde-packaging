@@ -1,0 +1,10 @@
+Document: kdemultimedia-doc-html-kmid
+Title: KMid Handbook
+Author: Antonio Larrosa Jimenez
+Abstract: KMid is a midi/karaoke multimedia player for KDE.
+Section: Apps/Music
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/kmid/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/kmid/*.html
+

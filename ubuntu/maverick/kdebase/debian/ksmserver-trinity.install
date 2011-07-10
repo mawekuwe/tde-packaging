@@ -1,0 +1,8 @@
+debian/tmp/opt/trinity/bin/ksmserver
+debian/tmp/opt/trinity/bin/startkde
+debian/tmp/opt/trinity/lib/kde3/ksmserver.la
+debian/tmp/opt/trinity/lib/kde3/ksmserver.so
+debian/tmp/opt/trinity/lib/libkdeinit_ksmserver.so
+debian/tmp/opt/trinity/share/apps/kconf_update/ksmserver.upd
+debian/tmp/opt/trinity/share/apps/kconf_update/move_session_config.sh
+debian/tmp/opt/trinity/share/apps/ksmserver/pics/shutdownkonq.png

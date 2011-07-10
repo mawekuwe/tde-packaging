@@ -1,0 +1,4 @@
+debian/tmp/opt/trinity/bin/adept_installer
+debian/tmp/opt/trinity/share/icons/hicolor/*/apps/adept_installer.*
+debian/tmp/opt/trinity/share/apps/adept_installer/adept_installerui.rc
+debian/tmp/opt/trinity/share/applications/kde/adept_installer.desktop

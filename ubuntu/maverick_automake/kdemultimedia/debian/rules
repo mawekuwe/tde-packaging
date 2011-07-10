@@ -1,0 +1,42 @@
+#! /usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS := \
+	--with-alsa --with-arts-alsa \
+	--with-extra-includes=/usr/include/speex:/opt/kde3/include/kde/arts \
+	--prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib
+	# The include/kde/arts one should be temporary. See
+	# "juk/Makefile.am: arts_includes vs ARTS_CFLAGS" in -talk.
+
+DOC_HTML_PRUNE := kcontrol-kde3
+
+DEB_DH_STRIP_ARGS  := --dbg-package=kdemultimedia-kde3-dbg
+
+PACKAGES_WITH_LIBS := artsbuilder-kde3 kdemultimedia-kio-plugins-kde3 kmid-kde3 kmix-kde3 krec-kde3 \
+	libarts1-akode-kde3 libarts1-audiofile-kde3 libarts1-mpeglib-kde3 libarts1-xine-kde3 \
+	libkcddb1-kde3 mpeglib-kde3 noatun-kde3
+
+DEB_DH_MAKESHLIBS_ARGS_artsbuilder-kde3			:= -V'artsbuilder-kde3 (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_kmid-kde3			:= -V'kmid-kde3 (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_libkcddb1-kde3			:= -V'libkcddb1-kde3 (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_mpeglib-kde3			:= -V'mpeglib-kde3 (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_noatun-kde3			:= -V'noatun-kde3 (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_libarts1-mpeglib-kde3		:= -V'libarts1-mpeglib-kde3 (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_kdemultimedia-kio-plugins-kde3 	:= -V'kdemultimedia-kio-plugins-kde3 (>= 4:3.5.8-1)'
+
+#shlibs_ver = 4:3.5.0-1
+#$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
+
+install/kdemultimedia-kappfinder-data-kde3::
+	install -p -D -m644 debian/tmp/etc/xdg/menus/applications-merged/kde-multimedia-music.menu debian/kdemultimedia-kappfinder-data-kde3/etc/xdg/menus/applications-merged/kde3-multimedia-music.menu

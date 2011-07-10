@@ -1,0 +1,52 @@
+Source: kde-guidance-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
+Build-Depends: cdbs, debhelper (>= 5), chrpath, kdelibs4-kde3-dev,
+ libpythonize0-kde3-dev, libtool, libxml2-utils, libxss-dev, libxxf86vm-dev,
+ pykdeextensions-kde3, pyqt-tools, python-qt3 (>= 3.17.2-1ubuntu2), python-kde3-kde3, python-kde3-kde3-dev, python-sip4-dev,
+ python-support (>= 0.6), python (>= 2.5), python-dev (>= 2.5), x11proto-scrnsaver-dev, python-qt-dev, hwdata
+Standards-Version: 3.8.3
+
+Package: kde-guidance-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, pykdeextensions-kde3, python-kde3-kde3, sysv-rc, guidance-backends-kde3, hwdata, python (>= 2.5), python-dev (>= 2.5)
+Conflicts: guidance-power-manager, kde-guidance-powermanager
+Provides: ${python:Provides}
+Description: collection of KDE system administration tools for GNU/Linux [KDE3]
+ Guidance currently consists of four programs designed to help you
+ look after your system:
+  o  userconfig - User and Group administration
+  o  serviceconfig - Service/daemon administration
+  o  mountconfig - Disk and filesystem administration
+  o  displayconfig - Screen and display configuration
+  o  wineconfig - Wine configuration
+ .
+ These tools are available in KDE Control Center, System Settings 
+ or can be run as standalone applications.
+ .
+  Homepage: http://www.simonzone.com/software/guidance
+
+Package: guidance-backends-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, hwdata, python (>= 2.5), python-dev (>= 2.5)
+Conflicts: guidance-power-manager, kde-guidance-powermanager
+Provides: ${python:Provides}
+Description: collection of system administration tools for GNU/Linux [KDE3]
+ This package contains the platform neutral backends used in the
+ Guidance configuration tools.
+ .
+  Homepage: http://www.simonzone.com/software/guidance
+
+Package: kde-guidance-powermanager-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, kde-guidance-kde3, python-kde3-kde3, python-dbus, hal, python-gobject, python (>= 2.5), python-dev (>= 2.5)
+Conflicts: guidance-power-manager, kde-guidance-powermanager
+Provides: ${python:Provides}
+Description: HAL based power manager applet [KDE3]
+ A power management applet to indicate battery levels and perform hibernate or
+ suspend using HAL.
+ .
+  Homepage: http://www.simonzone.com/software/guidance

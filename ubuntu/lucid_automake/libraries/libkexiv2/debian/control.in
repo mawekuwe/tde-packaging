@@ -1,0 +1,28 @@
+Source: libkexiv2-kde3
+Section: libs
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: @@@MAINTAINER@@@
+Uploaders: @@@UPLOADERS@@@
+Build-Depends: debhelper (>> 5), cdbs, libexiv2-kde3-dev (>= 0.12), kdelibs4-kde3-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+Homepage: http://www.kipi-plugins.org/
+
+Package: libkexiv2-3-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libkexiv2-3-kde3 (= ${binary:Version}), pkg-config
+Description: Qt like interface for the libexiv2 library (development) [KDE3]
+ libkexif2-dev contains development files and documentation for libkexiv2
+ library.  The library documentation is available on kexiv2.h header file.
+ .
+ Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
+
+Package: libkexiv2-3-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Qt like interface for the libexiv2 library (runtime) [KDE3]
+ libkexif2 contains the library of libkexiv2.
+ .
+ Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.

@@ -1,0 +1,21 @@
+Source: fusion-icon-trinity
+Section: x11
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Python Applications Packaging Team <python-apps-team@lists.alioth.debian.org>
+XS-Python-Version: all
+Build-Depends: cdbs (>= 0.4.49), debhelper (>= 5.0.37.1), pkg-config, python-all-dev
+Build-Depends-Indep: python-central (>= 0.6.0), intltool
+Standards-Version: 3.8.4
+
+Package: fusion-icon-trinity
+Architecture: all
+XB-Python-Version: ${python:Versions}
+Depends: ${misc:Depends}, ${python:Depends}, python-gtk2 | python-qt4, python-compizconfig-trinity, compiz-trinity
+Description: tray icon to launch and manage Compiz Fusion [Trinity]
+ The OpenCompositing Project brings 3D desktop visual effects that
+ improve the usability and eye candy of the X Window System and provide
+ increased productivity.
+ .
+ This package contains a tray icon that can launch Compiz and its
+ decorators.

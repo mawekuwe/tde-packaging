@@ -1,0 +1,22 @@
+Source: ktorrent-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: @@@MAINTAINER@@@
+Uploaders: @@@UPLOADERS@@@
+Build-Depends: debhelper (>= 5.0), cdbs, docbook2x, kdelibs4-kde3-dev, libpcre3-dev, libx11-dev, libgmp3-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: ktorrent-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: php5-cli
+Recommends: kdebase-kio-plugins-kde3
+Description: BitTorrent client for KDE3
+ KTorrent is a BitTorrent program for KDE3. Its features include speed capping
+ (both down and up), integrated searching, UDP tracker support, preview of
+ certain file types (video and audio) and integration into the KDE Panel
+ enabling background downloading.
+ .
+  Homepage: http://ktorrent.org
+

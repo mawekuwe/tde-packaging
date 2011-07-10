@@ -1,0 +1,86 @@
+Source: k3b-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Francois Marier <francois@debian.org>, Fathi Boudra <fabo@debian.org>
+Build-Depends: libdvdread4, libdvdread-dev, alsa, libasound2-dev, lame, libmp3lame-dev, debhelper (>= 6), cdbs (>= 0.4.52ubuntu18), kdelibs4-trinity-dev (>= 3.5.0), libflac++-dev (>= 1.1.2), flac, libdbus-tqt-1-dev, libhal-dev (>= 0.5.5.1), libhal-storage-dev (>= 0.5.5.1), libpopt-dev, libmpcdec-dev, libtag1-dev (>= 1.4-3), libmusicbrainz4-dev (>= 2.1.1-4.1), libmad0-dev, chrpath, libavformat-dev, libavcodec-dev, libvorbis-dev, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+Homepage: http://www.k3b.org
+
+Package: k3b-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, wodim | cdrskin, cdparanoia (>= 3a9.8), genisoimage, kdelibs-data-trinity (>= 4:3.1.4-2), cdrdao (>= 1.1.7-5), k3b-data-trinity (= ${source:Version}), libk3b3-trinity (= ${binary:Version})
+Recommends: dvd+rw-tools, libk3b3-extracodecs-trinity
+Suggests: k3b-i18n, normalize-audio, toolame, sox, movixmaker-2, vcdimager (>= 0.7)
+Replaces: libk3b3-trinity (<< 1.0.5-2)
+Description: A sophisticated KDE CD burning application [Trinity]
+ K3b is a GUI frontend to the CD recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording.
+ .
+ It can be used to copy CDs and burn:
+  - audio CDs (from wav, mp3 or ogg vorbis files)
+  - data CDs and DVDs
+  - mixed-mode CDs (CD-Extra support)
+  - VCDs (1.1, 2.0 and SVCD)
+  - ISO files (Joliet/Rockridge and El Torito support)
+  - eMovix CDs
+
+Package: k3b-data-trinity
+Conflicts: k3b-trinity (<< 1.0.4-4)
+Replaces: k3b-trinity (<< 1.0.5-2)
+Architecture: all
+Description: A sophisticated KDE CD burning application - data files [Trinity]
+ K3b is a GUI frontend to the CD recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording.
+ .
+ This package contains the required data files common to all architectures.
+
+Package: libk3b-trinity-dev
+Conflicts: libk3bcore-trinity-dev, libk3bplugin-trinity-dev, libk3btools-trinity-dev, libk3bproject-trinity-dev, k3blibs-trinity-dev, k3blibs-trinity
+Section: libdevel
+Architecture: any
+Depends: libk3b3-trinity (= ${binary:Version})
+Description: The KDE cd burning application library - development files [Trinity]
+ K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording and a lot more.
+ .
+ This package contains development files.
+
+Package: libk3b3-trinity
+Section: libs
+Architecture: any
+Conflicts: libk3bcore-trinity, libk3bplugin-trinity, libk3btools-trinity, libk3bproject-trinity, k3blibs-trinity, libk3b2-trinity
+Depends: ${shlibs:Depends}
+Replaces: libk3b2-trinity, libk3b-trinity-dev (<< 1.0.5-2)
+Description: The KDE cd burning application library - runtime files [Trinity]
+ K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording and a lot more.
+ .
+ This package contains runtime libraries.
+
+Package: libk3b3-extracodecs-trinity
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Conflicts: libk3b2-mp3-trinity
+Replaces: libk3b2-mp3-trinity, libk3b2-extracodecs-trinity, libk3b3-trinity (<< 1.0.5-2)
+Description: The KDE cd burning application library - extra decoders [Trinity]
+ K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording and a lot more.
+ .
+ This package contains runtime libraries for the MP3 and FFMPEG decoder plugin.
+
+Package: libk3b2-extracodecs-trinity
+Architecture: all
+Priority: extra
+Depends: libk3b3-extracodecs-trinity
+Description: transitional package for K3b's extra decoders [Trinity]
+ This is a dummy transitional package to enable a smooth transition from
+ libk3b2-extracodecs to libk3b3-extracodecs.
+ It may safely be removed after installation.

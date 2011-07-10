@@ -1,0 +1,2 @@
+?package(fusion-icon-trinity): needs="X11" section="Applications/System/Administration" title="Compiz Fusion Icon [Trinity]" \
+ command="/opt/trinity/bin/fusion-icon" icon="/opt/trinity/share/pixmaps/fusion-icon.xpm"

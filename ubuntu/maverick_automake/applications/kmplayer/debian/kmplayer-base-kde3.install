@@ -1,0 +1,15 @@
+opt/kde3/lib/libkmplayercommon.so
+opt/kde3/lib/libkmplayercommon.la
+opt/kde3/bin/kxineplayer
+etc/kde3/kmplayerrc
+/opt/kde3/share/apps/kmplayer/bookmarks.xml
+/opt/kde3/share/apps/kmplayer/noise.gif
+/opt/kde3/share/mimelnk/application/x-kmplayer.desktop
+/opt/kde3/share/mimelnk/video/x-ms-wmp.desktop
+/opt/kde3/share/icons/hicolor/16x16/apps/kmplayer.png
+/opt/kde3/share/icons/hicolor/22x22/apps/kmplayer.png
+/opt/kde3/share/icons/hicolor/32x32/apps/kmplayer.png
+/opt/kde3/share/icons/hicolor/48x48/apps/kmplayer.png
+/opt/kde3/share/icons/hicolor/64x64/apps/kmplayer.png
+/opt/kde3/share/icons/hicolor/128x128/apps/kmplayer.png
+/opt/kde3/share/icons/hicolor/scalable/apps/kmplayer.svgz

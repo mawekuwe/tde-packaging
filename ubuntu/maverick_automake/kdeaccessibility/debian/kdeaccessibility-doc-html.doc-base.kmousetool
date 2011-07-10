@@ -1,0 +1,10 @@
+Document: kdeaccessibility-doc-html-kmousetool
+Title: KMouseTool Handbook
+Author: Jeff Roush
+Abstract: KMouseTool clicks the mouse whenever the mouse cursor pauses briefly.
+Section: Apps/Utils
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/kmousetool/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/kmousetool/*.html
+

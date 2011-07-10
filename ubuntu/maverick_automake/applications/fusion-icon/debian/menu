@@ -1,0 +1,2 @@
+?package(fusion-icon-kde3): needs="X11" section="Applications/System/Administration" title="Compiz Fusion Icon [KDE3]" \
+ command="/opt/kde3/bin/fusion-icon" icon="/opt/kde3/share/pixmaps/fusion-icon.xpm"

@@ -1,0 +1,8 @@
+?package(kbruch):needs="X11"\
+  section="Applications/Education"\
+  hints="KDE"\
+  title="KBruch"\
+  longtitle="KBruch (Exercise Fractions)"\
+  command="/opt/trinity/bin/kbruch"\
+  icon="/opt/trinity/share/pixmaps/kbruch.xpm"
+

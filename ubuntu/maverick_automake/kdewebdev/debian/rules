@@ -1,0 +1,36 @@
+#! /usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib
+
+DEB_INSTALL_CHANGELOGS_kfilereplace-kde3    := kfilereplace/ChangeLog
+DEB_INSTALL_CHANGELOGS_kimagemapeditor-kde3 := kimagemapeditor/ChangeLog
+DEB_INSTALL_CHANGELOGS_klinkstatus-kde3     := klinkstatus/ChangeLog
+DEB_INSTALL_CHANGELOGS_kommander-kde3       := kommander/ChangeLog
+DEB_INSTALL_CHANGELOGS_quanta-kde3          := quanta/ChangeLog
+
+_P=)
+GCC_VERSION := $(shell gcc --version | sed -n "/^gcc/s/^[^$(_P)]*$(_P) \(.\..\).*/\1/p")
+ifeq ($(GCC_VERSION),4.3)
+  CXX = g++ -fpermissive
+endif
+
+DEB_DH_STRIP_ARGS  := --dbg-package=kdewebdev-kde3-dbg
+
+PACKAGES_WITH_LIBS := kommander-kde3
+
+DEB_DH_MAKESHLIBS_ARGS_kommander-kde3 := -V'kommander-kde3 (>= 4:3.5.8-1)'
+
+#shlibs_ver = 4:3.5.0-1
+#$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))

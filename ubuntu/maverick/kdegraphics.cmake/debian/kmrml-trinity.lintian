@@ -1,0 +1,4 @@
+kmrml: no-shlibs-control-file opt/trinity/lib/libkdeinit_mrmlsearch.so
+kmrml: postinst-must-call-ldconfig opt/trinity/lib/libkdeinit_mrmlsearch.so
+kmrml: postrm-should-call-ldconfig opt/trinity/lib/libkdeinit_mrmlsearch.so
+kmrml: package-name-doesnt-match-sonames libkdeinit-mrmlsearch

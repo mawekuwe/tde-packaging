@@ -1,0 +1,76 @@
+.\" This is free documentation; you can redistribute it and/or
+.\" modify it under the terms of the GNU General Public License as
+.\" published by the Free Software Foundation; either version 2 of
+.\" the License, or (at your option) any later version.
+.\"
+.\" The GNU General Public License's references to "object code"
+.\" and "executables" are to be interpreted as the output of any
+.\" document formatting or typesetting system, including
+.\" intermediate and printed output.
+.\"
+.\" This manual is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public
+.\" License along with this manual; if not, write to the Free
+.\" Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139,
+.\" USA.
+.\"
+.TH ROSEGARDEN-AUDIOFILE-IMPORTER 1 "19 March 2006"
+
+.SH NAME
+
+rosegarden-audiofile-importer - Helper application to convert and
+import audio files for Rosegarden.
+
+.SH SYNOPSIS
+
+rosegarden-audiofile-importer -t [<version>]
+rosegarden-audiofile-importer --conftest [<version>]
+rosegarden-audiofile-importer -l [<version>]
+rosegarden-audiofile-importer [-r <rate>] -w <inputfile>
+rosegarden-audiofile-importer [-r <rate>] -c <inputfile> <outputfile>
+
+
+.SH OPTIONS
+
+.BR -t " " [<version>], 
+.BR --conftest " " [<version>]
+
+Exit successfully if the importer is available and working [and is
+of at least version <version>].  If some of the required helper
+applications are missing, also print to stdout a line saying
+"Required: application1, application2", listing the missing
+programs.
+
+.BR \-l " " [<version>]
+
+List known file extensions (e.g. ogg wav flac).  Return code is same
+as for -t (so can combine two calls into one)
+
+.BR \-r " " <rate>
+
+Test whether any work is needed to convert the input, either because
+it isn't in a Rosegarden-compatible format or because its samplerate
+differs from <rate>.  Exit successfully if no work is required; return
+error code 2 if conversion required, 3 if resampling required, 4 if
+both required, 1 for other error.
+
+.SH DESCRIPTION
+
+Helper application to convert and import audio files for Rosegarden.
+
+Can take audio files of various kinds as input, always produces WAV
+files that are compatible with Rosegarden as output.
+
+Not actually specific to Rosegarden in any way, except that
+Rosegarden needs to know it can rely on its presence and calling
+interface.
+
+.SH SEE ALSO
+     rosegarden(1), rosegarden-lilypondview(1), rosegarden-project-page(1)
+
+
+

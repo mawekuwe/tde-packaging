@@ -1,0 +1,17 @@
+Source: keep-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
+Build-Depends: cdbs, debhelper (>= 5), kdelibs4-kde3-dev, docbook2x, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: keep-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, rdiff-backup
+Description: backup system for KDE [KDE3]
+ Keep is an automatic backup program that allows users to set the parameters of
+ the backup, including the frequency and the number of backups.
+ .
+  Homepage: http://jr.falleri.free.fr/keep

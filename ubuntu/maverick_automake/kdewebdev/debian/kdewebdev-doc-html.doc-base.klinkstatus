@@ -1,0 +1,10 @@
+Document: klinkstatus
+Title: KLinkStatus Handbook
+Author: Paulo Moura Guedes <moura@kdewebdev.org>
+Abstract: KLinkStatus is a link checker for KDE.
+Section: Apps/Net
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/klinkstatus/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/klinkstatus/*.html
+

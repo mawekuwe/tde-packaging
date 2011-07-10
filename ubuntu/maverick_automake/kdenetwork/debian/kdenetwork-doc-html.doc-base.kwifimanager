@@ -1,0 +1,11 @@
+Document: kdenetwork-doc-html-kwifimanager
+Title: KWiFiManager Handbook
+Author: Stefan Winter
+Abstract: The KWiFiMananger suite can be used to configure and monitor
+ wireless LAN cards.
+Section: Apps/Net
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/kwifimanager/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/kwifimanager/*.html
+

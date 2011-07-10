@@ -1,0 +1,22 @@
+Source: knemo-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Achim Bohnet <ach@mpe.mpg.de>, Mark Purcell <msp@debian.org>
+Build-Depends: debhelper (>> 4.1), cdbs, kdelibs4-kde3-dev, net-tools, wireless-tools, libiw-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: knemo-kde3
+Architecture: any
+Depends: kicker-kde3, net-tools, ${shlibs:Depends}
+Recommends: kcontrol-kde3, wireless-tools
+Description: network interfaces monitor for the KDE3 systray
+ KNemo displays an icon in the systray for every network interface.
+ Tooltips and an info dialog provide further information about the
+ interface.  Passive popups inform about interface changes.
+ A traffic plotter is also integrated.
+ .
+ knemo polls the network interface status every second using the
+ ifconfig, route and iwconfig tools. 
+ .
+  Homepage: http://extragear.kde.org/apps/knemo/

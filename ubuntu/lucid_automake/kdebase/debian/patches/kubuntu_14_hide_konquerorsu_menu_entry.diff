@@ -1,0 +1,7 @@
+--- kdebase/konqueror/konquerorsu.desktop	2006-10-03 11:48:15.000000000 +0000
++++ kdebase/konqueror/konquerorsu.desktop	2006-10-03 11:49:51.000000000 +0000
+@@ -82,3 +82,4 @@
+ 
+ Categories=Qt;KDE;System;X-KDE-More;
+ NotShowIn=GNOME;
++NoDisplay=true

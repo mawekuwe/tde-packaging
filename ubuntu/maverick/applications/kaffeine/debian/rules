@@ -1,0 +1,53 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS := --without-lame --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+DEB_INSTALL_MANPAGES_kaffeine-trinity := debian/kaffeine.1
+
+DEB_FIXPERMS_EXCLUDE := install-css.sh install-codecs
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+install/kaffeine-trinity::
+	install -D -p -m0644 debian/kaffeine.xpm debian/kaffeine/opt/trinity/share/pixmaps/kaffeine.xpm
+	install -D -p -m0644 debian/kaffeine-trinity.lintian-overrides debian/kaffeine/opt/trinity/share/lintian/overrides/kaffeine
+	install -D -p -m0755 debian/install-css.sh debian/kaffeine/opt/trinity/share/doc/kaffeine/install-css.sh
+	install -D -p -m0644 debian/kaffeine-iso.desktop debian/kaffeine/opt/trinity/share/applications/kde/kaffeine-iso.desktop
+
+	#Debian additions
+	install -D -p -m0755 debian/install-codecs debian/kaffeine/opt/trinity/lib/kaffeine/install-codecs
+	install -D -p -m0644 debian/kaffeine_xine-install-dvdcss.desktop debian/kaffeine/opt/trinity/share/services/kaffeine_xine-install-dvdcss.desktop
+	install -D -p -m0644 debian/kaffeine_xine-install-ffmpeg.desktop debian/kaffeine/opt/trinity/share/services/kaffeine_xine-install-ffmpeg.desktop
+	install -D -p -m0644 debian/kaffeine_codecinstall.desktop debian/kaffeine/opt/trinity/share/servicetypes/kaffeine_codecinstall.desktop
+
+	# file shipped by kdelibs
+	rm -f debian/kaffeine/opt/trinity/share/mimelnk/application/x-mplayer2.desktop
+	# Bogus, shouldn't be shipped..
+	rm -f debian/kaffeine/opt/trinity/share/doc/kde/HTML/en/doc/CMakeLists.txt
+
+get-orig-source:
+	 @@dh_testdir
+	 @@[ -d ../tarballs/. ]
+	 @@dpatch-get-origtargz ../tarballs
+

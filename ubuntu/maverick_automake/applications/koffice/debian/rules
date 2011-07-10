@@ -1,0 +1,44 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_KDE_APIDOX := no
+
+DEB_DH_STRIP_ARGS  := --dbg-package=koffice-kde3-dbg
+
+PACKAGES_WITH_LIBS := karbon-kde3 kchart-kde3 kivio-kde3 koffice-libs-kde3 krita-kde3 kspread-kde3 kugar-kde3 kthesaurus-kde3
+
+DEB_INSTALL_CHANGELOGS_karbon-kde3 := karbon/CHANGES
+DEB_INSTALL_CHANGELOGS_kchart-kde3 := kchart/CHANGES
+DEB_INSTALL_CHANGELOGS_kexi-kde3 := kexi/CHANGES
+DEB_INSTALL_CHANGELOGS_kivio-kde3 := kivio/CHANGES
+DEB_INSTALL_CHANGELOGS_kpresenter-kde3 := kpresenter/CHANGES
+DEB_INSTALL_CHANGELOGS_kspread-kde3 := kspread/CHANGES
+DEB_INSTALL_CHANGELOGS_kugar-kde3 := kugar/CHANGES
+DEB_INSTALL_CHANGELOGS_kword-kde3 := kword/CHANGES
+DEB_INSTALL_CHANGELOGS_koffice-libs-kde3 := lib/CHANGES
+
+DEB_COMPRESS_EXCLUDE := .ksp .kwd .kwt .docbook
+
+install/krita-data-kde3::
+	install -m 755 -d debian/krita-data-kde3/opt/kde3/share/apps/krita/profiles/
+	uudecode -o debian/krita-data-kde3/opt/kde3/share/apps/krita/profiles/fogra27l.icm debian/fogra27l.icm.uu
+
+common-binary-post-install-arch::
+	for pkg in `dh_listpackages`; do \
+		if test -d debian/$$pkg/usr/share/doc/kde/HTML/en/$$pkg; then \
+		dh_link -p$$pkg usr/share/doc/kde/HTML/en/$$pkg \
+		usr/share/doc/$$pkg/html; \
+		fi; \
+		dh_installmime -p$$pkg; \
+	done

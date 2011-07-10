@@ -1,0 +1,4 @@
+debian/tmp/opt/kde3/lib/kde3/libgstreamerpart.la
+debian/tmp/opt/kde3/lib/kde3/libgstreamerpart.so
+debian/tmp/opt/kde3/share/services/gstreamer_part.desktop
+debian/tmp/opt/kde3/share/apps/gstreamerpart/gstreamer_part.rc

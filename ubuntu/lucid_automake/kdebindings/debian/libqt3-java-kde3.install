@@ -1,0 +1,2 @@
+debian/tmp/opt/kde3/share/java/qtjava*.jar
+debian/tmp/opt/kde3/share/doc/kde/HTML/en/javalib/*.html /opt/kde3/share/doc/libqt3-java-kde3/html

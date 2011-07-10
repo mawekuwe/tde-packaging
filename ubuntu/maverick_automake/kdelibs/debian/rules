@@ -1,0 +1,101 @@
+#! /usr/bin/make -f
+# see debian/rules file for kdesvn for cmake examples
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include debian/cdbs/debian-qt-kde.mk
+
+DEB_KDE_APIDOX := yes
+
+version=Debian Package $(DEB_VERSION)
+DEB_OPT_FLAG += -DDEBIAN_VERSION=$(DEB_VERSION)
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_SKIP_RPATH=OFF -DCMAKE_LIBRARY_PATH="/opt/kde3/lib" -DCMAKE_INCLUDE_PATH="/opt/kde3/include/kde" -DCMAKE_CXX_FLAGS="-I/opt/kde3/include/kde" -DCMAKE_LDFLAGS="-L/opt/kde3/lib"
+
+DEB_CONFIGURE_EXTRA_FLAGS := \
+	--enable-mitshm --with-alsa --enable-dnotify --enable-inotify \
+	--with-lua-includes=/usr/include/lua50  --prefix=/opt/kde3 \
+	--with-distribution="Kubuntu (`lsb_release --codename --short`) $(DEB_VERSION)" --with-sudo-kdesu-backend
+
+DEB_FIXPERMS_EXCLUDE := \
+	opt/kde3/bin/fileshareset	\
+	opt/kde3/bin/kgrantpty	\
+	opt/kde3/bin/kpac_dhcp_helper \
+	opt/kde3/bin/start_kdeinit
+
+DEB_DH_STRIP_ARGS  := --dbg-package=kdelibs-kde3-dbg
+
+DEB_DH_MAKESHLIBS_ARGS_kdelibs4c2a-kde3 := -V'kdelibs4c2a-kde3 (>= 4:3.5.8-1)'
+
+binary-install/kdelibs-data-kde3::
+	install -p -D -m644 kded/applications.menu debian/kdelibs-data-kde3/opt/kde3/etc/xdg/menus/kde-applications.menu
+	install -p -D -m644 debian/kde3libs.conf debian/kdelibs-data-kde3/etc/ld.so.conf.d/kde3libs.conf
+	uudecode debian/icons/aboutkde-kubuntu.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/apps/kdeui/pics/aboutkde.png
+
+	uudecode debian/icons/cr16-device-system.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/16x16/devices/system.png
+	uudecode debian/icons/cr22-device-system.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/22x22/devices/system.png
+	uudecode debian/icons/cr32-device-system.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/32x32/devices/system.png
+	uudecode debian/icons/cr48-device-system.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/48x48/devices/system.png
+	uudecode debian/icons/cr64-device-system.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/64x64/devices/system.png
+	uudecode debian/icons/cr128-device-system.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/128x128/devices/system.png
+#	uudecode debian/icons/crsc-device-system.svgz.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/scalable/devices/system.svgz
+
+	uudecode debian/icons/cr16-action-hibernate.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/16x16/actions/hibernate.png
+	uudecode debian/icons/cr22-action-hibernate.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/22x22/actions/hibernate.png
+	uudecode debian/icons/cr32-action-hibernate.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/32x32/actions/hibernate.png
+	uudecode debian/icons/cr48-action-hibernate.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/48x48/actions/hibernate.png
+
+	uudecode debian/icons/cr16-action-suspend.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/16x16/actions/suspend.png
+	uudecode debian/icons/cr22-action-suspend.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/22x22/actions/suspend.png
+	uudecode debian/icons/cr32-action-suspend.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/32x32/actions/suspend.png
+	uudecode debian/icons/cr48-action-suspend.png.uu -o debian/kdelibs-data-kde3/opt/kde3/share/icons/crystalsvg/48x48/actions/suspend.png
+
+### 
+
+DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+
+binary-predeb/kdelibs4-kde3-dev::
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	echo "libasound2-kde3-dev=libasound2-kde3-dev" >> debian/kdelibs4-kde3-dev.substvars
+endif
+
+common-install-prehook-impl::
+	mkdir -p po
+#	-XGETTEXT=/usr/bin/kde-xgettext EXTRACTATTR=/usr/bin/extractattr sh $(DEB_SRCDIR)/admin/cvs.sh extract-messages	
+#	-for file in po/*pot; do \
+#		sed "s/charset=CHARSET/charset=UTF-8/" -i $$file; \
+#	done
+
+#	msgcat --use-first kde.pot po/kdelibs.pot > kdelibs.pot-merged
+#	mv -f kdelibs.pot-merged po/kdelibs.pot
+	cp -Rp kde.pot po/kdelibs.pot
+
+	# generate .po files for .desktop etc files
+	if [ -f debian/kubuntu-desktop-i18n/createdesktop.pl ]; then \
+	  sh debian/kubuntu-desktop-i18n/findfiles LIST; \
+	  cat LIST; \
+	  perl debian/kubuntu-desktop-i18n/createdesktop.pl --file-list=LIST --base-dir=. > desktop.$(DEB_SOURCE_PACKAGE).tmp; \
+	  msguniq --to-code=UTF-8 --no-wrap -o desktop.$(DEB_SOURCE_PACKAGE) desktop.$(DEB_SOURCE_PACKAGE).tmp 2>/dev/null; \
+	  python debian/kubuntu-desktop-i18n/msgsplit desktop.$(DEB_SOURCE_PACKAGE); \
+	  mv desktop.$(DEB_SOURCE_PACKAGE) po/desktop_$(DEB_SOURCE_PACKAGE).pot; \
+	  rm -f desktop.$(DEB_SOURCE_PACKAGE) desktop.$(DEB_SOURCE_PACKAGE).tmp; \
+	  # add translation domain to files \
+	  for file in `cat LIST`; do \
+	    echo X-Ubuntu-Gettext-Domain=desktop_$(DEB_SOURCE_PACKAGE) >> $${file}; \
+	  done; \
+	  rm -f LIST; \
+	fi
+
+binary-install/kdelibs4c2a-kde3::
+	mv debian/tmp/opt/kde3/bin/kcmshell debian/tmp/opt/kde3/bin/kcmshell.real
+	install -p -D -m755 debian/tmp/opt/kde3/bin/kcmshell.real debian/kdelibs4c2a-kde3/opt/kde3/bin/kcmshell.real
+	install -p -D -m755 debian/kcmshell debian/kdelibs4c2a-kde3/opt/kde3/bin/kcmshell

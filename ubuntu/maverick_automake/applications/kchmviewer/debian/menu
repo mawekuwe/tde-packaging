@@ -1,0 +1,2 @@
+?package(kchmviewer):needs="X11" section="Applications/Viewers"\
+  title="kchmviewer" command="/opt/kde3/bin/kchmviewer"

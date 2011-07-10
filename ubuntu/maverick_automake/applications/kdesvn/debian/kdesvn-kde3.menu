@@ -1,0 +1,8 @@
+?package(kdesvn):\
+  needs="X11"\
+  section="Applications/Programming"\
+  hints="KDE,Version control"\
+  title="KDESvn"\
+  longtitle="SVN client"\
+  icon="/usr/share/pixmaps/kdesvn.xpm"\
+  command="/opt/kde3/bin/kdesvn"

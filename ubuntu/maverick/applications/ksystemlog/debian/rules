@@ -1,0 +1,41 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_INSTALL_MANPAGES_ksystemlog-trinity := ksystemlog.1
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+build/ksystemlog-trinity::
+	/usr/bin/docbook2x-man debian/ksystemlog.xml
+
+install/ksystemlog-trinity::
+	install -D -p -m0644 ksystemlog/src/ksystemlog.desktop \
+	  debian/ksystemlog-trinity/opt/trinity/share/applications/kde/ksystemlog.desktop
+
+binary-post-install/ksystemlog-trinity::
+	rm -rf debian/ksystemlog/opt/trinity/share/applnk/
+
+clean::
+	rm -f ksystemlog.1

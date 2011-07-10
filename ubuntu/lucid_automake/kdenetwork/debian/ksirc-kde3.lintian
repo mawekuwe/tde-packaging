@@ -1,0 +1,3 @@
+ksirc: no-shlibs-control-file opt/kde3/lib/libkdeinit_ksirc.so
+ksirc: postinst-must-call-ldconfig opt/kde3/lib/libkdeinit_ksirc.so
+ksirc: postrm-should-call-ldconfig opt/kde3/lib/libkdeinit_ksirc.so

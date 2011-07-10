@@ -1,0 +1,2 @@
+kate: shlib-missing-in-control-file libkdeinit_kwrite.so usr/lib/libkdeinit_kwrite.so
+kate: shlib-missing-in-control-file libkdeinit_kate.so usr/lib/libkdeinit_kate.so

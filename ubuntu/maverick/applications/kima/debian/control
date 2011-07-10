@@ -1,0 +1,16 @@
+Source: kima-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: cdbs, debhelper (>= 5), kdelibs4-trinity-dev, libhal-dev, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: kima-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: kicker monitoring applet [Trinity]
+ This applet monitors various temperature,
+ frequency and fan sources in your kicker
+ panel.
+ .
+  Homepage: http://www.elliptique.net/~ken/kima/

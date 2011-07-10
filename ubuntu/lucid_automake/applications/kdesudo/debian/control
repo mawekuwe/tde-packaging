@@ -1,0 +1,13 @@
+Source: kdesudo-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>> 5), cdbs, kdelibs4-kde3-dev, docbook2x, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: kdesudo-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, sudo
+Description: sudo frontend for KDE3
+ KdeSudo is a graphical frontend for the sudo utility.
+ It allows you to run programs as another user by entering your password.

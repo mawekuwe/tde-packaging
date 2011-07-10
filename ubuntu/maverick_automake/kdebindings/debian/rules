@@ -1,0 +1,139 @@
+#! /usr/bin/make -f
+
+DEB_QUILT_PATCHDIR_LINK :=
+export QUILT_PATCHES=debian/patches
+
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+override DEB_BUILDDIR := $(DEB_SRCDIR)
+include debian/cdbs/debian-qt-kde.mk
+DEB_BUILDDIR := $(DEB_SRCDIR)
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+###
+
+ifneq (,$(shell dh_listpackages -s | grep libqt3-jni-kde3))
+    WITH_JAVA := --with-java=/usr/lib/jvm/default-java
+else
+    WITH_JAVA    := --without-java
+    WITHOUT_JAVA := 1
+endif
+
+###
+
+DEB_CONFIGURE_EXTRA_FLAGS = $(WITH_JAVA) \
+			    --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib \
+		  	    DO_NOT_COMPILE='dcopperl kalyptus qtsharp xparts python'
+
+DEB_COMPRESS_EXCLUDE += .java .ui .js .rb .map .wav .bmp .cpp .sk
+
+# These are not all the packages with libraries, but only those that
+# need to be in DEB_SHLIBDEPS_INCLUDE...
+PACKAGES_WITH_LIBS = libqt3-jni-kde3 libsmokeqt1-kde3 libsmokekde1-kde3 libkjsembed1-kde3
+
+# These packages do not ship files in /usr/lib so need not call ldconfig.
+DEB_DH_MAKESHLIBS_ARGS_libkde3-jni-kde3          = -n
+DEB_DH_MAKESHLIBS_ARGS_libqt0-ruby1.8-kde3       = -n
+DEB_DH_MAKESHLIBS_ARGS_libkorundum0-ruby1.8-kde3 = -n
+
+###
+
+clean::
+	rm -f kjsembed/docs/embedding/simple-embed/Makefile
+	rm -f debian/stamp-install-dcopjava
+	[ ! -f Makefile ] || $(MAKE) -C dcopjava distclean
+	find . -name 'Makefile' -exec rm {} \;
+	# Just in case
+	rm -f $(DEB_SRCDIR)/dcopjava/dcopidl2java/dcopidl2java
+	rm -f $(DEB_SRCDIR)/dcopjava/dcopidl2java/dcopidl2java.all_cpp.o
+	rm -f $(DEB_SRCDIR)/dcopjava/binding/org/kde/DCOP/*.class
+	rm -rf $(DEB_SRCDIR)/dcopjava/binding/.libs
+	rm -f dcopjava/binding/client.lo
+	rm -f dcopjava/binding/libjavadcop.la
+	rm -f dcopjava/binding/org_kde_DCOP_Client.h
+	rm -f dcopjava/dcopidl2java/dcopidl2java.all_cpp.cpp
+	rm -f smoke/kde/qtdefines
+	rm -f smoke/kde/smokedata.cpp.diff
+	rm -f smoke/qt/qtdefines
+	rm -f smoke/qt/smokedata.cpp.diff
+
+
+common-build-indep:: stamp-build-dcopjava
+stamp-build-dcopjava:
+ifndef WITHOUT_JAVA
+	# build dcopjava even though it's disabled upstream.
+	cd $(DEB_BUILDDIR) && \
+	$(MAKE) -C dcopjava 
+endif
+	touch debian/$@
+
+stamp-install-dcopjava:
+ifndef WITHOUT_JAVA
+	cd $(DEB_BUILDDIR) && \
+	$(MAKE) -C dcopjava install DESTDIR=$(CURDIR)/debian/tmp
+endif
+	touch debian/$@
+
+upstream_version=$(shell head -1 $(CURDIR)/debian/changelog | sed -e "s,.*:\([^-]*\).*,\1,")
+
+common-install-arch::
+	# Move the python and ruby bindings to the correct directory
+	cp -Rp debian/tmp/usr/lib/* debian/tmp/opt/kde3/lib/
+	rm -rf debian/tmp/usr/lib/*
+
+common-install-indep:: stamp-install-dcopjava
+	dh_link -i
+ifndef WITHOUT_JAVA
+	# Fix up the Java packages so they conform to policy
+	mkdir -p debian/tmp/opt/kde3/share/java
+	(cd debian/tmp/opt/kde3/lib/java ; jar cvf ../../share/java/dcopjava-$(upstream_version).jar org/ )
+	cd debian/tmp/opt/kde3/lib/java; rm -rf org
+	ln -s dcopjava-$(upstream_version).jar debian/tmp/opt/kde3/share/java/dcopjava.jar
+
+	mv debian/tmp/opt/kde3/lib/java/qtjava.jar debian/tmp/opt/kde3/share/java/qtjava-$(upstream_version).jar
+	ln -s qtjava-$(upstream_version).jar debian/tmp/opt/kde3/share/java/qtjava.jar
+
+	mv debian/tmp/opt/kde3/lib/java/koala.jar debian/tmp/opt/kde3/share/java/koala-$(upstream_version).jar
+	ln -s koala-$(upstream_version).jar debian/tmp/opt/kde3/share/java/koala.jar
+endif
+
+common-install-arch:: stamp-install-dcopjava
+	dh_link -s
+	
+	# Provide a Makefile for the example
+	$(if $(call cdbs_streq,$(DEB_BUILDDIR),$(DEB_SRCDIR)),,\
+	    cp $(DEB_BUILDDIR)/kjsembed/docs/embedding/simple-embed/Makefile kjsembed/docs/embedding/simple-embed)
+
+###
+
+binary-install/python-dcop-kde3::
+	dh_pysupport -p$(cdbs_curpkg)
+
+###
+
+common-binary-post-install-arch::
+	for p in $(PACKAGES_WITH_USD_SYMLINK); do \
+	  rm -f debian/$$p/opt/kde3/share/doc/$$p/copyright; \
+	  rm -f debian/$$p/opt/kde3/share/doc/$$p/changelog.Debian; \
+	  rm -f debian/$$p/opt/kde3/share/doc/$$p/changelog; \
+	done
+
+common-binary-post-install-indep::
+	for p in $(PACKAGES_WITH_USD_SYMLINK); do \
+	  rm -f debian/$$p/opt/kde3/share/doc/$$p/copyright; \
+	  rm -f debian/$$p/opt/kde3/share/doc/$$p/changelog.Debian; \
+	  rm -f debian/$$p/opt/kde3/share/doc/$$p/changelog; \
+	done
+
+PACKAGES_WITH_USD_SYMLINK = kdebindings-java-kde3 libkde3-java-kde3 libqt3-java-kde3 \
+			    libdcop3-java-kde3-dev libdcop3-java-kde3 \
+			    libsmokekde-kde3-dev libsmokeqt-kde3-dev \
+			    kjscmd-kde3 libkjsembed-kde3-dev

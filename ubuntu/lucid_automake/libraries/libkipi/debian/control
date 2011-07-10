@@ -1,0 +1,38 @@
+Source: libkipi-kde3
+Section: libs
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Achim Bohnet <ach@mpe.mpg.de>, Mark Purcell <msp@debian.org>
+Build-Depends: cdbs, debhelper (>> 4.1), libexif-dev, kdelibs4-kde3-dev (>= 4:3.4.3-2), automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: libkipi0-kde3-dev
+Provides: libkipi-kde3-dev
+Conflicts: libkipi-kde3-dev
+Section: libdevel
+Architecture: any
+Depends: libkipi0-kde3 (= ${Source-Version}), pkg-config
+Description: library for apps that want to use kipi-plugins (development version) [KDE3]
+ Libkipi is a library
+ .
+     o that contains common routines and widget used by kipi-plugins
+     o to ease implementation of the kipi-plugins interface in an application
+       that wants to use kipi-plugins
+ .
+ This pkg contains development files and documentation for libkipi library.
+ .
+ Homepage: http://www.kipi-plugins.org/
+
+Package: libkipi0-kde3
+Conflicts: libkipi0c2-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: library for apps that want to use kipi-plugins (runtime version) [KDE3]
+ Libkipi is a library
+ .
+     o that contains common routines and widget used by kipi-plugins
+     o to ease implementation of the kipi-plugins interface in an application
+       that wants to use kipi-plugins
+ .
+ Homepage: http://extragear.kde.org/apps/kipi

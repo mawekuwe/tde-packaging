@@ -1,0 +1,6 @@
+debian/tmp/opt/kde3/lib/jni/libkdejava.so.1
+debian/tmp/opt/kde3/lib/jni/libkdejava.la
+debian/tmp/opt/kde3/lib/jni/libkdejava.so
+debian/tmp/opt/kde3/lib/jni/libkdejava.so.1.0.0
+
+kdejava/ChangeLog /opt/kde3/share/doc/libkde3-jni

@@ -1,0 +1,33 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          kde-guidance
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      1
+# Short-Description: displayconfig hardware probe
+# Description:       displayconfig hardware probe. This program should be run
+#                    during boot time. It quickly examines the graphics cards
+#                    (read: PCI devices) in the computer and compares they to
+#                    the list in the file guidance-gfxhardware-snapshot. If the
+#                    two lists differ then the Debian package manager is
+#                    automatically called to regenerate /etc/X11/xorg.conf.
+#                    This hopefully should mean that people can swap gfx cards
+#                    in and out and always have a system that will run Xorg.
+#                    (even though the config will be most likely be suboptimal.
+#                    Suboptimal is better than no X server).
+### END INIT INFO
+
+case "$1" in
+  start)
+	/opt/kde3/share/python-support/guidance-backends-kde3/displayconfig-hwprobe.py
+	;;
+  stop)
+	;;
+  restart|force-reload)
+	;;
+  *)
+	;;
+esac
+
+exit 0

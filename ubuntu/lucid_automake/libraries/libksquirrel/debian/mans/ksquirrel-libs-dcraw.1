@@ -1,0 +1,113 @@
+.\" This file was written by Harald Sitter <apachelogger@ubuntu.com>
+.TH ksquirrel-libs-dicom2png 1 "Jan 2008" "Dmitry Baryshev" "Backend script used by KSquirrel"
+.SH NAME
+ksquirrel-libs-dicom2png
+\- backend script used by KSquirrel
+.SH SYNOPSIS
+ksquirrel-libs-dicom2png [OPTION]... [FILE]...
+.SH DESCRIPTION
+Backend script used by KSquirrel
+ Homepage: http://ksquirrel.sourceforge.net
+.SH OPTIONS
+.TP
+.B  \-v
+Print verbose messages
+.TP
+.B  \-c
+Write image data to standard output
+.TP
+.B  \-e
+Extract embedded thumbnail image
+.TP
+.B  \-i
+Identify files without decoding them
+.TP
+.B  \-i -v
+Identify files and show metadata
+.TP
+.B  \-z
+Change file dates to camera timestamp
+.TP
+.B  \-w
+Use camera white balance, if possible
+.TP
+.B  \-a
+Average the whole image for white balance
+.TP
+.B  \-A <x y w h>
+Average a grey box for white balance
+.TP
+.B  \-r <r g b g>
+Set custom white balance
+.TP
+.B  \+M\/\-M
+Use/don't use an embedded color matrix
+.TP
+.B  \-C <r b>
+Correct chromatic aberration
+.TP
+.B  \-b <num>
+Adjust brightness (default = 1.0)
+.TP
+.B  \-n <num>
+Set threshold for wavelet denoising
+.TP
+.B  \-k <num>
+Set black point
+.TP
+.B  \-K <file>
+Subtract dark frame (16-bit raw PGM)
+.TP
+.B  \-H [0-9]
+Highlight mode (0=clip, 1=unclip, 2=blend, 3+=rebuild)
+.TP
+.B  \-t [0-7]
+Flip image (0=none, 3=180, 5=90CCW, 6=90CW)
+.TP
+.B  \-o [0-5]
+Output colorspace (raw,sRGB,Adobe,Wide,ProPhoto,XYZ)
+.TP
+.B  \-o <file>
+Apply output ICC profile from file
+.TP
+.B  \-p <file>
+Apply camera ICC profile from file or "embed"
+.TP
+.B  \-d
+Document mode (no color, no interpolation)
+.TP
+.B  \-D
+Document mode without scaling (totally raw)
+.TP
+.B  \-j
+Don't stretch or rotate raw pixels
+.TP
+.B  \-q [0-3]
+Set the interpolation quality
+.TP
+.B  \-h
+Half-size color image (twice as fast as "-q 0")
+.TP
+.B  \-f
+Interpolate RGGB as four colors
+.TP
+.B  \-m <num>
+Apply a 3x3 median filter to R-G and B-G
+.TP
+.B  \-s [0..N-1]
+Select one raw image or "all" from each file
+.TP
+.B  \-4
+Write 16-bit linear instead of 8-bit with gamma
+.TP
+.B  \-T
+Write TIFF instead of PPM
+.SH AUTHORS
+.nf
+Dmitry Baryshev <ksquirrel@tut.by>
+.br
+.SH OTHER
+.nf
+This manual page was written by Harald Sitter <apachelogger@ubuntu.com> for the Kubuntu
+system (but may be used by others).
+.br

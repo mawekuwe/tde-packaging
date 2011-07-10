@@ -1,0 +1,26 @@
+Source: kuickshow-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: @@@MAINTAINER@@@
+Uploaders: @@@UPLOADERS@@@
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, kdelibs4-kde3-dev (>= 4:3.5.6), imlib11-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: kuickshow-kde3
+Section: graphics
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-kde3
+Description: KDE image/slideshow viewer [KDE3]
+ KuickShow is an image browser/viewer with a nice filebrowser to
+ select images to be shown, slideshow support and the ability to
+ display the following image formats: jpg, gif, tiff, png, bmp, psd,
+ xpm, xbm, pbm and eim. Images can be displayed either in their own
+ window, as large as the image, or fullscreen (which shrinks images too
+ large to display). KuickShow also has a slideshow mode.
+ .
+ This package is part of KDE, as a component of the KDE graphics
+ module. See the 'kde' and 'kdegraphics' packages for more information.
+ .
+ Homepage: http://kuickshow.sourceforge.net

@@ -1,0 +1,11 @@
+Document: kdenetwork-doc-html-kppp
+Title: KPPP Handbook
+Author: Lauri Watts
+Abstract: KPPP is a dialer and front end for pppd, allowing for interactive
+ script generation and network setup.
+Section: Apps/Net
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/kppp/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/kppp/*.html
+

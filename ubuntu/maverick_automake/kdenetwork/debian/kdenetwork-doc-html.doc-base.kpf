@@ -1,0 +1,10 @@
+Document: kdenetwork-doc-html-kpf
+Title: Kpf Handbook
+Author: Rik Hemsley
+Abstract: Kpf allows you to share files over a network.
+Section: Apps/Net
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/kpf/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/kpf/*.html
+

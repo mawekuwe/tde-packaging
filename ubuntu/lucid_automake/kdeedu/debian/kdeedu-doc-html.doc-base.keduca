@@ -1,0 +1,10 @@
+Document: keduca
+Title: KEduca Handbook
+Author: Javier J. Campos <javi_cms@terra.es>
+Abstract: KEduca is flash card application which allows you to make
+ interactive form based tests.
+Section: Apps/Tools
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/keduca/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/keduca/*.html

@@ -1,0 +1,4 @@
+?package(potracegui):needs="X11" section="Apps/Graphics"\
+  title="potracegui" command="/opt/kde3/bin/potracegui"\
+  hints="KDE frontend for tracing programs"
+

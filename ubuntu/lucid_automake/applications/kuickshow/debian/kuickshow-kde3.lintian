@@ -1,0 +1,4 @@
+kuickshow-kde3: no-shlibs-control-file opt/kde3/lib/libkdeinit_kuickshow.so
+kuickshow-kde3: postinst-must-call-ldconfig opt/kde3/lib/libkdeinit_kuickshow.so
+kuickshow-kde3: postrm-should-call-ldconfig opt/kde3/lib/libkdeinit_kuickshow.so
+kuickshow-kde3: package-name-doesnt-match-sonames libkdeinit-kuickshow

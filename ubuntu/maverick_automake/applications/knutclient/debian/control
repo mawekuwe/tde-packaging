@@ -1,0 +1,17 @@
+Source: knutclient-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Arnaud Quette <aquette@debian.org>
+Standards-Version: 3.8.3
+Build-Depends: debhelper (>= 5.0.51), kdelibs4-kde3-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Homepage: http://www.knut.noveradsl.cz/knutclient/
+
+Package: knutclient-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A KDE GUI that displays UPS statistics from NUT's upsd [KDE3]
+ KNutClient monitors UPS statistics through the NUT (Network UPS Tools,
+ http://www.networkupstools.org/) framework on Linux and other systems. This
+ information, presented in a nice visual format, can be invaluable on
+ stations using an UPS.

@@ -1,0 +1,11 @@
+Document: kdebase-doc-html-ksysguard
+Title: KSysGuard Handbook
+Author: Chris Schlaeger
+Abstract: KSysGuard is a network enabled task manager and system monitor
+ application, with the additional functionality of top.
+Section: Apps/System
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/ksysguard/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/ksysguard/*.html
+

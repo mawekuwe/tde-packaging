@@ -1,0 +1,86 @@
+Source: k3b-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Francois Marier <francois@debian.org>, Fathi Boudra <fabo@debian.org>
+Build-Depends: libdvdread4, libdvdread-dev, alsa, libasound2-dev, lame, libmp3lame-dev, debhelper (>= 6), cdbs (>= 0.4.52ubuntu18), kdelibs4-kde3-dev (>= 3.5.0), libflac++-dev (>= 1.1.2), flac, libdbus-qt-1-dev, libhal-dev (>= 0.5.5.1), libhal-storage-dev (>= 0.5.5.1), libpopt-dev, libmpcdec-dev, libtag1-dev (>= 1.4-3), libmusicbrainz4-dev (>= 2.1.1-4.1), libmad0-dev, chrpath, libavformat-dev, libavcodec-dev, libvorbis-dev, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+Homepage: http://www.k3b.org
+
+Package: k3b-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, wodim | cdrskin, cdparanoia (>= 3a9.8), genisoimage, kdelibs-data-kde3 (>= 4:3.1.4-2), cdrdao (>= 1.1.7-5), k3b-data-kde3 (= ${source:Version}), libk3b3-kde3 (= ${binary:Version})
+Recommends: dvd+rw-tools, libk3b3-extracodecs-kde3
+Suggests: k3b-i18n, normalize-audio, toolame, sox, movixmaker-2, vcdimager (>= 0.7)
+Replaces: libk3b3-kde3 (<< 1.0.5-2)
+Description: A sophisticated KDE CD burning application [KDE3]
+ K3b is a GUI frontend to the CD recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording.
+ .
+ It can be used to copy CDs and burn:
+  - audio CDs (from wav, mp3 or ogg vorbis files)
+  - data CDs and DVDs
+  - mixed-mode CDs (CD-Extra support)
+  - VCDs (1.1, 2.0 and SVCD)
+  - ISO files (Joliet/Rockridge and El Torito support)
+  - eMovix CDs
+
+Package: k3b-data-kde3
+Conflicts: k3b-kde3 (<< 1.0.4-4)
+Replaces: k3b-kde3 (<< 1.0.5-2)
+Architecture: all
+Description: A sophisticated KDE CD burning application - data files [KDE3]
+ K3b is a GUI frontend to the CD recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording.
+ .
+ This package contains the required data files common to all architectures.
+
+Package: libk3b-kde3-dev
+Conflicts: libk3bcore-kde3-dev, libk3bplugin-kde3-dev, libk3btools-kde3-dev, libk3bproject-kde3-dev, k3blibs-kde3-dev, k3blibs-kde3
+Section: libdevel
+Architecture: any
+Depends: libk3b3-kde3 (= ${binary:Version})
+Description: The KDE cd burning application library - development files [KDE3]
+ K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording and a lot more.
+ .
+ This package contains development files.
+
+Package: libk3b3-kde3
+Section: libs
+Architecture: any
+Conflicts: libk3bcore-kde3, libk3bplugin-kde3, libk3btools-kde3, libk3bproject-kde3, k3blibs-kde3, libk3b2-kde3
+Depends: ${shlibs:Depends}
+Replaces: libk3b2-kde3, libk3b-kde3-dev (<< 1.0.5-2)
+Description: The KDE cd burning application library - runtime files [KDE3]
+ K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording and a lot more.
+ .
+ This package contains runtime libraries.
+
+Package: libk3b3-extracodecs-kde3
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Conflicts: libk3b2-mp3-kde3
+Replaces: libk3b2-mp3-kde3, libk3b2-extracodecs-kde3, libk3b3-kde3 (<< 1.0.5-2)
+Description: The KDE cd burning application library - extra decoders [KDE3]
+ K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
+ Its aim is to provide a very user friendly interface to all the tasks
+ that come with cd recording and a lot more.
+ .
+ This package contains runtime libraries for the MP3 and FFMPEG decoder plugin.
+
+Package: libk3b2-extracodecs-kde3
+Architecture: all
+Priority: extra
+Depends: libk3b3-extracodecs-kde3
+Description: transitional package for K3b's extra decoders [KDE3]
+ This is a dummy transitional package to enable a smooth transition from
+ libk3b2-extracodecs to libk3b3-extracodecs.
+ It may safely be removed after installation.

@@ -1,0 +1,17 @@
+Source: kerry-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>= 5.0.0), cdbs, kdelibs4-kde3-dev, libkonq4-kde3-dev, libqt3-mt-dev, libbeagle-dev (>= 0.3.0), docbook2x, chrpath, automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Homepage: http://en.opensuse.org/Kerry
+Standards-Version: 3.8.3
+
+Package: kerry-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, beagle (>= 0.2.3)
+Description: a KDE frontend for the Beagle desktop search daemon [KDE3]
+ Kerry is a KDE3 frontend for the Beagle desktop search daemon.
+ .
+ A program for indexing and searching user's data. At the moment, it can index
+ filesystems, chat logs, mail and data, RSS and other.
+ .

@@ -1,0 +1,4 @@
+debian/tmp/opt/kde3/include/*
+debian/tmp/opt/kde3/lib/pkgconfig/*
+debian/tmp/opt/kde3/lib/*.la
+debian/tmp/opt/kde3/lib/lib*.so

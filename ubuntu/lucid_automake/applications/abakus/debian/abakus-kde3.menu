@@ -1,0 +1,6 @@
+?package(abakus):needs="X11"\
+ section="Apps/Math"\
+ title="AbaKus"\
+ command="/opt/kde3/bin/abakus"\
+ hints="KDE"\
+ icon="/usr/share/pixmaps/abakus.xpm"

@@ -1,0 +1,10 @@
+Document: kdebase-doc-html-kfind
+Title: KFind Handbook
+Author: Dirk Doerflinger
+Abstract: This Handbook describes KFind, KDE's file find utility.
+Section: Apps/Utils
+
+Format: HTML
+Index: /opt/trinity/share/doc/kde/HTML/en/kfind/index.html
+Files: /opt/trinity/share/doc/kde/HTML/en/kfind/*.html
+

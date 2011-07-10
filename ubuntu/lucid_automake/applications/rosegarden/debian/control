@@ -1,0 +1,33 @@
+Source: rosegarden-kde3
+Section: sound
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian Multimedia Team <debian-multimedia@lists.debian.org>
+Uploaders: Mike O'Connor <stew@debian.org>, Free Ekanayaka <freee@debian.org>
+Build-Depends: debhelper (>> 5.0.0), cmake, kdelibs4-kde3-dev, libasound2-dev (>= 1.0.0), libjack-dev, ladspa-sdk, liblrdf0-dev, liblircclient-dev, dssi-dev (>= 0.4 ), liblo-dev, libxft-dev, dpatch, libfftw3-dev
+Standards-Version: 3.8.3
+Homepage: http://www.rosegardenmusic.com/
+
+Package: rosegarden-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, khelpcenter-kde3, rosegarden-data-kde3 (= ${source:Version}), libxml-twig-perl, sndfile-programs, xterm, kdebase-kde3-bin, konqueror-kde3 | www-browser, flac
+Recommends: jackd, lilypond, swh-plugins | ladspa-plugin
+Suggests: qjackctl
+Description: music editor and MIDI/audio sequencer [KDE3]
+ Rosegarden is a KDE application which provides a mixed Audio/MIDI
+ sequencer (for playback and recording), a multi-track editor, music
+ editing using both piano-roll and score notation, MIDI file IO,
+ lilypond and Csound files export, etc.
+
+Package: rosegarden-data-kde3
+Architecture: all
+Recommends: rosegarden-kde3
+Priority: optional
+Description: music editor and MIDI/audio sequencer data files [KDE3]
+ Rosegarden is a KDE application which provides a mixed Audio/MIDI
+ sequencer (for playback and recording), a multi-track editor, music
+ editing using both piano-roll and score notation, MIDI file IO,
+ lilypond and Csound files export, etc.
+ .
+ This package provides the data files necessary for running Rosegarden
+

@@ -1,0 +1,373 @@
+knetworkmanager-kde3 (1:0.8-0ubuntu12) karmic; urgency=low
+
+  * UI tweaks for discoverability
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 26 Oct 2009 17:44:00 -0600
+
+knetworkmanager-kde3 (1:0.8-0ubuntu10) karmic; urgency=low
+
+  * Fixed VPN reauthentication request dialog failure when used with the permanent storage option
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 06 Oct 2009 19:31:00 -0600
+
+knetworkmanager-kde3 (1:0.8-0ubuntu7) karmic; urgency=low
+
+  * Fixed various minor glitches
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 03 Oct 2009 12:29:00 -0600
+
+knetworkmanager-kde3 (1:0.8-0ubuntu6) karmic; urgency=low
+
+  * Repaired poor usability for new wireless connections
+  * Repaired poor usability for connection management
+  * VPN connections now remember login information when asked
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 29 Sep 2009 09:39:00 -0600
+
+knetworkmanager-kde3 (1:0.8-0ubuntu5) karmic; urgency=low
+
+  * Repaired VPN plugins
+  * VPNC now allows hashed group password
+  * PPTP repaired and enabled
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Mon, 28 Sep 2009 14:51:00 -0600
+
+knetworkmanager-kde3 (1:0.8-0ubuntu4) karmic; urgency=low
+
+  * Patched backend for new NM0.8 API
+  * Repaired poor usability in the "new connection" tasktray menu
+  * Repaired poor usability in the available devices tasktray menu
+  * Moved to /opt/kde3
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 22 Aug 2009 23:34:00 -0600
+
+knetworkmanager (1:0.7~~svn941706-1) unstable; urgency=low
+
+  * Updated SVN snapshot (r941706).
+  * debian/patches/04-dbus_access.patch
+    - Most of the relevant changes have been merged upstream. The patch now
+      only contains the Debian specific group "netdev" section.
+  * debian/control
+    - Bump Standards-Version to 3.8.1. No further changes.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 20 Mar 2009 22:59:51 +0100
+
+knetworkmanager (1:0.7~~svn931033-2) unstable; urgency=low
+
+  * debian/patches/05-no_blank_psk.patch
+    - Do not set zero-length PSK and LEAP passwords otherwise libnm-util fails
+      to validate them. Closes: #517213
+      Patch by Dan Williams, thanks!
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Mar 2009 00:34:15 +0100
+
+knetworkmanager (1:0.7~~svn931033-1) unstable; urgency=low
+
+  * Merge experimental branch into unstable. Remaining changes:
+    - Remove 07-indicate_manual_config.patch, obsolete. 
+  * debian/control
+    - Wrap Build-Depends.
+    - Bump Build-Depends on debhelper to (>= 7).
+  * debian/compat
+    - Bump debhelper compat level to 7.
+  * debian/rules
+    - Include debhelper.mk before any other files as recommended by the cdbs
+      documentation.
+  * Update SVN snapshot to r931033.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 25 Feb 2009 10:54:39 +0100
+
+knetworkmanager (1:0.7~~svn908338-2) experimental; urgency=low
+
+  * debian/patches/04-dbus_access.patch
+    - Update D-Bus names and interfaces for NM 0.7. Closes: #511526
+    - Remove bare send_interface directives to avoid non-deterministic allow
+      messages with no interface. Closes: #510757
+    - Do not allow unpriviledged processes to ask for a users' connections.
+    - Allow introspection by default.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 05 Feb 2009 01:52:22 +0100
+
+knetworkmanager (1:0.7~~svn908338-1) experimental; urgency=low
+
+  * Updated SVN snapshot (r908338).
+  * debian/rules
+    - Stop moving icons around, fixed upstream.
+  * debian/patches/01-configure_package_name.patch
+    - Make sure we set the correct PACKAGE name when generating the build
+      system so the translations are installed properly.
+  * debian/network-manager-kde.lintian-overrides
+    - Updated for the latest lintian changes.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 11 Jan 2009 06:52:06 +0100
+
+knetworkmanager (1:0.7~~svn897092-1) experimental; urgency=low
+
+  * SVN snapshot of the upcoming 0.7 release (for NM 0.7).
+  * debian/control
+    - Add Build-Depends on pkg-config.
+    - Bump Build-Depends on nm-* packages to (>= 0.7.0).
+    - Add Build-Depends on libdbus-1-qt3-dev (>= 0.8.1).
+    - Bump Build-Depends on debhelper to (>= 6.0.7) for dh_lintian.
+    - Bump Depends on network-manager to (>= 0.7.0).
+    - Bump Standards-Version to 3.8.0. Add README.source as recommended by the
+      new policy.
+  * debian/rules
+    - Install autostart desktop file into /usr/share/autostart/.
+    - Install icons into /usr/share/icons/hicolor/ so KDE4 can find them.
+      Closes: #487303
+    - Add support for both libtool 1.x and 2.x.
+  * Switch patch management system to quilt.
+  * debian/patches/04-dbus_access.patch
+    - Refresh and update.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 16 Dec 2008 04:18:10 +0100
+
+knetworkmanager (1:0.2.2-2) unstable; urgency=low
+
+  * debian/patches/07-indicate_manual_config.patch
+    - manual-means-online: If there are interfaces that are not managed by
+      NetworkManager because they have custom configuration in
+      /etc/network/interfaces, we assume to be online and show a wired network
+      icon indicating manual network configuration.
+  * debian/control
+    - Add Build-Depends on pkg-config.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 14 Jan 2009 08:22:11 +0100
+
+knetworkmanager (1:0.2.2-1) unstable; urgency=low
+
+  * New upstream release.
+    - Improved tray icon animation using mng files. Closes: #394815
+    - Improved LEAP security. Closes: #470709
+  * Removed patches
+    - debian/patches/01-fix_french_translation.patch (merged upstream)
+    - debian/patches/02-linux_types.patch (obsolete)
+    - debian/patches/03-awk_path.patch (fixed upstream)
+    - debian/patches/05-desktop_file_fixes.patch (merged upstream)
+  * debian/knetworkmanager.linda
+    - Remove the linda override file, linda is dead.
+  * debian/{knetworkmanager.lintian -> network-manager-kde.lintian-overrides}
+    - Rename the lintian override file so it is automatically installed by
+      dh_lintian.
+  * debian/rules
+    - Drop the no longer required install rules for the override files.
+    - Drop the install rule for the autostart file. It's provided by upstream
+      now.
+  * debian/copyright
+    - Update the authors list.
+  * debian/control
+    - Bump Build-Depends on libnl-dev (>= 1.1).
+    - Drop Build-Depends on kapptemplate. The upstream tarball ships a proper
+      admin/ directory again.
+  * debian/watch
+    - New download location at ftp.kde.org.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 04 Apr 2008 19:41:02 +0200
+
+knetworkmanager (1:0.2-3) unstable; urgency=low
+
+  * debian/control
+    - Use the new "Homepage:" field to specify the upstream URL.
+    - The Vcs-* fields are now officially supported, so remove the XS- prefix.
+    - Bump Standards-Version to 3.7.3. No further changes required.
+    - Fix a few capitalization errors in the package description.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 11 Jan 2008 02:08:24 +0100
+
+knetworkmanager (1:0.2-2) unstable; urgency=low
+
+  * Rebuild against network-manager 0.6.5 to enable phase2 and leap
+    authentication support.
+  * debian/rules
+    - Remove debian/stamp-bootstrap on clean. This fixes a FTBFS if package is
+      built twice in a row. Closes: #442621
+  * debian/control
+    - Add Build-Conflicts: autoconf2.13. Closes: #441046
+  * debian/menu
+    - Set section to Applications/Network/Monitoring which seems to be the
+      most appropriate amongst the available sections.
+  * debian/patches/05-desktop_file_fixes.patch
+    - Fix the *.desktop files to be compliant to the fd.o menu and desktop
+      entry spec.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 16 Sep 2007 21:01:25 +0200
+
+knetworkmanager (1:0.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/05-leap_support.patch
+    - Removed, merged upstream.
+  * debian/patches/06-version_check.patch
+    - Removed, merged upstream.
+  * The upstream tarball does not ship an admin/ directory. Build-Depend on
+    kapptemplate, so we can copy it from there.
+  * debian/menu
+    - Update to new menu hierarchy and add a longtitle.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 25 Jul 2007 17:10:36 +0200
+
+knetworkmanager (1:0.2~svn678822-3) unstable; urgency=low
+
+  * debian/patches/06-version_check.patch
+    - Added. Fixes the problem with knetworkmanager no longer connecting
+      automatically upon login. Closes: #431255
+      If you are upgrading from a previous 0.2 svn snapshot, you may have to
+      clear the list of trusted networks in the configuration dialog.
+
+ -- Michael Biebl <biebl@debian.org>  Sun, 01 Jul 2007 11:47:00 +0200
+
+knetworkmanager (1:0.2~svn678822-2) unstable; urgency=low
+
+  * debian/patches/02-linux_types.patch
+    - Pass "-std=gnu++98" to CXXFLAGS. Otherwise the type __u64 is not defined
+      in linux-libc-dev for ANSI C/C89. Closes: #430795
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 28 Jun 2007 06:08:04 +0200
+
+knetworkmanager (1:0.2~svn678822-1) unstable; urgency=low
+
+  * SVN snapshot of the upcoming 0.2 release which has native VPN plugin
+    support. Closes: #415742
+  * debian/control
+    - Add XS-Vcs-* fields.
+    - Add Recommends: network-manager-vpnc, network-manager-openvpn.
+  * debian/rules
+    - Compile with openvpn and vpnc support.
+
+  * Removed patches that were merged upstream:
+    - debian/patches/05-no_deserialize.patch
+    - debian/patches/06-pretty_notification.patch
+    - debian/patches/07-overlay_icon_vpn.patch
+    - debian/patches/08-disable_sm.patch
+    - debian/patches/09-dbus_bool_t.patch
+
+  * debian/patches/02-linux_types.patch
+    - Added. Needed to workaround a problem in libnl.
+  * debian/patches/03-awk_path.patch
+    - Added. In Debian awk is installed in /usr/bin.
+  * debian/patches/04-dbus_access.patch
+    - Do not remove the dbus at_console access check but make it an
+      alternative to the Debian netdev group policy. Closes: #426467
+  * debian/patches/05-leap_support.patch
+    - Added. Do not fail to compile if LEAP support is not available.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 22 Jun 2007 21:08:32 +0100
+
+knetworkmanager (1:0.1-4) unstable; urgency=low
+
+  * Actually install the autostart file for knetworkmanager.
+    Thanks to Yannick Roehlly for spotting this glitch.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 12 Jan 2007 11:26:28 +0100
+
+knetworkmanager (1:0.1-3) unstable; urgency=low
+
+  * Pull some features and bug fixes from svn:
+    - debian/patches/05-no_deserialize.patch
+      + Don't call deserialize on encryption object to avoid warning of
+        libnm-util. Closes: #391486
+    - debian/patches/06-pretty_notification.patch
+      + Prettify notification messages.
+    - debian/patches/07-overlay_icon_vpn.patch
+      + Show overlay icon (lock) for active VPN connections.
+    - debian/patches/08-disable_sm.patch
+      + Disable session management to avoid a deadlock when accessing kwallet.
+        Install an autostart file into /usr/share/autostart/ instead.
+        Closes: #406162
+    - debian/patches/09-dbus_bool_t.patch
+      + Use dbus_bool_t instead of bool. Closes: #398974
+  * debian/patches/01-fix_french_translation.patch
+    - Added patch from Emmanuel Bouthenot which fixes some errors in the
+      French translation. Closes: #402285
+
+ -- Michael Biebl <biebl@debian.org>  Tue,  9 Jan 2007 16:31:52 +0100
+
+knetworkmanager (1:0.1-2) unstable; urgency=low
+
+  * Update maintainer email address to biebl@debian.org. 
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 20 Oct 2006 00:02:03 +0200
+
+knetworkmanager (1:0.1-1) unstable; urgency=low
+
+  * Finally the 0.1 release. Woohoo!
+    - Use an epoch to fix the versioning scheme I managed to mess up.
+    - Fixes a crash when removing network objects for a nonexistent network
+      interface. Closes: #390052
+  * debian/patches/01-no_network_status.patch
+    - Removed, fixed upstream.
+  * debian/patches/03-configure.patch
+    - Removed, fixed upstream.
+  * Dropped the build-dep on kapptemplate. The upstream tarball now ships a
+    proper admin/ directory.
+  * debian/patches/02-dialup.patch
+    - Removed. Also dropped the Recommends: pppconfig. pppconfig can't
+      generate entries for /etc/network/interfaces yet. 
+
+ -- Michael Biebl <biebl@teco.edu>  Fri, 29 Sep 2006 19:18:08 +0200
+
+knetworkmanager (0.09+0.1r586773-1) unstable; urgency=low
+
+  * Updated to svn revision 586773.
+  * Do not refer to non existent khelpcenter help:/knetworkmanager/ in man
+    page. Closes: #385642
+
+ -- Michael Biebl <biebl@teco.edu>  Wed, 20 Sep 2006 19:46:52 +0200
+
+knetworkmanager (0.09+0.1r577960-1) unstable; urgency=low
+
+  * Updated to svn revision 577960.
+    - Access KWallet on demand, not on startup. Closes: #379606
+  * Added a Recommends: pppconfig. Closes: #380316
+
+ -- Michael Biebl <biebl@teco.edu>  Mon, 28 Aug 2006 01:14:29 +0200
+
+knetworkmanager (0.09+0.1r560817-1) unstable; urgency=medium
+
+  * Updated to svn revision 560817.
+  * Removed 04-gnome_keyring_daemon.patch, fixed upstream.
+  * Added 04-dbus_access.patch. Fixes D-Bus access rights.
+    Closes: #379309, #379364
+  * Enabled dial up support. Set pppconfig as configuration utility.
+    Closes: #376071
+  * Reload D-Bus after installation. Closes: #379307
+  * Updated admin/cvs.sh to support autoconf-2.6. Closes: #379820
+
+ -- Michael Biebl <biebl@teco.edu>  Tue, 25 Jul 2006 23:33:31 +0200
+
+knetworkmanager (0.09+0.1r550737-1) unstable; urgency=low
+
+  * Updated to svn revision 550737.
+  * Added 01-no_network_status.patch which removes a build dependency on
+    networkstatus.
+  * Removed 03-configure_notifications.patch, merged upstream.
+  * This version does not ship an admin/ directory. Added a build dependency
+    on kapptemplate and modified debian/rules to copy it from kapptemplate.
+  * Bumped Standards-Version to 3.7.2, no further changes required.
+  * Updated homepage URL.
+  * Added 04-gnome_keyring_daemon.patch which sets the correct path to the
+    gnome-keyring-daemon binary. VPN plugins use gnome-keyring-daemon to store
+    their passwords.
+
+ -- Michael Biebl <biebl@teco.edu>  Wed, 14 Jun 2006 17:16:07 +0200
+
+knetworkmanager (0.09+0.1r527269-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed 01-xdg_app.patch, merged upstream.
+  * Added 03-configure_notifications.patch, this patch modifies the context
+    menu of the systray applet to provide quick access to the notification
+    settings.
+  * Added a "Provides: knetworkmanager" to make the package installable by its
+    upstream name.
+  * Initial upload. Closes: #351069
+
+ -- Michael Biebl <biebl@teco.edu>  Thu, 27 Apr 2006 08:01:39 +0200
+
+knetworkmanager (0.09+0.1r5964-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- Michael Biebl <biebl@teco.edu>  Tue,  7 Feb 2006 21:43:56 +0100
+

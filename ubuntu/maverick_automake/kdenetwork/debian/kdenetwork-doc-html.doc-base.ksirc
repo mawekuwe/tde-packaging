@@ -1,0 +1,10 @@
+Document: kdenetwork-doc-html-ksirc
+Title: KsIRC Handbook
+Author: Andrew Stanley-Jones, Philip Rodrigues
+Abstract: KsIRC is the default KDE IRC client.
+Section: Apps/Web
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/ksirc/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/ksirc/*.html
+

@@ -1,0 +1,19 @@
+Source: compizconfig-backend-kconfig-trinity
+Section: libs
+Priority: extra
+Maintainer: Timothy Pearosn <kb9vqf@pearsoncomputing.net>
+Build-Depends: cdbs, debhelper (>= 5), compiz-trinity-dev, pkg-config, intltool, kdelibs4-trinity-dev, libcompizconfig0-trinity-dev, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: compizconfig-backend-kconfig-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libcompizconfig-backend-kconfig-trinity
+Description: KConfig [Trinity] Settings library for plugins - OpenCompositing Project
+ The OpenCompositing Project brings 3D desktop visual effects that improve
+ usability of the X Window System and provide increased productivity
+ through plugins and themes contributed by the community giving a
+ rich desktop experience.
+ .
+ This package contains the KConfig (KDE3) settings backend for
+ libcompizconfig.

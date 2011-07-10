@@ -1,0 +1,46 @@
+#!/usr/bin/make -f
+
+FILENAME = $(DEB_SOURCE_PACKAGE)_$(DEB_UPSTREAM_VERSION).orig.tar.gz
+UPFILENAME = $(DEB_SOURCE_PACKAGE)-$(DEB_UPSTREAM_VERSION).tar.bz2
+URL = http://heanet.dl.sourceforge.net/kipi/$(UPFILENAME)
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
+DEB_CONFIGURE_PREFIX := /opt/kde3
+DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,--as-needed"
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib --with-extra-includes=/opt/kde3/include/kde
+
+clean ::
+	rm -f po/*/*.gmo
+
+get-orig-source-dpatch:
+	@@dh_testdir
+	@@[ -d ../tarballs/. ]||mkdir -p ../tarballs
+	@@dpatch-get-origtargz ../tarballs
+
+get-orig-source:
+	@@dh_testdir
+	@@[ -d ../tarballs/. ]||mkdir -p ../tarballs
+	@@echo Downloading $(UPFILENAME) from $(URL) ...
+	@@wget -N -nv -T10 -t3 -O ../tarballs/$(UPFILENAME) $(URL)
+	@@echo Converting $(UPFILENAME) to $(FILENAME)
+	@@bzcat ../tarballs/$(UPFILENAME) | gzip -9 > ../tarballs/$(FILENAME)
+
+print-version:
+	@@echo DEB_SOURCE_PACKAGE: $(DEB_SOURCE_PACKAGE)
+	@@echo DEB_VERSION: $(DEB_VERSION)
+	@@echo DEB_NO_EPOCH_VERSION: $(DEB_NOEPOCH_VERSION)
+	@@echo DEB_UPSTREAM_VERSION: $(DEB_UPSTREAM_VERSION)
+	@@echo FILENAME: $(FILENAME)
+	@@echo URL: $(URL)
+

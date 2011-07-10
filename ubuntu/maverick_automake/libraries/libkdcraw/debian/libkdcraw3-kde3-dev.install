@@ -1,0 +1,4 @@
+/opt/kde3/include/*
+opt/kde3/lib/lib*.so
+opt/kde3/lib/pkgconfig/*
+opt/kde3/lib/*.la

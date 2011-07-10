@@ -1,0 +1,3 @@
+kicker: shlib-missing-in-control-file libkdeinit_extensionproxy.so usr/lib/libkdeinit_extensionproxy.so
+kicker: shlib-missing-in-control-file libkdeinit_kicker.so usr/lib/libkdeinit_kicker.so
+kicker: shlib-missing-in-control-file libkdeinit_appletproxy.so usr/lib/libkdeinit_appletproxy.so

@@ -1,0 +1,19 @@
+diff -Nur -x '*.orig' -x '*~' kerry-0.2.1/kerry/src/kerry.desktop kerry-0.2.1.new/kerry/src/kerry.desktop
+--- kerry-0.2.1/kerry/src/kerry.desktop	2006-12-04 14:35:38.000000000 +0100
++++ kerry-0.2.1.new/kerry/src/kerry.desktop	2008-04-08 22:55:31.000000000 +0200
+@@ -1,6 +1,5 @@
+ [Desktop Entry]
+ X-SuSE-translate=true
+-Encoding=UTF-8
+ Name=Kerry Beagle
+ GenericName=Desktop Search
+ GenericName[ar]=بحث على سطح المكتب
+@@ -25,7 +24,7 @@
+ Exec=kerry --show-searchdialog
+ Icon=kerry
+ Type=Application
+-Categories=Qt;KDE;Application;Core;Utility;Filesystem;
++Categories=Qt;KDE;Application;Utility;Filesystem;
+ Terminal=false
+ X-DCOP-ServiceType=Unique
+ X-KDE-StartupNotify=false

@@ -1,0 +1,155 @@
+.TH ROSEGARDEN 1 "23 July 2006"
+
+.SH NAME
+
+rosegarden, rosegarden-sequencer - MIDI and audio sequencer and
+musical notation editor.
+
+.SH SYNOPSIS
+
+rosegarden [Qt-options] [KDE-options] [options] [File]
+
+rosegardensequencer [Qt-options] [KDE-options] [playback_1 playback_2 capture_1 capture_2]
+
+.SH DESCRIPTION
+
+This manual page documents briefly the rosegarden and rosegardensequencer commands.
+
+rosegarden is a MIDI and audio sequencer, notation editor, and general-purpose music composition and editing application for Unix and Linux. It is a KDE application, which means to build it you need the KDE 3.x libraries. However, once installed it can be run within the KDE environment or any other desktop or window manager environment.
+
+rosegardensequencer is part of the rosegarden application, the part which knows about and audio MIDI devices, and about real time. rosegardensequencer is executed automatically when rosegarden starts, so you will probably never need to execute it directly. You may want to specify command line options, though, to change the JACK ports used for audio capture and playback. In order to do that, you can invoque rosegardensequencer directly before running rosegarden, or you can specify the sequencer command line arguments using the rosegarden configuration dialog, and restarting the application. This program follows the usual GNU command line syntax, with long options starting with two dashes ('-'). A summary of options is included below.
+
+.SH OPTIONS
+.BR \-\-author " "
+     Show author information.
+
+.BR \-\-help " "
+     Show help about options.
+
+.BR \-\-help-all
+     Show all options.
+
+.BR \-\-help-kde
+     Show KDE specific options.
+
+.BR \-\-help-qt
+     Show Qt specific options.
+
+.BR \-\-license 
+     Show license information.
+
+.BR \-v, \-\-version
+     Show version information.
+
+
+.SH OPTIONS for rosegarden
+
+.BR \-\-nosplash
+     Don\'t show splash screen.
+	
+
+.BR \-\-nosequencer
+     Don\'t use an external sequencer.
+
+.BR \-\-nofork
+     Don\'t automatically run in the background.
+
+.BR \ \--existingsequencer
+     Attach to a running sequencer process, if found.
+
+.BR File
+     File to load at startup. Typically a rosegarden (.rg) file, but it can also be a rosegarden2.1 file or a MIDI file.
+
+.SH OPTIONS
+.BR \-g " " Use graphical mode>
+     
+.SH QT OPTIONS
+.BR \-\-bg, --background color
+     Sets the default background color and an application palette (light and dark shades are calculated).
+
+.BR \-\-btn, --button color
+     Sets the default button color.
+
+.BR \-\-cmap
+     Causes the application to install a private color map on an 8-bit display.
+
+.BR \-\-display displayname
+     Use the X-server display 'displayname'.
+
+.BR \-\-dograb
+     Running under a debugger can cause an implicit --nograb, use --dograb to override.
+
+.BR \-\-fg, \-\-foreground color
+     Sets the default foreground color.
+
+.BR \-\-fn, \-\-font fontname
+     Defines the application font.
+
+.BR \-\-im XIMserver
+     Set XIM server.
+
+.BR \-\-inputstyle inputstyle
+     Sets XIM (X Input Method) input style. Possible values are onthespot, overthespot, offthespot and root.
+
+.BR \-\-name name
+     Sets the application name.
+
+.BR \-\-ncols count
+     Limits the number of colors allocated in the color cube on an 8-bit display, if the application is using the QApplication::ManyColor color specification.
+
+.BR \-\-nograb
+     Tells Qt to never grab the mouse or the keyboard.
+
+.BR \-\-noxim
+     Disable XIM.
+
+.BR \-\-reverse
+     Mirrors the whole layout of widgets.
+
+.BR \-\-session sessionId
+     Restore the application for the given 'sessionId'.
+
+.BR \-\-sync
+     Switches to synchronous mode for debugging.
+
+.BR \-\-title title
+     Sets the application title (caption).
+
+.BR \-\-visual TrueColor
+     Forces the application to use a TrueColor visual on an 8-bit display.
+
+
+.SH KDE OPTIONS
+.BR \-\-caption caption
+     Use 'caption' as name in the titlebar.
+
+.BR \-\-config filename
+     Use alternative configuration file.
+
+.BR \-\-dcopserver server
+     Use the DCOP Server specified by 'server'.
+
+.BR \-\-geometry geometry
+     Sets the client geometry of the main widget.
+
+.BR \-\-icon icon
+     Use 'icon' as the application icon.
+
+.BR \-\-miniicon icon
+     Use 'icon' as the icon in the titlebar.
+
+.BR \-\-nocrashhandler
+     Disable crash handler, to get core dumps.
+
+.BR \-\-style style
+     Sets the application GUI style.
+
+.BR \-\-waitforwm
+     Waits for a WM_NET compatible windowmanager.
+
+.SH SEE ALSO
+     jackd(1), rosegarden-lilypondview(1), rosegarden-project-package(1), rosegarden-audiofile-importer(1)
+
+
+.SH AUTHOR
+This manual page was written by Enrique Robledo Arnuncio <era@debian.org> and later ammended by Mike O'Connor <stew@vireo.org> for the Debian system (but may be used by others). Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.1 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front Cover Texts and no Back Cover Texts.

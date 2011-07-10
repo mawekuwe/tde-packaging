@@ -1,0 +1,11 @@
+opt/kde3/bin/soundkonverter
+opt/kde3/share/applications/kde/soundkonverter.desktop
+opt/kde3/share/apps/soundkonverter/soundkonverterui.rc
+opt/kde3/share/apps/konqueror/servicemenus/audiocd_extract_with_soundkonverter.desktop
+opt/kde3/share/apps/soundkonverter/format_infos/
+opt/kde3/share/apps/soundkonverter/pics/
+opt/kde3/share/apps/soundkonverter/plugins/
+opt/kde3/share/doc/
+opt/kde3/share/icons/
+opt/kde3/share/locale/
+opt/kde3/share/mimelnk/

@@ -1,0 +1,9 @@
+Document: kiten
+Title: Kiten Handbook
+Author: Jason Katz-Brown <jason@katzbrown.com>
+Abstract: Kiten is a Japanese reference/study tool for KDE.
+Section: Apps/Tools
+
+Format: HTML
+Index: /opt/kde3/share/doc/kde/HTML/en/kiten/index.html
+Files: /opt/kde3/share/doc/kde/HTML/en/kiten/*.html

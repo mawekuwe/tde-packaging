@@ -1,0 +1,51 @@
+Source: kaffeine-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Riku Voipio <riku.voipio@iki.fi>, Fathi Boudra <fboudra@free.fr>,
+ Mark Purcell <msp@debian.org>
+Build-Depends: cdbs, debhelper (>= 5), kdelibs4-kde3-dev,
+ libcdparanoia0-dev, libogg-dev, libxine-dev (>= 1.1.7), libxcb1-dev,
+ libxtst-dev, libgstreamer0.10-dev, libgstreamer-plugins-base0.10-dev,
+ automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: kaffeine-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, hdparm
+Recommends: kdesudo-kde3, kpackage-kde3
+Description: versatile media player for KDE3
+ Kaffeine is a media player for KDE. While it supports multiple player
+ engines, its default engine is Xine, giving Kaffeine a wide variety of
+ supported media types and letting Kaffeine access CDs, DVDs, and
+ network streams easily.
+ .
+ Kaffeine can keep track of multiple playlists simultaneously, and supports
+ autoloading of subtitles files for use while playing video.
+ .
+  Homepage: http://kaffeine.sourceforge.net
+
+Package: kaffeine-kde3-dbg
+Section: devel
+Architecture: any
+Priority: extra
+Depends: kaffeine-kde3 (= ${binary:Version}), kdelibs-kde3-dbg
+Recommends: kdesudo-kde3, kpackage-kde3
+Description: debugging symbols for kaffeine [KDE3]
+ This package contains the debugging symbols associated with kaffeine.
+ They will automatically be used by gdb for debugging kaffeine-related
+ issues.
+
+Package: kaffeine-gstreamer-kde3
+Architecture: any
+Depends: ${shlibs:Depends}, kaffeine-kde3
+Description: Gstreamer engine for kaffeine media player [KDE3]
+ Kaffeine is a media player for KDE. While it supports multiple player
+ engines, its default engine is Gstreamer, giving Kaffeine a wide variety of
+ supported media types and letting Kaffeine access CDs, DVDs, and
+ network streams easily.
+ .
+ This package provides the Gstreamer playing engine for Kaffeine.
+ .
+ Homepage: http://kaffeine.sourceforge.net

@@ -1,0 +1,25 @@
+Source: ksquirrel-kde3
+Section: graphics
+Priority: extra
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Paul Gevers <paul@climbing.nl>
+Build-Depends: debhelper (>= 5),
+               dpatch,
+               libksquirrel-kde3-dev,
+               libkonq4-kde3-dev,
+               kipi-plugins-kde3,
+               libkipi0-kde3-dev,
+               build-essential,
+		automake1.11-kde3, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: ksquirrel-kde3
+Architecture: any
+Depends: libksquirrel0-kde3, ${shlibs:Depends}, ${misc:Depends}
+Description: Powerful KDE3 image viewer
+ KSquirrel is an image viewer for KDE with disk navigator, file tree,
+ multiple directory view, thumbnails, extended thumbnails, dynamic
+ format support, DCOP interface, KEXIF and KIPI plugins support.
+ .
+ KSquirrel is a fast and convenient image viewer for KDE featuring
+ OpenGL and dynamic format support.

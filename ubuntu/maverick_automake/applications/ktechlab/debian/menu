@@ -1,0 +1,6 @@
+?package(ktechlab):needs="X11" \
+  section="Applications/Programming" \
+  hints="KDE" \
+  title="KTechLab" \
+  command="/opt/kde3/bin/ktechlab" \
+  icon="/usr/share/pixmaps/ktechlab.xpm"

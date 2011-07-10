@@ -1,0 +1,2 @@
+kwin: shlib-missing-in-control-file libkdeinit_kwin.so usr/lib/libkdeinit_kwin.so
+kwin: shlib-missing-in-control-file libkdeinit_kwin_rules_dialog.so usr/lib/libkdeinit_kwin_rules_dialog.so

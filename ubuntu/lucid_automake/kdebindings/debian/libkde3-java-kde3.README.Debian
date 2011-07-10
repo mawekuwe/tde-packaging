@@ -1,0 +1,12 @@
+Developing and using KDE based applications written in Java
+===========================================================
+
+This document explains how to develop and use KDE based programs
+written in Java.  This is what the KDE java bindings from the package
+libkde3-java are designed to accomplish.
+
+Please read the document /usr/share/doc/libqt3-java/README.Debian.
+Mostly everything mentionned there applies here as well, with the
+addition that you should also add "/usr/share/java/koala.jar" to your
+CLASSPATH for compiling and using (in addition to qtjava.jar, and
+possibly others).

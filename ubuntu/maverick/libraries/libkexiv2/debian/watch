@@ -1,0 +1,6 @@
+# Compulsory line, this is a version 3 file
+version=3
+
+http://sf.net/kipi/libkexiv2-(.*)\.tar\.bz2 debian svn-upgrade
+
+
