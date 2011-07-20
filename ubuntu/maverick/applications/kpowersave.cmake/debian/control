@@ -3,16 +3,15 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Michael Biebl <biebl@debian.org>
-Build-Depends: cdbs, debhelper (>= 5.0.0), kdelibs4-trinity-dev, libxss-dev, libxtst-dev, libhal-dev (>= 0.5.6), libdbus-1-dev (>= 0.6), libdbus-tqt-1-dev, automake, autoconf, libtool, libltdl-dev
-Build-Conflicts: autoconf2.13
+Build-Depends: cdbs, debhelper (>= 5.0.0), kdelibs4-trinity-dev, libxss-dev, libxtst-dev, libhal-dev (>= 0.5.6), libdbus-1-dev (>= 0.6), libdbus-tqt-1-dev, libtool, libltdl-dev, cmake
 Standards-Version: 3.8.4
 Homepage: http://sourceforge.net/projects/powersave/
 
 Package: kpowersave-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, hal (>= 0.5.8.1)
-Description: HAL based power management applet for KDE3
- KPowersave is a KDE systray applet which allows to control the power 
+Description: HAL based power management applet for Trinity
+ KPowersave is a TDE systray applet which allows to control the power 
  management settings and policies of your computer.
  It relies on HAL to do the heavy lifting.
  .
