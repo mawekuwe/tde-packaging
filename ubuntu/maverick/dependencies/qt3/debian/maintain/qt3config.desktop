@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Exec=qtconfig-qt3
+Name=Qt3 Configuration
+Name[de]=Qt3 Konfiguration
+Comment=A graphical configuration tool for programs using Qt 3
+Comment[de]=Ein grafisches Konfigurationstool für Qt3-Programme
+MimeType=application/x-qtconfig;
+Terminal=false
+Icon=qtconfig
+Type=Application
+Categories=Qt;Settings;

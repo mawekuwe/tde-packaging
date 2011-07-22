@@ -1,0 +1,6 @@
+?package(qt3-linguist):\
+        needs="x11"\
+        section="Applications/Programming"\
+        hints="KDE"\
+        title="Qt3 Linguist"\
+        command="/usr/bin/linguist-qt3"

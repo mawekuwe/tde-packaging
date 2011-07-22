@@ -1,0 +1,6 @@
+usr/lib/libqt-mt.so.*
+usr/lib/libqui.so.1.*
+usr/lib/qt3/plugins/imageformats/libqmng.so
+usr/lib/qt3/plugins/inputmethods/*.so
+../../debian/qtrc etc/qt3/                                                                              
+../../debian/qt_plugins_3.3rc etc/qt3/                                                                  
