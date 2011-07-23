@@ -91,6 +91,8 @@ CONFIGURE_OPTS = \
 		-I/usr/include/freetype2	\
 		-I`pg_config --includedir`	\
 						\
+		-L/usr/lib/$(DEB_HOST_MULTIARCH)	\
+						\
 		-lfontconfig			\
 		-inputmethod			\
 		# End of CONFIGURE_OPTS
