@@ -11,7 +11,7 @@ Build-Depends: cdbs (>= 0.4.48), debhelper (>= 6),
  libogg-dev, libtqtinterface-dev,
  libvorbis-dev, cmake, libltdl-dev
 Build-Conflicts: libmas-dev
-Standards-Version: 3.8.3
+Standards-Version: 3.8.4
 
 Package: arts-trinity
 Architecture: all
