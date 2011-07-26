@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>> 4.0.0), libqt3-mt-dev, libavahi-qt3-dev, qt3-apps-dev, cmake, cdbs
-Standards-Version: 3.8.3
+Standards-Version: 3.8.4
 
 Package: libtqtinterface
 Architecture: any
