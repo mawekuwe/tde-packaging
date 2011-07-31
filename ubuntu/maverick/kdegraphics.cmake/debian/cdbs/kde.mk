@@ -35,7 +35,7 @@ else
 DEB_BUILDDIR = obj-$(DEB_BUILD_GNU_TYPE)
 endif
 
-# include $(_cdbs_class_path)/autotools.mk$(_cdbs_makefile_suffix)
+include $(_cdbs_class_path)/autotools.mk$(_cdbs_makefile_suffix)
 
 export kde_cgidir  = \$${libdir}/cgi-bin
 export kde_confdir = \$${sysconfdir}/trinity
@@ -59,7 +59,7 @@ endif
 cdbs_configure_flags += --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
 DEB_AC_AUX_DIR = $(DEB_SRCDIR)/admin
-DEB_CONFIGURE_INCLUDEDIR = "\$${prefix}/include/"
+DEB_CONFIGURE_INCLUDEDIR = "\$${prefix}/include/kde"
 DEB_COMPRESS_EXCLUDE = .dcl .docbook -license .tag .sty .el
 
 $(patsubst %,binary-install/%,$(DEB_PACKAGES)) :: binary-install/%:
@@ -70,7 +70,7 @@ cleanbuilddir::
 
 common-build-arch common-build-indep:: debian/stamp-kde-apidox
 debian/stamp-kde-apidox:
-#	$(if $(DEB_KDE_APIDOX),+$(DEB_MAKE_INVOKE) apidox)
+	$(if $(DEB_KDE_APIDOX),+$(DEB_MAKE_INVOKE) apidox)
 	touch $@
 
 common-install-prehook-impl::
@@ -82,7 +82,7 @@ common-install-prehook-impl::
 
 common-install-arch common-install-indep:: common-install-kde-apidox
 common-install-kde-apidox::
-#	$(if $(DEB_KDE_APIDOX),+$(DEB_MAKE_INVOKE) install-apidox DESTDIR=$(DEB_DESTDIR))
+	$(if $(DEB_KDE_APIDOX),+$(DEB_MAKE_INVOKE) install-apidox DESTDIR=$(DEB_DESTDIR))
 
 clean::
 	rm -f debian/stamp-kde-apidox
