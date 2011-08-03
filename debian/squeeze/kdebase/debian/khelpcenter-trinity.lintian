@@ -1,0 +1,3 @@
+khelpcenter: no-shlibs-control-file usr/lib/libkdeinit_khelpcenter.so
+khelpcenter: postinst-must-call-ldconfig usr/lib/libkdeinit_khelpcenter.so
+khelpcenter: postrm-should-call-ldconfig usr/lib/libkdeinit_khelpcenter.so

@@ -1,0 +1,15 @@
+etc/trinity/klettresrc
+opt/trinity/bin/klettres
+/opt/trinity/share/applications/kde/klettres.desktop
+/opt/trinity/share/config.kcfg/klettres.kcfg
+/opt/trinity/share/doc/kde/HTML/en/klettres/common
+/opt/trinity/share/doc/kde/HTML/en/klettres/index.cache.bz2
+/opt/trinity/share/doc/kde/HTML/en/klettres/*.docbook
+/opt/trinity/share/doc/kde/HTML/en/klettres/*.png
+/opt/trinity/share/icons/hicolor/16x16/apps/klettres.png
+/opt/trinity/share/icons/hicolor/22x22/apps/klettres.png
+/opt/trinity/share/icons/hicolor/32x32/apps/klettres.png
+/opt/trinity/share/icons/hicolor/48x48/apps/klettres.png
+/opt/trinity/share/icons/hicolor/128x128/apps/klettres.png
+/opt/trinity/share/icons/hicolor/scalable/apps/klettres.svgz
+../icons/klettres.xpm /opt/trinity/share/pixmaps

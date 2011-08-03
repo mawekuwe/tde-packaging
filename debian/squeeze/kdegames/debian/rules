@@ -1,0 +1,39 @@
+#! /usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+export kde_bindir = /opt/trinity/games
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_KDE_APIDOX := yes
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+
+DEB_DH_INSTALL_SOURCEDIR := $(DEB_DESTDIR)
+
+DEB_INSTALL_DOCS_ALL :=
+
+DEB_INSTALL_CHANGELOGS_ALL = $(shell for f in ChangeLog CHANGELOG CHANGES; do if test -s $(DEB_SRCDIR)/$(cdbs_curpkg)/$$f; then echo $(DEB_SRCDIR)/$(cdbs_curpkg)/$$f; break; fi; done)
+
+DEB_INSTALL_CHANGELOGS_kdegames := $(DEB_SRCDIR)/ChangeLog
+
+DEB_DH_MAKESHLIBS_ARGS_libkdegames1-trinity := -V'libkdegames1-trinity (>= 4:3.5.8)'
+DEB_DH_MAKESHLIBS_ARGS_atlantik-trinity := -V
+DEB_DH_MAKESHLIBS_ARGS_kolf-trinity := -V
+
+PACKAGES_WITH_LIBS := libkdegames1-trinity atlantik-trinity kolf-trinity
+
+common-binary-indep::
+	if ! test -d debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-apidocs; then mv debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-*apidocs debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-apidocs; fi
+
+common-binary-arch::
+	if ! test -d debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-apidocs; then mv debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-*apidocs debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-apidocs; fi

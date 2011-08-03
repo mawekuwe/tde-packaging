@@ -1,0 +1,16 @@
+Source: ktechlab-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>= 6.0.0), imagemagick, kdelibs4-trinity-dev, dpatch, gpsim-dev (>= 0.21.11-2), libgtk2.0-dev, libreadline6-dev, libopts25-dev, chrpath, libpopt-dev, kdesdk-scripts-trinity, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: ktechlab-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: gputils
+Description: circuit simulator for microcontrollers and electronics [Trinity]
+ KTechlab is a circuit simulator with a nice, clickable and discoverable
+ interface. It supports many discrete components, logic circuits as well
+ as PIC programming in its own Basic dialect and some form of assembler. 
+Homepage: http://ktechlab.org/

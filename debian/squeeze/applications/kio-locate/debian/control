@@ -1,0 +1,18 @@
+Source: kio-locate-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Tobi Vollebregt <tobivollebregt@gmail.com>
+Build-Depends: cdbs, debhelper (>= 5), kdelibs4-trinity-dev, bzip2, python (>= 2.3), scons
+Standards-Version: 3.8.4
+
+Package: kio-locate-trinity
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: kio-slave for the locate command [Trinity]
+ Adds support for the "locate:" and "locater:"
+ protocols to Konqueror and other KDE applications.
+ .
+ This enables you to perform locate searches as you
+ would in a terminal. The result is displayed just
+ as a directory.

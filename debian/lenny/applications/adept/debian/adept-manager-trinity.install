@@ -1,0 +1,4 @@
+debian/tmp/opt/trinity/bin/adept_manager
+debian/tmp/opt/trinity/share/icons/hicolor/*/apps/adept_manager.*
+debian/tmp/opt/trinity/share/apps/adept_manager/adept_managerui.rc
+debian/tmp/opt/trinity/share/applications/kde/adept_manager.desktop

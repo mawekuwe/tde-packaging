@@ -1,0 +1,349 @@
+Source: kdeutils-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Fathi Boudra <fboudra@free.fr>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
+Build-Depends: libasound2-dev, ia32-libs [amd64], cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, kdelibs4-trinity-dev (>= 4:3.5.10), kdebase-trinity-dev (>= 4:3.5.10), libkonq4-trinity-dev (>= 4:3.5.10), libgmp3-dev, libsnmp-dev, libxpm-dev, python-dev, libxtst-dev, xutils, sharutils, automake, autoconf, libtool, libltdl-dev
+Build-Depends-Indep: doxygen, qt3-doc, graphviz, gsfonts-x11, kdelibs4-trinity-doc
+Standards-Version: 3.8.4
+
+Package: kdeutils-trinity
+Section: kde
+Architecture: all
+Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), kdelirc-trinity (>= ${Source-Version}), kdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}) | kpowersave-trinity, kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), kwalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version})
+Suggests: kdeutils-trinity-doc-html (>= ${Source-Version})
+Description: general purpose utilities from the official KDE3 release
+ KDE (the K Desktop Environment) is a powerful Open Source graphical
+ desktop environment for Unix workstations. It combines ease of use,
+ contemporary functionality, and outstanding graphical design with the
+ technological superiority of the Unix operating system.
+ .
+ This metapackage includes a collection of general purpose utilities 
+ provided with the official release of KDE3.
+
+Package: kdeutils-trinity-doc
+Section: doc
+Architecture: all
+Description: developer documentation for the KDE utilities module
+ This package contains documentation for the KDE utilities module, of
+ use more for developers creating applications than regular users.
+ .
+ This package is part of KDE3, and a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kdeutils-trinity-doc-html
+Architecture: all
+Section: doc
+Suggests: konqueror-trinity | www-browser, kdebase-trinity
+Description: KDE3 utilities documentation in HTML format
+ By default the modules provided by KDE only provide their documentation
+ in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the KDE utilities documentation
+ converted to HTML format so it can be read with any web browser.
+ .
+ The documentation will be installed into the usual directories
+ /usr/share/doc/kde/HTML/<language>/<app>/, for instance
+ /usr/share/doc/kde/HTML/en/ark/. Documentation is provided for most
+ KDE utilities packages.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kdeutils-trinity-dev
+Section: utils
+Architecture: any
+Depends: ark-trinity (= ${Source-Version}), kcalc-trinity (= ${Source-Version}), kdelirc-trinity (= ${Source-Version}), kedit-trinity (= ${Source-Version}), khexedit-trinity (= ${Source-Version}), klaptopdaemon-trinity (= ${Source-Version}), kmilo-trinity (= ${Source-Version}), kregexpeditor-trinity (= ${Source-Version}), ksim-trinity (= ${Source-Version}), kdelibs4-trinity-dev (>= 4:3.5.8)
+Description: development files for the KDE3 utilities module
+ This package contains development files needed to compile kdeutils
+ applications.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: ark-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Recommends: ncompress, unzip, zip, zoo, bzip2, p7zip-full, xz-utils, lzma
+Suggests: khelpcenter-trinity, rar, unrar | unrar-free
+Replaces: kdebase-data-trinity (<< 4:3.3.91)
+Description: graphical archiving tool for KDE3
+ Ark is a graphical program for managing various archive formats within the
+ KDE environment. Archives can be viewed, extracted, created and modified
+ from within Ark.
+ .
+ The program can handle various formats such as tar, gzip, bzip2, zip, rar and
+ lha (if appropriate command-line programs are installed).
+ .
+ Ark can work closely with Konqueror in the KDE environment to handle archives,
+ if you install the Konqueror Integration plugin available in the konq-plugins
+ package.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kcalc-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Replaces: kdebase-data-trinity (<< 4:3.3.91)
+Description: calculator for KDE3
+ KCalc is KDE's scientific calculator.
+ .
+ It provides:
+  * trigonometric functions, logic operations, and statistical calculations
+  * easy cut and paste of numbers from/into its display
+  * a results-stack which lets you conveniently recall previous results
+  * configurable precision, and number of digits after the period
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kcharselect-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: character selector for KDE3
+ A character set selector for KDE.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kdelirc-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: infrared control for KDE3
+ This is a frontend for the LIRC suite to use infrared devices with KDE.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kdessh-trinity
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}, openssh-client | ssh-client
+Description: ssh frontend for KDE3
+ This package contains KDE's frontend for ssh.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kdf-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: disk space utility for KDE3
+ KDiskFree displays the available file devices (hard drive partitions, floppy
+ and CD drives, etc.) along with information on their capacity, free space, type
+ and mount point. It also allows you to mount and unmount drives and view them
+ in a file manager.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kedit-trinity
+Section: editors
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: basic text editor for KDE3
+ A simple text editor for KDE.
+ .
+ It can be used with Konqueror for text and configuration file browsing.
+ KEdit also serves well for creating small plain text documents. KEdit's
+ functionality will intentionally remain rather limited to ensure a
+ reasonably fast start.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kfloppy-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, dosfstools
+Suggests: khelpcenter-trinity
+Description: floppy formatter for KDE
+ Kfloppy is a utility that provides a straightforward graphical means
+ to format 3.5" and 5.25" floppy disks.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kgpg-trinity
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}, konsole-trinity (>= 4:3.5.8), gnupg
+Suggests: khelpcenter-trinity
+Description: GnuPG frontend for KDE3
+ Kgpg is a frontend for GNU Privacy Guard (GnuPG). It provides file
+ encryption, file decryption and key management.
+ .
+ Features:
+   * an editor mode for easily and quickly encrypting or decrypting a file
+     or message which is typed, copied, pasted or dragged into the editor,
+     or which is double-clicked in the file manager
+   * Konqueror integration for encrypting or decrypting files
+   * a panel applet for encrypting / decrypting files or the clipboard
+     contents, etc.
+   * key management functions (generation, import, export, deletion and
+     signing)
+   * decrypting clipboard contents, including integration with Klipper
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: khexedit-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: KDE3 hex editor
+ KHexEdit is an editor for the raw data of binary files.  It includes
+ find/replace functions, bookmarks, many configuration options, drag and drop
+ support and other powerful features.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kjots-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: note taking utility for KDE3
+ Kjots is a small note taker program. Name and idea are taken from the jots
+ program included in the tkgoodstuff package.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: klaptopdaemon-trinity
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: battery monitoring and management for laptops using KDE
+ This package contains utilities to monitor batteries and configure
+ power management, for laptops, from within KDE.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kmilo-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Description:  laptop special keys support for KDE3
+ KMilo lets you use the special keys on some keyboards and laptops.
+ .
+ Usually this includes volume keys and other features. Currently, KMilo
+ comes with plugins for Powerbooks, Thinkpads, Vaios and generic keyboards
+ with special keys.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kmilo-legacy-trinity
+Section: utils
+Architecture: any
+Depends: kmilo-trinity, ${shlibs:Depends}
+Description:  non-standard plugins for KMilo
+ KMilo lets you use the special keys on some keyboards and laptops.
+ .
+ Usually this includes volume keys and other features. Currently, KMilo
+ comes with plugins for Powerbooks, Thinkpads and Vaios.
+ .
+ In Debian the intention is that all laptops work with the generic kmilo
+ plugin, if you need this package please file a bug.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kregexpeditor-trinity
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: graphical regular expression editor plugin for KDE3
+ This package contains a graphical regular expression editor plugin for use
+ with KDE. It let you draw your regular expression in an unambiguous way.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: ksim-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: system information monitor for KDE3
+ KSim is a system monitor app which has its own plugin system with support
+ for GKrellm skins. It allows users to follow uptime, memory usage, network
+ connections, power, etc.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: ktimer-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: timer utility for KDE3
+ This is a timer application for KDE. It allows you to execute commands after
+ a certain amount of time. It supports looping commands as well as delayed
+ command execution.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kwalletmanager-trinity
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Description: wallet manager for KDE3
+ This program keeps various wallets for any kind of data that the user can
+ store encrypted with passwords and can also serve as a password manager that
+ keeps a master password to all wallets.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: superkaramba-trinity
+Section: kde
+Architecture: any
+Depends: ${shlibs:Depends}
+Suggests: khelpcenter-trinity
+Conflicts: karamba-trinity
+Description: a program based on karamba improving the eyecandy of KDE
+ SuperKaramba is a tool based on karamba that allows anyone to easily create
+ and run little interactive widgets on a KDE desktop. Widgets are defined in a
+ simple text file and can be augmented with Python code to make them
+ interactive.
+ .
+ Here are just some examples of the things that can be done:
+ .
+  * Display system information such as CPU Usage, MP3 playing, etc.
+  * Create cool custom toolbars that work any way imaginable.
+  * Create little games or virtual pets that live on your desktop.
+  * Display information from the internet, such as weather and headlines.
+ .
+ This package is part of KDE3, as a component of the KDE utilities module.
+ See the 'kde-trinity' and 'kdeutils-trinity' packages for more information.
+
+Package: kdeutils-trinity-dbg
+Section: libdevel
+Architecture: any
+Depends: kdelibs-trinity-dbg
+Priority: extra
+Description: debugging symbols for kdeutils-trinity
+ This package contains the debugging symbols associated with kdeutils-trinity.
+ They will automatically be used by gdb for debugging kdeutils-related
+ issues.

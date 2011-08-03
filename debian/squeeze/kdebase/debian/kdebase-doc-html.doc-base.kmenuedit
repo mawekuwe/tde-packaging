@@ -1,0 +1,10 @@
+Document: kdebase-doc-html-kmenuedit
+Title: KMenuEdit Handbook
+Author: Milos Prudek, Lauri Watts
+Abstract: KMenuEdit allows the editing of the KDE main menu.
+Section: Apps/System
+
+Format: HTML
+Index: /opt/trinity/share/doc/kde/HTML/en/kmenuedit/index.html
+Files: /opt/trinity/share/doc/kde/HTML/en/kmenuedit/*.html
+

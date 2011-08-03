@@ -1,0 +1,6 @@
+kdebase-bin: setgid-binary usr/bin/kdesud 2755 root/nogroup
+kdebase-bin: no-shlibs-control-file usr/lib/libkdeinit_kcminit.so
+kdebase-bin: no-shlibs-control-file usr/lib/libkdeinit_khotkeys.so
+kdebase-bin: no-shlibs-control-file usr/lib/libkdeinit_kxkb.so
+kdebase-bin: postinst-must-call-ldconfig usr/lib/libkdeinit_khotkeys.so
+kdebase-bin: postrm-should-call-ldconfig usr/lib/libkdeinit_khotkeys.so

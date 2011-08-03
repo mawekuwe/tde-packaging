@@ -1,0 +1,8 @@
+?package(qt3-qtconfig):\
+        needs="x11"\
+        section="Applications/System/Administration"\
+        title="Qt3 Config"\
+        longtitle="Qt3 Configuration Utility"\
+        hints="Qt3 config tool"\
+        command="/usr/bin/qtconfig-qt3"
+

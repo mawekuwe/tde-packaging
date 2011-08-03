@@ -1,0 +1,4 @@
+Tag: lib-not-in-shlibs
+
+Tag: no-shlib-file
+Data: /usr/trinity/lib/libkdeinit_*.so

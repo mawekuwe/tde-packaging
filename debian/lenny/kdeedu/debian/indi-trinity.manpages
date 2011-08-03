@@ -1,0 +1,11 @@
+debian/man/celestrongps-trinity.1
+debian/man/fliccd-trinity.1
+debian/man/indiserver-trinity.1
+debian/man/lx200_16-trinity.1
+debian/man/lx200autostar-trinity.1
+debian/man/lx200classic-trinity.1
+debian/man/lx200generic-trinity.1
+debian/man/lx200gps-trinity.1
+debian/man/temma-trinity.1
+debian/man/v4ldriver-trinity.1
+debian/man/v4lphilips-trinity.1

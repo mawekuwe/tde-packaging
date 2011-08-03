@@ -1,0 +1,31 @@
+--- startkde
++++ startkde
+@@ -184,17 +184,17 @@
+   . $kdehome/share/config/startupconfig
+ fi
+ 
+-# Make sure a default wallpaper is set.
+-if [ ! -e $kdehome/share/config/kdesktoprc ]; then
+- # With Trinity KDE this file should exist, but test first.
+-  if [ -r /usr/share/wallpapers/isadora.png.desktop ]; then
+-cat >$kdehome/share/config/kdesktoprc <<EOF
+-[Desktop0]
+-Wallpaper=isadora.png
+-WallpaperMode=Scaled
+-EOF
+-  fi
+-fi
++## Make sure a default wallpaper is set.
++#if [ ! -e $kdehome/share/config/kdesktoprc ]; then
++# # With Trinity KDE this file should exist, but test first.
++#  if [ -r /usr/share/wallpapers/isadora.png.desktop ]; then
++#cat >$kdehome/share/config/kdesktoprc <<EOF
++#[Desktop0]
++#Wallpaper=isadora.png
++#WallpaperMode=Scaled
++#EOF
++#  fi
++#fi
+ 
+ # XCursor mouse theme needs to be applied here to work even for kded or ksmserver.
+ if test -n "$kcminputrc_mouse_cursortheme" -o -n "$kcminputrc_mouse_cursorsize" ; then

@@ -1,0 +1,71 @@
+Source: mlt-trinity
+Priority: optional
+Section: libs
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Maintainer: Christian Marillat <marillat@debian.org>
+Homepage: http://mlt.sourceforge.net/
+Standards-Version: 3.8.3
+Build-Depends: debhelper (>= 5), libdv4-dev, libquicktime-dev (>= 2:1.0.0),
+ libvorbis-dev, libsdl-dev | libsdl1.2-dev, libgtk2.0-dev, libjack-dev, quilt,
+ libsamplerate-dev, libmad0-dev, kdelibs4-trinity-dev, imagemagick, ffmpeg, libflac-dev,
+ libavcodec-dev, libxml2-dev, ladspa-sdk, libavutil-dev, libxcursor-dev,
+ libxinerama-dev, libxrandr-dev, libxrender-dev, libavformat-dev,
+ libswscale-dev, libasound2-dev, libsox-dev
+
+Package: libmlt0.2.5-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, libmlt-data
+Provides: libmlt-trinity
+Description: An open source multimedia framework - Core files [Trinity]
+ MLT is an open source multimedia framework, designed and developed for
+ television broadcasting. It provides a toolkit for broadcasters, video
+ editors, media players, transcoders, web streamers and many more types of
+ applications. The functionality of the system is provided via an assortment
+ of ready to use tools, xml authoring components, and an extendible plug-in
+ based API.
+ .
+ This package contains the core MLT library files, needed by applications
+ such as the Jahshaka video editor.
+
+Package: libmiracle0.2.5-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, libmlt0.2.5-trinity (= ${binary:Version}), libvalerie0.2.5-trinity (= ${binary:Version})
+Description: An open source multimedia framework - Core files [Trinity]
+ MLT is an open source multimedia framework, designed and developed for
+ television broadcasting. It provides a toolkit for broadcasters, video
+ editors, media players, transcoders, web streamers and many more types of
+ applications. The functionality of the system is provided via an assortment
+ of ready to use tools, xml authoring components, and an extendible plug-in
+ based API.
+ .
+ This package contains the Miracle Control Protocol (DVCP) library.
+
+Package: libvalerie0.2.5-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, libmlt0.2.5-trinity (= ${binary:Version}), libmiracle0.2.5-trinity (= ${binary:Version})
+Description: An open source multimedia framework - Core files [Trinity]
+ MLT is an open source multimedia framework, designed and developed for
+ television broadcasting. It provides a toolkit for broadcasters, video
+ editors, media players, transcoders, web streamers and many more types of
+ applications. The functionality of the system is provided via an assortment
+ of ready to use tools, xml authoring components, and an extendible plug-in
+ based API.
+ .
+ This package contains the valerie library, which provides a high level
+ parser wrapper to simplify the usage of the miracle library.
+
+Package: libmlt-trinity-dev
+Section: libdevel
+Architecture: any
+Depends: libmlt0.2.5-trinity (= ${binary:Version}), libmiracle0.2.5-trinity (= ${binary:Version}), libvalerie0.2.5-trinity (= ${binary:Version})
+Provides: libmiracle-trinity-dev, libvalerie-trinity-dev
+Description: An open source multimedia framework - Development files [Trinity]
+ MLT is an open source multimedia framework, designed and developed for
+ television broadcasting. It provides a toolkit for broadcasters, video
+ editors, media players, transcoders, web streamers and many more types of
+ applications. The functionality of the system is provided via an assortment
+ of ready to use tools, xml authoring components, and an extendible plug-in
+ based API.
+ .
+ This package contains the MLT development files, needed when compiling
+ applications such as the Jahshaka video editor.

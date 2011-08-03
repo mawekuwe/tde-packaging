@@ -1,0 +1,14 @@
+debian/tmp/opt/trinity/bin/kfilereplace
+debian/tmp/opt/trinity/lib/kde3/libkfilereplacepart.la
+debian/tmp/opt/trinity/lib/kde3/libkfilereplacepart.so
+debian/tmp/opt/trinity/share/applications/kde/kfilereplace.desktop
+debian/tmp/opt/trinity/share/apps/kfilereplace/kfilereplaceui.rc
+debian/tmp/opt/trinity/share/apps/kfilereplacepart
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kfilereplace/*.bz2
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kfilereplace/common
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kfilereplace/*.docbook
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kfilereplace/*.png
+debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kfilereplace.png
+debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kfilereplace.png
+debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kfilereplace.png
+debian/tmp/opt/trinity/share/services/kfilereplacepart.desktop

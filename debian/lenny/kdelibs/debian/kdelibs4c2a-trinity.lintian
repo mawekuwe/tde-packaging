@@ -1,0 +1,15 @@
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_kaddprinterwizard.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_cupsdconf.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_dcopserver.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_kcmshell.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_kio_http_cache_cleaner.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_kbuildsycoca.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_kded.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_kcookiejar.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_klauncher.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_kconf_update.so
+kdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libkdeinit_kio_uiserver.so
+kdelibs4c2a binary: setuid-binary opt/trinity/bin/fileshareset 4755 root/root
+kdelibs4c2a binary: setuid-binary opt/trinity/bin/kgrantpty 4755 root/root
+kdelibs4c2a binary: setuid-binary opt/trinity/bin/kpac_dhcp_helper 4755 root/root
+kdelibs4c2a binary: setuid-binary opt/trinity/bin/start_kdeinit 4755 root/root

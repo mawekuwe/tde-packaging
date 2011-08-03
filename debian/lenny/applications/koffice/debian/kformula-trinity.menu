@@ -1,0 +1,9 @@
+?package(kformula):\
+	needs="x11"\
+	section="Applications/Science/Mathematics"\
+	hints="KDE"\
+	title="KFormula"\
+	longtitle="KFormula (Formula Editor)"\
+	icon="/opt/trinity/share/pixmaps/kformula.xpm"\
+	command="/opt/trinity/bin/kformula"
+

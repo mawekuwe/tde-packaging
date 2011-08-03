@@ -1,0 +1,21 @@
+Source: kio-apt-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Emmanuel Bouthenot <kolter@openics.org>
+Build-Depends: debhelper (>= 5), cdbs, kdelibs4-trinity-dev, sharutils, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: kio-apt-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, apt, adept-batch-trinity
+Description: an apt-cache ioslave for KDE3
+ kio-apt is an ioslave which provides the apt:/ protocol. It
+ integrates apt-cache functionalities into Konqueror, making
+ browsing the packages easier. It provides:
+  - apt-cache search: apt:/search?expression
+  - apt-cache show: apt:/show?package . The show? target
+    prints the policy too.
+  - apt-cache policy: apt:/policy?package
+ .
+ Homepage : http://lpnotfr.free.fr/

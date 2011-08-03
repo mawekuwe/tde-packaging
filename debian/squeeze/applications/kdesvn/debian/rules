@@ -1,0 +1,53 @@
+#!/usr/bin/make -f
+
+PATH := /opt/trinity/bin:$(PATH)
+  
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/kde" -DCMAKE_CXX_FLAGS="-I/opt/trinity/include/kde" -DCMAKE_LDFLAGS="-L/opt/trinity/lib"
+
+DEB_COMPRESS_EXCLUDE := .dcl .docbook -license .tag .sty .el
+
+DEB_DH_MAKESHLIBS_ARGS_libsvnqt4 := -V
+
+# Tell dh_shlibdeps where to find our own libs.
+DEB_SHLIBDEPS_INCLUDE := debian/tmp/opt/trinity/lib
+
+common-install-impl::
+	mkdir -p debian/tmp/opt/trinity
+	mkdir -p debian/tmp/opt/trinity/include/kde
+	mkdir -p debian/tmp/usr/lib
+	mkdir -p debian/tmp/opt/trinity/lib
+	mkdir -p debian/tmp/usr/lib/kde3
+	mkdir -p debian/tmp/usr/lib64/kde3
+	touch debian/tmp/usr/lib/kde3/removeme
+	touch debian/tmp/usr/lib64/kde3/removeme
+	mv debian/tmp/usr/lib/kde3/* debian/tmp/usr/lib/
+	mv debian/tmp/usr/lib64/kde3/* debian/tmp/usr/lib64/
+	rm -rf debian/tmp/usr/lib/kde3
+	rm -rf debian/tmp/usr/lib64/kde3
+	cp -Rp debian/tmp/usr/bin debian/tmp/opt/trinity/
+	cp -Rp debian/tmp/usr/lib/* debian/tmp/opt/trinity/lib/
+	cp -Rp debian/tmp/usr/lib64/* debian/tmp/opt/trinity/lib/
+	cp -Rp debian/tmp/usr/share debian/tmp/opt/trinity/
+	cp -Rp debian/tmp/usr/include/* debian/tmp/opt/trinity/include/kde/
+	rm -rf debian/tmp/usr/bin
+	rm -rf debian/tmp/usr/lib/kde3
+	rm -rf debian/tmp/usr/lib64/kde3
+	rm -rf debian/tmp/usr/share
+	rm -rf debian/tmp/usr/include
+	mkdir -p debian/tmp/opt/trinity/lib/kde3
+	touch debian/tmp/opt/trinity/lib/kde3/removeme
+	cp -Rp debian/tmp/opt/trinity/lib/kde3/* debian/tmp/opt/trinity/lib/
+	rm -rf debian/tmp/opt/trinity/lib/kde3
+	rm -rf debian/tmp/opt/trinity/lib/removeme

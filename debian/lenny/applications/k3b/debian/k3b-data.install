@@ -1,0 +1,11 @@
+debian/tmp/usr/share/applnk/.hidden/*
+debian/tmp/usr/share/apps/*
+debian/tmp/usr/share/icons/*
+debian/tmp/usr/share/doc/kde/*
+debian/tmp/usr/share/sounds/*
+debian/tmp/usr/share/mimelnk/*
+debian/tmp/usr/share/services/*
+debian/k3b-rip-audiocd.desktop usr/share/kde4/apps/solid/actions
+debian/k3b-rip-videodvd.desktop usr/share/kde4/apps/solid/actions
+debian/k3b-write-iso-image.desktop usr/share/kde4/services/ServiceMenus
+debian/k3b-write-bin-image.desktop usr/share/kde4/services/ServiceMenus

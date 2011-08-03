@@ -1,0 +1,14 @@
+#!/bin/bash
+
+DESKTOP_SESSION="$DESKTOP_SESSION"
+echo "You are running $DESKTOP_SESSION"
+
+if [[ "$DESKTOP_SESSION" == "trinity" ]]
+then
+	# Do nothing, this is KDE3
+	echo "I detected KDE3"
+else
+	# This is KDE4, start plasma-desktop
+	echo "I detected KDE4"
+	/usr/bin/plasma-desktop.kde4
+fi

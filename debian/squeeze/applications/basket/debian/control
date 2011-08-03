@@ -1,0 +1,21 @@
+Source: basket-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Sune Vuorela <debian@pusling.com>
+Build-Depends: libasound2-dev, debhelper (>= 5), kdelibs4-trinity-dev (>= 4:3.5.6), kdepim-trinity-dev (>= 4:3.5.6), libgpgme11-dev, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: basket-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: a multi-purpose note-taking application for KDE [Trinity]
+ This application provides as many baskets (drawers) as you wish; Several
+ kinds of objects (texts, URLs, images,...) can be drag-n-drop'd into it. 
+ .
+ Objects can be edited, copied, dragged... So, they can be arranged
+ according to users' taste. Moreover, Basket allows you to keep all objects 
+ you want in one place, keep data on hand, take notes...
+ .
+  Homepage: http://basket.kde.org/

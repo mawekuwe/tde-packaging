@@ -1,0 +1,16 @@
+opt/trinity/bin/kverbos
+/opt/trinity/share/applications/kde/kverbos.desktop
+/opt/trinity/share/apps/kverbos
+/opt/trinity/share/config.kcfg/kverbos.kcfg
+/opt/trinity/share/doc/kde/HTML/en/kverbos/common
+/opt/trinity/share/doc/kde/HTML/en/kverbos/index.cache.bz2
+/opt/trinity/share/doc/kde/HTML/en/kverbos/*.docbook
+/opt/trinity/share/doc/kde/HTML/en/kverbos/*.png
+/opt/trinity/share/icons/crystalsvg/16x16/actions/kverbosuser.png
+/opt/trinity/share/icons/hicolor/16x16/apps/kverbos.png
+/opt/trinity/share/icons/hicolor/22x22/apps/kverbos.png
+/opt/trinity/share/icons/hicolor/32x32/apps/kverbos.png
+/opt/trinity/share/icons/hicolor/48x48/apps/kverbos.png
+/opt/trinity/share/icons/hicolor/128x128/apps/kverbos.png
+/opt/trinity/share/icons/hicolor/scalable/apps/kverbos.svgz
+../icons/kverbos.xpm /opt/trinity/share/pixmaps

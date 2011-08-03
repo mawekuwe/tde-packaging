@@ -1,0 +1,4 @@
+kuickshow-trinity: no-shlibs-control-file opt/trinity/lib/libkdeinit_kuickshow.so
+kuickshow-trinity: postinst-must-call-ldconfig opt/trinity/lib/libkdeinit_kuickshow.so
+kuickshow-trinity: postrm-should-call-ldconfig opt/trinity/lib/libkdeinit_kuickshow.so
+kuickshow-trinity: package-name-doesnt-match-sonames libkdeinit-kuickshow

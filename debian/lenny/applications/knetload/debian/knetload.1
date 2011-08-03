@@ -1,0 +1,56 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH KNETLOAD 1 "January 14, 2003"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+knetload \- a network meter for Kicker
+.SH SYNOPSIS
+.B knetload
+.RI "[ " generic-options " ]"
+.SH DESCRIPTION
+\fBKNetLoad\fP is a small program for Kicker (the KDE panel).  It
+shows a recent history of network usage in the form of two
+configurable diagrams in the system tray, one for incoming and one
+for outgoing data.
+These diagrams have settings for colors and various different styles.
+.PP
+Left click on a diagram to bring up a small information box which
+will show the exact input and output rates in text form as well as
+the total amount incoming and outgoing data.
+.PP
+Note that before KNetLoad can be useful you must select which
+network device it should monitor and select an appropriate scaling
+value that reflects the speed of this network device.
+.PP
+KNetLoad can monitor almost any network device; if your device is
+not in the predefined list of devices (such as eth0, ppp0 and
+ippp0) then you can type in your own device.
+.SH OPTIONS
+For a full summary of options, run \fIknetload \-\-help\fP.
+.SH SEE ALSO
+Full user documentation is available through the KDE Help Centre.
+You can also enter the URL
+\fIhelp:/knetload/\fP
+directly into konqueror or you can run
+`\fIkhelpcenter help:/knetload/\fP'
+from the command-line.
+.PP
+If the KDE Help Centre is not installed then you can
+read this documentation in HTML format from
+\fI/usr/share/doc/kde/HTML/en/knetload/\fP.
+.SH AUTHOR
+KNetLoad was written by Flameeyes <dgp85@users.sourceforge.net>, 
+Markus Gustavsson <mighty@fragzone.se> and Ben Burton <bab@debian.org>.

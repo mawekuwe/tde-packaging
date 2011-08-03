@@ -1,0 +1,22 @@
+Source: piklab-trinity
+Section: electronics
+Priority: extra
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>= 5), autotools-dev, quilt, chrpath,
+ libusb-dev, kdelibs4-trinity-dev, libreadline5-dev, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+Homepage: http://piklab.sourceforge.net/
+
+Package: piklab-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: gputils, libusb-dev
+Suggests: sdcc (>= 2.5.0), sdcc-libraries
+Description: IDE for PIC-microcontroller development [Trinity]
+ Piklab is an integrated development environment for applications based on
+ Microchip PIC and dsPIC microcontrollers similar to the MPLAB environment.
+ .
+ Support for several compiler and assembler toolchains is integrated. The
+ GPSim simulator, the ICD1 programmer, the ICD2 debugger, the PICkit1 and
+ PICkit2 programmers, the PicStart+ programmer, and most direct programmers
+ are supported. A command-line programmer and debugger are also available.

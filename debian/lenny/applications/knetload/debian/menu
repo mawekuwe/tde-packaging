@@ -1,0 +1,6 @@
+?package(knetload):needs="X11"\
+  section="Apps/System"\
+  hints="KDE"\
+  title="KNetLoad"\
+  command="/opt/trinity/bin/knetload"\
+  icon="/usr/share/pixmaps/knetload.xpm"

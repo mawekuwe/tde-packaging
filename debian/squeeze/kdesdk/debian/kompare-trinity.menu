@@ -1,0 +1,9 @@
+?package(kompare):\
+        needs="x11"\
+        section="Applications/Text"\
+        hints="KDE"\
+        title="Kompare"\
+        longtitle="Kompare (Diff/Patch Frontend)"\
+        icon="/usr/share/pixmaps/kompare.xpm"\
+        command="/opt/trinity/bin/kompare"
+

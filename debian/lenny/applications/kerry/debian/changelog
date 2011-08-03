@@ -1,0 +1,99 @@
+kerry-trinity (1:0.2.1-0ubuntu6) lucid; urgency=low
+
+  * KDE3 Lucid rebuild
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 14 Aug 2010 10:00:00 -0600
+
+kerry (1:0.2.1-0ubuntu5) hardy; urgency=low
+
+  * Add patch kubuntu_08_libbeagle1_transition.patch to make configure
+    use libbeagle1, so binary objects are built. (LP: #211591).
+  * Add patch kubuntu_09_remove-sh.patch to remove .sh extension
+    from beagled-shutdown script.
+  * Add postinst and postrm scripts to run ldconfig when kerry is
+    installed or removed.
+  * denian/rules: remove rpath from the binary and library files.
+  * debian/control:
+    - set minimum version of libbeagle-dev to 0.3.0 in build-depends.
+    - add chrpath to build-depends.
+    - bump standards-version to 3.7.3, no further changes needed.
+    - move Homepage from description to control fields.
+  * Update kubuntu_04_no_core_kmenu_entry.desktop.patch to remove
+    deprecated encoding field.
+  * Add patch kubuntu_10_update-kcmbeagle-desktop.patch to remove
+    deprecated encoding field from the kcmbeagle desktop file.
+  
+ -- Albert Damen <albrt@gmx.net>  Tue, 08 Apr 2008 21:50:06 +0200
+
+kerry (1:0.2.1-0ubuntu4) hardy; urgency=low
+
+  * Rebuild for libbeagle0 -> libbeagle1 transition (LP: #192262).
+
+ -- Andrea Colangelo <warp10@libero.it>  Sat, 16 Feb 2008 00:02:29 +0100
+
+kerry (1:0.2.1-0ubuntu3) gutsy; urgency=low
+
+  * Added kubuntu_06_knotes_integration.patch to fix knotes integration
+    failing to open a note, opening an empty note instead
+  * kubuntu_07_french_translation.patch for complete french translation
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Sat, 30 Jun 2007 01:14:05 +0200
+
+kerry (1:0.2.1-0ubuntu2) feisty; urgency=low
+
+  * Build-Depends on libbeagle-dev instead of beagle-dev to actually compile
+    kerry (Closes: Malone #76773)
+
+ -- Adrien Cunin <adri2000@gmail.com>  Thu, 18 Jan 2007 12:33:38 +0100
+
+kerry (1:0.2.1-0ubuntu1) feisty; urgency=low
+
+  * New upstream release.
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 05 Dec 2006 18:03:31 +0100
+
+kerry (1:0.1-0ubuntu2) dapper; urgency=low
+
+  * kubuntu_05_shortkey.diff: Change main key combo to stop clashing with
+    YaKuake this time.
+
+ -- Jonathan Patrick Davies <jpatrick@ubuntu.com>  Sun, 09 Apr 2006 21:14:46 +0200
+
+kerry (1:0.1-0ubuntu1) dapper; urgency=low
+
+  * New upstream release.
+  * Patched up patches.
+  * Removed makebuilddir/kerry from debian/rules: no longer necessary.
+
+ -- Jonathan Patrick Davies <jpatrick@ubuntu.com>  Sun, 09 Apr 2006 11:35:34 +0200
+
+kerry (0.09-0ubuntu4) dapper; urgency=low
+
+  * Added kubuntu_05_shortkey.diff: Remove Alt-Space shortcut to stop
+    conflicting with Katapult.
+
+ -- Jonathan Patrick Davies <jpatrick@ubuntu.com>  Fri, 07 Apr 2006 21:11:45 +0200
+
+kerry (0.09-0ubuntu3) dapper; urgency=low
+
+  * Added kubuntu_04_no_core_kmenu_entry.desktop.patch to avoid double entry
+    in Kmenu
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 29 Mar 2006 3:30:37 +0100
+
+kerry (0.09-0ubuntu2) dapper; urgency=low
+
+  * Switched to cdbs
+  * Added kubuntu_01_kdepot.patch for pot file extraction to Rosetta
+  * kubuntu_01_kerry.diff becomes kubuntu_02_fix_shutdown_script_path.patch
+  * Added kubuntu_03_no_beagle_autostart.diff to remove autostart desktop file
+    for beagle as new beagle package already has it
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Mon, 28 Mar 2006 20:50:37 +0100
+
+kerry (0.09-0ubuntu1) dapper; urgency=low
+
+  * Initial release.
+  * Created kubuntu_01_kerry.diff - install scripts to /usr/bin.
+
+ -- Jonathan Patrick Davies <jpatrick@ubuntu.com>  Sun, 26 Mar 2006 15:51:20 +0200

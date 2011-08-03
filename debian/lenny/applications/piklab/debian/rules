@@ -1,0 +1,118 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+config: config-stamp
+config-stamp:  configure
+	dh_testdir
+
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+	$(MAKE) -f /usr/share/quilt/quilt.make patch
+
+ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+	cp -f /usr/share/misc/config.sub config.sub
+endif
+ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+	cp -f /usr/share/misc/config.guess config.guess
+endif
+
+	./configure CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs -Wl,--as-needed" \
+		--host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+		--prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib \
+		--with-extra-includes=/opt/trinity/include/kde \
+		--mandir=/opt/trinity/share/man --infodir=/opt/trinity/share/info --enable-rpath
+	touch $@
+
+build: build-stamp
+build-stamp:  config-stamp
+	dh_testdir
+	$(MAKE)
+	#docbook-to-man debian/piklab.sgml > piklab.1
+	touch $@
+
+clean:
+	dh_testdir
+	dh_testroot
+
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+	rm -f config-stamp build-stamp 
+	[ ! -f Makefile ] || $(MAKE) distclean
+	rm -f po/*.gmo
+	rm -f src/common/global/svn_revision/svn_revision.h
+	rm -f config.sub config.guess config.status config.log
+	$(MAKE) -f /usr/share/quilt/quilt.make unpatch
+	dh_clean 
+
+install: build-stamp
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs
+	$(MAKE) DESTDIR=$(CURDIR)/debian/piklab-trinity install
+	chrpath --delete debian/piklab-trinity/opt/trinity/bin/*
+	mv debian/piklab-trinity/opt/trinity/share/man/man1/piklab.1x debian/piklab-trinity/opt/trinity/share/man/man1/piklab.1
+	rm -r debian/piklab-trinity/opt/trinity/share/doc/HTML
+
+# Build architecture-independent files here.
+binary-indep: build install
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs Changelog
+	dh_installdocs
+	dh_installexamples
+	dh_install
+	dh_installmenu
+	dh_installman
+	dh_desktop
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_shlibdeps -l/opt/trinity/lib
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: config build clean binary-indep binary-arch binary install 

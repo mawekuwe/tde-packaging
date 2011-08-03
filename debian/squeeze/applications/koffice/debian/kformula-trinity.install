@@ -1,0 +1,22 @@
+debian/kformula.xpm opt/trinity/share/pixmaps
+debian/tmp/opt/trinity/bin/kformula
+debian/tmp/opt/trinity/lib/kde3/kformula.la
+debian/tmp/opt/trinity/lib/kde3/kformula.so
+debian/tmp/opt/trinity/lib/kde3/libkformulapart.la
+debian/tmp/opt/trinity/lib/kde3/libkformulapart.so
+debian/tmp/opt/trinity/lib/kde3/libkfosvgexport.la
+debian/tmp/opt/trinity/lib/kde3/libkfosvgexport.so
+debian/tmp/opt/trinity/lib/libkdeinit_kformula.so
+debian/tmp/opt/trinity/share/applications/kde/kformula.desktop
+debian/tmp/opt/trinity/share/apps/kformula
+debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kformula_konqi.desktop
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kformula/*.bz2
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kformula/common
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kformula/*.docbook
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kformula/*.png
+debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kformula.png
+debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kformula.png
+debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kformula.png
+debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kformula.png
+debian/tmp/opt/trinity/share/services/kformulapart.desktop
+debian/tmp/opt/trinity/share/services/kformula_svg_export.desktop

@@ -1,0 +1,37 @@
+filelight-l10n-trinity (1.0-4) karmic; urgency=low
+
+  * Karmic rebuild
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 02 July 2009 16:08:00 -0600
+
+filelight-l10n-trinity (1.0-3) intrepid; urgency=low
+
+  * Moved KDE3 to /opt/trinity
+  * Integrated properly with KDE4.2+
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 06 March 2009 01:35:00 -0600
+
+filelight-l10n-trinity (1.0-2) intrepid; urgency=low
+
+  * Added -trinity suffix
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Mon, 09 Feb 2009 10:33:00 -0600
+
+filelight-l10n (1.0-2) unstable; urgency=low
+
+  * Depends on filelight. 
+  * Updated policy to 3.7.3.0. No changes needed.
+  * Added homepage as control field.
+  * Fix copyright file to sort out lintian warnings. 
+
+ -- Raúl Sánchez Siles <rasasi78@gmail.com>  Sat, 19 Apr 2008 23:39:34 +0200
+
+filelight-l10n (1.0-1) unstable; urgency=low
+
+  * Initial release. (Closes: #447414).
+  * filelight: [INTL:de] German PO file corrections (Closes: #313714)
+  * filelight: No help: "Could not find service 'khelpcenter'"(Closes:
+  #263393).
+  * filelight: [INTL:sv] Swedish PO translation (Closes: #353796)
+
+ -- Raúl Sánchez Siles <rasasi78@gmail.com>  Mon, 22 Oct 2007 00:53:30 +0200

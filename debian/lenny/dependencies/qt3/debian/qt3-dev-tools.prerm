@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+  upgrade) ;;
+  remove|failed-upgrade|deconfigure)
+    update-alternatives --remove moc "/usr/bin/moc-qt3"
+    update-alternatives --remove uic "/usr/bin/uic-qt3"
+    update-alternatives --remove lupdate "/usr/bin/lupdate-qt3"
+    update-alternatives --remove lrelease "/usr/bin/lrelease-qt3"
+    update-alternatives --remove qmake "/usr/bin/qmake-qt3"
+    ;;
+esac
+
+#DEBHELPER#

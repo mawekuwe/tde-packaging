@@ -1,0 +1,13 @@
+?package(kitchensync):\
+	needs="X11"\
+	section="Applications/Data Management"\
+	hints="KDE"\
+	title="KitchenSync"\
+	command="/opt/trinity/bin/kitchensync"
+
+?package(kitchensync):\
+	needs="X11"\
+	section="Applications/Data Management"\
+	hints="KDE"\
+	title="MultiSynk"\
+	command="/opt/trinity/bin/multisynk"

@@ -1,0 +1,120 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+version := $(shell sed -n 's/Package: \(.*\)/\1/p' debian/control | head -n 1)
+
+NCPUS := $(shell getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)
+
+ifeq ($(NCPUS),-1)
+	NCPUS:=1
+endif
+
+ifeq ($(NCPUS),0)
+	NCPUS:=1
+endif
+
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+DEBIAN_ARCH = $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+ifeq "$(DEBIAN_ARCH)" "i386"
+	CONFIGURE_OPTS = --enable-motion-est
+endif
+ifeq "$(DEBIAN_ARCH)" "amd64"
+	CONFIGURE_OPTS = --enable-motion-est
+endif
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+
+	QUILT_PATCHES=debian/patches quilt push -a || test $$? = 2
+
+	CFLAGS="$(CFLAGS)" PATH=/opt/trinity/bin:$(PATH) LD_LIBRARY_PATH=/opt/trinity/lib:$(LD_LIBRARY_PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde ./configure --enable-gpl \
+	--luma-compress --disable-mmx $(CONFIGURE_OPTS) \
+	--avformat-shared=/usr --avformat-swscale \
+	--prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
+
+	touch configure-stamp
+
+build: configure-stamp build-stamp
+build-stamp:
+	dh_testdir
+
+	env PATH=/opt/trinity/bin:$(PATH) LD_LIBRARY_PATH=/opt/trinity/lib:$(LD_LIBRARY_PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde $(MAKE) -j $(NCPUS)
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+
+	[ ! -f config.mak ] || $(MAKE) dist-clean
+
+	QUILT_PATCHES=debian/patches quilt pop -a -R || test $$? = 2
+
+	dh_clean *.pc src/modules/gtk2/config.h config.log
+
+	find -name config.mak | xargs -r rm 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k 
+	dh_installdirs opt/trinity/lib/mlt0.2.5/modules opt/trinity/share/mlt0.2.5
+
+	env PATH=/opt/trinity/bin:$(PATH) LD_LIBRARY_PATH=/opt/trinity/lib:$(LD_LIBRARY_PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde $(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+
+#	mkdir debian/tmp/opt/trinity
+#	mv debian/tmp/opt/trinity/lib debian/tmp/opt/trinity/
+#	 mv debian/tmp/opt/trinity/bin debian/tmp//trinity/
+	dh_install --sourcedir=debian/tmp
+
+# Prune empty directories
+	find debian -type d | xargs rmdir -p --ignore-fail-on-non-empty
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs
+	dh_installdocs
+	dh_installdocs -plibmlt-trinity-dev docs/*
+	dh_installman
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs -plibmlt0.2.5-trinity -V 'libmlt0.2.5-trinity (>= 0.2.4.svn20071228)'
+	dh_makeshlibs -plibvalerie0.2.5-trinity -V 'libvalerie0.2.5-trinity (>= 0.2.4.svn20071228)'
+	dh_makeshlibs -plibmiracle0.2.5-trinity -V 'libmiracle0.2.5-trinity (>= 0.2.4.svn20071228)'
+	dh_installdeb
+	dh_shlibdeps --exclude=libmlt --exclude=libmiracle --exclude=libvalerie
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install 

@@ -1,0 +1,8 @@
+desktop-effects-kde4 /opt/trinity/bin/
+25enable-compiz /etc/X11/Xsession.d/
+DesktopEffects/DesktopEffectsCommon.py /opt/trinity/share/pyshared/DesktopEffects/
+DesktopEffects/DesktopEffectsKDE4.py /opt/trinity/share/pyshared/DesktopEffects/
+DesktopEffects/DesktopEffectsQt4Dialog.py /opt/trinity/share/pyshared/DesktopEffects/
+DesktopEffects/__init__.py /opt/trinity/share/pyshared/DesktopEffects/
+data/* /opt/trinity/share/apps/desktop-effects-kde/
+desktop-effects-kde.desktop /opt/trinity/share/applications/

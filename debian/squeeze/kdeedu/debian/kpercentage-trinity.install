@@ -1,0 +1,14 @@
+opt/trinity/bin/kpercentage
+/opt/trinity/share/applications/kde/kpercentage.desktop
+/opt/trinity/share/apps/kpercentage
+/opt/trinity/share/doc/kde/HTML/en/kpercentage/common
+/opt/trinity/share/doc/kde/HTML/en/kpercentage/index.cache.bz2
+/opt/trinity/share/doc/kde/HTML/en/kpercentage/*.docbook
+/opt/trinity/share/doc/kde/HTML/en/kpercentage/*.png
+/opt/trinity/share/icons/hicolor/16x16/apps/kpercentage.png
+/opt/trinity/share/icons/hicolor/22x22/apps/kpercentage.png
+/opt/trinity/share/icons/hicolor/32x32/apps/kpercentage.png
+/opt/trinity/share/icons/hicolor/48x48/apps/kpercentage.png
+/opt/trinity/share/icons/hicolor/128x128/apps/kpercentage.png
+/opt/trinity/share/icons/hicolor/scalable/apps/kpercentage.svgz
+../icons/kpercentage.xpm /opt/trinity/share/pixmaps

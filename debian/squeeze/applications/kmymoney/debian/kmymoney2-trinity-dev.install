@@ -1,0 +1,3 @@
+opt/trinity/include/kde/kmymoney/*
+opt/trinity/lib/lib*.la
+opt/trinity/lib/lib*.so

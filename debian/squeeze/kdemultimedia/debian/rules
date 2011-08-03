@@ -1,0 +1,42 @@
+#! /usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS := \
+	--with-alsa --with-arts-alsa \
+	--with-extra-includes=/usr/include/speex:/opt/trinity/include/kde/arts \
+	--prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+	# The include/kde/arts one should be temporary. See
+	# "juk/Makefile.am: arts_includes vs ARTS_CFLAGS" in -talk.
+
+DOC_HTML_PRUNE := kcontrol-trinity
+
+DEB_DH_STRIP_ARGS  := --dbg-package=kdemultimedia-trinity-dbg
+
+PACKAGES_WITH_LIBS := artsbuilder-trinity kdemultimedia-kio-plugins-trinity kmid-trinity kmix-trinity krec-trinity \
+	libarts1-akode-trinity libarts1-audiofile-trinity libarts1-mpeglib-trinity libarts1-xine-trinity \
+	libkcddb1-trinity mpeglib-trinity noatun-trinity
+
+DEB_DH_MAKESHLIBS_ARGS_artsbuilder-trinity			:= -V'artsbuilder-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_kmid-trinity			:= -V'kmid-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_libkcddb1-trinity			:= -V'libkcddb1-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_mpeglib-trinity			:= -V'mpeglib-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_noatun-trinity			:= -V'noatun-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_libarts1-mpeglib-trinity		:= -V'libarts1-mpeglib-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_kdemultimedia-kio-plugins-trinity 	:= -V'kdemultimedia-kio-plugins-trinity (>= 4:3.5.8-1)'
+
+#shlibs_ver = 4:3.5.0-1
+#$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
+
+install/kdemultimedia-kappfinder-data-trinity::
+	install -p -D -m644 debian/tmp/etc/xdg/menus/applications-merged/kde-multimedia-music.menu debian/kdemultimedia-kappfinder-data-trinity/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu
