@@ -10,7 +10,7 @@ Build-Depends: cdbs,
  libnm-glib-dev (>= 0.7.0),
  network-manager-dev (>= 0.7.0),
  libhal-dev,
- libdbus-1-qt3-dev (>= 0.8.1),
+ libdbus-1-tqt-dev (>= 0.8.1),
  libiw-dev,
  libnl-dev (>= 1.1),
  quilt,
@@ -18,11 +18,11 @@ Build-Depends: cdbs,
  network-manager-openvpn,
  network-manager-strongswan,
  network-manager-pptp,
- automake, autoconf, libtool, libltdl-dev
-Standards-Version: 3.8.4
+ libtool, libltdl-dev, cmake
+Standards-Version: 3.8.3
 Homepage: http://opensuse.org/Projects/KNetworkManager
 
-Package: network-manager-kde-trinity
+Package: network-manager-tde
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, network-manager (>= 0.7.0)
 Recommends: kwalletmanager-trinity, network-manager-vpnc, network-manager-openvpn, network-manager-strongswan, network-manager-pptp
