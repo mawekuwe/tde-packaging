@@ -430,7 +430,7 @@ Section: kde
 Architecture: any
 Provides: x-session-manager
 Depends: ${shlibs:Depends}, kdebase-runtime-data-common-trinity, kwin-trinity (= ${Source-Version}) | x-window-manager
-Recommends: kpersonalizer-trinity (= ${Source-Version})
+Recommends: kpersonalizer-trinity (= ${Source-Version}), tde-ubuntu-integration
 Replaces: kdebase-trinity (<< 4:3.0.0)
 Description: session manager for KDE
  This package contains the KDE session manager. It is responsible for
