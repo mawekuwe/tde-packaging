@@ -38,7 +38,7 @@ Requires: qt3 >= 3.3.8c
 
 %if %{with_qt4}
 BuildRequires: libqt4-devel >= 4.7.0
-BuildRequires: libqt4-x11 >= 4.7.0
+Requires: libqt4-x11 >= 4.7.0
 %endif
 
 BuildRequires: cmake
@@ -68,6 +68,7 @@ Authors:
 Summary: TQtinterface header files
 Group: Graphical Desktop/TDE
 Requires: libtqt4
+Requires: qt3 >= 3.3.8c
 %description devel
 This package contains Trinity KDE specific window options and commands.
 You need this package to compile Trinity modules. (TQT headers)
