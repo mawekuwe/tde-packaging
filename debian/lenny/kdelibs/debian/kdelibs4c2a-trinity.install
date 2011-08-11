@@ -23,6 +23,7 @@ debian/tmp/opt/trinity/bin/kded
 debian/tmp/opt/trinity/bin/kdeinit
 debian/tmp/opt/trinity/bin/kdeinit_shutdown
 debian/tmp/opt/trinity/bin/kdeinit_wrapper
+debian/tmp/opt/trinity/bin/kdetcompmgr
 debian/tmp/opt/trinity/bin/kde-menu
 debian/tmp/opt/trinity/bin/kdesu_stub
 debian/tmp/opt/trinity/bin/kdontchangethehostname
