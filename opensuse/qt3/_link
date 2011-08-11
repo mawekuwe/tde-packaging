@@ -1,0 +1,8 @@
+<link project="KDE:KDE3" package="qt3">
+<patches>
+  <!-- <apply name="patch" /> apply a patch on the source directory  -->
+  <!-- <topadd>%define build_with_feature_x 1</topadd> add a line on the top (spec file only) -->
+  <!-- <add>file.patch</add> add a patch to be applied after %setup (spec file only) -->
+  <!-- <delete>filename</delete> delete a file -->
+</patches>
+</link>
