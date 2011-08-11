@@ -1,0 +1,88 @@
+#
+# Disclaimer: this was taken from macros.kde4. Some items
+# are not applicable to Trinity, but are still here.
+
+%_tde_prefix /opt/tde
+%_tde_bindir %{_tde_prefix}/bin
+%_tde_libdir %{_tde_prefix}/%{_lib}
+%_tde_modulesdir %{_tde_libdir}/tde
+%_tde_libexecdir %{_tde_libdir}/tde/libexec
+%_tde_sysconfdir %{_sysconfdir}
+%_tde_iconsdir %{_tde_prefix}/share/icons
+%_tde_sbindir %{_tde_prefix}/sbin
+%_tde_applicationsdir %{_tde_prefix}/share/applications/tde
+%_tde_mandir %{_tde_prefix}/share/man
+%_tde_sharedir %{_tde_prefix}/share/tde
+%_tde_appsdir %{_tde_sharedir}/apps
+%_tde_configdir %{_tde_sharedir}/config
+%_tde_configkcfgdir %{_tde_sharedir}/config.kcfg
+%_tde_servicesdir %{_tde_sharedir}/services
+%_tde_servicetypesdir %{_tde_sharedir}/servicetypes
+%_tde_includedir %{_tde_prefix}/include
+%_tde_docdir %{_tde_prefix}/share/doc/kde
+%_tde_htmldir %{_tde_prefix}/share/doc/kde/HTML
+%_tde_wallpapersdir %{_tde_prefix}/share/wallpapers
+ 
+# these are for backwards compatibility
+%_kde3_prefix %{_tde_prefix}
+%_kde3_libdir %{_tde_libdir}
+%_kde3_share_dir %{_tde_sharedir}
+%_kde3_config_dir %{_tde_configdir}
+%_kde3_html_dir %{_tde_htmldir}
+%_tde_modules %{_tde_modulesdir}
+%_tde_servicetypes %{_tde_servicetypesdir}
+ 
+%_tde_platform_version 3.5.13
+ 
+%tde_runtime_requires Requires: tdebase3-runtime >= %_tde_platform_version qt3 >= 3.3.8c
+ 
+%_tde_build_type release
+ 
+%tde_makeinstall make DESTDIR=%{?buildroot:%{buildroot}} install
+ 
+%cmake_tde(d:) \
+  export CFLAGS=$RPM_OPT_FLAGS \
+  export CXXFLAGS=$RPM_OPT_FLAGS \
+  export LDFLAGS="-Wl,-Bsymbolic-functions $LDFLAGS" \
+  _tde_libsuffix=$(echo %_lib | cut -b4-) \
+  bdir=. \
+  %{-d:dir=%{-d*} \
+  mkdir $dir \
+  cd $dir \
+  bdir=.. } \
+  cmake -DCMAKE_SKIP_RPATH=ON \\\
+      -DCMAKE_INSTALL_PREFIX=%{_tde_prefix} \\\
+      -DCMAKE_INSTALL_LIBDIR:PATH=%{_tde_libdir} \\\
+      -DINCLUDE_INSTALL_DIR:PATH=%{_tde_prefix}/include \\\
+      -DLIB_INSTALL_DIR:PATH=%{_tde_libdir} \\\
+      -DLIBEXEC_INSTALL_DIR:PATH=%{_tde_libexecdir} \\\
+      -DLIB_SUFFIX="$_tde_libsuffix" \\\
+      -DSYSCONF_INSTALL_DIR:PATH=%{_sysconfdir} \\\
+      -DCMAKE_BUILD_TYPE=%{_tde_build_type} \\\
+      -DCMAKE_VERBOSE_MAKEFILE=ON \\\
+      -DQT_LIBRARY_DIRS=/usr/lib/qt3/%{_lib} \\\
+      -DQT_INCLUDE_DIRS=/usr/lib/qt3/include \\\
+      -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \\\
+      $bdir %* \
+%{nil}
+ 
+%tde_post_install \
+        if test -e /usr/lib/rpm/suse_update_desktop_file.sh; then \
+               find $RPM_BUILD_ROOT/opt/tde/share \\\
+                        -name '*.desktop' -o -name '*.directory' 2> /dev/null | while read file; do \
+                       test -r "$file" || continue \
+                       grep -q "^X-SuSE-translate=" "$file" && continue \
+                       case "$file" in \
+                        */.hidden/*) \
+                                %suse_update_desktop_file -n "$file" \
+                                ;; \
+                         *) \
+                                %suse_update_desktop_file "$file" \
+                                ;; \
+                        esac \
+                done \
+        fi \
+%{nil}
+ 
+%make_jobs \
+  %{__make} %{?_smp_mflags} VERBOSE=1
