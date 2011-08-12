@@ -54,7 +54,7 @@ License:        GPLv2+
 # usefiles /opt/tde/bin/artsc-config /opt/tde/bin/mcopidl
 Summary:        Include Files and Libraries mandatory for Development.
 Group:          Development/Libraries/Other
-Provides:       tde-kdelibs:/opt/tde/include/artsc/artsc.h
+Provides:       tdelibs:/opt/tde/include/artsc/artsc.h
 Requires:       libtqt4-devel arts = %version glib2-devel jack-devel libogg-devel libvorbis-devel audiofile-devel libstdc++-devel
 Requires:       alsa-devel
 

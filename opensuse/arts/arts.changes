@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Fri Aug 12 00:02:16 UTC 2011 - rxu@lincomlinux.org
+
+- replace provides tde-kdelibs in favor of tdelibs
+
+-------------------------------------------------------------------
 Thu Aug 11 23:51:32 UTC 2011 - rxu@lincomlinux.org
 
 - upgrade to the trinity version of arts
