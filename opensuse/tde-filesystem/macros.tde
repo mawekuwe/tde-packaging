@@ -53,7 +53,7 @@
   cmake -DCMAKE_SKIP_RPATH=ON \\\
       -DCMAKE_INSTALL_PREFIX=%{_tde_prefix} \\\
       -DCMAKE_INSTALL_LIBDIR:PATH=%{_tde_libdir} \\\
-      -DINCLUDE_INSTALL_DIR:PATH=%{_tde_prefix}/include \\\
+      -DINCLUDE_INSTALL_DIR:PATH=%{_tde_includedir} \\\
       -DLIB_INSTALL_DIR:PATH=%{_tde_libdir} \\\
       -DLIBEXEC_INSTALL_DIR:PATH=%{_tde_libexecdir} \\\
       -DLIB_SUFFIX="$_tde_libsuffix" \\\
