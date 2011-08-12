@@ -87,7 +87,7 @@ Depends: kdelibs4c2a-trinity (= ${Source-Version}), libart-2.0-dev (>= 2.3.17),
  libaspell-dev, hspell, libbz2-dev, libcupsys2-dev,
  libidn11-dev, libjasper-dev (>= 1.900.1), libkrb5-dev,
  libopenexr-dev (>= 1.2.2-3), libpcre3-dev, liblualib50-dev,
- libsasl2-dev, libssl-dev,
+ libsasl2-dev, libssl-dev, libxcomposite-dev,
  libtiff4-dev (>= 3.7.3-1), libxml2-dev, libxml2-utils, libxslt1-dev,
  libavahi-client-dev (>= 0.4), libtqtinterface-dev,
  gettext-kde
