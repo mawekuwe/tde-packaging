@@ -47,8 +47,6 @@
  
 %_tde_build_type release
  
-%tde_makeinstall make DESTDIR=%{?buildroot:%{buildroot}} install
- 
 %cmake_tde(d:) \
   export CFLAGS=$RPM_OPT_FLAGS \
   export CXXFLAGS=$RPM_OPT_FLAGS \
@@ -94,7 +92,7 @@
   bdir=. \
   %{-d:dir=%{-d*} \
   bdir=.. } \
-  make DESTDIR=%{buildroot} install VERBOSE=1 \
+  make DESTDIR=%{?buildroot:%{buildroot}} install VERBOSE=1 \
   if [ "$bdir" == ".." ]; then \
        cd .. \
   fi \
