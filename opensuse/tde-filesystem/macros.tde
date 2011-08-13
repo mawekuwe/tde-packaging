@@ -1,8 +1,7 @@
 #
 # Disclaimer: this was taken from macros.kde4. Some items
 # are not applicable to Trinity, but are still here.
-# NEW: some of this stuff is from common_options in
-# kdelibs3
+# NEW: this obsoletes common_options from kdelibs3
 
 %_tde_prefix /opt/tde
 %_tde_bindir %{_tde_prefix}/bin
