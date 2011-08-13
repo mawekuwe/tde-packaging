@@ -81,6 +81,7 @@
 %make_tde(d:) \
   bdir=. \
   %{-d:dir=%{-d*} \
+  cd $dir \
   bdir=.. } \
   make %{?_smp_mflags} VERBOSE=1 \
   if [ "$bdir" == ".." ]; then \
@@ -91,6 +92,7 @@
 %makeinstall_tde(d:) \
   bdir=. \
   %{-d:dir=%{-d*} \
+  cd $dir \
   bdir=.. } \
   make DESTDIR=%{?buildroot:%{buildroot}} install VERBOSE=1 \
   if [ "$bdir" == ".." ]; then \
