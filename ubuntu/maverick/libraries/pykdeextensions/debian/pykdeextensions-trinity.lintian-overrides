@@ -1,0 +1,10 @@
+pykdeextensions: desktop-entry-contains-unknown-key ./usr/share/apps/pykdeextensions/app_templates/kcontrol_module/src/kcontrol_module.desktop:4 name[en_GB]
+pykdeextensions: desktop-command-not-in-package ./usr/share/apps/pykdeextensions/app_templates/kcontrol_module/src/kcontrol_module.desktop kcmshell
+pykdeextensions: desktop-entry-invalid-category QT ./usr/share/apps/pykdeextensions/app_templates/kcontrol_module/src/kcontrol_module.desktop
+pykdeextensions: desktop-entry-invalid-category X-KDE-settings-system ./usr/share/apps/pykdeextensions/app_templates/kcontrol_module/src/kcontrol_module.desktop
+pykdeextensions: desktop-entry-lacks-main-category ./usr/share/apps/pykdeextensions/app_templates/kcontrol_module/src/kcontrol_module.desktop
+pykdeextensions: desktop-command-not-in-package ./usr/share/apps/pykdeextensions/app_templates/kdeapp/src/kdeapp.desktop $APPNAMELC$
+pykdeextensions: desktop-command-not-in-package ./usr/share/apps/pykdeextensions/app_templates/kdeutility/src/kdeutility.desktop $APPNAMELC$
+
+pykdeextensions: executable-not-elf-or-script ./usr/share/apps/pykdeextensions/app_templates/kcontrol_module/src/KcontrolModuleWidgetUI.py
+pykdeextensions: executable-not-elf-or-script ./usr/share/apps/pykdeextensions/app_templates/kdeutility/src/KDEUtilityDialogUI.py

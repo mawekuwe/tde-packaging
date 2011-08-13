@@ -1,0 +1,63 @@
+#!/usr/bin/make -f
+
+DEB_PYTHON_SYSTEM = pysupport
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+#include /usr/share/cdbs/1/class/python-distutils.mk
+include debian/python-distutils-jaunty.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
+
+install/pykdeextensions-trinity::
+	# We have no idea if the built product is site-packages or dist-packages
+	cd debian/tmp/usr/lib/python*/ && mv site-packages/ dist-packages/ || echo "site-packages --> dist-packages"
+	rm -rf debian/tmp/usr/lib/python*/site-packages/
+
+	# install lintian overrides
+	install -D -p -m0644 debian/pykdeextensions-trinity.lintian-overrides \
+	  debian/pykdeextensions-trinity/usr/share/lintian/overrides/pykdeextensions-trinity
+
+	# fix script-not-executable
+	find debian -type f -name '*.py' | xargs chmod 0755
+
+	# remove extra-license-file
+	find debian -type f -name 'COPYING' | xargs rm -f
+
+	# remove  byte-compiled file
+	find . -type f -name '*.py[co]' | xargs rm -f
+
+install/libpythonize0-trinity::
+	# Move the files where they belong
+	mkdir -p debian/tmp/opt/trinity/lib
+	mv debian/tmp/usr/lib/libpythonize* debian/tmp/opt/trinity/lib/ || echo "moving files 1/2"
+	mv debian/tmp/usr/include debian/tmp/opt/trinity/ || echo "moving files 2/2"
+
+	# fix binary-or-shlib-defines-rpath
+	chrpath -d debian/tmp/opt/trinity/lib/libpythonize.so.*
+	# fix include directory location
+	mkdir -p debian/tmp/opt/trinity/include/kde
+	mv debian/tmp/opt/trinity/include/*.h debian/tmp/opt/trinity/include/kde
+
+clean::
+	rm -rf build
+	rm -f doc/en/*html doc/en/*bz2
+	rm -f install_log.txt
+
+	# remove  byte-compiled file
+	find . -type f -name '*.py[co]' | xargs rm -f
+
+get-orig-source:
+	@@dh_testdir
+	@@[ -d ../tarballs/. ]
+	@@dpatch-get-origtargz ../tarballs
+
