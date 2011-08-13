@@ -1,6 +1,8 @@
 #
 # Disclaimer: this was taken from macros.kde4. Some items
 # are not applicable to Trinity, but are still here.
+# NEW: some of this stuff is from common_options in
+# kdelibs3
 
 %_tde_prefix /opt/tde
 %_tde_bindir %{_tde_prefix}/bin
@@ -10,18 +12,25 @@
 %_tde_sysconfdir %{_sysconfdir}
 %_tde_iconsdir %{_tde_prefix}/share/icons
 %_tde_sbindir %{_tde_prefix}/sbin
-%_tde_applicationsdir %{_tde_prefix}/share/applications/tde
-%_tde_mandir %{_tde_prefix}/share/man
-%_tde_sharedir %{_tde_prefix}/share/tde
-%_tde_appsdir %{_tde_sharedir}/apps
+%_tde_sharedir %{_tde_prefix}/share
+%_tde_datadir %{_tde_sharedir}/apps
+%_tde_appdir %{_tde_datadir}
+%_tde_applicationsdir %{_tde_sharedir}/applications/tde
+%_tde_appsdir %{_tde_sharedir}/applnk
 %_tde_configdir %{_tde_sharedir}/config
 %_tde_configkcfgdir %{_tde_sharedir}/config.kcfg
 %_tde_servicesdir %{_tde_sharedir}/services
 %_tde_servicetypesdir %{_tde_sharedir}/servicetypes
 %_tde_includedir %{_tde_prefix}/include
-%_tde_docdir %{_tde_prefix}/share/doc/kde
-%_tde_htmldir %{_tde_prefix}/share/doc/kde/HTML
-%_tde_wallpapersdir %{_tde_prefix}/share/wallpapers
+%_tde_docdir %{_tde_sharedir}/doc/tde
+%_tde_htmldir %{_tde_sharedir}/doc/tde/HTML
+%_tde_wallpapersdir %{_tde_sharedir}/wallpapers
+%_tde_icondir %{_tde_sharedir}/icons
+%_tde_sounddir %{_tde_sharedir}/sounds
+%_tde_locale %{_tde_sharedir}/locale
+%_tde_mimedir %{_tde_sharedir}/mimelnk
+%_tde_styledir %{_tde_libdir}/tde/plugins/styles
+%_tde_widgetdir %{_tde_libdir}/tde/plugins/designer
  
 # these are for backwards compatibility
 %_kde3_prefix %{_tde_prefix}
