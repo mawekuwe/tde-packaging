@@ -64,6 +64,7 @@
       -DQT_INCLUDE_DIRS=/usr/lib/qt3/include \\\
       -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \\\
       -DMAN_INSTALL_DIR=%{_mandir} \\\
+      -DINFO_INSTALL_DIR=%{_infodir} \\\
       $bdir %* \
 %{nil}
  
