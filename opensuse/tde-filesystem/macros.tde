@@ -75,25 +75,77 @@
       -DMAN_INSTALL_DIR=%{_mandir} \\\
       -DINFO_INSTALL_DIR=%{_infodir} \\\
       $bdir %* \
+   if [ "$bdir" == ".." ]; then \
+	cd .. \
+   fi \
+%{nil}
+
+%make_tde(d:) \
+  bdir=. \
+  %{-d:dir=%{-d*} \
+  bdir=.. } \
+  make %{?_smp_mflags} VERBOSE=1 \
+  if [ "$bdir" == ".." ]; then \
+       cd .. \
+  fi \
+%{nil}
+
+%makeinstall_tde(d:) \
+  bdir=. \
+  %{-d:dir=%{-d*} \
+  bdir=.. } \
+  make DESTDIR=%{buildroot} install VERBOSE=1 \
+  if [ "$bdir" == ".." ]; then \
+       cd .. \
+  fi \
 %{nil}
  
 %tde_post_install \
-        if test -e /usr/lib/rpm/suse_update_desktop_file.sh; then \
-               find $RPM_BUILD_ROOT/opt/tde/share \\\
-                        -name '*.desktop' -o -name '*.directory' 2> /dev/null | while read file; do \
-                       test -r "$file" || continue \
-                       grep -q "^X-SuSE-translate=" "$file" && continue \
-                       case "$file" in \
-                        */.hidden/*) \
-                                %suse_update_desktop_file -n "$file" \
-                                ;; \
-                         *) \
-                                %suse_update_desktop_file "$file" \
-                                ;; \
-                        esac \
-                done \
+	# remove not needed development files
+	rm -f $RPM_BUILD_ROOT/%{_tde_libdir}/libkdeinit_*.la \
+	# not worth the hassle
+	rm -rf $RPM_BUILD_ROOT/%{_tde_icondir}/locolor \
+	# move icons in one theme - prefering hicolor
+	d="$RPM_BUILD_ROOT/%{_tde_icondir}/crystalsvg" \
+        if [ -d "$d" -a ! -e "$d/index.theme" ]; then \
+		find "$d" -type f | while read src; do \
+		  dest="${src/\/crystalsvg\///hicolor/}" \
+		  dir="${dest%/*}" \
+		  mkdir -p "$dir" \
+		  mv "$src" "$dest" \
+		done \
+	fi \
+	# we do this 3 times as there is a 3 fold hierarchy
+        if [ -d  $RPM_BUILD_ROOT/%{_tde_icondir} ]; then \
+  	    for i in `seq 1 3`; do \
+    	        find $RPM_BUILD_ROOT/%{_tde_icondir} -type d -exec rmdir -v --ignore-fail-on-non-empty -- {} \; || true \
+  	    done \
+	fi \
+	if [ -d $RPM_BUILD_ROOT/%{_tde_locale}/sr@Latn ]; then \
+             mv $RPM_BUILD_ROOT/%{_tde_locale}/sr@Latn $RPM_BUILD_ROOT/%{_tde_locale}/sr@latin \
         fi \
+        if test -e /usr/lib/rpm/suse_update_desktop_file.sh; then \
+		distribution='' \
+		if test -f $HOME/.rpmmacros && test -d /usr/src/packages/SRPMS; then \
+			distribution=`grep ^%distribution $HOME/.rpmmacros | cut '-d ' -f2` \
+		fi \
+		find $RPM_BUILD_ROOT/opt/kde3/share \\\
+			-name '*.desktop' 2> /dev/null | while read file; do \
+			test -r "$file" || continue \
+			grep -q "^X-SuSE-translate=" "$file" && continue \
+			case "$file" in \
+				*/.hidden/*) \
+					/usr/lib/rpm/suse_update_desktop_file.sh -n "$file" \
+					;; \
+				 *) \
+					if test -n "$distribution"; then \
+						/usr/lib/rpm/suse_update_desktop_file.sh --project "$distribution" --basedir /usr/src/packages/SRPMS "$file" \
+					else \
+						/usr/lib/rpm/suse_update_desktop_file.sh "$file" \
+					fi \
+					;; \
+			esac \
+		done \
+	fi \
 %{nil}
- 
-%make_jobs \
-  %{__make} %{?_smp_mflags} VERBOSE=1
+
