@@ -22,8 +22,8 @@
 %_tde_servicesdir %{_tde_sharedir}/services
 %_tde_servicetypesdir %{_tde_sharedir}/servicetypes
 %_tde_includedir %{_tde_prefix}/include
-%_tde_docdir %{_tde_sharedir}/doc/tde
-%_tde_htmldir %{_tde_sharedir}/doc/tde/HTML
+%_tde_docdir %{_tde_sharedir}/doc/
+%_tde_htmldir %{_tde_sharedir}/doc/HTML
 %_tde_wallpapersdir %{_tde_sharedir}/wallpapers
 %_tde_icondir %{_tde_sharedir}/icons
 %_tde_sounddir %{_tde_sharedir}/sounds
