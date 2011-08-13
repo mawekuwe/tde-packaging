@@ -104,7 +104,11 @@ Authors:
  
  
 %prep
-%setup -q
+%if %{with_qt3}
+%setup -qn tqtinterface-qt3-%{version}
+%else
+%setup -qn tqtinterface-qt4-%{version}
+%endif
 
 %build
 CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ;
