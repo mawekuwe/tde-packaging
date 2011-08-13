@@ -8,10 +8,10 @@ Index: kdecore/kconfigbackend.cpp
  #else
 -    QString etc_kderc = QString::fromLatin1("/etc/kderc");
 +    QString etc_kderc;
-+    if (checkAccess(QString::fromLatin1("/etc/kde3rc"), R_OK))
-+       etc_kderc = QString::fromLatin1("/etc/kde3rc");
++    if (checkAccess(QString::fromLatin1("/etc/tderc"), R_OK))
++       etc_kderc = QString::fromLatin1("/etc/tderc");
 +    else
-+       etc_kderc = QString::fromLatin1("/etc/kderc");
++       etc_kderc = QString::fromLatin1("/etc/kde3rc");
  #endif
  
      if (checkAccess(etc_kderc, R_OK))

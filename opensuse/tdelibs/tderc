@@ -1,5 +1,5 @@
 [Directories]
-prefixes=/etc/opt/kde3/
+prefixes=/etc/opt/tde/
 userProfileMapFile=/etc/kde-user-profile
 profileDirsPrefix=/var/lib/kde-profiles/
 dir_wallpaper=/usr/share/wallpapers
