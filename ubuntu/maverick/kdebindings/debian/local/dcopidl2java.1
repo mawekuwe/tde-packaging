@@ -1,0 +1,28 @@
+.TH LIBDCOP-JAVA 1 "July 31, 2002"
+.SH NAME
+dcopidl2java \- Convert a DCOP IDL file to Java language stubs
+.SH SYNOPSIS
+.B dcopidl2java
+.RI " [ " --no-skel " ]  [ " --no-stub " ]  [ " --package " " java-package " ] " file
+.SH DESCRIPTION
+This manual page documents briefly the
+.B dcopidl2java
+command.
+.PP
+\fBdcopidl2java\fP is a program that generates Java stubs from a DCOP IDL file,
+for use with the libdcop-java Java DCOP bindings.
+
+.SH OPTIONS
+A summary of options is included below.
+.TP
+.B --no-skel
+Do not generate skeleton code.
+.TP
+.B --no-stub
+Do not generate stub implementation code.
+.TP
+.B --package java-package 
+Set the name of the Java package to use in the generated code.
+.SH AUTHOR
+This manual page was written by Peter Hawkins <peterh@debian.org>
+for the Debian GNU/Linux system (but may be used by others).

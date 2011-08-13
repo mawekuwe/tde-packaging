@@ -1,0 +1,6 @@
+debian/tmp/opt/trinity/lib/jni/libkdejava.so.1
+debian/tmp/opt/trinity/lib/jni/libkdejava.la
+debian/tmp/opt/trinity/lib/jni/libkdejava.so
+debian/tmp/opt/trinity/lib/jni/libkdejava.so.1.0.0
+
+kdejava/ChangeLog /opt/trinity/share/doc/libtrinity-jni

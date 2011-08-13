@@ -1,0 +1,12 @@
+debian/tmp/opt/trinity/include/kde/kjsembed/*
+debian/tmp/opt/trinity/lib/libkjsembed.so
+debian/tmp/opt/trinity/lib/libkjsembed.la
+
+kjsembed/plugins/customobject_plugin.cpp		/opt/trinity/share/doc/libkjsembed-trinity-dev/plugin-examples/customobject/
+kjsembed/plugins/customobject_plugin.h			/opt/trinity/share/doc/libkjsembed-trinity-dev/plugin-examples/customobject/
+kjsembed/plugins/customobject_plugin.desktop		/opt/trinity/share/doc/libkjsembed-trinity-dev/plugin-examples/customobject/
+kjsembed/plugins/customqobject_plugin.cpp		/opt/trinity/share/doc/libkjsembed-trinity-dev/plugin-examples/customqobject/
+kjsembed/plugins/customqobject_plugin.h			/opt/trinity/share/doc/libkjsembed-trinity-dev/plugin-examples/customqobject/
+kjsembed/plugins/customqobject_plugin.desktop		/opt/trinity/share/doc/libkjsembed-trinity-dev/plugin-examples/customqobject/
+
+kjsembed/docs/embedding/simple-embed/	/opt/trinity/share/doc/libkjsembed-trinity-dev/embedding-examples/simple-embed/
