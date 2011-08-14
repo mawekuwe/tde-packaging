@@ -1,6 +1,13 @@
 Here contains the specfiles for Trinity.
 They are updated here, and built at build.opensuse.org.
 
+For local building, use the following command:
+osc -A https://api.opensuse.org/ build --local-package --alternative-project openSUSE:Factory standard i586
+
+OR
+
+osc -A https://api.opensuse.org/ build --local-package --alternative-project KDE:KDE3 openSUSE_Factory i586
+
 copyright (c) 2011 the Trinity Project
 
 All modifications and additions to the file contributed by third parties

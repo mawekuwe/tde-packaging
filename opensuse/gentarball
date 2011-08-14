@@ -1,0 +1,48 @@
+#!/bin/bash
+
+VERSION=$1
+if [ "$1" == "" ]; then
+VERSION=3.5.12.99
+fi
+
+grabDependsTarball()
+{
+svn export svn://anonsvn.kde.org/home/kde/branches/trinity/dependencies/$NAME
+mv -v $NAME $NAME-$VERSION
+tar cjf $NAME-$VERSION.tar.bz2 $NAME-$VERSION
+rm -rf $NAME-$VERSION
+echo "done"
+}
+
+
+echo "This is for testing locally without services."
+echo "I need to know what tarball you want to generate from."
+echo ""
+echo "Let's start off by dependencies, main, or apps."
+echo "Which one?"
+echo ""
+echo "(1) dependencies"
+echo "(2) main"
+echo "(3) applications"
+echo -e "> "
+read SELECTION
+
+if [ "$SELECTION" = "1" ]; then
+	echo "(1) libtqt4"
+	echo "(2) dbus-1-tqt"
+	echo "(3) libdbus-1-tqt-0"
+	echo "(4) arts"
+	read CHOICE
+	
+	if [ "$CHOICE" = "1" ]; then NAME='tqtinterface';
+	elif [ "$CHOICE" = "2" ]; then NAME='dbus-tqt';
+	elif [ "$CHOICE" = "3" ]; then NAME='dbus-1-tqt';
+	elif [ "$CHOICE" = "4" ]; then NAME='arts';
+	else
+	echo "Invalid, bye." && exit 1
+	fi
+	grabDependsTarball
+else
+	echo "Invalid, bye." && exit 1
+fi
+

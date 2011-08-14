@@ -28,6 +28,8 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Summary:        Trinity Directory Layout
 Source0:        macros.tde
 Source1:        COPYING
+# Spare Dependency that we want tde-filesystem to pull in.
+Requires:	cmake
 
 %description
 This package installs the Trinity directory structure.
