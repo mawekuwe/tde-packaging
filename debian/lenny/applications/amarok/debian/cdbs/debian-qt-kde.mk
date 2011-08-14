@@ -10,6 +10,9 @@ _cdbs_class_debian-qt-kde := 1
 # Note: This _must_ be included before autotools.mk, or it won't work.
 common-configure-arch common-configure-indep:: debian/stamp-cvs-make
 debian/stamp-cvs-make:
+	cp -Rp /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	cp -Rp /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	$(MAKE) -C $(DEB_SRCDIR) -f admin/Makefile.common dist;
 	touch debian/stamp-cvs-make
 
 include debian/cdbs/kde.mk$(_cdbs_makefile_suffix)
@@ -93,6 +96,14 @@ binary-install/$(DEB_SOURCE_PACKAGE)-doc-html::
 	done
 
 clean::
+	if test -n "$(DEB_KDE_CVS_MAKE)" && test -d $(DEB_SRCDIR); then \
+		cd $(DEB_SRCDIR); \
+		find . -name Makefile.in -print | \
+			xargs --no-run-if-empty rm -f; \
+		rm -f Makefile.am acinclude.m4 aclocal.m4 config.h.in \
+			configure configure.files configure.in stamp-h.in \
+			subdirs; \
+	fi
 	rm -f debian/stamp-cvs-make
 
 endif
