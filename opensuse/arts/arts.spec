@@ -106,10 +106,10 @@ CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS -DNDEBUG" CFLAGS="$CXXFLAGS" %cmake_tde -d=bu
 # broken automake ?
 #make %{?jobs:-j%jobs}
 
-%make_jobs
+%make_tde -d=build
 
 %install
-%tde_makeinstall
+%makeinstall_tde -d=build
 %ifarch x86_64
 mkdir -p $RPM_BUILD_ROOT/%{_tde_libdir}
 ln -sf ../lib64/mcop $RPM_BUILD_ROOT/%{_tde_libdir}/mcop

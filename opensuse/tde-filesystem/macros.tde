@@ -1,6 +1,7 @@
 #
 # Disclaimer: this was taken from macros.kde4. Some items
 # are not applicable to Trinity, but are still here.
+# NEW: this obsoletes common_options from kdelibs3
 
 %_tde_prefix /opt/tde
 %_tde_bindir %{_tde_prefix}/bin
@@ -10,18 +11,25 @@
 %_tde_sysconfdir %{_sysconfdir}
 %_tde_iconsdir %{_tde_prefix}/share/icons
 %_tde_sbindir %{_tde_prefix}/sbin
-%_tde_applicationsdir %{_tde_prefix}/share/applications/tde
-%_tde_mandir %{_tde_prefix}/share/man
-%_tde_sharedir %{_tde_prefix}/share/tde
-%_tde_appsdir %{_tde_sharedir}/apps
+%_tde_sharedir %{_tde_prefix}/share
+%_tde_datadir %{_tde_sharedir}/apps
+%_tde_appdir %{_tde_datadir}
+%_tde_applicationsdir %{_tde_sharedir}/applications
+%_tde_appsdir %{_tde_sharedir}/applnk
 %_tde_configdir %{_tde_sharedir}/config
 %_tde_configkcfgdir %{_tde_sharedir}/config.kcfg
 %_tde_servicesdir %{_tde_sharedir}/services
 %_tde_servicetypesdir %{_tde_sharedir}/servicetypes
 %_tde_includedir %{_tde_prefix}/include
-%_tde_docdir %{_tde_prefix}/share/doc/kde
-%_tde_htmldir %{_tde_prefix}/share/doc/kde/HTML
-%_tde_wallpapersdir %{_tde_prefix}/share/wallpapers
+%_tde_docdir %{_tde_sharedir}/doc/
+%_tde_htmldir %{_tde_sharedir}/doc/HTML
+%_tde_wallpapersdir %{_tde_sharedir}/wallpapers
+%_tde_icondir %{_tde_sharedir}/icons
+%_tde_sounddir %{_tde_sharedir}/sounds
+%_tde_locale %{_tde_sharedir}/locale
+%_tde_mimedir %{_tde_sharedir}/mimelnk
+%_tde_styledir %{_tde_libdir}/tde/plugins/styles
+%_tde_widgetdir %{_tde_libdir}/tde/plugins/designer
  
 # these are for backwards compatibility
 %_kde3_prefix %{_tde_prefix}
@@ -37,8 +45,6 @@
 %tde_runtime_requires Requires: tdebase3-runtime >= %_tde_platform_version qt3 >= 3.3.8c
  
 %_tde_build_type release
- 
-%tde_makeinstall make DESTDIR=%{?buildroot:%{buildroot}} install
  
 %cmake_tde(d:) \
   export CFLAGS=$RPM_OPT_FLAGS \
@@ -64,26 +70,81 @@
       -DQT_INCLUDE_DIRS=/usr/lib/qt3/include \\\
       -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \\\
       -DMAN_INSTALL_DIR=%{_mandir} \\\
+      -DINFO_INSTALL_DIR=%{_infodir} \\\
       $bdir %* \
+   if [ "$bdir" == ".." ]; then \
+	cd .. \
+   fi \
+%{nil}
+
+%make_tde(d:) \
+  bdir=. \
+  %{-d:dir=%{-d*} \
+  cd $dir \
+  bdir=.. } \
+  make %{?_smp_mflags} VERBOSE=1 \
+  if [ "$bdir" == ".." ]; then \
+       cd .. \
+  fi \
+%{nil}
+
+%makeinstall_tde(d:) \
+  bdir=. \
+  %{-d:dir=%{-d*} \
+  cd $dir \
+  bdir=.. } \
+  make DESTDIR=%{?buildroot:%{buildroot}} install VERBOSE=1 \
+  if [ "$bdir" == ".." ]; then \
+       cd .. \
+  fi \
 %{nil}
  
 %tde_post_install \
-        if test -e /usr/lib/rpm/suse_update_desktop_file.sh; then \
-               find $RPM_BUILD_ROOT/opt/tde/share \\\
-                        -name '*.desktop' -o -name '*.directory' 2> /dev/null | while read file; do \
-                       test -r "$file" || continue \
-                       grep -q "^X-SuSE-translate=" "$file" && continue \
-                       case "$file" in \
-                        */.hidden/*) \
-                                %suse_update_desktop_file -n "$file" \
-                                ;; \
-                         *) \
-                                %suse_update_desktop_file "$file" \
-                                ;; \
-                        esac \
-                done \
+	# remove not needed development files
+	rm -f $RPM_BUILD_ROOT/%{_tde_libdir}/libkdeinit_*.la \
+	# not worth the hassle
+	rm -rf $RPM_BUILD_ROOT/%{_tde_icondir}/locolor \
+	# move icons in one theme - prefering hicolor
+	d="$RPM_BUILD_ROOT/%{_tde_icondir}/crystalsvg" \
+        if [ -d "$d" -a ! -e "$d/index.theme" ]; then \
+		find "$d" -type f | while read src; do \
+		  dest="${src/\/crystalsvg\///hicolor/}" \
+		  dir="${dest%/*}" \
+		  mkdir -p "$dir" \
+		  mv "$src" "$dest" \
+		done \
+	fi \
+	# we do this 3 times as there is a 3 fold hierarchy
+        if [ -d  $RPM_BUILD_ROOT/%{_tde_icondir} ]; then \
+  	    for i in `seq 1 3`; do \
+    	        find $RPM_BUILD_ROOT/%{_tde_icondir} -type d -exec rmdir -v --ignore-fail-on-non-empty -- {} \; || true \
+  	    done \
+	fi \
+	if [ -d $RPM_BUILD_ROOT/%{_tde_locale}/sr@Latn ]; then \
+             mv $RPM_BUILD_ROOT/%{_tde_locale}/sr@Latn $RPM_BUILD_ROOT/%{_tde_locale}/sr@latin \
         fi \
+        if test -e /usr/lib/rpm/suse_update_desktop_file.sh; then \
+		distribution='' \
+		if test -f $HOME/.rpmmacros && test -d /usr/src/packages/SRPMS; then \
+			distribution=`grep ^%distribution $HOME/.rpmmacros | cut '-d ' -f2` \
+		fi \
+		find $RPM_BUILD_ROOT/opt/kde3/share \\\
+			-name '*.desktop' 2> /dev/null | while read file; do \
+			test -r "$file" || continue \
+			grep -q "^X-SuSE-translate=" "$file" && continue \
+			case "$file" in \
+				*/.hidden/*) \
+					/usr/lib/rpm/suse_update_desktop_file.sh -n "$file" \
+					;; \
+				 *) \
+					if test -n "$distribution"; then \
+						/usr/lib/rpm/suse_update_desktop_file.sh --project "$distribution" --basedir /usr/src/packages/SRPMS "$file" \
+					else \
+						/usr/lib/rpm/suse_update_desktop_file.sh "$file" \
+					fi \
+					;; \
+			esac \
+		done \
+	fi \
 %{nil}
- 
-%make_jobs \
-  %{__make} %{?_smp_mflags} VERBOSE=1
+
