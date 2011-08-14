@@ -11,8 +11,8 @@ Build-Depends: cdbs, debhelper (>= 5.0.0), quilt, bzip2,
  libmysqlclient15-dev | libmysqlclient16-dev, libpq-dev,
  libvisual-0.4-dev, libsdl1.2-dev,
  libifp-dev, libusb-dev, libgpod-nogtk-dev (>= 0.4.2), libnjb-dev, libmtp-dev,
- ruby, ruby1.8-dev, kdebase-trinity-dev,
- libtool, libltdl-dev, cmake
+ ruby, ruby1.8-dev,
+ automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://amarok.kde.org
 

@@ -1,0 +1,85 @@
+#!/usr/bin/make -f
+
+# Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
+# Also include the main Trinity path
+ifeq ("$(LD_LIBRARY_PATH)", "")
+LD_LIBRARY_PATH=debian/tmp/opt/trinity/lib
+else
+LD_LIBRARY_PATH += :debian/tmp/opt/trinity/lib
+endif
+export LD_LIBRARY_PATH
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include debian/cdbs/debian-qt-kde.mk
+
+DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF" \
+-DWITH_IFP="ON" -DWITH_NJB="ON" -DWITH_MTP="ON" -DWITH_DAAP="ON" -DWITH_YAUAP="ON" \
+-DWITH_LIBVISUAL="ON" -DWITH_KONQSIDEBAR="ON" -DWITH_XINE="ON" -DWITH_IPOD="ON"
+
+# Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
+# never build in parallel, regardless of DEB_BUILD_OPTIONS.
+DEB_BUILD_PARALLEL = true
+
+### VARIABLES
+# Exempt amarok engines from being handled as proper public libraries
+# by dh_makeshlibs
+DEB_DH_MAKESHLIBS_ARGS_ALL = -Xlibamarok_\\w*-engine-trinity
+
+export KUBUNTU_DESKTOP_POT=extragear-multimedia_amarok-trinity
+
+#DEB_CONFIGURE_EXTRA_FLAGS  :=	--without-included-sqlite \
+#				--disable-final \
+#				--without-akode \
+#				--without-gstreamer10 \
+#				--without-libkarma \
+#				--with-ifp      \
+#				--with-libgpod  \
+#				--with-libnjb   \
+#				--with-libmtp   \
+#				--enable-mysql  \
+#				--enable-postgresql \
+#				--with-yauap \
+#				--prefix=/opt/trinity \
+#				--with-extra-libs=/usr/lib/mesa
+
+# Ship upstream README in amarok docs
+DEB_INSTALL_DOCS_ALL =
+DEB_INSTALL_DOCS_amarok-trinity = $(DEB_SRCDIR)/README
+
+# Amarok engines should not auto-depend on amarok. 
+# Appropriate relationships are set manually in the control file.
+DEB_DH_SHLIBDEPS_ARGS_amarok-engine-xine-trinity = -- -xamarok-trinity
+DEB_DH_SHLIBDEPS_ARGS_amarok-engine-yauap-trinity = -- -xamarok-trinity
+
+binary-fixup/amarok-common-trinity::
+	# Fix permissions of some amarok scripts
+	chmod a+x  \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/lyrics_astraweb/lyrics_astraweb.rb \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/playlist2html/Playlist.py \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/ruby_debug/debug.rb \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/templates/python_qt_template.py \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/templates/ruby_qt_template.rb \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/webcontrol/Playlist.py \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/webcontrol/RequestHandler.py
+
+binary-post-install/amarok-common-trinity::
+	# Remove excess COPYING files from script directories
+	rm -f \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/lyrics_astraweb/COPYING \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/lyrics_lyrc/COPYING \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/score_default/COPYING \
+	    debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/scripts/score_impulsive/COPYING
+	# Remove Mac OSX resource fork file
+	rm -f debian/$(cdbs_curpkg)/opt/trinity/share/apps/amarok/ruby_lib/rubygems/._gem_commands.rb
+
+### POST-INSTALL HACKING
+common-binary-post-install-arch::
+	# Check for not installed files
+	dh_install --no-act --list-missing
+
+	chmod a+x debian/amarok-trinity/opt/trinity/lib/amarok/install-mp3
+	chmod +x debian/amarok-trinity/opt/trinity/bin/kubuntu-media-amarok
+	ln -s /opt/trinity/bin/amarokapp debian/amarok-trinity/opt/trinity/lib/amarok/amarokapp

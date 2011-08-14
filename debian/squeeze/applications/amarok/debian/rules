@@ -1,27 +1,16 @@
 #!/usr/bin/make -f
 
-# Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
-# Also include the main Trinity path
-ifeq ("$(LD_LIBRARY_PATH)", "")
-LD_LIBRARY_PATH=debian/tmp/opt/trinity/lib
-else
-LD_LIBRARY_PATH += :debian/tmp/opt/trinity/lib
-endif
-export LD_LIBRARY_PATH
-
+### CDBS INCLUDES
 include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/cmake.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
-include /usr/share/cdbs/1/rules/utils.mk
 include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
-DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF" \
--DWITH_IFP="ON" -DWITH_NJB="ON" -DWITH_MTP="ON" -DWITH_DAAP="ON" -DWITH_YAUAP="ON" \
--DWITH_LIBVISUAL="ON" -DWITH_KONQSIDEBAR="ON" -DWITH_XINE="ON" -DWITH_IPOD="ON"
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
-# Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
-# never build in parallel, regardless of DEB_BUILD_OPTIONS.
-DEB_BUILD_PARALLEL = true
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
 ### VARIABLES
 # Exempt amarok engines from being handled as proper public libraries
@@ -30,20 +19,20 @@ DEB_DH_MAKESHLIBS_ARGS_ALL = -Xlibamarok_\\w*-engine-trinity
 
 export KUBUNTU_DESKTOP_POT=extragear-multimedia_amarok-trinity
 
-#DEB_CONFIGURE_EXTRA_FLAGS  :=	--without-included-sqlite \
-#				--disable-final \
-#				--without-akode \
-#				--without-gstreamer10 \
-#				--without-libkarma \
-#				--with-ifp      \
-#				--with-libgpod  \
-#				--with-libnjb   \
-#				--with-libmtp   \
-#				--enable-mysql  \
-#				--enable-postgresql \
-#				--with-yauap \
-#				--prefix=/opt/trinity \
-#				--with-extra-libs=/usr/lib/mesa
+DEB_CONFIGURE_EXTRA_FLAGS  :=	--without-included-sqlite \
+				--disable-final \
+				--without-akode \
+				--without-gstreamer10 \
+				--without-libkarma \
+				--with-ifp      \
+				--with-libgpod  \
+				--with-libnjb   \
+				--with-libmtp   \
+				--enable-mysql  \
+				--enable-postgresql \
+				--with-yauap \
+				--prefix=/opt/trinity \
+				--with-extra-libs=/usr/lib/mesa
 
 # Ship upstream README in amarok docs
 DEB_INSTALL_DOCS_ALL =
@@ -53,6 +42,45 @@ DEB_INSTALL_DOCS_amarok-trinity = $(DEB_SRCDIR)/README
 # Appropriate relationships are set manually in the control file.
 DEB_DH_SHLIBDEPS_ARGS_amarok-engine-xine-trinity = -- -xamarok-trinity
 DEB_DH_SHLIBDEPS_ARGS_amarok-engine-yauap-trinity = -- -xamarok-trinity
+
+### Libtool and Automake updates
+# Autoguess automake /usr/share subdirectory. Insure from failures
+DEB_AUTOMAKE_SHARE_DIR = /usr/share/automake-$(shell automake --version | head -n 1 | sed 's/^automake (GNU automake) \([0-9]\+\.[0-9]\+\).*/\1/')
+ifneq ($(words $(DEB_AUTOMAKE_SHARE_DIR)),1)
+DEB_AUTOMAKE_SHARE_DIR =
+endif
+
+post-patches:: debian/stamp-automake
+debian/stamp-automake:
+	touch debian/stamp-automake-started
+	if test -n "$(DEB_AUTOMAKE_SHARE_DIR)"; then \
+		for f in $(DEB_AUTOMAKE_SHARE_DIR)/*; do \
+			if  test -f $$f && \
+			test -f $(DEB_SRCDIR)/admin/`basename $$f`; then \
+			cp -f $$f $(DEB_SRCDIR)/admin; \
+			fi; \
+		done; \
+	fi
+	$(MAKE) -C $(DEB_SRCDIR) -f admin/Makefile.common
+	touch $@
+
+# Install ${curpkg}.install as lintian overrides
+$(patsubst %,binary-install/%,$(DEB_PACKAGES))::
+	if test -e debian/$(cdbs_curpkg).lintian; then \
+		install -p -D -m644 debian/$(cdbs_curpkg).lintian \
+		    debian/$(cdbs_curpkg)/opt/trinity/share/lintian/overrides/$(cdbs_curpkg); \
+	fi
+
+clean::
+	if test -d $(DEB_SRCDIR) && test -f debian/stamp-automake-started; then \
+		cd $(DEB_SRCDIR); \
+		find . -name Makefile.in -print | \
+				xargs --no-run-if-empty rm -f; \
+		rm -f Makefile.am acinclude.m4 aclocal.m4 config.h.in \
+				configure configure.files configure.in stamp-h.in \
+				subdirs; \
+	fi
+	rm -f debian/stamp-automake*
 
 binary-fixup/amarok-common-trinity::
 	# Fix permissions of some amarok scripts
