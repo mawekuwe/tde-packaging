@@ -67,7 +67,7 @@ Authors:
 %package devel
 Summary: TQtinterface header files
 Group: Graphical Desktop/TDE
-Requires: libtqt4
+Requires: libtqt4 = %{version}
 %if %{with_qt3}
 Requires: qt3-devel >= 3.3.8c
 %endif
@@ -75,7 +75,7 @@ Requires: qt3-devel >= 3.3.8c
 Requires: libqt4-devel >= 4.7.0
 %endif
 %description devel
-This package contains Trinity KDE specific window options and commands.
+This package contains Trinity specific window options and commands.
 You need this package to compile Trinity modules. (TQT headers)
 
 
@@ -87,12 +87,11 @@ Authors:
     Serghei Amelian <serghei@thel.ro>
 
 
-%package tools
-Summary: TQtinterface library files
+%package -n tqtinterface
+Summary: Tools to help with TQt
 Group: Graphical Desktop/TDE
-Requires: libtqt4
-%description tools
-This package contains Trinity KDE specific window options and commands.
+%description -n tqtinterface
+This package contains Trinity specific window options and commands.
 It includes tools to help you modify and use TQtinterface.
 
 Authors:
@@ -154,8 +153,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,755)
-%{_libdir}/libtqt.so*
-%{_libdir}/libtqassistantclient.so*
+%{_libdir}/libtqt.so.*
+%{_libdir}/libtqassistantclient.so.*
 
 %files devel
 %defattr(-,root,root,755)
@@ -163,8 +162,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/Qt/q*.h
 %{_includedir}/tq*.h
 %{_libdir}/pkgconfig/tqt.pc
+%{_libdir}/libtqt.so
+%{_libdir}/libtqassistantclient.so
 
-%files tools
+%files -n tqtinterface
 %defattr(-,root,root,755)
 %{_bindir}/convert_qt_tqt1
 %{_bindir}/convert_qt_tqt2

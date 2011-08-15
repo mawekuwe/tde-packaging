@@ -5,18 +5,25 @@ if [ "$1" == "" ]; then
 VERSION=3.5.12.99
 fi
 
-grabDependsTarball()
+createTarball()
 {
-svn export svn://anonsvn.kde.org/home/kde/branches/trinity/dependencies/$NAME
-mv -v $NAME $NAME-$VERSION
+cp -r $NAME $NAME-$VERSION
 tar cjf $NAME-$VERSION.tar.bz2 $NAME-$VERSION
 rm -rf $NAME-$VERSION
+}
+
+grabDepends()
+{
+svn export svn://anonsvn.kde.org/home/kde/branches/trinity/dependencies/$NAME
+createTarball
+rm -rf $NAME
 echo "done"
 }
 
-
-echo "This is for testing locally without services."
-echo "I need to know what tarball you want to generate from."
+echo "I need to know what you want to generate a tarball for."
+echo ""
+echo "Version is set to $VERSION. If you want to change it,"
+echo "please pass it as a parameter to this script."
 echo ""
 echo "Let's start off by dependencies, main, or apps."
 echo "Which one?"
@@ -28,6 +35,8 @@ echo -e "> "
 read SELECTION
 
 if [ "$SELECTION" = "1" ]; then
+	clear
+	echo "Dependencies: Select what you want us to generate."
 	echo "(1) libtqt4"
 	echo "(2) dbus-1-tqt"
 	echo "(3) libdbus-1-tqt-0"
@@ -41,7 +50,7 @@ if [ "$SELECTION" = "1" ]; then
 	else
 	echo "Invalid, bye." && exit 1
 	fi
-	grabDependsTarball
+	grabDepends
 else
 	echo "Invalid, bye." && exit 1
 fi
