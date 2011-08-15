@@ -1,5 +1,5 @@
 Here contains the specfiles for Trinity.
-They are updated here, and built at build.opensuse.org.
+They are updated here, and built at build.lincomlinux.org (closed to public).
 
 For local building, use the following command:
 osc -A https://api.opensuse.org/ build --local-package --alternative-project openSUSE:Factory standard i586
