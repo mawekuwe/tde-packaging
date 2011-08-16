@@ -19,9 +19,8 @@
 
 
 Name:           arts
-BuildRequires:  alsa-devel audiofile-devel glib2-devel jack-devel libdrm-devel libjpeg-devel libvorbis-devel libtqt4-devel readline-devel update-desktop-files
+BuildRequires:  alsa-devel audiofile-devel cmake glib2-devel jack-devel libdrm-devel libjpeg-devel libvorbis-devel libtqt4-devel readline-devel update-desktop-files tde-filesystem
 BuildRequires:	tde-filesystem
-Requires:	tde-filesystem
 License:        GPLv2+
 Group:          Productivity/Multimedia/Sound/Players
 Summary:        Modular Software Synthesizer
@@ -56,7 +55,7 @@ Summary:        Include Files and Libraries mandatory for Development.
 Group:          Development/Libraries/Other
 Provides:       tdelibs:/opt/tde/include/artsc/artsc.h
 Requires:       libtqt4-devel arts = %version glib2-devel jack-devel libogg-devel libvorbis-devel audiofile-devel libstdc++-devel
-Requires:       alsa-devel
+Requires:       alsa-devel tde-filesystem
 
 %description devel
 A modular software synthesizer that generates realtime audio streams,

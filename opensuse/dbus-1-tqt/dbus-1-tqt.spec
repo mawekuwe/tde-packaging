@@ -19,7 +19,7 @@
 
 
 Name:           dbus-1-tqt
-BuildRequires:  dbus-1 dbus-1-devel libtqt4-devel unsermake
+BuildRequires:  dbus-1 dbus-1-devel libtqt4-devel cmake
 URL:            http://dbus.freedesktop.org/
 License:        GPLv2+
 Group:          Development/Libraries/TDE

@@ -28,6 +28,9 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Summary:        Trinity Directory Layout
 Source0:        macros.tde
 Source1:        COPYING
+BuildArch:	noarch
+# Spare Dependency that we want tde-filesystem to pull in.
+Requires:	cmake
 
 %description
 This package installs the Trinity directory structure.
@@ -44,7 +47,7 @@ Authors:
  
 %install
   install -D -m644 %{SOURCE0} $RPM_BUILD_ROOT/etc/rpm/macros.tde
-  install -D -m644 %{SOURCE1} $RPM_BUILD_ROOT//usr/share/doc/packages/kde4-filesystem/COPYING
+  install -D -m644 %{SOURCE1} $RPM_BUILD_ROOT//usr/share/doc/packages/tde-filesystem/COPYING
 
 %clean
 rm -rf "$RPM_BUILD_ROOT"
@@ -52,7 +55,7 @@ rm -rf "$RPM_BUILD_ROOT"
 %files
 %defattr(-,root,root)
 %config /etc/rpm/macros.tde
-%dir /usr/share/doc/packages/kde4-filesystem
-/usr/share/doc/packages/kde4-filesystem/COPYING
+%dir /usr/share/doc/packages/tde-filesystem
+/usr/share/doc/packages/tde-filesystem/COPYING
  
 %changelog

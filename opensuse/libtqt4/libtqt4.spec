@@ -16,21 +16,21 @@
 #
  
 # norootforbuild
- 
-Name:           libtqt4
-License:        GPLv2+
-Group:          Graphical Desktop/TDE
-Summary:        Interface and abstraction library for Qt and Trinity
-Version:        3.5.12.99
-Release:        1%{dist}
-Source0:        %{name}-%{version}.tar.bz2
-URL:        	http://www.trinitydesktop.org/
- 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+
+Name:		libtqt4
+License:	GPLv2+
+Group:		Graphical Desktop/TDE
+Summary:	Interface and abstraction library for Qt and Trinity
+Version:	3.5.12.99
+Release:	1
+Source0:	tqtinterface-%{version}.tar.bz2
+URL:		http://www.trinitydesktop.org/
+
+BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 
 %define with_qt3 1
 %define with_qt4 0
- 
+
 %if %{with_qt3}
 BuildRequires: qt3-devel >= 3.3.8c
 Requires: qt3 >= 3.3.8c
@@ -45,29 +45,29 @@ BuildRequires: cmake
 BuildRequires: pkgconfig
 BuildRequires: libtool
 BuildRequires: gcc-c++
- 
+
 %description
 This package includes libraries that abstract the underlying Qt system
 from the actual Trinity code, allowing easy, complete upgrades to new
 versions of Qt.
- 
+
 It also contains various functions that have been removed from newer
 versions of Qt, but are completely portable and isolated from other
 APIs such as Xorg. This allows the Trinity project to efficiently
 perform certain operations that are infeasible or unneccessarily
 difficult when using pure Qt4 or above.
- 
+
 Authors:
 --------
     Timothy Pearson <kb9vqf@pearsoncomputing.net>
     Robert Xu <rxu@lincomlinux.org>
     Tim Williams <tim@my-place.org.uk>
     Serghei Amelian <serghei@thel.ro>
- 
+
 %package devel
 Summary: TQtinterface header files
 Group: Graphical Desktop/TDE
-Requires: libtqt4
+Requires: libtqt4 = %{version}
 %if %{with_qt3}
 Requires: qt3-devel >= 3.3.8c
 %endif
@@ -75,40 +75,35 @@ Requires: qt3-devel >= 3.3.8c
 Requires: libqt4-devel >= 4.7.0
 %endif
 %description devel
-This package contains Trinity KDE specific window options and commands.
+This package contains Trinity specific window options and commands.
 You need this package to compile Trinity modules. (TQT headers)
- 
- 
+
+
 Authors:
 --------
     Timothy Pearson <kb9vqf@pearsoncomputing.net>
     Robert Xu <rxu@lincomlinux.org>
     Tim Williams <tim@my-place.org.uk>
     Serghei Amelian <serghei@thel.ro>
- 
- 
-%package tools
-Summary: TQtinterface library files
+
+
+%package -n tqtinterface
+Summary: Tools to help with TQt
 Group: Graphical Desktop/TDE
-Requires: libtqt4
-%description tools
-This package contains Trinity KDE specific window options and commands.
+%description -n tqtinterface
+This package contains Trinity specific window options and commands.
 It includes tools to help you modify and use TQtinterface.
- 
+
 Authors:
 --------
     Timothy Pearson <kb9vqf@pearsoncomputing.net>
     Robert Xu <rxu@lincomlinux.org>
     Tim Williams <tim@my-place.org.uk>
     Serghei Amelian <serghei@thel.ro>
- 
- 
+
+
 %prep
-%if %{with_qt3}
-%setup -qn tqtinterface-qt3-%{version}
-%else
-%setup -qn tqtinterface-qt4-%{version}
-%endif
+%setup -qn tqtinterface-%{version}
 
 %build
 CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ;
@@ -117,55 +112,60 @@ FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ;
 mkdir build
 cd build
 cmake \
-        -DCMAKE_VERBOSE_MAKEFILE=ON \
-        -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} \
-        -DCMAKE_INSTALL_LIBDIR:PATH=%{_libdir} \
-        -DINCLUDE_INSTALL_DIR:PATH=%{_includedir} \
-        -DLIB_INSTALL_DIR:PATH=%{_libdir} \
-        -DSYSCONF_INSTALL_DIR:PATH=%{_sysconfdir} \
-        -DSHARE_INSTALL_PREFIX:PATH=%{_datadir} \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	-DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} \
+	-DCMAKE_INSTALL_LIBDIR:PATH=%{_libdir} \
+	-DINCLUDE_INSTALL_DIR:PATH=%{_includedir} \
+	-DLIB_INSTALL_DIR:PATH=%{_libdir} \
+	-DSYSCONF_INSTALL_DIR:PATH=%{_sysconfdir} \
+	-DSHARE_INSTALL_PREFIX:PATH=%{_datadir} \
 %if "%{?_lib}" == "lib64"
-        -DLIB_SUFFIX=64 \
+	-DLIB_SUFFIX=64 \
 %endif
-        -DBUILD_SHARED_LIBS:BOOL=ON \
+	-DBUILD_SHARED_LIBS:BOOL=ON \
 %if %{with_qt3}
-     -DWITH_QT3=ON \
+	-DQT_VERSION=3 \
 %endif
 %if %{with_qt4}
-     -DWITH_QT4=ON \
+	-DQT_VERSION=4 \
 %endif
-     -DQT_LIBRARY_DIRS=/usr/lib/qt3/%{_lib} \
-     -DQT_INCLUDE_DIRS=/usr/lib/qt3/include \
-     -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \
-     ../
- 
+	-DQT_LIBRARY_DIRS=/usr/lib/qt3/%{_lib} \
+	-DQT_INCLUDE_DIRS=/usr/lib/qt3/include \
+	-DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \
+	../
+
 make %{?_smp_mflags} VERBOSE=1
- 
+
 %install
- 
+cd build
 make DESTDIR=%{buildroot} install
- 
+rm -rf %{buildroot}/%{_libdir}/*.la
+
+# What is this? Leftovers?!
+rm -rf %{buildroot}/%{_libdir}/debug
+
 %clean
 rm -rf $RPM_BUILD_ROOT
- 
+
 %post -p /sbin/ldconfig
- 
+
 %postun -p /sbin/ldconfig
- 
+
 %files
 %defattr(-,root,root,755)
-%{_libdir}/libtqt.so
-%{_libdir}/libtqt.so.4
-%{_libdir}/libtqt.so.4.2.0
- 
+%{_libdir}/libtqt.so.*
+%{_libdir}/libtqassistantclient.so.*
+
 %files devel
 %defattr(-,root,root,755)
 %dir %{_includedir}/Qt
 %{_includedir}/Qt/q*.h
 %{_includedir}/tq*.h
-%{_libdir}/pkgconfig/TQt.pc
+%{_libdir}/pkgconfig/tqt.pc
+%{_libdir}/libtqt.so
+%{_libdir}/libtqassistantclient.so
 
-%files tools
+%files -n tqtinterface
 %defattr(-,root,root,755)
 %{_bindir}/convert_qt_tqt1
 %{_bindir}/convert_qt_tqt2
@@ -178,6 +178,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/tmoc
 %{_bindir}/tqt-replace
 %{_bindir}/tqt-replace-stream
- 
-%changelog
+%{_bindir}/uic-tqt
 
+%changelog

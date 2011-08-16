@@ -21,7 +21,7 @@
 Name:           libdbus-1-tqt-0
 Url:            http://www.freedesktop.org/wiki/Software/DBusBindings
 %define appname libdbus-1-tqt
-BuildRequires:  dbus-1-devel libtqt4-devel
+BuildRequires:  dbus-1-devel libtqt4-devel cmake
 License:        GPL v2 or later
 Group:          Development/Libraries/C and C++
 AutoReqProv:    on
