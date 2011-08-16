@@ -4,7 +4,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
 DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
@@ -43,7 +43,7 @@ build-%/configure-stamp: patch-stamp
 	dh_testdir
 	mkdir -p build-$*
 	cd build-$* && python$* ../configure.py \
-		-c -u -k /opt/trinity -o /opt/trinity/include/kde -n /opt/trinity/lib \
+		-c -u -k /opt/trinity -o /opt/trinity/include -n /opt/trinity/lib \
 		-v /opt/trinity/share/sip/trinity -j $(SPLIT)
 	touch $@
 
@@ -51,7 +51,7 @@ dbg-build-%/configure-stamp: patch-stamp
 	dh_testdir
 	mkdir -p dbg-build-$*
 	cd dbg-build-$* && python$*-dbg ../configure.py \
-		-c -u -k /opt/trinity -o /opt/trinity/include/kde -n /opt/trinity/lib \
+		-c -u -k /opt/trinity -o /opt/trinity/include -n /opt/trinity/lib \
 		-v /opt/trinity/share/sip/trinity -j $(SPLIT)
 	touch $@
 
