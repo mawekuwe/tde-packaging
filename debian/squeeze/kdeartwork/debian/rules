@@ -19,3 +19,6 @@ DEB_DH_STRIP_ARGS  := --dbg-package=kdeartwork-trinity-dbg
 clean::
 	rm -f IconThemes/kdeclassic/22x22/actions/kde/kde.png
 	rm -f IconThemes/kdeclassic/32x32/actions/kde/kde.png
+
+binary-install/kscreensaver-xsavers-extra-trinity::
+	rm -f debian/kscreensaver-xsavers-extra-trinity/usr/share/applnk/System/ScreenSavers/webcollage.desktop

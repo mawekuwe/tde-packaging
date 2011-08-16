@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, kdelibs4-trinity-dev, gawk, gettext, sharutils, kdebase-trinity-dev, kwin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, kdelibs4-trinity-dev, gawk, gettext, sharutils, kdebase-trinity-dev, kwin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, automake, autoconf, libtool, libltdl-dev
 Build-Conflicts: autoconf2.13, nvidia-glx
 Standards-Version: 3.8.4
 
@@ -162,7 +162,7 @@ Description: webcollage screensaver KDE3 hook
 Package: kscreensaver-xsavers-extra-trinity
 Architecture: all
 Section: kde
-Depends: ${shlibs:Depends}, kscreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra
+Depends: ${shlibs:Depends}, kscreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx
 Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version})
 Description: KDE3 hooks for standard xscreensavers
  This package allows a smooth integration of the universe xscreensavers
