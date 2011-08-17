@@ -1,9 +1,11 @@
 #!/bin/bash
 
-VERSION=$1
-if [ "$1" == "" ]; then
+# BEGIN VERSIONS
 VERSION=3.5.12.99
-fi
+ARTS_VERSION=1.5.10
+DBUS_TQT_VERSION=0.62
+DBUS_1_TQT_VERSION=0.8.1
+# END VERSIONS
 
 createTarball()
 {
@@ -20,10 +22,19 @@ rm -rf $NAME
 echo "done"
 }
 
+grabMain()
+{
+svn export svn://anonsvn.kde.org/home/kde/branches/trinity/$NAME
+createTarball
+rm -rf $NAME
+echo "done"
+}
+
 echo "I need to know what you want to generate a tarball for."
 echo ""
-echo "Version is set to $VERSION. If you want to change it,"
-echo "please pass it as a parameter to this script."
+echo "Version defaults to $VERSION. If you want to change it,"
+echo "please pass it as a parameter to this script. There may"
+echo "be other versions used, see the \"versions\" file."
 echo ""
 echo "Let's start off by dependencies, main, or apps."
 echo "Which one?"
@@ -44,13 +55,24 @@ if [ "$SELECTION" = "1" ]; then
 	read CHOICE
 	
 	if [ "$CHOICE" = "1" ]; then NAME='tqtinterface';
-	elif [ "$CHOICE" = "2" ]; then NAME='dbus-tqt';
-	elif [ "$CHOICE" = "3" ]; then NAME='dbus-1-tqt';
-	elif [ "$CHOICE" = "4" ]; then NAME='arts';
+	elif [ "$CHOICE" = "2" ]; then NAME='dbus-tqt' && VERSION=$DBUS_TQT_VERSION;
+	elif [ "$CHOICE" = "3" ]; then NAME='dbus-1-tqt' && VERSION=$DBUS_1_TQT_VERSION;
+	elif [ "$CHOICE" = "4" ]; then NAME='arts' && VERSION=$ARTS_VERSION;
 	else
 	echo "Invalid, bye." && exit 1
 	fi
 	grabDepends
+elif [ "$SELECTION" = "2" ]; then
+	clear
+	echo "Main: Select what you want us to generate."
+	echo "(1) tdelibs"
+	read CHOICE
+	
+	if [ "$CHOICE" = "1" ]; then NAME='kdelibs';
+	else
+	echo "Invalid, bye." && exit 1
+	fi
+	grabMain
 else
 	echo "Invalid, bye." && exit 1
 fi

@@ -367,7 +367,7 @@ CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"
   export PATH=/usr/lib/mit/bin:$PATH
   # fast-malloc is not needed anymore
 
-%cmake_tde -d=build \
+%cmake_tde -d build \
 	-DKDE_MALLOC_FULL=OFF \
 	-DKDE_MALLOC=OFF \
 	-DKDE_DISTRIBUTION="$DISTRI" \
@@ -377,7 +377,7 @@ CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"
 	-DENABLE_DNOFIFY=ON \
 	%endif
 
-%make_tde -d=build
+%make_tde -d build
 
 #
 xmlcatbin=/usr/bin/xmlcatalog
@@ -413,7 +413,7 @@ sed '/<catalog/a\
   %{FOR_ROOT_CAT}.tmp > %{FOR_ROOT_CAT}
 
 %install
-  %makeinstall -d=build
+  %makeinstall_tde -d build
   mkdir -p $RPM_BUILD_ROOT/%{_tde_configkcfgdir}
   install -D %SOURCE9 $RPM_BUILD_ROOT/%{_tde_icondir}/crystalsvg/16x16/filesystems/file_broken.png
   mv $RPM_BUILD_ROOT/etc/xdg/menus/applications.menu \

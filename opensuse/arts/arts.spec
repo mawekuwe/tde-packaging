@@ -25,7 +25,7 @@ License:        GPLv2+
 Group:          Productivity/Multimedia/Sound/Players
 Summary:        Modular Software Synthesizer
 PreReq:         permissions
-Version:        3.5.12.99
+Version:        1.5.10
 Release:        1
 Source0:        %{name}-%{version}.tar.bz2
 Source1:        artswrapper.7.gz
@@ -86,7 +86,7 @@ Authors:
     Stefan Westerfeld <stefan@space.twc.de>
 
 %prep
-%setup -q
+%setup -qn arts-%{version}
 %patch2
 %patch5
 %patch7
@@ -94,7 +94,9 @@ Authors:
 %patch9
 
 %build
-CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS -DNDEBUG" CFLAGS="$CXXFLAGS" %cmake_tde -d=build
+CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS -DNDEBUG" CFLAGS="$CXXFLAGS" %cmake_tde -d build -- -DWITH_MAD=OFF -DCMAKE_SKIP_RPATH=OFF
+
+# shut off MAD support because that is only available in packman
 
 #%ifarch %ix86
 # I trust in arts runtime checking ...
@@ -105,10 +107,10 @@ CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS -DNDEBUG" CFLAGS="$CXXFLAGS" %cmake_tde -d=bu
 # broken automake ?
 #make %{?jobs:-j%jobs}
 
-%make_tde -d=build
+%make_tde -d build
 
 %install
-%makeinstall_tde -d=build
+%makeinstall_tde -d build
 %ifarch x86_64
 mkdir -p $RPM_BUILD_ROOT/%{_tde_libdir}
 ln -sf ../lib64/mcop $RPM_BUILD_ROOT/%{_tde_libdir}/mcop
@@ -142,7 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_tde_bindir}/artscat
 %{_tde_bindir}/arts[dpsr]*
 %verify(not mode) %{_tde_bindir}/artswrapper
-%dir /opt/kde3/%_lib
+%dir %{_tde_libdir}
 %{_tde_libdir}/libarts*.so.*
 %{_tde_libdir}/libkmedia2*.so.*
 %{_tde_libdir}/libmcop.so.*
