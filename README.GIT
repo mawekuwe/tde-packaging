@@ -1,0 +1,41 @@
+(if this doesn't belong at the root of tde-packaging, feel free to move it to
+opensuse/ for reference.)
+
+To get a copy of the repo:
+	git clone <repository URL>
+
+To exclude items:
+	Create a file '.gitignore'
+
+To add to the git repository (easiest and most efficient way):
+	git add .
+(this will add everything in the folder (excluding stuff from .gitignore).)
+
+To commit to the git repository (this does not send to the remote server!):
+	git commit -a
+(no need to do any git mv or git rm or any of that with the -a option.)
+
+To pull recent commits from the remote git repository:
+	git pull
+(do this before pushing so that you don't collide with other's commits.)
+
+To push to the remote git repository:
+	git push origin master
+(the 'origin master' part is optional after the first time.)
+
+To branch (be careful! This is different from SVN.):
+	git branch <name>
+(don't know what branch you're on? run "git branch" to see and list.)
+
+To switch branches:
+	git checkout <branch name>
+
+To tag a commit (like for releasing a tarball):
+	git tag -a <version> -m <message>
+(ps: this will make webgit generate a tarball with this tag.
+easy releases anyone?)
+
+To tag a commit WITH GPG verification (secure release anyone?):
+	git tag -s <version> -m <message>
+
+
