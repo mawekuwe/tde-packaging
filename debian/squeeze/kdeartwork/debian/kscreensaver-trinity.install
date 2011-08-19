@@ -1,3 +1,4 @@
+debian/tmp/opt/trinity/bin/krootbacking
 debian/tmp/opt/trinity/bin/kslideshow.kss
 debian/tmp/opt/trinity/bin/kpolygon.kss
 debian/tmp/opt/trinity/bin/krotation.kss
