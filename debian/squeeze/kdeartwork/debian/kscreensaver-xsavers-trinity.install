@@ -1,5 +1,5 @@
-debian/tmp/usr/local/bin/xscreensaver-getimage-file
-debian/tmp/usr/local/bin/xscreensaver-getimage
+debian/tmp/opt/trinity/bin/xscreensaver-getimage-file
+debian/tmp/opt/trinity/bin/xscreensaver-getimage
 debian/tmp/opt/trinity/bin/krootbacking
 debian/tmp/opt/trinity/bin/kxsconfig
 debian/tmp/opt/trinity/bin/kxsrun
