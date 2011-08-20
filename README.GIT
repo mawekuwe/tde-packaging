@@ -19,7 +19,7 @@ To exclude items:
 
 To add to the git repository (easiest and most efficient way):
 	git add .
-(this will add everything in the folder (excluding stuff from .gitignore). It is intentionally a period because * will make git ignore already committed files.)
+(this will add everything in the folder (excluding stuff from .gitignore). It is intentionally a period because * will make git stop on already committed files.)
 
 To commit to the git repository (this does not send to the remote server!):
 	git commit -a
