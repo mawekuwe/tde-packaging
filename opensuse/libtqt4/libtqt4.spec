@@ -87,21 +87,6 @@ Authors:
     Serghei Amelian <serghei@thel.ro>
 
 
-%package -n tqtinterface
-Summary: Tools to help with TQt
-Group: Graphical Desktop/TDE
-%description -n tqtinterface
-This package contains Trinity specific window options and commands.
-It includes tools to help you modify and use TQtinterface.
-
-Authors:
---------
-    Timothy Pearson <kb9vqf@pearsoncomputing.net>
-    Robert Xu <rxu@lincomlinux.org>
-    Tim Williams <tim@my-place.org.uk>
-    Serghei Amelian <serghei@thel.ro>
-
-
 %prep
 %setup -qn tqtinterface-%{version}
 
@@ -144,6 +129,14 @@ rm -rf %{buildroot}/%{_libdir}/*.la
 # What is this? Leftovers?!
 rm -rf %{buildroot}/%{_libdir}/debug
 
+# Shebang, please.
+echo "#!/bin/bash" > %{buildroot}%{_bindir}/convert_qt_tqt1.new
+cat %{buildroot}%{_bindir}/convert_qt_tqt1 >> %{buildroot}%{_bindir}/convert_qt_tqt1.new
+rm -f %{buildroot}%{_bindir}/convert_qt_tqt1
+mv -v %{buildroot}%{_bindir}/convert_qt_tqt1.new %{buildroot}%{_bindir}/convert_qt_tqt1
+chmod +x %{buildroot}%{_bindir}/convert_qt_tqt1
+
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -164,9 +157,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/tqt.pc
 %{_libdir}/libtqt.so
 %{_libdir}/libtqassistantclient.so
-
-%files -n tqtinterface
-%defattr(-,root,root,755)
 %{_bindir}/convert_qt_tqt1
 %{_bindir}/convert_qt_tqt2
 %{_bindir}/convert_qt_tqt3
