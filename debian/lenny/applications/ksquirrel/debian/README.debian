@@ -1,4 +1,4 @@
-This program was initialy writen for KDE3. To compile it for KDE4 the
+This program was initialy writen for Trinity. To compile it for KDE4 the
 exif support is disabled. That library depends on kdelibs3.
 
 MT is enabled because configure seems not smart enough.

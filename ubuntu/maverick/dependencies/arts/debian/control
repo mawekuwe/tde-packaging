@@ -24,7 +24,7 @@ Description: sound system from the official KDE release
  technological superiority of the Unix operating system.
  .
  This metapackage includes the complete aRts sound system, without
- development packages. aRts is the core sound system for KDE3.
+ development packages. aRts is the core sound system for Trinity.
 
 Package: libarts1c2a-trinity
 Architecture: any

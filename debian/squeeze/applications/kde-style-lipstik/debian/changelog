@@ -6,7 +6,7 @@ kde-style-lipstik-trinity (2.2.3-4) karmic; urgency=low
 
 kde-style-lipstik-trinity (2.2.3-3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 02 March 2009 01:07:00 -0600

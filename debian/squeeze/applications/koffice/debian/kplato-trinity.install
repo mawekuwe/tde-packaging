@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/kplato
-debian/tmp/opt/trinity/lib/kde3/kplato.la
-debian/tmp/opt/trinity/lib/kde3/kplato.so
-debian/tmp/opt/trinity/lib/kde3/libkplatopart.la
-debian/tmp/opt/trinity/lib/kde3/libkplatopart.so
+debian/tmp/opt/trinity/lib/trinity/kplato.la
+debian/tmp/opt/trinity/lib/trinity/kplato.so
+debian/tmp/opt/trinity/lib/trinity/libkplatopart.la
+debian/tmp/opt/trinity/lib/trinity/libkplatopart.so
 debian/tmp/opt/trinity/lib/libkdeinit_kplato.so
 debian/tmp/opt/trinity/share/applications/kde/kplato.desktop
 debian/tmp/opt/trinity/share/apps/kplato/icons/crystalsvg/22x22/actions/accounts.png

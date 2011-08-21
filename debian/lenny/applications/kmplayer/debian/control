@@ -16,8 +16,8 @@ Architecture: any
 Depends: ${shlibs:Depends}, kmplayer-base-trinity (= ${binary:Version}), libxine1-x | libxine1 (<< 1.1.8-2)
 Recommends: kmplayer-plugin-trinity (= ${binary:Version})
 Suggests: ffmpeg, vdr, xawtv, mplayer
-Description: media player for KDE3
- A basic audio/video viewer application for KDE3.
+Description: media player for Trinity
+ A basic audio/video viewer application for Trinity.
  .
  KMPlayer can:
  * play DVD (DVDNav only with the Xine player)

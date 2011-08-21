@@ -1,8 +1,8 @@
 debian/icons/klinkstatus.xpm	/opt/trinity/share/pixmaps
 
 debian/tmp/opt/trinity/bin/klinkstatus
-debian/tmp/opt/trinity/lib/kde3/libklinkstatuspart.la
-debian/tmp/opt/trinity/lib/kde3/libklinkstatuspart.so
+debian/tmp/opt/trinity/lib/trinity/libklinkstatuspart.la
+debian/tmp/opt/trinity/lib/trinity/libklinkstatuspart.so
 debian/tmp/opt/trinity/share/applications/kde/klinkstatus.desktop
 debian/tmp/opt/trinity/share/apps/klinkstatus
 debian/tmp/opt/trinity/share/apps/klinkstatuspart

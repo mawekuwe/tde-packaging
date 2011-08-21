@@ -1,5 +1,5 @@
 [3.3]
-libraryPath=/usr/lib/kde3/plugins/
+libraryPath=/usr/lib/trinity/plugins/
 
 [General]
 GUIEffects=general^eanimatecombo^e
@@ -12,7 +12,7 @@ style=Plastik
 
 [KDE]
 contrast=7
-kdeAddedLibraryPaths=/usr/lib/kde3/plugins/^e
+kdeAddedLibraryPaths=/usr/lib/trinity/plugins/^e
 
 [KWinPalette]
 activeBackground=#1f26ad

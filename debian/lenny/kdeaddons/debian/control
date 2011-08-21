@@ -12,14 +12,14 @@ Architecture: all
 Section: kde
 Depends: atlantikdesigner-trinity (>= ${Source-Version}), kaddressbook-plugins-trinity (>= ${Source-Version}), kate-plugins-trinity (>= ${Source-Version}), kdeaddons-kfile-plugins-trinity (>= ${Source-Version}), kicker-applets-trinity (>= ${Source-Version}), konq-plugins-trinity (>= ${Source-Version}), ksig-trinity (>= ${Source-Version}), noatun-plugins-trinity (>= ${Source-Version})
 Suggests: kdeaddons-trinity-doc-html
-Description: add-on plugins and applets provided with KDE3
+Description: add-on plugins and applets provided with Trinity
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of add-on plugins and applets
- provided with the official release of KDE3.
+ provided with the official release of Trinity.
 
 Package: kdeaddons-trinity-doc-html
 Architecture: all
@@ -36,7 +36,7 @@ Description: KDE add-ons documentation in HTML format
  /opt/trinity/share/doc/kde/HTML/en/kicker-applets/. Documentation is provided for
  most KDE addons packages.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: atlantikdesigner-trinity
@@ -53,7 +53,7 @@ Description: game board designer for Atlantik
  game in which the properties include several major cities in North
  America and Europe.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: kaddressbook-plugins-trinity
@@ -62,7 +62,7 @@ Section: kde
 Depends: ${shlibs:Depends}
 Suggests: kworldclock-trinity, khelpcenter-trinity, kdeaddons-trinity-doc-html
 Enhances: kaddressbook-trinity
-Description: plugins for KAddressBook, the KDE3 address book
+Description: plugins for KAddressBook, the Trinity address book
  This package contains a variety of useful plugins for the KDE address
  book.  These plugins can be loaded through the KDE address book settings.
  .
@@ -70,7 +70,7 @@ Description: plugins for KAddressBook, the KDE3 address book
  as well as importing and exporting contacts in the native format used
  by the German freemail provider GMX.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: kate-plugins-trinity
@@ -89,7 +89,7 @@ Description: plugins for Kate, the KDE Advanced Text Editor
  and text snippets, opening of C/C++ headers, extraction of C/C++ symbols,
  a tab bar, a Python browser and even more.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: kdeaddons-kfile-plugins-trinity
@@ -97,7 +97,7 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}
 Provides: renamedlg-plugins-trinity
-Description: KDE3 file dialog plugins for text files and folders
+Description: Trinity file dialog plugins for text files and folders
  This is a collection of plugins for the KDE file dialog.  These plugins
  extend the file dialog to offer advanced meta-information for text,
  HTML and desktop files, as well as for folders, Windows .lnk files,
@@ -108,7 +108,7 @@ Description: KDE3 file dialog plugins for text files and folders
  decision regarding conflicting filenames.  Rename dialog plugins are
  provided for audio and image files.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: kicker-applets-trinity
@@ -118,7 +118,7 @@ Depends: ${shlibs:Depends}, kicker-trinity
 Suggests: xmms-kde-trinity, khelpcenter-trinity, kdeaddons-trinity-doc-html
 Provides: ktimemon-trinity
 Enhances: kicker-trinity
-Description: applets for Kicker, the KDE3 panel
+Description: applets for Kicker, the Trinity panel
  This package contains a variety of applets for Kicker, the KDE panel.
  These applets will appear in the panel's Add--Applet menu.
  .
@@ -129,7 +129,7 @@ Description: applets for Kicker, the KDE3 panel
  kicker-applets users to install XMMS. If you want a kicker applet that
  controls XMMS, install the xmms-kde-trinity package.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: knewsticker-scripts-trinity
@@ -138,7 +138,7 @@ Section: kde
 Depends: ${perl:Depends}, python, libfinance-quote-perl, libmime-perl, libnews-nntpclient-perl, libwww-perl
 Recommends: knewsticker-trinity
 Enhances: knewsticker-trinity
-Description: scripts for KNewsTicker, the KDE3 news ticker
+Description: scripts for KNewsTicker, the Trinity news ticker
  This package contains a variety of scripts that provide additional news
  sources for KNewsTicker, the news ticker applet for the KDE panel.  See
  /opt/trinity/share/doc/knewsticker-scripts/README.Debian for usage details.
@@ -146,7 +146,7 @@ Description: scripts for KNewsTicker, the KDE3 news ticker
  Highlights include newsgroup handling, stock data retrieval, sports scores
  and various local news sources.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: konq-plugins-trinity
@@ -157,7 +157,7 @@ Recommends: akregator-trinity, ark-trinity, imagemagick
 Suggests: khelpcenter-trinity, kdeaddons-trinity-doc-html
 Enhances: konqueror-trinity, akregator-trinity
 Provides: akregator-konq-plugin-trinity
-Description: plugins for Konqueror, the KDE3 file/web/doc browser
+Description: plugins for Konqueror, the Trinity file/web/doc browser
  This package contains a variety of useful plugins for Konqueror, the
  file manager, web browser and document viewer for KDE.  Many of these
  plugins will appear in Konqueror's Tools menu.
@@ -173,7 +173,7 @@ Description: plugins for Konqueror, the KDE3 file/web/doc browser
  media player, a file information metabar/sidebar, a media folder helper, a
  graphical disk usage viewer and image conversions and transformations.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: ksig-trinity
@@ -192,7 +192,7 @@ Description: graphical tool for managing multiple email signatures
  signatures in external mail clients such as KMail.  See
  /opt/trinity/share/doc/ksig/README.Debian for details on how this can be done.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: noatun-plugins-trinity
@@ -200,7 +200,7 @@ Architecture: any
 Section: sound
 Depends: ${shlibs:Depends}
 Enhances: noatun-trinity
-Description: plugins for Noatun, the KDE3 media player
+Description: plugins for Noatun, the Trinity media player
  This package contains a variety of useful plugins for Noatun, the audio and
  video media player for KDE.  These plugins can be loaded through the plugin
  manager in Noatun settings.
@@ -209,7 +209,7 @@ Description: plugins for Noatun, the KDE3 media player
  playback speed, capture to wave file and displaying lyrics, plus a variety
  of user interfaces, playlists and visualisation plugins.
  .
- This package is part of KDE3, as a component of the KDE addons module.
+ This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'kdeaddons-trinity' packages for more information.
 
 Package: kdeaddons-trinity-dbg

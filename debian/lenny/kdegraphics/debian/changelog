@@ -24,7 +24,7 @@ kdegraphics-trinity (4:3.5.10-0ubuntu1~intrepid6) intrepid; urgency=low
 
 kdegraphics-trinity (4:3.5.10-0ubuntu1~intrepid5) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 27 Feb 2009 22:49:00 -0600

@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kwifimanager
-debian/tmp/opt/trinity/lib/kde3/kcm_wifi.la
-debian/tmp/opt/trinity/lib/kde3/kcm_wifi.so
+debian/tmp/opt/trinity/lib/trinity/kcm_wifi.la
+debian/tmp/opt/trinity/lib/trinity/kcm_wifi.so
 debian/tmp/opt/trinity/lib/libkwireless.la
 debian/tmp/opt/trinity/lib/libkwireless.so
 debian/tmp/opt/trinity/share/applications/kde/kcmwifi.desktop

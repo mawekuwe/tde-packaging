@@ -1,7 +1,7 @@
-debian/tmp/opt/trinity/lib/kde3/kded_favicons.la
-debian/tmp/opt/trinity/lib/kde3/kded_favicons.so
-debian/tmp/opt/trinity/lib/kde3/konq_sound.la
-debian/tmp/opt/trinity/lib/kde3/konq_sound.so
+debian/tmp/opt/trinity/lib/trinity/kded_favicons.la
+debian/tmp/opt/trinity/lib/trinity/kded_favicons.so
+debian/tmp/opt/trinity/lib/trinity/konq_sound.la
+debian/tmp/opt/trinity/lib/trinity/konq_sound.so
 debian/tmp/opt/trinity/lib/libkonq.so.4
 debian/tmp/opt/trinity/lib/libkonq.so.4.2.0
 debian/tmp/opt/trinity/share/apps/kbookmark/directory_bookmarkbar.desktop

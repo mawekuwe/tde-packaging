@@ -1,9 +1,9 @@
-debian/tmp/opt/trinity/lib/kde3/fileshare_propsdlgplugin.la
-debian/tmp/opt/trinity/lib/kde3/fileshare_propsdlgplugin.so
-debian/tmp/opt/trinity/lib/kde3/kcm_fileshare.la
-debian/tmp/opt/trinity/lib/kde3/kcm_fileshare.so
-debian/tmp/opt/trinity/lib/kde3/kcm_kcmsambaconf.la
-debian/tmp/opt/trinity/lib/kde3/kcm_kcmsambaconf.so
+debian/tmp/opt/trinity/lib/trinity/fileshare_propsdlgplugin.la
+debian/tmp/opt/trinity/lib/trinity/fileshare_propsdlgplugin.so
+debian/tmp/opt/trinity/lib/trinity/kcm_fileshare.la
+debian/tmp/opt/trinity/lib/trinity/kcm_fileshare.so
+debian/tmp/opt/trinity/lib/trinity/kcm_kcmsambaconf.la
+debian/tmp/opt/trinity/lib/trinity/kcm_kcmsambaconf.so
 debian/tmp/opt/trinity/share/applications/kde/fileshare.desktop
 debian/tmp/opt/trinity/share/applications/kde/kcmsambaconf.desktop
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kcmsambaconf.png

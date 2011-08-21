@@ -6,7 +6,7 @@ kio-apt-trinity (0.13.2-5ubuntu0) karmic; urgency=low
 
 kio-apt-trinity (0.13.2-4ubuntu5) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 05 March 2009 29:52:00 -0600

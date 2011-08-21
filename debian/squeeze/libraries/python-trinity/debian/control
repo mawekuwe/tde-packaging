@@ -15,8 +15,8 @@ Depends: ${shlibs:Depends}, ${python:Depends}, python-qt3 (>= 3.18)
 XB-Python-Version: ${python:Versions}
 Provides: ${python:Provides}
 Conflicts: python-trinity-trinity
-Description: KDE3 bindings for Python [Trinity]
- Python binding module that provides wide access to the KDE3 API,
+Description: Trinity bindings for Python [Trinity]
+ Python binding module that provides wide access to the Trinity API,
  also known as PyKDE. Using this, you'll get (for example) classes
  from kio, kjs, khtml and kprint.
 
@@ -25,8 +25,8 @@ Priority: extra
 Architecture: any
 Depends: python-trinity-trinity (= ${binary:Version}), python-dbg, python-qt3-dbg, ${shlibs:Depends}
 XB-Python-Version: ${python:Versions}
-Description: KDE3 bindings for Python (debug extensions) [Trinity]
- Python binding module that provides wide access to the KDE3 API,
+Description: Trinity bindings for Python (debug extensions) [Trinity]
+ Python binding module that provides wide access to the Trinity API,
  also known as PyKDE. Using this, you'll get (for example) classes
  from kio, kjs, khtml and kprint.
  .
@@ -37,7 +37,7 @@ Section: python
 Architecture: all
 Depends: pyqt-tools, ${python:Depends}
 XB-Python-Version: ${python:Versions}
-Description: KDE3 bindings for Python - Development files and scripts [Trinity]
+Description: Trinity bindings for Python - Development files and scripts [Trinity]
  Development .sip files with definitions of PyKDE classes. They
  are needed to build PyKDE, but also as building blocks of other
  packages based on them. 

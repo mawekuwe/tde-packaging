@@ -6,7 +6,7 @@ kdetoys-trinity (4:3.5.10-0ubuntu2) karmic; urgency=low
 
 kdetoys-trinity (4:3.5.10-0ubuntu1~intrepid2) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 01 March 2009 13:35:00 -0600
@@ -548,7 +548,7 @@ kdetoys (4:3.1.1-1) unstable; urgency=low
 
 kdetoys (4:3.1.0-2) unstable; urgency=low
 
-  * First KDE3 upload to debian!
+  * First Trinity upload to debian!
   * KTeaTime now supports custom tasks (closes: #141942).
   * Fixed kscore manpage directory (closes: #156881).
 

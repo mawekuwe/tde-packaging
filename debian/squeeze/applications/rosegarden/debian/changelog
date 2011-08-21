@@ -6,7 +6,7 @@ rosegarden-trinity (1:1.7.0-1ubuntu0) karmic; urgency=low
 
 rosegarden-trinity (1:1.7.0-0ubuntu5) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 05 March 2009 01:11:00 -0600
@@ -427,7 +427,7 @@ rosegarden4 (0.8.5-2) unstable; urgency=low
 rosegarden4 (0.8.5-1) unstable; urgency=low
 
   * New upstream version.
-  * Moved to KDE3: Now using kdelibs4-dev, closes: #180365.
+  * Moved to Trinity: Now using kdelibs4-dev, closes: #180365.
   * Using automake1.6, which seems to be necessary for trinity build scripts.
   * Added build dependency on ladspa-sdk package (debian/control).
   * Updated package description and README.Debian. Latest releases are not

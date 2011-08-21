@@ -9,6 +9,6 @@ Homepage: http://knetstats.sourceforge.net/
 Package: knetstats-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: network interfaces monitor for the KDE3 systray
+Description: network interfaces monitor for the Trinity systray
  A simple KDE network monitor that show rx/tx LEDs of any
  network interface on a system tray icon

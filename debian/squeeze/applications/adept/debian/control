@@ -11,7 +11,7 @@ Package: adept-trinity
 Section: kde
 Depends: adept-manager-trinity, adept-installer-trinity, adept-updater-trinity, adept-notifier-trinity, adept-batch-trinity
 Architecture: all
-Description: package management suite for KDE3
+Description: package management suite for Trinity
  These packages belong to the adept suite:
   * adept-manager-trinity - package manager
   * adept-installer-trinity - application manager
@@ -22,7 +22,7 @@ Package: adept-common-trinity
 Section: kde
 Depends: debtags (>= 1.6.1), konsole-trinity (>= 3.5.0), ${shlibs:Depends}
 Architecture: all
-Description: package manager for KDE3 -- common files
+Description: package manager for Trinity -- common files
  Icons and other common files for all adept components.
 
 Package: adept-manager-trinity
@@ -30,7 +30,7 @@ Section: kde
 Depends: adept-common-trinity, ${shlibs:Depends}
 Recommends: libqt-perl
 Architecture: any
-Description: package manager for KDE3
+Description: package manager for Trinity
  Adept Manager is a graphical user interface for package management.
  .
  Besides these basic functions the following features are provided:
@@ -47,7 +47,7 @@ Section: kde
 Depends: adept-common-trinity, app-install-data, ${shlibs:Depends}
 Recommends: libqt-perl
 Architecture: any
-Description: simple user interface for application management (for KDE3)
+Description: simple user interface for application management (for Trinity)
  Adept Installer presents a list of applications available through the
  Advanced Package Tool (APT). An application is considered a package
  that contains a .desktop file for use with KDE, GNOME or other
@@ -61,7 +61,7 @@ Section: kde
 Depends: adept-common-trinity, ${shlibs:Depends}
 Recommends: libqt-perl
 Architecture: any
-Description: system update tool for KDE3
+Description: system update tool for Trinity
  Adept Updater provides a simple wizard-style user interface to system
  upgrades. It uses same algorithms as apt-get dist-upgrade.
  .

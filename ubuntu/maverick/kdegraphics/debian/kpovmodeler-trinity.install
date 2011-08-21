@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kpovmodeler
-debian/tmp/opt/trinity/lib/kde3/libkpovmodelerpart.la
-debian/tmp/opt/trinity/lib/kde3/libkpovmodelerpart.so
+debian/tmp/opt/trinity/lib/trinity/libkpovmodelerpart.la
+debian/tmp/opt/trinity/lib/trinity/libkpovmodelerpart.so
 debian/tmp/opt/trinity/lib/libkpovmodeler.so.0
 debian/tmp/opt/trinity/lib/libkpovmodeler.so.0.0.0
 debian/tmp/opt/trinity/share/applications/kde/kpovmodeler.desktop

@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/irkick
-debian/tmp/opt/trinity/lib/kde3/irkick.la
-debian/tmp/opt/trinity/lib/kde3/irkick.so
-debian/tmp/opt/trinity/lib/kde3/kcm_kcmlirc.la
-debian/tmp/opt/trinity/lib/kde3/kcm_kcmlirc.so
+debian/tmp/opt/trinity/lib/trinity/irkick.la
+debian/tmp/opt/trinity/lib/trinity/irkick.so
+debian/tmp/opt/trinity/lib/trinity/kcm_kcmlirc.la
+debian/tmp/opt/trinity/lib/trinity/kcm_kcmlirc.so
 debian/tmp/opt/trinity/lib/libkdeinit_irkick.so
 debian/tmp/opt/trinity/share/applications/kde/irkick.desktop
 debian/tmp/opt/trinity/share/applications/kde/kcmlirc.desktop

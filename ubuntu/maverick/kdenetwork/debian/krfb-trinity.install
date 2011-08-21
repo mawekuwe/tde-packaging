@@ -1,9 +1,9 @@
 debian/tmp/opt/trinity/bin/krfb
 debian/tmp/opt/trinity/bin/krfb_httpd
-debian/tmp/opt/trinity/lib/kde3/kcm_krfb.la
-debian/tmp/opt/trinity/lib/kde3/kcm_krfb.so
-debian/tmp/opt/trinity/lib/kde3/kded_kinetd.la
-debian/tmp/opt/trinity/lib/kde3/kded_kinetd.so
+debian/tmp/opt/trinity/lib/trinity/kcm_krfb.la
+debian/tmp/opt/trinity/lib/trinity/kcm_krfb.so
+debian/tmp/opt/trinity/lib/trinity/kded_kinetd.la
+debian/tmp/opt/trinity/lib/trinity/kded_kinetd.so
 debian/tmp/opt/trinity/share/applications/kde/kcmkrfb.desktop
 debian/tmp/opt/trinity/share/applications/kde/krfb.desktop
 debian/tmp/opt/trinity/share/apps/kinetd/eventsrc

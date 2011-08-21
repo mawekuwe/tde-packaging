@@ -13,8 +13,8 @@
 /opt/trinity/share/mimelnk/application/x-kourse.desktop
 /opt/trinity/lib/libkdeinit_kolf.so
 /opt/trinity/lib/libkdeinit_kolf.la
-/opt/trinity/lib/kde3/kolf.la
-/opt/trinity/lib/kde3/kolf.so
+/opt/trinity/lib/trinity/kolf.la
+/opt/trinity/lib/trinity/kolf.so
 /opt/trinity/lib/libkolf.la
 /opt/trinity/lib/libkolf.so.1
 /opt/trinity/lib/libkolf.so.1.2.0

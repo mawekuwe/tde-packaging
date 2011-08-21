@@ -1,9 +1,9 @@
 debian/tmp/opt/trinity/bin/kcontroledit
 debian/tmp/opt/trinity/bin/kmenuedit
-debian/tmp/opt/trinity/lib/kde3/kcontroledit.la
-debian/tmp/opt/trinity/lib/kde3/kcontroledit.so
-debian/tmp/opt/trinity/lib/kde3/kmenuedit.la
-debian/tmp/opt/trinity/lib/kde3/kmenuedit.so
+debian/tmp/opt/trinity/lib/trinity/kcontroledit.la
+debian/tmp/opt/trinity/lib/trinity/kcontroledit.so
+debian/tmp/opt/trinity/lib/trinity/kmenuedit.la
+debian/tmp/opt/trinity/lib/trinity/kmenuedit.so
 debian/tmp/opt/trinity/lib/libkdeinit_kcontroledit.so
 debian/tmp/opt/trinity/lib/libkdeinit_kmenuedit.so
 debian/tmp/opt/trinity/share/applications/kde/kmenuedit.desktop

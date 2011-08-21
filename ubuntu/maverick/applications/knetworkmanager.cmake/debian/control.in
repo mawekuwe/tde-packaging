@@ -32,5 +32,5 @@ Provides: knetworkmanager-trinity
 Conflicts: network-manager-kde
 Description: KDE systray applet for controlling NetworkManager [Trinity]
  Systray applet for controlling network connections managed by 
- NetworkManager. It is mainly written for KDE3 but also works for 
+ NetworkManager. It is mainly written for Trinity but also works for 
  other desktop environments like GNOME or Xfce.

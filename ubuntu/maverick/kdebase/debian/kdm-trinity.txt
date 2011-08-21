@@ -7,7 +7,7 @@
 # Should-Stop:       console-screen
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: X display manager for KDE3
+# Short-Description: X display manager for Trinity
 # Description:       KDM manages a collection of X servers, which may be on the local host or remote machines.
 ### END INIT INFO
 # /etc/init.d/kdm-trinity: start or stop the X display manager

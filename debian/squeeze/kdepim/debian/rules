@@ -3,9 +3,9 @@
 # Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
 # Also include the main Trinity path
 ifeq ("$(LD_LIBRARY_PATH)", "")
-LD_LIBRARY_PATH=debian/tmp/opt/trinity/lib:debian/tmp/opt/trinity/lib/kde3
+LD_LIBRARY_PATH=debian/tmp/opt/trinity/lib:debian/tmp/opt/trinity/lib/trinity
 else
-LD_LIBRARY_PATH += :debian/tmp/opt/trinity/lib:debian/tmp/opt/trinity/lib/kde3
+LD_LIBRARY_PATH += :debian/tmp/opt/trinity/lib:debian/tmp/opt/trinity/lib/trinity
 endif
 export LD_LIBRARY_PATH
 
@@ -49,11 +49,11 @@ kontact-trinity_recommends_plugins := korganizer-trinity specialdates
 kontact-trinity_suggests_plugins := journal kpilot-trinity todo
 
 DEB_DH_SHLIBDEPS_ARGS_kontact-trinity := \
-	$(foreach p,$(kontact-trinity_recommends_plugins) $(kontact-trinity_suggests_plugins),-Xopt/trinity/lib/kde3/libkontact_$(p)plugin.so) \
+	$(foreach p,$(kontact-trinity_recommends_plugins) $(kontact-trinity_suggests_plugins),-Xopt/trinity/lib/trinity/libkontact_$(p)plugin.so) \
 	-- -dRecommends \
-	$(foreach p,$(kontact-trinity_recommends_plugins),debian/kontact/opt/trinity/lib/kde3/libkontact_$(p)plugin.so) \
+	$(foreach p,$(kontact-trinity_recommends_plugins),debian/kontact/opt/trinity/lib/trinity/libkontact_$(p)plugin.so) \
 	-dSuggests \
-	$(foreach p,$(kontact-trinity_suggests_plugins),debian/kontact/opt/trinity/lib/kde3/libkontact_$(p)plugin.so) \
+	$(foreach p,$(kontact-trinity_suggests_plugins),debian/kontact/opt/trinity/lib/trinity/libkontact_$(p)plugin.so) \
 	-dDepends	# Since -u args go first in dpkg-shlibdeps call
 
 ## Move kaddressbook-trinity dependency (from libkabc_xmlrpc.so) to Recommends
@@ -65,9 +65,9 @@ DEB_DH_SHLIBDEPS_ARGS_kontact-trinity := \
 #
 ## Move kaddressbook dependency of libkcal2b-trinity to Recommends
 #DEB_DH_SHLIBDEPS_ARGS_libkcal2b-trinity := \
-#	-Xopt/trinity/lib/kde3/kcal_kabc.so \
+#	-Xopt/trinity/lib/trinity/kcal_kabc.so \
 #	-- -dRecommends \
-#	debian/libkcal2b/opt/trinity/lib/kde3/kcal_kabc.so \
+#	debian/libkcal2b/opt/trinity/lib/trinity/kcal_kabc.so \
 #	-dDepends
 
 test-shlibdeps:

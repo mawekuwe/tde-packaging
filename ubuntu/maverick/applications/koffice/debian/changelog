@@ -938,7 +938,7 @@ koffice (1:1.2.1-3) unstable; urgency=low
 
 koffice (1:1.2.1-2) unstable; urgency=low
 
-  * First KDE3 upload to debian (closes: #162433).
+  * First Trinity upload to debian (closes: #162433).
   * KSpread printing improved (closes: #106472).
   * Tables no longer crash kword (closes: #111356).
   * Better import filters for kword (closes: #113347, #143480, #148986).

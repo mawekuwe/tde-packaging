@@ -1,5 +1,5 @@
-debian/tmp/opt/trinity/lib/kde3/kmoon_panelapplet.la
-debian/tmp/opt/trinity/lib/kde3/kmoon_panelapplet.so
+debian/tmp/opt/trinity/lib/trinity/kmoon_panelapplet.la
+debian/tmp/opt/trinity/lib/trinity/kmoon_panelapplet.so
 debian/tmp/opt/trinity/share/apps/kicker/applets/kmoonapplet.desktop
 debian/tmp/opt/trinity/share/apps/kmoon
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kmoon/*.bz2

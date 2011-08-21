@@ -15,5 +15,5 @@ Description: KConfig [Trinity] Settings library for plugins - OpenCompositing Pr
  through plugins and themes contributed by the community giving a
  rich desktop experience.
  .
- This package contains the KConfig (KDE3) settings backend for
+ This package contains the KConfig (Trinity) settings backend for
  libcompizconfig.

@@ -1,9 +1,9 @@
 debian/tmp/opt/trinity/bin/klaptop_acpi_helper
 debian/tmp/opt/trinity/bin/klaptop_check
-debian/tmp/opt/trinity/lib/kde3/kcm_laptop.la
-debian/tmp/opt/trinity/lib/kde3/kcm_laptop.so
-debian/tmp/opt/trinity/lib/kde3/kded_klaptopdaemon.la
-debian/tmp/opt/trinity/lib/kde3/kded_klaptopdaemon.so
+debian/tmp/opt/trinity/lib/trinity/kcm_laptop.la
+debian/tmp/opt/trinity/lib/trinity/kcm_laptop.so
+debian/tmp/opt/trinity/lib/trinity/kded_klaptopdaemon.la
+debian/tmp/opt/trinity/lib/trinity/kded_klaptopdaemon.so
 debian/tmp/opt/trinity/lib/libkcmlaptop.so.0
 debian/tmp/opt/trinity/lib/libkcmlaptop.so.0.0.0
 debian/tmp/opt/trinity/share/applications/kde/laptop.desktop

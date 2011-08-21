@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kthesaurus
-debian/tmp/opt/trinity/lib/kde3/kthesaurus.*
-debian/tmp/opt/trinity/lib/kde3/libthesaurustool.la
-debian/tmp/opt/trinity/lib/kde3/libthesaurustool.so
+debian/tmp/opt/trinity/lib/trinity/kthesaurus.*
+debian/tmp/opt/trinity/lib/trinity/libthesaurustool.la
+debian/tmp/opt/trinity/lib/trinity/libthesaurustool.so
 debian/tmp/opt/trinity/lib/libkdeinit_kthesaurus.so
 debian/tmp/opt/trinity/share/applnk/Office/KThesaurus.desktop
 debian/tmp/opt/trinity/share/apps/thesaurus

@@ -3,10 +3,10 @@ debian/tmp/opt/trinity/lib/libkompareinterface.la
 debian/tmp/opt/trinity/lib/libkompareinterface.so
 debian/tmp/opt/trinity/lib/libkompareinterface.so.0
 debian/tmp/opt/trinity/lib/libkompareinterface.so.0.0.0
-debian/tmp/opt/trinity/lib/kde3/libkomparenavtreepart.la
-debian/tmp/opt/trinity/lib/kde3/libkomparenavtreepart.so
-debian/tmp/opt/trinity/lib/kde3/libkomparepart.la
-debian/tmp/opt/trinity/lib/kde3/libkomparepart.so
+debian/tmp/opt/trinity/lib/trinity/libkomparenavtreepart.la
+debian/tmp/opt/trinity/lib/trinity/libkomparenavtreepart.so
+debian/tmp/opt/trinity/lib/trinity/libkomparepart.la
+debian/tmp/opt/trinity/lib/trinity/libkomparepart.so
 debian/tmp/opt/trinity/share/applications/kde/kompare.desktop
 debian/tmp/opt/trinity/share/apps/kompare/komparepartui.rc
 debian/tmp/opt/trinity/share/apps/kompare/kompareui.rc

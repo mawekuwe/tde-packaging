@@ -6,7 +6,7 @@ kdesdk-trinity (4:3.5.10-0ubuntu3) karmic; urgency=low
 
 kdesdk-trinity (4:3.5.10-0ubuntu1~intrepid5) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 02 March 2009 21:41:00 -0600
@@ -832,7 +832,7 @@ kdesdk (4:3.1.0-3) unstable; urgency=low
 
 kdesdk (4:3.1.0-2) unstable; urgency=low
 
-  * First KDE3 upload to debian (closes: #167062).
+  * First Trinity upload to debian (closes: #167062).
   * Rolled the epoch to aid upgrades from the unofficial repository on
     ftp.kde.org.. *sigh*
 

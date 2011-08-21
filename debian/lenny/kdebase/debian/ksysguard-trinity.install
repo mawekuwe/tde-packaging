@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kpm
 debian/tmp/opt/trinity/bin/ksysguard
-debian/tmp/opt/trinity/lib/kde3/sysguard_panelapplet.la
-debian/tmp/opt/trinity/lib/kde3/sysguard_panelapplet.so
+debian/tmp/opt/trinity/lib/trinity/sysguard_panelapplet.la
+debian/tmp/opt/trinity/lib/trinity/sysguard_panelapplet.so
 debian/tmp/opt/trinity/lib/libksgrd.so.1
 debian/tmp/opt/trinity/lib/libksgrd.so.1.2.0
 debian/tmp/opt/trinity/share/applications/kde/ksysguard.desktop

@@ -18,7 +18,7 @@ kdevelop-trinity (4:3.5.10-0ubuntu2) karmic; urgency=low
 
 kdevelop-trinity (4:3.5.10-0ubuntu1~intrepid2) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 March 2009 23:07:00 -0600
@@ -960,7 +960,7 @@ gideon (1:2.999+cvs20030301-0woody1) unstable; urgency=low
 
 gideon (1:2.999-1) unstable; urgency=low
 
-  * Fixed for KDE3.
+  * Fixed for Trinity.
 
  -- Stefan Schimanski <schimmi@kde.org>  Mon, 24 Sep 2002 00:08:15 +0200
 

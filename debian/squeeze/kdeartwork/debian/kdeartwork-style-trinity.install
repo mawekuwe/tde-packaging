@@ -1,4 +1,4 @@
-debian/tmp/opt/trinity/lib/kde3/plugins/styles
-debian/tmp/opt/trinity/lib/kde3/kstyle_phase_config.la
-debian/tmp/opt/trinity/lib/kde3/kstyle_phase_config.so
+debian/tmp/opt/trinity/lib/trinity/plugins/styles
+debian/tmp/opt/trinity/lib/trinity/kstyle_phase_config.la
+debian/tmp/opt/trinity/lib/trinity/kstyle_phase_config.so
 debian/tmp/opt/trinity/share/apps/kstyle

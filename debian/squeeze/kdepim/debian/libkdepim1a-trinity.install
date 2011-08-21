@@ -1,7 +1,7 @@
-/opt/trinity/lib/kde3/plugins/designer/kdepimwidgets.la
-/opt/trinity/lib/kde3/plugins/designer/kdepimwidgets.so
-/opt/trinity/lib/kde3/plugins/designer/kpartsdesignerplugin.la
-/opt/trinity/lib/kde3/plugins/designer/kpartsdesignerplugin.so
+/opt/trinity/lib/trinity/plugins/designer/kdepimwidgets.la
+/opt/trinity/lib/trinity/plugins/designer/kdepimwidgets.so
+/opt/trinity/lib/trinity/plugins/designer/kpartsdesignerplugin.la
+/opt/trinity/lib/trinity/plugins/designer/kpartsdesignerplugin.so
 /opt/trinity/lib/libkdepim.so.1
 /opt/trinity/lib/libkdepim.so.1.0.0
 /opt/trinity/share/apps/kdepimwidgets

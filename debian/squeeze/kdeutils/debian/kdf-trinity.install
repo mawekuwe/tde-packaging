@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kdf
 debian/tmp/opt/trinity/bin/kwikdisk
-debian/tmp/opt/trinity/lib/kde3/kcm_kdf.la
-debian/tmp/opt/trinity/lib/kde3/kcm_kdf.so
+debian/tmp/opt/trinity/lib/trinity/kcm_kdf.la
+debian/tmp/opt/trinity/lib/trinity/kcm_kdf.so
 debian/tmp/opt/trinity/share/applications/kde/kcmdf.desktop
 debian/tmp/opt/trinity/share/applications/kde/kdf.desktop
 debian/tmp/opt/trinity/share/applications/kde/kwikdisk.desktop

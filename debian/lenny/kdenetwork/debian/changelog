@@ -20,7 +20,7 @@ kdenetwork-trinity (4:3.5.10-0ubuntu1) karmic; urgency=low
 
 kdenetwork-trinity (4:3.5.10-0ubuntu1~intrepid6) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 March 2009 18:24:00 -0600

@@ -6,7 +6,7 @@ kdebindings-trinity (4:3.5.10-0ubuntu2) karmic; urgency=low
 
 kdebindings-trinity (4:3.5.10-0ubuntu1~intrepid8) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 05 March 2009 01:11:00 -0600

@@ -30,9 +30,9 @@ Package: kdebase-runtime-data-common-trinity
 Section: kde
 Architecture: all
 Depends: kdebase-trinity
-Description: Shared common files for KDE3 and KDE4
+Description: Shared common files for Trinity and KDE4
  .
- Shared common files for both KDE3 and KDE4
+ Shared common files for both Trinity and KDE4
  Such as the desktop right-click-"Create New" list
 
 Package: kappfinder-trinity
@@ -306,7 +306,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Replaces: kdebase-trinity (<< 4:3.0.0), kdebase-trinity-doc (<< 4:3.0.0)
-Description: clipboard utility for KDE3
+Description: clipboard utility for Trinity
  klipper provides standard clipboard functions (cut and paste, history
  saving) plus additional features, like the ability to offer actions to 
  take dependent on the clipboard contents. For example, it can launch a 

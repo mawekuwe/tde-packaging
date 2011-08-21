@@ -61,7 +61,7 @@ kdelibs-trinity (4:3.5.10-0ubuntu3~intrepid7) intrepid; urgency=low
 
 kdelibs-trinity (4:3.5.10-0ubuntu3~intrepid6) intrepid; urgency=low
 
-  * Added proper KDE4 application labelling and starting to KDE3 menu
+  * Added proper KDE4 application labelling and starting to Trinity menu
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 27 Mar 2009 00:13:00 -0600
 
@@ -85,7 +85,7 @@ kdelibs-trinity (4:3.5.10-0ubuntu3~intrepid1) intrepid; urgency=low
 
 kdelibs-trinity (4:3.5.10-0ubuntu2~intrepid10) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 25 Feb 2009 15:12:00 -0600

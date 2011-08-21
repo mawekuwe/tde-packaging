@@ -6,7 +6,7 @@ soundkonverter-trinity (0.3.8-5) karmic; urgency=low
 
 soundkonverter-trinity (0.3.8-3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 17 June 2009 22:08:00 -0600

@@ -1,7 +1,7 @@
-debian/tmp/opt/trinity/lib/kde3/kpf_panelapplet.la
-debian/tmp/opt/trinity/lib/kde3/kpf_panelapplet.so
-debian/tmp/opt/trinity/lib/kde3/kpfpropertiesdialog.la
-debian/tmp/opt/trinity/lib/kde3/kpfpropertiesdialog.so
+debian/tmp/opt/trinity/lib/trinity/kpf_panelapplet.la
+debian/tmp/opt/trinity/lib/trinity/kpf_panelapplet.so
+debian/tmp/opt/trinity/lib/trinity/kpfpropertiesdialog.la
+debian/tmp/opt/trinity/lib/trinity/kpfpropertiesdialog.so
 debian/tmp/opt/trinity/share/apps/kicker/applets/kpfapplet.desktop
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpf/common
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpf/index.cache.bz2

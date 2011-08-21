@@ -6,7 +6,7 @@ knetload-trinity (2.3-3.1ubuntu0) karmic; urgency=low
 
 knetload-trinity (2.3-3.0ubuntu3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 06 March 2009 01:35:00 -0600
@@ -119,7 +119,7 @@ knetload (1.99-3) unstable; urgency=low
 
 knetload (1.99-2) unstable; urgency=low
 
-  * First KDE3 upload to debian!
+  * First Trinity upload to debian!
   * Build-depends on debhelper v4.
 
  -- Ben Burton <bab@debian.org>  Mon,  3 Feb 2003 10:40:27 +1100
@@ -133,7 +133,7 @@ knetload (1.99-1) unstable; urgency=low
 
 knetload (1.91-trinity-1) unstable; urgency=low
 
-  * Ported to KDE3.
+  * Ported to Trinity.
 
  -- Ben Burton <benb@acm.org>  Mon,  2 Sep 2002 12:57:36 +1000
 

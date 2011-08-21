@@ -120,7 +120,7 @@ install-arch:
 	dh_install -a --sourcedir=$(CURDIR)/debian/tmp
 
 	mkdir -p $(CURDIR)/debian/python-trinity-trinity/opt/trinity/lib/
-	ln -s /opt/trinity/lib/kde3/libkonsolepart.so $(CURDIR)/debian/python-trinity-trinity/opt/trinity/lib/
+	ln -s /opt/trinity/lib/trinity/libkonsolepart.so $(CURDIR)/debian/python-trinity-trinity/opt/trinity/lib/
 	for i in $$(find debian/python-*-dbg -name '*.so'); do \
 	  b=$$(basename $$i .so); \
 	  mv $$i $$(dirname $$i)/$${b}_d.so; \

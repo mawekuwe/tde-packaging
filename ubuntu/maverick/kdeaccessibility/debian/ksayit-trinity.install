@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/ksayit
 debian/tmp/opt/trinity/include/kde/ksayit_fxplugin.h
-debian/tmp/opt/trinity/lib/kde3/libFreeverb_plugin.la
-debian/tmp/opt/trinity/lib/kde3/libFreeverb_plugin.so
+debian/tmp/opt/trinity/lib/trinity/libFreeverb_plugin.la
+debian/tmp/opt/trinity/lib/trinity/libFreeverb_plugin.so
 debian/tmp/opt/trinity/lib/libKTTSD_Lib.la
 debian/tmp/opt/trinity/lib/libKTTSD_Lib.so
 debian/tmp/opt/trinity/lib/libKTTSD_Lib.so.0

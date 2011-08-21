@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/knewstickerstub
-debian/tmp/opt/trinity/lib/kde3/knewsticker_panelapplet.la
-debian/tmp/opt/trinity/lib/kde3/knewsticker_panelapplet.so
-debian/tmp/opt/trinity/lib/kde3/libkntsrcfilepropsdlg.la
-debian/tmp/opt/trinity/lib/kde3/libkntsrcfilepropsdlg.so
+debian/tmp/opt/trinity/lib/trinity/knewsticker_panelapplet.la
+debian/tmp/opt/trinity/lib/trinity/knewsticker_panelapplet.so
+debian/tmp/opt/trinity/lib/trinity/libkntsrcfilepropsdlg.la
+debian/tmp/opt/trinity/lib/trinity/libkntsrcfilepropsdlg.so
 debian/tmp/opt/trinity/share/applications/kde/knewsticker-standalone.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/knewstickerstub.desktop
 debian/tmp/opt/trinity/share/apps/kconf_update/knewsticker.upd

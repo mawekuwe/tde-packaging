@@ -12,24 +12,24 @@ Architecture: all
 Section: kde
 Depends: blinken-trinity (>= ${Source-Version}), kalzium-trinity (>= ${Source-Version}), kanagram-trinity (>= ${Source-Version}), kbruch-trinity (>= ${Source-Version}), kdeedu-data-trinity (>= ${Source-Version}), keduca-trinity (>= ${Source-Version}), kgeography-trinity (>= ${Source-Version}), khangman-trinity (>= ${Source-Version}), kig-trinity (>= ${Source-Version}), kiten-trinity (>= ${Source-Version}), klatin-trinity (>= ${Source-Version}), klettres-trinity (>= ${Source-Version}), kmplot-trinity (>= ${Source-Version}), kpercentage-trinity (>= ${Source-Version}), kstars-trinity (>= ${Source-Version}), ktouch-trinity (>= ${Source-Version}), kturtle-trinity (>= ${Source-Version}), kverbos-trinity (>= ${Source-Version}), kvoctrain-trinity (>= ${Source-Version}), kwordquiz-trinity (>= ${Source-Version}), indi-trinity (>= ${Source-Version})
 Suggests: kdeedu-trinity-doc-html
-Description: educational apps from the official KDE3 release
+Description: educational apps from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes educational applications provided with the
- official release of KDE3.
+ official release of Trinity.
 
 Package: kdeedu-data-trinity
 Architecture: all
 Section: kde
-Description: shared data for KDE3 educational applications
+Description: shared data for Trinity educational applications
  This package contains shared data necessary for running the
  educational applications provided with KDE (the K Desktop
  Environment).
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kdeedu-trinity-dbg
@@ -46,7 +46,7 @@ Package: kdeedu-trinity-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror-trinity | www-browser, kdeedu-trinity
-Description: KDE3 edutainment documentation in HTML format
+Description: Trinity edutainment documentation in HTML format
  By default the educational applications provided with KDE (the K
  Desktop Environment) only provide their documentation in KDE docbook
  format, which can only be read by Konqueror or KHelpCenter. This
@@ -58,7 +58,7 @@ Description: KDE3 edutainment documentation in HTML format
  /opt/trinity/share/doc/kde/HTML/en/kalzium/. Documentation is provided for
  most KDE educational packages.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: blinken-trinity
@@ -66,7 +66,7 @@ Architecture: any
 Section: games
 Depends: ${shlibs:Depends}, ttf-sjfonts, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: KDE3 version of the Simon Says electronic memory game
+Description: Trinity version of the Simon Says electronic memory game
  Blinken is based on an electronic game released in 1978, which
  challenges players to remember sequences of increasing length.  On
  the face of the device, there are 4 different color buttons, each
@@ -76,7 +76,7 @@ Description: KDE3 version of the Simon Says electronic memory game
  correct order, they advance to the next stage, where an identical
  sequence with one extra step is presented.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kalzium-trinity
@@ -84,7 +84,7 @@ Architecture: any
 Section: science
 Depends: ${shlibs:Depends}, kalzium-data-trinity (>> ${KDE-Version3}), kalzium-data-trinity (<< ${KDE-Next-Version3}), kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: chemistry teaching tool for KDE3
+Description: chemistry teaching tool for Trinity
  Kalzium is a program which shows you the Periodic System of Elements
  (PSE).  You can use Kalzium to search for information about the
  elements or to learn facts about the PSE.
@@ -101,7 +101,7 @@ Description: chemistry teaching tool for KDE3
  OCaml supports native code generation, Kalzium includes a chemical
  equation solver.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kalzium-data-trinity
@@ -115,7 +115,7 @@ Description: data files for Kalzium
  .
  See the kalzium package for further information.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kanagram-trinity
@@ -123,7 +123,7 @@ Architecture: any
 Section: games
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: letter order game for KDE3
+Description: letter order game for Trinity
  KAnagram is a game that is based on the word/letter puzzles that the
  author played as a child.  A word is picked at random and displayed
  with its letters in a messed order, with difficulty dependent on the
@@ -136,7 +136,7 @@ Description: letter order game for KDE3
  children aged 10+ because of the difficulty, but of course everyone
  is welcome to try.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kbruch-trinity
@@ -144,12 +144,12 @@ Architecture: any
 Section: math
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: fraction calculation teaching tool for KDE3
+Description: fraction calculation teaching tool for Trinity
  KBruch is a small program to practice calculating with fractions.
  Different exercises are provided for this purpose.  The program
  checks the user's input and gives feedback.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: keduca-trinity
@@ -157,11 +157,11 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: interactive form-based tests for KDE3
+Description: interactive form-based tests for Trinity
  KEduca is a flash-card application which allows you to make
  interactive form-based tests.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kgeography-trinity
@@ -169,13 +169,13 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kgeography-data-trinity (>> ${KDE-Version3}), kgeography-data-trinity (<< ${KDE-Next-Version3}), kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: Geography learning tool for KDE3
+Description: Geography learning tool for Trinity
  KGeography contains maps allowing you to learn various countries or
  the political divisions of several countries.  It has several modes,
  including a map browser and games involving the names, capitals, or
  flags of the map divisions.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kgeography-data-trinity
@@ -188,7 +188,7 @@ Description: data files for KGeography
  .
  See the kgeography package for further information.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: khangman-trinity
@@ -196,7 +196,7 @@ Architecture: any
 Section: games
 Depends: ${shlibs:Depends}, ttf-dustin, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: the classical hangman game for KDE3
+Description: the classical hangman game for Trinity
  KHangMan is a game based on the well known hangman game.  It is aimed
  for children aged 6 and above.  It has four levels of difficulty:
  Animals (animals words), Easy, Medium and Hard.
@@ -206,7 +206,7 @@ Description: the classical hangman game for KDE3
  guess a wrong letter, a picture of a hangman is drawn.  You must
  guess the word before getting hanged!  You have 10 tries.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kig-trinity
@@ -232,7 +232,7 @@ Description: interactive geometry program for KDE
  and exports to/from foreign file formats including Cabri, Dr. Geo,
  KGeo, KSeg and XFig.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kiten-trinity
@@ -240,14 +240,14 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3}), ttf-kochi-gothic | ttf-kochi-mincho
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: Japanese reference/study tool for KDE3
+Description: Japanese reference/study tool for Trinity
  Kiten is a Japanese reference and study tool for KDE.  It is an
  application with multiple functions.  Firstly, it is a convenient
  English to Japanese and Japanese to English dictionary.  Secondly, it
  is a Kanji dictionary, with multiple ways to look up specific
  characters.  Thirdly, it is a tool to help you learn Kanji.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: klatin-trinity
@@ -270,7 +270,7 @@ Description: application to help revise/teach Latin
  a noun or a verb, such as the "ablative singular", or the "1st person
  indicative passive plural", and is not multiple choice.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: klettres-trinity
@@ -278,7 +278,7 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, klettres-data-trinity (>> ${KDE-Version3}), klettres-data-trinity (<< ${KDE-Next-Version3}), kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: foreign alphabet tutor for KDE3
+Description: foreign alphabet tutor for Trinity
  KLettres is an application specially designed to help the user to
  learn the alphabet in a new language and then to learn to read simple
  syllables.  The user can be a young child aged from two and a half or
@@ -287,7 +287,7 @@ Description: foreign alphabet tutor for KDE3
  Seven languages are currently available: Czech, Danish, Dutch,
  English, French, Italian and Slovak.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: klettres-data-trinity
@@ -301,7 +301,7 @@ Description: data files for KLettres foreign alphabet tutor
  .
  See the klettres package for further information.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kmplot-trinity
@@ -309,7 +309,7 @@ Architecture: any
 Section: math
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: mathematical function plotter for KDE3
+Description: mathematical function plotter for Trinity
  KmPlot is a mathematical function plotter for KDE.  It has a powerful
  built-in parser.  You can plot different functions simultaneously and
  combine them to build new functions.
@@ -323,7 +323,7 @@ Description: mathematical function plotter for KDE3
  maximum and minimum values, changing function parameters dynamically
  and plotting derivatives and integral functions.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kpercentage-trinity
@@ -331,7 +331,7 @@ Architecture: any
 Section: math
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: percentage calculation teaching tool for KDE3
+Description: percentage calculation teaching tool for Trinity
  KPercentage is a small math application that will help pupils to
  improve their skills in calculating percentages.
  .
@@ -339,7 +339,7 @@ Description: percentage calculation teaching tool for KDE3
  Finally the pupil can select a random mode, in which all three tasks
  are mixed randomly.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kstars-trinity
@@ -347,7 +347,7 @@ Architecture: any
 Section: science
 Depends: ${shlibs:Depends}, kstars-data-trinity (>> ${KDE-Version3}), kstars-data-trinity (<< ${KDE-Next-Version3}), kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3}), indi-trinity (= ${Source-Version})
 Suggests: konqueror-trinity, khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: desktop planetarium for KDE3
+Description: desktop planetarium for Trinity
  KStars is a graphical desktop planetarium for KDE.  It depicts an
  accurate simulation of the night sky, including stars,
  constellations, star clusters, nebulae, galaxies, all planets, the
@@ -360,7 +360,7 @@ Description: desktop planetarium for KDE3
  powerful features, yet the interface is clean and simple and fun to
  use.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kstars-data-trinity
@@ -374,7 +374,7 @@ Description: data files for KStars desktop planetarium
  .
  See the kstars package for further information.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: ktouch-trinity
@@ -382,7 +382,7 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: touch typing tutor for KDE3
+Description: touch typing tutor for Trinity
  KTouch is a program for learning touch typing - it helps you learn to
  type on a keyboard quickly and correctly.  Every finger has its place
  on the keyboard with associated keys to press.
@@ -392,7 +392,7 @@ Description: touch typing tutor for KDE3
  are.  It can display which key to press next, and the correct finger
  to use.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kturtle-trinity
@@ -418,7 +418,7 @@ Description: educational Logo programming environment
  qualities of the programming language and will not try to suit
  professional programmers' needs.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kverbos-trinity
@@ -426,7 +426,7 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: Spanish verb form study application for KDE3
+Description: Spanish verb form study application for Trinity
  Kverbos allows the user to learn the forms of Spanish verbs.  The
  program suggests a verb and a time and the user enters the different
  verb forms.  The program corrects the user input and gives feedback.
@@ -435,7 +435,7 @@ Description: Spanish verb form study application for KDE3
  program can build regular verb forms by itself.  Irregular verb forms
  have to be entered by the user.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kvoctrain-trinity
@@ -443,7 +443,7 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, ${perl:Depends}, libwww-perl, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: vocabulary trainer for KDE3
+Description: vocabulary trainer for Trinity
  KVocTrain is a little utility to help you train your vocabulary when
  you are trying to learn a foreign language.  You can create your own
  database with the words you need.  It is intended as a replacement
@@ -459,7 +459,7 @@ Description: vocabulary trainer for KDE3
  things.  This is and probably will stay beyond the scope of this
  application.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: kwordquiz-trinity
@@ -467,7 +467,7 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
-Description: flashcard and vocabulary learning program for KDE3
+Description: flashcard and vocabulary learning program for Trinity
  KWordQuiz is a flashcard-based tool that helps you to master new
  vocabularies. It may be a language or any other kind of terminology.
  .
@@ -476,33 +476,33 @@ Description: flashcard and vocabulary learning program for KDE3
  used by WordQuiz for Windows, csv files with comma-separated text,
  and xml.gz files created by Pauker (http://pauker.sourceforge.net).
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: libkdeedu3-trinity
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}
-Description: library for use with KDE3 educational apps
+Description: library for use with Trinity educational apps
  The KDE-based library libkdeedu is used with educational
  applications.  It currently provides support for data plotting and
  vocabulary items (including a parser for kvtml vocabulary files).
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: libkdeedu-trinity-dev
 Architecture: any
 Section: libdevel
 Depends: libkdeedu3-trinity (= ${Source-Version}), kdelibs4-trinity-dev (>= 4:3.5.8)
-Description: development files for KDE3 educational library
+Description: development files for Trinity educational library
  The KDE-based library libkdeedu is used with educational
  applications.  It currently provides support for data plotting and
  vocabulary items (including a parser for kvtml vocabulary files).
  .
  Development files for libkdeedu are included in this package.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: libkiten1-trinity
@@ -521,7 +521,7 @@ Description: library for Kiten Japanese reference/study tool
  data, such as Japanese language data files and GUI resource files.
  For further information, see the kiten package.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: libkiten-trinity-dev
@@ -537,7 +537,7 @@ Description: development files for Kiten library
  Development files for libkiten are included in this package.  For
  further information, see the kiten package.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.
 
 Package: indi-trinity
@@ -553,5 +553,5 @@ Description: Instrument Neutral Distributed Interface for astronomical devices
  communicate with the device drivers and build a completely dynamic GUI
  based on the services provided by the device.
  .
- This package is part of KDE3, as a component of the KDE education module.
+ This package is part of Trinity, as a component of the KDE education module.
  See the 'kde-trinity' and 'kdeedu-trinity' packages for more information.

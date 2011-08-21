@@ -1,11 +1,11 @@
 debian/tmp/opt/trinity/bin/kmix
 debian/tmp/opt/trinity/bin/kmixctrl
-debian/tmp/opt/trinity/lib/kde3/kmix.la
-debian/tmp/opt/trinity/lib/kde3/kmix.so
-debian/tmp/opt/trinity/lib/kde3/kmix_panelapplet.la
-debian/tmp/opt/trinity/lib/kde3/kmix_panelapplet.so
-debian/tmp/opt/trinity/lib/kde3/kmixctrl.la
-debian/tmp/opt/trinity/lib/kde3/kmixctrl.so
+debian/tmp/opt/trinity/lib/trinity/kmix.la
+debian/tmp/opt/trinity/lib/trinity/kmix.so
+debian/tmp/opt/trinity/lib/trinity/kmix_panelapplet.la
+debian/tmp/opt/trinity/lib/trinity/kmix_panelapplet.so
+debian/tmp/opt/trinity/lib/trinity/kmixctrl.la
+debian/tmp/opt/trinity/lib/trinity/kmixctrl.so
 debian/tmp/opt/trinity/lib/libkdeinit_kmix.so
 debian/tmp/opt/trinity/lib/libkdeinit_kmixctrl.so
 debian/tmp/opt/trinity/share/applications/kde/kmix.desktop

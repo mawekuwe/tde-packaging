@@ -6,7 +6,7 @@ kdeartwork-trinity (4:3.5.10-0ubuntu1) karmic; urgency=low
 
 kdeartwork-trinity (4:3.5.10-0ubuntu1~intrepid3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 28 Feb 2009 14:52:00 -0600
@@ -587,7 +587,7 @@ kdeartwork (4:3.1.0-3) unstable; urgency=low
 
 kdeartwork (4:3.1.0-2) unstable; urgency=low
 
-  * First KDE3 upload to debian!
+  * First Trinity upload to debian!
   * Build-depends on xlibmesa-gl-dev and xlibmesa-glu-dev.
 
  -- Ben Burton <bab@debian.org>  Mon,  3 Feb 2003 08:53:03 +1100

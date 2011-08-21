@@ -2,10 +2,10 @@ debian/docrc/*.docrc        /opt/trinity/share/apps/quanta/doc
 debian/icons/quanta.xpm	/opt/trinity/share/pixmaps
 
 debian/tmp/opt/trinity/bin/quanta
-debian/tmp/opt/trinity/lib/kde3/quantadebuggerdbgp.la
-debian/tmp/opt/trinity/lib/kde3/quantadebuggerdbgp.so
-debian/tmp/opt/trinity/lib/kde3/quantadebuggergubed.la
-debian/tmp/opt/trinity/lib/kde3/quantadebuggergubed.so
+debian/tmp/opt/trinity/lib/trinity/quantadebuggerdbgp.la
+debian/tmp/opt/trinity/lib/trinity/quantadebuggerdbgp.so
+debian/tmp/opt/trinity/lib/trinity/quantadebuggergubed.la
+debian/tmp/opt/trinity/lib/trinity/quantadebuggergubed.so
 debian/tmp/opt/trinity/share/applications/kde/quanta.desktop
 debian/tmp/opt/trinity/share/apps/kafkapart
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/quanta/*.bz2

@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/ark
-debian/tmp/opt/trinity/lib/kde3/ark.la
-debian/tmp/opt/trinity/lib/kde3/ark.so
-debian/tmp/opt/trinity/lib/kde3/libarkpart.la
-debian/tmp/opt/trinity/lib/kde3/libarkpart.so
+debian/tmp/opt/trinity/lib/trinity/ark.la
+debian/tmp/opt/trinity/lib/trinity/ark.so
+debian/tmp/opt/trinity/lib/trinity/libarkpart.la
+debian/tmp/opt/trinity/lib/trinity/libarkpart.so
 debian/tmp/opt/trinity/lib/libkdeinit_ark.so
 debian/tmp/opt/trinity/share/applications/kde/ark.desktop
 debian/tmp/opt/trinity/share/apps/ark/ark_part.rc

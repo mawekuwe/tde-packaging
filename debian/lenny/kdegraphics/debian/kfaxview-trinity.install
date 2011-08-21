@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kfaxview
-debian/tmp/opt/trinity/lib/kde3/kfaxviewpart.so
-debian/tmp/opt/trinity/lib/kde3/kfaxviewpart.la
+debian/tmp/opt/trinity/lib/trinity/kfaxviewpart.so
+debian/tmp/opt/trinity/lib/trinity/kfaxviewpart.la
 debian/tmp/opt/trinity/lib/libkfaximage.so
 debian/tmp/opt/trinity/lib/libkfaximage.la
 debian/tmp/opt/trinity/share/applications/kde/kfaxview.desktop

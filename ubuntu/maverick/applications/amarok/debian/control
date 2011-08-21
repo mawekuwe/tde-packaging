@@ -21,7 +21,7 @@ Architecture: any
 Depends:  amarok-common-trinity (>= ${source:Version}), amarok-engine-xine-trinity (= ${binary:Version}) | amarok-engine-yauap-trinity (= ${binary:Version}), unzip, ${shlibs:Depends}
 Suggests: amarok-engines-trinity, moodbar, konqueror-trinity | www-browser,
  python, python-qt3, libqt0-ruby1.8, libvisual-0.4-plugins
-Description: versatile and easy to use audio player for KDE3
+Description: versatile and easy to use audio player for Trinity
  Amarok tries to be a little different, providing a simple drag and drop
  interface that really makes playlist handling easy.
  .

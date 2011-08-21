@@ -25,8 +25,8 @@ debian/tmp/opt/trinity/share/mimelnk/application/x-kommander.desktop
 kommander/examples /opt/trinity/share/doc/kommander
 kommander/working/extractkmdr /opt/trinity/bin
 kommander/working/kmdr2po /opt/trinity/bin
-debian/tmp/opt/trinity/lib/kde3/libkommander_part.so
-debian/tmp/opt/trinity/lib/kde3/libkommander_part.la
+debian/tmp/opt/trinity/lib/trinity/libkommander_part.so
+debian/tmp/opt/trinity/lib/trinity/libkommander_part.la
 debian/tmp/opt/trinity/share/apps/kommander/pics/toolbox.png
 debian/tmp/opt/trinity/share/apps/kommander/pics/kfontcombo.png
 debian/tmp/opt/trinity/share/apps/kommander/translating/extractkmdr

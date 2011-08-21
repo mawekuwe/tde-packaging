@@ -6,7 +6,7 @@ libkexiv2-trinity (0.1.7-0ubuntu4) karmic; urgency=low
 
 libkexiv2-trinity (0.1.7-0ubuntu2) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 05 March 2009 01:11:00 -0600

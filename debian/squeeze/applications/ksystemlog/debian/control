@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: ksystemlog-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: system log viewer tool for KDE3
- ksystemlog is a system log viewer tool for KDE3.
+Description: system log viewer tool for Trinity
+ ksystemlog is a system log viewer tool for Trinity.
  .
  This program is developed for being used by beginner users, which don't know
  how to find information about their Linux system, and how the log files are in

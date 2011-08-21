@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/khexedit
-debian/tmp/opt/trinity/lib/kde3/libkbyteseditwidget.la
-debian/tmp/opt/trinity/lib/kde3/libkbyteseditwidget.so
-debian/tmp/opt/trinity/lib/kde3/libkhexedit2part.la
-debian/tmp/opt/trinity/lib/kde3/libkhexedit2part.so
+debian/tmp/opt/trinity/lib/trinity/libkbyteseditwidget.la
+debian/tmp/opt/trinity/lib/trinity/libkbyteseditwidget.so
+debian/tmp/opt/trinity/lib/trinity/libkhexedit2part.la
+debian/tmp/opt/trinity/lib/trinity/libkhexedit2part.so
 debian/tmp/opt/trinity/lib/libkhexeditcommon.so.0
 debian/tmp/opt/trinity/lib/libkhexeditcommon.so.0.0.0
 debian/tmp/opt/trinity/share/applications/kde/khexedit.desktop

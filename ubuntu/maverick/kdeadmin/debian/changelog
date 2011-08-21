@@ -6,7 +6,7 @@ kdeadmin-trinity (4:3.5.10-0ubuntu4) karmic; urgency=low
 
 kdeadmin-trinity (4:3.5.10-0ubuntu1~intrepid3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 01 March 2009 12:46:00 -0600

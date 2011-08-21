@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kfind
-debian/tmp/opt/trinity/lib/kde3/libkfindpart.la
-debian/tmp/opt/trinity/lib/kde3/libkfindpart.so
+debian/tmp/opt/trinity/lib/trinity/libkfindpart.la
+debian/tmp/opt/trinity/lib/trinity/libkfindpart.so
 debian/tmp/opt/trinity/share/applications/kde/Kfind.desktop
 debian/tmp/opt/trinity/share/apps/kfindpart/icons/locolor/22x22/actions/archive.png
 debian/tmp/opt/trinity/share/apps/kfindpart/icons/locolor/22x22/actions/delete.png

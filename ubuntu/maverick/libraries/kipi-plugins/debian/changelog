@@ -6,7 +6,7 @@ kipi-plugins-trinity (0.1.6-0ubuntu1) karmic; urgency=low
 
 kipi-plugins-trinity (0.1.5-0ubuntu4) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 05 March 2009 19:52:00 -0600

@@ -52,5 +52,5 @@ debian/tmp/opt/trinity/share/apps/knetworkconf/pixmaps/rpath.png
 debian/tmp/opt/trinity/share/apps/knetworkconf/pixmaps/kubuntu.png
 debian/tmp/opt/trinity/share/apps/knetworkconf/pixmaps/yoper.png
 debian/tmp/opt/trinity/share/applications/kde/kcm_knetworkconfmodule.desktop
-debian/tmp/opt/trinity/lib/kde3/kcm_knetworkconfmodule.so
-debian/tmp/opt/trinity/lib/kde3/kcm_knetworkconfmodule.la
+debian/tmp/opt/trinity/lib/trinity/kcm_knetworkconfmodule.so
+debian/tmp/opt/trinity/lib/trinity/kcm_knetworkconfmodule.la

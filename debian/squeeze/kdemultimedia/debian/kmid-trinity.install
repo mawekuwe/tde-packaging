@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kmid
-debian/tmp/opt/trinity/lib/kde3/libkmidpart.la
-debian/tmp/opt/trinity/lib/kde3/libkmidpart.so
+debian/tmp/opt/trinity/lib/trinity/libkmidpart.la
+debian/tmp/opt/trinity/lib/trinity/libkmidpart.so
 debian/tmp/opt/trinity/lib/libkmidlib.so.0
 debian/tmp/opt/trinity/lib/libkmidlib.so.0.0.0
 debian/tmp/opt/trinity/share/applications/kde/kmid.desktop

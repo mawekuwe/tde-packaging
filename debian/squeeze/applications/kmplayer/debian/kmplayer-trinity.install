@@ -1,5 +1,5 @@
 opt/trinity/lib/libkdeinit_kmplayer.so
-opt/trinity/lib/kde3/kmplayer.so
+opt/trinity/lib/trinity/kmplayer.so
 opt/trinity/bin/kmplayer
 opt/trinity/bin/kxvplayer
 /opt/trinity/share/apps/kmplayer/kmplayerui.rc

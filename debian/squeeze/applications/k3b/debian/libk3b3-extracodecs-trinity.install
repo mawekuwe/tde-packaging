@@ -1,2 +1,2 @@
-debian/tmp/opt/trinity/lib/kde3/libk3bmaddecoder.*
-debian/tmp/opt/trinity/lib/kde3/libk3bffmpegdecoder.*
+debian/tmp/opt/trinity/lib/trinity/libk3bmaddecoder.*
+debian/tmp/opt/trinity/lib/trinity/libk3bffmpegdecoder.*

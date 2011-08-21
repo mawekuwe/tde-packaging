@@ -6,7 +6,7 @@ mlt++-trinity (0.2.5~svn20071228-0.0ubuntu5) karmic; urgency=low
 
 mlt++-trinity (0.2.5~svn20071228-0.0ubuntu4) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 06 March 2009 01:35:00 -0600

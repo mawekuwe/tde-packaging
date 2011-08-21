@@ -12,7 +12,7 @@ amarok-trinity (2:1.4.10-0ubuntu5) jaunty; urgency=low
 
 amarok-trinity (2:1.4.10-0ubuntu4) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 March 2009 20:08:00 -0600

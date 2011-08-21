@@ -6,7 +6,7 @@ gtk-qt-engine-trinity (1:0.8-1ubuntu3) karmic; urgency=low
 
 gtk-qt-engine-trinity (1:0.8-1ubuntu2) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 01 March 2009 23:14:00 -0600

@@ -271,4 +271,3 @@ binary-install/ksmserver-trinity::
 	install -p -D -m644 debian/tmp/opt/trinity/share/apps/kdm/sessions/tde.desktop debian/ksmserver-trinity/usr/share/xsessions/trinity.desktop
 	install -p -D -m755 debian/plasma.autodetect debian/ksmserver-trinity/usr/bin/plasma.autodetect
 	install -p -D -m755 debian/plasma-desktop.autodetect debian/ksmserver-trinity/usr/bin/plasma-desktop.autodetect
-	sed -i 's/KDE3/Trinity/g' debian/ksmserver-trinity/usr/share/xsessions/trinity.desktop

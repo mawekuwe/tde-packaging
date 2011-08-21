@@ -1,18 +1,18 @@
-opt/trinity/lib/kde3/kcm_serviceconfig.so.0.0.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_serviceconfig.la opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_serviceconfig.a opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_userconfig.so.0.0.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_userconfig.la opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_userconfig.a opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_mountconfig.so.0.0.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_mountconfig.la opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_mountconfig.a opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_displayconfig.so.0.0.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_displayconfig.la opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_displayconfig.a opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_wineconfig.so.0.0.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_wineconfig.la opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_wineconfig.a opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_serviceconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_serviceconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_serviceconfig.a opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.a opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.a opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_displayconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_displayconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_displayconfig.a opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.a opt/trinity/lib/
 opt/trinity/share/icons/crystalsvg/32x32/apps/daemons.png
 opt/trinity/share/icons/crystalsvg/32x32/apps/disksfilesystems.png
 opt/trinity/share/icons/crystalsvg/32x32/apps/userconfig.png
@@ -46,7 +46,7 @@ opt/trinity/share/apps/guidance/pics/hi32-password.png
 opt/trinity/share/apps/guidance/pics/kcmpartitions.png
 opt/trinity/share/apps/guidance/pics/kde1.png
 opt/trinity/share/apps/guidance/pics/kde2.png
-opt/trinity/share/apps/guidance/pics/kde3.png
+opt/trinity/share/apps/guidance/pics/trinity.png
 opt/trinity/share/apps/guidance/pics/kde4.png
 opt/trinity/share/apps/guidance/pics/kde5.png
 opt/trinity/share/apps/guidance/pics/kde6.png
@@ -111,15 +111,15 @@ opt/trinity/share/python-support/kde-guidance-trinity/sizeview.py
 opt/trinity/share/python-support/kde-guidance-trinity/unixauthdb.py
 opt/trinity/share/python-support/kde-guidance-trinity/userconfig.py
 opt/trinity/share/python-support/kde-guidance-trinity/wineconfig.py
-opt/trinity/lib/kde3/kcm_serviceconfig.so.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_serviceconfig.so opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_userconfig.so.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_userconfig.so opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_mountconfig.so.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_mountconfig.so opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_displayconfig.so.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_displayconfig.so opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_wineconfig.so.0 opt/trinity/lib/
-opt/trinity/lib/kde3/kcm_wineconfig.so opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_serviceconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_serviceconfig.so opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.so opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.so opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_displayconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_displayconfig.so opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.so opt/trinity/lib/
 usr/share/lintian/overrides/kde-guidance-trinity
 etc/X11/Xsession.d/40guidance-displayconfig_restore

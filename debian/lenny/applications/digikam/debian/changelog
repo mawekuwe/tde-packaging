@@ -6,7 +6,7 @@ digikam-trinity (2:0.9.6-1ubuntu5) karmic; urgency=low
 
 digikam-trinity (2:0.9.4-1ubuntu3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 04 March 2009 01:11:00 -0600
@@ -26,7 +26,7 @@ digikam (2:0.9.4-1ubuntu1) intrepid; urgency=low
 digikam (2:0.9.4-1) unstable; urgency=low
 
   * New upstream release
-    - digiKam 0.9.4 Release Plan (KDE3) ~ 13 July 08 (Closes: #490144)
+    - digiKam 0.9.4 Release Plan (Trinity) ~ 13 July 08 (Closes: #490144)
   * DEB_CONFIGURE_EXTRA_FLAGS := --without-included-sqlite3
   * Debhelper compatibility level V7
   * Install pixmaps in debian/*.install

@@ -6,7 +6,7 @@ k3b-trinity (1.0.5-4ubuntu2) karmic; urgency=low
 
 k3b-trinity (1.0.5-4ubuntu0) jaunty; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 16 June 2009 11:18:00 -0600

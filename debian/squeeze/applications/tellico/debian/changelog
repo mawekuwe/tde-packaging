@@ -6,7 +6,7 @@ tellico-trinity (1.3.2.1-1ubuntu4) karmic; urgency=low
 
 tellico-trinity (1.3.2.1-1ubuntu3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 05 March 2009 01:11:00 -0600

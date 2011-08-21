@@ -13,20 +13,20 @@ Architecture: all
 Depends: dcoprss-trinity (>= ${Source-Version}), kdenetwork-kfile-plugins-trinity (>= ${Source-Version}), kdict-trinity (>= ${Source-Version}), kdnssd-trinity (>= ${Source-Version}), kget-trinity (>= ${Source-Version}), knewsticker-trinity (>= ${Source-Version}), kopete-trinity (>= ${Source-Version}), kpf-trinity (>= ${Source-Version}), kppp-trinity (>= ${Source-Version}), krdc-trinity (>= ${Source-Version}), krfb-trinity (>= ${Source-Version}), ksirc-trinity (>= ${Source-Version}), kwifimanager-trinity (>= ${Source-Version}), librss1-trinity (>= ${Source-Version})
 Recommends: kdenetwork-filesharing-trinity (>= ${Source-Version}), ktalkd-trinity (>= ${Source-Version}), lisa-trinity (>= ${Source-Version})
 Suggests: kdenetwork-trinity-doc-html (>= ${Source-Version})
-Description: network-related apps from the official KDE3 release
+Description: network-related apps from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of network and networking related
- applications provided with the official release of KDE3.
+ applications provided with the official release of Trinity.
 
 Package: dcoprss-trinity
 Section: net
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: RSS utilities for KDE3
+Description: RSS utilities for Trinity
  kdenetwork-dcoprss is a RSS to DCOP bridge, allowing all
  DCOP aware applications to access RSS news feeds. There is also
  a few sample utilities provided.
@@ -34,14 +34,14 @@ Description: RSS utilities for KDE3
  RSS is a standard for publishing news headlines.
  DCOP is the KDE interprocess communication protocol.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kdenetwork-trinity-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror-trinity | www-browser, kdebase-trinity
-Description: KDE3 network documentation in HTML format
+Description: Trinity network documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
  This package provides all of the KDE network documentation converted to
@@ -60,13 +60,13 @@ Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
 Enhances: konqueror-trinity
-Description: torrent metainfo plugin for KDE3
+Description: torrent metainfo plugin for Trinity
  This package provides a metainformation plugin for bittorrent files.
  .
  Kde uses kfile-plugins to provide metainfo tab in the files properties
  dialog in konqueror and other file-handling applications.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kdenetwork-filesharing-trinity
@@ -74,11 +74,11 @@ Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, perl-suid
 Replaces: kcontrol-trinity (<< 4:3.3.0)
-Description: network filesharing configuration module for KDE3
+Description: network filesharing configuration module for Trinity
  This package provides a KDE Control Center module to configure
  NFS and Samba.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kdict-trinity
@@ -88,13 +88,13 @@ Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Provides: dict-client-trinity
 Replaces: kdebase-data-trinity (<< 4:3.4.0)
-Description: dictionary client for KDE3
+Description: dictionary client for Trinity
  KDict is an advanced KDE graphical client for the DICT Protocol, with full
  Unicode support. It enables you to search through dictionary databases for a
  word or phrase, then displays suitable definitions. KDict tries to ease
  basic as well as advanced queries.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kget-trinity
@@ -102,7 +102,7 @@ Section: net
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: download manager for KDE3
+Description: download manager for Trinity
  KGet is a a download manager similar to GetRight or Go!zilla. It keeps
  all your downloads in one dialog and you can add and remove transfers.
  Transfers can be paused, resumed, queued or scheduled.
@@ -110,7 +110,7 @@ Description: download manager for KDE3
  and remaining time. Program supports drag & drop from KDE
  applications and Netscape.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: knewsticker-trinity
@@ -118,14 +118,14 @@ Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}, kicker-trinity
 Suggests: khelpcenter-trinity, knewsticker-scripts-trinity
-Description: news ticker applet for KDE3
- This is a news ticker applet for the KDE3 panel. It can scroll news from
+Description: news ticker applet for Trinity
+ This is a news ticker applet for the Trinity panel. It can scroll news from
  your favorite news sites, such as lwn.net, /. and freshmeat.net.
  To achieve this, KNewsTicker requires the news sites to provide a
  RSS feed to newsitems. KNewsTicker already comes with a selection of
  good news sources which provide such files.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kopete-trinity
@@ -135,7 +135,7 @@ Depends: ${shlibs:Depends}
 Recommends: qca-tls
 Suggests: kdeartwork-emoticons-trinity, khelpcenter-trinity, imagemagick, gnupg, gnomemeeting
 Replaces: konversation-trinity (<= 0.14.0-4), sim (<= 0.9.3-2)
-Description: instant messenger for KDE3
+Description: instant messenger for Trinity
  Kopete is an instant messenger program which can communicate with a variety
  of IM systems, such as Yahoo, ICQ, MSN, IRC and Jabber.
  .
@@ -145,7 +145,7 @@ Description: instant messenger for KDE3
  .
  Support for more IM protocols can be added through a plugin system.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
  .
  Homepage: http://kopete.kde.org
@@ -155,13 +155,13 @@ Section: net
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: public fileserver for KDE3
+Description: public fileserver for Trinity
  kpf provides simple file sharing using HTTP. kpf is strictly a public
  fileserver, which means that there are no access restrictions to shared
  files. Whatever you select for sharing is available to anyone. kpf is
  designed to be used for sharing files with friends.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kppp-trinity
@@ -169,7 +169,7 @@ Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, ppp
 Suggests: khelpcenter-trinity
-Description: modem dialer and ppp frontend for KDE3
+Description: modem dialer and ppp frontend for Trinity
  KPPP is a dialer and front end for pppd. It allows for interactive
  script generation and network setup. It will automate the dialing in
  process to your ISP while letting you conveniently monitor the entire
@@ -178,7 +178,7 @@ Description: modem dialer and ppp frontend for KDE3
  Once connected KPPP will provide a rich set of statistics and keep
  track of the time spent online for you.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: krdc-trinity
@@ -187,12 +187,12 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Recommends: rdesktop
-Description: Remote Desktop Connection for KDE3
+Description: Remote Desktop Connection for Trinity
  krdc is an KDE graphical client for the rfb protocol, used by VNC,
  and if rdesktop is installed, krdc can connect to Windows Terminal
  Servers using RDP.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: krfb-trinity
@@ -200,7 +200,7 @@ Section: net
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: Desktop Sharing for KDE3
+Description: Desktop Sharing for Trinity
  Desktop Sharing (krfb) is a server application that allows you to share
  your current session with a user on another machine, who can use a
  VNC client like krdc to view or even control the desktop. It doesn't
@@ -208,7 +208,7 @@ Description: Desktop Sharing for KDE3
  This makes it very useful when you want someone to help you perform a
  task.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: ksirc-trinity
@@ -217,14 +217,14 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${perl:Depends}
 Recommends: libio-socket-ssl-perl
 Suggests: khelpcenter-trinity
-Description: IRC client for KDE3
+Description: IRC client for Trinity
  KSirc is an IRC chat client for KDE. It supports scripting with Perl and has a
  lot of compatibility with mIRC for general use.
  .
  If you want to connect to an IRC server via SSL, you will need to install the
  recommended package libio-socket-ssl-perl.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: ktalkd-trinity
@@ -236,13 +236,13 @@ Recommends: talk, ytalk
 Suggests: khelpcenter-trinity
 Provides: talkd-trinity
 Replaces: talkd-trinity
-Description: talk daemon for KDE3
+Description: talk daemon for Trinity
  KTalkd is an enhanced talk daemon - a program to handle incoming talk
  requests, announce them and allow you to respond to it using a talk
  client. Note that KTalkd is designed to run on a single-user workstation,
  and shouldn't be run on a multi-user machine.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kwifimanager-trinity
@@ -250,25 +250,25 @@ Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, wireless-tools
 Suggests: khelpcenter-trinity
-Description: wireless lan manager for KDE3
+Description: wireless lan manager for Trinity
  KWiFiManager suite is a set of tools which allows you to manage your
  wireless LAN connection under the K Desktop Environment. It provides
  information about your current connection. KWiFiManager supports every
  wavelan card that uses the wireless extensions interface.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: librss1-trinity
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: RSS library for KDE3
+Description: RSS library for Trinity
  This is the runtime package for programs that use the KDE RSS library.
  End users should not need to install this, it should get installed
  automatically when needed.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kdenetwork-trinity-dev
@@ -276,12 +276,12 @@ Section: devel
 Architecture: any
 Depends: kdict-trinity (= ${Source-Version}), kopete-trinity (= ${Source-Version}), ksirc-trinity (= ${Source-Version}), librss1-trinity (= ${Source-Version}), kdelibs4-trinity-dev (>= 4:3.5.8)
 Replaces: librss1-trinity-dev, kdict-trinity (<< 4:3.5.0-3)
-Description: development files for the KDE3 network module
+Description: development files for the Trinity network module
  This is the development package which contains the headers for the KDE RSS
  library as well as the Kopete chat client, as well as miscellaneous
  development-related files for the KDE network module.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: lisa-trinity
@@ -290,11 +290,11 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, samba-common
 Replaces: konqueror-trinity (<< 4:3.3.0)
-Description: LAN information server for KDE3
+Description: LAN information server for Trinity
  LISa is intended to provide KDE with a kind of "network neighborhood"
  but relying only on the TCP/IP protocol.
  .
- This package is part of KDE3, as a component of the KDE network module.
+ This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'kdenetwork-trinity' packages for more information.
 
 Package: kdnssd-trinity

@@ -5,8 +5,8 @@ echo "You are running $DESKTOP_SESSION"
 
 if [[ "$DESKTOP_SESSION" == "trinity" ]]
 then
-	# Do nothing, this is KDE3
-	echo "I detected KDE3"
+	# Do nothing, this is Trinity
+	echo "I detected Trinity"
 else
 	# This is KDE4, start plasma-desktop
 	echo "I detected KDE4"

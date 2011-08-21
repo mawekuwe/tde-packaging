@@ -9,5 +9,5 @@ debian/tmp/opt/trinity/bin/kdevelop
 debian/tmp/opt/trinity/lib/kconf_update_bin/kdev-gen-settings-kconf_update
 debian/tmp/opt/trinity/share/services
 debian/tmp/opt/trinity/share/servicetypes
-debian/tmp/opt/trinity/lib/kde3
+debian/tmp/opt/trinity/lib/trinity
 debian/tmp/opt/trinity/lib/lib*.so.*

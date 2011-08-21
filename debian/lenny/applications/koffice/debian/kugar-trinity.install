@@ -1,16 +1,16 @@
 debian/kugar.xpm opt/trinity/share/pixmaps
 debian/tmp/opt/trinity/bin/kudesigner
 debian/tmp/opt/trinity/bin/kugar
-debian/tmp/opt/trinity/lib/kde3/kudesigner.la
-debian/tmp/opt/trinity/lib/kde3/kudesigner.so
-debian/tmp/opt/trinity/lib/kde3/kugar.la
-debian/tmp/opt/trinity/lib/kde3/kugar.so
-debian/tmp/opt/trinity/lib/kde3/libkudesignerpart.la
-debian/tmp/opt/trinity/lib/kde3/libkudesignerpart.so
-debian/tmp/opt/trinity/lib/kde3/libkugarnopimport.la
-debian/tmp/opt/trinity/lib/kde3/libkugarnopimport.so
-debian/tmp/opt/trinity/lib/kde3/libkugarpart.la
-debian/tmp/opt/trinity/lib/kde3/libkugarpart.so
+debian/tmp/opt/trinity/lib/trinity/kudesigner.la
+debian/tmp/opt/trinity/lib/trinity/kudesigner.so
+debian/tmp/opt/trinity/lib/trinity/kugar.la
+debian/tmp/opt/trinity/lib/trinity/kugar.so
+debian/tmp/opt/trinity/lib/trinity/libkudesignerpart.la
+debian/tmp/opt/trinity/lib/trinity/libkudesignerpart.so
+debian/tmp/opt/trinity/lib/trinity/libkugarnopimport.la
+debian/tmp/opt/trinity/lib/trinity/libkugarnopimport.so
+debian/tmp/opt/trinity/lib/trinity/libkugarpart.la
+debian/tmp/opt/trinity/lib/trinity/libkugarpart.so
 debian/tmp/opt/trinity/lib/libkdeinit_kudesigner.so
 debian/tmp/opt/trinity/lib/libkdeinit_kugar.so
 debian/tmp/opt/trinity/lib/libkudesignercore.la

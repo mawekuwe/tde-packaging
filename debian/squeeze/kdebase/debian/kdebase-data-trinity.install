@@ -19,7 +19,7 @@ debian/tmp/opt/trinity/share/apps/kcminput/cursor_large_white.pcf.gz
 debian/tmp/opt/trinity/share/apps/kcminput/cursor_small_white.pcf.gz
 debian/tmp/opt/trinity/share/apps/kcminput/pics/mouse_lh.png
 debian/tmp/opt/trinity/share/apps/kcminput/pics/mouse_rh.png
-debian/tmp/opt/trinity/share/apps/kcmkeys/kde3.kksrc
+debian/tmp/opt/trinity/share/apps/kcmkeys/trinity.kksrc
 debian/tmp/opt/trinity/share/apps/kcmkeys/kde4.kksrc
 debian/tmp/opt/trinity/share/apps/kcmkeys/mac4.kksrc
 debian/tmp/opt/trinity/share/apps/kcmkeys/unix3.kksrc
@@ -1172,8 +1172,8 @@ debian/tmp/opt/trinity/share/wallpapers/horse-head-nebula.png
 debian/tmp/opt/trinity/share/wallpapers/horse-head-nebula.png.desktop
 debian/tmp/opt/trinity/share/wallpapers/isadora.png
 debian/tmp/opt/trinity/share/wallpapers/isadora.png.desktop
-debian/tmp/opt/trinity/share/wallpapers/KDE34.png
-debian/tmp/opt/trinity/share/wallpapers/KDE34.png.desktop
+debian/tmp/opt/trinity/share/wallpapers/Trinity4.png
+debian/tmp/opt/trinity/share/wallpapers/Trinity4.png.desktop
 debian/tmp/opt/trinity/share/wallpapers/konqui.svgz
 debian/tmp/opt/trinity/share/wallpapers/konqui.svgz.desktop
 debian/tmp/opt/trinity/share/wallpapers/lineart.svgz
