@@ -1,7 +1,7 @@
 #
-# spec file for package kdelibs3-devel-doc
+# spec file for package tdelibs-devel-doc
 #
-# Copyright (c) 2011 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2011 the Trinity Project (opensuse).
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -11,40 +11,36 @@
 # case the license is the MIT License). An "Open Source License" is a
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
-
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
+  
+# Please submit bugfixes or comments via http://bugs.trinitydesktop.org/
 #
 
 # norootforbuild
 
 
-Name:           kdelibs3-devel-doc
-BuildRequires:  OpenEXR-devel aspell-devel cups-devel db-devel doxygen graphviz kdelibs3-devel krb5-devel libjasper libsndfile openldap2-devel qt3-devel-doc utempter xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-fonts-scalable
-%if %suse_version > 1020
+Name:           tdelibs-devel-doc
+BuildRequires:  OpenEXR-devel aspell-devel cups-devel db-devel doxygen graphviz tdelibs-devel krb5-devel libjasper libsndfile openldap2-devel qt3-devel-doc libtqt4-devel tde-filesystem utempter xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-fonts-scalable
 BuildRequires:  avahi-compat-mDNSResponder-devel fdupes
-%else
-BuildRequires:  mDNSResponder-devel
-%endif
-Url:            http://www.kde.org
+URL:            http://www.trinitydesktop.org
 License:        GPLv2+
 Group:          Documentation/HTML
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Summary:        Additional Package Documentation
-Version:        3.5.10
-Release:        44
-%define       kdelibs_patch_level b
+Version:        3.5.12.99
+Release:        1
+%define       tdelibs_patch_level b
 BuildArch:      noarch
-Requires:       kdelibs3 qt3-devel-doc
+Requires:       tdelibs qt3-devel-doc
 Source0:        kdelibs-%{version}.tar.bz2
 Source1:        create-kdeapi
 Source4:        api_docu_description
 
 %description
 This package contains a generated API documentation for all library
-classes provided by kdelibs. The index page for all KDE API functions
+classes provided by tdelibs. The index page for all TDE API functions
 is:
 
-file:/usr/share/doc/KDE3-API/index.html
+file:/usr/share/doc/TDE-API/index.html
 
 
 
@@ -55,24 +51,27 @@ Authors:
 %prep
   echo %suse_version
 %setup -q -n kdelibs-%{version}
-. /etc/opt/kde3/common_options
-update_admin --no-unsermake
 
 %build
-. /etc/opt/kde3/common_options
+%if %is_plus
+  # supplementary package
+  DISTRI="openSUSE $BUILD_DISTRIBUTION_VERSION UNSUPPORTED"
+%else
+  # official build on released and maintained products
+  DISTRI="openSUSE $BUILD_DISTRIBUTION_VERSION"
+%endif
 export QTDOCDIR=/usr/share/doc/packages/qt3/html
-./configure $configkde --with-distribution="$DISTRI" --enable-libsuffix=`/opt/kde3/bin/kde-config --libsuffix`
-do_make apidox 
+%cmake_tde -d build -- -DKDE_DISTRIBUTION="$DISTRI"
+%make_tde -d build -- apidox 
 
 %install
-. /etc/opt/kde3/common_options
   list=`find . -name Makefile.am | xargs grep Doxy | sed -e "s,/Makefile.am.*,," | sort -u `
-  for i in $list; do do_make -C $i DESTDIR=$RPM_BUILD_ROOT install-apidox || true; done
+  for i in $list; do %makeinstall_tde -d build -- -C $i DESTDIR=$RPM_BUILD_ROOT install-apidox || true; done
   # The modern way, with kdevelop-incompatible api documentation :/
-  mkdir -p $RPM_BUILD_ROOT/usr/share/doc/KDE3-API/
-  # *** everytime you edit the following line, you made a mistake. Update admin tarball
+  mkdir -p $RPM_BUILD_ROOT/usr/share/doc/TDE-API/
+  # *** everytime you edit the following line, you made a mistake. Update macros.tde
   # *** version instead
-  KDEDOCDIR=$kde_htmldir/en/kdelibs-apidocs
+  KDEDOCDIR=%{_tde_htmldir}/en/kdelibs-apidocs
   # this is forgotten, but kdevelop needs it
   mkdir -p $RPM_BUILD_ROOT/$KDEDOCDIR
   if test -d apidocs/qt; then
@@ -92,27 +91,25 @@ do_make apidox
   if test "$exitc" != 0; then
 	exit $exitc
   fi
-  ln -s $KDEDOCDIR/index.html $RPM_BUILD_ROOT/usr/share/doc/KDE3-API/index.html
-  rm -rf ${RPM_BUILD_ROOT}/opt/kde3/share/apps
-  mkdir -p $RPM_BUILD_ROOT/opt/kde3/share/apps/kdelibs
-  install -m 0755 %SOURCE1 $RPM_BUILD_ROOT/opt/kde3/share/apps/kdelibs/
-  %if %suse_version > 1020
+  ln -s $KDEDOCDIR/index.html $RPM_BUILD_ROOT/usr/share/doc/TDE-API/index.html
+  rm -rf ${RPM_BUILD_ROOT}/%{_tde_datadir}
+  mkdir -p $RPM_BUILD_ROOT/%{_tde_datadir}/tdelibs
+  install -m 0755 %SOURCE1 $RPM_BUILD_ROOT/%{_tde_datadir}/tdelibs/
   %fdupes -s $RPM_BUILD_ROOT
-  %endif
 
 %post
-/opt/kde3/share/apps/kdelibs/create-kdeapi
+%{_tde_datadir}/tdelibs/create-kdeapi
 
 %clean
   rm -rf ${RPM_BUILD_ROOT}
 
 %files
 %defattr(-,root,root)
-%dir /opt/kde3/share
-%dir /opt/kde3/share/apps
-%dir /opt/kde3/share/apps/kdelibs
-/usr/share/doc/KDE3-API
-/opt/kde3/share/apps/kdelibs/create-kdeapi
-/opt/kde3/share/doc
+%dir %{_tde_sharedir}
+%dir %{_tde_datadir}
+%dir %{_tde_datadir}/tdelibs
+/usr/share/doc/TDE-API
+%{_tde_datadir}/tdelibs/create-kdeapi
+%{_tde_docdir}
 
 %changelog

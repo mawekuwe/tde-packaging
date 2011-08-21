@@ -7,12 +7,12 @@
 # SuSEhelp will use this index.html page as start point
 
 r=`pwd`
-while test ! -x usr/share/doc/KDE3-API/ && test "$r" != "/"; do
+while test ! -x usr/share/doc/TDE-API/ && test "$r" != "/"; do
    r=`dirname $root`
    cd ..
 done
 
-kdeapi=/usr/share/doc/KDE3-API/
+kdeapi=/usr/share/doc/TDE-API/
 
 if test ! -w $r/${kdeapi} ; then
    echo "The KDE API directory $kdeapi is not writeable. Exit..."
@@ -59,13 +59,13 @@ for page in $list; do
     eval "path_$mainapi=/$kdeapi/$mainapi"
 done
 
-list=`ls -1 $r/opt/kde3/share/doc/HTML/en/*-apidocs/*/html/index.html 2> /dev/null`
+list=`ls -1 $r/opt/tde/share/doc/HTML/en/*-apidocs/*/html/index.html 2> /dev/null`
 for page in $list; do 
-    mainapi=`echo $page | sed -n -e "s@$r/opt/kde3/share/doc/HTML/en/.*-apidocs/\([^/]*\)/html/index.html@\1@p"`
+    mainapi=`echo $page | sed -n -e "s@$r/opt/tde/share/doc/HTML/en/.*-apidocs/\([^/]*\)/html/index.html@\1@p"`
     mods="$mods $mainapi"
     path=`echo $page | sed -e "s,$r/opt,/opt,"`
     eval "page_$mainapi=$path"
-    path=`echo $page | sed -n -e "s@$r\(/opt/kde3/share/doc/HTML/en/.*-apidocs/[^/]*\)/html/index.html@\1@p"`
+    path=`echo $page | sed -n -e "s@$r\(/opt/tde/share/doc/HTML/en/.*-apidocs/[^/]*\)/html/index.html@\1@p"`
     eval "path_$mainapi=$path"
 done
 
