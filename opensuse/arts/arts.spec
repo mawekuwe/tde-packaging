@@ -128,8 +128,8 @@ CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS -DNDEBUG" CFLAGS="$CXXFLAGS" %cmake_tde -d bu
 %install
 %makeinstall_tde -d build
 %ifarch x86_64
-mkdir -p $RPM_BUILD_ROOT/%{_tde_libdir}
-ln -sf ../lib64/mcop $RPM_BUILD_ROOT/%{_tde_libdir}/mcop
+mkdir -p $RPM_BUILD_ROOT/%{_tde_prefix}/lib
+ln -sf ../lib64/mcop $RPM_BUILD_ROOT/%{_tde_prefix}/lib/mcop
 %endif
 mkdir -p -m 755 $RPM_BUILD_ROOT/%_mandir/man7
 cp %SOURCE1 $RPM_BUILD_ROOT/%_mandir/man7/
@@ -174,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_tde_libdir}/*.so
 %{_tde_libdir}/mcop
 %ifarch x86_64
-/opt/tde/lib
+%{_tde_prefix}/lib
 %endif
 %{_mandir}/man7/artswrapper.7.gz
 
