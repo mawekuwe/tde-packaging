@@ -1,8 +1,8 @@
 debian/tmp/etc/trinity/ktalkdrc
 debian/tmp/opt/trinity/bin/ktalkdlg
 debian/tmp/opt/trinity/bin/mail.local
-debian/tmp/opt/trinity/lib/kde3/kcm_ktalkd.la
-debian/tmp/opt/trinity/lib/kde3/kcm_ktalkd.so
+debian/tmp/opt/trinity/lib/trinity/kcm_ktalkd.la
+debian/tmp/opt/trinity/lib/trinity/kcm_ktalkd.so
 debian/tmp/opt/trinity/share/applications/kde/kcmktalkd.desktop
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/kcmtalkd/common
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/kcmtalkd/index.cache.bz2

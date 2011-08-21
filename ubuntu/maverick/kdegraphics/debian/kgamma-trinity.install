@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/xf86gammacfg
-debian/tmp/opt/trinity/lib/kde3/kcm_kgamma.la
-debian/tmp/opt/trinity/lib/kde3/kcm_kgamma.so
+debian/tmp/opt/trinity/lib/trinity/kcm_kgamma.la
+debian/tmp/opt/trinity/lib/trinity/kcm_kgamma.so
 debian/tmp/opt/trinity/share/applications/kde/kgamma.desktop
 debian/tmp/opt/trinity/share/apps/kgamma/pics/background.png
 debian/tmp/opt/trinity/share/apps/kgamma/pics/cmyscale.png

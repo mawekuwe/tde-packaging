@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kaboodle
-debian/tmp/opt/trinity/lib/kde3/libkaboodlepart.la
-debian/tmp/opt/trinity/lib/kde3/libkaboodlepart.so
+debian/tmp/opt/trinity/lib/trinity/libkaboodlepart.la
+debian/tmp/opt/trinity/lib/trinity/libkaboodlepart.so
 debian/tmp/opt/trinity/share/applications/kde/kaboodle.desktop
 debian/tmp/opt/trinity/share/apps/kaboodle/icons/crystalsvg/16x16/actions/kaboodleloop.png
 debian/tmp/opt/trinity/share/apps/kaboodle/icons/crystalsvg/22x22/actions/kaboodleloop.png

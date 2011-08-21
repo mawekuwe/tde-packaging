@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kregexpeditor
-debian/tmp/opt/trinity/lib/kde3/libkregexpeditorgui.la
-debian/tmp/opt/trinity/lib/kde3/libkregexpeditorgui.so
+debian/tmp/opt/trinity/lib/trinity/libkregexpeditorgui.la
+debian/tmp/opt/trinity/lib/trinity/libkregexpeditorgui.so
 debian/tmp/opt/trinity/lib/libkregexpeditorcommon.so.1
 debian/tmp/opt/trinity/lib/libkregexpeditorcommon.so.1.0.0
 debian/tmp/opt/trinity/share/applications/kde/kregexpeditor.desktop

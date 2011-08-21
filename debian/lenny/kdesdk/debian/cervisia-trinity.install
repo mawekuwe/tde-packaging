@@ -1,10 +1,10 @@
 debian/tmp/opt/trinity/bin/cervisia
 debian/tmp/opt/trinity/lib/libkdeinit_cervisia.la
 debian/tmp/opt/trinity/lib/libkdeinit_cervisia.so
-debian/tmp/opt/trinity/lib/kde3/cervisia.la
-debian/tmp/opt/trinity/lib/kde3/cervisia.so
-debian/tmp/opt/trinity/lib/kde3/libcervisiapart.la
-debian/tmp/opt/trinity/lib/kde3/libcervisiapart.so
+debian/tmp/opt/trinity/lib/trinity/cervisia.la
+debian/tmp/opt/trinity/lib/trinity/cervisia.so
+debian/tmp/opt/trinity/lib/trinity/libcervisiapart.la
+debian/tmp/opt/trinity/lib/trinity/libcervisiapart.so
 debian/tmp/opt/trinity/share/applications/kde/cervisia.desktop
 debian/tmp/opt/trinity/share/apps/cervisia/cervisiashellui.rc
 debian/tmp/opt/trinity/share/apps/cervisia/eventsrc

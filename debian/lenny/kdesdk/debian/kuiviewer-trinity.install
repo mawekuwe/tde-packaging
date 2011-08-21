@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/kuiviewer
-debian/tmp/opt/trinity/lib/kde3/libkuiviewerpart.so
-debian/tmp/opt/trinity/lib/kde3/libkuiviewerpart.la
-debian/tmp/opt/trinity/lib/kde3/quithumbnail.so
-debian/tmp/opt/trinity/lib/kde3/quithumbnail.la
+debian/tmp/opt/trinity/lib/trinity/libkuiviewerpart.so
+debian/tmp/opt/trinity/lib/trinity/libkuiviewerpart.la
+debian/tmp/opt/trinity/lib/trinity/quithumbnail.so
+debian/tmp/opt/trinity/lib/trinity/quithumbnail.la
 debian/tmp/opt/trinity/share/applications/kde/kuiviewer.desktop
 debian/tmp/opt/trinity/share/apps/kuiviewer/kuiviewerui.rc
 debian/tmp/opt/trinity/share/apps/kuiviewerpart/kuiviewer_part.rc

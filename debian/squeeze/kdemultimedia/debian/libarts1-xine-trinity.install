@@ -1,5 +1,5 @@
-debian/tmp/opt/trinity/lib/kde3/videothumbnail.la
-debian/tmp/opt/trinity/lib/kde3/videothumbnail.so
+debian/tmp/opt/trinity/lib/trinity/videothumbnail.la
+debian/tmp/opt/trinity/lib/trinity/videothumbnail.so
 debian/tmp/opt/trinity/lib/libarts_xine.la
 debian/tmp/opt/trinity/lib/libarts_xine.so
 debian/tmp/opt/trinity/lib/libarts_xine.so.0

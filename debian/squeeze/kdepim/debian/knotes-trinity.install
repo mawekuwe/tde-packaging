@@ -1,6 +1,6 @@
 /opt/trinity/bin/knotes
-/opt/trinity/lib/kde3/knotes_local.la
-/opt/trinity/lib/kde3/knotes_local.so
+/opt/trinity/lib/trinity/knotes_local.la
+/opt/trinity/lib/trinity/knotes_local.so
 /opt/trinity/lib/libknotes.so
 /opt/trinity/lib/libknotes.so.0
 /opt/trinity/lib/libknotes.so.0.0.0

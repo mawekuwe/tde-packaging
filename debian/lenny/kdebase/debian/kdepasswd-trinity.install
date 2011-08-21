@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kdepasswd
-debian/tmp/opt/trinity/lib/kde3/kcm_useraccount.la
-debian/tmp/opt/trinity/lib/kde3/kcm_useraccount.so
+debian/tmp/opt/trinity/lib/trinity/kcm_useraccount.la
+debian/tmp/opt/trinity/lib/trinity/kcm_useraccount.so
 debian/tmp/opt/trinity/share/applications/kde/kcm_useraccount.desktop
 debian/tmp/opt/trinity/share/applications/kde/kdepasswd.desktop
 debian/tmp/opt/trinity/share/apps/kdm/pics/users/Apple.png

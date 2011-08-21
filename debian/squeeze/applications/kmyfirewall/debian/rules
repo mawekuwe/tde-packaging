@@ -97,7 +97,7 @@ install: build
 	env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde $(MAKE) install DESTDIR=$(CURDIR)/debian/kmyfirewall-trinity
 
 	rm -f debian/kmyfirewall-trinity/opt/trinity/lib/*.so
-	chrpath -d debian/kmyfirewall-trinity/opt/trinity/bin/kmyfirewall debian/kmyfirewall-trinity/opt/trinity/lib/*.so.* debian/kmyfirewall-trinity/opt/trinity/lib/kde3/*.so
+	chrpath -d debian/kmyfirewall-trinity/opt/trinity/bin/kmyfirewall debian/kmyfirewall-trinity/opt/trinity/lib/*.so.* debian/kmyfirewall-trinity/opt/trinity/lib/trinity/*.so
 	chmod +x debian/kmyfirewall-trinity/opt/trinity/share/apps/kmyfirewall/scripts/installer/linux/*.sh
 	dh_install
 

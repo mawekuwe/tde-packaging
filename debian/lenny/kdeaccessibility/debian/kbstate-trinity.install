@@ -1,5 +1,5 @@
-debian/tmp/opt/trinity/lib/kde3/kbstate_panelapplet.la
-debian/tmp/opt/trinity/lib/kde3/kbstate_panelapplet.so
+debian/tmp/opt/trinity/lib/trinity/kbstate_panelapplet.la
+debian/tmp/opt/trinity/lib/trinity/kbstate_panelapplet.so
 debian/tmp/opt/trinity/share/apps/kbstateapplet/icons/crystalsvg/16x16/actions/altkey.png
 debian/tmp/opt/trinity/share/apps/kbstateapplet/icons/crystalsvg/16x16/actions/capskey.png
 debian/tmp/opt/trinity/share/apps/kbstateapplet/icons/crystalsvg/16x16/actions/controlkey.png

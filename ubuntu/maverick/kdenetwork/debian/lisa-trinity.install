@@ -1,7 +1,7 @@
-debian/tmp/opt/trinity/lib/kde3/kcm_lanbrowser.la
-debian/tmp/opt/trinity/lib/kde3/kcm_lanbrowser.so
-debian/tmp/opt/trinity/lib/kde3/kio_lan.la
-debian/tmp/opt/trinity/lib/kde3/kio_lan.so
+debian/tmp/opt/trinity/lib/trinity/kcm_lanbrowser.la
+debian/tmp/opt/trinity/lib/trinity/kcm_lanbrowser.so
+debian/tmp/opt/trinity/lib/trinity/kio_lan.la
+debian/tmp/opt/trinity/lib/trinity/kio_lan.so
 debian/tmp/opt/trinity/share/applnk/.hidden/kcmkiolan.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kcmlisa.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kcmreslisa.desktop

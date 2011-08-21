@@ -4,8 +4,8 @@ debian/tmp/opt/trinity/bin/khc_htsearch.pl
 debian/tmp/opt/trinity/bin/khc_indexbuilder
 debian/tmp/opt/trinity/bin/khc_mansearch.pl
 debian/tmp/opt/trinity/bin/khelpcenter
-debian/tmp/opt/trinity/lib/kde3/khelpcenter.la
-debian/tmp/opt/trinity/lib/kde3/khelpcenter.so
+debian/tmp/opt/trinity/lib/trinity/khelpcenter.la
+debian/tmp/opt/trinity/lib/trinity/khelpcenter.so
 debian/tmp/opt/trinity/lib/libkdeinit_khelpcenter.so
 debian/tmp/opt/trinity/share/applications/kde/Help.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/glossary.html.in

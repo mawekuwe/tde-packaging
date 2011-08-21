@@ -1,8 +1,8 @@
 /opt/trinity/bin/knode
-/opt/trinity/lib/kde3/kcm_knode.la
-/opt/trinity/lib/kde3/kcm_knode.so
-/opt/trinity/lib/kde3/libknodepart.la
-/opt/trinity/lib/kde3/libknodepart.so
+/opt/trinity/lib/trinity/kcm_knode.la
+/opt/trinity/lib/trinity/kcm_knode.so
+/opt/trinity/lib/trinity/libknodepart.la
+/opt/trinity/lib/trinity/libknodepart.so
 /opt/trinity/lib/libknodecommon.la
 /opt/trinity/lib/libknodecommon.so
 /opt/trinity/lib/libknodecommon.so.3

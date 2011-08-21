@@ -54,7 +54,7 @@ should choose as a package maintainer for
 qt-plugins so the user doesn't have to customize his library path for 
 loading Qt plugins. The only exception is that KDE delivers a set of Qt 
 plugins as well (mainly styles and designer plugins); those are placed in 
-/usr/lib/kde3/plugins. 
+/usr/lib/trinity/plugins. 
 
 QMotif Extension: As this code is only available in commercial environments 
 (and produces a static library libqmotif.a anyway that those commercial 
@@ -242,7 +242,7 @@ configuration file. Where does that global configuration file go if I make
 use of the QSettings class ? 
 
 A: With qt-3.2.0, Trolltech has introduced a configure option to Qt called
---sysconfdir which we intentionally set to /etc/qt3 similar to /etc/kde3 for
+--sysconfdir which we intentionally set to /etc/qt3 similar to /etc/trinity for
 KDE programs. Install your application's system wide configuration file
 to /etc/qt3. 
 

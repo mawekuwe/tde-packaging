@@ -2,8 +2,8 @@
 /opt/trinity/lib/libkarm.so
 /opt/trinity/lib/libkarm.so.0
 /opt/trinity/lib/libkarm.so.0.0.0
-/opt/trinity/lib/kde3/libkarmpart.la
-/opt/trinity/lib/kde3/libkarmpart.so
+/opt/trinity/lib/trinity/libkarmpart.la
+/opt/trinity/lib/trinity/libkarmpart.so
 /opt/trinity/share/applications/kde/karm.desktop
 /opt/trinity/share/applnk/Utilities/karm.desktop
 /opt/trinity/share/apps/karm

@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kwalletmanager
-debian/tmp/opt/trinity/lib/kde3/kcm_kwallet.la
-debian/tmp/opt/trinity/lib/kde3/kcm_kwallet.so
+debian/tmp/opt/trinity/lib/trinity/kcm_kwallet.la
+debian/tmp/opt/trinity/lib/trinity/kcm_kwallet.so
 debian/tmp/opt/trinity/share/applications/kde/kwalletconfig.desktop
 debian/tmp/opt/trinity/share/applications/kde/kwalletmanager.desktop
 debian/tmp/opt/trinity/share/applications/kde/kwalletmanager-kwalletd.desktop

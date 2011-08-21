@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kpdf
-debian/tmp/opt/trinity/lib/kde3/libkpdfpart.la
-debian/tmp/opt/trinity/lib/kde3/libkpdfpart.so
+debian/tmp/opt/trinity/lib/trinity/libkpdfpart.la
+debian/tmp/opt/trinity/lib/trinity/libkpdfpart.so
 debian/tmp/opt/trinity/share/applications/kde/kpdf.desktop
 debian/tmp/opt/trinity/share/apps/kpdf/shell.rc
 debian/tmp/opt/trinity/share/apps/kpdfpart/part.rc

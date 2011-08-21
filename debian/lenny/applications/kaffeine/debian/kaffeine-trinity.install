@@ -15,9 +15,9 @@ debian/tmp/opt/trinity/share/mimelnk/application/x-kaffeine.desktop
 debian/tmp/opt/trinity/share/locale/
 debian/tmp/opt/trinity/include/kde/kaffeine/*h
 debian/tmp/opt/trinity/share/services/kaffeineoggvorbis.desktop
-debian/tmp/opt/trinity/lib/kde3/libkaffeineoggvorbis.la
-debian/tmp/opt/trinity/lib/kde3/libkaffeineoggvorbis.so
-debian/tmp/opt/trinity/lib/kde3/libxinepart.la
-debian/tmp/opt/trinity/lib/kde3/libxinepart.so
+debian/tmp/opt/trinity/lib/trinity/libkaffeineoggvorbis.la
+debian/tmp/opt/trinity/lib/trinity/libkaffeineoggvorbis.so
+debian/tmp/opt/trinity/lib/trinity/libxinepart.la
+debian/tmp/opt/trinity/lib/trinity/libxinepart.so
 debian/tmp/opt/trinity/share/services/xine_part.desktop
 

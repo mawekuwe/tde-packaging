@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/kio_svn_helper
-debian/tmp/opt/trinity/lib/kde3/kded_ksvnd.la
-debian/tmp/opt/trinity/lib/kde3/kded_ksvnd.so
-debian/tmp/opt/trinity/lib/kde3/kio_svn.la
-debian/tmp/opt/trinity/lib/kde3/kio_svn.so
+debian/tmp/opt/trinity/lib/trinity/kded_ksvnd.la
+debian/tmp/opt/trinity/lib/trinity/kded_ksvnd.so
+debian/tmp/opt/trinity/lib/trinity/kio_svn.la
+debian/tmp/opt/trinity/lib/trinity/kio_svn.so
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/subversion_toplevel.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/subversion.desktop
 debian/tmp/opt/trinity/share/services/kded/ksvnd.desktop

@@ -504,7 +504,7 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${perl:Depends}, gnupg
 Conflicts: libkleopatra0-trinity
-Replaces: libkdenetwork2-kde33, libkleopatra0a-trinity
+Replaces: libkdenetwork2-trinity3, libkleopatra0a-trinity
 Description: KDE GnuPG interface libraries
  This library is used by several KDE applications to interface to the
  GnuPG program.

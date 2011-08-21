@@ -46,8 +46,8 @@ common-install-impl::
 	rm -rf debian/tmp/usr/lib64/trinity
 	rm -rf debian/tmp/usr/share
 	rm -rf debian/tmp/usr/include
-	mkdir -p debian/tmp/opt/trinity/lib/kde3
-	touch debian/tmp/opt/trinity/lib/kde3/removeme
-	cp -Rp debian/tmp/opt/trinity/lib/kde3/* debian/tmp/opt/trinity/lib/
-	rm -rf debian/tmp/opt/trinity/lib/kde3
+	mkdir -p debian/tmp/opt/trinity/lib/trinity
+	touch debian/tmp/opt/trinity/lib/trinity/removeme
+	cp -Rp debian/tmp/opt/trinity/lib/trinity/* debian/tmp/opt/trinity/lib/
+	rm -rf debian/tmp/opt/trinity/lib/trinity
 	rm -rf debian/tmp/opt/trinity/lib/removeme

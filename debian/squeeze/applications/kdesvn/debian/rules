@@ -28,26 +28,26 @@ common-install-impl::
 	mkdir -p debian/tmp/opt/trinity/include/kde
 	mkdir -p debian/tmp/usr/lib
 	mkdir -p debian/tmp/opt/trinity/lib
-	mkdir -p debian/tmp/usr/lib/kde3
-	mkdir -p debian/tmp/usr/lib64/kde3
-	touch debian/tmp/usr/lib/kde3/removeme
-	touch debian/tmp/usr/lib64/kde3/removeme
-	mv debian/tmp/usr/lib/kde3/* debian/tmp/usr/lib/
-	mv debian/tmp/usr/lib64/kde3/* debian/tmp/usr/lib64/
-	rm -rf debian/tmp/usr/lib/kde3
-	rm -rf debian/tmp/usr/lib64/kde3
+	mkdir -p debian/tmp/usr/lib/trinity
+	mkdir -p debian/tmp/usr/lib64/trinity
+	touch debian/tmp/usr/lib/trinity/removeme
+	touch debian/tmp/usr/lib64/trinity/removeme
+	mv debian/tmp/usr/lib/trinity/* debian/tmp/usr/lib/
+	mv debian/tmp/usr/lib64/trinity/* debian/tmp/usr/lib64/
+	rm -rf debian/tmp/usr/lib/trinity
+	rm -rf debian/tmp/usr/lib64/trinity
 	cp -Rp debian/tmp/usr/bin debian/tmp/opt/trinity/
 	cp -Rp debian/tmp/usr/lib/* debian/tmp/opt/trinity/lib/
 	cp -Rp debian/tmp/usr/lib64/* debian/tmp/opt/trinity/lib/
 	cp -Rp debian/tmp/usr/share debian/tmp/opt/trinity/
 	cp -Rp debian/tmp/usr/include/* debian/tmp/opt/trinity/include/kde/
 	rm -rf debian/tmp/usr/bin
-	rm -rf debian/tmp/usr/lib/kde3
-	rm -rf debian/tmp/usr/lib64/kde3
+	rm -rf debian/tmp/usr/lib/trinity
+	rm -rf debian/tmp/usr/lib64/trinity
 	rm -rf debian/tmp/usr/share
 	rm -rf debian/tmp/usr/include
-	mkdir -p debian/tmp/opt/trinity/lib/kde3
-	touch debian/tmp/opt/trinity/lib/kde3/removeme
-	cp -Rp debian/tmp/opt/trinity/lib/kde3/* debian/tmp/opt/trinity/lib/
-	rm -rf debian/tmp/opt/trinity/lib/kde3
+	mkdir -p debian/tmp/opt/trinity/lib/trinity
+	touch debian/tmp/opt/trinity/lib/trinity/removeme
+	cp -Rp debian/tmp/opt/trinity/lib/trinity/* debian/tmp/opt/trinity/lib/
+	rm -rf debian/tmp/opt/trinity/lib/trinity
 	rm -rf debian/tmp/opt/trinity/lib/removeme

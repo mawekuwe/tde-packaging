@@ -1,6 +1,6 @@
 debian/tmp/etc/trinity/ksim_panelextensionrc
-debian/tmp/opt/trinity/lib/kde3/ksim_*.la
-debian/tmp/opt/trinity/lib/kde3/ksim_*.so
+debian/tmp/opt/trinity/lib/trinity/ksim_*.la
+debian/tmp/opt/trinity/lib/trinity/ksim_*.so
 debian/tmp/opt/trinity/lib/libksimcore.so.1
 debian/tmp/opt/trinity/lib/libksimcore.so.1.0.0
 debian/tmp/opt/trinity/share/apps/kicker/extensions/ksim.desktop

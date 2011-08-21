@@ -1,7 +1,7 @@
 opt/trinity/bin/keduca
 opt/trinity/bin/keducabuilder
-opt/trinity/lib/kde3/libkeducapart.la
-opt/trinity/lib/kde3/libkeducapart.so
+opt/trinity/lib/trinity/libkeducapart.la
+opt/trinity/lib/trinity/libkeducapart.so
 /opt/trinity/share/applications/kde/keduca.desktop
 /opt/trinity/share/applications/kde/keducabuilder.desktop
 /opt/trinity/share/apps/keduca

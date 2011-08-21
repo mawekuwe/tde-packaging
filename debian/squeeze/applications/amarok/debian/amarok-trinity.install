@@ -7,31 +7,31 @@ debian/tmp/opt/trinity/share/servicetypes/amarok_codecinstall.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/amarok_append.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/amarok_addaspodcast.desktop 
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/amarok_play_audiocd.desktop
-debian/tmp/opt/trinity/lib/kde3/libamarok_void-engine_plugin.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_void-engine_plugin.so
-debian/tmp/opt/trinity/lib/kde3/libamarok_generic-mediadevice.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_generic-mediadevice.so
-debian/tmp/opt/trinity/lib/kde3/libamarok_ifp-mediadevice.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_ifp-mediadevice.so
-debian/tmp/opt/trinity/lib/kde3/libamarok_ipod-mediadevice.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_ipod-mediadevice.so
-debian/tmp/opt/trinity/lib/kde3/libamarok_njb-mediadevice.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_njb-mediadevice.so
-debian/tmp/opt/trinity/lib/kde3/libamarok_smb-device.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_smb-device.so
-debian/tmp/opt/trinity/lib/kde3/libamarok_massstorage-device.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_massstorage-device.so
-debian/tmp/opt/trinity/lib/kde3/libamarok_nfs-device.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_nfs-device.so
-debian/tmp/opt/trinity/lib/kde3/libamarok_daap-mediadevice.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_daap-mediadevice.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_void-engine_plugin.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_void-engine_plugin.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_generic-mediadevice.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_generic-mediadevice.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_ifp-mediadevice.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_ifp-mediadevice.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_ipod-mediadevice.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_ipod-mediadevice.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_njb-mediadevice.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_njb-mediadevice.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_smb-device.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_smb-device.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_massstorage-device.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_massstorage-device.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_nfs-device.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_nfs-device.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_daap-mediadevice.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_daap-mediadevice.so
 
 #libkarma is not in MAIN yet
-#debian/tmp/opt/trinity/lib/kde3/libamarok_riokarma-mediadevice.la
-#debian/tmp/opt/trinity/lib/kde3/libamarok_riokarma-mediadevice.so
+#debian/tmp/opt/trinity/lib/trinity/libamarok_riokarma-mediadevice.la
+#debian/tmp/opt/trinity/lib/trinity/libamarok_riokarma-mediadevice.so
 
-debian/tmp/opt/trinity/lib/kde3/libamarok_mtp-mediadevice.la
-debian/tmp/opt/trinity/lib/kde3/libamarok_mtp-mediadevice.so
+debian/tmp/opt/trinity/lib/trinity/libamarok_mtp-mediadevice.la
+debian/tmp/opt/trinity/lib/trinity/libamarok_mtp-mediadevice.so
 debian/tmp/opt/trinity/lib/ruby_lib/*           /opt/trinity/lib/ruby_lib/
 debian/tmp/opt/trinity/lib/libamarok.so.0
 debian/tmp/opt/trinity/lib/libamarok.so.0.0.0

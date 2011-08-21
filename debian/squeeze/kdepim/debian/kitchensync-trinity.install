@@ -1,6 +1,6 @@
 /opt/trinity/bin/kitchensync
-/opt/trinity/lib/kde3/libkitchensyncpart.la
-/opt/trinity/lib/kde3/libkitchensyncpart.so
+/opt/trinity/lib/trinity/libkitchensyncpart.la
+/opt/trinity/lib/trinity/libkitchensyncpart.so
 /opt/trinity/share/apps/kitchensync
 /opt/trinity/lib/libkitchensync.so.0
 /opt/trinity/lib/libkitchensync.so.0.0.0

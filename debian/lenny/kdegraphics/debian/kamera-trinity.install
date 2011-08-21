@@ -1,8 +1,8 @@
 
-debian/tmp/opt/trinity/lib/kde3/kcm_kamera.la
-debian/tmp/opt/trinity/lib/kde3/kcm_kamera.so
-debian/tmp/opt/trinity/lib/kde3/kio_kamera.la
-debian/tmp/opt/trinity/lib/kde3/kio_kamera.so
+debian/tmp/opt/trinity/lib/trinity/kcm_kamera.la
+debian/tmp/opt/trinity/lib/trinity/kcm_kamera.so
+debian/tmp/opt/trinity/lib/trinity/kio_kamera.la
+debian/tmp/opt/trinity/lib/trinity/kio_kamera.so
 debian/tmp/opt/trinity/share/applications/kde/kamera.desktop
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kamera/common
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kamera/index.cache.bz2

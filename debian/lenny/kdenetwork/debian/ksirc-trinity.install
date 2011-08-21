@@ -1,8 +1,8 @@
 debian/tmp/etc/trinity/ksircrc
 debian/tmp/opt/trinity/bin/dsirc
 debian/tmp/opt/trinity/bin/ksirc
-debian/tmp/opt/trinity/lib/kde3/ksirc.la
-debian/tmp/opt/trinity/lib/kde3/ksirc.so
+debian/tmp/opt/trinity/lib/trinity/ksirc.la
+debian/tmp/opt/trinity/lib/trinity/ksirc.so
 debian/tmp/opt/trinity/lib/libkdeinit_ksirc.so
 debian/tmp/opt/trinity/share/applications/kde/ksirc.desktop
 debian/tmp/opt/trinity/share/apps/ksirc/autodcc.pl

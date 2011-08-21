@@ -1,8 +1,8 @@
 debian/icons/kimagemapeditor.xpm	/opt/trinity/share/pixmaps
 
 debian/tmp/opt/trinity/bin/kimagemapeditor
-debian/tmp/opt/trinity/lib/kde3/libkimagemapeditor.la
-debian/tmp/opt/trinity/lib/kde3/libkimagemapeditor.so
+debian/tmp/opt/trinity/lib/trinity/libkimagemapeditor.la
+debian/tmp/opt/trinity/lib/trinity/libkimagemapeditor.so
 debian/tmp/opt/trinity/share/applications/kde/kimagemapeditor.desktop
 debian/tmp/opt/trinity/share/apps/kimagemapeditor
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kimagemapeditor.png

@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/*
 debian/tmp/opt/trinity/share/applications/*
 debian/k3b.xpm /opt/trinity/share/pixmaps/
-debian/tmp/opt/trinity/lib/kde3/kfile_k3b.so
-debian/tmp/opt/trinity/lib/kde3/kfile_k3b.la
+debian/tmp/opt/trinity/lib/trinity/kfile_k3b.so
+debian/tmp/opt/trinity/lib/trinity/kfile_k3b.la
