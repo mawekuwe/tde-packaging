@@ -67,6 +67,22 @@ the GUI and synthesis.
 Authors:
 --------
     Stefan Westerfeld <stefan@space.twc.de>
+    
+%package devel-static
+License:        GPLv2+
+Summary:        Include Files and Libraries mandatory for Development.
+Group:          Development/Libraries/Other
+
+%description devel-static
+A modular software synthesizer that generates realtime audio streams,
+supports MIDI, is easily extendable, and uses CORBA for separation of
+the GUI and synthesis.
+
+
+
+Authors:
+--------
+    Stefan Westerfeld <stefan@space.twc.de>
 
 %package gmcop
 License:        GPLv2+
@@ -118,6 +134,9 @@ ln -sf ../lib64/mcop $RPM_BUILD_ROOT/%{_tde_libdir}/mcop
 mkdir -p -m 755 $RPM_BUILD_ROOT/%_mandir/man7
 cp %SOURCE1 $RPM_BUILD_ROOT/%_mandir/man7/
 
+# unneeded
+rm -rf %{buildroot}/%{_tde_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -151,7 +170,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_tde_libdir}/libmcop_mt.so.*
 %{_tde_libdir}/libqtmcop.so.*
 %{_tde_libdir}/libsoundserver_idl.so.*
-%{_tde_libdir}/libx11globalcomm.so.*
 # these need to be in the base package for lt_dlopen()
 %{_tde_libdir}/*.so
 %{_tde_libdir}/mcop
@@ -160,16 +178,20 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 %{_mandir}/man7/artswrapper.7.gz
 
-%files gmcop
-%defattr(-,root,root)
-%{_tde_libdir}/libgmcop.so.*
-
 %files devel
 %defattr(-,root,root)
 %{_tde_bindir}/artsc-config
 %{_tde_bindir}/mcopidl
 %dir %{_tde_includedir}
 %{_tde_includedir}/*
-%{_tde_libdir}/*.la
+%{_libdir}/pkgconfig/arts.pc
+
+%files devel-static
+%defattr(-,root,root)
+%{_tde_libdir}/libgsl.a
+
+%files gmcop
+%defattr(-,root,root)
+%{_tde_libdir}/libgmcop.so.*
 
 %changelog
