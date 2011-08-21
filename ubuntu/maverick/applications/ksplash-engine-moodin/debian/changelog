@@ -6,7 +6,7 @@ ksplash-engine-moodin-trinity (0.4.2-1ubuntu4) karmic; urgency=low
 
 ksplash-engine-moodin-trinity (0.4.2-1ubuntu3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 06 Mar 2009 13:36:00 -0600

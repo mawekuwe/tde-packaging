@@ -6,7 +6,7 @@ ktorrent-trinity (2.2.6-0ubuntu1) karmic; urgency=low
 
 ktorrent-trinity (2.2.5-0ubuntu3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 06 March 2009 01:35:00 -0600

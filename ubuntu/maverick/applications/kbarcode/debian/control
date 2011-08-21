@@ -11,8 +11,8 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, barcode, imagemagick
 Recommends: libqt3-mt-mysql | libqt3-mt-psql | libqt3-mt-odbc | libqt3-mt-sqlite |
  libqt3-mt-ibase
-Description: barcode and label printing application for KDE3
- KBarcode is a barcode and label printing application for KDE3. It can be used
+Description: barcode and label printing application for Trinity
+ KBarcode is a barcode and label printing application for Trinity. It can be used
  to print everything from simple business cards up to complex labels with
  several barcodes (e.g. article descriptions).
  .

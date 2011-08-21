@@ -461,7 +461,7 @@ kmymoney2 (0.6.1-2) unstable; urgency=low
 
 kmymoney2 (0.6.1-0sarge1) testing-proposed-updates; urgency=high
 
-  * Rebuild for sarge (KDE3.2)
+  * Rebuild for sarge (Trinity.2)
   * configure   --mandir=\$${prefix}/share/man (Closes: Bug#267850)
   * Remove debian/kmymoney2.1, its included upstream
   * Remove depends-on-build-essential-package-without-using-version g++

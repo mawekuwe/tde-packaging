@@ -10,6 +10,6 @@ Package: desktop-effects-kde-trinity
 Architecture: all
 Depends: ${python:Depends}, python-qt4
 XB-Python-Version: ${python:Versions}
-Description: compiz setup tool for KDE3
- A simple Compiz configuration tool for KDE3.  Installs and sets Compiz
+Description: compiz setup tool for Trinity
+ A simple Compiz configuration tool for Trinity.  Installs and sets Compiz
  as the window manager.

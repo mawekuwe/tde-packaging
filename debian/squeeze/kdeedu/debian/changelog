@@ -12,7 +12,7 @@ kdeedu-trinity (4:3.5.10-0ubuntu4) karmic; urgency=low
 
 kdeedu-trinity (4:3.5.10-0ubuntu1~intrepid4) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 March 2009 17:24:00 -0600
@@ -767,7 +767,7 @@ kdeedu (4:3.1.0-3) unstable; urgency=low
 
 kdeedu (4:3.1.0-2) unstable; urgency=low
 
-  * First KDE3 upload to debian (closes: #119019).
+  * First Trinity upload to debian (closes: #119019).
   * Rolled the epoch to aid upgrades from the unofficial repository on
     ftp.kde.org.. *sigh*
 

@@ -18,7 +18,7 @@ adept-trinity (2.1.3ubuntu11) karmic; urgency=low
 
 adept-trinity (2.1.3ubuntu10) jaunty; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 04 March 2009 01:08:00 -0600

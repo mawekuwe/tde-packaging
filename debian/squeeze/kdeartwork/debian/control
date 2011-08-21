@@ -13,7 +13,7 @@ Architecture: all
 Section: kde
 Depends: kdeartwork-misc-trinity (>= ${Source-Version}), kdeartwork-emoticons-trinity (>= ${Source-Version}), kdeartwork-style-trinity (>= ${Source-Version}), kdeartwork-theme-icon-trinity (>= ${Source-Version}), kdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), kscreensaver-trinity (>= ${Source-Version})
 Recommends: kscreensaver-xsavers-trinity
-Description: themes, styles and more from the official KDE3 release
+Description: themes, styles and more from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
@@ -44,20 +44,20 @@ Description: various multimedia goodies released with KDE
  This package contains miscellaneous multimedia goodies for KDE.
  Included are additional KDE sounds and kworldclock themes.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kdeartwork-style-trinity
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}
-Description: widget styles released with KDE3
- This package contains additional widget styles for KDE3. Widget styles
+Description: widget styles released with Trinity
+ This package contains additional widget styles for Trinity. Widget styles
  can be used to customise the look and feel of interface components such
  as buttons, scrollbars and so on.  They can be applied using the style
  manager in the KDE Control Centre.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kdeartwork-theme-icon-trinity
@@ -65,25 +65,25 @@ Architecture: all
 Section: kde
 Recommends: kdesktop-trinity, kicker-trinity
 Replaces: kdelibs-data-trinity (<< 4:3.5)
-Description: icon themes released with KDE3
- This package contains additional icon themes for KDE3. Icon themes can be
+Description: icon themes released with Trinity
+ This package contains additional icon themes for Trinity. Icon themes can be
  used to customise the appearance of standard icons throughout KDE. They
- can be applied using the icon manager in the KDE3 Control Centre.
+ can be applied using the icon manager in the Trinity Control Centre.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kdeartwork-theme-window-trinity
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}
-Description: window decoration themes released with KDE3
- This package contains additional window decoration themes for KDE3. Window
+Description: window decoration themes released with Trinity
+ This package contains additional window decoration themes for Trinity. Window
  decoration themes can be used to customise the look of window borders and
- buttons, and can be applied using the window decoration manager in the KDE3
+ buttons, and can be applied using the window decoration manager in the Trinity
  Control Center.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kdewallpapers-trinity
@@ -91,11 +91,11 @@ Architecture: all
 Section: kde
 Suggests: kwin-trinity | x-window-manager
 Replaces: kdebase-data-trinity (<< 4:3.5)
-Description: wallpapers released with KDE3
- This package contains additional wallpapers for KDE3. Wallpapers can be
+Description: wallpapers released with Trinity
+ This package contains additional wallpapers for Trinity. Wallpapers can be
  applied using the background manager in the KDE Control Centre.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kscreensaver-trinity
@@ -103,16 +103,16 @@ Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdebase-trinity-bin
 Recommends: kwin-trinity, kscreensaver-xsavers-trinity (= ${Source-Version})
-Description: additional screen savers released with KDE3
- This package contains the screen savers for KDE3. They can be tested and
- selected within the Appearance and Themes section of the KDE3 Control
+Description: additional screen savers released with Trinity
+ This package contains the screen savers for Trinity. They can be tested and
+ selected within the Appearance and Themes section of the Trinity Control
  Center.
  .
  The hooks for the standard xscreensavers are no longer part of this
  package. To select and/or configure the standard xscreensavers through
  the KDE Control Center, install the separate package kscreensaver-xsavers.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kscreensaver-xsavers-trinity
@@ -121,27 +121,27 @@ Section: kde
 Depends: ${shlibs:Depends}, kdebase-trinity-bin, xscreensaver-data
 Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version}), xscreensaver-gl
 Suggests: kscreensaver-xsavers-webcollage-trinity
-Description: KDE3 hooks for standard xscreensavers
+Description: Trinity hooks for standard xscreensavers
  This package allows a smooth integration of the standard xscreensavers
- into KDE3. With this package installed you can select and/or configure
+ into Trinity. With this package installed you can select and/or configure
  the standard xscreensavers through the Appearances and Themes section of
- the KDE3 Control Centre.
+ the Trinity Control Centre.
  .
  Note that this package does not actually contain any screensavers itself.
- For the additional screensavers shipped with KDE3, see the separate package
+ For the additional screensavers shipped with Trinity, see the separate package
  kscreensaver-trinity. This package does depend on the xscreensaver package, and
  recommend the xscreensaver-gl package, as well as contain the necessary
- files to integrate these packages into KDE3.
+ files to integrate these packages into Trinity.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kscreensaver-xsavers-webcollage-trinity
 Architecture: all
 Section: kde
 Depends: kscreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
-Description: webcollage screensaver KDE3 hook
- This package give access to the webcollage screensaver through the KDE3
+Description: webcollage screensaver Trinity hook
+ This package give access to the webcollage screensaver through the Trinity
  screensaver configuration.
  .
  This screensaver downloads random pictures from the internet and creates
@@ -156,7 +156,7 @@ Description: webcollage screensaver KDE3 hook
  /usr/share/doc/kscreensaver-xsavers-webcollage/README.Debian after the 
  installation.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kscreensaver-xsavers-extra-trinity
@@ -164,17 +164,17 @@ Architecture: all
 Section: kde
 Depends: ${shlibs:Depends}, kscreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
 Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version})
-Description: KDE3 hooks for standard xscreensavers
+Description: Trinity hooks for standard xscreensavers
  This package allows a smooth integration of the universe xscreensavers
- into KDE3. With this package installed you can select and/or configure
+ into Trinity. With this package installed you can select and/or configure
  the universe xscreensavers through the Appearances and Themes section of
- the KDE3 Control Centre.
+ the Trinity Control Centre.
  .
  Note that this package does not actually contain any screensavers itself.
  For the additional screensavers shipped with KDE, see the separate package
  kscreensaver.
  .
- This package is part of KDE3, and a component of the KDE artwork module.
+ This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
 
 Package: kdeartwork-trinity-dbg

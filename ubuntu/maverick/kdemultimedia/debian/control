@@ -12,7 +12,7 @@ Section: kde
 Architecture: all
 Depends: artsbuilder-trinity (>= ${Source-Version}), juk-trinity (>= ${Source-Version}), kaboodle-trinity (>= ${Source-Version}), kaudiocreator-trinity (>= ${Source-Version}), kdemultimedia-kappfinder-data-trinity (>= ${Source-Version}), kdemultimedia-kfile-plugins-trinity (>= ${Source-Version}), kdemultimedia-kio-plugins-trinity (>= ${Source-Version}), kmid-trinity (>= ${Source-Version}), kmix-trinity (>= ${Source-Version}), krec-trinity (>= ${Source-Version}), kscd-trinity (>= ${Source-Version}), libarts1-akode-trinity (>= ${Source-Version}), libarts1-audiofile-trinity (>= ${Source-Version}), libarts1-mpeglib-trinity (>= ${Source-Version}), libarts1-xine-trinity (>= ${Source-Version}), mpeglib-trinity (>= ${Source-Version}), noatun-trinity (>= ${Source-Version})
 Suggests: kdemultimedia-trinity-doc-html (>= ${Source-Version})
-Description: multimedia apps from the official KDE3 release 
+Description: multimedia apps from the official Trinity release 
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
@@ -30,8 +30,8 @@ Architecture: any
 Depends: kdelibs4-trinity-dev (>= 4:3.5.7), artsbuilder-trinity (= ${Source-Version}), kdemultimedia-kio-plugins-trinity (= ${Source-Version}), kmid-trinity (= ${Source-Version}), kmix-trinity (= ${Source-Version}), krec-trinity (= ${Source-Version}), kscd-trinity (= ${Source-Version}), libarts1-akode-trinity (= ${Source-Version}), libarts1-mpeglib-trinity (= ${Source-Version}), libkcddb1-trinity (= ${Source-Version}), mpeglib-trinity (= ${Source-Version}), noatun-trinity (= ${Source-Version})
 Conflicts: libmpeg-trinity-dev
 Replaces: artsbuilder-trinity (<< 4:3.0.0), mpeglib-trinity (<< 4:3.0.0), noatun-trinity (<< 4:3.0.0)
-Description: development files for the KDE3 multimedia module
- Development files and headers for the KDE3 multimedia module.
+Description: development files for the Trinity multimedia module
+ Development files and headers for the Trinity multimedia module.
  .
  This package is part of KDE, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
@@ -40,7 +40,7 @@ Package: kdemultimedia-trinity-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror-trinity | www-browser, kdebase-trinity
-Description: KDE3 multimedia documentation in HTML format
+Description: Trinity multimedia documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
  This package provides all of the KDE multimedia documentation converted to
@@ -51,7 +51,7 @@ Description: KDE3 multimedia documentation in HTML format
  /opt/trinity/share/doc/kde/HTML/en/juk/. Documentation is provided for most
  KDE multimedia packages.
  .
- This package is part of KDE3, and a component of the KDE multimedia module.
+ This package is part of Trinity, and a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: artsbuilder-trinity
@@ -63,7 +63,7 @@ Replaces: kdebase-data-trinity (<< 4:3.3.91), kdemultimedia-dev-trinity (<< 4:3.
 Description: synthesizer designer for aRts
  This is the analog Realtime synthesizer's graphical design tool.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: juk-trinity
@@ -71,7 +71,7 @@ Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: music organizer and player for KDE3
+Description: music organizer and player for Trinity
  JuK (pronounced "jook") is a jukebox and music manager for the KDE
  desktop similar to jukebox software on other platforms such as
  iTunes or RealOne.
@@ -89,7 +89,7 @@ Description: music organizer and player for KDE3
   * Integration into KDE that allows drag-and-drop and clipboard usage
     with other KDE and X apps
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kaboodle-trinity
@@ -98,11 +98,11 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: libarts1-xine-trinity
 Suggests: khelpcenter-trinity
-Description: light, embedded media player for KDE3
+Description: light, embedded media player for Trinity
  Kaboodle is a light, embedded media player, supporting both video and audio,
  for KDE. It uses the aRts framework for playing media files.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kaudiocreator-trinity
@@ -111,12 +111,12 @@ Architecture: any
 Depends: ${shlibs:Depends}, kdemultimedia-kio-plugins-trinity (= ${Source-Version})
 Recommends: vorbis-tools, flac
 Suggests: lame
-Description: CD ripper and audio encoder frontend for KDE3
+Description: CD ripper and audio encoder frontend for Trinity
  KAudioCreator is a tool for audio extraction (ripping) and encoding. It can
  keep your WAV files, or convert them to Ogg/Vorbis, MP3, or FLAC. It also
  searches CDDB to retrieve the information of the disk.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kdemultimedia-kfile-plugins-trinity
@@ -125,9 +125,9 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: kdemultimedia-kio-plugins (<< 4:3.4.1-1)
 Description: au/avi/m3u/mp3/ogg/wav plugins for kfile
- au/avi/m3u/mp3/ogg/wav file metainformation plugins for KDE3.
+ au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kdemultimedia-kappfinder-data-trinity
@@ -137,7 +137,7 @@ Depends: kappfinder-trinity
 Description: multimedia data for kappfinder-trinity
  This package provides data on multimedia applications for kappfinder-trinity.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kdemultimedia-kio-plugins-trinity
@@ -150,7 +150,7 @@ Description: enables the browsing of audio CDs under Konqueror
  This package allow audio CDs to be browsed like a file system using
  Konqueror and the audiocd:/ URL.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kmid-trinity
@@ -158,10 +158,10 @@ Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: MIDI/karaoke player for KDE3
+Description: MIDI/karaoke player for Trinity
  This package provides a MIDI and karaoke player for KDE.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kmix-trinity
@@ -170,10 +170,10 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Provides: x-audio-mixer
-Description: sound mixer applet for KDE3
+Description: sound mixer applet for Trinity
  This package includes KDE's dockable sound mixer applet.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: krec-trinity
@@ -181,10 +181,10 @@ Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: sound recorder utility for KDE3
- This is a sound recording utility for KDE3.
+Description: sound recorder utility for Trinity
+ This is a sound recording utility for Trinity.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kscd-trinity
@@ -192,10 +192,10 @@ Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: audio CD player for KDE3
- This is KDE3's audio CD player.
+Description: audio CD player for Trinity
+ This is Trinity's audio CD player.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: libarts1-akode-trinity
@@ -206,7 +206,7 @@ Replaces: libakode2-trinity (<< 2-beta3-2), akode-trinity
 Description: akode plugin for aRts
  This package contains akode plugins for aRts.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information
 
 Package: libarts1-audiofile-trinity
@@ -216,7 +216,7 @@ Depends: ${shlibs:Depends}
 Description: audiofile plugin for aRts
  This package contains audiofile plugins for aRts.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: libarts1-mpeglib-trinity
@@ -240,19 +240,19 @@ Description: aRts plugin enabling xine support
  This package contains aRts' xine plugin, allowing the use of the xine
  multimedia engine though aRts.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: libkcddb1-trinity
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: CDDB library for KDE3
- The KDE3 native CDDB (CD Data Base) library, providing easy access to Audio
+Description: CDDB library for Trinity
+ The Trinity native CDDB (CD Data Base) library, providing easy access to Audio
  CD meta-information (track titles, artist information, etc.) from on-line
  databases, for KDE applications.
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: mpeglib-trinity
@@ -266,7 +266,7 @@ Description: MP3 and MPEG-1 audio and video library
  MPEG-1 audio (layers 1, 2, 3), MPEG-1 video, MPEG-1 system layer,
  and WAV playback
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: noatun-trinity
@@ -274,11 +274,11 @@ Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, noatun-plugins-trinity
-Description: media player for KDE3
- Noatun is an aRts-based audio and video player for KDE3. It supports all
+Description: media player for Trinity
+ Noatun is an aRts-based audio and video player for Trinity. It supports all
  formats supported by your installation of aRts (including aRts plugins).
  .
- This package is part of KDE3, as a component of the KDE multimedia module.
+ This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'kdemultimedia-trinity' packages for more information.
 
 Package: kdemultimedia-trinity-dbg

@@ -6,7 +6,7 @@ abakus-trinity (0.91-0ubuntu3) karmic; urgency=low
 
 abakus-trinity (0.91-0ubuntu2) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 March 2009 23:58:00 -0600

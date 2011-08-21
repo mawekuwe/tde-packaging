@@ -11,7 +11,7 @@ Homepage: http://kvirc.net/
 Package: kvirc-trinity
 Architecture: any
 Depends: kvirc-data-trinity (= ${source:Version}), ${shlibs:Depends}
-Description:  KDE3 based next generation IRC client with module support
+Description:  Trinity based next generation IRC client with module support
  A highly configurable graphical IRC client with an MDI interface,
  built-in scripting language, support for IRC DCC, drag & drop file
  browsing, and much more. KVIrc uses the KDE widget set, can be extended

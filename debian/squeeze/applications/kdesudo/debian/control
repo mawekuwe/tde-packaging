@@ -8,6 +8,6 @@ Standards-Version: 3.8.4
 Package: kdesudo-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, sudo
-Description: sudo frontend for KDE3
+Description: sudo frontend for Trinity
  KdeSudo is a graphical frontend for the sudo utility.
  It allows you to run programs as another user by entering your password.

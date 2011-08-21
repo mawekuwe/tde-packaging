@@ -28,7 +28,7 @@ Conflicts: libqt3c102-mt, libqui1-emb, libqt3c-mt
 Suggests: libqt3-mt-psql, libqt3-mt-mysql, libqt3-mt-odbc
 Description: Qt GUI Library (Threaded runtime version), Version 3
  This is the Trolltech Qt library, version 3. It's necessary for
- applications that link against the libqt-mt.so.3, e.g. all KDE3
+ applications that link against the libqt-mt.so.3, e.g. all Trinity
  applications.
 
 Package: libqt3-mt-mysql

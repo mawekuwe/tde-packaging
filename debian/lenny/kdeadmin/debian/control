@@ -13,7 +13,7 @@ Architecture: all
 Depends: kcron-trinity (>= ${Source-Version}), kdat-trinity (>= ${Source-Version}), kdeadmin-kfile-plugins-trinity (>= ${Source-Version}), knetworkconf-trinity (>= ${Source-Version}), kpackage-trinity (>= ${Source-Version}), ksysv-trinity (>= ${Source-Version}), kuser-trinity (>= ${Source-Version})
 Recommends: lilo-config-trinity (>= ${Source-Version})
 Suggests: kdeadmin-trinity-doc-html (>= ${Source-Version})
-Description: system administration tools from the official KDE3 release
+Description: system administration tools from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
@@ -37,7 +37,7 @@ Description: KDE administration documentation in HTML format
  /usr/share/doc/kde/HTML/en/kcron/. Documentation is provided for most
  KDE administration packages.
  .
- This package is part of KDE3, and a component of the KDE administration
+ This package is part of Trinity, and a component of the KDE administration
  module. See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: kcron-trinity
@@ -45,11 +45,11 @@ Section: admin
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: the KDE3 crontab editor
+Description: the Trinity crontab editor
  KCron is an application for scheduling programs to run in the background.
  It is a graphical user interface to cron, the UNIX system scheduler.
  .
- This package is part of KDE3, as a component of the KDE administration module.
+ This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: kdat-trinity
@@ -57,7 +57,7 @@ Section: admin
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: a KDE3 tape backup tool
+Description: a Trinity tape backup tool
  KDat is a tar-based tape archiver. It is designed to work with multiple
  archives on a single tape.
  .
@@ -68,28 +68,28 @@ Description: a KDE3 tape backup tool
   * Selective restore of files from an archive.
   * Backup profiles for frequently used backups.
  .
- This package is part of KDE3, as a component of the KDE administration module.
+ This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: kdeadmin-kfile-plugins-trinity
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: KDE3 file metainfo plugins for deb and rpm files
+Description: Trinity file metainfo plugins for deb and rpm files
  File metainfo plugins for deb and rpm package files.
  .
- This package is part of KDE3, as a component of the KDE administration module.
+ This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: knetworkconf-trinity
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: KDE3 network configuration tool
+Description: Trinity network configuration tool
  This is a KDE control center module to configure TCP/IP settings.  It
  can be used to manage network devices and settings for each device.
  .
- This package is part of KDE3, as a component of the KDE administration module.
+ This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: kpackage-trinity
@@ -98,12 +98,12 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: rpm
 Suggests: khelpcenter-trinity
-Description: KDE3 package management tool
+Description: Trinity package management tool
  This is a frontend to both .rpm and .deb package formats. It allows you
  to view currently installed packages, browse available packages, and
  install/remove them.
  .
- This package is part of KDE3, as a component of the KDE administration module.
+ This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: ksysv-trinity
@@ -111,11 +111,11 @@ Section: admin
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: KDE3 SysV-style init configuration editor
+Description: Trinity SysV-style init configuration editor
  This program allows you to edit your start and stop scripts using a
  drag and drop GUI.
  .
- This package is part of KDE3, as a component of the KDE administration module.
+ This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: kuser-trinity
@@ -123,10 +123,10 @@ Section: admin
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: KDE3 user/group administration tool
+Description: Trinity user/group administration tool
  A user/group administration tool for KDE.
  .
- This package is part of KDE3, as a component of the KDE administration module.
+ This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: lilo-config-trinity
@@ -135,14 +135,14 @@ Architecture: none
 Depends: ${shlibs:Depends}, kcontrol-trinity
 Recommends: kdebase-trinity-bin
 Suggests: lilo
-Description: KDE3 frontend for lilo configuration
+Description: Trinity frontend for lilo configuration
  lilo-config is a KDE based frontend to the lilo boot manager configuration.
  It runs out of the KDE Control Center.
  .
  If you want to use the menu entry to launch lilo-config, you need to install
  kdebase-bin since it uses the kdesu command to gain root privileges.
  .
- This package is part of KDE3, as a component of the KDE administration module.
+ This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
 
 Package: kdeadmin-trinity-dbg

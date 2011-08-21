@@ -14,18 +14,18 @@ Homagepage: http://ksquirrel.sourceforge.net
 Package: libksquirrel0-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: KDE3 image viewer
+Description: Trinity image viewer
  Runtime libraries for KSquirrel.
 
 Package: libksquirrel-trinity-dev
 Section: libdevel
 Architecture: any
 Depends: ${shlibs:Depends}, libksquirrel0-trinity (= ${binary:Version})
-Description: KDE3 image viewer
+Description: Trinity image viewer
  Development libraries for KSquirrel.
 
 Package: libksquirrel-tools-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, libksquirrel0-trinity (= ${binary:Version})
-Description: KDE3 image viewer
+Description: Trinity image viewer
  Tools for KSquirrel.

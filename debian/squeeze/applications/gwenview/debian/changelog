@@ -12,7 +12,7 @@ gwenview-trinity (4:1.4.2-6) jaunty; urgency=low
 
 gwenview-trinity (4:1.4.2-5) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 05 March 2009 01:11:00 -0600
@@ -279,7 +279,7 @@ gwenview (0.14.3-1) unstable; urgency=low
 gwenview (0.14.1-1) unstable; urgency=low
 
   * New upstream release
-  * first KDE3
+  * first Trinity
 
  -- Michael Spanier <mail@michael-spanier.de>  Wed, 19 Jun 2002 16:06:22 +0200
 

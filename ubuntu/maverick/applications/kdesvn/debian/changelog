@@ -6,7 +6,7 @@ kdesvn-trinity (1.0.4-2~2ubuntu4) karmic; urgency=low
 
 kdesvn-trinity (1.0.4-2~0ubuntu4) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 10 March 2009 12:31:00 -0600
@@ -19,7 +19,7 @@ kdesvn-trinity (1.0.4-2~0ubuntu3) intrepid; urgency=low
 
 kdesvn (1.0.4-2~hardy1) hardy-backports; urgency=low
 
-  * Upload fixed KDE3 package from sid for compatibility with svn 1.5
+  * Upload fixed Trinity package from sid for compatibility with svn 1.5
     (LP: #283468)
     - Intrepid package is KDE4 and not a suitable solution for
       hardy-backports

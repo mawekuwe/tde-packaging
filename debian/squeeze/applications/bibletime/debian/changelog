@@ -92,7 +92,7 @@ bibletime (1.4.1-1) unstable; urgency=low
 
   * New upstream version
   * Exclude docbook from dh_compress, Closes: #220891
-  * Hebrew displays RTL with KDE3 so closing old bug, Closes: #158456
+  * Hebrew displays RTL with Trinity so closing old bug, Closes: #158456
   * Tried search dialog and it works fine now so, Closes: #145965
 
  -- Daniel Glassey <wdg@debian.org>  Thu, 29 Jan 2004 22:10:38 +0000

@@ -6,7 +6,7 @@ piklab-trinity (0.15.2-2ubuntu0) karmic; urgency=low
 
 piklab-trinity (0.15.2-1ubuntu4) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 06 March 2009 01:35:00 -0600

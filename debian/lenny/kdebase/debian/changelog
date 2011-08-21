@@ -152,7 +152,7 @@ kdebase-trinity (4:3.5.10-0ubuntu4~intrepid10) intrepid; urgency=low
 
 kdebase-trinity (4:3.5.10-0ubuntu4~intrepid8) intrepid; urgency=low
 
-  * Repaired plasma startup to autodetect KDE3/KDE4 and not run/run accordingly
+  * Repaired plasma startup to autodetect Trinity/KDE4 and not run/run accordingly
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 15 Apr 2009 11:37:00 -0600
 
@@ -202,7 +202,7 @@ kdebase-trinity (4:3.5.10-0ubuntu3~intrepid18) intrepid; urgency=low
 
 kdebase-trinity (4:3.5.10-0ubuntu3~intrepid15) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
   * Removed unbuilt libraries khotkeys_arts.la and khotkeys_arts.so
 
@@ -258,7 +258,7 @@ kdebase-trinity (4:3.5.10-0ubuntu2~intrepid11) intrepid; urgency=low
 
 kdebase-trinity (4:3.5.10-0ubuntu2~intrepid9) intrepid; urgency=low
 
-  * Fixed KDE3 games path
+  * Fixed Trinity games path
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Mon, 01 Dec 2008 00:34:00 -0600
 
@@ -574,7 +574,7 @@ kdebase (4:3.5.8.dfsg.1-2) unstable; urgency=low
   +++ Changes by Armin Berres:
 
   * Split off kdebase-bin-trinity which contains executables which can be provided by
-    KDE3 or KDE4.
+    Trinity or KDE4.
 
   +++ Changes by Ana Beatriz Guerrero Lopez:
 

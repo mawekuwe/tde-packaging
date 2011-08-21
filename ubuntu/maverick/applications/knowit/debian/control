@@ -13,4 +13,4 @@ Depends: ${shlibs:Depends}
 Description: Tool for managing notes [Trinity]
  KnowIt is a tool for managing notes which are organized in
  tree-like hierarchy. It is similar to TuxCards,
- but KDE-based, and requires KDE3.
+ but KDE-based, and requires Trinity.

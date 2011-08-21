@@ -6,7 +6,7 @@ kmyfirewall-trinity (1.1.1-1~1ubuntu1) karmic; urgency=low
 
 kmyfirewall-trinity (1.1.1-1~1ubuntu0) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 05 March 2009 29:52:00 -0600

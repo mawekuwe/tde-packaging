@@ -9,7 +9,7 @@ Standards-Version: 3.8.4
 Package: kwin-style-crystal-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: semi transparant window decoration for KDE3
+Description: semi transparant window decoration for Trinity
  Crystal offers you pseudo transparent titlebar, buttons and borders
  transparent, so you can see more of your lovely background image
  Transparancy and buttons can be costumized to match your wishes.

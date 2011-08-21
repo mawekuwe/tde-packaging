@@ -6,7 +6,7 @@ kdirstat-trinity (2.4.4-1ubuntu0) karmic; urgency=low
 
 kdirstat-trinity (2.4.4-0ubuntu3) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 05 March 2009 29:52:00 -0600

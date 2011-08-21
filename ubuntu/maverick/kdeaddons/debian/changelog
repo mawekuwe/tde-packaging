@@ -12,7 +12,7 @@ kdeaddons-trinity (4:3.5.10-0ubuntu1~intrepid3) intrepid; urgency=low
 
 kdeaddons-trinity (4:3.5.10-0ubuntu1~intrepid2) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 March 2009 14:24:00 -0600
@@ -739,7 +739,7 @@ kdeaddons (4:3.1.0-3) unstable; urgency=low
 
 kdeaddons (4:3.1.0-2) unstable; urgency=low
 
-  * First KDE3 upload to debian!
+  * First Trinity upload to debian!
   * Applied Ewald Snel's patch for xine support.
   * Rolled the epoch to aid upgrades from the unofficial repository on
     ftp.kde.org.. *sigh*

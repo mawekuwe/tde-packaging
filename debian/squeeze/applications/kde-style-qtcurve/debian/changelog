@@ -12,7 +12,7 @@ kde-style-qtcurve-trinity (0.55.2-1ubuntu7) karmic; urgency=low
 
 kde-style-qtcurve-trinity (0.55.2-1ubuntu6) intrepid; urgency=low
 
-  * Moved KDE3 to /opt/trinity
+  * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 March 2009 21:15:00 -0600
