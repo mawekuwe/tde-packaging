@@ -49,7 +49,7 @@ if [ "$SELECTION" = "1" ]; then
 	clear
 	echo "Dependencies: Select what you want us to generate."
 	echo "(1) libtqt4"
-	echo "(2) dbus-1-tqt"
+	echo "(2) libdbus-tqt-1-0"
 	echo "(3) libdbus-1-tqt-0"
 	echo "(4) arts"
 	read CHOICE
@@ -66,9 +66,11 @@ elif [ "$SELECTION" = "2" ]; then
 	clear
 	echo "Main: Select what you want us to generate."
 	echo "(1) tdelibs"
+	echo "(2) tdebase"
 	read CHOICE
 	
 	if [ "$CHOICE" = "1" ]; then NAME='kdelibs';
+	elif [ "$CHOICE" = "2" ]; then NAME='kdebase';
 	else
 	echo "Invalid, bye." && exit 1
 	fi

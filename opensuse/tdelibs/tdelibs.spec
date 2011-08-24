@@ -197,8 +197,7 @@ License:        BSD3c(or similar) ; GPLv2+ ; LGPLv2.1+
 Requires:       libtqt4-devel libvorbis-devel tdelibs = %version autoconf automake libxslt-devel libxml2-devel libart_lgpl-devel libjpeg-devel tde-filesystem
 # next line from tde-devel-packages macro
 Requires:       tdelibs-doc libtiff-devel openssl-devel update-desktop-files
-# FIXME dbus-1-qt3-devel to what?
-Requires:       libdrm-devel dbus-1-qt3-devel
+Requires:       libdrm-devel dbus-1-tqt-devel
 Requires:       libattr-devel libacl-devel
 Requires:       tdelibs-arts
 Summary:        Trinity Base Package: Build Environment
