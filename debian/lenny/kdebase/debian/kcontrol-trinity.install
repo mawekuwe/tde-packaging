@@ -32,6 +32,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_css.la
 debian/tmp/opt/trinity/lib/trinity/kcm_css.so
 debian/tmp/opt/trinity/lib/trinity/kcm_display.la
 debian/tmp/opt/trinity/lib/trinity/kcm_display.so
+debian/tmp/opt/trinity/lib/trinity/kcm_displayconfig.la
+debian/tmp/opt/trinity/lib/trinity/kcm_displayconfig.so
 debian/tmp/opt/trinity/lib/trinity/kcm_energy.la
 debian/tmp/opt/trinity/lib/trinity/kcm_energy.so
 debian/tmp/opt/trinity/lib/trinity/kcm_filetypes.la
@@ -141,6 +143,7 @@ debian/tmp/opt/trinity/share/applications/kde/desktop.desktop
 debian/tmp/opt/trinity/share/applications/kde/desktoppath.desktop
 debian/tmp/opt/trinity/share/applications/kde/devices.desktop
 debian/tmp/opt/trinity/share/applications/kde/display.desktop
+debian/tmp/opt/trinity/share/applications/kde/displayconfig.desktop
 debian/tmp/opt/trinity/share/applications/kde/dma.desktop
 debian/tmp/opt/trinity/share/applications/kde/ebrowsing.desktop
 debian/tmp/opt/trinity/share/applications/kde/filebrowser.desktop
