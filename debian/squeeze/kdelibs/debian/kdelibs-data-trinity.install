@@ -1698,6 +1698,7 @@ debian/tmp/opt/trinity/share/apps/kstyle/pixmaps/riscos/vscrollbar_down.png
 debian/tmp/opt/trinity/share/apps/kstyle/pixmaps/riscos/vscrollbar.png
 debian/tmp/opt/trinity/share/apps/kstyle/pixmaps/riscos/vscrollborder.png
 debian/tmp/opt/trinity/share/apps/kstyle/pixmaps/riscos/vtab.png
+debian/tmp/opt/trinity/share/apps/kstyle/themes/asteroid.themerc
 debian/tmp/opt/trinity/share/apps/kstyle/themes/b3.themerc
 debian/tmp/opt/trinity/share/apps/kstyle/themes/default.themerc
 debian/tmp/opt/trinity/share/apps/kstyle/themes/highcolor.themerc
