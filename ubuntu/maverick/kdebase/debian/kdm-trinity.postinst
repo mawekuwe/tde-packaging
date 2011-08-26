@@ -9,6 +9,10 @@ set -e
 # does not exist
 DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
 
+if [ -e "$DEFAULT_DISPLAY_MANAGER_FILE.dpkg-tmp" ]; then
+  cp -Rp "$DEFAULT_DISPLAY_MANAGER_FILE.dpkg-tmp" "$DEFAULT_DISPLAY_MANAGER_FILE"
+fi
+
 if [ ! -e "$DEFAULT_DISPLAY_MANAGER_FILE" ]; then
   DEFAULT_DISPLAY_MANAGER=kdm-trinity
   if db_get shared/default-x-display-manager; then
