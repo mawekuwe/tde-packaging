@@ -7,16 +7,12 @@ opt/trinity/lib/trinity/kcm_userconfig.a opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_mountconfig.so.0.0.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_mountconfig.la opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_mountconfig.a opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_displayconfig.so.0.0.0 opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_displayconfig.la opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_displayconfig.a opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_wineconfig.so.0.0.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_wineconfig.la opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_wineconfig.a opt/trinity/lib/
 opt/trinity/share/icons/crystalsvg/32x32/apps/daemons.png
 opt/trinity/share/icons/crystalsvg/32x32/apps/disksfilesystems.png
 opt/trinity/share/icons/crystalsvg/32x32/apps/userconfig.png
-opt/trinity/share/icons/crystalsvg/32x32/apps/displayconfig.png
 opt/trinity/share/icons/crystalsvg/32x32/apps/wineconfig.png
 opt/trinity/share/doc/kde/HTML/en/guidance/index.cache.bz2
 opt/trinity/share/doc/kde/HTML/en/guidance/index.html
@@ -34,7 +30,6 @@ opt/trinity/share/doc/kde/HTML/en/guidance/configuration.html
 opt/trinity/share/applications/kde/serviceconfig.desktop
 opt/trinity/share/applications/kde/userconfig.desktop
 opt/trinity/share/applications/kde/mountconfig.desktop
-opt/trinity/share/applications/kde/displayconfig.desktop
 opt/trinity/share/applications/kde/wineconfig.desktop
 opt/trinity/share/apps/guidance/pics/laserwarn.png
 opt/trinity/share/apps/guidance/pics/hi32-app-daemons.png
@@ -73,33 +68,8 @@ opt/trinity/share/apps/guidance/pics/hi32-gfxcard.png
 opt/trinity/share/apps/guidance/pics/hi32-display.png
 opt/trinity/share/apps/guidance/pics/32-wine.png
 opt/trinity/share/apps/guidance/pics/kdewinewizard.png
-opt/trinity/share/apps/guidance/pics/displayconfig
-opt/trinity/share/apps/guidance/pics/displayconfig/dualhead
-opt/trinity/share/apps/guidance/pics/displayconfig/dualhead/monitor_1.png
-opt/trinity/share/apps/guidance/pics/displayconfig/dualhead/monitor_2.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/background.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/background_r90.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/background_wide.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/background_wide_r90.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/monitor.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/monitor_r90.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/monitor_wide.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/monitor_wide_r90.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/window_4th.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/window_bottom_left_4th.png
-opt/trinity/share/apps/guidance/pics/displayconfig/monitor_resizable/window_bottom_right_4th.png
-opt/trinity/share/apps/guidance/pics/displayconfig/gammapics
-opt/trinity/share/apps/guidance/pics/displayconfig/gammapics/MGam14.png
-opt/trinity/share/apps/guidance/pics/displayconfig/gammapics/MGam16.png
-opt/trinity/share/apps/guidance/pics/displayconfig/gammapics/MGam18.png
-opt/trinity/share/apps/guidance/pics/displayconfig/gammapics/MGam20.png
-opt/trinity/share/apps/guidance/pics/displayconfig/gammapics/MGam22.png
-opt/trinity/share/apps/guidance/pics/displayconfig/gammapics/MGam24.png
 opt/trinity/share/python-support/kde-guidance-trinity/SMBShareSelectDialog.py
 opt/trinity/share/python-support/kde-guidance-trinity/SimpleCommandRunner.py
-opt/trinity/share/python-support/kde-guidance-trinity/displayconfig.py
-opt/trinity/share/python-support/kde-guidance-trinity/displayconfigwidgets.py
 opt/trinity/share/python-support/kde-guidance-trinity/fuser.py
 opt/trinity/share/python-support/kde-guidance-trinity/fuser_ui.py
 #opt/trinity/share/python-support/kde-guidance-trinity/grubconfig.py
@@ -117,9 +87,6 @@ opt/trinity/lib/trinity/kcm_userconfig.so.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_userconfig.so opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_mountconfig.so.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_mountconfig.so opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_displayconfig.so.0 opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_displayconfig.so opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_wineconfig.so.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_wineconfig.so opt/trinity/lib/
 usr/share/lintian/overrides/kde-guidance-trinity
-etc/X11/Xsession.d/40guidance-displayconfig_restore
