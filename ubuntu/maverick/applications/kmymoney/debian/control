@@ -10,6 +10,8 @@ Standards-Version: 3.8.4
 Package: kmymoney2-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${shlibs:Misc}, ${misc:Depends},
+Replaces: kmymoney2-kde3 (<< 4:3.5.13)
+Breaks: kmymoney2-kde3 (<< 4:3.5.13)
  kmymoney2-common-trinity (>= ${source:Version})
 Recommends: kmymoney2-plugin-aqbanking-trinity
 Description: personal finance manager for TDE
@@ -21,6 +23,8 @@ Description: personal finance manager for TDE
 Package: kmymoney2-common-trinity
 Architecture: all
 Depends: ${misc:Depends}
+Replaces: kmymoney2-common-kde3 (<< 4:3.5.13)
+Breaks: kmymoney2-common-kde3 (<< 4:3.5.13)
 Recommends: kmymoney2-trinity (>= ${source:Version})
 Description: KMyMoney architecture independent files
  This package contains architecture independent files needed for KMyMoney to
@@ -30,6 +34,8 @@ Description: KMyMoney architecture independent files
 Package: kmymoney2-trinity-dev
 Section: libdevel
 Architecture: any
+Replaces: kmymoney2-kde3-dev (<< 4:3.5.13)
+Breaks: kmymoney2-kde3-dev (<< 4:3.5.13)
 Depends: ${misc:Depends}, kmymoney2-trinity (= ${binary:Version})
 Description: KMyMoney development files
  This package contains development files needed for KMyMoney plugins.

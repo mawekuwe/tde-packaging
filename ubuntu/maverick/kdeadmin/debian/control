@@ -10,6 +10,8 @@ Standards-Version: 3.8.4
 Package: kdeadmin-trinity
 Section: kde
 Architecture: all
+Replaces: kdeadmin-kde3 (<< 4:3.5.13)
+Breaks: kdeadmin-kde3 (<< 4:3.5.13)
 Depends: kcron-trinity (>= ${Source-Version}), kdat-trinity (>= ${Source-Version}), kdeadmin-kfile-plugins-trinity (>= ${Source-Version}), knetworkconf-trinity (>= ${Source-Version}), kpackage-trinity (>= ${Source-Version}), ksysv-trinity (>= ${Source-Version}), kuser-trinity (>= ${Source-Version})
 Recommends: lilo-config-trinity (>= ${Source-Version})
 Suggests: kdeadmin-trinity-doc-html (>= ${Source-Version})
@@ -25,6 +27,8 @@ Description: system administration tools from the official Trinity release
 Package: kdeadmin-trinity-doc-html
 Architecture: all
 Section: doc
+Replaces: kdeadmin-kde3-doc-html (<< 4:3.5.13)
+Breaks: kdeadmin-kde3-doc-html (<< 4:3.5.13)
 Suggests: konqueror-trinity | www-browser, kdebase-trinity
 Description: KDE administration documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -43,6 +47,8 @@ Description: KDE administration documentation in HTML format
 Package: kcron-trinity
 Section: admin
 Architecture: any
+Replaces: kcron-kde3 (<< 4:3.5.13)
+Breaks: kcron-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: the Trinity crontab editor
@@ -55,6 +61,8 @@ Description: the Trinity crontab editor
 Package: kdat-trinity
 Section: admin
 Architecture: any
+Replaces: kdat-kde3 (<< 4:3.5.13)
+Breaks: kdat-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a Trinity tape backup tool
@@ -74,6 +82,8 @@ Description: a Trinity tape backup tool
 Package: kdeadmin-kfile-plugins-trinity
 Section: kde
 Architecture: any
+Replaces: kdeadmin-kfile-plugins-kde3 (<< 4:3.5.13)
+Breaks: kdeadmin-kfile-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: Trinity file metainfo plugins for deb and rpm files
  File metainfo plugins for deb and rpm package files.
@@ -84,6 +94,8 @@ Description: Trinity file metainfo plugins for deb and rpm files
 Package: knetworkconf-trinity
 Section: kde
 Architecture: any
+Replaces: knetworkconf-kde3 (<< 4:3.5.13)
+Breaks: knetworkconf-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: Trinity network configuration tool
  This is a KDE control center module to configure TCP/IP settings.  It
@@ -95,6 +107,8 @@ Description: Trinity network configuration tool
 Package: kpackage-trinity
 Section: admin
 Architecture: any
+Replaces: kpackage-kde3 (<< 4:3.5.13)
+Breaks: kpackage-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: rpm
 Suggests: khelpcenter-trinity
@@ -109,6 +123,8 @@ Description: Trinity package management tool
 Package: ksysv-trinity
 Section: admin
 Architecture: any
+Replaces: ksysv-kde3 (<< 4:3.5.13)
+Breaks: ksysv-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: Trinity SysV-style init configuration editor
@@ -121,6 +137,8 @@ Description: Trinity SysV-style init configuration editor
 Package: kuser-trinity
 Section: admin
 Architecture: any
+Replaces: kuser-kde3 (<< 4:3.5.13)
+Breaks: kuser-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: Trinity user/group administration tool
@@ -132,6 +150,8 @@ Description: Trinity user/group administration tool
 Package: lilo-config-trinity
 Section: kde
 Architecture: none
+Replaces: lilo-config-kde3 (<< 4:3.5.13)
+Breaks: lilo-config-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kcontrol-trinity
 Recommends: kdebase-trinity-bin
 Suggests: lilo
@@ -148,6 +168,8 @@ Description: Trinity frontend for lilo configuration
 Package: kdeadmin-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdeadmin-kde3-dbg (<< 4:3.5.13)
+Breaks: kdeadmin-kde3-dbg (<< 4:3.5.13)
 Depends: kdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for kdeadmin-trinity

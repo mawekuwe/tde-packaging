@@ -19,6 +19,8 @@ Homepage: http://amarok.kde.org
 Package: amarok-trinity
 Architecture: any
 Depends:  amarok-common-trinity (>= ${source:Version}), amarok-engine-xine-trinity (= ${binary:Version}) | amarok-engine-yauap-trinity (= ${binary:Version}), unzip, ${shlibs:Depends}
+Replaces: amarok-kde3 (<< 4:3.5.13)
+Breaks: amarok-kde3 (<< 4:3.5.13)
 Suggests: amarok-engines-trinity, moodbar, konqueror-trinity | www-browser,
  python, python-qt3, libqt0-ruby1.8, libvisual-0.4-plugins
 Description: versatile and easy to use audio player for Trinity
@@ -47,6 +49,8 @@ Description: versatile and easy to use audio player for Trinity
 Package: amarok-common-trinity
 Architecture: all
 Depends: ruby
+Replaces: amarok-common-kde3 (<< 4:3.5.13)
+Breaks: amarok-common-kde3 (<< 4:3.5.13)
 Recommends: amarok-trinity (>= ${source:Version})
 Suggests: libqt0-ruby1.8, python, python-qt3
 Description: architecture independent files for Amarok [Trinity]
@@ -61,6 +65,8 @@ Description: architecture independent files for Amarok [Trinity]
 Package: amarok-engines-trinity
 Architecture: all
 Depends: amarok-engine-xine-trinity (>= ${source:Version}), amarok-engine-yauap-trinity (>= ${source:Version})
+Replaces: amarok-engines-kde3 (<< 4:3.5.13)
+Breaks: amarok-engines-kde3 (<< 4:3.5.13)
 Description: output engines for the Amarok music player [Trinity]
  This package serves merely as a reference point if you want to install
  all available Amarok engines. It depends on those Amarok engines that
@@ -70,6 +76,8 @@ Description: output engines for the Amarok music player [Trinity]
 Package: amarok-engine-xine-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: amarok-engine-xine-kde3 (<< 4:3.5.13)
+Breaks: amarok-engine-xine-kde3 (<< 4:3.5.13)
 Recommends: amarok-trinity (= ${binary:Version})
 Description: xine engine for the Amarok audio player [Trinity]
  This package provides the xine engine for Amarok, which you may prefer
@@ -79,6 +87,8 @@ Description: xine engine for the Amarok audio player [Trinity]
 Package: amarok-engine-yauap-trinity
 Architecture: any
 Depends: yauap, ${shlibs:Depends}
+Replaces: amarok-engine-yauap-kde3 (<< 4:3.5.13)
+Breaks: amarok-engine-yauap-kde3 (<< 4:3.5.13)
 Recommends: amarok-trinity (= ${binary:Version})
 Description: Yauap engine for the Amarok audio player [Trinity]
  This package includes Amarok yauap engine, which provides a frontend
@@ -89,6 +99,8 @@ Description: Yauap engine for the Amarok audio player [Trinity]
 Package: amarok-trinity-dbg
 Priority: extra
 Architecture: any
+Replaces: amarok-kde3-dbg (<< 4:3.5.13)
+Breaks: amarok-kde3-dbg (<< 4:3.5.13)
 Depends: amarok-trinity (= ${binary:Version})
 Recommends: kdelibs-trinity-dbg
 Description: debugging symbols for Amarok [Trinity]

@@ -12,6 +12,8 @@ XS-Python-Version: all
 Package: python-trinity-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${python:Depends}, python-qt3 (>= 3.18)
+Replaces: python-kde3-kde3 (<< 4:3.5.13)
+Breaks: python-kde3-kde3 (<< 4:3.5.13)
 XB-Python-Version: ${python:Versions}
 Provides: ${python:Provides}
 Conflicts: python-trinity-trinity
@@ -23,6 +25,8 @@ Description: Trinity bindings for Python [Trinity]
 Package: python-trinity-trinity-dbg
 Priority: extra
 Architecture: any
+Replaces: python-kde3-kde3-dbg (<< 4:3.5.13)
+Breaks: python-kde3-kde3-dbg (<< 4:3.5.13)
 Depends: python-trinity-trinity (= ${binary:Version}), python-dbg, python-qt3-dbg, ${shlibs:Depends}
 XB-Python-Version: ${python:Versions}
 Description: Trinity bindings for Python (debug extensions) [Trinity]
@@ -35,6 +39,8 @@ Description: Trinity bindings for Python (debug extensions) [Trinity]
 Package: python-trinity-trinity-dev
 Section: python
 Architecture: all
+Replaces: python-kde3-kde3-dev (<< 4:3.5.13)
+Breaks: python-kde3-kde3-dev (<< 4:3.5.13)
 Depends: pyqt-tools, ${python:Depends}
 XB-Python-Version: ${python:Versions}
 Description: Trinity bindings for Python - Development files and scripts [Trinity]
@@ -47,6 +53,8 @@ Description: Trinity bindings for Python - Development files and scripts [Trinit
 Package: python-trinity-trinity-doc
 Section: doc
 Architecture: all
+Replaces: python-kde3-kde3-doc (<< 4:3.5.13)
+Breaks: python-kde3-kde3-doc (<< 4:3.5.13)
 Description: Documentation and examples for PyKDE [Trinity]
  General documentation and examples for PyKDE providing programming
  tips and working code you can use to learn from.

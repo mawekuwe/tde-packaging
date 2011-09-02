@@ -10,6 +10,8 @@ Standards-Version: 3.8.4
 Package: kdeaddons-trinity
 Architecture: all
 Section: kde
+Replaces: kdeaddons-kde3 (<< 4:3.5.13)
+Breaks: kdeaddons-kde3 (<< 4:3.5.13)
 Depends: atlantikdesigner-trinity (>= ${Source-Version}), kaddressbook-plugins-trinity (>= ${Source-Version}), kate-plugins-trinity (>= ${Source-Version}), kdeaddons-kfile-plugins-trinity (>= ${Source-Version}), kicker-applets-trinity (>= ${Source-Version}), konq-plugins-trinity (>= ${Source-Version}), ksig-trinity (>= ${Source-Version}), noatun-plugins-trinity (>= ${Source-Version})
 Suggests: kdeaddons-trinity-doc-html
 Description: add-on plugins and applets provided with Trinity
@@ -24,6 +26,8 @@ Description: add-on plugins and applets provided with Trinity
 Package: kdeaddons-trinity-doc-html
 Architecture: all
 Section: doc
+Replaces: kdeaddons-kde3-doc-html (<< 4:3.5.13)
+Breaks: kdeaddons-kde3-doc-html (<< 4:3.5.13)
 Suggests: konqueror-trinity | www-browser, kdeaddons-trinity
 Description: KDE add-ons documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -42,6 +46,8 @@ Description: KDE add-ons documentation in HTML format
 Package: atlantikdesigner-trinity
 Architecture: any
 Section: games
+Replaces: atlantikdesigner-kde3 (<< 4:3.5.13)
+Breaks: atlantikdesigner-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Enhances: atlantik-trinity
 Description: game board designer for Atlantik
@@ -59,6 +65,8 @@ Description: game board designer for Atlantik
 Package: kaddressbook-plugins-trinity
 Architecture: any
 Section: kde
+Replaces: kaddressbook-plugins-kde3 (<< 4:3.5.13)
+Breaks: kaddressbook-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: kworldclock-trinity, khelpcenter-trinity, kdeaddons-trinity-doc-html
 Enhances: kaddressbook-trinity
@@ -76,6 +84,8 @@ Description: plugins for KAddressBook, the Trinity address book
 Package: kate-plugins-trinity
 Architecture: any
 Section: editors
+Replaces: kate-plugins-kde3 (<< 4:3.5.13)
+Breaks: kate-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, tidy
 Suggests: khelpcenter-trinity, kdeaddons-trinity-doc-html, kaddressbook-trinity
 Enhances: kate-trinity
@@ -95,6 +105,8 @@ Description: plugins for Kate, the KDE Advanced Text Editor
 Package: kdeaddons-kfile-plugins-trinity
 Architecture: any
 Section: kde
+Replaces: kdeaddons-kfile-plugins-kde3 (<< 4:3.5.13)
+Breaks: kdeaddons-kfile-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Provides: renamedlg-plugins-trinity
 Description: Trinity file dialog plugins for text files and folders
@@ -114,6 +126,8 @@ Description: Trinity file dialog plugins for text files and folders
 Package: kicker-applets-trinity
 Architecture: any
 Section: kde
+Replaces: kicker-applets-kde3 (<< 4:3.5.13)
+Breaks: kicker-applets-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kicker-trinity
 Suggests: xmms-kde-trinity, khelpcenter-trinity, kdeaddons-trinity-doc-html
 Provides: ktimemon-trinity
@@ -135,6 +149,8 @@ Description: applets for Kicker, the Trinity panel
 Package: knewsticker-scripts-trinity
 Architecture: all
 Section: kde
+Replaces: knewsticker-scripts-kde3 (<< 4:3.5.13)
+Breaks: knewsticker-scripts-kde3 (<< 4:3.5.13)
 Depends: ${perl:Depends}, python, libfinance-quote-perl, libmime-perl, libnews-nntpclient-perl, libwww-perl
 Recommends: knewsticker-trinity
 Enhances: knewsticker-trinity
@@ -152,6 +168,8 @@ Description: scripts for KNewsTicker, the Trinity news ticker
 Package: konq-plugins-trinity
 Architecture: any
 Section: kde
+Replaces: konq-plugins-kde3 (<< 4:3.5.13)
+Breaks: konq-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, libjpeg-progs, python, rsync, unison
 Recommends: akregator-trinity, ark-trinity, imagemagick
 Suggests: khelpcenter-trinity, kdeaddons-trinity-doc-html
@@ -179,6 +197,8 @@ Description: plugins for Konqueror, the Trinity file/web/doc browser
 Package: ksig-trinity
 Architecture: any
 Section: kde
+Replaces: ksig-kde3 (<< 4:3.5.13)
+Breaks: ksig-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: kmail-trinity
 Enhances: kmail-trinity
@@ -198,6 +218,8 @@ Description: graphical tool for managing multiple email signatures
 Package: noatun-plugins-trinity
 Architecture: any
 Section: sound
+Replaces: noatun-plugins-kde3 (<< 4:3.5.13)
+Breaks: noatun-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Enhances: noatun-trinity
 Description: plugins for Noatun, the Trinity media player
@@ -215,6 +237,8 @@ Description: plugins for Noatun, the Trinity media player
 Package: kdeaddons-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdeaddons-kde3-dbg (<< 4:3.5.13)
+Breaks: kdeaddons-kde3-dbg (<< 4:3.5.13)
 Depends: kdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for kdeaddons-trinity

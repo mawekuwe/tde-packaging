@@ -8,6 +8,8 @@ Standards-Version: 3.8.4
 Package: kpicosim-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: kpicosim-kde3 (<< 4:3.5.13)
+Breaks: kpicosim-kde3 (<< 4:3.5.13)
 Description: IDE and simulator for the Xilinx PicoBlaze-3 [Trinity]
  kpicosim is a development environment for the Xilinx 
  PicoBlaze-3 soft-core processor for the KDE Desktop (Linux).

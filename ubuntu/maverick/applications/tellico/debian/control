@@ -10,6 +10,8 @@ Homepage: http://periapsis.org/tellico/
 Package: tellico-trinity
 Architecture: any
 Depends: tellico-data-trinity (= ${source:Version}), tellico-scripts-trinity, ${shlibs:Depends}
+Replaces: tellico-kde3 (<< 4:3.5.13)
+Breaks: tellico-kde3 (<< 4:3.5.13)
 Description: collection manager for books, videos, music [Trinity]
  Tellico is a collection manager for KDE. It includes default collections for
  books, bibliographies, comic books, videos, music, coins, stamps, trading
@@ -27,6 +29,8 @@ Description: collection manager for books, videos, music [Trinity]
 Package: tellico-data-trinity
 Architecture: all
 Depends: kdelibs-data-trinity
+Replaces: tellico-data-kde3 (<< 4:3.5.13)
+Breaks: tellico-data-kde3 (<< 4:3.5.13)
 Recommends: tellico-trinity
 Suggests: python
 Description: collection manager for books, videos, music [data] [Trinity]
@@ -49,6 +53,8 @@ Description: collection manager for books, videos, music [data] [Trinity]
 Package: tellico-scripts-trinity
 Architecture: all
 Recommends: tellico-trinity
+Replaces: tellico-scripts-kde3 (<< 4:3.5.13)
+Breaks: tellico-scripts-kde3 (<< 4:3.5.13)
 Suggests: python, ruby
 Description: collection manager for books, videos, music [scripts] [Trinity]
  Tellico is a collection manager for KDE. It includes default collections for

@@ -10,6 +10,8 @@ Standards-Version: 3.8.4
 Package: kdeedu-trinity
 Architecture: all
 Section: kde
+Replaces: kdeedu-kde3 (<< 4:3.5.13)
+Breaks: kdeedu-kde3 (<< 4:3.5.13)
 Depends: blinken-trinity (>= ${Source-Version}), kalzium-trinity (>= ${Source-Version}), kanagram-trinity (>= ${Source-Version}), kbruch-trinity (>= ${Source-Version}), kdeedu-data-trinity (>= ${Source-Version}), keduca-trinity (>= ${Source-Version}), kgeography-trinity (>= ${Source-Version}), khangman-trinity (>= ${Source-Version}), kig-trinity (>= ${Source-Version}), kiten-trinity (>= ${Source-Version}), klatin-trinity (>= ${Source-Version}), klettres-trinity (>= ${Source-Version}), kmplot-trinity (>= ${Source-Version}), kpercentage-trinity (>= ${Source-Version}), kstars-trinity (>= ${Source-Version}), ktouch-trinity (>= ${Source-Version}), kturtle-trinity (>= ${Source-Version}), kverbos-trinity (>= ${Source-Version}), kvoctrain-trinity (>= ${Source-Version}), kwordquiz-trinity (>= ${Source-Version}), indi-trinity (>= ${Source-Version})
 Suggests: kdeedu-trinity-doc-html
 Description: educational apps from the official Trinity release
@@ -24,6 +26,8 @@ Description: educational apps from the official Trinity release
 Package: kdeedu-data-trinity
 Architecture: all
 Section: kde
+Replaces: kdeedu-data-kde3 (<< 4:3.5.13)
+Breaks: kdeedu-data-kde3 (<< 4:3.5.13)
 Description: shared data for Trinity educational applications
  This package contains shared data necessary for running the
  educational applications provided with KDE (the K Desktop
@@ -35,6 +39,8 @@ Description: shared data for Trinity educational applications
 Package: kdeedu-trinity-dbg
 Architecture: any
 Priority: extra
+Replaces: kdeedu-kde3-dbg (<< 4:3.5.13)
+Breaks: kdeedu-kde3-dbg (<< 4:3.5.13)
 Depends: kdelibs-trinity-dbg
 Section: libdevel
 Description: debugging symbols for kdeedu-trinity
@@ -45,6 +51,8 @@ Description: debugging symbols for kdeedu-trinity
 Package: kdeedu-trinity-doc-html
 Architecture: all
 Section: doc
+Replaces: kdeedu-kde3-doc-html (<< 4:3.5.13)
+Breaks: kdeedu-kde3-doc-html (<< 4:3.5.13)
 Suggests: konqueror-trinity | www-browser, kdeedu-trinity
 Description: Trinity edutainment documentation in HTML format
  By default the educational applications provided with KDE (the K
@@ -64,6 +72,8 @@ Description: Trinity edutainment documentation in HTML format
 Package: blinken-trinity
 Architecture: any
 Section: games
+Replaces: blinken-kde3 (<< 4:3.5.13)
+Breaks: blinken-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ttf-sjfonts, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: Trinity version of the Simon Says electronic memory game
@@ -82,6 +92,8 @@ Description: Trinity version of the Simon Says electronic memory game
 Package: kalzium-trinity
 Architecture: any
 Section: science
+Replaces: kalzium-kde3 (<< 4:3.5.13)
+Breaks: kalzium-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kalzium-data-trinity (>> ${KDE-Version3}), kalzium-data-trinity (<< ${KDE-Next-Version3}), kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: chemistry teaching tool for Trinity
@@ -107,6 +119,8 @@ Description: chemistry teaching tool for Trinity
 Package: kalzium-data-trinity
 Architecture: all
 Section: science
+Replaces: kalzium-data-kde3 (<< 4:3.5.13)
+Breaks: kalzium-data-kde3 (<< 4:3.5.13)
 Description: data files for Kalzium
  This package contains architecture-independent data files for
  Kalzium, the KDE periodic table application.  This includes pictures
@@ -121,6 +135,8 @@ Description: data files for Kalzium
 Package: kanagram-trinity
 Architecture: any
 Section: games
+Replaces: kanagram-kde3 (<< 4:3.5.13)
+Breaks: kanagram-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: letter order game for Trinity
@@ -142,6 +158,8 @@ Description: letter order game for Trinity
 Package: kbruch-trinity
 Architecture: any
 Section: math
+Replaces: kbruch-kde3 (<< 4:3.5.13)
+Breaks: kbruch-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: fraction calculation teaching tool for Trinity
@@ -155,6 +173,8 @@ Description: fraction calculation teaching tool for Trinity
 Package: keduca-trinity
 Architecture: any
 Section: kde
+Replaces: keduca-kde3 (<< 4:3.5.13)
+Breaks: keduca-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: interactive form-based tests for Trinity
@@ -167,6 +187,8 @@ Description: interactive form-based tests for Trinity
 Package: kgeography-trinity
 Architecture: any
 Section: kde
+Replaces: kgeography-kde3 (<< 4:3.5.13)
+Breaks: kgeography-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kgeography-data-trinity (>> ${KDE-Version3}), kgeography-data-trinity (<< ${KDE-Next-Version3}), kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: Geography learning tool for Trinity
@@ -181,6 +203,8 @@ Description: Geography learning tool for Trinity
 Package: kgeography-data-trinity
 Architecture: all
 Section: kde
+Replaces: kgeography-data-kde3 (<< 4:3.5.13)
+Breaks: kgeography-data-kde3 (<< 4:3.5.13)
 Description: data files for KGeography
  This package contains architecture-independent data files for
  KGeography, the geography learning tool for KDE.  This includes map
@@ -194,6 +218,8 @@ Description: data files for KGeography
 Package: khangman-trinity
 Architecture: any
 Section: games
+Replaces: khangman-kde3 (<< 4:3.5.13)
+Breaks: khangman-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ttf-dustin, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: the classical hangman game for Trinity
@@ -212,6 +238,8 @@ Description: the classical hangman game for Trinity
 Package: kig-trinity
 Architecture: any
 Section: math
+Replaces: kig-kde3 (<< 4:3.5.13)
+Breaks: kig-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: interactive geometry program for KDE
@@ -238,6 +266,8 @@ Description: interactive geometry program for KDE
 Package: kiten-trinity
 Architecture: any
 Section: kde
+Replaces: kiten-kde3 (<< 4:3.5.13)
+Breaks: kiten-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3}), ttf-kochi-gothic | ttf-kochi-mincho
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: Japanese reference/study tool for Trinity
@@ -253,6 +283,8 @@ Description: Japanese reference/study tool for Trinity
 Package: klatin-trinity
 Architecture: any
 Section: kde
+Replaces: klatin-kde3 (<< 4:3.5.13)
+Breaks: klatin-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: application to help revise/teach Latin
@@ -276,6 +308,8 @@ Description: application to help revise/teach Latin
 Package: klettres-trinity
 Architecture: any
 Section: kde
+Replaces: klettres-kde3 (<< 4:3.5.13)
+Breaks: klettres-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, klettres-data-trinity (>> ${KDE-Version3}), klettres-data-trinity (<< ${KDE-Next-Version3}), kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: foreign alphabet tutor for Trinity
@@ -293,7 +327,8 @@ Description: foreign alphabet tutor for Trinity
 Package: klettres-data-trinity
 Architecture: all
 Section: kde
-Replaces: klettres-trinity (<< 4:3.2.0.1)
+Replaces: klettres-data-kde3 (<< 4:3.5.13)
+Breaks: klettres-data-kde3 (<< 4:3.5.13)
 Description: data files for KLettres foreign alphabet tutor
  This package contains architecture-independent data files for
  KLettres, the foreign alphabet tutor for KDE.  This includes sound
@@ -307,6 +342,8 @@ Description: data files for KLettres foreign alphabet tutor
 Package: kmplot-trinity
 Architecture: any
 Section: math
+Replaces: kmplot-kde3 (<< 4:3.5.13)
+Breaks: kmplot-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: mathematical function plotter for Trinity
@@ -329,6 +366,8 @@ Description: mathematical function plotter for Trinity
 Package: kpercentage-trinity
 Architecture: any
 Section: math
+Replaces: kpercentage-kde3 (<< 4:3.5.13)
+Breaks: kpercentage-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: percentage calculation teaching tool for Trinity
@@ -345,6 +384,8 @@ Description: percentage calculation teaching tool for Trinity
 Package: kstars-trinity
 Architecture: any
 Section: science
+Replaces: kstars-kde3 (<< 4:3.5.13)
+Breaks: kstars-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kstars-data-trinity (>> ${KDE-Version3}), kstars-data-trinity (<< ${KDE-Next-Version3}), kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3}), indi-trinity (= ${Source-Version})
 Suggests: konqueror-trinity, khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: desktop planetarium for Trinity
@@ -366,7 +407,8 @@ Description: desktop planetarium for Trinity
 Package: kstars-data-trinity
 Architecture: all
 Section: science
-Replaces: kstars-trinity (<< 4:3.2.0.1)
+Replaces: kstars-data-kde3 (<< 4:3.5.13)
+Breaks: kstars-data-kde3 (<< 4:3.5.13)
 Description: data files for KStars desktop planetarium
  This package contains architecture-independent data files for KStars,
  the graphical desktop planetarium for KDE.  This includes star
@@ -380,6 +422,8 @@ Description: data files for KStars desktop planetarium
 Package: ktouch-trinity
 Architecture: any
 Section: kde
+Replaces: ktouch-kde3 (<< 4:3.5.13)
+Breaks: ktouch-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: touch typing tutor for Trinity
@@ -398,6 +442,8 @@ Description: touch typing tutor for Trinity
 Package: kturtle-trinity
 Architecture: any
 Section: devel
+Replaces: kturtle-kde3 (<< 4:3.5.13)
+Breaks: kturtle-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: educational Logo programming environment
@@ -424,6 +470,8 @@ Description: educational Logo programming environment
 Package: kverbos-trinity
 Architecture: any
 Section: kde
+Replaces: kverbos-kde3 (<< 4:3.5.13)
+Breaks: kverbos-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: Spanish verb form study application for Trinity
@@ -441,6 +489,8 @@ Description: Spanish verb form study application for Trinity
 Package: kvoctrain-trinity
 Architecture: any
 Section: kde
+Replaces: kvoctrain-kde3 (<< 4:3.5.13)
+Breaks: kvoctrain-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ${perl:Depends}, libwww-perl, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: vocabulary trainer for Trinity
@@ -465,6 +515,8 @@ Description: vocabulary trainer for Trinity
 Package: kwordquiz-trinity
 Architecture: any
 Section: kde
+Replaces: kwordquiz-kde3 (<< 4:3.5.13)
+Breaks: kwordquiz-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdeedu-data-trinity (>> ${KDE-Version3}), kdeedu-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kdeedu-trinity-doc-html
 Description: flashcard and vocabulary learning program for Trinity
@@ -482,6 +534,8 @@ Description: flashcard and vocabulary learning program for Trinity
 Package: libkdeedu3-trinity
 Architecture: any
 Section: libs
+Replaces: libkdeedu3-kde3 (<< 4:3.5.13)
+Breaks: libkdeedu3-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: library for use with Trinity educational apps
  The KDE-based library libkdeedu is used with educational
@@ -494,6 +548,8 @@ Description: library for use with Trinity educational apps
 Package: libkdeedu-trinity-dev
 Architecture: any
 Section: libdevel
+Replaces: libkdeedu-kde3-dev (<< 4:3.5.13)
+Breaks: libkdeedu-kde3-dev (<< 4:3.5.13)
 Depends: libkdeedu3-trinity (= ${Source-Version}), kdelibs4-trinity-dev (>= 4:3.5.8)
 Description: development files for Trinity educational library
  The KDE-based library libkdeedu is used with educational
@@ -508,9 +564,10 @@ Description: development files for Trinity educational library
 Package: libkiten1-trinity
 Architecture: any
 Section: libs
+Replaces: libkiten1-kde3 (<< 4:3.5.13)
+Breaks: libkiten1-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, edict, kanjidic
 Recommends: ttf-kochi-gothic | ttf-kochi-mincho
-Replaces: kiten (<< 4:3.4.0)
 Description: library for Kiten Japanese reference/study tool
  Kiten is a Japanese reference/study tool for KDE.  The library
  libkiten contains portions of Kiten that may be useful for other
@@ -527,6 +584,8 @@ Description: library for Kiten Japanese reference/study tool
 Package: libkiten-trinity-dev
 Architecture: any
 Section: libdevel
+Replaces: libkiten-kde3-dev (<< 4:3.5.13)
+Breaks: libkiten-kde3-dev (<< 4:3.5.13)
 Depends: libkiten1-trinity (= ${Source-Version}), kdelibs4-trinity-dev (>= 4:3.5.8)
 Description: development files for Kiten library
  Kiten is a Japanese reference/study tool for KDE.  The library
@@ -543,8 +602,9 @@ Description: development files for Kiten library
 Package: indi-trinity
 Architecture: any
 Section: science
+Replaces: indi-kde3 (<< 4:3.5.13)
+Breaks: indi-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
-Replaces: kstars-trinity (<< 4:3.5.4-2)
 Description: Instrument Neutral Distributed Interface for astronomical devices
  INDI is an Instrument Neutral Distributed Interface control protocol for
  astronomical devices, which provides a framework that decouples low level

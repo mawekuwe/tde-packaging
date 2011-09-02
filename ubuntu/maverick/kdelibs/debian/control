@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
-Uploaders: Adeodato Simó <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Daniel Schepler <schepler@debian.org>, Fathi Boudra <fboudra@free.fr>, Sune Vuorela <debian@pusling.com>
+Uploaders: Adeodato Sim <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Daniel Schepler <schepler@debian.org>, Fathi Boudra <fboudra@free.fr>, Sune Vuorela <debian@pusling.com>
 Build-Depends: cdbs (>= 0.4.41ubuntu2), debhelper (>= 5.0.31), autotools-dev,
  binutils (>= 2.14.90.0.7), docbook-to-man, gawk, gettext,
  libart-2.0-dev (>= 2.3.17), libarts1-trinity-dev (>= 1.5.0), libacl1-dev,
@@ -23,6 +23,8 @@ Standards-Version: 3.8.3
 Package: kdelibs-trinity
 Section: libs
 Architecture: all
+Replaces: kdelibs-kde3 (<< 4:3.5.13)
+Breaks: kdelibs-kde3 (<< 4:3.5.13)
 Provides: kdelibs
 Conflicts: kdelibs
 Depends: kdelibs4c2a-trinity (>= ${Source-Version}),
@@ -40,10 +42,11 @@ Description: core libraries from the official Trinity release
 Package: kdelibs-data-trinity
 Section: libs
 Architecture: all
+Replaces: kdelibs-data-kde3 (<< 4:3.5.13)
+Breaks: kdelibs-data-kde3 (<< 4:3.5.13)
 Depends: hicolor-icon-theme
 Provides: kdelibs-data
 Conflicts: kdelibs-data
-Replaces: kdeartwork-style-trinity (<< 7:3.4.0), konq-plugins-trinity (<< 7:3.4.0),
  ksvg-trinity (<< 7:3.4.0), kpackage-trinity (<< 4:3.4.2), kicker-trinity (<< 4:3.5-rc1),
  kttsd-trinity (<< 4:3.5-rc1), kdevelop3-data-trinity (<< 4:3.3.0), libdjvulibre1,
  libdjvulibre15 (<< 3.5.16-2), krita (= 1:1.4.90.1-1), digikam-trinity (<< 0.8.1-3),
@@ -59,13 +62,14 @@ Description: core shared data for all TDE applications
 Package: kdelibs4c2a-trinity
 Section: libs
 Architecture: any
+Replaces: kdelibs4c2a-kde3 (<< 4:3.5.13)
+Breaks: kdelibs4c2a-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdelibs-data-trinity,
  kdelibs-data-trinity, perl, xbase-clients,
  launchpad-integration, sudo
 Recommends: xdg-user-dirs
 Suggests: fam, perl-suid
 Conflicts: kdelibs4-trinity, kdelibs4c2-trinity (>> 4:1.0.0), kdelibs-bin-trinity (<< 4:3.3.3), kdelibs4-trinity-dev (<< 4:3.5.7.dfsg.1-6)
-Replaces: kdelibs4-trinity, kdeartwork-style-trinity,
  kcontrol-trinity, kdelibs-bin-trinity (<< 4:3.5.3-1),
  kdelibs4-trinity-dev (= 4:3.5.7.dfsg.1-5)
 Description: core libraries and binaries for all TDE applications
@@ -82,6 +86,8 @@ Description: core libraries and binaries for all TDE applications
 Package: kdelibs4-trinity-dev
 Section: libdevel
 Architecture: any
+Replaces: kdelibs4-kde3-dev (<< 4:3.5.13)
+Breaks: kdelibs4-kde3-dev (<< 4:3.5.13)
 Depends: kdelibs4c2a-trinity (= ${Source-Version}), libart-2.0-dev (>= 2.3.17),
  libarts1-trinity-dev (>= 1.5.0), ${libasound2-dev}, libacl1-dev, libattr1-dev,
  libaspell-dev, hspell, libbz2-dev, libcupsys2-dev,
@@ -92,7 +98,6 @@ Depends: kdelibs4c2a-trinity (= ${Source-Version}), libart-2.0-dev (>= 2.3.17),
  libavahi-client-dev (>= 0.4), libtqtinterface-dev,
  gettext-kde
 Provides: kdelibs-trinity-dev
-Replaces: kdebase-trinity-dev (<< 7:3.4.0), kdelibs4c2a-trinity (<< 4:3.5.8-3ubuntu2)
 Description: development files for the TDE core libraries
  This package contains all the headers and other related files needed
  to compile TDE applications, or develop applications which use the
@@ -104,6 +109,8 @@ Description: development files for the TDE core libraries
 Package: kdelibs4-trinity-doc
 Section: doc
 Architecture: all
+Replaces: kdelibs4-kde3-doc (<< 4:3.5.13)
+Breaks: kdelibs4-kde3-doc (<< 4:3.5.13)
 Provides: kdelibs-trinity-doc
 Description: developer documentation for the TDE core libraries
  This package contains documentation for the core TDE libraries, of
@@ -116,9 +123,10 @@ Description: developer documentation for the TDE core libraries
 Package: kdelibs-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdelibs-kde3-dbg (<< 4:3.5.13)
+Breaks: kdelibs-kde3-dbg (<< 4:3.5.13)
 Priority: extra
 Conflicts: kdelibs4-trinity-dbg, kdelibs4c2-trinity-dbg, kdelibs4c2a-trinity-dbg
-Replaces: kdelibs4-trinity-dbg, kdelibs4c2-trinity-dbg, kdelibs4c2a-trinity-dbg
 Depends: kdelibs4c2a-trinity (= ${Source-Version}), libtqtinterface-dbg, libc6-dbg [amd64]
 Description: debugging symbols for kdelibs
  This package contains the debugging symbols associated with kdelibs.

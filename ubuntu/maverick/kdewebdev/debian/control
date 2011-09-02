@@ -3,7 +3,7 @@ Section: web
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
-Uploaders: Adeodato Simó <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Armin Berres <trigger+debian@space-based.de>, Sune Vuorela <debian@pusling.com>
+Uploaders: Adeodato Sim <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Armin Berres <trigger+debian@space-based.de>, Sune Vuorela <debian@pusling.com>
 Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5), autotools-dev, gawk, gettext, kdelibs4-trinity-dev, libreadline5-dev, libxml2-dev, libxslt1-dev, sharutils, texinfo, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://trinity.pearsoncomputing.net
@@ -11,6 +11,8 @@ Homepage: http://trinity.pearsoncomputing.net
 Package: kdewebdev-trinity
 Architecture: all
 Section: kde
+Replaces: kdewebdev-kde3 (<< 4:3.5.13)
+Breaks: kdewebdev-kde3 (<< 4:3.5.13)
 Depends: quanta-trinity (>= ${source:Version}), kfilereplace-trinity (>= ${source:Version}), kimagemapeditor-trinity (>= ${source:Version}), klinkstatus-trinity (>= ${source:Version}), kommander-trinity (>= ${source:Version}), kxsldbg-trinity (>= ${source:Version})
 Suggests: kommander-trinity-dev (>= ${source:Version}), kdewebdev-trinity-doc-html (>= ${source:Version})
 Description: web development apps from the official KDE release [Trinity]
@@ -25,6 +27,8 @@ Description: web development apps from the official KDE release [Trinity]
 Package: kdewebdev-trinity-doc-html
 Architecture: all
 Section: doc
+Replaces: kdewebdev-kde3-doc-html (<< 4:3.5.13)
+Breaks: kdewebdev-kde3-doc-html (<< 4:3.5.13)
 Suggests: konqueror-trinity | www-browser, kdewebdev-trinity
 Description: KDE web development documentation in HTML format [Trinity]
  By default the modules provided by KDE only provide their documentation
@@ -43,6 +47,8 @@ Description: KDE web development documentation in HTML format [Trinity]
 Package: quanta-trinity
 Architecture: any
 Section: web
+Replaces: quanta-kde3 (<< 4:3.5.13)
+Breaks: quanta-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kfilereplace-trinity, klinkstatus-trinity, kommander-trinity, quanta-data-trinity, tidy
 Recommends: cervisia, gnupg, kompare-trinity, kxsldbg-trinity, docbook-defguide
 Suggests: gubed, kimagemapeditor-trinity, wget, khelpcenter-trinity, php-doc
@@ -66,6 +72,8 @@ Description: web development environment for KDE [Trinity]
 Package: quanta-data-trinity
 Architecture: all
 Section: web
+Replaces: quanta-data-kde3 (<< 4:3.5.13)
+Breaks: quanta-data-kde3 (<< 4:3.5.13)
 Recommends: quanta-trinity (= ${source:Version})
 Description: data files for Quanta Plus web development environment [Trinity]
  This package contains architecture-independent data files for Quanta
@@ -80,6 +88,8 @@ Description: data files for Quanta Plus web development environment [Trinity]
 Package: kfilereplace-trinity
 Architecture: any
 Section: kde
+Replaces: kfilereplace-kde3 (<< 4:3.5.13)
+Breaks: kfilereplace-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: quanta-trinity
 Description: batch search-and-replace component for KDE [Trinity]
@@ -97,6 +107,8 @@ Description: batch search-and-replace component for KDE [Trinity]
 Package: kimagemapeditor-trinity
 Architecture: any
 Section: editors
+Replaces: kimagemapeditor-kde3 (<< 4:3.5.13)
+Breaks: kimagemapeditor-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: quanta-trinity
 Description: HTML image map editor for KDE [Trinity]
@@ -110,6 +122,8 @@ Description: HTML image map editor for KDE [Trinity]
 Package: klinkstatus-trinity
 Architecture: any
 Section: web
+Replaces: klinkstatus-kde3 (<< 4:3.5.13)
+Breaks: klinkstatus-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: quanta-trinity, khelpcenter-trinity
 Description: web link validity checker for KDE [Trinity]
@@ -126,6 +140,8 @@ Description: web link validity checker for KDE [Trinity]
 Package: kommander-trinity
 Architecture: any
 Section: kde
+Replaces: kommander-kde3 (<< 4:3.5.13)
+Breaks: kommander-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, gettext
 Suggests: kommander-trinity-dev, quanta-trinity, khelpcenter-trinity
 Description: visual dialog builder and executor tool [Trinity]
@@ -153,6 +169,8 @@ Description: visual dialog builder and executor tool [Trinity]
 Package: kommander-trinity-dev
 Architecture: any
 Section: libdevel
+Replaces: kommander-kde3-dev (<< 4:3.5.13)
+Breaks: kommander-kde3-dev (<< 4:3.5.13)
 Depends: kommander-trinity (= ${binary:Version}), kdelibs4-dev (>= 4:3.5.8)
 Description: development files for Kommander [Trinity]
  This package contains the headers and other development files for
@@ -170,6 +188,8 @@ Description: development files for Kommander [Trinity]
 Package: kxsldbg-trinity
 Architecture: any
 Section: text
+Replaces: kxsldbg-kde3 (<< 4:3.5.13)
+Breaks: kxsldbg-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: quanta-trinity, khelpcenter-trinity
 Description: graphical XSLT debugger for KDE [Trinity]
@@ -187,6 +207,8 @@ Description: graphical XSLT debugger for KDE [Trinity]
 Package: kdewebdev-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdewebdev-kde3-dbg (<< 4:3.5.13)
+Breaks: kdewebdev-kde3-dbg (<< 4:3.5.13)
 Depends: kdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for kdewebdev [Trinity]

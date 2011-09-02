@@ -14,12 +14,16 @@ Homagepage: http://ksquirrel.sourceforge.net
 Package: libksquirrel0-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: libksquirrel0-kde3 (<< 4:3.5.13)
+Breaks: libksquirrel0-kde3 (<< 4:3.5.13)
 Description: Trinity image viewer
  Runtime libraries for KSquirrel.
 
 Package: libksquirrel-trinity-dev
 Section: libdevel
 Architecture: any
+Replaces: libksquirrel-kde3-dev (<< 4:3.5.13)
+Breaks: libksquirrel-kde3-dev (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, libksquirrel0-trinity (= ${binary:Version})
 Description: Trinity image viewer
  Development libraries for KSquirrel.
@@ -27,5 +31,7 @@ Description: Trinity image viewer
 Package: libksquirrel-tools-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, libksquirrel0-trinity (= ${binary:Version})
+Replaces: libksquirrel-tools-kde3 (<< 4:3.5.13)
+Breaks: libksquirrel-tools-kde3 (<< 4:3.5.13)
 Description: Trinity image viewer
  Tools for KSquirrel.

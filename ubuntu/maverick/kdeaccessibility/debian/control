@@ -10,6 +10,8 @@ Standards-Version: 3.8.4
 Package: kdeaccessibility-trinity
 Section: kde
 Architecture: all
+Replaces: kdeaccessibility-kde3 (<< 4:3.5.13)
+Breaks: kdeaccessibility-kde3 (<< 4:3.5.13)
 Depends: kmag-trinity (>= ${Source-Version}), kmousetool-trinity (>= ${Source-Version}), kmouth-trinity (>= ${Source-Version}), kbstate-trinity (>= ${Source-Version}), ksayit-trinity (>= ${Source-Version}), kttsd-trinity (>= ${Source-Version})
 Recommends: kde-icons-mono-trinity (>= ${Source-Version})
 Suggests: kttsd-contrib-plugins-trinity (>= ${Source-Version}), kdeaccessibility-trinity-doc-html (>= ${Source-Version})
@@ -27,6 +29,8 @@ Description: accessibility packages from the official Trinity release
 Package: kdeaccessibility-trinity-doc-html
 Architecture: all
 Section: doc
+Replaces: kdeaccessibility-kde3-doc-html (<< 4:3.5.13)
+Breaks: kdeaccessibility-kde3-doc-html (<< 4:3.5.13)
 Suggests: konqueror-trinity | www-browser, kdebase-trinity
 Description: KDE accessibility documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -45,6 +49,8 @@ Description: KDE accessibility documentation in HTML format
 Package: kde-icons-mono-trinity
 Section: kde
 Architecture: all
+Replaces: kde-icons-mono-kde3 (<< 4:3.5.13)
+Breaks: kde-icons-mono-kde3 (<< 4:3.5.13)
 Description: a monochromatic icons theme for KDE
  A monochromatic icon theme for KDE, designed for accessibility purposes.
  .
@@ -54,6 +60,8 @@ Description: a monochromatic icons theme for KDE
 Package: kbstate-trinity
 Section: utils
 Architecture: any
+Replaces: kbstate-kde3 (<< 4:3.5.13)
+Breaks: kbstate-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a keyboard status applet for KDE
@@ -65,6 +73,8 @@ Description: a keyboard status applet for KDE
 Package: kmag-trinity
 Section: utils
 Architecture: any
+Replaces: kmag-kde3 (<< 4:3.5.13)
+Breaks: kmag-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a screen magnifier for KDE
@@ -81,6 +91,8 @@ Description: a screen magnifier for KDE
 Package: kmousetool-trinity
 Section: utils
 Architecture: any
+Replaces: kmousetool-kde3 (<< 4:3.5.13)
+Breaks: kmousetool-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: KDE mouse manipulation tool for the disabled
@@ -94,6 +106,8 @@ Description: KDE mouse manipulation tool for the disabled
 Package: kmouth-trinity
 Section: utils
 Architecture: any
+Replaces: kmouth-kde3 (<< 4:3.5.13)
+Breaks: kmouth-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a type-and-say KDE frontend for speech synthesizers
@@ -108,6 +122,8 @@ Description: a type-and-say KDE frontend for speech synthesizers
 Package: ksayit-trinity
 Section: utils
 Architecture: any
+Replaces: ksayit-kde3 (<< 4:3.5.13)
+Breaks: ksayit-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a frontend for the KDE Text-to-Speech system
@@ -120,6 +136,8 @@ Description: a frontend for the KDE Text-to-Speech system
 Package: kttsd-trinity
 Section: utils
 Architecture: any
+Replaces: kttsd-kde3 (<< 4:3.5.13)
+Breaks: kttsd-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: ksayit-trinity (= ${Source-Version}) | kmouth-trinity (= ${Source-Version}), festival | flite | epos
 Suggests: kttsd-contrib-plugins-trinity (= ${Source-Version})
@@ -138,6 +156,8 @@ Description: a Text-to-Speech system for KDE
 Package: kttsd-contrib-plugins-trinity
 Section: utils
 Architecture: any
+Replaces: kttsd-contrib-plugins-kde3 (<< 4:3.5.13)
+Breaks: kttsd-contrib-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: the KDE Text-to-Speech system
  kttsd synthetizer plugins that depends on non-free software :
@@ -152,6 +172,8 @@ Description: the KDE Text-to-Speech system
 Package: kdeaccessibility-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdeaccessibility-kde3-dbg (<< 4:3.5.13)
+Breaks: kdeaccessibility-kde3-dbg (<< 4:3.5.13)
 Depends: kdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for kdeaccessibility-trinity
