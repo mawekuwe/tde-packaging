@@ -69,9 +69,6 @@ Depends: ${shlibs:Depends}, kdelibs-data-trinity,
  launchpad-integration, sudo
 Recommends: xdg-user-dirs
 Suggests: fam, perl-suid
-Conflicts: kdelibs4-trinity, kdelibs4c2-trinity (>> 4:1.0.0), kdelibs-bin-trinity (<< 4:3.3.3), kdelibs4-trinity-dev (<< 4:3.5.7.dfsg.1-6)
- kcontrol-trinity, kdelibs-bin-trinity (<< 4:3.5.3-1),
- kdelibs4-trinity-dev (= 4:3.5.7.dfsg.1-5)
 Description: core libraries and binaries for all TDE applications
  This package contains all the shared libraries and common core binaries
  used by all TDE applications. You need these libraries and binaries to
