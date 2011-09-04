@@ -11,6 +11,8 @@ Standards-Version: 3.8.4
 Package: kdeartwork-trinity
 Architecture: all
 Section: kde
+Replaces: kdeartwork-kde3 (<< 4:3.5.13)
+Breaks: kdeartwork-kde3 (<< 4:3.5.13)
 Depends: kdeartwork-misc-trinity (>= ${Source-Version}), kdeartwork-emoticons-trinity (>= ${Source-Version}), kdeartwork-style-trinity (>= ${Source-Version}), kdeartwork-theme-icon-trinity (>= ${Source-Version}), kdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), kscreensaver-trinity (>= ${Source-Version})
 Recommends: kscreensaver-xsavers-trinity
 Description: themes, styles and more from the official Trinity release
@@ -28,6 +30,8 @@ Description: themes, styles and more from the official Trinity release
 Package: kdeartwork-emoticons-trinity
 Architecture: all
 Section: kde
+Replaces: kdeartwork-emoticons-kde3 (<< 4:3.5.13)
+Breaks: kdeartwork-emoticons-kde3 (<< 4:3.5.13)
 Enhances: kopete-trinity
 Description: emoticon collections for KDE chat clients
  This package contains several collections of emoticons used by official
@@ -39,6 +43,8 @@ Description: emoticon collections for KDE chat clients
 Package: kdeartwork-misc-trinity
 Architecture: all
 Section: kde
+Replaces: kdeartwork-misc-kde3 (<< 4:3.5.13)
+Breaks: kdeartwork-misc-kde3 (<< 4:3.5.13)
 Suggests: kworldclock
 Description: various multimedia goodies released with KDE
  This package contains miscellaneous multimedia goodies for KDE.
@@ -50,6 +56,8 @@ Description: various multimedia goodies released with KDE
 Package: kdeartwork-style-trinity
 Architecture: any
 Section: kde
+Replaces: kdeartwork-style-kde3 (<< 4:3.5.13)
+Breaks: kdeartwork-style-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: widget styles released with Trinity
  This package contains additional widget styles for Trinity. Widget styles
@@ -63,8 +71,9 @@ Description: widget styles released with Trinity
 Package: kdeartwork-theme-icon-trinity
 Architecture: all
 Section: kde
+Replaces: kdeartwork-theme-icon-kde3 (<< 4:3.5.13)
+Breaks: kdeartwork-theme-icon-kde3 (<< 4:3.5.13)
 Recommends: kdesktop-trinity, kicker-trinity
-Replaces: kdelibs-data-trinity (<< 4:3.5)
 Description: icon themes released with Trinity
  This package contains additional icon themes for Trinity. Icon themes can be
  used to customise the appearance of standard icons throughout KDE. They
@@ -76,6 +85,8 @@ Description: icon themes released with Trinity
 Package: kdeartwork-theme-window-trinity
 Architecture: any
 Section: kde
+Replaces: kdeartwork-theme-window-kde3 (<< 4:3.5.13)
+Breaks: kdeartwork-theme-window-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: window decoration themes released with Trinity
  This package contains additional window decoration themes for Trinity. Window
@@ -89,8 +100,9 @@ Description: window decoration themes released with Trinity
 Package: kdewallpapers-trinity
 Architecture: all
 Section: kde
+Replaces: kdewallpapers-kde3 (<< 4:3.5.13)
+Breaks: kdewallpapers-kde3 (<< 4:3.5.13)
 Suggests: kwin-trinity | x-window-manager
-Replaces: kdebase-data-trinity (<< 4:3.5)
 Description: wallpapers released with Trinity
  This package contains additional wallpapers for Trinity. Wallpapers can be
  applied using the background manager in the KDE Control Centre.
@@ -101,6 +113,8 @@ Description: wallpapers released with Trinity
 Package: kscreensaver-trinity
 Architecture: any
 Section: kde
+Replaces: kscreensaver-kde3 (<< 4:3.5.13)
+Breaks: kscreensaver-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdebase-trinity-bin
 Recommends: kwin-trinity, kscreensaver-xsavers-trinity (= ${Source-Version})
 Description: additional screen savers released with Trinity
@@ -118,6 +132,8 @@ Description: additional screen savers released with Trinity
 Package: kscreensaver-xsavers-trinity
 Architecture: any
 Section: kde
+Replaces: kscreensaver-xsavers-kde3 (<< 4:3.5.13)
+Breaks: kscreensaver-xsavers-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdebase-trinity-bin, xscreensaver-data
 Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version}), xscreensaver-gl
 Suggests: kscreensaver-xsavers-webcollage-trinity
@@ -139,6 +155,8 @@ Description: Trinity hooks for standard xscreensavers
 Package: kscreensaver-xsavers-webcollage-trinity
 Architecture: all
 Section: kde
+Replaces: kscreensaver-xsavers-webcollage-kde3 (<< 4:3.5.13)
+Breaks: kscreensaver-xsavers-webcollage-kde3 (<< 4:3.5.13)
 Depends: kscreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
 Description: webcollage screensaver Trinity hook
  This package give access to the webcollage screensaver through the Trinity
@@ -162,6 +180,8 @@ Description: webcollage screensaver Trinity hook
 Package: kscreensaver-xsavers-extra-trinity
 Architecture: all
 Section: kde
+Replaces: kscreensaver-xsavers-extra-kde3 (<< 4:3.5.13)
+Breaks: kscreensaver-xsavers-extra-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kscreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
 Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version})
 Description: Trinity hooks for standard xscreensavers
@@ -180,6 +200,8 @@ Description: Trinity hooks for standard xscreensavers
 Package: kdeartwork-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdeartwork-kde3-dbg (<< 4:3.5.13)
+Breaks: kdeartwork-kde3-dbg (<< 4:3.5.13)
 Depends: kdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for kdeartwork-trinity

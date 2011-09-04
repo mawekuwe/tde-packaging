@@ -10,6 +10,8 @@ Homepage: http://knowit.sourceforge.net/
 Package: knowit-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: knowit-kde3 (<< 4:3.5.13)
+Breaks: knowit-kde3 (<< 4:3.5.13)
 Description: Tool for managing notes [Trinity]
  KnowIt is a tool for managing notes which are organized in
  tree-like hierarchy. It is similar to TuxCards,

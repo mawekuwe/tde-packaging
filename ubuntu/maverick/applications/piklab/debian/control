@@ -10,6 +10,8 @@ Homepage: http://piklab.sourceforge.net/
 Package: piklab-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: piklab-kde3 (<< 4:3.5.13)
+Breaks: piklab-kde3 (<< 4:3.5.13)
 Recommends: gputils, libusb-dev
 Suggests: sdcc (>= 2.5.0), sdcc-libraries
 Description: IDE for PIC-microcontroller development [Trinity]

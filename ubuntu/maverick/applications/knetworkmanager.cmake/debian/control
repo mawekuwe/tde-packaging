@@ -25,6 +25,8 @@ Homepage: http://opensuse.org/Projects/KNetworkManager
 Package: network-manager-tde
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, network-manager (>= 0.7.0)
+Replaces: network-manager-tde (<< 4:3.5.13)
+Breaks: network-manager-tde (<< 4:3.5.13)
 Recommends: kwalletmanager-trinity, network-manager-vpnc, network-manager-openvpn, network-manager-strongswan, network-manager-pptp
 Provides: knetworkmanager-trinity
 Conflicts: network-manager-kde

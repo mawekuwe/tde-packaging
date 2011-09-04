@@ -10,6 +10,8 @@ Standards-Version: 3.8.4
 Package: kdenetwork-trinity
 Section: kde
 Architecture: all
+Replaces: kdenetwork-kde3 (<< 4:3.5.13)
+Breaks: kdenetwork-kde3 (<< 4:3.5.13)
 Depends: dcoprss-trinity (>= ${Source-Version}), kdenetwork-kfile-plugins-trinity (>= ${Source-Version}), kdict-trinity (>= ${Source-Version}), kdnssd-trinity (>= ${Source-Version}), kget-trinity (>= ${Source-Version}), knewsticker-trinity (>= ${Source-Version}), kopete-trinity (>= ${Source-Version}), kpf-trinity (>= ${Source-Version}), kppp-trinity (>= ${Source-Version}), krdc-trinity (>= ${Source-Version}), krfb-trinity (>= ${Source-Version}), ksirc-trinity (>= ${Source-Version}), kwifimanager-trinity (>= ${Source-Version}), librss1-trinity (>= ${Source-Version})
 Recommends: kdenetwork-filesharing-trinity (>= ${Source-Version}), ktalkd-trinity (>= ${Source-Version}), lisa-trinity (>= ${Source-Version})
 Suggests: kdenetwork-trinity-doc-html (>= ${Source-Version})
@@ -25,6 +27,8 @@ Description: network-related apps from the official Trinity release
 Package: dcoprss-trinity
 Section: net
 Architecture: any
+Replaces: dcoprss-kde3 (<< 4:3.5.13)
+Breaks: dcoprss-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: RSS utilities for Trinity
  kdenetwork-dcoprss is a RSS to DCOP bridge, allowing all
@@ -40,6 +44,8 @@ Description: RSS utilities for Trinity
 Package: kdenetwork-trinity-doc-html
 Architecture: all
 Section: doc
+Replaces: kdenetwork-kde3-doc-html (<< 4:3.5.13)
+Breaks: kdenetwork-kde3-doc-html (<< 4:3.5.13)
 Suggests: konqueror-trinity | www-browser, kdebase-trinity
 Description: Trinity network documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -58,6 +64,8 @@ Description: Trinity network documentation in HTML format
 Package: kdenetwork-kfile-plugins-trinity
 Section: kde
 Architecture: any
+Replaces: kdenetwork-kfile-plugins-kde3 (<< 4:3.5.13)
+Breaks: kdenetwork-kfile-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Enhances: konqueror-trinity
 Description: torrent metainfo plugin for Trinity
@@ -72,8 +80,9 @@ Description: torrent metainfo plugin for Trinity
 Package: kdenetwork-filesharing-trinity
 Section: net
 Architecture: any
+Replaces: kdenetwork-filesharing-kde3 (<< 4:3.5.13)
+Breaks: kdenetwork-filesharing-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, perl-suid
-Replaces: kcontrol-trinity (<< 4:3.3.0)
 Description: network filesharing configuration module for Trinity
  This package provides a KDE Control Center module to configure
  NFS and Samba.
@@ -84,10 +93,11 @@ Description: network filesharing configuration module for Trinity
 Package: kdict-trinity
 Section: net
 Architecture: any
+Replaces: kdict-kde3 (<< 4:3.5.13)
+Breaks: kdict-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Provides: dict-client-trinity
-Replaces: kdebase-data-trinity (<< 4:3.4.0)
 Description: dictionary client for Trinity
  KDict is an advanced KDE graphical client for the DICT Protocol, with full
  Unicode support. It enables you to search through dictionary databases for a
@@ -100,6 +110,8 @@ Description: dictionary client for Trinity
 Package: kget-trinity
 Section: net
 Architecture: any
+Replaces: kget-kde3 (<< 4:3.5.13)
+Breaks: kget-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: download manager for Trinity
@@ -116,6 +128,8 @@ Description: download manager for Trinity
 Package: knewsticker-trinity
 Section: kde
 Architecture: any
+Replaces: knewsticker-kde3 (<< 4:3.5.13)
+Breaks: knewsticker-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kicker-trinity
 Suggests: khelpcenter-trinity, knewsticker-scripts-trinity
 Description: news ticker applet for Trinity
@@ -131,10 +145,11 @@ Description: news ticker applet for Trinity
 Package: kopete-trinity
 Section: kde
 Architecture: any
+Replaces: kopete-kde3 (<< 4:3.5.13)
+Breaks: kopete-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: qca-tls
 Suggests: kdeartwork-emoticons-trinity, khelpcenter-trinity, imagemagick, gnupg, gnomemeeting
-Replaces: konversation-trinity (<= 0.14.0-4), sim (<= 0.9.3-2)
 Description: instant messenger for Trinity
  Kopete is an instant messenger program which can communicate with a variety
  of IM systems, such as Yahoo, ICQ, MSN, IRC and Jabber.
@@ -153,6 +168,8 @@ Description: instant messenger for Trinity
 Package: kpf-trinity
 Section: net
 Architecture: any
+Replaces: kpf-kde3 (<< 4:3.5.13)
+Breaks: kpf-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: public fileserver for Trinity
@@ -167,6 +184,8 @@ Description: public fileserver for Trinity
 Package: kppp-trinity
 Section: net
 Architecture: any
+Replaces: kppp-kde3 (<< 4:3.5.13)
+Breaks: kppp-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ppp
 Suggests: khelpcenter-trinity
 Description: modem dialer and ppp frontend for Trinity
@@ -184,6 +203,8 @@ Description: modem dialer and ppp frontend for Trinity
 Package: krdc-trinity
 Section: net
 Architecture: any
+Replaces: krdc-kde3 (<< 4:3.5.13)
+Breaks: krdc-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Recommends: rdesktop
@@ -198,6 +219,8 @@ Description: Remote Desktop Connection for Trinity
 Package: krfb-trinity
 Section: net
 Architecture: any
+Replaces: krfb-kde3 (<< 4:3.5.13)
+Breaks: krfb-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: Desktop Sharing for Trinity
@@ -214,6 +237,8 @@ Description: Desktop Sharing for Trinity
 Package: ksirc-trinity
 Section: net
 Architecture: any
+Replaces: ksirc-kde3 (<< 4:3.5.13)
+Breaks: ksirc-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ${perl:Depends}
 Recommends: libio-socket-ssl-perl
 Suggests: khelpcenter-trinity
@@ -230,12 +255,13 @@ Description: IRC client for Trinity
 Package: ktalkd-trinity
 Section: net
 Priority: extra
+Replaces: ktalkd-kde3 (<< 4:3.5.13)
+Breaks: ktalkd-kde3 (<< 4:3.5.13)
 Architecture: any
 Depends: ${shlibs:Depends}, netbase, update-inetd
 Recommends: talk, ytalk
 Suggests: khelpcenter-trinity
 Provides: talkd-trinity
-Replaces: talkd-trinity
 Description: talk daemon for Trinity
  KTalkd is an enhanced talk daemon - a program to handle incoming talk
  requests, announce them and allow you to respond to it using a talk
@@ -248,6 +274,8 @@ Description: talk daemon for Trinity
 Package: kwifimanager-trinity
 Section: net
 Architecture: any
+Replaces: kwifimanager-kde3 (<< 4:3.5.13)
+Breaks: kwifimanager-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, wireless-tools
 Suggests: khelpcenter-trinity
 Description: wireless lan manager for Trinity
@@ -262,6 +290,8 @@ Description: wireless lan manager for Trinity
 Package: librss1-trinity
 Section: libs
 Architecture: any
+Replaces: librss1-kde3 (<< 4:3.5.13)
+Breaks: librss1-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: RSS library for Trinity
  This is the runtime package for programs that use the KDE RSS library.
@@ -274,8 +304,9 @@ Description: RSS library for Trinity
 Package: kdenetwork-trinity-dev
 Section: devel
 Architecture: any
+Replaces: kdenetwork-kde3-dev (<< 4:3.5.13)
+Breaks: kdenetwork-kde3-dev (<< 4:3.5.13)
 Depends: kdict-trinity (= ${Source-Version}), kopete-trinity (= ${Source-Version}), ksirc-trinity (= ${Source-Version}), librss1-trinity (= ${Source-Version}), kdelibs4-trinity-dev (>= 4:3.5.8)
-Replaces: librss1-trinity-dev, kdict-trinity (<< 4:3.5.0-3)
 Description: development files for the Trinity network module
  This is the development package which contains the headers for the KDE RSS
  library as well as the Kopete chat client, as well as miscellaneous
@@ -287,9 +318,10 @@ Description: development files for the Trinity network module
 Package: lisa-trinity
 Section: net
 Architecture: any
+Replaces: lisa-kde3 (<< 4:3.5.13)
+Breaks: lisa-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, samba-common
-Replaces: konqueror-trinity (<< 4:3.3.0)
 Description: LAN information server for Trinity
  LISa is intended to provide KDE with a kind of "network neighborhood"
  but relying only on the TCP/IP protocol.
@@ -300,6 +332,8 @@ Description: LAN information server for Trinity
 Package: kdnssd-trinity
 Section: net
 Architecture: any
+Replaces: kdnssd-kde3 (<< 4:3.5.13)
+Breaks: kdnssd-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: avahi-daemon
 Suggests: avahi-autoipd | zeroconf
@@ -313,6 +347,8 @@ Description: Zeroconf support for KDE
 Package: kdenetwork-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdenetwork-kde3-dbg (<< 4:3.5.13)
+Breaks: kdenetwork-kde3-dbg (<< 4:3.5.13)
 Priority: extra
 Depends: librss1-trinity (= ${Source-Version}), kdelibs-trinity-dbg
 Description: debugging symbols for kdenetwork-trinity

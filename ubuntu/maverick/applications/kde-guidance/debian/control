@@ -13,6 +13,8 @@ Standards-Version: 3.8.4
 Package: kde-guidance-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, pykdeextensions-trinity, python-trinity-trinity, sysv-rc, guidance-backends-trinity, hwdata, python (>= 2.5), python-dev (>= 2.5)
+Replaces: kde-guidance-kde3 (<< 4:3.5.13)
+Breaks: kde-guidance-kde3 (<< 4:3.5.13)
 Conflicts: guidance-power-manager, kde-guidance-powermanager
 Provides: ${python:Provides}
 Description: collection of KDE system administration tools for GNU/Linux [Trinity]
@@ -32,6 +34,8 @@ Description: collection of KDE system administration tools for GNU/Linux [Trinit
 Package: guidance-backends-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, hwdata, python (>= 2.5), python-dev (>= 2.5)
+Replaces: guidance-backends-kde3 (<< 4:3.5.13)
+Breaks: guidance-backends-kde3 (<< 4:3.5.13)
 Conflicts: guidance-power-manager, kde-guidance-powermanager
 Provides: ${python:Provides}
 Description: collection of system administration tools for GNU/Linux [Trinity]
@@ -43,6 +47,8 @@ Description: collection of system administration tools for GNU/Linux [Trinity]
 Package: kde-guidance-powermanager-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, kde-guidance-trinity, python-trinity-trinity, python-dbus, hal, python-gobject, python (>= 2.5), python-dev (>= 2.5)
+Replaces: kde-guidance-powermanager-kde3 (<< 4:3.5.13)
+Breaks: kde-guidance-powermanager-kde3 (<< 4:3.5.13)
 Conflicts: guidance-power-manager, kde-guidance-powermanager
 Provides: ${python:Provides}
 Description: HAL based power manager applet [Trinity]

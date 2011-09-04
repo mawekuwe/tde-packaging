@@ -11,6 +11,8 @@ Homepage: http://kile.sourceforge.net
 Package: kile-trinity
 Architecture: any
 Section: tex
+Replaces: kile-kde3 (<< 4:3.5.13)
+Breaks: kile-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, konsole-trinity, texlive-latex-base
 Recommends: kdvi-trinity, dvipng, kghostview-trinity, kpdf-trinity
 Suggests: gbib, latex2html, pybliographer, xfig, kile-trinity-i18n, gv
@@ -31,6 +33,8 @@ Description: KDE Integrated LaTeX Environment [Trinity]
 Package: kile-trinity-i18n-ar
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ar (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ar (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ar
 Provides: kile-trinity-i18n
@@ -40,6 +44,8 @@ Description: Arabic (ar) translations for Kile [Trinity]
 Package: kile-trinity-i18n-bg
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-bg (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-bg (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-bg
 Provides: kile-trinity-i18n
@@ -49,6 +55,8 @@ Description: Bulgarian (bg) translations for Kile [Trinity]
 Package: kile-trinity-i18n-br
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-br (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-br (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-br
 Provides: kile-trinity-i18n
@@ -58,6 +66,8 @@ Description: Brazilian (br) translations for Kile [Trinity]
 Package: kile-trinity-i18n-ca
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ca (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ca (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ca
 Provides: kile-trinity-i18n
@@ -67,6 +77,8 @@ Description: Catalan (ca) translations for Kile [Trinity]
 Package: kile-trinity-i18n-cs
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-cs (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-cs (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-cs
 Provides: kile-trinity-i18n
@@ -76,6 +88,8 @@ Description: Czech (cs) translations for Kile [Trinity]
 Package: kile-trinity-i18n-cy
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-cy (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-cy (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-cy
 Provides: kile-trinity-i18n
@@ -85,6 +99,8 @@ Description: Welsh (cy) translations for Kile [Trinity]
 Package: kile-trinity-i18n-da
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-da (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-da (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-da
 Provides: kile-trinity-i18n
@@ -94,6 +110,8 @@ Description: Danish (da) translations for Kile [Trinity]
 Package: kile-trinity-i18n-de
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-de (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-de (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-de
 Provides: kile-trinity-i18n
@@ -103,6 +121,8 @@ Description: German (de) translations for Kile [Trinity]
 Package: kile-trinity-i18n-el
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-el (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-el (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-el
 Provides: kile-trinity-i18n
@@ -112,6 +132,8 @@ Description: Greek (el) translations for Kile [Trinity]
 Package: kile-trinity-i18n-engb
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-engb (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-engb (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-engb
 Provides: kile-trinity-i18n
@@ -121,6 +143,8 @@ Description: British English (en_GB) translations for Kile [Trinity]
 Package: kile-trinity-i18n-es
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-es (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-es (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-es
 Provides: kile-trinity-i18n
@@ -130,6 +154,8 @@ Description: Spanish (es) translations for Kile [Trinity]
 Package: kile-trinity-i18n-et
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-et (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-et (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-et
 Provides: kile-trinity-i18n
@@ -139,6 +165,8 @@ Description: Estonian (et) translations for Kile [Trinity]
 Package: kile-trinity-i18n-eu
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-eu (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-eu (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-eu
 Provides: kile-trinity-i18n
@@ -148,6 +176,8 @@ Description: Basque (eu) translations for Kile [Trinity]
 Package: kile-trinity-i18n-fi
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-fi (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-fi (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-fi
 Provides: kile-trinity-i18n
@@ -157,6 +187,8 @@ Description: Finnish (fi) translations for Kile [Trinity]
 Package: kile-trinity-i18n-fr
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-fr (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-fr (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-fr
 Provides: kile-trinity-i18n
@@ -166,6 +198,8 @@ Description: French (fr) translations for Kile [Trinity]
 Package: kile-trinity-i18n-ga
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ga (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ga (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ga
 Provides: kile-trinity-i18n
@@ -175,6 +209,8 @@ Description: Irish Gaelic (ga) translations for Kile [Trinity]
 Package: kile-trinity-i18n-gl
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-gl (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-gl (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-gl
 Provides: kile-trinity-i18n
@@ -184,6 +220,8 @@ Description: Galician (gl) translations for Kile [Trinity]
 Package: kile-trinity-i18n-hi
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-hi (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-hi (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-hi
 Provides: kile-trinity-i18n
@@ -193,6 +231,8 @@ Description: Hindi (hi) translations for Kile [Trinity]
 Package: kile-trinity-i18n-hu
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-hu (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-hu (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-hu
 Provides: kile-trinity-i18n
@@ -202,6 +242,8 @@ Description: Hungarian (hu) translations for Kile [Trinity]
 Package: kile-trinity-i18n-is
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-is (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-is (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-is
 Provides: kile-trinity-i18n
@@ -211,6 +253,8 @@ Description: Icelandic (is) translations for Kile [Trinity]
 Package: kile-trinity-i18n-it
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-it (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-it (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-it
 Provides: kile-trinity-i18n
@@ -220,6 +264,8 @@ Description: Italian (it) translations for Kile [Trinity]
 Package: kile-trinity-i18n-ja
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ja (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ja (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ja
 Provides: kile-trinity-i18n
@@ -229,6 +275,8 @@ Description: Japanese (ja) translations for Kile [Trinity]
 Package: kile-trinity-i18n-lt
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-lt (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-lt (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-lt
 Provides: kile-trinity-i18n
@@ -238,6 +286,8 @@ Description: Lithuanian (lt) translations for Kile [Trinity]
 Package: kile-trinity-i18n-ms
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ms (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ms (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ms
 Provides: kile-trinity-i18n
@@ -247,6 +297,8 @@ Description: Malay (ms) translations for Kile [Trinity]
 Package: kile-trinity-i18n-mt
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-mt (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-mt (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Provides: kile-trinity-i18n
 Description: Maltese (mt) translations for Kile [Trinity]
@@ -255,6 +307,8 @@ Description: Maltese (mt) translations for Kile [Trinity]
 Package: kile-trinity-i18n-nb
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-nb (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-nb (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-nb
 Provides: kile-trinity-i18n
@@ -264,6 +318,8 @@ Description: Norwegian Bookmal (nb) translations for Kile [Trinity]
 Package: kile-trinity-i18n-nds
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-nds (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-nds (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-nds
 Provides: kile-trinity-i18n
@@ -273,6 +329,8 @@ Description: Low Saxon (nds) translations for Kile [Trinity]
 Package: kile-trinity-i18n-nl
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-nl (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-nl (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-nl
 Provides: kile-trinity-i18n
@@ -282,6 +340,8 @@ Description: Dutch (nl) translations for Kile [Trinity]
 Package: kile-trinity-i18n-nn
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-nn (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-nn (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-nn
 Provides: kile-trinity-i18n
@@ -291,6 +351,8 @@ Description: Norwegian Nynorsk (nn) translations for Kile [Trinity]
 Package: kile-trinity-i18n-pa
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-pa (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-pa (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-pa
 Provides: kile-trinity-i18n
@@ -300,6 +362,8 @@ Description: Punjabi (pa) translations for Kile [Trinity]
 Package: kile-trinity-i18n-pl
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-pl (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-pl (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-pl
 Provides: kile-trinity-i18n
@@ -309,6 +373,8 @@ Description: Polish (pl) translations for Kile [Trinity]
 Package: kile-trinity-i18n-pt
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-pt (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-pt (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-pt
 Provides: kile-trinity-i18n
@@ -318,6 +384,8 @@ Description: Portuguese (pt) translations for Kile [Trinity]
 Package: kile-trinity-i18n-ptbr
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ptbr (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ptbr (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ptbr
 Provides: kile-trinity-i18n
@@ -327,6 +395,8 @@ Description: Brazilian Portuguese (pt_BR) translations for Kile [Trinity]
 Package: kile-trinity-i18n-ro
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ro (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ro (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ro
 Provides: kile-trinity-i18n
@@ -336,6 +406,8 @@ Description: Romanian (ro) translations for Kile [Trinity]
 Package: kile-trinity-i18n-ru
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ru (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ru (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ru
 Provides: kile-trinity-i18n
@@ -345,6 +417,8 @@ Description: Russian (ru) translations for Kile [Trinity]
 Package: kile-trinity-i18n-rw
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-rw (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-rw (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-rw
 Provides: kile-trinity-i18n
@@ -354,6 +428,8 @@ Description: Kinyarwanda (rw) translations for Kile [Trinity]
 Package: kile-trinity-i18n-sk
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-sk (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-sk (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-sk
 Provides: kile-trinity-i18n
@@ -363,6 +439,8 @@ Description: Slovak (sk) translations for Kile [Trinity]
 Package: kile-trinity-i18n-sr
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-sr (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-sr (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-sr
 Provides: kile-trinity-i18n
@@ -372,6 +450,8 @@ Description: Serbian (sr) translations for Kile [Trinity]
 Package: kile-trinity-i18n-srlatin
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-srlatin (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-srlatin (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-srlatin
 Provides: kile-trinity-i18n
@@ -381,6 +461,8 @@ Description: Latin Serbian (sr@Latn) translations for Kile [Trinity]
 Package: kile-trinity-i18n-sv
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-sv (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-sv (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-sv
 Provides: kile-trinity-i18n
@@ -390,6 +472,8 @@ Description: Swedish (sv) translations for Kile [Trinity]
 Package: kile-trinity-i18n-ta
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-ta (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-ta (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-ta
 Provides: kile-trinity-i18n
@@ -399,6 +483,8 @@ Description: Tamil (ta) translations for Kile [Trinity]
 Package: kile-trinity-i18n-th
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-th (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-th (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-th
 Provides: kile-trinity-i18n
@@ -408,6 +494,8 @@ Description: Thai (th) translations for Kile [Trinity]
 Package: kile-trinity-i18n-tr
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-tr (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-tr (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-tr
 Provides: kile-trinity-i18n
@@ -417,6 +505,8 @@ Description: Turkish (tr) translations for Kile [Trinity]
 Package: kile-trinity-i18n-uk
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-uk (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-uk (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-uk
 Provides: kile-trinity-i18n
@@ -426,6 +516,8 @@ Description: Ukrainian (uk) translations for Kile [Trinity]
 Package: kile-trinity-i18n-zhcn
 Architecture: all
 Section: tex
+Replaces: kile-kde3-i18n-zhcn (<< 4:3.5.13)
+Breaks: kile-kde3-i18n-zhcn (<< 4:3.5.13)
 Depends: kile-trinity (>= ${source:Version})
 Recommends: kde-trinity-i18n-zhcn
 Provides: kile-trinity-i18n

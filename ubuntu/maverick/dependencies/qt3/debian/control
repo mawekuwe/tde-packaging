@@ -21,7 +21,8 @@ Vcs-Svn: svn://svn.debian.org/pkg-kde/trunk/packages/qt-x11-free
 Package: libqt3-mt
 Architecture: any
 Section: libs
-Replaces: qt3-tools (<< 2:3.0.2-20020306-1), libqt3-helper, libqt3, libqt3c102-mt
+Replaces: libqt3-mt (<< 4:3.5.13)
+Breaks: libqt3-mt (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, fontconfig
 Recommends: libgl1-mesa-glx | libgl1, libglu1-mesa | libglu1, libxmu6 (>= 4.3.0.dfsg.1-4)
 Conflicts: libqt3c102-mt, libqui1-emb, libqt3c-mt
@@ -34,8 +35,9 @@ Description: Qt GUI Library (Threaded runtime version), Version 3
 Package: libqt3-mt-mysql
 Architecture: any
 Section: libs
+Replaces: libqt3-mt-mysql (<< 4:3.5.13)
+Breaks: libqt3-mt-mysql (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
-Replaces: libqt3-mysql (<= 2:3.1.1+cvs.20021220-1), libqt3c102-mt-mysql
 Conflicts: libqt3c102-mt-mysql, libqt3c-mt-mysql
 Description: MySQL database driver for Qt3 (Threaded)
  This package contains the threaded MySQL plugin for Qt3. Install it if
@@ -44,8 +46,9 @@ Description: MySQL database driver for Qt3 (Threaded)
 Package: libqt3-mt-odbc
 Architecture: any
 Section: libs
+Replaces: libqt3-mt-odbc (<< 4:3.5.13)
+Breaks: libqt3-mt-odbc (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
-Replaces: libqt3-odbc (<= 2:3.1.1+cvs.20021220-1), libqt3c102-mt-odbc
 Conflicts: libqt3c102-mt-odbc, libqt3c-mt-odbc
 Description: ODBC database driver for Qt3 (Threaded)
  This package contains the threaded ODBC plugin for Qt3. Install it if
@@ -54,8 +57,9 @@ Description: ODBC database driver for Qt3 (Threaded)
 Package: libqt3-mt-psql
 Architecture: any
 Section: libs
+Replaces: libqt3-mt-psql (<< 4:3.5.13)
+Breaks: libqt3-mt-psql (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
-Replaces: libqt3-psql (<= 2:3.1.1+cvs.20021220-1), libqt3c102-mt-psql
 Conflicts: libqt3c102-mt-psql, libqt3c-mt-psql
 Description: PostgreSQL database driver for Qt3 (Threaded)
  This package contains the threaded PostgreSQL plugin for Qt3.
@@ -77,9 +81,10 @@ Description: PostgreSQL database driver for Qt3 (Threaded)
 Package: libqt3-mt-sqlite
 Architecture: any
 Section: libs
+Replaces: libqt3-mt-sqlite (<< 4:3.5.13)
+Breaks: libqt3-mt-sqlite (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Conflicts: libqt3c102-mt-sqlite
-Replaces: libqt3c102-mt-sqlite
 Description: SQLite database driver for Qt3 (Threaded)
  This package contains the threaded SQLite plugin for Qt3. Install
  it if you intend to use or write Qt programs that are to access an
@@ -88,7 +93,8 @@ Description: SQLite database driver for Qt3 (Threaded)
 Package: libqt3-mt-dev
 Architecture: any
 Section: libdevel
-Replaces: libqt-mt-dev, libqt3-dev, libqt3-helper, libqt3-headers (<= 3:3.1.1-3), libqt3-emb (<= 3:3.0.3-1)
+Replaces: libqt3-mt-dev (<< 4:3.5.13)
+Breaks: libqt3-mt-dev (<< 4:3.5.13)
 Depends: libxext-dev (>= 4.3.0.dfsg.1-4), libxrandr-dev (>= 4.3.0.dfsg.1-4),
  libsm-dev (>= 4.3.0.dfsg.1-4), libxmu-dev (>= 4.3.0.dfsg.1-4),
  libice-dev (>= 4.3.0.dfsg.1-4), libx11-dev (>= 4.3.0.dfsg.1-4),
@@ -118,8 +124,9 @@ Description: Qt development files (Threaded)
 Package: libqt3-headers
 Architecture: any
 Section: devel
+Replaces: libqt3-headers (<< 4:3.5.13)
+Breaks: libqt3-headers (<< 4:3.5.13)
 Recommends: libqt3-mt-dev
-Replaces: libqt3-mt-dev, libqt3-dev, libqt3-plugins-headers
 Description:  Qt3 header files
  This package contains all header files for libqt and libqt-mt which come
  with Qt3. If you want to compile or develop programs which use Qt3, you
@@ -128,9 +135,10 @@ Description:  Qt3 header files
 Package: libqt3-compat-headers
 Architecture: any
 Section: devel
+Replaces: libqt3-compat-headers (<< 4:3.5.13)
+Breaks: libqt3-compat-headers (<< 4:3.5.13)
 Depends: libqt3-headers (= ${binary:Version})
 Recommends: libqt3-mt-dev
-Replaces: libqt3-mt-dev (<= 3:3.1.1-2), libqt3-dev (<= 3:3.1.1-2), libqt3-headers (<= 3:3.1.1-2)
 Description: Qt 1.x and 2.x compatibility includes
  This package contains header files that are intended for build
  compatibility for applications that build with Qt3 but still use
@@ -143,9 +151,10 @@ Description: Qt 1.x and 2.x compatibility includes
 Package: qt3-dev-tools
 Architecture: any
 Section: devel
+Replaces: qt3-dev-tools (<< 4:3.5.13)
+Breaks: qt3-dev-tools (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: libqt3-mt-dev
-Replaces: qt3-tools, libqt3-dev, libqt3-mt-dev, qt3-doc (<= 3:3.1.1-2)
 Conflicts: libqt-dev (<< 3:2.3.2-10), uic (<= 3:2.3.2-9)
 Description: Qt3 development tools
  This package contains all tools that are necessary to build programs
@@ -155,9 +164,10 @@ Description: Qt3 development tools
 Package: qt3-designer
 Architecture: any
 Section: devel
+Replaces: qt3-designer (<< 4:3.5.13)
+Breaks: qt3-designer (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: qt3-dev-tools
-Replaces: qt3-tools, libqt3-dev, libqt3-mt-dev, qt3-doc (= 3:3.3.4-8)
 Suggests: qt3-assistant, qt3-doc
 Conflicts: qt-designer (<= 3:2.3.2-9), qt-designer-doc
 Description: Qt3 Designer
@@ -173,8 +183,9 @@ Description: Qt3 Designer
 Package: qt3-apps-dev
 Architecture: any
 Section: devel
+Replaces: qt3-apps-dev (<< 4:3.5.13)
+Breaks: qt3-apps-dev (<< 4:3.5.13)
 Depends: libqt3-mt-dev
-Replaces: qt3-tools, libqt3-dev, libqt3-mt-dev
 Description: Qt3 Developer applications development files
  This package is intended for developers who want to develop applications
  using the additional static libraries that ship with the applications
@@ -187,9 +198,10 @@ Description: Qt3 Developer applications development files
 Package: qt3-linguist
 Architecture: any
 Section: devel
+Replaces: qt3-linguist (<< 4:3.5.13)
+Breaks: qt3-linguist (<< 4:3.5.13)
 Suggests: qt3-assistant
 Depends: ${shlibs:Depends}
-Replaces: qt3-tools, libqt3-dev, libqt3-mt-dev, qt3-doc (= 3:3.3.4-8)
 Description: The Qt3 Linguist
  This package contains the Qt3 Linguist which provides translators a
  tool perfect for translating any Qt-based application into other
@@ -199,8 +211,9 @@ Description: The Qt3 Linguist
 Package: qt3-assistant
 Architecture: any
 Section: x11
+Replaces: qt3-assistant (<< 4:3.5.13)
+Breaks: qt3-assistant (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, qt3-doc
-Replaces: qt3-tools, libqt3-dev, libqt3-mt-dev
 Description: The Qt3 assistant application
  This package contains the Qt3 Assistant, an easy to use frontend for
  the complete Qt3 documentation and serves as an online help viewer for
@@ -216,8 +229,9 @@ Description: The Qt3 assistant application
 Package: qt3-qtconfig
 Architecture: any
 Section: x11
+Replaces: qt3-qtconfig (<< 4:3.5.13)
+Breaks: qt3-qtconfig (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
-Replaces: qt3-tools, libqt3-dev, libqt3-mt-dev
 Description: The Qt3 Configuration Application
  The Qt Configuration program allows endusers to configure the look
  and behavior of any Qt3 application. It is mostly only necessary
@@ -230,9 +244,10 @@ Description: The Qt3 Configuration Application
 Package: qt3-dev-tools-embedded
 Architecture: any
 Section: devel
+Replaces: qt3-dev-tools-embedded (<< 4:3.5.13)
+Breaks: qt3-dev-tools-embedded (<< 4:3.5.13)
 Recommends: libqt3-mt-dev
 Depends: ${shlibs:Depends}
-Replaces: qt3-tools, libqt3-dev, libqt3-mt-dev
 Description: Tools to develop embedded Qt applications
  This package contains applications only suitable for developing
  applications with Qt Embedded and/or Qtopia. It provides the QVFB
@@ -243,9 +258,10 @@ Description: Tools to develop embedded Qt applications
 Package: qt3-dev-tools-compat
 Architecture: any
 Section: devel
+Replaces: qt3-dev-tools-compat (<< 4:3.5.13)
+Breaks: qt3-dev-tools-compat (<< 4:3.5.13)
 Recommends: libqt3-mt-dev
 Depends: ${shlibs:Depends}
-Replaces: qt3-tools, libqt3-dev, libqt3-mt-dev
 Description: Conversion utilities for Qt3 development
  This package contains some older Qt tools (namely qt20fix qtrename140,
  qm2ts, mergetr, findtr and msg2qm). These tools are needed only by
@@ -258,6 +274,8 @@ Description: Conversion utilities for Qt3 development
 Package: libqt3-i18n
 Architecture: all
 Section: libs
+Replaces: libqt3-i18n (<< 4:3.5.13)
+Breaks: libqt3-i18n (<< 4:3.5.13)
 Recommends: libqt3-mt
 Description: i18n files for Qt3 library
  This package contains the internationalization files for the Qt library.
@@ -267,8 +285,9 @@ Description: i18n files for Qt3 library
 Package: qt3-doc
 Architecture: all
 Section: doc
+Replaces: qt3-doc (<< 4:3.5.13)
+Breaks: qt3-doc (<< 4:3.5.13)
 Priority: extra
-Replaces: qt-doc
 Suggests: libqt3-headers, qt3-assistant | www-browser
 Description: Qt3 API documentation
  This package contains the complete API documentation for Qt3.
@@ -279,6 +298,8 @@ Description: Qt3 API documentation
 Package: qt3-examples
 Architecture: all
 Section: doc
+Replaces: qt3-examples (<< 4:3.5.13)
+Breaks: qt3-examples (<< 4:3.5.13)
 Priority: extra
 Depends: libqt3-mt-dev (>= ${binary:Version})
 Suggests: qt3-apps-dev
@@ -290,10 +311,11 @@ Description:  Examples for Qt3
 Package: qt-x11-free-dbg
 Section: libdevel
 Architecture: any
+Replaces: qt-x11-free-dbg (<< 4:3.5.13)
+Breaks: qt-x11-free-dbg (<< 4:3.5.13)
 Priority: extra
 Depends: libqt3-mt (= ${binary:Version}), gdb
 Conflicts: libqt3-mt-dbg
-Replaces: libqt3-mt-dbg
 Description: debugging symbols for qt-x11-free binaries
  This package contains the debugging symbols associated with qt-x11-free.
  They will automatically be used by gdb for debugging Qt-related

@@ -9,6 +9,8 @@ Standards-Version: 3.8.4
 Package: dolphin-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: dolphin-kde3 (<< 4:3.5.13)
+Breaks: dolphin-kde3 (<< 4:3.5.13)
 Recommends: amarok-trinity, ark-trinity, k3b-trinity, kmail-trinity, digikam-trinity
 Suggests: kfloppy-trinity
 Description: File manager for KDE focusing on usability [Trinity]

@@ -8,6 +8,8 @@ Standards-Version: 3.8.4
 Package: kima-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: kima-kde3 (<< 4:3.5.13)
+Breaks: kima-kde3 (<< 4:3.5.13)
 Description: kicker monitoring applet [Trinity]
  This applet monitors various temperature,
  frequency and fan sources in your kicker

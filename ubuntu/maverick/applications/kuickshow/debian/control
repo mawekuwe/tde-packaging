@@ -8,6 +8,8 @@ Standards-Version: 3.8.4
 Package: kuickshow-trinity
 Section: graphics
 Architecture: any
+Replaces: kuickshow-kde3 (<< 4:3.5.13)
+Breaks: kuickshow-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: KDE image/slideshow viewer [Trinity]

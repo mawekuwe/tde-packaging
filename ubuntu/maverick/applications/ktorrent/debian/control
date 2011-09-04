@@ -8,6 +8,8 @@ Standards-Version: 3.8.4
 Package: ktorrent-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: ktorrent-kde3 (<< 4:3.5.13)
+Breaks: ktorrent-kde3 (<< 4:3.5.13)
 Suggests: php5-cli
 Recommends: kdebase-kio-plugins-trinity
 Description: BitTorrent client for Trinity

@@ -10,6 +10,8 @@ Homepage: http://kdesvn.alwins-world.de/
 Package: libsvnqt4-trinity
 Section: libs
 Architecture: any
+Replaces: libsvnqt4-kde3 (<< 4:3.5.13)
+Breaks: libsvnqt4-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Qt wrapper library for subversion [Trinity]
  This package provides svnqt, a Qt wrapper library around the 
@@ -21,6 +23,8 @@ Description: Qt wrapper library for subversion [Trinity]
 Package: libsvnqt-trinity-dev
 Section: libdevel
 Architecture: any
+Replaces: libsvnqt-kde3-dev (<< 4:3.5.13)
+Breaks: libsvnqt-kde3-dev (<< 4:3.5.13)
 Depends: libsvnqt4-trinity (= ${binary:Version}), libqt3-mt-dev, libsvn-dev
 Description: Qt wrapper library for subversion (development files) [Trinity]
  This package contains the header files and symbolic links that developers
@@ -29,6 +33,8 @@ Description: Qt wrapper library for subversion (development files) [Trinity]
 Package: kdesvn-trinity
 Section: devel
 Architecture: any
+Replaces: kdesvn-kde3 (<< 4:3.5.13)
+Breaks: kdesvn-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ${misc:Depends}, kdesvn-kio-plugins-trinity (= ${binary:Version})
 Recommends: kompare-trinity, graphviz
 Suggests: khelpcenter-trinity, kdiff3-trinity
@@ -43,6 +49,8 @@ Description: subversion client with tight KDE integration [Trinity]
 Package: kdesvn-kio-plugins-trinity
 Section: devel
 Architecture: any
+Replaces: kdesvn-kio-plugins-kde3 (<< 4:3.5.13)
+Breaks: kdesvn-kio-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: subversion I/O slaves for Trinity
  This packages includes KIO slaves for svn, svn+file, svn+http, 
