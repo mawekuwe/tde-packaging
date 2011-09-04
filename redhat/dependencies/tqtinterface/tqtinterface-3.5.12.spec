@@ -1,7 +1,6 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _libdir %{_prefix}/lib
 %endif
 
 # TQT include files may conflict with QT4 includes, so we move them to a subdirectory.
