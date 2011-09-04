@@ -1,0 +1,45 @@
+diff -rcb kdebase.ORI/kdesu/kdesu/sudlg.cpp kdebase/kdesu/kdesu/sudlg.cpp
+*** kdebase.ORI/kdesu/kdesu/sudlg.cpp	2010-12-17 22:55:07.725798945 +0100
+--- kdebase/kdesu/kdesu/sudlg.cpp	2010-12-17 22:55:49.378797283 +0100
+***************
+*** 15,21 ****
+  #include "sudlg.h"
+  
+  KDEsuDialog::KDEsuDialog(TQCString user, TQCString auth_user, bool enableKeep,const TQString& icon, bool withIgnoreButton)
+!      : KPasswordDialog(Password, enableKeep, (withIgnoreButton ? User1:NoDefault), icon)
+  {
+      KConfig* config = KGlobal::config();
+      config->setGroup("super-user-command");
+--- 15,21 ----
+  #include "sudlg.h"
+  
+  KDEsuDialog::KDEsuDialog(TQCString user, TQCString auth_user, bool enableKeep,const TQString& icon, bool withIgnoreButton)
+!      : KPasswordDialog(Password, enableKeep, 0, icon)
+  {
+      KConfig* config = KGlobal::config();
+      config->setGroup("super-user-command");
+***************
+*** 34,45 ****
+      } else {
+          if (m_User == "root") {
+  	    prompt = i18n("The action you requested needs root privileges. "
+! 	    "Please enter root's password below or click "
+! 	    "Ignore to continue with your current privileges.");
+          } else {
+  	    prompt = i18n("The action you requested needs additional privileges. "
+! 		"Please enter the password for \"%1\" below or click "
+! 		"Ignore to continue with your current privileges.").arg(m_User);
+  	}
+      }
+      setPrompt(prompt);
+--- 34,43 ----
+      } else {
+          if (m_User == "root") {
+  	    prompt = i18n("The action you requested needs root privileges. "
+! 	    "Please enter root's password below.");
+          } else {
+  	    prompt = i18n("The action you requested needs additional privileges. "
+! 		"Please enter the password for \"%1\" below.").arg(m_User);
+  	}
+      }
+      setPrompt(prompt);

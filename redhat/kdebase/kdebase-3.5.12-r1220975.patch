@@ -1,0 +1,19 @@
+*** kdebase/ksmserver/shutdowndlg.cpp.ORI	2011-08-23 21:42:55.206965177 +0200
+--- kdebase/ksmserver/shutdowndlg.cpp	2011-08-23 21:43:26.429965029 +0200
+***************
+*** 80,86 ****
+  {
+      DCOPRef("kicker", "KMenu").call("hideMenu");	// Make sure the K Menu is completely removed from the screen before taking a snapshot...
+      m_grayImage = TQPixmap::grabWindow(qt_xrootwin(), 0, 0, TQApplication::desktop()->width(), TQApplication::desktop()->height()).convertToImage();
+!     m_unfadedImage = TQImage::TQImage();
+      resize(0, 0);
+      setShown(true);
+      TQTimer::singleShot( 500, this, TQT_SLOT( slotPaintEffect() ) );
+--- 80,86 ----
+  {
+      DCOPRef("kicker", "KMenu").call("hideMenu");	// Make sure the K Menu is completely removed from the screen before taking a snapshot...
+      m_grayImage = TQPixmap::grabWindow(qt_xrootwin(), 0, 0, TQApplication::desktop()->width(), TQApplication::desktop()->height()).convertToImage();
+!     m_unfadedImage = TQImage();
+      resize(0, 0);
+      setShown(true);
+      TQTimer::singleShot( 500, this, TQT_SLOT( slotPaintEffect() ) );
