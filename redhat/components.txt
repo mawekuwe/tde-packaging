@@ -1,0 +1,7 @@
+dependencies/qt3
+dependencies/tqtinterface
+dependencies/dbus-tqt
+dependencies/arts
+kdelibs
+kdebase
+kdebindings
