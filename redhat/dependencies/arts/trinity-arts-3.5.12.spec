@@ -24,7 +24,7 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
 
-Requires:	qt3 >= 3.3.8d
+Requires:	qt3 >= 3.3.8b
 Requires:	tqtinterface
 Requires:	audiofile
 
