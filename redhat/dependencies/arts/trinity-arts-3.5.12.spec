@@ -1,29 +1,35 @@
+# Default version for this component
+%if "%{?version}" == ""
+%define version 3.5.12
+%endif
+%define release 4
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
+# TDE 3.5.12 specific building variables
+BuildRequires:	autoconf automake libtool m4
+
 
 Name:		trinity-arts
-Version:	3.5.12
-Release:	4%{?dist}%{?_variant}
+Version:	%{?version}
+Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the KDE sound system
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Source0:	http://mirror3.tokra.lv/releases/3.5.12/dependencies/arts-3.5.12.tar.gz
+Source0:	arts-%{version}.tar.gz
 Prefix:		%{_prefix}
 
-BuildRequires:	autoconf automake libtool m4
-BuildRequires:	qt3-devel >= 3.3.8b
 BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
 
-Requires:	qt3 >= 3.3.8b
 Requires:	tqtinterface
 Requires:	audiofile
 
@@ -64,6 +70,7 @@ Development files for %{name}
 %build
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+
 %configure \
   --disable-rpath \
   --disable-debug --disable-warnings \

@@ -1,3 +1,9 @@
+# Default version for this component
+%if "%{?version}" == ""
+%define version 3.5.12
+%endif
+%define release 7
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
@@ -7,36 +13,28 @@
 # Later compiled Trinity products should be aware of that !
 %define _includedir %{_prefix}/include/tqt
 
-# Currently we build with (RHEL 6):
-#  automake-1.11.1-1.2.el6.noarch
-#  autoconf-2.63-5.1.el6.noarch
-#  libtool-2.2.6-15.5.el6.x86_64
-#  m4-1.4.13-5.el6.x86_64
+# TDE 3.5.12 specific building variables
+BuildRequires: autoconf automake libtool m4
+BuildRequires:	qt3-devel >= 3.3.8b
+Requires:	qt3 >= 3.3.8b
 
-# Currently we build with (Fedora 15):
-#  automake-1.11.1-5.fc14.noarch
-#  autoconf-2.63-5.1.f15.noarch (backport from EL6)
-#  libtool-2.2.6-15.5.f15.x86_64 (backport from EL6)
-#  m4-1.4.13-5.f15.x86_64 (backport from EL6)
 
 Name:		tqtinterface
-Version:	3.5.12
-Release:	7%{?dist}%{?_variant}
+Version:	%{version}
+Release:	%{release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
-Source0:	http://mirror3.tokra.lv/releases/3.5.12/dependencies/tqtinterface-3.5.12.tar.gz
+Source0:	%{name}-%{version}.tar.gz
 
-BuildRequires:	autoconf automake libtool m4
-BuildRequires:	qt3-devel >= 3.3.8b
+
 BuildRequires:	gcc-c++
 BuildRequires:	libXi-devel
 BuildRequires:	pth-devel
 
-Requires:	qt3 >= 3.3.8b
 
 %description
 Trinity QT Interface
@@ -82,6 +80,7 @@ CFLAGS=$( pkg-config --libs qt-mt )
 %{_includedir}
 %{_libdir}/*.so
 %{_libdir}/*.la
+
 
 %changelog
 * Sun Sep 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7

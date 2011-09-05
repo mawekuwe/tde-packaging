@@ -2,6 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
+%define release 0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -12,9 +13,15 @@
 # Later compiled Trinity products should be aware of that !
 %define _includedir %{_prefix}/include/tqt
 
+# TDE 3.5.13 specific building variables
+BuildRequires: cmake >= 2.8
+BuildRequires:	qt3-devel >= 3.3.8d
+Requires:	qt3 >= 3.3.8d
+
+
 Name:		tqtinterface
 Version:	%{version}
-Release:	0%{?dist}%{?_variant}
+Release:	%{release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
 Vendor:		Trinity Project
@@ -23,13 +30,11 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 Prefix:		%{_prefix}
 Source0:	%{name}-%{version}.tar.gz
 
-BuildRequires:	cmake >= 2.8
-BuildRequires:	qt3-devel >= 3.3.8d
+
 BuildRequires:	gcc-c++
 BuildRequires:	libXi-devel
 BuildRequires:	pth-devel
 
-Requires:	qt3 >= 3.3.8d
 
 %description
 Trinity QT Interface
@@ -40,14 +45,6 @@ Summary:	%{name} - Development files
 
 %description devel
 Development files for %{name}
-
-%package -n tde-cmake-macros
-Requires:	%{name}-devel
-Summary:	Cmake macros for building TDE
-
-%description -n tde-cmake-macros
-%{summary}
-
 
 %prep
 %setup -q -n dependencies/%{name}
@@ -97,12 +94,10 @@ done
 %{_libdir}/*.so
 %{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
-
-%files -n tde-cmake-macros
 %{_usr}/share/cmake/Modules/*.cmake
 
 
 %changelog
-* Sun Aug 28 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13pre.svn20110828-0.el6
+* Sun Aug 28 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Built with future TDE version (3.5.13 + cmake + QT3.3.8d)

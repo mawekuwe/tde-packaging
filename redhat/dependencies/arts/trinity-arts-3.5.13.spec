@@ -2,16 +2,20 @@
 %if "%{?version}" == ""
 %define version 1.5.10
 %endif
+%define release 0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
+# TDE 3.5.13 specific building variables
+BuildRequires: cmake >= 2.8
+
 
 Name:		trinity-arts
-Version:	%{version}
-Release:	0%{?dist}%{?_variant}
+Version:	%{?version}
+Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the KDE sound system
 Vendor:		Trinity Project
@@ -20,16 +24,12 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 Source0:	arts-%{version}.tar.gz
 Prefix:		%{_prefix}
 
-BuildRequires:	cmake >= 2.8
-BuildRequires:	tde-cmake-macros
-BuildRequires:	qt3-devel >= 3.3.8d
 BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
 
-Requires:	qt3 >= 3.3.8d
 Requires:	tqtinterface
 Requires:	audiofile
 
