@@ -2,6 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
+%define release 0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -9,10 +10,15 @@
 %define _docdir %{_prefix}/share/doc
 %endif
 
+# TDE 3.5.13 specific variables
+BuildRequires: cmake >= 2.8
+%define tde_docdir %{_docdir}/kde
+%define tde_libdir %{_libdir}/trinity
+
 
 Name:		trinity-kdelibs
 Version:	%{version}
-Release:	0%{?dist}%{?_variant}
+Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -21,7 +27,6 @@ Summary:	Trinity KDE Libraries
 Source0:	kdelibs-%{version}.tar.gz
 Prefix:		%{_prefix}
 
-BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
@@ -66,6 +71,7 @@ format for easy browsing
 %prep
 %setup -q -n kdelibs
 
+
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
@@ -93,6 +99,7 @@ cd build
   ..
 
 %__make %{?_smp_mflags}
+
 
 %install
 %__rm -rf %{?buildroot}

@@ -1,13 +1,24 @@
+# Default version for this component
+%if "%{?version}" == ""
+%define version 3.5.12
+%endif
+%define release 5
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %define _docdir %{_prefix}/share/doc
 %endif
 
+# TDE 3.5.13 specific variables
+BuildRequires:	autoconf automake libtool m4
+%define tde_docdir %{_docdir}
+%define tde_libdir %{_libdir}/kde3
+
 
 Name:		trinity-kdelibs
-Version:	3.5.12
-Release:	5%{?dist}%{?_variant}
+Version:	%{version}
+Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -16,7 +27,7 @@ Summary:	Trinity KDE Libraries
 Source0:	kdelibs-%{version}.tar.gz
 Prefix:		%{_prefix}
 
-BuildRequires:	autoconf automake libtool m4
+BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	qt3-devel
@@ -59,9 +70,11 @@ format for easy browsing
 
 %prep
 %setup -q -n kdelibs
+
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
 %__make -f admin/Makefile.common 
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -94,6 +107,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 # Do NOT use %{?_smp_mflags} for this package, or it will fail to build !
 %__make
 
+
 %install
 %__rm -rf %{?buildroot}
 %__mkdir_p %{?buildroot}
@@ -104,7 +118,7 @@ cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
 %if "%{?_prefix}" != "/usr"
 %{_libdir}
 %endif
-%{_libdir}/trinity
+%{tde_libdir}
 EOF
 
 %clean

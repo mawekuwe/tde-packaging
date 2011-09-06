@@ -1,4 +1,4 @@
-# If _kde3_prefix is # Default version for this component
+# Default version for this component
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
@@ -98,9 +98,9 @@ Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs >= %{version}
 # helps multilib upgrades
-Obsoletes: %{name} < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes: %{name} < %{version}-%{release}
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{version}-%{release}
 %description libs
 %{summary}.
 
