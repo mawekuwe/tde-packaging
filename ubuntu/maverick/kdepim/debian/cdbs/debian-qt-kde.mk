@@ -97,12 +97,12 @@ clean::
 
 endif
 
-common-build-arch common-build-indep:: debian/stamp-kde-apidox
+common-build-indep:: debian/stamp-kde-apidox
 debian/stamp-kde-apidox:
 	$(if $(DEB_KDE_APIDOX),+$(DEB_MAKE_INVOKE) apidox)
 	touch $@
 
-common-install-arch common-install-indep:: common-install-kde-apidox
+common-install-indep:: common-install-kde-apidox
 common-install-kde-apidox::
 	$(if $(DEB_KDE_APIDOX),+$(DEB_MAKE_INVOKE) install-apidox DESTDIR=$(DEB_DESTDIR))
 
