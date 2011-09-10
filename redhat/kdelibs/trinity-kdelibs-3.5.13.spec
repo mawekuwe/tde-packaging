@@ -71,6 +71,10 @@ format for easy browsing
 %prep
 %setup -q -n kdelibs
 
+# Gets the cmake modules in current build directory
+%__mkdir_p cmake/modules
+%__cp -f %{_datadir}/cmake/*.* cmake/modules
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh

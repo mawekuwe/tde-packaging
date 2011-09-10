@@ -5,3 +5,7 @@ dependencies/arts
 kdelibs
 kdebase
 kdebindings
+kdeutils
+kdepim
+kdesdk
+kdevelop

@@ -2,6 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
+%define release 0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -12,7 +13,7 @@
 
 Name:		trinity-kdebase
 Version:	%{version}
-Release:	0%{?dist}%{?_variant}
+Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -34,6 +35,7 @@ BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	qt3-devel >= 3.3.8d
+BuildRequires:	cmake >= 2.8
 BuildRequires:	openssl-devel
 BuildRequires:	avahi-devel avahi-qt3-devel
 BuildRequires:	imake
@@ -136,6 +138,9 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch5 -p1
 %patch6 -p1
 
+# Gets the cmake modules in current build directory
+%__mkdir_p cmake/modules
+%__cp -f %{_datadir}/cmake/*.* cmake/modules
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
