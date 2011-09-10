@@ -685,6 +685,7 @@ debian/tmp/opt/trinity/include/libkrandr/ktimerdialog.h
 debian/tmp/opt/trinity/include/libkrandr/libkrandr.h
 debian/tmp/opt/trinity/include/libkrandr/lowlevel_randr.h
 debian/tmp/opt/trinity/include/libkrandr/randr.h
+debian/tmp/opt/trinity/include/libkrsync/krsync.h
 debian/tmp/opt/trinity/include/libkmid/alsaout.h
 debian/tmp/opt/trinity/include/libkmid/dattypes.h
 debian/tmp/opt/trinity/include/libkmid/deviceman.h
@@ -799,6 +800,8 @@ debian/tmp/opt/trinity/lib/libkparts.la
 debian/tmp/opt/trinity/lib/libkparts.so
 debian/tmp/opt/trinity/lib/libkrandr.la
 debian/tmp/opt/trinity/lib/libkrandr.so
+debian/tmp/opt/trinity/lib/libkrsync.la
+debian/tmp/opt/trinity/lib/libkrsync.so
 debian/tmp/opt/trinity/lib/libkresources.la
 debian/tmp/opt/trinity/lib/libkresources.so
 debian/tmp/opt/trinity/lib/libkscreensaver.la
