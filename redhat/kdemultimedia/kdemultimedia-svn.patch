@@ -1,0 +1,19 @@
+*** configure.in.in.ORI	2011-09-10 21:38:57.805533683 +0200
+--- configure.in.in	2011-09-10 21:39:08.687283728 +0200
+***************
+*** 542,548 ****
+  if test "x$build_arts" = "xyes" && test "x$ARTSCCONFIG" != "xno" ; then
+  	LIB_ARTS="-lartskde"
+  	ARTS_PREFIX=[`$ARTSCCONFIG --arts-prefix`]
+! 	ARTS_CFLAGS="-I$ARTS_PREFIX/include/arts"
+  	AC_DEFINE(HAVE_ARTS, 1, [have arts support in juk])
+  else
+  	build_arts="no"
+--- 542,548 ----
+  if test "x$build_arts" = "xyes" && test "x$ARTSCCONFIG" != "xno" ; then
+  	LIB_ARTS="-lartskde"
+  	ARTS_PREFIX=[`$ARTSCCONFIG --arts-prefix`]
+! 	ARTS_CFLAGS="-I$ARTS_PREFIX/include"
+  	AC_DEFINE(HAVE_ARTS, 1, [have arts support in juk])
+  else
+  	build_arts="no"
