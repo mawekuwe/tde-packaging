@@ -10,7 +10,7 @@
 %define _docdir %{_prefix}/share/doc
 %endif
 
-# TDE 3.5.13 specific variables
+# TDE 3.5.12 specific variables
 BuildRequires:	autoconf automake libtool m4
 %define tde_docdir %{_docdir}
 %define tde_libdir %{_libdir}/kde3
@@ -20,9 +20,11 @@ Name:		trinity-kdelibs
 Version:	%{version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
+Summary:	Trinity KDE Libraries
+
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-Summary:	Trinity KDE Libraries
+URL:		http://www.trinitydesktop.org/
 
 Source0:	kdelibs-%{version}.tar.gz
 Prefix:		%{_prefix}
@@ -73,7 +75,7 @@ format for easy browsing
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common 
+%__make -f "admin/Makefile.common"
 
 
 %build
@@ -81,6 +83,7 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LD_LIBRARY_PATH="%{_libdir}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+
 %configure \
   --disable-rpath \
   --enable-new-ldflags \
@@ -113,13 +116,6 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 %__mkdir_p %{?buildroot}
 %make_install
 
-%__mkdir_p %{?buildroot}%{_sysconfdir}/ld.so.conf.d
-cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
-%if "%{?_prefix}" != "/usr"
-%{_libdir}
-%endif
-%{tde_libdir}
-EOF
 
 %clean
 %__rm -rf %{?buildroot}
@@ -193,7 +189,7 @@ EOF
 %{_libdir}/lib*.so.*
 %{_libdir}/libkdeinit_*.so
 %{_libdir}/lib*.la
-%{_libdir}/kde3/
+%{tde_libdir}/
 %{_datadir}/applications/kde/*.desktop
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/applnk/kio_iso.desktop
@@ -207,7 +203,7 @@ EOF
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_datadir}/icons/crystalsvg/
-%{_docdir}/HTML/en/kspell
+%{tde_docdir}/HTML/en/kspell
 # remove conflicts with kdelibs-4
 %if "%{?_prefix}" != "/usr"
 %{_bindir}/checkXML
@@ -216,7 +212,7 @@ EOF
 %{_bindir}/preparetips
 %{_datadir}/icons/hicolor/index.theme
 %{_datadir}/locale/all_languages
-%{_docdir}/HTML/en/common/*
+%{tde_docdir}/HTML/en/common/*
 %else
 %exclude %{_bindir}/checkXML
 %exclude %{_bindir}/ksvgtopng
@@ -229,9 +225,8 @@ EOF
 %exclude %{_datadir}/config/ui/ui_standards.rc
 %exclude %{_datadir}/icons/hicolor/index.theme
 %exclude %{_datadir}/locale/all_languages
-%exclude %{_docdir}/HTML/en/common/*
+%exclude %{tde_docdir}/HTML/en/common/*
 %endif
-%{_sysconfdir}/ld.so.conf.d/trinity.conf
 
 # Provided by 'redhat-menus' package
 %exclude %{_sysconfdir}/xdg/menus/applications.menu
@@ -250,7 +245,7 @@ EOF
 %files apidocs
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-%{version}/
-%{_docdir}/HTML/en/kdelibs*
+%{tde_docdir}/HTML/en/kdelibs*
 
 
 %changelog

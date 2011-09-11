@@ -18,7 +18,9 @@ Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the KDE sound system
+
 Vendor:		Trinity Project
+URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Source0:	arts-%{version}.tar.gz
@@ -29,6 +31,7 @@ BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
+BuildRequires:	gsl-devel
 
 Requires:	tqtinterface
 Requires:	audiofile
@@ -69,6 +72,7 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 %__mkdir build
 cd build
 %cmake \
+  -DINCLUDE_INSTALL_DIR=%{_includedir}/arts \
   -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \
   -DWITH_MAD=OFF \
   ..

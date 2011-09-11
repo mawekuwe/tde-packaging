@@ -10,14 +10,21 @@
 %define _docdir %{_prefix}/share/doc
 %endif
 
+# TDE 3.5.13 specific building variables
+BuildRequires: cmake >= 2.8
+%define tde_docdir %{_docdir}/kde
+%define tde_libdir %{_libdir}/trinity
+
 
 Name:		trinity-kdebase
-Version:	%{version}
+Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
+Summary:	Trinity KDE Base Programs
+
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-Summary:	Trinity KDE Base Programs
+URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
 
@@ -35,7 +42,6 @@ BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	qt3-devel >= 3.3.8d
-BuildRequires:	cmake >= 2.8
 BuildRequires:	openssl-devel
 BuildRequires:	avahi-devel avahi-qt3-devel
 BuildRequires:	imake
@@ -283,7 +289,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/icons/hicolor/*/apps/kpager.png
 
 %doc AUTHORS COPYING README
-%{_docdir}/kde/HTML/en/*
+%{tde_docdir}/HTML/en/*
 %config(noreplace) %{_sysconfdir}/ksysguarddrc.tde
 %{_bindir}/genkdmconf
 %{_bindir}/kaccess
@@ -389,7 +395,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_datadir}/sounds/*
-%{_libdir}/trinity/*
+%{tde_libdir}/*
 %{_libdir}/libkdeinit_*.*
 %{_sysconfdir}/xdg/menus/applications-merged/kde-essential.menu
 %{_sysconfdir}/xdg/menus/kde-information.menu
@@ -403,10 +409,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/config
 %endif
 # exclude pim-ioslaves files from main package
-%exclude %{_libdir}/trinity/kio_ldap.*
-%exclude %{_libdir}/trinity/kio_nntp.*
-%exclude %{_libdir}/trinity/kio_pop3.*
-%exclude %{_libdir}/trinity/kio_smtp.*
+%exclude %{tde_libdir}/kio_ldap.*
+%exclude %{tde_libdir}/kio_nntp.*
+%exclude %{tde_libdir}/kio_pop3.*
+%exclude %{tde_libdir}/kio_smtp.*
 %exclude %{_datadir}/services/ldap*.protocol
 %exclude %{_datadir}/services/nntp*.protocol
 %exclude %{_datadir}/services/pop3*.protocol
@@ -423,10 +429,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %files pim-ioslaves
 %defattr(-,root,root,-)
-%{_libdir}/trinity/kio_ldap.*
-%{_libdir}/trinity/kio_nntp.*
-%{_libdir}/trinity/kio_pop3.*
-%{_libdir}/trinity/kio_smtp.*
+%{tde_libdir}/kio_ldap.*
+%{tde_libdir}/kio_nntp.*
+%{tde_libdir}/kio_pop3.*
+%{tde_libdir}/kio_smtp.*
 %{_datadir}/services/ldap*.protocol
 %{_datadir}/services/nntp*.protocol
 %{_datadir}/services/pop3*.protocol

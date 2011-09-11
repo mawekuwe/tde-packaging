@@ -1,21 +1,34 @@
+# Default version for this component
+%if "%{?version}" == ""
+%define version 3.5.12
+%endif
+%define release 6
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %define _docdir %{_prefix}/share/doc
 %endif
 
+# TDE 3.5.12 specific building variables
+BuildRequires: autoconf automake libtool m4
+%define tde_docdir %{_docdir}
+%define tde_libdir %{_libdir}/kde3
+
 
 Name:		trinity-kdebase
-Version:	3.5.12
-Release:	9%{?dist}%{?_variant}
+Version:	%{?version}
+Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
-Vendor:		Trinity Project
-Packager:	Thales Communications
 Summary:	Trinity KDE Base Programs
+
+Vendor:		Trinity Project
+Packager:	Francois Andriot <francois.andriot@free.fr>
+URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
 
-Source0:	http://mirror3.tokra.lv/releases/3.5.12/kdebase-3.5.12.tar.gz
+Source0:	kdebase-%{version}.tar.gz
 
 # Wrapper script to prevent Plasma launch at Trinity Startup
 Source1:	plasma-desktop
@@ -159,7 +172,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common
+%__make -f "admin/Makefile.common"
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -298,7 +311,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/icons/hicolor/*/apps/kpager.png
 
 %doc AUTHORS COPYING README
-%{_docdir}/HTML/en/*
+%{tde_docdir}/HTML/en/*
 %config(noreplace) %{_sysconfdir}/ksysguarddrc.tde
 %{_bindir}/genkdmconf
 %{_bindir}/kaccess
@@ -408,7 +421,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/servicetypes/*
 %{_datadir}/sounds/*
 %{_docdir}/kdm/README
-%{_libdir}/kde3/*
+%{tde_libdir}/*
 %{_libdir}/libkdeinit_*.*
 %{_sysconfdir}/xdg/menus/applications-merged/kde-essential.menu
 %{_sysconfdir}/xdg/menus/kde-information.menu
@@ -423,10 +436,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/config
 %endif
 # exclude pim-ioslaves files from main package
-%exclude %{_libdir}/kde3/kio_ldap.*
-%exclude %{_libdir}/kde3/kio_nntp.*
-%exclude %{_libdir}/kde3/kio_pop3.*
-%exclude %{_libdir}/kde3/kio_smtp.*
+%exclude %{tde_libdir}/kio_ldap.*
+%exclude %{tde_libdir}/kio_nntp.*
+%exclude %{tde_libdir}/kio_pop3.*
+%exclude %{tde_libdir}/kio_smtp.*
 %exclude %{_datadir}/services/ldap*.protocol
 %exclude %{_datadir}/services/nntp*.protocol
 %exclude %{_datadir}/services/pop3*.protocol
@@ -440,10 +453,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %files pim-ioslaves
 %defattr(-,root,root,-)
-%{_libdir}/kde3/kio_ldap.*
-%{_libdir}/kde3/kio_nntp.*
-%{_libdir}/kde3/kio_pop3.*
-%{_libdir}/kde3/kio_smtp.*
+%{tde_libdir}/kio_ldap.*
+%{tde_libdir}/kio_nntp.*
+%{tde_libdir}/kio_pop3.*
+%{tde_libdir}/kio_smtp.*
 %{_datadir}/services/ldap*.protocol
 %{_datadir}/services/nntp*.protocol
 %{_datadir}/services/pop3*.protocol

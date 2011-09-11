@@ -9,3 +9,5 @@ kdeutils
 kdepim
 kdesdk
 kdevelop
+kdemultimedia
+kdeartwork

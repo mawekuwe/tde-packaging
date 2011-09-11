@@ -20,9 +20,11 @@ Name:		trinity-kdelibs
 Version:	%{version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
+Summary:	Trinity KDE Libraries
+
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-Summary:	Trinity KDE Libraries
+URL:		http://www.trinitydesktop.org/
 
 Source0:	kdelibs-%{version}.tar.gz
 Prefix:		%{_prefix}
@@ -190,7 +192,7 @@ EOF
 %{_libdir}/lib*.so.*
 %{_libdir}/libkdeinit_*.so
 %{_libdir}/lib*.la
-%{_libdir}/trinity/
+%{tde_libdir}/
 %{_datadir}/applications/kde/*.desktop
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/applnk/kio_iso.desktop
@@ -204,7 +206,7 @@ EOF
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_datadir}/icons/crystalsvg/
-%{_docdir}/kde/HTML/en/kspell
+%{tde_docdir}/HTML/en/kspell
 # remove conflicts with kdelibs-4
 %if "%{?_prefix}" != "/usr"
 %{_bindir}/checkXML
@@ -213,7 +215,7 @@ EOF
 %{_bindir}/preparetips
 %{_datadir}/icons/hicolor/index.theme
 %{_datadir}/locale/all_languages
-%{_docdir}/kde/HTML/en/common/*
+%{tde_docdir}/HTML/en/common/*
 %else
 %exclude %{_bindir}/checkXML
 %exclude %{_bindir}/ksvgtopng
@@ -226,7 +228,7 @@ EOF
 %exclude %{_datadir}/config/ui/ui_standards.rc
 %exclude %{_datadir}/icons/hicolor/index.theme
 %exclude %{_datadir}/locale/all_languages
-%exclude %{_docdir}/kde/HTML/en/common/*
+%exclude %{tde_docdir}/HTML/en/common/*
 %endif
 %{_sysconfdir}/ld.so.conf.d/trinity.conf
 
@@ -253,7 +255,7 @@ EOF
 %files apidocs
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-%{version}/
-#%{_docdir}/kde/HTML/en/kdelibs*
+#%{tde_docdir}/HTML/en/kdelibs*
 
 
 %changelog

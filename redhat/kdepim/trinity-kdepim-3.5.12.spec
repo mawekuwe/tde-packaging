@@ -20,10 +20,12 @@ Name:		trinity-kdepim
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
+Group:		Applications/Productivity
+
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 Summary:	PIM (Personal Information Manager) applications
-Group:		Applications/Productivity
+
 Prefix:		%{_prefix}
 
 Source0:	kdepim-%{version}.tar.gz
@@ -64,7 +66,7 @@ Development files for %{name}.
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common
+%__make -f "admin/Makefile.common"
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh

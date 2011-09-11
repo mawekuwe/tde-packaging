@@ -22,10 +22,11 @@ Version: %{?version}
 Release: %{?release}%{?dist}%{_variant}
 
 License: GPLv2
-URL:     http://developer.kde.org/language-bindings/ 
+Group:   User Interface/Desktops
+
 Vendor:  Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-Group:   User Interface/Desktops
+URL:     http://developer.kde.org/language-bindings/ 
 
 Source0: kdebindings-%{version}.tar.gz
 

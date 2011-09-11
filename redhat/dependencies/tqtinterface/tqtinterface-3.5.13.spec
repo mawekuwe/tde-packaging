@@ -17,9 +17,9 @@
 %define _includedir %{_prefix}/include/tqt
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
+BuildRequires:	cmake >= 2.8
 BuildRequires:	qt3-devel >= 3.3.8d
-Requires:	qt3 >= 3.3.8d
+Requires:		qt3 >= 3.3.8d
 
 
 Name:		tqtinterface
@@ -27,7 +27,9 @@ Version:	%{version}
 Release:	%{release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
+
 Vendor:		Trinity Project
+URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
