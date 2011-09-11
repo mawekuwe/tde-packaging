@@ -20,3 +20,4 @@ kdegames
 kdeedu
 kdeaddons
 kde-i18n
+applications/k3b
