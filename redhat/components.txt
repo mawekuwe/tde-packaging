@@ -11,3 +11,12 @@ kdesdk
 kdevelop
 kdemultimedia
 kdeartwork
+kdegraphics
+kdeaccessibility
+kdenetwork
+kdetoys
+kdeadmin
+kdegames
+kdeedu
+kdeaddons
+kde-i18n
