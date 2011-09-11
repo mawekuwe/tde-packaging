@@ -136,9 +136,6 @@ Requires: %{name} = %{version}-%{release}
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-
-# just to be paranoid -- Rex
-unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
