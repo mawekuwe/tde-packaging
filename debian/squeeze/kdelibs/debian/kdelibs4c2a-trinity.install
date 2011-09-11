@@ -290,6 +290,8 @@ debian/tmp/opt/trinity/lib/libkparts.so.2
 debian/tmp/opt/trinity/lib/libkparts.so.2.1.0
 debian/tmp/opt/trinity/lib/libkrandr.so.0
 debian/tmp/opt/trinity/lib/libkrandr.so.0.0.95
+debian/tmp/opt/trinity/lib/libkrsync.so.0
+debian/tmp/opt/trinity/lib/libkrsync.so.0.0.1
 debian/tmp/opt/trinity/lib/libkresources.so.1
 debian/tmp/opt/trinity/lib/libkresources.so.1.2.0
 debian/tmp/opt/trinity/lib/libkscreensaver.so.4
