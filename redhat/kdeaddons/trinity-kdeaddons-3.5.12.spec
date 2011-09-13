@@ -92,6 +92,10 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
+%if 0%{?fedora} > 0
+export CXXFLAGS="${CXXFLAGS} -fpermissive"
+%endif
+
 %configure \
   --includedir=%{_includedir}/kde \
   --disable-rpath \
@@ -105,6 +109,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %install
+export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %make_install
 

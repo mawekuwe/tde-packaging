@@ -122,13 +122,13 @@ Requires: %{name}-libs = %{version}-%{release}
 # set in k3brc too 
 %patch4 -p1 -b .manualbufsize
 %patch102 -p0 -b .kde#156684
-%patch105 -p1 -b .hidden
 %patch106 -p1 -b .desktopfile
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
+%patch105 -p1 -b .hidden
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh

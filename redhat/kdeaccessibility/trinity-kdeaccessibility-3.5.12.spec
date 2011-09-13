@@ -89,6 +89,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %install
+export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %make_install
 

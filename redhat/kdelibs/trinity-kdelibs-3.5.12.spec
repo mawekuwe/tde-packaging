@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 5
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -21,6 +21,7 @@ Version:	%{version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity KDE Libraries
+Group:		System Environment/Libraries
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -50,24 +51,35 @@ Obsoletes:	kdelibs3
 %endif
 
 %description
-Libraries for the Trinity K Desktop Environment
+Libraries for the Trinity Desktop Environment:
+KDE Libraries included: kdecore (KDE core library), kdeui (user interface),
+kfm (file manager), khtmlw (HTML widget), kio (Input/Output, networking),
+kspell (spelling checker), jscript (javascript), kab (addressbook),
+kimgio (image manipulation).
+
 
 %package devel
-Requires:	%{name}
 Summary:	%{name} - Development files
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 %if "%{?_prefix}" == "/usr"
 Obsoletes:	kdelibs3-devel
 %endif
 
 %description devel
-Development files for %{name}
+This package includes the header files you will need to compile
+applications for TDE.
 
 %package apidocs
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - API documentation
+Requires:	%{name} = %{version}-%{release}
+%if "%{?_prefix}" == "/usr"
+Obsoletes:	kdelibs3-apidocs-devel
+%endif
 
 %description apidocs
-This package includes the KDE 3 API documentation in HTML
+This package includes the TDE API documentation in HTML
 format for easy browsing
 
 %prep
@@ -249,6 +261,9 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %changelog
+* Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
+- Add "Group" field
+
 * Sun Sep 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-5
 - Import to GIT
 - Removes cmake stuff, build with autotools only

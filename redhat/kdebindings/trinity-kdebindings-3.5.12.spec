@@ -121,6 +121,7 @@ export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
   --disable-dependency-tracking \
   --with-extra-libs=%{_libdir} \
   --with-pythondir=%{_usr} \
+  --enable-closure \
   --disable-final \
   %{?_with_java} %{!?_with_java:--without-java} \
   %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla} \

@@ -139,6 +139,10 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
+%if 0%{?fedora} > 0
+export CXXFLAGS="${CXXFLAGS} -lDCOP"
+%endif
+
 %configure  \
    --enable-new-ldflags \
    --disable-dependency-tracking \
@@ -164,6 +168,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %install
+export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot} 
 
 %make_install
@@ -230,7 +235,6 @@ for f in crystalsvg hicolor locolor ; do
 done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
-%if 0%{?libs}
 %post libs -p /sbin/ldconfig
 
 %postun libs -p /sbin/ldconfig
@@ -238,10 +242,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %post extras-libs -p /sbin/ldconfig
 
 %postun extras-libs -p /sbin/ldconfig
-%endif
 
 %post extras
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -249,7 +252,7 @@ done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %postun extras
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:

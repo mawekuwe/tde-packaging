@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 6
+%define release 10
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -21,6 +21,7 @@ Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity KDE Base Programs
+Group:		User Interface/Desktops
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -477,6 +478,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libkdeinit_*.*
 
 %changelog
+* Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-10
+- Add "Group" field
+
 * Sun Sep 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-9
 - Import to GIT
 

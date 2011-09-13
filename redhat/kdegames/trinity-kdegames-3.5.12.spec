@@ -81,6 +81,10 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
+%if 0%{?fedora} > 0
+export CXXFLAGS="${CXXFLAGS} -lkio"
+%endif
+
 %configure \
    --enable-new-ldflags \
    --disable-dependency-tracking \
@@ -96,6 +100,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %install
+export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %make_install
 

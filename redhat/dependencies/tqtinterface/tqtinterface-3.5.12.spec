@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 7
+%define release 8
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -24,6 +24,7 @@ Version:	%{version}
 Release:	%{release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
+Group:		System Environment/Libraries
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
@@ -42,8 +43,9 @@ BuildRequires:	pth-devel
 Trinity QT Interface
 
 %package devel
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - Development files
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development files for %{name}
@@ -85,6 +87,9 @@ CFLAGS=$( pkg-config --libs qt-mt )
 
 
 %changelog
+* Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-8
+- Add "Group"
+
 * Sun Sep 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7
 - Import to GIT
 - Removes cmake stuff, build with autotools only

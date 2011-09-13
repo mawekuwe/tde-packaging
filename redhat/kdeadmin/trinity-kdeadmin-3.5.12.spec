@@ -76,6 +76,10 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
+%if 0%{?fedora} > 0
+export CXXFLAGS="${CXXFLAGS} -fpermissive"
+%endif
+
 %configure \
    --enable-new-ldflags \
    --disable-dependency-tracking \
@@ -83,7 +87,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
    --with-rpm \
    --enable-final \
    --with-private-groups \
-  --with-extra-includes=%{_includedir}/tqt
+   --with-extra-includes=%{_includedir}/tqt
 
 %__make %{?_smp_mflags}
 

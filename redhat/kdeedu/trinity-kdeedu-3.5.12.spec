@@ -90,7 +90,7 @@ Requires: %{name} = %{version}-%{release}
 %prep
 %setup -q -n kdeedu
 
-%if 0%{?rhel} > 1
+%if 0%{?rhel} > 0
 rm -rf doc/kgeography kgeography
 perl -pi -e "s|kgeography||" subdirs
 %endif
@@ -108,6 +108,10 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 # Fix link with kparts
 export CXXFLAGS="${CXXFLAGS} -lkparts"
 
+%if 0%{?fedora}
+export CXXFLAGS="${CXXFLAGS} -fpermissive"
+%endif
+
 %configure \
    --enable-new-ldflags \
    --disable-dependency-tracking \
@@ -116,6 +120,7 @@ export CXXFLAGS="${CXXFLAGS} -lkparts"
    --disable-debug \
    --disable-warnings \
    --enable-final \
+   --enable-closure \
    --includedir=%{_includedir}/kde \
    --disable-ocamlsolver \
    --with-extra-includes=%{_includedir}/tqt
@@ -126,6 +131,7 @@ export CXXFLAGS="${CXXFLAGS} -lkparts"
 
 
 %install
+export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %make_install
 
