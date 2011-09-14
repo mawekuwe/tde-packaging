@@ -17,12 +17,12 @@ BuildRequires: autoconf automake libtool m4
 
 
 Name:		trinity-%{kdecomp}
-Summary:	Taking care of your ideas.
+Summary:	KDiff3 is a utility for comparing and/or merging two or three text files or directories.
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
 License:	GPLv2+
-Group:		Application/Utilities
+Group:		Applications/Utilities
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>

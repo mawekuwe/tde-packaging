@@ -22,7 +22,7 @@ Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
 License:	GPLv2+
-Group:		Application/Utilities
+Group:		Applications/Utilities
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
