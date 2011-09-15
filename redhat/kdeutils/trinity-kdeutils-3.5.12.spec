@@ -316,7 +316,7 @@ done
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_datadir}/applications/kde/*
-%if 0%{?rhel} > 6
+%if 0%{?rhel} >= 6
 %{_datadir}/applnk/Utilities/*
 %{_datadir}/mimelnk/application/*
 %endif
