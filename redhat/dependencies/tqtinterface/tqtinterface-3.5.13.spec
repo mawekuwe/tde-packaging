@@ -7,6 +7,9 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
+%define cmake_modules_dir %{_datadir}/cmake
+%else
+%define cmake_modules_dir %{_datadir}/cmake/Modules
 %endif
 
 # TQT include files may conflict with QT4 includes, so we move them to a subdirectory.
@@ -14,9 +17,9 @@
 %define _includedir %{_prefix}/include/tqt
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
+BuildRequires:	cmake >= 2.8
 BuildRequires:	qt3-devel >= 3.3.8d
-Requires:	qt3 >= 3.3.8d
+Requires:		qt3 >= 3.3.8d
 
 
 Name:		tqtinterface
@@ -24,7 +27,9 @@ Version:	%{version}
 Release:	%{release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
+
 Vendor:		Trinity Project
+URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
@@ -77,9 +82,9 @@ sed -i %{?buildroot}%{_libdir}/pkgconfig/tqt.pc \
   -e '/^uic_executable=.*/ s,^\(uic_executable=\).*,\1%{_bindir}/uic-tqt,'
 
 # Install 'cmake' modules for a specific package (for later use)
-%__mkdir_p %{?buildroot}%{_usr}/share/cmake/Modules
+%__mkdir_p %{?buildroot}%{cmake_modules_dir}
 for i in cmake/modules/*.cmake; do
-  install -m 644 $i %{?buildroot}%{_usr}/share/cmake/Modules
+  install -m 644 $i %{?buildroot}%{cmake_modules_dir}
 done
 
 %clean
@@ -94,7 +99,7 @@ done
 %{_libdir}/*.so
 %{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
-%{_usr}/share/cmake/Modules/*.cmake
+%{cmake_modules_dir}/*.cmake
 
 
 %changelog

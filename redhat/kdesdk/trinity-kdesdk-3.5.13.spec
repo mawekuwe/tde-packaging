@@ -1,4 +1,4 @@
-# If _kde3_prefix is # Default version for this component
+# Default version for this component
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
@@ -11,16 +11,9 @@
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}
+BuildRequires: cmake >= 2.8
+%define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
-
-
-%define _with_subversion --with-subversion
-%if 0%{?fedora} > 6 || 0%{?rhel} > 4
-%define _with_apr_config --with-apr-config=apr-1-config
-%define _with_apu_config --with-apu-config=apu-1-config
-%endif
 
 
 Name:    trinity-kdesdk
@@ -43,7 +36,7 @@ Provides: kdesdk3 = %{version}-%{release}
 
 Requires: %{name}-libs = %{version}-%{release}
 
-BuildRequires: automake libtool
+BuildRequires: libtool
 BuildRequires: tqtinterface-devel
 BuildRequires: pcre-devel
 BuildRequires: trinity-kdelibs-devel
@@ -55,11 +48,9 @@ BuildRequires: desktop-file-utils
 BuildRequires: flex
 # umbrello
 BuildRequires: libxslt-devel libxml2-devel
-%if 0%{?fedora} > 5 || 0%{?rhel} > 4
 BuildRequires: binutils-devel
-%endif
 BuildRequires: perl
-%{?_with_subversion:BuildRequires: subversion-devel neon-devel}
+BuildRequires: subversion-devel neon-devel
 
 # Obsoletes/Provides
 %define cervisia_ver 2.4.7
@@ -94,9 +85,9 @@ Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs >= %{version}
 # helps multilib upgrades
-Obsoletes: %{name} < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes: %{name} < %{version}-%{release}
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{version}-%{release}
 %description libs
 %{summary}.
 
@@ -105,42 +96,29 @@ Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %setup -q -n kdesdk
 %patch1 -p1 -b .subversion
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
-
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common
-
 
 %build
 unset QTDIR || :; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-export LDFLAGS="${LDFLAGS} -lqt-mt -L${QTLIB}"
+export LD_LIBRARY_PATH="%{_libdir}"
+export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
 
-%configure \
-  --includedir=%{_includedir}/kde \
-  --disable-rpath \
-  --enable-new-ldflags \
-  --disable-debug --disable-warnings \
-  --disable-dependancy-tracking --enable-final \
-  %{?_with_subversion} %{?_with_apr_config} %{?_with_apu_config} \
-  --with-extra-includes=%{_includedir}/tqt \
-  --without-svn \
-  --enable-closure
+%__mkdir build
+cd build
+%cmake \
+  -DWITH_DBSEARCHENGINE=OFF \
+  -DBUILD_ALL=ON \
+  ..
 
-# Do not use %{?_smp_mflags} !
-%__make
+%__make %{?_smp_mflags}
 
 
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot} 
 
-%make_install
+%make_install -C build
 
 desktop-file-install --vendor "" \
   --dir %{buildroot}%{_datadir}/applications/kde \

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -18,7 +18,10 @@ Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the KDE sound system
+Group:		System Environment/Daemons 
+
 Vendor:		Trinity Project
+URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Source0:	arts-%{version}.tar.gz
@@ -29,6 +32,7 @@ BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
+BuildRequires:	gsl-devel
 
 Requires:	tqtinterface
 Requires:	audiofile
@@ -51,8 +55,9 @@ playing a wave file with some effects.
 
 
 %package devel
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - Development files
+Requires:	%{name} = %{version}-%{release}
 %if "%{?_prefix}" == "/usr"
 Obsoletes:	arts-devel
 %endif
@@ -65,7 +70,7 @@ Development files for %{name}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common
+%__make -f "admin/Makefile.common"
 
 %build
 export PATH="%{_bindir}:${PATH}"
@@ -118,6 +123,9 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %changelog
+* Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-5
+- Add "Group" field
+
 * Sun Sep 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-4
 - Import to GIT
 - Removes cmake stuff, build with autotools only

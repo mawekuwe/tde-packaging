@@ -21,17 +21,24 @@ select COMP in $( cut -f1 components.txt ) ; do
 
 	VERSION=$( awk '{ if ($1 == "'${COMP}'") { print $2; } }' components.txt )
 	if [ -z "${VERSION}" ]; then VERSION=${DEFAULT_VERSION}; fi
-	ARCHIVENAME=${COMP##*/}-${VERSION}.$(date +%Y%m%d).tar.gz
 
 	# List existing tarballs
-	if [ -e ${ARCHIVEDIR}/${COMP##*/}*.tar.gz ]; then
+	if ls ${ARCHIVEDIR}/${COMP##*/}*.tar.gz >/dev/null 2>&1; then
 		echo
 		echo "You currently have the following tarball(s): "
 		for i in ${ARCHIVEDIR}/${COMP##*/}*.tar.gz; do echo "  ${i##*/}"; done
 	fi
 	
+	# Checks latest SVN revision
+	SVNREV=$( LANG=C svn info svn://anonsvn.kde.org/home/kde/branches/trinity/dependencies/tqtinterface|sed -n "/^Revision: / s,.* \(.*\),\1,p" )
+	ARCHIVENAME=${COMP##*/}-${VERSION}.${SVNREV}.tar.gz
+
+	if [ -r ${ARCHIVEDIR}/${ARCHIVENAME} ]; then
+		echo "You already have the latest revision (${SVNREV})";
+	fi
+	
 	echo
-	echo "Press ENTER to download a new version '${ARCHIVENAME}', or CTRL+C to abort."
+	echo "Press ENTER to download a new version, or CTRL+C to abort."
 	read rep
 
 	TMPDIRTDE=$(mktemp -d)
@@ -41,9 +48,10 @@ select COMP in $( cut -f1 components.txt ) ; do
 	echo "Extracting '${COMP}' from SVN ..."
 	case "${COMP##*/}" in
 		"qt3") git clone http://scm.trinitydesktop.org/scm/git/tde; mv tde/main/dependencies/qt3 . ;;
-		*) svn export --force --quiet svn://anonsvn.kde.org/home/kde/branches/trinity/${COMP};;
+		*) svn export --force --quiet svn://anonsvn.kde.org/home/kde/branches/trinity/${COMP} ;;
 	esac
 	popd >/dev/null
+
 	echo "Creating archive '${ARCHIVENAME}' ..."
 	tar cfz ${ARCHIVEDIR}/${ARCHIVENAME} ${COMP}
 	popd >/dev/null

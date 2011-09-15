@@ -2,6 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
+%define release 0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -9,19 +10,25 @@
 %define _docdir %{_prefix}/share/doc
 %endif
 
+# TDE 3.5.13 specific variables
+BuildRequires: cmake >= 2.8
+%define tde_docdir %{_docdir}/kde
+%define tde_libdir %{_libdir}/trinity
+
 
 Name:		trinity-kdelibs
 Version:	%{version}
-Release:	0%{?dist}%{?_variant}
+Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
+Summary:	Trinity KDE Libraries
+
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-Summary:	Trinity KDE Libraries
+URL:		http://www.trinitydesktop.org/
 
 Source0:	kdelibs-%{version}.tar.gz
 Prefix:		%{_prefix}
 
-BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
@@ -66,6 +73,11 @@ format for easy browsing
 %prep
 %setup -q -n kdelibs
 
+# Gets the cmake modules in current build directory
+%__mkdir_p cmake/modules
+%__cp -f %{_datadir}/cmake/*.* cmake/modules
+
+
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
@@ -93,6 +105,7 @@ cd build
   ..
 
 %__make %{?_smp_mflags}
+
 
 %install
 %__rm -rf %{?buildroot}
@@ -179,7 +192,7 @@ EOF
 %{_libdir}/lib*.so.*
 %{_libdir}/libkdeinit_*.so
 %{_libdir}/lib*.la
-%{_libdir}/trinity/
+%{tde_libdir}/
 %{_datadir}/applications/kde/*.desktop
 %{_datadir}/autostart/kab2kabc.desktop
 %{_datadir}/applnk/kio_iso.desktop
@@ -193,7 +206,7 @@ EOF
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_datadir}/icons/crystalsvg/
-%{_docdir}/kde/HTML/en/kspell
+%{tde_docdir}/HTML/en/kspell
 # remove conflicts with kdelibs-4
 %if "%{?_prefix}" != "/usr"
 %{_bindir}/checkXML
@@ -202,7 +215,7 @@ EOF
 %{_bindir}/preparetips
 %{_datadir}/icons/hicolor/index.theme
 %{_datadir}/locale/all_languages
-%{_docdir}/kde/HTML/en/common/*
+%{tde_docdir}/HTML/en/common/*
 %else
 %exclude %{_bindir}/checkXML
 %exclude %{_bindir}/ksvgtopng
@@ -215,7 +228,7 @@ EOF
 %exclude %{_datadir}/config/ui/ui_standards.rc
 %exclude %{_datadir}/icons/hicolor/index.theme
 %exclude %{_datadir}/locale/all_languages
-%exclude %{_docdir}/kde/HTML/en/common/*
+%exclude %{tde_docdir}/HTML/en/common/*
 %endif
 %{_sysconfdir}/ld.so.conf.d/trinity.conf
 
@@ -242,7 +255,7 @@ EOF
 %files apidocs
 %defattr(-,root,root,-)
 %{_docdir}/%{name}-%{version}/
-#%{_docdir}/kde/HTML/en/kdelibs*
+#%{tde_docdir}/HTML/en/kdelibs*
 
 
 %changelog

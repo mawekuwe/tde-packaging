@@ -1,0 +1,11 @@
+--- c_cpp_reference-2.0.2_for_KDE_3.0/configure.orig	Mon Dec  9 18:35:50 2002
++++ c_cpp_reference-2.0.2_for_KDE_3.0/configure	Mon Dec  9 18:41:16 2002
+@@ -5868,7 +5868,7 @@
+ So, check this please and use another prefix!" 1>&2; exit 1; }
+ fi
+ 
+-kde_libdirs="/usr/lib/kde/lib /usr/local/kde/lib /usr/kde/lib /usr/lib/kde /usr/lib /usr/X11R6/lib /usr/local/lib /opt/kde2/lib /opt/kde/lib /usr/X11R6/kde/lib"
++kde_libdirs="/usr/lib/kde/lib /usr/local/kde/lib /usr/kde/lib /usr/lib/kde /usr/lib64 /usr/lib /usr/X11R6/lib /usr/local/lib /opt/kde2/lib /opt/kde/lib /usr/X11R6/kde/lib"
+ test -n "$KDEDIR" && kde_libdirs="$KDEDIR/lib $KDEDIR $kde_libdirs"
+ kde_libdirs="$ac_kde_libraries $kde_libdirs"
+ 

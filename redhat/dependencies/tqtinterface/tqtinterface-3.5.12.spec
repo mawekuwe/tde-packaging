@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 7
+%define release 8
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -14,9 +14,9 @@
 %define _includedir %{_prefix}/include/tqt
 
 # TDE 3.5.12 specific building variables
-BuildRequires: autoconf automake libtool m4
+BuildRequires:	autoconf automake libtool m4
 BuildRequires:	qt3-devel >= 3.3.8b
-Requires:	qt3 >= 3.3.8b
+Requires:		qt3 >= 3.3.8b
 
 
 Name:		tqtinterface
@@ -24,7 +24,10 @@ Version:	%{version}
 Release:	%{release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
+Group:		System Environment/Libraries
+
 Vendor:		Trinity Project
+URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
@@ -40,8 +43,9 @@ BuildRequires:	pth-devel
 Trinity QT Interface
 
 %package devel
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - Development files
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development files for %{name}
@@ -51,7 +55,7 @@ Development files for %{name}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common
+%__make -f "admin/Makefile.common"
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -83,6 +87,9 @@ CFLAGS=$( pkg-config --libs qt-mt )
 
 
 %changelog
+* Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-8
+- Add "Group"
+
 * Sun Sep 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7
 - Import to GIT
 - Removes cmake stuff, build with autotools only

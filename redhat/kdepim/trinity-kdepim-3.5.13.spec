@@ -20,10 +20,12 @@ Name:		trinity-kdepim
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
+Group:		Applications/Productivity
+
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 Summary:	PIM (Personal Information Manager) applications
-Group:		Applications/Productivity
+
 Prefix:		%{_prefix}
 
 Source0:	kdepim-%{version}.tar.gz

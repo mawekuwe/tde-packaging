@@ -1,0 +1,19 @@
+--- kdevelop-2.1.5_for_KDE_3.1/configure.doc	2003-10-21 15:08:22.000000000 +0200
++++ kdevelop-2.1.5_for_KDE_3.1/configure	2003-10-21 15:14:18.000000000 +0200
+@@ -23794,14 +23794,14 @@
+ 
+ kdelibs_docdirs="/usr/doc/kdelibs-doc/html"
+ if test "$ac_kde_htmldir" != ""; then
+- kdelibs_docdirs="$kdelibs_docdirs $ac_kde_htmldir/default/kdelibs $ac_kde_htmldir/en/kdelibs"
++ kdelibs_docdirs="$kdelibs_docdirs $ac_kde_htmldir/default/kdelibs $ac_kde_htmldir/en/kdelibs $ac_kde_htmldir/en/kdelibs-apidocs"
+ fi
+ kdelibs_docdirs="$ac_kdelibs_docdirs $kdelibs_docdirs"
+ 
+ kdelibs_docdir=NO
+ for i in $kdelibs_docdirs;
+ do
+-  for j in kdecore/index.html;
++  for j in index.html;
+   do
+     echo "configure: 23806: $i/$j" >&5
+     if test -r "$i/$j"; then
