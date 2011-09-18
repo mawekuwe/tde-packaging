@@ -1,6 +1,6 @@
 --- kdm/config.def
 +++ kdm/config.def
-@@ -2614,18 +2614,18 @@
+@@ -2614,8 +2614,8 @@
  
  Key: UseTheme
  Type: bool
@@ -12,4 +12,3 @@
  Comment: &
  Description:
   Whether the greeter should be themed.
-
