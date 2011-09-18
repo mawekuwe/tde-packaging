@@ -27,7 +27,9 @@ DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -
 # never build in parallel, regardless of DEB_BUILD_OPTIONS.
 DEB_BUILD_PARALLEL = true
 
-DEB_FIXPERMS_EXCLUDE := usr/bin/kdesud
+DEB_FIXPERMS_EXCLUDE := \
+	opt/trinity/bin/kdesud    \
+	opt/trinity/bin/kdmtsak
 
 DEB_DH_STRIP_ARGS  := --dbg-package=kdebase-trinity-dbg
 
