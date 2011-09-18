@@ -12,7 +12,6 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${shlibs:Misc}, ${misc:Depends},
 Replaces: kmymoney2-kde3 (<< 4:3.5.13)
 Breaks: kmymoney2-kde3 (<< 4:3.5.13)
- kmymoney2-common-trinity (>= ${source:Version})
 Recommends: kmymoney2-plugin-aqbanking-trinity
 Description: personal finance manager for TDE
  KMyMoney is the Personal Finance Manager for TDE. It operates similar to
