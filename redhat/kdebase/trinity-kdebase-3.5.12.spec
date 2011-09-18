@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 10
+%define release 11
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -14,6 +14,12 @@
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}
 %define tde_libdir %{_libdir}/kde3
+
+# Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
+# whereas newer versions use "qt3", "qt3-devel" ...
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8
+%define _qt_suffix 3
+%endif
 
 
 Name:		trinity-kdebase
@@ -28,6 +34,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdebase-%{version}.tar.gz
 
@@ -59,11 +66,13 @@ Patch3:		kdebase-3.5.12-kdesu-noignorebutton.patch
 Patch5:		kdebase-3.5.12-desktop-openterminalhere.patch
 # [kdebase/kioslave]: Forces HAL backend to use HAL mount options
 Patch6:		kdebase-3.5.12-halmountoptions.patch
+# [kdebase/kcontrol]: disable components that depends of krandr (old distros)
+Patch10:	kdebase-3.5.12-disable-krandr.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	qt3-devel >= 3.3.8b
+BuildRequires:	qt%{?_qt_suffix}-devel
 BuildRequires:	openssl-devel
 BuildRequires:	avahi-devel avahi-qt3-devel
 BuildRequires:	imake
@@ -74,7 +83,7 @@ BuildRequires:	dbus-devel dbus-qt-devel
 BuildRequires:	lm_sensors-devel
 BuildRequires:	libfontenc-devel
 BuildRequires:	hal-devel
-BuildRequires:	audiofile-devel
+BuildRequires:	audiofile-devel alsa-lib-devel
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	libraw1394-devel
 BuildRequires:	openldap-devel
@@ -82,11 +91,14 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	pam-devel
 BuildRequires:	libXdmcp-devel
 BuildRequires:	libxkbfile-devel
+BuildRequires:	libusb-devel
+BuildRequires:	esound-devel glib2-devel nas-devel
+BuildRequires:	libXcomposite-devel
 
 Requires:	tqtinterface
 Requires:	trinity-arts
 Requires:	trinity-kdelibs
-Requires:	qt3 >= 3.3.8b
+Requires:	qt%{?_qt_suffix}
 Requires:	openssl
 Requires:	avahi avahi-qt3
 
@@ -110,11 +122,11 @@ kfontmanager, kmenuedit).
 
 %package devel
 Requires:	%{name}
-Requires:	%{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 Summary:	%{summary} - Development files
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdebase3-devel
+Obsoletes:	kdebase%{?_qt_suffix}-devel
 %endif
 Group:		Development/Libraries
 %description devel
@@ -126,7 +138,7 @@ Kate plugins or KWin styles.
 %package extras
 Summary: Extra applications from %{name}
 Group: User Interface/Desktops
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{version}-%{release}
 %description extras
 %{summary}, including:
  * kappfinder
@@ -140,9 +152,9 @@ Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs >= %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase3-libs
+Obsoletes: kdebase%{?_qt_suffix}-libs
 %endif
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{version}-%{release}
 %description libs
 %{summary}
 
@@ -170,9 +182,12 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%if 0%{?rhel} && 0%{?rhel} < 6
+%patch10 -p1
+%endif
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/libtool/"*"/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 %build
@@ -196,6 +211,7 @@ export IMAKEINCLUDE="-I/usr/share/X11/config"
   --with-xinerama \
   --with-xscreensaver \
   --without-shadow \
+  --enable-closure \
   --with-extra-includes=%{_includedir}/tqt
 
 # Do NOT use %{?_smp_mflags} for this package, or it will fail to build !
@@ -203,8 +219,7 @@ export IMAKEINCLUDE="-I/usr/share/X11/config"
 
 %install
 %__rm -rf %{?buildroot}
-%__mkdir_p %{?buildroot}
-%make_install
+%__make install DESTDIR=%{?buildroot}
 
 # Adds a GDM/KDM/XDM session called 'TDE'
 %if "%{?_prefix}" != "/usr"
@@ -344,7 +359,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/konqueror
 %{_bindir}/konsole
 %{_bindir}/krandom.kss
-%{_bindir}/krandrtray
 %{_bindir}/krdb
 %{_bindir}/kreadconfig
 %{_bindir}/ksmserver
@@ -392,7 +406,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/khc_mansearch.pl
 %{_bindir}/kicker
 %{_bindir}/knetattach
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+%{_bindir}/krandrtray
 %{_bindir}/kompmgr
+%endif
 %{_bindir}/kpm
 %{_bindir}/ksplash
 %{_libdir}/kconf_update_bin
@@ -425,7 +442,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{tde_libdir}/*
 %{_libdir}/libkdeinit_*.*
 %{_sysconfdir}/xdg/menus/applications-merged/kde-essential.menu
+%if 0%{?fedora} >= 15 && "%{?_prefix}" != "/usr"
+%exclude %{_sysconfdir}/xdg/menus/kde-information.menu
+%else
 %{_sysconfdir}/xdg/menus/kde-information.menu
+%endif
 %{_sysconfdir}/xdg/menus/kde-screensavers.menu
 %{_sysconfdir}/xdg/menus/kde-settings.menu
 /usr/share/xsessions/*.desktop
@@ -478,6 +499,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libkdeinit_*.*
 
 %changelog
+* Fri Sep 16 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-11
+- Add support for RHEL 5.
+- Remove file conflicts with KDE 4.6.5 under Fedora 15
+
 * Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-10
 - Add "Group" field
 

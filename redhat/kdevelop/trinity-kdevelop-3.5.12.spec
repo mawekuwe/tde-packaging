@@ -59,11 +59,16 @@ Requires: qt3-designer
 Requires: gettext
 Requires: ctags
 
+BuildRequires: tqtinterface-devel
+BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: trinity-kdelibs-apidocs
 BuildRequires: qt3-devel-docs
 BuildRequires: db4-devel
-BuildRequires: flex
+BuildRequires: flex flex-static
+BuildRequires: pcre-devel
+BuildRequires: libacl-devel libattr-devel libidn-devel libart_lgpl-devel
+BuildRequires: gcc-c++
 # FIXME: No CVS support in KDevelop? This is going to suck...
 # Requires kdesdk3.
 BuildRequires: trinity-kdesdk-devel
@@ -140,6 +145,10 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 # Fix KDE detection fail in "./configure" because tqt.h cannot be found
 export CXXFLAGS="${CXXFLAGS} -I%{_includedir}/tqt"
+
+%if 0%{?fedora} >= 15
+export CXXFLAGS="${CXXFLAGS} -fpermissive"
+%endif
 
 # c references
 pushd c_cpp_reference-2.0.2_for_KDE_3.0

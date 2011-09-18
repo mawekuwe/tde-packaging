@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 5
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -24,8 +24,10 @@ Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Source0:	arts-%{version}.tar.gz
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Source0:	arts-%{version}.tar.gz
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
@@ -69,7 +71,7 @@ Development files for %{name}
 %setup -q -n dependencies/arts
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/"*"/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 %build
@@ -84,12 +86,14 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
   --disable-libmad \
   --with-alsa \
   --enable-final \
+  --enable-closure \
   --with-extra-includes=%{_includedir}/tqt
 
 %__make %{?_smp_mflags}
 
 %install
-%make_install
+%__rm -rf %{?buildroot}
+%__make install DESTDIR=%{?buildroot}
 
 %clean
 %__rm -rf %{?buildroot}
@@ -123,6 +127,9 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %changelog
+* Fri Sep 16 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
+- Add support for RHEL 5.
+
 * Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-5
 - Add "Group" field
 

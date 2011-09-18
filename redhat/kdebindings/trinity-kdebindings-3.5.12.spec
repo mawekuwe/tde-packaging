@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -14,6 +14,7 @@
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}
 %define tde_libdir %{_libdir}/kde3
+%define tde_includedir %{_includedir}/kde
 
 
 Name:	 trinity-kdebindings
@@ -30,6 +31,10 @@ URL:     http://developer.kde.org/language-bindings/
 
 Source0: kdebindings-%{version}.tar.gz
 
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+
 # RedHat Legacy patches (from Fedora)
 Patch1: kdebindings-3.5.6-libgcj.patch
 
@@ -43,6 +48,7 @@ BuildRequires: trinity-kdelibs-devel
 BuildRequires: zlib-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: trinity-arts-devel
+BuildRequires: glib-devel gtk+-devel
 %define perl_ver        %{expand:%%(eval `perl -V:version`; echo $version)}
 %define perl_vendorarch %{expand:%%(eval `perl -V:installvendorarch`; echo $installvendorarch)}
 %define perl_vendorlib  %{expand:%%(eval `perl -V:installvendorlib`; echo $installvendorlib)}
@@ -63,12 +69,16 @@ Provides: %{name}-dcoppython = %{version}-%{release}
 ## ruby
 BuildRequires: ruby-devel >= 1.8, ruby
 Provides: %{name}-ruby = %{version}-%{release}
+%{!?ruby_arch: %define ruby_arch %(ruby -rrbconfig -e 'puts Config::CONFIG["archdir"]')}
 %{!?ruby_sitelib: %define ruby_sitelib %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')}
 %{!?ruby_sitearch: %define ruby_sitearch %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')}
 
 ## java
-#BuildRequires: java-1.4.2-gcj-compat-devel libgcj-devel gcc-java
+%if 0%{?rhel} && 0%{?rhel} < 6
+BuildRequires: java-1.4.2-gcj-compat-devel libgcj-devel gcc-java
+%else
 BuildRequires: java-devel >= 1.4.2
+%endif
 %define java_home %{_usr}/lib/jvm/java
 %define _with_java --with-java=%{java_home}
 Provides: %{name}-java = %{version}-%{release}
@@ -114,7 +124,7 @@ unset JAVA_HOME ||:
 export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
 
 %configure \
-  --includedir=%{_includedir}/kde \
+  --includedir=%{tde_includedir} \
   --disable-rpath \
   --enable-new-ldflags \
   --disable-debug --disable-warnings \
@@ -146,10 +156,10 @@ popd
 
 
 %install
-%__rm -rf $RPM_BUILD_ROOT
 export PATH="%{_bindir}:${PATH}"
+%__rm -rf $RPM_BUILD_ROOT
 
-%make_install \
+%__make install DESTDIR=%{?buildroot} \
   PYTHON=%{__python}
 
 desktop-file-install \
@@ -199,7 +209,7 @@ for dir in dcopperl dcoppython kalyptus %{?_with_java:kdejava qtjava} kjsembed k
 done
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%__rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig ||:
@@ -239,11 +249,7 @@ update-desktop-database >& /dev/null ||:
 #%{ruby_sitelib}/K*
 #%{ruby_sitelib}/Qt*
 %{_usr}/lib/ruby/*/*
-%if 0%{?fedora} >= 15
-%{_usr}/lib64/ruby/*/*/*.so.*
-%else
-%{_usr}/lib64/ruby/*/*.so.*
-%endif
+%{ruby_arch}/*.so.*
 
 # Excludes 'kjscmd' (conflicts with 'kdelibs' from RHEL6)
 %if "%{?_prefix}" == "/usr"
@@ -265,15 +271,14 @@ update-desktop-database >& /dev/null ||:
 %{_libdir}/jni/*.so
 %{_libdir}/jni/*.la
 %endif
-%if 0%{?fedora} >= 15
-%{_usr}/lib64/ruby/*/*/*.so
-%{_usr}/lib64/ruby/*/*/*.la
-%else
-%{_usr}/lib64/ruby/*/*.so
-%{_usr}/lib64/ruby/*/*.la
-%endif
+%{ruby_arch}/*.so
+%{ruby_arch}/*.la
 
 %changelog
+* Sun Sep 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-4
+- Add RHEL5 support
+- Add 'ruby_arch' macro to avoid handling distro-specific ruby path
+
 * Sun Sep 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-3
 - Import to GIT
 
