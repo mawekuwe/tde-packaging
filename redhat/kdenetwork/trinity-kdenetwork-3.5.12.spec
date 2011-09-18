@@ -204,7 +204,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
   %{?_with_xmms} %{!?_with_xmms:--without-xmms} \
   --with-extra-includes=%{_includedir}/tqt
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

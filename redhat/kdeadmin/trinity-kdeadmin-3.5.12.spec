@@ -92,6 +92,7 @@ export CXXFLAGS="${CXXFLAGS} -fpermissive"
 %__make %{?_smp_mflags}
 
 %install
+export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %make_install
 
@@ -173,11 +174,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %endif
 %{_datadir}/apps/*
 %{_datadir}/applications/kde/*.desktop
-#%{_datadir}/config*/*
-#%{_datadir}/icons/crystalsvg/*/*/*
+%{_datadir}/config*/*
+%{_datadir}/icons/crystalsvg/*/*/*
 %{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/icons/locolor/*/*/*
-#%{_datadir}/mimelnk/*/*.desktop
+%{_datadir}/mimelnk/*/*.desktop
 %{_datadir}/service*/*.desktop
 %{tde_libdir}/*
 %{_libdir}/pkgconfig/*.pc

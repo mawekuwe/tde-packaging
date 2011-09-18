@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 6
+%define release 8
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -15,39 +15,52 @@ BuildRequires:	autoconf automake libtool m4
 %define tde_docdir %{_docdir}
 %define tde_libdir %{_libdir}/kde3
 
+# Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
+# whereas newer versions use "qt3", "qt3-devel" ...
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8
+%define _qt_suffix 3
+%endif
+
 
 Name:		trinity-kdelibs
 Version:	%{version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
-Summary:	Trinity KDE Libraries
+Summary:	TDE Libraries
 Group:		System Environment/Libraries
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Source0:	kdelibs-%{version}.tar.gz
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Source0:	kdelibs-%{version}.tar.gz
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
-BuildRequires:	qt3-devel
-BuildRequires:	avahi-devel avahi-qt3-devel
+BuildRequires:	avahi-devel
 BuildRequires:	lua-devel
 BuildRequires:	krb5-devel libxslt-devel cups-devel libart_lgpl-devel pcre-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	openssl-devel
+BuildRequires:	gcc-c++
+BuildRequires:	alsa-lib-devel
+BuildRequires:	libidn-devel
+BuildRequires:	qt%{?_qt_suffix}-devel
+BuildRequires:	avahi-qt3-devel
 
-Requires:	tqtinterface
-Requires:	trinity-arts
-Requires:	qt3
-Requires:	avahi avahi-qt3
+Requires:		tqtinterface
+Requires:		trinity-arts
+Requires:		avahi
+Requires:		qt%{?_qt_suffix}
+Requires:		avahi-qt3
 
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdelibs3
+Obsoletes:		kdelibs%{?_qt_suffix}
 %endif
 
 %description
@@ -63,7 +76,7 @@ Summary:	%{name} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdelibs3-devel
+Obsoletes:	kdelibs%{?_qt_suffix}-devel
 %endif
 
 %description devel
@@ -75,7 +88,7 @@ Group:		Development/Libraries
 Summary:	%{name} - API documentation
 Requires:	%{name} = %{version}-%{release}
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdelibs3-apidocs-devel
+Obsoletes:	kdelibs%{?_qt_suffix}-apidocs-devel
 %endif
 
 %description apidocs
@@ -86,7 +99,7 @@ format for easy browsing
 %setup -q -n kdelibs
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/"*"/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -95,6 +108,12 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LD_LIBRARY_PATH="%{_libdir}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+
+# On older RHEL, libXrandr is too old so krandr cannot be compiled.
+# Kspell2 does not compile either.
+%if 0%{?rhel} && 0%{?rhel} < 6
+export DO_NOT_COMPILE="krandr"
+%endif
 
 %configure \
   --disable-rpath \
@@ -117,6 +136,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
   --with-jasper \
   --with-openexr \
   --with-xinerama \
+  --enable-closure \
   --with-extra-includes=%{_includedir}/tqt
   
 # Do NOT use %{?_smp_mflags} for this package, or it will fail to build !
@@ -125,8 +145,15 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 %install
 %__rm -rf %{?buildroot}
-%__mkdir_p %{?buildroot}
-%make_install
+%__make install DESTDIR=%{?buildroot}
+
+%__mkdir_p %{?buildroot}%{_sysconfdir}/ld.so.conf.d
+cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
+%if "%{?_prefix}" != "/usr"
+%{_libdir}
+%endif
+%{tde_libdir}
+EOF
 
 
 %clean
@@ -239,6 +266,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 %exclude %{_datadir}/locale/all_languages
 %exclude %{tde_docdir}/HTML/en/common/*
 %endif
+%{_sysconfdir}/ld.so.conf.d/trinity.conf
 
 # Provided by 'redhat-menus' package
 %exclude %{_sysconfdir}/xdg/menus/applications.menu
@@ -261,6 +289,13 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %changelog
+* Fri Sep 16 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-8
+- Add support for RHEL 5.
+
+* Thu Sep 15 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7
+- Add missings 'BuildRequires'
+- Re-add lost 'ld.so.conf' file
+
 * Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
 - Add "Group" field
 

@@ -2,12 +2,19 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 8
+%define release 9
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %endif
+
+# Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
+# whereas newer versions use "qt3", "qt3-devel" ...
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8
+%define _qt_suffix 3
+%endif
+
 
 # TQT include files may conflict with QT4 includes, so we move them to a subdirectory.
 # Later compiled Trinity products should be aware of that !
@@ -15,8 +22,8 @@
 
 # TDE 3.5.12 specific building variables
 BuildRequires:	autoconf automake libtool m4
-BuildRequires:	qt3-devel >= 3.3.8b
-Requires:		qt3 >= 3.3.8b
+BuildRequires:	qt%{?_qt_suffix}-devel >= 3.3.8b
+Requires:		qt%{?_qt_suffix} >= 3.3.8b
 
 
 Name:		tqtinterface
@@ -31,8 +38,10 @@ URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}.tar.gz
 
+Patch0:		tqtinterface-3.5.12-qtinterface-makefile.patch
 
 BuildRequires:	gcc-c++
 BuildRequires:	libXi-devel
@@ -52,9 +61,10 @@ Development files for %{name}
 
 %prep
 %setup -q -n dependencies/%{name}
+%patch0 -p1
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/"*"/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 %build
@@ -71,7 +81,14 @@ CFLAGS=$( pkg-config --libs qt-mt )
 %install
 %__rm -rf %{?buildroot}
 %__mkdir_p %{?buildroot}%{_includedir}
-%make_install
+%__make install DESTDIR=%{?buildroot}
+
+# RHEL 5: add newline at end of include files
+%if 0%{?rhel} && 0%{?rhel} <= 5
+for i in %{?buildroot}%{_includedir}/*.h; do
+  echo "" >>${i}
+done
+%endif
 
 %clean
 %__rm -rf %{?buildroot}
@@ -87,6 +104,9 @@ CFLAGS=$( pkg-config --libs qt-mt )
 
 
 %changelog
+* Fri Sep 16 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-9
+- Add support for RHEL 5.
+
 * Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-8
 - Add "Group"
 
