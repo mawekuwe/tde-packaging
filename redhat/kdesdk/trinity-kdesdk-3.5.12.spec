@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,7 +33,10 @@ Group: User Interface/Desktops
 URL:		http://www.trinitydesktop.org/
 Vendor: Trinity Project
 Packager: Francois Andriot <francois.andriot@free.fr>
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source: kdesdk-%{version}.tar.gz
 
 # RedHat Legacy patches
@@ -139,7 +142,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot} 
 
-%make_install
+%__make install DESTDIR=%{?buildroot}
 
 desktop-file-install --vendor "" \
   --dir %{buildroot}%{_datadir}/applications/kde \
@@ -226,6 +229,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-3
+- Add support for RHEL5
+
 * Mon Sep 05 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
 - Import to GIT
 

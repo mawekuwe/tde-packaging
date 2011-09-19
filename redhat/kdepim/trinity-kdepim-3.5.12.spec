@@ -1,7 +1,7 @@
 # Default version for this component
 %if "%{?version}" == ""
 %define version 3.5.12
-%define release 5
+%define release 6
 %endif
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -29,6 +29,7 @@ Summary:	PIM (Personal Information Manager) applications
 Prefix:		%{_prefix}
 
 Source0:	kdepim-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 # TDE official patches from SVN, unmodified
 # Attempt to fix a kdepim FTBFS based on a missing stdc header #include
@@ -56,6 +57,7 @@ PIM (Personal Information Manager) applications.
 %package devel
 Requires:	%{name}
 Summary:	%{name} - Development files
+Group: Development/Libraries
 %description devel
 Development files for %{name}.
 
@@ -86,7 +88,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
-%make_install
+%__make install DESTDIR=%{?buildroot}
 
 %clean
 %__rm -rf %{?buildroot}
@@ -125,6 +127,9 @@ export PATH="%{_bindir}:${PATH}"
 %exclude %{_libdir}/libkmailprivate.so
 
 %changelog
+* Sun Sep 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
+- Add RHEL5 support
+
 * Mon Sep 05 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-5
 - Import to GIT
 

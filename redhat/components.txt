@@ -19,5 +19,6 @@ kdeadmin
 kdegames
 kdeedu
 kdeaddons
+kdewebdev
 kde-i18n
 applications/k3b

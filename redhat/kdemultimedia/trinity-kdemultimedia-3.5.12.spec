@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -38,14 +38,16 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Source0: kdemultimedia-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Provides: kdemultimedia3 = %{version}-%{release}
+Source0: kdemultimedia-%{version}.tar.gz
 
 # RedHat Legacy patches (from Fedora 8)
 Patch3: kdemultimedia-3.4.0-xdg.patch
 Patch5: kdemultimedia-3.5.7-pthread.patch
+
+Provides: kdemultimedia3 = %{version}-%{release}
 
 Requires: %{name}-libs = %{version}-%{release}
 
@@ -64,6 +66,8 @@ BuildRequires: automake libtool
 %{?_with_musicbrainz:BuildRequires: libmusicbrainz-devel libtunepimp-devel}
 %{?_with_taglib:BuildRequires: taglib-devel}
 %{?_with_xine:BuildRequires: xine-lib-devel}
+BuildRequires:	libXxf86dga-devel
+BuildRequires:	libXxf86vm-devel
 
 %description
 The K Desktop Environment (KDE) is a GUI desktop for the X Window
@@ -93,14 +97,7 @@ noatun plugins.
 %package extras
 Summary: Extra applications from %{name} 
 Group: Applications/Multimedia
-%if 0%{?libs}
 Requires: %{name}-extras-libs = %{version}-%{release}
-%else
-Obsoletes: %{name}-extras-libs < %{version}-%{release}
-Provides:  %{name}-extras-libs = %{version}-%{release}
-Requires(post): /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
-%endif
 %description extras
 %{summary}, including:
  * juk, a media player
@@ -169,10 +166,10 @@ export CXXFLAGS="${CXXFLAGS} -lDCOP"
 
 %install
 export PATH="%{_bindir}:${PATH}"
-%__rm -rf %{buildroot} 
+%__rm -rf %{?buildroot} 
 
-%make_install
-%make_install -C kaudiocreator
+%__make install DESTDIR=%{?buildroot} 
+%__make install DESTDIR=%{?buildroot}  -C kaudiocreator
 
 ## Remove/uninstall (conflicting) bits we don't want
 rm -f $RPM_BUILD_ROOT%{_libdir}/mcop/akode*MPEGPlayObject.mcopclass
@@ -220,7 +217,6 @@ done
 
 
 %post
-%{?libs:/sbin/ldconfig}
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -228,7 +224,6 @@ done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %postun
-%{?libs:/sbin/ldconfig}
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -384,6 +379,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
+- Add support for RHEL5
+
 * Sat Sep 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
 - Initial build for RHEL 6
 - Spec file based on Fedora 8 "kdemultimedia-6:3.5.10-2"

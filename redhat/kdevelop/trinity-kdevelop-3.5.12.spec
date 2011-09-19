@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,7 +33,8 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:	%{_prefix}
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source: kdevelop-%{version}.tar.gz
 Source1: ftp://129.187.206.68/pub/unix/ide/KDevelop/c_cpp_reference-2.0.2_for_KDE_3.0.tar.bz2
@@ -65,7 +66,7 @@ BuildRequires: trinity-kdelibs-devel
 BuildRequires: trinity-kdelibs-apidocs
 BuildRequires: qt3-devel-docs
 BuildRequires: db4-devel
-BuildRequires: flex flex-static
+BuildRequires: flex
 BuildRequires: pcre-devel
 BuildRequires: libacl-devel libattr-devel libidn-devel libart_lgpl-devel
 BuildRequires: gcc-c++
@@ -76,6 +77,9 @@ BuildRequires: subversion-devel neon-devel
 # looks like this is dragged in by apr-devel (dep of subversion-devel), but not
 # a dependency
 BuildRequires: openldap-devel
+%if 0%{?fedora} >= 15
+BuildRequires: flex-static
+%endif
 
 %description
 The KDevelop Integrated Development Environment provides many features
@@ -181,8 +185,8 @@ popd
 %install
 %__rm -rf %{buildroot}
 
-%make_install
-%make_install -C c_cpp_reference-2.0.2_for_KDE_3.0
+%__make install DESTDIR=%{buildroot}
+%__make install DESTDIR=%{buildroot} -C c_cpp_reference-2.0.2_for_KDE_3.0
 
 # remove useless files
 %__rm -rf %{buildroot}%{_prefix}/kdevbdb
@@ -240,6 +244,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
 - Initial build for RHEL 6
 - Spec file based on Fedora 8 "kdeedu-3.5.3-1"

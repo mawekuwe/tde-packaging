@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -29,7 +29,9 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source0: kdeedu-%{version}.tar.gz
 
 Provides: kdeedu3 = %{version}-%{release}
@@ -43,7 +45,11 @@ BuildRequires: desktop-file-utils
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: python-devel python
 BuildRequires: boost-devel
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires: ocaml(compiler)
+%else
+BuildRequires: ocaml
+%endif
 #BuildRequires: ocaml-facile-devel
 
 
@@ -116,7 +122,11 @@ export CXXFLAGS="${CXXFLAGS} -fpermissive"
    --enable-new-ldflags \
    --disable-dependency-tracking \
    --disable-rpath \
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
    --enable-kig-python-scripting \
+%else
+   --disable-kig-python-scripting \
+%endif
    --disable-debug \
    --disable-warnings \
    --enable-final \
@@ -126,14 +136,14 @@ export CXXFLAGS="${CXXFLAGS} -fpermissive"
    --with-extra-includes=%{_includedir}/tqt
 
 
-%__make %{?_smp_mflags} \
+%__make \
   OCAMLLIB=$(ocamlc -where) FACILELIB=$(ocamlc -where)
 
 
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-%make_install
+%__make install DESTDIR=%{buildroot}
 
 # locale's
 %find_lang %{name} || touch %{name}.lang
@@ -214,6 +224,9 @@ update-desktop-database >& /dev/null ||:
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
 - Initial build for RHEL 6
 - Spec file based on Fedora 8 "kdeedu-3.5.10-1"

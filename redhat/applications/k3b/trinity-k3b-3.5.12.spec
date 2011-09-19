@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 6
+%define release 7
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -32,6 +32,11 @@ Obsoletes: k3b
 
 Group:   Applications/Archiving
 License: GPLv2+
+
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+
 Source0: k3b-%{version}.tar.gz
 Source1: k3b-i18n-1.0.5.tar.bz2
 Source2: k3brc
@@ -57,7 +62,7 @@ BuildRequires: dbus-qt-devel hal-devel
 BuildRequires: flac-devel
 BuildRequires: gettext
 BuildRequires: libdvdread-devel
-%if 0%{?fedora} >= 15
+%if 0%{?fedora} >= 15 || 0%{?rhel} && 0%{?rhel} <= 5
 BuildRequires: libmpcdec-devel
 %else
 BuildRequires: musepack-tools-devel
@@ -96,7 +101,9 @@ start.
 Summary:  Common files of %{name}
 Group:    Applications/Archiving
 Requires: %{name} = %{version}-%{release}
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildArch: noarch
+%endif
 %description common
 %{summary}.
 
@@ -165,15 +172,15 @@ popd
 
 %install
 %__rm -rf %{buildroot}
-%make_install
-%make_install -C k3b-i18n-1.0.5
-%{__install} -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/config/k3brc
+%__make install DESTDIR=%{buildroot}
+%__make install DESTDIR=%{buildroot} -C k3b-i18n-1.0.5
+%__install -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/config/k3brc
 
 # remove the .la files
-%{__rm} -f %{buildroot}%{_libdir}/libk3b*.la 
+%__rm -f %{buildroot}%{_libdir}/libk3b*.la 
 
 # remove i18n for Plattdeutsch (Low Saxon)
-%{__rm} -fr %{buildroot}%{_datadir}/locale/nds
+%__rm -fr %{buildroot}%{_datadir}/locale/nds
 
 %find_lang k3b --with-kde
 %find_lang k3bsetup 
@@ -244,6 +251,9 @@ update-desktop-database -q &> /dev/null
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
 - Import to GIT
 

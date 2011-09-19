@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -28,6 +28,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdewebdev-%{version}.tar.gz
 Source1: http://download.sourceforge.net/quanta/css.tar.bz2
@@ -127,7 +128,7 @@ export CXXFLAGS="${CXXFLAGS} -fpermissive"
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
-%make_install
+%__make install DESTDIR=%{?buildroot}
 
 
 ## package separately?  Why doesn't upstream include this? -- Rex
@@ -216,6 +217,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
+- Add support for RHEL5
+
 * Thu Sep 15 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
 - Initial build for RHEL 6 / Fedora 15
 - Use Spec file from Fedora8 "kdewebdev-3.5.10-1"

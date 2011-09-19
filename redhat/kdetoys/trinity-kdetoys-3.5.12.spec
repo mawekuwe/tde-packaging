@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -25,20 +25,19 @@ Release: %{?release}%{?dist}%{?_variant}
 
 License: GPLv2+
 Source0: kdetoys-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: desktop-file-utils
 BuildRequires: tqtinterface-devel >= %{version}
 BuildRequires: trinity-kdelibs-devel >= %{version}
 BuildRequires: gettext
 
-#Requires(hint): kdebase3 >= %{version}
 
 %description
 Includes: 
@@ -84,7 +83,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf "%{buildroot}"
-%make_install
+%__make install DESTDIR=%{buildroot}
 
 desktop-file-install \
   --dir=%{buildroot}%{_datadir}/applnk/System/ScreenSavers \
@@ -151,6 +150,9 @@ gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-4
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-3
 - Import to GIT
 

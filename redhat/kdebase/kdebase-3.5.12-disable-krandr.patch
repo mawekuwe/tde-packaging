@@ -1,0 +1,36 @@
+*** kdebase/kcontrol/Makefile.am.ORI	2011-09-18 22:04:50.000000000 +0200
+--- kdebase/kcontrol/Makefile.am	2011-09-18 22:05:00.000000000 +0200
+***************
+*** 12,18 ****
+  endif
+  
+  if include_kcontrol_iccconfig
+! ICCCONFIG_SUBDIR=iccconfig
+  endif
+  
+  if include_kcontrol_usbview
+--- 12,18 ----
+  endif
+  
+  if include_kcontrol_iccconfig
+! #ICCCONFIG_SUBDIR=iccconfig
+  endif
+  
+  if include_kcontrol_usbview
+***************
+*** 24,30 ****
+  endif
+  
+  if include_kcontrol_randr
+! RANDR_SUBDIR=randr
+  endif
+  
+  if include_kcontrol_joystick
+--- 24,30 ----
+  endif
+  
+  if include_kcontrol_randr
+! #RANDR_SUBDIR=randr
+  endif
+  
+  if include_kcontrol_joystick

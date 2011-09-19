@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -29,7 +29,9 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source: kdegames-%{version}.tar.gz
 
 Provides: kdegames3 = %{version}-%{release}
@@ -102,7 +104,7 @@ export CXXFLAGS="${CXXFLAGS} -lkio"
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-%make_install
+%__make install DESTDIR=%{buildroot}
 
 # locale's
 %find_lang %{name} || touch %{name}.lang
@@ -183,6 +185,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
 - Initial build for RHEL 6
 - Spec file based on Fedora 8 "kdegames-3.5.10-1"
