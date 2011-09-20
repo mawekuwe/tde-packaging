@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -43,7 +43,9 @@ URL:		http://www.trinitydesktop.org/
 
 License: GPLv2
 Group:   Applications/Internet
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Provides: kdenetwork3 = %{version}-%{release}
 
@@ -110,7 +112,9 @@ Requires(post):   chkconfig
 #Requires(hint): samba-client
 BuildRequires:  avahi-qt3-devel
 
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires:	libv4l-devel
+%endif
 
 %if 0%{?console_helper}
 Requires: usermode-gtk
@@ -211,9 +215,9 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
-%make_install
+%__make install DESTDIR=%{buildroot}
 # RHEL6: kppp seems to be not installed by previous command ???
-%make_install -C kppp
+%__make install DESTDIR=%{buildroot} -C kppp
 
 
 ## File lists
@@ -477,6 +481,9 @@ done
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-5
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-4
 - Import to GIT
 

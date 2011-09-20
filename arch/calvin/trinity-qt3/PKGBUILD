@@ -1,6 +1,6 @@
 # Maintainer: Calvin Morrison <MutantTurkey@gmail.com>
 pkgname=trinity-qt3
-pkgver=20110907
+pkgver=20110919
 pkgrel=1
 pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
 _prefix="/opt/qt"
@@ -32,59 +32,55 @@ build() {
     cd $_gitname && git pull origin
     msg "The local files are updated."
   else
-    git clone $_gitroot 
+      git clone $_gitroot 
   fi
 
   msg "GIT checkout done or server timeout"
   msg "Starting make..."
 
 
-  
+ export QTDIR="${srcdir}/"$_gitname 
+ export PATH=${QTDIR}/bin:${PATH}
+ export LD_LIBRARY_PATH=${QTDIR}/lib:${LD_LIBRARY_PATH}
+ export QMAKESPEC=$QTDIR/mkspecs/linux-g++
+ 
+ if [ "$CARCH" = "x86_64" ]; then
+     export ARCH="-64"
+     else unset ARCH
+fi
+
   cd "$srcdir/$_gitname"
 
 
 
- # remove unwanted mkspecs
   rm -rf mkspecs/{*aix*,*bsd*,cygwin*,dgux*,darwin*,hpux*,hurd*,irix*,lynxos*,macx*,qnx*,reliant*,sco*,solaris*,tru64*,unixware*,win32*}
 
-  # set arch if x86_64 build
-  if [ "$CARCH" = "x86_64" ]; then
-      export ARCH="-64"
-    else unset ARCH
-  fi
+  
 
-#   ./configure -prefix /opt/qt -platform linux-g++$ARCH \
-#     -system-zlib -qt-gif -release -shared -sm -nis -thread -stl \
-#     -system-lib{png,jpeg,mng} \
-#     -no-g++-exceptions -plugin-sql-{mysql,psql,sqlite,odbc}
-
- 
   msg "Starting configure..."
-  ./configure 	-prefix ${_prefix} \
-		-sysconfdir /etc/qt \
-		-qt-gif \
-		-system-zlib \
-		-system-libjpeg \
-		-plugin-imgfmt-jpeg \
-		-system-libmng \
-		-plugin-imgfmt-mng \
-		-system-libpng \
-		-plugin-imgfmt-png \
-		-plugin-sql-mysql \
-		-plugin-sql-psql \
-		-plugin-sql-sqlite \
-		-no-exceptions \
-		-thread \
-		-no-tablet
-		#-platform linux-g++ 
-  make -C qmake || return 1
-  make 
+  #make -C qmake || return 1
+ ./configure    -prefix ${_prefix} \
+                -fast \
+                -sysconfdir /etc/qt \
+                -thread \
+                -shared \
+                -system-zlib \
+                -platform linux-g++$ARCH \
+                -system-lib{png,jpeg,mng} 
+  make  
 
 }
 
 package() {
+ cd "$srcdir/$_gitname"
 
-echo $PWD
-echo "woooot!"
- make DESTDIR=${pkgdir} install
+  # Build and install qt.profile
+  echo "export QTDIR=${_prefix}" > ${srcdir}/qt.profile
+  echo "export QT_XFT=true" >> ${srcdir}/qt.profile
+  echo 'export PATH=$PATH:$QTDIR/bin' >> ${srcdir}/qt.profile
+  echo 'export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QTDIR/pkgconfig' >> ${srcdir}/qt.profile
+  install -D -m755 ${srcdir}/qt.profile ${pkgdir}/etc/profile.d/qt3.sh
+ 
+  make INSTALL_ROOT="$pkgdir/" install
+
 } 

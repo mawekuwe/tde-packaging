@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,6 +33,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: kdeadmin-%{version}.tar.gz
 Source1: kuser.pam
@@ -94,7 +95,7 @@ export CXXFLAGS="${CXXFLAGS} -fpermissive"
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-%make_install
+%__make install DESTDIR=%{buildroot}
 
 %if 0%{?rhel} > 1
 comps="kcron kdat knetworkconf"
@@ -171,20 +172,25 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_sbindir}/*
 %config(noreplace) /etc/pam.d/*
 %config(noreplace) /etc/security/console.apps/*
+%{_datadir}/config*/*
+%{_datadir}/mimelnk/*/*.desktop
+%{_datadir}/icons/crystalsvg/*/*/*
 %endif
 %{_datadir}/apps/*
 %{_datadir}/applications/kde/*.desktop
-%{_datadir}/config*/*
-%{_datadir}/icons/crystalsvg/*/*/*
 %{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/icons/locolor/*/*/*
-%{_datadir}/mimelnk/*/*.desktop
 %{_datadir}/service*/*.desktop
 %{tde_libdir}/*
 %{_libdir}/pkgconfig/*.pc
 
 
+
+
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
 - Initial build for RHEL 6
 - Spec file based on Fedora 8 "kdeadmin-3.5.10-1"

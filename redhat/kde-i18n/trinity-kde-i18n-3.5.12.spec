@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 6
+%define release 7
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -30,6 +30,9 @@ Release:	%{?release}%{?dist}%{?_variant}
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
+
+Prefix:    %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 # GFDL, with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 License:	GFDL
@@ -653,7 +656,7 @@ for l in %{KDE_LANGS}; do
         sed -i docs/Makefile -e "s,^\(SUBDIRS =.*\)common\(.*\)$,\1 \2,"
       fi
 
-      %{__make} install DESTDIR=%{?buildroot}
+      %__make install DESTDIR=%{?buildroot}
       popd
     fi
   done
@@ -1221,6 +1224,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
 - Re-introduce all languages
 

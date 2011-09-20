@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -28,6 +28,9 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 Url:		http://www.trinitydesktop.org/
 
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source: kdeartwork-%{version}.tar.gz
 
 # FIXME: this should go in kde-settings -- Rex
@@ -37,6 +40,8 @@ BuildRequires: gettext
 BuildRequires: trinity-kdebase-devel
 BuildRequires: libart_lgpl-devel
 BuildRequires: nas-devel esound-devel jack-audio-connection-kit-devel
+BuildRequires:	xscreensaver-extras xscreensaver-gl-base
+
 
 Requires: trinity-kdebase
 
@@ -79,8 +84,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-
-%make_install
+%__make install DESTDIR=%{buildroot}
 
 # webcollage -root -directory /usr/share/backgrounds/images #227683
 
@@ -165,6 +169,9 @@ done
 
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-5
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-4
 - Import to GIT
 

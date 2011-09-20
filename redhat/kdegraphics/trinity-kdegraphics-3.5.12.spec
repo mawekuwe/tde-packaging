@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -24,11 +24,13 @@ License:	GPL
 Summary:    K Desktop Environment - Graphics Applications
 
 Group:      Applications/Multimedia
-Prefix:		%{_prefix}
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
+
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdegraphics-%{version}.tar.gz
 
@@ -54,6 +56,7 @@ BuildRequires: gphoto2-devel
 BuildRequires: sane-backends-devel
 BuildRequires: libusb-devel
 
+
 # kgamma
 BuildRequires: libXxf86vm-devel
 # kuickshow
@@ -62,7 +65,11 @@ BuildRequires: imlib-devel
 BuildRequires: OpenEXR-devel
 # kpdf
 BuildRequires: freetype-devel
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires: poppler-qt-devel
+%else
+BuildRequires: poppler-devel
+%endif
 BuildRequires: libpaper-devel
 # ksvg
 BuildRequires: fontconfig-devel
@@ -171,7 +178,7 @@ sed -i kpdf/Makefile \
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
-make install DESTDIR=%{buildroot}
+%__make install DESTDIR=%{buildroot}
 
 # locale's
 %find_lang %{name} || touch %{name}.lang
@@ -344,6 +351,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libdjvu.so
 
 %changelog
+* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-3
+- Add support for RHEL5
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2 
 - Import to GIT
 

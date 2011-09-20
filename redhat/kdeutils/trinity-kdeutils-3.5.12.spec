@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 6
+%define release 7
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -29,6 +29,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdeutils-%{version}.tar.gz
 Source1: klaptop_acpi_helper.pam
@@ -134,7 +135,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
-%make_install
+%__make install DESTDIR=%{?buildroot}
 
 # Show only in KDE (really? -- Rex)
 for i in kcalc kregexpeditor Kjots ktimer kdf kcmdf ksim KFloppy KEdit \
@@ -316,7 +317,7 @@ done
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_datadir}/applications/kde/*
-%if 0%{?rhel} >= 6
+%if 0%{?rhel} >= 5
 %{_datadir}/applnk/Utilities/*
 %{_datadir}/mimelnk/application/*
 %endif
@@ -333,6 +334,9 @@ done
 
 
 %changelog
+* Sun Sep 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7
+- Add RHEL5 support
+
 * Mon Sep 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
 - Merge Spec file from Fedora8 "kdeutils-3.5.10-6"
 
