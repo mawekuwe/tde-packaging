@@ -61,6 +61,7 @@ fi
   #make -C qmake || return 1
  ./configure    -prefix ${_prefix} \
                 -fast \
+                -sysconfdir /etc/qt \
                 -thread \
                 -shared \
                 -system-zlib \
@@ -72,6 +73,14 @@ fi
 
 package() {
  cd "$srcdir/$_gitname"
- make INSTALL_ROOT="$pkgdir/" install
+
+  # Build and install qt.profile
+  echo "export QTDIR=${_prefix}" > ${srcdir}/qt.profile
+  echo "export QT_XFT=true" >> ${srcdir}/qt.profile
+  echo 'export PATH=$PATH:$QTDIR/bin' >> ${srcdir}/qt.profile
+  echo 'export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QTDIR/pkgconfig' >> ${srcdir}/qt.profile
+  install -D -m755 ${srcdir}/qt.profile ${pkgdir}/etc/profile.d/qt3.sh
+ 
+  make INSTALL_ROOT="$pkgdir/" install
 
 } 
