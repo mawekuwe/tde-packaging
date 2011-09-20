@@ -1,6 +1,6 @@
 # Maintainer: Calvin Morrison <MutantTurkey@gmail.com>
 pkgname=trinity-qt3
-pkgver=20110918
+pkgver=20110919
 pkgrel=1
 pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
 _prefix="/opt/qt"
@@ -32,14 +32,23 @@ build() {
     cd $_gitname && git pull origin
     msg "The local files are updated."
   else
-    git clone $_gitroot 
+      git clone $_gitroot 
   fi
 
   msg "GIT checkout done or server timeout"
   msg "Starting make..."
 
 
-  
+ export QTDIR="${srcdir}/"$_gitname 
+ export PATH=${QTDIR}/bin:${PATH}
+ export LD_LIBRARY_PATH=${QTDIR}/lib:${LD_LIBRARY_PATH}
+ export QMAKESPEC=$QTDIR/mkspecs/linux-g++
+ 
+ if [ "$CARCH" = "x86_64" ]; then
+     export ARCH="-64"
+     else unset ARCH
+fi
+
   cd "$srcdir/$_gitname"
 
 
@@ -50,16 +59,19 @@ build() {
 
   msg "Starting configure..."
   #make -C qmake || return 1
- ./configure -thread -fast 
+ ./configure    -prefix ${_prefix} \
+                -fast \
+                -thread \
+                -shared \
+                -system-zlib \
+                -platform linux-g++$ARCH \
+                -system-lib{png,jpeg,mng} 
   make  
 
 }
 
 package() {
-    echo $PWD
-    echo $pkgdir
-    mkdir "$pkgdir/lib"
  cd "$srcdir/$_gitname"
- make INSTALL_ROOT="$pkgdir/lib/" install
+ make INSTALL_ROOT="$pkgdir/" install
 
 } 
