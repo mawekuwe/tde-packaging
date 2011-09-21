@@ -4,6 +4,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_ksplashthemes.la
 debian/tmp/opt/trinity/lib/trinity/kcm_ksplashthemes.so
 debian/tmp/opt/trinity/lib/trinity/ksplashdefault.la
 debian/tmp/opt/trinity/lib/trinity/ksplashdefault.so
+debian/tmp/opt/trinity/lib/trinity/ksplashunified.la
+debian/tmp/opt/trinity/lib/trinity/ksplashunified.so
 debian/tmp/opt/trinity/lib/trinity/ksplashredmond.la
 debian/tmp/opt/trinity/lib/trinity/ksplashredmond.so
 debian/tmp/opt/trinity/lib/trinity/ksplashstandard.la
@@ -29,6 +31,7 @@ debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/splash_bottom.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/splash_inactive_bar.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/splash_top.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/Theme.rc
+debian/tmp/opt/trinity/share/apps/ksplash/Themes/Unified/
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/None/Theme.rc
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Redmond/Background.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Redmond/Preview.png
@@ -42,6 +45,7 @@ debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksplashml/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksplashml/index.docbook
 debian/tmp/opt/trinity/share/services/ksplashdefault.desktop
 debian/tmp/opt/trinity/share/services/ksplash.desktop
+debian/tmp/opt/trinity/share/services/ksplashunified.desktop
 debian/tmp/opt/trinity/share/services/ksplashredmond.desktop
 debian/tmp/opt/trinity/share/services/ksplashstandard.desktop
 debian/tmp/opt/trinity/share/servicetypes/ksplashplugins.desktop
