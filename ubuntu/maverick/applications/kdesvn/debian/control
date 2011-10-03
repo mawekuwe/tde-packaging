@@ -52,6 +52,7 @@ Architecture: any
 Replaces: kdesvn-kio-plugins-kde3 (<< 4:3.5.13)
 Breaks: kdesvn-kio-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: kdesdk-kio-plugins-trinity
 Description: subversion I/O slaves for Trinity
  This packages includes KIO slaves for svn, svn+file, svn+http, 
  svn+https, svn+ssh. This allows you to access subversion repositories 
