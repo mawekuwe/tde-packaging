@@ -5,6 +5,8 @@
 /opt/trinity/lib/trinity/libakregator_mk4storage_plugin.so
 /opt/trinity/lib/libakregatorprivate.la
 /opt/trinity/lib/libakregatorprivate.so
+/opt/trinity/lib/libakregatorprivate.so.0
+/opt/trinity/lib/libakregatorprivate.so.0.0.0
 /opt/trinity/share/applications/kde/akregator.desktop
 /opt/trinity/share/apps/akregator
 /opt/trinity/share/config.kcfg/akregator.kcfg
