@@ -1,0 +1,10 @@
+--- resmgr-1.0/pam_resmgr.c   2003-03-05 14:32:19.000000000 +0100
++++ resmgr-1.0.patched/pam_resmgr.c 2006-07-26 02:22:59.000000000 +0200
+@@ -9,6 +9,7 @@
+ #include <string.h>
+ #include <unistd.h>
+ #include <ctype.h>
++#include <syslog.h>
+ 
+ #include <security/pam_modules.h>
+ #include "protocol.h"

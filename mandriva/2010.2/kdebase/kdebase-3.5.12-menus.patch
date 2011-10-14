@@ -1,0 +1,1049 @@
+diff -bur kdebase.orig//kappfinder/kappfinder.desktop kdebase/kappfinder/kappfinder.desktop
+--- kdebase.orig//kappfinder/kappfinder.desktop	2010-08-12 04:29:30.000000000 +0100
++++ kdebase/kappfinder/kappfinder.desktop	2011-07-19 11:42:37.774311301 +0100
+@@ -5,6 +5,7 @@
+ Terminal=false
+ X-KDE-StartupNotify=true
+ OnlyShowIn=KDE;
++NoDisplay=true
+ 
+ Name=Menu Updating Tool
+ Name[af]=Kieslys opdateer program
+Only in kdebase/kappfinder: kappfinder.desktop.orig
+diff -bur kdebase.orig//kate/data/kate.desktop kdebase/kate/data/kate.desktop
+--- kdebase.orig//kate/data/kate.desktop	2010-08-12 04:29:24.000000000 +0100
++++ kdebase/kate/data/kate.desktop	2011-07-19 11:42:37.775311319 +0100
+@@ -93,4 +93,4 @@
+ Terminal=false
+ InitialPreference=8
+ X-DCOP-ServiceType=Multi
+-Categories=Qt;KDE;TextEditor;
++Categories=Qt;KDE;X-MandrivaLinux-MoreApplications-Development-Tools;
+Only in kdebase/kate/data: kate.desktop.orig
+diff -bur kdebase.orig//kcontrol/access/kcmaccess.desktop kdebase/kcontrol/access/kcmaccess.desktop
+--- kdebase.orig//kcontrol/access/kcmaccess.desktop	2010-08-12 04:28:28.000000000 +0100
++++ kdebase/kcontrol/access/kcmaccess.desktop	2011-07-19 11:42:22.752311329 +0100
+@@ -3,7 +3,7 @@
+ Type=Application
+ Exec=kcmshell kcmaccess
+ DocPath=kcontrol/kcmaccess/index.html
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=access
+ X-KDE-Init=access
+Only in kdebase/kcontrol/access: kcmaccess.desktop.orig
+diff -bur kdebase.orig//kcontrol/arts/arts.desktop kdebase/kcontrol/arts/arts.desktop
+--- kdebase.orig//kcontrol/arts/arts.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/arts/arts.desktop	2011-07-19 11:42:22.788311685 +0100
+@@ -238,3 +238,4 @@
+ Keywords[zu]=aRts,Umlekeleli Womsindo,artsd,Okuzwakalayo,Umsindo,Isiqaliso, ukubonakala koxhumano olusakazekile,Ukubonakala ngale,ukubaluleka,okunezingxemye ezimbili,okunezingxenye ezimbili eziphendulanayo,isikhathi sokuphendula, Umxubi,Izinga lomsindo,KMix,Xuba,ngena ngaphakathi,MIDI,umlungisi womsindo, umculo
+ 
+ Categories=Qt;KDE;X-KDE-settings-sound;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/arts: arts.desktop.orig
+diff -bur kdebase.orig//kcontrol/background/background.desktop kdebase/kcontrol/background/background.desktop
+--- kdebase.orig//kcontrol/background/background.desktop	2010-08-12 04:28:34.000000000 +0100
++++ kdebase/kcontrol/background/background.desktop	2011-07-19 11:42:22.774311291 +0100
+@@ -238,3 +238,4 @@
+ Keywords[zu]=inkundla yangemuva,ama-desktop,imibala,imibala,izithombe,amaphepha ezindonga,ukuxubanisa,ukulinganisa,cache,amaphepha ezindonga eziningi,pixmap
+ 
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/background: background.desktop.orig
+diff -bur kdebase.orig//kcontrol/bell/bell.desktop kdebase/kcontrol/bell/bell.desktop
+--- kdebase.orig//kcontrol/bell/bell.desktop	2010-08-12 04:28:26.000000000 +0100
++++ kdebase/kcontrol/bell/bell.desktop	2011-07-19 11:42:22.789311587 +0100
+@@ -4,6 +4,7 @@
+ Type=Application
+ DocPath=kcontrol/bell/index.html
+ Categories=Qt;KDE;X-KDE-settings-sound;
++OnlyShowIn=KDE;
+ 
+ 
+ X-KDE-Library=bell
+Only in kdebase/kcontrol/bell: bell.desktop.orig
+diff -bur kdebase.orig//kcontrol/clock/clock.desktop kdebase/kcontrol/clock/clock.desktop
+--- kdebase.orig//kcontrol/clock/clock.desktop	2010-08-12 04:28:34.000000000 +0100
++++ kdebase/kcontrol/clock/clock.desktop	2011-07-19 11:42:22.789311587 +0100
+@@ -248,3 +248,4 @@
+ Keywords[zh_TW]=clock,日期,時間,時區
+ 
+ Categories=Qt;KDE;X-KDE-settings-system;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/clock: clock.desktop.orig
+diff -bur kdebase.orig//kcontrol/colors/colors.desktop kdebase/kcontrol/colors/colors.desktop
+--- kdebase.orig//kcontrol/colors/colors.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/colors/colors.desktop	2011-07-19 11:42:22.775311523 +0100
+@@ -250,3 +250,4 @@
+ Keywords[zu]=imibala,imibala,iplani,ukugqama,imibala ye-Widget,Iplani Lombala
+ 
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/colors: colors.desktop.orig
+diff -bur kdebase.orig//kcontrol/componentchooser/componentchooser.desktop kdebase/kcontrol/componentchooser/componentchooser.desktop
+--- kdebase.orig//kcontrol/componentchooser/componentchooser.desktop	2010-08-12 04:28:29.000000000 +0100
++++ kdebase/kcontrol/componentchooser/componentchooser.desktop	2011-07-19 11:42:22.753311334 +0100
+@@ -2,7 +2,7 @@
+ Exec=kcmshell componentchooser
+ Icon=misc
+ Type=Application
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=componentchooser
+ 
+Only in kdebase/kcontrol/componentchooser: componentchooser.desktop.orig
+diff -bur kdebase.orig//kcontrol/crypto/crypto.desktop kdebase/kcontrol/crypto/crypto.desktop
+--- kdebase.orig//kcontrol/crypto/crypto.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/crypto/crypto.desktop	2011-07-19 11:42:22.788311685 +0100
+@@ -227,3 +227,4 @@
+ Keywords[zu]=Crypto,Krypto,Ukuqaqa umbhalo ongaqondakali,SSL,https, izitifiketi,imibhalo yekhodi,TLS,vikela,ukuvikela
+ 
+ Categories=Qt;KDE;X-KDE-settings-security;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/crypto: crypto.desktop.orig
+diff -bur kdebase.orig//kcontrol/css/kcmcss.desktop kdebase/kcontrol/css/kcmcss.desktop
+--- kdebase.orig//kcontrol/css/kcmcss.desktop	2010-08-12 04:28:30.000000000 +0100
++++ kdebase/kcontrol/css/kcmcss.desktop	2011-07-19 11:42:22.782311869 +0100
+@@ -231,3 +231,4 @@
+ Keywords[zu]=CSS,HTML,isitayela,ikhasi lesitayela,ukungena
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/css: kcmcss.desktop.orig
+diff -bur kdebase.orig//kcontrol/display/display.desktop kdebase/kcontrol/display/display.desktop
+--- kdebase.orig//kcontrol/display/display.desktop	2010-08-12 04:28:24.000000000 +0100
++++ kdebase/kcontrol/display/display.desktop	2011-07-19 11:42:22.794311055 +0100
+@@ -152,3 +152,4 @@
+ Comment[zh_CN]=显示设置
+ Comment[zh_TW]=顯示設定
+ Categories=Qt;KDE;X-KDE-settings-hardware;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/display: display.desktop.orig
+diff -bur kdebase.orig//kcontrol/dnssd/kcm_kdnssd.desktop kdebase/kcontrol/dnssd/kcm_kdnssd.desktop
+--- kdebase.orig//kcontrol/dnssd/kcm_kdnssd.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/dnssd/kcm_kdnssd.desktop	2011-07-20 11:30:29.259385172 +0100
+@@ -153,3 +153,4 @@
+ #X-KDE-SubstituteUID=false 
+ #X-KDE-RootOnly=true
+ Categories=Qt;KDE;X-KDE-settings-network;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/dnssd: kcm_kdnssd.desktop.orig
+diff -bur kdebase.orig//kcontrol/ebrowsing/ebrowsing.desktop kdebase/kcontrol/ebrowsing/ebrowsing.desktop
+--- kdebase.orig//kcontrol/ebrowsing/ebrowsing.desktop	2010-08-12 04:28:28.000000000 +0100
++++ kdebase/kcontrol/ebrowsing/ebrowsing.desktop	2011-07-19 11:42:22.782311869 +0100
+@@ -235,3 +235,4 @@
+ Keywords[zu]=Ukucinga okujulile,Ukucinga,WWW,Internet,Amagama abalulekile e-Internet,Amahluzo,Uxhumano olusakazekile,Izinjini zokusesha, Izindlela ezimfushane
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/ebrowsing: ebrowsing.desktop.orig
+diff -bur kdebase.orig//kcontrol/filetypes/filetypes.desktop kdebase/kcontrol/filetypes/filetypes.desktop
+--- kdebase.orig//kcontrol/filetypes/filetypes.desktop	2010-08-12 04:28:31.000000000 +0100
++++ kdebase/kcontrol/filetypes/filetypes.desktop	2011-07-19 11:42:22.755311510 +0100
+@@ -4,7 +4,7 @@
+ Exec=kcmshell filetypes
+ DocPath=kcontrol/filetypes/index.html
+ Categories=Qt;KDE;X-KDE-settings-components;
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=filetypes
+ X-KDE-ParentApp=kcontrol
+Only in kdebase/kcontrol/filetypes: filetypes.desktop.orig
+diff -bur kdebase.orig//kcontrol/fonts/fonts.desktop kdebase/kcontrol/fonts/fonts.desktop
+--- kdebase.orig//kcontrol/fonts/fonts.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/fonts/fonts.desktop	2011-07-19 11:42:22.775311523 +0100
+@@ -237,3 +237,4 @@
+ Keywords[zu]=Izinhlobo zamagama,uhlobo lwamagama,izitayela,charsets, amaqoqo ezaimpawu,kicker,lawula,iwindi lemininingwane,ama-desktop,Imenenja yefayela,amabha amathuluzi,Imenu,Isihloko se-Window,Isihloko
+ 
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/fonts: fonts.desktop.orig
+diff -bur kdebase.orig//kcontrol/icons/icons.desktop kdebase/kcontrol/icons/icons.desktop
+--- kdebase.orig//kcontrol/icons/icons.desktop	2010-08-12 04:28:25.000000000 +0100
++++ kdebase/kcontrol/icons/icons.desktop	2011-07-19 11:42:22.776311321 +0100
+@@ -247,3 +247,4 @@
+ Keywords[zu]=izimpawu,imiphumela,usayizi,umbala ophezulu,umbala ophansi
+ 
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/icons: icons.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/devices.desktop kdebase/kcontrol/info/devices.desktop
+--- kdebase.orig//kcontrol/info/devices.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/info/devices.desktop	2011-07-20 11:58:57.730775967 +0100
+@@ -3,8 +3,8 @@
+ Icon=kcmdevices
+ Type=Application
+ DocPath=kinfocenter/devices/index.html
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=info
+ X-KDE-FactoryName=devices
+Only in kdebase/kcontrol/info: devices.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/dma.desktop kdebase/kcontrol/info/dma.desktop
+--- kdebase.orig//kcontrol/info/dma.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/info/dma.desktop	2011-07-20 11:53:11.747776146 +0100
+@@ -3,8 +3,8 @@
+ Icon=kcmmemory
+ Type=Application
+ DocPath=kinfocenter/dma/index.html
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=info
+ X-KDE-FactoryName=dma
+Only in kdebase/kcontrol/info: dma.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/interrupts.desktop kdebase/kcontrol/info/interrupts.desktop
+--- kdebase.orig//kcontrol/info/interrupts.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/info/interrupts.desktop	2011-07-20 11:38:01.016776161 +0100
+@@ -3,8 +3,8 @@
+ Icon=kcmmemory
+ Type=Application
+ DocPath=kinfocenter/interrupts/index.html
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=info
+ X-KDE-FactoryName=irq
+Only in kdebase/kcontrol/info: interrupts.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/ioports.desktop kdebase/kcontrol/info/ioports.desktop
+--- kdebase.orig//kcontrol/info/ioports.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/info/ioports.desktop	2011-07-20 11:56:31.152776022 +0100
+@@ -3,8 +3,8 @@
+ Icon=kcmmemory
+ Type=Application
+ DocPath=kinfocenter/ioports/index.html
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=info
+ X-KDE-FactoryName=ioports
+Only in kdebase/kcontrol/info: ioports.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/memory.desktop kdebase/kcontrol/info/memory.desktop
+--- kdebase.orig//kcontrol/info/memory.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/info/memory.desktop	2011-07-20 11:57:09.165776825 +0100
+@@ -245,5 +245,5 @@
+ Keywords[zh_CN]=Memory,RAM,Virtual memory,Physical memory,Shared memory,Swap,System Information,内存,虚拟存储,物理存储,共享内存,交换,系统信息
+ Keywords[zh_TW]=Memory,RAM,Virtual memory,Physical memory,Shared memory,Swap,System Information,記憶體,虛擬記憶體,實體記憶體,共享記憶體,系統資訊
+ Keywords[zu]=Inkumbulo,RAM,Inkumbulo yamanga,Inkumbulo siqu,Inkumbulo yokwabelana,Shintshanisa,Ulwazi Lwesistimu
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/info: memory.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/opengl.desktop kdebase/kcontrol/info/opengl.desktop
+--- kdebase.orig//kcontrol/info/opengl.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/info/opengl.desktop	2011-07-20 11:57:49.145776471 +0100
+@@ -4,7 +4,7 @@
+ Icon=kcmopengl
+ Type=Application
+ DocPath=kinfocenter/opengl/index.html
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=info
+ X-KDE-FactoryName=opengl
+@@ -145,5 +145,4 @@
+ Keywords[zh_CN]=OpenGL,DRI,GLX,3D,VideoCard,Hardware Acceleration,Graphics,X,X11,Xserver,X-Server,XFree86,Display,显卡,硬件加速,图形,X 服务器,显示
+ Keywords[zh_TW]=OpenGL,DRI,GLX,3D,VideoCard,Hardware Acceleration,Graphics,X,X11,Xserver,X-Server,XFree86,Display,顯示卡,硬體加速,圖形,顯示
+ 
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
+Only in kdebase/kcontrol/info: opengl.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/partitions.desktop kdebase/kcontrol/info/partitions.desktop
+--- kdebase.orig//kcontrol/info/partitions.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/info/partitions.desktop	2011-07-20 11:58:27.781775989 +0100
+@@ -243,5 +243,5 @@
+ Keywords[zh_TW]=Partitions,Harddrive,HD,System Information,磁碟分割區,硬式磁碟機,硬碟,系統資訊
+ Keywords[zu]=Izahluko,Harddrive,HD,Ulwazi Lwesistimu
+ 
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/info: partitions.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/pci.desktop kdebase/kcontrol/info/pci.desktop
+--- kdebase.orig//kcontrol/info/pci.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/info/pci.desktop	2011-07-20 11:53:45.472776347 +0100
+@@ -3,7 +3,8 @@
+ Icon=kcmpci
+ Type=Application
+ DocPath=kinfocenter/pci/index.html
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=info
+ X-KDE-FactoryName=pci
+Only in kdebase/kcontrol/info: pci.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/processor.desktop kdebase/kcontrol/info/processor.desktop
+--- kdebase.orig//kcontrol/info/processor.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/info/processor.desktop	2011-07-20 11:45:22.863775969 +0100
+@@ -246,5 +246,5 @@
+ Keywords[zh_CN]=Processor,CPU,FPU,MHz,System Information,处理器,系统信息
+ Keywords[zh_TW]=Processor,CPU,FPU,MHz,System Information,處理器,中央處理器,浮點運算器,系統資訊
+ Keywords[zu]=Umqhubekisi,CPU,FPU,MHz,Ulwazi Lwesistimu
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/info: processor.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/scsi.desktop kdebase/kcontrol/info/scsi.desktop
+--- kdebase.orig//kcontrol/info/scsi.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/info/scsi.desktop	2011-07-20 11:39:04.898776053 +0100
+@@ -174,5 +174,5 @@
+ Keywords[zh_CN]=SCSI,SCSI-Bus,System Information,SCSI 总线,系统信息
+ Keywords[zh_TW]=SCSI,SCSI-Bus,System Information,系統資訊
+ Keywords[zu]=SCSI,Ibhasi-SCSI,Ulwazi Lwesistimu
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/info: scsi.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/sound.desktop kdebase/kcontrol/info/sound.desktop
+--- kdebase.orig//kcontrol/info/sound.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/info/sound.desktop	2011-07-20 11:55:55.443775844 +0100
+@@ -240,5 +240,5 @@
+ Keywords[wa]=Son,Audiocåte son,MIDI,OSS,informåcion do sistinme
+ Keywords[zh_CN]=Sound,Audio,Soundcard,MIDI,OSS,System Information,音频,音响,声卡,系统信息
+ Keywords[zh_TW]=Sound,Audio,Soundcard,Midi,OSS,系統資訊
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/info: sound.desktop.orig
+diff -bur kdebase.orig//kcontrol/info/xserver.desktop kdebase/kcontrol/info/xserver.desktop
+--- kdebase.orig//kcontrol/info/xserver.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/info/xserver.desktop	2011-07-20 11:54:31.067775792 +0100
+@@ -224,4 +224,5 @@
+ Keywords[zh_CN]=X,X-Server,XServer,XFree86,Display,VideoCard,System InformationX 服务器,显示器,显卡,系统信息
+ Keywords[zh_TW]=X,X-Server,XServer,XFree86,Display,VideoCard,System Information,X 伺服器,X伺服器,顯示器,顯示卡,系統資訊
+ 
+-Categories=Qt;KDE;X-KDE-settings-hardware;
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/info: xserver.desktop.orig
+diff -bur kdebase.orig//kcontrol/input/mouse.desktop kdebase/kcontrol/input/mouse.desktop
+--- kdebase.orig//kcontrol/input/mouse.desktop	2010-08-12 04:28:34.000000000 +0100
++++ kdebase/kcontrol/input/mouse.desktop	2011-07-19 11:42:22.787311214 +0100
+@@ -240,3 +240,4 @@
+ Keywords[zh_TW]=Mouse,Mouse acceleration,Mouse threshold,Mouse buttons,Selection,Cursor Shape,Input Devices,Button Mapping,Click,icons,feedback,Pointers,Drag,DoubleClick,mapping,right handed,left handed,滑鼠,滑鼠游標加速,滑鼠游標加速間距,滑鼠按鈕,選擇,指標外觀,輸入設備,按鍵對應,單擊,圖示,反饋,指標,拖放,雙擊,映射,習慣右手,習慣左手 
+ Keywords[zu]=i-Mouse,Ukugijimisa kwe-Mouse,i-Mouse threshold, Izinkinobho ze-Mouse,Ukhetho,Isimo senkomba,Amthuluzi Omphumela wangaphakathi,Ukuqondanisa Izinkinobho,Cofa,Izimpawu zezithombe, umphumela obuyayo,Izinkomba zendawo yokubhala,Hudula,Cofa-kabili, ukuqondanisa,okwesanadla sangakwesokudla,okwesandla sangakwesokunxele
+ Categories=Qt;KDE;X-KDE-settings-hardware;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/input: mouse.desktop.orig
+diff -bur kdebase.orig//kcontrol/ioslaveinfo/ioslaveinfo.desktop kdebase/kcontrol/ioslaveinfo/ioslaveinfo.desktop
+--- kdebase.orig//kcontrol/ioslaveinfo/ioslaveinfo.desktop	2010-08-12 04:28:29.000000000 +0100
++++ kdebase/kcontrol/ioslaveinfo/ioslaveinfo.desktop	2011-07-19 11:47:56.506311337 +0100
+@@ -234,4 +234,5 @@
+ 
+ X-KDE-ParentApp=kinfocenter
+ 
+-Categories=Qt;KDE;X-KDE-settings-network;
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE
+Only in kdebase/kcontrol/ioslaveinfo: ioslaveinfo.desktop.orig
+diff -bur kdebase.orig//kcontrol/joystick/joystick.desktop kdebase/kcontrol/joystick/joystick.desktop
+--- kdebase.orig//kcontrol/joystick/joystick.desktop	2010-08-12 04:28:36.000000000 +0100
++++ kdebase/kcontrol/joystick/joystick.desktop	2011-07-19 11:42:22.800311582 +0100
+@@ -175,3 +175,4 @@
+ X-KDE-Test-Module=true
+ Icon=joystick
+ Categories=Qt;KDE;X-KDE-settings-hardware;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/joystick: joystick.desktop.orig
+diff -bur kdebase.orig//kcontrol/kcontrol/KControl.desktop kdebase/kcontrol/kcontrol/KControl.desktop
+--- kdebase.orig//kcontrol/kcontrol/KControl.desktop	2010-08-12 04:28:25.000000000 +0100
++++ kdebase/kcontrol/kcontrol/KControl.desktop	2011-07-19 11:47:18.310311821 +0100
+@@ -90,6 +90,6 @@
+ Name[zu]=Indawo Yokulawula
+ 
+ X-DCOP-ServiceType=Unique
+-Categories=Qt;KDE;Core;
++Categories=Qt;KDE;Core;System;
+ OnlyShowIn=KDE;
+ NoDisplay=true
+Only in kdebase/kcontrol/kcontrol: KControl.desktop.orig
+Only in kdebase/kcontrol/kcontrol: kinfocenter.desktop.orig
+diff -bur kdebase.orig//kcontrol/kdm/kdm.desktop kdebase/kcontrol/kdm/kdm.desktop
+--- kdebase.orig//kcontrol/kdm/kdm.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/kdm/kdm.desktop	2011-07-19 11:42:22.794311055 +0100
+@@ -241,3 +241,4 @@
+ Keywords[zu]=kdm,Imenenja yokuveza,xdm,abasebenzisi,ukungena ngaphakathi,isibingelelo,Isiqubulo,izitayela,ulimi,izwe,izinhlobo zamagama, inkundla yangemuva,emaphepha ezindonga,iziqendu,vala,phinda uqale
+ 
+ Categories=Qt;KDE;X-KDE-settings-system;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kdm: kdm.desktop.orig
+diff -bur kdebase.orig//kcontrol/keys/keys.desktop kdebase/kcontrol/keys/keys.desktop
+--- kdebase.orig//kcontrol/keys/keys.desktop	2010-08-12 04:28:26.000000000 +0100
++++ kdebase/kcontrol/keys/keys.desktop	2011-07-19 11:42:22.809311579 +0100
+@@ -3,7 +3,7 @@
+ Icon=key_bindings
+ Type=Application
+ DocPath=kcontrol/keys/index.html
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=keys
+ X-KDE-Init=keys
+Only in kdebase/kcontrol/keys: keys.desktop.orig
+diff -bur kdebase.orig//kcontrol/kfontinst/kcmfontinst/kcmfontinst.desktop kdebase/kcontrol/kfontinst/kcmfontinst/kcmfontinst.desktop
+--- kdebase.orig//kcontrol/kfontinst/kcmfontinst/kcmfontinst.desktop	2010-08-12 04:28:28.000000000 +0100
++++ kdebase/kcontrol/kfontinst/kcmfontinst/kcmfontinst.desktop	2011-07-19 11:42:22.794311055 +0100
+@@ -233,3 +233,4 @@
+ Keywords[zh_TW]=font,fonts,installer,truetype,type1,speedo,bitmap,字型,安裝程式,點陣
+ 
+ Categories=Qt;KDE;X-KDE-settings-system;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kfontinst/kcmfontinst: kcmfontinst.desktop.orig
+diff -bur kdebase.orig//kcontrol/kfontinst/viewpart/kfontview.desktop kdebase/kcontrol/kfontinst/viewpart/kfontview.desktop
+--- kdebase.orig//kcontrol/kfontinst/viewpart/kfontview.desktop	2010-08-12 04:28:28.000000000 +0100
++++ kdebase/kcontrol/kfontinst/viewpart/kfontview.desktop	2011-07-19 11:42:22.799312185 +0100
+@@ -98,3 +98,4 @@
+ Terminal=false
+ InitialPreference=1
+ Categories=Qt;KDE;Utility;X-KDE-More;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kfontinst/viewpart: kfontview.desktop.orig
+diff -bur kdebase.orig//kcontrol/kicker/panel.desktop kdebase/kcontrol/kicker/panel.desktop
+--- kdebase.orig//kcontrol/kicker/panel.desktop	2010-08-12 04:28:34.000000000 +0100
++++ kdebase/kcontrol/kicker/panel.desktop	2011-07-19 11:42:22.758311147 +0100
+@@ -3,7 +3,7 @@
+ Type=Application
+ DocPath=kcontrol/panel/index.html
+ Exec=kcmshell panel
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=kicker
+ X-KDE-ParentApp=kcontrol
+Only in kdebase/kcontrol/kicker: panel.desktop.orig
+diff -bur kdebase.orig//kcontrol/kio/cache.desktop kdebase/kcontrol/kio/cache.desktop
+--- kdebase.orig//kcontrol/kio/cache.desktop	2010-08-12 04:28:30.000000000 +0100
++++ kdebase/kcontrol/kio/cache.desktop	2011-07-19 11:42:22.781311140 +0100
+@@ -218,3 +218,4 @@
+ Keywords[zu]=Cache,Umlando,Umlando wokucinga,Izikhumulo,Usayizi
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kio: cache.desktop.orig
+diff -bur kdebase.orig//kcontrol/kio/cookies.desktop kdebase/kcontrol/kio/cookies.desktop
+--- kdebase.orig//kcontrol/kio/cookies.desktop	2010-08-12 04:28:29.000000000 +0100
++++ kdebase/kcontrol/kio/cookies.desktop	2011-07-19 11:42:22.781311140 +0100
+@@ -213,3 +213,4 @@
+ Keywords[zu]=Cookies,Cinga,Internet,WWW,Uxhumano olusakazekile,Umthetho, Izindawo
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kio: cookies.desktop.orig
+diff -bur kdebase.orig//kcontrol/kio/lanbrowser.desktop kdebase/kcontrol/kio/lanbrowser.desktop
+--- kdebase.orig//kcontrol/kio/lanbrowser.desktop	2010-08-12 04:28:29.000000000 +0100
++++ kdebase/kcontrol/kio/lanbrowser.desktop	2011-07-19 11:42:22.780310871 +0100
+@@ -224,3 +224,4 @@
+ Keywords[zh_CN]=samba,smb,windows,network,网络
+ 
+ Categories=Qt;KDE;X-KDE-settings-network;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kio: lanbrowser.desktop.orig
+diff -bur kdebase.orig//kcontrol/kio/netpref.desktop kdebase/kcontrol/kio/netpref.desktop
+--- kdebase.orig//kcontrol/kio/netpref.desktop	2010-08-12 04:28:30.000000000 +0100
++++ kdebase/kcontrol/kio/netpref.desktop	2011-07-19 11:42:22.779311017 +0100
+@@ -203,3 +203,4 @@
+ X-KDE-ParentApp=kcontrol
+ 
+ Categories=Qt;KDE;X-KDE-settings-network;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kio: netpref.desktop.orig
+diff -bur kdebase.orig//kcontrol/kio/proxy.desktop kdebase/kcontrol/kio/proxy.desktop
+--- kdebase.orig//kcontrol/kio/proxy.desktop	2010-08-12 04:28:29.000000000 +0100
++++ kdebase/kcontrol/kio/proxy.desktop	2011-07-19 11:42:22.779311017 +0100
+@@ -207,3 +207,4 @@
+ Keywords[zu]=Umlingani,Umlekeleli ongumlingana,Firewall,Squid,umlingani
+ 
+ Categories=Qt;KDE;X-KDE-settings-network;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kio: proxy.desktop.orig
+diff -bur kdebase.orig//kcontrol/kio/useragent.desktop kdebase/kcontrol/kio/useragent.desktop
+--- kdebase.orig//kcontrol/kio/useragent.desktop	2010-08-12 04:28:29.000000000 +0100
++++ kdebase/kcontrol/kio/useragent.desktop	2011-07-19 11:42:22.786311382 +0100
+@@ -230,3 +230,4 @@
+ Keywords[zu]=Ummeli Womsebenzisi,Umcingi,Internet,WWW,Uxhumano olusakazekile, ummeli,izibongo,umlekeleli,ngena ngaphakathi
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kio: useragent.desktop.orig
+diff -bur kdebase.orig//kcontrol/knotify/kcmnotify.desktop kdebase/kcontrol/knotify/kcmnotify.desktop
+--- kdebase.orig//kcontrol/knotify/kcmnotify.desktop	2010-08-12 04:28:30.000000000 +0100
++++ kdebase/kcontrol/knotify/kcmnotify.desktop	2011-07-19 11:42:22.778310900 +0100
+@@ -241,3 +241,4 @@
+ Keywords[zu]=Imisindo yesistimu,Okuzwakalayo,Umsindo,Yazisa,Ukuqwashisa, Ukwazisa
+ 
+ Categories=Qt;KDE;X-KDE-settings-sound;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/knotify: kcmnotify.desktop.orig
+diff -bur kdebase.orig//kcontrol/konq/desktopbehavior.desktop kdebase/kcontrol/konq/desktopbehavior.desktop
+--- kdebase.orig//kcontrol/konq/desktopbehavior.desktop	2010-08-12 04:28:36.000000000 +0100
++++ kdebase/kcontrol/konq/desktopbehavior.desktop	2011-07-19 11:42:22.756311056 +0100
+@@ -3,7 +3,7 @@
+ DocPath=kcontrol/desktopbehavior/index.html
+ Icon=desktop
+ Exec=kcmshell desktopbehavior
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=konq
+ X-KDE-FactoryName=dbehavior
+Only in kdebase/kcontrol/konq: desktopbehavior.desktop.orig
+diff -bur kdebase.orig//kcontrol/konq/desktop.desktop kdebase/kcontrol/konq/desktop.desktop
+--- kdebase.orig//kcontrol/konq/desktop.desktop	2010-08-12 04:28:35.000000000 +0100
++++ kdebase/kcontrol/konq/desktop.desktop	2011-07-19 11:42:22.757311606 +0100
+@@ -3,7 +3,7 @@
+ DocPath=kcontrol/desktop/index.html#desktop-number
+ Icon=desktop
+ Exec=kcmshell desktop
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=konq
+ X-KDE-FactoryName=ddesktop
+Only in kdebase/kcontrol/konq: desktop.desktop.orig
+diff -bur kdebase.orig//kcontrol/konq/desktoppath.desktop kdebase/kcontrol/konq/desktoppath.desktop
+--- kdebase.orig//kcontrol/konq/desktoppath.desktop	2010-08-12 04:28:36.000000000 +0100
++++ kdebase/kcontrol/konq/desktoppath.desktop	2011-07-19 11:42:22.789311587 +0100
+@@ -224,3 +224,4 @@
+ Keywords[zh_TW]=konqueror,filemanager,paths,desktop,directories,autostart,征服家,檔案管理程式,路徑,桌面,目錄,自動啟動
+ 
+ Categories=Qt;KDE;X-KDE-settings-system;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/konq: desktoppath.desktop.orig
+diff -bur kdebase.orig//kcontrol/konq/filebrowser.desktop kdebase/kcontrol/konq/filebrowser.desktop
+--- kdebase.orig//kcontrol/konq/filebrowser.desktop	2010-08-12 04:28:36.000000000 +0100
++++ kdebase/kcontrol/konq/filebrowser.desktop	2011-07-19 11:42:22.754311818 +0100
+@@ -3,7 +3,7 @@
+ DocPath=kcontrol/filemanager/index.html
+ Icon=kfm
+ Exec=kcmshell filebrowser
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=konq
+ X-KDE-FactoryName=browser
+Only in kdebase/kcontrol/konq: filebrowser.desktop.orig
+diff -bur kdebase.orig//kcontrol/konqhtml/khtml_behavior.desktop kdebase/kcontrol/konqhtml/khtml_behavior.desktop
+--- kdebase.orig//kcontrol/konqhtml/khtml_behavior.desktop	2010-08-12 04:28:35.000000000 +0100
++++ kdebase/kcontrol/konqhtml/khtml_behavior.desktop	2011-07-19 11:42:22.783311255 +0100
+@@ -229,3 +229,4 @@
+ Keywords[zu]=konqueror,kfm,umcingi,html,web,www,izinhlobo zamagama, imibala,imibala,java,javascripy,inkomba,izixhumanisi,izithombe,charsets, amaqoqo ezimpawu,ukubhala ngekhodi 
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/konqhtml: khtml_behavior.desktop.orig
+diff -bur kdebase.orig//kcontrol/konqhtml/khtml_filter.desktop kdebase/kcontrol/konqhtml/khtml_filter.desktop
+--- kdebase.orig//kcontrol/konqhtml/khtml_filter.desktop	2010-08-12 04:28:35.000000000 +0100
++++ kdebase/kcontrol/konqhtml/khtml_filter.desktop	2011-07-19 11:42:22.785311231 +0100
+@@ -143,3 +143,4 @@
+ Comment[zh_TW]=設定 Konqueror AdBlocK 過濾器
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/konqhtml: khtml_filter.desktop.orig
+diff -bur kdebase.orig//kcontrol/konqhtml/khtml_fonts.desktop kdebase/kcontrol/konqhtml/khtml_fonts.desktop
+--- kdebase.orig//kcontrol/konqhtml/khtml_fonts.desktop	2010-08-12 04:28:35.000000000 +0100
++++ kdebase/kcontrol/konqhtml/khtml_fonts.desktop	2011-07-19 11:42:22.784311468 +0100
+@@ -228,3 +228,4 @@
+ Keywords[zu]=konqueror,kfm,umcingi,html,web,www,izinhlobo zamagama,charsets,amaqoqo ezimpawu,ukubhala ngekhodi
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/konqhtml: khtml_fonts.desktop.orig
+diff -bur kdebase.orig//kcontrol/konqhtml/khtml_java_js.desktop kdebase/kcontrol/konqhtml/khtml_java_js.desktop
+--- kdebase.orig//kcontrol/konqhtml/khtml_java_js.desktop	2010-08-12 04:28:35.000000000 +0100
++++ kdebase/kcontrol/konqhtml/khtml_java_js.desktop	2011-07-19 11:42:22.784311468 +0100
+@@ -209,3 +209,4 @@
+ Keywords[zu]=konqueror,kfm,umcingi,html,web,www,java,javascript
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/konqhtml: khtml_java_js.desktop.orig
+diff -bur kdebase.orig//kcontrol/kthememanager/installktheme.desktop kdebase/kcontrol/kthememanager/installktheme.desktop
+--- kdebase.orig//kcontrol/kthememanager/installktheme.desktop	2010-08-12 04:28:25.000000000 +0100
++++ kdebase/kcontrol/kthememanager/installktheme.desktop	2011-07-20 11:37:19.372776907 +0100
+@@ -76,3 +76,5 @@
+ Type=Application
+ NoDisplay=true
+ Exec=kdeinstallktheme %f
++Categories=Qt;KDE;X-KDE-settings-desktop;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kthememanager: installktheme.desktop.orig
+diff -bur kdebase.orig//kcontrol/kthememanager/kthememanager.desktop kdebase/kcontrol/kthememanager/kthememanager.desktop
+--- kdebase.orig//kcontrol/kthememanager/kthememanager.desktop	2010-08-12 04:28:25.000000000 +0100
++++ kdebase/kcontrol/kthememanager/kthememanager.desktop	2011-07-19 11:42:22.800311582 +0100
+@@ -218,3 +218,4 @@
+ X-KDE-FactoryName=kthememanager
+ X-KDE-Library=kthememanager
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/kthememanager: kthememanager.desktop.orig
+diff -bur kdebase.orig//kcontrol/launch/kcmlaunch.desktop kdebase/kcontrol/launch/kcmlaunch.desktop
+--- kdebase.orig//kcontrol/launch/kcmlaunch.desktop	2010-08-12 04:28:26.000000000 +0100
++++ kdebase/kcontrol/launch/kcmlaunch.desktop	2011-07-19 11:42:22.776311321 +0100
+@@ -223,3 +223,4 @@
+ Keywords[zu]=umyaleli,qala,qalisa,kumatasatasa,inkomba,umphumela obuyayo,i-mouse,inkomba yendawo yokubhala,iyajikeleza,iyajikeleza,i-disk qalisa,uhlelo lwemisebenzi,umbiko
+ 
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/launch: kcmlaunch.desktop.orig
+diff -bur kdebase.orig//kcontrol/locale/language.desktop kdebase/kcontrol/locale/language.desktop
+--- kdebase.orig//kcontrol/locale/language.desktop	2010-08-12 04:28:29.000000000 +0100
++++ kdebase/kcontrol/locale/language.desktop	2011-07-19 11:42:22.753311334 +0100
+@@ -3,7 +3,7 @@
+ Icon=locale
+ Type=Application
+ DocPath=kcontrol/language/index.html
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=locale
+ X-KDE-FactoryName=locale
+Only in kdebase/kcontrol/locale: language.desktop.orig
+diff -bur kdebase.orig//kcontrol/nics/nic.desktop kdebase/kcontrol/nics/nic.desktop
+--- kdebase.orig//kcontrol/nics/nic.desktop	2010-08-12 04:28:32.000000000 +0100
++++ kdebase/kcontrol/nics/nic.desktop	2011-07-19 11:50:06.149311714 +0100
+@@ -170,5 +170,5 @@
+ Comment[zh_TW]=網路界面資訊
+ Comment[zu]=Ulwazi lomxhumanisi woxhumano olusakazekile
+ 
+-Categories=Qt;KDE;X-KDE-settings-network;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/nics: nic.desktop.orig
+diff -bur kdebase.orig//kcontrol/performance/kcmperformance.desktop kdebase/kcontrol/performance/kcmperformance.desktop
+--- kdebase.orig//kcontrol/performance/kcmperformance.desktop	2010-08-12 04:28:25.000000000 +0100
++++ kdebase/kcontrol/performance/kcmperformance.desktop	2011-07-19 11:42:22.797311749 +0100
+@@ -213,3 +213,4 @@
+ Keywords[zh_TW]=performance,speed,memory,improve,效能,速度,記憶體,增進
+ 
+ Categories=Qt;KDE;X-KDE-settings-components;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/performance: kcmperformance.desktop.orig
+diff -bur kdebase.orig//kcontrol/privacy/privacy.desktop kdebase/kcontrol/privacy/privacy.desktop
+--- kdebase.orig//kcontrol/privacy/privacy.desktop	2010-08-12 04:28:39.000000000 +0100
++++ kdebase/kcontrol/privacy/privacy.desktop	2011-07-19 11:42:22.805311429 +0100
+@@ -202,3 +202,4 @@
+ X-KDE-FactoryName=privacy
+ X-KDE-Library=privacy
+ Categories=Qt;KDE;X-KDE-settings-security;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/privacy: privacy.desktop.orig
+diff -bur kdebase.orig//kcontrol/randr/krandrtray.desktop kdebase/kcontrol/randr/krandrtray.desktop
+--- kdebase.orig//kcontrol/randr/krandrtray.desktop	2010-08-12 04:28:34.000000000 +0100
++++ kdebase/kcontrol/randr/krandrtray.desktop	2011-07-19 11:42:22.751311963 +0100
+@@ -138,4 +138,4 @@
+ Icon=randr
+ Type=Application
+ OnlyShowIn=KDE;
+-Categories=Qt;KDE;System;
++Categories=Qt;KDE;System;Settings;HardwareSettings;
+Only in kdebase/kcontrol/randr: krandrtray.desktop.orig
+diff -bur kdebase.orig//kcontrol/samba/smbstatus.desktop kdebase/kcontrol/samba/smbstatus.desktop
+--- kdebase.orig//kcontrol/samba/smbstatus.desktop	2010-08-12 04:28:34.000000000 +0100
++++ kdebase/kcontrol/samba/smbstatus.desktop	2011-07-20 11:35:50.277776622 +0100
+@@ -239,4 +239,4 @@
+ Keywords[zh_TW]=SMB,SAMBA,Windows network,LAN,System Information,Windows 網路,區域網路,系統資訊
+ Keywords[zu]=SMB,SAMBA,Uxhumano olusakazekile lwama-windows,LAN,Ulwazi lwesistimu
+ Categories=Qt;KDE;X-KDE-settings-network;
+-
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/samba: smbstatus.desktop.orig
+diff -bur kdebase.orig//kcontrol/screensaver/screensaver.desktop kdebase/kcontrol/screensaver/screensaver.desktop
+--- kdebase.orig//kcontrol/screensaver/screensaver.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/screensaver/screensaver.desktop	2011-07-19 11:42:22.777310968 +0100
+@@ -238,3 +238,4 @@
+ Keywords[zu]=abagcini zikrini,Ukubaluleka
+ 
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/screensaver: screensaver.desktop.orig
+diff -bur kdebase.orig//kcontrol/smserver/kcmsmserver.desktop kdebase/kcontrol/smserver/kcmsmserver.desktop
+--- kdebase.orig//kcontrol/smserver/kcmsmserver.desktop	2010-08-12 04:28:25.000000000 +0100
++++ kdebase/kcontrol/smserver/kcmsmserver.desktop	2011-07-19 11:42:22.755311510 +0100
+@@ -3,7 +3,7 @@
+ Type=Application
+ DocPath=kcontrol/kcmsmserver/index.html
+ Exec=kcmshell kcmsmserver
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=smserver
+ X-KDE-FactoryName=smserver
+Only in kdebase/kcontrol/smserver: kcmsmserver.desktop.orig
+diff -bur kdebase.orig//kcontrol/spellchecking/spellchecking.desktop kdebase/kcontrol/spellchecking/spellchecking.desktop
+--- kdebase.orig//kcontrol/spellchecking/spellchecking.desktop	2010-08-12 04:28:33.000000000 +0100
++++ kdebase/kcontrol/spellchecking/spellchecking.desktop	2011-07-19 11:42:22.756311056 +0100
+@@ -3,7 +3,7 @@
+ Icon=spellcheck
+ Type=Application
+ DocPath=kcontrol/spellchecking/index.html
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=spellchecking
+ X-KDE-ParentApp=kcontrol
+Only in kdebase/kcontrol/spellchecking: spellchecking.desktop.orig
+diff -bur kdebase.orig//kcontrol/style/style.desktop kdebase/kcontrol/style/style.desktop
+--- kdebase.orig//kcontrol/style/style.desktop	2010-08-12 04:28:35.000000000 +0100
++++ kdebase/kcontrol/style/style.desktop	2011-07-19 11:42:22.778310900 +0100
+@@ -232,3 +232,4 @@
+ Keywords[zu]=isitayela,izitayela,ukubukeka,widget,izimpawu zezithombe,amabha amathuluzi,umbhalo,ukugqamisa,apps,abayaleli be-KDE
+ 
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/style: style.desktop.orig
+diff -bur kdebase.orig//kcontrol/taskbar/kcmtaskbar.desktop kdebase/kcontrol/taskbar/kcmtaskbar.desktop
+--- kdebase.orig//kcontrol/taskbar/kcmtaskbar.desktop	2010-08-12 04:28:25.000000000 +0100
++++ kdebase/kcontrol/taskbar/kcmtaskbar.desktop	2011-07-19 11:42:22.757311606 +0100
+@@ -3,7 +3,7 @@
+ Type=Application
+ DocPath=kcontrol/kcmtaskbar/index.html
+ Exec=kcmshell kcmtaskbar
+-
++OnlyShowIn=KDE;
+ 
+ X-KDE-Library=taskbar
+ X-KDE-FactoryName=taskbar
+Only in kdebase/kcontrol/taskbar: kcmtaskbar.desktop.orig
+diff -bur kdebase.orig//kcontrol/usbview/kcmusb.desktop kdebase/kcontrol/usbview/kcmusb.desktop
+--- kdebase.orig//kcontrol/usbview/kcmusb.desktop	2010-08-12 04:28:29.000000000 +0100
++++ kdebase/kcontrol/usbview/kcmusb.desktop	2011-07-19 11:51:42.541311620 +0100
+@@ -237,4 +237,5 @@
+ Keywords[zh_TW]=USB,devices,viewer,control,裝置,檢視器,控制
+ Keywords[zu]=USB,amathukuzi ananjongo,umbukisi,lawula
+ 
+-Categories=Qt;KDE;X-KDE-settings-hardware;
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/usbview: kcmusb.desktop.orig
+diff -bur kdebase.orig//kcontrol/view1394/kcmview1394.desktop kdebase/kcontrol/view1394/kcmview1394.desktop
+--- kdebase.orig//kcontrol/view1394/kcmview1394.desktop	2010-08-12 04:28:35.000000000 +0100
++++ kdebase/kcontrol/view1394/kcmview1394.desktop	2011-07-19 11:51:05.546312167 +0100
+@@ -216,5 +216,5 @@
+ Keywords[zh_CN]=1394,Firewire,devices,viewer,control,设备,查看器,控制,火线
+ Keywords[zh_TW]=1394,Firewire,devices,viewer,control,裝置,檢視器,控制
+ 
+-Categories=Qt;KDE;X-KDE-settings-hardware;
+-
++Categories=Qt;KDE;X-KDE-information;
++OnlyShowIn=KDE;
+Only in kdebase/kcontrol/view1394: kcmview1394.desktop.orig
+diff -bur kdebase.orig//kdepasswd/kcm/kcm_useraccount.desktop kdebase/kdepasswd/kcm/kcm_useraccount.desktop
+--- kdebase.orig//kdepasswd/kcm/kcm_useraccount.desktop	2010-08-12 04:29:37.000000000 +0100
++++ kdebase/kdepasswd/kcm/kcm_useraccount.desktop	2011-07-19 11:46:33.778311383 +0100
+@@ -1,6 +1,7 @@
+ [Desktop Entry]
+ Icon=personal
+ Categories=Qt;KDE;X-KDE-settings-security;
++OnlyShowIn=KDE;
+ X-KDE-ParentApp=kcontrol
+ X-KDE-Library=useraccount
+ Type=Application
+Only in kdebase/kdepasswd/kcm: kcm_useraccount.desktop.orig
+diff -bur kdebase.orig//kdepasswd/kdepasswd.desktop kdebase/kdepasswd/kdepasswd.desktop
+--- kdebase.orig//kdepasswd/kdepasswd.desktop	2010-08-12 04:29:37.000000000 +0100
++++ kdebase/kdepasswd/kdepasswd.desktop	2011-07-19 11:42:22.802311548 +0100
+@@ -3,6 +3,7 @@
+ Icon=password
+ Type=Application
+ Categories=Qt;KDE;Settings;
++OnlyShowIn=KDE;
+ NoDisplay=true
+ X-DCOP-ServiceType=Unique
+ Name=Change Password
+Only in kdebase/kdepasswd: kdepasswd.desktop.orig
+Only in kdebase/kdeprint/kdeprintfax: kdeprintfax.desktop.orig
+diff -bur kdebase.orig//kdeprint/kjobviewer/kjobviewer.desktop kdebase/kdeprint/kjobviewer/kjobviewer.desktop
+--- kdebase.orig//kdeprint/kjobviewer/kjobviewer.desktop	2010-08-12 04:29:41.000000000 +0100
++++ kdebase/kdeprint/kjobviewer/kjobviewer.desktop	2011-07-19 11:42:22.752311329 +0100
+@@ -89,4 +89,5 @@
+ GenericName[zh_TW]=列印工作
+ 
+ X-DCOP-ServiceType=Unique
+-Categories=Qt;KDE;Utility;X-KDE-Utilities-Peripherals;
++Categories=Qt;KDE;Utility;X-KDE-Utilities-Peripherals;System;
++OnlyShowIn=KDE;
+Only in kdebase/kdeprint/kjobviewer: kjobviewer.desktop.orig
+diff -bur kdebase.orig//kdeprint/printmgr/printers.desktop kdebase/kdeprint/printmgr/printers.desktop
+--- kdebase.orig//kdeprint/printmgr/printers.desktop	2010-08-12 04:29:41.000000000 +0100
++++ kdebase/kdeprint/printmgr/printers.desktop	2011-07-19 11:42:22.787311214 +0100
+@@ -233,3 +233,4 @@
+ Keywords[zu]=shicilela,umshicileli,abaphathi boshicilelo
+ 
+ Categories=Qt;KDE;X-KDE-settings-hardware;Settings;
++OnlyShowIn=KDE;
+Only in kdebase/kdeprint/printmgr: printers.desktop.orig
+diff -bur kdebase.orig//khelpcenter/Help.desktop kdebase/khelpcenter/Help.desktop
+--- kdebase.orig//khelpcenter/Help.desktop	2010-08-12 04:28:42.000000000 +0100
++++ kdebase/khelpcenter/Help.desktop	2011-07-19 11:42:37.774311301 +0100
+@@ -82,5 +82,5 @@
+ Name[zh_CN]=帮助
+ Name[zh_TW]=求助
+ Name[zu]=Usizo
+-Categories=Qt;KDE;Core;
++Categories=Qt;KDE;Core;Documentation;
+ OnlyShowIn=KDE;
+Only in kdebase/khelpcenter: Help.desktop.orig
+diff -bur kdebase.orig//khotkeys/kcontrol/khotkeys.desktop kdebase/khotkeys/kcontrol/khotkeys.desktop
+--- kdebase.orig//khotkeys/kcontrol/khotkeys.desktop	2010-08-12 04:30:07.000000000 +0100
++++ kdebase/khotkeys/kcontrol/khotkeys.desktop	2011-07-20 11:59:36.959776269 +0100
+@@ -206,3 +206,4 @@
+ Keywords[zh_TW]=Keys,Global key bindings,Key bindings,Gestures,Mouse gestures,按鍵,全域按建連結,按鍵連結,手勢,滑鼠手勢
+ 
+ Categories=Qt;KDE;X-KDE-settings-accessibility;
++OnlyShowIn=KDE;
+Only in kdebase/khotkeys/kcontrol: khotkeys.desktop.orig
+diff -bur kdebase.orig//kicker/kicker/kcmkicker.desktop kdebase/kicker/kicker/kcmkicker.desktop
+--- kdebase.orig//kicker/kicker/kcmkicker.desktop	2010-08-12 04:30:06.000000000 +0100
++++ kdebase/kicker/kicker/kcmkicker.desktop	2011-07-19 11:42:37.774311301 +0100
+@@ -77,4 +77,4 @@
+ Name[zh_TW]=設定面板
+ X-KDE-StartupNotify=true
+ OnlyShowIn=KDE;
+-Categories=Qt;KDE;Settings;
++Categories=Qt;KDE;
+Only in kdebase/kicker/kicker: kcmkicker.desktop.orig
+diff -bur kdebase.orig//kioslave/cgi/kcmcgi/kcmcgi.desktop kdebase/kioslave/cgi/kcmcgi/kcmcgi.desktop
+--- kdebase.orig//kioslave/cgi/kcmcgi/kcmcgi.desktop	2010-08-12 04:29:31.000000000 +0100
++++ kdebase/kioslave/cgi/kcmcgi/kcmcgi.desktop	2011-07-19 11:45:38.206311478 +0100
+@@ -229,3 +229,4 @@
+ Keywords[zh_TW]=CGI,KIO,Slave,Paths,路徑
+ Keywords[zu]=CGI,KIO,Slave,Izindlela
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/kioslave/cgi/kcmcgi: kcmcgi.desktop.orig
+diff -bur kdebase.orig//kioslave/media/kcmodule/media.desktop kdebase/kioslave/media/kcmodule/media.desktop
+--- kdebase.orig//kioslave/media/kcmodule/media.desktop	2010-08-12 04:29:33.000000000 +0100
++++ kdebase/kioslave/media/kcmodule/media.desktop	2011-07-19 11:42:22.803311681 +0100
+@@ -195,3 +195,4 @@
+ Keywords[zh_TW]=storage,media,usb,cdrom,device,儲存,媒體,光碟機,裝置
+ 
+ Categories=Qt;KDE;X-KDE-settings-peripherals;
++OnlyShowIn=KDE;
+Only in kdebase/kioslave/media/kcmodule: media.desktop.orig
+Only in kdebase/kmenuedit: kmenuedit.desktop.orig
+diff -bur kdebase.orig//knetattach/knetattach.desktop kdebase/knetattach/knetattach.desktop
+--- kdebase.orig//knetattach/knetattach.desktop	2010-08-12 04:29:19.000000000 +0100
++++ kdebase/knetattach/knetattach.desktop	2011-07-19 11:42:22.799312185 +0100
+@@ -78,5 +78,6 @@
+ Type=Application
+ Terminal=false
+ X-KDE-StartupNotify=true
+-Categories=Qt;KDE;Network;
++Categories=Qt;KDE;Network;X-MandrivaLinux-.hidden;
++OnlyShowIn=KDE;
+ DocPath=knetattach/index.html
+Only in kdebase/knetattach: knetattach.desktop.orig
+diff -bur kdebase.orig//konqueror/Home.desktop kdebase/konqueror/Home.desktop
+--- kdebase.orig//konqueror/Home.desktop	2010-08-12 04:29:15.000000000 +0100
++++ kdebase/konqueror/Home.desktop	2011-07-19 11:42:37.775311319 +0100
+@@ -166,5 +166,5 @@
+ GenericName[zh_CN]=个人文件
+ GenericName[zh_TW]=個人檔案
+ GenericName[zu]=Amafayela Omuntu siqu
+-Categories=Qt;KDE;Core;
++Categories=Qt;KDE;Core;X-MandrivaLinux-.hidden;
+ OnlyShowIn=KDE;
+Only in kdebase/konqueror: Home.desktop.orig
+diff -bur kdebase.orig//konqueror/kfmclient.desktop kdebase/konqueror/kfmclient.desktop
+--- kdebase.orig//konqueror/kfmclient.desktop	2010-08-12 04:29:17.000000000 +0100
++++ kdebase/konqueror/kfmclient.desktop	2011-07-19 11:42:22.804311362 +0100
+@@ -18,5 +18,5 @@
+ Name[te]=కాంకెరర్
+ Name[th]=คอนเควอร์เรอร์
+ X-DCOP-ServiceType=None
+-Categories=Qt;KDE;System;
++Categories=Qt;KDE;System;X-MandrivaLinux-.hidden;
+ X-KDE-HasTempFileOption=true
+Only in kdebase/konqueror: kfmclient.desktop.orig
+diff -bur kdebase.orig//konqueror/kfmclient_dir.desktop kdebase/konqueror/kfmclient_dir.desktop
+--- kdebase.orig//konqueror/kfmclient_dir.desktop	2010-08-12 04:29:18.000000000 +0100
++++ kdebase/konqueror/kfmclient_dir.desktop	2011-07-19 11:42:22.804311362 +0100
+@@ -17,4 +17,4 @@
+ Name[ta]=கான்கொரர்
+ Name[te]=కాంకెరర్
+ Name[th]=คอนเควอร์เรอร์
+-Categories=Qt;KDE;System;
++Categories=Qt;KDE;System;X-MandrivaLinux-.hidden;
+Only in kdebase/konqueror: kfmclient_dir.desktop.orig
+diff -bur kdebase.orig//konqueror/kfmclient_html.desktop kdebase/konqueror/kfmclient_html.desktop
+--- kdebase.orig//konqueror/kfmclient_html.desktop	2010-08-12 04:29:17.000000000 +0100
++++ kdebase/konqueror/kfmclient_html.desktop	2011-07-19 11:42:22.808311482 +0100
+@@ -17,5 +17,6 @@
+ Name[ta]=கான்கொரர்
+ Name[te]=కాంకెరర్
+ Name[th]=คอนเควอร์เรอร์
+-Categories=Qt;KDE;System;
++Categories=Qt;KDE;Network;WebBrowser;
+ X-KDE-HasTempFileOption=true
++OnlyShowIn=KDE;
+Only in kdebase/konqueror: kfmclient_html.desktop.orig
+diff -bur kdebase.orig//konqueror/kfmclient_war.desktop kdebase/konqueror/kfmclient_war.desktop
+--- kdebase.orig//konqueror/kfmclient_war.desktop	2010-08-12 04:29:18.000000000 +0100
++++ kdebase/konqueror/kfmclient_war.desktop	2011-07-19 11:42:22.808311482 +0100
+@@ -17,5 +17,6 @@
+ Name[ta]=கான்கொரர்
+ Name[te]=కాంకెరర్
+ Name[th]=คอนเควอร์เรอร์
+-Categories=Qt;KDE;System;
++Categories=Qt;KDE;Network;WebBrowser;
+ X-KDE-HasTempFileOption=true
++OnlyShowIn=KDE;
+Only in kdebase/konqueror: kfmclient_war.desktop.orig
+diff -bur kdebase.orig//konqueror/konqbrowser.desktop kdebase/konqueror/konqbrowser.desktop
+--- kdebase.orig//konqueror/konqbrowser.desktop	2010-08-12 04:29:17.000000000 +0100
++++ kdebase/konqueror/konqbrowser.desktop	2011-07-19 11:42:22.750311447 +0100
+@@ -95,4 +95,5 @@
+ GenericName[zh_CN]=Web 浏览器
+ GenericName[zh_TW]=網頁瀏覽器
+ GenericName[zu]=Umcingi we-Web
+-Categories=Qt;KDE;Network;
++Categories=Qt;KDE;Network;WebBrowser;
++
+diff -bur kdebase.orig//konqueror/sidebar/trees/history_module/kcmhistory.desktop kdebase/konqueror/sidebar/trees/history_module/kcmhistory.desktop
+--- kdebase.orig//konqueror/sidebar/trees/history_module/kcmhistory.desktop	2010-08-12 04:29:16.000000000 +0100
++++ kdebase/konqueror/sidebar/trees/history_module/kcmhistory.desktop	2011-07-19 11:42:22.783311255 +0100
+@@ -231,3 +231,4 @@
+ Keywords[zh_TW]=history,expire,歷史紀錄,過期
+ Keywords[zu]=umlando,ukuphelelwa isikhathi
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/konqueror/sidebar/trees/history_module: kcmhistory.desktop.orig
+diff -bur kdebase.orig//konsole/konsole.desktop kdebase/konsole/konsole.desktop
+--- kdebase.orig//konsole/konsole.desktop	2010-08-12 04:29:11.000000000 +0100
++++ kdebase/konsole/konsole.desktop	2011-07-19 11:42:22.808311482 +0100
+@@ -125,4 +125,5 @@
+ GenericName[zu]=Uhlelo lwemisebenzi lwangaohandle
+ X-DCOP-ServiceType=Multi
+ X-KDE-AuthorizeAction=shell_access
+-Categories=Qt;KDE;System;TerminalEmulator;
++Categories=Qt;KDE;TerminalEmulator;Utility;
++OnlyShowIn=KDE;
+Only in kdebase/konsole: konsole.desktop.orig
+diff -bur kdebase.orig//kpager/kpager.desktop kdebase/kpager/kpager.desktop
+--- kdebase.orig//kpager/kpager.desktop	2010-08-12 04:29:20.000000000 +0100
++++ kdebase/kpager/kpager.desktop	2011-07-19 11:42:22.810310934 +0100
+@@ -104,3 +104,4 @@
+ X-KDE-StartupNotify=false
+ X-DCOP-ServiceType=Unique
+ Categories=Qt;KDE;Utility;X-KDE-Utilities-Desktop;
++NoDisplay=true
+Only in kdebase/kpager: kpager.desktop.orig
+diff -bur kdebase.orig//kpersonalizer/kpersonalizer.desktop kdebase/kpersonalizer/kpersonalizer.desktop
+--- kdebase.orig//kpersonalizer/kpersonalizer.desktop	2010-08-12 04:29:23.000000000 +0100
++++ kdebase/kpersonalizer/kpersonalizer.desktop	2011-07-19 11:42:30.190312126 +0100
+@@ -85,4 +85,5 @@
+ X-KDE-autostart-condition=kpersonalizerrc:General:FirstLogin:true
+ X-DCOP-ServiceType=Multi
+ Categories=Qt;KDE;Settings;
++NoDisplay=true
+ OnlyShowIn=KDE;
+Only in kdebase/kpersonalizer: kpersonalizer.desktop.orig
+diff -bur kdebase.orig//ksplashml/kcmksplash/ksplashthememgr.desktop kdebase/ksplashml/kcmksplash/ksplashthememgr.desktop
+--- kdebase.orig//ksplashml/kcmksplash/ksplashthememgr.desktop	2010-08-12 04:29:36.000000000 +0100
++++ kdebase/ksplashml/kcmksplash/ksplashthememgr.desktop	2011-07-19 11:42:22.806311169 +0100
+@@ -214,3 +214,4 @@
+ Keywords[zh_CN]=splash screen,splash theme,startup,飞溅屏幕,飞溅主题,启动
+ Keywords[zh_TW]=splash screen,splash theme,startup,啟動
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/ksplashml/kcmksplash: ksplashthememgr.desktop.orig
+diff -bur kdebase.orig//ksysguard/gui/ksysguard.desktop kdebase/ksysguard/gui/ksysguard.desktop
+--- kdebase.orig//ksysguard/gui/ksysguard.desktop	2010-08-12 04:29:39.000000000 +0100
++++ kdebase/ksysguard/gui/ksysguard.desktop	2011-07-19 11:42:22.751311963 +0100
+@@ -99,4 +99,5 @@
+ Path=
+ X-KDE-StartupNotify=true
+ X-DCOP-ServiceType=Multi
+-Categories=Qt;KDE;System;
++Categories=Qt;KDE;System;Monitor;
++OnlyShowIn=KDE;
+Only in kdebase/ksysguard/gui: ksysguard.desktop.orig
+diff -bur kdebase.orig//ktip/ktip.desktop kdebase/ktip/ktip.desktop
+--- kdebase.orig//ktip/ktip.desktop	2010-08-12 04:30:07.000000000 +0100
++++ kdebase/ktip/ktip.desktop	2011-07-19 11:42:37.775311319 +0100
+@@ -89,5 +89,5 @@
+ X-KDE-autostart-phase=2
+ X-KDE-autostart-condition=ktiprc:TipOfDay:RunOnStart:true
+ X-DCOP-ServiceType=Unique
+-Categories=Qt;KDE;Utility;X-KDE-Utilities-Desktop;
++Categories=Qt;KDE;X-KDE-Utilities-Desktop;
+ OnlyShowIn=KDE;
+Only in kdebase/ktip: ktip.desktop.orig
+diff -bur kdebase.orig//kwin/kcmkwin/kwindecoration/kwindecoration.desktop kdebase/kwin/kcmkwin/kwindecoration/kwindecoration.desktop
+--- kdebase.orig//kwin/kcmkwin/kwindecoration/kwindecoration.desktop	2010-08-12 04:30:14.000000000 +0100
++++ kdebase/kwin/kcmkwin/kwindecoration/kwindecoration.desktop	2011-07-19 11:42:22.777310968 +0100
+@@ -229,3 +229,4 @@
+ Keywords[zh_TW]=kwin,window,manager,border,style,theme,look,feel,layout,button,handle,edge,kwm,decoration,視窗,管理員,邊框,風格,佈景主題,外觀,感覺,佈局,按鈕,邊緣,裝飾
+ Keywords[zu]=kwin,i-window,imenenja,umngcele,isitayela,bona,izwa, isendlalelo,inkinobho,isibambo,unqenqema,kwm,umhlobiso
+ Categories=Qt;KDE;X-KDE-settings-looknfeel;
++OnlyShowIn=KDE;
+Only in kdebase/kwin/kcmkwin/kwindecoration: kwindecoration.desktop.orig
+diff -bur kdebase.orig//kwin/kcmkwin/kwinoptions/kwinoptions.desktop kdebase/kwin/kcmkwin/kwinoptions/kwinoptions.desktop
+--- kdebase.orig//kwin/kcmkwin/kwinoptions/kwinoptions.desktop	2010-08-12 04:30:13.000000000 +0100
++++ kdebase/kwin/kcmkwin/kwinoptions/kwinoptions.desktop	2011-07-19 11:42:22.758311147 +0100
+@@ -3,6 +3,7 @@
+ Type=Application
+ Exec=kcmshell kwinoptions
+ DocPath=kcontrol/windowmanagement/index.html
++OnlyShowIn=KDE;
+ 
+ X-KDE-ModuleType=Library
+ X-KDE-Library=kwinoptions
+Only in kdebase/kwin/kcmkwin/kwinoptions: kwinoptions.desktop.orig
+diff -bur kdebase.orig//kwin/kcmkwin/kwinrules/kwinrules.desktop kdebase/kwin/kcmkwin/kwinrules/kwinrules.desktop
+--- kdebase.orig//kwin/kcmkwin/kwinrules/kwinrules.desktop	2010-08-12 04:30:14.000000000 +0100
++++ kdebase/kwin/kcmkwin/kwinrules/kwinrules.desktop	2011-07-19 11:42:22.802311548 +0100
+@@ -207,3 +207,4 @@
+ Keywords[zh_CN]=size,position,state,window behavior,windows,specific,workarounds,remember,rules,大小,位置,状态,窗口行为,窗口,特定,工作区,记住,规则
+ Keywords[zh_TW]=size,position,state,window behavior,windows,specific,workarounds,remember,rules,大小,位置,狀態,視窗行為,視窗,指定,記憶,規則
+ Categories=Qt;KDE;X-KDE-settings-desktop;
++OnlyShowIn=KDE;
+Only in kdebase/kwin/kcmkwin/kwinrules: kwinrules.desktop.orig
+diff -bur kdebase.orig//kxkb/keyboard.desktop kdebase/kxkb/keyboard.desktop
+--- kdebase.orig//kxkb/keyboard.desktop	2010-08-12 04:29:19.000000000 +0100
++++ kdebase/kxkb/keyboard.desktop	2011-07-19 11:42:22.786311382 +0100
+@@ -241,3 +241,4 @@
+ Keywords[zu]=Ibhodi lokhiye,ukuphindwa kwebhodi lokhiye,Cofa izinga lomsindo, Amathuluzi anenjongo omphumela wangaphakathi,phinda,izina lomsindo
+ 
+ Categories=Qt;KDE;X-KDE-settings-hardware;
++OnlyShowIn=KDE;
+Only in kdebase/kxkb: keyboard.desktop.orig
+diff -bur kdebase.orig//kxkb/keyboard_layout.desktop kdebase/kxkb/keyboard_layout.desktop
+--- kdebase.orig//kxkb/keyboard_layout.desktop	2010-08-12 04:29:19.000000000 +0100
++++ kdebase/kxkb/keyboard_layout.desktop	2011-07-19 11:42:22.810310934 +0100
+@@ -237,3 +237,4 @@
+ Keywords[zu]=Ibhodi lokhiye,Isendlalelo,Okwaphakathi kwezizwe
+ 
+ Categories=Qt;KDE;X-KDE-settings-accessibility;
++OnlyShowIn=KDE;
+Only in kdebase/kxkb: keyboard_layout.desktop.orig
+diff -bur kdebase.orig//nsplugins/khtml_plugins.desktop kdebase/nsplugins/khtml_plugins.desktop
+--- kdebase.orig//nsplugins/khtml_plugins.desktop	2010-08-12 04:29:14.000000000 +0100
++++ kdebase/nsplugins/khtml_plugins.desktop	2011-07-19 11:42:22.785311231 +0100
+@@ -231,3 +231,4 @@
+ Keywords[zu]=komqueror,kfm,umcingi,html,web,www,izinhlobo zamagama, ama-plugin
+ 
+ Categories=Qt;KDE;X-KDE-settings-webbrowsing;
++OnlyShowIn=KDE;
+Only in kdebase/nsplugins: khtml_plugins.desktop.orig

@@ -1,0 +1,23 @@
+--- qtinterface/tqt.h.orig	2010-08-31 00:37:01.000000000 +0100
++++ qtinterface/tqt.h	2011-02-03 13:48:47.483987570 +0000
+@@ -42,7 +42,7 @@
+ #define TQT_METHOD(a)	METHOD(a)
+ #define TQT_SLOT(a)	SLOT(a)
+ #define TQT_SIGNAL(a)	SIGNAL(a)
+-#endif // __cplusplus
++#endif
+ 
+ #ifdef USE_QT3
+ #define qint64			long
+@@ -1319,11 +1319,4 @@
+ #define TQXmlDefaultHandler QXmlDefaultHandler
+ #endif
+ 
+-// Undo any damage caused by the tqt-replace utility
+-//#define QCStringList TQCStringList
+-//#define QtWIN TQtWIN
+-
+-//#include "kdemacros.h.in"
+-//#define TQT_EXPORT KDE_EXPORT
+-
+ #endif /* TQT_H */

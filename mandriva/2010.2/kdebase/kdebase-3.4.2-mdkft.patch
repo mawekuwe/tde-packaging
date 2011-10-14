@@ -1,0 +1,20 @@
+--- kdebase-3.4.2/kdm/kfrontend/kgapp.cpp--	2005-09-07 20:13:23.000000000 +0200
++++ kdebase-3.4.2/kdm/kfrontend/kgapp.cpp	2005-09-07 20:13:52.000000000 +0200
+@@ -140,7 +140,7 @@ kg_main( const char *argv0 )
+ 	app.setFont( _normalFont );
+ 
+ 	setup_modifiers( dpy, _numLockStatus );
+-	SecureDisplay( dpy );
++	//SecureDisplay( dpy );
+ 	KProcess *proc = 0;
+ 	if (!_grabServer) {
+ 		if (_useBackground) {
+@@ -226,7 +226,7 @@ kg_main( const char *argv0 )
+ 	KGVerify::done();
+ 
+ 	delete proc;
+-	UnsecureDisplay( dpy );
++	//UnsecureDisplay( dpy );
+ 	restore_modifiers();
+ 
+ 	XSetInputFocus( qt_xdisplay(), PointerRoot, PointerRoot, CurrentTime );

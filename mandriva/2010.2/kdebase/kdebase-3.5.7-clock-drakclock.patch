@@ -1,0 +1,15 @@
+--- kdebase-3.5.7/kicker/applets/clock/clock.cpp.orig	2007-09-04 01:18:10.000000000 -0300
++++ kdebase-3.5.7/kicker/applets/clock/clock.cpp	2007-09-04 01:19:41.000000000 -0300
+@@ -1464,11 +1464,7 @@
+             preferences();
+             break;
+         case 103:
+-            proc << locate("exe", "kdesu");
+-            proc << "--nonewdcop";
+-            proc << TQString("%1 kde-clock.desktop --lang %2")
+-                .arg(locate("exe", "kcmshell"))
+-                .arg(KGlobal::locale()->language());
++            proc << locate("exe", "drakclock");
+             proc.start(KProcess::DontCare);
+             break;
+         case 104:

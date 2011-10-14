@@ -1,0 +1,17 @@
+#!/bin/bash
+# This adds a USB device to the "desktop usb" group.
+# You just need to create an entry "desktopdev ..." in a usermap file
+# and it will be picked up automatically.
+
+# Mandriva uses udev, you don't have to create a usermap
+# If you want this script to be called, you have to create an udev
+# rule in /etc/udev/rules.d/ that starts it, using
+# RUN+="/etc/udev/agents.d/usb/desktopdev"
+
+if [ -x /sbin/resmgr ]; then
+	if [ "${ACTION}" = "add" ]; then
+		/sbin/resmgr ${ACTION} ${DEVICE} desktop usb && exit 0
+	else
+		/sbin/resmgr ${ACTION} ${DEVICE} desktop && exit 0
+	fi
+fi

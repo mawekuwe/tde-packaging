@@ -1,0 +1,23 @@
+--- Makefile	2008-07-18 21:48:27.000000000 +0200
++++ Makefile.oden	2008-07-18 21:49:27.000000000 +0200
+@@ -33,15 +33,15 @@
+ install: $(ALL)
+ 	mkdir -p $(SBINDIR) $(LIBDIR) $(MANDIR)/man{1,3,5,8} \
+ 		$(ETCDIR) $(PAMDIR) $(INCDIR)
+-	install -m 555 $(LIB) $(LIBDIR)
+-	install -m 555 $(PAM) $(PAMDIR)
++	install -m 755 $(LIB) $(LIBDIR)
++	install -m 755 $(PAM) $(PAMDIR)
+ 	if [ ! -f $(ETCDIR)/resmgr.conf ]; then \
+ 		install -m 644 etc/resmgr.conf $(ETCDIR); \
+ 	fi
+-	install -m 444 resmgr.h $(INCDIR)
+-	install -m 555 -s $(CLT) $(SRV) $(SBINDIR)
++	install -m 644 resmgr.h $(INCDIR)
++	install -m 755 -s $(CLT) $(SRV) $(SBINDIR)
+ 	for x in 1 3 5 8; do \
+-		install -m 444 doc/*.$$x $(MANDIR)/man$$x; \
++		install -m 644 doc/*.$$x $(MANDIR)/man$$x; \
+ 	done
+ 
+ clean distclean:

@@ -1,0 +1,86 @@
+--- kdesktop/lock/lockdlg.cc.fix_vibrate_dialog	2007-05-14 09:55:44.000000000 +0200
++++ kdesktop/lock/lockdlg.cc	2009-01-04 06:20:33.000000000 +0100
+@@ -53,6 +53,7 @@
+ #include <X11/Xutil.h>
+ #include <X11/keysym.h>
+ #include <fixx11h.h>
++#include <kapplication.h>
+ 
+ #ifndef AF_LOCAL
+ # define AF_LOCAL	AF_UNIX
+@@ -202,6 +203,38 @@
+     }
+ }
+ 
++void PasswordDlg::movedialog( int _move )
++{
++     waitMoveDialog = true;
++     this->move(pos().x()+_move, pos().y());
++     TQTimer::singleShot( 50, this, SLOT(moveTimerDone()) );
++     while (waitMoveDialog)
++          kapp->processEvents();
++}
++
++void PasswordDlg::moveTimerDone()
++{
++     waitMoveDialog = false;
++}
++
++void PasswordDlg::badPasswordLogin()
++{
++     if ( mUnlockingFailed )
++     {
++          for ( int i = 0 ; i<2 ; i++)
++          {
++               movedialog( 10 );
++               movedialog( -20 );
++               movedialog( 20 );
++               movedialog( -20 );
++               movedialog( 20 );
++               movedialog( -10 );
++          }
++     }
++}
++
++
++
+ //---------------------------------------------------------------------------
+ //
+ // Handle timer events.
+@@ -332,6 +365,7 @@
+             ok->setEnabled(false);
+             cancel->setEnabled(false);
+             mNewSessButton->setEnabled( false );
++			badPasswordLogin();
+             return;
+         case AuthAbort:
+             return;
+--- kdesktop/lock/lockdlg.h.fix_vibrate_dialog	2005-09-10 10:25:41.000000000 +0200
++++ kdesktop/lock/lockdlg.h	2009-01-04 06:20:33.000000000 +0100
+@@ -55,7 +55,7 @@
+     void slotOK();
+     void layoutClicked();
+     void slotActivity();
+-
++	void moveTimerDone();
+ private:
+     void setLayoutText( const TQString &txt );
+     void capsLocked();
+@@ -71,6 +71,9 @@
+     void handleVerify();
+     void reapVerify();
+     void cantCheck();
++   void movedialog( int _move );
++   void badPasswordLogin();
++
+     GreeterPluginHandle *mPlugin;
+     KGreeterPlugin *greet;
+     TQFrame      *frame;
+@@ -86,6 +89,7 @@
+     TQStringList::iterator currLayout;
+     int         sPid, sFd;
+     TQListView   *lv;
++	bool        waitMoveDialog;
+ };
+ 
+ #endif

@@ -1,0 +1,10 @@
+diff -Naur kdebase-3.5.10/kioslave/media/services/media_safelyremove.desktop kdebase-3.5.10.yeni/kioslave/media/services/media_safelyremove.desktop
+--- kdebase-3.5.10/kioslave/media/services/media_safelyremove.desktop	2008-08-19 21:16:59.000000000 +0300
++++ kdebase-3.5.10.yeni/kioslave/media/services/media_safelyremove.desktop	2009-12-22 00:51:57.122282682 +0200
+@@ -71,5 +71,5 @@
+ Name[wa]=Ositer e såvrité
+ Name[zh_CN]=安全删除
+ Name[zh_TW]=安全的移除
+-Exec=kio_media_mounthelper -s %u
++Exec=kio_media_mounthelper -u %u
+ 

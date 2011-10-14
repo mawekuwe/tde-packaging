@@ -1,0 +1,26 @@
+--- qtinterface/tqglobal.h.orig	2011-02-04 12:35:10.215472605 +0000
++++ qtinterface/tqglobal.h	2011-02-04 12:35:45.537474675 +0000
+@@ -26,18 +26,18 @@
+ 
+ #ifdef USE_QT3
+ 
+-// Pull in all Qt3 global defines
++/* Pull in all Qt3 global defines */
+ 
+ #include <qglobal.h>
+ 
+-#endif // USE_QT3
++#endif /* USE_QT3 */
+ 
+ #ifdef USE_QT4
+ 
+-// Pull in all Qt4 global defines
++/* Pull in all Qt4 global defines */
+ 
+ #include <Qt/qglobal.h>
+ 
+-#endif // USE_QT4
++#endif /* USE_QT4 */
+ 
+ #endif /* TQGLOBAL_H */
+\ No newline at end of file
