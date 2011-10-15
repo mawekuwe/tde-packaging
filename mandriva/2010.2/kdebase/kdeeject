@@ -1,0 +1,77 @@
+#!/bin/sh
+# Script used by kdesktop to eject a removable media (CDROM/Tape/SCSI/Floppy)
+# Relies on the 'eject' program, 'cdcontrol' on *BSD
+#
+# Copyright GPL v2 by David Faure <david@mandrakesoft.com>
+#
+quiet=0
+if test "$1" = "-q"; then
+  quiet=1
+  shift
+fi
+
+if test "$1" = "--help"; then
+   echo "Usage: $0 <name> where name is a device or a mountpoint."
+   exit 0
+fi
+
+if test -z "$1"; then
+  for dev in /dev/cdrom /dev/dvd /dev/dvdram /dev/cdrecorder; do
+     if test -e $dev; then
+        lp=`readlink $dev`
+	if test -n "$lp"; then
+	    device=/dev/$lp
+	else
+	    device=$dev
+        fi
+        break
+    fi
+  done
+else
+  device=$1
+fi
+
+udi=`dcop kded mediamanager properties $device 2>/dev/null | head -n 1 `
+if test -n "$udi"; then
+    dcop kded mediamanager unmount "$udi" >/dev/null 2>&1
+
+	block_udi=`hal-get-property --udi $udi --key block.storage_device`
+
+	if test -n "$block_udi"; then
+		need_eject=`hal-get-property --udi $block_udi --key storage.requires_eject`
+		if test "$need_eject" = "false"; then
+			exit 0;
+		fi
+	fi
+fi
+
+  # Checking for stuff in the PATH is ugly with sh.
+  # I guess this is the reason for making this a kde app...
+  OS=`uname -s`
+  case "$OS" in
+    OpenBSD)
+      cdio -f $1 eject >/dev/null 2>&1
+      ;;
+    *BSD)
+      dev=`echo $1 | sed -E -e 's#/dev/##' -e 's/([0-9])./\1/'`
+      cdcontrol -f $dev eject >/dev/null 2>&1
+      ;;
+    *)
+      # Warning, it has to be either eject 2.0.x or >=2.1.5
+      # Otherwise it doesn't work as expected (it requires a
+      # fstab entry for no reason).
+      eject_result=$(dbus-send --system --print-reply --dest=org.freedesktop.Hal $block_udi org.freedesktop.Hal.Device.Storage.Eject array:string:"" | grep int | cut -d\  -f5)
+      # fallback if not true
+      if [ "$eject_result" != "0"  ]; then
+          eject $1 >/dev/null 2>&1
+      fi
+      ;;
+  esac
+  if test $? -eq 0; then
+    dcop kdesktop default refreshIcons
+    exit 0
+  elif test $quiet -eq 0; then
+    kdialog --title "KDE Eject" --error "Eject $1 failed!"
+  fi
+
+exit 1

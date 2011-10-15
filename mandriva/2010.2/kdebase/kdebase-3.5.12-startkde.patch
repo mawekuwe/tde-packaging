@@ -1,0 +1,22 @@
+--- startkde.orig	2011-07-19 11:58:41.267311384 +0100
++++ startkde	2011-07-19 12:02:56.119311786 +0100
+@@ -16,6 +16,11 @@
+ 	exit 1
+ fi
+ 
++if [ "$MDV_MENU_STYLE" = "mandriva" ]; then
++        XDG_MENU_PREFIX=kde-
++        export  XDG_MENU_PREFIX=kde-
++fi
++
+ # Set the background color.
+ # The standard X background is nasty, causing moire effects and exploding
+ # people's heads. We use colours from the standard KDE palette for those with
+@@ -163,6 +168,7 @@
+ # Allow interested applications, such as the Plasma control wrapper,
+ # to know that this is a Trinity desktop and not a KDE one.
+ export DESKTOP_SESSION=kde3
++export DESKTOP="kde"
+ 
+ # Please see kstartupconfig source for usage.
+ mkdir -m 700 -p $kdehome

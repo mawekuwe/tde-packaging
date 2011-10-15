@@ -1,0 +1,27 @@
+--- kdebase-3.5.9/libkonq/konqbookmarkmanager.h.orig	2008-03-07 14:56:36.000000000 -0300
++++ kdebase-3.5.9/libkonq/konqbookmarkmanager.h	2008-03-07 16:36:04.000000000 -0300
+@@ -3,6 +3,8 @@
+ 
+ #include <kbookmarkmanager.h>
+ #include <kstandarddirs.h>
++#include <kurl.h>
++#include <kio/job.h>
+ #include <libkonq_export.h>
+ 
+ class LIBKONQ_EXPORT KonqBookmarkManager
+@@ -11,7 +13,14 @@
+     static KBookmarkManager * self() {
+         if ( !s_bookmarkManager )
+         {
+-            TQString bookmarksFile = locateLocal("data", TQString::fromLatin1("konqueror/bookmarks.xml"));
++			TQString globalBookmarkFile = locate( "data",  TQString::fromLatin1( "konqueror/bookmarks.xml" ) );
++            TQString bookmarksFile = locateLocal("data", TQString::fromLatin1("konqueror/bookmarks.xml"), true);
++			if ( globalBookmarkFile != TQString::null && bookmarksFile == TQString::null )
++				KIO::file_copy( 
++						KURL::fromPathOrURL( globalBookmarkFile ), 
++						KURL::fromPathOrURL( bookmarksFile ), -1, false, false
++						 );
++
+             s_bookmarkManager = KBookmarkManager::managerForFile( bookmarksFile );
+         }
+         return s_bookmarkManager;

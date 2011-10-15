@@ -1,0 +1,11 @@
+--- kdelibs-3.5.12/kdeui/ktip.cpp.orig	2011-02-04 11:30:10.042474496 +0000
++++ kdelibs-3.5.12/kdeui/ktip.cpp	2011-02-04 11:30:30.506474344 +0000
+@@ -302,7 +302,7 @@
+     hbox2->addWidget(ok);
+ 
+     KConfigGroup config(kapp->config(), "TipOfDay");
+-    mTipOnStart->setChecked(config.readBoolEntry("RunOnStart", true));
++    mTipOnStart->setChecked(config.readBoolEntry("RunOnStart", false));
+ 
+     connect(next, TQT_SIGNAL(clicked()), this, TQT_SLOT(nextTip()));
+     connect(prev, TQT_SIGNAL(clicked()), this, TQT_SLOT(prevTip()));

@@ -1,0 +1,18 @@
+--- kdebase-3.4.0/kcontrol/screensaver/scrnsave.cpp--	2005-04-12 05:03:07.927420021 -0400
++++ kdebase-3.4.0/kcontrol/screensaver/scrnsave.cpp	2005-04-12 05:04:27.259781143 -0400
+@@ -103,13 +103,14 @@ KScreenSaver::KScreenSaver(TQWidget *pare
+ 
+     // Add KDE specific screensaver path
+     TQString relPath="System/ScreenSavers/";
++#if 0 //disable because we mustn't use it	
+     KServiceGroup::Ptr servGroup = KServiceGroup::baseGroup( "screensavers" );
+     if (servGroup)
+     {
+       relPath=servGroup->relPath();
+       kdDebug() << "relPath=" << relPath << endl;
+     }
+-
++#endif
+     KGlobal::dirs()->addResourceType("scrsav",
+                                      KGlobal::dirs()->kde_default("apps") +
+                                      relPath);

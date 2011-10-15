@@ -1,0 +1,34 @@
+--- kdebase-3.5.3/kdesktop/desktop.cc.orig	2006-06-22 21:14:19.000000000 -0300
++++ kdebase-3.5.3/kdesktop/desktop.cc	2006-07-12 15:10:12.000000000 -0300
+@@ -861,6 +861,11 @@
+             KApplication::ShutdownTypeNone );
+ }
+ 
++void KDesktop::logoutWithoutConfirmation()
++{
++ slotLogoutNoCnf();
++}
++
+ void KDesktop::logout( KApplication::ShutdownConfirm confirm,
+                        KApplication::ShutdownType sdtype )
+ {
+--- kdebase-3.5.3/kdesktop/desktop.h.orig	2006-04-27 15:06:09.000000000 -0300
++++ kdebase-3.5.3/kdesktop/desktop.h	2006-07-12 15:11:14.000000000 -0300
+@@ -84,6 +84,7 @@
+   virtual void logout();
+   virtual void clearCommandHistory();
+   virtual void runAutoStart();
++  virtual void logoutWithoutConfirmation();
+ 
+   virtual void switchDesktops( int delta );
+ 
+--- kdebase-3.5.3/kdesktop/KDesktopIface.h.orig	2006-04-27 15:06:09.000000000 -0300
++++ kdebase-3.5.3/kdesktop/KDesktopIface.h	2006-07-12 15:10:12.000000000 -0300
+@@ -75,6 +75,7 @@
+      * Bye bye
+      */
+     virtual void logout() = 0;
++	virtual void logoutWithoutConfirmation() = 0;
+     /**
+      * Returns whether KDesktop uses a virtual root.
+      */

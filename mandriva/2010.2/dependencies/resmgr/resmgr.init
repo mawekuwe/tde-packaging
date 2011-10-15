@@ -1,0 +1,56 @@
+#!/bin/bash
+#
+# chkconfig: 2345 15 15
+# description: The resource manager is a framework to give user applications
+# access to certain device files. The resource manager daemon can be configured
+# to give certain users access to different resource classes.
+# processname: resmgr
+# pidfile: /var/run/resmgr.pid
+#
+### BEGIN INIT INFO
+# Provides: resmgr
+# Default-Start: 2 3 4 5
+# Short-Description:  A program to allow arbitrary access to device files
+# Description: The resource manager is a framework to give user applications \
+# access to certain device files. The resource manager daemon can be configured \
+# to give certain users access to different resource classes.
+### END INIT INFO
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+RETVAL=0
+
+RESMGR_BIN=/sbin/resmgrd
+
+case "$1" in
+    start)
+    	gprintf "Starting resource manager services: "
+      daemon $RESMGR_BIN
+      RETVAL=$?
+      echo
+      [ $RETVAL -eq 0 ] && touch /var/lock/subsys/resmgr
+      ;;
+    stop)
+      gprintf "Shutting down resmgr services: "
+      killproc resmgr
+      RETVAL=$?
+
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/resmgr
+	;;
+  restart|reload)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+  status)
+	status resmgr
+	RETVAL=$?
+	;;
+  *)
+	gprintf "Usage: resmgr {start|stop|status|restart|reload}\n"
+	exit 1
+esac
+
+exit $RETVAL

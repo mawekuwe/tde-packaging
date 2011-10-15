@@ -1,0 +1,12 @@
+diff -ur resmgr-1.0.orig/utils.c resmgr-1.0/utils.c
+--- resmgr-1.0.orig/utils.c	2003-03-05 14:32:19.000000000 +0100
++++ resmgr-1.0/utils.c	2005-03-16 11:47:58.000000000 +0100
+@@ -101,7 +101,7 @@
+ 	sprintf(buffer, "%03d ", code);
+ 	n = strlen(buffer);
+ 	vsnprintf(buffer+n, sizeof(buffer)-n, fmt, ap);
+-	vlog(LOG_INFO, "%s", buffer);
++	def_log("%s", buffer);
+ 	va_end(ap);
+ }
+ 

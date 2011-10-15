@@ -1,0 +1,11 @@
+--- admin/acinclude.m4.in.orig	2010-08-12 23:39:22.000000000 +0100
++++ admin/acinclude.m4.in	2011-07-19 13:40:17.619311049 +0100
+@@ -527,7 +527,7 @@
+     xdg_appsdir='\${datadir}/applications/kde'
+   fi
+   if test -z "$xdg_menudir"; then
+-    xdg_menudir='\${sysconfdir}/xdg/menus'
++    xdg_menudir='\${sysconfdir}/xdg/kde/menus'
+   fi
+   if test -z "$xdg_directorydir"; then
+     xdg_directorydir='\${datadir}/desktop-directories'

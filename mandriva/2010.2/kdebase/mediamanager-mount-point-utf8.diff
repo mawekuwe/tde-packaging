@@ -1,0 +1,11 @@
+--- kdebase-3.5.12/kioslave/media/mediamanager/halbackend.cpp.orig	2011-02-04 16:20:42.266474457 +0000
++++ kdebase-3.5.12/kioslave/media/mediamanager/halbackend.cpp	2011-02-04 16:21:33.580473069 +0000
+@@ -520,7 +520,7 @@
+             medium->mountableState(
+                 libhal_volume_get_device_file(halVolume),		/* Device node */
+                 clearUdiString,
+-                libhal_volume_get_mount_point(halClearVolume),		/* Mount point */
++                TQString::fromUtf8(libhal_volume_get_mount_point(halVolume)),          /* Mount point */
+                 libhal_volume_get_fstype(halClearVolume),		/* Filesystem type */
+                 libhal_volume_is_mounted(halClearVolume) );		/* Mounted ? */
+         else

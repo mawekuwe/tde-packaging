@@ -1,0 +1,26 @@
+--- kdebase-3.5.7/kdm/kfrontend/kdm_greet.c.fixlang	2007-10-02 16:56:25.000000000 -0300
++++ kdebase-3.5.7/kdm/kfrontend/kdm_greet.c	2007-10-02 15:07:58.000000000 -0300
+@@ -779,7 +779,10 @@ main( int argc ATTR_UNUSED, char **argv 
+ 		LogPanic( "Cannot save $HOME\n" );
+ 	atexit( cleanup );
+ 
+-	setenv( "LC_ALL", _language, 1 );
++    if (  getenv( "LANG" ) == NULL )
++	    setenv( "LC_ALL", _language, 1 );
++    else
++        setenv( "LC_ALL", getenv( "LANG" ), 1 );
+ 
+ 	kg_main( argv[0] );
+ 
+--- kdebase-3.5.7/kdm/backend/session.c.fixlang	2007-10-02 16:56:58.000000000 -0300
++++ kdebase-3.5.7/kdm/backend/session.c	2007-10-02 16:18:21.000000000 -0300
+@@ -802,6 +802,9 @@ systemEnv( const char *user )
+ 	env = baseEnv( user );
+ 	if (td->authFile)
+ 		env = setEnv( env, "XAUTHORITY", td->authFile );
++	char *lang = getenv("LANG");
++    if (lang != NULL)
++	    env = setEnv( env, "LANG", lang );	
+ 	env = setEnv( env, "PATH", td->systemPath );
+ 	env = setEnv( env, "SHELL", td->systemShell );
+ 	return env;

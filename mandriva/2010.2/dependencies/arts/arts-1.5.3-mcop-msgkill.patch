@@ -1,0 +1,13 @@
+--- arts-1.5.3/mcop/mcoputils.cc	2005-12-22 21:20:23.000000000 -0200
++++ arts-1.5.3/mcop/mcoputils.cc.new	2006-07-19 14:44:08.000000000 -0300
+@@ -371,7 +371,9 @@
+ 	}
+ 	if (!mcop_dir)
+ 	{
+-	   arts_fatal("can't create mcop directory");
++      return "Unable to create mcop directory";
++
++	   // arts_fatal("can't create mcop directory");
+ 	}
+ 	string tmpdir = mcop_dir;
+ 	return tmpdir+"/"+name;

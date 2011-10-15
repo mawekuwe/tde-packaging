@@ -1,0 +1,8 @@
+#%PAM-1.0
+auth sufficient pam_permit.so
+auth       include system-auth
+account    required	pam_nologin.so
+account    include system-auth
+password   include system-auth
+session    optional  pam_console.so
+session    include system-auth

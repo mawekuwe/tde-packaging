@@ -1,0 +1,11 @@
+--- kdebase-3.5.4/kscreensaver.pamd--	2006-08-02 09:20:53.000000000 +0200
++++ kdebase-3.5.4/kscreensaver.pamd	2006-08-02 09:21:36.000000000 +0200
+@@ -1,4 +1,5 @@
+ #%PAM-1.0
+-auth       sufficient  /lib/security/pam_linux_afs.so ignore_root
+-#auth       sufficient /lib/security/pam_linux_afs.so no_unlog ignore_root
+-auth       required    /lib/security/pam_pwdb.so shadow nullok
++#auth       sufficient pam_linux_afs.so ignore_root
++#auth       sufficient pam_linux_afs.so no_unlog ignore_root
++#auth       required   pam_pwdb.so shadow nullok
++auth        include    system-auth

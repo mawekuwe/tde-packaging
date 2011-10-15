@@ -1,0 +1,198 @@
+--- kcontrol/kdm/kdm-users.cpp.nopatch	2011-07-19 11:06:21.493310808 +0100
++++ kcontrol/kdm/kdm-users.cpp	2011-07-19 11:15:19.120311520 +0100
+@@ -56,7 +56,7 @@
+     } else if (!stat( "/usr/portage", &st )) {	/* gentoo */
+ 	defminuid = "1000";
+ 	defmaxuid = "65000";
+-    } else if (!stat( "/etc/mandrake-release", &st )) {	/* mandrake - check before redhat! */
++    } else if (!stat( "/etc/mandriva-release", &st )) {	/* mandrake - check before redhat! */
+ 	defminuid = "500";
+ 	defmaxuid = "65000";
+     } else if (!stat( "/etc/redhat-release", &st )) {	/* redhat */
+@@ -74,12 +74,8 @@
+     // We assume that $kde_datadir/kdm exists, but better check for pics/ and pics/users,
+     // and create them if necessary.
+     config->setGroup( "X-*-Greeter" );
+-    m_userPixDir = config->readEntry( "FaceDir", KGlobal::dirs()->resourceDirs("data").last() + "kdm/faces" ) + '/';
++    m_pixDir = "/usr/share/faces/";
+     m_notFirst = false;
+-    TQDir testDir( m_userPixDir );
+-    if ( !testDir.exists() && !testDir.mkdir( testDir.absPath() ) && !geteuid() )
+-        KMessageBox::sorry( this, i18n("Unable to create folder %1").arg( testDir.absPath() ) );
+-    chmod( TQFile::encodeName( m_userPixDir ), 0755 );
+ 
+     m_defaultText = i18n("<default>");
+ 
+@@ -146,18 +142,6 @@
+     connect( optoutlv, TQT_SIGNAL(clicked( TQListViewItem * )),
+ 	     TQT_SLOT(slotChanged()) );
+ 
+-    faceGroup = new TQButtonGroup( 5, Qt::Vertical, i18n("User Image Source"), this );
+-    TQWhatsThis::add( faceGroup, i18n("Here you can specify where KDM will obtain the images that represent users."
+-      " \"Admin\" represents the global folder; these are the pictures you can set below."
+-      " \"User\" means that KDM should read the user's $HOME/.face.icon file."
+-      " The two selections in the middle define the order of preference if both sources are available.") );
+-    connect( faceGroup, TQT_SIGNAL(clicked( int )), TQT_SLOT(slotFaceOpts()) );
+-    connect( faceGroup, TQT_SIGNAL(clicked( int )), TQT_SLOT(slotChanged()) );
+-    rbadmonly = new TQRadioButton( i18n("Admin"), faceGroup );
+-    rbprefadm = new TQRadioButton( i18n("Admin, user"), faceGroup );
+-    rbprefusr = new TQRadioButton( i18n("User, admin"), faceGroup );
+-    rbusronly = new TQRadioButton( i18n("User"), faceGroup );
+-
+     TQGroupBox *picGroup = new TQVGroupBox( i18n("User Images"), this );
+     TQWidget *hlpw = new TQWidget( picGroup );
+     usercombo = new KComboBox( hlpw );
+@@ -191,6 +175,7 @@
+     TQVBoxLayout *lLayout = new TQVBoxLayout( main, 10 );
+     lLayout->addWidget( minGroup );
+     lLayout->addWidget( usrGroup );
++	lLayout->addWidget( picGroup );
+     lLayout->addStretch( 1 );
+ 
+     TQVBoxLayout *mLayout = new TQVBoxLayout( main, 10 );
+@@ -199,11 +184,6 @@
+     mLayout->setStretchFactor( wstack, 1 );
+     main->setStretchFactor( mLayout, 1 );
+ 
+-    TQVBoxLayout *rLayout = new TQVBoxLayout( main, 10 );
+-    rLayout->addWidget( faceGroup );
+-    rLayout->addWidget( picGroup );
+-    rLayout->addStretch( 1 );
+-
+ }
+ 
+ void KDMUsersWidget::makeReadOnly()
+@@ -214,10 +194,6 @@
+     cbcomplete->setEnabled(false);
+     cbinverted->setEnabled(false);
+     cbusrsrt->setEnabled(false);
+-    rbadmonly->setEnabled(false);
+-    rbprefadm->setEnabled(false);
+-    rbprefusr->setEnabled(false);
+-    rbusronly->setEnabled(false);
+     wstack->setEnabled(false);
+     disconnect( userbutton, TQT_SIGNAL(clicked()), this, TQT_SLOT(slotUserButtonClicked()) );
+     userbutton->setAcceptDrops(false);
+@@ -232,7 +208,6 @@
+     wstack->setEnabled( en );
+     wstack->raiseWidget( cbinverted->isChecked() ? optoutlv : optinlv );
+     en = cbshowlist->isChecked();
+-    faceGroup->setEnabled( en );
+     if (!en) {
+ 	usercombo->setEnabled( false );
+ 	userbutton->setEnabled( false );
+@@ -243,12 +218,6 @@
+ 
+ void KDMUsersWidget::slotFaceOpts()
+ {
+-    bool en = !rbusronly->isChecked();
+-    usercombo->setEnabled( en );
+-    userbutton->setEnabled( en );
+-    if (en)
+-	slotUserSelected();
+-    else
+ 	rstuserbutton->setEnabled( false );
+ }
+ 
+@@ -257,13 +226,13 @@
+     TQString user = usercombo->currentText();
+     TQImage p;
+     if (user != m_defaultText &&
+-	p.load( m_userPixDir + user + ".face.icon" )) {
++        p.load( m_pixDir + user + ".png" )) {
+ 	rstuserbutton->setEnabled( !getuid() );
+     } else {
+-	p.load( m_userPixDir + ".default.face.icon" );
++        p.load( m_pixDir + "default.png" );
+ 	rstuserbutton->setEnabled( false );
+     }
+-    userbutton->setPixmap( p.smoothScale( 48, 48, TQImage::ScaleMin ) );
++    userbutton->setPixmap( p );
+ }
+ 
+ 
+@@ -272,7 +241,7 @@
+     TQString user( usercombo->currentText() );
+     if (user == m_defaultText)
+     {
+-       user = ".default";
++       user = "default";
+        if (KMessageBox::questionYesNo(this, i18n("Save image as default image?"),TQString::null,KStdGuiItem::save(),KStdGuiItem::cancel())
+             != KMessageBox::Yes)
+           return;
+@@ -286,8 +255,7 @@
+ 	return;
+     }
+ 
+-    p = p.smoothScale( 48, 48, TQImage::ScaleMin );
+-    TQString userpix = m_userPixDir + user + ".face.icon";
++    TQString userpix = m_pixDir + user + ".png";
+     if (!p.save( userpix, "PNG" ))
+         KMessageBox::sorry(this,
+ 	    i18n("There was an error saving the image:\n%1")
+@@ -319,7 +287,7 @@
+ 
+ void KDMUsersWidget::slotUnsetUserPix()
+ {
+-    TQFile::remove( m_userPixDir + usercombo->currentText() + ".face.icon" );
++    TQFile::remove( m_pixDir + usercombo->currentText() + ".png" );
+     slotUserSelected();
+ }
+ 
+@@ -368,11 +336,6 @@
+ 
+     config->writeEntry( "HiddenUsers", hiddenUsers );
+     config->writeEntry( "SelectedUsers", selectedUsers );
+-
+-    config->writeEntry( "FaceSource",
+-	rbadmonly->isChecked() ? "AdminOnly" :
+-	rbprefadm->isChecked() ? "PreferAdmin" :
+-	rbprefusr->isChecked() ? "PreferUser" : "UserOnly" );
+ }
+ 
+ 
+@@ -456,16 +419,6 @@
+     cbinverted->setChecked( config->readEntry( "ShowUsers" ) != "Selected" );
+     cbusrsrt->setChecked(config->readBoolEntry("SortUsers", true));
+ 
+-    TQString ps = config->readEntry( "FaceSource" );
+-    if (ps == TQString::fromLatin1("UserOnly"))
+-	rbusronly->setChecked(true);
+-    else if (ps == TQString::fromLatin1("PreferUser"))
+-	rbprefusr->setChecked(true);
+-    else if (ps == TQString::fromLatin1("PreferAdmin"))
+-	rbprefadm->setChecked(true);
+-    else
+-	rbadmonly->setChecked(true);
+-
+     slotUserSelected();
+ 
+     slotShowOpts();
+@@ -480,7 +433,6 @@
+     cbcomplete->setChecked( false );
+     cbinverted->setChecked( true );
+     cbusrsrt->setChecked( true );
+-    rbadmonly->setChecked( true );
+     hiddenUsers.clear();
+     selectedUsers.clear();
+     slotShowOpts();
+diff -u -r kdebase-kdm/kcontrol/kdm/kdm-users.h kdebase-3.5.9/kcontrol/kdm/kdm-users.h
+--- kcontrol/kdm/kdm-users.h	2005-10-10 12:03:49.000000000 -0300
++++ kcontrol/kdm/kdm-users.h	2008-03-06 19:04:12.000000000 -0300
+@@ -86,14 +86,11 @@
+ 	QWidgetStack	*wstack;
+ 	KListView	*optoutlv, *optinlv;
+ 
+-	QButtonGroup	*faceGroup; // right
+-	QRadioButton	*rbadmonly, *rbprefadm, *rbprefusr, *rbusronly;
+-
+ 	KComboBox	*usercombo; // right below
+ 	QPushButton	*userbutton;
+ 	QPushButton	*rstuserbutton;
+ 
+-	QString		m_userPixDir;
++	QString		m_pixDir;
+ 	QString		m_defaultText;
+ 	QStringList	hiddenUsers, selectedUsers;
+ 	QString		defminuid, defmaxuid;
+

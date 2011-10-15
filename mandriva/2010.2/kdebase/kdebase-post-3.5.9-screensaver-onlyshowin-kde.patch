@@ -1,0 +1,30 @@
+--- kscreensaver/KRandom.desktop~	2008-02-13 10:40:44.000000000 +0100
++++ kscreensaver/KRandom.desktop	2008-02-16 17:07:11.000000000 +0100
+@@ -5,6 +5,7 @@
+ Type=Application
+ Actions=Setup;InWindow;Root;
+ OnlyShowIn=KDE;
++NoDisplay=true
+ Name=Random
+ Name[af]=Lukrake
+ Name[ar]=عشوائي
+@@ -311,4 +312,3 @@
+ Name[wa]=Håyner e purnea raecene (li fond do scribanne)
+ Name[zh_CN]=在 Root 窗口中显示
+ Name[zh_TW]=在 Root 視窗中顯示
+-NoDisplay=true
+--- kscreensaver/KBlankscreen.desktop~	2008-02-13 10:40:44.000000000 +0100
++++ kscreensaver/KBlankscreen.desktop	2008-02-16 17:08:14.000000000 +0100
+@@ -5,6 +5,7 @@
+ Type=Application
+ Actions=Setup;InWindow;Root;
+ OnlyShowIn=KDE;
++NoDisplay=true
+ Name=Blank Screen
+ Name[af]=Leë Skerm
+ Name[ar]=شاشة فارغة
+@@ -313,4 +314,3 @@
+ Name[wa]=Håyner e purnea raecene (li fond do scribanne)
+ Name[zh_CN]=在 Root 窗口中显示
+ Name[zh_TW]=在 Root 視窗中顯示
+-NoDisplay=true

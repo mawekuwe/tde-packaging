@@ -1,0 +1,24 @@
+--- kdebase-3.5.4/kcontrol/krdb/krdb.cpp--	2006-09-14 08:38:52.000000000 +0200
++++ kdebase-3.5.4/kcontrol/krdb/krdb.cpp	2006-09-14 08:48:18.000000000 +0200
+@@ -75,13 +75,20 @@
+ // -----------------------------------------------------------------------------
+ static void applyGtkStyles(bool active, int version)
+ {
++   TQString userFile = TQDir::homeDirPath()+userGtkrc(version);
++   KConfig kglobalsStyle("kdeglobals", true, false);
++   kglobalsStyle.setGroup("General");
++   TQString styleName = kglobalsStyle.readEntry("widgetStyle");
++   if(!TQDir(userFile).exists() && styleName =="ia_ora")
++	   return;
++
+    TQString gtkkde = locateLocal("config", 2==version?"gtkrc-2.0":"gtkrc");
+    TQCString gtkrc = getenv(gtkEnvVar(version));
+    TQStringList list = TQStringList::split(':', TQFile::decodeName(gtkrc));
+    if (list.count() == 0)
+    {
+       list.append(TQString::fromLatin1(sysGtkrc(version)));
+-      list.append(TQDir::homeDirPath()+userGtkrc(version));
++      list.append(userFile);
+    }
+    list.remove(gtkkde);
+    list.append(gtkkde);
