@@ -1,0 +1,15 @@
+Source: kiosktool-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Pedro Jurado Maqueda <melenas@kdehispano.org>
+Build-Depends: debhelper (>= 4.1.0), cdbs, kdelibs4-trinity-dev, automake
+Standards-Version: 3.8.4
+
+Package: kiosktool-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, kdesudo-trinity
+Description: tool to configure the TDE kiosk framework
+ A Point&Click tool for system administrators to enable 
+ TDE's KIOSK features or otherwise preconfigure TDE for 
+ groups of users.
