@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Pedro Jurado Maqueda <melenas@kdehispano.org>
-Build-Depends: debhelper (>= 4.1.0), cdbs, kdelibs4-trinity-dev, automake
+Build-Depends: debhelper (>= 4.1.0), cdbs, kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kiosktool-trinity
