@@ -6,26 +6,26 @@
  
 +class NETACCESS {
 + public:
-+  static bool exists(const KURL &url, bool source, QWidget *window);
-+  static bool mkdir(const KURL &url, QWidget *window, int permissions=-1);
-+  static QString lastErrorString();
++  static bool exists(const KURL &url, bool source, TQWidget *window);
++  static bool mkdir(const KURL &url, TQWidget *window, int permissions=-1);
++  static TQString lastErrorString();
 +  static int lastError();
-+  static bool file_copy (const KURL &src, const KURL &dest, int permissions=-1, bool overwrite=false, bool resume=false, QWidget *window=0L);
-+  static bool del(const KURL &url, QWidget *window);
-+  static bool file_move(const KURL &src, const KURL &target, int permissions=-1, bool overwrite=false, bool resume=false, QWidget *window=0L);
-+  static bool copy(const KURL &src, const KURL &target, QWidget *window);
++  static bool file_copy (const KURL &src, const KURL &dest, int permissions=-1, bool overwrite=false, bool resume=false, TQWidget *window=0L);
++  static bool del(const KURL &url, TQWidget *window);
++  static bool file_move(const KURL &src, const KURL &target, int permissions=-1, bool overwrite=false, bool resume=false, TQWidget *window=0L);
++  static bool copy(const KURL &src, const KURL &target, TQWidget *window);
 +};
 +
- class KioskRun : public QObject
+ class KioskRun : public TQObject
  {
    friend class KioskGui;
 --- kiosktool/kiosktool/kioskrun.cpp	2005-04-25 10:46:33.000000000 +0100
 +++ kiosktool/kiosktool/kioskrun.cpp	2007-07-20 16:56:07.000000000 +0100
 @@ -28,6 +28,7 @@
  
- #include <qdir.h>
- #include <qfile.h>
-+#include <qprocess.h>
+ #include <tqdir.h>
+ #include <tqfile.h>
++#include <tqprocess.h>
  
  #include <kapplication.h>
  #include <kcmdlineargs.h>
@@ -39,10 +39,10 @@
  
  #undef DEBUG_ENTRIES
  
-+bool NETACCESS::exists(const KURL &url, bool source, QWidget *window)
++bool NETACCESS::exists(const KURL &url, bool source, TQWidget *window)
 +{
 +  if (url.protocol() == "fish" && url.host() == "localhost") {
-+    bool exists = QFile::exists(url.path());
++    bool exists = TQFile::exists(url.path());
 +    return exists;
 +  } else {
 +    bool result = KIO::NetAccess::exists(url, source, window);
@@ -50,18 +50,18 @@
 +  }
 +}
 +
-+bool NETACCESS::mkdir(const KURL &url, QWidget *window, int permissions)
++bool NETACCESS::mkdir(const KURL &url, TQWidget *window, int permissions)
 +{
 +  if (url.protocol() == "fish" && url.host() == "localhost") {
-+    QProcess proc;
++    TQProcess proc;
 +    proc.addArgument("kdesudo");
 +    proc.addArgument("mkdir " + url.path());
-+    QByteArray buffer;
++    TQByteArray buffer;
 +    proc.launch(buffer);
 +    while (!proc.normalExit()) {
 +      KApplication::kapp->processEvents();
 +    }
-+    bool exists = QFile::exists(url.path());
++    bool exists = TQFile::exists(url.path());
 +    return exists;
 +  } else {
 +    bool result = KIO::NetAccess::mkdir(url, window, permissions);
@@ -69,7 +69,7 @@
 +  }
 +}
 +
-+QString NETACCESS::lastErrorString()
++TQString NETACCESS::lastErrorString()
 +{
 +  return "Error in Kiosktool Kubuntu modifications";
 +}
@@ -79,19 +79,19 @@
 +  return 0;
 +}
 +
-+bool NETACCESS::file_copy(const KURL &src, const KURL &dest, int permissions, bool overwrite, bool resume, QWidget *window)
++bool NETACCESS::file_copy(const KURL &src, const KURL &dest, int permissions, bool overwrite, bool resume, TQWidget *window)
 +{
 +  if (dest.protocol() == "fish" && dest.host() == "localhost") {
-+    QProcess proc;
++    TQProcess proc;
 +    proc.addArgument("kdesudo");
 +    proc.addArgument("cp " + src.path() + " " + dest.path());
-+    QByteArray buffer;
++    TQByteArray buffer;
 +    proc.launch(buffer);
 +    while (!proc.normalExit()) {
 +      KApplication::kapp->processEvents();
 +    }
 +
-+    QProcess proc2;
++    TQProcess proc2;
 +    proc2.addArgument("kdesudo");
 +    proc2.addArgument("chmod 0644 " + dest.path());
 +    proc2.launch(buffer);
@@ -99,7 +99,7 @@
 +      KApplication::kapp->processEvents();
 +    }
 +
-+    bool exists = QFile::exists(dest.path());
++    bool exists = TQFile::exists(dest.path());
 +    return exists;
 +  } else {
 +    bool result = KIO::NetAccess::file_copy(src, dest, permissions, overwrite, resume, window);
@@ -107,18 +107,18 @@
 +  }
 +}
 +
-+bool NETACCESS::del(const KURL &url, QWidget *window)
++bool NETACCESS::del(const KURL &url, TQWidget *window)
 +{
 +  if (url.protocol() == "fish" && url.host() == "localhost") {
-+    QProcess proc;
++    TQProcess proc;
 +    proc.addArgument("kdesudo");
 +    proc.addArgument("rm " + url.path());
-+    QByteArray buffer;
++    TQByteArray buffer;
 +    proc.launch(buffer);
 +    while (!proc.normalExit()) {
 +      KApplication::kapp->processEvents();
 +    }
-+    bool exists = !QFile::exists(url.path());
++    bool exists = !TQFile::exists(url.path());
 +    return exists;
 +  } else {
 +    bool result = KIO::NetAccess::del(url, window);
@@ -126,19 +126,19 @@
 +  }
 +}
 +
-+bool NETACCESS::file_move(const KURL &src, const KURL &target, int permissions, bool overwrite, bool resume, QWidget *window)
++bool NETACCESS::file_move(const KURL &src, const KURL &target, int permissions, bool overwrite, bool resume, TQWidget *window)
 +{
 +  if (target.protocol() == "fish" && target.host() == "localhost") {
-+    QProcess proc;
++    TQProcess proc;
 +    proc.addArgument("kdesudo");
 +    proc.addArgument("mv " + src.path() + " " + target.path());
-+    QByteArray buffer;
++    TQByteArray buffer;
 +    proc.launch(buffer);
 +    while (!proc.normalExit()) {
 +      KApplication::kapp->processEvents();
 +    }
 +
-+    bool exists = QFile::exists(target.path());
++    bool exists = TQFile::exists(target.path());
 +    return exists;
 +  } else {
 +    bool result = KIO::NetAccess::file_move(src, target, permissions, overwrite, resume, window);
@@ -147,11 +147,11 @@
 +}
 +
 +//only used for local files
-+bool NETACCESS::copy(const KURL &src, const KURL &target, QWidget *window)
++bool NETACCESS::copy(const KURL &src, const KURL &target, TQWidget *window)
 +{
 +  return KIO::NetAccess::copy(src, target, window);
 +}
 +
  KioskRun *KioskRun::s_self = 0;
  
- KioskRun::KioskRun( QObject* parent, const char* name)
+ KioskRun::KioskRun( TQObject* parent, const char* name)
