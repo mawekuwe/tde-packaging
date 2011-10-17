@@ -1,4 +1,4 @@
-Source: knetworkmanager-trinity
+Source: knetworkmanager8-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
@@ -9,6 +9,7 @@ Build-Depends: cdbs,
  libnm-util-dev (>= 0.7.0),
  libnm-glib-dev (>= 0.7.0),
  network-manager-dev (>= 0.7.0),
+ network-manager-dev (<< 0.8.9),
  libhal-dev,
  libdbus-1-tqt-dev,
  libiw-dev,
@@ -24,7 +25,9 @@ Homepage: http://opensuse.org/Projects/KNetworkManager
 
 Package: network-manager-kde-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, network-manager (>= 0.7.0)
+Depends: ${shlibs:Depends}, ${misc:Depends}, network-manager (>= 0.7.0), network-manager (<< 0.8.9)
+Replaces: network-manager-kde-kde3 (<< 4:3.5.13)
+Breaks: network-manager-kde-kde3 (<< 4:3.5.13)
 Recommends: kwalletmanager-trinity, network-manager-vpnc, network-manager-openvpn, network-manager-strongswan, network-manager-pptp
 Provides: knetworkmanager-trinity
 Conflicts: network-manager-kde

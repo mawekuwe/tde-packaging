@@ -1,0 +1,157 @@
+--- kiosktool/kiosktool/kioskrun.h	2005-04-25 10:46:33.000000000 +0100
++++ kiosktool/kiosktool/kioskrun.h	2007-07-18 17:47:04.000000000 +0100
+@@ -37,6 +37,18 @@
+ 
+ class KioskGui;
+ 
++class NETACCESS {
++ public:
++  static bool exists(const KURL &url, bool source, TQWidget *window);
++  static bool mkdir(const KURL &url, TQWidget *window, int permissions=-1);
++  static TQString lastErrorString();
++  static int lastError();
++  static bool file_copy (const KURL &src, const KURL &dest, int permissions=-1, bool overwrite=false, bool resume=false, TQWidget *window=0L);
++  static bool del(const KURL &url, TQWidget *window);
++  static bool file_move(const KURL &src, const KURL &target, int permissions=-1, bool overwrite=false, bool resume=false, TQWidget *window=0L);
++  static bool copy(const KURL &src, const KURL &target, TQWidget *window);
++};
++
+ class KioskRun : public TQObject
+ {
+   friend class KioskGui;
+--- kiosktool/kiosktool/kioskrun.cpp	2005-04-25 10:46:33.000000000 +0100
++++ kiosktool/kiosktool/kioskrun.cpp	2007-07-20 16:56:07.000000000 +0100
+@@ -28,6 +28,7 @@
+ 
+ #include <tqdir.h>
+ #include <tqfile.h>
++#include <tqprocess.h>
+ 
+ #include <kapplication.h>
+ #include <kcmdlineargs.h>
+@@ -45,10 +46,124 @@
+ #include "kiosksync.h"
+ 
+ #include <kio/netaccess.h>
+-#define NETACCESS	KIO::NetAccess
++// Kiosktool wants to use fish://root@localhost/... which won't work on Kubuntu because we don't run ssh by default, we don't allow ssh to do root logins and root doesn't even have a password, so implement the functions here for local copies using kdesu instead
++// #define NETACCESS	KIO::NetAccess
+ 
+ #undef DEBUG_ENTRIES
+ 
++bool NETACCESS::exists(const KURL &url, bool source, TQWidget *window)
++{
++  if (url.protocol() == "fish" && url.host() == "localhost") {
++    bool exists = TQFile::exists(url.path());
++    return exists;
++  } else {
++    bool result = KIO::NetAccess::exists(url, source, window);
++    return result;
++  }
++}
++
++bool NETACCESS::mkdir(const KURL &url, TQWidget *window, int permissions)
++{
++  if (url.protocol() == "fish" && url.host() == "localhost") {
++    TQProcess proc;
++    proc.addArgument("kdesudo");
++    proc.addArgument("mkdir " + url.path());
++    TQByteArray buffer;
++    proc.launch(buffer);
++    while (!proc.normalExit()) {
++      KApplication::kapp->processEvents();
++    }
++    bool exists = TQFile::exists(url.path());
++    return exists;
++  } else {
++    bool result = KIO::NetAccess::mkdir(url, window, permissions);
++    return result;
++  }
++}
++
++TQString NETACCESS::lastErrorString()
++{
++  return "Error in Kiosktool Kubuntu modifications";
++}
++
++int NETACCESS::lastError()
++{
++  return 0;
++}
++
++bool NETACCESS::file_copy(const KURL &src, const KURL &dest, int permissions, bool overwrite, bool resume, TQWidget *window)
++{
++  if (dest.protocol() == "fish" && dest.host() == "localhost") {
++    TQProcess proc;
++    proc.addArgument("kdesudo");
++    proc.addArgument("cp " + src.path() + " " + dest.path());
++    TQByteArray buffer;
++    proc.launch(buffer);
++    while (!proc.normalExit()) {
++      KApplication::kapp->processEvents();
++    }
++
++    TQProcess proc2;
++    proc2.addArgument("kdesudo");
++    proc2.addArgument("chmod 0644 " + dest.path());
++    proc2.launch(buffer);
++    while (!proc2.normalExit()) {
++      KApplication::kapp->processEvents();
++    }
++
++    bool exists = TQFile::exists(dest.path());
++    return exists;
++  } else {
++    bool result = KIO::NetAccess::file_copy(src, dest, permissions, overwrite, resume, window);
++    return result;
++  }
++}
++
++bool NETACCESS::del(const KURL &url, TQWidget *window)
++{
++  if (url.protocol() == "fish" && url.host() == "localhost") {
++    TQProcess proc;
++    proc.addArgument("kdesudo");
++    proc.addArgument("rm " + url.path());
++    TQByteArray buffer;
++    proc.launch(buffer);
++    while (!proc.normalExit()) {
++      KApplication::kapp->processEvents();
++    }
++    bool exists = !TQFile::exists(url.path());
++    return exists;
++  } else {
++    bool result = KIO::NetAccess::del(url, window);
++    return result;
++  }
++}
++
++bool NETACCESS::file_move(const KURL &src, const KURL &target, int permissions, bool overwrite, bool resume, TQWidget *window)
++{
++  if (target.protocol() == "fish" && target.host() == "localhost") {
++    TQProcess proc;
++    proc.addArgument("kdesudo");
++    proc.addArgument("mv " + src.path() + " " + target.path());
++    TQByteArray buffer;
++    proc.launch(buffer);
++    while (!proc.normalExit()) {
++      KApplication::kapp->processEvents();
++    }
++
++    bool exists = TQFile::exists(target.path());
++    return exists;
++  } else {
++    bool result = KIO::NetAccess::file_move(src, target, permissions, overwrite, resume, window);
++    return result;
++  }
++}
++
++//only used for local files
++bool NETACCESS::copy(const KURL &src, const KURL &target, TQWidget *window)
++{
++  return KIO::NetAccess::copy(src, target, window);
++}
++
+ KioskRun *KioskRun::s_self = 0;
+ 
+ KioskRun::KioskRun( TQObject* parent, const char* name)
