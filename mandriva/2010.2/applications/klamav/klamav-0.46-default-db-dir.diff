@@ -1,0 +1,12 @@
+diff -p -up klamav-0.46/src/klammail/clamdmail.c~ klamav-0.46/src/klammail/clamdmail.c
+--- klamav-0.46/src/klammail/clamdmail.c~	2009-02-28 11:27:27.000000000 +0100
++++ klamav-0.46/src/klammail/clamdmail.c	2009-03-14 17:16:32.000000000 +0100
+@@ -576,7 +576,7 @@ void startclamd(struct optstruct *opt)
+                     break;
+                     }
+     }else{
+-            fprintf(tmp,"DatabaseDirectory /usr/local/share/clamav\n");
++            fprintf(tmp,"DatabaseDirectory /var/lib/clamav\n");
+     }
+     //fprintf(tmp,"ScanMail\n");
+     if ((strstr(cl_retver(), "0.8")) || (strstr(cl_retver(), "0.7")))

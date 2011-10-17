@@ -1,0 +1,15 @@
+--- moodin/src/thememoodin.cpp--	2007-01-26 14:56:48.000000000 +0100
++++ moodin/src/thememoodin.cpp	2007-01-26 14:57:20.000000000 +0100
+@@ -81,8 +81,10 @@
+   mImageSpacer = cfg->readNumEntry("ImageSpacer", mUseIconSet ? mIconSetSize : 0);
+   mUsersBackground = cfg->readBoolEntry("UsersBackground", false);
+   mLabelCount = cfg->readNumEntry("Labels", 0);
+-  mLabelShadowOffset = cfg->readPointEntry("LabelShadowOffset", new QPoint(2, 2));
+-  mBaseResolution = cfg->readSizeEntry("BaseResolution", new QSize(1280, 1024));
++  QPoint pos(2,2);
++  mLabelShadowOffset = cfg->readPointEntry("LabelShadowOffset", &pos);
++  QSize size(1280, 1024);
++  mBaseResolution = cfg->readSizeEntry("BaseResolution", &size);
+   mTranslate = cfg->readBoolEntry("Translate", true);
+   mLineUpImages = cfg->readBoolEntry("LineUpImages", false);
+ 

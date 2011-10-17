@@ -1,0 +1,84 @@
+diff -Naur kmetabar.orig/src/kmetabar_widget.cpp kmetabar/src/kmetabar_widget.cpp
+--- kmetabar.orig/src/kmetabar_widget.cpp	2006-11-06 18:48:04.000000000 +0200
++++ kmetabar/src/kmetabar_widget.cpp	2006-11-06 18:49:40.000000000 +0200
+@@ -141,7 +141,7 @@
+   //connect(config_button, SIGNAL(clicked()), this, SLOT(slotShowConfigDialog()));
+   
+   icon = new KURLLabel(main_frame_bottom);
+-  icon->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
++  //icon->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+   connect(icon, SIGNAL(leftClickedURL()), this, SLOT(slotShowPropertiesDialog()));
+   
+   name_label = new KSqueezedTextLabel(main_frame_bottom);
+@@ -176,28 +176,28 @@
+   top_action_frame->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+ 
+   action1 = new KURLLabel(top_action_frame);
+-  action1->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
++  //action1->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+   action1->setAlignment ( Qt::AlignHCenter );
+   connect (action1, SIGNAL(leftClickedURL()), this, SLOT(slotaction1()));
+   connect (action1, SIGNAL(enteredURL(const QString&)), this, SLOT(slotMessage1(const QString&)));
+   connect (action1, SIGNAL(leftURL()), this, SLOT(slotClearMsg()));
+ 
+   action2 = new KURLLabel(top_action_frame);
+-  action2->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
++  //action2->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+   action2->setAlignment ( Qt::AlignHCenter );
+   connect (action2, SIGNAL(leftClickedURL()), this, SLOT(slotaction2()));
+   connect (action2, SIGNAL(enteredURL(const QString&)), this, SLOT(slotMessage2(const QString&)));
+   connect (action2, SIGNAL(leftURL()), this, SLOT(slotClearMsg()));
+ 
+   action3 = new KURLLabel(top_action_frame);
+-  action3->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
++  //action3->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+   action3->setAlignment ( Qt::AlignHCenter );
+   connect (action3, SIGNAL(leftClickedURL()), this, SLOT(slotaction3()));
+   connect (action3, SIGNAL(enteredURL(const QString&)), this, SLOT(slotMessage3(const QString&)));
+   connect (action3, SIGNAL(leftURL()), this, SLOT(slotClearMsg()));
+   
+   action4 = new KURLLabel(top_action_frame);
+-  action4->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
++  //action4->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+   action4->setAlignment ( Qt::AlignHCenter );
+   connect (action4, SIGNAL(leftClickedURL()), this, SLOT(slotaction4()));
+   connect (action4, SIGNAL(enteredURL(const QString&)), this, SLOT(slotMessage4(const QString&)));
+@@ -633,7 +633,7 @@
+           show_more = new KURLLabel(open_frame->mainWidget());
+           show_more->setURL("more");
+           show_more->setPixmap(SmallIcon("1downarrow"));
+-          show_more->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
++          //show_more->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+           show_more->setAlignment(Qt::AlignRight);
+           show_more->show();
+           
+@@ -1801,7 +1801,7 @@
+     show_more_actions = new KURLLabel(action_frame->mainWidget());
+     show_more_actions->setURL("more");
+     show_more_actions->setPixmap(SmallIcon("1downarrow"));
+-    show_more_actions->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
++    //show_more_actions->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+     show_more_actions->setAlignment(Qt::AlignRight);
+     
+     connect(show_more_actions, SIGNAL(leftClickedURL()), this, SLOT(slotShowMoreActions()));
+diff -Naur kmetabar.orig/src/metaframe.cpp kmetabar/src/metaframe.cpp
+--- kmetabar.orig/src/metaframe.cpp	2006-11-06 18:48:04.000000000 +0200
++++ kmetabar/src/metaframe.cpp	2006-11-06 18:56:07.000000000 +0200
+@@ -53,7 +53,7 @@
+   isToggled = false;
+ 
+   titleButton = new HeaderLabel(this, isToggled);
+-  titleButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
++  //titleButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+   titleButton->setAlignment( Qt::AlignHCenter );
+   connect (titleButton, SIGNAL(leftClickedURL()), this, SLOT(slotaction()));
+ 
+@@ -216,7 +216,7 @@
+ HeaderLabel::HeaderLabel(QWidget *parent, bool toggled) : KURLLabel(parent)
+ {
+   isToggled = toggled;
+-  this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
++  //this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+   this->setAlignment( Qt::AlignHCenter );
+   this->setGlow(false);
+   this->setFloat(true);

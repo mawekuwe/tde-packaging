@@ -1,0 +1,11 @@
+--- kio-sysinfo-1.8.2/src/sysinfo.cpp.orig      2009-11-13 15:20:27.000000000 +0000
++++ kio-sysinfo-1.8.2/src/sysinfo.cpp   2009-11-13 15:24:53.000000000 +0000
+@@ -245,7 +245,7 @@
+
+ static unsigned long int scan_one( const char* buff, const char *key )
+ {
+-    char *b = strstr( buff, key );
++    const char *b = strstr( buff, key );
+     if ( !b )
+         return 0;
+     unsigned long int val = 0;

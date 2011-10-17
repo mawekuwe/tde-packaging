@@ -1,0 +1,2261 @@
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KBanner.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KBanner.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KBanner.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KBanner.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kbanner.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KBanner.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KBlob.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KBlob.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KBlob.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KBlob.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kblob.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KBlob.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KClock.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KClock.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KClock.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KClock.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kclock.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KClock.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KEuphoria.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KEuphoria.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KEuphoria.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KEuphoria.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=keuphoria.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KEuphoria.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KFiresaver.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KFiresaver.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KFiresaver.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KFiresaver.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kfiresaver.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KFiresaver.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KFlux.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KFlux.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KFlux.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KFlux.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kflux.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KFlux.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KFountain.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KFountain.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KFountain.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KFountain.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kfountain.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KFountain.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KGravity.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KGravity.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KGravity.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KGravity.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kgravity.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KGravity.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KLines-saver.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KLines-saver.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KLines-saver.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KLines-saver.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=klines.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KLines-saver.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KLorenz.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KLorenz.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KLorenz.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KLorenz.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=klorenz.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KLorenz.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KPendulum.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KPendulum.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KPendulum.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KPendulum.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kpendulum.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KPendulum.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KPolygon.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KPolygon.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KPolygon.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KPolygon.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kpolygon.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KPolygon.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KRotation.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KRotation.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KRotation.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KRotation.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=krotation.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KRotation.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KScience.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KScience.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KScience.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KScience.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kscience.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KScience.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KSlideshow.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KSlideshow.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KSlideshow.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KSlideshow.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kslideshow.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KSlideshow.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KSolarWinds.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KSolarWinds.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KSolarWinds.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KSolarWinds.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=ksolarwinds.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KSolarWinds.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KVm.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KVm.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KVm.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KVm.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kvm.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KVm.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kdesavers/KWave.desktop kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KWave.desktop
+--- kdeartwork-3.5.10/kscreensaver/kdesavers/KWave.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kdesavers/KWave.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kwave.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kdesavers: KWave.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kpartsaver/kpartsaver.desktop kdeartwork-3.5.10-mod/kscreensaver/kpartsaver/kpartsaver.desktop
+--- kdeartwork-3.5.10/kscreensaver/kpartsaver/kpartsaver.desktop	2008-08-19 18:11:01.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kpartsaver/kpartsaver.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,5 +1,6 @@
+ [Desktop Entry]
+ X-KDE-Category=Banners & Pictures
++OnlyShowIn=KDE
+ Name=Media Screen Saver
+ Name[af]=Media Skerm Bewaarder
+ Name[bg]=Медия
+Only in kdeartwork-3.5.10-mod/kscreensaver/kpartsaver: kpartsaver.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/anemone.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/anemone.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/anemone.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/anemone.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=anemone
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: anemone.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/anemotaxis.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/anemotaxis.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/anemotaxis.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/anemotaxis.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=anemotaxis
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: anemotaxis.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/ant.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/ant.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/ant.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/ant.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=ant
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: ant.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/antinspect.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/antinspect.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/antinspect.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/antinspect.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=antinspect
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: antinspect.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/antmaze.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/antmaze.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/antmaze.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/antmaze.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=antmaze
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: antmaze.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/antspotlight.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/antspotlight.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/antspotlight.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/antspotlight.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=antspotlight
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: antspotlight.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/apollonian.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/apollonian.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/apollonian.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/apollonian.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=apollonian
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: apollonian.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/apple2.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/apple2.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/apple2.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/apple2.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=apple2
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: apple2.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/atlantis.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/atlantis.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/atlantis.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/atlantis.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=atlantis
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: atlantis.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/attraction.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/attraction.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/attraction.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/attraction.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=attraction
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: attraction.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/atunnel.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/atunnel.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/atunnel.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/atunnel.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=atunnel
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: atunnel.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/barcode.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/barcode.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/barcode.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/barcode.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=barcode
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: barcode.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/blaster.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/blaster.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/blaster.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/blaster.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=blaster
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: blaster.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/blinkbox.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/blinkbox.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/blinkbox.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/blinkbox.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=blinkbox
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: blinkbox.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/blitspin.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/blitspin.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/blitspin.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/blitspin.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=blitspin
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: blitspin.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/blocktube.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/blocktube.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/blocktube.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/blocktube.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=blocktube
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: blocktube.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/boing.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/boing.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/boing.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/boing.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=boing
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: boing.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bouboule.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bouboule.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bouboule.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bouboule.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=bouboule
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: bouboule.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bouncingcow.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bouncingcow.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bouncingcow.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bouncingcow.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=bouncingcow
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: bouncingcow.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/boxed.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/boxed.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/boxed.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/boxed.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=boxed
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: boxed.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/boxfit.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/boxfit.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/boxfit.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/boxfit.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=boxfit
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: boxfit.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/braid.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/braid.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/braid.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/braid.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=braid
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: braid.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bsod.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bsod.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bsod.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bsod.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=bsod
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: bsod.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bubble3d.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bubble3d.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bubble3d.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bubble3d.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=bubble3d
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: bubble3d.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bubbles.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bubbles.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bubbles.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bubbles.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=bubbles
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: bubbles.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bumps.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bumps.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/bumps.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/bumps.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=bumps
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: bumps.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cage.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cage.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cage.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cage.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=cage
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: cage.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/carousel.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/carousel.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/carousel.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/carousel.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=carousel
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: carousel.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/ccurve.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/ccurve.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/ccurve.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/ccurve.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=ccurve
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: ccurve.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/celtic.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/celtic.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/celtic.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/celtic.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=celtic
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: celtic.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/circuit.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/circuit.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/circuit.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/circuit.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=circuit
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: circuit.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cloudlife.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cloudlife.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cloudlife.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cloudlife.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=cloudlife
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: cloudlife.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/compass.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/compass.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/compass.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/compass.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=compass
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: compass.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/coral.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/coral.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/coral.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/coral.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=coral
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: coral.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/crackberg.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/crackberg.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/crackberg.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/crackberg.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=crackberg
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: crackberg.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/critical.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/critical.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/critical.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/critical.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=critical
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: critical.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/crystal.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/crystal.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/crystal.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/crystal.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=crystal
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: crystal.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cube21.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cube21.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cube21.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cube21.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=cube21
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: cube21.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cubenetic.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cubenetic.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cubenetic.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cubenetic.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=cubenetic
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: cubenetic.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cubestorm.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cubestorm.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cubestorm.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cubestorm.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=cubestorm
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: cubestorm.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cynosure.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cynosure.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/cynosure.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/cynosure.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=cynosure
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: cynosure.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/dangerball.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/dangerball.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/dangerball.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/dangerball.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=dangerball
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: dangerball.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/decayscreen.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/decayscreen.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/decayscreen.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/decayscreen.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=decayscreen
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: decayscreen.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/deco.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/deco.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/deco.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/deco.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=deco
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: deco.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/deluxe.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/deluxe.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/deluxe.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/deluxe.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=deluxe
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: deluxe.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/demon.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/demon.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/demon.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/demon.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=demon
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: demon.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/discrete.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/discrete.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/discrete.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/discrete.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=discrete
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: discrete.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/distort.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/distort.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/distort.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/distort.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=distort
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: distort.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/drift.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/drift.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/drift.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/drift.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=drift
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: drift.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/endgame.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/endgame.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/endgame.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/endgame.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=endgame
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: endgame.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/engine.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/engine.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/engine.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/engine.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=engine
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: engine.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/epicycle.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/epicycle.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/epicycle.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/epicycle.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=epicycle
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: epicycle.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/eruption.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/eruption.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/eruption.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/eruption.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=eruption
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: eruption.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/euler2d.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/euler2d.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/euler2d.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/euler2d.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=euler2d
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: euler2d.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/extrusion.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/extrusion.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/extrusion.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/extrusion.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=extrusion
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: extrusion.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fadeplot.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fadeplot.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fadeplot.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fadeplot.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=fadeplot
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: fadeplot.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fiberlamp.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fiberlamp.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fiberlamp.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fiberlamp.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=fiberlamp
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: fiberlamp.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fireworkx.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fireworkx.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fireworkx.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fireworkx.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=fireworkx
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: fireworkx.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flag.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flag.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flag.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flag.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=flag
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: flag.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flame.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flame.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flame.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flame.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=flame
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: flame.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flipflop.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flipflop.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flipflop.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flipflop.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=flipflop
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: flipflop.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flipscreen3d.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flipscreen3d.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flipscreen3d.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flipscreen3d.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=flipscreen3d
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: flipscreen3d.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fliptext.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fliptext.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fliptext.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fliptext.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=fliptext
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: fliptext.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flow.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flow.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flow.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flow.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=flow
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: flow.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fluidballs.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fluidballs.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fluidballs.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fluidballs.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=fluidballs
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: fluidballs.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flurry.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flurry.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flurry.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flurry.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=flurry
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: flurry.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flyingtoasters.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flyingtoasters.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/flyingtoasters.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/flyingtoasters.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=flyingtoasters
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: flyingtoasters.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fontglide.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fontglide.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fontglide.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fontglide.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=fontglide
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: fontglide.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/forest.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/forest.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/forest.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/forest.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=forest
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: forest.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fuzzyflakes.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fuzzyflakes.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/fuzzyflakes.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/fuzzyflakes.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=fuzzyflakes
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: fuzzyflakes.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/galaxy.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/galaxy.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/galaxy.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/galaxy.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=galaxy
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: galaxy.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/gears.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/gears.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/gears.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/gears.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=gears
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: gears.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/gflux.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/gflux.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/gflux.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/gflux.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=gflux
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: gflux.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glblur.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glblur.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glblur.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glblur.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=glblur
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: glblur.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/gleidescope.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/gleidescope.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/gleidescope.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/gleidescope.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=gleidescope
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: gleidescope.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glforestfire.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glforestfire.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glforestfire.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glforestfire.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=glforestfire
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: glforestfire.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glhanoi.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glhanoi.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glhanoi.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glhanoi.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=glhanoi
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: glhanoi.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glknots.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glknots.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glknots.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glknots.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=glknots
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: glknots.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glmatrix.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glmatrix.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glmatrix.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glmatrix.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=glmatrix
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: glmatrix.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glplanet.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glplanet.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glplanet.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glplanet.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=glplanet
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: glplanet.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glslideshow.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glslideshow.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glslideshow.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glslideshow.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=glslideshow
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: glslideshow.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glsnake.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glsnake.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/glsnake.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/glsnake.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=glsnake
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: glsnake.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/gltext.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/gltext.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/gltext.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/gltext.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=gltext
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: gltext.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/goop.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/goop.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/goop.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/goop.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=goop
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: goop.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/grav.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/grav.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/grav.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/grav.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=grav
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: grav.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/greynetic.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/greynetic.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/greynetic.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/greynetic.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=greynetic
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: greynetic.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/halftone.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/halftone.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/halftone.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/halftone.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=halftone
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: halftone.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/halo.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/halo.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/halo.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/halo.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=halo
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: halo.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/helix.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/helix.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/helix.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/helix.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=helix
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: helix.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/hopalong.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/hopalong.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/hopalong.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/hopalong.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=hopalong
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: hopalong.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/hyperball.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/hyperball.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/hyperball.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/hyperball.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=hyperball
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: hyperball.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/hypercube.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/hypercube.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/hypercube.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/hypercube.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=hypercube
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: hypercube.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/hypertorus.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/hypertorus.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/hypertorus.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/hypertorus.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=hypertorus
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: hypertorus.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/ifs.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/ifs.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/ifs.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/ifs.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=ifs
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: ifs.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/imsmap.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/imsmap.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/imsmap.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/imsmap.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=imsmap
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: imsmap.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/interaggregate.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/interaggregate.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/interaggregate.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/interaggregate.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=interaggregate
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: interaggregate.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/interference.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/interference.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/interference.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/interference.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=interference
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: interference.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/intermomentary.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/intermomentary.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/intermomentary.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/intermomentary.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=intermomentary
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: intermomentary.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/jigglypuff.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/jigglypuff.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/jigglypuff.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/jigglypuff.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=jigglypuff
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: jigglypuff.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/jigsaw.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/jigsaw.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/jigsaw.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/jigsaw.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=jigsaw
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: jigsaw.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/juggle.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/juggle.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/juggle.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/juggle.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=juggle
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: juggle.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/juggler3d.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/juggler3d.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/juggler3d.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/juggler3d.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=juggler3d
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: juggler3d.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/julia.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/julia.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/julia.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/julia.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=julia
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: julia.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/kaleidescope.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/kaleidescope.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/kaleidescope.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/kaleidescope.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kaleidescope
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: kaleidescope.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/klein.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/klein.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/klein.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/klein.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=klein
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: klein.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/kumppa.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/kumppa.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/kumppa.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/kumppa.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kumppa
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: kumppa.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lament.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lament.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lament.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lament.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=lament
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: lament.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/laser.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/laser.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/laser.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/laser.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=laser
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: laser.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lavalite.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lavalite.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lavalite.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lavalite.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=lavalite
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: lavalite.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lightning.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lightning.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lightning.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lightning.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=lightning
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: lightning.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lisa.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lisa.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lisa.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lisa.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=lisa
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: lisa.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lissie.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lissie.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lissie.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lissie.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=lissie
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: lissie.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lmorph.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lmorph.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/lmorph.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/lmorph.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=lmorph
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: lmorph.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/loop.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/loop.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/loop.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/loop.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=loop
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: loop.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/maze.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/maze.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/maze.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/maze.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=maze
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: maze.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/memscroller.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/memscroller.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/memscroller.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/memscroller.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=memscroller
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: memscroller.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/menger.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/menger.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/menger.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/menger.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=menger
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: menger.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/metaballs.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/metaballs.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/metaballs.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/metaballs.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=metaballs
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: metaballs.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/mirrorblob.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/mirrorblob.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/mirrorblob.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/mirrorblob.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=mirrorblob
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: mirrorblob.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/mismunch.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/mismunch.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/mismunch.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/mismunch.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=mismunch
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: mismunch.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/moebius.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/moebius.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/moebius.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/moebius.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=moebius
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: moebius.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/moire2.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/moire2.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/moire2.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/moire2.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=moire2
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: moire2.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/moire.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/moire.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/moire.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/moire.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=moire
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: moire.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/molecule.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/molecule.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/molecule.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/molecule.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=molecule
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: molecule.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/morph3d.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/morph3d.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/morph3d.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/morph3d.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=morph3d
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: morph3d.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/mountain.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/mountain.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/mountain.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/mountain.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=mountain
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: mountain.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/munch.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/munch.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/munch.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/munch.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=munch
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: munch.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/nerverot.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/nerverot.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/nerverot.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/nerverot.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=nerverot
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: nerverot.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/noof.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/noof.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/noof.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/noof.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=noof
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: noof.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/noseguy.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/noseguy.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/noseguy.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/noseguy.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=noseguy
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: noseguy.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pacman.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pacman.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pacman.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pacman.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=pacman
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: pacman.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pedal.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pedal.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pedal.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pedal.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=pedal
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: pedal.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/penetrate.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/penetrate.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/penetrate.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/penetrate.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=penetrate
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: penetrate.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/penrose.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/penrose.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/penrose.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/penrose.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=penrose
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: penrose.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/petri.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/petri.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/petri.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/petri.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=petri
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: petri.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/phosphor.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/phosphor.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/phosphor.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/phosphor.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=phosphor
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: phosphor.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/piecewise.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/piecewise.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/piecewise.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/piecewise.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=piecewise
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: piecewise.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pinion.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pinion.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pinion.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pinion.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=pinion
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: pinion.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pipes.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pipes.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pipes.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pipes.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=pipes
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: pipes.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pixmaps.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pixmaps.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pixmaps.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pixmaps.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=pixmaps
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: pixmaps.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/polyhedra.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/polyhedra.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/polyhedra.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/polyhedra.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=polyhedra
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: polyhedra.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/polyominoes.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/polyominoes.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/polyominoes.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/polyominoes.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=polyominoes
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: polyominoes.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/polytopes.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/polytopes.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/polytopes.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/polytopes.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=polytopes
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: polytopes.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pong.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pong.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pong.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pong.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=pong
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: pong.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/popsquares.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/popsquares.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/popsquares.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/popsquares.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=popsquares
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: popsquares.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/providence.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/providence.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/providence.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/providence.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=providence
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: providence.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pulsar.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pulsar.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pulsar.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pulsar.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=pulsar
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: pulsar.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pyro.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pyro.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/pyro.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/pyro.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=pyro
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: pyro.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/qix.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/qix.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/qix.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/qix.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=qix
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: qix.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/queens.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/queens.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/queens.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/queens.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=queens
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: queens.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rd-bomb.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rd-bomb.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rd-bomb.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rd-bomb.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=rd-bomb
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: rd-bomb.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/ripples.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/ripples.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/ripples.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/ripples.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=ripples
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: ripples.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rocks.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rocks.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rocks.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rocks.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=rocks
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: rocks.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rorschach.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rorschach.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rorschach.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rorschach.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=rorschach
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: rorschach.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rotor.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rotor.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rotor.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rotor.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=rotor
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: rotor.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rotzoomer.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rotzoomer.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rotzoomer.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rotzoomer.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=rotzoomer
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: rotzoomer.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rubik.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rubik.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/rubik.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/rubik.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=rubik
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: rubik.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sballs.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sballs.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sballs.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sballs.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=sballs
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: sballs.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/shadebobs.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/shadebobs.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/shadebobs.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/shadebobs.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=shadebobs
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: shadebobs.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sierpinski3d.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sierpinski3d.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sierpinski3d.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sierpinski3d.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=sierpinski3d
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: sierpinski3d.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sierpinski.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sierpinski.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sierpinski.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sierpinski.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=sierpinski
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: sierpinski.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/slidescreen.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/slidescreen.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/slidescreen.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/slidescreen.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=slidescreen
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: slidescreen.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/slip.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/slip.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/slip.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/slip.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=slip
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: slip.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sonar.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sonar.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sonar.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sonar.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=sonar
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: sonar.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/speedmine.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/speedmine.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/speedmine.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/speedmine.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=speedmine
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: speedmine.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sphere.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sphere.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sphere.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sphere.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=sphere
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: sphere.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/spheremonics.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/spheremonics.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/spheremonics.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/spheremonics.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=spheremonics
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: spheremonics.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/spiral.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/spiral.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/spiral.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/spiral.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=spiral
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: spiral.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/spotlight.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/spotlight.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/spotlight.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/spotlight.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=spotlight
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: spotlight.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sproingies.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sproingies.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/sproingies.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/sproingies.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=sproingies
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: sproingies.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/squiral.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/squiral.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/squiral.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/squiral.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=squiral
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: squiral.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/stairs.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/stairs.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/stairs.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/stairs.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=stairs
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: stairs.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/starfish.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/starfish.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/starfish.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/starfish.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=starfish
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: starfish.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/starwars.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/starwars.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/starwars.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/starwars.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=starwars
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: starwars.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/stonerview.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/stonerview.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/stonerview.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/stonerview.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=stonerview
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: stonerview.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/strange.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/strange.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/strange.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/strange.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=strange
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: strange.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/substrate.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/substrate.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/substrate.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/substrate.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=substrate
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: substrate.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/superquadrics.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/superquadrics.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/superquadrics.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/superquadrics.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=superquadrics
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: superquadrics.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/swirl.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/swirl.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/swirl.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/swirl.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=swirl
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: swirl.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/t3d.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/t3d.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/t3d.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/t3d.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=t3d
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: t3d.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/tangram.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/tangram.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/tangram.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/tangram.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=tangram
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: tangram.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/thornbird.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/thornbird.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/thornbird.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/thornbird.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=thornbird
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: thornbird.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/timetunnel.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/timetunnel.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/timetunnel.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/timetunnel.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=timetunnel
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: timetunnel.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/triangle.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/triangle.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/triangle.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/triangle.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=triangle
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: triangle.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/truchet.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/truchet.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/truchet.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/truchet.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=truchet
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: truchet.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/twang.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/twang.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/twang.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/twang.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=twang
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: twang.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/vermiculate.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/vermiculate.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/vermiculate.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/vermiculate.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=vermiculate
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: vermiculate.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/vidwhacker.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/vidwhacker.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/vidwhacker.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/vidwhacker.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=vidwhacker
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: vidwhacker.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/vines.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/vines.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/vines.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/vines.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=vines
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: vines.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/wander.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/wander.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/wander.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/wander.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=wander
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: wander.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/webcollage.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/webcollage.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/webcollage.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/webcollage.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=webcollage
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: webcollage.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/whirlwindwarp.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/whirlwindwarp.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/whirlwindwarp.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/whirlwindwarp.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=whirlwindwarp
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: whirlwindwarp.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/whirlygig.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/whirlygig.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/whirlygig.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/whirlygig.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=whirlygig
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: whirlygig.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/worm.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/worm.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/worm.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/worm.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=worm
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: worm.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/wormhole.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/wormhole.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/wormhole.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/wormhole.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=wormhole
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: wormhole.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xanalogtv.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xanalogtv.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xanalogtv.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xanalogtv.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xanalogtv
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xanalogtv.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xflame.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xflame.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xflame.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xflame.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xflame
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xflame.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xjack.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xjack.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xjack.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xjack.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xjack
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xjack.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xlyap.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xlyap.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xlyap.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xlyap.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xlyap
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xlyap.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xmatrix.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xmatrix.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xmatrix.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xmatrix.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xmatrix
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xmatrix.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xrayswarm.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xrayswarm.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xrayswarm.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xrayswarm.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xrayswarm
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xrayswarm.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xspirograph.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xspirograph.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xspirograph.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xspirograph.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xspirograph
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xspirograph.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xsublim.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xsublim.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xsublim.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xsublim.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xsublim
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xsublim.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xteevee.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xteevee.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/xteevee.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/xteevee.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=xteevee
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: xteevee.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/zoom.desktop kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/zoom.desktop
+--- kdeartwork-3.5.10/kscreensaver/kxsconfig/ScreenSavers/zoom.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers/zoom.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=zoom
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/kxsconfig/ScreenSavers: zoom.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/xsavers/KSpace.desktop kdeartwork-3.5.10-mod/kscreensaver/xsavers/KSpace.desktop
+--- kdeartwork-3.5.10/kscreensaver/xsavers/KSpace.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/xsavers/KSpace.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kspace.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/xsavers: KSpace.desktop.orig
+diff -bur kdeartwork-3.5.10/kscreensaver/xsavers/KSwarm.desktop kdeartwork-3.5.10-mod/kscreensaver/xsavers/KSwarm.desktop
+--- kdeartwork-3.5.10/kscreensaver/xsavers/KSwarm.desktop	2008-08-19 18:11:05.000000000 +0000
++++ kdeartwork-3.5.10-mod/kscreensaver/xsavers/KSwarm.desktop	2009-11-16 16:02:48.000000000 +0000
+@@ -1,4 +1,5 @@
+ [Desktop Entry]
++OnlyShowIn=KDE
+ Exec=kswarm.kss
+ Icon=kscreensaver
+ Type=Application
+Only in kdeartwork-3.5.10-mod/kscreensaver/xsavers: KSwarm.desktop.orig

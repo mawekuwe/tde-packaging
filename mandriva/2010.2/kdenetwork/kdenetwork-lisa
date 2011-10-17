@@ -1,0 +1,132 @@
+#!/bin/sh
+#
+# Startup script for LISa
+#
+# chkconfig: 345 92 8
+# description: Starts and stops the LAN Information Server used \
+#              to provide a LAN browser.
+# processname: lisa
+#
+# based on rclisa Version 0.1
+# 2001 by Marcus Thiesen (marcus@thiesenweb.de) for SuSE Linux 7.1
+# This is free and comes with absolutely no WARRANTY
+# adapted for Mandrake 8.0 by Patrick Alberts (mandrake@alberts.org)
+# Updated for Mandrake 9.0 by Buchan Milne (bgmilne@linux-mandrake.com)
+#
+### BEGIN INIT INFO
+# Provides: lisa
+# Required-Start: $network
+# Required-Stop: $network
+# Default-Start: 3 5
+# Short-Description: LISa LAN Information Server
+# Description:  Starts and stops the LAN Information Server used
+#               to provide a LAN browser.
+### END INIT INFO
+
+CONFIG_FILE=/etc/lisarc
+
+prog="lisa"
+
+# Source function library.
+if [ -f /etc/init.d/functions ] ; then
+	. /etc/init.d/functions
+elif [ -f /etc/rc.d/init.d/functions ] ; then
+	. /etc/rc.d/init.d/functions
+else
+	exit 0
+fi
+      
+# Get config.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+if [ ${NETWORKING} = "no" ]
+then
+        exit 0
+fi
+
+# check how we were called
+case "$1" in
+	start)
+	PID=`pidof -s lisa`
+	if [ -z "$PID" ]; then
+	if [ -e /opt/kde3/bin/lisa ]; then
+		
+		#check for config file and generate one if needed:
+		if [ ! -e $CONFIG_FILE ];then	
+		gprintf "No config file, generating one, please run kcontrol as root to customise\n"
+			# See http://lisa-home.sourceforge.net/ for more details
+			# on the config file format.
+			# PingAddresses/AllowedAddresses should only be route 
+			# entries that are not gateways,loopback or multicast:
+			IPNMS_ALL=`/sbin/route -n |awk 'BEGIN {ORS=";"};$4=="U"&&$8!="lo"&&$1!~/224.0.0.0/ {print $1"/"$3}'`
+			# BroadcastNetwork should be only the internal subnet,
+			# take first route from above:
+			IPNMS=`/sbin/route -n |awk ' $4=="U"&&$8!="lo"&&$1!~/224.0.0.0/&&$8!~/ppp.*/ {print $1"/"$3}'|head -n1`
+			echo "SecondWait=-1"> $CONFIG_FILE
+			echo "SearchUsingNmblookup=1">> $CONFIG_FILE
+			echo "DeliverUnnamedHosts=0" >>$CONFIG_FILE
+			echo "FirstWait=30" >> $CONFIG_FILE
+			echo "MaxPingsAtOnce=256" >>$CONFIG_FILE 
+			echo "UpdatePeriod=300" >> $CONFIG_FILE
+			#echo "PingAddresses=$IPNMS_ALL">> $CONFIG_FILE 
+			echo "AllowedAddresses=$IPNMS_ALL" >> $CONFIG_FILE
+			echo "BroadcastNetwork=$IPNMS" >>$CONFIG_FILE
+			#echo "PingNames=" >> $CONFIG_FILE
+		fi
+			
+		if [ -e $CONFIG_FILE ]; then
+			action "Starting %s: " "$prog" /bin/true
+			/opt/kde3/bin/lisa -c $CONFIG_FILE >/dev/null 2>&1
+		else
+			action "No configuration available, not starting LISa" /bin/false
+		fi
+			
+	else
+	        action "Starting %s: binaries not found " "$prog" /bin/false
+	fi
+	else
+	        action "Starting %s: already running (%s) " "$PID" "$prog" /bin/false
+	fi
+        touch /var/lock/subsys/lisa
+	;;
+
+	stop)
+	PID=`pidof -s lisa`
+	if [ "$PID" ]; then
+	        action "Stopping %s: " "$prog" kill -3 $PID
+        fi
+        rm -f /var/lock/subsys/lisa
+	;;
+
+	status)
+	PID=`pidof -s lisa`
+	if [ "$PID" ]; then
+	gprintf "%s is running! ($PID)\n" "$prog"
+	/usr/bin/kill -s SIGUSR1 $PID
+	sleep 3
+	else
+	gprintf "%s is not running!\n" "$prog" ;
+	fi
+	;;
+
+	restart)
+	$0 stop && $0 start
+	;;
+
+	refresh)
+	PID=`pidof -s lisa`
+	if [ "$PID" ]; then
+	gprintf "Sending %s a SIGHUP ($PID)\n" "$prog"
+	kill -SIGHUP $PID;
+	else
+	gprintf "%s is not running!\n" "$prog" ;
+	fi
+	;;
+
+	*)
+	gprintf "usage: %s {start|stop|status|refresh|restart}\n" $0
+	;;
+esac
+
+exit 0

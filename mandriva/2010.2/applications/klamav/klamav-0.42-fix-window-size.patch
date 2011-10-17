@@ -1,0 +1,343 @@
+--- src/specialfiletypes.ui.small       2008-03-29 03:37:21.000000000 +0100
++++ src/specialfiletypes.ui     2008-03-29 03:37:27.000000000 +0100
+@@ -8,7 +8,7 @@
+         <rect>
+             <x>0</x>
+             <y>0</y>
+-            <width>399</width>
++            <width>540</width>
+             <height>385</height>
+         </rect>
+     </property>
+@@ -34,7 +34,7 @@
+                     <rect>
+                         <x>20</x>
+                         <y>30</y>
+-                        <width>330</width>
++                        <width>480</width>
+                         <height>210</height>
+                     </rect>
+                 </property>
+
+--- src/archivelimits.ui.small  2008-03-29 03:45:04.000000000 +0100
++++ src/archivelimits.ui        2008-03-29 03:46:18.000000000 +0100
+@@ -8,7 +8,7 @@
+         <rect>
+             <x>0</x>
+             <y>0</y>
+-            <width>388</width>
++            <width>474</width>
+             <height>377</height>
+         </rect>
+     </property>
+@@ -46,9 +46,9 @@
+         </property>
+         <property name="geometry">
+             <rect>
+-                <x>11</x>
+-                <y>11</y>
+-                <width>366</width>
++                <x>10</x>
++                <y>10</y>
++                <width>430</width>
+                 <height>230</height>
+             </rect>
+         </property>
+@@ -63,7 +63,7 @@
+                 <rect>
+                     <x>11</x>
+                     <y>34</y>
+-                    <width>350</width>
++                    <width>400</width>
+                     <height>160</height>
+                 </rect>
+             </property>
+
+
+--- src/autoscanoptions.ui.small        2008-03-29 03:51:50.000000000 +0100
++++ src/autoscanoptions.ui      2008-03-29 03:52:28.000000000 +0100
+@@ -8,7 +8,7 @@
+         <rect>
+             <x>0</x>
+             <y>0</y>
+-            <width>391</width>
++            <width>529</width>
+             <height>386</height>
+         </rect>
+     </property>
+@@ -48,7 +48,7 @@
+             <rect>
+                 <x>10</x>
+                 <y>10</y>
+-                <width>370</width>
++                <width>460</width>
+                 <height>180</height>
+             </rect>
+         </property>
+@@ -113,7 +113,7 @@
+                 <rect>
+                     <x>10</x>
+                     <y>25</y>
+-                    <width>340</width>
++                    <width>440</width>
+                     <height>130</height>
+                 </rect>
+             </property>
+
+--- src/archivetypes.ui.old	2008-03-29 12:37:00.000000000 +0100
++++ src/archivetypes.ui	2008-03-29 12:37:15.000000000 +0100
+@@ -35,7 +35,7 @@
+                         <x>20</x>
+                         <y>30</y>
+                         <width>330</width>
+-                        <height>284</height>
++                        <height>320</height>
+                     </rect>
+                 </property>
+                 <grid>
+@@ -44,7 +44,7 @@
+                     </property>
+                     <widget class="QCheckBox" row="6" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanDeb</cstring>
++                            <cstring>kcfg_ScanDeb</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan Deb files using</string>
+@@ -55,7 +55,7 @@
+                     </widget>
+                     <widget class="QCheckBox" row="5" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanJar</cstring>
++                            <cstring>kcfg_ScanJar</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan Jar files using</string>
+@@ -66,7 +66,7 @@
+                     </widget>
+                     <widget class="QCheckBox" row="7" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanTar</cstring>
++                            <cstring>kcfg_ScanTar</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan Tar files using</string>
+@@ -77,7 +77,7 @@
+                     </widget>
+                     <widget class="QCheckBox" row="4" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanLzh</cstring>
++                            <cstring>kcfg_ScanLzh</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan Lzh files using</string>
+@@ -88,12 +88,12 @@
+                     </widget>
+                     <widget class="KURLComboRequester" row="7" column="1">
+                         <property name="name">
+-                          <cstring>kcfg_TarUsing</cstring>
++                            <cstring>kcfg_TarUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="QCheckBox" row="3" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanZoo</cstring>
++                            <cstring>kcfg_ScanZoo</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan Zoo files using</string>
+@@ -104,22 +104,22 @@
+                     </widget>
+                     <widget class="KURLComboRequester" row="3" column="1">
+                         <property name="name">
+-			<cstring>kcfg_ZooUsing</cstring>
++                            <cstring>kcfg_ZooUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="KURLComboRequester" row="4" column="1">
+                         <property name="name">
+-                          <cstring>kcfg_LzhUsing</cstring>
++                            <cstring>kcfg_LzhUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="KURLComboRequester" row="0" column="1">
+                         <property name="name">
+-                          <cstring>kcfg_ZipUsing</cstring>
++                            <cstring>kcfg_ZipUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="QCheckBox" row="1" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanRar</cstring>
++                            <cstring>kcfg_ScanRar</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan Rar files using</string>
+@@ -130,7 +130,7 @@
+                     </widget>
+                     <widget class="QCheckBox" row="0" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanZip</cstring>
++                            <cstring>kcfg_ScanZip</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan &amp;Zip files using</string>
+@@ -141,27 +141,27 @@
+                     </widget>
+                     <widget class="KURLComboRequester" row="5" column="1">
+                         <property name="name">
+-                          <cstring>kcfg_JarUsing</cstring>
++                            <cstring>kcfg_JarUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="KURLComboRequester" row="1" column="1">
+                         <property name="name">
+-                          <cstring>kcfg_RarUsing</cstring>
++                            <cstring>kcfg_RarUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="KURLComboRequester" row="6" column="1">
+                         <property name="name">
+-                          <cstring>kcfg_DebUsing</cstring>
++                            <cstring>kcfg_DebUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="KURLComboRequester" row="8" column="1">
+                         <property name="name">
+-                          <cstring>kcfg_TgzUsing</cstring>
++                            <cstring>kcfg_TgzUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="QCheckBox" row="8" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanTgz</cstring>
++                            <cstring>kcfg_ScanTgz</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan Tgz files using</string>
+@@ -172,12 +172,12 @@
+                     </widget>
+                     <widget class="KURLComboRequester" row="2" column="1">
+                         <property name="name">
+-                          <cstring>kcfg_ArjUsing</cstring>
++                            <cstring>kcfg_ArjUsing</cstring>
+                         </property>
+                     </widget>
+                     <widget class="QCheckBox" row="2" column="0">
+                         <property name="name">
+-                          <cstring>kcfg_ScanArj</cstring>
++                            <cstring>kcfg_ScanArj</cstring>
+                         </property>
+                         <property name="text">
+                             <string>Scan Arj files using</string>
+--- src/logoptions.ui.old	2008-03-29 12:46:38.000000000 +0100
++++ src/logoptions.ui	2008-03-29 12:47:18.000000000 +0100
+@@ -38,7 +38,7 @@
+                 <rect>
+                     <x>12</x>
+                     <y>69</y>
+-                    <width>161</width>
++                    <width>330</width>
+                     <height>21</height>
+                 </rect>
+             </property>
+@@ -48,13 +48,52 @@
+         </widget>
+         <widget class="QLayoutWidget">
+             <property name="name">
++                <cstring>layout5</cstring>
++            </property>
++            <property name="geometry">
++                <rect>
++                    <x>12</x>
++                    <y>17</y>
++                    <width>350</width>
++                    <height>40</height>
++                </rect>
++            </property>
++            <grid>
++                <property name="name">
++                    <cstring>unnamed</cstring>
++                </property>
++                <widget class="QSpinBox" row="0" column="1">
++                    <property name="name">
++                        <cstring>kcfg_ExpireDays</cstring>
++                    </property>
++                </widget>
++                <widget class="QLabel" row="0" column="0">
++                    <property name="name">
++                        <cstring>MaxMBsEx</cstring>
++                    </property>
++                    <property name="text">
++                        <string>Expire events after</string>
++                    </property>
++                </widget>
++                <widget class="QLabel" row="0" column="2">
++                    <property name="name">
++                        <cstring>MaxMBsEx_2</cstring>
++                    </property>
++                    <property name="text">
++                        <string>day(s)</string>
++                    </property>
++                </widget>
++            </grid>
++        </widget>
++        <widget class="QLayoutWidget">
++            <property name="name">
+                 <cstring>layout4</cstring>
+             </property>
+             <property name="geometry">
+                 <rect>
+                     <x>11</x>
+                     <y>91</y>
+-                    <width>300</width>
++                    <width>350</width>
+                     <height>210</height>
+                 </rect>
+             </property>
+@@ -141,45 +180,6 @@
+                 </widget>
+             </vbox>
+         </widget>
+-        <widget class="QLayoutWidget">
+-            <property name="name">
+-                <cstring>layout5</cstring>
+-            </property>
+-            <property name="geometry">
+-                <rect>
+-                    <x>12</x>
+-                    <y>17</y>
+-                    <width>300</width>
+-                    <height>40</height>
+-                </rect>
+-            </property>
+-            <grid>
+-                <property name="name">
+-                    <cstring>unnamed</cstring>
+-                </property>
+-                <widget class="QSpinBox" row="0" column="1">
+-                    <property name="name">
+-                        <cstring>kcfg_ExpireDays</cstring>
+-                    </property>
+-                </widget>
+-                <widget class="QLabel" row="0" column="0">
+-                    <property name="name">
+-                        <cstring>MaxMBsEx</cstring>
+-                    </property>
+-                    <property name="text">
+-                        <string>Expire events after</string>
+-                    </property>
+-                </widget>
+-                <widget class="QLabel" row="0" column="2">
+-                    <property name="name">
+-                        <cstring>MaxMBsEx_2</cstring>
+-                    </property>
+-                    <property name="text">
+-                        <string>day(s)</string>
+-                    </property>
+-                </widget>
+-            </grid>
+-        </widget>
+     </widget>
+ </widget>
+ <layoutdefaults spacing="6" margin="11"/>

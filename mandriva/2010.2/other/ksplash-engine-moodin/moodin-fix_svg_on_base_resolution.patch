@@ -1,0 +1,12 @@
+diff -p -up moodin/src/cache.cpp.orig moodin/src/cache.cpp
+--- moodin/src/cache.cpp.orig	2008-02-28 11:50:22.000000000 -0300
++++ moodin/src/cache.cpp	2008-02-28 11:50:30.000000000 -0300
+@@ -41,7 +41,7 @@ QImage* Cache::cacheFile(const QString& 
+   QStringList parts = QStringList::split("/", file);
+   QFile cachedFile(mCacheDir.filePath(parts.last()));
+ 
+-  if (!mScaler->resolutionDiff())
++  if (!mScaler->resolutionDiff() && !file.endsWith(".svg") && !file.endsWith(".svgz"))
+     return new QImage(file);
+   else if (isInSync(parts.last()) && cachedFile.exists())
+     return new QImage(cachedFile.name());

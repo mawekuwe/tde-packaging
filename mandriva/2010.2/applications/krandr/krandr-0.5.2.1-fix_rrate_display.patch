@@ -1,0 +1,28 @@
+--- krandr-0.5.2.1/randr/krandrtray.cpp.orig	2007-09-17 17:12:03.000000000 -0300
++++ krandr-0.5.2.1/randr/krandrtray.cpp	2007-09-17 17:16:35.000000000 -0300
+@@ -383,7 +383,7 @@ void KRandRSystemTray::populateRates(KPo
+ 	RateList::const_iterator it;
+ 	for (it = rates.begin(); it != rates.end(); ++it)
+ 	{
+-		lastIndex = menu->insertItem(i18n("%1 Hz", QString::number(*it, 'f', 1)));
++		lastIndex = menu->insertItem(i18n("%1 Hz").arg(QString::number(*it, 'f', 1)));
+ 		menu->setItemParameter(lastIndex, i);
+ 		if (*it == rate)
+ 			menu->setItemChecked(lastIndex, true);
+--- krandr-0.5.2.1/randr/legacyrandrscreen.cpp.orig	2007-09-17 17:24:23.000000000 -0300
++++ krandr-0.5.2.1/randr/legacyrandrscreen.cpp	2007-09-17 17:25:12.000000000 -0300
+@@ -246,12 +246,12 @@ QStringList LegacyRandRScreen::refreshRa
+ 
+ QString LegacyRandRScreen::refreshRateDirectDescription(int rate) const
+ {
+-	return i18n("Refresh rate in Hertz (Hz)", "%1 Hz", rate);
++	return i18n("%1 Hz").arg(rate);
+ }
+ 
+ QString LegacyRandRScreen::refreshRateIndirectDescription(int size, int index) const
+ {
+-	return i18n("Refresh rate in Hertz (Hz)", "%1 Hz", refreshRateIndexToHz(size, index));
++	return i18n("%1 Hz").arg(refreshRateIndexToHz(size, index));
+ }
+ 
+ QString LegacyRandRScreen::refreshRateDescription(int size, int index) const

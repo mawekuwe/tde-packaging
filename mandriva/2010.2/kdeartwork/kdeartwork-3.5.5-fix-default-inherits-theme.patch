@@ -1,0 +1,33 @@
+--- kdeartwork-3.5.5/IconThemes/ikons/index.theme--	2006-11-24 14:13:05.000000000 +0100
++++ kdeartwork-3.5.5/IconThemes/ikons/index.theme	2006-11-24 14:13:50.000000000 +0100
+@@ -67,7 +67,7 @@
+ Example=exec
+ LinkOverlay=link
+ LockOverlay=lockoverlay
+-Inherits=default
++Inherits=crystalsvg
+ ZipOverlay=zip
+ DesktopDefault=48
+ DesktopSizes=16,32,48,64
+--- kdeartwork-3.5.5/IconThemes/kdeclassic/index.theme--	2006-11-24 14:13:29.000000000 +0100
++++ kdeartwork-3.5.5/IconThemes/kdeclassic/index.theme	2006-11-24 14:14:04.000000000 +0100
+@@ -98,7 +98,7 @@
+ Comment[zu]=Ithimu Yophawu lwesithombe se-KDE Yasendulo
+ DisplayDepth=32
+ Example=exec
+-Inherits=default
++Inherits=crystalsvg
+ LinkOverlay=link
+ LockOverlay=lockoverlay
+ ZipOverlay=zip
+--- kdeartwork-3.5.5/IconThemes/Locolor/index.theme--	2006-11-24 14:13:37.000000000 +0100
++++ kdeartwork-3.5.5/IconThemes/Locolor/index.theme	2006-11-24 14:14:18.000000000 +0100
+@@ -98,7 +98,7 @@
+ Comment[zh_CN]=低色彩图标主题
+ Comment[zh_TW]=低色彩圖示主題
+ Comment[zu]=Umbala ongaphansi wogcizelelo lwe Icon
+-Inherits=default
++Inherits=crystalsvg
+ DisplayDepth=8
+ DesktopDefault=32
+ DesktopSizes=16,32

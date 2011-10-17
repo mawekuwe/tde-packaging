@@ -1,0 +1,43 @@
+--- kdebindings-3.5.7/kdejava/koala/kdejava/Makefile.am.orig	2007-08-15 10:31:51.000000000 +0200
++++ kdebindings-3.5.7/kdejava/koala/kdejava/Makefile.am	2007-08-15 10:32:10.000000000 +0200
+@@ -30,7 +30,7 @@
+ # of your shared lib (published for the users)
+ noinst_HEADERS = KDESupport.h KDEJavaSlot.h
+ 
+-libkdejava_la_LDFLAGS = $(all_libraries) -no-undefined -version-info $(SOMAJOR):$(SOMINOR):$(SOSUBMINOR) 
++libkdejava_la_LDFLAGS = $(all_libraries) -no-undefined -module -avoid-version
+ 
+ libkdejava_la_LIBADD = $(top_builddir)/qtjava/javalib/qtjava/libqtjavasupport.la -lkmdi $(LIB_KHTML) $(LIB_KSPELL) $(LIB_KIO)
+ 
+--- kdebindings-3.5.7/qtjava/javalib/qtjava/Makefile.am.orig	2007-08-15 10:37:14.000000000 +0200
++++ kdebindings-3.5.7/qtjava/javalib/qtjava/Makefile.am	2007-08-15 10:37:39.000000000 +0200
+@@ -30,6 +30,6 @@
+ libqtjavasupport_la_LDFLAGS = $(all_libraries) -no-undefined -version-info 1:0:0
+ libqtjavasupport_la_LIBADD = $(LIB_QT)
+ 
+-libqtjava_la_LDFLAGS = $(all_libraries) -no-undefined -version-info 1:0:0
++libqtjava_la_LDFLAGS = $(all_libraries) -no-undefined -module -avoid-version
+ libqtjava_la_LIBADD =  $(LIB_QT) libqtjavasupport.la
+ 
+--- kdebindings-3.5.7/qtjava/javalib/Makefile.am.orig	2007-08-16 02:48:24.000000000 +0200
++++ kdebindings-3.5.7/qtjava/javalib/Makefile.am	2007-08-16 02:48:42.000000000 +0200
+@@ -18,7 +18,7 @@
+ 
+ 
+ data_DATA = qtjava.jar
+-datadir = $(kde_libraries)/java
++datadir = $(prefix)/lib/java
+  
+ qtjava.jar: org/kde/qt/classnoinst.stamp
+ 	$(JAR) cf qtjava.jar org/kde/qt/*.class
+--- kdebindings-3.5.7/kdejava/koala/Makefile.am.orig	2007-08-16 02:49:22.000000000 +0200
++++ kdebindings-3.5.7/kdejava/koala/Makefile.am	2007-08-16 02:49:39.000000000 +0200
+@@ -25,7 +25,7 @@
+ # kde_wallpaperdir  Where general wallpapers should go to.
+ 
+ data_DATA = koala.jar
+-datadir = $(kde_libraries)/java
++datadir = $(prefix)/lib/java
+  
+ koala.jar: org/kde/koala/classnoinst.stamp
+ 	$(JAR) cf koala.jar org/kde/koala/*.class

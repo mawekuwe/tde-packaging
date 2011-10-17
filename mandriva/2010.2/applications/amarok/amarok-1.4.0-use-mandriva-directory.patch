@@ -1,0 +1,21 @@
+--- amarok/src/filebrowser.cpp~	2006-04-08 18:22:20.000000000 +0200
++++ amarok/src/filebrowser.cpp	2006-04-11 13:52:36.000000000 +0200
+@@ -77,15 +77,16 @@
+     // Try to keep filebrowser working even if not in a medium context
+     // so if a medium object not passed in, keep earlier behavior
+     if (!medium) {
++	    KGlobal::locale()->insertCatalogue("menu-messages-main");
+         m_medium = 0;
+-        location = new KURL( config->readPathEntry( "Location", QDir::homeDirPath() ) );
++        location = new KURL( config->readPathEntry( "Location", QDir::homeDirPath()+"/"+i18n("Music")));
+         currentFolder = new KFileItem( KFileItem::Unknown, KFileItem::Unknown, *location );
+         //KIO sucks, NetAccess::exists puts up a dialog and has annoying error message boxes
+         //if there is a problem so there is no point in using it anyways.
+         //so... setting the diroperator to ~ is the least sucky option
+         if ( !location->isLocalFile() || !currentFolder->isReadable() ) {
+             delete location;
+-            location = new KURL( QDir::homeDirPath() ) ;
++            location = new KURL( QDir::homeDirPath()+"/"+i18n("Music")) ;
+         }
+     }
+     else{

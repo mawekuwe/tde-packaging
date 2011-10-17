@@ -1,0 +1,52 @@
+--- ksnapshot/ksnapshot.cpp.orig	2007-11-28 22:13:20.000000000 +0800
++++ ksnapshot/ksnapshot.cpp	2007-11-28 22:21:29.000000000 +0800
+@@ -41,6 +41,8 @@
+ #include <tqpainter.h>
+ #include <tqpaintdevicemetrics.h>
+ #include <tqwhatsthis.h>
++#include <tqtextcodec.h>
++#include <tqtextstream.h>
+ 
+ #include <stdlib.h>
+ 
+@@ -58,6 +60,31 @@
+ 
+ #define kApp KApplication::kApplication()
+ 
++// helper function for reading xdg user dirs: it is required in order to take 
++// care of locale stuff
++TQString readXdgUserDirs()
++{
++	TQFile f( TQDir::homeDirPath() + "/.config/user-dirs.dirs" );
++
++	TQString picturesDir = TQDir::currentDirPath();
++	if (!f.open(IO_ReadOnly))
++		return(picturesDir);
++
++	// set the codec for the current locale
++	TQTextStream s(&f);
++	s.setCodec( TQTextCodec::codecForLocale() );
++
++	TQString line = s.readLine();
++	while (!line.isNull())
++	{
++		if (line.startsWith("XDG_PICTURES_DIR="))
++			picturesDir = line.remove("XDG_PICTURES_DIR=").remove("\"").replace("$HOME", QDir::homeDirPath());
++
++		line = s.readLine();
++	}
++	return(picturesDir);
++}
++
+ KSnapshot::KSnapshot(TQWidget *parent, const char *name, bool grabCurrent)
+   : DCOPObject("interface"), 
+     KDialogBase(parent, name, true, TQString::null, Help|User1, User1, 
+@@ -99,7 +126,7 @@
+     mainWidget->setDelay(conf->readNumEntry("delay",0));
+     mainWidget->setMode( conf->readNumEntry( "mode", 0 ) );
+     mainWidget->setIncludeDecorations(conf->readBoolEntry("includeDecorations",true));
+-    filename = KURL::fromPathOrURL( conf->readPathEntry( "filename", TQDir::currentDirPath()+"/"+i18n("snapshot")+"1.png" ));
++    filename = KURL::fromPathOrURL( conf->readPathEntry( "filename", readXdgUserDirs()+"/"+i18n("snapshot")+"1.png" ));
+ 
+     // Make sure the name is not already being used
+     while(KIO::NetAccess::exists( filename, false, this )) {

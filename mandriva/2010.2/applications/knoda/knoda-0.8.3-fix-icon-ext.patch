@@ -1,0 +1,19 @@
+--- knoda/knoda.desktop.orig	2007-10-22 20:32:37.000000000 +0800
++++ knoda/knoda.desktop	2007-10-22 20:32:50.000000000 +0800
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Name=knoda
+ Exec=knoda
+-Icon=knoda.png
++Icon=knoda
+ Type=Application
+ MimeType=application/x-sqlite3;application/x-sqlite2;application/x-hk_classes-sqlite3;application/x-hk_classes-sqlite2;application/x-msaccess;application/x-dbase;application/x-hk_connection;application/x-paradox;
+ DocPath=knoda/index.html
+@@ -12,5 +12,4 @@
+ Comment[fr]=Application base de données
+ Comment[it]=Un'applicazione base di dati
+ Terminal=false
+-Encoding=UTF-8
+-Categories=Qt;KDE;Office;Database;
+\ No newline at end of file
++Categories=Qt;KDE;Office;Database;

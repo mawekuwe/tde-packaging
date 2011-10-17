@@ -1,0 +1,16 @@
+--- kdepim-3.5.4/kalarm/kalarmapp.cpp--	2006-07-27 15:15:07.000000000 +0200
++++ kdepim-3.5.4/kalarm/kalarmapp.cpp	2006-07-27 15:16:29.000000000 +0200
+@@ -746,7 +746,12 @@
+ 				}
+ 
+ 				args->clear();      // free up memory
+-				if (!initCheck())
++                /* Instead of calling initCheck (), call initCheck (true) to check the calendar only.
++                 * This works because it doesn't change the return value:
++                 * If the return value is false, it doesn't matter because we exit.
++                 * If the return value is true, the first thing MainWindow() does, is to call initCheck(), so we do the same tests. 
++                 *              Jonas Wustrack - jwustrack@mandriva.com                        */
++				if (!initCheck(true))
+ 				{
+ 					exitCode = 1;
+ 					break;

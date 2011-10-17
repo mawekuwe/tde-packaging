@@ -1,0 +1,79 @@
+--- moodin/src/magiclabel.cpp--	2007-01-26 14:47:28.000000000 +0100
++++ moodin/src/magiclabel.cpp	2007-01-26 14:48:48.000000000 +0100
+@@ -21,7 +21,7 @@
+ // This class is still very simple (as most of the classes)
+ // They get all improved later when "OpenGL Effect Widget" structure is completed
+ 
+-MagicLabel::MagicLabel(QString s, bool translate)
++MagicLabel::MagicLabel(const QString &s, bool translate)
+ {
+   prefix = "ML:";
+   preUSER = "USER:";
+@@ -73,7 +73,11 @@
+   mValue = "";
+ 
+   if (!proc->start(KProcess::Block, KProcess::Stdout))
++  {
++    delete proc;
++    //TODO add i18n
+     KMessageBox::information(0, QString("Could not start process: %1").arg(cmd));
++  }
+ }
+ 
+ 
+--- moodin/src/cache.cpp--	2007-01-26 14:45:16.000000000 +0100
++++ moodin/src/cache.cpp	2007-01-26 14:46:11.000000000 +0100
+@@ -81,7 +81,7 @@
+ }
+ 
+ 
+-void Cache::writeInfoFile(QString& file)
++void Cache::writeInfoFile(const QString& file)
+ {
+   QFileInfo fi(getFile(file));
+ 
+@@ -91,7 +91,7 @@
+ }
+ 
+ 
+-bool Cache::isInSync(QString& file)
++bool Cache::isInSync(const QString& file)
+ {
+   QFileInfo fi(getFile(file));
+ 
+@@ -103,7 +103,7 @@
+ }
+ 
+ 
+-QString Cache::getFile(QString file)
++QString Cache::getFile(const QString &file)
+ {
+   return mCacheDir.filePath(file);
+ }
+--- moodin/src/cache.h--	2007-01-26 14:45:21.000000000 +0100
++++ moodin/src/cache.h	2007-01-26 14:46:15.000000000 +0100
+@@ -28,10 +28,10 @@
+     Scaler* mScaler;
+ 
+     void createCacheDir();
+-    void writeInfoFile(QString& file);
+-    bool isInSync(QString& file);
++    void writeInfoFile(const QString& file);
++    bool isInSync(const QString& file);
+ 
+-    QString getFile(QString file);
++    QString getFile(const QString &file);
+ 
+   public:
+     Cache(Scaler* scaler, const QString& mThemeEngine, const QString& theme);
+--- moodin/src/magiclabel.h--	2007-01-26 14:47:34.000000000 +0100
++++ moodin/src/magiclabel.h	2007-01-26 14:47:53.000000000 +0100
+@@ -36,7 +36,7 @@
+     void receivedStdout(KProcess *proc, char *buffer, int buflen);
+ 
+   public:
+-    MagicLabel(QString s, bool translate);
++    MagicLabel(const QString &s, bool translate);
+ 
+     inline QString& value() { return mValue; };
+ };

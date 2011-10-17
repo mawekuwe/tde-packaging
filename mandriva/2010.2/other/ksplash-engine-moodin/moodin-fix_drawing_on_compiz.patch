@@ -1,0 +1,67 @@
+diff -p -up moodin/src/effectwidget.cpp.fix_drawing moodin/src/effectwidget.cpp
+diff -p -up moodin/src/scaler.cpp.fix_drawing moodin/src/scaler.cpp
+diff -p -up moodin/src/effectwidget.h.fix_drawing moodin/src/effectwidget.h
+diff -p -up moodin/src/magiclabel.h.fix_drawing moodin/src/magiclabel.h
+diff -p -up moodin/src/thememoodin.h.fix_drawing moodin/src/thememoodin.h
+--- moodin/src/thememoodin.h.fix_drawing	2008-02-26 10:30:05.000000000 -0300
++++ moodin/src/thememoodin.h	2008-02-26 10:46:14.000000000 -0300
+@@ -96,7 +96,6 @@ private:
+   QPoint mStatusCoords;
+   QPoint mLabelShadowOffset;
+   QPoint mStatusOffsets;
+-  QWidget* mContainer;
+   QSize mBaseResolution;
+   QRect mSplashRect;
+ 
+diff -p -up moodin/src/scaler.h.fix_drawing moodin/src/scaler.h
+diff -p -up moodin/src/cache.h.fix_drawing moodin/src/cache.h
+diff -p -up moodin/src/thememoodin.cpp.fix_drawing moodin/src/thememoodin.cpp
+--- moodin/src/thememoodin.cpp.fix_drawing	2008-02-26 10:30:05.000000000 -0300
++++ moodin/src/thememoodin.cpp	2008-02-26 10:46:14.000000000 -0300
+@@ -39,6 +39,8 @@ ThemeMoodin::ThemeMoodin(QWidget* parent
+ {
+   readSettings();
+   init();
++  QLayout *l = layout();
++  delete l;
+ }
+ 
+ 
+@@ -122,8 +124,6 @@ void ThemeMoodin::init()
+   setBackgroundMode(NoBackground);
+   setFixedSize(mSplashRect.size());
+ 
+-  mContainer = new QWidget(this);
+-  mContainer->setFixedSize(size());
+   mScaler = new Scaler(mBaseResolution, size());
+   mCache = new Cache(mScaler, mTheme->themeEngine(), mTheme->theme());
+   mBG = new KPixmap();
+@@ -260,7 +260,7 @@ void ThemeMoodin::initEffectWidgets()
+       }
+     }
+ 
+-    fadeWidget = createEffectWidget(mContainer, image);
++    fadeWidget = createEffectWidget(this, image);
+     mEffectWidgets.append(fadeWidget);
+     mImages.append(image);
+     arrangeWidget(fadeWidget, index);
+@@ -367,7 +367,7 @@ void ThemeMoodin::slotSetPixmap(const QS
+ void ThemeMoodin::updateStatus()
+ {
+   QPainter p;
+-  p.begin(mContainer);
++  p.begin(this);
+ 
+   // use a copy, otherwise status messages move around
+   QPoint pt = mStatusCoords;
+@@ -396,7 +396,7 @@ void ThemeMoodin::paintEvent(QPaintEvent
+ {
+   QRect r = pe->rect();
+ 
+-  bitBlt(mContainer, r.x(), r.y(), mBG, r.x(), r.y(), r.width(), r.height());
++  bitBlt(this, r.x(), r.y(), mBG, r.x(), r.y(), r.width(), r.height());
+ 
+   if (mShowStatusText)
+     updateStatus();
+diff -p -up moodin/src/magiclabel.cpp.fix_drawing moodin/src/magiclabel.cpp
+diff -p -up moodin/src/cache.cpp.fix_drawing moodin/src/cache.cpp

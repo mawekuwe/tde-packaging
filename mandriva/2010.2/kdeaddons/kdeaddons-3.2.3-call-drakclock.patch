@@ -1,0 +1,15 @@
+--- kdeaddons-3.2.3/kicker-applets/kbinaryclock/kbinaryclock.cpp--	2004-08-12 17:51:27.544970616 +0200
++++ kdeaddons-3.2.3/kicker-applets/kbinaryclock/kbinaryclock.cpp	2004-08-12 17:51:53.191907782 +0200
+@@ -326,11 +326,7 @@ void KBinaryClock::openContextMenu() {
+ 		preferences();
+ 		break;
+ 	case 103:
+-		proc << locate("exe", "kdesu");
+-		proc << "--nonewdcop";
+-		proc << TQString("%1 clock --lang %2")
+-				.arg(locate("exe", "kcmshell"))
+-				.arg(KGlobal::locale()->language());
++		proc << TQString("/usr/sbin/drakclock");
+ 		proc.start(KProcess::DontCare);
+ 		break;
+ 	case 104:

@@ -1,0 +1,51 @@
+diff -p -up moodin/src/cache.cpp.external_svgrender moodin/src/cache.cpp
+--- moodin/src/cache.cpp.external_svgrender	2007-12-20 15:15:29.000000000 -0200
++++ moodin/src/cache.cpp	2007-12-20 16:12:35.000000000 -0200
+@@ -13,9 +13,9 @@
+ #include <kstandarddirs.h>
+ #include <kconfig.h>
+ 
+-#ifdef HAVE_LIBART
+-#include <ksvgiconengine.h>
+-#endif
++// for external svg rendering
++#include <ktempfile.h>
++#include <kprocess.h>
+ 
+ #include <qfileinfo.h>
+ #include <qdatetime.h>
+@@ -49,22 +49,18 @@ QImage* Cache::cacheFile(const QString& 
+   {
+     QImage *i;
+     if (file.endsWith(".svg") || file.endsWith(".svgz")) {
+-#ifdef HAVE_LIBART
+-      KSVGIconEngine* svgEngine = new KSVGIconEngine();
+-      QSize size = mScaler->targetResolution(); 
+-      if (svgEngine->load(size.width(), size.height(), file )) {
+-         QImage *image = svgEngine->image();
+-	 i = new QImage(*image);
+-	 delete image;
+-	 i->save(cachedFile.name(), QImage::imageFormat(file));
+-      } else {
+-         kdWarning() << "failed to load SVG file " << file << endl;
+-      }
+-        delete svgEngine;
+-#else
+-     kdWarning() << k_funcinfo
+-                 << "tried to load SVG file but libart not installed" << endl;
+-#endif	
++      QSize size = mScaler->targetResolution();
++      KProcess proc;
++	  proc << "moodin_svgrender";
++	  KTempFile tmp("/tmp/moodin_cache", ".png");
++	  tmp.setAutoDelete(false);
++	  tmp.close();
++	  proc << QString::number(size.width()) << QString::number(size.height()) << file << tmp.name();
++	  proc.start(KProcess::Block);
++
++      i = new QImage(tmp.name());
++	  if (i->save(cachedFile.name(), "PNG"))
++		 QFile(tmp.name()).remove();
+     }
+     else
+     {

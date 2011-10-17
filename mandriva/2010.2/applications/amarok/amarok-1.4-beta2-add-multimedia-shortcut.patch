@@ -1,0 +1,22 @@
+diff -Naur amarok-1.4.10/amarok/src/amarokrc amarok-1.4.10_yeni/amarok/src/amarokrc
+--- amarok-1.4.10/amarok/src/amarokrc   2009-12-20 01:16:09.000000000 +0200
++++ amarok-1.4.10_yeni/amarok/src/amarokrc      2009-12-20 01:19:33.994560100 +0200
+@@ -8,6 +8,18 @@
+ #see PlaylistWidget::setColumnWidth() for explanation for below
+ ColumnWidths=0,200,100,100,0,0,0,0,0,80,0
+
++[Shortcuts]
++voldn=Ctrl+Shift+KP_Subtract;XF86AudioLowerVolume
++next=Ctrl+Shift+B;XF86AudioNext
++osd=Ctrl+Shift+O;XF86Start
++play_pause=Ctrl+Shift+P;XF86AudioPlay
++prev=Ctrl+Shift+Z;XF86AudioPrev
++stop=Ctrl+Shift+V;XF86AudioStop
++volup=Ctrl+Shift+KP_Add;XF86AudioRaiseVolume
++pause=Ctrl+Shift+C
++play=Ctrl+Shift+X
++show=Ctrl+Shift+W
++
+ [Playback]
+ Sound System=xine-engine
+

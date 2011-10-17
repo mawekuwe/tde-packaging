@@ -1,0 +1,11 @@
+--- plugins/webinterface/ktwebinterfaceplugin.kcfg.orig	2007-02-05 23:43:07.000000000 +0100
++++ plugins/webinterface/ktwebinterfaceplugin.kcfg	2007-02-05 23:43:15.000000000 +0100
+@@ -26,7 +26,7 @@
+ 		</entry>
+ 		<entry name="phpExecutablePath" type ="String">
+ 			<label>php executable path</label>
+-			<default></default>
++			<default>/usr/bin/php</default>
+ 		</entry>
+ 
+ 		<entry name="username" type ="String">

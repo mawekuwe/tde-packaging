@@ -1,0 +1,48 @@
+--- kdepim-3.5.9/kitchensync/src/configgui.cpp	2007-10-08 02:50:47.000000000 -0700
++++ kdepim-3.5.9/kitchensync/src/configgui.cpp.new	2008-03-14 01:10:51.000000000 -0700
+@@ -22,6 +22,7 @@
+ #include "configgui.h"
+ 
+ 
++#include "configguibarry.h"
+ #include "configguiblank.h"
+ #include "configguifile.h"
+ #include "configguignokii.h"
+@@ -91,6 +92,8 @@
+     return new ConfigGuiSyncmlHttp( member, parent );
+   } else if ( name == "opie-sync" ) {
+     return new ConfigGuiOpie( member, parent );
++  } else if ( name == "barry-sync" ) {
++    return new ConfigGuiBarry( member, parent );
+   } else if ( name == "gnokii-sync" ) {
+     return new ConfigGuiGnokii( member, parent );
+   } else if ( name == "gpe-sync" ) {
+--- kdepim-3.5.9/kitchensync/src/Makefile.am	2007-10-08 02:50:47.000000000 -0700
++++ kdepim-3.5.9/kitchensync/src/Makefile.am.new	2008-03-14 01:11:58.000000000 -0700
+@@ -30,7 +30,7 @@
+                             configguisyncmlobex.cpp configguisyncmlhttp.cpp configguiopie.cpp  \
+                             configguignokii.cpp configguigcalendar.cpp configguildap.cpp configguigpe.cpp \
+                             configguijescs.cpp configguievo2.cpp configguimoto.cpp configguisynce.cpp \
+-                            configguisunbird.cpp
++                            configguisunbird.cpp configguibarry.cpp
+ libkitchensync_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -no-undefined
+ libkitchensync_la_LIBADD = $(LIB_KIO) $(LIB_KHTML) $(top_builddir)/kitchensync/libqopensync/libqopensync.la \
+                            $(LIB_KABC) $(top_builddir)/libkdepim/libkdepim.la $(top_builddir)/libkcal/libkcal.la
+--- kdepim-3.5.9/kitchensync/src/memberinfo.cpp	2007-10-08 02:50:47.000000000 -0700
++++ kdepim-3.5.9/kitchensync/src/memberinfo.cpp.new	2008-03-14 01:09:09.000000000 -0700
+@@ -53,6 +53,7 @@
+     nameMap.insert( "palm-sync", i18n( "Palm" ) );
+     nameMap.insert( "kdepim-sync", i18n( "KDE PIM" ) );
+     nameMap.insert( "kio-sync", i18n( "Remote File" ) );
++    nameMap.insert( "barry-sync", i18n( "Blackberry" ) );
+     nameMap.insert( "irmc-sync", i18n( "Mobile Phone" ) );
+     nameMap.insert( "evo2-sync", i18n( "Evolution" ) );
+     nameMap.insert( "opie-sync", i18n( "Handheld" ) );
+@@ -80,6 +81,7 @@
+   if ( pluginName == "palm-sync" ) return "pda_black";
+   if ( pluginName == "kdepim-sync" ) return "kontact";
+   if ( pluginName == "kio-sync" ) return "network";
++  if ( pluginName == "barry-sync" ) return "pda_black";
+   if ( pluginName == "irmc-sync" ) return "mobile_phone";
+   if ( pluginName == "evo2-sync" ) return "evolution";
+   if ( pluginName == "opie-sync" ) return "pda_blue";

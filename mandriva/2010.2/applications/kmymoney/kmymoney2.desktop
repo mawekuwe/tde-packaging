@@ -1,0 +1,21 @@
+[Desktop Entry]
+Name=KMyMoney
+GenericName=Personal Finance Manager
+GenericName[de]=Persönlicher Finanzassistent
+GenericName[fr]=Gestionnaire de finances personnelles
+GenericName[pt_BR]=Gerenciador Pessoal de Finanças
+GenericName[ru]=Учёт финансов
+GenericName[zh_CN]=个人财务管理软件
+Exec=kmymoney2
+Comment=Personal Finance Manager
+Comment[de]=Persönlicher Finanzassistent
+Comment[fr]=Gestionnaire de finances personnelles
+comment[pt_BR]=Gerenciador Pessoal de Finanças
+Comment[ru]=Учёт финансов
+Comment[zh_CN]=个人财务管理软件
+MimeType=application/x-kmymoney;application/vnd.intu.qfx;application/x-ofx;
+Type=Application
+DocPath=kmymoney2/index.html
+Icon=kmymoney2
+ServiceTypes=
+Categories=Office;Finance;Qt;KDE;

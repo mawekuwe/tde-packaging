@@ -1,0 +1,31 @@
+--- kopete/plugins/statistics/sqlite/shell.c.orig	2009-04-02 20:04:41.000000000 +0200
++++ kopete/plugins/statistics/sqlite/shell.c	2009-04-02 20:29:12.000000000 +0200
+@@ -356,7 +356,7 @@
+     output_c_string(p->out, z);
+   }
+   if( bSep ){
+-    fprintf(p->out, p->separator);
++    fprintf(p->out, "%s", p->separator);
+   }
+ }
+ 
+@@ -1005,7 +1005,7 @@
+   }else
+ 
+   if( c=='h' && strncmp(azArg[0], "help", n)==0 ){
+-    fprintf(stderr,zHelp);
++    fprintf(stderr, "%s", zHelp);
+   }else
+ 
+   if( c=='i' && strncmp(azArg[0], "import", n)==0 && nArg>=3 ){
+--- kopete/plugins/statistics/sqlite/vdbe.c.orig	2009-04-02 20:30:39.000000000 +0200
++++ kopete/plugins/statistics/sqlite/vdbe.c	2009-04-02 20:31:02.000000000 +0200
+@@ -361,7 +361,7 @@
+       }
+     }
+     zBuf[k++] = ']';
+-    k += sprintf(&zBuf[k], encnames[pMem->enc]);
++    k += sprintf(&zBuf[k], "%s", encnames[pMem->enc]);
+     zBuf[k++] = 0;
+   }
+ }
