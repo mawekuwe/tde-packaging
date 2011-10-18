@@ -1,0 +1,15 @@
+Source: kdbusnotification-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Helen Faulkner <helen@debian.org>
+Build-Depends: debhelper (>> 4.0.0), kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: kdbusnotification-trinity
+Architecture: any
+Section: kde
+Depends: ${shlibs:Depends}
+Description: a DBUS notification service [Trinity]
+ kdbusnotification is a small program for Trinity that displays
+ DBUS notifications via unobtrusive, easily dismissed passive popups.

@@ -1,0 +1,191 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE	?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE	?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+INSTALL_DIR = install -p -d -o root -g root -m 755
+INSTALL_FILE = install -p -o root -g root -m 644
+
+objdir = $(CURDIR)/obj-$(DEB_BUILD_GNU_TYPE)
+
+tmp = debian/kdbusnotification-trinity
+
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -g
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+ifeq ($(DEB_BUILD_GNU_TYPE),i386-linux)
+  # Uncomment the following 2 lines to enable i686 optimziation
+  # You may want to tweak the settings to your likings
+  #export CFLAGS=-O3 -march=i686 -ffast-math -finline-functions
+  #export CXXFLAGS=-O3 -march=i686 -ffast-math -finline-functions
+endif
+
+-include debian/debiandirs
+
+debian/debiandirs: admin/debianrules
+	perl -w admin/debianrules echodirs > debian/debiandirs
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+
+	# Apply Debian specific patches
+	if test ! -f patch-stamp; then \
+		for patch in $(CURDIR)/debian/patches/*.diff ;\
+		do \
+			echo APPLYING PATCH\: $${patch##*/};\
+			patch -p1 < $$patch ;\
+		done ;\
+		touch patch-stamp ;\
+	fi
+
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+	if test ! -f configure; then \
+		$(MAKE) -f admin/Makefile.common ;\
+	fi
+
+	# make build directory
+	mkdir $(objdir)
+
+	# run configure with build tree $(objdir)
+	cd $(objdir) && \
+	../configure --disable-debug --enable-final --libexecdir=/opt/trinity/bin --sysconfdir=/etc --libdir=/opt/trinity/lib --includedir=/opt/include/kde --with-qt-includes=/usr/include/qt3 --mandir=/opt/trinity/share/man --infodir=/opt/trinity/share/info --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+
+	touch configure-stamp
+
+build: build-stamp
+build-stamp: configure-stamp 
+	dh_testdir
+
+	cd $(objdir) && \
+	$(MAKE)
+
+	touch build-stamp
+
+debian-clean:
+	dh_testdir
+	dh_testroot
+
+	dh_clean
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp debian/debiandirs
+
+	# Remove Debian specific patches
+	if test -f patch-stamp; then \
+		for patch in $(CURDIR)/debian/patches/*.diff ;\
+		do \
+			echo REMOVING PATCH\: $${patch##*/};\
+			patch -p1 -R < $$patch ;\
+		done ;\
+		rm -f patch-stamp ;\
+	fi
+
+	# Remove build tree
+	rm -rf $(objdir)
+
+	# if Makefile exists run distclean
+	if test -f Makefile; then \
+		$(MAKE) distclean; \
+	fi
+
+	if test -d CVS; then \
+		$(MAKE) -f admin/Makefile.common cvs-clean ;\
+	fi
+
+	dh_clean
+
+install: DH_OPTIONS=
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	cd $(objdir) && \
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/kdbusnotification-trinity
+
+	# Install additional files beyond the standard install.
+	dh_install
+
+	# Generate HTML docs.
+	for i in `find $(tmp) -name "index.docbook"`; do \
+	  ( cd `dirname $$i`; /opt/trinity/bin/meinproc `basename $$i` ); \
+	done
+
+	# Install standard documentation links.
+	for pkg in `dh_listpackages`; do \
+	  if test -d debian/$$pkg/opt/trinity/share/doc/kde/HTML/en/$$pkg; then \
+	    dh_link -p$$pkg opt/trinity/share/doc/kde/HTML/en/$$pkg \
+	      opt/trinity/share/doc/$$pkg/html; \
+	  fi; \
+	done
+
+# This single target is used to build all the packages, all at once, or
+# one at a time. So keep in mind: any options passed to commands here will
+# affect _all_ packages. Anything you want to only affect one package
+# should be put in another target, such as the install target.
+binary-common:
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installexamples
+	dh_installmanpages
+	dh_installmime
+	dh_strip
+	dh_link
+	dh_compress -X.docbook -X.css -X-license -X.dcl -X.bz2
+	dh_fixperms
+	dh_makeshlibs -V
+	dh_installdeb
+	dh_perl
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+# Build architecture independant packages using the common target.
+binary-indep: build install
+	# We have nothing to do by default.
+
+# Build architecture dependant packages using the common target.
+binary-arch: build install
+	$(MAKE) -f debian/rules DH_OPTIONS=-a binary-common
+
+# Any other binary targets build just one binary package at a time.
+binary-%: build install
+	$(MAKE) -f debian/rules binary-common DH_OPTIONS=-p$*
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
