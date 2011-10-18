@@ -1,0 +1,187 @@
+--- krandr-0.5.2.1/randr/krandrtray.h.orig	2007-09-03 18:05:43.000000000 -0300
++++ krandr-0.5.2.1/randr/krandrtray.h	2007-09-03 18:29:15.000000000 -0300
+@@ -37,6 +37,9 @@ public:
+ 
+ 	void configChanged();
+ 
++public slots:
++	void slotSwitchDisplay();
++
+ protected slots:
+ 	void slotScreenActivated();
+ 	void slotResolutionChanged(int parameter);
+--- krandr-0.5.2.1/randr/randrdisplay.h.orig	2007-09-03 18:05:43.000000000 -0300
++++ krandr-0.5.2.1/randr/randrdisplay.h	2007-09-03 18:31:43.000000000 -0300
+@@ -51,6 +51,8 @@ public:
+ 
+ 	void	refresh();
+ 
++	void switchOutput();
++
+ 	/**
+ 	 * Loads saved settings.
+ 	 *
+--- krandr-0.5.2.1/randr/randrscreen.h.orig	2007-09-03 18:05:43.000000000 -0300
++++ krandr-0.5.2.1/randr/randrscreen.h	2007-09-03 18:32:51.000000000 -0300
+@@ -40,6 +40,8 @@ public:
+ 
+ 	int index() const;
+ 
++	void switchOutput();
++
+ 	XRRScreenResources* resources() const;
+ 	Window rootWindow() const;
+ 
+--- krandr-0.5.2.1/randr/krandrtray.cpp.orig	2007-09-03 18:05:43.000000000 -0300
++++ krandr-0.5.2.1/randr/krandrtray.cpp	2007-09-04 10:12:05.000000000 -0300
+@@ -17,6 +17,7 @@
+  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+  */
+ 
++#include <kglobalaccel.h>
+ #include <kapplication.h>
+ #include <kpopupmenu.h>
+ #include <khelpmenu.h>
+@@ -33,6 +34,7 @@
+ #include "randroutput.h"
+ #include "randrmode.h"
+ 
++#include <kdebug.h>
+ KRandRSystemTray::KRandRSystemTray(RandRDisplay *dpy, QWidget* parent, const char *name)
+ : KSystemTray(parent, name)
+ , m_popupUp(false), m_display(dpy)
+@@ -43,6 +45,16 @@ KRandRSystemTray::KRandRSystemTray(RandR
+ 	connect(this, SIGNAL(quitSelected()), kapp, SLOT(quit()));
+ 	QToolTip::add(this, i18n("Screen resize & rotate"));
+ 
++	KConfig cfg("kcmrandrrc");
++	cfg.setGroup("General");
++
++	KGlobalAccel *accel = new KGlobalAccel(this);
++	accel->insert( "DisplaySwitch", i18n("Switch displays"),
++		   i18n("Switch between active displays."),
++		        CTRL+SHIFT+Key_S, KKey::QtWIN+CTRL+Key_S, this, SLOT(slotSwitchDisplay()) );
++
++	accel->readSettings(&cfg);
++	accel->updateConnections();
+ }
+ 
+ void KRandRSystemTray::mousePressEvent(QMouseEvent* e)
+@@ -456,3 +468,8 @@ void KRandRSystemTray::slotPrefs()
+ 	kcm->setPlainCaption( i18n( "Configure Display" ) );
+ 	kcm->exec();
+ }
++
++void KRandRSystemTray::slotSwitchDisplay()
++{
++    m_display->switchOutput();
++}
+--- krandr-0.5.2.1/randr/randrdisplay.cpp.orig	2007-09-03 18:05:43.000000000 -0300
++++ krandr-0.5.2.1/randr/randrdisplay.cpp	2007-09-03 18:32:35.000000000 -0300
+@@ -300,3 +300,10 @@ void RandRDisplay::applyProposed(bool co
+ 	}
+ }
+ 
++void RandRDisplay::switchOutput()
++{
++#ifdef HAS_RANDR_1_2
++    if (RandR::has_1_2)
++	currentScreen()->switchOutput();
++#endif
++}
+--- krandr-0.5.2.1/randr/randrscreen.cpp.orig	2007-09-03 18:05:43.000000000 -0300
++++ krandr-0.5.2.1/randr/randrscreen.cpp	2007-09-04 12:45:23.000000000 -0300
+@@ -581,6 +581,93 @@ void RandRScreen::slotOutputChanged(RROu
+ 	emit configChanged();
+ }
+ 
++void RandRScreen::switchOutput()
++{
++	//refresh settings so that the new monitor gets detected
++	loadSettings();
++
++	// if there is just one connected output, do not switch
++	if (connectedCount() < 2)
++		return;
++
++	// disable all outputs and activate the first connected one
++	if (activeCount() > 1)
++	{
++		bool first = true;
++		slotUnifyOutputs(0);
++		OutputMap::iterator it;
++		for(it = m_outputs.begin(); it != m_outputs.end(); ++it)
++		{
++			RandROutput *output = *it;
++			if (first && output->isActive())
++				first = false;
++			else if (first && output->isConnected())
++			{
++				SizeList sizes = output->sizes();
++				if (!sizes.count())
++					continue;
++
++				output->proposeRect(QRect(QPoint(0,0), sizes.first()));
++				if (output->applyProposed(false))
++					first = false;
++				else
++					output->slotDisable();
++			}
++			else
++				output->slotDisable();
++		}
++
++		for(it = m_outputs.begin(); it != m_outputs.end(); ++it)
++		{
++			RandROutput *output = *it;
++			if (output->isConnected())
++			{
++				SizeList sizes = output->sizes();
++				if (!sizes.count())
++					continue;
++
++				output->proposeRect(QRect(QPoint(0,0), sizes.first()));
++				if (output->applyProposed(RandR::ChangeRect, false))
++					break;
++			}
++		}
++	}
++	else
++	{
++		OutputMap::iterator it;
++		// first disable the currently active output and try to active the next
++		// connected one
++		bool found_active = false, found_connected = false;
++		for(it = m_outputs.begin(); it != m_outputs.end(); ++it)
++		{
++			RandROutput *output = *it;
++			if (!found_active && output->isActive())
++			{
++				output->slotDisable();
++				found_active = true;
++			}
++			else if (found_active && output->isConnected())
++			{
++				SizeList sizes = output->sizes();
++				if (!sizes.count())
++					continue;
++
++				output->proposeRect(QRect(QPoint(0,0), sizes.first()));
++				if (output->applyProposed(RandR::ChangeRect, false))
++				{
++					found_connected = true;
++					break;
++				}
++			}
++		}
++
++		// if we could not find the next connected output after the active one,
++		// activate all
++		if (!found_connected)
++			slotUnifyOutputs(1);
++	} // if activeCount < 2
++}
++
+ #include "randrscreen.moc"
+ 
+ #endif

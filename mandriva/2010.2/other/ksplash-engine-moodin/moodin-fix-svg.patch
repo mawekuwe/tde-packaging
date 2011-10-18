@@ -1,0 +1,67 @@
+--- moodin/src/scaler.cpp--	2007-02-14 15:22:06.000000000 +0100
++++ moodin/src/scaler.cpp	2007-02-14 15:22:16.000000000 +0100
+@@ -15,7 +15,16 @@
+ 
+ Scaler::Scaler(QSize baseResolution, QSize targetResolution)
+ {
+-  mBaseResolution = baseResolution;
++  if(mBaseResolution.isValid())
++  {	  
++    mBaseResolution = baseResolution;
++    mSvgFile =false;
++  }
++  else
++  {
++    mBaseResolution = targetResolution;
++    mSvgFile = true;
++  }
+   mTargetResolution = targetResolution;
+ }
+ 
+@@ -44,7 +53,7 @@
+ 
+ void Scaler::scaleCoords(QPoint* pt)
+ {
+-  if (mBaseResolution == mTargetResolution)
++  if (!mSvgFile && (mBaseResolution == mTargetResolution))
+     return;
+ 
+   int ox = pt->x();
+@@ -95,7 +104,7 @@
+ 
+ bool Scaler::resolutionDiff()
+ {
+-  return (mBaseResolution != mTargetResolution);
++  return (mSvgFile || (mBaseResolution != mTargetResolution));
+ }
+ 
+ 
+--- moodin/src/scaler.h--	2007-02-14 15:22:09.000000000 +0100
++++ moodin/src/scaler.h	2007-02-14 15:22:20.000000000 +0100
+@@ -21,6 +21,7 @@
+   private:
+     QSize mBaseResolution;  
+     QSize mTargetResolution;
++    bool mSvgFile;
+ 
+   public:
+     Scaler(QSize baseResolution, QSize targetResolution);
+--- moodin/src/thememoodin.cpp--	2007-02-14 15:23:53.000000000 +0100
++++ moodin/src/thememoodin.cpp	2007-02-14 15:24:40.000000000 +0100
+@@ -88,7 +88,7 @@
+   mBaseResolution = cfg->readSizeEntry("BaseResolution", &size);
+   //For svg image use a negative size => force to create it.
+   if(!mUsersBackground && (mBackgroundImage.endsWith(".svg") || mBackgroundImage.endsWith(".svgz"))) {
+-	  mBaseResolution=QSize(-1,-1);
++	  mBaseResolution=QSize();
+   }
+ 
+   mTranslate = cfg->readBoolEntry("Translate", true);
+@@ -248,7 +248,6 @@
+     else
+     {
+       QString name = mTheme->locateThemeData(*it);
+- 
+       if (name.isEmpty())
+         continue;
+   

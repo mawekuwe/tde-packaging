@@ -1,0 +1,52 @@
+--- src/kmetabar.h.orig	2005-09-06 12:12:39.000000000 +0200
++++ src/kmetabar.h	2005-09-06 12:12:59.000000000 +0200
+@@ -8,10 +8,15 @@
+ #include <konqsidebarplugin.h>
+ #include <qstring.h>
+ #include <qscrollview.h>
++#include <kdemacros.h>
+ 
+ #include "kmetabar_widget.h"
+ #include "metascrollview.h"
+ 
++#ifndef KDE_EXPORT
++#define KDE_EXPORT
++#endif
++
+ class Metabar : public KonqSidebarPlugin
+ {
+     Q_OBJECT
+--- src/kmetabar.cpp.orig	2005-09-06 12:00:33.000000000 +0200
++++ src/kmetabar.cpp	2005-09-06 12:16:13.000000000 +0200
+@@ -2,9 +2,13 @@
+ #include <kinstance.h>
+ #include <qwidget.h>
+ #include <kdebug.h>
++#include <kdemacros.h>
+ #include "kmetabar.h"
+ #include "kmetabar.moc"
+ 
++#ifndef KDE_EXPORT
++#define KDE_EXPORT
++#endif
+ 
+ Metabar::Metabar(KInstance *inst,QObject *parent,QWidget *widgetParent, QString &desktopName, const char* name):
+                    KonqSidebarPlugin(inst,parent,widgetParent,desktopName,name)
+@@ -40,7 +44,7 @@
+ 
+ 
+ extern "C" {
+-  KDE_EXPORT bool add_konqsidebar_kmetabar(QString* fn, QString* param, QMap<QString,QString> *map) {
++   bool add_konqsidebar_kmetabar(QString* fn, QString* param, QMap<QString,QString> *map) {
+     Q_UNUSED(param);
+ 
+     map->insert("Type", "Link");
+@@ -55,7 +59,7 @@
+ 
+ extern "C"
+ {
+-  KDE_EXPORT void* create_konqsidebar_kmetabar(KInstance *instance,QObject *par,QWidget *widp,QString &desktopname,const char *name)
++   void* create_konqsidebar_kmetabar(KInstance *instance,QObject *par,QWidget *widp,QString &desktopname,const char *name)
+     {
+       return new Metabar(instance,par,widp,desktopname,name);
+     }

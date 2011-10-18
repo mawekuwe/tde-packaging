@@ -1,0 +1,9 @@
+--- knoda/x-hk_classes-sqlite3.desktop.orig	2007-09-01 10:11:04.000000000 +0800
++++ knoda/x-hk_classes-sqlite3.desktop	2007-09-01 10:11:12.000000000 +0800
+@@ -6,6 +6,5 @@
+ Patterns=*.hk_sqlite3
+ Comment=Sqlite3 database (knoda)
+ Comment[de]=Sqlite3 Datenbank (knoda)
+-Comment[fr]=Sqlite3 base de données (knoda)
+ Comment[es]=Sqlite3 base de datos (knoda)
+ 

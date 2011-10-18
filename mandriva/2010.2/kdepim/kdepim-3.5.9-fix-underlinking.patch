@@ -1,0 +1,27 @@
+Index: kdepim-3.5.9/indexlib/Makefile.am
+===================================================================
+--- kdepim-3.5.9/indexlib/Makefile.am
++++ kdepim-3.5.9/indexlib/Makefile.am	2008-06-06 23:56:40.000000000 +0300
+@@ -3,6 +3,7 @@
+ 
+ lib_LTLIBRARIES = libindex.la
+ 
++libindex_la_LIBADD = -lz
+ libindex_la_SOURCES = bitstream.cpp compressed.cpp create.cpp exception.cpp ifile.cpp leafdata.cpp leafdatavector.cpp lockfile.cpp logfile.cpp match.cpp mmap_manager.cpp quotes.cpp slow.cpp stringarray.cpp stringset.cpp tokenizer.cpp
+ 
+ indexlibincludedir=$(includedir)/index
+Index: kdepim-3.5.9/kontact/src/Makefile.am
+===================================================================
+--- kdepim-3.5.9/kontact/src/Makefile.am
++++ kdepim-3.5.9/kontact/src/Makefile.am	2008-06-07 14:40:39.000000000 +0300
+@@ -4,7 +4,9 @@
+ 
+ lib_LTLIBRARIES = libkontact.la
+ libkontact_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -version-info 1:0
+-libkontact_la_LIBADD = $(LIB_KDECORE)
++# Use C++ linking mode; automake autodetection does not work here:
++libkontact_la_LIBTOOLFLAGS = --tag=CXX
++libkontact_la_LIBADD = $(LIB_QT) $(LIB_KDECORE)
+ libkontact_la_SOURCES = prefs.kcfgc
+ 
+ bin_PROGRAMS = kontact

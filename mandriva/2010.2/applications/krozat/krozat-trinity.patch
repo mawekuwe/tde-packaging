@@ -1,0 +1,11 @@
+--- krozat/krozat.cpp.orig	2011-07-22 15:28:02.429285443 +0100
++++ krozat/krozat.cpp	2011-07-22 15:28:06.356282951 +0100
+@@ -78,7 +78,7 @@
+   time(&t);
+   srand((unsigned int)t);
+ 
+-  KImageIO::registerFormats();
++  //KImageIO::registerFormats();
+ 
+   //blank();
+ 

@@ -1,0 +1,10 @@
+--- kdepim-3.5.4/kmail/accountwizard.cpp.fix	2007-03-29 12:53:21.000000000 -0300
++++ kdepim-3.5.4/kmail/accountwizard.cpp	2007-03-29 14:06:35.000000000 -0300
+@@ -111,6 +111,7 @@
+   : KWizard( parent, "KWizard" ), mKernel( kernel ),
+     mAccount( 0 ), mTransportInfo( 0 ), mServerTest( 0 )
+ {
++  helpButton()->hide();
+   setupWelcomePage();
+   setupAccountTypePage();
+   setupAccountInformationPage();

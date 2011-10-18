@@ -1,0 +1,18 @@
+--- kdebindings-3.5.7/dcopperl/Makefile.PL.in.orig	2007-05-29 00:43:13.000000000 -0400
++++ kdebindings-3.5.7/dcopperl/Makefile.PL.in	2007-05-29 00:45:53.000000000 -0400
+@@ -8,6 +8,7 @@
+ my $kde_lib = "@kde_libraries@";
+ my $qt_inc = "@qt_includes@";
+ my $qt_lib = "@qt_libraries@";
++my $mandir = "@mandir@";
+  
+ WriteMakefile(
+     NAME	=> 'DCOP',
+@@ -17,6 +18,7 @@
+     XS		=> {'DCOP.xs' => 'DCOP.cpp'},
+     XSOPT	=> '-C++',
+     CCFLAGS	=> '-x c++',
++	 INSTALLSITEMAN3DIR => "$mandir/man3/",
+ );
+ 
+ sub MY::xs_c {

@@ -1,0 +1,57 @@
+diff -Naur usr/bin/mountiso.sh usr.yedek/bin/mountiso.sh
+--- usr/bin/mountiso.sh	2008-03-22 18:39:29.000000000 +0200
++++ usr.yedek/bin/mountiso.sh	2009-11-21 16:29:27.000000000 +0200
+@@ -1,11 +1,23 @@
+ #!/bin/sh
+ # Mount-ISO v0.9.5
++# Define NEWLINE as the delimiter...
++IFS='
++
++';
++
++
++
+ BSNAME="`basename "$1"`"
++if [ -f /opt/kde3/bin/kdesu ]; then
++  kdesu="/opt/kde3/bin/kdesu"
++else
++  kdesu="/usr/bin/kdesu"
++fi
+ 
+ if ( `echo "$BSNAME" | grep "Mount-ISO" > /dev/null` ) then
+   MOUNTDIR="$1"
+ else
+-  MOUNTDIR="$HOME/Desktop/Mount-ISO ($BSNAME)"
++  MOUNTDIR="$HOME/Mount-ISO ($BSNAME)"
+ fi
+ 
+ function dialog {
+@@ -129,8 +141,8 @@
+ }
+ 
+ function check_mount {
+-  DEV="`mount | grep "$1" | cut -f 1 -d " "`"
+-  if ( test ! -z "$DEV" ) then
++  DEV="`mount | grep "$1" | cut -f 1 -d ' '`"
++  if ( test ! -z \"$DEV\" ) then
+     return 0
+   else
+     return 1
+@@ -208,7 +220,7 @@
+           err 7 "$1"
+           ;;
+       esac
+-      kdesu -c "mount -t udf,iso9660 -o loop,ro,nodev,noexec,nosuid${MODE} \"${1}\" \"$MOUNTDIR\""
++      $kdesu -c "mount -t udf,iso9660 -o loop,ro,nodev,noexec,nosuid${MODE} \"${1}\" \"$MOUNTDIR\""
+     fi
+     if ( check_mount "$MOUNTDIR" ) then
+       kfmclient openURL "$MOUNTDIR" && note 1
+@@ -221,7 +233,7 @@
+     if (test ! -d "$MOUNTDIR") then
+       err 4 "$1"
+     elif (check_mount "$MOUNTDIR") then
+-      kdesu -c "umount \"$MOUNTDIR\"" &&
++      $kdesu -c "umount \"$MOUNTDIR\"" &&
+       rmdir "$MOUNTDIR" && note 2 ||
+       err 13 "$1"
+       if ( test "${DEV##/dev/cdemu/}" -ge 0 2>/dev/null ) then

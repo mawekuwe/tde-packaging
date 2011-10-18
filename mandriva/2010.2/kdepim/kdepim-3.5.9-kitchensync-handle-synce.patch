@@ -1,0 +1,37 @@
+diff -bur kdepim-3.5.10/kitchensync/src/configgui.cpp kdepim-3.5.10-new/kitchensync/src/configgui.cpp
+--- kdepim-3.5.10/kitchensync/src/configgui.cpp	2007-10-08 09:50:47.000000000 +0000
++++ kdepim-3.5.10-new/kitchensync/src/configgui.cpp	2009-11-16 12:27:21.000000000 +0000
+@@ -108,7 +108,9 @@
+   } else if ( name == "moto-sync" ) {
+     return new ConfigGuiMoto( member, parent );
+   } else if ( name == "synce-plugin" ) {
+-    return new ConfigGuiSynce( member, parent );
++    return new ConfigGuiBlank( member, parent );
++  } else if ( name == "synce-opensync-plugin" ) {
++    return new ConfigGuiBlank( member, parent );
+   } else if ( name == "sunbird-sync" ) {
+     return new ConfigGuiSunbird( member, parent );
+   } else {
+Only in kdepim-3.5.10-new/kitchensync/src: configgui.cpp.orig
+diff -bur kdepim-3.5.10/kitchensync/src/memberinfo.cpp kdepim-3.5.10-new/kitchensync/src/memberinfo.cpp
+--- kdepim-3.5.10/kitchensync/src/memberinfo.cpp	2007-10-08 09:50:47.000000000 +0000
++++ kdepim-3.5.10-new/kitchensync/src/memberinfo.cpp	2009-11-16 12:27:21.000000000 +0000
+@@ -65,7 +65,8 @@
+     nameMap.insert( "gpe-sync", i18n( "Handheld" ) );
+     nameMap.insert( "sunbird-sync", i18n( "Sunbird Calendar" ) );
+     nameMap.insert( "jescs-sync", i18n( "Java Enterprise System Calendar" ) );
+-    nameMap.insert( "synce-plugin", i18n( "WinCE Devices" ) );
++    nameMap.insert( "synce-plugin", i18n( "Windows Mobile 2003 and earlier Devices" ) );
++    nameMap.insert( "synce-opensync-plugin", i18n( "Windows Mobile 5 and later Devices" ) );
+   }
+ 
+   if ( mMember.name().isEmpty() )
+@@ -84,6 +85,7 @@
+   if ( pluginName == "evo2-sync" ) return "evolution";
+   if ( pluginName == "opie-sync" ) return "pda_blue";
+   if ( pluginName == "synce-plugin" ) return "pda_blue";
++  if ( pluginName == "synce-opensync-plugin" ) return "pda_blue";
+   if ( pluginName == "ldap-sync" ) return "contents2";
+   if ( pluginName == "syncml-obex-client" ) return "mobile_phone";
+   if ( pluginName == "syncml-http-server" ) return "pda_blue";
+Only in kdepim-3.5.10-new/kitchensync/src: memberinfo.cpp.orig

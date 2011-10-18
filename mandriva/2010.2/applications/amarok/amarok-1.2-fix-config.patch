@@ -1,0 +1,11 @@
+--- amarok-1.2/amarok/src/app.cpp--	2005-02-15 11:43:26.600377969 +0100
++++ amarok-1.2/amarok/src/app.cpp	2005-02-15 11:43:51.271844342 +0100
+@@ -81,7 +81,7 @@ App::App()
+     // Remember old folder setup, so we can detect changes after the wizard was used
+     const QStringList oldCollectionFolders = AmarokConfig::collectionFolders();
+ 
+-    if ( amaroK::config()->readBoolEntry( "First Run", true ) || args->isSet( "wizard" ) ) {
++    if ( amaroK::config()->readBoolEntry( "First Run", false ) || args->isSet( "wizard" ) ) {
+         std::cout << "STARTUP\n" << std::flush; //hide the splashscreen
+         firstRunWizard();
+         amaroK::config()->writeEntry( "First Run", false );

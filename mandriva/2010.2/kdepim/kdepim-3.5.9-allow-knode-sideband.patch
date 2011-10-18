@@ -1,0 +1,11 @@
+--- ./kontact/plugins/knode/knodeplugin.desktop~	2008-02-13 10:39:52.000000000 +0100
++++ ./kontact/plugins/knode/knodeplugin.desktop	2008-02-21 08:09:12.000000000 +0100
+@@ -12,7 +12,7 @@
+ X-KDE-PluginInfo-Name=kontact_knodeplugin
+ X-KDE-PluginInfo-Version=0.1
+ X-KDE-PluginInfo-License=GPL
+-X-KDE-PluginInfo-EnabledByDefault=false
++X-KDE-PluginInfo-EnabledByDefault=true
+ 
+ Comment=Newsreader Component (KNode Plugin)
+ Comment[bg]=Приставка за KNode

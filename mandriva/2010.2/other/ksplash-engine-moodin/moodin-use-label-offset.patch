@@ -1,0 +1,29 @@
+--- moodin/src/thememoodin.cpp--	2007-02-12 15:56:48.000000000 +0100
++++ moodin/src/thememoodin.cpp	2007-02-12 15:59:37.000000000 +0100
+@@ -69,6 +69,7 @@
+   mStatusColor = cfg->readColorEntry("StatusColor", &defaultColor);
+   mStatusFont = cfg->readFontEntry("StatusFont", &defaultStatusFont);
+   mStatusCoords = cfg->readPointEntry("StatusCoords", &defaultPoint);
++  mStatusOffsets = cfg->readPointEntry("StatusOffsets", &defaultOffset);
+   mLabelShadow = cfg->readBoolEntry("LabelShadow", true);
+   mLabelShadowColor = cfg->readColorEntry("LabelShadowColor", &defaultShadowColor);
+   mShowStatusText = cfg->readBoolEntry("ShowStatusText", true);
+@@ -378,6 +379,8 @@
+   
+   mScaler->autoCoords(&pt, fmSize);
+ 
++  pt+=mStatusOffsets;
++
+   p.setFont(mStatusFont);
+   
+   if (mLabelShadow)
+--- moodin/src/thememoodin.h--	2007-02-12 15:58:54.000000000 +0100
++++ moodin/src/thememoodin.h	2007-02-12 15:59:27.000000000 +0100
+@@ -95,6 +95,7 @@
+   QFont mStatusFont;
+   QPoint mStatusCoords;
+   QPoint mLabelShadowOffset;
++  QPoint mStatusOffsets;
+   QWidget* mContainer;
+   QSize mBaseResolution;
+   QRect mSplashRect;

@@ -1,0 +1,11 @@
+--- krandr-0.5.2.1/randr/krandrtray.cpp~	2008-02-22 22:45:54.000000000 +0100
++++ krandr-0.5.2.1/randr/krandrtray.cpp	2008-02-22 22:59:44.000000000 +0100
+@@ -111,7 +111,7 @@
+ 	}
+ 
+ 	menu->insertSeparator();
+-
++	KGlobal::locale()->insertCatalogue("mandriva-kde-translation");
+ 	lastIndex = menu->insertItem(i18n( "Start KRandR when KDE starts" ));
+ 	menu->connectItem(lastIndex, this, SLOT(slotToggleRunStartup()));
+ 	menu->setItemChecked( lastIndex, m_runStartup );

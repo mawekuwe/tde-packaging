@@ -1,0 +1,31 @@
+--- src/ksmoothdock.h.orig	2009-03-26 15:25:26.000000000 +0100
++++ src/ksmoothdock.h	2009-03-26 15:27:13.000000000 +0100
+@@ -26,6 +26,8 @@
+ #include <config.h>
+ #endif
+ 
++#include <iostream>
++#include <memory>
+ #include <vector>
+ 
+ #include <qwidget.h>
+--- src/ksmoothdock.cpp.orig	2009-03-26 15:28:35.000000000 +0100
++++ src/ksmoothdock.cpp	2009-03-26 15:28:53.000000000 +0100
+@@ -24,6 +24,7 @@
+ 
+ #include <iostream>
+ #include <iterator>
++#include <typeinfo>
+ 
+ #include <qdir.h>
+ 
+--- src/paraboliczoomstate.cpp.orig	2009-03-26 15:29:43.000000000 +0100
++++ src/paraboliczoomstate.cpp	2009-03-26 15:30:38.000000000 +0100
+@@ -21,6 +21,7 @@
+ 
+ #include <iostream>
+ #include <unistd.h>
++#include <cstdlib>
+ 
+ #include <qapplication.h>
+ #include <qbitmap.h>

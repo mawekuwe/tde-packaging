@@ -1,0 +1,29 @@
+--- knetworkconf/backends/service.pl.in.orig	2008-08-19 18:10:46.000000000 +0000
++++ knetworkconf/backends/service.pl.in	2009-11-13 17:30:40.000000000 +0000
+@@ -72,6 +72,8 @@
+        "mandriva-2006.1" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "mandriva-2007.0" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "mandriva-2007.1" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
++       "mandriva-2008.0" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
++       "mandriva-2008.1" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "yoper-2.2" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+ 
+        "blackpanther-4.0" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+@@ -151,6 +153,8 @@
+        "mandriva-2006.1"  => [3, 5],
+        "mandriva-2007.0"  => [3, 5],
+        "mandriva-2007.1"  => [3, 5],
++       "mandriva-2008.0"  => [3, 5],
++       "mandriva-2008.1"  => [3, 5],
+ 
+        "yoper-2.2"  => [3, 5],
+ 
+@@ -230,6 +234,8 @@
+      "mandriva-2006.1"  => "redhat-5.2",
+      "mandriva-2007.0"  => "redhat-5.2",
+      "mandriva-2007.1"  => "redhat-5.2",
++     "mandriva-2008.0"  => "redhat-5.2",
++     "mandriva-2008.1"  => "redhat-5.2",
+ 
+      "yoper-2.2"  => "redhat-5.2",
+  

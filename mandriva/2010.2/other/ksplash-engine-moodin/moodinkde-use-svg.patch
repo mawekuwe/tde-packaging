@@ -1,0 +1,138 @@
+--- moodin/src/thememoodin.cpp--	2007-01-26 15:44:28.000000000 +0100
++++ moodin/src/thememoodin.cpp	2007-01-26 17:11:34.000000000 +0100
+@@ -85,6 +85,11 @@
+   mLabelShadowOffset = cfg->readPointEntry("LabelShadowOffset", &pos);
+   QSize size(1280, 1024);
+   mBaseResolution = cfg->readSizeEntry("BaseResolution", &size);
++  //For svg image use a negative size => force to create it.
++  if(!mUsersBackground && (mBackgroundImage.endsWith(".svg") || mBackgroundImage.endsWith(".svgz"))) {
++	  mBaseResolution=QSize(-1,-1);
++  }
++
+   mTranslate = cfg->readBoolEntry("Translate", true);
+   mLineUpImages = cfg->readBoolEntry("LineUpImages", false);
+ 
+@@ -154,15 +159,22 @@
+   }
+   else
+   {
+-    if (!mBackgroundImage.isEmpty())
++    //Absolute path
++    if(mBackgroundImage.startsWith("/"))
++       bgImage = mBackgroundImage;
++    else if (!mBackgroundImage.isEmpty())
+       bgImage = mTheme->locateThemeData(mBackgroundImage);
+   }
+ 
+   if (bgImage.isEmpty())
++  {
+     bgImage = mTheme->locateThemeData(QString("Background-%1x%2.jpg").arg(width()).arg(height()));
++  }
+ 
+   if (bgImage.isEmpty())
++  {
+     bgImage = mTheme->locateThemeData("Background.jpg");
++  }
+ 
+   if (bgImage.isEmpty())
+   {
+--- moodin/src/cache.cpp--	2007-01-26 15:49:06.000000000 +0100
++++ moodin/src/cache.cpp	2007-01-26 17:16:05.000000000 +0100
+@@ -8,15 +8,19 @@
+  *   (at your option) any later version.                                   *
+  *                                                                         *
+  ***************************************************************************/
+-
++#include <config.h>
+ #include <kuser.h>
+ #include <kstandarddirs.h>
+ #include <kconfig.h>
+ 
++#ifdef HAVE_LIBART
++#include <ksvgiconengine.h>
++#endif
++
+ #include <qfileinfo.h>
+ #include <qdatetime.h>
+ #include <qimage.h>
+-
++#include <kdebug.h>
+ #include "cache.h"
+ 
+ Cache::Cache(Scaler* scaler, const QString& themeEngine, const QString& theme)
+@@ -43,14 +47,35 @@
+     return new QImage(cachedFile.name());
+   else
+   {
+-    QImage *i = new QImage(file);
++    QImage *i;
++    if (file.endsWith(".svg") || file.endsWith(".svgz")) {
++#ifdef HAVE_LIBART
++      KSVGIconEngine* svgEngine = new KSVGIconEngine();
++      QSize size = mScaler->targetResolution(); 
++      if (svgEngine->load(size.width(), size.height(), file )) {
++         QImage *image = svgEngine->image();
++	 i = new QImage(*image);
++	 delete image;
++	 i->save(cachedFile.name(), QImage::imageFormat(file));
++      } else {
++         kdWarning() << "failed to load SVG file " << file << endl;
++      }
++        delete svgEngine;
++#else
++     kdWarning() << k_funcinfo
++                 << "tried to load SVG file but libart not installed" << endl;
++#endif	
++    }
++    else
++    {
++    i = new QImage(file);
+     
+     // update cache if image needs to be scaled (base != target)
+     if (mScaler->scaleSize(i))
+       i->save(cachedFile.name(), QImage::imageFormat(file));
+ 
++    }
+     writeInfoFile(parts.last());
+-
+     return i;
+   }
+ }
+--- moodin/configure.in.in--	2007-01-26 17:14:07.000000000 +0100
++++ moodin/configure.in.in	2007-01-26 17:14:24.000000000 +0100
+@@ -4,3 +4,35 @@
+ AC_C_BIGENDIAN
+ AC_CHECK_KDEMAXPATHLEN
+ 
++dnl libart is used by svg background
++KDE_FIND_PATH(libart2-config, LIBART_CONFIG, [${prefix}/bin ${exec_prefix}/bin /usr/local/bin /opt/local/bin], [
++  AC_MSG_WARN([Could not find libart anywhere, check http://www.levien.com/libart/])
++])
++
++if test -n "$LIBART_CONFIG"; then
++  vers=`$LIBART_CONFIG --version 2>/dev/null | awk 'BEGIN { FS = "."; } { printf "%d", ($1 * 1000 + $2) * 1000 + $3;}'`
++  if test -n "$vers" && test "$vers" -ge 2003008
++  then
++     LIBART_LIBS="`$LIBART_CONFIG --libs`"
++     LIBART_RPATH=
++     for args in $LIBART_LIBS; do
++          case $args in
++            -L*)
++               LIBART_RPATH="$LIBART_RPATH $args"
++               ;;
++          esac
++     done
++     LIBART_RPATH=`echo $LIBART_RPATH | sed -e "s/-L/-R/g"`
++     LIBART_CFLAGS="`$LIBART_CONFIG --cflags`"
++
++     AC_DEFINE_UNQUOTED(HAVE_LIBART, 1, [Defines if your system has the libart library])
++  else
++     AC_MSG_WARN([You need at least libart 2.3.8])
++  fi
++fi
++
++
++AC_SUBST(LIBART_LIBS)
++AC_SUBST(LIBART_CFLAGS)
++AC_SUBST(LIBART_RPATH)
++

@@ -1,0 +1,449 @@
+--- kppp/DB/Provider/Slovenia/AmisNet.old	2005-09-10 10:20:35.000000000 +0200
++++ kppp/DB/Provider/Slovenia/AmisNet	2007-05-29 17:15:17.000000000 +0200
+@@ -1,6 +1,6 @@
+ # KDE Config File
+-# $Id: AmisNet 129308 2001-12-31 13:24:17Z romanm $
+-# $Source$
++# $Id: AmisNet,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/AmisNet,v $
+ #
+ Name=AmisNet
+ AccountingEnabled=1
+--- /dev/null	2006-08-21 11:51:14.000000000 +0200
++++ kppp/DB/Provider/Slovenia/AgendaSloN	2007-05-29 17:16:29.000000000 +0200
+@@ -0,0 +1,27 @@
++# KDE Config File
++# $Id: MojNet,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/MojNet,v $
++#
++Name=AgendaSloN
++AccountingEnabled=1
++AccountingFile=/Slovenia/omrezje_0889.rst
++Authentication=1
++AutoName=0
++Command=
++DNS=
++AutoDNS=1
++DefaultRoute=1
++DisconnectCommand=
++Domain=moj.net
++ExDNSDisabled=0
++Gateway=0.0.0.0
++IPAddr=0.0.0.0
++Password=%PASSWORD%
++ScriptArguments=
++ScriptCommands=
++StorePassword=1
++SubnetMask=0.0.0.0
++Username=%USERNAME%
++VolumeAccountingEnabled=0
++pppdArguments=
++Phonenumber=088932380
+--- kppp/DB/Provider/Slovenia/Arnes.old	2007-05-29 17:18:20.000000000 +0200
++++ kppp/DB/Provider/Slovenia/Arnes	2005-03-10 10:12:11.000000000 +0100
+@@ -1,6 +1,6 @@
+ # KDE Config File
+-# $Id: Arnes 129303 2001-12-31 12:48:40Z romanm $
+-# $Source$
++# $Id: Arnes,v 1.1 2001/12/31 12:48:40 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/Arnes,v $
+ #
+ Name=Arnes
+ AccountingEnabled=1
+--- /dev/null	2006-08-21 11:51:14.000000000 +0200
++++ kppp/DB/Provider/Slovenia/K2Net	2005-03-10 11:27:25.000000000 +0100
+@@ -0,0 +1,27 @@
++# KDE Config File
++# $Id: MojNet,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/MojNet,v $
++#
++Name=K2Net
++AccountingEnabled=1
++AccountingFile=/Slovenia/omrezje_0889.rst
++Authentication=1
++AutoName=0
++Command=
++DNS=
++AutoDNS=1
++DefaultRoute=1
++DisconnectCommand=
++Domain=moj.net
++ExDNSDisabled=0
++Gateway=0.0.0.0
++IPAddr=0.0.0.0
++Password=%PASSWORD%
++ScriptArguments=
++ScriptCommands=
++StorePassword=1
++SubnetMask=0.0.0.0
++Username=%USERNAME%
++VolumeAccountingEnabled=0
++pppdArguments=
++Phonenumber=088932340
+--- kppp/DB/Provider/Slovenia/Kiss.old	2005-09-10 10:20:35.000000000 +0200
++++ kppp/DB/Provider/Slovenia/Kiss	2005-03-10 10:12:11.000000000 +0100
+@@ -1,6 +1,6 @@
+ # KDE Config File
+-# $Id: Kiss 129303 2001-12-31 12:48:40Z romanm $
+-# $Source$
++# $Id: Kiss,v 1.1 2001/12/31 12:48:40 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/Kiss,v $
+ #
+ Name=Kiss
+ AccountingEnabled=1
+--- /dev/null	2006-08-21 11:51:14.000000000 +0200
++++ kppp/DB/Provider/Slovenia/MWdialup386	2005-03-10 11:39:56.000000000 +0100
+@@ -0,0 +1,27 @@
++# KDE Config File
++# $Id: MojNet,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/MojNet,v $
++#
++Name=MWdialup386
++AccountingEnabled=1
++AccountingFile=/Slovenia/omrezje_0888.rst
++Authentication=1
++AutoName=0
++Command=
++DNS=
++AutoDNS=1
++DefaultRoute=1
++DisconnectCommand=
++Domain=moj.net
++ExDNSDisabled=0
++Gateway=0.0.0.0
++IPAddr=0.0.0.0
++Password=%PASSWORD%
++ScriptArguments=
++ScriptCommands=
++StorePassword=1
++SubnetMask=0.0.0.0
++Username=%USERNAME%
++VolumeAccountingEnabled=0
++pppdArguments=
++Phonenumber=088832666
+--- /dev/null	2006-08-21 11:51:14.000000000 +0200
++++ kppp/DB/Provider/Slovenia/MaSiCoM	2005-03-10 11:32:34.000000000 +0100
+@@ -0,0 +1,27 @@
++# KDE Config File
++# $Id: MojNet,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/MojNet,v $
++#
++Name=MaSiCoM
++AccountingEnabled=1
++AccountingFile=/Slovenia/omrezje_0888.rst
++Authentication=1
++AutoName=0
++Command=
++DNS=
++AutoDNS=1
++DefaultRoute=1
++DisconnectCommand=
++Domain=moj.net
++ExDNSDisabled=0
++Gateway=0.0.0.0
++IPAddr=0.0.0.0
++Password=%PASSWORD%
++ScriptArguments=
++ScriptCommands=
++StorePassword=1
++SubnetMask=0.0.0.0
++Username=%USERNAME%
++VolumeAccountingEnabled=0
++pppdArguments=
++Phonenumber=088832999
+--- kppp/DB/Provider/Slovenia/MojNet.old	2005-09-10 10:20:35.000000000 +0200
++++ kppp/DB/Provider/Slovenia/MojNet	2005-03-10 10:12:11.000000000 +0100
+@@ -1,6 +1,6 @@
+ # KDE Config File
+-# $Id: MojNet 129308 2001-12-31 13:24:17Z romanm $
+-# $Source$
++# $Id: MojNet,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/MojNet,v $
+ #
+ Name=MojNet
+ AccountingEnabled=1
+--- /dev/null	2006-08-21 11:51:14.000000000 +0200
++++ kppp/DB/Provider/Slovenia/Netsi	2005-03-10 11:44:18.000000000 +0100
+@@ -0,0 +1,27 @@
++# KDE Config File
++# $Id: MojNet,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/MojNet,v $
++#
++Name=Netsi
++AccountingEnabled=1
++AccountingFile=/Slovenia/omrezje_0889.rst
++Authentication=1
++AutoName=0
++Command=
++DNS=
++AutoDNS=1
++DefaultRoute=1
++DisconnectCommand=
++Domain=moj.net
++ExDNSDisabled=0
++Gateway=0.0.0.0
++IPAddr=0.0.0.0
++Password=%PASSWORD%
++ScriptArguments=
++ScriptCommands=
++StorePassword=1
++SubnetMask=0.0.0.0
++Username=%USERNAME%
++VolumeAccountingEnabled=0
++pppdArguments=
++Phonenumber=088932430
+--- /dev/null	2006-08-21 11:51:14.000000000 +0200
++++ kppp/DB/Provider/Slovenia/Perftech	2005-03-10 11:30:46.000000000 +0100
+@@ -0,0 +1,27 @@
++# KDE Config File
++# $Id: MojNet,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/MojNet,v $
++#
++Name=Perftech
++AccountingEnabled=1
++AccountingFile=/Slovenia/omrezje_0888.rst
++Authentication=1
++AutoName=0
++Command=
++DNS=
++AutoDNS=1
++DefaultRoute=1
++DisconnectCommand=
++Domain=moj.net
++ExDNSDisabled=0
++Gateway=0.0.0.0
++IPAddr=0.0.0.0
++Password=%PASSWORD%
++ScriptArguments=
++ScriptCommands=
++StorePassword=1
++SubnetMask=0.0.0.0
++Username=%USERNAME%
++VolumeAccountingEnabled=0
++pppdArguments=
++Phonenumber=088832360
+
+--- kppp/DB/Provider/Slovenia/SiOL.old	2005-09-10 10:20:35.000000000 +0200
++++ kppp/DB/Provider/Slovenia/SiOL	2005-03-10 10:12:11.000000000 +0100
+@@ -1,6 +1,6 @@
+ # KDE Config File
+-# $Id: SiOL 129600 2002-01-02 21:25:21Z romanm $
+-# $Source$
++# $Id: SiOL,v 1.2 2002/01/02 21:25:21 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/SiOL,v $
+ #
+ Name=SiOL
+ AccountingEnabled=1
+--- kppp/DB/Provider/Slovenia/Volja.old	2005-09-10 10:20:35.000000000 +0200
++++ kppp/DB/Provider/Slovenia/Volja	2005-03-10 11:53:30.000000000 +0100
+@@ -1,10 +1,10 @@
+ # KDE Config File
+-# $Id: Volja 129308 2001-12-31 13:24:17Z romanm $
+-# $Source$
++# $Id: Volja,v 1.2 2001/12/31 13:24:17 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/DB/Provider/Slovenia/Volja,v $
+ #
+ Name=Volja
+ AccountingEnabled=1
+-AccountingFile=/Slovenia/omrezje_0889.rst
++AccountingFile=/Slovenia/omrezje_0888.rst
+ Authentication=1
+ AutoName=0
+ Command=
+@@ -24,4 +24,4 @@
+ Username=%USERNAME%
+ VolumeAccountingEnabled=0
+ pppdArguments=
+-Phonenumber=088932480
++Phonenumber=088832480
+--- kppp/DB/Provider/Slovenia/Makefile.am.old	2005-09-10 10:20:35.000000000 +0200
++++ kppp/DB/Provider/Slovenia/Makefile.am	2007-05-29 17:45:49.000000000 +0200
+@@ -1,4 +1,4 @@
+-pkg_DATA =	AmisNet Arnes Kiss MojNet SiOL Volja
++pkg_DATA =	AgendaSloN AmisNet Arnes K2Net Kiss MWdialup386 MaSiCoM MojNet Netsi Perftech SiOL Volja
+ 
+ pkgdir = $(kde_datadir)/kppp/Provider/Slovenia
+ 
+--- kppp/Rules/Slovenia/omrezje_0880.rst.orig	2005-09-10 10:20:36.000000000 +0200
++++ kppp/Rules/Slovenia/omrezje_0880.rst	2005-03-10 11:12:49.000000000 +0100
+@@ -1,9 +1,12 @@
+ ################################################################
+-# $Id: omrezje_0880.rst 135052 2002-02-02 20:19:29Z romanm $
+-# $Source$
++# $Id: omrezje_0880.rst,v 1.2 2002/02/02 20:19:29 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/Rules/Slovenia/omrezje_0880.rst,v $
+ #
+ # RULES FOR KPPP WITH SLOVENIAN PHONE NETWORK 0880 (ISP PROVIDER).
+ #
++# 2005-03-19
++# Updated by gregor.pirnaver@email.si.
++#
+ # 2002-02-02:
+ # Updated by roman.maurer@amis.net,
+ # based on data provided by Primoz Hrvatin.
+@@ -40,13 +43,16 @@
+ # This is charged whenever you connect. The amount is payed to the 
+ # phone company.
+ 
+-per_connection=6.30
++# per_connection=6.30
++per_connection=0.0
++minimum_costs=1.02
++
+ 
+ # "on monday until sunday the costs
+ # are 2.04 on normal and 1.02 on discounted per each 60 seconds"
+ 
+ on (monday..saturday) between (0:00..6:59)   use (1.02, 60)
+-on (monday..saturday) between (7:00..18:59)  use (2.04, 60)
++on (monday..saturday) between (7:00..18:59)  use (1.84, 60)
+ on (monday..saturday) between (19:00..23:59) use (1.02, 60)
+ on (sunday) between () use (1.02, 60)
+ 
+--- kppp/Rules/Slovenia/omrezje_0889.rst.orig	2005-09-10 10:20:36.000000000 +0200
++++ kppp/Rules/Slovenia/omrezje_0889.rst	2005-03-10 11:13:40.000000000 +0100
+@@ -1,9 +1,12 @@
+ ################################################################
+-# $Id: omrezje_0889.rst 135052 2002-02-02 20:19:29Z romanm $
+-# $Source$
++# $Id: omrezje_0889.rst,v 1.2 2002/02/02 20:19:29 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/Rules/Slovenia/omrezje_0889.rst,v $
+ #
+ # RULES FOR KPPP WITH SLOVENIAN PHONE NETWORK 0889 (ISP PROVIDERS).
+ #
++# 2005-03-19
++# Updated by gregor.pirnaver@email.si.
++#
+ # 2002-02-02:
+ # Updated by roman.maurer@amis.net,
+ # based on data provided by Primoz Hrvatin.
+@@ -30,14 +33,14 @@
+ ################################################################
+ 
+ per_connection=0.0
+-minimum_costs=2.52
++minimum_costs=1.26
+ 
+ 
+ # same as above. You must use 24 hour notation, or the accounting
+ # will not work correctly. (Example: write 15:00 for 3 pm)
+ 
+ on (monday..saturday) between (0:00..6:59) use (1.26, 60)
+-on (monday..saturday) between (7:00..18:59) use (2.52, 60)
++on (monday..saturday) between (7:00..18:59) use (2.27, 60)
+ on (monday..saturday) between (19:00..23:59) use (1.26, 60)
+ on (sunday) between () use (1.26, 60)
+ 
+--- /dev/null	1970-01-01 01:00:00.000000000 +0100
++++ kppp/Rules/Slovenia/omrezje_0888.rst	2007-05-29 19:56:14.000000000 +0200
+@@ -0,0 +1,62 @@
++################################################################
++# $Id: omrezje_0889.rst,v 1.2 2002/02/02 20:19:29 romanm Exp $
++# $Source: /home/kde/kdenetwork/kppp/Rules/Slovenia/omrezje_0889.rst,v $
++#
++# RULES FOR KPPP WITH SLOVENIAN PHONE NETWORK 0889 (ISP PROVIDERS).
++#
++#
++# 2005-03-19
++# Updated by gregor.pirnaver@email.si.
++#
++# 2002-02-02:
++# Updated by roman.maurer@amis.net,
++# based on data provided by Primoz Hrvatin.
++#
++# 2000-09-25:
++# Prepared by Ales.Kosir@hermes.si, 
++# based on data, provided by Srdjan Cvjetovic.
++#
++# Calls from stationary phone network to the ISP numbers 0889:
++#
++################################################################
++name=omrezje-0888.rst
++
++################################################################
++# currency settings
++################################################################
++
++currency_symbol=SIT
++currency_position=right 
++currency_digits=2
++
++################################################################
++# connection settings
++################################################################
++
++per_connection=0.0
++minimum_costs=3.36
++
++
++# same as above. You must use 24 hour notation, or the accounting
++# will not work correctly. (Example: write 15:00 for 3 pm)
++
++on (monday..saturday) between (0:00..6:59) use (3.36, 60)
++on (monday..saturday) between (7:00..18:59) use (4.20, 60)
++on (monday..saturday) between (19:00..23:59) use (3.36, 60)
++on (sunday) between () use (3.36, 60)
++
++# Drzavni prazniki:
++# 1.1., 2.1 - Novo leto
++# 8.2.      - Slovenski kulturni praznik
++# Easter    - Velika noc
++# Easter Monday - Velikonocni ponedeljek
++# 27.4.     - Dan upora proti okupatorju
++# 1.5.,2.5. - Praznik dela
++#           - Binkosti
++# 25.6.     - Dan drzavnosti
++# 15.8.     - Marijino vnebovzetje
++# 31.10.    - Dan reformacije
++# 1.11.     - Dan spomina na mrtve
++# 25.12.    - Bozic
++# 26.12.    - Dan samostojnosti
++on (01/01, 01/02, 02/08, easter, easter+1, 04/26, 05/01, 05/02, easter+50, 06/25, 08/15, 10/31, 11/01, 12/25, 12/26) between () use (3.36, 60)
+--- kppp/Rules/Slovenia/stacionarno_omrezje.rst.orig	2005-09-10 10:20:36.000000000 +0200
++++ kppp/Rules/Slovenia/stacionarno_omrezje.rst	2005-03-10 11:12:01.000000000 +0100
+@@ -2,6 +2,10 @@
+ #
+ # NAME OF THE RULESET. This is NEEDED for accounting purposes.
+ #
++#
++# 2005-03-19
++# Updated by gregor.pirnaver@email.si.
++#
+ # Prepared by Ales.Kosir@hermes.si, 
+ # based on data, provided by Srdjan Cvjetovic
+ #
+@@ -25,12 +29,12 @@
+ ################################################################
+ 
+ per_connection=0.0
+-minimum_costs=4.11
++minimum_costs=5.04
+ 
+-on (monday..saturday) between (0:00..6:59) use (4.11, 120)
+-on (monday..saturday) between (7:00..18:59) use (4.11, 60)
+-on (monday..saturday) between (19:00..23:59) use (4.11, 120)
+-on (sunday) between () use (4.11, 120)
++on (monday..saturday) between (0:00..6:59) use (5.04, 120)
++on (monday..saturday) between (7:00..18:59) use (6.30, 60)
++on (monday..saturday) between (19:00..23:59) use (5.04, 120)
++on (sunday) between () use (5.04, 120)
+ 
+ # Drzavni prazniki:
+ # 1.1., 2.1 - Novo leto
+@@ -46,7 +50,7 @@
+ # 1.11.     - Dan spomina na mrtve
+ # 25.12.    - Bozic
+ # 26.12.    - Dan samostojnosti
+-on (01/01, 01/02, 02/08, easter, easter+1, 04/26, 05/01, 05/02, easter+50, 06/25, 08/15, 10/31, 11/01, 12/25, 12/26) between () use (4.11, 120)
++on (01/01, 01/02, 02/08, easter, easter+1, 04/26, 05/01, 05/02, easter+50, 06/25, 08/15, 10/31, 11/01, 12/25, 12/26) between () use (5.04, 120)
+ 
+ 
+ 
+--- kppp/Rules/Slovenia/Makefile.am~	2005-09-10 10:20:36.000000000 +0200
++++ kppp/Rules/Slovenia/Makefile.am	2007-05-29 21:56:32.000000000 +0200
+@@ -1,4 +1,5 @@
+ pkg_DATA = 	omrezje_0880.rst \
++		omrezje_0888.rst \
+ 		omrezje_0889.rst \
+ 		stacionarno_omrezje.rst
+ 
