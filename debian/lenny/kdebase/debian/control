@@ -13,7 +13,7 @@ Package: kdebase-trinity
 Section: kde
 Architecture: all
 Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), kdebase-trinity-bin (>= ${Source-Version}), kdebase-data-trinity (>= ${Source-Version}), kdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), kdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), kwin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
-Recommends: kdm-trinity (>= ${Source-Version}), kdebase-runtime-data-common-trinity
+Recommends: kdm-trinity (>= ${Source-Version}), kdebase-runtime-data-common-trinity, libtqt3-integration-trinity
 Suggests: kdebase-trinity-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -520,6 +520,16 @@ Replaces: kdebase-libs-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: core libraries for Konqueror
  These libraries are used by several KDE applications, most notably
  Konqueror and the kdesktop package.
+ .
+ This package is part of KDE, and a component of the KDE base module.
+ See the 'kde-trinity' and 'kdebase-trinity' packages for more information.
+
+Package: libtqt3-integration-trinity
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Integration library between TQt3 and TDE
+ These libraries allow you to use TDE dialogs in native TQt3 applications.
  .
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde-trinity' and 'kdebase-trinity' packages for more information.
