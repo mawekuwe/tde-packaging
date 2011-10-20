@@ -18,7 +18,7 @@ DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinit
 
 DOC_HTML_PRUNE := kcontrol-trinity kinfocenter-trinity ktimer-trinity kcharselect-trinity ksim-trinity
 
-DEB_DH_STRIP_ARGS  := --dbg-package=kdeutils-trinity-dbg
+DEB_DH_STRIP_ARGS  := --exclude=examples --dbg-package=kdeutils-trinity-dbg
 
 PACKAGES_WITH_LIBS := khexedit-trinity klaptopdaemon-trinity kmilo-trinity kregexpeditor-trinity ksim-trinity
 
