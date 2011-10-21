@@ -39,7 +39,7 @@ Source2: k3brc
 # Legacy RedHat / Fedora patches
 # manual bufsize (upstream?)
 Patch4: k3b-1.0.4-manualbufsize.patch
-# Thales: correction de l'icone
+# RHEL6: Fix K3B icon
 Patch106: trinity-k3b-icons.patch
 
 
