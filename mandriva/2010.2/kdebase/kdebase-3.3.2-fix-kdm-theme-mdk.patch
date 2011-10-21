@@ -1,0 +1,28 @@
+--- kdebase-3.3.2/kdm/kfrontend/themer/kdmthemer.cpp--	2005-02-28 15:16:19.881739297 +0100
++++ kdebase-3.3.2/kdm/kfrontend/themer/kdmthemer.cpp	2005-02-28 15:17:37.816468727 +0100
+@@ -57,11 +57,23 @@ KdmThemer::KdmThemer( const QString &_fi
+ 
+ 	// read the XML file and create DOM tree
+ 	TQString filename = _filename;
+-	if (!::access( TQFile::encodeName( filename + "/GdmGreeterTheme.desktop" ), R_OK )) {
++        if ( _filename.startsWith("/usr/share/mdk/dm") )
++        {
++            if (!::access( TQFile::encodeName( filename + "/KdmGreeterTheme.desktop" ), R_OK )) {
++		KSimpleConfig cfg( filename + "/KdmGreeterTheme.desktop" );
++		cfg.setGroup( "GdmGreeterTheme" );
++		filename += '/' + cfg.readEntry( "Greeter" );
++            }
++        }
++        else
++        {
++            if (!::access( TQFile::encodeName( filename + "/GdmGreeterTheme.desktop" ), R_OK )) {
+ 		KSimpleConfig cfg( filename + "/GdmGreeterTheme.desktop" );
+ 		cfg.setGroup( "GdmGreeterTheme" );
+ 		filename += '/' + cfg.readEntry( "Greeter" );
+-	}
++            }
++        }
++
+ 	TQFile opmlFile( filename );
+ 	if (!opmlFile.open( IO_ReadOnly )) {
+ 		FDialog::box( widget(), errorbox, i18n( "Cannot open theme file %1" ).arg(filename) );

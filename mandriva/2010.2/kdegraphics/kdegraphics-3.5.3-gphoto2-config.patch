@@ -1,0 +1,35 @@
+--- kdegraphics-3.5.3/kamera/configure.in.in.orig       2006-03-14 11:30:50.000000000 +0100
++++ kdegraphics-3.5.3/kamera/configure.in.in    2006-03-14 14:03:48.000000000 +0100
+@@ -31,14 +31,20 @@
+ 
+ AC_MSG_CHECKING(for gPhoto2)
+ # the pkg-config way first, if user did not use --with-
+-AC_CHECK_PROG(gphoto2_config,gphoto2-config,gphoto2-config,no)
+-AC_CHECK_PROG(gphoto2_port_config,gphoto2-port-config,gphoto2-port-config,no)
+-if test "$gphoto2_includes" = "" -a "$gphoto2_libraries" = "" -a "$gphoto2_config" != "no" -a "$gphoto2_port_config" != "no"
++GPHOTO2_INCS="`pkg-config libgphoto2 --cflags 2>/dev/null`"
++GPHOTO2_LIBS="`pkg-config libgphoto2 --libs 2>/dev/null`"
++if test "$GPHOTO2_INCS" != "" -a "$GPHOTO2_LIBS" != "" ; 
+ then
+ 	with_kamera="yes"
++else
++  AC_CHECK_PROG(gphoto2_config,gphoto2-config,gphoto2-config,no)
++  AC_CHECK_PROG(gphoto2_port_config,gphoto2-port-config,gphoto2-port-config,no)
++  if test "$gphoto2_includes" = "" -a "$gphoto2_libraries" = "" -a "$gphoto2_config" != "no" -a "$gphoto2_port_config" != "no";
++  then
+ 	GPHOTO2_INCS="`$gphoto2_config --cflags` `$gphoto2_port_config --cflags`"
+ 	GPHOTO2_LIBS="`$gphoto2_config --libs` `$gphoto2_port_config --libs`"
+-else
++	with_kamera="yes"
++  else
+ #
+ # Search for gphoto2 include files.
+ #
+@@ -110,6 +116,7 @@
+ 			GPHOTO2_INCS="-I$gphoto2_includes"
+ 		fi
+ 	fi
++  fi
+ fi
+ 
+ if test "$with_kamera" = "yes" ; then

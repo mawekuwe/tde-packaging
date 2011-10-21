@@ -1,0 +1,33 @@
+--- Makefile	2003-04-10 10:21:01.000000000 +0200
++++ Makefile.oden	2008-07-18 21:41:19.000000000 +0200
+@@ -23,6 +23,8 @@
+ LIBBASE	= libresmgr.so
+ LIB	= $(LIBBASE).$(VERSION)
+ LIBOBJS	= $(addprefix .lobjs/,conn.o client.o glob.o)
++LDFLAGS	= 
++PAMLIBS	= -lpam
+ 
+ ALL	= $(SRV) $(CLT) $(LIB) $(PAM) tester
+ 
+@@ -46,17 +48,17 @@
+ 	rm -rf $(ALL) $(LIBBASE) .objs .lobjs
+ 
+ $(SRV):	$(SRVOBJS) $(LIB)
+-	$(CC) -o $@ $(SRVOBJS) -L. -lresmgr
++	$(CC) $(LDFLAGS) -o $@ $(SRVOBJS) -L. -lresmgr
+ 
+ $(CLT):	$(CLTOBJS) $(LIB)
+-	$(CC) -o $@ $(CLTOBJS) -L. -lresmgr
++	$(CC) $(LDFLAGS) -o $@ $(CLTOBJS) -L. -lresmgr
+ 
+ $(LIB): $(LIBOBJS)
+-	$(CC) -shared -Wl,-soname,$(notdir $(LIB)) -o $@ $(LIBOBJS)
++	$(CC) -shared -Wl,-soname,$(notdir $(LIB)) $(LDFLAGS) -o $@ $(LIBOBJS) 
+ 	ln -sf $(LIB) $(LIBBASE)
+ 
+ $(PAM): $(PAMOBJS) $(LIB)
+-	$(CC) -shared -o $@ $(PAMOBJS) -L. -lresmgr
++	$(CC) -shared $(LDFLAGS) -o $@ $(PAMOBJS) $(PAMLIBS) -L. -lresmgr 
+ 
+ tester: .objs/tester.o $(LIB)
+ 	$(CC) -o $@ .objs/tester.o -L. -lresmgr

@@ -1,0 +1,11 @@
+--- kdelibs-3.5.2/admin/acinclude.m4.in--	2006-05-03 16:06:13.000000000 +0200
++++ kdelibs-3.5.2/admin/acinclude.m4.in	2006-05-03 16:06:22.000000000 +0200
+@@ -492,7 +492,7 @@
+     xdg_appsdir='\${datadir}/applications/kde'
+   fi
+   if test -z "$xdg_menudir"; then
+-    xdg_menudir='\${sysconfdir}/xdg/menus'
++    xdg_menudir='\${sysconfdir}/xdg/kde/menus'
+   fi
+   if test -z "$xdg_directorydir"; then
+     xdg_directorydir='\${datadir}/desktop-directories'

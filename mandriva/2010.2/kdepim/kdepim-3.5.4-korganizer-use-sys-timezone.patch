@@ -1,0 +1,36 @@
+--- kdepim-3.5.4/korganizer/koprefsdialog.cpp--	2006-07-27 19:50:56.000000000 +0200
++++ kdepim-3.5.4/korganizer/koprefsdialog.cpp	2006-07-27 19:58:12.000000000 +0200
+@@ -193,13 +193,27 @@ class KOPrefsDialogTime : public KPrefsM
+            pclose(f);
+           }
+     #else
+-      if((f = fopen("/etc/timezone", "r")) != NULL) {
+-        // get the currently set timezone
+-        fgets(tempstring, 100, f);
+-        tempstring[strlen(tempstring) - 1] = '\0';
+-        sCurrentlySet = TQString(tempstring);
+-        fclose(f);
++    TQFile file( "/etc/sysconfig/clock" );
++    if( file.exists())
++    {
++        TQString line;
++        if ( file.open( IO_ReadOnly ) ) {
++            TQTextStream stream( &file );
++            while ( !stream.atEnd() )
++            {
++                line = stream.readLine(); // line of text excluding '\n'
++                if( line.contains("ZONE")!=0)
++                {
++                    line = line.remove("ZONE=");
++                    break;
++                }
++            }
++            file.close();
++            }
++        if(!line.isEmpty())
++            sCurrentlySet = line;
+       }
++
+     #endif // !USE_SOLARIS
+ 
+       mTimeZoneCombo->insertItem(i18n("[No selection]"));

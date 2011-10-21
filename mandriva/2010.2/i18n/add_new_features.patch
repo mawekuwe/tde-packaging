@@ -1,0 +1,1874 @@
+diff -Naur kde-i18n-tr-3.5.10/messages/kdebase/kcmsmserver.po kde-i18n-tr-3.5.10-yeni/messages/kdebase/kcmsmserver.po
+--- kde-i18n-tr-3.5.10/messages/kdebase/kcmsmserver.po	2005-09-10 14:41:10.000000000 +0300
++++ kde-i18n-tr-3.5.10-yeni/messages/kdebase/kcmsmserver.po	2010-04-20 02:18:39.000000000 +0300
+@@ -3,30 +3,36 @@
+ # Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+ # Görkem Çetin <gorkem@kde.org>, 2001.
+ # Adil YILDIZ <adil@linux-sevenler.org>, 2004.
++#Atilla ÖNTAŞ <atilla_ontas@mandriva.org>, 2010
+ #
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: kcmsmserver\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2005-05-18 21:24+0200\n"
+-"PO-Revision-Date: 2005-03-23 10:21+0200\n"
+-"Last-Translator: Adil YILDIZ <adil@kde.org.tr>\n"
++"POT-Creation-Date: 2010-04-20 02:03+0300\n"
++"PO-Revision-Date: 2010-04-20 02:17+0200\n"
++"Last-Translator: Atilla ÖNTAŞ <atilla_ontas@mandriva.org>\n"
+ "Language-Team: Turkish <kde-i18n-tr@kde.org>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+ "Content-Transfer-Encoding: 8bit\n"
+ "X-Generator: KBabel 1.3.1\n"
+ 
+-#: kcmsmserver.cpp:42
+-msgid ""
+-"<h1>Session Manager</h1> You can configure the session manager here. This "
+-"includes options such as whether or not the session exit (logout) should be "
+-"confirmed, whether the session should be restored again when logging in and "
+-"whether the computer should be automatically shut down after session exit by "
+-"default."
+-msgstr ""
+-"<h1>Oturum Yöneticisi</h2> Buradan oturum yöneticisi ile ilgili temel ayarlar "
+-"yapılabilir. "
++#: kcmsmserver.cpp:50
++msgid "<h1>Session Manager</h1> You can configure the session manager here. This includes options such as whether or not the session exit (logout) should be confirmed, whether the session should be restored again when logging in and whether the computer should be automatically shut down after session exit by default."
++msgstr "<h1>Oturum Yöneticisi</h2> Buradan oturum yöneticisi ile ilgili temel ayarlar yapılabilir. "
++
++#: kcmsmserver.cpp:140
++msgid "The new window manager will be used when KDE is started the next time."
++msgstr "Yeni pencere yöneticisi bir sonraki KDE başlangıcında kullanılacak."
++
++#: kcmsmserver.cpp:141
++msgid "Window manager change"
++msgstr "Pencere yöneticisi değişimi"
++
++#: kcmsmserver.cpp:169
++msgid "KWin (KDE default)"
++msgstr "KWin (KDE öntanımlısı)"
+ 
+ #. i18n: file smserverconfigdlg.ui line 16
+ #: rc.cpp:3
+@@ -49,12 +55,8 @@
+ #. i18n: file smserverconfigdlg.ui line 54
+ #: rc.cpp:12
+ #, no-c-format
+-msgid ""
+-"Check this option if you want the session manager to display a logout "
+-"confirmation dialog box."
+-msgstr ""
+-"Oturum yöneticisinin KDE kapanışı sırasında onay kutusu "
+-"göstermesiniistiyorsanız bu seçeneği işaretleyin."
++msgid "Check this option if you want the session manager to display a logout confirmation dialog box."
++msgstr "Oturum yöneticisinin KDE kapanışı sırasında onay kutusu göstermesiniistiyorsanız bu seçeneği işaretleyin."
+ 
+ #. i18n: file smserverconfigdlg.ui line 62
+ #: rc.cpp:15
+@@ -73,23 +75,15 @@
+ #, no-c-format
+ msgid ""
+ "<ul>\n"
+-"<li><b>Restore previous session:</b> Will save all applications running on exit "
+-"and restore them when they next start up</li>\n"
+-"<li><b>Restore manually saved session: </b> Allows the session to be saved at "
+-"any time via \"Save Session\" in the K-Menu. This means the currently started "
+-"applications will reappear when they next start up.</li>\n"
+-"<li><b>Start with an empty session:</b> Do not save anything. Will come up with "
+-"an empty desktop on next start.</li>\n"
++"<li><b>Restore previous session:</b> Will save all applications running on exit and restore them when they next start up</li>\n"
++"<li><b>Restore manually saved session: </b> Allows the session to be saved at any time via \"Save Session\" in the K-Menu. This means the currently started applications will reappear when they next start up.</li>\n"
++"<li><b>Start with an empty session:</b> Do not save anything. Will come up with an empty desktop on next start.</li>\n"
+ "</ul>"
+ msgstr ""
+ "<ul>\n"
+-"<li><b>Önceki oturumu yükle:</b> Tüm çalışan uygulamaları oturumu kapatırken "
+-"kaydeder ve bir sonraki açılışta geri yükler</li>\n"
+-"<li><b>Elle kaydedilmiş oturumu geri yükle: </b> İstenen zamanda K-Menüsündeki "
+-"\"Oturumu Kaydet\" kullanılarak oturum kaydedilebilir. Böylece bir sonraki "
+-"açılışta sistem oturumu kaydedilen yerden geri yükler.</li>\n"
+-"<li><b>Boş bir oturum başlat:</b> Hiçbir şey kaydetmez. Bir sonraki açılışta "
+-"boş bir masaüstü ile açılır.</li>\n"
++"<li><b>Önceki oturumu yükle:</b> Tüm çalışan uygulamaları oturumu kapatırken kaydeder ve bir sonraki açılışta geri yükler</li>\n"
++"<li><b>Elle kaydedilmiş oturumu geri yükle: </b> İstenen zamanda K-Menüsündeki \"Oturumu Kaydet\" kullanılarak oturum kaydedilebilir. Böylece bir sonraki açılışta sistem oturumu kaydedilen yerden geri yükler.</li>\n"
++"<li><b>Boş bir oturum başlat:</b> Hiçbir şey kaydetmez. Bir sonraki açılışta boş bir masaüstü ile açılır.</li>\n"
+ "</ul>"
+ 
+ #. i18n: file smserverconfigdlg.ui line 90
+@@ -119,12 +113,8 @@
+ #. i18n: file smserverconfigdlg.ui line 119
+ #: rc.cpp:40
+ #, no-c-format
+-msgid ""
+-"Here you can choose what should happen by default when you log out. This only "
+-"has meaning, if you logged in through KDM."
+-msgstr ""
+-"Sistemden çıkış yaptığınız zaman ne yapılması gerektiğine buradan karar "
+-"verebilirsiniz. Bu işlem sadece KDM üzerinden çalıştığınız zaman geçerlidir."
++msgid "Here you can choose what should happen by default when you log out. This only has meaning, if you logged in through KDM."
++msgstr "Sistemden çıkış yaptığınız zaman ne yapılması gerektiğine buradan karar verebilirsiniz. Bu işlem sadece KDM üzerinden çalıştığınız zaman geçerlidir."
+ 
+ #. i18n: file smserverconfigdlg.ui line 130
+ #: rc.cpp:43
+@@ -147,23 +137,24 @@
+ #. i18n: file smserverconfigdlg.ui line 156
+ #: rc.cpp:52
+ #, no-c-format
++msgid "Window Manager"
++msgstr "Pencere Yöneticisi"
++
++#. i18n: file smserverconfigdlg.ui line 174
++#: rc.cpp:55
++#, no-c-format
+ msgid "Advanced"
+ msgstr "Gelişmiş"
+ 
+-#. i18n: file smserverconfigdlg.ui line 167
+-#: rc.cpp:55
++#. i18n: file smserverconfigdlg.ui line 185
++#: rc.cpp:58
+ #, no-c-format
+ msgid "Applications to be e&xcluded from sessions:"
+ msgstr "Oturumlardan ayrı tutulacak u&ygulamalar:"
+ 
+-#. i18n: file smserverconfigdlg.ui line 178
+-#: rc.cpp:58
++#. i18n: file smserverconfigdlg.ui line 196
++#: rc.cpp:61
+ #, no-c-format
+-msgid ""
+-"Here you can enter a comma-separated list of applications that should not be "
+-"saved in sessions, and therefore will not be started when restoring a session. "
+-"For example 'xterm,xconsole'."
+-msgstr ""
+-"Oturumlarda kaydedilmesini istemediğiniz uygulamaları burada iki nokta üstüste "
+-"ile ayırarak liste şeklinde yazabilirsiniz. Oturumu tekrar açtığınızda bu "
+-"programlar başlatılmayacaklardır. Örneğin 'xterm:xconsole' gibi."
++msgid "Here you can enter a comma-separated list of applications that should not be saved in sessions, and therefore will not be started when restoring a session. For example 'xterm,xconsole'."
++msgstr "Oturumlarda kaydedilmesini istemediğiniz uygulamaları burada iki nokta üstüste ile ayırarak liste şeklinde yazabilirsiniz. Oturumu tekrar açtığınızda bu programlar başlatılmayacaklardır. Örneğin 'xterm:xconsole' gibi."
++
+diff -Naur kde-i18n-tr-3.5.10/messages/kdebase/kicker.po kde-i18n-tr-3.5.10-yeni/messages/kdebase/kicker.po
+--- kde-i18n-tr-3.5.10/messages/kdebase/kicker.po	2010-04-20 01:35:18.958876994 +0300
++++ kde-i18n-tr-3.5.10-yeni/messages/kdebase/kicker.po	2010-04-20 02:06:29.000000000 +0300
+@@ -11,9 +11,9 @@
+ msgstr ""
+ "Project-Id-Version: kicker\n"
+ "Report-Msgid-Bugs-To: \n"
+-"POT-Creation-Date: 2008-08-19 01:16+0200\n"
+-"PO-Revision-Date: 2005-06-28 21:48+0000\n"
+-"Last-Translator: Adem Alp YILDIZ <ademalp@kde.org.tr>\n"
++"POT-Creation-Date: 2010-04-20 02:03+0300\n"
++"PO-Revision-Date: 2010-04-20 02:06+0200\n"
++"Last-Translator: Atilla ÖNTAŞ <atilla_ontas@mandriva.org>\n"
+ "Language-Team: turkish <yerellestirme@kde.org.tr>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+@@ -21,7 +21,6 @@
+ "X-Generator: KBabel 1.10.1\n"
+ 
+ #: buttons/browserbutton.cpp:71
+-#, c-format
+ msgid "Browse: %1"
+ msgstr "Gözat: %1"
+ 
+@@ -33,11 +32,12 @@
+ msgid "Desktop Access"
+ msgstr "Masaüstü Erişimi"
+ 
+-#: buttons/kbutton.cpp:43
++#: buttons/kbutton.cpp:52
+ msgid "Applications, tasks and desktop sessions"
+ msgstr "Uygulamalar, görevler ve masaüstü oturumları"
+ 
+-#: buttons/kbutton.cpp:44 ui/k_mnu.cpp:76
++#: buttons/kbutton.cpp:53
++#: ui/k_mnu.cpp:77
+ msgid "K Menu"
+ msgstr "KDE Menüsü"
+ 
+@@ -50,6 +50,8 @@
+ msgstr "Kicker Hatası"
+ 
+ #: buttons/servicemenubutton.cpp:62
++#: ui/k_new_mnu.cpp:1343
++#: ui/k_new_mnu.cpp:1830
+ msgid "Applications"
+ msgstr "Uygulamalar"
+ 
+@@ -81,21 +83,19 @@
+ msgid "Applet Loading Error"
+ msgstr "Programcık Yükleme Hatası"
+ 
+-#: core/container_extension.cpp:1607 core/container_extension.cpp:1620
++#: core/container_extension.cpp:1607
++#: core/container_extension.cpp:1620
+ msgid "Show panel"
+ msgstr "Paneli göster"
+ 
+-#: core/container_extension.cpp:1611 core/container_extension.cpp:1624
++#: core/container_extension.cpp:1611
++#: core/container_extension.cpp:1624
+ msgid "Hide panel"
+ msgstr "Paneli gizle"
+ 
+ #: core/extensionmanager.cpp:117
+-msgid ""
+-"The KDE panel (kicker) could not load the main panel due to a problem with your "
+-"installation. "
+-msgstr ""
+-"KDE paneli (kicker) kurulumunuzdaki bir sorun nedeni ile ana paneli "
+-"yükleyemedi."
++msgid "The KDE panel (kicker) could not load the main panel due to a problem with your installation. "
++msgstr "KDE paneli (kicker) kurulumunuzdaki bir sorun nedeni ile ana paneli yükleyemedi."
+ 
+ #: core/extensionmanager.cpp:119
+ msgid "Fatal Error!"
+@@ -165,7 +165,8 @@
+ msgid "Remove Pa&nel"
+ msgstr "P&aneli Sil"
+ 
+-#: core/panelextension.cpp:365 core/panelextension.cpp:373
++#: core/panelextension.cpp:365
++#: core/panelextension.cpp:373
+ msgid "&Lock Panels"
+ msgstr "&Paneli Kilitle"
+ 
+@@ -181,70 +182,85 @@
+ msgid "Add Applet"
+ msgstr "Programcık Ekle"
+ 
+-#: ui/addappletvisualfeedback.cpp:60
++#: ui/addappletvisualfeedback.cpp:61
+ msgid "%1 Added"
+ msgstr "%1 Eklendi"
+ 
+-#: ui/appletop_mnu.cpp:51
++#: ui/appletop_mnu.cpp:52
+ msgid "&Move %1 Menu"
+ msgstr "%1 Menüsünü &Taşı"
+ 
+-#: ui/appletop_mnu.cpp:52
++#: ui/appletop_mnu.cpp:53
+ msgid "&Move %1 Button"
+ msgstr "%1 &Düğmesini Taşı"
+ 
+-#: ui/appletop_mnu.cpp:53
+-#, c-format
++#: ui/appletop_mnu.cpp:54
+ msgid "&Move %1"
+ msgstr "&Taşı: %1"
+ 
+-#: ui/appletop_mnu.cpp:75
++#: ui/appletop_mnu.cpp:76
+ msgid "&Remove %1 Menu"
+ msgstr "%1 M&enüsünü Sil"
+ 
+-#: ui/appletop_mnu.cpp:76
++#: ui/appletop_mnu.cpp:77
+ msgid "&Remove %1 Button"
+ msgstr "%1 Düğmesini &Kaldır"
+ 
+-#: ui/appletop_mnu.cpp:77
+-#, c-format
++#: ui/appletop_mnu.cpp:78
+ msgid "&Remove %1"
+ msgstr "&Kaldır: %1"
+ 
+-#: ui/appletop_mnu.cpp:91 ui/extensionop_mnu.cpp:43
++#: ui/appletop_mnu.cpp:92
++#: ui/extensionop_mnu.cpp:43
+ msgid "Report &Bug..."
+ msgstr "&Hata Raporla..."
+ 
+-#: ui/appletop_mnu.cpp:105
+-#, c-format
++#: ui/appletop_mnu.cpp:106
+ msgid "&About %1"
+ msgstr "%1 &Hakkında"
+ 
+-#: ui/appletop_mnu.cpp:125
++#: ui/appletop_mnu.cpp:126
+ msgid "&Configure %1 Button..."
+ msgstr "%1 &Düğmesini Yapılandır..."
+ 
+-#: ui/appletop_mnu.cpp:130 ui/extensionop_mnu.cpp:62
++#: ui/appletop_mnu.cpp:131
++#: ui/extensionop_mnu.cpp:62
+ msgid "&Configure %1..."
+ msgstr "%1 Programını &Yapılandır..."
+ 
+-#: ui/appletop_mnu.cpp:143
++#: ui/appletop_mnu.cpp:144
+ msgid "Applet Menu"
+ msgstr "Programcık Menüsü"
+ 
+-#: ui/appletop_mnu.cpp:144
++#: ui/appletop_mnu.cpp:145
+ msgid "%1 Menu"
+ msgstr "%1 Menüsü"
+ 
+-#: ui/appletop_mnu.cpp:170
++#: ui/appletop_mnu.cpp:172
++msgid "Switch to Kickoff Menu Style"
++msgstr "Kickoff stili menüye geç"
++
++#: ui/appletop_mnu.cpp:174
++msgid "Switch to KDE Menu Style"
++msgstr "KDE stili menüye geç"
++
++#: ui/appletop_mnu.cpp:176
++msgid "Switch to Mandriva Button"
++msgstr "Mandriva Düğmesine geç"
++
++#: ui/appletop_mnu.cpp:178
++msgid "Switch to Default KDE Button"
++msgstr "Öntanımlı KDE Düğmesine geç"
++
++#: ui/appletop_mnu.cpp:190
+ msgid "&Menu Editor"
+ msgstr "&Menü Düzenleyici"
+ 
+-#: ui/appletop_mnu.cpp:185
++#: ui/appletop_mnu.cpp:205
+ msgid "&Edit Bookmarks"
+ msgstr "Yer İmlerini Düz&enle"
+ 
+-#: ui/appletop_mnu.cpp:194
++#: ui/appletop_mnu.cpp:214
+ msgid "Panel Menu"
+ msgstr "Panel Menüsü"
+ 
+@@ -272,7 +288,8 @@
+ msgid "'%1' is not a valid folder."
+ msgstr "'%1' geçerli bir dizin değil."
+ 
+-#: ui/browser_mnu.cpp:126 ui/browser_mnu.cpp:135
++#: ui/browser_mnu.cpp:126
++#: ui/browser_mnu.cpp:135
+ msgid "Failed to Read Folder"
+ msgstr "Dizin Okunamadı"
+ 
+@@ -300,7 +317,8 @@
+ msgid "Add as Quick&Browser"
+ msgstr "&Hızlı tarayıcı olarak ekle"
+ 
+-#: ui/exe_dlg.cpp:52 ui/exe_dlg.cpp:56
++#: ui/exe_dlg.cpp:52
++#: ui/exe_dlg.cpp:56
+ msgid "Non-KDE Application Configuration"
+ msgstr "KDE Dışı Uygulama Yapılandırması"
+ 
+@@ -320,599 +338,275 @@
+ msgid "Select Other"
+ msgstr "Diğerini Seçin"
+ 
+-#: ui/k_mnu.cpp:197
++#: ui/itemview.cpp:472
++#: ui/k_new_mnu.cpp:975
++msgid "New Applications"
++msgstr "Yeni Programlar"
++
++#: ui/itemview.cpp:476
++msgid "Restart Computer"
++msgstr "Yeniden Başlat"
++
++#: ui/itemview.cpp:479
++#: ui/k_mnu.cpp:290
++#: ui/k_new_mnu.cpp:1302
++msgid "Switch User"
++msgstr "Kullanıcı Değiştir"
++
++#: ui/itemview.cpp:857
++msgid "Host: %1"
++msgstr "Makine: %1"
++
++#: ui/itemview.cpp:1167
++msgid "Directory: /)"
++msgstr "Dizin: /)"
++
++#: ui/itemview.cpp:1169
++msgid "Directory: "
++msgstr "Dizin:"
++
++#: ui/k_mnu.cpp:198
+ msgid "All Applications"
+ msgstr "Tüm Uygulamalar"
+ 
+-#: ui/k_mnu.cpp:199
++#: ui/k_mnu.cpp:200
+ msgid "Actions"
+ msgstr "Eylemler"
+ 
+-#: ui/k_mnu.cpp:231
++#: ui/k_mnu.cpp:232
+ msgid "Quick Browser"
+ msgstr "Hızlı Gözatıcı"
+ 
+-#: ui/k_mnu.cpp:280
++#: ui/k_mnu.cpp:281
+ msgid "Run Command..."
+ msgstr "Komut Çalıştır..."
+ 
+-#: ui/k_mnu.cpp:289
+-msgid "Switch User"
+-msgstr "Kullanıcı Değiştir"
+-
+-#: ui/k_mnu.cpp:301
++#: ui/k_mnu.cpp:302
++#: ui/k_new_mnu.cpp:1296
+ msgid "Save Session"
+ msgstr "Oturumu Kaydet"
+ 
+-#: ui/k_mnu.cpp:306
++#: ui/k_mnu.cpp:307
+ msgid "Lock Session"
+ msgstr "Oturumu Kilitle"
+ 
+-#: ui/k_mnu.cpp:311
++#: ui/k_mnu.cpp:312
+ msgid "Log Out..."
+ msgstr "Çıkış..."
+ 
+-#: ui/k_mnu.cpp:364
++#: ui/k_mnu.cpp:365
++#: ui/k_new_mnu.cpp:885
++#: ui/k_new_mnu.cpp:1461
+ msgid "Lock Current && Start New Session"
+ msgstr "Oturumu Kilitle ve Yeni Oturum Başlat"
+ 
+-#: ui/k_mnu.cpp:365
++#: ui/k_mnu.cpp:366
++#: ui/k_new_mnu.cpp:882
++#: ui/k_new_mnu.cpp:1462
+ msgid "Start New Session"
+ msgstr "Yeni Oturum Başlat"
+ 
+-#: ui/k_mnu.cpp:397
+-msgid ""
+-"<p>You have chosen to open another desktop session."
+-"<br>The current session will be hidden and a new login screen will be "
+-"displayed."
+-"<br>An F-key is assigned to each session; F%1 is usually assigned to the first "
+-"session, F%2 to the second session and so on. You can switch between sessions "
+-"by pressing Ctrl, Alt and the appropriate F-key at the same time. Additionally, "
+-"the KDE Panel and Desktop menus have actions for switching between sessions.</p>"
+-msgstr ""
+-"<p>Başka bir masaüstü oturumu açmayı seçtiniz."
+-"<br>Güncel oturum gizlenecek ve yeni bir giriş ekranı görüntülenecektir."
+-"<br>Her oturum için bir F tuşu tanımlanmıştır. F%1 birinci oturum, F%2 ikinci "
+-"oturumu vb. gösterir. Oturumlar arasında geçiş yapmak için Control - Alt ve "
+-"uygun F tuşuna aynı anda basmanız gerekmektedir. </p>"
++#: ui/k_mnu.cpp:398
++#: ui/k_new_mnu.cpp:1494
++msgid "<p>You have chosen to open another desktop session.<br>The current session will be hidden and a new login screen will be displayed.<br>An F-key is assigned to each session; F%1 is usually assigned to the first session, F%2 to the second session and so on. You can switch between sessions by pressing Ctrl, Alt and the appropriate F-key at the same time. Additionally, the KDE Panel and Desktop menus have actions for switching between sessions.</p>"
++msgstr "<p>Başka bir masaüstü oturumu açmayı seçtiniz.<br>Güncel oturum gizlenecek ve yeni bir giriş ekranı görüntülenecektir.<br>Her oturum için bir F tuşu tanımlanmıştır. F%1 birinci oturum, F%2 ikinci oturumu vb. gösterir. Oturumlar arasında geçiş yapmak için Control - Alt ve uygun F tuşuna aynı anda basmanız gerekmektedir. </p>"
+ 
+-#: ui/k_mnu.cpp:408
++#: ui/k_mnu.cpp:409
++#: ui/k_new_mnu.cpp:1505
+ msgid "Warning - New Session"
+ msgstr "Uyarı - Yeni Oturum"
+ 
+-#: ui/k_mnu.cpp:409
++#: ui/k_mnu.cpp:410
++#: ui/k_new_mnu.cpp:1506
+ msgid "&Start New Session"
+ msgstr "&Yeni Oturuma Başla"
+ 
+-#: ui/quickbrowser_mnu.cpp:48
+-msgid "&Home Folder"
+-msgstr "&Başlangıç Dizini"
++#: ui/k_new_mnu.cpp:191
++msgid "User&nbsp;<b>%1</b>&nbsp;on&nbsp;<b>%2</b>"
++msgstr "<b>%2</b> üzerinde <b>%1</b> kullanıcısı"
+ 
+-#: ui/quickbrowser_mnu.cpp:53
+-msgid "&Root Folder"
+-msgstr "&Kök Dizini"
++#: ui/k_new_mnu.cpp:210
++msgid "Most commonly used applications and documents"
++msgstr "En sık kullanılan uygulamalar ve belgeler"
+ 
+-#: ui/quickbrowser_mnu.cpp:58
+-msgid "System &Configuration"
+-msgstr "&Sistem Yapılandırması"
++#: ui/k_new_mnu.cpp:213
++msgid "List of installed applications"
++msgstr "Kurulu uygulamaların listesi"
+ 
+-#: ui/recentapps.cpp:170
+-msgid "Recently Used Applications"
+-msgstr "Son Kullanılan Uygulamalar"
++#: ui/k_new_mnu.cpp:218
++msgid "Information and configuration of your system, access to personal files, network resources and connected disk drives"
++msgstr "Sistem bilgisi ve yapılandırması, kişisel dosyalara ulaşım, ağ kaynakları ve bağlı disk sürücüleri"
+ 
+-#: ui/recentapps.cpp:171
+-msgid "Most Used Applications"
+-msgstr "En Çok Kullanılanlar"
++#: ui/k_new_mnu.cpp:227
++msgid "Recently used applications and documents"
++msgstr "En son kullanılan uygulamalar ve belgeler"
+ 
+-#. i18n: file ui/appletview.ui line 71
+-#: rc.cpp:12 ui/removeapplet_mnu.cpp:84 ui/removebutton_mnu.cpp:92
+-#: ui/removeextension_mnu.cpp:93
+-#, no-c-format
+-msgid "All"
+-msgstr "Hepsi"
++#: ui/k_new_mnu.cpp:231
++msgid "<qt>Logout, switch user, switch off or reset, suspend of the system"
++msgstr "<qt>Çıkış, kullanıcı değiştir, oturum kapat veya yeniden başlat, beklet"
+ 
+-#: ui/removecontainer_mnu.cpp:42
+-msgid "&Applet"
+-msgstr "&Programcık"
++#: ui/k_new_mnu.cpp:235
++msgid "<p align=\"center\"> <u>F</u>avorites</p>"
++msgstr "<p align=\"center\"> <u>Y</u>erimleri</p>"
+ 
+-#: ui/removecontainer_mnu.cpp:44
+-msgid "Appli&cation"
+-msgstr "&Uygulama"
++#: ui/k_new_mnu.cpp:236
++msgid "<p align=\"center\"><u>H</u>istory</p>"
++msgstr "<p align=\"center\"><u>G</u>eçmiş</p>"
+ 
+-#: ui/removeextension_mnu.cpp:64
+-msgid "%1 (Top)"
+-msgstr "%1 (Üst)"
++#: ui/k_new_mnu.cpp:238
++msgid "<p align=\"center\"> <u>C</u>omputer</p>"
++msgstr "<p align=\"center\"> <u>S</u>istem</p>"
+ 
+-#: ui/removeextension_mnu.cpp:67
+-msgid "%1 (Right)"
+-msgstr "%1 (Sağ)"
++#: ui/k_new_mnu.cpp:239
++msgid "<p align=\"center\"><u>A</u>pplications</p>"
++msgstr "<p align=\"center\"><u>U</u>ygulamalar</p>"
+ 
+-#: ui/removeextension_mnu.cpp:70
+-msgid "%1 (Bottom)"
+-msgstr "%1 (Alt)"
++#: ui/k_new_mnu.cpp:241
++msgid "<p align=\"center\"><u>L</u>eave</p>"
++msgstr "<p align=\"center\"><u>Ç</u>ıkış</p>"
+ 
+-#: ui/removeextension_mnu.cpp:73
+-msgid "%1 (Left)"
+-msgstr "%1 (Sol)"
++#: ui/k_new_mnu.cpp:301
++msgid "Search Internet"
++msgstr "İnternette ara"
+ 
+-#: ui/removeextension_mnu.cpp:76
+-msgid "%1 (Floating)"
+-msgstr "%1 (Kayan)"
++#: ui/k_new_mnu.cpp:313
++msgid "Search Index"
++msgstr "Dizinde ara"
+ 
+-#: ui/service_mnu.cpp:262
+-msgid "No Entries"
+-msgstr "Giriş Yok"
++#: ui/k_new_mnu.cpp:402
++msgid "Applications, Contacts and Documents"
++msgstr "Uygulamalar, Kişiler ve Belgeler"
+ 
+-#: ui/service_mnu.cpp:269
+-msgid "Add This Menu"
+-msgstr "Bu Menüyü Ekle"
++#: ui/k_new_mnu.cpp:871
++msgid "Start '%1'"
++msgstr "'%1'ı Başlat"
+ 
+-#: ui/service_mnu.cpp:274
+-msgid "Add Non-KDE Application"
+-msgstr "KDE Dışı Uygulama Ekle"
++#: ui/k_new_mnu.cpp:873
++msgid "Start '%1' (current)"
++msgstr "'%1'ı Başlat (Öntanımlı)"
+ 
+-#: ui/service_mnu.cpp:314
+-msgid ""
+-"_: Entries in K-menu: %1 app name, %2 description\n"
+-"%1 - %2"
+-msgstr ""
++#: ui/k_new_mnu.cpp:875
++msgid "Restart and boot directly into '%1'"
++msgstr "Yeniden başlat ve '%1' ile aç"
+ 
+-#: ui/service_mnu.cpp:324
+-msgid ""
+-"_: Entries in K-menu: %1 description, %2 app name\n"
+-"%1 (%2)"
+-msgstr ""
++#: ui/k_new_mnu.cpp:883
++msgid "Start a parallel session"
++msgstr "Yeni Oturum Başlat"
+ 
+-#: ui/service_mnu.cpp:488
+-msgid "Add Item to Desktop"
+-msgstr "Masaüstüne Öğe Ekle"
++#: ui/k_new_mnu.cpp:886
++msgid "Lock screen and start a parallel session"
++msgstr "Oturumu Kilitle ve Yeni Oturum Başlat"
+ 
+-#: ui/service_mnu.cpp:494
+-msgid "Add Item to Main Panel"
+-msgstr "Ana Panele Öğe Ekle"
++#: ui/k_new_mnu.cpp:897
++msgid "Switch to Session of User '%1'"
++msgstr "'%1' kullanıcısının oturumuna geç"
+ 
+-#: ui/service_mnu.cpp:500
+-msgid "Edit Item"
+-msgstr "Öğeyi Düzenle"
++#: ui/k_new_mnu.cpp:898
++msgid "Session: %1"
++msgstr "Oturum:%1"
+ 
+-#: ui/service_mnu.cpp:506
+-msgid "Put Into Run Dialog"
+-msgstr "Çalıştırma Penceresine Yerleştir"
++#: ui/k_new_mnu.cpp:1284
++msgid "Session"
++msgstr "Oturum"
+ 
+-#: ui/service_mnu.cpp:515
+-msgid "Add Menu to Desktop"
+-msgstr "Masaüstüne Menü Ekle"
++#: ui/k_new_mnu.cpp:1286
++#: ui/k_new_mnu.cpp:2630
++msgid "Logout"
++msgstr "Çıkış"
+ 
+-#: ui/service_mnu.cpp:521
+-msgid "Add Menu to Main Panel"
+-msgstr "Ana Panele Menü Ekle"
++#: ui/k_new_mnu.cpp:1287
++msgid "End session"
++msgstr "Oturumu Kapat"
+ 
+-#: ui/service_mnu.cpp:527
+-msgid "Edit Menu"
+-msgstr "Menüyü Düzenle"
++#: ui/k_new_mnu.cpp:1289
++msgid "Lock"
++msgstr "Kilitle"
+ 
+-#: _translatorinfo.cpp:1
+-msgid ""
+-"_: NAME OF TRANSLATORS\n"
+-"Your names"
+-msgstr "Görkem Çetin"
++#: ui/k_new_mnu.cpp:1290
++msgid "Lock screen"
++msgstr "Oturumu Kilitle"
+ 
+-#: _translatorinfo.cpp:3
+-msgid ""
+-"_: EMAIL OF TRANSLATORS\n"
+-"Your emails"
+-msgstr "gorkem@kde.org"
++#: ui/k_new_mnu.cpp:1297
++msgid "Save current Session for next login"
++msgstr "Sonraki açılış için güncel oturumu kaydet"
+ 
+-#. i18n: file ui/appletview.ui line 35
+-#: rc.cpp:3
+-#, no-c-format
+-msgid "&Search:"
+-msgstr "&Ara:"
++#: ui/k_new_mnu.cpp:1303
++msgid "Manage parallel sessions"
++msgstr "Eşzamanlı oturumları yönet"
+ 
+-#. i18n: file ui/appletview.ui line 54
+-#: rc.cpp:6
+-#, no-c-format
+-msgid "<qt>Type here some text to filter on the applet names and comments</qt>"
+-msgstr "<qt>Programcık adı ve içeriğine ilişkin bir şeyler yazın</qt>"
++#: ui/k_new_mnu.cpp:1313
++msgid "System"
++msgstr "Sistem"
+ 
+-#. i18n: file ui/appletview.ui line 62
+-#: rc.cpp:9
+-#, no-c-format
+-msgid "S&how:"
+-msgstr "&Göster:"
++#: ui/k_new_mnu.cpp:1314
++msgid "Shutdown Computer"
++msgstr "Bilgisayarı Kapat"
+ 
+-#. i18n: file ui/appletview.ui line 76
+-#: rc.cpp:15
+-#, no-c-format
+-msgid "Applets"
+-msgstr "Programcıklar"
++#: ui/k_new_mnu.cpp:1315
++msgid "Turn off computer"
++msgstr "Bilgisayarı Kapat"
+ 
+-#. i18n: file ui/appletview.ui line 81
+-#: rc.cpp:18
+-#, no-c-format
+-msgid "Special Buttons"
+-msgstr "Özel Düğmeler"
++#: ui/k_new_mnu.cpp:1317
++msgid "&Restart Computer"
++msgstr "Bilgisayarı &Yeniden Başlat"
++
++#: ui/k_new_mnu.cpp:1318
++msgid "Restart and boot the default system"
++msgstr "Yeniden başlat ve öntanımlı sistemi aç"
+ 
+-#. i18n: file ui/appletview.ui line 96
+-#: rc.cpp:21
+-#, no-c-format
+-msgid "<qt>Select here the only applet category that you want to show</qt>"
+-msgstr ""
+-"<qt>Göstermek istediğiniz bir programcık kategorisini buradan seçin</qt>"
++#: ui/k_new_mnu.cpp:1328
++msgid "Start Operating System"
++msgstr "İşletim Sistemini Başlat"
+ 
+-#. i18n: file ui/appletview.ui line 123
+-#: rc.cpp:24
+-#, no-c-format
+-msgid ""
+-"<qt>This is the applet list. Select an applet and click on <b>Add to panel</b> "
+-"to add it</qt>"
+-msgstr ""
++#: ui/k_new_mnu.cpp:1329
++msgid "Restart and boot another operating system"
++msgstr "Yeniden başlat ve başka bir işletim sistemi ile aç"
+ 
+-#. i18n: file ui/appletview.ui line 156
+-#: rc.cpp:27
+-#, no-c-format
+-msgid "&Add to Panel"
+-msgstr "&Panele Ekle"
++#: ui/k_new_mnu.cpp:1348
++msgid "System Information"
++msgstr "Sistem Bilgisi"
+ 
+-#. i18n: file ui/nonKDEButtonSettings.ui line 30
+-#: rc.cpp:33 rc.cpp:58
+-#, no-c-format
+-msgid ""
+-"Enter the name of the executable file to be run when this button is selected. "
+-"If it is not in your $PATH then you will need to provide an absolute path."
+-msgstr ""
+-"Bu düğme seçildiği zaman çalıştırılacak olan programın adını verin. Eğer bu "
+-"program $PATH değişkeni içindeki dizinlerin birisinde bulunmuyorsa, programın "
+-"çalışması için tüm yolunu girmek gerekecektir."
++#: ui/k_new_mnu.cpp:1351
++msgid "System Folders"
++msgstr "Sistem Dizinleri"
+ 
+-#. i18n: file ui/nonKDEButtonSettings.ui line 38
+-#: rc.cpp:36
+-#, no-c-format
+-msgid "Co&mmand line arguments (optional):"
+-msgstr "Seçimlik komut satırı:"
++#: ui/k_new_mnu.cpp:1353
++msgid "Home Folder"
++msgstr "Başlangıç Dizini"
+ 
+-#. i18n: file ui/nonKDEButtonSettings.ui line 46
+-#: rc.cpp:39 rc.cpp:50
+-#, no-c-format
+-msgid ""
+-"Enter any command line options that should be passed to the command here.\n"
+-"\n"
+-"<i>Example</i>: For the command `rm -rf` enter \"-rf\" in this text box."
+-msgstr ""
+-"Komuta parametre olarak gönderilecek komut satırı seçeneklerini buraya yazın.\n"
+-"\n"
+-"<i>Örnek</i>: `rm -rf` komutu için \"-rf\"yi bu metin kutusuna yazın."
++#: ui/k_new_mnu.cpp:1362
++msgid "My Documents"
++msgstr "Belgelerim"
+ 
+-#. i18n: file ui/nonKDEButtonSettings.ui line 54
+-#: rc.cpp:44
+-#, no-c-format
+-msgid "Run in a &terminal window"
+-msgstr "&Terminal penceresinde çalıştır"
++#: ui/k_new_mnu.cpp:1371
++msgid "My Images"
++msgstr "Resimlerim"
++
++#: ui/k_new_mnu.cpp:1380
++msgid "My Music"
++msgstr "Müziğim"
++
++#: ui/k_new_mnu.cpp:1389
++msgid "My Videos"
++msgstr "Vidyolarım"
++
++#: ui/k_new_mnu.cpp:1398
++msgid "My Downloads"
++msgstr "İndirmelerim"
+ 
+-#. i18n: file ui/nonKDEButtonSettings.ui line 57
+-#: rc.cpp:47
+-#, no-c-format
++#: ui/k_new_mnu.cpp:1401
++msgid "Network Folders"
++msgstr "Ağ Dizinleri"
++
++#: ui/k_new_mnu.cpp:1626
+ msgid ""
+-"Select this option if the command is a command line application and you wish to "
+-"be able to see its output when run."
+-msgstr ""
+-"Eğer komut bir komut satırı uygulaması ise ve çalıştığında çıktısını görmek "
+-"istiyorsanız bu seçeneği seçin."
+-
+-#. i18n: file ui/nonKDEButtonSettings.ui line 75
+-#: rc.cpp:55
+-#, no-c-format
+-msgid "&Executable:"
+-msgstr "Ç&alıştırılabilir:"
+-
+-#. i18n: file ui/nonKDEButtonSettings.ui line 97
+-#: rc.cpp:61 rc.cpp:67 rc.cpp:73 rc.cpp:76
+-#, no-c-format
+-msgid "Enter the name you would like to appear for this button here."
+-msgstr "Bu düğme için gözükmesini istediğiniz ismi buraya yazın."
+-
+-#. i18n: file ui/nonKDEButtonSettings.ui line 105
+-#: rc.cpp:64
+-#, no-c-format
+-msgid "&Button title:"
+-msgstr "&Düğme simgesi:"
+-
+-#. i18n: file ui/nonKDEButtonSettings.ui line 167
+-#: rc.cpp:70
+-#, no-c-format
+-msgid "&Description:"
+-msgstr "&Açıklama:"
+-
+-#. i18n: file core/extensionSettings.kcfg line 14
+-#: rc.cpp:79
+-#, no-c-format
+-msgid ""
+-"Whether this panel actually exists or not. Primarily to work around the fact "
+-"that KConfigXT won't write a config file unless there is at least one "
+-"non-default entry."
+-msgstr ""
+-
+-#. i18n: file core/extensionSettings.kcfg line 18
+-#: rc.cpp:82
+-#, no-c-format
+-msgid "The position of the panel"
+-msgstr "Panelin konumu"
+-
+-#. i18n: file core/extensionSettings.kcfg line 25
+-#: rc.cpp:85
+-#, no-c-format
+-msgid "The alignment of the panel"
+-msgstr "Panelin yerleşimi"
+-
+-#. i18n: file core/extensionSettings.kcfg line 32
+-#: rc.cpp:88
+-#, no-c-format
+-msgid "Primary xinerama screen"
+-msgstr "Birincil Xinerama ekranı"
+-
+-#. i18n: file core/extensionSettings.kcfg line 37
+-#: rc.cpp:91
+-#, no-c-format
+-msgid "Hide button size"
+-msgstr "Düğme boyutunu gizle"
+-
+-#. i18n: file core/extensionSettings.kcfg line 44
+-#: rc.cpp:94
+-#, no-c-format
+-msgid "Show left panel hide button"
+-msgstr "Sol panel gizleme düğmesini göster"
+-
+-#. i18n: file core/extensionSettings.kcfg line 49
+-#: rc.cpp:97
+-#, no-c-format
+-msgid "Show right panel hide button"
+-msgstr "Sağ panel gizleme düğmesini göster"
+-
+-#. i18n: file core/extensionSettings.kcfg line 54
+-#: rc.cpp:100
+-#, no-c-format
+-msgid "Auto hide panel"
+-msgstr "Kendiliğinden paneli gizle"
+-
+-#. i18n: file core/extensionSettings.kcfg line 59
+-#: rc.cpp:103
+-#, no-c-format
+-msgid "Enable auto hide"
+-msgstr "Kendiliğinden gizleme etkin"
+-
+-#. i18n: file core/extensionSettings.kcfg line 64
+-#: rc.cpp:106
+-#, no-c-format
+-msgid "Delay before auto hide"
+-msgstr "Kendiliğinden gizlemeden önce bekle"
+-
+-#. i18n: file core/extensionSettings.kcfg line 69
+-#: rc.cpp:109
+-#, no-c-format
+-msgid "The trigger location for unhides"
+-msgstr "Tekrar görünmesi için konumunu tetikle"
+-
+-#. i18n: file core/extensionSettings.kcfg line 76
+-#: rc.cpp:112
+-#, no-c-format
+-msgid "Enable background hiding"
+-msgstr "Arkaplan gizleme etkin"
+-
+-#. i18n: file core/extensionSettings.kcfg line 81
+-#: rc.cpp:115
+-#, no-c-format
+-msgid "Animate panel hiding"
+-msgstr "Paneli gizlerken animasyon yap"
+-
+-#. i18n: file core/extensionSettings.kcfg line 86
+-#: rc.cpp:118
+-#, no-c-format
+-msgid "Panel hiding animation speed"
+-msgstr "Panel gizleme animasyon hızı"
+-
+-#. i18n: file core/extensionSettings.kcfg line 91
+-#: rc.cpp:121
+-#, no-c-format
+-msgid "Length in percentage"
+-msgstr "Yüzde olarak uzunluk"
+-
+-#. i18n: file core/extensionSettings.kcfg line 98
+-#: rc.cpp:124
+-#, no-c-format
+-msgid "Expand as required to fit contents"
+-msgstr "İçeriğin uyması için gereken oranda genişlet"
+-
+-#. i18n: file core/extensionSettings.kcfg line 103
+-#: rc.cpp:127
+-#, no-c-format
+-msgid "Size"
+-msgstr "Boyut"
+-
+-#. i18n: file core/extensionSettings.kcfg line 108
+-#: rc.cpp:130
+-#, no-c-format
+-msgid "Custom size"
+-msgstr "Özel boyut"
+-
+-#: kicker/ui/k_new_mnu.cpp:1519 menuext/remote/remotemenu.cpp:67
+-msgid "Network Folders"
+-msgstr "Ağ Dizinleri"
+-
+-#: kicker/ui/itemview.cpp:458 kicker/ui/k_new_mnu.cpp:1195
+-msgid "New Applications"
+-msgstr "Yeni Programlar"
+-
+-#: kicker/ui/itemview.cpp:462 kicker/ui/k_new_mnu.cpp:1471
+-msgid "Restart Computer"
+-msgstr "Yeniden Başlat"
+-
+-#: kicker/ui/k_new_mnu.cpp:174
+-msgid "User&nbsp;<b>%1</b>&nbsp;on&nbsp;<b>%2</b>"
+-msgstr "<b>%2</b> üzerinde <b>%1</b> kullanıcısı"
+-
+-#: kicker/ui/k_new_mnu.cpp:232
+-msgid "Search Internet"
+-msgstr "İnternette ara"
+-
+-#: kicker/ui/k_new_mnu.cpp:244
+-msgid "Search Index"
+-msgstr "Dizinde ara"
+-
+-#: kicker/ui/k_new_mnu.cpp:402
+-msgid "Applications, Contacts and Documents"
+-msgstr "Uygulamalar, Kişiler ve Belgeler"
+-
+-#: kicker/ui/k_new_mnu.cpp:419
+-msgid "Recently used applications and documents"
+-msgstr "En son kullanılan uygulamalar ve belgeler"
+-
+-#: kicker/ui/k_new_mnu.cpp:420
+-msgid "Most commonly used applications and documents"
+-msgstr "En sık kullanılan uygulamalar ve belgeler"
+-
+-#: kicker/ui/k_new_mnu.cpp:421
+-msgid "List of installed applications"
+-msgstr "Kurulu uygulamaların listesi"
+-
+-msgid ""
+-"Information and configuration of your system, access to personal files, "
+-"network resources and connected disk drives"
+-msgstr "Sistem bilgisi ve yapılandırması, kişisel dosyalara ulaşım, ağ kaynakları ve bağlı disk sürücüleri"
+-
+-#: kicker/ui/k_new_mnu.cpp:426
+-msgid "<qt>Logout, switch user, switch off or reset, suspend of the system"
+-msgstr "<qt>Çıkış, kullanıcı değiştir, oturum kapat veya yeniden başlat, beklet"
+-
+-#: kicker/ui/k_new_mnu.cpp:427
+-msgid "Search for personal files and applications"
+-msgstr "Kişisel dosyalar ve uygulamalar içinde ara"
+-
+-#: kicker/ui/k_new_mnu.cpp:1090
+-msgid "Start '%1'"
+-msgstr "'%1'ı Başlat"
+-
+-#: kicker/ui/k_new_mnu.cpp:1092
+-msgid "Start '%1' (current)"
+-msgstr "'%1'ı Başlat (Öntanımlı)"
+-
+-#: kicker/ui/k_new_mnu.cpp:1094
+-msgid "Restart and boot directly into '%1'"
+-msgstr "Yeniden başlat ve '%1' ile aç"
+-
+-#: kicker/ui/k_new_mnu.cpp:1102
+-msgid "Start a parallel session"
+-msgstr "Yeni Oturum Başlat"
+-
+-#: kicker/ui/k_new_mnu.cpp:1105
+-msgid "Lock screen and start a parallel session"
+-msgstr "Oturumu Kilitle ve Yeni Oturum Başlat"
+-
+-#: kicker/ui/k_new_mnu.cpp:1116
+-msgid "Switch to Session of User '%1'"
+-msgstr "'%1' kullanıcısının oturumuna geç"
+-
+-#: kicker/ui/k_new_mnu.cpp:1117
+-#, c-format
+-msgid "Session: %1"
+-msgstr "Oturum:%1"
+-
+-#: kicker/ui/k_new_mnu.cpp:1438
+-msgid "Session"
+-msgstr "Oturum"
+-
+-#: kicker/ui/k_new_mnu.cpp:1440
+-msgid "Logout"
+-msgstr "Çıkış"
+-
+-#: kicker/ui/k_new_mnu.cpp:1441
+-msgid "End session"
+-msgstr "Oturumu Kapat"
+-
+-#: kicker/ui/k_new_mnu.cpp:1443
+-msgid "Lock"
+-msgstr "Kilitle"
+-
+-#: kicker/ui/k_new_mnu.cpp:1444
+-msgid "Lock screen"
+-msgstr "Oturumu Kilitle"
+-
+-#: kicker/ui/k_new_mnu.cpp:1451
+-msgid "Save current Session for next login"
+-msgstr "Sonraki açılış için güncel oturumu kaydet"
+-
+-#: kicker/ui/k_new_mnu.cpp:1457
+-msgid "Manage parallel sessions"
+-msgstr "Eşzamanlı oturumları yönet"
+-
+-#: kicker/ui/k_new_mnu.cpp:1467
+-msgid "System"
+-msgstr "Sistem"
+-
+-#: kicker/ui/k_new_mnu.cpp:1468
+-msgid "Shutdown Computer"
+-msgstr "Bilgisayarı Kapat"
+-
+-#: kicker/ui/k_new_mnu.cpp:1469
+-msgid "Turn off computer"
+-msgstr "Bilgisayarı Kapat"
+-
+-#: kicker/ui/k_new_mnu.cpp:1472
+-msgid "Restart and boot this system"
+-msgstr "Yeniden başlat ve sistemi aç"
+-
+-#: kicker/ui/k_new_mnu.cpp:1482
+-msgid "Start Operating System"
+-msgstr "İşletim Sistemini Başlat"
+-
+-#: kicker/ui/k_new_mnu.cpp:1483
+-msgid "Restart and boot another operating system"
+-msgstr "Yeniden başlat ve başka bir işletim sistemi ile aç"
+-
+-#: kicker/ui/k_new_mnu.cpp:1493
+-msgid "System Settings"
+-msgstr "Sistem Ayarları"
+-
+-#: kicker/ui/k_new_mnu.cpp:1494
+-msgid "Tasma"
+-msgstr "Tasma"
+-
+-#: kicker/ui/k_new_mnu.cpp:1496
+-msgid "Network Settings"
+-msgstr "Ağ Ayarları"
+-
+-#: kicker/ui/k_new_mnu.cpp:1497
+-msgid "Network Manager"
+-msgstr "Ağ Yöneticisi"
+-
+-#: kicker/ui/k_new_mnu.cpp:1499 kicker/ui/k_new_mnu.cpp:1500
+-msgid "Package Manager"
+-msgstr "Paket Yöneticisi"
+-
+-#: kicker/ui/k_new_mnu.cpp:1502
+-msgid "System Information"
+-msgstr "Sistem Bilgisi"
+-
+-#: kicker/ui/k_new_mnu.cpp:1505
+-msgid "System Folders"
+-msgstr "Sistem Dizinleri"
+-
+-#: kicker/ui/k_new_mnu.cpp:1507
+-msgid "Home Folder"
+-msgstr "Başlangıç Dizini"
+-
+-#: kicker/ui/k_new_mnu.cpp:1516
+-msgid "My Documents"
+-msgstr "Belgelerim"
+-
+-#: kicker/ui/k_new_mnu.cpp:1745
+-msgid ""
+-"<center><b>%1</b></center>\n"
+-"You do not have permission to execute this command."
++"<center><b>%1</b></center>\n"
++"You do not have permission to execute this command."
+ msgstr ""
+ "<center><b>%1</b></center>\n"
+ "Bu komutu çalıştırmak için yetkiniz yok."
+ 
+-#: kicker/ui/k_new_mnu.cpp:1773
++#: ui/k_new_mnu.cpp:1654
+ msgid ""
+ "<center><b>%1</b></center>\n"
+ "Could not run the specified command."
+@@ -920,7 +614,7 @@
+ "<center><b>%1</b></center>\n"
+ "Belirtilen komut çalıştırılamadı."
+ 
+-#: kicker/ui/k_new_mnu.cpp:1783
++#: ui/k_new_mnu.cpp:1664
+ msgid ""
+ "<center><b>%1</b></center>\n"
+ "The specified command does not exist."
+@@ -928,210 +622,609 @@
+ "<center><b>%1</b></center>\n"
+ "Belirtilen komut bulunamadı."
+ 
+-#: kicker/ui/k_new_mnu.cpp:2003
++#: ui/k_new_mnu.cpp:1864
+ msgid "Documents"
+ msgstr "Belgeler"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2325 kicker/ui/k_new_mnu.cpp:2426
+-#, c-format
++#: ui/k_new_mnu.cpp:2200
++#: ui/k_new_mnu.cpp:2330
+ msgid "Send Email to %1"
+ msgstr "%1 'e E-posta Gönder"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2336
+-#, c-format
++#: ui/k_new_mnu.cpp:2211
+ msgid "Open Addressbook at %1"
+ msgstr "%1 'de Adres Defterini Aç"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2353
++#: ui/k_new_mnu.cpp:2252
+ msgid "- Add ext:type to specify a file extension."
+ msgstr "- Bir dosya uzantısı belirtmek için ext:uzantı kullanın"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2355
++#: ui/k_new_mnu.cpp:2255
+ msgid "- When searching for a phrase, add quotes."
+ msgstr "- Bir sözcük öbeği ararken sözcük öbeğini tırnak içine alın"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2357
++#: ui/k_new_mnu.cpp:2258
+ msgid "- To exclude search terms, use the minus symbol in front."
+ msgstr "- Arama harici bırakmak istediğiniz değerlerin önünde eksi işareti kullanın"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2359
++#: ui/k_new_mnu.cpp:2261
+ msgid "- To search for optional terms, use OR."
+ msgstr "- Seçimlik değerler için OR kullanın"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2361
++#: ui/k_new_mnu.cpp:2264
+ msgid "- You can use upper and lower case."
+ msgstr "- Büyük ve küçük harf kullanabilirsiniz"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2363
++#: ui/k_new_mnu.cpp:2267
+ msgid "Search Quick Tips"
+ msgstr "Arama ipuçları"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2415
++#: ui/k_new_mnu.cpp:2319
+ msgid "%1 = %2"
+ msgstr "%1 = %2"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2447
+-#, c-format
++#: ui/k_new_mnu.cpp:2351
+ msgid "Open Local File: %1"
+ msgstr "Yerel dosya aç: %1"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2450
+-#, c-format
++#: ui/k_new_mnu.cpp:2354
+ msgid "Open Local Dir: %1"
+ msgstr "Yerel dizin aç: %1"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2453
+-#, c-format
++#: ui/k_new_mnu.cpp:2357
+ msgid "Open Remote Location: %1"
+ msgstr "Uzak konumu aç: %1"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2462
++#: ui/k_new_mnu.cpp:2385
+ msgid "Run '%1'"
+ msgstr "'%1'i çalıştır"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2505 kicker/ui/k_new_mnu.cpp:2578
++#: ui/k_new_mnu.cpp:2430
++#: ui/k_new_mnu.cpp:2503
+ msgid "No matches found"
+ msgstr "Sonuç bulunamadı"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2630
++#: ui/k_new_mnu.cpp:2555
++#, fuzzy
+ msgid "top %1 of %2"
+-msgstr ""
++msgstr "&Üst"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2632
++#: ui/k_new_mnu.cpp:2557
++#, fuzzy
+ msgid "%1 (top %2 of %3)"
+-msgstr ""
++msgstr "&Üst"
++
++#: ui/k_new_mnu.cpp:2629
++msgid "Do you really want to end the session?"
++msgstr "Oturumu sonlandırmak istediğinize emin misiniz ?"
++
++#: ui/k_new_mnu.cpp:2630
++msgid "Logout Confirmation"
++msgstr "Oturumu Kapatma Onayı"
++
++#: ui/k_new_mnu.cpp:2649
++msgid "Do you really want to turn off the computer?"
++msgstr "Bilgisayarınız gerçekten kapatmak istiyor musunuz?"
++
++#: ui/k_new_mnu.cpp:2650
++msgid "Shutdown Confirmation"
++msgstr "Bilgisayarı Kapatma Onayı"
++
++#: ui/k_new_mnu.cpp:2650
++msgid "Shutdown"
++msgstr "Kapat"
++
++#: ui/k_new_mnu.cpp:2664
++msgid "Do you really want to reset the computer and boot (another operating system)?"
++msgstr "Bilgisayarınızı gerçekten yeniden (bir başka işletim sistemiyle) başlatmak istiyor musunuz?"
++
++#: ui/k_new_mnu.cpp:2665
++msgid "Restart Confirmation"
++msgstr "Yeniden Başlatma Onayı"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2752
++#: ui/k_new_mnu.cpp:2665
++msgid "Restart"
++msgstr "Yeniden Başlat"
++
++#: ui/k_new_mnu.cpp:2714
+ msgid "Do you really want to reset the computer and boot Microsoft Windows"
+ msgstr "Bilgisayarınızı yeniden başlatmak ve Microsoft Windows'u açmak istediğinize emin misiniz?"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2752
++#: ui/k_new_mnu.cpp:2714
+ msgid "Start Windows Confirmation"
+ msgstr "Windows Başlatma Onayı"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2752
++#: ui/k_new_mnu.cpp:2714
+ msgid "Start Windows"
+ msgstr "Microsoft Windows'u Başlat"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2777
++#: ui/k_new_mnu.cpp:2739
+ msgid "Could not start Tomboy."
+ msgstr "Tomboy başlatılamıyor."
+ 
+-#: kicker/ui/k_new_mnu.cpp:2837
++#: ui/k_new_mnu.cpp:2799
+ msgid "Remove From Favorites"
+ msgstr "Yerimlerinden Sil"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2843
++#: ui/k_new_mnu.cpp:2806
+ msgid "Add to Favorites"
+ msgstr "Yerimlerine Ekle"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2945
+-msgid "Clear Recently Used Applications"
+-msgstr "Son Kullanılan Uygulamaları Temizle"
++#: ui/k_new_mnu.cpp:2837
++#: ui/service_mnu.cpp:518
++msgid "Add Menu to Desktop"
++msgstr "Masaüstüne Menü Ekle"
+ 
+-#: kicker/ui/k_new_mnu.cpp:2948
+-msgid "Clear Recently Used Documents"
+-msgstr "Son Kullanılan Belgeleri Temizle"
++#: ui/k_new_mnu.cpp:2840
++#: ui/service_mnu.cpp:491
++msgid "Add Item to Desktop"
++msgstr "Masaüstüne Öğe Ekle"
+ 
+-#: applets/media/mediaapplet.cpp:428 applets/media/preferencesdialog.cpp:74
+-#: kicker/ui/k_new_mnu.cpp:3558
+-msgid "Media"
+-msgstr "Ortam"
++#: ui/k_new_mnu.cpp:2847
++#: ui/service_mnu.cpp:524
++msgid "Add Menu to Main Panel"
++msgstr "Ana Panele Menü Ekle"
++
++#: ui/k_new_mnu.cpp:2850
++#: ui/service_mnu.cpp:497
++msgid "Add Item to Main Panel"
++msgstr "Ana Panele Öğe Ekle"
++
++#: ui/k_new_mnu.cpp:2856
++#: ui/service_mnu.cpp:530
++msgid "Edit Menu"
++msgstr "Menüyü Düzenle"
++
++#: ui/k_new_mnu.cpp:2858
++#: ui/service_mnu.cpp:503
++msgid "Edit Item"
++msgstr "Öğeyi Düzenle"
++
++#: ui/k_new_mnu.cpp:2864
++#: ui/service_mnu.cpp:509
++msgid "Put Into Run Dialog"
++msgstr "Çalıştırma Penceresine Yerleştir"
++
++#: ui/k_new_mnu.cpp:2892
++msgid "Advanced"
++msgstr "Gelişmiş"
++
++#: ui/k_new_mnu.cpp:2908
++msgid "Clear Recently Used Applications"
++msgstr "Son Kullanılan Uygulamaları Temizle"
++
++#: ui/k_new_mnu.cpp:2911
++msgid "Clear Recently Used Documents"
++msgstr "Son Kullanılan Belgeleri Temizle"
+ 
+-#: kicker/ui/k_new_mnu.cpp:3596
++#: ui/k_new_mnu.cpp:3495
++msgid "Media"
++msgstr "Ortam"
++
++#: ui/k_new_mnu.cpp:3533
+ msgid "(%1 available)"
+ msgstr "(%1 kullanılabilir)"
+ 
+-#: kicker/ui/k_new_mnu.cpp:3727 kicker/ui/k_new_mnu.cpp:3731
+-#, c-format
++#: ui/k_new_mnu.cpp:3664
++#: ui/k_new_mnu.cpp:3668
+ msgid "Directory: %1"
+ msgstr "Dizin: %1"
+ 
+-#: kicker/ui/k_new_mnu.cpp:3822
++#: ui/k_new_mnu.cpp:3761
+ msgid "Suspend Computer"
+ msgstr "Askıya Al"
+ 
+-#: kicker/ui/k_new_mnu.cpp:3825
++#: ui/k_new_mnu.cpp:3764
+ msgid "Suspend to Disk"
+ msgstr "Diski kullanarak askıya al"
+ 
+-#: kicker/ui/k_new_mnu.cpp:3826 kicker/ui/k_new_mnu.cpp:3830
+-#: kicker/ui/k_new_mnu.cpp:3834
++#: ui/k_new_mnu.cpp:3765
++#: ui/k_new_mnu.cpp:3769
++#: ui/k_new_mnu.cpp:3773
+ msgid "Pause without logging out"
+ msgstr "Güncel oturumu kaydet ve bilgisayarı askıya al"
+ 
+-#: kicker/ui/k_new_mnu.cpp:3829
++#: ui/k_new_mnu.cpp:3768
+ msgid "Suspend to RAM"
+ msgstr "RAM kullanarak askıya al"
+ 
+-#: kicker/ui/k_new_mnu.cpp:3833
++#: ui/k_new_mnu.cpp:3772
+ msgid "Standby"
+ msgstr "Askıya al"
+ 
+-#: kicker/ui/k_new_mnu.cpp:3869
++#: ui/k_new_mnu.cpp:3811
+ msgid "Suspend failed"
+ msgstr "Bekletme başarısız"
+ 
+-#: kicker/ui/k_new_mnu.h:65
+-msgid "Notes"
+-msgstr "Notlar"
+-
+-#: kicker/ui/k_new_mnu.h:65
+-msgid "Emails"
+-msgstr "E-postalar"
+-
+-#: kicker/ui/k_new_mnu.h:65
+-msgid "Music"
+-msgstr "Müzik"
+-
+-#: kicker/ui/k_new_mnu.h:66
+-msgid "Browsing History"
+-msgstr "Tarama Geçmişi"
+-
+-#: kicker/ui/k_new_mnu.h:66
+-msgid "Chat Logs"
+-msgstr "Sohbet Kayıtları"
+-
+-#: kicker/ui/k_new_mnu.h:66
+-msgid "Feeds"
+-msgstr "Beslemeler"
+-
+-#: kicker/ui/k_new_mnu.h:67
+-msgid "Pictures"
+-msgstr "Resimler"
+-
+-#: kicker/ui/k_new_mnu.h:67
+-msgid "Videos"
+-msgstr "Görüntüler"
+-
+-#: kicker/ui/k_new_mnu.h:67
+-msgid "Documentation"
+-msgstr "Belgeleme"
+-
+-#: kicker/ui/k_new_mnu.h:68
+-msgid "Others"
+-msgstr "Diğerleri"
++#: ui/quickbrowser_mnu.cpp:48
++msgid "&Home Folder"
++msgstr "&Başlangıç Dizini"
++
++#: ui/quickbrowser_mnu.cpp:53
++msgid "&Root Folder"
++msgstr "&Kök Dizini"
++
++#: ui/quickbrowser_mnu.cpp:58
++msgid "System &Configuration"
++msgstr "&Sistem Yapılandırması"
++
++#: ui/recentapps.cpp:170
++msgid "Recently Used Applications"
++msgstr "Son Kullanılan Uygulamalar"
++
++#: ui/recentapps.cpp:171
++msgid "Most Used Applications"
++msgstr "En Çok Kullanılanlar"
++
++#. i18n: file ui/appletview.ui line 71
++#: ui/removeapplet_mnu.cpp:84
++#: ui/removebutton_mnu.cpp:92
++#: ui/removeextension_mnu.cpp:93
++#: rc.cpp:12
++#, no-c-format
++msgid "All"
++msgstr "Hepsi"
++
++#: ui/removecontainer_mnu.cpp:42
++msgid "&Applet"
++msgstr "&Programcık"
++
++#: ui/removecontainer_mnu.cpp:44
++msgid "Appli&cation"
++msgstr "&Uygulama"
++
++#: ui/removeextension_mnu.cpp:64
++msgid "%1 (Top)"
++msgstr "%1 (Üst)"
++
++#: ui/removeextension_mnu.cpp:67
++msgid "%1 (Right)"
++msgstr "%1 (Sağ)"
++
++#: ui/removeextension_mnu.cpp:70
++msgid "%1 (Bottom)"
++msgstr "%1 (Alt)"
+ 
++#: ui/removeextension_mnu.cpp:73
++msgid "%1 (Left)"
++msgstr "%1 (Sol)"
++
++#: ui/removeextension_mnu.cpp:76
++msgid "%1 (Floating)"
++msgstr "%1 (Kayan)"
++
++#: ui/service_mnu.cpp:265
++msgid "No Entries"
++msgstr "Giriş Yok"
++
++#: ui/service_mnu.cpp:272
++msgid "Add This Menu"
++msgstr "Bu Menüyü Ekle"
++
++#: ui/service_mnu.cpp:277
++msgid "Add Non-KDE Application"
++msgstr "KDE Dışı Uygulama Ekle"
++
++#: ui/service_mnu.cpp:317
++msgid "Entries in K-menu: %1 app name, %2 description"
++msgstr "K-menü girdileri: %1 uygulama adı, %2 açıklama"
++
++#: ui/service_mnu.cpp:327
++msgid "Entries in K-menu: %1 description, %2 app name"
++msgstr "K-menü girdileri: %1 açıklama, %2 uygulama adı"
++
++#: _translatorinfo.cpp:1
++msgid ""
++"_: NAME OF TRANSLATORS\n"
++"Your names"
++msgstr "Görkem Çetin"
++
++#: _translatorinfo.cpp:3
++msgid ""
++"_: EMAIL OF TRANSLATORS\n"
++"Your emails"
++msgstr "gorkem@kde.org"
++
++#. i18n: file ui/appletview.ui line 35
++#: rc.cpp:3
++#, no-c-format
++msgid "&Search:"
++msgstr "&Ara:"
++
++#. i18n: file ui/appletview.ui line 54
++#: rc.cpp:6
++#, no-c-format
++msgid "<qt>Type here some text to filter on the applet names and comments</qt>"
++msgstr "<qt>Programcık adı ve içeriğine ilişkin bir şeyler yazın</qt>"
++
++#. i18n: file ui/appletview.ui line 62
++#: rc.cpp:9
++#, no-c-format
++msgid "S&how:"
++msgstr "&Göster:"
++
++#. i18n: file ui/appletview.ui line 76
++#: rc.cpp:15
++#, no-c-format
++msgid "Applets"
++msgstr "Programcıklar"
++
++#. i18n: file ui/appletview.ui line 81
++#: rc.cpp:18
++#, no-c-format
++msgid "Special Buttons"
++msgstr "Özel Düğmeler"
++
++#. i18n: file ui/appletview.ui line 96
++#: rc.cpp:21
++#, no-c-format
++msgid "<qt>Select here the only applet category that you want to show</qt>"
++msgstr "<qt>Göstermek istediğiniz bir programcık kategorisini buradan seçin</qt>"
++
++#. i18n: file ui/appletview.ui line 123
++#: rc.cpp:24
++#, no-c-format
++msgid "<qt>This is the applet list. Select an applet and click on <b>Add to panel</b> to add it</qt>"
++msgstr "<qt>Bu programcık listesidir. Bir programcık seçin ve  eklemek için <b>Panele ekle</b>' ye tıklayın.</qt>"
++
++#. i18n: file ui/appletview.ui line 156
++#: rc.cpp:27
++#, no-c-format
++msgid "&Add to Panel"
++msgstr "&Panele Ekle"
++
++#. i18n: file ui/kmenubase.ui line 16
++#: rc.cpp:33
++#, no-c-format
++msgid "KMenu"
++msgstr "KMenu"
++
++#. i18n: file ui/kmenubase.ui line 19
++#: rc.cpp:36
++#, fuzzy, no-c-format
++msgid "MShadow"
++msgstr "&Göster:"
++
++#. i18n: file ui/kmenubase.ui line 22
++#: rc.cpp:39
++#, no-c-format
++msgid "MShape"
++msgstr ""
++
++#. i18n: file ui/kmenubase.ui line 104
++#: rc.cpp:42
++#, no-c-format
+ msgid "Search:"
+ msgstr "Arama:"
+ 
+-msgid "Switch to Kickoff Menu Style"
+-msgstr "Kickoff stili menüye geç"
++#. i18n: file ui/kmenubase.ui line 206
++#: rc.cpp:45
++#, no-c-format
++msgid "User&nbsp;<b>user</b>&nbsp;on&nbsp;<b>host</b>"
++msgstr "Kullanıcı&nbsp;<b>makinesi</b>&nbsp;üzerinde&nbsp;<b>kullanıcısı</b>"
+ 
+-msgid "Switch to KDE Menu Style"
+-msgstr "KDE stili menüye geç"
++#. i18n: file ui/kmenuitembase.ui line 36
++#: rc.cpp:48
++#, no-c-format
++msgid "KMenuItemBase"
++msgstr ""
+ 
+-msgid "<p align=\"center\"> <u>F</u>avorites</p>"
+-msgstr "<p align=\"center\"> <u>Y</u>erimleri</p>"
++#. i18n: file ui/nonKDEButtonSettings.ui line 30
++#. i18n: file ui/nonKDEButtonSettings.ui line 81
++#: rc.cpp:51
++#: rc.cpp:76
++#, no-c-format
++msgid "Enter the name of the executable file to be run when this button is selected. If it is not in your $PATH then you will need to provide an absolute path."
++msgstr "Bu düğme seçildiği zaman çalıştırılacak olan programın adını verin. Eğer bu program $PATH değişkeni içindeki dizinlerin birisinde bulunmuyorsa, programın çalışması için tüm yolunu girmek gerekecektir."
+ 
+-msgid "<p align=\"center\"><u>H</u>istory</p>"
+-msgstr "<p align=\"center\"><u>G</u>eçmiş</p>"
++#. i18n: file ui/nonKDEButtonSettings.ui line 38
++#: rc.cpp:54
++#, no-c-format
++msgid "Co&mmand line arguments (optional):"
++msgstr "Seçimlik komut satırı:"
+ 
+-msgid "<p align=\"center\"> <u>C</u>omputer</p>"
+-msgstr "<p align=\"center\"> <u>S</u>istem</p>"
++#. i18n: file ui/nonKDEButtonSettings.ui line 46
++#. i18n: file ui/nonKDEButtonSettings.ui line 67
++#: rc.cpp:57
++#: rc.cpp:68
++#, no-c-format
++msgid ""
++"Enter any command line options that should be passed to the command here.\n"
++"\n"
++"<i>Example</i>: For the command `rm -rf` enter \"-rf\" in this text box."
++msgstr ""
++"Komuta parametre olarak gönderilecek komut satırı seçeneklerini buraya yazın.\n"
++"\n"
++"<i>Örnek</i>: `rm -rf` komutu için \"-rf\"yi bu metin kutusuna yazın."
+ 
+-msgid "<p align=\"center\"><u>A</u>pplications</p>"
+-msgstr "<p align=\"center\"><u>U</u>ygulamalar</p>"
++#. i18n: file ui/nonKDEButtonSettings.ui line 54
++#: rc.cpp:62
++#, no-c-format
++msgid "Run in a &terminal window"
++msgstr "&Terminal penceresinde çalıştır"
+ 
+-msgid "<p align=\"center\"><u>L</u>eave</p>"
+-msgstr "<p align=\"center\"><u>Ç</u>ıkış</p>"
++#. i18n: file ui/nonKDEButtonSettings.ui line 57
++#: rc.cpp:65
++#, no-c-format
++msgid "Select this option if the command is a command line application and you wish to be able to see its output when run."
++msgstr "Eğer komut bir komut satırı uygulaması ise ve çalıştığında çıktısını görmek istiyorsanız bu seçeneği seçin."
++
++#. i18n: file ui/nonKDEButtonSettings.ui line 75
++#: rc.cpp:73
++#, no-c-format
++msgid "&Executable:"
++msgstr "Ç&alıştırılabilir:"
++
++#. i18n: file ui/nonKDEButtonSettings.ui line 97
++#. i18n: file ui/nonKDEButtonSettings.ui line 111
++#. i18n: file ui/nonKDEButtonSettings.ui line 173
++#. i18n: file ui/nonKDEButtonSettings.ui line 189
++#: rc.cpp:79
++#: rc.cpp:85
++#: rc.cpp:91
++#: rc.cpp:94
++#, no-c-format
++msgid "Enter the name you would like to appear for this button here."
++msgstr "Bu düğme için gözükmesini istediğiniz ismi buraya yazın."
++
++#. i18n: file ui/nonKDEButtonSettings.ui line 105
++#: rc.cpp:82
++#, no-c-format
++msgid "&Button title:"
++msgstr "&Düğme simgesi:"
++
++#. i18n: file ui/nonKDEButtonSettings.ui line 167
++#: rc.cpp:88
++#, no-c-format
++msgid "&Description:"
++msgstr "&Açıklama:"
++
++#. i18n: file core/extensionSettings.kcfg line 14
++#: rc.cpp:97
++#, no-c-format
++msgid "Whether this panel actually exists or not. Primarily to work around the fact that KConfigXT won't write a config file unless there is at least one non-default entry."
++msgstr ""
++
++#. i18n: file core/extensionSettings.kcfg line 18
++#: rc.cpp:100
++#, no-c-format
++msgid "The position of the panel"
++msgstr "Panelin konumu"
++
++#. i18n: file core/extensionSettings.kcfg line 25
++#: rc.cpp:103
++#, no-c-format
++msgid "The alignment of the panel"
++msgstr "Panelin yerleşimi"
++
++#. i18n: file core/extensionSettings.kcfg line 32
++#: rc.cpp:106
++#, no-c-format
++msgid "Primary xinerama screen"
++msgstr "Birincil Xinerama ekranı"
++
++#. i18n: file core/extensionSettings.kcfg line 37
++#: rc.cpp:109
++#, no-c-format
++msgid "Hide button size"
++msgstr "Düğme boyutunu gizle"
++
++#. i18n: file core/extensionSettings.kcfg line 44
++#: rc.cpp:112
++#, no-c-format
++msgid "Show left panel hide button"
++msgstr "Sol panel gizleme düğmesini göster"
++
++#. i18n: file core/extensionSettings.kcfg line 49
++#: rc.cpp:115
++#, no-c-format
++msgid "Show right panel hide button"
++msgstr "Sağ panel gizleme düğmesini göster"
++
++#. i18n: file core/extensionSettings.kcfg line 54
++#: rc.cpp:118
++#, no-c-format
++msgid "Auto hide panel"
++msgstr "Kendiliğinden paneli gizle"
++
++#. i18n: file core/extensionSettings.kcfg line 59
++#: rc.cpp:121
++#, no-c-format
++msgid "Enable auto hide"
++msgstr "Kendiliğinden gizleme etkin"
++
++#. i18n: file core/extensionSettings.kcfg line 64
++#: rc.cpp:124
++#, no-c-format
++msgid "Delay before auto hide"
++msgstr "Kendiliğinden gizlemeden önce bekle"
++
++#. i18n: file core/extensionSettings.kcfg line 69
++#: rc.cpp:127
++#, no-c-format
++msgid "The trigger location for unhides"
++msgstr "Tekrar görünmesi için konumunu tetikle"
++
++#. i18n: file core/extensionSettings.kcfg line 76
++#: rc.cpp:130
++#, no-c-format
++msgid "Enable background hiding"
++msgstr "Arkaplan gizleme etkin"
++
++#. i18n: file core/extensionSettings.kcfg line 81
++#: rc.cpp:133
++#, no-c-format
++msgid "Animate panel hiding"
++msgstr "Paneli gizlerken animasyon yap"
++
++#. i18n: file core/extensionSettings.kcfg line 86
++#: rc.cpp:136
++#, no-c-format
++msgid "Panel hiding animation speed"
++msgstr "Panel gizleme animasyon hızı"
++
++#. i18n: file core/extensionSettings.kcfg line 91
++#: rc.cpp:139
++#, no-c-format
++msgid "Length in percentage"
++msgstr "Yüzde olarak uzunluk"
++
++#. i18n: file core/extensionSettings.kcfg line 98
++#: rc.cpp:142
++#, no-c-format
++msgid "Expand as required to fit contents"
++msgstr "İçeriğin uyması için gereken oranda genişlet"
++
++#. i18n: file core/extensionSettings.kcfg line 103
++#: rc.cpp:145
++#, no-c-format
++msgid "Size"
++msgstr "Boyut"
++
++#. i18n: file core/extensionSettings.kcfg line 108
++#: rc.cpp:148
++#, no-c-format
++msgid "Custom size"
++msgstr "Özel boyut"
++
++#~ msgid "Search for personal files and applications"
++#~ msgstr "Kişisel dosyalar ve uygulamalar içinde ara"
++
++#~ msgid "System Settings"
++#~ msgstr "Sistem Ayarları"
++
++#~ msgid "Tasma"
++#~ msgstr "Tasma"
++
++#~ msgid "Network Settings"
++#~ msgstr "Ağ Ayarları"
++
++#~ msgid "Network Manager"
++#~ msgstr "Ağ Yöneticisi"
++
++#~ msgid "Package Manager"
++#~ msgstr "Paket Yöneticisi"
++
++#~ msgid "Notes"
++#~ msgstr "Notlar"
++
++#~ msgid "Emails"
++#~ msgstr "E-postalar"
++
++#~ msgid "Browsing History"
++#~ msgstr "Tarama Geçmişi"
++
++#~ msgid "Chat Logs"
++#~ msgstr "Sohbet Kayıtları"
++
++#~ msgid "Feeds"
++#~ msgstr "Beslemeler"
++
++#~ msgid "Pictures"
++#~ msgstr "Resimler"
++
++#~ msgid "Documentation"
++#~ msgstr "Belgeleme"
++
++#~ msgid "Others"
++#~ msgstr "Diğerleri"

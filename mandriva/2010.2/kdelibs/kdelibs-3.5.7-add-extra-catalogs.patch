@@ -1,0 +1,13 @@
+--- kdecore/klocale.cpp.orig	2011-02-04 10:59:25.234472351 +0000
++++ kdecore/klocale.cpp	2011-02-04 11:01:08.952473215 +0000
+@@ -138,7 +138,10 @@
+     if (mainCatalogue.contains("desktop") == 0 || mainCatalogue.contains("kdesktop") == 1) { //don't bother if we're looking up desktop translations
+       d->catalogNames.append( SYSTEM_MESSAGES ); // always include kdelibs.mo
+       d->catalogNames.append( "kio" );            // always include kio.mo
++      KGlobal::dirs()->addResourceDir("locale", "/usr/share/locale");
++      d->catalogNames.append( "kickoff" );
+       d->catalogNames.append( "xdg-user-dirs" );
++      d->catalogNames.append( "mandriva-kde-translation" );
+     }
+     updateCatalogues(); // evaluate this for all languages
+   }

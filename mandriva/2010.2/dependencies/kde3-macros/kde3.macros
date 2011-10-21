@@ -1,0 +1,57 @@
+%use_enable_final %{!?_disable_final:--enable-final}
+%use_unstable %{?_unstable:--enable-debug=full}
+
+%_kde3_prefix /opt/kde3
+%_kde3_libdir %_kde3_prefix/%_lib
+%_kde3_iconsdir %_kde3_prefix/share/icons
+%_kde3_sysconfdir %_sysconfdir
+%_kde3_datadir %_kde3_prefix/share
+%_kde3_configdir %_kde3_datadir/config
+%_kde3_appsdir %_kde3_datadir/apps
+%_kde3_docdir %_kde3_prefix/share/doc
+%_kde3_bindir %_kde3_prefix/bin
+%_kde3_sbindir %_kde3_prefix/sbin
+%_kde3_includedir %_kde3_prefix/include
+%_kde3_mandir %_kde3_prefix/share/man
+%_kde3_autostart %_kde3_prefix/share/autostart
+
+%configure_kde3 \\\
+  %before_configure ; \
+  %{?_enable_libtoolize:%{?__libtoolize_configure:%{__libtoolize_configure};}} \
+  [ -f $CONFIGURE_TOP/configure.in -o -f $CONFIGURE_TOP/configure.ac ] && \
+  CONFIGURE_XPATH="--x-includes=%{_prefix}/include --x-libraries=%{_prefix}/%{_lib}" \
+  PKG_CONFIG_PATH="%{_kde3_libdir}/pkgconfig:%{_libdir}/pkgconfig:${PKG_CONFIG_PATH}" \
+  $CONFIGURE_TOP/configure --build=%{_target_platform} \\\
+	--prefix=%{_kde3_prefix} \\\
+	--bindir=%{_kde3_bindir} \\\
+	--sbindir=%{_kde3_sbindir} \\\
+	--sysconfdir=%{_sysconfdir} \\\
+	--datadir=%{_kde3_datadir} \\\
+	--includedir=%{_kde3_includedir} \\\
+	--libdir=%{_kde3_libdir} %use_unstable %use_enable_final \\\
+	--infodir=%{_infodir} \\\
+	--mandir=%{_mandir} \\\
+	--disable-static \\\
+	--enable-mitshm \\\
+	--with-ipv6-lookup=auto \\\
+	--with-pic \\\
+	--with-xinerama \\\
+	--with-alsa \\\
+	--enable-libfam \\\
+	--enable-pcre \\\
+	--with-qt-dir=%{qt3dir} --with-qt-includes=%{qt3include} --with-qt-libraries=%{qt3lib}\\\
+        --with-extra-libs=%{_kde3_libdir} --with-extra-includes=%{_kde3_includedir}/tqt \\\
+	%if "%{_lib}" != "lib" \
+	--enable-libsuffix="%(A=%{_lib}; echo ${A/lib/})" \\\
+	%endif \
+	--disable-rpath \\\
+        --enable-closure \\\
+	$CONFIGURE_XPATH
+# Rebuild icon cache
+%update_kde3_icon_cache() if [ -x %{_update_icon_cache_bin} ]; then \
+%{_update_icon_cache_bin} --force --quiet %{_kde3_iconsdir}/%{1} || true; fi \
+%{nil}
+
+%clean_kde3_icon_cache() if [ -x %{_update_icon_cache_bin} -a -r %{_kde3_iconsdir}/%{1}/index.theme ]; then \
+%{_update_icon_cache_bin} --force --quiet %{_kde3_iconsdir}/%{1} || true ; fi \
+%{nil}

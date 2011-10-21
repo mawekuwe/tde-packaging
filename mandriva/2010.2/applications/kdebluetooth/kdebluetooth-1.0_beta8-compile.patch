@@ -1,0 +1,10 @@
+--- kdebluetooth/kcm_btpaired/pairedtab.h.orig	2009-03-25 22:45:39.000000000 +0100
++++ kdebluetooth/kcm_btpaired/pairedtab.h	2009-03-25 22:46:23.000000000 +0100
+@@ -34,6 +34,7 @@
+ #include <qstringlist.h>
+ #include <qdatetime.h>
+ #include <vector>
++#include <stdint.h>
+ 
+ #include "exportdialog.h"
+ 

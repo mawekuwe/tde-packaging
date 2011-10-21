@@ -1,0 +1,25 @@
+From c2b0c2f49c20f81eeea19be1bff6143a93b68f0e Mon Sep 17 00:00:00 2001
+From: unknown author <cooker@mandrivalinux.org>
+Date: Thu, 23 Apr 2009 14:55:30 +0000
+Subject: [PATCH] fix lha support
+
+---
+ ark/lha.cpp |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+diff --git a/ark/lha.cpp b/ark/lha.cpp
+index f890139..cfc0999 100644
+--- a/ark/lha.cpp
++++ b/ark/lha.cpp
+@@ -57,6 +57,8 @@ LhaArch::LhaArch( ArkWidget *_gui, const QString & _fileName )
+ {
+   m_archiver_program = "lha";
+   verifyCompressUtilityIsAvailable( m_archiver_program );
++  m_unarchiver_program = "lha";
++  verifyUncompressUtilityIsAvailable( m_unarchiver_program );
+ 
+   m_headerString = "----";
+ }
+-- 
+1.6.2.4
+

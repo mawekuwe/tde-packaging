@@ -1,0 +1,11 @@
+--- kdebase-3.5.12/khelpcenter/searchhandlers/khc_htsearch.pl.orig	2011-02-04 15:29:41.658473919 +0000
++++ kdebase-3.5.12/khelpcenter/searchhandlers/khc_htsearch.pl	2011-02-04 15:29:57.738474105 +0000
+@@ -8,7 +8,7 @@
+ use open IO => ':utf8';
+ use open ':std';
+ 
+-my $htsearchpath="/usr/lib/cgi-bin/htsearch";
++my $htsearchpath="/usr/bin/htsearch";
+ 
+ my $config;
+ my $format;

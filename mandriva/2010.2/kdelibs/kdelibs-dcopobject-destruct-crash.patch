@@ -1,0 +1,52 @@
+there appeared some kind of leak or memory overwrite, or double destruct, can't
+track down where it came from, only thing done (to my knowledge) was to rebuild
+kde packages due newer dependencies in distro. maybe gcc overoptimizes, but
+rebuild with gcc 4.4.2 did not help.
+
+crash happens when kmail send mail window is destructed (you hit send mail
+button)
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff6dba027 in DCOPObject::~DCOPObject (this=0xdf03b8, __in_chrg=<value optimized out>) at dcopobject.cpp:81
+81          if ( d->m_signalConnections > 0 && client )
+(gdb) bt
+#0  0x00007ffff6dba027 in DCOPObject::~DCOPObject (this=0xdf03b8, __in_chrg=<value optimized out>) at dcopobject.cpp:81
+#1  0x00007ffff77c6a6b in KMComposeWin::~KMComposeWin (this=0xdefd30, __in_chrg=<value optimized out>, __vtt_parm=<value optimized out>) at kmcomposewin.cpp:490
+#2  0x00007ffff66b911a in QObject::event(QEvent*) () from /usr/lib64/libqt-mt.so.3
+#3  0x00007ffff66ee013 in QWidget::event(QEvent*) () from /usr/lib64/libqt-mt.so.3
+#4  0x00007ffff665a865 in QApplication::internalNotify(QObject*, QEvent*) () from /usr/lib64/libqt-mt.so.3
+#5  0x00007ffff665b96e in QApplication::notify(QObject*, QEvent*) () from /usr/lib64/libqt-mt.so.3
+#6  0x00007ffff70aaf28 in KApplication::notify (this=0x7fffffffda10, receiver=0xdefd30, event=0xe72500) at kapplication.cpp:550
+#7  0x00007ffff665c263 in QApplication::sendPostedEvents(QObject*, int) () from /usr/lib64/libqt-mt.so.3
+#8  0x00007ffff660acad in QEventLoop::processEvents(unsigned int) () from /usr/lib64/libqt-mt.so.3
+#9  0x00007ffff6670ba9 in QEventLoop::enterLoop() () from /usr/lib64/libqt-mt.so.3
+#10 0x00007ffff6670a32 in QEventLoop::exec() () from /usr/lib64/libqt-mt.so.3
+#11 0x00000000004028cc in main (argc=3, argv=<value optimized out>) at main.cpp:110
+(gdb) p d
+$1 = (DCOPObject::DCOPObjectPrivate *) 0x0
+(gdb) p client
+$2 = <value optimized out>
+(gdb) l
+76      }
+77
+78      DCOPObject::~DCOPObject()
+79      {
+80          DCOPClient *client = DCOPClient::mainClient();
+81          if ( d->m_signalConnections > 0 && client )
+82               client->disconnectDCOPSignal( 0, 0, 0, objId(), 0 );
+83
+84          objMap()->remove(ident);
+85          delete d;
+(gdb)
+
+--- kdelibs-3.5.10/dcop/dcopobject.cpp~	2005-09-10 11:27:23.000000000 +0300
++++ kdelibs-3.5.10/dcop/dcopobject.cpp	2010-01-30 07:56:50.818689543 +0200
+@@ -78,7 +78,7 @@
+ DCOPObject::~DCOPObject()
+ {
+     DCOPClient *client = DCOPClient::mainClient();
+-    if ( d->m_signalConnections > 0 && client )
++    if (d && d->m_signalConnections > 0 && client )
+          client->disconnectDCOPSignal( 0, 0, 0, objId(), 0 );
+ 
+     objMap()->remove(ident);

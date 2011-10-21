@@ -1,0 +1,62 @@
+--- krandr-0.5.2.1/randr/krandrtray.cpp.run_startup	2007-10-02 20:22:50.000000000 -0300
++++ krandr-0.5.2.1/randr/krandrtray.cpp	2007-10-02 20:29:49.000000000 -0300
+@@ -48,6 +48,7 @@ KRandRSystemTray::KRandRSystemTray(RandR
+ 	KConfig cfg("kcmrandrrc");
+ 	cfg.setGroup("General");
+ 
++	m_runStartup = cfg.readBoolEntry("AutoStart", true);
+ 	KGlobalAccel *accel = new KGlobalAccel(this);
+ 	accel->insert( "DisplaySwitch", i18n("Switch displays"),
+ 		   i18n("Switch between active displays."),
+@@ -111,6 +112,10 @@ void KRandRSystemTray::contextMenuAboutT
+ 
+ 	menu->insertSeparator();
+ 
++	lastIndex = menu->insertItem(i18n( "Start KRandR when KDE starts" ));
++	menu->connectItem(lastIndex, this, SLOT(slotToggleRunStartup()));
++	menu->setItemChecked( lastIndex, m_runStartup );
++
+ 	KAction *actPrefs = new KAction( i18n( "Configure Display..." ),
+ 		SmallIconSet( "configure" ), KShortcut(), this, SLOT( slotPrefs() ),
+ 		actionCollection() );
+@@ -469,6 +474,15 @@ void KRandRSystemTray::slotPrefs()
+ 	kcm->exec();
+ }
+ 
++void KRandRSystemTray::slotToggleRunStartup()
++{
++	m_runStartup = !m_runStartup;
++	KConfig cfg("kcmrandrrc");
++
++	cfg.setGroup("General");
++	cfg.writeEntry("AutoStart", m_runStartup);
++}
++
+ void KRandRSystemTray::slotSwitchDisplay()
+ {
+     m_display->switchOutput();
+--- krandr-0.5.2.1/randr/krandrtray.h.run_startup	2007-10-02 20:22:50.000000000 -0300
++++ krandr-0.5.2.1/randr/krandrtray.h	2007-10-02 20:22:50.000000000 -0300
+@@ -46,6 +46,7 @@ protected slots:
+ 	void slotOrientationChanged(int parameter);
+ 	void slotRefreshRateChanged(int parameter);
+ 	void slotPrefs();
++	void slotToggleRunStartup();
+ 
+ protected:
+ 	void mousePressEvent( QMouseEvent *e );
+@@ -62,6 +63,7 @@ private:
+ 	bool m_popupUp;
+ 	QValueList<KPopupMenu*> m_screenPopups;
+ 	RandRDisplay *m_display;
++	bool m_runStartup;
+ };
+ 
+ #endif
+--- krandr-0.5.2.1/randr/krandrtray.desktop.run_startup	2007-10-02 20:42:22.000000000 -0300
++++ krandr-0.5.2.1/randr/krandrtray.desktop	2007-10-02 20:29:27.000000000 -0300
+@@ -116,3 +116,4 @@ Icon=randr
+ Type=Application
+ OnlyShowIn=KDE;
+ Categories=Qt;KDE;System;
++X-KDE-autostart-condition=kcmrandrrc:General:AutoStart:true

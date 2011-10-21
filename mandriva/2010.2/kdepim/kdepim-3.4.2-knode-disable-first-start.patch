@@ -1,0 +1,16 @@
+--- kdepim-3.4.2/knode/knmainwidget.cpp--	2005-08-01 13:32:58.000000000 +0200
++++ kdepim-3.4.2/knode/knmainwidget.cpp	2005-08-01 13:33:06.000000000 +0200
+@@ -253,11 +253,12 @@ KNMainWidget::KNMainWidget( KXMLGUIClien
+   c_olView->setFocus();
+ 
+   setStatusMsg();
+-
++#if 0
+   if( firstStart() ) {  // open the config dialog on the first start
+     show();              // the settings dialog must appear in front of the main window!
+     slotSettings();
+   }
++#endif  
+ }
+ 
+ KNMainWidget::~KNMainWidget()

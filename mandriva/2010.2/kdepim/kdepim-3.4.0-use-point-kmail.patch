@@ -1,0 +1,31 @@
+--- kdepim-3.4.0/kmail/kmkernel.cpp--	2005-04-07 10:46:16.522963291 -0400
++++ kdepim-3.4.0/kmail/kmkernel.cpp	2005-04-07 10:58:04.836316900 -0400
+@@ -1069,6 +1069,7 @@ void KMKernel::init()
+   cfg->writeEntry("previous-version", KMAIL_VERSION);
+   TQString foldersPath = cfg->readPathEntry( "folders" );
+   kdDebug(5006) << k_funcinfo << "foldersPath (from config): '" << foldersPath << "'" << endl;
++  bool migrateMail = true;
+ 
+   if ( foldersPath.isEmpty() ) {
+     foldersPath = localDataPath() + "mail";
+@@ -1369,6 +1370,20 @@ bool KMKernel::transferMail( QString & d
+   }
+ 
+   if ( dir.isEmpty() ) {
++    // check whether the user has a ~/.Mail folder
++    fi.setFile( TQDir::home(), ".Mail" );
++    if ( fi.exists() && fi.isDir() &&
++         TQFile::exists( TQDir::homeDirPath() + "/.Mail/.inbox.index" ) ) {
++      // there's a ~/Mail folder which seems to be used by KMail (because of the
++      // index file)
++      dir = TQDir::homeDirPath() + "/.Mail";
++      // the following two lines can be removed once moving mail is reactivated
++      destinationDir = dir;
++      return true;
++    }
++  }
++
++  if ( dir.isEmpty() ) {
+     return true; // there's no old mail folder
+   }
+ 

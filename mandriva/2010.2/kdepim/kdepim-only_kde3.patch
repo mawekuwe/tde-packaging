@@ -1,0 +1,16 @@
+diff -p -up kdepim-3.5.9/kalarm/kalarmd/kalarmd.autostart.desktop.ONLY_KDE3 kdepim-3.5.9/kalarm/kalarmd/kalarmd.autostart.desktop
+--- kdepim-3.5.9/kalarm/kalarmd/kalarmd.autostart.desktop.ONLY_KDE3	2008-07-04 13:49:13.000000000 -0300
++++ kdepim-3.5.9/kalarm/kalarmd/kalarmd.autostart.desktop	2008-07-04 13:50:20.000000000 -0300
+@@ -100,3 +100,4 @@ NoDisplay=true
+ X-KDE-autostart-phase=2
+ X-KDE-autostart-condition=kalarmdrc:General:Autostart:false
+ X-KDE-StartupNotify=true
++OnlyShowIn=KDE;
+diff -p -up kdepim-3.5.9/kalarm/kalarm.tray.desktop.ONLY_KDE3 kdepim-3.5.9/kalarm/kalarm.tray.desktop
+--- kdepim-3.5.9/kalarm/kalarm.tray.desktop.ONLY_KDE3	2008-07-04 13:52:08.000000000 -0300
++++ kdepim-3.5.9/kalarm/kalarm.tray.desktop	2008-07-04 14:05:04.000000000 -0300
+@@ -72,3 +72,4 @@ Comment[zh_TW]=警示/提醒訊息排程
+ Terminal=false
+ X-KDE-autostart-phase=2
+ X-KDE-autostart-condition=kalarmrc:General:AutostartTrayDummy:false
++OnlyShowIn=KDE;

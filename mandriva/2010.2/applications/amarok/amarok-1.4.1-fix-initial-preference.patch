@@ -1,0 +1,11 @@
+diff -Naur amarok-1.4.10/amarok/src/amarok.desktop amarok-1.4.10_yeni/amarok/src/amarok.desktop
+--- amarok-1.4.10/amarok/src/amarok.desktop     2008-08-14 00:21:51.000000000 +0300
++++ amarok-1.4.10_yeni/amarok/src/amarok.desktop        2009-12-20 01:01:49.987559971 +0200
+@@ -2,6 +2,7 @@
+ Type=Application
+ Version=0.9.4
+ Encoding=UTF-8
++InitialPreference=15
+ Name=Amarok
+ Name[bn]=আমারক
+ Name[el]=AmaroK

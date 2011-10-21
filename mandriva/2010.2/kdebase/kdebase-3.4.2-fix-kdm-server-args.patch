@@ -1,0 +1,14 @@
+--- kdebase-3.4.2/kdm/config.def--	2005-09-08 15:28:23.000000000 +0200
++++ kdebase-3.4.2/kdm/config.def	2005-09-08 15:28:49.000000000 +0200
+@@ -1348,9 +1348,9 @@ Description:
+ 
+ Key: ServerArgsLocal
+ Type: string
+-Default: ""
++Default: "-nolisten tcp"
+ User: core
+-Instance: :*/"-nolisten tcp"
++Instance: */"-deferglyphs 16 -nolisten tcp"
+ Comment: &
+ Description:
+  Additional arguments for the &X-Server;s for local sessions.

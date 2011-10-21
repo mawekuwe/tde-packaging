@@ -1,0 +1,14 @@
+--- kcontrol/componentchooser/componentchooser.cpp.nopatch	2011-07-19 13:15:03.679312055 +0100
++++ kcontrol/componentchooser/componentchooser.cpp	2011-07-19 13:15:55.218311443 +0100
+@@ -367,10 +367,7 @@
+ 	KURL::List urlList;
+ 	KOpenWithDlg dlg(urlList, i18n("Select preferred Web browser application:"), TQString::null, this);
+ 	if (dlg.exec() != TQDialog::Accepted) return;
+-	m_browserService = dlg.service();
+-	if (m_browserService)
+-	   m_browserExec = m_browserService->desktopEntryName();
+-	else
++
+ 	   m_browserExec = dlg.text();
+ 
+ 	lineExec->setText(m_browserExec);

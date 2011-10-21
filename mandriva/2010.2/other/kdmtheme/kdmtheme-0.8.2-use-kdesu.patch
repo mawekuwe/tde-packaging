@@ -1,0 +1,10 @@
+--- kdmtheme-0.8.2/src/kdmtheme.desktop--	2005-04-04 15:40:46.372622342 +0200
++++ kdmtheme-0.8.2/src/kdmtheme.desktop	2005-04-04 15:40:58.752867432 +0200
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Encoding=UTF-8
+-Exec=kcmshell kdmtheme
++Exec=kdesu kcmshell kdmtheme
+ Icon=kdmconfig
+ Type=Application
+ 

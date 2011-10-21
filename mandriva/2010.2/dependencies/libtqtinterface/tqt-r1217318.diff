@@ -1,0 +1,12 @@
+Index: dependencies/tqtinterface/qtinterface/tqt.h
+===================================================================
+--- dependencies/tqtinterface/qtinterface/tqt.h	(revision 1217317)
++++ dependencies/tqtinterface/qtinterface/tqt.h	(revision 1217318)
+@@ -85,6 +85,7 @@
+ #define TQ_ControlButton	ControlButton
+ #define TQ_AltButton		AltButton
+ #define TQ_MetaButton		MetaButton
++#define TQ_WFlags		TQt::WFlags
+ #define TQIODevice_OpenModeFlag int
+ 
+ #define TQAlignCenter AlignCenter

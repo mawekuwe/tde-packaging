@@ -1,0 +1,180 @@
+diff -purN kdebase-3.5.7.orig/doc/kioslave/index.docbook kdebase-3.5.7/doc/kioslave/index.docbook
+--- kdebase-3.5.7.orig/doc/kioslave/index.docbook	2007-09-13 18:41:54.000000000 +0200
++++ kdebase-3.5.7/doc/kioslave/index.docbook	2007-09-13 18:46:13.000000000 +0200
+@@ -20,6 +20,7 @@
+ <!ENTITY kio-info SYSTEM "info.docbook">
+ <!ENTITY kio-lan SYSTEM "lan.docbook">
+ <!ENTITY kio-ldap SYSTEM "ldap.docbook">
++<!ENTITY kio-lzma SYSTEM "lzma.docbook">
+ <!ENTITY kio-mailto SYSTEM "mailto.docbook">
+ <!ENTITY kio-mac SYSTEM "mac.docbook">
+ <!ENTITY kio-man SYSTEM "man.docbook">
+@@ -68,6 +69,7 @@
+ &kio-info;
+ &kio-lan;
+ &kio-ldap;
++&kio-lzma;
+ &kio-mailto;
+ &kio-mac;
+ &kio-man;
+diff -purN kdebase-3.5.7.orig/doc/kioslave/lzma.docbook kdebase-3.5.7/doc/kioslave/lzma.docbook
+--- kdebase-3.5.7.orig/doc/kioslave/lzma.docbook	1970-01-01 01:00:00.000000000 +0100
++++ kdebase-3.5.7/doc/kioslave/lzma.docbook	2007-09-13 18:46:13.000000000 +0200
+@@ -0,0 +1,30 @@
++<article lang="&language;" id="lzma">
++<title>lzma</title>
++<articleinfo>
++<authorgroup>
++<author>&Lauri.Watts; &Lauri.Watts.mail;</author>
++<!-- TRANS:ROLES_OF_TRANSLATORS -->
++</authorgroup>
++</articleinfo>
++
++<para><command>lzma</command> is a compression program</para>
++
++<para>The lzma kioslave is not directly usable, and is intended for use
++as a filter.  For example, the tar kioslave can filter a file through
++the lzma kioslave, in order to display the contents of a <literal
++role="extension">tar.lzma</literal> file directly in a &konqueror;
++window.</para>
++
++<para>If you click on a file compressed with a <literal
++role="extension">lzma</literal> extension in &konqueror;, this kioslave is
++used to uncompress it and display it as a normal (uncompressed)
++file.</para>
++
++<para>If you are a developer, and would like to use the lzma filter, you
++can find documentation on using kioslaves at <ulink
++url="http://developer.kde.org">http://developer.kde.org</ulink></para>
++
++<para> See the manual: <ulink url="man:/lzma">lzma</ulink>.
++</para>
++
++</article>
+diff -purN kdebase-3.5.7.orig/kioslave/filter/lzma.protocol kdebase-3.5.7/kioslave/filter/lzma.protocol
+--- kdebase-3.5.7.orig/kioslave/filter/lzma.protocol	1970-01-01 01:00:00.000000000 +0100
++++ kdebase-3.5.7/kioslave/filter/lzma.protocol	2007-09-13 18:46:13.000000000 +0200
+@@ -0,0 +1,10 @@
++[Protocol]
++exec=kio_filter
++protocol=lzma
++mimetype=application/lzma
++input=stream
++output=stream
++reading=true
++source=false
++DocPath=kioslave/lzma.html
++Icon=ark
+diff -purN kdebase-3.5.7.orig/kioslave/filter/Makefile.am kdebase-3.5.7/kioslave/filter/Makefile.am
+--- kdebase-3.5.7.orig/kioslave/filter/Makefile.am	2007-09-13 18:41:35.000000000 +0200
++++ kdebase-3.5.7/kioslave/filter/Makefile.am	2007-09-13 18:47:03.000000000 +0200
+@@ -17,5 +17,5 @@ if include_BZIP2
+ BZIP2FILES=bzip.protocol bzip2.protocol
+ endif
+ 
+-protocol_DATA = gzip.protocol $(BZIP2FILES)
++protocol_DATA = gzip.protocol $(BZIP2FILES) lzma.protocol
+ 
+diff -purN kdebase-3.5.7.orig/kioslave/info/kde-info2html kdebase-3.5.7/kioslave/info/kde-info2html
+--- kdebase-3.5.7.orig/kioslave/info/kde-info2html	2007-09-13 18:41:35.000000000 +0200
++++ kdebase-3.5.7/kioslave/info/kde-info2html	2007-09-13 18:46:13.000000000 +0200
+@@ -39,6 +39,8 @@
+ #   March 9 2003      Add support for browsing by file. by Luis Pedro Coelho
+ #   June  11 2003     Update the layout of the sides to the new infopageslayout.
+ #                     by Sven Leiber <s.leiber@web.de>
++#   August 30 2007    Add lzma support.
++#                     by Per Øyvind Karlsen <peroyvind@mandriva.org>                  
+ #
+ #-------------------------------------------------------
+ 
+@@ -143,6 +145,9 @@ sub FileNotFound {
+ 	elsif ($DirFileName =~ m/.info.gz$/ ) {
+ 		open DIR, "-|", "gzip", "-dc", $DirFileName;
+ 	}
++	elsif ($DirFileName =~ m/.info.lzma$/ ) {
++		open DIR, "-|", "lzma", "-dc", $DirFileName;
++	}
+ 	else {
+ 		open DIR, $DirFileName;
+ 	}
+@@ -252,6 +257,9 @@ sub infocat {
+ 			elsif ($infofile =~ m/.info.gz$/ ) {
+ 				open INFOFILE, "-|", "gzip", "-dc", "$dir/$infofile";
+ 			}
++			elsif ($infofile =~ m/.info.lzma$/ ) {
++ 				open INFOFILE, "-|", "lzma", "-dc", "$dir/$infofile";
++			}
+ 			elsif ($infofile =~ m/.info$/) {
+ 				open INFOFILE, "-|", "$dir/$infofile";
+ 			}
+@@ -427,6 +435,9 @@ sub ReadIndirectTable {
+     open FH1, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
+   } elsif ($FileName =~ /\.bz2$/) {
+     open FH1, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
++  } elsif ($FileName =~ /\.lzma$/) {
++    open FH1, "-|", "unlzma", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
++
+   } else {
+     open(FH1, $FileName) || &DieFileNotFound($FileName);
+   }
+@@ -473,6 +484,8 @@ sub ReadTagTable {
+     open FH, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
+   } elsif ($FileName =~ /\.bz2$/) {
+     open FH, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
++  } elsif ($FileName =~ /\.lzma$/) {
++    open FH, "-|", "unlzma", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
+   } else {
+     open FH, $FileName || &DieFileNotFound($FileName);
+   }
+@@ -756,6 +769,8 @@ sub InfoNode2HTML {
+     open FH2, "-|", "gunzip", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
+   } elsif ($FileName =~ /\.bz2$/) {
+     open FH2, "-|", "bunzip2", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
++  } elsif ($FileName =~ /\.lzma$/) {
++    open FH2, "-|", "unlzma", "-q", "-d", "-c", $FileName || &DieFileNotFound($FileName);
+   } else {
+     open FH2, $FileName || &DieFileNotFound($FileName);
+   }
+@@ -985,17 +1000,21 @@ sub FindFile {
+     foreach my $Name ($File, $Alt) {
+         my $gzName  = $Name . '.gz';
+         my $bz2Name = $Name . '.bz2';
++	my $lzmaName = $Name . '.lzma';
+ 
+         foreach (@info2html::config::INFODIR) {
+             return "$_/$Name"    if -e "$_/$Name";
+             return "$_/$gzName"  if -e "$_/$gzName";
+             return "$_/$bz2Name" if -e "$_/$bz2Name";
++	    return "$_/$lzmaName" if -e "$_/$lzmaName";
++	    
+         }
+         next unless $ENV{INFOPATH};
+         foreach my $i (split(/:/, $ENV{INFOPATH})) {
+             return "$i/$Name"    if -e "$i/$Name";
+             return "$i/$gzName"  if -e "$i/$gzName";
+             return "$i/$bz2Name" if -e "$i/$bz2Name";
++	    return "$i/$lzmaName" if -e "$i/$lzmaName";
+         }
+     }
+     return "";
+diff -purN kdebase-3.5.7.orig/kioslave/man/kio_man.cpp kdebase-3.5.7/kioslave/man/kio_man.cpp
+--- kdebase-3.5.7.orig/kioslave/man/kio_man.cpp	2007-09-13 18:41:35.000000000 +0200
++++ kdebase-3.5.7/kioslave/man/kio_man.cpp	2007-09-13 18:46:13.000000000 +0200
+@@ -68,6 +68,8 @@ void stripExtension( QString *name )
+         pos -= 4;
+     else if ( name->find(".bz", -3) != -1 )
+         pos -= 3;
++    else if ( name->find(".lzma", -5) != -1 )
++ 	pos -= 5;
+ 
+     if ( pos > 0 )
+         pos = name->findRev('.', pos-1);
+@@ -1311,6 +1313,8 @@ void MANProtocol::showIndex(const QStrin
+ 	    end -= 2;
+ 	else if ( len >= 4 && strcmp( end-3, ".bz2" ) == 0 )
+ 	    end -= 4;
++	else if ( len >= 5 && strcmp( end-4, ".lzma" ) == 0 )
++  	    end -= 5;
+ 
+ 	while ( end >= begin && *end != '.' )
+ 	    end--;

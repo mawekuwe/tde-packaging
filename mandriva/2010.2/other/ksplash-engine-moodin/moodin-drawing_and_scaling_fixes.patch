@@ -1,0 +1,144 @@
+diff -p -up moodin/src/cache.cpp.orig moodin/src/cache.cpp
+diff -p -up moodin/src/magiclabel.h.orig moodin/src/magiclabel.h
+diff -p -up moodin/src/cache.h.orig moodin/src/cache.h
+diff -p -up moodin/src/thememoodin.cpp.orig moodin/src/thememoodin.cpp
+--- moodin/src/thememoodin.cpp.orig	2008-02-26 17:46:36.000000000 -0300
++++ moodin/src/thememoodin.cpp	2008-02-26 17:47:26.000000000 -0300
+@@ -88,11 +88,11 @@ void ThemeMoodin::readSettings()
+   mLabelShadowOffset = cfg->readPointEntry("LabelShadowOffset", &pos);
+   QSize size(1280, 1024);
+   mBaseResolution = cfg->readSizeEntry("BaseResolution", &size);
+-  //For svg image use a negative size => force to create it.
++/*  //For svg image use a negative size => force to create it.
+   if(!mUsersBackground && (mBackgroundImage.endsWith(".svg") || mBackgroundImage.endsWith(".svgz"))) {
+ 	  mBaseResolution=QSize();
+   }
+-
++*/
+   mTranslate = cfg->readBoolEntry("Translate", true);
+   mLineUpImages = cfg->readBoolEntry("LineUpImages", false);
+ 
+@@ -325,7 +325,13 @@ EffectWidget* ThemeMoodin::createEffectW
+   fw->setFixedSize(image->size());
+   fw->setImage(image);
+   fw->setStart(mBeginOpacity);
+-  fw->show();
++  //fw->show();
++
++  for (EffectWidget *f = mEffectWidgets.first(); f; f = mEffectWidgets.next())
++  {
++     connect(f, SIGNAL(cacheNeedsUpdate()), fw, SLOT(updateCache()));
++     connect(fw, SIGNAL(cacheNeedsUpdate()), f, SLOT(updateCache()));
++  }
+ 
+   return fw;
+ }
+@@ -358,7 +364,10 @@ void ThemeMoodin::slotSetPixmap(const QS
+   EffectWidget *fw = mEffectWidgets.at(n);
+ 
+   if (fw)
++  {
++    fw->show();
+     fw->start();
++  }
+ 
+   repaint(false);
+ }
+diff -p -up moodin/src/thememoodin.h.orig moodin/src/thememoodin.h
+diff -p -up moodin/src/magiclabel.cpp.orig moodin/src/magiclabel.cpp
+diff -p -up moodin/src/effectwidget.h.orig moodin/src/effectwidget.h
+--- moodin/src/effectwidget.h.orig	2008-02-26 17:46:36.000000000 -0300
++++ moodin/src/effectwidget.h	2008-02-26 17:48:33.000000000 -0300
+@@ -45,10 +45,12 @@ class EffectWidget : public QWidget
+   void resizeEvent(QResizeEvent *);
+   void moveEvent(QMoveEvent *);
+ 
+-  void updateCache();
++signals:
++  void cacheNeedsUpdate();
+ 
+  public slots:
+   void timerTick();
++  void updateCache();
+ 
+  private:
+   static QImage *bgImage;
+@@ -64,6 +66,7 @@ class EffectWidget : public QWidget
+   float
+     beginOpacity,
+     endOpacity;
++  bool bgUpdated;
+ };
+ 
+ #endif
+diff -p -up moodin/src/scaler.h.orig moodin/src/scaler.h
+diff -p -up moodin/src/effectwidget.cpp.orig moodin/src/effectwidget.cpp
+--- moodin/src/effectwidget.cpp.orig	2008-02-26 17:46:36.000000000 -0300
++++ moodin/src/effectwidget.cpp	2008-02-26 17:46:40.000000000 -0300
+@@ -34,6 +34,8 @@ EffectWidget::EffectWidget(QWidget* pare
+   setBackgroundMode(NoBackground);
+   setBackgroundOrigin(QWidget::ParentOrigin);
+   updateCache();
++
++  bgUpdated = false;
+ }
+ 
+ 
+@@ -157,7 +159,17 @@ void EffectWidget::paintEvent(QPaintEven
+ 
+   QImage upper = image->copy();
+   QImage lower = background.copy();
+-  KImageEffect::blendOnLower(upper, lower, KImageEffect::Centered, (currentStep + 1 == totalSteps) ? 1.0 : endOpacity / float(totalSteps) * float(currentStep) + beginOpacity);
++
++  if ((currentStep + 1 == totalSteps) && !bgUpdated)
++  {
++      bgUpdated = true;
++      KImageEffect::blendOnLower(upper, lower, KImageEffect::Centered, 1.0);
++      QPoint p(mapToGlobal(QPoint(0,0)));
++      bitBlt(bgImage, p.x(), p.y(), &lower, 0, 0, -1, -1, 0);
++      emit cacheNeedsUpdate();
++  }
++  else
++      KImageEffect::blendOnLower(upper, lower, KImageEffect::Centered, endOpacity / float(totalSteps) * float(currentStep) + beginOpacity);
+ 
+   bitBlt(this, 0, 0, &lower);
+ }
+diff -p -up moodin/src/scaler.cpp.orig moodin/src/scaler.cpp
+--- moodin/src/scaler.cpp.orig	2008-02-26 17:46:36.000000000 -0300
++++ moodin/src/scaler.cpp	2008-02-26 17:47:44.000000000 -0300
+@@ -15,16 +15,7 @@
+ 
+ Scaler::Scaler(QSize baseResolution, QSize targetResolution)
+ {
+-  if(mBaseResolution.isValid())
+-  {	  
+-    mBaseResolution = baseResolution;
+-    mSvgFile =false;
+-  }
+-  else
+-  {
+-    mBaseResolution = targetResolution;
+-    mSvgFile = true;
+-  }
++  mBaseResolution = baseResolution;
+   mTargetResolution = targetResolution;
+ }
+ 
+@@ -53,7 +44,7 @@ void Scaler::autoCoords(QPoint* pt, cons
+ 
+ void Scaler::scaleCoords(QPoint* pt)
+ {
+-  if (!mSvgFile && (mBaseResolution == mTargetResolution))
++  if (mBaseResolution == mTargetResolution)
+     return;
+ 
+   int ox = pt->x();
+@@ -104,7 +95,7 @@ bool Scaler::scaleSize(QFont* f)
+ 
+ bool Scaler::resolutionDiff()
+ {
+-  return (mSvgFile || (mBaseResolution != mTargetResolution));
++  return (mBaseResolution != mTargetResolution);
+ }
+ 
+ 

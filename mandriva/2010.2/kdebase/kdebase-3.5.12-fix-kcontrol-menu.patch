@@ -1,0 +1,42 @@
+--- kcontrol/kcontrol/KControl.desktop	2011-07-20 12:08:11.913774590 +0100
++++ kcontrol/kcontrol/KControl.desktop.new	2011-07-22 10:21:25.604284524 +0100
+@@ -1,3 +1,4 @@
++
+ [Desktop Entry]
+ Exec=kcontrol -caption "%c" %i %m
+ Icon=kcontrol
+@@ -5,7 +6,7 @@
+ DocPath=kcontrol/index.html
+ X-KDE-StartupNotify=true
+ 
+-Name=KDE3 Control Center
++Name=Trinity Control Center
+ Name[af]=Beheer Sentrum
+ Name[ar]=مركز التحكم
+ Name[az]=İdarə Mərkəzi
+@@ -21,14 +22,14 @@
+ Name[da]=Kontrolcenter
+ Name[de]=Kontrollzentrum
+ Name[el]=Κέντρο ελέγχου
+-Name[en_GB]=Control Centre
++Name[en_GB]=Trinity Control Centre
+ Name[eo]=Stircentro
+ Name[es]=Centro de control
+ Name[et]=Juhtimiskeskus
+ Name[eu]=Kontrol gunea
+ Name[fa]=مرکز کنترل
+ Name[fi]=Ohjauskeskus
+-Name[fr]=Centre de configuration de KDE
++Name[fr]=Centre de configuration de Trinity
+ Name[fy]=Konfiguraasjesintrum
+ Name[ga]=Lárionad Rialaithe
+ Name[gl]=Centro de Control
+@@ -90,6 +91,6 @@
+ Name[zu]=Indawo Yokulawula
+ 
+ X-DCOP-ServiceType=Unique
+-Categories=Qt;KDE;Core;System;
++Categories=Qt;KDE;Core;System;X-MandrivaLinux-CrossDesktop;
++X-Desktop-File-Install-Version=0.16
+ OnlyShowIn=KDE;
+-NoDisplay=true

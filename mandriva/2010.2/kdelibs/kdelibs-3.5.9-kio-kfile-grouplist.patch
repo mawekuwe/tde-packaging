@@ -1,0 +1,63 @@
+--- kdelibs-3.5.9/kio/kfile/kpropertiesdialog.cpp.orig	2008-02-28 09:52:00.000000000 -0300
++++ kdelibs-3.5.9/kio/kfile/kpropertiesdialog.cpp	2008-02-28 10:05:56.000000000 -0300
+@@ -1771,27 +1771,31 @@
+     strUser = user->pw_name;
+ 
+ #ifdef Q_OS_UNIX
+-  setgrent();
+-  for (i=0; ((ge = getgrent()) != 0L) && (i < maxEntries); i++)
+-  {
+-    if (IamRoot)
+-      groupList += TQString::fromLatin1(ge->gr_name);
+-    else
+-    {
+-      /* pick the groups to which the user belongs */
+-      char ** members = ge->gr_mem;
+-      char * member;
+-      while ((member = *members) != 0L) {
+-        if (strUser == member) {
+-          groupList += TQString::fromLocal8Bit(ge->gr_name);
+-          break;
+-        }
+-        ++members;
+-      }
+-    }
+-  }
+-  endgrent();
+-#endif //Q_OS_UNIX
++
++  gid_t *groups = NULL;
++  int ng = 1;
++  struct group *mygroup;
++  gid_t *newgroups = NULL;
++  
++  groups = (gid_t *) malloc(ng * sizeof(gid_t));
++  
++  if (getgrouplist(strUser, user->pw_gid, groups, &ng) == -1) {
++	  newgroups = (gid_t *) malloc(ng * sizeof(gid_t));
++	  if (newgroups != NULL) {
++	          free(groups);
++		  groups = newgroups;
++		  getgrouplist(strUser, user->pw_gid, groups, &ng);
++	  } else ng = 1;
++  }
++
++  for (i = 0; i < ng; i++) {
++	  mygroup = getgrgid(groups[i]);
++	  if (mygroup != NULL) groupList += TQString::fromLocal8Bit(mygroup->gr_name);
++  }
++
++  free(groups);
++  
++#else //Q_OS_UNIX
+ 
+   /* add the effective Group to the list .. */
+   ge = getgrgid (getegid());
+@@ -1802,6 +1806,7 @@
+     if (groupList.find(name) == groupList.end())
+       groupList += name;
+   }
++#endif //Q_OS_UNIX
+ 
+   bool isMyGroup = groupList.contains(strGroup);
+ 

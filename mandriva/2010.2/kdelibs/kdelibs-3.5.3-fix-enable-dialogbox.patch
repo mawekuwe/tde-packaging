@@ -1,0 +1,30 @@
+--- kdelibs-3.5.3/kio/kfile/kpropertiesdialog.cpp.orig	2006-02-03 13:46:21.000000000 -0200
++++ kdelibs-3.5.3/kio/kfile/kpropertiesdialog.cpp	2006-07-14 11:11:18.000000000 -0300
+@@ -2024,6 +2024,7 @@
+   }
+ 
+   // Draw Checkboxes
++  bool allDisable = true;
+   TQCheckBox *cba[3][4];
+   for (int row = 0; row < 3 ; ++row) {
+     for (int col = 0; col < 4; ++col) {
+@@ -2039,6 +2040,8 @@
+       else if (d->cbRecursive && d->cbRecursive->isChecked())
+ 	cb->setTristate();
+ 
++	  if( d->canChangePermissions)
++	  	allDisable = false;
+       cb->setEnabled( d->canChangePermissions );
+       gl->addWidget (cb, row+2, col+1);
+       switch(col) {
+@@ -2095,6 +2098,10 @@
+ 
+   }
+ #endif
++
++  if (  allDisable )
++     dlg.enableButtonOK( false );
++
+   if (dlg.exec() != KDialogBase::Accepted)
+     return;
+ 

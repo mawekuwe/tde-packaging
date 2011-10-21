@@ -1,0 +1,70 @@
+? flow/audioiooss.cc,v
+? flow/audioioossthreaded.cc,v
+Index: flow/Makefile.am
+===================================================================
+RCS file: /home/kde/arts/flow/Makefile.am,v
+retrieving revision 1.79
+diff -u -3 -p -r1.79 Makefile.am
+--- flow/Makefile.am	18 Nov 2004 20:19:59 -0000	1.79
++++ flow/Makefile.am	25 Feb 2005 13:58:07 -0000
+@@ -9,7 +9,7 @@ lib_LTLIBRARIES = libartsflow_idl.la lib
+ 
+ libartsflow_idl_la_SOURCES = artsflow.cc
+ libartsflow_idl_la_LDFLAGS = -no-undefined -version-info 1:0 $(all_libraries)
+-libartsflow_idl_la_LIBADD = $(top_builddir)/mcop/libmcop.la $(LIBPOSIX4)
++libartsflow_idl_la_LIBADD = $(top_builddir)/mcop/libmcop.la $(LIBPOSIX4) -lresmgr
+ 
+ libartsflow_la_LIBADD = $(top_builddir)/mcop/libmcop.la libartsflow_idl.la $(top_builddir)/flow/gslpp/libgslpp.la $(LIBAUDIOFILE) $(LIBASOUND) $(LIBAUDIOIO) $(LIBOSSAUDIO) $(LIBAUDIONAS) $(LIBCSL) $(SGILIBAUDIO) $(LIBESD) $(LIBMAS) $(JACK_LIBADD) -lm \
+   $(top_builddir)/flow/gsl/libgsl.la
+Index: flow/audioiooss.cc
+===================================================================
+RCS file: /home/kde/arts/flow/audioiooss.cc,v
+retrieving revision 1.17
+diff -u -3 -p -r1.17 audioiooss.cc
+--- flow/audioiooss.cc	20 Nov 2004 04:55:21 -0000	1.17
++++ flow/audioiooss.cc	25 Feb 2005 13:58:07 -0000
+@@ -49,6 +49,7 @@
+ #include <assert.h>
+ #include <errno.h>
+ #include <fcntl.h>
++#include <resmgr.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
+@@ -157,7 +158,9 @@ bool AudioIOOSS::open()
+ 		return false;
+ 	}
+ 
+-	audio_fd = ::open(_deviceName.c_str(), mode, 0);
++	audio_fd = ::rsm_open_device(_deviceName.c_str(), mode);
++	if(audio_fd == -1)
++		audio_fd = ::open(_deviceName.c_str(), mode, 0);
+ 
+ 	if(audio_fd == -1)
+ 	{
+Index: flow/audioioossthreaded.cc
+===================================================================
+RCS file: /home/kde/arts/flow/audioioossthreaded.cc,v
+retrieving revision 1.6
+diff -u -3 -p -r1.6 audioioossthreaded.cc
+--- flow/audioioossthreaded.cc	20 Jan 2005 12:34:01 -0000	1.6
++++ flow/audioioossthreaded.cc	25 Feb 2005 13:58:07 -0000
+@@ -50,6 +50,7 @@
+ #include <assert.h>
+ #include <errno.h>
+ #include <fcntl.h>
++#include <resmgr.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <unistd.h>
+@@ -202,7 +203,9 @@ bool AudioIOOSSThreaded::open()
+ 		return false;
+ 	}
+ 
+-	audio_fd = ::open(_deviceName.c_str(), mode, 0);
++	audio_fd = ::rsm_open_device(_deviceName.c_str(), mode);
++	if(audio_fd == -1)
++		audio_fd = ::open(_deviceName.c_str(), mode, 0);
+ 
+ 	if(audio_fd == -1)
+ 	{

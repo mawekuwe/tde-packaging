@@ -1,0 +1,25 @@
+From ebe3536411c8d0177030ab67578db6a406a288f4 Mon Sep 17 00:00:00 2001
+From: unknown author <cooker@mandrivalinux.org>
+Date: Thu, 23 Apr 2009 14:55:30 +0000
+Subject: [PATCH] ktimer icons
+
+---
+ ktimer/ktimer.desktop |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/ktimer/ktimer.desktop b/ktimer/ktimer.desktop
+index d34c43b..bda8ad0 100644
+--- a/ktimer/ktimer.desktop
++++ b/ktimer/ktimer.desktop
+@@ -41,7 +41,7 @@ GenericName[uk]=Таймер
+ GenericName[zh_CN]=倒计时
+ GenericName[zh_TW]=倒數發射計時
+ Exec=ktimer
+-Icon=ktimer
++Icon=timemanagement_section.xpm
+ Type=Application
+ Terminal=false
+ Name=KTimer
+-- 
+1.6.2.4
+

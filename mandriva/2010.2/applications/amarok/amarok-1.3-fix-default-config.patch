@@ -1,0 +1,12 @@
+--- amarok/src/amarokrc--	2005-06-08 14:31:48.532241213 +0200
++++ amarok/src/amarokrc	2005-06-08 14:32:11.076771614 +0200
+@@ -8,6 +8,9 @@ CurrentPane=ContextBrowser
+ #see PlaylistWidget::setColumnWidth() for explanation for below
+ ColumnWidths=0,200,100,100,0,0,0,0,0,80,0
+ 
++[Playback]
++Sound System=xine-engine
++
+ [KNewStuff]
+ TargetDir=amarok/themes
+ Uncompress=application/x-gzip

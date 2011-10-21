@@ -1,0 +1,9 @@
+kdbusnotification-trinity (0.1-0ubuntu1) lenny; urgency=low
+
+  * Initial upload
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Mon, 17 Oct 2010 19:35:00 -0600
+
+Local variables:
+mode: debian-changelog
+End:

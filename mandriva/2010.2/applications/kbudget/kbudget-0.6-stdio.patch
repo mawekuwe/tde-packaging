@@ -1,0 +1,12 @@
+--- kbudget/kbudget.cpp.orig	2009-03-25 18:31:24.000000000 +0100
++++ kbudget/kbudget.cpp	2009-03-25 18:34:08.000000000 +0100
+@@ -16,7 +16,8 @@
+  ***************************************************************************/
+ 
+ #include <config.h>
+- 
++#include <stdlib.h>
++
+ // include files for QT
+ #include <qdir.h>
+ #include <qprinter.h>

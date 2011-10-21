@@ -1,0 +1,11 @@
+--- kdepim/kmail/kmmsgbase.cpp--	2005-04-15 20:04:03.000000000 +0200
++++ kdepim/kmail/kmmsgbase.cpp	2005-04-15 20:04:25.000000000 +0200
+@@ -144,7 +144,7 @@ void KMMsgBase::toggleStatus(const KMMsg
+     if (aStatus == KMMsgStatusHam)
+       mStatus &= ~KMMsgStatusSpam;
+   }
+-  if (storage()) {
++  if (oldStatus != mStatus && storage()) {
+      if (idx < 0)
+        idx = storage()->find( this );
+      storage()->msgStatusChanged( oldStatus, status(), idx );

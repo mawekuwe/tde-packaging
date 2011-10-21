@@ -1,0 +1,20 @@
+--- kdelibs-3.3.2/kio/kfile/kurlbar.cpp--	2004-12-29 16:50:52.814327086 +0100
++++ kdelibs-3.3.2/kio/kfile/kurlbar.cpp	2004-12-29 16:52:25.597617064 +0100
+@@ -90,7 +90,7 @@ KURLBarItem::KURLBarItem( KURLBar *paren
+       m_url( url ),
+       m_pixmap( 0L ),
+       m_parent( parent ),
+-      m_appLocal( true )
++      m_appLocal( false )
+ {
+     init( icon, group, description, persistent );
+ }
+@@ -102,7 +102,7 @@ KURLBarItem::KURLBarItem( KURLBar *paren
+       m_url( url ),
+       m_pixmap( 0L ),
+       m_parent( parent ),
+-      m_appLocal( true )
++      m_appLocal( false )
+ {
+     init( icon, group, description, true /*persistent*/ );
+ }

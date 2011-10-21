@@ -7,7 +7,7 @@ Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fboudra@fr
 Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk,
  gettext, pkg-config, kdelibs4-trinity-dev (>= 4:3.5.10), binutils-dev, bison, flex,
  kdepim-trinity-dev (>= 4:3.5.10), libapr1-dev, libkcal2-trinity-dev (>= 4:3.5.10),
- libktnef1-trinity-dev (>= 4:3.5.10), libsvn-dev,
+ libktnef1-trinity-dev (>= 4:3.5.10), libsvn-dev, libdb-dev,
  automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 

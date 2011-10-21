@@ -3,7 +3,7 @@ Section: kde
 Priority: extra
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>=5.0), cdbs, pcsc-tools, pcscd-nodbus, initramfs-tools, libpcsc-perl, libpcsclite1, libccid, opensc, libpar-packer-perl, libdb-dev (>= 4.7), libpam0g-dev, libssl-dev, libkrb5-dev
+Build-Depends: debhelper (>=5.0), cdbs, pcsc-tools, pcscd-nodbus, initramfs-tools, libpcsc-perl, libpcsclite1, libccid, opensc, libpar-packer-perl, libdb-dev (>= 4.7), libpam0g-dev, libssl-dev, libkrb5-dev, libtqtinterface-dev
 Standards-Version: 3.8.4
 
 Package: smartcardauth

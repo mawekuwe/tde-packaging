@@ -1,0 +1,11 @@
+--- kdebase-3.5.10/kcontrol/kcontrol/KControl.desktop	2008-08-19 14:16:46.000000000 -0400
++++ kdebase-3.5.10/kcontrol/kcontrol/KControl.desktop.new	2008-08-26 12:30:06.000000000 -0400
+@@ -5,7 +5,7 @@
+ DocPath=kcontrol/index.html
+ X-KDE-StartupNotify=true
+ 
+-Name=Control Center
++Name=KDE3 Control Center
+ Name[af]=Beheer Sentrum
+ Name[ar]=مركز التحكم
+ Name[az]=İdarə Mərkəzi

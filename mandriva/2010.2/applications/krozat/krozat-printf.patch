@@ -1,0 +1,12 @@
+--- krozat/krozat.cpp.orig	2009-11-17 13:40:31.000000000 +0000
++++ krozat/krozat.cpp	2009-11-17 13:50:20.000000000 +0000
+@@ -849,7 +849,8 @@
+ 
+   if (!mImage.load(fpath))
+   {
+-    printf(i18n("Failed to load image \"%1\"\n").arg(fpath).local8Bit());
++    /***Adding %s seems to fix this - I hope. tmw***/
++    printf("%s", i18n("Failed to load image \"%1\"\n").arg(fpath).local8Bit());
+     mFileList.remove(fname);
+     if (!mFileList.isEmpty())
+         loadNextImage();

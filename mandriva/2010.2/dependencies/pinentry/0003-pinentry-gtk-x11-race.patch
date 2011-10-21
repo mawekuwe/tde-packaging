@@ -1,0 +1,17 @@
+Index: gtk+-2/pinentry-gtk-2.c
+===================================================================
+--- gtk+-2/pinentry-gtk-2.c
++++ gtk+-2/pinentry-gtk-2.c	2010-05-13 08:17:10.000000000 +0200
+@@ -306,8 +306,11 @@
+ 	g_signal_connect (G_OBJECT (win),
+ 			  "realize", G_CALLBACK (make_transient), NULL);
+ 
++      //we need to grab the keyboard when its visible! not when its mapped (there is a difference)
++      g_object_set(G_OBJECT(win), "events", GDK_VISIBILITY_NOTIFY_MASK | GDK_STRUCTURE_MASK, NULL);
++
+       g_signal_connect (G_OBJECT (win),
+-			pinentry->grab ? "map-event" : "focus-in-event",
++            pinentry->grab ? "visibility-notify-event" : "focus-in-event",
+ 			G_CALLBACK (grab_keyboard), NULL);
+       g_signal_connect (G_OBJECT (win),
+ 			pinentry->grab ? "unmap-event" : "focus-out-event",

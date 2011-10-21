@@ -1,0 +1,57 @@
+diff -Naur mplayerthumbs-0.5b/src/Makefile.am mplayerthumbs-0.5b-yeni/src/Makefile.am
+--- mplayerthumbs-0.5b/src/Makefile.am	2006-06-29 11:48:04.000000000 +0300
++++ mplayerthumbs-0.5b-yeni/src/Makefile.am	2010-01-02 03:15:07.000000000 +0200
+@@ -16,7 +16,7 @@
+ protocol_DATA = videopreview.desktop
+ videopreview_la_LIBADD = $(LIB_KDECORE)
+ 
+-videothumbnail_DATA = sprocket-small.png sprocket-medium.png sprocket-large.png
++videothumbnail_DATA = sprocket1-small.png sprocket1-medium.png sprocket1-large.png
+ videothumbnaildir = $(kde_datadir)/videothumbnail
+ kde_kcfg_DATA = mplayerthumbs.kcfg
+ 
+diff -Naur mplayerthumbs-0.5b/src/Makefile.in mplayerthumbs-0.5b-yeni/src/Makefile.in
+--- mplayerthumbs-0.5b/src/Makefile.in	2006-07-10 18:24:13.000000000 +0300
++++ mplayerthumbs-0.5b-yeni/src/Makefile.in	2010-01-02 03:16:02.000000000 +0200
+@@ -364,7 +364,7 @@
+ protocoldir = $(kde_servicesdir)
+ protocol_DATA = videopreview.desktop
+ videopreview_la_LIBADD = $(LIB_KDECORE)
+-videothumbnail_DATA = sprocket-small.png sprocket-medium.png sprocket-large.png
++videothumbnail_DATA = sprocket1-small.png sprocket1-medium.png sprocket1-large.png
+ videothumbnaildir = $(kde_datadir)/videothumbnail
+ kde_kcfg_DATA = mplayerthumbs.kcfg
+ #>- all: all-recursive
+@@ -858,7 +858,7 @@
+ 	-rm -f  videopreview.moc
+ 
+ #>+ 2
+-KDE_DIST=videopreview.desktop Makefile.in sprocket-medium.png sprocket-small.png videopreview.h mplayerthumbs.kcfgc sprocket-large.png mplayerthumbs.kcfg videopreview.lsm Makefile.am 
++KDE_DIST=videopreview.desktop Makefile.in sprocket1-medium.png sprocket1-small.png videopreview.h mplayerthumbs.kcfgc sprocket1-large.png mplayerthumbs.kcfg videopreview.lsm Makefile.am 
+ 
+ #>+ 4
+ clean-kcfg:
+diff -Naur mplayerthumbs-0.5b/src/videopreview.cpp mplayerthumbs-0.5b-yeni/src/videopreview.cpp
+--- mplayerthumbs-0.5b/src/videopreview.cpp	2006-07-10 18:17:11.000000000 +0300
++++ mplayerthumbs-0.5b-yeni/src/videopreview.cpp	2010-01-02 03:14:03.000000000 +0200
+@@ -160,14 +161,15 @@
+     QPixmap sprocket;
+ 
+     if (pix.height() < 60)
+-        sprocket = QPixmap(locate( "data", "videothumbnail/sprocket-small.png" ));
++        sprocket = QPixmap(locate( "data", "videothumbnail/sprocket1-small.png" ));
+     else if (pix.height() < 90)
+-        sprocket = QPixmap(locate( "data", "videothumbnail/sprocket-medium.png" ));
++        sprocket = QPixmap(locate( "data", "videothumbnail/sprocket1-medium.png" ));
+     else
+-        sprocket = QPixmap(locate( "data", "videothumbnail/sprocket-large.png" ));
++        sprocket = QPixmap(locate( "data", "videothumbnail/sprocket1-large.png" ));
+ 
+-    for (int y = 0; y < pix.height() + sprocket.height(); y += sprocket.height()) {
+-        painter.drawPixmap( 0, y, sprocket );
++    for (int x = 0; x < pix.width() + sprocket.width(); x += sprocket.width()) {
++        painter.drawPixmap( x, 0, sprocket );
++        painter.drawPixmap( x, (pix.height() - sprocket.height()), sprocket );
+     }
+ 
+     // End of xine-artsplugin code

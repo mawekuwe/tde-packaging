@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fboudra@free.fr>, Modestas Vainius <geromanas@mailas.com>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, kdelibs4-trinity-dev (>= 4:3.5.10), libldap2-dev, libhal-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libhal-storage-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, libxss-dev, libxxf86misc-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf | xutils-dev, kdelibs4c2a-trinity, libogg-dev, libogg-dev-la, libdbus-tqt-1-dev, libtool, libltdl-dev, cmake
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, kdelibs4-trinity-dev (>= 4:3.5.10), libldap2-dev, libhal-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libhal-storage-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors4-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, libxss-dev, libxxf86misc-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf | xutils-dev, kdelibs4c2a-trinity, libogg-dev, libogg-dev-la, libdbus-tqt-1-dev, libtool, libltdl-dev, cmake
 Build-Depends-Indep: doxygen, libtqtinterface-doc, graphviz, gsfonts-x11, kdelibs4-trinity-doc
 Build-Conflicts: nvidia-glx (<< 1.0.8774-6)
 Standards-Version: 3.8.4
@@ -13,7 +13,7 @@ Package: kdebase-trinity
 Section: kde
 Architecture: all
 Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), kdebase-trinity-bin (>= ${Source-Version}), kdebase-data-trinity (>= ${Source-Version}), kdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), kdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), kwin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
-Recommends: kdm-trinity (>= ${Source-Version}), kdebase-runtime-data-common-trinity
+Recommends: kdm-trinity (>= ${Source-Version}), kdebase-runtime-data-common-trinity, libtqt3-integration-trinity
 Suggests: kdebase-trinity-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -520,6 +520,16 @@ Replaces: kdebase-libs-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: core libraries for Konqueror
  These libraries are used by several KDE applications, most notably
  Konqueror and the kdesktop package.
+ .
+ This package is part of KDE, and a component of the KDE base module.
+ See the 'kde-trinity' and 'kdebase-trinity' packages for more information.
+
+Package: libtqt3-integration-trinity
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Integration library between TQt3 and TDE
+ These libraries allow you to use TDE dialogs in native TQt3 applications.
  .
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde-trinity' and 'kdebase-trinity' packages for more information.

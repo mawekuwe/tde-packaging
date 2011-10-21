@@ -1,0 +1,117 @@
+--- messages/kdepim/kmail.po~	2008-02-13 10:49:08.000000000 +0100
++++ messages/kdepim/kmail.po	2008-02-17 14:57:37.000000000 +0100
+@@ -20,7 +20,7 @@
+ "Project-Id-Version: kmail\n"
+ "POT-Creation-Date: 2008-02-13 01:39+0100\n"
+ "PO-Revision-Date: 2007-05-12 01:30+0200\n"
+-"Last-Translator: Nicolas Ternisien <nicolas.ternisien@gmail.com>\n"
++"Last-Translator: Nicolas L�cureuil <neoclust@mandriva.org>\n"
+ "Language-Team: Français <kde-francophone@kde.org>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=UTF-8\n"
+@@ -234,7 +234,6 @@
+ 
+ #: accountdialog.cpp:454 accountdialog.cpp:554 accountdialog.cpp:758
+ #: accountdialog.cpp:1073
+-#, fuzzy
+ msgid "Identity:"
+ msgstr "&Identité :"
+ 
+@@ -1017,7 +1016,6 @@
+ "revenir au comportement antérieur."
+ 
+ #: antispamwizard.cpp:915
+-#, fuzzy
+ msgid ""
+ "<p>Please select the tools to be used for the detection and go to the next "
+ "page.</p>"
+@@ -1699,7 +1697,6 @@
+ msgstr "Li&ste courte des dossiers"
+ 
+ #: configuredialog.cpp:1912
+-#, fuzzy
+ msgid "Show folder quick search field"
+ msgstr "Afficher le champ de recherche rapide"
+ 
+@@ -2308,7 +2305,6 @@
+ "et <a href=\"whatsthis:%2\">Qu'est-ce que les références externes...</a>"
+ 
+ #: configuredialog.cpp:3711
+-#, fuzzy
+ msgid "Encrypted Messages"
+ msgstr "Message chiffré"
+ 
+@@ -2988,9 +2984,8 @@
+ "choisir un autre nom.</qt>"
+ 
+ #: editorwatcher.cpp:86
+-#, fuzzy
+ msgid "Edit with:"
+-msgstr "Modifier l'identité"
++msgstr "Editer avec:"
+ 
+ #: editorwatcher.cpp:169
+ msgid ""
+@@ -3133,7 +3128,6 @@
+ msgstr "&Nouveau dossier..."
+ 
+ #: favoritefolderview.cpp:395
+-#, fuzzy
+ msgid "Local Inbox"
+ msgstr "Boîte aux lettres locale"
+ 
+@@ -7459,7 +7453,7 @@
+ 
+ #: kmfoldertree.cpp:1084
+ msgid "&Copy Folder To"
+-msgstr "&Coper le dossier vers"
++msgstr "&Copier le dossier vers"
+ 
+ #: kmfoldertree.cpp:1090
+ msgid "&Move Folder To"
+@@ -13463,9 +13457,8 @@
+ msgstr "Modifier le script..."
+ 
+ #: snippet_widget.cpp:548
+-#, fuzzy
+ msgid "&Edit..."
+-msgstr "Modifier..."
++msgstr "Modifi&er..."
+ 
+ #: snippet_widget.cpp:553
+ msgid "Text Snippets"
+@@ -13511,14 +13504,12 @@
+ msgstr ""
+ 
+ #: snippet_widget.cpp:808
+-#, fuzzy
+ msgid "Make value &default"
+ msgstr "Paramétrer comme valeur par &défaut"
+ 
+ #: snippetdlg.cpp:71
+-#, fuzzy
+ msgid "Sh&ortcut:"
+-msgstr "Raccourci clavier :"
++msgstr "Racc&ourci clavier :"
+ 
+ #: subscriptiondialog.cpp:376
+ msgid ""
+@@ -14021,7 +14012,6 @@
+ msgstr "Charger les références externes depuis Internet pour ce message."
+ 
+ #: urlhandlermanager.cpp:412
+-#, fuzzy
+ msgid "Work online."
+ msgstr "Travail en ligne."
+ 
+@@ -14131,9 +14121,8 @@
+ msgstr ""
+ 
+ #: vacation.cpp:653
+-#, fuzzy
+ msgid "Ignore"
+-msgstr "&Ignorer"
++msgstr "Ignorer"
+ 
+ #: vacationdialog.cpp:56
+ msgid "Configure vacation notifications to be sent:"

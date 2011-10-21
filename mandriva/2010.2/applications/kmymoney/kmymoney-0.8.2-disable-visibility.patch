@@ -1,0 +1,10 @@
+--- kmymoney2-0.8.2/configure.in.in--	2006-01-02 01:27:19.000000000 +0100
++++ kmymoney2-0.8.2/configure.in.in	2006-01-02 01:27:25.000000000 +0100
+@@ -2,7 +2,6 @@
+ 
+ AM_INIT_AUTOMAKE(kmymoney2,0.8.2)
+ 
+-KDE_ENABLE_HIDDEN_VISIBILITY
+ 
+ dnl
+ dnl check for a recent autoconf version

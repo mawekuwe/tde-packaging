@@ -1,0 +1,48 @@
+diff -Naur moodin/src/cache.cpp moodin-yeni/src/cache.cpp
+--- moodin/src/cache.cpp	2010-02-18 18:39:32.860704557 +0200
++++ moodin-yeni/src/cache.cpp	2010-02-18 18:40:29.325697870 +0200
+@@ -80,7 +80,7 @@
+ void Cache::createCacheDir()
+ {
+   KUser user;
+-  QString path = user.homeDir() + "/.kde/" + KStandardDirs::kde_default("data");
++  QString path = user.homeDir() + "/.kde3/" + KStandardDirs::kde_default("data");
+   path += QString("ksplash/cache/%1/%2/%3x%4").arg(mThemeEngine).arg(mTheme).arg(mScaler->targetResolution().width()).arg(mScaler->targetResolution().height()) + "/";
+ 
+   mCacheDir.setPath(path);
+diff -Naur moodin/src/cache.cpp.external_svgrender moodin-yeni/src/cache.cpp.external_svgrender
+--- moodin/src/cache.cpp.external_svgrender	2010-02-18 18:39:32.853704409 +0200
++++ moodin-yeni/src/cache.cpp.external_svgrender	2010-02-18 18:40:54.849698306 +0200
+@@ -84,7 +84,7 @@
+ void Cache::createCacheDir()
+ {
+   KUser user;
+-  QString path = user.homeDir() + "/.kde/" + KStandardDirs::kde_default("data");
++  QString path = user.homeDir() + "/.kde3/" + KStandardDirs::kde_default("data");
+   path += QString("ksplash/cache/%1/%2/%3x%4").arg(mThemeEngine).arg(mTheme).arg(mScaler->targetResolution().width()).arg(mScaler->targetResolution().height()) + "/";
+ 
+   mCacheDir.setPath(path);
+diff -Naur moodin/src/cache.cpp.fix_svg_base_resolution moodin-yeni/src/cache.cpp.fix_svg_base_resolution
+--- moodin/src/cache.cpp.fix_svg_base_resolution	2010-02-18 18:39:32.857698566 +0200
++++ moodin-yeni/src/cache.cpp.fix_svg_base_resolution	2010-02-18 18:41:08.230573595 +0200
+@@ -80,7 +80,7 @@
+ void Cache::createCacheDir()
+ {
+   KUser user;
+-  QString path = user.homeDir() + "/.kde/" + KStandardDirs::kde_default("data");
++  QString path = user.homeDir() + "/.kde3/" + KStandardDirs::kde_default("data");
+   path += QString("ksplash/cache/%1/%2/%3x%4").arg(mThemeEngine).arg(mTheme).arg(mScaler->targetResolution().width()).arg(mScaler->targetResolution().height()) + "/";
+ 
+   mCacheDir.setPath(path);
+diff -Naur moodin/src/cache.cpp.use_svg moodin-yeni/src/cache.cpp.use_svg
+--- moodin/src/cache.cpp.use_svg	2010-02-18 18:39:32.851698558 +0200
++++ moodin-yeni/src/cache.cpp.use_svg	2010-02-18 18:41:19.418697990 +0200
+@@ -59,7 +59,7 @@
+ void Cache::createCacheDir()
+ {
+   KUser user;
+-  QString path = user.homeDir() + "/.kde/" + KStandardDirs::kde_default("data");
++  QString path = user.homeDir() + "/.kde3/" + KStandardDirs::kde_default("data");
+   path += QString("ksplash/cache/%1/%2/%3x%4").arg(mThemeEngine).arg(mTheme).arg(mScaler->targetResolution().width()).arg(mScaler->targetResolution().height()) + "/";
+ 
+   mCacheDir.setPath(path);

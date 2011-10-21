@@ -1,0 +1,74 @@
+diff -p -up krandr-0.5.2.1/randr/randrcrtc.cpp.orig krandr-0.5.2.1/randr/randrcrtc.cpp
+--- krandr-0.5.2.1/randr/randrcrtc.cpp.orig	2008-03-31 15:52:59.000000000 -0300
++++ krandr-0.5.2.1/randr/randrcrtc.cpp	2008-03-31 15:56:11.000000000 -0300
+@@ -199,6 +199,10 @@ bool RandRCrtc::applyProposed()
+ 	for (int i = 0; i < m_connectedOutputs.count(); ++i)
+ 		kdDebug() << "               - " << m_screen->output(m_connectedOutputs[i])->name() << endl;
+ #endif
++
++	// Grab server while messing around
++	XGrabServer(qt_xdisplay());
++
+ 	RandRMode mode;
+ 	if (m_proposedRect.size() == m_currentRect.size() && m_proposedRate == m_currentRate)
+ 	{
+@@ -242,7 +246,10 @@ bool RandRCrtc::applyProposed()
+ 	if (!m_connectedOutputs.count())
+ 		mode = RandRMode();
+ 	else if (!mode.isValid())
++	{
++		XUngrabServer(qt_xdisplay());
+ 		return false;
++	}
+ 
+ 	RROutput *outputs = new RROutput[m_connectedOutputs.count()];
+ 	int connectedCount = m_connectedOutputs.count();
+@@ -259,7 +266,10 @@ bool RandRCrtc::applyProposed()
+ 		{
+ 			QRect r = QRect(0,0,0,0).unite(m_proposedRect);
+ 			if (r.width() > m_screen->maxSize().width() || r.height() > m_screen->maxSize().height())
++			{
++				XUngrabServer(qt_xdisplay());
+ 				return false;
++			}
+ 
+ 			// if the desired mode is bigger than the current screen size, first change the 
+ 			// screen size, and then the crtc size
+@@ -267,7 +277,10 @@ bool RandRCrtc::applyProposed()
+ 			{
+ 				// try to adjust the screen size
+ 				if (!adjustScreenSize(r, true))
++				{
++					XUngrabServer(qt_xdisplay());
+ 					return false;
++				}
+ 			}
+ 
+ 		}
+@@ -280,12 +293,18 @@ bool RandRCrtc::applyProposed()
+ 				// check if the rotated rect is smaller than the max screen size
+ 				r = m_screen->rect().unite(r);
+ 				if (r.width() > m_screen->maxSize().width() || r.height() > m_screen->maxSize().height())
++				{
++					XUngrabServer(qt_xdisplay());
+ 					return false;
++				}
+ 				
+ 				// adjust the screen size
+ 				r = r.unite(m_currentRect);
+ 				if (!adjustScreenSize(r,true))
++				{
++					XUngrabServer(qt_xdisplay());
+ 					return false;
++				}
+ 			}
+ 		}
+ 	}
+@@ -311,6 +330,7 @@ bool RandRCrtc::applyProposed()
+ 	}
+ 
+ 	m_screen->adjustSize();
++	XUngrabServer(qt_xdisplay());
+ 	return ret;
+ }
+ 

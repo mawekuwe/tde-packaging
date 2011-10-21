@@ -1,0 +1,27 @@
+--- kdebase-3.5.7/kdesktop/init.cc.kdesktop_firstrun	2007-09-26 10:15:58.000000000 -0300
++++ kdebase-3.5.7/kdesktop/init.cc	2007-09-26 09:32:43.000000000 -0300
+@@ -87,7 +87,9 @@ static bool testDir( const TQString &_nam
+   else // exists already
+   {
+     closedir( dp );
+-    return false;
++	KConfig cfg("kdesktoprc");
++	cfg.setGroup("General");
++	return cfg.readBoolEntry("FirstRun", true);
+   }
+ }
+ 
+@@ -202,7 +204,12 @@ void testLocalInstallation()
+     copyDirectoryFile("directory.autostart", KGlobalSettings::autostartPath(), newRelease);
+ 
+     if (emptyDesktop)
+-	copyDesktopLinks();
++	{
++		copyDesktopLinks();
++		KConfig cfg("kdesktoprc");
++		cfg.setGroup("General");
++		cfg.writeEntry("FirstRun", false);
++	}
+ 
+     // Take care of creating or updating trash.desktop
+     const TQString trashDir = KGlobal::dirs()->localxdgdatadir() + "Trash";

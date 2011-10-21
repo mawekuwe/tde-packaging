@@ -1,0 +1,7 @@
+diff -p -up kdebase-3.5.9/khotkeys/khotkeys.desktop.ONLY_KDE kdebase-3.5.9/khotkeys/khotkeys.desktop
+--- kdebase-3.5.9/khotkeys/khotkeys.desktop.ONLY_KDE	2008-07-04 17:17:19.000000000 -0300
++++ kdebase-3.5.9/khotkeys/khotkeys.desktop	2008-07-04 17:21:39.000000000 -0300
+@@ -1,2 +1,3 @@
+ [Desktop Entry]
+ Hidden=true
++OnlyShowIn=KDE

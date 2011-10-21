@@ -1,0 +1,8 @@
+--- kpdf/shell/kpdf.desktop.orig	2011-07-20 15:12:15.187775862 +0100
++++ kpdf/shell/kpdf.desktop	2011-07-20 15:12:56.269776545 +0100
+@@ -79,4 +79,4 @@
+ DocPath=kpdf/index.html
+ InitialPreference=7
+ Categories=Qt;KDE;Office;Viewer;
+-
++OnlyShowIn=KDE

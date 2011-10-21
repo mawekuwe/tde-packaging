@@ -1,0 +1,43 @@
+diff -p -up krandr-0.5.2.1/randr/randrcrtc.cpp.orig krandr-0.5.2.1/randr/randrcrtc.cpp
+--- krandr-0.5.2.1/randr/randrcrtc.cpp.orig	2008-05-15 13:45:35.000000000 -0300
++++ krandr-0.5.2.1/randr/randrcrtc.cpp	2008-05-15 13:44:02.000000000 -0300
+@@ -202,6 +202,7 @@ bool RandRCrtc::applyProposed()
+ 
+ 	// Grab server while messing around
+ 	XGrabServer(qt_xdisplay());
++	XFlush(qt_xdisplay());
+ 
+ 	RandRMode mode;
+ 	if (m_proposedRect.size() == m_currentRect.size() && m_proposedRate == m_currentRate)
+@@ -248,6 +249,7 @@ bool RandRCrtc::applyProposed()
+ 	else if (!mode.isValid())
+ 	{
+ 		XUngrabServer(qt_xdisplay());
++		XFlush(qt_xdisplay());
+ 		return false;
+ 	}
+ 
+@@ -268,6 +270,7 @@ bool RandRCrtc::applyProposed()
+ 			if (r.width() > m_screen->maxSize().width() || r.height() > m_screen->maxSize().height())
+ 			{
+ 				XUngrabServer(qt_xdisplay());
++				XFlush(qt_xdisplay());
+ 				return false;
+ 			}
+ 
+@@ -279,6 +282,7 @@ bool RandRCrtc::applyProposed()
+ 				if (!adjustScreenSize(r, true))
+ 				{
+ 					XUngrabServer(qt_xdisplay());
++					XFlush(qt_xdisplay());
+ 					return false;
+ 				}
+ 			}
+@@ -331,6 +335,7 @@ bool RandRCrtc::applyProposed()
+ 
+ 	m_screen->adjustSize();
+ 	XUngrabServer(qt_xdisplay());
++	XFlush(qt_xdisplay());
+ 	return ret;
+ }
+ 

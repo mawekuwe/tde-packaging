@@ -1,0 +1,42 @@
+diff -Naur amarok-1.4.10/amarok/src/data/Cool-Streams.xml amarok-1.4.10_yeni/amarok/src/data/Cool-Streams.xml
+--- amarok-1.4.10/amarok/src/data/Cool-Streams.xml      2008-08-14 00:21:51.000000000 +0300
++++ amarok-1.4.10_yeni/amarok/src/data/Cool-Streams.xml 2009-12-20 01:24:34.072559305 +0200
+@@ -9,6 +9,9 @@
+  <stream name="Digital Gunfire [Industrial/EBM]">
+   <url>http://www.digitalgunfire.com/playlist.pls</url>
+  </stream>
++ <stream name="Club 977 80's channel">
++  <url>http://www.club977.com/CLUB977HI.pls</url>
++ </stream>
+  <stream name="Digitally Imported - Chillout [Chill-Out]">
+   <url>http://di.fm/mp3/chillout.pls</url>
+  </stream>
+@@ -18,6 +21,9 @@
+  <stream name="Digitally Imported - Trance [Trance]">
+   <url>http://di.fm/mp3/trance.pls</url>
+  </stream>
++ <stream name="Dogmazic [Free Music/Musique Libre]">
++  <url>http://radio.dogmazic.net:8000/radio_mlo.ogg.m3u</url>
++ </stream>
+  <stream name="DnbRadio [Drum and Bass]">
+   <url>http://dnbradio.com/hi.pls</url>
+  </stream>
+@@ -69,6 +75,18 @@
+  <stream name="Secret Agent [Downtempo/Lounge]">
+   <url>http://somafm.com/secretagent.pls</url>
+  </stream>
++ <stream name="SkyFM [TopHits]">
++  <url>http://www.sky.fm/mp3/tophits.pls</url>
++ </stream>
++ <stream name="SkyFM [80s]">
++  <url>http://www.sky.fm/mp3/the80s.pls</url>
++ </stream>
++ <stream name="SkyFM [Classical music]">
++  <url>http://www.sky.fm/mp3/classical.pls</url>
++ </stream>
++ <stream name="SkyFM [NewAge]">
++  <url>http://www.sky.fm/mp3/newage.pls</url>
++ </stream>
+  <stream name="SLAY Radio [C64 Remixes]">
+   <url>http://sc.slayradio.org:8000/listen.pls</url>
+  </stream>

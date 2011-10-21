@@ -1,0 +1,29 @@
+--- kdebindings-3.5.7/kdejava/koala/org/kde/koala/KConfig.java.orig	2007-08-15 09:04:00.000000000 +0200
++++ kdebindings-3.5.7/kdejava/koala/org/kde/koala/KConfig.java	2007-08-15 09:04:30.000000000 +0200
+@@ -117,7 +117,7 @@
+ 		@see #a
+ 		@see #description
+ 		@see #of
+-		@see <code></code>@see #mode
++		@see #mode
+ 	*/
+ 	public native void setFileWriteMode(int mode);
+ 	/**	
+--- kdebindings-3.5.7/kdejava/koala/org/kde/koala/KMdi.java.orig	2007-08-15 09:05:12.000000000 +0200
++++ kdebindings-3.5.7/kdejava/koala/org/kde/koala/KMdi.java	2007-08-15 09:06:08.000000000 +0200
+@@ -14,7 +14,6 @@
+ 				@short   extent Qt events 
+ 		@see org.kde.qt.QCustomEvent
+ 		@see org.kde.qt.QEvent#User
+-		@see <pre>
+ 		@see #boolean
+ 		@see B_MyWidget#event(
+ 		@see org.kde.qt.QEvent*
+@@ -23,7 +22,6 @@
+ 		@see #e#type
+ 		@see org.kde.qt.QEvent#Type(QEvent#User
+ 		@see #int(KMdi#EV_Move)))
+-		@see </pre>
+ 	*/
+ 	public static final int EV_Move = 1;
+ 	public static final int EV_DragBegin = 2;

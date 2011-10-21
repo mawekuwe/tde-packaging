@@ -1,0 +1,35 @@
+diff -Naur mandriva-kde-config-2009.0/kdm/backgroundrc mandriva-kde-config.yeni/kdm/backgroundrc
+--- mandriva-kde-config-2009.0/kdm/backgroundrc	2006-08-23 20:58:15.000000000 +0300
++++ mandriva-kde-config.yeni/kdm/backgroundrc	2009-11-24 21:35:26.592448000 +0200
+@@ -13,6 +13,6 @@
+ Program=
+ ReverseBlending=false
+ UseSHM=false
+-Wallpaper=/usr/share/mdk/backgrounds/default.png
++Wallpaper=/usr/share/mdk/backgrounds/default.jpg
+ WallpaperList=
+ WallpaperMode=Scaled
+diff -Naur mandriva-kde-config-2009.0/kdm/kdmrc mandriva-kde-config.yeni/kdm/kdmrc
+--- mandriva-kde-config-2009.0/kdm/kdmrc	2008-06-23 21:03:31.000000000 +0300
++++ mandriva-kde-config.yeni/kdm/kdmrc	2009-12-15 00:27:11.727822403 +0200
+@@ -451,7 +451,7 @@
+ # The theme to use for the greeter. Can point to either a directory or an XML
+ # file.
+ # Default is ""
+-Theme=/usr/share/mdk/dm
++Theme=/opt/kde3/share/config/kdm/themes/2010
+ 
+ # Core config for local displays
+ [X-:*-Core]
+diff -Naur mandriva-kde-config-2009.0/kdm/themes/2008/2008.xml mandriva-kde-config.yeni/kdm/themes/2008/2008.xml
+--- mandriva-kde-config-2009.0/kdm/themes/2008/2008.xml	2007-09-12 01:17:40.000000000 +0300
++++ mandriva-kde-config.yeni/kdm/themes/2008/2008.xml	2009-11-25 02:13:17.273313000 +0200
+@@ -2,7 +2,7 @@
+ <!DOCTYPE greeter SYSTEM "greeter.dtd">
+ <greeter>
+   <item type="pixmap">
+-    <normal file="/usr/share/mdk/backgrounds/default.png"/>
++    <normal file="/usr/share/mdk/backgrounds/default.jpg"/>
+     <pos x="0" y="0" width="100%" height="100%"/>
+   </item>
+ 
