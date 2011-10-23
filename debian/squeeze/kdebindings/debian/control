@@ -16,11 +16,11 @@ Package: kdebindings-java-trinity
 Section: libs
 Architecture: all
 Depends: libdcop3-java-trinity (= ${source:Version}), libqt3-java-trinity (= ${source:Version}), libtrinity-java-trinity (= ${source:Version})
-Description: KDE Java bindings metapackage [Trinity]
- A metapackage depending on all KDE, Qt and DCOP bindings libraries
+Description: TDE Java bindings metapackage [Trinity]
+ A metapackage depending on all TDE, Qt and DCOP bindings libraries
  related to the Java language.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libdcop3-java-trinity
 Architecture: all
@@ -28,10 +28,10 @@ Section: libs
 Depends: libdcop3-jni-trinity (>> ${KDE-Version3}), libdcop3-jni-trinity (<< ${KDE-Next-Version3}), gij | java1-runtime | java2-runtime
 Description: DCOP bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
- using the Java DCOP bindings. DCOP is the KDE Desktop COmmunications
- Protocol, used for communicating with running KDE applications.
+ using the Java DCOP bindings. DCOP is the TDE Desktop COmmunications
+ Protocol, used for communicating with running TDE applications.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libdcop3-jni-trinity
 Architecture: amd64 i386 ia64 powerpc s390 sparc
@@ -39,11 +39,11 @@ Section: libs
 Depends: ${shlibs:Depends}
 Description: DCOP bindings for Java ( Native libraries ) [Trinity]
  This package contains the shared libraries and scripts necessary to
- run programs using the Java DCOP bindings. DCOP is the KDE Desktop
- COmmunications Protocol, used for communicating with running KDE
+ run programs using the Java DCOP bindings. DCOP is the TDE Desktop
+ COmmunications Protocol, used for communicating with running TDE
  applications.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libdcop3-java-trinity-dev
 Architecture: amd64 i386 ia64 powerpc s390 sparc
@@ -52,10 +52,10 @@ Depends: libdcop3-java-trinity (>> ${KDE-Version3}), libdcop3-java-trinity (<< $
 Description: DCOP bindings for Java (dcopidl2java program) [Trinity]
  This package contains the dcopidl2java program which generates Java 
  stubs from DCOP IDL files, necessary to do development with the DCOP Java
- bindings. DCOP is the KDE Desktop COmmunications Protocol, used for
- communicating with running KDE applications.
+ bindings. DCOP is the TDE Desktop COmmunications Protocol, used for
+ communicating with running TDE applications.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libqt3-java-trinity
 Architecture: all
@@ -65,12 +65,12 @@ Suggests: juic-trinity
 Description: Java bindings for Qt [Trinity]
  This package contains the Java classes necessary to run Java programs
  using the Java Qt bindings. Qt is a very popular GUI toolkit, used by
- the KDE desktop environment.
+ the TDE desktop environment.
  .
  It also includes many example programs that make use of these bindings,
  plus many of the Qt Tutorial examples translated into Java.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libqt3-jni-trinity
 Architecture: amd64 i386 ia64 powerpc s390 sparc
@@ -79,9 +79,9 @@ Depends: ${shlibs:Depends}
 Description: Java bindings for Qt ( Native libraries ) [Trinity]
  This package contains the shared libraries necessary to run Java
  programs using the Java Qt bindings. Qt is a very popular GUI
- toolkit, used by the KDE desktop environment.
+ toolkit, used by the TDE desktop environment.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libtrinity-java-trinity
 Architecture: all
@@ -89,13 +89,13 @@ Section: libs
 Depends: libtrinity-jni-trinity (>> ${KDE-Version3}), libtrinity-jni-trinity (<< ${KDE-Next-Version3}), gij | java1-runtime | java2-runtime
 Description: kdelibs bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
- using the Java kdelibs bindings. KDE is the K Desktop Environment, a
+ using the Java kdelibs bindings. TDE is the Trinity Desktop Environment, a
  very popular UNIX Desktop Environment.
  .
  It also includes some example applications that use these Java
- classes, and multiple usage samples of the most common KDE classes.
+ classes, and multiple usage samples of the most common TDE classes.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libtrinity-jni-trinity
 Architecture: amd64 i386 ia64 powerpc s390 sparc
@@ -103,10 +103,10 @@ Section: libs
 Depends: ${shlibs:Depends}
 Description: kdelibs bindings for java ( Native libraries ) [Trinity]
  This package contains the shared libraries necessary to run Java
- programs using the Java kdelibs bindings. KDE is the K Desktop
+ programs using the Java kdelibs bindings. TDE is the Trinity Desktop
  Environment, a very popular UNIX Desktop Environment.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libsmokeqt1-trinity
 Architecture: any
@@ -115,10 +115,10 @@ Depends: ${shlibs:Depends}
 Conflicts: libqt-perl (<= 3.008-1)
 Description: SMOKE Binding Library to Qt
  The "Scripting Meta Object Kompiler Engine" library is used by
- various KDE language bindings packages to provide interfaces to the
+ various TDE language bindings packages to provide interfaces to the
  Qt library.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libsmokeqt-trinity-dev
 Architecture: any
@@ -127,40 +127,40 @@ Depends: libsmokeqt1-trinity (= ${binary:Version})
 Conflicts: libqt-perl (<= 3.008-1)
 Description: SMOKE Binding Library to Qt - Development Files
  The "Scripting Meta Object Kompiler Engine" library is used by
- various KDE language bindings packages to provide interfaces to the
+ various TDE language bindings packages to provide interfaces to the
  Qt library. This package contains the development files for the
  library.
  .
  If you are a normal Debian user, you probably don't need this
  package.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libsmokekde1-trinity
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}
-Description: SMOKE Binding Library to KDE
+Description: SMOKE Binding Library to TDE
  The "Scripting Meta Object Kompiler Engine" library is used by
- various KDE language bindings packages to provide interfaces to the
- KDE libraries.
+ various TDE language bindings packages to provide interfaces to the
+ TDE libraries.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libsmokekde-trinity-dev
 Architecture: any
 Section: libdevel
 Depends: libsmokekde1-trinity (= ${binary:Version})
-Description: SMOKE Binding Library to KDE - Development Files
+Description: SMOKE Binding Library to TDE - Development Files
  The "Scripting Meta Object Kompiler Engine" library is used by
- various KDE language bindings packages to provide interfaces to the
- Qt and KDE libraries. This package contains the development files for
+ various TDE language bindings packages to provide interfaces to the
+ Qt and TDE libraries. This package contains the development files for
  the library.
  .
  If you are a normal Debian user, you probably don't need this
  package.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: python-dcop-trinity
 Architecture: any
@@ -170,10 +170,10 @@ Provides: ${python:Provides}
 Description: DCOP bindings for Python
  This package contains the shared libraries necessary to run and
  develop Python programs using the Python DCOP bindings
- libraries. DCOP is the KDE Desktop COmmunications Protocol, used for
- communicating with running KDE applications.
+ libraries. DCOP is the TDE Desktop COmmunications Protocol, used for
+ communicating with running TDE applications.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libkjsembed1-trinity
 Architecture: any
@@ -182,9 +182,9 @@ Depends: ${shlibs:Depends}
 Description: Embedded JavaScript library
  This package contains the shared libraries necessary to run programs
  linked with the KJSEmbed library. This library provides JavaScript
- embedded scripting facilities to KDE applications.
+ embedded scripting facilities to TDE applications.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libkjsembed-trinity-dev
 Architecture: any
@@ -193,23 +193,23 @@ Depends: libkjsembed1-trinity (= ${binary:Version})
 Description: Embedded JavaScript library (Development files)
  This package contains the header files and symbolic links necessary
  to develop and compile programs using the KJSEmbed library. This
- library provides JavaScript embedded scripting facilities to KDE
+ library provides JavaScript embedded scripting facilities to TDE
  applications.
  .
  It also includes lots of example programs that make use of these
  bindings, plus comprehensive documentation of the bindings.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: kjscmd-trinity
 Architecture: any
 Section: interpreters
 Depends: ${shlibs:Depends}
-Description: A script interpreter using the KDE JavaScript library
+Description: A script interpreter using the TDE JavaScript library
  This package contains the kjscmd program, which is a standalone
  JavaScript interpreter using the KJSEmbed library.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: juic-trinity
 Architecture: all
@@ -224,20 +224,20 @@ Description: The Qt Java UI Compiler
  developing programs using the Qt Java bindings together with Qt
  Designer.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libkorundum0-ruby1.8-trinity
 Architecture: any
 Section: interpreters
 Depends: libqt0-ruby1.8-trinity (= ${binary:Version}), ${shlibs:Depends}
-Description: KDE bindings for Ruby [Trinity]
+Description: TDE bindings for Ruby [Trinity]
  This package contains the files necessary for running and developing
- Ruby code using the Korundum KDE Ruby bindings.
+ Ruby code using the Korundum TDE Ruby bindings.
  .
  It also includes some example programs and templates that make use of
  these bindings.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
 
 Package: libqt0-ruby1.8-trinity
 Architecture: any
@@ -250,4 +250,13 @@ Description: Qt bindings for Ruby [Trinity]
  It also includes some example programs that make use of these bindings,
  plus many of the Qt Tutorial examples translated into Ruby.
  .
- This package is part of the official KDE bindings module.
+ This package is part of the official TDE bindings module.
+
+Package: tde-xparts-extras-trinity
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Extra xparts for TDE [Trinity]
+ This package contains extra xparts-based modules for Trinity
+ This includes the mozilla-konqueror plugin
+ .
+ This package is part of the official TDE bindings module.
