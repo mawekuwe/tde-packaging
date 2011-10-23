@@ -82,7 +82,8 @@ Section: net
 Architecture: any
 Replaces: kdenetwork-filesharing-kde3 (<< 4:3.5.13)
 Breaks: kdenetwork-filesharing-kde3 (<< 4:3.5.13)
-Depends: ${shlibs:Depends}, perl-suid
+Depends: ${shlibs:Depends}
+Recommends: perl-suid
 Description: network filesharing configuration module for Trinity
  This package provides a KDE Control Center module to configure
  NFS and Samba.

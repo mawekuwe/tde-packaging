@@ -72,7 +72,8 @@ Description: torrent metainfo plugin for Trinity
 Package: kdenetwork-filesharing-trinity
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, perl-suid
+Depends: ${shlibs:Depends}
+Recommends: perl-suid
 Replaces: kcontrol-trinity (<< 4:3.3.0)
 Description: network filesharing configuration module for Trinity
  This package provides a KDE Control Center module to configure
