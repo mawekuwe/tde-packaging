@@ -11,10 +11,11 @@ diff -rcb k3b.ori/src/k3b.desktop k3b/src/k3b.desktop
 ! X-KDE-NativeMimeType=application/x-k3b;application/x-iso;application/x-cue
 ! Categories=KDE;Application;AudioVideo;DiscBurning;
   X-DCOP-ServiceType=Unique
---- 116,123 ----
+--- 116,124 ----
   Name[ar]= K3b
   Name[bn]=কে-থ্রি-বি
   Name[hi]=के3बी
+! Encoding=UTF-8
 ! MimeType=application/x-k3b;application/x-iso;application/x-cue;
   X-KDE-StartupNotify=true
 ! X-KDE-NativeMimeType=application/x-k3b;application/x-iso;application/x-cue;
