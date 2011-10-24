@@ -1995,6 +1995,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/bookmark.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/bookmarks_list_add.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/bookmark_toolbar.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/bottom.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/button_cancel.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/button_ok.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/cancel.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/charset.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/clear_left.png
