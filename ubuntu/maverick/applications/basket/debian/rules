@@ -74,7 +74,7 @@ install: build
 	dh_installdirs
 
 	# Install into package-build-dir
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/basket-trinity
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 
 #	mkdir -p $(CURDIR)/debian/basket-trinity/opt/trinity/share/applications/kde/
 #	mv $(CURDIR)/debian/basket-trinity/opt/trinity/share/applnk/Utilities/basket.desktop $(CURDIR)/debian/basket-trinity/opt/trinity/share/applications/kde/
@@ -87,7 +87,7 @@ binary-arch: build install
 	dh_installchangelogs ChangeLog
 	dh_installdocs
 	dh_installexamples
-	dh_install
+	dh_install --sourcedir=debian/tmp
 	dh_installmenu
 #	dh_installlogrotate
 #	dh_installinfo
