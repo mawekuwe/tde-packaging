@@ -24,6 +24,8 @@ Description: a multi-purpose note-taking application for KDE [Trinity]
 Package: basket-kontact-integration-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: basket-trinity (<< 4:3.5.13-0debian9+r1258873+pr3)
+Breaks: basket-trinity (<< 4:3.5.13-0debian9+r1258873+pr3)
 Description: a multi-purpose note-taking appliction, Kontact integration [Trinity]
  This application provides as many baskets (drawers) as you wish; Several
  kinds of objects (texts, URLs, images,...) can be drag-n-drop'd into it.
