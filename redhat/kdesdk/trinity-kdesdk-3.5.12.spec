@@ -50,7 +50,7 @@ Provides: kdesdk3 = %{version}-%{release}
 
 Requires: %{name}-libs = %{version}-%{release}
 
-BuildRequires: automake libtool
+BuildRequires: libtool
 BuildRequires: tqtinterface-devel
 BuildRequires: pcre-devel
 BuildRequires: trinity-kdelibs-devel
@@ -66,7 +66,7 @@ BuildRequires: libxslt-devel libxml2-devel
 BuildRequires: binutils-devel
 %endif
 BuildRequires: perl
-%{?_with_subversion:BuildRequires: subversion-devel neon-devel}
+BuildRequires: subversion-devel neon-devel
 
 # Obsoletes/Provides
 %define cervisia_ver 2.4.7
@@ -99,7 +99,7 @@ Requires: trinity-kdelibs-devel
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-kdelibs >= %{version}
+Requires: trinity-kdelibs
 # helps multilib upgrades
 Obsoletes: %{name} < %{version}-%{release}
 # include to be paranoid, installing libs-only is still mostly untested -- Rex

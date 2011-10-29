@@ -27,12 +27,14 @@ Version:	%{version}
 Release:	%{release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
+Group:		System Environment/Libraries
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}.tar.gz
 
 
@@ -45,8 +47,9 @@ BuildRequires:	pth-devel
 Trinity QT Interface
 
 %package devel
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - Development files
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development files for %{name}
@@ -75,11 +78,18 @@ cd build
 %install
 %__rm -rf %{?buildroot}
 %__mkdir_p %{?buildroot}%{_includedir}
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
+
+# RHEL 5: add newline at end of include files
+%if 0%{?rhel} && 0%{?rhel} <= 5
+for i in %{?buildroot}%{_includedir}/*.h; do
+  echo "" >>${i}
+done
+%endif
 
 # Fix 'tqt.pc': UIC executable is not correct
-sed -i %{?buildroot}%{_libdir}/pkgconfig/tqt.pc \
-  -e '/^uic_executable=.*/ s,^\(uic_executable=\).*,\1%{_bindir}/uic-tqt,'
+#sed -i %{?buildroot}%{_libdir}/pkgconfig/tqt.pc \
+#  -e '/^uic_executable=.*/ s,^\(uic_executable=\).*,\1%{_bindir}/uic-tqt,'
 
 # Install 'cmake' modules for a specific package (for later use)
 %__mkdir_p %{?buildroot}%{cmake_modules_dir}

@@ -143,7 +143,7 @@ Requires: %{name} = %{version}-%{release}
 
 
 %build
-QTDIR="" && source /etc/profile.d/qt.sh
+unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
@@ -184,7 +184,6 @@ popd
 
 %install
 %__rm -rf %{buildroot}
-
 %__make install DESTDIR=%{buildroot}
 %__make install DESTDIR=%{buildroot} -C c_cpp_reference-2.0.2_for_KDE_3.0
 

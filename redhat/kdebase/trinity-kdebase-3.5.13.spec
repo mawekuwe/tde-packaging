@@ -15,23 +15,33 @@ BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
 
+# Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
+# whereas newer versions use "qt3", "qt3-devel" ...
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8
+%define _qt_suffix 3
+%endif
+
 
 Name:		trinity-kdebase
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity KDE Base Programs
+Group:		User Interface/Desktops
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdebase-%{version}.tar.gz
 
 # Wrapper script to prevent Plasma launch at Trinity Startup
 Source1:	plasma-desktop
+
+Patch100:	svn.patch
 
 # TDE for RHEL/Fedora specific patches
 # [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
@@ -44,7 +54,7 @@ Patch6:		kdebase-3.5.12-halmountoptions.patch
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	qt3-devel >= 3.3.8d
+BuildRequires:	qt%{?_qt_suffix}-devel
 BuildRequires:	openssl-devel
 BuildRequires:	avahi-devel avahi-qt3-devel
 BuildRequires:	imake
@@ -55,7 +65,7 @@ BuildRequires:	dbus-devel dbus-qt-devel
 BuildRequires:	lm_sensors-devel
 BuildRequires:	libfontenc-devel
 BuildRequires:	hal-devel
-BuildRequires:	audiofile-devel
+BuildRequires:	audiofile-devel alsa-lib-devel
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	libraw1394-devel
 BuildRequires:	openldap-devel
@@ -63,13 +73,17 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	pam-devel
 BuildRequires:	libXdmcp-devel
 BuildRequires:	libxkbfile-devel
+BuildRequires:	libusb-devel
+BuildRequires:	esound-devel glib2-devel nas-devel
+BuildRequires:	libXcomposite-devel
 BuildRequires:	dbus-tqt-devel
 BuildRequires:	libXtst-devel
+BuildRequires:	libXdamage-devel
 
 Requires:	tqtinterface
 Requires:	trinity-arts
 Requires:	trinity-kdelibs
-Requires:	qt3 >= 3.3.8d
+Requires:	qt%{?_qt_suffix}
 Requires:	openssl
 Requires:	avahi avahi-qt3
 Requires:	dbus-tqt
@@ -98,7 +112,7 @@ Requires:	%{name}-libs = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 Summary:	%{summary} - Development files
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdebase3-devel
+Obsoletes:	kdebase%{?_qt_suffix}-devel
 %endif
 Group:		Development/Libraries
 %description devel
@@ -124,7 +138,7 @@ Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase3-libs
+Obsoletes: kdebase%{?_qt_suffix}-libs
 %endif
 Requires: %{name} = %{version}-%{release}
 %description libs
@@ -148,6 +162,8 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch5 -p1
 %patch6 -p1
 
+%patch100 -p1
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -166,7 +182,11 @@ cd build
   -DWITH_XCOMPOSITE=ON \
   -DWITH_XCURSOR=ON \
   -DWITH_XFIXES=ON \
+%if 0%{?fedora} || 0%{?rhel} > 5
   -DWITH_XRANDR=ON \
+%else
+  -DWITH_XRANDR=OFF \
+%endif
   -DWITH_XRENDER=ON \
   -DWITH_XDAMAGE=ON \
   -DWITH_XEXT=ON \
@@ -186,8 +206,7 @@ cd build
 
 %install
 %__rm -rf %{?buildroot}
-%__mkdir_p %{?buildroot}
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
 
 # Adds a GDM/KDM/XDM session called 'TDE'
 %if "%{?_prefix}" != "/usr"
@@ -327,7 +346,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/konqueror
 %{_bindir}/konsole
 %{_bindir}/krandom.kss
-%{_bindir}/krandrtray
 %{_bindir}/krdb
 %{_bindir}/kreadconfig
 %{_bindir}/ksmserver
@@ -375,6 +393,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/khc_mansearch.pl
 %{_bindir}/kicker
 %{_bindir}/knetattach
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+%{_bindir}/krandrtray
+%endif
 %{_bindir}/kompmgr
 %{_bindir}/kpm
 %{_bindir}/ksplash
@@ -404,12 +425,17 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{tde_libdir}/*
 %{_libdir}/libkdeinit_*.*
 %{_sysconfdir}/xdg/menus/applications-merged/kde-essential.menu
+%if 0%{?fedora} >= 15 && "%{?_prefix}" != "/usr"
+%exclude %{_sysconfdir}/xdg/menus/kde-information.menu
+%else
 %{_sysconfdir}/xdg/menus/kde-information.menu
+%endif
 %{_sysconfdir}/xdg/menus/kde-screensavers.menu
 %{_sysconfdir}/xdg/menus/kde-settings.menu
 /usr/share/xsessions/*.desktop
 # Remove conflicts with redhat-menus
 %if "%{?_prefix}" != "/usr"
+%{_bindir}/plasma-desktop
 %config(noreplace) %{_datadir}/config/*
 %else
 %exclude %{_datadir}/config
@@ -423,9 +449,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/services/nntp*.protocol
 %exclude %{_datadir}/services/pop3*.protocol
 %exclude %{_datadir}/services/smtp*.protocol
-
-# New in TDE 3.5.12
-%{_bindir}/plasma-desktop
 
 # New in TDE 3.5.13
 %{_bindir}/krootbacking

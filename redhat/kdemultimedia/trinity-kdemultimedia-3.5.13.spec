@@ -38,8 +38,10 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source0: kdemultimedia-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Provides: kdemultimedia3 = %{version}-%{release}
 
@@ -47,8 +49,8 @@ Provides: kdemultimedia3 = %{version}-%{release}
 Patch3: kdemultimedia-3.4.0-xdg.patch
 Patch5: kdemultimedia-3.5.7-pthread.patch
 
-Patch100:	svn.patch
 
+Provides: kdemultimedia3 = %{version}-%{release}
 
 Requires: %{name}-libs = %{version}-%{release}
 
@@ -67,6 +69,8 @@ BuildRequires: automake libtool
 %{?_with_musicbrainz:BuildRequires: libmusicbrainz-devel libtunepimp-devel}
 %{?_with_taglib:BuildRequires: taglib-devel}
 %{?_with_xine:BuildRequires: xine-lib-devel}
+BuildRequires:	libXxf86dga-devel
+BuildRequires:	libXxf86vm-devel
 
 %description
 The K Desktop Environment (KDE) is a GUI desktop for the X Window
@@ -125,8 +129,6 @@ Requires: %{name} = %{version}-%{release}
 %patch3 -p1 -b .xdg
 %patch5 -p1 -b .pthread
 
-%patch100 -p1
-
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 sed -i admin/acinclude.m4.in \
@@ -169,7 +171,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 %install
 export PATH="%{_bindir}:${PATH}"
-%__rm -rf %{buildroot} 
+%__rm -rf %{?buildroot} 
 %__make install DESTDIR=%{buildroot}
 
 ## Remove/uninstall (conflicting) bits we don't want

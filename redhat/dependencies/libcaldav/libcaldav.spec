@@ -10,7 +10,15 @@ License:	GPL
 Group:		System Environment/Libraries
 Summary:	A client library that adds support for the CalDAV protocol (rfc4791).
 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source0:	libcaldav_0.6.5-2debian2.tar.gz
+
+%if 0%{?fedora} || 0%{?rhel} >= 6
+BuildRequires:	libcurl-devel
+%else
+BuildRequires:	trinity-libcurl-devel
+%endif
 
 %description
 libcaldev is a client library that adds support for the CalDAV protocol (rfc4791).
@@ -38,6 +46,10 @@ autoreconf --force --install --symlink
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# The include files do not go in the correct directory
+%__mv -f %{buildroot}%{_includedir}/%{name}-0.6.2/*.h %{buildroot}%{_includedir}
+%__rm -rf %{buildroot}%{_includedir}/%{name}-0.6.2
+
 %clean
 %__rm -rf %{buildroot}
 
@@ -47,7 +59,7 @@ autoreconf --force --install --symlink
 %{_datadir}/doc/%{name}
 
 %files devel
-%{_includedir}/%{name}-0.6.2
+%{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.la
 %{_libdir}/*.so

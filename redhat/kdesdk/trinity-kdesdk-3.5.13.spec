@@ -26,7 +26,10 @@ Group: User Interface/Desktops
 URL:		http://www.trinitydesktop.org/
 Vendor: Trinity Project
 Packager: Francois Andriot <francois.andriot@free.fr>
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source: kdesdk-%{version}.tar.gz
 
 # RedHat Legacy patches
@@ -48,7 +51,9 @@ BuildRequires: desktop-file-utils
 BuildRequires: flex
 # umbrello
 BuildRequires: libxslt-devel libxml2-devel
+%if 0%{?fedora} > 5 || 0%{?rhel} > 4
 BuildRequires: binutils-devel
+%endif
 BuildRequires: perl
 BuildRequires: subversion-devel neon-devel
 
@@ -111,14 +116,15 @@ cd build
   -DBUILD_ALL=ON \
   ..
 
-%__make %{?_smp_mflags}
+# Do not use %{?_smp_mflags} !
+%__make
 
 
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot} 
 
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
 
 desktop-file-install --vendor "" \
   --dir %{buildroot}%{_datadir}/applications/kde \

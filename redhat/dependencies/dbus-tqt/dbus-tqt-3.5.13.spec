@@ -20,10 +20,14 @@ Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Dbus TQT Interface
+Group:		System Environment/Libraries
+
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source0:	%{name}-%{version}.tar.gz
 
 BuildRequires:	gcc-c++
@@ -37,6 +41,7 @@ Dbus TQT Interface
 %package devel
 Requires:	%{name}
 Summary:	%{name} - Development files
+Group:		Development/Libraries
 
 %description devel
 Development files for %{name}
@@ -58,7 +63,7 @@ cd build
 %install
 %__rm -rf %{?buildroot}
 %__mkdir_p %{?buildroot}%{_includedir}
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
 
 %clean
 %__rm -rf %{?buildroot}

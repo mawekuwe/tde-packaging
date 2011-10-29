@@ -13,8 +13,8 @@
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
+%define tde_includedir %{_includedir}/kde
 
 
 Name:	 trinity-kdebindings
@@ -31,6 +31,10 @@ URL:		http://www.trinitydesktop.org/
 
 Source0: kdebindings-%{version}.tar.gz
 
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+
 # RedHat Legacy patches (from Fedora)
 Patch1: kdebindings-3.5.6-libgcj.patch
 
@@ -40,6 +44,8 @@ BuildRequires: trinity-kdelibs-devel
 BuildRequires: zlib-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: trinity-arts-devel
+BuildRequires: glib-devel gtk+-devel
+BuildRequires: gtk2-devel
 %define perl_ver        %{expand:%%(eval `perl -V:version`; echo $version)}
 %define perl_vendorarch %{expand:%%(eval `perl -V:installvendorarch`; echo $installvendorarch)}
 %define perl_vendorlib  %{expand:%%(eval `perl -V:installvendorlib`; echo $installvendorlib)}
@@ -60,12 +66,16 @@ Provides: %{name}-dcoppython = %{version}-%{release}
 ## ruby
 BuildRequires: ruby-devel >= 1.8, ruby
 Provides: %{name}-ruby = %{version}-%{release}
+%{!?ruby_arch: %define ruby_arch %(ruby -rrbconfig -e 'puts Config::CONFIG["archdir"]')}
 %{!?ruby_sitelib: %define ruby_sitelib %(ruby -rrbconfig -e 'puts Config::CONFIG["sitelibdir"]')}
 %{!?ruby_sitearch: %define ruby_sitearch %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')}
 
 ## java
-#BuildRequires: java-1.4.2-gcj-compat-devel libgcj-devel gcc-java
+%if 0%{?rhel} && 0%{?rhel} < 6
+BuildRequires: java-1.4.2-gcj-compat-devel libgcj-devel gcc-java
+%else
 BuildRequires: java-devel >= 1.4.2
+%endif
 %define java_home %{_usr}/lib/jvm/java
 %define _with_java --with-java=%{java_home}
 Provides: %{name}-java = %{version}-%{release}
@@ -122,6 +132,7 @@ export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
   --disable-dependency-tracking \
   --with-extra-libs=%{_libdir} \
   --with-pythondir=%{_usr} \
+  --enable-closure \
   --disable-final \
   %{?_with_java} %{!?_with_java:--without-java} \
   %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla} \
@@ -149,7 +160,7 @@ popd
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf $RPM_BUILD_ROOT
 
-%make_install \
+%__make install DESTDIR=%{?buildroot} \
   PYTHON=%{__python}
 
 desktop-file-install \
@@ -176,14 +187,6 @@ fi
 # locale's
 %find_lang %{name} || touch %{name}.lang
 HTML_DIR=$(kde-config --expandvars --install html)
-
-# Fix HTML doc location in TDE 3.5.13
-# (from 'share/doc/HTML' to 'share/doc/kde/HTML')
-if [ ! -d $RPM_BUILD_ROOT$HTML_DIR ] && [ -d $RPM_BUILD_ROOT%{_docdir}/HTML ]; then
-  mkdir -p $RPM_BUILD_ROOT${HTML_DIR%/*}
-  mv -f $RPM_BUILD_ROOT%{_docdir}/HTML $RPM_BUILD_ROOT${HTML_DIR%/*}
-fi
-
 if [ -d $RPM_BUILD_ROOT$HTML_DIR ]; then
 for lang_dir in $RPM_BUILD_ROOT$HTML_DIR/* ; do
   if [ -d $lang_dir ]; then
@@ -248,17 +251,14 @@ update-desktop-database >& /dev/null ||:
 #%{ruby_sitelib}/K*
 #%{ruby_sitelib}/Qt*
 %{_usr}/lib/ruby/*/*
-%if 0%{?fedora} >= 15
-%{_usr}/lib64/ruby/*/*/*.so.*
-%else
-%{_usr}/lib64/ruby/*/*.so.*
-%endif
+%{ruby_arch}/*.so.*
+%doc %lang(en) %{_docdir}/HTML/en/javalib/*
 
 # Excludes 'kjscmd' (conflicts with 'kdelibs' from RHEL6)
 %if "%{?_prefix}" == "/usr"
 %exclude %{_bindir}/kjscmd
-%endif
 %exclude %{_mandir}/man1/kjscmd*
+%endif
 
 
 %files dcopperl -f %{name}-dcopperl.list
@@ -274,13 +274,8 @@ update-desktop-database >& /dev/null ||:
 %{_libdir}/jni/*.so
 %{_libdir}/jni/*.la
 %endif
-%if 0%{?fedora} >= 15
-%{_usr}/lib64/ruby/*/*/*.so
-%{_usr}/lib64/ruby/*/*/*.la
-%else
-%{_usr}/lib64/ruby/*/*.so
-%{_usr}/lib64/ruby/*/*.la
-%endif
+%{ruby_arch}/*.so
+%{ruby_arch}/*.la
 
 %changelog
 * Sat Sep 03 2011 Francois Andriot <francois.andriot@free.fr - 3.5.12.99.20110903-0

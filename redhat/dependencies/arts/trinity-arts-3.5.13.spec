@@ -18,13 +18,16 @@ Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the KDE sound system
+Group:		System Environment/Daemons 
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Source0:	arts-%{version}.tar.gz
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Source0:	arts-%{version}.tar.gz
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
@@ -54,8 +57,9 @@ playing a wave file with some effects.
 
 
 %package devel
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - Development files
+Requires:	%{name} = %{version}-%{release}
 %if "%{?_prefix}" == "/usr"
 Obsoletes:	arts-devel
 %endif
@@ -80,6 +84,7 @@ cd build
 %__make %{?_smp_mflags}
 
 %install
+%__rm -rf %{?buildroot}
 %__make install -C build DESTDIR=%{?buildroot}
 
 %clean

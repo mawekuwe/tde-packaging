@@ -11,6 +11,7 @@
 %endif
 
 # TDE 3.5.13 specific variables
+BuildRequires:	cmake >= 2.8
 %define tde_libdir %{_libdir}/trinity
 
 %define _default_patch_fuzz 2
@@ -24,10 +25,14 @@ Release: %{?release}%{?dist}%{?_variant}
 
 
 License: GPLv2
-URL: http://www.kdevelop.org/
 Group: Development/Tools
 
-Prefix:	%{_prefix}
+Vendor:		Trinity Project
+Packager:	Francois Andriot <francois.andriot@free.fr>
+URL:		http://www.trinitydesktop.org/
+
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source: kdevelop-%{version}.tar.gz
 Source1: ftp://129.187.206.68/pub/unix/ide/KDevelop/c_cpp_reference-2.0.2_for_KDE_3.0.tar.bz2
@@ -35,7 +40,10 @@ Source1: ftp://129.187.206.68/pub/unix/ide/KDevelop/c_cpp_reference-2.0.2_for_KD
 # RedHat Legacy patches
 Patch1: c_cpp_reference-2.0.2-config.patch
 
-Patch100: svn.patch
+# TDE 3.5.13 patches
+## RHEL / Fedora RPM specific patches
+Patch2: kdevelop-3.5.13-kdevdesigner-ftbfs.patch
+
 
 Provides: kdevelop3 = %{version}-%{release}
 
@@ -45,14 +53,13 @@ Requires: %{name}-libs = %{version}-%{release}
 Requires: trinity-kdelibs-devel
 Requires: make
 Requires: perl
-#Requires: automake libtool 
 Requires: flex >= 2.5.4
 Requires: qt3-designer
 Requires: gettext
 Requires: ctags
 
-#BuildRequires: automake libtool
-BuildRequires:	cmake >= 2.8
+BuildRequires: tqtinterface-devel
+BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: trinity-kdelibs-apidocs
 BuildRequires: qt3-devel-docs
@@ -116,8 +123,7 @@ Requires: %{name} = %{version}-%{release}
 
 %setup -q -n kdevelop -a1
 %patch1 -p0 -b .config
-
-%patch100 -p1
+%patch2 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !

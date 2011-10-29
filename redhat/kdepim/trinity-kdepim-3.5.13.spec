@@ -29,6 +29,7 @@ Summary:	PIM (Personal Information Manager) applications
 Prefix:		%{_prefix}
 
 Source0:	kdepim-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	tqtinterface
 BuildRequires:	trinity-arts
@@ -58,6 +59,7 @@ PIM (Personal Information Manager) applications.
 %package devel
 Requires:	%{name}
 Summary:	%{name} - Development files
+Group: Development/Libraries
 %description devel
 Development files for %{name}.
 
@@ -101,7 +103,7 @@ cd build
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
 
 %clean
 %__rm -rf %{?buildroot}
@@ -122,6 +124,7 @@ export PATH="%{_bindir}:${PATH}"
 %{_datadir}/config.kcfg/*
 %{_libdir}/lib*.so.*
 %{tde_libdir}/*.so
+#%{tde_libdir}/*.so.*
 %{tde_libdir}/plugins/designer/*.so
 %{_datadir}/servicetypes/*
 %{_libdir}/kconf_update_bin/*

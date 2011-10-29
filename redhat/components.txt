@@ -1,3 +1,5 @@
+dependencies/libcaldav
+dependencies/libcarddav
 dependencies/qt3
 dependencies/tqtinterface
 dependencies/dbus-tqt

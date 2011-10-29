@@ -15,70 +15,90 @@ BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
 
+# Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
+# whereas newer versions use "qt3", "qt3-devel" ...
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8
+%define _qt_suffix 3
+%endif
+
 
 Name:		trinity-kdelibs
 Version:	%{version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
-Summary:	Trinity KDE Libraries
+Summary:	TDE Libraries
+Group:		System Environment/Libraries
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Source0:	kdelibs-%{version}.tar.gz
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Source0:	kdelibs-%{version}.tar.gz
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
-BuildRequires:	qt3-devel
-BuildRequires:	avahi-devel avahi-qt3-devel
-#BuildRequires:	lua-devel
+BuildRequires:	avahi-devel
+BuildRequires:	lua-devel
 BuildRequires:	krb5-devel libxslt-devel cups-devel libart_lgpl-devel pcre-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	openssl-devel
-BuildRequires:	libtiff-devel
+BuildRequires:	gcc-c++
+BuildRequires:	alsa-lib-devel
+BuildRequires:	libidn-devel
+BuildRequires:	qt%{?_qt_suffix}-devel
+BuildRequires:	avahi-qt3-devel
 BuildRequires:	jasper-devel
 
-Requires:	tqtinterface
-Requires:	trinity-arts
-Requires:	qt3
-Requires:	avahi avahi-qt3
+Requires:		tqtinterface
+Requires:		trinity-arts
+Requires:		avahi
+Requires:		qt%{?_qt_suffix}
+Requires:		avahi-qt3
 
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdelibs3
+Obsoletes:		kdelibs%{?_qt_suffix}
 %endif
 
 %description
-Libraries for the Trinity K Desktop Environment
+Libraries for the Trinity Desktop Environment:
+KDE Libraries included: kdecore (KDE core library), kdeui (user interface),
+kfm (file manager), khtmlw (HTML widget), kio (Input/Output, networking),
+kspell (spelling checker), jscript (javascript), kab (addressbook),
+kimgio (image manipulation).
+
 
 %package devel
-Requires:	%{name}
 Summary:	%{name} - Development files
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdelibs3-devel
+Obsoletes:	kdelibs%{?_qt_suffix}-devel
 %endif
 
 %description devel
-Development files for %{name}
+This package includes the header files you will need to compile
+applications for TDE.
 
 %package apidocs
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - API documentation
+Requires:	%{name} = %{version}-%{release}
+%if "%{?_prefix}" == "/usr"
+Obsoletes:	kdelibs%{?_qt_suffix}-apidocs-devel
+%endif
 
 %description apidocs
-This package includes the KDE 3 API documentation in HTML
+This package includes the TDE API documentation in HTML
 format for easy browsing
+
 
 %prep
 %setup -q -n kdelibs
-
-# Gets the cmake modules in current build directory
-%__mkdir_p cmake/modules
-%__cp -f %{_datadir}/cmake/*.* cmake/modules
-
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -111,16 +131,16 @@ cd build
 
 %install
 %__rm -rf %{?buildroot}
-%__mkdir_p %{?buildroot}
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
 
 %__mkdir_p %{?buildroot}%{_sysconfdir}/ld.so.conf.d
 cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
 %if "%{?_prefix}" != "/usr"
 %{_libdir}
 %endif
-%{_libdir}/trinity
+%{tde_libdir}
 EOF
+
 
 %clean
 %__rm -rf %{?buildroot}

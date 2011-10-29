@@ -152,7 +152,7 @@ Requires: %{name} = %{version}-%{release}
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-kdelibs >= %{version}
+Requires: trinity-kdelibs
 %if "%{?_prefix}" == "/usr"
 Obsoletes: kdebase%{?_qt_suffix}-libs
 %endif
