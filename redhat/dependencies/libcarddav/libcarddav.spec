@@ -8,7 +8,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 
 License:	GPL
 Group:		System Environment/Libraries
-Summary:	A client library that adds support for the CalDAV protocol (rfc4791).
+Summary:	Libcarddav is a portable CardDAV client implementation.
 
 Source0:	libcarddav_0.6.2-2debian2.tar.gz
 
