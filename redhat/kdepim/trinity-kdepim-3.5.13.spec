@@ -38,12 +38,18 @@ BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
 BuildRequires:	libical-devel
 BuildRequires:	gnokii-devel
+BuildRequires:	boost-devel
+
+BuildRequires:	libcaldav-devel
+BuildRequires:	libcarddav-devel
 
 %if 0%{?fedora} >= 15
 BuildRequires:	flex-static
 %endif
 
 Requires:	trinity-kdelibs
+Requires:	libcaldav
+Requires:	libcarddav
 
 %description
 PIM (Personal Information Manager) applications.
@@ -84,8 +90,8 @@ cd build
   -DWITH_BIRTHDAYS=ON \
   -DWITH_NEWEXCHANGE=ON \
   -DWITH_SCALIX=ON \
-  -DWITH_CALDAV=OFF \
-  -DWITH_CARDDAV=OFF \
+  -DWITH_CALDAV=ON \
+  -DWITH_CARDDAV=ON \
   -DWITH_INDEXLIB=ON \
   -DBUILD_ALL=ON \
   ..

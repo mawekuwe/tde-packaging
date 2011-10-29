@@ -83,7 +83,7 @@ Requires: trinity-kdelibs-devel
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-kdelibs >= %{version}
+Requires: trinity-kdelibs
 # helps multilib upgrades
 Obsoletes: %{name} < %{version}-%{release}
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
@@ -174,7 +174,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/*
 %{tde_docdir}/HTML/en/*
 %{_datadir}/apps/*
-%{_datadir}/mimelnk/application/*
+#%{_datadir}/mimelnk/application/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
 %{_datadir}/icons/crystalsvg/*/*/*
@@ -184,7 +184,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/config.kcfg/*
 %{tde_libdir}/*
 %{_libdir}/libkdeinit_*.so
-%{_mandir}/man1/*
+#%{_mandir}/man1/*
 
 # Removes conflict with package 'rpmdevtool' on RHEL 6
 %if "%{_prefix}" == "/usr"
@@ -198,10 +198,12 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/kde/*
+%{_includedir}/*.h
+%{_includedir}/kbabel
 %{_libdir}/lib*.so
 %exclude %{_libdir}/libkdeinit_*.so
-%{_libdir}/kmtrace/*
+#%{_libdir}/kmtrace/*
+%{_datadir}/cmake/*.cmake
 
 
 %changelog

@@ -100,10 +100,9 @@ export PATH="%{_bindir}:${PATH}"
 %{tde_libdir}/*.so
 %{tde_docdir}/HTML/en/*
 
-%if 0%{?rhel} >= 4
 %{_datadir}/applnk/*/*
 %{_datadir}/mimelnk/application/*
-%endif
+
 
 %files devel
 %defattr(-,root,root,-)
