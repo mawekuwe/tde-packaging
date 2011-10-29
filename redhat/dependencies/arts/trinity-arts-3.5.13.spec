@@ -80,7 +80,7 @@ cd build
 %__make %{?_smp_mflags}
 
 %install
-%make_install -C build
+%__make install -C build DESTDIR=%{?buildroot}
 
 %clean
 %__rm -rf %{?buildroot}
@@ -111,7 +111,7 @@ cd build
 %{_bindir}/artsc-config
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*.pc
-%exclude %{_libdir}/*.a
+%{_libdir}/*.a
 
 
 %changelog
