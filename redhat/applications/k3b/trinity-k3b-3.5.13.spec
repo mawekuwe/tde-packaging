@@ -42,6 +42,8 @@ Patch4: k3b-1.0.4-manualbufsize.patch
 # RHEL6: Fix K3B icon
 Patch106: trinity-k3b-icons.patch
 
+# TDE 3.5.13 library directory changed
+Patch107: k3b-i18n-trinity.patch
 
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: desktop-file-utils
@@ -115,6 +117,8 @@ Requires: %{name}-libs = %{version}-%{release}
 # set in k3brc too 
 %patch4 -p1 -b .manualbufsize
 %patch106 -p1 -b .desktopfile
+%patch107
+
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -155,27 +159,22 @@ CXXFLAGS="%optflags -fno-strict-aliasing" \
 
 # Build for i18n tarball
 pushd k3b-i18n-1.0.5
+autoreconf
 %configure
 %__make %{?_smp_mflags}
 popd
 
 %install
 %__rm -rf %{buildroot}
-%make_install
-%make_install -C k3b-i18n-1.0.5
-%{__install} -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/config/k3brc
+%__make install DESTDIR=%{buildroot}
+%__make install DESTDIR=%{buildroot} -C k3b-i18n-1.0.5
+%__install -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/config/k3brc
 
 # remove the .la files
-%{__rm} -f %{buildroot}%{_libdir}/libk3b*.la 
+%__rm -f %{buildroot}%{_libdir}/libk3b*.la 
 
 # remove i18n for Plattdeutsch (Low Saxon)
-%{__rm} -fr %{buildroot}%{_datadir}/locale/nds
-
-%find_lang k3b --with-kde
-%find_lang k3bsetup 
-%find_lang libk3b
-%find_lang libk3bdevice
-cat k3b.lang k3bsetup.lang libk3b.lang libk3bdevice.lang >> all.lang
+%__rm -fr %{buildroot}%{_datadir}/locale/nds
 
 
 %check
@@ -212,11 +211,12 @@ update-desktop-database -q &> /dev/null
 %{_bindir}/k3b
 %{tde_libdir}/*.so
 %{tde_libdir}/*.la
-%doc %{tde_docdir}/HTML/*/k3b/*
+%doc %{_docdir}/HTML/*/k3b/*
 
-%files common -f all.lang
+%files common
 %defattr(-,root,root,-)
 %{_datadir}/applications/kde/*.desktop
+%{_datadir}/applnk/.hidden/*.desktop
 %{_datadir}/apps/k3b/
 %{_datadir}/apps/konqueror/servicemenus/*.desktop
 %{_datadir}/apps/konqsidebartng/virtual_folders/services/videodvd.desktop
