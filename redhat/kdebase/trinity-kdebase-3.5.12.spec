@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 11
+%define release 12
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -50,6 +50,8 @@ Patch2:		http://www.trinitydesktop.org/patches/r1201705.diff
 Patch4:		http://www.trinitydesktop.org/patches/r1182808.diff
 # [kdebase] fixed an incompatibility with gcc 4.5 
 Patch8:		http://www.trinitydesktop.org/patches/r1221326.diff
+
+Patch11:	kdebase-3.5.12-kickerfix.patch
 
 # TDE Official patches (from SVN), modified
 # [kdebase/ksmserver/shutdowndlg.cpp] Fixed invalid constructor per GCC 4.5.2
@@ -185,6 +187,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %if 0%{?rhel} && 0%{?rhel} < 6
 %patch10 -p1
 %endif
+%patch11 -d kicker/kicker
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/"*"/ltmain.sh" "admin/ltmain.sh"
