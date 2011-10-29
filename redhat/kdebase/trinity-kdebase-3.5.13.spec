@@ -30,6 +30,9 @@ Prefix:		%{_prefix}
 
 Source0:	kdebase-%{version}.tar.gz
 
+# Wrapper script to prevent Plasma launch at Trinity Startup
+Source1:	plasma-desktop
+
 # TDE for RHEL/Fedora specific patches
 # [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
 Patch3:		kdebase-3.5.13-kdesu-noignorebutton.patch
@@ -61,6 +64,7 @@ BuildRequires:	pam-devel
 BuildRequires:	libXdmcp-devel
 BuildRequires:	libxkbfile-devel
 BuildRequires:	dbus-tqt-devel
+BuildRequires:	libXtst-devel
 
 Requires:	tqtinterface
 Requires:	trinity-arts
@@ -90,7 +94,7 @@ kfontmanager, kmenuedit).
 
 %package devel
 Requires:	%{name}
-Requires:	%{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 Summary:	%{summary} - Development files
 %if "%{?_prefix}" == "/usr"
@@ -106,7 +110,7 @@ Kate plugins or KWin styles.
 %package extras
 Summary: Extra applications from %{name}
 Group: User Interface/Desktops
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{version}-%{release}
 %description extras
 %{summary}, including:
  * kappfinder
@@ -118,11 +122,11 @@ Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-kdelibs >= %{version}
+Requires: trinity-kdelibs
 %if "%{?_prefix}" == "/usr"
 Obsoletes: kdebase3-libs
 %endif
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{version}-%{release}
 %description libs
 %{summary}
 
@@ -144,9 +148,6 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch5 -p1
 %patch6 -p1
 
-# Gets the cmake modules in current build directory
-%__mkdir_p cmake/modules
-%__cp -f %{_datadir}/cmake/*.* cmake/modules
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -200,6 +201,11 @@ sed -i "%{?buildroot}%{_bindir}/startkde" \
 
 # Renames '/etc/ksysguarddrc' to avoid conflict with KDE4 'ksysguard'
 mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
+
+# TDE 3.5.12: add script "plasma-desktop" to avoid conflict with KDE4
+%if "%{?_prefix}" != "/usr"
+%{__cp} -f "%{SOURCE1}" "%{?buildroot}%{_bindir}"
+%endif
 
 %clean
 %__rm -rf %{?buildroot}
@@ -418,8 +424,13 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/services/pop3*.protocol
 %exclude %{_datadir}/services/smtp*.protocol
 
+# New in TDE 3.5.12
+%{_bindir}/plasma-desktop
+
 # New in TDE 3.5.13
 %{_bindir}/krootbacking
+%{_bindir}/tsak
+%attr(4511,root,root) %{_bindir}/kdmtsak
 
 %files libs
 %defattr(-,root,root,-)

@@ -13,6 +13,7 @@
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
+%define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
 
@@ -26,7 +27,7 @@ Group:   User Interface/Desktops
 
 Vendor:  Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:     http://developer.kde.org/language-bindings/ 
+URL:		http://www.trinitydesktop.org/
 
 Source0: kdebindings-%{version}.tar.gz
 
@@ -114,7 +115,7 @@ unset JAVA_HOME ||:
 export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
 
 %configure \
-  --includedir=%{_includedir}/kde \
+  --includedir=%{tde_includedir} \
   --disable-rpath \
   --enable-new-ldflags \
   --disable-debug --disable-warnings \
@@ -145,8 +146,8 @@ popd
 
 
 %install
-%__rm -rf $RPM_BUILD_ROOT
 export PATH="%{_bindir}:${PATH}"
+%__rm -rf $RPM_BUILD_ROOT
 
 %make_install \
   PYTHON=%{__python}
@@ -206,7 +207,8 @@ for dir in dcopperl dcoppython kalyptus %{?_with_java:kdejava qtjava} kjsembed k
 done
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%__rm -rf $RPM_BUILD_ROOT
+
 
 %post
 /sbin/ldconfig ||:
@@ -255,8 +257,8 @@ update-desktop-database >& /dev/null ||:
 # Excludes 'kjscmd' (conflicts with 'kdelibs' from RHEL6)
 %if "%{?_prefix}" == "/usr"
 %exclude %{_bindir}/kjscmd
-%exclude %{_mandir}/man1/kjscmd*
 %endif
+%exclude %{_mandir}/man1/kjscmd*
 
 
 %files dcopperl -f %{name}-dcopperl.list
@@ -266,7 +268,7 @@ update-desktop-database >& /dev/null ||:
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/kde/*
+%{tde_includedir}/*
 %{_libdir}/lib*.so
 %if "%{?_with_java:1}" == "1"
 %{_libdir}/jni/*.so
