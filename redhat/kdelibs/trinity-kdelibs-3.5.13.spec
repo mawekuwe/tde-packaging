@@ -39,6 +39,8 @@ BuildRequires:	krb5-devel libxslt-devel cups-devel libart_lgpl-devel pcre-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	openssl-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	jasper-devel
 
 Requires:	tqtinterface
 Requires:	trinity-arts

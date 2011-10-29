@@ -47,6 +47,9 @@ Provides: kdemultimedia3 = %{version}-%{release}
 Patch3: kdemultimedia-3.4.0-xdg.patch
 Patch5: kdemultimedia-3.5.7-pthread.patch
 
+Patch100:	svn.patch
+
+
 Requires: %{name}-libs = %{version}-%{release}
 
 BuildRequires: zlib-devel
@@ -93,14 +96,7 @@ noatun plugins.
 %package extras
 Summary: Extra applications from %{name} 
 Group: Applications/Multimedia
-%if 0%{?libs}
 Requires: %{name}-extras-libs = %{version}-%{release}
-%else
-Obsoletes: %{name}-extras-libs < %{version}-%{release}
-Provides:  %{name}-extras-libs = %{version}-%{release}
-Requires(post): /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
-%endif
 %description extras
 %{summary}, including:
  * juk, a media player
@@ -129,6 +125,8 @@ Requires: %{name} = %{version}-%{release}
 %patch3 -p1 -b .xdg
 %patch5 -p1 -b .pthread
 
+%patch100 -p1
+
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 sed -i admin/acinclude.m4.in \
@@ -141,13 +139,8 @@ sed -i admin/acinclude.m4.in \
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-
-# just to be paranoid -- Rex
-unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-
-export CXXFLAGS="${LDFLAGS} $(pkg-config --libs gsl)"
 
 %configure  \
    --enable-new-ldflags \
@@ -168,19 +161,19 @@ export CXXFLAGS="${LDFLAGS} $(pkg-config --libs gsl)"
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?_with_xine} %{!?_with_xine:--without-xine} \
-   --with-extra-includes=%{_usr}/include/cdda:%{_includedir}/tqt
+   --with-extra-includes=%{_usr}/include/cdda:%{_includedir}/tqt \
+   --enable-closure
 
 %__make %{?_smp_mflags}
 
 
 %install
+export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot} 
-
-%make_install
-%make_install -C kaudiocreator
+%__make install DESTDIR=%{buildroot}
 
 ## Remove/uninstall (conflicting) bits we don't want
-rm -f $RPM_BUILD_ROOT%{_libdir}/mcop/akode*MPEGPlayObject.mcopclass
+%__rm -f $RPM_BUILD_ROOT%{_libdir}/mcop/akode*MPEGPlayObject.mcopclass
 
 # only show in KDE, really? -- Rex (FIXME)
 for f in %{buildroot}%{appdir}/*.desktop ; do
@@ -225,7 +218,7 @@ done
 
 
 %post
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -233,14 +226,13 @@ done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %postun
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
 done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
-%if 0%{?libs}
 %post libs -p /sbin/ldconfig
 
 %postun libs -p /sbin/ldconfig
@@ -248,10 +240,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %post extras-libs -p /sbin/ldconfig
 
 %postun extras-libs -p /sbin/ldconfig
-%endif
 
 %post extras
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -259,7 +250,7 @@ done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %postun extras
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -371,6 +362,16 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/mimelnk/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
+
+# Misc HTML docs
+%doc %lang(en) %{tde_docdir}/HTML/en/artsbuilder
+%doc %lang(en) %{tde_docdir}/HTML/en/kaudiocreator
+%doc %lang(en) %{tde_docdir}/HTML/en/kioslave/audiocd.docbook
+%doc %lang(en) %{tde_docdir}/HTML/en/kmid
+%doc %lang(en) %{tde_docdir}/HTML/en/kmix
+%doc %lang(en) %{tde_docdir}/HTML/en/krec
+%doc %lang(en) %{tde_docdir}/HTML/en/kscd
+
 
 %files libs
 %defattr(-,root,root,-)
