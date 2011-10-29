@@ -70,11 +70,13 @@ EOF
 	esac
 	
 	set -x
+	(
 	rpmbuild -ba \
 		--define "_sourcedir ${PWD}/${COMP}" \
 		--define "_prefix ${PREFIX:-/opt/trinity}" \
 		--define "version ${VERSION:-3.5.13}" \
 		${COMP}/${SPEC} || exit 1
+	) 2>&1 | tee /tmp/log
 	set +x
 done
 

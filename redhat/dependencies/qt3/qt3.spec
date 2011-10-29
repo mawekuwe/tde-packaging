@@ -4,7 +4,7 @@
 %endif
 
 # The following QT4 packages should NOT be installed to
-# allow QT3 compilation (please remove them prior to compile)
+# allow QT3 compilation (please uninstall them prior to compile)
 #  qt
 #  qt-sqlite
 #  qt-mysql
