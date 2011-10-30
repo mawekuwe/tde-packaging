@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -1224,26 +1224,11 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
-* Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7
-- Add support for RHEL5
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
 
-* Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
-- Re-introduce all languages
-
-* Wed Aug 24 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-5
-- Re-introduce all languages
-
-* Mon Aug 22 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-4
-- Correct macro to install under "/opt", if desired
-
-* Thu Jul 21 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-3
-- Add 'Patch1': translation for 'Open Terminal Here...' background shortcut
-
-* Sun Dec 19 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
-- Rebuilt
-
-* Sun Dec 19 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.12-0
+* Sun Dec 19 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Initial version (French language only)
 - Based on RHEL SPEC file 'kde-i18n'
 - Add 'patch0' to reflect modifications in 'kdesu' from 'kdebase' package
-
+- Import to GIT

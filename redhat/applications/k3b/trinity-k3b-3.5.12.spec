@@ -26,16 +26,15 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+Prefix:    %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 %if "%{?_prefix}" == "/usr"
 Obsoletes: k3b
 %endif
 
 Group:   Applications/Archiving
 License: GPLv2+
-
-Prefix:		%{_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
 
 Source0: k3b-%{version}.tar.gz
 Source1: k3b-i18n-1.0.5.tar.bz2
@@ -62,7 +61,7 @@ BuildRequires: dbus-qt-devel hal-devel
 BuildRequires: flac-devel
 BuildRequires: gettext
 BuildRequires: libdvdread-devel
-%if 0%{?fedora} >= 15 || 0%{?rhel} && 0%{?rhel} <= 5
+%if 0%{?fedora} >= 15 || 0%{?rhel} <= 5
 BuildRequires: libmpcdec-devel
 %else
 BuildRequires: musepack-tools-devel

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,8 +33,6 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: kdeedu-%{version}.tar.gz
-
-Patch100: svn.patch
 
 Provides: kdeedu3 = %{version}-%{release}
 
@@ -97,8 +95,6 @@ Requires: %{name} = %{version}-%{release}
 
 %prep
 %setup -q -n kdeedu
-
-%patch100 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -234,5 +230,8 @@ update-desktop-database >& /dev/null ||:
 
 
 %changelog
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Sat Sep 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Initial build for RHEL 6
+- Import to GIT

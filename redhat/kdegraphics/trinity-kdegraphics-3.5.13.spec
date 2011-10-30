@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -12,10 +12,16 @@
 
 # TDE 3.5.13 specific building variables
 BuildRequires: cmake >= 2.8
-%define tde_docdir %{_docdir}
+%define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
+# KDEGRAPHICS specific options
+%if 0%{?rhel} && 0%{?rhel} <= 5
+%define build_kpovmodeler 0
+%else
+%define build_kpovmodeler 1
+%endif
 
 Name:		trinity-kdegraphics
 Version:	%{?version}
@@ -30,7 +36,20 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source0:	kdegraphics-%{version}.tar.gz
+
+# TDE 3.5.13
+## RHEL / Fedora specific patches
+### [kdegraphics/ksnapshot] Missing -lXext in LDFLAGS (required for Fedora 15)
+Patch0:		kdegraphics-3.5.13-ksnapshot_ldflags.patch
+### [kdegraphics/kpovmodeler] CMAKE does not detect GL/glu.h (on RHEL5)
+Patch1:		kdegraphics-3.5.13-kpovmodeler_check_glu.patch
+### [kdegraphics/kfile-plugins/dependencies/poppler-tqt] Compile 'poppler-tqt' only if HAVE_POPPLER_016
+Patch2:		kdegraphics-3.5.13-disable_poppler.patch
+### [kdegraphics/kpdf/xpdf] Disable 'mkstemps' support for RHEL5
+Patch3:		kdegraphics-3.5.13-xpdf_disable_mkstemps.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -44,6 +63,8 @@ BuildRequires: automake libtool
 BuildRequires: gphoto2-devel
 BuildRequires: sane-backends-devel
 BuildRequires: libusb-devel
+BuildRequires: t1lib-devel
+BuildRequires: libdrm-devel
 
 # kgamma
 BuildRequires: libXxf86vm-devel
@@ -53,7 +74,10 @@ BuildRequires: imlib-devel
 BuildRequires: OpenEXR-devel
 # kpdf
 BuildRequires: freetype-devel
+BuildRequires: poppler-devel
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires: poppler-qt-devel
+%endif
 BuildRequires: libpaper-devel
 # ksvg
 BuildRequires: fontconfig-devel
@@ -61,8 +85,11 @@ BuildRequires: fribidi-devel
 BuildRequires: lcms-devel
 BuildRequires: libart_lgpl-devel
 BuildRequires: libXmu-devel
+
 # kpovmodeler
+%if 0%{?build_kpovmodeler}
 BuildRequires: libGL-devel libGLU-devel libXi-devel
+%endif
 
 Requires: tqtinterface
 Requires: trinity-arts
@@ -108,7 +135,9 @@ Requires(postun): /sbin/ldconfig
 %{summary}, including:
 * kfax
 * kfaxview
+%if 0%{?build_kpovmodeler}
 * kpovmodler
+%endif
 
 %package libs
 Summary: %{name} runtime libraries
@@ -123,49 +152,44 @@ Requires: %{name} = %{version}-%{release}
 
 %prep
 %setup -q -n kdegraphics
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
-
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f "admin/Makefile.common"
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%if 0%{?rhel} && 0%{?rhel} <= 5
+%patch3 -p1
+%endif
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
+export LD_LIBRARY_PATH="%{_libdir}"
 
-%configure \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --disable-rpath \
-   --disable-debug \
-   --disable-warnings \
-   --enable-final \
-   --enable-closure \
-   --includedir=%{_includedir}/kde \
-   --with-extra-includes=%{_includedir}/tqt
-
-%if 0%{?fedora} >= 15
-# Ugly fix for kolourpaint - problem when linking libkdefx.so
-sed -i kolourpaint/Makefile \
-  -e 's,\($(kolourpaint_LINK) $(kolourpaint_OBJECTS) $(kolourpaint_LDADD) \)\($(LIBS)\),\1 -lkdefx \2,'
-  
-# Another ugly fix for kpdf - problem when linking fontconfig
-sed -i kpdf/Makefile \
-  -e '/^LDFLAGS = .*/ s,$, -lfontconfig,'
+%__mkdir build
+cd build
+%cmake \
+  -DWITH_T1LIB=ON \
+  -DWITH_LIBPAPER=ON \
+  -DWITH_TIFF=ON \
+  -DWITH_OPENEXR=ON \
+%if 0%{?rhel} && 0%{?rhel} <= 5
+  -DWITH_PDF=OFF \
+%else
+  -DWITH_PDF=ON \
 %endif
+  -DBUILD_ALL=ON \
+%if 0%{?build_kpovmodeler} == 0
+  -DBUILD_KPOVMODELER=OFF \
+%endif
+  ..
 
 %__make %{?_smp_mflags}
 
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-
-make install DESTDIR=%{buildroot}
+%__make install DESTDIR=%{buildroot} -C build
 
 # locale's
 %find_lang %{name} || touch %{name}.lang
@@ -201,7 +225,7 @@ rm -f %{buildroot}/libkpovmodeler.so
 
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 
 %post
@@ -263,8 +287,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/services/kfaxmultipage_tiff.desktop
 
 # kpovmodeler
+%if 0%{?build_kpovmodeler}
 %doc rpmdocs/kpovmodeler/
-%doc %{_docdir}/HTML/en/kpovmodeler/
+%doc %{tde_docdir}/HTML/en/kpovmodeler/
 %{_bindir}/kpovmodeler
 %{_libdir}/libkpovmodeler.so.*
 %{_libdir}/libkpovmodeler.la
@@ -273,6 +298,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/apps/kpovmodeler/
 %{_datadir}/icons/crystalsvg/*/mimetypes/kpovmodeler_doc.*
 %{_datadir}/icons/hicolor/*/apps/kpovmodeler.*
+%endif
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
@@ -297,6 +323,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/services/kfaxmultipage_tiff.desktop
 
 # kpovmodeler
+%if 0%{?build_kpovmodeler}
 %exclude %{tde_docdir}/HTML/en/kpovmodeler/
 %exclude %{_bindir}/kpovmodeler
 %exclude %{_libdir}/libkpovmodeler.*
@@ -305,6 +332,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/apps/kpovmodeler/
 %exclude %{_datadir}/icons/crystalsvg/*/mimetypes/kpovmodeler_doc.*
 %exclude %{_datadir}/icons/hicolor/*/apps/kpovmodeler.*
+%endif
 
 %{_bindir}/*
 %{_datadir}/applications/kde/*.desktop
@@ -317,12 +345,15 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/mimelnk/*/*
 %{_libdir}/libkdeinit_*.so
 %{tde_libdir}/*
+%doc %lang(en) %{tde_docdir}/HTML/en/*
 
 %files libs
 %defattr(-,root,root,-)
 %exclude %{_libdir}/libkfaximage.la
+%if 0%{?build_kpovmodeler}
 %exclude %{_libdir}/libkpovmodeler.la
 %exclude %{_libdir}/libkpovmodeler.so.*
+%endif
 %{_libdir}/lib*.so.*
 %{_libdir}/lib*.la
 # Why ???
@@ -330,7 +361,15 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/kde/*
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+%{tde_includedir}/*
+%endif
+%{_includedir}/dom/*
+%{_includedir}/ksvg/*
+%{_includedir}/kviewshell/*
+%{_includedir}/libtext2path-0.1/*
+%{_includedir}/kmultipageInterface.h
+%{_datadir}/cmake/*.cmake
 %{_libdir}/lib*.so
 #exclude %{_libdir}/libkpovmodeler.so
 %exclude %{_libdir}/libkfaximage.so
@@ -338,5 +377,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libdjvu.so
 
 %changelog
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+- RHEL 5 build has some features disabled (see patches)
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT

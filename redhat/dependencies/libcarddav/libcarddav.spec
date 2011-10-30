@@ -1,6 +1,6 @@
 Name:		libcarddav
 Version:	0.6.2
-Release:	2debian2%{?dist}
+Release:	2debian2.1%{?dist}
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
@@ -66,5 +66,5 @@ autoreconf --force --install --symlink
 
 
 %Changelog
-* Fri Oct 21 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2 
-- Initial build for RHEL 6.0
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2 .1
+- Initial build for RHEL 6, RHEL 5, and Fedora 15

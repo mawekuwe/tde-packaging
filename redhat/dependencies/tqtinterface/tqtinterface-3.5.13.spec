@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -80,18 +80,14 @@ cd build
 %__mkdir_p %{?buildroot}%{_includedir}
 %__make install DESTDIR=%{?buildroot} -C build
 
-# RHEL 5: add newline at end of include files
+# RHEL 5: add newline at end of include files to avoid warnings
 %if 0%{?rhel} && 0%{?rhel} <= 5
 for i in %{?buildroot}%{_includedir}/*.h; do
   echo "" >>${i}
 done
 %endif
 
-# Fix 'tqt.pc': UIC executable is not correct
-#sed -i %{?buildroot}%{_libdir}/pkgconfig/tqt.pc \
-#  -e '/^uic_executable=.*/ s,^\(uic_executable=\).*,\1%{_bindir}/uic-tqt,'
-
-# Install 'cmake' modules for a specific package (for later use)
+# Install 'cmake' modules for development use
 %__mkdir_p %{?buildroot}%{cmake_modules_dir}
 for i in cmake/modules/*.cmake; do
   install -m 644 $i %{?buildroot}%{cmake_modules_dir}
@@ -113,6 +109,9 @@ done
 
 
 %changelog
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Sun Aug 28 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Built with future TDE version (3.5.13 + cmake + QT3.3.8d)

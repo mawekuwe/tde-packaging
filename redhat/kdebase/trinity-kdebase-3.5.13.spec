@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -40,8 +40,6 @@ Source0:	kdebase-%{version}.tar.gz
 
 # Wrapper script to prevent Plasma launch at Trinity Startup
 Source1:	plasma-desktop
-
-Patch100:	svn.patch
 
 # TDE for RHEL/Fedora specific patches
 # [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
@@ -162,8 +160,6 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch5 -p1
 %patch6 -p1
 
-%patch100 -p1
-
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -223,7 +219,7 @@ mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysg
 
 # TDE 3.5.12: add script "plasma-desktop" to avoid conflict with KDE4
 %if "%{?_prefix}" != "/usr"
-%{__cp} -f "%{SOURCE1}" "%{?buildroot}%{_bindir}"
+%__cp -f "%{SOURCE1}" "%{?buildroot}%{_bindir}"
 %endif
 
 %clean
@@ -489,6 +485,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
-* Sat Sep 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12.99-0
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
+* Sat Sep 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Use TDE 3.5.13, cmake, QT3.3.3.8d

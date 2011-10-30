@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -26,12 +26,16 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+Prefix:    %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 %if "%{?_prefix}" == "/usr"
 Obsoletes: k3b
 %endif
 
 Group:   Applications/Archiving
 License: GPLv2+
+
 Source0: k3b-%{version}.tar.gz
 Source1: k3b-i18n-1.0.5.tar.bz2
 Source2: k3brc
@@ -53,7 +57,7 @@ BuildRequires: dbus-qt-devel hal-devel
 BuildRequires: flac-devel
 BuildRequires: gettext
 BuildRequires: libdvdread-devel
-%if 0%{?fedora} >= 15
+%if 0%{?fedora} >= 15 || 0%{?rhel} <= 5
 BuildRequires: libmpcdec-devel
 %else
 BuildRequires: musepack-tools-devel
@@ -92,7 +96,9 @@ start.
 Summary:  Common files of %{name}
 Group:    Applications/Archiving
 Requires: %{name} = %{version}-%{release}
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildArch: noarch
+%endif
 %description common
 %{summary}.
 
@@ -240,5 +246,8 @@ update-desktop-database -q &> /dev/null
 
 
 %changelog
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT

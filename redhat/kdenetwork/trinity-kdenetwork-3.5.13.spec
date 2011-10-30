@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -59,8 +59,6 @@ Patch3: kdenetwork-3.5.8-kppp.patch
 Patch4: kdenetwork-3.2.3-resolv.patch
 # include more/proper ppp headers
 Patch6: kdenetwork-3.5.9-krfb_httpd.patch
-
-Patch100: svn.patch
 
 Requires: %{name}-libs = %{version}-%{release}
 
@@ -180,8 +178,6 @@ Requires: %{name} = %{version}-%{release}
 %endif
 %patch4 -p1 -b .resolv
 %patch6 -p1 -b .krfb_httpd
-
-%patch100 -p1
 
 
 %build
@@ -469,6 +465,9 @@ done
 
 
 %changelog
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Tue Oct 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Initial version
+- Import to GIT
 

@@ -1,6 +1,6 @@
 Name:		libcaldav
 Version:	0.6.5
-Release:	2debian2%{?dist}
+Release:	2debian2.1%{?dist}
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
@@ -17,6 +17,7 @@ Source0:	libcaldav_0.6.5-2debian2.tar.gz
 %if 0%{?fedora} || 0%{?rhel} >= 6
 BuildRequires:	libcurl-devel
 %else
+# Specific CURL version for TDE on RHEL 5 (and older)
 BuildRequires:	trinity-libcurl-devel
 %endif
 
@@ -67,5 +68,5 @@ autoreconf --force --install --symlink
 
 
 %Changelog
-* Fri Oct 21 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2 
-- Initial build for RHEL 6.0
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2.1
+- Initial build for RHEL 6, RHEL 5, and Fedora 15

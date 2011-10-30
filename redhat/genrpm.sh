@@ -21,7 +21,7 @@ EOF
 	exit 1
 fi
 
-select COMP in $( cut -f1 "components.txt" ) ; do
+select COMP in $( cut -f1 "components.txt" | grep -v "^#" ) ; do
 	# Gets package version from 'components.txt' file
 	VERSION=$( awk '{ if ($1 == "'${COMP}'") { print $2; } }' components.txt )
 	

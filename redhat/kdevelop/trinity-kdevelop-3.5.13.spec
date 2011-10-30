@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -229,6 +229,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Sat Oct 29 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Initial build for RHEL 6 and Fedora 15
+- Import to GIT
 - Based on SPEC file from Fedora: kdevelop 9:3.5.3-1

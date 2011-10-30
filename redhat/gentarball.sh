@@ -15,7 +15,7 @@ EOF
 
 ##### CHOOSE A TDE COMPONENT #####
 PS3="Enter number: "
-select COMP in $( cut -f1 components.txt ) ; do
+select COMP in $( cut -f1 components.txt | grep -v "^#" ) ; do
 	ARCHIVEDIR="${PWD}/${COMP}"
 	[ -d "${ARCHIVEDIR}" ] || mkdir -p "${ARCHIVEDIR}"
 
@@ -67,6 +67,7 @@ select COMP in $( cut -f1 components.txt ) ; do
 			;;
 		"qt3")
 			echo "Extracting '${COMP}' from GIT ..."
+			ARCHIVENAME="qt3-3.3.8d.tar.gz"
 			git clone http://scm.trinitydesktop.org/scm/git/tde; mv tde/main/dependencies/qt3 .
 			;;
 		*)

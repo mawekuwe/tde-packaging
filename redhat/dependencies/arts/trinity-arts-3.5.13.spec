@@ -1,8 +1,8 @@
 # Default version for this component
 %if "%{?version}" == ""
-%define version 1.5.10
+%define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -120,6 +120,9 @@ cd build
 
 
 %changelog
-* Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 1.5.10-0
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
+* Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Built with future TDE version (3.5.13 + cmake + QT3.3.8d)
