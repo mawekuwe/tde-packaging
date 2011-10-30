@@ -4,6 +4,7 @@ dependencies/qt3
 dependencies/tqtinterface
 dependencies/dbus-tqt
 dependencies/arts
+trinity-desktop
 kdelibs
 kdebase
 kdebindings

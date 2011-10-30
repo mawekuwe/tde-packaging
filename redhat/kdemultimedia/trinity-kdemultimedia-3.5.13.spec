@@ -54,8 +54,10 @@ Provides: kdemultimedia3 = %{version}-%{release}
 
 Requires: %{name}-libs = %{version}-%{release}
 
-BuildRequires: zlib-devel
+BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
+
+BuildRequires: zlib-devel
 BuildRequires: libvorbis-devel
 BuildRequires: audiofile-devel
 BuildRequires: desktop-file-utils
@@ -350,6 +352,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_libdir}/mcop/*
 %{_libdir}/libkdeinit_*.so
 #%{_libdir}/liboggarts.so
+%{_libdir}/libmpeg-0.3.0.so
+%{_libdir}/libyafcore.so
+%{_libdir}/libyafxplayer.so
 %{tde_libdir}/*
 %{_libdir}/kconf_update_bin/*
 %{_bindir}/*
@@ -391,7 +396,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libnoatunarts.*
 #exclude %{_libdir}/liboggarts.so
 %exclude %{_libdir}/libwinskinvis.so
-
+%exclude %{_libdir}/libmpeg-0.3.0.so
+%exclude %{_libdir}/libyafcore.so
+%exclude %{_libdir}/libyafxplayer.so
 
 %changelog
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1

@@ -31,9 +31,9 @@ Prefix:		%{_prefix}
 Source0:	kdepim-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	tqtinterface
-BuildRequires:	trinity-arts
-BuildRequires:	trinity-kdelibs
+BuildRequires:	tqtinterface-devel
+BuildRequires:	trinity-arts-devel
+BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	gpgme-devel
 BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
@@ -46,6 +46,10 @@ BuildRequires:	libcarddav-devel
 
 %if 0%{?fedora} >= 15
 BuildRequires:	flex-static
+%else
+%if 0%{?rhel} <= 5
+BuildRequires:	trinity-libcurl-devel
+%endif
 %endif
 
 Requires:	trinity-kdelibs
@@ -98,7 +102,8 @@ cd build
   -DBUILD_ALL=ON \
   ..
 
-%__make %{?_smp_mflags}
+# Do not use %{?_smp_mflags} !
+%__make 
 
 %install
 export PATH="%{_bindir}:${PATH}"
@@ -130,6 +135,7 @@ export PATH="%{_bindir}:${PATH}"
 %{_libdir}/kconf_update_bin/*
 %{_libdir}/libakregatorprivate.so
 %{_libdir}/libkmailprivate.so
+%{_libdir}/libkmobiledevice.so
 %{tde_docdir}/HTML/en/*
 
 %files devel
@@ -141,6 +147,7 @@ export PATH="%{_bindir}:${PATH}"
 %{tde_libdir}/plugins/designer/*.la
 %exclude %{_libdir}/libakregatorprivate.so
 %exclude %{_libdir}/libkmailprivate.so
+%exclude %{_libdir}/libkmobiledevice.so
 %{_datadir}/cmake/*.cmake
 
 %changelog
