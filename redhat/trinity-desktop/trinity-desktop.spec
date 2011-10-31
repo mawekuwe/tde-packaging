@@ -91,4 +91,6 @@ Requires:	%{name}-extras == %{version}
 
 %files dev
 
+%files extras
+
 %files all
