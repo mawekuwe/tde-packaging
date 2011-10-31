@@ -53,8 +53,10 @@ Source5:	pamd.kscreensaver-trinity%{?dist}
 Patch3:		kdebase-3.5.13-kdesu-noignorebutton.patch
 # [kdebase/kdesktop] Modifies "open terminal here" on desktop
 Patch5:		kdebase-3.5.12-desktop-openterminalhere.patch
-# [kdebase/kioslave]: Forces HAL backend to use HAL mount options
+# [kdebase/kioslave] Forces HAL backend to use HAL mount options
 Patch6:		kdebase-3.5.12-halmountoptions.patch
+# [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
+Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
@@ -92,6 +94,8 @@ Requires:	qt%{?_qt_suffix}
 Requires:	openssl
 Requires:	avahi avahi-qt3
 Requires:	dbus-tqt
+# Provides the global Xsession script (/etc/X11/xinit/Xsession)
+Requires:	xorg-x11-xinit
 
 
 # RHEL 6 Configuration files are provided in separate packages
@@ -166,6 +170,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch3 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 
 %build
