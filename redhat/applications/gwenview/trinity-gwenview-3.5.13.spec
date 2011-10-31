@@ -33,9 +33,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# TDE 3.5.13 on RHEL/Fedora specific patches
+Patch0:		gwenview-3.5.13-jpegint-ftbfs.patch
 
 
 BuildRequires: tqtinterface-devel
+BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: trinity-kdebase-devel
 BuildRequires: desktop-file-utils
@@ -63,6 +66,7 @@ KIPI image framework.
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !

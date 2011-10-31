@@ -41,6 +41,13 @@ Source0:	kdebase-%{version}.tar.gz
 # Wrapper script to prevent Plasma launch at Trinity Startup
 Source1:	plasma-desktop
 
+# Pam configuration files for RHEL / Fedora
+Source2:	pamd.kdm-trinity%{?dist}
+Source3:	pamd.kdm-trinity-np%{?dist}
+Source4:	pamd.kcheckpass-trinity%{?dist}
+Source5:	pamd.kscreensaver-trinity%{?dist}
+
+
 # TDE for RHEL/Fedora specific patches
 # [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
 Patch3:		kdebase-3.5.13-kdesu-noignorebutton.patch
@@ -196,6 +203,9 @@ cd build
   -DWITH_I8K=OFF \
   -DWITH_HAL=ON \
   -DBUILD_ALL=ON \
+  -DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" \
+  -DKDM_PAM_SERVICE="kdm-trinity" \
+  -DKSCREENSAVER_PAM_SERVICE="kscreensaver-trinity" \
   ..
 
 %__make %{?_smp_mflags} 
@@ -221,6 +231,13 @@ mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysg
 %if "%{?_prefix}" != "/usr"
 %__cp -f "%{SOURCE1}" "%{?buildroot}%{_bindir}"
 %endif
+
+# PAM configuration files
+%__mkdir_p "%{?buildroot}%{_sysconfdir}/pam.d"
+%__install -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity"
+%__install -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
+%__install -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
+%__install -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
 
 %clean
 %__rm -rf %{?buildroot}
@@ -308,6 +325,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/applications/kde/kpager.desktop
 %exclude %{_datadir}/applnk/Utilities/kpager.desktop
 %exclude %{_datadir}/icons/hicolor/*/apps/kpager.png
+
+# Pam configuration
+%{_sysconfdir}/pam.d/*
 
 %doc AUTHORS COPYING README
 %{tde_docdir}/HTML/en/*

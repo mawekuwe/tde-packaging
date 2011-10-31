@@ -1,6 +1,11 @@
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 Name:		libcarddav
 Version:	0.6.2
-Release:	2debian2.1%{?dist}
+Release:	2debian2.1%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/

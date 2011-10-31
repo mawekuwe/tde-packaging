@@ -5,6 +5,7 @@ dependencies/tqtinterface
 dependencies/dbus-tqt
 dependencies/arts
 trinity-desktop
+trinity-settings
 kdelibs
 kdebase
 kdebindings
