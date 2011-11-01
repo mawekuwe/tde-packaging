@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd "$( dirname "$0" )"
+ARGS="$@"
 
 clear
 cat <<EOF
@@ -75,6 +76,7 @@ EOF
 		--define "_sourcedir ${PWD}/${COMP}" \
 		--define "_prefix ${PREFIX:-/opt/trinity}" \
 		--define "version ${VERSION:-3.5.13}" \
+		$ARGS \
 		${COMP}/${SPEC} || exit 1
 	) 2>&1 | tee /tmp/log
 	set +x

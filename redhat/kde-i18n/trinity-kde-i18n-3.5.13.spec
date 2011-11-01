@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -10,7 +10,7 @@
 %define _docdir %{_prefix}/share/doc
 %endif
 
-# TDE 3.5.12 specific building variables
+# TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
@@ -46,11 +46,14 @@ AutoReq: no
 
 Source0:	kde-i18n-%{version}.tar.gz
 
-# Patch for 'kdesu': the message was modified in 'kdebase' package
+# TDE 3.5.12: Translate 'kdesu' message was modified in 'kdebase' package
 Patch0:		kde-i18n-kdesu.patch
 
-# Patch to translate 'Open Terminal Here' desktop shortcut
+# TDE 3.5.12: Translate 'Open Terminal Here' desktop shortcut
 Patch1:		trinity-kde-i18n-fr-openterminalhere.patch
+
+# TDE 3.5.13: French translations for new features
+Patch2:		kde-i18n-3.5.13-add_french_translations.patch
 
 BuildRequires:	findutils
 BuildRequires:	gettext
@@ -625,6 +628,7 @@ done
 
 %patch0
 %patch1
+%patch2
 
 
 %build
@@ -651,7 +655,7 @@ for l in %{KDE_LANGS}; do
     if [ -d "${f}" ] && [ -r "${f}/Makefile" ] ; then 
       pushd ${f}
 
-      # Thales: dirty hack to remove directory 'common' from install list (else it fails to install)
+      # RHEL/Fedora: dirty hack to remove directory 'common' from install list (else it fails to install)
       if [ -r docs/Makefile ]; then
         sed -i docs/Makefile -e "s,^\(SUBDIRS =.*\)common\(.*\)$,\1 \2,"
       fi
@@ -1224,6 +1228,9 @@ rm -rf %{buildroot}
 %endif
 
 %changelog
+* Tue Nov 01 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add missing french translations for TDE 3.5.13
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 
