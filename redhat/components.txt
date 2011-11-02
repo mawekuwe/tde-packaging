@@ -42,3 +42,4 @@ applications/kbookreader
 applications/kdbusnotification
 applications/kmymoney2
 applications/kstreamripper 
+applications/kdesudo
