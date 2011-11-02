@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -16,12 +16,6 @@ BuildRequires: cmake >= 2.8
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
-# KDEGRAPHICS specific options
-%if 0%{?rhel} && 0%{?rhel} <= 5
-%define build_kpovmodeler 0
-%else
-%define build_kpovmodeler 1
-%endif
 
 Name:		trinity-kdegraphics
 Version:	%{?version}
@@ -50,6 +44,8 @@ Patch1:		kdegraphics-3.5.13-kpovmodeler_check_glu.patch
 Patch2:		kdegraphics-3.5.13-disable_poppler.patch
 ### [kdegraphics/kpdf/xpdf] Disable 'mkstemps' support for RHEL5
 Patch3:		kdegraphics-3.5.13-xpdf_disable_mkstemps.patch
+### [kdegraphics/kpovmodeler] CMAKE missing GLU_LIBRARIES
+Patch4:		kdegraphics-3.5.13-kpovmodeler_missing_gl_ldflags.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -87,9 +83,7 @@ BuildRequires: libart_lgpl-devel
 BuildRequires: libXmu-devel
 
 # kpovmodeler
-%if 0%{?build_kpovmodeler}
 BuildRequires: libGL-devel libGLU-devel libXi-devel
-%endif
 
 Requires: tqtinterface
 Requires: trinity-arts
@@ -135,9 +129,7 @@ Requires(postun): /sbin/ldconfig
 %{summary}, including:
 * kfax
 * kfaxview
-%if 0%{?build_kpovmodeler}
 * kpovmodler
-%endif
 
 %package libs
 Summary: %{name} runtime libraries
@@ -158,6 +150,7 @@ Requires: %{name} = %{version}-%{release}
 %if 0%{?rhel} && 0%{?rhel} <= 5
 %patch3 -p1
 %endif
+%patch4 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -179,9 +172,6 @@ cd build
   -DWITH_PDF=ON \
 %endif
   -DBUILD_ALL=ON \
-%if 0%{?build_kpovmodeler} == 0
-  -DBUILD_KPOVMODELER=OFF \
-%endif
   ..
 
 %__make %{?_smp_mflags}
@@ -287,7 +277,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/services/kfaxmultipage_tiff.desktop
 
 # kpovmodeler
-%if 0%{?build_kpovmodeler}
 %doc rpmdocs/kpovmodeler/
 %doc %{tde_docdir}/HTML/en/kpovmodeler/
 %{_bindir}/kpovmodeler
@@ -298,7 +287,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/apps/kpovmodeler/
 %{_datadir}/icons/crystalsvg/*/mimetypes/kpovmodeler_doc.*
 %{_datadir}/icons/hicolor/*/apps/kpovmodeler.*
-%endif
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
@@ -323,7 +311,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/services/kfaxmultipage_tiff.desktop
 
 # kpovmodeler
-%if 0%{?build_kpovmodeler}
 %exclude %{tde_docdir}/HTML/en/kpovmodeler/
 %exclude %{_bindir}/kpovmodeler
 %exclude %{_libdir}/libkpovmodeler.*
@@ -332,7 +319,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/apps/kpovmodeler/
 %exclude %{_datadir}/icons/crystalsvg/*/mimetypes/kpovmodeler_doc.*
 %exclude %{_datadir}/icons/hicolor/*/apps/kpovmodeler.*
-%endif
 
 %{_bindir}/*
 %{_datadir}/applications/kde/*.desktop
@@ -350,10 +336,8 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %files libs
 %defattr(-,root,root,-)
 %exclude %{_libdir}/libkfaximage.la
-%if 0%{?build_kpovmodeler}
 %exclude %{_libdir}/libkpovmodeler.la
 %exclude %{_libdir}/libkpovmodeler.so.*
-%endif
 %{_libdir}/lib*.so.*
 %{_libdir}/lib*.la
 # Why ???
@@ -377,6 +361,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libdjvu.so
 
 %changelog
+* Wed Nov 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Fix kpovmodeler compilation on RHEL 5 (patch4)
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 - RHEL 5 build has some features disabled (see patches)
