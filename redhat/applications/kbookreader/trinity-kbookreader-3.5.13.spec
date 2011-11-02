@@ -1,7 +1,7 @@
 # Default version for this component
-%define kdecomp gwenview
-%define version 1.4.2
-%define release 4
+%define kdecomp kbookreader
+%define version 0.2.0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -17,7 +17,7 @@ BuildRequires: autoconf automake libtool m4
 
 
 Name:		trinity-%{kdecomp}
-Summary:	Gwenview is an image viewer for KDE.
+Summary:	eBook reader for Trinity.
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
@@ -33,40 +33,21 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
-# TDE 3.5.13 on RHEL/Fedora specific patches
-Patch0:		gwenview-3.5.13-jpegint-ftbfs.patch
-
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: trinity-kdebase-devel
 BuildRequires: desktop-file-utils
-BuildRequires: gettext
-BuildRequires: exiv2-devel
-
-%if "%{?_prefix}" == "/usr"
-Conflicts: kdegraphics
-%endif
 
 
 %description
-Gwenview is a fast and easy to use image viewer/browser for KDE.
-All common image formats are supported, such as PNG(including transparency),
-JPEG(including EXIF tags and lossless transformations), GIF, XCF (Gimp
-image format), BMP, XPM and others. Standard features include slideshow,
-fullscreen view, image thumbnails, drag'n'drop, image zoom, full network
-transparency using the KIO framework, including basic file operations and
-browsing in compressed archives, non-blocking GUI with adjustable views.
-Gwenview also provides image and directory KParts components for use e.g. in
-Konqueror. Additional features, such as image renaming, comparing,
-converting, and batch processing, HTML gallery and others are provided by the
-KIPI image framework.
+kbookreader is an application which allows you to view eBooks
+within the Trinity Desktop Environment.
 
 
 %prep
 %setup -q -n applications/%{kdecomp}
-%patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -87,8 +68,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
     --with-extra-includes=%{_includedir}/tqt \
     --enable-closure
 
-%__make
-# %{?_smp_mflags}
+%__make %{?_smp_mflags}
 
 
 %install
@@ -122,10 +102,12 @@ fi
 
 
 %post
+/sbin/ldconfig
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %postun
+/sbin/ldconfig
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
@@ -133,37 +115,14 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
 %{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/applications/*/*.desktop
-%{_datadir}/services/*.desktop
+%{_datadir}/applnk/*/*.desktop
 %{_datadir}/apps/*/
 %{_datadir}/config.kcfg/*
-%{tde_docdir}/HTML/en/*/
+%{_docdir}/HTML/en/*/
 %{_datadir}/icons/*/*/*/*
-%{_mandir}/man*/*
-
-%{_libdir}/libkdeinit_gwenview.so
-%exclude %{_libdir}/libgwenviewcore.so
-
-%exclude %{_libdir}/*.la
-%exclude %{_libdir}/*/*.so
-%exclude %{_libdir}/*/*.la
 
 
 
 %Changelog
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-4
-- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
-
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-3
-- Import to GIT
-
-* Wed Aug 24 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-2
-- Add fix for Fedora 15
-
-* Mon Aug 22 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-1
-- Correct macro to install under "/opt", if desired
-
-* Sat Aug 13 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-0
-- Initial build for RHEL 6.0
-
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.2.0-1
+- Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

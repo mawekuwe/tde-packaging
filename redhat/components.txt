@@ -36,5 +36,9 @@ applications/filelight
 applications/kdiff3
 #applications/kuickshow
 #applications/basket
-#applications/katapult
+applications/katapult
 #compizconfig-backend-kconfig
+applications/kbookreader
+applications/kdbusnotification
+applications/kmymoney2
+applications/kstreamripper 
