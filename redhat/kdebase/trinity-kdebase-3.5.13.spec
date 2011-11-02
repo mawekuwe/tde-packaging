@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -57,6 +57,8 @@ Patch5:		kdebase-3.5.12-desktop-openterminalhere.patch
 Patch6:		kdebase-3.5.12-halmountoptions.patch
 # [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
 Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
+# [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
+Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
@@ -171,6 +173,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 
 %build
@@ -510,6 +513,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Tue Nov 01 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add 'patch8' to fix LD_PRELOAD variable set by 'startkde' under x86_64
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 
