@@ -5,7 +5,7 @@ It was downloaded from: http://www.kde.org/download
 
 Upstream Authors:
 
-  Note that kdeartwork has many contributers beyond those listed below.
+  Note that tdeartwork has many contributers beyond those listed below.
 
   Icon Themes:
     iKons: Kristof Borrey <kborrey@skynet.be>
@@ -193,7 +193,7 @@ Copyright:
 
   Since this change is generally though retroactive, the incompatibility
   is resolved, and we can ship the Virtual Machine screen saver with
-  kdeartwork.
+  tdeartwork.
 
   --------------------
 

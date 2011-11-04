@@ -1,10 +1,10 @@
-# Vietnamese Translation for kdebase.
+# Vietnamese Translation for tdebase.
 # Copyright © 2007 Free Software Foundation, Inc.
 # Clytie Siddall <clytie@riverland.net.au>, 2007.
 # 
 msgid ""
 ""
-msgstr "Project-Id-Version: kdebase_4-3.5.7-1\n"
+msgstr "Project-Id-Version: tdebase_4-3.5.7-1\n"
 "Report-Msgid-Bugs-To: debian-qt-kde@lists.debian.org\n"
 "POT-Creation-Date: 2007-04-09 19:07+0200\n"
 "PO-Revision-Date: 2007-05-31 15:16+0930\n"

@@ -1,6 +1,6 @@
-# kdebase Brazilian Portuguese translation
-# Copyright (C) 2007 THE kdebase'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the kdebase package.
+# tdebase Brazilian Portuguese translation
+# Copyright (C) 2007 THE tdebase'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the tdebase package.
 # Please see debian/copyright.
 #
 # Branden Robinson, 2000-2004.
@@ -10,7 +10,7 @@
 # Eder L. Marques <frolic@debian-ce.org>, 2007.
 msgid ""
 msgstr "pt_BR utf-8\n"
-"Project-Id-Version: kdebase 4:3.5.5a.dfsg.1-6\n"
+"Project-Id-Version: tdebase 4:3.5.5a.dfsg.1-6\n"
 "Report-Msgid-Bugs-To: debian-qt-kde@lists.debian.org\n"
 "POT-Creation-Date: 2007-03-23 07:15+0100\n"
 "PO-Revision-Date: 2007-04-24 15:28-0300\n"

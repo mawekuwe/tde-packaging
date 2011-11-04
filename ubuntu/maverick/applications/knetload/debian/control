@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Helen Faulkner <helen@debian.org>
-Build-Depends: debhelper (>> 4.0.0), kdelibs4-trinity-dev (>= 4:3.4.2), automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>> 4.0.0), tdelibs4-trinity-dev (>= 4:3.4.2), automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: knetload-trinity

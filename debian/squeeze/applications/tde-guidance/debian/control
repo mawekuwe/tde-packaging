@@ -1,19 +1,19 @@
-Source: kde-guidance-trinity
+Source: tde-guidance-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), chrpath, kdelibs4-trinity-dev,
+Build-Depends: cdbs, debhelper (>= 5), chrpath, tdelibs4-trinity-dev,
  libpythonize0-trinity-dev, libtool, libxml2-utils, libxss-dev, libxxf86vm-dev,
  pykdeextensions-trinity, pyqt-tools, python-qt3 (>= 3.17.2-1ubuntu2), python-trinity-trinity, python-trinity-trinity-dev, python-sip4-dev,
  python-support (>= 0.6), python (>= 2.5), python-dev (>= 2.5), x11proto-scrnsaver-dev, python-qt-dev, hwdata
 Standards-Version: 3.8.4
 
-Package: kde-guidance-trinity
+Package: tde-guidance-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, pykdeextensions-trinity, python-trinity-trinity, sysv-rc, guidance-backends-trinity, hwdata, python (>= 2.5), python-dev (>= 2.5)
-Conflicts: guidance-power-manager, kde-guidance-powermanager
+Conflicts: guidance-power-manager, tde-guidance-powermanager
 Provides: ${python:Provides}
 Description: collection of KDE system administration tools for GNU/Linux [Trinity]
  Guidance currently consists of four programs designed to help you
@@ -32,7 +32,7 @@ Description: collection of KDE system administration tools for GNU/Linux [Trinit
 Package: guidance-backends-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, hwdata, python (>= 2.5), python-dev (>= 2.5)
-Conflicts: guidance-power-manager, kde-guidance-powermanager
+Conflicts: guidance-power-manager, tde-guidance-powermanager
 Provides: ${python:Provides}
 Description: collection of system administration tools for GNU/Linux [Trinity]
  This package contains the platform neutral backends used in the
@@ -40,10 +40,10 @@ Description: collection of system administration tools for GNU/Linux [Trinity]
  .
   Homepage: http://www.simonzone.com/software/guidance
 
-Package: kde-guidance-powermanager-trinity
+Package: tde-guidance-powermanager-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, kde-guidance-trinity, python-trinity-trinity, python-dbus, hal, python-gobject, python (>= 2.5), python-dev (>= 2.5)
-Conflicts: guidance-power-manager, kde-guidance-powermanager
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, tde-guidance-trinity, python-trinity-trinity, python-dbus, hal, python-gobject, python (>= 2.5), python-dev (>= 2.5)
+Conflicts: guidance-power-manager, tde-guidance-powermanager
 Provides: ${python:Provides}
 Description: HAL based power manager applet [Trinity]
  A power management applet to indicate battery levels and perform hibernate or

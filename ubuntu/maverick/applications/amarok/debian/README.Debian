@@ -10,7 +10,7 @@ Amarok packages for Debian
       script.
 
     - if you want amarok to be able to play CDs, you need to install the
-      kdemultimedia-kio-plugins package.
+      tdemultimedia-kio-plugins package.
 
     - the scripts available in the 'Scripts' menu need that you install
       some other packages for them to work. Those packages are listed in

@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Anthony Mercatante <tonio@ubuntu.com>
-Build-Depends: debhelper (>= 5), cdbs, kdelibs4-trinity-dev, libkonq4-trinity-dev, kdebase-trinity-dev, docbook2x, docbook-xml, libtool, libltdl-dev, cmake
+Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, libkonq4-trinity-dev, tdebase-trinity-dev, docbook2x, docbook-xml, libtool, libltdl-dev, cmake
 Standards-Version: 3.8.4
 
 Package: dolphin-trinity

@@ -14,7 +14,7 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --includedir="/opt/trinity/include/kde" --mandir="/opt/trinity/share/man" --infodir="/opt/trinity/share/info"
 
-DEB_DH_STRIP_ARGS  := --dbg-package=kdetoys-trinity-dbg
+DEB_DH_STRIP_ARGS  := --dbg-package=tdetoys-trinity-dbg
 
 DEB_INSTALL_CHANGELOGS_kodo-trinity := kodo/ChangeLog
 DEB_INSTALL_CHANGELOGS_kteatime-trinity := kteatime/ChangeLog

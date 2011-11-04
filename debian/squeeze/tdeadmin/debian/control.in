@@ -1,18 +1,18 @@
-Source: kdeadmin
+Source: tdeadmin
 Section: kde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), autotools-dev, debhelper (>= 5.0.31), docbook-to-man, gawk, gettext, kdelibs4-dev (>= 4:3.5.7), libbz2-dev, libpam0g-dev, lilo [i386 amd64], sharutils, texinfo, rpm
+Build-Depends: cdbs (>= 0.4.39-0.1), autotools-dev, debhelper (>= 5.0.31), docbook-to-man, gawk, gettext, tdelibs4-dev (>= 4:3.5.7), libbz2-dev, libpam0g-dev, lilo [i386 amd64], sharutils, texinfo, rpm
 Standards-Version: 3.7.2
 
-Package: kdeadmin
+Package: tdeadmin
 Section: kde
 Architecture: all
-Depends: kcron (>= ${Source-Version}), kdat (>= ${Source-Version}), kdeadmin-kfile-plugins (>= ${Source-Version}), knetworkconf (>= ${Source-Version}), kpackage (>= ${Source-Version}), ksysv (>= ${Source-Version}), kuser (>= ${Source-Version})
+Depends: kcron (>= ${Source-Version}), kdat (>= ${Source-Version}), tdeadmin-kfile-plugins (>= ${Source-Version}), knetworkconf (>= ${Source-Version}), kpackage (>= ${Source-Version}), ksysv (>= ${Source-Version}), kuser (>= ${Source-Version})
 Recommends: lilo-config (>= ${Source-Version})
-Suggests: kdeadmin-doc-html (>= ${Source-Version})
+Suggests: tdeadmin-doc-html (>= ${Source-Version})
 Description: system administration tools from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -22,10 +22,10 @@ Description: system administration tools from the official KDE release
  This metapackage includes a collection of system administration tools
  provided with the official release of KDE.
 
-Package: kdeadmin-doc-html
+Package: tdeadmin-doc-html
 Architecture: all
 Section: doc
-Suggests: konqueror | www-browser, kdebase
+Suggests: konqueror | www-browser, tdebase
 Description: KDE administration documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -38,7 +38,7 @@ Description: KDE administration documentation in HTML format
  KDE administration packages.
  .
  This package is part of KDE, and a component of the KDE administration
- module. See the 'kde' and 'kdeadmin' packages for more information.
+ module. See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: kcron
 Section: admin
@@ -50,7 +50,7 @@ Description: the KDE crontab editor
  It is a graphical user interface to cron, the UNIX system scheduler.
  .
  This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'kdeadmin' packages for more information.
+ See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: kdat
 Section: admin
@@ -69,9 +69,9 @@ Description: a KDE tape backup tool
   * Backup profiles for frequently used backups.
  .
  This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'kdeadmin' packages for more information.
+ See the 'kde' and 'tdeadmin' packages for more information.
 
-Package: kdeadmin-kfile-plugins
+Package: tdeadmin-kfile-plugins
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -79,7 +79,7 @@ Description: KDE file metainfo plugins for deb and rpm files
  File metainfo plugins for deb and rpm package files.
  .
  This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'kdeadmin' packages for more information.
+ See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: knetworkconf
 Section: kde
@@ -90,7 +90,7 @@ Description: KDE network configuration tool
  can be used to manage network devices and settings for each device.
  .
  This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'kdeadmin' packages for more information.
+ See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: kpackage
 Section: admin
@@ -104,7 +104,7 @@ Description: KDE package management tool
  install/remove them.
  .
  This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'kdeadmin' packages for more information.
+ See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: ksysv
 Section: admin
@@ -116,7 +116,7 @@ Description: KDE SysV-style init configuration editor
  drag and drop GUI.
  .
  This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'kdeadmin' packages for more information.
+ See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: kuser
 Section: admin
@@ -127,30 +127,30 @@ Description: KDE user/group administration tool
  A user/group administration tool for KDE.
  .
  This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'kdeadmin' packages for more information.
+ See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: lilo-config
 Section: kde
 Architecture: i386 amd64
 Depends: ${shlibs:Depends}, kcontrol
-Recommends: kdebase-bin
+Recommends: tdebase-bin
 Suggests: lilo
 Description: KDE frontend for lilo configuration
  lilo-config is a KDE based frontend to the lilo boot manager configuration.
  It runs out of the KDE Control Center.
  .
  If you want to use the menu entry to launch lilo-config, you need to install
- kdebase-bin since it uses the kdesu command to gain root privileges.
+ tdebase-bin since it uses the kdesu command to gain root privileges.
  .
  This package is part of KDE, as a component of the KDE administration module.
- See the 'kde' and 'kdeadmin' packages for more information.
+ See the 'kde' and 'tdeadmin' packages for more information.
 
-Package: kdeadmin-dbg
+Package: tdeadmin-dbg
 Section: libdevel
 Architecture: any
-Depends: kdelibs-dbg
+Depends: tdelibs-dbg
 Priority: extra
-Description: debugging symbols for kdeadmin
- This package contains the debugging symbols associated with kdeadmin.
- They will automatically be used by gdb for debugging kdeadmin-related
+Description: debugging symbols for tdeadmin
+ This package contains the debugging symbols associated with tdeadmin.
+ They will automatically be used by gdb for debugging tdeadmin-related
  issues.

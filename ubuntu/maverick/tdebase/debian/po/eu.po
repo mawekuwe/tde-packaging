@@ -1,4 +1,4 @@
-# translation of kdebase-eu.po to librezale
+# translation of tdebase-eu.po to librezale
 # debconf templates for xorg-x11 package
 # Euskara translation
 #
@@ -25,7 +25,7 @@
 # Piarres Beobide <pi@beobide.net>, 2005, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: kdebase-eu\n"
+"Project-Id-Version: tdebase-eu\n"
 "Report-Msgid-Bugs-To: debian-qt-kde@lists.debian.org\n"
 "POT-Creation-Date: 2007-03-23 07:15+0100\n"
 "PO-Revision-Date: 2007-04-06 00:38+0200\n"

@@ -34,8 +34,8 @@ DEB_INSTALL_CHANGELOGS_ALL = $(shell for f in ChangeLog CHANGELOG CHANGES; do if
 shlibs_ver=4:3.5.7
 DEB_DH_MAKESHLIBS_ARGS_libindex0-trinity := -V'libindex0-trinity (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libkcal2b-trinity := -V'libkcal2b-trinity (>= $(shlibs_ver))'
-DEB_DH_MAKESHLIBS_ARGS_libkdenetwork2-trinity := -V'libkdenetwork2-trinity (>= $(shlibs_ver))'
-DEB_DH_MAKESHLIBS_ARGS_libkdepim1a-trinity := -V'libkdepim1a-trinity (>= $(shlibs_ver))'
+DEB_DH_MAKESHLIBS_ARGS_libtdenetwork2-trinity := -V'libtdenetwork2-trinity (>= $(shlibs_ver))'
+DEB_DH_MAKESHLIBS_ARGS_libtdepim1a-trinity := -V'libtdepim1a-trinity (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libkgantt0-trinity := -V'libkgantt0-trinity (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libkleopatra1-trinity := -V'libkleopatra1-trinity (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libkmime2-trinity := -V'libkmime2-trinity (>= $(shlibs_ver))'
@@ -59,10 +59,10 @@ DEB_DH_SHLIBDEPS_ARGS_kontact-trinity := \
 	-dDepends	# Since -u args go first in dpkg-shlibdeps call
 
 ## Move kaddressbook-trinity dependency (from libkabc_xmlrpc.so) to Recommends
-#DEB_DH_SHLIBDEPS_ARGS_kdepim-kresources-trinity := \
+#DEB_DH_SHLIBDEPS_ARGS_tdepim-kresources-trinity := \
 #	-Xopt/lib/trinity/libkabc_xmlrpc.so.1 \
 #	-- -dRecommends \
-#	debian/kdepim-kresources/opt/trinity/lib/libkabc_xmlrpc.so.1.* \
+#	debian/tdepim-kresources/opt/trinity/lib/libkabc_xmlrpc.so.1.* \
 #	-dDepends
 #
 ## Move kaddressbook dependency of libkcal2b-trinity to Recommends

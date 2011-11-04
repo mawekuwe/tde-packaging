@@ -130,7 +130,7 @@ kaffeine (0.8.4-5) unstable; urgency=low
 
   [ Mark Purcell ]
   * Update kaffeine-dbg Depends: kaffeine (= ${binary:Version}),
-    kdelibs-dbg
+    tdelibs-dbg
 
  -- Mark Purcell <msp@debian.org>  Fri, 06 Jul 2007 10:22:19 +0100
 
@@ -214,7 +214,7 @@ kaffeine (0.8.1-3) unstable; urgency=low
   * Added hdparm to kaffeine Depends (Closes: #289895)
   * Added informations about css and region setting in README.Debian
   * Added install-css script taken from libdvdread3 package
-  * Removed x-mplayer2.desktop shipped by kdelibs (Closes: #372514)
+  * Removed x-mplayer2.desktop shipped by tdelibs (Closes: #372514)
 
  -- Fathi Boudra <fboudra@free.fr>  Sat, 10 Jun 2006 00:25:04 +0200
 
@@ -540,7 +540,7 @@ kaffeine (0.7.1-1.1) unstable; urgency=low
 kaffeine (0.7.1-1) unstable; urgency=low
 
   * New upstream release. Closes: #326491
-  * Built against kdelibs4c2. Closes: #325074
+  * Built against tdelibs4c2. Closes: #325074
   * Removed kubuntu_03_gstreamer_stop.diff, which was included upstream.
   * Updated kubuntu_04_locate_wizard_stamp.diff.
 
@@ -707,7 +707,7 @@ kaffeine (0.5-1) unstable; urgency=low
 kaffeine (0.4.92+0.5rc2-3) unstable; urgency=low
 
   * Add suggests for libdvdread3 and libdvdnav4.
-  * Tightened build-depends for kdelibs4-dev.
+  * Tightened build-depends for tdelibs4-dev.
 
  -- Zack Cerza <zcerza@coe.neu.edu>  Mon, 13 Dec 2004 12:04:36 -0500
 

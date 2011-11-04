@@ -23,7 +23,7 @@ Copyright:
 	                             in klamp-install/installdialog.ui
 	info.png                     in klamp/kdpkgdialog.ui
 
-	The following icons are from kdelibs-data
+	The following icons are from tdelibs-data
 	(c) 2002 Kalle Dalheimer <kalle@kde.org> and many others
 	wizard.png                   in klamp/kdpkgdialog.ui
 	                             in klamp-install/installdialog.ui

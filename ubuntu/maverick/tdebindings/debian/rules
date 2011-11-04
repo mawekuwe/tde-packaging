@@ -133,7 +133,7 @@ common-binary-post-install-indep::
 	  rm -f debian/$$p/opt/trinity/share/doc/$$p/changelog; \
 	done
 
-PACKAGES_WITH_USD_SYMLINK = kdebindings-java-trinity libtrinity-java-trinity libqt3-java-trinity \
+PACKAGES_WITH_USD_SYMLINK = tdebindings-java-trinity libtrinity-java-trinity libqt3-java-trinity \
 			    libdcop3-java-trinity-dev libdcop3-java-trinity \
 			    libsmokekde-trinity-dev libsmokeqt-trinity-dev \
 			    kjscmd-trinity libkjsembed-trinity-dev

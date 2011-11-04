@@ -1,6 +1,6 @@
 # translation of nb.po_[ME3X8a].po to Norwegian Bokmål
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the kdebase package.
+# This file is distributed under the same license as the tdebase package.
 #
 # Bjørn Steensrud <bjornst@powertech.no>, 2007.
 msgid ""

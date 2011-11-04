@@ -136,10 +136,10 @@ digikam/
 
 	o digikam/digikam_export.h
             © 2005 Laurent Montel <montel@kde.org>
-	o from kfiletip source copies (kdebase, konqueror)
+	o from kfiletip source copies (tdebase, konqueror)
 	    © 1998, 1999 Torben Weis <weis@kde.org>
 	    © 2000, 2001, 2002 David Faure <david@mandrakesoft.com>
-	o Concept copied from kdelibs/kio/kio/netaccess.h/cpp
+	o Concept copied from tdelibs/kio/kio/netaccess.h/cpp
 	    © 1997 Torben Weis (weis@kde.org)
 	    © 1998 Matthias Ettrich (ettrich@kde.org)
 	    © 1999 David Faure (faure@kde.org)

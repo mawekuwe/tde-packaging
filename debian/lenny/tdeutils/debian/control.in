@@ -1,18 +1,18 @@
-Source: kdeutils
+Source: tdeutils
 Section: kde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, kdelibs4-dev (>= 4:3.5.8), kdebase-dev (>= 4:3.5.8), libkonq4-dev (>= 4:3.5.8), libgmp3-dev, libsnmp-dev, libxpm-dev, python-dev, libxtst-dev, xutils, pbbuttonsd-dev [powerpc], sharutils
-Build-Depends-Indep: doxygen, qt3-doc, graphviz, gsfonts-x11, kdelibs4-doc
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev (>= 4:3.5.8), tdebase-dev (>= 4:3.5.8), libkonq4-dev (>= 4:3.5.8), libgmp3-dev, libsnmp-dev, libxpm-dev, python-dev, libxtst-dev, xutils, pbbuttonsd-dev [powerpc], sharutils
+Build-Depends-Indep: doxygen, qt3-doc, graphviz, gsfonts-x11, tdelibs4-doc
 Standards-Version: 3.7.2
 
-Package: kdeutils
+Package: tdeutils
 Section: kde
 Architecture: all
 Depends: ark (>= ${Source-Version}), kcalc (>= ${Source-Version}), kcharselect (>= ${Source-Version}), kdelirc (>= ${Source-Version}), kdessh (>= ${Source-Version}), kdf (>= ${Source-Version}), kedit (>= ${Source-Version}), kfloppy (>= ${Source-Version}), kgpg (>= ${Source-Version}), khexedit (>= ${Source-Version}), kjots (>= ${Source-Version}), klaptopdaemon (>= ${Source-Version}) | kpowersave, kmilo (>= ${Source-Version}), kregexpeditor (>= ${Source-Version}), ksim (>= ${Source-Version}), ktimer (>= ${Source-Version}), kwalletmanager (>= ${Source-Version}), superkaramba (>= ${Source-Version})
-Suggests: kdeutils-doc-html (>= ${Source-Version})
+Suggests: tdeutils-doc-html (>= ${Source-Version})
 Description: general purpose utilities from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -22,7 +22,7 @@ Description: general purpose utilities from the official KDE release
  This metapackage includes a collection of general purpose utilities 
  provided with the official release of KDE.
 
-Package: kdeutils-doc
+Package: tdeutils-doc
 Section: doc
 Architecture: all
 Description: developer documentation for the KDE utilities module
@@ -30,12 +30,12 @@ Description: developer documentation for the KDE utilities module
  use more for developers creating applications than regular users.
  .
  This package is part of KDE, and a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
-Package: kdeutils-doc-html
+Package: tdeutils-doc-html
 Architecture: all
 Section: doc
-Suggests: konqueror | www-browser, kdebase
+Suggests: konqueror | www-browser, tdebase
 Description: KDE utilities documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -48,18 +48,18 @@ Description: KDE utilities documentation in HTML format
  KDE utilities packages.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
-Package: kdeutils-dev
+Package: tdeutils-dev
 Section: utils
 Architecture: any
-Depends: ark (= ${Source-Version}), kcalc (= ${Source-Version}), kdelirc (= ${Source-Version}), kedit (= ${Source-Version}), khexedit (= ${Source-Version}), klaptopdaemon (= ${Source-Version}), kmilo (= ${Source-Version}), kregexpeditor (= ${Source-Version}), ksim (= ${Source-Version}), kdelibs4-dev (>= 4:3.5.8)
+Depends: ark (= ${Source-Version}), kcalc (= ${Source-Version}), kdelirc (= ${Source-Version}), kedit (= ${Source-Version}), khexedit (= ${Source-Version}), klaptopdaemon (= ${Source-Version}), kmilo (= ${Source-Version}), kregexpeditor (= ${Source-Version}), ksim (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
 Description: development files for the KDE utilities module
- This package contains development files needed to compile kdeutils
+ This package contains development files needed to compile tdeutils
  applications.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: ark
 Section: utils
@@ -67,7 +67,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: ncompress, unzip, zip, zoo, bzip2, p7zip-full
 Suggests: khelpcenter, rar, unrar | unrar-free
-Replaces: kdebase-data (<< 4:3.3.91)
+Replaces: tdebase-data (<< 4:3.3.91)
 Description: graphical archiving tool for KDE
  Ark is a graphical program for managing various archive formats within the
  KDE environment. Archives can be viewed, extracted, created and modified
@@ -81,14 +81,14 @@ Description: graphical archiving tool for KDE
  package.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kcalc
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Replaces: kdebase-data (<< 4:3.3.91)
+Replaces: tdebase-data (<< 4:3.3.91)
 Description: calculator for KDE
  KCalc is KDE's scientific calculator.
  .
@@ -99,7 +99,7 @@ Description: calculator for KDE
   * configurable precision, and number of digits after the period
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kcharselect
 Section: utils
@@ -110,7 +110,7 @@ Description: character selector for KDE
  A character set selector for KDE.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kdelirc
 Section: utils
@@ -121,7 +121,7 @@ Description: infrared control for KDE
  This is a frontend for the LIRC suite to use infrared devices with KDE.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kdessh
 Section: kde
@@ -131,7 +131,7 @@ Description: ssh frontend for KDE
  This package contains KDE's frontend for ssh.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kdf
 Section: utils
@@ -145,7 +145,7 @@ Description: disk space utility for KDE
  in a file manager.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kedit
 Section: editors
@@ -161,7 +161,7 @@ Description: basic text editor for KDE
  reasonably fast start.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kfloppy
 Section: utils
@@ -173,7 +173,7 @@ Description: floppy formatter for KDE
  to format 3.5" and 5.25" floppy disks.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kgpg
 Section: kde
@@ -196,7 +196,7 @@ Description: GnuPG frontend for KDE
    * decrypting clipboard contents, including integration with Klipper
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: khexedit
 Section: utils
@@ -209,7 +209,7 @@ Description: KDE hex editor
  support and other powerful features.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kjots
 Section: utils
@@ -221,7 +221,7 @@ Description: note taking utility for KDE
  program included in the tkgoodstuff package.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: klaptopdaemon
 Section: kde
@@ -233,7 +233,7 @@ Description: battery monitoring and management for laptops using KDE
  power management, for laptops, from within KDE.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kmilo
 Section: utils
@@ -247,7 +247,7 @@ Description:  laptop special keys support for KDE
  with special keys.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kregexpeditor
 Section: kde
@@ -259,7 +259,7 @@ Description: graphical regular expression editor plugin for KDE
  with KDE. It let you draw your regular expression in an unambiguous way.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: ksim
 Section: utils
@@ -272,7 +272,7 @@ Description: system information monitor for KDE
  connections, power, etc.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: ktimer
 Section: utils
@@ -285,7 +285,7 @@ Description: timer utility for KDE
  command execution.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kwalletmanager
 Section: utils
@@ -298,7 +298,7 @@ Description: wallet manager for KDE
  keeps a master password to all wallets.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
 Package: superkaramba
 Section: kde
@@ -320,14 +320,14 @@ Description: a program based on karamba improving the eyecandy of KDE
   * Display information from the internet, such as weather and headlines.
  .
  This package is part of KDE, as a component of the KDE utilities module.
- See the 'kde' and 'kdeutils' packages for more information.
+ See the 'kde' and 'tdeutils' packages for more information.
 
-Package: kdeutils-dbg
+Package: tdeutils-dbg
 Section: libdevel
 Architecture: any
-Depends: kdelibs-dbg
+Depends: tdelibs-dbg
 Priority: extra
-Description: debugging symbols for kdeutils
- This package contains the debugging symbols associated with kdeutils.
- They will automatically be used by gdb for debugging kdeutils-related
+Description: debugging symbols for tdeutils
+ This package contains the debugging symbols associated with tdeutils.
+ They will automatically be used by gdb for debugging tdeutils-related
  issues.

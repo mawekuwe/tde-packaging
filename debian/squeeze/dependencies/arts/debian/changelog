@@ -58,7 +58,7 @@ arts (1.5.9-2) unstable; urgency=low
   +++ Changes by Modestas Vainius:
  
   * Bump shlibs to 1.5.9.
-  * Conflict with automake-dirty kdelibs4c2a (Closes: #473375).
+  * Conflict with automake-dirty tdelibs4c2a (Closes: #473375).
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Sun, 30 Mar 2008 14:23:49 +0300
 
@@ -66,7 +66,7 @@ arts (1.5.9-1lenny1) testing-proposed-updates; urgency=low
 
   * Disable 01_admin_cleanup.diff and 97_automake_cleanup.diff patches
   * Rebuild 98_buildprep.diff
-  * Going to t-p-u to fix breakage in testing as kdelibs is not going into
+  * Going to t-p-u to fix breakage in testing as tdelibs is not going into
     testing anytime soon.
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Sat, 29 Mar 2008 13:30:01 +0200
@@ -357,9 +357,9 @@ arts (1.4.3-1) experimental; urgency=low
 
 arts (1.4.2-5) unstable; urgency=medium
 
-  * Rebuild with the latest gcc-4.0. Rebuilding kdebase with the latest
+  * Rebuild with the latest gcc-4.0. Rebuilding tdebase with the latest
     gcc-4.0/libstdc++ resulted in symbols added and removed (despite no code
-    changes) when compared to the previous kdebase upload. This causes crashes
+    changes) when compared to the previous tdebase upload. This causes crashes
     when run in conjunction with arts packages that have not been built with
     the latest gcc-4.0/libstdc++.
 
@@ -576,7 +576,7 @@ arts (1.1.4-1) unstable; urgency=low
 arts (1.1.3-1) unstable; urgency=low
 
   * New upstream release.
-  * Added kdelibs3 to libartsc0-dev conflicts. (Closes: #195412)
+  * Added tdelibs3 to libartsc0-dev conflicts. (Closes: #195412)
 
  -- Christopher L Cheney <ccheney@debian.org>  Tue, 29 Jul 2003 11:00:00 -0500
 
@@ -615,7 +615,7 @@ arts (1.1.0-2) unstable; urgency=low
 arts (1.1.0-1) unstable; urgency=low
 
   * Initial Release.
-  * Split out of kdelibs source.
+  * Split out of tdelibs source.
   * Thanks to Daniel Stone (daniel@sfarc.net) and David "dpash" Pashley
     (david@davidpashley.com) for their initial work on this.
 

@@ -1,5 +1,5 @@
-# Translation of kdebase to Spanish
-# This file is distributed under the same license as the kdebase package.
+# Translation of tdebase to Spanish
+# This file is distributed under the same license as the tdebase package.
 #
 #  Traductores, si no conocen el formato PO, merece la pena leer la
 #  documentación de gettext, especialmente las secciones dedicadas a este

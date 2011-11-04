@@ -1,9 +1,0 @@
-Document: kdepim-doc-html-multisynk
-Title: The MultiSynk Handbook
-Author: Tobias Koenig
-Abstract: KDE synchronization application.
-Section: Apps/Tools
-
-Format: HTML
-Index: /usr/share/doc/kde/HTML/en/multisynk/index.html
-Files: /usr/share/doc/kde/HTML/en/multisynk/*.html

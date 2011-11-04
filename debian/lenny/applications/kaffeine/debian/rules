@@ -41,7 +41,7 @@ install/kaffeine-trinity::
 	install -D -p -m0644 debian/kaffeine_xine-install-ffmpeg.desktop debian/kaffeine/opt/trinity/share/services/kaffeine_xine-install-ffmpeg.desktop
 	install -D -p -m0644 debian/kaffeine_codecinstall.desktop debian/kaffeine/opt/trinity/share/servicetypes/kaffeine_codecinstall.desktop
 
-	# file shipped by kdelibs
+	# file shipped by tdelibs
 	rm -f debian/kaffeine/opt/trinity/share/mimelnk/application/x-mplayer2.desktop
 	# Bogus, shouldn't be shipped..
 	rm -f debian/kaffeine/opt/trinity/share/doc/kde/HTML/en/doc/CMakeLists.txt

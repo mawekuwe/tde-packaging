@@ -1,18 +1,18 @@
-Source: kdegames
+Source: tdegames
 Section: games
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, kdelibs4-dev (>= 4:3.5.8), automake1.9, libtool, groff-base, sharutils, bzip2, sharutils
-Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, qt3-doc, kdelibs4-doc
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev (>= 4:3.5.8), automake1.9, libtool, groff-base, sharutils, bzip2, sharutils
+Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, qt3-doc, tdelibs4-doc
 Standards-Version: 3.7.2
 
-Package: kdegames
+Package: tdegames
 Architecture: all
 Section: kde
 Depends: atlantik (>= ${Source-Version}), kasteroids (>= ${Source-Version}), katomic (>= ${Source-Version}), kbackgammon (>= ${Source-Version}), kbattleship (>= ${Source-Version}), kblackbox (>= ${Source-Version}), kbounce (>= ${Source-Version}), kenolaba (>= ${Source-Version}), kfouleggs (>= ${Source-Version}), kgoldrunner (>= ${Source-Version}), kjumpingcube (>= ${Source-Version}), klickety (>= ${Source-Version}), klines (>= ${Source-Version}), kmahjongg (>= ${Source-Version}), kmines (>= ${Source-Version}), knetwalk (>= ${Source-Version}), kolf (>= ${Source-Version}), konquest (>= ${Source-Version}), kpat (>= ${Source-Version}), kpoker (>= ${Source-Version}), kreversi (>= ${Source-Version}), ksame (>= ${Source-Version}), kshisen (>= ${Source-Version}), ksirtet (>= ${Source-Version}), ksmiletris (>= ${Source-Version}), ksnake (>= ${Source-Version}), ksokoban (>= ${Source-Version}), kspaceduel (>= ${Source-Version}), ktron (>= ${Source-Version}), ktuberling (>= ${Source-Version}), kwin4 (>= ${Source-Version}), lskat (>= ${Source-Version})
-Suggests: kdegames-doc-html (>= ${Source-Version})
+Suggests: tdegames-doc-html (>= ${Source-Version})
 Description: games from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -22,10 +22,10 @@ Description: games from the official KDE release
  This metapackage includes a collection of games provided with
  the official release of KDE.
 
-Package: kdegames-doc-html
+Package: tdegames-doc-html
 Architecture: all
 Section: doc
-Suggests: konqueror | www-browser, kdegames
+Suggests: konqueror | www-browser, tdegames
 Description: KDE games documentation in HTML format
  By default the games provided with KDE (the K Desktop Environment)
  only provide their documentation in KDE docbook format, which can
@@ -38,9 +38,9 @@ Description: KDE games documentation in HTML format
  /usr/share/doc/kde/HTML/en/kasteroids/.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
-Package: libkdegames1
+Package: libtdegames1
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
@@ -51,49 +51,49 @@ Description: KDE games library and common files
  including chat capabilities.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
-Package: kdegames-dbg
+Package: tdegames-dbg
 Architecture: any
-Depends: kdelibs-dbg
+Depends: tdelibs-dbg
 Priority: extra
 Section: kde
-Description: debugging symbols for kdegames
- This package contains the debugging symbols associated with kdegames.
- They will automatically be used by gdb for debugging kdegames-related
+Description: debugging symbols for tdegames
+ This package contains the debugging symbols associated with tdegames.
+ They will automatically be used by gdb for debugging tdegames-related
  issues.
 
-Package: libkdegames-dev
+Package: libtdegames-dev
 Architecture: any
 Section: libdevel
-Depends: kdelibs4-dev (>= 4:3.5.1), libkdegames1 (= ${Source-Version})
+Depends: tdelibs4-dev (>= 4:3.5.1), libtdegames1 (= ${Source-Version})
 Description: KDE games library headers
  This package is necessary if you want to develop your own games using
  the KDE games library.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
-Package: libkdegames-doc
+Package: libtdegames-doc
 Architecture: all
 Section: doc
-Recommends: kdelibs4-doc, qt3-doc
-Suggests: konqueror | www-browser, libkdegames-dev
+Recommends: tdelibs4-doc, qt3-doc
+Suggests: konqueror | www-browser, libtdegames-dev
 Description: API documentation for the KDE games library
- This package contains the developers' documentation for libkdegames.
+ This package contains the developers' documentation for libtdegames.
  You may want to install it if you wish to develop games for KDE.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
-Package: kdegames-card-data
+Package: tdegames-card-data
 Architecture: all
 Section: games
 Description: Card decks for KDE games
  Several different collections of card images for use by KDE games.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: atlantik
 Architecture: any
@@ -108,19 +108,19 @@ Description: KDE client for Monopoly-like network games
  America and Europe.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: atlantik-dev
 Architecture: any
 Section: devel
 Priority: extra
-Depends: ${shlibs:Depends}, atlantik (= ${Source-Version}), libkdegames-dev (= ${Source-Version})
+Depends: ${shlibs:Depends}, atlantik (= ${Source-Version}), libtdegames-dev (= ${Source-Version})
 Description: Development files for Atlantik
  This package contains header files for compiling programs against the
  libraries which come with Atlantik.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kasteroids
 Architecture: any
@@ -135,7 +135,7 @@ Description: Asteroids for KDE
  makes contact with an asteroid.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: katomic
 Architecture: any
@@ -148,7 +148,7 @@ Description: Atomic Entertainment game for KDE
  wall or another atom.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kbackgammon
 Architecture: any
@@ -163,7 +163,7 @@ Description: A Backgammon game for KDE
  upgrade :-)).
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kbattleship
 Architecture: any
@@ -176,7 +176,7 @@ Description: Battleship game for KDE
  against the computer.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kblackbox
 Architecture: any
@@ -191,7 +191,7 @@ Description: A simple logical game for the KDE project
  your score.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kbounce
 Architecture: any
@@ -216,7 +216,7 @@ Description: Jezzball clone for the K Desktop Environment
  This game was previously known as kjezz.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kenolaba
 Architecture: any
@@ -233,7 +233,7 @@ Description: Enolaba board game for KDE
  board game Abalone by Abalone SA, France.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kfouleggs
 Architecture: any
@@ -246,7 +246,7 @@ Description: A KDE clone of the Japanese PuyoPuyo game
  find KFouleggs easy to learn.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kgoldrunner
 Architecture: any
@@ -269,7 +269,7 @@ Description: A KDE clone of the Loderunner arcade game
  reappear somewhere else.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kjumpingcube
 Architecture: any
@@ -284,7 +284,7 @@ Description: Tactical one or two player game
  owns all squares.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: klickety
 Architecture: any
@@ -295,7 +295,7 @@ Description: A Clickomania-like game for KDE
  game; it is very similar to the "same" game.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: klines
 Architecture: any
@@ -315,7 +315,7 @@ Description: Color lines for KDE
  three more marbles.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kmahjongg
 Architecture: any
@@ -327,7 +327,7 @@ Description: the classic mahjongg game for KDE project
  no other tiles block them on the left or right side.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kmines
 Architecture: any
@@ -344,7 +344,7 @@ Description: Minesweeper for KDE
  mine.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: knetwalk
 Architecture: any
@@ -357,7 +357,7 @@ Description: A game for system administrators
  and no wires are left unconnected.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kolf
 Architecture: any
@@ -368,19 +368,19 @@ Description: Minigolf game for KDE
  golf courses and waste an exorbitant amount of time.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kolf-dev
 Architecture: any
 Section: devel
 Priority: extra
-Depends: ${shlibs:Depends}, kolf (= ${Source-Version}), libkdegames-dev (= ${Source-Version})
+Depends: ${shlibs:Depends}, kolf (= ${Source-Version}), libtdegames-dev (= ${Source-Version})
 Description: Development files for Kolf
  This package contains headers and development libraries for compiling
  Kolf plugins.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: konquest
 Architecture: any
@@ -392,29 +392,29 @@ Description: KDE based GNU-Lactic Konquest game
  across the galaxy and, of course, crush your rivals in the process.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kpat
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, kdebase-data, kdegames-card-data
+Depends: ${shlibs:Depends}, tdebase-data, tdegames-card-data
 Description: KDE solitaire patience game
  KPatience is a collection of 14 card games. All the games are single
  player games.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kpoker
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, kdegames-card-data
+Depends: ${shlibs:Depends}, tdegames-card-data
 Description: KDE based Poker clone
  KPoker is a KDE compliant clone of those highly addictive pocket
  video poker games which are sometimes called "Videopoker" as well.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kreversi
 Architecture: any
@@ -429,7 +429,7 @@ Description: Reversi for KDE
  no more moves possible.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: ksame
 Architecture: any
@@ -442,7 +442,7 @@ Description: SameGame for KDE
  platform.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kshisen
 Architecture: any
@@ -455,7 +455,7 @@ Description: Shisen-Sho for KDE
  The object of the game is to remove all tiles from the field.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: ksirtet
 Architecture: any
@@ -472,7 +472,7 @@ Description: Tetris and Puyo-Puyo games for KDE
  1/(1+level) second).
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: ksmiletris
 Architecture: any
@@ -484,7 +484,7 @@ Description: Tetris like game for KDE
  blocks so there are two or more of the same symbol vertically.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: ksnake
 Architecture: any
@@ -495,7 +495,7 @@ Description: Snake Race for KDE
  are trying to eat all the apples in the room before getting out!
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: ksokoban
 Architecture: any
@@ -522,7 +522,7 @@ Description: Sokoban game for KDE
  expose yourself to too much mental strain.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kspaceduel
 Architecture: any
@@ -537,7 +537,7 @@ Description: Arcade two-player space game for KDE
  and play each other.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: ktron
 Architecture: any
@@ -548,7 +548,7 @@ Description: Tron clone for the K Desktop Environment
  and that of your opponent.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: ktuberling
 Architecture: any
@@ -572,7 +572,7 @@ Description: Potato Guy for KDE
  include them in the museum if he gets some spare time.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: kwin4
 Architecture: any
@@ -591,12 +591,12 @@ Description: Connect Four clone for KDE
  because the board is filled.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.
 
 Package: lskat
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, kdegames-card-data
+Depends: ${shlibs:Depends}, tdegames-card-data
 Description: Lieutnant Skat card game for KDE
  Lieutnant Skat (from German Offiziersskat) is a card game for two
  players. It is roughly played according to the rules of Skat but with
@@ -608,4 +608,4 @@ Description: Lieutnant Skat card game for KDE
  the game ends.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'kdegames' packages for more information.
+ See the 'kde' and 'tdegames' packages for more information.

@@ -1,4 +1,4 @@
-# translation of kdebase to german
+# translation of tdebase to german
 #
 # $Id: de.po 1042 2006-01-09 07:55:08Z ender $
 #

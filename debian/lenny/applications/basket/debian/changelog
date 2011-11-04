@@ -28,13 +28,13 @@ basket (1.0.2-2ubuntu1) hardy; urgency=low
 
 basket (1.0.2-2build2) gutsy; urgency=low
 
-  * Rebuilt with no source changes, for kdepim-enterprise again
+  * Rebuilt with no source changes, for tdepim-enterprise again
 
  -- Sarah Hobbs <hobbsee@ubuntu.com>  Sat, 06 Oct 2007 22:23:24 +1000
 
 basket (1.0.2-2build1) gutsy; urgency=low
 
-  * Rebuilt with no source changes, for kdepim-enterprise, which has
+  * Rebuilt with no source changes, for tdepim-enterprise, which has
     temporarily broken Kontact ABI
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 28 Aug 2007 21:56:28 +0100
@@ -91,8 +91,8 @@ basket (1.0~beta3-1) experimental; urgency=low
   * Remove unnecessary file debian/Makefile.
   * Update compat to 5.
   * Bumped Standards-Version to 3.7.2, no changes required.
-  * Update dep on kdebase-dev to kdelibs4-dev.
-  * Add build-dep on kdepim-dev to get kontact integration.
+  * Update dep on tdebase-dev to tdelibs4-dev.
+  * Add build-dep on tdepim-dev to get kontact integration.
   * Add build-dep on libgpgme11-dev to support encryption.
   * Package description:
     - Change short description.
@@ -100,7 +100,7 @@ basket (1.0~beta3-1) experimental; urgency=low
   * Not install empty file NEWS.
   * Rewrite debian/rules file.
   * Improve debian/copyright file.
-  * Versioned build-deps in kdelibs4-dev and kdepim-dev to build against 3.5.6
+  * Versioned build-deps in tdelibs4-dev and tdepim-dev to build against 3.5.6
     (so Sune's changes will work).
   * Patched desktop file to include Categories and moved to right place.
 
@@ -110,7 +110,7 @@ basket (1.0~beta3-1) experimental; urgency=low
   * Add a 10_dont_spam_stderr patch to not be that verbose on stderr. It uses
     kdDebug() now to report those.
   * Add a 11_match_trinity.5.6_kontact patch to make the kontact plugin work with 
-    kontact 3.5.6 - kdepim people have bumped their internal versionings.
+    kontact 3.5.6 - tdepim people have bumped their internal versionings.
   * Write new and improved manpage (Derived from help2man). (Closes: #405569)
   * Improve copyright file.
   * Minor changes to rules file.
@@ -132,7 +132,7 @@ basket (0.5.0-5.1) unstable; urgency=low
   * Non-maintainer upload.
   * Added -Wl,--as-needed as ldflags (Closes: #349480)
   * Trimmed build-depends to not include stuff from
-    kdebase dependency line
+    tdebase dependency line
 
  -- Sune Vuorela <debian@pusling.com>  Fri, 21 Apr 2006 21:25:43 +0000
 

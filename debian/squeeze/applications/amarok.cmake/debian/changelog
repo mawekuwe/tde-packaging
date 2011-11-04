@@ -225,7 +225,7 @@ amarok (1.4.8-1) unstable; urgency=low
   * Resync patches:
     - proxy_lyrics.diff - removed, merged upstream.
     - fix_gcc4.3_ftbfs.diff - removed, resolved upstream.
-  * Drop kdemultimedia-dev from Build-Depends. It's no longer needed.
+  * Drop tdemultimedia-dev from Build-Depends. It's no longer needed.
   * debian/rules: use /usr/share/automake-1.10 instead of *-1.9
     because 'automake' package provides version 1.10.
 
@@ -233,7 +233,7 @@ amarok (1.4.8-1) unstable; urgency=low
 
 amarok (2:1.4.9.1-0ubuntu3) hardy; urgency=low
 
-  * Added kdebase-kio-plugins as a recommened package 
+  * Added tdebase-kio-plugins as a recommened package 
 
  -- Jonathan Aquilina <eagles051387@gmail.com>  Tue, 15 Apr 2008 14:24:23 +0200
 
@@ -266,7 +266,7 @@ amarok (2:1.4.9-0ubuntu1) hardy; urgency=low
 amarok (2:1.4.8-0ubuntu5) hardy; urgency=low
 
   * Added kubuntu_08_luks_device_detection.diff to ajust Amarok's
-    media device detection to properly work with kdebase's
+    media device detection to properly work with tdebase's
     LUKS patch kubuntu_9913_kiomedialuks.diff) (LP: #186384)
 
  -- Harald Sitter <apachelogger@ubuntu.com>  Tue, 18 Mar 2008 01:10:01 +0100
@@ -563,7 +563,7 @@ amarok (2:1.4.5-0ubuntu1) feisty; urgency=low
     - sparc-asm.patch
 
   [ Sarah Hobbs ]
-  * Added dependancy kdebase-kio-plugins.  Closes malone #66764
+  * Added dependancy tdebase-kio-plugins.  Closes malone #66764
   * Compiling without stack smashing protection.  Closes malone #81768
 
  -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Sun,  4 Feb 2007 00:46:12 -0600
@@ -659,7 +659,7 @@ amarok (2:1.4.3-0ubuntu9) edgy; urgency=low
 amarok (2:1.4.3-0ubuntu8) edgy; urgency=low
 
   * The DAAP client would crash Amarok under certain conditions when
-    kdelibs was compiled with asserts on. Thanks to  Ian Monroe 
+    tdelibs was compiled with asserts on. Thanks to  Ian Monroe 
   * Closes KDE: #132851
 
  -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Wed, 20 Sep 2006 21:10:11 -0500
@@ -920,7 +920,7 @@ amarok (1.3.8-1) unstable; urgency=low
   * Switch patch management to quilt, and make use of patchsys-quilt.mk.
 
   * Drop build-depends version constraints that are satisfied with stable.
-    Drop the ones for kdebase-dev and kdemultimedia-dev as well, which were
+    Drop the ones for tdebase-dev and tdemultimedia-dev as well, which were
     transient and all arches have the minimum required versions in sid now.
 
  -- Adeodato Simó <dato@net.com.org.es>  Wed, 18 Jan 2006 01:43:40 +0100
@@ -929,8 +929,8 @@ amarok (1.3.7-1) unstable; urgency=low
 
   * New upstream bugfix release.
 
-  * Built against kdelibs4c2a, so installable in sid again. (Closes: #341959)
-    Temporarily bump build-deps on kdebase-dev and kdemultimedia-dev.
+  * Built against tdelibs4c2a, so installable in sid again. (Closes: #341959)
+    Temporarily bump build-deps on tdebase-dev and tdemultimedia-dev.
 
   * Remove debian/patches/taglib-1.3.1-suffices.diff, since taglib 1.4 is in
     testing and unstable, and I'll be using a backport for sarge packages.
@@ -1191,7 +1191,7 @@ amarok (1.3.0-1) unstable; urgency=low
 
     + automake1.6 to automake1.9.
     + libmysqlclient12-dev to libmysqlclient14-dev.
-    + temporarily bump version constraint in kdemultimedia-dev and kdebase-dev
+    + temporarily bump version constraint in tdemultimedia-dev and tdebase-dev
       in order to allow an early upload in the middle of the KDE transition.
 
   * Adjustments to the build-system:
@@ -1337,7 +1337,7 @@ amarok (1.2.0-1) unstable; urgency=low
       - add files for the konqueror sidebar.
 
     + debian/control:
-      - added kdebase-dev as Build-Dependency.
+      - added tdebase-dev as Build-Dependency.
 
     + debian/rules:
       - exclude konqsidebar_universalamarok.so from dh_shlibdeps, so that
@@ -1397,7 +1397,7 @@ amarok (1.1.1-2) unstable; urgency=high
   
   * New package relationships:
 
-    + amarok now recommends kdemultimedia-kio-plugins, which is needed to play
+    + amarok now recommends tdemultimedia-kio-plugins, which is needed to play
       audio CDs.
 
     + amarok now suggests konqueror, since it's called in the MusicBrainz

@@ -2,10 +2,10 @@ This package was debianized by Anthony Mercatante <tonio@ubuntu.com>
 on Fri, 01 Jun 2007 01:07:10 +0200
 
 It was downloaded from
-    https://code.launchpad.net/kdesudo
+    https://code.launchpad.net/tdesudo
 
-This version is a fork of the original kdesudo from
-    http://ksudo.sourceforge.net/kdesudo/
+This version is a fork of the original tdesudo from
+    http://ksudo.sourceforge.net/tdesudo/
 
 Upstream authors:
     Robert Gruber

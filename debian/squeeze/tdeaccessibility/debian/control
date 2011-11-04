@@ -1,18 +1,18 @@
-Source: kdeaccessibility-trinity
+Source: tdeaccessibility-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, gettext, groff-base, kdelibs4-trinity-dev, kdemultimedia-trinity-dev, libakode-dev, libxtst-dev, sharutils, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, gettext, groff-base, tdelibs4-trinity-dev, tdemultimedia-trinity-dev, libakode-dev, libxtst-dev, sharutils, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
-Package: kdeaccessibility-trinity
+Package: tdeaccessibility-trinity
 Section: kde
 Architecture: all
 Depends: kmag-trinity (>= ${Source-Version}), kmousetool-trinity (>= ${Source-Version}), kmouth-trinity (>= ${Source-Version}), kbstate-trinity (>= ${Source-Version}), ksayit-trinity (>= ${Source-Version}), kttsd-trinity (>= ${Source-Version})
 Recommends: kde-icons-mono-trinity (>= ${Source-Version})
-Suggests: kttsd-contrib-plugins-trinity (>= ${Source-Version}), kdeaccessibility-trinity-doc-html (>= ${Source-Version})
+Suggests: kttsd-contrib-plugins-trinity (>= ${Source-Version}), tdeaccessibility-trinity-doc-html (>= ${Source-Version})
 Description: accessibility packages from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -24,10 +24,10 @@ Description: accessibility packages from the official Trinity release
  .
   Homepage: http://accessibility.kde.org
 
-Package: kdeaccessibility-trinity-doc-html
+Package: tdeaccessibility-trinity-doc-html
 Architecture: all
 Section: doc
-Suggests: konqueror-trinity | www-browser, kdebase-trinity
+Suggests: konqueror-trinity | www-browser, tdebase-trinity
 Description: KDE accessibility documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -40,7 +40,7 @@ Description: KDE accessibility documentation in HTML format
  KDE accessibility packages.
  .
  This package is part of Trinity, and a component of the KDE accessibility
- module. See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ module. See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
 Package: kde-icons-mono-trinity
 Section: kde
@@ -49,7 +49,7 @@ Description: a monochromatic icons theme for KDE
  A monochromatic icon theme for KDE, designed for accessibility purposes.
  .
  This package is part of Trinity, as a component of the KDE accessibility module.
- See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
 Package: kbstate-trinity
 Section: utils
@@ -60,7 +60,7 @@ Description: a keyboard status applet for KDE
  A panel applet that displays the keyboard status.
  .
  This package is part of Trinity, as a component of the KDE accessibility module.
- See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
 Package: kmag-trinity
 Section: utils
@@ -76,7 +76,7 @@ Description: a screen magnifier for KDE
  people with low vision.
  .
  This package is part of Trinity, as a component of the KDE accessibility module.
- See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
 Package: kmousetool-trinity
 Section: utils
@@ -89,7 +89,7 @@ Description: KDE mouse manipulation tool for the disabled
  buttons hurts.
  .
  This package is part of Trinity, as a component of the KDE accessibility module.
- See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
 Package: kmouth-trinity
 Section: utils
@@ -103,7 +103,7 @@ Description: a type-and-say KDE frontend for speech synthesizers
  sentences to be re-spoken.
  .
  This package is part of Trinity, as a component of the KDE accessibility module.
- See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
 Package: ksayit-trinity
 Section: utils
@@ -114,7 +114,7 @@ Description: a frontend for the KDE Text-to-Speech system
  Text-to-speech front-end to kttsd.
  .
  This package is part of Trinity, as a component of the KDE accessibility module.
- See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
 
 Package: kttsd-trinity
@@ -131,7 +131,7 @@ Description: a Text-to-Speech system for KDE
  festival, flite, and epos are essential back-ends.
  .
  This package is part of Trinity, as a component of the KDE accessibility module.
- See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
  .
   Homepage: http://accessibility.kde.org/developer/kttsd
 
@@ -147,14 +147,14 @@ Description: the KDE Text-to-Speech system
  non free software to work.
  .
  This package is part of Trinity, as a component of the KDE accessibility module.
- See the 'kde-trinity' and 'kdeaccessibility-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
-Package: kdeaccessibility-trinity-dbg
+Package: tdeaccessibility-trinity-dbg
 Section: libdevel
 Architecture: any
-Depends: kdelibs-trinity-dbg
+Depends: tdelibs-trinity-dbg
 Priority: extra
-Description: debugging symbols for kdeaccessibility-trinity
- This package contains the debugging symbols associated with kdeaccessibility-trinity.
- They will automatically be used by gdb for debugging kdeaccessibility-related
+Description: debugging symbols for tdeaccessibility-trinity
+ This package contains the debugging symbols associated with tdeaccessibility-trinity.
+ They will automatically be used by gdb for debugging tdeaccessibility-related
  issues.

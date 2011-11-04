@@ -25,18 +25,18 @@ kuickshow (4:3.5.8-0ubuntu2) hardy; urgency=low
 
 kuickshow (4:3.5.8-0ubuntu1) hardy; urgency=low
 
-  * New upstream release, extracted from kdegraphics 3.5.8
+  * New upstream release, extracted from tdegraphics 3.5.8
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 14 Nov 2007 17:59:49 +0000
 
 kuickshow (4:3.5.7-0ubuntu1) gutsy; urgency=low
 
-  * New upstream release, extracted from kdegraphics 3.5.7
+  * New upstream release, extracted from tdegraphics 3.5.7
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 03 Jun 2007 14:45:49 +0100
 
 kuickshow (4:3.5.6-0ubuntu1) feisty; urgency=low
 
-  * Initial package, separate from kdegraphics due to imlib11 not being in main
+  * Initial package, separate from tdegraphics due to imlib11 not being in main
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 28 Feb 2007 16:29:08 +0000

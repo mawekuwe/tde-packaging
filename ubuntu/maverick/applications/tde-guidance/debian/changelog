@@ -1,34 +1,34 @@
-kde-guidance-trinity (0.8.0svn20080103-0ubuntu17.15) karmic; urgency=low
+tde-guidance-trinity (0.8.0svn20080103-0ubuntu17.15) karmic; urgency=low
 
   * Repaired displayconfig scripting and paths
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sun, 25 Oct 2009 21:47:00 -0600
 
-kde-guidance-trinity (0.8.0svn20080103-0ubuntu17.5) karmic; urgency=low
+tde-guidance-trinity (0.8.0svn20080103-0ubuntu17.5) karmic; urgency=low
 
   * Karmic rebuild
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sun, 26 Jul 2009 17:59:00 -0600
 
-kde-guidance-trinity (0.8.0svn20080103-0ubuntu17.4) jaunty; urgency=low
+tde-guidance-trinity (0.8.0svn20080103-0ubuntu17.4) jaunty; urgency=low
 
   * Rebuild against Python 2.6
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 22 Apr 2009 22:44:00 -0600
 
-kde-guidance-trinity (0.8.0svn20080103-0ubuntu16.5) intrepid; urgency=low
+tde-guidance-trinity (0.8.0svn20080103-0ubuntu16.5) intrepid; urgency=low
 
   * Fixed broken links (closes bug #58)
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 03 Apr 2009 11:18:00 -0600
 
-kde-guidance-trinity (0.8.0svn20080103-0ubuntu16.4) intrepid; urgency=low
+tde-guidance-trinity (0.8.0svn20080103-0ubuntu16.4) intrepid; urgency=low
 
   * Added -trinity suffix, altered paths
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sun, 08 Mar 2009 16:31:00 -0600
 
-kde-guidance (0.8.0svn20080103-0ubuntu16.2) hardy-proposed; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu16.2) hardy-proposed; urgency=low
 
   * kubuntu_35_displayconfig_detect_nvidia_driver.patch:
     - Detect proprietary driver 'nvidia' again as some of the nvidia
@@ -36,7 +36,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu16.2) hardy-proposed; urgency=low
 
  -- Andreas Wenning <awen@awen.dk>  Thu, 18 Sep 2008 14:24:31 +0200
 
-kde-guidance (0.8.0svn20080103-0ubuntu16.1) hardy-proposed; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu16.1) hardy-proposed; urgency=low
 
   [ Anthony Fok ]
   * kubuntu_32_displayconfig_update_refresh_rate.patch:
@@ -56,7 +56,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu16.1) hardy-proposed; urgency=low
 
  -- Andreas Wenning <awen@awen.dk>  Thu, 05 Jun 2008 16:24:38 +0200
 
-kde-guidance (0.8.0svn20080103-0ubuntu16) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu16) hardy; urgency=low
 
   * kubuntu_26_kde-powermanager_handle_hal_dbus_restarts.patch:
     - don't try to restart HAL if it is not running, let gpm displays
@@ -67,7 +67,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu16) hardy; urgency=low
 
  -- Guillaume Martres <smarter@ubuntu.com>  Thu, 17 Apr 2008 14:18:43 +0200
 
-kde-guidance (0.8.0svn20080103-0ubuntu15) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu15) hardy; urgency=low
 
   [ Andreas Wenning ]
   * Added kubuntu_29_kde-powermanager_display_consumption_rate.patch to
@@ -84,7 +84,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu15) hardy; urgency=low
 
  -- Yuriy Kozlov <yuriy-kozlov@kubuntu.org>  Sun, 13 Apr 2008 12:49:35 -0400
 
-kde-guidance (0.8.0svn20080103-0ubuntu14) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu14) hardy; urgency=low
 
   * Disable kubuntu_30_displayconfig_no_xorg_correct_detection.patch. It
     breaks the API, and the previous change did not even state a bug number.
@@ -94,7 +94,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu14) hardy; urgency=low
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Sat, 12 Apr 2008 18:17:24 +0200
 
-kde-guidance (0.8.0svn20080103-0ubuntu13) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu13) hardy; urgency=low
 
   * Added kubuntu_30_displayconfig_no_xorg_correct_detection.patch
     so we will detect the hardware automatically and write a xorg.conf
@@ -102,14 +102,14 @@ kde-guidance (0.8.0svn20080103-0ubuntu13) hardy; urgency=low
 
  -- Andreas Wenning <awen@awen.dk>  Thu, 10 Apr 2008 00:59:19 +0200
 
-kde-guidance (0.8.0svn20080103-0ubuntu12) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu12) hardy; urgency=low
 
   * Patch kubuntu_28_kde-powermanager_i18n_strings.patch adds missing
     translatable string.
 
  -- Andreas Wenning <awen@awen.dk>  Wed, 09 Apr 2008 00:13:18 +0200
 
-kde-guidance (0.8.0svn20080103-0ubuntu11) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu11) hardy; urgency=low
 
   [ Andreas Wenning ]
   * Added kubuntu_24_displayconfig_no_gamma.patch: As we cannot check if
@@ -131,7 +131,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu11) hardy; urgency=low
 
  -- Scott Kitterman <scott@kitterman.com>  Sat, 05 Apr 2008 20:06:50 -0400
 
-kde-guidance (0.8.0svn20080103-0ubuntu10) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu10) hardy; urgency=low
 
   [ Andreas Wenning ]
   * Added kubuntu_21_kde-powermanager_unique-check.patch:
@@ -141,9 +141,9 @@ kde-guidance (0.8.0svn20080103-0ubuntu10) hardy; urgency=low
       dcop calls to guidance-power-manager.
     - guidance-power-manager will now start gpmhelper.py.
     - Patched setup.py to build/install gpmhelper.py
-  * Changed debian/rules and debian/kde-guidance-powermanager.install
+  * Changed debian/rules and debian/tde-guidance-powermanager.install
     to install gpmhelper.py
-  * Added depends for kde-guidance-powermanager to python-gobject as
+  * Added depends for tde-guidance-powermanager to python-gobject as
     this is the only mainloop to work with DBusGMainLoop.
 
   [ Scott Kitterman ]
@@ -154,7 +154,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu10) hardy; urgency=low
 
  -- Scott Kitterman <scott@kitterman.com>  Sun, 30 Mar 2008 19:11:55 -0400
 
-kde-guidance (0.8.0svn20080103-0ubuntu9) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu9) hardy; urgency=low
 
   [ Andreas Wenning ]
   * Added kubuntu_22_userconfig_utf8.patch which fixes unicode problems present
@@ -167,7 +167,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu9) hardy; urgency=low
 
  -- Scott Kitterman <scott@kitterman.com>  Sat, 29 Mar 2008 23:10:20 -0400
 
-kde-guidance (0.8.0svn20080103-0ubuntu8) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu8) hardy; urgency=low
 
   * Update kubuntu_12_powermanager_survive_no_brightness.patch so it correctly
     catches the error (LP: #183656)
@@ -180,7 +180,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu8) hardy; urgency=low
 
  -- Scott Kitterman <scott@kitterman.com>  Tue, 25 Mar 2008 11:48:16 -0400
 
-kde-guidance (0.8.0svn20080103-0ubuntu7) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu7) hardy; urgency=low
 
   * Added debian/patches/kubuntu_17_kde-powermanager_brightness.patch
     which fixes the brightness slider when number of brightness levels
@@ -188,7 +188,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu7) hardy; urgency=low
 
  -- Andreas Wenning <awen@awen.dk>  Mon, 17 Mar 2008 23:02:36 +0100
 
-kde-guidance (0.8.0svn20080103-0ubuntu6) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu6) hardy; urgency=low
 
   * Bump standards version to 3.7.3 without further change
   * Rename kubuntu_14_displayconfig_survive_no_serverlayout.patch to be
@@ -209,14 +209,14 @@ kde-guidance (0.8.0svn20080103-0ubuntu6) hardy; urgency=low
 
  -- Scott Kitterman <scott@kitterman.com>  Mon, 17 Mar 2008 15:23:49 -0400
 
-kde-guidance (0.8.0svn20080103-0ubuntu5) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu5) hardy; urgency=low
 
   * debian/patches/kubuntu_15_powermanager_suspend.patch so we can
     suspend.
 
  -- Andreas Wenning <awen@awen.dk>  Thu, 13 Mar 2008 11:33:46 +0100
 
-kde-guidance (0.8.0svn20080103-0ubuntu4) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu4) hardy; urgency=low
 
   * Add kubuntu_14_displayconfig_survive_no_serverlayout.patch so 
     displaymanager doesn't crash if xorg.conf has no ServerLayout section 
@@ -226,7 +226,7 @@ kde-guidance (0.8.0svn20080103-0ubuntu4) hardy; urgency=low
 
  -- Scott Kitterman <scott@kitterman.com>  Wed, 12 Mar 2008 10:19:57 -0400
 
-kde-guidance (0.8.0svn20080103-0ubuntu3) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu3) hardy; urgency=low
 
   * Add Add kubuntu_09_mountconfig_no_extensions.patch to remove uneeded call
     to pykdeextensions in mountconfig so that pyqt3 no longer needs to be
@@ -245,13 +245,13 @@ kde-guidance (0.8.0svn20080103-0ubuntu3) hardy; urgency=low
 
  -- Scott Kitterman <scott@kitterman.com>  Sun, 09 Mar 2008 19:53:42 -0400
 
-kde-guidance (0.8.0svn20080103-0ubuntu2) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu2) hardy; urgency=low
 
   * Revert inadvertent upload meant for PPA
 
  -- Scott Kitterman <scott@kitterman.com>  Tue, 04 Mar 2008 16:52:29 -0500
 
-kde-guidance (0.8.0svn20080103-0ubuntu1) hardy; urgency=low
+tde-guidance (0.8.0svn20080103-0ubuntu1) hardy; urgency=low
 
   * New svn snapshot, includes fixes for .pot file
   * Add kubuntu_07_powermanager_i18n.patch:
@@ -266,14 +266,14 @@ kde-guidance (0.8.0svn20080103-0ubuntu1) hardy; urgency=low
 
  -- Anthony Mercatante <tonio@kubuntu>  Thu, 03 Jan 2008 22:37:28 +0100
 
-kde-guidance (0.8.0svn20070928-0ubuntu7) gutsy; urgency=low
+tde-guidance (0.8.0svn20070928-0ubuntu7) gutsy; urgency=low
 
   * Add workaround to displayconfig-restore.py for 151311
     kubuntu_06_displayconfig_fix_intel_dpi.diff
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 15 Oct 2007 15:53:45 +0100
 
-kde-guidance (0.8.0svn20070928-0ubuntu6) gutsy; urgency=low
+tde-guidance (0.8.0svn20070928-0ubuntu6) gutsy; urgency=low
 
   [ Jonathan Riddell ] * Add kubuntu_05_displayconfig_fix.diff with
   fix from Sebastian Heinline for bug which resulted in falsely
@@ -284,24 +284,24 @@ kde-guidance (0.8.0svn20070928-0ubuntu6) gutsy; urgency=low
     Patch provided by Liam Keene. (LP: #141023)
     debian/patches/kubuntu_04_disk_unicode.diff
   * Install Xsession startup script (displayconfig-restore) in 
-    kde-guidance package as it is KDE specific. (LP: #146730)
+    tde-guidance package as it is KDE specific. (LP: #146730)
 
  -- Luka Renko <lure@ubuntu.com>  Tue, 09 Oct 2007 19:57:37 +0200
 
-kde-guidance (0.8.0svn20070928-0ubuntu5) gutsy; urgency=low
+tde-guidance (0.8.0svn20070928-0ubuntu5) gutsy; urgency=low
 
-  * Make guidance-backends replace/conflicts old kde-guidance
+  * Make guidance-backends replace/conflicts old tde-guidance
     Closes LP: #133810
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 08 Oct 2007 12:44:15 +0100
 
-kde-guidance (0.8.0svn20070928-0ubuntu4) gutsy; urgency=low
+tde-guidance (0.8.0svn20070928-0ubuntu4) gutsy; urgency=low
 
   * Remove kubuntu_04_no_ati_dualhead.diff, it conflicts with patch 03
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 05 Oct 2007 12:22:27 +0100
 
-kde-guidance (0.8.0svn20070928-0ubuntu3) gutsy; urgency=low
+tde-guidance (0.8.0svn20070928-0ubuntu3) gutsy; urgency=low
 
   * Add kubuntu_04_no_ati_dualhead.diff from Sebastian Heinlein, 
     the latest free ATI drivers do no longer support the classic xinerama
@@ -309,7 +309,7 @@ kde-guidance (0.8.0svn20070928-0ubuntu3) gutsy; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 04 Oct 2007 21:47:47 +0100
 
-kde-guidance (0.8.0svn20070928-0ubuntu2) gutsy; urgency=low
+tde-guidance (0.8.0svn20070928-0ubuntu2) gutsy; urgency=low
 
   * Add kubuntu_03_displayconfig_updates.diff with updates from SVN by glatzor
    - Disable dual head support for intel and ati driver
@@ -321,36 +321,36 @@ kde-guidance (0.8.0svn20070928-0ubuntu2) gutsy; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 01 Oct 2007 23:25:16 +0100
 
-kde-guidance (0.8.0svn20070928-0ubuntu1) gutsy; urgency=low
+tde-guidance (0.8.0svn20070928-0ubuntu1) gutsy; urgency=low
 
   * New snapshot, includes
    - Update monitor definitions - fixes LP: #113520 #113514
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 28 Sep 2007 11:47:59 +0100
 
-kde-guidance (0.8.0svn20070727-0ubuntu6) gutsy; urgency=low
+tde-guidance (0.8.0svn20070727-0ubuntu6) gutsy; urgency=low
 
   * Fix for crash when loading xorg.conf's using the "Disable" keyword
 
  -- Bryce Harrington <bryce@ubuntu.com>  Thu,  6 Sep 2007 10:56:03 -0700
 
-kde-guidance (0.8.0svn20070727-0ubuntu5) gutsy; urgency=low
+tde-guidance (0.8.0svn20070727-0ubuntu5) gutsy; urgency=low
 
-  * Update kde-guidance replaces/conflicts guidance-backends
-    closes https://bugs.launchpad.net/ubuntu/+source/kde-guidance/+bug/133810
+  * Update tde-guidance replaces/conflicts guidance-backends
+    closes https://bugs.launchpad.net/ubuntu/+source/tde-guidance/+bug/133810
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 05 Sep 2007 18:59:44 +0100
 
-kde-guidance (0.8.0svn20070727-0ubuntu4) gutsy; urgency=low
+tde-guidance (0.8.0svn20070727-0ubuntu4) gutsy; urgency=low
 
   * Fixed an issue where you cannot not select the primary group for a user
     in the secondary ListPickerDialog()
-   - Closes https://bugs.launchpad.net/ubuntu/+source/kde-guidance/+bug/47412
+   - Closes https://bugs.launchpad.net/ubuntu/+source/tde-guidance/+bug/47412
    - Added kubuntu_02_primary_group_change.diff
 
  -- Stefan Skotte <sfs@enhance-it.dk>  Mon, 03 Sep 2007 22:17:07 +0200
 
-kde-guidance (0.8.0svn20070727-0ubuntu3) gutsy; urgency=low
+tde-guidance (0.8.0svn20070727-0ubuntu3) gutsy; urgency=low
 
   * Update from Uwe Koziolek <uwe.koziolek@gmx.net>
     The attached files includes updates for pcitables. The data are
@@ -359,22 +359,22 @@ kde-guidance (0.8.0svn20070727-0ubuntu3) gutsy; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 30 Aug 2007 15:34:26 +0100
 
-kde-guidance (0.8.0svn20070727-0ubuntu2) gutsy; urgency=low
+tde-guidance (0.8.0svn20070727-0ubuntu2) gutsy; urgency=low
 
   * Build-dep on python-qt-dev
   * Add kubuntu_01_infimport.diff to install infiimport.py file, closes
-    https://bugs.launchpad.net/ubuntu/+source/kde-guidance/+bug/131669
+    https://bugs.launchpad.net/ubuntu/+source/tde-guidance/+bug/131669
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 14 Aug 2007 10:53:06 +0100
 
-kde-guidance (0.8.0svn20070727-0ubuntu1) gutsy; urgency=low
+tde-guidance (0.8.0svn20070727-0ubuntu1) gutsy; urgency=low
 
   * New upstream snapshot
   * Remove all patches, applied upstream
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 27 Jul 2007 18:00:13 +0100
 
-kde-guidance (0.8.0-1ubuntu9) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu9) gutsy; urgency=low
 
   * Add debian/patches/xorgconfig_dexconf_style.patch: Change xorgconfig.py's
     style of written xorg.conf files to closely match dexconf's: Capitalize
@@ -383,51 +383,51 @@ kde-guidance (0.8.0-1ubuntu9) gutsy; urgency=low
 
  -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 19 Jun 2007 19:10:11 +0200
 
-kde-guidance (0.8.0-1ubuntu8) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu8) gutsy; urgency=low
 
   * Fix symlink to displayconfig-restore
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 07 Jun 2007 13:16:25 +0100
 
-kde-guidance (0.8.0-1ubuntu7) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu7) gutsy; urgency=low
 
-  * Fix kde-guidance's replaces to allow installation
+  * Fix tde-guidance's replaces to allow installation
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 06 Jun 2007 09:42:36 +0000
 
-kde-guidance (0.8.0-1ubuntu6) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu6) gutsy; urgency=low
 
   * Fix path in /usr/bin/guidance-power-manager
-  * Add replaces to old package on kde-guidance
+  * Add replaces to old package on tde-guidance
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 05 Jun 2007 21:35:55 +0000
 
-kde-guidance (0.8.0-1ubuntu5) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu5) gutsy; urgency=low
 
   * Remove excessive dependencies from guidance-backends
   * Split up python-central directories to avoid overlapping files
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 05 Jun 2007 14:47:30 +0000
 
-kde-guidance (0.8.0-1ubuntu4) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu4) gutsy; urgency=low
 
   * Move pyversion to correctly named pyversions, to build with python 2.5
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 04 Jun 2007 16:00:50 +0000
 
-kde-guidance (0.8.0-1ubuntu3) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu3) gutsy; urgency=low
 
   * Fix versioned build depends to python-qt3 not python-trinity
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 04 Jun 2007 13:23:18 +0100
 
-kde-guidance (0.8.0-1ubuntu2) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu2) gutsy; urgency=low
 
   * Build-dep on python-qt3 >= 3.17.2-1ubuntu2 for compile fix
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 31 May 2007 11:59:26 +0100
 
-kde-guidance (0.8.0-1ubuntu1) gutsy; urgency=low
+tde-guidance (0.8.0-1ubuntu1) gutsy; urgency=low
 
   * Merge with Debian, remaining change:
    - kubuntu_01_enable_wineconfig.diff
@@ -443,18 +443,18 @@ kde-guidance (0.8.0-1ubuntu1) gutsy; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 30 May 2007 15:54:26 +0100
 
-kde-guidance (0.8.0-1) unstable; urgency=low
+tde-guidance (0.8.0-1) unstable; urgency=low
 
   * New upstream release.
 
   [ Fathi Boudra ]
   * Add x11proto-scrnsaver-dev build dependency.
-  * Update kde-guidance.install:
+  * Update tde-guidance.install:
     * Add wineconfig icons.
     * Remove bytecompiled modules (pyc).
     * Remove fuser_ui.ui file.
-  * Remove old displayconfig-hwprobe.py init links in kde-guidance.postinst.
-  * Update kde-guidance-powermanager.install. Add powermanager_ui.py.
+  * Remove old displayconfig-hwprobe.py init links in tde-guidance.postinst.
+  * Update tde-guidance-powermanager.install. Add powermanager_ui.py.
   * Remove pycompat file. Deprecated.
   * Update rules:
     * Use DEB_DH_INSTALL_ARGS.
@@ -475,7 +475,7 @@ kde-guidance (0.8.0-1) unstable; urgency=low
 
  -- Fathi Boudra <fboudra@free.fr>  Fri, 18 May 2007 19:45:51 +0200
 
-kde-guidance (0.8.0-0ubuntu5) feisty; urgency=low
+tde-guidance (0.8.0-0ubuntu5) feisty; urgency=low
 
   * Update kubuntu_06_powermanager_fixes.diff with fix from
     https://launchpad.net/bugs/104794 comment 7
@@ -483,52 +483,52 @@ kde-guidance (0.8.0-0ubuntu5) feisty; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 13 Apr 2007 10:50:55 +0100
 
-kde-guidance (0.8.0-0ubuntu4) feisty; urgency=low
+tde-guidance (0.8.0-0ubuntu4) feisty; urgency=low
 
   * Add kubuntu_05_nvidia_typo.diff fix crash with nvidia non-free driver
   * Add kubuntu_06_powermanager_fixes.diff with fixes from trunk
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon,  9 Apr 2007 23:47:13 +0100
 
-kde-guidance (0.8.0-0ubuntu3) feisty; urgency=low
+tde-guidance (0.8.0-0ubuntu3) feisty; urgency=low
 
-  * Remove old displayconfig-hwprobe.py init links in kde-guidance.postinst
-    closes https://bugs.launchpad.net/ubuntu/+source/kde-guidance/+bug/99203
+  * Remove old displayconfig-hwprobe.py init links in tde-guidance.postinst
+    closes https://bugs.launchpad.net/ubuntu/+source/tde-guidance/+bug/99203
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri,  6 Apr 2007 16:29:18 +0100
 
-kde-guidance (0.8.0-0ubuntu2) feisty; urgency=low
+tde-guidance (0.8.0-0ubuntu2) feisty; urgency=low
 
   * Add kubuntu_03_no_cpu_freq.diff, fix https://launchpad.net/bugs/99198
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 31 Mar 2007 11:33:39 +0100
 
-kde-guidance (0.8.0-0ubuntu1) feisty; urgency=low
+tde-guidance (0.8.0-0ubuntu1) feisty; urgency=low
 
   * Non-snapshot release for feisty
   * Add kubuntu_02_wineconfig_icon.diff fix icon name in .desktop file
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 30 Mar 2007 12:17:30 +0100
 
-kde-guidance (0.7.1~svn20070205-0ubuntu1) feisty; urgency=low
+tde-guidance (0.7.1~svn20070205-0ubuntu1) feisty; urgency=low
 
   * New upstream snapshot
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Mon, 05 Feb 2007 11:52:27 +0100
 
-kde-guidance (0.7.1~svn20070204-1) experimental; urgency=low
+tde-guidance (0.7.1~svn20070204-1) experimental; urgency=low
 
   [ Fathi Boudra ]
   * New release from svn r630094. (Closes: #397508, #405880)
   * Remove useless patch typos_setup and force_python2.4_script.
   * control:
     * Add libxss-dev to build-depends.
-    * Remove python-dbus depends on kde-guidance.
-    * Add Conflicts: python2.4-iconvcodec on kde-guidance.
-    * Add kde-guidance depends on kde-guidance-powermanager.
-    * Remove Conflicts: klaptopdaemon, kpowersave on kde-guidance-powermanager
-  * kde-guidance.install: replace versioned python by wildcard on ixf86misc.so.
-  * kde-guidance-powermanager.install: use wildcard for battery pics.
+    * Remove python-dbus depends on tde-guidance.
+    * Add Conflicts: python2.4-iconvcodec on tde-guidance.
+    * Add tde-guidance depends on tde-guidance-powermanager.
+    * Remove Conflicts: klaptopdaemon, kpowersave on tde-guidance-powermanager
+  * tde-guidance.install: replace versioned python by wildcard on ixf86misc.so.
+  * tde-guidance-powermanager.install: use wildcard for battery pics.
   * rules:
     * Replace hardcoded python version by wildcard.
     * Enable wineconfig.
@@ -539,7 +539,7 @@ kde-guidance (0.7.1~svn20070204-1) experimental; urgency=low
 
  -- Fathi Boudra <fboudra@free.fr>  Sun,  4 Feb 2007 12:27:42 +0100
 
-kde-guidance (0.7.1~svn20070129-0ubuntu1) feisty; urgency=low
+tde-guidance (0.7.1~svn20070129-0ubuntu1) feisty; urgency=low
 
   * New upstream snapshot
   * Add kubuntu_01_enable_wineconfig.diff to enable wineconfig in
@@ -547,67 +547,67 @@ kde-guidance (0.7.1~svn20070129-0ubuntu1) feisty; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 29 Jan 2007 18:03:53 +0000
 
-kde-guidance (0.7.1~svn20070111-0ubuntu7) feisty; urgency=low
+tde-guidance (0.7.1~svn20070111-0ubuntu7) feisty; urgency=low
 
   * Add kubuntu_02_powermanage.diff from trunk, stop it breaking
     when cpufreq is disabled
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 18 Jan 2007 15:44:26 +0000
 
-kde-guidance (0.7.1~svn20070111-0ubuntu6) feisty; urgency=low
+tde-guidance (0.7.1~svn20070111-0ubuntu6) feisty; urgency=low
 
   * Remove debian/patches/12_force_python2.4_script.diff.
 
  -- Matthias Klose <doko@ubuntu.com>  Tue, 16 Jan 2007 12:44:50 +0100
 
-kde-guidance (0.7.1~svn20070111-0ubuntu5) feisty; urgency=low
+tde-guidance (0.7.1~svn20070111-0ubuntu5) feisty; urgency=low
 
   * Use the unversioned interpreter name for the scripts.
 
  -- Matthias Klose <doko@ubuntu.com>  Mon, 15 Jan 2007 15:47:46 +0000
 
-kde-guidance (0.7.1~svn20070111-0ubuntu4) feisty; urgency=low
+tde-guidance (0.7.1~svn20070111-0ubuntu4) feisty; urgency=low
 
   * debian/pyversions: Nice file to hardcode the python version.
   * debian/rules: Don't hardcode the python version.
 
  -- Matthias Klose <doko@ubuntu.com>  Mon, 15 Jan 2007 09:22:54 +0000
 
-kde-guidance (0.7.1~svn20070111-0ubuntu3) feisty; urgency=low
+tde-guidance (0.7.1~svn20070111-0ubuntu3) feisty; urgency=low
 
   * Rebuild for python2.5 as the default python version.
 
  -- Matthias Klose <doko@ubuntu.com>  Fri, 12 Jan 2007 13:18:02 +0000
 
-kde-guidance (0.7.1~svn20070111-0ubuntu2) feisty; urgency=low
+tde-guidance (0.7.1~svn20070111-0ubuntu2) feisty; urgency=low
 
-  * Drop some duplicate icons from kde-guidance-powermanager
-    (already in kde-guidance package)
+  * Drop some duplicate icons from tde-guidance-powermanager
+    (already in tde-guidance package)
 
  -- Luka Renko <lure@ubuntu.com>  Tue,  9 Jan 2007 20:15:54 +0100
 
-kde-guidance (0.7.1~svn20070111-0ubuntu1) feisty; urgency=low
+tde-guidance (0.7.1~svn20070111-0ubuntu1) feisty; urgency=low
 
   * New SVN snapshot. Fixes powermanager icons.
-  * Fixed debian/control, kde-guidance doesn't depend on
-    python-dbus and kde-guidance-powermanager depends on
-    kde-guidance.
+  * Fixed debian/control, tde-guidance doesn't depend on
+    python-dbus and tde-guidance-powermanager depends on
+    tde-guidance.
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 09 Jan 2007 17:07:35 +0100
 
-kde-guidance (0.7.1~svn20070110-0ubuntu1) feisty; urgency=low
+tde-guidance (0.7.1~svn20070110-0ubuntu1) feisty; urgency=low
 
   * New SVN snapshot. Fixes critical crash on startup.
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 09 Jan 2007 13:45:32 +0100
 
-kde-guidance (0.7.1~svn20070109-0ubuntu1) feisty; urgency=low
+tde-guidance (0.7.1~svn20070109-0ubuntu1) feisty; urgency=low
 
   * New SVN snapshot.
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 09 Jan 2007 01:55:47 +0100
 
-kde-guidance (0.7.1~svn20061215-0ubuntu1) feisty; urgency=low
+tde-guidance (0.7.1~svn20061215-0ubuntu1) feisty; urgency=low
 
   * New SVN snapshot.
   * Clean powermanager/icon content
@@ -616,20 +616,20 @@ kde-guidance (0.7.1~svn20061215-0ubuntu1) feisty; urgency=low
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Fri, 15 Dec 2006 03:51:54 +0100
 
-kde-guidance (0.7.1~svn20061124-0ubuntu2) feisty; urgency=low
+tde-guidance (0.7.1~svn20061124-0ubuntu2) feisty; urgency=low
 
   * Rebuilt against new pykde.
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Wed, 06 Dec 2006 23:40:32 +0100
 
-kde-guidance (0.7.1~svn20061124-0ubuntu1) feisty; urgency=low
+tde-guidance (0.7.1~svn20061124-0ubuntu1) feisty; urgency=low
 
   * New SVN snapshot.
   * Removed obsolete kubuntu_10_critical_threshold.diff
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Fri,  24 Nov 2006 01:00:28 +0200
 
-kde-guidance (0.7.0-1) unstable; urgency=low
+tde-guidance (0.7.0-1) unstable; urgency=low
 
   * New upstream release (Closes: #386636)
   * Update maintainers
@@ -644,34 +644,34 @@ kde-guidance (0.7.0-1) unstable; urgency=low
     * control:
       * add python-trinity-dev to build-depends
       * add python-dbus and sysv-rc to depends
-      * add kde-guidance-powermanager package
+      * add tde-guidance-powermanager package
     * pyversions: replace "2.4-" by "2.4", since build fails using python 2.5,
       problem to import kdedistutils
     * rules:
       * Don't add extra /usr prefix when creating symlinks for
         {display,mount,service,user}config and displayconfig-restore
-      * add kde-guidance-powermanager install
+      * add tde-guidance-powermanager install
       * create a script to launch guidance-power-manager instead of a link
 
  -- Fathi Boudra <fboudra@free.fr>  Mon, 21 Aug 2006 10:34:01 +0200
 
-kde-guidance (0.7.0-0ubuntu4) edgy; urgency=low
+tde-guidance (0.7.0-0ubuntu4) edgy; urgency=low
 
   * Edit debian/rules to generate .pot file
     Closes Malone No 67614
-  * Remove Conflicts: klaptopdaemon, kpowersave from kde-guidance-powermanager
+  * Remove Conflicts: klaptopdaemon, kpowersave from tde-guidance-powermanager
     allows people to do apt-get install kde
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 22 Oct 2006 20:05:01 +0000
 
-kde-guidance (0.7.0-0ubuntu3) edgy; urgency=low
+tde-guidance (0.7.0-0ubuntu3) edgy; urgency=low
 
-  * Make kde-guidance conflict on python2.4-iconvcodec
+  * Make tde-guidance conflict on python2.4-iconvcodec
     Closes Malone No 62223
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 22 Oct 2006 14:34:54 +0100
 
-kde-guidance (0.7.0-0ubuntu2) edgy; urgency=low
+tde-guidance (0.7.0-0ubuntu2) edgy; urgency=low
 
   * kubuntu_10_critical_threshold.diff added, reduce safety threshold
     for percentage charged to 10% in order to prevent automatic critical
@@ -686,20 +686,20 @@ kde-guidance (0.7.0-0ubuntu2) edgy; urgency=low
 
  -- Luka Renko <lure@ubuntu.com>  Sat, 21 Oct 2006 15:10:50 +0200
 
-kde-guidance (0.7.0-0ubuntu1) edgy; urgency=low
+tde-guidance (0.7.0-0ubuntu1) edgy; urgency=low
 
   * Bump version number for an Edgy release
   * Fixes bugs 64053 and 64978
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 12 Oct 2006 20:05:22 +0100
 
-kde-guidance (0.6.7svn20061006-0ubuntu1) edgy; urgency=low
+tde-guidance (0.6.7svn20061006-0ubuntu1) edgy; urgency=low
 
   * New SVN snapshot
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Fri,  10 Oct 2006 16:04:28 +0200
 
-kde-guidance (0.6.7svn20060919-0ubuntu1) edgy; urgency=low
+tde-guidance (0.6.7svn20060919-0ubuntu1) edgy; urgency=low
 
   * New SVN snapshot
   * Split out power manager applet into new package so it can be removed 
@@ -707,19 +707,19 @@ kde-guidance (0.6.7svn20060919-0ubuntu1) edgy; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 19 Sep 2006 14:52:11 +0100
 
-kde-guidance (0.6.7svn20060914-0ubuntu2) edgy; urgency=low
+tde-guidance (0.6.7svn20060914-0ubuntu2) edgy; urgency=low
 
   * Remove stop script symlinks from rc0 and rc6.
 
  -- Scott James Remnant <scott@ubuntu.com>  Mon, 18 Sep 2006 17:26:27 +0100
 
-kde-guidance (0.6.7svn20060914-0ubuntu1) edgy; urgency=low
+tde-guidance (0.6.7svn20060914-0ubuntu1) edgy; urgency=low
 
   * New SVN snapshot, includes power-manager improvement
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Thu,  14 Sep 2006 20:54:28 +0200
 
-kde-guidance (0.6.7svn20060906-0ubuntu2) edgy; urgency=low
+tde-guidance (0.6.7svn20060906-0ubuntu2) edgy; urgency=low
 
   * Changed debian/rules to create a script to launch
     guidance-power-manager instead of a link. Fixes the logout issue
@@ -730,20 +730,20 @@ kde-guidance (0.6.7svn20060906-0ubuntu2) edgy; urgency=low
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Sun,  10 Sep 2006 13:45:28 +0200
 
-kde-guidance (0.6.7svn20060906-0ubuntu1) edgy; urgency=low
+tde-guidance (0.6.7svn20060906-0ubuntu1) edgy; urgency=low
 
   * New SVN snapshot, includes displayconfig usability fixes, 
     powerconfig fixes and new powerconfig icons
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed,  6 Sep 2006 13:22:28 +0100
 
-kde-guidance (0.6.7svn20060829-0ubuntu1) edgy; urgency=low
+tde-guidance (0.6.7svn20060829-0ubuntu1) edgy; urgency=low
 
   * New SVN snapshot
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 29 Aug 2006 14:35:20 +0100
 
-kde-guidance (0.6.7svn20060810-0ubuntu1) edgy; urgency=low
+tde-guidance (0.6.7svn20060810-0ubuntu1) edgy; urgency=low
 
   * New SVN snapshot
   * Adds power manager applet for 
@@ -751,7 +751,7 @@ kde-guidance (0.6.7svn20060810-0ubuntu1) edgy; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 10 Aug 2006 08:56:24 -0400
 
-kde-guidance (0.6.7-3ubuntu2) edgy; urgency=low
+tde-guidance (0.6.7-3ubuntu2) edgy; urgency=low
 
   * debian/rules: Don't add extra /usr prefix when creating symlinks
     for {display,mount,service,user}config & displayconfig-restore
@@ -759,19 +759,19 @@ kde-guidance (0.6.7-3ubuntu2) edgy; urgency=low
 
  -- Daniel T Chen <crimsun@ubuntu.com>  Mon, 31 Jul 2006 21:55:39 -0400
 
-kde-guidance (0.6.7-3ubuntu1) edgy; urgency=low
+tde-guidance (0.6.7-3ubuntu1) edgy; urgency=low
 
   * Sync with Debian
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 26 Jul 2006 18:39:47 +0100
 
-kde-guidance (0.6.7-3) experimental; urgency=low
+tde-guidance (0.6.7-3) experimental; urgency=low
 
-  * Fixed displayconfig-hwprobe.py in kde-guidance.init (Closes: #376779)
+  * Fixed displayconfig-hwprobe.py in tde-guidance.init (Closes: #376779)
 
  -- Fathi Boudra <fboudra@free.fr>  Wed,  5 Jul 2006 08:35:08 +0200
 
-kde-guidance (0.6.7-2) experimental; urgency=low
+tde-guidance (0.6.7-2) experimental; urgency=low
 
   * Converted package to python-support
   * Added pycompat and pyversions
@@ -783,7 +783,7 @@ kde-guidance (0.6.7-2) experimental; urgency=low
 
  -- Fathi Boudra <fboudra@free.fr>  Fri, 30 Jun 2006 14:44:46 +0200
 
-kde-guidance (0.6.7-1) experimental; urgency=low
+tde-guidance (0.6.7-1) experimental; urgency=low
 
   * Initial Debian release (Closes: #340144)
   * Merged with Ubuntu
@@ -794,7 +794,7 @@ kde-guidance (0.6.7-1) experimental; urgency=low
 
  -- Fathi Boudra <fboudra@free.fr>  Thu,  8 Jun 2006 17:08:06 +0200
 
-kde-guidance (0.6.7-0ubuntu4) dapper; urgency=low
+tde-guidance (0.6.7-0ubuntu4) dapper; urgency=low
 
   * Add kubuntu_02_passwordexpire.diff from branch,
     set local passexpirewarn (not global variable of same name) 
@@ -802,14 +802,14 @@ kde-guidance (0.6.7-0ubuntu4) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 28 May 2006 14:34:10 +0100
 
-kde-guidance (0.6.7-0ubuntu3) dapper; urgency=low
+tde-guidance (0.6.7-0ubuntu3) dapper; urgency=low
 
   * Change init number of displayconfig-hwprobe.py to 60, 
     in line with Ubuntu policy
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 26 May 2006 14:18:42 +0100
 
-kde-guidance (0.6.7-0ubuntu2) dapper; urgency=low
+tde-guidance (0.6.7-0ubuntu2) dapper; urgency=low
 
   * Add kubuntu_01_branch.diff
     - Adds Dutch Translations to .desktop files
@@ -818,7 +818,7 @@ kde-guidance (0.6.7-0ubuntu2) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 19 May 2006 02:09:48 +0300
 
-kde-guidance (0.6.7-0ubuntu1) dapper; urgency=low
+tde-guidance (0.6.7-0ubuntu1) dapper; urgency=low
 
   [ Simon Edwards ]
   * Dutch translation added (Rinse de Vries)
@@ -830,7 +830,7 @@ kde-guidance (0.6.7-0ubuntu1) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 14 May 2006 01:38:55 +0300
 
-kde-guidance (0.6.6-0ubuntu1) dapper; urgency=low
+tde-guidance (0.6.6-0ubuntu1) dapper; urgency=low
 
   [ Simon Edwards ]
   * BUG: Serviceconfig didn't correctly remove links in runlevel directories.
@@ -850,14 +850,14 @@ kde-guidance (0.6.6-0ubuntu1) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 28 Apr 2006 14:18:26 +0100
 
-kde-guidance (0.6.5-0ubuntu2) dapper; urgency=low
+tde-guidance (0.6.5-0ubuntu2) dapper; urgency=low
 
   * Add kubuntu_01_broken_script.diff comment out invalid python in
     displayconfig script
  
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 26 Apr 2006 00:38:46 +0100
 
-kde-guidance (0.6.5-0ubuntu1) dapper; urgency=low
+tde-guidance (0.6.5-0ubuntu1) dapper; urgency=low
 
   [ Simon Edwards ]
   * BUG: services that have not been installed via apt would cause long loops
@@ -897,7 +897,7 @@ kde-guidance (0.6.5-0ubuntu1) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 20 Apr 2006 18:35:40 +0100
 
-kde-guidance (0.6.4-0ubuntu1) dapper; urgency=low
+tde-guidance (0.6.4-0ubuntu1) dapper; urgency=low
 
   [ Simon Edwards ]
   * BUG: All of the tools no longer write out config files under ~/.kde when
@@ -934,7 +934,7 @@ kde-guidance (0.6.4-0ubuntu1) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun,  2 Apr 2006 21:46:15 +0100
 
-kde-guidance (0.6.3-0ubuntu1) dapper; urgency=low
+tde-guidance (0.6.3-0ubuntu1) dapper; urgency=low
 
   [ Fathi Boudra ]
   * Sync with Debian package (not yet in archives)
@@ -982,7 +982,7 @@ kde-guidance (0.6.3-0ubuntu1) dapper; urgency=low
 
  -- Fathi Boudra <fboudra@free.fr>  Sun, 19 Mar 2006 17:39:48 +0100
 
-kde-guidance (0.6.3-1) unstable; urgency=low
+tde-guidance (0.6.3-1) unstable; urgency=low
 
   * Merge with Ubuntu
   * New upstream version
@@ -993,7 +993,7 @@ kde-guidance (0.6.3-1) unstable; urgency=low
 
  -- Fathi Boudra <fboudra@free.fr>  Sun, 19 Mar 2006 15:46:17 +0100
 
-kde-guidance (0.6.2-0ubuntu1) dapper; urgency=low
+tde-guidance (0.6.2-0ubuntu1) dapper; urgency=low
 
   [ Simon Edwards ]
   * BUG: Small bug in displayconfig that caused it to bug out around the 
@@ -1026,7 +1026,7 @@ kde-guidance (0.6.2-0ubuntu1) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun,  5 Mar 2006 21:51:47 +0000
 
-kde-guidance (0.6.1-0ubuntu0) dapper; urgency=low
+tde-guidance (0.6.1-0ubuntu0) dapper; urgency=low
 
   * New release, sets a fixed DPI for Xft
   * Add run time dependency on pykdeextensions
@@ -1035,7 +1035,7 @@ kde-guidance (0.6.1-0ubuntu0) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 20 Feb 2006 22:22:25 +0000
 
-kde-guidance (0.6.0-0ubuntu1) dapper; urgency=low
+tde-guidance (0.6.0-0ubuntu1) dapper; urgency=low
 
   * New release
   * Implements Guidance sections of https://wiki.ubuntu.com/DebianSystemTools
@@ -1044,19 +1044,19 @@ kde-guidance (0.6.0-0ubuntu1) dapper; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 18 Jan 2006 20:44:05 +0100
 
-kde-guidance (0.4.0+svn20060102-0ubuntu1) dapper; urgency=low
+tde-guidance (0.4.0+svn20060102-0ubuntu1) dapper; urgency=low
 
   * New snapshot, displayconfig added
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon,  2 Jan 2006 22:53:34 +0000
 
-kde-guidance (0.4.0-0ubuntu5) dapper; urgency=low
+tde-guidance (0.4.0-0ubuntu5) dapper; urgency=low
 
   * Rebuild for libstdc++ transition
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 13 Dec 2005 00:25:05 +0000
 
-kde-guidance (0.4.0-0ubuntu4) breezy; urgency=low
+tde-guidance (0.4.0-0ubuntu4) breezy; urgency=low
 
   * Copy necessary icons to global icon directory
   * Add GenericNames to .desktop files
@@ -1064,31 +1064,31 @@ kde-guidance (0.4.0-0ubuntu4) breezy; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 21 Sep 2005 02:44:22 +0100
 
-kde-guidance (0.4.0-0ubuntu3) breezy; urgency=low
+tde-guidance (0.4.0-0ubuntu3) breezy; urgency=low
 
   * Move files from /usr/lib/python2.4/site-packages/guidance 
     to just /usr/lib/python2.4/site-packages
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 17 Sep 2005 21:31:21 +0100
 
-kde-guidance (0.4.0-0ubuntu2) breezy; urgency=low
+tde-guidance (0.4.0-0ubuntu2) breezy; urgency=low
 
   * Can't remove debian/docs, it's in the .orig
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 15 Sep 2005 02:01:07 +0100
 
-kde-guidance (0.4.0-0ubuntu1) breezy; urgency=low
+tde-guidance (0.4.0-0ubuntu1) breezy; urgency=low
 
   * New upstream version
-  * Fix debian/rules for rename to kde-guidance
+  * Fix debian/rules for rename to tde-guidance
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 15 Sep 2005 01:07:38 +0100
 
-kde-guidance (0.3.0+svn20050911-0ubuntu1) breezy; urgency=low
+tde-guidance (0.3.0+svn20050911-0ubuntu1) breezy; urgency=low
 
   * Initial Ubuntu upload
   * Install .py files into /usr/lib/python2.4/site-packages/guidance
-  * Change source and package name to kde-guidance to 
+  * Change source and package name to tde-guidance to 
     reduce namespace polution
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 11 Sep 2005 23:51:52 +0100

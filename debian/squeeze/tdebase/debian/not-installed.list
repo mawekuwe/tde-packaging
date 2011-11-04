@@ -42,7 +42,7 @@ This is deliberate.
  - useless comments, not intended for the end user.
 
 /usr/share/fonts/override/fonts.dir
- - cruft, as kdebase no longer installs any system fonts.
+ - cruft, as tdebase no longer installs any system fonts.
 
 /usr/share/apps/kappfinder/apps/Office/lyx.desktop
  - a lyx.desktop that works in KDE is provided by lyx-qt, so this just

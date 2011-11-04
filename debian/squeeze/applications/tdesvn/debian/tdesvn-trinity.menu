@@ -1,0 +1,8 @@
+?package(tdesvn):\
+  needs="X11"\
+  section="Applications/Programming"\
+  hints="KDE,Version control"\
+  title="KDESvn"\
+  longtitle="SVN client"\
+  icon="/usr/share/pixmaps/tdesvn.xpm"\
+  command="/opt/trinity/bin/tdesvn"

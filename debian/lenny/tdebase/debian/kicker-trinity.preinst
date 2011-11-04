@@ -3,7 +3,7 @@
 case "$1" in
 
     upgrade)
-	rm -f /etc/menu-methods/kdebase
+	rm -f /etc/menu-methods/tdebase
 	rm -f /etc/trinity/debian/kde-update-menu.sh
 	rm -f /etc/menu-methods/kicker
     ;;

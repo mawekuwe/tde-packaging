@@ -1,19 +1,19 @@
-Source: kdeartwork-trinity
+Source: tdeartwork-trinity
 Section: kde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, kdelibs4-trinity-dev, gawk, gettext, sharutils, kdebase-trinity-dev, kwin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-trinity-dev, gawk, gettext, sharutils, tdebase-trinity-dev, kwin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies, automake, autoconf, libtool, libltdl-dev
 Build-Conflicts: autoconf2.13, nvidia-glx
 Standards-Version: 3.8.4
 
-Package: kdeartwork-trinity
+Package: tdeartwork-trinity
 Architecture: all
 Section: kde
-Replaces: kdeartwork-kde3 (<< 4:3.5.13)
-Breaks: kdeartwork-kde3 (<< 4:3.5.13)
-Depends: kdeartwork-misc-trinity (>= ${Source-Version}), kdeartwork-emoticons-trinity (>= ${Source-Version}), kdeartwork-style-trinity (>= ${Source-Version}), kdeartwork-theme-icon-trinity (>= ${Source-Version}), kdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), kscreensaver-trinity (>= ${Source-Version})
+Replaces: tdeartwork-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-kde3 (<< 4:3.5.13)
+Depends: tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), kscreensaver-trinity (>= ${Source-Version})
 Recommends: kscreensaver-xsavers-trinity
 Description: themes, styles and more from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -27,37 +27,37 @@ Description: themes, styles and more from the official Trinity release
  .
  Homepage: http://artist.kde.org 
 
-Package: kdeartwork-emoticons-trinity
+Package: tdeartwork-emoticons-trinity
 Architecture: all
 Section: kde
-Replaces: kdeartwork-emoticons-kde3 (<< 4:3.5.13)
-Breaks: kdeartwork-emoticons-kde3 (<< 4:3.5.13)
+Replaces: tdeartwork-emoticons-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-emoticons-kde3 (<< 4:3.5.13)
 Enhances: kopete-trinity
 Description: emoticon collections for KDE chat clients
  This package contains several collections of emoticons used by official
  and unofficial KDE chat clients, such as Kopete and Konversation.
  .
  This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kdeartwork-misc-trinity
+Package: tdeartwork-misc-trinity
 Architecture: all
 Section: kde
-Replaces: kdeartwork-misc-kde3 (<< 4:3.5.13)
-Breaks: kdeartwork-misc-kde3 (<< 4:3.5.13)
+Replaces: tdeartwork-misc-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-misc-kde3 (<< 4:3.5.13)
 Suggests: kworldclock
 Description: various multimedia goodies released with KDE
  This package contains miscellaneous multimedia goodies for KDE.
  Included are additional KDE sounds and kworldclock themes.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kdeartwork-style-trinity
+Package: tdeartwork-style-trinity
 Architecture: any
 Section: kde
-Replaces: kdeartwork-style-kde3 (<< 4:3.5.13)
-Breaks: kdeartwork-style-kde3 (<< 4:3.5.13)
+Replaces: tdeartwork-style-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-style-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: widget styles released with Trinity
  This package contains additional widget styles for Trinity. Widget styles
@@ -66,13 +66,13 @@ Description: widget styles released with Trinity
  manager in the KDE Control Centre.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kdeartwork-theme-icon-trinity
+Package: tdeartwork-theme-icon-trinity
 Architecture: all
 Section: kde
-Replaces: kdeartwork-theme-icon-kde3 (<< 4:3.5.13)
-Breaks: kdeartwork-theme-icon-kde3 (<< 4:3.5.13)
+Replaces: tdeartwork-theme-icon-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-theme-icon-kde3 (<< 4:3.5.13)
 Recommends: kdesktop-trinity, kicker-trinity
 Description: icon themes released with Trinity
  This package contains additional icon themes for Trinity. Icon themes can be
@@ -80,13 +80,13 @@ Description: icon themes released with Trinity
  can be applied using the icon manager in the Trinity Control Centre.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kdeartwork-theme-window-trinity
+Package: tdeartwork-theme-window-trinity
 Architecture: any
 Section: kde
-Replaces: kdeartwork-theme-window-kde3 (<< 4:3.5.13)
-Breaks: kdeartwork-theme-window-kde3 (<< 4:3.5.13)
+Replaces: tdeartwork-theme-window-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-theme-window-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: window decoration themes released with Trinity
  This package contains additional window decoration themes for Trinity. Window
@@ -95,7 +95,7 @@ Description: window decoration themes released with Trinity
  Control Center.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
 Package: kdewallpapers-trinity
 Architecture: all
@@ -108,14 +108,14 @@ Description: wallpapers released with Trinity
  applied using the background manager in the KDE Control Centre.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
 Package: kscreensaver-trinity
 Architecture: any
 Section: kde
 Replaces: kscreensaver-kde3 (<< 4:3.5.13)
 Breaks: kscreensaver-kde3 (<< 4:3.5.13)
-Depends: ${shlibs:Depends}, kdebase-trinity-bin
+Depends: ${shlibs:Depends}, tdebase-trinity-bin
 Recommends: kwin-trinity, kscreensaver-xsavers-trinity (= ${Source-Version})
 Description: additional screen savers released with Trinity
  This package contains the screen savers for Trinity. They can be tested and
@@ -127,14 +127,14 @@ Description: additional screen savers released with Trinity
  the KDE Control Center, install the separate package kscreensaver-xsavers.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
 Package: kscreensaver-xsavers-trinity
 Architecture: any
 Section: kde
 Replaces: kscreensaver-xsavers-kde3 (<< 4:3.5.13)
 Breaks: kscreensaver-xsavers-kde3 (<< 4:3.5.13)
-Depends: ${shlibs:Depends}, kdebase-trinity-bin, xscreensaver-data
+Depends: ${shlibs:Depends}, tdebase-trinity-bin, xscreensaver-data
 Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version}), xscreensaver-gl
 Suggests: kscreensaver-xsavers-webcollage-trinity
 Description: Trinity hooks for standard xscreensavers
@@ -150,7 +150,7 @@ Description: Trinity hooks for standard xscreensavers
  files to integrate these packages into Trinity.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
 Package: kscreensaver-xsavers-webcollage-trinity
 Architecture: all
@@ -175,7 +175,7 @@ Description: webcollage screensaver Trinity hook
  installation.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
 Package: kscreensaver-xsavers-extra-trinity
 Architecture: all
@@ -195,16 +195,16 @@ Description: Trinity hooks for standard xscreensavers
  kscreensaver.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
- See the 'kde-trinity' and 'kdeartwork-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kdeartwork-trinity-dbg
+Package: tdeartwork-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: kdeartwork-kde3-dbg (<< 4:3.5.13)
-Breaks: kdeartwork-kde3-dbg (<< 4:3.5.13)
-Depends: kdelibs-trinity-dbg
+Replaces: tdeartwork-kde3-dbg (<< 4:3.5.13)
+Breaks: tdeartwork-kde3-dbg (<< 4:3.5.13)
+Depends: tdelibs-trinity-dbg
 Priority: extra
-Description: debugging symbols for kdeartwork-trinity
- This package contains the debugging symbols associated with kdeartwork.
- They will automatically be used by gdb for debugging kdeartwork-related
+Description: debugging symbols for tdeartwork-trinity
+ This package contains the debugging symbols associated with tdeartwork.
+ They will automatically be used by gdb for debugging tdeartwork-related
  issues.

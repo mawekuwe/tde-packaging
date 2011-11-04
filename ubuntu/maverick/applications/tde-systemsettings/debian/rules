@@ -27,18 +27,18 @@ debian/stamp-bootstrap:
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-cleanbuilddir/kde-systemsettings-trinity::
+cleanbuilddir/tde-systemsettings-trinity::
 	rm -f systemsettings.1
 
-build/kde-systemsettings-trinity::
+build/tde-systemsettings-trinity::
 	docbook2x-man debian/systemsettings.1.docbook
 
-install/kde-systemsettings-trinity::
+install/tde-systemsettings-trinity::
 	# Don't clash files, just Use the ones from kcontrol
-	rm debian/kde-systemsettings-trinity/opt/trinity/share/desktop-directories/kde-settings-power.directory
-	rm debian/kde-systemsettings-trinity/opt/trinity/share/desktop-directories/kde-settings-system.directory
-	rm debian/kde-systemsettings-trinity/opt/trinity/share/applications/kde/kcmfontinst.desktop
-	rm debian/kde-systemsettings-trinity/opt/trinity/share/applications/kde/laptoppowermanagement.desktop
-	cp debian/kde-settings-laptops.directory debian/kde-systemsettings-trinity/opt/trinity/share/desktop-directories/
+	rm debian/tde-systemsettings-trinity/opt/trinity/share/desktop-directories/kde-settings-power.directory
+	rm debian/tde-systemsettings-trinity/opt/trinity/share/desktop-directories/kde-settings-system.directory
+	rm debian/tde-systemsettings-trinity/opt/trinity/share/applications/kde/kcmfontinst.desktop
+	rm debian/tde-systemsettings-trinity/opt/trinity/share/applications/kde/laptoppowermanagement.desktop
+	cp debian/kde-settings-laptops.directory debian/tde-systemsettings-trinity/opt/trinity/share/desktop-directories/
 
-DEB_INSTALL_MANPAGES_kde-systemsettings-trinity = systemsettings.1
+DEB_INSTALL_MANPAGES_tde-systemsettings-trinity = systemsettings.1

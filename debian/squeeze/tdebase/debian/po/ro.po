@@ -1,6 +1,6 @@
-# Romanian translation of kdebase_4.
-# Copyright (C) 2006 THE kdebase_4'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the kdebase_4 package.
+# Romanian translation of tdebase_4.
+# Copyright (C) 2006 THE tdebase_4'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the tdebase_4 package.
 # mutulica <stan.ieugen@gmail.com>, 2006.
 # , fuzzy
 # mutulica <stan.ieugen@gmail.com>, 2006.
@@ -8,7 +8,7 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: kdebase_4 3.5.4-2\n"
+"Project-Id-Version: tdebase_4 3.5.4-2\n"
 "Report-Msgid-Bugs-To: debian-qt-kde@lists.debian.org\n"
 "POT-Creation-Date: 2007-04-09 19:07+0200\n"
 "PO-Revision-Date: 2006-09-15 01:01+0300\n"

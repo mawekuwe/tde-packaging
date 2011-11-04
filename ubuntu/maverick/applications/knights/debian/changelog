@@ -103,7 +103,7 @@ knights (0.6-7.1) unstable; urgency=medium
 
 knights (0.6-7) unstable; urgency=low
 
-  * debian/control: added kdebase-kio-plugins to Depends field.
+  * debian/control: added tdebase-kio-plugins to Depends field.
     This allow users without kde installations to be able to load knights
     themes. (Closes: #361451)
   * Added a dpatch (courtesy of Claudio Moratti) to prevent knights from asking
@@ -114,7 +114,7 @@ knights (0.6-7) unstable; urgency=low
 
 knights (0.6-6) unstable; urgency=low
 
-  * Rebuild against kdelibs4c2a. (Closes: #338269)
+  * Rebuild against tdelibs4c2a. (Closes: #338269)
   * debian/control: build-depends on specific libraries instead of xlibs-dev.
 
  -- Tommaso Moroni <moronito@debian.org>  Sun,  4 Dec 2005 11:55:42 +0100

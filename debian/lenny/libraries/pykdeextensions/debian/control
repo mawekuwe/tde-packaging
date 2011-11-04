@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), chrpath, quilt, kdelibs4c2a-trinity, libtool,
+Build-Depends: cdbs, debhelper (>= 5), chrpath, quilt, tdelibs4c2a-trinity, libtool,
  libxml2-utils, libxrandr-dev, libxxf86vm-dev, pyqt-tools, python-trinity-trinity,
  python-qt-dev, python-sip4-dev, python-support (>= 0.6), python (>= 2.5), python-dev (>= 2.5)
 Standards-Version: 3.8.4

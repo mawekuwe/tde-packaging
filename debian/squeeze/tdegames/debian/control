@@ -1,18 +1,18 @@
-Source: kdegames-trinity
+Source: tdegames-trinity
 Section: games
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Daniel Schepler <schepler@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, kdelibs4-trinity-dev (>= 4:3.5.10), libtool, groff-base, sharutils, bzip2, sharutils, libogg-dev, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
-Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, qt3-doc, kdelibs4-trinity-doc
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev (>= 4:3.5.10), libtool, groff-base, sharutils, bzip2, sharutils, libogg-dev, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
+Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, qt3-doc, tdelibs4-trinity-doc
 Standards-Version: 3.8.4
 
-Package: kdegames-trinity
+Package: tdegames-trinity
 Architecture: all
 Section: kde
 Depends: atlantik-trinity (>= ${Source-Version}), kasteroids-trinity (>= ${Source-Version}), katomic-trinity (>= ${Source-Version}), kbackgammon-trinity (>= ${Source-Version}), kbattleship-trinity (>= ${Source-Version}), kblackbox-trinity (>= ${Source-Version}), kbounce-trinity (>= ${Source-Version}), kenolaba-trinity (>= ${Source-Version}), kfouleggs-trinity (>= ${Source-Version}), kgoldrunner-trinity (>= ${Source-Version}), kjumpingcube-trinity (>= ${Source-Version}), klickety-trinity (>= ${Source-Version}), klines-trinity (>= ${Source-Version}), kmahjongg-trinity (>= ${Source-Version}), kmines-trinity (>= ${Source-Version}), knetwalk-trinity (>= ${Source-Version}), kolf-trinity (>= ${Source-Version}), konquest-trinity (>= ${Source-Version}), kpat-trinity (>= ${Source-Version}), kpoker-trinity (>= ${Source-Version}), kreversi-trinity (>= ${Source-Version}), ksame-trinity (>= ${Source-Version}), kshisen-trinity (>= ${Source-Version}), ksirtet-trinity (>= ${Source-Version}), ksmiletris-trinity (>= ${Source-Version}), ksnake-trinity (>= ${Source-Version}), ksokoban-trinity (>= ${Source-Version}), kspaceduel-trinity (>= ${Source-Version}), ktron-trinity (>= ${Source-Version}), ktuberling-trinity (>= ${Source-Version}), kwin4-trinity (>= ${Source-Version}), lskat-trinity (>= ${Source-Version})
-Suggests: kdegames-trinity-doc-html (>= ${Source-Version}), khelpcenter-trinity
+Suggests: tdegames-trinity-doc-html (>= ${Source-Version}), khelpcenter-trinity
 Description: games from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -22,10 +22,10 @@ Description: games from the official Trinity release
  This metapackage includes a collection of games provided with
  the official release of KDE.
 
-Package: kdegames-trinity-doc-html
+Package: tdegames-trinity-doc-html
 Architecture: all
 Section: doc
-Suggests: konqueror-trinity | www-browser, kdegames-trinity
+Suggests: konqueror-trinity | www-browser, tdegames-trinity
 Description: KDE games documentation in HTML format
  By default the games provided with KDE (the K Desktop Environment)
  only provide their documentation in KDE docbook format, which can
@@ -38,9 +38,9 @@ Description: KDE games documentation in HTML format
  /usr/share/doc/kde/HTML/en/kasteroids/.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
-Package: libkdegames1-trinity
+Package: libtdegames1-trinity
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
@@ -51,49 +51,49 @@ Description: Trinity games library and common files
  including chat capabilities.
  .
  This package is part of KDE, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
-Package: kdegames-trinity-dbg
+Package: tdegames-trinity-dbg
 Architecture: any
-Depends: kdelibs-trinity-dbg
+Depends: tdelibs-trinity-dbg
 Priority: extra
 Section: kde
-Description: debugging symbols for kdegames
- This package contains the debugging symbols associated with kdegames.
- They will automatically be used by gdb for debugging kdegames-related
+Description: debugging symbols for tdegames
+ This package contains the debugging symbols associated with tdegames.
+ They will automatically be used by gdb for debugging tdegames-related
  issues.
 
-Package: libkdegames-trinity-dev
+Package: libtdegames-trinity-dev
 Architecture: any
 Section: libdevel
-Depends: kdelibs4-trinity-dev (>= 4:3.5.1), libkdegames1-trinity (= ${Source-Version})
+Depends: tdelibs4-trinity-dev (>= 4:3.5.1), libtdegames1-trinity (= ${Source-Version})
 Description: Trinity games library headers
  This package is necessary if you want to develop your own games using
  the KDE games library.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
-Package: libkdegames-trinity-doc
+Package: libtdegames-trinity-doc
 Architecture: all
 Section: doc
-Recommends: kdelibs4-trinity-doc, qt3-doc
-Suggests: konqueror-trinity | www-browser, libkdegames-trinity-dev
+Recommends: tdelibs4-trinity-doc, qt3-doc
+Suggests: konqueror-trinity | www-browser, libtdegames-trinity-dev
 Description: API documentation for the Trinity games library
- This package contains the developers' documentation for libkdegames.
+ This package contains the developers' documentation for libtdegames.
  You may want to install it if you wish to develop games for KDE.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
-Package: kdegames-card-data-trinity
+Package: tdegames-card-data-trinity
 Architecture: all
 Section: games
 Description: Card decks for Trinity games
  Several different collections of card images for use by KDE games.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: atlantik-trinity
 Architecture: any
@@ -108,19 +108,19 @@ Description: KDE client for Monopoly-like network games
  America and Europe.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: atlantik-trinity-dev
 Architecture: any
 Section: devel
 Priority: extra
-Depends: ${shlibs:Depends}, atlantik-trinity (= ${Source-Version}), libkdegames-trinity-dev (= ${Source-Version})
+Depends: ${shlibs:Depends}, atlantik-trinity (= ${Source-Version}), libtdegames-trinity-dev (= ${Source-Version})
 Description: Development files for Atlantik
  This package contains header files for compiling programs against the
  libraries which come with Atlantik.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kasteroids-trinity
 Architecture: any
@@ -135,7 +135,7 @@ Description: Asteroids for Trinity
  makes contact with an asteroid.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: katomic-trinity
 Architecture: any
@@ -148,7 +148,7 @@ Description: Atomic Entertainment game for Trinity
  wall or another atom.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kbackgammon-trinity
 Architecture: any
@@ -163,7 +163,7 @@ Description: A Backgammon game for Trinity
  upgrade :-)).
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kbattleship-trinity
 Architecture: any
@@ -176,7 +176,7 @@ Description: Battleship game for Trinity
  against the computer.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kblackbox-trinity
 Architecture: any
@@ -191,7 +191,7 @@ Description: A simple logical game for the Trinity project
  your score.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kbounce-trinity
 Architecture: any
@@ -216,7 +216,7 @@ Description: Jezzball clone for the K Desktop Environment
  This game was previously known as kjezz.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kenolaba-trinity
 Architecture: any
@@ -233,7 +233,7 @@ Description: Enolaba board game for Trinity
  board game Abalone by Abalone SA, France.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kfouleggs-trinity
 Architecture: any
@@ -246,7 +246,7 @@ Description: A KDE clone of the Japanese PuyoPuyo game
  find KFouleggs easy to learn.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kgoldrunner-trinity
 Architecture: any
@@ -269,7 +269,7 @@ Description: A Trinity clone of the Loderunner arcade game
  reappear somewhere else.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kjumpingcube-trinity
 Architecture: any
@@ -284,7 +284,7 @@ Description: Tactical one or two player game
  owns all squares.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: klickety-trinity
 Architecture: any
@@ -295,7 +295,7 @@ Description: A Clickomania-like game for Trinity
  game; it is very similar to the "same" game.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: klines-trinity
 Architecture: any
@@ -315,7 +315,7 @@ Description: Color lines for Trinity
  three more marbles.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kmahjongg-trinity
 Architecture: any
@@ -327,7 +327,7 @@ Description: the classic mahjongg game for Trinity project
  no other tiles block them on the left or right side.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kmines-trinity
 Architecture: any
@@ -344,7 +344,7 @@ Description: Minesweeper for Trinity
  mine.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: knetwalk-trinity
 Architecture: any
@@ -357,7 +357,7 @@ Description: A game for system administrators
  and no wires are left unconnected.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kolf-trinity
 Architecture: any
@@ -368,19 +368,19 @@ Description: Minigolf game for KDE
  golf courses and waste an exorbitant amount of time.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kolf-trinity-dev
 Architecture: any
 Section: devel
 Priority: extra
-Depends: ${shlibs:Depends}, kolf-trinity (= ${Source-Version}), libkdegames-trinity-dev (= ${Source-Version})
+Depends: ${shlibs:Depends}, kolf-trinity (= ${Source-Version}), libtdegames-trinity-dev (= ${Source-Version})
 Description: Development files for Kolf
  This package contains headers and development libraries for compiling
  Kolf plugins.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: konquest-trinity
 Architecture: any
@@ -392,29 +392,29 @@ Description: KDE based GNU-Lactic Konquest game
  across the galaxy and, of course, crush your rivals in the process.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kpat-trinity
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, kdebase-data-trinity, kdegames-card-data-trinity
+Depends: ${shlibs:Depends}, tdebase-data-trinity, tdegames-card-data-trinity
 Description: Trinity solitaire patience game
  KPatience is a collection of 14 card games. All the games are single
  player games.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kpoker-trinity
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, kdegames-card-data-trinity
+Depends: ${shlibs:Depends}, tdegames-card-data-trinity
 Description: Trinity based Poker clone
  KPoker is a KDE compliant clone of those highly addictive pocket
  video poker games which are sometimes called "Videopoker" as well.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kreversi-trinity
 Architecture: any
@@ -429,7 +429,7 @@ Description: Reversi for Trinity
  no more moves possible.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: ksame-trinity
 Architecture: any
@@ -442,7 +442,7 @@ Description: SameGame for Trinity
  platform.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kshisen-trinity
 Architecture: any
@@ -455,7 +455,7 @@ Description: Shisen-Sho for Trinity
  The object of the game is to remove all tiles from the field.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: ksirtet-trinity
 Architecture: any
@@ -472,7 +472,7 @@ Description: Tetris and Puyo-Puyo games for Trinity
  1/(1+level) second).
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: ksmiletris-trinity
 Architecture: any
@@ -484,7 +484,7 @@ Description: Tetris like game for Trinity
  blocks so there are two or more of the same symbol vertically.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: ksnake-trinity
 Architecture: any
@@ -495,7 +495,7 @@ Description: Snake Race for Trinity
  are trying to eat all the apples in the room before getting out!
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: ksokoban-trinity
 Architecture: any
@@ -522,7 +522,7 @@ Description: Sokoban game for Trinity
  expose yourself to too much mental strain.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kspaceduel-trinity
 Architecture: any
@@ -537,7 +537,7 @@ Description: Arcade two-player space game for Trinity
  and play each other.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: ktron-trinity
 Architecture: any
@@ -548,7 +548,7 @@ Description: Tron clone for the K Desktop Environment
  and that of your opponent.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: ktuberling-trinity
 Architecture: any
@@ -572,7 +572,7 @@ Description: Potato Guy for Trinity
  include them in the museum if he gets some spare time.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: kwin4-trinity
 Architecture: any
@@ -591,12 +591,12 @@ Description: Connect Four clone for Trinity
  because the board is filled.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.
 
 Package: lskat-trinity
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, kdegames-card-data-trinity
+Depends: ${shlibs:Depends}, tdegames-card-data-trinity
 Description: Lieutnant Skat card game for Trinity
  Lieutnant Skat (from German Offiziersskat) is a card game for two
  players. It is roughly played according to the rules of Skat but with
@@ -608,4 +608,4 @@ Description: Lieutnant Skat card game for Trinity
  the game ends.
  .
  This package is part of Trinity, and a component of the KDE games module.
- See the 'kde-trinity' and 'kdegames-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdegames-trinity' packages for more information.

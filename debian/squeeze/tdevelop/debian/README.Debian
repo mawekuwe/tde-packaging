@@ -16,6 +16,6 @@ say "Yes" and the PCS files will be regenerated.
 -------------------------------------------------
 
 If you want to be able to view manpages and documentation within KDevelop,
-you need to install the 'kdebase-kio' plugins package.
+you need to install the 'tdebase-kio' plugins package.
 
  -- Jeremy Lainé <jeremy.laine@m4x.org>  Sat, 02 Jun 2007 12:53:31 +0200

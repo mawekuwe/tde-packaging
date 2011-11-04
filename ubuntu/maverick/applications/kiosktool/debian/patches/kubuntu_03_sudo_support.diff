@@ -54,7 +54,7 @@
 +{
 +  if (url.protocol() == "fish" && url.host() == "localhost") {
 +    TQProcess proc;
-+    proc.addArgument("kdesudo");
++    proc.addArgument("tdesudo");
 +    proc.addArgument("mkdir " + url.path());
 +    TQByteArray buffer;
 +    proc.launch(buffer);
@@ -83,7 +83,7 @@
 +{
 +  if (dest.protocol() == "fish" && dest.host() == "localhost") {
 +    TQProcess proc;
-+    proc.addArgument("kdesudo");
++    proc.addArgument("tdesudo");
 +    proc.addArgument("cp " + src.path() + " " + dest.path());
 +    TQByteArray buffer;
 +    proc.launch(buffer);
@@ -92,7 +92,7 @@
 +    }
 +
 +    TQProcess proc2;
-+    proc2.addArgument("kdesudo");
++    proc2.addArgument("tdesudo");
 +    proc2.addArgument("chmod 0644 " + dest.path());
 +    proc2.launch(buffer);
 +    while (!proc2.normalExit()) {
@@ -111,7 +111,7 @@
 +{
 +  if (url.protocol() == "fish" && url.host() == "localhost") {
 +    TQProcess proc;
-+    proc.addArgument("kdesudo");
++    proc.addArgument("tdesudo");
 +    proc.addArgument("rm " + url.path());
 +    TQByteArray buffer;
 +    proc.launch(buffer);
@@ -130,7 +130,7 @@
 +{
 +  if (target.protocol() == "fish" && target.host() == "localhost") {
 +    TQProcess proc;
-+    proc.addArgument("kdesudo");
++    proc.addArgument("tdesudo");
 +    proc.addArgument("mv " + src.path() + " " + target.path());
 +    TQByteArray buffer;
 +    proc.launch(buffer);

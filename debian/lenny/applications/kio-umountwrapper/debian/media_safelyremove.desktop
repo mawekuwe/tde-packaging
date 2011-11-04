@@ -71,4 +71,4 @@ Name[zh_CN]=安全删除
 Name[zh_TW]=安全的移除
 Exec=kio_umountwrapper %u
 
-X-Ubuntu-Gettext-Domain=desktop_kdebase
+X-Ubuntu-Gettext-Domain=desktop_tdebase

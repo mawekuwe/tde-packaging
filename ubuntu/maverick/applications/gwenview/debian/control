@@ -2,7 +2,7 @@ Source: gwenview-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 6.0.0), kdelibs4-trinity-dev (>= 4:3.4.3), libkipi0-trinity-dev (>= 0.1.2-2), libexiv2-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 6.0.0), tdelibs4-trinity-dev (>= 4:3.4.3), libkipi0-trinity-dev (>= 0.1.2-2), libexiv2-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://gwenview.sourceforge.net
 
@@ -11,7 +11,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: gwenview-kde3 (<< 4:3.5.13)
 Breaks: gwenview-kde3 (<< 4:3.5.13)
-Recommends: kdegraphics-kfile-plugins-trinity, kipi-plugins-trinity
+Recommends: tdegraphics-kfile-plugins-trinity, kipi-plugins-trinity
 Suggests: gwenview-i18n
 Description: image viewer for TDE
  Gwenview is an image viewer for the K Desktop Environment. It features a
@@ -23,7 +23,7 @@ Description: image viewer for TDE
  Image loading is handled by the Qt library, so Gwenview supports all image
  formats your Qt installation supports. Gwenview correctly displays images
  with an alpha channel. Gwenview supports the displaying and editing of EXIF
- comments, and, if the kdegraphics-kfile-plugins package is installed, other
+ comments, and, if the tdegraphics-kfile-plugins package is installed, other
  image meta-information as well. Also supported is KIPI, the KDE Image Plugin
  Interface, a collection of helpful tools provided by the kipi-plugins
  package. The ability to perform lossless JPEG transforms is built in.

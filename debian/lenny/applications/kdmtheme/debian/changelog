@@ -99,7 +99,7 @@ kdmtheme (1.2-0ubuntu1) gutsy; urgency=low
 
 kdmtheme (1.1.2-2ubuntu1) feisty; urgency=low
 
-  * Added kubuntu_01_kcm_systemsettings.diff for kde-systemsettings
+  * Added kubuntu_01_kcm_systemsettings.diff for tde-systemsettings
     inclusion in the Appearance section
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 13 Feb 2007 06:18:32 +0100

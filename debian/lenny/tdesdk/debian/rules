@@ -12,7 +12,7 @@ DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
-DEB_DH_STRIP_ARGS := --dbg-package=kdesdk-trinity-dbg
+DEB_DH_STRIP_ARGS := --dbg-package=tdesdk-trinity-dbg
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
 
@@ -35,38 +35,38 @@ DEB_INSTALL_CHANGELOGS_kcachegrind-trinity := kcachegrind/ChangeLog
 DEB_INSTALL_CHANGELOGS_kompare-trinity := kompare/ChangeLog
 DEB_INSTALL_CHANGELOGS_umbrello-trinity := umbrello/ChangeLog
 
-binary-install/kdesdk-scripts-trinity::
-	mv -f debian/kdesdk-scripts-trinity/usr/share/man/pl/man1/kdemangen.1 \
-		debian/kdesdk-scripts-trinity/usr/share/man/man1/kdemangen.pl.1
-	mv -f debian/kdesdk-scripts-trinity/usr/share/man/pl/man1/png2mng.1 \
-		debian/kdesdk-scripts-trinity/usr/share/man/man1/png2mng.pl.1
-	mv -f debian/kdesdk-scripts-trinity/usr/share/man/py/man1/kdelnk2desktop.1 \
-		debian/kdesdk-scripts-trinity/usr/share/man/man1/kdelnk2desktop.py.1
-	mv -f debian/kdesdk-scripts-trinity/usr/share/man/py/man1/zonetab2pot.1 \
-		debian/kdesdk-scripts-trinity/usr/share/man/man1/zonetab2pot.py.1
-	mv -f debian/kdesdk-scripts-trinity/usr/share/man/sh/man1/build-progress.1 \
-		debian/kdesdk-scripts-trinity/usr/share/man/man1/build-progress.sh.1
-	mv -f debian/kdesdk-scripts-trinity/opt/trinity/bin/svn-clean \
-		debian/kdesdk-scripts-trinity/opt/trinity/bin/svn-clean-kde
-	mv -f debian/kdesdk-scripts-trinity/opt/trinity/bin/svnversions \
-		debian/kdesdk-scripts-trinity/opt/trinity/bin/svnversion-kde
-	rm -rf debian/kdesdk-scripts-trinity/opt/share/man/pl
-	rm -rf debian/kdesdk-scripts-trinity/opt/share/man/py
-	rm -rf debian/kdesdk-scripts-trinity/opt/share/man/sh
+binary-install/tdesdk-scripts-trinity::
+	mv -f debian/tdesdk-scripts-trinity/usr/share/man/pl/man1/kdemangen.1 \
+		debian/tdesdk-scripts-trinity/usr/share/man/man1/kdemangen.pl.1
+	mv -f debian/tdesdk-scripts-trinity/usr/share/man/pl/man1/png2mng.1 \
+		debian/tdesdk-scripts-trinity/usr/share/man/man1/png2mng.pl.1
+	mv -f debian/tdesdk-scripts-trinity/usr/share/man/py/man1/kdelnk2desktop.1 \
+		debian/tdesdk-scripts-trinity/usr/share/man/man1/kdelnk2desktop.py.1
+	mv -f debian/tdesdk-scripts-trinity/usr/share/man/py/man1/zonetab2pot.1 \
+		debian/tdesdk-scripts-trinity/usr/share/man/man1/zonetab2pot.py.1
+	mv -f debian/tdesdk-scripts-trinity/usr/share/man/sh/man1/build-progress.1 \
+		debian/tdesdk-scripts-trinity/usr/share/man/man1/build-progress.sh.1
+	mv -f debian/tdesdk-scripts-trinity/opt/trinity/bin/svn-clean \
+		debian/tdesdk-scripts-trinity/opt/trinity/bin/svn-clean-kde
+	mv -f debian/tdesdk-scripts-trinity/opt/trinity/bin/svnversions \
+		debian/tdesdk-scripts-trinity/opt/trinity/bin/svnversion-kde
+	rm -rf debian/tdesdk-scripts-trinity/opt/share/man/pl
+	rm -rf debian/tdesdk-scripts-trinity/opt/share/man/py
+	rm -rf debian/tdesdk-scripts-trinity/opt/share/man/sh
 	install -p -D -m644 scripts/kde-buildrc \
-		debian/kdesdk-scripts-trinity/opt/trinity/share/doc/kdesdk-scripts-trinity/kde-buildrc.example
+		debian/tdesdk-scripts-trinity/opt/trinity/share/doc/tdesdk-scripts-trinity/kde-buildrc.example
 
-binary-install/kdesdk-misc-trinity::
+binary-install/tdesdk-misc-trinity::
 	install -p -D -m644 kdeaccounts-plugin/README \
-		debian/kdesdk-misc-trinity/opt/trinity/share/doc/kdesdk-misc/README.kdeaccounts-plugin
+		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/README.kdeaccounts-plugin
 	install -p -D -m644 kioslave/svn/AUTHORS \
-		debian/kdesdk-misc-trinity/opt/trinity/share/doc/kdesdk-misc/AUTHORS.kioslave-svn
+		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/AUTHORS.kioslave-svn
 	install -p -D -m644 kioslave/svn/README \
-		debian/kdesdk-misc-trinity/opt/trinity/share/doc/kdesdk-misc/README.kioslave-svn
+		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/README.kioslave-svn
 	install -p -D -m644 kprofilemethod/README \
-		debian/kdesdk-misc-trinity/opt/trinity/share/doc/kdesdk-misc/README.kprofilemethod
+		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/README.kprofilemethod
 	install -p -D -m644 scheck/README \
-		debian/kdesdk-misc-trinity/opt/trinity/share/doc/kdesdk-misc/README.scheck
+		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/README.scheck
 
 binary-install/kapptemplate-trinity::
 	rm -f debian/kapptemplate-trinity/opt/trinity/share/apps/kapptemplate/admin/*.cdbs-orig

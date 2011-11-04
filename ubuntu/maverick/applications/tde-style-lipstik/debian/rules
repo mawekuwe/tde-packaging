@@ -47,7 +47,7 @@ build-stamp:  config.status
 
 	# Add here commands to compile the package.
 	env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib $(MAKE)
-	#docbook-to-man debian/kde-style-lipstik.sgml > kde-style-lipstik.1
+	#docbook-to-man debian/tde-style-lipstik.sgml > tde-style-lipstik.1
 
 	touch build-stamp
 
@@ -93,8 +93,8 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 
-	# Add here commands to install the package into debian/kde-style-lipstik.
-	env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib $(MAKE) install DESTDIR=$(CURDIR)/debian/kde-style-lipstik-trinity
+	# Add here commands to install the package into debian/tde-style-lipstik.
+	env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib $(MAKE) install DESTDIR=$(CURDIR)/debian/tde-style-lipstik-trinity
 
 
 # Build architecture-independent files here.

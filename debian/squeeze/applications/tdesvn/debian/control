@@ -1,11 +1,11 @@
-Source: kdesvn-trinity
+Source: tdesvn-trinity
 Section: devel
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Michael Biebl <biebl@debian.org>
-Build-Depends: cdbs (>= 0.4.50), debhelper (>= 5.0.0), cmake (>= 2.4), kdelibs4-trinity-dev (>= 4:3.4.3-2), libsvn-dev (>= 1.2.0), libssl-dev (>= 0.9.8a), libsqlite3-dev, gettext, quilt, libaprutil1-dev
+Build-Depends: cdbs (>= 0.4.50), debhelper (>= 5.0.0), cmake (>= 2.4), tdelibs4-trinity-dev (>= 4:3.4.3-2), libsvn-dev (>= 1.2.0), libssl-dev (>= 0.9.8a), libsqlite3-dev, gettext, quilt, libaprutil1-dev
 Standards-Version: 3.8.4
-Homepage: http://kdesvn.alwins-world.de/
+Homepage: http://tdesvn.alwins-world.de/
 
 Package: libsvnqt4-trinity
 Section: libs
@@ -26,10 +26,10 @@ Description: Qt wrapper library for subversion (development files) [Trinity]
  This package contains the header files and symbolic links that developers
  using svnqt will need.
 
-Package: kdesvn-trinity
+Package: tdesvn-trinity
 Section: devel
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, kdesvn-kio-plugins-trinity (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, tdesvn-kio-plugins-trinity (= ${binary:Version})
 Recommends: kompare-trinity, graphviz
 Suggests: khelpcenter-trinity, kdiff3-trinity
 Description: subversion client with tight KDE integration [Trinity]
@@ -40,14 +40,14 @@ Description: subversion client with tight KDE integration [Trinity]
  a tight integration into KDE and can be embedded into other KDE 
  applications like konqueror via the KDE component technology KParts.
 
-Package: kdesvn-kio-plugins-trinity
+Package: tdesvn-kio-plugins-trinity
 Section: devel
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Conflicts: kdesdk-kio-plugins-trinity
+Conflicts: tdesdk-kio-plugins-trinity
 Description: subversion I/O slaves for Trinity
  This packages includes KIO slaves for svn, svn+file, svn+http, 
  svn+https, svn+ssh. This allows you to access subversion repositories 
  inside any KIO enabled KDE application.
  .
- This package is part of kdesvn-trinity.
+ This package is part of tdesvn-trinity.

@@ -6,5 +6,5 @@ Added debian/rules entry to remove /usr/share/apps/konqueror/servicemenus/media_
  install/konq-plugins::
  	rm -f debian/tmp/usr/share/apps/konqueror/servicemenus/media_realfolder.desktop
 
-  * Stop kdeaddons meta-package depending on knewsticker-scripts, 
+  * Stop tdeaddons meta-package depending on knewsticker-scripts, 
     it depends on stuff in universe

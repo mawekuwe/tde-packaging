@@ -12,7 +12,7 @@ DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
-DEB_DH_STRIP_ARGS  := --dbg-package=kdeadmin-trinity-dbg
+DEB_DH_STRIP_ARGS  := --dbg-package=tdeadmin-trinity-dbg
 
 DEB_CONFIGURE_EXTRA_FLAGS := \
 	--without-rpm --with-pam=kde --with-shadow --with-nis \

@@ -1,11 +1,11 @@
-Source: kde-style-lipstik-trinity
+Source: tde-style-lipstik-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 4.0.0), kdelibs4-trinity-dev (>= 4:3.2), dpatch, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 4.0.0), tdelibs4-trinity-dev (>= 4:3.2), dpatch, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
-Package: kde-style-lipstik-trinity
+Package: tde-style-lipstik-trinity
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}

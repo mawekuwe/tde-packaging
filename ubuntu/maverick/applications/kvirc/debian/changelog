@@ -342,7 +342,7 @@ kvirc (2:2.1.2.99pre2-2) unstable; urgency=low
   * Change debian/rules file to use cdbs.
   * Overhaul kvirc autoconf macros.
   * Enable AM_MAINTAINER_MODE to avoid failed autobuilds.
-  * Remove build dependencies on libtool, automake, devscripts, kdebase-dev.
+  * Remove build dependencies on libtool, automake, devscripts, tdebase-dev.
   * Remove obsolete configure options.
 
  -- Robin Verduijn <robin@debian.org>  Fri, 10 Oct 2003 23:03:18 -0500
@@ -399,7 +399,7 @@ kvirc (2:2.1.2.99pre1-0) unstable; urgency=low
 
 kvirc (2:2.1.2-24) unstable; urgency=low
 
-  * With kdelibs built successfully on all architectures, try to get KVIrc
+  * With tdelibs built successfully on all architectures, try to get KVIrc
     into testing again.
 
  -- Robin Verduijn <robin@debian.org>  Tue,  9 Sep 2003 21:38:34 -0100
@@ -767,7 +767,7 @@ kvirc (2.1.2-pre5) unstable; urgency=low
   * Add Depends: kvirc to kvirc-dev and kvirc-doc.
   * Make the configure target change the literal $PREFIX in the man page
     to the prefix we're installing in, i.e. /usr.
-  * Add a versioned dependancy on libqt2 (>= 2.3) and kdelibs3 (>= 2.2)
+  * Add a versioned dependancy on libqt2 (>= 2.3) and tdelibs3 (>= 2.2)
     since I think only specifying libqt2 was creating problems for
     people on older systems.
   * Supply rfc2810.txt, rfc2811.txt, rfc2812.txt and rfc2813.txt with

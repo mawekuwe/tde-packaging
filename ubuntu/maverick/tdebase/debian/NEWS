@@ -1,4 +1,4 @@
-kdebase (4:3.4.2-3) unstable; urgency=low
+tdebase (4:3.4.2-3) unstable; urgency=low
 
   *** Changes to KDM conffiles:
 
@@ -44,7 +44,7 @@ kdebase (4:3.4.2-3) unstable; urgency=low
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Thu,  8 Sep 2005 11:13:41 -0400
 
-kdebase (4:3.3.2-1) unstable; urgency=low
+tdebase (4:3.3.2-1) unstable; urgency=low
 
   * Users upgrading from KDE 3.2 might find that their keyboards seem no longer
     to work in KDM. This problem is caused by a change in KDE's handling of

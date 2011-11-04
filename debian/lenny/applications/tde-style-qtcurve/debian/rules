@@ -51,7 +51,7 @@ build-stamp:  config.status
 
 	# Add here commands to compile the package.
 	cd build; env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde $(MAKE)
-	#docbook-to-man debian/kde-style-qtcurve.sgml > kde-style-qtcurve.1
+	#docbook-to-man debian/tde-style-qtcurve.sgml > tde-style-qtcurve.1
 
 	touch $@
 
@@ -73,8 +73,8 @@ install: build
 	dh_clean -k 
 	dh_installdirs
 
-	# Add here commands to install the package into debian/kde-style-qtcurve-trinity.
-	cd build; env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde $(MAKE) DESTDIR=$(CURDIR)/debian/kde-style-qtcurve-trinity install
+	# Add here commands to install the package into debian/tde-style-qtcurve-trinity.
+	cd build; env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde $(MAKE) DESTDIR=$(CURDIR)/debian/tde-style-qtcurve-trinity install
 
 
 # Build architecture-independent files here.

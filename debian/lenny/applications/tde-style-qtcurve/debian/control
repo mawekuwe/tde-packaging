@@ -1,16 +1,16 @@
-Source: kde-style-qtcurve-trinity
+Source: tde-style-qtcurve-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Bastian Venthur <venthur@debian.org>
-Build-Depends: debhelper (>= 5), kdelibs4-trinity-dev, cmake
+Build-Depends: debhelper (>= 5), tdelibs4-trinity-dev, cmake
 Standards-Version: 3.8.4
 
-Package: kde-style-qtcurve-trinity
+Package: tde-style-qtcurve-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: gtk2-engines-qtcurve
-Provides: kde-style-qtcurve
+Provides: tde-style-qtcurve
 Description: This is a set of widget styles for Trinity based apps
  This package together with gtk2-engines-qtcurve aim to provide a unified look
  and feel on the desktop when using KDE and Gnome applications.
@@ -20,8 +20,8 @@ Description: This is a set of widget styles for Trinity based apps
 
 Package: qtcurve-trinity
 Architecture: any
-Depends: kde-style-qtcurve-trinity, gtk2-engines-qtcurve
+Depends: tde-style-qtcurve-trinity, gtk2-engines-qtcurve
 Description: This is a set of widget styles for Trinity and Gtk2 based apps
  This is an empty dummy package which will drag the packages 
- kde-style-qtcurve and gtk2-engines-qtcurve in your system.
+ tde-style-qtcurve and gtk2-engines-qtcurve in your system.
 

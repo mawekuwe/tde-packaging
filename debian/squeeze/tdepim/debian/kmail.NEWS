@@ -1,4 +1,4 @@
-kdepim (4:3.5.5.dfsg.1-4) unstable; urgency=high
+tdepim (4:3.5.5.dfsg.1-4) unstable; urgency=high
 
   * KMail's handling of IMAP namespaces changed in KDE 3.5.  You used to be
     able to set a prefix for your mailboxes (most commonly INBOX. for

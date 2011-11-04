@@ -21,9 +21,9 @@ koffice (1:1.6.3-7ubuntu5) jaunty; urgency=low
 
 koffice (1:1.6.3-7ubuntu4) jaunty; urgency=low
 
-  * Stop building KDE 3 API documentation (kdelibs4-doc is history)
+  * Stop building KDE 3 API documentation (tdelibs4-doc is history)
     - In debian/rules: Set DEB_KDE_APIDOX := no
-    - In debian/control: Drop Build-Depends-Indep for doxygen and kdelibs4-doc
+    - In debian/control: Drop Build-Depends-Indep for doxygen and tdelibs4-doc
 
  -- Scott Kitterman <scott@kitterman.com>  Mon, 23 Feb 2009 11:59:16 -0500
 
@@ -641,7 +641,7 @@ koffice (1:1.4.2-3) unstable; urgency=low
   * Fix Chalk description in debian/control
   * Update copyright (new maintainers, new Chalk developer)
   * Build against libwv2 built against the new libgsf, closes: #338832
-  * Rebuild against kdelibs4c2a
+  * Rebuild against tdelibs4c2a
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Fri, 11 Nov 2005 11:22:00 +0100
 
@@ -1131,7 +1131,7 @@ koffice (1:1.1-rc1-1) unstable; urgency=low
   * Renamed package killustrator to kontour.
   * Removed package krayon.
   * Rebuilt with newer admin files (closes: Bug#105209).
-  * Added kdebase-dev to build-depends.
+  * Added tdebase-dev to build-depends.
   * Builds on alpha.
 
  -- Ben Burton <benb@acm.org>  Tue, 31 Jul 2001 12:23:44 +1000
@@ -1350,7 +1350,7 @@ koffice (2.0-20001006-0) unstable; urgency=low
 koffice (2.0-20001005-0) unstable; urgency=low
  
   * More upstream fixes
-  * Compiling against non-versioned kdelibs once again
+  * Compiling against non-versioned tdelibs once again
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 05 Oct 2000 15:30:00 -0700
 

@@ -1,5 +1,5 @@
 .\" This portion of the manual page is from kdeopt.man, from the
-.\" kdegames Debian package.
+.\" tdegames Debian package.
 .SH GENERIC OPTIONS
 .TP
 .B \-\-help

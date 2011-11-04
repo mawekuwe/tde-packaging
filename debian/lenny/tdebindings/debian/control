@@ -1,8 +1,8 @@
-Source: kdebindings-trinity
+Source: tdebindings-trinity
 Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5),
  python-dev (>= 2.3.5-11), python-support (>= 0.5), quilt, gawk,
  gettext, default-jdk [amd64 i386 ia64 lpia powerpc s390 sparc],
- kdelibs4-trinity-dev (>= 4:3.5.9), libqt3-compat-headers (>= 3:3.3.5),
+ tdelibs4-trinity-dev (>= 4:3.5.9), libqt3-compat-headers (>= 3:3.3.5),
  ruby, ruby1.8-dev, flex, bison,
  automake, autoconf, libtool, libltdl-dev
 Section: devel
@@ -12,7 +12,7 @@ XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.
 Uploaders: Adeodato Simó <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Ricardo Cardenes <rcardenes@debian.org>, Sune Vuorela <debian@pusling.com>
 Standards-Version: 3.8.4
 
-Package: kdebindings-java-trinity
+Package: tdebindings-java-trinity
 Section: libs
 Architecture: all
 Depends: libdcop3-java-trinity (= ${source:Version}), libqt3-java-trinity (= ${source:Version}), libtrinity-java-trinity (= ${source:Version})
@@ -87,9 +87,9 @@ Package: libtrinity-java-trinity
 Architecture: all
 Section: libs
 Depends: libtrinity-jni-trinity (>> ${KDE-Version3}), libtrinity-jni-trinity (<< ${KDE-Next-Version3}), gij | java1-runtime | java2-runtime
-Description: kdelibs bindings for Java [Trinity]
+Description: tdelibs bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
- using the Java kdelibs bindings. TDE is the Trinity Desktop Environment, a
+ using the Java tdelibs bindings. TDE is the Trinity Desktop Environment, a
  very popular UNIX Desktop Environment.
  .
  It also includes some example applications that use these Java
@@ -101,9 +101,9 @@ Package: libtrinity-jni-trinity
 Architecture: amd64 i386 ia64 powerpc s390 sparc
 Section: libs
 Depends: ${shlibs:Depends}
-Description: kdelibs bindings for java ( Native libraries ) [Trinity]
+Description: tdelibs bindings for java ( Native libraries ) [Trinity]
  This package contains the shared libraries necessary to run Java
- programs using the Java kdelibs bindings. TDE is the Trinity Desktop
+ programs using the Java tdelibs bindings. TDE is the Trinity Desktop
  Environment, a very popular UNIX Desktop Environment.
  .
  This package is part of the official TDE bindings module.

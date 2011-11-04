@@ -1,4 +1,4 @@
-Source: desktop-effects-kde-trinity
+Source: desktop-effects-tde-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
@@ -6,7 +6,7 @@ Build-Depends-Indep: cdbs (>= 0.4.43), debhelper (>= 5.0.38), python-central (>=
 Standards-Version: 3.8.4
 XS-Python-Version: all
 
-Package: desktop-effects-kde-trinity
+Package: desktop-effects-tde-trinity
 Architecture: all
 Depends: ${python:Depends}, python-qt4
 XB-Python-Version: ${python:Versions}

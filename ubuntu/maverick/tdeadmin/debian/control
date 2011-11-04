@@ -1,20 +1,20 @@
-Source: kdeadmin-trinity
+Source: tdeadmin-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Fathi Boudra <fboudra@free.fr>, Modestas Vainius <geromanas@mailas.com>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), autotools-dev, debhelper (>= 5.0.31), docbook-to-man, gawk, gettext, kdelibs4-trinity-dev (>= 4:3.5.10), libbz2-dev, libpam0g-dev, sharutils, texinfo, rpm, automake, autoconf, libtool, libltdl-dev
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), autotools-dev, debhelper (>= 5.0.31), docbook-to-man, gawk, gettext, tdelibs4-trinity-dev (>= 4:3.5.10), libbz2-dev, libpam0g-dev, sharutils, texinfo, rpm, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
-Package: kdeadmin-trinity
+Package: tdeadmin-trinity
 Section: kde
 Architecture: all
-Replaces: kdeadmin-kde3 (<< 4:3.5.13)
-Breaks: kdeadmin-kde3 (<< 4:3.5.13)
-Depends: kcron-trinity (>= ${Source-Version}), kdat-trinity (>= ${Source-Version}), kdeadmin-kfile-plugins-trinity (>= ${Source-Version}), knetworkconf-trinity (>= ${Source-Version}), kpackage-trinity (>= ${Source-Version}), ksysv-trinity (>= ${Source-Version}), kuser-trinity (>= ${Source-Version})
+Replaces: tdeadmin-kde3 (<< 4:3.5.13)
+Breaks: tdeadmin-kde3 (<< 4:3.5.13)
+Depends: kcron-trinity (>= ${Source-Version}), kdat-trinity (>= ${Source-Version}), tdeadmin-kfile-plugins-trinity (>= ${Source-Version}), knetworkconf-trinity (>= ${Source-Version}), kpackage-trinity (>= ${Source-Version}), ksysv-trinity (>= ${Source-Version}), kuser-trinity (>= ${Source-Version})
 Recommends: lilo-config-trinity (>= ${Source-Version})
-Suggests: kdeadmin-trinity-doc-html (>= ${Source-Version})
+Suggests: tdeadmin-trinity-doc-html (>= ${Source-Version})
 Description: system administration tools from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -24,12 +24,12 @@ Description: system administration tools from the official Trinity release
  This metapackage includes a collection of system administration tools
  provided with the official release of KDE.
 
-Package: kdeadmin-trinity-doc-html
+Package: tdeadmin-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: kdeadmin-kde3-doc-html (<< 4:3.5.13)
-Breaks: kdeadmin-kde3-doc-html (<< 4:3.5.13)
-Suggests: konqueror-trinity | www-browser, kdebase-trinity
+Replaces: tdeadmin-kde3-doc-html (<< 4:3.5.13)
+Breaks: tdeadmin-kde3-doc-html (<< 4:3.5.13)
+Suggests: konqueror-trinity | www-browser, tdebase-trinity
 Description: KDE administration documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -42,7 +42,7 @@ Description: KDE administration documentation in HTML format
  KDE administration packages.
  .
  This package is part of Trinity, and a component of the KDE administration
- module. See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ module. See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: kcron-trinity
 Section: admin
@@ -56,7 +56,7 @@ Description: the Trinity crontab editor
  It is a graphical user interface to cron, the UNIX system scheduler.
  .
  This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: kdat-trinity
 Section: admin
@@ -77,19 +77,19 @@ Description: a Trinity tape backup tool
   * Backup profiles for frequently used backups.
  .
  This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
-Package: kdeadmin-kfile-plugins-trinity
+Package: tdeadmin-kfile-plugins-trinity
 Section: kde
 Architecture: any
-Replaces: kdeadmin-kfile-plugins-kde3 (<< 4:3.5.13)
-Breaks: kdeadmin-kfile-plugins-kde3 (<< 4:3.5.13)
+Replaces: tdeadmin-kfile-plugins-kde3 (<< 4:3.5.13)
+Breaks: tdeadmin-kfile-plugins-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Description: Trinity file metainfo plugins for deb and rpm files
  File metainfo plugins for deb and rpm package files.
  .
  This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: knetworkconf-trinity
 Section: kde
@@ -102,7 +102,7 @@ Description: Trinity network configuration tool
  can be used to manage network devices and settings for each device.
  .
  This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: kpackage-trinity
 Section: admin
@@ -118,7 +118,7 @@ Description: Trinity package management tool
  install/remove them.
  .
  This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: ksysv-trinity
 Section: admin
@@ -132,7 +132,7 @@ Description: Trinity SysV-style init configuration editor
  drag and drop GUI.
  .
  This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: kuser-trinity
 Section: admin
@@ -145,7 +145,7 @@ Description: Trinity user/group administration tool
  A user/group administration tool for KDE.
  .
  This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: lilo-config-trinity
 Section: kde
@@ -153,26 +153,26 @@ Architecture: none
 Replaces: lilo-config-kde3 (<< 4:3.5.13)
 Breaks: lilo-config-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kcontrol-trinity
-Recommends: kdebase-trinity-bin
+Recommends: tdebase-trinity-bin
 Suggests: lilo
 Description: Trinity frontend for lilo configuration
  lilo-config is a KDE based frontend to the lilo boot manager configuration.
  It runs out of the KDE Control Center.
  .
  If you want to use the menu entry to launch lilo-config, you need to install
- kdebase-bin since it uses the kdesu command to gain root privileges.
+ tdebase-bin since it uses the kdesu command to gain root privileges.
  .
  This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'kdeadmin-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
-Package: kdeadmin-trinity-dbg
+Package: tdeadmin-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: kdeadmin-kde3-dbg (<< 4:3.5.13)
-Breaks: kdeadmin-kde3-dbg (<< 4:3.5.13)
-Depends: kdelibs-trinity-dbg
+Replaces: tdeadmin-kde3-dbg (<< 4:3.5.13)
+Breaks: tdeadmin-kde3-dbg (<< 4:3.5.13)
+Depends: tdelibs-trinity-dbg
 Priority: extra
-Description: debugging symbols for kdeadmin-trinity
- This package contains the debugging symbols associated with kdeadmin-trinity.
- They will automatically be used by gdb for debugging kdeadmin-related
+Description: debugging symbols for tdeadmin-trinity
+ This package contains the debugging symbols associated with tdeadmin-trinity.
+ They will automatically be used by gdb for debugging tdeadmin-related
  issues.

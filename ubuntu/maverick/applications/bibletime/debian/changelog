@@ -159,7 +159,7 @@ bibletime (1.0.2-2) unstable; urgency=low
 
   * Remove debian/controly which shouldn't be there 
   * stop configure from being run twice to fix alpha build, Closes: #121674
-  * build-depend on kdelibs-dev >= 2.2.2-8 to catch libfam-dev dependency, see bug 124264
+  * build-depend on tdelibs-dev >= 2.2.2-8 to catch libfam-dev dependency, see bug 124264
   * Update description for bibletime 1.0.2
   * Update to policy version 3.5.6.0, no necessary changes noticed yet
   * modify clean target in debian/rules to use clean instead of distclean
@@ -201,7 +201,7 @@ bibletime (0.31-3.1) unstable; urgency=low
 
   * Non-maintainer upload (Ben Burton <benb@acm.org>).
   * Rebuilt with new Qt libs (closes: #89789).
-  * Build-Depends: Replaced kdebase-dev with kdelibs-dev; removed
+  * Build-Depends: Replaced tdebase-dev with tdelibs-dev; removed
     autoconf (redundant); added libtool.
   * Replaced admin/debianrules with a newer version and modified
     debian/rules to use admin/debianrules; this way everything gets

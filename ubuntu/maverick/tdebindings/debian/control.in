@@ -1,18 +1,18 @@
-Source: kdebindings
+Source: tdebindings
 Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5),
  python-dev (>= 2.3.5-11), python-support (>= 0.5), quilt, gawk,
  gettext, default-jdk [amd64 i386 ia64 lpia powerpc s390 sparc],
- kdelibs4-dev (>= 4:3.5.7), libgtk1.2-dev, libqt3-compat-headers (>= 3:3.3.5),
+ tdelibs4-dev (>= 4:3.5.7), libgtk1.2-dev, libqt3-compat-headers (>= 3:3.3.5),
  ruby, ruby1.8-dev
 Section: devel
 Priority: optional
 Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
 Standards-Version: 3.8.0
-Vcs-Svn: svn://svn.debian.org/svn/pkg-kde/trunk/packages/kdebindings
-Vcs-Browser: http://svn.debian.org/wsvn/pkg-kde/trunk/packages/kdebindings
+Vcs-Svn: svn://svn.debian.org/svn/pkg-kde/trunk/packages/tdebindings
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-kde/trunk/packages/tdebindings
 
-Package: kdebindings-java
+Package: tdebindings-java
 Section: libs
 Architecture: all
 Depends: libdcop3-java (= ${source:Version}), libqt3-java (= ${source:Version}), libtrinity-java (= ${source:Version})
@@ -87,9 +87,9 @@ Package: libtrinity-java
 Architecture: all
 Section: libs
 Depends: libtrinity-jni (>> ${KDE-Version3}), libtrinity-jni (<< ${KDE-Next-Version3}), gij | java1-runtime | java2-runtime
-Description: kdelibs bindings for Java
+Description: tdelibs bindings for Java
  This package contains the Java classes necessary to run Java programs
- using the Java kdelibs bindings. KDE is the K Desktop Environment, a
+ using the Java tdelibs bindings. KDE is the K Desktop Environment, a
  very popular UNIX Desktop Environment.
  .
  It also includes some example applications that use these Java
@@ -101,9 +101,9 @@ Package: libtrinity-jni
 Architecture: amd64 i386 ia64 powerpc s390 sparc
 Section: libs
 Depends: ${shlibs:Depends}
-Description: kdelibs bindings for java ( Native libraries )
+Description: tdelibs bindings for java ( Native libraries )
  This package contains the shared libraries necessary to run Java
- programs using the Java kdelibs bindings. KDE is the K Desktop
+ programs using the Java tdelibs bindings. KDE is the K Desktop
  Environment, a very popular UNIX Desktop Environment.
  .
  This package is part of the official KDE bindings module.

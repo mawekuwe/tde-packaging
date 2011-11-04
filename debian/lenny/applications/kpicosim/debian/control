@@ -2,7 +2,7 @@ Source: kpicosim-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net> 
-Build-Depends: debhelper (>= 4.0.0), kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 4.0.0), tdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kpicosim-trinity

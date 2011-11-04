@@ -1,12 +1,12 @@
-# debconf templates for the kdebase package
+# debconf templates for the tdebase package
 # Galician translation
 #
-# This file is distributed under the same license as the kdebase package.
+# This file is distributed under the same license as the tdebase package.
 # Please see debian/copyright.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: kdebase\n"
+"Project-Id-Version: tdebase\n"
 "Report-Msgid-Bugs-To: debian-qt-kde@lists.debian.org\n"
 "POT-Creation-Date: 2007-03-23 07:15+0100\n"
 "PO-Revision-Date: 2007-04-07 20:11+0200\n"

@@ -1,18 +1,18 @@
-Source: kdeaccessibility
+Source: tdeaccessibility
 Section: kde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, gettext, groff-base, kdelibs4-dev (>= 4:3.5.8), kdemultimedia-dev (>= 4:3.5.8), libakode-dev, libxtst-dev, sharutils
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, gettext, groff-base, tdelibs4-dev (>= 4:3.5.8), tdemultimedia-dev (>= 4:3.5.8), libakode-dev, libxtst-dev, sharutils
 Standards-Version: 3.7.2
 
-Package: kdeaccessibility
+Package: tdeaccessibility
 Section: kde
 Architecture: all
 Depends: kmag (>= ${Source-Version}), kmousetool (>= ${Source-Version}), kmouth (>= ${Source-Version}), kbstate (>= ${Source-Version}), ksayit  (>= ${Source-Version}), kttsd (>= ${Source-Version})
 Recommends: kde-icons-mono (>= ${Source-Version})
-Suggests: kttsd-contrib-plugins (>= ${Source-Version}), kdeaccessibility-doc-html (>= ${Source-Version})
+Suggests: kttsd-contrib-plugins (>= ${Source-Version}), tdeaccessibility-doc-html (>= ${Source-Version})
 Description: accessibility packages from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -24,10 +24,10 @@ Description: accessibility packages from the official KDE release
  .
   Homepage: http://accessibility.kde.org
 
-Package: kdeaccessibility-doc-html
+Package: tdeaccessibility-doc-html
 Architecture: all
 Section: doc
-Suggests: konqueror | www-browser, kdebase
+Suggests: konqueror | www-browser, tdebase
 Description: KDE accessibility documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -40,7 +40,7 @@ Description: KDE accessibility documentation in HTML format
  KDE accessibility packages.
  .
  This package is part of KDE, and a component of the KDE accessibility
- module. See the 'kde' and 'kdeaccessibility' packages for more information.
+ module. See the 'kde' and 'tdeaccessibility' packages for more information.
 
 Package: kde-icons-mono
 Section: kde
@@ -49,7 +49,7 @@ Description: a monochromatic icons theme for KDE
  A monochromatic icon theme for KDE, designed for accessibility purposes.
  .
  This package is part of KDE, as a component of the KDE accessibility module.
- See the 'kde' and 'kdeaccessibility' packages for more information.
+ See the 'kde' and 'tdeaccessibility' packages for more information.
 
 Package: kbstate
 Section: utils
@@ -60,7 +60,7 @@ Description: a keyboard status applet for KDE
  A panel applet that displays the keyboard status.
  .
  This package is part of KDE, as a component of the KDE accessibility module.
- See the 'kde' and 'kdeaccessibility' packages for more information.
+ See the 'kde' and 'tdeaccessibility' packages for more information.
 
 Package: kmag
 Section: utils
@@ -76,7 +76,7 @@ Description: a screen magnifier for KDE
  people with low vision.
  .
  This package is part of KDE, as a component of the KDE accessibility module.
- See the 'kde' and 'kdeaccessibility' packages for more information.
+ See the 'kde' and 'tdeaccessibility' packages for more information.
 
 Package: kmousetool
 Section: utils
@@ -89,7 +89,7 @@ Description: KDE mouse manipulation tool for the disabled
  buttons hurts.
  .
  This package is part of KDE, as a component of the KDE accessibility module.
- See the 'kde' and 'kdeaccessibility' packages for more information.
+ See the 'kde' and 'tdeaccessibility' packages for more information.
 
 Package: kmouth
 Section: utils
@@ -103,7 +103,7 @@ Description: a type-and-say KDE frontend for speech synthesizers
  sentences to be re-spoken.
  .
  This package is part of KDE, as a component of the KDE accessibility module.
- See the 'kde' and 'kdeaccessibility' packages for more information.
+ See the 'kde' and 'tdeaccessibility' packages for more information.
 
 Package: ksayit
 Section: utils
@@ -114,7 +114,7 @@ Description: a frontend for the KDE Text-to-Speech system
  Text-to-speech front-end to kttsd.
  .
  This package is part of KDE, as a component of the KDE accessibility module.
- See the 'kde' and 'kdeaccessibility' packages for more information.
+ See the 'kde' and 'tdeaccessibility' packages for more information.
 
 
 Package: kttsd
@@ -131,7 +131,7 @@ Description: a Text-to-Speech system for KDE
  festival, flite, and epos are essential back-ends.
  .
  This package is part of KDE, as a component of the KDE accessibility module.
- See the 'kde' and 'kdeaccessibility' packages for more information.
+ See the 'kde' and 'tdeaccessibility' packages for more information.
  .
   Homepage: http://accessibility.kde.org/developer/kttsd
 
@@ -147,14 +147,14 @@ Description: the KDE Text-to-Speech system
  non free software to work.
  .
  This package is part of KDE, as a component of the KDE accessibility module.
- See the 'kde' and 'kdeaccessibility' packages for more information.
+ See the 'kde' and 'tdeaccessibility' packages for more information.
 
-Package: kdeaccessibility-dbg
+Package: tdeaccessibility-dbg
 Section: libdevel
 Architecture: any
-Depends: kdelibs-dbg
+Depends: tdelibs-dbg
 Priority: extra
-Description: debugging symbols for kdeaccessibility
- This package contains the debugging symbols associated with kdeaccessibility.
- They will automatically be used by gdb for debugging kdeaccessibility-related
+Description: debugging symbols for tdeaccessibility
+ This package contains the debugging symbols associated with tdeaccessibility.
+ They will automatically be used by gdb for debugging tdeaccessibility-related
  issues.

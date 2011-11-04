@@ -13,14 +13,14 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
 
-DEB_INSTALL_MANPAGES_kdesudo-trinity = kdesudo-trinity.1
+DEB_INSTALL_MANPAGES_tdesudo-trinity = tdesudo-trinity.1
 
-build/kdesudo-trinity::
-	docbook2x-man debian/kdesudo-trinity.1.docbook
-	mv kdesudo.1 kdesudo-trinity.1
+build/tdesudo-trinity::
+	docbook2x-man debian/tdesudo-trinity.1.docbook
+	mv tdesudo.1 tdesudo-trinity.1
 
 clean::
-	rm -f kdesudo-trinity.1
+	rm -f tdesudo-trinity.1
 
 post-patches:: debian/stamp-bootstrap
 

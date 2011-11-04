@@ -33,40 +33,40 @@ DEB_FIXPERMS_EXCLUDE := \
 	opt/trinity/bin/kpac_dhcp_helper \
 	opt/trinity/bin/start_kdeinit
 
-DEB_DH_STRIP_ARGS  := --dbg-package=kdelibs-trinity-dbg
+DEB_DH_STRIP_ARGS  := --dbg-package=tdelibs-trinity-dbg
 
-DEB_DH_MAKESHLIBS_ARGS_kdelibs4c2a-trinity := -V'kdelibs4c2a-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_tdelibs4c2a-trinity := -V'tdelibs4c2a-trinity (>= 4:3.5.8-1)'
 
-binary-install/kdelibs-data-trinity::
-	install -p -D -m644 kded/applications.menu debian/kdelibs-data-trinity/opt/trinity/etc/xdg/menus/kde-applications.menu
-	install -p -D -m644 debian/trinitylibs.conf debian/kdelibs-data-trinity/etc/ld.so.conf.d/trinitylibs.conf
-	uudecode debian/icons/aboutkde-kubuntu.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/apps/kdeui/pics/aboutkde.png
+binary-install/tdelibs-data-trinity::
+	install -p -D -m644 kded/applications.menu debian/tdelibs-data-trinity/opt/trinity/etc/xdg/menus/kde-applications.menu
+	install -p -D -m644 debian/trinitylibs.conf debian/tdelibs-data-trinity/etc/ld.so.conf.d/trinitylibs.conf
+	uudecode debian/icons/aboutkde-kubuntu.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/apps/kdeui/pics/aboutkde.png
 
-	uudecode debian/icons/cr16-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/devices/system.png
-	uudecode debian/icons/cr22-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/devices/system.png
-	uudecode debian/icons/cr32-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/devices/system.png
-	uudecode debian/icons/cr48-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/devices/system.png
-	uudecode debian/icons/cr64-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/64x64/devices/system.png
-	uudecode debian/icons/cr128-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/128x128/devices/system.png
-#	uudecode debian/icons/crsc-device-system.svgz.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/scalable/devices/system.svgz
+	uudecode debian/icons/cr16-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/devices/system.png
+	uudecode debian/icons/cr22-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/devices/system.png
+	uudecode debian/icons/cr32-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/devices/system.png
+	uudecode debian/icons/cr48-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/devices/system.png
+	uudecode debian/icons/cr64-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/64x64/devices/system.png
+	uudecode debian/icons/cr128-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/128x128/devices/system.png
+#	uudecode debian/icons/crsc-device-system.svgz.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/scalable/devices/system.svgz
 
-	uudecode debian/icons/cr16-action-hibernate.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/actions/hibernate.png
-	uudecode debian/icons/cr22-action-hibernate.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/actions/hibernate.png
-	uudecode debian/icons/cr32-action-hibernate.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/actions/hibernate.png
-	uudecode debian/icons/cr48-action-hibernate.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/actions/hibernate.png
+	uudecode debian/icons/cr16-action-hibernate.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/actions/hibernate.png
+	uudecode debian/icons/cr22-action-hibernate.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/actions/hibernate.png
+	uudecode debian/icons/cr32-action-hibernate.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/actions/hibernate.png
+	uudecode debian/icons/cr48-action-hibernate.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/actions/hibernate.png
 
-	uudecode debian/icons/cr16-action-suspend.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/actions/suspend.png
-	uudecode debian/icons/cr22-action-suspend.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/actions/suspend.png
-	uudecode debian/icons/cr32-action-suspend.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/actions/suspend.png
-	uudecode debian/icons/cr48-action-suspend.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/actions/suspend.png
+	uudecode debian/icons/cr16-action-suspend.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/actions/suspend.png
+	uudecode debian/icons/cr22-action-suspend.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/actions/suspend.png
+	uudecode debian/icons/cr32-action-suspend.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/actions/suspend.png
+	uudecode debian/icons/cr48-action-suspend.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/actions/suspend.png
 
 ### 
 
 DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
-binary-predeb/kdelibs4-trinity-dev::
+binary-predeb/tdelibs4-trinity-dev::
 ifeq (linux,$(DEB_HOST_ARCH_OS))
-	echo "libasound2-trinity-dev=libasound2-trinity-dev" >> debian/kdelibs4-trinity-dev.substvars
+	echo "libasound2-trinity-dev=libasound2-trinity-dev" >> debian/tdelibs4-trinity-dev.substvars
 endif
 
 common-install-prehook-impl::
@@ -76,9 +76,9 @@ common-install-prehook-impl::
 #		sed "s/charset=CHARSET/charset=UTF-8/" -i $$file; \
 #	done
 
-#	msgcat --use-first kde.pot po/kdelibs.pot > kdelibs.pot-merged
-#	mv -f kdelibs.pot-merged po/kdelibs.pot
-	cp -Rp kde.pot po/kdelibs.pot
+#	msgcat --use-first kde.pot po/tdelibs.pot > tdelibs.pot-merged
+#	mv -f tdelibs.pot-merged po/tdelibs.pot
+	cp -Rp kde.pot po/tdelibs.pot
 
 	# generate .po files for .desktop etc files
 	if [ -f debian/kubuntu-desktop-i18n/createdesktop.pl ]; then \
@@ -96,7 +96,7 @@ common-install-prehook-impl::
 	  rm -f LIST; \
 	fi
 
-binary-install/kdelibs4c2a-trinity::
+binary-install/tdelibs4c2a-trinity::
 	mv debian/tmp/opt/trinity/bin/kcmshell debian/tmp/opt/trinity/bin/kcmshell.real
-	install -p -D -m755 debian/tmp/opt/trinity/bin/kcmshell.real debian/kdelibs4c2a-trinity/opt/trinity/bin/kcmshell.real
-	install -p -D -m755 debian/kcmshell debian/kdelibs4c2a-trinity/opt/trinity/bin/kcmshell
+	install -p -D -m755 debian/tmp/opt/trinity/bin/kcmshell.real debian/tdelibs4c2a-trinity/opt/trinity/bin/kcmshell.real
+	install -p -D -m755 debian/kcmshell debian/tdelibs4c2a-trinity/opt/trinity/bin/kcmshell

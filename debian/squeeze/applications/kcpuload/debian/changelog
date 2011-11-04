@@ -40,7 +40,7 @@ kcpuload (1.99-13) unstable; urgency=low
 
   * New maintainer.  Thankyou to Ben for looking after this for much longer 
     than he expected to.
-  * Removed versioned depends on kdelibs4-dev, since kdelibs4-dev_4:3.4.2* is 
+  * Removed versioned depends on tdelibs4-dev, since tdelibs4-dev_4:3.4.2* is 
     the current version in unstable now, and to make backports easier.  
 
  -- Helen Faulkner <helen@debian.org>  Sat, 10 Sep 2005 10:38:49 +1000

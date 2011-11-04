@@ -1,2 +1,2 @@
 version=3
-http://kdesvn.alwins-world.de/trac.fcgi/wiki/DownLoads .*kdesvn-(.*)\.tar\.bz2
+http://tdesvn.alwins-world.de/trac.fcgi/wiki/DownLoads .*tdesvn-(.*)\.tar\.bz2

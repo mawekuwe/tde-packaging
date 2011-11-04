@@ -6,8 +6,8 @@ When you report a konqueror crash, it is important to provide:
    actions you performed...)
  * a useful backtrace of the crash
 
-To produce a useful backtrace, you must have qt-x11-free-dbg, kdelibs-dbg,
-and kdebase-dbg installed. A backtrace full of "(no debugging symbols
+To produce a useful backtrace, you must have qt-x11-free-dbg, tdelibs-dbg,
+and tdebase-dbg installed. A backtrace full of "(no debugging symbols
 found)" is useless.
 
 A bug that is not reproducible, or that lacks the necessary backtrace, will

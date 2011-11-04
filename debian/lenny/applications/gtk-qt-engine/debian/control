@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Bastian Venthur <venthur@debian.org>
-Build-Depends: debhelper (>= 5.0), cdbs, kdelibs4-trinity-dev, libgtk2.0-dev, cmake, libgtk2.0-dev (>= 2.10.1)
+Build-Depends: debhelper (>= 5.0), cdbs, tdelibs4-trinity-dev, libgtk2.0-dev, cmake, libgtk2.0-dev (>= 2.10.1)
 Standards-Version: 3.8.4
 
 Package: gtk-qt-engine-trinity

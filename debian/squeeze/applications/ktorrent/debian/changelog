@@ -51,7 +51,7 @@ ktorrent (2.2.3-0ubuntu1) hardy; urgency=low
 
   * New upstream release
   * kubuntu_03_remove_nasty_search_engines.patch: rebase against 2.2.3
-  * Add kdebase-kio-plugins to Recommends, needed for IP Filters plugin
+  * Add tdebase-kio-plugins to Recommends, needed for IP Filters plugin
     (LP: #150062)
 
  -- John Dong <jdong@ubuntu.com>  Fri, 16 Nov 2007 02:11:41 -0500
@@ -250,7 +250,7 @@ ktorrent (2.0.1-0ubuntu1) edgy; urgency=low
 ktorrent (2.0-0ubuntu2) edgy; urgency=low
 
   * Fixed install issue by removing debian/ktorrent/usr/share/applnk and 
-    debian/ktorrent/usr/share/mimelnk in debian/rules already provided by kdelibs-data
+    debian/ktorrent/usr/share/mimelnk in debian/rules already provided by tdelibs-data
   * Closes Malone Bug #55969
 
  -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Wed, 09 Aug 2006 09:51:44 -0500

@@ -1,5 +1,5 @@
---- kdebase/kpager/kpager.desktop
-+++ kdebase/kpager/kpager.desktop
+--- tdebase/kpager/kpager.desktop
++++ tdebase/kpager/kpager.desktop
 @@ -96,3 +96,4 @@
  X-KDE-StartupNotify=false
  X-DCOP-ServiceType=Unique

@@ -1,5 +1,5 @@
 .\" This portion of the manual page is from kdeopt.man, from the
-.\" kdeaccessibility Debian package.
+.\" tdeaccessibility Debian package.
 .SH GENERIC OPTIONS
 .TP
 .B \-\-help

@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Achim Bohnet <ach@mpe.mpg.de>, Mark Purcell <msp@debian.org>
-Build-Depends: debhelper (>> 5), cdbs, libexiv2-dev, kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>> 5), cdbs, libexiv2-dev, tdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://www.kipi-plugins.org/
 

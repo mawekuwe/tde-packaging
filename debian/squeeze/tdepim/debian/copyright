@@ -27,7 +27,7 @@ headings and other identifying marks.
 akregator, kaddressbook, kalarm, kalarmd, kandy, karm, kdgantt,
 kfile-plugins, kgantt, kioslaves, kitchensync, kleopatra, kmail,
 kmailcvt, knode, knotes, konsolekalendar, kontact, korganizer, kpilot,
-ksync, ktnef, libindex, libkdenetwork, libkdepim, libkleopatra,
+ksync, ktnef, libindex, libtdenetwork, libtdepim, libkleopatra,
 libkpimidentities, libksieve, mimelib, wizards
 ----------------------------------------------------------------------------
 GPL

@@ -10,7 +10,7 @@ various Replaces/Conflicts (search for ubuntu)
 split out services/kontact/*desktop from kontact to indiviual apps
 add kandy*xpm to debian/icons and install lines to kandy.install
 remove clean:: rule
-kdepim-dev does not depend on kitchensync
+tdepim-dev does not depend on kitchensync
 Control has networkstatus-dev package and networkstatus package includes
    libnetworkstatus.so* files
 build-dep on gpgsm

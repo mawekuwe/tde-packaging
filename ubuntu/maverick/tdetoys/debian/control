@@ -1,19 +1,19 @@
-Source: kdetoys-trinity
+Source: tdetoys-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Modestas Vainius <geromanas@mailas.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, kdelibs4-trinity-dev (>= 4:3.5.10), gawk, gettext, sharutils, automake, autoconf, libtool, libltdl-dev
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-trinity-dev (>= 4:3.5.10), gawk, gettext, sharutils, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
-Package: kdetoys-trinity
+Package: tdetoys-trinity
 Architecture: all
 Section: kde
-Replaces: kdetoys-kde3 (<< 4:3.5.13)
-Breaks: kdetoys-kde3 (<< 4:3.5.13)
+Replaces: tdetoys-kde3 (<< 4:3.5.13)
+Breaks: tdetoys-kde3 (<< 4:3.5.13)
 Depends: amor-trinity (>= ${Source-Version}), eyesapplet-trinity (>= ${Source-Version}), fifteenapplet-trinity (>= ${Source-Version}), kmoon-trinity (>= ${Source-Version}), kodo-trinity (>= ${Source-Version}), kteatime-trinity (>= ${Source-Version}), ktux-trinity (>= ${Source-Version}), kweather-trinity (>= ${Source-Version}), kworldclock-trinity (>= ${Source-Version})
-Suggests: kdetoys-trinity-doc-html (>= ${Source-Version})
+Suggests: tdetoys-trinity-doc-html (>= ${Source-Version})
 Description: toys from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -23,12 +23,12 @@ Description: toys from the official Trinity release
  This metapackage includes a collection of toys and fun extras provided
  with the official release of Trinity.
 
-Package: kdetoys-trinity-doc-html
+Package: tdetoys-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: kdetoys-kde3-doc-html (<< 4:3.5.13)
-Breaks: kdetoys-kde3-doc-html (<< 4:3.5.13)
-Suggests: konqueror-trinity | www-browser, kdetoys-trinity
+Replaces: tdetoys-kde3-doc-html (<< 4:3.5.13)
+Breaks: tdetoys-kde3-doc-html (<< 4:3.5.13)
+Suggests: konqueror-trinity | www-browser, tdetoys-trinity
 Description: Trinity toys documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -41,7 +41,7 @@ Description: Trinity toys documentation in HTML format
  KDE toys packages.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: amor-trinity
 Architecture: any
@@ -51,7 +51,7 @@ Breaks: amor-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: kwin-trinity
 Suggests: khelpcenter-trinity
-Conflicts: task-kdetoys-trinity
+Conflicts: task-tdetoys-trinity
 Description: a Trinity creature for your desktop
  AMOR stands for Amusing Misuse Of Resources. It provides several different
  characters who prance around your X screen doing tricks and giving you tips.
@@ -60,7 +60,7 @@ Description: a Trinity creature for your desktop
  KDE window manager) and Metacity (a GTK2 window manager) are supported.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: eyesapplet-trinity
 Architecture: any
@@ -69,13 +69,13 @@ Replaces: eyesapplet-kde3 (<< 4:3.5.13)
 Breaks: eyesapplet-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
-Conflicts: task-kdetoys-trinity
+Conflicts: task-tdetoys-trinity
 Description: eyes applet for Trinity
  An applet for the KDE panel containing a pair of eyes that follow your mouse
  around the screen.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: fifteenapplet-trinity
 Architecture: any
@@ -90,7 +90,7 @@ Description: fifteen pieces puzzle for Trinity
  moving them around.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kmoon-trinity
 Architecture: any
@@ -100,12 +100,12 @@ Breaks: kmoon-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Suggests: khelpcenter-trinity
-Conflicts: task-kdetoys-trinity
+Conflicts: task-tdetoys-trinity
 Description: moon phase indicator for Trinity
  An applet for the KDE panel that displays the current phase of the moon.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kodo-trinity
 Architecture: any
@@ -114,14 +114,14 @@ Replaces: kodo-kde3 (<< 4:3.5.13)
 Breaks: kodo-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Conflicts: task-kdetoys-trinity
+Conflicts: task-tdetoys-trinity
 Description: mouse odometer for Trinity
  KOdometer measures your desktop mileage. It tracks the movement of your mouse
  pointer across your desktop and renders it in inches/feet/miles! It can
  do cm/metres/km too. Its most exciting feature is the tripometer.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kteatime-trinity
 Architecture: any
@@ -130,7 +130,7 @@ Replaces: kteatime-kde3 (<< 4:3.5.13)
 Breaks: kteatime-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kicker-trinity
 Suggests: khelpcenter-trinity
-Conflicts: task-kdetoys-trinity
+Conflicts: task-tdetoys-trinity
 Description: Trinity utility for making a fine cup of tea
  KTeaTime is a handy timer for steeping tea. No longer will you have to
  guess at how long it takes for your tea to be ready. Simply select the
@@ -144,7 +144,7 @@ Description: Trinity utility for making a fine cup of tea
  possible that KTeaTime will not work on your system.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: ktux-trinity
 Architecture: any
@@ -153,12 +153,12 @@ Replaces: ktux-kde3 (<< 4:3.5.13)
 Breaks: ktux-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Suggests: kwin-trinity
-Conflicts: task-kdetoys-trinity
+Conflicts: task-tdetoys-trinity
 Description: Tux screensaver for Trinity
  A neat Tux-in-a-spaceship screensaver for the K Desktop Environment (KDE).
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kweather-trinity
 Architecture: any
@@ -178,7 +178,7 @@ Description: weather display applet for Trinity
  Konqueror's sidebar and Kontact's summary page.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kworldclock-trinity
 Architecture: any
@@ -186,8 +186,8 @@ Section: games
 Replaces: kworldclock-kde3 (<< 4:3.5.13)
 Breaks: kworldclock-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
-Suggests: kdeartwork-misc-trinity, kicker-trinity, kdesktop-trinity, khelpcenter-trinity
-Conflicts: task-kdetoys-trinity, kworldwatch-trinity (<= 4:2.2-beta1-1)
+Suggests: tdeartwork-misc-trinity, kicker-trinity, kdesktop-trinity, khelpcenter-trinity
+Conflicts: task-tdetoys-trinity, kworldwatch-trinity (<= 4:2.2-beta1-1)
 Provides: kworldwatch-trinity
 Description: earth watcher for Trinity
  Displays where in the world it is light and dark depending on time, as
@@ -195,19 +195,19 @@ Description: earth watcher for Trinity
  This can be run standalone, as an applet in the KDE panel or as a
  desktop background.
  .
- Additional kworldclock themes are available in the kdeartwork-misc package.
+ Additional kworldclock themes are available in the tdeartwork-misc package.
  .
  This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'kdetoys-trinity' packages for more information.
+ See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
 
-Package: kdetoys-trinity-dbg
+Package: tdetoys-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: kdetoys-kde3-dbg (<< 4:3.5.13)
-Breaks: kdetoys-kde3-dbg (<< 4:3.5.13)
-Depends: kdelibs-trinity-dbg
+Replaces: tdetoys-kde3-dbg (<< 4:3.5.13)
+Breaks: tdetoys-kde3-dbg (<< 4:3.5.13)
+Depends: tdelibs-trinity-dbg
 Priority: extra
-Description: debugging symbols for kdetoys-trinity
- This package contains the debugging symbols associated with kdetoys-trinity.
- They will automatically be used by gdb for debugging kdetoys-related
+Description: debugging symbols for tdetoys-trinity
+ This package contains the debugging symbols associated with tdetoys-trinity.
+ They will automatically be used by gdb for debugging tdetoys-related
  issues.

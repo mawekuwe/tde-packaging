@@ -14,7 +14,7 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
 
-DEB_DH_STRIP_ARGS  := --dbg-package=kdeartwork-trinity-dbg
+DEB_DH_STRIP_ARGS  := --dbg-package=tdeartwork-trinity-dbg
 
 clean::
 	rm -f IconThemes/kdeclassic/22x22/actions/kde/kde.png

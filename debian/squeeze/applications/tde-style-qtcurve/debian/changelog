@@ -1,36 +1,36 @@
-kde-style-qtcurve-trinity (0.55.2-1ubuntu8) karmic; urgency=low
+tde-style-qtcurve-trinity (0.55.2-1ubuntu8) karmic; urgency=low
 
-  * Now provides kde-style-qtcurve for backward compatibility
+  * Now provides tde-style-qtcurve for backward compatibility
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 17 Sep 2009 16:05:00 -0600
 
-kde-style-qtcurve-trinity (0.55.2-1ubuntu7) karmic; urgency=low
+tde-style-qtcurve-trinity (0.55.2-1ubuntu7) karmic; urgency=low
 
   * Karmic rebuild
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 02 July 2009 16:08:00 -0600
 
-kde-style-qtcurve-trinity (0.55.2-1ubuntu6) intrepid; urgency=low
+tde-style-qtcurve-trinity (0.55.2-1ubuntu6) intrepid; urgency=low
 
   * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 March 2009 21:15:00 -0600
 
-kde-style-qtcurve-trinity (0.55.2-1ubuntu5) intrepid; urgency=low
+tde-style-qtcurve-trinity (0.55.2-1ubuntu5) intrepid; urgency=low
 
   * Added -trinity suffix
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 03 Dec 2008 18:37:00 -0600
 
-kde-style-qtcurve (0.55.2-1ubuntu3) hardy; urgency=low
+tde-style-qtcurve (0.55.2-1ubuntu3) hardy; urgency=low
 
   * Set toolbar handles to sunken lines by default in
     kubuntu_01_default_settings.diff
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 31 Mar 2008 13:04:55 +0100
 
-kde-style-qtcurve (0.55.2-1ubuntu2) hardy; urgency=low
+tde-style-qtcurve (0.55.2-1ubuntu2) hardy; urgency=low
 
   * Add kubuntu_01_default_settings.diff for nicer defaults.  Flat
     toolbars and don't darken menubars.
@@ -38,7 +38,7 @@ kde-style-qtcurve (0.55.2-1ubuntu2) hardy; urgency=low
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 17 Mar 2008 14:54:33 +0000
 
-kde-style-qtcurve (0.55.2-1ubuntu1) hardy; urgency=low
+tde-style-qtcurve (0.55.2-1ubuntu1) hardy; urgency=low
 
   * Merge from debian unstable, remaining changes:
     - debian/scan-version: Script to scan and download new upstream releases
@@ -54,13 +54,13 @@ kde-style-qtcurve (0.55.2-1ubuntu1) hardy; urgency=low
 
  -- Stephan Hermann <sh@sourcecode.de>  Mon, 21 Jan 2008 19:23:02 +0100
 
-kde-style-qtcurve (0.55.2-1) unstable; urgency=low
+tde-style-qtcurve (0.55.2-1) unstable; urgency=low
 
   * New upstream version (Closes: #449309)
 
  -- Bastian Venthur <venthur@debian.org>  Sun, 20 Jan 2008 17:17:49 +0100
 
-kde-style-qtcurve (0.55.1-0ubuntu1) hardy; urgency=low
+tde-style-qtcurve (0.55.1-0ubuntu1) hardy; urgency=low
 
   * New upstream release. (LP: #179655)
   * debian/scan-version: Script to scan and download new upstream releases
@@ -79,7 +79,7 @@ kde-style-qtcurve (0.55.1-0ubuntu1) hardy; urgency=low
 
  -- Matvey Kozhev <sikon@lucidfox.org>  Tue, 01 Jan 2008 17:08:56 +0600
 
-kde-style-qtcurve (0.52.3-1) unstable; urgency=low
+tde-style-qtcurve (0.52.3-1) unstable; urgency=low
 
   * Don't lighten border of disabled check/radio buttons.
   * Lighten trough of disabled slider.
@@ -90,7 +90,7 @@ kde-style-qtcurve (0.52.3-1) unstable; urgency=low
 
  -- Bastian Venthur <venthur@debian.org>  Fri, 10 Aug 2007 10:10:55 +0200
 
-kde-style-qtcurve (0.52.2-1) unstable; urgency=low
+tde-style-qtcurve (0.52.2-1) unstable; urgency=low
 
   New upstream version
 
@@ -108,7 +108,7 @@ kde-style-qtcurve (0.52.2-1) unstable; urgency=low
 
  -- Bastian Venthur <venthur@debian.org>  Sun, 24 Jun 2007 13:13:10 +0200
 
-kde-style-qtcurve (0.52-1) unstable; urgency=low
+tde-style-qtcurve (0.52-1) unstable; urgency=low
 
   * New upstream version
 
@@ -132,13 +132,13 @@ kde-style-qtcurve (0.52-1) unstable; urgency=low
 
  -- Bastian Venthur <venthur@debian.org>  Tue, 19 Jun 2007 17:35:33 +0200
 
-kde-style-qtcurve (0.51-2) unstable; urgency=low
+tde-style-qtcurve (0.51-2) unstable; urgency=low
 
   * Changed priority from extra to optional 
 
  -- Bastian Venthur <venthur@debian.org>  Mon, 11 Jun 2007 11:21:00 +0200
 
-kde-style-qtcurve (0.51-1)  unstable; urgency=low
+tde-style-qtcurve (0.51-1)  unstable; urgency=low
 
   * New upstream version (Closes: #427043)
 
@@ -163,7 +163,7 @@ kde-style-qtcurve (0.51-1)  unstable; urgency=low
 
  -- Bastian Venthur <venthur@debian.org>  Mon, 11 Jun 2007 10:42:01 +0200
 
-kde-style-qtcurve (0.50-1) unstable; urgency=low
+tde-style-qtcurve (0.50-1) unstable; urgency=low
 
   * Initial release
 

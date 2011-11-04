@@ -3,7 +3,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-I18N_DIR_PREFIX := kde-i18n
+I18N_DIR_PREFIX := tde-i18n
 #I18N_VERSION := $(shell cat debian/changelog | head -n1 | sed 's/.*(\([[:digit:]]\+:\)\?\(.\+\)-.\+).*/\2/')
 I18N_VERSION := 3.5.10
 I18N_DIR_PAT := $(I18N_DIR_PREFIX)-%-$(I18N_VERSION)
@@ -65,16 +65,16 @@ install::
 
 install:: $(I18N_INSTALL)
 	# copying the non 2 letter languages into the correct directory
-	mkdir debian/kde-i18n-engb-trinity
-	cp -aR debian/kde-i18n-en_GB-trinity/* debian/kde-i18n-engb-trinity/
-	mkdir debian/kde-i18n-ptbr-trinity
-	cp -aR debian/kde-i18n-pt_BR-trinity/* debian/kde-i18n-ptbr-trinity/
-	mkdir debian/kde-i18n-srlatin-trinity
-	cp -aR debian/kde-i18n-sr@Latn-trinity/* debian/kde-i18n-srlatin-trinity/
-	mkdir debian/kde-i18n-zhcn-trinity
-	cp -aR debian/kde-i18n-zh_CN-trinity/* debian/kde-i18n-zhcn-trinity/
-	mkdir debian/kde-i18n-zhtw-trinity
-	cp -aR debian/kde-i18n-zh_TW-trinity/* debian/kde-i18n-zhtw-trinity/
+	mkdir debian/tde-i18n-engb-trinity
+	cp -aR debian/tde-i18n-en_GB-trinity/* debian/tde-i18n-engb-trinity/
+	mkdir debian/tde-i18n-ptbr-trinity
+	cp -aR debian/tde-i18n-pt_BR-trinity/* debian/tde-i18n-ptbr-trinity/
+	mkdir debian/tde-i18n-srlatin-trinity
+	cp -aR debian/tde-i18n-sr@Latn-trinity/* debian/tde-i18n-srlatin-trinity/
+	mkdir debian/tde-i18n-zhcn-trinity
+	cp -aR debian/tde-i18n-zh_CN-trinity/* debian/tde-i18n-zhcn-trinity/
+	mkdir debian/tde-i18n-zhtw-trinity
+	cp -aR debian/tde-i18n-zh_TW-trinity/* debian/tde-i18n-zhtw-trinity/
 
 $(I18N_INSTALL):
 	cd $(cur_lang_dir) && $(MAKE) install DESTDIR=$(CURDIR)/debian/$(cur_pkg)-trinity
@@ -84,7 +84,7 @@ clean: debian-clean
 debian-clean:
 	dh_testdir
 	# delete unpacked bzip2 languages
-	rm -rf $(I18N_DIR_PREFIX)-*-$(I18N_VERSION)/ debian/kde-i18n-*
+	rm -rf $(I18N_DIR_PREFIX)-*-$(I18N_VERSION)/ debian/tde-i18n-*
 	rm -f debian/stamp__*
 	dh_clean
 

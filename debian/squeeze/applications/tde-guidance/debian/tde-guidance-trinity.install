@@ -1,0 +1,92 @@
+opt/trinity/lib/trinity/kcm_serviceconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_serviceconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_serviceconfig.a opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.a opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.a opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.so.0.0.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.la opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.a opt/trinity/lib/
+opt/trinity/share/icons/crystalsvg/32x32/apps/daemons.png
+opt/trinity/share/icons/crystalsvg/32x32/apps/disksfilesystems.png
+opt/trinity/share/icons/crystalsvg/32x32/apps/userconfig.png
+opt/trinity/share/icons/crystalsvg/32x32/apps/wineconfig.png
+opt/trinity/share/doc/kde/HTML/en/guidance/index.cache.bz2
+opt/trinity/share/doc/kde/HTML/en/guidance/index.html
+opt/trinity/share/doc/kde/HTML/en/guidance/introduction.html
+opt/trinity/share/doc/kde/HTML/en/guidance/using-testapp.html
+opt/trinity/share/doc/kde/HTML/en/guidance/commands.html
+opt/trinity/share/doc/kde/HTML/en/guidance/developers.html
+opt/trinity/share/doc/kde/HTML/en/guidance/re-1007-unmanagechildren-1.html
+opt/trinity/share/doc/kde/HTML/en/guidance/faq.html
+opt/trinity/share/doc/kde/HTML/en/guidance/credits.html
+opt/trinity/share/doc/kde/HTML/en/guidance/installation.html
+opt/trinity/share/doc/kde/HTML/en/guidance/requirements.html
+opt/trinity/share/doc/kde/HTML/en/guidance/compilation.html
+opt/trinity/share/doc/kde/HTML/en/guidance/configuration.html
+opt/trinity/share/applications/kde/serviceconfig.desktop
+opt/trinity/share/applications/kde/userconfig.desktop
+opt/trinity/share/applications/kde/mountconfig.desktop
+opt/trinity/share/applications/kde/wineconfig.desktop
+opt/trinity/share/apps/guidance/pics/laserwarn.png
+opt/trinity/share/apps/guidance/pics/hi32-app-daemons.png
+opt/trinity/share/apps/guidance/pics/hi16-encrypted.png
+opt/trinity/share/apps/guidance/pics/hi32-user.png
+opt/trinity/share/apps/guidance/pics/hi32-group.png
+opt/trinity/share/apps/guidance/pics/hi32-identity.png
+opt/trinity/share/apps/guidance/pics/hi32-password.png
+opt/trinity/share/apps/guidance/pics/kcmpartitions.png
+opt/trinity/share/apps/guidance/pics/kde1.png
+opt/trinity/share/apps/guidance/pics/kde2.png
+opt/trinity/share/apps/guidance/pics/trinity.png
+opt/trinity/share/apps/guidance/pics/kde4.png
+opt/trinity/share/apps/guidance/pics/kde5.png
+opt/trinity/share/apps/guidance/pics/kde6.png
+opt/trinity/share/apps/guidance/pics/hi32-samba.png
+opt/trinity/share/apps/guidance/pics/hi16-hdd.png
+opt/trinity/share/apps/guidance/pics/hi16-cdrom.png
+opt/trinity/share/apps/guidance/pics/hi16-burner.png
+opt/trinity/share/apps/guidance/pics/hi16-floppy.png
+opt/trinity/share/apps/guidance/pics/hi16-blockdevice.png
+opt/trinity/share/apps/guidance/pics/hi16-password.png
+opt/trinity/share/apps/guidance/pics/hi16-memory.png
+opt/trinity/share/apps/guidance/pics/hi16-network.png
+opt/trinity/share/apps/guidance/pics/hi16-lock.png
+opt/trinity/share/apps/guidance/pics/hi16-usbpen.png
+opt/trinity/share/apps/guidance/pics/greenled.png
+opt/trinity/share/apps/guidance/pics/greyled.png
+opt/trinity/share/apps/guidance/pics/exec.png
+opt/trinity/share/apps/guidance/pics/file.png
+opt/trinity/share/apps/guidance/pics/important.png
+opt/trinity/share/apps/guidance/pics/tux.png
+opt/trinity/share/apps/guidance/pics/user.png
+opt/trinity/share/apps/guidance/pics/energystar.png
+opt/trinity/share/apps/guidance/pics/hi32-gfxcard.png
+opt/trinity/share/apps/guidance/pics/hi32-display.png
+opt/trinity/share/apps/guidance/pics/32-wine.png
+opt/trinity/share/apps/guidance/pics/kdewinewizard.png
+opt/trinity/share/python-support/tde-guidance-trinity/SMBShareSelectDialog.py
+opt/trinity/share/python-support/tde-guidance-trinity/SimpleCommandRunner.py
+opt/trinity/share/python-support/tde-guidance-trinity/fuser.py
+opt/trinity/share/python-support/tde-guidance-trinity/fuser_ui.py
+#opt/trinity/share/python-support/tde-guidance-trinity/grubconfig.py
+opt/trinity/share/python-support/tde-guidance-trinity/ktimerdialog.py
+opt/trinity/share/python-support/tde-guidance-trinity/mountconfig.py
+opt/trinity/share/python-support/tde-guidance-trinity/servertestdialog.py
+opt/trinity/share/python-support/tde-guidance-trinity/serviceconfig.py
+opt/trinity/share/python-support/tde-guidance-trinity/sizeview.py
+opt/trinity/share/python-support/tde-guidance-trinity/unixauthdb.py
+opt/trinity/share/python-support/tde-guidance-trinity/userconfig.py
+opt/trinity/share/python-support/tde-guidance-trinity/wineconfig.py
+opt/trinity/lib/trinity/kcm_serviceconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_serviceconfig.so opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_userconfig.so opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_mountconfig.so opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.so.0 opt/trinity/lib/
+opt/trinity/lib/trinity/kcm_wineconfig.so opt/trinity/lib/
+usr/share/lintian/overrides/tde-guidance-trinity

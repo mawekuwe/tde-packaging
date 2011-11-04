@@ -1,10 +1,10 @@
-# Turkish translation of kdebase.
-# This file is distributed under the same license as the kdebase package.
+# Turkish translation of tdebase.
+# This file is distributed under the same license as the tdebase package.
 # Recai Oktaş <roktas@omu.edu.tr>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: kdebase\n"
+"Project-Id-Version: tdebase\n"
 "Report-Msgid-Bugs-To: debian-qt-kde@lists.debian.org\n"
 "POT-Creation-Date: 2007-04-09 19:07+0200\n"
 "PO-Revision-Date: 2004-05-10 18:07+0300\n"

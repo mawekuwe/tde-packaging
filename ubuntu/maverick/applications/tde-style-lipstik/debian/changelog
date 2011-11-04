@@ -1,30 +1,30 @@
-kde-style-lipstik-trinity (2.2.3-4) karmic; urgency=low
+tde-style-lipstik-trinity (2.2.3-4) karmic; urgency=low
 
   * Karmic rebuild
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 02 July 2009 16:08:00 -0600
 
-kde-style-lipstik-trinity (2.2.3-3) intrepid; urgency=low
+tde-style-lipstik-trinity (2.2.3-3) intrepid; urgency=low
 
   * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 02 March 2009 01:07:00 -0600
 
-kde-style-lipstik-trinity (2.2.3-1) intrepid; urgency=low
+tde-style-lipstik-trinity (2.2.3-1) intrepid; urgency=low
 
   * Added -trinity suffix
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 05 Dec 2008 09:38:00 -0600
 
-kde-style-lipstik (2.2.3-1) unstable; urgency=low
+tde-style-lipstik (2.2.3-1) unstable; urgency=low
 
   * New Upstream release
     - Added a configurable active tab highlight color
 
  -- Bastian Venthur <venthur@debian.org>  Tue, 30 Oct 2007 20:45:14 +0100
 
-kde-style-lipstik (2.2.2-1) unstable; urgency=low
+tde-style-lipstik (2.2.2-1) unstable; urgency=low
 
   * New upstream version
     - Added new automake1.9 dependency
@@ -32,14 +32,14 @@ kde-style-lipstik (2.2.2-1) unstable; urgency=low
 
  -- Bastian Venthur <venthur@debian.org>  Thu, 24 May 2007 23:32:09 +0200
 
-kde-style-lipstik (2.2.1-2) unstable; urgency=low
+tde-style-lipstik (2.2.1-2) unstable; urgency=low
 
   * Bumped standards version (no changes)
   * Updated address in maintainer field
 
  -- Bastian Venthur <venthur@debian.org>  Wed, 18 Oct 2006 18:32:15 +0200
 
-kde-style-lipstik (2.2.1-1) unstable; urgency=low
+tde-style-lipstik (2.2.1-1) unstable; urgency=low
 
   * New upstream release
     + Some changes to get lipstik build with GCC 4.1
@@ -51,7 +51,7 @@ kde-style-lipstik (2.2.1-1) unstable; urgency=low
 
  -- Bastian Venthur <mail@venthur.de>  Tue, 28 Feb 2006 16:42:22 +0100
 
-kde-style-lipstik (2.2-1) unstable; urgency=low
+tde-style-lipstik (2.2-1) unstable; urgency=low
 
   * New upstream release
     + Added possibility to configure the spacing for menus
@@ -64,13 +64,13 @@ kde-style-lipstik (2.2-1) unstable; urgency=low
 
  -- Bastian Venthur <mail@venthur.de>  Tue, 14 Feb 2006 10:11:35 +0100
 
-kde-style-lipstik (2.1-2) unstable; urgency=low
+tde-style-lipstik (2.1-2) unstable; urgency=low
 
   * updated libtool scripts (see #343963 for details)
 
  -- Bastian Venthur <mail@venthur.de>  Sun, 22 Jan 2006 15:48:17 +0100
 
-kde-style-lipstik (2.1-1) unstable; urgency=low
+tde-style-lipstik (2.1-1) unstable; urgency=low
 
   * New upstream release
     + Fix for the toolbar seperator net being the right color
@@ -80,7 +80,7 @@ kde-style-lipstik (2.1-1) unstable; urgency=low
 
  -- Bastian Venthur <mail@venthur.de>  Sat, 10 Dec 2005 14:13:45 +0100
 
-kde-style-lipstik (2.0-1) unstable; urgency=low
+tde-style-lipstik (2.0-1) unstable; urgency=low
 
   * New upstream release, exerpt from the changelog:
     + Many bugfixes
@@ -90,7 +90,7 @@ kde-style-lipstik (2.0-1) unstable; urgency=low
 
  -- Bastian Venthur <mail@venthur.de>  Fri,  9 Dec 2005 12:09:00 +0100
 
-kde-style-lipstik (1.3-1) unstable; urgency=low
+tde-style-lipstik (1.3-1) unstable; urgency=low
 
   * Initial release Closes: #322356
 

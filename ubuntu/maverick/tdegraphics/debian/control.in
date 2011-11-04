@@ -1,17 +1,17 @@
-Source: kdegraphics
+Source: tdegraphics
 Section: kde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, imlib11-dev, kdelibs4-dev (>= 4:3.5.6), libexif-dev (>= 0.6.9-1), libfribidi-dev, freeglut3-dev, libgphoto2-2-dev, libltdl3-dev, libopenexr-dev (>= 1.2.1), libpaper-dev, libpoppler-qt-dev, libsane-dev (>> 1.0.15), libtiff4-dev, libtiff-tools, libusb-dev, sharutils, libxxf86vm-dev, xpdf-common, chrpath [powerpc]
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, imlib11-dev, tdelibs4-dev (>= 4:3.5.6), libexif-dev (>= 0.6.9-1), libfribidi-dev, freeglut3-dev, libgphoto2-2-dev, libltdl3-dev, libopenexr-dev (>= 1.2.1), libpaper-dev, libpoppler-qt-dev, libsane-dev (>> 1.0.15), libtiff4-dev, libtiff-tools, libusb-dev, sharutils, libxxf86vm-dev, xpdf-common, chrpath [powerpc]
 Standards-Version: 3.7.2
 
-Package: kdegraphics
+Package: tdegraphics
 Section: kde
 Architecture: all
-Depends: kamera (>= ${source:Version}), kcoloredit (>= ${source:Version}), kdegraphics-kfile-plugins (>= ${source:Version}), kdvi (>= ${source:Version}), kfax (>= ${source:Version}), kfaxview (>= ${source:Version}), kgamma (>= ${source:Version}), kghostview (>= ${source:Version}), kiconedit (>= ${source:Version}), kmrml (>= ${source:Version}), kolourpaint (>= ${source:Version}), kooka (>= ${source:Version}), kpdf (>= ${source:Version}), kpovmodeler (>= ${source:Version}), kruler (>= ${source:Version}), ksnapshot (>= ${source:Version}), ksvg (>= ${source:Version}), kuickshow (>= ${source:Version}), kview (>= ${source:Version}), kviewshell (>= ${source:Version}), libkscan1 (>= ${source:Version})
-Suggests: kdegraphics-doc-html (>= ${source:Version})
+Depends: kamera (>= ${source:Version}), kcoloredit (>= ${source:Version}), tdegraphics-kfile-plugins (>= ${source:Version}), kdvi (>= ${source:Version}), kfax (>= ${source:Version}), kfaxview (>= ${source:Version}), kgamma (>= ${source:Version}), kghostview (>= ${source:Version}), kiconedit (>= ${source:Version}), kmrml (>= ${source:Version}), kolourpaint (>= ${source:Version}), kooka (>= ${source:Version}), kpdf (>= ${source:Version}), kpovmodeler (>= ${source:Version}), kruler (>= ${source:Version}), ksnapshot (>= ${source:Version}), ksvg (>= ${source:Version}), kuickshow (>= ${source:Version}), kview (>= ${source:Version}), kviewshell (>= ${source:Version}), libkscan1 (>= ${source:Version})
+Suggests: tdegraphics-doc-html (>= ${source:Version})
 Description: graphics apps from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -21,10 +21,10 @@ Description: graphics apps from the official KDE release
  This metapackage includes a collection of graphics applications
  provided with the official release of KDE.
 
-Package: kdegraphics-doc-html
+Package: tdegraphics-doc-html
 Architecture: all
 Section: doc
-Suggests: konqueror | www-browser, kdebase
+Suggests: konqueror | www-browser, tdebase
 Description: KDE graphics documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -37,7 +37,7 @@ Description: KDE graphics documentation in HTML format
  KDE graphics packages.
  .
  This package is part of KDE, and a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kamera
 Section: graphics
@@ -49,7 +49,7 @@ Description: digital camera io_slave for Konqueror
  to allow access to your camera's pictures with the URL camera:/
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kcoloredit
 Section: graphics
@@ -61,20 +61,20 @@ Description: a color palette editor and color picker for KDE
  picker.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
-Package: kdegraphics-dev
+Package: tdegraphics-dev
 Section: devel
 Architecture: any
-Depends: kghostview (= ${binary:Version}), kmrml (= ${binary:Version}), kpovmodeler (= ${binary:Version}), ksvg (= ${binary:Version}), kuickshow (= ${binary:Version}), kview (= ${binary:Version}), kviewshell (= ${binary:Version}), kdelibs4-dev (>= 4:3.5.8)
+Depends: kghostview (= ${binary:Version}), kmrml (= ${binary:Version}), kpovmodeler (= ${binary:Version}), ksvg (= ${binary:Version}), kuickshow (= ${binary:Version}), kview (= ${binary:Version}), kviewshell (= ${binary:Version}), tdelibs4-dev (>= 4:3.5.8)
 Description: development files for the KDE graphics module
  This package contains headers and other development files for the KDE
  graphics module.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
-Package: kdegraphics-kfile-plugins
+Package: tdegraphics-kfile-plugins
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -83,19 +83,19 @@ Description: KDE metainfo plugins for graphic files
  tags, etc. all from within the file manager).
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kdvi
 Section: graphics
 Architecture: any
 Depends: ${shlibs:Depends}, texlive-fonts-recommended
 Suggests: khelpcenter
-Replaces: kdebase-data (<< 4:3.3.91)
+Replaces: tdebase-data (<< 4:3.3.91)
 Description: dvi viewer for KDE
  This program and KPart allow the user to display *.DVI files from TeX.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kfax
 Section: graphics
@@ -106,7 +106,7 @@ Description: G3/G4 fax viewer for KDE
  (g3, g3-2d, g4).
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kfaxview
 Section: graphics
@@ -120,7 +120,7 @@ Description: G3/G4 fax viewer for KDE using kviewshell
  kfax application once it reproduces all of kfax's features.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kgamma
 Section: graphics
@@ -133,7 +133,7 @@ Description: gamma correction module for the KDE Control Center
  etc.) will look the same on your monitor as on other monitors.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
  .
   Homepage: http://kgamma.berlios.de/index2.php
 
@@ -152,7 +152,7 @@ Description: PostScript viewer for KDE
  online.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kiconedit
 Section: graphics
@@ -163,7 +163,7 @@ Description: an icon editor for KDE
  KIconedit allows you easily to create and edit icons.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kmrml
 Section: kde
@@ -177,7 +177,7 @@ Description: a Konqueror plugin for searching pictures
  MRML server.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kolourpaint
 Section: graphics
@@ -198,7 +198,7 @@ Description: a simple paint program for KDE
  essential features like Undo/Redo.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
  .
   Homepage: http://kolourpaint.sourceforge.net
 
@@ -222,7 +222,7 @@ Description: scanner program for KDE
  in kooka.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
  .
   Homepage: http://kooka.kde.org/
 
@@ -239,7 +239,7 @@ Description: PDF viewer for KDE
  application.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kpovmodeler
 Section: graphics
@@ -260,7 +260,7 @@ Description: a graphical editor for povray scenes
  non-free, unsupported repository.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
  .
   Homepage: http://www.kpovmodeler.org
 
@@ -273,21 +273,21 @@ Description: a screen ruler and color measurement tool for KDE
  Kruler is a screen ruler (using pixels) and color measurement tool for KDE.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: ksnapshot
 Section: graphics
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Replaces: kdebase-data (<< 4:3.3.91)
+Replaces: tdebase-data (<< 4:3.3.91)
 Description: screenshot utility for KDE
  KSnapshot is a simple applet for taking screenshots. It is capable of 
  capturing images of either the whole desktop or just a single window. 
  The images can then be saved in a variety of formats.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: ksvg
 Section: graphics
@@ -299,7 +299,7 @@ Description: SVG viewer for KDE
  application.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kuickshow
 Section: graphics
@@ -315,7 +315,7 @@ Description: KDE image/slideshow viewer
  display). KuickShow also has a slideshow mode. 
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
  .
   Homepage: http://kuickshow.sourceforge.net
 
@@ -330,7 +330,7 @@ Description: simple image viewer/converter for KDE
  as well.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: kviewshell
 Section: graphics
@@ -345,17 +345,17 @@ Description: generic framework for viewer applications in KDE
  DjVu images.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: libkscan-dev
 Section: libdevel
 Architecture: any
-Depends: libkscan1 (= ${binary:Version}), kdelibs4-dev (>= 4:3.5.8)
+Depends: libkscan1 (= ${binary:Version}), tdelibs4-dev (>= 4:3.5.8)
 Description: development files for the KDE scanner library
  This package contains development files for KDE's scanner library.
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
 Package: libkscan1
 Section: libs
@@ -367,14 +367,14 @@ Description: scanner library for KDE
  (as long as it's sane compatible).
  .
  This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde' and 'kdegraphics' packages for more information.
+ See the 'kde' and 'tdegraphics' packages for more information.
 
-Package: kdegraphics-dbg
+Package: tdegraphics-dbg
 Section: libdevel
 Architecture: any
 Priority: extra
-Depends: kdelibs-dbg, libkscan1 (= ${binary:Version})
-Description: debugging symbols for kdegraphics
- This package contains the debugging symbols associated with kdegraphics.
- They will automatically be used by gdb for debugging kdegraphics-related
+Depends: tdelibs-dbg, libkscan1 (= ${binary:Version})
+Description: debugging symbols for tdegraphics
+ This package contains the debugging symbols associated with tdegraphics.
+ They will automatically be used by gdb for debugging tdegraphics-related
  issues.

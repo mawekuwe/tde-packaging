@@ -51,7 +51,7 @@ Upstream Authors:
   KVocTrain: Ewald Arnold <kvoctrain@ewald-arnold.de>,
       Peter Hedlund <peter@peterandlinda.com>
   KWordQuiz: Peter Hedlund <peter@peterandlinda.com>
-  libkdeedu: Scott Wheeler <wheeler@kde.org>,
+  libtdeedu: Scott Wheeler <wheeler@kde.org>,
       Jason Harris <jharris@30doradus.org>
 
 Copyright:
@@ -66,7 +66,7 @@ Copyright:
     KWordQuiz: GPL, though many source files are under the LGPL
     Libraries:
       libextdate.so: Sources under a mixture of GPL and LGPL
-      libkdeeducore.so: LGPL
+      libtdeeducore.so: LGPL
     DocBook documentation: (see below)
 
   On Debian GNU/Linux systems, the complete texts of the GPL and the LGPL

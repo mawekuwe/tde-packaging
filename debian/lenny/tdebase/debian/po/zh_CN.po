@@ -1,4 +1,4 @@
-# debconf templates for kdebase package
+# debconf templates for tdebase package
 # simplified Chinese translation
 #
 # Copyrights:

@@ -1,18 +1,18 @@
-Source: kdenetwork
+Source: tdenetwork
 Section: kde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, docbook-to-man, doxygen, gawk, gettext, kdelibs4-dev (>= 4:3.5.8), libgadu-dev, libgsmme-dev, libiw-dev (>> 27+28pre8) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], libmeanwhile-dev (>= 1.0.2), libslp-dev, libtiff4-dev, libxml2-dev, libxslt1-dev, libxtst-dev, qt3-doc, sharutils, valgrind [i386 amd64], libxxf86vm-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, docbook-to-man, doxygen, gawk, gettext, tdelibs4-dev (>= 4:3.5.8), libgadu-dev, libgsmme-dev, libiw-dev (>> 27+28pre8) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], libmeanwhile-dev (>= 1.0.2), libslp-dev, libtiff4-dev, libxml2-dev, libxslt1-dev, libxtst-dev, qt3-doc, sharutils, valgrind [i386 amd64], libxxf86vm-dev
 Standards-Version: 3.7.2
 
-Package: kdenetwork
+Package: tdenetwork
 Section: kde
 Architecture: all
-Depends: dcoprss (>= ${Source-Version}), kdenetwork-kfile-plugins (>= ${Source-Version}), kdict (>= ${Source-Version}), kdnssd (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64], kget (>= ${Source-Version}), knewsticker (>= ${Source-Version}), kopete (>= ${Source-Version}), kpf (>= ${Source-Version}), kppp (>= ${Source-Version}), krdc (>= ${Source-Version}), krfb (>= ${Source-Version}), ksirc (>= ${Source-Version}), kwifimanager (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], librss1 (>= ${Source-Version})
-Recommends: kdenetwork-filesharing (>= ${Source-Version}), ktalkd (>= ${Source-Version}), lisa (>= ${Source-Version})
-Suggests: kdenetwork-doc-html (>= ${Source-Version})
+Depends: dcoprss (>= ${Source-Version}), tdenetwork-kfile-plugins (>= ${Source-Version}), kdict (>= ${Source-Version}), kdnssd (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64], kget (>= ${Source-Version}), knewsticker (>= ${Source-Version}), kopete (>= ${Source-Version}), kpf (>= ${Source-Version}), kppp (>= ${Source-Version}), krdc (>= ${Source-Version}), krfb (>= ${Source-Version}), ksirc (>= ${Source-Version}), kwifimanager (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], librss1 (>= ${Source-Version})
+Recommends: tdenetwork-filesharing (>= ${Source-Version}), ktalkd (>= ${Source-Version}), lisa (>= ${Source-Version})
+Suggests: tdenetwork-doc-html (>= ${Source-Version})
 Description: network-related apps from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -27,7 +27,7 @@ Section: net
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: RSS utilities for KDE
- kdenetwork-dcoprss is a RSS to DCOP bridge, allowing all
+ tdenetwork-dcoprss is a RSS to DCOP bridge, allowing all
  DCOP aware applications to access RSS news feeds. There is also
  a few sample utilities provided.
  .
@@ -35,12 +35,12 @@ Description: RSS utilities for KDE
  DCOP is the KDE interprocess communication protocol.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
-Package: kdenetwork-doc-html
+Package: tdenetwork-doc-html
 Architecture: all
 Section: doc
-Suggests: konqueror | www-browser, kdebase
+Suggests: konqueror | www-browser, tdebase
 Description: KDE network documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -53,9 +53,9 @@ Description: KDE network documentation in HTML format
  KDE network packages.
  .
  This package is part of KDE, and a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
-Package: kdenetwork-kfile-plugins
+Package: tdenetwork-kfile-plugins
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -67,9 +67,9 @@ Description: torrent metainfo plugin for KDE
  dialog in konqueror and other file-handling applications.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
-Package: kdenetwork-filesharing
+Package: tdenetwork-filesharing
 Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, perl-suid
@@ -79,7 +79,7 @@ Description: network filesharing configuration module for KDE
  NFS and Samba.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: kdict
 Section: net
@@ -87,7 +87,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
 Provides: dict-client
-Replaces: kdebase-data (<< 4:3.4.0)
+Replaces: tdebase-data (<< 4:3.4.0)
 Description: dictionary client for KDE
  KDict is an advanced KDE graphical client for the DICT Protocol, with full
  Unicode support. It enables you to search through dictionary databases for a
@@ -95,7 +95,7 @@ Description: dictionary client for KDE
  basic as well as advanced queries.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: kget
 Section: net
@@ -111,7 +111,7 @@ Description: download manager for KDE
  applications and Netscape.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: knewsticker
 Section: kde
@@ -126,14 +126,14 @@ Description: news ticker applet for KDE
  good news sources which provide such files.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: kopete
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: qca-tls
-Suggests: kdeartwork-emoticons, khelpcenter, imagemagick, gnupg, gnomemeeting
+Suggests: tdeartwork-emoticons, khelpcenter, imagemagick, gnupg, gnomemeeting
 Replaces: konversation (<= 0.14.0-4), sim (<= 0.9.3-2)
 Description: instant messenger for KDE
  Kopete is an instant messenger program which can communicate with a variety
@@ -146,7 +146,7 @@ Description: instant messenger for KDE
  Support for more IM protocols can be added through a plugin system.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
  .
  Homepage: http://kopete.kde.org
 
@@ -162,7 +162,7 @@ Description: public fileserver for KDE
  designed to be used for sharing files with friends.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: kppp
 Section: net
@@ -179,7 +179,7 @@ Description: modem dialer and ppp frontend for KDE
  track of the time spent online for you.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: krdc
 Section: net
@@ -193,7 +193,7 @@ Description: Remote Desktop Connection for KDE
  Servers using RDP.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: krfb
 Section: net
@@ -209,7 +209,7 @@ Description: Desktop Sharing for KDE
  task.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: ksirc
 Section: net
@@ -225,7 +225,7 @@ Description: IRC client for KDE
  recommended package libio-socket-ssl-perl.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: ktalkd
 Section: net
@@ -244,7 +244,7 @@ Description: talk daemon for KDE
  and shouldn't be run on a multi-user machine.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: kwifimanager
 Section: net
@@ -258,7 +258,7 @@ Description: wireless lan manager for KDE
  wavelan card that uses the wireless extensions interface.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: librss1
 Section: libs
@@ -270,12 +270,12 @@ Description: RSS library for KDE
  automatically when needed.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
-Package: kdenetwork-dev
+Package: tdenetwork-dev
 Section: devel
 Architecture: any
-Depends: kdict (= ${Source-Version}), kopete (= ${Source-Version}), ksirc (= ${Source-Version}), librss1 (= ${Source-Version}), kdelibs4-dev (>= 4:3.5.8)
+Depends: kdict (= ${Source-Version}), kopete (= ${Source-Version}), ksirc (= ${Source-Version}), librss1 (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
 Replaces: librss1-dev, kdict (<< 4:3.5.0-3)
 Conflicts: librss1-dev
 Description: development files for the KDE network module
@@ -284,7 +284,7 @@ Description: development files for the KDE network module
  development-related files for the KDE network module.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: lisa
 Section: net
@@ -297,7 +297,7 @@ Description: LAN information server for KDE
  but relying only on the TCP/IP protocol.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: kdnssd
 Section: net
@@ -310,14 +310,14 @@ Description: Zeroconf support for KDE
  "zeroconf:/" in Konqueror.
  .
  This package is part of KDE, as a component of the KDE network module.
- See the 'kde' and 'kdenetwork' packages for more information.
+ See the 'kde' and 'tdenetwork' packages for more information.
 
-Package: kdenetwork-dbg
+Package: tdenetwork-dbg
 Section: libdevel
 Architecture: any
 Priority: extra
-Depends: librss1 (= ${Source-Version}), kdelibs-dbg
-Description: debugging symbols for kdenetwork
- This package contains the debugging symbols associated with kdenetwork.
- They will automatically be used by gdb for debugging kdenetwork-related
+Depends: librss1 (= ${Source-Version}), tdelibs-dbg
+Description: debugging symbols for tdenetwork
+ This package contains the debugging symbols associated with tdenetwork.
+ They will automatically be used by gdb for debugging tdenetwork-related
  issues.

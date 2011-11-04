@@ -1,16 +1,16 @@
-Source: kdevelop-trinity
+Source: tdevelop-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Jeremy Lainé <jeremy.laine@m4x.org>
-Build-Depends: cdbs (>= 0.4.38), debhelper (>= 5), kdelibs4-trinity-dev (>= 4:3.5.10), gettext, kdelibs4-trinity-doc, libtqtinterface-doc, flex, python, libcvsservice-trinity-dev (>= 4:3.5.10), groff-base, libsvn-dev, libaprutil1-dev, libdb-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.38), debhelper (>= 5), tdelibs4-trinity-dev (>= 4:3.5.10), gettext, tdelibs4-trinity-doc, libtqtinterface-doc, flex, python, libcvsservice-trinity-dev (>= 4:3.5.10), groff-base, libsvn-dev, libaprutil1-dev, libdb-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
-Package: kdevelop-trinity
+Package: tdevelop-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, kdevelop-data-trinity (>= ${source:Version}), kdebase-trinity-bin
-Recommends: kdevelop-trinity-doc, make, libtool, autoconf, automaken, gdb (>= 6.4)
-Suggests: libtqtinterface-dev, kdelibs4-trinity-dev, sgmltools-lite, gettext, ark-trinity, kbabel-trinity, kiconedit-trinity, kdesdk-scripts-trinity, graphviz, kdebase-kio-plugins-trinity, exuberant-ctags, khelpcenter-trinity, kdelibs4-trinity-doc, libtqtinterface-doc, konsole-trinity, cmake, ruby, python
+Depends: ${shlibs:Depends}, tdevelop-data-trinity (>= ${source:Version}), tdebase-trinity-bin
+Recommends: tdevelop-trinity-doc, make, libtool, autoconf, automaken, gdb (>= 6.4)
+Suggests: libtqtinterface-dev, tdelibs4-trinity-dev, sgmltools-lite, gettext, ark-trinity, kbabel-trinity, kiconedit-trinity, tdesdk-scripts-trinity, graphviz, tdebase-kio-plugins-trinity, exuberant-ctags, khelpcenter-trinity, tdelibs4-trinity-doc, libtqtinterface-doc, konsole-trinity, cmake, ruby, python
 Description: An IDE for Unix/X11
  KDevelop is an easy to use Integrated Development Environment
  for developing C/C++ applications under X11. It features 
@@ -20,9 +20,9 @@ Description: An IDE for Unix/X11
  The application wizard can generate fully functional projects
  for terminal programs and GUI programs using Qt, KDE or GNOME.
  .
-  Homepage: http://www.kdevelop.org/
+  Homepage: http://www.tdevelop.org/
 
-Package: kdevelop-trinity-doc
+Package: tdevelop-trinity-doc
 Section: doc
 Architecture: all
 Description: An IDE for Unix/X11 - documentation
@@ -36,9 +36,9 @@ Description: An IDE for Unix/X11 - documentation
  .
  This package contains documentation for KDevelop.
  .
-  Homepage: http://www.kdevelop.org/
+  Homepage: http://www.tdevelop.org/
 
-Package: kdevelop-data-trinity
+Package: tdevelop-data-trinity
 Architecture: all
 Description: An IDE for Unix/X11 - data
  KDevelop is an easy to use Integrated Development Environment
@@ -51,11 +51,11 @@ Description: An IDE for Unix/X11 - data
  .
  This package contains arch independent data for KDevelop.
  .
-  Homepage: http://www.kdevelop.org/
+  Homepage: http://www.tdevelop.org/
 
-Package: kdevelop-trinity-dev
+Package: tdevelop-trinity-dev
 Architecture: any
-Depends: kdevelop-trinity (= ${binary:Version}), kdelibs4-trinity-dev
+Depends: tdevelop-trinity (= ${binary:Version}), tdelibs4-trinity-dev
 Description: An IDE for Unix/X11 - development files
  KDevelop is an easy to use Integrated Development Environment
  for developing C/C++ applications under X11. It features 
@@ -67,5 +67,5 @@ Description: An IDE for Unix/X11 - development files
  .
  This package contains development files for KDevelop.
  .
-  Homepage: http://www.kdevelop.org/
+  Homepage: http://www.tdevelop.org/
 

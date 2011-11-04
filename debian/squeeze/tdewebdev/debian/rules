@@ -26,7 +26,7 @@ ifeq ($(GCC_VERSION),4.3)
   CXX = g++ -fpermissive
 endif
 
-DEB_DH_STRIP_ARGS  := --dbg-package=kdewebdev-trinity-dbg
+DEB_DH_STRIP_ARGS  := --dbg-package=tdewebdev-trinity-dbg
 
 PACKAGES_WITH_LIBS := kommander-trinity
 

@@ -88,8 +88,8 @@ digikam (2:0.9.3-2) unstable; urgency=low
   [ Achim Bohnet]
 
   * Cherry pick fixes from KDEs SVN:
-      40_kdesvn783161_fix_wrong_file-exits_check.diff
-      40_kdesvn786622_honour_scrollbar.diff
+      40_tdesvn783161_fix_wrong_file-exits_check.diff
+      40_tdesvn786622_honour_scrollbar.diff
 
   * Remove build-deps:
     + automake1.9: We take care that no rebuilding is necessary.
@@ -161,7 +161,7 @@ digikam (2:0.9.3~beta3-1) experimental; urgency=low
 
   * New upstream release
 
-  * Remove Depends: libgphoto2-2-dev thnks to kdelibs patch from pusling
+  * Remove Depends: libgphoto2-2-dev thnks to tdelibs patch from pusling
      - dependency on dev package (libgphoto2-2-dev) (Closes: #416123)
   * Working debian/watch from Raphael
     - debian/watch fails to report upstream&#39;s version (Closes:
@@ -293,7 +293,7 @@ digikam (2:0.9.2~beta1-1) experimental; urgency=low
   * Patches deleted as encorporated upstream:
     - debian/patches/10-gcc43-fix.diff
     - debian/patches/11-add-service-menu-translations.diff
-    - debian/patches/12-kdesvn-r649833-fix-tile-cache.diff
+    - debian/patches/12-tdesvn-r649833-fix-tile-cache.diff
   * Conflicts:/Replaces: digikamimageplugins - upstream has merged
   * Ensure kipi-plugins et al are correct versions/ correct libraries
     - Conflicts: libkexiv2-0 
@@ -322,7 +322,7 @@ digikam (2:0.9.1-3) unstable; urgency=low
     version of the file which contains turkish translation too fix french
     translation. Thanks to Anthony Mercatante <tonio@ubuntu.com> for the
     patch.
-  * add debian/patches/12-kdesvn-r649833-fix-tile-cache.diff: Editor tile
+  * add debian/patches/12-tdesvn-r649833-fix-tile-cache.diff: Editor tile
     cache mechanism does not work, making rendering slow. Thanks to
     Luka Renko <lure@ubuntu.com> for the patch.
 
@@ -338,7 +338,7 @@ digikam (2:0.9.1-3) unstable; urgency=low
 digikam (2:0.9.1-2) unstable; urgency=low
 
   [ Achim Bohnet ]
-  * Depend on kdebase-kio-plugins.  The pkg contains kio_trash and makes
+  * Depend on tdebase-kio-plugins.  The pkg contains kio_trash and makes
    'Move to Trash' working for e.g. Gnome sessions. Fixes report on
    digikam-user mailing list and closes malone #75435.
 
@@ -426,8 +426,8 @@ digikam (2:0.9.0-1) experimental; urgency=low
 
   [ Achim Bohnet ]
   * remove patches, now included in upstream tarball:
-    + 10_kdesvn_606804_dcraw-return-code.diff
-    + 11_kdesvn_606805_file-extention-parsing.diff
+    + 10_tdesvn_606804_dcraw-return-code.diff
+    + 11_tdesvn_606805_file-extention-parsing.diff
     + 12_kde_606923_fix_huge_memory_leak.diff
   * bump build-dep on exiv2 to >=0.12
   * debian/control: bump conflict with digikamimageplugins to << 0.9.0~rc2
@@ -453,9 +453,9 @@ digikam (1:0.9.0~rc1-1) unstable; urgency=low
   * removed patches/11_only_-lqt-mt.diff: autoconf 2.60 uses a totally
     different method to substitute vars.
   * Pick fixes from svn:
-    + 10_kdesvn_606804_dcraw-return-code.diff : fix file-extention parsing
+    + 10_tdesvn_606804_dcraw-return-code.diff : fix file-extention parsing
       when it's a null string KDEBUG: 137495
-    + 11_kdesvn_606805_file-extention-parsing.diff: dcraw fail to decode a
+    + 11_tdesvn_606805_file-extention-parsing.diff: dcraw fail to decode a
        RAW file. KDEBUG: 137495
     + patches/12_kde_606923_fix_huge_memory_leak.diff: fix huge memory
       corruption relevant of a wrong deletion of data shared between preview
@@ -563,7 +563,7 @@ digikam (0.8.2-1) unstable; urgency=low
     - remove applnk/ workaround: digikam.desktop is now properly
       installed in applications/kde/
     - remove x-raw.desktop removal. No longer delivered by upstream
-  * debian/control: x-raw.desktop is in kdelibs >= 4:3.5.1-3 so add
+  * debian/control: x-raw.desktop is in tdelibs >= 4:3.5.1-3 so add
     a versioned depend on it.
 
   [ Mark Purcell ]
@@ -600,9 +600,9 @@ digikam (0.8.1+0.8.2-rc1-1) unstable; urgency=low
     http://bugs.kde.org/show_bug.cgi?id=126326 and
     https://launchpad.net/distros/ubuntu/+source/digikam/+bug/34462
   * Removed patches now included upstream:
-     o 20_kdesvn_r531782_fix_16bit_tiff_thumbnails.diff
-     o 21_kdesvn_r532147_fix_16bit_tiff_umscamera.diff
-     o 22_kdesvn_r532959_fix_16bit_tiff_imageeditor.diff
+     o 20_tdesvn_r531782_fix_16bit_tiff_thumbnails.diff
+     o 21_tdesvn_r532147_fix_16bit_tiff_umscamera.diff
+     o 22_tdesvn_r532959_fix_16bit_tiff_imageeditor.diff
   * Add patch debian/patches/11_only_-lqt-mt.diff:
     By default configure sets LIB_QT to 
     LIB_QT = -lqt-mt  $(LIBZ) $(LIBPNG) -lXext $(LIB_X11) $(LIBSM) -lpthread
@@ -615,9 +615,9 @@ digikam (0.8.1+0.8.2-beta1-2) unstable; urgency=low
 
   [ Achim Bohnet ]
   * Pull some fixes from upstream svn:
-    + 20_kdesvn_r531782_fix_16bit_tiff_thumbnails.diff
-    + 21_kdesvn_r532147_fix_16bit_tiff_umscamera.diff
-    + 22_kdesvn_r532959_fix_16bit_tiff_imageeditor.diff
+    + 20_tdesvn_r531782_fix_16bit_tiff_thumbnails.diff
+    + 21_tdesvn_r532147_fix_16bit_tiff_umscamera.diff
+    + 22_tdesvn_r532959_fix_16bit_tiff_imageeditor.diff
 
  -- Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>  Mon, 24 Apr 2006 23:29:16 +0200
 
@@ -631,9 +631,9 @@ digikam (0.8.1+0.8.2-beta1-1) unstable; urgency=low
      o digikam now fail to display pictures, and needlessly invoke dcraw
         too (Closes: #364215)
   * Removed the patches that are in new upstream release:
-     o 10_kdesvn_r507591_fix_jpeg_on_ppc.diff
-     o 11_kdesvn_r508791_add_more_options_to_albumproperties.diff
-     o 12_kdesvn_r505430_fix_search.diff
+     o 10_tdesvn_r507591_fix_jpeg_on_ppc.diff
+     o 11_tdesvn_r508791_add_more_options_to_albumproperties.diff
+     o 12_tdesvn_r505430_fix_search.diff
   * debian rules: replace deletion of empty api-docs dir tree with one
     simple rm -rf
   * fix typo in long description. (Closes: #363256)
@@ -654,8 +654,8 @@ digikam (0.8.1-4) unstable; urgency=low
 
   [ Achim Bohnet ]
   * recommend dcraw
-  * patches/10_kdesvn_r507545_fix_jpeg_on_ppc.diff removed: breaks AMD64.
-  * patches/10_kdesvn_r507591_fix_jpeg_on_ppc.diff 2nd try.  Works on
+  * patches/10_tdesvn_r507545_fix_jpeg_on_ppc.diff removed: breaks AMD64.
+  * patches/10_tdesvn_r507591_fix_jpeg_on_ppc.diff 2nd try.  Works on
     PPC without breaking AMD64 (Closes: #354173).  Thanks to Rodney Gordon
     II and Fabrice Flore-Thebault for testing.
 
@@ -667,13 +667,13 @@ digikam (0.8.1-3) unstable; urgency=low
   * Remove version from build-dep on libkexif and libkipi.  Lastest
     libkexif and libkipi don't refer to libXft.la anymore.
   * remove image/x-raw.desktop. It is now in upstream's stable branch
-    of kdelibs (see http://bugs.kde.org/show_bug.cgi?id=121242).
-    Debian's kdelibs >= 4:3.5.1-3 contains this file already.
-  * patches/10_kdesvn_r507545_fix_jpeg_on_ppc.diff: fix endiness problem
+    of tdelibs (see http://bugs.kde.org/show_bug.cgi?id=121242).
+    Debian's tdelibs >= 4:3.5.1-3 contains this file already.
+  * patches/10_tdesvn_r507545_fix_jpeg_on_ppc.diff: fix endiness problem
     with jpeg. Fix:  (Closes: #351931)
 
   [ Tom Albers ]
-  * patches/11_kdesvn_r508791_add_more_options_to_albumproperties.diff
+  * patches/11_tdesvn_r508791_add_more_options_to_albumproperties.diff
     adds two buttons to album properties to set the date picker to oldest
     or newest image in the album.
 
@@ -757,7 +757,7 @@ digikam (0.7.4-5) unstable; urgency=low
 
   [ Achim Bohnet ]
   * Now that the pkgs are build on all archs, fix build dependencies
-     + kdelibs4-dev: remove version
+     + tdelibs4-dev: remove version
      + libkexif1-dev (>= 0.2-1), libkipi0-dev (>= 0.1-1): (re)set
        versions to last API change. (Helps backporting.)
   * remove debian/dirs, not needed because dh_install creates the
@@ -783,7 +783,7 @@ digikam (0.7.4-4) unstable; urgency=low
     - Libraries should be split in a lib and -dev package. (Closes:
     #324592)
   * fix lintian old-fsf-address-in-copyright-file
-  * Add Recommends: kdebase
+  * Add Recommends: tdebase
 
  -- Mark Purcell <msp@debian.org>  Thu,  1 Sep 2005 07:49:32 +0100
 
@@ -829,7 +829,7 @@ digikam (0.7.4-1) unstable; urgency=low
   * C++ transition package
   * Add debian/watch
   * Build-Depends: libkexif1-dev (>= 0.2.1-5)
-  *  libkipi0-dev (>= 0.1.1-3), kdelibs4-dev (>= 4:3.4.2-1)
+  *  libkipi0-dev (>= 0.1.1-3), tdelibs4-dev (>= 4:3.4.2-1)
   * Disable KDE_ENABLE_HIDDEN_VISIBILITY --
               debian/patches/visibility.diff
   * Build-Depends: automake1.9
@@ -1020,7 +1020,7 @@ digikam (0.6.2-4) unstable; urgency=low
 
 digikam (0.6.2-2sarge1) testing-proposed-updates; urgency=medium
 
-  * Rebuild to get back into Sarge due to kdelibs/libtiff dependencies (Closes: #268774)
+  * Rebuild to get back into Sarge due to tdelibs/libtiff dependencies (Closes: #268774)
 
  -- Paul Telford <pxt@debian.org>  Mon, 30 Aug 2004 15:35:52 +0000
 

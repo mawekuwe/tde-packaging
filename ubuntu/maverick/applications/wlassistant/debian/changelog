@@ -19,8 +19,8 @@ wlassistant-trinity (0.5.7-2~0ubuntu1) intrepid; urgency=low
 wlassistant (0.5.7-2) unstable; urgency=low
 
   * Fix clean target: cleanbuilddir common-configure-arch::
-  * Remove Depends: kdelibs-bin - proper depends are pulled in via shlibs
-    - wlassistant uninstallable after kdelibs(4:3.5.7.dfsg.1-4) (Closes:
+  * Remove Depends: tdelibs-bin - proper depends are pulled in via shlibs
+    - wlassistant uninstallable after tdelibs(4:3.5.7.dfsg.1-4) (Closes:
     #437413)
   * Move to Applications/Network/Monitoring:
     - lintian fix menu-item-uses-apps-section

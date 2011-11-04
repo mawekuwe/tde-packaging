@@ -2,7 +2,7 @@
 
 set -e
 
-package_name=kdesudo-trinity
+package_name=tdesudo-trinity
 
 if [ -z "$package_name" ]; then
     print >&2 "Internal Error. Please report a bug."
