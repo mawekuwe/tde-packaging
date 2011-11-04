@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -11,17 +11,23 @@
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
+BuildRequires: cmake >= 2.8
 %define tde_libdir %{_libdir}/trinity
+
+# kdeartwork specific settings
+# On RHEL 6, libart is too old !
+%if 0%{?fedora} >= 15
+%define with_libart 1
+%endif
 
 
 Name:    trinity-kdeartwork
-Summary: Additional artwork (themes, sound themes, ...) for KDE
+Summary: Additional artwork (themes, sound themes, ...) for TDE
 Version: %{?version}
 Release: %{?release}%{?dist}%{?_variant}
 
 License:	GPLv2
-Group:   User Interface/Desktops
+Group:		User Interface/Desktops
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Vendor:		Trinity Project
@@ -35,8 +41,15 @@ Source1: webcollagerc
 
 BuildRequires: gettext
 BuildRequires: trinity-kdebase-devel
-BuildRequires: libart_lgpl-devel
 BuildRequires: nas-devel esound-devel jack-audio-connection-kit-devel
+%if 0%{?rhel} > 5 || 0%{?fedora} >= 15
+BuildRequires: xscreensaver
+%else
+BuildRequires: gnome-screensaver
+%endif
+%if "%{?with_libart}" == "1"
+BuildRequires: libart_lgpl-devel
+%endif
 
 Requires: trinity-kdebase
 
@@ -54,24 +67,27 @@ Group: User Interface/Desktops
 %prep
 %setup -q -n kdeartwork
 
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f "admin/Makefile.common"
-
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
+export LD_LIBRARY_PATH="%{_libdir}"
 
-
-%configure \
-  --disable-rpath \
-  --enable-new-ldflags \
-  --disable-dependency-tracking \
-  --disable-debug --disable-warnings \
-  --enable-final \
-  --with-extra-includes=%{_includedir}/tqt
+%__mkdir build
+cd build
+%cmake \
+  -DWITH_XSCREENSAVER=ON \
+%if "%{?with_libart}" == "1"
+  -DWITH_LIBART=ON \
+%else
+  -DWITH_LIBART=OFF \
+%endif
+  -DWITH_OPENGL=ON \
+  -DWITH_ARTS=ON \
+  -DBUILD_ALL=ON \
+  ..
 
 %__make %{?_smp_mflags}
 
@@ -79,8 +95,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-
-%make_install
+%__make install -C build DESTDIR=%{buildroot}
 
 # webcollage -root -directory /usr/share/backgrounds/images #227683
 
@@ -123,17 +138,17 @@ done
 %post icons
 for i in locolor ikons kdeclassic kids slick ; do
  touch --no-create %{_datadir}/icons/$i 2>/dev/null || :
- %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/$i 2>/dev/null || :
+ gtk-update-icon-cache --quiet %{_datadir}/icons/$i 2>/dev/null || :
 done
 
 %postun icons
 for i in locolor ikons kdeclassic kids slick ; do
  touch --no-create %{_datadir}/icons/$i 2>/dev/null || :
- %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/$i 2>/dev/null || :
+ gtk-update-icon-cache --quiet %{_datadir}/icons/$i 2>/dev/null || :
 done
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
@@ -165,5 +180,8 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT

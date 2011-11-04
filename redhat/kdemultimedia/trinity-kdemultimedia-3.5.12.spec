@@ -43,6 +43,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: kdemultimedia-%{version}.tar.gz
 
+Provides: kdemultimedia3 = %{version}-%{release}
+
 # RedHat Legacy patches (from Fedora 8)
 Patch3: kdemultimedia-3.4.0-xdg.patch
 Patch5: kdemultimedia-3.5.7-pthread.patch
@@ -159,7 +161,8 @@ export CXXFLAGS="${CXXFLAGS} -lDCOP"
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?_with_xine} %{!?_with_xine:--without-xine} \
-   --with-extra-includes=%{_usr}/include/cdda:%{_includedir}/tqt
+   --with-extra-includes=%{_usr}/include/cdda:%{_includedir}/tqt \
+   --enable-closure
 
 %__make %{?_smp_mflags}
 
@@ -172,7 +175,7 @@ export PATH="%{_bindir}:${PATH}"
 %__make install DESTDIR=%{?buildroot}  -C kaudiocreator
 
 ## Remove/uninstall (conflicting) bits we don't want
-rm -f $RPM_BUILD_ROOT%{_libdir}/mcop/akode*MPEGPlayObject.mcopclass
+%__rm -f $RPM_BUILD_ROOT%{_libdir}/mcop/akode*MPEGPlayObject.mcopclass
 
 # only show in KDE, really? -- Rex (FIXME)
 for f in %{buildroot}%{appdir}/*.desktop ; do
@@ -217,6 +220,7 @@ done
 
 
 %post
+/sbin/ldconfig
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -224,6 +228,7 @@ done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %postun
+/sbin/ldconfig
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:

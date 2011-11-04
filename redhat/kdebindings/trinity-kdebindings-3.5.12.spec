@@ -27,7 +27,7 @@ Group:   User Interface/Desktops
 
 Vendor:  Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:     http://developer.kde.org/language-bindings/ 
+URL:		http://www.trinitydesktop.org/
 
 Source0: kdebindings-%{version}.tar.gz
 
@@ -211,6 +211,7 @@ done
 %clean
 %__rm -rf $RPM_BUILD_ROOT
 
+
 %post
 /sbin/ldconfig ||:
 touch --no-create %{_datadir}/icons/hicolor ||:
@@ -265,7 +266,7 @@ update-desktop-database >& /dev/null ||:
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/kde/*
+%{tde_includedir}/*
 %{_libdir}/lib*.so
 %if "%{?_with_java:1}" == "1"
 %{_libdir}/jni/*.so

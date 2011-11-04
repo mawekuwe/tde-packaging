@@ -1,0 +1,33 @@
+diff -ur kdenetwork-orig/krfb/krfb_httpd/krfb_httpd kdenetwork-3.5.9/krfb/krfb_httpd/krfb_httpd
+--- kdenetwork-orig/krfb/krfb_httpd/krfb_httpd	2007-05-14 09:40:05.000000000 +0200
++++ kdenetwork-3.5.9/krfb/krfb_httpd/krfb_httpd	2008-02-26 12:43:21.000000000 +0100
+@@ -6,17 +6,14 @@
+ fi
+ 
+ read request url httptype || exit 0
+-url="${url/
+-/}"
+-httptype="${httptype/
+-/}"
++url="${url//}"
++httptype="${httptype//}"
+ 
+ if [ "x$httptype" != "x" ]; then
+ 	line="x"
+ 	while [ -n "$line" ]; do
+ 		read line || exit 0
+-		line="${line/
+-/}"
++		line="${line//}"
+ 	done
+ fi
+ # echo "url = $url, request = $request" >> /tmp/httpd.log
+@@ -38,7 +35,7 @@
+ 	content="
+ <HTML><HEAD><TITLE>$LOGNAME's desktop</TITLE></HEAD>
+ <BODY>
+-<APPLET CODE=VncViewer.class ARCHIVE=VncViewer.jar WIDTH=$width HEIGHT=$height>
++<APPLET CODE=vncviewer/VNCViewer.class ARCHIVE=vncviewer.jar WIDTH=$width HEIGHT=$height>
+ 	<param name=PORT value=$port>
+ </APPLET>
+ </BODY></HTML>"

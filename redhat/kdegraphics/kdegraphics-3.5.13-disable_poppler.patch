@@ -1,0 +1,11 @@
+--- kdegraphics.ORI/kfile-plugins/dependencies/CMakeLists.txt	2011-07-31 08:24:04.000000000 +0200
++++ kdegraphics/kfile-plugins/dependencies/CMakeLists.txt	2011-10-30 14:42:03.000000000 +0100
+@@ -9,4 +9,6 @@
+ #
+ #################################################
+ 
+-add_subdirectory( poppler-tqt )
+\ Pas de fin de ligne à la fin du fichier.
++if( WITH_PDF )
++  add_subdirectory( poppler-tqt )
++endif ( )

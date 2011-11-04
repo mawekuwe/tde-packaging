@@ -79,6 +79,7 @@ Utilities for the Trinity Desktop Environment, including:
   * ktimer (task scheduler)
   * kwikdisk (removable media utility)
 
+
 # afaik, nobody BR's it, and it pulls kdeutils into multilib -- Rex
 %package devel
 Summary: Development files for %{name} 
@@ -222,7 +223,6 @@ done
 
 %files extras
 %defattr(-,root,root,-)
-
 # kmilo
 %{tde_libdir}/kded_kmilod.*
 %{tde_libdir}/kmilo*

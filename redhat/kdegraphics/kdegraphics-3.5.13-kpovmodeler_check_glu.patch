@@ -1,0 +1,16 @@
+diff -Nuar kdegraphics.ORI/kpovmodeler/ConfigureChecks.cmake kdegraphics/kpovmodeler/ConfigureChecks.cmake
+--- kdegraphics.ORI/kpovmodeler/ConfigureChecks.cmake	2011-05-11 22:40:19.000000000 +0200
++++ kdegraphics/kpovmodeler/ConfigureChecks.cmake	2011-10-30 14:00:54.000000000 +0100
+@@ -12,7 +12,10 @@
+ # glu
+ pkg_search_module( GLU glu )
+ if( NOT GLU_FOUND )
+-  tde_message_fatal( "glu is required, but was not found on your system" )
++  check_include_file ( GL/glu.h HAVE_GLU )
++  if( NOT HAVE_GLU )
++    tde_message_fatal( "glu is required, but was not found on your system" )
++  endif ( )
+ endif( )
+ 
+ 
+kfile-plugins/dependencies/poppler-tqt/CMakeFiles/poppler-tqt-shared.dir/build.make

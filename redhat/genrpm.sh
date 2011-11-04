@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd "$( dirname "$0" )"
+ARGS="$@"
 
 clear
 cat <<EOF
@@ -21,7 +22,7 @@ EOF
 	exit 1
 fi
 
-select COMP in $( cut -f1 "components.txt" ) ; do
+select COMP in $( cut -f1 "components.txt" | grep -v "^#" ) ; do
 	# Gets package version from 'components.txt' file
 	VERSION=$( awk '{ if ($1 == "'${COMP}'") { print $2; } }' components.txt )
 	
@@ -70,11 +71,14 @@ EOF
 	esac
 	
 	set -x
+	(
 	rpmbuild -ba \
 		--define "_sourcedir ${PWD}/${COMP}" \
 		--define "_prefix ${PREFIX:-/opt/trinity}" \
 		--define "version ${VERSION:-3.5.13}" \
+		$ARGS \
 		${COMP}/${SPEC} || exit 1
+	) 2>&1 | tee /tmp/log
 	set +x
 done
 

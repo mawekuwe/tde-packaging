@@ -1,0 +1,13 @@
+--- kdebase/startkde.ORI	2011-11-01 22:17:52.000000000 +0100
++++ kdebase/startkde	2011-11-01 22:18:14.000000000 +0100
+@@ -413,7 +413,9 @@
+ fi
+ 
+ if [ -n $KGTK_PRELOAD ]; then
+-  if [ -e /usr/lib/libnspr4.so ]; then
++  if [ -e /usr/lib64/libnspr4.so ]; then
++    KGTK_NSPR_PRELOAD="/usr/lib64/libnspr4.so:"
++  elif [ -e /usr/lib/libnspr4.so ]; then
+     KGTK_NSPR_PRELOAD="/usr/lib/libnspr4.so:"
+   fi
+   export LD_PRELOAD=$KGTK_PRELOAD:$KGTK_NSPR_PRELOAD$LD_PRELOAD
