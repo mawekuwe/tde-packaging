@@ -386,7 +386,7 @@ kmymoney2 (0.8-3) unstable; urgency=low
 kmymoney2 (0.8-2) experimental; urgency=low
 
   * C++ migration
-  * Build-Depends: kdelibs4-dev (>= 4:3.4.2-1)
+  * Build-Depends: tdelibs4-dev (>= 4:3.4.2-1)
 
  -- Mark Purcell <msp@debian.org>  Fri, 19 Aug 2005 07:22:23 +0100
 

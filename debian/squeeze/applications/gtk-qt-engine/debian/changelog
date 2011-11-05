@@ -434,7 +434,7 @@ gtk-qt-engine (0.60-1.1ubuntu1) dapper; urgency=low
 gtk-qt-engine (0.60-1.1) unstable; urgency=low
 
   * NMU at maintainer's request.
-  * Rebuild against C++ transitioned kdelibs; no source changes needed.
+  * Rebuild against C++ transitioned tdelibs; no source changes needed.
 
  -- Adeodato Simó <asp16@alu.ua.es>  Wed, 07 Sep 2005 16:45:32 +0200
 
@@ -473,7 +473,7 @@ gtk-qt-engine (0.60-1ubuntu1) hoary; urgency=low
 gtk-qt-engine (0.60-1.1) unstable; urgency=low
 
   * NMU at maintainer's request.
-  * Rebuild against C++ transitioned kdelibs; no source changes needed.
+  * Rebuild against C++ transitioned tdelibs; no source changes needed.
 
  -- Adeodato Simó <asp16@alu.ua.es>  Wed, 07 Sep 2005 16:45:32 +0200
 
@@ -528,7 +528,7 @@ gtk-qt-engine (0.41-3) unstable; urgency=low
 gtk-qt-engine (0.41-2) unstable; urgency=low
 
   * Rebuilt for unstable. Excuse me.
-  * Added kdelibs4-dev to Build-Depends.
+  * Added tdelibs4-dev to Build-Depends.
 
  -- Christoffer Sawicki <qerub@home.se>  Wed, 16 Jun 2004 20:51:15 +0200
 

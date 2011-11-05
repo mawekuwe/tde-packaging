@@ -40,7 +40,7 @@ dolphin (0.9.2-0ubuntu5) hardy; urgency=low
 
 dolphin (0.9.2-0ubuntu4) hardy; urgency=low
 
-  * Rebuild with kdesdk-script 4:3.5.8-1ubuntu6 to ensure .desktop
+  * Rebuild with tdesdk-script 4:3.5.8-1ubuntu6 to ensure .desktop
     file translations are used
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 14 Dec 2007 16:58:36 +0000

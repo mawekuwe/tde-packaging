@@ -45,9 +45,9 @@ kipi-plugins (0.1.5-1) unstable; urgency=low
     + remove automake: not needed
     + remove libexif-dev: replaced upstream by libexiv2-dev
   * Cherry pick fixes from SVN:
-    + 40_kdesvn786355_timeadjusst_fix_filestat.diff
-    + 40_kdesvn786363_timeAdjust_update_DateTimeOriginal.diff
-    + 40_kdesvn786549_99_rawDecoding_jpeg_compression.diff
+    + 40_tdesvn786355_timeadjusst_fix_filestat.diff
+    + 40_tdesvn786363_timeAdjust_update_DateTimeOriginal.diff
+    + 40_tdesvn786549_99_rawDecoding_jpeg_compression.diff
     Thx to upstream for pointing me to those patches.
 
   [ Fathi Boudra ]
@@ -120,7 +120,7 @@ kipi-plugins (0.1.4~beta2-1) experimental; urgency=low
      50_libkexiv2-0.patch
      50_libkexiv2-1.patch
      50_libkexiv2-2.patch
-     15_kdesvn_655231_fix-gallery-2.2-export.diff
+     15_tdesvn_655231_fix-gallery-2.2-export.diff
      Bug#417297-GCC4.3.diff
 
  -- Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>  Tue, 26 Jun 2007 23:28:36 +0100
@@ -130,7 +130,7 @@ kipi-plugins (0.1.3-5) unstable; urgency=low
   [ Achim Bohnet ]
   * debian/control: set kipi-plugins-doc section to doc. Fixes override
     disparity on uploads.
-  * Add debian/patches/15_kdesvn_655231_fix-gallery-2.2-export.diff
+  * Add debian/patches/15_tdesvn_655231_fix-gallery-2.2-export.diff
     Fixes export to gallery 2.2: http://bugs.kde.org/show_bug.cgi?id=142259
   * Add debian/patches/50_libkexiv2-{1,2,3}.patch:  Fixes FTBFS with
     libexiv2 0.14.  This adds also a build dependency on libkexiv2-dev
@@ -206,8 +206,8 @@ kipi-plugins (0.1.3-1) experimental; urgency=low
     + ipodexport fix for relibtoolization (KDE bug 140279):
       ipodexport is calling g_type_init() explicitely without linking 
       against libgobject-2.0: debian/patches/40_fix_ipod_export_linking.diff
-  * remove patches/10_kdesvn_618170_Makefile.am_libs_used_only.diff and
-    patches/30_kdesvn_625568_pod.patch. Included upstream.
+  * remove patches/10_tdesvn_618170_Makefile.am_libs_used_only.diff and
+    patches/30_tdesvn_625568_pod.patch. Included upstream.
 
  -- Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>  Thu, 25 Jan 2007 21:34:40 +0100
 
@@ -236,7 +236,7 @@ kipi-plugins (0.1.3~rc1-1) experimental; urgency=low
     + order plugins list in long description as in README
     + avoid term 'plugins' in short description of the plugins
   * relibtoolization:
-      add patches/10_kdesvn_618170_Makefile.am_libs_used_only.diff
+      add patches/10_tdesvn_618170_Makefile.am_libs_used_only.diff
 
  -- Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>  Fri, 29 Dec 2006 13:46:46 +0100
 
@@ -366,7 +366,7 @@ kipi-plugins (0.1+rc1-1) unstable; urgency=low
 
   [ Achim Bohnet ]
   * Now that the pkgs are build on all archs, fix build dependencies
-     + kdelibs4-dev: remove version
+     + tdelibs4-dev: remove version
      + libkexif1-dev (>= 0.2-1), libkipi0-dev (>= 0.1-1): (re)set
        versions to last API change. (Helps backporting.)
   * patches/01_rawconverter_dcraw7.0+trinity.4-fixes-from-head.diff removed.
@@ -396,7 +396,7 @@ kipi-plugins (0.1+rc1-1) unstable; urgency=low
 kipi-plugins (0.1+beta2-22) unstable; urgency=low
 
   * C++ transition package
-  * Upgrade Build-Depends: kdelibs4-dev (>= 3.4.2-1), libkexif1-dev (>=
+  * Upgrade Build-Depends: tdelibs4-dev (>= 3.4.2-1), libkexif1-dev (>=
     0.2.1-5), libkipi0-dev (>= 0.1.1-3)
 
  -- Mark Purcell <msp@debian.org>  Sun, 21 Aug 2005 10:48:53 +0100

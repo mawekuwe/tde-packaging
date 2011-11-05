@@ -14,27 +14,27 @@ Upstream Authors:
    Jonas Bähr <jonas.baehr@web.de>
    Matej Urbancic <matej@amis.net>
 
-iso is based on tar from kdebase:
+iso is based on tar from tdebase:
    (C) David Faure <faure@kde.org>
 
-kiso is based on ktar from kdelibs:
+kiso is based on ktar from tdelibs:
    (C) Torben Weis <weis@kde.org>
    (C) David Faure <faure@kde.org>
 
-krremoteencodingmenu is based on KRemoteEncodingPlugin from kdebase:
+krremoteencodingmenu is based on KRemoteEncodingPlugin from tdebase:
    (C) Dawit Alemayehu <adawit@kde.org>
 
 paneltabbar is based on code from k3b:
    (C) Sebastian Trueg <trueg@k3b.org>
 
-kimagefilepreview is based on code from kdelibs:
+kimagefilepreview is based on code from tdelibs:
    (C) 2001 Martin R. Jones <mjones@kde.org>
    (C) 2001 Carsten Pfeiffer <pfeiffer@kde.org>
 
-kdiskfreesp is based on code from kdelibs:
+kdiskfreesp is based on code from tdelibs:
    (C) 1999 Michael Kropfberger <michael.kropfberger@gmx.net>
 
-krprogress code is bases on code from kdelibs:
+krprogress code is bases on code from tdelibs:
    (C) 2000 Matej Koss <koss@miesto.sk>
 
 Copyright for libisofs, licensed under the GPL:

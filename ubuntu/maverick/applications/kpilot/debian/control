@@ -2,7 +2,7 @@ Source: kpilot-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net> 
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 4.0.0), kdelibs4-trinity-dev, kdepim-trinity-dev,
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 4.0.0), tdelibs4-trinity-dev, tdepim-trinity-dev,
                libopensync0-dev, libpisock-dev,
                bison, byacc, bzip2, flex, groff-base,
                libboost-dev (>= 1.33.1), libgpgme11-dev, liblockdev1-dev,

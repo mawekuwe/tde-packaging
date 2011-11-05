@@ -32,7 +32,7 @@ krusader (1.90.0-1) unstable; urgency=low
   * Update my e-mail address.
   * Remove Angel Ramos from Uploaders field.
   * Bump Standard-Version to 3.7.3.
-  * Add kdebase-bin versioned dependency.
+  * Add tdebase-bin versioned dependency.
 
  -- Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>  Sun, 23 Mar 2008 15:10:45 +0100
 
@@ -119,7 +119,7 @@ krusader (1.60.0-3) unstable; urgency=low
   * Fixed gcc-4.0 compiling problem (Closes: #326789).
   * Fixed autoconf m68k and mipsel problem (Closes: #310669).
   * de.po corrected (Closes: #313785).
-  * Added kdebase-kio-plugins as suggest header (Closes: #322764).
+  * Added tdebase-kio-plugins as suggest header (Closes: #322764).
   * The problem with ps/pdf files is a kghostview problem, not
     krusader (Closes: #325130)
   * No segfault on closing the viewer with krusader 1.60 (Closes: #325170).
@@ -176,7 +176,7 @@ krusader (1.30-1.2) unstable; urgency=low
 krusader (1.30-1.1) unstable; urgency=low
 
   * NMU during BSP
-  * remove x-ace.desktop, which is also in kdelibs-data. Closes: #238052
+  * remove x-ace.desktop, which is also in tdelibs-data. Closes: #238052
  
  -- Andreas Barth <aba@not.so.argh.org>  Sun, 18 Apr 2004 11:39:32 +0200
 
@@ -283,7 +283,7 @@ krusader (0.75-2) unstable; urgency=low
 krusader (0.75-1.2) unstable; urgency=low
  
   * NMU
-  * Build against new qt/kdelibs
+  * Build against new qt/tdelibs
   * update build-depends
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Tue, 27 Feb 2001 13:35:16 -0700

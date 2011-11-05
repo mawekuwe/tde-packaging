@@ -1,7 +1,0 @@
---- kdebase/kcontrol/kfontinst/viewpart/kfontview.desktop
-+++ kdebase/kcontrol/kfontinst/viewpart/kfontview.desktop
-@@ -71,3 +71,4 @@
- Terminal=false
- InitialPreference=1
- Categories=Qt;KDE;Graphics;
-+NoDisplay=true

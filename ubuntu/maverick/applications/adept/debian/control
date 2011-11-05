@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Peter Rockai <me@mornfall.net>
 Uploaders: Isaac Clerencia <isaac@debian.org>, Enrico Zini <enrico@debian.org>
-Build-Depends: cdbs, debhelper (>> 4.1), dh-buildinfo, libapt-front-dev (>= 0.4.0-0.1ubuntu5), libapt-front-dev (<< 0.5), libtagcoll2-dev (>= 2.0.6), libtagcoll2-dev (<< 2.1), libwibble-dev (>= 0.1.10), libwibble-dev (<< 0.2), kdelibs4-trinity-dev (>= 3.5.0), sharutils, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>> 4.1), dh-buildinfo, libapt-front-dev (>= 0.4.0-0.1ubuntu5), libapt-front-dev (<< 0.5), libtagcoll2-dev (>= 2.0.6), libtagcoll2-dev (<< 2.1), libwibble-dev (>= 0.1.10), libwibble-dev (<< 0.2), tdelibs4-trinity-dev (>= 3.5.0), sharutils, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: adept-trinity

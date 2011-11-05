@@ -1,0 +1,13 @@
+Source: tdesudo-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>> 5), cdbs, tdelibs4-trinity-dev, docbook2x, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: tdesudo-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, sudo
+Description: sudo frontend for Trinity
+ KdeSudo is a graphical frontend for the sudo utility.
+ It allows you to run programs as another user by entering your password.

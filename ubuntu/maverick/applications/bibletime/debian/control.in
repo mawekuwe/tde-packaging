@@ -1,6 +1,6 @@
 Source: bibletime-trinity
 Section: kde
-Build-Depends: bzip2, autotools-dev, quilt, patchutils (>= 0.2.25), cdbs (>= 0.4.27), debhelper (>= 4.1.0), kdelibs4-trinity-dev, libsword-dev, libclucene-dev, poxml, libboost-dev
+Build-Depends: bzip2, autotools-dev, quilt, patchutils (>= 0.2.25), cdbs (>= 0.4.27), debhelper (>= 4.1.0), tdelibs4-trinity-dev, libsword-dev, libclucene-dev, poxml, libboost-dev
 Priority: optional
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@

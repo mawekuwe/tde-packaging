@@ -639,7 +639,7 @@ qt-x11-free (3:3.3.5-2) unstable; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * Drop qt-copy's gamma patch, now that kdelibs has incorporated a
+  * Drop qt-copy's gamma patch, now that tdelibs has incorporated a
     cleaner fix. (Closes: #333542)
 
   * Fix a new-for-3.3.5 QListView problem that was causing myriad random

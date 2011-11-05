@@ -1,0 +1,7 @@
+--- tdebase/kdeprint/kdeprintfax/kdeprintfax.desktop
++++ tdebase/kdeprint/kdeprintfax/kdeprintfax.desktop
+@@ -90,3 +90,4 @@
+ Terminal=false
+ X-DCOP-ServiceType=Multi
+ Categories=Qt;KDE;Utility;X-KDE-Utilities-Peripherals;
++NoDisplay=true

@@ -1,0 +1,17 @@
+Source: desktop-effects-tde-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends-Indep: cdbs (>= 0.4.43), debhelper (>= 5.0.38), python-central (>= 0.5.6)
+Standards-Version: 3.8.4
+XS-Python-Version: all
+
+Package: desktop-effects-tde-trinity
+Architecture: all
+Depends: ${python:Depends}, python-qt4
+Replaces: desktop-effects-tde-kde3 (<< 4:3.5.13)
+Breaks: desktop-effects-tde-kde3 (<< 4:3.5.13)
+XB-Python-Version: ${python:Versions}
+Description: compiz setup tool for Trinity
+ A simple Compiz configuration tool for Trinity.  Installs and sets Compiz
+ as the window manager.

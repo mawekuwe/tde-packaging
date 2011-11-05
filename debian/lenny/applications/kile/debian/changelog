@@ -197,7 +197,7 @@ kile (1:1.8.1-2) unstable; urgency=low
   * First g++-4 upload to sid.
   * Adjusted build-dependencies for the C++ ABI transition.  Removed the
     versioned build-dependency on libqt3-mt-dev, since the new versioned
-    kdelibs4-dev build-dependency makes it redundant.
+    tdelibs4-dev build-dependency makes it redundant.
   * Updated FSF address in the copyright file.
   * Bumped standards-version to 3.6.2.1 (no changes required).
 

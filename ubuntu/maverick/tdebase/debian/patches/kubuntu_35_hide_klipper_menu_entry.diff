@@ -1,0 +1,7 @@
+--- tdebase/klipper/klipper.desktop
++++ tdebase/klipper/klipper.desktop
+@@ -143,3 +143,4 @@
+ Comment[zh_CN]=剪贴历史工具
+ Comment[zh_TW]=剪貼紀錄公用程式
+ 
++NoDisplay=true

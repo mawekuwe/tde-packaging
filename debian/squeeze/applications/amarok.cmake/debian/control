@@ -5,13 +5,13 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Modestas Vainius <modestas@vainius.eu>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>
 Build-Depends: cdbs, debhelper (>= 5.0.0), quilt, bzip2,
- kdelibs4-trinity-dev,
+ tdelibs4-trinity-dev,
  libxine-dev, libdbus-tqt-1-dev,
  libtag1-dev, libsqlite3-dev, libtunepimp-dev,
  libmysqlclient15-dev | libmysqlclient16-dev, libpq-dev,
  libvisual-0.4-dev, libsdl1.2-dev,
  libifp-dev, libusb-dev, libgpod-nogtk-dev (>= 0.4.2), libnjb-dev, libmtp-dev,
- ruby, ruby1.8-dev, kdebase-trinity-dev,
+ ruby, ruby1.8-dev, tdebase-trinity-dev,
  libtool, libltdl-dev, cmake
 Standards-Version: 3.8.4
 Homepage: http://amarok.kde.org
@@ -90,7 +90,7 @@ Package: amarok-trinity-dbg
 Priority: extra
 Architecture: any
 Depends: amarok-trinity (= ${binary:Version})
-Recommends: kdelibs-trinity-dbg
+Recommends: tdelibs-trinity-dbg
 Description: debugging symbols for Amarok [Trinity]
  This package provides debugging symbols for all binary packages built from
  amarok source package. It's highly recommended to have this package installed

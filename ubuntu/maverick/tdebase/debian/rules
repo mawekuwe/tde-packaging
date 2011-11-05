@@ -1,0 +1,275 @@
+#!/usr/bin/make -f
+
+# Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
+# Also include the main Trinity path
+ifeq ("$(LD_LIBRARY_PATH)", "")
+LD_LIBRARY_PATH=debian/tmp/opt/trinity/lib
+else
+LD_LIBRARY_PATH += :debian/tmp/opt/trinity/lib
+endif
+export LD_LIBRARY_PATH
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include debian/cdbs/debian-qt-kde.mk
+
+DEB_KDE_APIDOX := yes
+
+CXXFLAGS := -DSMB_CTX_FLAG_USE_KERBEROS -DSMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS -g -Wall $(DEB_OPT_FLAG)
+
+DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF" \
+-DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" -DKDM_PAM_SERVICE="kdm-trinity" -DKSCREENSAVER_PAM_SERVICE="kscreensaver-trinity" -DWITH_USBIDS="/usr/share/misc/usb.ids" \
+-DWITH_ARTS="ON" -DWITH_SHADOW="ON" -DWITH_PAM="ON" -DWITH_SASL="ON" -DWITH_SUDO_KDESU_BACKEND="ON" -DWITH_LDAP="ON" -DWITH_SAMBA="ON" -DWITH_LIBRAW1394="ON" -DWITH_OPENEXR="ON" -DWITH_XCOMPOSITE="ON" -DWITH_XCURSOR="ON" -DWITH_XFIXES="ON" -DWITH_XRANDR="ON" -DWITH_XINERAMA="ON" -DWITH_HAL="ON" -DWITH_XDMCP="ON" -DWITH_XRENDER="ON" -DWITH_XDAMAGE="ON" -DWITH_XEXT="ON"
+
+# Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
+# never build in parallel, regardless of DEB_BUILD_OPTIONS.
+DEB_BUILD_PARALLEL = true
+
+DEB_FIXPERMS_EXCLUDE := \
+	opt/trinity/bin/kdesud    \
+	opt/trinity/bin/kdmtsak
+
+DEB_DH_STRIP_ARGS  := --dbg-package=tdebase-trinity-dbg
+
+DOC_HTML_PRUNE := kinfocenter ksplashml kcontrol khelpcenter kdesu knetattach kioslave kxkb kdebugdialog kdcop
+
+PACKAGES_WITH_LIBS := kate-trinity kcontrol-trinity tdebase-trinity-bin kicker-trinity konqueror-trinity ksplash-trinity \
+			ksysguard-trinity kwin-trinity libkonq4-trinity
+
+DEB_DH_MAKESHLIBS_ARGS_kate-trinity		:= -V'kate-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_kcontrol-trinity		:= -V'kcontrol-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_tdebase-trinity-bin		:= -V'tdebase-trinity-bin (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_kicker-trinity		:= -V'kicker-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_konqueror-trinity		:= -V'konqueror-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_ksplash-trinity		:= -V'ksplash-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_ksysguard-trinity		:= -V'ksysguard-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_kwin-trinity		:= -V'kwin-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_libkonq4-trinity		:= -V'libkonq4-trinity (>= 4:3.5.8-1)'
+
+#shlibs_ver = 4:3.5.0-1
+#$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
+
+makebuilddir::
+	touch kcontrol/energy/pics/energybig.png
+	touch kcontrol/energy/pics/lo-energy.png
+	uudecode -o kcontrol/pics/cr128-app-energy_star.png debian/img/cr128-app-energy_star.png.uu
+	uudecode -o kcontrol/pics/cr16-app-energy_star.png debian/img/cr16-app-energy_star.png.uu
+	uudecode -o kcontrol/pics/cr32-app-energy_star.png debian/img/cr32-app-energy_star.png.uu
+	uudecode -o kcontrol/pics/cr48-app-energy_star.png debian/img/cr48-app-energy_star.png.uu
+	uudecode -o kcontrol/pics/cr64-app-energy_star.png debian/img/cr64-app-energy_star.png.uu
+	# KIO Media LUKS icons
+	uudecode -o pics/crystalsvg/cr128-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr128-device-compact_flash_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr128-device-compact_flash_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr128-device-compact_flash_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-hdd_mount_decrypt.png debian/img/medialuks/cr128-device-hdd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-hdd_unmount_decrypt.png debian/img/medialuks/cr128-device-hdd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-hdd_unmount_encrypt.png debian/img/medialuks/cr128-device-hdd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-memory_stick_mount_decrypt.png debian/img/medialuks/cr128-device-memory_stick_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-memory_stick_unmount_decrypt.png debian/img/medialuks/cr128-device-memory_stick_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-memory_stick_unmount_encrypt.png debian/img/medialuks/cr128-device-memory_stick_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-sd_mmc_mount_decrypt.png debian/img/medialuks/cr128-device-sd_mmc_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-sd_mmc_unmount_decrypt.png debian/img/medialuks/cr128-device-sd_mmc_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-sd_mmc_unmount_encrypt.png debian/img/medialuks/cr128-device-sd_mmc_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-smart_media_mount_decrypt.png debian/img/medialuks/cr128-device-smart_media_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-smart_media_unmount_decrypt.png debian/img/medialuks/cr128-device-smart_media_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-smart_media_unmount_encrypt.png debian/img/medialuks/cr128-device-smart_media_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-usbpendrive_mount_decrypt.png debian/img/medialuks/cr128-device-usbpendrive_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-usbpendrive_unmount_decrypt.png debian/img/medialuks/cr128-device-usbpendrive_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr128-device-usbpendrive_unmount_encrypt.png debian/img/medialuks/cr128-device-usbpendrive_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cdrom_mount_decrypt.png debian/img/medialuks/cr16-device-cdrom_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cdrom_unmount_decrypt.png debian/img/medialuks/cr16-device-cdrom_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cdrom_unmount_encrypt.png debian/img/medialuks/cr16-device-cdrom_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cdwriter_mount_decrypt.png debian/img/medialuks/cr16-device-cdwriter_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cdwriter_unmount_decrypt.png debian/img/medialuks/cr16-device-cdwriter_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-cdwriter_unmount_encrypt.png debian/img/medialuks/cr16-device-cdwriter_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr16-device-compact_flash_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr16-device-compact_flash_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr16-device-compact_flash_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-dvd_mount_decrypt.png debian/img/medialuks/cr16-device-dvd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-dvd_unmount_decrypt.png debian/img/medialuks/cr16-device-dvd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-dvd_unmount_encrypt.png debian/img/medialuks/cr16-device-dvd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-hdd_mount_decrypt.png debian/img/medialuks/cr16-device-hdd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-hdd_unmount_decrypt.png debian/img/medialuks/cr16-device-hdd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-hdd_unmount_encrypt.png debian/img/medialuks/cr16-device-hdd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-memory_stick_mount_decrypt.png debian/img/medialuks/cr16-device-memory_stick_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-memory_stick_unmount_decrypt.png debian/img/medialuks/cr16-device-memory_stick_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-memory_stick_unmount_encrypt.png debian/img/medialuks/cr16-device-memory_stick_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-sd_mmc_mount_decrypt.png debian/img/medialuks/cr16-device-sd_mmc_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-sd_mmc_unmount_decrypt.png debian/img/medialuks/cr16-device-sd_mmc_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-sd_mmc_unmount_encrypt.png debian/img/medialuks/cr16-device-sd_mmc_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-smart_media_mount_decrypt.png debian/img/medialuks/cr16-device-smart_media_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-smart_media_unmount_decrypt.png debian/img/medialuks/cr16-device-smart_media_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-smart_media_unmount_encrypt.png debian/img/medialuks/cr16-device-smart_media_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-usbpendrive_mount_decrypt.png debian/img/medialuks/cr16-device-usbpendrive_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-usbpendrive_unmount_decrypt.png debian/img/medialuks/cr16-device-usbpendrive_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr16-device-usbpendrive_unmount_encrypt.png debian/img/medialuks/cr16-device-usbpendrive_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr22-device-compact_flash_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr22-device-compact_flash_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr22-device-compact_flash_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-hdd_mount_decrypt.png debian/img/medialuks/cr22-device-hdd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-hdd_unmount_decrypt.png debian/img/medialuks/cr22-device-hdd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-hdd_unmount_encrypt.png debian/img/medialuks/cr22-device-hdd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-memory_stick_mount_decrypt.png debian/img/medialuks/cr22-device-memory_stick_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-memory_stick_unmount_decrypt.png debian/img/medialuks/cr22-device-memory_stick_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-memory_stick_unmount_encrypt.png debian/img/medialuks/cr22-device-memory_stick_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-sd_mmc_mount_decrypt.png debian/img/medialuks/cr22-device-sd_mmc_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-sd_mmc_unmount_decrypt.png debian/img/medialuks/cr22-device-sd_mmc_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-sd_mmc_unmount_encrypt.png debian/img/medialuks/cr22-device-sd_mmc_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-smart_media_mount_decrypt.png debian/img/medialuks/cr22-device-smart_media_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-smart_media_unmount_decrypt.png debian/img/medialuks/cr22-device-smart_media_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-smart_media_unmount_encrypt.png debian/img/medialuks/cr22-device-smart_media_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-usbpendrive_mount_decrypt.png debian/img/medialuks/cr22-device-usbpendrive_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-usbpendrive_unmount_decrypt.png debian/img/medialuks/cr22-device-usbpendrive_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr22-device-usbpendrive_unmount_encrypt.png debian/img/medialuks/cr22-device-usbpendrive_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cdrom_mount_decrypt.png debian/img/medialuks/cr32-device-cdrom_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cdrom_unmount_decrypt.png debian/img/medialuks/cr32-device-cdrom_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cdrom_unmount_encrypt.png debian/img/medialuks/cr32-device-cdrom_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cdwriter_mount_decrypt.png debian/img/medialuks/cr32-device-cdwriter_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cdwriter_unmount_decrypt.png debian/img/medialuks/cr32-device-cdwriter_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-cdwriter_unmount_encrypt.png debian/img/medialuks/cr32-device-cdwriter_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr32-device-compact_flash_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr32-device-compact_flash_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr32-device-compact_flash_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-dvd_mount_decrypt.png debian/img/medialuks/cr32-device-dvd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-dvd_unmount_decrypt.png debian/img/medialuks/cr32-device-dvd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-dvd_unmount_encrypt.png debian/img/medialuks/cr32-device-dvd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-hdd_mount_decrypt.png debian/img/medialuks/cr32-device-hdd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-hdd_unmount_decrypt.png debian/img/medialuks/cr32-device-hdd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-hdd_unmount_encrypt.png debian/img/medialuks/cr32-device-hdd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-memory_stick_mount_decrypt.png debian/img/medialuks/cr32-device-memory_stick_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-memory_stick_unmount_decrypt.png debian/img/medialuks/cr32-device-memory_stick_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-memory_stick_unmount_encrypt.png debian/img/medialuks/cr32-device-memory_stick_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-sd_mmc_mount_decrypt.png debian/img/medialuks/cr32-device-sd_mmc_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-sd_mmc_unmount_decrypt.png debian/img/medialuks/cr32-device-sd_mmc_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-sd_mmc_unmount_encrypt.png debian/img/medialuks/cr32-device-sd_mmc_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-smart_media_mount_decrypt.png debian/img/medialuks/cr32-device-smart_media_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-smart_media_unmount_decrypt.png debian/img/medialuks/cr32-device-smart_media_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-smart_media_unmount_encrypt.png debian/img/medialuks/cr32-device-smart_media_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-usbpendrive_mount_decrypt.png debian/img/medialuks/cr32-device-usbpendrive_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-usbpendrive_unmount_decrypt.png debian/img/medialuks/cr32-device-usbpendrive_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr32-device-usbpendrive_unmount_encrypt.png debian/img/medialuks/cr32-device-usbpendrive_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cdrom_mount_decrypt.png debian/img/medialuks/cr48-device-cdrom_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cdrom_unmount_decrypt.png debian/img/medialuks/cr48-device-cdrom_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cdrom_unmount_encrypt.png debian/img/medialuks/cr48-device-cdrom_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cdwriter_mount_decrypt.png debian/img/medialuks/cr48-device-cdwriter_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cdwriter_unmount_decrypt.png debian/img/medialuks/cr48-device-cdwriter_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-cdwriter_unmount_encrypt.png debian/img/medialuks/cr48-device-cdwriter_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr48-device-compact_flash_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr48-device-compact_flash_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr48-device-compact_flash_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-dvd_mount_decrypt.png debian/img/medialuks/cr48-device-dvd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-dvd_unmount_decrypt.png debian/img/medialuks/cr48-device-dvd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-dvd_unmount_encrypt.png debian/img/medialuks/cr48-device-dvd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-hdd_mount_decrypt.png debian/img/medialuks/cr48-device-hdd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-hdd_unmount_decrypt.png debian/img/medialuks/cr48-device-hdd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-hdd_unmount_encrypt.png debian/img/medialuks/cr48-device-hdd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-memory_stick_mount_decrypt.png debian/img/medialuks/cr48-device-memory_stick_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-memory_stick_unmount_decrypt.png debian/img/medialuks/cr48-device-memory_stick_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-memory_stick_unmount_encrypt.png debian/img/medialuks/cr48-device-memory_stick_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-sd_mmc_mount_decrypt.png debian/img/medialuks/cr48-device-sd_mmc_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-sd_mmc_unmount_decrypt.png debian/img/medialuks/cr48-device-sd_mmc_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-sd_mmc_unmount_encrypt.png debian/img/medialuks/cr48-device-sd_mmc_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-smart_media_mount_decrypt.png debian/img/medialuks/cr48-device-smart_media_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-smart_media_unmount_decrypt.png debian/img/medialuks/cr48-device-smart_media_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-smart_media_unmount_encrypt.png debian/img/medialuks/cr48-device-smart_media_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-usbpendrive_mount_decrypt.png debian/img/medialuks/cr48-device-usbpendrive_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-usbpendrive_unmount_decrypt.png debian/img/medialuks/cr48-device-usbpendrive_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr48-device-usbpendrive_unmount_encrypt.png debian/img/medialuks/cr48-device-usbpendrive_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cdrom_mount_decrypt.png debian/img/medialuks/cr64-device-cdrom_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cdrom_unmount_decrypt.png debian/img/medialuks/cr64-device-cdrom_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cdrom_unmount_encrypt.png debian/img/medialuks/cr64-device-cdrom_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cdwriter_mount_decrypt.png debian/img/medialuks/cr64-device-cdwriter_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cdwriter_unmount_decrypt.png debian/img/medialuks/cr64-device-cdwriter_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-cdwriter_unmount_encrypt.png debian/img/medialuks/cr64-device-cdwriter_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr64-device-compact_flash_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr64-device-compact_flash_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr64-device-compact_flash_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-dvd_mount_decrypt.png debian/img/medialuks/cr64-device-dvd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-dvd_unmount_decrypt.png debian/img/medialuks/cr64-device-dvd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-dvd_unmount_encrypt.png debian/img/medialuks/cr64-device-dvd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-hdd_mount_decrypt.png debian/img/medialuks/cr64-device-hdd_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-hdd_unmount_decrypt.png debian/img/medialuks/cr64-device-hdd_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-hdd_unmount_encrypt.png debian/img/medialuks/cr64-device-hdd_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-memory_stick_mount_decrypt.png debian/img/medialuks/cr64-device-memory_stick_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-memory_stick_unmount_decrypt.png debian/img/medialuks/cr64-device-memory_stick_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-memory_stick_unmount_encrypt.png debian/img/medialuks/cr64-device-memory_stick_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-sd_mmc_mount_decrypt.png debian/img/medialuks/cr64-device-sd_mmc_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-sd_mmc_unmount_decrypt.png debian/img/medialuks/cr64-device-sd_mmc_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-sd_mmc_unmount_encrypt.png debian/img/medialuks/cr64-device-sd_mmc_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-smart_media_mount_decrypt.png debian/img/medialuks/cr64-device-smart_media_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-smart_media_unmount_decrypt.png debian/img/medialuks/cr64-device-smart_media_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-smart_media_unmount_encrypt.png debian/img/medialuks/cr64-device-smart_media_unmount_encrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-usbpendrive_mount_decrypt.png debian/img/medialuks/cr64-device-usbpendrive_mount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-usbpendrive_unmount_decrypt.png debian/img/medialuks/cr64-device-usbpendrive_unmount_decrypt.png.uu
+	uudecode -o pics/crystalsvg/cr64-device-usbpendrive_unmount_encrypt.png debian/img/medialuks/cr64-device-usbpendrive_unmount_encrypt.png.uu
+	# END KIO Media LUKS icons
+
+common-install-prehook-arch::
+	grep -v -e joystick -e view1394  debian/kcontrol-trinity.install > debian/kcontrol-trinity.install.kfreebsd-i386
+	grep -v -e joystick -e view1394  debian/kcontrol-trinity.install > debian/kcontrol-trinity.install.kfreebsd-amd64
+	grep -v -e media_propsdlgplugin  debian/tdebase-kio-plugins-trinity.install > debian/tdebase-kio-plugins-trinity.install.kfreebsd-i386
+	grep -v -e media_propsdlgplugin  debian/tdebase-kio-plugins-trinity.install > debian/tdebase-kio-plugins-trinity.install.kfreebsd-amd64
+
+clean::
+	rm -f debian/kcontrol-trinity.install.kfreebsd* debian/tdebase-kio-plugins-trinity.install.kfreebs*
+	rm -f kcontrol/pics/cr*-app-energy_star.png kcontrol/energy/pics/energybig.png kcontrol/energy/pics/lo-energy.png
+	# KIO Media LUKS Icons
+	rm -f pics/crystalsvg/cr*decrypt.png pics/crystalsvg/cr*encrypt.png
+
+binary-install/kate-trinity::
+	cp -Rp debian/kate-trinity/usr/* debian/kate-trinity/opt/trinity/
+	rm -rf debian/kate-trinity/usr
+
+binary-install/tdebase-data-trinity::
+	# hack the oui.db install, as under kfreebsd it does not get installed and then breaks at dh_install time
+	# it's in fact a linux specific file...
+	install -p -D -m644 kcontrol/view1394/oui.db debian/tdebase-data-trinity/opt/trinity/share/apps/kcmview1394/oui.db
+	install -p -D -m644 debian/tmp/etc/xdg/menus/applications-merged/kde-essential.menu debian/tdebase-data-trinity/opt/trinity/etc/xdg/menus/applications-merged/kde-essential.menu
+	install -p -D -m644 debian/tmp/etc/xdg/menus/kde-information.menu debian/tdebase-data-trinity/opt/trinity/etc/xdg/menus/kde-information.menu
+	install -p -D -m644 debian/tmp/etc/xdg/menus/kde-screensavers.menu debian/tdebase-data-trinity/opt/trinity/etc/xdg/menus/kde-screensavers.menu
+	install -p -D -m644 debian/tmp/etc/xdg/menus/kde-settings.menu debian/tdebase-data-trinity/opt/trinity/etc/xdg/menus/kde-settings.menu
+	rm -rf debian/tmp/etc/xdg/*
+	rm -rf debian/tdebase-data-trinity/etc/xdg/*
+
+install/kdm-trinity::
+	sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/trinity/kdm/kdmrc
+	sed -i 's/Theme=@@@ToBeReplacedByDesktopBase@@@/Theme=\/opt\/trinity\/share\/apps\/kdm\/themes\/kubuntu-trinity/g' debian/tmp/etc/trinity/kdm/kdmrc
+
+binary-install/kdm-trinity::
+	mkdir -p debian/kdm-trinity/etc/init
+	install -p -D -m644 debian/kdm-trinity.conf debian/kdm-trinity/etc/init/kdm-trinity.conf
+	install -p -D -m644 debian/kdm-trinity.pam debian/kdm-trinity/etc/pam.d/kdm-trinity
+	install -p -D -m644 debian/kdm-trinity-np.pam debian/kdm-trinity/etc/pam.d/kdm-trinity-np
+
+binary-install/kcontrol-trinity::
+	mkdir -p debian/kcontrol/etc/udev/rules.d
+	chmod +x debian/usermap.pl
+	debian/usermap.pl kcontrol/input/logitechmouse.usermap > debian/kcontrol/etc/udev/logitechmouse.rules
+
+binary-install/konqueror-trinity::
+	install -p -D -m644 debian/edit-as-root.desktop debian/konqueror-trinity/opt/trinity/share/apps/konqueror/servicemenus/edit-as-root.desktop
+	cp -Rp debian/konqueror-trinity/usr/* debian/konqueror-trinity/opt/trinity/
+	rm -rf debian/konqueror-trinity/usr
+
+install/klipper-trinity::
+	sed -i '/X-Ubuntu-Gettext-Domain=/d' debian/tmp/etc/trinity/klipperrc
+
+binary-install/klipper-trinity::
+	cp -Rp debian/klipper-trinity/usr/* debian/klipper-trinity/opt/trinity/
+	rm -rf debian/klipper-trinity/usr
+
+binary-install/tdebase-trinity-bin::
+	install -p -D -m644 debian/kcheckpass-trinity.pam debian/tdebase-trinity-bin/etc/pam.d/kcheckpass-trinity
+	install -p -D -m644 debian/kscreensaver-trinity.pam debian/tdebase-trinity-bin/etc/pam.d/kscreensaver-trinity
+	mkdir -p debian/tdebase-trinity-bin/opt/trinity/share/apps/kxkb/
+	install -p -D -m644 debian/ubuntu.xmodmap debian/tdebase-trinity-bin/opt/trinity/share/apps/kxkb/system.xmodmap
+	install -p -D -m644 debian/80ubuntu-xmodmap debian/tdebase-trinity-bin/etc/X11/Xsession.d/80ubuntu-trinity-xmodmap
+	mkdir -p debian/tdebase-trinity-bin/opt/trinity/share/autostart/
+	chmod +s debian/tdebase-trinity-bin/opt/trinity/bin/kcheckpass
+
+binary-install/ksmserver-trinity::
+	install -p -D -m644 debian/tmp/opt/trinity/share/apps/kdm/sessions/tde.desktop debian/ksmserver-trinity/usr/share/xsessions/trinity.desktop
+	install -p -D -m755 debian/plasma.autodetect debian/ksmserver-trinity/usr/bin/plasma.autodetect
+	install -p -D -m755 debian/plasma-desktop.autodetect debian/ksmserver-trinity/usr/bin/plasma-desktop.autodetect

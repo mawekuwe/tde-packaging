@@ -4,14 +4,14 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: debhelper (>= 5.0), cdbs, docbook2x, kdelibs4-trinity-dev, libpcre3-dev, libx11-dev, libgmp3-dev, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0), cdbs, docbook2x, tdelibs4-trinity-dev, libpcre3-dev, libx11-dev, libgmp3-dev, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
 Standards-Version: 3.8.3
 
 Package: ktorrent-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: php5-cli
-Recommends: kdebase-kio-plugins-trinity
+Recommends: tdebase-kio-plugins-trinity
 Description: BitTorrent client for Trinity
  KTorrent is a BitTorrent program for Trinity. Its features include speed capping
  (both down and up), integrated searching, UDP tracker support, preview of

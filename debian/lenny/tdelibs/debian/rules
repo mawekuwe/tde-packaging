@@ -1,0 +1,102 @@
+#! /usr/bin/make -f
+
+# Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
+# Also include the main Trinity path
+ifeq ("$(LD_LIBRARY_PATH)", "")
+LD_LIBRARY_PATH=/opt/trinity/lib:debian/tmp/opt/trinity/lib
+else
+LD_LIBRARY_PATH += :/opt/trinity/lib:debian/tmp/opt/trinity/lib
+endif
+export LD_LIBRARY_PATH
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include debian/cdbs/debian-qt-kde.mk
+
+DEB_KDE_APIDOX := yes
+
+version=Debian Package $(DEB_VERSION)
+DEB_OPT_FLAG += -DDEBIAN_VERSION=$(DEB_VERSION)
+
+DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/kde" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF" \
+-DWITH_LIBART="ON" -DWITH_LIBIDN="ON" -DWITH_TIFF="ON" -DWITH_JASPER="ON" -DWITH_OPENEXR="ON" -DWITH_AVAHI="ON" -DWITH_ASPELL="ON" -DWITH_HSPELL="ON"
+
+# Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
+# never build in parallel, regardless of DEB_BUILD_OPTIONS.
+DEB_BUILD_PARALLEL = true
+
+DEB_FIXPERMS_EXCLUDE := \
+	opt/trinity/bin/fileshareset	\
+	opt/trinity/bin/kgrantpty	\
+	opt/trinity/bin/kpac_dhcp_helper \
+	opt/trinity/bin/start_kdeinit
+
+DEB_DH_STRIP_ARGS  := --dbg-package=tdelibs-trinity-dbg
+
+DEB_DH_MAKESHLIBS_ARGS_tdelibs4c2a-trinity := -V'tdelibs4c2a-trinity (>= 4:3.5.8-1)'
+
+binary-install/tdelibs-data-trinity::
+	install -p -D -m644 kded/applications.menu debian/tdelibs-data-trinity/opt/trinity/etc/xdg/menus/kde-applications.menu
+	install -p -D -m644 debian/trinitylibs.conf debian/tdelibs-data-trinity/etc/ld.so.conf.d/trinitylibs.conf
+	uudecode debian/icons/aboutkde-kubuntu.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/apps/kdeui/pics/aboutkde.png
+
+	uudecode debian/icons/cr16-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/devices/system.png
+	uudecode debian/icons/cr22-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/devices/system.png
+	uudecode debian/icons/cr32-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/devices/system.png
+	uudecode debian/icons/cr48-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/devices/system.png
+	uudecode debian/icons/cr64-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/64x64/devices/system.png
+	uudecode debian/icons/cr128-device-system.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/128x128/devices/system.png
+#	uudecode debian/icons/crsc-device-system.svgz.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/scalable/devices/system.svgz
+
+	uudecode debian/icons/cr16-action-hibernate.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/actions/hibernate.png
+	uudecode debian/icons/cr22-action-hibernate.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/actions/hibernate.png
+	uudecode debian/icons/cr32-action-hibernate.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/actions/hibernate.png
+	uudecode debian/icons/cr48-action-hibernate.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/actions/hibernate.png
+
+	uudecode debian/icons/cr16-action-suspend.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/actions/suspend.png
+	uudecode debian/icons/cr22-action-suspend.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/actions/suspend.png
+	uudecode debian/icons/cr32-action-suspend.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/actions/suspend.png
+	uudecode debian/icons/cr48-action-suspend.png.uu -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/actions/suspend.png
+
+### 
+
+DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+
+binary-predeb/tdelibs4-trinity-dev::
+ifeq (linux,$(DEB_HOST_ARCH_OS))
+	echo "libasound2-trinity-dev=libasound2-trinity-dev" >> debian/tdelibs4-trinity-dev.substvars
+endif
+
+common-install-prehook-impl::
+	mkdir -p po
+#	-XGETTEXT=/usr/bin/kde-xgettext EXTRACTATTR=/usr/bin/extractattr sh $(DEB_SRCDIR)/admin/cvs.sh extract-messages	
+#	-for file in po/*pot; do \
+#		sed "s/charset=CHARSET/charset=UTF-8/" -i $$file; \
+#	done
+
+#	msgcat --use-first kde.pot po/tdelibs.pot > tdelibs.pot-merged
+#	mv -f tdelibs.pot-merged po/tdelibs.pot
+	cp -Rp kde.pot po/tdelibs.pot
+
+	# generate .po files for .desktop etc files
+	if [ -f debian/kubuntu-desktop-i18n/createdesktop.pl ]; then \
+	  sh debian/kubuntu-desktop-i18n/findfiles LIST; \
+	  cat LIST; \
+	  perl debian/kubuntu-desktop-i18n/createdesktop.pl --file-list=LIST --base-dir=. > desktop.$(DEB_SOURCE_PACKAGE).tmp; \
+	  msguniq --to-code=UTF-8 --no-wrap -o desktop.$(DEB_SOURCE_PACKAGE) desktop.$(DEB_SOURCE_PACKAGE).tmp 2>/dev/null; \
+	  python debian/kubuntu-desktop-i18n/msgsplit desktop.$(DEB_SOURCE_PACKAGE); \
+	  mv desktop.$(DEB_SOURCE_PACKAGE) po/desktop_$(DEB_SOURCE_PACKAGE).pot; \
+	  rm -f desktop.$(DEB_SOURCE_PACKAGE) desktop.$(DEB_SOURCE_PACKAGE).tmp; \
+	  # add translation domain to files \
+	  for file in `cat LIST`; do \
+	    echo X-Ubuntu-Gettext-Domain=desktop_$(DEB_SOURCE_PACKAGE) >> $${file}; \
+	  done; \
+	  rm -f LIST; \
+	fi
+
+binary-install/tdelibs4c2a-trinity::
+	mv debian/tmp/opt/trinity/bin/kcmshell debian/tmp/opt/trinity/bin/kcmshell.real
+	install -p -D -m755 debian/tmp/opt/trinity/bin/kcmshell.real debian/tdelibs4c2a-trinity/opt/trinity/bin/kcmshell.real
+	install -p -D -m755 debian/kcmshell debian/tdelibs4c2a-trinity/opt/trinity/bin/kcmshell

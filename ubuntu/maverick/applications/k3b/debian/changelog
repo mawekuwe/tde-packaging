@@ -59,7 +59,7 @@ k3b (1.0.5-3ubuntu1) jaunty; urgency=low
    - remove build-dep on libdvdread-dev
    - libk3b3-extracodecs conflicts libk3b2-extracodecs
    - transitional libk3b2-extracodecs package
-   - Do not recommend on kdebase-kio-plugins, kcontrol
+   - Do not recommend on tdebase-kio-plugins, kcontrol
    - Change recommend to suggest for vcdimager
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 19 Nov 2008 14:54:23 +0000
@@ -206,7 +206,7 @@ k3b (1.0.4-5) unstable; urgency=medium
 k3b (1.0.4-4) unstable; urgency=low
 
   * Create a new k3b-data package to hold the arch-independent data files
-  * Remove dependency on kdebase-bin (closes: #460481).  It's not needed
+  * Remove dependency on tdebase-bin (closes: #460481).  It's not needed
     since we don't build k3bsetup anymore.
   * Remove Entry key from k3b.desktop (fixes lintian info)
 
@@ -302,7 +302,7 @@ k3b (1.0.3-4) unstable; urgency=low
 k3b (1.0.3-3) unstable; urgency=low
 
   * Rebuild with new flac libraries (closes: #446775)
-  * Make libk3b-dev depend on kdelibs4-dev (closes: #443374)
+  * Make libk3b-dev depend on tdelibs4-dev (closes: #443374)
   * Add homepage field to debian/control
 
  -- Francois Marier <francois@debian.org>  Fri, 19 Oct 2007 15:23:32 +1300
@@ -586,7 +586,7 @@ k3b (0.12.17-1ubuntu3) edgy; urgency=low
 
 k3b (0.12.17-1ubuntu2) edgy; urgency=low
 
-  * removed versioning of kdelibs4-dev depend (malone 57602)
+  * removed versioning of tdelibs4-dev depend (malone 57602)
   * added kubuntu_08_dont_complain_about_non_suid_cdrecord.diff (malone 57105)
 
  -- Kenny Duffus <kenny@duffus.org>  Fri, 25 Aug 2006 17:25:34 +0100
@@ -640,7 +640,7 @@ k3b (0.12.16-1) unstable; urgency=low
 
 k3b (0.12.16-0ubuntu2) edgy; urgency=low
 
-  * Reupload with build-dep on latest kdelibs, fix Qt binary compatibility break
+  * Reupload with build-dep on latest tdelibs, fix Qt binary compatibility break
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 28 Jun 2006 16:07:54 +0000
 
@@ -761,7 +761,7 @@ k3b (0.12.14-0ubuntu4) dapper; urgency=low
   * Reverting to first kubuntu_06_hide_k3bsetup.diff patch:
      - Changing the Category field prevents from using k3bsetup again.
      - k3bsetup will be deactivated in SystemSettings from the
-       kde-systemsettings package.
+       tde-systemsettings package.
 
  -- Raphaël Pinson <raphink@ubuntu.com>  Fri, 17 Mar 2006 14:55:09 +0100
 
@@ -900,7 +900,7 @@ k3b (0.12.6-1) unstable; urgency=low
 k3b (0.12.5-1) unstable; urgency=low
 
   * New upstream release
-  * Add kdebase-kio-plugins to the recommended packages to enable features
+  * Add tdebase-kio-plugins to the recommended packages to enable features
     like file deletion in the built-in browser (thanks to Nikita Youshchenko
     for the suggestion)
   * Update the version dependency on k3b-i18n
@@ -1188,7 +1188,7 @@ k3b (0.11.10-1) unstable; urgency=low
 
 k3b (0.11.9-2) unstable; urgency=low
 
-  * Depends now on kdebase-bin.
+  * Depends now on tdebase-bin.
   (closes: #245566)
   * Suggests normalize and toolame.
   (closes: #240770)
@@ -1225,7 +1225,7 @@ k3b (0.11.6-1) unstable; urgency=low
 
 k3b (0.10.3-5) unstable; urgency=low
 
-  * Add kdebase-bin to Suggests in debian/control
+  * Add tdebase-bin to Suggests in debian/control
   (closes: #227254)
   * Apply a patch to let cdrdao working with ATAPI drives on kernel 2.6
   (closes: #227336)
@@ -1268,7 +1268,7 @@ k3b (0.9-4) unstable; urgency=low
     k3bsetup when k3b detect that cdrecord isn't setuid.
   * Add kcontrol to Recommands.
   (closes: #206753)
-  * Add kdelibs-data to Depends since
+  * Add tdelibs-data to Depends since
     usr/share/mimelnk/application/x-iso.desktop and
     usr/share/mimelnk/application/x-cue.desktop which where conflicting with
     arson package are now included in it. 
@@ -1285,7 +1285,7 @@ k3b (0.9-3.1) unstable; urgency=low
 
   * NMU
   * Removed x-cue.desktop and x-iso.desktop since they are now a part of
-    kdelibs-data.
+    tdelibs-data.
 
  -- Christopher L Cheney <ccheney@debian.org>  Mon,  6 Oct 2003 22:00:00 -0500
 
@@ -1319,7 +1319,7 @@ k3b (0.9-1) unstable; urgency=low
 k3b (0.8.1-3) unstable; urgency=low
 
   * Made some changes in the dependancies.
-  * Compile against kdelibs4-dev (>= 3.1.1) in order to depend on the new
+  * Compile against tdelibs4-dev (>= 3.1.1) in order to depend on the new
     libvorbis.
 
  -- Jean-Michel Kelbert <kelbert@debian.org>  Sat, 15 Mar 2003 00:57:14 -0500

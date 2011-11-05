@@ -613,7 +613,7 @@ ept (1.88.2) unstable; urgency=low
 
   * Remove kde_terminal_interface.h and update debian/copyright accordingly,
   * add icons licenses to debian/copyright,
-  * build-depend on kdelibs4-dev >= 3.5.0.
+  * build-depend on tdelibs4-dev >= 3.5.0.
 
  -- Peter Rockai <me@mornfall.net>  Tue, 24 Jan 2006 18:10:36 +0100
 

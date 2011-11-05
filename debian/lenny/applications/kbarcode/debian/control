@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), quilt, kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>= 5), quilt, tdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kbarcode-trinity

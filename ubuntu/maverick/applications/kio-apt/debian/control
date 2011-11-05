@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Emmanuel Bouthenot <kolter@openics.org>
-Build-Depends: debhelper (>= 5), cdbs, kdelibs4-trinity-dev, sharutils, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, sharutils, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kio-apt-trinity

@@ -1,0 +1,2 @@
+tdebase source: maintainer-script-lacks-debhelper-token debian/kdm-trinity.postinst
+tdebase source: maintainer-script-lacks-debhelper-token debian/kdm-trinity.prerm

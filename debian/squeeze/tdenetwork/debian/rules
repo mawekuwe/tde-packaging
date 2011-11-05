@@ -1,0 +1,49 @@
+#!/usr/bin/make -f
+
+DEB_HOST_ARCH_OS=$(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+DEB_HOST_ARCH=$(shell dpkg-architecture -qDEB_HOST_ARCH)
+
+ifeq ($(DEB_HOST_ARCH),s390)
+DONT_BUILD+= kwifimanager
+endif
+ifneq ($(DEB_HOST_ARCH_OS),linux)
+DONT_BUILD+= kwifimanager kdnssd
+endif
+export DH_OPTIONS
+
+# include debian/cdbs/buildvars.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/debian-qt-kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+
+DEB_DH_STRIP_ARGS  := --dbg-package=tdenetwork-trinity-dbg
+
+PACKAGES_WITH_LIBS := librss1-trinity kopete-trinity ksirc-trinity kwifimanager-trinity
+
+DEB_DH_MAKESHLIBS_ARGS_librss1-trinity	:= -V'librss1-trinity (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_kopete-trinity	:= -V'kopete-trinity (>= 4:3.5.8-1)'
+
+#shlibs_ver = 4:3.5.0-1
+#$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
+
+DEB_FIXPERMS_EXCLUDE := opt/trinity/bin/kppp opt/trinity/bin/kppplogview \
+	opt/trinity/etc/ppp/peers/kppp-options
+
+DOC_HTML_PRUNE := kcontrol
+
+binary-install/kppp-trinity::
+	chown root:dip debian/kppp-trinity/opt/trinity/bin/kppp*
+	chown root:dip debian/kppp-trinity/opt/trinity/etc/ppp/peers/kppp-options
+	chmod 4754 debian/kppp-trinity/opt/trinity/bin/kppp
+	chmod 0754 debian/kppp-trinity/opt/trinity/bin/kppplogview
+	chmod 0640 debian/kppp-trinity/opt/trinity/etc/ppp/peers/kppp-options
