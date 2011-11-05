@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -46,7 +46,10 @@ BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
 BuildRequires: openssl-devel
 BuildRequires: db4-devel
+
+%if 0%{?fedora}
 BuildRequires: xmms-devel
+%endif
 
 Requires: trinity-kdebase
 %if 0%{?fedora}
@@ -248,6 +251,9 @@ gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

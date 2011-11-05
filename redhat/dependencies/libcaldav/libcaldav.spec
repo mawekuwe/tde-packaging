@@ -5,7 +5,7 @@
 
 Name:		libcaldav
 Version:	0.6.5
-Release:	2debian2.1%{?dist}%{?_variant}
+Release:	2debian2.2%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
@@ -18,6 +18,11 @@ Summary:	A client library that adds support for the CalDAV protocol (rfc4791).
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	libcaldav_0.6.5-2debian2.tar.gz
+
+BuildRequires:	libtool
+BuildRequires:	glib2-devel
+BuildRequires:	gtk2-devel
+BuildRequires:	make
 
 %if 0%{?fedora} || 0%{?rhel} >= 6
 BuildRequires:	libcurl-devel
@@ -73,5 +78,8 @@ autoreconf --force --install --symlink
 
 
 %Changelog
+* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2.2
+- Add missing BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2.1
 - Initial build for RHEL 6, RHEL 5, and Fedora 15

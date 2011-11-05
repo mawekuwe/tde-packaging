@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -35,6 +35,7 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
 BuildRequires:	gsl-devel
+BuildRequires:	libvorbis-devel
 
 Requires:	tqtinterface
 Requires:	audiofile
@@ -120,6 +121,9 @@ cd build
 
 
 %changelog
+* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add missing BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

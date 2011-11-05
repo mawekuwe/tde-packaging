@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -24,7 +24,10 @@ BuildRequires: cmake >= 2.8
 ## not currently compatible with libtunepimp-0.5 (only libtunepimp-0.4)
 #define _with_musicbrainz --with-musicbrainz
 %define _with_taglib --with-taglib
+
+%if 0%{?fedora}
 %define _with_xine --with-xine
+%endif
 
 Name:    trinity-kdemultimedia
 Summary: Multimedia applications for the K Desktop Environment (KDE)
@@ -401,6 +404,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libyafxplayer.so
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

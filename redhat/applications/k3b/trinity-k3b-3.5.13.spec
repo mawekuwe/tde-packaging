@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -57,11 +57,7 @@ BuildRequires: dbus-qt-devel hal-devel
 BuildRequires: flac-devel
 BuildRequires: gettext
 BuildRequires: libdvdread-devel
-%if 0%{?fedora} >= 15 || 0%{?rhel} <= 5
 BuildRequires: libmpcdec-devel
-%else
-BuildRequires: musepack-tools-devel
-%endif
 BuildRequires: libmusicbrainz-devel
 BuildRequires: libsamplerate-devel
 BuildRequires: libsndfile-devel
@@ -246,6 +242,9 @@ update-desktop-database -q &> /dev/null
 
 
 %changelog
+* Sat Nov 05 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

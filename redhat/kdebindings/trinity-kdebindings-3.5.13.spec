@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -37,14 +37,22 @@ Source0: kdebindings-%{version}.tar.gz
 # RedHat Legacy patches (from Fedora)
 Patch1: kdebindings-3.5.6-libgcj.patch
 
-BuildRequires: desktop-file-utils
 BuildRequires: tqtinterface-devel
+BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
+
+BuildRequires: desktop-file-utils
 BuildRequires: zlib-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
-BuildRequires: trinity-arts-devel
-BuildRequires: glib-devel gtk+-devel
 BuildRequires: gtk2-devel
+BuildRequires: gdk-pixbuf-devel
+BuildRequires: java-openjdk
+
+%if 0%{?fedora}
+BuildRequires: glib-devel
+BuildRequires: gtk+-devel
+%endif
+
 %define perl_ver        %{expand:%%(eval `perl -V:version`; echo $version)}
 %define perl_vendorarch %{expand:%%(eval `perl -V:installvendorarch`; echo $installvendorarch)}
 %define perl_vendorlib  %{expand:%%(eval `perl -V:installvendorlib`; echo $installvendorlib)}
@@ -70,10 +78,11 @@ Provides: %{name}-ruby = %{version}-%{release}
 %{!?ruby_sitearch: %define ruby_sitearch %(ruby -rrbconfig -e 'puts Config::CONFIG["sitearchdir"]')}
 
 ## java
-%if 0%{?rhel} && 0%{?rhel} < 6
+%if 0%{?rhel} > 0 && 0%{?rhel} < 6
 BuildRequires: java-1.4.2-gcj-compat-devel libgcj-devel gcc-java
 %else
 BuildRequires: java-devel >= 1.4.2
+BuildRequires: java-1.6.0-openjdk-devel
 %endif
 %define java_home %{_usr}/lib/jvm/java
 %define _with_java --with-java=%{java_home}
@@ -277,9 +286,12 @@ update-desktop-database >& /dev/null ||:
 %{ruby_arch}/*.la
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add missing BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 
-* Sat Sep 03 2011 Francois Andriot <francois.andriot@free.fr - 3.5.13-0
+* Sat Sep 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Built with future TDE version (3.5.13 + cmake + QT3.3.8d)

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -53,6 +53,8 @@ BuildRequires:	libidn-devel
 BuildRequires:	qt%{?_qt_suffix}-devel
 BuildRequires:	avahi-qt3-devel
 BuildRequires:	jasper-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	OpenEXR-devel
 
 Requires:		tqtinterface
 Requires:		trinity-arts
@@ -281,9 +283,11 @@ EOF
 
 
 %changelog
+* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add missing BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 
-* Wed Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13pre.svn20110902-0.el6
+* Wed Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
-- Built with future TDE version (3.5.13 + cmake + QT3.3.8d)

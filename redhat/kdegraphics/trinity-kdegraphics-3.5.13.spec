@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -15,6 +15,11 @@ BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
+
+# KDEGRAPHICS components
+%if 0%{?fedora}
+%define with_ksvg 1
+%endif
 
 
 Name:		trinity-kdegraphics
@@ -64,8 +69,6 @@ BuildRequires: libdrm-devel
 
 # kgamma
 BuildRequires: libXxf86vm-devel
-# kuickshow
-BuildRequires: imlib-devel
 #kfile-plugin
 BuildRequires: OpenEXR-devel
 # kpdf
@@ -76,14 +79,20 @@ BuildRequires: poppler-qt-devel
 %endif
 BuildRequires: libpaper-devel
 # ksvg
+%if 0%{?with_ksvg}
 BuildRequires: fontconfig-devel
-BuildRequires: fribidi-devel
 BuildRequires: lcms-devel
 BuildRequires: libart_lgpl-devel
 BuildRequires: libXmu-devel
+%endif
 
 # kpovmodeler
 BuildRequires: libGL-devel libGLU-devel libXi-devel
+
+# kuickshow
+BuildRequires: imlib-devel
+
+BuildRequires: fribidi-devel
 
 Requires: tqtinterface
 Requires: trinity-arts
@@ -361,6 +370,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libdjvu.so
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Updates BuildRequires
+
 * Wed Nov 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Fix kpovmodeler compilation on RHEL 5 (patch4)
 

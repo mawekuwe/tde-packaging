@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -56,7 +56,10 @@ BuildRequires: gmp-devel
 %if 0%{?fedora} > 4 || 0%{?rhel} > 4
 BuildRequires: libXScrnSaver-devel libXtst-devel
 %endif
+
+%if 0%{?fedora}
 BuildRequires: xmms-devel
+%endif
 
 %define superkaramba_ver 0.39
 Obsoletes: superkaramba < 0:%{superkaramba_ver}
@@ -339,6 +342,9 @@ done
 
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

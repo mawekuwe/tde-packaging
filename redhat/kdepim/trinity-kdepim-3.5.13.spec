@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -14,6 +14,13 @@
 BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
+
+# KDEPIM specific features
+%if 0%{?fedora}
+%define with_gnokii 1
+%else
+%define with_gnokii 0
+%endif
 
 
 Name:		trinity-kdepim
@@ -38,11 +45,14 @@ BuildRequires:	gpgme-devel
 BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
 BuildRequires:	libical-devel
-BuildRequires:	gnokii-devel
 BuildRequires:	boost-devel
 
 BuildRequires:	libcaldav-devel
 BuildRequires:	libcarddav-devel
+
+%if 0%{?with_gnokii}
+BuildRequires:	gnokii-devel
+%endif
 
 %if 0%{?fedora} >= 15
 BuildRequires:	flex-static
@@ -85,7 +95,11 @@ cd build
   -DWITH_ARTS=ON \
   -DWITH_SASL=ON \
   -DWITH_NEWDISTRLISTS=ON  \
+%if 0%{?with_gnokii}
   -DWITH_GNOKII=ON \
+%else
+  -DWITH_GNOKII=OFF \
+%endif
   -DWITH_EXCHANGE=ON \
   -DWITH_EGROUPWARE=ON \
   -DWITH_KOLAB=ON \
@@ -151,6 +165,9 @@ export PATH="%{_bindir}:${PATH}"
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

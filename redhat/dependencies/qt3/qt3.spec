@@ -16,7 +16,7 @@
 
 Name: qt3
 Version: %{?version}
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: The shared library for the Qt 3 GUI toolkit
 
 License: QPL or GPLv2 or GPLv3
@@ -149,6 +149,7 @@ BuildRequires: mysql-devel
 BuildRequires: postgresql-devel
 BuildRequires: unixODBC-devel
 BuildRequires: sqlite-devel
+BuildRequires: gcc-c++
 
 
 %package config
@@ -700,6 +701,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8d-2
+- Add missing BuildRequires
+
 * Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8d-1
 - Initial build for RHEL 6, RHEL 5, and Fedora 15
 - Switch to Trinity Version

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -39,14 +39,17 @@ Source: kdeartwork-%{version}.tar.gz
 # FIXME: this should go in kde-settings -- Rex
 Source1: webcollagerc
 
-BuildRequires: gettext
 BuildRequires: trinity-kdebase-devel
-BuildRequires: nas-devel esound-devel jack-audio-connection-kit-devel
-%if 0%{?rhel} > 5 || 0%{?fedora} >= 15
+
+BuildRequires: gettext
+BuildRequires: esound-devel
+%if 0%{?fedora}
+BuildRequires: jack-audio-connection-kit-devel
+BuildRequires: nas-devel
 BuildRequires: xscreensaver
-%else
-BuildRequires: gnome-screensaver
+%define with_xscreensaver 1
 %endif
+
 %if "%{?with_libart}" == "1"
 BuildRequires: libart_lgpl-devel
 %endif
@@ -78,7 +81,11 @@ export LD_LIBRARY_PATH="%{_libdir}"
 %__mkdir build
 cd build
 %cmake \
+%if 0%{?with_xscreensaver}
   -DWITH_XSCREENSAVER=ON \
+%else
+  -DWITH_XSCREENSAVER=OFF \
+%endif
 %if "%{?with_libart}" == "1"
   -DWITH_LIBART=ON \
 %else
@@ -166,7 +173,9 @@ done
 %{_datadir}/sounds/*
 %{_datadir}/wallpapers/*
 %{_datadir}/emoticons/*
+%if 0%{?with_xscreensaver}
 %{_bindir}/kxs*
+%endif
 
 %files icons
 %defattr(-,root,root,-)
@@ -180,6 +189,9 @@ done
 
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -75,7 +75,6 @@ BuildRequires:	lm_sensors-devel
 BuildRequires:	libfontenc-devel
 BuildRequires:	hal-devel
 BuildRequires:	audiofile-devel alsa-lib-devel
-BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	libraw1394-devel
 BuildRequires:	openldap-devel
 BuildRequires:	libvorbis-devel
@@ -83,12 +82,19 @@ BuildRequires:	pam-devel
 BuildRequires:	libXdmcp-devel
 BuildRequires:	libxkbfile-devel
 BuildRequires:	libusb-devel
-BuildRequires:	esound-devel glib2-devel nas-devel
+BuildRequires:	esound-devel glib2-devel
 BuildRequires:	libXcomposite-devel
 BuildRequires:	dbus-tqt-devel
 BuildRequires:	libXtst-devel
 BuildRequires:	libXdamage-devel
+BuildRequires:	xorg-x11-font-utils
 
+# These dependancies are not met in RHEL
+%if 0%{?fedora}
+BuildRequires:	jack-audio-connection-kit-devel
+BuildRequires:	nas-devel
+%endif
+ 
 Requires:	tqtinterface
 Requires:	trinity-arts
 Requires:	trinity-kdelibs
@@ -513,6 +519,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Add missing BuildRequires
+
 * Tue Nov 01 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Add 'patch8' to fix LD_PRELOAD variable set by 'startkde' under x86_64
 

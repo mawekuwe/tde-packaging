@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp gwenview
 %define version 1.4.2
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -138,20 +138,22 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/services/*.desktop
 %{_datadir}/apps/*/
 %{_datadir}/config.kcfg/*
-%{tde_docdir}/HTML/en/*/
+%{_docdir}/HTML/en/*/
 %{_datadir}/icons/*/*/*/*
 %{_mandir}/man*/*
 
-%{_libdir}/libkdeinit_gwenview.so
-%exclude %{_libdir}/libgwenviewcore.so
+%{_libdir}/*.so
+%{_libdir}/*.la
+%{_libdir}/*/*.so
+%{_libdir}/*/*.la
 
-%exclude %{_libdir}/*.la
-%exclude %{_libdir}/*/*.so
-%exclude %{_libdir}/*/*.la
 
 
 
 %Changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-5
+- Adds missing files
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-4
 - Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
 
