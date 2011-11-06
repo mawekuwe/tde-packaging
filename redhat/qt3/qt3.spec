@@ -1,6 +1,6 @@
 # Default version for this component
 %if "%{?version}" == ""
-%define version 3.3.8d
+%define version 3.3.8.d
 %endif
 
 # The following QT4 packages should NOT be installed to
@@ -298,7 +298,7 @@ for the Qt 3 toolkit.
 
 
 %prep
-%setup -q -n dependencies/qt3
+%setup -q -n qt3
 %patch1 -p1 -b .cjk
 %patch2 -p1 -b .ndebug
 %patch3 -p1 -b .makefile
