@@ -1,16 +1,16 @@
-.TH KDESU 1 "May 2005" "K Desktop Environment" "Runs a program with elevated privileges."
+.TH TDESU 1 "May 2005" "K Desktop Environment" "Runs a program with elevated privileges."
 .SH NAME
-kdesu \- Runs a program with elevated privileges.
+tdesu \- Runs a program with elevated privileges.
 .SH SYNOPSIS
-\fBkdesu\fR [Qt\-options] [KDE\-options] [kdesu options] command 
+\fBtdesu\fR [Qt\-options] [KDE\-options] [tdesu options] command 
 .SH DESCRIPTION
 Runs a program with elevated privileges.
 .PP
 KDE su is a graphical front end to the Unix \fBsu\fR utility. It allows you to run programs as another user by entering their password. It is not a SUID root program, but runs unprivileged. The system program \fBsu\fR is used for acquiring special privileges.
 .PP
-\fBkdesu\fR has the ability to store passwords for the convenience of users. The passwords are NOT written to disk, but stored in memory using a special program, \fBkdesud\fR. This is only done if the user specifies that the password be remembered. In this case, passwords are stored in memory for a certain period of time before being removed. \fBkdesud\fR runs in such a way that only the user who entered the password originally can use it, though no one, not even the user who originally entered the password, can retrieve the password that is stored by \fBkdesud\fR. Through these measures, users can avoid having to repeatedly enter root passwords or other passwords, without a significant risk to overall system security.
+\fBtdesu\fR has the ability to store passwords for the convenience of users. The passwords are NOT written to disk, but stored in memory using a special program, \fBtdesud\fR. This is only done if the user specifies that the password be remembered. In this case, passwords are stored in memory for a certain period of time before being removed. \fBtdesud\fR runs in such a way that only the user who entered the password originally can use it, though no one, not even the user who originally entered the password, can retrieve the password that is stored by \fBtdesud\fR. Through these measures, users can avoid having to repeatedly enter root passwords or other passwords, without a significant risk to overall system security.
 .PP
-\fBkdesu\fR uses normally \fBsu\fR to gain root by using the root password. \fBkdesu\fR can also be configured to use other commands to gain root like sudo to use users password.
+\fBtdesu\fR uses normally \fBsu\fR to gain root by using the root password. \fBtdesu\fR can also be configured to use other commands to gain root like sudo to use users password.
 .SH OPTIONS
 .SS Generic options:
 .TP
@@ -35,7 +35,7 @@ Show version information
 .B  --license
 Show license information
 .SS
-.SS kdesu Options:
+.SS tdesu Options:
 .TP
 .TP
 .B -c <command>
@@ -78,7 +78,7 @@ Specifies the command to run
 
 .SH CONFIGURATION FILES
 .PP
-\fBkdesu\fR can be configured with a default configuration file /etc/trinity/kdesurc and with a per user configuration file in .kde/share/config/kdesurc. Alternative a section could be added to kdeglobals.
+\fBtdesu\fR can be configured with a default configuration file /etc/trinity/tdesurc and with a per user configuration file in .kde/share/config/tdesurc. Alternative a section could be added to kdeglobals.
 .SH EXAMPLE
 The configuration item for the configuration files is the following:
 .br
@@ -88,9 +88,9 @@ super-user-command=sudo
 
 .SH SEE ALSO
 Full user documentation is available through the KDE Help Center. You can also enter the URL
-.BR help:/kdesu/
+.BR help:/tdesu/
 directly into konqueror or you can run 
-.BR "`khelpcenter help:/kdesu/'"
+.BR "`khelpcenter help:/tdesu/'"
 from the command-line.
 .br
 .SH AUTHORS

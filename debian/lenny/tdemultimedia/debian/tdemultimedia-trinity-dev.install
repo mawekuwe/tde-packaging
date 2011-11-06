@@ -151,10 +151,10 @@ debian/tmp/opt/trinity/lib/libaudiocdplugins.la
 debian/tmp/opt/trinity/lib/libaudiocdplugins.so
 debian/tmp/opt/trinity/lib/libkcddb.la
 debian/tmp/opt/trinity/lib/libkcddb.so
-debian/tmp/opt/trinity/lib/libkdeinit_kmix.la
-debian/tmp/opt/trinity/lib/libkdeinit_kmixctrl.la
-debian/tmp/opt/trinity/lib/libkdeinit_krec.la
-debian/tmp/opt/trinity/lib/libkdeinit_noatun.la
+debian/tmp/opt/trinity/lib/libtdeinit_kmix.la
+debian/tmp/opt/trinity/lib/libtdeinit_kmixctrl.la
+debian/tmp/opt/trinity/lib/libtdeinit_krec.la
+debian/tmp/opt/trinity/lib/libtdeinit_noatun.la
 debian/tmp/opt/trinity/lib/libkmidlib.la
 debian/tmp/opt/trinity/lib/libkmidlib.so
 debian/tmp/opt/trinity/lib/libmpeg.la

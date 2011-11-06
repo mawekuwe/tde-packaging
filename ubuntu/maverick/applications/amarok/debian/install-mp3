@@ -27,8 +27,8 @@ INSTALLED=`dpkg --get-selections libxine1-ffmpeg | grep install`
 
 #is available, not installed
 if [ -z "$INSTALLED" ]; then
-  if [ -x /opt/trinity/bin/kdesu ] && [ -x /usr/bin/install-package ]; then
-    /opt/trinity/bin/kdesu -d "install-package --icon amarok --install libxine1-ffmpeg"
+  if [ -x /opt/trinity/bin/tdesu ] && [ -x /usr/bin/install-package ]; then
+    /opt/trinity/bin/tdesu -d "install-package --icon amarok --install libxine1-ffmpeg"
   elif [ -x /usr/bin/gksudo ] && [ -x /usr/sbin/synaptic ]; then
     gksudo "sh -c 'echo \"libxine1-ffmpeg i\"|synaptic --non-interactive --set-selections'"
   else

@@ -179,8 +179,8 @@ debian/tmp/opt/trinity/include/kde/kviewshell/zoomlimits.h
 debian/tmp/opt/trinity/include/kde/libtext2path-0.1/BezierPath.h
 debian/tmp/opt/trinity/include/kde/libtext2path-0.1/Glyph.h
 debian/tmp/opt/trinity/include/kde/libtext2path-0.1/GlyphTracer.h
-debian/tmp/opt/trinity/lib/libkdeinit_kview.la
-debian/tmp/opt/trinity/lib/libkdeinit_mrmlsearch.la
+debian/tmp/opt/trinity/lib/libtdeinit_kview.la
+debian/tmp/opt/trinity/lib/libtdeinit_mrmlsearch.la
 debian/tmp/opt/trinity/lib/libkghostviewlib.la
 debian/tmp/opt/trinity/lib/libkghostviewlib.so
 debian/tmp/opt/trinity/lib/libkimageviewer.la

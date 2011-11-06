@@ -9,7 +9,7 @@ debian/tmp/opt/trinity/lib/trinity/libkrecexport_ogg.la
 debian/tmp/opt/trinity/lib/trinity/libkrecexport_ogg.so
 debian/tmp/opt/trinity/lib/trinity/libkrecexport_wave.la
 debian/tmp/opt/trinity/lib/trinity/libkrecexport_wave.so
-debian/tmp/opt/trinity/lib/libkdeinit_krec.so
+debian/tmp/opt/trinity/lib/libtdeinit_krec.so
 debian/tmp/opt/trinity/share/applications/kde/krec.desktop
 debian/tmp/opt/trinity/share/apps/krec/icons/crystalsvg/16x16/actions/krec_record.png
 debian/tmp/opt/trinity/share/apps/krec/icons/crystalsvg/22x22/actions/krec_record.png

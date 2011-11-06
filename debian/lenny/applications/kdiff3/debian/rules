@@ -45,7 +45,7 @@ build: build-stamp
 build-stamp:  config.status
 	dh_testdir
 
-	$(MAKE) LDFLAGS="-lkdecore -lkdeui" LIBS=""
+	$(MAKE) LDFLAGS="-ltdecore -ltdeui" LIBS=""
 	/usr/bin/docbook-to-man debian/kdiff3.sgml > doc/en/kdiff3.1
 	touch build-stamp
 

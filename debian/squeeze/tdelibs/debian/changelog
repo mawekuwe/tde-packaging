@@ -136,12 +136,12 @@ tdelibs (4:3.5.10-0ubuntu1~hardy1) hardy-backports; urgency=low
 
 tdelibs (4:3.5.9-0ubuntu7.1) hardy-security; urgency=low
 
-  * SECURITY UPDATE: integer overflow in start_kdeinit. The start_kdeinit
+  * SECURITY UPDATE: integer overflow in start_tdeinit. The start_tdeinit
     processing of user-influenceable input is faulty.  A local user
     might be able to send unix signals to other processes, cause
     a denial of service or even possibly execute arbitrary code.
   * Add kubuntu_9903_kinit_integer_overflow.diff, edits
-    kinit/start_kdeinit.c, patch from upstream KDE
+    kinit/start_tdeinit.c, patch from upstream KDE
   * References
     http://www.kde.org/info/security/advisory-20080426-2.txt
     CVE-2008-1671
@@ -321,7 +321,7 @@ tdelibs (4:3.5.8-3ubuntu1) hardy; urgency=low
    - remove tdelibs4c2a depends on menu-xdg
    - include kubuntu_01_kdepot.diff and kde.pot in debian/patches/common
    - use a local copy of kde.mk without the common-install-prehook-impl:: rule; edit debian-qt-kde.mk to include debian/cdbs/kde.mk
-   - build with --with-sudo-kdesu-backend and build-dep on sudo and make tdelibs4c2a depend on sudo
+   - build with --with-sudo-tdesu-backend and build-dep on sudo and make tdelibs4c2a depend on sudo
    - tdelibs-data.install : Add nzb mimetype
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 13 Nov 2007 18:18:05 +0000
@@ -348,8 +348,8 @@ tdelibs (4:3.5.8.dfsg.1-1) unstable; urgency=low
   * New upstream release (Closes: #444383, #328479, #425741)
   * Resync patches:
     - Remove, applied upstream:
-      01_branch_kate_redo_save_fix, 01_branch_wait_for_kdeinit_to_finish,
-      48_cups13, 55_several-CVE-tdelibs-kdecore.
+      01_branch_kate_redo_save_fix, 01_branch_wait_for_tdeinit_to_finish,
+      48_cups13, 55_several-CVE-tdelibs-tdecore.
   * Update *.install files. 
 
  -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Sat, 13 Oct 2007 11:53:45 +0200
@@ -364,7 +364,7 @@ tdelibs (4:3.5.7.dfsg.1-7) unstable; urgency=low
 
   +++ Changes by Ana Beatriz Guerrero Lopez:
 
-  * Add patch 55_several-CVE-tdelibs-kdecore.diff to make Konqueror address
+  * Add patch 55_several-CVE-tdelibs-tdecore.diff to make Konqueror address
     bar more robust against addressbar spoofing.
     Related CVEs: CVE-2007-4224, CVE-2007-4225, CVE-2007-3820.
 
@@ -420,7 +420,7 @@ tdelibs (4:3.5.7.dfsg.1-2) unstable; urgency=low
   * Better error messages when opening a tty fails. Thanks to Robert Millan.
     (Closes: #334974)
   * Don't refer to help:/kcmshell in kcmshell manpage. (Closes: #408470)
-  * Make sure kdeinit closes all files before terminating kde. (Closes: #425314)
+  * Make sure tdeinit closes all files before terminating kde. (Closes: #425314)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Thu, 19 Jul 2007 22:52:17 +0200
 
@@ -690,7 +690,7 @@ tdelibs (4:3.5.6-0ubuntu8) feisty; urgency=low
 
 tdelibs (4:3.5.6-0ubuntu7) feisty; urgency=low
 
-  * Add kubuntu_92_kdeprint_filter.diff, closes Malone
+  * Add kubuntu_92_tdeprint_filter.diff, closes Malone
     #51354. Patch from Marcus Trautwig
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Thu, 22 Feb 2007 17:27:47 +0100
@@ -739,11 +739,11 @@ tdelibs (4:3.5.6-0ubuntu2) feisty; urgency=low
 
 tdelibs (4:3.5.6-0ubuntu1) feisty; urgency=low
 
-  * Remove 02_kate_kdeprint_fixes_branch.diff
+  * Remove 02_kate_tdeprint_fixes_branch.diff
   * Update 27_kdnssd_avahi.dif
   * Remove 33_cups12_kprinter_fixes.diff
   * Remove 35_cups_unify_ipp_uri_assembling.diff
-  * Remove 36_kdeprintd_64bit_fix.diff
+  * Remove 36_tdeprintd_64bit_fix.diff
   * Remove 41_x_kde_getactionmenu_no_timeout.diff
   * Remove kubuntu_63_ark.diff
   * Remove kubuntu_65_kstyle_password_noasterisk
@@ -788,7 +788,7 @@ tdelibs (4:3.5.5a.dfsg.1-3ubuntu5) feisty; urgency=low
 
 tdelibs (4:3.5.5a.dfsg.1-3ubuntu4) feisty; urgency=low
 
-  * Compile with --with-sudo-kdesu-backend
+  * Compile with --with-sudo-tdesu-backend
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 20 Nov 2006 10:16:08 +0000
 
@@ -924,8 +924,8 @@ tdelibs (4:3.5.5a.dfsg.1-3) unstable; urgency=medium
       when there are no printers.
     * 35_cups_unify_ipp_uri_assembling.diff - ensure proper IPP URI
       generation when CUPS is accessed via a UNIX socket. (Closes: #379216)
-  * Add 36_kdeprintd_64bit_fix.diff - fix a bug on 64bit arches when kdeprint
-    is not able to get a configuration file from CUPS server because kdeprintd
+  * Add 36_tdeprintd_64bit_fix.diff - fix a bug on 64bit arches when tdeprint
+    is not able to get a configuration file from CUPS server because tdeprintd
     fails to retreive the password from kpasswdserver.
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Thu,  2 Nov 2006 17:54:30 -0500
@@ -953,7 +953,7 @@ tdelibs (4:3.5.5a-2) unstable; urgency=medium
 
   * Grab two more fixes from KDE_3_5_BRANCH.
     + Fix kate's indentation of C/C++ files.
-    + Fix kdeprint's timeout when trying to find cupsd.
+    + Fix tdeprint's timeout when trying to find cupsd.
       (Closes: #392052, #392052)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Fri, 13 Oct 2006 17:04:21 -0400
@@ -1026,7 +1026,7 @@ tdelibs (4:3.5.4-1) unstable; urgency=low
     tdelibs-data.
 
   * Add a number of patches, courtesy of Debian, which attempt to get
-    kdeprint working reasonably well with CUPS 1.2.x. These patches should
+    tdeprint working reasonably well with CUPS 1.2.x. These patches should
     resolve a number of user glitches, such as cryptic errors popping up when
     no printer has yet been added to CUPS.
     (Closes: #369140, #370403, #375477, #379216)
@@ -1050,7 +1050,7 @@ tdelibs (4:3.5.5-0ubuntu3) edgy; urgency=low
 
 tdelibs (4:3.5.5-0ubuntu2) edgy; urgency=low
 
-  * Revert kdeprint directory and patches to those from kde 3.5.4 packages
+  * Revert tdeprint directory and patches to those from kde 3.5.4 packages
     closes malone No 65665
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 14 Oct 2006 01:54:33 +0000
@@ -1065,8 +1065,8 @@ tdelibs (4:3.5.5-0ubuntu1) edgy; urgency=low
    - kubuntu_48_cups12_cupsdconf.diff
    - kubuntu_54_mouse_scroll_speed.diff
    - cups 1.2 domain socket fixed upstream
-  * Remove kubuntu_01_kdesu_sudo.diff, and kubuntu_50_kdesu_non_root.patch
-    patches gone upstream, use new --with-sudo-kdesu-backend
+  * Remove kubuntu_01_tdesu_sudo.diff, and kubuntu_50_tdesu_non_root.patch
+    patches gone upstream, use new --with-sudo-tdesu-backend
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  3 Oct 2006 11:23:11 +0000
 
@@ -1469,8 +1469,8 @@ tdelibs (4:3.5.2-0ubuntu18) dapper; urgency=low
 
 tdelibs (4:3.5.2-0ubuntu17) dapper; urgency=low
 
-  * Add kubuntu_50_kdesu_non_root.patch to fix running commands as non-root
-    with kdesu with su instead of sudo (Malone #41184)
+  * Add kubuntu_50_tdesu_non_root.patch to fix running commands as non-root
+    with tdesu with su instead of sudo (Malone #41184)
 
  -- Luka Renko <lure.net@gmail.net>  Wed, 10 May 2006 22:45:27 +0200
 
@@ -1575,7 +1575,7 @@ tdelibs (4:3.5.2-0ubuntu4) dapper; urgency=low
 
 tdelibs (4:3.5.2-0ubuntu3) dapper; urgency=low
 
-  * Add kubuntu_35_kdeprint_branch.diff to fix compile error
+  * Add kubuntu_35_tdeprint_branch.diff to fix compile error
     with CUPS 1.2, remove my random hack from kubuntu_34_cups12.diff 
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 13 Apr 2006 18:53:24 +0100
@@ -1781,20 +1781,20 @@ tdelibs (4:3.5-rc2-0ubuntu5) dapper; urgency=low
 
 tdelibs (4:3.5-rc2-0ubuntu4) dapper; urgency=low
 
-  * Add debian/patches/kubuntu_06_fix_kdeprint_cups12_fix.diff, fix kdeprint compile error properly
+  * Add debian/patches/kubuntu_06_fix_tdeprint_cups12_fix.diff, fix tdeprint compile error properly
   * Add common/kubuntu_01_kdepot.diff and common/kde.pot, fix .pot generation
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 25 Nov 2005 22:11:51 +0000
 
 tdelibs (4:3.5-rc2-0ubuntu3) dapper; urgency=low
 
-  * Fix broken kubuntu_06_fix_kdeprint_compile_hack.diff
+  * Fix broken kubuntu_06_fix_tdeprint_compile_hack.diff
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 25 Nov 2005 18:44:54 +0000
 
 tdelibs (4:3.5-rc2-0ubuntu2) dapper; urgency=low
 
-  * Add kubuntu_06_fix_kdeprint_compile_hack.diff, quick patch until I
+  * Add kubuntu_06_fix_tdeprint_compile_hack.diff, quick patch until I
     work out how to fix it properly
   * Fix tdelibs4-doc.install for correct path of files
 
@@ -1831,8 +1831,8 @@ tdelibs (4:3.4.3-1) experimental; urgency=low
   * Tweak the rounded text selection patch to avoid it causing icon spacing
     issues in Konqueror. (Closes: #329404)
 
-  * Add a patch to generate a PIC static libkdefakes, libkdefakes_pic.a.
-    This will allow other libraries, such as mimelib, to use libkdefakes,
+  * Add a patch to generate a PIC static libtdefakes, libtdefakes_pic.a.
+    This will allow other libraries, such as mimelib, to use libtdefakes,
     without acquiring non-PIC code or a dependency upon the full tdelibs.
     (Closes: #326113)
 
@@ -2203,7 +2203,7 @@ tdelibs (4:3.4.0-0pre1ubuntu1) hoary; urgency=low
 
 tdelibs (4:3.4.0~rc1-1ubuntu0.2) hoary; urgency=low
 
-  * Add sudo for kdesu patch kubuntu_01_kdesu_sudo.diff
+  * Add sudo for tdesu patch kubuntu_01_tdesu_sudo.diff
   * Add applications.menu move patch to stop collisions with Gnome kubuntu_02_applications_menu_rename.diff
 
  -- Jonathan Riddell <jr@jriddell.org>  Sat,  5 Mar 2005 21:00:03 +0000
@@ -2310,7 +2310,7 @@ tdelibs (4:3.3.2-2) unstable; urgency=high
 
   * Add patch from upstream that solves the problem wherein programs whose
     .desktop entry contained their full path, rather than just the binary
-    to be executed (mainly games), confused kdeinit.
+    to be executed (mainly games), confused tdeinit.
     (Closes: #270592, #290323)
 
   * debian/control: Add necessary tdelibs-data Replaces for old
@@ -2379,7 +2379,7 @@ tdelibs (4:3.3.2-0pre1) experimental; urgency=low
 
   * New patches:
     - 06_automake-1.9.diff
-    - 12_cups_docroot.diff: changed the CUPS document path in kdeprint to
+    - 12_cups_docroot.diff: changed the CUPS document path in tdeprint to
       reflect the Debian default. [CM]
 
   * Updated dcop.1 manpage with patch by Helge Kreutzman. (Closes: #250631)
@@ -3323,7 +3323,7 @@ tdelibs (4:2.1-20010109-1) unstable; urgency=low
    * This was definatly built with the same dpkg that tdelibs-crypto was so
      I'm assuming this just squeaked by dinstall...so just to be sure...
    * Java should work again
-   * Fix kdesud security by
+   * Fix tdesud security by
      a) Not creating the socket under /tmp
      b) Verifying afterwards that it was our own socket
  
@@ -3332,7 +3332,7 @@ tdelibs (4:2.1-20010109-1) unstable; urgency=low
 tdelibs (4:2.1-20010106-1) unstable; urgency=low
  
    * more upstream bug fixes
-   * Contains both the symlink/sniff attack fix for kdesu
+   * Contains both the symlink/sniff attack fix for tdesu
    * Moving conflicts for task-* packages to tdebase
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Sat, 06 Jan 2001 15:00:00 -0700

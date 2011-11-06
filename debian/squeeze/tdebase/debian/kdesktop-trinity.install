@@ -8,7 +8,7 @@ debian/tmp/opt/trinity/bin/kdesktop_lock
 debian/tmp/opt/trinity/bin/kwebdesktop
 debian/tmp/opt/trinity/lib/trinity/kdesktop.la
 debian/tmp/opt/trinity/lib/trinity/kdesktop.so
-debian/tmp/opt/trinity/lib/libkdeinit_kdesktop.so
+debian/tmp/opt/trinity/lib/libtdeinit_kdesktop.so
 debian/tmp/opt/trinity/share/apps/kdesktop/DesktopLinks/Home.desktop usr/share/apps/kdesktop/unused/
 debian/tmp/opt/trinity/share/apps/kdesktop/DesktopLinks/System.desktop usr/share/apps/kdesktop/unused/
 debian/tmp/opt/trinity/share/apps/kdesktop/directory.autostart

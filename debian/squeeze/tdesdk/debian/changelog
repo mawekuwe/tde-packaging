@@ -476,7 +476,7 @@ tdesdk (4:3.4.2-2.1) unstable; urgency=medium
 tdesdk (4:3.4.2-2) unstable; urgency=low
 
   * Built against libfam-dev, not libgamin-dev (closes: #326547).
-  * Updated overrides files to account for kdeinit black magic.
+  * Updated overrides files to account for tdeinit black magic.
 
  -- Ben Burton <bab@debian.org>  Sun,  4 Sep 2005 10:58:17 +1000
 
@@ -536,8 +536,8 @@ tdesdk (4:3.4.1-0ubuntu3) breezy; urgency=low
 
 tdesdk (4:3.4.1-0ubuntu2) breezy; urgency=low
 
-  * Add libkdeinit_cvsservice.so to libcvsservice0.install
-  * Add cervisia.so and libkdeinit_cervisia.so to cervisia.install
+  * Add libtdeinit_cvsservice.so to libcvsservice0.install
+  * Add cervisia.so and libtdeinit_cervisia.so to cervisia.install
 
  -- Jonathan Riddell <jr@jriddell.org>  Thu,  2 Jun 2005 01:33:59 +0000
 

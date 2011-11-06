@@ -34,7 +34,7 @@
  
  #include <kio/netaccess.h>
 -#define NETACCESS	KIO::NetAccess
-+// Kiosktool wants to use fish://root@localhost/... which won't work on Kubuntu because we don't run ssh by default, we don't allow ssh to do root logins and root doesn't even have a password, so implement the functions here for local copies using kdesu instead
++// Kiosktool wants to use fish://root@localhost/... which won't work on Kubuntu because we don't run ssh by default, we don't allow ssh to do root logins and root doesn't even have a password, so implement the functions here for local copies using tdesu instead
 +// #define NETACCESS	KIO::NetAccess
  
  #undef DEBUG_ENTRIES

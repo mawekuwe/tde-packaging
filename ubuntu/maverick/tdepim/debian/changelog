@@ -943,7 +943,7 @@ tdepim (4:3.4.3-1) unstable; urgency=low
     + Fixes a FTBFS with newer versions of g++-4.0.
   * Rename libmimelib1c2 to libmimelib1c2a due to C++ allocator changes.
   * New patch 13_mimelib_self_contained.diff:
-    + Link against libkdefakes_pic.a instead of -lkdefakes to
+    + Link against libtdefakes_pic.a instead of -ltdefakes to
       eliminate mimelib's dependency on tdelibs.
     + Fix mimelib/config.h not to require the KDE or QT headers again.
       This allows dropping the libtdepim-dev dependency from
@@ -1106,7 +1106,7 @@ tdepim (4:3.4.2-1) unstable; urgency=low
     + Rename libmimelib1a -> libmimelib1c2 in order not to break
       lurker.  Also split out libkmime2 from this package while I'm
       at it so that lurker users don't have to install tdelibs4 --
-      at least, they won't have to once I can link libkdefakes statically
+      at least, they won't have to once I can link libtdefakes statically
       into mimelib (see bug #326113).
   * Add Vietnamese debconf translation.  Closes: #312159.
   * Remove 10_korganizer_makefile.diff, which has been applied in

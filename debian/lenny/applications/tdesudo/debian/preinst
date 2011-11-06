@@ -12,13 +12,13 @@ fi
 case "$1" in
   install)
     dpkg-divert --package $package_name \
-    --divert /opt/trinity/bin/kdesu.distrib \
-    --rename /opt/trinity/bin/kdesu
+    --divert /opt/trinity/bin/tdesu.distrib \
+    --rename /opt/trinity/bin/tdesu
     ;;
   upgrade)
     dpkg-divert --package $package_name \
-    --divert /opt/trinity/bin/kdesu.distrib \
-    --rename /opt/trinity/bin/kdesu
+    --divert /opt/trinity/bin/tdesu.distrib \
+    --rename /opt/trinity/bin/tdesu
     ;;
   abort-upgrade)
     ;;

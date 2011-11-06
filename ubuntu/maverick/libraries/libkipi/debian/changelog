@@ -111,7 +111,7 @@ libkipi (0.1.2-3) unstable; urgency=low
       + debian/rules: add buildprep rule to recreate the buildpref diff
       + add 06_aclocal_update.diff: aclocal.m4 gets recreated after each
         new buildprep diff
-      + patches/10_link_to_right_libs.diff: add missing libraries -lkdecore
+      + patches/10_link_to_right_libs.diff: add missing libraries -ltdecore
         -lqt-mt
     Result: libkipi0 now depends on 5 instead of 25 packages
   * remove unnecessary build dependency on libimlib2-dev

@@ -531,7 +531,7 @@ tdeadmin (4:3.4.0-0pre2) alioth; urgency=low
 
   +++ Changes by Pierre Habouzit:
 
-  * Recommends tdebase-bin for lilo-config (kdesu in the menu command).
+  * Recommends tdebase-bin for lilo-config (tdesu in the menu command).
   * Remove kcmlinuz from Depends for tdeadmin meta package.
   * Wrote a man page for kdat.
 

@@ -61,8 +61,8 @@ debian/tmp/opt/trinity/include/kde/rss/image.h
 debian/tmp/opt/trinity/include/kde/rss/librss.h
 debian/tmp/opt/trinity/include/kde/rss/loader.h
 debian/tmp/opt/trinity/include/kde/rss/textinput.h
-debian/tmp/opt/trinity/lib/libkdeinit_kdict.la
-debian/tmp/opt/trinity/lib/libkdeinit_ksirc.la
+debian/tmp/opt/trinity/lib/libtdeinit_kdict.la
+debian/tmp/opt/trinity/lib/libtdeinit_ksirc.la
 debian/tmp/opt/trinity/lib/libkopete.la
 debian/tmp/opt/trinity/lib/libkopete.so
 debian/tmp/opt/trinity/lib/libkopete_msn_shared.la

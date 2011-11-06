@@ -28,7 +28,7 @@ find ./kimgio -name \*.kimgio -print 2>/dev/null | grep -v debian >> $filelist
 find ./noatun -name \*.plugin -print 2>/dev/null | grep -v debian >> $filelist
 find ./noatun-plugins -name \*.plugin -print 2>/dev/null | grep -v debian >> $filelist
 find ./amor/data -name \*rc -print 2>/dev/null | grep -v debian >> $filelist
-find ./kdeprint -name \*.print -print 2>/dev/null | grep -v debian >> $filelist 
+find ./tdeprint -name \*.print -print 2>/dev/null | grep -v debian >> $filelist 
 find . -name \*.kksrc -print 2>/dev/null | grep -v debian >> $filelist
 find ./kopete -name \*.plugin -print 2>/dev/null | grep -v debian >> $filelist
 find . -name \*.kdevtemplate -print 2>/dev/null | grep -v debian >> $filelist

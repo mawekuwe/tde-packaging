@@ -3,7 +3,7 @@
 @@ -54,10 +54,8 @@
  	find $$dirs -maxdepth 1 -name "*.cc" -print >> files ;\
  	find $$dirs -maxdepth 1 -name "*.h" -print >> files ;\
- 	echo ./kdecore/kde-config.cpp.in >> files ;\
+ 	echo ./tdecore/kde-config.cpp.in >> files ;\
 -	$(EXTRACTRC) `find $$dirs -maxdepth 1 \( -name "*.rc" -o -name "*.ui" \) ` ./dnssd/kcm_kdnssd.kcfg > rc.cpp; \
 -	: > kde.pot ;\
 +	$(EXTRACTRC) `find $$dirs -maxdepth 1 \( -name "*.rc" -o -name "*.ui" \) ` ./dnssd/kcm_kdnssd.kcfg > rc.cpp;

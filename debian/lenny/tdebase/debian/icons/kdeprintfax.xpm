@@ -1,5 +1,5 @@
 /* XPM */
-static char *kdeprintfax[] = {
+static char *tdeprintfax[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 94 2",
 "   c #000000",

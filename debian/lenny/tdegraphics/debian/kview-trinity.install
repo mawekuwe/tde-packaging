@@ -21,7 +21,7 @@ debian/tmp/opt/trinity/lib/trinity/libkviewcanvas.la
 debian/tmp/opt/trinity/lib/trinity/libkviewcanvas.so
 debian/tmp/opt/trinity/lib/trinity/libkviewviewer.la
 debian/tmp/opt/trinity/lib/trinity/libkviewviewer.so
-debian/tmp/opt/trinity/lib/libkdeinit_kview.so
+debian/tmp/opt/trinity/lib/libtdeinit_kview.so
 debian/tmp/opt/trinity/lib/libkimageviewer.so.0
 debian/tmp/opt/trinity/lib/libkimageviewer.so.0.0.0
 debian/tmp/opt/trinity/lib/trinity/libphotobook.la

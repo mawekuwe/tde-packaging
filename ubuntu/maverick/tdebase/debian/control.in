@@ -13,7 +13,7 @@ XS-Vcs-Bzr: http://bazaar.launchpad.net/~kubuntu-members/tdebase/debian
 Package: tdebase
 Section: kde
 Architecture: all
-Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-kio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), kdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), kwin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
+Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-kio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), tdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), kwin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
 Recommends: kdm (>= ${Source-Version})
 Suggests: tdebase-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
@@ -121,7 +121,7 @@ Description: shared data files for the KDE base module
 Package: tdebase-dev
 Section: devel
 Architecture: any
-Depends: kate (= ${Source-Version}), kcontrol (= ${Source-Version}), tdebase-bin (= ${Source-Version}), kdeprint (= ${Source-Version}), kdesktop (= ${Source-Version}), khelpcenter (= ${Source-Version}), kicker (= ${Source-Version}), klipper (= ${Source-Version}), kmenuedit (= ${Source-Version}), konqueror-nsplugins (= ${Source-Version}), konqueror (= ${Source-Version}), konsole (= ${Source-Version}), ksmserver (= ${Source-Version}), ksplash (= ${Source-Version}), ksysguard (= ${Source-Version}), kwin (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: kate (= ${Source-Version}), kcontrol (= ${Source-Version}), tdebase-bin (= ${Source-Version}), tdeprint (= ${Source-Version}), kdesktop (= ${Source-Version}), khelpcenter (= ${Source-Version}), kicker (= ${Source-Version}), klipper (= ${Source-Version}), kmenuedit (= ${Source-Version}), konqueror-nsplugins (= ${Source-Version}), konqueror (= ${Source-Version}), konsole (= ${Source-Version}), ksmserver (= ${Source-Version}), ksplash (= ${Source-Version}), ksysguard (= ${Source-Version}), kwin (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
 Replaces: kate (<< 4:3.0.0), tdebase (<< 4:3.0.0), konqueror (<< 4:3.0.0)
 Description: development files for the KDE base module
  This package contains headers and other development files needed to
@@ -191,7 +191,7 @@ Description: password changer for KDE
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde' and 'tdebase' packages for more information.
 
-Package: kdeprint
+Package: tdeprint
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, enscript, poster, psutils

@@ -20,7 +20,7 @@ debian/man/out/ksendbugmail-trinity.1
 debian/man/out/ktelnetservice-trinity.1
 debian/man/out/lnusertemp-trinity.1
 debian/man/out/meinproc-trinity.1
-./debian/man/kdeinit-trinity.1
+./debian/man/tdeinit-trinity.1
 ./debian/man/cupsdoprint-trinity.1
 ./debian/man/dcopclient-trinity.1
 ./debian/man/dcopobject-trinity.1
@@ -31,9 +31,9 @@ debian/man/out/meinproc-trinity.1
 ./debian/man/imagetops-trinity.1
 ./debian/man/kab2kabc-trinity.1
 ./debian/man/kcmshell-trinity.1
-./debian/man/kdeinit_shutdown-trinity.1
+./debian/man/tdeinit_shutdown-trinity.1
 ./debian/man/kde-menu-trinity.1
-./debian/man/kdesu_stub-trinity.1
+./debian/man/tdesu_stub-trinity.1
 ./debian/man/kgrantpty-trinity.1
 ./debian/man/khotnewstuff-trinity.1
 ./debian/man/kioexec-trinity.1

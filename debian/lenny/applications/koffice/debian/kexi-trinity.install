@@ -46,7 +46,7 @@ debian/tmp/opt/trinity/lib/trinity/krosskexiapp.la
 debian/tmp/opt/trinity/lib/trinity/krosskexiapp.so
 debian/tmp/opt/trinity/lib/trinity/krosskexidb.la
 debian/tmp/opt/trinity/lib/trinity/krosskexidb.so
-debian/tmp/opt/trinity/lib/libkdeinit_kexi.so
+debian/tmp/opt/trinity/lib/libtdeinit_kexi.so
 debian/tmp/opt/trinity/lib/libkexicore.so.*
 debian/tmp/opt/trinity/lib/libkexidatatable.so.*
 debian/tmp/opt/trinity/lib/libkexidbparser.so.*

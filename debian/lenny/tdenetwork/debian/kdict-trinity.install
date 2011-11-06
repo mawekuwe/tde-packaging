@@ -3,7 +3,7 @@ debian/tmp/opt/trinity/lib/trinity/kdict.la
 debian/tmp/opt/trinity/lib/trinity/kdict.so
 debian/tmp/opt/trinity/lib/trinity/kdict_panelapplet.la
 debian/tmp/opt/trinity/lib/trinity/kdict_panelapplet.so
-debian/tmp/opt/trinity/lib/libkdeinit_kdict.so
+debian/tmp/opt/trinity/lib/libtdeinit_kdict.so
 debian/tmp/opt/trinity/share/applications/kde/kdict.desktop
 debian/tmp/opt/trinity/share/apps/kdict/icons/crystalsvg/16x16/actions/define_clip.png
 debian/tmp/opt/trinity/share/apps/kdict/icons/crystalsvg/16x16/actions/query_erase.png

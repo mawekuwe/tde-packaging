@@ -23,7 +23,7 @@ clean::
 	rm -f kerry.1
 
 binary-post-install/kerry-trinity::
-	chrpath -d debian/kerry-trinity/opt/trinity/lib/libkdeinit_kerry.so
+	chrpath -d debian/kerry-trinity/opt/trinity/lib/libtdeinit_kerry.so
 	chrpath -d debian/kerry-trinity/opt/trinity/bin/kerry
 	chrpath -d debian/kerry-trinity/opt/trinity/lib/trinity/kerry.so
 	chrpath -d debian/kerry-trinity/opt/trinity/lib/trinity/kcm_beagle.so

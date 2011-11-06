@@ -14,7 +14,7 @@ Section: kde
 Architecture: all
 Replaces: tdebase-kde3 (<< 4:3.5.13)
 Breaks: tdebase-kde3 (<< 4:3.5.13)
-Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), kdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), kwin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
+Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), tdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), kwin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
 Recommends: kdm-trinity (>= ${Source-Version}), tdebase-runtime-data-common-trinity, libtqt3-integration-trinity
 Suggests: tdebase-trinity-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
@@ -140,7 +140,7 @@ Section: devel
 Architecture: any
 Replaces: tdebase-kde3-dev (<< 4:3.5.13)
 Breaks: tdebase-kde3-dev (<< 4:3.5.13)
-Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), kdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), kwin-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), tdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), kwin-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
 Description: development files for the KDE base module
  This package contains headers and other development files needed to
  compile software based on the KDE base module.
@@ -215,11 +215,11 @@ Description: password changer for KDE
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
-Package: kdeprint-trinity
+Package: tdeprint-trinity
 Section: utils
 Architecture: any
-Replaces: kdeprint-kde3 (<< 4:3.5.13)
-Breaks: kdeprint-kde3 (<< 4:3.5.13)
+Replaces: tdeprint-kde3 (<< 4:3.5.13)
+Breaks: tdeprint-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, enscript, poster, psutils
 Recommends: kghostview-trinity | postscript-viewer
 Suggests: khelpcenter-trinity, efax | hylafax-client | mgetty-fax, smbclient

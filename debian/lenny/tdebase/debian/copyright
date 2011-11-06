@@ -16,7 +16,7 @@ headings and other identifying marks.
 
 Artistic
 --------
-kdcop, kdesu, klipper
+kdcop, tdesu, klipper
 
 BSD
 ---
@@ -24,7 +24,7 @@ drkonqi, kaddressbook, kicker, ksmserver, ksplash, kwin, legacyimport
 
 GPL
 ---
-kappfinder, kate, kcheckpass, kdeprint, kdm, kfind, khelpcenter, kmenuedit,
+kappfinder, kate, kcheckpass, tdeprint, kdm, kfind, khelpcenter, kmenuedit,
 konqueror, konsole, kpager, kpersonalizer, kreadconfig, kstart, ksysguard, ktip
 
 LGPL

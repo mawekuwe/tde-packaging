@@ -18,8 +18,8 @@ debian/tmp/opt/trinity/lib/trinity/kickermenu_find.la
 debian/tmp/opt/trinity/lib/trinity/kickermenu_find.so
 debian/tmp/opt/trinity/lib/trinity/kickermenu_kate.so
 debian/tmp/opt/trinity/lib/trinity/kickermenu_kate.la
-debian/tmp/opt/trinity/lib/trinity/kickermenu_kdeprint.la
-debian/tmp/opt/trinity/lib/trinity/kickermenu_kdeprint.so
+debian/tmp/opt/trinity/lib/trinity/kickermenu_tdeprint.la
+debian/tmp/opt/trinity/lib/trinity/kickermenu_tdeprint.so
 debian/tmp/opt/trinity/lib/trinity/kickermenu_konqueror.la
 debian/tmp/opt/trinity/lib/trinity/kickermenu_konqueror.so
 debian/tmp/opt/trinity/lib/trinity/kickermenu_konsole.la
@@ -59,9 +59,9 @@ debian/tmp/opt/trinity/lib/trinity/trash_panelapplet.la
 debian/tmp/opt/trinity/lib/trinity/trash_panelapplet.so
 debian/tmp/opt/trinity/lib/libkasbar.so.1
 debian/tmp/opt/trinity/lib/libkasbar.so.1.0.0
-debian/tmp/opt/trinity/lib/libkdeinit_appletproxy.so
-debian/tmp/opt/trinity/lib/libkdeinit_extensionproxy.so
-debian/tmp/opt/trinity/lib/libkdeinit_kicker.so
+debian/tmp/opt/trinity/lib/libtdeinit_appletproxy.so
+debian/tmp/opt/trinity/lib/libtdeinit_extensionproxy.so
+debian/tmp/opt/trinity/lib/libtdeinit_kicker.so
 debian/tmp/opt/trinity/lib/libkickermain.so.1
 debian/tmp/opt/trinity/lib/libkickermain.so.1.0.0
 debian/tmp/opt/trinity/lib/libtaskbar.so.1

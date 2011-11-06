@@ -11,8 +11,8 @@
 /opt/trinity/share/icons/hicolor/128x128/apps/kolf.png
 /opt/trinity/share/mimelnk/application/x-kolf.desktop
 /opt/trinity/share/mimelnk/application/x-kourse.desktop
-/opt/trinity/lib/libkdeinit_kolf.so
-/opt/trinity/lib/libkdeinit_kolf.la
+/opt/trinity/lib/libtdeinit_kolf.so
+/opt/trinity/lib/libtdeinit_kolf.la
 /opt/trinity/lib/trinity/kolf.la
 /opt/trinity/lib/trinity/kolf.so
 /opt/trinity/lib/libkolf.la

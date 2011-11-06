@@ -2,8 +2,8 @@ debian/tmp/opt/trinity/bin/cvsaskpass
 debian/tmp/opt/trinity/bin/cvsservice
 debian/tmp/opt/trinity/lib/libcvsservice.so.0
 debian/tmp/opt/trinity/lib/libcvsservice.so.0.0.1
-debian/tmp/opt/trinity/lib/libkdeinit_cvsaskpass.so
-debian/tmp/opt/trinity/lib/libkdeinit_cvsservice.so
+debian/tmp/opt/trinity/lib/libtdeinit_cvsaskpass.so
+debian/tmp/opt/trinity/lib/libtdeinit_cvsservice.so
 debian/tmp/opt/trinity/lib/trinity/cvsaskpass.la
 debian/tmp/opt/trinity/lib/trinity/cvsaskpass.so
 debian/tmp/opt/trinity/lib/trinity/cvsservice.la

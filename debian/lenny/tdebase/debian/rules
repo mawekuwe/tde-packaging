@@ -21,19 +21,19 @@ CXXFLAGS := -DSMB_CTX_FLAG_USE_KERBEROS -DSMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS -
 
 DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF" \
 -DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" -DKDM_PAM_SERVICE="kdm-trinity" -DKSCREENSAVER_PAM_SERVICE="kscreensaver-trinity" -DWITH_USBIDS="/usr/share/misc/usb.ids" \
--DWITH_ARTS="ON" -DWITH_SHADOW="ON" -DWITH_PAM="ON" -DWITH_SASL="ON" -DWITH_SUDO_KDESU_BACKEND="ON" -DWITH_LDAP="ON" -DWITH_SAMBA="ON" -DWITH_LIBRAW1394="ON" -DWITH_OPENEXR="ON" -DWITH_XCOMPOSITE="ON" -DWITH_XCURSOR="ON" -DWITH_XFIXES="ON" -DWITH_XRANDR="ON" -DWITH_XINERAMA="ON" -DWITH_HAL="ON" -DWITH_XDMCP="ON" -DWITH_XRENDER="ON" -DWITH_XDAMAGE="ON" -DWITH_XEXT="ON"
+-DWITH_ARTS="ON" -DWITH_SHADOW="ON" -DWITH_PAM="ON" -DWITH_SASL="ON" -DWITH_SUDO_TDESU_BACKEND="ON" -DWITH_LDAP="ON" -DWITH_SAMBA="ON" -DWITH_LIBRAW1394="ON" -DWITH_OPENEXR="ON" -DWITH_XCOMPOSITE="ON" -DWITH_XCURSOR="ON" -DWITH_XFIXES="ON" -DWITH_XRANDR="ON" -DWITH_XINERAMA="ON" -DWITH_HAL="ON" -DWITH_XDMCP="ON" -DWITH_XRENDER="ON" -DWITH_XDAMAGE="ON" -DWITH_XEXT="ON"
 
 # Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
 # never build in parallel, regardless of DEB_BUILD_OPTIONS.
 DEB_BUILD_PARALLEL = true
 
 DEB_FIXPERMS_EXCLUDE := \
-	opt/trinity/bin/kdesud    \
+	opt/trinity/bin/tdesud    \
 	opt/trinity/bin/kdmtsak
 
 DEB_DH_STRIP_ARGS  := --dbg-package=tdebase-trinity-dbg
 
-DOC_HTML_PRUNE := kinfocenter ksplashml kcontrol khelpcenter kdesu knetattach kioslave kxkb kdebugdialog kdcop
+DOC_HTML_PRUNE := kinfocenter ksplashml kcontrol khelpcenter tdesu knetattach kioslave kxkb kdebugdialog kdcop
 
 PACKAGES_WITH_LIBS := kate-trinity kcontrol-trinity tdebase-trinity-bin kicker-trinity konqueror-trinity ksplash-trinity \
 			ksysguard-trinity kwin-trinity libkonq4-trinity
