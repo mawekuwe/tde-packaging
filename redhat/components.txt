@@ -25,6 +25,9 @@ kdeedu
 kdeaddons
 kdewebdev
 kde-i18n
+libraries/libkdcraw
+libraries/libkexiv2
+libraries/libkipi
 applications/k3b
 applications/abakus
 applications/dolphin
@@ -43,3 +46,4 @@ applications/kdbusnotification
 applications/kmymoney2
 applications/kstreamripper 
 applications/kdesudo
+applications/digikam
