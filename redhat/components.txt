@@ -48,3 +48,4 @@ applications/kstreamripper
 applications/kdesudo
 applications/digikam
 applications/konversation
+applications/ksensors

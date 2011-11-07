@@ -1,0 +1,79 @@
+diff -up ksensors-0.7.3/src/lmsensor.cpp.minmax ksensors-0.7.3/src/lmsensor.cpp
+--- ksensors-0.7.3/src/lmsensor.cpp.minmax	2007-11-11 15:12:24.000000000 +0100
++++ ksensors-0.7.3/src/lmsensor.cpp	2007-11-11 15:26:30.000000000 +0100
+@@ -40,17 +40,30 @@ bool LMSensor::init(const sensors_featur
+  char *label;
+  QString str;
+ 
+- bool min_max=false;
++ bool min_found=false;
++ bool max_found=false;
+  while( (*data= sensors_get_all_features(*chip_name, nr1, nr2)) && (*data)->mapping!=SENSORS_NO_MAPPING) {
+-   str= (*data)->name;
+-   if(str.find("_min")>=0 || str.find("_low")>=0) {
+-     sensors_get_feature(*chip_name, (*data)->number, &valMin);
+-     min_max=true;
+-   } 
+-   else if(str.find("_max")>=0 || str.find("_over")>=0  || str.find("_high")>=0) {
+-     sensors_get_feature(*chip_name, (*data)->number, &valMax);
+-     min_max=true;
++   int len = strlen((*data)->name);
++   const char *postfix = (*data)->name + len - 4;
++
++   if (len < 5)
++     continue;
++
++   if((!strcmp(postfix, "_min") || !strcmp(postfix, "_low")) &&
++      !sensors_get_feature(*chip_name, (*data)->number, &valMin))
++     min_found=true;
++   
++   if(!strcmp(postfix, "_max") &&
++      !sensors_get_feature(*chip_name, (*data)->number, &valMax)) {
++     max_found=true;
++     continue;
+    }
++
++   postfix--;
++
++   if((!strcmp(postfix, "_over") || !strcmp(postfix, "_high")) &&
++      !sensors_get_feature(*chip_name, (*data)->number, &valMax))
++     max_found=true;
+  }
+ 
+  double newVal;
+@@ -87,22 +100,21 @@ bool LMSensor::init(const sensors_featur
+  sensors_get_label(*chip_name,feature,&label);
+  setDescription(QString(label));
+ 
+- if(min_max){
+-   if(min>max) {
+-     double pivot= valMin;
+-     min= max;
+-     max= pivot;
+-   }
+-   setValueMax(max,dgCelsius);
+-   setValueMin(min,dgCelsius);
+-   setValue((max+min)/2,dgCelsius);
+- }
+- else {
+-   setValueMax(70,dgCelsius);
+-   setValueMin(0,dgCelsius);
+-   setValue(newVal,dgCelsius);
++ if(min_found)
++   min = valMin;
++   
++ if(max_found)
++   max = valMax;
++   
++ if(min>max) {
++   double pivot= min;
++   min= max;
++   max= pivot;
+  }
+ 
++ setValueMax(max,dgCelsius);
++ setValueMin(min,dgCelsius);
++
+  readConfig();
+  updateValue();
+  setValueIdeal(getValue());
