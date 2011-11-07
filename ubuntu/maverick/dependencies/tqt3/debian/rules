@@ -458,7 +458,7 @@ binary-arch: build install
 	dh_installchangelogs -a $(IBASE) changes-3.3.8b
 
 	dh_link -a $(IBASE)
-	dh_strip -a $(IBASE) --dbg-package=qt-x11-free-dbg
+	dh_strip -a $(IBASE) --dbg-package=tqt-x11-free-dbg
 	dh_compress -a $(IBASE)
 	dh_fixperms -a $(IBASE)
 
