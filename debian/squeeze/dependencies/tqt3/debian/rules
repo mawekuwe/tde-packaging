@@ -24,8 +24,8 @@ else #sparc
 endif #sparc
 endif #hurd
 
-# tquilt stuff
-include /usr/share/tquilt/tquilt.make
+# quilt stuff
+include /usr/share/quilt/quilt.make
 
 # build variables (directorys)
 DEBIAN = $(shell pwd)/debian
