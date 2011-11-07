@@ -37,9 +37,9 @@ debian/tmp/opt/trinity/lib/trinity/konqueror.la
 debian/tmp/opt/trinity/lib/trinity/konqueror.so
 debian/tmp/opt/trinity/lib/trinity/libkhtmlkttsdplugin.la
 debian/tmp/opt/trinity/lib/trinity/libkhtmlkttsdplugin.so
-debian/tmp/opt/trinity/lib/libkdeinit_keditbookmarks.so
-debian/tmp/opt/trinity/lib/libkdeinit_kfmclient.so
-debian/tmp/opt/trinity/lib/libkdeinit_konqueror.so
+debian/tmp/opt/trinity/lib/libtdeinit_keditbookmarks.so
+debian/tmp/opt/trinity/lib/libtdeinit_kfmclient.so
+debian/tmp/opt/trinity/lib/libtdeinit_konqueror.so
 debian/tmp/opt/trinity/lib/libkonqsidebarplugin.so.1
 debian/tmp/opt/trinity/lib/libkonqsidebarplugin.so.1.2.0
 debian/tmp/opt/trinity/share/applications/kde/Home.desktop

@@ -67,5 +67,5 @@ debian/tmp/opt/trinity/lib/trinity/libwpexport.la
 debian/tmp/opt/trinity/lib/trinity/libwpexport.so
 debian/tmp/opt/trinity/lib/trinity/libwpimport.la
 debian/tmp/opt/trinity/lib/trinity/libwpimport.so
-debian/tmp/opt/trinity/lib/libkdeinit_kword.so
+debian/tmp/opt/trinity/lib/libtdeinit_kword.so
 debian/tmp/opt/trinity/lib/libkwordprivate.so.*

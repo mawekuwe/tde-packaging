@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kweatherservice
 debian/tmp/opt/trinity/bin/kweatherreport
-debian/tmp/opt/trinity/lib/libkdeinit_kweatherreport.so
-debian/tmp/opt/trinity/lib/libkdeinit_kweatherreport.la
+debian/tmp/opt/trinity/lib/libtdeinit_kweatherreport.so
+debian/tmp/opt/trinity/lib/libtdeinit_kweatherreport.la
 debian/tmp/opt/trinity/lib/trinity/kcm_weather.so
 debian/tmp/opt/trinity/lib/trinity/kcm_weather.la
 debian/tmp/opt/trinity/lib/trinity/kcm_weatherservice.so

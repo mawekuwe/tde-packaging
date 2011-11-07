@@ -9,8 +9,8 @@ debian/tmp/opt/trinity/lib/libkateinterfaces.so.0
 debian/tmp/opt/trinity/lib/libkateinterfaces.so.0.0.0
 debian/tmp/opt/trinity/lib/libkateutils.so.0
 debian/tmp/opt/trinity/lib/libkateutils.so.0.0.0
-debian/tmp/opt/trinity/lib/libkdeinit_kate.so
-debian/tmp/opt/trinity/lib/libkdeinit_kwrite.so
+debian/tmp/opt/trinity/lib/libtdeinit_kate.so
+debian/tmp/opt/trinity/lib/libtdeinit_kwrite.so
 debian/tmp/opt/trinity/share/applications/kde/kate.desktop
 debian/tmp/opt/trinity/share/applications/kde/kwrite.desktop
 debian/tmp/opt/trinity/share/apps/kate/externaltools

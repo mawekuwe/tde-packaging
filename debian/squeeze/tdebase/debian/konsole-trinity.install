@@ -7,7 +7,7 @@ debian/tmp/opt/trinity/lib/trinity/konsole.la
 debian/tmp/opt/trinity/lib/trinity/konsole.so
 debian/tmp/opt/trinity/lib/trinity/libkonsolepart.la
 debian/tmp/opt/trinity/lib/trinity/libkonsolepart.so
-debian/tmp/opt/trinity/lib/libkdeinit_konsole.so
+debian/tmp/opt/trinity/lib/libtdeinit_konsole.so
 debian/tmp/opt/trinity/share/applications/kde/konsole.desktop
 debian/tmp/opt/trinity/share/applications/kde/konsolesu.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kcmkonsole.desktop

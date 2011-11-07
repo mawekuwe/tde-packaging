@@ -378,7 +378,7 @@ adept (2.1.2ubuntu13) feisty; urgency=low
 
   * Add kubuntu_08_no_unique_application.diff don't use a unique application,
     stops it forking which broke xauthority and means debconf can't work in X mode
-  * Add kubuntu_09_no_double_kdesu.diff stop using kdesu twice
+  * Add kubuntu_09_no_double_tdesu.diff stop using tdesu twice
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  6 Feb 2007 12:38:42 +0000
 
@@ -674,7 +674,7 @@ ept (0.4) experimental; urgency=low
   * Easy Tag filter.
   * Ship own copies of nuvola icons.
   * Fix segfaulting extenders.
-  * Use kdesu for .desktop entries.
+  * Use tdesu for .desktop entries.
   * Fix crasher on cache reload with active tag filter.
   * Major speedup of the tag menu.
   * Improve handling of comments in sources.list editor.

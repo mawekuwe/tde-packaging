@@ -1,0 +1,10 @@
+Document: tdebase-doc-html-tdeprint
+Title: KDEPrint Handbook
+Author: Kurt Pfeifle
+Abstract: KDEPrint is the official printing system of KDE. 
+Section: Apps/Tools 
+
+Format: HTML
+Index: /opt/trinity/share/doc/kde/HTML/en/tdeprint/index.html
+Files: /opt/trinity/share/doc/kde/HTML/en/tdeprint/*.html
+

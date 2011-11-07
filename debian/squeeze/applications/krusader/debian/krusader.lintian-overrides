@@ -1,2 +1,2 @@
-# package depends on tdebase-bin, which provides kdesu
-krusader-trinity: menu-command-not-in-package /usr/share/menu/krusader:17 kdesu
+# package depends on tdebase-bin, which provides tdesu
+krusader-trinity: menu-command-not-in-package /usr/share/menu/krusader:17 tdesu

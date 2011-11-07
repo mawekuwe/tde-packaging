@@ -24,6 +24,6 @@ debian/tmp/opt/trinity/lib/trinity/libooimpressexport.la
 debian/tmp/opt/trinity/lib/trinity/libooimpressexport.so
 debian/tmp/opt/trinity/lib/trinity/libooimpressimport.la
 debian/tmp/opt/trinity/lib/trinity/libooimpressimport.so
-debian/tmp/opt/trinity/lib/libkdeinit_kpresenter.so
+debian/tmp/opt/trinity/lib/libtdeinit_kpresenter.so
 debian/tmp/opt/trinity/lib/libkpresenterimageexport.so.*
 debian/tmp/opt/trinity/lib/libkpresenterprivate.so.*

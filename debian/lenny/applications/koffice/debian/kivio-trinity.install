@@ -17,5 +17,5 @@ debian/tmp/opt/trinity/lib/trinity/libkiviozoomtool.la
 debian/tmp/opt/trinity/lib/trinity/libkiviozoomtool.so
 debian/tmp/opt/trinity/lib/trinity/straight_connector.la
 debian/tmp/opt/trinity/lib/trinity/straight_connector.so
-debian/tmp/opt/trinity/lib/libkdeinit_kivio.so
+debian/tmp/opt/trinity/lib/libtdeinit_kivio.so
 debian/tmp/opt/trinity/lib/libkiviocommon.so.*

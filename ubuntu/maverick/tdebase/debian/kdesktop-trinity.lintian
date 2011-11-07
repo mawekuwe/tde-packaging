@@ -1,1 +1,1 @@
-kdesktop: no-shlibs-control-file usr/lib/libkdeinit_kdesktop.so
+kdesktop: no-shlibs-control-file usr/lib/libtdeinit_kdesktop.so

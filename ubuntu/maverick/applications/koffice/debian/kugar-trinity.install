@@ -11,8 +11,8 @@ debian/tmp/opt/trinity/lib/trinity/libkugarnopimport.la
 debian/tmp/opt/trinity/lib/trinity/libkugarnopimport.so
 debian/tmp/opt/trinity/lib/trinity/libkugarpart.la
 debian/tmp/opt/trinity/lib/trinity/libkugarpart.so
-debian/tmp/opt/trinity/lib/libkdeinit_kudesigner.so
-debian/tmp/opt/trinity/lib/libkdeinit_kugar.so
+debian/tmp/opt/trinity/lib/libtdeinit_kudesigner.so
+debian/tmp/opt/trinity/lib/libtdeinit_kugar.so
 debian/tmp/opt/trinity/lib/libkudesignercore.la
 debian/tmp/opt/trinity/lib/libkudesignercore.so
 debian/tmp/opt/trinity/lib/libkugarlib.so.*

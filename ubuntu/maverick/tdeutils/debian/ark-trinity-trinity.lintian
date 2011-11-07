@@ -1,3 +1,3 @@
-ark: no-shlibs-control-file opt/trinity/lib/libkdeinit_ark.so
-ark: postinst-must-call-ldconfig opt/trinity/lib/libkdeinit_ark.so
-ark: postrm-should-call-ldconfig opt/trinity/lib/libkdeinit_ark.so
+ark: no-shlibs-control-file opt/trinity/lib/libtdeinit_ark.so
+ark: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_ark.so
+ark: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_ark.so

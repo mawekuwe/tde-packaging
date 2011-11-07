@@ -284,7 +284,7 @@ amarok (2:1.4.8-0ubuntu3) hardy; urgency=low
 
   [ Sarah Hobbs ]
   * Sponsored upload.  (Closes LP: #187406)
-  * Reworked patch to avoid setting absolute paths (eg /usr/bin/kdesu) 
+  * Reworked patch to avoid setting absolute paths (eg /usr/bin/tdesu) 
 
  -- Sarah Hobbs <hobbsee@ubuntu.com>  Wed, 12 Mar 2008 00:50:22 +1100
 

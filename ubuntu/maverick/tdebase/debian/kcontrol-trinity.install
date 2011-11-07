@@ -124,8 +124,8 @@ debian/tmp/opt/trinity/lib/trinity/libkurisearchfilter.la
 debian/tmp/opt/trinity/lib/trinity/libkurisearchfilter.so
 debian/tmp/opt/trinity/lib/trinity/liblocaldomainurifilter.la
 debian/tmp/opt/trinity/lib/trinity/liblocaldomainurifilter.so
-debian/tmp/opt/trinity/lib/libkdeinit_kaccess.so
-debian/tmp/opt/trinity/lib/libkdeinit_kcontrol.so
+debian/tmp/opt/trinity/lib/libtdeinit_kaccess.so
+debian/tmp/opt/trinity/lib/libtdeinit_kcontrol.so
 debian/tmp/opt/trinity/lib/libkfontinst.so.0
 debian/tmp/opt/trinity/lib/libkfontinst.so.0.0.0
 debian/tmp/opt/trinity/share/applications/kde/arts.desktop

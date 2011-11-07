@@ -140,7 +140,7 @@ Description: Trinity frontend for lilo configuration
  It runs out of the KDE Control Center.
  .
  If you want to use the menu entry to launch lilo-config, you need to install
- tdebase-bin since it uses the kdesu command to gain root privileges.
+ tdebase-bin since it uses the tdesu command to gain root privileges.
  .
  This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.

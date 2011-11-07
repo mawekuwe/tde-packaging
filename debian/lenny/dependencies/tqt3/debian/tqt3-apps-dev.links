@@ -1,0 +1,8 @@
+/usr/lib/libeditor.prl /usr/share/tqt3/lib/libeditor.prl
+/usr/lib/libeditor.a /usr/share/tqt3/lib/libeditor.a
+/usr/lib/libdesignercore.prl /usr/share/tqt3/lib/libdesignercore.prl
+/usr/lib/libdesignercore.a /usr/share/tqt3/lib/libdesignercore.a
+/usr/lib/libqassistantclient.prl /usr/share/tqt3/lib/libqassistantclient.prl
+/usr/lib/libqassistantclient.a /usr/share/tqt3/lib/libqassistantclient.a
+/usr/include/tqt3 /usr/share/tqt3/tools/designer/editor
+/usr/include/tqt3 /usr/share/tqt3/tools/designer/interfaces

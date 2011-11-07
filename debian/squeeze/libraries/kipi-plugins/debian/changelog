@@ -297,7 +297,7 @@ kipi-plugins (0.1.1-1) unstable; urgency=low
   * New upstream release
     - Delete: debian/patches/13_10_pull_from_upstreamsvn_from_r460242.diff
   * Add debian/rules print-version & get-orig-source targets
-  * Recommends: kdeprint
+  * Recommends: tdeprint
   * Build-Depends: libmagick9++-dev | libmagick++-dev
   * Relibtoolize from /pkg-kde/trunk/common-patches/ for 3.5.2
       + patches/02_autotools_update.diff
@@ -375,7 +375,7 @@ kipi-plugins (0.1+rc1-1) unstable; urgency=low
   [ Mark Purcell ]
   * Bump Suggests: to Recommends: these would be found together in all but
   unusual situations
-    - kdeprinter - PrintWizard
+    - tdeprinter - PrintWizard
     - kmail - SendImages
     - sane-utils - AcquireImages
     - k3b - CdArchiving

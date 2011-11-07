@@ -38,7 +38,7 @@ debian/tmp/opt/trinity/lib/trinity/noatunsimple.la
 debian/tmp/opt/trinity/lib/trinity/noatunsimple.so
 debian/tmp/opt/trinity/lib/libartseffects.la
 debian/tmp/opt/trinity/lib/libartseffects.so
-debian/tmp/opt/trinity/lib/libkdeinit_noatun.so
+debian/tmp/opt/trinity/lib/libtdeinit_noatun.so
 debian/tmp/opt/trinity/lib/libnoatun.so.1
 debian/tmp/opt/trinity/lib/libnoatun.so.1.2.0
 debian/tmp/opt/trinity/lib/libnoatunarts.la

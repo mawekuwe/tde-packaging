@@ -35,7 +35,7 @@ DEB_DH_MAKESHLIBS_ARGS_libkscan1-trinity	:= -V'libkscan1-trinity (>= 4:3.5.5-1)'
 
 binary-post-install/kuickshow-trinity::
 ifeq ($(DEB_HOST_ARCH), powerpc)
-	chrpath -d -k debian/kuickshow-trinity/opt/trinity/lib/libkdeinit_kuickshow.so
+	chrpath -d -k debian/kuickshow-trinity/opt/trinity/lib/libtdeinit_kuickshow.so
 endif
 
 #shlibs_ver = 4:3.5.0-1

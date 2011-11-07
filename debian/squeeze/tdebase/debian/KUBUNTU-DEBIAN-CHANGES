@@ -24,7 +24,7 @@ binary-install/tdebase-bin::
 	install -p -D -m644 debian/ubuntu.xmodmap debian/tdebase-bin/usr/share/apps/kxkb/ubuntu.xmodmap
 	install -p -D -m644 debian/80ubuntu-xmodmap debian/tdebase-bin/etc/X11/Xsession.d/80ubuntu-xmodmap
 
---with-sudo-kdesu-backend
+--with-sudo-tdesu-backend
 
 XS-Vcs-Bzr: http://bazaar.launchpad.net/~kubuntu-members/tdebase/debian
 

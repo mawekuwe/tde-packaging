@@ -102,7 +102,7 @@ class CodecInstallerWidget(QDialog, apt.OpProgress):
         return True
 
     def install_cache_package(self, pkg):
-        if os.system('kdesu -d \'adept_batch install ' + pkg.name + '\'') != 0:
+        if os.system('tdesu -d \'adept_batch install ' + pkg.name + '\'') != 0:
             QApplication.exit(1)
             return
 

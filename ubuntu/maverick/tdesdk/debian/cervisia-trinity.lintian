@@ -2,8 +2,8 @@
 cervisia: script-not-executable ./usr/share/apps/kconf_update/change_colors.pl
 cervisia: script-not-executable ./usr/share/apps/kconf_update/move_repositories.pl
 
-# This is from kdeinit black magic.
-cervisia: no-shlibs-control-file opt/trinity/lib/libkdeinit_cervisia.so
-cervisia: postinst-must-call-ldconfig opt/trinity/lib/libkdeinit_cervisia.so
-cervisia: postrm-should-call-ldconfig opt/trinity/lib/libkdeinit_cervisia.so
-cervisia: package-name-doesnt-match-sonames libkdeinit-cervisia
+# This is from tdeinit black magic.
+cervisia: no-shlibs-control-file opt/trinity/lib/libtdeinit_cervisia.so
+cervisia: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_cervisia.so
+cervisia: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_cervisia.so
+cervisia: package-name-doesnt-match-sonames libtdeinit-cervisia

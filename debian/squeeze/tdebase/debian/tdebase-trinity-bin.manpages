@@ -4,7 +4,7 @@ debian/man/kcheckpass-trinity.1
 debian/man/kcminit-trinity.1
 debian/man/kdcop-trinity.1
 debian/man/kdebugdialog-trinity.1
-debian/man/kdesu-trinity.1
+debian/man/tdesu-trinity.1
 debian/man/kdialog-trinity.1
 debian/man/khotkeys-trinity.1
 debian/man/kio_system_documenthelper-trinity.1

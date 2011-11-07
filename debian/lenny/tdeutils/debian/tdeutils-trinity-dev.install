@@ -15,10 +15,10 @@ debian/tmp/opt/trinity/include/kde/ksim/themetypes.h
 debian/tmp/opt/trinity/include/kde/kwidgetstreamer.h
 debian/tmp/opt/trinity/lib/libkcmlaptop.la
 debian/tmp/opt/trinity/lib/libkcmlaptop.so
-debian/tmp/opt/trinity/lib/libkdeinit_ark.la
-debian/tmp/opt/trinity/lib/libkdeinit_irkick.la
-debian/tmp/opt/trinity/lib/libkdeinit_kcalc.la
-debian/tmp/opt/trinity/lib/libkdeinit_kedit.la
+debian/tmp/opt/trinity/lib/libtdeinit_ark.la
+debian/tmp/opt/trinity/lib/libtdeinit_irkick.la
+debian/tmp/opt/trinity/lib/libtdeinit_kcalc.la
+debian/tmp/opt/trinity/lib/libtdeinit_kedit.la
 debian/tmp/opt/trinity/lib/libkmilo.la
 debian/tmp/opt/trinity/lib/libkmilo.so
 debian/tmp/opt/trinity/lib/libkregexpeditorcommon.la

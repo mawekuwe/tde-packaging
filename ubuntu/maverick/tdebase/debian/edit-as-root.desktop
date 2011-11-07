@@ -9,4 +9,4 @@ Name[fr]=Editer en tant que Root
 Name[es]=Editar como Root
 Name[de]=Als root bearbeiten
 Icon=kfm
-Exec=kdesu "kwrite" "%U"
+Exec=tdesu "kwrite" "%U"

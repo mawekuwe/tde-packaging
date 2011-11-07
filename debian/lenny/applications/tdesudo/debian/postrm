@@ -12,7 +12,7 @@ fi
 case "$1" in
   remove)
     dpkg-divert --package $package_name --rename --remove \
-                /opt/trinity/bin/kdesu
+                /opt/trinity/bin/tdesu
     ;;
   purge)
     ;;

@@ -1,4 +1,4 @@
-kword: shlib-missing-in-control-file libkdeinit_kword.so for usr/lib/libkdeinit_kword.so
+kword: shlib-missing-in-control-file libtdeinit_kword.so for usr/lib/libtdeinit_kword.so
 kword: menu-icon-missing /usr/share/pixmaps/kword.xpm
-kword: package-name-doesnt-match-sonames libkdeinit-kword libkwordprivate4
+kword: package-name-doesnt-match-sonames libtdeinit-kword libkwordprivate4
 

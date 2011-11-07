@@ -90,8 +90,8 @@ libkdcraw (0.1.1-2) unstable; urgency=low
       patches/04_am_maintainer_mode.diff
       patches/05_pedantic-errors.diff
       patches/98_buildprep.diff
-      patches/98_configure.diff: makes $LIB_QT only -lqt-mt and LIB_KDECORE
-      only -lkdecore
+      patches/98_configure.diff: makes $LIB_QT only -lqt-mt and LIB_TDECORE
+      only -ltdecore
   * Add utils.mk to debian/rules to have list-missing target
 
  -- Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>  Tue, 26 Jun 2007 07:31:15 +0100

@@ -157,7 +157,7 @@ gwenview (1.1.8+1.2.0pre1-1) unstable; urgency=low
   * New upstream release.
     + Fixes crash when double-clicking on an image using the konqueror kpart.
       (Closes: #290097)
-    + Gwenview is now a kdeinit module - added appropriate lintian override.
+    + Gwenview is now a tdeinit module - added appropriate lintian override.
 
  -- Christopher Martin <chrsmrtn@freeshell.org>  Wed, 26 Jan 2005 09:45:17 -0500
 

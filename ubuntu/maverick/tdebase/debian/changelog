@@ -635,7 +635,7 @@ tdebase (4:3.5.7.dfsg.1-1) unstable; urgency=low
 
   +++ Changes by Sune Vuorela:
   
-  * Add smbclient to suggests of kdeprint to show that it is needed to make
+  * Add smbclient to suggests of tdeprint to show that it is needed to make
     smb printers work. Also adapt the description. (Closes: #445182)
   * Lower gdb recommends to a suggests now that recommends get installed by
     default. (Closes: 442432)
@@ -866,7 +866,7 @@ tdebase (4:3.5.7-1ubuntu10) gutsy; urgency=low
 
   * Added kubuntu_99_kate_crashfix_from_svn.diff.  (LP: #122296)
   * Committed into Bzr.
-  * Added gs-esp-x to kdeprint depends and konqueror depends. (LP: #83597)
+  * Added gs-esp-x to tdeprint depends and konqueror depends. (LP: #83597)
   * Added konqueror Recommends: libxine1-ffmpeg, so that the thumbnail
     generation no longer fails on video files. (LP: #51024)
   * Added konqueror Recommends: libarts1-mpeglib, so that the thumbnail
@@ -1050,7 +1050,7 @@ tdebase (4:3.5.6.dfsg.2-1) unstable; urgency=low
       - Simplified chinese thanks to Ming Hua. (Closes: #418486)
       - Malayam thanks to Praveen A. (Closes: #418495)
       - Greek (still has a couple of fuzzy strings).
-  * Add a patch to put some quotes in kdeprintgfax to have spaces in
+  * Add a patch to put some quotes in tdeprintgfax to have spaces in
     names/numbers. Thanks to Robert Cheramy. (Closes: #247396)
   * Fix minor issues in manpage. Thanks JS Bygott. (Closes: #414270)
   * Enable kerberos in kio slaves. It seems do not break anything. 
@@ -1347,7 +1347,7 @@ tdebase (4:3.5.5a.dfsg.1-1ubuntu7) feisty; urgency=low
 
 tdebase (4:3.5.5a.dfsg.1-1ubuntu6) feisty; urgency=low
 
-  * Compile with --with-sudo-kdesu-backend
+  * Compile with --with-sudo-tdesu-backend
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 20 Nov 2006 10:18:52 +0000
 
@@ -1425,7 +1425,7 @@ tdebase (4:3.5.5a.dfsg.1-5) unstable; urgency=high
 tdebase (4:3.5.5a.dfsg.1-4) unstable; urgency=low
 
   +++ Changes by Sune Vuorela:
-  * Add a section to man page about how to use sudo as kdesu backend 
+  * Add a section to man page about how to use sudo as tdesu backend 
     (Closes: #399823, #384416)
  
   +++ Changes by Ana Guerrero:
@@ -1713,13 +1713,13 @@ tdebase (4:3.5.5-0ubuntu1) edgy; urgency=low
   * 28_tdebase_rubberband.diff now kubuntu_28_tdebase_rubberband.diff and hunk
     removed to apply
   * kubuntu_14_hide_konquerorsu_menu_entry.diff updated
-  * kubuntu_20_kdesu_sudo.diff updated, merged upstream
+  * kubuntu_20_tdesu_sudo.diff updated, merged upstream
   * kubuntu_35_hide_klipper_menu_entry.diff updated
   * kubuntu_73_nomediaioslave_mounthelper.diff  updated
   * kubuntu_75_kicker_taskbar_resize.diff removed, fixed upstream
   * kubuntu_76_kickermedia.diff updated
   * kubuntu_83_media_desktop.diff updated
-  * Use --with-sudo-kdesu-backend and build-dep on sudo
+  * Use --with-sudo-tdesu-backend and build-dep on sudo
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  3 Oct 2006 10:56:06 +0000
 
@@ -2232,7 +2232,7 @@ tdebase (4:3.5.2-0ubuntu23) dapper; urgency=low
 
 tdebase (4:3.5.2-0ubuntu22) dapper; urgency=low
 
-  * Update kubuntu_20_kdesu_sudo.diff to fix run as foo message in kdesu
+  * Update kubuntu_20_tdesu_sudo.diff to fix run as foo message in tdesu
     with -u switch (Closes: Malone #41184)
 
  -- Raphaël Pinson <raphink@ubuntu.com>  Thu, 11 May 2006 12:12:44 +0200
@@ -2294,7 +2294,7 @@ tdebase (4:3.5.2-0ubuntu14) dapper; urgency=low
   * Removed system tab from konqueror's sidebar
   * Alter kubuntu_52_gtk_qt_engine_config.diff, don't make use of
     gtk_qt_engine if gnome or xfce are already installed (Malone #36256)
-  * Added kubuntu_61_kdeprint_admin.diff, makes kdeprint admin mode work
+  * Added kubuntu_61_tdeprint_admin.diff, makes tdeprint admin mode work
     (Malone #39867)
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Mon, 24 Apr 2006 21:16:19 +0200
@@ -2503,7 +2503,7 @@ tdebase (4:3.5.1-0ubuntu1) dapper; urgency=low
 
 tdebase (4:3.5.0-0ubuntu16) dapper; urgency=low
 
-  * Add kubuntu_43_kdesu_terminal_output.diff to make kdesu
+  * Add kubuntu_43_tdesu_terminal_output.diff to make tdesu
     have terminal output
   * Remove xlibs-static-pic from build-deps
 
@@ -2605,7 +2605,7 @@ tdebase (4:3.5.0-0ubuntu2) dapper; urgency=low
     duplicate printer .desktop files
   * Add kubuntu_35_hide_klipper_menu_entry.diff autostarts by default
   * Add kubuntu_36_hide_kjobviewer_menu_entry.diff starts when printing
-  * Add kubuntu_37_hide_kdeprintfax_menu_entry.diff kdeprintfax 
+  * Add kubuntu_37_hide_tdeprintfax_menu_entry.diff tdeprintfax 
     is available when printing with Print to Fax
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 14 Dec 2005 21:51:29 +0000
@@ -2848,7 +2848,7 @@ tdebase (4:3.4.1-1) experimental; urgency=low
 
 tdebase (4:3.4.3-0ubuntu6) breezy-updates; urgency=low
 
-  * Add kubuntu_34_kdesu_sycoca_cache_path.diff fix administrator
+  * Add kubuntu_34_tdesu_sycoca_cache_path.diff fix administrator
     kcontrol module bug http://bugzilla.ubuntu.com/8681
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed,  2 Nov 2005 02:37:11 +0000
@@ -3069,7 +3069,7 @@ tdebase (4:3.4.0-0pre4) alioth; urgency=low
     fail when kpersonalizer is not present. (Closes: #309803)
 
   * Add manpages for kdialog (thanks to Bastian Kleineidam for tracking it
-    down) and my own manpage for kdesu/kdesud. (Closes: #239945)
+    down) and my own manpage for tdesu/tdesud. (Closes: #239945)
 
   +++ Changes by Adeodato Simó:
 
@@ -3090,7 +3090,7 @@ tdebase (4:3.3.2-1) unstable; urgency=low
 
   * Fix typo in tdebase-bin description. (Closes: #286587)
 
-  * Update kdeprint documentation to sync with tdelibs patches.
+  * Update tdeprint documentation to sync with tdelibs patches.
 
   * Add NEWS.Debian for kdm, explaining the "keyboard doesn't work"
     problem when upgrading to KDE 3.3, and how to deal with it.
@@ -3107,8 +3107,8 @@ tdebase (4:3.3.2-1) unstable; urgency=low
   +++ Changes by Adeodato Simó:
 
   * debian/control:
-    - make tdebase-dev depend on kwin for the libkdecorations.so ->
-      libkdecorations.so.1.0.0 symlink. (Closes: #289544)
+    - make tdebase-dev depend on kwin for the libtdecorations.so ->
+      libtdecorations.so.1.0.0 symlink. (Closes: #289544)
 
   * Included Czech po-debconf translation by Miroslav Kure.
     (Closes: #289454)
@@ -3153,7 +3153,7 @@ tdebase (4:3.4.0-0ubuntu17) hoary; urgency=low
 
 tdebase (4:3.4.0-0ubuntu16) hoary; urgency=low
 
-  * Add kubuntu_20_kdesu_sudo.diff to fix string on kdesu for sudo.
+  * Add kubuntu_20_tdesu_sudo.diff to fix string on tdesu for sudo.
     Fixes http://bugzilla.ubuntu.com/7327
 
  -- Jonathan Riddell <jr@jriddell.org>  Sat,  2 Apr 2005 17:01:37 +0100
@@ -3311,7 +3311,7 @@ tdebase (4:3.3.2-0pre1) experimental; urgency=low
   * New upstream release.
   * KDE_3_3_BRANCH update. Includes the tdebase part of the fix
     for CAN-2004-1158.
-  * Lower kdeprint's dependency on gv to a Suggests. (Closes: #269590)
+  * Lower tdeprint's dependency on gv to a Suggests. (Closes: #269590)
   * kwin is now registered as an x-window-manager. (Closes: #249162)
   * Added /usr/share/xsessions to KDM's default session path, so
     .desktop files installed there are found.
@@ -3498,7 +3498,7 @@ tdebase (4:3.1.4-1) unstable; urgency=low
   * Added patch to update autotools files.
   * Added patch to remove pedantic-errors from KDE_CHECK_FUNC_EXT since it
     causes configure checks to fail due to #line numbers being > 32767.
-  * Demote kdeprint Depends 'efax | hylafax-client | mgetty-fax' to Suggests.
+  * Demote tdeprint Depends 'efax | hylafax-client | mgetty-fax' to Suggests.
     (Closes: #142489)
   * Change kicker.menu-method to not display the empty_mime icon if a menu file
     doesn't provide an icon. (Closes: #154065)
@@ -3540,7 +3540,7 @@ tdebase (4:3.1.2-1) unstable; urgency=low
   * New upstream release.
   * Remove Build-Depends on libsasl-dev. (Closes: #189949, #193866)
   * Add libkregexpeditor to kate Recommends. (Closes: #183280)
-  * Add efax | hylafax | mgetty-fax to kdeprint Depends. (Closes: #142489)
+  * Add efax | hylafax | mgetty-fax to tdeprint Depends. (Closes: #142489)
   * Add kfind to konqueror Depends. (Closes: #192859)
   * Fix KDE GDM Session file. (Closes: #144206, #154519, #188560, #189438,
     #193274)
@@ -4289,7 +4289,7 @@ tdebase (4:2.1-beta2-0128-1) unstable; urgency=low
 tdebase (4:2.1-beta2-3) unstable; urgency=low
  
   * Don't crash when trying to load/read faulty plugins (Closes: #82983)
-  * Moving kdesu to tdebase-libs so that we can use it without needing
+  * Moving tdesu to tdebase-libs so that we can use it without needing
     tdebase installed
   * Adding autoconf and gettext to build-deps
   * Several small bug fixes from upstream

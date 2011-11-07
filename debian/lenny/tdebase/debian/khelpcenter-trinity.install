@@ -6,7 +6,7 @@ debian/tmp/opt/trinity/bin/khc_mansearch.pl
 debian/tmp/opt/trinity/bin/khelpcenter
 debian/tmp/opt/trinity/lib/trinity/khelpcenter.la
 debian/tmp/opt/trinity/lib/trinity/khelpcenter.so
-debian/tmp/opt/trinity/lib/libkdeinit_khelpcenter.so
+debian/tmp/opt/trinity/lib/libtdeinit_khelpcenter.so
 debian/tmp/opt/trinity/share/applications/kde/Help.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/glossary.html.in
 debian/tmp/opt/trinity/share/apps/khelpcenter/glossary.xslt
@@ -79,7 +79,7 @@ debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/glossary/checkxrefs
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/glossary/common
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/glossary/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/glossary/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/glossary/kdeprintingglossary.docbook
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/glossary/tdeprintingglossary.docbook
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/help.docbook
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/khelpcenter/index.docbook

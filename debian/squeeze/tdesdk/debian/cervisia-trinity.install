@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/cervisia
-debian/tmp/opt/trinity/lib/libkdeinit_cervisia.la
-debian/tmp/opt/trinity/lib/libkdeinit_cervisia.so
+debian/tmp/opt/trinity/lib/libtdeinit_cervisia.la
+debian/tmp/opt/trinity/lib/libtdeinit_cervisia.so
 debian/tmp/opt/trinity/lib/trinity/cervisia.la
 debian/tmp/opt/trinity/lib/trinity/cervisia.so
 debian/tmp/opt/trinity/lib/trinity/libcervisiapart.la
