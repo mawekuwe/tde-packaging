@@ -1,7 +1,14 @@
 #!/bin/bash
 
 cd "$( dirname "$0" )"
-ARGS="$@"
+
+while [ $# -gt 0 ]; do
+	case "$1" in
+		"--auto") AUTO=1;;
+		*) COMP="$1";;
+	esac
+	shift
+done
 
 clear
 cat <<EOF
@@ -22,40 +29,43 @@ EOF
 	exit 1
 fi
 
-select COMP in $( cut -f1 "components.txt" | grep -v "^#" ) ; do
-	# Gets package version from 'components.txt' file
-	VERSION=$( awk '{ if ($1 == "'${COMP}'") { print $2; } }' components.txt )
+if [ -z "${COMP}" ]; then
+	select COMP in $( cut -f1 "components.txt" | grep -v "^#" ) ; do break; done
+fi
+
+# Gets package version from 'components.txt' file
+VERSION=$( awk '{ if ($1 == "'${COMP}'") { print $2; } }' components.txt )
 	
-	# If no version is set in text file, get version number from source tarball name
-	if [ -z "${VERSION}" ]; then
-		set $( cd "${COMP}"; echo ${COMP##*/}*.tar.gz)
-		if [ $# -gt 1 ]; then
-			select VERSION in $*; do break; done
-		elif [ -r "${COMP}/$1" ]; then
-			VERSION="$1"
-		else
-			echo "No source tarball found for '${COMP}' !"
-			continue
-		fi
-		VERSION="${VERSION##${COMP##*/}-}"
-		VERSION="${VERSION%%.tar.gz}"
-	# If version is defined in spec file: appends the date
-	else
-		VERSION="${VERSION}.$(date +%Y%m%d)"
-	fi
-	
-	# Chooses a spec file (if many)
-	set $( cd "${COMP}"; echo *.spec )
+# If no version is set in text file, get version number from source tarball name
+if [ -z "${VERSION}" ]; then
+	set $( cd "${COMP}"; echo ${COMP##*/}*.tar.gz)
 	if [ $# -gt 1 ]; then
-		select SPEC in $*; do break; done
+		select VERSION in $*; do break; done
 	elif [ -r "${COMP}/$1" ]; then
-		SPEC="$1"
+		VERSION="$1"
 	else
-		echo "Fatal: no spec file found !"
-		exit 2
+		echo "No source tarball found for '${COMP}' !"
+		continue
 	fi
+	VERSION="${VERSION##${COMP##*/}-}"
+	VERSION="${VERSION%%.tar.gz}"
+# If version is defined in spec file: appends the date
+else
+	VERSION="${VERSION}.$(date +%Y%m%d)"
+fi
 	
-	cat <<EOF
+# Chooses a spec file (if many)
+set $( cd "${COMP}"; echo *.spec )
+if [ $# -gt 1 ]; then
+	select SPEC in $*; do break; done
+elif [ -r "${COMP}/$1" ]; then
+	SPEC="$1"
+else
+	echo "Fatal: no spec file found !"
+	exit 2
+fi
+	
+cat <<EOF
 
 About to build '${COMP}':
   Version: '${VERSION}'
@@ -63,22 +73,26 @@ About to build '${COMP}':
 
 Press ENTER to build, or CTRL+C to abort.
 EOF
-	read rep
+[ -z "${AUTO}" ] && read rep
 	
-	# Specific prefix for installation of some components
-	case "${COMP##*/}" in
-		"qt3") PREFIX="/usr";;
-	esac
+# Specific prefix for installation of some components
+case "${COMP##*/}" in
+	"qt3") PREFIX="/usr";;
+esac
 	
-	set -x
-	(
-	rpmbuild -ba \
-		--define "_sourcedir ${PWD}/${COMP}" \
-		--define "_prefix ${PREFIX:-/opt/trinity}" \
-		--define "version ${VERSION:-3.5.13}" \
-		$ARGS \
-		${COMP}/${SPEC} || exit 1
-	) 2>&1 | tee /tmp/log
-	set +x
-done
+# Determines if we are running an i386 or x86_64 distro
+if [ "$(rpm -q --qf '%{arch}' kernel)" = "i686" ]; then
+	ARGS="${ARGS} --target=i686"
+fi
+	
+set -x
+(
+rpmbuild -ba \
+	--define "_sourcedir ${PWD}/${COMP}" \
+	--define "_prefix ${PREFIX:-/opt/trinity}" \
+	--define "version ${VERSION:-3.5.13}" \
+	$ARGS \
+	${COMP}/${SPEC} || exit 1
+) 2>&1 | tee /tmp/log
+set +x
 

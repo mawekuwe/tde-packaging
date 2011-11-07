@@ -268,7 +268,7 @@ update-desktop-database -q &> /dev/null
 * Sun Dec 19 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
 - Add i18n translations
 - Add patches from RHEL 6.0 (except Patch106, redundant with our 'patch0')
-- Renamed 'patch0' (Thales) to 'patch106'
+- Renamed 'patch0' to 'patch106'
 
 * Fri Dec 17 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
 - Add macro _kde3_prefix to define custom installation prefix (ex: /opt/kde3)

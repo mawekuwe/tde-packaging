@@ -1,6 +1,6 @@
+qt3
 dependencies/libcaldav
 dependencies/libcarddav
-dependencies/qt3
 dependencies/tqtinterface
 dependencies/dbus-tqt
 dependencies/arts
@@ -47,3 +47,4 @@ applications/kmymoney2
 applications/kstreamripper 
 applications/kdesudo
 applications/digikam
+applications/konversation

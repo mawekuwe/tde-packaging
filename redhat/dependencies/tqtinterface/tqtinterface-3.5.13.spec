@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -50,6 +50,7 @@ Trinity QT Interface
 Group:		Development/Libraries
 Summary:	%{name} - Development files
 Requires:	%{name} = %{version}-%{release}
+Requires:	qt3-devel >= 3.3.8d
 
 %description devel
 Development files for %{name}
@@ -109,6 +110,9 @@ done
 
 
 %changelog
+* Sun Nov 06 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add missing Requires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

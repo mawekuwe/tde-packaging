@@ -1,6 +1,6 @@
 # Default version for this component
 %if "%{?version}" == ""
-%define version 3.3.8.d
+%define version 3.3.8d
 %endif
 
 # The following QT4 packages should NOT be installed to
@@ -30,7 +30,7 @@ Provides: qt = 1:%{version}-%{release}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 #Source0: ftp://ftp.troll.no/qt/source/qt-x11-free-3.3.8b.tar.gz
-Source0: %{name}-%{version}.tar.gz
+Source0: qt3-3.3.8.d.tar.gz
 Source2: qt.sh
 Source3: qt.csh
 Source4: designer3.desktop
