@@ -55,6 +55,8 @@ BuildRequires:	avahi-qt3-devel
 BuildRequires:	jasper-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	OpenEXR-devel
+BuildRequires:	libtool-ltdl-devel
+BuildRequires:	glib2-devel
 
 Requires:		tqtinterface
 Requires:		trinity-arts
