@@ -1,0 +1,245 @@
+diff -up ksensors-0.7.3/src/lmsensor.cpp.lm_sensors3x ksensors-0.7.3/src/lmsensor.cpp
+--- ksensors-0.7.3/src/lmsensor.cpp.lm_sensors3x	2007-11-11 16:34:15.000000000 +0100
++++ ksensors-0.7.3/src/lmsensor.cpp	2007-11-11 16:37:58.000000000 +0100
+@@ -30,8 +30,11 @@ LMSensor::LMSensor(SensorsList *parent):
+ LMSensor::~LMSensor(){
+ }
+ 
+-
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+ bool LMSensor::init(const sensors_feature_data **data, int *nr1,int *nr2)
++#else
++bool LMSensor::init(const sensors_feature **data, int *nr1, int *nr2)
++#endif
+ {
+  double min,max;
+  const sensors_chip_name *chip_name= getChipName();
+@@ -40,6 +43,7 @@ bool LMSensor::init(const sensors_featur
+  char *label;
+  QString str;
+ 
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+  bool min_found=false;
+  bool max_found=false;
+  while( (*data= sensors_get_all_features(*chip_name, nr1, nr2)) && (*data)->mapping!=SENSORS_NO_MAPPING) {
+@@ -105,7 +109,97 @@ bool LMSensor::init(const sensors_featur
+    
+  if(max_found)
+    max = valMax;
+-   
++
++#else /* libsensors4 code */
++
++  const sensors_subfeature *sub_feature;
++  const sensors_feature *feature_data = *data;
++  
++  /* Move to next feature for the loop in LMSensorsChip::createSensors() */
++  *data = sensors_get_features(chip_name, nr1);
++ 
++  switch(feature_data->type)
++  {
++    case SENSORS_FEATURE_IN:
++      sub_feature = sensors_get_subfeature(chip_name, feature_data,
++        SENSORS_SUBFEATURE_IN_INPUT);
++
++      if (!sub_feature)
++        return false;
++
++      feature = sub_feature->number;
++
++      if (!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
++            SENSORS_SUBFEATURE_IN_MIN)) ||
++          sensors_get_value(chip_name, sub_feature->number, &min))
++        min = -16;
++
++      if (!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
++            SENSORS_SUBFEATURE_IN_MAX)) ||
++          sensors_get_value(chip_name, sub_feature->number, &max))
++        max = 16;
++ 
++      setType(lmVoltage);
++      break;
++
++    case SENSORS_FEATURE_FAN:
++      sub_feature = sensors_get_subfeature(chip_name, feature_data,
++        SENSORS_SUBFEATURE_FAN_INPUT);
++
++      if (!sub_feature)
++        return false;
++
++      feature = sub_feature->number;
++
++      if (!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
++            SENSORS_SUBFEATURE_FAN_MIN)) ||
++          sensors_get_value(chip_name, sub_feature->number, &min))
++        min = 3000;
++
++      max = 10000;
++
++      setType(lmFan);
++      break;
++
++    case SENSORS_FEATURE_TEMP:
++      sub_feature = sensors_get_subfeature(chip_name, feature_data,
++        SENSORS_SUBFEATURE_TEMP_INPUT);
++
++      if (!sub_feature)
++        return false;
++
++      feature = sub_feature->number;
++
++      if (!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
++            SENSORS_SUBFEATURE_TEMP_MIN)) ||
++          sensors_get_value(chip_name, sub_feature->number, &min))
++        min = 0;
++
++      if ((!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
++              SENSORS_SUBFEATURE_TEMP_MAX)) &&
++           !(sub_feature = sensors_get_subfeature(chip_name, feature_data,
++              SENSORS_SUBFEATURE_TEMP_CRIT))) ||
++          sensors_get_value(chip_name, sub_feature->number, &max))
++        max = 65;
++
++      setType(lmTemp);
++      break;
++    
++    default:
++      return false;
++  }
++
++  str.sprintf("%s.%s", chip_name->prefix, main_name);
++  setName( str.latin1() );
++
++  label = sensors_get_label(chip_name, feature_data);
++  if (label)
++    setDescription(QString(label));
++  else
++    setDescription( str.latin1() );
++
++#endif /* libsensors3 / libsensors4 code */
++
+  if(min>max) {
+    double pivot= min;
+    min= max;
+@@ -131,7 +225,11 @@ double LMSensor::readSensorValue()
+ {
+  double newVal;
+  const sensors_chip_name *chip_name= getChipName();
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+  sensors_get_feature(*chip_name, feature, &newVal);
++#else
++ sensors_get_value(chip_name, feature, &newVal);
++#endif
+  return newVal;
+ }
+ 
+diff -up ksensors-0.7.3/src/lmsensorschip.cpp.lm_sensors3x ksensors-0.7.3/src/lmsensorschip.cpp
+--- ksensors-0.7.3/src/lmsensorschip.cpp.lm_sensors3x	2003-12-27 22:52:12.000000000 +0100
++++ ksensors-0.7.3/src/lmsensorschip.cpp	2007-11-11 16:34:15.000000000 +0100
+@@ -50,10 +50,15 @@ const sensors_chip_name *LMSensorsChip::
+ void LMSensorsChip::createSensors()
+ {
+  if(!chip_name) return;
+- const sensors_feature_data *data;
+  int nr1= 0;
+  int nr2= 0;
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
++ const sensors_feature_data *data;
+  data= sensors_get_all_features(*chip_name, &nr1, &nr2);
++#else
++ const sensors_feature *data;
++ data= sensors_get_features(chip_name, &nr1);
++#endif
+  while(data) {
+    LMSensor *sensor= new LMSensor(this);
+    if( !sensor->init(&data,&nr1,&nr2) )
+diff -up ksensors-0.7.3/src/lmsensor.h.lm_sensors3x ksensors-0.7.3/src/lmsensor.h
+--- ksensors-0.7.3/src/lmsensor.h.lm_sensors3x	2003-12-27 22:52:12.000000000 +0100
++++ ksensors-0.7.3/src/lmsensor.h	2007-11-11 16:34:15.000000000 +0100
+@@ -51,7 +51,11 @@ protected:
+ 
+   double calculateIdealValue();
+ 
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+   bool init(const sensors_feature_data **data, int *nr1,int *nr2);
++#else
++  bool init(const sensors_feature **data, int *nr1,int *nr2);
++#endif
+   const sensors_chip_name *getChipName();
+ 
+ private:
+diff -up ksensors-0.7.3/src/lmsensors.cpp.lm_sensors3x ksensors-0.7.3/src/lmsensors.cpp
+--- ksensors-0.7.3/src/lmsensors.cpp.lm_sensors3x	2007-11-11 16:34:15.000000000 +0100
++++ ksensors-0.7.3/src/lmsensors.cpp	2007-11-11 16:34:15.000000000 +0100
+@@ -45,17 +45,23 @@ LMSensors::~LMSensors()
+ 
+ bool LMSensors::initSensors()
+ {
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+  FILE *fp=fopen("/etc/sensors.conf","r");
+  if(!fp) {
+    qWarning("KSensors error: /etc/sensors.conf not found !");
+    return false;
+  }
++#else
++ FILE *fp=NULL;
++#endif
+  int err= sensors_init(fp);
+  if(err) {
+    qWarning("KSensors error: sensors_init fail, error code %d",err);
+    return false;
+  }
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+  fclose(fp);
++#endif
+  return true;
+ }
+ 
+@@ -63,6 +69,7 @@ void LMSensors::createLMSensors()
+ {
+  const sensors_chip_name *chip_name;
+  int err= 0;
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+  while( (chip_name= sensors_get_detected_chips(&err)) )
+  {
+    if( existSensor(chip_name,"temp")  ||
+@@ -71,6 +78,10 @@ void LMSensors::createLMSensors()
+           (void)new LMSensorsChip(chip_name,this);
+        }
+  }
++#else
++ while( (chip_name= sensors_get_detected_chips(NULL, &err)) )
++          (void)new LMSensorsChip(chip_name,this);
++#endif
+ }
+ 
+ void LMSensors::createHDSensors()
+@@ -86,6 +97,7 @@ void LMSensors::createI8KSensors()
+ }
+ 
+ 
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+ int LMSensors::existSensor(const sensors_chip_name *chip_name,const char *sensor_name)
+ {
+ int nr1,nr2;
+@@ -99,6 +111,7 @@ const sensors_feature_data *sensor_data;
+  }
+  return 0;
+ }
++#endif
+ 
+ void LMSensors::setMonitorized(bool enable)
+ {
+diff -up ksensors-0.7.3/src/lmsensors.h.lm_sensors3x ksensors-0.7.3/src/lmsensors.h
+--- ksensors-0.7.3/src/lmsensors.h.lm_sensors3x	2003-12-27 22:52:12.000000000 +0100
++++ ksensors-0.7.3/src/lmsensors.h	2007-11-11 16:34:15.000000000 +0100
+@@ -65,7 +65,9 @@ private:
+   void createI8KSensors();
+   void childEvent ( QChildEvent *e );
+ 
++#if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+   static int existSensor(const sensors_chip_name *chip_name,const char *sensor_name);
++#endif
+ };
+ 
+ #endif
