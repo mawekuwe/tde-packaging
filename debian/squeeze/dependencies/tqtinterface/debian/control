@@ -38,7 +38,7 @@ Description: The Trinity Qt Interface Libraries (Debug Files)
 Package: libtqtinterface-dbg
 Architecture: any
 Section: libs
-Depends: ${shlibs:Depends} libtqtinterface (>= ${Source-Version}), qt-x11-free-dbg
+Depends: ${shlibs:Depends} libtqtinterface (>= ${Source-Version}), tqt-x11-free-dbg
 Description: The Trinity Qt Interface Libraries (Debug Files)
  The Trinity Qt Interface is a library that abstracts Qt from Trinity
  This allows the Trinity code to rapidly port from one version of Qt to another.
