@@ -24,8 +24,8 @@ Depends: ${shlibs:Depends}, fontconfig
 Recommends: libgl1-mesa-glx | libgl1, libglu1-mesa | libglu1, libxmu6 (>= 4.3.0.dfsg.1-4)
 Conflicts: libtqt3c102-mt, libtqui1-emb, libtqt3c-mt
 Suggests: libtqt3-mt-psql, libtqt3-mt-mysql, libtqt3-mt-odbc
-Description: Qt GUI Library (Threaded runtime version), Version 3
- This is the Trolltech Qt library, version 3. It's necessary for
+Description: TQt GUI Library (Threaded runtime version), Version 3
+ This is the Trolltech TQt library, version 3. It's necessary for
  applications that link against the libtqt-mt.so.3, e.g. all Trinity
  applications.
 
@@ -35,9 +35,9 @@ Section: libs
 Depends: ${shlibs:Depends}
 Replaces: libtqt3-mysql (<= 2:3.1.1+cvs.20021220-1), libtqt3c102-mt-mysql
 Conflicts: libtqt3c102-mt-mysql, libtqt3c-mt-mysql
-Description: MySQL database driver for Qt3 (Threaded)
- This package contains the threaded MySQL plugin for Qt3. Install it if
- you intend to use or write Qt programs that are to access a MySQL DB.
+Description: MySQL database driver for TQt3 (Threaded)
+ This package contains the threaded MySQL plugin for TQt3. Install it if
+ you intend to use or write TQt programs that are to access a MySQL DB.
 
 Package: libtqt3-mt-odbc
 Architecture: any
@@ -45,9 +45,9 @@ Section: libs
 Depends: ${shlibs:Depends}
 Replaces: libtqt3-odbc (<= 2:3.1.1+cvs.20021220-1), libtqt3c102-mt-odbc
 Conflicts: libtqt3c102-mt-odbc, libtqt3c-mt-odbc
-Description: ODBC database driver for Qt3 (Threaded)
- This package contains the threaded ODBC plugin for Qt3. Install it if
- you intend to use or write Qt programs that are to access an ODBC DB.
+Description: ODBC database driver for TQt3 (Threaded)
+ This package contains the threaded ODBC plugin for TQt3. Install it if
+ you intend to use or write TQt programs that are to access an ODBC DB.
 
 Package: libtqt3-mt-psql
 Architecture: any
@@ -55,9 +55,9 @@ Section: libs
 Depends: ${shlibs:Depends}
 Replaces: libtqt3-psql (<= 2:3.1.1+cvs.20021220-1), libtqt3c102-mt-psql
 Conflicts: libtqt3c102-mt-psql, libtqt3c-mt-psql
-Description: PostgreSQL database driver for Qt3 (Threaded)
- This package contains the threaded PostgreSQL plugin for Qt3.
- Install it if you intend to use or write Qt programs that are
+Description: PostgreSQL database driver for TQt3 (Threaded)
+ This package contains the threaded PostgreSQL plugin for TQt3.
+ Install it if you intend to use or write TQt programs that are
  to access a PostgreSQL DB.
 
 #Not in Debian
@@ -67,9 +67,9 @@ Description: PostgreSQL database driver for Qt3 (Threaded)
 #Depends: ${shlibs:Depends}
 #Conflicts: libtqt3c102-mt-ibase
 #Replaces: libtqt3c102-mt-ibase
-#Description: InterBase/FireBird database driver for Qt3 (Threaded)
+#Description: InterBase/FireBird database driver for TQt3 (Threaded)
 # This package contains the threaded InterBase/FireBird plugin
-# for Qt3. Install it if you intend to use or write Qt programs
+# for TQt3. Install it if you intend to use or write TQt programs
 # that are to access an InterBase/FireBird DB.
 
 Package: libtqt3-mt-sqlite
@@ -78,9 +78,9 @@ Section: libs
 Depends: ${shlibs:Depends}
 Conflicts: libtqt3c102-mt-sqlite
 Replaces: libtqt3c102-mt-sqlite
-Description: SQLite database driver for Qt3 (Threaded)
- This package contains the threaded SQLite plugin for Qt3. Install
- it if you intend to use or write Qt programs that are to access an
+Description: SQLite database driver for TQt3 (Threaded)
+ This package contains the threaded SQLite plugin for TQt3. Install
+ it if you intend to use or write TQt programs that are to access an
  SQLite DB.
 
 Package: libtqt3-mt-dev
@@ -99,16 +99,16 @@ Depends: libxext-dev (>= 4.3.0.dfsg.1-4), libxrandr-dev (>= 4.3.0.dfsg.1-4),
 Conflicts: libtqt-mt-dev, libtqt3-emb (<= 3:3.0.3-1), libtqt3-dev
 Recommends: libtqt3-compat-headers
 Suggests: libtqt3-i18n, tqt3-doc
-Description: Qt development files (Threaded)
- Qt is a C++ class library optimized for graphical user interface
+Description: TQt development files (Threaded)
+ TQt is a C++ class library optimized for graphical user interface
  development. This package contains the libtqt-mt.so symlink, necessary
- for building threaded Qt applications as well as the libtqui.so symlink
+ for building threaded TQt applications as well as the libtqui.so symlink
  and the necessary header files for libtqui.so. (See README.Debian and
- the Qt Documentation for instructions on libtqui.so)
+ the TQt Documentation for instructions on libtqui.so)
  .
- WARNING: If you plan to build some older Qt3 applications, you will
+ WARNING: If you plan to build some older TQt3 applications, you will
  most probably have to install the libtqt3-compat-headers package. It
- contains all the headers which are not part of the official Qt3 API
+ contains all the headers which are not part of the official TQt3 API
  anymore but which are still used by some programs. So if you encounter
  problems with missing header files, please install this package first
  before you send a bugreport.
@@ -118,9 +118,9 @@ Architecture: any
 Section: devel
 Recommends: libtqt3-mt-dev
 Replaces: libtqt3-mt-dev, libtqt3-dev, libtqt3-plugins-headers
-Description:  Qt3 header files
+Description:  TQt3 header files
  This package contains all header files for libqt and libtqt-mt which come
- with Qt3. If you want to compile or develop programs which use Qt3, you
+ with TQt3. If you want to compile or develop programs which use TQt3, you
  have to install this package.
 
 Package: libtqt3-compat-headers
@@ -129,11 +129,11 @@ Section: devel
 Depends: libtqt3-headers (= ${binary:Version})
 Recommends: libtqt3-mt-dev
 Replaces: libtqt3-mt-dev (<= 3:3.1.1-2), libtqt3-dev (<= 3:3.1.1-2), libtqt3-headers (<= 3:3.1.1-2)
-Description: Qt 1.x and 2.x compatibility includes
+Description: TQt 1.x and 2.x compatibility includes
  This package contains header files that are intended for build
- compatibility for applications that build with Qt3 but still use
+ compatibility for applications that build with TQt3 but still use
  deprecated includes. It is meant as an intermediate solution and
- these header files are not part of the official Qt3 API.
+ these header files are not part of the official TQt3 API.
  All sourcecode that is still using the headers of this package is
  subject to be changed to use the new header files which are in
  libtqt3-headers.
@@ -144,11 +144,11 @@ Section: devel
 Depends: ${shlibs:Depends}
 Recommends: libtqt3-mt-dev
 Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev, tqt3-doc (<= 3:3.1.1-2)
-Conflicts: libqt-dev (<< 3:2.3.2-10), uic (<= 3:2.3.2-9)
-Description: Qt3 development tools
+Conflicts: libqt-dev (<< 3:2.3.2-10), uic (<= 3:2.3.2-9), qt3-dev-tools
+Description: TQt3 development tools
  This package contains all tools that are necessary to build programs
- that are written using Qt3. These are: qmake, uic and moc.
- For Qt3 development, you most likely want to install this package.
+ that are written using TQt3. These are: qmake, uic and moc.
+ For TQt3 development, you most likely want to install this package.
 
 Package: tqt3-designer
 Architecture: any
@@ -158,12 +158,12 @@ Recommends: tqt3-dev-tools
 Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev, tqt3-doc (= 3:3.3.4-8)
 Suggests: tqt3-assistant, tqt3-doc
 Conflicts: qt-designer (<= 3:2.3.2-9), qt-designer-doc
-Description: Qt3 Designer
- The Qt Designer is a GUI design program that interactively lets you
- construct user interfaces for the Qt library. Additionally it lets you
+Description: TQt3 Designer
+ The TQt Designer is a GUI design program that interactively lets you
+ construct user interfaces for the TQt library. Additionally it lets you
  create whole project and works together with the database drivers
- provided by Qt to create applications with easy database access through
- Qt. The resulting user interface files can then be converted to
+ provided by TQt to create applications with easy database access through
+ TQt. The resulting user interface files can then be converted to
  C++ classes using the uic commandline utility which is usually done
  automatically for the developer with a project management with qmake
  or automake.
@@ -173,12 +173,12 @@ Architecture: any
 Section: devel
 Depends: libtqt3-mt-dev
 Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
-Description: Qt3 Developer applications development files
+Description: TQt3 Developer applications development files
  This package is intended for developers who want to develop applications
  using the additional static libraries that ship with the applications
- included with Qt; the Qt Designer and the Qt Assistant.
- It allows integrating additional enhancements into the Qt Designer
- respectively faciliate the Qt Assistant from within your Qt application
+ included with TQt; the TQt Designer and the TQt Assistant.
+ It allows integrating additional enhancements into the TQt Designer
+ respectively faciliate the TQt Assistant from within your TQt application
  to interactively call the Assistant for displaying online help that the
  developer includes with his application.
 
@@ -188,10 +188,10 @@ Section: devel
 Suggests: tqt3-assistant
 Depends: ${shlibs:Depends}
 Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev, tqt3-doc (= 3:3.3.4-8)
-Description: The Qt3 Linguist
- This package contains the Qt3 Linguist which provides translators a
- tool perfect for translating any Qt-based application into other
- languages and can be used and installed independently of any Qt
+Description: The TQt3 Linguist
+ This package contains the TQt3 Linguist which provides translators a
+ tool perfect for translating any TQt-based application into other
+ languages and can be used and installed independently of any TQt
  development files by the translator.
 
 Package: tqt3-assistant
@@ -199,15 +199,15 @@ Architecture: any
 Section: x11
 Depends: ${shlibs:Depends}, tqt3-doc
 Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
-Description: The Qt3 assistant application
- This package contains the Qt3 Assistant, an easy to use frontend for
- the complete Qt3 documentation and serves as an online help viewer for
- any Qt program that wants to give the usesr access to online help.
- Within the Qt tools it is used as the help viewer for the online help
- for the Qt3 Designer and Linguist as well as qmake and the Qt 3 API
+Description: The TQt3 assistant application
+ This package contains the TQt3 Assistant, an easy to use frontend for
+ the complete TQt3 documentation and serves as an online help viewer for
+ any TQt program that wants to give the usesr access to online help.
+ Within the TQt tools it is used as the help viewer for the online help
+ for the TQt3 Designer and Linguist as well as qmake and the TQt 3 API
  documentation.
  .
- Developers of Qt Application who want to faciliate the Qt Assistant for online
+ Developers of TQt Application who want to faciliate the TQt Assistant for online
  help display should refer to the README.Debian file for libtqt3-mt-dev and
  the package tqt3-apps-dev.
 
@@ -216,11 +216,11 @@ Architecture: any
 Section: x11
 Depends: ${shlibs:Depends}
 Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
-Description: The Qt3 Configuration Application
- The Qt Configuration program allows endusers to configure the look
- and behavior of any Qt3 application. It is mostly only necessary
+Description: The TQt3 Configuration Application
+ The TQt Configuration program allows endusers to configure the look
+ and behavior of any TQt3 application. It is mostly only necessary
  on systems which don't run KDE because the KDE control center already
- covers this configuration automatically for the users Qt3 applications
+ covers this configuration automatically for the users TQt3 applications
  according to his desktop settings in KDE. However, if you need to run
  CJK-fonts or other non-latin scripts, you will most likely want to
  install this package.
@@ -231,12 +231,12 @@ Section: devel
 Recommends: libtqt3-mt-dev
 Depends: ${shlibs:Depends}
 Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
-Description: Tools to develop embedded Qt applications
+Description: Tools to develop embedded TQt applications
  This package contains applications only suitable for developing
- applications with Qt Embedded and/or Qtopia. It provides the QVFB
+ applications with TQt Embedded and/or Qtopia. It provides the QVFB
  program for simulating an embedded device desktop as well as makeqpf
  for converting fonts to embedded fonts suitable for being utilized
- by Qt Embedded applications.
+ by TQt Embedded applications.
 
 Package: tqt3-dev-tools-compat
 Architecture: any
@@ -244,22 +244,22 @@ Section: devel
 Recommends: libtqt3-mt-dev
 Depends: ${shlibs:Depends}
 Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
-Description: Conversion utilities for Qt3 development
- This package contains some older Qt tools (namely qt20fix qtrename140,
+Description: Conversion utilities for TQt3 development
+ This package contains some older TQt tools (namely qt20fix qtrename140,
  qm2ts, mergetr, findtr and msg2qm). These tools are needed only by
- application developers who need to migrate any Qt application written
- for Qt 1.x or 2.x over to Qt 3.x. The purpose of the tools are to
+ application developers who need to migrate any TQt application written
+ for TQt 1.x or 2.x over to TQt 3.x. The purpose of the tools are to
  help fixing the changes with include file renaming as well as migrating
- the message file format of Qt 2 translation files or any gettext-based
- translation system to the Qt 3 system.
+ the message file format of TQt 2 translation files or any gettext-based
+ translation system to the TQt 3 system.
 
 Package: libtqt3-i18n
 Architecture: all
 Section: libs
 Recommends: libtqt3-mt
-Description: i18n files for Qt3 library
- This package contains the internationalization files for the Qt library.
- Qt applications that are internationalized will need to depend on this package
+Description: i18n files for TQt3 library
+ This package contains the internationalization files for the TQt library.
+ TQt applications that are internationalized will need to depend on this package
  for full internationalization support of the application towards the end user.
 
 Package: tqt3-doc
@@ -268,11 +268,11 @@ Section: doc
 Priority: extra
 Replaces: qt-doc
 Suggests: libtqt3-headers, tqt3-assistant | www-browser
-Description: Qt3 API documentation
- This package contains the complete API documentation for Qt3.
+Description: TQt3 API documentation
+ This package contains the complete API documentation for TQt3.
  Examples to coding are in tqt3-examples. The documentation is provided
  in HTML and manpage format; the HTML version can be viewed in conjunction
- with the Qt Assistant.
+ with the TQt Assistant.
 
 Package: tqt3-examples
 Architecture: all
@@ -280,10 +280,10 @@ Section: doc
 Priority: extra
 Depends: libtqt3-mt-dev (>= ${binary:Version})
 Suggests: tqt3-apps-dev
-Description:  Examples for Qt3
- These are examples provided with Qt3. They may be especially useful for
- you if you are learning to program in Qt as they cover tquite a lot of
- things that are possible with Qt3.
+Description:  Examples for TQt3
+ These are examples provided with TQt3. They may be especially useful for
+ you if you are learning to program in TQt as they cover tquite a lot of
+ things that are possible with TQt3.
 
 Package: tqt-x11-free-dbg
 Section: libdevel

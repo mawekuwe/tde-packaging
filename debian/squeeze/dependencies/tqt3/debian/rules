@@ -430,7 +430,7 @@ binary-arch: build install
 	dh_installman -ptqt3-designer debian/maintain/man/createcw.1
 	dh_installman -ptqt3-dev-tools-compat debian/maintain/man/qt20fix.1 debian/maintain/man/mergetr.1 debian/maintain/man/findtr.1 debian/maintain/man/msg2qm.1
 	dh_installman -ptqt3-dev-tools-embedded debian/maintain/man/makeqpf.1 debian/maintain/man/qvfb.1
-	dh_installman -ptqt3-dev-tools debian/maintain/man/qembed.1
+	dh_installman -ptqt3-dev-tools debian/maintain/man/tqembed.1
 
 	# copy README.Debian
 	for a in libtqt3-mt-dev libtqt3-mt tqt3-doc; do install -D `pwd`/debian/README.Debian `pwd`/debian/"$$a"/usr/share/doc/"$$a"/README.Debian; done
