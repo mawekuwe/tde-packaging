@@ -51,3 +51,4 @@ applications/digikam
 applications/konversation
 applications/ksensors
 applications/amarok
+applications/kaffeine
