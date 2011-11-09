@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -31,8 +31,10 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}.tar.gz
 
 BuildRequires:	gcc-c++
-BuildRequires:	dbus-qt-devel
+BuildRequires:	dbus-devel
 BuildRequires:	tqtinterface-devel
+
+Provides:		dbus-qt
 
 %description
 Dbus TQT Interface
@@ -42,6 +44,7 @@ Dbus TQT Interface
 Requires:	%{name}
 Summary:	%{name} - Development files
 Group:		Development/Libraries
+Provides:		dbus-qt-devel
 
 %description devel
 Development files for %{name}
@@ -78,6 +81,9 @@ cd build
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Tue Nov 07 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

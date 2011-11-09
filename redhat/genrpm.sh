@@ -43,9 +43,11 @@ if [ -z "${VERSION}" ]; then
 		select VERSION in $*; do break; done
 	elif [ -r "${COMP}/$1" ]; then
 		VERSION="$1"
+	elif [ "${COMP}" = "trinity-live" ]; then
+		VERSION="3.5.13"
 	else
 		echo "No source tarball found for '${COMP}' !"
-		continue
+		exit 0
 	fi
 	VERSION="${VERSION##${COMP##*/}-}"
 	VERSION="${VERSION%%.tar.gz}"

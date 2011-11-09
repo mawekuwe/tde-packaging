@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -59,6 +59,8 @@ Patch6:		kdebase-3.5.12-halmountoptions.patch
 Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
 # [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
 Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
+# [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
+Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
@@ -180,7 +182,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-
+%patch9 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -519,6 +521,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Tue Nov 08 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Fix FTBFS with dbus-tqt
+
 * Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Add missing BuildRequires
 
