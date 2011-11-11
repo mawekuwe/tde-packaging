@@ -3,6 +3,7 @@ dependencies/libcaldav
 dependencies/libcarddav
 dependencies/tqtinterface
 dependencies/dbus-tqt
+dependencies/dbus-1-tqt
 dependencies/arts
 trinity-desktop
 #trinity-settings
@@ -52,3 +53,4 @@ applications/konversation
 applications/ksensors
 applications/amarok
 applications/kaffeine
+applications/knetworkmanager
