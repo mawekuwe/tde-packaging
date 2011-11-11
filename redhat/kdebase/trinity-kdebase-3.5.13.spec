@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -61,6 +61,8 @@ Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
 Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
 # [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
 Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
+# [kdebase/kicker/kicker/ui]
+Patch10:	kdebase-3.5.12-kickoff_unstable.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
@@ -72,7 +74,8 @@ BuildRequires:	imake
 BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	OpenEXR-devel
 BuildRequires:	libsmbclient-devel
-BuildRequires:	dbus-devel dbus-qt-devel
+BuildRequires:	dbus-devel
+BuildRequires:  dbus-tqt-devel
 BuildRequires:	lm_sensors-devel
 BuildRequires:	libfontenc-devel
 BuildRequires:	hal-devel
@@ -113,6 +116,10 @@ Requires:	xorg-x11-xinit
 Requires:	kde-settings-kdm
 %endif
 Requires:	redhat-menus
+
+# Required for Fedora LiveCD
+Provides:	service(graphical-login)
+
 
 %description
 Core applications for the Trinity K Desktop Environment.  Included are: kdm
@@ -183,6 +190,8 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+cd kicker/kicker
+%patch10 -p0
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -233,19 +242,19 @@ cd build
 # Adds a GDM/KDM/XDM session called 'TDE'
 %if "%{?_prefix}" != "/usr"
 %__mkdir_p "%{?buildroot}%{_usr}/share/xsessions"
-install -m 644 "%{?buildroot}%{_datadir}/apps/kdm/sessions/tde.desktop" "%{?buildroot}%{_usr}/share/xsessions/tde.desktop"
+%__install -m 644 "%{?buildroot}%{_datadir}/apps/kdm/sessions/tde.desktop" "%{?buildroot}%{_usr}/share/xsessions/tde.desktop"
 %endif
 
 # Modifies 'startkde' to set KDEDIR and KDEHOME hardcoded specific for TDE
-sed -i "%{?buildroot}%{_bindir}/startkde" \
+%__sed -i "%{?buildroot}%{_bindir}/startkde" \
   -e '/^echo "\[startkde\] Starting startkde.".*/ s,$,\nexport KDEDIR=%{_prefix}\nexport KDEHOME=~/.trinity,'
 
 # Renames '/etc/ksysguarddrc' to avoid conflict with KDE4 'ksysguard'
-mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
+%__mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
 
 # TDE 3.5.12: add script "plasma-desktop" to avoid conflict with KDE4
 %if "%{?_prefix}" != "/usr"
-%__cp -f "%{SOURCE1}" "%{?buildroot}%{_bindir}"
+%__install -m 755 "%{SOURCE1}" "%{?buildroot}%{_bindir}"
 %endif
 
 # PAM configuration files
@@ -254,6 +263,15 @@ mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysg
 %__install -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
 %__install -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
 %__install -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
+
+# KDM configuration for RHEL/Fedora
+%__sed -i "%{?buildroot}%{_datadir}/config/kdm/kdmrc" \
+%if 0%{?fedora} >= 16
+	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
+%else
+	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
+%endif
+
 
 %clean
 %__rm -rf %{?buildroot}
@@ -521,6 +539,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Add "service(graphical-login)"
+- Add kickoff menu fix [TDE Bug #508]
+- kdmrc: sets "MinShowUID=500"
+
 * Tue Nov 08 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Fix FTBFS with dbus-tqt
 
