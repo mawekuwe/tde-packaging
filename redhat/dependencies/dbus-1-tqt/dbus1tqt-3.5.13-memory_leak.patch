@@ -1,0 +1,16 @@
+--- dbus-1-tqt/tqdbusconnection.cpp.ORI	2011-11-11 20:37:57.684881138 +0100
++++ dbus-1-tqt/tqdbusconnection.cpp	2011-11-11 20:40:33.910795465 +0100
+@@ -285,7 +285,12 @@
+ 
+     dbus_message_unref(msg);
+ 
+-    return TQT_DBusMessage::fromDBusMessage(reply);
++    TQT_DBusMessage mess = TQT_DBusMessage::fromDBusMessage(reply);
++
++    /* XXX fromDbusMessage do a ref(), avoid leaking */
++    dbus_message_unref(reply);
++
++    return mess;
+ }
+ 
+ void TQT_DBusConnection::flush() const
