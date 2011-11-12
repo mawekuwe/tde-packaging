@@ -30,7 +30,7 @@ License:        GPL, QPL
 AutoReqProv:    on
 Summary:        Documentation for the Qt 3 Development Kit
 Group:          Documentation/HTML
-Version:        3.3.8d
+Version:        3.3.8c
 Release:        1
 PreReq:         /bin/grep
 BuildArch:      noarch 
@@ -117,6 +117,9 @@ Patch136:       qt3-no-date.diff
 Patch137:       popen-leak-fix.diff
 Patch138:       qt3-libpng14.diff
 Patch139:       gcc46.diff
+
+# TQt integration
+Patch200:       qt-3.3.8c.diff
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 

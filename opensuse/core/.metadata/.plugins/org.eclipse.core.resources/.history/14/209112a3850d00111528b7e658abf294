@@ -117,6 +117,9 @@ Patch137:       popen-leak-fix.diff
 Patch138:       qt3-libpng14.diff
 Patch139:       gcc46.diff
 
+# TQt integration
+Patch200:       qt-3.3.8c.diff
+
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description

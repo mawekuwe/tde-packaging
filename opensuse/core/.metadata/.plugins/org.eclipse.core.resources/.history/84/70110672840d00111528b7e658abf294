@@ -108,7 +108,7 @@ export QTDOCDIR=/usr/share/doc/packages/qt3/html
 %dir %{_tde_sharedir}
 %dir %{_tde_datadir}
 %dir %{_tde_datadir}/tdelibs
-%{_datadir}/doc/TDE-API
+/usr/share/doc/TDE-API
 %{_tde_datadir}/tdelibs/create-kdeapi
 %{_tde_docdir}
 

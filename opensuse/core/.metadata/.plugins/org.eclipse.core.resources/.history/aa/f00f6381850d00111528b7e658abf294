@@ -34,7 +34,7 @@ Obsoletes:      qt3-64bit
 %endif
 #
 Summary:        A library for developing applications with graphical user interfaces
-Version:        3.3.8d
+Version:        3.3.8c
 Release:        110
 Provides:       qt_library_%version
 Recommends:     kdelibs3-default-style
@@ -42,7 +42,7 @@ PreReq:         /bin/grep
 # COMMON-BEGIN
 %define x11_free -x11-free-
 %define rversion 3.3.8b
-Source0:        http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz
+Source0:        qt%{x11_free}%rversion.tar.bz2
 Source1:        build_script.sh
 Source2:        qtconfig3.desktop
 Source3:        qtrc
@@ -117,6 +117,9 @@ Patch137:       popen-leak-fix.diff
 Patch138:       qt3-libpng14.diff
 Patch139:       gcc46.diff
 
+# TQt integration
+Patch200:       qt-3.3.8c.diff
+
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -135,7 +138,7 @@ the current Qt library!
 %define build_sub_dirs src plugins/src tools/designer/uilib/ tools/designer/uic tools/qtconfig tools/assistant/lib tools/assistant tutorial
 
 %prep
-%setup -q -n qt3
+%setup -q -n qt%{x11_free}%rversion
 %patch1
 %patch2
 %patch4
