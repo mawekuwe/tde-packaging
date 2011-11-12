@@ -106,6 +106,22 @@ cd build
 %__rm -rf $RPM_BUILD_ROOT
 
 
+%post
+/sbin/ldconfig
+touch --no-create %{_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+
+%postun
+/sbin/ldconfig
+touch --no-create %{_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+
+%post devel
+/sbin/ldconfig
+
+%postun devel
+/sbin/ldconfig
+
 %files 
 %defattr(-,root,root,-)
 %{_bindir}/knetworkmanager

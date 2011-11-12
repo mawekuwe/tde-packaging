@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 5
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -49,20 +49,44 @@ Source5:	pamd.kscreensaver-trinity%{?dist}
 
 
 # TDE for RHEL/Fedora specific patches
-# [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
+## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
 Patch3:		kdebase-3.5.13-kdesu-noignorebutton.patch
-# [kdebase/kdesktop] Modifies "open terminal here" on desktop
+## [kdebase/kdesktop] Modifies "open terminal here" on desktop
 Patch5:		kdebase-3.5.12-desktop-openterminalhere.patch
-# [kdebase/kioslave] Forces HAL backend to use HAL mount options
+## [kdebase/kioslave] Forces HAL backend to use HAL mount options
 Patch6:		kdebase-3.5.12-halmountoptions.patch
-# [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
+## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
 Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
-# [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
+## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
 Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
-# [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
+## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
 Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
-# [kdebase/kicker/kicker/ui]
+## [kdebase/kicker/kicker/ui]
 Patch10:	kdebase-3.5.12-kickoff_unstable.patch
+
+# Fedora 15 Theme: "Lovelock"
+%if 0%{?fedora} == 15
+Requires:	lovelock-backgrounds-single
+%define kde_bg /usr/share/backgrounds/lovelock/default/standard/lovelock.png
+%endif
+
+# Fedora 16 Theme: "Verne"
+%if 0%{?fedora} == 16
+Requires:	verne-backgrounds-single
+%define kde_bg /usr/share/backgrounds/verne/default/standard/verne.png
+%endif
+
+# RHEL 5 Theme
+%if 0%{?rhel} == 5
+Requires:	desktop-backgrounds-basic
+%define kde_bg /usr/share/backgrounds/images/default.jpg
+%endif
+
+# RHEL 6 Theme
+%if 0%{?rhel} == 6
+Requires:	redhat-logos
+%define kde_bg /usr/share/backgrounds/default.png
+%endif
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
@@ -192,6 +216,22 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch9 -p1
 cd kicker/kicker
 %patch10 -p0
+cd -
+
+# Applies an optional distro-specific graphical theme
+%if "%{?kde_bg}" != ""
+# KDM Background
+%__sed -i "kdm/kfrontend/genkdmconf.c" \
+	-e 's,"Wallpaper=isadora.png\n","Wallpaper=%{kde_bg}\n",'
+	
+# TDE user default background
+%__sed -i "kpersonalizer/keyecandypage.cpp" \
+	-e 's,#define DEFAULT_WALLPAPER "isadora.png",#define DEFAULT_WALLPAPER "%{kde_bg}",'
+
+%__sed -i "startkde" \
+	-e 's,/usr/share/wallpapers/isadora.png.desktop,%{kde_bg},' \
+	-e 's,Wallpaper=isadora.png,Wallpaper=%{kde_bg},'
+%endif
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -271,6 +311,10 @@ cd build
 %else
 	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
 %endif
+
+# Moves the XDG configuration files to TDE directory
+%__mkdir_p "%{?buildroot}%{_prefix}/etc"
+%__mv -f "%{?buildroot}%{_sysconfdir}/xdg" "%{?buildroot}%{_prefix}/etc"
 
 
 %clean
@@ -474,14 +518,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/sounds/*
 %{tde_libdir}/*
 %{_libdir}/libkdeinit_*.*
-%{_sysconfdir}/xdg/menus/applications-merged/kde-essential.menu
-%if 0%{?fedora} >= 15 && "%{?_prefix}" != "/usr"
-%exclude %{_sysconfdir}/xdg/menus/kde-information.menu
-%else
-%{_sysconfdir}/xdg/menus/kde-information.menu
-%endif
-%{_sysconfdir}/xdg/menus/kde-screensavers.menu
-%{_sysconfdir}/xdg/menus/kde-settings.menu
+%{_prefix}/etc/xdg/menus/applications-merged/kde-essential.menu
+%{_prefix}/etc/xdg/menus/kde-information.menu
+%{_prefix}/etc/xdg/menus/kde-screensavers.menu
+%{_prefix}/etc/xdg/menus/kde-settings.menu
 /usr/share/xsessions/*.desktop
 # Remove conflicts with redhat-menus
 %if "%{?_prefix}" != "/usr"
@@ -539,6 +579,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Add graphical theme for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
+
 * Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Add "service(graphical-login)"
 - Add kickoff menu fix [TDE Bug #508]

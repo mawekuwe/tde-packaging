@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -257,6 +257,11 @@ install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
 install -p -m 0644 -D %{SOURCE4} %{buildroot}%{_sysconfdir}/lisarc
 install -p -m 0755 -D %{SOURCE5} %{buildroot}%{_initrddir}/lisa
 
+# RHEL 5: Avoids conflict with 'kdenetwork'
+%if 0%{?rhel} == 5
+%__mv -f %{buildroot}%{_sysconfdir}/lisarc %{buildroot}%{_sysconfdir}/lisarc.tde
+%endif
+
 %post
 /sbin/chkconfig --add lisa ||:
 for f in crystalsvg hicolor locolor ; do
@@ -264,6 +269,9 @@ for f in crystalsvg hicolor locolor ; do
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
 done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+if [ -r %{_sysconfdir}/lisarc.tde ] && [ ! -r %{_sysconfdir}/lisarc ]; then
+	cp -f %{_sysconfdir}/lisarc.tde %{_sysconfdir}/lisarc
+fi
 
 %postun
 for f in crystalsvg hicolor locolor ; do
@@ -433,7 +441,7 @@ done
 %else
 %attr(4755,root,root) %{_bindir}/kppp
 %endif
-%config(noreplace) %{_sysconfdir}/lisarc
+%config(noreplace) %{_sysconfdir}/lisarc*
 %config(noreplace) %{_initrddir}/lisa
 %{_libdir}/libkdeinit_*.so
 %{tde_libdir}/*
@@ -465,6 +473,9 @@ done
 
 
 %changelog
+* Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Removes conflict on file 'lisarc' for RHEL 5
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 
