@@ -1,0 +1,13 @@
+Index: ui/k_new_mnu.cpp
+===================================================================
+--- ui/k_new_mnu.cpp	(revision 1259264)
++++ ui/k_new_mnu.cpp	(working copy)
+@@ -3502,6 +3502,8 @@
+                                   descr, "system:/media/" + name, nId++, -1 );
+ 
+         ++it; // skip separator
++	++it;
++	++it;
+     }
+ }
+ 

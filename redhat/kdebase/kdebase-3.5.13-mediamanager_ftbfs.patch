@@ -1,0 +1,10 @@
+--- kdebase/kioslave/media/mediamanager/CMakeLists.txt.ORI	2011-11-08 15:00:40.248406596 -0500
++++ kdebase/kioslave/media/mediamanager/CMakeLists.txt	2011-11-08 15:00:56.417996538 -0500
+@@ -20,6 +20,7 @@
+   ${TDE_INCLUDE_DIR}
+   ${TQT_INCLUDE_DIRS}
+   ${HAL_INCLUDE_DIRS}
++  ${DBUS_TQT_INCLUDE_DIRS}
+ )
+ 
+ link_directories(
