@@ -24,7 +24,7 @@
 %_tde_docdir %{_tde_sharedir}/doc/
 %_tde_htmldir %{_tde_sharedir}/doc/HTML
 %_tde_wallpapersdir %{_tde_sharedir}/wallpapers
-%_tde_icondir %{_tde_sharedir}/icons
+%_tde_icondir %{_tde_iconsdir}
 %_tde_sounddir %{_tde_sharedir}/sounds
 %_tde_locale %{_tde_sharedir}/locale
 %_tde_mimedir %{_tde_sharedir}/mimelnk
@@ -42,7 +42,7 @@
  
 %_tde_platform_version 3.5.13
  
-%tde_runtime_requires Requires: tdebase3-runtime >= %_tde_platform_version qt3 >= 3.3.8c
+%tde_runtime_requires Requires: tdebase3-runtime >= %_tde_platform_version qt3 >= 3.3.8d
  
 %_tde_build_type release
  

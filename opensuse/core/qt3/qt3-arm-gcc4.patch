@@ -1,0 +1,22 @@
+--- src/tools/qglobal.h
++++ src/tools/qglobal.h
+@@ -317,7 +317,7 @@
+    supposedly know what you are doing.) */
+ #  if (defined(__arm__) || defined(__ARMEL__)) && !defined(QT_MOC_CPP)
+ #    define Q_PACKED __attribute__ ((packed))
+-#    if __GNUC__ == 3 && __GNUC_MINOR__ >= 4
++#    if (__GNUC__ == 3 && __GNUC_MINOR__ >= 4) || __GNUC__ > 3
+ #      define Q_NO_PACKED_REFERENCE
+ #    endif
+ #  endif
+--- src/tools/qstring.h
++++ src/tools/qstring.h
+@@ -194,7 +194,7 @@
+     char latin1() const { return ucs > 0xff ? 0 : (char) ucs; }
+     ushort unicode() const { return ucs; }
+ #ifdef Q_NO_PACKED_REFERENCE
+-    ushort &unicode() { return *(&ucs); }
++    ushort &unicode() { return *((ushort*)&ucs); }
+ #else
+     ushort &unicode() { return ucs; }
+ #endif

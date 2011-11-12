@@ -1,0 +1,270 @@
+--- src/dialogs/qcolordialog.cpp
++++ src/dialogs/qcolordialog.cpp
+@@ -60,6 +60,10 @@
+ QColor macGetColor( const QColor& initial, QWidget *parent, const char *name );
+ #endif
+ 
++#ifdef Q_WS_X11
++#include "private/qtkdeintegration_x11_p.h"
++#endif
++
+ //////////// QWellArray BEGIN
+ 
+ struct QWellArrayData;
+@@ -1478,7 +1482,10 @@
+ QColor QColorDialog::getColor( const QColor& initial, QWidget *parent,
+ 			       const char *name )
+ {
+-#if defined(Q_WS_MAC)
++#if defined(Q_WS_X11)
++    if( QKDEIntegration::enabled())
++        return QKDEIntegration::getColor( initial, parent, name );
++#elif defined(Q_WS_MAC)
+     return macGetColor(initial, parent, name);
+ #endif
+ 
+@@ -1516,6 +1523,13 @@
+ 			    QWidget *parent, const char* name )
+ {
+ #if defined(Q_WS_MAC)
++    if( QKDEIntegration::enabled()) {
++        QColor color = QKDEIntegration::getColor( QColor( initial ), parent, name );
++        if( ok )
++            *ok = color.isValid();
++        return color.rgba();
++    }
++#elif defined(Q_WS_MAC)
+     return macGetRgba(initial, ok, parent, name);
+ #endif
+ 
+--- src/dialogs/qfiledialog.cpp
++++ src/dialogs/qfiledialog.cpp
+@@ -92,6 +92,10 @@
+ #include "qvbox.h"
+ #include "qwidgetstack.h"
+ 
++#ifdef Q_WS_X11
++#include "private/qtkdeintegration_x11_p.h"
++#endif
++
+ #ifdef Q_WS_WIN
+ #ifdef QT_THREAD_SUPPORT
+ #  include <private/qmutexpool_p.h>
+@@ -3464,7 +3468,11 @@
+     if ( workingDirectory->isNull() )
+ 	*workingDirectory = ::toRootIfNotExists( QDir::currentDirPath() );
+ 
+-#if defined(Q_WS_WIN)
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++	return QKDEIntegration::getOpenFileNames( filter, workingDirectory, parent, name,
++				    caption, selectedFilter, false ).first();
++#elif defined(Q_WS_WIN)
+     if ( qt_use_native_dialogs && qApp->style().styleHint( QStyle::SH_GUIStyle ) == WindowsStyle )
+ 	return winGetOpenFileName( initialSelection, filter, workingDirectory,
+ 				   parent, name, caption, selectedFilter );
+@@ -3585,7 +3593,11 @@
+     if ( workingDirectory->isNull() )
+ 	*workingDirectory = ::toRootIfNotExists( QDir::currentDirPath() );
+ 
+-#if defined(Q_WS_WIN)
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++	return QKDEIntegration::getSaveFileName( initialSelection, filter, workingDirectory,
++				   parent, name, caption, selectedFilter );
++#elif defined(Q_WS_WIN)
+     if ( qt_use_native_dialogs && qApp->style().styleHint( QStyle::SH_GUIStyle ) == WindowsStyle )
+ 	return winGetSaveFileName( initialSelection, filter, workingDirectory,
+ 				   parent, name, caption, selectedFilter );
+@@ -4475,7 +4487,17 @@
+     if ( workingDirectory )
+ 	wd = *workingDirectory;
+ 
+-#if defined(Q_WS_WIN)
++#if defined(Q_WS_X11)
++    QString initialDir;
++    if ( !dir.isEmpty() ) {
++	QUrlOperator u( dir );
++	if ( QFileInfo( u.path() ).isDir() )
++	    initialDir = dir;
++    } else
++	initialDir = QString::null;
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::getExistingDirectory( initialDir, parent, name, caption );
++#elif defined(Q_WS_WIN)
+     QString initialDir;
+     if ( !dir.isEmpty() ) {
+ 	QUrlOperator u( dir );
+@@ -5636,7 +5658,10 @@
+ 	}
+     }
+ 
+-#if defined(Q_WS_WIN)
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++	return QKDEIntegration::getOpenFileNames( filter, workingDirectory, parent, name, caption, selectedFilter, true );
++#elif defined(Q_WS_WIN)
+     if ( qt_use_native_dialogs && qApp->style().styleHint( QStyle::SH_GUIStyle ) == WindowsStyle )
+ 	return winGetOpenFileNames( filter, workingDirectory, parent, name, caption, selectedFilter );
+ #elif defined(Q_WS_MAC)
+--- src/dialogs/qfontdialog.cpp
++++ src/dialogs/qfontdialog.cpp
+@@ -56,6 +56,10 @@
+ #include <private/qfontdata_p.h>
+ #include <qvalidator.h>
+ 
++#ifdef Q_WS_X11
++#include "private/qtkdeintegration_x11_p.h"
++#endif
++
+ /*!
+   \class QFontDialog qfontdialog.h
+   \ingroup dialogs
+@@ -384,9 +388,15 @@
+     return getFont( ok, 0, parent, name );
+ }
+ 
++extern bool qt_use_native_dialogs;
++
+ QFont QFontDialog::getFont( bool *ok, const QFont *def,
+ 			    QWidget *parent, const char* name)
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::getFont( ok, def, parent, name );
++#endif
+     QFont result;
+     if ( def )
+ 	result = *def;
+--- src/dialogs/qmessagebox.cpp
++++ src/dialogs/qmessagebox.cpp
+@@ -54,6 +54,12 @@
+ #endif
+ 
+ 
++#ifdef Q_WS_X11
++#include "private/qtkdeintegration_x11_p.h"
++#endif
++
++extern bool qt_use_native_dialogs;
++
+ // Internal class - don't touch
+ 
+ class QMessageBoxLabel : public QLabel
+@@ -1110,6 +1116,10 @@
+                               const QString& caption, const QString& text,
+                               int button0, int button1, int button2 )
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::information( parent, caption, text, button0, button1, button2 );
++#endif
+     QMessageBox *mb = new QMessageBox( caption, text, Information,
+                                        button0, button1, button2,
+                                        parent, "qt_msgbox_information", TRUE,
+@@ -1157,6 +1167,10 @@
+                            const QString& caption, const QString& text,
+                            int button0, int button1, int button2 )
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::question( parent, caption, text, button0, button1, button2 );
++#endif
+     QMessageBox *mb = new QMessageBox( caption, text, Question,
+                                        button0, button1, button2,
+                                        parent, "qt_msgbox_information", TRUE,
+@@ -1205,6 +1219,10 @@
+                           const QString& caption, const QString& text,
+                           int button0, int button1, int button2 )
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::warning( parent, caption, text, button0, button1, button2 );
++#endif
+     QMessageBox *mb = new QMessageBox( caption, text, Warning,
+                                        button0, button1, button2,
+                                        parent, "qt_msgbox_warning", TRUE,
+@@ -1253,6 +1271,10 @@
+                            const QString& caption, const QString& text,
+                            int button0, int button1, int button2 )
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::critical( parent, caption, text, button0, button1, button2 );
++#endif
+     QMessageBox *mb = new QMessageBox( caption, text, Critical,
+                                        button0, button1, button2,
+                                        parent, "qt_msgbox_critical", TRUE,
+@@ -1400,6 +1422,11 @@
+                               int defaultButtonNumber,
+                               int escapeButtonNumber )
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::information( parent, caption, text,
++            button0Text, button1Text, button2Text, defaultButtonNumber, escapeButtonNumber );
++#endif
+     return textBox( parent, Information, caption, text,
+                     button0Text, button1Text, button2Text,
+                     defaultButtonNumber, escapeButtonNumber );
+@@ -1442,6 +1469,11 @@
+                            int defaultButtonNumber,
+                            int escapeButtonNumber )
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::question( parent, caption, text,
++            button0Text, button1Text, button2Text, defaultButtonNumber, escapeButtonNumber );
++#endif
+     return textBox( parent, Question, caption, text,
+                     button0Text, button1Text, button2Text,
+                     defaultButtonNumber, escapeButtonNumber );
+@@ -1486,6 +1518,11 @@
+                                  int defaultButtonNumber,
+                                  int escapeButtonNumber )
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::warning( parent, caption, text,
++            button0Text, button1Text, button2Text, defaultButtonNumber, escapeButtonNumber );
++#endif
+     return textBox( parent, Warning, caption, text,
+                     button0Text, button1Text, button2Text,
+                     defaultButtonNumber, escapeButtonNumber );
+@@ -1526,6 +1563,11 @@
+                                   int defaultButtonNumber,
+                                   int escapeButtonNumber )
+ {
++#if defined(Q_WS_X11)
++    if ( qt_use_native_dialogs && QKDEIntegration::enabled())
++        return QKDEIntegration::critical( parent, caption, text,
++            button0Text, button1Text, button2Text, defaultButtonNumber, escapeButtonNumber );
++#endif
+     return textBox( parent, Critical, caption, text,
+                     button0Text, button1Text, button2Text,
+                     defaultButtonNumber, escapeButtonNumber );
+--- src/kernel/qt.h
++++ src/kernel/qt.h
+@@ -313,6 +313,10 @@
+ #endif // Private headers
+ 
+ 
++#ifdef Q_WS_X11
++#include "private/qtkdeintegration_x11_p.h"
++#endif
++
+ #ifdef Q_WS_MAC
+ #include <qaquastyle.h>
+ #include <qmacstyle_mac.h>
+--- src/kernel/qt_x11.pri
++++ src/kernel/qt_x11.pri
+@@ -10,6 +10,9 @@
+ 
+ 	SOURCES += $$KERNEL_CPP/qtaddons_x11.cpp
+ 	PRECOMPILED_HEADER = kernel/qt_pch.h
++        
++        SOURCES += $$KERNEL_CPP/qtkdeintegration_x11.cpp
++        HEADERS += $$KERNEL_H/qtkdeintegration_x11_p.h
+ }
+ 
+ nas {

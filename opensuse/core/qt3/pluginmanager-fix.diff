@@ -1,0 +1,11 @@
+--- src/tools/qgpluginmanager.cpp
++++ src/tools/qgpluginmanager.cpp
+@@ -383,6 +383,8 @@
+ 		sameBasename << (*git).mid( (*git).find( QChar(0xfffd) ) + 1 );
+ 		++git;
+ 	    }
++	    if( !sameBasename.isEmpty())
++		sameBasename.prepend( lib );
+ 
+ 	    if ( sameBasename.isEmpty() ) {
+ 		that->addLibrary( new QComLibrary( lib ) );

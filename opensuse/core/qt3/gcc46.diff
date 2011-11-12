@@ -1,0 +1,56 @@
+Index: src/tools/qvaluelist.h
+===================================================================
+--- src/tools/qvaluelist.h.orig	2011-03-31 20:14:47.200973928 +0200
++++ src/tools/qvaluelist.h	2011-03-31 20:14:55.352615654 +0200
+@@ -50,6 +50,7 @@
+ #ifndef QT_NO_STL
+ #include <iterator>
+ #include <list>
++#include <cstddef>
+ #endif
+ 
+ //#define QT_CHECK_VALUELIST_RANGE
+Index: src/tools/qvaluevector.h
+===================================================================
+--- src/tools/qvaluevector.h.orig	2008-01-15 20:09:13.000000000 +0100
++++ src/tools/qvaluevector.h	2011-03-31 20:15:15.904712567 +0200
+@@ -244,7 +244,7 @@ public:
+     typedef const value_type& const_reference;
+     typedef size_t size_type;
+ #ifndef QT_NO_STL
+-    typedef ptrdiff_t difference_type;
++    typedef std::ptrdiff_t difference_type;
+ #else
+     typedef int difference_type;
+ #endif
+Index: src/tools/qmap.h
+===================================================================
+--- src/tools/qmap.h.orig	2008-01-15 20:09:13.000000000 +0100
++++ src/tools/qmap.h	2011-03-31 20:24:35.802101605 +0200
+@@ -107,7 +107,7 @@ class QMapIterator
+ #endif
+     typedef T          value_type;
+ #ifndef QT_NO_STL
+-    typedef ptrdiff_t  difference_type;
++    typedef std::ptrdiff_t  difference_type;
+ #else
+     typedef int difference_type;
+ #endif
+@@ -223,7 +223,7 @@ class QMapConstIterator
+ #endif
+     typedef T          value_type;
+ #ifndef QT_NO_STL
+-    typedef ptrdiff_t  difference_type;
++    typedef std::ptrdiff_t  difference_type;
+ #else
+     typedef int difference_type;
+ #endif
+@@ -604,7 +604,7 @@ public:
+     typedef value_type& reference;
+     typedef const value_type& const_reference;
+ #ifndef QT_NO_STL
+-    typedef ptrdiff_t  difference_type;
++    typedef std::ptrdiff_t  difference_type;
+ #else
+     typedef int difference_type;
+ #endif

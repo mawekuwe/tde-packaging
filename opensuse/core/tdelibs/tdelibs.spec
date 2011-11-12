@@ -26,7 +26,7 @@ BuildRequires:  db-devel libacl-devel libattr-devel unsermake update-desktop-fil
 BuildRequires:  unzip
 BuildRequires:  avahi-compat-mDNSResponder-devel fdupes libbz2-devel libjasper-devel
 BuildRequires:  libdrm-devel tde-filesystem cmake
-URL:            http://www.trinitydesktop.org
+URL:            http://www.trinitydesktop.org/
 License:        BSD3c(or similar) ; GPLv2+ ; LGPLv2.1+
 Group:          System/GUI/TDE
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -40,6 +40,7 @@ Requires:       openssl tdelibs-default-style
 Requires:       hicolor-icon-theme
 Recommends:     ispell enscript
 Requires:       sudo
+Requires:       libtqt4
 Source0:        kdelibs-%{version}.tar.bz2
 Source3:        baselibs.conf
 Source4:        api_docu_description
@@ -366,7 +367,8 @@ CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"
   export PATH=/usr/lib/mit/bin:$PATH
   # fast-malloc is not needed anymore
 
-%cmake_tde -d build \
+%cmake_tde -d build -- \
+        -DCMAKE_SKIP_RPATH=OFF \
 	-DKDE_MALLOC_FULL=OFF \
 	-DKDE_MALLOC=OFF \
 	-DKDE_DISTRIBUTION="$DISTRI" \

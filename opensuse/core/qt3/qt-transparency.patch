@@ -1,0 +1,49 @@
+--- src/kernel/qapplication.cpp
++++ src/kernel/qapplication.cpp
+@@ -317,6 +317,7 @@
+ void qt_cleanup();
+ #if defined(Q_WS_X11)
+ void qt_init( Display* dpy, Qt::HANDLE, Qt::HANDLE );
++void qt_init( int *, char **, Display* dpy, Qt::HANDLE, Qt::HANDLE );
+ #endif
+ Q_EXPORT bool qt_tryModalHelper( QWidget *widget, QWidget **rettop );
+ 
+@@ -905,7 +906,7 @@
+ 
+ 	qt_init( &argc, argv, GuiClient );
+     } else {
+-	qt_init(dpy, visual, colormap);
++	qt_init( &argc, argv, dpy, visual, colormap);
+     }
+ 
+     process_cmdline( &argc, argv );
+--- src/kernel/qapplication_x11.cpp
++++ src/kernel/qapplication_x11.cpp
+@@ -197,6 +197,7 @@
+ static Display *appDpy		= 0;		// X11 application display
+ static char    *appDpyName	= 0;		// X11 display name
+ static bool	appForeignDpy	= FALSE;        // we didn't create display
++Q_EXPORT bool qt_no_foreign_hack = false;
+ static bool	appSync		= FALSE;	// X11 synchronization
+ #if defined(QT_DEBUG)
+ static bool	appNoGrab	= FALSE;	// X11 grabbing enabled
+@@ -1610,7 +1611,7 @@
+     setlocale( LC_ALL, "" );		// use correct char set mapping
+     setlocale( LC_NUMERIC, "C" );	// make sprintf()/scanf() work
+ 
+-    if ( display ) {
++    if ( display && ! qt_no_foreign_hack ) {
+ 	// Qt part of other application
+ 
+ 	appForeignDpy = TRUE;
+@@ -2390,6 +2391,10 @@
+     qt_init_internal( 0, 0, display, visual, colormap );
+ }
+ 
++void qt_init( int *argcptr, char **argv, Display *display, Qt::HANDLE visual, Qt::HANDLE colormap )
++{
++    qt_init_internal( argcptr, argv, display, visual, colormap );
++}
+ 
+ /*****************************************************************************
+   qt_cleanup() - cleans up when the application is finished
