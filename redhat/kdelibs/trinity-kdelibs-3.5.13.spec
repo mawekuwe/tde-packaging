@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -145,6 +145,13 @@ cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
 %{tde_libdir}
 EOF
 
+# Moves the XDG configuration files to TDE directory
+%__install -p -D -m644 \
+	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" \
+	"%{?buildroot}%{_prefix}/etc/xdg/menus/kde-applications.menu"
+%__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
+
+
 
 %clean
 %__rm -rf %{?buildroot}
@@ -258,8 +265,8 @@ EOF
 %endif
 %{_sysconfdir}/ld.so.conf.d/trinity.conf
 
-# Provided by 'redhat-menus' package
-%exclude %{_sysconfdir}/xdg/menus/applications.menu
+# Avoid conflict with 'redhat-menus' package
+%{_prefix}/etc/xdg/menus/kde-applications.menu
 
 # New in TDE 3.5.13
 %{_bindir}/kdetcompmgr
@@ -285,6 +292,9 @@ EOF
 
 
 %changelog
+* Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
+
 * Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Add missing BuildRequires
 

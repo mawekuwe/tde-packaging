@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 6
+%define release 7
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -63,29 +63,32 @@ Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
 Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
 ## [kdebase/kicker/kicker/ui]
 Patch10:	kdebase-3.5.12-kickoff_unstable.patch
+## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
+Patch11:	kdebase-3.5.13-startkde_icon.patch
+
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
 Requires:	lovelock-backgrounds-single
-%define kde_bg /usr/share/backgrounds/lovelock/default/standard/lovelock.png
+%define tde_bg /usr/share/backgrounds/lovelock/default/standard/lovelock.png
 %endif
 
 # Fedora 16 Theme: "Verne"
 %if 0%{?fedora} == 16
 Requires:	verne-backgrounds-single
-%define kde_bg /usr/share/backgrounds/verne/default/standard/verne.png
+%define tde_bg /usr/share/backgrounds/verne/default/standard/verne.png
 %endif
 
 # RHEL 5 Theme
 %if 0%{?rhel} == 5
 Requires:	desktop-backgrounds-basic
-%define kde_bg /usr/share/backgrounds/images/default.jpg
+%define tde_bg /usr/share/backgrounds/images/default.jpg
 %endif
 
 # RHEL 6 Theme
 %if 0%{?rhel} == 6
 Requires:	redhat-logos
-%define kde_bg /usr/share/backgrounds/default.png
+%define tde_bg /usr/share/backgrounds/default.png
 %endif
 
 BuildRequires:	tqtinterface-devel
@@ -217,20 +220,21 @@ Protocol handlers (KIOslaves) for personal information management, including:
 cd kicker/kicker
 %patch10 -p0
 cd -
+%patch11 -p1
 
 # Applies an optional distro-specific graphical theme
-%if "%{?kde_bg}" != ""
+%if "%{?tde_bg}" != ""
 # KDM Background
 %__sed -i "kdm/kfrontend/genkdmconf.c" \
-	-e 's,"Wallpaper=isadora.png\n","Wallpaper=%{kde_bg}\n",'
+	-e 's,"Wallpaper=isadora.png\n","Wallpaper=%{tde_bg}\n",'
 	
 # TDE user default background
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
-	-e 's,#define DEFAULT_WALLPAPER "isadora.png",#define DEFAULT_WALLPAPER "%{kde_bg}",'
+	-e 's,#define DEFAULT_WALLPAPER "isadora.png",#define DEFAULT_WALLPAPER "%{tde_bg}",'
 
 %__sed -i "startkde" \
-	-e 's,/usr/share/wallpapers/isadora.png.desktop,%{kde_bg},' \
-	-e 's,Wallpaper=isadora.png,Wallpaper=%{kde_bg},'
+	-e 's,/usr/share/wallpapers/isadora.png.desktop,%{tde_bg},' \
+	-e 's,Wallpaper=isadora.png,Wallpaper=%{tde_bg},'
 %endif
 
 %build
@@ -579,6 +583,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Sun Nov 13 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
+- Add distribution-specific start button icon
+
 * Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
 - Add graphical theme for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 - Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE

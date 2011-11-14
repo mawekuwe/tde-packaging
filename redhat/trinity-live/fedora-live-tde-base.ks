@@ -9,8 +9,11 @@ repo --name=trinity-extras-noarch --baseurl=http://trinity.mangafrance.com/f$rel
 %packages
 
 ### The KDE-Desktop
-
 trinity-desktop
+hal
+
+# TDE is missing a Network Applet, so we use Gnome...
+NetworkManager-gnome
 
 
 ### fixes
@@ -81,6 +84,7 @@ touch /usr/share/icons/hicolor/
 
 # Create user Desktop directory
 mkdir -p /home/liveuser/Desktop
+mkdir -p /home/liveuser/Documents
 
 # make sure to set the right permissions and selinux contexts
 chown -R liveuser:liveuser /home/liveuser/
@@ -90,5 +94,20 @@ restorecon -R /home/liveuser/
 sed -i 's/PRELINKING=yes/PRELINKING=no/' /etc/sysconfig/prelink
 
 EOF
+
+# Sets 'nm-applet' to run automatically
+mkdir -p /home/liveuser/.trinity/Autostart
+cat <<EOF >/home/liveuser/.trinity/Autostart/nm-applet
+#!/bin/sh
+
+# Waits until kicker is started, so that
+# nm-applet can dock correctly.
+while ! pidof kicker; do
+	sleep 1
+done
+sleep 3
+/usr/bin/nm-applet
+EOF
+chmod +x /home/liveuser/.trinity/Autostart/nm-applet
 
 %end

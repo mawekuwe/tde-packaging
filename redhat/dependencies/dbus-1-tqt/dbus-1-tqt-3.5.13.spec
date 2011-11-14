@@ -37,8 +37,6 @@ BuildRequires:	gcc-c++
 BuildRequires:	dbus-devel
 BuildRequires:	tqtinterface-devel
 
-#Provides:		dbus-1-qt
-
 %description
 Dbus TQT Interface
 
@@ -54,7 +52,7 @@ Development files for %{name}
 
 %prep
 %setup -q -n dependencies/%{name}
-%patch0 -p1
+#patch0 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
