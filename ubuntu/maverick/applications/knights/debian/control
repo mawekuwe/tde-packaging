@@ -4,13 +4,13 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Jose Carlos Medeiros <debian@psabs.com.br>
 Uploaders: Ola Lundqvist <opal@debian.org>
-Build-Depends: debhelper (>= 5.0.0), kdelibs4-trinity-dev, poxml, dpatch, imagemagick, libx11-dev, libxext-dev, libxinerama-dev, libxpm-dev, x-dev | x11proto-core-dev | libx11-dev, libasound2-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0.0), tdelibs4-trinity-dev, poxml, dpatch, imagemagick, libx11-dev, libxext-dev, libxinerama-dev, libxpm-dev, x-dev | x11proto-core-dev | libx11-dev, libasound2-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://knights.sourceforge.net/
 
 Package: knights-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, kdebase-kio-plugins-trinity
+Depends: ${shlibs:Depends}, tdebase-kio-plugins-trinity
 Replaces: knights-kde3 (<< 4:3.5.13)
 Breaks: knights-kde3 (<< 4:3.5.13)
 Suggests: gnuchess | crafty | sjeng, knights-themepack-trinity

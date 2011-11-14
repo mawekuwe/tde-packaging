@@ -1,0 +1,210 @@
+Source: tdeartwork-trinity
+Section: kde
+Priority: optional
+Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Sune Vuorela <debian@pusling.com>
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-trinity-dev, gawk, gettext, sharutils, tdebase-trinity-dev, kwin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies, automake, autoconf, libtool, libltdl-dev
+Build-Conflicts: autoconf2.13, nvidia-glx
+Standards-Version: 3.8.4
+
+Package: tdeartwork-trinity
+Architecture: all
+Section: kde
+Replaces: tdeartwork-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-kde3 (<< 4:3.5.13)
+Depends: tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), kscreensaver-trinity (>= ${Source-Version})
+Recommends: kscreensaver-xsavers-trinity
+Description: themes, styles and more from the official Trinity release
+ KDE (the K Desktop Environment) is a powerful Open Source graphical
+ desktop environment for Unix workstations. It combines ease of use,
+ contemporary functionality, and outstanding graphical design with the
+ technological superiority of the Unix operating system.
+ .
+ This metapackage includes a collection of artistic extras (themes, widget
+ styles, screen savers, wallpaper, icons, emoticons and so on) provided
+ with the official release of KDE.
+ .
+ Homepage: http://artist.kde.org 
+
+Package: tdeartwork-emoticons-trinity
+Architecture: all
+Section: kde
+Replaces: tdeartwork-emoticons-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-emoticons-kde3 (<< 4:3.5.13)
+Enhances: kopete-trinity
+Description: emoticon collections for KDE chat clients
+ This package contains several collections of emoticons used by official
+ and unofficial KDE chat clients, such as Kopete and Konversation.
+ .
+ This package is part of KDE, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: tdeartwork-misc-trinity
+Architecture: all
+Section: kde
+Replaces: tdeartwork-misc-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-misc-kde3 (<< 4:3.5.13)
+Suggests: kworldclock
+Description: various multimedia goodies released with KDE
+ This package contains miscellaneous multimedia goodies for KDE.
+ Included are additional KDE sounds and kworldclock themes.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: tdeartwork-style-trinity
+Architecture: any
+Section: kde
+Replaces: tdeartwork-style-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-style-kde3 (<< 4:3.5.13)
+Depends: ${shlibs:Depends}
+Description: widget styles released with Trinity
+ This package contains additional widget styles for Trinity. Widget styles
+ can be used to customise the look and feel of interface components such
+ as buttons, scrollbars and so on.  They can be applied using the style
+ manager in the KDE Control Centre.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: tdeartwork-theme-icon-trinity
+Architecture: all
+Section: kde
+Replaces: tdeartwork-theme-icon-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-theme-icon-kde3 (<< 4:3.5.13)
+Recommends: kdesktop-trinity, kicker-trinity
+Description: icon themes released with Trinity
+ This package contains additional icon themes for Trinity. Icon themes can be
+ used to customise the appearance of standard icons throughout KDE. They
+ can be applied using the icon manager in the Trinity Control Centre.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: tdeartwork-theme-window-trinity
+Architecture: any
+Section: kde
+Replaces: tdeartwork-theme-window-kde3 (<< 4:3.5.13)
+Breaks: tdeartwork-theme-window-kde3 (<< 4:3.5.13)
+Depends: ${shlibs:Depends}
+Description: window decoration themes released with Trinity
+ This package contains additional window decoration themes for Trinity. Window
+ decoration themes can be used to customise the look of window borders and
+ buttons, and can be applied using the window decoration manager in the Trinity
+ Control Center.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: kdewallpapers-trinity
+Architecture: all
+Section: kde
+Replaces: kdewallpapers-kde3 (<< 4:3.5.13)
+Breaks: kdewallpapers-kde3 (<< 4:3.5.13)
+Suggests: kwin-trinity | x-window-manager
+Description: wallpapers released with Trinity
+ This package contains additional wallpapers for Trinity. Wallpapers can be
+ applied using the background manager in the KDE Control Centre.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: kscreensaver-trinity
+Architecture: any
+Section: kde
+Replaces: kscreensaver-kde3 (<< 4:3.5.13)
+Breaks: kscreensaver-kde3 (<< 4:3.5.13)
+Depends: ${shlibs:Depends}, tdebase-trinity-bin
+Recommends: kwin-trinity, kscreensaver-xsavers-trinity (= ${Source-Version})
+Description: additional screen savers released with Trinity
+ This package contains the screen savers for Trinity. They can be tested and
+ selected within the Appearance and Themes section of the Trinity Control
+ Center.
+ .
+ The hooks for the standard xscreensavers are no longer part of this
+ package. To select and/or configure the standard xscreensavers through
+ the KDE Control Center, install the separate package kscreensaver-xsavers.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: kscreensaver-xsavers-trinity
+Architecture: any
+Section: kde
+Replaces: kscreensaver-xsavers-kde3 (<< 4:3.5.13)
+Breaks: kscreensaver-xsavers-kde3 (<< 4:3.5.13)
+Depends: ${shlibs:Depends}, tdebase-trinity-bin, xscreensaver-data
+Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version}), xscreensaver-gl
+Suggests: kscreensaver-xsavers-webcollage-trinity
+Description: Trinity hooks for standard xscreensavers
+ This package allows a smooth integration of the standard xscreensavers
+ into Trinity. With this package installed you can select and/or configure
+ the standard xscreensavers through the Appearances and Themes section of
+ the Trinity Control Centre.
+ .
+ Note that this package does not actually contain any screensavers itself.
+ For the additional screensavers shipped with Trinity, see the separate package
+ kscreensaver-trinity. This package does depend on the xscreensaver package, and
+ recommend the xscreensaver-gl package, as well as contain the necessary
+ files to integrate these packages into Trinity.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: kscreensaver-xsavers-webcollage-trinity
+Architecture: all
+Section: kde
+Replaces: kscreensaver-xsavers-webcollage-kde3 (<< 4:3.5.13)
+Breaks: kscreensaver-xsavers-webcollage-kde3 (<< 4:3.5.13)
+Depends: kscreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
+Description: webcollage screensaver Trinity hook
+ This package give access to the webcollage screensaver through the Trinity
+ screensaver configuration.
+ .
+ This screensaver downloads random pictures from the internet and creates
+ a collage as screensaver.
+ .
+ IMPORTANT NOTICE: The internet contains all kinds of pictures, some of which
+ you might find inappropriate and offensive.
+ You are specially discouraged to install this package if you are using 
+ your computer in a working environment or in an environment with children.
+ .
+ If you still want to install this package, please read the file
+ /usr/share/doc/kscreensaver-xsavers-webcollage/README.Debian after the 
+ installation.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: kscreensaver-xsavers-extra-trinity
+Architecture: all
+Section: kde
+Replaces: kscreensaver-xsavers-extra-kde3 (<< 4:3.5.13)
+Breaks: kscreensaver-xsavers-extra-kde3 (<< 4:3.5.13)
+Depends: ${shlibs:Depends}, kscreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
+Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version})
+Description: Trinity hooks for standard xscreensavers
+ This package allows a smooth integration of the universe xscreensavers
+ into Trinity. With this package installed you can select and/or configure
+ the universe xscreensavers through the Appearances and Themes section of
+ the Trinity Control Centre.
+ .
+ Note that this package does not actually contain any screensavers itself.
+ For the additional screensavers shipped with KDE, see the separate package
+ kscreensaver.
+ .
+ This package is part of Trinity, and a component of the KDE artwork module.
+ See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
+
+Package: tdeartwork-trinity-dbg
+Section: libdevel
+Architecture: any
+Replaces: tdeartwork-kde3-dbg (<< 4:3.5.13)
+Breaks: tdeartwork-kde3-dbg (<< 4:3.5.13)
+Depends: tdelibs-trinity-dbg
+Priority: extra
+Description: debugging symbols for tdeartwork-trinity
+ This package contains the debugging symbols associated with tdeartwork.
+ They will automatically be used by gdb for debugging tdeartwork-related
+ issues.

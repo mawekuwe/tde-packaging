@@ -1,0 +1,3 @@
+# The syntax error is just perlpod docs appearing after the script exits.
+tdesdk-scripts: shell-script-fails-syntax-check ./opt/trinity/bin/cvsversion
+tdesdk-scripts: shell-script-fails-syntax-check ./opt/trinity/bin/kde-build

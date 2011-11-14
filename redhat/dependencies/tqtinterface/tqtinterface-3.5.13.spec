@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -27,12 +27,14 @@ Version:	%{version}
 Release:	%{release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
+Group:		System Environment/Libraries
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}.tar.gz
 
 
@@ -45,8 +47,10 @@ BuildRequires:	pth-devel
 Trinity QT Interface
 
 %package devel
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - Development files
+Requires:	%{name} = %{version}-%{release}
+Requires:	qt3-devel >= 3.3.8d
 
 %description devel
 Development files for %{name}
@@ -75,13 +79,16 @@ cd build
 %install
 %__rm -rf %{?buildroot}
 %__mkdir_p %{?buildroot}%{_includedir}
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
 
-# Fix 'tqt.pc': UIC executable is not correct
-sed -i %{?buildroot}%{_libdir}/pkgconfig/tqt.pc \
-  -e '/^uic_executable=.*/ s,^\(uic_executable=\).*,\1%{_bindir}/uic-tqt,'
+# RHEL 5: add newline at end of include files to avoid warnings
+%if 0%{?rhel} && 0%{?rhel} <= 5
+for i in %{?buildroot}%{_includedir}/*.h; do
+  echo "" >>${i}
+done
+%endif
 
-# Install 'cmake' modules for a specific package (for later use)
+# Install 'cmake' modules for development use
 %__mkdir_p %{?buildroot}%{cmake_modules_dir}
 for i in cmake/modules/*.cmake; do
   install -m 644 $i %{?buildroot}%{cmake_modules_dir}
@@ -103,6 +110,12 @@ done
 
 
 %changelog
+* Sun Nov 06 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add missing Requires
+
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Sun Aug 28 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Built with future TDE version (3.5.13 + cmake + QT3.3.8d)

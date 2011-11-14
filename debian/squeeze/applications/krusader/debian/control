@@ -12,8 +12,8 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: md5deep | cfv, kedit-trinity, khexedit-trinity, konsole-trinity, kmail-trinity,
  krename-trinity, kdiff3-trinity | kompare-trinity | xxdiff, ark-trinity, arj, bzip2, cpio, lha,
- unrar | unrar-free | rar, rpm, unace, unzip, zip, p7zip, kdebase-trinity-bin,
- kdebase-kio-plugins-trinity
+ unrar | unrar-free | rar, rpm, unace, unzip, zip, p7zip, tdebase-trinity-bin,
+ tdebase-kio-plugins-trinity
 Description: twin-panel (commander-style) file manager for KDE (and other desktops)
  Krusader is a simple, easy, powerful, twin-panel (commander-style) file
  manager for KDE and other desktops, similar to Midnight Commander (C) or Total

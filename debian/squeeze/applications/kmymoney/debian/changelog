@@ -246,7 +246,7 @@ kmymoney2 (0.8.4-4) unstable; urgency=low
 
 kmymoney2 (0.8.4-3) unstable; urgency=low
 
-  * export LDFLAGS=-lgwenhywfar -laqbanking -lqbanking -lkdeui
+  * export LDFLAGS=-lgwenhywfar -laqbanking -lqbanking -ltdeui
    -- Fixes: FTBFS in sid (problem with kbanking) (Closes: #373707)
 
  -- Mark Purcell <msp@debian.org>  Wed, 21 Jun 2006 16:34:03 +0100
@@ -386,7 +386,7 @@ kmymoney2 (0.8-3) unstable; urgency=low
 kmymoney2 (0.8-2) experimental; urgency=low
 
   * C++ migration
-  * Build-Depends: kdelibs4-dev (>= 4:3.4.2-1)
+  * Build-Depends: tdelibs4-dev (>= 4:3.4.2-1)
 
  -- Mark Purcell <msp@debian.org>  Fri, 19 Aug 2005 07:22:23 +0100
 

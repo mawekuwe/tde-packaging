@@ -1,4 +1,4 @@
-# provided by kdelibs
+# provided by tdelibs
 kdmtheme: desktop-command-not-in-package ./usr/share/applications/kde/kdmtheme.desktop kcmshell
 # kcontrol module
 kdmtheme: desktop-entry-invalid-category X-KDE-settings-system ./usr/share/applications/kde/kdmtheme.desktop

@@ -7,7 +7,7 @@ Uploaders: @@@UPLOADERS@@@
 Build-Depends: cdbs,
  debhelper (>= 7),
  pkg-config,
- kdelibs4-trinity-dev,
+ tdelibs4-trinity-dev,
  libnm-util-dev (>= 0.7.0),
  libnm-glib-dev (>= 0.7.0),
  network-manager-dev (>= 0.7.0),

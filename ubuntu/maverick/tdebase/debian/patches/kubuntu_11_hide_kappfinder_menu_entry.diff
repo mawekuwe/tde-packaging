@@ -1,0 +1,7 @@
+--- tdebase/kappfinder/kappfinder.desktop	2005-03-17 01:08:26.659629872 +0000
++++ tdebase/kappfinder/kappfinder.desktop	2005-03-17 01:08:34.189485160 +0000
+@@ -64,3 +64,4 @@
+ Name[zh_CN]=菜单更新工具
+ X-DCOP-ServiceType=Multi
+ Categories=Qt;KDE;Settings;
++NoDisplay=true

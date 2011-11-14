@@ -1,3 +1,0 @@
-krec: no-shlibs-control-file opt/trinity/lib/libkdeinit_krec.so
-krec: postinst-must-call-ldconfig opt/trinity/lib/libkdeinit_krec.so
-krec: postrm-should-call-ldconfig opt/trinity/lib/libkdeinit_krec.so

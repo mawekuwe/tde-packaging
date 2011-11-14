@@ -26,16 +26,15 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+Prefix:    %{_prefix}
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 %if "%{?_prefix}" == "/usr"
 Obsoletes: k3b
 %endif
 
 Group:   Applications/Archiving
 License: GPLv2+
-
-Prefix:		%{_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
 
 Source0: k3b-%{version}.tar.gz
 Source1: k3b-i18n-1.0.5.tar.bz2
@@ -62,7 +61,7 @@ BuildRequires: dbus-qt-devel hal-devel
 BuildRequires: flac-devel
 BuildRequires: gettext
 BuildRequires: libdvdread-devel
-%if 0%{?fedora} >= 15 || 0%{?rhel} && 0%{?rhel} <= 5
+%if 0%{?fedora} >= 15 || 0%{?rhel} <= 5
 BuildRequires: libmpcdec-devel
 %else
 BuildRequires: musepack-tools-devel
@@ -269,7 +268,7 @@ update-desktop-database -q &> /dev/null
 * Sun Dec 19 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.12-2
 - Add i18n translations
 - Add patches from RHEL 6.0 (except Patch106, redundant with our 'patch0')
-- Renamed 'patch0' (Thales) to 'patch106'
+- Renamed 'patch0' to 'patch106'
 
 * Fri Dec 17 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
 - Add macro _kde3_prefix to define custom installation prefix (ex: /opt/kde3)

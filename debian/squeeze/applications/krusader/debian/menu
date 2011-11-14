@@ -14,4 +14,4 @@
 	title="krusader - root-mode (File Manager)"\
 	icon32x32="/usr/share/pixmaps/krusader_root.xpm"\
 	icon16x16="/usr/share/pixmaps/krusader_root-16.xpm"\
-	command="kdesu -c /opt/trinity/bin/krusader"
+	command="tdesu -c /opt/trinity/bin/krusader"

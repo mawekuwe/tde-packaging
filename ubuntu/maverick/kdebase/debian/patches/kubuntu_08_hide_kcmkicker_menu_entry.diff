@@ -1,7 +1,0 @@
---- kdebase/kicker/kicker/kcmkicker.desktop	2005-03-17 01:03:22.645846992 +0000
-+++ kdebase/kicker/kicker/kcmkicker.desktop	2005-03-17 01:03:30.907591016 +0000
-@@ -67,3 +67,4 @@
- X-KDE-StartupNotify=true
- OnlyShowIn=KDE;
- Categories=Qt;KDE;Settings;
-+NoDisplay=true

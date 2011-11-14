@@ -46,7 +46,7 @@ knetload (2.3-3.1) unstable; urgency=low
 
 knetload (2.3-3) unstable; urgency=low
 
-  * Built with gcc-4.0 and against kdelibs 4:3.4.2.
+  * Built with gcc-4.0 and against tdelibs 4:3.4.2.
   * New maintainer email address.
   * Complies with new standards version (3.6.2).
   * Updated Free Software Foundation address in debian/copyright to new 

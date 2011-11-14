@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Steffen Joeris <steffen.joeris@skolelinux.de>
-Build-Depends: autotools-dev, debhelper (>= 4.1.0), cdbs (>= 0.4.0), scons (>= 0.96), imagemagick, kdelibs4-trinity-dev, chrpath, bison, flex
+Build-Depends: autotools-dev, debhelper (>= 4.1.0), cdbs (>= 0.4.0), scons (>= 0.96), imagemagick, tdelibs4-trinity-dev, chrpath, bison, flex
 Standards-Version: 3.8.4
 
 Package: abakus-trinity

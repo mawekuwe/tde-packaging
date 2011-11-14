@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Modestas Vainius <modestas@vainius.eu>
-Build-Depends: debhelper (>= 5.0), cdbs (>= 0.4.27-3), kdelibs4-trinity-dev, xsltproc, docbook-xsl, libxi-dev, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0), cdbs (>= 0.4.27-3), tdelibs4-trinity-dev, xsltproc, docbook-xsl, libxi-dev, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 DM-Upload-Allowed: yes
 Homepage: http://konversation.kde.org/
@@ -40,7 +40,7 @@ Priority: extra
 Replaces: konversation-kde3-dbg (<< 4:3.5.13)
 Breaks: konversation-kde3-dbg (<< 4:3.5.13)
 Depends: konversation-trinity (= ${binary:Version})
-Recommends: kdelibs-trinity-dbg
+Recommends: tdelibs-trinity-dbg
 Description: debugging symbols for konversation
  This package contains the debugging symbols associated with konversation.
  They will automatically be used by gdb for debugging konversation-related

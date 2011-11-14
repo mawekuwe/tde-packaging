@@ -2,7 +2,7 @@ Source: kmyfirewall-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5.0.51), kdelibs4-trinity-dev (>= 3.3.0), chrpath, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0.51), tdelibs4-trinity-dev (>= 3.3.0), chrpath, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://kmyfirewall.sourceforge.net/
 

@@ -1,3 +1,0 @@
-kcalc: no-shlibs-control-file opt/trinity/lib/libkdeinit_kcalc.so
-kcalc: postinst-must-call-ldconfig opt/trinity/lib/libkdeinit_kcalc.so
-kcalc: postrm-should-call-ldconfig opt/trinity/lib/libkdeinit_kcalc.so

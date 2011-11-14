@@ -1,0 +1,7 @@
+--- tdebase-3.5.7/kfind/Kfind.desktop
++++ tdebase-3.5.7/kfind/Kfind.desktop
+@@ -73,3 +73,4 @@
+ X-KDE-StartupNotify=true
+ OnlyShowIn=KDE;
+ Categories=Qt;KDE;Core;
++NoDisplay=true

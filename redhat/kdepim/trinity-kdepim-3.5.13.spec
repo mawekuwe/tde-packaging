@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -14,6 +14,13 @@
 BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
+
+# KDEPIM specific features
+%if 0%{?fedora}
+%define with_gnokii 1
+%else
+%define with_gnokii 0
+%endif
 
 
 Name:		trinity-kdepim
@@ -29,21 +36,35 @@ Summary:	PIM (Personal Information Manager) applications
 Prefix:		%{_prefix}
 
 Source0:	kdepim-%{version}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	tqtinterface
-BuildRequires:	trinity-arts
-BuildRequires:	trinity-kdelibs
+BuildRequires:	tqtinterface-devel
+BuildRequires:	trinity-arts-devel
+BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	gpgme-devel
 BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
 BuildRequires:	libical-devel
+BuildRequires:	boost-devel
+
+BuildRequires:	libcaldav-devel
+BuildRequires:	libcarddav-devel
+
+%if 0%{?with_gnokii}
 BuildRequires:	gnokii-devel
+%endif
 
 %if 0%{?fedora} >= 15
 BuildRequires:	flex-static
+%else
+%if 0%{?rhel} <= 5
+BuildRequires:	trinity-libcurl-devel
+%endif
 %endif
 
 Requires:	trinity-kdelibs
+Requires:	libcaldav
+Requires:	libcarddav
 
 %description
 PIM (Personal Information Manager) applications.
@@ -52,6 +73,7 @@ PIM (Personal Information Manager) applications.
 %package devel
 Requires:	%{name}
 Summary:	%{name} - Development files
+Group: Development/Libraries
 %description devel
 Development files for %{name}.
 
@@ -73,7 +95,11 @@ cd build
   -DWITH_ARTS=ON \
   -DWITH_SASL=ON \
   -DWITH_NEWDISTRLISTS=ON  \
+%if 0%{?with_gnokii}
   -DWITH_GNOKII=ON \
+%else
+  -DWITH_GNOKII=OFF \
+%endif
   -DWITH_EXCHANGE=ON \
   -DWITH_EGROUPWARE=ON \
   -DWITH_KOLAB=ON \
@@ -84,18 +110,19 @@ cd build
   -DWITH_BIRTHDAYS=ON \
   -DWITH_NEWEXCHANGE=ON \
   -DWITH_SCALIX=ON \
-  -DWITH_CALDAV=OFF \
-  -DWITH_CARDDAV=OFF \
+  -DWITH_CALDAV=ON \
+  -DWITH_CARDDAV=ON \
   -DWITH_INDEXLIB=ON \
   -DBUILD_ALL=ON \
   ..
 
-%__make %{?_smp_mflags}
+# Do not use %{?_smp_mflags} !
+%__make 
 
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
 
 %clean
 %__rm -rf %{?buildroot}
@@ -116,11 +143,13 @@ export PATH="%{_bindir}:${PATH}"
 %{_datadir}/config.kcfg/*
 %{_libdir}/lib*.so.*
 %{tde_libdir}/*.so
+#%{tde_libdir}/*.so.*
 %{tde_libdir}/plugins/designer/*.so
 %{_datadir}/servicetypes/*
 %{_libdir}/kconf_update_bin/*
 %{_libdir}/libakregatorprivate.so
 %{_libdir}/libkmailprivate.so
+%{_libdir}/libkmobiledevice.so
 %{tde_docdir}/HTML/en/*
 
 %files devel
@@ -132,8 +161,15 @@ export PATH="%{_bindir}:${PATH}"
 %{tde_libdir}/plugins/designer/*.la
 %exclude %{_libdir}/libakregatorprivate.so
 %exclude %{_libdir}/libkmailprivate.so
+%exclude %{_libdir}/libkmobiledevice.so
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Mon Sep 05 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-0
 - Import to GIT

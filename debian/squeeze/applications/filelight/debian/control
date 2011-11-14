@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Raúl Sánchez Siles <rasasi78@gmail.com>
 Standards-Version: 3.8.4
-Build-Depends: debhelper (>= 5.0), cdbs, kdelibs4-trinity-dev, xutils, chrpath, gettext, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0), cdbs, tdelibs4-trinity-dev, xutils, chrpath, gettext, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
 Homepage: http://www.methylblue.com/filelight/
 
 Package: filelight-trinity

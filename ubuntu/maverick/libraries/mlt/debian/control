@@ -7,7 +7,7 @@ Homepage: http://mlt.sourceforge.net/
 Standards-Version: 3.8.3
 Build-Depends: debhelper (>= 5), libdv4-dev, libquicktime-dev (>= 2:1.0.0),
  libvorbis-dev, libsdl-dev | libsdl1.2-dev, libgtk2.0-dev, libjack-dev, quilt,
- libsamplerate-dev, libmad0-dev, kdelibs4-trinity-dev, imagemagick, ffmpeg, libflac-dev,
+ libsamplerate-dev, libmad0-dev, tdelibs4-trinity-dev, imagemagick, ffmpeg, libflac-dev,
  libavcodec-dev, libxml2-dev, ladspa-sdk, libavutil-dev, libxcursor-dev,
  libxinerama-dev, libxrandr-dev, libxrender-dev, libavformat-dev,
  libswscale-dev, libasound2-dev, libsox-dev

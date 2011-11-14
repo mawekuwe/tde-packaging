@@ -1,0 +1,13 @@
+debian/icons/tdesvn.xpm	/opt/trinity/share/pixmaps/
+debian/tmp/opt/trinity/bin/
+debian/tmp/opt/trinity/lib/libtdesvnpart.*
+debian/tmp/opt/trinity/share/apps/tdesvn/
+debian/tmp/opt/trinity/share/apps/tdesvnpart/
+debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/
+debian/tmp/opt/trinity/share/apps/kconf_update/
+debian/tmp/opt/trinity/share/icons/
+debian/tmp/opt/trinity/share/locale/*/LC_MESSAGES/*.mo
+debian/tmp/opt/trinity/share/config.kcfg/
+debian/tmp/opt/trinity/share/applications/kde/*.desktop
+debian/tmp/opt/trinity/share/doc/HTML/ /opt/trinity/share/doc/kde/
+

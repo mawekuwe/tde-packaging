@@ -13,7 +13,7 @@ kiosktool (1.0-1.1ubuntu6) hardy; urgency=low
 kiosktool (1.0-1.1ubuntu5) gutsy; urgency=low
 
   * Add kubuntu_03_sudo_support.diff to support sudo
-  * Add depend on kdesudo
+  * Add depend on tdesudo
   * Move maintainer to XSBC-Original-Maintainer: 
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 20 Jul 2007 16:57:11 +0100

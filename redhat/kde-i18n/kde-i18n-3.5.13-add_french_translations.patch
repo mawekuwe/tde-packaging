@@ -1,0 +1,468 @@
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kcmiccconfig.po kde-i18n-fr-3.5.10/messages/kdebase/kcmiccconfig.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/kcmiccconfig.po	1970-01-01 01:00:00.000000000 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/kcmiccconfig.po	2011-11-01 17:01:47.942636702 +0100
+@@ -0,0 +1,76 @@
++# TDE 3.5.13 'iccconfig.cpp' translation
++
++#: iccconfig.cpp:82
++msgid "<b>The global ICC color profile is a system wide setting, and requires administrator access</b><br>To alter the system's global ICC profile, click on the \"Administrator Mode\" button below."
++msgstr "<b>Le profil de couleurs ICC global est un réglage système, et nécessite les droits d'administrateur.</b><br>Pour modifier le profil ICC global, cliquez sur le bouton \"Mode administrateur\" ci-dessous."
++
++#: iccconfig.cpp:155
++#: iccconfig.cpp:189
++msgid "Please enter the new profile name below:"
++msgstr "Veuillez indiquer le nom du nouveau profil:"
++
++#: iccconfig.cpp:159
++#: iccconfig.cpp:193
++msgid "ICC Profile Configuration"
++msgstr "Configuration du profil ICC"
++
++#: iccconfig.cpp:166
++#: iccconfig.cpp:200
++msgid "Error: A profile with that name already exists"
++msgstr "Erreur: Il existe déja un profil portant ce nom."
++
++#: iccconfig.cpp:406
++msgid ""
++"<h1>ICC Profile Configuration</h1> This module allows you to configure KDE support"
++" for ICC profiles. This allows you to easily color correct your monitor"
++" for a more lifelike and vibrant image."
++msgstr ""
++"<h1>Configuration du profil ICC</h1> Ce module vous permet de configurer le support"
++" ICC de Trinity. Il permet de calibrer  les couleurs de votre moniteur, "
++" afin d'obtenir une image plus vivante et plus vibrante."
++
++#: iccconfigbase.ui:31
++msgid "ICC Color Profile Configuration"
++msgstr "Configuration des profils de couleurs ICC"
++
++#: iccconfigbase.ui:42
++msgid "System Settings"
++msgstr "Paramètres Système"
++
++#: iccconfigbase.ui:53
++msgid "&Enable global ICC color profile support"
++msgstr "Activer le profil ICC global"
++
++#: iccconfigbase.ui:61
++#: iccconfigbase.ui:148
++msgid "*.icc|ICC Standard Color Profiles (*.icc)\n*.icm|Windows(R) Color Profiles (*.icm)"
++msgstr "*.icc|Profils de couleurs ICC standards (*.icc)\n*.icm|Profils de couleurs Windows(R) (*.icm)"
++
++#: iccconfigbase.ui:69
++#: iccconfigbase.ui:156
++msgid "ICC File"
++msgstr "Fichier ICC"
++
++#: iccconfigbase.ui:79
++msgid "User Settings"
++msgstr "Paramètres Utilisateurs"
++
++#: iccconfigbase.ui:90
++msgid "&Enable user ICC color profile support"
++msgstr "Activer le profil ICC utilisateur"
++
++#: iccconfigbase.ui:103
++msgid "Current Profile"
++msgstr "Profil actuel"
++
++#: iccconfigbase.ui:111
++msgid "Create New"
++msgstr "Créer"
++
++#: iccconfigbase.ui:119
++msgid "Rename"
++msgstr "Renommer"
++
++#: iccconfigbase.ui:140
++msgid "Settings for output"
++msgstr "Appliquer à la sortie"
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kdesktop.po kde-i18n-fr-3.5.10/messages/kdebase/kdesktop.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/kdesktop.po	2008-08-19 20:29:30.000000000 +0200
++++ kde-i18n-fr-3.5.10/messages/kdebase/kdesktop.po	2011-11-01 17:14:54.379412830 +0100
+@@ -1144,3 +1144,20 @@
+ "Cependant, certains écrans de veille\n"
+ "       effectuent des calculs utiles, dans ces cas, il est souhaitable de ne "
+ "pas les désactiver."
++
++### TDE 3.5.13 ###
++#: lockdlg.cc:109
++msgid "Desktop Session Locked"
++msgstr "Session de bureau verrouillée"
++
++#: lockdlg.cc:128
++msgid "This computer is in use and has been locked."
++msgstr "Cet ordinateur est en cours d'utilisation et a été verrouillé."
++
++#: lockdlg.cc:129
++msgid "Only '%1' may unlock this session."
++msgstr "Seul '%1' peut déverouiller cette session."
++
++#: lockdlg.cc:139
++msgid "This session has been locked since %1"
++msgstr "Cette session est verrouillée depuis %1"
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kicker.po kde-i18n-fr-3.5.10/messages/kdebase/kicker.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/kicker.po	2008-08-19 20:29:30.000000000 +0200
++++ kde-i18n-fr-3.5.10/messages/kdebase/kicker.po	2011-11-01 16:16:16.453636429 +0100
+@@ -754,3 +754,8 @@
+ #, no-c-format
+ msgid "Custom size"
+ msgstr "Taille personnalisée"
++
++### TDE 3.5.13 ###
++#: panelextension.cpp:385
++msgid "&Launch Process Manager..."
++msgstr "Gestionnaire de taches..."
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/konsole.po kde-i18n-fr-3.5.10/messages/kdebase/konsole.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/konsole.po	2008-08-19 20:29:30.000000000 +0200
++++ kde-i18n-fr-3.5.10/messages/kdebase/konsole.po	2011-11-01 16:16:16.453636429 +0100
+@@ -1475,3 +1475,8 @@
+ #: zmodem_dialog.cpp:28
+ msgid "&Stop"
+ msgstr "A&rrêter"
++
++### TDE 3.5.13 ###
++#: konsole.cpp:736
++msgid "&Open.."
++msgstr "Ouvrir.."
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/krandr.po kde-i18n-fr-3.5.10/messages/kdebase/krandr.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/krandr.po	2008-08-19 20:29:30.000000000 +0200
++++ kde-i18n-fr-3.5.10/messages/kdebase/krandr.po	2011-11-01 17:42:36.100570353 +0100
+@@ -301,3 +301,33 @@
+ "_: Refresh rate in Hertz (Hz)\n"
+ "%1 Hz"
+ msgstr "%1 Hz"
++
++### TDE 3.5.13 ###
++
++#: krandrtray.cpp:237
++msgid "Global Configuation"
++msgstr "Configuration Globale"
++
++#: krandrtray.cpp:239
++msgid "Configure Color Profiles..."
++msgstr "Configurer les profils de couleurs ..."
++
++#: krandrtray.cpp:249
++msgid "Configure Shortcut Keys..."
++msgstr "Configurer les raccourcis clavier..."
++
++#: krandrtray.cpp:477
++msgid "Configure Display Color Profiles"
++msgstr "Configuration des profils de couleurs"
++
++#: krandrbindings.cpp:29
++msgid "Display Control"
++msgstr "Paramètres d'affichage"
++
++#: krandrbindings.cpp:31
++msgid "Switch Displays"
++msgstr "Permuter l'affichage"
++
++#: configdialog.cpp:49
++msgid "Global &Shortcuts"
++msgstr "Raccourcis Globaux"
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksmserver.po kde-i18n-fr-3.5.10/messages/kdebase/ksmserver.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksmserver.po	2007-05-14 10:07:36.000000000 +0200
++++ kde-i18n-fr-3.5.10/messages/kdebase/ksmserver.po	2011-11-01 17:29:02.909615530 +0100
+@@ -92,3 +92,14 @@
+ "_: current option in boot loader\n"
+ " (current)"
+ msgstr " (courant)"
++
++### TDE 3.5.13 ###
++
++#: shutdown.cpp:202
++msgid "Synchronizing remote folders"
++msgstr "Synchronisation des dossiers distants"
++
++#: shutdown.cpp:207
++msgid "Saving your settings..."
++msgstr "Enregistrement de vos paramètres ..."
++
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksplash.po kde-i18n-fr-3.5.10/messages/kdebase/ksplash.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksplash.po	2005-09-10 13:02:44.000000000 +0200
++++ kde-i18n-fr-3.5.10/messages/kdebase/ksplash.po	2011-11-01 17:03:49.799926756 +0100
+@@ -105,5 +105,5 @@
+ msgstr "Rétablissement de la session"
+ 
+ #: themeengine/objkstheme.cpp:135
+-msgid "KDE is up and running"
+-msgstr "KDE est prêt"
++msgid "Trinity is up and running"
++msgstr "Trinity est prêt"
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/Makefile.in kde-i18n-fr-3.5.10/messages/kdebase/Makefile.in
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/Makefile.in	2008-08-20 09:14:47.000000000 +0200
++++ kde-i18n-fr-3.5.10/messages/kdebase/Makefile.in	2011-11-01 16:32:57.157386765 +0100
+@@ -192,8 +192,8 @@
+ SUBDIRS =.
+ #>- POFILES = AUTO
+ #>+ 2
+-POFILES = kio_sftp.po kate.po kjobviewer.po libkickermenu_konsole.po kcmkicker.po nsplugin.po display.po extensionproxy.po kdcop.po kcmbackground.po kstyle_keramik_config.po kcmlaunch.po kcminfo.po kcmkwinrules.po kasbarextension.po khtmlkttsd.po libdmctl.po ksplashthemes.po kgreet_classic.po kcontrol.po kmenuapplet.po kio_tar.po kcmview1394.po kcmbell.po kcmcomponentchooser.po kdmgreet.po kdesktop.po kpersonalizer.po ksplash.po kcmaccessibility.po kminipagerapplet.po kcmkded.po kio_remote.po kio_home.po kdeprintfax.po kcmicons.po filetypes.po kcmenergy.po kappfinder.po kthememanager.po kcmtaskbar.po kcmcgi.po kio_media.po libkickermenu_tom.po kio_finger.po ktip.po kaccess.po kio_pop3.po kdesud.po kio_fish.po kicker.po kcmkdnssd.po krdb.po libkickermenu_systemmenu.po kcmkio.po krunapplet.po kcmhtmlsearch.po kcmfonts.po libtaskbar.po useraccount.po knetattach.po kcmkonsole.po appletproxy.po dockbarextension.po kcmkonq.po kio_nntp.po kwriteconfig.po kio_ldap.po konsole.po kstart.po klipper.po kcmspellchecking.po kcmkurifilt.po kdepasswd.po clockapplet.po mediaapplet.po kdialog.po kcmlayout.po kpager.po kwin_clients.po kdebugdialog.po kcmnotify.po kio_nfs.po kcmprintmgr.po ksystemtrayapplet.po kcmxinerama.po kreadconfig.po kay.po libkickermenu_remotemenu.po lockout.po kcmkwindecoration.po kxkb.po kprinter.po libtaskmanager.po kio_system.po trashapplet.po kcmcrypto.po kcmnic.po privacy.po libkickermenu_kdeprint.po kscreensaver.po libkonq.po libkickermenu_recentdocs.po kmenuedit.po kio_trash.po kio_floppy.po krandr.po khotkeys.po kcmkclock.po kio_man.po ksystraycmd.po kcmsmartcard.po kwin.po libkicker.po khelpcenter.po ksmserver.po kgreet_winbind.po drkonqi.po kwin_lib.po kio_settings.po ksysguard.po kfontinst.po kcmscreensaver.po konqueror.po kdesu.po kcmsmserver.po kcmcolors.po kcminput.po kcmlocale.po kio_print.po kickermenu_kate.po kcmstyle.po kcmkeys.po kcmioslaveinfo.po kfmclient.po kfindpart.po kio_mac.po kio_smb.po kcmmedia.po naughtyapplet.po kcmkwm.po htmlsearch.po kcmcss.po kcmusb.po kcmperformance.po kio_thumbnail.po kcmarts.po libkickermenu_prefmenu.po joystick.po kdmconfig.po kcmaccess.po kcmkonqhtml.po quicklauncher.po kcmsamba.po kdeprint_part.po kio_smtp.po
+-GMOFILES = kio_sftp.gmo kate.gmo kjobviewer.gmo libkickermenu_konsole.gmo kcmkicker.gmo nsplugin.gmo display.gmo extensionproxy.gmo kdcop.gmo kcmbackground.gmo kstyle_keramik_config.gmo kcmlaunch.gmo kcminfo.gmo kcmkwinrules.gmo kasbarextension.gmo khtmlkttsd.gmo libdmctl.gmo ksplashthemes.gmo kgreet_classic.gmo kcontrol.gmo kmenuapplet.gmo kio_tar.gmo kcmview1394.gmo kcmbell.gmo kcmcomponentchooser.gmo kdmgreet.gmo kdesktop.gmo kpersonalizer.gmo ksplash.gmo kcmaccessibility.gmo kminipagerapplet.gmo kcmkded.gmo kio_remote.gmo kio_home.gmo kdeprintfax.gmo kcmicons.gmo filetypes.gmo kcmenergy.gmo kappfinder.gmo kthememanager.gmo kcmtaskbar.gmo kcmcgi.gmo kio_media.gmo libkickermenu_tom.gmo kio_finger.gmo ktip.gmo kaccess.gmo kio_pop3.gmo kdesud.gmo kio_fish.gmo kicker.gmo kcmkdnssd.gmo krdb.gmo libkickermenu_systemmenu.gmo kcmkio.gmo krunapplet.gmo kcmhtmlsearch.gmo kcmfonts.gmo libtaskbar.gmo useraccount.gmo knetattach.gmo kcmkonsole.gmo appletproxy.gmo dockbarextension.gmo kcmkonq.gmo kio_nntp.gmo kwriteconfig.gmo kio_ldap.gmo konsole.gmo kstart.gmo klipper.gmo kcmspellchecking.gmo kcmkurifilt.gmo kdepasswd.gmo clockapplet.gmo mediaapplet.gmo kdialog.gmo kcmlayout.gmo kpager.gmo kwin_clients.gmo kdebugdialog.gmo kcmnotify.gmo kio_nfs.gmo kcmprintmgr.gmo ksystemtrayapplet.gmo kcmxinerama.gmo kreadconfig.gmo kay.gmo libkickermenu_remotemenu.gmo lockout.gmo kcmkwindecoration.gmo kxkb.gmo kprinter.gmo libtaskmanager.gmo kio_system.gmo trashapplet.gmo kcmcrypto.gmo kcmnic.gmo privacy.gmo libkickermenu_kdeprint.gmo kscreensaver.gmo libkonq.gmo libkickermenu_recentdocs.gmo kmenuedit.gmo kio_trash.gmo kio_floppy.gmo krandr.gmo khotkeys.gmo kcmkclock.gmo kio_man.gmo ksystraycmd.gmo kcmsmartcard.gmo kwin.gmo libkicker.gmo khelpcenter.gmo ksmserver.gmo kgreet_winbind.gmo drkonqi.gmo kwin_lib.gmo kio_settings.gmo ksysguard.gmo kfontinst.gmo kcmscreensaver.gmo konqueror.gmo kdesu.gmo kcmsmserver.gmo kcmcolors.gmo kcminput.gmo kcmlocale.gmo kio_print.gmo kickermenu_kate.gmo kcmstyle.gmo kcmkeys.gmo kcmioslaveinfo.gmo kfmclient.gmo kfindpart.gmo kio_mac.gmo kio_smb.gmo kcmmedia.gmo naughtyapplet.gmo kcmkwm.gmo htmlsearch.gmo kcmcss.gmo kcmusb.gmo kcmperformance.gmo kio_thumbnail.gmo kcmarts.gmo libkickermenu_prefmenu.gmo joystick.gmo kdmconfig.gmo kcmaccess.gmo kcmkonqhtml.gmo quicklauncher.gmo kcmsamba.gmo kdeprint_part.gmo kio_smtp.gmo
++POFILES = kio_sftp.po kate.po kjobviewer.po libkickermenu_konsole.po kcmkicker.po nsplugin.po display.po extensionproxy.po kdcop.po kcmbackground.po kstyle_keramik_config.po kcmlaunch.po kcminfo.po kcmkwinrules.po kasbarextension.po khtmlkttsd.po libdmctl.po ksplashthemes.po kgreet_classic.po kcontrol.po kmenuapplet.po kio_tar.po kcmview1394.po kcmbell.po kcmcomponentchooser.po kdmgreet.po kdesktop.po kpersonalizer.po ksplash.po kcmaccessibility.po kminipagerapplet.po kcmkded.po kio_remote.po kio_home.po kdeprintfax.po kcmicons.po filetypes.po kcmenergy.po kappfinder.po kthememanager.po kcmtaskbar.po kcmcgi.po kio_media.po libkickermenu_tom.po kio_finger.po ktip.po kaccess.po kio_pop3.po kdesud.po kio_fish.po kicker.po kcmkdnssd.po krdb.po libkickermenu_systemmenu.po kcmkio.po krunapplet.po kcmhtmlsearch.po kcmfonts.po libtaskbar.po useraccount.po knetattach.po kcmkonsole.po appletproxy.po dockbarextension.po kcmkonq.po kio_nntp.po kwriteconfig.po kio_ldap.po konsole.po kstart.po klipper.po kcmspellchecking.po kcmkurifilt.po kdepasswd.po clockapplet.po mediaapplet.po kdialog.po kcmlayout.po kpager.po kwin_clients.po kdebugdialog.po kcmnotify.po kio_nfs.po kcmprintmgr.po ksystemtrayapplet.po kcmxinerama.po kreadconfig.po kay.po libkickermenu_remotemenu.po lockout.po kcmkwindecoration.po kxkb.po kprinter.po libtaskmanager.po kio_system.po trashapplet.po kcmcrypto.po kcmnic.po privacy.po libkickermenu_kdeprint.po kscreensaver.po libkonq.po libkickermenu_recentdocs.po kmenuedit.po kio_trash.po kio_floppy.po krandr.po khotkeys.po kcmkclock.po kio_man.po ksystraycmd.po kcmsmartcard.po kwin.po libkicker.po khelpcenter.po ksmserver.po kgreet_winbind.po drkonqi.po kwin_lib.po kio_settings.po ksysguard.po kfontinst.po kcmscreensaver.po konqueror.po kdesu.po kcmsmserver.po kcmcolors.po kcminput.po kcmlocale.po kio_print.po kickermenu_kate.po kcmstyle.po kcmkeys.po kcmioslaveinfo.po kfmclient.po kfindpart.po kio_mac.po kio_smb.po kcmmedia.po naughtyapplet.po kcmkwm.po htmlsearch.po kcmcss.po kcmusb.po kcmperformance.po kio_thumbnail.po kcmarts.po libkickermenu_prefmenu.po joystick.po kdmconfig.po kcmaccess.po kcmkonqhtml.po quicklauncher.po kcmsamba.po kdeprint_part.po kio_smtp.po kcmiccconfig.po
++GMOFILES = kio_sftp.gmo kate.gmo kjobviewer.gmo libkickermenu_konsole.gmo kcmkicker.gmo nsplugin.gmo display.gmo extensionproxy.gmo kdcop.gmo kcmbackground.gmo kstyle_keramik_config.gmo kcmlaunch.gmo kcminfo.gmo kcmkwinrules.gmo kasbarextension.gmo khtmlkttsd.gmo libdmctl.gmo ksplashthemes.gmo kgreet_classic.gmo kcontrol.gmo kmenuapplet.gmo kio_tar.gmo kcmview1394.gmo kcmbell.gmo kcmcomponentchooser.gmo kdmgreet.gmo kdesktop.gmo kpersonalizer.gmo ksplash.gmo kcmaccessibility.gmo kminipagerapplet.gmo kcmkded.gmo kio_remote.gmo kio_home.gmo kdeprintfax.gmo kcmicons.gmo filetypes.gmo kcmenergy.gmo kappfinder.gmo kthememanager.gmo kcmtaskbar.gmo kcmcgi.gmo kio_media.gmo libkickermenu_tom.gmo kio_finger.gmo ktip.gmo kaccess.gmo kio_pop3.gmo kdesud.gmo kio_fish.gmo kicker.gmo kcmkdnssd.gmo krdb.gmo libkickermenu_systemmenu.gmo kcmkio.gmo krunapplet.gmo kcmhtmlsearch.gmo kcmfonts.gmo libtaskbar.gmo useraccount.gmo knetattach.gmo kcmkonsole.gmo appletproxy.gmo dockbarextension.gmo kcmkonq.gmo kio_nntp.gmo kwriteconfig.gmo kio_ldap.gmo konsole.gmo kstart.gmo klipper.gmo kcmspellchecking.gmo kcmkurifilt.gmo kdepasswd.gmo clockapplet.gmo mediaapplet.gmo kdialog.gmo kcmlayout.gmo kpager.gmo kwin_clients.gmo kdebugdialog.gmo kcmnotify.gmo kio_nfs.gmo kcmprintmgr.gmo ksystemtrayapplet.gmo kcmxinerama.gmo kreadconfig.gmo kay.gmo libkickermenu_remotemenu.gmo lockout.gmo kcmkwindecoration.gmo kxkb.gmo kprinter.gmo libtaskmanager.gmo kio_system.gmo trashapplet.gmo kcmcrypto.gmo kcmnic.gmo privacy.gmo libkickermenu_kdeprint.gmo kscreensaver.gmo libkonq.gmo libkickermenu_recentdocs.gmo kmenuedit.gmo kio_trash.gmo kio_floppy.gmo krandr.gmo khotkeys.gmo kcmkclock.gmo kio_man.gmo ksystraycmd.gmo kcmsmartcard.gmo kwin.gmo libkicker.gmo khelpcenter.gmo ksmserver.gmo kgreet_winbind.gmo drkonqi.gmo kwin_lib.gmo kio_settings.gmo ksysguard.gmo kfontinst.gmo kcmscreensaver.gmo konqueror.gmo kdesu.gmo kcmsmserver.gmo kcmcolors.gmo kcminput.gmo kcmlocale.gmo kio_print.gmo kickermenu_kate.gmo kcmstyle.gmo kcmkeys.gmo kcmioslaveinfo.gmo kfmclient.gmo kfindpart.gmo kio_mac.gmo kio_smb.gmo kcmmedia.gmo naughtyapplet.gmo kcmkwm.gmo htmlsearch.gmo kcmcss.gmo kcmusb.gmo kcmperformance.gmo kio_thumbnail.gmo kcmarts.gmo libkickermenu_prefmenu.gmo joystick.gmo kdmconfig.gmo kcmaccess.gmo kcmkonqhtml.gmo quicklauncher.gmo kcmsamba.gmo kdeprint_part.gmo kio_smtp.gmo kcmiccconfig.gmo
+ #>- all: all-recursive
+ #>+ 1
+ all: all-nls docs-am  all-recursive
+@@ -531,7 +531,7 @@
+ .NOEXPORT:
+ 
+ #>+ 2
+-KDE_DIST=libkickermenu_remotemenu.po appletproxy.po kcminput.po kcmaccessibility.po krandr.po kickermenu_kate.po kwin.po libtaskmanager.po libkickermenu_tom.po kappfinder.po dockbarextension.po kcmmedia.po filetypes.po kreadconfig.po kio_smtp.po ksplashthemes.po kcmcolors.po display.po kfmclient.po kate.po kcmnotify.po libkonq.po kstyle_keramik_config.po privacy.po kxkb.po kio_finger.po kcontrol.po konqueror.po kcmsamba.po ksmserver.po mediaapplet.po kcmenergy.po kdeprintfax.po kcmview1394.po kio_tar.po kcmxinerama.po libkickermenu_systemmenu.po kjobviewer.po kio_mac.po kcmkwindecoration.po ksplash.po kio_nfs.po ksystemtrayapplet.po htmlsearch.po kwin_lib.po kthememanager.po klipper.po kaccess.po kdepasswd.po kicker.po khtmlkttsd.po kwriteconfig.po kcmkonsole.po kmenuapplet.po kmenuedit.po kcmsmartcard.po kcmkeys.po kcmcgi.po kcmkclock.po Makefile.in kdesu.po kcmstyle.po kcmhtmlsearch.po kcminfo.po kdialog.po kcmcrypto.po libkickermenu_prefmenu.po kio_media.po kminipagerapplet.po kcmkonqhtml.po kcmaccess.po ksysguard.po kdesktop.po kio_floppy.po kcmnic.po kio_nntp.po kdmconfig.po trashapplet.po extensionproxy.po kio_ldap.po ktip.po kcmusb.po kcmperformance.po kdebugdialog.po khotkeys.po kgreet_winbind.po kio_smb.po libkickermenu_kdeprint.po kdmgreet.po knetattach.po nsplugin.po kcmcss.po kio_sftp.po kcmkio.po kcmfonts.po useraccount.po kcmkwm.po kwin_clients.po kio_settings.po libkickermenu_recentdocs.po kdcop.po kcmkdnssd.po libtaskbar.po kcmkurifilt.po kio_pop3.po joystick.po libkicker.po krunapplet.po kcmbackground.po lockout.po kcmkwinrules.po libdmctl.po krdb.po kio_home.po kdesud.po kcmioslaveinfo.po kio_remote.po kgreet_classic.po konsole.po libkickermenu_konsole.po kcmkonq.po kcmspellchecking.po kcmprintmgr.po kio_thumbnail.po kcmbell.po kdeprint_part.po kcmcomponentchooser.po kcmlocale.po kcmarts.po kasbarextension.po kio_system.po kay.po kscreensaver.po khelpcenter.po kprinter.po kpager.po drkonqi.po kcmscreensaver.po kcmlaunch.po kstart.po kcmlayout.po kfindpart.po kio_print.po kcmicons.po quicklauncher.po kio_fish.po clockapplet.po ksystraycmd.po kcmkicker.po kio_trash.po kfontinst.po kcmtaskbar.po naughtyapplet.po Makefile.am kio_man.po kpersonalizer.po kcmkded.po kcmsmserver.po 
++KDE_DIST=libkickermenu_remotemenu.po appletproxy.po kcminput.po kcmaccessibility.po krandr.po kickermenu_kate.po kwin.po libtaskmanager.po libkickermenu_tom.po kappfinder.po dockbarextension.po kcmmedia.po filetypes.po kreadconfig.po kio_smtp.po ksplashthemes.po kcmcolors.po display.po kfmclient.po kate.po kcmnotify.po libkonq.po kstyle_keramik_config.po privacy.po kxkb.po kio_finger.po kcontrol.po konqueror.po kcmsamba.po ksmserver.po mediaapplet.po kcmenergy.po kdeprintfax.po kcmview1394.po kio_tar.po kcmxinerama.po libkickermenu_systemmenu.po kjobviewer.po kio_mac.po kcmkwindecoration.po ksplash.po kio_nfs.po ksystemtrayapplet.po htmlsearch.po kwin_lib.po kthememanager.po klipper.po kaccess.po kdepasswd.po kicker.po khtmlkttsd.po kwriteconfig.po kcmkonsole.po kmenuapplet.po kmenuedit.po kcmsmartcard.po kcmkeys.po kcmcgi.po kcmkclock.po Makefile.in kdesu.po kcmstyle.po kcmhtmlsearch.po kcminfo.po kdialog.po kcmcrypto.po libkickermenu_prefmenu.po kio_media.po kminipagerapplet.po kcmkonqhtml.po kcmaccess.po ksysguard.po kdesktop.po kio_floppy.po kcmnic.po kio_nntp.po kdmconfig.po trashapplet.po extensionproxy.po kio_ldap.po ktip.po kcmusb.po kcmperformance.po kdebugdialog.po khotkeys.po kgreet_winbind.po kio_smb.po libkickermenu_kdeprint.po kdmgreet.po knetattach.po nsplugin.po kcmcss.po kio_sftp.po kcmkio.po kcmfonts.po useraccount.po kcmkwm.po kwin_clients.po kio_settings.po libkickermenu_recentdocs.po kdcop.po kcmkdnssd.po libtaskbar.po kcmkurifilt.po kio_pop3.po joystick.po libkicker.po krunapplet.po kcmbackground.po lockout.po kcmkwinrules.po libdmctl.po krdb.po kio_home.po kdesud.po kcmioslaveinfo.po kio_remote.po kgreet_classic.po konsole.po libkickermenu_konsole.po kcmkonq.po kcmspellchecking.po kcmprintmgr.po kio_thumbnail.po kcmbell.po kdeprint_part.po kcmcomponentchooser.po kcmlocale.po kcmarts.po kasbarextension.po kio_system.po kay.po kscreensaver.po khelpcenter.po kprinter.po kpager.po drkonqi.po kcmscreensaver.po kcmlaunch.po kstart.po kcmlayout.po kfindpart.po kio_print.po kcmicons.po quicklauncher.po kio_fish.po clockapplet.po ksystraycmd.po kcmkicker.po kio_trash.po kfontinst.po kcmtaskbar.po naughtyapplet.po Makefile.am kio_man.po kpersonalizer.po kcmkded.po kcmsmserver.po kcmiccconfig.po
+ 
+ #>+ 469
+ kio_sftp.gmo: kio_sftp.po
+@@ -1002,15 +1002,18 @@
+ kio_smtp.gmo: kio_smtp.po
+ 	rm -f kio_smtp.gmo; $(GMSGFMT) -o kio_smtp.gmo $(srcdir)/kio_smtp.po
+ 	test ! -f kio_smtp.gmo || touch kio_smtp.gmo
++kcmiccconfig.gmo: kcmiccconfig.po
++	rm -f kcmiccconfig.gmo; $(GMSGFMT) -o kcmiccconfig.gmo $(srcdir)/kcmiccconfig.po
++	test ! -f kcmiccconfig.gmo || touch kcmiccconfig.gmo
+ 
+ #>+ 3
+ clean-nls:
+-	-rm -f  kio_sftp.gmo kate.gmo kjobviewer.gmo libkickermenu_konsole.gmo kcmkicker.gmo nsplugin.gmo display.gmo extensionproxy.gmo kdcop.gmo kcmbackground.gmo kstyle_keramik_config.gmo kcmlaunch.gmo kcminfo.gmo kcmkwinrules.gmo kasbarextension.gmo khtmlkttsd.gmo libdmctl.gmo ksplashthemes.gmo kgreet_classic.gmo kcontrol.gmo kmenuapplet.gmo kio_tar.gmo kcmview1394.gmo kcmbell.gmo kcmcomponentchooser.gmo kdmgreet.gmo kdesktop.gmo kpersonalizer.gmo ksplash.gmo kcmaccessibility.gmo kminipagerapplet.gmo kcmkded.gmo kio_remote.gmo kio_home.gmo kdeprintfax.gmo kcmicons.gmo filetypes.gmo kcmenergy.gmo kappfinder.gmo kthememanager.gmo kcmtaskbar.gmo kcmcgi.gmo kio_media.gmo libkickermenu_tom.gmo kio_finger.gmo ktip.gmo kaccess.gmo kio_pop3.gmo kdesud.gmo kio_fish.gmo kicker.gmo kcmkdnssd.gmo krdb.gmo libkickermenu_systemmenu.gmo kcmkio.gmo krunapplet.gmo kcmhtmlsearch.gmo kcmfonts.gmo libtaskbar.gmo useraccount.gmo knetattach.gmo kcmkonsole.gmo appletproxy.gmo dockbarextension.gmo kcmkonq.gmo kio_nntp.gmo kwriteconfig.gmo kio_ldap.gmo konsole.gmo kstart.gmo klipper.gmo kcmspellchecking.gmo kcmkurifilt.gmo kdepasswd.gmo clockapplet.gmo mediaapplet.gmo kdialog.gmo kcmlayout.gmo kpager.gmo kwin_clients.gmo kdebugdialog.gmo kcmnotify.gmo kio_nfs.gmo kcmprintmgr.gmo ksystemtrayapplet.gmo kcmxinerama.gmo kreadconfig.gmo kay.gmo libkickermenu_remotemenu.gmo lockout.gmo kcmkwindecoration.gmo kxkb.gmo kprinter.gmo libtaskmanager.gmo kio_system.gmo trashapplet.gmo kcmcrypto.gmo kcmnic.gmo privacy.gmo libkickermenu_kdeprint.gmo kscreensaver.gmo libkonq.gmo libkickermenu_recentdocs.gmo kmenuedit.gmo kio_trash.gmo kio_floppy.gmo krandr.gmo khotkeys.gmo kcmkclock.gmo kio_man.gmo ksystraycmd.gmo kcmsmartcard.gmo kwin.gmo libkicker.gmo khelpcenter.gmo ksmserver.gmo kgreet_winbind.gmo drkonqi.gmo kwin_lib.gmo kio_settings.gmo ksysguard.gmo kfontinst.gmo kcmscreensaver.gmo konqueror.gmo kdesu.gmo kcmsmserver.gmo kcmcolors.gmo kcminput.gmo kcmlocale.gmo kio_print.gmo kickermenu_kate.gmo kcmstyle.gmo kcmkeys.gmo kcmioslaveinfo.gmo kfmclient.gmo kfindpart.gmo kio_mac.gmo kio_smb.gmo kcmmedia.gmo naughtyapplet.gmo kcmkwm.gmo htmlsearch.gmo kcmcss.gmo kcmusb.gmo kcmperformance.gmo kio_thumbnail.gmo kcmarts.gmo libkickermenu_prefmenu.gmo joystick.gmo kdmconfig.gmo kcmaccess.gmo kcmkonqhtml.gmo quicklauncher.gmo kcmsamba.gmo kdeprint_part.gmo kio_smtp.gmo
++	-rm -f  kio_sftp.gmo kate.gmo kjobviewer.gmo libkickermenu_konsole.gmo kcmkicker.gmo nsplugin.gmo display.gmo extensionproxy.gmo kdcop.gmo kcmbackground.gmo kstyle_keramik_config.gmo kcmlaunch.gmo kcminfo.gmo kcmkwinrules.gmo kasbarextension.gmo khtmlkttsd.gmo libdmctl.gmo ksplashthemes.gmo kgreet_classic.gmo kcontrol.gmo kmenuapplet.gmo kio_tar.gmo kcmview1394.gmo kcmbell.gmo kcmcomponentchooser.gmo kdmgreet.gmo kdesktop.gmo kpersonalizer.gmo ksplash.gmo kcmaccessibility.gmo kminipagerapplet.gmo kcmkded.gmo kio_remote.gmo kio_home.gmo kdeprintfax.gmo kcmicons.gmo filetypes.gmo kcmenergy.gmo kappfinder.gmo kthememanager.gmo kcmtaskbar.gmo kcmcgi.gmo kio_media.gmo libkickermenu_tom.gmo kio_finger.gmo ktip.gmo kaccess.gmo kio_pop3.gmo kdesud.gmo kio_fish.gmo kicker.gmo kcmkdnssd.gmo krdb.gmo libkickermenu_systemmenu.gmo kcmkio.gmo krunapplet.gmo kcmhtmlsearch.gmo kcmfonts.gmo libtaskbar.gmo useraccount.gmo knetattach.gmo kcmkonsole.gmo appletproxy.gmo dockbarextension.gmo kcmkonq.gmo kio_nntp.gmo kwriteconfig.gmo kio_ldap.gmo konsole.gmo kstart.gmo klipper.gmo kcmspellchecking.gmo kcmkurifilt.gmo kdepasswd.gmo clockapplet.gmo mediaapplet.gmo kdialog.gmo kcmlayout.gmo kpager.gmo kwin_clients.gmo kdebugdialog.gmo kcmnotify.gmo kio_nfs.gmo kcmprintmgr.gmo ksystemtrayapplet.gmo kcmxinerama.gmo kreadconfig.gmo kay.gmo libkickermenu_remotemenu.gmo lockout.gmo kcmkwindecoration.gmo kxkb.gmo kprinter.gmo libtaskmanager.gmo kio_system.gmo trashapplet.gmo kcmcrypto.gmo kcmnic.gmo privacy.gmo libkickermenu_kdeprint.gmo kscreensaver.gmo libkonq.gmo libkickermenu_recentdocs.gmo kmenuedit.gmo kio_trash.gmo kio_floppy.gmo krandr.gmo khotkeys.gmo kcmkclock.gmo kio_man.gmo ksystraycmd.gmo kcmsmartcard.gmo kwin.gmo libkicker.gmo khelpcenter.gmo ksmserver.gmo kgreet_winbind.gmo drkonqi.gmo kwin_lib.gmo kio_settings.gmo ksysguard.gmo kfontinst.gmo kcmscreensaver.gmo konqueror.gmo kdesu.gmo kcmsmserver.gmo kcmcolors.gmo kcminput.gmo kcmlocale.gmo kio_print.gmo kickermenu_kate.gmo kcmstyle.gmo kcmkeys.gmo kcmioslaveinfo.gmo kfmclient.gmo kfindpart.gmo kio_mac.gmo kio_smb.gmo kcmmedia.gmo naughtyapplet.gmo kcmkwm.gmo htmlsearch.gmo kcmcss.gmo kcmusb.gmo kcmperformance.gmo kio_thumbnail.gmo kcmarts.gmo libkickermenu_prefmenu.gmo joystick.gmo kdmconfig.gmo kcmaccess.gmo kcmkonqhtml.gmo quicklauncher.gmo kcmsamba.gmo kdeprint_part.gmo kio_smtp.gmo kcmiccconfig.gmo
+ 
+ #>+ 10
+ install-nls:
+ 	$(mkinstalldirs) $(DESTDIR)$(kde_locale)/$(KDE_LANG)/LC_MESSAGES
+-	@for base in kio_sftp kate kjobviewer libkickermenu_konsole kcmkicker nsplugin display extensionproxy kdcop kcmbackground kstyle_keramik_config kcmlaunch kcminfo kcmkwinrules kasbarextension khtmlkttsd libdmctl ksplashthemes kgreet_classic kcontrol kmenuapplet kio_tar kcmview1394 kcmbell kcmcomponentchooser kdmgreet kdesktop kpersonalizer ksplash kcmaccessibility kminipagerapplet kcmkded kio_remote kio_home kdeprintfax kcmicons filetypes kcmenergy kappfinder kthememanager kcmtaskbar kcmcgi kio_media libkickermenu_tom kio_finger ktip kaccess kio_pop3 kdesud kio_fish kicker kcmkdnssd krdb libkickermenu_systemmenu kcmkio krunapplet kcmhtmlsearch kcmfonts libtaskbar useraccount knetattach kcmkonsole appletproxy dockbarextension kcmkonq kio_nntp kwriteconfig kio_ldap konsole kstart klipper kcmspellchecking kcmkurifilt kdepasswd clockapplet mediaapplet kdialog kcmlayout kpager kwin_clients kdebugdialog kcmnotify kio_nfs kcmprintmgr ksystemtrayapplet kcmxinerama kreadconfig kay libkickermenu_remotemenu lockout kcmkwindecoration kxkb kprinter libtaskmanager kio_system trashapplet kcmcrypto kcmnic privacy libkickermenu_kdeprint kscreensaver libkonq libkickermenu_recentdocs kmenuedit kio_trash kio_floppy krandr khotkeys kcmkclock kio_man ksystraycmd kcmsmartcard kwin libkicker khelpcenter ksmserver kgreet_winbind drkonqi kwin_lib kio_settings ksysguard kfontinst kcmscreensaver konqueror kdesu kcmsmserver kcmcolors kcminput kcmlocale kio_print kickermenu_kate kcmstyle kcmkeys kcmioslaveinfo kfmclient kfindpart kio_mac kio_smb kcmmedia naughtyapplet kcmkwm htmlsearch kcmcss kcmusb kcmperformance kio_thumbnail kcmarts libkickermenu_prefmenu joystick kdmconfig kcmaccess kcmkonqhtml quicklauncher kcmsamba kdeprint_part kio_smtp ; do \
++	@for base in kio_sftp kate kjobviewer libkickermenu_konsole kcmkicker nsplugin display extensionproxy kdcop kcmbackground kstyle_keramik_config kcmlaunch kcminfo kcmkwinrules kasbarextension khtmlkttsd libdmctl ksplashthemes kgreet_classic kcontrol kmenuapplet kio_tar kcmview1394 kcmbell kcmcomponentchooser kdmgreet kdesktop kpersonalizer ksplash kcmaccessibility kminipagerapplet kcmkded kio_remote kio_home kdeprintfax kcmicons filetypes kcmenergy kappfinder kthememanager kcmtaskbar kcmcgi kio_media libkickermenu_tom kio_finger ktip kaccess kio_pop3 kdesud kio_fish kicker kcmkdnssd krdb libkickermenu_systemmenu kcmkio krunapplet kcmhtmlsearch kcmfonts libtaskbar useraccount knetattach kcmkonsole appletproxy dockbarextension kcmkonq kio_nntp kwriteconfig kio_ldap konsole kstart klipper kcmspellchecking kcmkurifilt kdepasswd clockapplet mediaapplet kdialog kcmlayout kpager kwin_clients kdebugdialog kcmnotify kio_nfs kcmprintmgr ksystemtrayapplet kcmxinerama kreadconfig kay libkickermenu_remotemenu lockout kcmkwindecoration kxkb kprinter libtaskmanager kio_system trashapplet kcmcrypto kcmnic privacy libkickermenu_kdeprint kscreensaver libkonq libkickermenu_recentdocs kmenuedit kio_trash kio_floppy krandr khotkeys kcmkclock kio_man ksystraycmd kcmsmartcard kwin libkicker khelpcenter ksmserver kgreet_winbind drkonqi kwin_lib kio_settings ksysguard kfontinst kcmscreensaver konqueror kdesu kcmsmserver kcmcolors kcminput kcmlocale kio_print kickermenu_kate kcmstyle kcmkeys kcmioslaveinfo kfmclient kfindpart kio_mac kio_smb kcmmedia naughtyapplet kcmkwm htmlsearch kcmcss kcmusb kcmperformance kio_thumbnail kcmarts libkickermenu_prefmenu joystick kdmconfig kcmaccess kcmkonqhtml quicklauncher kcmsamba kdeprint_part kio_smtp kcmiccconfig ; do \
+ 	  echo $(INSTALL_DATA) $$base.gmo $(DESTDIR)$(kde_locale)/$(KDE_LANG)/LC_MESSAGES/$$base.mo ;\
+ 	  if test -f $$base.gmo; then $(INSTALL_DATA) $$base.gmo $(DESTDIR)$(kde_locale)/$(KDE_LANG)/LC_MESSAGES/$$base.mo ;\
+ 	  elif test -f $(srcdir)/$$base.gmo; then $(INSTALL_DATA) $(srcdir)/$$base.gmo $(DESTDIR)$(kde_locale)/$(KDE_LANG)/LC_MESSAGES/$$base.mo ;\
+@@ -1176,6 +1179,7 @@
+ 	rm -f $(DESTDIR)$(kde_locale)/$(KDE_LANG)/LC_MESSAGES/kcmsamba.mo
+ 	rm -f $(DESTDIR)$(kde_locale)/$(KDE_LANG)/LC_MESSAGES/kdeprint_part.mo
+ 	rm -f $(DESTDIR)$(kde_locale)/$(KDE_LANG)/LC_MESSAGES/kio_smtp.mo
++	rm -f $(DESTDIR)$(kde_locale)/$(KDE_LANG)/LC_MESSAGES/kcmiccconfig.mo
+ 
+ #>+ 2
+ all-nls: $(GMOFILES)
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdelibs/kdelibs.po kde-i18n-fr-3.5.10/messages/kdelibs/kdelibs.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdelibs/kdelibs.po	2008-08-19 20:29:58.000000000 +0200
++++ kde-i18n-fr-3.5.10/messages/kdelibs/kdelibs.po	2011-11-01 17:02:35.529386462 +0100
+@@ -5557,123 +5557,104 @@
+ 
+ #: kdeui/kaboutkde.cpp:34
+ msgid ""
+-"The <b>K Desktop Environment</b> is written and maintained by the KDE Team, a "
+-"world-wide network of software engineers committed to <a "
++"The <b>Trinity Desktop Environment</b> is a fork of the "
++"K Desktop Environment version 3.5, which was originally written by the KDE Team, "
++"a world-wide network of software engineers committed to <a "
+ "href=\"http://www.gnu.org/philosophy/free-sw.html\">Free Software</a> "
+-"development."
+-"<br>"
+-"<br>No single group, company or organization controls the KDE source code. "
+-"Everyone is welcome to contribute to KDE."
+-"<br>"
+-"<br>Visit <A HREF=\"http://www.kde.org/\">http://www.kde.org</A> "
++"development.<br><br>No single group, company or organization controls the "
++"Trinity source code. Everyone is welcome to contribute to Trinity.<br><br>Visit <A "
++"HREF=\"http://www.trinitydesktop.org/\">http://www.trinitydesktop.org</A> for more information "
++"about Trinity, and <A HREF=\"http://www.kde.org/\">http://www.kde.org</A> "
+ "for more information on the KDE project. "
+ msgstr ""
+-"L'<b>Environnement Bureautique KDE</b> est écrit et maintenu par l'équipe de "
+-"KDE, des informaticiens du monde entier travaillant sur Internet au "
+-"développement de <a href=\"http://www.gnu.org/philosophy/free-sw.fr.html\">"
+-"logiciels libres</a>."
+-"<br>"
+-"<br>Aucune société ni organisation ne contrôle le code source de KDE, et chacun "
+-"est invité à y contribuer."
+-"<br>"
+-"<br>Visitez <a href=\"http://www.kde.org/fr\">http://www.kde.org/fr</A> "
++"L'<b>Environnement Bureautique Trinity</b> est un clone de l'environnement "
++"KDE version 3.5, originellement écrit par l'équipe KDE, des informaticiens "
++"du monde entier travaillant sur Internet au développement de <a "
++"href=\"http://www.gnu.org/philosophy/free-sw.fr.html\">logiciels libres</a>."
++"<br><br>Aucune société ni organisation ne contrôle le code source de Trinity, et chacun "
++"est invité à y contribuer.<br><br>Visitez <A HREF=\"http://www.trinitydesktop.org/\">"
++"http://www.trinitydesktop.org</A> pour plus d'informations sur Trinity, et <a "
++"href=\"http://www.kde.org/fr\">http://www.kde.org/fr</A> "
+ "pour plus d'informations sur le projet KDE."
+ 
+ #: kdeui/kaboutkde.cpp:43
+ msgid ""
+-"Software can always be improved, and the KDE Team is ready to do so. However, "
+-"you - the user - must tell us when something does not work as expected or could "
+-"be done better."
+-"<br>"
+-"<br>The K Desktop Environment has a bug tracking system. Visit <A "
+-"HREF=\"http://bugs.kde.org/\">http://bugs.kde.org</A> "
+-"or use the \"Report Bug...\" dialog from the \"Help\" menu to report bugs."
+-"<br>"
+-"<br>If you have a suggestion for improvement then you are welcome to use the "
+-"bug tracking system to register your wish. Make sure you use the severity "
+-"called \"Wishlist\"."
++"Software can always be improved, and the Trinity Team is ready to "
++"do so. However, you - the user - must tell us when "
++"something does not work as expected or could be done better.<br><br>"
++"The Trinity Desktop Environment has a bug tracking system. Visit "
++"<A HREF=\"http://bugs.pearsoncomputing.net/\">http://bugs.pearsoncomputing.net</A> or "
++"use the \"Report Bug...\" dialog from the \"Help\" menu to report bugs.<br><br>"
++"If you have a suggestion for improvement then you are welcome to use "
++"the bug tracking system to register your wish. Make sure you use the "
++"severity called \"Wishlist\"."
+ msgstr ""
+-"Les logiciels peuvent toujours être améliorés et l'équipe KDE est prête à le "
++"Les logiciels peuvent toujours être améliorés et l'équipe Trinity est prête à le "
+ "faire. Cependant, vous - l'utilisateur(trice) - devez nous signaler ce qui ne "
+-"fonctionne pas correctement ou pourrait être perfectionné."
+-"<br>"
+-"<br>L'Environnement de Bureau KDE possède un système de suivi des bogues. Allez "
+-"sur <A HREF=\"http://bugs.kde.org/\">http://bugs.kde.org/</A> "
+-"ou utilisez la boîte de dialogue « Rapport de bogue » du menu « Aide » pour "
+-"signaler les erreurs."
+-"<br>"
+-"<br>Si vous voulez suggérer une amélioration, vous êtes invité(e) à utiliser le "
++"fonctionne pas correctement ou pourrait être perfectionné.<br><br>"
++"L'Environnement de Bureau Trinity possède un système de suivi des bogues. Allez "
++"sur <A HREF=\"http://bugs.pearsoncomputing.net/\">http://bugs.pearsoncomputing.net</A> "
++"ou utilisez la boîte de dialogue « Rapport de bogue » du menu « Aide » pour signaler les "
++"erreurs.<br><br>Si vous voulez suggérer une amélioration, vous êtes invité(e) à utiliser le "
+ "système de suivi des bogues pour enregistrer votre souhait. Assurez-vous "
+ "d'avoir utilisé l'option « Souhait » (wish)."
+ 
+ #: kdeui/kaboutkde.cpp:54
+ msgid ""
+-"You do not have to be a software developer to be a member of the KDE team. You "
+-"can join the national teams that translate program interfaces. You can provide "
+-"graphics, themes, sounds, and improved documentation. You decide!"
+-"<br>"
+-"<br>Visit <A HREF=\"http://www.kde.org/jobs/\">http://www.kde.org/jobs/</A> "
++"You do not have to be a software developer to be a member of the "
++"Trinity team. You can join the national teams that translate "
++"program interfaces. You can provide graphics, themes, sounds, and "
++"improved documentation. You decide!"
++"<br><br>"
++"Visit "
++"<A HREF=\"http://www.trinitydesktop.org/jobs/\">http://www.trinitydesktop.org/jobs/</A> "
+ "for information on some projects in which you can participate."
+-"<br>"
+-"<br>If you need more information or documentation, then a visit to <A "
+-"HREF=\"http://developer.kde.org/\">http://developer.kde.org</A> "
++"<br><br>"
++"If you need more information or documentation, then a visit to "
++"<A HREF=\"http://www.trinitydesktop.org/docs/\">http://www.trinitydesktop.org/docs/</A> "
+ "will provide you with what you need."
+ msgstr ""
+-"Il n'est pas nécessaire d'être programmeur pour être membre de l'équipe de KDE. "
++"Il n'est pas nécessaire d'être programmeur pour être membre de l'équipe de Trinity. "
+ "Vous pouvez rejoindre les équipes nationales qui traduisent les interfaces des "
+ "programmes. Vous pouvez réaliser des images, des thèmes, des sons et des "
+ "documentations enrichies. C'est vous qui décidez !"
+-"<br>"
+-"<br>Visitez <A HREF=\"http://www.kde.org/fr/jobs.html\">"
+-"http://www.kde.org/fr/jobs.html</A> pour des informations sur certains projets "
+-"auxquels vous pouvez participer."
+-"<br>"
+-"<br>Pour plus d'informations ou de documentations, une visite de <A "
+-"HREF=\"http://developer.kde.org/\">http://developer.kde.org/</A> "
++"<br><br>"
++"Visitez "
++"<A HREF=\"http://www.trinitydesktop.org/jobs/\">http://www.trinitydesktop.org/jobs/</A>"
++"pour des informations sur certains projets auxquels vous pouvez participer."
++"<br><br>"
++"Pour plus d'informations ou de documentations, une visite de <A "
++"HREF=\"http://www.trinitydesktop.org/docs/\">http://www.trinitydesktop.org/docs/</A> "
+ "devrait vous fournir ce dont vous avez besoin."
+ 
+ #: kdeui/kaboutkde.cpp:67
+ msgid ""
+-"KDE is available free of charge, but making it is not free."
+-"<br>"
+-"<br>Thus, the KDE team formed the KDE e.V., a non-profit organization legally "
+-"founded in Tuebingen, Germany. The KDE e.V. represents the KDE project in legal "
+-"and financial matters. See <a href=\"http://www.kde-ev.org/\">"
+-"http://www.kde-ev.org</a> for information on the KDE e.V."
+-"<br>"
+-"<br>The KDE team does need financial support. Most of the money is used to "
+-"reimburse members and others on expenses they experienced when contributing to "
+-"KDE. You are encouraged to support KDE through a financial donation, using one "
+-"of the ways described at <a href=\"http://www.kde.org/support/\">"
+-"http://www.kde.org/support/</a>."
+-"<br>"
+-"<br>Thank you very much in advance for your support."
+-msgstr ""
+-"KDE est disponible gratuitement, mais sa réalisation a un coût."
+-"<br>"
+-"<br>C'est pourquoi l'équipe de KDE a formé l'association KDE, une association à "
+-"but non lucratif fondée à Tübingen (Allemagne). L'association KDE représente "
+-"les aspects juridiques et financiers du Projet KDE. Consultez <a "
+-"href=\"http://www.kde-ev.org\">http://www.kde-ev.org/</a> "
+-"pour plus d'informations sur l'association KDE."
+-"<br>"
+-"<br>L'équipe de KDE a besoin d'un appui financier. La majeure partie de ses "
++"Trinity is available free of charge, but making it is not free.<br><br>"
++"<br><br>"
++"The Trinity team does need financial support. Most of the money is used to "
++"reimburse members and others on expenses they experienced when "
++"contributing to Trinity. You are encouraged to support Trinity through a financial "
++"donation, using one of the ways described at "
++"<a href=\"http://www.trinitydesktop.org/donate.php\">http://www.trinitydesktop.org/donate.php</a>."
++"<br><br>Thank you very much in advance for your support!"
++msgstr ""
++"Trinity est disponible gratuitement, mais sa réalisation a un coût."
++"<br><br>"
++"<br>L'équipe de Trinity a besoin d'un appui financier. La majeure partie de ses "
+ "fonds sert à rembourser les membres et d'autres intervenants des dépenses "
+-"qu'ils ont engagées lors de leur contribution à KDE. Pour apporter votre "
+-"participation financière à KDE, utilisez l'une des possibilités décrites à "
+-"l'adresse <a "
+-"href=\"http://www.kde.org/support/\">http://www.kde.org/support/</a>."
+-"<br>"
+-"<br>Nous vous remercions vivement de votre soutien."
++"qu'ils ont engagées lors de leur contribution à Trinity. Pour apporter votre "
++"participation financière à Trinity, utilisez l'une des possibilités décrites à "
++"l'adresse <a href=\"http://www.trinitydesktop.org/donate.php\">http://www.trinitydesktop.org/donate.php</a>."
++"<br><br>Nous vous remercions vivement de votre soutien."
+ 
+ #: kdeui/kaboutkde.cpp:81
+ #, c-format
+-msgid "K Desktop Environment. Release %1"
+-msgstr "Environnement de bureau KDE. Version %1"
++msgid "Trinity Desktop Environment. Release %1"
++msgstr "Environnement de bureau Trinity. Version %1"
+ 
+ #: kdeui/kaboutkde.cpp:83
+ msgid ""
+-"_: About KDE\n"
++"About Trinity"
+ "&About"
+ msgstr "À &propos"
+ 
+@@ -5682,12 +5663,12 @@
+ msgstr "Rapport de bogues et &souhaits"
+ 
+ #: kdeui/kaboutkde.cpp:85
+-msgid "&Join the KDE Team"
+-msgstr "Re&joignez l'équipe de KDE"
++msgid "&Join the Trinity Team"
++msgstr "Re&joignez l'équipe de Trinity"
+ 
+ #: kdeui/kaboutkde.cpp:86
+-msgid "&Support KDE"
+-msgstr "&Soutenez KDE"
++msgid "&Support Trinity"
++msgstr "&Soutenez Trinity"
+ 
+ #: kdeui/kstdguiitem.cpp:110 khtml/java/kjavaappletserver.cpp:804
+ msgid "&Yes"
+@@ -6623,8 +6604,8 @@
+ msgstr "À &propos de : %1"
+ 
+ #: kdeui/khelpmenu.cpp:176 kdeui/kstdaction_p.h:114
+-msgid "About &KDE"
+-msgstr "À propos de &KDE"
++msgid "About &Trinity"
++msgstr "À propos de &Trinity"
+ 
+ #: kdeui/kactionclasses.cpp:2072
+ msgid "Exit F&ull Screen Mode"

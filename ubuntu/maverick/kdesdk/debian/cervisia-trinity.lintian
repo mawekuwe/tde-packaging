@@ -1,9 +1,0 @@
-# kconf_update scripts don't need to be executable.
-cervisia: script-not-executable ./usr/share/apps/kconf_update/change_colors.pl
-cervisia: script-not-executable ./usr/share/apps/kconf_update/move_repositories.pl
-
-# This is from kdeinit black magic.
-cervisia: no-shlibs-control-file opt/trinity/lib/libkdeinit_cervisia.so
-cervisia: postinst-must-call-ldconfig opt/trinity/lib/libkdeinit_cervisia.so
-cervisia: postrm-should-call-ldconfig opt/trinity/lib/libkdeinit_cervisia.so
-cervisia: package-name-doesnt-match-sonames libkdeinit-cervisia

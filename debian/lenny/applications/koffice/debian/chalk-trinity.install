@@ -142,7 +142,7 @@ debian/tmp/opt/trinity/lib/trinity/libchalktiffexport.la
 debian/tmp/opt/trinity/lib/trinity/libchalktiffexport.so
 debian/tmp/opt/trinity/lib/trinity/libchalktiffimport.la
 debian/tmp/opt/trinity/lib/trinity/libchalktiffimport.so
-debian/tmp/opt/trinity/lib/libkdeinit_chalk.so
+debian/tmp/opt/trinity/lib/libtdeinit_chalk.so
 debian/tmp/opt/trinity/lib/libchalk_cmyk_*.so.*
 debian/tmp/opt/trinity/lib/libchalkcolor.so.*
 debian/tmp/opt/trinity/lib/libchalkcommon.so.*

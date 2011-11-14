@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Achim Bohnet <ach@mpe.mpg.de>, Mark Purcell <msp@debian.org>, Fathi Boudra <fabo@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), kdelibs4-trinity-dev,
+Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev,
  libtiff4-dev, libgphoto2-2-dev, libkipi0-trinity-dev,
  libsqlite3-dev, liblcms1-dev, libkexiv2-3-trinity-dev (>= 0.1.6),
  libjasper-dev, libpng12-dev | libpng-dev, libexiv2-dev,
@@ -18,7 +18,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: digikam-kde3 (<< 4:3.5.13)
 Breaks: digikam-kde3 (<< 4:3.5.13)
-Recommends: kipi-plugins-trinity, kdeprint-trinity, konqueror-trinity
+Recommends: kipi-plugins-trinity, tdeprint-trinity, konqueror-trinity
 Suggests: digikam-trinity-doc
 Description: digital photo management application for KDE [Trinity]
  An easy to use and powerful digital photo management
@@ -46,7 +46,7 @@ Section: graphics
 Replaces: showfoto-kde3 (<< 4:3.5.13)
 Breaks: showfoto-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, digikam-trinity
-Recommends: kipi-plugins-trinity, kdeprint-trinity, konqueror-trinity
+Recommends: kipi-plugins-trinity, tdeprint-trinity, konqueror-trinity
 Description: image viewer/editor for KDE [Trinity]
  Showphoto is part of the Digikam project.
  It allows to browse your photo collection and edit them with ease.
@@ -56,7 +56,7 @@ Architecture: any
 Section: devel
 Replaces: digikam-kde3-dbg (<< 4:3.5.13)
 Breaks: digikam-kde3-dbg (<< 4:3.5.13)
-Depends: ${shlibs:Depends}, digikam-trinity (= ${binary:Version}), showfoto-trinity (= ${binary:Version}), kdelibs-trinity-dbg
+Depends: ${shlibs:Depends}, digikam-trinity (= ${binary:Version}), showfoto-trinity (= ${binary:Version}), tdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for digikam [Trinity]
  The debugging symbols associated with digikam and showfoto. They will

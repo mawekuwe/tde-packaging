@@ -1,6 +1,11 @@
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 Name:		libcarddav
 Version:	0.6.2
-Release:	2debian2%{?dist}
+Release:	2debian2.1%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
@@ -8,9 +13,17 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 
 License:	GPL
 Group:		System Environment/Libraries
-Summary:	A client library that adds support for the CalDAV protocol (rfc4791).
+Summary:	A portable CardDAV client implementation originally developed for the Trinity PIM suite.
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	libcarddav_0.6.2-2debian2.tar.gz
+
+%if 0%{?fedora} || 0%{?rhel} >= 6
+BuildRequires:	libcurl-devel
+%else
+BuildRequires:	trinity-libcurl-devel
+%endif
 
 %description
 Libcarddav is a portable CardDAV client implementation originally developed for the Trinity PIM suite. 
@@ -38,6 +51,10 @@ autoreconf --force --install --symlink
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# The include files do not go in the correct directory
+%__mv -f %{buildroot}%{_includedir}/%{name}-0.6.1/*.h %{buildroot}%{_includedir}
+%__rm -rf %{buildroot}%{_includedir}/%{name}-0.6.1
+
 %clean
 %__rm -rf %{buildroot}
 
@@ -46,7 +63,7 @@ autoreconf --force --install --symlink
 %{_libdir}/*.so.*
 
 %files devel
-%{_includedir}/%{name}-0.6.1
+%{_includedir}/*.h
 %{_libdir}/*.a
 %{_libdir}/*.la
 %{_libdir}/*.so
@@ -54,5 +71,5 @@ autoreconf --force --install --symlink
 
 
 %Changelog
-* Fri Oct 21 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2 
-- Initial build for RHEL 6.0
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2 .1
+- Initial build for RHEL 6, RHEL 5, and Fedora 15

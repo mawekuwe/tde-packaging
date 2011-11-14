@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -15,60 +15,124 @@ BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
 
+# Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
+# whereas newer versions use "qt3", "qt3-devel" ...
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8
+%define _qt_suffix 3
+%endif
+
 
 Name:		trinity-kdebase
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity KDE Base Programs
+Group:		User Interface/Desktops
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdebase-%{version}.tar.gz
 
+# Wrapper script to prevent Plasma launch at Trinity Startup
+Source1:	plasma-desktop
+
+# Pam configuration files for RHEL / Fedora
+Source2:	pamd.kdm-trinity%{?dist}
+Source3:	pamd.kdm-trinity-np%{?dist}
+Source4:	pamd.kcheckpass-trinity%{?dist}
+Source5:	pamd.kscreensaver-trinity%{?dist}
+
+
 # TDE for RHEL/Fedora specific patches
-# [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
+## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
 Patch3:		kdebase-3.5.13-kdesu-noignorebutton.patch
-# [kdebase/kdesktop] Modifies "open terminal here" on desktop
+## [kdebase/kdesktop] Modifies "open terminal here" on desktop
 Patch5:		kdebase-3.5.12-desktop-openterminalhere.patch
-# [kdebase/kioslave]: Forces HAL backend to use HAL mount options
+## [kdebase/kioslave] Forces HAL backend to use HAL mount options
 Patch6:		kdebase-3.5.12-halmountoptions.patch
+## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
+Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
+## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
+Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
+## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
+Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
+## [kdebase/kicker/kicker/ui]
+Patch10:	kdebase-3.5.12-kickoff_unstable.patch
+
+# Fedora 15 Theme: "Lovelock"
+%if 0%{?fedora} == 15
+Requires:	lovelock-backgrounds-single
+%define kde_bg /usr/share/backgrounds/lovelock/default/standard/lovelock.png
+%endif
+
+# Fedora 16 Theme: "Verne"
+%if 0%{?fedora} == 16
+Requires:	verne-backgrounds-single
+%define kde_bg /usr/share/backgrounds/verne/default/standard/verne.png
+%endif
+
+# RHEL 5 Theme
+%if 0%{?rhel} == 5
+Requires:	desktop-backgrounds-basic
+%define kde_bg /usr/share/backgrounds/images/default.jpg
+%endif
+
+# RHEL 6 Theme
+%if 0%{?rhel} == 6
+Requires:	redhat-logos
+%define kde_bg /usr/share/backgrounds/default.png
+%endif
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	qt3-devel >= 3.3.8d
+BuildRequires:	qt%{?_qt_suffix}-devel
 BuildRequires:	openssl-devel
 BuildRequires:	avahi-devel avahi-qt3-devel
 BuildRequires:	imake
 BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	OpenEXR-devel
 BuildRequires:	libsmbclient-devel
-BuildRequires:	dbus-devel dbus-qt-devel
+BuildRequires:	dbus-devel
+BuildRequires:  dbus-tqt-devel
 BuildRequires:	lm_sensors-devel
 BuildRequires:	libfontenc-devel
 BuildRequires:	hal-devel
-BuildRequires:	audiofile-devel
-BuildRequires:	jack-audio-connection-kit-devel
+BuildRequires:	audiofile-devel alsa-lib-devel
 BuildRequires:	libraw1394-devel
 BuildRequires:	openldap-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	pam-devel
 BuildRequires:	libXdmcp-devel
 BuildRequires:	libxkbfile-devel
+BuildRequires:	libusb-devel
+BuildRequires:	esound-devel glib2-devel
+BuildRequires:	libXcomposite-devel
 BuildRequires:	dbus-tqt-devel
+BuildRequires:	libXtst-devel
+BuildRequires:	libXdamage-devel
+BuildRequires:	xorg-x11-font-utils
 
+# These dependancies are not met in RHEL
+%if 0%{?fedora}
+BuildRequires:	jack-audio-connection-kit-devel
+BuildRequires:	nas-devel
+%endif
+ 
 Requires:	tqtinterface
 Requires:	trinity-arts
 Requires:	trinity-kdelibs
-Requires:	qt3 >= 3.3.8d
+Requires:	qt%{?_qt_suffix}
 Requires:	openssl
 Requires:	avahi avahi-qt3
 Requires:	dbus-tqt
+# Provides the global Xsession script (/etc/X11/xinit/Xsession)
+Requires:	xorg-x11-xinit
 
 
 # RHEL 6 Configuration files are provided in separate packages
@@ -76,6 +140,10 @@ Requires:	dbus-tqt
 Requires:	kde-settings-kdm
 %endif
 Requires:	redhat-menus
+
+# Required for Fedora LiveCD
+Provides:	service(graphical-login)
+
 
 %description
 Core applications for the Trinity K Desktop Environment.  Included are: kdm
@@ -90,11 +158,11 @@ kfontmanager, kmenuedit).
 
 %package devel
 Requires:	%{name}
-Requires:	%{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 Summary:	%{summary} - Development files
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdebase3-devel
+Obsoletes:	kdebase%{?_qt_suffix}-devel
 %endif
 Group:		Development/Libraries
 %description devel
@@ -106,7 +174,7 @@ Kate plugins or KWin styles.
 %package extras
 Summary: Extra applications from %{name}
 Group: User Interface/Desktops
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{version}-%{release}
 %description extras
 %{summary}, including:
  * kappfinder
@@ -118,11 +186,11 @@ Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-kdelibs >= %{version}
+Requires: trinity-kdelibs
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase3-libs
+Obsoletes: kdebase%{?_qt_suffix}-libs
 %endif
-Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name} = %{version}-%{release}
 %description libs
 %{summary}
 
@@ -143,10 +211,27 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch3 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+cd kicker/kicker
+%patch10 -p0
+cd -
 
-# Gets the cmake modules in current build directory
-%__mkdir_p cmake/modules
-%__cp -f %{_datadir}/cmake/*.* cmake/modules
+# Applies an optional distro-specific graphical theme
+%if "%{?kde_bg}" != ""
+# KDM Background
+%__sed -i "kdm/kfrontend/genkdmconf.c" \
+	-e 's,"Wallpaper=isadora.png\n","Wallpaper=%{kde_bg}\n",'
+	
+# TDE user default background
+%__sed -i "kpersonalizer/keyecandypage.cpp" \
+	-e 's,#define DEFAULT_WALLPAPER "isadora.png",#define DEFAULT_WALLPAPER "%{kde_bg}",'
+
+%__sed -i "startkde" \
+	-e 's,/usr/share/wallpapers/isadora.png.desktop,%{kde_bg},' \
+	-e 's,Wallpaper=isadora.png,Wallpaper=%{kde_bg},'
+%endif
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -165,7 +250,11 @@ cd build
   -DWITH_XCOMPOSITE=ON \
   -DWITH_XCURSOR=ON \
   -DWITH_XFIXES=ON \
+%if 0%{?fedora} || 0%{?rhel} > 5
   -DWITH_XRANDR=ON \
+%else
+  -DWITH_XRANDR=OFF \
+%endif
   -DWITH_XRENDER=ON \
   -DWITH_XDAMAGE=ON \
   -DWITH_XEXT=ON \
@@ -179,27 +268,54 @@ cd build
   -DWITH_I8K=OFF \
   -DWITH_HAL=ON \
   -DBUILD_ALL=ON \
+  -DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" \
+  -DKDM_PAM_SERVICE="kdm-trinity" \
+  -DKSCREENSAVER_PAM_SERVICE="kscreensaver-trinity" \
   ..
 
 %__make %{?_smp_mflags} 
 
 %install
 %__rm -rf %{?buildroot}
-%__mkdir_p %{?buildroot}
-%make_install -C build
+%__make install DESTDIR=%{?buildroot} -C build
 
 # Adds a GDM/KDM/XDM session called 'TDE'
 %if "%{?_prefix}" != "/usr"
 %__mkdir_p "%{?buildroot}%{_usr}/share/xsessions"
-install -m 644 "%{?buildroot}%{_datadir}/apps/kdm/sessions/tde.desktop" "%{?buildroot}%{_usr}/share/xsessions/tde.desktop"
+%__install -m 644 "%{?buildroot}%{_datadir}/apps/kdm/sessions/tde.desktop" "%{?buildroot}%{_usr}/share/xsessions/tde.desktop"
 %endif
 
 # Modifies 'startkde' to set KDEDIR and KDEHOME hardcoded specific for TDE
-sed -i "%{?buildroot}%{_bindir}/startkde" \
+%__sed -i "%{?buildroot}%{_bindir}/startkde" \
   -e '/^echo "\[startkde\] Starting startkde.".*/ s,$,\nexport KDEDIR=%{_prefix}\nexport KDEHOME=~/.trinity,'
 
 # Renames '/etc/ksysguarddrc' to avoid conflict with KDE4 'ksysguard'
-mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
+%__mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
+
+# TDE 3.5.12: add script "plasma-desktop" to avoid conflict with KDE4
+%if "%{?_prefix}" != "/usr"
+%__install -m 755 "%{SOURCE1}" "%{?buildroot}%{_bindir}"
+%endif
+
+# PAM configuration files
+%__mkdir_p "%{?buildroot}%{_sysconfdir}/pam.d"
+%__install -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity"
+%__install -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
+%__install -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
+%__install -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
+
+# KDM configuration for RHEL/Fedora
+%__sed -i "%{?buildroot}%{_datadir}/config/kdm/kdmrc" \
+%if 0%{?fedora} >= 16
+	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
+%else
+	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
+%endif
+
+# Moves the XDG configuration files to TDE directory
+%__mkdir_p "%{?buildroot}%{_prefix}/etc"
+%__mv -f "%{?buildroot}%{_sysconfdir}/xdg" "%{?buildroot}%{_prefix}/etc"
+
 
 %clean
 %__rm -rf %{?buildroot}
@@ -288,6 +404,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/applnk/Utilities/kpager.desktop
 %exclude %{_datadir}/icons/hicolor/*/apps/kpager.png
 
+# Pam configuration
+%{_sysconfdir}/pam.d/*
+
 %doc AUTHORS COPYING README
 %{tde_docdir}/HTML/en/*
 %config(noreplace) %{_sysconfdir}/ksysguarddrc.tde
@@ -321,7 +440,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/konqueror
 %{_bindir}/konsole
 %{_bindir}/krandom.kss
-%{_bindir}/krandrtray
 %{_bindir}/krdb
 %{_bindir}/kreadconfig
 %{_bindir}/ksmserver
@@ -369,6 +487,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/khc_mansearch.pl
 %{_bindir}/kicker
 %{_bindir}/knetattach
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+%{_bindir}/krandrtray
+%endif
 %{_bindir}/kompmgr
 %{_bindir}/kpm
 %{_bindir}/ksplash
@@ -397,13 +518,14 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/sounds/*
 %{tde_libdir}/*
 %{_libdir}/libkdeinit_*.*
-%{_sysconfdir}/xdg/menus/applications-merged/kde-essential.menu
-%{_sysconfdir}/xdg/menus/kde-information.menu
-%{_sysconfdir}/xdg/menus/kde-screensavers.menu
-%{_sysconfdir}/xdg/menus/kde-settings.menu
+%{_prefix}/etc/xdg/menus/applications-merged/kde-essential.menu
+%{_prefix}/etc/xdg/menus/kde-information.menu
+%{_prefix}/etc/xdg/menus/kde-screensavers.menu
+%{_prefix}/etc/xdg/menus/kde-settings.menu
 /usr/share/xsessions/*.desktop
 # Remove conflicts with redhat-menus
 %if "%{?_prefix}" != "/usr"
+%{_bindir}/plasma-desktop
 %config(noreplace) %{_datadir}/config/*
 %else
 %exclude %{_datadir}/config
@@ -420,6 +542,8 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 # New in TDE 3.5.13
 %{_bindir}/krootbacking
+%{_bindir}/tsak
+%attr(4511,root,root) %{_bindir}/kdmtsak
 
 %files libs
 %defattr(-,root,root,-)
@@ -455,6 +579,27 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
-* Sat Sep 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12.99-0
+* Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Add graphical theme for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
+
+* Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Add "service(graphical-login)"
+- Add kickoff menu fix [TDE Bug #508]
+- kdmrc: sets "MinShowUID=500"
+
+* Tue Nov 08 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Fix FTBFS with dbus-tqt
+
+* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Add missing BuildRequires
+
+* Tue Nov 01 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add 'patch8' to fix LD_PRELOAD variable set by 'startkde' under x86_64
+
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
+* Sat Sep 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Use TDE 3.5.13, cmake, QT3.3.3.8d

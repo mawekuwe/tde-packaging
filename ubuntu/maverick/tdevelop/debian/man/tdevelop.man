@@ -1,0 +1,22 @@
+.TH KDEVELOP 1
+.SH NAME
+tdevelop \- Integrated Development Environment for KDE
+.SH SYNOPSIS
+.B tdevelop
+.I [Qt-options] [KDE-options] [options] file(s)
+.SH DESCRIPTION
+.B KDevelop
+is an integrated development environment for KDE.
+.SH PROGRAM OPTIONS
+.TP
+.B --profile \fI<profile>\fB
+Profile to load.
+.TP
+.B file(s)
+Files to load.
+.so kdeopt.part
+.SH SEE ALSO
+More detailed user documentation is available from
+.BR help:/tdevelop
+(either enter this URL into \fBkonqueror\fP, or run `khelpcenter
+help:/tdevelop').

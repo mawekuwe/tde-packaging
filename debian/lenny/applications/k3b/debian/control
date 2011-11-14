@@ -4,13 +4,13 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Francois Marier <francois@debian.org>, Fathi Boudra <fabo@debian.org>
-Build-Depends: libdvdread4, libdvdread-dev, alsa, libasound2-dev, lame, libmp3lame-dev, debhelper (>= 6), cdbs (>= 0.4.52ubuntu18), kdelibs4-trinity-dev (>= 3.5.0), libflac++-dev (>= 1.1.2), flac, libdbus-tqt-1-dev, libhal-dev (>= 0.5.5.1), libhal-storage-dev (>= 0.5.5.1), libpopt-dev, libmpcdec-dev, libtag1-dev (>= 1.4-3), libmusicbrainz4-dev (>= 2.1.1-4.1), libmad0-dev, chrpath, libavformat-dev, libavcodec-dev, libvorbis-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: libdvdread4, libdvdread-dev, alsa, libasound2-dev, lame, libmp3lame-dev, debhelper (>= 6), cdbs (>= 0.4.52ubuntu18), tdelibs4-trinity-dev (>= 3.5.0), libflac++-dev (>= 1.1.2), flac, libdbus-tqt-1-dev, libhal-dev (>= 0.5.5.1), libhal-storage-dev (>= 0.5.5.1), libpopt-dev, libmpcdec-dev, libtag1-dev (>= 1.4-3), libmusicbrainz4-dev (>= 2.1.1-4.1), libmad0-dev, chrpath, libavformat-dev, libavcodec-dev, libvorbis-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://www.k3b.org
 
 Package: k3b-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, wodim | cdrskin, cdparanoia (>= 3a9.8), genisoimage, kdelibs-data-trinity (>= 4:3.1.4-2), cdrdao (>= 1.1.7-5), k3b-data-trinity (= ${source:Version}), libk3b3-trinity (= ${binary:Version})
+Depends: ${shlibs:Depends}, wodim | cdrskin, cdparanoia (>= 3a9.8), genisoimage, tdelibs-data-trinity (>= 4:3.1.4-2), cdrdao (>= 1.1.7-5), k3b-data-trinity (= ${source:Version}), libk3b3-trinity (= ${binary:Version})
 Recommends: dvd+rw-tools, libk3b3-extracodecs-trinity
 Suggests: k3b-i18n, normalize-audio, toolame, sox, movixmaker-2, vcdimager (>= 0.7)
 Replaces: libk3b3-trinity (<< 1.0.5-2)

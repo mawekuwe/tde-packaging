@@ -1,2 +1,0 @@
-kweather: no-shlibs-control-file usr/lib/trinity/libkdeinit_kweatherreport.so
-kweather: package-name-doesnt-match-sonames libkdeinit-kweatherreport

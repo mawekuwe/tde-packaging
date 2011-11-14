@@ -1,0 +1,3 @@
+klipper: no-shlibs-control-file usr/lib/libtdeinit_klipper.so
+klipper: postinst-must-call-ldconfig usr/lib/libtdeinit_klipper.so
+klipper: postrm-should-call-ldconfig usr/lib/libtdeinit_klipper.so

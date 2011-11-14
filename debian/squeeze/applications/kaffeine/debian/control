@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Riku Voipio <riku.voipio@iki.fi>, Fathi Boudra <fboudra@free.fr>,
  Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), kdelibs4-trinity-dev,
+Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev,
  libcdparanoia0-dev, libogg-dev, libxine-dev (>= 1.1.7), libxcb1-dev,
  libxtst-dev, libgstreamer0.10-dev, libgstreamer-plugins-base0.10-dev,
  libcdio-cdda-dev, libcdio-paranoia-dev,
@@ -15,7 +15,7 @@ Standards-Version: 3.8.4
 Package: kaffeine-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, hdparm
-Recommends: kdesudo-trinity, kpackage-trinity
+Recommends: tdesudo-trinity, kpackage-trinity
 Description: versatile media player for TDE
  Kaffeine is a media player for KDE. While it supports multiple player
  engines, its default engine is Xine, giving Kaffeine a wide variety of
@@ -31,8 +31,8 @@ Package: kaffeine-trinity-dbg
 Section: devel
 Architecture: any
 Priority: extra
-Depends: kaffeine-trinity (= ${binary:Version}), kdelibs-trinity-dbg
-Recommends: kdesudo-trinity, kpackage-trinity
+Depends: kaffeine-trinity (= ${binary:Version}), tdelibs-trinity-dbg
+Recommends: tdesudo-trinity, kpackage-trinity
 Description: debugging symbols for kaffeine [Trinity]
  This package contains the debugging symbols associated with kaffeine.
  They will automatically be used by gdb for debugging kaffeine-related

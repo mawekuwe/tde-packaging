@@ -1,0 +1,8 @@
+usr/bin/designer
+usr/bin/createcw
+usr/bin/conv2ui
+usr/share/tqt3/templates/*
+usr/share/tqt3/doc/html/designer*html
+usr/share/tqt3/doc/html/designer*dcf
+usr/share/tqt3/doc/html/designer*jpg
+usr/lib/tqt3/plugins/designer/*

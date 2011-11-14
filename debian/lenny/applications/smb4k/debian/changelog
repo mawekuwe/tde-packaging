@@ -167,7 +167,7 @@ smb4k (0.6.1-1) unstable; urgency=low
 smb4k (0.6.0-1) unstable; urgency=low
 
   * New upstream release
-  * Added missing kdebase-dev build-dep
+  * Added missing tdebase-dev build-dep
   * Policy bumped to 3.6.2
 
  -- Francesco Paolo Lovergine <frankie@debian.org>  Tue, 23 Aug 2005 23:29:26 +0200

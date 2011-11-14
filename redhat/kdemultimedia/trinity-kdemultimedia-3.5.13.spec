@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 0
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -24,7 +24,10 @@ BuildRequires: cmake >= 2.8
 ## not currently compatible with libtunepimp-0.5 (only libtunepimp-0.4)
 #define _with_musicbrainz --with-musicbrainz
 %define _with_taglib --with-taglib
+
+%if 0%{?fedora}
 %define _with_xine --with-xine
+%endif
 
 Name:    trinity-kdemultimedia
 Summary: Multimedia applications for the K Desktop Environment (KDE)
@@ -38,8 +41,10 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 Source0: kdemultimedia-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Provides: kdemultimedia3 = %{version}-%{release}
 
@@ -47,10 +52,15 @@ Provides: kdemultimedia3 = %{version}-%{release}
 Patch3: kdemultimedia-3.4.0-xdg.patch
 Patch5: kdemultimedia-3.5.7-pthread.patch
 
+
+Provides: kdemultimedia3 = %{version}-%{release}
+
 Requires: %{name}-libs = %{version}-%{release}
 
-BuildRequires: zlib-devel
+BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
+
+BuildRequires: zlib-devel
 BuildRequires: libvorbis-devel
 BuildRequires: audiofile-devel
 BuildRequires: desktop-file-utils
@@ -64,6 +74,8 @@ BuildRequires: automake libtool
 %{?_with_musicbrainz:BuildRequires: libmusicbrainz-devel libtunepimp-devel}
 %{?_with_taglib:BuildRequires: taglib-devel}
 %{?_with_xine:BuildRequires: xine-lib-devel}
+BuildRequires:	libXxf86dga-devel
+BuildRequires:	libXxf86vm-devel
 
 %description
 The K Desktop Environment (KDE) is a GUI desktop for the X Window
@@ -93,14 +105,7 @@ noatun plugins.
 %package extras
 Summary: Extra applications from %{name} 
 Group: Applications/Multimedia
-%if 0%{?libs}
 Requires: %{name}-extras-libs = %{version}-%{release}
-%else
-Obsoletes: %{name}-extras-libs < %{version}-%{release}
-Provides:  %{name}-extras-libs = %{version}-%{release}
-Requires(post): /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
-%endif
 %description extras
 %{summary}, including:
  * juk, a media player
@@ -141,13 +146,8 @@ sed -i admin/acinclude.m4.in \
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-
-# just to be paranoid -- Rex
-unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-
-export CXXFLAGS="${LDFLAGS} $(pkg-config --libs gsl)"
 
 %configure  \
    --enable-new-ldflags \
@@ -168,19 +168,19 @@ export CXXFLAGS="${LDFLAGS} $(pkg-config --libs gsl)"
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?_with_xine} %{!?_with_xine:--without-xine} \
-   --with-extra-includes=%{_usr}/include/cdda:%{_includedir}/tqt
+   --with-extra-includes=%{_usr}/include/cdda:%{_includedir}/tqt \
+   --enable-closure
 
 %__make %{?_smp_mflags}
 
 
 %install
-%__rm -rf %{buildroot} 
-
-%make_install
-%make_install -C kaudiocreator
+export PATH="%{_bindir}:${PATH}"
+%__rm -rf %{?buildroot} 
+%__make install DESTDIR=%{buildroot}
 
 ## Remove/uninstall (conflicting) bits we don't want
-rm -f $RPM_BUILD_ROOT%{_libdir}/mcop/akode*MPEGPlayObject.mcopclass
+%__rm -f $RPM_BUILD_ROOT%{_libdir}/mcop/akode*MPEGPlayObject.mcopclass
 
 # only show in KDE, really? -- Rex (FIXME)
 for f in %{buildroot}%{appdir}/*.desktop ; do
@@ -225,7 +225,7 @@ done
 
 
 %post
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -233,14 +233,13 @@ done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %postun
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
 done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
-%if 0%{?libs}
 %post libs -p /sbin/ldconfig
 
 %postun libs -p /sbin/ldconfig
@@ -248,10 +247,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %post extras-libs -p /sbin/ldconfig
 
 %postun extras-libs -p /sbin/ldconfig
-%endif
 
 %post extras
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -259,7 +257,7 @@ done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %postun extras
-%{?libs:/sbin/ldconfig}
+/sbin/ldconfig
 for f in crystalsvg hicolor ; do
   touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
@@ -357,6 +355,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_libdir}/mcop/*
 %{_libdir}/libkdeinit_*.so
 #%{_libdir}/liboggarts.so
+%{_libdir}/libmpeg-0.3.0.so
+%{_libdir}/libyafcore.so
+%{_libdir}/libyafxplayer.so
 %{tde_libdir}/*
 %{_libdir}/kconf_update_bin/*
 %{_bindir}/*
@@ -371,6 +372,16 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/mimelnk/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
+
+# Misc HTML docs
+%doc %lang(en) %{tde_docdir}/HTML/en/artsbuilder
+%doc %lang(en) %{tde_docdir}/HTML/en/kaudiocreator
+%doc %lang(en) %{tde_docdir}/HTML/en/kioslave/audiocd.docbook
+%doc %lang(en) %{tde_docdir}/HTML/en/kmid
+%doc %lang(en) %{tde_docdir}/HTML/en/kmix
+%doc %lang(en) %{tde_docdir}/HTML/en/krec
+%doc %lang(en) %{tde_docdir}/HTML/en/kscd
+
 
 %files libs
 %defattr(-,root,root,-)
@@ -388,9 +399,17 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libnoatunarts.*
 #exclude %{_libdir}/liboggarts.so
 %exclude %{_libdir}/libwinskinvis.so
-
+%exclude %{_libdir}/libmpeg-0.3.0.so
+%exclude %{_libdir}/libyafcore.so
+%exclude %{_libdir}/libyafxplayer.so
 
 %changelog
+* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Updates BuildRequires
+
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
 * Sat Sep 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Initial build for RHEL 6
+- Import to GIT
 - Spec file based on Fedora 8 "kdemultimedia-6:3.5.10-2"

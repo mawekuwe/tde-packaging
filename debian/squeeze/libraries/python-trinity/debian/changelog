@@ -207,7 +207,7 @@ python-trinity (3.16.0-0ubuntu8) feisty; urgency=low
     adds setPtyFd() to sip/kpart/konsole_kpart.sip
 
   [ Jonathan Riddell ]
-  * Update build-dep version to kdelibs and konsole 3.5.6
+  * Update build-dep version to tdelibs and konsole 3.5.6
 
  -- Michael Vogt <michael.vogt@ubuntu.com>  Fri, 19 Jan 2007 10:43:29 +0100
 

@@ -49,7 +49,7 @@ knemo (0.4.5-1) unstable; urgency=low
 
   [ Mark Purcell ]
   * New upstream release
-  * Remove 12_kdesvn572745.diff as applied upstream
+  * Remove 12_tdesvn572745.diff as applied upstream
   * Remove 13_fix_essid_regexp_for_not_quoted_strings.diff as applied
     upstream
 
@@ -58,8 +58,8 @@ knemo (0.4.5-1) unstable; urgency=low
 knemo (0.4.4-2) unstable; urgency=low
 
   [ Achim Bohnet ]
-  * control: remove Depends: kdelibs-bin.  kdelibs-bin was merged into
-    kdelibs4c2a (4:3.5.3-1). kdelibs4c2a is added via ${shlibs:Depends}.
+  * control: remove Depends: tdelibs-bin.  tdelibs-bin was merged into
+    tdelibs4c2a (4:3.5.3-1). tdelibs4c2a is added via ${shlibs:Depends}.
     Thx Hobbsee for reminding me (again and again :).
 
  -- Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>  Tue, 22 Aug 2006 17:11:42 +0200
@@ -69,7 +69,7 @@ knemo (0.4.4-1) unstable; urgency=low
   * new upstream release
 
   [ Achim Bohnet ]
-  * added debian/patches/12_kdesvn572745.diff: Pull from KDE SVN:
+  * added debian/patches/12_tdesvn572745.diff: Pull from KDE SVN:
     Fixed counting of transmitted data
   * added debian/patches/11_revert_load_on_demand.diff:
     With load on demand, knemo does not start on login.
@@ -137,7 +137,7 @@ knemo (0.3.1-5) unstable; urgency=low
   [ Achim Bohnet ]
   * short description: replace "KDEs systray" with "KDE's systray"
     (Closes: 341298)
-  * patches/11_kdesvn_505129_add_kcm_desktop_keywords.diff:  added
+  * patches/11_tdesvn_505129_add_kcm_desktop_keywords.diff:  added
     keywords to knemo's kcontrol desktop file.  Knemo configuration
     can now be found via 'Search:' (suggested by gbrinkmann on kde-apps)
     This also fixes, well removes, the non UTF-8 encoding in comment[de],
@@ -239,7 +239,7 @@ knemo (0.1.9-1) unstable; urgency=low
   * add net-tools, wireless-tools to build-dep. Configure now checks
     for i[fw]config (instead of hardcoded path in *.cpp files)
   * added home page on kde-apps to control
-  * Add to depends: kdelibs-bin (contains kded), kicker
+  * Add to depends: tdelibs-bin (contains kded), kicker
   * Add to recommends: kcontrol  (contains kcmshell, kcontrol)
   * fixed version in VERSION file s/0.1.8/0.1.9/
   * README: s/&lt;/</

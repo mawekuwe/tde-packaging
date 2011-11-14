@@ -1,0 +1,72 @@
+--- arts.3513/config.h.cmake.ORI	2011-11-12 00:33:38.784907854 +0100
++++ arts.3513/config.h.cmake	2011-11-12 00:33:55.548557832 +0100
+@@ -28,3 +28,7 @@
+ #cmakedefine HAVE_SND_PCM_RESUME 1
+ #cmakedefine ALSA_PCM_OLD_SW_PARAMS_API 1
+ #cmakedefine ALSA_PCM_OLD_HW_PARAMS_API 1
++
++#cmakedefine HAVE_SYS_SOUNDCARD_H 1
++#cmakedefine HAVE_LIBPTHREAD 1
++#define HAVE_IOCTL_INT_ULONGINT_DOTS 3
+--- arts.3513/artsc/CMakeLists.txt.ORI	2011-11-12 00:50:03.023418039 +0100
++++ arts.3513/artsc/CMakeLists.txt	2011-11-12 00:50:19.776070197 +0100
+@@ -43,6 +43,7 @@
+ include_directories(
+   ${CMAKE_CURRENT_BINARY_DIR}
+   ${CMAKE_BINARY_DIR}
++  ${CMAKE_SOURCE_DIR}/artsc
+   ${CMAKE_BINARY_DIR}/mcop
+   ${CMAKE_SOURCE_DIR}/mcop
+   ${CMAKE_BINARY_DIR}/flow
+@@ -64,7 +65,7 @@
+ tde_add_library( artsdsp SHARED
+   SOURCES artsdsp.c
+   VERSION 0.0.0
+-  LINK artsc-shared
++  LINK artsc-shared dl
+   DESTINATION ${LIB_INSTALL_DIR}
+ )
+ 
+--- arts.3513/flow/CMakeLists.txt.ORI	2011-11-12 00:56:01.582978475 +0100
++++ arts.3513/flow/CMakeLists.txt	2011-11-12 00:56:14.392712888 +0100
+@@ -15,6 +15,7 @@
+ 
+ include_directories(
+   ${CMAKE_BINARY_DIR}
++  ${CMAKE_SOURCE_DIR}/artsc
+   ${CMAKE_BINARY_DIR}/mcop
+   ${CMAKE_SOURCE_DIR}/mcop
+   ${CMAKE_CURRENT_BINARY_DIR}
+--- arts.3513/mcop_mt/CMakeLists.txt.ORI	2011-11-12 00:59:06.148132592 +0100
++++ arts.3513/mcop_mt/CMakeLists.txt	2011-11-12 01:16:08.584636258 +0100
+@@ -11,6 +11,11 @@
+ 
+ include_directories(
+   ${CMAKE_BINARY_DIR}
++  ${CMAKE_BINARY_DIR}/flow
++  ${CMAKE_BINARY_DIR}/mcop
++  ${CMAKE_SOURCE_DIR}/flow
++  ${CMAKE_SOURCE_DIR}/mcop
++  ${GLIB2_INCLUDE_DIRS}
+ )
+ 
+ 
+@@ -19,6 +24,6 @@
+ tde_add_library( mcop_mt SHARED
+   SOURCES threads_posix.cc
+   VERSION 1.0.0
+-  LINK artsflow-shared
++  LINK artsflow-shared pthread
+   DESTINATION ${LIB_INSTALL_DIR}
+ )
+--- arts/CMakeLists.txt.ORI	2011-11-12 01:20:34.671118554 +0100
++++ arts/CMakeLists.txt	2011-11-12 01:22:04.857248409 +0100
+@@ -58,6 +58,8 @@
+ check_include_file( "malloc.h" HAVE_MALLOC_H )
+ check_include_file( "memory.h" HAVE_MEMORY_H )
+ check_include_file( "dlfcn.h" HAVE_DLFCN_H )
++check_include_file( "sys/soundcard.h" HAVE_SYS_SOUNDCARD_H )
++check_include_file( "pthread.h" HAVE_LIBPTHREAD )
+ 
+ 
+ ##### check for system libraries ################

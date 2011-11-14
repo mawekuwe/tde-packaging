@@ -63,7 +63,7 @@ mlt (0.2.4.svn20071228-0.0ubuntu1) hardy; urgency=low
 mlt (0.2.4.svn20071228-0.0) unstable; urgency=low
 
   * New svn release.
-  * Replace libqt3-mt-dev by kdelibs4-dev in Build-Depends.
+  * Replace libqt3-mt-dev by tdelibs4-dev in Build-Depends.
   * Install modules in /usr/lib instead of /usr/share
 
  -- Christian Marillat <marillat@debian.org>  Sat, 29 Dec 2007 17:12:24 +0100

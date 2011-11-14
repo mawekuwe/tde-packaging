@@ -95,7 +95,7 @@ gwenview (1.4.0~debian.1-1) unstable; urgency=low
 gwenview (1.3.1-3) unstable; urgency=low
 
   * Clarify the package description, as merely editing EXIF comments doesn't
-    strictly require kdegraphics-kfile-plugins. (Closes: #368809)
+    strictly require tdegraphics-kfile-plugins. (Closes: #368809)
 
  -- Christopher Martin <chrsmrtn@debian.org>  Sun, 28 May 2006 11:37:27 -0400
 
@@ -109,7 +109,7 @@ gwenview (1.3.1-2) unstable; urgency=low
 gwenview (1.3.1-1) unstable; urgency=low
 
   * Minor upstream update.
-  * Rebuild against kdelibs4c2a.
+  * Rebuild against tdelibs4c2a.
   * Bump DH_COMPAT to 5. No changes required.
 
  -- Christopher Martin <chrsmrtn@debian.org>  Mon,  5 Dec 2005 07:46:53 -0500
@@ -157,7 +157,7 @@ gwenview (1.1.8+1.2.0pre1-1) unstable; urgency=low
   * New upstream release.
     + Fixes crash when double-clicking on an image using the konqueror kpart.
       (Closes: #290097)
-    + Gwenview is now a kdeinit module - added appropriate lintian override.
+    + Gwenview is now a tdeinit module - added appropriate lintian override.
 
  -- Christopher Martin <chrsmrtn@freeshell.org>  Wed, 26 Jan 2005 09:45:17 -0500
 
@@ -198,7 +198,7 @@ gwenview (1.1.4-1) unstable; urgency=low
   * New upstream release.
   * Rebuild against Qt 3.3, fixing the failure to exit properly from
     fullscreen mode.
-  * Added a recommends on kdegraphics-kfile-plugins, which enables the use of
+  * Added a recommends on tdegraphics-kfile-plugins, which enables the use of
     EXIF comments.
 
  -- Christopher Martin <chrsmrtn@freeshell.org>  Tue, 10 Aug 2004 18:37:33 -0400

@@ -1,8 +1,8 @@
 # Default version for this component
 %if "%{?version}" == ""
-%define version 1.5.10
+%define version 3.5.13
 %endif
-%define release 0
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -18,13 +18,19 @@ Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the KDE sound system
+Group:		System Environment/Daemons 
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Source0:	arts-%{version}.tar.gz
 Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Source0:	arts-%{version}.tar.gz
+
+# TDE 3.5.13: Re-enable lost OSS support
+Patch0:		arts-3.5.13-enable_oss.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
@@ -32,6 +38,7 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
 BuildRequires:	gsl-devel
+BuildRequires:	libvorbis-devel
 
 Requires:	tqtinterface
 Requires:	audiofile
@@ -54,8 +61,9 @@ playing a wave file with some effects.
 
 
 %package devel
-Requires:	%{name}
+Group:		Development/Libraries
 Summary:	%{name} - Development files
+Requires:	%{name} = %{version}-%{release}
 %if "%{?_prefix}" == "/usr"
 Obsoletes:	arts-devel
 %endif
@@ -65,6 +73,7 @@ Development files for %{name}
 
 %prep
 %setup -q -n dependencies/arts
+%patch0 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -80,7 +89,8 @@ cd build
 %__make %{?_smp_mflags}
 
 %install
-%make_install -C build
+%__rm -rf %{?buildroot}
+%__make install -C build DESTDIR=%{?buildroot}
 
 %clean
 %__rm -rf %{?buildroot}
@@ -111,10 +121,16 @@ cd build
 %{_bindir}/artsc-config
 %{_libdir}/lib*.so
 %{_libdir}/pkgconfig/*.pc
-%exclude %{_libdir}/*.a
+%{_libdir}/*.a
 
 
 %changelog
-* Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 1.5.10-0
+* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add missing BuildRequires
+
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
+
+* Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Built with future TDE version (3.5.13 + cmake + QT3.3.8d)

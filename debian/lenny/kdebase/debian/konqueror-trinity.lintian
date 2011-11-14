@@ -1,3 +1,0 @@
-konqueror: shlib-missing-in-control-file libkdeinit_keditbookmarks.so usr/lib/libkdeinit_keditbookmarks.so
-konqueror: shlib-missing-in-control-file libkdeinit_kfmclient.so usr/lib/libkdeinit_kfmclient.so
-konqueror: shlib-missing-in-control-file libkdeinit_konqueror.so usr/lib/libkdeinit_konqueror.so

@@ -1,0 +1,6 @@
+tdebase-bin: setgid-binary usr/bin/tdesud 2755 root/nogroup
+tdebase-bin: no-shlibs-control-file usr/lib/libtdeinit_kcminit.so
+tdebase-bin: no-shlibs-control-file usr/lib/libtdeinit_khotkeys.so
+tdebase-bin: no-shlibs-control-file usr/lib/libtdeinit_kxkb.so
+tdebase-bin: postinst-must-call-ldconfig usr/lib/libtdeinit_khotkeys.so
+tdebase-bin: postrm-should-call-ldconfig usr/lib/libtdeinit_khotkeys.so
