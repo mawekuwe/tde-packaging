@@ -1,6 +1,6 @@
 # Maintainer: Calvin Morrison <MutantTurkey@gmail.com>
 pkgname=trinity-qt3
-pkgver=20110919
+pkgver=3884
 pkgrel=1
 pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
 _prefix="/opt/qt"
@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 license=('GPL')
 url="http://trinitydesktop.org"
 # install=qt.install
-groups=('trinity')
+groups=('trinity-base')
 depends=('libjpeg-turbo' 'libmng' 'libmysqlclient' 'libpng' 'libxmu'  'libxcursor' 'libxinerama' 'libxft' 'libxrandr' 'mesa' 'postgresql-libs' 'unixodbc')
 makedepends=('cups' 'libxi' 'mysql' 'postgresql' 'unixodbc' 'sqlite3')
 optdepends=()
@@ -16,30 +16,13 @@ optdepends=()
 provides=('trinity-qt3' 'qt3')
 conflicts=('qt3' 'qt3-enhanced')
 replaces=('trinity-qt3')
-_prefix="opt/qt3"
-source=()
+_prefix="opt/qt"
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz)
+md5sums=('78dc675e84aed595375449818cbb589a')
 options=(!libtool)
 
-
-_gitroot="http://scm.trinitydesktop.org/scm/git/tde"
-_gitname="tde/main/dependencies/qt3"
-
 build() {
-  cd "$srcdir"
-  msg "Connecting to GIT server...."
-
-  if [ -d $_gitname ] ; then
-    cd $_gitname && git pull origin
-    msg "The local files are updated."
-  else
-      git clone $_gitroot 
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting make..."
-
-
- export QTDIR="${srcdir}/"$_gitname 
+ export QTDIR="${srcdir}/qt3/" 
  export PATH=${QTDIR}/bin:${PATH}
  export LD_LIBRARY_PATH=${QTDIR}/lib:${LD_LIBRARY_PATH}
  export QMAKESPEC=$QTDIR/mkspecs/linux-g++
@@ -49,13 +32,9 @@ build() {
      else unset ARCH
 fi
 
-  cd "$srcdir/$_gitname"
-
-
+  cd "${srcdir}/qt3"
 
   rm -rf mkspecs/{*aix*,*bsd*,cygwin*,dgux*,darwin*,hpux*,hurd*,irix*,lynxos*,macx*,qnx*,reliant*,sco*,solaris*,tru64*,unixware*,win32*}
-
-  
 
   msg "Starting configure..."
   #make -C qmake || return 1
@@ -72,10 +51,10 @@ fi
 }
 
 package() {
- cd "$srcdir/$_gitname"
+ cd "$srcdir/qt3"
 
   # Build and install qt.profile
-  echo "export QTDIR=${_prefix}" > ${srcdir}/qt.profile
+  echo "export QTDIR=/${_prefix}" > ${srcdir}/qt.profile
   echo "export QT_XFT=true" >> ${srcdir}/qt.profile
   echo 'export PATH=$PATH:$QTDIR/bin' >> ${srcdir}/qt.profile
   echo 'export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QTDIR/pkgconfig' >> ${srcdir}/qt.profile
