@@ -5,7 +5,7 @@
              "<p>For more information on KDE internationalization "
              "visit <a href=\"http://l10n.kde.org\">http://l10n.kde.org</a></p>"
 -            );
-+		) + i18n("<p>Debian includes additions and alterations to the KDE translation from <a href=\"https://translations.launchpad.net/\">Launchpad</a>.</p>");
++		) + i18n("<p>Debian includes additions and alterations to the TDE translation from <a href=\"https://translations.launchpad.net/\">Launchpad</a>.</p>");
  }
  
  TQString
