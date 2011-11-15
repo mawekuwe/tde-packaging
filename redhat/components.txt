@@ -3,9 +3,11 @@ dependencies/libcaldav
 dependencies/libcarddav
 dependencies/tqtinterface
 dependencies/dbus-tqt
+dependencies/dbus-1-tqt
 dependencies/arts
 trinity-desktop
-trinity-settings
+#trinity-settings
+trinity-live
 kdelibs
 kdebase
 kdebindings
@@ -39,7 +41,7 @@ applications/filelight
 applications/kdiff3
 #applications/kuickshow
 #applications/basket
-applications/katapult
+#applications/katapult
 #compizconfig-backend-kconfig
 applications/kbookreader
 applications/kdbusnotification
@@ -49,3 +51,6 @@ applications/kdesudo
 applications/digikam
 applications/konversation
 applications/ksensors
+applications/amarok
+applications/kaffeine
+applications/knetworkmanager

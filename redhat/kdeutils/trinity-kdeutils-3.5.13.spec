@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -41,7 +41,11 @@ BuildRequires:	trinity-arts
 BuildRequires:	trinity-kdelibs
 
 # RedHat / Fedora legacy patches
-Patch1: kdf-3.0.2-label.patch
+Patch1:		kdf-3.0.2-label.patch
+
+# TDE 3.5.13 RHEL/Fedora patches
+## [kdeutils/klaptodaemon] removes dpkg commands
+Patch2:		kdeutils-3.5.13-klaptopdaemon_dpkg_command.patch
 
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -112,6 +116,7 @@ More Utilities for the K Desktop Environment:
 %setup -q -n kdeutils
 
 %patch1 -p1 -b .label
+%patch2 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -342,6 +347,9 @@ done
 
 
 %changelog
+* Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Removes 'dpkg' commands inside klaptopdaemon
+
 * Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Updates BuildRequires
 

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -28,6 +28,9 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	arts-%{version}.tar.gz
+
+# TDE 3.5.13: Re-enable lost OSS support
+Patch0:		arts-3.5.13-enable_oss.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
@@ -70,6 +73,7 @@ Development files for %{name}
 
 %prep
 %setup -q -n dependencies/arts
+%patch0 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -79,8 +83,14 @@ cd build
 %cmake \
   -DINCLUDE_INSTALL_DIR=%{_includedir}/arts \
   -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \
+  -DWITH_ALSA=ON \
+  -DWITH_AUDIOFILE=ON \
+  -DWITH_VORBIS=ON \
   -DWITH_MAD=OFF \
+  -DWITH_ESOUND=ON \
   ..
+
+#cp -f /tmp/config.h .
 
 %__make %{?_smp_mflags}
 
@@ -121,6 +131,9 @@ cd build
 
 
 %changelog
+* Mon Nov 14 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Enables OSS and ESD support
+
 * Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Add missing BuildRequires
 

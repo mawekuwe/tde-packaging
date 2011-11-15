@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -223,6 +223,13 @@ for dir in k* ; do
   done
 done
 
+# Moves the XDG configuration files to TDE directory
+%__install -p -D -m644 \
+	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications-merged/kde-multimedia-music.menu" \
+	"%{?buildroot}%{_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu"
+%__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
+
+
 
 %post
 /sbin/ldconfig
@@ -351,7 +358,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_datadir}/icons/crystalsvg/*/*/juk*
 %exclude %{_datadir}/icons/hicolor/*/apps/juk.png
 
-/etc/xdg/menus/applications-merged/*
+%{_prefix}/etc/xdg/menus/applications-merged/*
 %{_libdir}/mcop/*
 %{_libdir}/libkdeinit_*.so
 #%{_libdir}/liboggarts.so
@@ -404,6 +411,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libyafxplayer.so
 
 %changelog
+* Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
+
 * Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Updates BuildRequires
 

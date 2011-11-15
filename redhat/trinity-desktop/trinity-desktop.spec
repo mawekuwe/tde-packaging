@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -25,6 +25,9 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
 
+Source0:	trinity-3.5.13-fedora.repo
+Source1:	trinity-3.5.13-rhel.repo
+
 Requires:	trinity-kdeaccessibility >= %{version}
 Requires:	trinity-kdeaddons >= %{version}
 Requires:	trinity-kdeadmin >= %{version}
@@ -40,6 +43,8 @@ Requires:	trinity-kdenetwork >= %{version}
 Requires:	trinity-kdepim >= %{version}
 Requires:	trinity-kdeutils >= %{version}
 Requires:	trinity-kdetoys >= %{version}
+Requires:	trinity-repo >= %{version}
+Requires:	hal
 
 %description
 The TDE project aims to keep the KDE3.5 computing style alive, as well as 
@@ -86,6 +91,25 @@ Requires:	%{name}-extras == %{version}
 %description all
 %{summary}
 
+%package -n trinity-repo
+Group:		User Interface/Desktops
+Summary:	Yum configuration files for Trinity
+
+%description -n trinity-repo
+%{summary}
+
+%prep
+
+%build
+
+%install
+%__rm -rf %{?buildroot}
+%__mkdir_p %{?buildroot}%{_sysconfdir}/yum.repos.d
+%if 0%{?fedora}
+%__install -m 644 %{SOURCE0} %{?buildroot}%{_sysconfdir}/yum.repos.d
+%else
+%__install -m 644 %{SOURCE1} %{?buildroot}%{_sysconfdir}/yum.repos.d
+%endif
 
 %files
 
@@ -94,3 +118,10 @@ Requires:	%{name}-extras == %{version}
 %files extras
 
 %files all
+
+%files -n trinity-repo
+%{_sysconfdir}/yum.repos.d/*.repo
+
+%changelog
+* Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Add 'repo' package

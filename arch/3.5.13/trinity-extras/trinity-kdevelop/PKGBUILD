@@ -1,0 +1,60 @@
+# $Id$
+# Maintainer: David C. Rankin <drankinatty@gmail.com>
+#
+# All modifications and uses of this file are licensed under
+# the software for which this file was made for, should the software
+# be under an Open Source License, at least version 1.9, defined
+# by the Open Source Initiative. In other cases, this file is automatically
+# released to the Public Domain.
+#
+
+pkgname=trinity-kdevelop
+pkgver=12345
+pkgrel=1.0
+arch=('i686' 'x86_64')
+url='http://www.kde.org'
+license=('GPL')
+groups=('trinity-extras')
+pkgdesc="Trinity - kdevelop"
+depends=('trinity-kdebase')
+#         'xorg'
+makedepends=('pkgconfig' 'cmake' 'imake')
+options=('libtool' '!strip')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdevelop-3.5.13.tar.gz)
+md5sums=('777bd77e4f2dc6a5b5b45a370dcf6da0')
+_svnmod=kdevelop
+
+build() {
+
+  msg "Setting PATH, CMAKE and Trinity Environment variables"
+  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
+  CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr
+  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
+  export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
+
+  trinity_prefix="/opt/trinity"
+
+  cd $srcdir
+  msg "Creating out-of-source build directory: ${srcdir}/build"
+  mkdir -p build
+  cd build
+
+  msg "Starting cmake..."
+  cmake ${srcdir}/${_svnmod} \
+    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DQT_VERSION=3 \
+    -DWITH_QT3=ON \
+    -DQTDIR=/opt/qt \
+    -DQT_DOCDIR=/opt/qt/man \
+    -DQT_LIBRARY_DIRS=/opt/qt/lib \
+    -DBUILD_ALL=ON
+  make
+}
+
+package() {
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/build
+
+  make DESTDIR="$pkgdir/" install
+}
