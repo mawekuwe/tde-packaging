@@ -232,7 +232,7 @@ debian/tmp/opt/trinity/include/tdesu/ssh.h
 debian/tmp/opt/trinity/include/tdesu/stub.h
 debian/tmp/opt/trinity/include/tdesu/su.h
 debian/tmp/opt/trinity/include/kde_terminal_interface.h
-debian/tmp/opt/trinity/include/kdeversion.h
+debian/tmp/opt/trinity/include/tdeversion.h
 debian/tmp/opt/trinity/include/kdialogbase.h
 debian/tmp/opt/trinity/include/kdialog.h
 debian/tmp/opt/trinity/include/kdirlister.h
