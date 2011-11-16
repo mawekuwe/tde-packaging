@@ -66,23 +66,14 @@ Patch1:         aliasing.diff
 Patch2:         head.diff
 Patch4:         qt3-never-strip.diff
 Patch5:         external-libs.diff
-Patch6:         0001-dnd_optimization.patch
-Patch7:         0002-dnd_active_window_fix.patch
-Patch8:         0007-qpixmap_constants.patch
-Patch11:        0038-dragobject-dont-prefer-unknown.patch
 Patch12:        qtrc-path.diff
 Patch14:        lib64-plugin-support.diff
 Patch15:        pluginmanager-fix.diff
 Patch18:        no-rpath.dif
 Patch19:        shut-up.diff
-Patch20:        rubberband.diff
 Patch21:        fix-GL-loading.diff
 Patch23:        fix-accessible.diff
-# From http://www.freedesktop.org/wiki/Software_2fImmoduleQtDownload
-# Current version from http://freedesktop.org/~daisuke/qt-x11-immodule-unified-qt3.3.5-20060318.diff.bz2
-Patch25:        qt-x11-immodule-unified-qt3.3.8-20060318.diff
 Patch28:        fix-key-release-event-with-imm.diff
-Patch29:        0047-fix-kmenu-width.diff
 Patch31:        limit-image-size.diff
 Patch34:        0005-qpixmap_mitshm.patch
 Patch35:        qt-transparency.patch
@@ -149,10 +140,6 @@ getting started with Qt in /usr/lib/qt3/doc.
 %patch2
 %patch4
 %patch5
-%patch6
-%patch7
-%patch8
-%patch11
 %patch12
 if [ "%_lib" = "lib64" ]; then
 %patch14
@@ -160,11 +147,8 @@ fi
 %patch15
 %patch18
 %patch19
-%patch20
 %patch23
-%patch25
-%patch28
-%patch29
+#%patch28
 %patch31
 %patch34
 %patch35
@@ -210,7 +194,6 @@ fi
 %patch138 -p1
 %endif
 %patch139
-%patch200
 # copy qt kde integration files
 cp %SOURCE100 %SOURCE101 src/kernel/
 cp %SOURCE101 include/private/

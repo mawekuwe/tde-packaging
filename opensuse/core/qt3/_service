@@ -1,3 +1,3 @@
 <services>
-  <service name="download_files"><param name="enforceupstream">yes</param><param name="enforcelocal">yes</param><param name="recompress">yes</param></service>
+  <service name="download_files"><param name="recompress">yes</param></service>
 </services>
