@@ -511,7 +511,7 @@ tdetoys (4:3.1.4-3) unstable; urgency=low
 tdetoys (4:3.1.4-2) unstable; urgency=low
 
   * Updated amor description and man page to note that it works with window
-    managers other than kwin (closes: #213488).
+    managers other than twin (closes: #213488).
 
  -- Ben Burton <bab@debian.org>  Mon, 13 Oct 2003 00:55:42 +1000
 

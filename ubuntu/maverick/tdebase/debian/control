@@ -14,7 +14,7 @@ Section: kde
 Architecture: all
 Replaces: tdebase-kde3 (<< 4:3.5.13)
 Breaks: tdebase-kde3 (<< 4:3.5.13)
-Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), tdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), kwin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
+Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), tdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), twin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
 Recommends: kdm-trinity (>= ${Source-Version}), tdebase-runtime-data-common-trinity, libtqt3-integration-trinity
 Suggests: tdebase-trinity-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
@@ -127,7 +127,7 @@ Section: kde
 Architecture: all
 Replaces: tdebase-data-kde3 (<< 4:3.5.13)
 Breaks: tdebase-data-kde3 (<< 4:3.5.13)
-Conflicts: kcontrol-trinity (<< 4:3.4.2-1), kwin-trinity (<< 4:3.4.2-1), kicker-trinity (<< 4:3.4.2-1)
+Conflicts: kcontrol-trinity (<< 4:3.4.2-1), twin-trinity (<< 4:3.4.2-1), kicker-trinity (<< 4:3.4.2-1)
 Description: shared data files for the KDE base module
  This package contains the architecture-independent shared data files
  needed for a basic KDE desktop installation.
@@ -140,7 +140,7 @@ Section: devel
 Architecture: any
 Replaces: tdebase-kde3-dev (<< 4:3.5.13)
 Breaks: tdebase-kde3-dev (<< 4:3.5.13)
-Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), tdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), kwin-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), tdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), twin-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
 Description: development files for the KDE base module
  This package contains headers and other development files needed to
  compile software based on the KDE base module.
@@ -461,7 +461,7 @@ Architecture: any
 Replaces: ksmserver-kde3 (<< 4:3.5.13)
 Breaks: ksmserver-kde3 (<< 4:3.5.13)
 Provides: x-session-manager
-Depends: ${shlibs:Depends}, tdebase-runtime-data-common-trinity, kwin-trinity (= ${Source-Version}) | x-window-manager
+Depends: ${shlibs:Depends}, tdebase-runtime-data-common-trinity, twin-trinity (= ${Source-Version}) | x-window-manager
 Recommends: kpersonalizer-trinity (= ${Source-Version}), tde-ubuntu-integration
 Description: session manager for KDE
  This package contains the KDE session manager. It is responsible for
@@ -532,11 +532,11 @@ Description: useful tips for KDE
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
-Package: kwin-trinity
+Package: twin-trinity
 Section: kde
 Architecture: any
-Replaces: kwin-kde3 (<< 4:3.5.13)
-Breaks: kwin-kde3 (<< 4:3.5.13)
+Replaces: twin-kde3 (<< 4:3.5.13)
+Breaks: twin-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
 Provides: x-window-manager
 Suggests: tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), kdesktop-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), kpager-trinity (= ${Source-Version}), kpersonalizer-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version})

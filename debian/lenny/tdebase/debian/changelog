@@ -967,7 +967,7 @@ tdebase (4:3.5.7-1) unstable; urgency=low
     - Remove patch 21 - applied upstream.
     - Adapt patch 27 - kfreebsd - minor changes.
     - Adapt patch 41 - amd64 and nspluginviewer -  small changes.
-    - Remove patch 42 - kwin and 64 bit. applied upstream.
+    - Remove patch 42 - twin and 64 bit. applied upstream.
     - Remove patch 44 - opengl logo is fixed.
     - Remove patch 45 - keyboard handler - applied upstream.
 
@@ -1246,7 +1246,7 @@ tdebase (4:3.5.6-0ubuntu1) feisty; urgency=low
 
   * New upstream release
   * Remove patched applied upstream:
-   - 02_hal_kwin_fixes_branch.diff
+   - 02_hal_twin_fixes_branch.diff
    - 29_halbackend_fstab_improvements.diff
    - 30_mediamanager_followsymlinks.diff
    - 32_camera_icon_from_mimetype.diff
@@ -1417,7 +1417,7 @@ tdebase (4:3.5.5a.dfsg.1-5) unstable; urgency=high
     non-linux archs (Closes: 399059)
 
   +++ Changes by Modestas Vainius:
-  * Fix 36_kwin.diff patch. In some cases clients were not properly added to
+  * Fix 36_twin.diff patch. In some cases clients were not properly added to
     the group. (Closes: #404226)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Fri, 29 Dec 2006 19:15:23 +0200
@@ -1429,7 +1429,7 @@ tdebase (4:3.5.5a.dfsg.1-4) unstable; urgency=low
     (Closes: #399823, #384416)
  
   +++ Changes by Ana Guerrero:
-  * Applied patch to avoid kwin crashes when switching desktop 
+  * Applied patch to avoid twin crashes when switching desktop 
     (Closes: #365829).
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 13 Dec 2006 13:09:33 +0100
@@ -2019,7 +2019,7 @@ tdebase (4:3.5.3-2) unstable; urgency=medium
 tdebase (4:3.5.3-1) unstable; urgency=low
 
   * New upstream release.
-    + fix kwin alt-tab problems. (Closes: #363357, #361421, #361127)
+    + fix twin alt-tab problems. (Closes: #363357, #361421, #361127)
     + fix problems with systram. (Closes: #347320)
 
   +++ Changes by Christopher Martin:
@@ -2332,7 +2332,7 @@ tdebase (4:3.5.2-0ubuntu9) dapper; urgency=low
 
 tdebase (4:3.5.2-0ubuntu8) dapper; urgency=low
 
-  * Add kubuntu_58_kwin_branch.diff fixes crash on alt-tab and 
+  * Add kubuntu_58_twin_branch.diff fixes crash on alt-tab and 
     focus policies
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 14 Apr 2006 15:35:56 +0000
@@ -2762,7 +2762,7 @@ tdebase (4:3.4.2-2) unstable; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * For tdebase-data, add conflicts against old versions of kcontrol, kwin,
+  * For tdebase-data, add conflicts against old versions of kcontrol, twin,
     and kicker. This should prevent users from unwittingly upgrading
     tdebase-data to 3.4.x, while the rest of KDE stays at the 3.3.x level.
     This had resulted in kcontrol breaking and other assorted issues.
@@ -2800,7 +2800,7 @@ tdebase (4:3.4.2-1) unstable; urgency=low
   * Add build-dependencies on libxss-dev, libxxf86misc-dev, libxau-dev,
     libxdmcp-dev, libxcomposite-dev, libxdamage-dev, and prune the
     07_xlibs-static-pic.diff accordingly, for the X.Org transition. kompmgr
-    is also now built and installed with kwin.
+    is also now built and installed with twin.
 
   * Tightened build dependency on dbus-qt-1-dev to force building against a
     C++ transitioned version. Can be removed once dbus (>= 0.23.4-5) is
@@ -3107,7 +3107,7 @@ tdebase (4:3.3.2-1) unstable; urgency=low
   +++ Changes by Adeodato Simó:
 
   * debian/control:
-    - make tdebase-dev depend on kwin for the libtdecorations.so ->
+    - make tdebase-dev depend on twin for the libtdecorations.so ->
       libtdecorations.so.1.0.0 symlink. (Closes: #289544)
 
   * Included Czech po-debconf translation by Miroslav Kure.
@@ -3276,7 +3276,7 @@ tdebase (4:3.4.0-0pre1ubuntu6) hoary; urgency=low
 
 tdebase (4:3.4.0-0pre1ubuntu5) hoary; urgency=low
 
-  * Add kwin conflicts with old tdeartwork-theme-window
+  * Add twin conflicts with old tdeartwork-theme-window
 
  -- Jonathan Riddell <jr@jriddell.org>  Tue,  8 Mar 2005 22:48:59 +0000
 
@@ -3312,7 +3312,7 @@ tdebase (4:3.3.2-0pre1) experimental; urgency=low
   * KDE_3_3_BRANCH update. Includes the tdebase part of the fix
     for CAN-2004-1158.
   * Lower tdeprint's dependency on gv to a Suggests. (Closes: #269590)
-  * kwin is now registered as an x-window-manager. (Closes: #249162)
+  * twin is now registered as an x-window-manager. (Closes: #249162)
   * Added /usr/share/xsessions to KDM's default session path, so
     .desktop files installed there are found.
     (Closes: #243770, #247365, #247747, #250384)
@@ -4068,7 +4068,7 @@ tdebase (4:2.2.0-0beta1-1) unstable; urgency=low
   * And let's list the bugs fixed...
        ctrl-u problems with location bar fixed (Closes: #81425)
        image transparency fixed for konsole on startup (Closes: #84062)
-       fixes kwin's conflicting key accelerators (Closes: #86370)
+       fixes twin's conflicting key accelerators (Closes: #86370)
        fixes rendering error for www.bluesnews.com (Closes: #79800)
        fixes button problems for katalog.ub.uni-heidelberg.de (Closes: #88934)
        now provides the audiocd ioslave bits which allow for ripping audio
@@ -4410,7 +4410,7 @@ tdebase (4:2.1-20001213-1) unstable; urgency=low
   * Fix whatis typo (Closes: #78178)
   * Fix segfaults (Closes: #78903)
   * Adding in a Recommend for kview to konqueror (Closes: #79201)
-  * Changing x-window-manager alternative from kde2 to kwin
+  * Changing x-window-manager alternative from kde2 to twin
   * KDM init.d script cleanup (Closes: #79320)
   * Fixed default kdmrc script to show new options
   * Adding in a kwm script for non-session launches
@@ -4546,7 +4546,7 @@ tdebase (4:2.0-20001008-0) unstable; urgency=low
 tdebase (4:2.0-20001006-1) unstable; urgency=low
  
   * More upstream fixes
-  * Applying tdebase-1.94-kwin-nofreeze-20000924.diff patch (Closes: #74051)
+  * Applying tdebase-1.94-twin-nofreeze-20000924.diff patch (Closes: #74051)
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Sun, 08 Oct 2000 03:30:00 -0700
                                                                                 

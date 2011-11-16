@@ -486,10 +486,10 @@ tdeartwork (4:3.2.3-1) unstable; urgency=low
   * Rebuilt against STL-enabled Qt and corresponding tdelibs (closes: #254021).
   * Patched the autoconf tests for kxsconfig so that xscreensaver
     configuration works again (closes: #238180, #243150).
-  * Suggests (kwin | x-window-manager) for kdewallpapers instead of just
+  * Suggests (twin | x-window-manager) for kdewallpapers instead of just
     x-window-manager.
-  * Removed recommends: kwin from tdeartwork-theme-window since this is
-    already coming in as a depends from the kwin shlibs file.
+  * Removed recommends: twin from tdeartwork-theme-window since this is
+    already coming in as a depends from the twin shlibs file.
 
  -- Ben Burton <bab@debian.org>  Tue, 15 Jun 2004 08:38:18 +1000
 

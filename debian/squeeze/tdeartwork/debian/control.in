@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-dev (>= 4:3.5.7), gawk, gettext, sharutils, tdebase-dev (>= 4:3.5.7), kwin, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-dev (>= 4:3.5.7), gawk, gettext, sharutils, tdebase-dev (>= 4:3.5.7), twin, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl
 Build-Conflicts: autoconf2.13, nvidia-glx
 Standards-Version: 3.7.2
 
@@ -89,7 +89,7 @@ Description: window decoration themes released with KDE
 Package: kdewallpapers
 Architecture: all
 Section: kde
-Suggests: kwin | x-window-manager
+Suggests: twin | x-window-manager
 Replaces: tdebase-data (<< 4:3.5)
 Description: wallpapers released with KDE
  This package contains additional wallpapers for KDE. Wallpapers can be
@@ -102,7 +102,7 @@ Package: kscreensaver
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, tdebase-bin
-Recommends: kwin, kscreensaver-xsavers (= ${Source-Version})
+Recommends: twin, kscreensaver-xsavers (= ${Source-Version})
 Description: additional screen savers released with KDE
  This package contains the screen savers for KDE. They can be tested and
  selected within the Appearance and Themes section of the KDE Control
@@ -119,7 +119,7 @@ Package: kscreensaver-xsavers
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, tdebase-bin, xscreensaver
-Recommends: kwin, kscreensaver (= ${Source-Version}), xscreensaver-gl
+Recommends: twin, kscreensaver (= ${Source-Version}), xscreensaver-gl
 Suggests: kscreensaver-xsavers-webcollage
 Description: KDE hooks for standard xscreensavers
  This package allows a smooth integration of the standard xscreensavers

@@ -1,8 +1,8 @@
 .TH KWIN4 6
 .SH NAME
-kwin4 \- Connect Four clone for KDE
+twin4 \- Connect Four clone for KDE
 .SH SYNOPSIS
-.B kwin4
+.B twin4
 .I [Qt-options] [KDE-options]
 .SH DESCRIPTION
 Four wins is a game for two players.  Each player is represented by a
@@ -17,6 +17,6 @@ or diagonal or no more moves are possible because the board is filled.
 .so kdeopt.part
 .SH SEE ALSO
 More detailed user documentation is available from
-.BR help:/kwin4
+.BR help:/twin4
 (either enter this URL into \fBkonqueror\fP, or run `khelpcenter
-help:/kwin4').
+help:/twin4').

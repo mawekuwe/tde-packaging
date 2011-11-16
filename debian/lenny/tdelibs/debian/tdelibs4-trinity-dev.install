@@ -668,10 +668,10 @@ debian/tmp/opt/trinity/include/kuserprofile.h
 debian/tmp/opt/trinity/include/kvmallocator.h
 debian/tmp/opt/trinity/include/kwallet.h
 debian/tmp/opt/trinity/include/kwallettypes.h
-debian/tmp/opt/trinity/include/kwindowinfo.h
-debian/tmp/opt/trinity/include/kwindowlistmenu.h
-debian/tmp/opt/trinity/include/kwin.h
-debian/tmp/opt/trinity/include/kwinmodule.h
+debian/tmp/opt/trinity/include/twindowinfo.h
+debian/tmp/opt/trinity/include/twindowlistmenu.h
+debian/tmp/opt/trinity/include/twin.h
+debian/tmp/opt/trinity/include/twinmodule.h
 debian/tmp/opt/trinity/include/kwizard.h
 debian/tmp/opt/trinity/include/kwordwrap.h
 debian/tmp/opt/trinity/include/kxerrorhandler.h

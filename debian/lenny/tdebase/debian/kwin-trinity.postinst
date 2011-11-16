@@ -19,7 +19,7 @@ set -e
 
 case "$1" in
     configure)
-	update-alternatives --install /usr/bin/x-window-manager x-window-manager /opt/trinity/bin/kwin 50
+	update-alternatives --install /usr/bin/x-window-manager x-window-manager /opt/trinity/bin/twin 50
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
