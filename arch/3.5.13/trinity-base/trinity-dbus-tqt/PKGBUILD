@@ -1,3 +1,5 @@
+# Maintainer Calvin Morrison <mutantturkey@gmail.com>
+
 pkgname=trinity-dbus-tqt
 pkgver=3513
 pkgrel=1

@@ -1,12 +1,4 @@
-# $Id$
-# Maintainer: David C. Rankin <drankinatty@gmail.com>
-#
-# All modifications and uses of this file are licensed under
-# the software for which this file was made for, should the software
-# be under an Open Source License, at least version 1.9, defined
-# by the Open Source Initiative. In other cases, this file is automatically
-# released to the Public Domain.
-#
+# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-pyqt3
 pkgver=3.18.1
