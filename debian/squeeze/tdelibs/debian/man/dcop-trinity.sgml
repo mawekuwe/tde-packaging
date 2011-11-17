@@ -141,14 +141,14 @@ manpage.1: manpage.sgml
     <para><example>
       <title>Return number of the current desktop, e.g. 2</title>
         <blockquote><literallayout>
-dcop kwin KWinInterface currentDesktop
+dcop twin KWinInterface currentDesktop
         </literallayout></blockquote>
     </example></para>
 
     <para><example>
       <title>Jump to the next dektop</title>
         <blockquote><literallayout>
-dcop kwin KWinInterface nextDesktop
+dcop twin KWinInterface nextDesktop
         </literallayout></blockquote>
     </example></para>
 

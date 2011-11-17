@@ -49,7 +49,7 @@ Section: games
 Replaces: amor-kde3 (<< 4:3.5.13)
 Breaks: amor-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
-Recommends: kwin-trinity
+Recommends: twin-trinity
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
 Description: a Trinity creature for your desktop
@@ -152,7 +152,7 @@ Section: kde
 Replaces: ktux-kde3 (<< 4:3.5.13)
 Breaks: ktux-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}
-Suggests: kwin-trinity
+Suggests: twin-trinity
 Conflicts: task-tdetoys-trinity
 Description: Tux screensaver for Trinity
  A neat Tux-in-a-spaceship screensaver for the K Desktop Environment (KDE).

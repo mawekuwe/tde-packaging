@@ -5,7 +5,7 @@
 %else
 %define version 0.8
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -77,7 +77,7 @@ Development headers for knetworkmanager
 
 cd knetworkmanager-0.*/src
 %patch0 -p3
-%patch1 -p3
+#patch1 -p3
 
 
 
@@ -142,5 +142,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{tde_libdir}/*.so
 
 %changelog
-* Tue Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-1
+* Sat Nov 13 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-2 / 0.9-2
+- Remove faulty patch for WPA authentication
+
+* Tue Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-1 / 0.9-1
 - Initial build

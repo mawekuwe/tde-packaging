@@ -1,5 +1,5 @@
---- startkde
-+++ startkde
+--- starttde
++++ starttde
 @@ -184,17 +184,17 @@
    . $kdehome/share/config/startupconfig
  fi

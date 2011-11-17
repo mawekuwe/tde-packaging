@@ -11,7 +11,7 @@ Standards-Version: 3.7.2
 Package: tdegames
 Architecture: all
 Section: kde
-Depends: atlantik (>= ${Source-Version}), kasteroids (>= ${Source-Version}), katomic (>= ${Source-Version}), kbackgammon (>= ${Source-Version}), kbattleship (>= ${Source-Version}), kblackbox (>= ${Source-Version}), kbounce (>= ${Source-Version}), kenolaba (>= ${Source-Version}), kfouleggs (>= ${Source-Version}), kgoldrunner (>= ${Source-Version}), kjumpingcube (>= ${Source-Version}), klickety (>= ${Source-Version}), klines (>= ${Source-Version}), kmahjongg (>= ${Source-Version}), kmines (>= ${Source-Version}), knetwalk (>= ${Source-Version}), kolf (>= ${Source-Version}), konquest (>= ${Source-Version}), kpat (>= ${Source-Version}), kpoker (>= ${Source-Version}), kreversi (>= ${Source-Version}), ksame (>= ${Source-Version}), kshisen (>= ${Source-Version}), ksirtet (>= ${Source-Version}), ksmiletris (>= ${Source-Version}), ksnake (>= ${Source-Version}), ksokoban (>= ${Source-Version}), kspaceduel (>= ${Source-Version}), ktron (>= ${Source-Version}), ktuberling (>= ${Source-Version}), kwin4 (>= ${Source-Version}), lskat (>= ${Source-Version})
+Depends: atlantik (>= ${Source-Version}), kasteroids (>= ${Source-Version}), katomic (>= ${Source-Version}), kbackgammon (>= ${Source-Version}), kbattleship (>= ${Source-Version}), kblackbox (>= ${Source-Version}), kbounce (>= ${Source-Version}), kenolaba (>= ${Source-Version}), kfouleggs (>= ${Source-Version}), kgoldrunner (>= ${Source-Version}), kjumpingcube (>= ${Source-Version}), klickety (>= ${Source-Version}), klines (>= ${Source-Version}), kmahjongg (>= ${Source-Version}), kmines (>= ${Source-Version}), knetwalk (>= ${Source-Version}), kolf (>= ${Source-Version}), konquest (>= ${Source-Version}), kpat (>= ${Source-Version}), kpoker (>= ${Source-Version}), kreversi (>= ${Source-Version}), ksame (>= ${Source-Version}), kshisen (>= ${Source-Version}), ksirtet (>= ${Source-Version}), ksmiletris (>= ${Source-Version}), ksnake (>= ${Source-Version}), ksokoban (>= ${Source-Version}), kspaceduel (>= ${Source-Version}), ktron (>= ${Source-Version}), ktuberling (>= ${Source-Version}), twin4 (>= ${Source-Version}), lskat (>= ${Source-Version})
 Suggests: tdegames-doc-html (>= ${Source-Version})
 Description: games from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -574,7 +574,7 @@ Description: Potato Guy for KDE
  This package is part of KDE, and a component of the KDE games module.
  See the 'kde' and 'tdegames' packages for more information.
 
-Package: kwin4
+Package: twin4
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}

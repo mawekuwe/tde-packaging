@@ -44,7 +44,7 @@ Package: amor
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Recommends: kwin
+Recommends: twin
 Suggests: khelpcenter
 Conflicts: task-tdetoys
 Replaces: tdetoys (<< 4:3.0.1-0), task-tdetoys
@@ -140,7 +140,7 @@ Package: ktux
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}
-Suggests: kwin
+Suggests: twin
 Conflicts: task-tdetoys
 Replaces: tdetoys (<< 4:3.0.1-0), task-tdetoys
 Description: Tux screensaver for KDE

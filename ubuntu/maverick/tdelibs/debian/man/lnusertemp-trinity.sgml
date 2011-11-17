@@ -105,7 +105,7 @@ manpage.1: manpage.sgml
     attacks.  </para>
 
     <para><command>&dhpackage;</command> is usually called by the
-    <command>startkde</command> script.</para>
+    <command>starttde</command> script.</para>
 
   </refsect1>
   <refsect1>

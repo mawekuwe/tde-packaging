@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-trinity-dev, gawk, gettext, sharutils, tdebase-trinity-dev, kwin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-trinity-dev, gawk, gettext, sharutils, tdebase-trinity-dev, twin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies, automake, autoconf, libtool, libltdl-dev
 Build-Conflicts: autoconf2.13, nvidia-glx
 Standards-Version: 3.8.4
 
@@ -102,7 +102,7 @@ Architecture: all
 Section: kde
 Replaces: kdewallpapers-kde3 (<< 4:3.5.13)
 Breaks: kdewallpapers-kde3 (<< 4:3.5.13)
-Suggests: kwin-trinity | x-window-manager
+Suggests: twin-trinity | x-window-manager
 Description: wallpapers released with Trinity
  This package contains additional wallpapers for Trinity. Wallpapers can be
  applied using the background manager in the KDE Control Centre.
@@ -116,7 +116,7 @@ Section: kde
 Replaces: kscreensaver-kde3 (<< 4:3.5.13)
 Breaks: kscreensaver-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin
-Recommends: kwin-trinity, kscreensaver-xsavers-trinity (= ${Source-Version})
+Recommends: twin-trinity, kscreensaver-xsavers-trinity (= ${Source-Version})
 Description: additional screen savers released with Trinity
  This package contains the screen savers for Trinity. They can be tested and
  selected within the Appearance and Themes section of the Trinity Control
@@ -135,7 +135,7 @@ Section: kde
 Replaces: kscreensaver-xsavers-kde3 (<< 4:3.5.13)
 Breaks: kscreensaver-xsavers-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin, xscreensaver-data
-Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version}), xscreensaver-gl
+Recommends: twin-trinity, kscreensaver-trinity (= ${Source-Version}), xscreensaver-gl
 Suggests: kscreensaver-xsavers-webcollage-trinity
 Description: Trinity hooks for standard xscreensavers
  This package allows a smooth integration of the standard xscreensavers
@@ -183,7 +183,7 @@ Section: kde
 Replaces: kscreensaver-xsavers-extra-kde3 (<< 4:3.5.13)
 Breaks: kscreensaver-xsavers-extra-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kscreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
-Recommends: kwin-trinity, kscreensaver-trinity (= ${Source-Version})
+Recommends: twin-trinity, kscreensaver-trinity (= ${Source-Version})
 Description: Trinity hooks for standard xscreensavers
  This package allows a smooth integration of the universe xscreensavers
  into Trinity. With this package installed you can select and/or configure

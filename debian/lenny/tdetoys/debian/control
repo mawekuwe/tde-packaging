@@ -44,7 +44,7 @@ Package: amor-trinity
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Recommends: kwin-trinity
+Recommends: twin-trinity
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
 Replaces: tdetoys-trinity (<< 4:3.0.1-0), task-tdetoys-trinity
@@ -140,7 +140,7 @@ Package: ktux-trinity
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}
-Suggests: kwin-trinity
+Suggests: twin-trinity
 Conflicts: task-tdetoys-trinity
 Replaces: tdetoys-trinity (<< 4:3.0.1-0), task-tdetoys-trinity
 Description: Tux screensaver for Trinity

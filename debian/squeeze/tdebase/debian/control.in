@@ -13,7 +13,7 @@ XS-Vcs-Bzr: http://bazaar.launchpad.net/~kubuntu-members/tdebase/debian
 Package: tdebase
 Section: kde
 Architecture: all
-Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-kio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), tdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), kwin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
+Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-kio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), tdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), twin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
 Recommends: kdm (>= ${Source-Version})
 Suggests: tdebase-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
@@ -109,7 +109,7 @@ Description: core binaries for the KDE base module
 Package: tdebase-data
 Section: kde
 Architecture: all
-Conflicts: kcontrol (<< 4:3.4.2-1), kwin (<< 4:3.4.2-1), kicker (<< 4:3.4.2-1)
+Conflicts: kcontrol (<< 4:3.4.2-1), twin (<< 4:3.4.2-1), kicker (<< 4:3.4.2-1)
 Replaces: tdebase (<< 4:3.0.0), tdeedu-data (<< 4:3.4.0), tdelibs-data (<< 4:3.3.0), kdewallpapers (<< 4:3.0.0), kcontrol (<< 4:3.5.5a.dfsg.1-1ubuntu18)
 Description: shared data files for the KDE base module
  This package contains the architecture-independent shared data files
@@ -121,7 +121,7 @@ Description: shared data files for the KDE base module
 Package: tdebase-dev
 Section: devel
 Architecture: any
-Depends: kate (= ${Source-Version}), kcontrol (= ${Source-Version}), tdebase-bin (= ${Source-Version}), tdeprint (= ${Source-Version}), kdesktop (= ${Source-Version}), khelpcenter (= ${Source-Version}), kicker (= ${Source-Version}), klipper (= ${Source-Version}), kmenuedit (= ${Source-Version}), konqueror-nsplugins (= ${Source-Version}), konqueror (= ${Source-Version}), konsole (= ${Source-Version}), ksmserver (= ${Source-Version}), ksplash (= ${Source-Version}), ksysguard (= ${Source-Version}), kwin (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: kate (= ${Source-Version}), kcontrol (= ${Source-Version}), tdebase-bin (= ${Source-Version}), tdeprint (= ${Source-Version}), kdesktop (= ${Source-Version}), khelpcenter (= ${Source-Version}), kicker (= ${Source-Version}), klipper (= ${Source-Version}), kmenuedit (= ${Source-Version}), konqueror-nsplugins (= ${Source-Version}), konqueror (= ${Source-Version}), konsole (= ${Source-Version}), ksmserver (= ${Source-Version}), ksplash (= ${Source-Version}), ksysguard (= ${Source-Version}), twin (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
 Replaces: kate (<< 4:3.0.0), tdebase (<< 4:3.0.0), konqueror (<< 4:3.0.0)
 Description: development files for the KDE base module
  This package contains headers and other development files needed to
@@ -421,14 +421,14 @@ Package: ksmserver
 Section: kde
 Architecture: any
 Provides: x-session-manager
-Depends: ${shlibs:Depends}, kwin (= ${Source-Version}) | x-window-manager
+Depends: ${shlibs:Depends}, twin (= ${Source-Version}) | x-window-manager
 Recommends: kpersonalizer (= ${Source-Version})
 Replaces: tdebase (<< 4:3.0.0)
 Description: session manager for KDE
  This package contains the KDE session manager. It is responsible for
  restoring your KDE session on login. It is also needed to properly
  start a KDE session. It registers KDE with X display managers, and
- provides the 'startkde' command, for starting an X session with KDE
+ provides the 'starttde' command, for starting an X session with KDE
  from the console.
  .
  If you are running KDE for the first time for a certain user,
@@ -489,7 +489,7 @@ Description: useful tips for KDE
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde' and 'tdebase' packages for more information.
 
-Package: kwin
+Package: twin
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}

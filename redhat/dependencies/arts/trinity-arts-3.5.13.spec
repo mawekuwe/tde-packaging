@@ -83,8 +83,14 @@ cd build
 %cmake \
   -DINCLUDE_INSTALL_DIR=%{_includedir}/arts \
   -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \
+  -DWITH_ALSA=ON \
+  -DWITH_AUDIOFILE=ON \
+  -DWITH_VORBIS=ON \
   -DWITH_MAD=OFF \
+  -DWITH_ESOUND=ON \
   ..
+
+#cp -f /tmp/config.h .
 
 %__make %{?_smp_mflags}
 
@@ -125,6 +131,9 @@ cd build
 
 
 %changelog
+* Mon Nov 14 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Enables OSS and ESD support
+
 * Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Add missing BuildRequires
 

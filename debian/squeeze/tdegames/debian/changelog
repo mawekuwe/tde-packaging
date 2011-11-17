@@ -610,7 +610,7 @@ tdegames (4:3.1.0-1) unstable; urgency=low
   * Remove cruft no longer necessary when upgrading from Woody
     or later, as well as obsolete Depends and Enhances on tdebase.
   * Downgrade gnubg to suggests of kbackgammon.
-  * Wrote short manual pages for kwin4proc and lskatproc, simply
+  * Wrote short manual pages for twin4proc and lskatproc, simply
     telling users not to run them directly.
   * Change policy to 3.5.8 (no changes needed).
 

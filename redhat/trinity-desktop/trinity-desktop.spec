@@ -44,6 +44,7 @@ Requires:	trinity-kdepim >= %{version}
 Requires:	trinity-kdeutils >= %{version}
 Requires:	trinity-kdetoys >= %{version}
 Requires:	trinity-repo >= %{version}
+Requires:	hal
 
 %description
 The TDE project aims to keep the KDE3.5 computing style alive, as well as 

@@ -105,7 +105,7 @@ tdebase-trinity (4:3.5.10-0ubuntu12) karmic; urgency=low
 
 tdebase-trinity (4:3.5.10-0ubuntu11) karmic; urgency=low
 
-  * Repaired startkde script to export DESKTOP_SESSION
+  * Repaired starttde script to export DESKTOP_SESSION
   * Depends on libogg-dev-la
   * Repaired gcc4.4 compilation problems
 
@@ -196,7 +196,7 @@ tdebase-trinity (4:3.5.10-0ubuntu3~intrepid19) intrepid; urgency=low
 
 tdebase-trinity (4:3.5.10-0ubuntu3~intrepid18) intrepid; urgency=low
 
-  * Added XDG_DATA_DIRS and KDEDIRS to startkde, as suggested by zekica on the Debian forums
+  * Added XDG_DATA_DIRS and KDEDIRS to starttde, as suggested by zekica on the Debian forums
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 07 Mar 2009 13:18:00 -0600
 
@@ -240,7 +240,7 @@ tdebase-trinity (4:3.5.10-0ubuntu3~intrepid3) intrepid; urgency=low
 
 tdebase-trinity (4:3.5.10-0ubuntu3~intrepid1) intrepid; urgency=low
 
-  * Removed link /usr/lib/libkonsolepart.so for python-trinity-trinity and altered startkde script to function properly with the new .trinity home directory
+  * Removed link /usr/lib/libkonsolepart.so for python-trinity-trinity and altered starttde script to function properly with the new .trinity home directory
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 05 Dec 2008 16:15:00 -0600
 
@@ -353,7 +353,7 @@ tdebase (4:3.5.9-0ubuntu5) hardy; urgency=low
 
 tdebase (4:3.5.9-0ubuntu4) hardy; urgency=low
 
-  * Remove kubuntu_9920_startkde_dash_stupidness.diff, 
+  * Remove kubuntu_9920_starttde_dash_stupidness.diff, 
     Closes LP: #206187
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 25 Mar 2008 23:05:42 +0000
@@ -428,7 +428,7 @@ tdebase (4:3.5.8-2ubuntu17) hardy; urgency=low
 
 tdebase (4:3.5.8-2ubuntu17) hardy; urgency=low
 
-  * Added kubuntu_9920_startkde_dash_stupidness.diff:
+  * Added kubuntu_9920_starttde_dash_stupidness.diff:
     - For some stupid reasons, env scripts are not parsed correctly
       due dash. Hard to believe, but this patch fixes the issue...
     - Closes LP: #189144
@@ -677,7 +677,7 @@ tdebase (4:3.5.7-2) unstable; urgency=low
   * Add support or back references in klipper. Thanks to Sean Finney.
     (Closes: #427843)
   * Updated nb debconf translation. (Closes: #417942)
-  * Fix typo in startkde manpage. Thanks A. Costa. (Closes: #432062)
+  * Fix typo in starttde manpage. Thanks A. Costa. (Closes: #432062)
   * Fix typo in kdmrc. Thanks Greg. (Closes: #422142)
   * Updated vi debconf translation. Thanks Clytie Siddall (Closes: #426820)
   * Updated pt_BR debconf translation. Thanks Eder L. Marques. 
@@ -967,7 +967,7 @@ tdebase (4:3.5.7-1) unstable; urgency=low
     - Remove patch 21 - applied upstream.
     - Adapt patch 27 - kfreebsd - minor changes.
     - Adapt patch 41 - amd64 and nspluginviewer -  small changes.
-    - Remove patch 42 - kwin and 64 bit. applied upstream.
+    - Remove patch 42 - twin and 64 bit. applied upstream.
     - Remove patch 44 - opengl logo is fixed.
     - Remove patch 45 - keyboard handler - applied upstream.
 
@@ -1246,7 +1246,7 @@ tdebase (4:3.5.6-0ubuntu1) feisty; urgency=low
 
   * New upstream release
   * Remove patched applied upstream:
-   - 02_hal_kwin_fixes_branch.diff
+   - 02_hal_twin_fixes_branch.diff
    - 29_halbackend_fstab_improvements.diff
    - 30_mediamanager_followsymlinks.diff
    - 32_camera_icon_from_mimetype.diff
@@ -1417,7 +1417,7 @@ tdebase (4:3.5.5a.dfsg.1-5) unstable; urgency=high
     non-linux archs (Closes: 399059)
 
   +++ Changes by Modestas Vainius:
-  * Fix 36_kwin.diff patch. In some cases clients were not properly added to
+  * Fix 36_twin.diff patch. In some cases clients were not properly added to
     the group. (Closes: #404226)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Fri, 29 Dec 2006 19:15:23 +0200
@@ -1429,7 +1429,7 @@ tdebase (4:3.5.5a.dfsg.1-4) unstable; urgency=low
     (Closes: #399823, #384416)
  
   +++ Changes by Ana Guerrero:
-  * Applied patch to avoid kwin crashes when switching desktop 
+  * Applied patch to avoid twin crashes when switching desktop 
     (Closes: #365829).
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 13 Dec 2006 13:09:33 +0100
@@ -2019,7 +2019,7 @@ tdebase (4:3.5.3-2) unstable; urgency=medium
 tdebase (4:3.5.3-1) unstable; urgency=low
 
   * New upstream release.
-    + fix kwin alt-tab problems. (Closes: #363357, #361421, #361127)
+    + fix twin alt-tab problems. (Closes: #363357, #361421, #361127)
     + fix problems with systram. (Closes: #347320)
 
   +++ Changes by Christopher Martin:
@@ -2132,7 +2132,7 @@ tdebase (4:3.5.1-1) unstable; urgency=low
   * Enable zeroconf support in ksysguardd; add libavahi-compat-libdnssd-dev to
     the build-depends. (Closes: #348583)
 
-  * Merge startkde manpage (and maintainer script patch to fully integrate it)
+  * Merge starttde manpage (and maintainer script patch to fully integrate it)
     from Philipp Grau. Thanks. (Closes: #348501)
 
   * Upload to unstable.
@@ -2332,7 +2332,7 @@ tdebase (4:3.5.2-0ubuntu9) dapper; urgency=low
 
 tdebase (4:3.5.2-0ubuntu8) dapper; urgency=low
 
-  * Add kubuntu_58_kwin_branch.diff fixes crash on alt-tab and 
+  * Add kubuntu_58_twin_branch.diff fixes crash on alt-tab and 
     focus policies
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 14 Apr 2006 15:35:56 +0000
@@ -2632,7 +2632,7 @@ tdebase (4:3.5-rc2-0ubuntu1) dapper; urgency=low
   * kdm depends on xauth not xbase-clients
   * Update 18_default_fonts.diff
   * Generate .pot files
-  * Remove kubuntu_26_startkde.diff, no need to start ivman in 3.5
+  * Remove kubuntu_26_starttde.diff, no need to start ivman in 3.5
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 21 Nov 2005 17:46:39 +0000
 
@@ -2644,7 +2644,7 @@ tdebase (4:3.5-rc1-1ubuntu1) dapper; urgency=low
   * Update kubuntu_16_hide_kpager_menu_entry.diff
   * Update kubuntu_19_kdm_zsh_emulate.diff
   * Update kubuntu_25_kcontrol_only_in_kde.diff
-  * Update kubuntu_30_startkde_background_colour.diff
+  * Update kubuntu_30_starttde_background_colour.diff
   * Update kubuntu_32_usplash_console_font.diff
   * konqueror replaces old kcontrol
 
@@ -2762,7 +2762,7 @@ tdebase (4:3.4.2-2) unstable; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * For tdebase-data, add conflicts against old versions of kcontrol, kwin,
+  * For tdebase-data, add conflicts against old versions of kcontrol, twin,
     and kicker. This should prevent users from unwittingly upgrading
     tdebase-data to 3.4.x, while the rest of KDE stays at the 3.3.x level.
     This had resulted in kcontrol breaking and other assorted issues.
@@ -2800,7 +2800,7 @@ tdebase (4:3.4.2-1) unstable; urgency=low
   * Add build-dependencies on libxss-dev, libxxf86misc-dev, libxau-dev,
     libxdmcp-dev, libxcomposite-dev, libxdamage-dev, and prune the
     07_xlibs-static-pic.diff accordingly, for the X.Org transition. kompmgr
-    is also now built and installed with kwin.
+    is also now built and installed with twin.
 
   * Tightened build dependency on dbus-qt-1-dev to force building against a
     C++ transitioned version. Can be removed once dbus (>= 0.23.4-5) is
@@ -2905,7 +2905,7 @@ tdebase (4:3.4.2-0ubuntu4) breezy; urgency=low
     on desktop icons
   * Compile with GCC 3.4 on hppa, m68k, arm to prevent 
     internal compiler error
-  * Add kubuntu_30_startkde_background_colour.diff to make default
+  * Add kubuntu_30_starttde_background_colour.diff to make default
     background colour match default wallpaperchange background colour
   * Do not install SVG icons to save space
   * Install simple konqueror.rc into /usr/share/apps/konqueror, workaround
@@ -2971,7 +2971,7 @@ tdebase (4:3.4.1-0ubuntu3) breezy; urgency=low
   * Update kubuntu_23_hal_api.diff
   * Replace 19_kcontrol_only_in_kde.diff with kubuntu_25_kcontrol_only_in_kde.diff 
     which stops KControl displaying (use System Settings instead)
-  * Add kubuntu_26_startkde.diff to start ivman
+  * Add kubuntu_26_starttde.diff to start ivman
   * Add 25_khelp_htdig.diff from Debian
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 20 Jun 2005 09:15:07 +0000
@@ -3065,7 +3065,7 @@ tdebase (4:3.4.0-0pre4) alioth; urgency=low
     Debian. (Closes: #246280)
 
   * Make ksmserver Recommend kpersonalizer, since it is used when
-    running KDE for the first time. Also patch startkde so it doesn't
+    running KDE for the first time. Also patch starttde so it doesn't
     fail when kpersonalizer is not present. (Closes: #309803)
 
   * Add manpages for kdialog (thanks to Bastian Kleineidam for tracking it
@@ -3107,7 +3107,7 @@ tdebase (4:3.3.2-1) unstable; urgency=low
   +++ Changes by Adeodato Simó:
 
   * debian/control:
-    - make tdebase-dev depend on kwin for the libtdecorations.so ->
+    - make tdebase-dev depend on twin for the libtdecorations.so ->
       libtdecorations.so.1.0.0 symlink. (Closes: #289544)
 
   * Included Czech po-debconf translation by Miroslav Kure.
@@ -3276,7 +3276,7 @@ tdebase (4:3.4.0-0pre1ubuntu6) hoary; urgency=low
 
 tdebase (4:3.4.0-0pre1ubuntu5) hoary; urgency=low
 
-  * Add kwin conflicts with old tdeartwork-theme-window
+  * Add twin conflicts with old tdeartwork-theme-window
 
  -- Jonathan Riddell <jr@jriddell.org>  Tue,  8 Mar 2005 22:48:59 +0000
 
@@ -3312,7 +3312,7 @@ tdebase (4:3.3.2-0pre1) experimental; urgency=low
   * KDE_3_3_BRANCH update. Includes the tdebase part of the fix
     for CAN-2004-1158.
   * Lower tdeprint's dependency on gv to a Suggests. (Closes: #269590)
-  * kwin is now registered as an x-window-manager. (Closes: #249162)
+  * twin is now registered as an x-window-manager. (Closes: #249162)
   * Added /usr/share/xsessions to KDM's default session path, so
     .desktop files installed there are found.
     (Closes: #243770, #247365, #247747, #250384)
@@ -3855,7 +3855,7 @@ tdebase (4:2.2.1-5) unstable; urgency=low
 tdebase (4:2.2.1-4) unstable; urgency=low
 
   * More upstream fixes
-  * don't set background in startkde script by default.  
+  * don't set background in starttde script by default.  
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 27 Sep 2001 12:13:00 -0700
 
@@ -4056,7 +4056,7 @@ tdebase (4:2.2.0-0beta1-1) unstable; urgency=low
   * Provide man link from kdm to chooser
   * More build cleanup..take more of the automation out to make sure things
     are constant
-  * Remove custom startkde
+  * Remove custom starttde
   * Revert old overrides so we can start from scratch
   * Add in new python-base dependency
   * New packages: kate, tdebase-audiolibs (so that those without sound do
@@ -4068,7 +4068,7 @@ tdebase (4:2.2.0-0beta1-1) unstable; urgency=low
   * And let's list the bugs fixed...
        ctrl-u problems with location bar fixed (Closes: #81425)
        image transparency fixed for konsole on startup (Closes: #84062)
-       fixes kwin's conflicting key accelerators (Closes: #86370)
+       fixes twin's conflicting key accelerators (Closes: #86370)
        fixes rendering error for www.bluesnews.com (Closes: #79800)
        fixes button problems for katalog.ub.uni-heidelberg.de (Closes: #88934)
        now provides the audiocd ioslave bits which allow for ripping audio
@@ -4134,7 +4134,7 @@ tdebase (4:2.1.1-3) unstable; urgency=low
 
 tdebase (4:2.1.1-2) unstable; urgency=low
  
-  * Move startkde script into /etc/kde2 so that it will be a conffile and
+  * Move starttde script into /etc/kde2 so that it will be a conffile and
     link it back to /usr/bin/kde2.  (Closes: #91787)
   * Build on older libc
   * Adding in recommends for klisa
@@ -4410,7 +4410,7 @@ tdebase (4:2.1-20001213-1) unstable; urgency=low
   * Fix whatis typo (Closes: #78178)
   * Fix segfaults (Closes: #78903)
   * Adding in a Recommend for kview to konqueror (Closes: #79201)
-  * Changing x-window-manager alternative from kde2 to kwin
+  * Changing x-window-manager alternative from kde2 to twin
   * KDM init.d script cleanup (Closes: #79320)
   * Fixed default kdmrc script to show new options
   * Adding in a kwm script for non-session launches
@@ -4546,7 +4546,7 @@ tdebase (4:2.0-20001008-0) unstable; urgency=low
 tdebase (4:2.0-20001006-1) unstable; urgency=low
  
   * More upstream fixes
-  * Applying tdebase-1.94-kwin-nofreeze-20000924.diff patch (Closes: #74051)
+  * Applying tdebase-1.94-twin-nofreeze-20000924.diff patch (Closes: #74051)
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Sun, 08 Oct 2000 03:30:00 -0700
                                                                                 
@@ -5057,9 +5057,9 @@ tdebase (1:Beta2-2.1) experimental; urgency=low
 
 tdebase (1:Beta2-2) unstable; urgency=low
 
-  * fixed kde / startkde script. added minimal documentation.
+  * fixed kde / starttde script. added minimal documentation.
   * fixed klock permissions.
-  * removed startkde script.
+  * removed starttde script.
   * removed virtual package names.
   * fixed utmp file location in kvt.
 

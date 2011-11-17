@@ -12,7 +12,7 @@ Standards-Version: 3.8.4
 Package: tdebase-trinity
 Section: kde
 Architecture: all
-Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), tdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), kwin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
+Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), tdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), twin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
 Recommends: kdm-trinity (>= ${Source-Version}), tdebase-runtime-data-common-trinity, libtqt3-integration-trinity
 Suggests: tdebase-trinity-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
@@ -117,7 +117,7 @@ Description: core binaries for the KDE base module
 Package: tdebase-data-trinity
 Section: kde
 Architecture: all
-Conflicts: kcontrol-trinity (<< 4:3.4.2-1), kwin-trinity (<< 4:3.4.2-1), kicker-trinity (<< 4:3.4.2-1)
+Conflicts: kcontrol-trinity (<< 4:3.4.2-1), twin-trinity (<< 4:3.4.2-1), kicker-trinity (<< 4:3.4.2-1)
 Replaces: tdebase-trinity (<< 4:3.0.0), tdeedu-data-trinity (<< 4:3.4.0), tdelibs-data-trinity (<< 4:3.3.0), kdewallpapers-trinity (<< 4:3.0.0), kcontrol-trinity (<< 4:3.5.5a.dfsg.1-1ubuntu18)
 Description: shared data files for the KDE base module
  This package contains the architecture-independent shared data files
@@ -129,7 +129,7 @@ Description: shared data files for the KDE base module
 Package: tdebase-trinity-dev
 Section: devel
 Architecture: any
-Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), tdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), kwin-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), tdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), twin-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
 Replaces: kate-trinity (<< 4:3.0.0), tdebase-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: development files for the KDE base module
  This package contains headers and other development files needed to
@@ -429,14 +429,14 @@ Package: ksmserver-trinity
 Section: kde
 Architecture: any
 Provides: x-session-manager
-Depends: ${shlibs:Depends}, tdebase-runtime-data-common-trinity, kwin-trinity (= ${Source-Version}) | x-window-manager
+Depends: ${shlibs:Depends}, tdebase-runtime-data-common-trinity, twin-trinity (= ${Source-Version}) | x-window-manager
 Recommends: kpersonalizer-trinity (= ${Source-Version})
 Replaces: tdebase-trinity (<< 4:3.0.0)
 Description: session manager for KDE
  This package contains the KDE session manager. It is responsible for
  restoring your KDE session on login. It is also needed to properly
  start a KDE session. It registers KDE with X display managers, and
- provides the 'startkde' command, for starting an X session with KDE
+ provides the 'starttde' command, for starting an X session with KDE
  from the console.
  .
  If you are running KDE for the first time for a certain user,
@@ -497,7 +497,7 @@ Description: useful tips for KDE
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
-Package: kwin-trinity
+Package: twin-trinity
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}

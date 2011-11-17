@@ -5,6 +5,7 @@ cd "$( dirname "$0" )"
 while [ $# -gt 0 ]; do
 	case "$1" in
 		"--auto") AUTO=1;;
+		"--version") REQVERSION="$2"; shift;;
 		*) COMP="$1";;
 	esac
 	shift
@@ -12,6 +13,7 @@ done
 
 clear
 cat <<EOF
+$(< /etc/redhat-release) $(uname -m)
 This script generates RPM of TDE from source tarball.
 Please choose a TDE component to build.
 
@@ -38,7 +40,11 @@ VERSION=$( awk '{ if ($1 == "'${COMP}'") { print $2; } }' components.txt )
 	
 # If no version is set in text file, get version number from source tarball name
 if [ -z "${VERSION}" ]; then
-	set $( cd "${COMP}"; echo ${COMP##*/}*.tar.gz)
+	if [ -n "${REQVERSION}" ]; then
+		set $( cd "${COMP}"; echo ${COMP##*/}*-${REQVERSION}.tar.gz)
+	else
+		set $( cd "${COMP}"; echo ${COMP##*/}*.tar.gz)
+	fi
 	if [ $# -gt 1 ]; then
 		select VERSION in $*; do break; done
 	elif [ -r "${COMP}/$1" ]; then
@@ -59,7 +65,12 @@ fi
 # Chooses a spec file (if many)
 set $( cd "${COMP}"; echo *.spec )
 if [ $# -gt 1 ]; then
-	select SPEC in $*; do break; done
+	if [ -n "${REQVERSION}" ]; then
+		set $( cd "${COMP}"; echo *-${REQVERSION}.spec )
+		SPEC="$1"
+	else
+		select SPEC in $*; do break; done
+	fi
 elif [ -r "${COMP}/$1" ]; then
 	SPEC="$1"
 else
@@ -86,7 +97,9 @@ esac
 if [ "$(rpm -q --qf '%{arch}' kernel)" = "i686" ]; then
 	ARGS="${ARGS} --target=i686"
 fi
-	
+
+LOGFILE=/tmp/log.${COMP##*/}
+
 set -x
 (
 rpmbuild -ba \
@@ -95,6 +108,18 @@ rpmbuild -ba \
 	--define "version ${VERSION:-3.5.13}" \
 	$ARGS \
 	${COMP}/${SPEC} || exit 1
-) 2>&1 | tee /tmp/log
+) 2>&1 | tee ${LOGFILE}
+RET=$?
 set +x
+
+if [ ${RET} -gt 0 ]; then
+	exit ${RET}
+fi
+
+if grep -q "error: Failed build dependencies:" ${LOGFILE}; then
+#	DEPS=$( sed -n -e "/.* is needed by .*/ s/^[ \t]*\([a-zA-Z2-9_-]*\) .*/\1/p" ${LOGFILE} )
+	set $( grep " is needed by " ${LOGFILE} | cut -d " " -f1 )
+	exit 2
+fi
+
 

@@ -227,9 +227,9 @@ debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/khtml/common
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/khtml/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/khtml/index.docbook
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/khtml/nsplugin.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/kwindecoration/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/kwindecoration/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/kwindecoration/index.docbook
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/twindecoration/common
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/twindecoration/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/twindecoration/index.docbook
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/language/common
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/language/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/language/index.docbook
