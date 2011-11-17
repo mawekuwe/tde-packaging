@@ -19,7 +19,7 @@ set -e
 
 case "$1" in
     remove)
-        /usr/sbin/update-alternatives --remove x-session-manager /usr/trinity/bin/startkde
+        /usr/sbin/update-alternatives --remove x-session-manager /usr/trinity/bin/starttde
 	dpkg-divert --rename --remove /usr/share/autostart/plasma.desktop
     ;;
 

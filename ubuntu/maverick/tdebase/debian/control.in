@@ -428,7 +428,7 @@ Description: session manager for KDE
  This package contains the KDE session manager. It is responsible for
  restoring your KDE session on login. It is also needed to properly
  start a KDE session. It registers KDE with X display managers, and
- provides the 'startkde' command, for starting an X session with KDE
+ provides the 'starttde' command, for starting an X session with KDE
  from the console.
  .
  If you are running KDE for the first time for a certain user,

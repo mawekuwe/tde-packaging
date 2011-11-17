@@ -8,7 +8,7 @@ kstartupconfig, kdostartupconfig
 .sp 1
 \fBkdostartupconfig\fP
 .SH DESCRIPTION
-\fBkstartupconfig\fP loads configuration options for use in \fBstartkde\fP. It saves loading time as there is no need to launch programs linked to KDE libraries. \fBstartupconfig\fP uses a cache of some Kconfig options that are updated by \fBkdostartupconfig\fP. The cache is implemented as script file that is sourced and provides the options as shell variables.
+\fBkstartupconfig\fP loads configuration options for use in \fBstarttde\fP. It saves loading time as there is no need to launch programs linked to KDE libraries. \fBstartupconfig\fP uses a cache of some Kconfig options that are updated by \fBkdostartupconfig\fP. The cache is implemented as script file that is sourced and provides the options as shell variables.
 .sp 1
 The configuration options to load are stored in \fIstartupconfigkeys\fP as one option per line. They follow the format <file> <group> <key> <default>. A complete group is addressed as <file> [<group>]. The configuration options are processed in the specified order so the missing default values for groups can be specified as single options after the group option.
 .sp 1
@@ -42,7 +42,7 @@ configuration options and files they belong to
 .I $KDEHOME/share/config/startupconfigkeys
 configuration options to load
 .SH SEE ALSO
-.BR kconf_update (1),\  startkde (1)
+.BR kconf_update (1),\  starttde (1)
 .SH AUTHORS
 .nf
 Lubos Lunak <l.lunak@kde.org>

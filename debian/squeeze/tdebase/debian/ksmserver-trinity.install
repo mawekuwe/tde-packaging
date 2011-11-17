@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/ksmserver
-debian/tmp/opt/trinity/bin/startkde
+debian/tmp/opt/trinity/bin/starttde
 debian/tmp/opt/trinity/lib/trinity/ksmserver.la
 debian/tmp/opt/trinity/lib/trinity/ksmserver.so
 debian/tmp/opt/trinity/lib/libtdeinit_ksmserver.so

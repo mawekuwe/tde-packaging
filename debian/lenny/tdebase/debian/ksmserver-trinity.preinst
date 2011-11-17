@@ -4,7 +4,7 @@ case "$1" in
 
     upgrade)
 	rm -f /etc/gdm/Sessions/KDE
-	rm -f /etc/trinity/debian/startkde
+	rm -f /etc/trinity/debian/starttde
 	/usr/sbin/update-alternatives --remove x-session-manager /usr/bin/kde2
 	/usr/sbin/update-alternatives --remove x-session-manager /usr/bin/trinity
 	mkdir -p /usr/share/autostart

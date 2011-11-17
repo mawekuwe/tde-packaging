@@ -105,7 +105,7 @@ tdebase-trinity (4:3.5.10-0ubuntu12) karmic; urgency=low
 
 tdebase-trinity (4:3.5.10-0ubuntu11) karmic; urgency=low
 
-  * Repaired startkde script to export DESKTOP_SESSION
+  * Repaired starttde script to export DESKTOP_SESSION
   * Depends on libogg-dev-la
   * Repaired gcc4.4 compilation problems
 
@@ -196,7 +196,7 @@ tdebase-trinity (4:3.5.10-0ubuntu3~intrepid19) intrepid; urgency=low
 
 tdebase-trinity (4:3.5.10-0ubuntu3~intrepid18) intrepid; urgency=low
 
-  * Added XDG_DATA_DIRS and KDEDIRS to startkde, as suggested by zekica on the Debian forums
+  * Added XDG_DATA_DIRS and KDEDIRS to starttde, as suggested by zekica on the Debian forums
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 07 Mar 2009 13:18:00 -0600
 
@@ -240,7 +240,7 @@ tdebase-trinity (4:3.5.10-0ubuntu3~intrepid3) intrepid; urgency=low
 
 tdebase-trinity (4:3.5.10-0ubuntu3~intrepid1) intrepid; urgency=low
 
-  * Removed link /usr/lib/libkonsolepart.so for python-trinity-trinity and altered startkde script to function properly with the new .trinity home directory
+  * Removed link /usr/lib/libkonsolepart.so for python-trinity-trinity and altered starttde script to function properly with the new .trinity home directory
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 05 Dec 2008 16:15:00 -0600
 
@@ -353,7 +353,7 @@ tdebase (4:3.5.9-0ubuntu5) hardy; urgency=low
 
 tdebase (4:3.5.9-0ubuntu4) hardy; urgency=low
 
-  * Remove kubuntu_9920_startkde_dash_stupidness.diff, 
+  * Remove kubuntu_9920_starttde_dash_stupidness.diff, 
     Closes LP: #206187
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 25 Mar 2008 23:05:42 +0000
@@ -428,7 +428,7 @@ tdebase (4:3.5.8-2ubuntu17) hardy; urgency=low
 
 tdebase (4:3.5.8-2ubuntu17) hardy; urgency=low
 
-  * Added kubuntu_9920_startkde_dash_stupidness.diff:
+  * Added kubuntu_9920_starttde_dash_stupidness.diff:
     - For some stupid reasons, env scripts are not parsed correctly
       due dash. Hard to believe, but this patch fixes the issue...
     - Closes LP: #189144
@@ -677,7 +677,7 @@ tdebase (4:3.5.7-2) unstable; urgency=low
   * Add support or back references in klipper. Thanks to Sean Finney.
     (Closes: #427843)
   * Updated nb debconf translation. (Closes: #417942)
-  * Fix typo in startkde manpage. Thanks A. Costa. (Closes: #432062)
+  * Fix typo in starttde manpage. Thanks A. Costa. (Closes: #432062)
   * Fix typo in kdmrc. Thanks Greg. (Closes: #422142)
   * Updated vi debconf translation. Thanks Clytie Siddall (Closes: #426820)
   * Updated pt_BR debconf translation. Thanks Eder L. Marques. 
@@ -2132,7 +2132,7 @@ tdebase (4:3.5.1-1) unstable; urgency=low
   * Enable zeroconf support in ksysguardd; add libavahi-compat-libdnssd-dev to
     the build-depends. (Closes: #348583)
 
-  * Merge startkde manpage (and maintainer script patch to fully integrate it)
+  * Merge starttde manpage (and maintainer script patch to fully integrate it)
     from Philipp Grau. Thanks. (Closes: #348501)
 
   * Upload to unstable.
@@ -2632,7 +2632,7 @@ tdebase (4:3.5-rc2-0ubuntu1) dapper; urgency=low
   * kdm depends on xauth not xbase-clients
   * Update 18_default_fonts.diff
   * Generate .pot files
-  * Remove kubuntu_26_startkde.diff, no need to start ivman in 3.5
+  * Remove kubuntu_26_starttde.diff, no need to start ivman in 3.5
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 21 Nov 2005 17:46:39 +0000
 
@@ -2644,7 +2644,7 @@ tdebase (4:3.5-rc1-1ubuntu1) dapper; urgency=low
   * Update kubuntu_16_hide_kpager_menu_entry.diff
   * Update kubuntu_19_kdm_zsh_emulate.diff
   * Update kubuntu_25_kcontrol_only_in_kde.diff
-  * Update kubuntu_30_startkde_background_colour.diff
+  * Update kubuntu_30_starttde_background_colour.diff
   * Update kubuntu_32_usplash_console_font.diff
   * konqueror replaces old kcontrol
 
@@ -2905,7 +2905,7 @@ tdebase (4:3.4.2-0ubuntu4) breezy; urgency=low
     on desktop icons
   * Compile with GCC 3.4 on hppa, m68k, arm to prevent 
     internal compiler error
-  * Add kubuntu_30_startkde_background_colour.diff to make default
+  * Add kubuntu_30_starttde_background_colour.diff to make default
     background colour match default wallpaperchange background colour
   * Do not install SVG icons to save space
   * Install simple konqueror.rc into /usr/share/apps/konqueror, workaround
@@ -2971,7 +2971,7 @@ tdebase (4:3.4.1-0ubuntu3) breezy; urgency=low
   * Update kubuntu_23_hal_api.diff
   * Replace 19_kcontrol_only_in_kde.diff with kubuntu_25_kcontrol_only_in_kde.diff 
     which stops KControl displaying (use System Settings instead)
-  * Add kubuntu_26_startkde.diff to start ivman
+  * Add kubuntu_26_starttde.diff to start ivman
   * Add 25_khelp_htdig.diff from Debian
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 20 Jun 2005 09:15:07 +0000
@@ -3065,7 +3065,7 @@ tdebase (4:3.4.0-0pre4) alioth; urgency=low
     Debian. (Closes: #246280)
 
   * Make ksmserver Recommend kpersonalizer, since it is used when
-    running KDE for the first time. Also patch startkde so it doesn't
+    running KDE for the first time. Also patch starttde so it doesn't
     fail when kpersonalizer is not present. (Closes: #309803)
 
   * Add manpages for kdialog (thanks to Bastian Kleineidam for tracking it
@@ -3855,7 +3855,7 @@ tdebase (4:2.2.1-5) unstable; urgency=low
 tdebase (4:2.2.1-4) unstable; urgency=low
 
   * More upstream fixes
-  * don't set background in startkde script by default.  
+  * don't set background in starttde script by default.  
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 27 Sep 2001 12:13:00 -0700
 
@@ -4056,7 +4056,7 @@ tdebase (4:2.2.0-0beta1-1) unstable; urgency=low
   * Provide man link from kdm to chooser
   * More build cleanup..take more of the automation out to make sure things
     are constant
-  * Remove custom startkde
+  * Remove custom starttde
   * Revert old overrides so we can start from scratch
   * Add in new python-base dependency
   * New packages: kate, tdebase-audiolibs (so that those without sound do
@@ -4134,7 +4134,7 @@ tdebase (4:2.1.1-3) unstable; urgency=low
 
 tdebase (4:2.1.1-2) unstable; urgency=low
  
-  * Move startkde script into /etc/kde2 so that it will be a conffile and
+  * Move starttde script into /etc/kde2 so that it will be a conffile and
     link it back to /usr/bin/kde2.  (Closes: #91787)
   * Build on older libc
   * Adding in recommends for klisa
@@ -5057,9 +5057,9 @@ tdebase (1:Beta2-2.1) experimental; urgency=low
 
 tdebase (1:Beta2-2) unstable; urgency=low
 
-  * fixed kde / startkde script. added minimal documentation.
+  * fixed kde / starttde script. added minimal documentation.
   * fixed klock permissions.
-  * removed startkde script.
+  * removed starttde script.
   * removed virtual package names.
   * fixed utmp file location in kvt.
 
