@@ -1,11 +1,10 @@
-# $Id$
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-dbus-1-qt3
 pkgver=0.9
 pkgrel=8
 arch=('i686' 'x86_64')
-pkgdesc="DBUS/Qt3 bindings."
+pkgdesc="Trinity D-Bus/Qt3 bindings."
 url="http://www.freedesktop.org/wiki/Software/DBusBindings"
 license=('GPL')
 groups=('trinity-base')

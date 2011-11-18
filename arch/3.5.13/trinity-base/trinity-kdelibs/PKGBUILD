@@ -4,10 +4,10 @@ pkgname=trinity-kdelibs
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
-url='http://www.kde.org'
+url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
-pkgdesc="Trinity - kdelibs"
+pkgdesc="Trinity - kdelibs, core libraries"
 depends=('libical'
         'libxslt'
         'avahi'
