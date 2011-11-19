@@ -1,0 +1,32 @@
+--- kdebase/startkde.ORI	2011-11-14 22:23:07.191346324 +0100
++++ kdebase/startkde	2011-11-14 22:38:28.480321300 +0100
+@@ -206,6 +206,29 @@
+   fi
+ fi
+ 
++# Default Start Button icon
++if [ ! -e  $kdehome/share/config/kickerrc ]; then
++  # Fedora
++  if [ -r /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png ]; then
++    cat <<EOF >$kdehome/share/config/kickerrc
++[KMenu]
++CustomIcon=fedora-logo-icon
++EOF
++  # RHEL 6
++  elif [ -r /usr/share/icons/hicolor/96x96/apps/system-logo-icon.png ]; then
++    cat <<EOF >$kdehome/share/config/kickerrc
++[KMenu]
++CustomIcon=system-logo-icon
++EOF
++  # RHEL 5
++  elif [ -r /usr/share/pixmaps/redhat-starthere.png ]; then
++    cat <<EOF >$kdehome/share/config/kickerrc
++[KMenu]
++CustomIcon=/usr/share/pixmaps/redhat-starthere.png
++EOF
++  fi
++fi
++
+ # XCursor mouse theme needs to be applied here to work even for kded or ksmserver.
+ if test -n "$kcminputrc_mouse_cursortheme" -o -n "$kcminputrc_mouse_cursorsize" ; then
+     kapplymousetheme "$kcminputrc_mouse_cursortheme" "$kcminputrc_mouse_cursorsize"
