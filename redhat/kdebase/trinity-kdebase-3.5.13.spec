@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 7
+%define release 8
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -61,11 +61,14 @@ Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
 Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
 ## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
 Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
-## [kdebase/kicker/kicker/ui]
-Patch10:	kdebase-3.5.12-kickoff_unstable.patch
 ## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
 Patch11:	kdebase-3.5.13-startkde_icon.patch
 
+# TDE 3.5.13 patches
+## [kdebase/kicker/kicker/ui]
+Patch10:	kdebase-3.5.12-kickoff_unstable.patch
+## [kdebase/kdm] adds gcrypt support
+Patch12:	kdebase-3.5.13-kdm-crypt.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -217,10 +220,9 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-cd kicker/kicker
-%patch10 -p0
-cd -
+%patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -317,9 +319,10 @@ cd build
 %endif
 
 # Moves the XDG configuration files to TDE directory
+%if "%{_prefix}" != "/usr"
 %__mkdir_p "%{?buildroot}%{_prefix}/etc"
 %__mv -f "%{?buildroot}%{_sysconfdir}/xdg" "%{?buildroot}%{_prefix}/etc"
-
+%endif
 
 %clean
 %__rm -rf %{?buildroot}
@@ -522,10 +525,17 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/sounds/*
 %{tde_libdir}/*
 %{_libdir}/libkdeinit_*.*
+%if "%{_prefix}" != "/usr"
 %{_prefix}/etc/xdg/menus/applications-merged/kde-essential.menu
 %{_prefix}/etc/xdg/menus/kde-information.menu
 %{_prefix}/etc/xdg/menus/kde-screensavers.menu
 %{_prefix}/etc/xdg/menus/kde-settings.menu
+%else
+%{_sysconfdir}/xdg/menus/applications-merged/kde-essential.menu
+%{_sysconfdir}/xdg/menus/kde-information.menu
+%{_sysconfdir}/xdg/menus/kde-screensavers.menu
+%{_sysconfdir}/xdg/menus/kde-settings.menu
+%endif
 /usr/share/xsessions/*.desktop
 # Remove conflicts with redhat-menus
 %if "%{?_prefix}" != "/usr"
@@ -583,6 +593,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Fri Nov 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
+- Updates Kickoff menu Fix [TDE Bugs #281, #508]
+- Adds KDM gcrypt dependency
+
 * Sun Nov 13 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
 - Add distribution-specific start button icon
 
