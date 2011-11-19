@@ -50,7 +50,15 @@ applications/kstreamripper
 applications/kdesudo
 applications/digikam
 applications/konversation
-applications/ksensors
+extras/ksensors
 applications/amarok
 applications/kaffeine
 applications/knetworkmanager
+applications/kwin-style-crystal
+applications/kde-style-lipstik
+applications/kde-style-qtcurve
+applications/kpowersave
+applications/kiosktool
+applications/k9copy
+applications/kchmviewer
+
