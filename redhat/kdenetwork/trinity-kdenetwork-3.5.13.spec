@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -241,7 +241,7 @@ done
 install -p -m644 -D %{SOURCE1} %{buildroot}/etc/pam.d/kppp3
 mkdir -p %{buildroot}%{_sbindir}
 mv %{buildroot}%{_bindir}/kppp %{buildroot}%{_sbindir}
-ln -s consolehelper %{buildroot}%{_bindir}/kppp
+ln -s /usr/bin/consolehelper %{buildroot}%{_bindir}/kppp
 mkdir -p %{buildroot}/etc/security/console.apps
 cat > %{buildroot}/etc/security/console.apps/kppp3 <<EOF
 USER=root
@@ -473,6 +473,9 @@ done
 
 
 %changelog
+* Thu Nov 17 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Fix symbolic link to 'consolehelper'
+
 * Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Removes conflict on file 'lisarc' for RHEL 5
 
