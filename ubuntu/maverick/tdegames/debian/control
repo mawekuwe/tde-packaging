@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Daniel Schepler <schepler@debian.org>, Sune Vuorela <debian@pusling.com>
 Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev (>= 4:3.5.10), libtool, groff-base, sharutils, bzip2, sharutils, libogg-dev, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
-Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, qt3-doc, tdelibs4-trinity-doc
+Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, libtqtinterface-doc, tdelibs4-trinity-doc
 Standards-Version: 3.8.4
 
 Package: tdegames-trinity
@@ -89,7 +89,7 @@ Architecture: all
 Section: doc
 Replaces: libtdegames-kde3-doc (<< 4:3.5.13)
 Breaks: libtdegames-kde3-doc (<< 4:3.5.13)
-Recommends: tdelibs4-trinity-doc, qt3-doc
+Recommends: tdelibs4-trinity-doc, libtqtinterface-doc
 Suggests: konqueror-trinity | www-browser, libtdegames-trinity-dev
 Description: API documentation for the Trinity games library
  This package contains the developers' documentation for libtdegames.
