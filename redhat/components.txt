@@ -61,4 +61,14 @@ applications/kpowersave
 applications/kiosktool
 applications/k9copy
 applications/kchmviewer
+applications/kbfx
+applications/kradio
+applications/kcpuload
+applications/fusion-icon
+applications/ksplash-engine-moodin
+applications/knights
+libraries/libksquirrel
+#extras/libkexif
+applications/ksquirrel
+applications/gtk-qt-engine
 
