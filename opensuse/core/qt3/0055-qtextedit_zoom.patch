@@ -11,7 +11,7 @@ Index: widgets/qtextedit.cpp
 ================================================================================
 --- src/widgets/qtextedit.cpp
 +++ src/widgets/qtextedit.cpp
-@@ -5767,7 +5767,11 @@
+@@ -5774,7 +5774,11 @@
  void QTextEdit::zoomIn( int range )
  {
      QFont f( QScrollView::font() );
@@ -24,7 +24,7 @@ Index: widgets/qtextedit.cpp
      setFont( f );
  }
  
-@@ -5782,7 +5786,11 @@
+@@ -5789,7 +5793,11 @@
  void QTextEdit::zoomOut( int range )
  {
      QFont f( QScrollView::font() );

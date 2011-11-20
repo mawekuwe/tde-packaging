@@ -1,6 +1,6 @@
 --- qmake/generators/unix/unixmake.cpp
 +++ qmake/generators/unix/unixmake.cpp
-@@ -836,7 +836,7 @@
+@@ -839,7 +839,7 @@
  	    ret += "\n\t";
  	ret += QString(resource ? "-$(INSTALL_DIR)" : "-$(INSTALL_FILE)") + " \"" +
  	       src_targ + "\" \"" + dst_targ + "\"";

@@ -1,4 +1,13 @@
 -------------------------------------------------------------------
+Sat Nov 19 23:23:57 UTC 2011 - andrea@nucleus.it
+
+- Removed all the patches already applied in the 3.3.8d tree.
+- Modified all the remaining to apply with fuzz=0.
+- Created a new patch to revert the use of libiodbc to libodbc
+  otherwise qt3-unixODBC does not build.
+- Some cosmetic change to the specfiles.
+
+-------------------------------------------------------------------
 Sun Nov 13 22:40:37 UTC 2011 - robxu9@gmail.com
 
 - Remove 0001-dnd_optimization.patch; upstream 

@@ -1,5 +1,5 @@
 #
-# spec file for package qt3-extensions (Version 3.3.8b)
+# spec file for package qt3-extensions (Version 3.3.8d)
 #
 # Copyright (c) 2005 SUSE LINUX Products GmbH, Nuernberg, Germany.
 # This file and all modifications and additions to the pristine
@@ -16,7 +16,7 @@ BuildRequires: cups-devel krb5-devel mysql-devel postgresql-devel qt3-devel sqli
 BuildRequires: fdupes
 %endif
 License:      GPL, QPL
-Version:      3.3.8c
+Version:      3.3.8d
 Release:      1
 Autoreqprov:  on
 Requires:     qt3 = %version
@@ -325,6 +325,8 @@ rm -rf ${RPM_BUILD_ROOT}
 %defattr(-,root,root)
 #/usr/bin/designer
 #/usr/bin/linguist
+/usr/lib/qt3/bin/createcw
+/usr/lib/qt3/bin/makeqpf
 /usr/lib/qt3/bin/qconfig
 /usr/lib/qt3/bin/findtr
 /usr/lib/qt3/bin/qt20fix

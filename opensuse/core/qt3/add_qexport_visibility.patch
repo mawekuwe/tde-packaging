@@ -2,7 +2,7 @@ Index: src/kernel/qgplugin.h
 ================================================================================
 --- src/kernel/qgplugin.h
 +++ src/kernel/qgplugin.h
-@@ -90,35 +90,19 @@
+@@ -93,35 +93,19 @@
  	    return i->iface(); \
  	}
  
@@ -50,7 +50,7 @@ Index: src/kernel/qgplugin.h
  struct QUnknownInterface;
 --- src/tools/qglobal.h
 +++ src/tools/qglobal.h
-@@ -882,6 +882,10 @@
+@@ -885,6 +885,10 @@
  #    define Q_TEMPLATE_EXTERN
  #    undef  Q_DISABLE_COPY 	/* avoid unresolved externals */
  #  endif

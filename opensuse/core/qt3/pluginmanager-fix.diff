@@ -1,6 +1,6 @@
 --- src/tools/qgpluginmanager.cpp
 +++ src/tools/qgpluginmanager.cpp
-@@ -383,6 +383,8 @@
+@@ -389,6 +389,8 @@
  		sameBasename << (*git).mid( (*git).find( QChar(0xfffd) ) + 1 );
  		++git;
  	    }

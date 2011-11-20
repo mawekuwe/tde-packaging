@@ -2,7 +2,7 @@ Index: kernel/qasyncimageio.cpp
 ================================================================================
 --- src/kernel/qasyncimageio.cpp
 +++ src/kernel/qasyncimageio.cpp
-@@ -901,7 +901,12 @@
+@@ -904,7 +904,12 @@
  		    sheight = newtop + newheight;
  
  		if (img.isNull()) {
@@ -16,7 +16,7 @@ Index: kernel/qasyncimageio.cpp
  		    memset( img.bits(), 0, img.numBytes() );
  		    if (consumer) consumer->setSize(swidth, sheight);
  		}
-@@ -956,9 +961,15 @@
+@@ -959,9 +964,15 @@
  		    if (backingstore.width() < w
  			|| backingstore.height() < h) {
  			// We just use the backing store as a byte array
@@ -35,7 +35,7 @@ Index: kernel/qasyncimageio.cpp
  		    for (int ln=0; ln<h; ln++) {
 --- src/kernel/qimage.cpp
 +++ src/kernel/qimage.cpp
-@@ -65,6 +65,8 @@
+@@ -68,6 +68,8 @@
  #define QT_NO_IMAGE_16_BIT
  #endif
  
@@ -44,7 +44,7 @@ Index: kernel/qasyncimageio.cpp
  
  /*!
      \class QImage
-@@ -1201,6 +1203,28 @@
+@@ -1211,6 +1213,28 @@
      data->alpha = enable;
  }
  
@@ -73,7 +73,7 @@ Index: kernel/qasyncimageio.cpp
  
  /*!
      Sets the image \a width, \a height, \a depth, its number of colors
-@@ -1230,6 +1254,14 @@
+@@ -1240,6 +1264,14 @@
      reset();					// reset old data
      if ( width <= 0 || height <= 0 || depth <= 0 || numColors < 0 )
  	return FALSE;				// invalid parameter(s)
@@ -90,7 +90,7 @@ Index: kernel/qasyncimageio.cpp
  	qWarning( "QImage::create: Bit order is required for 1 bpp images" );
 --- src/kernel/qimage.h
 +++ src/kernel/qimage.h
-@@ -194,6 +194,10 @@
+@@ -197,6 +197,10 @@
  		      int quality=-1 ) const;
      bool	save( QIODevice * device, const char* format,
  		      int quality=-1 ) const;

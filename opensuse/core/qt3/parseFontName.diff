@@ -1,6 +1,6 @@
 --- src/kernel/qfontdatabase.cpp
 +++ src/kernel/qfontdatabase.cpp
-@@ -2470,11 +2470,14 @@ void QFontDatabase::parseFontName(const
+@@ -2476,11 +2476,14 @@ void QFontDatabase::parseFontName(const
  	int i = name.find('[');
  	int li = name.findRev(']');
  

@@ -1,6 +1,6 @@
 --- tools/assistant/lib/qassistantclient.cpp
 +++ tools/assistant/lib/qassistantclient.cpp
-@@ -128,7 +128,7 @@
+@@ -135,7 +135,7 @@
      : QObject( parent, name ), host ( "localhost" )
  {
      if ( path.isEmpty() )

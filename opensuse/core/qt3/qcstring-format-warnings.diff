@@ -1,6 +1,6 @@
 --- src/tools/qcstring.h		(revision 658213)
 +++ src/tools/qcstring.h		(working copy)
-@@ -161,7 +161,11 @@ public:
+@@ -164,7 +164,11 @@ public:
  
      QCString	copy()	const;
  

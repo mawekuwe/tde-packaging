@@ -1,6 +1,6 @@
 --- src/tools/qsettings.cpp
 +++ src/tools/qsettings.cpp
-@@ -36,6 +36,7 @@
+@@ -39,6 +39,7 @@
  **********************************************************************/
  
  #include "qplatformdefs.h"
@@ -8,7 +8,7 @@
  
  // POSIX Large File Support redefines open -> open64
  static inline int qt_open( const char *pathname, int flags, mode_t mode )
-@@ -465,8 +466,18 @@
+@@ -468,8 +469,18 @@
      Q_UNUSED( format );
  #endif
  
@@ -29,7 +29,7 @@
  #ifdef Q_WS_WIN
  #ifdef Q_OS_TEMP
  	TCHAR path[MAX_PATH];
-@@ -514,6 +525,15 @@
+@@ -517,6 +528,15 @@
  
      if ( !!defPath )
  	searchPaths.append(defPath);

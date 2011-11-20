@@ -1,6 +1,6 @@
 --- src/kernel/qeventloop_unix.cpp
 +++ src/kernel/qeventloop_unix.cpp
-@@ -514,6 +528,17 @@
+@@ -517,6 +531,17 @@
      return (tm->tv_sec*1000) + (tm->tv_usec/1000);
  }
  
@@ -18,7 +18,7 @@
  int QEventLoop::activateTimers()
  {
      if ( !timerList || !timerList->count() )	// no timers
-@@ -549,9 +574,27 @@
+@@ -552,9 +577,27 @@
  	t->timeout += t->interval;
  	if ( t->timeout < currentTime )
  	    t->timeout = currentTime + t->interval;

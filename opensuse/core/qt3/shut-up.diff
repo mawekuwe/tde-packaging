@@ -1,6 +1,6 @@
 --- src/kernel/qpixmap_x11.cpp
 +++ src/kernel/qpixmap_x11.cpp
-@@ -288,8 +288,9 @@
+@@ -394,8 +394,9 @@
  {
  #if defined(QT_CHECK_STATE)
      if ( qApp->type() == QApplication::Tty ) {
@@ -14,7 +14,7 @@
  
 --- src/tools/qcomlibrary.cpp
 +++ src/tools/qcomlibrary.cpp
-@@ -102,25 +102,11 @@
+@@ -105,25 +105,11 @@
  		      (const char*) QFile::encodeName(library) );
      } else if ( ( version > QT_VERSION ) ||
  		( ( QT_VERSION & 0xff0000 ) > ( version & 0xff0000 ) ) ) {

@@ -67,7 +67,7 @@
  target.path += $$plugins.path/sqldrivers
 --- src/tools/qcstring.cpp
 +++ src/tools/qcstring.cpp
-@@ -50,7 +50,7 @@
+@@ -53,7 +53,7 @@
  #include <ctype.h>
  #include <limits.h>
  #ifndef QT_NO_COMPRESS

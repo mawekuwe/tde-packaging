@@ -1,6 +1,6 @@
 --- src/qt.pro
 +++ src/qt.pro
-@@ -40,6 +40,8 @@
+@@ -41,6 +41,8 @@
  XML_CPP	        = xml
  STYLES_CPP	= styles
  EMBEDDED_CPP	= embedded
