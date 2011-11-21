@@ -3,18 +3,19 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-I18N_DIR_PREFIX := kde-i18n
+I18N_DIR_PREFIX := tde-i18n
+I18N_DEST_PREFIX := kde-i18n
 #I18N_VERSION := $(shell cat debian/changelog | head -n1 | sed 's/.*(\([[:digit:]]\+:\)\?\(.\+\)-.\+).*/\2/')
 I18N_VERSION := 3.5.10
-I18N_DIR_PAT := $(I18N_DIR_PREFIX)-%-$(I18N_VERSION)
-I18N_DIRS := $(subst .tar.bz2,,$(wildcard $(I18N_DIR_PREFIX)-*-$(I18N_VERSION).tar.bz2))
+I18N_DIR_PAT := $(I18N_DIR_PREFIX)-%
+I18N_DIRS := $(wildcard $(I18N_DIR_PREFIX)-*)
 I18N_PATCHES := $(wildcard debian/patches/*.diff)
 
 # Stamps and support variables
 cur_lang = $(word 2,$(subst __, ,$@))
-cur_lang_dir = $(patsubst %,$(I18N_DIR_PREFIX)-%-$(I18N_VERSION),$(cur_lang))
+cur_lang_dir = $(patsubst %,$(I18N_DIR_PREFIX)-%,$(cur_lang))
 cur_lang_patch = $(patsubst %,debian/patches/%.diff,$(cur_lang))
-cur_pkg = $(I18N_DIR_PREFIX)-$(cur_lang)
+cur_pkg = $(I18N_DEST_PREFIX)-$(cur_lang)
 
 STAMP_EXTRACT := $(patsubst $(I18N_DIR_PAT),debian/stamp__%__extract,$(I18N_DIRS))
 STAMP_PATCH := $(patsubst debian/patches/%.diff,debian/stamp__%__patch,$(I18N_PATCHES))
@@ -49,7 +50,7 @@ build::
 build:: $(STAMP_EXTRACT) patch $(STAMP_BUILD)
 
 $(STAMP_EXTRACT):
-	tar xfj $(cur_lang_dir).tar.bz2
+#	tar xfj $(cur_lang_dir).tar.bz2
 	@touch $@
 
 $(STAMP_BUILD):
