@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -192,7 +192,7 @@ install -p -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/security/console.apps
 pushd %{buildroot}%{_bindir}
   mkdir -p %{buildroot}%{_sbindir}
   mv klaptop_acpi_helper ../sbin
-  ln -s consolehelper klaptop_acpi_helper
+  ln -s /usr/bin/consolehelper klaptop_acpi_helper
 popd
 
 # klaptop setting
@@ -347,6 +347,9 @@ done
 
 
 %changelog
+* Thu Nov 17 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Fix symbolic link to 'consolehelper'
+
 * Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Removes 'dpkg' commands inside klaptopdaemon
 

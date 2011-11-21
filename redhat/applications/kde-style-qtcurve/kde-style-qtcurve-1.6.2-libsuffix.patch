@@ -1,0 +1,11 @@
+--- kde-style-qtcurve/CMakeLists.txt.ORI	2011-11-20 22:37:40.050443616 +0100
++++ kde-style-qtcurve/CMakeLists.txt	2011-11-20 22:40:04.355439569 +0100
+@@ -46,7 +46,7 @@
+     if (QT_PLUGINS_DIR MATCHES NOTFOUND)
+       MESSAGE(STATUS_ERROR "Qt3 package not found--assuming TQt4")
+       SET(QT_INCLUDE_DIR "/usr/include/qt4")
+-      SET(QT_PLUGINS_DIR "${KDE3PREFIX}/lib/trinity/plugins")
++      SET(QT_PLUGINS_DIR "${KDE3PREFIX}/lib${LIB_SUFFIX}/trinity/plugins")
+     endif (QT_PLUGINS_DIR MATCHES NOTFOUND)
+ endif (NOT QTC_QT_ONLY)
+ 

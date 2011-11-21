@@ -1,0 +1,12 @@
+diff -Nuar k9copy.ORI/src/Makefile.am k9copy.P/src/Makefile.am
+--- k9copy.ORI/src/Makefile.am	2011-11-21 00:08:57.943296860 +0100
++++ k9copy.P/src/Makefile.am	2011-11-21 00:18:50.559281008 +0100
+@@ -30,7 +30,7 @@
+ 	kconfigdlg.cpp kviewmpeg2.cpp kviewmpeg2.h langselectw.ui main.cpp mencoderCmdGen.ui \
+ 	playbackoptionsw.ui prefAuthor.ui prefDVD.ui prefMPEG4.ui prefMencoder.ui prefpreview.ui \
+ 	titlefactor.ui viewmpeg2.ui
+-k9copy_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor $(LIB_KPARTS)
++k9copy_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor $(LIB_KPARTS) $(LIBDL)
+ k9copy_LDADD = $(top_builddir)/k9Mplayer/libk9mplayer.la \
+ 	$(top_builddir)/k9author/libk9author.la $(top_builddir)/k9decmpeg/libk9decmpeg.la \
+ 	$(top_builddir)/k9devices/libk9devices.la $(top_builddir)/k9vamps/libk9vamps.la \

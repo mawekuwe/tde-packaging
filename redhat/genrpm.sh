@@ -43,7 +43,7 @@ if [ -z "${VERSION}" ]; then
 	if [ -n "${REQVERSION}" ]; then
 		set $( cd "${COMP}"; echo ${COMP##*/}*-${REQVERSION}.tar.gz)
 	else
-		set $( cd "${COMP}"; echo ${COMP##*/}*.tar.gz)
+		set $( cd "${COMP}"; echo ${COMP##*/}*.tar.* )
 	fi
 	if [ $# -gt 1 ]; then
 		select VERSION in $*; do break; done
