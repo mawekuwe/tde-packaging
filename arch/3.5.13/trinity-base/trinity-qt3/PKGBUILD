@@ -59,7 +59,10 @@ package() {
   echo 'export PATH=$PATH:$QTDIR/bin' >> ${srcdir}/qt.profile
   echo 'export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QTDIR/pkgconfig' >> ${srcdir}/qt.profile
   install -D -m755 ${srcdir}/qt.profile ${pkgdir}/etc/profile.d/qt3.sh
- 
+  
+ install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
+ echo "${QTDIR}/lib" > ${pkgdir}/etc/ld-so.conf.d/${pkgname}.conf
+
   make INSTALL_ROOT="$pkgdir/" install
 
 } 
