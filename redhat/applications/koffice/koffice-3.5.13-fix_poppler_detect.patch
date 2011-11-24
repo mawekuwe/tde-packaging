@@ -1,0 +1,10 @@
+--- koffice/filters/chalk/pdf/configure.in.in.ORI	2011-11-23 14:20:06.517677101 -0500
++++ koffice/filters/chalk/pdf/configure.in.in	2011-11-23 14:20:14.461584005 -0500
+@@ -1,5 +1,5 @@
+ # Compile the pdf import filter only if Poppler is available
+-# PKG_CHECK_MODULES(POPPLER, poppler-qt >= 0.5.1, have_poppler=yes, have_poppler=no)
+-have_poppler=yes
++PKG_CHECK_MODULES(POPPLER, poppler-qt >= 0.5.1, have_poppler=yes, have_poppler=no)
++#have_poppler=yes
+ 
+ AM_CONDITIONAL(include_PDF, test "x$have_poppler" = xyes) 

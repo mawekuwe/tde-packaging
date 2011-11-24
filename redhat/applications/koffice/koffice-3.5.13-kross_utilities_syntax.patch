@@ -1,0 +1,34 @@
+--- koffice/lib/kross/python/scripts/RestrictedPython/Utilities.py.ORI	2011-11-25 00:13:38.356036607 +0100
++++ koffice/lib/kross/python/scripts/RestrictedPython/Utilities.py	2011-11-25 00:14:16.794035577 +0100
+@@ -46,11 +46,11 @@
+     if l%2: return args[-1]
+ utility_builtins['test'] = test
+ 
+-def reorder(s, with=None, without=()):
+-    # s, with, and without are sequences treated as sets.
+-    # The result is subtract(intersect(s, with), without),
+-    # unless with is None, in which case it is subtract(s, without).
+-    if with is None: with=s
++def reorder(s, swith=None, swithout=()):
++    # s, swith, and swithout are sequences treated as sets.
++    # The result is subtract(intersect(s, swith), swithout),
++    # unless swith is None, in which case it is subtract(s, swithout).
++    if swith is None: swith=s
+     d={}
+     tt=type(())
+     for i in s:
+@@ -61,12 +61,12 @@
+     a=r.append
+     h=d.has_key
+ 
+-    for i in without:
++    for i in swithout:
+         if type(i) is tt and len(i)==2: k, v = i
+         else:                           k= v = i
+         if h(k): del d[k]
+ 
+-    for i in with:
++    for i in swith:
+         if type(i) is tt and len(i)==2: k, v = i
+         else:                           k= v = i
+         if h(k):

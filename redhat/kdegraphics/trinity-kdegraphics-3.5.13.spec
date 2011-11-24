@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -74,9 +74,7 @@ BuildRequires: OpenEXR-devel
 # kpdf
 BuildRequires: freetype-devel
 BuildRequires: poppler-devel
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
-BuildRequires: poppler-qt-devel
-%endif
+BuildRequires: poppler-qt-devel >= 0.12
 BuildRequires: libpaper-devel
 # ksvg
 %if 0%{?with_ksvg}
@@ -175,11 +173,8 @@ cd build
   -DWITH_LIBPAPER=ON \
   -DWITH_TIFF=ON \
   -DWITH_OPENEXR=ON \
-%if 0%{?rhel} && 0%{?rhel} <= 5
-  -DWITH_PDF=OFF \
-%else
   -DWITH_PDF=ON \
-%endif
+  -DWITH_PDF=ON \
   -DBUILD_ALL=ON \
   ..
 
@@ -340,7 +335,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/mimelnk/*/*
 %{_libdir}/libkdeinit_*.so
 %{tde_libdir}/*
-%doc %lang(en) %{tde_docdir}/HTML/en/*
 
 %files libs
 %defattr(-,root,root,-)
@@ -354,9 +348,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %files devel
 %defattr(-,root,root,-)
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
-%{tde_includedir}/*
-%endif
+%{tde_includedir}/poppler-link-qt3.h
+%{tde_includedir}/poppler-page-transition.h
+%{tde_includedir}/poppler-qt.h
 %{_includedir}/dom/*
 %{_includedir}/ksvg/*
 %{_includedir}/kviewshell/*
@@ -370,6 +364,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libdjvu.so
 
 %changelog
+* Tue Nov 22 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Rebuild with poppler 0.12 for RHEL 5
+- Re-adds qt-poppler include files
+
 * Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Updates BuildRequires
 

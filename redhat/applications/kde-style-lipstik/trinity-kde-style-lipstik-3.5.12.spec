@@ -1,6 +1,6 @@
 # Default version for this component
-%define kdecomp kwin-style-crystal
-%define version 1.0.5
+%define kdecomp kde-style-lipstik
+%define version 2.2.3
 %define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -11,13 +11,13 @@
 
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
+%define tde_docdir %{_docdir}
 %define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_libdir %{_libdir}/kde3
 
 
 Name:		trinity-%{kdecomp}
-Summary:	Semi transparant window decoration for Trinity.
+Summary:	Lipstik style for TDE
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
@@ -31,7 +31,7 @@ URL:		http://www.trinitydesktop.org/
 Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{kdecomp}-3.5.13.tar.gz
+Source0:	%{kdecomp}-3.5.12.tar.gz
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -41,13 +41,10 @@ BuildRequires:	gettext
 
 
 %description
-Crystal offers you pseudo transparent titlebar, buttons and borders
-transparent, so you can see more of your lovely background image
-Transparancy and buttons can be costumized to match your wishes.
-Offers rounded corners as well
+Based on the plastik style, Lipstik is a purified style with many options to
+tune your desktop look.
 
-And it is of course nice to look at. Upstream says:
-"- Don't forget to breathe, while drooling."
+Lipstik also provides Lipstik-color-schemes
 
 
 %prep
@@ -96,13 +93,16 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{tde_libdir}/kwin3_crystal.la
-%{tde_libdir}/kwin3_crystal.so
-%{tde_libdir}/kwin_crystal_config.la
-%{tde_libdir}/kwin_crystal_config.so
-%{_datadir}/apps/kwin/crystal.desktop
+%{tde_libdir}/kstyle_lipstik_config.la
+%{tde_libdir}/kstyle_lipstik_config.so
+%{tde_libdir}/plugins/styles/lipstik.la
+%{tde_libdir}/plugins/styles/lipstik.so
+%{_datadir}/apps/kdisplay/color-schemes/lipstiknoble.kcsrc
+%{_datadir}/apps/kdisplay/color-schemes/lipstikstandard.kcsrc
+%{_datadir}/apps/kdisplay/color-schemes/lipstikwhite.kcsrc
+%{_datadir}/apps/kstyle/themes/lipstik.themerc
 
 
 %Changelog
-* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 1.0.5-1
+* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 2.2.3-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

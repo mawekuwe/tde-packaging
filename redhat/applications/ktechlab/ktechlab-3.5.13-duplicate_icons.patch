@@ -1,0 +1,13 @@
+--- ktechlab/icons/pics/Makefile.am.ORI	2011-11-25 23:54:18.306754485 +0100
++++ ktechlab/icons/pics/Makefile.am	2011-11-25 23:54:32.547754077 +0100
+@@ -7,8 +7,8 @@
+ 		spdt.png spst.png keypad.png opamp.png xnor.png circuit.png flowcode.png \
+ 		delay.png interrupt.png pinread.png pinwrite.png portread.png portwrite.png \
+ 		repeat.png while.png for.png assignment.png branch.png delay.png embed.png end.png \
+-		for.png interrupt.png pinread.png pinwrite.png portread.png portwrite.png \
+-		repeat.png start.png sub.png subcall.png unary.png while.png item.png ic1.png \
++		interrupt.png pinread.png pinwrite.png portread.png portwrite.png \
++		repeat.png start.png sub.png subcall.png unary.png item.png ic1.png \
+ 		ic2.png ic3.png voltagesignal.png currentsignal.png clockinput.png cccs.png \
+ 		ccvs.png vcvs.png vccs.png mechanics.png buffer.png external_connection.png \
+ 		logicprobe.png potentiometer.png resistordip.png bidirled.png project_library.png \
