@@ -1,0 +1,19 @@
+*** tqtinterface/qtinterface/Makefile.am.ORI	2011-09-16 20:05:43.000000000 +0200
+--- tqtinterface/qtinterface/Makefile.am	2011-09-16 20:05:54.000000000 +0200
+***************
+*** 150,156 ****
+  endif
+  
+  install-exec-local:
+! 	test -z "$(bindir)" || $(MKDIR_P) "$(DESTDIR)$(bindir)"
+  	cp -Rp "$(srcdir)/tqt-replace" "$(DESTDIR)$(bindir)/"
+  	cp -Rp "$(srcdir)/tqt-replace-stream" "$(DESTDIR)$(bindir)/"
+  	cp -Rp "$(srcdir)/moc-tqt" "$(DESTDIR)$(bindir)/"
+--- 150,156 ----
+  endif
+  
+  install-exec-local:
+! 	test -z "$(bindir)" || $(mkdir_p) "$(DESTDIR)$(bindir)"
+  	cp -Rp "$(srcdir)/tqt-replace" "$(DESTDIR)$(bindir)/"
+  	cp -Rp "$(srcdir)/tqt-replace-stream" "$(DESTDIR)$(bindir)/"
+  	cp -Rp "$(srcdir)/moc-tqt" "$(DESTDIR)$(bindir)/"
