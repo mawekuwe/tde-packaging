@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Tobi Vollebregt <tobivollebregt@gmail.com>
-Build-Depends: cdbs, debhelper (>= 5), quilt, kdelibs4-trinity-dev, bzip2, python (>= 2.3), scons
+Build-Depends: cdbs, debhelper (>= 5), quilt, kdelibs4-trinity-dev, bzip2, python (>= 2.3), cmake
 Standards-Version: 3.8.4
 
 Package: kio-locate-trinity
