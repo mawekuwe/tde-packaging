@@ -25,8 +25,7 @@ DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -
 # never build in parallel, regardless of DEB_BUILD_OPTIONS.
 DEB_BUILD_PARALLEL = true
 
-install/kgtk-qt3-trinity::
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/kgtk-qt3-trinity
+binary-install/kgtk-qt3-trinity::
 	mkdir -p $(CURDIR)/debian/kgtk-qt3-trinity/opt/trinity/share/kgtk/
 	cp -Rp $(CURDIR)/debian/preload $(CURDIR)/debian/kgtk-qt3-trinity/opt/trinity/share/kgtk/
 
