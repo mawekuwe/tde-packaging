@@ -47,6 +47,11 @@ Source3:	pamd.kdm-trinity-np%{?dist}
 Source4:	pamd.kcheckpass-trinity%{?dist}
 Source5:	pamd.kscreensaver-trinity%{?dist}
 
+# TDE Official patches (from SVN), unmodified
+# (none)
+
+# TDE Official patches (from SVN), modified
+# (none)
 
 # TDE for RHEL/Fedora specific patches
 ## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
@@ -57,18 +62,18 @@ Patch5:		kdebase-3.5.12-desktop-openterminalhere.patch
 Patch6:		kdebase-3.5.12-halmountoptions.patch
 ## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
 Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
-## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
-Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
-## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
-Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
+## [kdebase/kicker/kicker/ui]
+Patch10:	kdebase-3.5.13-kickoff_unstable.patch
 ## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
 Patch11:	kdebase-3.5.13-startkde_icon.patch
 
 # TDE 3.5.13 patches
-## [kdebase/kicker/kicker/ui]
-Patch10:	kdebase-3.5.12-kickoff_unstable.patch
 ## [kdebase/kdm] adds gcrypt support
 Patch12:	kdebase-3.5.13-kdm-crypt.patch
+## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
+Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
+## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
+Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -105,7 +110,7 @@ BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	OpenEXR-devel
 BuildRequires:	libsmbclient-devel
 BuildRequires:	dbus-devel
-BuildRequires:  dbus-tqt-devel
+BuildRequires:	dbus-tqt-devel
 BuildRequires:	lm_sensors-devel
 BuildRequires:	libfontenc-devel
 BuildRequires:	hal-devel
@@ -117,9 +122,9 @@ BuildRequires:	pam-devel
 BuildRequires:	libXdmcp-devel
 BuildRequires:	libxkbfile-devel
 BuildRequires:	libusb-devel
-BuildRequires:	esound-devel glib2-devel
+BuildRequires:	esound-devel
+BuildRequires:	glib2-devel
 BuildRequires:	libXcomposite-devel
-BuildRequires:	dbus-tqt-devel
 BuildRequires:	libXtst-devel
 BuildRequires:	libXdamage-devel
 BuildRequires:	xorg-x11-font-utils
@@ -147,6 +152,12 @@ Requires:	kde-settings-kdm
 %endif
 Requires:	redhat-menus
 
+Provides:	kdebase%{?_qt_suffix} = %{version}
+%if "%{?_prefix}" == "/usr"
+Obsoletes:		kdebase%{?_qt_suffix} <= 3.5.10
+%endif
+
+
 # Required for Fedora LiveCD
 Provides:	service(graphical-login)
 
@@ -167,9 +178,11 @@ Requires:	%{name}
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 Summary:	%{summary} - Development files
+Provides:	kdebase%{?_qt_suffix}-devel = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdebase%{?_qt_suffix}-devel
+Obsoletes:		kdebase%{?_qt_suffix}-devel <= 3.5.10
 %endif
+
 Group:		Development/Libraries
 %description devel
 Header files for developing applications using %{name}.
@@ -181,6 +194,10 @@ Kate plugins or KWin styles.
 Summary: Extra applications from %{name}
 Group: User Interface/Desktops
 Requires: %{name} = %{version}-%{release}
+Provides:	kdebase%{?_qt_suffix}-extras = %{version}
+%if "%{?_prefix}" == "/usr"
+Obsoletes: kdebase%{?_qt_suffix}-extras <= 3.5.10
+%endif
 %description extras
 %{summary}, including:
  * kappfinder
@@ -193,8 +210,9 @@ Requires: %{name} = %{version}-%{release}
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs
+Provides:	kdebase%{?_qt_suffix}-libs = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase%{?_qt_suffix}-libs
+Obsoletes: kdebase%{?_qt_suffix}-libs <= 3.5.10
 %endif
 Requires: %{name} = %{version}-%{release}
 %description libs
@@ -204,6 +222,10 @@ Requires: %{name} = %{version}-%{release}
 %package pim-ioslaves
 Summary: PIM KIOslaves from %{name}
 Group: System Environment/Libraries
+Provides:	kdebase%{?_qt_suffix}-pim-ioslaves = %{version}
+%if "%{?_prefix}" == "/usr"
+Obsoletes: kdebase%{?_qt_suffix}-pim-ioslaves <= 3.5.10
+%endif
 %description pim-ioslaves
 Protocol handlers (KIOslaves) for personal information management, including:
  * kio_ldap
@@ -238,6 +260,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 	-e 's,/usr/share/wallpapers/isadora.png.desktop,%{tde_bg},' \
 	-e 's,Wallpaper=isadora.png,Wallpaper=%{tde_bg},'
 %endif
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -286,10 +309,13 @@ cd build
 %__make install DESTDIR=%{?buildroot} -C build
 
 # Adds a GDM/KDM/XDM session called 'TDE'
-%if "%{?_prefix}" != "/usr"
-%__mkdir_p "%{?buildroot}%{_usr}/share/xsessions"
-%__install -m 644 "%{?buildroot}%{_datadir}/apps/kdm/sessions/tde.desktop" "%{?buildroot}%{_usr}/share/xsessions/tde.desktop"
-%endif
+%__install -D -m 644 \
+	"%{?buildroot}%{_datadir}/apps/kdm/sessions/tde.desktop" \
+	"%{?buildroot}%{_usr}/share/xsessions/tde.desktop"
+
+# Force session name to be 'TDE'
+%__sed -i "%{?buildroot}%{_usr}/share/xsessions/tde.desktop" \
+	-e "s,^Name=.*,Name=TDE,"
 
 # Modifies 'startkde' to set KDEDIR and KDEHOME hardcoded specific for TDE
 %__sed -i "%{?buildroot}%{_bindir}/startkde" \

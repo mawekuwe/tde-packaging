@@ -94,7 +94,7 @@ case "${COMP##*/}" in
 esac
 	
 # Determines if we are running an i386 or x86_64 distro
-if [ "$(rpm -q --qf '%{arch}' kernel)" = "i686" ]; then
+if [ "$(rpm -q --qf '%{arch}\n' kernel | tail -n 1)" = "i686" ]; then
 	ARGS="${ARGS} --target=i686"
 fi
 

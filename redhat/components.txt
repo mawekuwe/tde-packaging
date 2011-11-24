@@ -71,4 +71,8 @@ libraries/libksquirrel
 #extras/libkexif
 applications/ksquirrel
 applications/gtk-qt-engine
-
+applications/koffice
+applications/ktechlab
+applications/piklab
+applications/keep
+applications/tellico

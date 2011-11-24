@@ -64,7 +64,7 @@ Development files for %{name}
 %patch0 -p1
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/"*"/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 %build

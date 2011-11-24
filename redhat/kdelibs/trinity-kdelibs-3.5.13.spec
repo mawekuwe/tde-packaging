@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -37,6 +37,7 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdelibs-%{version}.tar.gz
+Patch0:		kdelibs-3.5.13-maxlinelength.patch
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
@@ -64,8 +65,10 @@ Requires:		avahi
 Requires:		qt%{?_qt_suffix}
 Requires:		avahi-qt3
 
+
+Provides:	kdelibs%{?_qt_suffix} = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes:		kdelibs%{?_qt_suffix}
+Obsoletes:		kdelibs%{?_qt_suffix} <= 3.5.10
 %endif
 
 %description
@@ -80,8 +83,9 @@ kimgio (image manipulation).
 Summary:	%{name} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Provides:	kdelibs%{?_qt_suffix}-devel = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdelibs%{?_qt_suffix}-devel
+Obsoletes:	kdelibs%{?_qt_suffix}-devel <= 3.5.10
 %endif
 
 %description devel
@@ -92,8 +96,9 @@ applications for TDE.
 Group:		Development/Libraries
 Summary:	%{name} - API documentation
 Requires:	%{name} = %{version}-%{release}
+Provides:	kdelibs%{?_qt_suffix}-apidocs = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes:	kdelibs%{?_qt_suffix}-apidocs-devel
+Obsoletes:	kdelibs%{?_qt_suffix}-apidocs <= 3.5.10
 %endif
 
 %description apidocs
@@ -103,6 +108,8 @@ format for easy browsing
 
 %prep
 %setup -q -n kdelibs
+%patch0 -p1
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -146,11 +153,14 @@ cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
 EOF
 
 # Moves the XDG configuration files to TDE directory
+%if "%{_prefix}" != "/usr"
 %__install -p -D -m644 \
 	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" \
 	"%{?buildroot}%{_prefix}/etc/xdg/menus/kde-applications.menu"
 %__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
-
+%else
+%__mv -f "%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" "%{?buildroot}%{_sysconfdir}/xdg/menus/kde-applications.menu"
+%endif
 
 
 %clean
@@ -266,7 +276,11 @@ EOF
 %{_sysconfdir}/ld.so.conf.d/trinity.conf
 
 # Avoid conflict with 'redhat-menus' package
+%if "%{_prefix}" == "/usr"
+%{_sysconfdir}/xdg/menus/kde-applications.menu
+%else
 %{_prefix}/etc/xdg/menus/kde-applications.menu
+%endif
 
 # New in TDE 3.5.13
 %{_bindir}/kdetcompmgr
@@ -292,6 +306,10 @@ EOF
 
 
 %changelog
+* Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Add 'Provides: kdelibs3' to avoid installing distro-provided KDE3 libraries
+- Disable 'max line length' detection
+
 * Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
 

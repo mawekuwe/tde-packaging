@@ -1,0 +1,20 @@
+--- koffice/configure.in.in.ORI	2011-11-23 14:10:51.406182478 -0500
++++ koffice/configure.in.in	2011-11-23 14:11:51.714475724 -0500
+@@ -20,7 +20,7 @@
+ 
+ if test -n "$GRAPHICS_MAGICK_CONFIG"; then
+  vers=`$GRAPHICS_MAGICK_CONFIG --version 2>/dev/null | $AWK 'BEGIN { FS = "."; } { printf "%d", ($1 * 1000 + $2) * 1000 + $3;}'`
+-  if test -n "$vers" && test "$vers" -ge 1001007;  then
++  if test -n "$vers" && test "$vers" -ge 1001007 && test "$vers" -lt 1002000;  then
+      LIBGMAGICK_LIBS="`$GRAPHICS_MAGICK_CONFIG --libs`"
+      LIBGMAGICK_LDFLAGS="`$GRAPHICS_MAGICK_CONFIG --ldflags`"
+      LIBGMAGICK_RPATH=
+@@ -36,7 +36,7 @@
+      AC_DEFINE(HAVE_GMAGICK,1, [GraphicsMagick is available])
+      have_graphicsmagick=yes
+   else
+-     AC_MSG_WARN([You need at least GraphicsMagick 1.1.7])
++     AC_MSG_WARN([You need at least GraphicsMagick 1.1.7, but less than 1.2.0])
+   fi
+ 
+ fi
