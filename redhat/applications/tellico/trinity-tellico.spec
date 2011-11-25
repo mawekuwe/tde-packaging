@@ -80,6 +80,7 @@ This package contains the architecture independent files, such data files and
 documentation.
 
 %package scripts
+Group:		Applications/Utilities
 Summary:	collection manager for books, videos, music [scripts] [Trinity]
 
 %description scripts
