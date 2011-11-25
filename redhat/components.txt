@@ -77,3 +77,4 @@ applications/piklab
 applications/keep
 applications/tellico
 applications/kile
+applications/kdmtheme
