@@ -78,3 +78,5 @@ applications/keep
 applications/tellico
 applications/kile
 applications/kdmtheme
+applications/knemo
+applications/kerry
