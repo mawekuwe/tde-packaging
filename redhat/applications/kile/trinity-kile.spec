@@ -472,7 +472,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/config.kcfg/kile.kcfg
 %{_datadir}/icons/hicolor/*/apps/kile.png
 %{_datadir}/icons/hicolor/scalable/apps/kile.svgz
-%{_docdir}/HTML/en/kile
+%{tde_docdir}/HTML/en/kile
 %{_datadir}/mimelnk/text/x-kilepr.desktop
 %{_datadir}/pixmaps/kile.xpm
 
