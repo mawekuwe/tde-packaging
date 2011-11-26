@@ -41,8 +41,8 @@ applications/filelight
 applications/filelight-l10n
 applications/kdiff3
 #applications/kuickshow
-#applications/basket
-#applications/katapult
+applications/basket
+applications/katapult
 #compizconfig-backend-kconfig
 applications/kbookreader
 applications/kdbusnotification
