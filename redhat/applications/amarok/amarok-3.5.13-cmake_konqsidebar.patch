@@ -1,0 +1,25 @@
+--- ConfigureChecks.cmake.ORI	2011-11-26 21:50:35.425026387 +0100
++++ ConfigureChecks.cmake	2011-11-26 22:24:21.307053676 +0100
+@@ -88,7 +88,12 @@
+ 
+   pkg_search_module( SDL sdl )
+   if( NOT SDL_FOUND )
+-    tde_message_fatal( "SDL are required, but not found on your system" )
++    check_include_file( SDL/SDL.h HAVE_SDL_H )
++    if( NOT HAVE_SDL_H )
++      tde_message_fatal( "SDL are required, but not found on your system" )
++    endif ( )
++    set ( SDL_INCLUDE_DIRS /usr/include/SDL )
++    set ( SDL_LIBRARIES SDL pthread )
+   endif( )
+ 
+   pkg_search_module( LIBVISUAL libvisual-0.4 )
+@@ -163,7 +168,7 @@
+   set( CMAKE_REQUIRED_DEFINITIONS ${TQT_CFLAGS_OTHER} )
+   set( CMAKE_REQUIRED_INCLUDES ${TDE_INCLUDE_DIR};${TQT_INCLUDE_DIRS};${CMAKE_INCLUDE_PATH} )
+   set( CMAKE_REQUIRED_FLAGS "-include tqt.h" )
+-  set( CMAKE_REQUIRED_LIBRARIES -L${TQT_LIBRARY_DIRS} ${TQT_LIBRARIES} )
++  set( CMAKE_REQUIRED_LIBRARIES -L${TQT_LIBRARY_DIRS} -L${QT_LIBRARY_DIRS} ${TQT_LIBRARIES} )
+   check_cxx_source_compiles("
+     #include <konqsidebarplugin.h>
+     int main(int, char**) { return 0; } "

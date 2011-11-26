@@ -1,0 +1,40 @@
+--- amarok/amarok/src/metadata/audible/CMakeLists.txt.ORI	2011-11-26 22:09:05.179043399 +0100
++++ amarok/amarok/src/metadata/audible/CMakeLists.txt	2011-11-26 22:10:35.537172082 +0100
+@@ -13,6 +13,7 @@
+   ${CMAKE_BINARY_DIR}
+   ${TDE_INCLUDE_DIR}
+   ${TQT_INCLUDE_DIRS}
++  ${TAGLIB_INCLUDE_DIRS}
+ )
+ 
+ 
+--- amarok/amarok/src/metadata/aac/CMakeLists.txt.ORI	2011-11-26 22:14:32.341267875 +0100
++++ amarok/amarok/src/metadata/aac/CMakeLists.txt	2011-11-26 22:14:45.323999002 +0100
+@@ -12,6 +12,7 @@
+ include_directories(
+   ${TDE_INCLUDE_DIR}
+   ${TQT_INCLUDE_DIRS}
++  ${TAGLIB_INCLUDE_DIRS}
+ )
+ 
+ 
+--- amarok/amarok/src/metadata/wav/CMakeLists.txt.ORI	2011-11-26 22:16:31.602120951 +0100
++++ amarok/amarok/src/metadata/wav/CMakeLists.txt	2011-11-26 22:16:51.088400461 +0100
+@@ -13,6 +13,7 @@
+   ${CMAKE_BINARY_DIR}
+   ${TDE_INCLUDE_DIR}
+   ${TQT_INCLUDE_DIRS}
++  ${TAGLIB_INCLUDE_DIRS}
+ )
+
+
+--- amarok/amarok/src/collectionscanner/CMakeLists.txt.ORI	2011-11-26 22:26:39.201579899 +0100
++++ amarok/amarok/src/collectionscanner/CMakeLists.txt	2011-11-26 22:26:58.736094930 +0100
+@@ -15,6 +15,7 @@
+   ${CMAKE_SOURCE_DIR}/amarok/src
+   ${TDE_INCLUDE_DIR}
+   ${TQT_INCLUDE_DIRS}
++  ${TAGLIB_INCLUDE_DIRS}
+ )
+ 
+ link_directories(
