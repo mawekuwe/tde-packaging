@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -639,12 +639,14 @@ done
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
+export kde_htmldir=%{tde_docdir}/HTML
+
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*/; do
     if [ -d "${f}" ] && [ -x "${f}/configure" ] ; then 
       pushd ${f}
       %configure --prefix=%{_prefix}
-      %{__make} %{?_smp_mflags}
+      %__make %{?_smp_mflags}
       popd
     fi
   done
@@ -660,9 +662,9 @@ for l in %{KDE_LANGS}; do
       pushd ${f}
 
       # RHEL/Fedora: dirty hack to remove directory 'common' from install list (else it fails to install)
-      if [ -r docs/Makefile ]; then
-        sed -i docs/Makefile -e "s,^\(SUBDIRS =.*\)common\(.*\)$,\1 \2,"
-      fi
+#      if [ -r docs/Makefile ]; then
+#        sed -i docs/Makefile -e "s,^\(SUBDIRS =.*\)common\(.*\)$,\1 \2,"
+#      fi
 
       %__make install DESTDIR=%{?buildroot}
       popd
@@ -671,7 +673,7 @@ for l in %{KDE_LANGS}; do
 done
 
 # make symlinks relative
-pushd %{buildroot}%{_docdir}/HTML
+pushd %{buildroot}%{tde_docdir}/HTML
 for lang in *; do
   if [ -d $lang ]; then
     pushd $lang
@@ -702,7 +704,7 @@ done
 popd   
 
 # remove zero-length file
-find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
+find %{buildroot}%{tde_docdir}/HTML -size 0 -exec rm -f {} \;
 
 # See http://fedoraproject.org/wiki/Languages (???)
 %__rm -f %{buildroot}%{_datadir}/locale/*/flag.png
@@ -722,7 +724,7 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Afrikaans
 %defattr(-,root,root,-)
 %lang(af) %{_datadir}/locale/af/*
-%lang(af) %{_docdir}/HTML/af/
+%lang(af) %{tde_docdir}/HTML/af/
 %endif
 
 %if "%( grep -w ar <<< '%{KDE_LANGS}' )" != ""
@@ -777,14 +779,14 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Catalan
 %defattr(-,root,root,-)
 %lang(ca) %{_datadir}/locale/ca/*
-%lang(ca) %{_docdir}/HTML/ca/
+%lang(ca) %{tde_docdir}/HTML/ca/
 %endif
 
 %if "%( grep -w cs <<< '%{KDE_LANGS}' )" != ""
 %files Czech
 %defattr(-,root,root,-)
 %lang(cs) %{_datadir}/locale/cs/*
-%lang(cs) %{_docdir}/HTML/cs/
+%lang(cs) %{tde_docdir}/HTML/cs/
 %endif
 
 %if "%( grep -w cy <<< '%{KDE_LANGS}' )" != ""
@@ -797,14 +799,14 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Danish
 %defattr(-,root,root,-)
 %lang(da) %{_datadir}/locale/da/*
-%lang(da) %{_docdir}/HTML/da/
+%lang(da) %{tde_docdir}/HTML/da/
 %endif
 
 %if "%( grep -w de <<< '%{KDE_LANGS}' )" != ""
 %files German
 %defattr(-,root,root,-)
 %lang(de) %{_datadir}/locale/de/*
-%lang(de) %{_docdir}/HTML/de/
+%lang(de) %{tde_docdir}/HTML/de/
 %endif
 
 %if "%( grep -w el <<< '%{KDE_LANGS}' )" != ""
@@ -817,7 +819,7 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files British
 %defattr(-,root,root,-)
 %lang(en_GB) %{_datadir}/locale/en_GB/*
-%lang(en_GB) %{_docdir}/HTML/en_GB/
+%lang(en_GB) %{tde_docdir}/HTML/en_GB/
 %endif
 
 %if "%( grep -w eo <<< '%{KDE_LANGS}' )" != ""
@@ -830,14 +832,14 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Spanish
 %defattr(-,root,root,-)
 %lang(es) %{_datadir}/locale/es/*
-%lang(es) %{_docdir}/HTML/es/
+%lang(es) %{tde_docdir}/HTML/es/
 %endif
 
 %if "%( grep -w et <<< '%{KDE_LANGS}' )" != ""
 %files Estonian
 %defattr(-,root,root,-)
 %lang(et) %{_datadir}/locale/et/*
-%lang(et) %{_docdir}/HTML/et/
+%lang(et) %{tde_docdir}/HTML/et/
 %endif
 
 %if "%( grep -w eu <<< '%{KDE_LANGS}' )" != ""
@@ -856,7 +858,7 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Finnish
 %defattr(-,root,root,-)
 %lang(fi) %{_datadir}/locale/fi/*
-%lang(fi) %{_docdir}/HTML/fi/
+%lang(fi) %{tde_docdir}/HTML/fi/
 %endif
 
 %if "%( grep -w fo <<< '%{KDE_LANGS}' )" != ""
@@ -869,7 +871,7 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files French
 %defattr(-,root,root,-)
 %lang(fr) %{_datadir}/locale/fr/*
-%lang(fr) %{_docdir}/HTML/fr/
+%lang(fr) %{tde_docdir}/HTML/fr/
 %endif
 
 %if "%( grep -w fy <<< '%{KDE_LANGS}' )" != ""
@@ -894,7 +896,7 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Hebrew
 %defattr(-,root,root,-)
 %lang(he) %{_datadir}/locale/he/*
-%lang(he) %{_docdir}/HTML/he/
+%lang(he) %{tde_docdir}/HTML/he/
 %endif
 
 %if "%( grep -w hi <<< '%{KDE_LANGS}' )" != ""
@@ -907,21 +909,21 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Croatian
 %defattr(-,root,root,-)
 %lang(hr) %{_datadir}/locale/hr/*
-%lang(hr) %{_docdir}/HTML/hr/
+%lang(hr) %{tde_docdir}/HTML/hr/
 %endif
 
 %if "%( grep -w hu <<< '%{KDE_LANGS}' )" != ""
 %files Hungarian
 %defattr(-,root,root,-)
 %lang(hu) %{_datadir}/locale/hu/*
-%lang(hu) %{_docdir}/HTML/hu/
+%lang(hu) %{tde_docdir}/HTML/hu/
 %endif
 
 %if "%( grep -w id <<< '%{KDE_LANGS}' )" != ""
 %files Indonesian
 %defattr(-,root,root,-)
 %lang(id) %{_datadir}/locale/id/*
-%lang(id) %{_docdir}/HTML/id/
+%lang(id) %{tde_docdir}/HTML/id/
 %endif
 
 %if "%( grep -w is <<< '%{KDE_LANGS}' )" != ""
@@ -934,35 +936,35 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Italian
 %defattr(-,root,root,-)
 %lang(it) %{_datadir}/locale/it/*
-%lang(it) %{_docdir}/HTML/it/
+%lang(it) %{tde_docdir}/HTML/it/
 %endif
 
 %if "%( grep -w ja <<< '%{KDE_LANGS}' )" != ""
 %files Japanese
 %defattr(-,root,root,-)
 %lang(ja) %{_datadir}/locale/ja/*
-%lang(ja) %{_docdir}/HTML/ja/
+%lang(ja) %{tde_docdir}/HTML/ja/
 %endif
 
 %if "%( grep -w ko <<< '%{KDE_LANGS}' )" != ""
 %files Korean
 %defattr(-,root,root,-)
 %lang(ko) %{_datadir}/locale/ko/*
-%lang(ko) %{_docdir}/HTML/ko/
+%lang(ko) %{tde_docdir}/HTML/ko/
 %endif
 
 %if "%( grep -w ku <<< '%{KDE_LANGS}' )" != ""
 %files Kurdish
 %defattr(-,root,root,-)
 %lang(ku) %{_datadir}/locale/ku/*
-%lang(ku) %{_docdir}/HTML/ku/
+%lang(ku) %{tde_docdir}/HTML/ku/
 %endif
 
 %if "%( grep -w lao <<< '%{KDE_LANGS}' )" != ""
 %files Lao
 %defattr(-,root,root,-)
 %lang(lo) %{_datadir}/locale/lo/*
-%lang(lo) %{_docdir}/HTML/lo/
+%lang(lo) %{tde_docdir}/HTML/lo/
 %endif
 
 %if "%( grep -w lt <<< '%{KDE_LANGS}' )" != ""
@@ -999,21 +1001,21 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Dutch
 %defattr(-,root,root,-)
 %lang(nl) %{_datadir}/locale/nl/*
-%lang(nl) %{_docdir}/HTML/nl/
+%lang(nl) %{tde_docdir}/HTML/nl/
 %endif
 
 %if "%( grep -w nb <<< '%{KDE_LANGS}' )" != ""
 %files Norwegian
 %defattr(-,root,root,-)
 %lang(nb) %{_datadir}/locale/nb/*
-#%lang(nb) %{_docdir}/HTML/nb/
+#%lang(nb) %{tde_docdir}/HTML/nb/
 %endif
 
 %if "%( grep -w nn <<< '%{KDE_LANGS}' )" != ""
 %files Norwegian-Nynorsk
 %defattr(-,root,root,-)
 %lang(nn) %{_datadir}/locale/nn/*
-#%lang(nn) %{_docdir}/HTML/nn/
+#%lang(nn) %{tde_docdir}/HTML/nn/
 %endif
 
 %if "%( grep -w oc <<< '%{KDE_LANGS}' )" != ""
@@ -1032,63 +1034,63 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Polish
 %defattr(-,root,root,-)
 %lang(pl) %{_datadir}/locale/pl/*
-%lang(pl) %{_docdir}/HTML/pl/
+%lang(pl) %{tde_docdir}/HTML/pl/
 %endif
 
 %if "%( grep -w pt <<< '%{KDE_LANGS}' )" != ""
 %files Portuguese
 %defattr(-,root,root,-)
 %lang(pt) %{_datadir}/locale/pt/*
-%lang(pt) %{_docdir}/HTML/pt/
+%lang(pt) %{tde_docdir}/HTML/pt/
 %endif
 
 %if "%( grep -w pt_BR <<< '%{KDE_LANGS}' )" != ""
 %files Brazil
 %defattr(-,root,root,-)
 %lang(pt_BR) %{_datadir}/locale/pt_BR/*
-%lang(pt_BR) %{_docdir}/HTML/pt_BR/
+%lang(pt_BR) %{tde_docdir}/HTML/pt_BR/
 %endif
 
 %if "%( grep -w ro <<< '%{KDE_LANGS}' )" != ""
 %files Romanian
 %defattr(-,root,root,-)
 %lang(ro) %{_datadir}/locale/ro/*
-%lang(ro) %{_docdir}/HTML/ro/
+%lang(ro) %{tde_docdir}/HTML/ro/
 %endif
 
 %if "%( grep -w ru <<< '%{KDE_LANGS}' )" != ""
 %files Russian
 %defattr(-,root,root,-)
 %lang(ru) %{_datadir}/locale/ru/*
-%lang(ru) %{_docdir}/HTML/ru/
+%lang(ru) %{tde_docdir}/HTML/ru/
 %endif
 
 %if "%( grep -w sk <<< '%{KDE_LANGS}' )" != ""
 %files Slovak
 %defattr(-,root,root,-)
 %lang(sk) %{_datadir}/locale/sk/*
-%lang(sk) %{_docdir}/HTML/sk/
+%lang(sk) %{tde_docdir}/HTML/sk/
 %endif
 
 %if "%( grep -w sl <<< '%{KDE_LANGS}' )" != ""
 %files Slovenian
 %defattr(-,root,root,-)
 %lang(sl) %{_datadir}/locale/sl/*
-%lang(sl) %{_docdir}/HTML/sl/
+%lang(sl) %{tde_docdir}/HTML/sl/
 %endif
 
 %if "%( grep -w sr <<< '%{KDE_LANGS}' )" != ""
 %files Serbian
 %defattr(-,root,root,-)
 %lang(sr) %{_datadir}/locale/sr/*
-%lang(sr) %{_docdir}/HTML/sr/
+%lang(sr) %{tde_docdir}/HTML/sr/
 %endif
 
 %if "%( grep -w sv <<< '%{KDE_LANGS}' )" != ""
 %files Swedish
 %defattr(-,root,root,-)
 %lang(sv) %{_datadir}/locale/sv/*
-%lang(sv) %{_docdir}/HTML/sv/
+%lang(sv) %{tde_docdir}/HTML/sv/
 %endif
 
 %if "%( grep -w ta <<< '%{KDE_LANGS}' )" != ""
@@ -1113,13 +1115,13 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Turkish
 %defattr(-,root,root,-)
 %lang(tr) %{_datadir}/locale/tr/*
-%lang(tr) %{_docdir}/HTML/tr/
+%lang(tr) %{tde_docdir}/HTML/tr/
 %endif
 
 %if "%( grep -w uk <<< '%{KDE_LANGS}' )" != ""
 %files Ukrainian
 %defattr(-,root,root,-)
-%lang(uk) %{_docdir}/HTML/uk/
+%lang(uk) %{tde_docdir}/HTML/uk/
 %lang(uk) %{_datadir}/locale/uk/*
 %endif
 
@@ -1145,24 +1147,27 @@ find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
 %files Xhosa
 %defattr(-,root,root,-)
 %lang(xh) %{_datadir}/locale/xh/*
-%lang(xh) %{_docdir}/HTML/xh/
+%lang(xh) %{tde_docdir}/HTML/xh/
 %endif
 
 %if "%( grep -w zh_CN <<< '%{KDE_LANGS}' )" != ""
 %files Chinese
 %defattr(-,root,root,-)
 %lang(zh_CN) %{_datadir}/locale/zh_CN/*
-%lang(zh_CN) %{_docdir}/HTML/zh_CN/
+%lang(zh_CN) %{tde_docdir}/HTML/zh_CN/
 %endif
 
 %if "%( grep -w zh_TW <<< '%{KDE_LANGS}' )" != ""
 %files Chinese-Big5
 %defattr(-,root,root,-)
 %lang(zh_TW) %{_datadir}/locale/zh_TW/*
-%lang(zh_TW) %{_docdir}/HTML/zh_TW/
+%lang(zh_TW) %{tde_docdir}/HTML/zh_TW/
 %endif
 
 %changelog
+* Fri Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Fix HTML directory location
+
 * Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Re-adds missing files 'entry.desktop'
 - Updates zh_TW translation, thanks to Wei-Lun Chao
