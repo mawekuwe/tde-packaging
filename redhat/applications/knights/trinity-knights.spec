@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp knights
 %define version 0.6
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -61,8 +61,9 @@ Here's a quick list of Knights' key features:
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -105,11 +106,14 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_bindir}/knights
 %{_datadir}/applnk/Games/Board/knights.desktop
 %{_datadir}/apps/knights
-%{_docdir}/HTML/*/knights
+%{tde_docdir}/HTML/*/knights
 %{_datadir}/icons/*/*/*/*.png
 %{_datadir}/mimelnk/application/pgn.desktop
 
 
 %Changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.6-2
+- Fix HTML directory location
+
 * Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.6-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
