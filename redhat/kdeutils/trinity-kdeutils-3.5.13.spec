@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -120,8 +120,10 @@ More Utilities for the K Desktop Environment:
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -143,7 +145,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
    --with-xscreensaver \
    --with-extra-includes=%{_includedir}/tqt \
    --enable-closure
-
+   
 %__make %{?_smp_mflags}
 
 %install
@@ -186,17 +188,17 @@ done
 fi
 
 # using pam
-install -p -D -m 644 %{SOURCE1} %{buildroot}/%{_sysconfdir}/pam.d/klaptop_acpi_helper
-install -p -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/security/console.apps/klaptop_acpi_helper
+%__install -p -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pam.d/klaptop_acpi_helper
+%__install -p -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/security/console.apps/klaptop_acpi_helper
 
 pushd %{buildroot}%{_bindir}
-  mkdir -p %{buildroot}%{_sbindir}
-  mv klaptop_acpi_helper ../sbin
-  ln -s /usr/bin/consolehelper klaptop_acpi_helper
+  %__mkdir_p %{buildroot}%{_sbindir}
+  %__mv klaptop_acpi_helper ../sbin
+  %__ln_s /usr/bin/consolehelper klaptop_acpi_helper
 popd
 
 # klaptop setting
-install -p -D -m 644 %{SOURCE3} %{buildroot}%{_datadir}/config/kcmlaptoprc
+%__install -p -D -m 644 %{SOURCE3} %{buildroot}%{_datadir}/config/kcmlaptoprc
 
 
 %clean
@@ -246,7 +248,7 @@ done
 %{_datadir}/servicetypes/kmilo
 
 # ksim
-%doc %{_docdir}/HTML/*/ksim/
+%doc %{tde_docdir}/HTML/*/ksim/
 %{tde_libdir}/ksim*
 %{_libdir}/libksimcore.la
 %{_libdir}/libksimcore.so.*
@@ -257,7 +259,7 @@ done
 %{_datadir}/icons/crystalsvg/16x16/devices/ksim_cpu.png
 
 # klaptop
-%doc %{_docdir}/HTML/en/kcontrol
+%doc %{tde_docdir}/HTML/en/kcontrol
 %{_sysconfdir}/pam.d/klaptop_acpi_helper
 %attr(644,root,root) %{_sysconfdir}/security/console.apps/klaptop_acpi_helper
 %{_bindir}/klaptop*
@@ -287,7 +289,7 @@ done
 %exclude %{_datadir}/servicetypes/kmilo
 
 # ksim
-%exclude %{_docdir}/HTML/*/ksim/
+%exclude %{tde_docdir}/HTML/*/ksim/
 %exclude %{tde_libdir}/ksim*
 %exclude %{_libdir}/libksimcore.la
 %exclude %{_libdir}/libksimcore.so.*
@@ -309,7 +311,7 @@ done
 %exclude %{_libdir}/libkcmlaptop.*
 %exclude %{_datadir}/applications/kde/laptop.desktop
 %exclude %{_datadir}/config/kcmlaptoprc
-%exclude %{_docdir}/HTML/en/kcontrol/
+%exclude %{tde_docdir}/HTML/en/kcontrol/
 %exclude %{_datadir}/icons/crystalsvg/128x128/apps/laptop_battery.png
 %exclude %{_datadir}/icons/crystalsvg/??x??/apps/laptop_battery.png
 %exclude %{_datadir}/icons/crystalsvg/scalable/apps/laptop_battery.svgz
@@ -334,7 +336,7 @@ done
 %{_datadir}/mimelnk/application/*
 %endif
 %{_datadir}/autostart/*
-%doc %lang(en) %{_docdir}/HTML/en/*
+%doc %lang(en) %{tde_docdir}/HTML/en/*
 
 %files devel
 %defattr(-,root,root,-)
@@ -347,6 +349,9 @@ done
 
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Fix HTML directory location
+
 * Thu Nov 17 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Fix symbolic link to 'consolehelper'
 

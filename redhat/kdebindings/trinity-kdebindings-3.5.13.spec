@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -13,8 +13,8 @@
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
-%define tde_libdir %{_libdir}/trinity
 %define tde_includedir %{_includedir}/kde
+%define tde_libdir %{_libdir}/trinity
 
 
 Name:	 trinity-kdebindings
@@ -113,8 +113,9 @@ Perl bindings to the DCOP interprocess communication protocol used by KDE
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -260,7 +261,7 @@ update-desktop-database >& /dev/null ||:
 #%{ruby_sitelib}/Qt*
 %{_usr}/lib/ruby/*/*
 %{ruby_arch}/*.so.*
-%doc %lang(en) %{_docdir}/HTML/en/javalib/*
+%doc %lang(en) %{tde_docdir}/HTML/en/javalib/*
 
 # Excludes 'kjscmd' (conflicts with 'kdelibs' from RHEL6)
 %if "%{?_prefix}" == "/usr"
@@ -286,6 +287,9 @@ update-desktop-database >& /dev/null ||:
 %{ruby_arch}/*.la
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Fix HTML directory location
+
 * Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Add missing BuildRequires
 

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -12,6 +12,8 @@
 
 # TDE 3.5.13 specific variables
 BuildRequires:	cmake >= 2.8
+%define tde_docdir %{_docdir}/kde
+%define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
 %define _default_patch_fuzz 2
@@ -127,8 +129,9 @@ Requires: %{name} = %{version}-%{release}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 
 %__rm -rf c_cpp_reference-2.0.2_for_KDE_3.0/admin
@@ -202,7 +205,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %files
 %defattr(-,root,root,-)
-%{_docdir}/HTML/en/*
+%{tde_docdir}/HTML/en/*
 %{_bindir}/*
 %{tde_libdir}/*
 %{_libdir}/kconf_update_bin/*
@@ -229,6 +232,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Fix HTML directory location
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 
