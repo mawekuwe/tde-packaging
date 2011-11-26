@@ -420,8 +420,9 @@ Kile can support large projects consisting of several smaller files.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -476,31 +477,31 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/pixmaps/kile.xpm
 
 %files i18n-da
-%lang(da) %{_docdir}/HTML/da/kile
+%lang(da) %{tde_docdir}/HTML/da/kile
 %lang(da) %{_datadir}/locale/da/LC_MESSAGES/kile.mo
 
 %files i18n-es
-%lang(es) %{_docdir}/HTML/es/kile
+%lang(es) %{tde_docdir}/HTML/es/kile
 %lang(es) %{_datadir}/locale/es/LC_MESSAGES/kile.mo
 
 %files i18n-et
-%lang(et) %{_docdir}/HTML/et/kile
+%lang(et) %{tde_docdir}/HTML/et/kile
 %lang(et) %{_datadir}/locale/et/LC_MESSAGES/kile.mo
 
 %files i18n-it
-%lang(it) %{_docdir}/HTML/it/kile
+%lang(it) %{tde_docdir}/HTML/it/kile
 %lang(it) %{_datadir}/locale/it/LC_MESSAGES/kile.mo
 
 %files i18n-nl
-%lang(nl) %{_docdir}/HTML/nl/kile
+%lang(nl) %{tde_docdir}/HTML/nl/kile
 %lang(nl) %{_datadir}/locale/nl/LC_MESSAGES/kile.mo
 
 %files i18n-pt
-%lang(pt) %{_docdir}/HTML/pt/kile
+%lang(pt) %{tde_docdir}/HTML/pt/kile
 %lang(pt) %{_datadir}/locale/pt/LC_MESSAGES/kile.mo
 
 %files i18n-sv
-%lang(sv) %{_docdir}/HTML/sv/kile
+%lang(sv) %{tde_docdir}/HTML/sv/kile
 %lang(sv) %{_datadir}/locale/sv/LC_MESSAGES/kile.mo
 
 %files i18n-ar

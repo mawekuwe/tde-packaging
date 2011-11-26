@@ -52,8 +52,9 @@ that allows you to easily install, remove and change your KDM themes.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -96,9 +97,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{tde_libdir}/kcm_kdmtheme.la
 %{tde_libdir}/kcm_kdmtheme.so
 %{_datadir}/applications/kde/kdmtheme.desktop
-%{_docdir}/HTML/en/kdmtheme/common
-%{_docdir}/HTML/en/kdmtheme/index.cache.bz2
-%{_docdir}/HTML/en/kdmtheme/index.docbook
+%{tde_docdir}/HTML/en/kdmtheme/common
+%{tde_docdir}/HTML/en/kdmtheme/index.cache.bz2
+%{tde_docdir}/HTML/en/kdmtheme/index.docbook
 %{_datadir}/lintian/overrides/kdmtheme-trinity
 
 
