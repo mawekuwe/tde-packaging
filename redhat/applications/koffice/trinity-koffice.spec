@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp koffice
 %define version 1.6.3
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -289,8 +289,9 @@ sed -i.dejavu-lgc \
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -329,7 +330,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 %__install -p -D -m644 %{SOURCE100} %{buildroot}%{_datadir}/icons/hicolor/48x48/apps/koshell.png
 
 # Replace absolute symlinks with relative ones
-pushd %{buildroot}%{_docdir}/HTML
+pushd %{buildroot}%{tde_docdir}/HTML
 for lang in *; do
   if [ -d $lang ]; then
     pushd $lang
@@ -483,9 +484,9 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/apps/koshell/
 %{_datadir}/apps/thesaurus/
 %{_datadir}/config.kcfg/koshell.kcfg
-%{_datadir}/doc/HTML/en/koffice/
-%{_datadir}/doc/HTML/en/koshell/
-%{_datadir}/doc/HTML/en/thesaurus/
+%{tde_docdir}/HTML/en/koffice/
+%{tde_docdir}/HTML/en/koshell/
+%{tde_docdir}/HTML/en/thesaurus/
 %{_datadir}/icons/crystalsvg/*/*/*
 %{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/icons/locolor/*/*/*
@@ -538,7 +539,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files devel
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/koffice-apidocs/
+%lang(en) %{tde_docdir}/HTML/en/koffice-apidocs/
 %{_includedir}/*
 # FIXME: include only shlib symlinks we know/want to export
 %{_libdir}/lib*.so
@@ -547,7 +548,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kword
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kword/
+%lang(en) %{tde_docdir}/HTML/en/kword/
 %{_bindir}/kword
 %{_libdir}/libkdeinit_kword.so
 %{_libdir}/libkwordprivate.so.*
@@ -562,7 +563,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kspread
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kspread/
+%lang(en) %{tde_docdir}/HTML/en/kspread/
 %{_bindir}/kspread
 %{_libdir}/libkdeinit_kspread.so
 %{tde_libdir}/kspread.*
@@ -589,7 +590,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kpresenter
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kpresenter/
+%lang(en) %{tde_docdir}/HTML/en/kpresenter/
 %{_bindir}/kpresenter
 %{_bindir}/kprconverter.pl
 %{_libdir}/libkdeinit_kpresenter.so
@@ -604,7 +605,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files karbon
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/karbon/
+%lang(en) %{tde_docdir}/HTML/en/karbon/
 %{_bindir}/karbon
 %{_libdir}/libkdeinit_karbon.so
 %{tde_libdir}/*karbon*.*
@@ -619,7 +620,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kugar
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kugar/
+%lang(en) %{tde_docdir}/HTML/en/kugar/
 %{_bindir}/kugar
 %{_bindir}/kudesigner
 %{_libdir}/libkdeinit_kugar.so
@@ -638,7 +639,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kexi
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kexi/
+%lang(en) %{tde_docdir}/HTML/en/kexi/
 %{_bindir}/kexi*
 %{_bindir}/ksqlite*
 %{_libdir}/libkdeinit_kexi.so
@@ -682,7 +683,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kchart
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kchart/
+%lang(en) %{tde_docdir}/HTML/en/kchart/
 %{_bindir}/kchart
 %{_libdir}/libkchart*.so.*
 %{_libdir}/libkdeinit_kchart.so
@@ -693,7 +694,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kformula
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kformula/
+%lang(en) %{tde_docdir}/HTML/en/kformula/
 %{_bindir}/kformula
 %{_libdir}/libkdeinit_kformula.so
 %{tde_libdir}/*kformula*.*
@@ -703,7 +704,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kivio
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kivio/
+%lang(en) %{tde_docdir}/HTML/en/kivio/
 %{_bindir}/kivio
 %{_libdir}/libkdeinit_kivio.so
 %{_libdir}/libkiviocommon.so.*
@@ -770,7 +771,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %files kplato
 %defattr(-,root,root,-)
-%lang(en) %{_docdir}/HTML/en/kplato/
+%lang(en) %{tde_docdir}/HTML/en/kplato/
 %{_bindir}/kplato
 %{_libdir}/libkdeinit_kplato.so
 %{tde_libdir}/kplato.*
@@ -950,8 +951,7 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/apps/konqueror/servicemenus/chalk_konqi.desktop
 %{_datadir}/apps/chalk
 %{_datadir}/apps/chalkplugins
-#%{tde_docdir}/HTML/en/chalk
-%lang(en) %{_docdir}/HTML/en/chalk
+%lang(en) %{tde_docdir}/HTML/en/chalk
 %{_datadir}/icons/hicolor/*/apps/chalk.png
 %{_datadir}/services/chalk*.desktop
 %{_datadir}/servicetypes/chalk*.desktop
@@ -959,6 +959,9 @@ update-desktop-database -q &> /dev/null ||:
 
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.3-2
+- Fix HTML directory location
+
 * Tue Nov 22 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.3-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 - Based on Spec file from Fedora 11 'koffice-2:1.6.3-25.20090306svn'

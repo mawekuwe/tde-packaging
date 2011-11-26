@@ -1,0 +1,15 @@
+--- kvirc/admin/acinclude.m4.in.ORI	2011-11-25 19:57:17.296988361 +0100
++++ kvirc/admin/acinclude.m4.in	2011-11-25 19:57:47.365665354 +0100
+@@ -2603,10 +2603,10 @@
+ 	helpdir="\${globalkvircdir}/help/en"
+ 	AC_SUBST(helpdir)
+ 
+-	pluglibdir="\${globalkvircdir}/modules"
++	pluglibdir="\${libdir}/kvirc/$SS_DIRTAG/modules"
+ 	AC_SUBST(pluglibdir)
+ 
+-	modulelibdir="\${globalkvircdir}/modules"
++	modulelibdir="\${libdir}/kvirc/$SS_DIRTAG/modules"
+ 	AC_SUBST(modulelibdir)
+ 
+ 	defscriptdir="\${globalkvircdir}/defscript"

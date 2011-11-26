@@ -38,6 +38,7 @@ applications/krename
 applications/yakuake
 #applications/desktop-effects-kde
 applications/filelight
+applications/filelight-l10n
 applications/kdiff3
 #applications/kuickshow
 #applications/basket
@@ -80,3 +81,4 @@ applications/kile
 applications/kdmtheme
 applications/knemo
 applications/kerry
+applications/kvirc

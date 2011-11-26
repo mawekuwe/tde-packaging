@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp piklab
 %define version 0.15.2
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -56,8 +56,9 @@ are supported. A command-line programmer and debugger are also available.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -110,7 +111,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/apps/katepart/syntax/coff-pic.xml
 %{_datadir}/apps/katepart/syntax/jal-pic.xml
 %{_datadir}/apps/piklab
-%{_docdir}/HTML/en/piklab
+%{tde_docdir}/HTML/en/piklab
 %{_datadir}/icons/hicolor/*/*/*.png
 %{_datadir}/mimelnk/application/x-piklab.desktop
 %{_mandir}/man1/piklab-coff.1.gz
@@ -120,5 +121,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.15.2-2
+- Fix HTML directory location
+
 * Thu Nov 24 2011 Francois Andriot <francois.andriot@free.fr> - 0.15.2-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
