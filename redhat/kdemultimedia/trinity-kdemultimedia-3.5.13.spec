@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -136,8 +136,9 @@ Requires: %{name} = %{version}-%{release}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -281,7 +282,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 # kaboodle
 %doc rpmdocs/kaboodle/
-%doc %lang(en) %{_docdir}/HTML/en/kaboodle/
+%doc %lang(en) %{tde_docdir}/HTML/en/kaboodle/
 %{_bindir}/kaboodle
 %{tde_libdir}/libkaboodlepart.*
 %{_datadir}/applications/kde/kaboodle.desktop
@@ -290,7 +291,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/services/kaboodle*
 
 # noatun
-%doc %lang(en) %{_docdir}/HTML/en/noatun/
+%doc %lang(en) %{tde_docdir}/HTML/en/noatun/
 %{_bindir}/noatun
 %{_libdir}/kconf_update_bin/noatun20update
 %{tde_libdir}/noatun*
@@ -304,7 +305,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/mimelnk/interface/x-winamp-skin.desktop
 
 # juk
-%doc %lang(en) %{_docdir}/HTML/en/juk/
+%doc %lang(en) %{tde_docdir}/HTML/en/juk/
 %{_bindir}/juk
 %{_datadir}/applications/kde/juk.desktop
 %{_datadir}/apps/juk/
@@ -411,6 +412,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libyafxplayer.so
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Fix HTML directory location
+
 * Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
 
