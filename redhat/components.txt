@@ -38,10 +38,11 @@ applications/krename
 applications/yakuake
 #applications/desktop-effects-kde
 applications/filelight
+applications/filelight-l10n
 applications/kdiff3
 #applications/kuickshow
-#applications/basket
-#applications/katapult
+applications/basket
+applications/katapult
 #compizconfig-backend-kconfig
 applications/kbookreader
 applications/kdbusnotification
@@ -76,3 +77,8 @@ applications/ktechlab
 applications/piklab
 applications/keep
 applications/tellico
+applications/kile
+applications/kdmtheme
+applications/knemo
+applications/kerry
+applications/kvirc

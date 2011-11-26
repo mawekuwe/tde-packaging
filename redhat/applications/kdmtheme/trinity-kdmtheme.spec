@@ -1,7 +1,7 @@
 # Default version for this component
-%define kdecomp ktechlab
-%define version 0.3
-%define release 2
+%define kdecomp kdmtheme
+%define version 1.2.2
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -17,7 +17,7 @@ BuildRequires: autoconf automake libtool m4
 
 
 Name:		trinity-%{kdecomp}
-Summary:	circuit simulator for microcontrollers and electronics [Trinity]
+Summary:	theme manager for KDM [Trinity]
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
@@ -26,13 +26,13 @@ Group:		Applications/Utilities
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+URL:		http://beta.smileaf.org/projects
 
 Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
-Patch0:		ktechlab-3.5.13-duplicate_icons.patch
+Source1:	kdmtheme.lintian-overrides
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -42,16 +42,13 @@ BuildRequires:	gettext
 
 
 %description
-KTechlab is a circuit simulator with a nice, clickable and discoverable
-interface. It supports many discrete components, logic circuits as well
-as PIC programming in its own Basic dialect and some form of assembler. 
+kdmtheme is a theme manager for KDM. It provides a KDE Control Module (KCM)
+that allows you to easily install, remove and change your KDM themes.
 
-Homepage: http://ktechlab.org/
 
 
 %prep
 %setup -q -n applications/%{kdecomp}
-%patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -80,7 +77,7 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{kdecomp}
+%__install -D -p -m644 %{SOURCE1} %{buildroot}%{_datadir}/lintian/overrides/kdmtheme-trinity
 
 %clean
 %__rm -rf %{buildroot}
@@ -95,25 +92,17 @@ touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
-%files -f %{kdecomp}.lang
+%files
 %defattr(-,root,root,-)
-%{_bindir}/ktechlab
-%{_bindir}/microbe
-%{_datadir}/applnk/Development/ktechlab.desktop
-%{_datadir}/apps/katepart/syntax/microbe.xml
-%{_datadir}/apps/ktechlab
-%{_datadir}/config.kcfg/ktechlab.kcfg
-%{tde_docdir}/HTML/en/ktechlab/
-%{_datadir}/icons/hicolor/*/*/*.png
-%{_datadir}/mimelnk/application/x-circuit.desktop
-%{_datadir}/mimelnk/application/x-flowcode.desktop
-%{_datadir}/mimelnk/application/x-ktechlab.desktop
-%{_datadir}/mimelnk/application/x-microbe.desktop
+%{tde_libdir}/kcm_kdmtheme.la
+%{tde_libdir}/kcm_kdmtheme.so
+%{_datadir}/applications/kde/kdmtheme.desktop
+%{tde_docdir}/HTML/en/kdmtheme/common
+%{tde_docdir}/HTML/en/kdmtheme/index.cache.bz2
+%{tde_docdir}/HTML/en/kdmtheme/index.docbook
+%{_datadir}/lintian/overrides/kdmtheme-trinity
 
 
 %Changelog
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.3-2
-- Fix HTML directory location
-
-* Thu Nov 24 2011 Francois Andriot <francois.andriot@free.fr> - 0.3-1
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.2-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

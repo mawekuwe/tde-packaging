@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -10,7 +10,7 @@
 %define _docdir %{_prefix}/share/doc
 %endif
 
-# TDE 3.5.12 specific building variables
+# TDE 3.5.13 specific building variables
 BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
@@ -69,8 +69,9 @@ Requires: trinity-kdelibs-devel
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -171,10 +172,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{tde_libdir}/*
 
 # Misc docs
-%doc %lang(en) %{_docdir}/HTML/en/kmag
-%doc %lang(en) %{_docdir}/HTML/en/kmousetool
-%doc %lang(en) %{_docdir}/HTML/en/kmouth
-%doc %lang(en) %{_docdir}/HTML/en/kttsd
+%doc %lang(en) %{tde_docdir}/HTML/en/kmag
+%doc %lang(en) %{tde_docdir}/HTML/en/kmousetool
+%doc %lang(en) %{tde_docdir}/HTML/en/kmouth
+%doc %lang(en) %{tde_docdir}/HTML/en/kttsd
 
 
 %files devel
@@ -184,6 +185,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Fix HTML directory location
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

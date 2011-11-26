@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -61,8 +61,9 @@ and user to be logged-in to KDE.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
@@ -150,13 +151,16 @@ gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 %{_datadir}/apps/*
 %{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/service*/*.desktop
-%doc %lang(en) %{_docdir}/HTML/en/*
+%doc %lang(en) %{tde_docdir}/HTML/en/*
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Fix HTML directory location
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

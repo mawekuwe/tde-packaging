@@ -1,7 +1,7 @@
 # Default version for this component
-%define kdecomp ktechlab
-%define version 0.3
-%define release 2
+%define kdecomp basket
+%define version 1.0.3.1
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -17,7 +17,7 @@ BuildRequires: autoconf automake libtool m4
 
 
 Name:		trinity-%{kdecomp}
-Summary:	circuit simulator for microcontrollers and electronics [Trinity]
+Summary:	Taking care of your ideas.
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
@@ -32,26 +32,27 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
-Patch0:		ktechlab-3.5.13-duplicate_icons.patch
 
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
+BuildRequires: tqtinterface-devel
+BuildRequires: trinity-kdelibs-devel
+BuildRequires: trinity-kdebase-devel
+BuildRequires: desktop-file-utils
 
+BuildRequires: gpgme-devel
+BuildRequires: trinity-kdepim-devel
 
 %description
-KTechlab is a circuit simulator with a nice, clickable and discoverable
-interface. It supports many discrete components, logic circuits as well
-as PIC programming in its own Basic dialect and some form of assembler. 
-
-Homepage: http://ktechlab.org/
+This application is mainly an all-purpose notes taker. It provide several baskets where
+to drop every sort of items: text, rich text, links, images, sounds, files, colors,
+application launcher... Objects can be edited, copied, dragged... So, you can arrange
+them as you want ! This application can be used to quickly drop web objects (link, text,
+images...) or notes, as well as to free your clutered desktop (if any). It is also useful
+to collect informations for a report. Those data can be shared with co-workers by exporting
+baskets to HTML.
 
 
 %prep
 %setup -q -n applications/%{kdecomp}
-%patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -80,7 +81,6 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{kdecomp}
 
 %clean
 %__rm -rf %{buildroot}
@@ -89,31 +89,35 @@ export PATH="%{_bindir}:${PATH}"
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+/sbin/ldconfig
 
 %postun
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+/sbin/ldconfig
 
 
-%files -f %{kdecomp}.lang
+%files
 %defattr(-,root,root,-)
-%{_bindir}/ktechlab
-%{_bindir}/microbe
-%{_datadir}/applnk/Development/ktechlab.desktop
-%{_datadir}/apps/katepart/syntax/microbe.xml
-%{_datadir}/apps/ktechlab
-%{_datadir}/config.kcfg/ktechlab.kcfg
-%{tde_docdir}/HTML/en/ktechlab/
-%{_datadir}/icons/hicolor/*/*/*.png
-%{_datadir}/mimelnk/application/x-circuit.desktop
-%{_datadir}/mimelnk/application/x-flowcode.desktop
-%{_datadir}/mimelnk/application/x-ktechlab.desktop
-%{_datadir}/mimelnk/application/x-microbe.desktop
+%doc AUTHORS COPYING
+%{_bindir}/*
+%{_datadir}/applications/*/*.desktop
+%{_datadir}/apps/*/
+%{_datadir}/icons/*/*/*/*
+%{_datadir}/locale/*/*/*.mo
+%{tde_docdir}/HTML/en/*/
+%{_datadir}/services/*.desktop
+%{_datadir}/mimelnk/application/*.desktop
+%{_datadir}/services/*/*.desktop
+%{_datadir}/config/magic/*.magic
+%{_libdir}/*.so
+%{_libdir}/*.la
+%{tde_libdir}/*.so
+%{tde_libdir}/*.la
+
 
 
 %Changelog
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.3-2
-- Fix HTML directory location
-
-* Thu Nov 24 2011 Francois Andriot <francois.andriot@free.fr> - 0.3-1
+* Mon Aug 22 2011 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+

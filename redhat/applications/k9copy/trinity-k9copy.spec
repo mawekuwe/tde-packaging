@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp k9copy
 %define version 1.2.3
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -54,8 +54,9 @@ This is the Trinity version
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -101,10 +102,13 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/applications/kde/k9copy.desktop
 %{_datadir}/apps/k9copy
 %{_datadir}/apps/konqueror/servicemenus/k9copy_open.desktop
-%{_docdir}/HTML/en/k9copy
+%{tde_docdir}/HTML/en/k9copy
 %{_datadir}/icons/hicolor/*/apps/k9copy.png
 
 
 %Changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.3-2
+- Fix HTML directory location
+
 * Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.3-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

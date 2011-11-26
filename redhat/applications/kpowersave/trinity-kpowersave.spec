@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kpowersave
 %define version 0.7.3
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -60,6 +60,7 @@ Current feature list:
  * KNotify support
  * online help
  * localisations for many languages
+ 
 KPowersave supports schemes with following configurable specific 
 settings for:
  * screensaver
@@ -95,17 +96,19 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
+/sbin/ldconfig
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %postun
+/sbin/ldconfig
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %files
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{_bindir}/kpowersave
 %{_libdir}/libkdeinit_kpowersave.la
 %{_libdir}/libkdeinit_kpowersave.so
@@ -119,5 +122,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/config/kpowersaverc
 
 %Changelog
+* Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-2
+- Add missing /sbin/ldconfig
+- Add missing doc file
+
 * Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

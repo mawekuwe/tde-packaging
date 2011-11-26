@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp gwenview
 %define version 1.4.2
-%define release 5
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -70,8 +70,9 @@ KIPI image framework.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -138,7 +139,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/services/*.desktop
 %{_datadir}/apps/*/
 %{_datadir}/config.kcfg/*
-%{_docdir}/HTML/en/*/
+%{tde_docdir}/HTML/en/*/
 %{_datadir}/icons/*/*/*/*
 %{_mandir}/man*/*
 
@@ -149,8 +150,10 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 
-
 %Changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-6
+- Fix HTML directory location
+
 * Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-5
 - Adds missing files
 

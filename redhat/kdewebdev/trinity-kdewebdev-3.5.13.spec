@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -98,13 +98,14 @@ Requires: trinity-kdelibs
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %patch0 -p0 -b .javascript
 %patch1 -p1 -b .kxsldbg-icons
 
-install -m644 -p %{SOURCE5} kxsldbg/
+%__install -m644 -p %{SOURCE5} kxsldbg/
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -115,10 +116,6 @@ install -m644 -p %{SOURCE5} kxsldbg/
 unset QTDIR || : ; source /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-
-%if 0%{?fedora} >= 15
-#export CXXFLAGS="${CXXFLAGS} -fpermissive"
-%endif
 
 %configure \
   --includedir=%{tde_includedir} \
@@ -151,7 +148,7 @@ done
 cp -a php php.docrc %{buildroot}%{_datadir}/apps/quanta/doc/
 
 # make symlinks relative
-pushd %{buildroot}%{_docdir}/HTML/en
+pushd %{buildroot}%{tde_docdir}/HTML/en
 for i in *; do
    if [ -d $i -a -L $i/common ]; then
       rm -f $i/common
@@ -209,7 +206,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/mimelnk/application/*
 %{_datadir}/services/*
 %{_datadir}/servicetypes/*
-%doc %lang(en) %{_docdir}/HTML/en/*
+%doc %lang(en) %{tde_docdir}/HTML/en/*
 
 
 %files libs
@@ -224,6 +221,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Fix HTML directory location
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

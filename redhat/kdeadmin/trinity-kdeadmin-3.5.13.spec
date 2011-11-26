@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -69,8 +69,9 @@ kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -105,10 +106,10 @@ export PATH="%{_bindir}:${PATH}"
 
 %if 0%{?rhel} > 1
 comps="kcron kdat knetworkconf"
-rm -rf %{buildroot}%{_docdir}/HTML/en/kuser \
-       %{buildroot}%{_docdir}/HTML/en/kpackage \
-       %{buildroot}%{_docdir}/HTML/en/ksysv \
-       %{buildroot}%{_docdir}/HTML/en/lilo-config       
+rm -rf %{buildroot}%{tde_docdir}/HTML/en/kuser \
+       %{buildroot}%{tde_docdir}/HTML/en/kpackage \
+       %{buildroot}%{tde_docdir}/HTML/en/ksysv \
+       %{buildroot}%{tde_docdir}/HTML/en/lilo-config       
 %else
 comps="kcron kdat knetworkconf kpackage ksysv kuser"
 mkdir -p %{buildroot}%{_datadir}/config \
@@ -189,10 +190,12 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/service*/*.desktop
 %{tde_libdir}/*
 %{_libdir}/pkgconfig/*.pc
-%doc %lang(en) %{_docdir}/HTML/en/*
 
 
 %changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- Fix HTML directory location
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

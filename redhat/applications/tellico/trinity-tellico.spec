@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp tellico
 %define version 1.3.2.1
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -80,6 +80,7 @@ This package contains the architecture independent files, such data files and
 documentation.
 
 %package scripts
+Group:		Applications/Utilities
 Summary:	collection manager for books, videos, music [scripts] [Trinity]
 
 %description scripts
@@ -106,8 +107,9 @@ as a separate package which can be updated through debian-volatile.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -135,7 +137,7 @@ export PATH="%{_bindir}:${PATH}"
 %__install -D -c -p -m 644 -T icons/tellico_mime.svg %{?buildroot}%{_datadir}/icons/hicolor/scalable/mimetypes/application-x-tellico.svg
 
 # Remove  dead symlink from French translation
-%__rm %{?buildroot}%{_docdir}/HTML/fr/tellico/common
+%__rm %{?buildroot}%{tde_docdir}/HTML/fr/tellico/common
 
 %__install -D -c -p -m 644 -T %{SOURCE1} %{?buildroot}%{_datadir}/pixmaps/tellico.xpm
 
@@ -178,7 +180,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/apps/tellico/tellicoui.rc
 %{_datadir}/apps/tellico/welcome.html
 %{_datadir}/config.kcfg
-%{_docdir}/HTML/*/tellico/
+%{tde_docdir}/HTML/*/tellico/
 %{_datadir}/icons
 %{_datadir}/apps/mime
 %{_datadir}/mimelnk
@@ -193,5 +195,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-2
+- Fix HTML directory location
+
 * Thu Nov 24 2011 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

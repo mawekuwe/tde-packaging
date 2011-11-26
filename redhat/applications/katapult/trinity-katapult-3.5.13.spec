@@ -1,7 +1,7 @@
 # Default version for this component
-%define kdecomp ktechlab
-%define version 0.3
-%define release 2
+%define kdecomp katapult
+%define version 0.3.2.1
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -17,7 +17,7 @@ BuildRequires: autoconf automake libtool m4
 
 
 Name:		trinity-%{kdecomp}
-Summary:	circuit simulator for microcontrollers and electronics [Trinity]
+Summary:	Faster access to applications, bookmarks, and other items.
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
@@ -32,26 +32,23 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
-Patch0:		ktechlab-3.5.13-duplicate_icons.patch
 
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
+BuildRequires: tqtinterface-devel
+BuildRequires: trinity-kdelibs-devel
+BuildRequires: trinity-kdebase-devel
+BuildRequires: desktop-file-utils
 
 %description
-KTechlab is a circuit simulator with a nice, clickable and discoverable
-interface. It supports many discrete components, logic circuits as well
-as PIC programming in its own Basic dialect and some form of assembler. 
-
-Homepage: http://ktechlab.org/
+Katapult is an application for KDE, designed to allow faster access to
+applications, bookmarks, and other items. It is plugin-based, so it can
+launch anything that is has a plugin for. Its display is driven by
+plugins as well, so its appearance is completely customizable. It was
+inspired by Quicksilver for OS X. 
 
 
 %prep
 %setup -q -n applications/%{kdecomp}
-%patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -70,7 +67,8 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 %configure \
 	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt
+    --with-extra-includes=%{_includedir}/tqt \
+    --enable-closure
 
 %__make %{?_smp_mflags}
 
@@ -80,7 +78,6 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{kdecomp}
 
 %clean
 %__rm -rf %{buildroot}
@@ -89,31 +86,40 @@ export PATH="%{_bindir}:${PATH}"
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+/sbin/ldconfig
 
 %postun
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+/sbin/ldconfig
 
 
-%files -f %{kdecomp}.lang
+%files
 %defattr(-,root,root,-)
-%{_bindir}/ktechlab
-%{_bindir}/microbe
-%{_datadir}/applnk/Development/ktechlab.desktop
-%{_datadir}/apps/katepart/syntax/microbe.xml
-%{_datadir}/apps/ktechlab
-%{_datadir}/config.kcfg/ktechlab.kcfg
-%{tde_docdir}/HTML/en/ktechlab/
-%{_datadir}/icons/hicolor/*/*/*.png
-%{_datadir}/mimelnk/application/x-circuit.desktop
-%{_datadir}/mimelnk/application/x-flowcode.desktop
-%{_datadir}/mimelnk/application/x-ktechlab.desktop
-%{_datadir}/mimelnk/application/x-microbe.desktop
+%doc AUTHORS COPYING
+%{_bindir}/*
+%{_datadir}/applications/*/*.desktop
+%{_datadir}/icons/*/*/*/*
+%{_datadir}/locale/*/*/*.mo
+%{_datadir}/services/*.desktop
+%{_datadir}/servicetypes/*.desktop
+%{tde_libdir}/*.so
+%{tde_libdir}/*.la
+%{_libdir}/*.so.*
+%{tde_docdir}/HTML/en/katapult
 
+
+%exclude %{_libdir}/*.so
+%exclude %{_libdir}/*.la
 
 %Changelog
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.3-2
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-3
 - Fix HTML directory location
 
-* Thu Nov 24 2011 Francois Andriot <francois.andriot@free.fr> - 0.3-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-2
+- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
+
+* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-1
+- Initial build for RHEL 6.0
+- Import to GIT
+
