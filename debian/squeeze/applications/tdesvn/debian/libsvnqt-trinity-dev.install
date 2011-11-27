@@ -1,2 +1,2 @@
 debian/tmp/opt/trinity/lib*/*.so
-debian/tmp/opt/trinity/include/kde/svnqt/
+debian/tmp/opt/trinity/include/svnqt/
