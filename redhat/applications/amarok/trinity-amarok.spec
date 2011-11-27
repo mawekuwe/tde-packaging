@@ -1,12 +1,7 @@
-# If Trinity is built in a specific prefix, we move all directories under it
-%if "%{_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
 # Basic package informations
 %define kdecomp amarok
 %define version 1.4.10
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -21,21 +16,8 @@ BuildRequires:	cmake >= 2.8
 %define tde_libdir %{_libdir}/trinity
 
 
-
 # TODO:
 # Rio Karma support : libkarma
-
-%if 0%{?fedora} > 0 && 0%{?fedora} < 9
-# define to include konquisidebar support for kde3 desktop
-%define konq 1
-%endif
-
-# No Xine support on older RHEL
-%if 0%{?rhel} && 0%{?rhel} <= 5
-%define _with_xine %{nil}
-%else
-%define _with_xine 1
-%endif
 
 Name:    trinity-%{kdecomp}
 Summary: A drop-down terminal emulator.
@@ -51,21 +33,21 @@ BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # RedHat / Fedora legacy patches
 Patch1:     amarok-1.4.8-gcc43.patch
 
+# TDE 3.5.13 RHEL/Fedora patches
+Patch2:		amarok-3.5.13-cmake_konqsidebar.patch
+Patch3:		amarok-3.5.13-taglib_include.patch
+
 BuildRequires:  alsa-lib-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  esound-devel
 BuildRequires:  gettext
 BuildRequires:  trinity-kdelibs-devel
-%if 0%{?konq}
 BuildRequires:  trinity-kdebase-devel
-%else
-Obsoletes: %{name}-konqueror < %{version}-%{release}
-%endif
 BuildRequires:  taglib-devel 
 BuildRequires:  libifp-devel
 # Ipod
-BuildRequires:  libgpod-devel
-BuildRequires: libmp4v2-devel
+BuildRequires:  libgpod-devel >= 0.4.2
+BuildRequires:	libmp4v2-devel
 # MTP players
 BuildRequires:  libmtp-devel
 BuildRequires:  libmusicbrainz-devel
@@ -83,7 +65,6 @@ BuildRequires:  postgresql-devel
 BuildRequires:  ruby-devel ruby
 BuildRequires:  SDL-devel
 BuildRequires:  taglib-devel
-BuildRequires:  xine-lib-devel
 BuildRequires:	sqlite-devel
 # not used anymore, in favor of libvisual ? -- Rex
 #%{?fedora:BuildRequires:  xmms-devel}
@@ -109,10 +90,9 @@ Provides:  amarok-devel = %{version}-%{release}
 # engines, etc...
 # old, obsolete ones: arts, akode
 Obsoletes: amarok-arts < 1.3, amarok-akode < 1.3
-%if 0%{?_with_xine}
 # xine-lib
+BuildRequires:  xine-lib-devel
 Provides: %{name}-engine-xine = %{version}-%{release}
-%endif
 
 
 %description
@@ -146,6 +126,8 @@ use any of xmms' visualisation plugins with Amarok.
 %prep
 %setup -q -n applications/amarok
 %patch1 -p1 -b .gcc43
+%patch2 -p0
+%patch3 -p1
 
 
 %build
@@ -158,7 +140,7 @@ export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
 cd build
 %cmake \
 	-DWITH_LIBVISUAL=ON \
-	-DWITH_KONQSIDEBAR=OFF \
+	-DWITH_KONQSIDEBAR=ON \
 	-DWITH_XINE=ON \
 	-DWITH_YAUAP=ON \
 	-DWITH_IPOD=ON \
@@ -168,13 +150,14 @@ cd build
 	-DWITH_RIOKARMA=OFF \
 	-DWITH_DAAP=ON \
 	-DBUILD_ALL=ON \
+	-DQT_LIBRARY_DIRS=${QTLIB} \
 	..
 
 %__make %{?_smp_mflags}
 
 %install
-rm -fr $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT -C build
+%__rm -fr $RPM_BUILD_ROOT
+%__make install DESTDIR=$RPM_BUILD_ROOT -C build
 
 # desktop files
 desktop-file-install  --vendor "" \
@@ -184,9 +167,6 @@ desktop-file-install  --vendor "" \
 
 # unpackaged files
 rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.la
-%if ! 0%{?konq}
-rm -f $RPM_BUILD_ROOT%{_datadir}/apps/konqueror/servicemenus/*.desktop
-%endif
 
 
 # HTML
@@ -211,7 +191,7 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 
 
 %clean
-rm -fr $RPM_BUILD_ROOT
+%__rm -fr $RPM_BUILD_ROOT
 
 
 %files
@@ -283,13 +263,11 @@ rm -fr $RPM_BUILD_ROOT
 %{tde_docdir}/HTML/*/amarok
 %{_datadir}/locale/*/LC_MESSAGES/amarok.mo
 
-%if 0%{?konq}
 %files konqueror
 %defattr(-,root,root,-)
 %{_datadir}/apps/konqueror/servicemenus/*.desktop
 %{tde_libdir}/konqsidebar_universalamarok.*
 %{_datadir}/apps/konqsidebartng/*/amarok.desktop
-%endif
 
 %files visualisation
 %defattr(-,root,root,-)
@@ -297,6 +275,10 @@ rm -fr $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.10-2
+- Enable RHEL 5 compilation
+- Add konqueror sidebar
+
 * Wed Nov 09 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.10-1
 - Initial build for TDE 3.5.13 on RHEL 5, RHEL 6, Fedora 15, Fedora 16
 - Spec file based on Fedora 8 'amarok-1.4.10-1'
