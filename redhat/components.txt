@@ -46,7 +46,7 @@ applications/katapult
 #compizconfig-backend-kconfig
 applications/kbookreader
 applications/kdbusnotification
-applications/kmymoney2
+applications/kmymoney
 applications/kstreamripper 
 applications/kdesudo
 applications/digikam
@@ -82,3 +82,4 @@ applications/kdmtheme
 applications/knemo
 applications/kerry
 applications/kvirc
+applications/rosegarden
