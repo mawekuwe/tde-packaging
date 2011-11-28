@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Achim Bohnet <ach@mpe.mpg.de>, Mark Purcell <msp@debian.org>
-Build-Depends: debhelper (>= 4.1.0), scons, cdbs, tdelibs4-trinity-dev, net-tools, wireless-tools, libiw-dev
+Build-Depends: debhelper (>= 4.1.0), cmake, cdbs, tdelibs4-trinity-dev, net-tools, wireless-tools, libiw-dev
 Standards-Version: 3.8.4
 
 Package: wlassistant-trinity
