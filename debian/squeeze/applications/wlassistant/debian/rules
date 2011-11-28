@@ -1,66 +1,26 @@
 #!/usr/bin/make -f
 
-FILENAME = $(DEB_SOURCE_PACKAGE)_$(DEB_UPSTREAM_VERSION).orig.tar.gz
-UPFILENAME = $(DEB_SOURCE_PACKAGE)-$(shell echo $(DEB_UPSTREAM_VERSION) | sed 's/~/-/').tar.bz2
-URL = http://heanet.dl.sourceforge.net/$(DEB_SOURCE_PACKAGE)/$(UPFILENAME)
+# Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
+# Also include the main Trinity path
+ifeq ("$(LD_LIBRARY_PATH)", "")
+LD_LIBRARY_PATH=debian/tmp/opt/trinity/lib
+else
+LD_LIBRARY_PATH += :debian/tmp/opt/trinity/lib
+endif
+export LD_LIBRARY_PATH
 
 include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
 #include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include debian/cdbs/debian-qt-kde.mk
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
-DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
-DEB_CONFIGURE_PREFIX := /opt/trinity
-DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+DEB_KDE_APIDOX := yes
 
-cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+CXXFLAGS := -DSMB_CTX_FLAG_USE_KERBEROS -DSMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS -g -Wall $(DEB_OPT_FLAG)
 
-PATH := /opt/trinity/bin:${PATH}
+DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF"
 
-DEB_SCONS_PREFIX=/opt/trinity
-
-DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
-
-CONFIG_STATUS=$(DEB_BUILDDIR)/config.status
-SCONS_CMD=scons
-
-common-configure-arch common-configure-indep:: common-configure-impl
-common-configure-impl:: $(CONFIG_STATUS)
-$(CONFIG_STATUS):
-	$(SCONS_CMD) configure prefix=$(DEB_SCONS_PREFIX)
-	touch $(CONFIG_STATUS)
-
-common-build-arch common-build-indep:: common-build-impl
-common-build-impl::
-	$(SCONS_CMD)
-
-common-install-arch common-install-indep:: common-install-impl
-common-install-impl::
-	DESTDIR=$(DEB_DESTDIR) $(SCONS_CMD) install
-
-install/wlassistant-trinity::
-	mv $(CURDIR)/debian/wlassistant-trinity/opt/trinity/share/applnk/Utilities/wlassistant.desktop \
-	   $(CURDIR)/debian/wlassistant-trinity/opt/trinity/share/applications/kde/
-	rmdir $(CURDIR)/debian/wlassistant-trinity/opt/trinity/share/applnk/Utilities
-	rmdir $(CURDIR)/debian/wlassistant-trinity/opt/trinity/share/applnk
-
-clean::
-	rm -f $(CONFIG_STATUS)
-	rm -rf cache
-	rm -rf .sconf_temp
-	rm -rf admin
-	rm -rf build/
-	rm -f bksys/*.pyc
-	rm -f generic.cache.py kde.cache.py configure.log
-	rm -f scons/*.pyc scons/signatures.dblite
-
-cleanbuilddir common-configure-arch:: 
-
-DEB_INSTALL_MANPAGES_wlassistant-trinity = debian/wlassistant-trinity.manpage
-
-get-orig-source:
-	 @@dh_testdir
-	 @@[ -d ../tarballs/. ]
-	@@echo Downloading $(UPFILENAME) from $(URL) ...
-	@@wget -N -nv -T10 -t3 -O ../tarballs/$(UPFILENAME) $(URL)
-	@@echo Converting $(UPFILENAME) to $(FILENAME)
-	@@bzcat ../tarballs/$(UPFILENAME) | gzip -9 > ../tarballs/$(FILENAME)
+# Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
+# never build in parallel, regardless of DEB_BUILD_OPTIONS.
+DEB_BUILD_PARALLEL = true
