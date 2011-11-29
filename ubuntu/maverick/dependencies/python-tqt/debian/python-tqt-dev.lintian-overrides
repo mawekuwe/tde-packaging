@@ -1,0 +1,15 @@
+# lintian test overriden as the files tripping this error are put into the source
+# of the generated package. This is a false-positive
+
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qt/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtaxcontainer/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtcanvas/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtext/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtgl/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtnetwork/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtpe/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtsql/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qttable/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtui/copying.sip
+python-qt-dev binary: extra-license-file usr/share/sip/qt/qtxml/copying.sip
+

@@ -1,0 +1,7 @@
+usr/lib/python*/*-packages/qtcanvas.so
+usr/lib/python*/*-packages/qtnetwork.so
+usr/lib/python*/*-packages/qtsql.so
+usr/lib/python*/*-packages/qttable.so
+usr/lib/python*/*-packages/qtui.so
+usr/lib/python*/*-packages/qtxml.so
+usr/lib/python*/*-packages/qt.so

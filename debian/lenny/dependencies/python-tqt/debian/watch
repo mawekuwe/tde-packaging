@@ -1,0 +1,3 @@
+version=3
+http://www.riverbankcomputing.com/software/pyqt/download3 \
+       /static/Downloads/PyQt3/PyQt-x11-gpl-([.\d]*)\.tar\.gz
