@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -46,6 +46,7 @@ BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
 BuildRequires:	libical-devel
 BuildRequires:	boost-devel
+BuildRequires:	curl-devel
 
 BuildRequires:	libcaldav-devel
 BuildRequires:	libcarddav-devel
@@ -143,8 +144,9 @@ export PATH="%{_bindir}:${PATH}"
 %{_datadir}/config.kcfg/*
 %{_libdir}/lib*.so.*
 %{tde_libdir}/*.so
-#%{tde_libdir}/*.so.*
+%{tde_libdir}/*.la
 %{tde_libdir}/plugins/designer/*.so
+%{tde_libdir}/plugins/designer/*.la
 %{_datadir}/servicetypes/*
 %{_libdir}/kconf_update_bin/*
 %{_libdir}/libakregatorprivate.so
@@ -157,14 +159,15 @@ export PATH="%{_bindir}:${PATH}"
 %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*
-%{tde_libdir}/*.la
-%{tde_libdir}/plugins/designer/*.la
 %exclude %{_libdir}/libakregatorprivate.so
 %exclude %{_libdir}/libkmailprivate.so
 %exclude %{_libdir}/libkmobiledevice.so
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Sun Nov 27 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Add missing files '*.la'
+
 * Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Updates BuildRequires
 
