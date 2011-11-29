@@ -1,0 +1,108 @@
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/p2p/client/sessionclient.cc /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/p2p/client/sessionclient.cc
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/p2p/client/sessionclient.cc	2011-06-21 20:37:08.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/p2p/client/sessionclient.cc	2011-11-28 18:20:03.852267846 -0600
+@@ -31,7 +31,7 @@
+ #include "talk/p2p/client/sessionclient.h"
+ #include "talk/p2p/base/helpers.h"
+ #include "talk/base/logging.h"
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ #include "talk/xmpp/constants.h"
+ #include "talk/xmllite/xmlprinter.h"
+ #include <iostream>
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/session/phone/phonesessionclient.cc /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/session/phone/phonesessionclient.cc
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/session/phone/phonesessionclient.cc	2011-08-12 15:11:23.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/session/phone/phonesessionclient.cc	2011-11-28 18:20:03.813268480 -0600
+@@ -30,7 +30,7 @@
+ #include "talk/base/logging.h"
+ #include "talk/session/receiver.h"
+ #include "talk/session/phone/phonesessionclient.h"
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ namespace {
+ 
+ const std::string NS_PHONE("http://www.google.com/session/phone");
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc	2011-06-21 20:37:11.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc	2011-11-28 18:20:04.262270904 -0600
+@@ -28,7 +28,7 @@
+ #include <string>
+ #include "talk/base/common.h"
+ #include "talk/xmllite/xmlelement.h"
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ #include "talk/xmllite/xmlconstants.h"
+ 
+ //#define new TRACK_NEW
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.cc /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.cc
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.cc	2011-06-21 20:37:11.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.cc	2011-11-28 18:20:04.268270508 -0600
+@@ -32,7 +32,7 @@
+ 
+ #include "talk/base/common.h"
+ #include "talk/xmllite/xmlelement.h"
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ #include "talk/xmllite/xmlparser.h"
+ #include "talk/xmllite/xmlbuilder.h"
+ #include "talk/xmllite/xmlprinter.h"
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.h /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.h
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.h	2011-06-21 20:37:11.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.h	2011-11-28 18:20:04.288018707 -0600
+@@ -31,7 +31,7 @@
+ #include <iosfwd>
+ #include <string>
+ #include "talk/base/scoped_ptr.h"
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ 
+ namespace buzz {
+ 
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlnsstack.h /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlnsstack.h
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlnsstack.h	2011-06-21 20:37:11.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlnsstack.h	2011-11-28 18:20:04.245270846 -0600
+@@ -31,7 +31,7 @@
+ #include <string>
+ #include "talk/base/scoped_ptr.h"
+ #include "talk/base/stl_decl.h"
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ 
+ namespace buzz {
+ 
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.cc /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.cc
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.cc	2011-06-21 20:37:09.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.cc	2011-11-28 18:20:03.076020148 -0600
+@@ -29,7 +29,7 @@
+ #include "talk/base/basicdefs.h"
+ #include "talk/xmllite/xmlconstants.h"
+ #include "talk/xmllite/xmlelement.h"
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ #include "talk/xmpp/jid.h"
+ #include "talk/xmpp/constants.h"
+ namespace buzz {
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.h /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.h
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.h	2011-06-21 20:37:09.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.h	2011-11-28 18:20:03.139020370 -0600
+@@ -29,7 +29,7 @@
+ #define _CRICKET_XMPP_XMPPLIB_BUZZ_CONSTANTS_H_
+ 
+ #include <string>
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ #include "talk/xmpp/jid.h"
+ 
+ 
+diff -urN /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/xmppengine.h /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/xmppengine.h
+--- /dev/shm/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/xmppengine.h	2011-06-21 20:37:09.000000000 -0500
++++ /dev/shm/kdenetwork.new/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/xmppengine.h	2011-11-28 18:20:03.059020250 -0600
+@@ -30,7 +30,7 @@
+ 
+ // also part of the API
+ #include "talk/xmpp/jid.h"
+-#include "talk/xmllite/tqname.h"
++#include "talk/xmllite/qname.h"
+ #include "talk/xmllite/xmlelement.h"
+ 
+ 
