@@ -1,0 +1,29 @@
+Index: kdebase/kdesktop/init/My_Documents
+===================================================================
+--- kdebase/kdesktop/init/My_Documents	(revision 1182807)
++++ kdebase/kdesktop/init/My_Documents	(revision 1182808)
+@@ -1,10 +1,6 @@
+ [Desktop Entry]
+ Encoding=UTF-8
+-Comment=
+-Comment[en_US]=
+-Exec=kxdglauncher --xdgname DOCUMENTS
+ Icon=folder_wordprocessing
+-MimeType=
+ Name=My Documents
+ Name[af]=Dokument Gids
+ Name[ar]=Ù…Ø³ØªÙ†Ø¯Ø§ØªÙŠ
+@@ -70,10 +66,12 @@
+ Name[wa]=Ridant documints
+ Name[zh_CN]=æ–‡æ¡£æ–‡ä»¶å¤¹
+ Name[zh_TW]=æ–‡ä»¶ç›®éŒ„
++URL=$( kxdglauncher --getpath --xdgname DOCUMENTS )
++Type=Link
+ StartupNotify=true
++MimeType=
+ Terminal=false
+ TerminalOptions=
+-Type=Application
+ X-DCOP-ServiceType=
+ X-KDE-SubstituteUID=false
+ X-KDE-Username=
