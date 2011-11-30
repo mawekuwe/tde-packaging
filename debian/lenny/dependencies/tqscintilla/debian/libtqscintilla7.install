@@ -1,0 +1,3 @@
+usr/lib/*.so.*
+usr/lib/qt3/plugins/designer/*.so
+usr/share/qt3/translations/*.qm
