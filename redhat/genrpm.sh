@@ -90,7 +90,7 @@ EOF
 	
 # Specific prefix for installation of some components
 case "${COMP##*/}" in
-	"qt3") PREFIX="/usr";;
+	"qt3"|"libkarma") PREFIX="/usr";;
 esac
 	
 # Determines if we are running an i386 or x86_64 distro

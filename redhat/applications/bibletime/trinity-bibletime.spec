@@ -33,11 +33,20 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# Fix detection of older versions of clucene in Fedora >= 16
+Patch0:		bibletime-3.5.13-clucene_detection.patch
+
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	trinity-kdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
+
+%if 0%{?fedora} >= 16
+BuildRequires:	clucene09-core-devel
+%else
+BuildRequires:	clucene-core-devel
+%endif
 
 BuildRequires:	sword-devel
 Requires:		sword
@@ -52,6 +61,7 @@ texts, write own notes, save, print etc.).
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch0 -p0
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -112,8 +122,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_includedir}/bibletimeinterface.h
 %{_datadir}/applications/bibletime.desktop
 %{_datadir}/apps/bibletime
-%{tde_docdir}/HTML/en/bibletime/
 %{_datadir}/icons/hicolor/*/*/*.png
+%{tde_docdir}/HTML/en/bibletime/
 
 
 %Changelog
