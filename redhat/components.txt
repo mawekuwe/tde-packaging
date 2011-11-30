@@ -87,3 +87,9 @@ applications/rosegarden
 applications/wlassistant
 applications/ktorrent
 applications/bibletime
+applications/smb4k
+applications/knetload
+applications/knetstats
+applications/knowit
+applications/kpilot
+applications/kdirstat
