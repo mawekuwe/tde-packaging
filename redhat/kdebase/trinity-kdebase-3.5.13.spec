@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 8
+%define release 9
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -74,6 +74,8 @@ Patch12:	kdebase-3.5.13-kdm-crypt.patch
 Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
 ## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
 Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
+## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
+Patch13:	kdebase-3.5.13-kate_mru.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -245,6 +247,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
+%patch13 -p4
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -619,6 +622,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Wed Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
+- Restores the 'number of files' and sorting widgets to the Kate configuration [TDE Bug #244]
+
 * Fri Nov 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
 - Updates Kickoff menu Fix [TDE Bugs #281, #508]
 - Adds KDM gcrypt dependency

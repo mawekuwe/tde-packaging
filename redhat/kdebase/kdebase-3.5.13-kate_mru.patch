@@ -1,0 +1,71 @@
+diff -urN /dev/shm/kdebase/kate/app/kateconfigdialog.cpp /dev/shm/kdebase.new/kate/app/kateconfigdialog.cpp
+--- /dev/shm/kdebase/kate/app/kateconfigdialog.cpp	2011-07-09 01:16:52.000000000 -0500
++++ /dev/shm/kdebase.new/kate/app/kateconfigdialog.cpp	2011-11-29 11:06:22.000000000 -0600
+@@ -112,11 +112,32 @@
+   TQWhatsThis::add(cb_fullPath,i18n("If this option is checked, the full document path will be shown in the window caption."));
+   connect( cb_fullPath, TQT_SIGNAL( toggled( bool ) ), this, TQT_SLOT( slotChanged() ) );
+
++  // sort filelist ? ### remove
++   cb_sortFiles = new TQCheckBox(bgStartup);
++   cb_sortFiles->setText(i18n("Sort &files alphabetically in the file list"));
++   cb_sortFiles->setChecked(parent->filelist->sortType() == KateFileList::sortByName);
++   TQWhatsThis::add( cb_sortFiles, i18n(
++         "If this is checked, the files in the file list will be sorted alphabetically.") );
++   connect( cb_sortFiles, TQT_SIGNAL( toggled( bool ) ), this, TQT_SLOT( slotChanged() ) );
+
+   // GROUP with the one below: "Behavior"
+   bgStartup = new TQButtonGroup( 1, Qt::Horizontal, i18n("&Behavior"), frGeneral );
+   lo->addWidget( bgStartup );
+
++  // number of recent files
++  TQHBox *hbNrf = new TQHBox( bgStartup );
++  TQLabel *lNrf = new TQLabel( i18n("&Number of recent files:"), hbNrf );
++  sb_numRecentFiles = new TQSpinBox( 0, 1000, 1, hbNrf );
++  sb_numRecentFiles->setValue( mainWindow->fileOpenRecent->maxItems() );
++  lNrf->setBuddy( sb_numRecentFiles );
++  TQString youwouldnotbelieveit ( i18n(
++        "<qt>Sets the number of recent files remembered by Kate.<p><strong>NOTE: </strong>"
++        "If you set this lower than the current value, the list will be truncated and "
++        "some items forgotten.</qt>") );
++  TQWhatsThis::add( lNrf, youwouldnotbelieveit );
++  TQWhatsThis::add( sb_numRecentFiles, youwouldnotbelieveit );
++  connect( sb_numRecentFiles, TQT_SIGNAL( valueChanged ( int ) ), this, TQT_SLOT( slotChanged() ) );
++
+   // sync the konsole ?
+   cb_syncKonsole = new TQCheckBox(bgStartup);
+   cb_syncKonsole->setText(i18n("Sync &terminal emulator with active document"));
+@@ -389,6 +403,11 @@
+
+     mainWindow->syncKonsole = cb_syncKonsole->isChecked();
+
++    mainWindow->filelist->setSortType(cb_sortFiles->isChecked() ? KateFileList::sortByName : KateFileList::sortByID);
++
++    config->writeEntry( "Number of recent files", sb_numRecentFiles->value() );
++    mainWindow->fileOpenRecent->setMaxItems( sb_numRecentFiles->value() );
++
+     fileSelConfigPage->apply();
+
+     filelistConfigPage->apply();
+diff -urN /dev/shm/kdebase/kate/app/kateconfigdialog.h /dev/shm/kdebase.new/kate/app/kateconfigdialog.h
+--- /dev/shm/kdebase/kate/app/kateconfigdialog.h	2010-08-12 17:35:39.000000000 -0500
++++ /dev/shm/kdebase.new/kate/app/kateconfigdialog.h	2011-11-29 11:09:03.000000000 -0600
+@@ -66,6 +66,8 @@
+
+     TQCheckBox *cb_fullPath;
+     TQCheckBox *cb_syncKonsole;
++    TQCheckBox *cb_sortFiles;
++    TQSpinBox *sb_numRecentFiles;
+     TQCheckBox *cb_modNotifications;
+     TQCheckBox *cb_saveMetaInfos;
+     TQSpinBox *sb_daysMetaInfos;
+diff -urN /dev/shm/kdebase/kate/app/katemainwindow.cpp /dev/shm/kdebase.new/kate/app/katemainwindow.cpp
+--- /dev/shm/kdebase/kate/app/katemainwindow.cpp	2011-07-09 01:16:52.000000000 -0500
++++ /dev/shm/kdebase.new/kate/app/katemainwindow.cpp	2011-11-29 11:10:05.000000000 -0600
+@@ -412,6 +412,7 @@
+
+   m_viewManager->setShowFullPath(config->readBoolEntry("Show Full Path in Title", false));
+
++  fileOpenRecent->setMaxItems( config->readNumEntry("Number of recent files", fileOpenRecent->maxItems() ) );
+   fileOpenRecent->loadEntries(config, "Recent Files");
+
+   fileselector->readConfig(config, "fileselector");
