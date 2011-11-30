@@ -1,0 +1,19 @@
+--- amarok/amarok/src/mediadevice/riokarma/CMakeLists.txt.ORI	2011-11-28 21:59:41.607054279 +0100
++++ amarok/amarok/src/mediadevice/riokarma/CMakeLists.txt	2011-11-28 21:59:50.413975791 +0100
+@@ -9,7 +9,7 @@
+ #
+ #################################################
+ 
+-tde_message_fatal( "riokarma support is not buildable, it needs to link to karma-sharp.dll" )
++#tde_message_fatal( "riokarma support is not buildable, it needs to link to karma-sharp.dll" )
+ 
+ include( ConfigureChecks.cmake )
+ 
+@@ -38,6 +38,6 @@
+ 
+ tde_add_kpart( libamarok_riokarma-mediadevice AUTOMOC
+   SOURCES riokarmamediadevice.cpp
+-  LINK amarok-shared ${KARMA_LIBRARIES}
++  LINK amarok-shared ${KARMA_LIBRARIES} karma
+   DESTINATION ${PLUGIN_INSTALL_DIR}
+ )

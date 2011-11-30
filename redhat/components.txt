@@ -1,3 +1,7 @@
+libraries/libkdcraw
+libraries/libkexiv2
+libraries/libkipi
+libraries/libksquirrel
 qt3
 dependencies/libcaldav
 dependencies/libcarddav
@@ -27,9 +31,9 @@ kdeedu
 kdeaddons
 kdewebdev
 kde-i18n
-libraries/libkdcraw
-libraries/libkexiv2
-libraries/libkipi
+extras/ksensors
+extras/libkarma
+#extras/libkexif
 applications/k3b
 applications/abakus
 applications/dolphin
@@ -43,15 +47,14 @@ applications/kdiff3
 #applications/kuickshow
 applications/basket
 applications/katapult
-#compizconfig-backend-kconfig
+#applications/compizconfig-backend-kconfig
 applications/kbookreader
 applications/kdbusnotification
-applications/kmymoney2
+applications/kmymoney
 applications/kstreamripper 
 applications/kdesudo
 applications/digikam
 applications/konversation
-extras/ksensors
 applications/amarok
 applications/kaffeine
 applications/knetworkmanager
@@ -68,8 +71,6 @@ applications/kcpuload
 applications/fusion-icon
 applications/ksplash-engine-moodin
 applications/knights
-libraries/libksquirrel
-#extras/libkexif
 applications/ksquirrel
 applications/gtk-qt-engine
 applications/koffice
@@ -82,3 +83,7 @@ applications/kdmtheme
 applications/knemo
 applications/kerry
 applications/kvirc
+applications/rosegarden
+applications/wlassistant
+applications/ktorrent
+applications/bibletime

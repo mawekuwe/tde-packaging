@@ -1,7 +1,7 @@
 # Basic package informations
 %define kdecomp amarok
 %define version 1.4.10
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -16,9 +16,6 @@ BuildRequires:	cmake >= 2.8
 %define tde_libdir %{_libdir}/trinity
 
 
-# TODO:
-# Rio Karma support : libkarma
-
 Name:    trinity-%{kdecomp}
 Summary: A drop-down terminal emulator.
 Version: %{version}
@@ -27,8 +24,10 @@ Release: %{release}%{?dist}%{?_variant}
 Group: 	    Applications/Multimedia
 License:    GPLv2+
 Url:        http://amarok.kde.org
-Source0:    amarok-3.5.13.tar.gz
+
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+Source0:    amarok-3.5.13.tar.gz
 
 # RedHat / Fedora legacy patches
 Patch1:     amarok-1.4.8-gcc43.patch
@@ -36,6 +35,7 @@ Patch1:     amarok-1.4.8-gcc43.patch
 # TDE 3.5.13 RHEL/Fedora patches
 Patch2:		amarok-3.5.13-cmake_konqsidebar.patch
 Patch3:		amarok-3.5.13-taglib_include.patch
+Patch4:		amarok-3.5.13-enable_riokarma.patch
 
 BuildRequires:  alsa-lib-devel
 BuildRequires:  desktop-file-utils
@@ -66,6 +66,7 @@ BuildRequires:  ruby-devel ruby
 BuildRequires:  SDL-devel
 BuildRequires:  taglib-devel
 BuildRequires:	sqlite-devel
+BuildRequires:	libkarma-devel karma-sharp
 # not used anymore, in favor of libvisual ? -- Rex
 #%{?fedora:BuildRequires:  xmms-devel}
 BuildRequires:	dbus-devel
@@ -128,6 +129,7 @@ use any of xmms' visualisation plugins with Amarok.
 %patch1 -p1 -b .gcc43
 %patch2 -p0
 %patch3 -p1
+%patch4 -p1
 
 
 %build
@@ -147,7 +149,7 @@ cd build
 	-DWITH_IFP=ON \
 	-DWITH_NJB=ON \
 	-DWITH_MTP=ON \
-	-DWITH_RIOKARMA=OFF \
+	-DWITH_RIOKARMA=ON \
 	-DWITH_DAAP=ON \
 	-DBUILD_ALL=ON \
 	-DQT_LIBRARY_DIRS=${QTLIB} \
@@ -166,15 +168,23 @@ desktop-file-install  --vendor "" \
         $RPM_BUILD_ROOT%{_datadir}/applications/kde/amarok.desktop
 
 # unpackaged files
-rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.la
+%__rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.la
 
 
 # HTML
-for lang_dir in $RPM_BUILD_ROOT%{_docdir}/HTML/* ; do
+for lang_dir in $RPM_BUILD_ROOT%{tde_docdir}/HTML/* ; do
   if [ -d $lang_dir ]; then
     lang=$(basename $lang_dir)
-    [ "$lang" == "en" ] && d=en/%{name} || d=$lang
-    echo "%lang($lang) %doc %{_docdir}/HTML/$d" >> %{name}.lang
+    [ "$lang" == "en" ] && d=en/amarok || d=$lang
+    echo "%lang($lang) %doc %{tde_docdir}/HTML/$d" >> %{name}.lang
+  fi
+done
+
+# Locales
+for locale in $RPM_BUILD_ROOT%{_datadir}/locale/* ; do
+  if [ -r $locale/LC_MESSAGES/amarok.mo ]; then
+    lang=$(basename $locale)
+    echo "%lang($lang) %{_datadir}/locale/$lang/LC_MESSAGES/amarok.mo" >> %{name}.lang
   fi
 done
 
@@ -194,7 +204,7 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 %__rm -fr $RPM_BUILD_ROOT
 
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc COPYING AUTHORS ChangeLog README
 %{_bindir}/amarok
@@ -244,8 +254,8 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 %{_datadir}/services/amarok_mtp-mediadevice.desktop
 %{tde_libdir}/libamarok_mtp-mediadevice.*
 # Rio Karma
-#%{_datadir}/services/amarok_riokarma-mediadevice.desktop
-#%{tde_libdir}/libamarok_riokarma-mediadevice.*
+%{_datadir}/services/amarok_riokarma-mediadevice.desktop
+%{tde_libdir}/libamarok_riokarma-mediadevice.*
 # Void engine (noop)
 %{_datadir}/services/amarok_void-engine_plugin.desktop
 %{tde_libdir}/libamarok_void-engine_plugin.*
@@ -260,9 +270,6 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 %{tde_libdir}/libamarok_yauap-engine_plugin.*
 
 
-%{tde_docdir}/HTML/*/amarok
-%{_datadir}/locale/*/LC_MESSAGES/amarok.mo
-
 %files konqueror
 %defattr(-,root,root,-)
 %{_datadir}/apps/konqueror/servicemenus/*.desktop
@@ -275,6 +282,10 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 
 
 %changelog
+* Mon Nov 28 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.10-3
+- Enable riokarma support
+- Enhance localized files packaging
+
 * Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.10-2
 - Enable RHEL 5 compilation
 - Add konqueror sidebar

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -21,8 +21,6 @@ BuildRequires: cmake >= 2.8
 
 ## Conditional build:
 # disabled, for now, doesn't build -- Rex
-#define _enable_jingle --enable-jingle
-#define _enable_slp --enable-slp
 # RHEL6: xmms is outdated !
 #define _with_xmms --with-xmms
 %ifnarch s390 s390x
@@ -60,6 +58,15 @@ Patch4: kdenetwork-3.2.3-resolv.patch
 # include more/proper ppp headers
 Patch6: kdenetwork-3.5.9-krfb_httpd.patch
 
+# TDE 3.5.13 Fedora/RHEL patches
+Patch10:	kdenetwork-3.5.13-kopete_msn_protocol.patch
+Patch11:	kdenetwork-3.5.13-kopete_sms_protocol.patch
+Patch12:	kdenetwork-3.5.13-kopete_jabber_protocol.patch
+Patch13:	kdenetwork-3.5.13-kopete_motionawayplugin_ftbfs.patch
+Patch14:	kdenetwork-3.5.13-reference_to_qmake_h.patch
+# WTF is this ? shitty hack in autotool was forgotten in CMAKE port !
+Source10:	kdenetwork-3.5.13-dummy.cpp
+
 Requires: %{name}-libs = %{version}-%{release}
 
 BuildRequires: gettext
@@ -76,7 +83,7 @@ BuildRequires: wireless-tools-devel
 BuildRequires: wireless-tools
 %endif
 %endif
-%{?_enable_slp:BuildRequires: openslp-devel}
+BuildRequires: openslp-devel
 ## kopete:
 BuildRequires: libxml2-devel libxslt-devel
 %ifarch %{ix86}
@@ -86,7 +93,7 @@ BuildRequires: valgrind
 #jabber
 BuildRequires: libidn-devel
 #jabber/jingle
-%{?_enable_jingle:BuildRequires: expat-devel glib2-devel ortp-devel speex-devel}
+BuildRequires: expat-devel glib2-devel ortp-devel speex-devel
 # jabber/ssl
 #{?fedora:Requires(hint): qca-tls}
 # sametime
@@ -107,12 +114,8 @@ BuildRequires:  avahi-qt3-devel
 BuildRequires:	libv4l-devel
 %endif
 
-# The following libraries are not available on RHEL
-%if 0%{?fedora} >= 15
 BuildRequires: libgadu-devel
-BuildRequires: openslp-devel
-BuildRequires: libjingle-devel
-%endif
+BuildRequires: speex-devel
 
 %if 0%{?console_helper}
 Requires: usermode-gtk
@@ -178,7 +181,15 @@ Requires: %{name} = %{version}-%{release}
 %endif
 %patch4 -p1 -b .resolv
 %patch6 -p1 -b .krfb_httpd
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
 
+
+# TDE 3.5.13: missing 'dummy.cpp' in MSN protocol
+%__install -m 644 %{SOURCE10} kopete/protocols/msn/dummy.cpp
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -193,12 +204,14 @@ cd build
   -DWITH_JINGLE=ON \
   -DWITH_SPEEX=ON \
   -DWITH_WEBCAM=ON \
-  -DWITH_GSM=ON \
+  -DWITH_GSM=OFF \
   -DWITH_ARTS=ON \
   -DBUILD_ALL=ON \
+  -DBUILD_KOPETE_PROTOCOL_ALL=ON \
+  -DBUILD_KOPETE_PLUGIN_ALL=ON \
   ..
 
-# Do not use '%{?_smp_mflags}' because it will fail to build !
+# kdenetwork building is not SMP safe
 %__make
 
 
@@ -251,16 +264,20 @@ EOF
 %endif
 
 # ktalk
-install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
+%__install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
 
 # Add lisa startup script
-install -p -m 0644 -D %{SOURCE4} %{buildroot}%{_sysconfdir}/lisarc
-install -p -m 0755 -D %{SOURCE5} %{buildroot}%{_initrddir}/lisa
+%__install -p -m 0644 -D %{SOURCE4} %{buildroot}%{_sysconfdir}/lisarc
+%__install -p -m 0755 -D %{SOURCE5} %{buildroot}%{_initrddir}/lisa
 
 # RHEL 5: Avoids conflict with 'kdenetwork'
 %if 0%{?rhel} == 5
 %__mv -f %{buildroot}%{_sysconfdir}/lisarc %{buildroot}%{_sysconfdir}/lisarc.tde
 %endif
+
+# Avoids conflict with trinity-kvirc
+%__mv -f %{buildroot}%{_datadir}/services/irc.protocol %{buildroot}%{_datadir}/apps/kopete/
+
 
 %post
 /sbin/chkconfig --add lisa ||:
@@ -473,6 +490,11 @@ done
 
 
 %changelog
+* Sun Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Enable Kopete protocols & plugins compilation
+- Enables all features (openslp, jingle, ...) on all distros
+- Moves 'irc.protocol' file to prevent conflict with other packages
+
 * Thu Nov 17 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Fix symbolic link to 'consolehelper'
 

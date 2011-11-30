@@ -1,0 +1,12 @@
+--- ./kmymoney2/mymoney/mymoneyfile.cpp.ORI	2011-11-26 18:31:18.266423206 +0100
++++ ./kmymoney2/mymoney/mymoneyfile.cpp	2011-11-26 18:31:26.417214675 +0100
+@@ -1940,7 +1940,8 @@
+ 
+   const MyMoneySecurity& curr = d->m_cache.security(id);
+   if(curr.id().isEmpty())
+-    throw new MYMONEYEXCEPTION("Currency not found.");
++    return baseCurrency();
++//    throw new MYMONEYEXCEPTION("Currency not found.");
+   return curr;
+ }
+ 
