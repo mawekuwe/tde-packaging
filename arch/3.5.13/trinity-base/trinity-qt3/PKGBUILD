@@ -1,7 +1,7 @@
 # Maintainer: Calvin Morrison <MutantTurkey@gmail.com>
 pkgname=trinity-qt3
 pkgver=3884
-pkgrel=1
+pkgrel=2
 pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
 _prefix="/opt/qt"
 arch=('i686' 'x86_64')
@@ -51,7 +51,14 @@ fi
 }
 
 package() {
- cd "$srcdir/qt3"
+  
+  cd "$srcdir/qt3"
+
+  # Build ld.so.conf file
+  echo "/${_prefix}" > ${srcdir}/libqt-mt.conf
+  echo "/opt/trinity/lib" >> ${srcdir}/libqt-mt.conf
+  install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
+  install -D -m755 ${srcdir}/libqt-mt.conf  ${pkgdir}/etc/ld.so.conf.d/libqt-mt.conf
 
   # Build and install qt.profile
   echo "export QTDIR=/${_prefix}" > ${srcdir}/qt.profile
@@ -60,8 +67,6 @@ package() {
   echo 'export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QTDIR/pkgconfig' >> ${srcdir}/qt.profile
   install -D -m755 ${srcdir}/qt.profile ${pkgdir}/etc/profile.d/qt3.sh
   
- install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
- echo "${QTDIR}/lib" > ${pkgdir}/etc/ld-so.conf.d/${pkgname}.conf
 
   make INSTALL_ROOT="$pkgdir/" install
 
