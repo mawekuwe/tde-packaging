@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -105,11 +105,24 @@ Summary:	Yum configuration files for Trinity
 %install
 %__rm -rf %{?buildroot}
 %__mkdir_p %{?buildroot}%{_sysconfdir}/yum.repos.d
-%if 0%{?fedora}
-%__install -m 644 %{SOURCE0} %{?buildroot}%{_sysconfdir}/yum.repos.d
-%else
-%__install -m 644 %{SOURCE1} %{?buildroot}%{_sysconfdir}/yum.repos.d
+
+# Fedora repo file
+%if 0%{?fedora} > 0
+%__sed %{SOURCE0} \
+  -e 's/\$releasever/%{fedora}/g' \
+  -e 's/-fedora/-f%{fedora}/g' \
+  >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13-f%{fedora}.repo
 %endif
+
+# RHEL repo file
+%if 0%{?rhel} > 0
+%__sed %{SOURCE1} \
+  -e 's/\$releasever/%{rhel}/g' \
+  -e 's/-rhel/-el%{rhel}/g' \
+  >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13-el%{rhel}.repo
+%endif
+
+%__chmod 644 %{?buildroot}%{_sysconfdir}/yum.repos.d/*.repo
 
 %files
 
@@ -123,5 +136,8 @@ Summary:	Yum configuration files for Trinity
 %{_sysconfdir}/yum.repos.d/*.repo
 
 %changelog
+* Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Fix repo files name and content
+
 * Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Add 'repo' package

@@ -11,7 +11,7 @@ enabled=1
 gpgcheck=0
 
 [trinity-3.5.13-rhel-source]
-name=trinity-3.5.13-f16-source
+name=trinity-3.5.13-rhel-source
 baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/el$releasever/trinity-3.5.13/SRPMS
 enabled=1
 gpgcheck=0

@@ -9,7 +9,6 @@ dependencies/tqtinterface
 dependencies/dbus-tqt
 dependencies/dbus-1-tqt
 dependencies/arts
-trinity-desktop
 #trinity-settings
 trinity-live
 kdelibs
@@ -34,6 +33,7 @@ kde-i18n
 extras/ksensors
 extras/libkarma
 #extras/libkexif
+extras/trinity-desktop
 applications/k3b
 applications/abakus
 applications/dolphin
@@ -93,3 +93,9 @@ applications/knetstats
 applications/knowit
 applications/kpilot
 applications/kdirstat
+applications/kbarcode
+applications/kpicosim
+applications/kgtk-qt3
+applications/kima
+applications/kdesvn
+applications/kde-guidance
