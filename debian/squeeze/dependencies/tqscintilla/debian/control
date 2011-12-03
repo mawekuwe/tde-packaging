@@ -3,8 +3,8 @@ Section: libs
 Priority: optional
 Maintainer: Ricardo Javier Cardenes Medina <rcardenes@debian.org>
 Uploaders: Torsten Marek <shlomme@debian.org>
-Build-Depends: debhelper (>> 5.0.0), libtqt3-mt-dev, tqt3-dev-tools
-Standards-Version: 3.7.2
+Build-Depends: debhelper (>> 5.0.0), libtqt3-mt-dev, tqt3-dev-tools, libtqtinterface-dev
+Standards-Version: 3.8.4
 
 Package: libtqscintilla7
 Section: libs
