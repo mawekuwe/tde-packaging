@@ -2,6 +2,8 @@ libraries/libkdcraw
 libraries/libkexiv2
 libraries/libkipi
 libraries/libksquirrel
+libraries/python-trinity
+libraries/pykdeextensions
 qt3
 dependencies/libcaldav
 dependencies/libcarddav
@@ -9,8 +11,7 @@ dependencies/tqtinterface
 dependencies/dbus-tqt
 dependencies/dbus-1-tqt
 dependencies/arts
-#trinity-settings
-trinity-live
+#dependencies/tqscintilla
 kdelibs
 kdebase
 kdebindings
@@ -34,6 +35,7 @@ extras/ksensors
 extras/libkarma
 #extras/libkexif
 extras/trinity-desktop
+extras/trinity-live
 applications/k3b
 applications/abakus
 applications/dolphin
