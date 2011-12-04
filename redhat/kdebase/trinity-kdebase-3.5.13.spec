@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 9
+%define release 10
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -76,29 +76,48 @@ Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
 Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
 ## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
 Patch13:	kdebase-3.5.13-kate_mru.patch
+## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db'
+Patch14:	kdebase-3.5.13-kio_man_utf8.patch
+
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
 Requires:	lovelock-backgrounds-single
 %define tde_bg /usr/share/backgrounds/lovelock/default/standard/lovelock.png
+
+Requires:	fedora-release-notes
+%define tde_aboutlabel Fedora 15
+%define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
 
 # Fedora 16 Theme: "Verne"
 %if 0%{?fedora} == 16
 Requires:	verne-backgrounds-single
 %define tde_bg /usr/share/backgrounds/verne/default/standard/verne.png
+
+Requires:	fedora-release-notes
+%define tde_aboutlabel Fedora 16
+%define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
 
 # RHEL 5 Theme
 %if 0%{?rhel} == 5
 Requires:	desktop-backgrounds-basic
 %define tde_bg /usr/share/backgrounds/images/default.jpg
+
+Requires:	indexhtml
+%define tde_aboutlabel Enterprise Linux 5
+%define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
 
 # RHEL 6 Theme
 %if 0%{?rhel} == 6
 Requires:	redhat-logos
 %define tde_bg /usr/share/backgrounds/default.png
+
+Requires:	redhat-indexhtml
+%define tde_aboutlabel Enterprise Linux 6
+%define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
 
 BuildRequires:	tqtinterface-devel
@@ -154,7 +173,7 @@ Requires:	kde-settings-kdm
 %endif
 Requires:	redhat-menus
 
-Provides:	kdebase%{?_qt_suffix} = %{version}
+#Provides:	kdebase%{?_qt_suffix} = %{version}
 %if "%{?_prefix}" == "/usr"
 Obsoletes:		kdebase%{?_qt_suffix} <= 3.5.10
 %endif
@@ -180,7 +199,7 @@ Requires:	%{name}
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 Summary:	%{summary} - Development files
-Provides:	kdebase%{?_qt_suffix}-devel = %{version}
+#Provides:	kdebase%{?_qt_suffix}-devel = %{version}
 %if "%{?_prefix}" == "/usr"
 Obsoletes:		kdebase%{?_qt_suffix}-devel <= 3.5.10
 %endif
@@ -196,7 +215,7 @@ Kate plugins or KWin styles.
 Summary: Extra applications from %{name}
 Group: User Interface/Desktops
 Requires: %{name} = %{version}-%{release}
-Provides:	kdebase%{?_qt_suffix}-extras = %{version}
+#Provides:	kdebase%{?_qt_suffix}-extras = %{version}
 %if "%{?_prefix}" == "/usr"
 Obsoletes: kdebase%{?_qt_suffix}-extras <= 3.5.10
 %endif
@@ -212,7 +231,7 @@ Obsoletes: kdebase%{?_qt_suffix}-extras <= 3.5.10
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs
-Provides:	kdebase%{?_qt_suffix}-libs = %{version}
+#Provides:	kdebase%{?_qt_suffix}-libs = %{version}
 %if "%{?_prefix}" == "/usr"
 Obsoletes: kdebase%{?_qt_suffix}-libs <= 3.5.10
 %endif
@@ -224,7 +243,7 @@ Requires: %{name} = %{version}-%{release}
 %package pim-ioslaves
 Summary: PIM KIOslaves from %{name}
 Group: System Environment/Libraries
-Provides:	kdebase%{?_qt_suffix}-pim-ioslaves = %{version}
+#Provides:	kdebase%{?_qt_suffix}-pim-ioslaves = %{version}
 %if "%{?_prefix}" == "/usr"
 Obsoletes: kdebase%{?_qt_suffix}-pim-ioslaves <= 3.5.10
 %endif
@@ -248,6 +267,9 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch11 -p1
 %patch12 -p1
 %patch13 -p4
+%if 0%{?rhel} > 0
+%patch14 -p1
+%endif
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -258,12 +280,22 @@ Protocol handlers (KIOslaves) for personal information management, including:
 # TDE user default background
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
 	-e 's,#define DEFAULT_WALLPAPER "isadora.png",#define DEFAULT_WALLPAPER "%{tde_bg}",'
-
 %__sed -i "startkde" \
 	-e 's,/usr/share/wallpapers/isadora.png.desktop,%{tde_bg},' \
 	-e 's,Wallpaper=isadora.png,Wallpaper=%{tde_bg},'
 %endif
 
+# TDE branding: removes KUbuntu references
+%__sed -i "kcontrol/kdm/kdm-appear.cpp" \
+	-e "s|Welcome to Kubuntu |Welcome to %{tde_aboutlabel} |"
+%__sed -i "konqueror/about/konq_aboutpage.cc" \
+	-e "s|About Kubuntu|About %{tde_aboutlabel}|" \
+	-e "s|help:/kubuntu/|%{tde_aboutpage}|" \
+	-e "s|Kubuntu Documentation|%{tde_aboutlabel} Documentation|"
+%__sed -i "konqueror/about/launch.html" \
+	-e "s|help:/kubuntu/about-kubuntu/index.html|%{tde_aboutpage}|"
+%__sed -i "kdm/config.def" \
+	-e "s|Welcome to Trinity |Welcome to %{tde_aboutlabel} |"
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -322,7 +354,7 @@ cd build
 
 # Modifies 'startkde' to set KDEDIR and KDEHOME hardcoded specific for TDE
 %__sed -i "%{?buildroot}%{_bindir}/startkde" \
-  -e '/^echo "\[startkde\] Starting startkde.".*/ s,$,\nexport KDEDIR=%{_prefix}\nexport KDEHOME=~/.trinity,'
+	-e '/^echo "\[startkde\] Starting startkde.".*/ s,$,\nexport KDEDIR=%{_prefix}\nexport KDEHOME=~/.trinity,'
 
 # Renames '/etc/ksysguarddrc' to avoid conflict with KDE4 'ksysguard'
 %__mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
@@ -622,7 +654,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-10
+- Removes Kubuntu branding [TDE Bug #449]
+
 * Wed Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
+- Fix 'kio_man' on RHEL 5 and RHEL 6 [TDE Bug #714]
 - Restores the 'number of files' and sorting widgets to the Kate configuration [TDE Bug #244]
 
 * Fri Nov 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
