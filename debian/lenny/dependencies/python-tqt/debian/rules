@@ -25,6 +25,7 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 else
 	CXXFLAGS += -O1
 endif
+CXXFLAGS += "-I/usr/include/tqt"
 
 PYTHONS	:= $(shell pyversions -vr debian/control)
 
@@ -64,7 +65,7 @@ dbg-build-%/configure-stamp:
                         -l /usr/include/python$*_d \
                         -v /usr/share/sip/tqt \
                         -m /usr/lib/python$*/config_d \
-                        CXXFLAGS_RELEASE="" CXXFLAGS="-O0 -g" STRIP=""
+                        CXXFLAGS_RELEASE="" CXXFLAGS="-O0 -g -I/usr/include/tqt" STRIP=""
 	touch $@
 
 build: $(PYTHONS:%=build-%/build-stamp) $(PYTHONS:%=dbg-build-%/build-stamp)
@@ -105,7 +106,7 @@ install-arch: build
 	  mkdir -p debian/python-tqt-gl-dbg/$$pylib;\
 	  mv debian/python-tqt-dbg/$$pylib/qtgl.so \
              debian/python-tqt-gl-dbg/$$pylib/;\
-	  mkdir -p debian/python-qtext-dbg/$$pylib;\
+	  mkdir -p debian/python-tqtext-dbg/$$pylib;\
 	  mv debian/python-tqt-dbg/$$pylib/qtext.so \
              debian/python-tqtext-dbg/$$pylib/;\
 	done
