@@ -88,7 +88,7 @@ install-indep: configure
 	for version in ${PYTHONS}; do\
 		pylib=$$(python$$version -c 'from distutils import sysconfig; print sysconfig.get_python_lib()'); \
 		mkdir -p debian/python-tqt-dev/$$pylib;\
-		install -m 644 -o root -g root build-$$version/pytqtconfig.py debian/python-tqt-dev/$$pylib;\
+		install -m 644 -o root -g root build-$$version/pyqtconfig.py debian/python-tqt-dev/$$pylib;\
 	done
 	dh_install -i
 
