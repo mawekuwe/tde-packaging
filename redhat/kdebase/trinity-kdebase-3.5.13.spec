@@ -78,7 +78,8 @@ Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
 Patch13:	kdebase-3.5.13-kate_mru.patch
 ## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db'
 Patch14:	kdebase-3.5.13-kio_man_utf8.patch
-
+## [kdebase/konqueror] Re-enable 'open tab in background'
+Patch15:	kdebase-3.5.13-konq_menu_tab_background.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -270,6 +271,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %if 0%{?rhel} > 0
 %patch14 -p1
 %endif
+%patch15 -p4
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -475,7 +477,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 # Pam configuration
 %{_sysconfdir}/pam.d/*
 
-%doc AUTHORS COPYING README
+%doc AUTHORS COPYING COPYING-DOCS README README.pam
 %{tde_docdir}/HTML/en/*
 %config(noreplace) %{_sysconfdir}/ksysguarddrc.tde
 %{_bindir}/genkdmconf
@@ -656,6 +658,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %changelog
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-10
 - Removes Kubuntu branding [TDE Bug #449]
+- Re-enables 'open tab in background' konqueror feature [TDE Bug #245]
 
 * Wed Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
 - Fix 'kio_man' on RHEL 5 and RHEL 6 [TDE Bug #714]
