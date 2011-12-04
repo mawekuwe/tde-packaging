@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Uploaders: Torsten Marek <shlomme@debian.org>, Bernd Zeimetz <bzed@debian.org>, Michael Casadevall <mcasadevall@debian.org>
-Build-Depends: debhelper (>= 6.0.7~), python-all-dev (>= 2.3.5-10), libtqt3-mt-dev (>= 3:3.3.4-4), tqt3-dev-tools (>= 3:3.3.4-4), tqt3-apps-dev (>= 3:3.3.4-4), python-sip-dev (>= 4.10.0-2ubuntu1), libqscintilla-dev (>= 1.7), python-support (>= 0.7.1), python-sip-dbg, python-all-dbg
+Build-Depends: debhelper (>= 6.0.7~), python-all-dev (>= 2.3.5-10), libtqt3-mt-dev, tqt3-dev-tools, tqt3-apps-dev, python-sip-dev (>= 4.10.0-2ubuntu1), libtqscintilla-dev, python-support (>= 0.7.1), python-sip-dbg, python-all-dbg
 Standards-Version: 3.8.4
 
 Package: python-tqt
@@ -72,7 +72,7 @@ Package: python-tqtext-dbg
 Priority: extra
 Section: debug
 Architecture: any
-Depends: ${shlibs:Depends}, python-dbg, python-qtext (= ${binary:Version}), python-tqt-dbg (= ${binary:Version}), ${misc:Depends}
+Depends: ${shlibs:Depends}, python-dbg, python-tqtext (= ${binary:Version}), python-tqt-dbg (= ${binary:Version}), ${misc:Depends}
 Description: TQt debug extensions for PyQt
  PyQt debug Extensions. Contains:
  .
