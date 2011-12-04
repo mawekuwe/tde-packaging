@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kaffeine
 %define version 0.8.6
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -35,9 +35,13 @@ BuildRequires: trinity-kdelibs-devel
 BuildRequires: cdparanoia-devel cdparanoia
 BuildRequires: libvorbis-devel
 BuildRequires: xine-lib-devel
-BuildRequires: libxcb-devel
 BuildRequires: libXext-devel libXinerama-devel libXtst-devel
 BuildRequires: libcdio-devel
+
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+BuildRequires: libxcb-devel
+%endif
+
 # dvb
 BuildRequires: glibc-kernheaders 
 BuildRequires: gstreamer-devel >= 0.10, gstreamer-plugins-base-devel >= 0.10
@@ -77,8 +81,9 @@ Requires: %{name} = %{version}-%{release}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -100,7 +105,10 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
   --disable-dependency-tracking --disable-final \
   --with-gstreamer \
   --without-lame \
-  --with-extra-includes=%{_includedir}/tqt
+  --with-extra-includes=%{_includedir}/tqt \
+%if 0%{?rhel} > 0 && 0%{?rhel} <= 5
+  --without-dvb \
+%endif
   
 
 %__make %{?_smp_mflags}
@@ -144,11 +152,13 @@ rm -rf $RPM_BUILD_ROOT
 touch --no-create %{_datadir}/icons/hicolor ||:
 gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 update-desktop-database >& /dev/null ||:
+/sbin/ldconfig || :
 
 %postun
 touch --no-create %{_datadir}/icons/hicolor ||:
 gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 update-desktop-database >& /dev/null ||:
+/sbin/ldconfig || :
 
 %post libs -p /sbin/ldconfig
 
@@ -169,7 +179,7 @@ update-desktop-database >& /dev/null ||:
 %{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/mimelnk/*/*.desktop
 %{_datadir}/service*/*.desktop
-%{_docdir}/HTML/en/kaffeine
+%{tde_docdir}/HTML/en/kaffeine
 
 %files libs
 %defattr(-,root,root,-)
@@ -183,5 +193,9 @@ update-desktop-database >& /dev/null ||:
 
 
 %changelog
+* Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.6-2
+- Disable 'libxcb-devel' for RHEL 5 compilation
+- Fix HTML directory location
+
 * Wed Nov 09 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.6-1
 - Spec file based on Fedora 8 'kaffeine-0.8.6-3'
