@@ -6,13 +6,13 @@ XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.de
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
 Build-Depends: cdbs, debhelper (>= 5), chrpath, tdelibs4-trinity-dev,
  libpythonize0-trinity-dev, libtool, libxml2-utils, libxss-dev, libxxf86vm-dev,
- pykdeextensions-trinity, pyqt-tools, python-qt3 (>= 3.17.2-1ubuntu2), python-trinity-trinity, python-trinity-trinity-dev, python-sip4-dev,
+ pytdeextensions-trinity, pyqt-tools, python-qt3 (>= 3.17.2-1ubuntu2), python-trinity-trinity, python-trinity-trinity-dev, python-sip4-dev,
  python-support (>= 0.6), python2.6 (>= 2.5), python2.6-dev (>= 2.5), x11proto-scrnsaver-dev, python-qt-dev, hwdata
 Standards-Version: 3.8.4
 
 Package: tde-guidance-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, pykdeextensions-trinity, python-trinity-trinity, sysv-rc, guidance-backends-trinity, hwdata, python (>= 2.5), python-dev (>= 2.5)
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, pytdeextensions-trinity, python-trinity-trinity, sysv-rc, guidance-backends-trinity, hwdata, python (>= 2.5), python-dev (>= 2.5)
 Replaces: tde-guidance-kde3 (<< 4:3.5.13)
 Breaks: tde-guidance-kde3 (<< 4:3.5.13)
 Conflicts: guidance-power-manager, tde-guidance-powermanager

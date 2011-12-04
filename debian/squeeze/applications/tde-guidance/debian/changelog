@@ -229,7 +229,7 @@ tde-guidance (0.8.0svn20080103-0ubuntu4) hardy; urgency=low
 tde-guidance (0.8.0svn20080103-0ubuntu3) hardy; urgency=low
 
   * Add Add kubuntu_09_mountconfig_no_extensions.patch to remove uneeded call
-    to pykdeextensions in mountconfig so that pyqt3 no longer needs to be
+    to pytdeextensions in mountconfig so that pyqt3 no longer needs to be
     patched to provide -dev files in the regular package (LP: #197867)
   * Add kubuntu_10_displayconfig_tryagain.patch so that if displayconfig
     thinks a proprietary driver is installed, but it can't find it, it 
@@ -618,7 +618,7 @@ tde-guidance (0.7.1~svn20061215-0ubuntu1) feisty; urgency=low
 
 tde-guidance (0.7.1~svn20061124-0ubuntu2) feisty; urgency=low
 
-  * Rebuilt against new pykde.
+  * Rebuilt against new pytde.
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Wed, 06 Dec 2006 23:40:32 +0100
 
@@ -1029,7 +1029,7 @@ tde-guidance (0.6.2-0ubuntu1) dapper; urgency=low
 tde-guidance (0.6.1-0ubuntu0) dapper; urgency=low
 
   * New release, sets a fixed DPI for Xft
-  * Add run time dependency on pykdeextensions
+  * Add run time dependency on pytdeextensions
   * Add kubuntu_03_userconfig_shebang.diff fix extra space
   * Change init script to run at S35, Malone No. 32268
 

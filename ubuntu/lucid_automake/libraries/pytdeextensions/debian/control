@@ -1,0 +1,45 @@
+Source: pytdeextensions-kde3
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
+Build-Depends: cdbs, debhelper (>= 5), chrpath, quilt, kdelibs4c2a-kde3, libtool,
+ libxml2-utils, libxrandr-dev, libxxf86vm-dev, pyqt-tools, python-kde3-kde3,
+ python-qt-dev, python-sip4-dev, python-support (>= 0.6), python (>= 2.5), python-dev (>= 2.5)
+Standards-Version: 3.8.3
+
+Package: pytdeextensions-kde3
+Architecture: all
+Depends: ${python:Depends}
+Conflicts: pytdeextensions
+Provides: ${python:Provides}
+Description: Python packages to support KDE applications (scripts) [KDE3]
+ PyKDE Extensions is a collection of software and Python packages
+ to support the creation and installation of KDE applications.
+ .
+  Homepage: http://www.simonzone.com/software/pytdeextensions
+
+Package: libpythonize0-kde3-dev
+Architecture: any
+Section: libdevel
+Depends: libpythonize0-kde3 (= ${binary:Version}), python-dev
+Description: Python packages to support KDE applications (development) [KDE3]
+ PyKDE Extensions is a collection of software and Python packages
+ to support the creation and installation of KDE applications.
+ .
+ This package contains the libpythonize development files.
+ .
+  Homepage: http://www.simonzone.com/software/pytdeextensions
+
+Package: libpythonize0-kde3
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: libpythonize0
+Description: Python packages to support KDE applications (library) [KDE3]
+ PyKDE Extensions is a collection of software and Python packages
+ to support the creation and installation of KDE applications.
+ .
+ This package contains the libpythonize library files.
+ .
+  Homepage: http://www.simonzone.com/software/pytdeextensions
