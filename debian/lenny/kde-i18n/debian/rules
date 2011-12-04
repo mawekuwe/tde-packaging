@@ -55,7 +55,7 @@ $(STAMP_EXTRACT):
 
 $(STAMP_BUILD):
 	# Building the '$(cur_lang)' language ...
-	cd $(cur_lang_dir) && ./configure $(configkde) && $(MAKE)
+	cd $(cur_lang_dir) && autoreconf && automake -f && $(MAKE) -f ../admin/Makefile.common && ./configure $(configkde) && $(MAKE)
 	touch $@
 
 
