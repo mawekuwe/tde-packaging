@@ -72,7 +72,7 @@ Package: python-tqtext-dbg
 Priority: extra
 Section: debug
 Architecture: any
-Depends: ${shlibs:Depends}, python-dbg, python-qtext (= ${binary:Version}), python-tqt-dbg (= ${binary:Version}), ${misc:Depends}
+Depends: ${shlibs:Depends}, python-dbg, python-tqtext (= ${binary:Version}), python-tqt-dbg (= ${binary:Version}), ${misc:Depends}
 Description: TQt debug extensions for PyQt
  PyQt debug Extensions. Contains:
  .
