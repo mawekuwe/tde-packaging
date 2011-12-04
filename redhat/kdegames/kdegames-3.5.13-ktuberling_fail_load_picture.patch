@@ -1,0 +1,11 @@
+--- kdegames/ktuberling/toplevel.cpp.ORI	2011-12-04 05:49:35.462097224 -0500
++++ kdegames/ktuberling/toplevel.cpp	2011-12-04 05:49:38.089040247 -0500
+@@ -189,7 +189,7 @@
+ // Load the layouts file
+ bool TopLevel::loadLayout(TQDomDocument &layoutDocument)
+ {
+-  TQFile layoutFile(TQFile::encodeName(locate("data", "ktuberling/pics/tqlayout.xml")));
++  TQFile layoutFile(TQFile::encodeName(locate("data", "ktuberling/pics/layout.xml")));
+   if (!layoutFile.open(IO_ReadOnly))
+      return false;
+ 
