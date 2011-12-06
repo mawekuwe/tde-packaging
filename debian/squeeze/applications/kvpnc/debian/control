@@ -1,0 +1,20 @@
+Source: kvpnc-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Fathi Boudra <fabo@debian.org>, Mark Purcell <msp@debian.org>
+Build-Depends: cdbs, debhelper (>= 5), quilt, automake, tdelibs4-trinity-dev, libgcrypt11-dev
+Standards-Version: 3.8.4
+
+Package: kvpnc-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, menu, net-tools, psmisc, tdebase-trinity-bin | gksu | sux, module-init-tools | modutils
+Suggests: iptables, openssl, openvpn, racoon, vpnc, pptp-linux, openswan, xl2tpd, openct, opensc
+Description: vpn clients frontend for TDE
+ KVpnc is a TDE frontend for various vpn clients.
+ .
+ It supports :
+   * Cisco-compatible VPN client (vpnc)
+   * IPSec (freeswan, openswan, racoon)
+   * Point-to-Point Tunneling Protocol (PPTP) client (pptp-linux)
+   * Virtual Private Network daemon (openvpn)
