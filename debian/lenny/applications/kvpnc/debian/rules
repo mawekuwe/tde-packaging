@@ -18,7 +18,10 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
 
 makebuilddir/kvpnc-trinity::
-	make -f Makefile.cvs
+	cp -Rp /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	cp -Rp /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	$(MAKE) -C $(DEB_SRCDIR) -f admin/Makefile.common dist;
+	touch debian/stamp-cvs-make
 
 install/kvpnc-trinity::
 	# fix script-not-executable
