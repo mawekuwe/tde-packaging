@@ -1,3 +1,5 @@
+diff --git a/src/main.cpp b/src/main.cpp
+index 7c45fcf..b933832 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
 @@ -24,6 +24,7 @@
@@ -8,17 +10,20 @@
  
  #include <klocale.h>
  #include <dcopclient.h>
-@@ -129,7 +130,12 @@
- // 			KMessageBox::error( 0, I18N_NOOP( "Kvpnc must be started as root!" ) );
- // 			exit(0);
- // 		}
--		
-+        if (!KUser().isSuperUser())
-+        {
-+ 			KMessageBox::error( 0L, i18n( "Kvpnc must be started as root!" ) );
+@@ -134,11 +135,11 @@ int main ( int argc, char *argv[] )
+ 	}
+ 	else
+ 	{
+-// 		if (getenv("USER") != "root")
+-// 		{
+-// 			KMessageBox::error( 0, I18N_NOOP( "Kvpnc must be started as root!" ) );
+-// 			exit(0);
+-// 		}
++ 		if (getenv("USER") != "root")
++ 		{
++ 			KMessageBox::error( 0, I18N_NOOP( "Kvpnc must be started as root!" ) );
 + 			exit(0);
-+        }
-+	
++ 		}
+ 
  		KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
- 		
- 		a.setMainWidget( kvpnc );
+ 
