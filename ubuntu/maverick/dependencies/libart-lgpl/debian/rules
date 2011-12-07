@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include /usr/share/cdbs/1/class/gnome.mk
+include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
+include /usr/share/gnome-pkg-tools/1/rules/clean-la.mk
+-include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
+
+libart-2.0-N := $(shell sed -rn 's/^Package:[[:space:]]*(libart-2\.0-[0-9]+)[[:space:]]*$$/\1/p' debian/control)
+
+GNOME_MODULE := libart_lgpl
+
+DEB_DH_MAKESHLIBS_ARGS_$(libart-2.0-N) += -V '$(libart-2.0-N)(>= 2.3.18)'
+
