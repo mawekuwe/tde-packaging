@@ -13,7 +13,7 @@ Build-Depends: debhelper (>= 5),
                gnome-pkg-tools (>= 0.7),
                cdbs,
                dpkg-dev (>= 1.13.19),
-               autotools-dev
+               automake, autoconf, libtool, libltdl-dev
 
 Package: libart-2.0-2
 Architecture: any
