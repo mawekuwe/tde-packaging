@@ -38,7 +38,7 @@
 +  string user_tmp_dir;
    int uid = getuid();
    const char *home_dir = getenv("HOME");
-   const char *kde_home = uid ? getenv("KDEHOME") : getenv("KDEROOTHOME");
+   const char *kde_home = uid ? getenv("TDEHOME") : getenv("KDEROOTHOME");
 @@ -88,7 +88,7 @@
    if (!tmp || !tmp[0])
       tmp = "/tmp";
@@ -110,7 +110,7 @@
 +  result = lstat(kde_tmp_dir.c_str(), &stat_buf);
    if ((result == 0) && (S_ISDIR(stat_buf.st_mode)))
    {
-      /* $KDEHOME/socket-$HOSTNAME is a normal directory. Do nothing. */
+      /* $TDEHOME/socket-$HOSTNAME is a normal directory. Do nothing. */
 -     tmp_buf = (char *) malloc(PATH_MAX+1);
 -     if (!tmp_buf)
 -        return 0;
@@ -184,7 +184,7 @@
 +  char *tmp_buf;
    int uid = getuid();
    const char *home_dir = getenv("HOME");
-   const char *kde_home = uid ? getenv("KDEHOME") : getenv("KDEROOTHOME");
+   const char *kde_home = uid ? getenv("TDEHOME") : getenv("KDEROOTHOME");
    int result;
    struct stat stat_buf;
  
@@ -259,7 +259,7 @@
 +  result = lstat(kde_tmp_dir.c_str(), &stat_buf);
    if ((result == 0) && (S_ISDIR(stat_buf.st_mode)))
    {
-      /* $KDEHOME/tmp is a normal directory. Do nothing. */
+      /* $TDEHOME/tmp is a normal directory. Do nothing. */
 -     printf("Directory \"%s\" already exists.\n", kde_tmp_dir);
 +     printf("Directory \"%s\" already exists.\n", kde_tmp_dir.c_str());
       return 0;

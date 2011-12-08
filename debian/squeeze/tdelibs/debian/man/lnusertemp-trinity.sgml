@@ -72,7 +72,7 @@ manpage.1: manpage.sgml
 
     <para><command>&dhpackage;</command> is used to create KDE
     resources in temporary directories and symlinks to them in
-    <envar>KDEHOME</envar>. The resource that needs to be created is
+    <envar>TDEHOME</envar>. The resource that needs to be created is
     given as an argument and can be anyone of:</para>
 
     <itemizedlist>
