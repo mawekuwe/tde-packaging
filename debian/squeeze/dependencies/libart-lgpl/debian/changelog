@@ -2,7 +2,7 @@ libart-lgpl (2.3.22-0debian0) squeeze; urgency=low
 
   * Build patched/maintained TDE version instead of unmaintained upstream
 
- -- Timothy Pearson <kb9vqf@pearsoncomputing.net> Wed, 07 Dec 2011 17:50:00 -0600
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 07 Dec 2011 17:50:00 -0600
 
 libart-lgpl (2.3.21-1) unstable; urgency=low
 
