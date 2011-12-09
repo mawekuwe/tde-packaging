@@ -1,0 +1,29 @@
+--- kdelibs/kdecore/kstandarddirs.cpp.ORI	2011-12-09 23:13:50.089238165 +0100
++++ kdelibs/kdecore/kstandarddirs.cpp	2011-12-09 23:16:23.133210143 +0100
+@@ -839,7 +839,7 @@
+                 }
+ 		// UGLY HACK - Chris CHeney
+ 		if (local && (!strcmp("config", type)))
+-		  candidates->append("/etc/kde3/");
++		  candidates->append("/etc/trinity/");
+ 		//
+                 local = false;
+             }
+@@ -1030,7 +1030,7 @@
+     if (!strcmp(type, "html-bundle"))
+ 	return "share/doc-bundle/HTML/";
+     if (!strcmp(type, "html"))
+-	return "share/doc/kde/HTML/";
++	return "share/doc/HTML/";
+     if (!strcmp(type, "icon"))
+ 	return "share/icons/";
+     if (!strcmp(type, "config"))
+@@ -1336,7 +1336,7 @@
+     }
+     else
+     {
+-       localKdeDir =  TQDir::homeDirPath() + "/.kde3/";
++       localKdeDir =  TQDir::homeDirPath() + "/.trinity/";
+     }
+ 
+     if (localKdeDir != QString("-/"))

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 9
+%define release 10
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -37,7 +37,14 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdelibs-%{version}.tar.gz
+
+# TDE 3.5.12 patches for RHEL/Fedora build
+## [kdelibs/kio/kio] Removes the maximum line length detection
 Patch0:		kdelibs-3.5.13-maxlinelength.patch
+## [kdecore] sets TDE 3.5.12 defaults directories
+Patch1:		kdelibs-3.5.12-kstandarddirs_trinity.patch
+## [kdelibs/kdecore] fixed a conflict between fixx11h.h and Xdefs.h
+Patch2:		kdelibs-3.5.12-fixx11h.patch
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
@@ -66,7 +73,7 @@ Requires:		qt%{?_qt_suffix}
 Requires:		avahi-qt3
 
 
-Provides:	kdelibs%{?_qt_suffix} = %{version}
+#Provides:	kdelibs%{?_qt_suffix} = %{version}
 %if "%{?_prefix}" == "/usr"
 Obsoletes:		kdelibs%{?_qt_suffix} <= 3.5.10
 %endif
@@ -109,6 +116,8 @@ format for easy browsing
 %prep
 %setup -q -n kdelibs
 %patch0 -p1
+%patch1 -p1
+%patch2 -p3
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -123,7 +132,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 # On older RHEL, libXrandr is too old so krandr cannot be compiled.
 # Kspell2 does not compile either.
-%if 0%{?rhel} && 0%{?rhel} < 6
+%if 0%{?rhel} && 0%{?rhel} <= 5
 export DO_NOT_COMPILE="krandr"
 %endif
 
@@ -159,13 +168,12 @@ export DO_NOT_COMPILE="krandr"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot}
 
-%__mkdir_p %{?buildroot}%{_sysconfdir}/ld.so.conf.d
-cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
 %if "%{?_prefix}" != "/usr"
+%__mkdir_p "%{?buildroot}%{_sysconfdir}/ld.so.conf.d"
+cat <<EOF >"%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf"
 %{_libdir}
-%endif
-%{tde_libdir}
 EOF
+%endif
 
 # Moves the XDG configuration files to TDE directory
 %if "%{_prefix}" != "/usr"
@@ -189,8 +197,7 @@ EOF
 
 %files
 %defattr(-,root,root,-)
-%doc README
-%doc COPYING.LIB
+%doc AUTHORS COPYING* README TODO
 %{_bindir}/artsmessage
 %{_bindir}/cupsdconf
 %{_bindir}/cupsdoprint
@@ -288,7 +295,10 @@ EOF
 %exclude %{_datadir}/locale/all_languages
 %exclude %{tde_docdir}/HTML/en/common/*
 %endif
+# ld.so.conf needed only if installed under '/opt/trinity'
+%if "%{?_prefix}" != "/usr"
 %{_sysconfdir}/ld.so.conf.d/trinity.conf
+%endif
 
 # Avoid conflict with 'redhat-menus' package
 %if "%{_prefix}" == "/usr"
@@ -315,11 +325,16 @@ EOF
 
 
 %changelog
-* Sun Nov 29 2911 Francois Andriot <francois.andriot@free.fr> - 3.5.12-9
+* Fri Dec 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-10
+- Fix conflict with 
+- Fix HTML directory location
+- Change defaults TDE directory to '/etc/trinity' and '~/.trinity'
+- Removes 'ld.so.conf.d' when installed under '/usr'
+
+* Sun Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-9
 - Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
 - Disable 'max line length' detection
 - Add missing BuildRequires
-- Disable 'max line length' detection
 
 * Fri Sep 16 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-8
 - Add support for RHEL 5.
@@ -350,4 +365,3 @@ EOF
 
 * Wed Dec 14 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.12-0
 - Initial version
-

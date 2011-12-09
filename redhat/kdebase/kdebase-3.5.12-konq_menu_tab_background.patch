@@ -1,0 +1,136 @@
+diff -Nuar kcontrol.ORI/konqhtml/advancedTabDialog.cpp kcontrol/konqhtml/advancedTabDialog.cpp
+--- kcontrol.ORI/konqhtml/advancedTabDialog.cpp	2011-12-09 23:45:04.676253975 +0100
++++ kcontrol/konqhtml/advancedTabDialog.cpp	2011-12-09 23:46:28.239256986 +0100
+@@ -58,7 +58,6 @@
+     layout->addSpacing( 20 );
+     layout->addStretch();
+ 
+-    connect(m_advancedWidget->m_pNewTabsInBackground, TQT_SIGNAL(clicked()), this, TQT_SLOT(changed()));
+     connect(m_advancedWidget->m_pOpenAfterCurrentPage, TQT_SIGNAL(clicked()), this, TQT_SLOT(changed()));
+     connect(m_advancedWidget->m_pTabConfirm, TQT_SIGNAL(clicked()), this, TQT_SLOT(changed()));
+     connect(m_advancedWidget->m_pTabCloseActivatePrevious, TQT_SIGNAL(clicked()), this, TQT_SLOT(changed()));
+@@ -76,7 +75,6 @@
+ void advancedTabDialog::load()
+ {
+     m_pConfig->setGroup("FMSettings");
+-    m_advancedWidget->m_pNewTabsInBackground->setChecked( ! (m_pConfig->readBoolEntry( "NewTabsInFront", false )) );
+     m_advancedWidget->m_pOpenAfterCurrentPage->setChecked( m_pConfig->readBoolEntry( "OpenAfterCurrentPage", false ) );
+     m_advancedWidget->m_pPermanentCloseButton->setChecked( m_pConfig->readBoolEntry( "PermanentCloseButton", false ) );
+     m_advancedWidget->m_pKonquerorTabforExternalURL->setChecked( m_pConfig->readBoolEntry( "KonquerorTabforExternalURL", false ) );
+@@ -92,7 +90,6 @@
+ void advancedTabDialog::save()
+ {
+     m_pConfig->setGroup("FMSettings");
+-    m_pConfig->writeEntry( "NewTabsInFront", !(m_advancedWidget->m_pNewTabsInBackground->isChecked()) );
+     m_pConfig->writeEntry( "OpenAfterCurrentPage", m_advancedWidget->m_pOpenAfterCurrentPage->isChecked() );
+     m_pConfig->writeEntry( "PermanentCloseButton", m_advancedWidget->m_pPermanentCloseButton->isChecked() );
+     m_pConfig->writeEntry( "KonquerorTabforExternalURL", m_advancedWidget->m_pKonquerorTabforExternalURL->isChecked() );
+diff -Nuar kcontrol.ORI/konqhtml/advancedTabOptions.ui kcontrol/konqhtml/advancedTabOptions.ui
+--- kcontrol.ORI/konqhtml/advancedTabOptions.ui	2011-12-09 23:45:04.674267416 +0100
++++ kcontrol/konqhtml/advancedTabOptions.ui	2011-12-09 23:56:01.440255647 +0100
+@@ -62,6 +62,17 @@
+                 </widget>
+                 <widget class="QCheckBox">
+                     <property name="name">
++                        <cstring>m_pNewTabsInBackground</cstring>
++                    </property>
++                    <property name="text">
++                        <string>O&amp;pen new tabs in the background</string>
++                    </property>
++                    <property name="whatsThis" stdset="0">
++                        <string>This will open a new tab in the background, instead of in the foreground.</string>
++                    </property>
++                </widget>
++                <widget class="QCheckBox">
++                    <property name="name">
+                         <cstring>m_pOpenAfterCurrentPage</cstring>
+                     </property>
+                     <property name="text">
+diff -Nuar konqueror.ORI/konq_guiclients.cc konqueror/konq_guiclients.cc
+--- konqueror.ORI/konq_guiclients.cc	2011-12-09 23:44:28.950255993 +0100
++++ konqueror/konq_guiclients.cc	2011-12-09 23:49:31.432261289 +0100
+@@ -115,6 +115,11 @@
+         openInTabElement.setAttribute( "group", "tabhandling" );
+         menu.appendChild( openInTabElement );
+ 
++        TQDomElement openInTabFrontElement = m_doc.createElement( "action" );
++        openInTabFrontElement.setAttribute( "name", "openintabfront" );
++        openInTabFrontElement.setAttribute( "group", "tabhandling" );
++        menu.appendChild( openInTabFrontElement );
++
+         TQDomElement separatorElement = m_doc.createElement( "separator" );
+         separatorElement.setAttribute( "group", "tabhandling" );
+         menu.appendChild( separatorElement );
+diff -Nuar konqueror.ORI/konq_mainwindow.cc konqueror/konq_mainwindow.cc
+--- konqueror.ORI/konq_mainwindow.cc	2011-12-09 23:44:29.030265039 +0100
++++ konqueror/konq_mainwindow.cc	2011-12-09 23:54:27.518255409 +0100
+@@ -2727,6 +2727,14 @@
+     openURL( 0L, popupItems.getFirst()->url() );
+ }
+ 
++void KonqMainWindow::slotPopupNewTabAtFront()
++{
++    KConfig *config = KGlobal::config();
++    KConfigGroupSaver cs( config, TQString::fromLatin1("FMSettings") );
++    bool openAfterCurrentPage = config->readBoolEntry( "OpenAfterCurrentPage", false );
++    popupNewTab(true, openAfterCurrentPage);
++}
++
+ void KonqMainWindow::slotPopupNewTab()
+ {
+     bool openAfterCurrentPage = KonqSettings::openAfterCurrentPage();
+@@ -2735,7 +2743,7 @@
+     if (KApplication::keyboardMouseState() & Qt::ShiftButton)
+       newTabsInFront = !newTabsInFront;
+ 
+-    popupNewTab(newTabsInFront, openAfterCurrentPage);
++    popupNewTab(false, openAfterCurrentPage);
+ }
+ 
+ void KonqMainWindow::slotPopupNewTabRight()
+@@ -2755,16 +2763,12 @@
+   KFileItemListIterator it ( popupItems );
+   KonqOpenURLRequest req;
+   req.newTab = true;
+-  req.newTabInFront = false;
++  req.newTabInFront = infront;
+   req.openAfterCurrentPage = openAfterCurrentPage;
+   req.args = popupUrlArgs;
+ 
+   for ( ; it.current(); ++it )
+   {
+-    if ( infront && it.atLast() )
+-    {
+-      req.newTabInFront = true;
+-    }
+     openURL( 0L, (*it)->url(), TQString::null, req );
+   }
+ }
+@@ -4783,8 +4787,14 @@
+       else
+         tab_new_x = "tab_new_bg" ;
+ 
+-      actNewTab = new KAction( i18n( "Open in &New Tab" ), tab_new_x, 0, this, TQT_SLOT( slotPopupNewTab() ), konqyMenuClient->actionCollection(), "openintab" );
+-      actNewTab->setToolTip( i18n( "Open the document in a new tab" ) );
++      KAction *actNewTab = new KAction( i18n( "Open in &Background Tab" ), "tab_new_bg", 0, this, TQT_SLOT( slotPopupNewTab() ), actionCollection(), "openintab" );
++      actNewTab->setStatusText( i18n( "Open the document in a new background tab" ) );
++      KAction *actNewTabFront = new KAction( i18n( "Open in &New Tab" ), "tab_new", 0, this, TQT_SLOT( slotPopupNewTabAtFront() ), actionCollection(), "openintabfront" );
++      actNewTabFront->setStatusText( i18n( "Open the document in a new foreground tab" ) );
++      actNewTab = new KAction( i18n( "Open in &Background Tab" ), tab_new_x, 0, this, TQT_SLOT( slotPopupNewTab() ), konqyMenuClient->actionCollection(), "openintab" );
++      actNewTabFront = new KAction( i18n( "Open in &New Tab" ), tab_new_x, 0, this, TQT_SLOT( slotPopupNewTabAtFront() ), konqyMenuClient->actionCollection(), "openintabfront" );
++      actNewTab->setToolTip( i18n( "Open the document in a new background tab" ) );
++      actNewTabFront->setToolTip( i18n( "Open the document in a new foreground tab" ) );
+       doTabHandling = true;
+   }
+ 
+diff -Nuar konqueror.ORI/konq_mainwindow.h konqueror/konq_mainwindow.h
+--- konqueror.ORI/konq_mainwindow.h	2011-12-09 23:44:28.941260682 +0100
++++ konqueror/konq_mainwindow.h	2011-12-09 23:54:57.772255487 +0100
+@@ -444,6 +444,7 @@
+   void slotPopupNewWindow();
+   void slotPopupThisWindow();
+   void slotPopupNewTab();
++  void slotPopupNewTabAtFront();
+   void slotPopupNewTabRight();
+   void slotPopupPasteTo();
+   void slotRemoveView();

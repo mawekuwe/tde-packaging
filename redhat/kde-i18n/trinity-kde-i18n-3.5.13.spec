@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -70,7 +70,7 @@ BuildRequires:	trinity-kdelibs-devel
 Summary: Afrikaans(af) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-af = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Afrikaans
 %{summary}.
 
@@ -78,7 +78,7 @@ Requires: kde-filesystem
 Summary: Arabic(ar) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ar = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Arabic
 %{summary}.
 
@@ -86,7 +86,7 @@ Requires: kde-filesystem
 Summary: Azerbaijani(az) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-az = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Azerbaijani
 %{summary}.
 
@@ -94,7 +94,7 @@ Requires: kde-filesystem
 Summary: Belarusian(be) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-be = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Belarusian
 %{summary}.
 
@@ -102,7 +102,7 @@ Requires: kde-filesystem
 Summary: Bulgarian(bg) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-bg = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Bulgarian
 %{summary}.
 
@@ -110,7 +110,7 @@ Requires: kde-filesystem
 Summary: Bengali(bn) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-bn = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Bengali
 %{summary}.
 
@@ -118,7 +118,7 @@ Requires: kde-filesystem
 Summary: Tibetan(bo) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-bo = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Tibetan
 %{summary}.
 
@@ -126,7 +126,7 @@ Requires: kde-filesystem
 Summary: Breton(br) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-br = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Breton
 %{summary}.
 
@@ -134,7 +134,7 @@ Requires: kde-filesystem
 Summary: Bosnian(bs) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-bs = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Bosnian
 %{summary}.
 
@@ -142,7 +142,7 @@ Requires: kde-filesystem
 Summary: Catalan(ca) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ca = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Catalan
 %{summary}.
 
@@ -150,14 +150,14 @@ Requires: kde-filesystem
 Summary: Czech(cs) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-cs = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Czech
 %{summary}.
 
 %package Cymraeg
 Summary: Cymraeg language support for KDE3
 Group: User Interface/Desktops
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Cymraeg
 %{summary}.
 
@@ -165,7 +165,7 @@ Requires: kde-filesystem
 Summary: Welsh(cy) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-cy = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Welsh
 %{summary}.
 
@@ -173,7 +173,7 @@ Requires: kde-filesystem
 Summary: Danish(da) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-da = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Danish
 %{summary}.
 
@@ -181,7 +181,7 @@ Requires: kde-filesystem
 Summary: German(de) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-de = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description German
 %{summary}.
 
@@ -189,7 +189,7 @@ Requires: kde-filesystem
 Summary: Greek(el) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-el = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Greek
 %{summary}.
 
@@ -197,7 +197,7 @@ Requires: kde-filesystem
 Summary: British(en_GB) English support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-en_GB = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description British
 %{summary}.
 
@@ -205,7 +205,7 @@ Requires: kde-filesystem
 Summary: Esperanto(eo) support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-eo = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Esperanto
 %{summary}.
 
@@ -213,7 +213,7 @@ Requires: kde-filesystem
 Summary: Spanish(es) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-es = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Spanish
 %{summary}.
 
@@ -221,7 +221,7 @@ Requires: kde-filesystem
 Summary: Estonian(et) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-et = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Estonian
 %{summary}.
 
@@ -229,7 +229,7 @@ Requires: kde-filesystem
 Summary: Basque(eu) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-eu = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Basque
 %{summary}.
 
@@ -237,7 +237,7 @@ Requires: kde-filesystem
 Summary: Farsi(fa) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fa = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Farsi
 %{summary}.
 
@@ -245,7 +245,7 @@ Requires: kde-filesystem
 Summary: Finnish(fi) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fi = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Finnish
 %{summary}.
 
@@ -253,7 +253,7 @@ Requires: kde-filesystem
 Summary: Faroese(fo) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fo = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Faroese
 %{summary}.
 
@@ -261,7 +261,7 @@ Requires: kde-filesystem
 Summary: French(fr) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fr = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description French
 %{summary}.
 
@@ -269,7 +269,7 @@ Requires: kde-filesystem
 Summary: Frisian(fy) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fy = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Frisian
 %{summary}.
 
@@ -278,7 +278,7 @@ Summary: Irish(ga) language support for KDE3
 Group: User Interface/Desktops
 Obsoletes: kde-i18n-Gaeilge < %{version}
 Provides: %{name}-ga = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Irish
 %{summary}.
 
@@ -286,7 +286,7 @@ Requires: kde-filesystem
 Summary: Galician(gl) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-gl = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Galician
 %{summary}.
 
@@ -294,7 +294,7 @@ Requires: kde-filesystem
 Summary: Hebrew(he) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-he = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Hebrew
 %{summary}.
 
@@ -302,7 +302,7 @@ Requires: kde-filesystem
 Summary: Hindi(hi) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-hi = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Hindi
 %{summary}.
 
@@ -310,7 +310,7 @@ Requires: kde-filesystem
 Summary: Croatian(hr) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-hr = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Croatian
 %{summary}.
 
@@ -318,7 +318,7 @@ Requires: kde-filesystem
 Summary: Hungarian(hu) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-hu = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Hungarian
 %{summary}.
 
@@ -326,7 +326,7 @@ Requires: kde-filesystem
 Summary: Indonesian(id) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-id = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Indonesian
 %{summary}.
 
@@ -334,7 +334,7 @@ Requires: kde-filesystem
 Summary: Icelandic(is) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-is = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Icelandic
 %{summary}.
 
@@ -342,7 +342,7 @@ Requires: kde-filesystem
 Summary: Italian(it) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-it = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Italian
 %{summary}.
 
@@ -350,7 +350,7 @@ Requires: kde-filesystem
 Summary: Japanese(ja) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ja = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Japanese
 %{summary}.
 
@@ -358,7 +358,7 @@ Requires: kde-filesystem
 Summary: Korean(ko) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ko = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Korean
 %{summary}.
 
@@ -366,7 +366,7 @@ Requires: kde-filesystem
 Summary: Kurdish(ku) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ku = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Kurdish
 %{summary}.
 
@@ -374,7 +374,7 @@ Requires: kde-filesystem
 Summary: Lao(lo) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-lo = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Lao
 %{summary}.
 
@@ -382,7 +382,7 @@ Requires: kde-filesystem
 Summary: Lithuanian(lt) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-lt = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Lithuanian
 %{summary}.
 
@@ -390,7 +390,7 @@ Requires: kde-filesystem
 Summary: Latvian(lv) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-lv = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Latvian
 %{summary}.
 
@@ -398,7 +398,7 @@ Requires: kde-filesystem
 Summary: Maori(mi) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-mi = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Maori
 %{summary}.
 
@@ -406,7 +406,7 @@ Requires: kde-filesystem
 Summary: Macedonian(mk) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-mk = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Macedonian
 %{summary}.
 
@@ -414,7 +414,7 @@ Requires: kde-filesystem
 Summary: Maltese(mt) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-mt = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Maltese
 %{summary}.
 
@@ -422,7 +422,7 @@ Requires: kde-filesystem
 Summary: Dutch(nl) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-nl = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Dutch
 %{summary}.
 
@@ -430,7 +430,7 @@ Requires: kde-filesystem
 Summary: Norwegian(no) (Bokmaal) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-no = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Norwegian
 %{summary}.
 
@@ -438,7 +438,7 @@ Requires: kde-filesystem
 Summary: Norwegian(nn) (Nynorsk) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-nn = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Norwegian-Nynorsk
 %{summary}.
 
@@ -446,7 +446,7 @@ Requires: kde-filesystem
 Summary: Occitan(oc) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-oc = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Occitan
 %{summary}.
 
@@ -454,7 +454,7 @@ Requires: kde-filesystem
 Summary: Polish(pl) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-pl = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Polish
 %{summary}.
 
@@ -462,7 +462,7 @@ Requires: kde-filesystem
 Summary: Portuguese(pt) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-pt = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Portuguese
 %{summary}.
 
@@ -470,7 +470,7 @@ Requires: kde-filesystem
 Summary: Punjabi(pa) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-pa = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Punjabi
 %{summary}.
 
@@ -478,7 +478,7 @@ Requires: kde-filesystem
 Summary: Brazil(pt_BR) Portuguese language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-pt_BR = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Brazil
 %{summary}.
 
@@ -486,7 +486,7 @@ Requires: kde-filesystem
 Summary: Romanian(ro) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ro = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Romanian
 %{summary}.
 
@@ -494,7 +494,7 @@ Requires: kde-filesystem
 Summary: Russian(ru) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ru = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Russian
 %{summary}.
 
@@ -502,7 +502,7 @@ Requires: kde-filesystem
 Summary: Slovak(sk) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-sk = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Slovak
 %{summary}.
 
@@ -510,7 +510,7 @@ Requires: kde-filesystem
 Summary: Slovenian(sl) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-sl = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Slovenian
 %{summary}.
 
@@ -518,7 +518,7 @@ Requires: kde-filesystem
 Summary: Serbian(sr) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-sr = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Serbian
 %{summary}.
 
@@ -526,7 +526,7 @@ Requires: kde-filesystem
 Summary: Swedish(sv) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-sv = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Swedish
 %{summary}.
 
@@ -534,7 +534,7 @@ Requires: kde-filesystem
 Summary: Tamil(ta) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ta = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Tamil
 %{summary}.
 
@@ -542,7 +542,7 @@ Requires: kde-filesystem
 Summary: Tajik(tg) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-tg = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Tajik
 %{summary}.
 
@@ -550,7 +550,7 @@ Requires: kde-filesystem
 Summary: Thai(th) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-th = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Thai
 %{summary}.
 
@@ -558,7 +558,7 @@ Requires: kde-filesystem
 Summary: Turkish(tr) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-tr = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Turkish
 %{summary}.
 
@@ -566,7 +566,7 @@ Requires: kde-filesystem
 Summary: Ukrainian(uk) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-uk = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Ukrainian
 %{summary}.
 
@@ -574,7 +574,7 @@ Requires: kde-filesystem
 Summary: Venda(ven) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ven = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Venda
 %{summary}.
 
@@ -582,7 +582,7 @@ Requires: kde-filesystem
 Summary: Vietnamese(vi) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-vi = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Vietnamese
 %{summary}.
 
@@ -590,7 +590,7 @@ Requires: kde-filesystem
 Summary: Walloon(wa) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-wa = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Walloon
 %{summary}.
 
@@ -598,7 +598,7 @@ Requires: kde-filesystem
 Summary: Xhosa(xh) (a Bantu language) support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-xh = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Xhosa
 %{summary}.
 
@@ -606,7 +606,7 @@ Requires: kde-filesystem
 Summary: Chinese(zh_CN) (Simplified Chinese) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-zh_CN = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Chinese
 %{summary}.
 
@@ -614,7 +614,7 @@ Requires: kde-filesystem
 Summary: Chinese(zh_TW) (Big5) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-tz_TW = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Chinese-Big5
 %{summary}.
 
@@ -659,15 +659,7 @@ export PATH="%{_bindir}:${PATH}"
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*/; do
     if [ -d "${f}" ] && [ -r "${f}/Makefile" ] ; then 
-      pushd ${f}
-
-      # RHEL/Fedora: dirty hack to remove directory 'common' from install list (else it fails to install)
-#      if [ -r docs/Makefile ]; then
-#        sed -i docs/Makefile -e "s,^\(SUBDIRS =.*\)common\(.*\)$,\1 \2,"
-#      fi
-
-      %__make install DESTDIR=%{?buildroot}
-      popd
+      %__make install DESTDIR=%{?buildroot} -C ${f}
     fi
   done
 done
@@ -1165,6 +1157,9 @@ find %{buildroot}%{tde_docdir}/HTML -size 0 -exec rm -f {} \;
 %endif
 
 %changelog
+* Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Removes 'kde-filesystem" dependancy
+
 * Fri Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Fix HTML directory location
 
