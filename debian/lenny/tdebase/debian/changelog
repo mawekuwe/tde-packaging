@@ -196,7 +196,7 @@ tdebase-trinity (4:3.5.10-0ubuntu3~intrepid19) intrepid; urgency=low
 
 tdebase-trinity (4:3.5.10-0ubuntu3~intrepid18) intrepid; urgency=low
 
-  * Added XDG_DATA_DIRS and KDEDIRS to starttde, as suggested by zekica on the Debian forums
+  * Added XDG_DATA_DIRS and TDEDIRS to starttde, as suggested by zekica on the Debian forums
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 07 Mar 2009 13:18:00 -0600
 
@@ -758,8 +758,8 @@ tdebase (4:3.5.7-1ubuntu24) gutsy; urgency=low
 tdebase (4:3.5.7-1ubuntu23) gutsy; urgency=low
 
   * Fixed kubuntu_52_gtk_qt_engine_config.diff and
-    kubuntu_53_kwallet_config.diff as $kdehome=$HOME/.kde so we should use
-    $kdehome instead of $HOME/$kdehome
+    kubuntu_53_kwallet_config.diff as $tdehome=$HOME/.kde so we should use
+    $tdehome instead of $HOME/$tdehome
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Wed, 19 Sep 2007 12:22:46 +0200
 
@@ -780,7 +780,7 @@ tdebase (4:3.5.7-1ubuntu21) gutsy; urgency=low
 
 tdebase (4:3.5.7-1ubuntu20) gutsy; urgency=low
 
-  * Changed (again) $KDEHOME to $kdehome in kubuntu_52_gtk_qt_engine_config.diff and 
+  * Changed (again) $TDEHOME to $tdehome in kubuntu_52_gtk_qt_engine_config.diff and 
     kubuntu_53_kwallet_config.diff . (LP: #136560)
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 15 Sep 2007 23:12:26 +0100
@@ -799,7 +799,7 @@ tdebase (4:3.5.7-1ubuntu18) gutsy; urgency=low
   [ Ryan Kavanagh ]
   * Dropping kubuntu_9902_nspluginviewer_hangs_cpu.diff and the libgtk
     build-dep as they are no longer needed
-  * Changed $KDEHOME to $kdehome in kubuntu_52_gtk_qt_engine_config.diff and 
+  * Changed $TDEHOME to $tdehome in kubuntu_52_gtk_qt_engine_config.diff and 
     kubuntu_53_kwallet_config.diff . (LP: #136560)
 
  -- Ryan Kavanagh <ryanakca@kubuntu.org>  Mon, 03 Sep 2007 10:26:36 -0400
@@ -807,7 +807,7 @@ tdebase (4:3.5.7-1ubuntu18) gutsy; urgency=low
 tdebase (4:3.5.7-1ubuntu17) gutsy; urgency=low
 
   * Edit kubuntu_52_gtk_qt_engine_config.diff and
-    kubuntu_53_kwallet_config.diff to use $KDEHOME instead of .kde
+    kubuntu_53_kwallet_config.diff to use $TDEHOME instead of .kde
   * Remove kubuntu_77_kiosystem.diff, home:/ better than /home now
   * Edit kubuntu_27_aboutscreen_searchbar.diff to work with strigi
   * Add kubuntu_9903_api_docs_move.diff for new API website

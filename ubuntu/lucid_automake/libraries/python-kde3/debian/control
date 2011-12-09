@@ -6,7 +6,7 @@ XSBC-Original-Maintainer: Ricardo Javier Cardenes Medina <rcardenes@debian.org>
 Uploaders: Torsten Marek <shlomme@debian.org>, Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Build-Depends: debhelper (>= 5.0.38), libqt3-mt-dev (>= 3:3.3.7), qt3-dev-tools (>= 3:3.3.7), qt3-apps-dev (>= 3:3.3.7), python, python-all-dev, python-all-dbg, sip4 (>= 4.10), python-sip4-dev (>= 4.10), python-qt-dev (>= 3.18), kdelibs4-kde3-dev, python-central (>= 0.6.11), dpatch, python-sip4, python-sip4-dbg, python-sip4-dev
 Standards-Version: 3.8.3
-Homepage: http://www.riverbankcomputing.co.uk/pykde/index.php
+Homepage: http://www.riverbankcomputing.co.uk/pytde/index.php
 XS-Python-Version: all
 
 Package: python-kde3-kde3

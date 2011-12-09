@@ -22,7 +22,7 @@ set -e
 HEED_DEFAULT_DISPLAY_MANAGER=true
 DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
 
-KDEDIRS=/opt/trinity/
+TDEDIRS=/opt/trinity/
 PATH=/opt/trinity/bin:/bin:/usr/bin:/sbin:/usr/sbin
 DAEMON=/opt/trinity/bin/kdm
 PIDFILE=/var/run/kdm.pid

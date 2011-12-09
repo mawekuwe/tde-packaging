@@ -1,0 +1,37 @@
+Source: libart-lgpl
+Section: devel
+Priority: optional
+Maintainer: Josselin Mouette <joss@debian.org>
+Uploaders: @GNOME_TEAM@
+Standards-Version: 3.8.4
+Build-Depends: debhelper (>= 5),
+               gnome-pkg-tools (>= 0.7),
+               cdbs,
+               dpkg-dev (>= 1.13.19),
+               autotools-dev
+
+Package: libart-2.0-2
+Architecture: any
+Section: libs
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Description: Library of functions for 2D graphics - runtime files
+ A library of functions for 2D graphics supporting a superset of the
+ PostScript imaging model, designed to be integrated with graphics, artwork,
+ and illustration programs. It is written in optimized C, and is fully
+ compatible with C++. With a small footprint of 10,000 lines of code, it is
+ especially suitable for embedded applications.
+
+Package: libart-2.0-dev
+Architecture: any
+Section: libdevel
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         libart-2.0-2 (= ${binary:Version}),
+         pkg-config
+Description: Library of functions for 2D graphics - development files
+ A library of functions for 2D graphics supporting a superset of the
+ PostScript imaging model, designed to be integrated with graphics, artwork,
+ and illustration programs. It is written in optimized C, and is fully
+ compatible with C++. With a small footprint of 10,000 lines of code, it is
+ especially suitable for embedded applications.

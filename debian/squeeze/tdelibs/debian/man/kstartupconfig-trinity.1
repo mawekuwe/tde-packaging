@@ -4,7 +4,7 @@
 kstartupconfig, kdostartupconfig
 \- KDE configuration options loader
 .SH SYNOPSIS
-\fBkstartupconfig\fP [$KDEHOME]
+\fBkstartupconfig\fP [$TDEHOME]
 .sp 1
 \fBkdostartupconfig\fP
 .SH DESCRIPTION
@@ -27,19 +27,19 @@ do not use frequently changed config files since the checking is timestamp\-base
 if \fBkconf_update\fP is used to update an option also touch the matching global config file to allow \fBkstartupconfig\fP to see changes
 .SH OPTIONS
 .TP
-.B $KDEHOME
+.B $TDEHOME
 KDE home directory, if different to ~/.kde
 .SS
 .SH FILES
-In case $KDEHOME is not set ~/.kde is assumed.
+In case $TDEHOME is not set ~/.kde is assumed.
 .TP
-.I $KDEHOME/share/config/startupconfig
+.I $TDEHOME/share/config/startupconfig
 script, sourced to set shell variables with configuration options
 .TP
-.I $KDEHOME/share/config/startupconfigfiles
+.I $TDEHOME/share/config/startupconfigfiles
 configuration options and files they belong to
 .TP
-.I $KDEHOME/share/config/startupconfigkeys
+.I $TDEHOME/share/config/startupconfigkeys
 configuration options to load
 .SH SEE ALSO
 .BR kconf_update (1),\  starttde (1)

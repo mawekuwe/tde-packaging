@@ -93,12 +93,12 @@ install-indep:
 	for version in ${PYTHONS};\
 	do\
 		mkdir -p debian/python-kde3-kde3-dev/opt/kde3/lib/python-$$version/site-packages;\
-		cp debian/pykdeconfig.py debian/python-kde3-kde3-dev/opt/kde3/lib/python-$$version/site-packages/;\
-		cp build-$$version/pykdeconfig.py debian/python-kde3-kde3-dev/opt/kde3/lib/python-$$version/site-packages/pykdeconfig_nd.py;\
+		cp debian/pytdeconfig.py debian/python-kde3-kde3-dev/opt/kde3/lib/python-$$version/site-packages/;\
+		cp build-$$version/pytdeconfig.py debian/python-kde3-kde3-dev/opt/kde3/lib/python-$$version/site-packages/pytdeconfig_nd.py;\
 	done
 	for version in ${DBG_PYTHONS};\
 	do\
-		cp dbg-build-$$version/pykdeconfig.py debian/python-kde3-kde3-dev/opt/kde3/lib/python-$$version/site-packages/pykdeconfig_d.py;\
+		cp dbg-build-$$version/pytdeconfig.py debian/python-kde3-kde3-dev/opt/kde3/lib/python-$$version/site-packages/pytdeconfig_d.py;\
 	done
 
 install-arch:
