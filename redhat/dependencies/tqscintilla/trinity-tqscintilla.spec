@@ -123,9 +123,8 @@ for i in designer/*.so; do
 done
 
 # Installs libraries
-for i in tmplib/*; do 
-	%__install -D $i %{buildroot}%{_libdir}/${i##*/}
-done
+%__mkdir_p %{buildroot}%{_libdir}
+%__mv -f tmplib/* %{buildroot}%{_libdir}
 
 %clean
 %__rm -rf $RPM_BUILD_ROOT

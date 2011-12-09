@@ -11,7 +11,7 @@ dependencies/tqtinterface
 dependencies/dbus-tqt
 dependencies/dbus-1-tqt
 dependencies/arts
-#dependencies/tqscintilla
+dependencies/tqscintilla
 kdelibs
 kdebase
 kdebindings
@@ -31,6 +31,7 @@ kdeedu
 kdeaddons
 kdewebdev
 kde-i18n
+extras/kasablanca
 extras/ksensors
 extras/libkarma
 #extras/libkexif

@@ -17,7 +17,7 @@ BuildRequires:	cmake >= 2.8
 
 
 Name:    trinity-%{kdecomp}
-Summary: A drop-down terminal emulator.
+Summary: Media player
 Version: %{version}
 Release: %{release}%{?dist}%{?_variant}
 
