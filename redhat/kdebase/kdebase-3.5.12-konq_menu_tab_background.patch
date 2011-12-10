@@ -1,6 +1,6 @@
 diff -Nuar kcontrol.ORI/konqhtml/advancedTabDialog.cpp kcontrol/konqhtml/advancedTabDialog.cpp
---- kcontrol.ORI/konqhtml/advancedTabDialog.cpp	2011-12-09 23:45:04.676253975 +0100
-+++ kcontrol/konqhtml/advancedTabDialog.cpp	2011-12-09 23:46:28.239256986 +0100
+--- kdebase/kcontrol.ORI/konqhtml/advancedTabDialog.cpp	2011-12-09 23:45:04.676253975 +0100
++++ kdebase/kcontrol/konqhtml/advancedTabDialog.cpp	2011-12-09 23:46:28.239256986 +0100
 @@ -58,7 +58,6 @@
      layout->addSpacing( 20 );
      layout->addStretch();
@@ -26,8 +26,8 @@ diff -Nuar kcontrol.ORI/konqhtml/advancedTabDialog.cpp kcontrol/konqhtml/advance
      m_pConfig->writeEntry( "PermanentCloseButton", m_advancedWidget->m_pPermanentCloseButton->isChecked() );
      m_pConfig->writeEntry( "KonquerorTabforExternalURL", m_advancedWidget->m_pKonquerorTabforExternalURL->isChecked() );
 diff -Nuar kcontrol.ORI/konqhtml/advancedTabOptions.ui kcontrol/konqhtml/advancedTabOptions.ui
---- kcontrol.ORI/konqhtml/advancedTabOptions.ui	2011-12-09 23:45:04.674267416 +0100
-+++ kcontrol/konqhtml/advancedTabOptions.ui	2011-12-09 23:56:01.440255647 +0100
+--- kdebase/kcontrol.ORI/konqhtml/advancedTabOptions.ui	2011-12-09 23:45:04.674267416 +0100
++++ kdebase/kcontrol/konqhtml/advancedTabOptions.ui	2011-12-09 23:56:01.440255647 +0100
 @@ -62,6 +62,17 @@
                  </widget>
                  <widget class="QCheckBox">
@@ -47,8 +47,8 @@ diff -Nuar kcontrol.ORI/konqhtml/advancedTabOptions.ui kcontrol/konqhtml/advance
                      </property>
                      <property name="text">
 diff -Nuar konqueror.ORI/konq_guiclients.cc konqueror/konq_guiclients.cc
---- konqueror.ORI/konq_guiclients.cc	2011-12-09 23:44:28.950255993 +0100
-+++ konqueror/konq_guiclients.cc	2011-12-09 23:49:31.432261289 +0100
+--- kdebase/konqueror.ORI/konq_guiclients.cc	2011-12-09 23:44:28.950255993 +0100
++++ kdebase/konqueror/konq_guiclients.cc	2011-12-09 23:49:31.432261289 +0100
 @@ -115,6 +115,11 @@
          openInTabElement.setAttribute( "group", "tabhandling" );
          menu.appendChild( openInTabElement );
@@ -62,8 +62,8 @@ diff -Nuar konqueror.ORI/konq_guiclients.cc konqueror/konq_guiclients.cc
          separatorElement.setAttribute( "group", "tabhandling" );
          menu.appendChild( separatorElement );
 diff -Nuar konqueror.ORI/konq_mainwindow.cc konqueror/konq_mainwindow.cc
---- konqueror.ORI/konq_mainwindow.cc	2011-12-09 23:44:29.030265039 +0100
-+++ konqueror/konq_mainwindow.cc	2011-12-09 23:54:27.518255409 +0100
+--- kdebase/konqueror.ORI/konq_mainwindow.cc	2011-12-09 23:44:29.030265039 +0100
++++ kdebase/konqueror/konq_mainwindow.cc	2011-12-09 23:54:27.518255409 +0100
 @@ -2727,6 +2727,14 @@
      openURL( 0L, popupItems.getFirst()->url() );
  }
@@ -124,8 +124,8 @@ diff -Nuar konqueror.ORI/konq_mainwindow.cc konqueror/konq_mainwindow.cc
    }
  
 diff -Nuar konqueror.ORI/konq_mainwindow.h konqueror/konq_mainwindow.h
---- konqueror.ORI/konq_mainwindow.h	2011-12-09 23:44:28.941260682 +0100
-+++ konqueror/konq_mainwindow.h	2011-12-09 23:54:57.772255487 +0100
+--- kdebase/konqueror.ORI/konq_mainwindow.h	2011-12-09 23:44:28.941260682 +0100
++++ kdebase/konqueror/konq_mainwindow.h	2011-12-09 23:54:57.772255487 +0100
 @@ -444,6 +444,7 @@
    void slotPopupNewWindow();
    void slotPopupThisWindow();

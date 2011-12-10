@@ -16,14 +16,14 @@
 -
 -        const TQCString cstr=myStdStream.utf8();
 -        const int len = cstr.size()-1;
-+        QIODevice *fd= KFilterDev::deviceForFile(filename);
++        TQIODevice *fd= KFilterDev::deviceForFile(filename);
 +    
 +        if ( !fd || !fd->open(IO_ReadOnly))
 +        {
 +           delete fd;
 +           return 0;
 +        }
-+        QByteArray array(fd->readAll());
++        TQByteArray array(fd->readAll());
 +        kdDebug(7107) << "read " << array.size() << endl;
 +        fd->close();
 +        delete fd;

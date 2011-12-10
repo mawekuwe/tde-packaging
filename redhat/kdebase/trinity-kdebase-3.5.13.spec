@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 10
+%define release 11
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -53,33 +53,37 @@ Source5:	pamd.kscreensaver-trinity%{?dist}
 # TDE Official patches (from SVN), modified
 # (none)
 
+# TDE unofficial patches, fixing FTBFS
+## [kdebase/kdm] adds gcrypt support
+Patch7:		kdebase-3.5.13-kdm-crypt.patch
+## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
+Patch8:		kdebase-3.5.13-mediamanager_ftbfs.patch
+## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
+Patch9:		kdebase-3.5.13-startkde_ldpreload.patch
+
 # TDE for RHEL/Fedora specific patches
 ## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
-Patch3:		kdebase-3.5.13-kdesu-noignorebutton.patch
-## [kdebase/kdesktop] Modifies "open terminal here" on desktop
-Patch5:		kdebase-3.5.12-desktop-openterminalhere.patch
+Patch10:	kdebase-3.5.13-kdesu-noignorebutton.patch
+## [kdebase/kdesktop] Modifies 'open terminal here' on desktop
+Patch11:	kdebase-3.5.12-desktop-openterminalhere.patch
 ## [kdebase/kioslave] Forces HAL backend to use HAL mount options
-Patch6:		kdebase-3.5.12-halmountoptions.patch
+Patch12:	kdebase-3.5.12-halmountoptions.patch
 ## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
-Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
-## [kdebase/kicker/kicker/ui]
-Patch10:	kdebase-3.5.13-kickoff_unstable.patch
+Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
+## [kdebase/kicker/kicker/ui] Fix kickoff menu issues
+Patch14:	kdebase-3.5.13-kickoff_unstable.patch
 ## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
-Patch11:	kdebase-3.5.13-startkde_icon.patch
+Patch15:	kdebase-3.5.13-startkde_icon.patch
 
-# TDE 3.5.13 patches
-## [kdebase/kdm] adds gcrypt support
-Patch12:	kdebase-3.5.13-kdm-crypt.patch
-## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
-Patch8:		kdebase-3.5.13-startkde_ldpreload.patch
-## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
-Patch9:		kdebase-3.5.13-mediamanager_ftbfs.patch
+# TDE unofficial patches for enhanced features
 ## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
-Patch13:	kdebase-3.5.13-kate_mru.patch
+Patch20:	kdebase-3.5.13-kate_mru.patch
 ## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db'
-Patch14:	kdebase-3.5.13-kio_man_utf8.patch
+Patch21:	kdebase-3.5.13-kio_man_utf8.patch
 ## [kdebase/konqueror] Re-enable 'open tab in background'
-Patch15:	kdebase-3.5.13-konq_menu_tab_background.patch
+Patch22:	kdebase-3.5.13-konq_menu_tab_background.patch
+## [kdebase/konqueror/sidebar] Fix error message on documents parent folder
+Patch23:	kdebase-3.5.13-konqsidebar_documents.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -258,20 +262,23 @@ Protocol handlers (KIOslaves) for personal information management, including:
 
 %prep
 %setup -q -n kdebase
-%patch3 -p1
-%patch5 -p1
-%patch6 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p4
-%if 0%{?rhel} > 0
+%patch13 -p1
 %patch14 -p1
+%patch15 -p1
+
+%patch20 -p4
+%if 0%{?rhel} > 0
+%patch21 -p1
 %endif
-%patch15 -p4
+%patch22 -p1
+%patch23 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -656,6 +663,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Sat Dec 10 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-11
+- Fix error message 'cannot find parent folder' on konqueror sidebar
+
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-10
 - Removes Kubuntu branding [TDE Bug #449]
 - Re-enables 'open tab in background' konqueror feature [TDE Bug #245]

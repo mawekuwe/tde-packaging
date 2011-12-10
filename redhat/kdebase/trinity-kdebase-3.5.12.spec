@@ -53,41 +53,45 @@ Patch1:		http://www.trinitydesktop.org/patches/r1201523.diff
 # [kdebase/kcontrol] make it compatible with openssl < 1.0 
 Patch2:		http://www.trinitydesktop.org/patches/r1201705.diff
 # Fix My Documents shortcut on desktop
-Patch4:		http://www.trinitydesktop.org/patches/r1182808.diff
+Patch3:		http://www.trinitydesktop.org/patches/r1182808.diff
 # [kdebase] fixed an incompatibility with gcc 4.5 
-Patch8:		http://www.trinitydesktop.org/patches/r1221326.diff
+Patch4:		http://www.trinitydesktop.org/patches/r1221326.diff
 
 # TDE Official patches (from SVN), modified
 # [kdebase/ksmserver/shutdowndlg.cpp] Fixed invalid constructor per GCC 4.5.2
-Patch12:	kdebase-3.5.12-r1220975.patch
+Patch5:	kdebase-3.5.12-r1220975.patch
 # [kdebase] Another invalid constructor per gcc 4.5
-Patch9:		kdebase-3.5.12-r1220927.patch
+Patch6:		kdebase-3.5.12-r1220927.patch
+
+# TDE unofficial patches, fixing FTBFS
+## Fix for DBUS include files in RHEL6
+Patch7:		kdebase-3.5.12-shutdowndlg-dbus-include.patch
+## [kdebase/kcontrol]: disable components that depends of krandr (old distros)
+Patch8:		kdebase-3.5.12-disable-krandr.patch
 
 # TDE for RHEL/Fedora specific patches
 ## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
-Patch3:		kdebase-3.5.12-kdesu-noignorebutton.patch
+Patch10:	kdebase-3.5.12-kdesu-noignorebutton.patch
 ## [kdebase/kdesktop] Modifies 'open terminal here' on desktop
-Patch5:		kdebase-3.5.12-desktop-openterminalhere.patch
+Patch11:	kdebase-3.5.12-desktop-openterminalhere.patch
 ## [kdebase/kioslave] Forces HAL backend to use HAL mount options
-Patch6:		kdebase-3.5.12-halmountoptions.patch
+Patch12:	kdebase-3.5.12-halmountoptions.patch
 ## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
-Patch7:		kdebase-3.5.13-genkdmconf_Xsession_location.patch
+Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
 ## [kdebase/kicker/kicker/ui] Fix kickoff menu issues
-Patch10:	kdebase-3.5.12-kickoff_unstable.patch
+Patch14:	kdebase-3.5.12-kickoff_unstable.patch
 ## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
-Patch11:	kdebase-3.5.13-startkde_icon.patch
+Patch15:	kdebase-3.5.13-startkde_icon.patch
 
-# TDE 3.5.12 unofficial patches
-## Fix for DBUS include files in RHEL6
-Patch0:		kdebase-3.5.12-shutdowndlg-dbus-include.patch
+# TDE unofficial patches for enhanced features
 ## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
-Patch13:	kdebase-3.5.13-kate_mru.patch
+Patch20:	kdebase-3.5.13-kate_mru.patch
 ## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db'
-Patch14:	kdebase-3.5.12-kio_man_utf8.patch
-## [kdebase/kcontrol]: disable components that depends of krandr (old distros)
-Patch15:	kdebase-3.5.12-disable-krandr.patch
+Patch21:	kdebase-3.5.12-kio_man_utf8.patch
 ## [kdebase/konqueror] Re-enable 'open tab in background'
-Patch16:	kdebase-3.5.12-konq_menu_tab_background.patch
+Patch22:	kdebase-3.5.12-konq_menu_tab_background.patch
+## [kdebase/konqueror/sidebar] Fix error message on documents parent folder
+Patch23:	kdebase-3.5.13-konqsidebar_documents.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -266,7 +270,6 @@ Protocol handlers (KIOslaves) for personal information management, including:
 
 %prep
 %setup -q -n kdebase
-%patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
@@ -274,19 +277,23 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%if 0%{?rhel} && 0%{?rhel} < 6
 %patch8 -p1
-%patch9 -p1
+%endif
+
 %patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p4
-%if 0%{?rhel} > 0
+%patch13 -p1
 %patch14 -p1
-%endif
-%if 0%{?rhel} && 0%{?rhel} < 6
 %patch15 -p1
+
+%patch20 -p4
+%if 0%{?rhel} > 0
+%patch21 -p1
 %endif
-%patch16 -p0
+%patch22 -p1
+%patch23 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -623,7 +630,8 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 # TDE 3.5.12 specific
 %{_bindir}/kde3
-%exclude %{_datadir}/applications/kde/display.desktop
+#%exclude 
+%{_datadir}/applications/kde/display.desktop
 %exclude %{_datadir}/fonts/override/fonts.dir
 %{_docdir}/kdm/README
 
@@ -665,6 +673,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 - Fix 'kio_man' on RHEL 5 and RHEL 6 [TDE Bug #714]
 - Restores the 'number of files' and sorting widgets to the Kate configuration [TDE Bug #244]
 - Re-enables 'open tab in background' konqueror feature [TDE Bug #245]
+- Fix error message 'cannot find parent folder' on konqueror sidebar
 
 * Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-12
 - Updates Kickoff menu Fix [TDE Bugs #281, #508]
