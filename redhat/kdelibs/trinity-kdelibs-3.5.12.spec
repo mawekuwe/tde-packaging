@@ -326,7 +326,7 @@ EOF
 
 %changelog
 * Fri Dec 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-10
-- Fix conflict with 
+- Fix conflict with distro-provided KDE
 - Fix HTML directory location
 - Change defaults TDE directory to '/etc/trinity' and '~/.trinity'
 - Removes 'ld.so.conf.d' when installed under '/usr'
