@@ -1,0 +1,2 @@
+?package(kmatplot):needs="X11" section="Apps/Math"\
+  title="kmatplot" command="/usr/bin/kmatplot"
