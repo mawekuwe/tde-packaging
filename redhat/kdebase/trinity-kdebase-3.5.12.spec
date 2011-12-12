@@ -82,6 +82,8 @@ Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
 Patch14:	kdebase-3.5.12-kickoff_unstable.patch
 ## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
 Patch15:	kdebase-3.5.13-startkde_icon.patch
+## [kdebase/startkde] Fixes duplicate and incorrect TDE directories location
+Patch16:	kdebase-3.5.12-startkde_directories.patch
 
 # TDE unofficial patches for enhanced features
 ## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
@@ -287,6 +289,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch13 -p1
 %patch14 -p1
 %patch15 -p1
+%patch16 -p1
 
 %patch20 -p4
 %if 0%{?rhel} > 0
@@ -667,13 +670,14 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libkdeinit_*.*
 
 %changelog
-* Thu Dec 08 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-13
+* Thu Dec 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-13
 - Backports patches from TDE 3.5.13-10
 - Removes Kubuntu branding [TDE Bug #449]
 - Fix 'kio_man' on RHEL 5 and RHEL 6 [TDE Bug #714]
 - Restores the 'number of files' and sorting widgets to the Kate configuration [TDE Bug #244]
 - Re-enables 'open tab in background' konqueror feature [TDE Bug #245]
 - Fix error message 'cannot find parent folder' on konqueror sidebar
+- Fix KDEDIRS and other variables in 'startkde', that messes up translations.
 
 * Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-12
 - Updates Kickoff menu Fix [TDE Bugs #281, #508]

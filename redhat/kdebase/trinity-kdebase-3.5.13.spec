@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 11
+%define release 12
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -74,6 +74,8 @@ Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
 Patch14:	kdebase-3.5.13-kickoff_unstable.patch
 ## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
 Patch15:	kdebase-3.5.13-startkde_icon.patch
+## [kdebase/startkde] Fixes duplicate and incorrect TDE directories location
+Patch16:	kdebase-3.5.13-startkde_directories.patch
 
 # TDE unofficial patches for enhanced features
 ## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
@@ -272,6 +274,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch13 -p1
 %patch14 -p1
 %patch15 -p1
+%patch16 -p1
 
 %patch20 -p4
 %if 0%{?rhel} > 0
@@ -663,8 +666,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Sun Dec 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-12
+- Fix KDEDIRS and other variables in 'startkde', that messes up translations.
+
 * Sat Dec 10 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-11
-- Fix error message 'cannot find parent folder' on konqueror sidebar
+- Fix error message 'cannot find parent folder' on konqueror sidebar.
 
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-10
 - Removes Kubuntu branding [TDE Bug #449]
