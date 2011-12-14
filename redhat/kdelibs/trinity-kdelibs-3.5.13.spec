@@ -66,7 +66,7 @@ Requires:		qt%{?_qt_suffix}
 Requires:		avahi-qt3
 
 
-Provides:	kdelibs%{?_qt_suffix} = %{version}
+#Provides:	kdelibs%{?_qt_suffix} = %{version}
 %if "%{?_prefix}" == "/usr"
 Obsoletes:		kdelibs%{?_qt_suffix} <= 3.5.10
 %endif
@@ -109,6 +109,7 @@ format for easy browsing
 %prep
 %setup -q -n kdelibs
 %patch0 -p1
+
 
 
 %build

@@ -1,0 +1,19 @@
+--- kdebase/startkde.ORI	2011-12-11 18:55:25.873027885 +0100
++++ kdebase/startkde	2011-12-11 18:56:37.885065246 +0100
+@@ -144,14 +144,14 @@
+ fi
+ if [ -d /opt/kde3 ]; then
+   if [ -n "$KDEDIRS" ]; then
+-    export KDEDIRS=$KDEDIRS:/opt/kde3/:/usr/
++    export KDEDIRS=/opt/kde3/:$KDEDIRS:/usr/
+   else
+     export KDEDIRS=/opt/kde3/:/usr/
+   fi
+ fi
+ if [ -d /opt/trinity ]; then
+   if [ -n "$KDEDIRS" ]; then
+-    export KDEDIRS=$KDEDIRS:/opt/trinity/:/usr/
++    export KDEDIRS=/opt/trinity/:$KDEDIRS:/usr/
+   else
+     export KDEDIRS=/opt/trinity/:/usr/
+   fi

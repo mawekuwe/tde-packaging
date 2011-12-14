@@ -22,7 +22,7 @@ set -e
 HEED_DEFAULT_DISPLAY_MANAGER=true
 DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
 
-KDEDIRS=/opt/kde3/
+TDEDIRS=/opt/kde3/
 PATH=/opt/kde3/bin:/bin:/usr/bin:/sbin:/usr/sbin
 DAEMON=/opt/kde3/bin/kdm
 PIDFILE=/var/run/kdm.pid

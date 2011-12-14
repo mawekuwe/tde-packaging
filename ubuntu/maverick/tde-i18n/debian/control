@@ -1,5 +1,5 @@
 Source: tde-i18n-trinity
-Build-Depends: autoconf, debhelper (>= 5), tdelibs4-trinity-dev, gawk, gettext, bzip2, perl
+Build-Depends: debhelper (>= 5), tdelibs4-trinity-dev, gawk, gettext, bzip2, perl, automake, autoconf, libtool, libltdl-dev
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>

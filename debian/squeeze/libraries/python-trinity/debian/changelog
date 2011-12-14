@@ -320,7 +320,7 @@ python-trinity (3.11.3+20050829-1) unstable; urgency=low
   * Added the homepage of PyKDE to the package descriptions
   * HTML documentations is now installed into 
     /usr/share/doc/python-trinity-doc/html
-  * pykdeconfig.py now also knows that the sip files
+  * pytdeconfig.py now also knows that the sip files
     are in /usr/share/sip/trinity, not in /usr/share/sip/kde
     (Closes: #312708)
 

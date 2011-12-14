@@ -175,7 +175,7 @@ clean::
 	fi
 
 common-install-prehook-impl::
-	# generate form implementation using pykde user interface compiler
+	# generate form implementation using pytde user interface compiler
 	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n guidance_power_manager_ui.ui)
 	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n tooltip.ui)
 	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n notify.ui)

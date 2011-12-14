@@ -483,7 +483,7 @@ tdebindings (4:3.2.92-1) unstable; urgency=low
     was accepted upstream.
   * debian/libkjsembed1.install: install the qprocess kjsembed plugin.
   * debian/rules: disable the python directory, as sip, pyqt and
-    pykde are all packaged in Debian already.
+    pytde are all packaged in Debian already.
   * debian/control: added the libsmokekde1, libsmokekde-dev,
     libkorundum-ruby1.8 and libqtruby-ruby1.8 packages because of upstream
     additions.

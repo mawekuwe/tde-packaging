@@ -25,6 +25,7 @@ ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 else
 	CXXFLAGS += -O1
 endif
+CXXFLAGS += "-I/usr/include/tqt"
 
 PYTHONS	:= $(shell pyversions -vr debian/control)
 
@@ -44,7 +45,7 @@ build-%/configure-stamp:
 	mkdir -p build-$*
 	cd build-$* && echo yes \
                 | python$* ../configure.py \
-                        -c -n /usr/include/qscintilla \
+                        -c -n /usr/include/tqscintilla \
                         -o /usr/lib -u -j $(SPLIT) \
                         -d /usr/lib/python$*/$(call py_sitename,$*) \
                         -l /usr/include/python$* \
@@ -58,13 +59,13 @@ dbg-build-%/configure-stamp:
 	mkdir -p dbg-build-$*
 	cd dbg-build-$* && echo yes \
                 | python$*-dbg ../configure.py \
-                        -c -n /usr/include/qscintilla \
+                        -c -n /usr/include/tqscintilla \
                         -o /usr/lib -u -j $(SPLIT) \
                         -d /usr/lib/python$*/$(call py_sitename,$*) \
                         -l /usr/include/python$*_d \
                         -v /usr/share/sip/tqt \
                         -m /usr/lib/python$*/config_d \
-                        CXXFLAGS_RELEASE="" CXXFLAGS="-O0 -g" STRIP=""
+                        CXXFLAGS_RELEASE="" CXXFLAGS="-O0 -g -I/usr/include/tqt" STRIP=""
 	touch $@
 
 build: $(PYTHONS:%=build-%/build-stamp) $(PYTHONS:%=dbg-build-%/build-stamp)
@@ -87,7 +88,7 @@ install-indep: configure
 	for version in ${PYTHONS}; do\
 		pylib=$$(python$$version -c 'from distutils import sysconfig; print sysconfig.get_python_lib()'); \
 		mkdir -p debian/python-tqt-dev/$$pylib;\
-		install -m 644 -o root -g root build-$$version/pytqtconfig.py debian/python-tqt-dev/$$pylib;\
+		install -m 644 -o root -g root build-$$version/pyqtconfig.py debian/python-tqt-dev/$$pylib;\
 	done
 	dh_install -i
 
@@ -105,7 +106,7 @@ install-arch: build
 	  mkdir -p debian/python-tqt-gl-dbg/$$pylib;\
 	  mv debian/python-tqt-dbg/$$pylib/qtgl.so \
              debian/python-tqt-gl-dbg/$$pylib/;\
-	  mkdir -p debian/python-qtext-dbg/$$pylib;\
+	  mkdir -p debian/python-tqtext-dbg/$$pylib;\
 	  mv debian/python-tqt-dbg/$$pylib/qtext.so \
              debian/python-tqtext-dbg/$$pylib/;\
 	done

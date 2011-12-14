@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -32,7 +32,10 @@ URL:		http://www.trinitydesktop.org/
 Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source: kdegames-%{version}.tar.gz
+Source: 	kdegames-%{version}.tar.gz
+
+# [kdegames/ktuberling] Fix ktuberling pictures loading
+Patch0:		kdegames-3.5.13-ktuberling_fail_load_picture.patch
 
 Provides: kdegames3 = %{version}-%{release}
 
@@ -72,6 +75,7 @@ License: LGPLv2
 
 %prep
 %setup -q -n kdegames
+%patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -88,10 +92,6 @@ License: LGPLv2
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-
-%if 0%{?fedora} > 0
-export CXXFLAGS="${CXXFLAGS} -lkio"
-%endif
 
 %configure \
    --enable-new-ldflags \
@@ -192,6 +192,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Fix ktuberling picture loading [TDE Bug #638]
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Fix HTML directory location
 

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 7
+%define release 8
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -46,11 +46,17 @@ AutoReq: no
 
 Source0:	kde-i18n-%{version}.tar.gz
 
-# Patch for 'kdesu': the message was modified in 'kdebase' package
+# [zh_TW] Updated translations, thanks to Wei-Lun Chao !
+Source1:	kde-i18n-zh_TW-3.5.10.tar.bz2
+
+# TDE 3.5.12: Translate 'kdesu' message was modified in 'kdebase' package
 Patch0:		kde-i18n-kdesu.patch
 
-# Patch to translate 'Open Terminal Here' desktop shortcut
+# TDE 3.5.12: Translate 'Open Terminal Here' desktop shortcut
 Patch1:		trinity-kde-i18n-fr-openterminalhere.patch
+
+# TDE 3.5.13: French translations for new features
+Patch2:		kde-i18n-3.5.13-add_french_translations.patch
 
 BuildRequires:	findutils
 BuildRequires:	gettext
@@ -64,7 +70,7 @@ BuildRequires:	trinity-kdelibs-devel
 Summary: Afrikaans(af) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-af = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Afrikaans
 %{summary}.
 
@@ -72,7 +78,7 @@ Requires: kde-filesystem
 Summary: Arabic(ar) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ar = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Arabic
 %{summary}.
 
@@ -80,7 +86,7 @@ Requires: kde-filesystem
 Summary: Azerbaijani(az) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-az = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Azerbaijani
 %{summary}.
 
@@ -88,7 +94,7 @@ Requires: kde-filesystem
 Summary: Belarusian(be) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-be = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Belarusian
 %{summary}.
 
@@ -96,7 +102,7 @@ Requires: kde-filesystem
 Summary: Bulgarian(bg) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-bg = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Bulgarian
 %{summary}.
 
@@ -104,7 +110,7 @@ Requires: kde-filesystem
 Summary: Bengali(bn) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-bn = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Bengali
 %{summary}.
 
@@ -112,7 +118,7 @@ Requires: kde-filesystem
 Summary: Tibetan(bo) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-bo = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Tibetan
 %{summary}.
 
@@ -120,7 +126,7 @@ Requires: kde-filesystem
 Summary: Breton(br) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-br = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Breton
 %{summary}.
 
@@ -128,7 +134,7 @@ Requires: kde-filesystem
 Summary: Bosnian(bs) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-bs = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Bosnian
 %{summary}.
 
@@ -136,7 +142,7 @@ Requires: kde-filesystem
 Summary: Catalan(ca) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ca = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Catalan
 %{summary}.
 
@@ -144,14 +150,14 @@ Requires: kde-filesystem
 Summary: Czech(cs) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-cs = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Czech
 %{summary}.
 
 %package Cymraeg
 Summary: Cymraeg language support for KDE3
 Group: User Interface/Desktops
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Cymraeg
 %{summary}.
 
@@ -159,7 +165,7 @@ Requires: kde-filesystem
 Summary: Welsh(cy) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-cy = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Welsh
 %{summary}.
 
@@ -167,7 +173,7 @@ Requires: kde-filesystem
 Summary: Danish(da) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-da = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Danish
 %{summary}.
 
@@ -175,7 +181,7 @@ Requires: kde-filesystem
 Summary: German(de) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-de = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description German
 %{summary}.
 
@@ -183,7 +189,7 @@ Requires: kde-filesystem
 Summary: Greek(el) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-el = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Greek
 %{summary}.
 
@@ -191,7 +197,7 @@ Requires: kde-filesystem
 Summary: British(en_GB) English support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-en_GB = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description British
 %{summary}.
 
@@ -199,7 +205,7 @@ Requires: kde-filesystem
 Summary: Esperanto(eo) support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-eo = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Esperanto
 %{summary}.
 
@@ -207,7 +213,7 @@ Requires: kde-filesystem
 Summary: Spanish(es) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-es = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Spanish
 %{summary}.
 
@@ -215,7 +221,7 @@ Requires: kde-filesystem
 Summary: Estonian(et) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-et = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Estonian
 %{summary}.
 
@@ -223,7 +229,7 @@ Requires: kde-filesystem
 Summary: Basque(eu) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-eu = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Basque
 %{summary}.
 
@@ -231,7 +237,7 @@ Requires: kde-filesystem
 Summary: Farsi(fa) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fa = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Farsi
 %{summary}.
 
@@ -239,7 +245,7 @@ Requires: kde-filesystem
 Summary: Finnish(fi) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fi = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Finnish
 %{summary}.
 
@@ -247,7 +253,7 @@ Requires: kde-filesystem
 Summary: Faroese(fo) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fo = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Faroese
 %{summary}.
 
@@ -255,7 +261,7 @@ Requires: kde-filesystem
 Summary: French(fr) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fr = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description French
 %{summary}.
 
@@ -263,7 +269,7 @@ Requires: kde-filesystem
 Summary: Frisian(fy) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-fy = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Frisian
 %{summary}.
 
@@ -272,7 +278,7 @@ Summary: Irish(ga) language support for KDE3
 Group: User Interface/Desktops
 Obsoletes: kde-i18n-Gaeilge < %{version}
 Provides: %{name}-ga = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Irish
 %{summary}.
 
@@ -280,7 +286,7 @@ Requires: kde-filesystem
 Summary: Galician(gl) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-gl = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Galician
 %{summary}.
 
@@ -288,7 +294,7 @@ Requires: kde-filesystem
 Summary: Hebrew(he) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-he = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Hebrew
 %{summary}.
 
@@ -296,7 +302,7 @@ Requires: kde-filesystem
 Summary: Hindi(hi) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-hi = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Hindi
 %{summary}.
 
@@ -304,7 +310,7 @@ Requires: kde-filesystem
 Summary: Croatian(hr) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-hr = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Croatian
 %{summary}.
 
@@ -312,7 +318,7 @@ Requires: kde-filesystem
 Summary: Hungarian(hu) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-hu = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Hungarian
 %{summary}.
 
@@ -320,7 +326,7 @@ Requires: kde-filesystem
 Summary: Indonesian(id) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-id = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Indonesian
 %{summary}.
 
@@ -328,7 +334,7 @@ Requires: kde-filesystem
 Summary: Icelandic(is) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-is = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Icelandic
 %{summary}.
 
@@ -336,7 +342,7 @@ Requires: kde-filesystem
 Summary: Italian(it) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-it = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Italian
 %{summary}.
 
@@ -344,7 +350,7 @@ Requires: kde-filesystem
 Summary: Japanese(ja) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ja = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Japanese
 %{summary}.
 
@@ -352,7 +358,7 @@ Requires: kde-filesystem
 Summary: Korean(ko) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ko = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Korean
 %{summary}.
 
@@ -360,7 +366,7 @@ Requires: kde-filesystem
 Summary: Kurdish(ku) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ku = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Kurdish
 %{summary}.
 
@@ -368,7 +374,7 @@ Requires: kde-filesystem
 Summary: Lao(lo) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-lo = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Lao
 %{summary}.
 
@@ -376,7 +382,7 @@ Requires: kde-filesystem
 Summary: Lithuanian(lt) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-lt = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Lithuanian
 %{summary}.
 
@@ -384,7 +390,7 @@ Requires: kde-filesystem
 Summary: Latvian(lv) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-lv = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Latvian
 %{summary}.
 
@@ -392,7 +398,7 @@ Requires: kde-filesystem
 Summary: Maori(mi) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-mi = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Maori
 %{summary}.
 
@@ -400,7 +406,7 @@ Requires: kde-filesystem
 Summary: Macedonian(mk) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-mk = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Macedonian
 %{summary}.
 
@@ -408,7 +414,7 @@ Requires: kde-filesystem
 Summary: Maltese(mt) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-mt = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Maltese
 %{summary}.
 
@@ -416,7 +422,7 @@ Requires: kde-filesystem
 Summary: Dutch(nl) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-nl = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Dutch
 %{summary}.
 
@@ -424,7 +430,7 @@ Requires: kde-filesystem
 Summary: Norwegian(no) (Bokmaal) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-no = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Norwegian
 %{summary}.
 
@@ -432,7 +438,7 @@ Requires: kde-filesystem
 Summary: Norwegian(nn) (Nynorsk) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-nn = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Norwegian-Nynorsk
 %{summary}.
 
@@ -440,7 +446,7 @@ Requires: kde-filesystem
 Summary: Occitan(oc) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-oc = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Occitan
 %{summary}.
 
@@ -448,7 +454,7 @@ Requires: kde-filesystem
 Summary: Polish(pl) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-pl = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Polish
 %{summary}.
 
@@ -456,7 +462,7 @@ Requires: kde-filesystem
 Summary: Portuguese(pt) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-pt = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Portuguese
 %{summary}.
 
@@ -464,7 +470,7 @@ Requires: kde-filesystem
 Summary: Punjabi(pa) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-pa = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Punjabi
 %{summary}.
 
@@ -472,7 +478,7 @@ Requires: kde-filesystem
 Summary: Brazil(pt_BR) Portuguese language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-pt_BR = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Brazil
 %{summary}.
 
@@ -480,7 +486,7 @@ Requires: kde-filesystem
 Summary: Romanian(ro) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ro = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Romanian
 %{summary}.
 
@@ -488,7 +494,7 @@ Requires: kde-filesystem
 Summary: Russian(ru) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ru = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Russian
 %{summary}.
 
@@ -496,7 +502,7 @@ Requires: kde-filesystem
 Summary: Slovak(sk) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-sk = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Slovak
 %{summary}.
 
@@ -504,7 +510,7 @@ Requires: kde-filesystem
 Summary: Slovenian(sl) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-sl = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Slovenian
 %{summary}.
 
@@ -512,7 +518,7 @@ Requires: kde-filesystem
 Summary: Serbian(sr) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-sr = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Serbian
 %{summary}.
 
@@ -520,7 +526,7 @@ Requires: kde-filesystem
 Summary: Swedish(sv) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-sv = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Swedish
 %{summary}.
 
@@ -528,7 +534,7 @@ Requires: kde-filesystem
 Summary: Tamil(ta) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ta = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Tamil
 %{summary}.
 
@@ -536,7 +542,7 @@ Requires: kde-filesystem
 Summary: Tajik(tg) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-tg = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Tajik
 %{summary}.
 
@@ -544,7 +550,7 @@ Requires: kde-filesystem
 Summary: Thai(th) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-th = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Thai
 %{summary}.
 
@@ -552,7 +558,7 @@ Requires: kde-filesystem
 Summary: Turkish(tr) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-tr = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Turkish
 %{summary}.
 
@@ -560,7 +566,7 @@ Requires: kde-filesystem
 Summary: Ukrainian(uk) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-uk = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Ukrainian
 %{summary}.
 
@@ -568,7 +574,7 @@ Requires: kde-filesystem
 Summary: Venda(ven) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-ven = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Venda
 %{summary}.
 
@@ -576,7 +582,7 @@ Requires: kde-filesystem
 Summary: Vietnamese(vi) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-vi = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Vietnamese
 %{summary}.
 
@@ -584,7 +590,7 @@ Requires: kde-filesystem
 Summary: Walloon(wa) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-wa = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Walloon
 %{summary}.
 
@@ -592,7 +598,7 @@ Requires: kde-filesystem
 Summary: Xhosa(xh) (a Bantu language) support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-xh = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Xhosa
 %{summary}.
 
@@ -600,7 +606,7 @@ Requires: kde-filesystem
 Summary: Chinese(zh_CN) (Simplified Chinese) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-zh_CN = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Chinese
 %{summary}.
 
@@ -608,7 +614,7 @@ Requires: kde-filesystem
 Summary: Chinese(zh_TW) (Big5) language support for KDE3
 Group: User Interface/Desktops
 Provides: %{name}-tz_TW = %{version}-%{release}
-Requires: kde-filesystem
+#Requires: kde-filesystem
 %description Chinese-Big5
 %{summary}.
 
@@ -616,57 +622,54 @@ Requires: kde-filesystem
 
 %prep
 %setup -q -n kde-i18n
+%__cp -f %{SOURCE1} .
 
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*.tar.bz2; do
-    tar xjf ${f}
+    tar xjf "${f}"
   done
 done
 
 %patch0
 %patch1
+%patch2
 
 
 %build
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
+export kde_htmldir="%{tde_docdir}/HTML"
+
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*/; do
     if [ -d "${f}" ] && [ -x "${f}/configure" ] ; then 
       pushd ${f}
-      %configure --prefix=%{_prefix}
-      %{__make} %{?_smp_mflags}
+      %configure
+      %__make %{?_smp_mflags}
       popd
     fi
   done
 done
 
 %install
-rm -rf %{?buildroot}
+%__rm -rf %{?buildroot}
 export PATH="%{_bindir}:${PATH}"
 
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*/; do
     if [ -d "${f}" ] && [ -r "${f}/Makefile" ] ; then 
-      pushd ${f}
-
-      # Thales: dirty hack to remove directory 'common' from install list (else it fails to install)
-      if [ -r docs/Makefile ]; then
-        sed -i docs/Makefile -e "s,^\(SUBDIRS =.*\)common\(.*\)$,\1 \2,"
-      fi
-
-      %__make install DESTDIR=%{?buildroot}
-      popd
+      %__make install DESTDIR="%{?buildroot}" -C "${f}"
     fi
   done
 done
 
 # make symlinks relative
-pushd %{buildroot}%{_docdir}/HTML
+%if "%{_prefix}" == "/usr"
+pushd "%{buildroot}%{tde_docdir}/HTML"
 for lang in *; do
-  if [ -d $lang ]; then
-    pushd $lang
+  if [ -d "$lang" ]; then
+    pushd "$lang"
     for i in */*/*; do
       if [ -d $i -a -L $i/common ]; then
         rm -f $i/common
@@ -692,543 +695,483 @@ for lang in *; do
   fi
 done
 popd   
+%endif
 
 # remove zero-length file
-find %{buildroot}%{_docdir}/HTML -size 0 -exec rm -f {} \;
+find "%{buildroot}%{tde_docdir}/HTML" -size 0 -exec rm -f {} \;
 
 # See http://fedoraproject.org/wiki/Languages (???)
-rm -f %{buildroot}%{_datadir}/locale/*/flag.png
-# And also the 'desktop.entry' (???)
-rm -f %{buildroot}%{_datadir}/locale/*/entry.desktop
+%__rm -f %{buildroot}%{_datadir}/locale/*/flag.png
+
+# Removes conflict with KDE4
+%if "%{?_prefix}" == "/usr"
+%__rm -f %{buildroot}%{_datadir}/locale/*/entry.desktop
+%endif
 
 # remove obsolete KDE 3 application data translations
-rm -rf %{buildroot}%{_datadir}/apps
+%__rm -rf "%{buildroot}%{_datadir}/apps"
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %if "%( grep -w af <<< '%{KDE_LANGS}' )" != ""
 %files Afrikaans
 %defattr(-,root,root,-)
-%lang(af) %{_datadir}/locale/af/LC_MESSAGES/*
-%lang(af) %{_datadir}/locale/af/charset
-%lang(af) %{_docdir}/HTML/af/
+%lang(af) %{_datadir}/locale/af/*
+%lang(af) %{tde_docdir}/HTML/af/
 %endif
 
 %if "%( grep -w ar <<< '%{KDE_LANGS}' )" != ""
 %files Arabic 
 %defattr(-,root,root,-)
-%lang(ar) %{_datadir}/locale/ar/LC_MESSAGES/*
-%lang(ar) %{_datadir}/locale/ar/charset
+%lang(ar) %{_datadir}/locale/ar/*
 %endif
 
 %if "%( grep -w az <<< '%{KDE_LANGS}' )" != ""
 %files Azerbaijani
 %defattr(-,root,root,-)
-%lang(az) %{_datadir}/locale/az/LC_MESSAGES/*
-%lang(az) %{_datadir}/locale/az/charset
+%lang(az) %{_datadir}/locale/az/*
 %endif
 
 %if "%( grep -w be <<< '%{KDE_LANGS}' )" != ""
 %files Belarusian
 %defattr(-,root,root,-)
-%lang(be) %{_datadir}/locale/be/LC_MESSAGES/*
-%lang(be) %{_datadir}/locale/be/charset
+%lang(be) %{_datadir}/locale/be/*
 %endif
 
 %if "%( grep -w bg <<< '%{KDE_LANGS}' )" != ""
 %files Bulgarian
 %defattr(-,root,root,-)
-%lang(bg) %{_datadir}/locale/bg/LC_MESSAGES/*
-%lang(bg) %{_datadir}/locale/bg/charset
+%lang(bg) %{_datadir}/locale/bg/*
 %endif
 
 %if "%( grep -w bn <<< '%{KDE_LANGS}' )" != ""
 %files Bengali
 %defattr(-,root,root,-)
-%lang(bn) %{_datadir}/locale/bn/LC_MESSAGES/*
-%lang(bn) %{_datadir}/locale/bn/charset
+%lang(bn) %{_datadir}/locale/bn/*
 %endif
 
 %if "%( grep -w bo <<< '%{KDE_LANGS}' )" != ""
 %files Tibetan
 %defattr(-,root,root,-)
-%lang(bo) %{_datadir}/locale/bo/LC_MESSAGES/*
-%lang(bo) %{_datadir}/locale/bo/charset
+%lang(bo) %{_datadir}/locale/bo/*
 %endif
 
 %if "%( grep -w br <<< '%{KDE_LANGS}' )" != ""
 %files Breton
 %defattr(-,root,root,-)
-%lang(br) %{_datadir}/locale/br/LC_MESSAGES/*
-%lang(br) %{_datadir}/locale/br/charset
+%lang(br) %{_datadir}/locale/br/*
 %endif
 
 %if "%( grep -w bs <<< '%{KDE_LANGS}' )" != ""
 %files Bosnian
 %defattr(-,root,root,-)
-%lang(bs) %{_datadir}/locale/bs/LC_MESSAGES/*
-%lang(bs) %{_datadir}/locale/bs/charset
+%lang(bs) %{_datadir}/locale/bs/*
 %endif
 
 %if "%( grep -w ca <<< '%{KDE_LANGS}' )" != ""
 %files Catalan
 %defattr(-,root,root,-)
-%lang(ca) %{_datadir}/locale/ca/LC_MESSAGES/*
-%lang(ca) %{_datadir}/locale/ca/charset
-%lang(ca) %{_docdir}/HTML/ca/
+%lang(ca) %{_datadir}/locale/ca/*
+%lang(ca) %{tde_docdir}/HTML/ca/
 %endif
 
 %if "%( grep -w cs <<< '%{KDE_LANGS}' )" != ""
 %files Czech
 %defattr(-,root,root,-)
-%lang(cs) %{_datadir}/locale/cs/LC_MESSAGES/*
-%lang(cs) %{_datadir}/locale/cs/charset
-%lang(cs) %{_docdir}/HTML/cs/
+%lang(cs) %{_datadir}/locale/cs/*
+%lang(cs) %{tde_docdir}/HTML/cs/
 %endif
 
 %if "%( grep -w cy <<< '%{KDE_LANGS}' )" != ""
 %files Welsh
 %defattr(-,root,root,-)
-%lang(cy) %{_datadir}/locale/cy/LC_MESSAGES/*
-%lang(cy) %{_datadir}/locale/cy/charset
+%lang(cy) %{_datadir}/locale/cy/*
 %endif
 
 %if "%( grep -w da <<< '%{KDE_LANGS}' )" != ""
 %files Danish
 %defattr(-,root,root,-)
-%lang(da) %{_datadir}/locale/da/LC_MESSAGES/*
-%lang(da) %{_datadir}/locale/da/charset
-%lang(da) %{_datadir}/locale/da/da.compendium
-%lang(da) %{_docdir}/HTML/da/
+%lang(da) %{_datadir}/locale/da/*
+%lang(da) %{tde_docdir}/HTML/da/
 %endif
 
 %if "%( grep -w de <<< '%{KDE_LANGS}' )" != ""
 %files German
 %defattr(-,root,root,-)
-%lang(de) %{_datadir}/locale/de/LC_MESSAGES/*
-%lang(de) %{_datadir}/locale/de/charset
-%lang(de) %{_docdir}/HTML/de/
+%lang(de) %{_datadir}/locale/de/*
+%lang(de) %{tde_docdir}/HTML/de/
 %endif
 
 %if "%( grep -w el <<< '%{KDE_LANGS}' )" != ""
 %files Greek
 %defattr(-,root,root,-)
-%lang(el) %{_datadir}/locale/el/LC_MESSAGES/*
-%lang(el) %{_datadir}/locale/el/charset
+%lang(el) %{_datadir}/locale/el/*
 %endif
 
 %if "%( grep -w en_GB <<< '%{KDE_LANGS}' )" != ""
 %files British
 %defattr(-,root,root,-)
-%lang(en_GB) %{_datadir}/locale/en_GB/LC_MESSAGES/*
-%lang(en_GB) %{_datadir}/locale/en_GB/charset
-%lang(en_GB) %{_docdir}/HTML/en_GB/
+%lang(en_GB) %{_datadir}/locale/en_GB/*
+%lang(en_GB) %{tde_docdir}/HTML/en_GB/
 %endif
 
 %if "%( grep -w eo <<< '%{KDE_LANGS}' )" != ""
 %files Esperanto
 %defattr(-,root,root,-)
-%lang(eo) %{_datadir}/locale/eo/LC_MESSAGES/*
-%lang(eo) %{_datadir}/locale/eo/charset
+%lang(eo) %{_datadir}/locale/eo/*
 %endif
 
 %if "%( grep -w es <<< '%{KDE_LANGS}' )" != ""
 %files Spanish
 %defattr(-,root,root,-)
-%lang(es) %{_datadir}/locale/es/LC_MESSAGES/*
-%lang(es) %{_datadir}/locale/es/charset
-%lang(es) %{_docdir}/HTML/es/
+%lang(es) %{_datadir}/locale/es/*
+%lang(es) %{tde_docdir}/HTML/es/
 %endif
 
 %if "%( grep -w et <<< '%{KDE_LANGS}' )" != ""
 %files Estonian
 %defattr(-,root,root,-)
-%lang(et) %{_datadir}/locale/et/LC_MESSAGES/*
-%lang(et) %{_datadir}/locale/et/charset
-%lang(et) %{_docdir}/HTML/et/
+%lang(et) %{_datadir}/locale/et/*
+%lang(et) %{tde_docdir}/HTML/et/
 %endif
 
 %if "%( grep -w eu <<< '%{KDE_LANGS}' )" != ""
 %files Basque
 %defattr(-,root,root,-)
-%lang(eu) %{_datadir}/locale/eu/LC_MESSAGES/*
-%lang(eu) %{_datadir}/locale/eu/charset
+%lang(eu) %{_datadir}/locale/eu/*
 %endif
 
 %if "%( grep -w fa <<< '%{KDE_LANGS}' )" != ""
 %files Farsi
 %defattr(-,root,root,-)
-%lang(fa) %{_datadir}/locale/fa/LC_MESSAGES/*
-%lang(fa) %{_datadir}/locale/fa/charset
+%lang(fa) %{_datadir}/locale/fa/*
 %endif
 
 %if "%( grep -w fi <<< '%{KDE_LANGS}' )" != ""
 %files Finnish
 %defattr(-,root,root,-)
-%lang(fi) %{_datadir}/locale/fi/LC_MESSAGES/*
-%lang(fi) %{_datadir}/locale/fi/charset
-%lang(fi) %{_docdir}/HTML/fi/
+%lang(fi) %{_datadir}/locale/fi/*
+%lang(fi) %{tde_docdir}/HTML/fi/
 %endif
 
 %if "%( grep -w fo <<< '%{KDE_LANGS}' )" != ""
 %files Faroese
 %defattr(-,root,root,-)
-%lang(fo) %{_datadir}/locale/fo/LC_MESSAGES/*
-%lang(fo) %{_datadir}/locale/fo/charset
+%lang(fo) %{_datadir}/locale/fo/*
 %endif
 
 %if "%( grep -w fr <<< '%{KDE_LANGS}' )" != ""
 %files French
 %defattr(-,root,root,-)
-%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/*
-%lang(fr) %{_datadir}/locale/fr/charset
-%lang(fr) %{_datadir}/locale/fr/nbsp_gui_fr.txt
-%lang(fr) %{_datadir}/locale/fr/relecture_*
-%lang(fr) %{_docdir}/HTML/fr/
+%lang(fr) %{_datadir}/locale/fr/*
+%lang(fr) %{tde_docdir}/HTML/fr/
 %endif
 
 %if "%( grep -w fy <<< '%{KDE_LANGS}' )" != ""
 %files Frisian
 %defattr(-,root,root,-)
-%lang(fy) %{_datadir}/locale/fy/LC_MESSAGES/*
-%lang(fy) %{_datadir}/locale/fy/charset
+%lang(fy) %{_datadir}/locale/fy/*
 %endif
 
 %if "%( grep -w ga <<< '%{KDE_LANGS}' )" != ""
 %files Irish
 %defattr(-,root,root,-)
-%lang(ga) %{_datadir}/locale/ga/LC_MESSAGES/*
-%lang(ga) %{_datadir}/locale/ga/charset
+%lang(ga) %{_datadir}/locale/ga/*
 %endif
 
 %if "%( grep -w gl <<< '%{KDE_LANGS}' )" != ""
 %files Galician
 %defattr(-,root,root,-)
-%lang(gl) %{_datadir}/locale/gl/LC_MESSAGES/*
-%lang(gl) %{_datadir}/locale/gl/charset
+%lang(gl) %{_datadir}/locale/gl/*
 %endif
 
 %if "%( grep -w he <<< '%{KDE_LANGS}' )" != ""
 %files Hebrew
 %defattr(-,root,root,-)
-%lang(he) %{_datadir}/locale/he/LC_MESSAGES/*
-%lang(he) %{_datadir}/locale/he/charset
-%lang(he) %{_docdir}/HTML/he/
+%lang(he) %{_datadir}/locale/he/*
+%lang(he) %{tde_docdir}/HTML/he/
 %endif
 
 %if "%( grep -w hi <<< '%{KDE_LANGS}' )" != ""
 %files Hindi
 %defattr(-,root,root,-)
-%lang(hi) %{_datadir}/locale/hi/LC_MESSAGES/*
-%lang(hi) %{_datadir}/locale/hi/charset
+%lang(hi) %{_datadir}/locale/hi/*
 %endif
 
 %if "%( grep -w hr <<< '%{KDE_LANGS}' )" != ""
 %files Croatian
 %defattr(-,root,root,-)
-%lang(hr) %{_datadir}/locale/hr/LC_MESSAGES/*
-%lang(hr) %{_datadir}/locale/hr/charset
-%lang(hr) %{_docdir}/HTML/hr/
+%lang(hr) %{_datadir}/locale/hr/*
+%lang(hr) %{tde_docdir}/HTML/hr/
 %endif
 
 %if "%( grep -w hu <<< '%{KDE_LANGS}' )" != ""
 %files Hungarian
 %defattr(-,root,root,-)
-%lang(hu) %{_datadir}/locale/hu/LC_MESSAGES/*
-%lang(hu) %{_datadir}/locale/hu/charset
-%lang(hu) %{_docdir}/HTML/hu/
+%lang(hu) %{_datadir}/locale/hu/*
+%lang(hu) %{tde_docdir}/HTML/hu/
 %endif
 
 %if "%( grep -w id <<< '%{KDE_LANGS}' )" != ""
 %files Indonesian
 %defattr(-,root,root,-)
-%lang(id) %{_datadir}/locale/id/LC_MESSAGES/*
-%lang(id) %{_datadir}/locale/id/charset
-%lang(id) %{_docdir}/HTML/id/
+%lang(id) %{_datadir}/locale/id/*
+%lang(id) %{tde_docdir}/HTML/id/
 %endif
 
 %if "%( grep -w is <<< '%{KDE_LANGS}' )" != ""
 %files Icelandic
 %defattr(-,root,root,-)
-%lang(is) %{_datadir}/locale/is/LC_MESSAGES/*
-%lang(is) %{_datadir}/locale/is/charset
+%lang(is) %{_datadir}/locale/is/*
 %endif
 
 %if "%( grep -w it <<< '%{KDE_LANGS}' )" != ""
 %files Italian
 %defattr(-,root,root,-)
-%lang(it) %{_datadir}/locale/it/LC_MESSAGES/*
-%lang(it) %{_datadir}/locale/it/charset
-%lang(it) %{_docdir}/HTML/it/
+%lang(it) %{_datadir}/locale/it/*
+%lang(it) %{tde_docdir}/HTML/it/
 %endif
 
 %if "%( grep -w ja <<< '%{KDE_LANGS}' )" != ""
 %files Japanese
 %defattr(-,root,root,-)
-%lang(ja) %{_datadir}/locale/ja/LC_MESSAGES/*
-%lang(ja) %{_datadir}/locale/ja/charset
-%lang(ja) %{_docdir}/HTML/ja/
+%lang(ja) %{_datadir}/locale/ja/*
+%lang(ja) %{tde_docdir}/HTML/ja/
 %endif
 
 %if "%( grep -w ko <<< '%{KDE_LANGS}' )" != ""
 %files Korean
 %defattr(-,root,root,-)
-%lang(ko) %{_datadir}/locale/ko/LC_MESSAGES/*
-%lang(ko) %{_datadir}/locale/ko/charset
-%lang(ko) %{_docdir}/HTML/ko/
+%lang(ko) %{_datadir}/locale/ko/*
+%lang(ko) %{tde_docdir}/HTML/ko/
 %endif
 
 %if "%( grep -w ku <<< '%{KDE_LANGS}' )" != ""
 %files Kurdish
 %defattr(-,root,root,-)
-%lang(ku) %{_datadir}/locale/ku/LC_MESSAGES/*
-%lang(ku) %{_datadir}/locale/ku/charset
-%lang(ku) %{_docdir}/HTML/ku/
+%lang(ku) %{_datadir}/locale/ku/*
+%lang(ku) %{tde_docdir}/HTML/ku/
 %endif
 
 %if "%( grep -w lao <<< '%{KDE_LANGS}' )" != ""
 %files Lao
 %defattr(-,root,root,-)
-%lang(lo) %{_datadir}/locale/lo/LC_MESSAGES/*
-%lang(lo) %{_datadir}/locale/lo/charset
-%lang(lo) %{_docdir}/HTML/lo/
+%lang(lo) %{_datadir}/locale/lo/*
+%lang(lo) %{tde_docdir}/HTML/lo/
 %endif
 
 %if "%( grep -w lt <<< '%{KDE_LANGS}' )" != ""
 %files Lithuanian
 %defattr(-,root,root,-)
-%lang(lt) %{_datadir}/locale/lt/LC_MESSAGES/*
-%lang(lt) %{_datadir}/locale/lt/charset
+%lang(lt) %{_datadir}/locale/lt/*
 %endif
 
 %if "%( grep -w lv <<< '%{KDE_LANGS}' )" != ""
 %files Latvian
 %defattr(-,root,root,-)
-%lang(lv) %{_datadir}/locale/lv/LC_MESSAGES/*
-%lang(lv) %{_datadir}/locale/lv/charset
+%lang(lv) %{_datadir}/locale/lv/*
 %endif
 
 %if "%( grep -w mi <<< '%{KDE_LANGS}' )" != ""
 %files Maori
 %defattr(-,root,root,-)
-%lang(mi) %{_datadir}/locale/mi/LC_MESSAGES/*
-%lang(mi) %{_datadir}/locale/mi/charset
+%lang(mi) %{_datadir}/locale/mi/*
 %endif
 
 %if "%( grep -w mk <<< '%{KDE_LANGS}' )" != ""
 %files Macedonian
 %defattr(-,root,root,-)
-%lang(mk) %{_datadir}/locale/mk/LC_MESSAGES/*
-%lang(mk) %{_datadir}/locale/mk/charset
+%lang(mk) %{_datadir}/locale/mk/*
 %endif
 
 %if "%( grep -w mt <<< '%{KDE_LANGS}' )" != ""
 %files Maltese
 %defattr(-,root,root,-)
-%lang(mt) %{_datadir}/locale/mt/LC_MESSAGES/*
-%lang(mt) %{_datadir}/locale/mt/charset
+%lang(mt) %{_datadir}/locale/mt/*
 %endif
 
 %if "%( grep -w nl <<< '%{KDE_LANGS}' )" != ""
 %files Dutch
 %defattr(-,root,root,-)
-%lang(nl) %{_datadir}/locale/nl/LC_MESSAGES/*
-%lang(nl) %{_datadir}/locale/nl/charset
-%lang(nl) %{_docdir}/HTML/nl/
+%lang(nl) %{_datadir}/locale/nl/*
+%lang(nl) %{tde_docdir}/HTML/nl/
 %endif
 
 %if "%( grep -w nb <<< '%{KDE_LANGS}' )" != ""
 %files Norwegian
 %defattr(-,root,root,-)
-%lang(nb) %{_datadir}/locale/nb/LC_MESSAGES/*
-%lang(nb) %{_datadir}/locale/nb/charset
-%lang(nb) %{_datadir}/locale/nb/README
-#%lang(nb) %{_docdir}/HTML/nb/
+%lang(nb) %{_datadir}/locale/nb/*
+#%lang(nb) %{tde_docdir}/HTML/nb/
 %endif
 
 %if "%( grep -w nn <<< '%{KDE_LANGS}' )" != ""
 %files Norwegian-Nynorsk
 %defattr(-,root,root,-)
-%lang(nn) %{_datadir}/locale/nn/LC_MESSAGES/*
-%lang(nn) %{_datadir}/locale/nn/charset
-#%lang(nn) %{_docdir}/HTML/nn/
+%lang(nn) %{_datadir}/locale/nn/*
+#%lang(nn) %{tde_docdir}/HTML/nn/
 %endif
 
 %if "%( grep -w oc <<< '%{KDE_LANGS}' )" != ""
 %files Occitan
 %defattr(-,root,root,-)
-%lang(oc) %{_datadir}/locale/oc/LC_MESSAGES/*
-%lang(oc) %{_datadir}/locale/oc/charset
+%lang(oc) %{_datadir}/locale/oc/*
 %endif
 
 %if "%( grep -w pa <<< '%{KDE_LANGS}' )" != ""
 %files Punjabi
 %defattr(-,root,root,-)
-%lang(pa) %{_datadir}/locale/pa/LC_MESSAGES/*
-%lang(pa) %{_datadir}/locale/pa/charset
+%lang(pa) %{_datadir}/locale/pa/*
 %endif
 
 %if "%( grep -w pl <<< '%{KDE_LANGS}' )" != ""
 %files Polish
 %defattr(-,root,root,-)
-%lang(pl) %{_datadir}/locale/pl/LC_MESSAGES/*
-%lang(pl) %{_datadir}/locale/pl/charset
-%lang(pl) %{_docdir}/HTML/pl/
+%lang(pl) %{_datadir}/locale/pl/*
+%lang(pl) %{tde_docdir}/HTML/pl/
 %endif
 
 %if "%( grep -w pt <<< '%{KDE_LANGS}' )" != ""
 %files Portuguese
 %defattr(-,root,root,-)
-%lang(pt) %{_datadir}/locale/pt/LC_MESSAGES/*
-%lang(pt) %{_datadir}/locale/pt/charset
-%lang(pt) %{_docdir}/HTML/pt/
+%lang(pt) %{_datadir}/locale/pt/*
+%lang(pt) %{tde_docdir}/HTML/pt/
 %endif
 
 %if "%( grep -w pt_BR <<< '%{KDE_LANGS}' )" != ""
 %files Brazil
 %defattr(-,root,root,-)
-%lang(pt_BR) %{_datadir}/locale/pt_BR/LC_MESSAGES/*
-%lang(pt_BR) %{_datadir}/locale/pt_BR/charset
-%lang(pt_BR) %{_docdir}/HTML/pt_BR/
+%lang(pt_BR) %{_datadir}/locale/pt_BR/*
+%lang(pt_BR) %{tde_docdir}/HTML/pt_BR/
 %endif
 
 %if "%( grep -w ro <<< '%{KDE_LANGS}' )" != ""
 %files Romanian
 %defattr(-,root,root,-)
-%lang(ro) %{_datadir}/locale/ro/LC_MESSAGES/*
-%lang(ro) %{_datadir}/locale/ro/charset
-%lang(ro) %{_docdir}/HTML/ro/
+%lang(ro) %{_datadir}/locale/ro/*
+%lang(ro) %{tde_docdir}/HTML/ro/
 %endif
 
 %if "%( grep -w ru <<< '%{KDE_LANGS}' )" != ""
 %files Russian
 %defattr(-,root,root,-)
-%lang(ru) %{_datadir}/locale/ru/LC_MESSAGES/*
-%lang(ru) %{_datadir}/locale/ru/charset
-%lang(ru) %{_docdir}/HTML/ru/
+%lang(ru) %{_datadir}/locale/ru/*
+%lang(ru) %{tde_docdir}/HTML/ru/
 %endif
 
 %if "%( grep -w sk <<< '%{KDE_LANGS}' )" != ""
 %files Slovak
 %defattr(-,root,root,-)
-%lang(sk) %{_datadir}/locale/sk/LC_MESSAGES/*
-%lang(sk) %{_datadir}/locale/sk/charset
-%lang(sk) %{_docdir}/HTML/sk/
+%lang(sk) %{_datadir}/locale/sk/*
+%lang(sk) %{tde_docdir}/HTML/sk/
 %endif
 
 %if "%( grep -w sl <<< '%{KDE_LANGS}' )" != ""
 %files Slovenian
 %defattr(-,root,root,-)
-%lang(sl) %{_datadir}/locale/sl/LC_MESSAGES/*
-%lang(sl) %{_datadir}/locale/sl/charset
-%lang(sl) %{_docdir}/HTML/sl/
+%lang(sl) %{_datadir}/locale/sl/*
+%lang(sl) %{tde_docdir}/HTML/sl/
 %endif
 
 %if "%( grep -w sr <<< '%{KDE_LANGS}' )" != ""
 %files Serbian
 %defattr(-,root,root,-)
-%lang(sr) %{_datadir}/locale/sr/LC_MESSAGES/*
-%lang(sr) %{_datadir}/locale/sr/charset
-%lang(sr) %{_docdir}/HTML/sr/
+%lang(sr) %{_datadir}/locale/sr/*
+%lang(sr) %{tde_docdir}/HTML/sr/
 %endif
 
 %if "%( grep -w sv <<< '%{KDE_LANGS}' )" != ""
 %files Swedish
 %defattr(-,root,root,-)
-%lang(sv) %{_datadir}/locale/sv/LC_MESSAGES/*
-%lang(sv) %{_datadir}/locale/sv/charset
-%lang(sv) %{_docdir}/HTML/sv/
+%lang(sv) %{_datadir}/locale/sv/*
+%lang(sv) %{tde_docdir}/HTML/sv/
 %endif
 
 %if "%( grep -w ta <<< '%{KDE_LANGS}' )" != ""
 %files Tamil
 %defattr(-,root,root,-)
-%lang(ta) %{_datadir}/locale/ta/LC_MESSAGES/*
-%lang(ta) %{_datadir}/locale/ta/charset
+%lang(ta) %{_datadir}/locale/ta/*
 %endif
 
 %if "%( grep -w tg <<< '%{KDE_LANGS}' )" != ""
 %files Tajik
 %defattr(-,root,root,-)
-%lang(tg) %{_datadir}/locale/tg/LC_MESSAGES/*
-%lang(tg) %{_datadir}/locale/tg/charset
+%lang(tg) %{_datadir}/locale/tg/*
 %endif
 
 %if "%( grep -w th <<< '%{KDE_LANGS}' )" != ""
 %files Thai
 %defattr(-,root,root,-)
-%lang(th) %{_datadir}/locale/th/LC_MESSAGES/*
-%lang(th) %{_datadir}/locale/th/charset
+%lang(th) %{_datadir}/locale/th/*
 %endif
 
 %if "%( grep -w tr <<< '%{KDE_LANGS}' )" != ""
 %files Turkish
 %defattr(-,root,root,-)
-%lang(tr) %{_datadir}/locale/tr/LC_MESSAGES/*
-%lang(tr) %{_datadir}/locale/tr/charset
-%lang(tr) %{_docdir}/HTML/tr/
+%lang(tr) %{_datadir}/locale/tr/*
+%lang(tr) %{tde_docdir}/HTML/tr/
 %endif
 
 %if "%( grep -w uk <<< '%{KDE_LANGS}' )" != ""
 %files Ukrainian
 %defattr(-,root,root,-)
-%lang(uk) %{_docdir}/HTML/uk/
-%lang(uk) %{_datadir}/locale/uk/LC_MESSAGES/*
-%lang(uk) %{_datadir}/locale/uk/charset
+%lang(uk) %{tde_docdir}/HTML/uk/
+%lang(uk) %{_datadir}/locale/uk/*
 %endif
 
 %if "%( grep -w ven <<< '%{KDE_LANGS}' )" != ""
 %files Venda
 %defattr(-,root,root,-)
-%lang(ven) %{_datadir}/locale/ven/LC_MESSAGES/*
-%lang(ven) %{_datadir}/locale/ven/charset
+%lang(ven) %{_datadir}/locale/ven/*
 %endif
 
 %if "%( grep -w vi <<< '%{KDE_LANGS}' )" != ""
 %files Vietnamese
 %defattr(-,root,root,-)
-%lang(vi) %{_datadir}/locale/vi/LC_MESSAGES/*
-%lang(vi) %{_datadir}/locale/vi/charset
+%lang(vi) %{_datadir}/locale/vi/*
 %endif
 
 %if "%( grep -w wa <<< '%{KDE_LANGS}' )" != ""
 %files Walloon
 %defattr(-,root,root,-)
-%lang(wa) %{_datadir}/locale/wa/LC_MESSAGES/*
-%lang(wa) %{_datadir}/locale/wa/charset
+%lang(wa) %{_datadir}/locale/wa/*
 %endif
 
 %if "%( grep -w xh <<< '%{KDE_LANGS}' )" != ""
 %files Xhosa
 %defattr(-,root,root,-)
-%lang(xh) %{_datadir}/locale/xh/LC_MESSAGES/*
-%lang(xh) %{_datadir}/locale/xh/charset
-%lang(xh) %{_docdir}/HTML/xh/
+%lang(xh) %{_datadir}/locale/xh/*
+%lang(xh) %{tde_docdir}/HTML/xh/
 %endif
 
 %if "%( grep -w zh_CN <<< '%{KDE_LANGS}' )" != ""
 %files Chinese
 %defattr(-,root,root,-)
-%lang(zh_CN) %{_datadir}/locale/zh_CN/LC_MESSAGES/*
-%lang(zh_CN) %{_datadir}/locale/zh_CN/charset
-%lang(zh_CN) %{_docdir}/HTML/zh_CN/
+%lang(zh_CN) %{_datadir}/locale/zh_CN/*
+%lang(zh_CN) %{tde_docdir}/HTML/zh_CN/
 %endif
 
 %if "%( grep -w zh_TW <<< '%{KDE_LANGS}' )" != ""
 %files Chinese-Big5
 %defattr(-,root,root,-)
-%lang(zh_TW) %{_datadir}/locale/zh_TW/LC_MESSAGES/*
-%lang(zh_TW) %{_datadir}/locale/zh_TW/charset
-%lang(zh_TW) %{_docdir}/HTML/zh_TW/
+%lang(zh_TW) %{_datadir}/locale/zh_TW/*
+%lang(zh_TW) %{tde_docdir}/HTML/zh_TW/
 %endif
 
 %changelog
+* Fri Dec 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-8
+- Backport from TDE 3.5.13
+- Removes 'kde-filesystem" dependancy
+- Fix HTML directory location
+- Re-adds missing files 'entry.desktop'
+- Updates zh_TW translation, thanks to Wei-Lun Chao
+- Add missing french translations for TDE 3.5.13
+
 * Mon Sep 19 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-7
 - Add support for RHEL5
 
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-6
-- Re-introduce all languages
+- Re-introduce all languages (again)
 
 * Wed Aug 24 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-5
 - Re-introduce all languages

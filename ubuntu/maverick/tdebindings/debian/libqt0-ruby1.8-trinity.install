@@ -9,7 +9,7 @@ debian/tmp/opt/trinity/lib/ruby/1.8/Qt.rb
 debian/tmp/opt/trinity/lib/ruby/1.8/*/qtruby.so*
 debian/tmp/opt/trinity/lib/ruby/1.8/*/qtruby.la
 
-debian/tmp/opt/trinity/lib/ruby/1.8/*/qui.so*
-debian/tmp/opt/trinity/lib/ruby/1.8/*/qui.la
+debian/tmp/opt/trinity/lib/ruby/1.8/*/tqui.so*
+debian/tmp/opt/trinity/lib/ruby/1.8/*/tqui.la
 
 qtruby/ChangeLog /opt/trinity/share/doc/libqt0-ruby1.8

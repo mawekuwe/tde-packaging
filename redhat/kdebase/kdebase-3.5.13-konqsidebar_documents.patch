@@ -1,0 +1,11 @@
+--- kdebase/konqueror/sidebar/trees/dirtree_module/dirtree_module.cpp.ORI	2011-12-10 15:07:43.171011925 +0100
++++ kdebase/konqueror/sidebar/trees/dirtree_module/dirtree_module.cpp	2011-12-10 15:07:48.000797355 +0100
+@@ -400,7 +400,7 @@
+     kdDebug(1201) << this << " KonqSidebarDirTreeModule::slotNewItems " << entries.count() << endl;
+ 
+     Q_ASSERT(entries.count());
+-    KFileItem * firstItem = const_cast<KFileItemList&>(entries).first(); // qlist sucks for constness
++    KFileItem * firstItem = const_cast<KFileItemList&>(entries).last(); // qlist sucks for constness
+ 
+     // Find parent item - it's the same for all the items
+     KURL dir( firstItem->url().url(-1) );

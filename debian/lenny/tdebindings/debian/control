@@ -2,7 +2,7 @@ Source: tdebindings-trinity
 Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5),
  python-dev (>= 2.3.5-11), python-support (>= 0.5), quilt, gawk,
  gettext, default-jdk [amd64 i386 ia64 lpia powerpc s390 sparc],
- tdelibs4-trinity-dev (>= 4:3.5.9), libqt3-compat-headers (>= 3:3.3.5),
+ tdelibs4-trinity-dev (>= 4:3.5.9), libtqt3-compat-headers (>= 3:3.3.5),
  ruby, ruby1.8-dev, flex, bison,
  automake, autoconf, libtool, libltdl-dev
 Section: devel
