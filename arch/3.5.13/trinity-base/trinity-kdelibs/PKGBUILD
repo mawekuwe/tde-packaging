@@ -2,7 +2,7 @@
 
 pkgname=trinity-kdelibs
 pkgver=3513
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -13,6 +13,7 @@ depends=('libical'
         'avahi'
         'pam-krb5'
         'taglib'
+	'libxcomposite'
         'trinity-arts')
 makedepends=('pkgconfig' 'cmake' 'autoconf' )
 provides=('trinity-kdelibs' 'kdelibs3')
