@@ -10,6 +10,7 @@ groups=('trinity-base')
 pkgdesc="Trinity - kdelibs, core libraries"
 depends=('libical'
         'libxslt'
+	    'libltdl'
         'avahi'
         'pam-krb5'
         'taglib'

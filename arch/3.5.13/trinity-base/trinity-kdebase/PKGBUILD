@@ -8,7 +8,7 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity - kdebase"
-depends=('hal' 'libtdl' 'trinity-dbus-1-qt3' 'trinity-arts' 'trinity-qt3' 'trinity-pyqt3' 'trinity-dbus-tqt-1' 'trinity-dbus-tqt' 'trinity-kdelibs' 'openexr')
+depends=('hal' 'libltdl' 'trinity-dbus-1-qt3' 'trinity-arts' 'trinity-qt3' 'trinity-pyqt3' 'trinity-dbus-tqt-1' 'trinity-dbus-tqt' 'trinity-kdelibs' 'openexr')
 makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake' 'xorg-bdftopcf')
 optdepends=('desktop-file-utils: Command line utilities for working with desktop entries'
         'pciutils: PCI bus configuration space access library and tools'
