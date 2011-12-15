@@ -21,9 +21,9 @@ provides=('trinity-kdelibs' 'kdelibs3')
 conflicts=('trinity-kdelibs' 'kdelibs3')
 replaces=('trinity-kdelibs')
 options=('libtool' '!strip' '!makeflags')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz)
-md5sums=('f62eefb63b4ba2141b4c576f859806dd')
-
+source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh')
+md5sums=('f62eefb63b4ba2141b4c576f859806dd'
+         '2de1886d632c8bc288befada5e1bc3b5')
 
 qtdir=/opt/qt
 trinity_prefix="/opt/trinity"
