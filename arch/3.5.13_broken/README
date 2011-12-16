@@ -1,0 +1,52 @@
+Those are PKGBUILDs for trinity components 
+that won't build on arch because of various reasons.
+
+I've out them here for archival reasons.
+
+PKGBUILDs itself (apart for dependencies) are pretty
+much finished for those.
+
+After fixing and veryfing that they build pleas move
+them to the 3.5.13 dir.
+
+Problems with builds:
+   kgtk-qt3:
+      not our CMakeLists.txt files. Probably created
+      by original KDE team (since it includes options
+      for building it for Qt4). Cannot be build because
+      of hard coded paths to tmoc. And uic-tqt.
+      Fix for uic-tqt is included in the patch, but tmoc
+      cannot be fixed. Maybe manually passing 
+      -DQT_MOC_EXECUTABLE=/opt/trinity/bin/tmoc could help?
+      Tried: cmake hangs after "--Found Threads:TRUE"
+      message. Top shows 24 sed processes. Any fix?
+      If it cannot be fixed, maybe whole CMake should
+      be rewritten for this?
+
+   knetworkmanager8
+   knetworkmanager9
+      CMake does not detect dbus-1-tqt. We provide 
+      dbus-tqt-1, for which we pull tarball called
+      dbus-1-tqt. It should be the same thing, but
+      after chenaging Cmake instructions to search
+      for dbus-tqt-1 which we provide, it still 
+      fails.
+      Patch provides missing cmake modules.
+
+   kpilot:
+      same as above (probably) plus "CMakeOptions.txt 
+      not found! Run configure first." Error.
+      Do we need kpilot? Is Palm devices supported
+      by it still alive?
+
+   kde-style-lipstick:
+      not ported to CMake. Autotools TQt, Qt detection
+      problems.
+
+   wlassistant:
+      not potted to Cmake. Same as above.
+   
+   rosegarden:
+      same as kgtk-qt3. I think every else trinity component
+      using CMake files wrote by KDE team won't work
+      with trinity tmoc.

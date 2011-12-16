@@ -1,0 +1,50 @@
+# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+
+pkgname=trinity-kgtk-qt3
+pkgver=3513
+pkgrel=1
+arch=('i686' 'x86_64')
+url='http://www.trinitydesktop.org'
+license=('GPL')
+groups=('trinity-extras')
+pkgdesc="Trinity - kgtk-qt3"
+depends=('trinity-kdebase' 'gtk2')
+makedepends=('pkgconfig' 'cmake' 'imake')
+options=('libtool' '!strip')
+source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kgtk-qt3-3.5.13.tar.gz' 'kgtk.patch')
+md5sums=('27eb49a405696db149c6bb2e030b6ee0'
+         'ccf1b146105dd38b6dcbc49b4b8fb376')
+
+_svnmod=applications/kgtk-qt3
+
+build() {
+
+  msg "Setting PATH, CMAKE and Trinity Environment variables"
+  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
+  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
+  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
+  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
+
+  trinity_prefix="/opt/trinity"
+
+  patch -N -d ${srcdir} -p0 < kgtk.patch
+
+  cd $srcdir
+  msg "Creating out-of-source build directory: ${srcdir}/build"
+  mkdir -p build
+  cd build
+
+  msg "Starting cmake..."
+  cmake ${srcdir}/${_svnmod} \
+    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DQT_MOC_EXECUTABLE=/opt/trinity/bin/tmoc \
+    -DBUILD_ALL=ON
+  make
+}
+
+package() {
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/build
+  make DESTDIR="$pkgdir/" install
+}

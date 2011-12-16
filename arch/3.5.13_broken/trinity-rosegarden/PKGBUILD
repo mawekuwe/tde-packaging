@@ -1,0 +1,54 @@
+# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+
+pkgname=trinity-rosegarden
+pkgver=3513
+pkgrel=170
+arch=('i686' 'x86_64')
+url='http://www.trinitydesktop.org'
+license=('GPL')
+groups=('trinity-extras')
+pkgdesc="Trinity - Rosegarden, A MIDI and audio sequencer and musical notation editor."
+depends=('trinity-kdelibs' 'dssi' 'jack' 'liblo' 'liblrdf' 'fftw') 
+makedepends=('pkgconfig' 'cmake' 'imake')
+options=('libtool' '!strip')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/rosegarden-3.5.13.tar.gz)
+md5sums=('8906d1797bae89920d9a9ab54c09b49d')
+
+_svnmod=applications/rosegarden
+
+build() {
+
+  msg "Setting PATH, CMAKE and Trinity Environment variables"
+  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
+  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
+  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
+  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
+
+  trinity_prefix="/opt/trinity"
+
+  cd $srcdir
+  msg "Creating out-of-source build directory: ${srcdir}/build"
+  mkdir -p build
+  cd build
+
+  msg "Starting cmake..."
+  cmake ${srcdir}/${_svnmod} \
+    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DQT_MOC_EXECUTABLE=/opt/trinity/bin/tmoc \
+    -DWANT_DEBUG=OFF \
+    -DWANT_FULLDBG=OFF \
+    -DWANT_SOUND=ON \
+    -DWANT_JACK=ON \
+    -DWANT_DSSI=ON \
+    -DWANT_LIRC=ON \
+    -DWANT_PCH=OFF \
+    -DBUILD_ALL=ON
+  make
+}
+
+package() {
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/build
+  make DESTDIR="$pkgdir/" install
+}
