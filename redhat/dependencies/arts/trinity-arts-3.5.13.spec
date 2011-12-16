@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -32,6 +32,9 @@ Source0:	arts-%{version}.tar.gz
 # TDE 3.5.13: Re-enable lost OSS support
 Patch0:		arts-3.5.13-enable_oss.patch
 
+# TDE 3.5.13: Re-enable lost JACK support
+Patch1:		arts-3.5.13-enable_jack.patch
+
 BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
@@ -39,9 +42,10 @@ BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
 BuildRequires:	gsl-devel
 BuildRequires:	libvorbis-devel
+BuildRequires:	jack-audio-connection-kit-devel
 
-Requires:	tqtinterface
-Requires:	audiofile
+Requires:		tqtinterface
+Requires:		audiofile
 
 %if "%{?_prefix}" == "/usr"
 Obsoletes:	arts
@@ -74,6 +78,7 @@ Development files for %{name}
 %prep
 %setup -q -n dependencies/arts
 %patch0 -p1
+%patch1 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -88,9 +93,9 @@ cd build
   -DWITH_VORBIS=ON \
   -DWITH_MAD=OFF \
   -DWITH_ESOUND=ON \
+  -DWITH_JACK=ON \
   ..
 
-#cp -f /tmp/config.h .
 
 %__make %{?_smp_mflags}
 
@@ -131,6 +136,9 @@ cd build
 
 
 %changelog
+* Fri Dec 16 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Enables JACK support
+
 * Mon Nov 14 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Enables OSS and ESD support
 

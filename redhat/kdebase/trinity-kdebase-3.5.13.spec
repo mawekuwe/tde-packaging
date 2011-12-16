@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 12
+%define release 13
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -288,7 +288,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 # KDM Background
 %__sed -i "kdm/kfrontend/genkdmconf.c" \
 	-e 's,"Wallpaper=isadora.png\n","Wallpaper=%{tde_bg}\n",'
-	
+
 # TDE user default background
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
 	-e 's,#define DEFAULT_WALLPAPER "isadora.png",#define DEFAULT_WALLPAPER "%{tde_bg}",'
@@ -308,6 +308,10 @@ Protocol handlers (KIOslaves) for personal information management, including:
 	-e "s|help:/kubuntu/about-kubuntu/index.html|%{tde_aboutpage}|"
 %__sed -i "kdm/config.def" \
 	-e "s|Welcome to Trinity |Welcome to %{tde_aboutlabel} |"
+
+# TDE default directory in 'startkde' script (KDEDIR)
+%__sed -i "startkde" \
+	-e "s|/opt/trinity|%{_prefix}|g"
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -364,12 +368,10 @@ cd build
 %__sed -i "%{?buildroot}%{_usr}/share/xsessions/tde.desktop" \
 	-e "s,^Name=.*,Name=TDE,"
 
-# Modifies 'startkde' to set KDEDIR and KDEHOME hardcoded specific for TDE
-%__sed -i "%{?buildroot}%{_bindir}/startkde" \
-	-e '/^echo "\[startkde\] Starting startkde.".*/ s,$,\nexport KDEDIR=%{_prefix}\nexport KDEHOME=~/.trinity,'
-
 # Renames '/etc/ksysguarddrc' to avoid conflict with KDE4 'ksysguard'
-%__mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
+%__mv -f \
+	%{?buildroot}%{_sysconfdir}/ksysguarddrc \
+	%{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
 
 # TDE 3.5.12: add script "plasma-desktop" to avoid conflict with KDE4
 %if "%{?_prefix}" != "/usr"
@@ -377,11 +379,10 @@ cd build
 %endif
 
 # PAM configuration files
-%__mkdir_p "%{?buildroot}%{_sysconfdir}/pam.d"
-%__install -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity"
-%__install -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
-%__install -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
-%__install -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
+%__install -D -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity"
+%__install -D -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
+%__install -D -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
+%__install -D -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
 
 # KDM configuration for RHEL/Fedora
 %__sed -i "%{?buildroot}%{_datadir}/config/kdm/kdmrc" \
@@ -406,7 +407,7 @@ touch --no-create %{_datadir}/icons/crystalsvg 2> /dev/null || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg  2> /dev/null || :
 update-desktop-database 2> /dev/null || : 
 # Dirty hack to install '/etc/ksysguardrc' alongside with KDE4
-[ -r %{_sysconfdir}/ksysguarddrc ] || cp -f %{_sysconfdir}/ksysguarddrc.tde %{_sysconfdir}/ksysguarddrc
+[ -r "%{_sysconfdir}/ksysguarddrc" ] || cp -f "%{_sysconfdir}/ksysguarddrc.tde" "%{_sysconfdir}/ksysguarddrc"
 
 %postun
 touch --no-create %{_datadir}/icons/crystalsvg 2> /dev/null || :
@@ -666,6 +667,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Mon Dec 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-13
+- Fix variables (again)
+
 * Sun Dec 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-12
 - Fix KDEDIRS and other variables in 'startkde', that messes up translations.
 

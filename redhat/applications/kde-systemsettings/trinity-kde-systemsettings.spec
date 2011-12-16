@@ -1,12 +1,13 @@
 # Default version for this component
 %define kdecomp kde-systemsettings
 %define version 0.0svn20070312
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %define _docdir %{_prefix}/share/doc
+%define _sysconfdir %{_prefix}/etc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -96,7 +97,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 %defattr(-,root,root,-)
 %doc README TODO
 %{_sysconfdir}/xdg/menus/applications-merged/system-settings-merge.menu
-%exclude %{_sysconfdir}/xdg/menus/system-settings.menu
+%{_sysconfdir}/xdg/menus/system-settings.menu
 %{_bindir}/systemsettings
 %{_datadir}/applications/kde/audioencoding.desktop
 %{_datadir}/applications/kde/defaultapplication.desktop
@@ -115,6 +116,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 
 
 %Changelog
+* Wed Dec 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-2
+- Fix XDG menu directory location
+
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 

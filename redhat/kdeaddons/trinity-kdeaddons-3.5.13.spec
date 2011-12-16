@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -17,13 +17,13 @@ BuildRequires: autoconf automake libtool m4
 %define tde_libdir %{_libdir}/trinity
 
 
-Name:    trinity-kdeaddons
-Summary: Trinity Desktop Environment - Plugins
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Name:		trinity-kdeaddons
+Summary:	Trinity Desktop Environment - Plugins
+Version:	%{?version}
+Release:	%{?release}%{?dist}%{?_variant}
 
-License: GPLv2
-Group: User Interface/Desktops
+License:	GPLv2
+Group:		User Interface/Desktops
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -49,19 +49,17 @@ BuildRequires: db4-devel
 
 %if 0%{?fedora}
 BuildRequires: xmms-devel
-%endif
-
-Requires: trinity-kdebase
-%if 0%{?fedora}
+Obsoletes: %{name}-xmms < %{version}-%{release}
 # used in jpegorient (#312641)
 Requires: python-exif
 %endif
+
+Requires: trinity-kdebase
 Requires: which
 
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
-Obsoletes: %{name}-xmms < %{version}-%{release}
 
 %description
 A collection of KDE Addons/Plugins, including: 
@@ -89,8 +87,9 @@ This package includes:
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -102,12 +101,8 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
-%if 0%{?fedora} > 0
-export CXXFLAGS="${CXXFLAGS} -fpermissive"
-%endif
-
 %configure \
-  --includedir=%{_includedir}/kde \
+  --includedir=%{tde_includedir} \
   --disable-rpath \
   --enable-new-ldflags \
   --enable-closure \
@@ -149,9 +144,11 @@ for dir in konq-plugins ; do
   done
 done
 
+%if 0%{?fedora} > 0
 # install fedora metabar theme
 cp -prf fedora %{buildroot}%{_datadir}/apps/metabar/themes
 install -m644 -p %{SOURCE2} %{buildroot}%{_datadir}/config/
+%endif
 
 
 %post
@@ -221,17 +218,16 @@ gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 %{_datadir}/icons/locolor/*/*/*
 %{_datadir}/mimelnk/*/*
 %{_datadir}/service*/*
-%doc %lang(en) %{_docdir}/HTML/en/*/*
 
 # atlantikdesigner
-#%exclude %{_bindir}/atlantikdesigner
-#%exclude %{_datadir}/icons/hicolor/*/*/atlantikdesigner*
-#%exclude %{_datadir}/applications/kde/atlantikdesigner.desktop
+%exclude %{_bindir}/atlantikdesigner
+%exclude %{_datadir}/icons/hicolor/*/*/atlantikdesigner*
+%exclude %{_datadir}/applications/kde/atlantikdesigner.desktop
 
 # noatun-plugins
-#%exclude %{_bindir}/noatun*
-#%exclude %{tde_libdir}/noatun*
-#%exclude %{_datadir}/apps/noatun/*
+%exclude %{_bindir}/noatun*
+%exclude %{tde_libdir}/noatun*
+%exclude %{_datadir}/apps/noatun/*
 
 
 %files extras
@@ -239,18 +235,22 @@ gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 
 # atlantikdesigner
 %doc atlantikdesigner/TODO
-#%{_bindir}/atlantikdesigner
+%{_bindir}/atlantikdesigner
 %{_datadir}/apps/atlantikdesigner/
-#%{_datadir}/icons/hicolor/*/*/atlantikdesigner*
-#%{_datadir}/applications/kde/atlantikdesigner.desktop
+%{_datadir}/icons/hicolor/*/*/atlantikdesigner*
+%{_datadir}/applications/kde/atlantikdesigner.desktop
 
 # noatun-plugins
-#%{_bindir}/noatun*
-#%{tde_libdir}/noatun*
+%{_bindir}/noatun*
+%{tde_libdir}/noatun*
 %{_datadir}/apps/noatun/*
 
 
 %changelog
+* Thu Dec 15 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Fix content of -extras package
+- Fix various packaging issues
+
 * Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Updates BuildRequires
 

@@ -1,0 +1,52 @@
+diff -Nuar arts.ORI/CMakeLists.txt arts/CMakeLists.txt
+--- arts.ORI/CMakeLists.txt	2011-12-16 20:58:30.000000000 +0100
++++ arts/CMakeLists.txt	2011-12-16 20:59:20.462377316 +0100
+@@ -34,6 +34,7 @@
+ option( WITH_VORBIS "Enable Ogg/Vorbis support" ON )
+ option( WITH_MAD "Enable MAD mp3 decoder support" ON )
+ option( WITH_ESOUND "Enable ESOUND support" OFF )
++option( WITH_JACK "Enable JACK support" OFF )
+ 
+ 
+ ##### paths setup ###############################
+@@ -163,6 +164,19 @@
+ endif( WITH_ESOUND )
+ 
+ 
++##### check for JACK ############################
++
++set( HAVE_LIBJACK 0 )
++if( WITH_JACK )
++  pkg_search_module( LIBJACK jack )
++  if( LIBJACK_FOUND )
++    set( HAVE_LIBJACK 1 )
++  else( LIBJACK_FOUND )
++    message(FATAL_ERROR "\nJACK support is requested, but `jack.pc` was not found" )
++  endif( LIBJACK_FOUND )
++endif( WITH_JACK )
++
++
+ ##### check for glib/gthread modules ############
+ 
+ pkg_search_module( GLIB2 glib-2.0 )
+diff -Nuar arts.ORI/config.h.cmake arts/config.h.cmake
+--- arts.ORI/config.h.cmake	2011-12-16 20:58:30.000000000 +0100
++++ arts/config.h.cmake	2011-12-16 20:59:24.095343176 +0100
+@@ -34,3 +34,5 @@
+ #cmakedefine HAVE_SYS_SOUNDCARD_H 1
+ #cmakedefine HAVE_LIBPTHREAD 1
+ #define HAVE_IOCTL_INT_ULONGINT_DOTS 3
++
++#cmakedefine HAVE_LIBJACK 1
+diff -Nuar arts.ORI/flow/CMakeLists.txt arts/flow/CMakeLists.txt
+--- arts.ORI/flow/CMakeLists.txt	2011-12-16 21:00:29.000000000 +0100
++++ arts/flow/CMakeLists.txt	2011-12-16 21:02:29.831594171 +0100
+@@ -66,7 +66,7 @@
+ tde_add_library( ${target} SHARED
+   SOURCES ${${target}_SRCS}
+   VERSION 1.0.0
+-  LINK artsgsl-static artsgslpp-static artsflow_idl-shared ${AUDIOFILE_LIBRARIES}
++  LINK artsgsl-static artsgslpp-static artsflow_idl-shared ${AUDIOFILE_LIBRARIES} ${LIBJACK_LIBRARIES}
+   DESTINATION ${LIB_INSTALL_DIR}
+ )
+ 

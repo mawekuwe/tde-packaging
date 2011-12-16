@@ -1,6 +1,14 @@
---- kdebase/startkde.ORI	2011-12-11 18:17:16.287267447 +0100
-+++ kdebase/startkde	2011-12-11 18:35:05.876764598 +0100
-@@ -74,39 +74,10 @@
+--- kdebase/startkde.ORI	2011-12-12 20:09:21.984162840 +0100
++++ kdebase/startkde	2011-12-12 20:08:27.922834925 +0100
+@@ -4,6 +4,7 @@
+ #
+ 
+ echo "[startkde] Starting startkde." 1>&2
++export KDEDIR="${KDEDIR:-/opt/trinity}"
+ 
+ # When the X server dies we get a HUP signal from xinit. We must ignore it
+ # because we still need to do some cleanup.
+@@ -74,39 +75,10 @@
    echo "[startkde] KDEHOME is preset to $KDEHOME." 1>&2
    export KDEHOME=$KDEHOME
  else
@@ -43,10 +51,16 @@
    echo "[startkde] Set KDEHOME to $KDEHOME." 1>&2
  fi
  
-@@ -123,43 +94,20 @@
- if [ -d /opt/trinity/bin ]; then
-   export PATH=/opt/trinity/bin:$PATH
+@@ -117,51 +89,25 @@
  fi
+ 
+ # Modify the following environment variables only as necessary.
+-if [ -d /opt/trinity/games ]; then
+-  export PATH=/opt/trinity/games:$PATH
+-fi
+-if [ -d /opt/trinity/bin ]; then
+-  export PATH=/opt/trinity/bin:$PATH
+-fi
 -if [ -d /opt/trinity/games ]; then
 -  export PATH=/opt/trinity/games:$PATH
 -fi
@@ -56,21 +70,25 @@
 -if [ -d /opt/trinity/share ]; then
 -  export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/trinity/share/:/usr/share/
 -fi
- if [ -d /opt/trinity/share ]; then
+-if [ -d /opt/trinity/share ]; then
 -  export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/trinity/share/:/usr/share/
-+  # Do NOT add /usr/share, it is supposed to be already there !
-+  export XDG_DATA_DIRS=$XDG_DATA_DIRS:/opt/trinity/share/
++if [ -d ${KDEDIR}/games ]; then
++  export PATH=${KDEDIR}/games:$PATH
  fi
- if [ -d /opt/trinity/etc/xdg ]; then
--  export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:/opt/trinity/etc/xdg/:/etc/xdg/
--fi
 -if [ -d /opt/trinity/etc/xdg ]; then
 -  export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:/opt/trinity/etc/xdg/:/etc/xdg/
-+  # Do NOT add /etc/xdg, it is supposed to be already there !
-+  export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:/opt/trinity/etc/xdg/
++if [ -d ${KDEDIR}/bin ]; then
++  export PATH=${KDEDIR}/bin:$PATH
  fi
- if [ -d /opt/trinity/share/man ]; then
-   export MANPATH=/opt/trinity/share/man:$MANPATH
+-if [ -d /opt/trinity/etc/xdg ]; then
+-  export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:/opt/trinity/etc/xdg/:/etc/xdg/
++if [ -d ${KDEDIR}/share ]; then
++  export XDG_DATA_DIRS=$XDG_DATA_DIRS:${KDEDIR}/share/:/usr/share/
+ fi
+-if [ -d /opt/trinity/share/man ]; then
+-  export MANPATH=/opt/trinity/share/man:$MANPATH
++if [ -d ${KDEDIR}/etc/xdg ]; then
++  export XDG_CONFIG_DIRS=$XDG_CONFIG_DIRS:${KDEDIR}/etc/xdg/:/etc/xdg/
  fi
 -if [ -d /opt/trinity/share/man ]; then
 -  export MANPATH=/opt/trinity/share/man:$MANPATH
@@ -82,14 +100,19 @@
 -    export KDEDIRS=/opt/trinity/:/usr/
 -  fi
 -fi
- if [ -d /opt/trinity ]; then
+-if [ -d /opt/trinity ]; then
 -  if [ -n "$KDEDIRS" ]; then
 -    export KDEDIRS=$KDEDIRS:/opt/trinity/:/usr/
 -  else
 -    export KDEDIRS=/opt/trinity/:/usr/
 -  fi
-+  # The TDE directory should appear BEFORE '/usr' in KDEDIRS variable !
-+  export KDEDIRS=${KDEDIR}/:${KDEDIRS}
++if [ -d ${KDEDIR}/share/man ]; then
++  export MANPATH=${KDEDIR}/share/man:$MANPATH
  fi
  
++# The TDE directory must be first in $KDEDIRS
++export KDEDIRS=${KDEDIR}/:$KDEDIRS:/usr/
++
  test -n "$KDEHOME" && kdehome=`echo "$KDEHOME" | sed "s,^~/,$HOME/,"`
+ echo "[startkde] kdehome: $kdehome" 1>&2
+ 
