@@ -1,0 +1,11 @@
+--- libcaldav-0.6.5/src/Makefile.in
++++ libcaldav-0.6.5/src/Makefile.in	2011-05-08 01:16:15.000000000 -0500
+@@ -284,7 +284,7 @@
+ 			get-freebusy-report.c \
+ 			get-freebusy-report.h
+ 
+-libcaldav_includedir = $(includedir)/libcaldav-@VERSION@
++libcaldav_includedir = $(includedir)/libcaldav
+ libcaldav_include_HEADERS = caldav.h
+ noinst_HEADERS = \
+ 			add-caldav-object.h \

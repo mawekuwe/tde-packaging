@@ -1,0 +1,44 @@
+# $Id$
+# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+#
+
+pkgname=trinity-libcarddav
+pkgver=0.6.2
+_pkgsuffix=2debian2
+pkgrel=1
+pkgdesc="A client library adding support for the CardDAV protocol"
+arch=('i686' 'x86_64')
+url="http://www.trinitydesktop.org/"
+groups=('trinity-extras')
+depends=('curl')
+license=('GPL')
+provides=('trinity-libcarddav' 'libcarddav')
+conflicts=('libcarddav')
+replaces=('trinity-libcarddav')
+# http://quickbuild.pearsoncomputing.net:58080/2056019/libcarddav_0.6.2-2debian2.tar.gz
+source=("http://quickbuild.pearsoncomputing.net:58080/2056019/libcarddav_${pkgver}-${_pkgsuffix}.tar.gz" "libcarddav.patch")
+md5sums=('42a0fe57ba4c639aad53024f6c8d5614'
+         '63ef0b91ff27dfb7c48ca0f07866af79')
+
+_prefix=/usr
+
+build() {
+   cd ${srcdir}
+
+   # apply libcarddav patch
+   msg "Applying Patch: libcarddav.patch"
+   patch -uNp2 -i ${srcdir}/libcarddav.patch || return 1
+
+   cd ${srcdir}/libcarddav-${pkgver}
+   msg "Running ./autogen.sh for autoreconf"
+   ./autogen.sh --prefix=${_prefix}
+   #   msg "Running configure"
+   #   ./configure --prefix=${_prefix}
+
+   make || return 1
+}
+
+package() {
+   cd ${srcdir}/libcarddav-${pkgver}
+   make DESTDIR=${pkgdir} install
+}

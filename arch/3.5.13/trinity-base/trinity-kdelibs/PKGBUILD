@@ -9,13 +9,13 @@ license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity - kdelibs, core libraries"
 depends=('libical'
-        'libxslt'
-	    'libltdl'
-        'avahi'
-        'pam-krb5'
-        'taglib'
-	'libxcomposite'
-        'trinity-arts')
+         'libxslt'
+         'libltdl'
+         'avahi'
+         'pam-krb5'
+         'taglib'
+         'libxcomposite'
+         'trinity-arts')
 makedepends=('pkgconfig' 'cmake' 'autoconf' )
 provides=('trinity-kdelibs' 'kdelibs3')
 conflicts=('trinity-kdelibs' 'kdelibs3')

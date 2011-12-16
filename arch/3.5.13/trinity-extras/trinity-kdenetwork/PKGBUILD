@@ -1,0 +1,66 @@
+# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# PKGBUILD by Pawel "l0ner" Soltys <sh4dou@gmail.com>
+
+pkgname=trinity-kdenetwork
+pkgver=3513
+pkgrel=1
+arch=('i686' 'x86_64')
+url='http://www.trinitydesktop.org'
+license=('GPL')
+groups=('trinity-extras')
+pkgdesc="Trinity - kdenetwork network utilities"
+depends=('trinity-kdebase' 
+         'trinity-arts' 
+         'speex' 
+         'gsmlib-git'
+         'libgadu'
+         'meanwhile'
+         'sqlite3'
+         'libidn'
+         'v4l-utils'
+         )
+makedepends=('pkgconfig' 'cmake' 'imake')
+options=('libtool' '!strip')
+source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdenetwork-3.5.13.tar.gz' 'kdenetwork.patch')
+md5sums=('349f197c9af4bf0d9b8773f26829415e'
+         '8abe1847df7b7449027719238a27e359')
+
+_svnmod=kdenetwork
+
+build() {
+  msg "Setting PATH, CMAKE and Trinity Environment variables"
+  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
+  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
+  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
+  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
+
+  trinity_prefix="/opt/trinity"
+
+  patch -N -d ${srcdir} -p0 < kdenetwork.patch
+
+  cd $srcdir
+  msg "Creating out-of-source build directory: ${srcdir}/build"
+  mkdir -p build
+  cd build
+
+  msg "Starting cmake..."
+  cmake ${srcdir}/${_svnmod} \
+    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DWITH_JINGLE=ON \
+    -DWITH_SPEEX=ON \
+    -DWITH_WEBCAM=ON \
+    -DWITH_GSM=ON \
+    -DWITH_ARTS=ON \
+    -DBUILD_KOPETE_PROTOCOL_ALL=ON \
+    -DBUILD_KOPETE_PLUGIN_ALL=ON \
+    -DBUILD_ALL=ON
+  make
+}
+
+package() {
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/build
+
+  make DESTDIR="$pkgdir/" install
+}

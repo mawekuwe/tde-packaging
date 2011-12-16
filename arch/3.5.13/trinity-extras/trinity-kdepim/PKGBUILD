@@ -1,36 +1,35 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-kdegraphics
+pkgname=trinity-kdepim
 pkgver=3513
 pkgrel=1.0
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.com'
 license=('GPL')
 groups=('trinity-extras')
-pkgdesc="Trinity - kdegraphics"
-depends=('trinity-kdebase' 'libart-lgpl' 'libgphoto2' 'libtiff' 'openexr' 't1lib' 'imlib' 'sane')
+pkgdesc="Trinity - kdepim"
+depends=(
+         'trinity-kdebase'
+         'trinity-arts'
+         'trinity-kdelibs'
+         'gpgme'
+         'boost'
+         'gnokii'
+         'trinity-libcaldav'
+         'trinity-libcarddav')
 makedepends=('pkgconfig' 'cmake' 'imake' 'fribidi')
 # 'poppler-qt'
-optdepends=('xscreensaver: Screen saver and locker for the X Window System')
-provides=('trinity-kdegraphics')
-conflicts=('trinity-kdegraphics')
-replaces=('trinity-kdegraphics')
+provides=('trinity-kdepim')
+conflicts=('trinity-kdepim')
+replaces=('trinity-kdepim')
 options=('libtool' '!strip')
-source=('GSmartPointer.h.patch' 'http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdegraphics-3.5.13.tar.gz')
-md5sums=('7b93c9bdf1208df453c9838519fab109' 'a75c254cd1060343cd04c6744bce6798')
+source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdepim-3.5.13.tar.gz')
+md5sums=('4488062d5400bdd99642fe0b72ebcf9a')
 
-_svnmod=kdegraphics
+_svnmod=kdepim
 trinity_prefix="/opt/trinity"
 
 build() {
-
-  # patch for gcc-4.6
-  if grep -q cstddef  ${srcdir}/kdegraphics/kviewshell/plugins/djvu/libdjvu/GSmartPointer.h; then
-    msg "Patch for GCC 4.6 - Previously Applied"
-  else
-    msg "Applying Patch for GCC 4.6"
-    patch -p0 -i ${srcdir}/GSmartPointer.h.patch || return 1
-  fi
 
   msg "Setting PATH, CMAKE and Trinity Environment variables"
   export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
@@ -54,18 +53,27 @@ build() {
   cmake ${srcdir}/${_svnmod} \
     -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
-    -DQT_VERSION=3 \
-    -DCMAKE_CXX_FLAGS="-fpermissive" \
-    -DWITH_T1LIB=ON \
-    -DWITH_LIBPAPER=ON \
-    -DWITH_TIFF=ON \
-    -DWITH_OPENEXR=ON \
-    -DWITH_PAM=ON \
+    -DWITH_SASL=ON \
+    -DWITH_NEWDISTRLISTS=ON \
+    -DWITH_GNOKII=ON \
+    -DWITH_EXCHANGE=ON \
+    -DWITH_EGROUPWARE=ON \
+    -DWITH_KOLAB=ON \
+    -DWITH_SLOX=ON \
+    -DWITH_GROUPWISE=ON \
+    -DWITH_FEATUREPLAN=ON \
+    -DWITH_GROUPDAV=ON \
+    -DWITH_BIRTHDAYS=ON \
+    -DWITH_NEWEXCHANGE=ON \
+    -DWITH_SCALIX=ON \
+    -DWITH_CALDAV=ON \
+    -DWITH_CARDDAV=ON \
+    -DWITH_INDEXLIB=ON \
+    -DWITH_ARTS=ON \
     -DBUILD_ALL=ON
   make
 
 #     -DWITH_PDF=ON \ (waiting on poppler-qt3)
-
 #     -DWITH_QT3=ON \
 #     -DQTDIR=/opt/qt \
 #     -DQT_LIBRARY_DIRS=/opt/qt/lib \
