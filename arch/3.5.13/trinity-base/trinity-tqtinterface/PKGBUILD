@@ -28,7 +28,7 @@ source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/tq
 md5sums=('d54cc9fd0b35555298efd17c32471a2b')
 
 _qtdir=/opt/qt
-_prefix=/opt/trinity
+_prefix=/usr
 
 build() {
 

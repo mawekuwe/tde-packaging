@@ -23,8 +23,14 @@ build() {
   export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
+  
+  export CFLAGS=-I/opt/trinity/include/tqt
+  export CXXFLAGS=-I/opt/trinity/include/tqt
 
   trinity_prefix="/opt/trinity"
+
+  cd $srcdir/${_svnmod}
+  make -f admin/Makefile.common
 
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
