@@ -1,0 +1,324 @@
+#!/bin/bash
+
+# some of base things
+version="3.5.13"
+arch=`arch`
+startdir=`pwd`
+binariesdir="${startdir}/binaries-${arch}"
+scriptname=`basename $0`
+
+#usage function
+function usage(){
+   printf "Usage: %s [ OPTIONS ]\n\n" ${scriptname}
+   printf "Options:\n"
+   printf "  -a,  --all\t\tBuild all binaries.\n"
+   printf "  -b,  --base\t\tBuild base components.\n"
+   printf "  -x,  --extras\t\tBuild extras.\n"
+   printf "  -d,  --deps\t\tBuild external dependencies.\n"
+   printf "  -h,  --help\t\tDisplay this mesage.\n"
+   printf "  -p,  --patch [dir]\tPatch PKGBUILDs using patches found in patch folder.\n"
+   printf "\t\t\tThis files should be created manually.\n"
+   printf "\t\t\tPatches should be named after PKGBUILD they correct.\n"
+   printf "\t\t\tExample: kdebase.patch\n"
+   printf "\t\t\tOptionally you can specify patches location (default\n"
+   printf "\t\t\tpatch folder).\n"
+   printf "  -c,  --dont-clean\tDont remove anything.\n"
+   printf "Note: This script should be run on clean and out-of-box arch\n"
+   printf "installation for the best outcome. There is no need to \n"
+   printf "pull anything needed for building manually.\n"
+   printf "Binaries will be automatically installed as build process\n"
+   printf "progress and gethered in %s dir.\n" ${binariesdir}
+   printf "\e[0;31m THIS SCRIPT SHOULD BE RUN AS ROOT\e[0m\n\n\n"
+   exit 1
+}
+
+function build_pkg(){
+   cd $1
+   makepkg -i $cleanflag -s --noconfirm --asroot
+   cd ..
+}
+
+function patch_pkgbuild(){
+if [ -e ${startdir}/patch/${1}.patch ]; then
+   patch ${1}/PKGBUILD < ${patchdir}/${1}.patch
+fi
+}
+
+# Parse args
+if [ $# -lt 1 ]; then
+   usage
+fi
+
+args=`getopt -o abxdrhp::c \
+      -l all,base,extras,asroot,deps,"help",patch::,dont-clean \
+      -n $scriptname -- "$@"`
+eval set -- "$args"
+while true ; do
+   case "$1" in
+      -a|--all)
+         buildbase=1
+         fetch=1
+         builddeps=1
+         buildextras=1
+         shift 1
+         ;;
+      -b|--base)
+         buildbase=1
+         fetch=1
+         shift 1
+         ;;
+      -x|--extras)
+         buildextras=1
+         fetch=1
+         shift 1
+         ;;
+      -d|--deps)
+         builddeps=1
+         shift 1
+         ;;
+      -h|--help)
+         usage
+         shift 1
+         ;;
+      -p|--patch)
+         patch=1
+         case $2 in
+            "")
+               patchdir=${curdir}/patch/
+               shift 2
+               ;;
+            *)
+               patchdir=${2}
+               shift 2
+               ;;
+         esac
+         ;;
+      -c|--dont-clean)
+         dontclean=1
+         shift 1
+         ;;
+      --) shift ; break ;;
+   esac
+done
+
+if [ ! $dontclean ]; then
+   cleanflag="-c"
+fi
+
+if [ $builddeps ]; then
+   printf "\e[0;34m=========================================\e[0m\n"
+   printf "\n\e[0;34mBuilding dependencies form aur\e[0m\n"
+   printf "\e[0;34m=========================================\e[0m\n"
+
+   mkdir deps
+   cd deps
+
+   printf "\n\e[0;34mhal-info\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+
+   wget http://aur.archlinux.org/packages/ha/hal-info/hal-info.tar.gz
+   tar zxvf hal-info.tar.gz
+   build_pkg hal-info
+
+   printf "\n\e[0;34mhal-git\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+
+   wget http://aur.archlinux.org/packages/ha/hal-git/hal-git.tar.gz
+   tar zxvf hal-git.tar.gz
+   build_pkg hal-git
+
+   printf "\n\e[0;34mlibnjb\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+
+   wget http://aur.archlinux.org/packages/li/libnjb/libnjb.tar.gz
+   tar zxvf libnjb.tar.gz
+   build_pkg libnjb
+
+   # gather binaries
+   cd $curdir
+   mkdir -p ${binariesdir}/deps/
+   mv aur/*/*.tar.xz ${binariesdir}/deps/
+   if [ ! $dontclean ]; then
+      rm -r deps
+   fi
+   printf "\e[0;34m=========================================\e[0m\n"
+   printf "\e[0;34mFinished building external dependencies\e[0m\n"
+   printf "\e[0;34m=========================================\e[0m\n"
+fi
+
+if [ $fetch ]; then
+   printf "\e[0;34m=========================================\e[0m\n"
+   printf "\n\e[0;34mFetching trinity PKGBUILDs\e[0m\n"
+   printf "\e[0;34m=========================================\e[0m\n"
+
+   # fetch PKGBUILD and remove useless things
+   git clone http://scm.trinitydesktop.org/scm/git/tde-packaging
+   cd tde-packaging
+   git submodule init
+   git submodule update
+   rm -r ark debian ubuntu fedora mandriva opensuse redhat slackware README.GIT
+   cd $startdir
+   mv tde-packaging/arch/${version}/* .
+   rm -r tde-packaging
+   if [ ! $buildbase ]; then
+      rm -r trinity-base
+   fi
+   if [ ! $buildextras ]; then
+      rm -r trinity-extras
+   fi
+
+fi
+
+if [ $buildbase ]; then
+   cd trinity-base
+
+   # build
+   printf "\e[0;34m=========================================\e[0m\n"
+   printf "Building base trinity components\n"
+   printf "\e[0;34m=========================================\e[0m\n"
+
+   printf "\n\e[0;34mtrinity-qt3\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild qt3
+   fi
+   build_pkg trinity-qt3
+
+   printf "\n\e[0;34mtrinity-pyqt3\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild pyqt3
+   fi
+   build_pkg trinity-pyqt3
+
+   printf "\n\e[0;34mtrinity-tqtinterface\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild tqtinterface
+   fi
+   build_pkg trinity-tqtinterface
+
+   printf "\n\e[0;34mtrinity-arts\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild arts
+   fi
+   build_pkg trinity-arts
+
+   printf "\n\e[0;34mtrinity-dbus-1-qt3\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild dbus-1-qt3
+   fi
+   build_pkg trinity-dbus-1-qt3
+
+   printf "\n\e[0;34mtrinity-dbus-tqt\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild dbus-tqt
+   fi
+   build_pkg trinity-dbus-tqt
+
+   printf "\n\e[0;34mtrinity-dbus-tqt-1\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild dbus-tqt-1
+   fi
+   build_pkg trinity-dbus-tqt-1
+
+   printf "\n\e[0;34mtrinity-kdelibs\e[0m\n\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild kdelibs
+   fi
+   build_pkg trinity-kdelibs
+
+   printf "\n\e[0;34mtrinity-kdebase\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild kdebase
+   fi
+   build_pkg trinity-kdebase
+   
+   # gather binaries and clean
+   cd $curdir
+   mkdir -p ${binariesdir}/trinity-base/
+   mv aur/*/*.tar.xz ${binariesdir}/trinity-base/
+   if [ ! $dontclean ]; then
+      rm -r trinity-base
+   fi
+
+   printf "\e[0;34m=========================================\e[0m\n"
+   printf "\e[0;34mFinished building base components\e[0m\n"
+   printf "\e[0;34m=========================================\e[0m\n"
+fi
+
+if [ $buildextras ]; then
+
+   cd trinity-extras
+
+   printf "\e[0;34m=========================================\e[0m\n"
+   printf "\n\e[0;34mBuilding trinity-extras\e[0m\n"
+   printf "\e[0;34m=========================================\e[0m\n"
+
+   printf "\n\e[0;34mtrinity-amarok\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild amarok
+   fi
+   build_pkg trinity-amarok
+
+   printf "\n\e[0;34mtrinity-gtk-qt-engine\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild gtk-qt-engine
+   fi
+   build_pkg trinity-gtk-qt-engine
+
+   printf "\n\e[0;34mtrinity-kdegraphics\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild kdegraphics
+   fi
+   build_pkg trinity-kdegraphics
+
+   printf "\n\e[0;34mtrinity-kdevelop\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild kdevelop
+   fi
+   build_pkg trinity-kdevelop
+
+   printf "\n\e[0;34mtrinity-konversation\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild konversation
+   fi
+   build_pkg trinity-konversation
+
+   printf "\n\e[0;34mtrinity-kpowersave\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild kpowersave
+   fi
+   build_pkg trinity-kpowersave
+
+   printf "\n\e[0;34mtrinity-amarok\e[0m\n"
+   printf "\e[0;34m%b----------------------------------------\e[0m\n"
+   if [ $patch ]; then
+      patch_pkgbuild qtcurve
+   fi
+   build_pkg trinity-qtcurve
+
+   # gather binaries and clean
+   cd $curdir
+   mkdir -p ${binariesdir}/trinity-extras/
+   mv aur/*/*.tar.xz ${binariesdir}/trinity-extras/
+   if [ ! $dontclean ]; then
+      rm -r trinity-extras
+   fi
+   printf "\e[0;34m=========================================\e[0m\n"
+   printf "\e[0;34mFinished building external dependencies\e[0m\n"
+   printf "\e[0;34m=========================================\e[0m\n"
+fi
+
