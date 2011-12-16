@@ -1,0 +1,17 @@
+diff -u -r applications/kdesvn/CMakeLists.txt src/applications/kdesvn/CMakeLists.txt
+--- applications/kdesvn/CMakeLists.txt	2011-08-22 00:35:16.000000000 +0200
++++ src/applications/kdesvn/CMakeLists.txt	2011-12-16 14:14:17.000000000 +0100
+@@ -111,8 +111,10 @@
+     DEPENDS doc
+     WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
+ 
+-SET(QT_UIC_EXECUTABLE "/usr/bin/uic-tqt")
+-SET(QT_MOC_EXECUTABLE "/usr/bin/tmoc")
++SET(QT_UIC_EXECUTABLE "/opt/trinity/bin/uic-tqt")
++SET(QT_MOC_EXECUTABLE "/opt/trinity/bin/tmoc")
++
++SET(CMAKE_CXX_FLAGS "-I/opt/trinity/include/tqt -include tqt.h -DTQT_THREAD_SUPPORT")
+ 
+ ADD_SUBDIRECTORY(src)
+ ADD_SUBDIRECTORY(po)
+Only in src/applications/kdesvn: .CMakeLists.txt.swp
