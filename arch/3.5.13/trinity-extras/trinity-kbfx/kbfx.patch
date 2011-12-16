@@ -1,0 +1,18 @@
+Only in src/applications/kbfx: \
+diff -u -r applications/kbfx/CMakeLists.txt src/applications/kbfx/CMakeLists.txt
+--- applications/kbfx/CMakeLists.txt	2011-08-22 00:24:16.000000000 +0200
++++ src/applications/kbfx/CMakeLists.txt	2011-12-16 13:09:09.000000000 +0100
+@@ -219,10 +219,10 @@
+ 
+ SET(KBFX_LIB_INSTALL_DIR ${LIB_INSTALL_DIR})
+ 
+-SET(QT_UIC_EXECUTABLE "/usr/bin/uic-tqt")
+-SET(QT_MOC_EXECUTABLE "/usr/bin/tmoc")
++SET(QT_UIC_EXECUTABLE "/opt/trinity/bin/uic-tqt")
++SET(QT_MOC_EXECUTABLE "/opt/trinity/bin/tmoc")
+ 
+-SET(CMAKE_CXX_FLAGS "-I/usr/include/tqt -include tqt.h -DTQT_THREAD_SUPPORT")
++SET(CMAKE_CXX_FLAGS "-I/opt/trinity/include/tqt -include tqt.h -DTQT_THREAD_SUPPORT")
+ 
+ ADD_SUBDIRECTORY(kbfxlib/data)
+ ADD_SUBDIRECTORY(kbfxlib/common)
