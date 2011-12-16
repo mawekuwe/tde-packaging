@@ -9,6 +9,7 @@ license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity - kdebase"
 depends=('hal'
+         'libltdl'
          'trinity-dbus-1-qt3'
          'trinity-arts'
          'trinity-qt3'
