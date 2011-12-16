@@ -1,0 +1,13 @@
+diff -u -r kdesdk/kbabel/common/libgettext/CMakeLists.txt src/kdesdk/kbabel/common/libgettext/CMakeLists.txt
+--- kdesdk/kbabel/common/libgettext/CMakeLists.txt	2011-06-12 06:48:47.000000000 +0200
++++ src/kdesdk/kbabel/common/libgettext/CMakeLists.txt	2011-12-16 13:36:08.000000000 +0100
+@@ -20,7 +20,7 @@
+ ##### pofiles.cc (source) #######################
+ 
+ add_custom_command( OUTPUT pofiles.cpp
+-  COMMAND ${LEX_EXECUTABLE} -+ -opofiles.cpp ${CMAKE_CURRENT_SOURCE_DIR}/pofiles.ll
++   COMMAND /usr/bin/flex -+ -opofiles.cpp ${CMAKE_CURRENT_SOURCE_DIR}/pofiles.ll
+ )
+ 
+ 
+Only in src/kdesdk/kbabel/common/libgettext: .CMakeLists.txt.swp
