@@ -1,0 +1,15 @@
+Source: libtqt-perl
+Section: perl
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Bart Martens <bartm@debian.org>
+Build-Depends: cdbs, debhelper (>= 5), autotools-dev, libtqtinterface-dev, perl (>= 5.8.0), automake, autoconf, kdelibs4-trinity-dev, libsmokeqt-trinity-dev, chrpath, libtool (>= 1.5.2)
+Build-Conflicts: libtqt-perl
+Standards-Version: 3.8.4
+
+Package: libtqt-perl
+Architecture: any
+Depends: ${misc:Depends}, ${perl:Depends}, ${shlibs:Depends}
+Description: Perl bindings for the TQt library
+ This module lets you use the TQt library from Perl.
+ It provides an object-oriented interface and is easy to use.
