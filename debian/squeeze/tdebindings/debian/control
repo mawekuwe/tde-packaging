@@ -112,7 +112,6 @@ Package: libsmokeqt1-trinity
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}
-Conflicts: libqt-perl (<= 3.008-1)
 Description: SMOKE Binding Library to Qt
  The "Scripting Meta Object Kompiler Engine" library is used by
  various TDE language bindings packages to provide interfaces to the
@@ -124,7 +123,6 @@ Package: libsmokeqt-trinity-dev
 Architecture: any
 Section: libdevel
 Depends: libsmokeqt1-trinity (= ${binary:Version})
-Conflicts: libqt-perl (<= 3.008-1)
 Description: SMOKE Binding Library to Qt - Development Files
  The "Scripting Meta Object Kompiler Engine" library is used by
  various TDE language bindings packages to provide interfaces to the

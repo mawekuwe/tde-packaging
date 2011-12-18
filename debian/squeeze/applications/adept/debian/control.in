@@ -28,7 +28,7 @@ Description: package manager for Trinity -- common files
 Package: adept-manager-trinity
 Section: kde
 Depends: adept-common-trinity, ${shlibs:Depends}
-Recommends: libqt-perl
+Recommends: libtqt-perl
 Architecture: any
 Description: package manager for Trinity
  Adept Manager is a graphical user interface for package management.
@@ -39,13 +39,13 @@ Description: package manager for Trinity
   * Edit the list of used repositories (sources.list)
   * Configure packages through the debconf system
  .
- Please also install libqt-perl if you want the KDE Debconf frontend
+ Please also install libtqt-perl if you want the KDE Debconf frontend
  to function.
 
 Package: adept-installer-trinity
 Section: kde
 Depends: adept-common-trinity, app-install-data, ${shlibs:Depends}
-Recommends: libqt-perl
+Recommends: libtqt-perl
 Architecture: any
 Description: simple user interface for application management (for Trinity)
  Adept Installer presents a list of applications available through the
@@ -53,19 +53,19 @@ Description: simple user interface for application management (for Trinity)
  that contains a .desktop file for use with KDE, GNOME or other
  desktop environment.
  .
- Please also install libqt-perl if you want the KDE Debconf frontend
+ Please also install libtqt-perl if you want the KDE Debconf frontend
  to function.
 
 Package: adept-updater-trinity
 Section: kde
 Depends: adept-common-trinity, ${shlibs:Depends}
-Recommends: libqt-perl
+Recommends: libtqt-perl
 Architecture: any
 Description: system update tool for Trinity
  Adept Updater provides a simple wizard-style user interface to system
  upgrades. It uses same algorithms as apt-get dist-upgrade.
  .
- Please also install libqt-perl if you want the KDE Debconf frontend
+ Please also install libtqt-perl if you want the KDE Debconf frontend
  to function.
 
 Package: adept-notifier-trinity
