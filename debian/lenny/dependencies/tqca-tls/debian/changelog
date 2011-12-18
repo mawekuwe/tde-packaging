@@ -1,0 +1,84 @@
+tqca-tls (1.0-0) lenny; urgency=low
+
+  * TQt upload
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 17 Dec 2011 19:48:00 -0600
+
+qca-tls (1.0-5) natty; urgency=low
+
+  * Natty upload
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Mon, 15 Aug 2011 13:51:00 -0600
+
+qca-tls (1.0-4) unstable; urgency=low
+
+  * Honour DEB_BUILD_OPTIONS=nostrip (Closes: Bug#437850)
+  * Fixed a intian warning
+
+ -- Jan Niehusmann <jan@debian.org>  Tue, 14 Aug 2007 17:13:06 +0200
+
+qca-tls (1.0-3) unstable; urgency=low
+
+  * Changed two type conversions to const to make gcc happy
+    (Closes: Bug#337449)
+  * Set Standards-Version to 3.6.2.0
+
+ -- Jan Niehusmann <jan@debian.org>  Thu, 15 Dec 2005 22:59:09 +0100
+
+qca-tls (1.0-2) unstable; urgency=low
+
+  * Recompiled for C++ ABI transition.
+
+ -- Jan Niehusmann <jan@debian.org>  Fri, 26 Aug 2005 18:10:30 +0000
+
+qca-tls (1.0-1) unstable; urgency=low
+
+  * Most of the following changes were done by Peter Palfrader
+    <weasel@debian.org> - many thanks to him!
+  * New upstream version (closes: #235093).
+  * qca-tls is a non-native package now (closes: #235084).
+  * Clean up properly in clean target:
+    rm -rf .ui .moc .obj Makefile conf.log conf.pri extra.pri
+    (closes: #235089).
+  * Do not copy over config.{sub,guess} from /usr/share during
+    build.  They are not needed at all (closes: #235085).
+  * Remove debian/qca.doc-base.EX example file (closes: #235092).
+  * Do not ship readme in the binary package:  it's just install
+    instructions (closes: #234939).
+  * Something changed that makes the configure script make the
+    Makefile install the .so into usr/lib, as opposed to usr/share
+    (closes: #233530).  At any rate, we will not claim to have
+    built a working package if it happens again:
+  * Make the build fail if we don't have a
+    usr/lib/qt3/plugins/crypto/libqca-tls.so file after install.
+  * Make stamps in debian/rules actually work.
+  * Update copyright file to list current download link
+  * Added QMAKE_PROJECT_DEPTH=0 to .pro file to make qca-tls build in
+    nested directory structures.
+
+ -- Jan Niehusmann <jan@debian.org>  Sat, 28 Feb 2004 13:35:28 +0100
+
+qca-tls (0.0-CVS-20031209-1.3) unstable; urgency=low
+
+  * Damn. Added build-depends on libssl-dev...
+
+ -- Jan Niehusmann <jan@debian.org>  Fri, 13 Feb 2004 15:06:45 +0100
+
+qca-tls (0.0-CVS-20031209-1.2) unstable; urgency=low
+
+  * Added build-depends on libqt3-mt-dev
+
+ -- Jan Niehusmann <jan@debian.org>  Fri, 13 Feb 2004 13:27:34 +0100
+
+qca-tls (0.0-CVS-20031209-1.1) unstable; urgency=low
+
+  * Upload to unstable
+
+ -- Jan Niehusmann <jan@debian.org>  Thu, 12 Feb 2004 20:28:19 +0100
+
+qca-tls (0.0-CVS-20031209-1) experimental; urgency=low
+
+  * Initial Release.
+  * New upstream version
+
+ -- Jan Niehusmann <jan@debian.org>  Wed, 10 Dec 2003 12:21:07 +0100
