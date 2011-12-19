@@ -1,19 +1,38 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-kde-i18n
+pkgname=('trinity-i18n-af' 'trinity-i18n-ar' 'trinity-i18n-az' 
+         'trinity-i18n-be' 'trinity-i18n-bg' 'trinity-i18n-bn' 
+         'trinity-i18n-br' 'trinity-i18n-bs' 'trinity-i18n-ca' 
+         'trinity-i18n-cs' 'trinity-i18n-csb' 'trinity-i18n-cy' 
+         'trinity-i18n-da' 'trinity-i18n-de' 'trinity-i18n-el' 
+         'trinity-i18n-en_gb' 'trinity-i18n-eo' 'trinity-i18n-es' 
+         'trinity-i18n-et' 'trinity-i18n-eu' 'trinity-i18n-fa' 
+         'trinity-i18n-fi' 'trinity-i18n-fr' 'trinity-i18n-fy' 
+         'trinity-i18n-ga' 'trinity-i18n-gl' 'trinity-i18n-he' 
+         'trinity-i18n-hi' 'trinity-i18n-hr' 'trinity-i18n-hu' 
+         'trinity-i18n-is' 'trinity-i18n-it' 'trinity-i18n-ja' 
+         'trinity-i18n-kk' 'trinity-i18n-km' 'trinity-i18n-ko' 
+         'trinity-i18n-lt' 'trinity-i18n-lv' 'trinity-i18n-mk' 
+         'trinity-i18n-mn' 'trinity-i18n-ms' 'trinity-i18n-nb' 
+         'trinity-i18n-nds' 'trinity-i18n-nl' 'trinity-i18n-nn' 
+         'trinity-i18n-pa' 'trinity-i18n-pl' 'trinity-i18n-pt' 
+         'trinity-i18n-pt_br' 'trinity-i18n-ro' 'trinity-i18n-ru' 
+         'trinity-i18n-rw' 'trinity-i18n-se' 'trinity-i18n-sk' 
+         'trinity-i18n-sl' 'trinity-i18n-sr' 'trinity-i18n-sr-latn' 
+         'trinity-i18n-ss' 'trinity-i18n-sv' 'trinity-i18n-ta' 
+         'trinity-i18n-te' 'trinity-i18n-tg' 'trinity-i18n-th' 
+         'trinity-i18n-tr' 'trinity-i18n-uk' 'trinity-i18n-uz' 
+         'trinity-i18n-uz-cyrillic' 'trinity-i18n-vi' 'trinity-i18n-wa' '
+         trinity-i18n-zh_cn' 'trinity-i18n-zh_tw')
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity-extras')
-pkgdesc="Trinity DE internatinalizations"
-depends=('trinity-kdelibs')
+groups=('trinity-i18n')
+pkgdesc="Trinity Localizations collection"
+depends=('trinity-kdelibs' 'trinity-kdebase')
 makedepends=('pkgconfig' 'autoconf' 'automake')
-optdepends=()
-provides=($pkgname)
-conflicts=()
-replaces=()
 options=('libtool' '!strip')
 source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kde-i18n-3.5.13.tar.gz)
 md5sums=('7c919c7cb85f454fed46767082a87773')
@@ -22,33 +41,525 @@ _builddir=kde-i18n
 _prefix=/opt/trinity
 
 build() {
-
   msg "Setting Trinity Environment variables"
   export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
-  #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < kde-i18n.patch
-  
-  msg "Starting automake..."
-  cd "$srcdir/${_builddir}"
-  cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-  cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-  make -f admin/Makefile.common
+  cd $srcdir/kde-i18n
+  rm HOW.TO.BUILD TRINITY.RELEASE
 
-  msg "Starting configure..."
-  ./configure --with-qt-dir=${QTDIR} \
-     --prefix=${_prefix} \
-     --enable-closure \
-     --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
-     --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
-
-  msg "Building ${pkgname}..."
-  make
+  for filename in *; do
+     
+     msg "Extracting $filename..."
+     tar xfj $filename
+     
+     dir=`echo "$filename" | cut -d'.' -f1-3`
+     cd $dir
+     
+     msg "Starting $dir configure..."
+     ./configure --prefix=${_prefix}
+     
+     msg "Building $dir..."
+     make
+     
+     cd ..
+  done
 }
 
-package() {
+package_trinity-i18n-af() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Afrikaans localization"
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/${_builddir}
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ar() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Arabic localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-az() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Azerbaijani localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-be() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Belgian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-bg() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Bulgarian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-bn() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Brumei localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-br() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Breton localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-bs() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Bosnian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ca() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Catalan localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-cs() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Czech localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-csb() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Kashubian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-cy() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Cyprus localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-da() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Danish localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-de() {
+groups=('trinity-i18n')
+pkgdesc="Trinity German localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-el() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Greek localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-en_gb() {
+groups=('trinity-i18n')
+pkgdesc="Trinity British English localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-eo() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Esperanto localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-es() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Spanish localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-et() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Estonian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-eu() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Basque localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-fa() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Farsi localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-fi() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Finnish localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-fr() {
+groups=('trinity-i18n')
+pkgdesc="Trinity French localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-fy() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Frisian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ga() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Irish Galeic localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-gl() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Galician localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-he() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Hebrew localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-hi() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Hindi localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-hr() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Croatian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-hu() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Hungarian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-is() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Icelandic localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-it() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Italian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ja() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Japanese localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-kk() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Kazakh localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-km() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Khmer localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ko() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Korean localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-lt() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Lithuanian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-lv() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Latvian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-mk() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Macedonian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-mn() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Mongolian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ms() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Malay localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-nb() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Norvegian Bokmal localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-nds() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Low Saxon localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-nl() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Dutch localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-nn() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Norvegian Nynorsk localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-pa() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Panjabi/Punjabi localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-pl() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Polish localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-pt() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Portoghese localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-pt_br() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Brazilian Porthogese localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ro() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Romanian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ru() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Russian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-rw() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Kinyarwanda localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-se() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Northern Sami localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-sk() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Slovak localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-sl() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Slovenian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-sr() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Serbian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-sr-latn() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Serbian latin charset localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ss() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Swati localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-sv() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Swedish localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-ta() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Tamil localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-te() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Telgu localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-tg() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Tajik localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-th() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Thai localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-tr() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Turkish localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-uk() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Ukrainian localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-uz() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Uzbek localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-uz-cyrillic() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Uzbek cyrillic charset localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-vi() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Vietnamese localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-wa() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Walloon localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-zh_cn() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Chinese Simplified localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
+  make DESTDIR="${pkgdir}" install
+}
+package_trinity-i18n-zh_tw() {
+groups=('trinity-i18n')
+pkgdesc="Trinity Chinese Traditional localization"
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/$pkgname-3.5.10
   make DESTDIR="${pkgdir}" install
 }
