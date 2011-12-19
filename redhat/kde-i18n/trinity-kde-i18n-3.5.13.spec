@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 5
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -46,9 +46,6 @@ AutoReq: no
 
 Source0:	kde-i18n-%{version}.tar.gz
 
-# [zh_TW] Updated translations, thanks to Wei-Lun Chao !
-Source1:	kde-i18n-zh_TW-3.5.10.tar.bz2
-
 # TDE 3.5.12: Translate 'kdesu' message was modified in 'kdebase' package
 Patch0:		kde-i18n-kdesu.patch
 
@@ -57,6 +54,9 @@ Patch1:		trinity-kde-i18n-fr-openterminalhere.patch
 
 # TDE 3.5.13: French translations for new features
 Patch2:		kde-i18n-3.5.13-add_french_translations.patch
+
+# TDE 3.5.13: Updated translations for zh_TW, thanks to Wei-Lun Chao !
+Patch3:		kde-i18n-3.5.13-add_zh_TW_translations.patch
 
 BuildRequires:	findutils
 BuildRequires:	gettext
@@ -622,30 +622,30 @@ Provides: %{name}-tz_TW = %{version}-%{release}
 
 %prep
 %setup -q -n kde-i18n
-%__cp -f %{SOURCE1} .
 
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*.tar.bz2; do
-    tar xjf ${f}
+    tar xjf "${f}"
   done
 done
 
 %patch0
 %patch1
-%patch2
+%patch2 -p0
+%patch3 -p0
 
 
 %build
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
-export kde_htmldir=%{tde_docdir}/HTML
+export kde_htmldir="%{tde_docdir}/HTML"
 
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*/; do
     if [ -d "${f}" ] && [ -x "${f}/configure" ] ; then 
       pushd ${f}
-      %configure --prefix=%{_prefix}
+      %configure
       %__make %{?_smp_mflags}
       popd
     fi
@@ -653,22 +653,23 @@ for l in %{KDE_LANGS}; do
 done
 
 %install
-rm -rf %{?buildroot}
+%__rm -rf %{?buildroot}
 export PATH="%{_bindir}:${PATH}"
 
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*/; do
     if [ -d "${f}" ] && [ -r "${f}/Makefile" ] ; then 
-      %__make install DESTDIR=%{?buildroot} -C ${f}
+      %__make install DESTDIR="%{?buildroot}" -C "${f}"
     fi
   done
 done
 
 # make symlinks relative
-pushd %{buildroot}%{tde_docdir}/HTML
+%if "%{_prefix}" == "/usr"
+pushd "%{buildroot}%{tde_docdir}/HTML"
 for lang in *; do
-  if [ -d $lang ]; then
-    pushd $lang
+  if [ -d "$lang" ]; then
+    pushd "$lang"
     for i in */*/*; do
       if [ -d $i -a -L $i/common ]; then
         rm -f $i/common
@@ -694,9 +695,10 @@ for lang in *; do
   fi
 done
 popd   
+%endif
 
 # remove zero-length file
-find %{buildroot}%{tde_docdir}/HTML -size 0 -exec rm -f {} \;
+find "%{buildroot}%{tde_docdir}/HTML" -size 0 -exec rm -f {} \;
 
 # See http://fedoraproject.org/wiki/Languages (???)
 %__rm -f %{buildroot}%{_datadir}/locale/*/flag.png
@@ -707,7 +709,7 @@ find %{buildroot}%{tde_docdir}/HTML -size 0 -exec rm -f {} \;
 %endif
 
 # remove obsolete KDE 3 application data translations
-%__rm -rf %{buildroot}%{_datadir}/apps
+%__rm -rf "%{buildroot}%{_datadir}/apps"
 
 %clean
 %__rm -rf %{buildroot}
@@ -1157,6 +1159,9 @@ find %{buildroot}%{tde_docdir}/HTML -size 0 -exec rm -f {} \;
 %endif
 
 %changelog
+* Sun Dec 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Updates French translations (mostly Kickoff Menu related)
+
 * Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Removes 'kde-filesystem" dependancy
 
