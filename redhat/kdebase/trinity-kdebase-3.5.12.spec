@@ -633,8 +633,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 # TDE 3.5.12 specific
 %{_bindir}/kde3
-#%exclude 
-%{_datadir}/applications/kde/display.desktop
+%exclude %{_datadir}/applications/kde/display.desktop
 %exclude %{_datadir}/fonts/override/fonts.dir
 %{_docdir}/kdm/README
 

@@ -1,6 +1,6 @@
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kcmiccconfig.po kde-i18n-fr-3.5.10/messages/kdebase/kcmiccconfig.po
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kcmiccconfig.po kde-i18n-fr-3.5.10.p/messages/kdebase/kcmiccconfig.po
 --- kde-i18n-fr-3.5.10.ORI/messages/kdebase/kcmiccconfig.po	1970-01-01 01:00:00.000000000 +0100
-+++ kde-i18n-fr-3.5.10/messages/kdebase/kcmiccconfig.po	2011-11-01 17:01:47.942636702 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/kcmiccconfig.po	2011-12-18 12:12:34.087743324 +0100
 @@ -0,0 +1,76 @@
 +# TDE 3.5.13 'iccconfig.cpp' translation
 +
@@ -78,10 +78,47 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kcmiccconfig.po kde-i18n-fr-3
 +#: iccconfigbase.ui:140
 +msgid "Settings for output"
 +msgstr "Appliquer à la sortie"
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kdesktop.po kde-i18n-fr-3.5.10/messages/kdebase/kdesktop.po
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kdesktop.po kde-i18n-fr-3.5.10.p/messages/kdebase/kdesktop.po
 --- kde-i18n-fr-3.5.10.ORI/messages/kdebase/kdesktop.po	2008-08-19 20:29:30.000000000 +0200
-+++ kde-i18n-fr-3.5.10/messages/kdebase/kdesktop.po	2011-11-01 17:14:54.379412830 +0100
-@@ -1144,3 +1144,20 @@
++++ kde-i18n-fr-3.5.10/messages/kdebase/kdesktop.po	2011-12-18 18:12:48.482642367 +0100
+@@ -553,6 +553,36 @@
+ "</ul>\n"
+ "</qt>"
+ 
++# kdesktop/minicli_ui.ui:188
++msgid "Autocomplete shows available &applications"
++msgstr "L'autocomplétion affiche les &applications disponibles"
++
++# kdesktop/minicli_ui.ui:191
++msgid ""
++"<qt>When enabled, the system shows available applications in the autocompletion area."
++"</qt>"
++msgstr ""
++"<qt>Lorsque cette case est cochée, le système affiche les applications "
++"disponibles dans la zone d'autocomplétion.</qt>"
++
++
++# kdesktop/minicli_ui.ui:200
++msgid "Autocomplete uses &filesystem instead of history"
++msgstr "L'autocomplétion utilise le système de &fichiers au lieu de l'historique"
++
++# kdesktop/minicli_ui.ui:203
++msgid ""
++"<qt>This selects whether the filesystem and the past command history will be used for autocompletion."
++"</qt>"
++msgstr ""
++"<qt>En cochant cette case, l'autocomplétion utilise le système de fichiers à la place  de l'historique."
++"</qt>"
++
++
++# kdesktop/minicli_ui.ui:212
++msgid "Autocomplete uses &both history and filesystem"
++msgstr "L'autocomplétion utilise l'historique &et le système de fichiers"
++
+ #. i18n: file minicli_ui.ui line 199
+ #: rc.cpp:14
+ #, no-c-format
+@@ -1144,3 +1182,20 @@
  "Cependant, certains écrans de veille\n"
  "       effectuent des calculs utiles, dans ces cas, il est souhaitable de ne "
  "pas les désactiver."
@@ -102,10 +139,10 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kdesktop.po kde-i18n-fr-3.5.1
 +#: lockdlg.cc:139
 +msgid "This session has been locked since %1"
 +msgstr "Cette session est verrouillée depuis %1"
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kicker.po kde-i18n-fr-3.5.10/messages/kdebase/kicker.po
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kicker.po kde-i18n-fr-3.5.10.p/messages/kdebase/kicker.po
 --- kde-i18n-fr-3.5.10.ORI/messages/kdebase/kicker.po	2008-08-19 20:29:30.000000000 +0200
-+++ kde-i18n-fr-3.5.10/messages/kdebase/kicker.po	2011-11-01 16:16:16.453636429 +0100
-@@ -754,3 +754,8 @@
++++ kde-i18n-fr-3.5.10/messages/kdebase/kicker.po	2011-12-18 20:30:31.365135597 +0100
+@@ -754,3 +754,292 @@
  #, no-c-format
  msgid "Custom size"
  msgstr "Taille personnalisée"
@@ -114,9 +151,293 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kicker.po kde-i18n-fr-3.5.10/
 +#: panelextension.cpp:385
 +msgid "&Launch Process Manager..."
 +msgstr "Gestionnaire de taches..."
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/konsole.po kde-i18n-fr-3.5.10/messages/kdebase/konsole.po
++
++## Kickoff menu (k_new_mnu.cpp) 
++msgid "User&nbsp;<b>%1</b>&nbsp;on&nbsp;<b>%2</b>"
++msgstr "Utilisateur&nbsp;<b>%1</b>&nbsp;sur&nbsp;<b>%2</b>"
++
++msgid "Most commonly used applications and documents"
++msgstr "Applications et documents utilisés récemment"
++
++msgid "Search:"
++msgstr "Chercher:"
++
++msgid "List of installed applications"
++msgstr "Liste des applications installées"
++
++msgid ""
++"Information and configuration of your "
++"system, access to personal files, network resources and connected disk drives"
++msgstr ""
++"Informations et configuration de votre "
++"système, accès aux fichiers personnels, ressources réseau et disques connectés"
++
++msgid "Recently used applications and documents"
++msgstr "Applications et documents utilisés récemment"
++
++msgid ""
++"<qt>Logout, switch user, switch off or reset,"
++" suspend of the system"
++msgstr ""
++"<qt>Se déconnecter, changer d'utilisateur, éteindre,"
++" redémarrer ou interrompre le système"
++               
++msgid "<p align=\"center\"> <u>F</u>avorites</p>"
++msgstr "<p align=\"center\"> <u>F</u>avoris</p>"
++
++msgid "<p align=\"center\"><u>H</u>istory</p>"
++msgstr "<p align=\"center\"><u>H</u>istorique</p>"
++
++msgid "<p align=\"center\"> <u>C</u>omputer</p>"
++msgstr "<p align=\"center\"> <u>O</u>rdinateur</p>"
++
++msgid "<p align=\"center\"><u>A</u>pplications</p>"
++msgstr "<p align=\"center\"><u>A</u>pplications</p>"
++
++msgid "<p align=\"center\"><u>L</u>eave</p>"
++msgstr "<p align=\"center\"><u>Q</u>uitter</p>"
++
++msgid "Search Internet"
++msgstr "Chercher sur Internet"
++
++msgid "Search Index"
++msgstr "Chercher dans l'index"
++
++msgid "Applications, Contacts and Documents"
++msgstr "Applications, Concacts et Documents"
++
++msgid "Start '%1'"
++msgstr "Démarrer '%1'"
++
++msgid "Start '%1' (current)"
++msgstr "Démarrer '%1' (actuel)"
++
++msgid "Restart and boot directly into '%1'"
++msgstr "Redémarrer et amorcer directement '%1'"
++
++msgid "Start a parallel session"
++msgstr "Démarrer une session parallèle"
++
++msgid "Switch to Session of User '%1'"
++msgstr "Basculer vers la session de l'utilisateur '%1'"
++
++msgid "Session: %1"
++msgstr "Session: %1"
++
++msgid "New Applications"
++msgstr "Nouvelles Applications"
++
++msgid "Session"
++msgstr "Session"
++
++msgid "Logout"
++msgstr "Déconnexion"
++
++msgid "End session"
++msgstr "Terminer la session"
++
++msgid "Lock"
++msgstr "Verrouiller"
++
++msgid "Lock screen"
++msgstr "Verrouiller l'écran"
++
++msgid "Save current Session for next login"
++msgstr "Enregistrer la session courante pour la prochaine connexion"
++
++msgid "Manage parallel sessions"
++msgstr "Gérer les sessions parallèles"
++
++msgid "System"
++msgstr "Système"
++
++msgid "Shutdown Computer"
++msgstr "Eteindre l'ordinateur"
++
++msgid "Turn off computer"
++msgstr "Eteindre l'ordinateur"
++
++msgid "&Restart Computer"
++msgstr "&Redémarrer l'ordinateur"
++
++msgid "Restart and boot the default system"
++msgstr "Redémarrer et amorcer le système par défaut"
++
++msgid "Start Operating System"
++msgstr "Démarrer le système d'Exploitation"
++
++msgid "Restart and boot another operating system"
++msgstr "Redémarrer et amorcer un autre système d'exploitation"
++
++msgid "System Information"
++msgstr "Informations Système"
++
++msgid "System Folders"
++msgstr "Dossiers Système"
++
++msgid "Home Folder"
++msgstr "Dossier personnel"
++
++msgid "My Documents"
++msgstr "Mes Documents"
++
++msgid "Network Folders"
++msgstr "Dossiers Réseau"
++
++msgid ""
++"<center><b>%1</b></center>\n"
++"You do not have permission to execute "
++"this command."
++msgstr ""
++"<center><b>%1</b></center>\n"
++"Vous n'êst pas autorisé(e) à exécuter "
++"cette commande."
++
++msgid ""
++"<center><b>%1</b></center>\n"
++"Could not run the specified command."
++msgstr ""
++"<center><b>%1</b></center>\n"
++"La commande spécifiée n'a pas pu être exécutée."
++
++msgid ""
++"<center><b>%1</b></center>\n"
++"The specified command does not exist."
++msgstr ""
++"<center><b>%1</b></center>\n"
++"La commande spécifiée n'existe pas."
++
++msgid "Documents"
++msgstr "Documents"
++
++msgid "Open Addressbook at %1"
++msgstr "Ouvrir le carnet d'adresse à %1"
++
++msgid "- Add ext:type to specify a file extension."
++msgstr "- Ajouter ext:type pour indiquer une extension de fichier"
++
++msgid "- When searching for a phrase, add quotes."
++msgstr "- Pour chercher une phrase, ajouter des guillemets."
++
++msgid "- To exclude search terms, use the minus symbol in front."
++msgstr "- Pour exclure des éléments recherchés, utiliser le préfixe moins."
++
++msgid "- To search for optional terms, use OR."
++msgstr "- Pour chercher des termes optionnels, utiliser OR."
++
++msgid "- You can use upper and lower case."
++msgstr "- Vous pouvez écrire en majuscules ou minuscules."
++
++msgid "Search Quick Tips"
++msgstr "Astuces de la recherche rapide"
++
++msgid "%1 = %2"
++msgstr "%1 = %2"
++
++msgid "Send Email to %1"
++msgstr "Envoyer un Email à %1"
++
++msgid "Open Local File: %1"
++msgstr "Ouvrir le fichier local: %1"
++
++msgid "Open Local Dir: %1"
++msgstr "Ouvrir le répertoire local: %1"
++
++msgid "Open Remote Location: %1"
++msgstr "Ouvrir l'emplacement distant: %1"
++
++msgid "Run '%1'"
++msgstr "Exécuter '%1'"
++
++msgid "No matches found"
++msgstr "Aucune correspondance trouvée"
++
++msgid "top %1 of %2"
++msgstr "Haut %1 de %2"
++
++msgid "%1 (top %2 of %3)"
++msgstr "%1 (haut %2 de %3)"
++
++msgid "Do you really want to end the session?"
++msgstr "Voulez-vous vraiment terminer cette session ?"
++
++msgid "Logout Confirmation"
++msgstr "Confirmer la déconnexion"
++
++msgid "Do you really want to turn off the computer?"
++msgstr "Voulez-vous vraiment éteindre l'ordinateur ?"
++
++msgid "Shutdown Confirmation"
++msgstr "Confirmer l'arrêt"
++
++msgid "Shutdown"
++msgstr "Arrêter"
++
++msgid "Do you really want to reset the computer and boot (another operating system)?"
++msgstr "Voulez-vous réellement redémarrer l'ordinateur et amorcer (un autre système d'exploitation) ?"
++
++msgid "Restart Confirmation"
++msgstr "Confirmer le redémarrage"
++
++msgid "Restart"
++msgstr "Redémarrer"
++
++msgid "Do you really want to reset the computer and boot Microsoft Windows"
++msgstr "Voulez-vous réellement redémarrer l'ordinateur et amorcer Windows"
++
++msgid "Start Windows Confirmation"
++msgstr "Confirmer le démarrage de Windows"
++
++msgid "Start Windows"
++msgstr "Démarrer Windows"
++
++msgid "Could not start Tomboy."
++msgstr "Impossible de démarrer Tomboy."
++
++msgid "Remove From Favorites"
++msgstr "Supprimer des favoris"
++
++msgid "Add to Favorites"
++msgstr "Ajouter aux favoris"
++
++msgid "Advanced"
++msgstr "Avancé"
++
++msgid "Clear Recently Used Applications"
++msgstr "Vider la liste d'applications récentes"
++
++msgid "Clear Recently Used Documents"
++msgstr "Vider la liste des documents récents"
++
++msgid "Media"
++msgstr "Media"
++
++msgid "(%1 available)"
++msgstr "(%1 disponible)"
++
++msgid "Directory: %1"
++msgstr "Répertoire: %1"
++
++msgid "Suspend Computer"
++msgstr "Mettre en veille l'ordinateur"
++
++msgid "Suspend to Disk"
++msgstr "Mettre en veille l'ordinateur (sur disque)"
++
++msgid "Pause without logging out"
++msgstr "Mettre en pause sans se déconnecter"
++
++msgid "Suspend to RAM"
++msgstr "Mettre en veille l'ordinateur (en RAM)"
++
++msgid "Standby"
++msgstr "Mettre en veille"
++
++msgid "Suspend failed"
++msgstr "La mise en veille a échoué"
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/konsole.po kde-i18n-fr-3.5.10.p/messages/kdebase/konsole.po
 --- kde-i18n-fr-3.5.10.ORI/messages/kdebase/konsole.po	2008-08-19 20:29:30.000000000 +0200
-+++ kde-i18n-fr-3.5.10/messages/kdebase/konsole.po	2011-11-01 16:16:16.453636429 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/konsole.po	2011-12-18 12:12:34.093743256 +0100
 @@ -1475,3 +1475,8 @@
  #: zmodem_dialog.cpp:28
  msgid "&Stop"
@@ -126,9 +447,9 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/konsole.po kde-i18n-fr-3.5.10
 +#: konsole.cpp:736
 +msgid "&Open.."
 +msgstr "Ouvrir.."
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/krandr.po kde-i18n-fr-3.5.10/messages/kdebase/krandr.po
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/krandr.po kde-i18n-fr-3.5.10.p/messages/kdebase/krandr.po
 --- kde-i18n-fr-3.5.10.ORI/messages/kdebase/krandr.po	2008-08-19 20:29:30.000000000 +0200
-+++ kde-i18n-fr-3.5.10/messages/kdebase/krandr.po	2011-11-01 17:42:36.100570353 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/krandr.po	2011-12-18 12:12:34.094743245 +0100
 @@ -301,3 +301,33 @@
  "_: Refresh rate in Hertz (Hz)\n"
  "%1 Hz"
@@ -163,9 +484,9 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/krandr.po kde-i18n-fr-3.5.10/
 +#: configdialog.cpp:49
 +msgid "Global &Shortcuts"
 +msgstr "Raccourcis Globaux"
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksmserver.po kde-i18n-fr-3.5.10/messages/kdebase/ksmserver.po
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksmserver.po kde-i18n-fr-3.5.10.p/messages/kdebase/ksmserver.po
 --- kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksmserver.po	2007-05-14 10:07:36.000000000 +0200
-+++ kde-i18n-fr-3.5.10/messages/kdebase/ksmserver.po	2011-11-01 17:29:02.909615530 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/ksmserver.po	2011-12-18 12:12:34.095743233 +0100
 @@ -92,3 +92,14 @@
  "_: current option in boot loader\n"
  " (current)"
@@ -181,9 +502,9 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksmserver.po kde-i18n-fr-3.5.
 +msgid "Saving your settings..."
 +msgstr "Enregistrement de vos paramètres ..."
 +
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksplash.po kde-i18n-fr-3.5.10/messages/kdebase/ksplash.po
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksplash.po kde-i18n-fr-3.5.10.p/messages/kdebase/ksplash.po
 --- kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksplash.po	2005-09-10 13:02:44.000000000 +0200
-+++ kde-i18n-fr-3.5.10/messages/kdebase/ksplash.po	2011-11-01 17:03:49.799926756 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/ksplash.po	2011-12-18 12:12:34.095743233 +0100
 @@ -105,5 +105,5 @@
  msgstr "Rétablissement de la session"
  
@@ -192,9 +513,9 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/ksplash.po kde-i18n-fr-3.5.10
 -msgstr "KDE est prêt"
 +msgid "Trinity is up and running"
 +msgstr "Trinity est prêt"
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/Makefile.in kde-i18n-fr-3.5.10/messages/kdebase/Makefile.in
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/Makefile.in kde-i18n-fr-3.5.10.p/messages/kdebase/Makefile.in
 --- kde-i18n-fr-3.5.10.ORI/messages/kdebase/Makefile.in	2008-08-20 09:14:47.000000000 +0200
-+++ kde-i18n-fr-3.5.10/messages/kdebase/Makefile.in	2011-11-01 16:32:57.157386765 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/Makefile.in	2011-12-18 12:12:34.096743221 +0100
 @@ -192,8 +192,8 @@
  SUBDIRS =.
  #>- POFILES = AUTO
@@ -244,9 +565,9 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/Makefile.in kde-i18n-fr-3.5.1
  
  #>+ 2
  all-nls: $(GMOFILES)
-diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdelibs/kdelibs.po kde-i18n-fr-3.5.10/messages/kdelibs/kdelibs.po
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdelibs/kdelibs.po kde-i18n-fr-3.5.10.p/messages/kdelibs/kdelibs.po
 --- kde-i18n-fr-3.5.10.ORI/messages/kdelibs/kdelibs.po	2008-08-19 20:29:58.000000000 +0200
-+++ kde-i18n-fr-3.5.10/messages/kdelibs/kdelibs.po	2011-11-01 17:02:35.529386462 +0100
++++ kde-i18n-fr-3.5.10/messages/kdelibs/kdelibs.po	2011-12-18 12:19:38.552013274 +0100
 @@ -5557,123 +5557,104 @@
  
  #: kdeui/kaboutkde.cpp:34
@@ -434,7 +755,7 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdelibs/kdelibs.po kde-i18n-fr-3.5.10
  #: kdeui/kaboutkde.cpp:83
  msgid ""
 -"_: About KDE\n"
-+"About Trinity"
++"_: About Trinity\n"
  "&About"
  msgstr "À &propos"
  
@@ -455,7 +776,18 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdelibs/kdelibs.po kde-i18n-fr-3.5.10
  
  #: kdeui/kstdguiitem.cpp:110 khtml/java/kjavaappletserver.cpp:804
  msgid "&Yes"
-@@ -6623,8 +6604,8 @@
+@@ -6286,6 +6267,10 @@
+ msgid "&Browse..."
+ msgstr "&Parcourir..."
+ 
++#: kdeui/kdialog.cpp:428
++msgid "Please wait..."
++msgstr "Veuillez patienter ..."
++
+ #: kdeui/kdialogbase.cpp:636
+ msgid "&Try"
+ msgstr "&Essayer"
+@@ -6623,8 +6608,8 @@
  msgstr "À &propos de : %1"
  
  #: kdeui/khelpmenu.cpp:176 kdeui/kstdaction_p.h:114
@@ -466,3 +798,316 @@ diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdelibs/kdelibs.po kde-i18n-fr-3.5.10
  
  #: kdeui/kactionclasses.cpp:2072
  msgid "Exit F&ull Screen Mode"
+diff -Nuar kde-i18n-fr-3.5.10.ORI/messages/kdebase/kcontrol.po kde-i18n-fr-3.5.10/messages/kdebase/kcontrol.po
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/kcontrol.po	2011-12-18 22:34:04.982863520 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/kcontrol.po	2011-12-18 22:40:37.574949536 +0100
+@@ -34,8 +34,8 @@
+ msgstr "duranceau@kde.org,caulier.gilles@free.fr,cousin@kde.org,kde@macolu.org"
+ 
+ #: aboutwidget.cpp:43 main.cpp:104
+-msgid "KDE Control Center"
+-msgstr "Centre de configuration de KDE"
++msgid "Trinity Control Center"
++msgstr "Centre de configuration de Trinity"
+ 
+ #: aboutwidget.cpp:45
+ msgid "Configure your desktop environment."
+@@ -43,17 +43,17 @@
+ 
+ #: aboutwidget.cpp:47
+ msgid ""
+-"Welcome to the \"KDE Control Center\", a central place to configure your "
++"Welcome to the \"Trinity Control Center\", a central place to configure your "
+ "desktop environment. Select an item from the index on the left to load a "
+ "configuration module."
+ msgstr ""
+-"Bienvenue dans le « Centre de configuration de KDE », l'endroit où configurer "
++"Bienvenue dans le « Centre de configuration de Trinity », l'endroit où configurer "
+ "votre environnement. Sélectionnez un élément dans l'index à gauche pour charger "
+ "le module de configuration correspondant."
+ 
+ #: aboutwidget.cpp:53 main.cpp:108
+-msgid "KDE Info Center"
+-msgstr "Centre d'informations de KDE"
++msgid "Trinity Info Center"
++msgstr "Centre d'informations de Trinity"
+ 
+ #: aboutwidget.cpp:55
+ msgid "Get system and desktop environment information"
+@@ -61,10 +61,10 @@
+ 
+ #: aboutwidget.cpp:57
+ msgid ""
+-"Welcome to the \"KDE Info Center\", a central place to find information about "
++"Welcome to the \"Trinity Info Center\", a central place to find information about "
+ "your computer system."
+ msgstr ""
+-"Bienvenue dans le « Centre d'informations de KDE », l'endroit où trouver des "
++"Bienvenue dans le « Centre d'informations de Trinity », l'endroit où trouver des "
+ "informations sur votre système."
+ 
+ #: aboutwidget.cpp:61
+@@ -76,8 +76,8 @@
+ "configuration particulière."
+ 
+ #: aboutwidget.cpp:64
+-msgid "KDE version:"
+-msgstr "Version de KDE :"
++msgid "Trinity version:"
++msgstr "Version de Trinity :"
+ 
+ #: aboutwidget.cpp:65
+ msgid "User:"
+@@ -137,13 +137,13 @@
+ 
+ #: helpwidget.cpp:51
+ msgid ""
+-"<h1>KDE Info Center</h1>There is no quick help available for the active info "
++"<h1>Trinity Info Center</h1>There is no quick help available for the active info "
+ "module."
+ "<br>"
+ "<br>Click <a href = \"kinfocenter/index.html\">here</a> "
+ "to read the general Info Center manual."
+ msgstr ""
+-"<h1>Centre d'informations de KDE</h1> Désolé, aucune aide rapide n'est "
++"<h1>Centre d'informations de Trinity</h1> Désolé, aucune aide rapide n'est "
+ "disponible pour le module d'information courant."
+ "<br>"
+ "<br> Cliquez <a href = \"kinfocenter/index.html\">ici</a> "
+@@ -151,13 +151,13 @@
+ 
+ #: helpwidget.cpp:56
+ msgid ""
+-"<h1>KDE Control Center</h1>There is no quick help available for the active "
++"<h1>Trinity Control Center</h1>There is no quick help available for the active "
+ "control module."
+ "<br>"
+ "<br>Click <a href = \"kcontrol/index.html\">here</a> "
+ "to read the general Control Center manual."
+ msgstr ""
+-"<h1>Centre de configuration de KDE</h1> Désolé, aucune aide rapide n'est "
++"<h1>Centre de configuration de Trinity</h1> Désolé, aucune aide rapide n'est "
+ "disponible pour le module de configuration courant."
+ "<br>"
+ "<br> Cliquez <a href = \"kcontrol/index.html\">ici</a> "
+@@ -173,16 +173,16 @@
+ "<br>Cliquez sur le bouton « Mode superutilisateur » ci-dessous."
+ 
+ #: main.cpp:105
+-msgid "The KDE Control Center"
+-msgstr "Le Centre de configuration de KDE"
++msgid "The Trinity Control Center"
++msgstr "Le Centre de configuration de Trinity"
+ 
+ #: main.cpp:106 main.cpp:110
+ msgid "(c) 1998-2004, The KDE Control Center Developers"
+ msgstr "(c) 1998-2004, Les développeurs du Centre de configuration de KDE"
+ 
+ #: main.cpp:109
+-msgid "The KDE Info Center"
+-msgstr "Le Centre d'informations de KDE"
++msgid "The Trinity Info Center"
++msgstr "Le Centre d'informations de Trinity"
+ 
+ #: main.cpp:128 main.cpp:130
+ msgid "Current Maintainer"
+--- kde-i18n-fr-3.5.10.ORI/messages/kdebase/kpersonalizer.po	2011-12-19 21:25:27.471340645 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/kpersonalizer.po	2011-12-19 21:29:05.386322708 +0100
+@@ -79,8 +79,8 @@
+ msgstr "Le style Platinium"
+ 
+ #: kcountrypage.cpp:48
+-msgid "<h3>Welcome to KDE %1</h3>"
+-msgstr "<h3>Bienvenue dans KDE %1</h3>"
++msgid "<h3>Welcome to Trinity %1</h3>"
++msgstr "<h3>Bienvenue dans Trinity %1</h3>"
+ 
+ #: kcountrypage.cpp:90 kcountrypage.cpp:117 kfindlanguage.cpp:82
+ msgid "without name"
+@@ -111,8 +111,8 @@
+ msgstr "L'assistant se redémarre lui-même"
+ 
+ #: main.cpp:32
+-msgid "Personalizer is running before KDE session"
+-msgstr "L'assistant démarre avant la session KDE elle-même"
++msgid "Personalizer is running before Trinity session"
++msgstr "L'assistant démarre avant la session Trinity elle-même"
+ 
+ #: kpersonalizer.cpp:67
+ msgid "Step 1: Introduction"
+@@ -141,13 +141,13 @@
+ #: kpersonalizer.cpp:152
+ msgid ""
+ "<p>Are you sure you want to quit the Desktop Settings Wizard?</p>"
+-"<p>The Desktop Settings Wizard helps you to configure the KDE desktop to your "
++"<p>The Desktop Settings Wizard helps you to configure the Trinity desktop to your "
+ "personal liking.</p>"
+ "<p>Click <b>Cancel</b> to return and finish your setup.</p>"
+ msgstr ""
+ "<p>Voulez-vous vraiment quitter l'assistant de configuration du bureau ?</p> "
+ "<p>L'assistant de configuration du bureau vous aide à configurer le bureau de "
+-"KDE selon vos convenances.</p> "
++"Trinity selon vos convenances.</p> "
+ "<p>Cliquez sur « <b>Annuler</b> » pour retourner et terminer vos réglages.</p>"
+ 
+ #: kpersonalizer.cpp:156
+@@ -171,14 +171,14 @@
+ "<br><b>Titlebar double-click:</b> <i>Shade window</i>"
+ "<br><b>Mouse selection:</b> <i>Single click</i>"
+ "<br><b>Application startup notification:</b> <i>busy cursor</i>"
+-"<br><b>Keyboard scheme:</b> <i>KDE default</i>"
++"<br><b>Keyboard scheme:</b> <i>Trinity default</i>"
+ "<br>"
+ msgstr ""
+ "<b>Activation des fenêtres :</b> <i>Cliquer pour avoir le focus</i>"
+ "<br><b>Double-clic sur la barre de titre :</b> <i>Enroule la fenêtre</i>"
+ "<br><b>Sélection par la souris :</b> <i>Simple clic</i>"
+ "<br><b>Notification de démarrage des applications :</b><i> Curseur occupé</i>"
+-"<br><b>Actions du clavier :</b> <i>KDE par défaut</i>"
++"<br><b>Actions du clavier :</b> <i>Trinity par défaut</i>"
+ "<br>"
+ 
+ #: kospage.cpp:364
+@@ -320,34 +320,34 @@
+ #: rc.cpp:6
+ #, no-c-format
+ msgid ""
+-"<p>This Personalizer will help you configure the basic setup of your KDE "
++"<p>This Personalizer will help you configure the basic setup of your Trinity "
+ "desktop in five quick, easy steps. You can set things like your country (for "
+ "date and time formats, etc.), language, desktop behavior and more.</p>\n"
+-"<p>You will be able to change all the settings later using the KDE Control "
++"<p>You will be able to change all the settings later using the Trinity Control "
+ "Center. You may choose to postpone your personalization until later by clicking "
+ "on <b>Skip Wizard</b>. Any changes made so far, will then be reversed, except "
+ "for the country and language settings. However, new users are encouraged to use "
+ "this simple method.</p>\n"
+-"<p>If you already like your KDE configuration and wish to quit the Wizard, "
++"<p>If you already like your Trinity configuration and wish to quit the Wizard, "
+ "click <b>Skip Wizard</b>, then <b>Quit</b>.</p>"
+ msgstr ""
+ "<p>Cet assistant vous aidera à configurer les réglages de base de votre bureau "
+-"KDE en cinq étapes simples. Vous pouvez régler des paramètres comme votre pays "
++"Trinity en cinq étapes simples. Vous pouvez régler des paramètres comme votre pays "
+ "(pour les formats de date et d'heure, etc.), votre langue, le comportement du "
+ "bureau et plein d'autres encore.</p>\n"
+ "<p>Vous pourrez changer tous ces réglages ultérieurement en utilisant le Centre "
+-"de configuration de KDE. Vous pouvez choisir de différer votre personnalisation "
++"de configuration de Trinity. Vous pouvez choisir de différer votre personnalisation "
+ "en cliquant sur « <b>Passer l'assistant</b> ». Cependant, il est conseillé pour "
+ "les nouveaux utilisateurs d'utiliser cette méthode.</p>\n"
+-"<p>Si votre configuration de KDE est déjà à votre goût et que vous désirez "
++"<p>Si votre configuration de Trinity est déjà à votre goût et que vous désirez "
+ "quitter l'assistant, cliquez sur « <b>Passer l'assistant</b> » puis sur  « <b>"
+ "Quitter</b> ».</p>"
+ 
+ #. i18n: file kcountrypagedlg.ui line 100
+ #: rc.cpp:11
+ #, no-c-format
+-msgid "<h3>Welcome to KDE %VERSION%!</h3>"
+-msgstr "<h3>Bienvenue dans KDE %VERSION% !</h3>"
++msgid "<h3>Welcome to Trinity %VERSION%!</h3>"
++msgstr "<h3>Bienvenue dans Trinity %VERSION% !</h3>"
+ 
+ #. i18n: file kcountrypagedlg.ui line 148
+ #: rc.cpp:14
+@@ -359,14 +359,14 @@
+ #: rc.cpp:17
+ #, no-c-format
+ msgid ""
+-"<P>KDE offers many visually appealing special effects, such as smoothed fonts, "
++"<P>Trinity offers many visually appealing special effects, such as smoothed fonts, "
+ "previews in the file manager and animated menus. All this beauty, however, "
+ "comes at a small performance cost. </P>\n"
+ "If you have a fast, new processor, you might want to turn them all on, but for "
+ "those of us with slower processors, starting off with less eye candy helps to "
+ "keep your desktop more responsive."
+ msgstr ""
+-"<P>KDE offre de nombreux effets visuels, comme les polices lissées, les aperçus "
++"<P>Trinity offre de nombreux effets visuels, comme les polices lissées, les aperçus "
+ "dans le gestionnaire de fichiers et les menus animés. Toutes ces choses "
+ "superbes ont un coût en termes de performances.</P>\n"
+ "Si vous avez un processeur récent et rapide, vous pouvez toutes les activer, "
+@@ -426,8 +426,8 @@
+ #. i18n: file kospagedlg.ui line 79
+ #: rc.cpp:44
+ #, no-c-format
+-msgid "KDE (TM)"
+-msgstr "KDE ™"
++msgid "Trinity (TM)"
++msgstr "Trinity"
+ 
+ #. i18n: file kospagedlg.ui line 90
+ #: rc.cpp:47
+@@ -454,22 +454,22 @@
+ "<b>System Behavior</b>"
+ "<br>\n"
+ "Graphical User Interfaces behave differently on various Operating Systems.\n"
+-"KDE allows you to customize its behavior according to your needs."
++"Trinity allows you to customize its behavior according to your needs."
+ msgstr ""
+ "<b>Comportement du système</b>"
+ "<br>\n"
+ "Les interfaces utilisateur graphiques se comportent différemment sur les "
+ "différents systèmes d'exploitation.\n"
+-"KDE vous permet de personnaliser son comportement selon vos désirs."
++"Trinity vous permet de personnaliser son comportement selon vos désirs."
+ 
+ #. i18n: file kospagedlg.ui line 168
+ #: rc.cpp:61
+ #, no-c-format
+ msgid ""
+-"For motion impaired users, KDE provides keyboard gestures to activate special "
++"For motion impaired users, Trinity provides keyboard gestures to activate special "
+ "keyboard settings."
+ msgstr ""
+-"Pour les utilisateurs à déplacement réduit, KDE fournit des gestes permettant "
++"Pour les utilisateurs à déplacement réduit, Trinity fournit des gestes permettant "
+ "d'activer des réglages spéciaux du clavier."
+ 
+ #. i18n: file kospagedlg.ui line 179
+@@ -494,26 +494,26 @@
+ #: rc.cpp:71
+ #, no-c-format
+ msgid ""
+-"You can refine the settings you made by starting the KDE Control Center by "
++"You can refine the settings you made by starting the Trinity Control Center by "
+ "choosing the entry <b>Control Center</b> in the K menu."
+ msgstr ""
+ "Vous pouvez affiner les réglages que vous avez faits en lançant le <b>"
+-"Centre de configuration de KDE</b> en choisissant l'entrée <b>"
++"Centre de configuration de Trinity</b> en choisissant l'entrée <b>"
+ "Centre de configuration</b> du menu K."
+ 
+ #. i18n: file krefinepagedlg.ui line 133
+ #: rc.cpp:74
+ #, no-c-format
+-msgid "You can also start the KDE Control Center using the button below."
++msgid "You can also start the Trinity Control Center using the button below."
+ msgstr ""
+-"Vous pouvez également démarrer le Centre de configuration de KDE à l'aide du "
++"Vous pouvez également démarrer le Centre de configuration de Trinity à l'aide du "
+ "bouton ci-dessous."
+ 
+ #. i18n: file krefinepagedlg.ui line 203
+ #: rc.cpp:77
+ #, no-c-format
+-msgid "&Launch KDE Control Center"
+-msgstr "&Lancer le Centre de configuration de KDE"
++msgid "&Launch Trinity Control Center"
++msgstr "&Lancer le Centre de configuration de Trinity"
+ 
+ #. i18n: file kstylepagedlg.ui line 32
+ #: rc.cpp:80
+--- kde-i18n-fr-3.5.10/messages/kdebase/konqueror.po.ORI	2011-12-19 21:45:36.416030332 +0100
++++ kde-i18n-fr-3.5.10/messages/kdebase/konqueror.po	2011-12-19 21:51:16.528801717 +0100
+@@ -1203,6 +1203,9 @@
+ msgid "Open in &New Tab"
+ msgstr "Ouvrir dans un &nouvel onglet"
+ 
++msgid "Open in &Background Tab"
++msgstr "Ouvrir dans un onglet en arrière-&plan"
++
+ #: konq_mainwindow.cc:4689
+ msgid "Open the document in a new tab"
+ msgstr "Ouvrir le document dans un nouvel onglet"
