@@ -1,28 +1,28 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-gtk-qt-engine
+pkgname=trinity-amarok
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity-extras')
-pkgdesc="Trinity - Qt wrapper for GTK, makes gtk2 apps look pretty under TDE"
-depends=('trinity-kdebase' 'gtk2')
+groups=('trinity-apps')
+pkgdesc="Trinity Amarok music player and manager"
+depends=('trinity-kdebase' 'libifp' 'libmtp' 'libnjb' 'python-daap' 'ruby')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/gtk-qt-engine-3.5.13.tar.gz)
-md5sums=('96da675949ef8743d4fe91531f734030')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/amarok-3.5.13.tar.gz)
+md5sums=('7145ebee38f104bef6cfaf56e7f81959')
 
-_svnmod=applications/gtk-qt-engine
+_svnmod=applications/amarok
 
 build() {
 
   msg "Setting PATH, CMAKE and Trinity Environment variables"
   export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  export CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr
+  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
+  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
 
   trinity_prefix="/opt/trinity"
 
@@ -31,15 +31,19 @@ build() {
   mkdir -p build
   cd build
 
+  # Baho additions
+  CFLAGS=${CFLAGS}" -fpermissive"
+  CXXFLAGS=${CXXFLAGS}" -fpermissive"
+
   msg "Starting cmake..."
   cmake ${srcdir}/${_svnmod} \
     -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DQT_VERSION=3 \
-    -DWITH_QT3=ON \
-    -DQTDIR=/opt/qt \
-    -DQT_DOCDIR=/opt/qt/man \
-    -DQT_LIBRARY_DIRS=/opt/qt/lib \
+    -DWITH_IFP=ON \
+    -DWITH_NJB=ON \
+    -DWITH_MTP=ON \
+    -DWITH_DAAP=ON \
     -DBUILD_ALL=ON
   make
 }

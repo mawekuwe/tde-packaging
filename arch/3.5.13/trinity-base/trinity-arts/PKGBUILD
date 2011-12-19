@@ -3,27 +3,21 @@
 pkgname=trinity-arts
 pkgver=3513
 pkgrel=1
-
 arch=('i686' 'x86_64')
-
 url='http://www.trinitydesktop.com'
 license=('GPL')
 groups=('trinity-base')
-pkgdesc="Trinity - arts"
-
+pkgdesc="Trinity arts Sound System and libraries"
 depends=('audiofile'
          'alsa-lib'
          'libmad'
          'libvorbis'
          'trinity-tqtinterface')
 makedepends=('pkgconfig' 'cmake')
-
 provides=('trinity-arts')
 conflicts=('trinity-arts')
 replaces=('trinity-arts')
-
 options=('libtool' '!strip')
-
 source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/arts-3.5.13.tar.gz)
 md5sums=('109124dabb1aaa9d44eb32e43b549142')
 

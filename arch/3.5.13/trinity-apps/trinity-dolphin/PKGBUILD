@@ -1,23 +1,24 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# PKGBUILD by Pawel "l0ner" Soltys <sh4dou@gmail.com>
 
-pkgname=trinity-kdesvn
+pkgname=trinity-dolphin
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity-extras')
-pkgdesc="Trinity - kdesvn kde fontend for svn"
-depends=('trinity-kdebase' 'sqlite3' 'subversion')
+groups=('trinity-apps')
+pkgdesc="Trinity Do3phin file manager"
+depends=('trinity-kdebase')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kdesvn-3.5.13.tar.gz' 'kdesvn.patch')
-md5sums=('f65e86f0d2f7882b4f958f2e89fe0d34'
-         '9def57c42b258c4caf2b5709eb25ba25')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/dolphin-3.5.13.tar.gz)
+md5sums=('67040323c527d83978f58c76b47a91f6')
 
-_svnmod=applications/kdesvn
+_svnmod=applications/dolphin
 
 build() {
+
   msg "Setting PATH, CMAKE and Trinity Environment variables"
   export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
   export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
@@ -25,8 +26,6 @@ build() {
   export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
 
   trinity_prefix="/opt/trinity"
-
-  patch -N -d ${srcdir} -p0 < kdesvn.patch
 
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
@@ -44,5 +43,6 @@ build() {
 package() {
   msg "Packaging - $pkgname-$pkgver"
   cd ${srcdir}/build
+
   make DESTDIR="$pkgdir/" install
 }

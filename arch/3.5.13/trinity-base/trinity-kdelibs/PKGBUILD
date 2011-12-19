@@ -3,23 +3,17 @@
 pkgname=trinity-kdelibs
 pkgver=3513
 pkgrel=2
-
 arch=('i686' 'x86_64')
-
 url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
-pkgdesc="Trinity - kdelibs, core libraries"
-
+pkgdesc="Trinity DE core libraries"
 depends=('trinity-arts' 'trinity-qt3' 'trinity-tqtinterface' 'libical' 'libxslt' 'libltdl' 'avahi' 'pam-krb5' 'taglib' 'libxcomposite')
 makedepends=('pkgconfig' 'cmake' 'autoconf' )
-
 provides=('trinity-kdelibs' 'kdelibs3')
 conflicts=('trinity-kdelibs' 'kdelibs3')
 replaces=('trinity-kdelibs')
-
 options=('libtool' '!strip' '!makeflags')
-
 source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh')
 md5sums=('f62eefb63b4ba2141b4c576f859806dd'
          '2de1886d632c8bc288befada5e1bc3b5')

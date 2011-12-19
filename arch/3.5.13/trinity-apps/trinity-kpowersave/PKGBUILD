@@ -1,19 +1,22 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-qtcurve
+pkgname=trinity-kpowersave
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity-extras')
-pkgdesc="Trinity - Trinity style QtCurve"
-depends=('trinity-kdebase')
-makedepends=('pkgconfig' 'cmake' 'imake')
+groups=('trinity-apps')
+pkgdesc="Trinity kpowersave"
+depends=('xscreensaver'
+        'libxss'
+        'trinity-kdebase')
+makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake')
 options=('libtool' '!strip')
-source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kde-style-qtcurve-3.5.13.tar.gz')
-_svnmod=applications/kde-style-qtcurve
-md5sums=('98133893b9c6736804d4dfc134a3a256')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kpowersave-3.5.13.tar.gz)
+md5sums=('c887eb282fd035655b370f133ce58664')
+
+_svnmod=applications/kpowersave
 
 build() {
 
@@ -23,7 +26,8 @@ build() {
   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
 
-#   cd ${srcdir}/${_svnmod}
+  # patch for inactivity.cpp
+  # patch -p0 -i ${srcdir}/kpowersave-app-inactivity.cpp.patch || return 1
 
   trinity_prefix="/opt/trinity"
 

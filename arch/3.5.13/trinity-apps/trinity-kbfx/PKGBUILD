@@ -1,30 +1,32 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-kdevelop
-pkgver=12345
-pkgrel=1.0
+pkgname=trinity-kbfx
+pkgver=3513
+pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity-extras')
-pkgdesc="Trinity Developement tools"
+groups=('trinity-apps')
+pkgdesc="Trinity Kbfx KMenu replacement"
 depends=('trinity-kdebase')
-#         'xorg'
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdevelop-3.5.13.tar.gz)
-md5sums=('777bd77e4f2dc6a5b5b45a370dcf6da0')
-_svnmod=kdevelop
+source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kbfx-3.5.13.tar.gz' 'kbfx.patch')
+md5sums=('04921c66fe2dc26d6eab7143e5950446'
+         '510638db000827e86f9d542662199064')
+
+_svnmod=applications/kbfx
 
 build() {
-
   msg "Setting PATH, CMAKE and Trinity Environment variables"
   export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr
+  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
+  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
 
   trinity_prefix="/opt/trinity"
+
+  patch -N -d ${srcdir} -p0 < kbfx.patch
 
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
@@ -35,11 +37,7 @@ build() {
   cmake ${srcdir}/${_svnmod} \
     -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
-    -DQT_VERSION=3 \
-    -DWITH_QT3=ON \
-    -DQTDIR=/opt/qt \
-    -DQT_DOCDIR=/opt/qt/man \
-    -DQT_LIBRARY_DIRS=/opt/qt/lib \
+    -DUSE_MENUDRAKE=OFF \
     -DBUILD_ALL=ON
   make
 }
@@ -47,6 +45,5 @@ build() {
 package() {
   msg "Packaging - $pkgname-$pkgver"
   cd ${srcdir}/build
-
   make DESTDIR="$pkgdir/" install
 }

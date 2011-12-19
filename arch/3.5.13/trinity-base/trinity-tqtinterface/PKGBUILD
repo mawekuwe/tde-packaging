@@ -3,22 +3,17 @@
 pkgname=trinity-tqtinterface
 pkgver=3513
 pkgrel=1
-
 arch=('i686' 'x86_64')
-
 url="http://trinity.pearsoncomputing.net"
 license=('GPL2')
 groups=('trinity-base')
-pkgdesc="Trinity - tqtinterface"
-
+pkgdesc="Trinity - TQt interface"
 depends=('python2-sip' 'trinity-qt3' 'trinity-pyqt3')
 makedepends=('pkgconfig' 'cmake' 'libxi' 'libxft' 'libxrandr' 'libxcursor' 'libxinerama' 'mesa')
 # optdepends=()
-
 provides=($pkgname)
 #conflicts=()
 #replaces=()
-
 source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/tqtinterface-3.5.13.tar.gz)
 md5sums=('d54cc9fd0b35555298efd17c32471a2b')
 

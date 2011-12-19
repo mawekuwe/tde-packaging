@@ -1,17 +1,15 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-pkname
+pkgname=trinity-kdeaccessibility
 pkgver=3513
 pkgrel=1
-
 arch=('i686' 'x86_64')
-
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity')
-pkgdesc="Trinity - pkgdesc"
+groups=('trinity-extras')
+pkgdesc="Trinity accessibility tools"
 
-depends=('trinity-kdelibs')
+depends=('trinity-kdelibs' 'trinity-arts')
 makedepends=('pkgconfig' 'autoconf' 'automake')
 optdepends=()
 
@@ -21,10 +19,10 @@ replaces=()
 
 options=('libtool' '!strip')
 
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/pkname-3.5.13.tar.gz)
-md5sums=('pkgmd5')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdeaccessibility-3.5.13.tar.gz)
+md5sums=('ce31b01c1831046fb28aab172f2423bf')
 
-_builddir=applications/pkname
+_builddir=kdeaccessibility
 _prefix=/opt/trinity
 
 build() {
@@ -34,7 +32,7 @@ build() {
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
   #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < pkname.patch
+  #patch -N -d ${srcdir} -p0 < kdeaccessibility.patch
   
   msg "Starting automake..."
   cd "$srcdir/${_builddir}"
@@ -46,6 +44,7 @@ build() {
   ./configure --with-qt-dir=${QTDIR} \
      --prefix=${_prefix} \
      --enable-closure \
+     --with-alsa \
      --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
      --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
 

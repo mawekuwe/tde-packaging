@@ -7,7 +7,7 @@ arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
-pkgdesc="Trinity - kdebase"
+pkgdesc="Trinity Desktop Enviroment base components"
 depends=('hal'
          'libltdl'
          'trinity-dbus-1-qt3'

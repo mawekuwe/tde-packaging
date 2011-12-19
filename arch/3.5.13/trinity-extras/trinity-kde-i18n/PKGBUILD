@@ -1,25 +1,24 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-kde-style-lipstik
+pkgname=trinity-kde-i18n
 pkgver=3513
 pkgrel=1
-
 arch=('i686' 'x86_64')
-
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity')
-pkgdesc="Trinity - Lipstik style"
-
-depends=('trinity-kdelibs' 'trinity-kdebase')
+groups=('trinity-extras')
+pkgdesc="Trinity DE internatinalizations"
+depends=('trinity-kdelibs')
 makedepends=('pkgconfig' 'autoconf' 'automake')
-
+optdepends=()
+provides=($pkgname)
+conflicts=()
+replaces=()
 options=('libtool' '!strip')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kde-i18n-3.5.13.tar.gz)
+md5sums=('7c919c7cb85f454fed46767082a87773')
 
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kde-style-lipstik-3.5.13.tar.gz)
-md5sums=('1585d4df7f0c68499fafa0b8ecb82dab')
-
-_builddir=applications/kde-style-lipstik
+_builddir=kde-i18n
 _prefix=/opt/trinity
 
 build() {
@@ -28,7 +27,10 @@ build() {
   export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
-  msg "Starting autoconf..."
+  #msg "Patching..."
+  #patch -N -d ${srcdir} -p0 < kde-i18n.patch
+  
+  msg "Starting automake..."
   cd "$srcdir/${_builddir}"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -37,6 +39,7 @@ build() {
   msg "Starting configure..."
   ./configure --with-qt-dir=${QTDIR} \
      --prefix=${_prefix} \
+     --enable-closure \
      --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
      --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
 

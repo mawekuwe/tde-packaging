@@ -1,30 +1,24 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-pkname
+pkgname=trinity-kdeutils
 pkgver=3513
 pkgrel=1
-
 arch=('i686' 'x86_64')
-
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity')
-pkgdesc="Trinity - pkgdesc"
-
+groups=('trinity-extras')
+pkgdesc="Trinity TDE utilities collection"
 depends=('trinity-kdelibs')
 makedepends=('pkgconfig' 'autoconf' 'automake')
 optdepends=()
-
 provides=($pkgname)
 conflicts=()
 replaces=()
-
 options=('libtool' '!strip')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdeutils-3.5.13.tar.gz)
+md5sums=('e2cd6695606c5c91b3380dcc7f1a6a83')
 
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/pkname-3.5.13.tar.gz)
-md5sums=('pkgmd5')
-
-_builddir=applications/pkname
+_builddir=kdeutils
 _prefix=/opt/trinity
 
 build() {
@@ -34,7 +28,7 @@ build() {
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
   #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < pkname.patch
+  #patch -N -d ${srcdir} -p0 < kdeutils.patch
   
   msg "Starting automake..."
   cd "$srcdir/${_builddir}"
@@ -48,6 +42,8 @@ build() {
      --enable-closure \
      --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
      --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
+     #--with-xmms
+     #--with-snmp \
 
   msg "Building ${pkgname}..."
   make
