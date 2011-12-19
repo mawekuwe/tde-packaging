@@ -1,0 +1,53 @@
+# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+
+pkgname=trinity-digikam
+pkgver=3513
+pkgrel=1
+arch=('i686' 'x86_64')
+url='http://www.trinitydesktop.org'
+license=('GPL')
+groups=('trinity-apps')
+pkgdesc="Trinity Photo Management and Retouching Suite"
+depends=('trinity-kdelibs')
+makedepends=('pkgconfig' 'autoconf' 'automake')
+optdepends=()
+provides=($pkgname)
+conflicts=()
+replaces=()
+options=('libtool' '!strip')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/digikam-3.5.13.tar.gz)
+md5sums=('81cfcd75dc9c067ba6761aa1147c31e7')
+
+_builddir=applications/digikam
+_prefix=/opt/trinity
+
+build() {
+  msg "Setting Trinity Environment variables"
+  export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
+  export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
+
+  #msg "Patching..."
+  #patch -N -d ${srcdir} -p0 < digikam.patch
+  
+  msg "Starting automake..."
+  cd "$srcdir/${_builddir}"
+  cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+  cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+  make -f admin/Makefile.common
+
+  msg "Starting configure..."
+  ./configure --with-qt-dir=${QTDIR} \
+     --prefix=${_prefix} \
+     --enable-closure \
+     --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
+     --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
+
+  msg "Building ${pkgname}..."
+  make
+}
+
+package() {
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/${_builddir}
+  make DESTDIR="${pkgdir}" install
+}
