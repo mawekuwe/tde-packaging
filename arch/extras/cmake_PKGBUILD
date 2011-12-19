@@ -3,24 +3,18 @@
 pkgname=trinity-pkname
 pkgver=3513
 pkgrel=1
-
 arch=('i686' 'x86_64')
-
 url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-extras')
 pkgdesc="Trinity - pkgdesc"
-
 depends=('trinity-kdelibs')
 makedepends=('pkgconfig' 'cmake' 'imake')
 optdepends=()
-
 provides=($pkgname)
 confilcts=()
 replaces=()
-
 options=('libtool' '!strip')
-
 source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/pkname-3.5.13.tar.gz)
 md5sums=('')
 

@@ -1,24 +1,24 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-pkname
+pkgname=trinity-libkexiv2
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity')
-pkgdesc="Trinity - pkgdesc"
-depends=('trinity-kdelibs')
+groups=('trinity-extras')
+pkgdesc="Trinity exiv2 library"
+depends=('trinity-kdelibs' 'exiv2')
 makedepends=('pkgconfig' 'autoconf' 'automake')
 optdepends=()
 provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/pkname-3.5.13.tar.gz)
-md5sums=('pkgmd5')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/libraries/libkexiv2-3.5.13.tar.gz)
+md5sums=('74b160da8ea95f25048757b5fe692f85')
 
-_builddir=applications/pkname
+_builddir=libraries/libkexiv2
 _prefix=/opt/trinity
 
 build() {

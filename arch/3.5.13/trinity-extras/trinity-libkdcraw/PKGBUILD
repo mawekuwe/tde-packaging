@@ -1,24 +1,24 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-pkname
+pkgname=trinity-libkdcraw
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity')
-pkgdesc="Trinity - pkgdesc"
-depends=('trinity-kdelibs')
+groups=('trinity-extras')
+pkgdesc="Trinity DCRaw library"
+depends=('trinity-kdelibs' 'openmpi')
 makedepends=('pkgconfig' 'autoconf' 'automake')
 optdepends=()
 provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/pkname-3.5.13.tar.gz)
-md5sums=('pkgmd5')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/libraries/libkdcraw-3.5.13.tar.gz)
+md5sums=('770dd734dc427337a1a2e61b6b0874ae')
 
-_builddir=applications/pkname
+_builddir=libraries/libkdcraw
 _prefix=/opt/trinity
 
 build() {
@@ -28,7 +28,7 @@ build() {
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
   #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < pkname.patch
+  #patch -N -d ${srcdir} -p0 < libkdcraw.patch
   
   msg "Starting automake..."
   cd "$srcdir/${_builddir}"
@@ -40,6 +40,7 @@ build() {
   ./configure --with-qt-dir=${QTDIR} \
      --prefix=${_prefix} \
      --enable-closure \
+     --enable-openmp \
      --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
      --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
 

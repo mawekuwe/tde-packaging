@@ -1,13 +1,13 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-pkname
+pkgname=trinity-libkipi
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity')
-pkgdesc="Trinity - pkgdesc"
+groups=('trinity-extras')
+pkgdesc="Trinity kipi library"
 depends=('trinity-kdelibs')
 makedepends=('pkgconfig' 'autoconf' 'automake')
 optdepends=()
@@ -15,10 +15,10 @@ provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/pkname-3.5.13.tar.gz)
-md5sums=('pkgmd5')
+source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/libraries/libkipi-3.5.13.tar.gz)
+md5sums=('22cb0ba7507cac99140cd1c0180cbe99')
 
-_builddir=applications/pkname
+_builddir=libraries/libkipi
 _prefix=/opt/trinity
 
 build() {
@@ -28,7 +28,7 @@ build() {
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
   #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < pkname.patch
+  #patch -N -d ${srcdir} -p0 < libkipi.patch
   
   msg "Starting automake..."
   cd "$srcdir/${_builddir}"
