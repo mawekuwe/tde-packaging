@@ -23,30 +23,5 @@ Problems with builds:
       If it cannot be fixed, maybe whole CMake should
       be rewritten for this?
 
-   knetworkmanager8
-   knetworkmanager9
-      CMake does not detect dbus-1-tqt. We provide 
-      dbus-tqt-1, for which we pull tarball called
-      dbus-1-tqt. It should be the same thing, but
-      after chenaging Cmake instructions to search
-      for dbus-tqt-1 which we provide, it still 
-      fails.
-      Patch provides missing cmake modules.
-
-   kpilot:
-      same as above (probably) plus "CMakeOptions.txt 
-      not found! Run configure first." Error.
-      Do we need kpilot? Is Palm devices supported
-      by it still alive?
-
-   kde-style-lipstick:
-      not ported to CMake. Autotools TQt, Qt detection
-      problems.
-
    wlassistant:
-      not potted to Cmake. Same as above.
-   
-   rosegarden:
-      same as kgtk-qt3. I think every else trinity component
-      using CMake files wrote by KDE team won't work
-      with trinity tmoc.
+      hardcoded incudes? Does not compile?

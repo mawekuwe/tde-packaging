@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 8
+%define release 9
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -46,9 +46,6 @@ AutoReq: no
 
 Source0:	kde-i18n-%{version}.tar.gz
 
-# [zh_TW] Updated translations, thanks to Wei-Lun Chao !
-Source1:	kde-i18n-zh_TW-3.5.10.tar.bz2
-
 # TDE 3.5.12: Translate 'kdesu' message was modified in 'kdebase' package
 Patch0:		kde-i18n-kdesu.patch
 
@@ -57,6 +54,9 @@ Patch1:		trinity-kde-i18n-fr-openterminalhere.patch
 
 # TDE 3.5.13: French translations for new features
 Patch2:		kde-i18n-3.5.13-add_french_translations.patch
+
+# TDE 3.5.13: Updated translations for zh_TW, thanks to Wei-Lun Chao !
+Patch3:		kde-i18n-3.5.13-add_zh_TW_translations.patch
 
 BuildRequires:	findutils
 BuildRequires:	gettext
@@ -622,7 +622,6 @@ Provides: %{name}-tz_TW = %{version}-%{release}
 
 %prep
 %setup -q -n kde-i18n
-%__cp -f %{SOURCE1} .
 
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*.tar.bz2; do
@@ -632,7 +631,8 @@ done
 
 %patch0
 %patch1
-%patch2
+%patch2 -p0
+%patch3 -p0
 
 
 %build
@@ -1159,6 +1159,9 @@ find "%{buildroot}%{tde_docdir}/HTML" -size 0 -exec rm -f {} \;
 %endif
 
 %changelog
+* Sun Dec 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
+- Updates French translations (mostly Kickoff Menu related)
+
 * Fri Dec 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-8
 - Backport from TDE 3.5.13
 - Removes 'kde-filesystem" dependancy

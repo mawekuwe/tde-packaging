@@ -4,11 +4,10 @@ pkgname=trinity-dbus-1-qt3
 pkgver=0.9
 pkgrel=8
 arch=('i686' 'x86_64')
-pkgdesc="Trinity D-Bus/Qt3 bindings."
 url="http://www.freedesktop.org/wiki/Software/DBusBindings"
 license=('GPL')
 groups=('trinity-base')
-pkgdesc="Trinity - dbus-1-qt3"
+pkgdesc="Trinity D-Bus/Qt3 bindings."
 depends=('dbus' 'trinity-qt3' 'networkmanager')
 provides=('trinity-dbus-1-qt3' 'dbus-1-qt3')
 conflicts=('dbus-1-qt3')
@@ -18,13 +17,20 @@ source=(http://people.freedesktop.org/~krake/dbus-1-qt3/${pkgname#*trinity-}-${p
 md5sums=('8ca3d13c372126aa9b0e16beb0a9d82d')
 
 build() {
-    cd $srcdir/${pkgname#*trinity-}-$pkgver
+   cd $srcdir/${pkgname#*trinity-}-$pkgver
+   msg "Setting enviroment variables..."
+   . /etc/profile.d/qt3.sh
+   msg "Starting configure..."
+   ./configure --prefix=$QTDIR
+   msg "Building #{pkgname}..."
+   make || return 1
 
-    . /etc/profile.d/qt3.sh
-    ./configure --prefix=$QTDIR
-    make || return 1
-    make DESTDIR="$pkgdir/" install
+   # Libtool slay
+   #     find $startdir/pkg -name *.la -exec rm {} \;
+}
 
-    # Libtool slay
-#     find $startdir/pkg -name *.la -exec rm {} \;
+package() {
+   msg "Packaging - $pkgname-$pkgver"
+   cd $srcdir/${pkgname#*trinity-}-$pkgver
+   make DESTDIR="${pkgdir}" install
 }

@@ -7,9 +7,8 @@ arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.com'
 license=('GPL')
 groups=('trinity-extras')
-pkgdesc="Trinity - kdepim"
-depends=(
-         'trinity-kdebase'
+pkgdesc="Trinity Personal Information Management suite"
+depends=('trinity-kdebase'
          'trinity-arts'
          'trinity-kdelibs'
          'gpgme'

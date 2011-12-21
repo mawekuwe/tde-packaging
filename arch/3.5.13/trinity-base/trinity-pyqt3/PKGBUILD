@@ -3,31 +3,37 @@
 pkgname=trinity-pyqt3
 pkgver=3.18.1
 pkgrel=1
-pkgdesc="A set of Python bindings for the Qt3 toolkit"
 arch=('i686' 'x86_64')
 url="http://www.riverbankcomputing.com/software/pyqt/intro"
-groups=('trinity-base')
-depends=('python2-sip' 'qscintilla-qt3' 'trinity-qt3')
 license=('GPL')
+groups=('trinity-base')
+pkgdesc="Trinity set of Python bindings for the Qt3 toolkit"
+depends=('python2-sip' 'qscintilla-qt3' 'trinity-qt3')
+#makedepends=()
+#optdepends=()
 provides=('trinity-pyqt3' 'pyqt3')
 conflicts=('pyqt3')
 replaces=('trinity-pyqt3')
+#options=()
 source=("http://www.riverbankcomputing.com/static/Downloads/PyQt3/PyQt-x11-gpl-${pkgver}.tar.gz")
 md5sums=('f1d120495d1aaf393819e988c0a7bb7e')
 
 build() {
-  cd ${srcdir}/PyQt-x11-gpl-${pkgver}
+   cd ${srcdir}/PyQt-x11-gpl-${pkgver}
 
-  . /etc/profile.d/qt3.sh
+   msg "Starting configure..."
+   . /etc/profile.d/qt3.sh
 
-  export QMAKESPEC="/opt/qt/mkspecs/default"
+   export QMAKESPEC="/opt/qt/mkspecs/default"
 
-  echo yes | python2.7 configure.py -q /opt/qt/
+   echo yes | python2.7 configure.py -q /opt/qt/
 
-  make
+   msg "Building ${pkgname}..."
+   make
 }
 
 package() {
-  cd ${srcdir}/PyQt-x11-gpl-${pkgver}
-  make DESTDIR=${pkgdir} install
+   msg "Packaging - $pkgname-$pkgver"
+   cd ${srcdir}/PyQt-x11-gpl-${pkgver}
+   make DESTDIR=${pkgdir} install
 }

@@ -3,44 +3,46 @@
 pkgname=trinity-wlassistant
 pkgver=3513
 pkgrel=1
+
 arch=('i686' 'x86_64')
+
 url='http://www.trinitydesktop.org'
 license=('GPL')
-groups=('trinity-extras')
+groups=('trinity')
 pkgdesc="Trinity - wlassistant"
-depends=('trinity-kdebase')
-makedepends=('pkgconfig' 'cmake' 'imake')
+
+depends=('trinity-kdelibs' 'trinity-pyqt3')
+makedepends=('pkgconfig' 'autoconf' 'automake' 'scons')
+
 options=('libtool' '!strip')
+
 source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/wlassistant-3.5.13.tar.gz)
 md5sums=('1fd3680a634fedee3c2d90b81c1ffe23')
 
-_svnmod=applications/wlassistant
+_builddir=applications/wlassistant
+_prefix=/opt/trinity
 
 build() {
 
-  msg "Setting PATH, CMAKE and Trinity Environment variables"
-  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
-  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
+  msg "Setting Trinity Environment variables"
+  export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
+  export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
-  trinity_prefix="/opt/trinity"
+  cd ${srcdir}/${_builddir}
+  msg "Starting configure..."
+  ./configure --qtdir=${QTDIR} \
+     --qtlibs=${QTDIR}/lib \
+     --kdedir=${_prefix} \
+     --prefix=${_prefix} \
+     --kdeincludes=${_prefix}/include \
+     --kde-libs=${_prefix}/lib
 
-  cd $srcdir
-  msg "Creating out-of-source build directory: ${srcdir}/build"
-  mkdir -p build
-  cd build
-
-  msg "Starting cmake..."
-  cmake ${srcdir}/${_svnmod} \
-    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
-    -DCMAKE_VERBOSE_MAKEFILE=ON \
-    -DBUILD_ALL=ON
+  msg "Building ${pkgname}..."
   make
 }
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/build
-  make DESTDIR="$pkgdir/" install
+  cd ${srcdir}/${_builddir}
+  make DESTDIR="${pkgdir}" install
 }

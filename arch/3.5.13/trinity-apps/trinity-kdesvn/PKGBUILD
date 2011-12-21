@@ -1,0 +1,48 @@
+# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+
+pkgname=trinity-kdesvn
+pkgver=3513
+pkgrel=1
+arch=('i686' 'x86_64')
+url='http://www.trinitydesktop.org'
+license=('GPL')
+groups=('trinity-apps')
+pkgdesc="Trinity SVN frontend gui"
+depends=('trinity-kdebase' 'sqlite3' 'subversion')
+makedepends=('pkgconfig' 'cmake' 'imake')
+options=('libtool' '!strip')
+source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kdesvn-3.5.13.tar.gz' 'kdesvn.patch')
+md5sums=('f65e86f0d2f7882b4f958f2e89fe0d34'
+         '9def57c42b258c4caf2b5709eb25ba25')
+
+_svnmod=applications/kdesvn
+
+build() {
+  msg "Setting PATH, CMAKE and Trinity Environment variables"
+  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
+  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
+  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
+  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
+
+  trinity_prefix="/opt/trinity"
+
+  patch -N -d ${srcdir} -p0 < kdesvn.patch
+
+  cd $srcdir
+  msg "Creating out-of-source build directory: ${srcdir}/build"
+  mkdir -p build
+  cd build
+
+  msg "Starting cmake..."
+  cmake ${srcdir}/${_svnmod} \
+    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+    -DCMAKE_VERBOSE_MAKEFILE=ON \
+    -DBUILD_ALL=ON
+  make
+}
+
+package() {
+  msg "Packaging - $pkgname-$pkgver"
+  cd ${srcdir}/build
+  make DESTDIR="$pkgdir/" install
+}

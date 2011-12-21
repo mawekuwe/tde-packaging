@@ -1,0 +1,12 @@
+contents of this directory
+
+   autotools_PKGBUILD: example of PKGBUILD for building 
+      trinity components with autotools. Should be used 
+      as template for new PKGBUILDS.
+   
+   cmake_PKGBUILD: example of PKGBUILD for building 
+      trinity components with CMake. Should be used as 
+      a template for new PKGBUILDS.
+   
+   batchbuild: simple scirpt for batch building trinity 
+      components.

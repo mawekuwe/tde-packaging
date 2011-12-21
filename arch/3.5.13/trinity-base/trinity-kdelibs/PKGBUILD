@@ -7,15 +7,8 @@ arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
-pkgdesc="Trinity - kdelibs, core libraries"
-depends=('libical'
-         'libxslt'
-         'libltdl'
-         'avahi'
-         'pam-krb5'
-         'taglib'
-         'libxcomposite'
-         'trinity-arts')
+pkgdesc="Trinity DE core libraries"
+depends=('trinity-arts' 'trinity-qt3' 'trinity-tqtinterface' 'libical' 'libxslt' 'libltdl' 'avahi' 'pam-krb5' 'taglib' 'libxcomposite')
 makedepends=('pkgconfig' 'cmake' 'autoconf' )
 provides=('trinity-kdelibs' 'kdelibs3')
 conflicts=('trinity-kdelibs' 'kdelibs3')
@@ -25,52 +18,53 @@ source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdelibs-3.5.13
 md5sums=('f62eefb63b4ba2141b4c576f859806dd'
          '2de1886d632c8bc288befada5e1bc3b5')
 
-qtdir=/opt/qt
-trinity_prefix="/opt/trinity"
+_builddir=build
+_prefix="/opt/trinity"
 
 build() {
-
-  msg "Setting PATH, CMAKE and Trinity Environment variables"
-  if [[ -r /etc/profile.d/qt3.sh ]]; then
+   msg "Setting PATH, CMAKE and Trinity Environment variables"
+   #if [[ -r /etc/profile.d/qt3.sh ]]; then
     . /etc/profile.d/qt3.sh
-    [[ -n $QTDIR ]] && _qtdir=$QTDIR
-  else
-    [[ ${PATH%%:*} =~ ${_qtdir}/bin ]] || export PATH=${_qtdir}/bin:$PATH
-  fi
-  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  export PATH=$PATH:$trinity_prefix/bin
-  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/bin
-  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/qt/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
+   # [[ -n $QTDIR ]] && _qtdir=$QTDIR
+   #else
+   # [[ ${PATH%%:*} =~ ${_qtdir}/bin ]] || export PATH=${_qtdir}/bin:$PATH
+   #fi
+   export CMAKE_PREFIX_PATH=${QTDIR}:${_prefix}
+   export PATH=$PATH:${_prefix}/bin
+   export CMAKE_INCLUDE_PATH=${QTDIR}/include/tqt:/usr/include/dbus-1.0:${_prefix}/bin
+   export LD_LIBRARY_PATH=${_prefix}/lib:${QTDIR}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
 
-  cd $srcdir
-  msg "Creating out-of-source build directory: ${srcdir}/build"
-  mkdir -p build
-  cd build
+   cd $srcdir
+   msg "Creating out-of-source build directory: ${srcdir}/${_builddir}"
+   mkdir -p ${_builddir}
+   cd ${_builddir}
 
-  msg "Starting cmake..."
-  cmake ${srcdir}/kdelibs \
-    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+   msg "Starting cmake..."
+   cmake ${srcdir}/kdelibs \
+    -DCMAKE_INSTALL_PREFIX=${_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=OFF \
     -DQT_VERSION=3 \
     -DWITH_QT3=ON \
-    -DQTDIR=/opt/qt \
-    -DQT_LIBRARY_DIRS=/opt/qt/lib \
+    -DQTDIR=${QTDIR} \
+    -DQT_LIBRARY_DIRS=${QTDIR}/lib \
     -DWITH_PAM=ON \
     -DBUILD_ALL=ON
-  make
+
+   msg "Building - $pkgname..."
+   make
 }
 
 package() {
-  msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/build
+   msg "Packaging - $pkgname-$pkgver"
+   cd ${srcdir}/build
 
-  make DESTDIR="$pkgdir/" install
+   make DESTDIR="$pkgdir" install
 
-  install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
-  echo "${trinity_prefix}/lib" > ${pkgdir}/etc/ld.so.conf.d/${pkgname}.conf
+   install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
+   echo "${_prefix}/lib" > ${pkgdir}/etc/ld.so.conf.d/${pkgname}.conf
 
-  install -d -m755 ${pkgdir}/etc/profile.d/
-  install -m644 ${startdir}/trinity.sh ${pkgdir}/etc/profile.d/
+   install -d -m755 ${pkgdir}/etc/profile.d/
+   install -m644 ${startdir}/trinity.sh ${pkgdir}/etc/profile.d/
 
-#   rm -r ${srcdir}/${_svnmod}
+   #   rm -r ${srcdir}/${_svnmod}
 }

@@ -7,7 +7,7 @@ arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
-pkgdesc="Trinity - kdebase"
+pkgdesc="Trinity Desktop Enviroment base components"
 depends=('hal'
          'libltdl'
          'trinity-dbus-1-qt3'
@@ -35,7 +35,7 @@ options=('libtool' '!strip')
 source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 'dbusfix.diff' 'kdm-trinity')
 md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
          'c9ce810c281002440a6de8cfd8735d07'
-         '523838d16b38fc62445863ca762c17f8')
+         '376d85d213cf3c04cb0912e5cccd68bd')
 
 _qtdir=/opt/qt
 _prefix="/opt/trinity"
