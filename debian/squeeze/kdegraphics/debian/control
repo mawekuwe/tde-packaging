@@ -140,7 +140,7 @@ Description: gamma correction module for the Trinity Control Center
 Package: kghostview-trinity
 Section: graphics
 Architecture: any
-Depends: ${shlibs:Depends}, gs
+Depends: ${shlibs:Depends}, ghostscript
 Suggests: khelpcenter-trinity
 Provides: postscript-viewer, pdf-viewer
 Description: PostScript viewer for Trinity
