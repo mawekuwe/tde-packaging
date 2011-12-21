@@ -31,7 +31,7 @@ Description: audio converter frontend for Trinity
 
 Package: soundkonverter-amarok-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, soundkonverter-trinity, amarok-trinity, ruby, libqt0-ruby1.8
+Depends: ${shlibs:Depends}, ${misc:Depends}, soundkonverter-trinity, amarok-trinity, ruby, libqt0-ruby1.8-trinity
 Description: audio converter frontend for Trinity (Amarok script)
  Amarok script for soundKonverter. It allows you to easily transcode files when
  transferring them to your media device.

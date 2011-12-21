@@ -33,7 +33,7 @@ Description: audio converter frontend for Trinity
 
 Package: soundkonverter-amarok-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, soundkonverter-trinity, amarok-trinity, ruby, libqt0-ruby1.8
+Depends: ${shlibs:Depends}, ${misc:Depends}, soundkonverter-trinity, amarok-trinity, ruby, libqt0-ruby1.8-trinity
 Replaces: soundkonverter-amarok-kde3 (<< 4:3.5.13)
 Breaks: soundkonverter-amarok-kde3 (<< 4:3.5.13)
 Description: audio converter frontend for Trinity (Amarok script)
