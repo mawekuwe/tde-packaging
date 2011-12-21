@@ -161,7 +161,7 @@ Section: graphics
 Architecture: any
 Replaces: kghostview-kde3 (<< 4:3.5.13)
 Breaks: kghostview-kde3 (<< 4:3.5.13)
-Depends: ${shlibs:Depends}, gs
+Depends: ${shlibs:Depends}, ghostscript
 Suggests: khelpcenter-trinity
 Provides: postscript-viewer, pdf-viewer
 Description: PostScript viewer for Trinity
