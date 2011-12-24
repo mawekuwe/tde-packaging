@@ -9,7 +9,7 @@ Homepage: http://www.methylblue.com/filelight/
 
 Package: filelight-l10n-trinity
 Architecture: any
-Depends: ${shlibs:Depends} , filelight-trinity (>= ${source:Version})
+Depends: ${shlibs:Depends} , filelight-trinity
 Replaces: filelight-l10n-kde3 (<< 4:3.5.13)
 Breaks: filelight-l10n-kde3 (<< 4:3.5.13)
 Description: Localization (l10n) for Filelight, disk space usage tool [Trinity]
