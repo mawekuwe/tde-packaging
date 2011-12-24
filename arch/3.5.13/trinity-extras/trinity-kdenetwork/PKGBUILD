@@ -17,11 +17,11 @@ depends=('trinity-kdebase'
          'meanwhile'
          'sqlite3'
          'libidn'
-         'v4l-utils'
-         )
+         'v4l-utils')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdenetwork-3.5.13.tar.gz' 'kdenetwork.patch')
+#source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdenetwork-3.5.13.tar.gz' 'kdenetwork.patch')
+source=('http://anduin.linuxfromscratch.org/sources/trinity/kdenetwork-3.5.13.tar.gz' 'kdenetwork.patch')
 md5sums=('349f197c9af4bf0d9b8773f26829415e'
          '8abe1847df7b7449027719238a27e359')
 

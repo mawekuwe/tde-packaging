@@ -1,6 +1,4 @@
-# $Id$
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
-#
 
 pkgname=trinity-libcarddav
 pkgver=0.6.2

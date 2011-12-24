@@ -12,7 +12,8 @@ pkgdesc="Trinity artwork collection"
 depends=('trinity-kdebase' 'trinity-arts' 'xscreensaver' 'libart-lgpl' 'glproto')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdeartwork-3.5.13.tar.gz)
+#source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdeartwork-3.5.13.tar.gz)
+source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeartwork-3.5.13.tar.gz)
 md5sums=('24f85eb3e5a9106de48a3e81d2575ffe')
 
 _svnmod=kdeartwork
