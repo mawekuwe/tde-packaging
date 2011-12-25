@@ -15,8 +15,8 @@ Standards-Version: 3.8.4
 Package: kaffeine-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, hdparm
-Replaces: kaffeine-kde3 (<< 4:3.5.13)
-Breaks: kaffeine-kde3 (<< 4:3.5.13)
+Replaces: kaffeine-trinity (<< 4:14.0.0)
+Breaks: kaffeine-trinity (<< 4:14.0.0)
 Recommends: tdesudo-trinity, kpackage-trinity
 Description: versatile media player for TDE
  Kaffeine is a media player for KDE. While it supports multiple player
@@ -32,8 +32,8 @@ Description: versatile media player for TDE
 Package: kaffeine-trinity-dbg
 Section: devel
 Architecture: any
-Replaces: kaffeine-kde3-dbg (<< 4:3.5.13)
-Breaks: kaffeine-kde3-dbg (<< 4:3.5.13)
+Replaces: kaffeine-trinity-dbg (<< 4:14.0.0)
+Breaks: kaffeine-trinity-dbg (<< 4:14.0.0)
 Priority: extra
 Depends: kaffeine-trinity (= ${binary:Version}), tdelibs-trinity-dbg
 Recommends: tdesudo-trinity, kpackage-trinity
@@ -45,8 +45,8 @@ Description: debugging symbols for kaffeine [Trinity]
 Package: kaffeine-gstreamer-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, kaffeine-trinity
-Replaces: kaffeine-gstreamer-kde3 (<< 4:3.5.13)
-Breaks: kaffeine-gstreamer-kde3 (<< 4:3.5.13)
+Replaces: kaffeine-gstreamer-trinity (<< 4:14.0.0)
+Breaks: kaffeine-gstreamer-trinity (<< 4:14.0.0)
 Description: Gstreamer engine for kaffeine media player [Trinity]
  Kaffeine is a media player for KDE. While it supports multiple player
  engines, its default engine is Gstreamer, giving Kaffeine a wide variety of

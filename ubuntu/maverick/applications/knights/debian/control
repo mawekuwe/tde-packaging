@@ -11,8 +11,8 @@ Homepage: http://knights.sourceforge.net/
 Package: knights-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, tdebase-kio-plugins-trinity
-Replaces: knights-kde3 (<< 4:3.5.13)
-Breaks: knights-kde3 (<< 4:3.5.13)
+Replaces: knights-trinity (<< 4:14.0.0)
+Breaks: knights-trinity (<< 4:14.0.0)
 Suggests: gnuchess | crafty | sjeng, knights-themepack-trinity
 Description: A chess interface for the K Desktop Environment [Trinity]
  Knights aims to be the ultimate chess resource on your computer. 

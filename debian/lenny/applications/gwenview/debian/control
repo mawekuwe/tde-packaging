@@ -9,6 +9,8 @@ Homepage: http://gwenview.sourceforge.net
 Package: gwenview-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: gwenview-trinity (<< 4:14.0.0)
+Breaks: gwenview-trinity (<< 4:14.0.0)
 Recommends: tdegraphics-kfile-plugins-trinity, kipi-plugins-trinity
 Suggests: gwenview-i18n
 Description: image viewer for TDE

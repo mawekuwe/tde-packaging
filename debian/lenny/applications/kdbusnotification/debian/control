@@ -8,6 +8,8 @@ Standards-Version: 3.8.4
 Package: kdbusnotification-trinity
 Architecture: any
 Section: kde
+Replaces: kdbusnotification-trinity (<< 4:14.0.0)
+Breaks: kdbusnotification-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: a DBUS notification service [Trinity]
  kdbusnotification is a small program for Trinity that displays

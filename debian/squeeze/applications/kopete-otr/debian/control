@@ -10,6 +10,8 @@ Homepage: http://kopete-otr.follefuder.org/
 Package: kopete-otr-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: kopete-otr-trinity (<< 4:14.0.0)
+Breaks: kopete-otr-trinity (<< 4:14.0.0)
 Description: Off-The-Record encryption for Kopete [Trinity]
  This plugin enables Off-The-Record encryption for the KDE instant
  messenger Kopete. Using this plugin you can encrypt chatsessions to other

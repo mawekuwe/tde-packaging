@@ -9,6 +9,8 @@ Standards-Version: 3.8.4
 Package: knemo-trinity
 Architecture: any
 Depends: kicker-trinity, net-tools, ${shlibs:Depends}
+Replaces: knemo-trinity (<< 4:14.0.0)
+Breaks: knemo-trinity (<< 4:14.0.0)
 Recommends: kcontrol-trinity, wireless-tools
 Description: network interfaces monitor for the Trinity systray
  KNemo displays an icon in the systray for every network interface.

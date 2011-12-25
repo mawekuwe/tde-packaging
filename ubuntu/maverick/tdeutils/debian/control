@@ -11,8 +11,8 @@ Standards-Version: 3.8.4
 Package: tdeutils-trinity
 Section: kde
 Architecture: all
-Replaces: tdeutils-kde3 (<< 4:3.5.13)
-Breaks: tdeutils-kde3 (<< 4:3.5.13)
+Replaces: kdeutils-trinity (<< 4:14.0.0)
+Breaks: kdeutils-trinity (<< 4:14.0.0)
 Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), kdelirc-trinity (>= ${Source-Version}), kdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}) | kpowersave-trinity, kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), kwalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version})
 Suggests: tdeutils-trinity-doc-html (>= ${Source-Version})
 Description: general purpose utilities from the official Trinity release
@@ -27,8 +27,8 @@ Description: general purpose utilities from the official Trinity release
 Package: tdeutils-trinity-doc
 Section: doc
 Architecture: all
-Replaces: tdeutils-kde3-doc (<< 4:3.5.13)
-Breaks: tdeutils-kde3-doc (<< 4:3.5.13)
+Replaces: kdeutils-trinity-doc (<< 4:14.0.0)
+Breaks: kdeutils-trinity-doc (<< 4:14.0.0)
 Description: developer documentation for the KDE utilities module
  This package contains documentation for the KDE utilities module, of
  use more for developers creating applications than regular users.
@@ -39,8 +39,8 @@ Description: developer documentation for the KDE utilities module
 Package: tdeutils-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: tdeutils-kde3-doc-html (<< 4:3.5.13)
-Breaks: tdeutils-kde3-doc-html (<< 4:3.5.13)
+Replaces: kdeutils-trinity-doc-html (<< 4:14.0.0)
+Breaks: kdeutils-trinity-doc-html (<< 4:14.0.0)
 Suggests: konqueror-trinity | www-browser, tdebase-trinity
 Description: Trinity utilities documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -59,8 +59,8 @@ Description: Trinity utilities documentation in HTML format
 Package: tdeutils-trinity-dev
 Section: utils
 Architecture: any
-Replaces: tdeutils-kde3-dev (<< 4:3.5.13)
-Breaks: tdeutils-kde3-dev (<< 4:3.5.13)
+Replaces: kdeutils-trinity-dev (<< 4:14.0.0)
+Breaks: kdeutils-trinity-dev (<< 4:14.0.0)
 Depends: ark-trinity (= ${Source-Version}), kcalc-trinity (= ${Source-Version}), kdelirc-trinity (= ${Source-Version}), kedit-trinity (= ${Source-Version}), khexedit-trinity (= ${Source-Version}), klaptopdaemon-trinity (= ${Source-Version}), kmilo-trinity (= ${Source-Version}), kregexpeditor-trinity (= ${Source-Version}), ksim-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
 Description: development files for the Trinity utilities module
  This package contains development files needed to compile tdeutils
@@ -72,8 +72,8 @@ Description: development files for the Trinity utilities module
 Package: ark-trinity
 Section: utils
 Architecture: any
-Replaces: ark-kde3 (<< 4:3.5.13)
-Breaks: ark-kde3 (<< 4:3.5.13)
+Replaces: ark-trinity (<< 4:14.0.0)
+Breaks: ark-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: ncompress, unzip, zip, zoo, bzip2, p7zip-full, xz-utils, lzma
 Suggests: khelpcenter-trinity, rar, unrar | unrar-free
@@ -95,8 +95,8 @@ Description: graphical archiving tool for Trinity
 Package: kcalc-trinity
 Section: utils
 Architecture: any
-Replaces: kcalc-kde3 (<< 4:3.5.13)
-Breaks: kcalc-kde3 (<< 4:3.5.13)
+Replaces: kcalc-trinity (<< 4:14.0.0)
+Breaks: kcalc-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: calculator for Trinity
@@ -114,8 +114,8 @@ Description: calculator for Trinity
 Package: kcharselect-trinity
 Section: utils
 Architecture: any
-Replaces: kcharselect-kde3 (<< 4:3.5.13)
-Breaks: kcharselect-kde3 (<< 4:3.5.13)
+Replaces: kcharselect-trinity (<< 4:14.0.0)
+Breaks: kcharselect-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: character selector for Trinity
@@ -127,8 +127,8 @@ Description: character selector for Trinity
 Package: kdelirc-trinity
 Section: utils
 Architecture: any
-Replaces: kdelirc-kde3 (<< 4:3.5.13)
-Breaks: kdelirc-kde3 (<< 4:3.5.13)
+Replaces: kdelirc-trinity (<< 4:14.0.0)
+Breaks: kdelirc-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: infrared control for Trinity
@@ -140,8 +140,8 @@ Description: infrared control for Trinity
 Package: kdessh-trinity
 Section: kde
 Architecture: any
-Replaces: kdessh-kde3 (<< 4:3.5.13)
-Breaks: kdessh-kde3 (<< 4:3.5.13)
+Replaces: kdessh-trinity (<< 4:14.0.0)
+Breaks: kdessh-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, openssh-client | ssh-client
 Description: ssh frontend for Trinity
  This package contains KDE's frontend for ssh.
@@ -152,8 +152,8 @@ Description: ssh frontend for Trinity
 Package: kdf-trinity
 Section: utils
 Architecture: any
-Replaces: kdf-kde3 (<< 4:3.5.13)
-Breaks: kdf-kde3 (<< 4:3.5.13)
+Replaces: kdf-trinity (<< 4:14.0.0)
+Breaks: kdf-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: disk space utility for Trinity
@@ -168,8 +168,8 @@ Description: disk space utility for Trinity
 Package: kedit-trinity
 Section: editors
 Architecture: any
-Replaces: kedit-kde3 (<< 4:3.5.13)
-Breaks: kedit-kde3 (<< 4:3.5.13)
+Replaces: kedit-trinity (<< 4:14.0.0)
+Breaks: kedit-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: basic text editor for Trinity
@@ -186,8 +186,8 @@ Description: basic text editor for Trinity
 Package: kfloppy-trinity
 Section: utils
 Architecture: any
-Replaces: kfloppy-kde3 (<< 4:3.5.13)
-Breaks: kfloppy-kde3 (<< 4:3.5.13)
+Replaces: kfloppy-trinity (<< 4:14.0.0)
+Breaks: kfloppy-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, dosfstools
 Suggests: khelpcenter-trinity
 Description: floppy formatter for KDE
@@ -200,8 +200,8 @@ Description: floppy formatter for KDE
 Package: kgpg-trinity
 Section: kde
 Architecture: any
-Replaces: kgpg-kde3 (<< 4:3.5.13)
-Breaks: kgpg-kde3 (<< 4:3.5.13)
+Replaces: kgpg-trinity (<< 4:14.0.0)
+Breaks: kgpg-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, konsole-trinity (>= 4:3.5.8), gnupg
 Suggests: khelpcenter-trinity
 Description: GnuPG frontend for Trinity
@@ -225,8 +225,8 @@ Description: GnuPG frontend for Trinity
 Package: khexedit-trinity
 Section: utils
 Architecture: any
-Replaces: khexedit-kde3 (<< 4:3.5.13)
-Breaks: khexedit-kde3 (<< 4:3.5.13)
+Replaces: khexedit-trinity (<< 4:14.0.0)
+Breaks: khexedit-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: Trinity hex editor
@@ -240,8 +240,8 @@ Description: Trinity hex editor
 Package: kjots-trinity
 Section: utils
 Architecture: any
-Replaces: kjots-kde3 (<< 4:3.5.13)
-Breaks: kjots-kde3 (<< 4:3.5.13)
+Replaces: kjots-trinity (<< 4:14.0.0)
+Breaks: kjots-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: note taking utility for Trinity
@@ -254,8 +254,8 @@ Description: note taking utility for Trinity
 Package: klaptopdaemon-trinity
 Section: kde
 Architecture: any
-Replaces: klaptopdaemon-kde3 (<< 4:3.5.13)
-Breaks: klaptopdaemon-kde3 (<< 4:3.5.13)
+Replaces: klaptopdaemon-trinity (<< 4:14.0.0)
+Breaks: klaptopdaemon-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: battery monitoring and management for laptops using KDE
@@ -268,8 +268,8 @@ Description: battery monitoring and management for laptops using KDE
 Package: kmilo-trinity
 Section: utils
 Architecture: any
-Replaces: kmilo-kde3 (<< 4:3.5.13)
-Breaks: kmilo-kde3 (<< 4:3.5.13)
+Replaces: kmilo-trinity (<< 4:14.0.0)
+Breaks: kmilo-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description:  laptop special keys support for Trinity
  KMilo lets you use the special keys on some keyboards and laptops.
@@ -284,8 +284,8 @@ Description:  laptop special keys support for Trinity
 Package: kmilo-legacy-trinity
 Section: utils
 Architecture: any
-Replaces: kmilo-legacy-kde3 (<< 4:3.5.13)
-Breaks: kmilo-legacy-kde3 (<< 4:3.5.13)
+Replaces: kmilo-legacy-trinity (<< 4:14.0.0)
+Breaks: kmilo-legacy-trinity (<< 4:14.0.0)
 Depends: kmilo-trinity, ${shlibs:Depends}
 Description:  non-standard plugins for KMilo
  KMilo lets you use the special keys on some keyboards and laptops.
@@ -302,8 +302,8 @@ Description:  non-standard plugins for KMilo
 Package: kregexpeditor-trinity
 Section: kde
 Architecture: any
-Replaces: kregexpeditor-kde3 (<< 4:3.5.13)
-Breaks: kregexpeditor-kde3 (<< 4:3.5.13)
+Replaces: kregexpeditor-trinity (<< 4:14.0.0)
+Breaks: kregexpeditor-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: graphical regular expression editor plugin for Trinity
@@ -316,8 +316,8 @@ Description: graphical regular expression editor plugin for Trinity
 Package: ksim-trinity
 Section: utils
 Architecture: any
-Replaces: ksim-kde3 (<< 4:3.5.13)
-Breaks: ksim-kde3 (<< 4:3.5.13)
+Replaces: ksim-trinity (<< 4:14.0.0)
+Breaks: ksim-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: system information monitor for Trinity
@@ -331,8 +331,8 @@ Description: system information monitor for Trinity
 Package: ktimer-trinity
 Section: utils
 Architecture: any
-Replaces: ktimer-kde3 (<< 4:3.5.13)
-Breaks: ktimer-kde3 (<< 4:3.5.13)
+Replaces: ktimer-trinity (<< 4:14.0.0)
+Breaks: ktimer-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: timer utility for Trinity
@@ -346,8 +346,8 @@ Description: timer utility for Trinity
 Package: kwalletmanager-trinity
 Section: utils
 Architecture: any
-Replaces: kwalletmanager-kde3 (<< 4:3.5.13)
-Breaks: kwalletmanager-kde3 (<< 4:3.5.13)
+Replaces: kwalletmanager-trinity (<< 4:14.0.0)
+Breaks: kwalletmanager-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: wallet manager for Trinity
@@ -361,8 +361,8 @@ Description: wallet manager for Trinity
 Package: superkaramba-trinity
 Section: kde
 Architecture: any
-Replaces: superkaramba-kde3 (<< 4:3.5.13)
-Breaks: superkaramba-kde3 (<< 4:3.5.13)
+Replaces: superkaramba-trinity (<< 4:14.0.0)
+Breaks: superkaramba-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Conflicts: karamba-trinity
@@ -385,8 +385,8 @@ Description: a program based on karamba improving the eyecandy of KDE
 Package: tdeutils-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: tdeutils-kde3-dbg (<< 4:3.5.13)
-Breaks: tdeutils-kde3-dbg (<< 4:3.5.13)
+Replaces: kdeutils-trinity-dbg (<< 4:14.0.0)
+Breaks: kdeutils-trinity-dbg (<< 4:14.0.0)
 Depends: tdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for tdeutils-trinity

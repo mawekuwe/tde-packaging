@@ -9,6 +9,8 @@ Standards-Version: 3.8.4
 Package: abakus-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: abakus-trinity (<< 4:14.0.0)
+Breaks: abakus-trinity (<< 4:14.0.0)
 Description: calculator for KDE [Trinity]
  AbaKus is a complex calculator, which provides
  many different kinds of calculations.

@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: keep-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, rdiff-backup
-Replaces: keep-kde3 (<< 4:3.5.13)
-Breaks: keep-kde3 (<< 4:3.5.13)
+Replaces: keep-trinity (<< 4:14.0.0)
+Breaks: keep-trinity (<< 4:14.0.0)
 Description: backup system for KDE [Trinity]
  Keep is an automatic backup program that allows users to set the parameters of
  the backup, including the frequency and the number of backups.

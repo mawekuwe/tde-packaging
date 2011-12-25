@@ -11,6 +11,8 @@ Standards-Version: 3.8.4
 Package: fusion-icon-trinity
 Architecture: all
 XB-Python-Version: ${python:Versions}
+Replaces: fusion-icon-trinity (<< 4:14.0.0)
+Breaks: fusion-icon-trinity (<< 4:14.0.0)
 Depends: ${misc:Depends}, ${python:Depends}, python-gtk2 | python-qt4, python-compizconfig-trinity, compiz-trinity
 Description: tray icon to launch and manage Compiz Fusion [Trinity]
  The OpenCompositing Project brings 3D desktop visual effects that
