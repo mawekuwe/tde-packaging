@@ -64,8 +64,6 @@ Depends: ${shlibs:Depends}, tdelibs-data-trinity,
 Recommends: xdg-user-dirs
 Suggests: fam, perl-suid
 Conflicts: tdelibs4-trinity, tdelibs4c2-trinity (>> 4:1.0.0), tdelibs-bin-trinity (<< 4:3.3.3), tdelibs4-trinity-dev (<< 4:3.5.7.dfsg.1-6)
- kcontrol-trinity, tdelibs-bin-trinity (<< 4:3.5.3-1),
- tdelibs4-trinity-dev (= 4:3.5.7.dfsg.1-5)
 Description: core libraries and binaries for all TDE applications
  This package contains all the shared libraries and common core binaries
  used by all TDE applications. You need these libraries and binaries to
