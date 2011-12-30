@@ -20,8 +20,8 @@ Standards-Version: 3.8.4
 Package: tdepim-trinity
 Section: kde
 Architecture: all
-Replaces: tdepim-kde3 (<< 4:3.5.13)
-Breaks: tdepim-kde3 (<< 4:3.5.13)
+Replaces: kdepim-trinity (<< 4:14.0.0)
+Breaks: kdepim-trinity (<< 4:14.0.0)
 Depends: akregator-trinity (>= ${Source-Version}), kaddressbook-trinity (>= ${Source-Version}), kalarm-trinity (>= ${Source-Version}), kandy-trinity (>= ${Source-Version}), karm-trinity (>= ${Source-Version}), tdepim-kfile-plugins-trinity (>= ${Source-Version}), tdepim-kio-plugins-trinity (>= ${Source-Version}), tdepim-kresources-trinity (>= ${Source-Version}), tdepim-wizards-trinity (>= ${Source-Version}), kitchensync-trinity (>= ${Source-Version}), kleopatra-trinity (>= ${Source-Version}), kmail-trinity (>= ${Source-Version}), kmailcvt-trinity (>= ${Source-Version}), knode-trinity (>= ${Source-Version}), knotes-trinity (>= ${Source-Version}), konsolekalendar-trinity (>= ${Source-Version}), kontact-trinity (>= ${Source-Version}), korganizer-trinity (>= ${Source-Version}), korn-trinity (>= ${Source-Version}), ktnef-trinity (>= ${Source-Version}), libindex0-trinity (>= ${Source-Version}), libkcal2b-trinity (>= ${Source-Version}), libtdepim1a-trinity (>= ${Source-Version}), libkgantt0-trinity (>= ${Source-Version}), libkleopatra1-trinity (>= ${Source-Version}), libkpimexchange1-trinity (>= ${Source-Version}), libkpimidentities1-trinity (>= ${Source-Version}), libksieve0-trinity (>= ${Source-Version}), libktnef1-trinity (>= ${Source-Version}), libmimelib1c2a-trinity (>= ${Source-Version})
 Suggests: tdepim-trinity-doc-html
 Description: Personal Information Management apps from the official Trinity release
@@ -38,8 +38,8 @@ Description: Personal Information Management apps from the official Trinity rele
 Package: tdepim-trinity-dbg
 Priority: extra
 Section: libdevel
-Replaces: tdepim-kde3-dbg (<< 4:3.5.13)
-Breaks: tdepim-kde3-dbg (<< 4:3.5.13)
+Replaces: kdepim-trinity-dbg (<< 4:14.0.0)
+Breaks: kdepim-trinity-dbg (<< 4:14.0.0)
 Depends: tdelibs-trinity-dbg
 Architecture: any
 Description: debugging symbols for tdepim-trinity
@@ -50,8 +50,8 @@ Description: debugging symbols for tdepim-trinity
 Package: tdepim-trinity-dev
 Section: devel
 Architecture: any
-Replaces: tdepim-kde3-dev (<< 4:3.5.13)
-Breaks: tdepim-kde3-dev (<< 4:3.5.13)
+Replaces: kdepim-trinity-dev (<< 4:14.0.0)
+Breaks: kdepim-trinity-dev (<< 4:14.0.0)
 Depends: kaddressbook-trinity (= ${Source-Version}), kalarm-trinity (= ${Source-Version}), tdepim-kresources-trinity (= ${Source-Version}), kmail-trinity (= ${Source-Version}), knotes-trinity (= ${Source-Version}), kontact-trinity (= ${Source-Version}), korganizer-trinity (= ${Source-Version}), libkpimidentities1-trinity (= ${Source-Version}), libkcal2-trinity-dev (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version}), libkgantt0-trinity-dev (= ${Source-Version}), libkleopatra1-trinity-dev (= ${Source-Version}), libkpimexchange1-trinity-dev (= ${Source-Version}), libksieve0-trinity-dev (= ${Source-Version}), libktnef1-trinity-dev (= ${Source-Version}), libmimelib1-trinity-dev (= ${Source-Version})
 Description: KDE Personal Information Management [development]
  This package contains development files needed to compile tdepim applications.
@@ -64,8 +64,8 @@ Description: KDE Personal Information Management [development]
 Package: tdepim-trinity-doc
 Section: doc
 Architecture: all
-Replaces: tdepim-kde3-doc (<< 4:3.5.13)
-Breaks: tdepim-kde3-doc (<< 4:3.5.13)
+Replaces: kdepim-trinity-doc (<< 4:14.0.0)
+Breaks: kdepim-trinity-doc (<< 4:14.0.0)
 Suggests: konqueror-trinity | www-browser, doc-base
 Description: KDE Personal Information Management library documentation
  KDE core library documentation. You need this documentation to develop KDE PIM
@@ -79,8 +79,8 @@ Description: KDE Personal Information Management library documentation
 Package: tdepim-trinity-doc-html
 Section: doc
 Architecture: all
-Replaces: tdepim-kde3-doc-html (<< 4:3.5.13)
-Breaks: tdepim-kde3-doc-html (<< 4:3.5.13)
+Replaces: kdepim-trinity-doc-html (<< 4:14.0.0)
+Breaks: kdepim-trinity-doc-html (<< 4:14.0.0)
 Suggests: konqueror-trinity | www-browser, tdepim-trinity
 Description: KDE PIM documentation in HTML format
  By default the Personal Information Management applications provided with
@@ -97,8 +97,8 @@ Description: KDE PIM documentation in HTML format
 Package: akregator-trinity
 Section: web
 Architecture: any
-Replaces: akregator-kde3 (<< 4:3.5.13)
-Breaks: akregator-kde3 (<< 4:3.5.13)
+Replaces: akregator-trinity (<< 4:14.0.0)
+Breaks: akregator-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: RSS feed aggregator for KDE
  aKregator is a fast, lightweight, and intuitive feed reader program
@@ -113,8 +113,8 @@ Description: RSS feed aggregator for KDE
 Package: kaddressbook-trinity
 Section: utils
 Architecture: any
-Replaces: kaddressbook-kde3 (<< 4:3.5.13)
-Breaks: kaddressbook-kde3 (<< 4:3.5.13)
+Replaces: kaddressbook-trinity (<< 4:14.0.0)
+Breaks: kaddressbook-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
 Suggests: tdepim-kresources-trinity, tdebase-kio-plugins-trinity
@@ -130,8 +130,8 @@ Description: KDE NG addressbook application
 Package: kalarm-trinity
 Section: kde
 Architecture: any
-Replaces: kalarm-kde3 (<< 4:3.5.13)
-Breaks: kalarm-kde3 (<< 4:3.5.13)
+Replaces: kalarm-trinity (<< 4:14.0.0)
+Breaks: kalarm-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: kmix-trinity, kttsd-trinity
 Description: Trinity alarm message, command and email scheduler
@@ -155,8 +155,8 @@ Description: Trinity alarm message, command and email scheduler
 Package: kandy-trinity
 Section: utils
 Architecture: any
-Replaces: kandy-kde3 (<< 4:3.5.13)
-Breaks: kandy-kde3 (<< 4:3.5.13)
+Replaces: kandy-trinity (<< 4:14.0.0)
+Breaks: kandy-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity mobile phone utility
  At the moment Kandy is more or less a terminal program with some special
@@ -172,8 +172,8 @@ Description: Trinity mobile phone utility
 Package: karm-trinity
 Section: utils
 Architecture: any
-Replaces: karm-kde3 (<< 4:3.5.13)
-Breaks: karm-kde3 (<< 4:3.5.13)
+Replaces: karm-trinity (<< 4:14.0.0)
+Breaks: karm-trinity (<< 4:14.0.0)
 Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
 Depends: ${shlibs:Depends}
 Description: Trinity time tracker tool
@@ -186,8 +186,8 @@ Description: Trinity time tracker tool
 Package: tdepim-kfile-plugins-trinity
 Section: kde
 Architecture: any
-Replaces: tdepim-kfile-plugins-kde3 (<< 4:3.5.13)
-Breaks: tdepim-kfile-plugins-kde3 (<< 4:3.5.13)
+Replaces: kdepim-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdepim-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: KDE File dialog plugins for palm and vcf files
  File dialog plugins for palm and vcf files.
@@ -198,8 +198,8 @@ Description: KDE File dialog plugins for palm and vcf files
 Package: tdepim-kio-plugins-trinity
 Section: kde
 Architecture: any
-Replaces: tdepim-kio-plugins-kde3 (<< 4:3.5.13)
-Breaks: tdepim-kio-plugins-kde3 (<< 4:3.5.13)
+Replaces: kdepim-kio-plugins-trinity (<< 4:14.0.0)
+Breaks: kdepim-kio-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity pim I/O Slaves
  This package includes the pim kioslaves. This includes imap4, sieve,
@@ -211,8 +211,8 @@ Description: Trinity pim I/O Slaves
 Package: tdepim-kresources-trinity
 Section: kde
 Architecture: any
-Replaces: tdepim-kresources-kde3 (<< 4:3.5.13)
-Breaks: tdepim-kresources-kde3 (<< 4:3.5.13)
+Replaces: kdepim-kresources-trinity (<< 4:14.0.0)
+Breaks: kdepim-kresources-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: ${shlibs:Recommends}, korganizer-trinity
 Suggests: knotes-trinity
@@ -227,8 +227,8 @@ Description: Trinity pim resource plugins
 Package: tdepim-wizards-trinity
 Section: kde
 Architecture: any
-Replaces: tdepim-wizards-kde3 (<< 4:3.5.13)
-Breaks: tdepim-wizards-kde3 (<< 4:3.5.13)
+Replaces: kdepim-wizards-trinity (<< 4:14.0.0)
+Breaks: kdepim-wizards-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: egroupware
 Description: Trinity server configuration wizards
@@ -241,8 +241,8 @@ Description: Trinity server configuration wizards
 Package: kitchensync-trinity
 Section: kde
 Architecture: any
-Replaces: kitchensync-kde3 (<< 4:3.5.13)
-Breaks: kitchensync-kde3 (<< 4:3.5.13)
+Replaces: kitchensync-trinity (<< 4:14.0.0)
+Breaks: kitchensync-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: konqueror-trinity
 Conflicts: kdebluetooth-irmcsync-trinity (<< 0.99+1.0beta2-4.1), ksync-trinity
@@ -256,8 +256,8 @@ Description: Synchronization framework
 Package: kleopatra-trinity
 Section: net
 Architecture: any
-Replaces: kleopatra-kde3 (<< 4:3.5.13)
-Breaks: kleopatra-kde3 (<< 4:3.5.13)
+Replaces: kleopatra-trinity (<< 4:14.0.0)
+Breaks: kleopatra-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, gnupg-agent, gnupg2, gpgsm, dirmngr, pinentry-qt | pinentry-x11
 Description: Trinity Certificate Manager
  Kleopatra is the KDE tool for managing X.509 certificates in the gpgsm
@@ -269,8 +269,8 @@ Description: Trinity Certificate Manager
 Package: kmail-trinity
 Section: mail
 Architecture: any
-Replaces: kmail-kde3 (<< 4:3.5.13)
-Breaks: kmail-kde3 (<< 4:3.5.13)
+Replaces: kmail-trinity (<< 4:14.0.0)
+Breaks: kmail-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${perl:Depends}, tdepim-kio-plugins-trinity, tdebase-kio-plugins-trinity, gpgsm, gnupg-agent, pinentry-qt | pinentry-x11
 Recommends: procmail
 Suggests: gnupg, gnupg-agent, pinentry-qt | pinentry-x11, kaddressbook-trinity, kleopatra-trinity, spamassassin | bogofilter | annoyance-filter | spambayes | bsfilter | crm114, clamav | f-prot-installer
@@ -292,8 +292,8 @@ Description: Trinity Email client
 Package: kmailcvt-trinity
 Section: mail
 Architecture: any
-Replaces: kmailcvt-kde3 (<< 4:3.5.13)
-Breaks: kmailcvt-kde3 (<< 4:3.5.13)
+Replaces: kmailcvt-trinity (<< 4:14.0.0)
+Breaks: kmailcvt-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kmail-trinity
 Description: Trinity KMail mail folder converter
  Converts mail folders to KMail format.  Formats supported for import
@@ -305,8 +305,8 @@ Description: Trinity KMail mail folder converter
 Package: knode-trinity
 Section: news
 Architecture: any
-Replaces: knode-kde3 (<< 4:3.5.13)
-Breaks: knode-kde3 (<< 4:3.5.13)
+Replaces: knode-trinity (<< 4:14.0.0)
+Breaks: knode-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Provides: news-reader
 Description: Trinity news reader
@@ -321,8 +321,8 @@ Description: Trinity news reader
 Package: knotes-trinity
 Section: kde
 Architecture: any
-Replaces: knotes-kde3 (<< 4:3.5.13)
-Breaks: knotes-kde3 (<< 4:3.5.13)
+Replaces: knotes-trinity (<< 4:14.0.0)
+Breaks: knotes-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: tdepim-kresources-trinity
 Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
@@ -337,8 +337,8 @@ Description: Trinity sticky notes
 Package: kode-trinity
 Section: devel
 Architecture: any
-Replaces: kode-kde3 (<< 4:3.5.13)
-Breaks: kode-kde3 (<< 4:3.5.13)
+Replaces: kode-trinity (<< 4:14.0.0)
+Breaks: kode-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Helper library for programmatic generation of C++ code
  This package includes a program kode for generation of C++ template files
@@ -351,8 +351,8 @@ Description: Helper library for programmatic generation of C++ code
 Package: konsolekalendar-trinity
 Section: kde
 Architecture: any
-Replaces: konsolekalendar-kde3 (<< 4:3.5.13)
-Breaks: konsolekalendar-kde3 (<< 4:3.5.13)
+Replaces: konsolekalendar-trinity (<< 4:14.0.0)
+Breaks: konsolekalendar-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity konsole personal organizer
  KonsoleKalendar is a command-line interface to KDE calendars.
@@ -365,8 +365,8 @@ Description: Trinity konsole personal organizer
 Package: kontact-trinity
 Section: kde
 Architecture: any
-Replaces: kontact-kde3 (<< 4:3.5.13)
-Breaks: kontact-kde3 (<< 4:3.5.13)
+Replaces: kontact-trinity (<< 4:14.0.0)
+Breaks: kontact-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kmail-trinity, korganizer-trinity, kaddressbook-trinity
 Recommends: ${shlibs:Recommends}, kmail-trinity, knode-trinity, knotes-trinity
 Suggests: ${shlibs:Suggests}, akregator-trinity, knewsticker-trinity, kweather-trinity, gnokii
@@ -385,8 +385,8 @@ Description: Trinity pim application
 Package: korganizer-trinity
 Section: kde
 Architecture: any
-Replaces: korganizer-kde3 (<< 4:3.5.13)
-Breaks: korganizer-kde3 (<< 4:3.5.13)
+Replaces: korganizer-trinity (<< 4:14.0.0)
+Breaks: korganizer-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${perl:Depends}
 Recommends: kghostview-trinity
 Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
@@ -408,8 +408,8 @@ Description: Trinity personal organizer
 Package: korn-trinity
 Section: kde
 Architecture: any
-Replaces: korn-kde3 (<< 4:3.5.13)
-Breaks: korn-kde3 (<< 4:3.5.13)
+Replaces: korn-trinity (<< 4:14.0.0)
+Breaks: korn-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdepim-kio-plugins-trinity, tdebase-kio-plugins-trinity
 Description: Trinity mail checker
  Korn is a KDE mail checker that can display a small summary in the Kicker
@@ -425,8 +425,8 @@ Description: Trinity mail checker
 Package: ktnef-trinity
 Section: kde
 Architecture: any
-Replaces: ktnef-kde3 (<< 4:3.5.13)
-Breaks: ktnef-kde3 (<< 4:3.5.13)
+Replaces: ktnef-trinity (<< 4:14.0.0)
+Breaks: ktnef-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity TNEF viewer
  The TNEF File Viewer allows you to handle mail attachments using the TNEF
@@ -439,8 +439,8 @@ Description: Trinity TNEF viewer
 Package: libindex0-trinity
 Section: libs
 Architecture: any
-Replaces: libindex0-kde3 (<< 4:3.5.13)
-Breaks: libindex0-kde3 (<< 4:3.5.13)
+Replaces: libindex0-trinity (<< 4:14.0.0)
+Breaks: libindex0-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity indexing library
  This library provides text indexing and is currently used by KMail
@@ -454,8 +454,8 @@ Description: Trinity indexing library
 Package: libindex0-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libindex0-kde3-dev (<< 4:3.5.13)
-Breaks: libindex0-kde3-dev (<< 4:3.5.13)
+Replaces: libindex0-trinity-dev (<< 4:14.0.0)
+Breaks: libindex0-trinity-dev (<< 4:14.0.0)
 Depends: libindex0-trinity (= ${Source-Version})
 Description: Trinity indexing library [development]
  This library provides text indexing and is currently used by KMail
@@ -470,8 +470,8 @@ Description: Trinity indexing library [development]
 Package: libkcal2b-trinity
 Section: libs
 Architecture: any
-Replaces: libkcal2b-kde3 (<< 4:3.5.13)
-Breaks: libkcal2b-kde3 (<< 4:3.5.13)
+Replaces: libkcal2b-trinity (<< 4:14.0.0)
+Breaks: libkcal2b-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: ${shlibs:Recommends}
 Conflicts: libkcal2-trinity, libkcal2a-trinity
@@ -488,8 +488,8 @@ Description: Trinity calendaring library
 Package: libkcal2-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libkcal2-kde3-dev (<< 4:3.5.13)
-Breaks: libkcal2-kde3-dev (<< 4:3.5.13)
+Replaces: libkcal2-trinity-dev (<< 4:14.0.0)
+Breaks: libkcal2-trinity-dev (<< 4:14.0.0)
 Depends: libkcal2b-trinity (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version}), libktnef1-trinity-dev (= ${Source-Version})
 Description: Trinity calendaring library [development]
  This library provides a C++ API for handling the vCalendar and iCalendar
@@ -504,8 +504,8 @@ Description: Trinity calendaring library [development]
 Package: libtdepim1a-trinity
 Section: libs
 Architecture: any
-Replaces: libtdepim1a-kde3 (<< 4:3.5.13)
-Breaks: libtdepim1a-kde3 (<< 4:3.5.13)
+Replaces: libkdepim1a-trinity (<< 4:14.0.0)
+Breaks: libkdepim1a-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity PIM library
  This is the runtime package for programs that use the libtdepim-trinity library.
@@ -516,8 +516,8 @@ Description: Trinity PIM library
 Package: libtdepim1-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libtdepim1-kde3-dev (<< 4:3.5.13)
-Breaks: libtdepim1-kde3-dev (<< 4:3.5.13)
+Replaces: libkdepim1-trinity-dev (<< 4:14.0.0)
+Breaks: libkdepim1-trinity-dev (<< 4:14.0.0)
 Depends: libtdepim1a-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.7)
 Description: Trinity PIM library [development]
  This is the development package which contains the headers for the libtdepim-trinity
@@ -529,8 +529,8 @@ Description: Trinity PIM library [development]
 Package: libkgantt0-trinity
 Section: libs
 Architecture: any
-Replaces: libkgantt0-kde3 (<< 4:3.5.13)
-Breaks: libkgantt0-kde3 (<< 4:3.5.13)
+Replaces: libkgantt0-trinity (<< 4:14.0.0)
+Breaks: libkgantt0-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity gantt charting library
  This is the runtime package for programs that use the libkgantt-trinity library.
@@ -541,8 +541,8 @@ Description: Trinity gantt charting library
 Package: libkgantt0-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libkgantt0-kde3-dev (<< 4:3.5.13)
-Breaks: libkgantt0-kde3-dev (<< 4:3.5.13)
+Replaces: libkgantt0-trinity-dev (<< 4:14.0.0)
+Breaks: libkgantt0-trinity-dev (<< 4:14.0.0)
 Depends: libkgantt0-trinity (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version})
 Description: Trinity gantt charting library [development]
  This is the development package which contains the headers for the libkgantt-trinity
@@ -554,8 +554,8 @@ Description: Trinity gantt charting library [development]
 Package: libkleopatra1-trinity
 Section: libs
 Architecture: any
-Replaces: libkleopatra1-kde3 (<< 4:3.5.13)
-Breaks: libkleopatra1-kde3 (<< 4:3.5.13)
+Replaces: libkleopatra1-trinity (<< 4:14.0.0)
+Breaks: libkleopatra1-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${perl:Depends}, gnupg
 Conflicts: libkleopatra0-trinity
 Description: KDE GnuPG interface libraries
@@ -570,8 +570,8 @@ Description: KDE GnuPG interface libraries
 Package: libkleopatra1-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libkleopatra1-kde3-dev (<< 4:3.5.13)
-Breaks: libkleopatra1-kde3-dev (<< 4:3.5.13)
+Replaces: libkleopatra1-trinity-dev (<< 4:14.0.0)
+Breaks: libkleopatra1-trinity-dev (<< 4:14.0.0)
 Depends: libkleopatra1-trinity (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version})
 Conflicts: libkleopatra0-trinity-dev
 Description: Trinity GnuPG interface libraries [development]
@@ -587,8 +587,8 @@ Description: Trinity GnuPG interface libraries [development]
 Package: libkmime2-trinity
 Section: libs
 Architecture: any
-Replaces: libkmime2-kde3 (<< 4:3.5.13)
-Breaks: libkmime2-kde3 (<< 4:3.5.13)
+Replaces: libkmime2-trinity (<< 4:14.0.0)
+Breaks: libkmime2-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: libmimelib1a-trinity
 Description: Trinity MIME interface library
@@ -601,8 +601,8 @@ Description: Trinity MIME interface library
 Package: libkpimexchange1-trinity
 Section: libs
 Architecture: any
-Replaces: libkpimexchange1-kde3 (<< 4:3.5.13)
-Breaks: libkpimexchange1-kde3 (<< 4:3.5.13)
+Replaces: libkpimexchange1-trinity (<< 4:14.0.0)
+Breaks: libkpimexchange1-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity PIM Exchange library
  This is the runtime package for programs that use the libkpimexchange-trinity
@@ -614,8 +614,8 @@ Description: Trinity PIM Exchange library
 Package: libkpimexchange1-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libkpimexchange1-kde3-dev (<< 4:3.5.13)
-Breaks: libkpimexchange1-kde3-dev (<< 4:3.5.13)
+Replaces: libkpimexchange1-trinity-dev (<< 4:14.0.0)
+Breaks: libkpimexchange1-trinity-dev (<< 4:14.0.0)
 Depends: libkpimexchange1-trinity (= ${Source-Version}), libkcal2-trinity-dev (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version})
 Description: Trinity PIM Exchange library [development]
  This is the development package which contains the headers for the
@@ -627,8 +627,8 @@ Description: Trinity PIM Exchange library [development]
 Package: libkpimidentities1-trinity
 Section: libs
 Architecture: any
-Replaces: libkpimidentities1-kde3 (<< 4:3.5.13)
-Breaks: libkpimidentities1-kde3 (<< 4:3.5.13)
+Replaces: libkpimidentities1-trinity (<< 4:14.0.0)
+Breaks: libkpimidentities1-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity PIM user identity information library
  This library provides information to KDE programs about user identity,
@@ -643,8 +643,8 @@ Description: Trinity PIM user identity information library
 Package: libksieve0-trinity
 Section: libs
 Architecture: any
-Replaces: libksieve0-kde3 (<< 4:3.5.13)
-Breaks: libksieve0-kde3 (<< 4:3.5.13)
+Replaces: libksieve0-trinity (<< 4:14.0.0)
+Breaks: libksieve0-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity mail/news message filtering library
  This is the runtime package for programs that use the libksieve-trinity library.
@@ -655,8 +655,8 @@ Description: Trinity mail/news message filtering library
 Package: libksieve0-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libksieve0-kde3-dev (<< 4:3.5.13)
-Breaks: libksieve0-kde3-dev (<< 4:3.5.13)
+Replaces: libksieve0-trinity-dev (<< 4:14.0.0)
+Breaks: libksieve0-trinity-dev (<< 4:14.0.0)
 Depends: libksieve0-trinity (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version})
 Description: Trinity mail/news message filtering library [development]
  This is the development package which contains the headers for the libksieve-trinity
@@ -668,8 +668,8 @@ Description: Trinity mail/news message filtering library [development]
 Package: libktnef1-trinity
 Section: libs
 Architecture: any
-Replaces: libktnef1-kde3 (<< 4:3.5.13)
-Breaks: libktnef1-kde3 (<< 4:3.5.13)
+Replaces: libktnef1-trinity (<< 4:14.0.0)
+Breaks: libktnef1-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Library for handling KTNEF email attachments
  This library handles mail attachments using the TNEF format. These
@@ -685,8 +685,8 @@ Description: Library for handling KTNEF email attachments
 Package: libktnef1-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libktnef1-kde3-dev (<< 4:3.5.13)
-Breaks: libktnef1-kde3-dev (<< 4:3.5.13)
+Replaces: libktnef1-trinity-dev (<< 4:14.0.0)
+Breaks: libktnef1-trinity-dev (<< 4:14.0.0)
 Depends: libktnef1-trinity (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version})
 Description: KTNEF handler library [development]
  This library handles mail attachments using the TNEF format. These
@@ -703,8 +703,8 @@ Description: KTNEF handler library [development]
 Package: libmimelib1c2a-trinity
 Section: libs
 Architecture: any
-Replaces: libmimelib1c2a-kde3 (<< 4:3.5.13)
-Breaks: libmimelib1c2a-kde3 (<< 4:3.5.13)
+Replaces: libmimelib1c2a-trinity (<< 4:14.0.0)
+Breaks: libmimelib1c2a-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: libmimelib1a-trinity
 Description: Trinity mime library
@@ -718,8 +718,8 @@ Description: Trinity mime library
 Package: libmimelib1-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libmimelib1-kde3-dev (<< 4:3.5.13)
-Breaks: libmimelib1-kde3-dev (<< 4:3.5.13)
+Replaces: libmimelib1-trinity-dev (<< 4:14.0.0)
+Breaks: libmimelib1-trinity-dev (<< 4:14.0.0)
 Depends: libmimelib1c2a-trinity (= ${Source-Version})
 Description: Trinity mime library [development]
  This library is used by several KDE applications to handle mime types.

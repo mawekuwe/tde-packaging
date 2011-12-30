@@ -15,7 +15,8 @@ provides=('trinity-qt3' 'qt3')
 conflicts=('qt3' 'qt3-enhanced')
 replaces=('trinity-qt3')
 options=(!libtool)
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz)
+#source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz)
+source=(http://anduin.linuxfromscratch.org/sources/trinity/qt3-3.3.8.d.tar.gz)
 md5sums=('78dc675e84aed595375449818cbb589a')
 
 _prefix="/opt/qt"

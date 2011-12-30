@@ -9,6 +9,8 @@ Homepage: http://trinity.pearsoncomputing.net
 Package: kgtk-qt3-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: kgtk-qt3-trinity (<< 4:14.0.0)
+Breaks: kgtk-qt3-trinity (<< 4:14.0.0)
 Conflicts: kgtk-config-bluefish, kgtk-config-eclipse, kgtk-config-firefox, kgtk-config-gimp, kgtk-config-inkscape, kgtk-config-kino, kgtk-config-openoffice, kgtk-config-opera-qt3, kgtk-config-opera-qt4, kgtk-config-scribus, kgtk-config-thunderbird, kubuntu-kgtk-trinity
 Description: Use KDE dialogs in Gtk apps
  This is an LD_PRELOAD hack that allows most GTK

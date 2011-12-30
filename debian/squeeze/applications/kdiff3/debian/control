@@ -9,6 +9,8 @@ Standards-Version: 3.8.4
 Package: kdiff3-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: kdiff3-trinity (<< 4:14.0.0)
+Breaks: kdiff3-trinity (<< 4:14.0.0)
 Recommends: kdiff3-trinity-doc
 Description: compares and merges 2 or 3 files or directories [Trinity]
  KDiff3 compares two or three input files and shows the differences
@@ -20,6 +22,8 @@ Description: compares and merges 2 or 3 files or directories [Trinity]
 Package: kdiff3-trinity-doc
 Architecture: all
 Recommends: kdiff3-trinity
+Replaces: kdiff3-trinity-doc (<< 4:14.0.0)
+Breaks: kdiff3-trinity-doc (<< 4:14.0.0)
 Description: documentation for kdiff3 [Trinity]
  KDiff3 compares two or three input files and shows the differences
  line by line and character by character. This package contains the 

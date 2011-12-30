@@ -14,8 +14,8 @@ Homepage: http://www.kipi-plugins.org/
 Package: kipi-plugins-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: kipi-plugins-kde3 (<< 4:3.5.13)
-Breaks: kipi-plugins-kde3 (<< 4:3.5.13)
+Replaces: kipi-plugins-trinity (<< 4:14.0.0)
+Breaks: kipi-plugins-trinity (<< 4:14.0.0)
 Recommends: k3b-trinity, graphicsmagick-imagemagick-compat (>=1.1.7) | imagemagick (>=5.4.8), kmail-trinity, tdeprint-trinity, sane-utils, kooka-trinity, konqueror-trinity, mpg123
 Suggests: gimp, gallery, kipi-plugins-trinity-doc
 Enhances: digikam-trinity, kphotoalbum-trinity, showimg, gwenview-trinity
@@ -67,8 +67,8 @@ Description: image manipulation/handling plugins for KIPI aware programs [Trinit
 Package: kipi-plugins-trinity-doc
 Architecture: all
 Section: doc
-Replaces: kipi-plugins-kde3-doc (<< 4:3.5.13)
-Breaks: kipi-plugins-kde3-doc (<< 4:3.5.13)
+Replaces: kipi-plugins-trinity-doc (<< 4:14.0.0)
+Breaks: kipi-plugins-trinity-doc (<< 4:14.0.0)
 Depends: khelpcenter-trinity
 Suggests: kipi-plugins-trinity
 Description: kipi-plugins documentation [Trinity]

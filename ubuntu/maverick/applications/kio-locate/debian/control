@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: kio-locate-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: kio-locate-kde3 (<< 4:3.5.13)
-Breaks: kio-locate-kde3 (<< 4:3.5.13)
+Replaces: kio-locate-trinity (<< 4:14.0.0)
+Breaks: kio-locate-trinity (<< 4:14.0.0)
 Description: kio-slave for the locate command [Trinity]
  Adds support for the "locate:" and "locater:"
  protocols to Konqueror and other KDE applications.

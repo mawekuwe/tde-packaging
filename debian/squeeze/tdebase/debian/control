@@ -12,6 +12,8 @@ Standards-Version: 3.8.4
 Package: tdebase-trinity
 Section: kde
 Architecture: all
+Replaces: kdebase-trinity (<< 4:14.0.0)
+Breaks: kdebase-trinity (<< 4:14.0.0)
 Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-kio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), tdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), twin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), hal-trinity | kfreebsd-gnu | hurd, xcalib
 Recommends: kdm-trinity (>= ${Source-Version}), tdebase-runtime-data-common-trinity, libtqt3-integration-trinity
 Suggests: tdebase-trinity-doc-html (>= ${Source-Version})
@@ -29,6 +31,8 @@ Description: base components from the official KDE release
 Package: tdebase-runtime-data-common-trinity
 Section: kde
 Architecture: all
+Replaces: kdebase-runtime-data-common-trinity (<< 4:14.0.0)
+Breaks: kdebase-runtime-data-common-trinity (<< 4:14.0.0)
 Depends: tdebase-trinity
 Description: Shared common files for Trinity and KDE4
  .
@@ -38,8 +42,9 @@ Description: Shared common files for Trinity and KDE4
 Package: kappfinder-trinity
 Section: kde
 Architecture: any
+Replaces: kappfinder-trinity (<< 4:14.0.0)
+Breaks: kappfinder-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Replaces: tdebase-trinity (<< 4:3.0.0)
 Description: non-KDE application finder for KDE
  kappfinder searches your workstation for many common applications and
  creates menu entries for them.
@@ -50,10 +55,11 @@ Description: non-KDE application finder for KDE
 Package: kate-trinity
 Section: editors
 Architecture: any
+Replaces: kate-trinity (<< 4:14.0.0)
+Breaks: kate-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kregexpeditor-trinity
 Suggests: aspell | ispell | hspell, kate-plugins-trinity, khelpcenter-trinity, konsole-trinity
-Replaces: tdebase-trinity-doc (<< 4:3.0.0)
 Description: advanced text editor for KDE
  Kate is a multi document editor, based on a rewritten version of the kwrite
  editing widget of KDE.
@@ -80,11 +86,12 @@ Description: advanced text editor for KDE
 Package: kcontrol-trinity
 Section: kde
 Architecture: any
+Replaces: kcontrol-trinity (<< 4:14.0.0)
+Breaks: kcontrol-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), usbutils
 Recommends: udev
 Suggests: khelpcenter-trinity, ntpdate | ntp-simple
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0)
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0), tdebase-libs-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: control center for KDE
  The KDE Control Center provides you with a centralized and convenient
  way to configure all of your KDE settings.
@@ -103,10 +110,11 @@ Description: control center for KDE
 Package: tdebase-trinity-bin
 Section: kde
 Architecture: any
+Replaces: kdebase-trinity-bin (<< 4:14.0.0)
+Breaks: kdebase-trinity-bin (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, libpam-runtime (>= 0.76-14)
 Suggests: khelpcenter-trinity, gdb
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0), kdm-trinity (<< 4:3.4.1-2), tdebase-workspace-data-trinity (<< 7:3.5.0)
-Replaces: kcontrol-trinity (<< 4:3.3.0), tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0), tdebase-libs-trinity (<< 4:3.0.0), kscreensaver-trinity (<< 4:3.0.0), kdm-trinity (= 4:3.3.2-1b)
 Description: core binaries for the KDE base module
  This package contains miscellaneous programs needed by other
  KDE applications, particularly those in the KDE base module.
@@ -117,8 +125,9 @@ Description: core binaries for the KDE base module
 Package: tdebase-data-trinity
 Section: kde
 Architecture: all
+Replaces: kdebase-data-trinity (<< 4:14.0.0)
+Breaks: kdebase-data-trinity (<< 4:14.0.0)
 Conflicts: kcontrol-trinity (<< 4:3.4.2-1), twin-trinity (<< 4:3.4.2-1), kicker-trinity (<< 4:3.4.2-1)
-Replaces: tdebase-trinity (<< 4:3.0.0), tdeedu-data-trinity (<< 4:3.4.0), tdelibs-data-trinity (<< 4:3.3.0), kdewallpapers-trinity (<< 4:3.0.0), kcontrol-trinity (<< 4:3.5.5a.dfsg.1-1ubuntu18)
 Description: shared data files for the KDE base module
  This package contains the architecture-independent shared data files
  needed for a basic KDE desktop installation.
@@ -129,8 +138,9 @@ Description: shared data files for the KDE base module
 Package: tdebase-trinity-dev
 Section: devel
 Architecture: any
+Replaces: kdebase-trinity-dev (<< 4:14.0.0)
+Breaks: kdebase-trinity-dev (<< 4:14.0.0)
 Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), tdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), twin-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
-Replaces: kate-trinity (<< 4:3.0.0), tdebase-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: development files for the KDE base module
  This package contains headers and other development files needed to
  compile software based on the KDE base module.
@@ -141,7 +151,8 @@ Description: development files for the KDE base module
 Package: tdebase-trinity-doc
 Section: doc
 Architecture: all
-Replaces: libkonq4-trinity-dev (<< 4:3.2.0)
+Replaces: kdebase-trinity-doc (<< 4:14.0.0)
+Breaks: kdebase-trinity-doc (<< 4:14.0.0)
 Description: developer documentation for the KDE base module
  This package contains documentation for the KDE base module, of
  use more for developers creating applications than regular users.
@@ -152,6 +163,8 @@ Description: developer documentation for the KDE base module
 Package: tdebase-trinity-doc-html
 Architecture: all
 Section: doc
+Replaces: kdebase-trinity-doc-html (<< 4:14.0.0)
+Breaks: kdebase-trinity-doc-html (<< 4:14.0.0)
 Suggests: konqueror-trinity | www-browser, tdebase-trinity
 Description: KDE base documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -170,11 +183,12 @@ Description: KDE base documentation in HTML format
 Package: tdebase-kio-plugins-trinity
 Section: kde
 Architecture: any
+Replaces: kdebase-kio-plugins-trinity (<< 4:14.0.0)
+Breaks: kdebase-kio-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kdesktop-trinity, libsasl2-modules, psmisc, cryptsetup, man-db (>= 2.5.1-1)
 Recommends: hal-trinity, pmount, kamera-trinity, tdemultimedia-kio-plugins-trinity
 Suggests: khelpcenter-trinity, mtools
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0), mediamanager
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0), tdebase-libs-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0), tdebase-trinity-bin (<< 4:3.5.5a.dfsg.1-1ubuntu18), tdebase-data-trinity (<< 4:3.5.8-2ubuntu18)
 Description: core I/O slaves for KDE
  This package includes the base kioslaves. They include, amongst many
  others, file, http, ftp, smtp, pop and imap.
@@ -191,6 +205,8 @@ Description: core I/O slaves for KDE
 Package: kdepasswd-trinity
 Section: utils
 Architecture: any
+Replaces: kdepasswd-trinity (<< 4:14.0.0)
+Breaks: kdepasswd-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: password changer for KDE
  This is a simple application which allows users to change their
@@ -202,10 +218,11 @@ Description: password changer for KDE
 Package: tdeprint-trinity
 Section: utils
 Architecture: any
+Replaces: kdeprint-trinity (<< 4:14.0.0)
+Breaks: kdeprint-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, enscript, poster, psutils
 Recommends: kghostview-trinity | postscript-viewer
 Suggests: khelpcenter-trinity, efax | hylafax-client | mgetty-fax, smbclient
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0)
 Description: print system for KDE
  This package contains the KDE printing subsystem. It can use CUPS,
  lpd-ng or the traditional lpd. It also includes support for fax and
@@ -221,8 +238,9 @@ Description: print system for KDE
 Package: kdesktop-trinity
 Section: kde
 Architecture: any
+Replaces: kdesktop-trinity (<< 4:14.0.0)
+Breaks: kdesktop-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin (= ${Source-Version}), eject, xdg-user-dirs
-Replaces: tdebase-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: miscellaneous binaries and files for the KDE desktop
  This package contains miscellaneous binaries and files integral to
  the KDE desktop.
@@ -233,6 +251,8 @@ Description: miscellaneous binaries and files for the KDE desktop
 Package: kdm-trinity
 Section: kde
 Architecture: any
+Replaces: kdm-trinity (<< 4:14.0.0)
+Breaks: kdm-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), debconf (>= 1.2.9) | debconf-2.0, libpam-runtime (>= 0.76-14), xbase-clients
 Recommends: logrotate, xserver-xorg
 Suggests: khelpcenter-trinity, ksmserver-trinity (= ${Source-Version}), kdepasswd-trinity (= ${Source-Version}), menu
@@ -259,10 +279,11 @@ Description: X display manager for KDE
 Package: kfind-trinity
 Section: utils
 Architecture: any
+Replaces: kfind-trinity (<< 4:14.0.0)
+Breaks: kfind-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0)
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-libs-trinity (<< 4:3.0.0)
 Description: file-find utility for KDE 
  kfind can be used to find files and directories on your
  workstations.
@@ -273,9 +294,10 @@ Description: file-find utility for KDE
 Package: khelpcenter-trinity
 Section: kde
 Architecture: any
+Replaces: khelpcenter-trinity (<< 4:14.0.0)
+Breaks: khelpcenter-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: htdig
-Replaces: tdebase-trinity-doc (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: help center for KDE
  The KDE Help Center provides documentation on how to use the KDE desktop.
  .
@@ -288,10 +310,11 @@ Description: help center for KDE
 Package: kicker-trinity
 Section: kde
 Architecture: any
+Replaces: kicker-trinity (<< 4:14.0.0)
+Breaks: kicker-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity, kicker-applets-trinity, menu
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0)
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0), tdebase-libs-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: desktop panel for KDE
  Kicker provides the KDE panel on you desktop. It can be used as a
  program launcher and can load plugins to provide additional
@@ -303,9 +326,10 @@ Description: desktop panel for KDE
 Package: klipper-trinity
 Section: kde
 Architecture: any
+Replaces: klipper-trinity (<< 4:14.0.0)
+Breaks: klipper-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0)
 Description: clipboard utility for Trinity
  klipper provides standard clipboard functions (cut and paste, history
  saving) plus additional features, like the ability to offer actions to 
@@ -318,9 +342,10 @@ Description: clipboard utility for Trinity
 Package: kmenuedit-trinity
 Section: kde
 Architecture: any
+Replaces: kmenuedit-trinity (<< 4:14.0.0)
+Breaks: kmenuedit-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0)
 Description: menu editor for KDE
  The KDE menu editor allows you to make customisations to the KDE menu
  structure.
@@ -331,11 +356,12 @@ Description: menu editor for KDE
 Package: konqueror-trinity
 Section: web
 Architecture: any
+Replaces: konqueror-trinity (<< 4:14.0.0)
+Breaks: konqueror-trinity (<< 4:14.0.0)
 Provides: info-browser, man-browser, www-browser, konqueror
 Depends: ${shlibs:Depends}, kcontrol-trinity (= ${Source-Version}), tdebase-kio-plugins-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), kfind-trinity (= ${Source-Version}), konqueror-nsplugins-trinity
 Suggests: khelpcenter-trinity, konq-plugins-trinity, ksvg-trinity, gij-4.1, libgcj7-awt, libjessie-java
 Conflicts: tdebase-audiolibs-trinity (<< 4:3.0.0), tdebase-libs-trinity (<< 4:3.0.0)
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-audiolibs-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0), tdebase-libs-trinity (<< 4:3.0.0)
 Description: KDE's advanced file manager, web browser and document viewer
  Konqueror is the file manager for the K Desktop Environment.
  It supports basic file management on local UNIX filesystems,
@@ -363,8 +389,9 @@ Description: KDE's advanced file manager, web browser and document viewer
 Package: konqueror-nsplugins-trinity
 Section: utils
 Architecture: any
+Replaces: konqueror-nsplugins-trinity (<< 4:14.0.0)
+Breaks: konqueror-nsplugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, konqueror-trinity
-Replaces: konqueror-trinity (<< 4:3.0.0)
 Description: Netscape plugin support for Konqueror
  This package includes support for Netscape plugins in Konqueror.
  .
@@ -374,8 +401,9 @@ Description: Netscape plugin support for Konqueror
 Package: konsole-trinity
 Section: kde
 Architecture: any
+Replaces: konsole-trinity (<< 4:14.0.0)
+Breaks: konsole-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Replaces: tdebase-trinity (<< 4:3.0.0)
 Suggests: khelpcenter-trinity
 Provides: x-terminal-emulator
 Description: X terminal emulator for KDE
@@ -400,9 +428,10 @@ Description: X terminal emulator for KDE
 Package: kpager-trinity
 Section: kde
 Architecture: any
+Replaces: kpager-trinity (<< 4:14.0.0)
+Breaks: kpager-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0)
 Description: desktop pager for KDE
  This package contains KDE's desktop pager, which displays your virtual
  desktops iconically in a window, along with icons of any running
@@ -414,8 +443,9 @@ Description: desktop pager for KDE
 Package: kpersonalizer-trinity
 Section: kde
 Architecture: any
+Replaces: kpersonalizer-trinity (<< 4:14.0.0)
+Breaks: kpersonalizer-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3})
-Replaces: tdebase-trinity (<< 4:3.0.0)
 Description: installation personalizer for KDE
  KDE Personalizer is the application that configures the KDE desktop for you.
  It's a very useful wizard that allows you to quickly change the KDE desktop to
@@ -428,10 +458,11 @@ Description: installation personalizer for KDE
 Package: ksmserver-trinity
 Section: kde
 Architecture: any
+Replaces: ksmserver-trinity (<< 4:14.0.0)
+Breaks: ksmserver-trinity (<< 4:14.0.0)
 Provides: x-session-manager
 Depends: ${shlibs:Depends}, tdebase-runtime-data-common-trinity, twin-trinity (= ${Source-Version}) | x-window-manager
 Recommends: kpersonalizer-trinity (= ${Source-Version})
-Replaces: tdebase-trinity (<< 4:3.0.0)
 Description: session manager for KDE
  This package contains the KDE session manager. It is responsible for
  restoring your KDE session on login. It is also needed to properly
@@ -449,9 +480,10 @@ Description: session manager for KDE
 Package: ksplash-trinity
 Section: kde
 Architecture: any
+Replaces: ksplash-trinity (<< 4:14.0.0)
+Breaks: ksplash-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-trinity
-Replaces: tdebase-trinity (<< 4:3.0.0)
 Description: the KDE splash screen
  This package includes the KDE Splash screen, which is seen when
  a KDE session is launched.
@@ -462,10 +494,11 @@ Description: the KDE splash screen
 Package: ksysguard-trinity
 Section: utils
 Architecture: any
+Replaces: ksysguard-trinity (<< 4:14.0.0)
+Breaks: ksysguard-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ksysguardd-trinity (= ${Source-Version})
 Suggests: khelpcenter-trinity
 Conflicts: kpm-trinity (<< 4:3.0.0)
-Replaces: tdebase-trinity (<< 4:3.0.0), tdebase-trinity-doc (<< 4:3.0.0), kpm (<< 4:3.0.0)
 Description: system guard for KDE
  KDE System Guard allows you to monitor various statistics about your
  computer.
@@ -476,8 +509,9 @@ Description: system guard for KDE
 Package: ksysguardd-trinity
 Section: utils
 Architecture: any
+Replaces: ksysguardd-trinity (<< 4:14.0.0)
+Breaks: ksysguardd-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Replaces: tdebase-trinity (<< 4:3.0.0)
 Description: system guard daemon for KDE
  KDE System Guard Daemon is the daemon part of ksysguard. The daemon can
  be installed on a remote machine to enable ksysguard on another machine
@@ -489,8 +523,9 @@ Description: system guard daemon for KDE
 Package: ktip-trinity
 Section: kde
 Architecture: any
+Replaces: ktip-trinity (<< 4:14.0.0)
+Breaks: ktip-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Replaces: tdebase-trinity (<< 4:3.0.0)
 Description: useful tips for KDE
  ktip provides many useful tips on using KDE when you log in.
  .
@@ -500,10 +535,11 @@ Description: useful tips for KDE
 Package: twin-trinity
 Section: kde
 Architecture: any
+Replaces: kwin-trinity (<< 4:14.0.0)
+Breaks: kwin-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Provides: x-window-manager
 Suggests: tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), kdesktop-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), kpager-trinity (= ${Source-Version}), kpersonalizer-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version})
-Replaces: tdeartwork-theme-window-trinity (<< 4:3.4.0), tdebase-trinity (<< 4:3.0.0)
 Conflicts: kde-window-manager-trinity (<< 7:3.5.0)
 Description: the KDE window manager
  This package contains the default X window manager for KDE.
@@ -514,9 +550,10 @@ Description: the KDE window manager
 Package: libkonq4-trinity
 Section: libs
 Architecture: any
+Replaces: libkonq4-trinity (<< 4:14.0.0)
+Breaks: libkonq4-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0)
-Replaces: tdebase-libs-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0)
 Description: core libraries for Konqueror
  These libraries are used by several KDE applications, most notably
  Konqueror and the kdesktop package.
@@ -527,6 +564,8 @@ Description: core libraries for Konqueror
 Package: libtqt3-integration-trinity
 Section: libs
 Architecture: any
+Replaces: libtqt3-integration-trinity (<< 4:14.0.0)
+Breaks: libtqt3-integration-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Integration library between TQt3 and TDE
  These libraries allow you to use TDE dialogs in native TQt3 applications.
@@ -537,9 +576,10 @@ Description: Integration library between TQt3 and TDE
 Package: libkonq4-trinity-dev
 Section: libdevel
 Architecture: any
+Replaces: libkonq4-trinity-dev (<< 4:14.0.0)
+Breaks: libkonq4-trinity-dev (<< 4:14.0.0)
 Depends: libkonq4-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
 Conflicts: libkonq-trinity-dev (<< 4:3.0.0), libkonq3-trinity (<< 4:3.0.0)
-Replaces: tdebase-dev (<< 4:3.0.0), libkonq-dev (<< 4:3.0.0), libkonq3 (<< 4:3.0.0)
 Description: development files for Konqueror's core libraries
  This package contains headers and other development files for the core
  Konqueror libraries.
@@ -550,6 +590,8 @@ Description: development files for Konqueror's core libraries
 Package: tdebase-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdebase-trinity-dbg (<< 4:14.0.0)
+Breaks: kdebase-trinity-dbg (<< 4:14.0.0)
 Priority: extra
 Depends: libkonq4-trinity (= ${Source-Version}), tdelibs-trinity-dbg
 Description: debugging symbols for tdebase

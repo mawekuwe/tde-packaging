@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: tdetoys-trinity
 Architecture: all
 Section: kde
-Replaces: tdetoys-kde3 (<< 4:3.5.13)
-Breaks: tdetoys-kde3 (<< 4:3.5.13)
+Replaces: kdetoys-trinity (<< 4:14.0.0)
+Breaks: kdetoys-trinity (<< 4:14.0.0)
 Depends: amor-trinity (>= ${Source-Version}), eyesapplet-trinity (>= ${Source-Version}), fifteenapplet-trinity (>= ${Source-Version}), kmoon-trinity (>= ${Source-Version}), kodo-trinity (>= ${Source-Version}), kteatime-trinity (>= ${Source-Version}), ktux-trinity (>= ${Source-Version}), kweather-trinity (>= ${Source-Version}), kworldclock-trinity (>= ${Source-Version})
 Suggests: tdetoys-trinity-doc-html (>= ${Source-Version})
 Description: toys from the official Trinity release
@@ -26,8 +26,8 @@ Description: toys from the official Trinity release
 Package: tdetoys-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: tdetoys-kde3-doc-html (<< 4:3.5.13)
-Breaks: tdetoys-kde3-doc-html (<< 4:3.5.13)
+Replaces: kdetoys-trinity-doc-html (<< 4:14.0.0)
+Breaks: kdetoys-trinity-doc-html (<< 4:14.0.0)
 Suggests: konqueror-trinity | www-browser, tdetoys-trinity
 Description: Trinity toys documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -46,8 +46,8 @@ Description: Trinity toys documentation in HTML format
 Package: amor-trinity
 Architecture: any
 Section: games
-Replaces: amor-kde3 (<< 4:3.5.13)
-Breaks: amor-kde3 (<< 4:3.5.13)
+Replaces: amor-trinity (<< 4:14.0.0)
+Breaks: amor-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: twin-trinity
 Suggests: khelpcenter-trinity
@@ -65,8 +65,8 @@ Description: a Trinity creature for your desktop
 Package: eyesapplet-trinity
 Architecture: any
 Section: kde
-Replaces: eyesapplet-kde3 (<< 4:3.5.13)
-Breaks: eyesapplet-kde3 (<< 4:3.5.13)
+Replaces: eyesapplet-trinity (<< 4:14.0.0)
+Breaks: eyesapplet-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Conflicts: task-tdetoys-trinity
@@ -80,8 +80,8 @@ Description: eyes applet for Trinity
 Package: fifteenapplet-trinity
 Architecture: any
 Section: kde
-Replaces: fifteenapplet-kde3 (<< 4:3.5.13)
-Breaks: fifteenapplet-kde3 (<< 4:3.5.13)
+Replaces: fifteenapplet-trinity (<< 4:14.0.0)
+Breaks: fifteenapplet-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Description: fifteen pieces puzzle for Trinity
@@ -95,8 +95,8 @@ Description: fifteen pieces puzzle for Trinity
 Package: kmoon-trinity
 Architecture: any
 Section: kde
-Replaces: kmoon-kde3 (<< 4:3.5.13)
-Breaks: kmoon-kde3 (<< 4:3.5.13)
+Replaces: kmoon-trinity (<< 4:14.0.0)
+Breaks: kmoon-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Suggests: khelpcenter-trinity
@@ -110,8 +110,8 @@ Description: moon phase indicator for Trinity
 Package: kodo-trinity
 Architecture: any
 Section: games
-Replaces: kodo-kde3 (<< 4:3.5.13)
-Breaks: kodo-kde3 (<< 4:3.5.13)
+Replaces: kodo-trinity (<< 4:14.0.0)
+Breaks: kodo-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
@@ -126,8 +126,8 @@ Description: mouse odometer for Trinity
 Package: kteatime-trinity
 Architecture: any
 Section: kde
-Replaces: kteatime-kde3 (<< 4:3.5.13)
-Breaks: kteatime-kde3 (<< 4:3.5.13)
+Replaces: kteatime-trinity (<< 4:14.0.0)
+Breaks: kteatime-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kicker-trinity
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
@@ -149,8 +149,8 @@ Description: Trinity utility for making a fine cup of tea
 Package: ktux-trinity
 Architecture: any
 Section: kde
-Replaces: ktux-kde3 (<< 4:3.5.13)
-Breaks: ktux-kde3 (<< 4:3.5.13)
+Replaces: ktux-trinity (<< 4:14.0.0)
+Breaks: ktux-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: twin-trinity
 Conflicts: task-tdetoys-trinity
@@ -163,8 +163,8 @@ Description: Tux screensaver for Trinity
 Package: kweather-trinity
 Architecture: any
 Section: kde
-Replaces: kweather-kde3 (<< 4:3.5.13)
-Breaks: kweather-kde3 (<< 4:3.5.13)
+Replaces: kweather-trinity (<< 4:14.0.0)
+Breaks: kweather-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Suggests: khelpcenter-trinity
@@ -183,8 +183,8 @@ Description: weather display applet for Trinity
 Package: kworldclock-trinity
 Architecture: any
 Section: games
-Replaces: kworldclock-kde3 (<< 4:3.5.13)
-Breaks: kworldclock-kde3 (<< 4:3.5.13)
+Replaces: kworldclock-trinity (<< 4:14.0.0)
+Breaks: kworldclock-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: tdeartwork-misc-trinity, kicker-trinity, kdesktop-trinity, khelpcenter-trinity
 Conflicts: task-tdetoys-trinity, kworldwatch-trinity (<= 4:2.2-beta1-1)
@@ -203,8 +203,8 @@ Description: earth watcher for Trinity
 Package: tdetoys-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: tdetoys-kde3-dbg (<< 4:3.5.13)
-Breaks: tdetoys-kde3-dbg (<< 4:3.5.13)
+Replaces: kdetoys-trinity-dbg (<< 4:14.0.0)
+Breaks: kdetoys-trinity-dbg (<< 4:14.0.0)
 Depends: tdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for tdetoys-trinity

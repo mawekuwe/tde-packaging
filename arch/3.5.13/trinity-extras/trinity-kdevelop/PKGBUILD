@@ -12,7 +12,8 @@ depends=('trinity-kdebase')
 #         'xorg'
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdevelop-3.5.13.tar.gz)
+#source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdevelop-3.5.13.tar.gz)
+source=(http://anduin.linuxfromscratch.org/sources/trinity/kdevelop-3.5.13.tar.gz)
 md5sums=('777bd77e4f2dc6a5b5b45a370dcf6da0')
 _svnmod=kdevelop
 

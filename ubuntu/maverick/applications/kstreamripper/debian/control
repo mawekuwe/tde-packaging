@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: kstreamripper-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, streamripper
-Replaces: kstreamripper-kde3 (<< 4:3.5.13)
-Breaks: kstreamripper-kde3 (<< 4:3.5.13)
+Replaces: kstreamripper-trinity (<< 4:14.0.0)
+Breaks: kstreamripper-trinity (<< 4:14.0.0)
 Description: TDE frontend for streamripper
  KStreamRipper is a small frontend for the streamripper command 
  line utility. Streamripper captures internet shoutcast radio streams 

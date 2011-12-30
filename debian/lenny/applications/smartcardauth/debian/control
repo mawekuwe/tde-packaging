@@ -9,6 +9,8 @@ Standards-Version: 3.8.4
 Package: smartcardauth
 Architecture: any
 Depends: pcsc-tools, pcscd-nodbus, initramfs-tools, libpcsc-perl, libpcsclite1, libccid, opensc, zenity, gksu
+Replaces: smartcardauth (<< 4:14.0.0)
+Breaks: smartcardauth (<< 4:14.0.0)
 Conflicts: openct
 Description: SmartCard Login and LUKS Decrypt, Setup Utility
  This utility will allow you to set up your computer to accept a SmartCard as an authentication source for:

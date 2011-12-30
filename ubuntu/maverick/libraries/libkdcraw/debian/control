@@ -13,8 +13,8 @@ Homepage: http://www.kipi-plugins.org/
 Package: libkdcraw3-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libkdcraw3-kde3-dev (<< 4:3.5.13)
-Breaks: libkdcraw3-kde3-dev (<< 4:3.5.13)
+Replaces: libkdcraw3-trinity-dev (<< 4:14.0.0)
+Breaks: libkdcraw3-trinity-dev (<< 4:14.0.0)
 Depends: libkdcraw3-trinity (= ${binary:Version}), pkg-config
 Conflicts: libkdcraw-dev
 Description: RAW picture decoding C++ library (development) [Trinity]
@@ -27,8 +27,8 @@ Description: RAW picture decoding C++ library (development) [Trinity]
 Package: libkdcraw3-trinity
 Section: libs
 Architecture: any
-Replaces: libkdcraw3-kde3 (<< 4:3.5.13)
-Breaks: libkdcraw3-kde3 (<< 4:3.5.13)
+Replaces: libkdcraw3-trinity (<< 4:14.0.0)
+Breaks: libkdcraw3-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Raw picture decoding C++ library (runtime) [Trinity]
  C++ interface around dcraw binary program used to decode RAW

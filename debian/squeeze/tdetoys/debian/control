@@ -10,6 +10,8 @@ Standards-Version: 3.8.4
 Package: tdetoys-trinity
 Architecture: all
 Section: kde
+Replaces: kdetoys-trinity (<< 4:14.0.0)
+Breaks: kdetoys-trinity (<< 4:14.0.0)
 Depends: amor-trinity (>= ${Source-Version}), eyesapplet-trinity (>= ${Source-Version}), fifteenapplet-trinity (>= ${Source-Version}), kmoon-trinity (>= ${Source-Version}), kodo-trinity (>= ${Source-Version}), kteatime-trinity (>= ${Source-Version}), ktux-trinity (>= ${Source-Version}), kweather-trinity (>= ${Source-Version}), kworldclock-trinity (>= ${Source-Version})
 Suggests: tdetoys-trinity-doc-html (>= ${Source-Version})
 Description: toys from the official Trinity release
@@ -24,8 +26,9 @@ Description: toys from the official Trinity release
 Package: tdetoys-trinity-doc-html
 Architecture: all
 Section: doc
+Replaces: kdetoys-trinity-doc-html (<< 4:14.0.0)
+Breaks: kdetoys-trinity-doc-html (<< 4:14.0.0)
 Suggests: konqueror-trinity | www-browser, tdetoys-trinity
-Replaces: amor-trinity (<< 4:2.2.0-0), kmoon-trinity (<< 4:2.2.0-0), kodo-trinity (<< 4:2.2.0-0), kteatime-trinity (<< 4:2.2.0-0), kweather-trinity (<< 4:3.0.0-0), kworldclock-trinity (<< 4:2.2.0-0)
 Description: Trinity toys documentation in HTML format
  By default the modules provided by KDE only provide their documentation
  in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
@@ -43,11 +46,12 @@ Description: Trinity toys documentation in HTML format
 Package: amor-trinity
 Architecture: any
 Section: games
+Replaces: amor-trinity (<< 4:14.0.0)
+Breaks: amor-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: twin-trinity
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
-Replaces: tdetoys-trinity (<< 4:3.0.1-0), task-tdetoys-trinity
 Description: a Trinity creature for your desktop
  AMOR stands for Amusing Misuse Of Resources. It provides several different
  characters who prance around your X screen doing tricks and giving you tips.
@@ -61,10 +65,11 @@ Description: a Trinity creature for your desktop
 Package: eyesapplet-trinity
 Architecture: any
 Section: kde
+Replaces: eyesapplet-trinity (<< 4:14.0.0)
+Breaks: eyesapplet-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Conflicts: task-tdetoys-trinity
-Replaces: tdetoys-trinity (<< 4:3.0.1-0), task-tdetoys-trinity
 Description: eyes applet for Trinity
  An applet for the KDE panel containing a pair of eyes that follow your mouse
  around the screen.
@@ -75,6 +80,8 @@ Description: eyes applet for Trinity
 Package: fifteenapplet-trinity
 Architecture: any
 Section: kde
+Replaces: fifteenapplet-trinity (<< 4:14.0.0)
+Breaks: fifteenapplet-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Description: fifteen pieces puzzle for Trinity
@@ -88,11 +95,12 @@ Description: fifteen pieces puzzle for Trinity
 Package: kmoon-trinity
 Architecture: any
 Section: kde
+Replaces: kmoon-trinity (<< 4:14.0.0)
+Breaks: kmoon-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
-Replaces: tdetoys-trinity (<< 4:3.0.1-0), task-tdetoys-trinity
 Description: moon phase indicator for Trinity
  An applet for the KDE panel that displays the current phase of the moon.
  .
@@ -102,10 +110,11 @@ Description: moon phase indicator for Trinity
 Package: kodo-trinity
 Architecture: any
 Section: games
+Replaces: kodo-trinity (<< 4:14.0.0)
+Breaks: kodo-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
-Replaces: tdetoysv (<< 4:3.0.1-0), task-tdetoys-trinity
 Description: mouse odometer for Trinity
  KOdometer measures your desktop mileage. It tracks the movement of your mouse
  pointer across your desktop and renders it in inches/feet/miles! It can
@@ -117,10 +126,11 @@ Description: mouse odometer for Trinity
 Package: kteatime-trinity
 Architecture: any
 Section: kde
+Replaces: kteatime-trinity (<< 4:14.0.0)
+Breaks: kteatime-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kicker-trinity
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
-Replaces: tdetoys-trinity (<< 4:3.0.1-0), task-tdetoys-trinity
 Description: Trinity utility for making a fine cup of tea
  KTeaTime is a handy timer for steeping tea. No longer will you have to
  guess at how long it takes for your tea to be ready. Simply select the
@@ -139,10 +149,11 @@ Description: Trinity utility for making a fine cup of tea
 Package: ktux-trinity
 Architecture: any
 Section: kde
+Replaces: ktux-trinity (<< 4:14.0.0)
+Breaks: ktux-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: twin-trinity
 Conflicts: task-tdetoys-trinity
-Replaces: tdetoys-trinity (<< 4:3.0.1-0), task-tdetoys-trinity
 Description: Tux screensaver for Trinity
  A neat Tux-in-a-spaceship screensaver for the K Desktop Environment (KDE).
  .
@@ -152,6 +163,8 @@ Description: Tux screensaver for Trinity
 Package: kweather-trinity
 Architecture: any
 Section: kde
+Replaces: kweather-trinity (<< 4:14.0.0)
+Breaks: kweather-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Suggests: khelpcenter-trinity
@@ -170,10 +183,11 @@ Description: weather display applet for Trinity
 Package: kworldclock-trinity
 Architecture: any
 Section: games
+Replaces: kworldclock-trinity (<< 4:14.0.0)
+Breaks: kworldclock-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: tdeartwork-misc-trinity, kicker-trinity, kdesktop-trinity, khelpcenter-trinity
 Conflicts: task-tdetoys-trinity, kworldwatch-trinity (<= 4:2.2-beta1-1)
-Replaces: tdetoys-trinity (<< 4:3.0.1-0), task-tdetoys-trinity, kworldwatch-trinity (<= 4:2.2-beta1-1)
 Provides: kworldwatch-trinity
 Description: earth watcher for Trinity
  Displays where in the world it is light and dark depending on time, as
@@ -189,6 +203,8 @@ Description: earth watcher for Trinity
 Package: tdetoys-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: kdetoys-trinity-dbg (<< 4:14.0.0)
+Breaks: kdetoys-trinity-dbg (<< 4:14.0.0)
 Depends: tdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for tdetoys-trinity

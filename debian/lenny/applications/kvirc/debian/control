@@ -4,13 +4,15 @@ Section: net
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
-Uploaders: Raúl Sánchez Siles <rasasi78@gmail.com>
+Uploaders: Ral Snchez Siles <rasasi78@gmail.com>
 Standards-Version: 3.8.4
 Homepage: http://kvirc.net/
 
 Package: kvirc-trinity
 Architecture: any
 Depends: kvirc-data-trinity (= ${source:Version}), ${shlibs:Depends}
+Replaces: kvirc-trinity (<< 4:14.0.0)
+Breaks: kvirc-trinity (<< 4:14.0.0)
 Description:  Trinity based next generation IRC client with module support
  A highly configurable graphical IRC client with an MDI interface,
  built-in scripting language, support for IRC DCC, drag & drop file
@@ -24,6 +26,8 @@ Description:  Trinity based next generation IRC client with module support
 Package: kvirc-data-trinity
 Section: net
 Architecture: all
+Replaces: kvirc-data-trinity (<< 4:14.0.0)
+Breaks: kvirc-data-trinity (<< 4:14.0.0)
 Depends: kvirc-trinity (>= ${source:Version})
 Description: Data files for KVIrc
  This package contains the architecture-independent data needed by KVIrc in
@@ -39,6 +43,8 @@ Description: Data files for KVIrc
 Package: kvirc-trinity-dev
 Section: devel
 Architecture: any
+Replaces: kvirc-trinity-dev (<< 4:14.0.0)
+Breaks: kvirc-trinity-dev (<< 4:14.0.0)
 Depends: kvirc-trinity (>= ${source:Version})
 Description: Development files for KVIrc
  This package contains KVIrc libraries and include files you need if you

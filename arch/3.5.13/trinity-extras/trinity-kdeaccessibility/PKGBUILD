@@ -8,18 +8,15 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-extras')
 pkgdesc="Trinity accessibility tools"
-
 depends=('trinity-kdelibs' 'trinity-arts')
 makedepends=('pkgconfig' 'autoconf' 'automake')
 optdepends=()
-
-provides=($pkgname)
+provides=()
 conflicts=()
 replaces=()
-
 options=('libtool' '!strip')
-
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdeaccessibility-3.5.13.tar.gz)
+#source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdeaccessibility-3.5.13.tar.gz)
+source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeaccessibility-3.5.13.tar.gz)
 md5sums=('ce31b01c1831046fb28aab172f2423bf')
 
 _builddir=kdeaccessibility

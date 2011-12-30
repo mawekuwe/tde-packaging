@@ -9,6 +9,8 @@ Standards-Version: 3.8.4
 Package: kmatplot-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: kmatplot-trinity (<< 4:14.0.0)
+Breaks: kmatplot-trinity (<< 4:14.0.0)
 Recommends: octave2.1
 Description: A Gnuplot-like tool for plotting data sets in 2D or 3D
  KMatplot is a gnuplot-like tool for plotting data sets in either two or

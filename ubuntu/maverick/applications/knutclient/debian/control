@@ -10,8 +10,8 @@ Homepage: http://www.knut.noveradsl.cz/knutclient/
 Package: knutclient-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: knutclient-kde3 (<< 4:3.5.13)
-Breaks: knutclient-kde3 (<< 4:3.5.13)
+Replaces: knutclient-trinity (<< 4:14.0.0)
+Breaks: knutclient-trinity (<< 4:14.0.0)
 Description: A KDE GUI that displays UPS statistics from NUT's upsd [Trinity]
  KNutClient monitors UPS statistics through the NUT (Network UPS Tools,
  http://www.networkupstools.org/) framework on Linux and other systems. This

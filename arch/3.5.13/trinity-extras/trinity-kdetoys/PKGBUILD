@@ -15,7 +15,8 @@ provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdetoys-3.5.13.tar.gz)
+#source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdetoys-3.5.13.tar.gz)
+source=(http://anduin.linuxfromscratch.org/sources/trinity/kdetoys-3.5.13.tar.gz)
 md5sums=('823dd778c1e9e15972a509f4eee4434d')
 
 _builddir=kdetoys

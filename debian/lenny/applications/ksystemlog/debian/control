@@ -10,6 +10,8 @@ Standards-Version: 3.8.4
 Package: ksystemlog-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: ksystemlog-trinity (<< 4:14.0.0)
+Breaks: ksystemlog-trinity (<< 4:14.0.0)
 Description: system log viewer tool for Trinity
  ksystemlog is a system log viewer tool for Trinity.
  .

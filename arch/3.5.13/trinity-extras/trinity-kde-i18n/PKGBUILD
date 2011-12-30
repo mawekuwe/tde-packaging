@@ -2,7 +2,7 @@
 
 pkgname=('trinity-i18n-af' 'trinity-i18n-ar' 'trinity-i18n-az' 
          'trinity-i18n-be' 'trinity-i18n-bg' 'trinity-i18n-bn' 
-         'trinity-i18n-br' 'trinity-i18n-bs' 'trinity-i18n-ca' 
+         'trinity-i18n-br' 'trinity-i18n-bs' 
          'trinity-i18n-cs' 'trinity-i18n-csb' 'trinity-i18n-cy' 
          'trinity-i18n-da' 'trinity-i18n-de' 'trinity-i18n-el' 
          'trinity-i18n-en_gb' 'trinity-i18n-eo' 'trinity-i18n-es' 
@@ -24,6 +24,8 @@ pkgname=('trinity-i18n-af' 'trinity-i18n-ar' 'trinity-i18n-az'
          'trinity-i18n-tr' 'trinity-i18n-uk' 'trinity-i18n-uz' 
          'trinity-i18n-uz-cyrillic' 'trinity-i18n-vi' 'trinity-i18n-wa' '
          trinity-i18n-zh_cn' 'trinity-i18n-zh_tw')
+#'trinity-i18n-ca' 
+
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
@@ -124,13 +126,13 @@ pkgdesc="Trinity Bosnian localization"
   cd ${srcdir}/kde-i18n/$pkgname-3.5.10
   make DESTDIR="${pkgdir}" install
 }
-package_trinity-i18n-ca() {
-groups=('trinity-i18n')
-pkgdesc="Trinity Catalan localization"
-  msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/kde-i18n/$pkgname-3.5.10
-  make DESTDIR="${pkgdir}" install
-}
+#package_trinity-i18n-ca() {
+#groups=('trinity-i18n')
+#pkgdesc="Trinity Catalan localization"
+#  msg "Packaging - $pkgname-$pkgver"
+#  cd ${srcdir}/kde-i18n/$pkgname-3.5.10
+#  make DESTDIR="${pkgdir}" install
+#}
 package_trinity-i18n-cs() {
 groups=('trinity-i18n')
 pkgdesc="Trinity Czech localization"

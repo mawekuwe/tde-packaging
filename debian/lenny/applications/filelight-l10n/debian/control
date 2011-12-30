@@ -2,7 +2,7 @@ Source: filelight-l10n-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Uploaders: Raúl Sánchez Siles <rasasi78@gmail.com>
+Uploaders: Ral Snchez Siles <rasasi78@gmail.com>
 Build-Depends: tdelibs4-trinity-dev (>= 4:3.4.3), cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://www.methylblue.com/filelight/
@@ -10,6 +10,8 @@ Homepage: http://www.methylblue.com/filelight/
 Package: filelight-l10n-trinity
 Architecture: any
 Depends: ${shlibs:Depends} , filelight-trinity
+Replaces: filelight-l10n-trinity (<< 4:14.0.0)
+Breaks: filelight-l10n-trinity (<< 4:14.0.0)
 Description: Localization (l10n) for Filelight, disk space usage tool [Trinity]
  This package provides localization(l10n) files (translations and docs) for
  Filelight, Filelight allows you to understand your disk usage by graphically

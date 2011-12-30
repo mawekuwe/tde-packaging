@@ -19,7 +19,8 @@ Homepage: http://www.trinitydesktop.org
 Package: libtqt3-mt
 Architecture: any
 Section: libs
-Replaces: tqt3-tools (<< 2:3.0.2-20020306-1), libtqt3-helper, libtqt3, libtqt3c102-mt
+Replaces: libtqt3-mt (<< 4:14.0.0)
+Breaks: libtqt3-mt (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, fontconfig
 Recommends: libgl1-mesa-glx | libgl1, libglu1-mesa | libglu1, libxmu6 (>= 4.3.0.dfsg.1-4)
 Conflicts: libtqt3c102-mt, libtqui1-emb, libtqt3c-mt
@@ -32,8 +33,9 @@ Description: TQt GUI Library (Threaded runtime version), Version 3
 Package: libtqt3-mt-mysql
 Architecture: any
 Section: libs
+Replaces: libtqt3-mt-mysql (<< 4:14.0.0)
+Breaks: libtqt3-mt-mysql (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Replaces: libtqt3-mysql (<= 2:3.1.1+cvs.20021220-1), libtqt3c102-mt-mysql
 Conflicts: libtqt3c102-mt-mysql, libtqt3c-mt-mysql
 Description: MySQL database driver for TQt3 (Threaded)
  This package contains the threaded MySQL plugin for TQt3. Install it if
@@ -42,8 +44,9 @@ Description: MySQL database driver for TQt3 (Threaded)
 Package: libtqt3-mt-odbc
 Architecture: any
 Section: libs
+Replaces: libtqt3-mt-odbc (<< 4:14.0.0)
+Breaks: libtqt3-mt-odbc (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Replaces: libtqt3-odbc (<= 2:3.1.1+cvs.20021220-1), libtqt3c102-mt-odbc
 Conflicts: libtqt3c102-mt-odbc, libtqt3c-mt-odbc
 Description: ODBC database driver for TQt3 (Threaded)
  This package contains the threaded ODBC plugin for TQt3. Install it if
@@ -52,8 +55,9 @@ Description: ODBC database driver for TQt3 (Threaded)
 Package: libtqt3-mt-psql
 Architecture: any
 Section: libs
+Replaces: libtqt3-mt-psql (<< 4:14.0.0)
+Breaks: libtqt3-mt-psql (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Replaces: libtqt3-psql (<= 2:3.1.1+cvs.20021220-1), libtqt3c102-mt-psql
 Conflicts: libtqt3c102-mt-psql, libtqt3c-mt-psql
 Description: PostgreSQL database driver for TQt3 (Threaded)
  This package contains the threaded PostgreSQL plugin for TQt3.
@@ -75,9 +79,10 @@ Description: PostgreSQL database driver for TQt3 (Threaded)
 Package: libtqt3-mt-sqlite
 Architecture: any
 Section: libs
+Replaces: libtqt3-mt-sqlite (<< 4:14.0.0)
+Breaks: libtqt3-mt-sqlite (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: libtqt3c102-mt-sqlite
-Replaces: libtqt3c102-mt-sqlite
 Description: SQLite database driver for TQt3 (Threaded)
  This package contains the threaded SQLite plugin for TQt3. Install
  it if you intend to use or write TQt programs that are to access an
@@ -86,7 +91,8 @@ Description: SQLite database driver for TQt3 (Threaded)
 Package: libtqt3-mt-dev
 Architecture: any
 Section: libdevel
-Replaces: libtqt-mt-dev, libtqt3-dev, libtqt3-helper, libtqt3-headers (<= 3:3.1.1-3), libtqt3-emb (<= 3:3.0.3-1)
+Replaces: libtqt3-mt-dev (<< 4:14.0.0)
+Breaks: libtqt3-mt-dev (<< 4:14.0.0)
 Depends: libxext-dev (>= 4.3.0.dfsg.1-4), libxrandr-dev (>= 4.3.0.dfsg.1-4),
  libsm-dev (>= 4.3.0.dfsg.1-4), libxmu-dev (>= 4.3.0.dfsg.1-4),
  libice-dev (>= 4.3.0.dfsg.1-4), libx11-dev (>= 4.3.0.dfsg.1-4),
@@ -116,8 +122,9 @@ Description: TQt development files (Threaded)
 Package: libtqt3-headers
 Architecture: any
 Section: devel
+Replaces: libtqt3-headers (<< 4:14.0.0)
+Breaks: libtqt3-headers (<< 4:14.0.0)
 Recommends: libtqt3-mt-dev
-Replaces: libtqt3-mt-dev, libtqt3-dev, libtqt3-plugins-headers
 Description:  TQt3 header files
  This package contains all header files for libqt and libtqt-mt which come
  with TQt3. If you want to compile or develop programs which use TQt3, you
@@ -126,9 +133,10 @@ Description:  TQt3 header files
 Package: libtqt3-compat-headers
 Architecture: any
 Section: devel
+Replaces: libtqt3-compat-headers (<< 4:14.0.0)
+Breaks: libtqt3-compat-headers (<< 4:14.0.0)
 Depends: libtqt3-headers (= ${binary:Version})
 Recommends: libtqt3-mt-dev
-Replaces: libtqt3-mt-dev (<= 3:3.1.1-2), libtqt3-dev (<= 3:3.1.1-2), libtqt3-headers (<= 3:3.1.1-2)
 Description: TQt 1.x and 2.x compatibility includes
  This package contains header files that are intended for build
  compatibility for applications that build with TQt3 but still use
@@ -141,9 +149,10 @@ Description: TQt 1.x and 2.x compatibility includes
 Package: tqt3-dev-tools
 Architecture: any
 Section: devel
+Replaces: tqt3-dev-tools (<< 4:14.0.0)
+Breaks: tqt3-dev-tools (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: libtqt3-mt-dev
-Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev, tqt3-doc (<= 3:3.1.1-2)
 Conflicts: libqt-dev (<< 3:2.3.2-10), uic (<= 3:2.3.2-9), qt3-dev-tools
 Description: TQt3 development tools
  This package contains all tools that are necessary to build programs
@@ -153,9 +162,10 @@ Description: TQt3 development tools
 Package: tqt3-designer
 Architecture: any
 Section: devel
+Replaces: tqt3-designer (<< 4:14.0.0)
+Breaks: tqt3-designer (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: tqt3-dev-tools
-Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev, tqt3-doc (= 3:3.3.4-8)
 Suggests: tqt3-assistant, tqt3-doc
 Conflicts: qt-designer (<= 3:2.3.2-9), qt-designer-doc
 Description: TQt3 Designer
@@ -171,8 +181,9 @@ Description: TQt3 Designer
 Package: tqt3-apps-dev
 Architecture: any
 Section: devel
+Replaces: tqt3-apps-dev (<< 4:14.0.0)
+Breaks: tqt3-apps-dev (<< 4:14.0.0)
 Depends: libtqt3-mt-dev
-Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
 Description: TQt3 Developer applications development files
  This package is intended for developers who want to develop applications
  using the additional static libraries that ship with the applications
@@ -185,9 +196,10 @@ Description: TQt3 Developer applications development files
 Package: tqt3-linguist
 Architecture: any
 Section: devel
+Replaces: tqt3-linguist (<< 4:14.0.0)
+Breaks: tqt3-linguist (<< 4:14.0.0)
 Suggests: tqt3-assistant
 Depends: ${shlibs:Depends}
-Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev, tqt3-doc (= 3:3.3.4-8)
 Description: The TQt3 Linguist
  This package contains the TQt3 Linguist which provides translators a
  tool perfect for translating any TQt-based application into other
@@ -197,8 +209,9 @@ Description: The TQt3 Linguist
 Package: tqt3-assistant
 Architecture: any
 Section: x11
+Replaces: tqt3-assistant (<< 4:14.0.0)
+Breaks: tqt3-assistant (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tqt3-doc
-Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
 Description: The TQt3 assistant application
  This package contains the TQt3 Assistant, an easy to use frontend for
  the complete TQt3 documentation and serves as an online help viewer for
@@ -214,8 +227,9 @@ Description: The TQt3 assistant application
 Package: tqt3-qtconfig
 Architecture: any
 Section: x11
+Replaces: tqt3-qtconfig (<< 4:14.0.0)
+Breaks: tqt3-qtconfig (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
 Description: The TQt3 Configuration Application
  The TQt Configuration program allows endusers to configure the look
  and behavior of any TQt3 application. It is mostly only necessary
@@ -228,9 +242,10 @@ Description: The TQt3 Configuration Application
 Package: tqt3-dev-tools-embedded
 Architecture: any
 Section: devel
+Replaces: tqt3-dev-tools-embedded (<< 4:14.0.0)
+Breaks: tqt3-dev-tools-embedded (<< 4:14.0.0)
 Recommends: libtqt3-mt-dev
 Depends: ${shlibs:Depends}
-Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
 Description: Tools to develop embedded TQt applications
  This package contains applications only suitable for developing
  applications with TQt Embedded and/or Qtopia. It provides the QVFB
@@ -241,9 +256,10 @@ Description: Tools to develop embedded TQt applications
 Package: tqt3-dev-tools-compat
 Architecture: any
 Section: devel
+Replaces: tqt3-dev-tools-compat (<< 4:14.0.0)
+Breaks: tqt3-dev-tools-compat (<< 4:14.0.0)
 Recommends: libtqt3-mt-dev
 Depends: ${shlibs:Depends}
-Replaces: tqt3-tools, libtqt3-dev, libtqt3-mt-dev
 Description: Conversion utilities for TQt3 development
  This package contains some older TQt tools (namely qt20fix qtrename140,
  qm2ts, mergetr, findtr and msg2qm). These tools are needed only by
@@ -256,6 +272,8 @@ Description: Conversion utilities for TQt3 development
 Package: libtqt3-i18n
 Architecture: all
 Section: libs
+Replaces: libtqt3-i18n (<< 4:14.0.0)
+Breaks: libtqt3-i18n (<< 4:14.0.0)
 Recommends: libtqt3-mt
 Description: i18n files for TQt3 library
  This package contains the internationalization files for the TQt library.
@@ -265,8 +283,9 @@ Description: i18n files for TQt3 library
 Package: tqt3-doc
 Architecture: all
 Section: doc
+Replaces: tqt3-doc (<< 4:14.0.0)
+Breaks: tqt3-doc (<< 4:14.0.0)
 Priority: extra
-Replaces: qt-doc
 Suggests: libtqt3-headers, tqt3-assistant | www-browser
 Description: TQt3 API documentation
  This package contains the complete API documentation for TQt3.
@@ -277,6 +296,8 @@ Description: TQt3 API documentation
 Package: tqt3-examples
 Architecture: all
 Section: doc
+Replaces: tqt3-examples (<< 4:14.0.0)
+Breaks: tqt3-examples (<< 4:14.0.0)
 Priority: extra
 Depends: libtqt3-mt-dev (>= ${binary:Version})
 Suggests: tqt3-apps-dev
@@ -288,10 +309,11 @@ Description:  Examples for TQt3
 Package: tqt-x11-free-dbg
 Section: libdevel
 Architecture: any
+Replaces: tqt-x11-free-dbg (<< 4:14.0.0)
+Breaks: tqt-x11-free-dbg (<< 4:14.0.0)
 Priority: extra
 Depends: libtqt3-mt (= ${binary:Version}), gdb
 Conflicts: libtqt3-mt-dbg
-Replaces: libtqt3-mt-dbg
 Description: debugging symbols for tqt-x11-free binaries
  This package contains the debugging symbols associated with tqt-x11-free.
  They will automatically be used by gdb for debugging TQt-related

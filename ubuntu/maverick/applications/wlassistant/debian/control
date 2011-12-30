@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: wlassistant-trinity
 Architecture: any
 Depends: kicker-trinity, net-tools, wireless-tools, menu, ${shlibs:Depends}
-Replaces: wlassistant-kde3 (<< 4:3.5.13)
-Breaks: wlassistant-kde3 (<< 4:3.5.13)
+Replaces: wlassistant-trinity (<< 4:14.0.0)
+Breaks: wlassistant-trinity (<< 4:14.0.0)
 Recommends: dhcp3-client | dhcp-client | dhcpcd
 Description: User friendly KDE frontend for wireless network connection [Trinity]
  Wireless Assistant scans for wireless access points and displays link quality,
