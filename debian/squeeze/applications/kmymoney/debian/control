@@ -9,8 +9,7 @@ Standards-Version: 3.8.4
 
 Package: kmymoney2-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${shlibs:Misc}, ${misc:Depends},
- kmymoney2-common-trinity (>= ${source:Version})
+Depends: ${shlibs:Depends}, ${shlibs:Misc}, ${misc:Depends}, kmymoney2-common-trinity (>= ${source:Version})
 Recommends: kmymoney2-plugin-aqbanking-trinity
 Description: personal finance manager for TDE
  KMyMoney is the Personal Finance Manager for TDE. It operates similar to
