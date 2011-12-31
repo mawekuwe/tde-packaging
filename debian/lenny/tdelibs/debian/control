@@ -15,7 +15,7 @@ Build-Depends: cdbs (>= 0.4.41ubuntu2), debhelper (>= 5.0.31), autotools-dev,
  libtiff4-dev (>= 3.7.3-1), libavahi-client-dev (>= 0.4),
  libxml2-dev, libxml2-utils, libxslt1-dev,
  sharutils, texinfo, libogg-dev-la, libtqtinterface-dev,
- gettext-kde, lsb-release, base-files, sudo,
+ gettext-kde, lsb-release, base-files, sudo, libr-dev,
  cmake, libltdl-dev
 Build-Depends-Indep: doxygen, libtqtinterface-doc, graphviz, gsfonts-x11
 Standards-Version: 3.8.3
