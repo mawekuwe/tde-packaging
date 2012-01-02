@@ -1,0 +1,67 @@
+Index: kjs/CMakeLists.txt
+===================================================================
+--- kjs/CMakeLists.txt	(revision 1261450)
++++ kjs/CMakeLists.txt	(working copy)
+@@ -15,10 +15,12 @@
+   ${CMAKE_CURRENT_BINARY_DIR}
+   ${CMAKE_BINARY_DIR}
+   ${CMAKE_SOURCE_DIR}/kdecore
++  ${LIBPCRE_INCLUDEDIR}
+ )
+ 
+ link_directories(
+   ${TQT_LIBRARY_DIRS}
++  ${LIBPCRE_LIBDIR}
+ )
+ 
+ 
+@@ -59,6 +61,6 @@
+ tde_add_library( ${target} SHARED
+   SOURCES ${${target}_SRCS}
+   VERSION 1.2.0
+-  LINK kdecore-shared
++  LINK kdecore-shared ${LIBPCRE_LIBRARIES}
+   DESTINATION ${LIB_INSTALL_DIR}
+ )
+Index: CMakeLists.txt
+===================================================================
+--- CMakeLists.txt	(revision 1261450)
++++ CMakeLists.txt	(working copy)
+@@ -75,6 +75,7 @@
+ OPTION( WITH_OPENEXR "Enable openexr support" OFF )
+ OPTION( WITH_UTEMPTER "Use utempter for utmp management" OFF )
+ OPTION( WITH_AVAHI "Enable AVAHI support" OFF )
++OPTION( WITH_PCRE "Enable pcre regex support for kjs" ON )
+ 
+ OPTION( WITH_ASPELL "Enable aspell support" OFF )
+ OPTION( WITH_HSPELL "Enable hspell support" OFF )
+@@ -715,6 +716,16 @@
+   endif( WITH_QT3 )
+ endif( )
+ 
++##### check for pcre ###########################
++
++if( WITH_PCRE )
++  pkg_search_module( LIBPCRE libpcre )
++  if( NOT LIBPCRE_FOUND )
++      message(FATAL_ERROR "\npcre support are requested, but not found on your system" )
++  endif( NOT LIBPCRE_FOUND )
++  set( HAVE_PCREPOSIX 1 )
++endif( )
++
+ ##### check for aspell ##########################
+ # we need ASPELL_DATADIR too
+ 
+Index: config.h.cmake
+===================================================================
+--- config.h.cmake	(revision 1261450)
++++ config.h.cmake	(working copy)
+@@ -366,7 +366,7 @@
+ #cmakedefine HAVE_PATHS_H 1
+ 
+ /* Define if you have pcreposix libraries and header files. */
+-#undef HAVE_PCREPOSIX
++#cmakedefine HAVE_PCREPOSIX 1
+ 
+ /* Define to 1 if you have the `poll' function. */
+ #cmakedefine HAVE_POLL 1
