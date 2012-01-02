@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 13
+%define release 14
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -54,8 +54,6 @@ Source5:	pamd.kscreensaver-trinity%{?dist}
 # (none)
 
 # TDE unofficial patches, fixing FTBFS
-## [kdebase/kdm] adds gcrypt support
-Patch7:		kdebase-3.5.13-kdm-crypt.patch
 ## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
 Patch8:		kdebase-3.5.13-mediamanager_ftbfs.patch
 ## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
@@ -74,18 +72,32 @@ Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
 Patch14:	kdebase-3.5.13-kickoff_unstable.patch
 ## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
 Patch15:	kdebase-3.5.13-startkde_icon.patch
-## [kdebase/startkde] Fixes duplicate and incorrect TDE directories location
+## [kdebase/startkde] Fixes duplicate and incorrect TDE directories location [Bug #741]
 Patch16:	kdebase-3.5.13-startkde_directories.patch
 
-# TDE unofficial patches for enhanced features
-## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
+# TDE unofficial patches for enhanced features or bugfixes.
+## [kdebase/kdm] adds gcrypt support [Bug #624]
+Patch7:		kdebase-3.5.13-kdm-crypt.patch
+## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration [Bug #244]
 Patch20:	kdebase-3.5.13-kate_mru.patch
-## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db'
+## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db' [Bug #714]
 Patch21:	kdebase-3.5.13-kio_man_utf8.patch
-## [kdebase/konqueror] Re-enable 'open tab in background'
+## [kdebase/konqueror] Re-enable 'open tab in background' [Bug #245]
 Patch22:	kdebase-3.5.13-konq_menu_tab_background.patch
-## [kdebase/konqueror/sidebar] Fix error message on documents parent folder
+## [kdebase/konqueror/sidebar] Fix error message on documents parent folder [Bug #723]
 Patch23:	kdebase-3.5.13-konqsidebar_documents.patch
+## [kdebase/konqueror/listview] Konqueror Icon Activation Effect [Bug #335]
+Patch24:	kdebase-3.5.13-konq_icon_effect.patch
+## [kdebase/kdesu] Restores the "Keep password" check box to the kdesu dialog box [Bug #388]
+Patch25:	kdebase-3.5.13-kdesu_showkeeppassword.patch
+## [kdebase/kpersonalizer] Repair KPersonalizer settings to match system defaults [Bug #759]
+Patch26:	kdebase-3.5.13-kpersonalizer_default_doubleclick.patch
+## [kdebase/kicker] Restores the original KDE3 clock [Bug #387]
+Patch27:	kdebase-3.5.13-restore_kde3_clock.patch
+## [kdebase/kcontrol/randr] Implement X11 event merging in krandrtray [Bug #758]
+Patch28:	kdebase-3.5.13-randrtray_merge_x11_reconfig_requests.patch
+## [kdebase/kdesktop/lock] Fix multihead screen locking [Bug #669]
+Patch29:	kdebase-3.5.13-fix_multihead_desktop_lock.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -182,6 +194,7 @@ Requires:	redhat-menus
 
 #Provides:	kdebase%{?_qt_suffix} = %{version}
 %if "%{?_prefix}" == "/usr"
+Provides:		kdebase%{?_qt_suffix} = %{version}
 Obsoletes:		kdebase%{?_qt_suffix} <= 3.5.10
 %endif
 
@@ -206,8 +219,8 @@ Requires:	%{name}
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 Summary:	%{summary} - Development files
-#Provides:	kdebase%{?_qt_suffix}-devel = %{version}
 %if "%{?_prefix}" == "/usr"
+Provides:		kdebase%{?_qt_suffix}-devel = %{version}
 Obsoletes:		kdebase%{?_qt_suffix}-devel <= 3.5.10
 %endif
 
@@ -222,9 +235,9 @@ Kate plugins or KWin styles.
 Summary: Extra applications from %{name}
 Group: User Interface/Desktops
 Requires: %{name} = %{version}-%{release}
-#Provides:	kdebase%{?_qt_suffix}-extras = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase%{?_qt_suffix}-extras <= 3.5.10
+Provides:	kdebase%{?_qt_suffix}-extras = %{version}
+Obsoletes:	kdebase%{?_qt_suffix}-extras <= 3.5.10
 %endif
 %description extras
 %{summary}, including:
@@ -238,9 +251,9 @@ Obsoletes: kdebase%{?_qt_suffix}-extras <= 3.5.10
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs
-#Provides:	kdebase%{?_qt_suffix}-libs = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase%{?_qt_suffix}-libs <= 3.5.10
+Provides:	kdebase%{?_qt_suffix}-libs = %{version}
+Obsoletes:	kdebase%{?_qt_suffix}-libs <= 3.5.10
 %endif
 Requires: %{name} = %{version}-%{release}
 %description libs
@@ -250,9 +263,9 @@ Requires: %{name} = %{version}-%{release}
 %package pim-ioslaves
 Summary: PIM KIOslaves from %{name}
 Group: System Environment/Libraries
-#Provides:	kdebase%{?_qt_suffix}-pim-ioslaves = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase%{?_qt_suffix}-pim-ioslaves <= 3.5.10
+Provides:	kdebase%{?_qt_suffix}-pim-ioslaves = %{version}
+Obsoletes:	kdebase%{?_qt_suffix}-pim-ioslaves <= 3.5.10
 %endif
 %description pim-ioslaves
 Protocol handlers (KIOslaves) for personal information management, including:
@@ -282,22 +295,28 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %endif
 %patch22 -p1
 %patch23 -p1
+%patch24 -p4
+%patch25 -p1
+%patch26 -p1
+%patch27 -p0
+%patch28 -p0
+%patch29 -p0
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
 # KDM Background
 %__sed -i "kdm/kfrontend/genkdmconf.c" \
-	-e 's,"Wallpaper=isadora.png\n","Wallpaper=%{tde_bg}\n",'
+	-e 's|"Wallpaper=isadora.png\n"|"Wallpaper=%{tde_bg}\n"|'
 
 # TDE user default background
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
-	-e 's,#define DEFAULT_WALLPAPER "isadora.png",#define DEFAULT_WALLPAPER "%{tde_bg}",'
+	-e 's|#define DEFAULT_WALLPAPER "isadora.png"|#define DEFAULT_WALLPAPER "%{tde_bg}"|'
 %__sed -i "startkde" \
-	-e 's,/usr/share/wallpapers/isadora.png.desktop,%{tde_bg},' \
-	-e 's,Wallpaper=isadora.png,Wallpaper=%{tde_bg},'
+	-e 's|/usr/share/wallpapers/isadora.png.desktop|%{tde_bg}|' \
+	-e 's|Wallpaper=isadora.png|Wallpaper=%{tde_bg}|'
 %endif
 
-# TDE branding: removes KUbuntu references
+# TDE branding: removes KUbuntu references [Bug #617]
 %__sed -i "kcontrol/kdm/kdm-appear.cpp" \
 	-e "s|Welcome to Kubuntu |Welcome to %{tde_aboutlabel} |"
 %__sed -i "konqueror/about/konq_aboutpage.cc" \
@@ -667,25 +686,33 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Mon Jan 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-14
+- Fix Konqueror Icon Activation Effect [Bug #335]
+- Restores the "Keep password" check box to the kdesu dialog box [Bug #388]
+- Repair KPersonalizer settings to match system defaults [Bug #759]
+- Restores the original KDE3 clock [Bug #387]
+- Implement X11 event merging in krandrtray [Bug #758]
+- Fix multihead screen locking [Bug #669]
+
 * Mon Dec 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-13
 - Fix variables (again)
 
 * Sun Dec 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-12
-- Fix KDEDIRS and other variables in 'startkde', that messes up translations.
+- Fix KDEDIRS and other variables in 'startkde', that messes up translations. [Bug  #741]
 
 * Sat Dec 10 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-11
-- Fix error message 'cannot find parent folder' on konqueror sidebar.
+- Fix error message 'cannot find parent folder' on konqueror sidebar. [Bug #723]
 
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-10
-- Removes Kubuntu branding [TDE Bug #449]
-- Re-enables 'open tab in background' konqueror feature [TDE Bug #245]
+- Removes Kubuntu branding [Bug #449]
+- Re-enables 'open tab in background' konqueror feature [Bug #245]
 
 * Wed Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
-- Fix 'kio_man' on RHEL 5 and RHEL 6 [TDE Bug #714]
-- Restores the 'number of files' and sorting widgets to the Kate configuration [TDE Bug #244]
+- Fix 'kio_man' on RHEL 5 and RHEL 6 [Bug #714]
+- Restores the 'number of files' and sorting widgets to the Kate configuration [Bug #244]
 
 * Fri Nov 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
-- Updates Kickoff menu Fix [TDE Bugs #281, #508]
+- Updates Kickoff menu Fix [Bugs #281, #508]
 - Adds KDM gcrypt dependency
 
 * Sun Nov 13 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
@@ -697,7 +724,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 * Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Add "service(graphical-login)"
-- Add kickoff menu fix [TDE Bug #508]
+- Add kickoff menu fix [Bug #508]
 - kdmrc: sets "MinShowUID=500"
 
 * Tue Nov 08 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4

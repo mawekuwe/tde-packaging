@@ -1,0 +1,19 @@
+diff -urN /dev/shm/kdebase/konqueror/listview/konq_listviewwidget.cc /dev/shm/kdebase.new/konqueror/listview/konq_listviewwidget.cc
+--- /dev/shm/kdebase/konqueror/listview/konq_listviewwidget.cc	2011-08-11 00:25:51.000000000 -0500
++++ /dev/shm/kdebase.new/konqueror/listview/konq_listviewwidget.cc	2011-12-03 20:55:00.000000000 -0600
+@@ -1009,10 +1009,11 @@
+ 	   // gather pixmap
+ 	   TQPixmap *pix = new TQPixmap(*(_item->pixmap(0)));
+ 
+-	   // call the icon effect
+-           KIconEffect::visualActivate(viewport(), rect, pix);
+-	 
+-	   delete(pix);
++	   // call the icon effect if enabled
++	   if (KGlobalSettings::showKonqIconActivationEffect() == true) {
++	       KIconEffect::visualActivate(viewport(), rect, pix);
++	       delete(pix);
++	   }
+ 	 }
+    }
+    else
