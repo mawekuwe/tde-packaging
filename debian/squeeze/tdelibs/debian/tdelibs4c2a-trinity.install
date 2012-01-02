@@ -50,6 +50,7 @@ debian/tmp/opt/trinity/bin/lnusertemp
 debian/tmp/opt/trinity/bin/make_driver_db_cups
 debian/tmp/opt/trinity/bin/make_driver_db_lpr
 debian/tmp/opt/trinity/bin/meinproc
+debian/tmp/opt/trinity/bin/tdelfeditor
 debian/tmp/opt/trinity/bin/start_tdeinit
 debian/tmp/opt/trinity/bin/start_tdeinit_wrapper
 debian/tmp/opt/trinity/lib/trinity/cupsdconf.la
@@ -314,3 +315,6 @@ debian/tmp/opt/trinity/lib/libkwalletclient.so.1
 debian/tmp/opt/trinity/lib/libkwalletclient.so.1.0.1
 debian/tmp/opt/trinity/lib/libvcard.so.0
 debian/tmp/opt/trinity/lib/libvcard.so.0.0.0
+debian/tmp/opt/trinity/share/services/kfile_elf.desktop
+debian/tmp/opt/trinity/lib/trinity/kfile_elf.so
+debian/tmp/opt/trinity/lib/trinity/kfile_elf.la
