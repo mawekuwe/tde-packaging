@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: kbfx-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: kbfx-kde3 (<< 4:3.5.13)
-Breaks: kbfx-kde3 (<< 4:3.5.13)
+Replaces: kbfx-trinity (<< 4:14.0.0)
+Breaks: kbfx-trinity (<< 4:14.0.0)
 Description: an alternative to K-Menu for KDE [Trinity]
  KBFX is an alternative to the classical K-Menu button and its menu.
  It improves the user experience by enabling him to set a bigger (and thus more

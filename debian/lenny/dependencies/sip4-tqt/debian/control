@@ -11,10 +11,11 @@ XS-Python-Version: all
 Package: python-sip
 Architecture: any
 Section: python
+Replaces: python-sip (<< 4:14.0.0)
+Breaks: python-sip (<< 4:14.0.0)
 Provides: ${python:Provides}, sip-api-7.0, sip-api-7.1
 Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Conflicts: python-sip4 (<< 4.10)
-Replaces: python-sip4 (<< 4.10)
 Description: Python/C++ bindings generator runtime library
  SIP is a tool for generating bindings for C++ classes with some ideas
  borrowed from SWIG, but capable of tighter bindings because of its
@@ -23,11 +24,12 @@ Description: Python/C++ bindings generator runtime library
 Package: python-sip-dbg
 Priority: extra
 Architecture: any
+Replaces: python-sip-dbg (<< 4:14.0.0)
+Breaks: python-sip-dbg (<< 4:14.0.0)
 Section: debug
 Provides: ${python:Provides}
 Depends: python-sip (= ${binary:Version}), python-dbg, ${shlibs:Depends}, ${misc:Depends}
 Conflicts: python-sip4-dbg (<< 4.10)
-Replaces: python-sip4-dbg (<< 4.10)
 Description: Python/C++ bindings generator runtime library (debug extension)
  SIP is a tool for generating bindings for C++ classes with some ideas
  borrowed from SWIG, but capable of tighter bindings because of its
@@ -38,11 +40,12 @@ Description: Python/C++ bindings generator runtime library (debug extension)
 Package: python-sip-dev
 Architecture: any
 Section: python
+Replaces: python-sip-dev (<< 4:14.0.0)
+Breaks: python-sip-dev (<< 4:14.0.0)
 Depends: ${python:Depends}, python-sip (= ${binary:Version}), python-dev, ${shlibs:Depends}, libjs-jquery, ${misc:Depends}
 Recommends: python-sip (>= ${source:Version})
 Provides: python-sip4-dev, sip4
 Conflicts: python-sip4-dev (<< 4.10), sip4 (<< 4.10)
-Replaces: python-sip4-dev (<< 4.10), sip4 (<< 4.10)
 Description: Python/C++ bindings generator development files
  SIP is a tool for generating bindings for C++ classes with some ideas
  borrowed from SWIG, but capable of tighter bindings because of its
@@ -68,8 +71,9 @@ Description: Python/C++ bindings generator development files
 Package: python-sip4
 Architecture: all
 Section: python
+Replaces: python-sip4 (<< 4:14.0.0)
+Breaks: python-sip4 (<< 4:14.0.0)
 Depends: python-sip, ${misc:Depends}
-Breaks: python-ball (<= 1.3.1-2), python-ballview (<= 1.3.1-2), python-qwt5-qt4 (<= 5.2.1~cvs20091107+dfsg-2), python-qwt5-qt3 (<= 5.2.1~cvs20091107+dfsg-2), python-qwt3d-qt4 (<= 0.1.7~cvs20090625-3), python-qwt3d-qt3 (<= 0.1.7~cvs20090625-3), python-qscintilla2 (<= 2.4-5)
 Description: Python/C++ bindings generator runtime library (transitional package)
  SIP is a tool for generating bindings for C++ classes with some ideas
  borrowed from SWIG, but capable of tighter bindings because of its
@@ -81,6 +85,8 @@ Description: Python/C++ bindings generator runtime library (transitional package
 Package: sip4
 Architecture: all
 Section: python
+Replaces: sip4 (<< 4:14.0.0)
+Breaks: sip4 (<< 4:14.0.0)
 Depends: python-sip-dev, ${misc:Depends}
 Description: Python/C++ bindings generator (transitional package)
  SIP is a tool for generating bindings for C++ classes with some ideas
@@ -93,6 +99,8 @@ Description: Python/C++ bindings generator (transitional package)
 Package: python-sip4-dev
 Architecture: all
 Section: python
+Replaces: python-sip4-dev (<< 4:14.0.0)
+Breaks: python-sip4-dev (<< 4:14.0.0)
 Depends: python-sip-dev, ${misc:Depends}
 Description: Python/C++ bindings generator development files (transitional package)
  SIP is a tool for generating bindings for C++ classes with some ideas
@@ -105,6 +113,8 @@ Description: Python/C++ bindings generator development files (transitional packa
 Package: python-sip4-dbg
 Architecture: all
 Section: debug
+Replaces: python-sip4-dbg (<< 4:14.0.0)
+Breaks: python-sip4-dbg (<< 4:14.0.0)
 Priority: extra
 Depends: python-sip-dbg, ${misc:Depends}
 Description: Python/C++ bindings generator runtime library (debug, transitional package)

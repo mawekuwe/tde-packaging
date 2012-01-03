@@ -1,7 +1,13 @@
 # Default version for this component
 %if "%{?version}" == ""
-%define version 3.3.8d
+%define version 3.3.8.d
 %endif
+
+# Always install under standard prefix
+%define _prefix /usr
+
+# This allows the legacy RHEL/Fedora patches to apply in TDE version.
+%define _default_patch_fuzz 2
 
 # The following QT4 packages should NOT be installed to
 # allow QT3 compilation (please uninstall them prior to compile)
@@ -12,24 +18,20 @@
 #  qt-devel
 # ...maybe others !!!!
 
-%define _default_patch_fuzz 2
+Name:			qt3
+Version:		%{?version}
+Release:		3%{?dist}
+Summary:		The shared library for the Qt 3 GUI toolkit
 
-Name: qt3
-Version: %{?version}
-Release: 2%{?dist}
-Summary: The shared library for the Qt 3 GUI toolkit
+License:		QPL or GPLv2 or GPLv3
+Group:			System Environment/Libraries
+URL:			http://www.trinitydesktop.org/
 
-License: QPL or GPLv2 or GPLv3
-Group: System Environment/Libraries
-URL:		http://www.trinitydesktop.org/
-#Url: http://www.troll.no
+Obsoletes:		qt < 1:%{version}-%{release}
+Provides:		qt = 1:%{version}-%{release}
 
-Obsoletes: qt < 1:%{version}-%{release}
-Provides: qt = 1:%{version}-%{release}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-
-#Source0: ftp://ftp.troll.no/qt/source/qt-x11-free-3.3.8b.tar.gz
 Source0: qt3-3.3.8.d.tar.gz
 Source2: qt.sh
 Source3: qt.csh
@@ -83,6 +85,9 @@ Patch110: 0084-compositing-properties.patch
 # upstream patches
 Patch200: qt-x11-free-3.3.4-fullscreen.patch
 #Patch201: qt-x11-free-3.3.8b-gcc43.patch
+
+# TDE 3.5.13 patches
+Patch300: qt3-3.3.8.d-updates_zh-tw_translations.patch
 
 %define qt_dirname qt-3.3
 %define qtdir %{_libdir}/%{qt_dirname}
@@ -350,6 +355,9 @@ for the Qt 3 toolkit.
 %patch200 -p1 -b .fullscreen
 #patch201 -p1 -b .gcc34
 
+# TDE 3.5.13 patches
+%patch300 -p1
+
 # convert to UTF-8
 iconv -f iso-8859-1 -t utf-8 < doc/man/man3/qdial.3qt > doc/man/man3/qdial.3qt_
 mv doc/man/man3/qdial.3qt_ doc/man/man3/qdial.3qt
@@ -592,13 +600,13 @@ rm -rf %{buildroot}
 %{_datadir}/pixmaps/linguist3.png
 %{_datadir}/pixmaps/assistant3.png
 
-# QT 3.3.8D (TDE): 4 binaries have appeared
+# QT 3.3.8.D (TDE): 4 binaries have appeared
 %{qtdir}/bin/createcw
 %{qtdir}/bin/makeqpf
 %{qtdir}/bin/mergetr
 %{qtdir}/bin/msg2qm
 
-# QT 3.3.8D (TDE): removes lots of unnecessary include files
+# QT 3.3.8.D (TDE): removes lots of unnecessary include files
 # (where do they come from ??? They were not in 3.3.8b !)
 %exclude %{qtdir}/include/btree.h
 #%exclude %{qtdir}/include/config.h
@@ -701,10 +709,13 @@ rm -rf %{buildroot}
 
 
 %changelog
-* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8d-2
+* Sun Dec 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-3
+- Updates zh_TW translations, thanks to Wei-Lun Chao .
+
+* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-2
 - Add missing BuildRequires
 
-* Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8d-1
+* Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-1
 - Initial build for RHEL 6, RHEL 5, and Fedora 15
 - Switch to Trinity Version
 - Spec file based on RHEL 6 'qt3-3.3.8b-29'

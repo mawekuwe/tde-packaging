@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: tde-style-lipstik-trinity
 Section: kde
 Architecture: any
-Replaces: tde-style-lipstik-kde3 (<< 4:3.5.13)
-Breaks: tde-style-lipstik-kde3 (<< 4:3.5.13)
+Replaces: kde-style-lipstik-trinity (<< 4:14.0.0)
+Breaks: kde-style-lipstik-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Lipstik style for TDE
  Based on the plastik style, Lipstik is a purified style with many options to

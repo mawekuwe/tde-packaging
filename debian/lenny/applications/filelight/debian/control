@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
-Uploaders: Raúl Sánchez Siles <rasasi78@gmail.com>
+Uploaders: Ral Snchez Siles <rasasi78@gmail.com>
 Standards-Version: 3.8.4
 Build-Depends: debhelper (>= 5.0), cdbs, tdelibs4-trinity-dev, xutils, chrpath, gettext, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
 Homepage: http://www.methylblue.com/filelight/
@@ -11,6 +11,8 @@ Homepage: http://www.methylblue.com/filelight/
 Package: filelight-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
+Replaces: filelight-trinity (<< 4:14.0.0)
+Breaks: filelight-trinity (<< 4:14.0.0)
 Description: show where your diskspace is being used [Trinity]
  Filelight allows you to understand your disk usage by graphically
  representing your filesystem as a set of concentric, segmented rings.

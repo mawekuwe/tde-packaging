@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: twin-style-crystal-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: twin-style-crystal-kde3 (<< 4:3.5.13)
-Breaks: twin-style-crystal-kde3 (<< 4:3.5.13)
+Replaces: kwin-style-crystal-trinity (<< 4:14.0.0)
+Breaks: kwin-style-crystal-trinity (<< 4:14.0.0)
 Description: semi transparant window decoration for Trinity
  Crystal offers you pseudo transparent titlebar, buttons and borders
  transparent, so you can see more of your lovely background image

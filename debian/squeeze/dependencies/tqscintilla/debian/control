@@ -9,7 +9,8 @@ Standards-Version: 3.8.4
 Package: libtqscintilla7
 Section: libs
 Architecture: any
-Replaces: libtqscintilla6
+Replaces: libtqscintilla7 (<< 4:14.0.0)
+Breaks: libtqscintilla7 (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: TQt source code editing component based on Scintilla
  Scintilla is a free source code editing component. It has features found
@@ -21,6 +22,8 @@ Description: TQt source code editing component based on Scintilla
 Package: libtqscintilla-dev
 Section: libdevel
 Architecture: all
+Replaces: libtqscintilla-dev (<< 4:14.0.0)
+Breaks: libtqscintilla-dev (<< 4:14.0.0)
 Depends: libtqscintilla7 (>= ${source:Version})
 Description: TQt source code editing component - development files
  Scintilla is a free source code editing component. It has features found
@@ -33,6 +36,8 @@ Description: TQt source code editing component - development files
 Package: libtqscintilla-doc
 Section: doc
 Architecture: all
+Replaces: libtqscintilla-doc (<< 4:14.0.0)
+Breaks: libtqscintilla-doc (<< 4:14.0.0)
 Suggests: libtqscintilla-dev
 Description: TQt source code editing component - documentation
  Scintilla is a free source code editing component. It has features found

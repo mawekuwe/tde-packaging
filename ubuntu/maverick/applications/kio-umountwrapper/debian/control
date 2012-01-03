@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: kio-umountwrapper-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: kio-umountwrapper-kde3 (<< 4:3.5.13)
-Breaks: kio-umountwrapper-kde3 (<< 4:3.5.13)
+Replaces: kio-umountwrapper-trinity (<< 4:14.0.0)
+Breaks: kio-umountwrapper-trinity (<< 4:14.0.0)
 Description: progress dialog for safely removing devices in Trinity.
  Wrapper around kio_media_mountwrapper.
  Provides a progress dialog for Safely Removing of devices in Trinity.

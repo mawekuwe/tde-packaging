@@ -10,6 +10,8 @@ Homepage: http://www.kde-apps.org/content/show.php?content=29024
 Package: soundkonverter-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: soundkonverter-trinity (<< 4:14.0.0)
+Breaks: soundkonverter-trinity (<< 4:14.0.0)
 Recommends: cdda2wav, cdparanoia, faad, ffmpeg, flac, tdemultimedia-kio-plugins-trinity, mp3gain, mplayer, mppenc, speex, timidity, vorbis-tools, vorbisgain, wavpack
 Suggests: soundkonverter-amarok-trinity
 Description: audio converter frontend for Trinity
@@ -32,6 +34,8 @@ Description: audio converter frontend for Trinity
 Package: soundkonverter-amarok-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, soundkonverter-trinity, amarok-trinity, ruby, libqt0-ruby1.8-trinity
+Replaces: soundkonverter-amarok-trinity (<< 4:14.0.0)
+Breaks: soundkonverter-amarok-trinity (<< 4:14.0.0)
 Description: audio converter frontend for Trinity (Amarok script)
  Amarok script for soundKonverter. It allows you to easily transcode files when
  transferring them to your media device.

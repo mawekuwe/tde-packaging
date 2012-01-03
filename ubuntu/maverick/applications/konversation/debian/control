@@ -12,8 +12,8 @@ Homepage: http://konversation.kde.org/
 Package: konversation-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: konversation-kde3 (<< 4:3.5.13)
-Breaks: konversation-kde3 (<< 4:3.5.13)
+Replaces: konversation-trinity (<< 4:14.0.0)
+Breaks: konversation-trinity (<< 4:14.0.0)
 Recommends: python, ruby
 Suggests: libsoap-lite-perl
 Description: user friendly Internet Relay Chat (IRC) client for KDE [Trinity]
@@ -37,8 +37,8 @@ Description: user friendly Internet Relay Chat (IRC) client for KDE [Trinity]
 Package: konversation-trinity-dbg
 Architecture: any
 Priority: extra
-Replaces: konversation-kde3-dbg (<< 4:3.5.13)
-Breaks: konversation-kde3-dbg (<< 4:3.5.13)
+Replaces: konversation-trinity-dbg (<< 4:14.0.0)
+Breaks: konversation-trinity-dbg (<< 4:14.0.0)
 Depends: konversation-trinity (= ${binary:Version})
 Recommends: tdelibs-trinity-dbg
 Description: debugging symbols for konversation

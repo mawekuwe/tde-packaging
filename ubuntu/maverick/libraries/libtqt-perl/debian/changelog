@@ -46,7 +46,7 @@ libqt-perl (3.008-3) unstable; urgency=low
   * debian/compat, debian/control, debian/examples, debian/manpages,
     debian/rules: Repackaged using dh-make and cdbs.  Closes: #463089.
   * debian/control, debian/rules: Using chrpath to remove rpath.
-  * config.h.in, PerlQt/bin/pqtapi, PerlQt/bin/pqtsh: Removed previously
+  * config.h.in, PerlTQt/bin/pqtapi, PerlTQt/bin/pqtsh: Removed previously
     automatically added changes.
   * debian/watch: Added.
 

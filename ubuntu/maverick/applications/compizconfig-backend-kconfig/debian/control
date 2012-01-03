@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: compizconfig-backend-kconfig-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: compizconfig-backend-kconfig-kde3 (<< 4:3.5.13)
-Breaks: compizconfig-backend-kconfig-kde3 (<< 4:3.5.13)
+Replaces: compizconfig-backend-kconfig-trinity (<< 4:14.0.0)
+Breaks: compizconfig-backend-kconfig-trinity (<< 4:14.0.0)
 Conflicts: libcompizconfig-backend-kconfig-trinity
 Description: KConfig [Trinity] Settings library for plugins - OpenCompositing Project
  The OpenCompositing Project brings 3D desktop visual effects that improve

@@ -3,7 +3,7 @@ Section: libs
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Priority: optional
-Uploaders: Adeodato Simó <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fabo@debian.org>, Modestas Vainius <modestas@vainius.eu>
+Uploaders: Adeodato Sim <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fabo@debian.org>, Modestas Vainius <modestas@vainius.eu>
 Build-Depends: cdbs (>= 0.4.48), debhelper (>= 6),
  docbook-to-man, gawk, gettext, sharutils, texinfo,
  libasound2-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386],
@@ -16,6 +16,8 @@ Standards-Version: 3.8.4
 Package: arts-trinity
 Architecture: all
 Section: sound
+Replaces: arts-trinity (<< 4:14.0.0)
+Breaks: arts-trinity (<< 4:14.0.0)
 Depends: libartsc0-trinity (>= ${source:Version}), libarts1c2a-trinity (>= ${source:Version})
 Description: sound system from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -29,6 +31,8 @@ Description: sound system from the official KDE release
 Package: libarts1c2a-trinity
 Architecture: any
 Section: libs
+Replaces: libarts1c2a-trinity (<< 4:14.0.0)
+Breaks: libarts1c2a-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: libarts1-akode
 Description: aRts sound system core components
@@ -51,6 +55,8 @@ Description: aRts sound system core components
 Package: libarts1-trinity-dev
 Architecture: any
 Section: libdevel
+Replaces: libarts1-trinity-dev (<< 4:14.0.0)
+Breaks: libarts1-trinity-dev (<< 4:14.0.0)
 Depends: libarts1c2a-trinity (= ${binary:Version}), libartsc0-trinity-dev (= ${binary:Version}), ${libasound2-dev}, libaudio-dev, libaudiofile-dev, libesd0-dev, libglib2.0-dev, libogg-dev, libogg-dev-la, libvorbis-dev, libtqtinterface-dev
 Description: development files for the aRts sound system core components
  This package contains the header files needed to build applications that
@@ -62,6 +68,8 @@ Description: development files for the aRts sound system core components
 Package: libartsc0-trinity
 Architecture: any
 Section: libs
+Replaces: libartsc0-trinity (<< 4:14.0.0)
+Breaks: libartsc0-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: aRts sound system C support library
  This package contains the C bindings for the aRts sound daemon.
@@ -72,6 +80,8 @@ Description: aRts sound system C support library
 Package: libartsc0-trinity-dev
 Architecture: any
 Section: libdevel
+Replaces: libartsc0-trinity-dev (<< 4:14.0.0)
+Breaks: libartsc0-trinity-dev (<< 4:14.0.0)
 Depends: libartsc0-trinity (= ${binary:Version}), libglib2.0-dev
 Description: development files for the aRts sound system C support library
  This package contains the header files needed to build applications that
@@ -83,6 +93,8 @@ Description: development files for the aRts sound system C support library
 Package: arts-trinity-dbg
 Section: libdevel
 Architecture: any
+Replaces: arts-trinity-dbg (<< 4:14.0.0)
+Breaks: arts-trinity-dbg (<< 4:14.0.0)
 Priority: extra
 Depends: libarts1c2a-trinity (= ${binary:Version})
 Description: debugging symbols for arts

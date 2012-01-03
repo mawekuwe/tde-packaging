@@ -51,7 +51,7 @@ if [ -e /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png ] ; then
     cp /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png /usr/share/apps/kdm/faces/fedora.face.icon
 fi
 
-# make liveuser use KDE
+# make liveuser use TDE
 echo "/opt/trinity/bin/startkde" > /home/liveuser/.xsession
 chmod a+x /home/liveuser/.xsession
 chown liveuser:liveuser /home/liveuser/.xsession
@@ -95,19 +95,9 @@ sed -i 's/PRELINKING=yes/PRELINKING=no/' /etc/sysconfig/prelink
 
 EOF
 
-# Sets 'nm-applet' to run automatically
-mkdir -p /home/liveuser/.trinity/Autostart
-cat <<EOF >/home/liveuser/.trinity/Autostart/nm-applet
-#!/bin/sh
+### TDE LIVECD specific features ###
 
-# Waits until kicker is started, so that
-# nm-applet can dock correctly.
-while ! pidof kicker; do
-	sleep 1
-done
-sleep 3
-/usr/bin/nm-applet
-EOF
-chmod +x /home/liveuser/.trinity/Autostart/nm-applet
+# Sets 'nm-applet' to run automatically
+ln -sf /usr/share/applications/nm-applet.desktop /opt/trinity/share/autostart/nm-applet.desktop
 
 %end

@@ -7,7 +7,7 @@ Source: libart-lgpl
 Section: devel
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Loic Minier <lool@dooz.org>, Sebastian Dröge <slomo@debian.org>, Sebastien Bacher <seb128@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Loic Minier <lool@dooz.org>, Sebastian Drge <slomo@debian.org>, Sebastien Bacher <seb128@debian.org>
 Standards-Version: 3.8.4
 Build-Depends: debhelper (>= 5),
                gnome-pkg-tools (>= 0.7),
@@ -18,6 +18,8 @@ Build-Depends: debhelper (>= 5),
 Package: libart-2.0-2
 Architecture: any
 Section: libs
+Replaces: libart-2.0-2 (<< 4:14.0.0)
+Breaks: libart-2.0-2 (<< 4:14.0.0)
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Description: Library of functions for 2D graphics - runtime files
@@ -30,6 +32,8 @@ Description: Library of functions for 2D graphics - runtime files
 Package: libart-2.0-dev
 Architecture: any
 Section: libdevel
+Replaces: libart-2.0-dev (<< 4:14.0.0)
+Breaks: libart-2.0-dev (<< 4:14.0.0)
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          libart-2.0-2 (= ${binary:Version}),

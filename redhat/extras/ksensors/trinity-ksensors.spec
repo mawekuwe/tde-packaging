@@ -6,22 +6,29 @@
 
 Name:           trinity-ksensors
 Version:        0.7.3
-Release:        19p1%{?dist}
+Release:        19p2%{?dist}
+
 Summary:        KDE frontend to lm_sensors
 Group:          Applications/System
 License:        GPLv2+
 URL:            http://ksensors.sourceforge.net/
+
 Source0:        http://downloads.sourceforge.net/ksensors/ksensors-%{version}.tar.gz
-Patch1:         ksensors-desktop.patch
-Patch2:         http://ftp.debian.org/debian/pool/main/k/ksensors/ksensors_0.7.3-15.diff.gz
-Patch3:         ksensors-0.7.3-po.patch
-Patch4:         ksensors-0.7.3-fix-min-max.patch
-Patch5:         ksensors-0.7.3-lm_sensors-3.x.patch
+
+# Debian (upstream) patch
+Patch2:         http://ftp.debian.org/debian/pool/main/k/ksensors/ksensors_0.7.3-18.diff.gz
+
+# Fix building on TDE
 Patch6:			ksensors-0.7.3-trinity.patch
+
+# Fix 'lmsensor.cpp' for older lm_sensors API (< 3.x)
+Patch7:			ksensors-0.7.3-18-lmsensors_2x_fix.patch
+
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  trinity-kdelibs-devel
 BuildRequires:	lm_sensors-devel gettext desktop-file-utils
 Requires:       hicolor-icon-theme
+
 # Keep archs in sync with lm_sensors
 ExcludeArch:    s390 s390x
 
@@ -33,42 +40,39 @@ temperatures with KSensors.
 
 %prep
 %setup -q -n ksensors-%{version}
-%patch1 -p1 -z .desktop
 %patch2 -p1
-%patch3 -p1 -z .po
-%patch4 -p1 -z .minmax
-%patch5 -p1 -z .lm_sensors3x
 %patch6 -p1
-sed -i -e 's|$(kde_datadir)/sounds|$(kde_sounddir)|' src/sounds/Makefile.*
+%patch7 -p1
+%__sed -i -e 's|$(kde_datadir)/sounds|$(kde_sounddir)|' src/sounds/Makefile.*
 for f in ChangeLog LIESMICH LISEZMOI ; do
     iconv -f iso-8859-1 -t utf-8 $f > $f.utf8 ; mv $f.utf8 $f
 done
 
 %build
-unset QTDIR ; . %{_sysconfdir}/profile.d/qt.sh
+unset QTDIR ; . /etc/profile.d/qt.sh
 
 %configure \
 	--disable-dependency-tracking \
 	--disable-rpath \
 	--with-extra-includes=%{_includedir}/tqt
-make %{?_smp_mflags}
+%__make %{?_smp_mflags}
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+%__rm -rf $RPM_BUILD_ROOT
+%__make install DESTDIR=$RPM_BUILD_ROOT
 desktop-file-install --vendor fedora --mode 644 --delete-original \
     --dir $RPM_BUILD_ROOT%{_datadir}/applications \
     $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/ksensors.desktop
-install -dm 755 $RPM_BUILD_ROOT%{_datadir}/autostart
-ln -s ../applications/fedora-ksensors.desktop \
+%__install -dm 755 $RPM_BUILD_ROOT%{_datadir}/autostart
+%__ln_s ../applications/fedora-ksensors.desktop \
     $RPM_BUILD_ROOT%{_datadir}/autostart
-rm -rf $RPM_BUILD_ROOT%{_docdir}/HTML
+%__rm -rf $RPM_BUILD_ROOT%{_docdir}/HTML
 %find_lang ksensors
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%__rm -rf $RPM_BUILD_ROOT
 
 
 %post
@@ -100,6 +104,9 @@ done
 
 
 %changelog
+* Thu Dec 22 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-19p2
+- Update Debian patch to -18 release
+
 * Mon Nov 07 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-19p1
 - Rebuilt for RHEL 6, RHEL 5, Fedora 15 with TDE 3.5.13
 

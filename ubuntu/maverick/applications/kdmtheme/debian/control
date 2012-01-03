@@ -12,8 +12,8 @@ Homepage: http://beta.smileaf.org/projects
 Package: kdmtheme-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, kdm-trinity
-Replaces: kdmtheme-kde3 (<< 4:3.5.13)
-Breaks: kdmtheme-kde3 (<< 4:3.5.13)
+Replaces: kdmtheme-trinity (<< 4:14.0.0)
+Breaks: kdmtheme-trinity (<< 4:14.0.0)
 Description: theme manager for KDM [Trinity]
  kdmtheme is a theme manager for KDM. It provides a KDE Control Module (KCM)
  that allows you to easily install, remove and change your KDM themes.

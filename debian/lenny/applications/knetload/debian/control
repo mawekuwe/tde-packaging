@@ -9,6 +9,8 @@ Standards-Version: 3.8.4
 Package: knetload-trinity
 Architecture: any
 Section: kde
+Replaces: knetload-trinity (<< 4:14.0.0)
+Breaks: knetload-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: knetload
 Suggests: kcpuload-trinity

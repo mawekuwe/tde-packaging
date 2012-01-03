@@ -11,8 +11,8 @@ Homepage: http://www.k3b.org
 Package: k3b-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, wodim | cdrskin, cdparanoia (>= 3a9.8), genisoimage, tdelibs-data-trinity (>= 4:3.1.4-2), cdrdao (>= 1.1.7-5), k3b-data-trinity (= ${source:Version}), libk3b3-trinity (= ${binary:Version})
-Replaces: k3b-kde3 (<< 4:3.5.13)
-Breaks: k3b-kde3 (<< 4:3.5.13)
+Replaces: k3b-trinity (<< 4:14.0.0)
+Breaks: k3b-trinity (<< 4:14.0.0)
 Recommends: dvd+rw-tools, libk3b3-extracodecs-trinity
 Suggests: k3b-i18n, normalize-audio, toolame, sox, movixmaker-2, vcdimager (>= 0.7)
 Description: A sophisticated KDE CD burning application [Trinity]
@@ -31,8 +31,8 @@ Description: A sophisticated KDE CD burning application [Trinity]
 Package: k3b-data-trinity
 Conflicts: k3b-trinity (<< 1.0.4-4)
 Architecture: all
-Replaces: k3b-data-kde3 (<< 4:3.5.13)
-Breaks: k3b-data-kde3 (<< 4:3.5.13)
+Replaces: k3b-data-trinity (<< 4:14.0.0)
+Breaks: k3b-data-trinity (<< 4:14.0.0)
 Description: A sophisticated KDE CD burning application - data files [Trinity]
  K3b is a GUI frontend to the CD recording programs cdrdao and cdrecord.
  Its aim is to provide a very user friendly interface to all the tasks
@@ -43,8 +43,8 @@ Description: A sophisticated KDE CD burning application - data files [Trinity]
 Package: libk3b-trinity-dev
 Conflicts: libk3bcore-trinity-dev, libk3bplugin-trinity-dev, libk3btools-trinity-dev, libk3bproject-trinity-dev, k3blibs-trinity-dev, k3blibs-trinity
 Section: libdevel
-Replaces: libk3b-kde3-dev (<< 4:3.5.13)
-Breaks: libk3b-kde3-dev (<< 4:3.5.13)
+Replaces: libk3b-trinity-dev (<< 4:14.0.0)
+Breaks: libk3b-trinity-dev (<< 4:14.0.0)
 Architecture: any
 Depends: libk3b3-trinity (= ${binary:Version})
 Description: The KDE cd burning application library - development files [Trinity]
@@ -57,8 +57,8 @@ Description: The KDE cd burning application library - development files [Trinity
 Package: libk3b3-trinity
 Section: libs
 Architecture: any
-Replaces: libk3b3-kde3 (<< 4:3.5.13)
-Breaks: libk3b3-kde3 (<< 4:3.5.13)
+Replaces: libk3b3-trinity (<< 4:14.0.0)
+Breaks: libk3b3-trinity (<< 4:14.0.0)
 Conflicts: libk3bcore-trinity, libk3bplugin-trinity, libk3btools-trinity, libk3bproject-trinity, k3blibs-trinity, libk3b2-trinity
 Depends: ${shlibs:Depends}
 Description: The KDE cd burning application library - runtime files [Trinity]
@@ -71,8 +71,8 @@ Description: The KDE cd burning application library - runtime files [Trinity]
 Package: libk3b3-extracodecs-trinity
 Section: libs
 Architecture: any
-Replaces: libk3b3-extracodecs-kde3 (<< 4:3.5.13)
-Breaks: libk3b3-extracodecs-kde3 (<< 4:3.5.13)
+Replaces: libk3b3-extracodecs-trinity (<< 4:14.0.0)
+Breaks: libk3b3-extracodecs-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: libk3b2-mp3-trinity
 Description: The KDE cd burning application library - extra decoders [Trinity]
@@ -85,8 +85,8 @@ Description: The KDE cd burning application library - extra decoders [Trinity]
 Package: libk3b2-extracodecs-trinity
 Architecture: all
 Priority: extra
-Replaces: libk3b2-extracodecs-kde3 (<< 4:3.5.13)
-Breaks: libk3b2-extracodecs-kde3 (<< 4:3.5.13)
+Replaces: libk3b2-extracodecs-trinity (<< 4:14.0.0)
+Breaks: libk3b2-extracodecs-trinity (<< 4:14.0.0)
 Depends: libk3b3-extracodecs-trinity
 Description: transitional package for K3b's extra decoders [Trinity]
  This is a dummy transitional package to enable a smooth transition from

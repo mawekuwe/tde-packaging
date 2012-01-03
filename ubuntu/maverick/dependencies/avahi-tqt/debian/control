@@ -23,6 +23,8 @@ Standards-Version: 3.9.1
 Package: libavahi-tqt-1
 Section: libs
 Architecture: any
+Replaces: libavahi-tqt-1 (<< 4:14.0.0)
+Breaks: libavahi-tqt-1 (<< 4:14.0.0)
 Depends: ${shlibs:Depends},
          ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
@@ -40,6 +42,8 @@ Description: Avahi TQt integration library
 Package: libavahi-tqt-dev
 Section: libdevel
 Architecture: any
+Replaces: libavahi-tqt-dev (<< 4:14.0.0)
+Breaks: libavahi-tqt-dev (<< 4:14.0.0)
 Depends: libavahi-tqt-1 (= ${binary:Version}),
          ${misc:Depends},
          libtqtinterface-dev,

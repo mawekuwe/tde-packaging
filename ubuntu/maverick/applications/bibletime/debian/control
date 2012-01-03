@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: bibletime-trinity
 Architecture: any
 Section: kde
-Replaces: bibletime-kde3 (<< 4:3.5.13)
-Breaks: bibletime-kde3 (<< 4:3.5.13)
+Replaces: bibletime-trinity (<< 4:14.0.0)
+Breaks: bibletime-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: sword-text, sword-dict, sword-comm
 Suggests: bibletime-i18n-trinity

@@ -37,7 +37,13 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdelibs-%{version}.tar.gz
-Patch0:		kdelibs-3.5.13-maxlinelength.patch
+
+## [kdelibs/kio] Disable 'max line length' detection [Bug #656]
+Patch10:	kdelibs-3.5.13-maxlinelength.patch
+## [kdelibs/kjs] Enable pcre support in kdelibs [Bug #569]
+Patch11:	kdelibs-3.5.13-enable_pcre.patch
+## [kdelibs/kate] Updated syntax highlighting files [Bug #764]
+Patch12:	kdelibs-3.5.13-kate_syntax.patch.gz
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
@@ -66,8 +72,8 @@ Requires:		qt%{?_qt_suffix}
 Requires:		avahi-qt3
 
 
-#Provides:	kdelibs%{?_qt_suffix} = %{version}
 %if "%{?_prefix}" == "/usr"
+Provides:	kdelibs%{?_qt_suffix} = %{version}
 Obsoletes:		kdelibs%{?_qt_suffix} <= 3.5.10
 %endif
 
@@ -83,8 +89,8 @@ kimgio (image manipulation).
 Summary:	%{name} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Provides:	kdelibs%{?_qt_suffix}-devel = %{version}
 %if "%{?_prefix}" == "/usr"
+Provides:	kdelibs%{?_qt_suffix}-devel = %{version}
 Obsoletes:	kdelibs%{?_qt_suffix}-devel <= 3.5.10
 %endif
 
@@ -96,8 +102,8 @@ applications for TDE.
 Group:		Development/Libraries
 Summary:	%{name} - API documentation
 Requires:	%{name} = %{version}-%{release}
-Provides:	kdelibs%{?_qt_suffix}-apidocs = %{version}
 %if "%{?_prefix}" == "/usr"
+Provides:	kdelibs%{?_qt_suffix}-apidocs = %{version}
 Obsoletes:	kdelibs%{?_qt_suffix}-apidocs <= 3.5.10
 %endif
 
@@ -108,8 +114,9 @@ format for easy browsing
 
 %prep
 %setup -q -n kdelibs
-%patch0 -p1
-
+%patch10 -p1
+%patch11 -p0
+%patch12 -p1
 
 
 %build
@@ -136,6 +143,7 @@ cd build
   -DWITH_AVAHI=ON \
   -DWITH_ASPELL=OFF \
   -DWITH_HSPELL=OFF \
+  -DWITH_PCRE=ON \
   ..
 
 %__make %{?_smp_mflags}
@@ -307,9 +315,11 @@ EOF
 
 
 %changelog
-* Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+* Sat Dec 31 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Enable pcre support in kdelibs [Bug #569]
+- Updated Kate syntax highlighting files [Bug #764]
+- Disable 'max line length' detection [Bug #656]
 - Add 'Provides: kdelibs3' to avoid installing distro-provided KDE3 libraries
-- Disable 'max line length' detection
 
 * Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
