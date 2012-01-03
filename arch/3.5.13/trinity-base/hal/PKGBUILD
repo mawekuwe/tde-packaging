@@ -1,5 +1,7 @@
+# Maintainer: Calvin Morisson <mutantturkey@gmail.com>
 # Contributor: Jan de Groot <jgc@archlinux.org>
 # Contributor: Link Dupont <link@subpop.net>
+# Contributor: Pawel "l0ner" Soltys <sh4dou@gmail.com>
 
 pkgname=hal
 pkgver=0.5.14

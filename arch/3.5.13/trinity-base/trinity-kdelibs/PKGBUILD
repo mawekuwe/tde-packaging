@@ -2,20 +2,19 @@
 
 pkgname=trinity-kdelibs
 pkgver=3513
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity DE core libraries"
-depends=('trinity-arts' 'trinity-qt3' 'trinity-tqtinterface' 'libical' 'libxslt' 'libltdl' 'avahi' 'pam-krb5' 'taglib' 'libxcomposite')
+depends=('trinity-arts' 'trinity-qt3' 'trinity-tqtinterface' 'libical' 'libxslt' 'libltdl' 'avahi' 'pam-krb5' 'taglib' 'libxcomposite' 'libcups' 'jre7-openjdk')
 makedepends=('pkgconfig' 'cmake' 'autoconf' )
 provides=('trinity-kdelibs' 'kdelibs3')
 conflicts=('trinity-kdelibs' 'kdelibs3')
 replaces=('trinity-kdelibs')
 options=('libtool' '!strip' '!makeflags')
-#source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh')
-source=('http://anduin.linuxfromscratch.org/sources/trinity/kdelibs-3.5.13.tar.gz' 'trinity.sh')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh')
 md5sums=('f62eefb63b4ba2141b4c576f859806dd'
          '2de1886d632c8bc288befada5e1bc3b5')
 
@@ -43,13 +42,14 @@ build() {
    msg "Starting cmake..."
    cmake ${srcdir}/kdelibs \
     -DCMAKE_INSTALL_PREFIX=${_prefix} \
-    -DCMAKE_VERBOSE_MAKEFILE=OFF \
-    -DQT_VERSION=3 \
-    -DWITH_QT3=ON \
-    -DQTDIR=${QTDIR} \
-    -DQT_LIBRARY_DIRS=${QTDIR}/lib \
-    -DWITH_PAM=ON \
-    -DBUILD_ALL=ON
+    -DCMAKE_VERBOSE_MAKEFILE=OFF 
+# Not needed, CMake returns that those were not used
+#    -DQT_VERSION=3 \
+#    -DWITH_QT3=ON \
+#    -DQTDIR=${QTDIR} \
+#    -DQT_LIBRARY_DIRS=${QTDIR}/lib \
+#    -DWITH_PAM=ON \
+#    -DBUILD_ALL=ON
 
    msg "Building - $pkgname..."
    make
@@ -65,7 +65,7 @@ package() {
    echo "${_prefix}/lib" > ${pkgdir}/etc/ld.so.conf.d/${pkgname}.conf
 
    install -d -m755 ${pkgdir}/etc/profile.d/
-   install -m644 ${startdir}/trinity.sh ${pkgdir}/etc/profile.d/
+   install -m644 ${srcdir}/trinity.sh ${pkgdir}/etc/profile.d/
 
    #   rm -r ${srcdir}/${_svnmod}
 }

@@ -15,7 +15,7 @@ provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/k3b-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/k3b-3.5.13.tar.gz)
 md5sums=('f022338d361632223106ba444fe1e60e')
 
 _builddir=applications/k3b

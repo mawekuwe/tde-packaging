@@ -32,8 +32,7 @@ optdepends=('desktop-file-utils: Command line utilities for working with desktop
         'pciutils: PCI bus configuration space access library and tools'
         'xscreensaver: Screen saver and locker for the X Window System')
 options=('libtool' '!strip')
-#source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 'dbusfix.diff' 'kdm-trinity')
-source=('http://anduin.linuxfromscratch.org/sources/trinity/kdebase-3.5.13.tar.gz' 'dbusfix.diff' 'kdm-trinity')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 'dbusfix.diff' 'kdm-trinity')
 md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
          'c9ce810c281002440a6de8cfd8735d07'
          '376d85d213cf3c04cb0912e5cccd68bd')
@@ -110,16 +109,9 @@ package() {
 #   cd ${srcdir}/${_svnmod}
   cd ${srcdir}/build
 
-  make DESTDIR="$pkgdir/" install
+  make DESTDIR="$pkgdir" install
 
-  cd ${startdir}
-
-  # install desktop and update kdmrc and Xsession
-#   [[ -f trinity.desktop ]] && {
-#     install -d -m755 ${pkgdir}/etc/X11/sessions
-#     install -m644 trinity.desktop ${pkgdir}/etc/X11/sessions
-#   }
-  _tdesktop
+  # install desktop 
   [[ -f ${pkgdir}/etc/X11/sessions/trinity.desktop ]] || msg "ERROR - Install Failure: ${pkgdir}/etc/X11/sessions/trinity.desktop"
 
   # set kdm directory
@@ -137,7 +129,7 @@ package() {
   cd ${pkgdir}/usr/bin
   ln -sf /opt/trinity/bin/startkde starttrinity
 
-  cd ${startdir}
-  install -D -m755 ./kdm-trinity "${pkgdir}"/etc/rc.d/kdm-trinity	
+  cd ${srcdir}
+  install -D -m755 kdm-trinity "${pkgdir}"/etc/rc.d/kdm-trinity	
 
 }

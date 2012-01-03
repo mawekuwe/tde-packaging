@@ -26,7 +26,7 @@ build() {
    make || return 1
 
    # Libtool slay
-   #     find $startdir/pkg -name *.la -exec rm {} \;
+   #     find $pkgdir -name *.la -exec rm {} \;
 }
 
 package() {

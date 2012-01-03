@@ -11,7 +11,7 @@ pkgdesc="Trinity - Qt wrapper for GTK, makes gtk2 apps look pretty under TDE"
 depends=('trinity-kdebase' 'gtk2')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/gtk-qt-engine-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/gtk-qt-engine-3.5.13.tar.gz)
 md5sums=('96da675949ef8743d4fe91531f734030')
 
 _svnmod=applications/gtk-qt-engine

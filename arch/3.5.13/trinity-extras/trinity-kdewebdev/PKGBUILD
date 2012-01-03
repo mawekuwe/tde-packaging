@@ -11,7 +11,7 @@ pkgdesc="Trinity Web development tools"
 depends=('trinity-kdebase')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-#source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdewebdev-3.5.13.tar.gz' 'kdewebdev.patch')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdewebdev-3.5.13.tar.gz' 'kdewebdev.patch')
 source=('http://anduin.linuxfromscratch.org/sources/trinity/kdewebdev-3.5.13.tar.gz' 'kdewebdev.patch')
 md5sums=('4f56a6c4b5916615ca3615f8e8f868c6'
          '5ef6636db45e35d6dcda35332bdca931')

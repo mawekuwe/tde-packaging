@@ -15,7 +15,7 @@ provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/libraries/libkipi-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/libraries/libkipi-3.5.13.tar.gz)
 md5sums=('22cb0ba7507cac99140cd1c0180cbe99')
 
 _builddir=libraries/libkipi

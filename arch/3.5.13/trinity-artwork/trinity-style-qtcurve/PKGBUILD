@@ -11,7 +11,7 @@ pkgdesc="Trinity - QtCurve style"
 depends=('trinity-kdebase')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kde-style-qtcurve-3.5.13.tar.gz')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/kde-style-qtcurve-3.5.13.tar.gz')
 
 _svnmod=applications/kde-style-qtcurve
 md5sums=('98133893b9c6736804d4dfc134a3a256')
