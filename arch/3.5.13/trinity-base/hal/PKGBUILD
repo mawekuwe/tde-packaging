@@ -31,7 +31,7 @@ source=(http://hal.freedesktop.org/releases/${pkgname}-${pkgver}.tar.gz
 #        patches/hal-ignore-internal-dm-devices.patch
 
 md5sums=('e9163df591a6f38f59fdbfe33e73bf20'
-         '277e96ac130d7bfce0b30f0b80db8782'
+         '4cdfc673ad65ddb51919f5a757f62145'
          '185dd5d6ffc703ec8395b4eb3a1ae498')
 #         '4d4b6801a1cedca22b8bdd9db73b16fb'
 #         '6d87c3e63184ae3a69caafc846f538a3'
@@ -48,7 +48,7 @@ md5sums=('e9163df591a6f38f59fdbfe33e73bf20'
 
 build() {
    cd $srcdir
-  patch -Np1 -d ${srcdir} < videodev.patch
+  patch -Np1 -d ${srcdir} < hal.patch
   cd "${srcdir}/${pkgname}-${pkgver}"
 #  patch -Np1 -i "${srcdir}/hal-0.5.9-hide-diagnostic.patch"
 #  patch -Np1 -i "${srcdir}/hal-remove-dell-killswitch.patch"
