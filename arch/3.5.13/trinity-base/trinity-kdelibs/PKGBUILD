@@ -1,15 +1,16 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Contributor: Pawel 'l0ner' Soltys <pwslts@gmail.com>
 
 pkgname=trinity-kdelibs
 pkgver=3513
-pkgrel=3
+pkgrel=4
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity DE core libraries"
-depends=('trinity-arts' 'trinity-qt3' 'trinity-tqtinterface' 'libical' 'libxslt' 'libltdl' 'avahi' 'pam-krb5' 'taglib' 'libxcomposite' 'libcups' 'jre7-openjdk')
-makedepends=('pkgconfig' 'cmake' 'autoconf' )
+depends=('trinity-arts' 'trinity-qt3' 'trinity-tqtinterface' 'libical' 'libxslt' 'libltdl' 'avahi' 'pam-krb5' 'taglib' 'libxcomposite' 'libcups' 'alsa-lib' 'libart-lgpl' 'libidn' 'openssl' 'libtiff' 'jasper' 'openexr' 'aspell' 'hspell') 
+makedepends=('pkgconfig' 'cmake')
 provides=('trinity-kdelibs' 'kdelibs3')
 conflicts=('trinity-kdelibs' 'kdelibs3')
 replaces=('trinity-kdelibs')
@@ -46,7 +47,22 @@ build() {
    msg "Starting cmake..."
    cmake ${srcdir}/kdelibs \
     -DCMAKE_INSTALL_PREFIX=${_prefix} \
-    -DCMAKE_VERBOSE_MAKEFILE=OFF 
+    -DCMAKE_VERBOSE_MAKEFILE=OFF \
+    -DWITH_ARTS=ON \
+    -DWITH_ALSA=ON \
+    -DWITH_LIBART=ON \
+    -DWITH_LIBIDN=ON \
+    -DWITH_SSL=ON \
+    -DWITH_CUPS=ON \
+    -DWITH_LUA=OFF \
+    -DWITH_TIFF=ON \
+    -DWITH_JASPER=ON \
+    -DWITH_OPENEXR=ON \
+    -DWITH_UTEMPTER=OFF \
+    -DWITH_AVAHI=ON \
+    -DWITH_ASPELL=ON \
+    -DWITH_HSPELL=ON
+
 # Not needed, CMake returns that those were not used
 #    -DQT_VERSION=3 \
 #    -DWITH_QT3=ON \

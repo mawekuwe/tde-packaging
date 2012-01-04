@@ -2,15 +2,14 @@
 
 pkgname=trinity-qt3
 pkgver=3884
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 url="http://trinitydesktop.org"
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
-depends=('libjpeg-turbo' 'libmng' 'libmysqlclient' 'libpng' 'libxmu'  'libxcursor' 'libxinerama' 'libxft' 'libxrandr' 'mesa' 'postgresql-libs' 'unixodbc')
+depends=('libjpeg-turbo' 'libmng' 'libmysqlclient' 'libpng' 'libxmu'  'libxcursor' 'libxinerama' 'libxft' 'libxrandr' 'mesa' 'postgresql-libs')
 makedepends=('cups' 'libxi' 'mysql' 'postgresql' 'unixodbc' 'sqlite3')
-# optdepends=('libmysqlclient' 'postgresql-libs' 'unixodbc')
 provides=('trinity-qt3' 'qt3')
 conflicts=('qt3' 'qt3-enhanced')
 replaces=('trinity-qt3')
@@ -38,16 +37,17 @@ build() {
 
    rm -rf mkspecs/{*aix*,*bsd*,cygwin*,dgux*,darwin*,hpux*,hurd*,irix*,lynxos*,macx*,qnx*,reliant*,sco*,solaris*,tru64*,unixware*,win32*}
 
+   # auto license acceptance
+   sed -i "s|read acceptance|acceptance=yes|" configure
+
    msg "Starting configure..."
    #make -C qmake || return 1
    ./configure \
       -prefix ${_prefix} \
-      -fast \
       -sysconfdir /etc/qt \
       -thread \
       -shared \
       -system-zlib \
-      -platform linux-g++$ARCH \
       -system-lib{png,jpeg,mng} \
       -qt-gif \
       -cups
