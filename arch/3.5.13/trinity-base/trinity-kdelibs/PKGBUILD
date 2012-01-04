@@ -14,9 +14,10 @@ provides=('trinity-kdelibs' 'kdelibs3')
 conflicts=('trinity-kdelibs' 'kdelibs3')
 replaces=('trinity-kdelibs')
 options=('libtool' '!strip' '!makeflags')
-source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh' 'docpath.patch')
 md5sums=('f62eefb63b4ba2141b4c576f859806dd'
-         '2de1886d632c8bc288befada5e1bc3b5')
+         '2de1886d632c8bc288befada5e1bc3b5'
+         'd20badec5a1a7f01f0c957db8b9b8def')
 
 _builddir=build
 _prefix="/opt/trinity"
@@ -33,6 +34,9 @@ build() {
    export PATH=$PATH:${_prefix}/bin
    export CMAKE_INCLUDE_PATH=${QTDIR}/include/tqt:/usr/include/dbus-1.0:${_prefix}/bin
    export LD_LIBRARY_PATH=${_prefix}/lib:${QTDIR}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
+
+   msg "Patching..."
+   patch -N -d ${srcdir} -p0 < ${srcdir}/docpath.patch
 
    cd $srcdir
    msg "Creating out-of-source build directory: ${srcdir}/${_builddir}"
