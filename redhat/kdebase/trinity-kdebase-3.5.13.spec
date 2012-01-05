@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 14
+%define release 15
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -98,6 +98,8 @@ Patch27:	kdebase-3.5.13-restore_kde3_clock.patch
 Patch28:	kdebase-3.5.13-randrtray_merge_x11_reconfig_requests.patch
 ## [kdebase/kdesktop/lock] Fix multihead screen locking [Bug #669]
 Patch29:	kdebase-3.5.13-fix_multihead_desktop_lock.patch
+## [kdebase/kdm/kfrontend] Allows to hide KDM menu button
+Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -301,6 +303,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch27 -p0
 %patch28 -p0
 %patch29 -p0
+%patch30 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -686,6 +689,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* The Jan 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-15
+- Add KDM option to hide 'Menu' button on login prompt
+
 * Mon Jan 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-14
 - Fix Konqueror Icon Activation Effect [Bug #335]
 - Restores the "Keep password" check box to the kdesu dialog box [Bug #388]

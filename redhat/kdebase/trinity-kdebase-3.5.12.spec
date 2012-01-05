@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 14
+%define release 15
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -84,8 +84,6 @@ Patch14:	kdebase-3.5.12-kickoff_unstable.patch
 Patch15:	kdebase-3.5.13-startkde_icon.patch
 ## [kdebase/startkde] Fixes duplicate and incorrect TDE directories location
 Patch16:	kdebase-3.5.12-startkde_directories.patch
-## [kdebase/kdesktop/lock] Fix missing black background
-Patch17:	kdebase-3.5.12-kdesktop_lock_fix.patch
 
 # TDE unofficial patches for enhanced features
 ## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
@@ -96,6 +94,10 @@ Patch21:	kdebase-3.5.12-kio_man_utf8.patch
 Patch22:	kdebase-3.5.12-konq_menu_tab_background.patch
 ## [kdebase/konqueror/sidebar] Fix error message on documents parent folder
 Patch23:	kdebase-3.5.13-konqsidebar_documents.patch
+## [kdebase/kdesktop/lock] Fix missing black background
+Patch29:	kdebase-3.5.12-kdesktop_lock_fix.patch
+## [kdebase/kdm/kfrontend] Allows to hide KDM menu button
+Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -192,6 +194,7 @@ Requires:	redhat-menus
 
 #Provides:	kdebase%{?_qt_suffix} = %{version}
 %if "%{?_prefix}" == "/usr"
+Provides:		kdebase%{?_qt_suffix} = %{version}
 Obsoletes:		kdebase%{?_qt_suffix} <= 3.5.10
 %endif
 
@@ -216,8 +219,8 @@ Requires:	%{name}
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 Summary:	%{summary} - Development files
-#Provides:	kdebase%{?_qt_suffix}-devel = %{version}
 %if "%{?_prefix}" == "/usr"
+Provides:		kdebase%{?_qt_suffix}-devel = %{version}
 Obsoletes:		kdebase%{?_qt_suffix}-devel <= 3.5.10
 %endif
 
@@ -232,9 +235,9 @@ Kate plugins or KWin styles.
 Summary: Extra applications from %{name}
 Group: User Interface/Desktops
 Requires: %{name} = %{version}-%{release}
-#Provides:	kdebase%{?_qt_suffix}-extras = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase%{?_qt_suffix}-extras <= 3.5.10
+Provides:	kdebase%{?_qt_suffix}-extras = %{version}
+Obsoletes:	kdebase%{?_qt_suffix}-extras <= 3.5.10
 %endif
 %description extras
 %{summary}, including:
@@ -248,9 +251,9 @@ Obsoletes: kdebase%{?_qt_suffix}-extras <= 3.5.10
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs
-#Provides:	kdebase%{?_qt_suffix}-libs = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase%{?_qt_suffix}-libs <= 3.5.10
+Provides:	kdebase%{?_qt_suffix}-libs = %{version}
+Obsoletes:	kdebase%{?_qt_suffix}-libs <= 3.5.10
 %endif
 Requires: %{name} = %{version}-%{release}
 %description libs
@@ -260,9 +263,9 @@ Requires: %{name} = %{version}-%{release}
 %package pim-ioslaves
 Summary: PIM KIOslaves from %{name}
 Group: System Environment/Libraries
-Provides:	kdebase%{?_qt_suffix}-pim-ioslaves = %{version}
 %if "%{?_prefix}" == "/usr"
-Obsoletes: kdebase%{?_qt_suffix}-pim-ioslaves <= 3.5.10
+Provides:	kdebase%{?_qt_suffix}-pim-ioslaves = %{version}
+Obsoletes:	kdebase%{?_qt_suffix}-pim-ioslaves <= 3.5.10
 %endif
 %description pim-ioslaves
 Protocol handlers (KIOslaves) for personal information management, including:
@@ -292,7 +295,6 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
-%patch17 -p1
 
 %patch20 -p4
 %if 0%{?rhel} > 0
@@ -301,25 +303,28 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch22 -p1
 %patch23 -p1
 
+%patch29 -p1
+%patch30 -p1
+
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
 # KDM Background
 %__sed -i "kdm/kfrontend/genkdmconf.c" \
-	-e 's,"Wallpaper=isadora.png\n","Wallpaper=%{tde_bg}\n",'
-	
+	-e 's|"Wallpaper=isadora.png\n"|"Wallpaper=%{tde_bg}\n"|'
+
 # TDE user default background
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
-	-e 's,#define DEFAULT_WALLPAPER "isadora.png",#define DEFAULT_WALLPAPER "%{tde_bg}",'
+	-e 's|#define DEFAULT_WALLPAPER "isadora.png"|#define DEFAULT_WALLPAPER "%{tde_bg}"|'
 %__sed -i "startkde" \
-	-e 's,/usr/share/wallpapers/isadora.png.desktop,%{tde_bg},' \
-	-e 's,Wallpaper=isadora.png,Wallpaper=%{tde_bg},'
+	-e 's|/usr/share/wallpapers/isadora.png.desktop|%{tde_bg}|' \
+	-e 's|Wallpaper=isadora.png|Wallpaper=%{tde_bg}|'
 %endif
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
-# TDE branding: removes KUbuntu references
+# TDE branding: removes KUbuntu references [Bug #617]
 %__sed -i "kcontrol/kdm/kdm-appear.cpp" \
 	-e "s|Welcome to Kubuntu |Welcome to %{tde_aboutlabel} |"
 %__sed -i "konqueror/about/konq_aboutpage.cc" \
@@ -330,6 +335,10 @@ Protocol handlers (KIOslaves) for personal information management, including:
 	-e "s|help:/kubuntu/about-kubuntu/index.html|%{tde_aboutpage}|"
 %__sed -i "kdm/config.def" \
 	-e "s|Welcome to Trinity |Welcome to %{tde_aboutlabel} |"
+
+# TDE default directory in 'startkde' script (KDEDIR)
+%__sed -i "startkde" \
+	-e "s|/opt/trinity|%{_prefix}|g"
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -376,7 +385,9 @@ export IMAKEINCLUDE="-I/usr/share/X11/config"
 	-e '/^echo "\[startkde\] Starting startkde.".*/ s,$,\nexport KDEDIR=%{_prefix}\nexport KDEHOME=~/.trinity,'
 
 # Renames '/etc/ksysguarddrc' to avoid conflict with KDE4 'ksysguard'
-%__mv -f %{?buildroot}%{_sysconfdir}/ksysguarddrc %{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
+%__mv -f \
+	%{?buildroot}%{_sysconfdir}/ksysguarddrc \
+	%{?buildroot}%{_sysconfdir}/ksysguarddrc.tde
 
 # TDE 3.5.12: add script "plasma-desktop" to avoid conflict with KDE4
 %if "%{?_prefix}" != "/usr"
@@ -384,11 +395,10 @@ export IMAKEINCLUDE="-I/usr/share/X11/config"
 %endif
 
 # PAM configuration files
-%__mkdir_p "%{?buildroot}%{_sysconfdir}/pam.d"
-%__install -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity"
-%__install -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
-%__install -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
-%__install -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
+%__install -D -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity"
+%__install -D -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
+%__install -D -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
+%__install -D -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
 
 # KDM configuration for RHEL/Fedora
 %__sed -i "%{?buildroot}%{_datadir}/config/kdm/kdmrc" \
@@ -413,7 +423,7 @@ touch --no-create %{_datadir}/icons/crystalsvg 2> /dev/null || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg  2> /dev/null || :
 update-desktop-database 2> /dev/null || : 
 # Dirty hack to install '/etc/ksysguardrc' alongside with KDE4
-[ -r %{_sysconfdir}/ksysguarddrc ] || cp -f %{_sysconfdir}/ksysguarddrc.tde %{_sysconfdir}/ksysguarddrc
+[ -r "%{_sysconfdir}/ksysguarddrc" ] || cp -f "%{_sysconfdir}/ksysguarddrc.tde" "%{_sysconfdir}/ksysguarddrc"
 
 %postun
 touch --no-create %{_datadir}/icons/crystalsvg 2> /dev/null || :
@@ -672,6 +682,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libkdeinit_*.*
 
 %changelog
+* Thu Jan 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.12-15
+- Add KDM option to hide 'Menu' button on login prompt
+
 * Wed Dec 21 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-14
 - Fix kdesktop_lock missing black background on kscreensaver failure
 
