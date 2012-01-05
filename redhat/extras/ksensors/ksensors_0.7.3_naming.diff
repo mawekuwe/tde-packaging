@@ -1,0 +1,61 @@
+--- ksensors-0.7.3.orig/src/lmsensor.cpp	2008-11-16 20:38:33.000000000 +0100
++++ ksensors-0.7.3/src/lmsensor.cpp	2008-11-16 20:27:16.000000000 +0100
+@@ -40,9 +40,12 @@ bool LMSensor::init(const sensors_featur
+  const sensors_chip_name *chip_name= getChipName();
+  const char* main_name = (*data)->name;
+  feature= (*data)->number;
+- char *label;
+- QString str;
++ char *label = NULL;
++ QString uniqueSensorName;
+ 
++ uniqueSensorName.sprintf("%s_%d_%d.%s", chip_name->prefix, chip_name->bus.nr, chip_name->addr, main_name);
++ setName(uniqueSensorName.latin1());
++ 
+ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+  bool min_found=false;
+  bool max_found=false;
+@@ -98,12 +101,18 @@ bool LMSensor::init(const sensors_featur
+     min= -16;
+  }
+ 
+- str.sprintf("%s.%s", chip_name->prefix, main_name);
+- setName( str.latin1() );
+-
+  sensors_get_label(*chip_name,feature,&label);
+- setDescription(QString(label));
+-
++ if (label)
++ {
++    setDescription(QString(label));
++    delete label;
++    label = NULL;
++ }
++ else
++ {
++    setDescription(uniqueSensorName.latin1());
++ }
++ 
+  if(min_found)
+    min = valMin;
+    
+@@ -189,14 +198,15 @@ bool LMSensor::init(const sensors_featur
+       return false;
+   }
+ 
+-  str.sprintf("%s.%s", chip_name->prefix, main_name);
+-  setName( str.latin1() );
+-
+   label = sensors_get_label(chip_name, feature_data);
+   if (label)
+-    setDescription(QString(label));
++  {
++     setDescription(QString(label));
++     delete label;
++     label = NULL;
++  }
+   else
+-    setDescription( str.latin1() );
++    setDescription( uniqueSensorName.latin1() );
+ 
+ #endif /* libsensors3 / libsensors4 code */

@@ -15,7 +15,7 @@ provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/digikam-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/digikam-3.5.13.tar.gz)
 md5sums=('81cfcd75dc9c067ba6761aa1147c31e7')
 
 _builddir=applications/digikam

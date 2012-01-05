@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 1
+%define release 2
 
 %define _datadir %{_usr}/share
 
@@ -67,8 +67,7 @@ EOF
 %__install -m 644 %{SOURCE1} %{?buildroot}%{_datadir}/spin-kickstarts
 
 # Openbox
-%__mkdir_p "%{?buildroot}/usr/local/bin"
-%__install -m 755 openbox "%{?buildroot}/usr/local/bin"
+%__install -D -m 755 openbox "%{?buildroot}/usr/local/bin/openbox"
 
 
 %files
@@ -80,5 +79,10 @@ EOF
 
 
 %changelog
+* Mon Dec 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
+- More TDE 3.5.13 specific visual settings
+- Updates all packages to fix TDE bugs
+- Add more applications
+
 * Wed Nov 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
 - Initial build

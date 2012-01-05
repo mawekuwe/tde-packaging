@@ -2,13 +2,13 @@
 
 pkgname=trinity-dbus-1-qt3
 pkgver=0.9
-pkgrel=8
+pkgrel=9
 arch=('i686' 'x86_64')
 url="http://www.freedesktop.org/wiki/Software/DBusBindings"
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity D-Bus/Qt3 bindings."
-depends=('dbus' 'trinity-qt3' 'networkmanager')
+depends=('trinity-qt3')
 provides=('trinity-dbus-1-qt3' 'dbus-1-qt3')
 conflicts=('dbus-1-qt3')
 replaces=('dbus-1-qt3')
@@ -22,11 +22,11 @@ build() {
    . /etc/profile.d/qt3.sh
    msg "Starting configure..."
    ./configure --prefix=$QTDIR
-   msg "Building #{pkgname}..."
+   msg "Building ${pkgname}..."
    make || return 1
 
    # Libtool slay
-   #     find $startdir/pkg -name *.la -exec rm {} \;
+   #     find $pkgdir -name *.la -exec rm {} \;
 }
 
 package() {

@@ -1,0 +1,41 @@
+diff -urN kdebase/kpersonalizer/kospage.cpp kdebase.new2/kpersonalizer/kospage.cpp
+--- kdebase/kpersonalizer/kospage.cpp	2011-08-21 02:08:16.000000000 -0500
++++ kdebase.new2/kpersonalizer/kospage.cpp	2011-12-22 09:27:39.000000000 -0600
+@@ -142,7 +142,7 @@
+ 	ckcmdisplay->writeEntry("macStyle", false, true, true);
+ 
+ 	cglobal->setGroup("KDE");
+-	cglobal->writeEntry("SingleClick", true, true, true);
++	cglobal->writeEntry("SingleClick", false, true, true);
+ 
+ 	claunch->setGroup("FeedbackStyle");
+ 	claunch->writeEntry("BusyCursor", false);
+@@ -351,8 +351,8 @@
+ 	textview_ospage->setText(i18n(
+ 	"<b>Window activation:</b> <i>Focus on click</i><br>"
+ 	"<b>Titlebar double-click:</b> <i>Shade window</i><br>"
+-	"<b>Mouse selection:</b> <i>Single click</i><br>"
+-	"<b>Application startup notification:</b> <i>busy cursor</i><br>"
++	"<b>Mouse selection:</b> <i>Double click</i><br>"
++	"<b>Application startup notification:</b> <i>none</i><br>"
+ 	"<b>Keyboard scheme:</b> <i>Trinity default</i><br>"
+ 	));
+ }
+@@ -376,7 +376,7 @@
+ 	"<b>Window activation:</b> <i>Focus on click</i><br>"
+ 	"<b>Titlebar double-click:</b> <i>Maximize window</i><br>"
+ 	"<b>Mouse selection:</b> <i>Double click</i><br>"
+-	"<b>Application startup notification:</b> <i>busy cursor</i><br>"
++	"<b>Application startup notification:</b> <i>none</i><br>"
+ 	"<b>Keyboard scheme:</b> <i>Windows</i><br>"
+ 	));
+ }
+@@ -400,7 +400,7 @@
+ 	b_MacMenuBar = ckcmdisplay->readBoolEntry("macStyle", false);
+ 
+ 	cglobal->setGroup("KDE");
+-	b_SingleClick = cglobal->readBoolEntry("SingleClick", true);
++	b_SingleClick = cglobal->readBoolEntry("SingleClick", false);
+ 
+ 	claunch->setGroup("FeedbackStyle");
+ 	b_BusyCursor = claunch->readBoolEntry("BusyCursor", false);

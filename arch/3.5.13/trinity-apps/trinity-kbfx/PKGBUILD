@@ -11,7 +11,7 @@ pkgdesc="Trinity Kbfx KMenu replacement"
 depends=('trinity-kdebase')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kbfx-3.5.13.tar.gz' 'kbfx.patch')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/kbfx-3.5.13.tar.gz' 'kbfx.patch')
 md5sums=('04921c66fe2dc26d6eab7143e5950446'
          '510638db000827e86f9d542662199064')
 

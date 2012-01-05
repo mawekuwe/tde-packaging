@@ -15,7 +15,7 @@ provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-#source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdeadmin-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeadmin-3.5.13.tar.gz)
 source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeadmin-3.5.13.tar.gz)
 md5sums=('b8bbabf353070a3e730464e0ce2960e2')
 

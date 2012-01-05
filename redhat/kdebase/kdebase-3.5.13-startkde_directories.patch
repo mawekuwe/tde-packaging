@@ -4,7 +4,7 @@
  #
  
  echo "[startkde] Starting startkde." 1>&2
-+export KDEDIR="${KDEDIR:-/opt/trinity}"
++export KDEDIR="/opt/trinity"
  
  # When the X server dies we get a HUP signal from xinit. We must ignore it
  # because we still need to do some cleanup.

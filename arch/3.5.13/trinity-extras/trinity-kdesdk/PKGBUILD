@@ -11,7 +11,7 @@ pkgdesc="Trinity Software Developement Kit"
 depends=('trinity-kdebase')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-#source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdesdk-3.5.13.tar.gz' 'kdesdk.patch')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdesdk-3.5.13.tar.gz' 'kdesdk.patch')
 source=('http://anduin.linuxfromscratch.org/sources/trinity/kdesdk-3.5.13.tar.gz' 'kdesdk.patch')
 md5sums=('130662f683be1a49d56a713c5ae87e46'
          'a1d0b533ae427847bd84e601c587f882')

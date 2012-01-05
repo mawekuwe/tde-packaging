@@ -16,7 +16,7 @@ provides=('trinity-kdegraphics')
 conflicts=('trinity-kdegraphics')
 replaces=('trinity-kdegraphics')
 options=('libtool' '!strip')
-#source=('GSmartPointer.h.patch' 'http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdegraphics-3.5.13.tar.gz')
+source=('GSmartPointer.h.patch' 'http://mirror.ets.kth.se/trinity/releases/3.5.13/kdegraphics-3.5.13.tar.gz')
 source=('GSmartPointer.h.patch' 'http://anduin.linuxfromscratch.org/sources/trinity/kdegraphics-3.5.13.tar.gz')
 md5sums=('7b93c9bdf1208df453c9838519fab109' 'a75c254cd1060343cd04c6744bce6798')
 

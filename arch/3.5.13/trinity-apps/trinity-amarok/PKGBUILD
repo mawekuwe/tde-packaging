@@ -11,7 +11,7 @@ pkgdesc="Trinity Amarok music player and manager"
 depends=('trinity-kdebase' 'libifp' 'libmtp' 'libnjb' 'python-daap' 'ruby')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/amarok-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/amarok-3.5.13.tar.gz)
 md5sums=('7145ebee38f104bef6cfaf56e7f81959')
 
 _svnmod=applications/amarok

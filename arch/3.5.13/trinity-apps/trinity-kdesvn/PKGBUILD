@@ -11,7 +11,7 @@ pkgdesc="Trinity SVN frontend gui"
 depends=('trinity-kdebase' 'sqlite3' 'subversion')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kdesvn-3.5.13.tar.gz' 'kdesvn.patch')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/kdesvn-3.5.13.tar.gz' 'kdesvn.patch')
 md5sums=('f65e86f0d2f7882b4f958f2e89fe0d34'
          '9def57c42b258c4caf2b5709eb25ba25')
 

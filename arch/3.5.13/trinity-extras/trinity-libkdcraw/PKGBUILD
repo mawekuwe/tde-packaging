@@ -15,7 +15,7 @@ provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/libraries/libkdcraw-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/libraries/libkdcraw-3.5.13.tar.gz)
 md5sums=('770dd734dc427337a1a2e61b6b0874ae')
 
 _builddir=libraries/libkdcraw

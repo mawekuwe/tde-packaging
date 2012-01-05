@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.12
 %endif
-%define release 13
+%define release 14
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -84,6 +84,8 @@ Patch14:	kdebase-3.5.12-kickoff_unstable.patch
 Patch15:	kdebase-3.5.13-startkde_icon.patch
 ## [kdebase/startkde] Fixes duplicate and incorrect TDE directories location
 Patch16:	kdebase-3.5.12-startkde_directories.patch
+## [kdebase/kdesktop/lock] Fix missing black background
+Patch17:	kdebase-3.5.12-kdesktop_lock_fix.patch
 
 # TDE unofficial patches for enhanced features
 ## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration
@@ -290,6 +292,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
+%patch17 -p1
 
 %patch20 -p4
 %if 0%{?rhel} > 0
@@ -669,6 +672,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libkdeinit_*.*
 
 %changelog
+* Wed Dec 21 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-14
+- Fix kdesktop_lock missing black background on kscreensaver failure
+
 * Thu Dec 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-13
 - Backports patches from TDE 3.5.13-10
 - Removes Kubuntu branding [TDE Bug #449]

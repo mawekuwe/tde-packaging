@@ -14,12 +14,10 @@ depends=('audiofile'
          'libvorbis'
          'trinity-tqtinterface')
 makedepends=('pkgconfig' 'cmake')
-provides=('trinity-arts')
 conflicts=('trinity-arts')
 replaces=('trinity-arts')
 options=('libtool' '!strip')
-#source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/arts-3.5.13.tar.gz)
-source=(http://anduin.linuxformscratch.org/sources/trinity/arts-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/arts-3.5.13.tar.gz)
 md5sums=('109124dabb1aaa9d44eb32e43b549142')
 
 # set Qt location (not needed if profile.d/q3.sh present, set prefix (not used)

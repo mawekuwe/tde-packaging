@@ -15,7 +15,7 @@ provides=($pkgname)
 conflicts=()
 replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/filelight-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/filelight-3.5.13.tar.gz)
 md5sums=('b53cb6b46942e56aa247100cdb84d85f')
 
 _builddir=applications/filelight
