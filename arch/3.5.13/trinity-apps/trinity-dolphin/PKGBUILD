@@ -12,7 +12,7 @@ pkgdesc="Trinity Do3phin file manager"
 depends=('trinity-kdebase')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/dolphin-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/dolphin-3.5.13.tar.gz)
 md5sums=('67040323c527d83978f58c76b47a91f6')
 
 _svnmod=applications/dolphin

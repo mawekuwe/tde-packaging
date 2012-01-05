@@ -13,7 +13,7 @@ depends=('xscreensaver'
         'trinity-kdebase')
 makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/applications/kpowersave-3.5.13.tar.gz)
+source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/applications/kpowersave-3.5.13.tar.gz)
 md5sums=('c887eb282fd035655b370f133ce58664')
 
 _svnmod=applications/kpowersave

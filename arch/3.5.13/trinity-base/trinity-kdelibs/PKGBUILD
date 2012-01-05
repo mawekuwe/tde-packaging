@@ -1,23 +1,24 @@
 # Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Contributor: Pawel 'l0ner' Soltys <pwslts@gmail.com>
 
 pkgname=trinity-kdelibs
 pkgver=3513
-pkgrel=2
+pkgrel=4
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity DE core libraries"
-depends=('trinity-arts' 'trinity-qt3' 'trinity-tqtinterface' 'libical' 'libxslt' 'libltdl' 'avahi' 'pam-krb5' 'taglib' 'libxcomposite')
-makedepends=('pkgconfig' 'cmake' 'autoconf' )
+depends=('trinity-arts' 'trinity-qt3' 'trinity-tqtinterface' 'libical' 'libxslt' 'libltdl' 'avahi' 'pam-krb5' 'taglib' 'libxcomposite' 'libcups' 'alsa-lib' 'libart-lgpl' 'libidn' 'openssl' 'libtiff' 'jasper' 'openexr' 'aspell' 'hspell') 
+makedepends=('pkgconfig' 'cmake')
 provides=('trinity-kdelibs' 'kdelibs3')
 conflicts=('trinity-kdelibs' 'kdelibs3')
 replaces=('trinity-kdelibs')
 options=('libtool' '!strip' '!makeflags')
-#source=('http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh')
-source=('http://anduin.linuxfromscratch.org/sources/trinity/kdelibs-3.5.13.tar.gz' 'trinity.sh')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh' 'docpath.patch')
 md5sums=('f62eefb63b4ba2141b4c576f859806dd'
-         '2de1886d632c8bc288befada5e1bc3b5')
+         '2de1886d632c8bc288befada5e1bc3b5'
+         'd20badec5a1a7f01f0c957db8b9b8def')
 
 _builddir=build
 _prefix="/opt/trinity"
@@ -35,6 +36,9 @@ build() {
    export CMAKE_INCLUDE_PATH=${QTDIR}/include/tqt:/usr/include/dbus-1.0:${_prefix}/bin
    export LD_LIBRARY_PATH=${_prefix}/lib:${QTDIR}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
 
+   msg "Patching..."
+   patch -N -d ${srcdir} -p0 < ${srcdir}/docpath.patch
+
    cd $srcdir
    msg "Creating out-of-source build directory: ${srcdir}/${_builddir}"
    mkdir -p ${_builddir}
@@ -44,12 +48,28 @@ build() {
    cmake ${srcdir}/kdelibs \
     -DCMAKE_INSTALL_PREFIX=${_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=OFF \
-    -DQT_VERSION=3 \
-    -DWITH_QT3=ON \
-    -DQTDIR=${QTDIR} \
-    -DQT_LIBRARY_DIRS=${QTDIR}/lib \
-    -DWITH_PAM=ON \
-    -DBUILD_ALL=ON
+    -DWITH_ARTS=ON \
+    -DWITH_ALSA=ON \
+    -DWITH_LIBART=ON \
+    -DWITH_LIBIDN=ON \
+    -DWITH_SSL=ON \
+    -DWITH_CUPS=ON \
+    -DWITH_LUA=OFF \
+    -DWITH_TIFF=ON \
+    -DWITH_JASPER=ON \
+    -DWITH_OPENEXR=ON \
+    -DWITH_UTEMPTER=OFF \
+    -DWITH_AVAHI=ON \
+    -DWITH_ASPELL=ON \
+    -DWITH_HSPELL=ON
+
+# Not needed, CMake returns that those were not used
+#    -DQT_VERSION=3 \
+#    -DWITH_QT3=ON \
+#    -DQTDIR=${QTDIR} \
+#    -DQT_LIBRARY_DIRS=${QTDIR}/lib \
+#    -DWITH_PAM=ON \
+#    -DBUILD_ALL=ON
 
    msg "Building - $pkgname..."
    make
@@ -65,7 +85,7 @@ package() {
    echo "${_prefix}/lib" > ${pkgdir}/etc/ld.so.conf.d/${pkgname}.conf
 
    install -d -m755 ${pkgdir}/etc/profile.d/
-   install -m644 ${startdir}/trinity.sh ${pkgdir}/etc/profile.d/
+   install -m644 ${srcdir}/trinity.sh ${pkgdir}/etc/profile.d/
 
    #   rm -r ${srcdir}/${_svnmod}
 }
