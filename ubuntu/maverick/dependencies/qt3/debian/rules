@@ -413,24 +413,15 @@ binary-arch: build install
 	mv `pwd`/debian/qt3-assistant/usr/bin/assistant `pwd`/debian/qt3-assistant/usr/bin/assistant-qt3
 	mv `pwd`/debian/qt3-linguist/usr/bin/linguist `pwd`/debian/qt3-linguist/usr/bin/linguist-qt3
 
-	install -D debian/maintain/man/designer.1 `pwd`/debian/qt3-designer/usr/share/man/man1/designer-qt3.1
 	install -D doc/man/man1/moc.1 `pwd`/debian/qt3-dev-tools/usr/share/man/man1/moc-qt3.1
 	install -D doc/man/man1/uic.1 `pwd`/debian/qt3-dev-tools/usr/share/man/man1/uic-qt3.1
 	install -D doc/man/man1/lrelease.1 `pwd`/debian/qt3-dev-tools/usr/share/man/man1/lrelease-qt3.1
 	install -D doc/man/man1/lupdate.1 `pwd`/debian/qt3-dev-tools/usr/share/man/man1/lupdate-qt3.1
-	install -D debian/maintain/man/qtconfig.1 `pwd`/debian/qt3-qtconfig/usr/share/man/man1/qtconfig-qt3.1
-	install -D debian/maintain/man/linguist.1 `pwd`/debian/qt3-linguist/usr/share/man/man1/linguist-qt3.1
 
 	dh_link -pqt3-designer usr/share/qt3/doc/html usr/share/doc/qt3-designer/html
 	dh_link -pqt3-assistant usr/share/qt3/doc/html usr/share/doc/qt3-assistant/html
 	dh_link -pqt3-linguist usr/share/qt3/doc/html usr/share/doc/qt3-linguist/html
 	dh_link -pqt3-dev-tools usr/share/qt3/doc/html usr/share/doc/qt3-dev-tools/html
-
-	# install the manpages we have
-	dh_installman -pqt3-designer debian/maintain/man/createcw.1
-	dh_installman -pqt3-dev-tools-compat debian/maintain/man/qt20fix.1 debian/maintain/man/mergetr.1 debian/maintain/man/findtr.1 debian/maintain/man/msg2qm.1
-	dh_installman -pqt3-dev-tools-embedded debian/maintain/man/makeqpf.1 debian/maintain/man/qvfb.1
-	dh_installman -pqt3-dev-tools debian/maintain/man/qembed.1
 
 	# copy README.Debian
 	for a in libqt3-mt-dev libqt3-mt qt3-doc; do install -D `pwd`/debian/README.Debian `pwd`/debian/"$$a"/usr/share/doc/"$$a"/README.Debian; done
