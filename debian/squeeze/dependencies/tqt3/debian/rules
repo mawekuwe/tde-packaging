@@ -413,24 +413,15 @@ binary-arch: build install
 	mv `pwd`/debian/tqt3-assistant/usr/bin/assistant `pwd`/debian/tqt3-assistant/usr/bin/assistant-tqt3
 	mv `pwd`/debian/tqt3-linguist/usr/bin/linguist `pwd`/debian/tqt3-linguist/usr/bin/linguist-tqt3
 
-	install -D debian/maintain/man/designer.1 `pwd`/debian/tqt3-designer/usr/share/man/man1/designer-tqt3.1
 	install -D doc/man/man1/moc.1 `pwd`/debian/tqt3-dev-tools/usr/share/man/man1/moc-tqt3.1
 	install -D doc/man/man1/uic.1 `pwd`/debian/tqt3-dev-tools/usr/share/man/man1/uic-tqt3.1
 	install -D doc/man/man1/lrelease.1 `pwd`/debian/tqt3-dev-tools/usr/share/man/man1/lrelease-tqt3.1
 	install -D doc/man/man1/lupdate.1 `pwd`/debian/tqt3-dev-tools/usr/share/man/man1/lupdate-tqt3.1
-	install -D debian/maintain/man/qtconfig.1 `pwd`/debian/tqt3-qtconfig/usr/share/man/man1/qtconfig-tqt3.1
-	install -D debian/maintain/man/linguist.1 `pwd`/debian/tqt3-linguist/usr/share/man/man1/linguist-tqt3.1
 
 	dh_link -ptqt3-designer usr/share/tqt3/doc/html usr/share/doc/tqt3-designer/html
 	dh_link -ptqt3-assistant usr/share/tqt3/doc/html usr/share/doc/tqt3-assistant/html
 	dh_link -ptqt3-linguist usr/share/tqt3/doc/html usr/share/doc/tqt3-linguist/html
 	dh_link -ptqt3-dev-tools usr/share/tqt3/doc/html usr/share/doc/tqt3-dev-tools/html
-
-	# install the manpages we have
-	dh_installman -ptqt3-designer debian/maintain/man/createcw.1
-	dh_installman -ptqt3-dev-tools-compat debian/maintain/man/qt20fix.1 debian/maintain/man/mergetr.1 debian/maintain/man/findtr.1 debian/maintain/man/msg2qm.1
-	dh_installman -ptqt3-dev-tools-embedded debian/maintain/man/makeqpf.1 debian/maintain/man/qvfb.1
-	dh_installman -ptqt3-dev-tools debian/maintain/man/tqembed.1
 
 	# copy README.Debian
 	for a in libtqt3-mt-dev libtqt3-mt tqt3-doc; do install -D `pwd`/debian/README.Debian `pwd`/debian/"$$a"/usr/share/doc/"$$a"/README.Debian; done
