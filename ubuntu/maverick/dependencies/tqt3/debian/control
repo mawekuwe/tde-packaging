@@ -10,7 +10,8 @@ Build-Depends: debhelper (>= 5.0.31), quilt, cpio, libxext-dev (>= 4.3.0.dfsg.1-
  libmng-dev (>= 1.0.3), libpng12-dev | libpng12-0-dev, libfontconfig1-dev,
  libfreetype6-dev, libxft-dev, libiodbc2-dev (>= 3.51.2-4),
  libmysqlclient-dev, flex, libpq-dev, libaudio-dev, libcups2-dev,
- libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, libsqlite3-dev
+ libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, libsqlite3-dev,
+ firebird2.1-dev [i386 kfreebsd-i386 kfreebsd-amd64 knetbsd-i386 netbsd-i386 amd64 sparc powerpc] | firebird2-dev [i386 amd64]
 Section: libs
 Priority: optional
 Standards-Version: 3.8.4
@@ -64,17 +65,16 @@ Description: PostgreSQL database driver for TQt3 (Threaded)
  Install it if you intend to use or write TQt programs that are
  to access a PostgreSQL DB.
 
-#Not in Kubuntu
-#Package: libtqt3-mt-ibase
-#Architecture: i386 kfreebsd-i386 kfreebsd-amd64 knetbsd-i386 netbsd-i386 amd64 sparc powerpc
-#Section: libs
-#Depends: ${shlibs:Depends}
-#Conflicts: libtqt3c102-mt-ibase
-#Replaces: libtqt3c102-mt-ibase
-#Description: InterBase/FireBird database driver for TQt3 (Threaded)
-# This package contains the threaded InterBase/FireBird plugin
-# for TQt3. Install it if you intend to use or write TQt programs
-# that are to access an InterBase/FireBird DB.
+Package: libtqt3-mt-ibase
+Architecture: i386 kfreebsd-i386 kfreebsd-amd64 knetbsd-i386 netbsd-i386 amd64 sparc powerpc
+Section: libs
+Depends: ${shlibs:Depends}
+Conflicts: libtqt3c102-mt-ibase
+Replaces: libtqt3c102-mt-ibase
+Description: InterBase/FireBird database driver for TQt3 (Threaded)
+ This package contains the threaded InterBase/FireBird plugin
+ for TQt3. Install it if you intend to use or write TQt programs
+ that are to access an InterBase/FireBird DB.
 
 Package: libtqt3-mt-sqlite
 Architecture: any

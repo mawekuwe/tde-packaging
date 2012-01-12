@@ -86,6 +86,7 @@ CONFIGURE_OPTS = \
 		-plugin-sql-odbc		\
 		-plugin-sql-psql		\
 		-plugin-sql-mysql		\
+		-plugin-sql-ibase		\
 		-plugin-sql-sqlite		\
 						\
 		-I/usr/include/mysql		\

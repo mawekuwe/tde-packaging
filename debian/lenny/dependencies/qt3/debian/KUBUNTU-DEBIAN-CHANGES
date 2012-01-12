@@ -1,4 +1,0 @@
-No firebird/ibase build (remove build-dep, control entry, ibase ./configure option), firebird is not in Ubuntu main
-install qtrc (change rules, qtrc file) and qt_plugins_3.3rc
-add /etc/ to libqt3-mt
-
