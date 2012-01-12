@@ -9,7 +9,7 @@ Standards-Version: 3.8.4
 
 Package: kmymoney2-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${shlibs:Misc}, ${misc:Depends},
+Depends: ${shlibs:Depends}, ${shlibs:Misc}, ${misc:Depends}, kmymoney2-common-trinity (>= ${source:Version})
 Replaces: kmymoney2-trinity (<< 4:14.0.0)
 Breaks: kmymoney2-trinity (<< 4:14.0.0)
 Recommends: kmymoney2-plugin-aqbanking-trinity
