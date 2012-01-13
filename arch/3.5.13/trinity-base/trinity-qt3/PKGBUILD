@@ -11,9 +11,6 @@ license=('GPL')
 groups=('trinity-base')
 depends=('libpng' 'libxmu'  'libxcursor' 'libxinerama' 'mesa' 'libxft' 
          'libxrandr' 'libmng')
-         # libmysqlclient - moved to optdepends
-         # postgresqli-libs - moved to optdepends
-         # libjpeg-turbo - removed since it's not present in extra/qt3 PKGBUILD
 makedepends=('libxi' 
              'mysql' 'postgresql' 'unixodbc' 'sqlite3')
              # cups [add for cups support, add -cups to ./configure opts]
@@ -27,7 +24,6 @@ md5sums=('78dc675e84aed595375449818cbb589a'
          '32772739fc53062e9151a6e283c52add')
 
 _prefix="/opt/qt"
-# install=qt.install
 
 build() {
    msg "Setting enviroment variables..."
