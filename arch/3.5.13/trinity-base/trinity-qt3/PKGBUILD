@@ -1,41 +1,60 @@
-# Maintainer: Calvin Morrison <MutantTurkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <MutantTurkey@gmail.com>
 
 pkgname=trinity-qt3
 pkgver=3884
 pkgrel=3
+pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
 arch=('i686' 'x86_64')
 url="http://trinitydesktop.org"
 license=('GPL')
 groups=('trinity-base')
-pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
-depends=('libjpeg-turbo' 'libmng' 'libmysqlclient' 'libpng' 'libxmu'  'libxcursor' 'libxinerama' 'libxft' 'libxrandr' 'mesa' 'postgresql-libs')
-makedepends=('cups' 'libxi' 'mysql' 'postgresql' 'unixodbc' 'sqlite3')
-provides=('trinity-qt3' 'qt3')
-conflicts=('qt3' 'qt3-enhanced')
-replaces=('trinity-qt3')
-options=(!libtool)
-source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz)
-md5sums=('78dc675e84aed595375449818cbb589a')
+depends=('libpng' 'libxmu'  'libxcursor' 'libxinerama' 'mesa' 'libxft' 
+         'libxrandr' 'libmng')
+         # libmysqlclient - moved to optdepends
+         # postgresqli-libs - moved to optdepends
+         # libjpeg-turbo - removed since it's not present in extra/qt3 PKGBUILD
+makedepends=('libxi' 
+             'mysql' 'postgresql' 'unixodbc' 'sqlite3')
+             # cups [add for cups support, add -cups to ./configure opts]
+optdepends=('libmysqlclient' 'postgresql-libs' 'unixodbc')
+provides=('trinity-qt3' 'qt3' 'qt3-enhanced' )
+conflicts=('qt3')
+replaces=('qt3-enhanced')
+options=('!libtool' '!emptydirs')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz' 'qt-odbc.patch')
+md5sums=('78dc675e84aed595375449818cbb589a'
+         '32772739fc53062e9151a6e283c52add')
 
 _prefix="/opt/qt"
-_builddir="qt3"
 # install=qt.install
 
 build() {
    msg "Setting enviroment variables..."
-   export QTDIR="${srcdir}/${_builddir}/" 
+   export QTDIR="${srcdir}/qt3/" 
    export PATH=${QTDIR}/bin:${PATH}
    export LD_LIBRARY_PATH=${QTDIR}/lib:${LD_LIBRARY_PATH}
    export QMAKESPEC=$QTDIR/mkspecs/linux-g++
 
    if [ "$CARCH" = "x86_64" ]; then
      export ARCH="-64"
-     else unset ARCH
+   else unset ARCH
    fi
 
-   cd "${srcdir}/${_builddir}"
+   # fix build problem against new unixODBC
+   patch -p1 -i "${srcdir}"/qt-odbc.patch
+
+   cd "${srcdir}/qt3"
 
    rm -rf mkspecs/{*aix*,*bsd*,cygwin*,dgux*,darwin*,hpux*,hurd*,irix*,lynxos*,macx*,qnx*,reliant*,sco*,solaris*,tru64*,unixware*,win32*}
+
+   sed -i 's|-cp -P -f|-cp -L -f|' qmake/Makefile.unix
+   rm -rf doc/html examples tutorial
+   sed -i "s|sub-tutorial sub-examples||" Makefile
+   sed -i "s|-O2|$CXXFLAGS|" mkspecs/linux-g++/qmake.conf
+   sed -i "s|-O2|$CXXFLAGS|" mkspecs/linux-g++-32/qmake.conf
+   sed -i "s|-O2|$CXXFLAGS|" mkspecs/linux-g++-64/qmake.conf
+   sed -i "s|-I. |$CXXFLAGS -I. |" qmake/Makefile.unix
 
    # auto license acceptance
    sed -i "s|read acceptance|acceptance=yes|" configure
@@ -44,21 +63,50 @@ build() {
    #make -C qmake || return 1
    ./configure \
       -prefix ${_prefix} \
+      -platform linux-g++${ARCH} \
       -sysconfdir /etc/qt \
+      -release \
+      -sm \
+      -nis \
+      -stl \
+      -no-g++-exceptions \
       -thread \
       -shared \
       -system-zlib \
       -system-lib{png,jpeg,mng} \
       -qt-gif \
-      -cups
+      -plugin-sql-{mysql,psql,sqlite,odbc}
+
+   # 64bit fixes pulled from extras/qt3 PKGBUILD
+   # fix /opt/qt/lib path
+   [ "$CARCH" = "x86_64" ] && sed -i "s|/opt/qt/lib64|/opt/qt/lib|g" "${srcdir}"/qt3/src/Makefile
+   [ "$CARCH" = "x86_64" ] && sed -i "s|/opt/qt/lib64|/opt/qt/lib|g" "${srcdir}"/qt3/tools/designer/designer/Makefile
+   [ "$CARCH" = "x86_64" ] && sed -i "s|/opt/qt/lib64|/opt/qt/lib|g" "${srcdir}"/qt3/tools/designer/editor/Makefile
+   [ "$CARCH" = "x86_64" ] && sed -i "s|/opt/qt/lib64|/opt/qt/lib|g" "${srcdir}"/qt3/tools/assistant/lib/Makefile
+   [ "$CARCH" = "x86_64" ] && sed -i "s|/opt/qt/lib64|/opt/qt/lib|g" "${srcdir}"/qt3/tools/designer/uilib/Makefile
 
    msg "Building - $pkgname..."
+   
+   # build sql plugins
+   cd "${srcdir}"/qt3
+   make -C qmake
+   cd "${srcdir}"/qt3/plugins/src/sqldrivers/mysql
+   "${srcdir}"/qt3/bin/qmake -o Makefile "INCPATH+=/usr/include/mysql" "LIBS+=-L/usr/lib/mysql -lmysqlclient" mysql.pro
+   cd "${srcdir}"/qt3/plugins/src/sqldrivers/psql
+   "${srcdir}"/qt3/bin/qmake -o Makefile "INCPATH+=/usr/src/include /usr/include/postgresql/server" "LIBS+=-L/usr/lib -lpq" psql.pro
+
+   cd "${srcdir}"/qt3
+   
+   # fix the broken makefiles
+   # sed -i 's|[[:space:]]*strip.*doc/html.*$|#|g' src/Makefile
+   
+   # build rest
    make  
 }
 
 package() {  
    msg "Packaging - $pkgname-$pkgver"
-   cd "$srcdir/${_builddir}"
+   cd "$srcdir/qt3"
 
    # Build ld.so.conf file
    echo "${_prefix}" > ${srcdir}/libqt-mt.conf
@@ -75,4 +123,16 @@ package() {
    install -D -m755 ${srcdir}/qt.profile ${pkgdir}/etc/profile.d/qt3.sh
 
    make INSTALL_ROOT="$pkgdir" install
+
+   rm -rf "${pkgdir}"/opt/qt/{phrasebooks,templates,translations}
+   sed -i "s|-L${srcdir}/qt3/lib ||g" "${pkgdir}"/opt/qt/lib/*.prl
+   install -D -m755 qmake/qmake "${pkgdir}"/opt/qt/bin/qmake
+
+   ln -sf /opt/qt/bin/qtconfig "${pkgdir}"/opt/qt/bin/qt3config
+   rm -f "${pkgdir}"/opt/qt/mkspecs/linux-g++$ARCH/linux-g++$ARCH
+
+   # install man pages
+   install -d -m755 "${pkgdir}"/opt/qt/man
+   cp -r "${srcdir}"/qt3/doc/man/{man1,man3} "${pkgdir}"/opt/qt/man/
+
 } 
