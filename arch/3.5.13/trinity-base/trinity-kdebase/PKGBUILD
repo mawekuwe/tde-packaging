@@ -9,31 +9,21 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity Desktop Enviroment base components"
-depends=(hal
-         libltdl
-         trinity-dbus-1-qt3
-         trinity-pyqt3
-         trinity-dbus-tqt-1
-         trinity-dbus-tqt
-         trinity-kdelibs
-         openexr
-         libxtst
-         libxkbfile
-         xorg-server
-         xorg-xset
-         xorg-xsetroot
-         xorg-xprop
-         xorg-xmessage
-         xorg-xinit
-         xorg-iceauth)
-         #'trinity-arts'
-         #'trinity-qt3'
+depends=('trinity-dbus-tqt' 'trinity-kdelibs' 'hal'
+         'xorg-server' 'xorg-xset' 'xorg-xsetroot' 'xorg-xprop' 'xorg-xmessage' 'xorg-xinit'
+         'xorg-iceauth')
+         #'trinity-dbus-1-qt3' 'trinity-pyqt3' 'trinity-dbus-tqt-1' 
+         # 'libltdl'
+         # 'libxtst'
+         # 'openexr'
+         # 'libxkbfile'
 
 makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake' 'xorg-bdftopcf')
 optdepends=('desktop-file-utils: Command line utilities for working with desktop entries'
         'pciutils: PCI bus configuration space access library and tools'
         'xscreensaver: Screen saver and locker for the X Window System')
-options=('libtool' '!strip')
+confilicts=('kdemod3-kdebase')
+options=('!libtool')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 'docpath.patch' 'dbusfix.patch' 'kdm-trinity' 'trinity.desktop')
 md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
          'fc9cdbe6779bb3860e222dafa744c94e'
@@ -41,25 +31,18 @@ md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
          '376d85d213cf3c04cb0912e5cccd68bd'
          '1418e45fea5a9738544cbd264c36373b')
 
-#_qtdir=/opt/qt
 _prefix="/opt/trinity"
 
 build() {
    cd $srcdir
 
    msg "Setting PATH, CMAKE and Trinity Environment variables"
-   #if [[ -r /etc/profile.d/qt3.sh ]]; then
-       . /etc/profile.d/qt3.sh
-   #    [[ -n $QTDIR ]] && _qtdir=$QTDIR
-   #else
-   #    [[ ${PATH%%:*} =~ ${_qtdir}/bin ]] || export PATH=${_qtdir}/bin:$PATH
-   #fi
+   . /etc/profile.d/qt3.sh
 
    export CMAKE_PREFIX_PATH=${QTDIR}:${_prefix}
    export CMAKE_INCLUDE_PATH=${_prefix}/include/dbus-1-tqt/:${_prefix}/include/dbus-1.0/:${_prefix}/include:${_prefix}/include/libkrandr
    export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/kde3:${QTDIR}/lib:$LD_LIBRARY_PATH
    export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig:$PKG_CONFIG_PATH
-   #echo $PKG_CONFIG_PATH
 
    patch -N ${srcdir}/kdebase/kioslave/media/mediamanager/halbackend.h < dbusfix.patch
    patch -N -d ${srcdir} -p0 < docpath.patch
