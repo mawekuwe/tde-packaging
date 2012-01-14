@@ -2,8 +2,8 @@
 # Contributor: Calvin Morrison <MutantTurkey@gmail.com>
 
 pkgname=trinity-qt3
-pkgver=3884
-pkgrel=3
+pkgver=3.8.8.d
+pkgrel=4
 pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
 arch=('i686' 'x86_64')
 url="http://trinitydesktop.org"
