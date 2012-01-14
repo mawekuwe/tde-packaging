@@ -1,24 +1,30 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-tqtinterface
 pkgver=3513
-pkgrel=1
+pkgrel=3
 arch=('i686' 'x86_64')
 url="http://trinity.pearsoncomputing.net"
 license=('GPL2')
 groups=('trinity-base')
 pkgdesc="Trinity - TQt interface"
-depends=('python2-sip' 'trinity-qt3' 'trinity-pyqt3')
-makedepends=('pkgconfig' 'cmake' 'libxi' 'libxft' 'libxrandr' 'libxcursor' 'libxinerama' 'mesa')
-# optdepends=()
-provides=($pkgname)
-#conflicts=()
-#replaces=()
+depends=('trinity-qt3')
+         # python2-sip
+         # trinity-pyqt3
+makedepends=('pkgconfig' 'cmake')
+            # libxi
+            # libxft
+            # libxrandr
+            # libxcursor
+            # libxinerama
+            # mesa
+conflicts=('kdemod3-tqtinterface')
+makeopts=('!libtool' '!emptydirs')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/tqtinterface-3.5.13.tar.gz)
 md5sums=('d54cc9fd0b35555298efd17c32471a2b')
 
 _prefix=/usr
-_builddir=build
 
 build() {
    msg "Setting PATH, CMAKE and Trinity Environment variables"
@@ -32,10 +38,10 @@ build() {
    msg "Starting cmake..."
    cmake "../dependencies/tqtinterface" \
      -DCMAKE_INSTALL_PREFIX=${_prefix} \
-     -DQT_PREFIX_DIR=${_qtdir} \
-     -DQT_INCLUDE_DIR=${_qtdir}/include \
+     -DQT_PREFIX_DIR=${QTDIR} \
+     -DQT_INCLUDE_DIR=${QTDIR}/include \
      -DQT_VERSION=3 \
-     -DMOC_EXECUTABLE=${_qtdir}/bin/moc || return 1
+     -DMOC_EXECUTABLE=${QTDIR}/bin/moc || return 1
    #     -DQT_INCLUDE_DIR=${_prefix}/include/tqt/Qt
    #     -DQT_LIBRARY_DIRS=/opt/qt/lib \
    #     -DWITH_QT3=ON \
@@ -47,7 +53,7 @@ build() {
 package() {
    msg "Packaging - $pkgname-$pkgver"
    #   cd ${_svnmod}
-   cd ${srcdir}/${_builddir}
+   cd ${srcdir}/build
    make DESTDIR="${pkgdir}" install
 
    # include uic-tqt in package
