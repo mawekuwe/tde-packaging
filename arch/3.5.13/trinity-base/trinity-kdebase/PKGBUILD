@@ -21,7 +21,8 @@ depends=('trinity-dbus-tqt' 'trinity-kdelibs' 'hal'
 makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake' 'xorg-bdftopcf')
 optdepends=('desktop-file-utils: Command line utilities for working with desktop entries'
         'pciutils: PCI bus configuration space access library and tools'
-        'xscreensaver: Screen saver and locker for the X Window System')
+        'xscreensaver: Screen saver and locker for the X Window System'
+        'xorg-fonts-75dpi: X.org 75dpi fonts collection')
 confilicts=('kdemod3-kdebase')
 options=('!libtool')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 'docpath.patch' 'dbusfix.patch' 'kdm-trinity' 'trinity.desktop')
