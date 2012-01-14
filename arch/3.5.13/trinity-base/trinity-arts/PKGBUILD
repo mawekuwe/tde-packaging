@@ -14,7 +14,7 @@ depends=('trinity-tqtinterface'
          'glib2')
 makedepends=('pkgconfig' 'cmake')
 conflicts=('kdemod3-arts')
-options=('!libtool' '!emptydirs')
+options=('libtool' '!emptydirs')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/arts-3.5.13.tar.gz)
 md5sums=('109124dabb1aaa9d44eb32e43b549142')
 

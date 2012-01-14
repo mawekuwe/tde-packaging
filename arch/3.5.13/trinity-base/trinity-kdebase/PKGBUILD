@@ -24,7 +24,7 @@ optdepends=('desktop-file-utils: Command line utilities for working with desktop
         'xscreensaver: Screen saver and locker for the X Window System'
         'xorg-fonts-75dpi: X.org 75dpi fonts collection')
 confilicts=('kdemod3-kdebase')
-options=('!libtool')
+options=('libtool')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 'docpath.patch' 'dbusfix.patch' 'kdm-trinity' 'trinity.desktop')
 md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
          'fc9cdbe6779bb3860e222dafa744c94e'

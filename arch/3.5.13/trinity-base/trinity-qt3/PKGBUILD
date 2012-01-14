@@ -18,7 +18,7 @@ optdepends=('libmysqlclient' 'postgresql-libs' 'unixodbc')
 provides=('trinity-qt3' 'qt3' 'qt3-enhanced' )
 conflicts=('qt3')
 replaces=('qt3-enhanced')
-options=('!libtool' '!emptydirs')
+options=('libtool' '!emptydirs')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz' 'qt-odbc.patch')
 md5sums=('78dc675e84aed595375449818cbb589a'
          '32772739fc53062e9151a6e283c52add')
