@@ -1,0 +1,238 @@
+commit 2a54aa58cfe166f48d6f1395cbc6c9bfd5e31bfc
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1326525051 -0600
+
+    Fix a number of crashes
+
+diff --git a/kmymoney2/converter/mymoneyqifprofile.cpp b/kmymoney2/converter/mymoneyqifprofile.cpp
+index 52ef770..880b1c2 100644
+--- a/kmymoney2/converter/mymoneyqifprofile.cpp
++++ b/kmymoney2/converter/mymoneyqifprofile.cpp
+@@ -769,7 +769,7 @@ TQString MyMoneyQifProfile::inputDateFormat(void) const
+   possibleDateFormats(list);
+   if(list.count() == 1)
+     return list.first();
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ void MyMoneyQifProfile::possibleDateFormats(TQStringList& list) const
+diff --git a/kmymoney2/converter/mymoneyqifreader.cpp b/kmymoney2/converter/mymoneyqifreader.cpp
+index 9390429..a974e8f 100644
+--- a/kmymoney2/converter/mymoneyqifreader.cpp
++++ b/kmymoney2/converter/mymoneyqifreader.cpp
+@@ -714,7 +714,7 @@ const TQString MyMoneyQifReader::extractLine(const TQChar id, int cnt)
+     }
+   }
+   m_extractedLine = -1;
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ void MyMoneyQifReader::extractSplits(TQValueList<qSplit>& listqSplits) const
+diff --git a/kmymoney2/dialogs/kcategoryreassigndlg.cpp b/kmymoney2/dialogs/kcategoryreassigndlg.cpp
+index 4de99f6..beb8e98 100644
+--- a/kmymoney2/dialogs/kcategoryreassigndlg.cpp
++++ b/kmymoney2/dialogs/kcategoryreassigndlg.cpp
+@@ -53,7 +53,7 @@ KCategoryReassignDlg::~KCategoryReassignDlg()
+ TQString KCategoryReassignDlg::show(const MyMoneyAccount& category)
+ {
+   if (category.id().isEmpty())
+-   return TQString(); // no payee available? nothing can be selected...
++   return TQString::null; // no payee available? nothing can be selected...
+ 
+   AccountSet set;
+   set.addAccountGroup(MyMoneyAccount::Income);
+@@ -79,12 +79,12 @@ TQString KCategoryReassignDlg::show(const MyMoneyAccount& category)
+   // if there is no category for reassignment left, we bail out
+   if(list.isEmpty()) {
+     KMessageBox::sorry(this, TQString("<qt>")+i18n("At least one transaction/schedule still references the category <b>%1</b>.  However, at least one category with the same currency must exist so that the transactions/schedules can be reassigned.").tqarg(category.name())+TQString("</qt>"));
+-    return TQString();
++    return TQString::null;
+   }
+ 
+   // execute dialog and if aborted, return empty string
+   if (this->exec() == TQDialog::Rejected)
+-    return TQString();
++    return TQString::null;
+ 
+   // otherwise return index of selected payee
+   return m_category->selectedItem();
+diff --git a/kmymoney2/dialogs/knewloanwizard.cpp b/kmymoney2/dialogs/knewloanwizard.cpp
+index 884807f..87baaf9 100644
+--- a/kmymoney2/dialogs/knewloanwizard.cpp
++++ b/kmymoney2/dialogs/knewloanwizard.cpp
+@@ -1072,7 +1072,7 @@ int KNewLoanWizard::term(void) const
+ TQString KNewLoanWizard::initialPaymentAccount(void) const
+ {
+   if(m_dontCreatePayoutCheckBox->isChecked()) {
+-    return TQString();
++    return TQString::null;
+   }
+   return m_assetAccountEdit->selectedItems().first();
+ }
+diff --git a/kmymoney2/dialogs/kpayeereassigndlg.cpp b/kmymoney2/dialogs/kpayeereassigndlg.cpp
+index 0c3c0cf..1db13f1 100644
+--- a/kmymoney2/dialogs/kpayeereassigndlg.cpp
++++ b/kmymoney2/dialogs/kpayeereassigndlg.cpp
+@@ -53,13 +53,13 @@ KPayeeReassignDlg::~KPayeeReassignDlg()
+ TQString KPayeeReassignDlg::show(const TQValueList<MyMoneyPayee>& payeeslist)
+ {
+   if (payeeslist.isEmpty())
+-   return TQString(); // no payee available? nothing can be selected...
++   return TQString::null; // no payee available? nothing can be selected...
+ 
+   payeeCombo->loadPayees(payeeslist);
+ 
+   // execute dialog and if aborted, return empty string
+   if (this->exec() == TQDialog::Rejected)
+-    return TQString();
++    return TQString::null;
+ 
+   // otherwise return index of selected payee
+   return payeeCombo->selectedItem();
+diff --git a/kmymoney2/mymoney/mymoneyaccount.cpp b/kmymoney2/mymoney/mymoneyaccount.cpp
+index 6ef1f9c..c83e834 100644
+--- a/kmymoney2/mymoney/mymoneyaccount.cpp
++++ b/kmymoney2/mymoney/mymoneyaccount.cpp
+@@ -450,7 +450,7 @@ void MyMoneyAccountLoan::setPayee(const TQString& payee)
+ 
+ const TQString MyMoneyAccountLoan::interestAccountId(void) const
+ {
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ void MyMoneyAccountLoan::setInterestAccountId(const TQString& /* id */)
+diff --git a/kmymoney2/mymoney/mymoneyfile.cpp b/kmymoney2/mymoney/mymoneyfile.cpp
+index 4809b28..c59d577 100644
+--- a/kmymoney2/mymoney/mymoneyfile.cpp
++++ b/kmymoney2/mymoney/mymoneyfile.cpp
+@@ -1230,7 +1230,7 @@ TQString MyMoneyFile::locateSubAccount(const MyMoneyAccount& base, const TQStrin
+       return locateSubAccount(nextBase, remainder);
+     }
+   }
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ TQString MyMoneyFile::value(const TQString& key) const
+diff --git a/kmymoney2/mymoney/mymoneykeyvaluecontainer.cpp b/kmymoney2/mymoney/mymoneykeyvaluecontainer.cpp
+index 22fa1ac..cabf772 100644
+--- a/kmymoney2/mymoney/mymoneykeyvaluecontainer.cpp
++++ b/kmymoney2/mymoney/mymoneykeyvaluecontainer.cpp
+@@ -55,7 +55,7 @@ const TQString& MyMoneyKeyValueContainer::value(const TQString& key) const
+   it = m_kvp.find(key);
+   if(it != m_kvp.end())
+     return (*it);
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ void MyMoneyKeyValueContainer::setValue(const TQString& key, const TQString& value)
+diff --git a/kmymoney2/mymoney/mymoneyutils.cpp b/kmymoney2/mymoney/mymoneyutils.cpp
+index 08ffff4..8012200 100644
+--- a/kmymoney2/mymoney/mymoneyutils.cpp
++++ b/kmymoney2/mymoney/mymoneyutils.cpp
+@@ -305,7 +305,7 @@ TQString dateToString(const TQDate& date)
+   if(!date.isNull() && date.isValid())
+     return date.toString(Qt::ISODate);
+ 
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ TQDate stringToDate(const TQString& str)
+@@ -323,7 +323,7 @@ TQString TQStringEmpty(const TQString& val)
+   if(!val.isEmpty())
+     return TQString(val);
+ 
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ unsigned long extractId(const TQString& txt)
+diff --git a/kmymoney2/plugins/ofximport/dialogs/konlinebankingstatus.cpp b/kmymoney2/plugins/ofximport/dialogs/konlinebankingstatus.cpp
+index 084d73c..ec2d4a0 100644
+--- a/kmymoney2/plugins/ofximport/dialogs/konlinebankingstatus.cpp
++++ b/kmymoney2/plugins/ofximport/dialogs/konlinebankingstatus.cpp
+@@ -98,14 +98,14 @@ const TQString& KOnlineBankingtqStatus::appId(void) const
+ {
+   if(m_appId)
+     return m_appId->appId();
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ TQString KOnlineBankingtqStatus::headerVersion(void) const
+ {
+   if(m_headerVersion)
+     return m_headerVersion->headerVersion();
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ #include "konlinebankingstatus.moc"
+diff --git a/kmymoney2/plugins/ofximport/dialogs/mymoneyofxconnector.cpp b/kmymoney2/plugins/ofximport/dialogs/mymoneyofxconnector.cpp
+index 36a05b5..7408a38 100644
+--- a/kmymoney2/plugins/ofximport/dialogs/mymoneyofxconnector.cpp
++++ b/kmymoney2/plugins/ofximport/dialogs/mymoneyofxconnector.cpp
+@@ -125,7 +125,7 @@ const TQString& OfxAppVersion::appId(void) const
+   TQString app = m_combo->currentText();
+   if(m_appMap[app] != defaultAppId)
+     return m_appMap[app];
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ MyMoneyOfxConnector::MyMoneyOfxConnector(const MyMoneyAccount& _account):
+diff --git a/kmymoney2/widgets/kmymoneycombo.cpp b/kmymoney2/widgets/kmymoneycombo.cpp
+index f8b6489..761b537 100644
+--- a/kmymoney2/widgets/kmymoneycombo.cpp
++++ b/kmymoney2/widgets/kmymoneycombo.cpp
+@@ -588,7 +588,7 @@ public:
+         return it.key();
+       }
+     }
+-    return TQString();
++    return TQString::null;
+   }
+ };
+ 
+diff --git a/kmymoney2/widgets/kmymoneywizard.cpp b/kmymoney2/widgets/kmymoneywizard.cpp
+index ff00c78..f446acf 100644
+--- a/kmymoney2/widgets/kmymoneywizard.cpp
++++ b/kmymoney2/widgets/kmymoneywizard.cpp
+@@ -106,7 +106,7 @@ bool KMyMoneyWizardPage::isComplete(void) const
+ 
+ const TQString& KMyMoneyWizardPage::helpContext(void) const
+ {
+-  return TQString();
++  return TQString::null;
+ }
+ 
+ KMyMoneyWizard::KMyMoneyWizard(TQWidget *parent, const char *name, bool modal, WFlags f) :
+diff --git a/kmymoney2/widgets/registeritem.h b/kmymoney2/widgets/registeritem.h
+index e9c21d3..83b9a04 100644
+--- a/kmymoney2/widgets/registeritem.h
++++ b/kmymoney2/widgets/registeritem.h
+@@ -88,14 +88,14 @@ public:
+   virtual const TQDate& sortPostDate(void) const { return nullDate; }
+   virtual int sortSamePostDate(void) const = 0;
+   virtual const TQDate& sortEntryDate(void) const { return nullDate; }
+-  virtual const TQString& sortPayee(void) const { return TQString(); }
++  virtual const TQString& sortPayee(void) const { return TQString::null; }
+   virtual const MyMoneyMoney& sortValue(void) const { return nullValue; }
+-  virtual const TQString& sortNumber(void) const { return TQString(); }
+-  virtual const TQString& sortEntryOrder(void) const { return TQString(); }
++  virtual const TQString& sortNumber(void) const { return TQString::null; }
++  virtual const TQString& sortEntryOrder(void) const { return TQString::null; }
+   virtual CashFlowDirection sortType(void) const { return Deposit; }
+-  virtual const TQString& sortCategory(void) const { return TQString(); }
++  virtual const TQString& sortCategory(void) const { return TQString::null; }
+   virtual MyMoneySplit::reconcileFlagE sortReconcileState(void) const { return MyMoneySplit::MaxReconcileState; }
+-  virtual const TQString& sortSecurity(void) const { return TQString(); }
++  virtual const TQString& sortSecurity(void) const { return TQString::null; }
+ 
+   /**
+     * This method sets the row offset of the item in the register

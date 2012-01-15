@@ -1,6 +1,6 @@
 # Default version for this component
 %define kdecomp kmymoney
-%define version 1.0.4
+%define version 1.0.5
 %define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -35,7 +35,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{kdecomp}-3.5.13.tar.gz
 Source1:	kmymoneytitlelabel.png
 Patch0:		kmymoney-3.5.13-recode_ftbfs.patch
-Patch1:		kmymoney-3.5.13-default_money_crash.patch
+
+## TDE Commit: 2a54aa58cfe166f48d6f1395cbc6c9bfd5e31bfc
+Patch1:		kmymoney-3.5.13-lots_of_crash.patch
+
+## TDE Commit: 8654cea10f6902719006d5975db7dc07b2fcc713
+Patch2:		kmymoney-3.5.13-update_to_1.0.5.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
@@ -80,7 +85,8 @@ This package contains development files needed for KMyMoney plugins.
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch0 -p1
-#patch1 -p1
+%patch1 -p1
+%patch2 -p1
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
 
 # Ugly hack to modify TQT include directory inside autoconf files.
@@ -191,9 +197,12 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_libdir}/libkmm_mymoney.la
 %{_libdir}/libkmm_plugin.la
 %{_libdir}/*.so
-%{_usr}/%{_lib}/qt-3.3/plugins/sqldrivers/libsqlite3.lib64.so
+%{_usr}/%{_lib}/qt-3.3/plugins/sqldrivers/libsqlite3*.so
 %{_usr}/%{_lib}/qt-3.3/plugins/designer/libkmymoney.so
 
 %Changelog
+* Sun Jan 15 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-1
+- Updates to upstream 1.0.5
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.0.4-1
 - Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
