@@ -9,7 +9,7 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity DE core libraries"
-depends=('trinity-arts'
+depends=('trinity-arts' 'trinity-tqtinterface'
          'libxslt' 'libidn' 
          'libxcomposite' 'libcups' 
          'libart-lgpl' 

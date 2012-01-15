@@ -9,7 +9,7 @@ url='http://www.trinitydesktop.com'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity arts Sound System and libraries"
-depends=('trinity-tqtinterface'
+depends=('trinity-qt3'
          'audiofile' 'libmad' 'libvorbis'
          'glib2')
 makedepends=('pkgconfig' 'cmake')
