@@ -2,38 +2,35 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
-# TDE 3.5.12 specific building variables
+# TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
 
-%define console_helper 1
+Name:			trinity-kdeadmin
+Summary:		Administrative tools for TDE
+Version:		%{?version}
+Release:		%{?release}%{?dist}%{?_variant}
 
-Name:    trinity-kdeadmin
-Summary: Administrative tools for TDE
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+License:		GPLv2
+Group:			User Interface/Desktops
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-License: GPLv2
-Group:   User Interface/Desktops
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
-
-Prefix:		%{_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{_prefix}
 
 Source0: kdeadmin-%{version}.tar.gz
 Source1: kuser.pam
@@ -42,11 +39,12 @@ Source5: kpackagerc
 Source6: ksysvrc
 Source7: kuserrc
 
+# [kdeadmin/knetworkconf] Add RHEL 5, RHEL 6, Fedora 15, Fedora 16
+Patch0:		kdeadmin-3.5.13-add_rhel_fedora.patch
+
 Requires: trinity-kdelibs
 Requires: pkgconfig
-%if 0%{?console_helper}
 Requires: usermode-gtk
-%endif
 
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: rpm-devel
@@ -59,13 +57,7 @@ kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 
 %prep
 %setup -q -n kdeadmin
-
-%if 0%{?rhel} > 1
-  echo 'DO_NOT_COMPILE="$DO_NOT_COMPILE kpackage"' >kpackage/configure.in.in
-  echo 'DO_NOT_COMPILE="$DO_NOT_COMPILE ksysv"' >ksysv/configure.in.in
-  echo 'DO_NOT_COMPILE="$DO_NOT_COMPILE kuser"' >kuser/configure.in.in
-  echo 'DO_NOT_COMPILE="$DO_NOT_COMPILE lilo-config"' >lilo-config/configure.in.in
-%endif
+%patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -82,10 +74,6 @@ kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-
-%if 0%{?fedora} > 0
-export CXXFLAGS="${CXXFLAGS} -fpermissive"
-%endif
 
 %configure \
    --enable-new-ldflags \
@@ -104,27 +92,19 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%if 0%{?rhel} > 1
-comps="kcron kdat knetworkconf"
-rm -rf %{buildroot}%{tde_docdir}/HTML/en/kuser \
-       %{buildroot}%{tde_docdir}/HTML/en/kpackage \
-       %{buildroot}%{tde_docdir}/HTML/en/ksysv \
-       %{buildroot}%{tde_docdir}/HTML/en/lilo-config       
-%else
 comps="kcron kdat knetworkconf kpackage ksysv kuser"
-mkdir -p %{buildroot}%{_datadir}/config \
-         %{buildroot}/etc/security/console.apps \
-         %{buildroot}/etc/pam.d \
-         %{buildroot}%{_sbindir}
+%__mkdir_p	%{buildroot}%{_datadir}/config \
+			%{buildroot}/etc/security/console.apps \
+			%{buildroot}/etc/pam.d \
+			%{buildroot}%{_sbindir}
 
-install -p -m644 %{SOURCE5} %{SOURCE6} %{SOURCE7} %{buildroot}%{_datadir}/config/
+%__install -p -m644 %{SOURCE5} %{SOURCE6} %{SOURCE7} %{buildroot}%{_datadir}/config/
 
 # Run kuser through consolehelper
-install -p -m644 %{SOURCE1} %{buildroot}/etc/security/console.apps/kuser
-install -p -m644 %{SOURCE2} %{buildroot}/etc/pam.d/kuser
-mv %{buildroot}%{_bindir}/kuser %{buildroot}%{_sbindir}
-ln -s consolehelper %{buildroot}%{_bindir}/kuser
-%endif
+%__install -p -m644 %{SOURCE1} %{buildroot}/etc/security/console.apps/kuser
+%__install -p -m644 %{SOURCE2} %{buildroot}/etc/pam.d/kuser
+%__mv %{buildroot}%{_bindir}/kuser %{buildroot}%{_sbindir}
+%__ln_s consolehelper %{buildroot}%{_bindir}/kuser
 
 # locale's
 %find_lang %{name} || touch %{name}.lang
@@ -175,14 +155,12 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %doc AUTHORS COPYING README
 %doc rpmdocs/*
 %{_bindir}/*
-%if 0%{?rhel} < 1
 %{_sbindir}/*
 %config(noreplace) /etc/pam.d/*
 %config(noreplace) /etc/security/console.apps/*
 %{_datadir}/config*/*
 %{_datadir}/mimelnk/*/*.desktop
 %{_datadir}/icons/crystalsvg/*/*/*
-%endif
 %{_datadir}/apps/*
 %{_datadir}/applications/kde/*.desktop
 %{_datadir}/icons/hicolor/*/*/*
@@ -193,6 +171,12 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Wed Jan 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Add knetworkconf support for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Remove 'consolehelper' macro
+- Enables all kdeadmin components in RHEL (no more exclude some tools)
+- Spec file cleanup
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Fix HTML directory location
 

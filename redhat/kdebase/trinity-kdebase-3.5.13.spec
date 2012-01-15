@@ -47,11 +47,8 @@ Source3:	pamd.kdm-trinity-np%{?dist}
 Source4:	pamd.kcheckpass-trinity%{?dist}
 Source5:	pamd.kscreensaver-trinity%{?dist}
 
-# TDE Official patches (from SVN), unmodified
-# (none)
-
-# TDE Official patches (from SVN), modified
-# (none)
+# [kdebase] Fix corrupted PNG images [Bug #298]
+Source6:	tiles-fixed-png-images.tar.gz
 
 # TDE unofficial patches, fixing FTBFS
 ## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
@@ -100,6 +97,8 @@ Patch28:	kdebase-3.5.13-randrtray_merge_x11_reconfig_requests.patch
 Patch29:	kdebase-3.5.13-fix_multihead_desktop_lock.patch
 ## [kdebase/kdm/kfrontend] Allows to hide KDM menu button
 Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
+## [kdebase/kxkb] Enables xtest support
+Patch31:	kdebase-3.5.13-enable_xtest_support.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -279,6 +278,8 @@ Protocol handlers (KIOslaves) for personal information management, including:
 
 %prep
 %setup -q -n kdebase
+%__tar xfz %{SOURCE6} -C kicker/data/tiles
+
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
@@ -304,6 +305,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch28 -p0
 %patch29 -p0
 %patch30 -p1
+%patch31 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -360,6 +362,7 @@ cd build
   -DWITH_XRENDER=ON \
   -DWITH_XDAMAGE=ON \
   -DWITH_XEXT=ON \
+  -DWITH_XTEST=ON \
   -DWITH_LIBUSB=ON \
   -DWITH_LIBRAW1394=ON \
   -DWITH_PAM=ON \
@@ -689,8 +692,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
-* The Jan 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-15
-- Add KDM option to hide 'Menu' button on login prompt
+* Thu Jan 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-15
+- Add a KDM option to hide 'Menu' button on login prompt
+- Fix corrupted PNG tiles [Bug #298]
+- Adds 'xtest' support
 
 * Mon Jan 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-14
 - Fix Konqueror Icon Activation Effect [Bug #335]

@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -44,6 +44,8 @@ Patch10:	kdelibs-3.5.13-maxlinelength.patch
 Patch11:	kdelibs-3.5.13-enable_pcre.patch
 ## [kdelibs/kate] Updated syntax highlighting files [Bug #764]
 Patch12:	kdelibs-3.5.13-kate_syntax.patch.gz
+## [kdelibs] Adds Inotify support (backport from commit 24f144faf98249012e7b1657a5dfe93750f0dfde)
+Patch13:	kdelibs-3.5.13-add_inotify_support.patch
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
@@ -117,6 +119,7 @@ format for easy browsing
 %patch10 -p1
 %patch11 -p0
 %patch12 -p1
+%patch13 -p1
 
 
 %build
@@ -144,6 +147,8 @@ cd build
   -DWITH_ASPELL=OFF \
   -DWITH_HSPELL=OFF \
   -DWITH_PCRE=ON \
+  -DWITH_INOTIFY=ON \
+  -DWITH_XTEST=ON \
   ..
 
 %__make %{?_smp_mflags}
@@ -315,6 +320,9 @@ EOF
 
 
 %changelog
+* Sat Jan 14 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Adds 'inotify' support
+
 * Sat Dec 31 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Enable pcre support in kdelibs [Bug #569]
 - Updated Kate syntax highlighting files [Bug #764]

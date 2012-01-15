@@ -1,0 +1,135 @@
+commit 45fb5561be6e828c78180c781f74d0ae9d1c3ea4
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1326230757 -0600
+
+    Enable xtest support flag
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index b832a92..f4d11ac 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -65,6 +65,7 @@ option( WITH_XRANDR "Enable xrandr support" OFF )
+ option( WITH_XRENDER "Enable xrender support" OFF )
+ option( WITH_XDAMAGE "Enable xdamage support" OFF )
+ option( WITH_XEXT "Enable xext support" OFF )
++option( WITH_XTEST "Enable xext support" OFF )
+ option( WITH_LIBUSB "Enable control of some mouse models through libusb" OFF )
+ option( WITH_LIBRAW1394 "Enable visualization of ieee1394 devices through libraw1394" OFF )
+ option( WITH_SUDO_KDESU_BACKEND "Use sudo as backend for kdesu (default is su)" OFF )
+diff --git a/ConfigureChecks.cmake b/ConfigureChecks.cmake
+index 7b7a1b4..df892e1 100644
+--- a/ConfigureChecks.cmake
++++ b/ConfigureChecks.cmake
+@@ -100,12 +100,25 @@ endif( )
+ # xext (kwin/kompmgr)
+ if( WITH_XEXT )
+   pkg_search_module( XEXT xext )
+-  if( NOT XEXT_FOUND )
++  if( XEXT_FOUND )
++    set( HAVE_XEXT 1 )
++  else( XEXT_FOUND )
+     tde_message_fatal( "xext is requested, but was not found on your system" )
+   endif( )
+ endif( )
+ 
+ 
++# xtest (kxkb)
++if( WITH_XTEST )
++  pkg_search_module( XTEST xtst )
++  if( XTEST_FOUND )
++    set( HAVE_XTEST 1 )
++  else( XTEST_FOUND )
++    tde_message_fatal( "xtest is requested, but was not found on your system" )
++  endif( )
++endif( )
++
++
+ # GL
+ if( BUILD_KDESKTOP OR BUILD_KCONTROL OR BUILD_KSCREENSAVER )
+ check_library_exists( GL glXChooseVisual "" HAVE_GLXCHOOSEVISUAL )
+diff --git a/config.h.cmake b/config.h.cmake
+index d72a96c..a8de2fa 100644
+--- a/config.h.cmake
++++ b/config.h.cmake
+@@ -18,6 +18,9 @@
+ // konsole, kdm, kxkb
+ #cmakedefine HAVE_XKB 1
+ 
++// kxkb
++#cmakedefine HAVE_XTEST 1
++
+ // kdm, kioslave
+ #cmakedefine HAVE_TERMIOS_H 1
+ 
+diff --git a/kxkb/CMakeLists.txt b/kxkb/CMakeLists.txt
+index 703591a..f36a003 100644
+--- a/kxkb/CMakeLists.txt
++++ b/kxkb/CMakeLists.txt
+@@ -22,6 +22,7 @@ include_directories(
+ 
+ link_directories(
+   ${TQT_LIBRARY_DIRS}
++  ${XTEST_LIBDIR}
+ )
+ 
+ 
+@@ -39,7 +40,7 @@ tde_add_kpart( kcm_keyboard AUTOMOC
+     extension.cpp x11helper.cpp rules.cpp kxkbconfig.cpp
+     pixmap.cpp kcmlayout.cpp kcmlayoutwidget.ui
+     kcmmisc.cpp kcmmiscwidget.ui
+-  LINK kio-shared xkbfile
++  LINK kio-shared xkbfile ${XTEST_LIBRARIES}
+   DESTINATION ${PLUGIN_INSTALL_DIR}
+ )
+ 
+diff --git a/kxkb/kcmmisc.cpp b/kxkb/kcmmisc.cpp
+index b4c18a4..8850d89 100644
+--- a/kxkb/kcmmisc.cpp
++++ b/kxkb/kcmmisc.cpp
+@@ -344,6 +344,21 @@ int xkb_set_off()
+     return 1;
+     }
+ 
++int xkb_state()
++    {
++    unsigned int mask;
++    unsigned int numlockState;
++    XkbStateRec xkbState;
++    if( !xkb_init())
++        return 0;
++    mask = xkb_numlock_mask();
++    if( mask == 0 )
++        return 0;
++    XkbGetState( dpy, XkbUseCoreKbd, &xkbState);
++    numlockState = xkbState.locked_mods & mask;
++    return numlockState;
++    }
++
+ int xkb_toggle()
+     {
+     unsigned int mask;
+@@ -443,7 +458,14 @@ void numlock_toggle()
+         return;
+ #endif
+ #ifdef HAVE_XTEST
++#ifdef HAVE_XKB
++    if (xkb_state())
++        xtest_set_on();
++    else
++        xtest_set_off();
++#else // HAVE_XKB
+     xtest_toggle();
++#endif // HAVE_XKB
+ #endif
+     }
+ // This code is taken from xset utility from XFree 4.3 (http://www.xfree86.org/)
+--- kdebase/khotkeys/shared/CMakeLists.txt.ORI	2012-01-14 21:49:34.423813010 +0100
++++ kdebase/khotkeys/shared/CMakeLists.txt	2012-01-14 21:53:23.915008098 +0100
+@@ -36,6 +36,6 @@
+ tde_add_library( ${target} SHARED AUTOMOC
+   SOURCES ${${target}_SRCS}
+   VERSION 1.0.0
+-  LINK kio-shared
++  LINK kio-shared ${XTEST_LIBRARIES}
+   DESTINATION ${LIB_INSTALL_DIR}
+ )

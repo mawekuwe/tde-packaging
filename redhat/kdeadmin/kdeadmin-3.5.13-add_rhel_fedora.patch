@@ -1,0 +1,287 @@
+diff -Nuar kdeadmin.ORI/knetworkconf/backends/network-conf.in kdeadmin.P/knetworkconf/backends/network-conf.in
+--- kdeadmin.ORI/knetworkconf/backends/network-conf.in	2012-01-11 20:15:15.161715402 +0100
++++ kdeadmin.P/knetworkconf/backends/network-conf.in	2012-01-11 20:39:21.746715574 +0100
+@@ -63,6 +63,7 @@
+ $version = "@VERSION@";
+ @platforms = ("redhat-5.2", "redhat-6.0", "redhat-6.1", "redhat-6.2", "redhat-7.0", "redhat-7.1",
+               "redhat-7.2", "redhat-8.0", "redhat-9",
++              "rhel-5", "rhel-6",
+               "openna-1.0",
+               "mandrake-7.1", "mandrake-7.2", "mandrake-9.0", "mandrake-9.1", "mandrake-9.2",
+               "mandrake-10.0", "mandrake-10.1","mandrake-10.2", "mandriva-2006.0",
+@@ -72,7 +73,7 @@
+               "debian-2.2", "debian-3.0", "debian-3.1", "debian-4.0", "debian-5.0", "debian-testing",
+               "ubuntu-5.04", "ubuntu-5.10", "ubuntu-6.06", "ubuntu-6.10", "ubuntu-7.04", "ubuntu-7.10", "ubuntu-8.04", "ubuntu-8.10", "ubuntu-9.04", "ubuntu-9.10", "ubuntu-10.04", "ubuntu-10.10",
+               "suse-7.0", "suse-9.0", "suse-9.1",
+-              "turbolinux-7.0", "fedora-1", "fedora-2", "fedora-3", "fedora-4", "fedora-5", "rpath",
++              "turbolinux-7.0", "fedora-1", "fedora-2", "fedora-3", "fedora-4", "fedora-5", "rpath", "fedora-15", "fedora-16",
+               "pld-1.0", "pld-1.1", "pld-1.99",
+               "conectiva-9", "conectiva-10",
+               "vine-3.0", "vine-3.1",
+diff -Nuar kdeadmin.ORI/knetworkconf/backends/network.pl.in kdeadmin.P/knetworkconf/backends/network.pl.in
+--- kdeadmin.ORI/knetworkconf/backends/network.pl.in	2012-01-11 20:15:15.161715402 +0100
++++ kdeadmin.P/knetworkconf/backends/network.pl.in	2012-01-11 20:33:43.120340531 +0100
+@@ -492,6 +492,8 @@
+        "redhat-7.2"   => "redhat-6.2",
+        "redhat-8.0"   => "redhat-6.2",
+        "redhat-9"     => "redhat-6.2",
++       "rhel-5"       => "redhat-6.2",
++       "rhel-6"       => "redhat-6.2",
+        "openna-1.0"   => "redhat-6.2",
+        "debian-2.2"   => "debian-2.2",
+        "debian-3.0"   => "debian-2.2",
+@@ -538,6 +540,8 @@
+        "fedora-3"     => "redhat-6.2",
+        "fedora-4"     => "redhat-6.2",
+        "fedora-5"     => "redhat-6.2",
++       "fedora-15"    => "redhat-6.2",
++       "fedora-16"    => "redhat-6.2",
+        "rpath"        => "redhat-6.2",
+        "vine-3.0"     => "redhat-6.2",
+        "vine-3.1"     => "redhat-6.2",
+@@ -1816,6 +1820,8 @@
+           "redhat-7.2"   => \&gst_network_rh72_get_file,
+           "redhat-8.0"   => \&gst_network_rh72_get_file,
+           "redhat-9"     => \&gst_network_rh72_get_file,
++          "rhel-5"       => \&gst_network_rh72_get_file,
++          "rhel-6"       => \&gst_network_rh72_get_file,
+           "openna-1.0"   => \&gst_network_rh62_get_file,
+           "mandrake-7.2" => \&gst_network_rh62_get_file,
+           "mandrake-7.1" => \&gst_network_rh62_get_file,
+@@ -1863,6 +1869,8 @@
+           "fedora-3"     => \&gst_network_rh72_get_file,
+           "fedora-4"     => \&gst_network_rh72_get_file,
+           "fedora-5"     => \&gst_network_rh72_get_file,
++          "fedora-15"    => \&gst_network_rh72_get_file,
++          "fedora-16"    => \&gst_network_rh72_get_file,
+           "rpath"        => \&gst_network_rh72_get_file,
+           "vine-3.0"     => \&gst_network_rh62_get_file,
+           "vine-3.1"     => \&gst_network_rh62_get_file,
+@@ -3961,6 +3969,8 @@
+           "redhat-7.2"   => "lo",
+           "redhat-8.0"   => "lo",
+           "redhat-9"     => "",
++          "rhel-5"       => "",
++          "rhel-6"       => "",
+           "openna-1.0"   => "lo",
+           "mandrake-7.1" => "lo",
+           "mandrake-7.2" => "lo",
+@@ -4008,6 +4018,8 @@
+           "fedora-3"     => "",
+           "fedora-4"     => "",
+           "fedora-5"     => "",
++          "fedora-15"    => "",
++          "fedora-16"    => "",
+           "rpath"        => "",
+           "vine-3.0"     => "lo",
+           "vine-3.1"     => "lo",
+@@ -4150,6 +4162,8 @@
+ 	  "redhat-7.2"   => "redhat-7.2",
+           "redhat-8.0"   => "redhat-7.2",
+           "redhat-9"     => "redhat-7.2",
++          "rhel-5"       => "redhat-7.2",
++          "rhel-6"       => "redhat-7.2",
+ 	  "openna-1.0"   => "redhat-6.2",
+ 	  "mandrake-7.1" => "redhat-6.2",
+ 	  "mandrake-7.2" => "redhat-6.2",
+@@ -4197,6 +4211,8 @@
+           "fedora-3"     => "redhat-7.2",
+           "fedora-4"     => "redhat-7.2",
+           "fedora-5"     => "redhat-7.2",
++          "fedora-15"    => "redhat-7.2",
++          "fedora-16"    => "redhat-7.2",
+           "rpath"        => "redhat-7.2",
+           "vine-3.0"     => "redhat-7.0",
+           "vine-3.1"     => "redhat-7.0",
+@@ -4585,6 +4604,8 @@
+ 	  "redhat-7.2"   => "redhat-7.2",
+           "redhat-8.0"   => "redhat-8.0",
+           "redhat-9"     => "redhat-8.0",
++          "rhel-5"       => "redhat-8.0",
++          "rhel-6"       => "redhat-8.0",
+ 	  "openna-1.0"   => "redhat-6.2",
+ 	  "mandrake-7.1" => "redhat-6.2",
+           "mandrake-7.2" => "redhat-6.2",
+@@ -4632,6 +4650,8 @@
+           "fedora-3"     => "redhat-7.2",
+           "fedora-4"     => "redhat-7.2",
+           "fedora-5"     => "redhat-7.2",
++          "fedora-15"    => "redhat-7.2",
++          "fedora-16"    => "redhat-7.2",
+           "rpath"        => "redhat-7.2",
+           "vine-3.0"     => "vine-3.0",
+           "vine-3.1"     => "vine-3.0",
+@@ -5445,6 +5465,8 @@
+ 	  "redhat-7.2"   => "redhat-7.2",
+           "redhat-8.0"   => "redhat-7.2",
+           "redhat-9"     => "redhat-7.2",
++          "rhel-5"     => "redhat-7.2",
++          "rhel-6"     => "redhat-7.2",
+ 	  "mandrake-7.1" => "redhat-6.2",
+ 	  "mandrake-7.2" => "redhat-6.2",
+ 	  "mandrake-9.0" => "redhat-7.0",
+@@ -5491,6 +5513,8 @@
+           "fedora-3"     => "redhat-7.2",
+           "fedora-4"     => "redhat-7.2",
+           "fedora-5"     => "redhat-7.2",
++          "fedora-15"    => "redhat-7.2",
++          "fedora-16"    => "redhat-7.2",
+           "rpath"        => "redhat-7.2",
+           "vine-3.0"     => "redhat-7.0",
+           "vine-3.1"     => "redhat-7.0",
+@@ -5872,6 +5896,8 @@
+ 	  "redhat-7.2"   => "redhat-7.2",
+           "redhat-8.0"   => "redhat-8.0",
+           "redhat-9"     => "redhat-8.0",
++          "rhel-5"       => "redhat-8.0",
++          "rhel-6"       => "redhat-8.0",
+ 	  "mandrake-7.1" => "redhat-6.2",
+           "mandrake-7.2" => "redhat-6.2",
+           "mandrake-9.0" => "mandrake-9.0",
+@@ -5918,6 +5944,8 @@
+           "fedora-3"     => "redhat-7.2",
+           "fedora-4"     => "redhat-7.2",
+           "fedora-5"     => "redhat-7.2",
++          "fedora-15"    => "redhat-7.2",
++          "fedora-16"    => "redhat-7.2",
+           "rpath"        => "redhat-7.2",
+           "vine-3.0"     => "vine-3.0",
+           "vine-3.1"     => "vine-3.0",
+diff -Nuar kdeadmin.ORI/knetworkconf/backends/platform.pl.in kdeadmin.P/knetworkconf/backends/platform.pl.in
+--- kdeadmin.ORI/knetworkconf/backends/platform.pl.in	2012-01-11 20:15:15.161715402 +0100
++++ kdeadmin.P/knetworkconf/backends/platform.pl.in	2012-01-11 20:38:27.401468302 +0100
+@@ -71,6 +71,8 @@
+   "redhat-7.3"      => "Red Hat Linux 7.3 Valhalla",
+   "redhat-8.0"      => "Red Hat Linux 8.0 Psyche",
+   "redhat-9"        => "Red Hat Linux 9.0 Shrike",
++  "rhel-5"          => "Enterprise Linux 5",
++  "rhel-6"          => "Enterprise Linux 6",
+   "openna-1.0"      => "OpenNA Linux 1.0 VSLC",
+   "mandrake-7.1"    => "Linux Mandrake 7.1",
+   "mandrake-7.2"    => "Linux Mandrake 7.2 Odyssey",
+@@ -116,6 +118,8 @@
+   "fedora-3"        => "Fedora Core 3 (Heidelberg)",
+   "fedora-4"        => "Fedora Core 4 (Stentz)",
+   "fedora-5"        => "Fedora Core 5 (Bordeaux)",
++  "fedora-15"       => "Fedora 15 (LoveLock)",
++  "fedora-16"       => "Fedora 16 (Verne)",
+   "rpath"           => "rPath Linux",
+   "ark"             => "Ark Linux",
+ };
+@@ -184,6 +188,27 @@
+   return -1;
+ }
+ 
++sub check_rhel
++{
++  open RELEASE, "$gst_prefix/etc/redhat-release" or return -1;
++  while (<RELEASE>)
++  {
++    chomp;
++    if (
++         (/^CentOS release (\d)([\d\.]+)\s+.*/)
++      or (/^Scientific Linux release (\d)([\d\.]+)\s+.*/)
++      or (/^Red Hat Enterprise Linux \w release (\d)([\d\.]+)\s+.*/)
++    )
++    {
++      close RELEASE;
++      return "rhel-$1";
++    }
++  }
++  close RELEASE;
++  return -1;
++}
++
++
+ sub check_openna
+ {
+   open OPENNA, "$gst_prefix/etc/openna-release" or return -1;
+@@ -577,7 +602,7 @@
+   my %check = (
+     # Red Hat check must run after Vine, Mandrake and Fedora, and Mandrake after BlackPanther
+     "Linux" => [ \&check_lsb, \&check_debian, \&check_caldera, \&check_suse, \&check_blackpanther, \&check_vine,
+-                 \&check_fedora, \&check_mandrake, \&check_mandriva, \&check_conectiva, \&check_linuxppc, \&check_redhat, \&check_openna,
++                 \&check_fedora, \&check_mandrake, \&check_mandriva, \&check_conectiva, \&check_linuxppc, \&check_rhel, \&check_redhat, \&check_openna,
+                  \&check_turbolinux, \&check_slackware, \&check_vlos, \&check_gentoo, \&check_pld, \&check_rpath, \&check_archlinux, \&check_ark ],
+     "FreeBSD" => [ \&check_freebsd ],
+     "SunOS"    => [ \&check_solaris ]
+diff -Nuar kdeadmin.ORI/knetworkconf/backends/service.pl.in kdeadmin.P/knetworkconf/backends/service.pl.in
+--- kdeadmin.ORI/knetworkconf/backends/service.pl.in	2012-01-11 20:15:15.160715344 +0100
++++ kdeadmin.P/knetworkconf/backends/service.pl.in	2012-01-11 20:21:36.452645160 +0100
+@@ -59,6 +59,9 @@
+        "redhat-8.0"   => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "redhat-9"     => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "openna-1.0"   => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
++       
++       "rhel-5"       => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
++       "rhel-6"       => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+ 
+        "mandrake-7.1" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "mandrake-7.2" => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+@@ -110,6 +113,9 @@
+        "fedora-5"     => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "rpath"        => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+ 
++       "fedora-15"    => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
++       "fedora-16"    => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
++
+        "vine-3.0"     => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "vine-3.1"     => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+        "ark"          => ["$gst_prefix/etc/rc.d", "$gst_prefix/etc/rc.d/init.d", "../init.d"],
+@@ -139,6 +145,9 @@
+        "redhat-9"       => [3, 5],
+        "openna-1.0"     => [3, 5],
+ 
++       "rhel-5"         => [3, 5],
++       "rhel-6"         => [3, 5],
++
+        "mandrake-7.1"   => [3, 5],
+        "mandrake-7.2"   => [3, 5],
+        "mandrake-9.0"   => [3, 5],
+@@ -189,6 +198,9 @@
+        "fedora-4"       => [3, 5],
+        "fedora-5"       => [3, 5],
+        "rpath"          => [3, 5],
++
++       "fedora-15"      => [3, 5],
++       "fedora-16"      => [3, 5],
+        
+        "vine-3.0"       => [3, 5],
+        "vine-3.1"       => [3, 5],
+@@ -218,6 +230,9 @@
+      "redhat-9"       => "redhat-5.2",
+      "openna-1.0"     => "redhat-5.2",
+      
++     "rhel-5"         => "redhat-5.2",
++     "rhel-6"         => "redhat-5.2",
++
+      "mandrake-7.1"   => "redhat-5.2",
+      "mandrake-7.2"   => "redhat-5.2",
+      "mandrake-9.0"   => "redhat-5.2",
+@@ -267,6 +282,9 @@
+      "fedora-5"       => "redhat-5.2",
+      "rpath"          => "redhat-5.2",
+ 
++     "fedora-15"      => "redhat-5.2",
++     "fedora-16"      => "redhat-5.2",
++
+      "vine-3.0"       => "redhat-5.2",
+      "vine-3.1"       => "redhat-5.2",
+      "ark"            => "redhat-5.2",
+@@ -1744,12 +1762,16 @@
+        "redhat-7.3"   => \&gst_service_redhat_get_status,
+        "redhat-8.0"   => \&gst_service_redhat_get_status,
+        "redhat-9"     => \&gst_service_redhat_get_status,
++       "rhel-5"       => \&gst_service_redhat_get_status,
++       "rhel-6"       => \&gst_service_redhat_get_status,
+        "mandrake-7.2" => \&gst_service_redhat_get_status,
+        "fedora-1"     => \&gst_service_redhat_get_status,
+        "fedora-2"     => \&gst_service_redhat_get_status,
+        "fedora-3"     => \&gst_service_redhat_get_status,
+        "fedora-4"     => \&gst_service_redhat_get_status,
+        "fedora-5"     => \&gst_service_redhat_get_status,
++       "fedora-15"    => \&gst_service_redhat_get_status,
++       "fedora-16"    => \&gst_service_redhat_get_status,
+ 
+        "rpath"        => \&gst_service_redhat_get_status,
+ 
