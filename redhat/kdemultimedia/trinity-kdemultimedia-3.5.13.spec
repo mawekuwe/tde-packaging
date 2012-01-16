@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -20,7 +20,7 @@ BuildRequires: cmake >= 2.8
 %define appdir %{_datadir}/applications/kde
 
 # former extras bits
-#define _with_akode --with-akode
+%define _with_akode --with-akode
 ## not currently compatible with libtunepimp-0.5 (only libtunepimp-0.4)
 #define _with_musicbrainz --with-musicbrainz
 %define _with_taglib --with-taglib
@@ -44,16 +44,15 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: kdemultimedia-%{version}.tar.gz
+Source0:	kdemultimedia-%{version}.tar.gz
 
+%if "%{_prefix}" == "/usr"
 Provides: kdemultimedia3 = %{version}-%{release}
+%endif
 
 # RedHat Legacy patches (from Fedora 8)
 Patch3: kdemultimedia-3.4.0-xdg.patch
 Patch5: kdemultimedia-3.5.7-pthread.patch
-
-
-Provides: kdemultimedia3 = %{version}-%{release}
 
 Requires: %{name}-libs = %{version}-%{release}
 
@@ -412,6 +411,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libyafxplayer.so
 
 %changelog
+* Mon Jan 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Enables 'akode' support
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Fix HTML directory location
 
@@ -427,3 +429,4 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 * Sat Sep 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
 - Import to GIT
 - Spec file based on Fedora 8 "kdemultimedia-6:3.5.10-2"
+
