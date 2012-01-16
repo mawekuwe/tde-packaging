@@ -1,7 +1,7 @@
 # Basic package informations
 %define kdecomp amarok
 %define version 1.4.10
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -36,6 +36,7 @@ Patch1:     amarok-1.4.8-gcc43.patch
 Patch2:		amarok-3.5.13-cmake_konqsidebar.patch
 Patch3:		amarok-3.5.13-taglib_include.patch
 Patch4:		amarok-3.5.13-enable_riokarma.patch
+Patch5:		amarok-3.5.13-enable_akode.patch
 
 BuildRequires:  alsa-lib-devel
 BuildRequires:  desktop-file-utils
@@ -71,6 +72,7 @@ BuildRequires:	libkarma-devel karma-sharp
 #%{?fedora:BuildRequires:  xmms-devel}
 BuildRequires:	dbus-devel
 BuildRequires:	dbus-tqt-devel
+BuildRequires:	akode-devel
 
 # For dir ownership and some default plugins (lyrics), -ruby subpkg?  -- Rex
 Requires:  ruby
@@ -117,7 +119,7 @@ Summary:    Visualisation plugins for Amarok
 Group:      Applications/Multimedia
 Requires:   %{name} = %{version}-%{release}
 # No plugins by default, we need libvisual-plugins
-Requires:   libvisual-plugins
+#Requires:   libvisual-plugins
 %description visualisation
 Amarok can use visualisation plugins from different origins.
 Right now, only xmms is supported, which means that you can
@@ -130,6 +132,7 @@ use any of xmms' visualisation plugins with Amarok.
 %patch2 -p0
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 
 %build
@@ -145,6 +148,7 @@ cd build
 	-DWITH_KONQSIDEBAR=ON \
 	-DWITH_XINE=ON \
 	-DWITH_YAUAP=ON \
+	-DWITH_AKODE=ON \
 	-DWITH_IPOD=ON \
 	-DWITH_IFP=ON \
 	-DWITH_NJB=ON \
@@ -268,6 +272,10 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 # YAUAP
 %{_datadir}/services/amarok_yauap-engine_plugin.desktop
 %{tde_libdir}/libamarok_yauap-engine_plugin.*
+# AKODE
+%{_datadir}/services/amarok_aKode-engine.desktop
+%{tde_libdir}/libamarok_akode-engine.*
+
 
 
 %files konqueror
@@ -282,6 +290,10 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 
 
 %changelog
+* Mon Jan 16 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.10-4
+- Enable 'akode' support
+- Removes 'libvisual-plugins' dependency (obsolete ?)
+
 * Mon Nov 28 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.10-3
 - Enable riokarma support
 - Enhance localized files packaging
