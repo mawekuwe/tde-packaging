@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 5
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -44,8 +44,10 @@ Patch10:	kdelibs-3.5.13-maxlinelength.patch
 Patch11:	kdelibs-3.5.13-enable_pcre.patch
 ## [kdelibs/kate] Updated syntax highlighting files [Bug #764]
 Patch12:	kdelibs-3.5.13-kate_syntax.patch.gz
-## [kdelibs] Adds Inotify support (backport from commit 24f144faf98249012e7b1657a5dfe93750f0dfde)
+## [kdelibs] Adds Inotify support (backport commit 24f144faf98249012e7b1657a5dfe93750f0dfde)
 Patch13:	kdelibs-3.5.13-add_inotify_support.patch
+## [kdelibs] Add fam/gamin support to tdelibs CMake (backport commit 2b035349c31fe64c31d2c050892b117a3a807179)
+Patch14:	kdelibs-3.5.13-enable_fam_gamin.patch
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
@@ -66,6 +68,7 @@ BuildRequires:	libtiff-devel
 BuildRequires:	OpenEXR-devel
 BuildRequires:	libtool-ltdl-devel
 BuildRequires:	glib2-devel
+BuildRequires:	gamin-devel
 
 Requires:		tqtinterface
 Requires:		trinity-arts
@@ -120,6 +123,7 @@ format for easy browsing
 %patch11 -p0
 %patch12 -p1
 %patch13 -p1
+%patch14 -p1
 
 
 %build
@@ -148,7 +152,7 @@ cd build
   -DWITH_HSPELL=OFF \
   -DWITH_PCRE=ON \
   -DWITH_INOTIFY=ON \
-  -DWITH_XTEST=ON \
+  -DWITH_GAMIN=ON \
   ..
 
 %__make %{?_smp_mflags}
@@ -320,6 +324,9 @@ EOF
 
 
 %changelog
+* Mon Jan 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Adds 'fam' and 'gamin' support
+
 * Sat Jan 14 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Adds 'inotify' support
 
