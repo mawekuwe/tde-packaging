@@ -3,7 +3,7 @@
 
 pkgname=trinity-kdebase
 pkgver=3513
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -25,12 +25,13 @@ optdepends=('desktop-file-utils: Command line utilities for working with desktop
         'xorg-fonts-75dpi: X.org 75dpi fonts collection')
 confilicts=('kdemod3-kdebase')
 options=('libtool')
-source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 'docpath.patch' 'dbusfix.patch' 'kdm-trinity' 'trinity.desktop')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 'docpath.patch' 'dbusfix.patch' 'kdm-trinity' 'trinity.desktop' 'Xsession.patch')
 md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
          'fc9cdbe6779bb3860e222dafa744c94e'
          'c9ce810c281002440a6de8cfd8735d07'
          '376d85d213cf3c04cb0912e5cccd68bd'
-         '1418e45fea5a9738544cbd264c36373b')
+         '1418e45fea5a9738544cbd264c36373b'
+         '895f5d7351aa73ba1f57b0ad27081d69')
 
 _prefix="/opt/trinity"
 
@@ -109,6 +110,7 @@ package() {
 
    # update the Xsession file
    # [[ -f Xsession ]] && install -m755 Xsession ${pkgdir}/${_kdmdir}
+   patch -N ${pkgdir}${_prefix}/share/config/kdm/Xsession < ${srcdir}/Xsession.patch
 
    # create the starttrinity link
    [[ -d ${pkgdir}/usr/bin ]] || mkdir -p ${pkgdir}/usr/bin
