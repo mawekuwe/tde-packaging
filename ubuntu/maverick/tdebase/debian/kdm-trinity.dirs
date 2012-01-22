@@ -1,2 +1,2 @@
-etc/default/kdm-trinity.d
-var/lib/kdm-trinity
+etc/default/tdm-trinity.d
+var/lib/tdm-trinity

@@ -20,13 +20,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Gestor de ecrã por omissão:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -36,7 +36,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -48,7 +48,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -63,39 +63,39 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "Deseja parar o daemon kdm?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "Deseja parar o daemon tdm?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"O daemon do gestor de ecrã X (kdm) é tipicamente parado na actualização ou "
+"O daemon do gestor de ecrã X (tdm) é tipicamente parado na actualização ou "
 "remoção de pacotes, mas parece que este está a gerir pelo menos uma sessão X "
 "activa."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"Se o kdm for parado agora, todas as sessões X que este estiver a gerir serão "
+"Se o tdm for parado agora, todas as sessões X que este estiver a gerir serão "
 "terminadas. Caso contrário, a nova versão terá efeito da próxima vez que o "
 "daemon for reiniciado."
 
 #~ msgid ""
-#~ "The X display manager (kdm) daemon is typically stopped on package "
+#~ "The X display manager (tdm) daemon is typically stopped on package "
 #~ "upgrade and removal, but it appears to be managing at least one running X "
 #~ "session."
 #~ msgstr ""
-#~ "O daemon do gestor de ecrã X (kdm) é tipicamente parado na actualização "
+#~ "O daemon do gestor de ecrã X (tdm) é tipicamente parado na actualização "
 #~ "ou remoção de pacotes, mas parece que este está a gerir pelo menos uma "
 #~ "sessão X activa."
 
@@ -122,18 +122,18 @@ msgstr ""
 #~ "e edite um dos seus 'init scripts' em /etc/init.d, e desligue a "
 #~ "verificação do gestor de ecrã por omissão.)"
 
-#~ msgid "Do you wish to stop the kdm daemon?"
-#~ msgstr "Deseja desligar o daemon kdm?"
+#~ msgid "Do you wish to stop the tdm daemon?"
+#~ msgstr "Deseja desligar o daemon tdm?"
 
 #~ msgid ""
-#~ "The K Desktop manager (kdm) daemon is typically stopped on package "
+#~ "The K Desktop manager (tdm) daemon is typically stopped on package "
 #~ "upgrade and removal, but it appears to be managing at least one running X "
-#~ "session. If kdm is stopped now, any X sessions it manages will be "
-#~ "terminated. Otherwise you may leave kdm running, and the new version will "
+#~ "session. If tdm is stopped now, any X sessions it manages will be "
+#~ "terminated. Otherwise you may leave tdm running, and the new version will "
 #~ "take effect the next time the daemon is restarted."
 #~ msgstr ""
-#~ "O daemon K Destop manager (kdm) é normalmente parado quando ocorre um "
+#~ "O daemon K Destop manager (tdm) é normalmente parado quando ocorre um "
 #~ "upgrade ou remoção do pacote, no entanto parece que se encontra pelo "
-#~ "menos uma sessão X em andamento. Se o kdm for parado agora, todas as "
-#~ "sessões X serão terminadas. Por outro lado, pode deixar o kdm a correr e "
+#~ "menos uma sessão X em andamento. Se o tdm for parado agora, todas as "
+#~ "sessões X serão terminadas. Por outro lado, pode deixar o tdm a correr e "
 #~ "a nova versão irá ser usada na próxima vez que o daemon for reiniciado."

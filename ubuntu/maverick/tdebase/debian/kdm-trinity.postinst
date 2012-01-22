@@ -47,9 +47,9 @@ fi
 # restarting the daemon may cause output to stdout
 db_stop
 
-# don't start kdm if we are upgrading without stopping it
+# don't start tdm if we are upgrading without stopping it
 NOSTART=
-if [ -e /var/run/kdm-trinity.upgrade ]; then
+if [ -e /var/run/tdm-trinity.upgrade ]; then
   NOSTART=yes
 fi
 # or if we're currently in X on the display it attempts to manage by default
@@ -63,11 +63,11 @@ for HOST in "" \
   fi
 done
 # or if it's already running
-if start-stop-daemon --stop --quiet --signal 0 --pid /var/run/kdm.pid --name kdm-trinity; then
+if start-stop-daemon --stop --quiet --signal 0 --pid /var/run/tdm.pid --name tdm-trinity; then
   NOSTART=yes
 fi
 # or if the options file says not to
-if ! grep -qs ^restart-on-upgrade /etc/trinity/kdm/kdm.options; then
+if ! grep -qs ^restart-on-upgrade /etc/trinity/tdm/tdm.options; then
   NOSTART=yes
 fi
 
@@ -75,40 +75,40 @@ fi
 # md5sum of the stock Xservers shipped with KDE 3.3.2, which shipped with Sarge
 SARGEXSERVERS=d3ab063f564492e0e31830f56ccd350e
 
-CONFIGLEVEL=`grep -s ^ConfigVersion= /etc/trinity/kdm/kdmrc | sed s/^ConfigVersion=//`
+CONFIGLEVEL=`grep -s ^ConfigVersion= /etc/trinity/tdm/tdmrc | sed s/^ConfigVersion=//`
 
-if [ -e /etc/trinity/kdm/kdmrc ]; then
+if [ -e /etc/trinity/tdm/tdmrc ]; then
   if dpkg --compare-versions "$CONFIGLEVEL" ge "2.3"; then
-    KDMRCUPDATED=yes
+    TDMRCUPDATED=yes
   fi
 fi
 
-if [ -e /etc/trinity/kdm/Xservers ]; then
-  if [ `md5sum /etc/trinity/kdm/Xservers | sed s/\ .*$//` = $SARGEXSERVERS ]; then
+if [ -e /etc/trinity/tdm/Xservers ]; then
+  if [ `md5sum /etc/trinity/tdm/Xservers | sed s/\ .*$//` = $SARGEXSERVERS ]; then
     XSERVERSUNCHANGED=yes
   fi
 fi
 
-# With KDE 3.4, /etc/trinity/kdm/Xservers is no longer required, so we remove it, if
-# the user has updated their kdmrc (if they haven't, kdm notices and keeps using
+# With KDE 3.4, /etc/trinity/tdm/Xservers is no longer required, so we remove it, if
+# the user has updated their tdmrc (if they haven't, tdm notices and keeps using
 # Xservers), and if it wasn't touched, i.e. there are no local changes the user
-# will want to merge into kdmrc.
+# will want to merge into tdmrc.
 
 case "$1" in
 
   configure)
 
-    if [ ! -z $KDMRCUPDATED ] && [ ! -z $XSERVERSUNCHANGED ]; then
-      echo "Removing obsolete /etc/trinity/kdm/Xservers (detected no user changes)."
-      rm -f /etc/trinity/kdm/Xservers
-    elif [ ! -z $KDMRCUPDATED ] && [ -e /etc/trinity/kdm/Xservers ]; then
-      echo "Note that /etc/trinity/kdm/Xservers is no longer used by KDM."
-      echo "You must merge your changes (if any) into /etc/trinity/kdm/kdmrc manually."
-      echo "Otherwise, /etc/trinity/kdm/Xservers is safe to remove."
+    if [ ! -z $TDMRCUPDATED ] && [ ! -z $XSERVERSUNCHANGED ]; then
+      echo "Removing obsolete /etc/trinity/tdm/Xservers (detected no user changes)."
+      rm -f /etc/trinity/tdm/Xservers
+    elif [ ! -z $TDMRCUPDATED ] && [ -e /etc/trinity/tdm/Xservers ]; then
+      echo "Note that /etc/trinity/tdm/Xservers is no longer used by TDM."
+      echo "You must merge your changes (if any) into /etc/trinity/tdm/tdmrc manually."
+      echo "Otherwise, /etc/trinity/tdm/Xservers is safe to remove."
     fi
 
-    rm -f /etc/init.d/kdm-trinity
-    ln -s /lib/init/upstart-job /etc/init.d/kdm-trinity
+    rm -f /etc/init.d/tdm-trinity
+    ln -s /lib/init/upstart-job /etc/init.d/tdm-trinity
 
   ;;
 

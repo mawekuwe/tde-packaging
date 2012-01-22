@@ -1,4 +1,4 @@
-Source: kdmtheme-kde3
+Source: tdmtheme-kde3
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
@@ -9,9 +9,9 @@ Build-Depends: cdbs, debhelper (>= 5), quilt, kdelibs4-kde3-dev, automake1.11-kd
 Standards-Version: 3.8.3
 Homepage: http://beta.smileaf.org/projects
 
-Package: kdmtheme-kde3
+Package: tdmtheme-kde3
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, kdm-kde3
-Description: theme manager for KDM [KDE3]
- kdmtheme is a theme manager for KDM. It provides a KDE Control Module (KCM)
- that allows you to easily install, remove and change your KDM themes.
+Depends: ${shlibs:Depends}, ${misc:Depends}, tdm-kde3
+Description: theme manager for TDM [KDE3]
+ tdmtheme is a theme manager for TDM. It provides a KDE Control Module (KCM)
+ that allows you to easily install, remove and change your TDM themes.

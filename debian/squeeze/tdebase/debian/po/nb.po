@@ -18,13 +18,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Standard skjermstyrer:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -34,7 +34,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -45,7 +45,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -59,26 +59,26 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "Stoppe kdm-nissen?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "Stoppe tdm-nissen?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Nissen K Desktop Manager (kdm) stoppes normalt når dens pakke fjernes eller "
+"Nissen K Desktop Manager (tdm) stoppes normalt når dens pakke fjernes eller "
 "oppgraderes, men det ser ut til at den styrer minst en pågående X-økt."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
-msgstr "Hvis kdm stoppes nå blir alle X-økter den styrer avbrutt.  Ellers vil den nye versjonen blir tatt i bruk neste gang nissen startes."
+msgstr "Hvis tdm stoppes nå blir alle X-økter den styrer avbrutt.  Ellers vil den nye versjonen blir tatt i bruk neste gang nissen startes."
 

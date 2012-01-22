@@ -18,13 +18,13 @@ msgstr "Project-Id-Version: tdebase_4-3.5.7-1\n"
 
 #.Type: select
 #.Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Bộ quản lý trình bày mặc định:"
 
 #.Type: select
 #.Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -32,7 +32,7 @@ msgstr "Bộ quản lý trình bày là chương trình cung cấp khả năng �
 
 #.Type: select
 #.Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -41,7 +41,7 @@ msgstr "Chỉ một bộ quản lý trình bày có quyền quản lý trình ph
 
 #.Type: select
 #.Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -51,23 +51,23 @@ msgstr "Nhiều bộ quản lý trình bày vẫn có thể chạy đồng thờ
 
 #.Type: boolean
 #.Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "Thôi trình nền kdm không?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "Thôi trình nền tdm không?"
 
 #.Type: boolean
 #.Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
-msgstr "Trình nền quản lý màn hình nền K (kdm) thường bị thôi khi nâng cấp/gỡ bỏ gói, nhưng hiện thời có vẻ là nó quản lý ít nhất một phiên chạy X đang hoạt động."
+msgstr "Trình nền quản lý màn hình nền K (tdm) thường bị thôi khi nâng cấp/gỡ bỏ gói, nhưng hiện thời có vẻ là nó quản lý ít nhất một phiên chạy X đang hoạt động."
 
 #.Type: boolean
 #.Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
-msgstr "Thôi chạy kdm ngay bây giờ thì phiên chạy X nào được quản lý bởi nó sẽ bị chấm dứt. Không thì phiên bản mới sẽ có tác động lần tới khởi chạy lại trình nền."
+msgstr "Thôi chạy tdm ngay bây giờ thì phiên chạy X nào được quản lý bởi nó sẽ bị chấm dứt. Không thì phiên bản mới sẽ có tác động lần tới khởi chạy lại trình nền."

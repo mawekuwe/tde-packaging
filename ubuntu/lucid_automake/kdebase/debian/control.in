@@ -14,7 +14,7 @@ Package: kdebase
 Section: kde
 Architecture: all
 Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), kdebase-bin (>= ${Source-Version}), kdebase-data (>= ${Source-Version}), kdebase-kio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), kdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), kwin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
-Recommends: kdm (>= ${Source-Version})
+Recommends: tdm (>= ${Source-Version})
 Suggests: kdebase-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -97,8 +97,8 @@ Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}, libpam-runtime (>= 0.76-14)
 Suggests: khelpcenter, gdb
-Conflicts: kdebase-libs (<< 4:3.0.0), kdm (<< 4:3.4.1-2)
-Replaces: kcontrol (<< 4:3.3.0), kdebase (<< 4:3.0.0), kdebase-doc (<< 4:3.0.0), kdebase-libs (<< 4:3.0.0), kscreensaver (<< 4:3.0.0), kdm (= 4:3.3.2-1b)
+Conflicts: kdebase-libs (<< 4:3.0.0), tdm (<< 4:3.4.1-2)
+Replaces: kcontrol (<< 4:3.3.0), kdebase (<< 4:3.0.0), kdebase-doc (<< 4:3.0.0), kdebase-libs (<< 4:3.0.0), kscreensaver (<< 4:3.0.0), tdm (= 4:3.3.2-1b)
 Description: core binaries for the KDE base module
  This package contains miscellaneous programs needed by other
  KDE applications, particularly those in the KDE base module.
@@ -222,7 +222,7 @@ Description: miscellaneous binaries and files for the KDE desktop
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde' and 'kdebase' packages for more information.
 
-Package: kdm
+Package: tdm
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}, kdebase-bin (= ${Source-Version}), kdebase-data (>> ${KDE-Version3}), kdebase-data (<< ${KDE-Next-Version3}), debconf (>= 1.2.9) | debconf-2.0, libpam-runtime (>= 0.76-14), xbase-clients
@@ -230,10 +230,10 @@ Recommends: logrotate, xserver-xorg
 Suggests: khelpcenter, ksmserver (= ${Source-Version}), kdepasswd (= ${Source-Version}), menu
 Provides: x-display-manager
 Description: X display manager for KDE
- kdm manages a collection of X servers, which may be on the local host or
+ tdm manages a collection of X servers, which may be on the local host or
  remote machines. It provides services similar to those provided by init,
  getty, and login on character-based terminals: prompting for login name and
- password, authenticating the user, and running a session. kdm supports XDMCP
+ password, authenticating the user, and running a session. tdm supports XDMCP
  (X Display Manager Control Protocol) and can also be used to run a chooser
  process which presents the user with a menu of possible hosts that offer
  XDMCP display management.
@@ -241,8 +241,8 @@ Description: X display manager for KDE
  A collection of icons to associate with individual users is included with
  KDE, but as part of the kdepasswd package.
  .
- The menu package will help to provide KDM with a list of window managers
- that can be launched, if the window manager does not register with KDM
+ The menu package will help to provide TDM with a list of window managers
+ that can be launched, if the window manager does not register with TDM
  already. Most users won't need this.
  .
  This package is part of KDE, and a component of the KDE base module.

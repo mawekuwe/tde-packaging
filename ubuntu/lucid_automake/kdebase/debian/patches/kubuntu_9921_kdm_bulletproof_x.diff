@@ -1,5 +1,5 @@
---- kdebase-3.5.8/kdm/backend/dm.c	2008-02-13 23:59:17.000000000 +0200
-+++ kdebase-3.5.8/kdm/backend/dm.c	2008-02-14 11:22:41.000000000 +0200
+--- kdebase-3.5.8/tdm/backend/dm.c	2008-02-13 23:59:17.000000000 +0200
++++ kdebase-3.5.8/tdm/backend/dm.c	2008-02-14 11:22:41.000000000 +0200
 @@ -996,9 +996,14 @@ ReapChildren( void )
  				/* don't kill again */
  				break;
@@ -18,8 +18,8 @@
  					StartServerFailed();
  					break;
  				}
---- kdebase-3.5.8/kdm/backend/server.c	2008-02-13 23:59:17.000000000 +0200
-+++ kdebase-3.5.8/kdm/backend/server.c	2008-02-14 11:41:20.000000000 +0200
+--- kdebase-3.5.8/tdm/backend/server.c	2008-02-13 23:59:17.000000000 +0200
++++ kdebase-3.5.8/tdm/backend/server.c	2008-02-14 11:41:20.000000000 +0200
 @@ -48,6 +48,10 @@ from the copyright holder.
  struct display *startingServer;
  time_t serverTimeout = TO_INF;

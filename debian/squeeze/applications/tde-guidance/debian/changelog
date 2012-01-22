@@ -913,7 +913,7 @@ tde-guidance (0.6.4-0ubuntu1) dapper; urgency=low
   * The screen images in the dualhead widget make better use of available widget
     space.
   * Displayconfig: The 40guidance-displayconfig_restore script which is used by
-    the Xsession script during login via KDM/xdm, has now been fixed to not stop
+    the Xsession script during login via TDM/xdm, has now been fixed to not stop
     the login in case of failure.
   * BUG: Displayconfig was getting confused by unknown graphics cards and
     crashing. (Malone bug #32915)

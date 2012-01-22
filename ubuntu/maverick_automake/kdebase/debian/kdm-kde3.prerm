@@ -1,5 +1,5 @@
 #! /bin/sh
-# prerm script for kdm-kde3
+# prerm script for tdm-kde3
 #
 # see: dh_installdeb(1)
 
@@ -24,14 +24,14 @@ if [ -e /usr/share/debconf/confmodule ]; then
 fi
 
 case "$1" in
-    # we NEVER want to unconditionally stop kdm; see below
+    # we NEVER want to unconditionally stop tdm; see below
     upgrade|failed-upgrade)
         REMOVING=
     ;;
 
     remove|deconfigure)
         REMOVING=yes
-	rm -f /etc/init.d/kdm-kde3
+	rm -f /etc/init.d/tdm-kde3
     ;;
 
     *)
@@ -41,14 +41,14 @@ case "$1" in
 esac
 
 STOP=
-# are we supposed to restart on upgrade?  if REMOVING kdm, we don't care what
+# are we supposed to restart on upgrade?  if REMOVING tdm, we don't care what
 # the user says, we have to stop the daemon
-if grep -qs ^restart-on-upgrade /etc/kde3/kdm/kdm.options ||
+if grep -qs ^restart-on-upgrade /etc/kde3/tdm/tdm.options ||
    [ -n "$REMOVING" ]; then
-  # is there an kdm process running?
-  if start-stop-daemon --stop --quiet --signal 0 --name kdm-kde3; then
+  # is there an tdm process running?
+  if start-stop-daemon --stop --quiet --signal 0 --name tdm-kde3; then
     # any children?
-    PARENTS=$(pidof /usr/bin/kdm-kde3 || true)
+    PARENTS=$(pidof /usr/bin/tdm-kde3 || true)
     CHILDREN=
     if [ -n "$PARENTS" ]; then    
       for PROCESS in $PARENTS; do
@@ -65,11 +65,11 @@ if grep -qs ^restart-on-upgrade /etc/kde3/kdm/kdm.options ||
       if [ -n "$CHILDREN" ]; then
         if [ -n "$HAVE_DEBCONF" ]; then
           # ask the question
-          db_input high kdm/stop_running_server_with_children || true
+          db_input high tdm/stop_running_server_with_children || true
           db_go
           # what did the user say?
           ANSWER=
-          if db_get kdm/stop_running_server_with_children; then
+          if db_get tdm/stop_running_server_with_children; then
             ANSWER="$RET"
           fi
           if [ "$ANSWER" = "true" ]; then
@@ -77,7 +77,7 @@ if grep -qs ^restart-on-upgrade /etc/kde3/kdm/kdm.options ||
           fi
           # forget that we have seen the question; this is the sort of
           # non-configuration question that should be asked every time
-          db_fset kdm/stop_running_server_with_children seen false
+          db_fset tdm/stop_running_server_with_children seen false
         fi
       else
         STOP=yes
@@ -88,13 +88,13 @@ fi
 
 if [ -n "$STOP" ]; then
   if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
-    invoke-rc.d kdm-kde3 stop || true
+    invoke-rc.d tdm-kde3 stop || true
   else
-    /etc/init.d/kdm-kde3 stop || true
+    /etc/init.d/tdm-kde3 stop || true
   fi
 else
   if [ "$1" = "upgrade" -o "$1" = "failed-upgrade" ]; then
-    touch /var/run/kdm-kde3.upgrade
+    touch /var/run/tdm-kde3.upgrade
   fi
 fi
 
@@ -117,7 +117,7 @@ if [ "$1" = "remove" -o "$1" = "deconfigure" ]; then
       fi
       # are we removing the currently selected display manager?
       if [ -n "$DEFAULT_DISPLAY_MANAGER" ]; then
-        if [ "kdm-kde3" = "$DEFAULT_DISPLAY_MANAGER" ]; then
+        if [ "tdm-kde3" = "$DEFAULT_DISPLAY_MANAGER" ]; then
           if [ -e "$DEFAULT_DISPLAY_MANAGER_FILE" ]; then
             if db_get "$DEFAULT_DISPLAY_MANAGER/daemon_name"; then
               # does the display manager file reference the current default?  if

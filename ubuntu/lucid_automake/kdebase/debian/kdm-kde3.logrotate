@@ -1,4 +1,4 @@
-/var/log/kdm-kde3.log {
+/var/log/tdm-kde3.log {
 	rotate 7
 	daily
 	compress

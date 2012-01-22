@@ -22,13 +22,13 @@ msgstr "pt_BR utf-8\n"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Gerenciador de sessão padrão:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -38,7 +38,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -50,7 +50,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -65,28 +65,28 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "Deseja parar o daemon kdm?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "Deseja parar o daemon tdm?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
-msgstr "O K Desktop manager (kdm) é tipicamente parado em atualizações e "
+msgstr "O K Desktop manager (tdm) é tipicamente parado em atualizações e "
 "remoções de pacotes, mas parece que ele está gerenciando pelo menos uma " 
 "seção X em execução."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"Caso o kdm seja parado agora, quaisquer sessões X que ele esteja gerenciando "
+"Caso o tdm seja parado agora, quaisquer sessões X que ele esteja gerenciando "
 "serão encerradas. Caso contrário a nova versão terá efeito na próxima vez "
 "que o daemon for reiniciado."

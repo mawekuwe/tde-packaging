@@ -20,14 +20,14 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 #, fuzzy
 msgid "Default display manager:"
 msgstr "Alegeţi administratorul de ecran implicit, pe care îl doriţi."
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -37,7 +37,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 #, fuzzy
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
@@ -50,7 +50,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 #, fuzzy
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
@@ -66,36 +66,36 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 #, fuzzy
-msgid "Stop the kdm daemon?"
-msgstr "Doriţi să opriţi demonul kdm?"
+msgid "Stop the tdm daemon?"
+msgstr "Doriţi să opriţi demonul tdm?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 #, fuzzy
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Demonul K Desktop manager (kdm) este oprit de obicei la actualizarea "
+"Demonul K Desktop manager (tdm) este oprit de obicei la actualizarea "
 "pachetuluişi la eliminarea sa, dar se pare că acum administrează o sesiune X "
-"de lucru.Dacă demonul kdm este oprit acum, orice sesiune X pe care o "
-"administrează va fi oprită. O alternativă ar fi să lăsaţi kdm să ruleze, iar "
+"de lucru.Dacă demonul tdm este oprit acum, orice sesiune X pe care o "
+"administrează va fi oprită. O alternativă ar fi să lăsaţi tdm să ruleze, iar "
 "noua versiune va ruladata viitoare când demonul va fi repornit."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 #, fuzzy
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"Demonul K Desktop manager (kdm) este oprit de obicei la actualizarea "
+"Demonul K Desktop manager (tdm) este oprit de obicei la actualizarea "
 "pachetuluişi la eliminarea sa, dar se pare că acum administrează o sesiune X "
-"de lucru.Dacă demonul kdm este oprit acum, orice sesiune X pe care o "
-"administrează va fi oprită. O alternativă ar fi să lăsaţi kdm să ruleze, iar "
+"de lucru.Dacă demonul tdm este oprit acum, orice sesiune X pe care o "
+"administrează va fi oprită. O alternativă ar fi să lăsaţi tdm să ruleze, iar "
 "noua versiune va ruladata viitoare când demonul va fi repornit."

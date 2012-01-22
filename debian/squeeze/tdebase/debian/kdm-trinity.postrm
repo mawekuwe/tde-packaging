@@ -2,7 +2,7 @@
 
 case "$1" in
     purge)
-	rm -rf /var/log/kdm-trinity.log*
+	rm -rf /var/log/tdm-trinity.log*
     ;;
 
     remove|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
@@ -25,12 +25,12 @@ if [ "$1" = "abort-install" -o "$1" = "abort-upgrade" ]; then
 fi
 
 if [ "$1" = "purge" ]; then
-  for DIR in /var/lib/kdm-trinity; do
+  for DIR in /var/lib/tdm-trinity; do
     if [ -d "$DIR" ]; then
       rm -rf "$DIR"
     fi
   done
-  rm -f /var/log/kdm-trinity.log*
+  rm -f /var/log/tdm-trinity.log*
 fi
 
 #DEBHELPER#

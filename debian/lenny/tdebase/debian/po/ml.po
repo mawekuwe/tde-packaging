@@ -1,11 +1,11 @@
-# Malayalam translation of kdm debconf template.
+# Malayalam translation of tdm debconf template.
 # Copyright (C) 2007 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the kdm package.
+# This file is distributed under the same license as the tdm package.
 # Praveen|പ്രവീണ്‍ A|എ <pravi.a@gmail.com>, Anivar|അനിവര്‍ Aravind|അരവിന്ദ് <anivar@movingrepublic.org> 2007.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: kdm 1.0\n"
+"Project-Id-Version: tdm 1.0\n"
 "Report-Msgid-Bugs-To: debian-qt-kde@lists.debian.org\n"
 "POT-Creation-Date: 2007-03-23 07:15+0100\n"
 "PO-Revision-Date: 2007-03-23 09:46+0530\n"
@@ -18,13 +18,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "ഡിഫാള്‍ട്ടായി വേണ്ട പ്രദര്‍ശന മാനേജര്‍:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -33,7 +33,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -45,7 +45,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -59,29 +59,29 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "kdm ഡീമണെ നിര്‍ത്തിക്കോട്ടെ?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "tdm ഡീമണെ നിര്‍ത്തിക്കോട്ടെ?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"കെ പ്രദര്‍ശന മാനേജര്‍ (kdm) ഡീമണ്‍ സാധാരണയായി പാക്കേജ്  പുതുക്കലിന്റേയും നീക്കം "
+"കെ പ്രദര്‍ശന മാനേജര്‍ (tdm) ഡീമണ്‍ സാധാരണയായി പാക്കേജ്  പുതുക്കലിന്റേയും നീക്കം "
 "ചെയ്യലിന്റേയും സമയത്താണ് നിര്‍ത്താറുള്ളത്, പക്ഷേ പ്രവര്‍ത്തിച്ചുകൊണ്ടിരിക്കുന്ന ഒരു എക്സ് "
 "സെഷനെയെങ്കിലും ഇപ്പോള്‍ ഇത് നിയന്ത്രിച്ചുകൊണ്ടിരിക്കുന്നത് പോലെ തോന്നുന്നു."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"kdm ഇപ്പോള്‍ നിര്‍ത്തുകയാണെങ്കില്‍, ഇത് നിയന്ത്രിച്ചുകൊണ്ടിരിക്കുന്ന എക്സ് സെഷനുകളും "
+"tdm ഇപ്പോള്‍ നിര്‍ത്തുകയാണെങ്കില്‍, ഇത് നിയന്ത്രിച്ചുകൊണ്ടിരിക്കുന്ന എക്സ് സെഷനുകളും "
 "അവസാനിപ്പിക്കുന്നതായിരിക്കും. അല്ലെങ്കില്‍, അടുത്ത തവണ ഡീമണ്‍ വീണ്ടും തുടങ്ങുമ്പോള്‍ പുതിയ ലക്കം "
 "നിലവില്‍ വരും."

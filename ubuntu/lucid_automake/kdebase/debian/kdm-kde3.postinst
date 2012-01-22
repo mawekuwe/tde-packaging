@@ -10,7 +10,7 @@ set -e
 DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
 
 if [ ! -e "$DEFAULT_DISPLAY_MANAGER_FILE" ]; then
-  DEFAULT_DISPLAY_MANAGER=kdm-kde3
+  DEFAULT_DISPLAY_MANAGER=tdm-kde3
   if db_get shared/default-x-display-manager; then
     DEFAULT_DISPLAY_MANAGER="$RET"
   fi
@@ -48,9 +48,9 @@ fi
 # restarting the daemon may cause output to stdout
 db_stop
 
-# don't start kdm if we are upgrading without stopping it
+# don't start tdm if we are upgrading without stopping it
 NOSTART=
-if [ -e /var/run/kdm-kde3.upgrade ]; then
+if [ -e /var/run/tdm-kde3.upgrade ]; then
   NOSTART=yes
 fi
 # or if we're currently in X on the display it attempts to manage by default
@@ -64,11 +64,11 @@ for HOST in "" \
   fi
 done
 # or if it's already running
-if start-stop-daemon --stop --quiet --signal 0 --pid /var/run/kdm.pid --name kdm-kde3; then
+if start-stop-daemon --stop --quiet --signal 0 --pid /var/run/tdm.pid --name tdm-kde3; then
   NOSTART=yes
 fi
 # or if the options file says not to
-if ! grep -qs ^restart-on-upgrade /etc/kde3/kdm/kdm.options; then
+if ! grep -qs ^restart-on-upgrade /etc/kde3/tdm/tdm.options; then
   NOSTART=yes
 fi
 
@@ -76,40 +76,40 @@ fi
 # md5sum of the stock Xservers shipped with KDE 3.3.2, which shipped with Sarge
 SARGEXSERVERS=d3ab063f564492e0e31830f56ccd350e
 
-CONFIGLEVEL=`grep -s ^ConfigVersion= /etc/kde3/kdm/kdmrc | sed s/^ConfigVersion=//`
+CONFIGLEVEL=`grep -s ^ConfigVersion= /etc/kde3/tdm/tdmrc | sed s/^ConfigVersion=//`
 
-if [ -e /etc/kde3/kdm/kdmrc ]; then
+if [ -e /etc/kde3/tdm/tdmrc ]; then
   if dpkg --compare-versions "$CONFIGLEVEL" ge "2.3"; then
-    KDMRCUPDATED=yes
+    TDMRCUPDATED=yes
   fi
 fi
 
-if [ -e /etc/kde3/kdm/Xservers ]; then
-  if [ `md5sum /etc/kde3/kdm/Xservers | sed s/\ .*$//` = $SARGEXSERVERS ]; then
+if [ -e /etc/kde3/tdm/Xservers ]; then
+  if [ `md5sum /etc/kde3/tdm/Xservers | sed s/\ .*$//` = $SARGEXSERVERS ]; then
     XSERVERSUNCHANGED=yes
   fi
 fi
 
-# With KDE 3.4, /etc/kde3/kdm/Xservers is no longer required, so we remove it, if
-# the user has updated their kdmrc (if they haven't, kdm notices and keeps using
+# With KDE 3.4, /etc/kde3/tdm/Xservers is no longer required, so we remove it, if
+# the user has updated their tdmrc (if they haven't, tdm notices and keeps using
 # Xservers), and if it wasn't touched, i.e. there are no local changes the user
-# will want to merge into kdmrc.
+# will want to merge into tdmrc.
 
 case "$1" in
 
   configure)
 
-    if [ ! -z $KDMRCUPDATED ] && [ ! -z $XSERVERSUNCHANGED ]; then
-      echo "Removing obsolete /etc/kde3/kdm/Xservers (detected no user changes)."
-      rm -f /etc/kde3/kdm/Xservers
-    elif [ ! -z $KDMRCUPDATED ] && [ -e /etc/kde3/kdm/Xservers ]; then
-      echo "Note that /etc/kde3/kdm/Xservers is no longer used by KDM."
-      echo "You must merge your changes (if any) into /etc/kde3/kdm/kdmrc manually."
-      echo "Otherwise, /etc/kde3/kdm/Xservers is safe to remove."
+    if [ ! -z $TDMRCUPDATED ] && [ ! -z $XSERVERSUNCHANGED ]; then
+      echo "Removing obsolete /etc/kde3/tdm/Xservers (detected no user changes)."
+      rm -f /etc/kde3/tdm/Xservers
+    elif [ ! -z $TDMRCUPDATED ] && [ -e /etc/kde3/tdm/Xservers ]; then
+      echo "Note that /etc/kde3/tdm/Xservers is no longer used by TDM."
+      echo "You must merge your changes (if any) into /etc/kde3/tdm/tdmrc manually."
+      echo "Otherwise, /etc/kde3/tdm/Xservers is safe to remove."
     fi
 
-    rm -f /etc/init.d/kdm-kde3
-    ln -s /lib/init/upstart-job /etc/init.d/kdm-kde3
+    rm -f /etc/init.d/tdm-kde3
+    ln -s /lib/init/upstart-job /etc/init.d/tdm-kde3
 
   ;;
 

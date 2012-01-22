@@ -1,4 +1,4 @@
-Source: kdmtheme-trinity
+Source: tdmtheme-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
@@ -9,11 +9,11 @@ Build-Depends: cdbs, debhelper (>= 5), quilt, tdelibs4-trinity-dev, automake, au
 Standards-Version: 3.8.4
 Homepage: http://beta.smileaf.org/projects
 
-Package: kdmtheme-trinity
+Package: tdmtheme-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, kdm-trinity
-Replaces: kdmtheme-trinity (<< 4:14.0.0)
-Breaks: kdmtheme-trinity (<< 4:14.0.0)
-Description: theme manager for KDM [Trinity]
- kdmtheme is a theme manager for KDM. It provides a KDE Control Module (KCM)
- that allows you to easily install, remove and change your KDM themes.
+Depends: ${shlibs:Depends}, ${misc:Depends}, tdm-trinity
+Replaces: tdmtheme-trinity (<< 4:14.0.0)
+Breaks: tdmtheme-trinity (<< 4:14.0.0)
+Description: theme manager for TDM [Trinity]
+ tdmtheme is a theme manager for TDM. It provides a KDE Control Module (KCM)
+ that allows you to easily install, remove and change your TDM themes.

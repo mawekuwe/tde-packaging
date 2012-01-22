@@ -1,23 +1,23 @@
-KDM in Debian
+TDM in Debian
 =============
 
-This package comes with a copy of the KDM handbook in docbook format.
-To read it, run "khelpcenter help:/kdm" from a command-line or go to the
-URL "help:/kdm" in konqueror.
+This package comes with a copy of the TDM handbook in docbook format.
+To read it, run "khelpcenter help:/tdm" from a command-line or go to the
+URL "help:/tdm" in konqueror.
 
-By default, the use of special graphical themes with KDM is disabled.
-If you wish to use the 'Circles' theme that comes with the kdm package, or
+By default, the use of special graphical themes with TDM is disabled.
+If you wish to use the 'Circles' theme that comes with the tdm package, or
 any other theme that you have installed, you should research the
-'UseTheme' and 'Theme' fields in /etc/kde3/kdm/kdmrc. This can be done
+'UseTheme' and 'Theme' fields in /etc/kde3/tdm/tdmrc. This can be done
 by browsing this URL in Konqueror:
 
-help:/kdm/kdm-files.html#kdmrc-greeter
+help:/tdm/tdm-files.html#tdmrc-greeter
 
-KDM Customization
+TDM Customization
 =================
 
 We provide a way to override theme-related values normally set in the
-master configuration file (kdmrc):
+master configuration file (tdmrc):
  * USEBACKGROUND
  * BACKGROUNDCFG
  * USETHEME
@@ -31,7 +31,7 @@ and background configuration file (backgroundrc):
  * WALLPAPER
 
 You just need to create a file with overridden value(s) and put it in
-kdm override directory (default is /etc/default/kdm.d).
+tdm override directory (default is /etc/default/tdm.d).
 
 ================================================
 Below this is direct from the xdm package README

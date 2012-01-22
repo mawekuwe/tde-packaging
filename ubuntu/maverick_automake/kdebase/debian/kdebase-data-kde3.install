@@ -202,9 +202,9 @@ debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/kcmstyle/index.docbook
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/kcmtaskbar/common
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/kcmtaskbar/index.cache.bz2
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/kcmtaskbar/index.docbook
-debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/kdm/common
-debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/kdm/index.cache.bz2
-debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/kdm/index.docbook
+debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/tdm/common
+debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/tdm/index.cache.bz2
+debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/tdm/index.docbook
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/keyboard/common
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/keyboard/index.cache.bz2
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcontrol/keyboard/index.docbook
@@ -342,7 +342,7 @@ debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/kcmmemory.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/kcmpartitions.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/kcmpci.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/kcontrol.png
-debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/kdmconfig.png
+debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/tdmconfig.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/key_bindings.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/kfm_home.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/128x128/apps/kscreensaver.png
@@ -443,7 +443,7 @@ debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/kcmsound.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/kcmsystem.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/kcmx.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/kcontrol.png
-debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/kdmconfig.png
+debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/tdmconfig.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/key_bindings.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/keyboard_layout.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/16x16/apps/keyboard.png
@@ -548,7 +548,7 @@ debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/kcmdevices.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/kcmkicker.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/kcmkwm.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/kcmx.png
-debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/kdmconfig.png
+debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/tdmconfig.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/key_bindings.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/keyboard.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/22x22/apps/kscreensaver.png
@@ -630,7 +630,7 @@ debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/kcmsound.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/kcmsystem.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/kcmx.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/kcontrol.png
-debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/kdmconfig.png
+debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/tdmconfig.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/key_bindings.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/keyboard_layout.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/keyboard.png
@@ -774,7 +774,7 @@ debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/kcmscsi.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/kcmsystem.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/kcmx.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/kcontrol.png
-debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/kdmconfig.png
+debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/tdmconfig.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/key_bindings.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/keyboard_layout.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/keyboard.png
@@ -872,7 +872,7 @@ debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/kcmpartitions.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/kcmpci.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/kcmx.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/kcontrol.png
-debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/kdmconfig.png
+debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/tdmconfig.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/key_bindings.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/kfm_home.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/64x64/apps/knotify.png

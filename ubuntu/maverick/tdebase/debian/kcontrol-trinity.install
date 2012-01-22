@@ -54,8 +54,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_joystick.la
 debian/tmp/opt/trinity/lib/trinity/kcm_joystick.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kded.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kded.so
-debian/tmp/opt/trinity/lib/trinity/kcm_kdm.la
-debian/tmp/opt/trinity/lib/trinity/kcm_kdm.so
+debian/tmp/opt/trinity/lib/trinity/kcm_tdm.la
+debian/tmp/opt/trinity/lib/trinity/kcm_tdm.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kdnssd.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kdnssd.la
 debian/tmp/opt/trinity/lib/trinity/kcm_keys.la
@@ -168,7 +168,7 @@ debian/tmp/opt/trinity/share/applications/kde/kcmtaskbar.desktop
 debian/tmp/opt/trinity/share/applications/kde/kcmusb.desktop
 debian/tmp/opt/trinity/share/applications/kde/kcmview1394.desktop
 debian/tmp/opt/trinity/share/applications/kde/KControl.desktop
-debian/tmp/opt/trinity/share/applications/kde/kdm.desktop
+debian/tmp/opt/trinity/share/applications/kde/tdm.desktop
 debian/tmp/opt/trinity/share/applications/kde/keys.desktop
 debian/tmp/opt/trinity/share/applications/kde/kfontview.desktop
 debian/tmp/opt/trinity/share/applications/kde/khtml_behavior.desktop

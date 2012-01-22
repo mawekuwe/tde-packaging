@@ -18,13 +18,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Xestor de pantalla por defecto:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -34,7 +34,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -46,7 +46,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -60,38 +60,38 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "¿Deter o servizo de kdm?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "¿Deter o servizo de tdm?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Adoita se deter o servizo do xestor de pantalla de KDE (kdm) ao actualizar "
+"Adoita se deter o servizo do xestor de pantalla de KDE (tdm) ao actualizar "
 "ou eliminar o paquete, pero semella que está a xestionar alomenos unha "
 "sesión X en execución."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"Se se detén kdm agora, hase cortar calquera sesión X que xestione. Se non, a "
+"Se se detén tdm agora, hase cortar calquera sesión X que xestione. Se non, a "
 "nova versión ha tomar efecto a próxima vez que reinicie o servizo."
 
 #~ msgid ""
-#~ "The X display manager (kdm) daemon is typically stopped on package "
+#~ "The X display manager (tdm) daemon is typically stopped on package "
 #~ "upgrade and removal, but it appears to be managing at least one running X "
 #~ "session."
 #~ msgstr ""
-#~ "Adoita se deter o servizo do xestor de pantalla de X (kdm) ao actualizar "
+#~ "Adoita se deter o servizo do xestor de pantalla de X (tdm) ao actualizar "
 #~ "ou eliminar o paquete, pero semella que está a xestionar alomenos unha "
 #~ "sesión X en execución."
 
@@ -118,18 +118,18 @@ msgstr ""
 #~ "xestores de pantalla, edite os seus scripts de inicio de /etc/init.d e "
 #~ "desactive a comprobación do xestor de pantalla por defecto)."
 
-#~ msgid "Do you wish to stop the kdm daemon?"
-#~ msgstr "¿Quere deter o daemon de kdm?"
+#~ msgid "Do you wish to stop the tdm daemon?"
+#~ msgstr "¿Quere deter o daemon de tdm?"
 
 #~ msgid ""
-#~ "The K Desktop manager (kdm) daemon is typically stopped on package "
+#~ "The K Desktop manager (tdm) daemon is typically stopped on package "
 #~ "upgrade and removal, but it appears to be managing at least one running X "
-#~ "session. If kdm is stopped now, any X sessions it manages will be "
-#~ "terminated. Otherwise you may leave kdm running, and the new version will "
+#~ "session. If tdm is stopped now, any X sessions it manages will be "
+#~ "terminated. Otherwise you may leave tdm running, and the new version will "
 #~ "take effect the next time the daemon is restarted."
 #~ msgstr ""
-#~ "Normalmente adóitase deter o daemon do xestor de pantalla de KDE (kdm) ao "
+#~ "Normalmente adóitase deter o daemon do xestor de pantalla de KDE (tdm) ao "
 #~ "actualizar ou eliminar o paquete, pero semella que está a xestionar "
-#~ "alomenos unha sesión X en execución. Se se detén kdm agora, hase cortar "
-#~ "calquera sesión X que xestione. Se non, pode deixar kdm a se executar, e "
+#~ "alomenos unha sesión X en execución. Se se detén tdm agora, hase cortar "
+#~ "calquera sesión X que xestione. Se non, pode deixar tdm a se executar, e "
 #~ "a nova versión ha tomar efecto a próxima vez que reinicie o daemon."

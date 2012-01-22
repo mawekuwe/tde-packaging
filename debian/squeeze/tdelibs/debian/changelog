@@ -520,7 +520,7 @@ tdelibs (4:3.5.7-1ubuntu9) gutsy; urgency=low
   [ Sarah Hobbs ]
   * Added kubuntu_93_tdelibs-tdesudo-support-wflags-and-kab-fix.diff.
     Thankyou to Stefan Skotte for this patch
-  * Removed kubuntu_28_fix_sudo.diff to fix KDM memory corruption 
+  * Removed kubuntu_28_fix_sudo.diff to fix TDM memory corruption 
     (LP: #47455, KDE bug #147454)
 
  -- Sarah Hobbs <hobbsee@ubuntu.com>  Sat, 14 Jul 2007 01:51:38 +1000

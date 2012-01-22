@@ -17,7 +17,7 @@ DEB_KDE_APIDOX := yes
 CXXFLAGS := -DSMB_CTX_FLAG_USE_KERBEROS -DSMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS -g -Wall $(DEB_OPT_FLAG)
 
 DEB_CONFIGURE_EXTRA_FLAGS := --with-shadow --without-java --with-pam=kde-kde3 --prefix=/opt/kde3 \
-	--with-kcp-pam=kcheckpass-kde3 --with-kdm-pam=kdm-kde3 --with-kss-pam=kscreensaver-kde3 --with-extra-libs=/opt/kde3/lib \
+	--with-kcp-pam=kcheckpass-kde3 --with-tdm-pam=tdm-kde3 --with-kss-pam=kscreensaver-kde3 --with-extra-libs=/opt/kde3/lib \
 	--with-extra-includes=/usr/include/sasl --with-usbids=/usr/share/misc/usb.ids --with-sudo-kdesu-backend \
 	--enable-closure
 
@@ -225,15 +225,15 @@ binary-install/kdebase-data-kde3::
 	rm -rf debian/tmp/etc/xdg/*
 	rm -rf debian/kdebase-data-kde3/etc/xdg/*
 
-install/kdm-kde3::
-	sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/kde3/kdm/kdmrc
-	sed -i 's/Theme=@@@ToBeReplacedByDesktopBase@@@/Theme=\/opt\/kde3\/share\/apps\/kdm\/themes\/kubuntu-kde3/g' debian/tmp/etc/kde3/kdm/kdmrc
+install/tdm-kde3::
+	sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/kde3/tdm/tdmrc
+	sed -i 's/Theme=@@@ToBeReplacedByDesktopBase@@@/Theme=\/opt\/kde3\/share\/apps\/tdm\/themes\/kubuntu-kde3/g' debian/tmp/etc/kde3/tdm/tdmrc
 
-binary-install/kdm-kde3::
-	mkdir -p debian/kdm-kde3/etc/init
-	install -p -D -m644 debian/kdm-kde3.conf debian/kdm-kde3/etc/init/kdm-kde3.conf
-	install -p -D -m644 debian/kdm-kde3.pam debian/kdm-kde3/etc/pam.d/kdm-kde3
-	install -p -D -m644 debian/kdm-kde3-np.pam debian/kdm-kde3/etc/pam.d/kdm-kde3-np
+binary-install/tdm-kde3::
+	mkdir -p debian/tdm-kde3/etc/init
+	install -p -D -m644 debian/tdm-kde3.conf debian/tdm-kde3/etc/init/tdm-kde3.conf
+	install -p -D -m644 debian/tdm-kde3.pam debian/tdm-kde3/etc/pam.d/tdm-kde3
+	install -p -D -m644 debian/tdm-kde3-np.pam debian/tdm-kde3/etc/pam.d/tdm-kde3-np
 
 binary-install/kcontrol-kde3::
 	mkdir -p debian/kcontrol/etc/udev/rules.d
@@ -267,6 +267,6 @@ install/ksysguardd-kde3::
 	install -D -p -m0644 debian/tmp/etc/ksysguarddrc debian/ksysguardd-kde3/etc/kde3/
 
 binary-install/ksmserver-kde3::
-	install -p -D -m644 debian/tmp/opt/kde3/share/apps/kdm/sessions/kde.desktop debian/ksmserver-kde3/usr/share/xsessions/kde3.desktop
+	install -p -D -m644 debian/tmp/opt/kde3/share/apps/tdm/sessions/kde.desktop debian/ksmserver-kde3/usr/share/xsessions/kde3.desktop
 	install -p -D -m755 debian/plasma.autodetect debian/ksmserver-kde3/usr/bin/plasma.autodetect
 	install -p -D -m755 debian/plasma-desktop.autodetect debian/ksmserver-kde3/usr/bin/plasma-desktop.autodetect

@@ -1,6 +1,6 @@
-debian/man/genkdmconf-trinity.1
-debian/man/kdm-trinity.1
-debian/man/kdm_config-trinity.1
-debian/man/kdmctl-trinity.1
-debian/man/kdm_greet-trinity.1
+debian/man/gentdmconf-trinity.1
+debian/man/tdm-trinity.1
+debian/man/tdm_config-trinity.1
+debian/man/tdmctl-trinity.1
+debian/man/tdm_greet-trinity.1
 debian/man/krootimage-trinity.1

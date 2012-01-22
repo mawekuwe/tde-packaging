@@ -1,5 +1,5 @@
---- kdm/config.def
-+++ kdm/config.def
+--- tdm/config.def
++++ tdm/config.def
 @@ -2614,18 +2614,18 @@
  
  Key: UseTheme
@@ -15,10 +15,10 @@
  
  Key: Theme
  Type: string
--Default: KDMDATA "/themes/o2_enterprise"
+-Default: TDMDATA "/themes/o2_enterprise"
 +Default: ""
  User: greeter
--Instance: */KDMDATA "/themes/o2_enterprise"
+-Instance: */TDMDATA "/themes/o2_enterprise"
 +Instance: */ "@@@ToBeReplacedByDesktopBase@@@"
  Comment: &
  Description:

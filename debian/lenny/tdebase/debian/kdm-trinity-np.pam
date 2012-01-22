@@ -1,5 +1,5 @@
 #
-# /etc/pam.d/kdm-np - specify the PAM behaviour of kdm for passwordless logins
+# /etc/pam.d/tdm-np - specify the PAM behaviour of tdm for passwordless logins
 #
 auth       required     pam_nologin.so
 auth       required     pam_env.so readenv=1

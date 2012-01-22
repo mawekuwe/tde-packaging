@@ -13,7 +13,7 @@ remove debian/tmp/share/apps/konqsidebartng/entries/system.desktop
 
 remove .svgz from kdebase-data.install
 
-replace 10_kdmrc_defaults.diff with 10_kdmrc_defaults_kubuntu.diff
+replace 10_tdmrc_defaults.diff with 10_tdmrc_defaults_kubuntu.diff
 
 install/klipper::
 	sed -i '/X-Ubuntu-Gettext-Domain=/d' debian/tmp/etc/kde3/klipperrc
@@ -34,7 +34,7 @@ kdebase-data.install: debian/tmp/etc/xdg/menus/applications-merged/kde-essential
 
 in konsole.README.Debian s/fontconfig/fontconfig-config
 
-in kdm.postinst install at s/99/13/
+in tdm.postinst install at s/99/13/
 
 from kdebase-kio-plugins.install remove debian/tmp/usr/share/services/kfile_trash.desktop (that's to remove the trash from the "system applet")
 
@@ -42,7 +42,7 @@ add debian/ubuntu.xmodmap  debian/80ubuntu-xmodmap and add install rules to bina
 
 control: khelpcenter, suggest don't depend on htdig
 
-kdm.init: Launch usplash_down at the end of the stop section
+tdm.init: Launch usplash_down at the end of the stop section
 
 Added konqueror dependancy for konqueror-nsplugins. (LP: #139893)
 

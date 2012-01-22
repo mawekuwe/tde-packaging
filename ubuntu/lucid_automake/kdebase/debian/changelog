@@ -60,13 +60,13 @@ kdebase-kde3 (4:3.5.10-2ubuntu3) karmic; urgency=low
 kdebase-kde3 (4:3.5.10-2ubuntu2) karmic; urgency=low
 
   * Added Start menu button icon configuration dialog
-  * Delayed kdm-kde3 startup to allow for graphics device configuration
+  * Delayed tdm-kde3 startup to allow for graphics device configuration
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sun, 18 Oct 2009 16:21:00 -0600
 
 kdebase-kde3 (4:3.5.10-1ubuntu5) karmic; urgency=low
 
-  * Added new ICC loading functionality to kcontrol and kdm
+  * Added new ICC loading functionality to kcontrol and tdm
   * Added new display output switching functionality to krandrtray
   * Beginnings of customizable K menu icon
 
@@ -81,7 +81,7 @@ kdebase-kde3 (4:3.5.10-1ubuntu4) karmic; urgency=low
 
 kdebase-kde3 (4:3.5.10-1ubuntu3) karmic; urgency=low
 
-  * Default KDM theme set to kubuntu-kde3
+  * Default TDM theme set to kubuntu-kde3
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 10 Oct 2009 12:19:00 -0600
 
@@ -99,7 +99,7 @@ kdebase-kde3 (4:3.5.10-1ubuntu0) karmic; urgency=low
 
 kdebase-kde3 (4:3.5.10-0ubuntu12) karmic; urgency=low
 
-  * Repaired kdm looking at the wrong pam.d files
+  * Repaired tdm looking at the wrong pam.d files
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 10 Sep 2009 11:20:00 -0600
 
@@ -171,14 +171,14 @@ kdebase-kde3 (4:3.5.10-0ubuntu4~intrepid6) intrepid; urgency=low
 
 kdebase-kde3 (4:3.5.10-0ubuntu4~intrepid4) intrepid; urgency=low
 
-  * Repaired KDM DATAPATH problem
+  * Repaired TDM DATAPATH problem
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 20 Mar 2009 10:22:00 -0600
 
 kdebase-kde3 (4:3.5.10-0ubuntu4~intrepid2) intrepid; urgency=low
 
   * Repaired accidental conflict with /etc/sysguarddrc
-  * Repared KDM PATH (fixes bug #56)
+  * Repared TDM PATH (fixes bug #56)
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Mon, 17 Mar 2009 14:03:00 -0600
 
@@ -190,7 +190,7 @@ kdebase-kde3 (4:3.5.10-0ubuntu4~intrepid0) intrepid; urgency=low
 
 kdebase-kde3 (4:3.5.10-0ubuntu3~intrepid19) intrepid; urgency=low
 
-  * Repaired default kdm icons
+  * Repaired default tdm icons
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sat, 07 Mar 2009 13:18:00 -0600
 
@@ -299,7 +299,7 @@ kdebase (4:3.5.10-0ubuntu1~hardy2) hardy-backports; urgency=low
 kdebase (4:3.5.10-0ubuntu1~hardy1) hardy-backports; urgency=low
 
   * New upstream bugfix release (LP: #261366)
-    - 13_kdm_sessions_fixes.diff freshen patch
+    - 13_tdm_sessions_fixes.diff freshen patch
     - kubuntu_9908_nodisplay_opengl.diff freshen patch 
     - Bump version of kdelibs-dev to 3.5.10
 
@@ -382,14 +382,14 @@ kdebase (4:3.5.9-0ubuntu1) hardy; urgency=low
   * New upstream release
 
   [ Terence Simpson ]
-  * Fix config script for kdm to detect kdm-kde4
+  * Fix config script for tdm to detect tdm-kde4
 	
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 14 Feb 2008 12:27:06 +0000
 
 kdebase (4:3.5.8-2ubuntu21) hardy; urgency=low
 
-  * Add kubuntu_9921_kdm_bulletproof_x.diff, adds bulletproof X
-    feature to KDM.
+  * Add kubuntu_9921_tdm_bulletproof_x.diff, adds bulletproof X
+    feature to TDM.
 
  -- Eugene Tretyak <etretyak@gmail.com>  Thu, 14 Feb 2008 10:40:12 +0000
 
@@ -403,15 +403,15 @@ kdebase (4:3.5.8-2ubuntu20) hardy; urgency=low
 kdebase (4:3.5.8-2ubuntu19) hardy; urgency=low
 
   * kdebase-kio-plugins replaces old kdebase-data, closes LP: #189963
-  * Remove 70_kdm_consolekit.diff replace with kubuntu_70_kdm_consolekit.diff,
+  * Remove 70_tdm_consolekit.diff replace with kubuntu_70_tdm_consolekit.diff,
     updated version from http://bugs.kde.org/show_bug.cgi?id=147790
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 08 Feb 2008 12:32:50 +0000
 
 kdebase (4:3.5.8-2ubuntu18)  hardy; urgency=low
 
-  * Edited debian/patches/70_kdm_consolekit.diff to fix a crash
-    when attempting to connect to local kdm via XDMCP (Closes LP: #178242)
+  * Edited debian/patches/70_tdm_consolekit.diff to fix a crash
+    when attempting to connect to local tdm via XDMCP (Closes LP: #178242)
     Thanks to Paul Brook for debbuging this, and to Zoogie for reporting this
  
  -- Maxim Levitsky <maximlevitsky@gmail.com>  Tue, 06 Feb 2008 00:39:44 +0000
@@ -461,14 +461,14 @@ kdebase (4:3.5.8-2ubuntu14) hardy; urgency=low
 
 kdebase (4:3.5.8-2ubuntu13) hardy; urgency=low
 
-  * Added kubuntu_9919_kdm_preferuser.diff, uses the kubuntu-default-
+  * Added kubuntu_9919_tdm_preferuser.diff, uses the kubuntu-default-
     settings's settings for facesource if any
 
  -- Anthony Mercatante <tonio@kubuntu>  Fri, 04 Jan 2008 15:50:02 +0100
 
 kdebase (4:3.5.8-2ubuntu12) hardy; urgency=low
 
-  * Really fix kubuntu_9918_kdm_systemlocale.diff
+  * Really fix kubuntu_9918_tdm_systemlocale.diff
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 04 Jan 2008 11:11:38 +0000
 
@@ -481,8 +481,8 @@ kdebase (4:3.5.8-2ubuntu11) hardy; urgency=low
 
 kdebase (4:3.5.8-2ubuntu10) hardy; urgency=low
 
-  * Added kubuntu_9918_kdm_systemlocale.diff:
-    - KDM uses the system locale
+  * Added kubuntu_9918_tdm_systemlocale.diff:
+    - TDM uses the system locale
 
  -- Anthony Mercatante <tonio@kubuntu>  Wed, 02 Jan 2008 12:56:51 +0100
 
@@ -522,8 +522,8 @@ kdebase (4:3.5.8-2ubuntu6) hardy; urgency=low
 
 kdebase (4:3.5.8-2ubuntu5) hardy; urgency=low
 
-  * Add kubuntu_9914_kdm_user_image_check.diff from upstream
-    fixes potential KDM local DoS if users set an invalid image
+  * Add kubuntu_9914_tdm_user_image_check.diff from upstream
+    fixes potential TDM local DoS if users set an invalid image
     Closes LP: #176347
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 14 Dec 2007 12:24:17 +0000
@@ -567,7 +567,7 @@ kdebase (4:3.5.8.dfsg.1-2) unstable; urgency=low
 
   +++ Changes by Fathi Boudra:
 
-  * Remove /usr/bin/X11 from KDM's default session path. (Closes: 441392)
+  * Remove /usr/bin/X11 from TDM's default session path. (Closes: 441392)
   * Add support for ConsoleKit. Thanks to Michael Biebl, William Jon McCann and
     Kevin Kofler. (Closes: #450603)
 
@@ -614,7 +614,7 @@ kdebase (4:3.5.8.dfsg.1-1) unstable; urgency=low
     -  24_knotify_arts.diff
     -  41_nspluginviewer_64bit_fix.diff
     -  50_several-CVE-konqueror.diff
-    -  51_CVE-2007-4569-kdm-autologin.diff
+    -  51_CVE-2007-4569-tdm-autologin.diff
     -  60_new-debshortcut.diff
   * Redo buildprep.
   * Bump build-dependencies and stuff to 3.5.8.
@@ -648,7 +648,7 @@ kdebase (4:3.5.7.dfsg.1-1) unstable; urgency=low
 
 kdebase (4:3.5.7-4) unstable; urgency=low
 
-  * Add patch to fix unauthorized login problem in kdm.
+  * Add patch to fix unauthorized login problem in tdm.
     CVE-2007-4569.
 
  -- Sune Vuorela <debian@pusling.com>  Wed, 19 Sep 2007 20:30:01 +0200
@@ -664,7 +664,7 @@ kdebase (4:3.5.7-3) unstable; urgency=low
 
   +++ Changes by Fathi Boudra:
 
-  * Add xserver-xorg Recommends to kdm. (Closes: #436573)
+  * Add xserver-xorg Recommends to tdm. (Closes: #436573)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Fri, 27 Jul 2007 16:29:18 +0200
 
@@ -678,7 +678,7 @@ kdebase (4:3.5.7-2) unstable; urgency=low
     (Closes: #427843)
   * Updated nb debconf translation. (Closes: #417942)
   * Fix typo in startkde manpage. Thanks A. Costa. (Closes: #432062)
-  * Fix typo in kdmrc. Thanks Greg. (Closes: #422142)
+  * Fix typo in tdmrc. Thanks Greg. (Closes: #422142)
   * Updated vi debconf translation. Thanks Clytie Siddall (Closes: #426820)
   * Updated pt_BR debconf translation. Thanks Eder L. Marques. 
     (Closes: #422285)
@@ -735,11 +735,11 @@ kdebase (4:3.5.7-1ubuntu25) gutsy; urgency=low
 kdebase (4:3.5.7-1ubuntu24) gutsy; urgency=low
 
   [ Richard A. Johnson ]
-  * SECURITY UPDATE: KDM password-less login
-  * KDM can be tricked into performing a password-less login even for accounts
+  * SECURITY UPDATE: TDM password-less login
+  * TDM can be tricked into performing a password-less login even for accounts
     with a password set under certain circumstances, namely autologin to be
     configured and "shutdown with password" enabled.
-  * Add kubuntu_sec_03_kdm_pwless_login.diff for session.c to fix KDM
+  * Add kubuntu_sec_03_tdm_pwless_login.diff for session.c to fix TDM
     password-less and autologin configuration.
   * References:
     - http://www.kde.org/info/security/advisory-20070919-1.txt
@@ -883,15 +883,15 @@ kdebase (4:3.5.7-1ubuntu9) gutsy; urgency=low
 
 kdebase (4:3.5.7-1ubuntu8) gutsy; urgency=low
 
-  * Fixed debian/kdm.init
-    set kdm language to the system default.
+  * Fixed debian/tdm.init
+    set tdm language to the system default.
   * Droped pmount dependancy for kdebase.
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Thu, 14 Jun 2007 17:15:21 +0200
 
 kdebase (4:3.5.7-1ubuntu7) gutsy; urgency=low
 
-  * Fixed debian/kdm.init
+  * Fixed debian/tdm.init
     Previous code was bash code while the init script is sh
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Thu, 14 Jun 2007 13:13:22 +0200
@@ -912,8 +912,8 @@ kdebase (4:3.5.7-1ubuntu5) gutsy; urgency=low
 
 kdebase (4:3.5.7-1ubuntu4) gutsy; urgency=low
 
-  * Removed kubuntu_55_kdm_usplash_down.diff, usplash is now launched
-    via the kdm.init script, modified to launch usplash_down
+  * Removed kubuntu_55_tdm_usplash_down.diff, usplash is now launched
+    via the tdm.init script, modified to launch usplash_down
     (Fixes LP: #83727  and LP: #34821)
   * Added kbuntu_97_khotkeys_alt_print_shortcut.diff, capture a window
     with khotkeys with alt+print
@@ -947,7 +947,7 @@ kdebase (4:3.5.7-1ubuntu1) gutsy; urgency=low
 
   * Merge with Debian for new upstream release, remaining changes in
     KUBUNTU-DEBIAN-CHANGES
-  * Remove kubuntu_62_genkdmconf_fix.diff, applied upstream
+  * Remove kubuntu_62_gentdmconf_fix.diff, applied upstream
   * Update kubuntu_68_xinerama.diff
   * Remove kubuntu_87_kicker_restore_description_parents.diff, obsoleted by upstream changes
   * Remove kubuntu_94_konqueror_nsplugins_amd64.diff, now part of Debian
@@ -1023,9 +1023,9 @@ kdebase (4:3.5.6.dfsg.2-1) unstable; urgency=low
   +++ Changes by Sune Vuorela:
   
   * Support where the frosty furry animals wants their plugins. (Patch 38)
-  * Better distinguish wether users has modified their kdm theme. (Patch 39)
-  * Update kdm debconf template, thanks to Christian Perrier. (Closes: #415941)
-    Also update kdm debconf translations:
+  * Better distinguish wether users has modified their tdm theme. (Patch 39)
+  * Update tdm debconf template, thanks to Christian Perrier. (Closes: #415941)
+    Also update tdm debconf translations:
       - Norwegian Bokmal
       - Swedish thanks to Daniel Nylander (Closes: #417875)
       - Arabic thanks to Ossama Khayat (Closes: #417886)
@@ -1061,7 +1061,7 @@ kdebase (4:3.5.6.dfsg.2-1) unstable; urgency=low
   
   * Repackage to remove non-free OpenGL logo and update prune-nonfree
     script. Also, patch 44 to not install the logo. (Closes: #419962)
-  * Update spanish kdm debconf template translation, thanks to Enrique Matías.
+  * Update spanish tdm debconf template translation, thanks to Enrique Matías.
   * Fix changelog typos ;-)
   * And, as always, upload.
 
@@ -1073,9 +1073,9 @@ kdebase (4:3.5.6.dfsg.1-2) experimental; urgency=low
 
   * Don't install gvim desktop file in kappfinder. gvim does it by itself -
     and much better. (Closes: #408233)
-  * Improve documentation about styling kdm (thanks to Jeremy Bygott).
-    This is a note in kdm.init, in kdm.README.Debian and in the
-    generated kdmrc.  (Closes: #408418, #403776, #403797, #406438)
+  * Improve documentation about styling tdm (thanks to Jeremy Bygott).
+    This is a note in tdm.init, in tdm.README.Debian and in the
+    generated tdmrc.  (Closes: #408418, #403776, #403797, #406438)
   * Add portuguese debconf translation. Thanks to Carlos Lisboa.
     (Closes: #408021)
 
@@ -1171,7 +1171,7 @@ kdebase (4:3.5.6-0ubuntu10) feisty; urgency=low
 
   * Add kubuntu_91_ksplash_fork_too_early_cond.diff, closes
     Malone #46682. Patch from  Mark Jenkins
-  * Removed kubuntu_05_kdm_theme_config.diff, kdm config will now be
+  * Removed kubuntu_05_tdm_theme_config.diff, tdm config will now be
     set via kubuntu-default-settings postinst script.
     Closes Malone #58639
 
@@ -1297,7 +1297,7 @@ kdebase (4:3.5.5a.dfsg.1-1ubuntu14) feisty; urgency=low
 
 kdebase (4:3.5.5a.dfsg.1-1ubuntu13) feisty; urgency=low
 
-  * Update kdm init script to stop usplash with "start"
+  * Update tdm init script to stop usplash with "start"
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  4 Jan 2007 23:05:08 +0000
 
@@ -1389,7 +1389,7 @@ kdebase (4:3.5.5a.dfsg.1-1ubuntu1) feisty; urgency=low
 kdebase (4:3.5.6.dfsg.1-1) experimental; urgency=low
 
   * New upstream release:
-    * Fixes "kdm does not obey pam_limits". (Closes: #242641)
+    * Fixes "tdm does not obey pam_limits". (Closes: #242641)
     * Resolves ksysguard problem that it was not possible to sensor order.
       (Closes: #350561)
     * Fixes kdesktop_lock and pam_krb5. (Closes: #374394, #376803)
@@ -1443,18 +1443,18 @@ kdebase (4:3.5.5a.dfsg.1-3) unstable; urgency=high
     * debian-kde_default.png.desktop
     * 21_default_background_image.diff.uu
     * 22_default_backgrounds.diff
-  * Add kdm customization support and update kdm README.Debian. Main changes
-    can be found in kdm init script:
-    * use an alternative kdm master configuration file (/var/run/kdm/kdmrc)
-      and background configuration file (/var/run/kdm/backgroundrc)
-    * source override file in kdm override directory (/etc/default/kdm.d)
+  * Add tdm customization support and update tdm README.Debian. Main changes
+    can be found in tdm init script:
+    * use an alternative tdm master configuration file (/var/run/tdm/tdmrc)
+      and background configuration file (/var/run/tdm/backgroundrc)
+    * source override file in tdm override directory (/etc/default/tdm.d)
     (Closes: #385839)
 
   +++ Changes by Sune Vuorela:
   * Add kdelibs-dbg to kdebase-dbg dependencies.
 
   +++ Changes by Josh Metzler:
-  * Restore kdm's default user face icon by adding a symlink to kdm.links.
+  * Restore tdm's default user face icon by adding a symlink to tdm.links.
     (Closes: #267722)
 
   +++ Changes by Modestas Vainius:
@@ -1582,7 +1582,7 @@ kdebase (4:3.5.5-1) unstable; urgency=low
     depends on kdebase, so the kde-desktop task will now pull in hal/pmount
     as well. (Closes: #384663)
 
-  * Fix typo in /etc/pam.d/kdm-np. (Closes: #381908)
+  * Fix typo in /etc/pam.d/tdm-np. (Closes: #381908)
 
   * Remove /usr/share/apps/kappfinder/apps/Office/lyx.desktop, as lyx-qt
     provides its own better .desktop file. (Closes: #383412)
@@ -1663,7 +1663,7 @@ kdebase (4:3.5.4-1) unstable; urgency=low
   * Add libjessie-java to konqueror's Java Suggests, since it is needed for
     JSSE in conjunction with GCJ.
 
-  * Add a LSB header to the KDM init script, making KDM usable with a parallel
+  * Add a LSB header to the TDM init script, making TDM usable with a parallel
     bootscripts setup. Thanks to Carlos Villegas. (Closes: #376958)
 
   * 25_khelp_htdig.diff: With the htdig package, searchable indexes should
@@ -1741,7 +1741,7 @@ kdebase (4:3.5.4-0ubuntu27) edgy; urgency=low
 
 kdebase (4:3.5.4-0ubuntu26) edgy; urgency=low
 
-  * Install kdm at init level 13
+  * Install tdm at init level 13
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 22 Sep 2006 01:58:38 +0100
 
@@ -1790,22 +1790,22 @@ kdebase (4:3.5.4-0ubuntu20) edgy; urgency=low
 
 kdebase (4:3.5.4-0ubuntu19) edgy; urgency=low
 
-  * Added kubuntu_80_kdm_grub.diff (closes #57066)
+  * Added kubuntu_80_tdm_grub.diff (closes #57066)
   * Added kubuntu_81_search_engines_config.diff (closes #60058)
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Tue,  12 Sep 2006 08:26:23 +0200
 
 kdebase (4:3.5.4-0ubuntu18) edgy; urgency=low
 
-  * Improved patch kubuntu_79_kdm_halt.diff since kcontrol connection
-    manager module also hardcodes the setting, instead of reading kdm
+  * Improved patch kubuntu_79_tdm_halt.diff since kcontrol connection
+    manager module also hardcodes the setting, instead of reading tdm
     settings (evil)
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Mon,  11 Sep 2006 13:19:23 +0200
 
 kdebase (4:3.5.4-0ubuntu17) edgy; urgency=low
 
-  * Added patch kubuntu_79_kdm_halt.diff to change the shutdown command
+  * Added patch kubuntu_79_tdm_halt.diff to change the shutdown command
     (closes #59134)
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Mon,  11 Sep 2006 11:50:23 +0200
@@ -1819,7 +1819,7 @@ kdebase (4:3.5.4-0ubuntu16) edgy; urgency=low
 
 kdebase (4:3.5.4-0ubuntu15) edgy; urgency=low
 
-  * Improved kubuntu_05_kdm_theme_config.diff (closes #57428)
+  * Improved kubuntu_05_tdm_theme_config.diff (closes #57428)
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Fri,  8 Sep 2006 15:06:20 +0200
 
@@ -2034,7 +2034,7 @@ kdebase (4:3.5.3-1) unstable; urgency=low
 
   * Update the kate manpage. (Closes: #347883)
 
-  * Manually add /usr/bin/X11 to the KDM's default session path, as otherwise
+  * Manually add /usr/bin/X11 to the TDM's default session path, as otherwise
     systems still running X11R6.9 won't be able to find X binaries, which can
     cause the login process to fail under certain circumstances. This bit of
     cruft (for X11R7 users) should be harmless, and can be removed post-Etch.
@@ -2060,23 +2060,23 @@ kdebase (4:3.5.2-2) unstable; urgency=low
   +++ Changes by Christopher Martin:
 
   * Now that menu-xdg+menu can provide xsession .desktop files for window
-    managers, add /var/lib/menu-xdg/xsessions to kdmrc's default list of
+    managers, add /var/lib/menu-xdg/xsessions to tdmrc's default list of
     places to search. Window managers should continue to provide their
     own .desktop files, however, since they will be more customized and
     won't force users to install the menu package. This is merely a
     fallback. (Closes: #360919)
 
-  * Make kdm look for /usr/bin/X by default, now that /usr/X11R6 is on its way
-    out. Adjust other paths in kdmrc as well. kdm should now work better with
+  * Make tdm look for /usr/bin/X by default, now that /usr/X11R6 is on its way
+    out. Adjust other paths in tdmrc as well. tdm should now work better with
     X.Org 7. (Closes: #362924)
 
-  * Patch kdm so that if it can't find the X executable in kdmrc (now
+  * Patch tdm so that if it can't find the X executable in tdmrc (now
     /usr/bin/X by default), then try /usr/X11R6/bin/X, then finally
-    /usr/bin/X. This should keep kdm working for users who have a partial or
+    /usr/bin/X. This should keep tdm working for users who have a partial or
     botched dist-upgrade, or neglected to permit the installation of an
-    up-to-date kdmrc.
+    up-to-date tdmrc.
 
-  * Revamp /etc/pam.d/kdm and the other pam files. They should now find the
+  * Revamp /etc/pam.d/tdm and the other pam files. They should now find the
     new /etc/default/locale language settings. (Closes: #361089, #361163)
 
   * Remove xlibs-static-pic build-dependency, and replace it with
@@ -2111,7 +2111,7 @@ kdebase (4:3.5.2-1) unstable; urgency=low
   * Add a kpersonalizer manpage from Joe Zonker Brockmeier. Thanks.
     (Closes: #327395)
 
-  * Make the KDM option "Restart X Server" visible by default again.
+  * Make the TDM option "Restart X Server" visible by default again.
 
   * Fix the logitechmouse udev rules. Thanks to Henrique de Moraes Holschuh
     for spotting the problems. (Closes: #359751, #359773)
@@ -2156,7 +2156,7 @@ kdebase (4:3.5.0-3) unstable; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * Install kdm's NEWS file in all kdebase packages. This ensures that
+  * Install tdm's NEWS file in all kdebase packages. This ensures that
     apt-listchanges will display the news to all users. (Closes: #344947)
 
   +++ Changes by Adeodato Simó:
@@ -2189,11 +2189,11 @@ kdebase (4:3.5.0-2) experimental; urgency=low
 
 kdebase (4:3.5.2-0ubuntu27) dapper-security; urgency=low
 
-  * SECURITY UPDATE: KDM symlink attack vulnerability
-  * Add kubuntu_65_kdm_symlink_vunerability.diff
-  * KDM allows the user to select the session type for login. This
+  * SECURITY UPDATE: TDM symlink attack vulnerability
+  * Add kubuntu_65_tdm_symlink_vunerability.diff
+  * TDM allows the user to select the session type for login. This
     setting is permanently stored in the user home directory. By
-    using a symlink attack, KDM can be tricked into allowing the
+    using a symlink attack, TDM can be tricked into allowing the
     user to read file content that would otherwise be unreadable
     to this particular user. 
   * References:
@@ -2253,13 +2253,13 @@ kdebase (4:3.5.2-0ubuntu20) dapper; urgency=low
 
 kdebase (4:3.5.2-0ubuntu19) dapper; urgency=low
  
-  * Add kubuntu_62_genkdmconf_fix.diff, closes Malone #39599 
+  * Add kubuntu_62_gentdmconf_fix.diff, closes Malone #39599 
 
  -- Frode M. Doeving <frode@lnix.net>  Mon,  1 May 2006 15:25:48 +0100
 
 kdebase (4:3.5.2-0ubuntu18) dapper; urgency=low
 
-  * Fix wallpaper in kubuntu_05_kdm_theme_config.diff
+  * Fix wallpaper in kubuntu_05_tdm_theme_config.diff
   * Alter kubuntu_52_gtk_qt_engine_config.diff, don't make use of
     gtk_qt_engine if gnome or xfce are already installed (Malone #36256)
 
@@ -2275,7 +2275,7 @@ kdebase (4:3.5.2-0ubuntu17) dapper; urgency=low
 
 kdebase (4:3.5.2-0ubuntu16) dapper; urgency=low
 
-  * Update kubuntu_05_kdm_theme_config.diff for dapper wallpaper
+  * Update kubuntu_05_tdm_theme_config.diff for dapper wallpaper
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 27 Apr 2006 15:45:33 +0100
 
@@ -2394,13 +2394,13 @@ kdebase (4:3.5.2-0ubuntu1) dapper; urgency=low
 
 kdebase (4:3.5.1-0ubuntu14) dapper; urgency=low
 
-  * Add kubuntu_55_kdm_usplash_down.diff run usplash on exit from KDM
+  * Add kubuntu_55_tdm_usplash_down.diff run usplash on exit from TDM
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 17 Mar 2006 12:26:58 +0000
 
 kdebase (4:3.5.1-0ubuntu13) dapper; urgency=low
 
-  * Update kdm background colour in kubuntu_05_kdm_theme_config.diff
+  * Update tdm background colour in kubuntu_05_tdm_theme_config.diff
     to match current artwork
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 15 Mar 2006 21:17:36 +0000
@@ -2427,7 +2427,7 @@ kdebase (4:3.5.1-0ubuntu11) dapper; urgency=low
 kdebase (4:3.5.1-0ubuntu10) dapper; urgency=low
 
   * Add kubuntu_50_kate_desktop.diff use existing Kate session
-  * Add kubuntu_51_kdmrc_options.diff add back restart X option
+  * Add kubuntu_51_tdmrc_options.diff add back restart X option
   * Patches by Anthony Mercatante <tonio@ubuntu.com>
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 27 Feb 2006 15:18:06 +0000
@@ -2565,9 +2565,9 @@ kdebase (4:3.5.0-0ubuntu8) dapper; urgency=low
 
 kdebase (4:3.5.0-0ubuntu7) dapper; urgency=low
 
-  * Update 10_kdmrc_defaults_kubuntu.diff changing Debian to Kubuntu
-    and rename to kubuntu_10_kdmrc_defaults_kubuntu.diff
-  * Remove kdm dependency on kubuntu-default-settings, setting KDM 
+  * Update 10_tdmrc_defaults_kubuntu.diff changing Debian to Kubuntu
+    and rename to kubuntu_10_tdmrc_defaults_kubuntu.diff
+  * Remove tdm dependency on kubuntu-default-settings, setting TDM 
     theme now scripted in kubuntu-default-settings
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 10 Jan 2006 00:26:23 +0000
@@ -2629,7 +2629,7 @@ kdebase (4:3.5-rc2-0ubuntu1) dapper; urgency=low
 
   * New upstream pre-release
   * Tighten kdelibs-dev build-dep for libstdc++ transition
-  * kdm depends on xauth not xbase-clients
+  * tdm depends on xauth not xbase-clients
   * Update 18_default_fonts.diff
   * Generate .pot files
   * Remove kubuntu_26_startkde.diff, no need to start ivman in 3.5
@@ -2640,9 +2640,9 @@ kdebase (4:3.5-rc1-1ubuntu1) dapper; urgency=low
 
   * New upstream pre-release
   * Sync with Debian
-  * Update kubuntu_05_kdm_theme_config.diff
+  * Update kubuntu_05_tdm_theme_config.diff
   * Update kubuntu_16_hide_kpager_menu_entry.diff
-  * Update kubuntu_19_kdm_zsh_emulate.diff
+  * Update kubuntu_19_tdm_zsh_emulate.diff
   * Update kubuntu_25_kcontrol_only_in_kde.diff
   * Update kubuntu_30_startkde_background_colour.diff
   * Update kubuntu_32_usplash_console_font.diff
@@ -2691,7 +2691,7 @@ kdebase (4:3.4.3-3) unstable; urgency=low
     kdelibs4c2.
 
   * Add "noextendedglob" to zsh's options when reading the X startup scripts
-    for kdm. This works around some of its quirks. (Closes: #336305)
+    for tdm. This works around some of its quirks. (Closes: #336305)
 
   * Backport a fix from KDE 3.5 for a bug that caused switching to
     Administrator mode in KControl to fail on occasion. (Closes: #306951)
@@ -2744,8 +2744,8 @@ kdebase (4:3.4.2-3) unstable; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * Add a NEWS entry that explains the KDM upgrade process for users moving
-    from KDM 3.3.x, as well as KDM's new behaviour regarding login scripts.
+  * Add a NEWS entry that explains the TDM upgrade process for users moving
+    from TDM 3.3.x, as well as TDM's new behaviour regarding login scripts.
     (Closes: #326542, #327191)
 
   * Add a patch from the "Improving KDE" set that eliminates a superfluous
@@ -2783,11 +2783,11 @@ kdebase (4:3.4.2-1) unstable; urgency=low
 
   * Bugs reported in the Debian BTS fixed by this release:
 
-    - kdm uses /dev/urandom instead of /dev/random as the default source
+    - tdm uses /dev/urandom instead of /dev/random as the default source
       of entropy. This solves myriad issues on low-entropy systems.
       (Closes: #240027, #294267, #298254, #320838)
 
-    - "-nolisten tcp" no longer prevents kdm from connecting to remote
+    - "-nolisten tcp" no longer prevents tdm from connecting to remote
       hosts. (Closes: #263449)
 
   +++ Changes by Pierre Habouzit:
@@ -2808,7 +2808,7 @@ kdebase (4:3.4.2-1) unstable; urgency=low
 
   * Tighten all package relations between packages in kdebase, preventing many
     instances of potentially harmful partial upgrades. In particular, ensure
-    that kdm is upgraded along with kdebase-bin. (Closes: #312358)
+    that tdm is upgraded along with kdebase-bin. (Closes: #312358)
 
   * Fix typos in the kappfinder manpage. Thanks to A Costa. (Closes: #312767)
 
@@ -2817,11 +2817,11 @@ kdebase (4:3.4.2-1) unstable; urgency=low
     did not work with arts, had arts ever once been unavailable.
     (Closes: #312217)
 
-  * No longer set a random ForgingSeed in the kdmrc conffile, for this caused
-    each kdebase build to generate a different kdmrc, and therefore made
+  * No longer set a random ForgingSeed in the tdmrc conffile, for this caused
+    each kdebase build to generate a different tdmrc, and therefore made
     updates a nuissance.
 
-  * Make kdm Suggest kdepasswd, since the later contains icons that can be
+  * Make tdm Suggest kdepasswd, since the later contains icons that can be
     used to provide users with 'face' icons.
 
   * Fix formatting of the kdepasswd manpage. (Closes: #313472)
@@ -2829,10 +2829,10 @@ kdebase (4:3.4.2-1) unstable; urgency=low
   * Add the Arabic debconf translation by Mohammed Adnene Trojette.
     (Closes: #320768)
 
-  * Fix kdm session files that contain the incorrent binary names.
+  * Fix tdm session files that contain the incorrent binary names.
     (Closes: #320628)
 
-  * Change kdm's debconf dependency into a dependency on debconf |
+  * Change tdm's debconf dependency into a dependency on debconf |
     debconf-2.0, as this allows the installation of cdebconf.
 
   * Move all of konsole's README documentation into /opt/kde3/share/doc/konsole.
@@ -2863,7 +2863,7 @@ kdebase (4:3.4.3-0ubuntu5) breezy-updates; urgency=low
 kdebase (4:3.4.3-0ubuntu4) breezy; urgency=low
 
   * Fix typo in kubuntu_18_default_fonts.diff to give anti-aliased
-    fonts in kdm
+    fonts in tdm
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 11 Oct 2005 22:50:44 +0100
 
@@ -2895,7 +2895,7 @@ kdebase (4:3.4.2-0ubuntu5) breezy; urgency=low
     before X is started (ubuntu No 15344 , No 15102)
   * Ensure kubuntu_27_aboutscreen_searchbar.diff is not 
     applied before upload
-  * Fix kdm.postinst to move kdm back to S21
+  * Fix tdm.postinst to move tdm back to S21
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 27 Sep 2005 12:50:34 +0100
 
@@ -2937,7 +2937,7 @@ kdebase (4:3.4.2-0ubuntu2) breezy; urgency=low
 kdebase (4:3.4.2-0ubuntu1) breezy; urgency=low
 
   * New upstream release
-  * Move 10_kdmrc_defaults.diff to kubuntu_10_kdmrc_defaults.diff 
+  * Move 10_tdmrc_defaults.diff to kubuntu_10_tdmrc_defaults.diff 
     and s/Debian/Kubuntu
   * Add kubuntu_27_aboutscreen_searchbar.diff
 
@@ -2985,7 +2985,7 @@ kdebase (4:3.4.1-0ubuntu2) breezy; urgency=low
 kdebase (4:3.4.1-0ubuntu1) breezy; urgency=low
 
   * Update version number following KDE 3.4.1 release
-  * Add kde-base conflict with kdm << 3.4.1
+  * Add kde-base conflict with tdm << 3.4.1
   * Add back ktip to meta package
 
  -- Jonathan Riddell <jr@jriddell.org>  Wed,  1 Jun 2005 00:15:47 +0000
@@ -2999,7 +2999,7 @@ kdebase (4:3.4.1-0ubuntu0pre3) breezy; urgency=low
 
 kdebase (4:3.4.1-0ubuntu0pre2) breezy; urgency=low
 
-  * Add build-dep on libxau-dev, libxdmcp-dev to let KDM compile
+  * Add build-dep on libxau-dev, libxdmcp-dev to let TDM compile
 
  -- Jonathan Riddell <jr@jriddell.org>  Tue, 24 May 2005 19:23:39 +0000
 
@@ -3007,8 +3007,8 @@ kdebase (4:3.4.1-0ubuntu0pre1) breezy; urgency=low
 
   * New upstream release.
   * Sync with Debian
-  * Change /usr/bin/X11 to /usr/X11R6/bin in kdm.README.Debian and 
-    patches/11_genkdmconf.diff renamed to kubuntu_01_genkdmconf.diff
+  * Change /usr/bin/X11 to /usr/X11R6/bin in tdm.README.Debian and 
+    patches/11_gentdmconf.diff renamed to kubuntu_01_gentdmconf.diff
     and alter PATH in debian/rules
 
  -- Jonathan Riddell <jr@jriddell.org>  Tue, 24 May 2005 11:34:02 +0000
@@ -3033,18 +3033,18 @@ kdebase (4:3.4.0-0pre4) alioth; urgency=low
   +++ Changes by Christopher Martin:
 
   * Added a patch to set reasonable default fonts, using the fontconfig
-    defaults, for kpersonalizer, kcontrol, kdm, and the Plastik theme. We
+    defaults, for kpersonalizer, kcontrol, tdm, and the Plastik theme. We
     also use the Debian Blue artwork to provide a standard desktop
     background.
 
-  * KDM no longer shows the Custom session. When it works at all, it simply
+  * TDM no longer shows the Custom session. When it works at all, it simply
     duplicates Default's behaviour anyway. (Closes: #251602)
 
-  * New KDM patches source /etc/profile and the user's normal shell startup
+  * New TDM patches source /etc/profile and the user's normal shell startup
     scripts. (Closes: #173802, #211953, #250645, #250765, #289143)
 
-  * KDM once again looks for window manager session definitions in
-    /usr/share/apps/kdm/sessions by default. (Closes: #293645, #310155)
+  * TDM once again looks for window manager session definitions in
+    /usr/share/apps/tdm/sessions by default. (Closes: #293645, #310155)
 
   * USB usermap for Logitech mice is now installed, with device permissions
     set so that members of the plugdev group can make use of the Logitech
@@ -3092,7 +3092,7 @@ kdebase (4:3.3.2-1) unstable; urgency=low
 
   * Update kdeprint documentation to sync with kdelibs patches.
 
-  * Add NEWS.Debian for kdm, explaining the "keyboard doesn't work"
+  * Add NEWS.Debian for tdm, explaining the "keyboard doesn't work"
     problem when upgrading to KDE 3.3, and how to deal with it.
     (Closes: #266106, #267622)
 
@@ -3146,7 +3146,7 @@ kdebase (4:3.4.0-0ubuntu18) hoary; urgency=low
 
 kdebase (4:3.4.0-0ubuntu17) hoary; urgency=low
 
-  * Changed kdm start from S13 to S21 (Ubuntu: 8029)  
+  * Changed tdm start from S13 to S21 (Ubuntu: 8029)  
   * More Linitian cleanup
 
  -- Andreas Mueller <amu@ubuntu.com>  Tue,  5 Apr 2005 16:00:01 +0200
@@ -3173,8 +3173,8 @@ kdebase (4:3.4.0-0ubuntu14) hoary; urgency=low
 
 kdebase (4:3.4.0-0ubuntu13) hoary; urgency=low
 
-  * Fix kdm login when shell is zsh. Thanks Antti S. Lankila for the hint.
-     19_kdm_zsh_emulate.diff (Hoary #7620)
+  * Fix tdm login when shell is zsh. Thanks Antti S. Lankila for the hint.
+     19_tdm_zsh_emulate.diff (Hoary #7620)
   * Fix init script output (Hoary #7180)
 
  -- Chris Halls <chris.halls@credativ.co.uk>  Wed, 30 Mar 2005 01:01:26 +0100
@@ -3207,7 +3207,7 @@ kdebase (4:3.4.0-0ubuntu9) hoary; urgency=low
 
 kdebase (4:3.4.0-0ubuntu8) hoary; urgency=low
 
-  * Make default background colour of kdm match wallpaper
+  * Make default background colour of tdm match wallpaper
   * Add kubuntu_17_hide_desktop_trash.diff to hide desktop wastebin
   * Remove dependency on ktip from kdebase
   * Change Hidden to OnlyShowIn in knetattach.desktop so it isn't hidden from remote:/
@@ -3216,7 +3216,7 @@ kdebase (4:3.4.0-0ubuntu8) hoary; urgency=low
 
 kdebase (4:3.4.0-0ubuntu7) hoary; urgency=low
 
-  * Make kdm depend on kubuntu-default-settings
+  * Make tdm depend on kubuntu-default-settings
 
  -- Jonathan Riddell <jr@jriddell.org>  Thu, 17 Mar 2005 07:11:28 +0000
 
@@ -3240,16 +3240,16 @@ kdebase (4:3.4.0-0ubuntu4) hoary; urgency=low
 
 kdebase (4:3.4.0-0ubuntu3) hoary; urgency=low
 
-  * Fix kdm.postinst to correctly update existing S99kdm links to S13kdm
+  * Fix tdm.postinst to correctly update existing S99tdm links to S13tdm
 
  -- Jonathan Riddell <jr@jriddell.org>  Wed, 16 Mar 2005 23:43:54 +0000
 
 kdebase (4:3.4.0-0ubuntu2) hoary; urgency=low
 
-  * Fix kdm.postinst to update existing S99kdm links to S13kdm
+  * Fix tdm.postinst to update existing S99tdm links to S13tdm
   * Fix kubuntu_03_ksplash_settings.diff to change all references to icon
   * Remove depend on kde-style-lipstik while still in universe
-  * Add kubuntu_05_kdm_theme_config.diff to make kdm use Kubuntu theme
+  * Add kubuntu_05_tdm_theme_config.diff to make tdm use Kubuntu theme
   * Add kubuntu_06_hide_home_menu_entry.diff to hide Home from KMenu
 
  -- Jonathan Riddell <jr@jriddell.org>  Wed, 16 Mar 2005 17:26:25 +0000
@@ -3266,7 +3266,7 @@ kdebase (4:3.4.0-0ubuntu1) hoary; urgency=low
 
 kdebase (4:3.4.0-0pre1ubuntu6) hoary; urgency=low
 
-  * Make kdm start at at S13 rather than S99 (see Ubuntu Bugzilla No 3143
+  * Make tdm start at at S13 rather than S99 (see Ubuntu Bugzilla No 3143
     for gdm).
   * Make kdebase-bin depend on gdb for drkonqi
   * Add patch kubuntu_02_kcontrol_only_kde_menu.diff making KControl only
@@ -3313,11 +3313,11 @@ kdebase (4:3.3.2-0pre1) experimental; urgency=low
     for CAN-2004-1158.
   * Lower kdeprint's dependency on gv to a Suggests. (Closes: #269590)
   * kwin is now registered as an x-window-manager. (Closes: #249162)
-  * Added /usr/share/xsessions to KDM's default session path, so
+  * Added /usr/share/xsessions to TDM's default session path, so
     .desktop files installed there are found.
     (Closes: #243770, #247365, #247747, #250384)
-  * kdm can now be installed while building kdebase, without affecting
-    the generated kdmrc and other config files.
+  * tdm can now be installed while building kdebase, without affecting
+    the generated tdmrc and other config files.
   * Adjust documentation to reflect the CUPS document path used by
     Debian.
   * Incorporate new manpages, for kdepasswd, kappfinder, kfind,
@@ -3385,7 +3385,7 @@ kdebase (4:3.3.1-1) unstable; urgency=low
   * New upstream release.
   * KDE_3_3_BRANCH update.
   * ksmserver: only reset x-session-manager on install. (Closes: #247243)
-  * kdm: remove log files on purge. (Closes: #273542)
+  * tdm: remove log files on purge. (Closes: #273542)
   * Correct Danish po-debconf translations. (Closes: #273832)
 
  -- Christopher L Cheney <ccheney@debian.org>  Thu,  4 Nov 2004 04:00:00 -0600
@@ -3396,10 +3396,10 @@ kdebase (4:3.3.0a-1) unstable; urgency=low
   * KDE_3_3_BRANCH update.
   * Add Turkish po-debconf translations. (Closes: #248326)
   * Add German po-deconf translations. (Closes: #264608)
-  * Correct /etc/kde3/kdm/Xsession file. (Closes: #265795)
+  * Correct /etc/kde3/tdm/Xsession file. (Closes: #265795)
   * Correct usage of "its" in konsole description. (Closes: #268517)
   * Correct Danish po-debconf translations. (Closes: #269575)
-  * Correct kdm name in /etc/init.d/kdm. (Closes: #272062)
+  * Correct tdm name in /etc/init.d/tdm. (Closes: #272062)
 
  -- Christopher L Cheney <ccheney@debian.org>  Sat, 25 Sep 2004 20:00:00 -0500
 
@@ -3422,17 +3422,17 @@ kdebase (4:3.2.2-1) unstable; urgency=low
 
   * New upstream release.
   * Added Build-Depends: libsensors-dev.
-  * Corrected kdm postinst startup code. (Closes: #195052)
+  * Corrected tdm postinst startup code. (Closes: #195052)
   * Removed Debian menu desktop files. (Closes: #198661)
   * Added a README.linux.console document. (Closes: #218035)
-  * Remove kdm log files on purge. (Closes: #225157)
+  * Remove tdm log files on purge. (Closes: #225157)
   * Corrected kate/konqueror mime nametemplate support. (Closes: #235216)
-  * Removed "FIXME - observe" lines from kdm scripts. (Closes: #236422)
+  * Removed "FIXME - observe" lines from tdm scripts. (Closes: #236422)
   * Added Danish po-debconf translations. (Closes: #236480)
   * Remove old x-session-manager alternatives. (Closes: #236515, #236795,
     #237081, #240773)
   * Removed kdebase and kicker menu-methods. (Closes: #236700)
-  * Corrected kdm-np PAM service. (Closes: #236750, #238182, #242381)
+  * Corrected tdm-np PAM service. (Closes: #236750, #238182, #242381)
   * Added kcontrol Depends: kdebase-data. (Closes: #239297)
   * Updated GDM session file. (Closes: #240980)
   * debian/*.menu: remove the obsolete kderemove tag.
@@ -3447,8 +3447,8 @@ kdebase (4:3.2.1-1) unstable; urgency=low
   * Added Japanese po-deconf translations. (Closes: #137940, #210431)
   * Updated kate Recommends: kregexpeditor. (Closes: #227677)
   * Added konqueror Depends: kdebase-kio-plugins. (Closes: #230203)
-  * Added kdm Provides: x-display-manager. (Closes: #231442)
-  * Added kdebase-bin/kdm Depends libpam-runtime. (Closes: #233562, #236078)
+  * Added tdm Provides: x-display-manager. (Closes: #231442)
+  * Added kdebase-bin/tdm Depends libpam-runtime. (Closes: #233562, #236078)
   * Added kate/konqueror mime nametemplate support. (Closes: #235216)
 
  -- Christopher L Cheney <ccheney@debian.org>  Fri,  5 Mar 2004 04:00:00 -0600
@@ -3486,8 +3486,8 @@ kdebase (4:3.1.4-2) unstable; urgency=low
   * Corrected konqueror gs mime tests. (Closes: #160428)
   * kdesktop Recommends eject. (Closes: #223642)
   * konqueror Provides info-browser. (Closes: #223913)
-  * Added '|| true' to db_input lines in kdm debconf support. (Closes: #224548)
-  * Corrected typo in kdm.config script. (Closes: #224578)
+  * Added '|| true' to db_input lines in tdm debconf support. (Closes: #224548)
+  * Corrected typo in tdm.config script. (Closes: #224578)
 
  -- Christopher L Cheney <ccheney@debian.org>  Mon,  5 Jan 2004 23:00:00 -0600
 
@@ -3506,7 +3506,7 @@ kdebase (4:3.1.4-1) unstable; urgency=low
   * Update pam support to use new common module fragments. (Closes: #206958)
   * Update package descriptions. (Closes: #209532, #209856)
   * Strip SUID root from kcheckpass since its not needed. (Closes: #212212)
-  * Update kdm debconf and use po-debconf. (Closes: #218731)
+  * Update tdm debconf and use po-debconf. (Closes: #218731)
   * Make kicker depend on kdebase-data. (Closes: #223407)
 
  -- Christopher L Cheney <ccheney@debian.org>  Thu, 18 Dec 2003 13:30:00 -0600
@@ -3544,8 +3544,8 @@ kdebase (4:3.1.2-1) unstable; urgency=low
   * Add kfind to konqueror Depends. (Closes: #192859)
   * Fix KDE GDM Session file. (Closes: #144206, #154519, #188560, #189438,
     #193274)
-  * Add log rotation for KDM logfile. (Closes: #145345, #153728)
-  * Add screen number to KDM Xservers file. (Closes: #182708, #184737, #187257)
+  * Add log rotation for TDM logfile. (Closes: #145345, #153728)
+  * Add screen number to TDM Xservers file. (Closes: #182708, #184737, #187257)
   * Moved xfonts-konsole fonts to /usr/X11R6/lib/X11/fonts/misc/
     (Closes: #184548)
 
@@ -3554,13 +3554,13 @@ kdebase (4:3.1.2-1) unstable; urgency=low
 kdebase (4:3.1.1-1) unstable; urgency=low
 
   * New upstream release. (Closes: #180816, #181309)
-  * Corrected kdm-update-menu.sh kdm.options path. (Closes: #180355)
-  * Added xbase-clients depend to kdm. (Closes: #180536)
+  * Corrected tdm-update-menu.sh tdm.options path. (Closes: #180355)
+  * Added xbase-clients depend to tdm. (Closes: #180536)
   * Added xutils depend to xfonts-konsole. (Closes: #180695)
   * Improved xfonts-konsole description. (Closes: #180696)
   * Remove upgrade from alternatives removal prerm script. (Closes: #180927)
   * Change Xservers to launch /usr/X11R6/bin/X. (Closes: #182037)
-  * Add entries for kdm reserve xserver feature. (Closes: #182708)
+  * Add entries for tdm reserve xserver feature. (Closes: #182708)
   * Add kcontrol depends to konqueror (Closes: #182724)
   * Change konqueror menu entry to allow execution. (Closes: #183225)
   * Make konqueror provide www-browser. (Closes: #183391)
@@ -3600,7 +3600,7 @@ kdebase (4:2.2.2-14.5) stable-security; urgency=high
 
   * Non-maintainer upload by the Security Team
   * Apply patch from KDE advisory 20030908 to fix local root vulnerability in
-    PAM authentication in KDM
+    PAM authentication in TDM
 
  -- Matt Zimmerman <mdz@debian.org>  Sun, 31 Aug 2003 04:39:47 -0400
 
@@ -3653,7 +3653,7 @@ kdebase (4:2.2.2-13) unstable; urgency=low
   * debian/rules, debian/konsole.dirs:
     - Make symlinks in the X fonts directory to Konsole fonts in
       /usr/share/fonts in the install target. (closes: #127871)
-  * debian/kdmrc:
+  * debian/tdmrc:
     - Disallow remote users from shutting down the machine. (Yeah, yeah, I
       know - dodgy grammar). (closes: #127616)
   * debian/control:
@@ -3739,7 +3739,7 @@ kdebase (4:2.2.2-4) unstable; urgency=low
   * Build cleanup
   * Build with xinerama support for i386
   * Another update for Nedit.ad to work with newer Nedit
-  * Cleanup kdmrc for release..default to security
+  * Cleanup tdmrc for release..default to security
   * Update documentation for freeze
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Fri, 30 Nov 2001 02:30:00 -0700
@@ -3747,7 +3747,7 @@ kdebase (4:2.2.2-4) unstable; urgency=low
 kdebase (4:2.2.2-3) unstable; urgency=low
 
   * Update Brazilian Portuguese debconf entries (Closes: #120841)
-  * Remove kdmrc debconf note
+  * Remove tdmrc debconf note
   * Add in replaces to fix those people using testing who don't know
     how to use --force-overwrite or don't know how to let dpkg fix 
     things on the second go around.  What a waste of disk space.
@@ -3767,14 +3767,14 @@ kdebase (4:2.2.2-2) unstable; urgency=low
 kdebase (4:2.2.2-1) unstable; urgency=low
 
   * new upstream version
-  * Add in suggests for libpam-krb/heimdel to kdm so we can get rid of the
-    kdm-krb package
+  * Add in suggests for libpam-krb/heimdel to tdm so we can get rid of the
+    tdm-krb package
   * Update Nedit.ad (Closes: #117881)
-  * Apply kdm cleanup patch by Branden (Closes: #118217)
+  * Apply tdm cleanup patch by Branden (Closes: #118217)
   * Fix mime checks (Closes: #117747)
   * Fix kate syntax highlights (Closes: #113773)
   * Add kate undocumented manpage
-  * Run lilo query for kdm with -w
+  * Run lilo query for tdm with -w
   * Fix konsole crashes (Closes: #119480)
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Wed, 21 Nov 2001 16:18:00 -0700
@@ -3867,9 +3867,9 @@ kdebase (4:2.2.1-3) unstable; urgency=low
 
 kdebase (4:2.2.1-2) unstable; urgency=low
 
-  * fix kdm preinst (Closes: #112900)
+  * fix tdm preinst (Closes: #112900)
   * fix overwrite (Closes: #112903)
-  * A couple kdm fixes and on keditbookmarks fix from upstream
+  * A couple tdm fixes and on keditbookmarks fix from upstream
   * Use usbutils's usb.ids if it exists (Closes: #112879)
   * konsole save fixes (Closes: #112982, 112943)
 
@@ -3905,8 +3905,8 @@ kdebase (4:2.2.0.20010822-1) unstable; urgency=low
   * Remove gvim.desktop and gvim.png files so there is no confliction with
     new vim package.
   * sync with upstream
-  * Fix kdm not allowing typing after the first boot
-  * kdm now uses new x-display-manager bits
+  * Fix tdm not allowing typing after the first boot
+  * tdm now uses new x-display-manager bits
   * Fix typos and update script bits from Branden
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Wed, 22 Aug 2001 00:01:00 -0700
@@ -3922,10 +3922,10 @@ kdebase (4:2.2.0-final-3) unstable; urgency=low
 kdebase (4:2.2.0-final-2) unstable; urgency=low
 
   * Re-Add the *proper* Xsession script that will use the one provided
-    by Debian's X rather than the one provided by kdm which is broken.
+    by Debian's X rather than the one provided by tdm which is broken.
     The one provided by Debian works better anyways. (Closes: #108736)
   * Fix klipperrc (Closes: #108856)
-  * Add a debconf note to kdm about SessionTypes being auto-generated.  This
+  * Add a debconf note to tdm about SessionTypes being auto-generated.  This
     is now noted in 3 locations.
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Tue, 14 Aug 2001 16:53:00 -0700
@@ -3964,7 +3964,7 @@ kdebase (4:2.2.0-0.2beta1-1) unstable; urgency=low
   * Update Build-Depends and Depends
   * Fix pdf viewing problem (Closes: #88006)
   * Fix reference to woody's version in userguide (Closes: #105301)
-  * kdm Brazilian debconf translations (Closes: #105374)
+  * tdm Brazilian debconf translations (Closes: #105374)
   * Fix kde-update-menu script so that it can be run as a normal user 
     (Closes: #105786)
   * sync with upstream
@@ -4003,22 +4003,22 @@ kdebase (4:2.2.0-0beta1-3) unstable; urgency=low
 
 kdebase (4:2.2.0-0beta1-2) unstable; urgency=low
  
-  * Fix kdm preinst
+  * Fix tdm preinst
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Fri, 29 Jun 2001 09:51:00 -0700
 
 kdebase (4:2.2.0-0beta1-1) unstable; urgency=low
 
-  * Update path info in kdm files...these were in the comments so
+  * Update path info in tdm files...these were in the comments so
     it wasn't a big deal
-  * Add a comment to default kdmrc about SessionType generation
-  * Re-hash kdm README
+  * Add a comment to default tdmrc about SessionType generation
+  * Re-hash tdm README
   * KDE 2.2 beta1
   * Sync with upstream
   * Fix typo in Xsetup
   * Fix dup dependencies (Closes: #99690)
   * Fix other replaces and whatnot (Closes: #101187)
-  * Add filterproxy,freenet user to kdmrc (Closes: #96707, #98746)
+  * Add filterproxy,freenet user to tdmrc (Closes: #96707, #98746)
   * Upstream reports these bugs fixed (Closes: #77151)
   * Adding in a note about kwrited (Closes: #97245)
   * Add w3m to klipperrc
@@ -4032,7 +4032,7 @@ kdebase (4:2.2.0-0beta1-1) unstable; urgency=low
     date listed in the version number states when the initial pull was made
     however updates may and most likely will have taken place since that
     date.  Look at it as a >= cvs{date}
-  * Generate SessionTypes line in kdmrc during kdm postinst.
+  * Generate SessionTypes line in tdmrc during tdm postinst.
   * Change KDE logo's in konq's about:konqueror to Debian powered-by logo with
     link to debian.org instead of kde.org
   * Remove old menu debian xpm files and use existing debian png mimetype
@@ -4049,11 +4049,11 @@ kdebase (4:2.2.0-0beta1-1) unstable; urgency=low
     we were using.
   * Fix description of kate...oops..thanks Oswald. :)
   * More menu clean...full pathing
-  * ton of kdm updates...basically syncing conffiles with those from
+  * ton of tdm updates...basically syncing conffiles with those from
     the xdm from 4.0.3
   * More build-deps:
     libogg-dev, libvorbis-dev  (For auidocd:/ support)
-  * Provide man link from kdm to chooser
+  * Provide man link from tdm to chooser
   * More build cleanup..take more of the automation out to make sure things
     are constant
   * Remove custom startkde
@@ -4085,9 +4085,9 @@ kdebase (4:2.2.0-0beta1-1) unstable; urgency=low
   * New man pages for: konqueror
   * More debconf cleanup
   * Adding in suggests for xearth
-  * Add in Dependency for x-window-manager | x-session-manager to kdm
+  * Add in Dependency for x-window-manager | x-session-manager to tdm
   * Add icons to debian sub menus
-  * kdm auto-generation of session list
+  * tdm auto-generation of session list
   * Merging Debian and KDE menus a bit
   * Add lynx and links to default klipperc
   * Fixed communicator entry in klipperrc so that it will actually launch 
@@ -4123,7 +4123,7 @@ kdebase (4:2.1.1-4) unstable; urgency=low
 
 kdebase (4:2.1.1-3) unstable; urgency=low
  
-  * Fix kdmrc file (Closes: #92415)
+  * Fix tdmrc file (Closes: #92415)
   * Update XftConfig example
   * Fix kfmclient and kicker crashes (Closes: #89146, #88647)
   * More upstream fixes
@@ -4156,7 +4156,7 @@ kdebase (4:2.1.0.1-5) unstable; urgency=low
 
 kdebase (4:2.1.0.1-4) unstable; urgency=low
  
-  * pam_env fixes for kdm as well as a ton of other updates to kdm
+  * pam_env fixes for tdm as well as a ton of other updates to tdm
   * Fixing a problem with the default AA settings.  It looks like I "fixed" 
     the wrong bit when I first fixed this.  (Closes: #89741)
  
@@ -4165,14 +4165,14 @@ kdebase (4:2.1.0.1-4) unstable; urgency=low
 kdebase (4:2.1.0.1-3) unstable; urgency=low
  
   * Adding in debconf note for systems that have a /.kde directory
-  * Adding debconf dependency to kdm
+  * Adding debconf dependency to tdm
   * More upstream fixes
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Tue, 13 Mar 2001 18:20:00 -0700
 
 kdebase (4:2.1.0.1-2) unstable; urgency=low
  
-  * Fix kdm init script. actually stop when we tell you to stop (Closes: #89235)
+  * Fix tdm init script. actually stop when we tell you to stop (Closes: #89235)
   * More documentation added to the QT AA Font Howto
   * Fix for K Menu restarts and other funky behaviour
   * XftConfig example included
@@ -4253,19 +4253,19 @@ kdebase (4:2.1.0-1) unstable; urgency=low
 kdebase (4:2.1-final-1) unstable; urgency=low
  
   * New upstream version
-  * Fix kdm init.d script
+  * Fix tdm init.d script
   * Upping standards version
-  * Fix for "chooser not running from kdm" (Closes: #76586)
+  * Fix for "chooser not running from tdm" (Closes: #76586)
   * Fix graphics display (Closes: #85166)
   * Fix bg clear issue (Closes: #77649)
-  * Fix kdm and expiring passwords
+  * Fix tdm and expiring passwords
   * Fix for konq crash on startup and other crashes (Closes: 84472, #77151, #80102)
   * Moving task-kde* packages out of kdebase source
   * Fixes for khelpcenter hangs (Closes: #81683)
   * konq provides ftp-client as well
   * Update /usr/bin/kde2 script
   * Compile ldap kioslave
-  * Updated kdm init.d script
+  * Updated tdm init.d script
   * Fix these rendering issues (Closes: #87183)
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Mon, 19 Feb 2001 02:31:00 -0700
@@ -4301,7 +4301,7 @@ kdebase (4:2.1-beta2-2) unstable; urgency=low
   * Updating menu entries (Closes: #83216)
   * Fixes form content memory in konq (Closes: #77317)
   * Fixes problem with version numbers not showing
-  * Adding Build-Depends for xutils as it seems kdm needs imake
+  * Adding Build-Depends for xutils as it seems tdm needs imake
   * Applied patch for konq template (Closes: #83355)
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Tue, 23 Jan 2001 12:36:00 -0700
@@ -4333,8 +4333,8 @@ kdebase (4:2.1-20010115-1) unstable; urgency=low
   * ask where the mozilla bookmarks are (Closes: #81710)
   * tip that was annoying to some seems to be gone (Closes: #82253)
   * Adding in kscreensaver pam file
-  * Updating kdmrc to match current features and all
-  * Add a link in /etc/X11/kdm to kdmrc (Closes: #82643)
+  * Updating tdmrc to match current features and all
+  * Add a link in /etc/X11/tdm to tdmrc (Closes: #82643)
   * Updated kde2 start script that fixes overwriting of gtk confs
   * This version fixes smb problems...you just need to make sure
     you have smbclient installed.  Added that as a Recommend (Closes: #82612)
@@ -4384,7 +4384,7 @@ kdebase (4:2.1-20001218-1) unstable; urgency=low
  
   * More upstream fixes
   * Fix for GDM Session (Closes: #79987)
-  * Update to kdm man page and README
+  * Update to tdm man page and README
   * Adding /usr/bin/kde2 as a x-session-manager
   * Adding new menu hints (Closes: #80022, #80020)
   * Fixing menu-method to handle new hints
@@ -4406,13 +4406,13 @@ kdebase (4:2.1-20001213-1) unstable; urgency=low
   * New upstream beta
   * Fixing alternative priority for konsole
   * Adding in a session for gdm (Closes: #74678)
-  * new x4 port of xdm -> kdm (Closes: #79196, #79509)
+  * new x4 port of xdm -> tdm (Closes: #79196, #79509)
   * Fix whatis typo (Closes: #78178)
   * Fix segfaults (Closes: #78903)
   * Adding in a Recommend for kview to konqueror (Closes: #79201)
   * Changing x-window-manager alternative from kde2 to kwin
-  * KDM init.d script cleanup (Closes: #79320)
-  * Fixed default kdmrc script to show new options
+  * TDM init.d script cleanup (Closes: #79320)
+  * Fixed default tdmrc script to show new options
   * Adding in a kwm script for non-session launches
   * Adding new users to NoUsers (Closes: #79617)
  
@@ -4457,21 +4457,21 @@ kdebase (4:2.0-final-4) unstable; urgency=low
   * more kdebase-libs work
     now properly handles pop3 and other services correctly
     now allows for email configuration without kdebase installed
-  * more dependency work with kdm (Closes: #76565)
+  * more dependency work with tdm (Closes: #76565)
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Wed, 08 Nov 2000 17:30:00 -0700
                                                                                 
 kdebase (4:2.0-final-3.1) unstable; urgency=low
  
   * applying i18n patch (Closes: #75831)
-  * more kdmrc default setting updates
+  * more tdmrc default setting updates
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Sun, 05 Nov 2000 23:00:00 -0700
 
 kdebase (4:2.0-final-3) unstable; urgency=low
  
   * more upstream fixes
-  * more kdmrc default setting updates
+  * more tdmrc default setting updates
   * build against new xlibs and updating depends
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Sat, 04 Nov 2000 01:00:00 -0700
@@ -4509,7 +4509,7 @@ kdebase (4:2.0-20001015-0) unstable; urgency=low
 
 kdebase (4:2.0-20001013-0) unstable; urgency=low
  
-  * kdmdesktop fixes from upstream
+  * tdmdesktop fixes from upstream
   * more i18n work
   * applying i18n patche
   * more fixes for konqueror
@@ -4533,7 +4533,7 @@ kdebase (4:2.0-20001009-0) unstable; urgency=low
  
   * KDE 2.0 RC2
   * more upstream fixes
-  * minor kdmdekstop fix
+  * minor tdmdekstop fix
   
  -- Ivan E. Moore II <rkrusty@debian.org>  Mon, 09 Oct 2000 08:00:00 -0700
                                                                                 
@@ -4561,8 +4561,8 @@ kdebase (4:2.0-20001004-0) unstable; urgency=low
  
   * More upstream fixes
   * No longer depend on versioned kdelibs
-  * Fixing up kdm's postinst to better handle kdmrc
-  * More spice for kdm
+  * Fixing up tdm's postinst to better handle tdmrc
+  * More spice for tdm
   * Fixes the following:  (Closes: #73057, #73015, #73002, #72921, #72989, #72919, #72638) 
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Mon, 02 Oct 2000 01:00:00 -0700
@@ -4647,14 +4647,14 @@ kdebase (4:2.0-20000912-0) unstable; urgency=low
 kdebase (4:2.0-20000910-2) unstable; urgency=low
 
   * Fixing Debian menu graphic problem
-  * More cleanup of kdm settings
+  * More cleanup of tdm settings
   * More dependency fixes
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Sun, 10 Sep 2000 23:00:00 -0700
 
 kdebase (4:2.0-20000910-0) unstable; urgency=low
 
-  * Changing kdm banner graphic to be the Debian swirl
+  * Changing tdm banner graphic to be the Debian swirl
   * Fixing start script so that kde actually starts with the desktop 
     functional.  (sorry)
 
@@ -4663,7 +4663,7 @@ kdebase (4:2.0-20000910-0) unstable; urgency=low
 kdebase (4:2.0-20000909-0) unstable; urgency=low
 
   * More upstream updates
-  * More kdm cleanup (star'd password option added)
+  * More tdm cleanup (star'd password option added)
   * Migrating binary-indep build pieces into their own area
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Sat, 09 Sep 2000 01:00:00 -0700
@@ -4693,9 +4693,9 @@ kdebase (4:2.0-20000901-0) unstable; urgency=low
 kdebase (4:2.0-20000825-0) unstable; urgency=low
  
   * New upstream fixes
-  * Updating kdm init script to match current xdm one
-  * Typo fixes in kdmrc
-  * Turning off xconsole by default for kdm
+  * Updating tdm init script to match current xdm one
+  * Typo fixes in tdmrc
+  * Turning off xconsole by default for tdm
   * Some work on menus
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Fri, 25 Aug 2000 21:30:00 -0700
@@ -4703,9 +4703,9 @@ kdebase (4:2.0-20000825-0) unstable; urgency=low
 kdebase (4:2.0-20000821-1.0) experimental; urgency=low
  
   * New upstream fixes
-  * changed xdm.options to kdm.options to seperate from xdm
-  * cleaned up pre/post scripts for kdm to handle proper upgrade from
-    kdm1.  Forcing a restart (if possible and without killing the upgrade)
+  * changed xdm.options to tdm.options to seperate from xdm
+  * cleaned up pre/post scripts for tdm to handle proper upgrade from
+    tdm1.  Forcing a restart (if possible and without killing the upgrade)
     during an upgrade.
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Mon, 21 Aug 2000 22:45:00 -0700
@@ -4727,7 +4727,7 @@ kdebase-cvs (4:2.0-20000521-1.0) experimental; urgency=low
   * Adding in a conflict for man2html since we provide it
   * Fixing ln issues with documentation
   * Fixing file permissions in CVS tree
-  * Fixing some kdm issues
+  * Fixing some tdm issues
   * Changing suggest to depend for kde-i18n since some documentation, etc
     resides in that package now.  (including english)
  
@@ -4755,9 +4755,9 @@ kdebase-cvs (4:2.0-20000306-1.1) experimental; urgency=low
 kdebase-cvs (4:2.0-20000302-1.0) experimental; urgency=low
  
   * New upstream CVS fixes
-  * Migrating chooser over to kdm-cvs package
-  * Updating kdm config files to match current versions of xdm
-  * Fixing kdm init.d scripts to handle now missing parser script
+  * Migrating chooser over to tdm-cvs package
+  * Updating tdm config files to match current versions of xdm
+  * Fixing tdm init.d scripts to handle now missing parser script
   * Fixing kicker applet issues (required -dev to be installed to work)
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 02 Mar 2000 22:00:00 -0700
@@ -4773,7 +4773,7 @@ kdebase-cvs (4:2.0-20000223-1.0) experimental; urgency=low
 
   * New upstream CVS fixes
   * Fixing pathing for kde help files
-  * Adding in md5 options to pam.d file for kdm
+  * Adding in md5 options to pam.d file for tdm
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Wed, 23 Feb 2000 22:00:36 -0700
 
@@ -4833,7 +4833,7 @@ kdebase-cvs (4:2.0-19990825-1) experimental; urgency=low
 kdebase-cvs (4:2.0-19990823-1) experimental; urgency=low
  
   * New upstream CVS changes
-  * Fixes bug with init.d script for kdm2
+  * Fixes bug with init.d script for tdm2
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Mon, 23 Aug 1999 07:00:56 -0400
                                                         
@@ -4877,12 +4877,12 @@ kdebase-cvs (4:2.0-19990601-1) experimental; urgency=low
 
 kdebase-cvs (4:2.0-19990531-1) experimental; urgency=low 
 
-  * Making kdm not require xdm
+  * Making tdm not require xdm
   * Fixing some pam stuff which includes a /etc/pam.d/kde file, making
     the pam name=kde so that it uses the /etc/pam.d/kde file instead of
-    xdm, kdm, or whatever.
+    xdm, tdm, or whatever.
   * Fixing the linux fonts for konsole.
-  * Fixing the /var/state/kdm issue
+  * Fixing the /var/state/tdm issue
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Mon, 31 May 1999 19:30:29 -0400
 
@@ -4940,7 +4940,7 @@ kdebase (4:1.1-19990217-1) unstable; urgency=low
 kdebase (4:1.1-19990214-2) unstable; urgency=low
 
   * move the link from /var/ to /usr, since /usr may be read only
-  * patch Xserver_0 to run kdmgreeter if kdm runs
+  * patch Xserver_0 to run tdmgreeter if tdm runs
 
  -- Stephan Kulow <coolo@kde.org>  Tue, 16 Feb 1999 18:52:03 +0100
 
@@ -4952,7 +4952,7 @@ kdebase (4:1.1-19990214-1) unstable; urgency=low
 
 kdebase (4:1.1-19990207-3) unstable; urgency=low
 
-  * new kdmrc handling
+  * new tdmrc handling
 
  -- Stephan Kulow <coolo@kde.org>  Fri, 12 Feb 1999 11:03:56 +0100
 
@@ -4990,7 +4990,7 @@ kdebase (2:980312-5) unstable; urgency=low
 kdebase (2:980312-4) frozen; urgency=low
 
   * added undocumented man page
-  * renamed kdmconfig to switchdm. This name existed twice
+  * renamed tdmconfig to switchdm. This name existed twice
   * new compile with latest kdelibs shlibs
 
  -- Stephan Kulow <coolo@kde.org>  Tue, 31 Mar 1998 20:26:23 +0200
@@ -5001,7 +5001,7 @@ kdebase (2:980312-3) unstable; urgency=low
   * changed the directory for debian apps to /var/spool/applnk
   * set the correct UTMP file
   * test prefix() before removing it. This should avoid a rm -rf /, when possible
-  * new kdm (with bugfixes and new location for configuration files)
+  * new tdm (with bugfixes and new location for configuration files)
 
  -- Stephan Kulow <coolo@kde.org>  Fri, 27 Mar 1998 16:07:37 +0100
 

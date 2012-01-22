@@ -36,14 +36,14 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 #, fuzzy
 msgid "Default display manager:"
 msgstr "Επιλέξτε τον επιθυμητό διαχειριστή οθόνης."
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -53,7 +53,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 #, fuzzy
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
@@ -66,7 +66,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 #, fuzzy
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
@@ -82,54 +82,54 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 #, fuzzy
-msgid "Stop the kdm daemon?"
-msgstr "Θέλετε να σταματήσετε να χρησιμοποιείτε τον δαίμονα kdm;"
+msgid "Stop the tdm daemon?"
+msgstr "Θέλετε να σταματήσετε να χρησιμοποιείτε τον δαίμονα tdm;"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 #, fuzzy
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Κανονικά, η λειτουργία του δαίμονα του διαχειριστή οθόνης των X (kdm) "
+"Κανονικά, η λειτουργία του δαίμονα του διαχειριστή οθόνης των X (tdm) "
 "διακόπτεται με κάθε αναβάθμιση και διαγραφή του πακέτου, αλλά στη "
 "συγκεκριμένη περίπτωση φαίνεται ότι διαχειρίζεται ήδη τουλάχιστον μια "
-"συνεδρία των X (X session). Αν ο kdm τερματιστεί τώρα, οποιεσδήποτε "
+"συνεδρία των X (X session). Αν ο tdm τερματιστεί τώρα, οποιεσδήποτε "
 "συνεδρίες των X χειρίζεται θα τερματιστούν επίσης. Διαφορετικά, μπορείτε να "
-"αφήσετε τον kdm να συνεχίσει τη λειτουργία του και η νέα έκδοση να "
+"αφήσετε τον tdm να συνεχίσει τη λειτουργία του και η νέα έκδοση να "
 "χρησιμοποιηθεί την επόμενη φορά που θα τρέξει ο δαίμονας."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 #, fuzzy
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"Κανονικά, η λειτουργία του δαίμονα του διαχειριστή οθόνης των X (kdm) "
+"Κανονικά, η λειτουργία του δαίμονα του διαχειριστή οθόνης των X (tdm) "
 "διακόπτεται με κάθε αναβάθμιση και διαγραφή του πακέτου, αλλά στη "
 "συγκεκριμένη περίπτωση φαίνεται ότι διαχειρίζεται ήδη τουλάχιστον μια "
-"συνεδρία των X (X session). Αν ο kdm τερματιστεί τώρα, οποιεσδήποτε "
+"συνεδρία των X (X session). Αν ο tdm τερματιστεί τώρα, οποιεσδήποτε "
 "συνεδρίες των X χειρίζεται θα τερματιστούν επίσης. Διαφορετικά, μπορείτε να "
-"αφήσετε τον kdm να συνεχίσει τη λειτουργία του και η νέα έκδοση να "
+"αφήσετε τον tdm να συνεχίσει τη λειτουργία του και η νέα έκδοση να "
 "χρησιμοποιηθεί την επόμενη φορά που θα τρέξει ο δαίμονας."
 
 #, fuzzy
 #~ msgid ""
-#~ "The X display manager (kdm) daemon is typically stopped on package "
+#~ "The X display manager (tdm) daemon is typically stopped on package "
 #~ "upgrade and removal, but it appears to be managing at least one running X "
 #~ "session."
 #~ msgstr ""
-#~ "Κανονικά, η λειτουργία του δαίμονα του διαχειριστή οθόνης των X (kdm) "
+#~ "Κανονικά, η λειτουργία του δαίμονα του διαχειριστή οθόνης των X (tdm) "
 #~ "διακόπτεται με κάθε αναβάθμιση και διαγραφή του πακέτου, αλλά στη "
 #~ "συγκεκριμένη περίπτωση φαίνεται ότι διαχειρίζεται ήδη τουλάχιστον μια "
-#~ "συνεδρία των X (X session). Αν ο kdm τερματιστεί τώρα, οποιεσδήποτε "
+#~ "συνεδρία των X (X session). Αν ο tdm τερματιστεί τώρα, οποιεσδήποτε "
 #~ "συνεδρίες των X χειρίζεται θα τερματιστούν επίσης. Διαφορετικά, μπορείτε "
-#~ "να αφήσετε τον kdm να συνεχίσει τη λειτουργία του και η νέα έκδοση να "
+#~ "να αφήσετε τον tdm να συνεχίσει τη λειτουργία του και η νέα έκδοση να "
 #~ "χρησιμοποιηθεί την επόμενη φορά που θα τρέξει ο δαίμονας."

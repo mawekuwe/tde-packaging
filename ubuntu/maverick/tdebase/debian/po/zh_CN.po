@@ -6,7 +6,7 @@
 # Carlos Z.F. Liu <carlosliu@users.sourceforge.net>, 2005
 # Ming Hua <minghua@rice.edu>, 2005,2007
 #
-# This file is distributed under the same license as the kdm package.
+# This file is distributed under the same license as the tdm package.
 # Please see debian/copyright.
 #
 #    Translators, if you are not familiar with the PO format, gettext
@@ -36,13 +36,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "默认显示管理器："
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -50,7 +50,7 @@ msgstr "显示管理器是为 X 窗口系统提供图形界面登录模式的程
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -61,7 +61,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -74,27 +74,27 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "停止 kdm 守护进程吗？"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "停止 tdm 守护进程吗？"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"K 桌面管理器 (kdm) 守护进程通常会在软件包升级和卸载时被停止，但看起来它目前在"
+"K 桌面管理器 (tdm) 守护进程通常会在软件包升级和卸载时被停止，但看起来它目前在"
 "管理一个或多个正在运行的 X 会话。"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"如果 kdm 现在就被停止，它所管理的全部 X 会话都会被中止。如果不停止 kdm，新安"
+"如果 tdm 现在就被停止，它所管理的全部 X 会话都会被中止。如果不停止 tdm，新安"
 "装的版本将会在守护进程下次重新启动时生效。"

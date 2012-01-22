@@ -40,13 +40,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Gestor de sesiones predefinido:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -56,7 +56,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -65,7 +65,7 @@ msgstr "Cada servidor X s�lo puede ser gestionado por un �nico gestor de ses
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -77,24 +77,24 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "�Desea detener el daemon kdm?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "�Desea detener el daemon tdm?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
-msgstr "Normalmente se detiene el daemon del gestor de sesiones de KDE (kdm) al actualizar o borrar el paquete, pero parece que est� gestionando al menos una sesi�n X activa."
+msgstr "Normalmente se detiene el daemon del gestor de sesiones de KDE (tdm) al actualizar o borrar el paquete, pero parece que est� gestionando al menos una sesi�n X activa."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
-msgstr "Si detiene kdm ahora, se finalizar�n todas las sesiones X que est� gestionando. La otra posibilidad es mantener kdm en ejecuci�n, con lo que la nueva versi�n no se activar� hasta la pr�xima vez que se reinicie el daemon."
+msgstr "Si detiene tdm ahora, se finalizar�n todas las sesiones X que est� gestionando. La otra posibilidad es mantener tdm en ejecuci�n, con lo que la nueva versi�n no se activar� hasta la pr�xima vez que se reinicie el daemon."
 

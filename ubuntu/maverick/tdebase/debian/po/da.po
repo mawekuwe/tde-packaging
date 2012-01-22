@@ -29,13 +29,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Standard logind-håndtering:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -45,7 +45,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -57,7 +57,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -71,30 +71,30 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "Stop kdm-dæmonen?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "Stop tdm-dæmonen?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Skrivebordshåndterings-dæmonen kdm stoppes typisk ved opgradering og "
+"Skrivebordshåndterings-dæmonen tdm stoppes typisk ved opgradering og "
 "fjernelse af pakken, men den lader til at være beskæftiget med mindst én "
 "kørende X-session."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"Hvis kdm stoppes nu, vil de X-sessioner, den håndterer, "
-"blive afsluttet. Ellers kan du lade kdm køre. Så vil den nye version først "
+"Hvis tdm stoppes nu, vil de X-sessioner, den håndterer, "
+"blive afsluttet. Ellers kan du lade tdm køre. Så vil den nye version først "
 "tage over når dæmonen genstartes."
 

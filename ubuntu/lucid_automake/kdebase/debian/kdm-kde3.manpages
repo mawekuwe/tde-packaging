@@ -1,6 +1,6 @@
-debian/man/genkdmconf-kde3.1
-debian/man/kdm-kde3.1
-debian/man/kdm_config-kde3.1
-debian/man/kdmctl-kde3.1
-debian/man/kdm_greet-kde3.1
+debian/man/gentdmconf-kde3.1
+debian/man/tdm-kde3.1
+debian/man/tdm_config-kde3.1
+debian/man/tdmctl-kde3.1
+debian/man/tdm_greet-kde3.1
 debian/man/krootimage-kde3.1

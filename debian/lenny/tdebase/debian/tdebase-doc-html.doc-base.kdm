@@ -1,10 +1,10 @@
-Document: tdebase-doc-html-kdm
-Title: KDM Handbook
+Document: tdebase-doc-html-tdm
+Title: TDM Handbook
 Author: Oswald Buddenhagen 
-Abstract: This document describes KDM, the KDE Display Manager, an X session manager.
+Abstract: This document describes TDM, the KDE Display Manager, an X session manager.
 Section: System 
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kdm/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kdm/*.html
+Index: /opt/trinity/share/doc/kde/HTML/en/tdm/index.html
+Files: /opt/trinity/share/doc/kde/HTML/en/tdm/*.html
 

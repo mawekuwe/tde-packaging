@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/krootbacking
-debian/tmp/opt/trinity/bin/kdmtsak
+debian/tmp/opt/trinity/bin/tdmtsak
 debian/tmp/opt/trinity/bin/tsak
 debian/tmp/opt/trinity/bin/kdebugdialog
 debian/tmp/opt/trinity/bin/kreadconfig

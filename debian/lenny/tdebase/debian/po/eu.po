@@ -39,13 +39,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Lehenetsiriko pantaila kudeatzailea:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -55,7 +55,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -67,7 +67,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -81,30 +81,30 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
 msgstr "Kdm deabrua gelditu?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"K Pantaila Kudeatzaile (kdm) deabrua arruntean gelditu egiten da pakete "
+"K Pantaila Kudeatzaile (tdm) deabrua arruntean gelditu egiten da pakete "
 "bertsio berritze edo ezabaketa egiterakoan, baina dirudienez martxan dagoen "
 "X saio bat behintzat kudeatzen ari da."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"kdm orain gelditu ezkero, kudeatzen ari den edozein X saio itxi egingo da. "
-"Bestela kdm martxan utz dezakezu eta bertsio berria deabrua abiarazten den "
+"tdm orain gelditu ezkero, kudeatzen ari den edozein X saio itxi egingo da. "
+"Bestela tdm martxan utz dezakezu eta bertsio berria deabrua abiarazten den "
 "hurrengo aldian erabiliko da."
 

@@ -1,7 +1,7 @@
-# /etc/kde3/kdm/kdm.options
+# /etc/kde3/tdm/tdm.options
 #
-# configuration options for kdm
-# See kdm.options(5) for an explanation of the available options.
+# configuration options for tdm
+# See tdm.options(5) for an explanation of the available options.
 
 no-ignore-nologin
 no-restart-on-upgrade

@@ -1,5 +1,5 @@
 #
-# /etc/pam.d/kdm-trinity - specify the PAM behaviour of kdm
+# /etc/pam.d/tdm-trinity - specify the PAM behaviour of tdm
 #
 auth       required     pam_nologin.so
 auth       required     pam_env.so readenv=1

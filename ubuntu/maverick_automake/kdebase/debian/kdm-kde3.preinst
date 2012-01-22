@@ -3,12 +3,12 @@
 case "$1" in
 
     upgrade)
-	rm -f /etc/kde3/debian/kdm-update-menu.sh
-	rm -f /etc/kde3/debian/kdm.options
-	rm -f /etc/kde3/kdm/pixmaps/XFree86bw.xpm
-	rm -f /etc/kde3/kdm/pixmaps/XFree86.xpm
-	rm -f /etc/kde3/kdm/Xresources
-	rm -f /etc/menu-methods/kdm
+	rm -f /etc/kde3/debian/tdm-update-menu.sh
+	rm -f /etc/kde3/debian/tdm.options
+	rm -f /etc/kde3/tdm/pixmaps/XFree86bw.xpm
+	rm -f /etc/kde3/tdm/pixmaps/XFree86.xpm
+	rm -f /etc/kde3/tdm/Xresources
+	rm -f /etc/menu-methods/tdm
     ;;
 
     install)

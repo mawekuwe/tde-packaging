@@ -27,9 +27,9 @@ debian/stamp-bootstrap:
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-install/kdmtheme-trinity::
-	install -D -p -m644 debian/kdmtheme.lintian-overrides \
-	debian/kdmtheme-trinity/usr/share/lintian/overrides/kdmtheme-trinity
+install/tdmtheme-trinity::
+	install -D -p -m644 debian/tdmtheme.lintian-overrides \
+	debian/tdmtheme-trinity/usr/share/lintian/overrides/tdmtheme-trinity
 
 get-orig-source:
 	@@dh_testdir

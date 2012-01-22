@@ -410,7 +410,7 @@ kde-i18n (4:3.1-1) unstable; urgency=low
     (closes: Bug#172383)
   * default charset is now utf-8
     (closes: Bug#172361)
-  * kdm in localized for pt_BR
+  * tdm in localized for pt_BR
     (closes: Bug#116046)
 
  -- Noel Koethe <noel@debian.org>  Mon,  3 Feb 2003 20:42:00 +0100

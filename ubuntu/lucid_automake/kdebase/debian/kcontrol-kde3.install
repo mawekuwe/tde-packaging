@@ -52,8 +52,8 @@ debian/tmp/opt/kde3/lib/kde3/kcm_joystick.la
 debian/tmp/opt/kde3/lib/kde3/kcm_joystick.so
 debian/tmp/opt/kde3/lib/kde3/kcm_kded.la
 debian/tmp/opt/kde3/lib/kde3/kcm_kded.so
-debian/tmp/opt/kde3/lib/kde3/kcm_kdm.la
-debian/tmp/opt/kde3/lib/kde3/kcm_kdm.so
+debian/tmp/opt/kde3/lib/kde3/kcm_tdm.la
+debian/tmp/opt/kde3/lib/kde3/kcm_tdm.so
 debian/tmp/opt/kde3/lib/kde3/kcm_kdnssd.so
 debian/tmp/opt/kde3/lib/kde3/kcm_kdnssd.la
 debian/tmp/opt/kde3/lib/kde3/kcm_keys.la
@@ -165,7 +165,7 @@ debian/tmp/opt/kde3/share/applications/kde/kcmtaskbar.desktop
 debian/tmp/opt/kde3/share/applications/kde/kcmusb.desktop
 debian/tmp/opt/kde3/share/applications/kde/kcmview1394.desktop
 debian/tmp/opt/kde3/share/applications/kde/KControl.desktop
-debian/tmp/opt/kde3/share/applications/kde/kdm.desktop
+debian/tmp/opt/kde3/share/applications/kde/tdm.desktop
 debian/tmp/opt/kde3/share/applications/kde/keys.desktop
 debian/tmp/opt/kde3/share/applications/kde/kfontview.desktop
 debian/tmp/opt/kde3/share/applications/kde/khtml_behavior.desktop

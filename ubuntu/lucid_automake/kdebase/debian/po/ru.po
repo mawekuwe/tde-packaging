@@ -42,13 +42,13 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid "Default display manager:"
 msgstr "Менеджер дисплеев по умолчанию:"
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "A display manager is a program that provides graphical login capabilities "
 "for the X Window System."
@@ -58,7 +58,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Only one display manager can manage a given X server, but multiple display "
 "manager packages are installed. Please select which display manager should "
@@ -70,7 +70,7 @@ msgstr ""
 
 #. Type: select
 #. Description
-#: ../kdm.templates:1001
+#: ../tdm.templates:1001
 msgid ""
 "Multiple display managers can run simultaneously if they are configured to "
 "manage different servers; to achieve this, configure the display managers "
@@ -84,30 +84,30 @@ msgstr ""
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
-msgid "Stop the kdm daemon?"
-msgstr "Остановить сервер-демон kdm?"
+#: ../tdm.templates:3001
+msgid "Stop the tdm daemon?"
+msgstr "Остановить сервер-демон tdm?"
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (kdm) daemon is typically stopped on package upgrade "
+"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Сервер-демон менеджера K Desktop (kdm) обычно останавливают при обновлении "
-"или удалении пакета, но, кажется, что kdm сейчас управляет по крайней мере "
+"Сервер-демон менеджера K Desktop (tdm) обычно останавливают при обновлении "
+"или удалении пакета, но, кажется, что tdm сейчас управляет по крайней мере "
 "одним X-сеансом."
 
 #. Type: boolean
 #. Description
-#: ../kdm.templates:3001
+#: ../tdm.templates:3001
 msgid ""
-"If kdm is stopped now, any X sessions it manages will be terminated. "
+"If tdm is stopped now, any X sessions it manages will be terminated. "
 "Otherwise, the new version will take effect the next time the daemon is "
 "restarted."
 msgstr ""
-"Если сейчас остановить kdm, то все управляемые им X-сеансы будут прерваны. "
-"Или вы можете не останавливать kdm, и тогда новая версия будет загружена "
-"тогда, когда kdm снова перезапустят."
+"Если сейчас остановить tdm, то все управляемые им X-сеансы будут прерваны. "
+"Или вы можете не останавливать tdm, и тогда новая версия будет загружена "
+"тогда, когда tdm снова перезапустят."
 
