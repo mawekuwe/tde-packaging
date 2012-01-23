@@ -55,7 +55,7 @@ build() {
      _dir=`echo "$_filename" | cut -d'.' -f1-3`
      _newname=`echo "$_dir" | cut -d'-' -f2-4`
 
-     if [ -d trinity-${newname} ]; then
+     if [ ! -d trinity-${newname} ]; then
        msg "Extracting $_filename..."
        tar xfj $_filename
        mv $_dir trinity-${_newname}
