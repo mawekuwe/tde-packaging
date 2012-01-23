@@ -17,66 +17,50 @@ provides=('trinity-kdegraphics')
 conflicts=('trinity-kdegraphics')
 replaces=('trinity-kdegraphics')
 options=('libtool' '!strip')
-source=('GSmartPointer.h.patch' 'http://mirror.ets.kth.se/trinity/releases/3.5.13/kdegraphics-3.5.13.tar.gz')
-md5sums=('7b93c9bdf1208df453c9838519fab109' 'a75c254cd1060343cd04c6744bce6798')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdegraphics-3.5.13.tar.gz' 'ksnapshot.patch')
+md5sums=('a75c254cd1060343cd04c6744bce6798' '635ed9478cb3edde4fda84f3bac85438')
 
-_svnmod=kdegraphics
-trinity_prefix="/opt/trinity"
+_prefix="/opt/trinity"
 
 build() {
+   msg "Patching..."
+   patch -p0 -i ${srcdir}/ksnapshot.patch
 
-  # patch for gcc-4.6
-  if grep -q cstddef  ${srcdir}/kdegraphics/kviewshell/plugins/djvu/libdjvu/GSmartPointer.h; then
-    msg "Patch for GCC 4.6 - Previously Applied"
-  else
-    msg "Applying Patch for GCC 4.6"
-    patch -p0 -i ${srcdir}/GSmartPointer.h.patch || return 1
-  fi
+   msg "Setting PATH, CMAKE and Trinity Environment variables"
+   . /etc/profile.d/qt3.sh
 
-  msg "Setting PATH, CMAKE and Trinity Environment variables"
-  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  if [[ -r /etc/profile.d/qt3.sh ]]; then
-    . /etc/profile.d/qt3.sh
-    [[ -n $QTDIR ]] && _qtdir=$QTDIR
-  else
-    [[ ${PATH%%:*} =~ ${_qtdir}/bin ]] || export PATH=${_qtdir}/bin:$PATH
-  fi
-
+   export CMAKE_PREFIX_PATH=/opt/qt:${_prefix}
    export CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr:/usr/include:/usr/include/lcms
-   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
+   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:/usr/lib:$LD_LIBRARY_PATH
    export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
 
-  cd $srcdir
-  msg "Creating out-of-source build directory: ${srcdir}/build"
-  mkdir -p build
-  cd build
+   cd $srcdir
+   msg "Creating out-of-source build directory: ${srcdir}/build"
+   mkdir -p build
+   cd build
 
-  msg "Starting cmake..."
-  cmake ${srcdir}/${_svnmod} \
-    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
-    -DCMAKE_VERBOSE_MAKEFILE=ON \
-    -DQT_VERSION=3 \
-    -DCMAKE_CXX_FLAGS="-fpermissive" \
-    -DWITH_T1LIB=ON \
-    -DWITH_LIBPAPER=ON \
-    -DWITH_TIFF=ON \
-    -DWITH_OPENEXR=ON \
-    -DWITH_PAM=ON \
-    -DBUILD_ALL=ON
-  make
+   msg "Starting cmake..."
+   cmake ${srcdir}/kdegraphics \
+      -DCMAKE_INSTALL_PREFIX=${_prefix} \
+      -DCMAKE_VERBOSE_MAKEFILE=ON \
+      -DQT_VERSION=3 \
+      -DCMAKE_CXX_FLAGS="-fpermissive" \
+      -DWITH_T1LIB=ON \
+      -DWITH_LIBPAPER=ON \
+      -DWITH_TIFF=ON \
+      -DWITH_OPENEXR=ON \
+      -DWITH_PDF=ON \
+      -DBUILD_ALL=ON
+   make
 
 #     -DWITH_PDF=ON \ (waiting on poppler-qt3)
-
-#     -DWITH_QT3=ON \
-#     -DQTDIR=/opt/qt \
-#     -DQT_LIBRARY_DIRS=/opt/qt/lib \
 }
 
 package() {
-  msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/build
+   msg "Packaging - $pkgname-$pkgver"
+   cd ${srcdir}/build
 
-  make DESTDIR="$pkgdir/" install
+   make DESTDIR="$pkgdir" install
 
-  cd ${startdir}
+   cd ${startdir}
 }

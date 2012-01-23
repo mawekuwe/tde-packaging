@@ -1,0 +1,11 @@
+diff -u -r kdegraphics/ksnapshot/CMakeLists.txt src/kdegraphics/ksnapshot/CMakeLists.txt
+--- kdegraphics/ksnapshot/CMakeLists.txt	2011-06-19 21:15:42.000000000 +0200
++++ src/kdegraphics/ksnapshot/CMakeLists.txt	2012-01-23 23:02:15.000000000 +0100
+@@ -40,6 +40,6 @@
+   SOURCES
+     ksnapshotiface.skel main.cpp ksnapshot.cpp regiongrabber.cpp
+     windowgrabber.cpp ksnapshotwidget.ui
+-  LINK kdeprint-shared
++  LINK kdeprint-shared Xext
+   DESTINATION ${BIN_INSTALL_DIR}
+ )
