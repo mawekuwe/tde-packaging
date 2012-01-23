@@ -11,10 +11,11 @@ groups=('trinity-base')
 pkgdesc="Trinity Desktop Enviroment base components"
 depends=('trinity-dbus-tqt' 'trinity-kdelibs' 'hal'
          'xorg-server' 'xorg-xset' 'xorg-xsetroot' 'xorg-xprop' 'xorg-xmessage' 'xorg-xinit'
-         'xorg-iceauth')
+         'xorg-iceauth'
+         'libxtst')
+         
          #'trinity-dbus-1-qt3' 'trinity-pyqt3' 'trinity-dbus-tqt-1' 
          # 'libltdl'
-         # 'libxtst'
          # 'openexr'
          # 'libxkbfile'
 
