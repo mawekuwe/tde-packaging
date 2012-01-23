@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdegraphics
 pkgver=3513
@@ -8,7 +9,7 @@ url='http://www.trinitydesktop.com'
 license=('GPL')
 groups=('trinity-extras')
 kgdesc="Trinity graphics applications and tools"
-depends=('trinity-kdebase' 'libart-lgpl' 'libgphoto2' 'libtiff' 'openexr' 't1lib' 'imlib' 'sane' 'lcms')
+depends=('trinity-kdebase' 'libart-lgpl' 'libgphoto2' 'libtiff' 'openexr' 't1lib' 'imlib' 'sane' 'lcms' 'poppler')
 makedepends=('pkgconfig' 'cmake' 'imake' 'fribidi')
 # 'poppler-qt'
 optdepends=('xscreensaver: Screen saver and locker for the X Window System')
@@ -17,7 +18,6 @@ conflicts=('trinity-kdegraphics')
 replaces=('trinity-kdegraphics')
 options=('libtool' '!strip')
 source=('GSmartPointer.h.patch' 'http://mirror.ets.kth.se/trinity/releases/3.5.13/kdegraphics-3.5.13.tar.gz')
-source=('GSmartPointer.h.patch' 'http://anduin.linuxfromscratch.org/sources/trinity/kdegraphics-3.5.13.tar.gz')
 md5sums=('7b93c9bdf1208df453c9838519fab109' 'a75c254cd1060343cd04c6744bce6798')
 
 _svnmod=kdegraphics
@@ -42,7 +42,7 @@ build() {
     [[ ${PATH%%:*} =~ ${_qtdir}/bin ]] || export PATH=${_qtdir}/bin:$PATH
   fi
 
-   export CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr:/usr/include
+   export CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr:/usr/include:/usr/include/lcms
    export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
    export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
 
