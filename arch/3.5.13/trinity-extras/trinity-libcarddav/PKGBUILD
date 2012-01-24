@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-libcarddav
 pkgver=0.6.2
@@ -13,7 +14,6 @@ license=('GPL')
 provides=('trinity-libcarddav' 'libcarddav')
 conflicts=('libcarddav')
 replaces=('trinity-libcarddav')
-# http://quickbuild.pearsoncomputing.net:58080/2056019/libcarddav_0.6.2-2debian2.tar.gz
 source=("http://quickbuild.pearsoncomputing.net:58080/2056019/libcarddav_${pkgver}-${_pkgsuffix}.tar.gz" "libcarddav.patch")
 md5sums=('42a0fe57ba4c639aad53024f6c8d5614'
          '63ef0b91ff27dfb7c48ca0f07866af79')
