@@ -1,0 +1,30 @@
+diff -u -r src/kdemultimedia/xine_artsplugin/xinePlayObject_impl.cpp kdemultimedia/xine_artsplugin/xinePlayObject_impl.cpp
+--- src/kdemultimedia/xine_artsplugin/xinePlayObject_impl.cpp	2012-01-24 00:34:05.000000000 +0100
++++ kdemultimedia/xine_artsplugin/xinePlayObject_impl.cpp	2011-08-13 08:18:23.000000000 +0200
+@@ -698,7 +698,7 @@
+ 
+ 	    if (stream != 0)
+ 	    {
+-		xine_gui_send_vo_data( stream,
++		xine_port_send_gui_data( vo_port,
+ 				       XINE_GUI_SEND_EXPOSE_EVENT,
+ 				       &event );
+ 	    }
+@@ -714,7 +714,7 @@
+ 
+ 	    if (stream != 0)
+ 	    {
+-		xine_gui_send_vo_data( stream,
++		xine_port_send_gui_data( vo_port,
+ 				       XINE_GUI_SEND_COMPLETION_EVENT,
+ 				       &event );
+ 	    }
+@@ -748,7 +748,7 @@
+ 	{
+ 	    resizeNotify();
+ 
+-	    xine_gui_send_vo_data( stream,
++	    xine_port_send_gui_data( vo_port,
+ 				   XINE_GUI_SEND_DRAWABLE_CHANGED,
+ 				   (void *)window );
+ 	}

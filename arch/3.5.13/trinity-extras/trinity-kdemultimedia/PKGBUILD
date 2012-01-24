@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdemultimedia
 pkgver=3513
@@ -10,16 +11,10 @@ groups=('trinity-extras')
 pkgdesc="Trinity multimedia applications and tools"
 depends=('trinity-kdelibs' 'xine-lib' 'libvorbis' 'trinity-arts' 'alsa-lib' 'cdparanoia' 'lame' 'audiofile' 'libtheora' 'flac')
 makedepends=('pkgconfig' 'autoconf' 'automake')
-optdepends=()
-provides=($pkgname)
-conflicts=()
-replaces=()
 options=('libtool' '!strip')
-source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdemultimedia-3.5.13.tar.gz)
-source=(http://anduin.linuxfromscratch.org/sources/trinity/kdemultimedia-3.5.13.tar.gz)
-md5sums=('6d906b8a8fd0928e01ecd600175381c0')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdemultimedia-3.5.13.tar.gz' 'xine_artsplugin.patch')
+md5sums=('6d906b8a8fd0928e01ecd600175381c0' 'bb045d94e8dca80d73af4add43b7fc15')
 
-_builddir=kdemultimedia
 _prefix=/opt/trinity
 
 build() {
@@ -28,11 +23,11 @@ build() {
   export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
-  #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < kdemultimedia.patch
+  msg "Patching..."
+  patch -p0 -i ${srcdir}/xine_artsplugin.patch
   
   msg "Starting automake..."
-  cd "$srcdir/${_builddir}"
+  cd "$srcdir/kdemultimedia"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
   make -f admin/Makefile.common
@@ -61,6 +56,6 @@ build() {
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/${_builddir}
+  cd ${srcdir}/kdemultimedia
   make DESTDIR="${pkgdir}" install
 }
