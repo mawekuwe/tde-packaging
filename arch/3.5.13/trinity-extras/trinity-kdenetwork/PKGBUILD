@@ -1,5 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
-# PKGBUILD by Pawel "l0ner" Soltys <sh4dou@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdenetwork
 pkgver=3513
@@ -11,7 +11,7 @@ groups=('trinity-extras')
 pkgdesc="Trinity network utilities"
 depends=('trinity-kdebase' 
          'trinity-arts' 
-         'speex' 
+         'speex' 'wireless_tools'
          'gsmlib-git'
          'libgadu'
          'meanwhile'
@@ -21,11 +21,8 @@ depends=('trinity-kdebase'
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdenetwork-3.5.13.tar.gz' 'kdenetwork.patch')
-source=('http://anduin.linuxfromscratch.org/sources/trinity/kdenetwork-3.5.13.tar.gz' 'kdenetwork.patch')
 md5sums=('349f197c9af4bf0d9b8773f26829415e'
-         '8abe1847df7b7449027719238a27e359')
-
-_svnmod=kdenetwork
+         'ee468902b7c40ac1cc86cbaababa35dc')
 
 build() {
   msg "Setting PATH, CMAKE and Trinity Environment variables"
@@ -34,9 +31,11 @@ build() {
   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
 
-  trinity_prefix="/opt/trinity"
+  _prefix="/opt/trinity"
 
-  patch -N -d ${srcdir} -p0 < kdenetwork.patch
+  patch -p0 -i ${srcdir}/kdenetwork.patch
+  mv ${srcdir}/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc ${srcdir}/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/tqname.cc
+  mv ${srcdir}/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.h ${srcdir}/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/tqname.h
 
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
@@ -44,8 +43,8 @@ build() {
   cd build
 
   msg "Starting cmake..."
-  cmake ${srcdir}/${_svnmod} \
-    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+  cmake ${srcdir}/kdenetwork \
+    -DCMAKE_INSTALL_PREFIX=${_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DWITH_JINGLE=ON \
     -DWITH_SPEEX=ON \

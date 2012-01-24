@@ -32,104 +32,6 @@ diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/base/sigslot
  
  // On our copy of sigslot.h, we force single threading
  #define SIGSLOT_PURE_ISO
-diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/p2p/client/sessionclient.cc src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/p2p/client/sessionclient.cc
---- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/p2p/client/sessionclient.cc	2011-06-22 03:37:08.000000000 +0200
-+++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/p2p/client/sessionclient.cc	2011-12-15 22:56:58.000000000 +0100
-@@ -31,7 +31,7 @@
- #include "talk/p2p/client/sessionclient.h"
- #include "talk/p2p/base/helpers.h"
- #include "talk/base/logging.h"
--#include "talk/xmllite/tqname.h"
-+#include "talk/xmllite/qname.h"
- #include "talk/xmpp/constants.h"
- #include "talk/xmllite/xmlprinter.h"
- #include <iostream>
-diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc
---- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc	2011-06-22 03:37:11.000000000 +0200
-+++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc	2011-12-15 22:56:58.000000000 +0100
-@@ -28,7 +28,7 @@
- #include <string>
- #include "talk/base/common.h"
- #include "talk/xmllite/xmlelement.h"
--#include "talk/xmllite/tqname.h"
-+#include "talk/xmllite/qname.h"
- #include "talk/xmllite/xmlconstants.h"
- 
- //#define new TRACK_NEW
-Only in src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite: tqname.cc
-Only in src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite: tqname.h
-diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.cc src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.cc
---- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.cc	2011-06-22 03:37:11.000000000 +0200
-+++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.cc	2011-12-15 22:56:58.000000000 +0100
-@@ -32,7 +32,7 @@
- 
- #include "talk/base/common.h"
- #include "talk/xmllite/xmlelement.h"
--#include "talk/xmllite/tqname.h"
-+#include "talk/xmllite/qname.h"
- #include "talk/xmllite/xmlparser.h"
- #include "talk/xmllite/xmlbuilder.h"
- #include "talk/xmllite/xmlprinter.h"
-diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.h src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.h
---- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.h	2011-06-22 03:37:11.000000000 +0200
-+++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlelement.h	2011-12-15 22:56:58.000000000 +0100
-@@ -31,7 +31,7 @@
- #include <iosfwd>
- #include <string>
- #include "talk/base/scoped_ptr.h"
--#include "talk/xmllite/tqname.h"
-+#include "talk/xmllite/qname.h"
- 
- namespace buzz {
- 
-diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlnsstack.h src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlnsstack.h
---- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlnsstack.h	2011-06-22 03:37:11.000000000 +0200
-+++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/xmlnsstack.h	2011-12-15 22:56:58.000000000 +0100
-@@ -31,7 +31,7 @@
- #include <string>
- #include "talk/base/scoped_ptr.h"
- #include "talk/base/stl_decl.h"
--#include "talk/xmllite/tqname.h"
-+#include "talk/xmllite/qname.h"
- 
- namespace buzz {
- 
-diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.cc src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.cc
---- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.cc	2011-06-22 03:37:09.000000000 +0200
-+++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.cc	2011-12-15 22:56:58.000000000 +0100
-@@ -29,7 +29,7 @@
- #include "talk/base/basicdefs.h"
- #include "talk/xmllite/xmlconstants.h"
- #include "talk/xmllite/xmlelement.h"
--#include "talk/xmllite/tqname.h"
-+#include "talk/xmllite/qname.h"
- #include "talk/xmpp/jid.h"
- #include "talk/xmpp/constants.h"
- namespace buzz {
-diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.h src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.h
---- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.h	2011-06-22 03:37:09.000000000 +0200
-+++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/constants.h	2011-12-15 22:56:58.000000000 +0100
-@@ -29,7 +29,7 @@
- #define _CRICKET_XMPP_XMPPLIB_BUZZ_CONSTANTS_H_
- 
- #include <string>
--#include "talk/xmllite/tqname.h"
-+#include "talk/xmllite/qname.h"
- #include "talk/xmpp/jid.h"
- 
- 
-diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/xmppengine.h src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/xmppengine.h
---- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/xmppengine.h	2011-06-22 03:37:09.000000000 +0200
-+++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmpp/xmppengine.h	2011-12-15 22:56:58.000000000 +0100
-@@ -30,7 +30,7 @@
- 
- // also part of the API
- #include "talk/xmpp/jid.h"
--#include "talk/xmllite/tqname.h"
-+#include "talk/xmllite/qname.h"
- #include "talk/xmllite/xmlelement.h"
- 
- 
 diff -u -r kdenetwork/kopete/protocols/jabber/kioslave/CMakeLists.txt src/kdenetwork/kopete/protocols/jabber/kioslave/CMakeLists.txt
 --- kdenetwork/kopete/protocols/jabber/kioslave/CMakeLists.txt	2011-06-22 03:37:08.000000000 +0200
 +++ src/kdenetwork/kopete/protocols/jabber/kioslave/CMakeLists.txt	2011-12-15 22:56:58.000000000 +0100
@@ -178,3 +80,18 @@ diff -u -r kdenetwork/kopete/protocols/sms/services/smsclient.cpp src/kdenetwork
  	if (programName.isNull())
  		programName = "/usr/bin/sms_client";
  
+diff -u -r kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/CMakeLists.txt src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/CMakeLists.txt
+--- kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/CMakeLists.txt	2011-06-22 03:37:11.000000000 +0200
++++ src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/CMakeLists.txt	2012-01-24 12:10:06.000000000 +0100
+@@ -23,6 +23,6 @@
+ 
+ tde_add_library( cricketxmllite STATIC_PIC
+   SOURCES
+-    qname.cc xmlbuilder.cc xmlconstants.cc xmlelement.cc xmlnsstack.cc
++    tqname.cc xmlbuilder.cc xmlconstants.cc xmlelement.cc xmlnsstack.cc
+     xmlparser.cc xmlprinter.cc
+ )
+Only in kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite: qname.cc
+Only in kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite: qname.h
+Only in src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite: tqname.cc
+Only in src/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite: tqname.h
