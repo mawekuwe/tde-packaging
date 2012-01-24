@@ -66,10 +66,6 @@ build() {
     -DBUILD_ALL=ON
   make
 
-#     -DWITH_PDF=ON \ (waiting on poppler-qt3)
-#     -DWITH_QT3=ON \
-#     -DQTDIR=/opt/qt \
-#     -DQT_LIBRARY_DIRS=/opt/qt/lib \
 }
 
 package() {
