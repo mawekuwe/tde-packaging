@@ -23,9 +23,6 @@ md5sums=('a75c254cd1060343cd04c6744bce6798' '635ed9478cb3edde4fda84f3bac85438')
 _prefix="/opt/trinity"
 
 build() {
-   msg "Patching..."
-   patch -p0 -i ${srcdir}/ksnapshot.patch
-
    msg "Setting PATH, CMAKE and Trinity Environment variables"
    . /etc/profile.d/qt3.sh
 
@@ -33,6 +30,9 @@ build() {
    export CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr:/usr/include:/usr/include/lcms
    export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:/usr/lib:$LD_LIBRARY_PATH
    export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
+
+   msg "Patching..."
+   patch -p0 -i ${srcdir}/ksnapshot.patch
 
    cd $srcdir
    msg "Creating out-of-source build directory: ${srcdir}/build"
