@@ -1,5 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
-# PKGBUILD by Pawel "l0ner" Soltys <sh4dou@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdeartwork
 pkgver=3513
@@ -13,10 +13,7 @@ depends=('trinity-kdebase' 'trinity-arts' 'xscreensaver' 'libart-lgpl' 'glproto'
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeartwork-3.5.13.tar.gz)
-source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeartwork-3.5.13.tar.gz)
 md5sums=('24f85eb3e5a9106de48a3e81d2575ffe')
-
-_svnmod=kdeartwork
 
 build() {
   msg "Setting PATH, CMAKE and Trinity Environment variables"
@@ -25,7 +22,7 @@ build() {
   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
 
-  trinity_prefix="/opt/trinity"
+  _prefix="/opt/trinity"
 
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
@@ -33,8 +30,8 @@ build() {
   cd build
 
   msg "Starting cmake..."
-  cmake ${srcdir}/${_svnmod} \
-    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+  cmake ${srcdir}/kdeartwork \
+    -DCMAKE_INSTALL_PREFIX=${_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DWITH_XSCREENSAVER=ON \
     -DWITH_LIBART=ON \
