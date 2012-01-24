@@ -1,5 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
-#
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-libcaldav
 pkgver=0.6.5
