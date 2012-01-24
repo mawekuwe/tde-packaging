@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdeutils
 pkgver=3513
@@ -10,16 +11,10 @@ groups=('trinity-extras')
 pkgdesc="Trinity TDE utilities collection"
 depends=('trinity-kdelibs')
 makedepends=('pkgconfig' 'autoconf' 'automake')
-optdepends=()
-provides=($pkgname)
-conflicts=()
-replaces=()
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeutils-3.5.13.tar.gz)
-source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeutils-3.5.13.tar.gz)
 md5sums=('e2cd6695606c5c91b3380dcc7f1a6a83')
 
-_builddir=kdeutils
 _prefix=/opt/trinity
 
 build() {
@@ -28,11 +23,9 @@ build() {
   export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
-  #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < kdeutils.patch
   
   msg "Starting automake..."
-  cd "$srcdir/${_builddir}"
+  cd "$srcdir/kdeutils"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
   make -f admin/Makefile.common
@@ -52,6 +45,6 @@ build() {
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/${_builddir}
+  cd ${srcdir}/kdeutils
   make DESTDIR="${pkgdir}" install
 }
