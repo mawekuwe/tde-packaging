@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdesdk
 pkgver=3513
@@ -8,7 +9,7 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-extras')
 pkgdesc="Trinity Software Developement Kit"
-depends=('trinity-kdebase')
+depends=('trinity-kdebase' 'subversion')
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdesdk-3.5.13.tar.gz' 'kdesdk.patch')
@@ -16,40 +17,65 @@ source=('http://anduin.linuxfromscratch.org/sources/trinity/kdesdk-3.5.13.tar.gz
 md5sums=('130662f683be1a49d56a713c5ae87e46'
          'a1d0b533ae427847bd84e601c587f882')
 
-_svnmod=kdesdk
-
 build() {
-  msg "Setting PATH, CMAKE and Trinity Environment variables"
-  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
-  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
+   msg "Setting PATH, CMAKE and Trinity Environment variables"
+   export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
+   export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/kde
+   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde:$LD_LIBRARY_PATH
+   export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
 
-  trinity_prefix="/opt/trinity"
+   _prefix="/opt/trinity"
 
-  patch -N -d ${srcdir} -p0 < kdesdk.patch
+   patch -N -d ${srcdir} -p0 < kdesdk.patch
 
-  cd $srcdir
-  msg "Creating out-of-source build directory: ${srcdir}/build"
-  mkdir -p build
-  cd build
+   cd $srcdir/kdesdk
 
-  msg "Starting cmake..."
-  cmake ${srcdir}/${_svnmod} \
-    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
-    -DCMAKE_VERBOSE_MAKEFILE=ON \
-    -DWITH_DBSEARCHENGINE=ON \
-    -DWITH_KCAL=ON \
-    -DBUILD_ALL=ON
-  make
+   msg "Starting configure..."
+
+   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+   make -f admin/Makefile.common
+
+   msg "Starting configure..."
+   ./configure --with-qt-dir=${QTDIR} \
+      --prefix=${_prefix} \
+      --enable-closure \
+      --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
+      --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig \
+      --with-berkeley-db \
+      --with-subversion
+
+   make
+
+
+   #msg "Starting cmake..."
+   #cmake ${srcdir}/kdesdk \
+   #  -DCMAKE_INSTALL_PREFIX=${_prefix} \
+   #  -DCMAKE_VERBOSE_MAKEFILE=ON \
+   #  -DWITH_DBSEARCHENGINE=ON \
+   #  -DWITH_KCAL=ON \
+   #  -DBUILD_ALL=ON
+   #make
+
+   #--with-berkeley-db      enable the dictionary plugin based on Berkeley DB IV
+   #--with-db-dir=DIR       where the root of Berkeley DB IV is installed
+   #--with-db-include-dir=DIR where the includes of Berkeley DB IV are installed
+   #--with-db-include=FILE  path to the Berkeley DB IV header file
+   #--with-db-lib-dir=DIR   where the libs of Berkeley DB IV are installed
+   #--with-db-name=NAME     name of the Berkeley DB IV library (default db)
+   
+   #--with-subversion       enable support for subversion [default=check]
+   #--with-apr-config=FILE    Use the given path to apr-config when determining APR configuration; defaults to "apr-config"
+   #--with-apu-config=FILE    Use the given path to apu-config when determining APR util configuration; defaults to "apu-config"
+   #--with-subversion-dir=DIR           where Subversion is installed
+   #--with-svn-include=DIR   Use the given path to the subversion headers.
+   #--with-svn-lib=DIR
+
 }
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-#   cd ${srcdir}/${_svnmod}
-  cd ${srcdir}/build
+  cd ${srcdir}/kdesdk
 
-  make DESTDIR="$pkgdir/" install
-
-#   rm -r ${srcdir}/${_svnmod}
+  make DESTDIR="$pkgdir" install
 }
