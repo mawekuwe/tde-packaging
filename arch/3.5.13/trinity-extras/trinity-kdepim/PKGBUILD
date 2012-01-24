@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdepim
 pkgver=3513
@@ -9,11 +10,9 @@ license=('GPL')
 groups=('trinity-extras')
 pkgdesc="Trinity Personal Information Management suite"
 depends=('trinity-kdebase'
-         'trinity-arts'
-         'trinity-kdelibs'
          'gpgme'
          'boost'
-         'gnokii'
+         'gnokii' 'poppler'
          'trinity-libcaldav'
          'trinity-libcarddav')
 makedepends=('pkgconfig' 'cmake' 'imake' 'fribidi')
@@ -26,19 +25,13 @@ source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdepim-3.5.13.tar.gz')
 source=('http://anduin.linuxfromscratch.org/sources/trinity/kdepim-3.5.13.tar.gz')
 md5sums=('4488062d5400bdd99642fe0b72ebcf9a')
 
-_svnmod=kdepim
-trinity_prefix="/opt/trinity"
+_prefix="/opt/trinity"
 
 build() {
 
   msg "Setting PATH, CMAKE and Trinity Environment variables"
   export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  if [[ -r /etc/profile.d/qt3.sh ]]; then
-    . /etc/profile.d/qt3.sh
-    [[ -n $QTDIR ]] && _qtdir=$QTDIR
-  else
-    [[ ${PATH%%:*} =~ ${_qtdir}/bin ]] || export PATH=${_qtdir}/bin:$PATH
-  fi
+  . /etc/profile.d/qt3.sh
 
    export CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr:/usr/include
    export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
@@ -50,8 +43,8 @@ build() {
   cd build
 
   msg "Starting cmake..."
-  cmake ${srcdir}/${_svnmod} \
-    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+  cmake ${srcdir}/kdepim \
+    -DCMAKE_INSTALL_PREFIX=${_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DWITH_SASL=ON \
     -DWITH_NEWDISTRLISTS=ON \
@@ -83,7 +76,7 @@ package() {
   msg "Packaging - $pkgname-$pkgver"
   cd ${srcdir}/build
 
-  make DESTDIR="$pkgdir/" install
+  make DESTDIR="$pkgdir" install
 
   cd ${startdir}
 }
