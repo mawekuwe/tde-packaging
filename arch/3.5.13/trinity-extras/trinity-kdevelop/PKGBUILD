@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdevelop
 pkgver=12345
@@ -9,13 +10,11 @@ license=('GPL')
 groups=('trinity-extras')
 pkgdesc="Trinity Developement tools"
 depends=('trinity-kdebase')
-#         'xorg'
 makedepends=('pkgconfig' 'cmake' 'imake')
 options=('libtool' '!strip')
-source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdevelop-3.5.13.tar.gz)
-source=(http://anduin.linuxfromscratch.org/sources/trinity/kdevelop-3.5.13.tar.gz)
-md5sums=('777bd77e4f2dc6a5b5b45a370dcf6da0')
-_svnmod=kdevelop
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdevelop-3.5.13.tar.gz' 'kdevelop.patch')
+md5sums=('777bd77e4f2dc6a5b5b45a370dcf6da0'
+         'ab23854b1658adc1da4621cb589ec1be')
 
 build() {
 
@@ -25,7 +24,11 @@ build() {
   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
 
-  trinity_prefix="/opt/trinity"
+  _prefix="/opt/trinity"
+
+  msg "Patching..."
+  # apply second part of Francois Andriot patch
+  patch -p0 -i ${srcdir}/kdevelop.patch
 
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
@@ -33,8 +36,8 @@ build() {
   cd build
 
   msg "Starting cmake..."
-  cmake ${srcdir}/${_svnmod} \
-    -DCMAKE_INSTALL_PREFIX=${trinity_prefix} \
+  cmake ${srcdir}/kdevelop \
+    -DCMAKE_INSTALL_PREFIX=${_prefix} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DQT_VERSION=3 \
     -DWITH_QT3=ON \
