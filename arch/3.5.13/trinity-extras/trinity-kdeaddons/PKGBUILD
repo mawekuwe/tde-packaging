@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdeaddons
 pkgver=3513
@@ -16,10 +17,8 @@ conflicts=()
 replaces=()
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeaddons-3.5.13.tar.gz)
-source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeaddons-3.5.13.tar.gz)
 md5sums=('f5fa96a5d99d1bc33600f609881eaee6')
 
-_builddir=kdeaddons
 _prefix=/opt/trinity
 
 build() {
@@ -32,7 +31,7 @@ build() {
   #patch -N -d ${srcdir} -p0 < kdeaddons.patch
   
   msg "Starting automake..."
-  cd "$srcdir/${_builddir}"
+  cd "$srcdir/kdeaddons"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
   make -f admin/Makefile.common
@@ -51,6 +50,6 @@ build() {
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/${_builddir}
+  cd ${srcdir}/kdeaddons
   make DESTDIR="${pkgdir}" install
 }
