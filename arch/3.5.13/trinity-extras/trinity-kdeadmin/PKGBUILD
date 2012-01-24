@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdeadmin
 pkgver=3513
@@ -16,10 +17,8 @@ conflicts=()
 replaces=()
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeadmin-3.5.13.tar.gz)
-source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeadmin-3.5.13.tar.gz)
 md5sums=('b8bbabf353070a3e730464e0ce2960e2')
 
-_builddir=kdeadmin
 _prefix=/opt/trinity
 
 build() {
@@ -32,7 +31,7 @@ build() {
   #patch -N -d ${srcdir} -p0 < kdeadmin.patch
   
   msg "Starting automake..."
-  cd "$srcdir/${_builddir}"
+  cd "$srcdir/kdeadmin"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
   make -f admin/Makefile.common
@@ -51,6 +50,6 @@ build() {
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/${_builddir}
+  cd ${srcdir}/kdeadmin
   make DESTDIR="${pkgdir}" install
 }
