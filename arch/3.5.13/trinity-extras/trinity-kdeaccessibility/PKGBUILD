@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdeaccessibility
 pkgver=3513
@@ -8,18 +9,12 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-extras')
 pkgdesc="Trinity accessibility tools"
-depends=('trinity-kdelibs' 'trinity-arts')
+depends=('trinity-kdebase')
 makedepends=('pkgconfig' 'autoconf' 'automake')
-optdepends=()
-provides=()
-conflicts=()
-replaces=()
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeaccessibility-3.5.13.tar.gz)
-source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeaccessibility-3.5.13.tar.gz)
 md5sums=('ce31b01c1831046fb28aab172f2423bf')
 
-_builddir=kdeaccessibility
 _prefix=/opt/trinity
 
 build() {
@@ -32,7 +27,7 @@ build() {
   #patch -N -d ${srcdir} -p0 < kdeaccessibility.patch
   
   msg "Starting automake..."
-  cd "$srcdir/${_builddir}"
+  cd "$srcdir/kdeaccessibility"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
   make -f admin/Makefile.common
@@ -51,6 +46,6 @@ build() {
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/${_builddir}
+  cd ${srcdir}/kdeaccesibility
   make DESTDIR="${pkgdir}" install
 }
