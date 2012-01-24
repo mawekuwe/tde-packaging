@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-libkipi
 pkgver=3513
@@ -10,15 +11,10 @@ groups=('trinity-extras')
 pkgdesc="Trinity kipi library"
 depends=('trinity-kdelibs')
 makedepends=('pkgconfig' 'autoconf' 'automake')
-optdepends=()
-provides=($pkgname)
-conflicts=()
-replaces=()
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/libraries/libkipi-3.5.13.tar.gz)
 md5sums=('22cb0ba7507cac99140cd1c0180cbe99')
 
-_builddir=libraries/libkipi
 _prefix=/opt/trinity
 
 build() {
@@ -26,12 +22,9 @@ build() {
   msg "Setting Trinity Environment variables"
   export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
-
-  #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < libkipi.patch
   
   msg "Starting automake..."
-  cd "$srcdir/${_builddir}"
+  cd "$srcdir/libraries/libkipi"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
   make -f admin/Makefile.common
@@ -49,6 +42,6 @@ build() {
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/${_builddir}
+  cd ${srcdir}/libraries/libkipi
   make DESTDIR="${pkgdir}" install
 }
