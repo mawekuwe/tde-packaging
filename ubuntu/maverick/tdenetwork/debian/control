@@ -208,7 +208,7 @@ Replaces: krdc-trinity (<< 4:14.0.0)
 Breaks: krdc-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Recommends: rdesktop
+Recommends: rdesktop, libjpeg-turbo62
 Description: Remote Desktop Connection for Trinity
  krdc is an KDE graphical client for the rfb protocol, used by VNC,
  and if rdesktop is installed, krdc can connect to Windows Terminal
@@ -224,6 +224,7 @@ Replaces: krfb-trinity (<< 4:14.0.0)
 Breaks: krfb-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
+Recommends: libjpeg-turbo62
 Description: Desktop Sharing for Trinity
  Desktop Sharing (krfb) is a server application that allows you to share
  your current session with a user on another machine, who can use a
