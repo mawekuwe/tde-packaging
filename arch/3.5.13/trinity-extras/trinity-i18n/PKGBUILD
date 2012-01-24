@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=('trinity-i18n-af' 'trinity-i18n-ar' 'trinity-i18n-az' 
          'trinity-i18n-be' 'trinity-i18n-bg' 'trinity-i18n-bn' 
@@ -25,8 +26,6 @@ pkgname=('trinity-i18n-af' 'trinity-i18n-ar' 'trinity-i18n-az'
          'trinity-i18n-tr' 'trinity-i18n-uk' 'trinity-i18n-uz' 
          'trinity-i18n-uz-cyrillic' 'trinity-i18n-vi' 'trinity-i18n-wa' '
          trinity-i18n-zh_cn' 'trinity-i18n-zh_tw')
-
-
 pkgver=3513
 pkgrel=1
 arch=('i686' 'x86_64')
@@ -40,7 +39,6 @@ options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kde-i18n-3.5.13.tar.gz)
 md5sums=('7c919c7cb85f454fed46767082a87773')
 
-_builddir=kde-i18n
 _prefix=/opt/trinity
 
 build() {
