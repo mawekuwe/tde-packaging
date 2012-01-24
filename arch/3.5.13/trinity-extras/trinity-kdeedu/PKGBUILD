@@ -1,4 +1,5 @@
-# Maintainer: Calvin Morrison <mutantturkey@gmail.com>
+# Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
+# Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdeedu
 pkgver=3513
@@ -10,16 +11,10 @@ groups=('trinity-extras')
 pkgdesc="Trinity educational applications and tools"
 depends=('trinity-kdelibs')
 makedepends=('pkgconfig' 'autoconf' 'automake')
-optdepends=()
-provides=($pkgname)
-conflicts=()
-replaces=()
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeedu-3.5.13.tar.gz)
-source=(http://anduin.linuxfromscratch.org/sources/trinity/kdeedu-3.5.13.tar.gz)
 md5sums=('37a14a67c4d00babc3015c6a31698cb0')
 
-_builddir=kdeedu
 _prefix=/opt/trinity
 
 build() {
@@ -32,7 +27,7 @@ build() {
   #patch -N -d ${srcdir} -p0 < kdeedu.patch
   
   msg "Starting automake..."
-  cd "$srcdir/${_builddir}"
+  cd "$srcdir/kdeedu"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
   make -f admin/Makefile.common
@@ -50,6 +45,6 @@ build() {
 
 package() {
   msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/${_builddir}
+  cd ${srcdir}/kdeedu
   make DESTDIR="${pkgdir}" install
 }
