@@ -7,7 +7,7 @@ export QTDIR=/usr/share/tqt3
 cp /usr/share/tqt3/.qmake.cache ./.qmake.cache
 
 # Now compile the examples. The themes example
-# won't work since qconfig.h is not really correct with the
+# won't work since ntqconfig.h is not really correct with the
 # ifdef's for the QT_NO_xyz_STYLE, so we use make -k to continue
 cd examples; qmake -o Makefile examples.pro; make -k
 
