@@ -127,10 +127,10 @@ libqt-thread-stamp: $(QUILT_STAMPFN)
 
 	echo yes | ./configure $(CONFIGURE_OPTS)
 
-	rm -rf include/qinputcontext.h include/qinputcontextfactory.h include/qinputcontextplugin.h
-	ln -s ../src/kernel/qinputcontext.h include/qinputcontext.h
-	ln -s ../src/inputmethod/qinputcontextfactory.h include/qinputcontextfactory.h
-	ln -s ../src/inputmethod/qinputcontextplugin.h include/qinputcontextplugin.h
+	rm -rf include/ntqinputcontext.h include/ntqinputcontextfactory.h include/ntqinputcontextplugin.h
+	ln -s ../src/kernel/ntqinputcontext.h include/ntqinputcontext.h
+	ln -s ../src/inputmethod/ntqinputcontextfactory.h include/ntqinputcontextfactory.h
+	ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
 
 	# proceed
 	$(MAKE) sub-src sub-plugins sub-tools
@@ -157,13 +157,13 @@ libqt-thread-stamp: $(QUILT_STAMPFN)
 	install -d $(P_QTMTDEV)/usr/share/tqt3/
 	cat .qmake.cache | sed "s#$(QTDIR)#/usr/share/tqt3#g" > $(P_QTMTDEV)/usr/share/tqt3/.qmake.cache
 
-	# install qconfig.h for the mt
-	install -m 644 -D include/qconfig.h $(P_QTMTDEV)/usr/include/tqt3/qconfig.h
-	install -m 644 -D include/qmodules.h $(P_QTMTDEV)/usr/include/tqt3/qmodules.h
+	# install ntqconfig.h for the mt
+	install -m 644 -D include/ntqconfig.h $(P_QTMTDEV)/usr/include/tqt3/ntqconfig.h
+	install -m 644 -D include/ntqmodules.h $(P_QTMTDEV)/usr/include/tqt3/ntqmodules.h
 
-	install -m 644 -D include/qinputcontext.h $(P_HEADERS)/usr/include/tqt3/qinputcontext.h
-	install -m 644 -D include/qinputcontextfactory.h $(P_HEADERS)/usr/include/tqt3/qinputcontextfactory.h
-	install -m 644 -D include/qinputcontextplugin.h $(P_HEADERS)/usr/include/tqt3/qinputcontextplugin.h
+	install -m 644 -D include/ntqinputcontext.h $(P_HEADERS)/usr/include/tqt3/ntqinputcontext.h
+	install -m 644 -D include/ntqinputcontextfactory.h $(P_HEADERS)/usr/include/tqt3/ntqinputcontextfactory.h
+	install -m 644 -D include/ntqinputcontextplugin.h $(P_HEADERS)/usr/include/tqt3/ntqinputcontextplugin.h
 
 	touch libqt-thread-stamp
 
@@ -188,14 +188,14 @@ clean: unpatch
 
 	-rm -rf .qmake.cache src/.qmake.internal.cache tools/designer/designer/.qmake.internal.cache qmake/GNUmakefile \
 		config.status bin/moc bin/qmake src/moc/*.o mkspecs/default lib/lib* `pwd`/debian/doc $(TMP_INSTALL) \
-		src/tools/qconfig.cpp include/qconfig.h include/qmodules.h plugins/accessibleqtwidgets.prl \
+		src/tools/qconfig.cpp include/ntqconfig.h include/ntqmodules.h plugins/accessibleqtwidgets.prl \
 		config.tests/unix/ipv6/ipv6test config.tests/unix/ipv6/ipv6test.o config.tests/unix/ptrsize/ptrsizetest.o \
 		config.tests/unix/ptrsize/ptrsizetest config.tests/unix/endian/endiantest.o \
 		config.tests/unix/endian/endiantest lib/tqt-mt.pc extensions/nsplugin/examples/trivial/libtrivial.prl \
 		extensions/nsplugin/examples/grapher/libgrapher.prl bin/designer
 
 	rm -f qmake/*o
-	rm -rf include/qinputcontext.h include/qinputcontextfactory.h include/qinputcontextplugin.h
+	rm -rf include/ntqinputcontext.h include/ntqinputcontextfactory.h include/ntqinputcontextplugin.h
 	rm -f src/.obj/debug-shared-mt/*o plugins/src/inputmethods/imsw-multi/.obj/debug-shared-mt/*o plugins/inputmethods/*so
 	rm -f plugins/src/inputmethods/imsw-none/.obj/debug-shared-mt/*o plugins/src/inputmethods/simple/.obj/debug-shared-mt/*o plugins/src/inputmethods/xim/.obj/debug-shared-mt/*o
 
@@ -227,7 +227,7 @@ install: build
 	install -d $(P_DOC)/usr/share/tqt3/doc/html/
 	for a in `cd $(TMP_INSTALL)/usr/share/tqt3/doc/html/ && find`; do cp $(TMP_INSTALL)/usr/share/tqt3/doc/html/"$$a" $(P_DOC)/usr/share/tqt3/doc/html/; done
 	#typo bugfix
-	sed -i -e 's/reveives/receives/' $(P_DOC)/usr/share/tqt3/doc/html/qwidget.html
+	sed -i -e 's/reveives/receives/' $(P_DOC)/usr/share/tqt3/doc/html/ntqwidget.html
 
 	## build designer package documentation
 	# tqt3-designer
