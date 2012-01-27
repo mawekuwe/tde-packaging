@@ -3,42 +3,89 @@
 
 pkgname=trinity-qt3
 pkgver=3.8.8.d
-pkgrel=4
+pkgrel=5
 pkgdesc="The Qt3 gui toolkit - with Trinity upstream"
 arch=('i686' 'x86_64')
 url="http://trinitydesktop.org"
 license=('GPL')
 groups=('trinity-base')
-depends=('libpng' 'libxmu'  'libxcursor' 'libxinerama' 'mesa' 'libxft' 
-         'libxrandr' 'libmng')
-makedepends=('libxi' 
-             'mysql' 'postgresql' 'unixodbc' 'sqlite3')
+depends=('libpng' 'libjpeg' 'libxmu' 'libxcursor' 'libxinerama' 'mesa' 
+         'libxft' 'libxrandr')
+makedepends=('mysql' 'postgresql' 'sqlite3' 'unixodbc' 'libmng' 'libxi')
              # cups [add for cups support, add -cups to ./configure opts]
 optdepends=('libmysqlclient' 'postgresql-libs' 'unixodbc')
-provides=('trinity-qt3' 'qt3' 'qt3-enhanced' )
-conflicts=('qt3')
-replaces=('qt3-enhanced')
+provides=('qt3' 'qt3-enhanced')
+replaces=('qt3-enhanced' 'qt3')
 options=('libtool' '!emptydirs')
-source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz' 'qt-odbc.patch')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz' 
+        'qt-patches.tar.bz2')
 md5sums=('78dc675e84aed595375449818cbb589a'
-         '32772739fc53062e9151a6e283c52add')
+         'a4b569f217d17cb1231c18aa48ecae20')
 
 _prefix="/opt/qt"
 
 build() {
+   msg "Patching source code..."
+
+   cd $srcdir/qt3
+
+   # apply other qt patches from debian/gentoo
+   msg "- Applying patch: 0015-qiconview-finditem.patch"
+   patch -Np0 -i $srcdir/qt-patches/0015-qiconview-finditem.patch
+   msg "- Applying patch: 0017-qiconview-ctrl_rubber.patch"
+   patch -Np0 -i $srcdir/qt-patches/0017-qiconview-ctrl_rubber.patch
+   msg "- Applying patch: 0020-designer-deletetabs.patch"
+   patch -Np0 -i $srcdir/qt-patches/0020-designer-deletetabs.patch
+   msg "- Applying patch: 0035-qvaluelist-streaming-operator.patch"
+   patch -Np0 -i $srcdir/qt-patches/0035-qvaluelist-streaming-operator.patch
+   msg "- Applying patch: 0036-qprogressbar-optimization.patch"
+   patch -Np0 -i $srcdir/qt-patches/0036-qprogressbar-optimization.patch
+   msg "- Applying patch: 0046-qiconview-no-useless-scrollbar.patch"
+   patch -Np0 -i $srcdir/qt-patches/0046-qiconview-no-useless-scrollbar.patch
+   msg "- Applying patch: 0049-qiconview-rubber_on_move.patch"
+   patch -Np0 -i $srcdir/qt-patches/0049-qiconview-rubber_on_move.patch
+   msg "- Applying patch: 0078-argb-visual-hack.patch"
+   patch -Np0 -i $srcdir/qt-patches/0078-argb-visual-hack.patch
+   msg "- Applying patch: 0088-fix-xinput-clash.patch"
+   patch -Np0 -i $srcdir/qt-patches/0088-fix-xinput-clash.patch
+   msg "- Applying patch: gcc46-arch.patch"
+   patch -Np1 -i $srcdir/qt-patches/gcc46-arch.patch
+   msg "- Applying patch: qt-3.1.0-makefile.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-3.1.0-makefile.patch
+   msg "- Applying patch: qt-3.3.4-print-CJK.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-3.3.4-print-CJK.patch
+   msg "- Applying patch: qt-3.3.8-buffered-iconview.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-3.3.8-buffered-iconview.patch
+   msg "- Applying patch: qt-3.3.8.d-libpng15-1.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-3.3.8.d-libpng15-1.patch
+   msg "- Applying patch: qt-3.3.8-eyecandy.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-3.3.8-eyecandy.patch
+   msg "- Applying patch: qt-3.3.8-odbc.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-3.3.8-odbc.patch
+   msg "- Applying patch: qt-no-rpath.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-no-rpath.patch
+   msg "- Applying patch: qt-visibility.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-visibility.patch
+   msg "- Applying patch: qt-x11-free-3.3.4-gcc4-buildkey.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-x11-free-3.3.4-gcc4-buildkey.patch
+   msg "- Applying patch: qt-x11-free-3.3.4-gcc4.patch"
+   patch -Np1 -i $srcdir/qt-patches/qt-x11-free-3.3.4-gcc4.patch
+
+   # change occurrences of $QTDIR into $QT3DIR
+   # anything. Qt4 compatibility?
+   find ${srcdir}/qt3 -type f -exec \
+      sed -i 's/QTDIR/QT3DIR/g' {} +
+
    msg "Setting enviroment variables..."
-   export QTDIR="${srcdir}/qt3/" 
-   export PATH=${QTDIR}/bin:${PATH}
-   export LD_LIBRARY_PATH=${QTDIR}/lib:${LD_LIBRARY_PATH}
-   export QMAKESPEC=$QTDIR/mkspecs/linux-g++
+   export QT3DIR="${srcdir}/qt3/" 
+   export PATH=${QT3DIR}/bin:${PATH}
+   export LD_LIBRARY_PATH=${QT3DIR}/lib:${LD_LIBRARY_PATH}
+   export QMAKESPEC=$QT3DIR/mkspecs/linux-g++
 
    if [ "$CARCH" = "x86_64" ]; then
      export ARCH="-64"
    else unset ARCH
    fi
-
-   # fix build problem against new unixODBC
-   patch -p1 -i "${srcdir}"/qt-odbc.patch
 
    cd "${srcdir}/qt3"
 
@@ -68,9 +115,15 @@ build() {
       -no-g++-exceptions \
       -thread \
       -shared \
+      -dlopen-opengl \
+      -no-ipv6 \
       -system-zlib \
-      -system-lib{png,jpeg,mng} \
+      -{system-lib,plugin-imgfmt-}{png,jpeg,mng} \
       -qt-gif \
+      -xinerama \
+      -xcursor \
+      -xrender \
+      -xft \
       -plugin-sql-{mysql,psql,sqlite,odbc}
 
    # 64bit fixes pulled from extras/qt3 PKGBUILD
@@ -100,35 +153,55 @@ build() {
    make  
 }
 
-package() {  
+package() {
    msg "Packaging - $pkgname-$pkgver"
    cd "$srcdir/qt3"
 
-   # Build ld.so.conf file
-   echo "${_prefix}" > ${srcdir}/libqt-mt.conf
-   echo "${_prefix}/lib" >> ${srcdir}/libqt-mt.conf
-   echo "/opt/trinity/lib" >> ${srcdir}/libqt-mt.conf
-   # install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
-   install -D -m755 ${srcdir}/libqt-mt.conf  ${pkgdir}/etc/ld.so.conf.d/libqt-mt.conf
-
-   # Build and install qt.profile
-   echo "export QTDIR=${_prefix}" > ${srcdir}/qt.profile
-   echo "export QT_XFT=true" >> ${srcdir}/qt.profile
-   echo 'export PATH=$PATH:$QTDIR/bin' >> ${srcdir}/qt.profile
-   echo 'export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QTDIR/pkgconfig' >> ${srcdir}/qt.profile
-   install -D -m755 ${srcdir}/qt.profile ${pkgdir}/etc/profile.d/qt3.sh
-
    make INSTALL_ROOT="$pkgdir" install
+
+   msg "Cleaning package..."
 
    rm -rf "${pkgdir}"/opt/qt/{phrasebooks,templates,translations}
    sed -i "s|-L${srcdir}/qt3/lib ||g" "${pkgdir}"/opt/qt/lib/*.prl
+   rm -f "${pkgdir}"/opt/qt/mkspecs/linux-g++$ARCH/linux-g++$ARCH
+
+   # Fix issues with GCC4
+   sed -i 's/\(char\*\)/const char*/g' $pkgdir/opt/qt/include/*.h
+   # Fix the mess we did fixing issues with GCC4
+   sed -i 's/const u char/const uchar/g' $pkgdir/opt/qt/include/*.h
+   sed -i 's/u const char/const uchar/g' $pkgdir/opt/qt/include/*.h
+   sed -i 's/const const/const/g' $pkgdir/opt/qt/include/*.h
+   sed -i 's/uconst/ unsigned /g' $pkgdir/opt/qt/include/*.h
+
+   sed -ie 's/define QTIMER_H/&\n#include "qglobal.h"/g' $pkgdir/opt/qt/include/qtimer.h
+
    install -D -m755 qmake/qmake "${pkgdir}"/opt/qt/bin/qmake
 
-   ln -sf /opt/qt/bin/qtconfig "${pkgdir}"/opt/qt/bin/qt3config
-   rm -f "${pkgdir}"/opt/qt/mkspecs/linux-g++$ARCH/linux-g++$ARCH
+   # Build ld.so.conf file
+   install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
+   echo "${_prefix}/lib" >> ${pkgdir}/etc/ld.so.conf.d/qt3.conf
+
+   # Build and install qt.profile
+   install -d -m755 ${pkgdir}/etc/profile.d/
+   echo "export QT3DIR=${_prefix}" > ${pkgdir}/etc/ld.so.conf.d/qt3.sh
+   echo "export QT_XFT=true" >> ${pkgdir}/etc/ld.so.conf.d/qt3.sh
+   echo "export PATH=$PATH:$QT3DIR/bin" >> ${pkgdir}/etc/ld.so.conf.d/qt3.sh
+   echo "export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QT3DIR/pkgconfig" >> ${pkgdir}/etc/ld.so.conf.d/qt3.sh
+
+   # ln -sf /opt/qt/bin/qtconfig "${pkgdir}"/opt/qt/bin/qt3config
 
    # install man pages
    install -d -m755 "${pkgdir}"/opt/qt/man
    cp -r "${srcdir}"/qt3/doc/man/{man1,man3} "${pkgdir}"/opt/qt/man/
+
+   # libtoolslay
+   find $startdir/pkg -name '*.la' -exec rm {} \;
+
+   # Arch64 fix
+   #if [ "$CARCH" = "x86_64" ]; then
+   #   [ -d $pkgdir/opt/qt/mkspecs/linux-g++ ] || mkdir $pkgdir/opt/qt/mkspecs/linux-g++
+   #   cd  $pkgdir/opt/qt/mkspecs/linux-g++
+   #   ln -s -v ../linux-g++-64/* .
+   #fi
 
 } 
