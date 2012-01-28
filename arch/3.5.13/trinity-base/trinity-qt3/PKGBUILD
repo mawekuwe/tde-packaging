@@ -17,6 +17,7 @@ optdepends=('libmysqlclient' 'postgresql-libs' 'unixodbc')
 provides=('qt3' 'qt3-enhanced')
 replaces=('qt3-enhanced' 'qt3')
 options=('libtool' '!emptydirs')
+install='qt3.install'
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz' 
         'qt-patches.tar.bz2')
 md5sums=('78dc675e84aed595375449818cbb589a'
@@ -183,10 +184,10 @@ package() {
 
    # Build and install qt.profile
    install -d -m755 ${pkgdir}/etc/profile.d/
-   echo "export QT3DIR=${_prefix}" > ${pkgdir}/etc/ld.so.conf.d/qt3.sh
-   echo "export QT_XFT=true" >> ${pkgdir}/etc/ld.so.conf.d/qt3.sh
-   echo "export PATH=$PATH:$QT3DIR/bin" >> ${pkgdir}/etc/ld.so.conf.d/qt3.sh
-   echo "export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QT3DIR/pkgconfig" >> ${pkgdir}/etc/ld.so.conf.d/qt3.sh
+   echo "export QT3DIR=${_prefix}" > ${pkgdir}/etc/profile.d/qt3.sh
+   echo "export QT_XFT=true" >> ${pkgdir}/etc/profile.d/qt3.sh
+   echo "export PATH=$PATH:$QT3DIR/bin" >> ${pkgdir}/etc/profile.d/qt3.sh
+   echo "export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$QT3DIR/pkgconfig" >> ${pkgdir}/etc/profile.d/qt3.sh
 
    # ln -sf /opt/qt/bin/qtconfig "${pkgdir}"/opt/qt/bin/qt3config
 
