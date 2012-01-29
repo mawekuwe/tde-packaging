@@ -23,7 +23,7 @@ source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8
 md5sums=('78dc675e84aed595375449818cbb589a'
          'a4b569f217d17cb1231c18aa48ecae20')
 
-_prefix="/opt/qt"
+_prefix="/opt/qt3"
 
 build() {
    msg "Patching source code..."
@@ -163,21 +163,21 @@ package() {
 
    msg "Cleaning package..."
 
-   rm -rf "${pkgdir}"/opt/qt/{phrasebooks,templates,translations}
-   sed -i "s|-L${srcdir}/qt3/lib ||g" "${pkgdir}"/opt/qt/lib/*.prl
-   rm -f "${pkgdir}"/opt/qt/mkspecs/linux-g++$ARCH/linux-g++$ARCH
+   rm -rf "${pkgdir}"$_prefix/{phrasebooks,templates,translations}
+   sed -i "s|-L${srcdir}/qt3/lib ||g" "${pkgdir}"$_prefix/lib/*.prl
+   rm -f "${pkgdir}"${_prefix}/mkspecs/linux-g++$ARCH/linux-g++$ARCH
 
    # Fix issues with GCC4
-   sed -i 's/\(char\*\)/const char*/g' $pkgdir/opt/qt/include/*.h
+   sed -i 's/\(char\*\)/const char*/g' $pkgdir$_prefix/include/*.h
    # Fix the mess we did fixing issues with GCC4
-   sed -i 's/const u char/const uchar/g' $pkgdir/opt/qt/include/*.h
-   sed -i 's/u const char/const uchar/g' $pkgdir/opt/qt/include/*.h
-   sed -i 's/const const/const/g' $pkgdir/opt/qt/include/*.h
-   sed -i 's/uconst/ unsigned /g' $pkgdir/opt/qt/include/*.h
+   sed -i 's/const u char/const uchar/g' $pkgdir$_prefix/include/*.h
+   sed -i 's/u const char/const uchar/g' $pkgdir$_prefix/include/*.h
+   sed -i 's/const const/const/g' $pkgdir$_prefix/include/*.h
+   sed -i 's/uconst/ unsigned /g' $pkgdir$_prefix/include/*.h
 
-   sed -ie 's/define QTIMER_H/&\n#include "qglobal.h"/g' $pkgdir/opt/qt/include/qtimer.h
+   sed -ie 's/define QTIMER_H/&\n#include "qglobal.h"/g' $pkgdir$_prefix/include/qtimer.h
 
-   install -D -m755 qmake/qmake "${pkgdir}"/opt/qt/bin/qmake
+   install -D -m755 qmake/qmake "${pkgdir}"$_prefix/bin/qmake
 
    # Build ld.so.conf file
    install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
@@ -190,19 +190,19 @@ package() {
    echo "export PATH+=:${_prefix}/bin" >> ${pkgdir}/etc/profile.d/qt3.sh
    echo "export PKG_CONFIG_PATH+=:${_prefix}/pkgconfig" >> ${pkgdir}/etc/profile.d/qt3.sh
 
-   # ln -sf /opt/qt/bin/qtconfig "${pkgdir}"/opt/qt/bin/qt3config
+   # ln -sf $_prefix/bin/qtconfig "${pkgdir}"$_prefix/bin/qt3config
 
    # install man pages
-   install -d -m755 "${pkgdir}"/opt/qt/man
-   cp -r "${srcdir}"/qt3/doc/man/{man1,man3} "${pkgdir}"/opt/qt/man/
+   install -d -m755 "${pkgdir}"$_prefix/man
+   cp -r "${srcdir}"/qt3/doc/man/{man1,man3} "${pkgdir}"$_prefix/man/
 
    # libtoolslay
    find $startdir/pkg -name '*.la' -exec rm {} \;
 
    # Arch64 fix
    #if [ "$CARCH" = "x86_64" ]; then
-   #   [ -d $pkgdir/opt/qt/mkspecs/linux-g++ ] || mkdir $pkgdir/opt/qt/mkspecs/linux-g++
-   #   cd  $pkgdir/opt/qt/mkspecs/linux-g++
+   #   [ -d $pkgdir$_prefix/mkspecs/linux-g++ ] || mkdir $pkgdir$_prefix/mkspecs/linux-g++
+   #   cd  $pkgdir$_prefix/mkspecs/linux-g++
    #   ln -s -v ../linux-g++-64/* .
    #fi
 
