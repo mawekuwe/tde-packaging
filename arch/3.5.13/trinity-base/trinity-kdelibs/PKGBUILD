@@ -9,11 +9,9 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity DE core libraries"
-depends=('trinity-arts' 'trinity-tqtinterface'
-         'libxslt' 'libidn' 
+depends=('trinity-arts'
+         'libxslt' 'libidn' 'libart-lgpl' 'jasper' 
          'libxcomposite' 'libcups' 
-         'libart-lgpl' 
-         'jasper' 
          'openexr' 'aspell' 'hspell') 
          # taglib
          # libical
@@ -22,6 +20,7 @@ depends=('trinity-arts' 'trinity-tqtinterface'
          # avahi
          # libtiff
          # openssl
+         # libutempter - needs to be installed from aur
 makedepends=('pkgconfig' 'cmake')
 provides=('kdelibs3')
 conflicts=('kdemod3-kdelibs' 'kdelibs3')
@@ -38,8 +37,10 @@ _prefix="/opt/trinity"
 
 build() {
    msg "Setting PATH, CMAKE and Trinity Environment variables"
-    . /etc/profile.d/qt3.sh
+   . /etc/profile.d/qt3.sh
+   . /etc/profile.d/trinity.sh
 
+   # compiles without exporting this, since we have profiles
    #export CMAKE_PREFIX_PATH=${QTDIR}:${_prefix}
    #export PATH=$PATH:${_prefix}/bin
    #export CMAKE_INCLUDE_PATH=/usr/include/dbus-1.0:${_prefix}/bin
@@ -81,11 +82,12 @@ package() {
    cd ${srcdir}/build
 
    make DESTDIR="$pkgdir" install
+   
+   # we do this in arts package
+   #install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
+   #echo "${_prefix}/lib" > ${pkgdir}/etc/ld.so.conf.d/${pkgname}.conf
 
-   install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
-   echo "${_prefix}/lib" > ${pkgdir}/etc/ld.so.conf.d/${pkgname}.conf
-
-   install -d -m755 ${pkgdir}/etc/profile.d/
-   install -m644 ${srcdir}/trinity.sh ${pkgdir}/etc/profile.d/
+   #install -d -m755 ${pkgdir}/etc/profile.d/
+   #install -m644 ${srcdir}/trinity.sh ${pkgdir}/etc/profile.d/
 
 }
