@@ -21,11 +21,12 @@ build() {
 
   msg "Setting PATH, CMAKE and Trinity Environment variables"
   . /etc/profile.d/qt3.sh
+   . /etc/profile.d/trinity.sh
 
-  export CMAKE_PREFIX_PATH=${QTDIR}:${_prefix}
-  export CMAKE_INCLUDE_PATH=/usr/include/dbus-1.0:${_prefix}/include:${_prefix}/include/libkrandr
-  export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
+  #export CMAKE_PREFIX_PATH=${QTDIR}:${_prefix}
+  #export CMAKE_INCLUDE_PATH=/usr/include/dbus-1.0:${_prefix}/include:${_prefix}/include/libkrandr
+  #export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
+  #export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
 
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
