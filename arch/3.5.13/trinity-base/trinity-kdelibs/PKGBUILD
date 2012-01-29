@@ -26,9 +26,8 @@ provides=('kdelibs3')
 conflicts=('kdemod3-kdelibs' 'kdelibs3')
 replaces=('trinity-kdelibs')
 options=('libtool' '!makeflags')
-source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'trinity.sh' 'docpath.patch')
+source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdelibs-3.5.13.tar.gz' 'docpath.patch')
 md5sums=('f62eefb63b4ba2141b4c576f859806dd'
-         '2de1886d632c8bc288befada5e1bc3b5'
          'd20badec5a1a7f01f0c957db8b9b8def')
 
 install='trinity-kdelibs.install'
