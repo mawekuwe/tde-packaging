@@ -18,7 +18,7 @@ source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/tqtinterf
 md5sums=('d54cc9fd0b35555298efd17c32471a2b'
          'c15745c944d98cb7c4cb553f0ca421d4')
 
-_prefix=/opt/qt
+_prefix=/opt/qt3
 
 build() {
    msg "Setting PATH, CMAKE and Trinity Environment variables"
@@ -32,10 +32,10 @@ build() {
    msg "Starting cmake..."
    cmake "../dependencies/tqtinterface" \
      -DCMAKE_INSTALL_PREFIX=${_prefix} \
-     -DQT_PREFIX_DIR=${QT3DIR} \
-     -DQT_INCLUDE_DIR=${QT3DIR}/include \
+     -DQT_PREFIX_DIR=${QTDIR} \
+     -DQT_INCLUDE_DIR=${QTDIR}/include \
      -DQT_VERSION=3 \
-     -DMOC_EXECUTABLE=${QT3DIR}/bin/moc
+     -DMOC_EXECUTABLE=${QTDIR}/bin/moc
 #     -DQT_INCLUDE_DIR=${_prefix}/include/tqt/Qt
 #     -DQT_LIBRARY_DIRS=/opt/qt/lib \
 #     -DQT_LIBRARY_DIRS=/opt/qt/lib \
