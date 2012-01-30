@@ -28,8 +28,8 @@ build() {
 
    # Do we need this?
    msg "Setting PATH, CMAKE and Trinity Environment variables"
-   # This should be done on system startup, neverthless, do it to be sure.
-   . /etc/profile.d/qt3.sh
+   # Source the QT and KDE profile
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh 
 
    cd $srcdir
    msg "Creating out-of-source build directory: ${srcdir}/build"
