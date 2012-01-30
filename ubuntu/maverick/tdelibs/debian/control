@@ -13,7 +13,7 @@ Build-Depends: cdbs (>= 0.4.41ubuntu2), debhelper (>= 5.0.31), autotools-dev,
  liblualib50-dev, libopenexr-dev (>= 1.2.2-4.1), libpcre3-dev,
  libsasl2-dev, libssl-dev, libxcomposite-dev,
  libtiff4-dev (>= 3.7.3-1), libavahi-client-dev (>= 0.4),
- libxml2-dev, libxml2-utils, libxslt1-dev,
+ libxml2-dev, libxml2-utils, libxslt1-dev, libavahi-tqt-dev,
  sharutils, texinfo, libogg-dev, libtqtinterface-dev,
  gettext-kde, lsb-release, base-files, sudo, libr-dev,
  cmake, libltdl-dev
