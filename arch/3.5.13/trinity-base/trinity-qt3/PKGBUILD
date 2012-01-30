@@ -137,7 +137,7 @@ build() {
    [ "$CARCH" = "x86_64" ] && sed -i "s|/opt/qt/lib64|/opt/qt/lib|g" "${srcdir}"/qt3/tools/designer/uilib/Makefile
 
    msg "Building - $pkgname..."
-   
+
    # build sql plugins
    cd "${srcdir}"/qt3
    make -C qmake
@@ -147,12 +147,12 @@ build() {
    "${srcdir}"/qt3/bin/qmake -o Makefile "INCPATH+=/usr/src/include /usr/include/postgresql/server" "LIBS+=-L/usr/lib -lpq" psql.pro
 
    cd "${srcdir}"/qt3
-   
+
    # fix the broken makefiles
    # sed -i 's|[[:space:]]*strip.*doc/html.*$|#|g' src/Makefile
-   
+
    # build rest
-   make  
+   make
 
 }
 
