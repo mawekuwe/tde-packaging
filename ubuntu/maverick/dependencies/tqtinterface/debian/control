@@ -22,7 +22,7 @@ Architecture: any
 Section: libs
 Replaces: libtqtinterface-dev (<< 4:3.5.13)
 Breaks: libtqtinterface-dev (<< 4:3.5.13)
-Depends: ${shlibs:Depends} libtqtinterface (>= ${Source-Version}), libavahi-tqt-dev, qt3-apps-dev
+Depends: ${shlibs:Depends} libtqtinterface (>= ${Source-Version}), qt3-apps-dev
 Description: The Trinity Qt Interface Libraries (Development Files)
  The Trinity Qt Interface is a library that abstracts Qt from Trinity
  This allows the Trinity code to rapidly port from one version of Qt to another.
