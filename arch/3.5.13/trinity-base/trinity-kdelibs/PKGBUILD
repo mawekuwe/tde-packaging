@@ -11,15 +11,9 @@ groups=('trinity-base')
 pkgdesc="Trinity DE core libraries"
 depends=('trinity-arts'
          'libxslt' 'libidn' 'libart-lgpl' 'jasper' 
-         'libxcomposite' 'libcups' 
+         'libxcomposite' 'libcups' 'libutempter'
          'openexr' 'aspell' 'hspell') 
-         # taglib
-         # libical
-         # pam-krb5
-         # libltdl
-         # avahi
-         # libtiff
-         # openssl
+         # taglib openssl libtiff avahi libltdl pam-krb5 libical
          # libutempter - needs to be installed from aur
 makedepends=('pkgconfig' 'cmake')
 provides=('kdelibs3')
@@ -32,18 +26,17 @@ md5sums=('f62eefb63b4ba2141b4c576f859806dd'
 
 install='trinity-kdelibs.install'
 
-_prefix="/opt/trinity"
-
 build() {
    msg "Setting PATH, CMAKE and Trinity Environment variables"
-   . /etc/profile.d/qt3.sh
-   . /etc/profile.d/trinity.sh
+   # Source the QT and TDE profile
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh 
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
    # compiles without exporting this, since we have profiles
-   #export CMAKE_PREFIX_PATH=${QTDIR}:${_prefix}
-   #export PATH=$PATH:${_prefix}/bin
-   #export CMAKE_INCLUDE_PATH=/usr/include/dbus-1.0:${_prefix}/bin
-   #export LD_LIBRARY_PATH=${_prefix}/lib:${QTDIR}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
+   #export CMAKE_PREFIX_PATH=${QTDIR}:${TDEDIR}
+   #export PATH=$PATH:${TDEDIR}/bin
+   #export CMAKE_INCLUDE_PATH=/usr/include/dbus-1.0:${TDEDIR}/bin
+   #export LD_LIBRARY_PATH=${TDEDIR}/lib:${QTDIR}/lib:${TDEDIR}/lib/trinity:$LD_LIBRARY_PATH
 
    msg "Patching..."
    patch -N -d ${srcdir} -p0 < ${srcdir}/docpath.patch
@@ -55,7 +48,7 @@ build() {
 
    msg "Starting cmake..."
    cmake ${srcdir}/kdelibs \
-    -DCMAKE_INSTALL_PREFIX=${_prefix} \
+    -DCMAKE_INSTALL_PREFIX=${TDEDIR} \
     -DCMAKE_VERBOSE_MAKEFILE=OFF \
     -DWITH_ARTS=ON \
     -DWITH_ALSA=ON \
@@ -67,7 +60,7 @@ build() {
     -DWITH_TIFF=ON \
     -DWITH_JASPER=ON \
     -DWITH_OPENEXR=ON \
-    -DWITH_UTEMPTER=OFF \
+    -DWITH_UTEMPTER=ON \
     -DWITH_AVAHI=ON \
     -DWITH_ASPELL=ON \
     -DWITH_HSPELL=ON
@@ -81,12 +74,4 @@ package() {
    cd ${srcdir}/build
 
    make DESTDIR="$pkgdir" install
-   
-   # we do this in arts package
-   #install -d -m755 ${pkgdir}/etc/ld.so.conf.d/
-   #echo "${_prefix}/lib" > ${pkgdir}/etc/ld.so.conf.d/${pkgname}.conf
-
-   #install -d -m755 ${pkgdir}/etc/profile.d/
-   #install -m644 ${srcdir}/trinity.sh ${pkgdir}/etc/profile.d/
-
 }
