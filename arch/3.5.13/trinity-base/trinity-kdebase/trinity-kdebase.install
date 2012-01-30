@@ -1,0 +1,14 @@
+post_install() {
+   ldconfig &> /dev/null
+   mkpamserv trinity
+}
+
+post_upgrade() {
+   post_install
+}
+
+post_remove() {
+   ldconfig &> /dev/null
+   rm /etc/pam.d/trinity
+}
+
