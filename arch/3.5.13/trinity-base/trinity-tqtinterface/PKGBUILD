@@ -17,12 +17,15 @@ source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/tqtinterf
         'tqtpc-location.patch')
 md5sums=('d54cc9fd0b35555298efd17c32471a2b'
          'c15745c944d98cb7c4cb553f0ca421d4')
+install='trinity-tqtinterface.install'
 
-_prefix=/opt/qt3
+# istead of using prefix, we will use QTDIR from qt3 profile
+#_prefix=/opt/qt3
 
 build() {
    msg "Setting PATH, CMAKE and Trinity Environment variables"
-   . /etc/profile.d/qt3.sh
+   # Source the QT and KDE profile
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh 
 
    cd $srcdir
    msg "Creating out-of-source build directory: ${srcdir}/build"
@@ -31,15 +34,15 @@ build() {
 
    msg "Starting cmake..."
    cmake "../dependencies/tqtinterface" \
-     -DCMAKE_INSTALL_PREFIX=${_prefix} \
+     -DCMAKE_INSTALL_PREFIX=${QTDIR} \
      -DQT_PREFIX_DIR=${QTDIR} \
      -DQT_INCLUDE_DIR=${QTDIR}/include \
-     -DQT_VERSION=3 \
-     -DMOC_EXECUTABLE=${QTDIR}/bin/moc
-#     -DQT_INCLUDE_DIR=${_prefix}/include/tqt/Qt
-#     -DQT_LIBRARY_DIRS=/opt/qt/lib \
+     -DMOC_EXECUTABLE=${QTDIR}/bin/moc \
+     -DQT_VERSION=3
+#     -DQT_INCLUDE_DIR=${QTDIR}/include/tqt/Qt
 #     -DQT_LIBRARY_DIRS=/opt/qt/lib \
 #     -DCMAKE_SKIP_RPATH=ON || return 1
+
    make
 }
 
@@ -49,8 +52,8 @@ package() {
    make DESTDIR="${pkgdir}" install
 
    # include uic-tqt in package
-#   cd ${srcdir}
-#   mkdir -p ${pkgdir}/usr/bin
-#   cp -Rp ${srcdir}/${_svnmod}/qtinterface/uic-tqt ${pkgdir}/usr/bin
+   #cd ${srcdir}
+   #mkdir -p ${pkgdir}/usr/bin
+   #cp -Rp ${srcdir}/${_svnmod}/qtinterface/uic-tqt ${pkgdir}/usr/bin
 
 }
