@@ -3,7 +3,7 @@
 
 pkgname=trinity-kdebase
 pkgver=3513
-pkgrel=3
+pkgrel=4
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
