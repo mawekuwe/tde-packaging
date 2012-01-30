@@ -1,6 +1,11 @@
 post_install() {
    ldconfig &> /dev/null
    mkpamserv trinity
+   echo "Please remember that you can change your kdesu backend"
+   echo "from su to sudo by adding following lines to your"
+   echo "~/.trinity/share/kdesurc or to $TDEDIR/share/config/kdesurc:"
+   echo "[super-user-command]"
+   echo "super-user-command=sudo"
 }
 
 post_upgrade() {

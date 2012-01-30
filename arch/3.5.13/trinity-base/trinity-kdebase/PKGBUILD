@@ -24,29 +24,27 @@ optdepends=('desktop-file-utils: Command line utilities for working with desktop
 confilicts=('kdemod3-kdebase')
 options=('libtool')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 
-        'docpath.patch' 
-        'dbusfix.patch' 
-        'kdm-trinity' 
-        'trinity.desktop' 
+        'patches.tar.bz2'
         'Xsession.patch'
         'arch-kdeshutdown.png'
         'kdm-default-face.png'
         'agent-shutdown.sh'
-        'agent-startup.sh')
+        'agent-startup.sh'
+        'kdm-trinity' 
+        'trinity.desktop')
 md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
-         'fc9cdbe6779bb3860e222dafa744c94e'
-         'c9ce810c281002440a6de8cfd8735d07'
-         '376d85d213cf3c04cb0912e5cccd68bd'
-         '1418e45fea5a9738544cbd264c36373b'
+         'bf0cc14276148d5f6bd46828367825a6'
          '895f5d7351aa73ba1f57b0ad27081d69'
          'bb3004513d703d6b72ce70aa240af3a3'
          'e6afdd7ca60c4c59b851135785347e75'
          '18e8d01124b19f7df2937c06e177bf7f'
-         'c963ef6e37c9051119972a58c67f05fb')
+         'c963ef6e37c9051119972a58c67f05fb'
+         '376d85d213cf3c04cb0912e5cccd68bd'
+         '1418e45fea5a9738544cbd264c36373b')
 install='trinity-kdebase.install'
 
 build() {
-   cd $srcdir
+   cd $srcdir/kdebase
 
    msg "Setting PATH, CMAKE and Trinity Environment variables"
    # Source the QT and TDE profile
@@ -58,9 +56,15 @@ build() {
    #export LD_LIBRARY_PATH=${TDEDIR}/lib:${TDEDIR}/lib/kde3:${QTDIR}/lib:$LD_LIBRARY_PATH
    #export PKG_CONFIG_PATH=${TDEDIR}/lib/pkgconfig:${QTDIR}/lib/pkgconfig:$PKG_CONFIG_PATH
 
-   patch -N ${srcdir}/kdebase/kioslave/media/mediamanager/halbackend.h < dbusfix.patch
-   # change doc installation path, we need this to build i18n packages.
-   patch -N -d ${srcdir} -p0 < docpath.patch
+   msg "Patching..."
+   for patch in $srcdir/patches/*.patch; do
+      _p=`basename $patch`
+      msg "Applying patch $_p.."
+      patch -Np0 -i $patch
+   done
+
+   #Compatibility with kde3 and kde4
+   #sed -ie 's/applications-merged/tde-applications-merged/g' applnk/CMakeLists.txt
 
    msg "Creating out-of-source build directory: ${srcdir}/build"
    mkdir -p build
