@@ -13,8 +13,8 @@ Standards-Version: 3.7.2
 Package: kdesdk
 Architecture: all
 Section: kde
-Depends: cervisia (>= ${Source-Version}), kapptemplate (>= ${Source-Version}), kbabel (>= ${Source-Version}), kbugbuster (>= ${Source-Version}), kcachegrind (>= ${Source-Version}), kdesdk-kfile-plugins (>= ${Source-Version}), kdesdk-kio-plugins (>= ${Source-Version}) | kdesvn-kio-plugins, kdesdk-misc (>= ${Source-Version}), kdesdk-scripts (>= ${Source-Version}), kmtrace (>= ${Source-Version}), kompare (>= ${Source-Version}), kspy (>= ${Source-Version}), kuiviewer (>= ${Source-Version}), kunittest (>= ${Source-Version}), poxml (>= ${Source-Version}), umbrello (>= ${Source-Version})
-Suggests: kcachegrind-converters, kbabel-dev, kdesdk-doc-html
+Depends: cervisia (>= ${Source-Version}), kapptemplate (>= ${Source-Version}), kbabel (>= ${Source-Version}), kbugbuster (>= ${Source-Version}), tdecachegrind (>= ${Source-Version}), kdesdk-kfile-plugins (>= ${Source-Version}), kdesdk-kio-plugins (>= ${Source-Version}) | kdesvn-kio-plugins, kdesdk-misc (>= ${Source-Version}), kdesdk-scripts (>= ${Source-Version}), kmtrace (>= ${Source-Version}), kompare (>= ${Source-Version}), kspy (>= ${Source-Version}), kuiviewer (>= ${Source-Version}), kunittest (>= ${Source-Version}), poxml (>= ${Source-Version}), umbrello (>= ${Source-Version})
+Suggests: tdecachegrind-converters, kbabel-dev, kdesdk-doc-html
 Description: software development kit from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -127,12 +127,12 @@ Description: a front end for the KDE bug tracking system
  This package is part of KDE, and a component of the KDE SDK module.
  See the 'kde' and 'kdesdk' packages for more information.
 
-Package: kcachegrind
+Package: tdecachegrind
 Architecture: any
 Section: devel
 Depends: ${shlibs:Depends}
 Recommends: valgrind-callgrind | valgrind-calltree, graphviz
-Suggests: kcachegrind-converters, khelpcenter, kdesdk-doc-html
+Suggests: tdecachegrind-converters, khelpcenter, kdesdk-doc-html
 Description: visualisation tool for valgrind profiling output
  KCachegrind is a visualisation tool for the profiling data generated
  by calltree, a profiling skin for valgrind.  Applications can be
@@ -140,16 +140,16 @@ Description: visualisation tool for valgrind profiling output
  and plugin architectures are supported.
  .
  For visualising the output from other profiling tools, several converters
- can be found in the kcachegrind-converters package.
+ can be found in the tdecachegrind-converters package.
  .
  This package is part of KDE, and a component of the KDE SDK module.
  See the 'kde' and 'kdesdk' packages for more information.
 
-Package: kcachegrind-converters
+Package: tdecachegrind-converters
 Architecture: all
 Section: devel
 Depends: ${perl:Depends}, php5-cli, python
-Recommends: kcachegrind
+Recommends: tdecachegrind
 Description: format converters for KCachegrind profiling visualisation tool
  This is a collection of scripts for converting the output from
  different profiling tools into a format that KCachegrind can use.

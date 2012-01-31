@@ -1,9 +1,0 @@
-?package(kcachegrind):\
-  needs="x11"\
-  section="Applications/Programming"\
-  hints="KDE"\
-  title="KCachegrind"\
-  longtitle="KCachegrind (Profiler Frontend)"\
-  icon="/usr/share/pixmaps/kcachegrind.xpm"\
-  command="/opt/trinity/bin/kcachegrind"
-

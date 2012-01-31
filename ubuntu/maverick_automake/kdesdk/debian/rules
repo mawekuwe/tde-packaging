@@ -31,7 +31,7 @@ DEB_DH_MAKESHLIBS_ARGS_umbrello-kde3			:= -V'umbrello-kde3 (>= 4:3.5.8-1)'
 DEB_INSTALL_CHANGELOGS_cervisia-kde3 := cervisia/ChangeLog
 DEB_INSTALL_CHANGELOGS_kapptemplate-kde3 := kapptemplate/ChangeLog
 DEB_INSTALL_CHANGELOGS_kbabel-kde3 := kbabel/ChangeLog
-DEB_INSTALL_CHANGELOGS_kcachegrind-kde3 := kcachegrind/ChangeLog
+DEB_INSTALL_CHANGELOGS_tdecachegrind-kde3 := tdecachegrind/ChangeLog
 DEB_INSTALL_CHANGELOGS_kompare-kde3 := kompare/ChangeLog
 DEB_INSTALL_CHANGELOGS_umbrello-kde3 := umbrello/ChangeLog
 

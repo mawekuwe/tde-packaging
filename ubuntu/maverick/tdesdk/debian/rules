@@ -31,7 +31,7 @@ DEB_DH_MAKESHLIBS_ARGS_umbrello-trinity			:= -V'umbrello-trinity (>= 4:3.5.8-1)'
 DEB_INSTALL_CHANGELOGS_cervisia-trinity := cervisia/ChangeLog
 DEB_INSTALL_CHANGELOGS_kapptemplate-trinity := kapptemplate/ChangeLog
 DEB_INSTALL_CHANGELOGS_kbabel-trinity := kbabel/ChangeLog
-DEB_INSTALL_CHANGELOGS_kcachegrind-trinity := kcachegrind/ChangeLog
+DEB_INSTALL_CHANGELOGS_tdecachegrind-trinity := tdecachegrind/ChangeLog
 DEB_INSTALL_CHANGELOGS_kompare-trinity := kompare/ChangeLog
 DEB_INSTALL_CHANGELOGS_umbrello-trinity := umbrello/ChangeLog
 

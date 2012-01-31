@@ -153,7 +153,7 @@ tdesdk (4:3.5.6-2) unstable; urgency=low
 
   +++ Changes by Sune Vuorela:
 
-  * Promote graphviz from kcachegrind Suggests to Recommends. (Closes: #407043)
+  * Promote graphviz from tdecachegrind Suggests to Recommends. (Closes: #407043)
   * Don't install the licensecheck script in tdesdk. The devscripts package
     has taken it and is working actively on it. Let tdesdk-scripts suggest
     devscripts instead. (Closes: #420154)
@@ -617,7 +617,7 @@ tdesdk (4:3.3.2-3) unstable; urgency=high
     under the LGPL.
   * Fix kdemangen.pl output to use minus instead of hyphen where appropriate,
     thanks to Achim Bohnet (closes: #295454).
-  * Fixed amd64/gcc-4.0 build by using longs for node IDs in kcachegrind,
+  * Fixed amd64/gcc-4.0 build by using longs for node IDs in tdecachegrind,
     thanks to Andreas Jochens (closes: #287032).
 
  -- Ben Burton <bab@debian.org>  Thu, 31 Mar 2005 19:59:13 +1000
@@ -672,8 +672,8 @@ tdesdk (4:3.3.1-1) unstable; urgency=medium
 tdesdk (4:3.3.0-1) unstable; urgency=low
 
   * New upstream release.
-  * New package kcachegrind-converters.  These foreign format converters
-    are packaged separately so that kcachegrind need not depend on php.
+  * New package tdecachegrind-converters.  These foreign format converters
+    are packaged separately so that tdecachegrind need not depend on php.
   * Binary package kmtrace has returned.  Note that the kmtrace libraries
     for debian are now installed in /usr/lib/kmtrace, not in /usr/lib as
     is done upstream.
@@ -712,7 +712,7 @@ tdesdk (4:3.2.2-1) unstable; urgency=low
   * New upstream bugfix release.
   * Add Conflicts/Replaces for umbrello-manual (closes: #237173).
   * Don't use Conflicts/Replaces elsewhere where we should just use Replaces.
-  * Have kcachegrind suggest graphviz (closes: #243883).
+  * Have tdecachegrind suggest graphviz (closes: #243883).
 
  -- Ben Burton <bab@debian.org>  Tue, 16 Mar 2004 09:15:01 +1100
 
@@ -735,8 +735,8 @@ tdesdk (4:3.2.0-1) unstable; urgency=low
   * New upstream release.
   * Many thanks to Ralf Nolden for all his help with packaging KDE 3.2.
   * Thanks to Robert Lemmen for previous packaging work on umbrello and
-    to Philipp Frauenfelder for previous packaging work on kcachegrind.
-  * New binary packages kcachegrind, kuiviewer and umbrello.
+    to Philipp Frauenfelder for previous packaging work on tdecachegrind.
+  * New binary packages tdecachegrind, kuiviewer and umbrello.
   * Created a new package tdesdk-doc-html for HTML documentation.
 
  -- Ben Burton <bab@debian.org>  Sat, 31 Jan 2004 12:08:48 +1100
