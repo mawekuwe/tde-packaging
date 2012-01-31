@@ -21,7 +21,7 @@ install='qt3.install'
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz' 
         'qt-patches.tar.bz2')
 md5sums=('78dc675e84aed595375449818cbb589a'
-         'a4b569f217d17cb1231c18aa48ecae20')
+         'fe33d7c97d865a38303650e9c568bdec')
 
 _prefix="/opt/qt3"
 
@@ -30,53 +30,12 @@ build() {
 
    cd $srcdir/qt3
 
-   # apply other qt patches from debian/gentoo
-   msg "- Applying patch: 0015-qiconview-finditem.patch"
-   patch -Np0 -i $srcdir/qt-patches/0015-qiconview-finditem.patch
-   msg "- Applying patch: 0017-qiconview-ctrl_rubber.patch"
-   patch -Np0 -i $srcdir/qt-patches/0017-qiconview-ctrl_rubber.patch
-   msg "- Applying patch: 0020-designer-deletetabs.patch"
-   patch -Np0 -i $srcdir/qt-patches/0020-designer-deletetabs.patch
-   msg "- Applying patch: 0035-qvaluelist-streaming-operator.patch"
-   patch -Np0 -i $srcdir/qt-patches/0035-qvaluelist-streaming-operator.patch
-   msg "- Applying patch: 0036-qprogressbar-optimization.patch"
-   patch -Np0 -i $srcdir/qt-patches/0036-qprogressbar-optimization.patch
-   msg "- Applying patch: 0046-qiconview-no-useless-scrollbar.patch"
-   patch -Np0 -i $srcdir/qt-patches/0046-qiconview-no-useless-scrollbar.patch
-   msg "- Applying patch: 0049-qiconview-rubber_on_move.patch"
-   patch -Np0 -i $srcdir/qt-patches/0049-qiconview-rubber_on_move.patch
-   msg "- Applying patch: 0078-argb-visual-hack.patch"
-   patch -Np0 -i $srcdir/qt-patches/0078-argb-visual-hack.patch
-   msg "- Applying patch: 0088-fix-xinput-clash.patch"
-   patch -Np0 -i $srcdir/qt-patches/0088-fix-xinput-clash.patch
-   msg "- Applying patch: gcc46-arch.patch"
-   patch -Np1 -i $srcdir/qt-patches/gcc46-arch.patch
-   msg "- Applying patch: qt-3.1.0-makefile.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-3.1.0-makefile.patch
-   msg "- Applying patch: qt-3.3.4-print-CJK.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-3.3.4-print-CJK.patch
-   msg "- Applying patch: qt-3.3.8-buffered-iconview.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-3.3.8-buffered-iconview.patch
-   msg "- Applying patch: qt-3.3.8.d-libpng15-1.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-3.3.8.d-libpng15-1.patch
-   msg "- Applying patch: qt-3.3.8-eyecandy.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-3.3.8-eyecandy.patch
-   msg "- Applying patch: qt-3.3.8-odbc.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-3.3.8-odbc.patch
-   msg "- Applying patch: qt-no-rpath.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-no-rpath.patch
-   msg "- Applying patch: qt-visibility.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-visibility.patch
-   msg "- Applying patch: qt-x11-free-3.3.4-gcc4-buildkey.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-x11-free-3.3.4-gcc4-buildkey.patch
-   msg "- Applying patch: qt-x11-free-3.3.4-gcc4.patch"
-   patch -Np1 -i $srcdir/qt-patches/qt-x11-free-3.3.4-gcc4.patch
-
-   # change occurrences of $QTDIR into $QT3DIR
-   # anything. Qt4 compatibility?
-   # not needed since, qt4 don't use $QTDIR
-   #find ${srcdir}/qt3 -type f -exec \
-   #   sed -i 's/QTDIR/QT3DIR/g' {} +
+   # apply other qt patches from debian/gentoo and kde
+   for patch in $srcdir/qt-patches/*.patch; do
+      _p=`basename $patch`
+      msg "Applying patch $_p.."
+      patch -Np0 -i $patch
+   done
 
    msg "Setting enviroment variables..."
    export QTDIR="${srcdir}/qt3/" 
