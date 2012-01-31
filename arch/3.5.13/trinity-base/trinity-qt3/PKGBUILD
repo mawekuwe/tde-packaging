@@ -21,7 +21,7 @@ install='qt3.install'
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz' 
         'qt-patches.tar.bz2')
 md5sums=('78dc675e84aed595375449818cbb589a'
-         'fe33d7c97d865a38303650e9c568bdec')
+         'de4d95f8d236ecc85bad4876efd8fdf0')
 
 _prefix="/opt/qt3"
 
