@@ -532,9 +532,9 @@ debian/tmp/opt/trinity/include/kshred.h
 debian/tmp/opt/trinity/include/ksimpleconfig.h
 debian/tmp/opt/trinity/include/ksmimecrypto.h
 debian/tmp/opt/trinity/include/ksockaddr.h
-debian/tmp/opt/trinity/include/ksocketaddress.h
-debian/tmp/opt/trinity/include/ksocketbase.h
-debian/tmp/opt/trinity/include/ksocketdevice.h
+debian/tmp/opt/trinity/include/tdesocketaddress.h
+debian/tmp/opt/trinity/include/tdesocketbase.h
+debian/tmp/opt/trinity/include/tdesocketdevice.h
 debian/tmp/opt/trinity/include/ksock.h
 debian/tmp/opt/trinity/include/ksocks.h
 debian/tmp/opt/trinity/include/ksockssocketdevice.h

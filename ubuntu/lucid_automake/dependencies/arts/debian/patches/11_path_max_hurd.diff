@@ -54,11 +54,11 @@
  
 -  strncpy(user_tmp_dir, tmp, PATH_MAX );
 -  user_tmp_dir[ PATH_MAX ] = '\0';
--  strncat(user_tmp_dir, "/ksocket-", PATH_MAX - strlen(user_tmp_dir) );
+-  strncat(user_tmp_dir, "/tdesocket-", PATH_MAX - strlen(user_tmp_dir) );
 -  user_tmp_dir[ PATH_MAX ] = '\0';
 -  strncat(user_tmp_dir, pw_ent->pw_name, PATH_MAX - strlen(user_tmp_dir));
 -  user_tmp_dir[ PATH_MAX ] = '\0';
-+  user_tmp_dir = string(tmp) + "/ksocket-" + string(pw_ent->pw_name);
++  user_tmp_dir = string(tmp) + "/tdesocket-" + string(pw_ent->pw_name);
  
    if (!kde_home || !kde_home[0])
    {
@@ -363,10 +363,10 @@
  
 -           char tmp_prefix[PATH_MAX+1];
 -           strcpy(tmp_prefix, tmp);
--           strcat(tmp_prefix, "/ksocket-");
+-           strcat(tmp_prefix, "/tdesocket-");
 -
 -           build_link(tmp_prefix, "/socket-");
-+           build_link(string(tmp) + "/ksocket-", "/socket-");
++           build_link(string(tmp) + "/tdesocket-", "/socket-");
  	   mcop_dir = locate_mcop_dir();
  	}
  	if (!mcop_dir)

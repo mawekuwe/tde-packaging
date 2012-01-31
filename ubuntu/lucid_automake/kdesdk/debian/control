@@ -14,8 +14,8 @@ Standards-Version: 3.8.3
 Package: kdesdk-kde3
 Architecture: all
 Section: kde
-Depends: cervisia-kde3 (>= ${Source-Version}), kapptemplate-kde3 (>= ${Source-Version}), kbabel-kde3 (>= ${Source-Version}), kbugbuster-kde3 (>= ${Source-Version}), kcachegrind-kde3 (>= ${Source-Version}), kdesdk-kfile-plugins-kde3 (>= ${Source-Version}), kdesdk-kio-plugins-kde3 (>= ${Source-Version}) | kdesvn-kio-plugins-kde3, kdesdk-misc-kde3 (>= ${Source-Version}), kdesdk-scripts-kde3, kmtrace-kde3 (>= ${Source-Version}), kompare-kde3 (>= ${Source-Version}), kspy-kde3 (>= ${Source-Version}), kuiviewer-kde3 (>= ${Source-Version}), kunittest-kde3 (>= ${Source-Version}), poxml-kde3 (>= ${Source-Version}), umbrello-kde3 (>= ${Source-Version})
-Suggests: kcachegrind-converters-kde3, kbabel-kde3-dev, kdesdk-kde3-doc-html
+Depends: cervisia-kde3 (>= ${Source-Version}), kapptemplate-kde3 (>= ${Source-Version}), kbabel-kde3 (>= ${Source-Version}), kbugbuster-kde3 (>= ${Source-Version}), tdecachegrind-kde3 (>= ${Source-Version}), kdesdk-kfile-plugins-kde3 (>= ${Source-Version}), kdesdk-kio-plugins-kde3 (>= ${Source-Version}) | kdesvn-kio-plugins-kde3, kdesdk-misc-kde3 (>= ${Source-Version}), kdesdk-scripts-kde3, kmtrace-kde3 (>= ${Source-Version}), kompare-kde3 (>= ${Source-Version}), kspy-kde3 (>= ${Source-Version}), kuiviewer-kde3 (>= ${Source-Version}), kunittest-kde3 (>= ${Source-Version}), poxml-kde3 (>= ${Source-Version}), umbrello-kde3 (>= ${Source-Version})
+Suggests: tdecachegrind-converters-kde3, kbabel-kde3-dev, kdesdk-kde3-doc-html
 Description: software development kit from the official KDE3 release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -133,13 +133,13 @@ Description: a front end for the KDE3 bug tracking system
  This package is part of KDE3, and a component of the KDE SDK module.
  See the 'kde-kde3' and 'kdesdk-kde3' packages for more information.
 
-Package: kcachegrind-kde3
+Package: tdecachegrind-kde3
 Architecture: any
 Section: devel
 Depends: ${shlibs:Depends}
-Conflicts: kcachegrind
+Conflicts: tdecachegrind
 Recommends: valgrind-callgrind-kde3 | valgrind-calltree-kde3, graphviz
-Suggests: kcachegrind-converters-kde3, khelpcenter-kde3, kdesdk-kde3-doc-html
+Suggests: tdecachegrind-converters-kde3, khelpcenter-kde3, kdesdk-kde3-doc-html
 Description: visualisation tool for valgrind profiling output
  KCachegrind is a visualisation tool for the profiling data generated
  by calltree, a profiling skin for valgrind.  Applications can be
@@ -147,17 +147,17 @@ Description: visualisation tool for valgrind profiling output
  and plugin architectures are supported.
  .
  For visualising the output from other profiling tools, several converters
- can be found in the kcachegrind-converters package.
+ can be found in the tdecachegrind-converters package.
  .
  This package is part of KDE3, and a component of the KDE SDK module.
  See the 'kde-kde3' and 'kdesdk-kde3' packages for more information.
 
-Package: kcachegrind-converters-kde3
+Package: tdecachegrind-converters-kde3
 Architecture: all
 Section: devel
 Depends: ${perl:Depends}, php5-cli, python
-Conflicts: kcachegrind-converters
-Recommends: kcachegrind-kde3
+Conflicts: tdecachegrind-converters
+Recommends: tdecachegrind-kde3
 Description: format converters for KCachegrind profiling visualisation tool
  This is a collection of scripts for converting the output from
  different profiling tools into a format that KCachegrind can use.

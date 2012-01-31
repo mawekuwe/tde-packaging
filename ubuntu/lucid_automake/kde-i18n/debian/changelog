@@ -300,7 +300,7 @@ kde-i18n (4:3.2.2-3) unstable; urgency=low
 
 kde-i18n (4:3.2.2-2) unstable; urgency=low
 
-  * corrected juk and kcachegrind conflict to <<4:3.2.1-1
+  * corrected juk and tdecachegrind conflict to <<4:3.2.1-1
   * conflicting with kdevelop-data (kdevelop version 2)
     because kdevelop version 3 translations are included in
     kde-i18n
