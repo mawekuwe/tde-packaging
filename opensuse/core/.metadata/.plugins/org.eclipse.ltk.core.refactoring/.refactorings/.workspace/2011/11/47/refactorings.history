@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;qt3/0001-dnd_optimization.patch&apos;" deleteContents="false" description="Delete resource &apos;qt3/0001-dnd_optimization.patch&apos;" element1="/qt3/0001-dnd_optimization.patch" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1321223970221"/>
+</session>
