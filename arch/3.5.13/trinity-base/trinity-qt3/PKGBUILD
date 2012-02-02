@@ -12,7 +12,7 @@ groups=('trinity-base')
 depends=('libpng' 'libjpeg' 'libxmu' 'libmng'
          'libxcursor' 'libxinerama' 'mesa' 'libxft' 'libxrandr')
 makedepends=('libxi'
-             'libmysqlclient' 'postgresql-libs' 'unixodbc' 'libcups')
+             'libmysqlclient' 'postgresql' 'unixodbc' 'libcups')
              #'mysql' 'postgresql' 'sqlite3' 'unixodbc' 'libxi' 'cups')
              # cups - add for cups support
              # cups is enabled by default in ./configure

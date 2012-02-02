@@ -4,7 +4,8 @@ post_install() {
    echo "linguist, lrelease, lupdate, moc, qmake and qtconfig) have been"
    echo "renamet to qt3<toolname> to ensure compatibility with Qt4 and should"
    echo "be run through new command scheme."
-   echo "\nIn order to update PATH to include Qt3 binaries location, You should"
+   echo ""
+   echo "In order to update PATH to include Qt3 binaries location, You should"
    echo "reboot your system. Before you do that you can access Qt3 bin path by"
    echo "sourcing /etc/profile.d/qt3.sh"
 }
