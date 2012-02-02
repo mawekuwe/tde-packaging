@@ -20,7 +20,7 @@ makedepends=('libxi'
 optdepends=('cups: The CUPS Printing System - for printing support'
             'postgresql: A sophisticated object-relational DBMS - databse support'
             'unixodbc: ODBC API for linux - databse support'
-            'mysql: A fast SQL database server - databse support'
+            'mysql: A fast SQL database server - databse support')
              #'libmysqlclient' 'postgresql-libs' 'unixodbc' 'cups')
 provides=('qt3' 'qt3-enhanced')
 replaces=('qt3-enhanced' 'qt3')
