@@ -1,7 +1,7 @@
 # Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
 # Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=trinity-kdebase
+pkgname=('trinity-kdebase' 'trinity-kdm' 'trinity-kate' 'trinity-konqueror')
 pkgver=3513
 pkgrel=4
 arch=('i686' 'x86_64')
@@ -33,7 +33,7 @@ source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz'
         'kdm-trinity' 
         'trinity.desktop')
 md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
-         'bf0cc14276148d5f6bd46828367825a6'
+         '22160aaf726fbd1a58b2f4c5483e51fb'
          '895f5d7351aa73ba1f57b0ad27081d69'
          'bb3004513d703d6b72ce70aa240af3a3'
          'e6afdd7ca60c4c59b851135785347e75'
@@ -51,7 +51,7 @@ build() {
    [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh 
    [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
-   #export CMAKE_PREFIX_PATH=${QTDIR}:${TDEDIR}
+   export CMAKE_PREFIX_PATH=${QTDIR}:${TDEDIR}
    #export CMAKE_INCLUDE_PATH=${TDEDIR}/include/dbus-1-tqt/:${TDEDIR}/include/dbus-1.0/:${TDEDIR}/include:${TDEDIR}/include/libkrandr
    #export LD_LIBRARY_PATH=${TDEDIR}/lib:${TDEDIR}/lib/kde3:${QTDIR}/lib:$LD_LIBRARY_PATH
    #export PKG_CONFIG_PATH=${TDEDIR}/lib/pkgconfig:${QTDIR}/lib/pkgconfig:$PKG_CONFIG_PATH
@@ -73,7 +73,6 @@ build() {
    msg "Starting cmake..."
    cmake ${srcdir}/kdebase --debug-output \
       -DCMAKE_INSTALL_PREFIX=${TDEDIR} \
-      -DCMAKE_VERBOSE_MAKEFILE=ON \
       -DQT_VERSION=3 \
       -DSYSCONF_INSTALL_DIR=/etc \
       -DWITH_XFIXES=ON \
@@ -92,11 +91,14 @@ build() {
       -DWITH_XEXT=ON \
       -DWITH_PAM=ON \
       -DBUILD_ALL=ON \
-      -DCMAKE_INCLUDE_DIR=/opt/trinity/include/dbus-1.0:/opt/qt/include/tqt:/opt/trinity/include/dbus-1.0
+      -DCMAKE_INCLUDE_DIR=$QTDIR/include/tqt
    make
+
+      #-DCMAKE_INCLUDE_DIR=/opt/trinity/include/dbus-1.0 \
+
 }
 
-package() {
+package_trinity-kdebase() {
    msg "Packaging - $pkgname-$pkgver"
    cd ${srcdir}/build
 
@@ -147,4 +149,14 @@ package() {
       cd ..
    done
 
+}
+
+package_trinity-kdm() {
+pkgdesc="Trinity Display Manager"
+}
+package_trinity-kate() {
+pkgdesc="Trinity - A fast texteditor with an Emacs-style document interface"
+}
+package_trinity-konqueror() {
+pkgdesc="Trinity Swiss Army application, file and web browser."
 }
