@@ -20,7 +20,7 @@ md5sums=('d54cc9fd0b35555298efd17c32471a2b'
 install='trinity-tqtinterface.install'
 
 # istead of using prefix, we will use QTDIR from qt3 profile
-#_prefix=/opt/qt3
+_prefix=/opt/trinity
 
 build() {
    msg "Setting PATH, CMAKE and Trinity Environment variables"
@@ -34,7 +34,7 @@ build() {
 
    msg "Starting cmake..."
    cmake "../dependencies/tqtinterface" \
-     -DCMAKE_INSTALL_PREFIX=${QTDIR} \
+     -DCMAKE_INSTALL_PREFIX=${_prefix} \
      -DQT_PREFIX_DIR=${QTDIR} \
      -DQT_INCLUDE_DIR=${QTDIR}/include \
      -DMOC_EXECUTABLE=${QTDIR}/bin/moc \
