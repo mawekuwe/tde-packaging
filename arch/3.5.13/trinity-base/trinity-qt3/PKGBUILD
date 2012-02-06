@@ -9,7 +9,7 @@ arch=('i686' 'x86_64')
 url="http://trinitydesktop.org"
 license=('GPL')
 groups=('trinity-base')
-depends=('libpng' 'libjpeg' 'libxmu' 'libmng'
+depends=('libpng' 'libjpeg' 'libxmu' 'libmng' 'postgresql-libs'
          'libxcursor' 'libxinerama' 'mesa' 'libxft' 'libxrandr')
 makedepends=('libxi'
              'libmysqlclient' 'postgresql' 'unixodbc' 'libcups')
