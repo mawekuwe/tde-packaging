@@ -82,7 +82,7 @@ build() {
 }
 
 package() {
-   cd $srcdir/${pkgname}-${pkgver}
+  cd $srcdir/${pkgname}-${pkgver}
   make DESTDIR="${pkgdir}" install
   install -m755 -d "${pkgdir}/etc/rc.d"
   install -m755 -d "${pkgdir}/media"
