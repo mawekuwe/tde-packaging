@@ -1,7 +1,7 @@
 # Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
 # Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=('trinity-kdebase' 'trinity-kdm' 'trinity-console' 'trinity-kate' 'trinity-konqueror')
+pkgname=('trinity-kdebase' 'trinity-kdm' 'trinity-konsole' 'trinity-kate' 'trinity-konqueror')
 pkgver=3513
 pkgrel=5
 arch=('i686' 'x86_64')
@@ -9,16 +9,10 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity Desktop Enviroment base components"
-depends=('trinity-dbus-tqt' 'trinity-kdelibs' 'hal'
-         'xorg-server' 'xorg-xset' 'xorg-xsetroot' 'xorg-xprop' 'xorg-xmessage' 'xorg-xinit' 'xorg-iceauth'
-         'libxtst' 'libraw1394')
+depends=('trinity-kdelibs' 'hal'
+         'postgresql-libs')
 
 makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake' 'xorg-bdftopcf' 'smbclient')
-optdepends=('desktop-file-utils: Command line utilities for working with desktop entries'
-            'pciutils: PCI bus configuration space access library and tools'
-            'xscreensaver: Screen saver and locker for the X Window System'
-            'xorg-fonts-75dpi: X.org 75dpi fonts collection'
-            'samba: file sharing over SMB')
 confilicts=('kdemod3-kdebase')
 options=('libtool')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 
@@ -39,7 +33,6 @@ md5sums=('d1f7e1f94eeb46b981fe1ba144179840'
          'c963ef6e37c9051119972a58c67f05fb'
          '376d85d213cf3c04cb0912e5cccd68bd'
          '1418e45fea5a9738544cbd264c36373b')
-install='trinity-kdebase.install'
 
 build() {
    cd $srcdir/kdebase
@@ -99,6 +92,15 @@ build() {
 
 package_trinity-kdebase() {
    pkgdesc='Trinity Desktop Enviroment'
+   depends=('trinity-dbus-tqt' 
+            'xorg-server' 'xorg-xset' 'xorg-xsetroot' 'xorg-xprop' 'xorg-xmessage' 'xorg-xinit' 'xorg-iceauth'
+            'libxtst' 'libraw1394')
+   optdepends=('desktop-file-utils: Command line utilities for working with desktop entries'
+               'pciutils: PCI bus configuration space access library and tools'
+               'xscreensaver: Screen saver and locker for the X Window System'
+               'xorg-fonts-75dpi: X.org 75dpi fonts collection'
+               'samba: file sharing over SMB')
+   install='trinity-kdebase.install'
 
    msg "Packaging - $pkgname-$pkgver"
    _splitfolders="applnk drkonqi kappfinder kcheckpass kcminit kcontrol 
@@ -176,7 +178,7 @@ package_trinity-kdm() {
    install -D -m 644 $srcdir/kdm-default-face.png ${pkgdir}$TDEDIR/share/apps/kdm/pics/users/arch-kdm.png
 }
 
-package_trinity-console() {
+package_trinity-konsole() {
    pkgdesc="Trinity - an X termnal emulator"
 
    msg "Packaging - $pkgname-$pkgver"
