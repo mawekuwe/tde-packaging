@@ -65,8 +65,8 @@ package() {
 
    # Create and install ld.so.conf.d file
    install -d -m755 $pkgdir/etc/ld.so.conf.d/
-   echo $TDEDIR/lib > $pkgdir/etc/ld.so.conf.d/trinity.conf
-   echo $TDEDIR/lib/trinity >> $pkgdir/etc/ld.so.conf.d/trinity.conf
+   echo /opt/trinity/lib > $pkgdir/etc/ld.so.conf.d/trinity.conf
+   echo /opt/trinity/lib/trinity >> $pkgdir/etc/ld.so.conf.d/trinity.conf
 
    # Install profiles
    install -D -m755 $srcdir/trinity.profile.sh $pkgdir/etc/profile.d/trinity.sh
