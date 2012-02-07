@@ -1,7 +1,7 @@
 etc/trinity/kstarsrc
 opt/trinity/bin/kstars
-/opt/trinity/include/kde/kstarsinterface.h
-/opt/trinity/include/kde/simclockinterface.h
+/opt/trinity/include/tde/kstarsinterface.h
+/opt/trinity/include/tde/simclockinterface.h
 /opt/trinity/share/applications/kde/kstars.desktop
 /opt/trinity/share/config.kcfg/kstars.kcfg
 /opt/trinity/share/doc/kde/HTML/en/kstars/common

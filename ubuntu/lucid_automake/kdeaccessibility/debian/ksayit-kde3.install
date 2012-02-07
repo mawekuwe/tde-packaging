@@ -1,5 +1,5 @@
 debian/tmp/opt/kde3/bin/ksayit
-debian/tmp/opt/kde3/include/kde/ksayit_fxplugin.h
+debian/tmp/opt/kde3/include/tde/ksayit_fxplugin.h
 debian/tmp/opt/kde3/lib/kde3/libFreeverb_plugin.la
 debian/tmp/opt/kde3/lib/kde3/libFreeverb_plugin.so
 debian/tmp/opt/kde3/lib/libKTTSD_Lib.la

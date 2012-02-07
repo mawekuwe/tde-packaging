@@ -6,7 +6,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/tde
 DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
 DEB_CONFIGURE_PREFIX := /opt/kde3
 DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
@@ -51,7 +51,7 @@ config.status: configure patch
 
 	if [ -f doc/Makefile.in ]; then cp doc/Makefile.in doc/Makefile.in.backup; else mv doc/Makefile.in.backup doc/Makefile.in; fi
 	CFLAGS="$(CFLAGS)" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
-	--disable-debug --disable-rpath --sysconfdir=/etc --includedir=/opt/kde3/include/kde --infodir=/opt/kde3/share/info --mandir=/opt/kde3/share/man --with-qt-dir=/usr/share/qt3 --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib
+	--disable-debug --disable-rpath --sysconfdir=/etc --includedir=/opt/kde3/include/tde --infodir=/opt/kde3/share/info --mandir=/opt/kde3/share/man --with-qt-dir=/usr/share/qt3 --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib
 
 
 build: build-stamp

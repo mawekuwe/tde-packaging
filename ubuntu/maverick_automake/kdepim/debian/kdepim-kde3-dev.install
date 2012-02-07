@@ -1,16 +1,16 @@
-/opt/kde3/include/kde/KNotesAppIface.h
-/opt/kde3/include/kde/KNotesIface.h
-/opt/kde3/include/kde/akregator
-/opt/kde3/include/kde/calendar
-/opt/kde3/include/kde/kabc
-/opt/kde3/include/kde/kaddressbook
-/opt/kde3/include/kde/kmail
-/opt/kde3/include/kde/kmailIface.h
-/opt/kde3/include/kde/kmailicalIface.h
-/opt/kde3/include/kde/kmailpartIface.h
-/opt/kde3/include/kde/kontact
-/opt/kde3/include/kde/korganizer
-/opt/kde3/include/kde/kpilot
+/opt/kde3/include/tde/KNotesAppIface.h
+/opt/kde3/include/tde/KNotesIface.h
+/opt/kde3/include/tde/akregator
+/opt/kde3/include/tde/calendar
+/opt/kde3/include/tde/kabc
+/opt/kde3/include/tde/kaddressbook
+/opt/kde3/include/tde/kmail
+/opt/kde3/include/tde/kmailIface.h
+/opt/kde3/include/tde/kmailicalIface.h
+/opt/kde3/include/tde/kmailpartIface.h
+/opt/kde3/include/tde/kontact
+/opt/kde3/include/tde/korganizer
+/opt/kde3/include/tde/kpilot
 /opt/kde3/lib/libkabckolab.la
 /opt/kde3/lib/libkabckolab.so
 /opt/kde3/lib/libkabcscalix.la
@@ -84,4 +84,4 @@
 /opt/kde3/lib/libgwsoap.la
 /opt/kde3/lib/libgwsoap.so
 
-/opt/kde3/include/kde/kpimprefs.h
+/opt/kde3/include/tde/kpimprefs.h

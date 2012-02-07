@@ -4,4 +4,4 @@ debian/tmp/opt/trinity/lib/libkunittestgui.la
 debian/tmp/opt/trinity/lib/libkunittestgui.so
 debian/tmp/opt/trinity/lib/libkunittestgui.so.0
 debian/tmp/opt/trinity/lib/libkunittestgui.so.0.0.0
-debian/tmp/opt/trinity/include/kde/kunittest/runnergui.h
+debian/tmp/opt/trinity/include/tde/kunittest/runnergui.h

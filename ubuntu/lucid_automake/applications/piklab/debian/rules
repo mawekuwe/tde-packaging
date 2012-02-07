@@ -3,7 +3,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/tde
 DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
 DEB_CONFIGURE_PREFIX := /opt/kde3
 DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
@@ -48,7 +48,7 @@ endif
 	./configure CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs -Wl,--as-needed" \
 		--host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
 		--prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib \
-		--with-extra-includes=/opt/kde3/include/kde \
+		--with-extra-includes=/opt/kde3/include/tde \
 		--mandir=/opt/kde3/share/man --infodir=/opt/kde3/share/info --enable-rpath
 	touch $@
 

@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/amor
-debian/tmp/opt/trinity/include/kde/AmorIface.h
+debian/tmp/opt/trinity/include/tde/AmorIface.h
 debian/tmp/opt/trinity/share/apps/amor
 debian/tmp/opt/trinity/share/applications/kde/amor.desktop
 debian/tmp/opt/trinity/share/doc/kde/HTML/en/amor/*.bz2

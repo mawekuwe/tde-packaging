@@ -59,7 +59,7 @@ endif
 cdbs_configure_flags += --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
 DEB_AC_AUX_DIR = $(DEB_SRCDIR)/admin
-DEB_CONFIGURE_INCLUDEDIR = "\$${prefix}/include/kde"
+DEB_CONFIGURE_INCLUDEDIR = "\$${prefix}/include/tde"
 DEB_COMPRESS_EXCLUDE = .dcl .docbook -license .tag .sty .el
 
 $(patsubst %,binary-install/%,$(DEB_PACKAGES)) :: binary-install/%:

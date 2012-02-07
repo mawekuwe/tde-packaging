@@ -4,7 +4,7 @@
  if test -z "$PREPARETIPS"; then PREPARETIPS=preparetips ; fi
  export EXTRACTRC PREPARETIPS
  
-+kdepotpath=/opt/trinity/include/kde/kde.pot
++kdepotpath=/opt/trinity/include/tde/kde.pot
 +
  for subdir in $dirs; do
    test -z "$VERBOSE" || echo "Making messages in $subdir"
@@ -15,11 +15,11 @@
  
 -   kdepotpath=${includedir:-`kde-config --expandvars --install include`}/kde.pot
 -   if ! test -f $kdepotpath; then
--	kdepotpath=`kde-config --expandvars --prefix`/include/kde.pot
+-	kdepotpath=`kde-config --expandvars --prefix`/include/tde.pot
 -   fi
 +#   kdepotpath=${includedir:-`kde-config --expandvars --install include`}/kde.pot
 +#   if ! test -f $kdepotpath; then
-+#	kdepotpath=`kde-config --expandvars --prefix`/include/kde.pot
++#	kdepotpath=`kde-config --expandvars --prefix`/include/tde.pot
 +#   fi
  
     $MAKE -s -f _transMakefile podir=$podir EXTRACTRC="$EXTRACTRC" PREPARETIPS="$PREPARETIPS" srcdir=. \

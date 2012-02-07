@@ -1,7 +1,7 @@
 export kde_confdir=/etc/kde3
 export kde_prefix=/opt/kde3
 export kde_bindir=/opt/kde3/bin
-export kde_includedir=/opt/kde3/include/kde
+export kde_includedir=/opt/kde3/include/tde
 export kde_libdir=/opt/kde3/lib
 export kde_cgidir=/opt/kde3/lib/cgi-bin
 export kde_moduledir=/opt/kde3/lib/kde3
