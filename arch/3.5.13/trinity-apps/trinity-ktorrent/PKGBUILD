@@ -29,13 +29,13 @@ build() {
   cd "$srcdir/${_builddir}"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+  sed -i -e "s@/usr/include/tqt@$TDEDIR/include/tqt@" admin/acinclude.m4.in
   make -f admin/Makefile.common
 
   msg "Starting configure..."
   ./configure --with-qt-dir=${QTDIR} \
      --prefix=${_prefix} \
      --enable-closure \
-     --enable-torrent-mimetype \
      --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
      --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
 
