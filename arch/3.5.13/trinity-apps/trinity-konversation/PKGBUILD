@@ -23,9 +23,13 @@ build() {
   export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
   
   msg "Starting autoconf..."
-  cd "$srcdir/$cmpdir"
+  cd "$srcdir/$_builddir"
   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+
+  # fix for correct Qt/TQt detection
+  sed -i -e "s@/usr/include/tqt@${TDEDIR}/include/tqt@" admin/acinclude.m4.in
+
   make -f admin/Makefile.common
 
   msg "Starting configure..."
