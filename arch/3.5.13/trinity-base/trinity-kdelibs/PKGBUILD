@@ -35,8 +35,8 @@ build() {
    # compiles without exporting this, since we have profiles
    #export CMAKE_PREFIX_PATH=${QTDIR}:${TDEDIR}
    #export PATH=$PATH:${TDEDIR}/bin
-   #export CMAKE_INCLUDE_PATH=/usr/include/dbus-1.0:${TDEDIR}/bin
-   #export LD_LIBRARY_PATH=${TDEDIR}/lib:${QTDIR}/lib:${TDEDIR}/lib/trinity:$LD_LIBRARY_PATH
+   #export CMAKE_INCLUDE_PATH=/usr/include/dbus-1.0
+   export LD_LIBRARY_PATH=${TDEDIR}/lib:${QTDIR}/lib:${TDEDIR}/lib/trinity:$LD_LIBRARY_PATH
 
    msg "Patching..."
    patch -N -d ${srcdir} -p0 < ${srcdir}/docpath.patch
