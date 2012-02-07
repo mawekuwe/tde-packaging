@@ -3,7 +3,7 @@
 
 pkgname=trinity-kdeaccessibility
 pkgver=3513
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -15,38 +15,32 @@ options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeaccessibility-3.5.13.tar.gz)
 md5sums=('ce31b01c1831046fb28aab172f2423bf')
 
-_prefix=/opt/trinity
-
 build() {
-
-  msg "Setting Trinity Environment variables"
-  export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
-
-  #msg "Patching..."
-  #patch -N -d ${srcdir} -p0 < kdeaccessibility.patch
+   msg "Setting Trinity Environment variables"
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh 
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
   
-  msg "Starting automake..."
-  cd "$srcdir/kdeaccessibility"
-  cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-  cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-  sed -i -e "s@/usr/include/tqt@$TDEDIR/include/tqt@" admin/acinclude.m4.in
-  make -f admin/Makefile.common
+   msg "Starting automake..."
+   cd "$srcdir/kdeaccessibility"
+   cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+   cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+   sed -i -e "s@/usr/include/tqt@$TDEDIR/include/tqt@" admin/acinclude.m4.in
+   make -f admin/Makefile.common
 
-  msg "Starting configure..."
-  ./configure --with-qt-dir=${QTDIR} \
-     --prefix=${_prefix} \
-     --enable-closure \
-     --with-alsa \
-     --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
-     --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
+   msg "Starting configure..."
+   ./configure --with-qt-dir=${QTDIR} \
+      --prefix=${TDEDIR} \
+      --enable-closure \
+      --with-alsa \
+      #--with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
+      #--with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
 
-  msg "Building ${pkgname}..."
-  make
+   msg "Building ${pkgname}..."
+   make
 }
 
 package() {
-  msg "Packaging - $pkgname-$pkgver"
-  cd ${srcdir}/kdeaccesibility
-  make DESTDIR="${pkgdir}" install
+   msg "Packaging - $pkgname-$pkgver"
+   cd ${srcdir}/kdeaccesibility
+   make DESTDIR="${pkgdir}" install
 }
