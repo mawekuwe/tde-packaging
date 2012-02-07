@@ -3,7 +3,7 @@
 
 pkgname=trinity-kdeartwork
 pkgver=3513
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -17,12 +17,8 @@ md5sums=('24f85eb3e5a9106de48a3e81d2575ffe')
 
 build() {
   msg "Setting PATH, CMAKE and Trinity Environment variables"
-  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
-  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
-
-  _prefix="/opt/trinity"
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
@@ -31,7 +27,7 @@ build() {
 
   msg "Starting cmake..."
   cmake ${srcdir}/kdeartwork \
-    -DCMAKE_INSTALL_PREFIX=${_prefix} \
+    -DCMAKE_INSTALL_PREFIX=${TDEDIR} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DWITH_XSCREENSAVER=ON \
     -DWITH_LIBART=ON \
@@ -45,5 +41,5 @@ package() {
   msg "Packaging - $pkgname-$pkgver"
   cd ${srcdir}/build
 
-  make DESTDIR="$pkgdir/" install
+  make DESTDIR="$pkgdir" install
 }
