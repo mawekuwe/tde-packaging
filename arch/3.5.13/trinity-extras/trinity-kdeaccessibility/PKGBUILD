@@ -11,6 +11,11 @@ groups=('trinity-extras')
 pkgdesc="Trinity accessibility tools"
 depends=('trinity-kdebase')
 makedepends=('pkgconfig' 'autoconf' 'automake')
+optdeps=('festival: speech synthesis'
+         'epos: text to speech synthesis'
+         'flite: lighweght version of festival'
+         'mbrola: speech synthesis'
+         'txt2pho: frontend for mbrola')
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kdeaccessibility-3.5.13.tar.gz)
 md5sums=('ce31b01c1831046fb28aab172f2423bf')
@@ -32,8 +37,8 @@ build() {
       --prefix=${TDEDIR} \
       --enable-closure \
       --with-alsa \
-      #--with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
-      #--with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
+      --with-extra-includes=${_prefix}/include \
+      --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig
 
    msg "Building ${pkgname}..."
    make
