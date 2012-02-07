@@ -20,9 +20,10 @@ md5sums=('fba66a6c605a6d7be67a638cd29667b6'
          '5ce5bd3c1ed4d5004a864130a971f737'
          'c136e14af1923c2cf6dc5beb93da2ba4')
 
-_prefix=/usr
-
 build() {
+   msg "Setting enviroment variables..."
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
   # patch for Changelog version
   patch -p0 -i ${srcdir}/Changelog.patch || return 1
@@ -31,10 +32,10 @@ build() {
 
   cd ${srcdir}/libcaldav-${pkgver}
   msg "Running ./autogen.sh for autoreconf"
-  ./autogen.sh --prefix=${_prefix}
+  ./autogen.sh --prefix=${TDEDIR}
 #    --includedir=/usr/include
 #   msg "Running configure"
-#   ./configure --prefix=${_prefix}
+#   ./configure --prefix=${TDEDIR}
 
   make || return 1
 }
