@@ -4,7 +4,7 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 DEB_CONFIGURE_EXTRA_FLAGS += --disable-rpath
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/tde
 DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
 DEB_CONFIGURE_PREFIX := /opt/kde3
 DEB_CONFIGURE_INFODIR := /opt/kde3/share/info

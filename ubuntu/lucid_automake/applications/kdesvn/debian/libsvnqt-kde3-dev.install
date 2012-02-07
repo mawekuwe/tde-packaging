@@ -1,2 +1,2 @@
 debian/tmp/opt/kde3/lib*/*.so
-debian/tmp/opt/kde3/include/kde/svnqt/
+debian/tmp/opt/kde3/include/tde/svnqt/

@@ -1,5 +1,5 @@
 debian/tmp/opt/kde3/bin/amor
-debian/tmp/opt/kde3/include/kde/AmorIface.h
+debian/tmp/opt/kde3/include/tde/AmorIface.h
 debian/tmp/opt/kde3/share/apps/amor
 debian/tmp/opt/kde3/share/applications/kde/amor.desktop
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/amor/*.bz2

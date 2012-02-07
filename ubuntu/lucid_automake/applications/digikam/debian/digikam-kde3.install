@@ -1,5 +1,5 @@
 opt/kde3/bin/digi*
-/opt/kde3/include/kde
+/opt/kde3/include/tde
 opt/kde3/lib
 /opt/kde3/share/apps/digikam
 /opt/kde3/share/apps/konqueror/servicemenus/digikam*.desktop

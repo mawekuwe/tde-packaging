@@ -706,7 +706,7 @@ tdepim (4:3.5.6-0ubuntu3) feisty; urgency=low
     - Activates networkstatus support for kmail (patch from SuSE)
   * debian/control:
     - New package networkstatus-dev
-  * ./libtdepim1-dev.install: added /usr/include/kde/kpimprefs.h
+  * ./libtdepim1-dev.install: added /usr/include/tde/kpimprefs.h
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Fri, 02 Feb 2007 15:37:42 +0100
 

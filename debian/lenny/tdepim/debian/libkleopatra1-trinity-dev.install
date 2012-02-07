@@ -1,6 +1,6 @@
-/opt/trinity/include/kde/gpgme++
-/opt/trinity/include/kde/kleo
-/opt/trinity/include/kde/qgpgme
+/opt/trinity/include/tde/gpgme++
+/opt/trinity/include/tde/kleo
+/opt/trinity/include/tde/qgpgme
 /opt/trinity/lib/libgpgme++.la
 /opt/trinity/lib/libgpgme++.so
 /opt/trinity/lib/libkleopatra.la

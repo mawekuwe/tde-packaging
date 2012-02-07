@@ -7,21 +7,21 @@ URL = http://www.$(DEB_SOURCE_PACKAGE).org/release/0.4.9/testing/$(UPFILENAME)
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
 
 #CMAKE_LIBRARY_PATH := /opt/trinity/lib 
-#CMAKE_INCLUDE_PATH := /opt/trinity/include/kde
+#CMAKE_INCLUDE_PATH := /opt/trinity/include/tde
 
 include debian/cmake.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
 DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
-DEB_CMAKE_EXTRA_FLAGS = -DLIB_SUFFIX="" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/kde" -DCMAKE_INSTALL_PREFIX="/opt/trinity/"
+DEB_CMAKE_EXTRA_FLAGS = -DLIB_SUFFIX="" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/tde" -DCMAKE_INSTALL_PREFIX="/opt/trinity/"
 
 get-orig-source:
 	@@dh_testdir

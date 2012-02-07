@@ -1,4 +1,4 @@
-debian/tmp/opt/trinity/include/kde/kjsembed/*
+debian/tmp/opt/trinity/include/tde/kjsembed/*
 debian/tmp/opt/trinity/lib/libkjsembed.so
 debian/tmp/opt/trinity/lib/libkjsembed.la
 

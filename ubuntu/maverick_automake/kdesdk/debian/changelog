@@ -931,7 +931,7 @@ kdesdk (2.2.2-3) unstable; urgency=low
 
 kdesdk (2.2.2-2) unstable; urgency=low
 
-  * Moved kspy.h to /usr/include/kde (closes: Bug#122448, Bug#122449).
+  * Moved kspy.h to /usr/include/tde (closes: Bug#122448, Bug#122449).
 
  -- Ben Burton <benb@acm.org>  Thu,  6 Dec 2001 09:50:47 -0600
 

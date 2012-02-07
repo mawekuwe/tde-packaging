@@ -609,7 +609,7 @@ kdetoys (4:2.2.2-3) unstable; urgency=low
 
 kdetoys (4:2.2.2-2) unstable; urgency=low
 
-  * Moved AmorIface.h to /usr/include/kde (closes: Bug#122447).
+  * Moved AmorIface.h to /usr/include/tde (closes: Bug#122447).
 
  -- Ben Burton <benb@acm.org>  Sun,  9 Dec 2001 09:07:02 -0600
 

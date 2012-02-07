@@ -197,13 +197,13 @@ debian/tmp/opt/trinity/include/kdatewidget.h
 debian/tmp/opt/trinity/include/kdcopactionproxy.h
 debian/tmp/opt/trinity/include/kdcoppropertyproxy.h
 debian/tmp/opt/trinity/include/kdcopservicestarter.h
-debian/tmp/opt/trinity/include/kdebugclasses.h
-debian/tmp/opt/trinity/include/kdebug.h
-debian/tmp/opt/trinity/include/kdedmodule.h
-debian/tmp/opt/trinity/include/kde_file.h
+debian/tmp/opt/trinity/include/tdebugclasses.h
+debian/tmp/opt/trinity/include/tdebug.h
+debian/tmp/opt/trinity/include/tdedmodule.h
+debian/tmp/opt/trinity/include/tde_file.h
 debian/tmp/opt/trinity/include/tdelibs_export.h
-debian/tmp/opt/trinity/include/kdemacros.h
-debian/tmp/opt/trinity/include/kde.pot
+debian/tmp/opt/trinity/include/tdemacros.h
+debian/tmp/opt/trinity/include/tde.pot
 debian/tmp/opt/trinity/include/tdeprint/driver.h
 debian/tmp/opt/trinity/include/tdeprint/kiconselectaction.h
 debian/tmp/opt/trinity/include/tdeprint/kmjob.h
@@ -221,7 +221,7 @@ debian/tmp/opt/trinity/include/tdeprint/kprintdialogpage.h
 debian/tmp/opt/trinity/include/tdeprint/lpr/lprhandler.h
 debian/tmp/opt/trinity/include/tdeprint/lpr/lprsettings.h
 debian/tmp/opt/trinity/include/tdeprint/lpr/printcapentry.h
-debian/tmp/opt/trinity/include/kdesktopfile.h
+debian/tmp/opt/trinity/include/tdesktopfile.h
 debian/tmp/opt/trinity/include/tdesu/client.h
 debian/tmp/opt/trinity/include/tdesu/defaults.h
 debian/tmp/opt/trinity/include/tdesu/kcookie.h
@@ -231,7 +231,7 @@ debian/tmp/opt/trinity/include/tdesu/pty.h
 debian/tmp/opt/trinity/include/tdesu/ssh.h
 debian/tmp/opt/trinity/include/tdesu/stub.h
 debian/tmp/opt/trinity/include/tdesu/su.h
-debian/tmp/opt/trinity/include/kde_terminal_interface.h
+debian/tmp/opt/trinity/include/tde_terminal_interface.h
 debian/tmp/opt/trinity/include/tdeversion.h
 debian/tmp/opt/trinity/include/kdialogbase.h
 debian/tmp/opt/trinity/include/kdialog.h
@@ -717,7 +717,7 @@ debian/tmp/opt/trinity/include/networkstatusindicator.h
 debian/tmp/opt/trinity/include/connectionmanager.h
 debian/tmp/opt/trinity/include/serviceiface.h
 debian/tmp/opt/trinity/include/provideriface.h
-#debian/tmp/opt/trinity/include/kdemm
+#debian/tmp/opt/trinity/include/tdemm
 
 debian/tmp/opt/trinity/lib/libnetworkstatus.la
 debian/tmp/opt/trinity/lib/libnetworkstatus.so

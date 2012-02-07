@@ -12,7 +12,7 @@ DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
 DEB_UPDATE_RCD_PARAMS := multiuser
 DEB_INSTALL_MANPAGES_tde-guidance-trinity := debian/displayconfig-trinity.1  debian/mountconfig-trinity.1  debian/serviceconfig-trinity.1  debian/userconfig-trinity.1
 PYSUPPORT_PATH = $(DEB_DESTDIR)/opt/trinity/share/python-support
-DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 LDFLAGS_APPEND := -L/opt/trinity/lib
 
 install/tde-guidance-trinity::

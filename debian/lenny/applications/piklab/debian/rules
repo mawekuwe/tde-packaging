@@ -3,7 +3,7 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
 DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
@@ -48,7 +48,7 @@ endif
 	./configure CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs -Wl,--as-needed" \
 		--host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
 		--prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib \
-		--with-extra-includes=/opt/trinity/include/kde \
+		--with-extra-includes=/opt/trinity/include/tde \
 		--mandir=/opt/trinity/share/man --infodir=/opt/trinity/share/info --enable-rpath
 	touch $@
 

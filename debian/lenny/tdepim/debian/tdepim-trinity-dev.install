@@ -1,15 +1,15 @@
-/opt/trinity/include/kde/KNotesAppIface.h
-/opt/trinity/include/kde/KNotesIface.h
-/opt/trinity/include/kde/akregator
-/opt/trinity/include/kde/calendar
-/opt/trinity/include/kde/kabc
-/opt/trinity/include/kde/kaddressbook
-/opt/trinity/include/kde/kmail
-/opt/trinity/include/kde/kmailIface.h
-/opt/trinity/include/kde/kmailicalIface.h
-/opt/trinity/include/kde/kmailpartIface.h
-/opt/trinity/include/kde/kontact
-/opt/trinity/include/kde/korganizer
+/opt/trinity/include/tde/KNotesAppIface.h
+/opt/trinity/include/tde/KNotesIface.h
+/opt/trinity/include/tde/akregator
+/opt/trinity/include/tde/calendar
+/opt/trinity/include/tde/kabc
+/opt/trinity/include/tde/kaddressbook
+/opt/trinity/include/tde/kmail
+/opt/trinity/include/tde/kmailIface.h
+/opt/trinity/include/tde/kmailicalIface.h
+/opt/trinity/include/tde/kmailpartIface.h
+/opt/trinity/include/tde/kontact
+/opt/trinity/include/tde/korganizer
 /opt/trinity/lib/libkabckolab.la
 /opt/trinity/lib/libkabckolab.so
 /opt/trinity/lib/libkabcscalix.la
@@ -81,4 +81,4 @@
 /opt/trinity/lib/libgwsoap.la
 /opt/trinity/lib/libgwsoap.so
 
-/opt/trinity/include/kde/kpimprefs.h
+/opt/trinity/include/tde/kpimprefs.h

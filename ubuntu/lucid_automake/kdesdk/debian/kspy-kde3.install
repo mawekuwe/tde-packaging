@@ -1,4 +1,4 @@
-debian/tmp/opt/kde3/include/kde/kspy.h
+debian/tmp/opt/kde3/include/tde/kspy.h
 debian/tmp/opt/kde3/lib/libkspy.la
 debian/tmp/opt/kde3/lib/libkspy.so
 debian/tmp/opt/kde3/lib/libkspy.so.1

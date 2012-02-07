@@ -1,6 +1,6 @@
 export kde_prefix=/opt/kde3
 export sysconfdir=/etc
-export kde_includedir=/opt/kde3/include/kde
+export kde_includedir=/opt/kde3/include/tde
 export infodir=/opt/kde3/share/info
 export mandir=/opt/kde3/share/man
 export qtdir=/opt/kde3/share/qt3
