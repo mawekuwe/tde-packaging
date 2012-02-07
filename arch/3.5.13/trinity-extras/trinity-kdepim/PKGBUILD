@@ -25,18 +25,11 @@ source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdepim-3.5.13.tar.gz')
 source=('http://anduin.linuxfromscratch.org/sources/trinity/kdepim-3.5.13.tar.gz')
 md5sums=('4488062d5400bdd99642fe0b72ebcf9a')
 
-_prefix="/opt/trinity"
-
 build() {
-
   msg "Setting PATH, CMAKE and Trinity Environment variables"
-  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  . /etc/profile.d/qt3.sh
-
-   export CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr:/usr/include
-   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
-   export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
-
+  [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+  [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
+  
   cd $srcdir
   msg "Creating out-of-source build directory: ${srcdir}/build"
   mkdir -p build
@@ -44,7 +37,7 @@ build() {
 
   msg "Starting cmake..."
   cmake ${srcdir}/kdepim \
-    -DCMAKE_INSTALL_PREFIX=${_prefix} \
+    -DCMAKE_INSTALL_PREFIX=${TDEDIR} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DWITH_SASL=ON \
     -DWITH_NEWDISTRLISTS=ON \
@@ -71,8 +64,6 @@ build() {
 package() {
   msg "Packaging - $pkgname-$pkgver"
   cd ${srcdir}/build
-
   make DESTDIR="$pkgdir" install
-
   cd ${startdir}
 }
