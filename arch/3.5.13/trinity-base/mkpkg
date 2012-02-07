@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#
+pkgarray="qt3 tqtinterface arts dbus-tqt kdelibs kdebase"
+arch=`uname -m`
+
+for i in $pkgarray; do
+   cd trinity-${i}
+   makepkg -s -c -i --noconfirm
+   cd ..
+done
+
+#mkdir binaires-$arch
+
+mv `find . -name *.tar.xz` binaries-$arch
