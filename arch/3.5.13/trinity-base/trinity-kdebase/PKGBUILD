@@ -12,7 +12,8 @@ pkgdesc="Trinity Desktop Enviroment base components"
 depends=('trinity-kdelibs' 'hal'
          'postgresql-libs')
 
-makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake' 'xorg-bdftopcf' 'smbclient')
+makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake' 'xorg-bdftopcf' 'smbclient' 
+             'libraw1394' 'libxtst' 'libxkbfile')
 confilicts=('kdemod3-kdebase')
 options=('libtool')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 
@@ -44,7 +45,7 @@ build() {
 
    #export CMAKE_PREFIX_PATH=${QTDIR}:${TDEDIR}
    #export CMAKE_INCLUDE_PATH=${TDEDIR}/include/dbus-1-tqt/:${TDEDIR}/include/dbus-1.0/:${TDEDIR}/include:${TDEDIR}/include/libkrandr
-   #export LD_LIBRARY_PATH=${TDEDIR}/lib:${TDEDIR}/lib/kde3:${QTDIR}/lib:$LD_LIBRARY_PATH
+   #export LD_LIBRARY_PATH=${TDEDIR}/lib:${TDEDIR}/lib/trinity:${QTDIR}/lib:$LD_LIBRARY_PATH
    #export PKG_CONFIG_PATH=${TDEDIR}/lib/pkgconfig:${QTDIR}/lib/pkgconfig:$PKG_CONFIG_PATH
 
    msg "Patching..."
