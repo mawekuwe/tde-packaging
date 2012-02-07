@@ -2,8 +2,8 @@
 # Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
 pkgname=trinity-kdevelop
-pkgver=12345
-pkgrel=1.0
+pkgver=3513
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -17,14 +17,9 @@ md5sums=('777bd77e4f2dc6a5b5b45a370dcf6da0'
          'ab23854b1658adc1da4621cb589ec1be')
 
 build() {
-
   msg "Setting PATH, CMAKE and Trinity Environment variables"
-  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr
-  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
-
-  _prefix="/opt/trinity"
+  [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+  [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
   msg "Patching..."
   # apply second part of Francois Andriot patch
@@ -37,7 +32,7 @@ build() {
 
   msg "Starting cmake..."
   cmake ${srcdir}/kdevelop \
-    -DCMAKE_INSTALL_PREFIX=${_prefix} \
+    -DCMAKE_INSTALL_PREFIX=${TDEDIR} \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DQT_VERSION=3 \
     -DWITH_QT3=ON \
@@ -51,6 +46,5 @@ build() {
 package() {
   msg "Packaging - $pkgname-$pkgver"
   cd ${srcdir}/build
-
   make DESTDIR="$pkgdir/" install
 }
