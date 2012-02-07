@@ -203,7 +203,7 @@ debian/tmp/opt/trinity/include/tdedmodule.h
 debian/tmp/opt/trinity/include/tde_file.h
 debian/tmp/opt/trinity/include/tdelibs_export.h
 debian/tmp/opt/trinity/include/tdemacros.h
-debian/tmp/opt/trinity/include/tde.pot
+debian/tmp/opt/trinity/include/kde.pot
 debian/tmp/opt/trinity/include/tdeprint/driver.h
 debian/tmp/opt/trinity/include/tdeprint/kiconselectaction.h
 debian/tmp/opt/trinity/include/tdeprint/kmjob.h

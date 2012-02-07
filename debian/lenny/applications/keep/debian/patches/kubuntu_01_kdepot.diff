@@ -16,5 +16,5 @@ diff -Nur keep-0.4.0/admin/cvs.sh keep-0.4.0.new/admin/cvs.sh
  
 -   kdepotpath=${includedir:-`kde-config --expandvars --install include`}/kde.pot
     if ! test -f $kdepotpath; then
- 	kdepotpath=`kde-config --expandvars --prefix`/include/tde.pot
+ 	kdepotpath=`kde-config --expandvars --prefix`/include/kde.pot
     fi

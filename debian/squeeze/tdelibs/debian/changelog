@@ -2087,7 +2087,7 @@ tdelibs (4:3.4.0-0pre5) alioth; urgency=low
     output them expanded even when --expandvars is not used. (Closes: #287822)
 
   * Fixed the ability of the build system to find kde.pot, even when it is not
-    located at TDEDIR/include/tde.pot. This allows the use of targets such as
+    located at TDEDIR/include/kde.pot. This allows the use of targets such as
     "package-messages" without specifying includedir. (Closes: #283858)
 
   * Now that graphviz is in main, add it to Build-Depends-Indep together with
