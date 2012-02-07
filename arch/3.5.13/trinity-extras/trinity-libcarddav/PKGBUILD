@@ -18,10 +18,11 @@ source=("http://quickbuild.pearsoncomputing.net:58080/2056019/libcarddav_${pkgve
 md5sums=('42a0fe57ba4c639aad53024f6c8d5614'
          '63ef0b91ff27dfb7c48ca0f07866af79')
 
-_prefix=/usr
-
 build() {
    cd ${srcdir}
+   msg "setting environment variables..."
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
    # apply libcarddav patch
    msg "Applying Patch: libcarddav.patch"
@@ -29,9 +30,9 @@ build() {
 
    cd ${srcdir}/libcarddav-${pkgver}
    msg "Running ./autogen.sh for autoreconf"
-   ./autogen.sh --prefix=${_prefix}
+   ./autogen.sh --prefix=${TDEDIR}
    #   msg "Running configure"
-   #   ./configure --prefix=${_prefix}
+   #   ./configure --prefix=${TDEDIR}
 
    make || return 1
 }

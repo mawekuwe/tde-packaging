@@ -27,7 +27,7 @@ pkgname=('trinity-i18n-af' 'trinity-i18n-ar' 'trinity-i18n-az'
          'trinity-i18n-uz-cyrillic' 'trinity-i18n-vi' 'trinity-i18n-wa' '
          trinity-i18n-zh_cn' 'trinity-i18n-zh_tw')
 pkgver=3513
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -39,36 +39,34 @@ options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/kde-i18n-3.5.13.tar.gz)
 md5sums=('7c919c7cb85f454fed46767082a87773')
 
-_prefix=/opt/trinity
-
 build() {
-  msg "Setting Trinity Environment variables"
-  export LD_LIBRARY_PATH=${_prefix}/lib:${_prefix}/lib/trinity:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=${_prefix}/lib/pkgconfig:${QTDIR}/lib/pkgconfig
+   msg "Setting Trinity Environment variables"
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
-  cd $srcdir/kde-i18n
-  rm HOW.TO.BUILD TRINITY.RELEASE
+   cd $srcdir/kde-i18n
+   rm HOW.TO.BUILD TRINITY.RELEASE
 
-  for _filename in *.tar.bz2; do
-     _dir=`echo "$_filename" | cut -d'.' -f1-3`
-     _newname=`echo "$_dir" | cut -d'-' -f2-4`
+   for _filename in *.tar.bz2; do
+      _dir=`echo "$_filename" | cut -d'.' -f1-3`
+      _newname=`echo "$_dir" | cut -d'-' -f2-4`
 
-     if [ ! -d trinity-${newname} ]; then
-       msg "Extracting $_filename..."
-       tar xfj $_filename
-       mv $_dir trinity-${_newname}
-     fi
+      if [ ! -d trinity-${newname} ]; then
+         msg "Extracting $_filename..."
+         tar xfj $_filename
+         mv $_dir trinity-${_newname}
+      fi
 
-     cd trinity-${_newname}
-     
-     msg "Starting trinity-${_newname} configure..."
-     ./configure --prefix=${_prefix} > /dev/null
-     
-     msg "Building trinity-${_newname}..."
-     make > /dev/null
-     
-     cd ..
-  done
+      cd trinity-${_newname}
+
+      msg "Starting trinity-${_newname} configure..."
+      ./configure --prefix=${TDEDIR} > /dev/null
+
+      msg "Building trinity-${_newname}..."
+      make > /dev/null
+
+      cd ..
+   done
 }
 
 package_trinity-i18n-af() {

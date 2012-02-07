@@ -3,7 +3,7 @@
 
 pkgname=trinity-kdesdk
 pkgver=3513
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -19,38 +19,33 @@ md5sums=('130662f683be1a49d56a713c5ae87e46'
 
 build() {
    msg "Setting PATH, CMAKE and Trinity Environment variables"
-   export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-   export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/kde
-   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde:$LD_LIBRARY_PATH
-   export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
-
-   _prefix="/opt/trinity"
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
    patch -N -d ${srcdir} -p0 < kdesdk.patch
 
    cd $srcdir/kdesdk
 
    msg "Starting configure..."
-
    cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
    cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+   sed -i -e "s@/usr/include/tqt@$TDEDIR/include/tqt@" admin/acinclude.m4.in
    make -f admin/Makefile.common
 
    msg "Starting configure..."
    ./configure --with-qt-dir=${QTDIR} \
-      --prefix=${_prefix} \
+      --prefix=${TDEDIR} \
       --enable-closure \
-      --with-extra-includes=${_prefix}/include:/usr/include/dbus-1.0:${_prefix}/include/libkrandr \
-      --with-extra-libs=${_prefix}/lib:${_prefix}/lib/trinity:${_prefix}/pkgconfig \
       --with-berkeley-db \
       --with-subversion
+      #--with-extra-includes=${TDEDIR}/include:/usr/include/dbus-1.0:${TDEDIR}/include/libkrandr \
+      #--with-extra-libs=${TDEDIR}/lib:${TDEDIR}/lib/trinity:${TDEDIR}/pkgconfig \
 
    make
 
-
    #msg "Starting cmake..."
    #cmake ${srcdir}/kdesdk \
-   #  -DCMAKE_INSTALL_PREFIX=${_prefix} \
+   #  -DCMAKE_INSTALL_PREFIX=${TDEDIR} \
    #  -DCMAKE_VERBOSE_MAKEFILE=ON \
    #  -DWITH_DBSEARCHENGINE=ON \
    #  -DWITH_KCAL=ON \
@@ -76,6 +71,5 @@ build() {
 package() {
   msg "Packaging - $pkgname-$pkgver"
   cd ${srcdir}/kdesdk
-
   make DESTDIR="$pkgdir" install
 }

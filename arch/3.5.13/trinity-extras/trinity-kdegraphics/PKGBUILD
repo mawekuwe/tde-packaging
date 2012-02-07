@@ -3,7 +3,7 @@
 
 pkgname=trinity-kdegraphics
 pkgver=3513
-pkgrel=1.0
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.com'
 license=('GPL')
@@ -20,16 +20,10 @@ options=('libtool' '!strip')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdegraphics-3.5.13.tar.gz' 'ksnapshot.patch')
 md5sums=('a75c254cd1060343cd04c6744bce6798' '635ed9478cb3edde4fda84f3bac85438')
 
-_prefix="/opt/trinity"
-
 build() {
    msg "Setting PATH, CMAKE and Trinity Environment variables"
-   . /etc/profile.d/qt3.sh
-
-   export CMAKE_PREFIX_PATH=/opt/qt:${_prefix}
-   export CMAKE_INCLUDE_PATH=/opt/qt/include:/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include:/opt/trinity/include/libkrandr:/usr/include:/usr/include/lcms
-   export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:/usr/lib:$LD_LIBRARY_PATH
-   export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:/opt/qt/lib/pkgconfig
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
    msg "Patching..."
    patch -p0 -i ${srcdir}/ksnapshot.patch
@@ -41,7 +35,7 @@ build() {
 
    msg "Starting cmake..."
    cmake ${srcdir}/kdegraphics \
-      -DCMAKE_INSTALL_PREFIX=${_prefix} \
+      -DCMAKE_INSTALL_PREFIX=${TDEDIR} \
       -DCMAKE_VERBOSE_MAKEFILE=ON \
       -DQT_VERSION=3 \
       -DCMAKE_CXX_FLAGS="-fpermissive" \
@@ -59,8 +53,6 @@ build() {
 package() {
    msg "Packaging - $pkgname-$pkgver"
    cd ${srcdir}/build
-
    make DESTDIR="$pkgdir" install
-
    cd ${startdir}
 }

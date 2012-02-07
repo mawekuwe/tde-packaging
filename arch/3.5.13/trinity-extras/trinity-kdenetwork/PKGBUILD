@@ -3,7 +3,7 @@
 
 pkgname=trinity-kdenetwork
 pkgver=3513
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -26,12 +26,8 @@ md5sums=('349f197c9af4bf0d9b8773f26829415e'
 
 build() {
   msg "Setting PATH, CMAKE and Trinity Environment variables"
-  export CMAKE_PREFIX_PATH=/opt/qt:/opt/trinity
-  export CMAKE_INCLUDE_PATH=/opt/qt/include/tqt:/usr/include/dbus-1.0:/opt/trinity/include
-  export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/kde3:$LD_LIBRARY_PATH
-  export PKG_CONFIG_PATH=:/opt/qt/lib/pkgconfig
-
-  _prefix="/opt/trinity"
+  [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+  [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
 
   patch -p0 -i ${srcdir}/kdenetwork.patch
   mv ${srcdir}/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/qname.cc ${srcdir}/kdenetwork/kopete/protocols/jabber/jingle/libjingle/talk/xmllite/tqname.cc
@@ -44,7 +40,7 @@ build() {
 
   msg "Starting cmake..."
   cmake ${srcdir}/kdenetwork \
-    -DCMAKE_INSTALL_PREFIX=${_prefix} \
+    -DCMAKE_INSTALL_PREFIX=$TDEDIR \
     -DCMAKE_VERBOSE_MAKEFILE=ON \
     -DWITH_JINGLE=ON \
     -DWITH_SPEEX=ON \
@@ -60,6 +56,5 @@ build() {
 package() {
   msg "Packaging - $pkgname-$pkgver"
   cd ${srcdir}/build
-
-  make DESTDIR="$pkgdir/" install
+  make DESTDIR="$pkgdir" install
 }
