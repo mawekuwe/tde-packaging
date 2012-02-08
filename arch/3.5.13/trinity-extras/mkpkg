@@ -1,0 +1,18 @@
+#!/bin/bash
+
+pkgarray="kdeaccessibility kdeaddons kdeadmin kdeartwork kdeedu 
+          kdegames kdegraphics kdemultimedia kdenetwork kdepim 
+          kdesdk kdetoys kdeutils kdevelop kdewebdev libcaldav 
+          libcarddav libkdcraw libkexiv2 libkipi i18n"
+arch=`uname -m`
+
+for i in $pkgarray; do
+   cd trinity-${i}
+   makepkg -s -c -i --noconfirm
+   cd ..
+done
+
+[ -d binaries-$arch ] || mkdir binaires-$arch
+
+mv `find . -name *.tar.xz` binaries-$arch/
+
