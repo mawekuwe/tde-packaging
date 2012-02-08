@@ -1,7 +1,7 @@
 # Maintainer: Pawel 'l0ner' Soltys <pwslts@gmail.com>
 # Contributor: Calvin Morrison <mutantturkey@gmail.com>
 
-pkgname=('trinity-kdebase' 'trinity-kdm' 'trinity-konsole' 'trinity-kate' 'trinity-konqueror')
+pkgname='trinity-kdebase'
 pkgver=3513
 pkgrel=5
 arch=('i686' 'x86_64')
@@ -9,11 +9,19 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity Desktop Enviroment base components"
-depends=('trinity-kdelibs')
+depends=('trinity-kdelibs' 'trinity-dbus-tqt' 'hal'
+         'libxtst' 'libraw1394')
+         #'xorg-server' 'xorg-xset' 'xorg-xsetroot' 'xorg-xprop' 'xorg-xmessage' 'xorg-xinit' 
 makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake' 'xorg-bdftopcf' 'smbclient' 
-             'libraw1394' 'libxtst' 'libxkbfile' 'hal')
+             'libxkbfile')
 confilicts=('kdemod3-kdebase')
 options=('libtool')
+optdepends=('desktop-file-utils: Command line utilities for working with desktop entries'
+            'pciutils: PCI bus configuration space access library and tools'
+            'xscreensaver: Screen saver and locker for the X Window System'
+            'xorg-fonts-75dpi: X.org 75dpi fonts collection'
+            'samba: file sharing over SMB')
+install='trinity-kdebase.install'
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 
         'patches.tar.bz2'
         'xsession.patch'
@@ -90,38 +98,25 @@ build() {
 }
 
 package_trinity-kdebase() {
-   pkgdesc='Trinity Desktop Enviroment'
-   depends=('trinity-dbus-tqt' 'hal'
-            'libxtst' 'libraw1394')
-            #'xorg-server' 'xorg-xset' 'xorg-xsetroot' 'xorg-xprop' 'xorg-xmessage' 'xorg-xinit' 
-   optdepends=('desktop-file-utils: Command line utilities for working with desktop entries'
-               'pciutils: PCI bus configuration space access library and tools'
-               'xscreensaver: Screen saver and locker for the X Window System'
-               'xorg-fonts-75dpi: X.org 75dpi fonts collection'
-               'samba: file sharing over SMB')
-   install='trinity-kdebase.install'
 
    msg "Packaging - $pkgname-$pkgver"
-   _splitfolders="applnk drkonqi kappfinder kcheckpass kcminit kcontrol 
-                  kdcop kdebugdialog kdeeject kdepasswd kdeprint kdesktop 
-                  kdesu kdialog kfind khelpcenter khotkeys kicker kioslave 
-                  klipper kmenuedit knetattach kpager kpersonalizer kreadconfig 
-                  krootbacking kscreensaver ksmserver ksplashml kstart ksysguard 
-                  ksystraycmd ktip kwin l10n kxkb nsplugins pics tqt3integration 
-                  tsak doc/faq doc/glossary doc/kcontrol doc/kdcop 
-                  doc/kdebugdialog doc/kdeprint doc/kdesu doc/kfind
-                  doc/khelpcenter doc/kicker doc/kinfocenter doc/kioslave 
-                  doc/klipper doc/kmenuedit doc/knetattach doc/kompmgr doc/kpager 
-                  doc/ksplashml doc/ksysguard doc/kxkb doc/quickstart 
-                  doc/userguide doc/visualdict"
-   for _dir in $_splitfolders; do
-      cd ${srcdir}/build/$_dir
-      make DESTDIR="$pkgdir" install
-   done
+   make DESTDIR="$pkgdir" install
 
    # install X11 session file
    install -d -m755 ${pkgdir}/etc/X11/sessions
    install -m755 ${srcdir}/trinity.desktop ${pkgdir}/etc/X11/sessions/trinity.desktop
+   
+   # update the Xsession file, this resolves problem with kdm dropping back
+   # to the login screen
+   patch -N ${pkgdir}${TDEDIR}/share/config/kdm/Xsession < ${srcdir}/xsession.patch
+   
+   # install kdm rc.d script. We need this to start kdm from rc.d
+   install -D -m755 ${srcdir}/kdm-trinity "${pkgdir}"/etc/rc.d/kdm-trinity	
+
+   # Add image for default user avatar. This removes kdm complains about missing
+   # default avatar from kdm.log
+   install -D -m 644 $srcdir/kdm-default-face.png ${pkgdir}$TDEDIR/share/apps/kdm/faces/.default.face.icon
+   install -D -m 644 $srcdir/kdm-default-face.png ${pkgdir}$TDEDIR/share/apps/kdm/pics/users/arch-kdm.png
 
    # create the starttrinity link
    # do we need this? wouldn't be better to rename startkde script
@@ -152,60 +147,5 @@ package_trinity-kdebase() {
       cd ..
    done
 
-}
 
-package_trinity-kdm() {
-   pkgdesc="Trinity Display Manager"
-
-   msg "Packaging - $pkgname-$pkgver"
-   _splitfolders="kdm kdmlib doc/kdm"
-   for _dir in $_splitfolders; do
-      cd ${srcdir}/build/$_dir
-      make DESTDIR="$pkgdir" install
-   done
-
-   # update the Xsession file, this resolves problem with kdm dropping back
-   # to the login screen
-   patch -N ${pkgdir}${TDEDIR}/share/config/kdm/Xsession < ${srcdir}/xsession.patch
-   
-   # install kdm rc.d script. We need this to start kdm from rc.d
-   install -D -m755 ${srcdir}/kdm-trinity "${pkgdir}"/etc/rc.d/kdm-trinity	
-
-   # Add image for default user avatar. This removes kdm complains about missing
-   # default avatar from kdm.log
-   install -D -m 644 $srcdir/kdm-default-face.png ${pkgdir}$TDEDIR/share/apps/kdm/faces/.default.face.icon
-   install -D -m 644 $srcdir/kdm-default-face.png ${pkgdir}$TDEDIR/share/apps/kdm/pics/users/arch-kdm.png
-}
-
-package_trinity-konsole() {
-   pkgdesc="Trinity - an X termnal emulator"
-
-   msg "Packaging - $pkgname-$pkgver"
-   _splitfolders="konsole doc/konsole"
-   for _dir in $_splitfolders; do
-      cd ${srcdir}/build/$_dir
-      make DESTDIR="$pkgdir" install
-   done
-}
-
-package_trinity-kate() {
-   pkgdesc="Trinity - A fast texteditor with an Emacs-style document interface"
-
-   msg "Packaging - $pkgname-$pkgver"
-   _splitfolders="kate doc/kate doc/kwrite"
-   for _dir in $_splitfolders; do
-      cd ${srcdir}/build/$_dir
-      make DESTDIR="$pkgdir" install
-   done
-}
-
-package_trinity-konqueror() {
-   pkgdesc="Trinity Swiss Army file and web browser."
-
-   msg "Packaging - $pkgname-$pkgver"
-   _splitfolders="konqueror libkonq doc/konqueror"
-   for _dir in $_splitfolders; do
-      cd ${srcdir}/build/$_dir
-      make DESTDIR="$pkgdir" install
-   done
 }
