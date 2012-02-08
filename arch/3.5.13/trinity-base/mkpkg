@@ -6,7 +6,7 @@ arch=`uname -m`
 
 for i in $pkgarray; do
    cd trinity-${i}
-   makepkg -s -c -i --noconfirm
+   makepkg -sicf --noconfirm
    cd ..
 done
 
