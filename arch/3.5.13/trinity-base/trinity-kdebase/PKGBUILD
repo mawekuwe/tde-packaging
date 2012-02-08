@@ -3,7 +3,7 @@
 
 pkgname='trinity-kdebase'
 pkgver=3513
-pkgrel=5
+pkgrel=7
 arch=('i686' 'x86_64')
 url='http://www.trinitydesktop.org'
 license=('GPL')
@@ -121,7 +121,7 @@ package() {
    # create the starttrinity link
    # do we need this? wouldn't be better to rename startkde script
    # to starttrinity? Well, whathever. 
-   ln -sf ${pkgdir}$TDEDIR/bin/startkde ${pkgdir}$TDEDIR/bin/starttrinity
+   ln -sf $TDEDIR/bin/startkde ${pkgdir}$TDEDIR/bin/starttrinity
 
    # install mkpamserv script, so we can auto-generate pam.d configs in post_install()
    install -D -m755 ${srcdir}/kdebase/mkpamserv ${pkgdir}${TDEDIR}/bin/mkpamserv
