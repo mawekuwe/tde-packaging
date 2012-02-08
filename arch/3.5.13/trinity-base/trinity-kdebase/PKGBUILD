@@ -97,9 +97,9 @@ build() {
 
 }
 
-package_trinity-kdebase() {
-
+package() {
    msg "Packaging - $pkgname-$pkgver"
+   cd $srcdir/build
    make DESTDIR="$pkgdir" install
 
    # install X11 session file
