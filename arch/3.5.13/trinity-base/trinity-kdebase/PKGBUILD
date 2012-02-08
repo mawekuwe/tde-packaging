@@ -9,11 +9,9 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity Desktop Enviroment base components"
-depends=('trinity-kdelibs' 'hal'
-         'postgresql-libs')
-
+depends=('trinity-kdelibs')
 makedepends=('pkgconfig' 'cmake' 'autoconf' 'imake' 'xorg-bdftopcf' 'smbclient' 
-             'libraw1394' 'libxtst' 'libxkbfile')
+             'libraw1394' 'libxtst' 'libxkbfile' 'hal')
 confilicts=('kdemod3-kdebase')
 options=('libtool')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 
@@ -93,9 +91,9 @@ build() {
 
 package_trinity-kdebase() {
    pkgdesc='Trinity Desktop Enviroment'
-   depends=('trinity-dbus-tqt' 
-            'xorg-server' 'xorg-xset' 'xorg-xsetroot' 'xorg-xprop' 'xorg-xmessage' 'xorg-xinit' 'xorg-iceauth'
+   depends=('trinity-dbus-tqt' 'hal'
             'libxtst' 'libraw1394')
+            #'xorg-server' 'xorg-xset' 'xorg-xsetroot' 'xorg-xprop' 'xorg-xmessage' 'xorg-xinit' 
    optdepends=('desktop-file-utils: Command line utilities for working with desktop entries'
                'pciutils: PCI bus configuration space access library and tools'
                'xscreensaver: Screen saver and locker for the X Window System'
