@@ -16,7 +16,7 @@ confilicts=('kdemod3-kdebase')
 options=('libtool')
 source=('http://mirror.ets.kth.se/trinity/releases/3.5.13/kdebase-3.5.13.tar.gz' 
         'patches.tar.bz2'
-        'Xsession.patch'
+        'xsession.patch'
         'arch-kdeshutdown.png'
         'kdm-default-face.png'
         'agent-shutdown.sh'
@@ -166,7 +166,7 @@ package_trinity-kdm() {
 
    # update the Xsession file, this resolves problem with kdm dropping back
    # to the login screen
-   patch -N ${pkgdir}${TDEDIR}/share/config/kdm/Xsession < ${srcdir}/Xsession.patch
+   patch -N ${pkgdir}${TDEDIR}/share/config/kdm/Xsession < ${srcdir}/xsession.patch
    
    # install kdm rc.d script. We need this to start kdm from rc.d
    install -D -m755 ${srcdir}/kdm-trinity "${pkgdir}"/etc/rc.d/kdm-trinity	
@@ -200,7 +200,7 @@ package_trinity-kate() {
 }
 
 package_trinity-konqueror() {
-   pkgdesc="Trinity Swiss Army application, file and web browser."
+   pkgdesc="Trinity Swiss Army file and web browser."
 
    msg "Packaging - $pkgname-$pkgver"
    _splitfolders="konqueror libkonq doc/konqueror"
