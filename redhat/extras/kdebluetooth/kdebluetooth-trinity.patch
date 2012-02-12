@@ -1,0 +1,131 @@
+diff -Nuar kdebluetooth.ORI/admin/acinclude.m4.in kdebluetooth.P/admin/acinclude.m4.in
+--- kdebluetooth.ORI/admin/acinclude.m4.in	2012-02-12 14:10:33.093808915 +0100
++++ kdebluetooth.P/admin/acinclude.m4.in	2012-02-12 14:13:57.437558226 +0100
+@@ -483,10 +483,10 @@
+     fi
+   fi
+   if test -z "$kde_styledir"; then
+-    kde_styledir='\${libdir}/kde3/plugins/styles'
++    kde_styledir='\${libdir}/trinity/plugins/styles'
+   fi
+   if test -z "$kde_widgetdir"; then
+-    kde_widgetdir='\${libdir}/kde3/plugins/designer'
++    kde_widgetdir='\${libdir}/trinity/plugins/designer'
+   fi
+   if test -z "$xdg_appsdir"; then
+     xdg_appsdir='\${datadir}/applications/kde'
+@@ -1813,7 +1813,7 @@
+ 
+ kde_widgetdir=NO
+ dnl this might be somewhere else
+-AC_FIND_FILE("kde3/plugins/designer/kdewidgets.la", $kde_libdirs, kde_widgetdir)
++AC_FIND_FILE("trinity/plugins/designer/kdewidgets.la", $kde_libdirs, kde_widgetdir)
+ 
+ if test -n "$ac_kde_libraries" && test ! -r "$ac_kde_libraries/$kde_check_lib"; then
+ AC_MSG_ERROR([
+@@ -1821,14 +1821,14 @@
+ So, check this please and use another prefix!])
+ fi
+ 
+-if test -n "$kde_widgetdir" && test ! -r "$kde_widgetdir/kde3/plugins/designer/kdewidgets.la"; then
++if test -n "$kde_widgetdir" && test ! -r "$kde_widgetdir/trinity/plugins/designer/kdewidgets.la"; then
+ AC_MSG_ERROR([
+ I can't find the designer plugins. These are required and should have been installed
+ by kdelibs])
+ fi
+ 
+ if test -n "$kde_widgetdir"; then
+-    kde_widgetdir="$kde_widgetdir/kde3/plugins/designer"
++    kde_widgetdir="$kde_widgetdir/trinity/plugins/designer"
+ fi
+ 
+ 
+diff -Nuar kdebluetooth.ORI/admin/cvs.sh kdebluetooth.P/admin/cvs.sh
+--- kdebluetooth.ORI/admin/cvs.sh	2012-02-12 14:10:33.093808915 +0100
++++ kdebluetooth.P/admin/cvs.sh	2012-02-12 14:11:27.951558154 +0100
+@@ -68,7 +68,7 @@
+     echo "*** KDE requires automake $required_automake_version"
+     exit 1
+     ;;
+-  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.10*)
++  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.1[0-9]*)
+     echo "*** $AUTOMAKE_STRING found."
+     UNSERMAKE=no
+     ;;
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/libkbluetooth/Makefile.am.ORI	2012-02-12 14:40:37.124683567 +0100
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/libkbluetooth/Makefile.am	2012-02-12 14:41:13.572933231 +0100
+@@ -12,7 +12,7 @@
+ libkbluetooth_la_LIBADD = $(LIB_KDECORE) $(DBUS_LIBS) $(LIB_KIO) $(BLUETOOTH_LIBS) -ldbus-qt-1
+ 
+ libkbluetoothincludedir = $(includedir)/libkbluetooth
+-libkbluetoothinclude_HEADERS = adapter.h dbusinit.h dbussignal.h dbussignal.h manager.h inputdevice.h inputmanager.h \
++libkbluetoothinclude_HEADERS = adapter.h dbusinit.h dbussignal.h manager.h inputdevice.h inputmanager.h \
+ 			       security.h dbusfilter.h service.h passkeyagent.h servicerecord.h devicemimeconverter.h \
+                                deviceaddress.h rfcommsocket.h servicediscovery.h sdpservice.h namerequest.h adapter_old.h \
+                                sdpdevice.h sdpattribute.h serviceselectionwidget.h inquiry.h hcisocket.h hcidefault.h \
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbluetooth/Makefile.am.ORI	2012-02-12 15:23:53.713273076 +0100
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbluetooth/Makefile.am	2012-02-12 15:24:04.547424194 +0100
+@@ -4,7 +4,7 @@
+ bin_PROGRAMS = kbluetooth
+ 
+ kbluetooth_SOURCES = adapterconfig.cpp adapterdialog.ui authorize.cpp authdialog.ui deviceconfig.cpp trayicon.cpp main.cpp application.cpp pindefdialog.ui pindialog.cpp confirmationdlgbase.ui confirmation.cpp rfcommportlistener.cpp procinheritsock.cpp portlistener.cpp sdprecord.cpp
+-kbluetooth_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries)
++kbluetooth_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries) -lDCOP -lkdefx
+ kbluetooth_LDADD = ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI)
+ 
+ # this is where the desktop file will go
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbluemon/Makefile.am.ORI	2012-02-12 15:27:57.544671388 +0100
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbluemon/Makefile.am	2012-02-12 15:28:03.821758799 +0100
+@@ -4,7 +4,7 @@
+ bin_PROGRAMS = kbluemon
+ 
+ kbluemon_SOURCES = main.cpp monitor.cpp mondialog.ui
+-kbluemon_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries)
++kbluemon_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries) -lkdefx
+ kbluemon_LDADD = ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI)
+ 
+ # this is where the desktop file will go
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbluelock/Makefile.am.ORI	2012-02-12 15:29:34.900026701 +0100
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbluelock/Makefile.am	2012-02-12 15:29:40.774108449 +0100
+@@ -4,7 +4,7 @@
+ bin_PROGRAMS = kbluelock
+ 
+ kbluelock_SOURCES = main.cpp kbluelock.cpp lockdialog.ui
+-kbluelock_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries)
++kbluelock_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries) -lDCOP -lkdefx
+ kbluelock_LDADD = ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI)
+ 
+ # this is where the desktop file will go
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/kinputwizard/Makefile.am.ORI	2012-02-12 15:31:54.069962658 +0100
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/kinputwizard/Makefile.am	2012-02-12 15:32:00.579053161 +0100
+@@ -4,7 +4,7 @@
+ bin_PROGRAMS = kinputwizard
+ 
+ kinputwizard_SOURCES = main.cpp inputwizard.cpp inputdialog.ui inputdialog_ext.ui
+-kinputwizard_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries)
++kinputwizard_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries) -lkdefx
+ kinputwizard_LDADD = ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI)
+ 
+ 
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbtobexsrv/Makefile.am.ORI	2012-02-12 15:33:26.869242631 +0100
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbtobexsrv/Makefile.am	2012-02-12 15:33:44.826485520 +0100
+@@ -19,7 +19,7 @@
+ 
+ # the application source, library search path, and link libraries
+ kbtobexsrv_SOURCES = main.cpp maindlg.cpp maindlgbase.ui myfileiconview.cpp
+-kbtobexsrv_LDFLAGS = $(KDE_RPATH) $(all_libraries)
++kbtobexsrv_LDFLAGS = $(KDE_RPATH) $(all_libraries) -lkdefx
+ kbtobexsrv_LDADD = ../libkbluetooth/libkbluetooth.la ../libkobex/libkobex.la $(LIB_KIO) $(OPENOBEX_LIBS) -lkio $(LIB_KDEUI) $(BLUETOOTH_LIBS)
+ 
+ # this is where the desktop file will go 
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbtobexclient/Makefile.am.ORI	2012-02-12 15:35:17.239735523 +0100
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbtobexclient/Makefile.am	2012-02-12 15:35:25.381845659 +0100
+@@ -17,7 +17,7 @@
+ 
+ # the application source, library search path, and link libraries
+ 
+-kbtobexclient_LDFLAGS = $(KDE_RPATH) $(all_libraries)
++kbtobexclient_LDFLAGS = $(KDE_RPATH) $(all_libraries) -lkdefx
+ kbtobexclient_LDADD = ../libkbluetooth/libkbluetooth.la ../libkobex/libkobex.la $(LIB_KIO) $(OPENOBEX_LIBS) -lkio $(LIB_KDEUI) $(BLUETOOTH_LIBS) $(DBUS_LIBS) -ldbus-qt-1
+ 
+ # this is where the desktop file will go

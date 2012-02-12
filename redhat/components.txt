@@ -36,6 +36,7 @@ extras/kasablanca
 extras/ksensors
 extras/libkarma
 #extras/libkexif
+extras/kdebluetooth
 extras/trinity-desktop
 extras/trinity-live
 applications/k3b
