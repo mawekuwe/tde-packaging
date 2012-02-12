@@ -42,6 +42,7 @@ BuildRequires:	glib2-devel
 BuildRequires:	libtool-ltdl-devel
 BuildRequires:	gsl-devel
 BuildRequires:	libvorbis-devel
+BuildRequires:	esound-devel
 BuildRequires:	jack-audio-connection-kit-devel
 
 Requires:		tqtinterface

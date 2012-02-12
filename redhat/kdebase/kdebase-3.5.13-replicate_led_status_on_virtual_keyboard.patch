@@ -1,0 +1,95 @@
+commit 8468d9bd5c66fe402acbc06f728b12ea996848de
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1327049889 -0600
+
+    Replicate LED status from virtual keyboards to physical keyboards
+    Fix keyboard attribute cloning
+    This commit closes Bug 561
+
+diff --git a/tsak/main.cpp b/tsak/main.cpp
+index df485a0..26aad00 100644
+--- a/tsak/main.cpp
++++ b/tsak/main.cpp
+@@ -126,22 +126,23 @@ static void copy_features(int devin, int devout)
+ 	for(i=0;i<EV_MAX;++i) {
+ 		if (bit_set(i, evtypes)) {
+ 			switch(i) {
+-			case EV_KEY: op = UI_SET_KEYBIT; break;
+-			case EV_REL: op = UI_SET_RELBIT; break;
+-			case EV_ABS: op = UI_SET_ABSBIT; break;
+-			case EV_MSC: op = UI_SET_MSCBIT; break;
+-			case EV_LED: op = UI_SET_LEDBIT; break;
+-			case EV_SND: op = UI_SET_SNDBIT; break;
+-			case EV_SW: op = UI_SET_SWBIT; break;
+-			default: op = -1;
++				case EV_KEY: op = UI_SET_KEYBIT; break;
++				case EV_REL: op = UI_SET_RELBIT; break;
++				case EV_ABS: op = UI_SET_ABSBIT; break;
++				case EV_MSC: op = UI_SET_MSCBIT; break;
++				case EV_LED: op = UI_SET_LEDBIT; break;
++				case EV_SND: op = UI_SET_SNDBIT; break;
++				case EV_SW: op = UI_SET_SWBIT; break;
++				default: op = -1;
++			}
+ 		}
+-	}
+-	if (op == -1) continue;
+-	ioctl(devout, UI_SET_EVBIT, i);
+-	memset(codes,0,sizeof(codes));
+-	if (ioctl(devin, EVIOCGBIT(i, sizeof(codes)), codes) < 0) return;
+-	for(code=0;code<KEY_MAX;code++) {
+-		if (bit_set(code, codes)) ioctl(devout, op, code);
++		if (op == -1) continue;
++		ioctl(devout, UI_SET_EVBIT, i);
++		memset(codes,0,sizeof(codes));
++		if (ioctl(devin, EVIOCGBIT(i, sizeof(codes)), codes) >= 0) {
++			for(code=0;code<KEY_MAX;code++) {
++				if (bit_set(code, codes)) ioctl(devout, op, code);
++			}
+ 		}
+ 	}
+ }
+@@ -342,6 +343,7 @@ int main (int argc, char *argv[])
+ {
+ 	struct input_event ev[64];
+ 	struct input_event event;
++	struct input_event revev;
+ 	struct uinput_user_dev devinfo={0};
+ 	int devout[MAX_KEYBOARDS], rd, i, value, size = sizeof (struct input_event);
+ 	char name[256] = "Unknown";
+@@ -416,9 +418,9 @@ int main (int argc, char *argv[])
+ 				fprintf(stderr, "Reading from keyboard: (%s)\n", name);
+ 			
+ 				// Create filtered virtual output device
+-				devout[current_keyboard]=open("/dev/misc/uinput",O_WRONLY|O_NONBLOCK);
++				devout[current_keyboard]=open("/dev/misc/uinput",O_RDWR|O_NONBLOCK);
+ 				if (devout[current_keyboard]<0) {
+-					devout[current_keyboard]=open("/dev/uinput",O_WRONLY|O_NONBLOCK);
++					devout[current_keyboard]=open("/dev/uinput",O_RDWR|O_NONBLOCK);
+ 					if (devout[current_keyboard]<0) {
+ 						perror("open(\"/dev/misc/uinput\")");
+ 					}
+@@ -483,6 +485,14 @@ int main (int argc, char *argv[])
+ 									fprintf(stderr, "Read failed.\n");
+ 									break;
+ 								}
++
++								// Replicate LED events from the virtual keyboard to the physical keyboard
++								int rrd = read(devout[current_keyboard], &revev, size);
++								if (rrd >= size) {
++									if (revev.type == EV_LED) {
++										write(keyboard_fds[current_keyboard], &revev, sizeof(revev));
++									}
++								}
+ 								
+ 								value = ev[0].value;
+ 								
+@@ -506,7 +516,7 @@ int main (int argc, char *argv[])
+ 									}
+ 								}
+ 						
+-								if (hide_event == false) {
++								if ((hide_event == false) && (ev[0].type != EV_LED) && (ev[1].type != EV_LED)) {
+ 									// Pass the event on...
+ 									event = ev[0];
+ 									write(devout[current_keyboard], &event, sizeof event);

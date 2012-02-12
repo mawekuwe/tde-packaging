@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 15
+%define release 16
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -99,6 +99,12 @@ Patch29:	kdebase-3.5.13-fix_multihead_desktop_lock.patch
 Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
 ## [kdebase/kxkb] Enables xtest support
 Patch31:	kdebase-3.5.13-enable_xtest_support.patch
+## [kdebase/kdm/kfrontend] fix KDM high CPU usage when inactive [Bug #690]
+Patch32:	kdebase-3.5.13-fix_kdm_cpu_usage.patch
+## [kdebase/tsak] Add keyboard hotplug (add/remove) support to tsak [Bug #587]
+Patch33:	kdebase-3.5.13-tsak_keyboard_hotplug.patch
+## [kdebase/tsak] Replicate LED status from virtual keyboards to physical keyboards [Bug #561]
+Patch34:	kdebase-3.5.13-replicate_led_status_on_virtual_keyboard.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -169,11 +175,11 @@ BuildRequires:	libXcomposite-devel
 BuildRequires:	libXtst-devel
 BuildRequires:	libXdamage-devel
 BuildRequires:	xorg-x11-font-utils
-
-# These dependancies are not met in RHEL
-%if 0%{?fedora}
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	nas-devel
+
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+BuildRequires:	libudev-devel
 %endif
  
 Requires:	tqtinterface
@@ -306,6 +312,11 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch29 -p0
 %patch30 -p1
 %patch31 -p1
+%patch32 -p1
+%if 0%{?fedora} >= 15
+%patch33 -p1
+%patch34 -p1
+%endif
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -354,7 +365,7 @@ cd build
   -DWITH_XCOMPOSITE=ON \
   -DWITH_XCURSOR=ON \
   -DWITH_XFIXES=ON \
-%if 0%{?fedora} || 0%{?rhel} > 5
+%if 0%{?fedora} || 0%{?rhel} >= 6
   -DWITH_XRANDR=ON \
 %else
   -DWITH_XRANDR=OFF \
@@ -692,6 +703,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Sat Jan 21 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-16
+- Fix KDM high CPU usage when inactive [Bug #690]
+- Add keyboard hotplug (add/remove) support to tsak [Bug #587]
+- Replicate LED status from virtual keyboards to physical keyboards [Bug #561]
+
 * Thu Jan 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-15
 - Add a KDM option to hide 'Menu' button on login prompt
 - Fix corrupted PNG tiles [Bug #298]

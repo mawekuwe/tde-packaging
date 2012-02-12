@@ -54,6 +54,9 @@ Provides: kdemultimedia3 = %{version}-%{release}
 Patch3: kdemultimedia-3.4.0-xdg.patch
 Patch5: kdemultimedia-3.5.7-pthread.patch
 
+# [kdemultimedia] Fix MMX detection [Bug #800]
+Patch10:	kdemultimedia-3.5.13-fix_mmx_detection.patch
+
 Requires: %{name}-libs = %{version}-%{release}
 
 BuildRequires: trinity-arts-devel
@@ -132,6 +135,7 @@ Requires: %{name} = %{version}-%{release}
 %setup -q -n kdemultimedia
 %patch3 -p1 -b .xdg
 %patch5 -p1 -b .pthread
+%patch10 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -413,6 +417,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %changelog
 * Mon Jan 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Enables 'akode' support
+- Fix MMX support [Bug #800]
 
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Fix HTML directory location
