@@ -1,0 +1,23 @@
+--- tqt3/src/kernel/qscriptengine_x11.cpp.fontrendering-#214570	2012-02-13 21:41:17.792005290 +0100
++++ tqt3/src/kernel/qscriptengine_x11.cpp	2012-02-13 21:42:38.785202528 +0100
+@@ -1243,7 +1243,7 @@
+     int script = item->script;
+     Q_ASSERT(script >= TQFont::Devanagari && script <= TQFont::Sinhala);
+     const unsigned short script_base = 0x0900 + 0x80*(script-TQFont::Devanagari);
+-    const unsigned short ra = script_base + 0x30;
++    unsigned short ra = script_base + 0x30;            //it was const unsigned short ra before modification
+     const unsigned short halant = script_base + 0x4d;
+     const unsigned short nukta = script_base + 0x3c;
+ 
+@@ -1291,6 +1291,11 @@
+     }
+ #endif
+ 
++    unsigned short *chkAssamese=reordered.data();
++    if((script == TQFont::Bengali) && (*chkAssamese==0x09F0)) //if it is assamese ra
++    {
++       ra  = script_base + 0x70;
++    }
+     if (len != 1) {
+         unsigned short *uc = reordered.data();
+         bool beginsWithRa = FALSE;
