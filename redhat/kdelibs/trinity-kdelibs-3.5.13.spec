@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 6
+%define release 7
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -48,6 +48,10 @@ Patch12:	kdelibs-3.5.13-kate_syntax.patch.gz
 Patch13:	kdelibs-3.5.13-add_inotify_support.patch
 ## [kdelibs] Add fam/gamin support to tdelibs CMake (backport commit 2b035349c31fe64c31d2c050892b117a3a807179)
 Patch14:	kdelibs-3.5.13-enable_fam_gamin.patch
+## [kdelibs/kioslave/http] Fix UTF8 Encoding for WebDAV directories
+Patch15:	kdelibs-3.5.13-fix_UTF8_encoding_for_WebDAV_directories.patch
+## [kdelibs/kdeprint] Fix add printer [Bug #383]
+Patch16:	kdelibs-3.5.13-fix_add_printer.patch
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
@@ -69,6 +73,7 @@ BuildRequires:	OpenEXR-devel
 BuildRequires:	libtool-ltdl-devel
 BuildRequires:	glib2-devel
 BuildRequires:	gamin-devel
+BuildRequires:	xorg-x11-proto-devel
 
 Requires:		tqtinterface
 Requires:		trinity-arts
@@ -124,6 +129,8 @@ format for easy browsing
 %patch12 -p1
 %patch13 -p1
 %patch14 -p1
+%patch15 -p1
+%patch16 -p1
 
 
 %build
@@ -324,6 +331,10 @@ EOF
 
 
 %changelog
+* Sat Jan 21 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
+- Fix UTF8 Encoding for WebDAV directories
+- Fix hardcoded path in 'add printer' [Bug #383]
+
 * Mon Jan 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
 - Adds 'fam' and 'gamin' support
 

@@ -1,0 +1,20 @@
+commit 87201a3741bd9d4b4638be7b3d8c44a737115b0f
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1325899796 -0600
+
+    Fix make_driver_db_cups path
+    This closes Bug 383
+
+diff --git a/kdeprint/cups/kmcupsmanager.cpp b/tdeprint/cups/kmcupsmanager.cpp
+index 635cfd5..4a64248 100644
+--- a/kdeprint/cups/kmcupsmanager.cpp
++++ b/kdeprint/cups/kmcupsmanager.cpp
+@@ -95,7 +95,7 @@ KMCupsManager::~KMCupsManager()
+ 
+ TQString KMCupsManager::driverDbCreationProgram()
+ {
+-	return TQString::tqfromLatin1("/opt/trinity/bin/make_driver_db_cups");
++	return TQString(__KDE_BINDIR).append(TQString::fromLatin1("/make_driver_db_cups"));
+ }
+ 
+ TQString KMCupsManager::driverDirectory()

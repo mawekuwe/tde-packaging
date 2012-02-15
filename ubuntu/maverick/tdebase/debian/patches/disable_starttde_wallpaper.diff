@@ -1,12 +1,12 @@
 --- starttde
 +++ starttde
-@@ -184,17 +184,17 @@
+@@ -228,17 +228,17 @@
    . $tdehome/share/config/startupconfig
  fi
  
 -# Make sure a default wallpaper is set.
 -if [ ! -e $tdehome/share/config/kdesktoprc ]; then
-- # With Trinity KDE this file should exist, but test first.
+- # With Trinity this file should exist, but test first.
 -  if [ -r /usr/share/wallpapers/isadora.png.desktop ]; then
 -cat >$tdehome/share/config/kdesktoprc <<EOF
 -[Desktop0]
@@ -17,7 +17,7 @@
 -fi
 +## Make sure a default wallpaper is set.
 +#if [ ! -e $tdehome/share/config/kdesktoprc ]; then
-+# # With Trinity KDE this file should exist, but test first.
++# # With Trinity this file should exist, but test first.
 +#  if [ -r /usr/share/wallpapers/isadora.png.desktop ]; then
 +#cat >$tdehome/share/config/kdesktoprc <<EOF
 +#[Desktop0]

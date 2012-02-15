@@ -185,7 +185,7 @@ Requires: %{name} = %{version}-%{release}
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1
-%patch14 -p1
+%patch14 -p4
 
 
 # TDE 3.5.13: missing 'dummy.cpp' in MSN protocol

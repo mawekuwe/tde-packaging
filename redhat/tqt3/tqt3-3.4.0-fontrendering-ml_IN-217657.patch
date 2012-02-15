@@ -1,0 +1,11 @@
+--- tqt3/src/kernel/qfont_x11.cpp.fontrendering-ml_IN-217657	2012-02-13 19:10:01.000000000 +0100
++++ tqt3/src/kernel/qfont_x11.cpp	2012-02-13 21:45:39.903520249 +0100
+@@ -712,7 +712,7 @@
+     if ( script >= TQFont::Arabic && script <= TQFont::Khmer ) {
+ 	// complex script shaping. Have to do some hard work
+ 	int from = TQMAX( 0,  pos - 8 );
+-	int to = TQMIN( (int)str.length(), pos + 8 );
++	int to = str.length();
+ 	TQConstString cstr( str.unicode()+from, to-from);
+ 	TQTextEngine layout( cstr.string(), d );
+ 	layout.itemize( TQTextEngine::WidthOnly );
