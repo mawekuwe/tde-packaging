@@ -4,7 +4,8 @@ libraries/libkipi
 libraries/libksquirrel
 libraries/python-trinity
 libraries/pykdeextensions
-qt3
+dependencies/qt3
+dependencies/tqt3
 dependencies/libcaldav
 dependencies/libcarddav
 dependencies/tqtinterface
@@ -119,3 +120,4 @@ applications/kmplayer
 applications/kvkbd
 applications/potracegui
 applications/soundkonverter
+
