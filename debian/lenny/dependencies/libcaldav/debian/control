@@ -1,0 +1,23 @@
+Source: libcaldav
+Build-Depends: debhelper (>= 5), quilt, libcurl4-gnutls-dev (>= 7.19), libglib2.0-dev, automake, autoconf, libtool, libltdl-dev
+Section: graphics
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Standards-Version: 3.8.3
+
+Package: libcaldav
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}
+Description: 
+ libcaldav provides a C interface for caldav PIM clients
+
+Package: libcaldav-dev
+Architecture: any
+Section: libdevel
+Depends: libcaldav (= ${binary:Version})
+Description: 
+ libcaldav provides a C interface for caldav PIM clients
+ .
+ This is the development package containing header files and link
+ libraries for libcaldav.
