@@ -1,0 +1,74 @@
+diff -Nuar tqca-tls.ORI//configure tqca-tls.P//configure
+--- tqca-tls.ORI//configure	2012-02-18 11:09:57.695893820 +0100
++++ tqca-tls.P//configure	2012-02-18 11:28:09.442846406 +0100
+@@ -60,7 +60,7 @@
+ 	if [ "$QC_DEBUG" = "Y" ]; then
+ 		echo \$QTDIR not set... trying to find Qt manually
+ 	fi
+-	for p in /usr/lib/tqt /usr/share/tqt /usr/share/tqt3 /usr/local/lib/tqt /usr/local/share/tqt /usr/lib/tqt3 /usr/local/lib/tqt3 /usr/lib/qt /usr/share/qt /usr/share/qt3 /usr/local/lib/qt /usr/local/share/qt /usr/lib/qt3 /usr/local/lib/qt3 /usr/X11R6/share/qt /usr/qt/3 ; do
++	for p in /usr/lib64/tqt /usr/lib/tqt /usr/share/tqt /usr/share/tqt3 /usr/local/lib64/tqt /usr/local/lib/tqt /usr/local/share/tqt /usr/lib64/tqt3 /usr/lib/tqt3 /usr/local/lib64/tqt3 /usr/local/lib/tqt3 /usr/lib64/qt /usr/lib/qt /usr/share/qt /usr/share/qt3 /usr/local/lib64/qt /usr/local/lib/qt /usr/local/share/qt /usr/lib64/qt3 /usr/lib/qt3 /usr/local/lib64/qt3 /usr/local/lib/qt3 /usr/X11R6/share/qt /usr/qt/3 ; do
+ 		if [ -d "$p/mkspecs" ]; then
+ 			QTDIR=$p
+ 			break;
+@@ -79,15 +79,15 @@
+ 	fi
+ fi
+ 
+-if [ ! -x "$QTDIR/bin/qmake" ]; then
++if [ ! -x "$QTDIR/bin/qmake-tqt3" ]; then
+ 	if [ "$QC_DEBUG" = "Y" ]; then
+-		echo Warning: qmake not in \$QTDIR/bin/qmake
++		echo Warning: qmake-tqt3 not in \$QTDIR/bin/qmake-tqt3
+ 		echo trying to find it in \$PATH
+ 	fi
+-	qm=`type -p qmake`
++	qm=`type -p qmake-tqt3`
+ 	if [ -x "$qm" ]; then
+ 		if [ "$QC_DEBUG" = "Y" ]; then
+-			echo qmake found in $qm
++			echo qmake-tqt3 found in $qm
+ 		fi
+ 	else
+ 		echo fail
+@@ -96,12 +96,12 @@
+ 		echo or I missdetected \$QTDIR=$QTDIR
+ 		echo
+ 		echo Please set \$QTDIR manually and make sure that
+-		echo \$QTDIR/bin/qmake exists.
++		echo \$QTDIR/bin/qmake-tqt3 exists.
+ 		echo
+ 		exit 1;
+ 	fi
+ else
+-	qm=$QTDIR/bin/qmake
++	qm=$QTDIR/bin/qmake-tqt3
+ fi
+ 
+ gen_files() {
+@@ -185,6 +185,8 @@
+ 
+ 		// Make sure tqtinterface can be found
+ 		conf->addIncludePath("/usr/include/tqt");
++		// Make sure tqt3 can be found
++		conf->addIncludePath("/usr/include/tqt3");
+ 
+ 		return true;
+ 	}
+@@ -507,7 +509,7 @@
+ TEMPLATE = app
+ CONFIG += qt x11 thread console
+ TARGET = conf
+-INCLUDEPATH += '/usr/include/tqt'
++INCLUDEPATH += '/usr/include/tqt' '/usr/include/tqt3'
+ 
+ DEFINES += X11_INC='"\$\$QMAKE_INCDIR_X11"'
+ DEFINES += X11_LIBDIR='"\$\$QMAKE_LIBDIR_X11"'
+@@ -533,7 +535,7 @@
+ )
+ 
+ if [ "$?" != "0" ]; then
+-	rm -rf .qconftemp
++#	rm -rf .qconftemp
+ 	echo fail
+ 	echo
+ 	echo "There was an error compiling 'conf'.  Be sure you have a proper"

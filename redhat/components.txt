@@ -6,11 +6,13 @@ libraries/python-trinity
 libraries/pykdeextensions
 dependencies/qt3
 dependencies/tqt3
+dependencies/tqca-tls
 dependencies/libcaldav
 dependencies/libcarddav
 dependencies/tqtinterface
 dependencies/dbus-tqt
 dependencies/dbus-1-tqt
+dependencies/avahi-tqt
 dependencies/arts
 dependencies/tqscintilla
 kdelibs
