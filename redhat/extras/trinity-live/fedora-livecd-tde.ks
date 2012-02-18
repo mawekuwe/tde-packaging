@@ -25,6 +25,7 @@ trinity-k3b
 trinity-kaffeine
 trinity-kasablanca
 trinity-kbookreader
+trinity-kdebluetooth
 trinity-kde-style-lipstik
 trinity-kgtk-qt3
 trinity-kio-umountwrapper
@@ -43,11 +44,10 @@ trinity-kde-i18n-French
 #trinity-kde-i18n-Spanish
 trinity-kde-i18n-Chinese-Big5
 
-
 # Fedora stuff
 fuse
 liveusb-creator
-
+yumex
 
 ### more desktop stuff
 fedora-icon-theme
