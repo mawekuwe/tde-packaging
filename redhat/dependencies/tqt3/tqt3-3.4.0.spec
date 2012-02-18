@@ -20,18 +20,18 @@ Version: 3.4.0
 Release: 1%{?dist}
 Name: tqt3
 
-Obsoletes: qt < 1:%{version}-%{release}
-Provides: qt = 1:%{version}-%{release}
-Obsoletes: qt3 < 1:%{version}-%{release}
-Provides: qt3 = 1:%{version}-%{release}
+#Obsoletes: qt < 1:%{version}-%{release}
+#Provides: qt = 1:%{version}-%{release}
+#Obsoletes: qt3 < 1:%{version}-%{release}
+#Provides: qt3 = 1:%{version}-%{release}
 
 License: QPL or GPLv2 or GPLv3
 Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Url: http://www.troll.no
 Source0: %{name}-%{version}.tar.gz
-Source2: qt.sh
-Source3: qt.csh
+#Source2: qt.sh
+#Source3: qt.csh
 Source4: designer3.desktop
 Source5: assistant3.desktop
 Source6: linguist3.desktop
@@ -70,11 +70,6 @@ Patch200: qt-x11-free-3.3.4-fullscreen.patch
 # TDE 3.5.13 patches
 Patch300: qt3-3.3.8.d-updates_zh-tw_translations.patch
 
-%define qt_dirname qt-3.3
-%define qtdir %{_libdir}/%{qt_dirname}
-%define qt_docdir %{_docdir}/qt-devel-%{version}
-
-%define smp 1
 %define immodule 1
 %define debug 0
 
@@ -141,10 +136,10 @@ BuildRequires: sqlite-devel
 Summary: Graphical configuration tool for programs using Qt 3
 Group: User Interface/Desktops
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: qt-config < 1:%{version}-%{release}
-Provides:  qt-config = 1:%{version}-%{release}
-Obsoletes: qt3-config < 1:%{version}-%{release}
-Provides:  qt3-config = 1:%{version}-%{release}
+#Obsoletes: qt-config < 1:%{version}-%{release}
+#Provides:  qt-config = 1:%{version}-%{release}
+#Obsoletes: qt3-config < 1:%{version}-%{release}
+#Provides:  qt3-config = 1:%{version}-%{release}
 
 
 %package devel
@@ -170,10 +165,10 @@ Requires: libmng-devel
 Requires: mesa-libGL-devel
 Requires: mesa-libGLU-devel
 
-Obsoletes: qt-devel < 1:%{version}-%{release}
-Provides:  qt-devel = 1:%{version}-%{release}
-Obsoletes: qt3-devel < 1:%{version}-%{release}
-Provides:  qt3-devel = 1:%{version}-%{release}
+#Obsoletes: qt-devel < 1:%{version}-%{release}
+#Provides:  qt-devel = 1:%{version}-%{release}
+#Obsoletes: qt3-devel < 1:%{version}-%{release}
+#Provides:  qt3-devel = 1:%{version}-%{release}
 
 
 %package devel-docs
@@ -181,10 +176,10 @@ Summary: Documentation for the Qt 3 GUI toolkit
 Group: Development/Libraries
 Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-devel-docs < 1:%{version}-%{release}
-Provides:  qt-devel-docs = 1:%{version}-%{release}
-Obsoletes: qt3-devel-docs < 1:%{version}-%{release}
-Provides:  qt3-devel-docs = 1:%{version}-%{release}
+#Obsoletes: qt-devel-docs < 1:%{version}-%{release}
+#Provides:  qt-devel-docs = 1:%{version}-%{release}
+#Obsoletes: qt3-devel-docs < 1:%{version}-%{release}
+#Provides:  qt3-devel-docs = 1:%{version}-%{release}
 
 
 %package ODBC
@@ -192,10 +187,10 @@ Summary: ODBC drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-ODBC < 1:%{version}-%{release}
-Provides:  qt-ODBC = 1:%{version}-%{release}
-Obsoletes: qt3-ODBC < 1:%{version}-%{release}
-Provides:  qt3-ODBC = 1:%{version}-%{release}
+#Obsoletes: qt-ODBC < 1:%{version}-%{release}
+#Provides:  qt-ODBC = 1:%{version}-%{release}
+#Obsoletes: qt3-ODBC < 1:%{version}-%{release}
+#Provides:  qt3-ODBC = 1:%{version}-%{release}
 
 
 %package MySQL
@@ -203,10 +198,10 @@ Summary: MySQL drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-MySQL < 1:%{version}-%{release}
-Provides:  qt-MySQL = 1:%{version}-%{release}
-Obsoletes: qt3-MySQL < 1:%{version}-%{release}
-Provides:  qt3-MySQL = 1:%{version}-%{release}
+#Obsoletes: qt-MySQL < 1:%{version}-%{release}
+#Provides:  qt-MySQL = 1:%{version}-%{release}
+#Obsoletes: qt3-MySQL < 1:%{version}-%{release}
+#Provides:  qt3-MySQL = 1:%{version}-%{release}
 
 
 %package PostgreSQL
@@ -214,10 +209,10 @@ Summary: PostgreSQL drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-PostgreSQL < 1:%{version}-%{release}
-Provides:  qt-PostgreSQL = 1:%{version}-%{release}
-Obsoletes: qt3-PostgreSQL < 1:%{version}-%{release}
-Provides:  qt3-PostgreSQL = 1:%{version}-%{release}
+#Obsoletes: qt-PostgreSQL < 1:%{version}-%{release}
+#Provides:  qt-PostgreSQL = 1:%{version}-%{release}
+#Obsoletes: qt3-PostgreSQL < 1:%{version}-%{release}
+#Provides:  qt3-PostgreSQL = 1:%{version}-%{release}
 
 
 %package sqlite
@@ -225,10 +220,10 @@ Summary: sqlite drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-sqlite < 1:%{version}-%{release}
-Provides:  qt-sqlite = 1:%{version}-%{release}
-Obsoletes: qt3-sqlite < 1:%{version}-%{release}
-Provides:  qt3-sqlite = 1:%{version}-%{release}
+#Obsoletes: qt-sqlite < 1:%{version}-%{release}
+#Provides:  qt-sqlite = 1:%{version}-%{release}
+#Obsoletes: qt3-sqlite < 1:%{version}-%{release}
+#Provides:  qt3-sqlite = 1:%{version}-%{release}
 
 
 %package designer
@@ -236,10 +231,10 @@ Summary: In3erface designer (IDE) for the Qt 3 toolkit
 Group: Development/Tools
 Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-designer < 1:%{version}-%{release}
-Provides:  qt-designer = 1:%{version}-%{release}
-Obsoletes: qt3-designer < 1:%{version}-%{release}
-Provides:  qt3-designer = 1:%{version}-%{release}
+#Obsoletes: qt-designer < 1:%{version}-%{release}
+#Provides:  qt-designer = 1:%{version}-%{release}
+#Obsoletes: qt3-designer < 1:%{version}-%{release}
+#Provides:  qt3-designer = 1:%{version}-%{release}
 
 
 %description
@@ -343,15 +338,6 @@ iconv -f iso-8859-1 -t utf-8 < doc/man/man3/qdial.3qt > doc/man/man3/qdial.3qt_
 mv doc/man/man3/qdial.3qt_ doc/man/man3/qdial.3qt
 
 %build
-export QTDIR=`/bin/pwd`
-export LD_LIBRARY_PATH="$QTDIR/lib:$LD_LIBRARY_PATH"
-export PATH="$QTDIR/bin:$PATH"
-export QTDEST=%{qtdir}
-
-%if %{smp}
-   export SMP_MFLAGS="%{?_smp_mflags}"
-%endif
-
 %if %{immodule}
    sh ./make-symlinks.sh
 %endif
@@ -375,8 +361,14 @@ fi
 
 # build shared, threaded (default) libraries
 echo yes | ./configure \
-  -prefix $QTDEST \
-  -docdir %{qt_docdir} \
+  -prefix "%{_prefix}" \
+  -libdir "%{_libdir}" \
+  -docdir "%{_docdir}/%{name}-%{version}" \
+  -sysconfdir "%{_sysconfdir}/%{name}" \
+  -datadir "%{_datadir}/%{name}" \
+  -headerdir "%{_includedir}/%{name}" \
+  -plugindir "%{_libdir}/%{name}/plugins" \
+  -translationdir "%{_datadir}/%{name}/translations" \
 %if %{_lib} == lib64
   -platform linux-g++-64 \
 %else
@@ -422,7 +414,8 @@ echo yes | ./configure \
   -xft \
   -tablet
 
-make $SMP_MFLAGS src-qmake
+%__make %{?_smp_mflags} src-qmake
+
 
 # build sqlite plugin
 pushd plugins/src/sqldrivers/sqlite
@@ -444,34 +437,25 @@ pushd plugins/src/sqldrivers/odbc
 qmake -o Makefile "LIBS+=-lodbc" odbc.pro
 popd
 
-make $SMP_MFLAGS src-moc
-make $SMP_MFLAGS sub-src
-make $SMP_MFLAGS sub-tools UIC="$QTDIR/bin/uic -nostdlib -L $QTDIR/plugins"
+%__make %{?_smp_mflags} src-moc
+%__make %{?_smp_mflags} sub-src
+%__make %{?_smp_mflags} sub-tools
 
 %install
-rm -rf %{buildroot}
-
-export QTDIR=`/bin/pwd`
-export LD_LIBRARY_PATH="$QTDIR/lib:$LD_LIBRARY_PATH"
-export PATH="$QTDIR/bin:$PATH"
-export QTDEST=%{qtdir}
-
-make install INSTALL_ROOT=%{buildroot}
+%__rm -rf %{buildroot}
+%__make install INSTALL_ROOT=%{buildroot}
 
 for i in findtr qt20fix qtrename140 lrelease lupdate ; do
-   install bin/$i %{buildroot}%{qtdir}/bin/
+   %__install bin/$i %{buildroot}%{_bindir}
 done
 
-mkdir -p %{buildroot}%{_libdir}/pkgconfig/
-mv %{buildroot}%{qtdir}/lib/pkgconfig/*.pc %{buildroot}%{_libdir}/pkgconfig/
-
 # install man pages
-mkdir -p %{buildroot}%{_mandir}
-cp -fR doc/man/* %{buildroot}%{_mandir}/
+%__mkdir_p %{buildroot}%{_mandir}
+%__cp -fR doc/man/* %{buildroot}%{_mandir}/
 
 # clean up
-make -C tutorial clean
-make -C examples clean
+%__make -C tutorial clean
+%__make -C examples clean
 
 # Make sure the examples can be built outside the source tree.
 # Our binaries fulfill all requirements, so...
@@ -484,42 +468,41 @@ find examples -name "*.moc" | xargs rm -rf
 find tutorial -name "Makefile" | xargs rm -f
 
 for a in */*/Makefile ; do
-  sed 's|^SYSCONF_MOC.*|SYSCONF_MOC		= %{qtdir}/bin/moc|' < $a > ${a}.2
+  sed 's|^SYSCONF_MOC.*|SYSCONF_MOC		= %{_bindir}/moc|' < $a > ${a}.2
   mv -v ${a}.2 $a
 done
 
-mkdir -p %{buildroot}/etc/profile.d
-install -m 644 %{SOURCE2} %{SOURCE3} %{buildroot}/etc/profile.d/
-
 # Add desktop files
-mkdir -p %{buildroot}%{_datadir}/applications
+%__mkdir_p %{buildroot}%{_datadir}/applications
 desktop-file-install \
   --dir %{buildroot}%{_datadir}/applications \
   --vendor="qt" \
   %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7}
 
 # Patch qmake to use qt-mt unconditionally
-perl -pi -e "s,-lqt ,-lqt-mt ,g;s,-lqt$,-lqt-mt,g" %{buildroot}%{qtdir}/mkspecs/*/qmake.conf
+perl -pi -e "s,-lqt ,-lqt-mt ,g;s,-lqt$,-lqt-mt,g" %{buildroot}%{_datadir}/%{name}/mkspecs/*/qmake.conf
 
 # remove broken links
-rm -f %{buildroot}%{qtdir}/mkspecs/default/linux-g++*
-rm -f %{buildroot}%{qtdir}/lib/*.la
-
-mkdir -p %{buildroot}/etc/ld.so.conf.d
-echo "%{qtdir}/lib" > %{buildroot}/etc/ld.so.conf.d/qt-%{_arch}.conf
+%__rm -f %{buildroot}%{_datadir}/%{name}/mkspecs/default/linux-g++*
+%__rm -f %{buildroot}%{_libdir}/*.la
 
 # install icons
-mkdir %{buildroot}%{_datadir}/pixmaps
-install -m 644 tools/assistant/images/qt.png %{buildroot}%{_datadir}/pixmaps/qtconfig3.png
-install -m 644 tools/assistant/images/designer.png %{buildroot}%{_datadir}/pixmaps/designer3.png
-install -m 644 tools/assistant/images/assistant.png %{buildroot}%{_datadir}/pixmaps/assistant3.png
-install -m 644 tools/assistant/images/linguist.png %{buildroot}%{_datadir}/pixmaps/linguist3.png
+%__mkdir_p %{buildroot}%{_datadir}/pixmaps
+%__install -m 644 tools/assistant/images/qt.png %{buildroot}%{_datadir}/pixmaps/qtconfig3.png
+%__install -m 644 tools/assistant/images/designer.png %{buildroot}%{_datadir}/pixmaps/designer3.png
+%__install -m 644 tools/assistant/images/assistant.png %{buildroot}%{_datadir}/pixmaps/assistant3.png
+%__install -m 644 tools/assistant/images/linguist.png %{buildroot}%{_datadir}/pixmaps/linguist3.png
 
 # own style directory
-mkdir -p %{buildroot}%{qtdir}/plugins/styles
+%__mkdir_p %{buildroot}%{_libdir}/%{name}/plugins/styles
+
+# rename some binaries to make tqt3/4 installations possible
+for b in designer uic moc lupdate lrelease qmake qtconfig assistant linguist; do
+  %__mv -f %{buildroot}%{_bindir}/${b} %{buildroot}%{_bindir}/${b}-%{name}
+done
 
 %clean
-rm -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %post -p /sbin/ldconfig
 
@@ -528,55 +511,50 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %doc FAQ LICENSE* README* changes*
-%dir %{qtdir}
-%dir %{qtdir}/bin
-%dir %{qtdir}/lib
-%dir %{qtdir}/plugins
-%dir %{qtdir}/plugins/sqldrivers
-%dir %{qtdir}/plugins/styles
-%{qtdir}/translations
-%{qtdir}/plugins/designer/
+%dir %{_libdir}/%{name}/plugins
+%dir %{_libdir}/%{name}/plugins/sqldrivers
+%dir %{_libdir}/%{name}/plugins/styles
+%{_datadir}/%{name}/translations
+%{_libdir}/%{name}/plugins/designer/
 %if %{immodule}
-%{qtdir}/plugins/inputmethods
+%{_libdir}/%{name}/plugins/inputmethods
 %endif
-%config /etc/profile.d/*
-/etc/ld.so.conf.d/*
-%{qtdir}/lib/libtqui.so.*
-%{qtdir}/lib/libtqt*.so.*
+%{_libdir}/libtqui.so.*
+%{_libdir}/libtqt*.so.*
 
 # TQT 3.4.0: WTF is this file ??
 %exclude %{_mandir}/README
 
 %files config
 %defattr(-,root,root,-)
-%{qtdir}/bin/qtconfig
+%{_bindir}/qtconfig-%{name}
 %{_datadir}/applications/*qtconfig*.desktop
 %{_datadir}/pixmaps/qtconfig3.png
 
 %files devel
 %defattr(-,root,root,-)
-%{qt_docdir}/
-%{qtdir}/bin/moc
-%{qtdir}/bin/uic
-%{qtdir}/bin/findtr
-%{qtdir}/bin/qt20fix
-%{qtdir}/bin/qtrename140
-%{qtdir}/bin/assistant
-%{qtdir}/bin/qm2ts
-%{qtdir}/bin/qmake
-%{qtdir}/bin/qembed
-%{qtdir}/bin/linguist
-%{qtdir}/bin/lupdate
-%{qtdir}/bin/lrelease
-%{qtdir}/include
-%{qtdir}/mkspecs
-%{qtdir}/lib/libtqt*.so
-%{qtdir}/lib/libtqui.so
-%{qtdir}/lib/libeditor.a
-%{qtdir}/lib/libdesigner*.a
-%{qtdir}/lib/libqassistantclient.a
-%{qtdir}/lib/*.prl
-%{qtdir}/phrasebooks
+%{_docdir}/%{name}-%{version}
+%{_bindir}/moc-%{name}
+%{_bindir}/uic-%{name}
+%{_bindir}/findtr
+%{_bindir}/qt20fix
+%{_bindir}/qtrename140
+%{_bindir}/assistant-%{name}
+%{_bindir}/qm2ts
+%{_bindir}/qmake-%{name}
+%{_bindir}/qembed
+%{_bindir}/linguist-%{name}
+%{_bindir}/lupdate-%{name}
+%{_bindir}/lrelease-%{name}
+%{_includedir}/%{name}
+%{_datadir}/%{name}/mkspecs
+%{_libdir}/libtqt*.so
+%{_libdir}/libtqui.so
+%{_libdir}/libeditor.a
+%{_libdir}/libdesigner*.a
+%{_libdir}/libqassistantclient.a
+%{_libdir}/*.prl
+%{_datadir}/%{name}/phrasebooks
 %{_libdir}/pkgconfig/*
 %{_datadir}/applications/*linguist*.desktop
 %{_datadir}/applications/*assistant*.desktop
@@ -584,51 +562,51 @@ rm -rf %{buildroot}
 %{_datadir}/pixmaps/assistant3.png
 
 # QT 3.3.8.D (TDE): 4 binaries have appeared
-%{qtdir}/bin/createcw
-%{qtdir}/bin/makeqpf
-%{qtdir}/bin/mergetr
-%{qtdir}/bin/msg2qm
+%{_bindir}/createcw
+%{_bindir}/makeqpf
+%{_bindir}/mergetr
+%{_bindir}/msg2qm
 
 # QT 3.3.8.D (TDE): removes lots of unnecessary include files
 # (where do they come from ??? They were not in 3.3.8b !)
-%exclude %{qtdir}/include/btree.h
-%exclude %{qtdir}/include/crc32.h
-%exclude %{qtdir}/include/debian_qsql_odbc.h
-%exclude %{qtdir}/include/deflate.h
-%exclude %{qtdir}/include/ftglue.h
-%exclude %{qtdir}/include/ftxgdef.h
-%exclude %{qtdir}/include/ftxgpos.h
-%exclude %{qtdir}/include/ftxgsub.h
-%exclude %{qtdir}/include/ftxopen.h
-%exclude %{qtdir}/include/ftxopenf.h
-%exclude %{qtdir}/include/hash.h
-%exclude %{qtdir}/include/inffast.h
-%exclude %{qtdir}/include/inffixed.h
-%exclude %{qtdir}/include/inflate.h
-%exclude %{qtdir}/include/inftrees.h
-%exclude %{qtdir}/include/jchuff.h
-%exclude %{qtdir}/include/jconfig.h
-%exclude %{qtdir}/include/jdct.h
-%exclude %{qtdir}/include/jdhuff.h
-%exclude %{qtdir}/include/jerror.h
-%exclude %{qtdir}/include/jinclude.h
-%exclude %{qtdir}/include/jmemsys.h
-%exclude %{qtdir}/include/jmorecfg.h
-%exclude %{qtdir}/include/jversion.h
-%exclude %{qtdir}/include/moc_yacc.h
-%exclude %{qtdir}/include/opcodes.h
-%exclude %{qtdir}/include/os.h
-%exclude %{qtdir}/include/otlbuffer.h
-%exclude %{qtdir}/include/pager.h
-%exclude %{qtdir}/include/parse.h
-%exclude %{qtdir}/include/pngasmrd.h
-%exclude %{qtdir}/include/pngconf.h
-%exclude %{qtdir}/include/sqlite.h
-%exclude %{qtdir}/include/sqliteInt.h
-%exclude %{qtdir}/include/trees.h
-%exclude %{qtdir}/include/vdbe.h
-%exclude %{qtdir}/include/vdbeInt.h
-%exclude %{qtdir}/mkspecs/linux-g++-sparc
+%exclude %{_includedir}/%{name}/btree.h
+%exclude %{_includedir}/%{name}/crc32.h
+%exclude %{_includedir}/%{name}/debian_qsql_odbc.h
+%exclude %{_includedir}/%{name}/deflate.h
+%exclude %{_includedir}/%{name}/ftglue.h
+%exclude %{_includedir}/%{name}/ftxgdef.h
+%exclude %{_includedir}/%{name}/ftxgpos.h
+%exclude %{_includedir}/%{name}/ftxgsub.h
+%exclude %{_includedir}/%{name}/ftxopen.h
+%exclude %{_includedir}/%{name}/ftxopenf.h
+%exclude %{_includedir}/%{name}/hash.h
+%exclude %{_includedir}/%{name}/inffast.h
+%exclude %{_includedir}/%{name}/inffixed.h
+%exclude %{_includedir}/%{name}/inflate.h
+%exclude %{_includedir}/%{name}/inftrees.h
+%exclude %{_includedir}/%{name}/jchuff.h
+%exclude %{_includedir}/%{name}/jconfig.h
+%exclude %{_includedir}/%{name}/jdct.h
+%exclude %{_includedir}/%{name}/jdhuff.h
+%exclude %{_includedir}/%{name}/jerror.h
+%exclude %{_includedir}/%{name}/jinclude.h
+%exclude %{_includedir}/%{name}/jmemsys.h
+%exclude %{_includedir}/%{name}/jmorecfg.h
+%exclude %{_includedir}/%{name}/jversion.h
+%exclude %{_includedir}/%{name}/moc_yacc.h
+%exclude %{_includedir}/%{name}/opcodes.h
+%exclude %{_includedir}/%{name}/os.h
+%exclude %{_includedir}/%{name}/otlbuffer.h
+%exclude %{_includedir}/%{name}/pager.h
+%exclude %{_includedir}/%{name}/parse.h
+%exclude %{_includedir}/%{name}/pngasmrd.h
+%exclude %{_includedir}/%{name}/pngconf.h
+%exclude %{_includedir}/%{name}/sqlite.h
+%exclude %{_includedir}/%{name}/sqliteInt.h
+%exclude %{_includedir}/%{name}/trees.h
+%exclude %{_includedir}/%{name}/vdbe.h
+%exclude %{_includedir}/%{name}/vdbeInt.h
+%exclude %{_datadir}/%{name}/mkspecs/linux-g++-sparc
 
 %files devel-docs
 %defattr(-,root,root,-)
@@ -638,24 +616,24 @@ rm -rf %{buildroot}
 
 %files sqlite
 %defattr(-,root,root,-)
-%{qtdir}/plugins/sqldrivers/libqsqlite.so
+%{_libdir}/%{name}/plugins/sqldrivers/libqsqlite.so
 
 %files ODBC
 %defattr(-,root,root,-)
-%{qtdir}/plugins/sqldrivers/libqsqlodbc.so
+%{_libdir}/%{name}/plugins/sqldrivers/libqsqlodbc.so
 
 %files PostgreSQL
 %defattr(-,root,root,-)
-%{qtdir}/plugins/sqldrivers/libqsqlpsql.so
+%{_libdir}/%{name}/plugins/sqldrivers/libqsqlpsql.so
 
 %files MySQL
 %defattr(-,root,root,-)
-%{qtdir}/plugins/sqldrivers/libqsqlmysql.so
+%{_libdir}/%{name}/plugins/sqldrivers/libqsqlmysql.so
 
 %files designer
 %defattr(-,root,root,-)
-%{qtdir}/templates
-%{qtdir}/bin/designer
+%{_datadir}/%{name}/templates
+%{_bindir}/designer-%{name}
 %{_datadir}/applications/*designer*.desktop
 %{_datadir}/pixmaps/designer3.png
 
