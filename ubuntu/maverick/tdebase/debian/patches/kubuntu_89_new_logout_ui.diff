@@ -12,12 +12,12 @@
 
 --- ksmserver/shutdowndlg.cpp
 +++ ksmserver/shutdowndlg.cpp
-@@ -278,7 +278,7 @@
-                             2 * KDialog::spacingHint() );
+@@ -668,7 +668,7 @@
+ 							2 * KDialog::spacingHint() );
  
  	// default factor
--	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Logout").readBoolEntry("doUbuntuLogout", false);	
-+	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Logout").readBoolEntry("doUbuntuLogout", true);	
+-	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Logout").readBoolEntry("doUbuntuLogout", false);
++	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Logout").readBoolEntry("doUbuntuLogout", true);
  
- 	// slighty more space for the new logout    
+ 	// slighty more space for the new logout
  	int factor = 2;
