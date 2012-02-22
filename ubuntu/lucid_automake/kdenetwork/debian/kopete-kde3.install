@@ -1,9 +1,9 @@
 debian/tmp/opt/kde3/bin/kopete
 debian/tmp/opt/kde3/bin/kopete_latexconvert.sh
-debian/tmp/opt/kde3/include/kde/kopete/kopetepicture.h
-debian/tmp/opt/kde3/include/kde/kopete/kopeteprefs.h
-debian/tmp/opt/kde3/include/kde/kopete/ui/addressbooklinkwidget.h
-debian/tmp/opt/kde3/include/kde/kopete/webcamwidget.h
+debian/tmp/opt/kde3/include/tde/kopete/kopetepicture.h
+debian/tmp/opt/kde3/include/tde/kopete/kopeteprefs.h
+debian/tmp/opt/kde3/include/tde/kopete/ui/addressbooklinkwidget.h
+debian/tmp/opt/kde3/include/tde/kopete/webcamwidget.h
 debian/tmp/opt/kde3/lib/kconf_update_bin/kopete-account-kconf_update
 debian/tmp/opt/kde3/lib/kconf_update_bin/kopete-nameTracking-kconf_update
 debian/tmp/opt/kde3/lib/kconf_update_bin/kopete-pluginloader2-kconf_update

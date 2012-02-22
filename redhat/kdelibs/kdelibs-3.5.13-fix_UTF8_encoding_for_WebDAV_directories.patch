@@ -1,0 +1,45 @@
+From 1f37c9cdb9bb47f8453cf26af8006c7c8d4ca3b3 Mon Sep 17 00:00:00 2001
+From: Thorsten Glaser <t.glaser@tarent.de>
+Date: Tue, 27 Dec 2011 14:28:27 +0100
+Subject: [PATCH] fix UTF-8 encoding for WebDAV directories
+
+idea derived from KIO slave http.cpp from KDE 4; reimplemented
+on top of Qt3/KDE3 APIs
+
+Bug: http://bugs.kde.org/show_bug.cgi?id=127251
+
+Signed-off-by: Thorsten Glaser <t.glaser@tarent.de>
+---
+ kioslave/http/http.cc |    6 ++++++
+ 1 files changed, 6 insertions(+), 0 deletions(-)
+
+diff --git a/kioslave/http/http.cc b/kioslave/http/http.cc
+index a1495d7..16b785d 100644
+--- a/kioslave/http/http.cc
++++ b/kioslave/http/http.cc
+@@ -45,6 +45,7 @@
+ #include <tqregexp.h>
+ #include <tqdatetime.h>
+ #include <tqstringlist.h>
++#include <tqurl.h>
+ 
+ #include <kurl.h>
+ #include <kidna.h>
+@@ -750,9 +751,14 @@ void HTTPProtocol::davStatList( const KURL& url, bool stat )
+       entry.clear();
+ 
+       TQString urlStr = href.text();
++#if 0
+       int encoding = remoteEncoding()->encodingMib();
+       if ((encoding == 106) && (!KStringHandler::isUtf8(KURL::decode_string(urlStr, 4).latin1())))
+         encoding = 4; // Use latin1 if the file is not actually utf-8
++#else
++      TQUrl::decode(urlStr);
++      int encoding = 106;
++#endif
+ 
+       KURL thisURL ( urlStr, encoding );
+ 
+-- 
+1.7.2.3
+

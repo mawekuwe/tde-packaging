@@ -1,4 +1,4 @@
-debian/tmp/opt/kde3/include/kde
+debian/tmp/opt/kde3/include/tde
 debian/tmp/opt/kde3/lib/libkarboncommon.la
 debian/tmp/opt/kde3/lib/libkarboncommon.so
 debian/tmp/opt/kde3/lib/libkchartcommon.la

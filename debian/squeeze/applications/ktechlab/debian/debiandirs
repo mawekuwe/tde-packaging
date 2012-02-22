@@ -1,7 +1,7 @@
 export kde_confdir=/etc/trinity
 export kde_prefix=/opt/trinity
 export kde_bindir=/opt/trinity/bin
-export kde_includedir=/opt/trinity/include/kde
+export kde_includedir=/opt/trinity/include/tde
 export kde_libdir=/opt/trinity/lib
 export kde_cgidir=/opt/trinity/lib/cgi-bin
 export kde_moduledir=/opt/trinity/lib/trinity

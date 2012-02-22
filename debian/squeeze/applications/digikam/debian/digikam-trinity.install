@@ -1,5 +1,5 @@
 opt/trinity/bin/digi*
-/opt/trinity/include/kde
+/opt/trinity/include/tde
 opt/trinity/lib
 /opt/trinity/share/apps/digikam
 /opt/trinity/share/apps/konqueror/servicemenus/digikam*.desktop

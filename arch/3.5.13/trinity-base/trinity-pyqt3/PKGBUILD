@@ -22,12 +22,14 @@ md5sums=('f1d120495d1aaf393819e988c0a7bb7e')
 build() {
    cd ${srcdir}/PyQt-x11-gpl-${pkgver}
 
+   [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh
+   [ "$TDEDIR" = "" ] && . /etc/profile.d/trinity.sh
+
    msg "Starting configure..."
-   . /etc/profile.d/qt3.sh
 
    export QMAKESPEC="/opt/qt/mkspecs/default"
 
-   echo yes | python2.7 configure.py -q /opt/qt/
+   echo yes | python2.7 configure.py -q ${QTDIR}
 
    msg "Building ${pkgname}..."
    make

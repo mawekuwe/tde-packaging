@@ -2394,8 +2394,8 @@ kdelibs (4:3.3.2-0pre1) experimental; urgency=low
     - usr/share/apps/ksgmltools2/customization/cs/entities/underLGPL.docbook
 
   * New entries in debian/kdelibs4-dev.install:
-    - usr/include/kde/kiobuffer.h
-    - usr/include/kde/kwallettypes.h
+    - usr/include/tde/kiobuffer.h
+    - usr/include/tde/kwallettypes.h
 
   * debian/control:
     - removed unneeded build-dependency on automake1.9. [CM]

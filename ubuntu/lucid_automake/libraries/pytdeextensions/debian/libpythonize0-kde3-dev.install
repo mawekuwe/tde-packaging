@@ -1,4 +1,4 @@
-opt/kde3/include/kde/pythonize.h
+opt/kde3/include/tde/pythonize.h
 opt/kde3/lib/libpythonize.a
 opt/kde3/lib/libpythonize.la
 opt/kde3/lib/libpythonize.so

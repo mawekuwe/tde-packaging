@@ -1,4 +1,4 @@
-debian/tmp/opt/kde3/include/kde/kprofilemethod.h
+debian/tmp/opt/kde3/include/tde/kprofilemethod.h
 debian/tmp/opt/kde3/lib/kde3/kabcformat_kdeaccounts.la
 debian/tmp/opt/kde3/lib/kde3/kabcformat_kdeaccounts.so
 debian/tmp/opt/kde3/lib/kde3/plugins/styles/scheck.so

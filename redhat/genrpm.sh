@@ -121,5 +121,3 @@ if grep -q "error: Failed build dependencies:" ${LOGFILE}; then
 	set $( grep " is needed by " ${LOGFILE} | cut -d " " -f1 )
 	exit 2
 fi
-
-

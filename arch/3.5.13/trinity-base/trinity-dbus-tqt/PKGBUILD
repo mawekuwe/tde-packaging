@@ -9,7 +9,7 @@ url='http://www.trinitydesktop.org'
 license=('GPL')
 groups=('trinity-base')
 pkgdesc="Trinity TQt DBus wrapper"
-depends=('trinity-tqtinterface' 'dbus-core')
+depends=('trinity-arts' 'dbus-core')
 makedepends=('pkgconfig' 'cmake')
 options=('libtool' '!strip')
 source=(http://mirror.ets.kth.se/trinity/releases/3.5.13/dependencies/dbus-tqt-3.5.13.tar.gz)
@@ -17,7 +17,6 @@ md5sums=('46ae165c068271485c827f6fc6687a9a')
 install='trinity-dbus-tqt.install'
 
 build() {
-
    msg "Setting PATH, CMAKE and Trinity Environment variables"
    # Source the QT and TDE profile
    [ "$QTDIR" = "" ] && . /etc/profile.d/qt3.sh 

@@ -1,6 +1,7 @@
 debian/tmp/opt/trinity/bin/kompmgr
 debian/tmp/opt/trinity/bin/twin
 debian/tmp/opt/trinity/bin/twin_killer_helper
+debian/tmp/opt/trinity/bin/twin_resumer_helper
 debian/tmp/opt/trinity/bin/twin_rules_dialog
 debian/tmp/opt/trinity/lib/kconf_update_bin/twin_update_default_rules
 debian/tmp/opt/trinity/lib/kconf_update_bin/twin_update_window_settings

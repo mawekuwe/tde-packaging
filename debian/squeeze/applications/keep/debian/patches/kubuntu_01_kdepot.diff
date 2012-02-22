@@ -5,7 +5,7 @@ diff -Nur keep-0.4.0/admin/cvs.sh keep-0.4.0.new/admin/cvs.sh
  if test -z "$PREPARETIPS"; then PREPARETIPS=preparetips ; fi
  export EXTRACTRC PREPARETIPS
  
-+kdepotpath=/usr/include/kde/kde.pot
++kdepotpath=/usr/include/tde/kde.pot
 +
  for subdir in $dirs; do
    test -z "$VERBOSE" || echo "Making messages in $subdir"

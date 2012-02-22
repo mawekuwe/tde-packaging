@@ -2,7 +2,7 @@
 # Sample debian/rules that uses debhelper.
 # GNU copyright 1997 to 1999 by Joey Hess.
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/kde
+DEB_CONFIGURE_INCLUDEDIR := /opt/kde3/include/tde
 DEB_CONFIGURE_MANDIR := /opt/kde3/share/man
 DEB_CONFIGURE_PREFIX := /opt/kde3
 DEB_CONFIGURE_INFODIR := /opt/kde3/share/info
@@ -74,7 +74,7 @@ configure-stamp:
 
 	# run configure with build tree $(objdir)
 	cd $(objdir) && \
-	../configure $(configkde) --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib --with-extra-includes=/opt/kde3/include/kde
+	../configure $(configkde) --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib --with-extra-includes=/opt/kde3/include/tde
 
 	touch configure-stamp
 

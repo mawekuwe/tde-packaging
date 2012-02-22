@@ -13,7 +13,7 @@ debian/tmp/opt/trinity/share/doc/
 debian/tmp/opt/trinity/share/icons/
 debian/tmp/opt/trinity/share/mimelnk/application/x-kaffeine.desktop
 debian/tmp/opt/trinity/share/locale/
-debian/tmp/opt/trinity/include/kde/kaffeine/*h
+debian/tmp/opt/trinity/include/tde/kaffeine/*h
 debian/tmp/opt/trinity/share/services/kaffeineoggvorbis.desktop
 debian/tmp/opt/trinity/lib/trinity/libkaffeineoggvorbis.la
 debian/tmp/opt/trinity/lib/trinity/libkaffeineoggvorbis.so

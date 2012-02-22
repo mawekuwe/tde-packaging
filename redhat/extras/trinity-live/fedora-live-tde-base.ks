@@ -86,6 +86,14 @@ touch /usr/share/icons/hicolor/
 mkdir -p /home/liveuser/Desktop
 mkdir -p /home/liveuser/Documents
 
+# Kmix (from TDE) should be started automatically
+#mkdir -p /home/liveuser/.trinity/Autostart
+#ln -sf /opt/trinity/share/applications/kde/kmix.desktop /home/liveuser/.trinity/Autostart/kmix.desktop
+cat <<EOF >/home/liveuser/.trinity/share/config/kmixrc
+Autostart=true
+Visible=false
+EOF
+
 # make sure to set the right permissions and selinux contexts
 chown -R liveuser:liveuser /home/liveuser/
 restorecon -R /home/liveuser/
@@ -97,7 +105,7 @@ EOF
 
 ### TDE LIVECD specific features ###
 
-# Sets 'nm-applet' to run automatically
+# Sets 'nm-applet' to run automatically (system-wide)
 ln -sf /usr/share/applications/nm-applet.desktop /opt/trinity/share/autostart/nm-applet.desktop
 
 %end

@@ -1,6 +1,6 @@
-/opt/kde3/include/kde/gpgme++
-/opt/kde3/include/kde/kleo
-/opt/kde3/include/kde/qgpgme
+/opt/kde3/include/tde/gpgme++
+/opt/kde3/include/tde/kleo
+/opt/kde3/include/tde/qgpgme
 /opt/kde3/lib/libgpgme++.la
 /opt/kde3/lib/libgpgme++.so
 /opt/kde3/lib/libkleopatra.la

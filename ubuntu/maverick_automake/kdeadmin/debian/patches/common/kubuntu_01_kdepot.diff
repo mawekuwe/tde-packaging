@@ -4,7 +4,7 @@
  if test -z "$PREPARETIPS"; then PREPARETIPS=preparetips ; fi
  export EXTRACTRC PREPARETIPS
  
-+kdepotpath=/opt/kde3/include/kde/kde.pot
++kdepotpath=/opt/kde3/include/tde/kde.pot
 +
  for subdir in $dirs; do
    test -z "$VERBOSE" || echo "Making messages in $subdir"

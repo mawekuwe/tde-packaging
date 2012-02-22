@@ -4,12 +4,15 @@ libraries/libkipi
 libraries/libksquirrel
 libraries/python-trinity
 libraries/pykdeextensions
-qt3
+dependencies/qt3
+dependencies/tqt3
+dependencies/tqca-tls
 dependencies/libcaldav
 dependencies/libcarddav
 dependencies/tqtinterface
 dependencies/dbus-tqt
 dependencies/dbus-1-tqt
+dependencies/avahi-tqt
 dependencies/arts
 dependencies/tqscintilla
 kdelibs
@@ -36,6 +39,7 @@ extras/kasablanca
 extras/ksensors
 extras/libkarma
 #extras/libkexif
+extras/kdebluetooth
 extras/trinity-desktop
 extras/trinity-live
 applications/k3b
@@ -118,3 +122,4 @@ applications/kmplayer
 applications/kvkbd
 applications/potracegui
 applications/soundkonverter
+

@@ -1,4 +1,4 @@
-debian/tmp/opt/trinity/include/kde
+debian/tmp/opt/trinity/include/tde
 debian/tmp/opt/trinity/lib/libkarboncommon.la
 debian/tmp/opt/trinity/lib/libkarboncommon.so
 debian/tmp/opt/trinity/lib/libkchartcommon.la

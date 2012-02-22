@@ -93,8 +93,8 @@ manpage.1: manpage.sgml
 
     <para><command>&dhpackage;</command> will create the first two
     resources in directories under <filename>/tmp</filename> (or
-    <envar>KDETMP</envar> if defined in the environment) and will use
-    <filename>/var/tmp</filename> (or <envar>KDEVARTMP</envar> if
+    <envar>TDETMP</envar> if defined in the environment) and will use
+    <filename>/var/tmp</filename> (or <envar>TDEVARTMP</envar> if
     defined in the environment) for the <emphasis>cache</emphasis>
     resource (in order to survive system reboots). The temporary
     directories created for resources are usually of the form

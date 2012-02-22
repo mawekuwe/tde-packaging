@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 %define _datadir %{_usr}/share
 
@@ -79,6 +79,10 @@ EOF
 
 
 %changelog
+* Sat Jan 07 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Start kmix automatically in LiveCD
+- Add 'yumex' package manager
+
 * Mon Dec 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - More TDE 3.5.13 specific visual settings
 - Updates all packages to fix TDE bugs

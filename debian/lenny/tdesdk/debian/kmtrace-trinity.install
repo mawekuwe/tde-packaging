@@ -2,7 +2,7 @@ debian/tmp/opt/trinity/bin/demangle
 debian/tmp/opt/trinity/bin/kminspector
 debian/tmp/opt/trinity/bin/kmmatch
 debian/tmp/opt/trinity/bin/kmtrace
-debian/tmp/opt/trinity/include/kde/ktrace.h
+debian/tmp/opt/trinity/include/tde/ktrace.h
 debian/tmp/opt/trinity/lib/kmtrace/libktrace.la
 debian/tmp/opt/trinity/lib/kmtrace/libktrace.so
 debian/tmp/opt/trinity/lib/kmtrace/libktrace_s.a
