@@ -18,7 +18,7 @@ debian/tmp/opt/trinity/bin/kaddprinterwizard
 debian/tmp/opt/trinity/bin/kbuildsycoca
 debian/tmp/opt/trinity/bin/kconf_update
 debian/tmp/opt/trinity/bin/kcookiejar
-debian/tmp/opt/trinity/bin/kde-config
+debian/tmp/opt/trinity/bin/tde-config
 debian/tmp/opt/trinity/bin/kded
 debian/tmp/opt/trinity/bin/tdeinit
 debian/tmp/opt/trinity/bin/tdeinit_shutdown
