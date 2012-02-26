@@ -1,14 +1,22 @@
 #
-# spec file for package qt3-extensions (Version 3.3.8d)
+# spec file for package qt3-extensions
 #
-# Copyright (c) 2005 SUSE LINUX Products GmbH, Nuernberg, Germany.
-# This file and all modifications and additions to the pristine
-# package are under the same license as the package itself.
+# Copyright (c) 2011 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
-# Please submit bugfixes or comments via http://bugs.opensuse.org
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+
+# Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
 # norootforbuild
+
 
 Name:         qt3-extensions
 BuildRequires: cups-devel krb5-devel mysql-devel postgresql-devel qt3-devel sqlite2-devel unixODBC-devel update-desktop-files
@@ -16,7 +24,7 @@ BuildRequires: cups-devel krb5-devel mysql-devel postgresql-devel qt3-devel sqli
 BuildRequires: fdupes
 %endif
 License:      GPL, QPL
-Version:      3.3.8d
+Version:      3.4.0
 Release:      1
 Autoreqprov:  on
 Requires:     qt3 = %version
@@ -26,17 +34,8 @@ Summary:      Qt3 Extensions
 # COMMON-END
 
 %description
-Qt is a program library for developing applications with graphical user
-interfaces. It allows you to rapidly develop professional programs. The
-Qt library is available not only for Linux but for a great number of
-Unices and even for Windows. Thus it is possible to write programs that
-may be easily ported to those platforms.
-
-You need a license for using Qt with a non-GPL application, which can
-be acquired from sales@trolltech.com.
-
-See /usr/share/doc/packages/qt3 for details about the new features of
-the current Qt library!
+This package contains extension libraries for Qt 3, such as the
+Netscape plug-in modules.
 
 %package -n qt3-devel-examples
 Summary:      Programming Examples for Qt 3
@@ -46,17 +45,10 @@ Provides:     qt3-examples
 Obsoletes:    qt3-examples
 
 %description  -n qt3-devel-examples
-Qt is a program library for developing applications with graphical user
-interfaces. It allows you to rapidly develop professional programs. The
-Qt library is available not only for Linux but for a great number of
-Unices and even for Windows. Thus it is possible to write programs that
-may be easily ported to those platforms.
+This package contains small executables with code to demonstrate Qt
+programming.
 
-You need a license for using Qt with a non-GPL application, which can
-be acquired from sales@trolltech.com.
-
-See /usr/share/doc/packages/qt3 for details about the new features of
-the current Qt library!
+Have a look in /usr/share/doc/packages/qt3/examples/.
 
 %package -n qt3-mysql
 Summary:      MySQL Plug-In for Qt
@@ -64,17 +56,8 @@ Provides:     qt3_database_plugin
 Group:        Productivity/Databases/Clients
 
 %description  -n qt3-mysql
-Qt is a program library for developing applications with graphical user
-interfaces. It allows you to rapidly develop professional programs. The
-Qt library is available not only for Linux but for a great number of
-Unices and even for Windows. Thus it is possible to write programs that
-may be easily ported to those platforms.
-
-You need a license for using Qt with a non-GPL application, which can
-be acquired from sales@trolltech.com.
-
-See /usr/share/doc/packages/qt3 for details about the new features of
-the current Qt library!
+Plug-in for using the MySQL database with the generic Qt database
+interface.
 
 %package -n qt3-unixODBC
 Summary:      A UnixODBC Plug-In for Qt
@@ -82,17 +65,8 @@ Provides:     qt3_database_plugin
 Group:        Productivity/Databases/Clients
 
 %description  -n qt3-unixODBC
-Qt is a program library for developing applications with graphical user
-interfaces. It allows you to rapidly develop professional programs. The
-Qt library is available not only for Linux but for a great number of
-Unices and even for Windows. Thus it is possible to write programs that
-may be easily ported to those platforms.
-
-You need a license for using Qt with a non-GPL application, which can
-be acquired from sales@trolltech.com.
-
-See /usr/share/doc/packages/qt3 for details about the new features of
-the current Qt library!
+A plug-in for using UnixODBC supported databases with the generic Qt
+database interface.
 
 %package -n qt3-postgresql
 Summary:      A PostgreSQL Plug-In for Qt
@@ -100,17 +74,8 @@ Provides:     qt3_database_plugin
 Group:        Productivity/Databases/Clients
 
 %description  -n qt3-postgresql
-Qt is a program library for developing applications with graphical user
-interfaces. It allows you to rapidly develop professional programs. The
-Qt library is available not only for Linux but for a great number of
-Unices and even for Windows. Thus it is possible to write programs that
-may be easily ported to those platforms.
-
-You need a license for using Qt with a non-GPL application, which can
-be acquired from sales@trolltech.com.
-
-See /usr/share/doc/packages/qt3 for details about the new features of
-the current Qt library!
+A Plug-in for using the PostgreSQL database with the generic Qt
+database interface.
 
 %package -n qt3-sqlite
 Summary:      SQLite Database Plug-In for Qt
@@ -118,17 +83,8 @@ Provides:     qt3_database_plugin
 Group:        Development/Tools/Other
 
 %description  -n qt3-sqlite
-Qt is a program library for developing applications with graphical user
-interfaces. It allows you to rapidly develop professional programs. The
-Qt library is available not only for Linux but for a great number of
-Unices and even for Windows. Thus it is possible to write programs that
-may be easily ported to those platforms.
-
-You need a license for using Qt with a non-GPL application, which can
-be acquired from sales@trolltech.com.
-
-See /usr/share/doc/packages/qt3 for details about the new features of
-the current Qt library!
+The Qt database supports SQLite with this plug-in. (No configured and
+running daemon is required.)
 
 %package  -n qt3-devel-tools
 Summary:      User Interface Builder and other tools (designer, assistant, linguist)
@@ -139,17 +95,9 @@ Obsoletes:    qt3-designer
 Group:        Development/Tools/GUI Builders
 
 %description  -n qt3-devel-tools
-Qt is a program library for developing applications with graphical user
-interfaces. It allows you to rapidly develop professional programs. The
-Qt library is available not only for Linux but for a great number of
-Unices and even for Windows. Thus it is possible to write programs that
-may be easily ported to those platforms.
-
-You need a license for using Qt with a non-GPL application, which can
-be acquired from sales@trolltech.com.
-
-See /usr/share/doc/packages/qt3 for details about the new features of
-the current Qt library!
+The designer creates .ui files. The uic generates C++ code from these
+files. The package also contains the Qt Assistant (Qt documentation
+browser) and the Qt Linguist (for translations).
 
 %package -n qt3-man
 Summary:      Qt 3 Man Pages
@@ -159,18 +107,7 @@ Conflicts:    qtman qt-man
 Group:        Documentation/Man
 
 %description -n qt3-man
-Qt is a program library for developing applications with graphical user
-interfaces. It allows you to rapidly develop professional programs. The
-Qt library is available not only for Linux but for a great number of
-Unices and even for Windows. Thus it is possible to write programs that
-may be easily ported to those platforms.
-
-You need a license for using Qt with a non-GPL application, which can
-be acquired from sales@trolltech.com.
-
-See /usr/share/doc/packages/qt3 for details about the new features of
-the current Qt library!
-
+This package contains all the man pages for all the Qt 3 classes.
 %build
 export QTDIR=/usr/lib/qt3/
 export WLIB=%_lib
@@ -357,4 +294,4 @@ rm -rf ${RPM_BUILD_ROOT}
 %defattr(-,root,root)
 %{_mandir}/man*/*
 
-%changelog -n qt3-extensions
+%changelog

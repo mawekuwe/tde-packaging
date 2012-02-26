@@ -26,12 +26,12 @@ License:        GPLv2+
 Group:          Documentation/HTML
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Summary:        Additional Package Documentation
-Version:        3.5.12.99
+Version:        R13.99
 Release:        1
 %define       tdelibs_patch_level b
 BuildArch:      noarch
 Requires:       tdelibs qt3-devel-doc
-Source0:        kdelibs-%{version}.tar.bz2
+Source0:        tdelibs-%{version}.tar.bz2
 Source1:        create-kdeapi
 Source4:        api_docu_description
 
@@ -50,7 +50,7 @@ Authors:
 
 %prep
   echo %suse_version
-%setup -q -n kdelibs-%{version}
+%setup -q -n tdelibs-%{version}
 
 %build
 %if %is_plus

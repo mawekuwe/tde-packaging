@@ -1,7 +1,7 @@
 #
 # spec file for package qt3-devel-doc
 #
-# Copyright (c) 2011 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -30,7 +30,7 @@ License:        GPL, QPL
 AutoReqProv:    on
 Summary:        Documentation for the Qt 3 Development Kit
 Group:          Documentation/HTML
-Version:        3.3.8d
+Version:        3.4.0
 Release:        1
 PreReq:         /bin/grep
 BuildArch:      noarch 
@@ -39,7 +39,7 @@ Obsoletes:      qt3-devel-tutorial
 Requires:       qt3-devel
 # COMMON-BEGIN
 # COMMON-BEGIN
-Source0:        http://mirror.its.uidaho.edu/pub/trinity/releases/3.5.13/dependencies/qt3-3.3.8.d.tar.gz
+Source0:        qt3-%{version}.tar.bz2
 Source1:        build_script.sh
 Source2:        qtconfig3.desktop
 Source3:        qtrc
@@ -51,7 +51,7 @@ Source9:        linguist.desktop
 Source5:        linguist.png
 Source10:       qt3.sh
 Source11:       qt3.csh
-# Translations did not change at 3.3.8d
+# Translations did not change
 Source12:       qt3-3.3.8b-translations.tar.bz2
 Source102:      baselibs.conf
 Source200:      attributes
@@ -70,17 +70,13 @@ Patch31:        limit-image-size.diff
 Patch35:        qt-transparency.patch
 Patch37:        0055-qtextedit_zoom.patch
 Patch39:        fix-qtranslator-crash.diff
-Patch42:        add_qexport_visibility.patch
 Patch54:        kmenu-search-fix.diff
 Patch113:       fix-assistant-path.patch
 Patch117:       qtimer-debug.diff
-Patch121:       qt3-warnings.diff
-Patch125:       qcstring-format-warnings.diff
 Patch127:       mng-reading-fix.patch
 Patch134:       fix-xinput-clash.diff
 Patch135:       parseFontName.diff
 Patch136:       qt3-no-date.diff
-Patch137:       popen-leak-fix.diff
 Patch139:       gcc46.diff
 Patch140:       revert-iodbc-to-uodbc.diff
 
@@ -100,7 +96,7 @@ getting started with Qt in /usr/lib/qt3/doc.
 %define build_sub_dirs src plugins/src tools/designer/uilib/ tools/designer/uic tools/qtconfig tools/assistant/lib tools/assistant tutorial
 
 %prep
-%setup -q -n qt3
+%setup -q
 %patch1
 %patch2
 %patch4
@@ -117,22 +113,18 @@ fi
 %patch35
 %patch37
 %patch39
-%patch42
 %patch54
 %patch113
 %patch117
-%patch121
 ln -sf $PWD/src/inputmethod/qinputcontextfactory.h include/
 ln -sf $PWD/src/inputmethod/qinputcontextplugin.h  include/
 ln -sf $PWD/src/kernel/qinputcontext.h       include/
 ln -sf $PWD/src/kernel/qinputcontextinterface_p.h include/private/
 ln -sf $PWD/src/kernel/qximinputcontext_p.h       include/private/
-%patch125
 %patch127
 %patch134
 %patch135
 %patch136
-%patch137
 %patch139
 %patch140
 cd translations

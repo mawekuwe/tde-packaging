@@ -40,11 +40,42 @@
 %_tde_modules %{_tde_modulesdir}
 %_tde_servicetypes %{_tde_servicetypesdir}
  
-%_tde_platform_version 3.5.13
+%_tde_platform_version R13.99
  
-%tde_runtime_requires Requires: tdebase3-runtime >= %_tde_platform_version qt3 >= 3.3.8d
+%tde_runtime_requires Requires: tdebase3-runtime >= %_tde_platform_version qt3 >= 3.4.0
  
 %_tde_build_type release
+
+%cmake_tdeusr(d:) \
+  export CFLAGS=$RPM_OPT_FLAGS \
+  export CXXFLAGS=$RPM_OPT_FLAGS \
+  export LDFLAGS="-Wl,-Bsymbolic-functions $LDFLAGS" \
+  _tde_libsuffix=$(echo %_lib | cut -b4-) \
+  bdir=. \
+  %{-d:dir=%{-d*} \
+  mkdir $dir \
+  cd $dir \
+  bdir=.. } \
+  cmake -DCMAKE_SKIP_RPATH=ON \\\
+        -DCMAKE_INSTALL_PREFIX=%{_prefix} \\\
+        -DCMAKE_INSTALL_LIBDIR:PATH=%{_libdir} \\\
+        -DINCLUDE_INSTALL_DIR:PATH=%{_includedir} \\\
+        -DLIB_INSTALL_DIR:PATH=%{_libdir} \\\
+        -DLIBEXEC_INSTALL_DIR:PATH=%{_libexecdir} \\\
+        -DLIB_SUFFIX="$_tde_libsuffix" \\\
+        -DSYSCONF_INSTALL_DIR:PATH=%{_sysconfdir} \\\
+        -DCMAKE_BUILD_TYPE=%{_tde_build_type} \\\
+        -DCMAKE_VERBOSE_MAKEFILE=ON \\\
+        -DQT_LIBRARY_DIRS=/usr/lib/qt3/%{_lib} \\\
+        -DQT_INCLUDE_DIRS=/usr/lib/qt3/include \\\
+        -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \\\
+        -DMAN_INSTALL_DIR=%{_mandir} \\\
+        -DINFO_INSTALL_DIR=%{_infodir} \\\
+        $bdir %* \
+   if [ "$bdir" == ".." ]; then \
+	cd .. \
+   fi \
+%{nil}
  
 %cmake_tde(d:) \
   export CFLAGS=$RPM_OPT_FLAGS \
@@ -128,7 +159,7 @@
 		if test -f $HOME/.rpmmacros && test -d /usr/src/packages/SRPMS; then \
 			distribution=`grep ^%distribution $HOME/.rpmmacros | cut '-d ' -f2` \
 		fi \
-		find $RPM_BUILD_ROOT/opt/kde3/share \\\
+		find $RPM_BUILD_ROOT/%{_tde_sharedir} \\\
 			-name '*.desktop' 2> /dev/null | while read file; do \
 			test -r "$file" || continue \
 			grep -q "^X-SuSE-translate=" "$file" && continue \

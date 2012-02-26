@@ -1,4 +1,14 @@
 -------------------------------------------------------------------
+Thu Feb  2 01:16:04 UTC 2012 - robxu9@gmail.com
+
+- Remove obsolete patches, update .in files, feel accomplished
+
+-------------------------------------------------------------------
+Wed Feb  1 23:15:48 UTC 2012 - robxu9@gmail.com
+
+- Update to 3.4.0, which includes a breaking ABI change 
+
+-------------------------------------------------------------------
 Sat Nov 19 23:23:57 UTC 2011 - andrea@nucleus.it
 
 - Removed all the patches already applied in the 3.3.8d tree.

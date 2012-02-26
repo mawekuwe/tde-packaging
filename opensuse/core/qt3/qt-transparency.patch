@@ -1,6 +1,8 @@
---- src/kernel/qapplication.cpp
+Index: src/kernel/qapplication.cpp
+===================================================================
+--- src/kernel/qapplication.cpp.orig
 +++ src/kernel/qapplication.cpp
-@@ -320,6 +320,7 @@
+@@ -320,6 +320,7 @@ void qt_init( int *, char **, QApplicati
  void qt_cleanup();
  #if defined(Q_WS_X11)
  void qt_init( Display* dpy, Qt::HANDLE, Qt::HANDLE );
@@ -8,7 +10,7 @@
  #endif
  Q_EXPORT bool qt_tryModalHelper( QWidget *widget, QWidget **rettop );
  
-@@ -908,7 +909,7 @@
+@@ -908,7 +909,7 @@ QApplication::QApplication(Display *dpy,
  
  	qt_init( &argc, argv, GuiClient );
      } else {
@@ -17,9 +19,11 @@
      }
  
      process_cmdline( &argc, argv );
---- src/kernel/qapplication_x11.cpp
+Index: src/kernel/qapplication_x11.cpp
+===================================================================
+--- src/kernel/qapplication_x11.cpp.orig
 +++ src/kernel/qapplication_x11.cpp
-@@ -201,6 +201,7 @@
+@@ -201,6 +201,7 @@ static bool	mwIconic	= FALSE;	// main wi
  static Display *appDpy		= 0;		// X11 application display
  static char    *appDpyName	= 0;		// X11 display name
  static bool	appForeignDpy	= FALSE;        // we didn't create display
@@ -27,16 +31,16 @@
  static bool	appSync		= FALSE;	// X11 synchronization
  #if defined(QT_DEBUG)
  static bool	appNoGrab	= FALSE;	// X11 grabbing enabled
-@@ -1632,7 +1633,7 @@
-     setlocale( LC_ALL, "" );		// use correct char set mapping
-     setlocale( LC_NUMERIC, "C" );	// make sprintf()/scanf() work
+@@ -1651,7 +1652,7 @@ void qt_init_internal( int *argcptr, cha
+     }
+ #endif
  
 -    if ( display ) {
 +    if ( display && ! qt_no_foreign_hack ) {
  	// Qt part of other application
  
  	appForeignDpy = TRUE;
-@@ -2432,6 +2433,10 @@
+@@ -2464,6 +2465,10 @@ void qt_init( Display *display, Qt::HAND
      qt_init_internal( 0, 0, display, visual, colormap );
  }
  

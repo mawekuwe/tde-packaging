@@ -21,7 +21,7 @@ Name:		libtqt4
 License:	GPLv2+
 Group:		Graphical Desktop/TDE
 Summary:	Interface and abstraction library for Qt and Trinity
-Version:	3.5.12.99
+Version:	R13.99
 Release:	1
 Source0:	tqtinterface-%{version}.tar.bz2
 URL:		http://www.trinitydesktop.org/
@@ -32,13 +32,13 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 %define with_qt4 0
 
 %if %{with_qt3}
-BuildRequires: qt3-devel >= 3.3.8c
-Requires: qt3 >= 3.3.8c
+BuildRequires: qt3-devel >= 3.4.0
+Requires: qt3 >= 3.4.0
 %endif
 
 %if %{with_qt4}
-BuildRequires: libqt4-devel >= 4.7.0
-Requires: libqt4-x11 >= 4.7.0
+BuildRequires: libqt4-devel >= 4.8.0
+Requires: libqt4-x11 >= 4.8.0
 %endif
 
 BuildRequires: cmake
@@ -66,13 +66,13 @@ Authors:
 
 %package devel
 Summary: TQtinterface header files
-Group: Graphical Desktop/TDE
+Group: Development/Libraries/TDE
 Requires: libtqt4 = %{version}
 %if %{with_qt3}
-Requires: qt3-devel >= 3.3.8c
+Requires: qt3-devel >= 3.4.0
 %endif
 %if %{with_qt4}
-Requires: libqt4-devel >= 4.7.0
+Requires: libqt4-devel >= 4.8.0
 %endif
 %description devel
 This package contains Trinity specific window options and commands.

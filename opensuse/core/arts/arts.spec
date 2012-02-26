@@ -25,7 +25,7 @@ License:        GPLv2+
 Group:          Productivity/Multimedia/Sound/Players
 Summary:        Modular Software Synthesizer
 PreReq:         permissions
-Version:        1.5.10
+Version:        R13.99
 Release:        1
 Source0:        %{name}-%{version}.tar.bz2
 Source1:        artswrapper.7.gz
@@ -34,7 +34,7 @@ Patch2:         no-informational-messages.diff
 Patch5:         arts-vorbis-fix.dif
 Patch7:         fortify_source.patch
 Patch8:         arts-start-on-demand.diff
-Patch9:         avoid_la_files.diff
+#Patch9:         avoid_la_files.diff
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -107,10 +107,10 @@ Authors:
 %patch5
 %patch7
 %patch8
-%patch9
+#%patch9
 
 %build
-CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS -DNDEBUG" CFLAGS="$CXXFLAGS" %cmake_tde -d build -- -DWITH_MAD=OFF -DCMAKE_SKIP_RPATH=OFF
+CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS -DNDEBUG" CFLAGS="$CXXFLAGS" %cmake_tdeusr -d build -- -DWITH_MAD=OFF -DCMAKE_SKIP_RPATH=OFF
 
 # shut off MAD support because that is only available in packman
 
@@ -128,70 +128,68 @@ CXXFLAGS="$CXXFLAGS $RPM_OPT_FLAGS -DNDEBUG" CFLAGS="$CXXFLAGS" %cmake_tde -d bu
 %install
 %makeinstall_tde -d build
 %ifarch x86_64
-mkdir -p $RPM_BUILD_ROOT/%{_tde_prefix}/lib
-ln -sf ../lib64/mcop $RPM_BUILD_ROOT/%{_tde_prefix}/lib/mcop
+mkdir -p $RPM_BUILD_ROOT/%{_prefix}/lib
+ln -sf ../lib64/mcop $RPM_BUILD_ROOT/%{_prefix}/lib/mcop
 %endif
 mkdir -p -m 755 $RPM_BUILD_ROOT/%_mandir/man7
 cp %SOURCE1 $RPM_BUILD_ROOT/%_mandir/man7/
 
 # unneeded
-rm -rf %{buildroot}/%{_tde_libdir}/*.la
+rm -rf %{buildroot}/%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%run_ldconfig
+/sbin/ldconfig
 %run_permissions
 
-%postun
-%run_ldconfig
+%postun -p /sbin/ldconfig
 
-%post gmcop
-%run_ldconfig
+%post gmcop -p /sbin/ldconfig
 
 %postun gmcop
-%run_ldconfig
+/sbin/ldconfig
 %verifyscript
-%verify_permissions -e %{_tde_bindir}/artswrapper
+%verify_permissions -e %{_bindir}/artswrapper
 
 %files
 %defattr(-,root,root,755)
 %doc COPYING.LIB COPYING
-%dir %{_tde_prefix}
-%dir %{_tde_bindir}
-%{_tde_bindir}/artscat
-%{_tde_bindir}/arts[dpsr]*
-%verify(not mode) %{_tde_bindir}/artswrapper
-%dir %{_tde_libdir}
-%{_tde_libdir}/libarts*.so.*
-%{_tde_libdir}/libkmedia2*.so.*
-%{_tde_libdir}/libmcop.so.*
-%{_tde_libdir}/libmcop_mt.so.*
-%{_tde_libdir}/libqtmcop.so.*
-%{_tde_libdir}/libsoundserver_idl.so.*
+%dir %{_prefix}
+%dir %{_bindir}
+%{_bindir}/artscat
+%{_bindir}/arts[dpsr]*
+%verify(not mode) %{_bindir}/artswrapper
+%dir %{_libdir}
+%{_libdir}/libarts*.so.*
+%{_libdir}/libkmedia2*.so.*
+%{_libdir}/libmcop.so.*
+%{_libdir}/libmcop_mt.so.*
+%{_libdir}/libqtmcop.so.*
+%{_libdir}/libsoundserver_idl.so.*
 # these need to be in the base package for lt_dlopen()
-%{_tde_libdir}/*.so
-%{_tde_libdir}/mcop
+%{_libdir}/*.so
+%{_libdir}/mcop
 %ifarch x86_64
-%{_tde_prefix}/lib
+%{_prefix}/lib
 %endif
 %{_mandir}/man7/artswrapper.7.gz
 
 %files devel
 %defattr(-,root,root)
-%{_tde_bindir}/artsc-config
-%{_tde_bindir}/mcopidl
-%dir %{_tde_includedir}
-%{_tde_includedir}/*
+%{_bindir}/artsc-config
+%{_bindir}/mcopidl
+%dir %{_includedir}
+%{_includedir}/*
 %{_libdir}/pkgconfig/arts.pc
 
 %files devel-static
 %defattr(-,root,root)
-%{_tde_libdir}/libgsl.a
+%{_libdir}/libartsgsl.a
 
 %files gmcop
 %defattr(-,root,root)
-%{_tde_libdir}/libgmcop.so.*
+%{_libdir}/libgmcop.so.*
 
 %changelog

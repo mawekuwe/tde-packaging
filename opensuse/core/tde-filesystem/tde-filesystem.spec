@@ -20,7 +20,7 @@
  
 Name:           tde-filesystem
 Url:            http://www.trinitydesktop.org/
-Version:        3.5.13
+Version:        R13.99
 Release:        1
 License:        LGPLv2.1+
 Group:          System/Fhs
@@ -47,7 +47,7 @@ Authors:
  
 %install
   install -D -m644 %{SOURCE0} $RPM_BUILD_ROOT/etc/rpm/macros.tde
-  install -D -m644 %{SOURCE1} $RPM_BUILD_ROOT//usr/share/doc/packages/tde-filesystem/COPYING
+  install -D -m644 %{SOURCE1} $RPM_BUILD_ROOT/usr/share/doc/packages/tde-filesystem/COPYING
 
 %clean
 rm -rf "$RPM_BUILD_ROOT"

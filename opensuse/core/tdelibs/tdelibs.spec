@@ -19,7 +19,7 @@
 
 
 Name:           tdelibs
-BuildRequires:  OpenEXR-devel arts-devel aspell-devel cups-devel fam-devel flac-devel krb5-devel
+BuildRequires:  OpenEXR-devel arts arts-devel aspell-devel cups-devel fam-devel flac-devel krb5-devel
 BuildRequires:  libart_lgpl-devel libidn-devel libsndfile libtiff-devel
 BuildRequires:  libxslt-devel openldap2-devel pcre-devel libtqt4-devel sgml-skel
 BuildRequires:  db-devel libacl-devel libattr-devel unsermake update-desktop-files utempter
@@ -31,7 +31,7 @@ License:        BSD3c(or similar) ; GPLv2+ ; LGPLv2.1+
 Group:          System/GUI/TDE
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Summary:        Trinity Base Libraries
-Version:        3.5.12.99
+Version:        R13.99
 Release:        1
 Provides:       kups keramik tdelibs-cups tdelibs-33addons tdepim-networkstatus
 Provides:       kdelibs3_base = 3.3
@@ -40,8 +40,7 @@ Requires:       openssl tdelibs-default-style
 Requires:       hicolor-icon-theme
 Recommends:     ispell enscript
 Requires:       sudo
-Requires:       libtqt4
-Source0:        kdelibs-%{version}.tar.bz2
+Source0:        %{name}-%{version}.tar.bz2
 Source3:        baselibs.conf
 Source4:        api_docu_description
 Source6:        tderc
@@ -54,99 +53,6 @@ Source12:       mimetype-icons.tar.bz2
 Source14:       vnd.openxmlformats-officedocument.wordprocessingml.document.desktop
 Source15:       vnd.openxmlformats-officedocument.presentationml.presentation.desktop
 Source16:       vnd.openxmlformats-officedocument.spreadsheetml.sheet.desktop
-Patch0:         3_5_BRANCH.diff
-Patch1:         kdeversion.diff
-Patch2:         admin.diff
-Patch3:         show-distribution.diff
-Patch5:         applications.menu-fallback.diff
-Patch7:         stat-on-media.diff
-Patch8:         kmimelist.diff
-Patch9:         x-kde-InitialPreference.diff
-Patch10:        disable-idn-support.diff
-Patch11:        silence.diff
-Patch12:        smooth-scrolling.diff
-Patch13:        rubberband-selection.diff
-Patch15:        add-suse-translations.diff
-Patch16:        kde3rc.dif
-Patch17:        artwork.diff
-Patch26:        mimetype-changes.diff
-Patch27:        noauto-package.diff
-Patch29:        prefer_distribution_settings.dif
-Patch34:        allow-man-setgid.diff
-Patch40:        clever-menu.diff
-Patch43:        fileshare.diff
-Patch44:        fontconfig-reverse-lookup.diff
-Patch45:        limit-max-image-size.diff
-Patch50:        fix-gnome-help-support.diff
-Patch950:       fix-gnome-help-support_legacy.diff
-Patch52:        kdeprint-restart-cupsd.diff
-Patch54:        kdemm.diff
-Patch55:        fix-kdemm-build.diff
-Patch56:        fix-dcopidlng-within-kdelibs-build.diff
-Patch57:        kdemm-filepreview.diff
-Patch60:        fix-qxembed.diff
-Patch65:        integrate-global-pixmaps-new.diff
-Patch66:        integrate-global-pixmaps-10.1.diff
-Patch70:        ktip-icon-hack.diff
-Patch80:        CATALOG.kdelibs3.diff
-Patch81:        xml-catalog.diff
-Patch83:        kdelibs3-gcc-4.1-miscompile.diff
-Patch85:        desktop-translations.diff
-Patch86:        use-xauthlocalhostname.diff
-Patch88:        mozilla-sliders.patch
-Patch89:        kdeprint-utf8.diff
-Patch90:        kimproxy-warning.diff
-Patch95:        kdelibs_networkstatus_branch2.diff
-Patch97:        autostart-spec.diff
-Patch105:       kdelibs3-hicolor-scalable-sizes.patch
-Patch106:       use-mediamanager.diff
-Patch108:       patch-mimetype-iconnames.diff
-Patch109:       fix-kerberos-printing.diff
-Patch110:       printpreview.patch
-Patch111:       kfile-beagle.diff
-Patch112:       xinerama.patch
-Patch113:       kremoteencoding-utf8.diff
-Patch114:       no-progress-for-beagle-status-query.diff
-Patch117:       kickoff-drop-shadow.diff
-Patch122:       disable-samba-dialog-without-smb.diff
-Patch123:       lpoptions-cups-1.2.diff
-Patch124:       spellcheck-default-utf8.diff
-Patch125:       kde4-applications.diff
-Patch126:       avahi-pidfile.diff
-Patch127:       x-jar-desktop.diff
-Patch128:       google-mail.diff
-Patch129:       default-useragent.diff
-Patch130:       kwalletd-try-open.diff
-Patch131:       textcompletion-editor.diff
-Patch132:       no-debug-by-default.diff
-Patch133:       flash-player-non-oss.diff
-Patch134:       bundle-locale-help.diff
-Patch149:       networkstatus.diff
-Patch150:       kdesu-settings.diff
-Patch152:       bug-399296_ftphandling-fix.diff
-Patch153:       bug-382959_kabc_fix_vcardparser.patch
-Patch154:       r874968-ebay-crash.diff
-Patch155:       gcc44.diff
-Patch156:       fix-macmenu.patch
-Patch157:       ignore-inline-menu.diff
-Patch158:       bnc557126.diff
-Patch159:       xmlhttprequest_3.x.diff
-Patch160:       kdecode_fakes_include.diff
-Patch161:       gcc45.diff
-Patch162:       arts-acinclude.patch
-Patch163:       kdelibs-3.5.10-ossl-1.x.patch
-Patch164:       light_v_2_scrollbar_patch.patch
-
-Patch201:       kdelibs-3.5.4-CVE-2009-1690.patch
-Patch203:       kdelibs-3.5.10-latex-syntax-kile-2.0.3.patch
-Patch204:       kdelibs-3.5.10-CVE-2009-2702.patch
-Patch205:       kdelibs-3.5.10-cve-2009-2537-select-length.patch
-Patch206:       kdelibs-3.5.10-cve-2009-1725.patch
-Patch207:       kdelibs-3.5.10-cve-2009-1698.patch
-
-Patch210:       kdelibs-3.5.10-kio.patch
-Patch211:       oom_score_adj.patch
-Patch212:       kcontrol_crash_patch.diff
 
 %description
 This package contains tdelibs, one of the basic packages of the Trinity
@@ -171,7 +77,7 @@ daemon.
 License:        BSD3c(or similar) ; GPLv2+ ; LGPLv2.1+
 Summary:        The default TDE style
 Group:          System/GUI/TDE
-Provides:       tdelibs:/opt/tde/%_lib/libkdefx.so.4
+Provides:       tdelibs:%{_tde_libdir}/libtdefx.so.4
 
 %description default-style
 This package contains the Plastik widget style and libkdefx. It only
@@ -211,125 +117,10 @@ to develop applications that require these.
 
 %prep
   echo %suse_version
-%setup -q -n kdelibs-%{version}
-%patch0
-%patch1
-%patch3
-%patch5
-%patch7
-%patch10
-%patch11
-%patch12
-%patch13
-%patch15
-%patch16
-%patch17
-%patch26
-%patch27
-%patch29
-#%patch43
-#disable it because of BIC
-#%patch45
-%if %suse_version > 1020
-%patch50
-%else
-%patch950
-%endif
-%patch52
-%patch34
-%patch44
-%patch40
-%patch8
-%patch9
+%setup -q
 tar xfvj %SOURCE10
-# TODO!
-%patch54
-%patch55
-%patch56
-%patch57
-%patch60
-# 10.2 goes back to the version without suseadds
-%if %suse_version > 1010
-%patch65
-%else
-%if %suse_version > 1000
-%patch66
-%else
-%patch65
-%endif
-%endif
-%patch70
 rm -rf admin
 bunzip2 -cd %{SOURCE8} | tar xfv - --exclude=.cvsignore --exclude=CVS
-install -m 755 %{SOURCE2} admin
-%patch2
-%patch80 -p 1
-%patch81
-%if %suse_version > 1000
-%patch83
-%endif
-%patch85
-%patch86
-%patch88
-%patch89
-%patch90
-%patch95
-%patch97
-%if %suse_version < 1030
-%patch105 -p 1
-%endif
-%patch106
-%patch108
-%patch109
-%patch110
-%patch111
-%patch112
-%patch113
-%patch114
-%patch117
-%patch122
-%if %suse_version > 1010
-%patch123
-%endif
-%patch124
-%patch125
-%patch126
-%patch127
-%patch128
-%patch129
-%patch130
-%patch131
-%patch132
-%if %suse_version > 1020
-%patch133
-%patch134
-%endif
-%patch149
-%patch150
-%patch152
-%patch153
-%patch154
-%patch155
-%patch156
-%if %suse_version > 1110
-%patch157
-%endif
-%patch158
-%patch159
-%patch160
-%patch161
-%patch162 -p1
-%patch163 -p1
-%patch164 -p1
-%patch201 -p1
-%patch203 -p1
-%patch204 -p1
-%patch205 -p1
-%patch206
-%patch207 -p1
-%patch210 -p1
-%patch211 -p1
-%patch212
 
 tar xfvj %SOURCE12
 #
@@ -367,16 +158,15 @@ CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"
   export PATH=/usr/lib/mit/bin:$PATH
   # fast-malloc is not needed anymore
 
-%cmake_tde -d build -- \
-        -DCMAKE_SKIP_RPATH=OFF \
-	-DKDE_MALLOC_FULL=OFF \
-	-DKDE_MALLOC=OFF \
-	-DKDE_DISTRIBUTION="$DISTRI" \
-	-DSSL_INSTALL_DIR=/usr/ssl \
-	-DPCSC_INSTALL_DIR=/usr \
-	%if %is_plus
-	-DENABLE_DNOFIFY=ON \
-	%endif
+EXTRA_FLAGS="-DCMAKE_SKIP_RPATH=OFF -DKDE_MALLOC_FULL=OFF -DKDE_MALLOC=OFF -DSSL_INSTALL_DIR=/usr/ssl -DPCSC_INSTALL_DIR=/usr -DENABLE_DNOFIFY=ON"
+
+# -DKDE_DISTRIBUTION=\"$DISTRI\"
+
+#	%if %is_plus
+#	-DENABLE_DNOFIFY=ON \
+#	%endif
+
+%cmake_tde -d build -- $EXTRA_FLAGS
 
 %make_tde -d build
 
@@ -482,7 +272,8 @@ sed '/<catalog/a\
       install -m 0644 bt/$i/mimetypes/bt.png \
               $RPM_BUILD_ROOT/%{_tde_icondir}/crystalsvg/$i/mimetypes/torrent.png
   done
-  cp CATALOG.%{name} catalog.xml ${RPM_BUILD_ROOT}/%{_tde_datadir}/ksgmltools2/customization/
+  #cp CATALOG.%{name} catalog.xml ${RPM_BUILD_ROOT}/%{_tde_datadir}/ksgmltools2/customization/
+  cp catalog.xml ${RPM_BUILD_ROOT}/%{_tde_datadir}/ksgmltools2/customization/
   mkdir -p ${RPM_BUILD_ROOT}%{_sysconfdir}/xml
   cp %{FOR_ROOT_CAT} ${RPM_BUILD_ROOT}%{_sysconfdir}/xml
 #  rm -f $RPM_BUILD_ROOT/%{_tde_libdir}/libkdefakes.la
@@ -513,25 +304,33 @@ cat > $RPM_BUILD_ROOT/etc/ld.so.conf.d/tdelibs.conf <<EOF
 /opt/tde/lib
 EOF
 
+# Fix Kspell symlink
+rm -fv $RPM_BUILD_ROOT/opt/tde/share/doc/kde/HTML/en/kspell/common
+ln -sfv /opt/tde/share/doc/kde/HTML/en/common $RPM_BUILD_ROOT/opt/tde/share/doc/kde/HTML/en/kspell/common
+
+# move cmake to %{_datadir}
+mkdir -pv %{buildroot}/%{_datadir}/cmake
+mv -v %{buildroot}/%{_tde_sharedir}/cmake/tdelibs.cmake %{buildroot}/%{_datadir}/cmake
+
 %post
-  %run_ldconfig
-  %run_permissions
+/sbin/ldconfig
+%run_permissions
 
 %postun
   rm -f usr/share/doc/KDE3-API/index.html
-  %run_ldconfig
+/sbin/ldconfig
 
 %post arts
-  %run_ldconfig
+/sbin/ldconfig
 
 %postun arts
-  %run_ldconfig
+/sbin/ldconfig
 
 %post default-style
-  %run_ldconfig
+/sbin/ldconfig
 
 %postun default-style
-  %run_ldconfig
+/sbin/ldconfig
 
 %post doc
   if [ -x %{regcat} ]; then
@@ -559,8 +358,8 @@ EOF
 %files default-style
 %defattr(-,root,root)
 %doc AUTHORS COPYING COPYING.BSD COPYING.LIB NAMING README 
-%{_tde_libdir}/libkdefx.so.*
-%{_tde_libdir}/kde3/plugins/styles/plastik.*
+%{_tde_libdir}/libtdefx.so.*
+%{_tde_libdir}/trinity/plugins/styles/plastik.*
 
 %files
 %defattr(-,root,root)
@@ -572,7 +371,6 @@ EOF
 %dir %{_tde_includedir}
 %dir %{_tde_sharedir}
 %dir %{_tde_configkcfgdir}
-%_mandir/man*/*
 %{_tde_bindir}/checkXML
 %{_tde_bindir}/dcop
 %{_tde_bindir}/dcopclient
@@ -587,12 +385,14 @@ EOF
 %{_tde_bindir}/kco*
 %{_tde_bindir}/kcmshell
 %{_tde_bindir}/kded
-%{_tde_bindir}/kdeinit*
-%{_tde_bindir}/start_kdeinit
-%{_tde_bindir}/start_kdeinit_wrapper
+%{_tde_bindir}/kdetcompmgr
+%{_tde_bindir}/networkstatustestservice
+%{_tde_bindir}/tdeinit*
+%{_tde_bindir}/start_tdeinit
+%{_tde_bindir}/start_tdeinit_wrapper
 %{_tde_bindir}/kde-config
 %{_tde_bindir}/kde-menu
-%{_tde_bindir}/kdesu_stub
+%{_tde_bindir}/tdesu_stub
 %{_tde_bindir}/kdontchangethehostname
 %{_tde_bindir}/kfile
 %{_tde_bindir}/ki*
@@ -600,7 +400,6 @@ EOF
 %{_tde_bindir}/klauncher
 %{_tde_bindir}/kmailservice
 %{_tde_bindir}/ktradertest
-%{_tde_bindir}/knotify
 %{_tde_bindir}/kstartupconfig
 %{_tde_bindir}/kdostartupconfig
 %verify(not mode) %{_tde_bindir}/kpac_dhcp_helper
@@ -613,64 +412,75 @@ EOF
 %{_tde_bindir}/khotnewstuff
 %{_tde_bindir}/makekdewidgets
 %dir %{_tde_libdir}
-%dir %{_tde_libdir}/kde3
-%{_tde_libdir}/kde3/dcopserver.*
-%{_tde_libdir}/kde3/kaddprinterwizard.*
-%{_tde_libdir}/kde3/kbuildsycoca.*
-%{_tde_libdir}/kde3/kcmshell.*
-%{_tde_libdir}/kde3/kcm_kresources.*
-%{_tde_libdir}/kde3/kconf_update.*
-%{_tde_libdir}/kde3/kcookiejar.*
-%{_tde_libdir}/kde3/kded.*
-%{_tde_libdir}/kde3/kded_proxyscout.*
-%{_tde_libdir}/kde3/kfileaudiopreview.*
-%{_tde_libdir}/kde3/klauncher.*
-%{_tde_libdir}/kde3/knotify.*
-%{_tde_libdir}/kde3/kabc*
-%{_tde_libdir}/kde3/kbzip2filter.*
-%{_tde_libdir}/kde3/kded_k*
-%{_tde_libdir}/kde3/kdeprint_ext.*
-%{_tde_libdir}/kde3/kdeprint_lp*
-%{_tde_libdir}/kde3/kdeprint_rlpr.*
-%{_tde_libdir}/kde3/kdeprint_tool_escputil.*
-%{_tde_libdir}/kde3/kgzipfilter.*
-%{_tde_libdir}/kde3/khtmlimagepart.*
-%{_tde_libdir}/kde3/ki*
-%{_tde_libdir}/kde3/kjavaappletviewer.*
-%{_tde_libdir}/kde3/ktexteditor_*
-%{_tde_libdir}/kde3/libk*
-%{_tde_libdir}/kde3/kspell_*
-%{_tde_libdir}/kde3/kstyle_plastik_config.*
-%{_tde_libdir}/kde3/kstyle_highcontrast_config.*
-%{_tde_libdir}/kde3/libshellscript.*
-%exclude %{_tde_libdir}/kde3/plugins/styles/plastik.*
-%{_tde_libdir}/kde3/plugins
+%dir %{_tde_libdir}/trinity
+%{_tde_libdir}/trinity/dcopserver.*
+%{_tde_libdir}/trinity/kaddprinterwizard.*
+%{_tde_libdir}/trinity/kbuildsycoca.*
+%{_tde_libdir}/trinity/kcmshell.*
+%{_tde_libdir}/trinity/kcm_kresources.*
+%{_tde_libdir}/trinity/kconf_update.*
+%{_tde_libdir}/trinity/kcookiejar.*
+%{_tde_libdir}/trinity/kded.*
+%{_tde_libdir}/trinity/kded_proxyscout.*
+%{_tde_libdir}/trinity/kfileaudiopreview.*
+%{_tde_libdir}/trinity/klauncher.*
+%{_tde_libdir}/trinity/knotify.*
+%{_tde_libdir}/trinity/kabc*
+%{_tde_libdir}/trinity/kbzip2filter.*
+%{_tde_libdir}/trinity/kded_k*
+%{_tde_libdir}/trinity/tdeprint_ext.*
+%{_tde_libdir}/trinity/tdeprint_lp*
+%{_tde_libdir}/trinity/tdeprint_rlpr.*
+%{_tde_libdir}/trinity/tdeprint_tool_escputil.*
+%{_tde_libdir}/trinity/kgzipfilter.*
+%{_tde_libdir}/trinity/khtmlimagepart.*
+%{_tde_libdir}/trinity/ki*
+%{_tde_libdir}/trinity/kjavaappletviewer.*
+%{_tde_libdir}/trinity/ktexteditor_*
+%{_tde_libdir}/trinity/libk*
+%{_tde_libdir}/trinity/kspell_*
+%{_tde_libdir}/trinity/kstyle_plastik_config.*
+%{_tde_libdir}/trinity/kstyle_highcontrast_config.*
+%{_tde_libdir}/trinity/libshellscript.*
+# unsure
+%{_tde_libdir}/trinity/kded_tdeprintd.*
+%{_tde_libdir}/trinity/libtdeprint_management_module.*
+# end unsure
+%exclude %{_tde_libdir}/trinity/plugins/styles/plastik.*
+%{_tde_libdir}/trinity/plugins
 %{_tde_libdir}/libDCOP.so.*
-%exclude %{_tde_libdir}/libkdefx.so.*
+%exclude %{_tde_libdir}/libtdefx.so.*
 %{_tde_libdir}/libk*.so.*
 %{_tde_libdir}/libvcard.so.*
-%{_tde_libdir}/libkdeinit*.so
+%{_tde_libdir}/libtdecore.so.*
+%{_tde_libdir}/libtdefakes.so.*
+%{_tde_libdir}/libtdeinit*.so
+%{_tde_libdir}/libtdeprint.so.*
+%{_tde_libdir}/libtdeprint_management.so.*
+%{_tde_libdir}/libtdesasl.so.*
+%{_tde_libdir}/libtdesu.so.*
+%{_tde_libdir}/libtdeui.so.*
 %{_tde_libdir}/libnetworkstatus.so.*
 %{_tde_libdir}/libconnectionmanager.so.*
-%{_tde_libdir}/kde3/kded_networkstatus.*
+%{_tde_libdir}/trinity/kded_networkstatus.*
 %{_tde_appsdir}
 %dir %{_tde_datadir}
 %{_tde_datadir}/LICENSES
 %{_tde_datadir}/ka*
 %{_tde_datadir}/kc*
-%dir %{_tde_datadir}/kdeprint
-%{_tde_datadir}/kdeprint/apsdriver*
-%{_tde_datadir}/kdeprint/filters
-%{_tde_datadir}/kdeprint/icons
-%{_tde_datadir}/kdeprint/lprngtooldriver1
-%{_tde_datadir}/kdeprint/pics
-%dir %{_tde_datadir}/kdeprint/plugins
-%{_tde_datadir}/kdeprint/plugins/ext.print
-%{_tde_datadir}/kdeprint/plugins/lp*.print
-%{_tde_datadir}/kdeprint/plugins/rlpr.print
-%{_tde_datadir}/kdeprint/s*
-%{_tde_datadir}/kdeprint/t*
-%{_tde_datadir}/kdeui
+%dir %{_tde_datadir}/tdeprint
+%{_tde_datadir}/tdeprint/apsdriver*
+%{_tde_datadir}/tdeprint/filters
+%{_tde_datadir}/tdeprint/icons
+%{_tde_datadir}/tdeprint/lprngtooldriver1
+%{_tde_datadir}/tdeprint/pics
+%dir %{_tde_datadir}/tdeprint/plugins
+%{_tde_datadir}/tdeprint/plugins/ext.print
+%{_tde_datadir}/tdeprint/plugins/lp*.print
+%{_tde_datadir}/tdeprint/plugins/rlpr.print
+%{_tde_datadir}/tdeprint/s*
+%{_tde_datadir}/tdeprint/t*
+%{_tde_datadir}/tdeui
 %{_tde_datadir}/kdewidgets
 %{_tde_datadir}/khtml
 %{_tde_datadir}/kio_uiserver
@@ -684,24 +494,24 @@ EOF
 %{_tde_sharedir}/autostart
 %{_tde_configdir}
 %{_tde_sharedir}/emoticons
-%{_tde_icondir}/icons
-%{_tde_locale}/locale
-%{_tde_mimedir}/mimelnk
+%{_tde_icondir}
+%{_tde_locale}
+%{_tde_mimedir}
 %{_tde_sharedir}/service*
 %config /etc/tderc
 %{_tde_applicationsdir}
 %{_tde_bindir}/cupsd*
 %{_tde_bindir}/make_driver_db_cups
-%{_tde_libdir}/kde3/kdeprint_cups.*
-%{_tde_libdir}/kde3/cupsdconf.*
-%{_tde_datadir}/kdeprint/cups*
-%{_tde_datadir}/kdeprint/kde_logo.png
-%{_tde_datadir}/kdeprint/plugins/cups.print
-%{_tde_datadir}/kdeprint/preview*
+%{_tde_libdir}/trinity/tdeprint_cups.*
+%{_tde_libdir}/trinity/cupsdconf.*
+%{_tde_datadir}/tdeprint/cups*
+%{_tde_datadir}/tdeprint/kde_logo.png
+%{_tde_datadir}/tdeprint/plugins/cups.print
+%{_tde_datadir}/tdeprint/preview*
 %ifarch x86_64 ppc64 s390x mips64 sparc64
 %dir %{_tde_prefix}/lib
-%dir %{_tde_prefix}/lib/kde3
-%{_tde_prefix}/lib/kde3/plugins-lib64
+%dir %{_tde_prefix}/lib/trinity
+%{_tde_prefix}/lib/trinity/plugins-lib64
 %endif
 /etc/xdg/menus
 %dir /etc/%{_tde_prefix}
@@ -712,7 +522,7 @@ EOF
 %dir %{_tde_sharedir}
 %dir %{_tde_applicationsdir}
 %ghost %{_tde_applicationsdir}/mimeinfo.cache
-
+%{_tde_datadir}/konqueror/servicemenus/isoservice.desktop
 
 %files arts
 %defattr(-,root,root)
@@ -732,12 +542,10 @@ EOF
 %{_tde_bindir}/dcopidl*
 %{_tde_bindir}/kmimelist
 %{_tde_bindir}/preparetips
-%{_tde_bindir}/ksvgtopng
 %{_tde_bindir}/kunittestmodrunner
 #%{_tde_bindir}/MISC
 %{_tde_includedir}/*
 %{_tde_datadir}/dcopidlng
-%{_tde_datadir}/kdelibs/admin
 %{_tde_libdir}/libartskde.la
 %{_tde_libdir}/libkunittest.la
 %{_tde_libdir}/libkunittest.so
@@ -754,29 +562,32 @@ EOF
 %{_tde_libdir}/libkabc.la
 %{_tde_libdir}/libkabc_ldapkio.la
 %{_tde_libdir}/libkabc_ldapkio.so
+%{_tde_libdir}/libkabc_net.la
+%{_tde_libdir}/libkabc_net.so
 %{_tde_libdir}/libkabc.so
 %{_tde_libdir}/libkatepartinterfaces.la
 %{_tde_libdir}/libkatepartinterfaces.so
-%{_tde_libdir}/libkdecore.la
-%{_tde_libdir}/libkdecore.so
-%{_tde_libdir}/libkdefakes.la
-%{_tde_libdir}/libkdefakes.so
-%{_tde_libdir}/libkdefx.la
-%{_tde_libdir}/libkdefx.so
-%{_tde_libdir}/libkdemm.la
-%{_tde_libdir}/libkdemm.so
-%{_tde_libdir}/libkdeprint.la
-%{_tde_libdir}/libkdeprint_management.la
-%{_tde_libdir}/libkdeprint_management.so
-%{_tde_libdir}/libkdeprint.so
-%{_tde_libdir}/libkdesasl.la
-%{_tde_libdir}/libkdesasl.so
-%{_tde_libdir}/libkdesu.la
-%{_tde_libdir}/libkdesu.so
-%{_tde_libdir}/libkdeui.la
-%{_tde_libdir}/libkdeui.so
+%{_tde_libdir}/libtdecore.la
+%{_tde_libdir}/libtdecore.so
+%{_tde_libdir}/libtdefakes.la
+%{_tde_libdir}/libtdefakes.so
+%{_tde_libdir}/libtdefx.la
+%{_tde_libdir}/libtdefx.so
+%{_tde_libdir}/libtdeinit*.la
+%{_tde_libdir}/libtdeprint.la
+%{_tde_libdir}/libtdeprint_management.la
+%{_tde_libdir}/libtdeprint_management.so
+%{_tde_libdir}/libtdeprint.so
+%{_tde_libdir}/libtdesasl.la
+%{_tde_libdir}/libtdesasl.so
+%{_tde_libdir}/libtdesu.la
+%{_tde_libdir}/libtdesu.so
+%{_tde_libdir}/libtdeui.la
+%{_tde_libdir}/libtdeui.so
 %{_tde_libdir}/libkdnssd.la
 %{_tde_libdir}/libkdnssd.so
+%{_tde_libdir}/libkglib.la
+%{_tde_libdir}/libkglib.so
 %{_tde_libdir}/libkhtml.la
 %{_tde_libdir}/libkhtml.so
 %{_tde_libdir}/libkimproxy.la
@@ -801,8 +612,12 @@ EOF
 %{_tde_libdir}/libkntlm.so
 %{_tde_libdir}/libkparts.la
 %{_tde_libdir}/libkparts.so
+%{_tde_libdir}/libkrandr.la
+%{_tde_libdir}/libkrandr.so
 %{_tde_libdir}/libkresources.la
 %{_tde_libdir}/libkresources.so
+%{_tde_libdir}/libkrsync.la
+%{_tde_libdir}/libkrsync.so
 %{_tde_libdir}/libkscreensaver.la
 %{_tde_libdir}/libkscreensaver.so
 %{_tde_libdir}/libkscript.la
@@ -823,5 +638,6 @@ EOF
 %{_tde_libdir}/libnetworkstatus.so
 %{_tde_libdir}/libconnectionmanager.la
 %{_tde_libdir}/libconnectionmanager.so
+%{_datadir}/cmake/tdelibs.cmake
 
 %changelog
