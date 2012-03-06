@@ -826,3 +826,5 @@ debian/tmp/opt/trinity/lib/libvcard.la
 debian/tmp/opt/trinity/lib/libvcard.so
 
 debian/tmp/opt/trinity/share/cmake
+
+debian/tmp/usr/lib/pkgconfig/tdelibs.pc
