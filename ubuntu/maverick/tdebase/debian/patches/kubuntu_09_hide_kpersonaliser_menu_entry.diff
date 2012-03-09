@@ -3,5 +3,5 @@
 @@ -77,3 +77,4 @@
  X-DCOP-ServiceType=Multi
  Categories=Qt;KDE;Settings;
- OnlyShowIn=KDE;
+ OnlyShowIn=TDE;
 +NoDisplay=true
