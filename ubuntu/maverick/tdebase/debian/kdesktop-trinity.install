@@ -28,9 +28,7 @@ debian/tmp/opt/trinity/share/apps/kdesktop/patterns/stonewall2.desktop
 debian/tmp/opt/trinity/share/apps/kdesktop/patterns/stonewall2.png
 debian/tmp/opt/trinity/share/apps/kdesktop/patterns/triangles.desktop
 debian/tmp/opt/trinity/share/apps/kdesktop/patterns/triangles.png
-debian/tmp/opt/trinity/share/apps/kdesktop/pics/kde2.xbm
 debian/tmp/opt/trinity/share/apps/kdesktop/pics/ksslogo.png
-debian/tmp/opt/trinity/share/apps/kdesktop/pics/splash2.png
 debian/tmp/opt/trinity/share/apps/kdesktop/pics/splash.png
 debian/tmp/opt/trinity/share/apps/kdesktop/programs/kwebdesktop.desktop
 debian/tmp/opt/trinity/share/apps/kdesktop/programs/xearth.desktop
