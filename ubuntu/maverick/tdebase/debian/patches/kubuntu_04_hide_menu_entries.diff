@@ -3,5 +3,5 @@
 @@ -103,3 +103,4 @@
  InitialPreference=8
  X-DCOP-ServiceType=Multi
- Categories=Qt;KDE;Utility;TextEditor;
+ Categories=Qt;KDE;TextEditor;
 +NoDisplay=true
