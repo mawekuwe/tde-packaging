@@ -60,7 +60,6 @@ install: build
 	dh_install -plibcarddav --autodest debian/tmp/usr/lib/libcarddav.so*
 
 	# Developer package
-	mv debian/tmp/usr/include/libcarddav* debian/tmp/usr/include/libcarddav
 	dh_install -plibcarddav-dev --autodest debian/tmp/usr/lib/libcarddav.la
 	dh_install -plibcarddav-dev --autodest debian/tmp/usr/include/libcarddav/*
 	dh_install -plibcarddav-dev --autodest debian/tmp/usr/lib/pkgconfig/*

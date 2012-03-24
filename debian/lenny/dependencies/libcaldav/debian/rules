@@ -60,7 +60,6 @@ install: build
 	dh_install -plibcaldav --autodest debian/tmp/usr/lib/libcaldav.so*
 
 	# Developer package
-	mv debian/tmp/usr/include/libcaldav* debian/tmp/usr/include/libcaldav
 	dh_install -plibcaldav-dev --autodest debian/tmp/usr/lib/libcaldav.la
 	dh_install -plibcaldav-dev --autodest debian/tmp/usr/include/libcaldav/*
 	dh_install -plibcaldav-dev --autodest debian/tmp/usr/lib/pkgconfig/*
