@@ -39,4 +39,4 @@ DEB_DH_MAKESHLIBS_ARGS_tdemultimedia-kio-plugins-trinity 	:= -V'tdemultimedia-ki
 #$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
 
 install/tdemultimedia-kappfinder-data-trinity::
-	install -p -D -m644 debian/tmp/etc/xdg/menus/applications-merged/kde-multimedia-music.menu debian/tdemultimedia-kappfinder-data-trinity/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu
+	install -p -D -m644 debian/tmp/etc/xdg/menus/applications-merged/tde-multimedia-music.menu debian/tdemultimedia-kappfinder-data-trinity/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu
