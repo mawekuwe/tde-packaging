@@ -1,6 +1,6 @@
 #! /bin/sh -e
 
-FILE="/etc/xdg/menus/kde-applications-merged/kde-essential.menu"
+FILE="/etc/xdg/menus/kde-applications-merged/tde-essential.menu"
 SUBDIR="/etc/xdg/menus/kde-applications-merged"
 
 case "$1" in
