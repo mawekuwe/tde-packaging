@@ -2,14 +2,14 @@ Index: kdoctools/kio_help.cpp
 ===================================================================
 --- kdoctools/kio_help.cpp.orig
 +++ kdoctools/kio_help.cpp
-@@ -44,7 +44,27 @@ QString HelpProtocol::langLookup(const Q
+@@ -44,7 +44,27 @@ TQString HelpProtocol::langLookup(const 
      // assemble the local search paths
-     const QStringList localDoc = KGlobal::dirs()->resourceDirs("html");
+     const TQStringList localDoc = KGlobal::dirs()->resourceDirs("html") + KGlobal::dirs()->resourceDirs("html-bundle");
  
 +    kdDebug( 7119 ) << "Looking up help for: " << fname << endl;
-+    QString _fname = fname;
++    TQString _fname = fname;
 +
-+    QString path;
++    TQString path;
 +    int slash = _fname.findRev ('/');
 +    if (slash == -1 || slash == 0) {
 +      path = _fname;
@@ -19,34 +19,34 @@ Index: kdoctools/kio_help.cpp
 +      _fname = _fname.right (_fname.length() - slash);
 +    }
 +
-     QStringList langs = KGlobal::locale()->languageList();
-+    QStringList::ConstIterator lang;
+     TQStringList langs = KGlobal::locale()->languageList();
++    TQStringList::ConstIterator lang;
 +    for (lang = langs.begin(); lang != langs.end(); ++lang)
 +        if ((*lang).left(2) == "en")
-+	    search.append(QString("/usr/share/gnome/help/%1/C%2").arg(path).arg(_fname));
++	    search.append(TQString("/usr/share/gnome/help/%1/C%2").arg(path).arg(_fname));
 +        else
-+	    search.append(QString("/usr/share/gnome/help/%1/%2%3").arg(path).arg(*lang).arg(_fname));
++	    search.append(TQString("/usr/share/gnome/help/%1/%2%3").arg(path).arg(*lang).arg(_fname));
 +
      langs.append( "en" );
      langs.remove( "C" );
  
-@@ -60,7 +80,7 @@ QString HelpProtocol::langLookup(const Q
+@@ -60,7 +80,7 @@ TQString HelpProtocol::langLookup(const 
      {
-         QStringList::ConstIterator lang;
+         TQStringList::ConstIterator lang;
          for (lang = langs.begin(); lang != langs.end(); ++lang)
--            search.append(QString("%1%2/%3").arg(localDoc[id], *lang, fname));
-+            search.append(QString("%1%2/%3").arg(localDoc[id], *lang, path + _fname));
+-            search.append(TQString("%1%2/%3").arg(localDoc[id], *lang, fname));
++            search.append(TQString("%1%2/%3").arg(localDoc[id], *lang, path + _fname));
      }
  
      // try to locate the file
-@@ -81,6 +101,15 @@ QString HelpProtocol::langLookup(const Q
+@@ -81,6 +101,15 @@ TQString HelpProtocol::langLookup(const 
              if (info.exists() && info.isFile() && info.isReadable())
                  return *it;
          }
 +
 +        if ( ( *it ).right( 5 ) == ".html" )
 +        {
-+            QString file = (*it).left((*it).findRev('/')) + "/" + path + ".xml";
++            TQString file = (*it).left((*it).findRev('/')) + "/" + path + ".xml";
 +            kdDebug( 7119 ) << "Looking for help in: " << file << endl;
 +            info.setFile(file);
 +            if (info.exists() && info.isFile() && info.isReadable())
@@ -55,7 +55,7 @@ Index: kdoctools/kio_help.cpp
      }
  
  
-@@ -100,7 +129,7 @@ QString HelpProtocol::lookupFile(const Q
+@@ -100,7 +129,7 @@ TQString HelpProtocol::lookupFile(const 
      result = langLookup(path);
      if (result.isEmpty())
      {
@@ -67,16 +67,16 @@ Index: kdoctools/kio_help.cpp
 @@ -190,12 +219,26 @@ void HelpProtocol::get( const KURL& url
        }
      } else {
-         QString docbook_file = file.left(file.findRev('/')) + "/index.docbook";
+         TQString docbook_file = file.left(file.findRev('/')) + "/index.docbook";
 +        int last_slash = file.findRev('/');
 +        if (last_slash != -1 && last_slash != 0) {
 +          int slash2 = file.findRev('/', last_slash -1);
 +          if (slash2 != -1 && slash2 != 0) {
 +	     int slash3 = file.findRev('/', slash2 - 1);
 +	     if (slash3 != -1) {
-+	       QString xml_file = file.left(file.findRev('/')) + "/" + file.mid(slash3 + 1, slash2 - (slash3 + 1)) + ".xml";
++	       TQString xml_file = file.left(file.findRev('/')) + "/" + file.mid(slash3 + 1, slash2 - (slash3 + 1)) + ".xml";
 +	       kdDebug( 7119 ) << "xml_file " << xml_file << endl;
-+	       QFileInfo fi(xml_file);
++	       TQFileInfo fi(xml_file);
 +	       if (fi.exists())
 +	         docbook_file = xml_file;
 +	     }
@@ -85,7 +85,7 @@ Index: kdoctools/kio_help.cpp
          if (!KStandardDirs::exists(file)) {
              file = docbook_file;
          } else {
-             QFileInfo fi(file);
+             TQFileInfo fi(file);
              if (fi.isDir()) {
 -                file = file + "/index.docbook";
 +                file = docbook_file;
@@ -96,8 +96,8 @@ Index: kdoctools/kio_help.cpp
              mParsed = transform(file, locate("dtd", "customization/kde-chunk.xsl"));
              if ( !mParsed.isEmpty() ) {
                  infoMessage( i18n( "Saving to cache" ) );
--                QString cache = file.left( file.length() - 7 );
-+		QString cache;
+-                TQString cache = file.left( file.length() - 7 );
++		TQString cache;
 +		if (file.endsWith(".xml"))
 +		    cache = file.left( file.length() - strlen ("xml") );
 +		else
@@ -109,22 +109,22 @@ Index: kdoctools/xslt.cpp
 ===================================================================
 --- kdoctools/xslt.cpp.orig
 +++ kdoctools/xslt.cpp
-@@ -278,10 +278,16 @@ static bool readCache( const QString &fi
- QString lookForCache( const QString &filename )
+@@ -278,10 +278,16 @@ static bool readCache( const TQString &f
+ TQString lookForCache( const TQString &filename )
  {
      kdDebug() << "lookForCache " << filename << endl;
 -    assert( filename.endsWith( ".docbook" ) );
 +    assert( filename.endsWith( ".docbook" ) || filename.endsWith( ".xml" ) );
      assert( filename.at( 0 ) == '/' );
  
--    QString cache = filename.left( filename.length() - 7 );
-+    QString cache;
+-    TQString cache = filename.left( filename.length() - 7 );
++    TQString cache;
 +
 +    if (filename.endsWith( ".xml" ))
 +      cache = filename.left( filename.length() - strlen ("xml") );
 +    else
 +      cache = filename.left( filename.length() - strlen ("docbook") );
 +
-     QString output;
+     TQString output;
      if ( readCache( filename, cache + "cache.bz2", output) )
          return output;

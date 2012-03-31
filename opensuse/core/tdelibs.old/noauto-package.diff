@@ -9,5 +9,5 @@ Index: configure.in.in
 -AM_INIT_AUTOMAKE(@MODULENAME@, @VERSION@) dnl searches for some needed programs
 +AM_INIT_AUTOMAKE("kdelibs", @VERSION@) dnl searches for some needed programs
  
- AM_MAINTAINER_MODE
+ AC_PROG_INSTALL
  

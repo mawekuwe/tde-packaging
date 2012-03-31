@@ -2,8 +2,8 @@ Index: pics/crystalsvg/index.theme
 ===================================================================
 --- pics/crystalsvg/index.theme	(Revision 505161)
 +++ pics/crystalsvg/index.theme	(Arbeitskopie)
-@@ -99,7 +99,7 @@
- Comment[zh_TW]=由 Everaldo.com Design Studio 所提供的圖示主題
+@@ -78,7 +78,7 @@
+ Comment[zh_HK]=由 Everaldo.com 提供的圖示主題
  DisplayDepth=32
  
 -Inherits=hicolor
@@ -11,13 +11,13 @@ Index: pics/crystalsvg/index.theme
  
  Example=folder
  LinkOverlay=link_overlay
-Index: tdecore/kicontheme.cpp
+Index: kdecore/kicontheme.cpp
 ===================================================================
---- tdecore/kicontheme.cpp	(Revision 458165)
-+++ tdecore/kicontheme.cpp	(Arbeitskopie)
-@@ -150,6 +150,8 @@
+--- kdecore/kicontheme.cpp	(Revision 458165)
++++ kdecore/kicontheme.cpp	(Arbeitskopie)
+@@ -146,6 +146,8 @@
      if ( name != "crystalsvg" )
-       for ( TQStringList::Iterator it = mInherits.begin(); it != mInherits.end(); ++it )
+       for ( QStringList::Iterator it = mInherits.begin(); it != mInherits.end(); ++it )
           if ( *it == "default" || *it == "hicolor" ) *it="crystalsvg";
 +    if ( name == "hicolor" )
 +	mInherits = "crystalsuse";

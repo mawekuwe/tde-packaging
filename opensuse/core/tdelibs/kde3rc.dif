@@ -1,17 +1,17 @@
-Index: kdecore/kconfigbackend.cpp
+Index: tdecore/kconfigbackend.cpp
 ===================================================================
---- kdecore/kconfigbackend.cpp.orig
-+++ kdecore/kconfigbackend.cpp
+--- tdecore/kconfigbackend.cpp.orig
++++ tdecore/kconfigbackend.cpp
 @@ -352,7 +352,11 @@ bool KConfigINIBackEnd::parseConfigFiles
  #ifdef Q_WS_WIN
-     QString etc_kderc = QFile::decodeName( QCString(getenv("WINDIR")) + "\\kderc" );
+     TQString etc_kderc = TQFile::decodeName( TQCString(getenv("WINDIR")) + "\\kderc" );
  #else
--    QString etc_kderc = QString::fromLatin1("/etc/kderc");
-+    QString etc_kderc;
-+    if (checkAccess(QString::fromLatin1("/etc/tderc"), R_OK))
-+       etc_kderc = QString::fromLatin1("/etc/tderc");
+-    TQString etc_kderc = TQString::tqfromLatin1("/etc/kderc");
++    TQString etc_kderc;
++    if (checkAccess(TQString::tqfromLatin1("/etc/tderc"), R_OK))
++       etc_kderc = TQString::tqfromLatin1("/etc/tderc");
 +    else
-+       etc_kderc = QString::fromLatin1("/etc/kde3rc");
++       etc_kderc = TQString::tqfromLatin1("/etc/kde3rc");
  #endif
  
      if (checkAccess(etc_kderc, R_OK))

@@ -4,12 +4,12 @@
      return true;
  }
  
-+bool KZip::writeDir(const TQString& name, const TQString& user, const TQString& group)
++bool KZip::writeDir(const QString& name, const QString& user, const QString& group)
 +{
 +    // Zip files have no explicit directories, they are implicitly created during extraction time
 +    // when file entries have paths in them.
 +    // However, to support empty directories, we must create a dummy file entry which ends with '/'.
-+    TQString dirName = name;
++    QString dirName = name;
 +    if (!name.endsWith("/"))
 +        dirName = dirName.append('/');
 +
@@ -19,8 +19,17 @@
 +}
 +
  // Doesn't need to be reimplemented anymore. Remove for KDE-4.0
- bool KZip::writeFile( const TQString& name, const TQString& user, const TQString& group, uint size, const char* data )
+ bool KZip::writeFile( const QString& name, const QString& user, const QString& group, uint size, const char* data )
  {
+@@ -1114,7 +1128,7 @@
+     }
+ 
+     // delete entries in the filelist with the same filename as the one we want
+-    // to save, so that we don´t have duplicate file entries when viewing the zip
++    // to save, so that we donï¿½t have duplicate file entries when viewing the zip
+     // with konqi...
+     // CAUTION: the old file itself is still in the zip and won't be removed !!!
+     QPtrListIterator<KZipFileEntry> it( d->m_fileList );
 diff -up kdelibs-3.5.10/kio/kio/kzip.h.orig kdelibs-3.5.10/kio/kio/kzip.h
 --- kdelibs-3.5.10/kio/kio/kzip.h.orig	2009-12-09 19:35:42.000000000 +0100
 +++ kdelibs-3.5.10/kio/kio/kzip.h	2009-12-09 19:35:48.000000000 +0100
@@ -31,8 +40,8 @@ diff -up kdelibs-3.5.10/kio/kio/kzip.h.orig kdelibs-3.5.10/kio/kio/kzip.h
 -    /**
 -     * @internal Not needed for zip
 -     */
--    virtual bool writeDir( const TQString& name, const TQString& user, const TQString& group) { Q_UNUSED(name); Q_UNUSED(user); Q_UNUSED(group); return true; }
-+    virtual bool writeDir(const TQString& name, const TQString& user, const TQString& group);
+-    virtual bool writeDir( const QString& name, const QString& user, const QString& group) { Q_UNUSED(name); Q_UNUSED(user); Q_UNUSED(group); return true; }
++    virtual bool writeDir(const QString& name, const QString& user, const QString& group);
      // TODO(BIC) uncomment and make virtual for KDE 4.
- //    bool writeDir( const TQString& name, const TQString& user, const TQString& group,
+ //    bool writeDir( const QString& name, const QString& user, const QString& group,
  //                        mode_t perm, time_t atime, time_t mtime, time_t ctime );

@@ -19,7 +19,7 @@
 
 
 Name:           tdelibs
-BuildRequires:  OpenEXR-devel arts-devel aspell-devel cups-devel fam-devel flac-devel krb5-devel
+BuildRequires:  OpenEXR-devel arts arts-devel aspell-devel cups-devel fam-devel flac-devel krb5-devel
 BuildRequires:  libart_lgpl-devel libidn-devel libsndfile libtiff-devel
 BuildRequires:  libxslt-devel openldap2-devel pcre-devel libtqt4-devel sgml-skel
 BuildRequires:  db-devel libacl-devel libattr-devel unsermake update-desktop-files utempter
@@ -34,7 +34,7 @@ Summary:        Trinity Base Libraries
 Version:        R13.99
 Release:        1
 Provides:       kups keramik tdelibs-cups tdelibs-33addons tdepim-networkstatus
-Provides:       kdelibs3_base = 3.5.13
+Provides:       kdelibs3_base = 3.3
 Requires:       libtqt4 >= %( echo `rpm -q --queryformat '%{VERSION}' libtqt4`)
 Requires:       openssl tdelibs-default-style
 Requires:       hicolor-icon-theme
@@ -44,35 +44,15 @@ Source0:        %{name}-%{version}.tar.bz2
 Source3:        baselibs.conf
 Source4:        api_docu_description
 Source6:        tderc
+# svn export svn://anonsvn.kde.org/home/kde/branches/KDE/3.5/kde-common/admin
+Source8:        admin.tar.bz2
 Source9:        cr16-filesys-file_broken.png
+Source10:       kdemm-20050330.tar.bz2
 Source11:       10888-bt.tar.gz
 Source12:       mimetype-icons.tar.bz2
 Source14:       vnd.openxmlformats-officedocument.wordprocessingml.document.desktop
 Source15:       vnd.openxmlformats-officedocument.presentationml.presentation.desktop
 Source16:       vnd.openxmlformats-officedocument.spreadsheetml.sheet.desktop
-Patch1:         kdeversion.diff
-Patch5:         applications.menu-fallback.diff
-Patch10:        disable-idn-support.diff
-Patch15:        add-suse-translations.diff
-Patch16:        kde3rc.dif
-Patch27:        noauto-package.diff
-Patch29:        prefer_distribution_settings.dif
-Patch50:        fix-gnome-help-support.diff
-Patch950:       fix-gnome-help-support_legacy.diff
-Patch52:        kdeprint-restart-cupsd.diff
-Patch56:        fix-dcopidlng-within-kdelibs-build.diff
-Patch65:        integrate-global-pixmaps-new.diff
-Patch66:        integrate-global-pixmaps-10.1.diff
-Patch105:       kdelibs3-hicolor-scalable-sizes.patch
-Patch127:       x-jar-desktop.diff
-Patch129:       default-useragent.diff
-Patch132:       no-debug-by-default.diff
-Patch133:       flash-player-non-oss.diff
-Patch153:       bug-382959_kabc_fix_vcardparser.patch
-Patch157:       ignore-inline-menu.diff
-Patch162:       arts-acinclude.patch
-Patch205:       kdelibs-3.5.10-cve-2009-2537-select-length.patch
-Patch210:       kdelibs-3.5.10-kio.patch
 
 %description
 This package contains tdelibs, one of the basic packages of the Trinity
@@ -138,45 +118,9 @@ to develop applications that require these.
 %prep
   echo %suse_version
 %setup -q
-%patch1
-%patch5
-#%patch10
-%patch15
-#%patch16
-%patch27
-%patch29
-%if %suse_version > 1020
-%patch50
-%else
-%patch950
-%endif
-%patch52
-%patch56
-%if %suse_version > 1010
-%patch65
-%else
-%if %suse_version > 1000
-%patch66
-%else
-%patch65
-%endif
-%endif
-%if %suse_version < 1030
-%patch105 -p 1
-%endif
-%patch127
-%patch129
-#%patch132
-%if %suse_version > 1020
-%patch133
-%endif
-%patch153
-%if %suse_version > 1110
-%patch157
-%endif
-%patch162 -p1
-%patch205 -p1
-%patch210 -p1
+tar xfvj %SOURCE10
+rm -rf admin
+bunzip2 -cd %{SOURCE8} | tar xfv - --exclude=.cvsignore --exclude=CVS
 
 tar xfvj %SOURCE12
 #
@@ -190,7 +134,7 @@ sed 's,#define KDE_VERSION_STRING "\(.*\)",#define KDE_VERSION_STRING "\1 \\"rel
 #UNSERMAKE=yes make -f admin/Makefile.common cvs
 
 %build
-#export PATH=$PWD/admin/:$PATH
+export PATH=$PWD/admin/:$PATH
 FINAL="--enable-final"
 CFLAGS="$CFLAGS -fno-strict-aliasing"
 CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"
@@ -215,6 +159,12 @@ CXXFLAGS="$CXXFLAGS -fno-strict-aliasing"
   # fast-malloc is not needed anymore
 
 EXTRA_FLAGS="-DCMAKE_SKIP_RPATH=OFF -DKDE_MALLOC_FULL=OFF -DKDE_MALLOC=OFF -DSSL_INSTALL_DIR=/usr/ssl -DPCSC_INSTALL_DIR=/usr -DENABLE_DNOFIFY=ON"
+
+# -DKDE_DISTRIBUTION=\"$DISTRI\"
+
+#	%if %is_plus
+#	-DENABLE_DNOFIFY=ON \
+#	%endif
 
 %cmake_tde -d build -- $EXTRA_FLAGS
 
@@ -421,7 +371,6 @@ mv -v %{buildroot}/%{_tde_sharedir}/cmake/tdelibs.cmake %{buildroot}/%{_datadir}
 %dir %{_tde_includedir}
 %dir %{_tde_sharedir}
 %dir %{_tde_configkcfgdir}
-%_mandir/man*/*
 %{_tde_bindir}/checkXML
 %{_tde_bindir}/dcop
 %{_tde_bindir}/dcopclient
@@ -451,7 +400,6 @@ mv -v %{buildroot}/%{_tde_sharedir}/cmake/tdelibs.cmake %{buildroot}/%{_datadir}
 %{_tde_bindir}/klauncher
 %{_tde_bindir}/kmailservice
 %{_tde_bindir}/ktradertest
-%{_tde_bindir}/knotify
 %{_tde_bindir}/kstartupconfig
 %{_tde_bindir}/kdostartupconfig
 %verify(not mode) %{_tde_bindir}/kpac_dhcp_helper
@@ -596,12 +544,10 @@ mv -v %{buildroot}/%{_tde_sharedir}/cmake/tdelibs.cmake %{buildroot}/%{_datadir}
 %{_tde_bindir}/dcopidl*
 %{_tde_bindir}/kmimelist
 %{_tde_bindir}/preparetips
-%{_tde_bindir}/ksvgtopng
 %{_tde_bindir}/kunittestmodrunner
 #%{_tde_bindir}/MISC
 %{_tde_includedir}/*
 %{_tde_datadir}/dcopidlng
-%{_tde_datadir}/kdelibs/admin
 %{_tde_libdir}/libartskde.la
 %{_tde_libdir}/libkunittest.la
 %{_tde_libdir}/libkunittest.so
@@ -618,6 +564,8 @@ mv -v %{buildroot}/%{_tde_sharedir}/cmake/tdelibs.cmake %{buildroot}/%{_datadir}
 %{_tde_libdir}/libkabc.la
 %{_tde_libdir}/libkabc_ldapkio.la
 %{_tde_libdir}/libkabc_ldapkio.so
+%{_tde_libdir}/libkabc_net.la
+%{_tde_libdir}/libkabc_net.so
 %{_tde_libdir}/libkabc.so
 %{_tde_libdir}/libkatepartinterfaces.la
 %{_tde_libdir}/libkatepartinterfaces.so

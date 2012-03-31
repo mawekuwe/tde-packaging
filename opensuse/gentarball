@@ -20,7 +20,10 @@ grab()
 #svn export svn://anonsvn.kde.org/home/kde/branches/trinity/$NAME
 git clone http://scm.trinitydesktop.org/scm/git/$NAME $NAME
 cd $NAME
-git submodule update --init
+if [[ -e .gitmodules ]]; then
+	sed -i 's/system@//g' .gitmodules
+	git submodule update --init
+fi
 cd ..
 createTarball
 rm -rf $NAME

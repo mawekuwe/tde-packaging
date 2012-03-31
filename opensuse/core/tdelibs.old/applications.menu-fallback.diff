@@ -4,8 +4,8 @@ Index: kded/kbuildsycoca.cpp
 +++ kded/kbuildsycoca.cpp
 @@ -378,8 +378,12 @@ bool KBuildSycoca::build()
  
-      connect(g_vfolder, TQT_SIGNAL(newService(const TQString &, KService **)),
-              this, TQT_SLOT(slotCreateEntry(const TQString &, KService **)));
+      connect(g_vfolder, SIGNAL(newService(const QString &, KService **)),
+              this, SLOT(slotCreateEntry(const QString &, KService **)));
 -             
 -     VFolderMenu::SubMenu *kdeMenu = g_vfolder->parseMenu("applications.menu", true);
 +

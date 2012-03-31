@@ -1,13 +1,15 @@
---- kdoctools/kio_help.cpp
+Index: kdoctools/kio_help.cpp
+===================================================================
+--- kdoctools/kio_help.cpp.orig
 +++ kdoctools/kio_help.cpp
-@@ -44,7 +44,27 @@
+@@ -44,7 +44,27 @@ QString HelpProtocol::langLookup(const Q
      // assemble the local search paths
-     const TQStringList localDoc = KGlobal::dirs()->resourceDirs("html") + KGlobal::dirs()->resourceDirs("html-bundle");
+     const QStringList localDoc = KGlobal::dirs()->resourceDirs("html");
  
 +    kdDebug( 7119 ) << "Looking up help for: " << fname << endl;
-+    TQString _fname = fname;
++    QString _fname = fname;
 +
-+    TQString path;
++    QString path;
 +    int slash = _fname.findRev ('/');
 +    if (slash == -1 || slash == 0) {
 +      path = _fname;
@@ -17,34 +19,34 @@
 +      _fname = _fname.right (_fname.length() - slash);
 +    }
 +
-     TQStringList langs = KGlobal::locale()->languageList();
-+    TQStringList::ConstIterator lang;
+     QStringList langs = KGlobal::locale()->languageList();
++    QStringList::ConstIterator lang;
 +    for (lang = langs.begin(); lang != langs.end(); ++lang)
 +        if ((*lang).left(2) == "en")
-+	    search.append(TQString("/opt/gnome/share/gnome/help/%1/C%2").arg(path).arg(_fname));
++	    search.append(QString("/usr/share/gnome/help/%1/C%2").arg(path).arg(_fname));
 +        else
-+	    search.append(TQString("/opt/gnome/share/gnome/help/%1/%2%3").arg(path).arg(*lang).arg(_fname));
++	    search.append(QString("/usr/share/gnome/help/%1/%2%3").arg(path).arg(*lang).arg(_fname));
 +
      langs.append( "en" );
      langs.remove( "C" );
  
-@@ -60,7 +80,7 @@
+@@ -60,7 +80,7 @@ QString HelpProtocol::langLookup(const Q
      {
-         TQStringList::ConstIterator lang;
+         QStringList::ConstIterator lang;
          for (lang = langs.begin(); lang != langs.end(); ++lang)
--            search.append(TQString("%1%2/%3").arg(localDoc[id], *lang, fname));
-+            search.append(TQString("%1%2/%3").arg(localDoc[id], *lang, path + _fname));
+-            search.append(QString("%1%2/%3").arg(localDoc[id], *lang, fname));
++            search.append(QString("%1%2/%3").arg(localDoc[id], *lang, path + _fname));
      }
  
      // try to locate the file
-@@ -81,6 +101,15 @@
+@@ -81,6 +101,15 @@ QString HelpProtocol::langLookup(const Q
              if (info.exists() && info.isFile() && info.isReadable())
                  return *it;
          }
 +
 +        if ( ( *it ).right( 5 ) == ".html" )
 +        {
-+            TQString file = (*it).left((*it).findRev('/')) + "/" + path + ".xml";
++            QString file = (*it).left((*it).findRev('/')) + "/" + path + ".xml";
 +            kdDebug( 7119 ) << "Looking for help in: " << file << endl;
 +            info.setFile(file);
 +            if (info.exists() && info.isFile() && info.isReadable())
@@ -53,7 +55,7 @@
      }
  
  
-@@ -100,7 +129,7 @@
+@@ -100,7 +129,7 @@ QString HelpProtocol::lookupFile(const Q
      result = langLookup(path);
      if (result.isEmpty())
      {
@@ -62,19 +64,19 @@
          if (!result.isEmpty())
  	{
              KURL red( "help:/" );
-@@ -190,12 +219,26 @@
+@@ -190,12 +219,26 @@ void HelpProtocol::get( const KURL& url
        }
      } else {
-         TQString docbook_file = file.left(file.findRev('/')) + "/index.docbook";
+         QString docbook_file = file.left(file.findRev('/')) + "/index.docbook";
 +        int last_slash = file.findRev('/');
 +        if (last_slash != -1 && last_slash != 0) {
 +          int slash2 = file.findRev('/', last_slash -1);
 +          if (slash2 != -1 && slash2 != 0) {
 +	     int slash3 = file.findRev('/', slash2 - 1);
 +	     if (slash3 != -1) {
-+	       TQString xml_file = file.left(file.findRev('/')) + "/" + file.mid(slash3 + 1, slash2 - (slash3 + 1)) + ".xml";
++	       QString xml_file = file.left(file.findRev('/')) + "/" + file.mid(slash3 + 1, slash2 - (slash3 + 1)) + ".xml";
 +	       kdDebug( 7119 ) << "xml_file " << xml_file << endl;
-+	       TQFileInfo fi(xml_file);
++	       QFileInfo fi(xml_file);
 +	       if (fi.exists())
 +	         docbook_file = xml_file;
 +	     }
@@ -83,19 +85,19 @@
          if (!KStandardDirs::exists(file)) {
              file = docbook_file;
          } else {
-             TQFileInfo fi(file);
+             QFileInfo fi(file);
              if (fi.isDir()) {
 -                file = file + "/index.docbook";
 +                file = docbook_file;
              } else {
                  if ( file.right( 5 ) != ".html" || !compareTimeStamps( file, docbook_file ) ) {
                      get_file( target );
-@@ -238,7 +281,11 @@
+@@ -238,7 +281,11 @@ void HelpProtocol::get( const KURL& url
              mParsed = transform(file, locate("dtd", "customization/kde-chunk.xsl"));
              if ( !mParsed.isEmpty() ) {
                  infoMessage( i18n( "Saving to cache" ) );
--                TQString cache = file.left( file.length() - 7 );
-+		TQString cache;
+-                QString cache = file.left( file.length() - 7 );
++		QString cache;
 +		if (file.endsWith(".xml"))
 +		    cache = file.left( file.length() - strlen ("xml") );
 +		else
@@ -103,24 +105,26 @@
                  saveToCache( mParsed, locateLocal( "cache",
                                                          "kio_help" + cache +
                                                          "cache.bz2" ) );
---- kdoctools/xslt.cpp
+Index: kdoctools/xslt.cpp
+===================================================================
+--- kdoctools/xslt.cpp.orig
 +++ kdoctools/xslt.cpp
-@@ -278,10 +278,16 @@
- TQString lookForCache( const TQString &filename )
+@@ -278,10 +278,16 @@ static bool readCache( const QString &fi
+ QString lookForCache( const QString &filename )
  {
      kdDebug() << "lookForCache " << filename << endl;
 -    assert( filename.endsWith( ".docbook" ) );
 +    assert( filename.endsWith( ".docbook" ) || filename.endsWith( ".xml" ) );
-     assert( filename.tqat( 0 ) == '/' );
+     assert( filename.at( 0 ) == '/' );
  
--    TQString cache = filename.left( filename.length() - 7 );
-+    TQString cache;
+-    QString cache = filename.left( filename.length() - 7 );
++    QString cache;
 +
 +    if (filename.endsWith( ".xml" ))
 +      cache = filename.left( filename.length() - strlen ("xml") );
 +    else
 +      cache = filename.left( filename.length() - strlen ("docbook") );
 +
-     TQString output;
+     QString output;
      if ( readCache( filename, cache + "cache.bz2", output) )
          return output;

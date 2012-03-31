@@ -1,10 +1,10 @@
-Index: tdecore/kicontheme.cpp
+Index: kdecore/kicontheme.cpp
 ===================================================================
---- tdecore/kicontheme.cpp.orig
-+++ tdecore/kicontheme.cpp
-@@ -150,6 +150,8 @@ KIconTheme::KIconTheme(const TQString& n
+--- kdecore/kicontheme.cpp.orig
++++ kdecore/kicontheme.cpp
+@@ -150,6 +150,8 @@ KIconTheme::KIconTheme(const QString& na
      if ( name != "crystalsvg" )
-       for ( TQStringList::Iterator it = mInherits.begin(); it != mInherits.end(); ++it )
+       for ( QStringList::Iterator it = mInherits.begin(); it != mInherits.end(); ++it )
           if ( *it == "default" || *it == "hicolor" ) *it="crystalsvg";
 +    if ( name == "hicolor" )
 +	mInherits = "crystalsuse";
