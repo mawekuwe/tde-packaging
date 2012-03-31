@@ -12,7 +12,6 @@ debian/tmp/opt/trinity/bin/tdm_config
 debian/tmp/opt/trinity/bin/tdmctl
 debian/tmp/opt/trinity/bin/tdm_greet
 debian/tmp/opt/trinity/bin/krootimage
-debian/tmp/opt/trinity/share/apps/tdm/pics/kdelogo-crystal.png
 debian/tmp/opt/trinity/share/apps/tdm/pics/kdelogo.png
 debian/tmp/opt/trinity/share/apps/tdm/pics/shutdown.jpg
 debian/tmp/opt/trinity/share/apps/tdm/pics/users/default1.png

@@ -8,7 +8,7 @@ debian/man/out/kaddprinterwizard-trinity.1
 debian/man/out/kbuildsycoca-trinity.1
 debian/man/out/kconf_update-trinity.1
 debian/man/out/kcookiejar-trinity.1
-debian/man/out/kde-config-trinity.1
+debian/man/out/tde-config-trinity.1
 debian/man/out/kded-trinity.1
 debian/man/out/kdontchangethehostname-trinity.1
 debian/man/out/kfile-trinity.1

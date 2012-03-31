@@ -1,3 +1,3 @@
-debian/tmp/opt/trinity/include/tde/poppler-link-qt3.h
-debian/tmp/opt/trinity/include/tde/poppler-page-transition.h
-debian/tmp/opt/trinity/include/tde/poppler-qt.h
+debian/tmp/opt/trinity/include/poppler-link-qt3.h
+debian/tmp/opt/trinity/include/poppler-page-transition.h
+debian/tmp/opt/trinity/include/poppler-qt.h

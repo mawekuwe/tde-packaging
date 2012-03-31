@@ -100,7 +100,7 @@ pytdeextensions (0.4.0-3) unstable; urgency=low
   * Added pycompat and pyversions
   * Force to use python2.4 (Closes: #375618)
   * Added to Build-Depends: python-support, python-all-dev,
-    tdelibs4c2a (for kde-config)
+    tdelibs4c2a (for tde-config)
   * Updated libpythonize0-dev, libpythonize0, and pytdextensions install files
   * Cleaned up rules
   * Added 12_force_python2.4_script.diff to force python2.4 in scripts

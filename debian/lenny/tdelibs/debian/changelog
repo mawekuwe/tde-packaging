@@ -2083,7 +2083,7 @@ tdelibs (4:3.4.0-0pre5) alioth; urgency=low
     page. (Closes: #257588).
 
   * [cdbs/kde.mk] Use escaped variables in the definitions of kde_htmldir and
-    the like instead of absolute paths, so that /usr/bin/kde-config doesn't
+    the like instead of absolute paths, so that /usr/bin/tde-config doesn't
     output them expanded even when --expandvars is not used. (Closes: #287822)
 
   * Fixed the ability of the build system to find kde.pot, even when it is not

@@ -16,4 +16,4 @@ debian/tmp/opt/trinity/share/apps/kappfinder/apps/Multimedia/qjackctl.desktop
 debian/tmp/opt/trinity/share/apps/kappfinder/apps/Multimedia/qsynth.desktop
 debian/tmp/opt/trinity/share/apps/kappfinder/apps/Multimedia/vkeybd.desktop
 debian/tmp/opt/trinity/share/apps/kappfinder/apps/Multimedia/zynaddsubfx.desktop
-debian/tmp/opt/trinity/share/desktop-directories/kde-multimedia-music.directory
+debian/tmp/opt/trinity/share/desktop-directories/tde-multimedia-music.directory
