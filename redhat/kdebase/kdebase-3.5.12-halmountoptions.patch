@@ -72,7 +72,7 @@ diff -r -u kdebase-3.5.5a.dfsg.1.orig/kioslave/media/mediamanager/halbackend.h k
  				const char* message
  				);
  
-+	QStringList getHALmountoptions(QString udi);
++	TQStringList getHALmountoptions(QString udi);
  /* HAL and DBus structures */
  private:
  	/**

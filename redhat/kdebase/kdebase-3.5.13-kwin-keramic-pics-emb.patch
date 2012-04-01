@@ -1,0 +1,62 @@
+diff -uNr kdebase-3.5.13.orig/kwin/clients/keramik/CMakeLists.txt kdebase-3.5.13/kwin/clients/keramik/CMakeLists.txt
+--- kdebase-3.5.13.orig/kwin/clients/keramik/CMakeLists.txt	2012-03-14 12:56:02.567586872 +0200
++++ kdebase-3.5.13/kwin/clients/keramik/CMakeLists.txt	2012-03-14 12:50:07.000000000 +0200
+@@ -42,22 +42,11 @@
+ 
+ ##### tiles.h (header) ##########################
+ 
+-set( pics
+-  pics/caption-large-left.png pics/caption-small-right.png
+-  pics/titlebar-center.png pics/titlebutton-square.png
+-  pics/border-left.png pics/caption-large-right.png
+-  pics/grabbar-center.png pics/titlebar-left.png
+-  pics/border-right.png pics/caption-small-center.png
+-  pics/grabbar-left.png pics/titlebar-right.png
+-  pics/caption-large-center.png pics/caption-small-left.png
+-  pics/grabbar-right.png pics/titlebutton-round.png
+-  pics/bottom-left.png pics/bottom-right.png pics/bottom-center.png
+-  pics/titlebutton-square-large.png pics/titlebutton-square-huge.png
+-  pics/titlebutton-round-large.png pics/titlebutton-round-huge.png )
++file(GLOB _pics "${CMAKE_CURRENT_SOURCE_DIR}/pics/*.png" )
+ 
+ add_custom_command( OUTPUT tiles.h
+-  COMMAND ${CMAKE_CURRENT_BINARY_DIR}/embedtool ${pics}
+-  DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/embedtool ${pics} )
++  COMMAND ${CMAKE_CURRENT_BINARY_DIR}/embedtool ${_pics}
++  DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/embedtool ${_pics} )
+ 
+ tde_add_executable( embedtool
+   SOURCES embedtool.cpp
+diff -Naur tdebase-master-orig/CMakeLists.txt tdebase-master/CMakeLists.txt
+--- tdebase-master-orig/CMakeLists.txt	2012-03-28 09:07:30.000000000 +0200
++++ tdebase-master/CMakeLists.txt	2012-04-01 11:41:49.000000000 +0200
+@@ -27,6 +27,7 @@
+ include( CheckLibraryExists )
+ include( CheckFunctionExists )
+ include( CheckStructHasMember )
++include( CheckTypeSize )
+ 
+ 
+ ##### include our cmake modules #################
+@@ -150,6 +151,8 @@
+ set( CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined" )
+ set( CMAKE_MODULE_LINKER_FLAGS "-Wl,--no-undefined" )
+ 
++check_type_size( "long long" LONG_LONG )
++
+ 
+ ##### kdebase directories #######################
+ 
+diff -Naur tdebase-master-orig/config.h.cmake tdebase-master/config.h.cmake
+--- tdebase-master-orig/config.h.cmake	2012-03-28 09:07:30.000000000 +0200
++++ tdebase-master/config.h.cmake	2012-04-01 11:45:21.000000000 +0200
+@@ -3,6 +3,9 @@
+ // konsole
+ #cmakedefine HAVE_PROC_CWD 1
+ 
++// Defined if compiler supports long long type.
++#cmakedefine HAVE_LONG_LONG 1
++
+ // kdesktop, konsole, kcontrol, kicker
+ #cmakedefine HAVE_XRENDER 1
+ 

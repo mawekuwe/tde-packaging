@@ -1,0 +1,24 @@
+commit 77041d785dbbede734f8dc44aa454d07d14f0317
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1329161441 -0600
+
+    Clean up 9cc1e2c1 changes to enum
+    This corrects a potential ABI compat problem noted by Martin Gräßlin
+
+diff --git a/twin/lib/kdecoration.h b/twin/lib/kdecoration.h
+index 19fe494..f18f970 100644
+--- a/kwin/lib/kdecoration.h
++++ b/kwin/lib/kdecoration.h
+@@ -97,10 +97,10 @@ public:
+         LowerOp,
+         FullScreenOp,
+         NoBorderOp,
+-	ShadowOp,
+         NoOp,
+         SetupWindowShortcutOp,
+-        ApplicationRulesOp     ///< @since 3.5
++        ApplicationRulesOp,    ///< @since 3.5
++        ShadowOp               ///< @since 3.5.12
+         };
+     /**
+      * Basic color types that should be recognized by all decoration styles.

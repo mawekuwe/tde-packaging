@@ -1,18 +1,12 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 17
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %define _docdir %{_prefix}/share/doc
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific variables
 BuildRequires: cmake >= 2.8
-%define tde_docdir %{_docdir}/kde
+%define tde_docdir %{_docdir}/trinity
 %define tde_libdir %{_libdir}/trinity
 
 # Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
@@ -22,11 +16,11 @@ BuildRequires: cmake >= 2.8
 %endif
 
 
-Name:		trinity-kdebase
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Name:		tdebase
+Version:	r14
+Release:	1%{?dist}%{?_variant}
 License:	GPL
-Summary:	Trinity KDE Base Programs
+Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
 
 Vendor:		Trinity Project
@@ -36,7 +30,7 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	kdebase-%{version}.tar.gz
+Source0:	tdebase-%{version}.tar.gz
 
 # Wrapper script to prevent Plasma launch at Trinity Startup
 Source1:	plasma-desktop
@@ -47,82 +41,21 @@ Source3:	pamd.kdm-trinity-np%{?dist}
 Source4:	pamd.kcheckpass-trinity%{?dist}
 Source5:	pamd.kscreensaver-trinity%{?dist}
 
-# [kdebase] Fix corrupted PNG images [Bug #298]
-Source6:	tiles-fixed-png-images.tar.gz
-
 # TDE unofficial patches, fixing FTBFS
-## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
-Patch8:		kdebase-3.5.13-mediamanager_ftbfs.patch
-## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
-Patch9:		kdebase-3.5.13-startkde_ldpreload.patch
 
 # TDE for RHEL/Fedora specific patches
-## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
-Patch10:	kdebase-3.5.13-kdesu-noignorebutton.patch
 ## [kdebase/kdesktop] Modifies 'open terminal here' on desktop
 Patch11:	kdebase-3.5.12-desktop-openterminalhere.patch
 ## [kdebase/kioslave] Forces HAL backend to use HAL mount options
 Patch12:	kdebase-3.5.12-halmountoptions.patch
-## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
-Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
-## [kdebase/kicker/kicker/ui] Fix kickoff menu issues
-Patch14:	kdebase-3.5.13-kickoff_unstable.patch
-## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
-Patch15:	kdebase-3.5.13-startkde_icon.patch
-## [kdebase/startkde] Fixes duplicate and incorrect TDE directories location [Bug #741]
-Patch16:	kdebase-3.5.13-startkde_directories.patch
 
 # TDE unofficial patches for enhanced features or bugfixes.
-## [kdebase/kdm] adds gcrypt support [Bug #624]
-Patch7:		kdebase-3.5.13-kdm-crypt.patch
-## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration [Bug #244]
-Patch20:	kdebase-3.5.13-kate_mru.patch
 ## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db' [Bug #714]
 Patch21:	kdebase-3.5.13-kio_man_utf8.patch
 ## [kdebase/konqueror] Re-enable 'open tab in background' [Bug #245]
 Patch22:	kdebase-3.5.13-konq_menu_tab_background.patch
-## [kdebase/konqueror/sidebar] Fix error message on documents parent folder [Bug #723]
-Patch23:	kdebase-3.5.13-konqsidebar_documents.patch
-## [kdebase/konqueror/listview] Konqueror Icon Activation Effect [Bug #335]
-Patch24:	kdebase-3.5.13-konq_icon_effect.patch
-## [kdebase/kdesu] Restores the "Keep password" check box to the kdesu dialog box [Bug #388]
-Patch25:	kdebase-3.5.13-kdesu_showkeeppassword.patch
-## [kdebase/kpersonalizer] Repair KPersonalizer settings to match system defaults [Bug #759]
-Patch26:	kdebase-3.5.13-kpersonalizer_default_doubleclick.patch
 ## [kdebase/kicker] Restores the original KDE3 clock [Bug #387]
 Patch27:	kdebase-3.5.13-restore_kde3_clock.patch
-## [kdebase/kcontrol/randr] Implement X11 event merging in krandrtray [Bug #758]
-Patch28:	kdebase-3.5.13-randrtray_merge_x11_reconfig_requests.patch
-## [kdebase/kdesktop/lock] Fix multihead screen locking [Bug #669]
-Patch29:	kdebase-3.5.13-fix_multihead_desktop_lock.patch
-## [kdebase/kdm/kfrontend] Allows to hide KDM menu button
-Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
-## [kdebase/kxkb] Enables xtest support
-Patch31:	kdebase-3.5.13-enable_xtest_support.patch
-## [kdebase/kdm/kfrontend] fix KDM high CPU usage when inactive [Bug #690]
-Patch32:	kdebase-3.5.13-fix_kdm_cpu_usage.patch
-## [kdebase/tsak] Add keyboard hotplug (add/remove) support to tsak [Bug #587]
-Patch33:	kdebase-3.5.13-tsak_keyboard_hotplug.patch
-## [kdebase/tsak] Replicate LED status from virtual keyboards to physical keyboards [Bug #561]
-Patch34:	kdebase-3.5.13-replicate_led_status_on_virtual_keyboard.patch
-## [kdebase/kwin] do not show hostname in titlebar if it's FQDN of localhost [Bug #889]
-Patch35:	kdebase-3.5.13-fix_fqdn_in_title.patch
-## [kdebase/kicker/applets] Adds option to disable desktop switch on mouse wheel cycling [Bug #908]
-Patch36:	kdebase-3.5.13-option_to_disable_scroll_desktop.patch
-## [kdebase] Fix Keramik window decoration in KWIN [Bug #905]
-Patch37:	kdebase-3.5.13-kwin-keramic-pics-emb.patch
-## [kdebase/kdesktop] Fix device icon placement on desktop [Bug #392]
-Patch38:	kdebase-3.5.13-fix_device_icon_placement.patch
-## [kdebase/kdesktop/lock] Fix security hole in kdesktop_lock
-Patch39:	kdebase-3.5.13-fix_kdesktop_lock_security_issue.patch
-## [kdebase/kdesktop/lock] Allow minimal managed window interaction inside the lock process [Bug #810]
-Patch40:	kdebase-3.5.13-allow_minimal_window_interaction_inside_lock_process.patch
-## [kdebase/kwin] Corrects a potential ABI compat problem
-Patch41:	kdebase-3.5.13-fix_potential_ABI_compat_problem.patch
-## [kdebase] Fix kdebase translations in desktop files - part 2 [Bug #890]
-Patch42:	kdebase-3.5.13-fix_translations_in_desktop_files.patch
-## [kdebase/kate] Kate: fix focus broken when using the --use parameter [Bug #692]
-Patch43:	kdebase-3.5.13-kate_focus_fix.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -166,10 +99,11 @@ Requires:	redhat-indexhtml
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	qt%{?_qt_suffix}-devel
+BuildRequires:	tdelibs-devel >= %{version}
+BuildRequires:	tqt3-devel >= 3.4.0
 BuildRequires:	openssl-devel
-BuildRequires:	avahi-devel avahi-qt3-devel
+BuildRequires:	avahi-devel
+BuildRequires:	avahi-tqt-devel
 BuildRequires:	imake
 BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	OpenEXR-devel
@@ -179,7 +113,8 @@ BuildRequires:	dbus-tqt-devel
 BuildRequires:	lm_sensors-devel
 BuildRequires:	libfontenc-devel
 BuildRequires:	hal-devel
-BuildRequires:	audiofile-devel alsa-lib-devel
+BuildRequires:	audiofile-devel
+BuildRequires:	alsa-lib-devel
 BuildRequires:	libraw1394-devel
 BuildRequires:	openldap-devel
 BuildRequires:	libvorbis-devel
@@ -200,12 +135,13 @@ BuildRequires:	nas-devel
 BuildRequires:	libudev-devel
 %endif
  
-Requires:	tqtinterface
+Requires:	tqtinterface >= %{version}
 Requires:	trinity-arts
-Requires:	trinity-kdelibs
-Requires:	qt%{?_qt_suffix}
+Requires:	tdelibs >= %{version}
+Requires:	tqt3 >= 3.4.0
 Requires:	openssl
-Requires:	avahi avahi-qt3
+Requires:	avahi
+Requires:	avahi-tqt
 Requires:	dbus-tqt
 # Provides the global Xsession script (/etc/X11/xinit/Xsession)
 Requires:	xorg-x11-xinit
@@ -227,10 +163,12 @@ Obsoletes:		kdebase%{?_qt_suffix} <= 3.5.10
 # Required for Fedora LiveCD
 Provides:	service(graphical-login)
 
+Obsoletes:		trinity-kdebase <= 3.5.13
+
 
 %description
-Core applications for the Trinity K Desktop Environment.  Included are: kdm
-(replacement for xdm), kwin (window manager), konqueror (filemanager,
+Core applications for the Trinity Desktop Environment.  Included are: kdm
+(replacement for xdm), twin (window manager), konqueror (filemanager,
 web browser, ftp client, ...), konsole (xterm replacement), kpanel
 (application starter and desktop pager), kaudio (audio server),
 kdehelp (viewer for kde help files, info and man pages), kthememgr
@@ -242,18 +180,19 @@ kfontmanager, kmenuedit).
 %package devel
 Requires:	%{name}
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	trinity-kdelibs-devel
+Requires:	tdelibs-devel >= %{version}
 Summary:	%{summary} - Development files
 %if "%{?_prefix}" == "/usr"
 Provides:		kdebase%{?_qt_suffix}-devel = %{version}
 Obsoletes:		kdebase%{?_qt_suffix}-devel <= 3.5.10
 %endif
+Obsoletes:		trinity-kdebase-devel <= 3.5.13
 
 Group:		Development/Libraries
 %description devel
 Header files for developing applications using %{name}.
 Install kdebase-devel if you want to develop or compile Konqueror,
-Kate plugins or KWin styles.
+Kate plugins or TWin styles.
 
 
 %package extras
@@ -264,6 +203,7 @@ Requires: %{name} = %{version}-%{release}
 Provides:	kdebase%{?_qt_suffix}-extras = %{version}
 Obsoletes:	kdebase%{?_qt_suffix}-extras <= 3.5.10
 %endif
+Obsoletes:		trinity-kdebase-extras <= 3.5.13
 %description extras
 %{summary}, including:
  * kappfinder
@@ -275,12 +215,13 @@ Obsoletes:	kdebase%{?_qt_suffix}-extras <= 3.5.10
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-kdelibs
+Requires: tdelibs >= %{version}
 %if "%{?_prefix}" == "/usr"
 Provides:	kdebase%{?_qt_suffix}-libs = %{version}
 Obsoletes:	kdebase%{?_qt_suffix}-libs <= 3.5.10
 %endif
 Requires: %{name} = %{version}-%{release}
+Obsoletes:		trinity-kdebase-libs <= 3.5.13
 %description libs
 %{summary}
 
@@ -292,6 +233,7 @@ Group: System Environment/Libraries
 Provides:	kdebase%{?_qt_suffix}-pim-ioslaves = %{version}
 Obsoletes:	kdebase%{?_qt_suffix}-pim-ioslaves <= 3.5.10
 %endif
+Obsoletes:		trinity-kdebase-pim-ioslaves <= 3.5.13
 %description pim-ioslaves
 Protocol handlers (KIOslaves) for personal information management, including:
  * kio_ldap
@@ -301,66 +243,33 @@ Protocol handlers (KIOslaves) for personal information management, including:
 
 
 %prep
-%setup -q -n kdebase
-%__tar xfz %{SOURCE6} -C kicker/data/tiles
+%setup -q -n %{name}
 
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-
-%patch10 -p1
 %patch11 -p1
 %patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
 
-%patch20 -p4
 %if 0%{?rhel} > 0
 %patch21 -p1
 %endif
 %patch22 -p1
-%patch23 -p1
-%patch24 -p4
-%patch25 -p1
-%patch26 -p1
 %patch27 -p0
-%patch28 -p0
-%patch29 -p0
-%patch30 -p1
-%patch31 -p1
-%patch32 -p1
-%if 0%{?fedora} >= 15
-%patch33 -p1
-%patch34 -p1
-%endif
-%patch35 -p1
-%patch36 -p1
-%patch37 -p1
-%patch38 -p1
-%patch39 -p1
-%patch40 -p1
-%patch41 -p1
-%patch42 -p1
-%patch43 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
-# KDM Background
-%__sed -i "kdm/kfrontend/genkdmconf.c" \
+# TDM Background
+%__sed -i "tdm/kfrontend/gentdmconf.c" \
 	-e 's|"Wallpaper=isadora.png\n"|"Wallpaper=%{tde_bg}\n"|'
 
 # TDE user default background
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
 	-e 's|#define DEFAULT_WALLPAPER "isadora.png"|#define DEFAULT_WALLPAPER "%{tde_bg}"|'
-%__sed -i "startkde" \
+%__sed -i "starttde" \
 	-e 's|/usr/share/wallpapers/isadora.png.desktop|%{tde_bg}|' \
 	-e 's|Wallpaper=isadora.png|Wallpaper=%{tde_bg}|'
 %endif
 
 # TDE branding: removes KUbuntu references [Bug #617]
-%__sed -i "kcontrol/kdm/kdm-appear.cpp" \
+%__sed -i "kcontrol/tdm/tdm-appear.cpp" \
 	-e "s|Welcome to Kubuntu |Welcome to %{tde_aboutlabel} |"
 %__sed -i "konqueror/about/konq_aboutpage.cc" \
 	-e "s|About Kubuntu|About %{tde_aboutlabel}|" \
@@ -368,15 +277,14 @@ Protocol handlers (KIOslaves) for personal information management, including:
 	-e "s|Kubuntu Documentation|%{tde_aboutlabel} Documentation|"
 %__sed -i "konqueror/about/launch.html" \
 	-e "s|help:/kubuntu/about-kubuntu/index.html|%{tde_aboutpage}|"
-%__sed -i "kdm/config.def" \
+%__sed -i "tdm/config.def" \
 	-e "s|Welcome to Trinity |Welcome to %{tde_aboutlabel} |"
 
-# TDE default directory in 'startkde' script (KDEDIR)
-%__sed -i "startkde" \
+# TDE default directory in 'starttde' script (TDEDIR)
+%__sed -i "starttde" \
 	-e "s|/opt/trinity|%{_prefix}|g"
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
@@ -385,6 +293,8 @@ export LD_LIBRARY_PATH="%{_libdir}"
 %__mkdir build
 cd build
 %cmake \
+  -DHAVE_REAL_TQT=ON \
+  -DHTML_INSTALL_DIR=%{tde_docdir}/HTML \
   -DWITH_SASL=ON \
   -DWITH_LDAP=ON \
   -DWITH_SAMBA=ON \
@@ -422,14 +332,10 @@ cd build
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
 
-# Adds a GDM/KDM/XDM session called 'TDE'
+# Adds a GDM/KDM/TDM/XDM session called 'TDE'
 %__install -D -m 644 \
-	"%{?buildroot}%{_datadir}/apps/kdm/sessions/tde.desktop" \
+	"%{?buildroot}%{_datadir}/apps/tdm/sessions/tde.desktop" \
 	"%{?buildroot}%{_usr}/share/xsessions/tde.desktop"
-
-# Force session name to be 'TDE'
-%__sed -i "%{?buildroot}%{_usr}/share/xsessions/tde.desktop" \
-	-e "s,^Name=.*,Name=TDE,"
 
 # Renames '/etc/ksysguarddrc' to avoid conflict with KDE4 'ksysguard'
 %__mv -f \
@@ -448,7 +354,7 @@ cd build
 %__install -D -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
 
 # KDM configuration for RHEL/Fedora
-%__sed -i "%{?buildroot}%{_datadir}/config/kdm/kdmrc" \
+%__sed -i "%{?buildroot}%{_datadir}/config/tdm/tdmrc" \
 %if 0%{?fedora} >= 16
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
 %else
@@ -554,7 +460,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %doc AUTHORS COPYING COPYING-DOCS README README.pam
 %{tde_docdir}/HTML/en/*
 %config(noreplace) %{_sysconfdir}/ksysguarddrc.tde
-%{_bindir}/genkdmconf
+%{_bindir}/gentdmconf
 %{_bindir}/kaccess
 %{_bindir}/kapplymousetheme
 %{_bindir}/kate
@@ -567,11 +473,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/kdebugdialog
 %{_bindir}/kdeinstallktheme
 %{_bindir}/kdepasswd
-%{_bindir}/kdesu
-%attr(0755,root,root) %{_bindir}/kdesud
+%{_bindir}/tdesu
+%attr(0755,root,root) %{_bindir}/tdesud
 %{_bindir}/kdialog
-%{_bindir}/kdm
-%{_bindir}/kdmctl
+%{_bindir}/tdm
+%{_bindir}/tdmctl
 %{_bindir}/keditbookmarks
 %{_bindir}/keditfiletype
 %{_bindir}/kfind
@@ -593,20 +499,20 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/ksysguardd
 %{_bindir}/ksystraycmd
 %{_bindir}/ktrash
-%{_bindir}/kwin
-%{_bindir}/kwin_killer_helper
-%{_bindir}/kwin_rules_dialog
+%{_bindir}/twin
+%{_bindir}/twin_killer_helper
+%{_bindir}/twin_rules_dialog
 %{_bindir}/kwrite
 %{_bindir}/kwriteconfig
 %{_bindir}/kxkb
 %{_bindir}/nspluginscan
 %{_bindir}/nspluginviewer
-%{_bindir}/startkde
+%{_bindir}/starttde
 %{_bindir}/kcheckrunning
 %{_bindir}/kdesktop
 %{_bindir}/kdesktop_lock
-%{_bindir}/kdm_config
-%{_bindir}/kdm_greet
+%{_bindir}/tdm_config
+%{_bindir}/tdm_greet
 %{_bindir}/kfontinst
 %{_bindir}/kfontview
 %{_bindir}/krootimage
@@ -645,7 +551,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/config.kcfg/*
 %{_bindir}/kio_media_mounthelper
 %{_bindir}/kdcop
-%{_bindir}/kdeprintfax
+%{_bindir}/tdeprintfax
 %{_bindir}/khc_beagle_index.pl
 %{_bindir}/khc_beagle_search.pl
 %{_bindir}/kxdglauncher
@@ -661,7 +567,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/servicetypes/*
 %{_datadir}/sounds/*
 %{tde_libdir}/*
-%{_libdir}/libkdeinit_*.*
+%{_libdir}/libtdeinit_*.*
 %if "%{_prefix}" != "/usr"
 %{_prefix}/etc/xdg/menus/applications-merged/kde-essential.menu
 %{_prefix}/etc/xdg/menus/kde-information.menu
@@ -694,11 +600,17 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 # New in TDE 3.5.13
 %{_bindir}/krootbacking
 %{_bindir}/tsak
-%attr(4511,root,root) %{_bindir}/kdmtsak
+%attr(4511,root,root) %{_bindir}/tdmtsak
+
+# New in TDE R14
+%{_bindir}/crashtest
+%{_bindir}/tdeinit_phase1
+%{_bindir}/twin_resumer_helper
+
 
 %files libs
 %defattr(-,root,root,-)
-%exclude %{_libdir}/libkdeinit_*.*
+%exclude %{_libdir}/libtdeinit_*.*
 %{_libdir}/lib*.so.*
 %{_libdir}/lib*.la
 
@@ -718,92 +630,17 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_includedir}/*.h
 %dir %{_includedir}/kate
 %{_includedir}/kate/*
-%dir %{_includedir}/kwin
-%{_includedir}/kwin/*
+%dir %{_includedir}/twin
+%{_includedir}/twin/*
 %dir %{_includedir}/ksgrd
 %{_includedir}/ksgrd/*
 %dir %{_includedir}/ksplash
 %{_includedir}/ksplash/*
 %{_libdir}/lib*.so
-%exclude %{_libdir}/libkdeinit_*.*
+%exclude %{_libdir}/libtdeinit_*.*
 # New in TDE 3.5.13
 %{_datadir}/cmake/*.cmake
 
 %changelog
-* Sun Apr 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-17
-- do not show hostname in titlebar if it's FQDN of localhost [Bug #889]
-- Adds option to disable desktop switch on mouse wheel cycling [Bug #908]
-- Fix Keramik window decoration in KWIN [Bug #905]
-- Fix device icon placement on desktop [Bug #392]
-- Fix security hole in kdesktop_lock
-- Allow minimal managed window interaction inside the lock process [Bug #810]
-- Corrects a potential ABI compat problem
-- Fix kdebase translations in desktop files - part 2 [Bug #890]
-- Kate: fix focus broken when using the --use parameter [Bug #692]
-   
-* Sat Jan 21 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-16
-- Fix KDM high CPU usage when inactive [Bug #690]
-- Add keyboard hotplug (add/remove) support to tsak [Bug #587]
-- Replicate LED status from virtual keyboards to physical keyboards [Bug #561]
-
-* Thu Jan 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-15
-- Add a KDM option to hide 'Menu' button on login prompt
-- Fix corrupted PNG tiles [Bug #298]
-- Adds 'xtest' support
-
-* Mon Jan 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-14
-- Fix Konqueror Icon Activation Effect [Bug #335]
-- Restores the "Keep password" check box to the kdesu dialog box [Bug #388]
-- Repair KPersonalizer settings to match system defaults [Bug #759]
-- Restores the original KDE3 clock [Bug #387]
-- Implement X11 event merging in krandrtray [Bug #758]
-- Fix multihead screen locking [Bug #669]
-
-* Mon Dec 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-13
-- Fix variables (again)
-
-* Sun Dec 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-12
-- Fix KDEDIRS and other variables in 'startkde', that messes up translations. [Bug  #741]
-
-* Sat Dec 10 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-11
-- Fix error message 'cannot find parent folder' on konqueror sidebar. [Bug #723]
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-10
-- Removes Kubuntu branding [Bug #449]
-- Re-enables 'open tab in background' konqueror feature [Bug #245]
-
-* Wed Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
-- Fix 'kio_man' on RHEL 5 and RHEL 6 [Bug #714]
-- Restores the 'number of files' and sorting widgets to the Kate configuration [Bug #244]
-
-* Fri Nov 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
-- Updates Kickoff menu Fix [Bugs #281, #508]
-- Adds KDM gcrypt dependency
-
-* Sun Nov 13 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
-- Add distribution-specific start button icon
-
-* Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
-- Add graphical theme for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-- Moves XDG files in TDE prefix to avoid conflict with distro-provided KDE
-
-* Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
-- Add "service(graphical-login)"
-- Add kickoff menu fix [Bug #508]
-- kdmrc: sets "MinShowUID=500"
-
-* Tue Nov 08 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
-- Fix FTBFS with dbus-tqt
-
-* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Add missing BuildRequires
-
-* Tue Nov 01 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Add 'patch8' to fix LD_PRELOAD variable set by 'startkde' under x86_64
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Sat Sep 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Import to GIT
-- Use TDE 3.5.13, cmake, QT3.3.3.8d
+* Sun Mar 04 2012 Francois Andriot <francois.andriot@free.fr> - r14-1
+- Initial build for TDE R14, using 'tqt3' instead of 'qt3'

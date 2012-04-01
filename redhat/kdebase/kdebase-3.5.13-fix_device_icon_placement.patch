@@ -1,0 +1,30 @@
+commit 5df6c5fca20e917aaa82665131b931a0aa7c8628
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1332447011 -0500
+
+    Restore code snippet removed with GIT hash
+    27856879bf962f178d88e79144e37a47e731b122,
+    Sept. 3, 2010, "Massive import of OpenSUSE patches."
+    Restoring this snippet restores the device icon
+    placement and resolves bug report 392.
+
+diff --git a/kdesktop/kdiconview.cc b/kdesktop/kdiconview.cc
+index e2f1c80..3404e4a 100644
+--- a/kdesktop/kdiconview.cc
++++ b/kdesktop/kdiconview.cc
+@@ -1141,6 +1141,15 @@ void KDIconView::slotNewItems( const KFileItemList & entries )
+             kdDebug(1214)<<"Using saved position"<<endl;
+         }
+       }
++      else
++      {
++            // Not found, we'll need to save the new pos
++            kdDebug(1214)<<"slotNewItems(): New item without position information, try to find a sane location"<<endl;
++
++            moveToFreePosition(fileIVI);
++
++            m_bNeedSave = true;
++      }
+     }
+   }
+ 
