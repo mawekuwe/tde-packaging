@@ -201,6 +201,7 @@ debian/tmp/opt/trinity/include/kdebugclasses.h
 debian/tmp/opt/trinity/include/kdebug.h
 debian/tmp/opt/trinity/include/kdedmodule.h
 debian/tmp/opt/trinity/include/kde_file.h
+debian/tmp/opt/trinity/include/tdehardwaredevices.h
 debian/tmp/opt/trinity/include/tdelibs_export.h
 debian/tmp/opt/trinity/include/kdemacros.h
 debian/tmp/opt/trinity/include/kde.pot
