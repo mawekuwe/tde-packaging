@@ -28,10 +28,10 @@ debian/tmp/opt/trinity/share/apps/kiconedit/pics/source.png
 debian/tmp/opt/trinity/share/apps/kiconedit/pics/standard.png
 debian/tmp/opt/trinity/share/apps/kiconedit/pics/transform.png
 debian/tmp/opt/trinity/share/apps/kiconedit/pics/window_new.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kiconedit/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kiconedit/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kiconedit/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kiconedit/kiconedit-configuration.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kiconedit/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kiconedit/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kiconedit/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kiconedit/kiconedit-configuration.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kiconedit.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kiconedit.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kiconedit.png

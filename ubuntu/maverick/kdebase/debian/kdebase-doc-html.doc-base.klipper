@@ -5,6 +5,6 @@ Abstract: Klipper is the KDE clipboard cut and paste utility.
 Section: Apps/Utils
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/klipper/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/klipper/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/klipper/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/klipper/*.html
 

@@ -14,9 +14,9 @@ debian/tmp/opt/trinity/share/apps/kicker/applets/kweather.desktop
 debian/tmp/opt/trinity/share/apps/kweather
 debian/tmp/opt/trinity/share/apps/kweatherservice/stations.dat
 debian/tmp/opt/trinity/share/apps/kweatherservice/weather_stations.desktop
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kweather/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kweather/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kweather/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kweather/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kweather/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kweather/common
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kweather.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kweather.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kweather.png

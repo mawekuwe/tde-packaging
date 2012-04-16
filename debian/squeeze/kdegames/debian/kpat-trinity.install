@@ -7,6 +7,6 @@
 /opt/trinity/share/apps/kpat/*
 /opt/trinity/share/applications/kde/kpat.desktop
 /opt/trinity/games/kpat
-/opt/trinity/share/doc/kde/HTML/en/kpat/*
+/opt/trinity/share/doc/tde/HTML/en/kpat/*
 ../icons/kpat.xpm /opt/trinity/share/pixmaps
 ../icons/kpat-16.xpm /opt/trinity/share/pixmaps

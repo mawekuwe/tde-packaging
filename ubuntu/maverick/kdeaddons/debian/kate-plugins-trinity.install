@@ -32,11 +32,11 @@ debian/tmp/opt/trinity/share/applnk/.hidden/katefll.desktop
 debian/tmp/opt/trinity/share/apps/kate
 debian/tmp/opt/trinity/share/apps/katepart
 debian/tmp/opt/trinity/share/apps/katexmltools
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kate-plugins/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kate-plugins/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kate-plugins/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kate-plugins/configure_insertcommand.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kate-plugins/insertcommand.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/configure_insertcommand.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/insertcommand.png
 debian/tmp/opt/trinity/share/services/katecppsymbolviewer.desktop
 debian/tmp/opt/trinity/share/services/katefiletemplates.desktop
 debian/tmp/opt/trinity/share/services/katefll_plugin.desktop

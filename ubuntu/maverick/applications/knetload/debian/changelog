@@ -235,7 +235,7 @@ knetload (1.91-1) unstable; urgency=low
   * Added a man page.
   * Added an icon in /usr/share/pixmaps/.
   * Moved HTML documentation from /usr/share/apps/knetload/docs/ to
-    /usr/share/doc/kde/HTML/en/knetload/ so that dwww can access it.
+    /usr/share/doc/tde/HTML/en/knetload/ so that dwww can access it.
 
  -- Ben Burton <benb@acm.org>  Wed, 21 Feb 2001 12:08:16 -0600
 

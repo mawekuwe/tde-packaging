@@ -5,7 +5,7 @@ Abstract: KDiskFree displays available file devices, along with information abou
 Section: Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kdf/index.html
-Files: /usr/share/doc/kde/HTML/en/kdf/*.html
+Index: /usr/share/doc/tde/HTML/en/kdf/index.html
+Files: /usr/share/doc/tde/HTML/en/kdf/*.html
 
 

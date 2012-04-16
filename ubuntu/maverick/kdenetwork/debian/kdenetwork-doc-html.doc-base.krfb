@@ -7,6 +7,6 @@ Abstract: Krfb is a server application that allows you to share your current
 Section: Apps/Net
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/krfb/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/krfb/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/krfb/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/krfb/*.html
 

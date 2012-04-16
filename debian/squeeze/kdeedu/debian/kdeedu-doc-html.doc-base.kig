@@ -5,5 +5,5 @@ Abstract: Kig is a KDE application for Interactive Geometry.
 Section: Apps/Math
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kig/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kig/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kig/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kig/*.html

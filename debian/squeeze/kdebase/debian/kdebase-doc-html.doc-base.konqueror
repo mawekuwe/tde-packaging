@@ -6,6 +6,6 @@ Abstract: Konqueror is KDE's advanced File Manager, Web Browser and
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/konqueror/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/konqueror/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/konqueror/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/konqueror/*.html
 

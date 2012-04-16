@@ -11,6 +11,6 @@
 /opt/trinity/share/icons/hicolor/48x48/apps/kbackgammon_engine.png
 /opt/trinity/share/icons/hicolor/32x32/apps/kbackgammon_engine.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kbackgammon_engine.png
-/opt/trinity/share/doc/kde/HTML/en/kbackgammon/*
+/opt/trinity/share/doc/tde/HTML/en/kbackgammon/*
 ../icons/kbackgammon.xpm /opt/trinity/share/pixmaps
 ../icons/kbackgammon-16.xpm /opt/trinity/share/pixmaps

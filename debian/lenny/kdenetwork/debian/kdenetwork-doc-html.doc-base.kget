@@ -5,6 +5,6 @@ Abstract: KGet allows you to group and manage downloads.
 Section: Apps/Web
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kget/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kget/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kget/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kget/*.html
 

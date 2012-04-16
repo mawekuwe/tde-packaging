@@ -8,6 +8,6 @@
 /opt/trinity/share/applications/kde/kspaceduel.desktop
 /opt/trinity/games/kspaceduel
 /opt/trinity/share/config.kcfg/kspaceduel.kcfg
-/opt/trinity/share/doc/kde/HTML/en/kspaceduel/*
+/opt/trinity/share/doc/tde/HTML/en/kspaceduel/*
 ../icons/kspaceduel.xpm /opt/trinity/share/pixmaps
 ../icons/kspaceduel-16.xpm /opt/trinity/share/pixmaps

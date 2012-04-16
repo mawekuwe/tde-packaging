@@ -6,6 +6,6 @@ Abstract: Lisa is intended to provide a kind of Network Neighborhood, but
 Section: Apps/Net
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/lisa/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/lisa/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/lisa/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/lisa/*.html
 

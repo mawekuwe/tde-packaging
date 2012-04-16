@@ -11,10 +11,10 @@ debian/tmp/opt/trinity/share/apps/khexedit/pics/hexdrag.png
 debian/tmp/opt/trinity/share/apps/khexedit/pics/hexmask.png
 debian/tmp/opt/trinity/share/apps/khexedit/pics/hexwrite.png
 debian/tmp/opt/trinity/share/apps/khexedit2part/khexedit2partui.rc
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/khexedit/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/khexedit/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/khexedit/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/khexedit/khexedit1.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khexedit/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khexedit/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khexedit/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khexedit/khexedit1.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/khexedit.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/khexedit.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/khexedit.png

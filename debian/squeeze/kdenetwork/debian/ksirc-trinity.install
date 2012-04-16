@@ -76,9 +76,9 @@ debian/tmp/opt/trinity/share/apps/ksirc/relnotes
 debian/tmp/opt/trinity/share/apps/ksirc/servers.ini
 debian/tmp/opt/trinity/share/apps/ksirc/servers.txt
 debian/tmp/opt/trinity/share/apps/ksirc/sirc.help.gz
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksirc/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksirc/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksirc/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksirc/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksirc/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksirc/index.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/ksirc.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/ksirc.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/ksirc.png

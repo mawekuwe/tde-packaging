@@ -5,6 +5,6 @@ Abstract: This Handbook describes KTeaTime, the KDE Tea Cooker.
 Section: Games/Toys
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kteatime/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kteatime/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kteatime/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kteatime/*.html
 

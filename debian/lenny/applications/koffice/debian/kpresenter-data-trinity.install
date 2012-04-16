@@ -2,10 +2,10 @@ debian/kpresenter.xpm opt/trinity/share/pixmaps
 debian/tmp/opt/trinity/share/applications/kde/kpresenter.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kpresenter_konqi.desktop
 debian/tmp/opt/trinity/share/apps/kpresenter
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpresenter/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpresenter/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpresenter/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpresenter/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpresenter/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpresenter/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpresenter/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpresenter/*.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kpresenter.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kpresenter.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kpresenter.png

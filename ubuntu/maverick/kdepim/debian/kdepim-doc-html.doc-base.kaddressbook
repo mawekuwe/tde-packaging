@@ -5,5 +5,5 @@ Abstract: KAddressBook is the KDE address book.
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kaddressbook/index.html
-Files: /usr/share/doc/kde/HTML/en/kaddressbook/*.html
+Index: /usr/share/doc/tde/HTML/en/kaddressbook/index.html
+Files: /usr/share/doc/tde/HTML/en/kaddressbook/*.html

@@ -6,5 +6,5 @@ Abstract: KVocTrain is a little utility to help you train your vocabulary,
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kvoctrain/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kvoctrain/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kvoctrain/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kvoctrain/*.html

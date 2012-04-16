@@ -5,5 +5,5 @@ Abstract: KReversi is a simple one player strategy game.
 Section: Games/Board
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kreversi/index.html
-Files: /usr/share/doc/kde/HTML/en/kreversi/*.html
+Index: /usr/share/doc/tde/HTML/en/kreversi/index.html
+Files: /usr/share/doc/tde/HTML/en/kreversi/*.html

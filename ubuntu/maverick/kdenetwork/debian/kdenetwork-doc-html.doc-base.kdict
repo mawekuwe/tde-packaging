@@ -6,6 +6,6 @@ Abstract: KDict is a graphical client for the DICT protocol. It enables you
 Section: Apps/Text
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kdict/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kdict/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kdict/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kdict/*.html
 

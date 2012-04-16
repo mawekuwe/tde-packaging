@@ -5,6 +5,6 @@ Abstract: The infrastructure for the KDE's Infrared Remote Control functionality
 Section: Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kcmlirc/index.html
-Files: /usr/share/doc/kde/HTML/en/kcmlirc/*.html
+Index: /usr/share/doc/tde/HTML/en/kcmlirc/index.html
+Files: /usr/share/doc/tde/HTML/en/kcmlirc/*.html
 

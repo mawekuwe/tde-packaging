@@ -5,6 +5,6 @@ Abstract: Kaboodle is a one file quick media player for KDE.
 Section: Apps/Sound
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kaboodle/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kaboodle/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kaboodle/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kaboodle/*.html
 

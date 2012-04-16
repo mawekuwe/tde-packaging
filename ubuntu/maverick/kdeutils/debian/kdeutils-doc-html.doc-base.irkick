@@ -6,6 +6,6 @@ Abstract: KDE LIRC is the infrastructure for the KDE's Infrared Remote
 Section: Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/irkick/index.html
-Files: /usr/share/doc/kde/HTML/en/irkick/*.html
+Index: /usr/share/doc/tde/HTML/en/irkick/index.html
+Files: /usr/share/doc/tde/HTML/en/irkick/*.html
 

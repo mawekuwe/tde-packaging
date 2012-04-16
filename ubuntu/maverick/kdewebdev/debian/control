@@ -37,8 +37,8 @@ Description: KDE web development documentation in HTML format [Trinity]
  to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
- /opt/trinity/share/doc/kde/HTML/<language>/<app>/, for instance
- /opt/trinity/share/doc/kde/HTML/en/quanta/. Documentation is provided for most
+ /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
+ /opt/trinity/share/doc/tde/HTML/en/quanta/. Documentation is provided for most
  KDE web development packages.
  .
  This package is part of KDE, as a component of the KDE web development module.

@@ -5,6 +5,6 @@ Abstract: KMouseTool clicks the mouse whenever the mouse cursor pauses briefly.
 Section: Apps/Utils
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kmousetool/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kmousetool/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kmousetool/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kmousetool/*.html
 

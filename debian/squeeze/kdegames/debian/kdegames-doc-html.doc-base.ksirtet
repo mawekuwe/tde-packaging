@@ -6,5 +6,5 @@ Abstract: This program is a clone of the well known game Tetris. You
 Section: Games/Tetris-like
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/ksirtet/index.html
-Files: /usr/share/doc/kde/HTML/en/ksirtet/*.html
+Index: /usr/share/doc/tde/HTML/en/ksirtet/index.html
+Files: /usr/share/doc/tde/HTML/en/ksirtet/*.html

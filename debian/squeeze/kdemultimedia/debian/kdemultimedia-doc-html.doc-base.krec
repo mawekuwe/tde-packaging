@@ -5,6 +5,6 @@ Abstract: KRec is a sound recording application for aRts and KDE.
 Section: Apps/Sound
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/krec/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/krec/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/krec/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/krec/*.html
 

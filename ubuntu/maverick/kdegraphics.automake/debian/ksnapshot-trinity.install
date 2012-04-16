@@ -1,10 +1,10 @@
 debian/tmp/opt/trinity/bin/ksnapshot
 debian/tmp/opt/trinity/share/applications/kde/ksnapshot.desktop
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksnapshot/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksnapshot/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksnapshot/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksnapshot/preview.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksnapshot/window.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksnapshot/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksnapshot/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksnapshot/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksnapshot/preview.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksnapshot/window.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/ksnapshot.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/ksnapshot.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/ksnapshot.png

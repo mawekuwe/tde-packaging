@@ -5,5 +5,5 @@ Abstract: Kontact is a command line interface to KDE calendars.
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kontact/index.html
-Files: /usr/share/doc/kde/HTML/en/kontact/*.html
+Index: /usr/share/doc/tde/HTML/en/kontact/index.html
+Files: /usr/share/doc/tde/HTML/en/kontact/*.html

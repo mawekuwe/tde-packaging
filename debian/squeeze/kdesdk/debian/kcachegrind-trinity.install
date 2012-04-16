@@ -8,9 +8,9 @@ debian/tmp/opt/trinity/share/apps/kcachegrind/icons/hicolor/22x22/actions/percen
 debian/tmp/opt/trinity/share/apps/kcachegrind/icons/hicolor/32x32/actions/percent.png
 debian/tmp/opt/trinity/share/apps/kcachegrind/kcachegrindui.rc
 debian/tmp/opt/trinity/share/apps/kcachegrind/tips
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcachegrind/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcachegrind/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcachegrind/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcachegrind/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcachegrind/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcachegrind/*.docbook
 debian/tmp/opt/trinity/share/icons/locolor/32x32/apps/kcachegrind.png
 debian/tmp/opt/trinity/share/icons/locolor/16x16/apps/kcachegrind.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kcachegrind.png

@@ -70,7 +70,7 @@ config.status: configure
 	
 	# Add here commands to configure the package.
 	CFLAGS="$(CFLAGS)" CXXFLAGS="$(CXXFLAGS)" \
-	kde_htmldir=\$${prefix}/share/doc/kde/HTML \
+	kde_htmldir=\$${prefix}/share/doc/tde/HTML \
 		./configure \
 		--host=$(DEB_HOST_GNU_TYPE) \
 		--build=$(DEB_BUILD_GNU_TYPE) \
@@ -129,7 +129,7 @@ install: build
 	install -c -p -m 644 -T icons/tellico_mime.svg debian/tmp/opt/trinity/share/icons/hicolor/scalable/mimetypes/application-x-tellico.svg
 
 	# Remove  dead symlink from French translation
-	rm debian/tmp/opt/trinity/share/doc/kde/HTML/fr/tellico/common
+	rm debian/tmp/opt/trinity/share/doc/tde/HTML/fr/tellico/common
 
 
 # Build architecture-independent files here.

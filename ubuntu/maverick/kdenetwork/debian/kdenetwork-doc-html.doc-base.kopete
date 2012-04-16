@@ -5,6 +5,6 @@ Abstract: Kopete is KDE's is multi-protocol instant messenger client.
 Section: Apps/Web
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kopete/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kopete/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kopete/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kopete/*.html
 

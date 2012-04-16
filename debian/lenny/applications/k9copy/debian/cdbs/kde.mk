@@ -39,7 +39,7 @@ include $(_cdbs_class_path)/autotools.mk$(_cdbs_makefile_suffix)
 
 export kde_cgidir  = \$${libdir}/cgi-bin
 export kde_confdir = \$${sysconfdir}/trinity
-export kde_htmldir = \$${datadir}/doc/kde/HTML
+export kde_htmldir = \$${datadir}/doc/tde/HTML
 
 ifeq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
 	cdbs_kde_enable_final = $(if $(DEB_KDE_ENABLE_FINAL),--enable-final,)

@@ -8,6 +8,6 @@ Abstract: Quanta Plus is a Web IDE that strives to be neutral and
 Section: Apps/Editors
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/quanta/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/quanta/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/quanta/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/quanta/*.html
 

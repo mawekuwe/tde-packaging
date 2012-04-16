@@ -94,8 +94,8 @@ install: build
 	 fi; \
 	 mv debian/$$pkg/opt/trinity/share/doc/HTML debian/$$pkg/opt/trinity/share/doc/kde/; \
 	 fi; \
-	 if test -d debian/$$pkg/opt/trinity/share/doc/kde/HTML/en/$$pkg; then \
-	 dh_link -p$$pkg opt/trinity/share/doc/kde/HTML/en/$$pkg \
+	 if test -d debian/$$pkg/opt/trinity/share/doc/tde/HTML/en/$$pkg; then \
+	 dh_link -p$$pkg opt/trinity/share/doc/tde/HTML/en/$$pkg \
 	 opt/trinity/share/doc/$$pkg/html; \
 	 fi; \
 	done

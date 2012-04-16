@@ -242,7 +242,7 @@ kcpuload (1.90-1) unstable; urgency=low
   * Added a man page.
   * Added an icon in /usr/share/pixmaps/.
   * Moved HTML documentation from /usr/share/apps/kcpuload/docs/ to
-    /usr/share/doc/kde/HTML/en/kcpuload/ so that dwww can access it.
+    /usr/share/doc/tde/HTML/en/kcpuload/ so that dwww can access it.
 
  -- Ben Burton <benb@acm.org>  Wed, 21 Feb 2001 12:08:01 -0600
 

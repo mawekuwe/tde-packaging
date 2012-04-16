@@ -54,8 +54,8 @@ Description: Trinity edutainment documentation in HTML format
  to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
- /opt/trinity/share/doc/kde/HTML/<language>/<app>/, for instance
- /opt/trinity/share/doc/kde/HTML/en/kalzium/. Documentation is provided for
+ /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
+ /opt/trinity/share/doc/tde/HTML/en/kalzium/. Documentation is provided for
  most KDE educational packages.
  .
  This package is part of Trinity, as a component of the KDE education module.

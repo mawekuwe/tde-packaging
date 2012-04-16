@@ -29,7 +29,7 @@ debian/stamp-bootstrap:
 
 install/k9copy::
 	dh_install src/k9copy.desktop opt/trinity/share/applications/kde
-	dh_link usr/share/doc/kde/HTML/en/k9copy usr/share/doc/k9copy/html
+	dh_link usr/share/doc/tde/HTML/en/k9copy usr/share/doc/k9copy/html
 
 build/k9copy::
 	docbook2x-man debian/k9copy.1.docbook

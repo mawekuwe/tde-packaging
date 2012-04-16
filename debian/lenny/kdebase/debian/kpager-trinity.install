@@ -1,11 +1,11 @@
 debian/tmp/opt/trinity/bin/kpager
 debian/tmp/opt/trinity/share/applications/kde/kpager.desktop
 debian/tmp/opt/trinity/share/applnk/Utilities/kpager.desktop
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpager/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpager/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpager/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpager/screenshot.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kpager/settings.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpager/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpager/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpager/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpager/screenshot.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpager/settings.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kpager.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kpager.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kpager.png

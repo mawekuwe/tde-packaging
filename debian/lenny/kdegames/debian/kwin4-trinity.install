@@ -9,6 +9,6 @@
 /opt/trinity/share/icons/hicolor/22x22/apps/kwin4.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kwin4.png
 /opt/trinity/share/applications/kde/kwin4.desktop
-/opt/trinity/share/doc/kde/HTML/en/kwin4/*
+/opt/trinity/share/doc/tde/HTML/en/kwin4/*
 ../icons/kwin4.xpm /opt/trinity/share/pixmaps
 ../icons/kwin4-16.xpm /opt/trinity/share/pixmaps

@@ -43,7 +43,7 @@ config.status: $(QUILT_STAMPFN)
 		--with-qt-libraries=/usr/share/qt3/lib \
 		--mandir=/opt/trinity/share/man \
 		--infodir=/opt/trinity/share/info \
-		--disable-debug kde_htmldir=/opt/trinity/share/doc/kde/HTML \
+		--disable-debug kde_htmldir=/opt/trinity/share/doc/tde/HTML \
 		--with-extra-libs=/opt/trinity/lib
 
 

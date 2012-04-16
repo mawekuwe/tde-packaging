@@ -41,10 +41,10 @@ debian/tmp/opt/trinity/lib/libkspreadcommon.so.*
 debian/tmp/opt/trinity/share/applications/kde/kspread.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kspread_konqi.desktop
 debian/tmp/opt/trinity/share/apps/kspread
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kspread/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kspread/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kspread/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kspread/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kspread/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kspread/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kspread/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kspread/*.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kspread.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kspread.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kspread.png

@@ -5,6 +5,6 @@ Abstract: This handbook describes aRts, the Analog Real-time Synthesizer.
 Section: Apps/Sound
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/artsbuilder/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/artsbuilder/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/artsbuilder/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/artsbuilder/*.html
 

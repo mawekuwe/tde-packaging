@@ -5,6 +5,6 @@ Abstract: This Handbook describes KFind, KDE's file find utility.
 Section: Apps/Utils
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kfind/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kfind/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kfind/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kfind/*.html
 

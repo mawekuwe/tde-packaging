@@ -33,7 +33,7 @@ DEB_DH_MAKESHLIBS_ARGS_kolf-trinity := -V
 PACKAGES_WITH_LIBS := libkdegames1-trinity atlantik-trinity kolf-trinity
 
 common-binary-indep::
-	if ! test -d debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-apidocs; then mv debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-*apidocs debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-apidocs; fi
+	if ! test -d debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdegames-apidocs; then mv debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdegames-*apidocs debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdegames-apidocs; fi
 
 common-binary-arch::
-	if ! test -d debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-apidocs; then mv debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-*apidocs debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdegames-apidocs; fi
+	if ! test -d debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdegames-apidocs; then mv debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdegames-*apidocs debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdegames-apidocs; fi

@@ -8,5 +8,5 @@ Abstract: KStars is a graphical desktop planetarium for KDE.  It depicts an
 Section: Apps/Science
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kstars/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kstars/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kstars/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kstars/*.html

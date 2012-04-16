@@ -49,8 +49,8 @@ Description: Trinity utilities documentation in HTML format
  converted to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
- /usr/share/doc/kde/HTML/<language>/<app>/, for instance
- /usr/share/doc/kde/HTML/en/ark/. Documentation is provided for most
+ /usr/share/doc/tde/HTML/<language>/<app>/, for instance
+ /usr/share/doc/tde/HTML/en/ark/. Documentation is provided for most
  KDE utilities packages.
  .
  This package is part of Trinity, as a component of the KDE utilities module.

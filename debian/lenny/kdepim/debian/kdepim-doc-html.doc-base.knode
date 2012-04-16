@@ -5,5 +5,5 @@ Abstract: KNode is an easy-to-use newsreader.
 Section: Apps/Net
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/knode/index.html
-Files: /usr/share/doc/kde/HTML/en/knode/*.html
+Index: /usr/share/doc/tde/HTML/en/knode/index.html
+Files: /usr/share/doc/tde/HTML/en/knode/*.html

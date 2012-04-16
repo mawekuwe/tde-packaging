@@ -1,10 +1,10 @@
 debian/tmp/opt/trinity/bin/kodo
 debian/tmp/opt/trinity/share/applications/kde/kodo.desktop
 debian/tmp/opt/trinity/share/apps/kodo/numbers.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kodo/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kodo/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kodo/*.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kodo/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kodo/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kodo/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kodo/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kodo/common
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kodo.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kodo.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kodo.png

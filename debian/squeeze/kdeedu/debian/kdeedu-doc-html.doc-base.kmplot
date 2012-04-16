@@ -5,5 +5,5 @@ Abstract: KmPlot is a mathematical function plotter for the KDE Desktop.
 Section: Apps/Math
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kmplot/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kmplot/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kmplot/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kmplot/*.html

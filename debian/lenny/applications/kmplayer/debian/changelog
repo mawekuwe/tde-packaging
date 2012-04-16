@@ -19,7 +19,7 @@ kmplayer-trinity (1:0.10.0c-0ubuntu1) intrepid; urgency=low
 
 kmplayer (1:0.10.0c-0ubuntu3) hardy; urgency=low
 
-  * Drop /usr/share/doc/kde/HTML from kmplayer, as it's already in
+  * Drop /usr/share/doc/tde/HTML from kmplayer, as it's already in
     kmplayer-doc (LP: #210443).
 
  -- Colin Watson <cjwatson@ubuntu.com>  Tue, 15 Apr 2008 02:22:14 +0100

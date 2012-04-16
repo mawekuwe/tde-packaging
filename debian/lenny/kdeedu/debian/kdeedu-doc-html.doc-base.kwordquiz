@@ -5,5 +5,5 @@ Abstract: KWordQuiz is a flashcard and vocabulary learning program for KDE.
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kwordquiz/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kwordquiz/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kwordquiz/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kwordquiz/*.html

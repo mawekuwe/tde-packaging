@@ -41,11 +41,11 @@ debian/tmp/opt/trinity/share/apps/kviewviewer/kviewpopup.rc
 debian/tmp/opt/trinity/share/apps/kviewviewer/kviewviewer.rc
 debian/tmp/opt/trinity/share/apps/kviewviewer/kviewviewer_ro.rc
 debian/tmp/opt/trinity/share/apps/photobook/photobookui.rc
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kview/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kview/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kview/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kview/kview-application-configuration.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kview/kview-viewer-configuration.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kview/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kview/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kview/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kview/kview-application-configuration.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kview/kview-viewer-configuration.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/photobook.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/photobook.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kview.png

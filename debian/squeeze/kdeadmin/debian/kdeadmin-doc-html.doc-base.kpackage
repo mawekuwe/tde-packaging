@@ -6,6 +6,6 @@ Abstract: KPackage is a graphical interface to the RPM, Debian,
 Section: Admin
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kpackage/index.html
-Files: /usr/share/doc/kde/HTML/en/kpackage/*.html
+Index: /usr/share/doc/tde/HTML/en/kpackage/index.html
+Files: /usr/share/doc/tde/HTML/en/kpackage/*.html
 

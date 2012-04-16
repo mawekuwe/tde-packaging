@@ -5,6 +5,6 @@ Abstract: KsIRC is the default KDE IRC client.
 Section: Apps/Web
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/ksirc/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/ksirc/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/ksirc/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/ksirc/*.html
 

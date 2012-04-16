@@ -6,6 +6,6 @@ Abstract: KOffice is an integrated office suite for the K Desktop
 Section: Office
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/koffice/index.html
-Files: /usr/share/doc/kde/HTML/en/koffice/*.html
+Index: /usr/share/doc/tde/HTML/en/koffice/index.html
+Files: /usr/share/doc/tde/HTML/en/koffice/*.html
 

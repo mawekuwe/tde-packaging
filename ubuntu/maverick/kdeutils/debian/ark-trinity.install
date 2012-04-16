@@ -20,10 +20,10 @@ debian/tmp/opt/trinity/share/apps/ark/icons/crystalsvg/32x32/actions/ark_delete.
 debian/tmp/opt/trinity/share/apps/ark/icons/crystalsvg/32x32/actions/ark_extract.png
 debian/tmp/opt/trinity/share/apps/ark/icons/crystalsvg/32x32/actions/ark_view.png
 debian/tmp/opt/trinity/share/config.kcfg/ark.kcfg
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ark/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ark/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ark/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ark/man-ark.1.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ark/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ark/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ark/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ark/man-ark.1.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/ark.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/ark.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/ark.png

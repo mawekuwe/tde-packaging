@@ -5,5 +5,5 @@ Abstract: Kiten is a Japanese reference/study tool for KDE.
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kiten/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kiten/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kiten/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kiten/*.html

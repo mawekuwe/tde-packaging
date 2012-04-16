@@ -19,9 +19,9 @@ debian/tmp/opt/trinity/share/apps/kwifimanager/pics/no_card.png
 debian/tmp/opt/trinity/share/apps/kwifimanager/pics/offline.png
 debian/tmp/opt/trinity/share/apps/kwifimanager/pics/oor_down.png
 debian/tmp/opt/trinity/share/apps/kwifimanager/pics/oor_minimum.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kwifimanager/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kwifimanager/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kwifimanager/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kwifimanager/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kwifimanager/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kwifimanager/index.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/kwifimanager.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kwifimanager.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kwifimanager.png

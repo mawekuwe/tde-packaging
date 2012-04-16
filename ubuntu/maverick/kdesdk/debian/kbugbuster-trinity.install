@@ -7,9 +7,9 @@ debian/tmp/opt/trinity/share/apps/kbugbuster/pics/bars.png
 debian/tmp/opt/trinity/share/apps/kbugbuster/pics/logo.png
 debian/tmp/opt/trinity/share/apps/kbugbuster/pics/tools.png
 debian/tmp/opt/trinity/share/apps/kbugbuster/pics/top-right.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kbugbuster/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kbugbuster/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kbugbuster/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbugbuster/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbugbuster/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbugbuster/*.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kbugbuster.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kbugbuster.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kbugbuster.png

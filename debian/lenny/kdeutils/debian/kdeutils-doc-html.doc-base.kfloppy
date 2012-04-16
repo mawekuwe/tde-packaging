@@ -6,7 +6,7 @@ Abstract: KFloppy Formatter is a utility that provides a straightforward
 Section: System
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kfloppy/index.html
-Files: /usr/share/doc/kde/HTML/en/kfloppy/*.html
+Index: /usr/share/doc/tde/HTML/en/kfloppy/index.html
+Files: /usr/share/doc/tde/HTML/en/kfloppy/*.html
 
 

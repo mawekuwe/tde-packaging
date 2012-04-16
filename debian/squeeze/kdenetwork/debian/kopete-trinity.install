@@ -301,11 +301,11 @@ debian/tmp/opt/trinity/share/config.kcfg/kopeteidentityconfigpreferences.kcfg
 debian/tmp/opt/trinity/share/config.kcfg/kopete.kcfg
 debian/tmp/opt/trinity/share/config.kcfg/latexconfig.kcfg
 debian/tmp/opt/trinity/share/config.kcfg/nowlisteningconfig.kcfg
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kopete/chatstyle.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kopete/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kopete/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kopete/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kopete/menus.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kopete/chatstyle.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kopete/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kopete/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kopete/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kopete/menus.docbook
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/actions/voicecall.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/actions/webcamreceive.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/actions/webcamsend.png

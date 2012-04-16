@@ -13,6 +13,6 @@ Abstract: Kommander is a set of tools that allow you to create dynamic
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kommander/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kommander/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kommander/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kommander/*.html
 

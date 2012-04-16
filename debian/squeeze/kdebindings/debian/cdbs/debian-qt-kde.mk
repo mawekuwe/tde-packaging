@@ -84,15 +84,15 @@ $(patsubst %,binary-install/%,$(DEB_PACKAGES)) :: binary-install/%:
 
 binary-install/$(DEB_SOURCE_PACKAGE)-doc-html::
 	set -e; \
-	for doc in `cd $(DEB_DESTDIR)/usr/share/doc/kde/HTML/en; find . -name index.docbook`; do \
+	for doc in `cd $(DEB_DESTDIR)/usr/share/doc/tde/HTML/en; find . -name index.docbook`; do \
 		pkg=$${doc%/index.docbook}; pkg=$${pkg#./}; \
 		echo Building $$pkg HTML docs...; \
-		mkdir -p $(CURDIR)/debian/$(DEB_SOURCE_PACKAGE)-doc-html/usr/share/doc/kde/HTML/en/$$pkg; \
-		cd $(CURDIR)/debian/$(DEB_SOURCE_PACKAGE)-doc-html/usr/share/doc/kde/HTML/en/$$pkg; \
-		/usr/trinity/bin/meinproc $(DEB_DESTDIR)/usr/share/doc/kde/HTML/en/$$pkg/index.docbook; \
+		mkdir -p $(CURDIR)/debian/$(DEB_SOURCE_PACKAGE)-doc-html/usr/share/doc/tde/HTML/en/$$pkg; \
+		cd $(CURDIR)/debian/$(DEB_SOURCE_PACKAGE)-doc-html/usr/share/doc/tde/HTML/en/$$pkg; \
+		/usr/trinity/bin/meinproc $(DEB_DESTDIR)/usr/share/doc/tde/HTML/en/$$pkg/index.docbook; \
 	done
 	for pkg in $(DOC_HTML_PRUNE) ; do \
-	  rm -rf debian/$(DEB_SOURCE_PACKAGE)-doc-html/usr/share/doc/kde/HTML/en/$$pkg; \
+	  rm -rf debian/$(DEB_SOURCE_PACKAGE)-doc-html/usr/share/doc/tde/HTML/en/$$pkg; \
 	done
 
 clean::

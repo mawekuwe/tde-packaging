@@ -152,7 +152,7 @@ kaffeine (0.8.4-2) unstable; urgency=low
 
   * Remove CMakeLists.txt
     - Problem during upgrade: trying to overwrite
-    `/usr/share/doc/kde/HTML/en/doc/CMakeLists.txt' (Closes: #419477)
+    `/usr/share/doc/tde/HTML/en/doc/CMakeLists.txt' (Closes: #419477)
 
  -- Mark Purcell <msp@debian.org>  Thu, 19 Apr 2007 05:50:00 +1000
 
@@ -772,7 +772,7 @@ kaffeine (0.4.2-1.1) unstable; urgency=low
 
   * NMU.
   * debian dir redone with permission of maintainer.
-  * Install docs into /usr/share/doc/kde/HTML. (Closes: #245062)
+  * Install docs into /usr/share/doc/tde/HTML. (Closes: #245062)
 
  -- Christopher L Cheney <ccheney@debian.org>  Thu, 22 Apr 2004 00:30:00 -0500
 

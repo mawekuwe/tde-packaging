@@ -8,5 +8,5 @@ Abstract: KTouch is a program for learning to touch type.  KTouch
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/ktouch/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/ktouch/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/ktouch/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/ktouch/*.html

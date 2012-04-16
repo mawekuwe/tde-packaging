@@ -5,6 +5,6 @@ Abstract: KMag is a screen magnifier.
 Section: Apps/Utils 
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kmag/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kmag/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kmag/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kmag/*.html
 

@@ -5,6 +5,6 @@ Abstract: This is the handbook for the addon applets for Kicker, KDE's panel.
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kicker-applets/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kicker-applets/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kicker-applets/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kicker-applets/*.html
 

@@ -6,5 +6,5 @@ Abstract: Kverbos is an application specially designed to study Spanish
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kverbos/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kverbos/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kverbos/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kverbos/*.html

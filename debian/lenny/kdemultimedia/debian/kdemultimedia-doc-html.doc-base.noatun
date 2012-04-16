@@ -5,6 +5,6 @@ Abstract: NoAtun is a fully-featured plugin-based media player for KDE.
 Section: Apps/Sound
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/noatun/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/noatun/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/noatun/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/noatun/*.html
 

@@ -2,10 +2,10 @@ debian/kword.xpm opt/trinity/share/pixmaps
 debian/tmp/opt/trinity/share/applications/kde/kword.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kword_konqi.desktop
 debian/tmp/opt/trinity/share/apps/kword
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kword/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kword/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kword/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kword/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kword/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kword/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kword/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kword/*.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kword.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kword.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kword.png

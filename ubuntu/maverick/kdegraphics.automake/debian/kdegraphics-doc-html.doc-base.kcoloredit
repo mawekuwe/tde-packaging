@@ -6,6 +6,6 @@ Abstract: KColorEdit is a palette files editor. It can be used for editing
 Section: Apps/Graphics
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kcoloredit/index.html
-Files: /usr/share/doc/kde/HTML/en/kcoloredit/*.html
+Index: /usr/share/doc/tde/HTML/en/kcoloredit/index.html
+Files: /usr/share/doc/tde/HTML/en/kcoloredit/*.html
 

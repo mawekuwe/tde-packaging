@@ -5,5 +5,5 @@ Abstract: This is the developers' API documentation for kdepim.
 Section: Apps/Programming
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kdepim-apidocs/index.html
-Files: /usr/share/doc/kde/HTML/en/kdepim-apidocs/*.html
+Index: /usr/share/doc/tde/HTML/en/kdepim-apidocs/index.html
+Files: /usr/share/doc/tde/HTML/en/kdepim-apidocs/*.html

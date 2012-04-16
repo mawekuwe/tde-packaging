@@ -29,9 +29,9 @@ debian/tmp/opt/trinity/share/apps/kdat/icons/locolor/16x16/apps/kdat_select_some
 debian/tmp/opt/trinity/share/apps/kdat/icons/locolor/16x16/apps/kdat_unmounted.png
 debian/tmp/opt/trinity/share/apps/kdat/icons/locolor/16x16/apps/kdat_verify.png
 debian/tmp/opt/trinity/share/apps/kdat/icons/locolor/32x32/apps/kdat.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdat/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdat/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdat/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdat/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdat/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdat/index.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kdat.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kdat.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kdat.png

@@ -37,5 +37,5 @@ install/gwenview-trinity::
 	install -p -D -m644 debian/gwenview.xpm debian/gwenview/opt/trinity/share/pixmaps/gwenview.xpm
 	install -p -D -m644 debian/gwenview.lintian debian/gwenview/opt/trinity/share/lintian/overrides/gwenview
 	
-	cd $(CURDIR)/debian/gwenview/opt/trinity/share/doc/kde/HTML/en/gwenview; \
-	/opt/trinity/bin/meinproc $(DEB_DESTDIR)/opt/trinity/share/doc/kde/HTML/en/gwenview/index.docbook
+	cd $(CURDIR)/debian/gwenview/opt/trinity/share/doc/tde/HTML/en/gwenview; \
+	/opt/trinity/bin/meinproc $(DEB_DESTDIR)/opt/trinity/share/doc/tde/HTML/en/gwenview/index.docbook

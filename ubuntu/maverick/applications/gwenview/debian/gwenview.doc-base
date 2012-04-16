@@ -5,5 +5,5 @@ Abstract: Gwenview is an image viewer for KDE.
 Section: Viewers
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/gwenview/index.html
-Files: /usr/share/doc/kde/HTML/en/gwenview/*.html
+Index: /usr/share/doc/tde/HTML/en/gwenview/index.html
+Files: /usr/share/doc/tde/HTML/en/gwenview/*.html

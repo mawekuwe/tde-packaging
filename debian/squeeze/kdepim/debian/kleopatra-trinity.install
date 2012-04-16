@@ -5,6 +5,6 @@
 /opt/trinity/share/applications/kde/kleopatra_import.desktop
 /opt/trinity/share/apps/kleopatra
 /opt/trinity/share/apps/kwatchgnupg
-/opt/trinity/share/doc/kde/HTML/en/kleopatra
-/opt/trinity/share/doc/kde/HTML/en/kwatchgnupg
+/opt/trinity/share/doc/tde/HTML/en/kleopatra
+/opt/trinity/share/doc/tde/HTML/en/kwatchgnupg
 /opt/trinity/share/services/kleopatra_config_*.desktop

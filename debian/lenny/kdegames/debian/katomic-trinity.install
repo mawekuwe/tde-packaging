@@ -7,6 +7,6 @@
 /opt/trinity/share/icons/hicolor/128x128/apps/katomic.png
 /opt/trinity/share/applications/kde/katomic.desktop
 /opt/trinity/games/katomic
-/opt/trinity/share/doc/kde/HTML/en/katomic/*
+/opt/trinity/share/doc/tde/HTML/en/katomic/*
 ../icons/katomic.xpm /opt/trinity/share/pixmaps
 ../icons/katomic-16.xpm /opt/trinity/share/pixmaps

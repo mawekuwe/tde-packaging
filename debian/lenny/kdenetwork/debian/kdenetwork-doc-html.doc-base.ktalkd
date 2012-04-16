@@ -7,6 +7,6 @@ Abstract: Ktalkd is an enhanced talk daemon - a program to handle incoming
 Section: Apps/Net
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/ktalkd/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/ktalkd/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/ktalkd/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/ktalkd/*.html
 

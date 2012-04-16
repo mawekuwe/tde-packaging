@@ -5,10 +5,10 @@ debian/tmp/opt/trinity/share/applications/kde/kworldclock.desktop
 debian/tmp/opt/trinity/share/apps/kdesktop/programs/kdeworld.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/kwwapplet.desktop
 debian/tmp/opt/trinity/share/apps/kworldclock
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kworldclock/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kworldclock/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kworldclock/*.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kworldclock/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kworldclock/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kworldclock/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kworldclock/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kworldclock/common
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kworldclock.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kworldclock.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kworldclock.png

@@ -8,6 +8,6 @@
 /opt/trinity/share/applications/kde/kmahjongg.desktop
 /opt/trinity/games/kmahjongg
 /opt/trinity/share/config.kcfg/kmahjongg.kcfg
-/opt/trinity/share/doc/kde/HTML/en/kmahjongg/*
+/opt/trinity/share/doc/tde/HTML/en/kmahjongg/*
 ../icons/kmahjongg.xpm /opt/trinity/share/pixmaps
 ../icons/kmahjongg-16.xpm /opt/trinity/share/pixmaps

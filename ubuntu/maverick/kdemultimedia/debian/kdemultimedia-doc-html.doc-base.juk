@@ -5,6 +5,6 @@ Abstract: Juk is a jukebox, tagger and music collection manager.
 Section: Apps/Music
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/juk/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/juk/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/juk/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/juk/*.html
 

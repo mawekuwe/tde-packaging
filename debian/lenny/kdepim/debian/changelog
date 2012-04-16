@@ -1216,7 +1216,7 @@ kdepim (4:3.4.1-0ubuntu0pre1) breezy; urgency=low
 
 kdepim (4:3.4.0-0ubuntu10) hoary; urgency=low
 
-  * Add /usr/share/doc/kde/HTML/en/kcontrol/kalarmd/ to
+  * Add /usr/share/doc/tde/HTML/en/kcontrol/kalarmd/ to
     kdepim-doc-html to prevent dhelp error
 
  -- Jonathan Riddell <jr@jriddell.org>  Wed, 30 Mar 2005 18:05:50 +0000

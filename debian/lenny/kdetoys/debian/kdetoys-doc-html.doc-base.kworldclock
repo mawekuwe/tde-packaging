@@ -7,6 +7,6 @@ Abstract: KWorldClock is an application that shows which parts of the world
 Section: Games/Toys
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kworldclock/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kworldclock/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kworldclock/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kworldclock/*.html
 

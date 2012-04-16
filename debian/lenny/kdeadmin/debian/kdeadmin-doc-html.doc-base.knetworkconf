@@ -5,6 +5,6 @@ Abstract: KNetworkConf is a graphical manager for network devices and settings.
 Section: Admin
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/knetworkconf/index.html
-Files: /usr/share/doc/kde/HTML/en/knetworkconf/*.html
+Index: /usr/share/doc/tde/HTML/en/knetworkconf/index.html
+Files: /usr/share/doc/tde/HTML/en/knetworkconf/*.html
 

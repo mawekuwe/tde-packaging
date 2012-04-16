@@ -45,7 +45,7 @@ debian/tmp/opt/trinity/share/apps/kdm/themes/circles/help.png
 debian/tmp/opt/trinity/share/apps/kdm/themes/circles/options.png
 debian/tmp/opt/trinity/share/apps/kdm/themes/circles/screenshot.png
 debian/tmp/opt/trinity/share/apps/kdm/themes/o2_enterprise
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdm/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdm/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdm/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kdm/kdmrc-ref.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdm/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdm/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdm/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdm/kdmrc-ref.docbook

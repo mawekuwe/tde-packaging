@@ -7,6 +7,6 @@ Abstract: KPager gives you a thumbnail sketch of all your desktops. It is a hand
 Section: Apps/Utils
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kpager/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kpager/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kpager/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kpager/*.html
 

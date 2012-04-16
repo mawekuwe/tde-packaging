@@ -6,6 +6,6 @@ Abstract: KPPP is a dialer and front end for pppd, allowing for interactive
 Section: Apps/Net
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kppp/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kppp/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kppp/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kppp/*.html
 

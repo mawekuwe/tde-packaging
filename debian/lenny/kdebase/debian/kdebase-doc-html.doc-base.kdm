@@ -5,6 +5,6 @@ Abstract: This document describes KDM, the KDE Display Manager, an X session man
 Section: System 
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kdm/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kdm/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kdm/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kdm/*.html
 

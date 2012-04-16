@@ -5,6 +5,6 @@ Abstract: KNewsTicker is a news ticker applet for the KDE panel.
 Section: Apps/Web
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/knewsticker/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/knewsticker/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/knewsticker/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/knewsticker/*.html
 
