@@ -6,6 +6,6 @@ Abstract: Kicker is the KDE application starter panel and is also capable of
 Section: Apps/Utils
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kicker/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kicker/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kicker/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kicker/*.html
 

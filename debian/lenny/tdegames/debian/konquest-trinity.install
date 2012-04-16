@@ -7,6 +7,6 @@
 /opt/trinity/share/icons/hicolor/16x16/apps/konquest.png
 /opt/trinity/share/applications/kde/konquest.desktop
 /opt/trinity/games/konquest
-/opt/trinity/share/doc/kde/HTML/en/konquest/*
+/opt/trinity/share/doc/tde/HTML/en/konquest/*
 ../icons/konquest.xpm /opt/trinity/share/pixmaps
 ../icons/konquest-16.xpm /opt/trinity/share/pixmaps

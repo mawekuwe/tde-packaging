@@ -314,9 +314,9 @@ debian/tmp/opt/trinity/share/apps/noatun/systrayui.rc
 debian/tmp/opt/trinity/share/apps/noatun/voiceprint.plugin
 debian/tmp/opt/trinity/share/apps/noatun/winskin.plugin
 debian/tmp/opt/trinity/share/apps/noatun/yhconfig.kcfg
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/noatun/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/noatun/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/noatun/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/noatun/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/noatun/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/noatun/index.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/noatun.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/noatun.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/noatun.png

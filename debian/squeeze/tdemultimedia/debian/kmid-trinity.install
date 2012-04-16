@@ -27,9 +27,9 @@ debian/tmp/opt/trinity/share/apps/kmid/maps/YamahaPSR500.map
 debian/tmp/opt/trinity/share/apps/kmid/maps/YamahaPSS790.map
 debian/tmp/opt/trinity/share/apps/kmid/maps/YamahaQY10.map
 debian/tmp/opt/trinity/share/apps/kmid/maps/gm.map
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kmid/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kmid/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kmid/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kmid/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kmid/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kmid/index.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kmid.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kmid.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kmid.png

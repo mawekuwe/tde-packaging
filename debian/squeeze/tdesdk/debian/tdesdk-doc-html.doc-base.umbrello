@@ -7,6 +7,6 @@ Abstract: Umbrello UML Modeller helps the software development process
 Section: Apps/Programming
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/umbrello/index.html
-Files: /usr/share/doc/kde/HTML/en/umbrello/*.html
+Index: /usr/share/doc/tde/HTML/en/umbrello/index.html
+Files: /usr/share/doc/tde/HTML/en/umbrello/*.html
 

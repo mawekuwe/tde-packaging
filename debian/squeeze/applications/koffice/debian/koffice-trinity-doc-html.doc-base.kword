@@ -6,6 +6,6 @@ Abstract: KWord is a complete word-processing and simple desktop
 Section: Office
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kword/index.html
-Files: /usr/share/doc/kde/HTML/en/kword/*.html
+Index: /usr/share/doc/tde/HTML/en/kword/index.html
+Files: /usr/share/doc/tde/HTML/en/kword/*.html
 

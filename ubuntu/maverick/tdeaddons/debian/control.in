@@ -32,8 +32,8 @@ Description: KDE add-ons documentation in HTML format
  converted to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
- /opt/trinity/share/doc/kde/HTML/<language>/<app>/, for instance
- /opt/trinity/share/doc/kde/HTML/en/kicker-applets/. Documentation is provided for
+ /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
+ /opt/trinity/share/doc/tde/HTML/en/kicker-applets/. Documentation is provided for
  most KDE addons packages.
  .
  This package is part of KDE, as a component of the KDE addons module.

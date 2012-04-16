@@ -6,10 +6,10 @@ opt/trinity/lib/trinity/libkeducapart.so
 /opt/trinity/share/applications/kde/keducabuilder.desktop
 /opt/trinity/share/apps/keduca
 /opt/trinity/share/config.kcfg/keduca.kcfg
-/opt/trinity/share/doc/kde/HTML/en/keduca/common
-/opt/trinity/share/doc/kde/HTML/en/keduca/index.cache.bz2
-/opt/trinity/share/doc/kde/HTML/en/keduca/*.docbook
-/opt/trinity/share/doc/kde/HTML/en/keduca/*.png
+/opt/trinity/share/doc/tde/HTML/en/keduca/common
+/opt/trinity/share/doc/tde/HTML/en/keduca/index.cache.bz2
+/opt/trinity/share/doc/tde/HTML/en/keduca/*.docbook
+/opt/trinity/share/doc/tde/HTML/en/keduca/*.png
 /opt/trinity/share/icons/hicolor/16x16/apps/keduca.png
 /opt/trinity/share/icons/hicolor/22x22/apps/keduca.png
 /opt/trinity/share/icons/hicolor/32x32/apps/keduca.png

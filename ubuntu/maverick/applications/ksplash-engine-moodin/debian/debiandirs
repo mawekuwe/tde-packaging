@@ -6,5 +6,5 @@ export mandir=/opt/trinity/share/man
 export qtdir=/opt/trinity/share/qt3
 export kde_cgidir=/opt/trinity/lib/cgi-bin
 export kde_confdir=/etc/trinity
-export kde_htmldir=/opt/trinity/share/doc/kde/HTML
+export kde_htmldir=/opt/trinity/share/doc/tde/HTML
 configkde=--with-extra-libs=/opt/trinity/lib --disable-debug --disable-rpath --prefix=$(kde_prefix) --sysconfdir=$(sysconfdir) --includedir=$(kde_includedir) --infodir=$(infodir) --mandir=$(mandir) --with-qt-dir=$(qtdir) 

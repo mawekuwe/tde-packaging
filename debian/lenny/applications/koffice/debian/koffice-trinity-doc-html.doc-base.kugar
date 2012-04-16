@@ -7,6 +7,6 @@ Abstract: Kugar is a template-based XML report engine.  Kugar Report
 Section: Office
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kugar/index.html
-Files: /usr/share/doc/kde/HTML/en/kugar/*.html
+Index: /usr/share/doc/tde/HTML/en/kugar/index.html
+Files: /usr/share/doc/tde/HTML/en/kugar/*.html
 

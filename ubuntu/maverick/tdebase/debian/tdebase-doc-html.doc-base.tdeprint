@@ -5,6 +5,6 @@ Abstract: KDEPrint is the official printing system of KDE.
 Section: Apps/Tools 
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/tdeprint/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/tdeprint/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/tdeprint/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/tdeprint/*.html
 

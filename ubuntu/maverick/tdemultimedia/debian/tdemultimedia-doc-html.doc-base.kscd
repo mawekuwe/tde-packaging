@@ -6,6 +6,6 @@ Abstract: KsCD is a small, fast, CDDB-enabled audio CD player for KDE.
 Section: Apps/Music
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kscd/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kscd/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kscd/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kscd/*.html
 

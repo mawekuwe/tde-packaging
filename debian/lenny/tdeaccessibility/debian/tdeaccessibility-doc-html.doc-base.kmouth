@@ -6,6 +6,6 @@ Abstract: KMouth is an application that allows people that cannot speak
 Section: Apps/Text
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kmouth/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kmouth/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kmouth/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kmouth/*.html
 

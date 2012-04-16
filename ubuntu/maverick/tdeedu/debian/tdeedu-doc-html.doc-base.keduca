@@ -6,5 +6,5 @@ Abstract: KEduca is flash card application which allows you to make
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/keduca/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/keduca/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/keduca/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/keduca/*.html

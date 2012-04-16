@@ -7,6 +7,6 @@
 /opt/trinity/share/applications/kde/kmines.desktop
 /opt/trinity/share/apps/kmines/*
 /opt/trinity/games/kmines
-/opt/trinity/share/doc/kde/HTML/en/kmines/*
+/opt/trinity/share/doc/tde/HTML/en/kmines/*
 ../icons/kmines.xpm /opt/trinity/share/pixmaps
 ../icons/kmines-16.xpm /opt/trinity/share/pixmaps

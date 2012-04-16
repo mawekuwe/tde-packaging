@@ -2,11 +2,11 @@ debian/tmp/opt/trinity/share/applications/kde/koffice.desktop
 debian/tmp/opt/trinity/share/apps/koffice
 debian/tmp/opt/trinity/share/apps/kofficewidgets
 debian/tmp/opt/trinity/share/apps/xsltfilter
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koffice/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koffice/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koffice/CookBook.odt
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koffice/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koffice/TODO
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koffice/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koffice/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koffice/CookBook.odt
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koffice/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koffice/TODO
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/abs.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/brackets.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/frac.png

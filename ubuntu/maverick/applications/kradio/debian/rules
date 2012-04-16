@@ -48,7 +48,7 @@ config.status: configure
 		--mandir=\$${prefix}/share/man \
 		--infodir=\$${prefix}/share/info \
 		--disable-rpath --disable-debug \
-		kde_htmldir=/usr/share/doc/kde/HTML
+		kde_htmldir=/usr/share/doc/tde/HTML
 															
 
 

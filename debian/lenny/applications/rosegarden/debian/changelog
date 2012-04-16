@@ -33,7 +33,7 @@ rosegarden (1:1.7.0-1ubuntu2) intrepid; urgency=low
 rosegarden (1:1.7.0-1ubuntu1) intrepid; urgency=low
 
   * Merge from Debian unstable. (LP: #225849) Remaining Ubuntu changes:
-    - Add usr/share/doc/kde/HTML to rosegarden-data, to provide online
+    - Add usr/share/doc/tde/HTML to rosegarden-data, to provide online
       help documentation.
     - Change fftw3-dev to libfftw3-dev.
     - Update maintainer field as per spec.
@@ -62,7 +62,7 @@ rosegarden (1:1.6.1-2) unstable; urgency=low
 rosegarden (1:1.6.1-1ubuntu1) hardy; urgency=low
 
   * Merge from debian unstable, remaining changes:
-    - Add usr/share/doc/kde/HTML to rosegarden-data, to provide online
+    - Add usr/share/doc/tde/HTML to rosegarden-data, to provide online
       help documentation.
     - Change fftw3-dev to libfftw3-dev.
     - Update maintainer field as per spec.
@@ -88,7 +88,7 @@ rosegarden (1:1.6.0-1ubuntu2) hardy; urgency=low
 rosegarden (1:1.6.0-1ubuntu1) hardy; urgency=low
 
   * Merge from Debian unstable, remaining changes:
-    Add usr/share/doc/kde/HTML to rosegarden-data, to provide online
+    Add usr/share/doc/tde/HTML to rosegarden-data, to provide online
     help documentation.
     debian/control:
     + Update maintainer field.   
@@ -109,7 +109,7 @@ rosegarden (1:1.6.0-1) unstable; urgency=low
 rosegarden (1:1.5.1-3ubuntu1) gutsy; urgency=low
 
   * Merge from Debian unstable, remaining changes:
-    - Add usr/share/doc/kde/HTML/ to rosegarden-data, to provide online
+    - Add usr/share/doc/tde/HTML/ to rosegarden-data, to provide online
       help documentation.
     - Update maintainer field in debian/control.
 
@@ -129,7 +129,7 @@ rosegarden (1:1.5.1-3) unstable; urgency=low
 rosegarden (1:1.5.1-2ubuntu1) gutsy; urgency=low
 
   * Merge from Debian unstable. Remaining Ubuntu changes:
-    - Add usr/share/doc/kde/HTML/ to rosegarden-data, to provide online
+    - Add usr/share/doc/tde/HTML/ to rosegarden-data, to provide online
       help documentation.
     - Changed maintainer field to MOTU.
 
@@ -178,7 +178,7 @@ rosegarden (1:1.5.0-1) unstable; urgency=low
 
 rosegarden (1:1.4.0-1ubuntu1) feisty; urgency=low
 
-  * Add usr/share/doc/kde/HTML/ to rosegarden-data, to provide online
+  * Add usr/share/doc/tde/HTML/ to rosegarden-data, to provide online
     help documentation. (Closes LP: #77079)
   * Changed maintainer field to MOTU.
 

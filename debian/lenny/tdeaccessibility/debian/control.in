@@ -35,8 +35,8 @@ Description: KDE accessibility documentation in HTML format
  to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
- /opt/trinity/share/doc/kde/HTML/<language>/<app>/, for instance
- /opt/trinity/share/doc/kde/HTML/en/kmag/. Documentation is provided for most
+ /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
+ /opt/trinity/share/doc/tde/HTML/en/kmag/. Documentation is provided for most
  KDE accessibility packages.
  .
  This package is part of KDE, and a component of the KDE accessibility

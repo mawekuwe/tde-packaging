@@ -8,6 +8,6 @@ Abstract: KBabel is a suite of an advanced and easy to use PO-file
 Section: Apps/Programming
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kbabel/index.html
-Files: /usr/share/doc/kde/HTML/en/kbabel/*.html
+Index: /usr/share/doc/tde/HTML/en/kbabel/index.html
+Files: /usr/share/doc/tde/HTML/en/kbabel/*.html
 

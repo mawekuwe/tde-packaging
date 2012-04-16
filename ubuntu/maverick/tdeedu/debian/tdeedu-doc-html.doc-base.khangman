@@ -5,5 +5,5 @@ Abstract: KHangMan is the classical hangman game for children, adapted for KDE.
 Section: Games/Puzzles
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/khangman/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/khangman/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/khangman/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/khangman/*.html

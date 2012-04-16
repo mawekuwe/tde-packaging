@@ -12,10 +12,10 @@ debian/tmp/opt/trinity/share/apps/kconf_update/klipperrc.upd
 debian/tmp/opt/trinity/share/apps/kconf_update/klippershortcuts.upd
 debian/tmp/opt/trinity/share/apps/kicker/applets/klipper.desktop
 debian/tmp/opt/trinity/share/autostart/klipper.desktop
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/klipper/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/klipper/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/klipper/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/klipper/screenshot.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/klipper/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/klipper/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/klipper/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/klipper/screenshot.png
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/klipper.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/klipper.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/klipper.png

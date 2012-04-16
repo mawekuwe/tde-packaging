@@ -5,6 +5,6 @@ Abstract: This document describes TDM, the KDE Display Manager, an X session man
 Section: System 
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/tdm/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/tdm/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/tdm/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/tdm/*.html
 

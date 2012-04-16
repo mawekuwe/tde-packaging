@@ -6,5 +6,5 @@ Abstract: KPercentage is a small math application that will help pupils
 Section: Apps/Math
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kpercentage/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kpercentage/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kpercentage/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kpercentage/*.html

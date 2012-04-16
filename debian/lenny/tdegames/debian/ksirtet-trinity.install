@@ -8,6 +8,6 @@
 /opt/trinity/share/apps/ksirtet/*
 /opt/trinity/games/ksirtet
 /opt/trinity/share/config.kcfg/ksirtet.kcfg
-/opt/trinity/share/doc/kde/HTML/en/ksirtet/*
+/opt/trinity/share/doc/tde/HTML/en/ksirtet/*
 ../icons/ksirtet.xpm /opt/trinity/share/pixmaps
 ../icons/ksirtet-16.xpm /opt/trinity/share/pixmaps

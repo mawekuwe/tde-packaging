@@ -5,6 +5,6 @@ Abstract: KDE tape management.
 Section: Admin 
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kdat/index.html
-Files: /usr/share/doc/kde/HTML/en/kdat/*.html
+Index: /usr/share/doc/tde/HTML/en/kdat/index.html
+Files: /usr/share/doc/tde/HTML/en/kdat/*.html
 

@@ -10,10 +10,10 @@ debian/tmp/opt/trinity/share/apps/kuser/kuserui.rc
 debian/tmp/opt/trinity/share/apps/kuser/pics/group.png
 debian/tmp/opt/trinity/share/apps/kuser/pics/user.png
 debian/tmp/opt/trinity/share/config.kcfg/kuser.kcfg
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuser/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuser/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuser/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuser/kuser.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuser/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuser/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuser/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuser/kuser.png
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/kuser.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kuser.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kuser.png

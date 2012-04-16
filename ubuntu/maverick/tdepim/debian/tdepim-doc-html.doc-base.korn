@@ -5,5 +5,5 @@ Abstract: KOrn is a mail monitor.
 Section: Apps/Net
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/korn/index.html
-Files: /usr/share/doc/kde/HTML/en/korn/*.html
+Index: /usr/share/doc/tde/HTML/en/korn/index.html
+Files: /usr/share/doc/tde/HTML/en/korn/*.html

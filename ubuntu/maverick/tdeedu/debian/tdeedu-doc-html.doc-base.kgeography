@@ -5,5 +5,5 @@ Abstract: KGeography is a geography learning tool for KDE.
 Section: Apps/Education
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kgeography/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kgeography/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kgeography/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kgeography/*.html

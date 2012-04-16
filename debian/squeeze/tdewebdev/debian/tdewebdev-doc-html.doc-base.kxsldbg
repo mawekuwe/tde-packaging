@@ -6,6 +6,6 @@ Abstract: KXsldbg provides a graphical user interface front-end to
 Section: Apps/Text
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kxsldbg/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kxsldbg/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kxsldbg/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kxsldbg/*.html
 

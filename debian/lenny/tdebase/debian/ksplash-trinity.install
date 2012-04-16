@@ -40,9 +40,9 @@ debian/tmp/opt/trinity/share/apps/ksplash/Themes/Simple/Preview.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Simple/Theme.rc
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Standard/Preview.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Standard/Theme.rc
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksplashml/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksplashml/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/ksplashml/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksplashml/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksplashml/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksplashml/index.docbook
 debian/tmp/opt/trinity/share/services/ksplashdefault.desktop
 debian/tmp/opt/trinity/share/services/ksplash.desktop
 debian/tmp/opt/trinity/share/services/ksplashunified.desktop

@@ -7,10 +7,10 @@ debian/tmp/opt/trinity/share/apps/kmousetool/icons/hicolor/32x32/actions/kmouset
 debian/tmp/opt/trinity/share/apps/kmousetool/icons/hicolor/32x32/actions/kmousetool_on.png
 debian/tmp/opt/trinity/share/apps/kmousetool/icons/hicolor/32x32/apps/kmousetool.png
 debian/tmp/opt/trinity/share/apps/kmousetool/sounds/mousetool_tap.wav
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kmousetool/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kmousetool/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kmousetool/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kmousetool/man-kmousetool.1.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kmousetool/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kmousetool/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kmousetool/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kmousetool/man-kmousetool.1.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kmousetool.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kmousetool.png
 

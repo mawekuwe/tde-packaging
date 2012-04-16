@@ -15,10 +15,10 @@ debian/tmp/opt/trinity/share/apps/kconf_update/cervisia-normalize_cvsroot.pl
 debian/tmp/opt/trinity/share/apps/kconf_update/move_repositories.pl
 debian/tmp/opt/trinity/share/apps/kconf_update/change_colors.pl
 debian/tmp/opt/trinity/share/config.kcfg/cervisiapart.kcfg
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/cervisia/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/cervisia/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/cervisia/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/cervisia/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/cervisia/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/cervisia/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/cervisia/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/cervisia/*.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/cervisia.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/cervisia.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/cervisia.png

@@ -5,5 +5,5 @@ Abstract: KBounce is a clone of Jezzball for KDE.
 Section: Games/Arcade
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kbounce/index.html
-Files: /usr/share/doc/kde/HTML/en/kbounce/*.html
+Index: /usr/share/doc/tde/HTML/en/kbounce/index.html
+Files: /usr/share/doc/tde/HTML/en/kbounce/*.html

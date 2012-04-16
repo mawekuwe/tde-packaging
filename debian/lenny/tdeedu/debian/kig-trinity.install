@@ -11,11 +11,11 @@ opt/trinity/lib/trinity/libkigpart.so
 /opt/trinity/share/applications/kde/kig.desktop
 /opt/trinity/share/apps/katepart/syntax/python-kig.xml
 /opt/trinity/share/apps/kig
-/opt/trinity/share/doc/kde/HTML/en/kig/*.bz2
-/opt/trinity/share/doc/kde/HTML/en/kig/common
-/opt/trinity/share/doc/kde/HTML/en/kig/*.docbook
-/opt/trinity/share/doc/kde/HTML/en/kig/*.png
-/opt/trinity/share/doc/kde/HTML/en/kig/scripting-api/*
+/opt/trinity/share/doc/tde/HTML/en/kig/*.bz2
+/opt/trinity/share/doc/tde/HTML/en/kig/common
+/opt/trinity/share/doc/tde/HTML/en/kig/*.docbook
+/opt/trinity/share/doc/tde/HTML/en/kig/*.png
+/opt/trinity/share/doc/tde/HTML/en/kig/scripting-api/*
 /opt/trinity/share/icons/crystalsvg/16x16/mimetypes/kig_doc.png
 /opt/trinity/share/icons/crystalsvg/22x22/mimetypes/kig_doc.png
 /opt/trinity/share/icons/crystalsvg/32x32/mimetypes/kig_doc.png

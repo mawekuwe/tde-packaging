@@ -5,6 +5,6 @@ Abstract: xlsdbg is a XSLT scripts debbuger.
 Section: Apps/Text
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/xsldbg/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/xsldbg/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/xsldbg/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/xsldbg/*.html
 

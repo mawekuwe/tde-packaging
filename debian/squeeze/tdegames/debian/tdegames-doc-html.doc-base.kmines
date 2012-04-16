@@ -5,5 +5,5 @@ Abstract: KMines is the KDE version of the classic minesweeper game.
 Section: Games/Puzzles
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kmines/index.html
-Files: /usr/share/doc/kde/HTML/en/kmines/*.html
+Index: /usr/share/doc/tde/HTML/en/kmines/index.html
+Files: /usr/share/doc/tde/HTML/en/kmines/*.html

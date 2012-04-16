@@ -5,5 +5,5 @@ Abstract: KWatchGnuPG is a simple GnuPG log viewer.
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kwatchgnupg/index.html
-Files: /usr/share/doc/kde/HTML/en/kwatchgnupg/*.html
+Index: /usr/share/doc/tde/HTML/en/kwatchgnupg/index.html
+Files: /usr/share/doc/tde/HTML/en/kwatchgnupg/*.html

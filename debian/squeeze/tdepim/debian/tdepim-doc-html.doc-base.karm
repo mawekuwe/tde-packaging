@@ -5,5 +5,5 @@ Abstract: KArm tracks time spent on various tasks.
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/karm/index.html
-Files: /usr/share/doc/kde/HTML/en/karm/*.html
+Index: /usr/share/doc/tde/HTML/en/karm/index.html
+Files: /usr/share/doc/tde/HTML/en/karm/*.html

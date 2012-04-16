@@ -9,12 +9,12 @@ debian/tmp/opt/trinity/share/apps/konqsidebartng/virtual_folders/services/lisa.d
 debian/tmp/opt/trinity/share/apps/konqueror/dirtree/remote/lan.desktop
 debian/tmp/opt/trinity/share/apps/lisa/README
 debian/tmp/opt/trinity/share/apps/remoteview/lan.desktop
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/lanbrowser/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/lanbrowser/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kcontrol/lanbrowser/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/lisa/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/lisa/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/lisa/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/lanbrowser/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/lanbrowser/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/lanbrowser/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/lisa/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/lisa/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/lisa/index.docbook
 debian/tmp/opt/trinity/share/services/lan.protocol
 debian/tmp/opt/trinity/share/services/rlan.protocol
 

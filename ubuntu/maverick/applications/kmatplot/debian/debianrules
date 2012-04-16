@@ -23,7 +23,7 @@ exit;
 
 $TQTDIR="/usr/share/tqt3";
 $tde_prefix="/opt/trinity";
-$tde_htmldir="$tde_prefix/share/doc/kde/HTML";
+$tde_htmldir="$tde_prefix/share/doc/tde/HTML";
 $tde_icondir="$tde_prefix/share/icons";
 $tde_sounddir="$tde_prefix/share/sounds";
 $tde_datadir="$tde_prefix/share/apps";

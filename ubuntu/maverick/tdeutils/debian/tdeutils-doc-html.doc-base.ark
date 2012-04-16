@@ -5,6 +5,6 @@ Abstract: Ark is an archive manager for KDE
 Section: Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/ark/index.html
-Files: /usr/share/doc/kde/HTML/en/ark/*.html
+Index: /usr/share/doc/tde/HTML/en/ark/index.html
+Files: /usr/share/doc/tde/HTML/en/ark/*.html
 

@@ -20,10 +20,10 @@ debian/tmp/opt/trinity/share/applications/kde/kudesigner.desktop
 debian/tmp/opt/trinity/share/applications/kde/kugar.desktop
 debian/tmp/opt/trinity/share/apps/kudesigner
 debian/tmp/opt/trinity/share/apps/kugar
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kugar/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kugar/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kugar/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kugar/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kugar/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kugar/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kugar/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kugar/*.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/mimetypes/kugardata.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/mimetypes/kugardata.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kugar.png

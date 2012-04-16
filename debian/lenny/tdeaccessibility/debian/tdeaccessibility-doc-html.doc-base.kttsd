@@ -6,6 +6,6 @@ Abstract: The KDE Text-to-Speech system is a plugin based service that
 Section: Apps/Text
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kttsd/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kttsd/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kttsd/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kttsd/*.html
 

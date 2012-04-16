@@ -38,8 +38,8 @@ Description: KDE games documentation in HTML format
  read with any web browser.
  .
  The documentation will be installed into the usual directories
- /usr/share/doc/kde/HTML/en/<package>/, for instance
- /usr/share/doc/kde/HTML/en/kasteroids/.
+ /usr/share/doc/tde/HTML/en/<package>/, for instance
+ /usr/share/doc/tde/HTML/en/kasteroids/.
  .
  This package is part of KDE, and a component of the KDE games module.
  See the 'kde-trinity' and 'tdegames-trinity' packages for more information.

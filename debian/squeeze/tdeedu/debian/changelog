@@ -569,7 +569,7 @@ tdeedu (4:3.3.2-1) unstable; urgency=low
 
 tdeedu (4:3.4.0-0ubuntu1) hoary; urgency=low
 
-  * Add directory /opt/trinity/share/doc/kde/HTML/en/flashkard to tdeedu-doc-html
+  * Add directory /opt/trinity/share/doc/tde/HTML/en/flashkard to tdeedu-doc-html
     to prevent .dhelp problem.
 
  -- Jonathan Riddell <jr@jriddell.org>  Wed, 16 Mar 2005 18:35:25 +0000

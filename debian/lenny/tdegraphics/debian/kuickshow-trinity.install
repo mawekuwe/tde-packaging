@@ -13,10 +13,10 @@ debian/tmp/opt/trinity/share/apps/kuickshow/pics/ksslide.png
 debian/tmp/opt/trinity/share/apps/kuickshow/pics/kuickshow-day.jpg
 debian/tmp/opt/trinity/share/apps/kuickshow/pics/kuickshow-night.jpg
 debian/tmp/opt/trinity/share/apps/kuickshow/pics/logo.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuickshow/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuickshow/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuickshow/index.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuickshow/screenshot.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuickshow/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuickshow/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuickshow/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuickshow/screenshot.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kuickshow.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kuickshow.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kuickshow.png
@@ -24,7 +24,7 @@ debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kuickshow.png
 debian/icons/kuickshow.xpm		/usr/share/pixmaps
 debian/icons/kuickshow-16.xpm		/usr/share/pixmaps
 
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuickshow/screenshot.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuickshow/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuickshow/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kuickshow/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuickshow/screenshot.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuickshow/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuickshow/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kuickshow/index.docbook

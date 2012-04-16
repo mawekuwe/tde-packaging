@@ -121,8 +121,8 @@ opt/trinity/share/locale/nn/LC_MESSAGES/basket.mo
 opt/trinity/share/locale/it/LC_MESSAGES/basket.mo
 opt/trinity/share/locale/nl/LC_MESSAGES/basket.mo
 opt/trinity/share/config/magic/basket.magic
-opt/trinity/share/doc/kde/HTML/en/basket/index.cache.bz2
-opt/trinity/share/doc/kde/HTML/en/basket/index.docbook
+opt/trinity/share/doc/tde/HTML/en/basket/index.cache.bz2
+opt/trinity/share/doc/tde/HTML/en/basket/index.docbook
 opt/trinity/bin/basket
 opt/trinity/lib/trinity/basketthumbcreator.la
 opt/trinity/lib/trinity/libbasketpart.so

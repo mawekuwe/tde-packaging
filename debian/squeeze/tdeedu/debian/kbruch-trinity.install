@@ -2,10 +2,10 @@ opt/trinity/bin/kbruch
 /opt/trinity/share/apps/kbruch/kbruchui.rc
 /opt/trinity/share/applications/kde/kbruch.desktop
 /opt/trinity/share/config.kcfg/kbruch.kcfg
-/opt/trinity/share/doc/kde/HTML/en/kbruch/*.bz2
-/opt/trinity/share/doc/kde/HTML/en/kbruch/common
-/opt/trinity/share/doc/kde/HTML/en/kbruch/*.docbook
-/opt/trinity/share/doc/kde/HTML/en/kbruch/*.png
+/opt/trinity/share/doc/tde/HTML/en/kbruch/*.bz2
+/opt/trinity/share/doc/tde/HTML/en/kbruch/common
+/opt/trinity/share/doc/tde/HTML/en/kbruch/*.docbook
+/opt/trinity/share/doc/tde/HTML/en/kbruch/*.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kbruch.png
 /opt/trinity/share/icons/hicolor/22x22/apps/kbruch.png
 /opt/trinity/share/icons/hicolor/32x32/apps/kbruch.png

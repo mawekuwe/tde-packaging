@@ -56,9 +56,9 @@ debian/tmp/opt/trinity/share/man/man1/kde-build.1
 debian/tmp/opt/trinity/share/man/man1/includemocs.1
 debian/tmp/opt/trinity/share/man/man1/noncvslist.1
 debian/tmp/opt/trinity/share/man/man1/tdesvn-build.1
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/tdesvn-build/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/tdesvn-build/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/tdesvn-build/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdesvn-build/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdesvn-build/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdesvn-build/index.docbook
 scripts/kde-devel-gdb /opt/trinity/share/tdesdk-scripts
 scripts/kde-devel-vim.vim /opt/trinity/share/tdesdk-scripts
 scripts/kde-emacs/*.el /opt/trinity/share/emacs/site-lisp/tdesdk-scripts

@@ -6,10 +6,10 @@ debian/tmp/opt/trinity/lib/libtdeinit_koshell.so
 debian/tmp/opt/trinity/share/applications/kde/koshell.desktop
 debian/tmp/opt/trinity/share/apps/koshell/koshellui.rc
 debian/tmp/opt/trinity/share/config.kcfg/koshell.kcfg
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koshell/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koshell/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koshell/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/koshell/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koshell/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koshell/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koshell/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/koshell/*.png
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/koshell.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/koshell.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/koshell.png

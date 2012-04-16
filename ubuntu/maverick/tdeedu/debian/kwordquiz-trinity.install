@@ -3,10 +3,10 @@ opt/trinity/bin/kwordquiz
 /opt/trinity/share/applications/kde/kwordquiz.desktop
 /opt/trinity/share/apps/kwordquiz
 /opt/trinity/share/config.kcfg/kwordquiz.kcfg
-/opt/trinity/share/doc/kde/HTML/en/kwordquiz/*.bz2
-/opt/trinity/share/doc/kde/HTML/en/kwordquiz/common
-/opt/trinity/share/doc/kde/HTML/en/kwordquiz/*.docbook
-/opt/trinity/share/doc/kde/HTML/en/kwordquiz/*.png
+/opt/trinity/share/doc/tde/HTML/en/kwordquiz/*.bz2
+/opt/trinity/share/doc/tde/HTML/en/kwordquiz/common
+/opt/trinity/share/doc/tde/HTML/en/kwordquiz/*.docbook
+/opt/trinity/share/doc/tde/HTML/en/kwordquiz/*.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kwordquiz.png
 /opt/trinity/share/icons/hicolor/22x22/apps/kwordquiz.png
 /opt/trinity/share/icons/hicolor/32x32/apps/kwordquiz.png

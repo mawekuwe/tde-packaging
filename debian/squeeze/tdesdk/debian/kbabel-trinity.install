@@ -66,11 +66,11 @@ debian/tmp/opt/trinity/share/apps/kconf_update/kbabel-project.upd
 debian/tmp/opt/trinity/share/apps/kconf_update/kbabel-projectrename.upd
 debian/tmp/opt/trinity/share/config.kcfg/kbabel.kcfg
 debian/tmp/opt/trinity/share/config.kcfg/kbprojectsettings.kcfg
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kbabel/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kbabel/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kbabel/*.docbook
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kbabel/*.png
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/kbabel/TODO
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/*.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/TODO
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/catalogmanager.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kbabel.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kbabeldict.png

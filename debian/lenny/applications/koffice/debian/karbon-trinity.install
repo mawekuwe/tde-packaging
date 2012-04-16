@@ -49,9 +49,9 @@ debian/tmp/opt/trinity/lib/libtdeinit_karbon.so
 debian/tmp/opt/trinity/share/applications/kde/karbon.desktop
 debian/tmp/opt/trinity/share/apps/karbon
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/karbon_konqi.desktop
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/karbon/*.bz2
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/karbon/common
-debian/tmp/opt/trinity/share/doc/kde/HTML/en/karbon/*.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/karbon/*.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/karbon/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/karbon/*.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/karbon.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/karbon.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/karbon.png

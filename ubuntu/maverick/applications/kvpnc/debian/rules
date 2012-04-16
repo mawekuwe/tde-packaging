@@ -28,7 +28,7 @@ install/kvpnc-trinity::
 	chmod 0755 debian/kvpnc-trinity/opt/trinity/share/apps/kvpnc/ping_check.sh
 
 	# remove uneeded dir
-	rm -rf debian/kvpnc-trinity/opt/trinity/share/doc/kde/HTML/kvpnc
+	rm -rf debian/kvpnc-trinity/opt/trinity/share/doc/tde/HTML/kvpnc
 
 	# install desktop file in applications
 	install -D -p -m0644 src/kvpnc.desktop \

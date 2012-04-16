@@ -7,6 +7,6 @@ Abstract: KMix is an application to allow you to change the volume of
 Section: Apps/Sound
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kmix/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kmix/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kmix/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kmix/*.html
 

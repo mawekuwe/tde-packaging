@@ -30,8 +30,8 @@ common-install-prehook-arch::
 build/kig-trinity::
 	cp $(DEB_SRCDIR)/doc/kig/scripting-api/*.png $(DEB_BUILDDIR)/doc/kig/scripting-api/
 	cd $(DEB_BUILDDIR)/doc/kig/scripting-api && doxygen Doxyfile.scripting-api
-	install -d -m 755 $(DEB_BUILDDIR)/doc/kig/scripting-api/build/html/ debian/tmp/opt/trinity/share/doc/kde/HTML/en/kig/scripting-api/
-	install -m644  $(DEB_BUILDDIR)/doc/kig/scripting-api/build/html/* debian/tmp/opt/trinity/share/doc/kde/HTML/en/kig/scripting-api/
+	install -d -m 755 $(DEB_BUILDDIR)/doc/kig/scripting-api/build/html/ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kig/scripting-api/
+	install -m644  $(DEB_BUILDDIR)/doc/kig/scripting-api/build/html/* debian/tmp/opt/trinity/share/doc/tde/HTML/en/kig/scripting-api/
 
 
 

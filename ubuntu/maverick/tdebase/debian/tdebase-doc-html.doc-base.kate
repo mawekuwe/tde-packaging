@@ -5,6 +5,6 @@ Abstract: Kate is a programmer's text editor for KDE.
 Section: Apps/Text
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kate/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kate/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kate/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kate/*.html
 

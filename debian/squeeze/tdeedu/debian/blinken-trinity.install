@@ -3,7 +3,7 @@ opt/trinity/bin/blinken
 /opt/trinity/share/apps/blinken/images
 /opt/trinity/share/apps/blinken/sounds
 /opt/trinity/share/config.kcfg/blinken.kcfg
-/opt/trinity/share/doc/kde/HTML/en/blinken
+/opt/trinity/share/doc/tde/HTML/en/blinken
 /opt/trinity/share/icons/hicolor/16x16/apps/blinken.png
 /opt/trinity/share/icons/hicolor/22x22/apps/blinken.png
 /opt/trinity/share/icons/hicolor/32x32/apps/blinken.png

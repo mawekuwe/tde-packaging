@@ -11,10 +11,10 @@ opt/trinity/lib/libkvoctraincore.so.0.0.0
 /opt/trinity/share/config.kcfg/kvoctrain.kcfg
 /opt/trinity/share/config.kcfg/languagesettings.kcfg
 /opt/trinity/share/config.kcfg/presettings.kcfg
-/opt/trinity/share/doc/kde/HTML/en/kvoctrain/common
-/opt/trinity/share/doc/kde/HTML/en/kvoctrain/index.cache.bz2
-/opt/trinity/share/doc/kde/HTML/en/kvoctrain/*.docbook
-/opt/trinity/share/doc/kde/HTML/en/kvoctrain/*.png
+/opt/trinity/share/doc/tde/HTML/en/kvoctrain/common
+/opt/trinity/share/doc/tde/HTML/en/kvoctrain/index.cache.bz2
+/opt/trinity/share/doc/tde/HTML/en/kvoctrain/*.docbook
+/opt/trinity/share/doc/tde/HTML/en/kvoctrain/*.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kvoctrain.png
 /opt/trinity/share/icons/hicolor/22x22/apps/kvoctrain.png
 /opt/trinity/share/icons/hicolor/32x32/apps/kvoctrain.png

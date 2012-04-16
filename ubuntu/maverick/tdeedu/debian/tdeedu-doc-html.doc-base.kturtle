@@ -8,5 +8,5 @@ Abstract: KTurtle is an educational programming environment using the
 Section: Apps/Programming
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kturtle/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kturtle/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kturtle/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kturtle/*.html

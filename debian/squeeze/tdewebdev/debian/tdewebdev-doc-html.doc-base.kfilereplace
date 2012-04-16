@@ -5,6 +5,6 @@ Abstract: KFileReplace is an utility to search and replace strings.
 Section: Apps/Net
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kfilereplace/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kfilereplace/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kfilereplace/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kfilereplace/*.html
 

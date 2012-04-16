@@ -47,7 +47,7 @@ DEB_CONFIGURE_EXTRA_FLAGS := \
 				--enable-vba \
 				--enable-subversion \
 				--with-pic \
-				--with-tdelibsdoxy-dir=/opt/trinity/share/doc/kde/HTML/en/tdelibs-apidocs \
+				--with-tdelibsdoxy-dir=/opt/trinity/share/doc/tde/HTML/en/tdelibs-apidocs \
 				--with-pythondir=/usr \
 				--with-qtdoc-dir=/usr/share/qt3/doc/html \
 				--prefix=/opt/trinity \

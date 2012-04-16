@@ -8,5 +8,5 @@ Abstract: KLettres is an application specially designed to help the user
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/klettres/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/klettres/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/klettres/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/klettres/*.html

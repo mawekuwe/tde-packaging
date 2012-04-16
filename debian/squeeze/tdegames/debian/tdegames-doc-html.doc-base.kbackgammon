@@ -8,5 +8,5 @@ Abstract: KBackgammon is a graphical backgammon program for KDE.
 Section: Games/Board
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kbackgammon/index.html
-Files: /usr/share/doc/kde/HTML/en/kbackgammon/*.html
+Index: /usr/share/doc/tde/HTML/en/kbackgammon/index.html
+Files: /usr/share/doc/tde/HTML/en/kbackgammon/*.html

@@ -7,6 +7,6 @@ Abstract: Krdc is a client application that allows you to view or even control
 Section: Apps/Net
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/krdc/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/krdc/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/krdc/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/krdc/*.html
 

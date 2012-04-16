@@ -8,6 +8,6 @@
 /opt/trinity/share/icons/hicolor/16x16/apps/kbattleship.png
 /opt/trinity/share/applications/kde/kbattleship.desktop
 /opt/trinity/games/kbattleship
-/opt/trinity/share/doc/kde/HTML/en/kbattleship/*
+/opt/trinity/share/doc/tde/HTML/en/kbattleship/*
 ../icons/kbattleship.xpm /opt/trinity/share/pixmaps
 ../icons/kbattleship-16.xpm /opt/trinity/share/pixmaps

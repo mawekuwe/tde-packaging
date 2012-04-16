@@ -6,6 +6,6 @@ Abstract: This is the handbook for the additional plugins for Konqueror, the
 Section: Apps/Tools
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/konq-plugins/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/konq-plugins/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/konq-plugins/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/konq-plugins/*.html
 

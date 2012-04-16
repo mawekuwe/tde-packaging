@@ -8,6 +8,6 @@
 /opt/trinity/share/icons/hicolor/16x16/apps/ksnake.png
 /opt/trinity/share/applications/kde/ksnake.desktop
 /opt/trinity/games/ksnake
-/opt/trinity/share/doc/kde/HTML/en/ksnake/*
+/opt/trinity/share/doc/tde/HTML/en/ksnake/*
 ../icons/ksnake.xpm /opt/trinity/share/pixmaps
 ../icons/ksnake-16.xpm /opt/trinity/share/pixmaps

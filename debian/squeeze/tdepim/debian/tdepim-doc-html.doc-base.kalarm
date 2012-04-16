@@ -6,5 +6,5 @@ Abstract: KAlarm is a personal alarm message, command and email
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/kde/HTML/en/kalarm/index.html
-Files: /usr/share/doc/kde/HTML/en/kalarm/*.html
+Index: /usr/share/doc/tde/HTML/en/kalarm/index.html
+Files: /usr/share/doc/tde/HTML/en/kalarm/*.html

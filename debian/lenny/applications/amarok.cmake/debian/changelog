@@ -1444,8 +1444,8 @@ amarok (1.1.1-1) unstable; urgency=low
 
 amarok (1.1.0-2) unstable; urgency=low
 
-  * Fix the location of translated amaroK handbook: kde/HTML/$LANG/amarok, not
-    kde/HTML/$LANG directly. [debian/patches/proper-otherlang-handbook-path.patch]
+  * Fix the location of translated amaroK handbook: tde/HTML/$LANG/amarok, not
+    tde/HTML/$LANG directly. [debian/patches/proper-otherlang-handbook-path.patch]
 
  -- Adeodato Simó <asp16@alu.ua.es>  Mon, 27 Sep 2004 14:02:30 +0200
 

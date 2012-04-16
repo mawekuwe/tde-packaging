@@ -5,6 +5,6 @@ Abstract: Kpf allows you to share files over a network.
 Section: Apps/Net
 
 Format: HTML
-Index: /opt/trinity/share/doc/kde/HTML/en/kpf/index.html
-Files: /opt/trinity/share/doc/kde/HTML/en/kpf/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kpf/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kpf/*.html
 
