@@ -230,8 +230,6 @@ binary-install/tdebase-data-trinity::
 	install -p -D -m644 debian/tmp/etc/xdg/menus/tde-information.menu debian/tdebase-data-trinity/opt/trinity/etc/xdg/menus/tde-information.menu
 	install -p -D -m644 debian/tmp/etc/xdg/menus/tde-screensavers.menu debian/tdebase-data-trinity/opt/trinity/etc/xdg/menus/tde-screensavers.menu
 	install -p -D -m644 debian/tmp/etc/xdg/menus/tde-settings.menu debian/tdebase-data-trinity/opt/trinity/etc/xdg/menus/tde-settings.menu
-	rm -rf debian/tmp/etc/xdg/*
-	rm -rf debian/tdebase-data-trinity/etc/xdg/*
 
 install/tdm-trinity::
 	sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/trinity/tdm/tdmrc
