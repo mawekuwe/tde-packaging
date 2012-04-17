@@ -230,8 +230,6 @@ binary-install/kdebase-data-trinity::
 	install -p -D -m644 debian/tmp/etc/xdg/menus/kde-information.menu debian/kdebase-data-trinity/opt/trinity/etc/xdg/menus/kde-information.menu
 	install -p -D -m644 debian/tmp/etc/xdg/menus/kde-screensavers.menu debian/kdebase-data-trinity/opt/trinity/etc/xdg/menus/kde-screensavers.menu
 	install -p -D -m644 debian/tmp/etc/xdg/menus/kde-settings.menu debian/kdebase-data-trinity/opt/trinity/etc/xdg/menus/kde-settings.menu
-	rm -rf debian/tmp/etc/xdg/*
-	rm -rf debian/kdebase-data-trinity/etc/xdg/*
 
 install/kdm-trinity::
 	sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/trinity/kdm/kdmrc
