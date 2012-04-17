@@ -42,6 +42,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_fontinst.la
 debian/tmp/opt/trinity/lib/trinity/kcm_fontinst.so
 debian/tmp/opt/trinity/lib/trinity/kcm_fonts.la
 debian/tmp/opt/trinity/lib/trinity/kcm_fonts.so
+debian/tmp/opt/trinity/lib/trinity/kcm_hwmanager.la
+debian/tmp/opt/trinity/lib/trinity/kcm_hwmanager.so
 debian/tmp/opt/trinity/lib/trinity/kcm_icons.la
 debian/tmp/opt/trinity/lib/trinity/kcm_icons.so
 debian/tmp/opt/trinity/lib/trinity/kcm_info.la
@@ -149,6 +151,7 @@ debian/tmp/opt/trinity/share/applications/kde/ebrowsing.desktop
 debian/tmp/opt/trinity/share/applications/kde/filebrowser.desktop
 debian/tmp/opt/trinity/share/applications/kde/filetypes.desktop
 debian/tmp/opt/trinity/share/applications/kde/fonts.desktop
+debian/tmp/opt/trinity/share/applications/kde/hwmanager.desktop
 debian/tmp/opt/trinity/share/applications/kde/icons.desktop
 debian/tmp/opt/trinity/share/applications/kde/installktheme.desktop
 debian/tmp/opt/trinity/share/applications/kde/interrupts.desktop
