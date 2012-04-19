@@ -10,5 +10,5 @@ debian/tmp/opt/trinity/share/icons/
 debian/tmp/opt/trinity/share/locale/*/LC_MESSAGES/*.mo
 debian/tmp/opt/trinity/share/config.kcfg/
 debian/tmp/opt/trinity/share/applications/kde/*.desktop
-debian/tmp/opt/trinity/share/doc/kde/
+debian/tmp/opt/trinity/share/doc/tde/
 
