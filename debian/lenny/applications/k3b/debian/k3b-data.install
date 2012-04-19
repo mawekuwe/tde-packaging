@@ -1,7 +1,7 @@
 debian/tmp/usr/share/applnk/.hidden/*
 debian/tmp/usr/share/apps/*
 debian/tmp/usr/share/icons/*
-debian/tmp/usr/share/doc/kde/*
+debian/tmp/usr/share/doc/tde/*
 debian/tmp/usr/share/sounds/*
 debian/tmp/usr/share/mimelnk/*
 debian/tmp/usr/share/services/*

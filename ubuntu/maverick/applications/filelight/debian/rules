@@ -39,4 +39,4 @@ debian/stamp-bootstrap:
 
 common-install-arch::
 	rm -rf debian/filelight/usr/share/locale/
-	rm -rf debian/filelight/usr/share/doc/kde/
+	rm -rf debian/filelight/usr/share/doc/tde/
