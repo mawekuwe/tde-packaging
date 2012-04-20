@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Mark Purcell <msp@debian.org>, Fathi Boudra <fabo@debian.org>
-Build-Depends: debhelper (>= 7.0.50~), cdbs, chrpath, automake, libtool, kdelibs4-trinity-dev, libofx-dev, libsqlite3-dev
+Build-Depends: debhelper (>= 7.0.50~), cdbs, chrpath, automake, libtool, kdelibs4-trinity-dev, libofx-dev, libsqlite3-dev, recode
 Standards-Version: 3.8.4
 
 Package: kmymoney2-trinity
