@@ -88,7 +88,6 @@ install: build-stamp
 	$(MAKE) DESTDIR=$(CURDIR)/debian/piklab-trinity install
 	chrpath --delete debian/piklab-trinity/opt/trinity/bin/*
 	mv debian/piklab-trinity/opt/trinity/share/man/man1/piklab.1x debian/piklab-trinity/opt/trinity/share/man/man1/piklab.1
-	rm -r debian/piklab-trinity/opt/trinity/share/doc/HTML
 
 # Build architecture-independent files here.
 binary-indep: build install
