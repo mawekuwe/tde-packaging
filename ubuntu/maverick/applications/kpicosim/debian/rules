@@ -89,8 +89,8 @@ install: build
         # Install standard documentation links.
 	for pkg in `dh_listpackages`; do \
 	 if test -d debian/$$pkg/opt/trinity/share/doc/HTML; then \
-	 if test ! -d debian/$$pkg/opt/trinity/share/doc/kde; then \
-	 mkdir debian/$$pkg/opt/trinity/share/doc/kde; \
+	 if test ! -d debian/$$pkg/opt/trinity/share/doc/tde; then \
+	 mkdir debian/$$pkg/opt/trinity/share/doc/tde; \
 	 fi; \
 	 mv debian/$$pkg/opt/trinity/share/doc/HTML debian/$$pkg/opt/trinity/share/doc/kde/; \
 	 fi; \
