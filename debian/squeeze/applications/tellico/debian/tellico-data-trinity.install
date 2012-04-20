@@ -11,7 +11,7 @@ debian/tmp/opt/trinity/share/apps/tellico/tellico2html.js
 debian/tmp/opt/trinity/share/apps/tellico/tellicoui.rc
 debian/tmp/opt/trinity/share/apps/tellico/welcome.html
 debian/tmp/opt/trinity/share/config.kcfg
-debian/tmp/opt/trinity/share/doc/kde
+debian/tmp/opt/trinity/share/doc/tde
 debian/tmp/opt/trinity/share/icons
 debian/tmp/opt/trinity/share/locale
 debian/tmp/opt/trinity/share/apps/mime

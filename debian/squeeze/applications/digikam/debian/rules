@@ -38,4 +38,4 @@ endif
 
 install/digikam-trinity::
 	# remove empty API-docs dirs tree
-	rm -rf $(CURDIR)/debian/digikam-trinity/opt/trinity/share/doc/kde
+	rm -rf $(CURDIR)/debian/digikam-trinity/opt/trinity/share/doc/tde

@@ -721,7 +721,7 @@ digikam (0.8.0-0rc-1) experimental; urgency=low
   * mention new 0.8 features tagging and searching in long description
   * remove 01_fix_keyboardfocus_in_albumview.diff, fixed upstream
   * remove build-dep on libgdbm-dev: No longer needed in 0.8
-  * remove the empty apidocs dirtree from /usr/share/doc/kde
+  * remove the empty apidocs dirtree from /usr/share/doc/tde
 
  -- Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>  Fri,  4 Nov 2005 14:50:31 +0100
 
