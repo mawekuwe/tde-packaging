@@ -214,7 +214,7 @@ knutclient (0.7.2-pre2-1) unstable; urgency=low
   * New upstream release
     * admin/debianrules has been updated to fix KDE doc path
       problems (thanks to Ben Burton) (closes: Bug#210962)
-  * debian/preinst: add script for cleaning /usr/share/doc/HTML/*/knutclient/
+  * debian/preinst: add script for cleaning /usr/share/doc/tde/HTML/*/knutclient/
     on upgrading from previous release
   * debian/control: add Homepage to Description
   * debian/control: change maintainer address to the good debian's one

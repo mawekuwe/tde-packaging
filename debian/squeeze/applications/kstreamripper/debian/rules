@@ -8,10 +8,10 @@ build/kstreamripper::
 install/kstreamripper::
 	env PATH=/opt/trinity/bin:$(PATH) QTDIR=/usr/share/qt3 CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/tde $(MAKE) install
 	mkdir -p $(DEB_DESTDIR)/opt/trinity/share/pixmaps/
-	mkdir -p $(DEB_DESTDIR)/opt/trinity/share/doc/HTML/
+	mkdir -p $(DEB_DESTDIR)/opt/trinity/share/doc/tde/HTML/
 	install -m 644 ./src/hi32-app-kstreamripper.png \
 		$(DEB_DESTDIR)/opt/trinity/share/pixmaps/kstreamripper.png
-	rm -rf $(DEB_DESTDIR)/opt/trinity/share/doc/HTML
+	rm -rf $(DEB_DESTDIR)/opt/trinity/share/doc/tde/HTML
 	rm -rf $(DEB_DESTDIR)/usr
 
 clean::
