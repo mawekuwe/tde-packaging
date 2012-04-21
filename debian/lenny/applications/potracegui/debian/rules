@@ -78,7 +78,6 @@ install: build
 
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/potracegui-trinity
 	mkdir -p $(CURDIR)/debian/potracegui-trinity/opt/trinity/share/doc/tde
-	mv $(CURDIR)/debian/potracegui-trinity/opt/trinity/share/doc/tde/HTML $(CURDIR)/debian/potracegui-trinity/opt/trinity/share/doc/tde/HTML
 	mkdir -p $(CURDIR)/debian/potracegui-trinity/opt/trinity/share/applnk/Graphics
 	mv $(CURDIR)/debian/potracegui-trinity/opt/trinity/share/applnk/Utilities/potracegui.desktop $(CURDIR)/debian/potracegui-trinity/opt/trinity/share/applnk/Graphics/
 	rmdir $(CURDIR)/debian/potracegui-trinity/opt/trinity/share/applnk/Utilities
