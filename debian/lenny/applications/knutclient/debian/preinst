@@ -20,13 +20,13 @@ case "$1" in
     	# cleanup remaining doc from release prior to 0.7.2
 	if dpkg --compare-versions "$2" lt "0.7.2" ; then
 		# first pass for files
-		for i in `find /usr/share/doc/HTML/*/knutclient/ -type f`
+		for i in `find /usr/share/doc/tde/HTML/*/knutclient/ -type f`
 		do 
 			rm -f $i
 		done
 
 		# second pass for directories and empty parents
-		for i in `find /usr/share/doc/HTML/*/knutclient/ -type d`
+		for i in `find /usr/share/doc/tde/HTML/*/knutclient/ -type d`
 		do 
 			rmdir --ignore-fail-on-non-empty --parents $i
 		done

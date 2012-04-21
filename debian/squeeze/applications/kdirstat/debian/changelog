@@ -112,7 +112,7 @@ kdirstat (2.0.1-1) unstable; urgency=low
   * Added check for noopt in DEBIAN_BUILD_OPTIONS in rules.
   * Changed doc/en/Makefile.in:95 to set kde_htmldir to
     /share/doc/tde/HTML explicity. configure seems to pick up
-    /share/doc/HTML instead.
+    /share/doc/tde/HTML instead.
 
  -- Mike Schacht <mschacht@alumni.washington.edu>  Sat, 16 Nov 2002 17:56:14 -0600
 
