@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 17
+%define release 18
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -50,31 +50,27 @@ Source5:	pamd.kscreensaver-trinity%{?dist}
 # [kdebase] Fix corrupted PNG images [Bug #298]
 Source6:	tiles-fixed-png-images.tar.gz
 
-# TDE unofficial patches, fixing FTBFS
-## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes
+# TDE 3.5.13 patches
+## [kdebase/kdm] adds gcrypt support [Bug #624]
+Patch7:		kdebase-3.5.13-kdm-crypt.patch
+## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes [RHEL/Fedora]
 Patch8:		kdebase-3.5.13-mediamanager_ftbfs.patch
-## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64
+## [kdebase/startkde] Hardcoded path '/usr/lib/xxx' in startkde, not suitable for x86_64 [RHEL/Fedora]
 Patch9:		kdebase-3.5.13-startkde_ldpreload.patch
-
-# TDE for RHEL/Fedora specific patches
-## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box
+## [kdebase/kdesu] Remove 'ignore' button on 'kdesu' dialog box [RHEL/Fedora]
 Patch10:	kdebase-3.5.13-kdesu-noignorebutton.patch
-## [kdebase/kdesktop] Modifies 'open terminal here' on desktop
+## [kdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
 Patch11:	kdebase-3.5.12-desktop-openterminalhere.patch
-## [kdebase/kioslave] Forces HAL backend to use HAL mount options
+## [kdebase/kioslave] Forces HAL backend to use HAL mount options [RHEL/Fedora]
 Patch12:	kdebase-3.5.12-halmountoptions.patch
-## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession'
+## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession' [RHEL/Fedora]
 Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
-## [kdebase/kicker/kicker/ui] Fix kickoff menu issues
+## [kdebase/kicker/kicker/ui] Fix kickoff menu issues [Bug #508]
 Patch14:	kdebase-3.5.13-kickoff_unstable.patch
-## [kdebase/startkde] Sets default Start Icon in 'kickerrc'
+## [kdebase/startkde] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
 Patch15:	kdebase-3.5.13-startkde_icon.patch
 ## [kdebase/startkde] Fixes duplicate and incorrect TDE directories location [Bug #741]
 Patch16:	kdebase-3.5.13-startkde_directories.patch
-
-# TDE unofficial patches for enhanced features or bugfixes.
-## [kdebase/kdm] adds gcrypt support [Bug #624]
-Patch7:		kdebase-3.5.13-kdm-crypt.patch
 ## [kdebase/kate] Restores the 'number of files' and sorting widgets to the Kate configuration [Bug #244]
 Patch20:	kdebase-3.5.13-kate_mru.patch
 ## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db' [Bug #714]
@@ -95,7 +91,7 @@ Patch27:	kdebase-3.5.13-restore_kde3_clock.patch
 Patch28:	kdebase-3.5.13-randrtray_merge_x11_reconfig_requests.patch
 ## [kdebase/kdesktop/lock] Fix multihead screen locking [Bug #669]
 Patch29:	kdebase-3.5.13-fix_multihead_desktop_lock.patch
-## [kdebase/kdm/kfrontend] Allows to hide KDM menu button
+## [kdebase/kdm/kfrontend] Allows to hide KDM menu button [RHEL/Fedora]
 Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
 ## [kdebase/kxkb] Enables xtest support
 Patch31:	kdebase-3.5.13-enable_xtest_support.patch
@@ -123,6 +119,12 @@ Patch41:	kdebase-3.5.13-fix_potential_ABI_compat_problem.patch
 Patch42:	kdebase-3.5.13-fix_translations_in_desktop_files.patch
 ## [kdebase/kate] Kate: fix focus broken when using the --use parameter [Bug #692]
 Patch43:	kdebase-3.5.13-kate_focus_fix.patch
+## [kdebase/kicker] Ensures that 'pagersettings.kcfg' is installed [Bug #908, Commit bd9c1479]
+Patch44:	kdebase-3.5.13-ensure_pagersettings_is_installed.patch
+## [kdebase] Fix "Malformed URL $( kxdglauncher --getpath xdgname DOCUMENTS )" error dialog.
+Patch45:	1333232616:f752bcbf6585c61f414963ad83e1300a1da08504.diff
+## [kdebase/kioslave] Fix sftp failure on newer systems [Bug #897]
+Patch46:	1335166907:e72f4926c094b2bd94501518fbcd2a3e66a74f6a.diff
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -344,6 +346,9 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch41 -p1
 %patch42 -p1
 %patch43 -p1
+%patch44 -p1
+%patch45 -p1
+%patch46 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -730,6 +735,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Mon Apr 23 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-18
+- Ensures that 'pagersettings.kcfg' is installed [Bug #908, Commit bd9c1479]
+- Fix "Malformed URL $( kxdglauncher --getpath xdgname DOCUMENTS )" error dialog.
+- Fix sftp failure on newer systems [Bug #897]
+
 * Sun Apr 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-17
 - do not show hostname in titlebar if it's FQDN of localhost [Bug #889]
 - Adds option to disable desktop switch on mouse wheel cycling [Bug #908]

@@ -1,0 +1,18 @@
+commit f752bcbf6585c61f414963ad83e1300a1da08504
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1333232616 -0500
+
+    Fix "Malformed URL $( kxdglauncher --getpath xdgname DOCUMENTS )" error dialog.
+
+diff --git a/kioslave/system/entries/documents.desktop b/kioslave/system/entries/documents.desktop
+index e5fc3d1..d65cc3d 100644
+--- a/kioslave/system/entries/documents.desktop
++++ b/kioslave/system/entries/documents.desktop
+@@ -1,6 +1,6 @@
+ [Desktop Entry]
+ Type=Link
+-Path=$( kxdglauncher --getpath --xdgname DOCUMENTS )
++URL=$( kxdglauncher --getpath --xdgname DOCUMENTS )
+ Icon=folder_man
+ Name=Documents Folder
+ Name[af]=Dokument Gids
