@@ -20,15 +20,15 @@
 
 Name:			qt3
 Version:		%{?version}
-Release:		3%{?dist}
+Release:		6%{?dist}
 Summary:		The shared library for the Qt 3 GUI toolkit
 
 License:		QPL or GPLv2 or GPLv3
 Group:			System Environment/Libraries
 URL:			http://www.trinitydesktop.org/
 
-Obsoletes:		qt < 1:%{version}-%{release}
-Provides:		qt = 1:%{version}-%{release}
+Obsoletes:		%{name} < %{version}-%{release}
+Provides:		%{name} = %{version}-%{release}
 
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -88,6 +88,9 @@ Patch200: qt-x11-free-3.3.4-fullscreen.patch
 
 # TDE 3.5.13 patches
 Patch300: qt3-3.3.8.d-updates_zh-tw_translations.patch
+
+## [qt3] Fix Qt3 builds with libpng15. [Bug #683]
+Patch301: 1326063972:e278b858739babff5cc19ca81a661e1256d162e7.diff
 
 %define qt_dirname qt-3.3
 %define qtdir %{_libdir}/%{qt_dirname}
@@ -155,14 +158,15 @@ BuildRequires: postgresql-devel
 BuildRequires: unixODBC-devel
 BuildRequires: sqlite-devel
 BuildRequires: gcc-c++
+BuildRequires: make
 
 
 %package config
 Summary: Graphical configuration tool for programs using Qt 3
 Group: User Interface/Desktops
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: qt-config < 1:%{version}-%{release}
-Provides:  qt-config = 1:%{version}-%{release}
+Obsoletes: %{name}-config < %{version}-%{release}
+Provides:  %{name}-config = %{version}-%{release}
 
 
 %package devel
@@ -188,8 +192,8 @@ Requires: libmng-devel
 Requires: mesa-libGL-devel
 Requires: mesa-libGLU-devel
 
-Obsoletes: qt-devel < 1:%{version}-%{release}
-Provides:  qt-devel = 1:%{version}-%{release}
+Obsoletes: %{name}-devel < %{version}-%{release}
+Provides:  %{name}-devel = %{version}-%{release}
 
 
 %package devel-docs
@@ -197,8 +201,8 @@ Summary: Documentation for the Qt 3 GUI toolkit
 Group: Development/Libraries
 Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-devel-docs < 1:%{version}-%{release}
-Provides:  qt-devel-docs = 1:%{version}-%{release}
+Obsoletes: %{name}-devel-docs < %{version}-%{release}
+Provides:  %{name}-devel-docs = %{version}-%{release}
 
 
 %package ODBC
@@ -206,8 +210,8 @@ Summary: ODBC drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-ODBC < 1:%{version}-%{release}
-Provides:  qt-ODBC = 1:%{version}-%{release}
+Obsoletes: %{name}-ODBC < %{version}-%{release}
+Provides:  %{name}-ODBC = %{version}-%{release}
 
 
 %package MySQL
@@ -215,8 +219,8 @@ Summary: MySQL drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-MySQL < 1:%{version}-%{release}
-Provides:  qt-MySQL = 1:%{version}-%{release}
+Obsoletes: %{name}-MySQL < %{version}-%{release}
+Provides:  %{name}-MySQL = %{version}-%{release}
 
 
 %package PostgreSQL
@@ -224,8 +228,8 @@ Summary: PostgreSQL drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-PostgreSQL < 1:%{version}-%{release}
-Provides:  qt-PostgreSQL = 1:%{version}-%{release}
+Obsoletes: %{name}-PostgreSQL < %{version}-%{release}
+Provides:  %{name}-PostgreSQL = %{version}-%{release}
 
 
 %package sqlite
@@ -233,8 +237,8 @@ Summary: sqlite drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-sqlite < 1:%{version}-%{release}
-Provides:  qt-sqlite = 1:%{version}-%{release}
+Obsoletes: %{name}-sqlite < %{version}-%{release}
+Provides:  %{name}-sqlite = %{version}-%{release}
 
 
 %package designer
@@ -242,8 +246,8 @@ Summary: Interface designer (IDE) for the Qt 3 toolkit
 Group: Development/Tools
 Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Obsoletes: qt-designer < 1:%{version}-%{release}
-Provides:  qt-designer = 1:%{version}-%{release}
+Obsoletes: %{name}-designer < %{version}-%{release}
+Provides:  %{name}-designer = %{version}-%{release}
 
 
 %description
@@ -357,6 +361,7 @@ for the Qt 3 toolkit.
 
 # TDE 3.5.13 patches
 %patch300 -p1
+%patch301 -p1
 
 # convert to UTF-8
 iconv -f iso-8859-1 -t utf-8 < doc/man/man3/qdial.3qt > doc/man/man3/qdial.3qt_
@@ -709,6 +714,15 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Apr 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-6
+- Fix Qt3 builds with libpng15. [Bug #683]
+
+* Sat Apr 21 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-5
+- Fix 'Provides' AGAIN !! [Bug #823]
+
+* Mon Apr 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-4
+- Fix 'Provides' [Bug #823]
+
 * Sun Dec 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-3
 - Updates zh_TW translations, thanks to Wei-Lun Chao .
 
