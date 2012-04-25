@@ -5,7 +5,7 @@
  			     (const char*) TQFile::encodeName( old->library() ) );
  		} else {
 +/*
- 		    qWarning("%s: Feature %s already defined in %s!",
+ 		    tqWarning("%s: Feature %s already defined in %s!",
  			     (const char*) TQFile::encodeName( old->library() ),
  			     (*f).latin1(),
  			     (const char*) TQFile::encodeName( plugin->library() ) );

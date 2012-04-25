@@ -13,8 +13,6 @@
 #  qt-devel
 # ...maybe others !!!!
 
-%define _default_patch_fuzz 2
-
 Summary: The shared library for the Qt 3 GUI toolkit
 Version: 3.4.0
 Release: 1%{?dist}
@@ -30,8 +28,6 @@ Group: System Environment/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Url: http://www.troll.no
 Source0: %{name}-%{version}.tar.gz
-#Source2: qt.sh
-#Source3: qt.csh
 Source4: designer3.desktop
 Source5: assistant3.desktop
 Source6: linguist3.desktop
@@ -62,7 +58,7 @@ Patch40: qt-x11-free-3.3.8b-typo.patch
 Patch53: tqt3-3.4.0-qt-x11-immodule-unified-qt3.3.5-20060318-resetinputcontext.patch
 
 # qt-copy patches
-Patch110: 0084-compositing-properties.patch
+Patch110: tqt3-3.4.0-compositing-properties.patch
 
 # upstream patches
 Patch200: qt-x11-free-3.3.4-fullscreen.patch
@@ -238,63 +234,63 @@ Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 
 %description
-Qt is a GUI software toolkit which simplifies the task of writing and
+TQt is a GUI software toolkit which simplifies the task of writing and
 maintaining GUI (Graphical User Interface) applications
 for the X Window System.
 
-Qt is written in C++ and is fully object-oriented.
+TQt is written in C++ and is fully object-oriented.
 
-This package contains the shared library needed to run Qt 3
-applications, as well as the README files for Qt 3.
+This package contains the shared library needed to run TQt 3
+applications, as well as the README files for TQt 3.
 
 
 %description config
-Qt is a GUI software toolkit which simplifies the task of writing and
+TQt is a GUI software toolkit which simplifies the task of writing and
 maintaining GUI (Graphical User Interface) applications
 for the X Window System.
 
-Qt is written in C++ and is fully object-oriented.
+TQt is written in C++ and is fully object-oriented.
 
-This package contains a graphical configuration tool for programs using Qt 3.
+This package contains a graphical configuration tool for programs using TQt 3.
 
 
 %description devel
 The %{name}-devel package contains the files necessary to develop
-applications using the Qt GUI toolkit: the header files, the Qt meta
+applications using the TQt GUI toolkit: the header files, the TQt meta
 object compiler.
 
-Install %{name}-devel if you want to develop GUI applications using the Qt 3
+Install %{name}-devel if you want to develop GUI applications using the TQt 3
 toolkit.
 
 
 %description devel-docs
 The %{name}-devel-docs package contains the man pages, the HTML documentation and
-example programs for Qt 3.
+example programs for TQt 3.
 
 
 %description ODBC
-ODBC driver for Qt 3's SQL classes (QSQL)
+ODBC driver for TQt 3's SQL classes (QSQL)
 
 
 %description MySQL
-MySQL driver for Qt 3's SQL classes (QSQL)
+MySQL driver for TQt 3's SQL classes (QSQL)
 
 
 %description PostgreSQL
-PostgreSQL driver for Qt 3's SQL classes (QSQL)
+PostgreSQL driver for TQt 3's SQL classes (QSQL)
 
 
 %description sqlite
-sqlite driver for Qt 3's SQL classes (QSQL)
+sqlite driver for TQt 3's SQL classes (QSQL)
 
 
 %description designer
 The %{name}-designer package contains an User Interface designer tool
-for the Qt 3 toolkit.
+for the TQt 3 toolkit.
 
 
 %prep
-%setup -q -n %{name}
+%setup -q -n dependencies/%{name}
 %patch1 -p1 -b .cjk
 %patch2 -p1 -b .ndebug
 %patch3 -p1 -b .makefile
@@ -414,6 +410,13 @@ echo yes | ./configure \
   -xft \
   -tablet
 
+QTDIR="${PWD}"
+QTLIB="${QTDIR}/lib"
+QTINC="${QTDIR}/include"
+LD_LIBRARY_PATH="${QTLIB}:${LD_LIBRARY_PATH}"
+PATH="${QTDIR}/bin:${PATH}"
+export QTDIR QTLIB QTINC LD_LIBRARY_PATH PATH
+
 %__make %{?_smp_mflags} src-qmake
 
 
@@ -446,7 +449,7 @@ popd
 %__make install INSTALL_ROOT=%{buildroot}
 
 for i in findtr qt20fix qtrename140 lrelease lupdate ; do
-   %__install bin/$i %{buildroot}%{_bindir}
+  %__install bin/$i %{buildroot}%{_bindir}
 done
 
 # install man pages

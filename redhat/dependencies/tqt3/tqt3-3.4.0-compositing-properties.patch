@@ -15,8 +15,8 @@ so they can be used when compositing.
  				 &wsa );
 -	x11SetWindowType();
 +	XClassHint class_hint;
-+	class_hint.res_name = (char *) qAppName(); // application name
-+	class_hint.res_class = (char *) qAppClass();	// application class
++	class_hint.res_name = (char *) tqAppName(); // application name
++	class_hint.res_class = (char *) tqAppClass();	// application class
 +        XSetClassHint( dpy, id, &class_hint );
      } else if ( topLevel && !desktop ) {	// top-level widget
  	QWidget *p = parentWidget();	// real parent
@@ -42,7 +42,7 @@ so they can be used when compositing.
  #ifndef QT_NO_XSYNC
          // set _NET_WM_SYNC_COUNTER
          createSyncCounter();
-@@ -645,19 +641,31 @@ void QWidget::create( WId window, bool i
+@@ -729,19 +725,31 @@ void QWidget::create( WId window, bool i
  	// when we create a toplevel widget, the frame strut should be dirty
  	fstrut_dirty = 1;
  
@@ -62,8 +62,8 @@ so they can be used when compositing.
 +
  	// declare the widget's object name as window role
  	XChangeProperty( dpy, id,
- 			 qt_window_role, XA_STRING, 8, PropModeReplace,
- 			 (unsigned char *)name(), qstrlen( name() ) );
+ 			 tqt_window_role, XA_STRING, 8, PropModeReplace,
+ 			 (unsigned char *)name(), tqstrlen( name() ) );
  
  	// set client leader property
 +	if ( !qt_x11_wm_client_leader )

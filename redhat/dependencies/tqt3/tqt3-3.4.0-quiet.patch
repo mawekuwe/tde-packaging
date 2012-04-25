@@ -3,10 +3,10 @@
 @@ -394,8 +394,8 @@
  {
  #if defined(QT_CHECK_STATE)
-     if ( qApp->type() == TQApplication::Tty ) {
--	qWarning( "TQPixmap: Cannot create a TQPixmap when no GUI "
+     if ( tqApp->type() == TQApplication::Tty ) {
+-	tqWarning( "TQPixmap: Cannot create a TQPixmap when no GUI "
 -		  "is being used" );
-+//	qWarning( "TQPixmap: Cannot create a TQPixmap when no GUI "
++//	tqWarning( "TQPixmap: Cannot create a TQPixmap when no GUI "
 +//		  "is being used" );
      }
  #endif
