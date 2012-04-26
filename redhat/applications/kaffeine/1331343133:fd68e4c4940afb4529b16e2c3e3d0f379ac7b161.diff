@@ -1,0 +1,84 @@
+commit fd68e4c4940afb4529b16e2c3e3d0f379ac7b161
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1331343133 -0600
+
+    Fix nominal "tqt" typos and fix slow DVB start.
+    This closes bug reports 729 and 899.
+
+diff --git a/kaffeine/src/player-parts/gstreamer-part/video.cpp b/kaffeine/src/player-parts/gstreamer-part/video.cpp
+index 96752aa..32c8817 100644
+--- a/kaffeine/src/player-parts/gstreamer-part/video.cpp
++++ b/kaffeine/src/player-parts/gstreamer-part/video.cpp
+@@ -232,7 +232,7 @@ void VideoWindow::correctByAspectRatio( TQSize& frame )
+ 		case FOURBYTHREE: factor = 4.0 / 3.0; break;
+ 		case ANAMORPHIC: factor = 16.0 / 9.0; break;
+ 		case DVB:	factor = 2.11; break;
+-		case STQUARE: factor = 1.0; break;
++		case SQUARE: factor = 1.0; break;
+ 	}
+ 
+ 	float frameAspect = (float)frame.width() / (float)frame.height();
+@@ -291,7 +291,7 @@ void VideoWindow::slotAspectRatioDVB()
+ 
+ void VideoWindow::slotAspectRatioSquare()
+ {
+-	m_aspectRatio = STQUARE;
++	m_aspectRatio = SQUARE;
+ 	TQSize frame = getFrameSize();
+ 	correctByAspectRatio( frame );
+ 	emit signalNewFrameSize( frame );
+diff --git a/kaffeine/src/player-parts/gstreamer-part/video.h b/kaffeine/src/player-parts/gstreamer-part/video.h
+index c4d9f74..f7c5180 100644
+--- a/kaffeine/src/player-parts/gstreamer-part/video.h
++++ b/kaffeine/src/player-parts/gstreamer-part/video.h
+@@ -47,7 +47,7 @@ public:
+ 		FOURBYTHREE,
+ 		ANAMORPHIC,
+ 		DVB,
+-		STQUARE
++		SQUARE
+ 	};
+ 
+ 	void newState();
+diff --git a/kaffeine/src/player-parts/xine-part/deinterlacequality.h b/kaffeine/src/player-parts/xine-part/deinterlacequality.h
+index edc2fa9..6987de3 100644
+--- a/kaffeine/src/player-parts/xine-part/deinterlacequality.h
++++ b/kaffeine/src/player-parts/xine-part/deinterlacequality.h
+@@ -18,8 +18,8 @@
+  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+  */
+ 
+-#ifndef DEINTERLACETQUALITY_H
+-#define DEINTERLACETQUALITY_H
++#ifndef DEINTERLACEQUALITY_H
++#define DEINTERLACEQUALITY_H
+ 
+ #include <kdialogbase.h>
+ 
+@@ -77,4 +77,4 @@ private:
+   KPushButton* m_customConfigButton;
+ };
+ 
+-#endif /* DEINTERLACETQUALITY_H */
++#endif /* DEINTERLACEQUALITY_H */
+diff --git a/kaffeine/src/player-parts/xine-part/equalizer.h b/kaffeine/src/player-parts/xine-part/equalizer.h
+index 7d43ec0..2e81096 100644
+--- a/kaffeine/src/player-parts/xine-part/equalizer.h
++++ b/kaffeine/src/player-parts/xine-part/equalizer.h
+@@ -18,8 +18,8 @@
+  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
+  */
+ 
+-#ifndef ETQUALIZER_H
+-#define ETQUALIZER_H
++#ifndef EQUALIZER_H
++#define EQUALIZER_H
+ 
+ #include <kdialogbase.h>
+ #include <kconfig.h>
+@@ -77,4 +77,4 @@ private:
+   TQSlider* eq16kSlider;
+ };
+ 
+-#endif /* ETQUALIZER_H */
++#endif /* EQUALIZER_H */

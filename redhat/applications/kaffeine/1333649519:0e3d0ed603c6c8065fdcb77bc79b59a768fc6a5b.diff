@@ -1,0 +1,240 @@
+commit 0e3d0ed603c6c8065fdcb77bc79b59a768fc6a5b
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1333649519 -0500
+
+    Fix typos, branding, and inadvertent tqt changes.
+
+diff --git a/kaffeine/src/input/dvb/dvbpanel.cpp b/kaffeine/src/input/dvb/dvbpanel.cpp
+index 969b62b..bbc4e32 100644
+--- a/kaffeine/src/input/dvb/dvbpanel.cpp
++++ b/kaffeine/src/input/dvb/dvbpanel.cpp
+@@ -1065,8 +1065,7 @@ void DvbPanel::setConfig()
+ 		connect( d, TQT_SIGNAL(isRecording(bool)), this, TQT_SLOT(setRecordLed(bool)) );
+ 		connect( d, TQT_SIGNAL(playDvb()), this, TQT_SLOT(pipeOpened()) );
+ 	}
+-// 	fifoName = TQDir::homeDirPath()+"/.kaxtv.ts";
+-	fifoName = KGlobal::dirs()->saveLocation("tmp")+"/.kaxtv.ts";
++	fifoName = KGlobal::dirs()->saveLocation("tmp")+".kaxtv.ts";
+ 	TQFile f( fifoName );
+ 	if ( f.exists() )
+ 		f.remove();
+@@ -1074,8 +1073,7 @@ void DvbPanel::setConfig()
+ 		perror( fifoName.latin1() );
+ 		fifoName = "";
+ 	}
+-// 	fifoName1 = TQDir::homeDirPath()+"/.kaxtv1.ts";
+-	fifoName1 = KGlobal::dirs()->saveLocation("tmp")+"/.kaxtv1.ts";
++	fifoName1 = KGlobal::dirs()->saveLocation("tmp")+".kaxtv1.ts";
+ 	TQFile f1( fifoName1 );
+ 	if ( f1.exists() )
+ 		f1.remove();
+diff --git a/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_auth.h b/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_auth.h
+index 2b1d2e7..57b9254 100644
+--- a/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_auth.h
++++ b/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_auth.h
+@@ -42,7 +42,7 @@ extern "C" {
+  * @param session_number Session number concerned.
+  * @param auth_protocol_id Auth protocol id.
+  * @param auth_data Data for the request.
+- * @param auth_data_lenghth Number of bytes.
++ * @param auth_data_length Number of bytes.
+  * @return 0 on success, -1 on failure.
+  */
+ typedef int (*en50221_app_auth_request_callback) (void *arg,
+diff --git a/kaffeine/src/kmultitabbar.cpp b/kaffeine/src/kmultitabbar.cpp
+index 8d85e01..e8148a7 100644
+--- a/kaffeine/src/kmultitabbar.cpp
++++ b/kaffeine/src/kmultitabbar.cpp
+@@ -347,7 +347,7 @@ int KMultiTabBarInternal::appendTab(const TQPixmap &pic ,int id,const TQString&
+ 	tab->installEventFilter(this);
+ 	tab->showActiveTabText(m_showActiveTabTexts);
+ 
+-	if (m_style==KMultiTabBar::KONTQSBC)
++	if (m_style==KMultiTabBar::KONQSBC)
+ 	{
+ 		if (m_expandedTabSize<tab->neededSize()) {
+ 			m_expandedTabSize=tab->neededSize();
+@@ -570,7 +570,7 @@ void KMultiTabBarTab::setState(bool b)
+ void KMultiTabBarTab::updateState()
+ {
+ 
+-	if (m_style!=KMultiTabBar::KONTQSBC) {
++	if (m_style!=KMultiTabBar::KONQSBC) {
+ 		if ((m_style==KMultiTabBar::KDEV3) || (m_style==KMultiTabBar::KDEV3ICON) || (down)) {
+ 			TQPushButton::setText(m_text);
+ 		} else {
+@@ -626,7 +626,7 @@ void KMultiTabBarTab::drawButtonLabel(TQPainter *p) {
+ }
+ void KMultiTabBarTab::drawButton(TQPainter *paint)
+ {
+-	if (m_style!=KMultiTabBar::KONTQSBC) drawButtonStyled(paint);
++	if (m_style!=KMultiTabBar::KONQSBC) drawButtonStyled(paint);
+ 	else  drawButtonClassic(paint);
+ }
+ 
+@@ -858,7 +858,7 @@ KMultiTabBar::KMultiTabBar(KMultiTabBarMode bm, TQWidget *parent,const char *nam
+ 	setPosition((bm==KMultiTabBar::Vertical)?KMultiTabBar::Right:KMultiTabBar::Bottom);
+ 	setStyle(VSNET);
+ 	//	setStyle(KDEV3);
+-	//setStyle(KONTQSBC);
++	//setStyle(KONQSBC);
+ 	m_l->insertWidget(0,m_internal);
+ 	m_l->insertWidget(0,m_btnTabSep=new TQFrame(this));
+ 	m_btnTabSep->setFixedHeight(4);
+diff --git a/kaffeine/src/kmultitabbar.h b/kaffeine/src/kmultitabbar.h
+index 72fa884..2932cc2 100644
+--- kaffeine/kaffeine/src/kmultitabbar.h.orig	2011-08-17 23:23:42.000000000 +0200
++++ kaffeine/kaffeine/src/kmultitabbar.h	2012-04-25 23:51:09.339505891 +0200
+@@ -55,16 +55,16 @@
+ 	Q_OBJECT
+   TQ_OBJECT
+ public:
+-	enum KMultiTabBarMode{Horizontal,Vertical};
++	enum KMultiTabBarMode{Horizontal, Vertical};
+ 	enum KMultiTabBarPosition{Left, Right, Top, Bottom};
+ 
+ 	/**
+ 	 * VSNET == Visual Studio .Net like (only show the text of active tabs
+ 	 * KDEV3 == Kdevelop 3 like (always show the text)
+-	 * KONTQSBC == konqy's classic sidebar style (unthemed), this one is disabled
++	 * KONQSBC == konqy's classic sidebar style (unthemed), this one is disabled
+ 	 * 	at the moment, but will be renabled soon too
+ 	 */
+-	enum KMultiTabBarStyle{VSNET=0, KDEV3=1, KONTQSBC=2, KDEV3ICON=3,STYLELAST=0xffff};
++	enum KMultiTabBarStyle{VSNET=0, KDEV3=1, KONQSBC=2, KDEV3ICON=3,STYLELAST=0xffff};
+ 
+ 	KMultiTabBar(KMultiTabBarMode bm,TQWidget *parent=0,const char *name=0);
+ 	virtual ~KMultiTabBar();
+diff --git a/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp b/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp
+index ccb56f3..b7e88c7 100644
+--- a/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp
++++ b/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp
+@@ -54,7 +54,7 @@ GStreamerConfig::GStreamerConfig(const TQStringList& audioDrivers, const TQStrin
+ 	label = new TQLabel(i18n("Prefered audio driver"), frame);
+ 	tqlayout->addWidget(label, 1, 0);
+ 	tqlayout->addWidget(m_audioDriverBox, 1, 1);
+-	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	tqlayout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
+ 
+ 	//Video Page
+ 	frame = addPage(i18n("Video"), i18n("Video Options"), KGlobal::iconLoader()->loadIcon("video", KIcon::Panel,
+@@ -67,7 +67,7 @@ GStreamerConfig::GStreamerConfig(const TQStringList& audioDrivers, const TQStrin
+ 	label = new TQLabel(i18n("Prefered video driver")+ "*", frame);
+ 	tqlayout->addWidget(label, 1, 0);
+ 	tqlayout->addWidget(m_videoDriverBox, 1, 1);
+-	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	tqlayout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
+ 	tqlayout->addWidget(new TQLabel(TQString("<small>") + i18n("* Restart required!") + "</small>", frame), 10, 1);
+ 
+ 	//Media page
+@@ -80,7 +80,7 @@ GStreamerConfig::GStreamerConfig(const TQStringList& audioDrivers, const TQStrin
+ 	label = new TQLabel(i18n("CD, VCD, DVD drive"), frame);
+ 	tqlayout->addWidget(label, 1, 0);
+ 	tqlayout->addWidget(m_driveEdit, 1, 1);
+-	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	tqlayout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
+ }
+ 
+ GStreamerConfig::~GStreamerConfig()
+diff --git a/kaffeine/src/player-parts/xine-part/positionslider.cpp b/kaffeine/src/player-parts/xine-part/positionslider.cpp
+index 16b3978..9d64e26 100644
+--- a/kaffeine/src/player-parts/xine-part/positionslider.cpp
++++ b/kaffeine/src/player-parts/xine-part/positionslider.cpp
+@@ -97,8 +97,8 @@ bool PositionSlider::eventFilter(TQObject *obj, TQEvent *ev)
+ 			return false;
+ 
+ 		int range = maxValue() - minValue();
+-		int pos = (orientation() ==Qt::Horizontal) ? e->pos().x() : e->pos().y();
+-		int maxpos = (orientation() ==Qt::Horizontal) ? width() : height();
++		int pos = (orientation() == Horizontal) ? e->pos().x() : e->pos().y();
++		int maxpos = (orientation() == Horizontal) ? width() : height();
+ 		int value = pos * range / maxpos + minValue();
+ 
+ 		if (TQApplication::reverseLayout())
+diff --git a/kaffeine/src/player-parts/xine-part/postfilter.cpp b/kaffeine/src/player-parts/xine-part/postfilter.cpp
+index 8a691b8..4ed3eb6 100644
+--- a/kaffeine/src/player-parts/xine-part/postfilter.cpp
++++ b/kaffeine/src/player-parts/xine-part/postfilter.cpp
+@@ -153,7 +153,7 @@ PostFilter::PostFilter(const TQString& name, xine_t* engine, xine_audio_port_t*
+         m_xinePostParameter++;
+       }
+     }
+-    KSeparator* sep = new KSeparator(Qt::Horizontal, m_groupBox);
++    KSeparator* sep = new KSeparator(KSeparator::Horizontal, m_groupBox);
+     grid->addMultiCellWidget(sep, row, row, 0, 1);
+     row++;
+     KPushButton* deleteButton = new KPushButton(i18n("Delete Filter"), m_groupBox);
+diff --git a/kaffeine/src/player-parts/xine-part/xine_part.cpp b/kaffeine/src/player-parts/xine-part/xine_part.cpp
+index 98ff969..9fc18e6 100644
+--- a/kaffeine/src/player-parts/xine-part/xine_part.cpp
++++ b/kaffeine/src/player-parts/xine-part/xine_part.cpp
+@@ -1373,10 +1373,10 @@ void XinePart::initActions()
+ 	KStdAction::zoomIn(TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomIn()), actionCollection(), "zoom_in");
+ 	KStdAction::zoomOut(TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomOut()), actionCollection(), "zoom_out");
+ 	KStdAction::fitToPage(TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomOff()), actionCollection(), "zoom_off");
+-	new KAction(i18n("Zoom InQt::Horizontal"), NULL, CTRL|Key_H, TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomInX()), actionCollection(), "zoom_in_x");
+-	new KAction(i18n("Zoom OutQt::Horizontal"), NULL, CTRL|SHIFT|Key_H, TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomOutX()), actionCollection(), "zoom_out_x");
+-	new KAction(i18n("Zoom InQt::Vertical"), NULL, CTRL|Key_V, TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomInY()), actionCollection(), "zoom_in_y");
+-	new KAction(i18n("Zoom OutQt::Vertical"), NULL, CTRL|SHIFT|Key_V, TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomOutY()), actionCollection(), "zoom_out_y");
++	new KAction(i18n("Zoom In Horizontal"), NULL, CTRL|Key_H, TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomInX()), actionCollection(), "zoom_in_x");
++	new KAction(i18n("Zoom Out Horizontal"), NULL, CTRL|SHIFT|Key_H, TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomOutX()), actionCollection(), "zoom_out_x");
++	new KAction(i18n("Zoom In Vertical"), NULL, CTRL|Key_V, TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomInY()), actionCollection(), "zoom_in_y");
++	new KAction(i18n("Zoom Out Vertical"), NULL, CTRL|SHIFT|Key_V, TQT_TQOBJECT(m_xine), TQT_SLOT(slotZoomOutY()), actionCollection(), "zoom_out_y");
+ 	new KAction(i18n("Deinterlace &Quality"), "blend", CTRL|Key_I, TQT_TQOBJECT(this), TQT_SLOT(slotDeinterlaceQuality()), actionCollection(), "video_deinterlace_quality");
+ 	new KAction(i18n("&Video Settings"), "configure", Key_V, TQT_TQOBJECT(this), TQT_SLOT(slotPictureSettings()), actionCollection(), "video_picture");
+ 	new KAction(i18n("&Equalizer"), NULL, Key_E, TQT_TQOBJECT(this), TQT_SLOT(slotEqualizer()), actionCollection(), "equalizer");
+@@ -1423,7 +1423,7 @@ void XinePart::initActions()
+ 	connect(m_xine, TQT_SIGNAL(signalSyncVolume()), TQT_TQOBJECT(this), TQT_SLOT(slotSyncVolume()));
+ 	new KWidgetAction(m_volume, i18n("Volume"), 0, 0, 0, actionCollection(), "audio_volume");
+ 
+-	m_position = new PositionSlider(Qt::Horizontal);
++	m_position = new PositionSlider(Horizontal);
+ 	TQToolTip::add
+ 		(m_position, i18n("Position"));
+ 	m_position->setRange(0, 65535);
+@@ -2061,7 +2061,7 @@ void XinePart::zoomOff()
+ /********** volume slider ****************/
+ 
+ 
+-VolumeSlider::VolumeSlider() : TQSlider(Qt::Horizontal, 0)
++VolumeSlider::VolumeSlider() : TQSlider(Horizontal, 0)
+ {
+ 	installEventFilter(this);
+ }
+@@ -2092,8 +2092,8 @@ void VolumeSlider::wheelEvent(TQWheelEvent* e)
+ 			return FALSE;
+ 
+ 		int range = maxValue() - minValue();
+-		int pos = (orientation() ==Qt::Horizontal) ? e->pos().x() : e->pos().y();
+-		int maxpos = (orientation() ==Qt::Horizontal) ? width() : height();
++		int pos = (orientation() == Horizontal) ? e->pos().x() : e->pos().y();
++		int maxpos = (orientation() == Horizontal) ? width() : height();
+ 		int value = pos * range / maxpos + minValue();
+ 
+ 		if (TQApplication::reverseLayout())
+diff --git a/kaffeine/src/player-parts/xine-part/xineconfig.cpp b/kaffeine/src/player-parts/xine-part/xineconfig.cpp
+index 6d6a2d4..1281911 100644
+--- kaffeine/kaffeine/src/player-parts/xine-part/xineconfig.cpp.orig	2011-08-17 23:23:40.000000000 +0200
++++ kaffeine/kaffeine/src/player-parts/xine-part/xineconfig.cpp	2012-04-25 23:53:25.094399051 +0200
+@@ -135,7 +135,7 @@
+ 	description->tqsetAlignment( TQLabel::WordBreak | TQLabel::AlignVCenter );
+ 	grid->addWidget(description, row, 1);
+ 
+-	KSeparator* separator = new KSeparator(Qt::Horizontal, parent);
++	KSeparator* separator = new KSeparator(KSeparator::Horizontal, parent);
+ 	grid->addMultiCellWidget(separator, row+1, row+1, 0, 1);
+ }
+ 
+diff --git a/kaffeine/src/systemtray.cpp b/kaffeine/src/systemtray.cpp
+index 745360f..e781ba0 100644
+--- a/kaffeine/src/systemtray.cpp
++++ b/kaffeine/src/systemtray.cpp
+@@ -100,7 +100,7 @@ void SystemTray::mousePressEvent(TQMouseEvent *e)
+ 	default:
+ 		KSystemTray::mousePressEvent(e);
+ 		break;
+-	case Qt::MidButton:
++	case MidButton:
+ 		if(!TQT_TQRECT_OBJECT(rect()).contains(e->pos()))
+ 			return;
+ 		actionCollection()->action("trayplay")->activate();
