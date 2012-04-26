@@ -1,0 +1,64 @@
+diff -uNrb tdepim.orig/kmail/kmsystemtray.cpp tdepim/kmail/kmsystemtray.cpp
+--- tdepim.orig/kmail/kmsystemtray.cpp	2012-02-08 20:40:02.000000000 -0600
++++ tdepim/kmail/kmsystemtray.cpp	2012-04-18 17:27:51.347213673 -0500
+@@ -482,9 +482,9 @@
+   /** The number of unread messages in that folder */
+   int unread = fldr->countUnread();
+ 
+-  TQMap<TQGuardedPtr<KMFolder>, int>::Iterator it =
++  TQMap<TQGuardedPtr<KMFolder>, int>::Iterator unread_it =
+       mFoldersWithUnread.find(fldr);
+-  bool unmapped = (it == mFoldersWithUnread.end());
++  bool unmapped = (unread_it == mFoldersWithUnread.end());
+ 
+   /** If the folder is not mapped yet, increment count by numUnread
+       in folder */
+diff -uNrb tdepim.orig/korganizer/korgac/alarmdialog.cpp tdepim/korganizer/korgac/alarmdialog.cpp
+--- tdepim.orig/korganizer/korgac/alarmdialog.cpp	2012-02-08 20:40:02.000000000 -0600
++++ tdepim/korganizer/korgac/alarmdialog.cpp	2012-04-18 17:32:28.668760481 -0500
+@@ -498,9 +498,9 @@
+     found = true;
+     item->mNotified = true;
+     Alarm::List alarms = incidence->alarms();
+-    Alarm::List::ConstIterator it;
+-    for ( it = alarms.begin(); it != alarms.end(); ++it ) {
+-      Alarm *alarm = *it;
++    Alarm::List::ConstIterator c_it;
++    for ( c_it = alarms.begin(); c_it != alarms.end(); ++c_it ) {
++      Alarm *alarm = *c_it;
+       // FIXME: Check whether this should be done for all multiple alarms
+       if (alarm->type() == Alarm::Procedure) {
+         // FIXME: Add a message box asking whether the procedure should really be executed
+diff -uNrb tdepim.orig/kresources/caldav/resource.cpp tdepim/kresources/caldav/resource.cpp
+--- tdepim.orig/kresources/caldav/resource.cpp	2012-03-11 12:15:18.000000000 -0500
++++ tdepim/kresources/caldav/resource.cpp	2012-04-18 17:55:16.219084894 -0500
+@@ -15,6 +15,7 @@
+  ========================================================================*/
+ 
+ #include <string.h>
++#include <unistd.h>
+ 
+ #include <tqurl.h>
+ #include <tqmessagebox.h>
+diff -uNrb tdepim.orig/kresources/carddav/resource.cpp tdepim/kresources/carddav/resource.cpp
+--- tdepim.orig/kresources/carddav/resource.cpp	2012-03-11 12:15:18.000000000 -0500
++++ tdepim/kresources/carddav/resource.cpp	2012-04-18 17:55:54.555564703 -0500
+@@ -14,6 +14,7 @@
+  ========================================================================*/
+ 
+ #include <string.h>
++#include <unistd.h>
+ 
+ #include <tqurl.h>
+ #include <tqmessagebox.h>
+--- kdepim/libkcal/listbase.h.gcc47	2012-04-25 23:32:57.483879335 +0200
++++ kdepim/libkcal/listbase.h	2012-04-25 23:33:27.608192801 +0200
+@@ -67,7 +67,7 @@
+ 
+     bool removeRef( T *t )
+     {
+-      TQValueListIterator<T *> it = find( t );
++      TQValueListIterator<T *> it = this->find( t );
+       if ( it == TQValueList<T*>::end() ) {
+         return false;
+       } else {
