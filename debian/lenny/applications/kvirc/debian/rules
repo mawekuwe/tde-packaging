@@ -82,6 +82,7 @@ common-install-indep::
 	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/icons $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/hicolor
 	mkdir -p $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/icons
 	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/hicolor $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/icons/
+	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/lib/
 
 post-patches:: debian/stamp-bootstrap
 
