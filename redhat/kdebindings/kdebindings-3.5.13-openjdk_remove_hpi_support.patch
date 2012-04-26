@@ -1,0 +1,41 @@
+--- kdebindings/admin/acinclude.m4.in.ORI	2012-04-25 05:49:48.912503289 -0400
++++ kdebindings/admin/acinclude.m4.in	2012-04-25 05:57:37.855079509 -0400
+@@ -5587,7 +5587,6 @@
+    kde_java_includedir=no
+    kde_java_libjvmdir=no
+    kde_java_libgcjdir=no
+-   kde_java_libhpidir=no
+ else
+   if test "x$ac_java_dir" = "x"; then
+      
+@@ -5685,8 +5684,6 @@
+   else
+     kde_java_libgcjdir=`find $kde_java_bindir/.. -name libgcj.so | sed 's,libgcj.so,,'|head -n 1`
+   fi
+-  dnl Look for libhpi.so and avoid green threads
+-  kde_java_libhpidir=`find $kde_java_bindir/.. -name libhpi.so | grep -v green | sed 's,libhpi.so,,' | head -n 1`
+ 
+   dnl Now check everything's fine under there
+   dnl the include dir is our flag for having the JDK
+@@ -5733,12 +5730,6 @@
+ 
+   dnl not needed for gcj compile
+ 
+-  if test "x$kde_java_libgcjdir" = "x"; then 
+-      if test ! -r "$kde_java_libhpidir/libhpi.so"; then
+-        AC_MSG_ERROR([libhpi.so not found under $kde_java_libhpidir. Use --without-java.])
+-      fi
+-  fi
+-
+   if test -n "$jni_includes"; then
+     dnl Check for JNI version
+     AC_LANG_SAVE
+@@ -5776,7 +5767,7 @@
+     JAR=$kde_java_bindir/jar
+     AC_DEFINE_UNQUOTED(PATH_JAVA, "$kde_java_bindir/java", [Define where your java executable is])
+     if test "x$kde_java_libgcjdir" = "x"; then 
+-      JVMLIBS="-L$kde_java_libjvmdir -ljvm -L$kde_java_libhpidir -lhpi"
++      JVMLIBS="-L$kde_java_libjvmdir -ljvm"
+     else
+       if test "x$JVMLIBS" = "x"; then
+         if test ! -r "$kde_java_libgcjdir/libgcj.so"; then
