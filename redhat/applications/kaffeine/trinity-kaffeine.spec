@@ -1,12 +1,13 @@
 # Default version for this component
 %define kdecomp kaffeine
-%define version 0.8.6
-%define release 2
+%define version 0.8.8
+%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %define _docdir %{_prefix}/share/doc
+%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -17,17 +18,28 @@ BuildRequires: autoconf automake libtool m4
 
 
 Name:		trinity-%{kdecomp}
-Summary:	sudo frontend for Trinity
+Summary: Xine-based media player
 
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
 License: GPLv2+
-Summary: Xine-based media player
 Group:   Applications/Multimedia
 URL:     http://kaffeine.sourceforge.net/
 
-Source0: kaffeine-3.5.13.tar.gz
+Source0:	kaffeine-3.5.13.tar.gz
+Source2:	kaffeine.1
+
+# [kaffeine] Work around Xine crash when displaying still logo image by creating a small movie file to replace it [Bug #511, #559]
+Source1:		508cb342-logo
+
+# [kaffeine] Fix nominal "tqt" typos and fix slow DVB start. This closes bug reports 729 and 899.
+Patch1:			1331343133:fd68e4c4940afb4529b16e2c3e3d0f379ac7b161.diff
+# [kaffeine] Change location where Kaffeine stores temporary pipe files from $HOME to the more appropriate $KDEHOME/tmp-$HOSTNAME.
+Patch2:			1331957353:b480e3db3a01b75376fa6b83e5b01efe104ccaec.diff
+# [kaffeine] Fix typos, branding, and inadvertent tqt changes.
+Patch3:			1333649519:0e3d0ed603c6c8065fdcb77bc79b59a768fc6a5b.diff
+
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: gettext
@@ -79,14 +91,18 @@ Requires: %{name} = %{version}-%{release}
 %prep
 %setup -q -n applications/kaffeine
 
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f admin/Makefile.common
 
 %build
@@ -94,18 +110,18 @@ unset QTDIR || : ; source /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
-# easier than patching, and using 
-#  --with-extra-includes=%{_includedir}/cdda below -- Rex
-#CPPFLAGS="-I%{_includedir}/cdda"; export CPPFLAGS
 
 %configure \
-  --disable-rpath \
   --enable-new-ldflags \
   --disable-debug --disable-warnings \
-  --disable-dependency-tracking --disable-final \
+  --disable-dependency-tracking --enable-final \
+  --disable-rpath \
+  --with-xinerama \
   --with-gstreamer \
   --without-lame \
   --with-extra-includes=%{_includedir}/tqt \
+  --with-extra-libs=%{_prefix}/%{_lib} \
+  --enable-closure \
 %if 0%{?rhel} > 0 && 0%{?rhel} <= 5
   --without-dvb \
 %endif
@@ -143,6 +159,8 @@ fi
 rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.la
 rm -f $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-mplayer2.desktop
 
+%__install -D -m 644 %{SOURCE1} %{?buildroot}%{_datadir}/apps/kaffeine/logo
+%__install -D -m 644 %{SOURCE2} %{?buildroot}%{_mandir}/man1/kaffeine.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -180,6 +198,7 @@ update-desktop-database >& /dev/null ||:
 %{_datadir}/mimelnk/*/*.desktop
 %{_datadir}/service*/*.desktop
 %{tde_docdir}/HTML/en/kaffeine
+%{_mandir}/*/*
 
 %files libs
 %defattr(-,root,root,-)
@@ -193,6 +212,13 @@ update-desktop-database >& /dev/null ||:
 
 
 %changelog
+* Mon Apr 23 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-1
+- Updates version to 0.8.8
+- Fix nominal "tqt" typos and fix slow DVB start. [Bug #729, #899]
+- Change location where Kaffeine stores temporary pipe files from $HOME to the more appropriate $KDEHOME/tmp-$HOSTNAME.
+- Work around Xine crash when displaying still logo image by creating a small movie file to replace it [Bug #511, #559]
+- Add man page
+
 * Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.6-2
 - Disable 'libxcb-devel' for RHEL 5 compilation
 - Fix HTML directory location

@@ -11,12 +11,15 @@ Group:		System Environment/Libraries
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
+URL:		http://www.trinitydesktop.org/
 
 Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}.tar.gz
-Patch0:		git.patch
+
+# Allows building with TQT3 instead of QT3
+Patch1:		avahi-tqt-moc-tqt3.patch
 
 BuildRequires:	gcc-c++
 BuildRequires:	avahi-devel
@@ -42,17 +45,13 @@ Development files for %{name}
 
 %prep
 %setup -q -n dependencies/%{name}
-%patch0 -p1
+%patch1 -p1
 
 %build
 ./autogen.sh
 %configure \
 	--enable-compat-libdns_sd \
-	--disable-mono --disable-monodoc \
-	--disable-gtk3 \
 	--with-systemdsystemunitdir=/lib/systemd/system
-
-
 
 %install
 %__rm -rf %{?buildroot}
@@ -60,6 +59,7 @@ Development files for %{name}
 
 %clean
 %__rm -rf %{?buildroot}
+
 
 %files
 %{_libdir}/*.so.*

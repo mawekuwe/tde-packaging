@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,6 +33,9 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: kdeedu-%{version}.tar.gz
+
+# [kdeedu] Fix compilation with GCC 4.7 [Bug #958]
+Patch1:		kdeedu-3.5.13-fix_gcc47_compilation.patch
 
 Provides: kdeedu3 = %{version}-%{release}
 
@@ -95,12 +98,13 @@ Requires: %{name} = %{version}-%{release}
 
 %prep
 %setup -q -n kdeedu
+%patch1 -p1 -b .gcc47
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %if 0%{?rhel} > 0
 rm -rf doc/kgeography kgeography
@@ -119,10 +123,6 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 # Fix link with kparts
 export CXXFLAGS="${CXXFLAGS} -lkparts"
-
-%if 0%{?fedora}
-export CXXFLAGS="${CXXFLAGS} -fpermissive"
-%endif
 
 %configure \
    --enable-new-ldflags \
@@ -230,6 +230,9 @@ update-desktop-database >& /dev/null ||:
 
 
 %changelog
+* Wed Apr 25 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Fix compilation with GCC 4.7 [Bug #958]
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Fix HTML directory location
 

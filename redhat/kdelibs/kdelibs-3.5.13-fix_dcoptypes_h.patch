@@ -1,0 +1,22 @@
+--- a/dcop/dcoptypes.h.ORI	2012-04-24 16:24:05.448308109 -0400
++++ a/dcop/dcoptypes.h	2012-04-24 16:43:55.299809919 -0400
+@@ -22,6 +22,9 @@
+ #ifndef DCOPTYPES_H
+ #define DCOPTYPES_H
+ 
++// generic template fallback for unknown types
++template <class T> inline const char* dcopTypeName( const T& ) { return "<unknown>"; }
++
+ #include <dcopref.h>
+ 
+ // standard c/c++ types
+@@ -70,9 +73,6 @@
+ // And some KDE types
+ class KURL; inline const char* dcopTypeName( const KURL& ) { return "KURL"; }
+ 
+-// generic template fallback for unknown types
+-template <class T> inline const char* dcopTypeName( const T& ) { return "<unknown>"; }
+-
+ // type initialization for standard c/c++ types
+ inline void dcopTypeInit(bool& b){b=false;}
+ inline void dcopTypeInit(char& c){c=0;}

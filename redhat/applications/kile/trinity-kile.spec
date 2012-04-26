@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kile
 %define version 2.0.2
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -402,7 +402,7 @@ This package contains the Chinese Simplified translations for Kile.
 
 
 %description
-Kile is a user-friendly LaTeX source editor and TeX shell for KDE.
+Kile is a user-friendly LaTeX source editor and TeX shell for TDE.
 
 The source editor is a multi-document editor designed for .tex and .bib
 files.  Menus, wizards and auto-completion are provided to assist with
@@ -421,11 +421,12 @@ Kile can support large projects consisting of several smaller files.
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || \
+%__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -434,8 +435,8 @@ export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt
+  --disable-rpath \
+  --with-extra-includes=%{_includedir}/tqt
 
 %__make %{?_smp_mflags}
 
@@ -465,8 +466,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %defattr(-,root,root,-)
 %{_bindir}/kile
 %{_datadir}/applications/kde/kile.desktop
-%{_datadir}/apps/katepart/syntax/bibtex.xml
-%{_datadir}/apps/katepart/syntax/latex.xml
+%exclude %{_datadir}/apps/katepart/syntax/bibtex.xml
+%exclude %{_datadir}/apps/katepart/syntax/latex.xml
 %{_datadir}/apps/kconf_update
 %{_datadir}/apps/kile
 %{_datadir}/config.kcfg/kile.kcfg
@@ -622,5 +623,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Fri Apr 20 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-2
+- Fix file conflict with trinity-kdelibs
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 2.0.2-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

@@ -60,7 +60,7 @@ cd build
 
 # RHEL 5: add newline at end of include files to avoid warnings
 %if 0%{?rhel} && 0%{?rhel} <= 5
-for i in %{?buildroot}%{_includedir}/*.h; do
+for i in %{?buildroot}%{_includedir}/tqt/*.h; do
   echo "" >>${i}
 done
 %endif

@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp koffice
 %define version 1.6.3
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -15,6 +15,7 @@ BuildRequires: autoconf automake libtool m4
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
+# Disable Kross support for RHEL <= 5 (python is too old)
 %if 0%{?fedora} > 0 || 0%{?rhel} >= 6
 %define with_kross 1
 %endif
@@ -38,12 +39,22 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 Source1:	chalk.xpm
 Source100:      koshell.png
 
-# [koffice] Disable GraphicksMagick version >= 1.2.0
+# [koffice] Disable GraphicksMagick version >= 1.2.0 [Bug #353]
 Patch0:		koffice-3.5.13-disable_graphicksmagick.patch
-# [filters/chalk/pdf] Fix poppler-qt detection
+# [filters/chalk/pdf] Fix poppler-qt detection [Bug #783]
 Patch1:		koffice-3.5.13-fix_poppler_detect.patch
-# [lib/kross/python/scripts/RestrictedPython/Utilities.py] Syntax error
+# [lib/kross/python/scripts/RestrictedPython/Utilities.py] Syntax error [Bug #679]
 Patch2:		koffice-3.5.13-kross_utilities_syntax.patch
+# [koffice/chalk] Fix GraphicksMagick 1.3 support [Bug #353]
+Patch3:		koffice-3.5.13-chalk_gmagick.patch
+# [koffice/kexi] Various patches for kexi, found on the web [Bug # 777]
+Patch5:		kexi-fix-possible-crash-in-buffered-mode-sqlite-2.patch
+Patch6:		kexi-hide_hourglass-1.1.3-2.patch
+Patch7:		kexi-fix-support-for-boolean-types-in-migration.patch
+Patch8:		kexi-mysql_migrate_long_text-1.1.3.patch
+Patch9:		kexi-fix-support-for-boolean-types.patch
+Patch10:	kexi-thoushand_objects_support-1.1.3-2.patch
+Patch11:	kexi-fp_expressions-1.1.3.patch
 
 # BuildRequires: world-devel ;)
 BuildRequires:  trinity-kdelibs-devel
@@ -80,10 +91,7 @@ BuildRequires:  libpaper-devel
 BuildRequires:  libXi-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	poppler-qt-devel >= 0.1.2
-
-# GraphicsMagick version >= 1.2.0 is not compatible with Koffice 1.6
-BuildRequires: GraphicsMagick-devel >= 1.1.0
-BuildRequires: GraphicsMagick-devel < 1.2.0
+BuildRequires:	GraphicsMagick-devel >= 1.1.0
 
 # libwpd for FC15 and FC16 is too recent for Koffice ! (0.9.x)
 # So we built an alternate 0.8.x package !
@@ -277,9 +285,17 @@ This package is part of the KDE Office Suite.
 
 %prep
 %setup -q -n applications/%{kdecomp}
-%patch0 -p1
+#patch0 -p1
 #patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch5 -p0
+%patch6 -p0
+%patch7 -p0
+%patch8 -p0
+%patch9 -p0
+%patch10 -p0
+%patch11 -p0
 
 # use LGC variant instead
 sed -i.dejavu-lgc \
@@ -959,6 +975,10 @@ update-desktop-database -q &> /dev/null ||:
 
 
 %changelog
+* Sat Jan 07 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-3
+- Fix GraphicksMagick 1.3 support [Bug #353]
+- Various patches for kexi [Bug #777]
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.3-2
 - Fix HTML directory location
 

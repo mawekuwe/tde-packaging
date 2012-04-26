@@ -41,16 +41,18 @@ Source0:	kdegraphics-%{version}.tar.gz
 
 # TDE 3.5.13
 ## RHEL / Fedora specific patches
-### [kdegraphics/ksnapshot] Missing -lXext in LDFLAGS (required for Fedora 15)
+# [kdegraphics/ksnapshot] Missing -lXext in LDFLAGS (required for Fedora 15)
 Patch0:		kdegraphics-3.5.13-ksnapshot_ldflags.patch
-### [kdegraphics/kpovmodeler] CMAKE does not detect GL/glu.h (on RHEL5)
+# [kdegraphics/kpovmodeler] CMAKE does not detect GL/glu.h (on RHEL5)
 Patch1:		kdegraphics-3.5.13-kpovmodeler_check_glu.patch
-### [kdegraphics/kfile-plugins/dependencies/poppler-tqt] Compile 'poppler-tqt' only if HAVE_POPPLER_016
+# [kdegraphics/kfile-plugins/dependencies/poppler-tqt] Compile 'poppler-tqt' only if HAVE_POPPLER_016
 Patch2:		kdegraphics-3.5.13-disable_poppler.patch
-### [kdegraphics/kpdf/xpdf] Disable 'mkstemps' support for RHEL5
+# [kdegraphics/kpdf/xpdf] Disable 'mkstemps' support for RHEL5
 Patch3:		kdegraphics-3.5.13-xpdf_disable_mkstemps.patch
-### [kdegraphics/kpovmodeler] CMAKE missing GLU_LIBRARIES
+# [kdegraphics/kpovmodeler] CMAKE missing GLU_LIBRARIES
 Patch4:		kdegraphics-3.5.13-kpovmodeler_missing_gl_ldflags.patch
+# [kdegraphics] Fix compilation with GCC 4.7
+Patch5:		kdegraphics-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -158,6 +160,7 @@ Requires: %{name} = %{version}-%{release}
 %patch3 -p1
 %endif
 %patch4 -p1
+%patch5 -p1 -b .gcc47
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh

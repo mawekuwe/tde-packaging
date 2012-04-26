@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 7
+%define release 8
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -52,12 +52,16 @@ Patch14:	kdelibs-3.5.13-enable_fam_gamin.patch
 Patch15:	kdelibs-3.5.13-fix_UTF8_encoding_for_WebDAV_directories.patch
 ## [kdelibs/kdeprint] Fix add printer [Bug #383]
 Patch16:	kdelibs-3.5.13-fix_add_printer.patch
+## [kdelibs/kio/kdirwatch] Fix "Konqueror: Does not update file pane with file changes" [Bug #756]
+Patch17:	kdelibs-3.5.13-fix_kdirwatch.patch
+## [kdelibs/dcop] Fix 'dcoptypes.h' for compilation with GCC 4.7
+Patch18:	kdelibs-3.5.13-fix_dcoptypes_h.patch
 
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	avahi-devel
-BuildRequires:	lua-devel
+#BuildRequires:	lua-devel
 BuildRequires:	krb5-devel libxslt-devel cups-devel libart_lgpl-devel pcre-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	bzip2-devel
@@ -131,6 +135,8 @@ format for easy browsing
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
+%patch17 -p1
+%patch18 -p1
 
 
 %build
@@ -331,6 +337,10 @@ EOF
 
 
 %changelog
+* Tue Apr 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
+- Fix "Konqueror: Does not update file pane with file changes" [Bug #756] 
+- Fix compilation with GCC 4.7
+
 * Sat Jan 21 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
 - Fix UTF8 Encoding for WebDAV directories
 - Fix hardcoded path in 'add printer' [Bug #383]

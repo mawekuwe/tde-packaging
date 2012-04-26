@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -36,6 +36,11 @@ Summary:	PIM (Personal Information Manager) applications
 Prefix:		%{_prefix}
 
 Source0:	kdepim-%{version}.tar.gz
+
+# [kdepim] Fix compilation with GCC 4.7 [Bug #958]
+Patch1:		kdepim-3.5.13-fix_gcc47_compilation.patch
+
+
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	tqtinterface-devel
@@ -81,7 +86,7 @@ Development files for %{name}.
 
 %prep
 %setup -q -n kdepim
-
+%patch1 -p1 -b .gcc47
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -165,6 +170,9 @@ export PATH="%{_bindir}:${PATH}"
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Wed Apr 25 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Fix compilation with GCC 4.7 [Bug #958]
+
 * Sun Nov 27 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Add missing files '*.la'
 

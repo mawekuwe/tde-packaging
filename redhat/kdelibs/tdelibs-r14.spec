@@ -67,7 +67,7 @@ Requires:		avahi-tqt
 Obsoletes:		trinity-kdelibs <= 3.5.13
 
 %if "%{?_prefix}" == "/usr"
-Provides:	kdelibs%{?_qt_suffix} = %{version}
+Provides:		kdelibs%{?_qt_suffix} = %{version}
 Obsoletes:		kdelibs%{?_qt_suffix} <= 3.5.10
 %endif
 
@@ -124,6 +124,7 @@ export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
 cd build
 %cmake \
   -DHAVE_REAL_TQT=ON \
+  -DHTML_INSTALL_DIR=%{tde_docdir}/HTML \
   -DWITH_ARTS=ON \
   -DWITH_ALSA=ON \
   -DWITH_LIBART=ON \
@@ -203,13 +204,13 @@ EOF
 %{_bindir}/kcmshell
 %{_bindir}/kconf_update
 %{_bindir}/kcookiejar
-%{_bindir}/kde-config
+%{_bindir}/tde-config
 %{_bindir}/kde-menu
 %{_bindir}/kded
-%{_bindir}/kdeinit
-%{_bindir}/kdeinit_shutdown
-%{_bindir}/kdeinit_wrapper
-%{_bindir}/kdesu_stub
+%{_bindir}/tdeinit
+%{_bindir}/tdeinit_shutdown
+%{_bindir}/tdeinit_wrapper
+%{_bindir}/tdesu_stub
 %{_bindir}/kdontchangethehostname
 %{_bindir}/kdostartupconfig
 %{_bindir}/kfile
@@ -235,11 +236,11 @@ EOF
 %{_bindir}/make_driver_db_lpr
 %{_bindir}/meinproc
 %{_bindir}/networkstatustestservice
-%{_bindir}/start_kdeinit
-%{_bindir}/start_kdeinit_wrapper
+%{_bindir}/start_tdeinit
+%{_bindir}/start_tdeinit_wrapper
 %attr(4755,root,root) %{_bindir}/kgrantpty
 %{_libdir}/lib*.so.*
-%{_libdir}/libkdeinit_*.so
+%{_libdir}/libtdeinit_*.so
 %{_libdir}/lib*.la
 %{tde_libdir}/
 %{_datadir}/applications/kde/*.desktop
@@ -300,10 +301,8 @@ EOF
 %{_includedir}/
 %{_libdir}/lib*.so
 %{_libdir}/lib*.a
-%exclude %{_libdir}/libkdeinit_*.so
-
-# New in TDE 3.5.13
-%{_datadir}/cmake/kdelibs.cmake
+%exclude %{_libdir}/libtdeinit_*.so
+%{_datadir}/cmake/tdelibs.cmake
 
 %files apidocs
 %defattr(-,root,root,-)

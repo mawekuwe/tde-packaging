@@ -71,7 +71,8 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 %configure \
 	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt
+    --with-extra-includes=%{_includedir}/tqt \
+    --disable-static
 
 %__make %{?_smp_mflags}
 

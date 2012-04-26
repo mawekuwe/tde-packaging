@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 18
+%define release 19
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -125,6 +125,8 @@ Patch44:	kdebase-3.5.13-ensure_pagersettings_is_installed.patch
 Patch45:	1333232616:f752bcbf6585c61f414963ad83e1300a1da08504.diff
 ## [kdebase/kioslave] Fix sftp failure on newer systems [Bug #897]
 Patch46:	1335166907:e72f4926c094b2bd94501518fbcd2a3e66a74f6a.diff
+## [kdebase/kicker] Fix compilation with GCC 4.7 [Bug #958]
+Patch47:	kdebase-3.5.13-kicker-easyvector.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -143,6 +145,16 @@ Requires:	verne-backgrounds-single
 
 Requires:	fedora-release-notes
 %define tde_aboutlabel Fedora 16
+%define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
+%endif
+
+# Fedora 17 Theme: "Beefy Miracle"
+%if 0%{?fedora} == 17
+Requires:	beefy-miracle-backgrounds-single
+%define tde_bg /usr/share/backgrounds/beefy-miracle/default/standard/beefy-miracle.png
+
+Requires:	fedora-release-notes
+%define tde_aboutlabel Fedora 17
 %define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
 
@@ -349,6 +361,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch44 -p1
 %patch45 -p1
 %patch46 -p1
+%patch47 -p0
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -735,6 +748,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Tue Apr 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-19
+- Build for Fedora 17
+- Fix compilation with GCC 4.7 [Bug #958]
+
 * Mon Apr 23 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-18
 - Ensures that 'pagersettings.kcfg' is installed [Bug #908, Commit bd9c1479]
 - Fix "Malformed URL $( kxdglauncher --getpath xdgname DOCUMENTS )" error dialog.

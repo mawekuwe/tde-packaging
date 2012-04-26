@@ -1,7 +1,7 @@
 # Basic package informations
 %define kdecomp amarok
 %define version 1.4.10
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -47,7 +47,11 @@ BuildRequires:  trinity-kdebase-devel
 BuildRequires:  taglib-devel 
 BuildRequires:  libifp-devel
 # Ipod
+%if 0%{?rhel} == 5
+BuildRequires:  trinity-libgpod-devel >= 0.4.2
+%else
 BuildRequires:  libgpod-devel >= 0.4.2
+%endif
 BuildRequires:	libmp4v2-devel
 # MTP players
 BuildRequires:  libmtp-devel
@@ -82,6 +86,7 @@ Requires:  xdg-utils
 Requires(post): xdg-utils
 Requires(postun): xdg-utils
 
+%if "%{?_prefix}" == "%{_usr}"
 Obsoletes: amarok-arts < 1.3, amarok-akode < 1.3
 
 Obsoletes: amarok-devel < %{version}-%{release}
@@ -93,10 +98,12 @@ Provides:  amarok-devel = %{version}-%{release}
 # engines, etc...
 # old, obsolete ones: arts, akode
 Obsoletes: amarok-arts < 1.3, amarok-akode < 1.3
+%endif
+
 # xine-lib
 BuildRequires:  xine-lib-devel
-Provides: %{name}-engine-xine = %{version}-%{release}
 
+Provides: %{name}-engine-xine = %{version}-%{release}
 
 %description
 Amarok is a multimedia player with:
@@ -274,7 +281,7 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 %{tde_libdir}/libamarok_yauap-engine_plugin.*
 # AKODE
 %{_datadir}/services/amarok_aKode-engine.desktop
-%{tde_libdir}/libamarok_akode-engine.*
+%{tde_libdir}/libamarok_aKode-engine.*
 
 
 
@@ -290,6 +297,9 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 
 
 %changelog
+* Mon Mar 19 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.10-5
+- Replaces BR "libgpod" with "trinity-libgpod" for EL5
+
 * Mon Jan 16 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.10-4
 - Enable 'akode' support
 - Removes 'libvisual-plugins' dependency (obsolete ?)

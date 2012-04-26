@@ -2,12 +2,13 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %define _docdir %{_prefix}/share/doc
+%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -15,6 +16,9 @@ BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
+
+# Ruby 1.9 includes are located in strance directories ... (taken from ruby 1.9 spec file)
+%global	_normalized_cpu	%(echo %{_target_cpu} | sed 's/^ppc/powerpc/;s/i.86/i386/;s/sparcv./sparc/;s/armv.*/arm/')
 
 
 Name:	 trinity-kdebindings
@@ -37,6 +41,13 @@ Source0: kdebindings-%{version}.tar.gz
 # RedHat Legacy patches (from Fedora)
 Patch1: kdebindings-3.5.6-libgcj.patch
 
+# [kdebindings] Removes 'hpi' support in openjdk (obsolete in openjdk 1.7.0) [Bug #978]
+Patch2: kdebindings-3.5.13-openjdk_remove_hpi_support.patch
+# [kdebindings] Allow compilation with Ruby >= 1.9 [Bug #597]
+Patch3: kdebindings-3.5.13-ruby_1.9.patch
+# [kdebindings] Fix various build issues [Bug #597]
+Patch4:	kdebindings-3.5.13-fixes.patch
+
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
@@ -45,7 +56,11 @@ BuildRequires: desktop-file-utils
 BuildRequires: zlib-devel
 BuildRequires: perl(ExtUtils::MakeMaker)
 BuildRequires: gtk2-devel
+%if 0%{?fedora} >= 17
+BuildRequires: gdk-pixbuf2-devel
+%else
 BuildRequires: gdk-pixbuf-devel
+%endif
 BuildRequires: java-openjdk
 
 %if 0%{?fedora}
@@ -82,14 +97,18 @@ Provides: %{name}-ruby = %{version}-%{release}
 BuildRequires: java-1.4.2-gcj-compat-devel libgcj-devel gcc-java
 %else
 BuildRequires: java-devel >= 1.4.2
+%if 0%{?fedora} >= 17
+BuildRequires: java-1.7.0-openjdk-devel
+%else
 BuildRequires: java-1.6.0-openjdk-devel
+%endif
 %endif
 %define java_home %{_usr}/lib/jvm/java
 %define _with_java --with-java=%{java_home}
 Provides: %{name}-java = %{version}-%{release}
 
 %description
-KDE/DCOP bindings to non-C++ languages
+TDE/DCOP bindings to non-C++ languages
 
 %package devel
 Summary: Development files for %{name}
@@ -97,25 +116,42 @@ Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 Requires: trinity-kdelibs-devel 
 %description devel
-Development files for the KDE bindings.
+Development files for the TDE bindings.
 
 ## dcopperl
 %package dcopperl
 Summary: DCOP Bindings for Perl 
 Group:   Development/Libraries
 %description dcopperl
-Perl bindings to the DCOP interprocess communication protocol used by KDE
+Perl bindings to the DCOP interprocess communication protocol used by TDE
 
 
 %prep
 %setup -q -n kdebindings
 %patch1 -p1 -b .libgcj
 
+%if 0%{?fedora} >= 17
+%patch2 -p1 -b .libhpi
+%patch3 -p1
+%endif
+%patch4 -p1
+
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+
+# Adds non-standard Ruby include path in include dirs
+for d in \
+  qtruby/rubylib/qtruby \
+  qtruby/rubylib/designer/uilib \
+  qtruby/bin \
+  korundum/rubylib/korundum \
+  korundum/bin \
+; do
+  echo -e "\nINCLUDES += -I%{_usr}/include/%{_normalized_cpu}-%{_target_os}" >> "${d}/Makefile.am"
+done
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -134,7 +170,6 @@ unset JAVA_HOME ||:
 export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
 
 %configure \
-  --includedir=%{tde_includedir} \
   --disable-rpath \
   --enable-new-ldflags \
   --disable-debug --disable-warnings \
@@ -142,11 +177,10 @@ export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
   --with-extra-libs=%{_libdir} \
   --with-pythondir=%{_usr} \
   --enable-closure \
-  --disable-final \
+  --enable-final \
   %{?_with_java} %{!?_with_java:--without-java} \
   %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla} \
   --with-extra-includes=%{_includedir}/tqt
-
 
 pushd dcopperl
 CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL INSTALLDIRS=vendor
@@ -158,7 +192,7 @@ sed -i Makefile \
 %__make OPTIMIZE="$RPM_OPT_FLAGS" ||:
 popd
 
-# smoke/ not smp-safe
+# smoke (not smp-safe)
 %__make -C smoke
 
 # The rest is smp-safe
@@ -241,8 +275,8 @@ update-desktop-database >& /dev/null ||:
 %doc rpmdocs/*
 %{_bindir}/*
 %{tde_libdir}/*
-%{_libdir}/lib*.la
-%{_libdir}/lib*.so.*
+%{_libdir}/*.la
+%{_libdir}/*.so.*
 %{_datadir}/appl*/*/*.desktop
 %{_datadir}/apps/embedjs/
 %{_datadir}/apps/kate/scripts/*
@@ -259,15 +293,20 @@ update-desktop-database >& /dev/null ||:
 #%{ruby_sitearch}/*
 #%{ruby_sitelib}/K*
 #%{ruby_sitelib}/Qt*
-%{_usr}/lib/ruby/*/*
+#%{_usr}/%{_lib}/ruby/*/*
 %{ruby_arch}/*.so.*
-%doc %lang(en) %{tde_docdir}/HTML/en/javalib/*
 
 # Excludes 'kjscmd' (conflicts with 'kdelibs' from RHEL6)
 %if "%{?_prefix}" == "/usr"
 %exclude %{_bindir}/kjscmd
-%endif
 %exclude %{_mandir}/man1/kjscmd*
+%endif
+
+%{_usr}/%{_lib}/korundum.la
+%{_usr}/%{_lib}/korundum.so.*
+%{_usr}/%{_lib}/qui.la
+%{_usr}/%{_lib}/qui.so.*
+%{_usr}/share/ruby/*
 
 
 %files dcopperl -f %{name}-dcopperl.list
@@ -277,16 +316,24 @@ update-desktop-database >& /dev/null ||:
 
 %files devel
 %defattr(-,root,root,-)
-%{tde_includedir}/*
-%{_libdir}/lib*.so
+%{_includedir}/*
+%{_libdir}/*.so
 %if "%{?_with_java:1}" == "1"
 %{_libdir}/jni/*.so
 %{_libdir}/jni/*.la
 %endif
 %{ruby_arch}/*.so
 %{ruby_arch}/*.la
+%{_usr}/%{_lib}/korundum.so
+%{_usr}/%{_lib}/qui.so
 
 %changelog
+* Tue Apr 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Add support for Fedora 17
+- Removes 'hpi' support in openjdk (obsolete in openjdk 1.7.0) [Bug #978]
+- Allow compilation with Ruby >= 1.9 [Bug #597]
+- Fix various build issues [Bug #597]
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Fix HTML directory location
 
