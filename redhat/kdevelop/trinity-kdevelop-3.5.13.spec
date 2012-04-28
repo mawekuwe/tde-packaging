@@ -45,7 +45,8 @@ Patch1: c_cpp_reference-2.0.2-config.patch
 # TDE 3.5.13 patches
 ## RHEL / Fedora RPM specific patches
 Patch2: kdevelop-3.5.13-kdevdesigner-ftbfs.patch
-
+# Fix compilation with GCC 4.7
+Patch3: kdevelop-3.5.13-gcc47.patch
 
 Provides: kdevelop3 = %{version}-%{release}
 
@@ -126,12 +127,13 @@ Requires: %{name} = %{version}-%{release}
 %setup -q -n kdevelop -a1
 %patch1 -p0 -b .config
 %patch2 -p1
+%patch3 -p1 -b .gcc47
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 
 %__rm -rf c_cpp_reference-2.0.2_for_KDE_3.0/admin
