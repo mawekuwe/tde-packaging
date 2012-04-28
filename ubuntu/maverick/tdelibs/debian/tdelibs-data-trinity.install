@@ -1853,6 +1853,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/devices/smart_media_unmoun
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/devices/system.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/devices/usbpendrive_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/devices/usbpendrive_unmount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/devices/tape_mount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/devices/tape_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/filesystems/desktop.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/filesystems/exec.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/filesystems/file_broken.png
@@ -2267,6 +2269,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/tablet.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/tv.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/usbpendrive_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/usbpendrive_unmount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/tape_mount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/tape_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/zip_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/devices/zip_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/filesystems/desktop.png
@@ -2655,6 +2659,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/smart_media_unmount.
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/system.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/usbpendrive_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/usbpendrive_unmount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/tape_mount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/devices/tape_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/filesystems/desktop.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/filesystems/folder_green_open.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/filesystems/folder_green.png
@@ -3006,6 +3012,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/tablet.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/tv.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/usbpendrive_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/usbpendrive_unmount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/tape_mount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/tape_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/zip_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/devices/zip_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/filesystems/desktop.png
@@ -3228,6 +3236,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/tablet.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/tv.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/usbpendrive_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/usbpendrive_unmount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/tape_mount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/tape_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/zip_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/devices/zip_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/filesystems/desktop.png
@@ -3416,6 +3426,8 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/tablet.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/tv.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/usbpendrive_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/usbpendrive_unmount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/tape_mount.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/tape_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/zip_mount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/devices/zip_unmount.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/filesystems/desktop.png
