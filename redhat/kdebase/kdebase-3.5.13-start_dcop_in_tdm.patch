@@ -1,0 +1,34 @@
+--- kdebase/kdm/kfrontend/kgapp.cpp.orig	2012-04-27 22:08:53.729331548 +0200
++++ kdebase/kdm/kfrontend/kgapp.cpp	2012-04-27 22:06:29.169359295 +0200
+@@ -190,6 +190,7 @@
+ 	KProcess *tsak = 0;
+ 	KProcess *proc = 0;
+ 	KProcess *comp = 0;
++	KProcess *dcop = 0;
+ 	KProcess *kwin = 0;
+ 
+ 	trinity_desktop_lock_use_sak = _useSAK;
+@@ -310,6 +311,13 @@
+ 	}
+ 
+ 	if (!_windowManager.isEmpty()) {
++		if (_windowManager == "kwin") {
++			// Special case
++			// Start DCOP...
++			dcop = new KProcess;
++			*dcop << TQCString( argv0, strrchr( argv0, '/' ) - argv0 + 2 ) + "dcopserver" << TQCString("--suicide");
++			dcop->start();
++		}
+ 		kwin = new KProcess;
+ 		*kwin << TQCString( argv0, strrchr( argv0, '/' ) - argv0 + 2 ) + _windowManager.ascii();
+ 		kwin->start();
+@@ -453,7 +461,9 @@
+ 	if (kwin) {
+ 		kwin->closeStdin();
+ 		kwin->detach();
++		dcop->detach();
+ 		delete kwin;
++		delete dcop;
+ 	}
+ 	delete proc;
+ 	UnsecureDisplay( dpy );

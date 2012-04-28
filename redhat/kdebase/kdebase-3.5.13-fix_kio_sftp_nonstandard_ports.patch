@@ -1,0 +1,23 @@
+commit 073dc86aceaa060597d7653747c3c6c14d0ed59d
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1335311121 -0500
+
+    Fix sftp when nonstandard port is specified in ssh config
+
+diff --git a/kioslave/sftp/kio_sftp.cpp b/kioslave/sftp/kio_sftp.cpp
+index 2316c8c..04a2b33 100644
+--- a/kioslave/sftp/kio_sftp.cpp
++++ b/kioslave/sftp/kio_sftp.cpp
+@@ -481,11 +481,7 @@ void sftpProtocol::setHost (const TQString& h, int port, const TQString& user, c
+     if( port > 0 )
+         mPort = port;
+     else {
+-        struct servent *pse;
+-        if( (pse = getservbyname("ssh", "tcp") ) == NULL )
+-            mPort = 22;
+-        else
+-            mPort = ntohs(pse->s_port);
++        mPort = -1;
+     }
+ 
+     mUsername = user;

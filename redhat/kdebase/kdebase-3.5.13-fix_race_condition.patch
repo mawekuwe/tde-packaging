@@ -1,0 +1,22 @@
+commit 9e172fa7a1e93cc77e09616eb793b823d29ebaec
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1333594438 -0500
+
+    Temporary fix for a probable race condition on some systems.
+    Still needs to be resolved by determining the root cause.
+    Partially resolves bug report 760.
+
+diff --git a/kioslave/system/kdedmodule/systemdirnotify.cpp b/kioslave/system/kdedmodule/systemdirnotify.cpp
+index 162d966..99b9ac7 100644
+--- a/kioslave/system/kdedmodule/systemdirnotify.cpp
++++ b/kioslave/system/kdedmodule/systemdirnotify.cpp
+@@ -36,6 +36,9 @@ SystemDirNotify::SystemDirNotify()
+ void SystemDirNotify::init()
+ {
+ 	if( mInited )
++		// FIXME Work around a race condition by inserting kdDebug delay before following
++		// code is executed -- the root cause of the race should be investigated and fixed.
++		kdDebug() << "SystemDirNotify::init(" << mInited << ")" << endl;
+ 		return;
+ 	mInited = true;
+ 	KGlobal::dirs()->addResourceType("system_entries",

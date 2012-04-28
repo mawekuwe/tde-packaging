@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 19
+%define release 20
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -122,11 +122,21 @@ Patch43:	kdebase-3.5.13-kate_focus_fix.patch
 ## [kdebase/kicker] Ensures that 'pagersettings.kcfg' is installed [Bug #908, Commit bd9c1479]
 Patch44:	kdebase-3.5.13-ensure_pagersettings_is_installed.patch
 ## [kdebase] Fix "Malformed URL $( kxdglauncher --getpath xdgname DOCUMENTS )" error dialog.
-Patch45:	1333232616:f752bcbf6585c61f414963ad83e1300a1da08504.diff
+Patch45:	kdebase-3.5.13-fix_kxdglauncher_document.patch
 ## [kdebase/kioslave] Fix sftp failure on newer systems [Bug #897]
-Patch46:	1335166907:e72f4926c094b2bd94501518fbcd2a3e66a74f6a.diff
+Patch46:	kdebase-3.5.13-fix_kio_sftp.patch
 ## [kdebase/kicker] Fix compilation with GCC 4.7 [Bug #958]
 Patch47:	kdebase-3.5.13-kicker-easyvector.patch
+## [kdebase/kioslave] Fix sftp when nonstandard port is specified in ssh config [Bug #897]
+Patch48:	kdebase-3.5.13-fix_kio_sftp_nonstandard_ports.patch
+## [kdebase/kdm] Start minimal dcop system to support twin in tdm [Commit #66a19439]
+Patch49:	kdebase-3.5.13-start_dcop_in_tdm.patch
+## [kdebase/kdesktop/lock] Update lock process to engage the lock in near real time [Commit #8d521d0b]
+Patch50:	kdebase-3.5.13-engage_lock_in_near_real_time.patch
+## [kdebase/kdesktop/lock] Fix desktop lock failure due to race condition within signal handler between qt and xcb [Commit #67a3a8f3]
+Patch51:	kdebase-3.5.13-fix_lock_failure.patch
+## [kdebase/kioslave] Temporary fix for a probable race condition on some systems. [Bug #760]
+Patch52:	kdebase-3.5.13-fix_race_condition.patch
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -362,6 +372,11 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch45 -p1
 %patch46 -p1
 %patch47 -p0
+%patch48 -p1
+%patch49 -p1
+%patch50 -p1
+%patch51 -p1
+%patch52 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -748,6 +763,13 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Fri Apr 27 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-20
+- Fix sftp when nonstandard port is specified in ssh config [Bug #897]
+- Start minimal dcop system to support twin in tdm [Commit #66a19439]
+- Update lock process to engage the lock in near real time [Commit #8d521d0b]
+- Fix desktop lock failure due to race condition within signal handler between qt and xcb [Commit #67a3a8f3]
+- Temporary fix for a probable race condition on some systems. [Bug #760]
+
 * Tue Apr 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-19
 - Build for Fedora 17
 - Fix compilation with GCC 4.7 [Bug #958]
