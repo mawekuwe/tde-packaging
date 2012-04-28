@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kaffeine-mozilla
-%define version 0.4.3.1.dfsg
-%define release 1
+%define version 0.4.3.1
+%define release 2
 
 %define _prefix /usr
 
@@ -35,6 +35,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# Fix 'nspr' includes location
+Patch1:		kaffeine-mozilla-3.5.13-fix_nspr_include.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -53,15 +55,12 @@ when a page containing a supported media format is loaded.
 %prep
 unset QTDIR; . /etc/profile.d/qt.sh
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1
 
 %__cp -f "/usr/share/aclocal/libtool.m4" .
 %__cp -f "/usr/share/libtool/config/ltmain.sh" .
-autoreconf
+autoreconf -fiv
 
-for i in src/jri_md.h src/jni_md.h; do
-	%__sed -i "${i}" \
-		-e "s|nspr/prtypes.h|nspr4/prtypes.h|g"
-done
 
 %build
 export PATH="%{_bindir}:${PATH}"
@@ -105,6 +104,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Thu Apr 26 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.3.1-2
+- Rebuild with nicer patch.
+
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.3.1.dfsg-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 
