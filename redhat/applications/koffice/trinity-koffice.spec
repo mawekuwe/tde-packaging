@@ -1,12 +1,12 @@
 # Default version for this component
 %define kdecomp koffice
 %define version 1.6.3
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -19,6 +19,16 @@ BuildRequires: autoconf automake libtool m4
 %if 0%{?fedora} > 0 || 0%{?rhel} >= 6
 %define with_kross 1
 %endif
+
+%if 0%{?fedora} >= 17
+%define with_ruby 0
+%else
+%define with_ruby 1
+%endif
+
+# Ruby 1.9 includes are located in strance directories ... (taken from ruby 1.9 spec file)
+%global	_normalized_cpu	%(echo %{_target_cpu} | sed 's/^ppc/powerpc/;s/i.86/i386/;s/sparcv./sparc/;s/armv.*/arm/')
+
 
 Name:		trinity-%{kdecomp}
 Summary:        An integrated office suite
@@ -36,7 +46,6 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
-Source1:	chalk.xpm
 Source100:      koshell.png
 
 # [koffice] Disable GraphicksMagick version >= 1.2.0 [Bug #353]
@@ -55,6 +64,12 @@ Patch8:		kexi-mysql_migrate_long_text-1.1.3.patch
 Patch9:		kexi-fix-support-for-boolean-types.patch
 Patch10:	kexi-thoushand_objects_support-1.1.3-2.patch
 Patch11:	kexi-fp_expressions-1.1.3.patch
+# [koffice] Fix compilation with GCC 4.7 [Bug #958]
+Patch12:	koffice-3.5.13-fix_gcc47_compilation.patch
+# [koffice] Fix compilation with Ruby 1.9 [Bug #735]
+Patch13:	koffice-3.5.13-fix_ruby_1.9.patch 
+# [koffice] Fix compilation with libpng [Bug #603]
+Patch14:	koffice-3.5.13-fix_libpng.patch
 
 # BuildRequires: world-devel ;)
 BuildRequires:  trinity-kdelibs-devel
@@ -77,8 +92,9 @@ BuildRequires:  gettext-devel
 BuildRequires:  mysql-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  perl
-BuildRequires:  wv2-devel >= 0.4.0
-BuildRequires:  libpqxx2-devel
+BuildRequires:  trinity-wv2-devel >= 0.4.0
+#BuildRequires:  trinity-libpqxx-devel >= 2.6.0
+BuildRequires:  libpqxx-devel
 BuildRequires:  doxygen
 BuildRequires:  aspell-devel
 BuildRequires:  libxslt-devel
@@ -86,20 +102,15 @@ BuildRequires:  OpenEXR-devel
 BuildRequires:  libexif-devel
 BuildRequires:  libGL-devel libGLU-devel
 BuildRequires:  readline-devel
+%if 0%{?with_ruby}
 BuildRequires:  ruby ruby-devel >= 1.8.2
+%endif
 BuildRequires:  libpaper-devel
 BuildRequires:  libXi-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	poppler-qt-devel >= 0.1.2
 BuildRequires:	GraphicsMagick-devel >= 1.1.0
-
-# libwpd for FC15 and FC16 is too recent for Koffice ! (0.9.x)
-# So we built an alternate 0.8.x package !
-%if 0%{?fedora} >= 15
-BuildRequires: libwpd08-devel
-%else
-BuildRequires: libwpd-devel
-%endif
+BuildRequires:	trinity-libwpd-devel
 
 
 %description
@@ -259,7 +270,7 @@ Requires:        %{name}-core = %{version}-%{release}
 %{summary}.
 
 %package chalk
-Summary:		 pixel-based image manipulation program for the KDE Office Suite [Trinity]
+Summary:		 pixel-based image manipulation program for the TDE Office Suite [Trinity]
 Group:           Applications/Productivity
 Requires:        %{name}-core = %{version}-%{release}
 Requires:        %{name}-chalk-data = %{version}-%{release}
@@ -268,18 +279,18 @@ Requires:        %{name}-filters
 Chalk is a painting and image editing application for KOffice. Chalk contains
 both ease-of-use and fun features like guided painting.
 
-This package is part of the KDE Office Suite.
+This package is part of the TDE Office Suite.
 
 %package chalk-data
 Summary:		data files for Chalk painting program [Trinity]
 Group:           Applications/Productivity
 %description chalk-data
 This package contains architecture-independent data files for Chalk,
-the painting program shipped with the KDE Office Suite.
+the painting program shipped with the TDE Office Suite.
 
 See the chalk package for further information.
 
-This package is part of the KDE Office Suite.
+This package is part of the TDE Office Suite.
 
 
 
@@ -296,9 +307,12 @@ This package is part of the KDE Office Suite.
 %patch9 -p0
 %patch10 -p0
 %patch11 -p0
+%patch12 -p1 -b .gcc47
+%patch13 -p1
+%patch14 -p5
 
 # use LGC variant instead
-sed -i.dejavu-lgc \
+%__sed -i.dejavu-lgc \
   -e 's|DejaVu Sans|DejaVu LGC Sans|' \
   -e 's|dejavu sans|dejavu lgc sans|' \
   lib/kformula/{contextstyle,fontstyle,symboltable}.cc 
@@ -306,8 +320,8 @@ sed -i.dejavu-lgc \
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
@@ -390,12 +404,9 @@ rm -f %{buildroot}%{_libdir}/libkformdesigner.so
 rm -f %{buildroot}%{_libdir}/libkplato*.so
 rm -f %{buildroot}%{_libdir}/libkpresenter*.so
 rm -f %{buildroot}%{_libdir}/libkword*.so
-#rm -f %{buildroot}%{_libdir}/libkrita*.so
 rm -f %{buildroot}%{_libdir}/libkross*.so
 rm -f %{buildroot}%{_libdir}/libkugar*.so
 
-# Chalk icon
-%__install -D -m 644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/chalk.xpm
 
 %clean
 %__rm -rf %{buildroot}
@@ -526,7 +537,9 @@ update-desktop-database -q &> /dev/null ||:
 %if 0%{?with_kross} > 0
 %{_datadir}/apps/kross/
 %{tde_libdir}/krosspython.*
+%if 0%{?with_ruby}
 %{tde_libdir}/krossruby.*
+%endif
 %endif
 
 %files libs
@@ -961,7 +974,6 @@ update-desktop-database -q &> /dev/null ||:
 %endif
 
 %files chalk-data
-%{_datadir}/pixmaps/chalk.xpm
 %{_datadir}/applications/kde/chalk.desktop
 %{_datadir}/applnk/.hidden/chalk_*.desktop
 %{_datadir}/apps/konqueror/servicemenus/chalk_konqi.desktop
@@ -971,10 +983,16 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/icons/hicolor/*/apps/chalk.png
 %{_datadir}/services/chalk*.desktop
 %{_datadir}/servicetypes/chalk*.desktop
-#%{_datadir}/applnk/.hidden/chalk_pdf.desktop
 
 
 %changelog
+* Thu Apr 26 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-4
+- Updates BuildRequires
+- Build for Fedora 17
+- Fix compilation with GCC 4.7 [Bug #958]
+- Fix compilation with Ruby 1.9 [Bug #735]
+- Fix compilation with libpng [Bug #603]
+
 * Sat Jan 07 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-3
 - Fix GraphicksMagick 1.3 support [Bug #353]
 - Various patches for kexi [Bug #777]
