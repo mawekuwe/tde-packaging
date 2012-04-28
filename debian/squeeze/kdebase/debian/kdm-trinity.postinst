@@ -123,7 +123,11 @@ case "$1" in
 esac
 
 if [ -x "/etc/init.d/kdm-trinity" ]; then
-  update-rc.d kdm-trinity defaults 13 01 >/dev/null
+  if [ -x "`which insserv 2>/dev/null`" ]; then
+    insserv kdm-trinity >/dev/null
+  else
+    update-rc.d kdm-trinity defaults 13 01 >/dev/null
+  fi
 fi
 
 if [ -n "$NOSTART" ]; then
