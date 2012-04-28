@@ -19,16 +19,19 @@
 # ...maybe others !!!!
 
 Name:			qt3
+Epoch:			1
 Version:		%{?version}
-Release:		6%{?dist}
+Release:		7%{?dist}
 Summary:		The shared library for the Qt 3 GUI toolkit
 
 License:		QPL or GPLv2 or GPLv3
 Group:			System Environment/Libraries
 URL:			http://www.trinitydesktop.org/
 
-Obsoletes:		%{name} < %{version}-%{release}
-Provides:		%{name} = %{version}-%{release}
+%if 0%{?rhel} <= 5
+Obsoletes:		qt < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		qt = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -165,8 +168,10 @@ BuildRequires: make
 Summary: Graphical configuration tool for programs using Qt 3
 Group: User Interface/Desktops
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-config < %{version}-%{release}
-Provides:  %{name}-config = %{version}-%{release}
+%if 0%{?rhel} <= 5
+Obsoletes: qt-config < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:  qt-config = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 
 %package devel
@@ -191,63 +196,65 @@ Requires: libjpeg-devel
 Requires: libmng-devel
 Requires: mesa-libGL-devel
 Requires: mesa-libGLU-devel
-
-Obsoletes: %{name}-devel < %{version}-%{release}
-Provides:  %{name}-devel = %{version}-%{release}
-
+%if 0%{?rhel} <= 5
+Obsoletes: qt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:  qt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 %package devel-docs
 Summary: Documentation for the Qt 3 GUI toolkit
 Group: Development/Libraries
 Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-
-Obsoletes: %{name}-devel-docs < %{version}-%{release}
-Provides:  %{name}-devel-docs = %{version}-%{release}
-
+%if 0%{?rhel} <= 5
+Obsoletes: qt-devel-docs < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:  qt-devel-docs = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 %package ODBC
 Summary: ODBC drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-
-Obsoletes: %{name}-ODBC < %{version}-%{release}
-Provides:  %{name}-ODBC = %{version}-%{release}
-
+%if 0%{?rhel} <= 5
+Obsoletes: qt-ODBC < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:  qt-ODBC = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 %package MySQL
 Summary: MySQL drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-
-Obsoletes: %{name}-MySQL < %{version}-%{release}
-Provides:  %{name}-MySQL = %{version}-%{release}
-
+%if 0%{?rhel} <= 5
+Obsoletes: qt-MySQL < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:  qt-MySQL = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 %package PostgreSQL
 Summary: PostgreSQL drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-
-Obsoletes: %{name}-PostgreSQL < %{version}-%{release}
-Provides:  %{name}-PostgreSQL = %{version}-%{release}
-
+%if 0%{?rhel} <= 5
+Obsoletes: qt-PostgreSQL < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:  qt-PostgreSQL = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 %package sqlite
 Summary: sqlite drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-
-Obsoletes: %{name}-sqlite < %{version}-%{release}
-Provides:  %{name}-sqlite = %{version}-%{release}
+%if 0%{?rhel} <= 5
+Obsoletes: qt-sqlite < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:  qt-sqlite = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 
 %package designer
 Summary: Interface designer (IDE) for the Qt 3 toolkit
 Group: Development/Tools
 Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-
-Obsoletes: %{name}-designer < %{version}-%{release}
-Provides:  %{name}-designer = %{version}-%{release}
+%if 0%{?rhel} <= 5
+Obsoletes: qt-designer < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:  qt-designer = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
 
 
 %description
@@ -714,6 +721,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sat Apr 28 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-7
+- Fix Provides and Obsoletes. Now only for RHEL 5.
+
 * Tue Apr 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-6
 - Fix Qt3 builds with libpng15. [Bug #683]
 
