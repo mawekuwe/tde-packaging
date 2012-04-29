@@ -1,5 +1,5 @@
 Source: kdegraphics
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -8,7 +8,7 @@ Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk,
 Standards-Version: 3.7.2
 
 Package: kdegraphics
-Section: kde
+Section: tde
 Architecture: all
 Depends: kamera (>= ${source:Version}), kcoloredit (>= ${source:Version}), kdegraphics-kfile-plugins (>= ${source:Version}), kdvi (>= ${source:Version}), kfax (>= ${source:Version}), kfaxview (>= ${source:Version}), kgamma (>= ${source:Version}), kghostview (>= ${source:Version}), kiconedit (>= ${source:Version}), kmrml (>= ${source:Version}), kolourpaint (>= ${source:Version}), kooka (>= ${source:Version}), kpdf (>= ${source:Version}), kpovmodeler (>= ${source:Version}), kruler (>= ${source:Version}), ksnapshot (>= ${source:Version}), ksvg (>= ${source:Version}), kuickshow (>= ${source:Version}), kview (>= ${source:Version}), kviewshell (>= ${source:Version}), libkscan1 (>= ${source:Version})
 Suggests: kdegraphics-doc-html (>= ${source:Version})
@@ -75,7 +75,7 @@ Description: development files for the KDE graphics module
  See the 'kde' and 'kdegraphics' packages for more information.
 
 Package: kdegraphics-kfile-plugins
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: KDE metainfo plugins for graphic files
@@ -166,7 +166,7 @@ Description: an icon editor for KDE
  See the 'kde' and 'kdegraphics' packages for more information.
 
 Package: kmrml
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: gnuift

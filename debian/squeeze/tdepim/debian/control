@@ -1,5 +1,5 @@
 Source: tdepim-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -18,7 +18,7 @@ Build-Conflicts: libkleopatra0-trinity-dev
 Standards-Version: 3.8.4
 
 Package: tdepim-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdepim-trinity (<< 4:14.0.0)
 Breaks: kdepim-trinity (<< 4:14.0.0)
@@ -128,7 +128,7 @@ Description: KDE NG addressbook application
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: kalarm-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kalarm-trinity (<< 4:14.0.0)
 Breaks: kalarm-trinity (<< 4:14.0.0)
@@ -184,7 +184,7 @@ Description: Trinity time tracker tool
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: tdepim-kfile-plugins-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdepim-kfile-plugins-trinity (<< 4:14.0.0)
 Breaks: kdepim-kfile-plugins-trinity (<< 4:14.0.0)
@@ -196,7 +196,7 @@ Description: KDE File dialog plugins for palm and vcf files
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: tdepim-kio-plugins-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdepim-kio-plugins-trinity (<< 4:14.0.0)
 Breaks: kdepim-kio-plugins-trinity (<< 4:14.0.0)
@@ -209,7 +209,7 @@ Description: Trinity pim I/O Slaves
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: tdepim-kresources-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdepim-kresources-trinity (<< 4:14.0.0)
 Breaks: kdepim-kresources-trinity (<< 4:14.0.0)
@@ -225,7 +225,7 @@ Description: Trinity pim resource plugins
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: tdepim-wizards-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdepim-wizards-trinity (<< 4:14.0.0)
 Breaks: kdepim-wizards-trinity (<< 4:14.0.0)
@@ -239,7 +239,7 @@ Description: Trinity server configuration wizards
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: kitchensync-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kitchensync-trinity (<< 4:14.0.0)
 Breaks: kitchensync-trinity (<< 4:14.0.0)
@@ -319,7 +319,7 @@ Description: Trinity news reader
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: knotes-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: knotes-trinity (<< 4:14.0.0)
 Breaks: knotes-trinity (<< 4:14.0.0)
@@ -349,7 +349,7 @@ Description: Helper library for programmatic generation of C++ code
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: konsolekalendar-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: konsolekalendar-trinity (<< 4:14.0.0)
 Breaks: konsolekalendar-trinity (<< 4:14.0.0)
@@ -363,7 +363,7 @@ Description: Trinity konsole personal organizer
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: kontact-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kontact-trinity (<< 4:14.0.0)
 Breaks: kontact-trinity (<< 4:14.0.0)
@@ -383,7 +383,7 @@ Description: Trinity pim application
   Homepage: http://kontact.kde.org/
 
 Package: korganizer-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: korganizer-trinity (<< 4:14.0.0)
 Breaks: korganizer-trinity (<< 4:14.0.0)
@@ -406,7 +406,7 @@ Description: Trinity personal organizer
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: korn-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: korn-trinity (<< 4:14.0.0)
 Breaks: korn-trinity (<< 4:14.0.0)
@@ -423,7 +423,7 @@ Description: Trinity mail checker
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
 Package: ktnef-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: ktnef-trinity (<< 4:14.0.0)
 Breaks: ktnef-trinity (<< 4:14.0.0)

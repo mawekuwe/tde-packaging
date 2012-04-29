@@ -1,5 +1,5 @@
 Source: tdesdk
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -12,7 +12,7 @@ Standards-Version: 3.7.2
 
 Package: tdesdk
 Architecture: all
-Section: kde
+Section: tde
 Depends: cervisia (>= ${Source-Version}), kapptemplate (>= ${Source-Version}), kbabel (>= ${Source-Version}), kbugbuster (>= ${Source-Version}), tdecachegrind (>= ${Source-Version}), tdesdk-kfile-plugins (>= ${Source-Version}), tdesdk-kio-plugins (>= ${Source-Version}) | tdesvn-kio-plugins, tdesdk-misc (>= ${Source-Version}), tdesdk-scripts (>= ${Source-Version}), kmtrace (>= ${Source-Version}), kompare (>= ${Source-Version}), kspy (>= ${Source-Version}), kuiviewer (>= ${Source-Version}), kunittest (>= ${Source-Version}), poxml (>= ${Source-Version}), umbrello (>= ${Source-Version})
 Suggests: tdecachegrind-converters, kbabel-dev, tdesdk-doc-html
 Description: software development kit from the official KDE release
@@ -164,7 +164,7 @@ Description: format converters for KCachegrind profiling visualisation tool
 
 Package: tdesdk-kfile-plugins
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Description: KDE file dialog plugins for software development files
  This is a collection of plugins for the KDE file dialog.  These plugins

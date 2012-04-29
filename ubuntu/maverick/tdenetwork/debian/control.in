@@ -1,5 +1,5 @@
 Source: tdenetwork
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -8,7 +8,7 @@ Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, docbo
 Standards-Version: 3.7.2
 
 Package: tdenetwork
-Section: kde
+Section: tde
 Architecture: all
 Depends: dcoprss (>= ${Source-Version}), tdenetwork-kfile-plugins (>= ${Source-Version}), kdict (>= ${Source-Version}), kdnssd (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64], kget (>= ${Source-Version}), knewsticker (>= ${Source-Version}), kopete (>= ${Source-Version}), kpf (>= ${Source-Version}), kppp (>= ${Source-Version}), krdc (>= ${Source-Version}), krfb (>= ${Source-Version}), ksirc (>= ${Source-Version}), kwifimanager (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], librss1 (>= ${Source-Version})
 Recommends: tdenetwork-filesharing (>= ${Source-Version}), ktalkd (>= ${Source-Version}), lisa (>= ${Source-Version})
@@ -56,7 +56,7 @@ Description: KDE network documentation in HTML format
  See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: tdenetwork-kfile-plugins
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Enhances: konqueror
@@ -114,7 +114,7 @@ Description: download manager for KDE
  See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: knewsticker
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, kicker
 Suggests: khelpcenter, knewsticker-scripts
@@ -129,7 +129,7 @@ Description: news ticker applet for KDE
  See the 'kde' and 'tdenetwork' packages for more information.
 
 Package: kopete
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: qca-tls

@@ -1,5 +1,5 @@
 Source: tdeaccessibility
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -8,7 +8,7 @@ Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, gettext, groff
 Standards-Version: 3.7.2
 
 Package: tdeaccessibility
-Section: kde
+Section: tde
 Architecture: all
 Depends: kmag (>= ${Source-Version}), kmousetool (>= ${Source-Version}), kmouth (>= ${Source-Version}), kbstate (>= ${Source-Version}), ksayit  (>= ${Source-Version}), kttsd (>= ${Source-Version})
 Recommends: kde-icons-mono (>= ${Source-Version})
@@ -43,7 +43,7 @@ Description: KDE accessibility documentation in HTML format
  module. See the 'kde' and 'tdeaccessibility' packages for more information.
 
 Package: kde-icons-mono
-Section: kde
+Section: tde
 Architecture: all
 Description: a monochromatic icons theme for KDE
  A monochromatic icon theme for KDE, designed for accessibility purposes.

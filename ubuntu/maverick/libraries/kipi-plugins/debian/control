@@ -1,5 +1,5 @@
 Source: kipi-plugins-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Mark Purcell <msp@debian.org>, Achim Bohnet <ach@mpe.mpg.de>, Fathi Boudra <fabo@debian.org>

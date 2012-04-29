@@ -1,5 +1,5 @@
 Source: katapult-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: cdbs (>= 0.4.46ubuntu5), debhelper (>= 5.0.0), tdelibs4-trinity-dev, docbook2x, libxi-dev, sharutils, automake, autoconf, libtool, libltdl-dev

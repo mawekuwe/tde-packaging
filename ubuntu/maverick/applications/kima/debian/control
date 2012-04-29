@@ -1,5 +1,5 @@
 Source: kima-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev, libhal-dev, automake, autoconf, libtool, libltdl-dev

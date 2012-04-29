@@ -1,6 +1,6 @@
 Source: tde-i18n-trinity
 Build-Depends: debhelper (>= 5), tdelibs4-trinity-dev, gawk, gettext, bzip2, perl, automake, autoconf, libtool, libltdl-dev
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>
@@ -8,7 +8,7 @@ Standards-Version: 3.8.4
 
 Package: tde-i18n-af-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-af-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-af-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -20,7 +20,7 @@ Description: Afrikaans (af) internationalized (i18n) files for KDE
 
 Package: tde-i18n-ar-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ar-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ar-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -32,7 +32,7 @@ Description: Arabic (ar) internationalized (i18n) files for KDE
 
 Package: tde-i18n-az-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-az-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-az-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -44,7 +44,7 @@ Description: Azerbaijani (az) internationalized (i18n) files for KDE
 
 Package: tde-i18n-be-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-be-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-be-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -56,7 +56,7 @@ Description: Belarusian (be) internationalized (i18n) files for KDE
 
 Package: tde-i18n-bg-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-bg-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-bg-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -68,7 +68,7 @@ Description: Bulgarian (bg) internationalized (i18n) files for KDE
 
 Package: tde-i18n-bn-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-bn-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-bn-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -80,7 +80,7 @@ Description: Bengali (bn) internationalized (i18n) files for KDE
 
 Package: tde-i18n-br-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-br-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-br-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -92,7 +92,7 @@ Description: Breton (br) internationalized (i18n) files for KDE
 
 Package: tde-i18n-bs-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-bs-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-bs-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -104,7 +104,7 @@ Description: Bosnian (bs) internationalized (i18n) files for KDE
  
 Package: tde-i18n-ca-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ca-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ca-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -116,7 +116,7 @@ Description: Catalan (ca) internationalized (i18n) files for KDE
  
 Package: tde-i18n-cs-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-cs-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-cs-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -128,7 +128,7 @@ Description: Czech (cs) internationalized (i18n) files for KDE
 
 Package: tde-i18n-csb-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-csb-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-csb-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -140,7 +140,7 @@ Description: Kashubian (csb) internationalized (i18n) files for KDE
 
 Package: tde-i18n-cy-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-cy-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-cy-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -152,7 +152,7 @@ Description: Welsh (cy) internationalized (i18n) files for KDE
  
 Package: tde-i18n-da-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-da-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-da-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -164,7 +164,7 @@ Description: Danish (da) internationalized (i18n) files for KDE
  
 Package: tde-i18n-de-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-de-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-de-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -176,7 +176,7 @@ Description: German (de) internationalized (i18n) files for KDE
 
 Package: tde-i18n-el-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-el-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-el-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -188,7 +188,7 @@ Description: Greek (el) internationalized (i18n) files for KDE
  
 Package: tde-i18n-engb-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-engb-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-engb-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -200,7 +200,7 @@ Description: British English (en_GB) internationalized (i18n) files for KDE
 
 Package: tde-i18n-eo-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-eo-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-eo-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -212,7 +212,7 @@ Description: Esperanto (eo) internationalized (i18n) files for KDE
  
 Package: tde-i18n-es-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-es-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-es-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -224,7 +224,7 @@ Description: Spanish (es) internationalized (i18n) files for KDE
  
 Package: tde-i18n-et-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-et-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-et-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -236,7 +236,7 @@ Description: Estonian (et) internationalized (i18n) files for KDE
  
 Package: tde-i18n-eu-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-eu-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-eu-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -248,7 +248,7 @@ Description: Basque (eu) internationalized (i18n) files for KDE
 
 Package: tde-i18n-fa-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-fa-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-fa-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -260,7 +260,7 @@ Description: Farsi (Persian) (fa) internationalized (i18n) files for KDE
  
 Package: tde-i18n-fi-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-fi-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-fi-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -272,7 +272,7 @@ Description: Finnish (fi) internationalized (i18n) files for KDE
  
 Package: tde-i18n-fr-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-fr-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-fr-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -284,7 +284,7 @@ Description: French (fr) internationalized (i18n) files for KDE
 
 Package: tde-i18n-fy-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-fy-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-fy-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -296,7 +296,7 @@ Description: Frisian (fy) internationalized (i18n) files for KDE
 
 Package: tde-i18n-ga-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ga-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ga-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -308,7 +308,7 @@ Description: Irish Gaelic (ga) internationalized (i18n) files for KDE
 
 Package: tde-i18n-gl-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-gl-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-gl-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -320,7 +320,7 @@ Description: Galician (gl) internationalized (i18n) files for KDE
 
 Package: tde-i18n-he-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-he-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-he-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -332,7 +332,7 @@ Description: Hebrew (he) internationalized (i18n) files for KDE
 
 Package: tde-i18n-hi-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-hi-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-hi-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -344,7 +344,7 @@ Description: Hindi (hi) internationalized (i18n) files for KDE
 
 Package: tde-i18n-hr-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-hr-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-hr-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -356,7 +356,7 @@ Description: Croatian (hr) internationalized (i18n) files for KDE
 
 Package: tde-i18n-hu-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-hu-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-hu-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -368,7 +368,7 @@ Description: Hungarian (hu) internationalized (i18n) files for KDE
 
 Package: tde-i18n-is-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-is-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-is-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -380,7 +380,7 @@ Description: Icelandic (is) internationalized (i18n) files for KDE
  
 Package: tde-i18n-it-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-it-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-it-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -392,7 +392,7 @@ Description: Italian (it) internationalized (i18n) files for KDE
 
 Package: tde-i18n-ja-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ja-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ja-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -404,7 +404,7 @@ Description: Japanese (ja) internationalized (i18n) files for KDE
 
 Package: tde-i18n-kk-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-kk-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-kk-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -416,7 +416,7 @@ Description: Kazakh (kk) internationalized (i18n) files for KDE
 
 Package: tde-i18n-km-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-km-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-km-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -428,7 +428,7 @@ Description: Khmer (km) internationalized (i18n) files for KDE
 
 Package: tde-i18n-ko-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ko-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ko-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -440,7 +440,7 @@ Description: Korean (ko) internationalized (i18n) files for KDE
 
 Package: tde-i18n-lt-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-lt-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-lt-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -452,7 +452,7 @@ Description: Lithuanian (lt) internationalized (i18n) files for KDE
 
 Package: tde-i18n-lv-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-lv-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-lv-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -464,7 +464,7 @@ Description: Latvian (lv) internationalized (i18n) files for KDE
 
 Package: tde-i18n-mk-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-mk-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-mk-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -476,7 +476,7 @@ Description: Macedonian (mk) internationalized (i18n) files for KDE
 
 Package: tde-i18n-mn-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-mn-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-mn-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -488,7 +488,7 @@ Description: Mongolian (mn) internationalized (i18n) files for KDE
 
 Package: tde-i18n-ms-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ms-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ms-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -500,7 +500,7 @@ Description: Malay (ms) internationalized (i18n) files for KDE
 
 Package: tde-i18n-nb-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-nb-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-nb-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -512,7 +512,7 @@ Description: Norwegian Bookmal (nb) internationalized (i18n) files for KDE
 
 Package: tde-i18n-nds-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-nds-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-nds-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -524,7 +524,7 @@ Description: Low Saxon (nds) internationalized (i18n) files for KDE
  
 Package: tde-i18n-nl-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-nl-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-nl-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -536,7 +536,7 @@ Description: Dutch (nl) internationalized (i18n) files for KDE
  
 Package: tde-i18n-nn-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-nn-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-nn-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -547,7 +547,7 @@ Description: Norwegian Nynorsk (nn) internationalized (i18n) files for KDE
 
 Package: tde-i18n-pa-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-pa-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-pa-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -559,7 +559,7 @@ Description: Punjabi (pa) internationalized (i18n) files for KDE
 
 Package: tde-i18n-pl-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-pl-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-pl-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -571,7 +571,7 @@ Description: Polish (pl) internationalized (i18n) files for KDE
  
 Package: tde-i18n-pt-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-pt-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-pt-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -583,7 +583,7 @@ Description: Portuguese (pt) internationalized (i18n) files for KDE
  
 Package: tde-i18n-ptbr-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ptbr-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ptbr-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -595,7 +595,7 @@ Description: Brazilian Portuguese (pt_BR) internationalized (i18n) files for KDE
  
 Package: tde-i18n-ro-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ro-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ro-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -607,7 +607,7 @@ Description: Romanian (ro) internationalized (i18n) files for KDE
  
 Package: tde-i18n-ru-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ru-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ru-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -619,7 +619,7 @@ Description: Russian (ru) internationalized (i18n) files for KDE
 
 Package: tde-i18n-rw-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-rw-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-rw-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -631,7 +631,7 @@ Description: Kinyarwanda (rw) internationalized (i18n) files for KDE
 
 Package: tde-i18n-se-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-se-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-se-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -643,7 +643,7 @@ Description: Northern Sami (se) internationalized (i18n) files for KDE
 
 Package: tde-i18n-sk-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-sk-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-sk-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -655,7 +655,7 @@ Description: Slovak (sk) internationalized (i18n) files for KDE
  
 Package: tde-i18n-sl-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-sl-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-sl-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -667,7 +667,7 @@ Description: Slovenian (sl) internationalized (i18n) files for KDE
  
 Package: tde-i18n-sr-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-sr-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-sr-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -679,7 +679,7 @@ Description: Serbian (sr) internationalized (i18n) files for KDE
 
 Package: tde-i18n-ss-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ss-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ss-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -691,7 +691,7 @@ Description: Swati (ss) internationalized (i18n) files for KDE
 
 Package: tde-i18n-srlatin-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-srlatin-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-srlatin-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -703,7 +703,7 @@ Description: Latin Serbian (sr@Latn) internationalized (i18n) files for KDE
 
 Package: tde-i18n-sv-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-sv-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-sv-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -715,7 +715,7 @@ Description: Swedish (sv) internationalized (i18n) files for KDE
  
 Package: tde-i18n-ta-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-ta-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ta-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -727,7 +727,7 @@ Description: Tamil (ta) internationalized (i18n) files for KDE
 
 Package: tde-i18n-te-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-te-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-te-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -739,7 +739,7 @@ Description: Telugu (te) internationalized (i18n) files for KDE
 
 Package: tde-i18n-tg-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-tg-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-tg-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -751,7 +751,7 @@ Description: Tajik (tg) internationalized (i18n) files for KDE
 
 Package: tde-i18n-th-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-th-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-th-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -763,7 +763,7 @@ Description: Thai (th) internationalized (i18n) files for KDE
 
 Package: tde-i18n-tr-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-tr-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-tr-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -775,7 +775,7 @@ Description: Turkish (tr) internationalized (i18n) files for KDE
  
 Package: tde-i18n-uk-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-uk-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-uk-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -787,7 +787,7 @@ Description: Ukrainian (uk) internationalized (i18n) files for KDE
 
 Package: tde-i18n-uz-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-uz-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-uz-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -800,7 +800,7 @@ Description: Uzbek (uz) internationalized (i18n) files for KDE
 
 Package: tde-i18n-uzcyrillic-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-uzcyrillic-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-uzcyrillic-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -812,7 +812,7 @@ Description: Cyrillic Uzbek (uz@cyrillic) internationalized (i18n) files for KDE
 
 Package: tde-i18n-vi-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-vi-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-vi-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -824,7 +824,7 @@ Description: Vietnamese (vi) internationalized (i18n) files for KDE
 
 Package: tde-i18n-wa-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-wa-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-wa-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -836,7 +836,7 @@ Description: Walloon (wa) internationalized (i18n) files for KDE
 
 Package: tde-i18n-zhcn-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-zhcn-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-zhcn-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
@@ -848,7 +848,7 @@ Description: Chinese Simplified (zh_CN) internationalized (i18n) files for KDE
 
 Package: tde-i18n-zhtw-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kde-i18n-zhtw-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-zhtw-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity

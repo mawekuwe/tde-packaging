@@ -1,5 +1,5 @@
 Source: tdenetwork-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -8,7 +8,7 @@ Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), auto
 Standards-Version: 3.8.4
 
 Package: tdenetwork-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdenetwork-trinity (<< 4:14.0.0)
 Breaks: kdenetwork-trinity (<< 4:14.0.0)
@@ -62,7 +62,7 @@ Description: Trinity network documentation in HTML format
  See the 'kde-trinity' and 'tdenetwork-trinity' packages for more information.
 
 Package: tdenetwork-kfile-plugins-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdenetwork-kfile-plugins-trinity (<< 4:14.0.0)
 Breaks: kdenetwork-kfile-plugins-trinity (<< 4:14.0.0)
@@ -127,7 +127,7 @@ Description: download manager for Trinity
  See the 'kde-trinity' and 'tdenetwork-trinity' packages for more information.
 
 Package: knewsticker-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: knewsticker-trinity (<< 4:14.0.0)
 Breaks: knewsticker-trinity (<< 4:14.0.0)
@@ -144,7 +144,7 @@ Description: news ticker applet for Trinity
  See the 'kde-trinity' and 'tdenetwork-trinity' packages for more information.
 
 Package: kopete-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kopete-trinity (<< 4:14.0.0)
 Breaks: kopete-trinity (<< 4:14.0.0)

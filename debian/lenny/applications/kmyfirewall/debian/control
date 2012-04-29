@@ -1,5 +1,5 @@
 Source: kmyfirewall-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>= 5.0.51), tdelibs4-trinity-dev (>= 3.3.0), chrpath, automake, autoconf, libtool, libltdl-dev

@@ -1,5 +1,5 @@
 Source: kerry-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>= 5.0.0), cdbs, tdelibs4-trinity-dev, libkonq4-trinity-dev, libbeagle-dev (>= 0.3.0), docbook2x, chrpath, automake, autoconf, libtool, libltdl-dev

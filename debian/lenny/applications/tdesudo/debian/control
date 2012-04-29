@@ -1,5 +1,5 @@
 Source: tdesudo-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>> 5), cdbs, tdelibs4-trinity-dev, docbook2x, automake, autoconf, libtool, libltdl-dev

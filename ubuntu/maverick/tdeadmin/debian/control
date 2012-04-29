@@ -1,5 +1,5 @@
 Source: tdeadmin-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -8,7 +8,7 @@ Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), autotools-dev, debhelper (>
 Standards-Version: 3.8.4
 
 Package: tdeadmin-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdeadmin-trinity (<< 4:14.0.0)
 Breaks: kdeadmin-trinity (<< 4:14.0.0)
@@ -80,7 +80,7 @@ Description: a Trinity tape backup tool
  See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: tdeadmin-kfile-plugins-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdeadmin-kfile-plugins-trinity (<< 4:14.0.0)
 Breaks: kdeadmin-kfile-plugins-trinity (<< 4:14.0.0)
@@ -92,7 +92,7 @@ Description: Trinity file metainfo plugins for deb and rpm files
  See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: knetworkconf-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: knetworkconf-trinity (<< 4:14.0.0)
 Breaks: knetworkconf-trinity (<< 4:14.0.0)
@@ -148,7 +148,7 @@ Description: Trinity user/group administration tool
  See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: lilo-config-trinity
-Section: kde
+Section: tde
 Architecture: none
 Replaces: lilo-config-trinity (<< 4:14.0.0)
 Breaks: lilo-config-trinity (<< 4:14.0.0)

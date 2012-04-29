@@ -1,5 +1,5 @@
 Source: kcpuload-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Helen Faulkner <helen@debian.org>
@@ -8,7 +8,7 @@ Standards-Version: 3.8.4
 
 Package: kcpuload-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kcpuload-trinity (<< 4:14.0.0)
 Breaks: kcpuload-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}

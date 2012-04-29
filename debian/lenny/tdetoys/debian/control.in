@@ -1,5 +1,5 @@
 Source: tdetoys
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -9,7 +9,7 @@ Standards-Version: 3.7.2
 
 Package: tdetoys
 Architecture: all
-Section: kde
+Section: tde
 Depends: amor (>= ${Source-Version}), eyesapplet (>= ${Source-Version}), fifteenapplet (>= ${Source-Version}), kmoon (>= ${Source-Version}), kodo (>= ${Source-Version}), kteatime (>= ${Source-Version}), ktux (>= ${Source-Version}), kweather (>= ${Source-Version}), kworldclock (>= ${Source-Version})
 Suggests: tdetoys-doc-html (>= ${Source-Version})
 Description: toys from the official KDE release
@@ -60,7 +60,7 @@ Description: a KDE creature for your desktop
 
 Package: eyesapplet
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Recommends: kicker
 Conflicts: task-tdetoys
@@ -74,7 +74,7 @@ Description: eyes applet for KDE
 
 Package: fifteenapplet
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Recommends: kicker
 Description: fifteen pieces puzzle for KDE
@@ -87,7 +87,7 @@ Description: fifteen pieces puzzle for KDE
 
 Package: kmoon
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Recommends: kicker
 Suggests: khelpcenter
@@ -116,7 +116,7 @@ Description: mouse odometer for KDE
 
 Package: kteatime
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, kicker
 Suggests: khelpcenter
 Conflicts: task-tdetoys
@@ -138,7 +138,7 @@ Description: KDE utility for making a fine cup of tea
 
 Package: ktux
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Suggests: twin
 Conflicts: task-tdetoys
@@ -151,7 +151,7 @@ Description: Tux screensaver for KDE
 
 Package: kweather
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Recommends: kicker
 Suggests: khelpcenter

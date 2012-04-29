@@ -1,5 +1,5 @@
 Source: tdetoys-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -9,7 +9,7 @@ Standards-Version: 3.8.4
 
 Package: tdetoys-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdetoys-trinity (<< 4:14.0.0)
 Breaks: kdetoys-trinity (<< 4:14.0.0)
 Depends: amor-trinity (>= ${Source-Version}), eyesapplet-trinity (>= ${Source-Version}), fifteenapplet-trinity (>= ${Source-Version}), kmoon-trinity (>= ${Source-Version}), kodo-trinity (>= ${Source-Version}), kteatime-trinity (>= ${Source-Version}), ktux-trinity (>= ${Source-Version}), kweather-trinity (>= ${Source-Version}), kworldclock-trinity (>= ${Source-Version})
@@ -64,7 +64,7 @@ Description: a Trinity creature for your desktop
 
 Package: eyesapplet-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: eyesapplet-trinity (<< 4:14.0.0)
 Breaks: eyesapplet-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -79,7 +79,7 @@ Description: eyes applet for Trinity
 
 Package: fifteenapplet-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: fifteenapplet-trinity (<< 4:14.0.0)
 Breaks: fifteenapplet-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -94,7 +94,7 @@ Description: fifteen pieces puzzle for Trinity
 
 Package: kmoon-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kmoon-trinity (<< 4:14.0.0)
 Breaks: kmoon-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -125,7 +125,7 @@ Description: mouse odometer for Trinity
 
 Package: kteatime-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kteatime-trinity (<< 4:14.0.0)
 Breaks: kteatime-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kicker-trinity
@@ -148,7 +148,7 @@ Description: Trinity utility for making a fine cup of tea
 
 Package: ktux-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: ktux-trinity (<< 4:14.0.0)
 Breaks: ktux-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -162,7 +162,7 @@ Description: Tux screensaver for Trinity
 
 Package: kweather-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kweather-trinity (<< 4:14.0.0)
 Breaks: kweather-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}

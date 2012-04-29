@@ -1,5 +1,5 @@
 Source: bibletime-trinity
-Section: kde
+Section: tde
 Build-Depends: bzip2, autotools-dev, quilt, patchutils (>= 0.2.25), cdbs (>= 0.4.27), debhelper (>= 4.1.0), tdelibs4-trinity-dev, libsword-dev, libclucene-dev, poxml, libboost-dev, automake, autoconf, libtool, libltdl-dev
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
@@ -7,7 +7,7 @@ Standards-Version: 3.8.4
 
 Package: bibletime-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: bibletime-trinity (<< 4:14.0.0)
 Breaks: bibletime-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}

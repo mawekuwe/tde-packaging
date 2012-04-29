@@ -1,5 +1,5 @@
 Source: knetload-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Helen Faulkner <helen@debian.org>
@@ -8,7 +8,7 @@ Standards-Version: 3.8.4
 
 Package: knetload-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: knetload-trinity (<< 4:14.0.0)
 Breaks: knetload-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}

@@ -1,5 +1,5 @@
 Source: tdeutils
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -9,7 +9,7 @@ Build-Depends-Indep: doxygen, qt3-doc, graphviz, gsfonts-x11, tdelibs4-doc
 Standards-Version: 3.7.2
 
 Package: tdeutils
-Section: kde
+Section: tde
 Architecture: all
 Depends: ark (>= ${Source-Version}), kcalc (>= ${Source-Version}), kcharselect (>= ${Source-Version}), kdelirc (>= ${Source-Version}), kdessh (>= ${Source-Version}), kdf (>= ${Source-Version}), kedit (>= ${Source-Version}), kfloppy (>= ${Source-Version}), kgpg (>= ${Source-Version}), khexedit (>= ${Source-Version}), kjots (>= ${Source-Version}), klaptopdaemon (>= ${Source-Version}) | kpowersave, kmilo (>= ${Source-Version}), kregexpeditor (>= ${Source-Version}), ksim (>= ${Source-Version}), ktimer (>= ${Source-Version}), kwalletmanager (>= ${Source-Version}), superkaramba (>= ${Source-Version})
 Suggests: tdeutils-doc-html (>= ${Source-Version})
@@ -124,7 +124,7 @@ Description: infrared control for KDE
  See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kdessh
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, openssh-client | ssh-client
 Description: ssh frontend for KDE
@@ -176,7 +176,7 @@ Description: floppy formatter for KDE
  See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kgpg
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, konsole (>= 4:3.5.8), gnupg
 Suggests: khelpcenter
@@ -224,7 +224,7 @@ Description: note taking utility for KDE
  See the 'kde' and 'tdeutils' packages for more information.
 
 Package: klaptopdaemon
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
@@ -250,7 +250,7 @@ Description:  laptop special keys support for KDE
  See the 'kde' and 'tdeutils' packages for more information.
 
 Package: kregexpeditor
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
@@ -301,7 +301,7 @@ Description: wallet manager for KDE
  See the 'kde' and 'tdeutils' packages for more information.
 
 Package: superkaramba
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter

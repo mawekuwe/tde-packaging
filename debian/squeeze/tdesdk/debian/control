@@ -1,5 +1,5 @@
 Source: tdesdk-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -13,7 +13,7 @@ Standards-Version: 3.8.4
 
 Package: tdesdk-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdesdk-trinity (<< 4:14.0.0)
 Breaks: kdesdk-trinity (<< 4:14.0.0)
 Depends: cervisia-trinity (>= ${Source-Version}), kapptemplate-trinity (>= ${Source-Version}), kbabel-trinity (>= ${Source-Version}), kbugbuster-trinity (>= ${Source-Version}), tdecachegrind-trinity (>= ${Source-Version}), tdesdk-kfile-plugins-trinity (>= ${Source-Version}), tdesdk-kio-plugins-trinity (>= ${Source-Version}) | tdesvn-kio-plugins-trinity, tdesdk-misc-trinity (>= ${Source-Version}), tdesdk-scripts-trinity, kmtrace-trinity (>= ${Source-Version}), kompare-trinity (>= ${Source-Version}), kspy-trinity (>= ${Source-Version}), kuiviewer-trinity (>= ${Source-Version}), kunittest-trinity (>= ${Source-Version}), poxml-trinity (>= ${Source-Version}), umbrello-trinity (>= ${Source-Version})
@@ -188,7 +188,7 @@ Description: format converters for KCachegrind profiling visualisation tool
 
 Package: tdesdk-kfile-plugins-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
 Breaks: kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
