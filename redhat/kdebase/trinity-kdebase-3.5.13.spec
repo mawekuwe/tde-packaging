@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 20
+%define release 21
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -26,7 +26,7 @@ Name:		trinity-kdebase
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 License:	GPL
-Summary:	Trinity KDE Base Programs
+Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
 
 Vendor:		Trinity Project
@@ -133,10 +133,15 @@ Patch48:	kdebase-3.5.13-fix_kio_sftp_nonstandard_ports.patch
 Patch49:	kdebase-3.5.13-start_dcop_in_tdm.patch
 ## [kdebase/kdesktop/lock] Update lock process to engage the lock in near real time [Commit #8d521d0b]
 Patch50:	kdebase-3.5.13-engage_lock_in_near_real_time.patch
+## [kdebase/kdesktop/lock] Commit the rest of 8d521d0b, not merged due to GIT glitch [Commit #49526413]
+Patch51:	kdebase-3.5.13-engage_lock_in_near_real_time_continued.patch
 ## [kdebase/kdesktop/lock] Fix desktop lock failure due to race condition within signal handler between qt and xcb [Commit #67a3a8f3]
-Patch51:	kdebase-3.5.13-fix_lock_failure.patch
+Patch52:	kdebase-3.5.13-fix_lock_failure.patch
 ## [kdebase/kioslave] Temporary fix for a probable race condition on some systems. [Bug #760]
-Patch52:	kdebase-3.5.13-fix_race_condition.patch
+Patch53:	kdebase-3.5.13-fix_race_condition.patch
+
+
+### FEDORA / RHEL distribution-specific settings ###
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -187,6 +192,7 @@ Requires:	redhat-indexhtml
 %define tde_aboutlabel Enterprise Linux 6
 %define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
+
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
@@ -253,7 +259,7 @@ Provides:	service(graphical-login)
 
 
 %description
-Core applications for the Trinity K Desktop Environment.  Included are: kdm
+Core applications for the Trinity Desktop Environment.  Included are: kdm
 (replacement for xdm), kwin (window manager), konqueror (filemanager,
 web browser, ftp client, ...), konsole (xterm replacement), kpanel
 (application starter and desktop pager), kaudio (audio server),
@@ -377,6 +383,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch50 -p1
 %patch51 -p1
 %patch52 -p1
+%patch53 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -763,6 +770,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Mon Apr 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-21
+- Commit the rest of 8d521d0b, not merged due to GIT glitch [Commit #49526413]
+
 * Fri Apr 27 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-20
 - Fix sftp when nonstandard port is specified in ssh config [Bug #897]
 - Start minimal dcop system to support twin in tdm [Commit #66a19439]

@@ -28,15 +28,15 @@ diff --git a/kdesktop/lock/main.cc b/kdesktop/lock/main.cc
 index 5853da1..225d9c5 100644
 --- a/kdesktop/lock/main.cc
 +++ b/kdesktop/lock/main.cc
-@@ -168,7 +168,7 @@ int main( int argc, char **argv )
+@@ -260,7 +260,7 @@ int main( int argc, char **argv )
  
-     bool rt;
-     bool sig = false;
--    if( !child && args->isSet( "forcelock" ))
-+    if( (!child) && (args->isSet( "forcelock" )))
-     {
-         rt = process.lock();
-         sig = true;
+         bool rt;
+         bool sig = false;
+-        if( !child && (args->isSet( "forcelock" ) || (signalled_forcelock == TRUE)))
++        if( (((!child) && (args->isSet( "forcelock" ))) || (signalled_forcelock == TRUE)))
+         {
+             rt = process.lock();
+             sig = true;
 diff --git a/kdesktop/lockeng.cc b/kdesktop/lockeng.cc
 index 9eb88e1..f24d02f 100644
 --- a/kdesktop/lockeng.cc
