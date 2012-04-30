@@ -1,5 +1,5 @@
 Source: desktop-effects-tde-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends-Indep: cdbs (>= 0.4.43), debhelper (>= 5.0.38), python-central (>= 0.5.6)

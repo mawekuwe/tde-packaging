@@ -1,5 +1,5 @@
 Source: adept-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Peter Rockai <me@mornfall.net>
@@ -8,7 +8,7 @@ Build-Depends: cdbs, debhelper (>> 4.1), dh-buildinfo, libapt-front-dev (>= 0.4.
 Standards-Version: 3.8.4
 
 Package: adept-trinity
-Section: kde
+Section: tde
 Depends: adept-manager-trinity, adept-installer-trinity, adept-updater-trinity, adept-notifier-trinity, adept-batch-trinity
 Replaces: adept-trinity (<< 4:14.0.0)
 Breaks: adept-trinity (<< 4:14.0.0)
@@ -21,7 +21,7 @@ Description: package management suite for Trinity
   * adept-notifier-trinity - systray notification of available updates
 
 Package: adept-common-trinity
-Section: kde
+Section: tde
 Depends: debtags (>= 1.6.1), konsole-trinity (>= 3.5.0), ${shlibs:Depends}
 Replaces: adept-common-trinity (<< 4:14.0.0)
 Breaks: adept-common-trinity (<< 4:14.0.0)
@@ -30,7 +30,7 @@ Description: package manager for Trinity -- common files
  Icons and other common files for all adept components.
 
 Package: adept-manager-trinity
-Section: kde
+Section: tde
 Depends: adept-common-trinity, ${shlibs:Depends}
 Replaces: adept-manager-trinity (<< 4:14.0.0)
 Breaks: adept-manager-trinity (<< 4:14.0.0)
@@ -49,7 +49,7 @@ Description: package manager for Trinity
  to function.
 
 Package: adept-installer-trinity
-Section: kde
+Section: tde
 Depends: adept-common-trinity, app-install-data, ${shlibs:Depends}
 Replaces: adept-installer-trinity (<< 4:14.0.0)
 Breaks: adept-installer-trinity (<< 4:14.0.0)
@@ -65,7 +65,7 @@ Description: simple user interface for application management (for Trinity)
  to function.
 
 Package: adept-updater-trinity
-Section: kde
+Section: tde
 Depends: adept-common-trinity, ${shlibs:Depends}
 Replaces: adept-updater-trinity (<< 4:14.0.0)
 Breaks: adept-updater-trinity (<< 4:14.0.0)
@@ -79,7 +79,7 @@ Description: system update tool for Trinity
  to function.
 
 Package: adept-notifier-trinity
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, adept-updater-trinity, update-notifier-common
 Replaces: adept-notifier-trinity (<< 4:14.0.0)
 Breaks: adept-notifier-trinity (<< 4:14.0.0)
@@ -90,7 +90,7 @@ Description: system tray notifier of available system updates
  clicked.
 
 Package: adept-batch-trinity
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, adept-manager-trinity
 Replaces: adept-batch-trinity (<< 4:14.0.0)
 Breaks: adept-batch-trinity (<< 4:14.0.0)

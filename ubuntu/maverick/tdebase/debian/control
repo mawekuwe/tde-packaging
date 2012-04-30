@@ -1,5 +1,5 @@
 Source: tdebase-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -10,7 +10,7 @@ Build-Conflicts: nvidia-glx (<< 1.0.8774-6)
 Standards-Version: 3.8.4
 
 Package: tdebase-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdebase-trinity (<< 4:14.0.0)
 Breaks: kdebase-trinity (<< 4:14.0.0)
@@ -29,7 +29,7 @@ Description: base components from the official KDE release
  web browser, X terminal emulator, and many other programs and components.
 
 Package: tdebase-runtime-data-common-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdebase-runtime-data-common-trinity (<< 4:14.0.0)
 Breaks: kdebase-runtime-data-common-trinity (<< 4:14.0.0)
@@ -40,7 +40,7 @@ Description: Shared common files for Trinity and KDE4
  Such as the desktop right-click-"Create New" list
 
 Package: kappfinder-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kappfinder-trinity (<< 4:14.0.0)
 Breaks: kappfinder-trinity (<< 4:14.0.0)
@@ -84,7 +84,7 @@ Description: advanced text editor for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: kcontrol-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kcontrol-trinity (<< 4:14.0.0)
 Breaks: kcontrol-trinity (<< 4:14.0.0)
@@ -108,7 +108,7 @@ Description: control center for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: tdebase-trinity-bin
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdebase-trinity-bin (<< 4:14.0.0)
 Breaks: kdebase-trinity-bin (<< 4:14.0.0)
@@ -123,7 +123,7 @@ Description: core binaries for the KDE base module
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: tdebase-data-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdebase-data-trinity (<< 4:14.0.0)
 Breaks: kdebase-data-trinity (<< 4:14.0.0)
@@ -181,7 +181,7 @@ Description: KDE base documentation in HTML format
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: tdebase-kio-plugins-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdebase-kio-plugins-trinity (<< 4:14.0.0)
 Breaks: kdebase-kio-plugins-trinity (<< 4:14.0.0)
@@ -236,7 +236,7 @@ Description: print system for KDE
  Homepage: http://printing.kde.org
 
 Package: kdesktop-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdesktop-trinity (<< 4:14.0.0)
 Breaks: kdesktop-trinity (<< 4:14.0.0)
@@ -249,7 +249,7 @@ Description: miscellaneous binaries and files for the KDE desktop
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: tdm-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: tdm-trinity (<< 4:14.0.0)
 Breaks: tdm-trinity (<< 4:14.0.0)
@@ -292,7 +292,7 @@ Description: file-find utility for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: khelpcenter-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: khelpcenter-trinity (<< 4:14.0.0)
 Breaks: khelpcenter-trinity (<< 4:14.0.0)
@@ -308,7 +308,7 @@ Description: help center for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: kicker-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kicker-trinity (<< 4:14.0.0)
 Breaks: kicker-trinity (<< 4:14.0.0)
@@ -324,7 +324,7 @@ Description: desktop panel for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: klipper-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: klipper-trinity (<< 4:14.0.0)
 Breaks: klipper-trinity (<< 4:14.0.0)
@@ -340,7 +340,7 @@ Description: clipboard utility for Trinity
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: kmenuedit-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kmenuedit-trinity (<< 4:14.0.0)
 Breaks: kmenuedit-trinity (<< 4:14.0.0)
@@ -399,7 +399,7 @@ Description: Netscape plugin support for Konqueror
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: konsole-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: konsole-trinity (<< 4:14.0.0)
 Breaks: konsole-trinity (<< 4:14.0.0)
@@ -426,7 +426,7 @@ Description: X terminal emulator for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: kpager-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kpager-trinity (<< 4:14.0.0)
 Breaks: kpager-trinity (<< 4:14.0.0)
@@ -441,7 +441,7 @@ Description: desktop pager for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: kpersonalizer-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kpersonalizer-trinity (<< 4:14.0.0)
 Breaks: kpersonalizer-trinity (<< 4:14.0.0)
@@ -456,7 +456,7 @@ Description: installation personalizer for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: ksmserver-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: ksmserver-trinity (<< 4:14.0.0)
 Breaks: ksmserver-trinity (<< 4:14.0.0)
@@ -478,7 +478,7 @@ Description: session manager for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: ksplash-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: ksplash-trinity (<< 4:14.0.0)
 Breaks: ksplash-trinity (<< 4:14.0.0)
@@ -521,7 +521,7 @@ Description: system guard daemon for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: ktip-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: ktip-trinity (<< 4:14.0.0)
 Breaks: ktip-trinity (<< 4:14.0.0)
@@ -533,7 +533,7 @@ Description: useful tips for KDE
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
 Package: twin-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kwin-trinity (<< 4:14.0.0)
 Breaks: kwin-trinity (<< 4:14.0.0)

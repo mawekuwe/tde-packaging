@@ -10,7 +10,7 @@ Standards-Version: 3.8.4
 
 Package: tdegames-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdegames-trinity (<< 4:14.0.0)
 Breaks: kdegames-trinity (<< 4:14.0.0)
 Depends: atlantik-trinity (>= ${Source-Version}), kasteroids-trinity (>= ${Source-Version}), katomic-trinity (>= ${Source-Version}), kbackgammon-trinity (>= ${Source-Version}), kbattleship-trinity (>= ${Source-Version}), kblackbox-trinity (>= ${Source-Version}), kbounce-trinity (>= ${Source-Version}), kenolaba-trinity (>= ${Source-Version}), kfouleggs-trinity (>= ${Source-Version}), kgoldrunner-trinity (>= ${Source-Version}), kjumpingcube-trinity (>= ${Source-Version}), klickety-trinity (>= ${Source-Version}), klines-trinity (>= ${Source-Version}), kmahjongg-trinity (>= ${Source-Version}), kmines-trinity (>= ${Source-Version}), knetwalk-trinity (>= ${Source-Version}), kolf-trinity (>= ${Source-Version}), konquest-trinity (>= ${Source-Version}), kpat-trinity (>= ${Source-Version}), kpoker-trinity (>= ${Source-Version}), kreversi-trinity (>= ${Source-Version}), ksame-trinity (>= ${Source-Version}), kshisen-trinity (>= ${Source-Version}), ksirtet-trinity (>= ${Source-Version}), ksmiletris-trinity (>= ${Source-Version}), ksnake-trinity (>= ${Source-Version}), ksokoban-trinity (>= ${Source-Version}), kspaceduel-trinity (>= ${Source-Version}), ktron-trinity (>= ${Source-Version}), ktuberling-trinity (>= ${Source-Version}), twin4-trinity (>= ${Source-Version}), lskat-trinity (>= ${Source-Version})
@@ -65,7 +65,7 @@ Depends: tdelibs-trinity-dbg
 Replaces: kdegames-trinity-dbg (<< 4:14.0.0)
 Breaks: kdegames-trinity-dbg (<< 4:14.0.0)
 Priority: extra
-Section: kde
+Section: tde
 Description: debugging symbols for tdegames
  This package contains the debugging symbols associated with tdegames.
  They will automatically be used by gdb for debugging tdegames-related

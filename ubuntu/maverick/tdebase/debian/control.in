@@ -1,5 +1,5 @@
 Source: tdebase
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -11,7 +11,7 @@ Standards-Version: 3.7.3
 XS-Vcs-Bzr: http://bazaar.launchpad.net/~kubuntu-members/tdebase/debian
 
 Package: tdebase
-Section: kde
+Section: tde
 Architecture: all
 Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-kio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), tdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), twin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
 Recommends: tdm (>= ${Source-Version})
@@ -28,7 +28,7 @@ Description: base components from the official KDE release
  web browser, X terminal emulator, and many other programs and components.
 
 Package: kappfinder
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: tdebase (<< 4:3.0.0)
@@ -70,7 +70,7 @@ Description: advanced text editor for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: kcontrol
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, tdebase-data (>> ${KDE-Version3}), tdebase-data (<< ${KDE-Next-Version3}), usbutils
 Recommends: udev
@@ -93,7 +93,7 @@ Description: control center for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: tdebase-bin
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, libpam-runtime (>= 0.76-14)
 Suggests: khelpcenter, gdb
@@ -107,7 +107,7 @@ Description: core binaries for the KDE base module
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: tdebase-data
-Section: kde
+Section: tde
 Architecture: all
 Conflicts: kcontrol (<< 4:3.4.2-1), twin (<< 4:3.4.2-1), kicker (<< 4:3.4.2-1)
 Replaces: tdebase (<< 4:3.0.0), tdeedu-data (<< 4:3.4.0), tdelibs-data (<< 4:3.3.0), kdewallpapers (<< 4:3.0.0), kcontrol (<< 4:3.5.5a.dfsg.1-1ubuntu18)
@@ -160,7 +160,7 @@ Description: KDE base documentation in HTML format
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: tdebase-kio-plugins
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, kdesktop, libsasl2-modules, psmisc, cryptsetup, man-db (>= 2.5.1-1)
 Recommends: hal, pmount, kamera, tdemultimedia-kio-plugins
@@ -211,7 +211,7 @@ Description: print system for KDE
  Homepage: http://printing.kde.org
 
 Package: kdesktop
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, tdebase-bin (= ${Source-Version}), eject
 Replaces: tdebase (<< 4:3.0.0), konqueror (<< 4:3.0.0)
@@ -223,7 +223,7 @@ Description: miscellaneous binaries and files for the KDE desktop
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: tdm
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, tdebase-bin (= ${Source-Version}), tdebase-data (>> ${KDE-Version3}), tdebase-data (<< ${KDE-Next-Version3}), debconf (>= 1.2.9) | debconf-2.0, libpam-runtime (>= 0.76-14), xbase-clients
 Recommends: logrotate, xserver-xorg
@@ -263,7 +263,7 @@ Description: file-find utility for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: khelpcenter
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: htdig
@@ -278,7 +278,7 @@ Description: help center for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: kicker
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, tdebase-data (>> ${KDE-Version3}), tdebase-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, kicker-applets, menu
@@ -293,7 +293,7 @@ Description: desktop panel for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: klipper
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
@@ -308,7 +308,7 @@ Description: clipboard utility for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: kmenuedit
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
@@ -364,7 +364,7 @@ Description: Netscape plugin support for Konqueror
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: konsole
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: tdebase (<< 4:3.0.0)
@@ -390,7 +390,7 @@ Description: X terminal emulator for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: kpager
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
@@ -404,7 +404,7 @@ Description: desktop pager for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: kpersonalizer
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, tdebase-data (>> ${KDE-Version3}), tdebase-data (<< ${KDE-Next-Version3})
 Replaces: tdebase (<< 4:3.0.0)
@@ -418,7 +418,7 @@ Description: installation personalizer for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: ksmserver
-Section: kde
+Section: tde
 Architecture: any
 Provides: x-session-manager
 Depends: ${shlibs:Depends}, twin (= ${Source-Version}) | x-window-manager
@@ -439,7 +439,7 @@ Description: session manager for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: ksplash
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, tdebase-data (>> ${KDE-Version3}), tdebase-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter
@@ -479,7 +479,7 @@ Description: system guard daemon for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: ktip
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: tdebase (<< 4:3.0.0)
@@ -490,7 +490,7 @@ Description: useful tips for KDE
  See the 'kde' and 'tdebase' packages for more information.
 
 Package: twin
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Provides: x-window-manager

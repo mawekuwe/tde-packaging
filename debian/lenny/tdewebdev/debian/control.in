@@ -9,7 +9,7 @@ Standards-Version: 3.7.2
 
 Package: tdewebdev
 Architecture: all
-Section: kde
+Section: tde
 Depends: quanta (>= ${Source-Version}), kfilereplace (>= ${Source-Version}), kimagemapeditor (>= ${Source-Version}), klinkstatus (>= ${Source-Version}), kommander (>= ${Source-Version}), kxsldbg (>= ${Source-Version})
 Suggests: kommander-dev (>= ${Source-Version}), tdewebdev-doc-html (>= ${Source-Version})
 Description: web development apps from the official KDE release
@@ -82,7 +82,7 @@ Description: data files for Quanta Plus web development environment
 
 Package: kfilereplace
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Suggests: quanta (= ${Source-Version})
 Description: batch search-and-replace component for KDE
@@ -128,7 +128,7 @@ Description: web link validity checker for KDE
 
 Package: kommander
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, gettext
 Replaces: quanta (<< 1:3.1.0-3)
 Suggests: kommander-dev (= ${Source-Version}), quanta (= ${Source-Version}), khelpcenter

@@ -1,5 +1,5 @@
 Source: tdepim
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -17,7 +17,7 @@ Build-Conflicts: libkleopatra0-dev, autoconf2.13
 Standards-Version: 3.7.2
 
 Package: tdepim
-Section: kde
+Section: tde
 Architecture: all
 Depends: akregator (>= ${Source-Version}), kaddressbook (>= ${Source-Version}), kalarm (>= ${Source-Version}), kandy (>= ${Source-Version}), karm (>= ${Source-Version}), tdepim-kfile-plugins (>= ${Source-Version}), tdepim-kio-plugins (>= ${Source-Version}), tdepim-kresources (>= ${Source-Version}), tdepim-wizards (>= ${Source-Version}), kitchensync (>= ${Source-Version}), kleopatra (>= ${Source-Version}), kmail (>= ${Source-Version}), kmailcvt (>= ${Source-Version}), knode (>= ${Source-Version}), knotes (>= ${Source-Version}), konsolekalendar (>= ${Source-Version}), kontact (>= ${Source-Version}), korganizer (>= ${Source-Version}), korn (>= ${Source-Version}), ktnef (>= ${Source-Version}), networkstatus (>= ${Source-Version}), libindex0 (>= ${Source-Version}), libkcal2b (>= ${Source-Version}), libtdepim1a (>= ${Source-Version}), libkgantt0 (>= ${Source-Version}), libkleopatra1 (>= ${Source-Version}), libkpimexchange1 (>= ${Source-Version}), libkpimidentities1 (>= ${Source-Version}), libksieve0 (>= ${Source-Version}), libktnef1 (>= ${Source-Version}), libmimelib1c2a (>= ${Source-Version})
 Suggests: tdepim-doc-html
@@ -113,7 +113,7 @@ Description: KDE NG addressbook application
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: kalarm
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: kmix, kttsd
@@ -162,7 +162,7 @@ Description: KDE time tracker tool
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: tdepim-kfile-plugins
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: KDE File dialog plugins for palm and vcf files
@@ -172,7 +172,7 @@ Description: KDE File dialog plugins for palm and vcf files
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: tdepim-kio-plugins
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: tdebase-kio-plugins (<< 4:3.4.0)
@@ -184,7 +184,7 @@ Description: KDE pim I/O Slaves
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: tdepim-kresources
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: libkcal2a (<< 4:3.4.1), kaddressbook (<< 4:3.4.1), knotes (<< 4:3.4.1)
@@ -199,7 +199,7 @@ Description: KDE pim resource plugins
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: tdepim-wizards
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: tdepim-dev (<< 4:3.4.1-2)
@@ -212,7 +212,7 @@ Description: KDE server configuration wizards
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: kitchensync
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: konqueror
@@ -283,7 +283,7 @@ Description: KDE news reader
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: knotes
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: tdepim-kresources
@@ -308,7 +308,7 @@ Description: Helper library for programmatic generation of C++ code
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: konsolekalendar
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: KDE konsole personal organizer
@@ -320,7 +320,7 @@ Description: KDE konsole personal organizer
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: kontact
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: ${shlibs:Recommends}, kitchensync, kmail, knode, knotes
@@ -339,7 +339,7 @@ Description: KDE pim application
   Homepage: http://kontact.kde.org/
 
 Package: korganizer
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, ${perl:Depends}
 Recommends: kghostview
@@ -359,7 +359,7 @@ Description: KDE personal organizer
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: korn
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, tdepim-kio-plugins, tdebase-kio-plugins
 Description: KDE mail checker
@@ -374,7 +374,7 @@ Description: KDE mail checker
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: ktnef
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: KDE TNEF viewer
@@ -386,7 +386,7 @@ Description: KDE TNEF viewer
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: networkstatus
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: KDE network status monitor
@@ -397,7 +397,7 @@ Description: KDE network status monitor
  See the 'kde' and 'tdepim' packages for more information.
 
 Package: networkstatus-dev
-Section: kde
+Section: tde
 Architecture: any
 Depends: networkstatus (= ${Source-Version}), libtdepim1-dev (= ${Source-Version})
 Description: KDE network status monitor [development]

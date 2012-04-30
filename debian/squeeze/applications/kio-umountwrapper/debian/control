@@ -1,5 +1,5 @@
 Source: kio-umountwrapper-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>> 5), cdbs, tdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev

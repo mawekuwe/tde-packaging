@@ -1,12 +1,12 @@
 Source: tde-style-lipstik-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>= 4.0.0), tdelibs4-trinity-dev (>= 4:3.2), dpatch, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tde-style-lipstik-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kde-style-lipstik-trinity (<< 4:14.0.0)
 Breaks: kde-style-lipstik-trinity (<< 4:14.0.0)

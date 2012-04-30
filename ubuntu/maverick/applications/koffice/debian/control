@@ -1,5 +1,5 @@
 Source: koffice-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -11,7 +11,7 @@ Homepage: http://www.koffice.org
 
 Package: koffice-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: koffice-trinity (<< 4:14.0.0)
 Breaks: koffice-trinity (<< 4:14.0.0)
 Depends: karbon-trinity (>= ${source:Version}), kchart-trinity (>= ${source:Version}), kexi-trinity (>= ${source:Version}), kformula-trinity (>= ${source:Version}), kivio-trinity (>= ${source:Version}), koshell-trinity (>= ${source:Version}), kplato-trinity (>= ${source:Version}), kpresenter-trinity (>= ${source:Version}), chalk-trinity (>= ${source:Version}), kspread-trinity (>= ${source:Version}), kugar-trinity (>= ${source:Version}), kword-trinity (>= ${source:Version}), kthesaurus-trinity (>= ${source:Version})
@@ -69,7 +69,7 @@ Description: a vector graphics application for the KDE Office Suite
 
 Package: kchart-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kchart-trinity (<< 4:14.0.0)
 Breaks: kchart-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -82,7 +82,7 @@ Description: a chart drawing program for the KDE Office Suite [Trinity]
 
 Package: kexi-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kexi-trinity (<< 4:14.0.0)
 Breaks: kexi-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -104,7 +104,7 @@ Description: integrated database environment for the KDE Office Suite [Trinity]
 
 Package: kformula-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kformula-trinity (<< 4:14.0.0)
 Breaks: kformula-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -147,7 +147,7 @@ Description: data files for Kivio flowcharting program [Trinity]
 
 Package: koshell-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: koshell-trinity (<< 4:14.0.0)
 Breaks: koshell-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -160,7 +160,7 @@ Description: the KDE Office Suite workspace [Trinity]
 
 Package: kplato-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kplato-trinity (<< 4:14.0.0)
 Breaks: kplato-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -174,7 +174,7 @@ Description: an integrated project management and planning tool [Trinity]
 
 Package: kpresenter-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kpresenter-trinity (<< 4:14.0.0)
 Breaks: kpresenter-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${perl:Depends}, kpresenter-data-trinity (>> ${KDE-Version3}), kpresenter-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -188,7 +188,7 @@ Description: a presentation program for the KDE Office Suite [Trinity]
 
 Package: kpresenter-data-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kpresenter-data-trinity (<< 4:14.0.0)
 Breaks: kpresenter-data-trinity (<< 4:14.0.0)
 Description: data files for KPresenter presentation program [Trinity]
@@ -201,7 +201,7 @@ Description: data files for KPresenter presentation program [Trinity]
 
 Package: chalk-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: chalk-trinity (<< 4:14.0.0)
 Breaks: chalk-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, chalk-data-trinity (>> ${KDE-Version3}), chalk-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -214,7 +214,7 @@ Description: a pixel-based image manipulation program for the KDE Office Suite [
 
 Package: chalk-data-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: chalk-data-trinity (<< 4:14.0.0)
 Breaks: chalk-data-trinity (<< 4:14.0.0)
 Description: data files for Chalk painting program [Trinity]
@@ -227,7 +227,7 @@ Description: data files for Chalk painting program [Trinity]
 
 Package: kspread-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kspread-trinity (<< 4:14.0.0)
 Breaks: kspread-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -241,7 +241,7 @@ Description: a spreadsheet for the KDE Office Suite [Trinity]
 
 Package: kugar-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kugar-trinity (<< 4:14.0.0)
 Breaks: kugar-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -257,7 +257,7 @@ Description: a business report maker for the KDE Office Suite [Trinity]
 
 Package: kword-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kword-trinity (<< 4:14.0.0)
 Breaks: kword-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kword-data-trinity (>> ${KDE-Version3}), kword-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
@@ -272,7 +272,7 @@ Description: a word processor for the KDE Office Suite [Trinity]
 
 Package: kword-data-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kword-data-trinity (<< 4:14.0.0)
 Breaks: kword-data-trinity (<< 4:14.0.0)
 Description: data files for KWord word processor [Trinity]
@@ -285,7 +285,7 @@ Description: data files for KWord word processor [Trinity]
 
 Package: kthesaurus-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kthesaurus-trinity (<< 4:14.0.0)
 Breaks: kthesaurus-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})

@@ -1,5 +1,5 @@
 Source: tdeaddons-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -9,7 +9,7 @@ Standards-Version: 3.8.4
 
 Package: tdeaddons-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdeaddons-trinity (<< 4:14.0.0)
 Breaks: kdeaddons-trinity (<< 4:14.0.0)
 Depends: atlantikdesigner-trinity (>= ${Source-Version}), kaddressbook-plugins-trinity (>= ${Source-Version}), kate-plugins-trinity (>= ${Source-Version}), tdeaddons-kfile-plugins-trinity (>= ${Source-Version}), kicker-applets-trinity (>= ${Source-Version}), konq-plugins-trinity (>= ${Source-Version}), ksig-trinity (>= ${Source-Version}), noatun-plugins-trinity (>= ${Source-Version})
@@ -64,7 +64,7 @@ Description: game board designer for Atlantik
 
 Package: kaddressbook-plugins-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kaddressbook-plugins-trinity (<< 4:14.0.0)
 Breaks: kaddressbook-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -104,7 +104,7 @@ Description: plugins for Kate, the KDE Advanced Text Editor
 
 Package: tdeaddons-kfile-plugins-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kdeaddons-kfile-plugins-trinity (<< 4:14.0.0)
 Breaks: kdeaddons-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -125,7 +125,7 @@ Description: Trinity file dialog plugins for text files and folders
 
 Package: kicker-applets-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kicker-applets-trinity (<< 4:14.0.0)
 Breaks: kicker-applets-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kicker-trinity
@@ -148,7 +148,7 @@ Description: applets for Kicker, the Trinity panel
 
 Package: knewsticker-scripts-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: knewsticker-scripts-trinity (<< 4:14.0.0)
 Breaks: knewsticker-scripts-trinity (<< 4:14.0.0)
 Depends: ${perl:Depends}, python, libfinance-quote-perl, libmime-perl, libnews-nntpclient-perl, libwww-perl
@@ -167,7 +167,7 @@ Description: scripts for KNewsTicker, the Trinity news ticker
 
 Package: konq-plugins-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: konq-plugins-trinity (<< 4:14.0.0)
 Breaks: konq-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, libjpeg-progs, python, rsync, unison
@@ -196,7 +196,7 @@ Description: plugins for Konqueror, the Trinity file/web/doc browser
 
 Package: ksig-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: ksig-trinity (<< 4:14.0.0)
 Breaks: ksig-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}

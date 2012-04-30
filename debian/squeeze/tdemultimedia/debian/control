@@ -1,5 +1,5 @@
 Source: tdemultimedia-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -8,7 +8,7 @@ Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, cdpar
 Standards-Version: 3.8.4
 
 Package: tdemultimedia-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdemultimedia-trinity (<< 4:14.0.0)
 Breaks: kdemultimedia-trinity (<< 4:14.0.0)
@@ -73,7 +73,7 @@ Description: synthesizer designer for aRts
  See the 'kde-trinity' and 'tdemultimedia-trinity' packages for more information.
 
 Package: juk-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: juk-trinity (<< 4:14.0.0)
 Breaks: juk-trinity (<< 4:14.0.0)
@@ -132,7 +132,7 @@ Description: CD ripper and audio encoder frontend for Trinity
  See the 'kde-trinity' and 'tdemultimedia-trinity' packages for more information.
 
 Package: tdemultimedia-kfile-plugins-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdemultimedia-kfile-plugins-trinity (<< 4:14.0.0)
 Breaks: kdemultimedia-kfile-plugins-trinity (<< 4:14.0.0)
@@ -144,7 +144,7 @@ Description: au/avi/m3u/mp3/ogg/wav plugins for kfile
  See the 'kde-trinity' and 'tdemultimedia-trinity' packages for more information.
 
 Package: tdemultimedia-kappfinder-data-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdemultimedia-kappfinder-data-trinity (<< 4:14.0.0)
 Breaks: kdemultimedia-kappfinder-data-trinity (<< 4:14.0.0)
@@ -156,7 +156,7 @@ Description: multimedia data for kappfinder-trinity
  See the 'kde-trinity' and 'tdemultimedia-trinity' packages for more information.
 
 Package: tdemultimedia-kio-plugins-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdemultimedia-kio-plugins-trinity (<< 4:14.0.0)
 Breaks: kdemultimedia-kio-plugins-trinity (<< 4:14.0.0)

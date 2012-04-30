@@ -1,5 +1,5 @@
 Source: tdeedu-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -9,7 +9,7 @@ Standards-Version: 3.8.4
 
 Package: tdeedu-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdeedu-trinity (<< 4:14.0.0)
 Breaks: kdeedu-trinity (<< 4:14.0.0)
 Depends: blinken-trinity (>= ${Source-Version}), kalzium-trinity (>= ${Source-Version}), kanagram-trinity (>= ${Source-Version}), kbruch-trinity (>= ${Source-Version}), tdeedu-data-trinity (>= ${Source-Version}), keduca-trinity (>= ${Source-Version}), kgeography-trinity (>= ${Source-Version}), khangman-trinity (>= ${Source-Version}), kig-trinity (>= ${Source-Version}), kiten-trinity (>= ${Source-Version}), klatin-trinity (>= ${Source-Version}), klettres-trinity (>= ${Source-Version}), kmplot-trinity (>= ${Source-Version}), kpercentage-trinity (>= ${Source-Version}), kstars-trinity (>= ${Source-Version}), ktouch-trinity (>= ${Source-Version}), kturtle-trinity (>= ${Source-Version}), kverbos-trinity (>= ${Source-Version}), kvoctrain-trinity (>= ${Source-Version}), kwordquiz-trinity (>= ${Source-Version}), indi-trinity (>= ${Source-Version})
@@ -25,7 +25,7 @@ Description: educational apps from the official Trinity release
 
 Package: tdeedu-data-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdeedu-data-trinity (<< 4:14.0.0)
 Breaks: kdeedu-data-trinity (<< 4:14.0.0)
 Description: shared data for Trinity educational applications
@@ -172,7 +172,7 @@ Description: fraction calculation teaching tool for Trinity
 
 Package: keduca-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: keduca-trinity (<< 4:14.0.0)
 Breaks: keduca-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
@@ -186,7 +186,7 @@ Description: interactive form-based tests for Trinity
 
 Package: kgeography-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kgeography-trinity (<< 4:14.0.0)
 Breaks: kgeography-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kgeography-data-trinity (>> ${KDE-Version3}), kgeography-data-trinity (<< ${KDE-Next-Version3}), tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
@@ -202,7 +202,7 @@ Description: Geography learning tool for Trinity
 
 Package: kgeography-data-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kgeography-data-trinity (<< 4:14.0.0)
 Breaks: kgeography-data-trinity (<< 4:14.0.0)
 Description: data files for KGeography
@@ -265,7 +265,7 @@ Description: interactive geometry program for KDE
 
 Package: kiten-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kiten-trinity (<< 4:14.0.0)
 Breaks: kiten-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3}), ttf-kochi-gothic | ttf-kochi-mincho
@@ -282,7 +282,7 @@ Description: Japanese reference/study tool for Trinity
 
 Package: klatin-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: klatin-trinity (<< 4:14.0.0)
 Breaks: klatin-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
@@ -307,7 +307,7 @@ Description: application to help revise/teach Latin
 
 Package: klettres-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: klettres-trinity (<< 4:14.0.0)
 Breaks: klettres-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, klettres-data-trinity (>> ${KDE-Version3}), klettres-data-trinity (<< ${KDE-Next-Version3}), tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
@@ -326,7 +326,7 @@ Description: foreign alphabet tutor for Trinity
 
 Package: klettres-data-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: klettres-data-trinity (<< 4:14.0.0)
 Breaks: klettres-data-trinity (<< 4:14.0.0)
 Description: data files for KLettres foreign alphabet tutor
@@ -421,7 +421,7 @@ Description: data files for KStars desktop planetarium
 
 Package: ktouch-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: ktouch-trinity (<< 4:14.0.0)
 Breaks: ktouch-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
@@ -469,7 +469,7 @@ Description: educational Logo programming environment
 
 Package: kverbos-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kverbos-trinity (<< 4:14.0.0)
 Breaks: kverbos-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
@@ -488,7 +488,7 @@ Description: Spanish verb form study application for Trinity
 
 Package: kvoctrain-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kvoctrain-trinity (<< 4:14.0.0)
 Breaks: kvoctrain-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${perl:Depends}, libwww-perl, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
@@ -514,7 +514,7 @@ Description: vocabulary trainer for Trinity
 
 Package: kwordquiz-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kwordquiz-trinity (<< 4:14.0.0)
 Breaks: kwordquiz-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})

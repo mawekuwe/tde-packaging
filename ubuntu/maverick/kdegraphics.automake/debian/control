@@ -1,5 +1,5 @@
 Source: kdegraphics-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -8,7 +8,7 @@ Build-Depends: imlib11-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotoo
 Standards-Version: 3.8.4
 
 Package: kdegraphics-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdegraphics-trinity (<< 4:14.0.0)
 Breaks: kdegraphics-trinity (<< 4:14.0.0)
@@ -85,7 +85,7 @@ Description: development files for the KDE graphics module
  See the 'kde-trinity' and 'kdegraphics-trinity' packages for more information.
 
 Package: kdegraphics-kfile-plugins-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdegraphics-kfile-plugins-trinity (<< 4:14.0.0)
 Breaks: kdegraphics-kfile-plugins-trinity (<< 4:14.0.0)
@@ -189,7 +189,7 @@ Description: an icon editor for Trinity
  See the 'kde-trinity' and 'kdegraphics-trinity' packages for more information.
 
 Package: kmrml-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kmrml-trinity (<< 4:14.0.0)
 Breaks: kmrml-trinity (<< 4:14.0.0)

@@ -1,5 +1,5 @@
 Source: tdeedu
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -9,7 +9,7 @@ Standards-Version: 3.7.2
 
 Package: tdeedu
 Architecture: all
-Section: kde
+Section: tde
 Depends: blinken (>= ${Source-Version}), kalzium (>= ${Source-Version}), kanagram (>= ${Source-Version}), kbruch (>= ${Source-Version}), tdeedu-data (>= ${Source-Version}), keduca (>= ${Source-Version}), kgeography (>= ${Source-Version}), khangman (>= ${Source-Version}), kig (>= ${Source-Version}), kiten (>= ${Source-Version}), klatin (>= ${Source-Version}), klettres (>= ${Source-Version}), kmplot (>= ${Source-Version}), kpercentage (>= ${Source-Version}), kstars (>= ${Source-Version}), ktouch (>= ${Source-Version}), kturtle (>= ${Source-Version}), kverbos (>= ${Source-Version}), kvoctrain (>= ${Source-Version}), kwordquiz (>= ${Source-Version}), indi (>= ${Source-Version})
 Suggests: tdeedu-doc-html
 Description: educational apps from the official KDE release
@@ -23,7 +23,7 @@ Description: educational apps from the official KDE release
 
 Package: tdeedu-data
 Architecture: all
-Section: kde
+Section: tde
 Description: shared data for KDE educational applications
  This package contains shared data necessary for running the
  educational applications provided with KDE (the K Desktop
@@ -155,7 +155,7 @@ Description: fraction calculation teaching tool for KDE
 
 Package: keduca
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: interactive form-based tests for KDE
@@ -167,7 +167,7 @@ Description: interactive form-based tests for KDE
 
 Package: kgeography
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, kgeography-data (>> ${KDE-Version3}), kgeography-data (<< ${KDE-Next-Version3}), tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: Geography learning tool for KDE
@@ -181,7 +181,7 @@ Description: Geography learning tool for KDE
 
 Package: kgeography-data
 Architecture: all
-Section: kde
+Section: tde
 Description: data files for KGeography
  This package contains architecture-independent data files for
  KGeography, the geography learning tool for KDE.  This includes map
@@ -238,7 +238,7 @@ Description: interactive geometry program for KDE
 
 Package: kiten
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3}), ttf-kochi-gothic | ttf-kochi-mincho
 Suggests: khelpcenter, tdeedu-doc-html
 Description: Japanese reference/study tool for KDE
@@ -253,7 +253,7 @@ Description: Japanese reference/study tool for KDE
 
 Package: klatin
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: application to help revise/teach Latin
@@ -276,7 +276,7 @@ Description: application to help revise/teach Latin
 
 Package: klettres
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, klettres-data (>> ${KDE-Version3}), klettres-data (<< ${KDE-Next-Version3}), tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: foreign alphabet tutor for KDE
@@ -293,7 +293,7 @@ Description: foreign alphabet tutor for KDE
 
 Package: klettres-data
 Architecture: all
-Section: kde
+Section: tde
 Replaces: klettres (<< 4:3.2.0.1)
 Description: data files for KLettres foreign alphabet tutor
  This package contains architecture-independent data files for
@@ -380,7 +380,7 @@ Description: data files for KStars desktop planetarium
 
 Package: ktouch
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: touch typing tutor for KDE
@@ -424,7 +424,7 @@ Description: educational Logo programming environment
 
 Package: kverbos
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: Spanish verb form study application for KDE
@@ -441,7 +441,7 @@ Description: Spanish verb form study application for KDE
 
 Package: kvoctrain
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, ${perl:Depends}, libwww-perl, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: vocabulary trainer for KDE
@@ -465,7 +465,7 @@ Description: vocabulary trainer for KDE
 
 Package: kwordquiz
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, tdeedu-data (>> ${KDE-Version3}), tdeedu-data (<< ${KDE-Next-Version3})
 Suggests: khelpcenter, tdeedu-doc-html
 Description: flashcard and vocabulary learning program for KDE

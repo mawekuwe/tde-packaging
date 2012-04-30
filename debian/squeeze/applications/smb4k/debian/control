@@ -1,5 +1,5 @@
 Source: smb4k-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: tdebase-trinity-dev, tdelibs4-trinity-dev, libart-2.0-dev, libpng3-dev, zlib1g-dev, debhelper (>= 4.1.0), cdbs, libx11-dev, libxext-dev, libxpm-dev, x-dev | x11proto-core-dev | libx11-dev, automake, autoconf, libtool, libltdl-dev

@@ -10,7 +10,7 @@ Homepage: http://trinity.pearsoncomputing.net
 
 Package: tdewebdev-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdewebdev-trinity (<< 4:14.0.0)
 Breaks: kdewebdev-trinity (<< 4:14.0.0)
 Depends: quanta-trinity (>= ${source:Version}), kfilereplace-trinity (>= ${source:Version}), kimagemapeditor-trinity (>= ${source:Version}), klinkstatus-trinity (>= ${source:Version}), kommander-trinity (>= ${source:Version}), kxsldbg-trinity (>= ${source:Version})
@@ -87,7 +87,7 @@ Description: data files for Quanta Plus web development environment [Trinity]
 
 Package: kfilereplace-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kfilereplace-trinity (<< 4:14.0.0)
 Breaks: kfilereplace-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -139,7 +139,7 @@ Description: web link validity checker for KDE [Trinity]
 
 Package: kommander-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kommander-trinity (<< 4:14.0.0)
 Breaks: kommander-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, gettext

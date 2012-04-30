@@ -1,5 +1,5 @@
 Source: kmplayer-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
@@ -36,7 +36,7 @@ Description: media player for Trinity
 
 Package: kmplayer-base-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kmplayer-base-trinity (<< 4:14.0.0)
 Breaks: kmplayer-base-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -47,7 +47,7 @@ Description: Base files for KMPlayer [Trinity]
 
 Package: kmplayer-konq-plugins-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kmplayer-konq-plugins-trinity (<< 4:14.0.0)
 Breaks: kmplayer-konq-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kmplayer-base-trinity (= ${binary:Version}), konqueror-trinity
@@ -59,7 +59,7 @@ Description: KMPlayer plugin for KHTML/Konqueror [Trinity]
 
 Package: kmplayer-trinity-doc
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kmplayer-trinity-doc (<< 4:14.0.0)
 Breaks: kmplayer-trinity-doc (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kmplayer-trinity

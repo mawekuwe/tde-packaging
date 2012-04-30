@@ -1,5 +1,5 @@
 Source: tdeartwork-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -10,7 +10,7 @@ Standards-Version: 3.8.4
 
 Package: tdeartwork-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdeartwork-trinity (<< 4:14.0.0)
 Breaks: kdeartwork-trinity (<< 4:14.0.0)
 Depends: tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), kscreensaver-trinity (>= ${Source-Version})
@@ -29,7 +29,7 @@ Description: themes, styles and more from the official Trinity release
 
 Package: tdeartwork-emoticons-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdeartwork-emoticons-trinity (<< 4:14.0.0)
 Breaks: kdeartwork-emoticons-trinity (<< 4:14.0.0)
 Enhances: kopete-trinity
@@ -42,7 +42,7 @@ Description: emoticon collections for KDE chat clients
 
 Package: tdeartwork-misc-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdeartwork-misc-trinity (<< 4:14.0.0)
 Breaks: kdeartwork-misc-trinity (<< 4:14.0.0)
 Suggests: kworldclock
@@ -55,7 +55,7 @@ Description: various multimedia goodies released with KDE
 
 Package: tdeartwork-style-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kdeartwork-style-trinity (<< 4:14.0.0)
 Breaks: kdeartwork-style-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -70,7 +70,7 @@ Description: widget styles released with Trinity
 
 Package: tdeartwork-theme-icon-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdeartwork-theme-icon-trinity (<< 4:14.0.0)
 Breaks: kdeartwork-theme-icon-trinity (<< 4:14.0.0)
 Recommends: kdesktop-trinity, kicker-trinity
@@ -84,7 +84,7 @@ Description: icon themes released with Trinity
 
 Package: tdeartwork-theme-window-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kdeartwork-theme-window-trinity (<< 4:14.0.0)
 Breaks: kdeartwork-theme-window-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
@@ -99,7 +99,7 @@ Description: window decoration themes released with Trinity
 
 Package: kdewallpapers-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kdewallpapers-trinity (<< 4:14.0.0)
 Breaks: kdewallpapers-trinity (<< 4:14.0.0)
 Suggests: twin-trinity | x-window-manager
@@ -112,7 +112,7 @@ Description: wallpapers released with Trinity
 
 Package: kscreensaver-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kscreensaver-trinity (<< 4:14.0.0)
 Breaks: kscreensaver-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin
@@ -131,7 +131,7 @@ Description: additional screen savers released with Trinity
 
 Package: kscreensaver-xsavers-trinity
 Architecture: any
-Section: kde
+Section: tde
 Replaces: kscreensaver-xsavers-trinity (<< 4:14.0.0)
 Breaks: kscreensaver-xsavers-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin, xscreensaver-data
@@ -154,7 +154,7 @@ Description: Trinity hooks for standard xscreensavers
 
 Package: kscreensaver-xsavers-webcollage-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kscreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
 Breaks: kscreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
 Depends: kscreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
@@ -179,7 +179,7 @@ Description: webcollage screensaver Trinity hook
 
 Package: kscreensaver-xsavers-extra-trinity
 Architecture: all
-Section: kde
+Section: tde
 Replaces: kscreensaver-xsavers-extra-trinity (<< 4:14.0.0)
 Breaks: kscreensaver-xsavers-extra-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kscreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies

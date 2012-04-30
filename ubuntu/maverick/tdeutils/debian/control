@@ -1,5 +1,5 @@
 Source: tdeutils-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -9,7 +9,7 @@ Build-Depends-Indep: doxygen, libtqtinterface-doc, graphviz, gsfonts-x11, tdelib
 Standards-Version: 3.8.4
 
 Package: tdeutils-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdeutils-trinity (<< 4:14.0.0)
 Breaks: kdeutils-trinity (<< 4:14.0.0)
@@ -138,7 +138,7 @@ Description: infrared control for Trinity
  See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kdessh-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kdessh-trinity (<< 4:14.0.0)
 Breaks: kdessh-trinity (<< 4:14.0.0)
@@ -198,7 +198,7 @@ Description: floppy formatter for KDE
  See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kgpg-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kgpg-trinity (<< 4:14.0.0)
 Breaks: kgpg-trinity (<< 4:14.0.0)
@@ -252,7 +252,7 @@ Description: note taking utility for Trinity
  See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: klaptopdaemon-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: klaptopdaemon-trinity (<< 4:14.0.0)
 Breaks: klaptopdaemon-trinity (<< 4:14.0.0)
@@ -300,7 +300,7 @@ Description:  non-standard plugins for KMilo
  See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kregexpeditor-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: kregexpeditor-trinity (<< 4:14.0.0)
 Breaks: kregexpeditor-trinity (<< 4:14.0.0)
@@ -359,7 +359,7 @@ Description: wallet manager for Trinity
  See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: superkaramba-trinity
-Section: kde
+Section: tde
 Architecture: any
 Replaces: superkaramba-trinity (<< 4:14.0.0)
 Breaks: superkaramba-trinity (<< 4:14.0.0)

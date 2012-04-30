@@ -1,5 +1,5 @@
 Source: tdeadmin
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -8,7 +8,7 @@ Build-Depends: cdbs (>= 0.4.39-0.1), autotools-dev, debhelper (>= 5.0.31), docbo
 Standards-Version: 3.7.2
 
 Package: tdeadmin
-Section: kde
+Section: tde
 Architecture: all
 Depends: kcron (>= ${Source-Version}), kdat (>= ${Source-Version}), tdeadmin-kfile-plugins (>= ${Source-Version}), knetworkconf (>= ${Source-Version}), kpackage (>= ${Source-Version}), ksysv (>= ${Source-Version}), kuser (>= ${Source-Version})
 Recommends: lilo-config (>= ${Source-Version})
@@ -72,7 +72,7 @@ Description: a KDE tape backup tool
  See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: tdeadmin-kfile-plugins
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: KDE file metainfo plugins for deb and rpm files
@@ -82,7 +82,7 @@ Description: KDE file metainfo plugins for deb and rpm files
  See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: knetworkconf
-Section: kde
+Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: KDE network configuration tool
@@ -130,7 +130,7 @@ Description: KDE user/group administration tool
  See the 'kde' and 'tdeadmin' packages for more information.
 
 Package: lilo-config
-Section: kde
+Section: tde
 Architecture: i386 amd64
 Depends: ${shlibs:Depends}, kcontrol
 Recommends: tdebase-bin

@@ -1,5 +1,5 @@
 Source: tdeaccessibility-trinity
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
@@ -8,7 +8,7 @@ Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, gettext, groff
 Standards-Version: 3.8.4
 
 Package: tdeaccessibility-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kdeaccessibility-trinity (<< 4:14.0.0)
 Breaks: kdeaccessibility-trinity (<< 4:14.0.0)
@@ -47,7 +47,7 @@ Description: KDE accessibility documentation in HTML format
  module. See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
 Package: kde-icons-mono-trinity
-Section: kde
+Section: tde
 Architecture: all
 Replaces: kde-icons-mono-trinity (<< 4:14.0.0)
 Breaks: kde-icons-mono-trinity (<< 4:14.0.0)

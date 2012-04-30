@@ -1,5 +1,5 @@
 Source: tdeartwork
-Section: kde
+Section: tde
 Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
@@ -10,7 +10,7 @@ Standards-Version: 3.7.2
 
 Package: tdeartwork
 Architecture: all
-Section: kde
+Section: tde
 Depends: tdeartwork-misc (>= ${Source-Version}), tdeartwork-emoticons (>= ${Source-Version}), tdeartwork-style (>= ${Source-Version}), tdeartwork-theme-icon (>= ${Source-Version}), tdeartwork-theme-window (>= ${Source-Version}), kdewallpapers (>= ${Source-Version}), kscreensaver (>= ${Source-Version})
 Recommends: kscreensaver-xsavers
 Description: themes, styles and more from the official KDE release
@@ -27,7 +27,7 @@ Description: themes, styles and more from the official KDE release
 
 Package: tdeartwork-emoticons
 Architecture: all
-Section: kde
+Section: tde
 Enhances: kopete
 Description: emoticon collections for KDE chat clients
  This package contains several collections of emoticons used by official
@@ -38,7 +38,7 @@ Description: emoticon collections for KDE chat clients
 
 Package: tdeartwork-misc
 Architecture: all
-Section: kde
+Section: tde
 Suggests: kworldclock
 Description: various multimedia goodies released with KDE
  This package contains miscellaneous multimedia goodies for KDE.
@@ -49,7 +49,7 @@ Description: various multimedia goodies released with KDE
 
 Package: tdeartwork-style
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Description: widget styles released with KDE
  This package contains additional widget styles for KDE. Widget styles
@@ -62,7 +62,7 @@ Description: widget styles released with KDE
 
 Package: tdeartwork-theme-icon
 Architecture: all
-Section: kde
+Section: tde
 Recommends: kdesktop, kicker
 Replaces: tdelibs-data (<< 4:3.5)
 Description: icon themes released with KDE
@@ -75,7 +75,7 @@ Description: icon themes released with KDE
 
 Package: tdeartwork-theme-window
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}
 Description: window decoration themes released with KDE
  This package contains additional window decoration themes for KDE. Window
@@ -88,7 +88,7 @@ Description: window decoration themes released with KDE
 
 Package: kdewallpapers
 Architecture: all
-Section: kde
+Section: tde
 Suggests: twin | x-window-manager
 Replaces: tdebase-data (<< 4:3.5)
 Description: wallpapers released with KDE
@@ -100,7 +100,7 @@ Description: wallpapers released with KDE
 
 Package: kscreensaver
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, tdebase-bin
 Recommends: twin, kscreensaver-xsavers (= ${Source-Version})
 Description: additional screen savers released with KDE
@@ -117,7 +117,7 @@ Description: additional screen savers released with KDE
 
 Package: kscreensaver-xsavers
 Architecture: any
-Section: kde
+Section: tde
 Depends: ${shlibs:Depends}, tdebase-bin, xscreensaver
 Recommends: twin, kscreensaver (= ${Source-Version}), xscreensaver-gl
 Suggests: kscreensaver-xsavers-webcollage
@@ -138,7 +138,7 @@ Description: KDE hooks for standard xscreensavers
 
 Package: kscreensaver-xsavers-webcollage
 Architecture: all
-Section: kde
+Section: tde
 Depends: kscreensaver-xsavers, miscfiles | wordlist, netpbm
 Description: webcollage screensaver KDE hook
  This package give access to the webcollage screensaver through the KDE
