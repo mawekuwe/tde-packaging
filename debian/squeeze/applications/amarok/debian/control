@@ -7,7 +7,7 @@ Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>
 Build-Depends: cdbs, debhelper (>= 5.0.0), quilt, bzip2,
  kdelibs4-trinity-dev,
  libxine-dev, libdbus-tqt-1-dev,
- libtag1-dev, libsqlite3-dev, libtunepimp-dev,
+ libtag1-dev, libsqlite3-dev,
  libmysqlclient15-dev | libmysqlclient16-dev, libpq-dev,
  libvisual-0.4-dev, libsdl1.2-dev,
  libifp-dev, libusb-dev, libgpod-nogtk-dev (>= 0.4.2), libnjb-dev, libmtp-dev,
