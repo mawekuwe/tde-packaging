@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev (>= 4:3.5.8), libdbus-qt-1-dev (>= 0.60), libldap2-dev, libhal-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libhal-storage-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, libxss-dev, libxxf86misc-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev, libdbus-qt-1-dev (>= 0.60), libldap2-dev, libhal-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libhal-storage-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, libxss-dev, libxxf86misc-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf
 Build-Depends-Indep: doxygen, qt3-doc, graphviz, gsfonts-x11, tdelibs4-doc
 Build-Conflicts: nvidia-glx (<< 1.0.8774-6)
 Standards-Version: 3.7.3
@@ -121,7 +121,7 @@ Description: shared data files for the KDE base module
 Package: tdebase-dev
 Section: devel
 Architecture: any
-Depends: kate (= ${Source-Version}), kcontrol (= ${Source-Version}), tdebase-bin (= ${Source-Version}), tdeprint (= ${Source-Version}), kdesktop (= ${Source-Version}), khelpcenter (= ${Source-Version}), kicker (= ${Source-Version}), klipper (= ${Source-Version}), kmenuedit (= ${Source-Version}), konqueror-nsplugins (= ${Source-Version}), konqueror (= ${Source-Version}), konsole (= ${Source-Version}), ksmserver (= ${Source-Version}), ksplash (= ${Source-Version}), ksysguard (= ${Source-Version}), twin (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: kate (= ${Source-Version}), kcontrol (= ${Source-Version}), tdebase-bin (= ${Source-Version}), tdeprint (= ${Source-Version}), kdesktop (= ${Source-Version}), khelpcenter (= ${Source-Version}), kicker (= ${Source-Version}), klipper (= ${Source-Version}), kmenuedit (= ${Source-Version}), konqueror-nsplugins (= ${Source-Version}), konqueror (= ${Source-Version}), konsole (= ${Source-Version}), ksmserver (= ${Source-Version}), ksplash (= ${Source-Version}), ksysguard (= ${Source-Version}), twin (= ${Source-Version}), tdelibs4-dev
 Replaces: kate (<< 4:3.0.0), tdebase (<< 4:3.0.0), konqueror (<< 4:3.0.0)
 Description: development files for the KDE base module
  This package contains headers and other development files needed to
@@ -518,7 +518,7 @@ Description: core libraries for Konqueror
 Package: libkonq4-dev
 Section: libdevel
 Architecture: any
-Depends: libkonq4 (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: libkonq4 (= ${Source-Version}), tdelibs4-dev
 Conflicts: libkonq-dev (<< 4:3.0.0), libkonq3 (<< 4:3.0.0)
 Replaces: tdebase-dev (<< 4:3.0.0), libkonq-dev (<< 4:3.0.0), libkonq3 (<< 4:3.0.0)
 Description: development files for Konqueror's core libraries

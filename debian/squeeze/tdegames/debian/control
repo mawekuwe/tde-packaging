@@ -76,7 +76,7 @@ Architecture: any
 Section: libdevel
 Replaces: libkdegames-trinity-dev (<< 4:14.0.0)
 Breaks: libkdegames-trinity-dev (<< 4:14.0.0)
-Depends: tdelibs4-trinity-dev (>= 4:3.5.1), libtdegames1-trinity (= ${Source-Version})
+Depends: tdelibs4-trinity-dev, libtdegames1-trinity (= ${Source-Version})
 Description: Trinity games library headers
  This package is necessary if you want to develop your own games using
  the KDE games library.

@@ -61,7 +61,7 @@ Section: utils
 Architecture: any
 Replaces: kdeutils-trinity-dev (<< 4:14.0.0)
 Breaks: kdeutils-trinity-dev (<< 4:14.0.0)
-Depends: ark-trinity (= ${Source-Version}), kcalc-trinity (= ${Source-Version}), kdelirc-trinity (= ${Source-Version}), kedit-trinity (= ${Source-Version}), khexedit-trinity (= ${Source-Version}), klaptopdaemon-trinity (= ${Source-Version}), kmilo-trinity (= ${Source-Version}), kregexpeditor-trinity (= ${Source-Version}), ksim-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: ark-trinity (= ${Source-Version}), kcalc-trinity (= ${Source-Version}), kdelirc-trinity (= ${Source-Version}), kedit-trinity (= ${Source-Version}), khexedit-trinity (= ${Source-Version}), klaptopdaemon-trinity (= ${Source-Version}), kmilo-trinity (= ${Source-Version}), kregexpeditor-trinity (= ${Source-Version}), ksim-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Description: development files for the Trinity utilities module
  This package contains development files needed to compile tdeutils
  applications.
@@ -202,7 +202,7 @@ Section: tde
 Architecture: any
 Replaces: kgpg-trinity (<< 4:14.0.0)
 Breaks: kgpg-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, konsole-trinity (>= 4:3.5.8), gnupg
+Depends: ${shlibs:Depends}, konsole-trinity, gnupg
 Suggests: khelpcenter-trinity
 Description: GnuPG frontend for Trinity
  Kgpg is a frontend for GNU Privacy Guard (GnuPG). It provides file

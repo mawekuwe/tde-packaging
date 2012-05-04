@@ -518,7 +518,7 @@ Section: libdevel
 Architecture: any
 Replaces: libkdepim1-trinity-dev (<< 4:14.0.0)
 Breaks: libkdepim1-trinity-dev (<< 4:14.0.0)
-Depends: libtdepim1a-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.7)
+Depends: libtdepim1a-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Description: Trinity PIM library [development]
  This is the development package which contains the headers for the libtdepim-trinity
  library.

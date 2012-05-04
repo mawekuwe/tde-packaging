@@ -550,7 +550,7 @@ Architecture: any
 Section: libdevel
 Replaces: libkdeedu-trinity-dev (<< 4:14.0.0)
 Breaks: libkdeedu-trinity-dev (<< 4:14.0.0)
-Depends: libtdeedu3-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: libtdeedu3-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Description: development files for Trinity educational library
  The KDE-based library libtdeedu is used with educational
  applications.  It currently provides support for data plotting and
@@ -586,7 +586,7 @@ Architecture: any
 Section: libdevel
 Replaces: libkiten-trinity-dev (<< 4:14.0.0)
 Breaks: libkiten-trinity-dev (<< 4:14.0.0)
-Depends: libkiten1-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: libkiten1-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Description: development files for Kiten library
  Kiten is a Japanese reference/study tool for KDE.  The library
  libkiten contains portions of Kiten that may be useful for other

@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev (>= 4:3.5.8), libboost-python-dev (>= 1.33.1), libfacile-ocaml-dev [alpha amd64 arm hppa i386 ia64 powerpc sparc], libusb-dev, sharutils, doxygen
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev, libboost-python-dev (>= 1.33.1), libfacile-ocaml-dev [alpha amd64 arm hppa i386 ia64 powerpc sparc], libusb-dev, sharutils, doxygen
 Standards-Version: 3.7.2
 
 Package: tdeedu
@@ -497,7 +497,7 @@ Description: library for use with KDE educational apps
 Package: libtdeedu-dev
 Architecture: any
 Section: libdevel
-Depends: libtdeedu3 (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: libtdeedu3 (= ${Source-Version}), tdelibs4-dev
 Description: development files for KDE educational library
  The KDE-based library libtdeedu is used with educational
  applications.  It currently provides support for data plotting and
@@ -530,7 +530,7 @@ Description: library for Kiten Japanese reference/study tool
 Package: libkiten-dev
 Architecture: any
 Section: libdevel
-Depends: libkiten1 (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: libkiten1 (= ${Source-Version}), tdelibs4-dev
 Description: development files for Kiten library
  Kiten is a Japanese reference/study tool for KDE.  The library
  libkiten contains portions of Kiten that may be useful for other

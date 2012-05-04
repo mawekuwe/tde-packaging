@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev (>= 4:3.5.8), automake1.9, libtool, groff-base, sharutils, bzip2, sharutils
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev, automake1.9, libtool, groff-base, sharutils, bzip2, sharutils
 Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, qt3-doc, tdelibs4-doc
 Standards-Version: 3.7.2
 
@@ -66,7 +66,7 @@ Description: debugging symbols for tdegames
 Package: libtdegames-dev
 Architecture: any
 Section: libdevel
-Depends: tdelibs4-dev (>= 4:3.5.1), libtdegames1 (= ${Source-Version})
+Depends: tdelibs4-dev, libtdegames1 (= ${Source-Version})
 Description: KDE games library headers
  This package is necessary if you want to develop your own games using
  the KDE games library.

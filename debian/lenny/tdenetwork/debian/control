@@ -308,7 +308,7 @@ Section: devel
 Architecture: any
 Replaces: kdenetwork-trinity-dev (<< 4:14.0.0)
 Breaks: kdenetwork-trinity-dev (<< 4:14.0.0)
-Depends: kdict-trinity (= ${Source-Version}), kopete-trinity (= ${Source-Version}), ksirc-trinity (= ${Source-Version}), librss1-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: kdict-trinity (= ${Source-Version}), kopete-trinity (= ${Source-Version}), ksirc-trinity (= ${Source-Version}), librss1-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Description: development files for the Trinity network module
  This is the development package which contains the headers for the KDE RSS
  library as well as the Kopete chat client, as well as miscellaneous

@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, debhelper (>= 5), tdelibs4-trinity-dev (>= 4:3.5.6), tdepim-trinity-dev (>= 4:3.5.6), libgpgme11-dev, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
+Build-Depends: libasound2-dev, debhelper (>= 5), tdelibs4-trinity-dev, tdepim-trinity-dev, libgpgme11-dev, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: basket-trinity

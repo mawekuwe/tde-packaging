@@ -76,7 +76,7 @@ Section: devel
 Architecture: any
 Replaces: kdegraphics-trinity-dev (<< 4:14.0.0)
 Breaks: kdegraphics-trinity-dev (<< 4:14.0.0)
-Depends: kghostview-trinity (= ${binary:Version}), kmrml-trinity (= ${binary:Version}), kpovmodeler-trinity (= ${binary:Version}), ksvg-trinity (= ${binary:Version}), kview-trinity (= ${binary:Version}), kviewshell-trinity (= ${binary:Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: kghostview-trinity (= ${binary:Version}), kmrml-trinity (= ${binary:Version}), kpovmodeler-trinity (= ${binary:Version}), ksvg-trinity (= ${binary:Version}), kview-trinity (= ${binary:Version}), kviewshell-trinity (= ${binary:Version}), tdelibs4-trinity-dev
 Description: development files for the KDE graphics module
  This package contains headers and other development files for the KDE
  graphics module.
@@ -376,7 +376,7 @@ Section: libdevel
 Architecture: any
 Replaces: libkscan-trinity-dev (<< 4:14.0.0)
 Breaks: libkscan-trinity-dev (<< 4:14.0.0)
-Depends: libkscan1-trinity (= ${binary:Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: libkscan1-trinity (= ${binary:Version}), tdelibs4-trinity-dev
 Description: development files for the Trinity scanner library
  This package contains development files for Trinity's scanner library.
  .
