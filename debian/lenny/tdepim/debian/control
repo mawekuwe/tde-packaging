@@ -116,7 +116,6 @@ Architecture: any
 Replaces: kaddressbook-trinity (<< 4:14.0.0)
 Breaks: kaddressbook-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
 Suggests: tdepim-kresources-trinity, tdebase-kio-plugins-trinity
 Description: KDE NG addressbook application
  KAddressBook is the main address book application for KDE; it enables you
@@ -174,7 +173,6 @@ Section: utils
 Architecture: any
 Replaces: karm-trinity (<< 4:14.0.0)
 Breaks: karm-trinity (<< 4:14.0.0)
-Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
 Depends: ${shlibs:Depends}
 Description: Trinity time tracker tool
  KArm is a time tracker for busy people who need to keep track of the amount of
@@ -274,7 +272,6 @@ Breaks: kmail-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${perl:Depends}, tdepim-kio-plugins-trinity, tdebase-kio-plugins-trinity, gpgsm, gnupg-agent, pinentry-qt | pinentry-x11
 Recommends: procmail
 Suggests: gnupg, gnupg-agent, pinentry-qt | pinentry-x11, kaddressbook-trinity, kleopatra-trinity, spamassassin | bogofilter | annoyance-filter | spambayes | bsfilter | crm114, clamav | f-prot-installer
-Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
 Provides: imap-client, mail-reader
 Description: Trinity Email client
  KMail is a fully-featured email client that fits nicely into the KDE
@@ -325,7 +322,6 @@ Replaces: knotes-trinity (<< 4:14.0.0)
 Breaks: knotes-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: tdepim-kresources-trinity
-Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
 Description: Trinity sticky notes
  KNotes is a program that lets you write sticky notes. The notes are saved
  automatically when you exit the program, and they display when you open the
@@ -389,7 +385,6 @@ Replaces: korganizer-trinity (<< 4:14.0.0)
 Breaks: korganizer-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${perl:Depends}
 Recommends: kghostview-trinity
-Conflicts: kontact-trinity (<< 4:3.5.7-1ubuntu5)
 Description: Trinity personal organizer
  This package contains KOrganizer, a calendar and scheduling program.
  .
