@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -39,8 +39,11 @@ Source5: kpackagerc
 Source6: ksysvrc
 Source7: kuserrc
 
-# [kdeadmin/knetworkconf] Add RHEL 5, RHEL 6, Fedora 15, Fedora 16
-Patch0:		kdeadmin-3.5.13-add_rhel_fedora.patch
+# [kdeadmin/knetworkconf] Add RHEL 5, RHEL 6, Fedora 15, Fedora 16, Fedora 17
+Patch1:		kdeadmin-3.5.13-add_rhel_fedora.patch
+
+# [kdeadmin] Fix linear alphabet string errors [Commit #1f719050]
+Patch2:		bp004-1f719050.diff
 
 Requires: trinity-kdelibs
 Requires: pkgconfig
@@ -50,23 +53,24 @@ BuildRequires: trinity-kdelibs-devel
 BuildRequires: rpm-devel
 
 %description
-The kdeadmin package includes administrative tools for the K Desktop
-Environment (KDE) including:
+The kdeadmin package includes administrative tools for the Trinity Desktop
+Environment (TDE) including:
 kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 
 
 %prep
 %setup -q -n kdeadmin
-%patch0 -p1
+
+%patch1 -p1 -b .knetworkconf
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -171,6 +175,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Thu Apr 03 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Fix knetworkconf support for Fedora, adds Fedora 17
+- Fix linear alphabet string errors [Commit #1f719050]
+ 
 * Wed Jan 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Add knetworkconf support for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 - Remove 'consolehelper' macro

@@ -1,0 +1,20 @@
+commit 84f29704e3fadcf1afb22da208e1dbb87feb7718
+Author: Serghei Amelian <serghei.amelian@gmail.com>
+Date:   1333065429 +0300
+
+    [kmail] fixed composer crash
+
+diff --git a/kmail/mailcomposerIface.h b/kmail/mailcomposerIface.h
+index 2858657..4cba7f3 100644
+--- a/kmail/mailcomposerIface.h
++++ b/kmail/mailcomposerIface.h
+@@ -13,6 +13,9 @@
+ class MailComposerIface : virtual public DCOPObject
+ {
+     K_DCOP
++
++    public: MailComposerIface() : DCOPObject("MailComposerIface") {}
++
+   k_dcop:
+     /**
+       Send message.      

@@ -44,11 +44,11 @@ Patch10:	kdelibs-3.5.13-maxlinelength.patch
 Patch11:	kdelibs-3.5.13-enable_pcre.patch
 ## [kdelibs/kate] Updated syntax highlighting files [Bug #764]
 Patch12:	kdelibs-3.5.13-kate_syntax.patch.gz
-## [kdelibs] Adds Inotify support (backport commit 24f144faf98249012e7b1657a5dfe93750f0dfde)
+## [kdelibs] Adds Inotify support (backport commit 24f144fa)
 Patch13:	kdelibs-3.5.13-add_inotify_support.patch
-## [kdelibs] Add fam/gamin support to tdelibs CMake (backport commit 2b035349c31fe64c31d2c050892b117a3a807179)
+## [kdelibs] Add fam/gamin support to tdelibs CMake (backport commit 2b035349)
 Patch14:	kdelibs-3.5.13-enable_fam_gamin.patch
-## [kdelibs/kioslave/http] Fix UTF8 Encoding for WebDAV directories
+## [kdelibs/kioslave/http] Fix UTF8 Encoding for WebDAV directories [Bug #766] [Commit #e131f10b]
 Patch15:	kdelibs-3.5.13-fix_UTF8_encoding_for_WebDAV_directories.patch
 ## [kdelibs/kdeprint] Fix add printer [Bug #383]
 Patch16:	kdelibs-3.5.13-fix_add_printer.patch

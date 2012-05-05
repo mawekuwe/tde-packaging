@@ -7,10 +7,10 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
-# TDE 3.5.12 specific building variables
+# TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
@@ -54,7 +54,7 @@ Summary: Development files for %{name}
 Group: Development/Libraries
 License: LGPLv2
 Provides: kdegames3-devel = %{version}-%{release}
-Requires: %{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires: %{name}-libs = %{version}-%{release}
 Requires: trinity-kdelibs-devel
 %description devel
 %{summary}.
@@ -67,7 +67,7 @@ Group:   System Environment/Libraries
 Requires: trinity-kdelibs
 License: LGPLv2
 # include to paranoid, installing libs-only is still mostly untested -- Rex
-#Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
+#Requires: %{name} = %{version}-%{release}
 %description libs
 %{summary}.
 
@@ -80,11 +80,11 @@ License: LGPLv2
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 

@@ -58,13 +58,14 @@ Patch4: kdenetwork-3.2.3-resolv.patch
 # include more/proper ppp headers
 Patch6: kdenetwork-3.5.9-krfb_httpd.patch
 
-# TDE 3.5.13 Fedora/RHEL patches
+# [kdenetwork] Fix kopete protocol compilation [Bug #695]
 Patch10:	kdenetwork-3.5.13-kopete_msn_protocol.patch
 Patch11:	kdenetwork-3.5.13-kopete_sms_protocol.patch
 Patch12:	kdenetwork-3.5.13-kopete_jabber_protocol.patch
 Patch13:	kdenetwork-3.5.13-kopete_motionawayplugin_ftbfs.patch
+# [kdenetwork] Fix references to "qname.h" [Bug #700]
 Patch14:	kdenetwork-3.5.13-reference_to_qmake_h.patch
-# WTF is this ? shitty hack in autotool was forgotten in CMAKE port !
+# WTF is this ? shitty hack in autotool was forgotten in CMAKE port ! [Bug #695]
 Source10:	kdenetwork-3.5.13-dummy.cpp
 
 Requires: %{name}-libs = %{version}-%{release}

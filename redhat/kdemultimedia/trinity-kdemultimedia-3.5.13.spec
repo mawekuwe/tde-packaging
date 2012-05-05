@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 5
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -56,6 +56,11 @@ Patch5: kdemultimedia-3.5.7-pthread.patch
 
 # [kdemultimedia] Fix MMX detection [Bug #800]
 Patch10:	kdemultimedia-3.5.13-fix_mmx_detection.patch
+# [tdemultimedia] Remove "More Applications" from TDE menu. [Commit #31e44a7b]
+Patch21:	kdemultimedia-3.5.13-remove_more_applications.patch
+# [tdemultimedia] Fix linear alphabet string errors [Commit #fd6afacf]
+Patch22:	kdemultimedia-3.5.13-fix_linear_alphabet.patch
+
 
 Requires: %{name}-libs = %{version}-%{release}
 
@@ -72,7 +77,7 @@ BuildRequires: alsa-lib-devel
 BuildRequires: cdparanoia-devel cdparanoia
 BuildRequires: gstreamer-devel
 BuildRequires: automake libtool
-%{?_with_akode:BuildRequires: akode-devel}
+%{?_with_akode:BuildRequires: trinity-akode-devel}
 %{?_with_musicbrainz:BuildRequires: libmusicbrainz-devel libtunepimp-devel}
 %{?_with_taglib:BuildRequires: taglib-devel}
 %{?_with_xine:BuildRequires: xine-lib-devel}
@@ -136,15 +141,17 @@ Requires: %{name} = %{version}-%{release}
 %patch3 -p1 -b .xdg
 %patch5 -p1 -b .pthread
 %patch10 -p1
+%patch21 -p1
+%patch22 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -172,7 +179,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?_with_xine} %{!?_with_xine:--without-xine} \
-   --with-extra-includes=%{_usr}/include/cdda:%{_includedir}/tqt \
+   --with-extra-includes="%{_usr}/include/cdda:%{_includedir}/tqt" \
    --enable-closure
 
 %__make %{?_smp_mflags}
@@ -415,6 +422,11 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libyafxplayer.so
 
 %changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Updates BuildRequires
+- Remove "More Applications" from TDE menu. [Commit #31e44a7b]
+- Fix linear alphabet string errors [Commit #fd6afacf]
+ 
 * Mon Jan 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Enables 'akode' support
 - Fix MMX support [Bug #800]

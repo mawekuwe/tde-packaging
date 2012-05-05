@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -47,6 +47,8 @@ Patch1: c_cpp_reference-2.0.2-config.patch
 Patch2: kdevelop-3.5.13-kdevdesigner-ftbfs.patch
 # Fix compilation with GCC 4.7
 Patch3: kdevelop-3.5.13-gcc47.patch
+# Fix installation of 'asm' files
+Patch4:	c_cpp_reference-2.0.2-install.patch
 
 Provides: kdevelop3 = %{version}-%{release}
 
@@ -128,6 +130,7 @@ Requires: %{name} = %{version}-%{release}
 %patch1 -p0 -b .config
 %patch2 -p1
 %patch3 -p1 -b .gcc47
+%patch4 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -234,6 +237,10 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Fix installation on Fedora 17
+- Fix compilation on GCC 4.7
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Fix HTML directory location
 

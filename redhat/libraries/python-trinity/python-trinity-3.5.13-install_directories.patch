@@ -1,5 +1,5 @@
---- configure.py.ORI	2011-12-03 17:07:41.589390850 +0100
-+++ configure.py	2011-12-03 17:14:35.226888035 +0100
+--- a/configure.py.ORI	2011-12-03 17:07:41.589390850 +0100
++++ b/configure.py	2011-12-03 17:14:35.226888035 +0100
 @@ -786,7 +786,7 @@
      sipconfig.ParentMakefile(
          configuration = pyqtcfg,

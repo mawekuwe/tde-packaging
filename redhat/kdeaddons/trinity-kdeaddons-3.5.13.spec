@@ -2,12 +2,12 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -35,8 +35,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0: kdeaddons-%{version}.tar.gz
 Source1: metabar-fedora.tar.bz2
 Source2: metabarrc
-
-Patch3: kdeaddons-3.5.3-sdl.patch
 
 BuildRequires: trinity-kdebase-devel
 BuildRequires: trinity-kdegames-devel
@@ -83,16 +81,14 @@ This package includes:
 %prep
 %setup -q -a 1 -n kdeaddons
 
-%patch3 -p1 -b .sdl
-
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -247,6 +243,9 @@ gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 
 
 %changelog
+* Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Removes SDL patch for noatun
+
 * Thu Dec 15 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Fix content of -extras package
 - Fix various packaging issues

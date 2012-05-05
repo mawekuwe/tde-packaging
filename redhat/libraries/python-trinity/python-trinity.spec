@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp python-trinity
 %define version 3.16.3
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -34,7 +34,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 ## RHEL/Fedora patches
-Patch0:		python-trinity-3.5.13-install_directories.patch
+Patch1:		python-trinity-3.5.13-install_directories.patch
+
+# [python-trinity] Fix compilation with GCC 4.7
+Patch2:		python-trinity-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -75,11 +78,12 @@ tips and working code you can use to learn from.
 
 %prep
 %setup -q -n libraries/%{kdecomp}
-%patch0 -p0
+%patch1 -p1
+%patch2 -p1
 
 # Hack to get TQT include files under /opt
 %__sed -i "configure.py" \
-	-e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+	-e "s|/usr/include/tqt|%{_includedir}/tqt|g"
 
 %build
 export PATH="%{_bindir}:${PATH}"
@@ -125,5 +129,9 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.16.3-2
+- Rebuild for Fedora 17
+- Fix compilation with GCC 4.7
+ 
 * Fri Dec 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.16.3-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

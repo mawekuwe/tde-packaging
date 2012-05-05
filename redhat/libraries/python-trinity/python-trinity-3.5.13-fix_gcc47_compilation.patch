@@ -1,0 +1,33 @@
+--- python-trinity/sip/kdecore/kaccel.sip.ORI	2012-05-01 23:10:27.686395190 +0200
++++ python-trinity/sip/kdecore/kaccel.sip	2012-05-01 23:10:39.955113222 +0200
+@@ -35,7 +35,7 @@
+                          KAccel (QWidget* /TransferThis/, const char* = 0);
+                          KAccel (QWidget*, QObject* /TransferThis/, const char* = 0);
+     KAccelActions&       actions ();
+-    bool                 isEnabled () const;
++    bool                 isEnabled ();
+     void                 setEnabled (bool);
+     bool                 setAutoUpdate (bool);
+ 
+--- python-trinity/sip/kdecore/kaccelbase.sip.ORI	2012-05-01 23:13:58.455551130 +0200
++++ python-trinity/sip/kdecore/kaccelbase.sip	2012-05-01 23:14:14.835174681 +0200
+@@ -48,7 +48,7 @@
+                          KAccelBase (int);
+     uint                 actionCount () const;
+     KAccelActions&       actions ();
+-    bool                 isEnabled () const;
++    bool                 isEnabled ();
+     KAccelAction*        actionPtr (const QString&);
+     KAccelAction*        actionPtr (const KKey&);
+     KAccelAction*        actionPtr (const KKeyServer::Key&);
+--- python-trinity/sip/kdecore/kglobalaccel.sip.ORI	2012-05-01 23:19:11.934346517 +0200
++++ python-trinity/sip/kdecore/kglobalaccel.sip	2012-05-01 23:19:18.755189755 +0200
+@@ -33,7 +33,7 @@
+ 
+ public:
+                          KGlobalAccel (QObject*, const char* = 0);
+-    bool                 isEnabled () const;
++    bool                 isEnabled ();
+     void                 setEnabled (bool);
+     KAccelAction*        insert (const QString&, const QString&, const QString&, const KShortcut&, const KShortcut&, SIP_RXOBJ_CON, SIP_SLOT_CON (), bool = 1, bool = 1);
+ 

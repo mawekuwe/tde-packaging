@@ -76,7 +76,7 @@ BuildRequires: OpenEXR-devel
 # kpdf
 BuildRequires: freetype-devel
 BuildRequires: poppler-devel
-BuildRequires: poppler-qt-devel >= 0.12
+BuildRequires: poppler-qt3-devel >= 0.12
 BuildRequires: libpaper-devel
 # ksvg
 %if 0%{?with_ksvg}

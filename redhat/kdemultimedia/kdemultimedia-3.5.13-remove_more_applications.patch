@@ -1,0 +1,49 @@
+commit 31e44a7b933cb32eaf1c9e3d8bbbaae806963956
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1331690438 -0500
+
+    Remove "More Applications" from TDE menu.
+    This partially resolves bug report 653.
+
+diff --git a/arts/builder/artsbuilder.desktop b/arts/builder/artsbuilder.desktop
+index 52a1b53..22e78e3 100644
+--- a/arts/builder/artsbuilder.desktop
++++ b/arts/builder/artsbuilder.desktop
+@@ -119,5 +119,5 @@ MimeType=application/x-artsbuilder;
+ DocPath=artsbuilder/index.html
+ X-DCOP-ServiceType=Multi
+ OnlyShowIn=KDE;
+-Categories=Qt;KDE;AudioVideo;X-KDE-More;
++Categories=Qt;KDE;AudioVideo;
+ NoDisplay=true
+diff --git a/arts/tools/artscontrol.desktop b/arts/tools/artscontrol.desktop
+index d4bc38f..39a2640 100644
+--- a/arts/tools/artscontrol.desktop
++++ b/arts/tools/artscontrol.desktop
+@@ -133,5 +133,5 @@ Terminal=false
+ X-DCOP-ServiceType=Multi
+ DocPath=artsbuilder/index.html
+ OnlyShowIn=KDE;
+-Categories=Qt;KDE;AudioVideo;X-KDE-More;
++Categories=Qt;KDE;AudioVideo;
+ NoDisplay=true
+diff --git a/kaboodle/kaboodle.desktop b/kaboodle/kaboodle.desktop
+index 2bddd99..f8f96e9 100644
+--- a/kaboodle/kaboodle.desktop
++++ b/kaboodle/kaboodle.desktop
+@@ -80,4 +80,4 @@ GenericName[zu]=Umdlali Womculo
+ Terminal=false
+ InitialPreference=6
+ X-DCOP-ServiceType=Multi
+-Categories=Qt;KDE;AudioVideo;X-KDE-More;
++Categories=Qt;KDE;AudioVideo;
+diff --git a/kmid/kmid.desktop b/kmid/kmid.desktop
+index 3920b85..f99bdda 100644
+--- a/kmid/kmid.desktop
++++ b/kmid/kmid.desktop
+@@ -85,4 +85,4 @@ ServiceTypes=Browser/View
+ X-KDE-Library=libkmidpart
+ X-KDE-StartupNotify=true
+ X-DCOP-ServiceType=Multi
+-Categories=Qt;KDE;AudioVideo;X-KDE-More;
++Categories=Qt;KDE;AudioVideo;

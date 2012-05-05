@@ -7,7 +7,7 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -40,6 +40,11 @@ Source0:	kdepim-%{version}.tar.gz
 # [kdepim] Fix compilation with GCC 4.7 [Bug #958]
 Patch1:		kdepim-3.5.13-fix_gcc47_compilation.patch
 
+# [tdepim] Reverse patch from GIT hash 33e649c9. [Bug #406] [Commit #2d5f15c8]
+Patch2:		kdepim-3.5.13-fix_check_mail.patch
+
+# [tdepim] Fix kmail composer crash [Bug #953]
+Patch3:		kdepim-3.5.13-fix_composer_crash.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -87,6 +92,8 @@ Development files for %{name}.
 %prep
 %setup -q -n kdepim
 %patch1 -p1 -b .gcc47
+%patch2 -p1
+%patch3 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -122,8 +129,7 @@ cd build
   -DBUILD_ALL=ON \
   ..
 
-# Do not use %{?_smp_mflags} !
-%__make 
+%__make  %{?_smp_mflags}
 
 %install
 export PATH="%{_bindir}:${PATH}"
@@ -172,6 +178,8 @@ export PATH="%{_bindir}:${PATH}"
 %changelog
 * Wed Apr 25 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Fix compilation with GCC 4.7 [Bug #958]
+- Reverse patch from GIT hash 33e649c9. [Bug #406] [Commit #2d5f15c8]
+- Fix kmail composer crash [Bug #953]
 
 * Sun Nov 27 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Add missing files '*.la'
