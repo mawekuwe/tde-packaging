@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp gtk-qt-engine
 %define version 0.8
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,6 +33,8 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [gtk-qt-engine] Fix inclusion of 'glib.h'
+Patch1:		gtk-qt-engine-3.5.13-fix_glib_include.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -53,7 +55,7 @@ a way to configure it from within KControl.
 
 %prep
 %setup -q -n applications/%{kdecomp}
-
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -65,12 +67,9 @@ sed -i CMakeLists.txt \
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 
-export CXXFLAGS="-I${QTINC} ${CXXFLAGS}"
-	
 %__mkdir build
 cd build
 %cmake \
-	-DKDE3PREFIX=%{_prefix} \
 	..
 
 %__make %{?_smp_mflags}
@@ -86,14 +85,6 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
 
-%post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-
-%postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-
 
 %files
 %defattr(-,root,root,-)
@@ -107,5 +98,10 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-2
+- Rebuilt for Fedora 17
+- Fix FTBFS with newer glib
+- Removes useless post and postun
+
 * Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

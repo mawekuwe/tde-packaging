@@ -1,0 +1,11 @@
+--- gtk-qt-engine/src/qt_theme_draw.c.ORI	2012-05-01 19:52:05.317334548 +0200
++++ gtk-qt-engine/src/qt_theme_draw.c	2012-05-01 19:54:50.474099070 +0200
+@@ -3,7 +3,7 @@
+ #include <gtk/gtkprogressbar.h>
+ #include <gdk/gdk.h>
+ #include <gtk/gtk.h>
+-#include <glib/glist.h>
++#include <glib.h>
+ 
+ #ifdef HAVE_BONOBO
+ #include <libbonobo.h>
