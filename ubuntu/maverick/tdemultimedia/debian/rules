@@ -27,14 +27,6 @@ PACKAGES_WITH_LIBS := artsbuilder-trinity tdemultimedia-kio-plugins-trinity kmid
 	libarts1-akode-trinity libarts1-audiofile-trinity libarts1-mpeglib-trinity libarts1-xine-trinity \
 	libkcddb1-trinity mpeglib-trinity noatun-trinity
 
-DEB_DH_MAKESHLIBS_ARGS_artsbuilder-trinity			:= -V'artsbuilder-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kmid-trinity			:= -V'kmid-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_libkcddb1-trinity			:= -V'libkcddb1-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_mpeglib-trinity			:= -V'mpeglib-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_noatun-trinity			:= -V'noatun-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_libarts1-mpeglib-trinity		:= -V'libarts1-mpeglib-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_tdemultimedia-kio-plugins-trinity 	:= -V'tdemultimedia-kio-plugins-trinity (>= 4:3.5.8-1)'
-
 #shlibs_ver = 4:3.5.0-1
 #$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
 

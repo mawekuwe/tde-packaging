@@ -22,12 +22,6 @@ DEB_DH_STRIP_ARGS  := --exclude=examples --dbg-package=tdeutils-trinity-dbg
 
 PACKAGES_WITH_LIBS := khexedit-trinity klaptopdaemon-trinity kmilo-trinity kregexpeditor-trinity ksim-trinity
 
-DEB_DH_MAKESHLIBS_ARGS_khexedit-trinity		:= -V'khexedit-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_klaptopdaemon-trinity	:= -V'klaptopdaemon-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kmilo-trinity		:= -V'kmilo-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kregexpeditor-trinity	:= -V'kregexpeditor-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_ksim-trinity		:= -V'ksim-trinity (>= 4:3.5.7-1)'
-
 #shlibs_ver = 4:3.5.0-1
 #$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
 

@@ -35,8 +35,6 @@ DEB_FIXPERMS_EXCLUDE := \
 
 DEB_DH_STRIP_ARGS  := --dbg-package=tdelibs-trinity-dbg
 
-DEB_DH_MAKESHLIBS_ARGS_tdelibs4c2a-trinity := -V'tdelibs4c2a-trinity (>= 4:3.5.8-1)'
-
 binary-install/tdelibs-data-trinity::
 	install -p -D -m644 kded/applications.menu debian/tdelibs-data-trinity/opt/trinity/etc/xdg/menus/kde-applications.menu
 	install -p -D -m644 debian/trinitylibs.conf debian/tdelibs-data-trinity/etc/ld.so.conf.d/trinitylibs.conf

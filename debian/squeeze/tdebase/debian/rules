@@ -38,16 +38,6 @@ DOC_HTML_PRUNE := kinfocenter ksplashml kcontrol khelpcenter tdesu knetattach ki
 PACKAGES_WITH_LIBS := kate-trinity kcontrol-trinity tdebase-trinity-bin kicker-trinity konqueror-trinity ksplash-trinity \
 			ksysguard-trinity twin-trinity libkonq4-trinity
 
-DEB_DH_MAKESHLIBS_ARGS_kate-trinity		:= -V'kate-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kcontrol-trinity		:= -V'kcontrol-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_tdebase-trinity-bin		:= -V'tdebase-trinity-bin (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kicker-trinity		:= -V'kicker-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_konqueror-trinity		:= -V'konqueror-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_ksplash-trinity		:= -V'ksplash-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_ksysguard-trinity		:= -V'ksysguard-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_twin-trinity		:= -V'twin-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_libkonq4-trinity		:= -V'libkonq4-trinity (>= 4:3.5.8-1)'
-
 #shlibs_ver = 4:3.5.0-1
 #$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
 

@@ -18,13 +18,6 @@ DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinit
 
 PACKAGES_WITH_LIBS := kbabel-trinity kompare-trinity kspy-trinity kunittest-trinity libcvsservice0-trinity umbrello-trinity
 
-DEB_DH_MAKESHLIBS_ARGS_kbabel-trinity			:= -V'kbabel-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kompare-trinity			:= -V'kompare-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kspy-trinity			:= -V'kspy-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kunittest-trinity			:= -V'kunittest-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_libcvsservice0-trinity		:= -V'libcvsservice0-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_umbrello-trinity			:= -V'umbrello-trinity (>= 4:3.5.8-1)'
-
 #shlibs_ver = 4:3.5.0-1
 #$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
 
