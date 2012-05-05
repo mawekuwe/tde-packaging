@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kaffeine
 %define version 0.8.8
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,12 +33,28 @@ Source2:	kaffeine.1
 # [kaffeine] Work around Xine crash when displaying still logo image by creating a small movie file to replace it [Bug #511, #559]
 Source1:		508cb342-logo
 
-# [kaffeine] Fix nominal "tqt" typos and fix slow DVB start. This closes bug reports 729 and 899.
-Patch1:			1331343133:fd68e4c4940afb4529b16e2c3e3d0f379ac7b161.diff
-# [kaffeine] Change location where Kaffeine stores temporary pipe files from $HOME to the more appropriate $KDEHOME/tmp-$HOSTNAME.
-Patch2:			1331957353:b480e3db3a01b75376fa6b83e5b01efe104ccaec.diff
-# [kaffeine] Fix typos, branding, and inadvertent tqt changes.
-Patch3:			1333649519:0e3d0ed603c6c8065fdcb77bc79b59a768fc6a5b.diff
+
+
+# [kaffeine] Rename old tq methods that no longer need a unique name[Commit #60ed202f]
+Patch1:			kaffeine-3.5.13-rename_old_tq_methods.patch
+# [kaffeine] Remove additional unneeded tq method conversions [Commit #701a1249]
+Patch2:			kaffeine-3.5.13-remove_additional_tq_conversions.patch
+# [kaffeine] Rename obsolete tq methods to standard names [Commit #66805baf]
+Patch3:			kdebase-3.5.13-rename_obsolete_tq_methods.patch
+# [kaffeine] Rename a few stragglers [Commit #89b5fd35]
+Patch4:			kdebase-3.5.13-renames_a_few_stragglers.patch
+# [kaffeine] Error out if critical OSD-related defines are not set [Commit #25b89439]
+Patch5:			kdebase-3.5.13-error_out_if_critical_osd_defines_not_set.patch
+# [kaffeine] Work around Xine crash when displaying still logo image by creating a small movie file to replace it [Bug #559, #511] [Commit #508cb342]
+Patch6:			kaffeine-3.5.13-work_around_xine_crash.patch
+# [kaffeine] Fix nominal "tqt" typos and fix slow DVB start. [Bug #729, #899] [Commit #fd68e4c4]
+Patch7:			kdebase-3.5.13-fix_slow_dvb_start.patch
+# [kaffeine] Change location where Kaffeine stores temporary pipe files from $HOME to the more appropriate $TDEHOME/tmp-$HOSTNAME. [Commit #b480e3db]
+Patch8:			kaffeine-3.5.13-fix_temporary_location.patch
+# [kaffeine] Fix typos, branding, and inadvertent tqt changes. [Commit #0e3d0ed6]
+Patch9:			kaffeine-3.5.13-fix_typos_branding_tqt.patch
+# [kaffeine] Fix installation of localization files [Bug #858]
+Patch10:		kaffeine-3.5.13-fix_localization_files.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -212,6 +228,10 @@ update-desktop-database >& /dev/null ||:
 
 
 %changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-2
+- Rebuilt for Fedora 17
+- Adds more patches from GIT.
+
 * Mon Apr 23 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-1
 - Updates version to 0.8.8
 - Fix nominal "tqt" typos and fix slow DVB start. [Bug #729, #899]

@@ -1,0 +1,28 @@
+diff -aruN kaffeine-trinity-3.5.13.orig/admin/am_edit kaffeine-trinity-3.5.13/admin/am_edit
+--- kaffeine-trinity-3.5.13.orig/admin/am_edit	2011-05-28 07:48:53.000000000 +0200
++++ kaffeine-trinity-3.5.13/admin/am_edit	2012-02-26 19:05:36.000000000 +0100
+@@ -1643,6 +1643,10 @@
+ 
+   $target_adds{"install-data-am"} .= "install-nls ";
+ 
++  if (!$lang) {
++    $tmp = "PACKAGE_BASE=`echo \"\$(PACKAGE)\" | sed \"s|-trinity-.*||\"`\n";
++    appendLines ($tmp);
++  }
+   $tmp = "install-nls:\n";
+   if ($lang) {
+     $tmp  .= "\t\$(mkinstalldirs) \$(DESTDIR)\$(kde_locale)/$lang/LC_MESSAGES\n";
+@@ -1661,10 +1665,10 @@
+     $tmp .= "\t  elif test -f \$(srcdir)/\$\$base.gmo; then \$(INSTALL_DATA) \$(srcdir)/\$\$base.gmo \$(DESTDIR)\$(kde_locale)/$lang/LC_MESSAGES/\$\$base.mo ;\\\n";
+     $tmp .= "\t  fi ;\\\n";
+   } else {
+-    $tmp .= "\t  echo \$(INSTALL_DATA) \$\$base.gmo \$(DESTDIR)\$(kde_locale)/\$\$base/LC_MESSAGES/\$(PACKAGE).mo ;\\\n";
++    $tmp .= "\t  echo \$(INSTALL_DATA) \$\$base.gmo \$(DESTDIR)\$(kde_locale)/\$\$base/LC_MESSAGES/\$(PACKAGE_BASE).mo ;\\\n";
+     $tmp .= "\t  \$(mkinstalldirs) \$(DESTDIR)\$(kde_locale)/\$\$base/LC_MESSAGES ; \\\n";
+-    $tmp .= "\t  if test -f \$\$base.gmo; then \$(INSTALL_DATA) \$\$base.gmo \$(DESTDIR)\$(kde_locale)/\$\$base/LC_MESSAGES/\$(PACKAGE).mo ;\\\n";
+-    $tmp .= "\t  elif test -f \$(srcdir)/\$\$base.gmo; then \$(INSTALL_DATA) \$(srcdir)/\$\$base.gmo \$(DESTDIR)\$(kde_locale)/\$\$base/LC_MESSAGES/\$(PACKAGE).mo ;\\\n";
++    $tmp .= "\t  if test -f \$\$base.gmo; then \$(INSTALL_DATA) \$\$base.gmo \$(DESTDIR)\$(kde_locale)/\$\$base/LC_MESSAGES/\$(PACKAGE_BASE).mo ;\\\n";
++    $tmp .= "\t  elif test -f \$(srcdir)/\$\$base.gmo; then \$(INSTALL_DATA) \$(srcdir)/\$\$base.gmo \$(DESTDIR)\$(kde_locale)/\$\$base/LC_MESSAGES/\$(PACKAGE_BASE).mo ;\\\n";
+     $tmp .= "\t  fi ;\\\n";
+   }
+   $tmp .= "\tdone\n\n";

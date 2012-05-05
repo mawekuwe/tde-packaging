@@ -41,6 +41,49 @@ index 2b1d2e7..57b9254 100644
   * @return 0 on success, -1 on failure.
   */
  typedef int (*en50221_app_auth_request_callback) (void *arg,
+diff --git a/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_teletext.h b/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_teletext.h
+index b5b85f1..ce6ef42 100644
+--- a/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_teletext.h
++++ b/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_teletext.h
+@@ -42,7 +42,7 @@ extern "C" {
+  * @param slot_id Slot id concerned.
+  * @param session_number Session number concerned.
+  * @param teletext_data Data for the request.
+- * @param teletext_data_lenghth Number of bytes.
++ * @param teletext_data_length Number of bytes.
+  * @return 0 on success, -1 on failure.
+  */
+ typedef int (*en50221_app_teletext_callback) (void *arg,
+diff --git a/kaffeine/src/kaffeine.cpp b/kaffeine/src/kaffeine.cpp
+index 2294956..6679b97 100644
+--- a/kaffeine/src/kaffeine.cpp
++++ b/kaffeine/src/kaffeine.cpp
+@@ -238,13 +238,13 @@ Kaffeine::Kaffeine() : DCOPObject("KaffeineIface"),
+ 	}
+ #endif
+ 
+-	/** KWin are you there? **/
++	/** TWin are you there? **/
+ 
+ 	m_haveKWin = KApplication::dcopClient()->isApplicationRegistered("twin");
+ 	if (m_haveKWin)
+-		kdDebug() << "Window manager: KWin found" << endl;
++		kdDebug() << "Window manager: TWin found" << endl;
+ 	else
+-		kdDebug() << "Window manager: not KWin - using save fullscreen mode" << endl;
++		kdDebug() << "Window manager: not TWin - using save fullscreen mode" << endl;
+ 
+ 	connect(&m_screensaverTimer, TQT_SIGNAL(timeout()), TQT_TQOBJECT(this), TQT_SLOT(slotFakeKeyEvent()));
+ 	m_screensaverTimer.start( 55000 );
+@@ -1261,7 +1261,7 @@ void Kaffeine::mouseDoubleClickEvent(TQMouseEvent*)
+ void Kaffeine::mousePressEvent(TQMouseEvent* mev)
+ {
+ 	kdDebug() << "Kaffeine: Mouse press event" << endl;
+-	if ( m_minimal->isChecked() && !m_fullscreen->isChecked() && (mev->button() == Qt::MidButton) ) {
++	if ( m_minimal->isChecked() && !m_fullscreen->isChecked() && (mev->button() == MidButton) ) {
+ 		if (topDock()->isVisible()) {
+ 			hideToolbars(true);
+ 			//menuBar()->hide;
 diff --git a/kaffeine/src/kmultitabbar.cpp b/kaffeine/src/kmultitabbar.cpp
 index 8d85e01..e8148a7 100644
 --- a/kaffeine/src/kmultitabbar.cpp
@@ -83,11 +126,11 @@ index 8d85e01..e8148a7 100644
  	m_btnTabSep->setFixedHeight(4);
 diff --git a/kaffeine/src/kmultitabbar.h b/kaffeine/src/kmultitabbar.h
 index 72fa884..2932cc2 100644
---- kaffeine/kaffeine/src/kmultitabbar.h.orig	2011-08-17 23:23:42.000000000 +0200
-+++ kaffeine/kaffeine/src/kmultitabbar.h	2012-04-25 23:51:09.339505891 +0200
-@@ -55,16 +55,16 @@
+--- a/kaffeine/src/kmultitabbar.h
++++ b/kaffeine/src/kmultitabbar.h
+@@ -55,16 +55,16 @@ class /*KUTILS_EXPORT*/ KMultiTabBar: public TQWidget
  	Q_OBJECT
-   TQ_OBJECT
+   
  public:
 -	enum KMultiTabBarMode{Horizontal,Vertical};
 +	enum KMultiTabBarMode{Horizontal, Vertical};
@@ -111,28 +154,28 @@ index ccb56f3..b7e88c7 100644
 +++ b/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp
 @@ -54,7 +54,7 @@ GStreamerConfig::GStreamerConfig(const TQStringList& audioDrivers, const TQStrin
  	label = new TQLabel(i18n("Prefered audio driver"), frame);
- 	tqlayout->addWidget(label, 1, 0);
- 	tqlayout->addWidget(m_audioDriverBox, 1, 1);
--	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
-+	tqlayout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
+ 	layout->addWidget(label, 1, 0);
+ 	layout->addWidget(m_audioDriverBox, 1, 1);
+-	layout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	layout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
  
  	//Video Page
  	frame = addPage(i18n("Video"), i18n("Video Options"), KGlobal::iconLoader()->loadIcon("video", KIcon::Panel,
 @@ -67,7 +67,7 @@ GStreamerConfig::GStreamerConfig(const TQStringList& audioDrivers, const TQStrin
  	label = new TQLabel(i18n("Prefered video driver")+ "*", frame);
- 	tqlayout->addWidget(label, 1, 0);
- 	tqlayout->addWidget(m_videoDriverBox, 1, 1);
--	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
-+	tqlayout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
- 	tqlayout->addWidget(new TQLabel(TQString("<small>") + i18n("* Restart required!") + "</small>", frame), 10, 1);
+ 	layout->addWidget(label, 1, 0);
+ 	layout->addWidget(m_videoDriverBox, 1, 1);
+-	layout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	layout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
+ 	layout->addWidget(new TQLabel(TQString("<small>") + i18n("* Restart required!") + "</small>", frame), 10, 1);
  
  	//Media page
 @@ -80,7 +80,7 @@ GStreamerConfig::GStreamerConfig(const TQStringList& audioDrivers, const TQStrin
  	label = new TQLabel(i18n("CD, VCD, DVD drive"), frame);
- 	tqlayout->addWidget(label, 1, 0);
- 	tqlayout->addWidget(m_driveEdit, 1, 1);
--	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
-+	tqlayout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
+ 	layout->addWidget(label, 1, 0);
+ 	layout->addWidget(m_driveEdit, 1, 1);
+-	layout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	layout->addMultiCellWidget(new KSeparator(KSeparator::Horizontal, frame), 2, 2, 0, 1);
  }
  
  GStreamerConfig::~GStreamerConfig()
@@ -214,10 +257,10 @@ index 98ff969..9fc18e6 100644
  		if (TQApplication::reverseLayout())
 diff --git a/kaffeine/src/player-parts/xine-part/xineconfig.cpp b/kaffeine/src/player-parts/xine-part/xineconfig.cpp
 index 6d6a2d4..1281911 100644
---- kaffeine/kaffeine/src/player-parts/xine-part/xineconfig.cpp.orig	2011-08-17 23:23:40.000000000 +0200
-+++ kaffeine/kaffeine/src/player-parts/xine-part/xineconfig.cpp	2012-04-25 23:53:25.094399051 +0200
-@@ -135,7 +135,7 @@
- 	description->tqsetAlignment( TQLabel::WordBreak | TQLabel::AlignVCenter );
+--- a/kaffeine/src/player-parts/xine-part/xineconfig.cpp
++++ b/kaffeine/src/player-parts/xine-part/xineconfig.cpp
+@@ -135,7 +135,7 @@ XineConfigEntry::XineConfigEntry(TQWidget* parent, TQGridLayout* grid, int row,
+ 	description->setAlignment( TQLabel::WordBreak | TQLabel::AlignVCenter );
  	grid->addWidget(description, row, 1);
  
 -	KSeparator* separator = new KSeparator(Qt::Horizontal, parent);

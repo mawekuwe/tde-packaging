@@ -1,0 +1,2103 @@
+commit 60ed202f8065829574473fdfc20f53281d274ceb
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324253348 -0600
+
+    Rename old tq methods that no longer need a unique name
+
+diff --git a/kaffeine/src/input/audiobrowser/playlist.cpp b/kaffeine/src/input/audiobrowser/playlist.cpp
+index 9c418a1..3735b61 100644
+--- a/kaffeine/src/input/audiobrowser/playlist.cpp
++++ b/kaffeine/src/input/audiobrowser/playlist.cpp
+@@ -75,14 +75,14 @@
+ 
+ RollTitle::RollTitle( TQWidget *parent ) : TQLabel( "I", parent )
+ {
+-	TQColorGroup cg = parentWidget()->tqcolorGroup();
++	TQColorGroup cg = parentWidget()->colorGroup();
+ 	TQColor base = cg.base();
+ 	TQColor selection = cg.highlight();
+ 	int r = (base.red() + selection.red()) / 2;
+ 	int b = (base.blue() + selection.blue()) / 2;
+ 	int g = (base.green() + selection.green()) / 2;
+ 	back = TQColor(r, g, b);
+-	fore = parentWidget()->tqcolorGroup().text();
++	fore = parentWidget()->colorGroup().text();
+ 	setPaletteBackgroundColor( back );
+ 	setPaletteForegroundColor( fore );
+ 	setFrameStyle( TQFrame::StyledPanel | TQFrame::Sunken );
+@@ -115,7 +115,7 @@ void RollTitle::setTitle( TQString t )
+ {
+ 	TQLabel *lab = new TQLabel( t, this );
+ 	lab->setFrameStyle( TQFrame::StyledPanel | TQFrame::Sunken );
+-	lab->resize( lab->tqsizeHint() );
++	lab->resize( lab->sizeHint() );
+ 	int x = 2*lab->frameWidth();
+ 	titlePix = TQPixmap( lab->width()-x, height()-x, -1, TQPixmap::BestOptim );
+ 	delete lab;
+@@ -149,7 +149,7 @@ void RollTitle::rollTitle()
+ void RollTitle::paintEvent( TQPaintEvent *pe )
+ {
+ 	TQLabel::paintEvent( pe );
+-	TQColorGroup cg = parentWidget()->tqcolorGroup();
++	TQColorGroup cg = parentWidget()->colorGroup();
+ 	TQColor base = cg.base();
+ 	TQColor selection = cg.highlight();
+ 	int r = (base.red() + selection.red()) / 2;
+@@ -157,7 +157,7 @@ void RollTitle::paintEvent( TQPaintEvent *pe )
+ 	int g = (base.green() + selection.green()) / 2;
+ 	back=TQColor(r,g,b);
+ 	setPaletteBackgroundColor( back );
+-	fore = parentWidget()->tqcolorGroup().text();
++	fore = parentWidget()->colorGroup().text();
+ 	setPaletteForegroundColor( fore );
+ 	setTitle( title );
+ }
+@@ -283,7 +283,7 @@ PlayList::PlayList( TQWidget* parent, TQObject *objParent, const char *name ) :
+ 	google = NULL;
+ 
+ 	mainWidget = new TQVBox( parent );
+-	//mainWidget->tqsetSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::Preferred) );
++	//mainWidget->setSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::Preferred) );
+ 	hSplit = new TQSplitter( mainWidget );
+ 	hSplit->setOpaqueResize( true );
+ 	panel = new TQVBox( hSplit );
+@@ -404,7 +404,7 @@ PlayList::PlayList( TQWidget* parent, TQObject *objParent, const char *name ) :
+ 	h2->addWidget(playlistLabel);
+ 	m_playlistSelector = new KComboBox( playlist );
+ 	m_playlistSelector->setMinimumWidth(10);
+-	m_playlistSelector->tqsetSizePolicy( TQSizePolicy (TQSizePolicy::MinimumExpanding, TQSizePolicy::Preferred) );
++	m_playlistSelector->setSizePolicy( TQSizePolicy (TQSizePolicy::MinimumExpanding, TQSizePolicy::Preferred) );
+ 	m_playlistSelector->setEditable(true);
+ 	m_playlistSelector->setDuplicatesEnabled(false);
+ 	m_playlistSelector->setFocusPolicy(TQ_ClickFocus);
+@@ -706,7 +706,7 @@ MRL PlayList::getCurrent()
+ 	if (isQueueMode())
+ 	{
+ 		m_queue.clear();
+-		updatetqStatus();
++		updateStatus();
+ 	}
+ 
+ 	if (m_random)
+@@ -747,7 +747,7 @@ bool PlayList::nextTrack( MRL &mrl )
+ 	{
+ 		mrl = m_queue.first();
+ 		m_queue.remove(m_queue.begin());
+-		updatetqStatus();
++		updateStatus();
+ 		return true;
+ 	}
+ 
+@@ -802,7 +802,7 @@ bool PlayList::previousTrack( MRL &mrl )
+ 	if (isQueueMode())
+ 	{
+ 		m_queue.clear();
+-		updatetqStatus();
++		updateStatus();
+ 	}
+ 
+ 	if (!m_currentEntry) {
+@@ -1349,7 +1349,7 @@ void PlayList::add(const TQStringList& urlList, TQListViewItem* after)
+ 
+ 	delete progress;
+ 	if (m_random) createRandomList();
+-	updatetqStatus();
++	updateStatus();
+ }
+ 
+ void PlayList::add(const TQValueList<MRL>& mrlList, TQListViewItem* after)
+@@ -1357,7 +1357,7 @@ void PlayList::add(const TQValueList<MRL>& mrlList, TQListViewItem* after)
+ 	TQValueList<MRL>::ConstIterator end(mrlList.end());
+ 	for (TQValueList<MRL>::ConstIterator it = mrlList.begin(); it != end; ++it)
+ 		after = insertItem(after, *it);
+-	updatetqStatus();
++	updateStatus();
+ 	if (m_random) createRandomList();
+ }
+ 
+@@ -1419,7 +1419,7 @@ void PlayList::clearList()
+ 		m_playlistFilter->clear();
+ 		m_searchSelection = false;
+ 	}
+-	updatetqStatus();
++	updateStatus();
+ 	m_currentEntry = NULL;
+ 	m_currentRandomListEntry = -1;
+ }
+@@ -1435,7 +1435,7 @@ void PlayList::slotDropEvent(TQDropEvent* dev, TQListViewItem* after)
+ 		{
+ 			for (uint i=0; i < urls.count() ;i++)
+ 			{
+-				//KURL url(TQUriDrag::tqunicodeUriToUri(urls[i]));
++				//KURL url(TQUriDrag::unicodeUriToUri(urls[i]));
+ 				//newurls << url.path(-1);
+ 				//kdDebug() << "PlayList: Dropped " << url.path() << endl;
+ 				newurls << urls[i];
+@@ -1453,7 +1453,7 @@ void PlayList::slotDropEvent(TQDropEvent* dev, TQListViewItem* after)
+ 	else
+ 		if (strcmp(dev->format(), "text/x-moz-url") == 0)    /* for mozilla drops */
+ 		{
+-			TQByteArray data = dev->tqencodedData("text/plain");
++			TQByteArray data = dev->encodedData("text/plain");
+ 			TQString md(data);
+ 			add(md, after);
+ 		}
+@@ -1602,7 +1602,7 @@ void PlayList::mergeMeta(const MRL& mrl)
+ 			if (tmp->isVisible())
+ 				m_playTimeVisible += timeStringToMs(tmp->length());
+ 
+-			updatetqStatus();
++			updateStatus();
+ 		}
+ 	}
+ 
+@@ -1762,10 +1762,10 @@ void PlayList::slotRemoveSelected()
+ 	}
+ 
+ 	if (m_random) createRandomList();
+-	updatetqStatus();
++	updateStatus();
+ }
+ 
+-void PlayList::updatetqStatus()
++void PlayList::updateStatus()
+ {
+ 	TQString status;
+ 	if (isQueueMode())
+@@ -2121,7 +2121,7 @@ void PlayList::slotFindText(const TQString& text)
+ 		m_searchSelection = true;
+ 
+ 	if (m_random) createRandomList();
+-	updatetqStatus();
++	updateStatus();
+ }
+ 
+ 
+@@ -2170,7 +2170,7 @@ void PlayList::slotCopy()
+ 
+ 	for (uint i=0; i<selected.count(); i++)
+ 	{
+-		urlList.append(TQUriDrag::tqunicodeUriToUri(dynamic_cast<PlaylistItem *>(selected.at(i))->url()));
++		urlList.append(TQUriDrag::unicodeUriToUri(dynamic_cast<PlaylistItem *>(selected.at(i))->url()));
+ 	}
+ 
+ 	TQApplication::tqclipboard()->setData(new TQUriDrag(urlList));
+@@ -2209,7 +2209,7 @@ void PlayList::slotPlaylistFromSelected()
+ void PlayList::slotAddToQueue(MRL mrl)
+ {
+ 	m_queue.append(mrl);
+-	updatetqStatus();
++	updateStatus();
+ }
+ 
+ /**** helper ****/
+diff --git a/kaffeine/src/input/audiobrowser/playlist.h b/kaffeine/src/input/audiobrowser/playlist.h
+index 7f0a89a..7be7a6d 100644
+--- a/kaffeine/src/input/audiobrowser/playlist.h
++++ b/kaffeine/src/input/audiobrowser/playlist.h
+@@ -239,7 +239,7 @@ private slots:
+ 
+ private:
+ 	TQListViewItem* insertItem(TQListViewItem* after, const MRL&);
+-	void updatetqStatus();
++	void updateStatus();
+ 	void createRandomList();
+ 	void getMetaInfo(MRL& mrl, const TQString& mimeName);
+ 	void setupActions();
+diff --git a/kaffeine/src/input/audiobrowser/playlistitem.cpp b/kaffeine/src/input/audiobrowser/playlistitem.cpp
+index 813f5c2..fe5a494 100644
+--- a/kaffeine/src/input/audiobrowser/playlistitem.cpp
++++ b/kaffeine/src/input/audiobrowser/playlistitem.cpp
+@@ -249,10 +249,10 @@ void PlaylistItem::paintCell(TQPainter *p, const TQColorGroup &cg, int column, i
+ {
+ 	if (isCurrent)
+ 	{
+-		TQColorGroup tqcolorGroup = cg;
++		TQColorGroup colorGroup = cg;
+ 
+-		TQColor base = tqcolorGroup.base();
+-		TQColor selection = tqcolorGroup.highlight();
++		TQColor base = colorGroup.base();
++		TQColor selection = colorGroup.highlight();
+ 
+ 		int r = (base.red() + selection.red()) / 2;
+ 		int b = (base.blue() + selection.blue()) / 2;
+@@ -260,8 +260,8 @@ void PlaylistItem::paintCell(TQPainter *p, const TQColorGroup &cg, int column, i
+ 
+ 		TQColor c(r, g, b);
+ 
+-		tqcolorGroup.setColor(TQColorGroup::Base, c);
+-		TQListViewItem::paintCell(p, tqcolorGroup, column, width, align);
++		colorGroup.setColor(TQColorGroup::Base, c);
++		TQListViewItem::paintCell(p, colorGroup, column, width, align);
+ 	}
+ 	else
+ 		return KListViewItem::paintCell(p, cg, column, width, align);
+diff --git a/kaffeine/src/input/disc/disc.cpp b/kaffeine/src/input/disc/disc.cpp
+index 62dc3a5..e392dca 100644
+--- a/kaffeine/src/input/disc/disc.cpp
++++ b/kaffeine/src/input/disc/disc.cpp
+@@ -50,7 +50,7 @@ MLabel::MLabel( TQWidget *parent ) : TQLabel( parent )
+ void MLabel::paintEvent( TQPaintEvent *pe )
+ {
+ 	TQLabel::paintEvent( pe );
+-	TQColorGroup cg = parentWidget()->tqcolorGroup();
++	TQColorGroup cg = parentWidget()->colorGroup();
+ 	TQColor base = cg.base();
+ 	TQColor selection = cg.highlight();
+ 	int r = (base.red() + selection.red()) / 2;
+@@ -76,22 +76,22 @@ void MListView::resizeEvent( TQResizeEvent *rev )
+ Disc::Disc( TQWidget* parent, TQObject *objParent, const char *name ) : KaffeineInput(objParent , name)
+ {
+ 	mainWidget = new TQVBox( parent );
+-	mainWidget->tqsetSizePolicy( TQSizePolicy(TQSizePolicy::Preferred, TQSizePolicy::Preferred) );
++	mainWidget->setSizePolicy( TQSizePolicy(TQSizePolicy::Preferred, TQSizePolicy::Preferred) );
+ 	split = new TQSplitter( mainWidget );
+ 	split->setOpaqueResize( true );
+ 	widg = new TQWidget( split );
+ 	widg->setMinimumWidth( 200 );
+-	widg->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding ) );
++	widg->setSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding ) );
+ 	TQVBoxLayout *wb = new TQVBoxLayout( widg, 0, 0 );
+ 	discLab = new MLabel( widg );
+ 	wb->addWidget( discLab );
+ 	playerBox = new TQVBox( widg );
+ 	wb->addWidget( playerBox );
+ 	playerBox->setMinimumWidth( 200 );
+-	playerBox->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding ) );
++	playerBox->setSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding ) );
+ 	panel = new TQFrame( split );
+ 	split->moveToFirst( panel );
+-	panel->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding ) );
++	panel->setSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding ) );
+ 	split->setResizeMode( panel, TQSplitter::KeepSize );
+ 
+ 	TQVBoxLayout *vb = new TQVBoxLayout( panel, 3, 3 );
+@@ -99,13 +99,13 @@ Disc::Disc( TQWidget* parent, TQObject *objParent, const char *name ) : Kaffeine
+ 	cdBtn->setTextLabel( i18n("Play CD") );
+ 	cdBtn->setTextPosition( TQToolButton::Under );
+ 	cdBtn->setUsesTextLabel( true );
+-	cdBtn->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::Fixed ) );
++	cdBtn->setSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::Fixed ) );
+ 	TQToolTip::add( cdBtn, i18n("Play CD"));
+ 	ripBtn = new TQToolButton( panel );
+ 	ripBtn->setTextLabel( i18n("Rip CD") );
+ 	ripBtn->setTextPosition( TQToolButton::Under );
+ 	ripBtn->setUsesTextLabel( true );
+-	ripBtn->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::Fixed ) );
++	ripBtn->setSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::Fixed ) );
+ 	TQToolTip::add( ripBtn, i18n("Rip CD"));
+ 
+ 	TQHBoxLayout *h1 = new TQHBoxLayout();
+@@ -124,7 +124,7 @@ Disc::Disc( TQWidget* parent, TQObject *objParent, const char *name ) : Kaffeine
+ 	artistLab = new TQLabel( "", panel );
+ 	artistLab->setLineWidth(1);
+ 	artistLab->setFrameStyle(TQFrame::Panel|TQFrame::Sunken);
+-	artistLab->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Expanding, TQSizePolicy::Preferred ) );
++	artistLab->setSizePolicy( TQSizePolicy( TQSizePolicy::Expanding, TQSizePolicy::Preferred ) );
+ 	h1->addWidget( artistLab );
+ 	vb->addLayout( h1 );
+ 	h1 = new TQHBoxLayout();
+@@ -132,7 +132,7 @@ Disc::Disc( TQWidget* parent, TQObject *objParent, const char *name ) : Kaffeine
+ 	albumLab = new TQLabel( "", panel );
+ 	albumLab->setLineWidth(1);
+ 	albumLab->setFrameStyle(TQFrame::Panel|TQFrame::Sunken);
+-	albumLab->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Expanding, TQSizePolicy::Preferred ) );
++	albumLab->setSizePolicy( TQSizePolicy( TQSizePolicy::Expanding, TQSizePolicy::Preferred ) );
+ 	h1->addWidget( albumLab );
+ 	vb->addLayout( h1 );
+ 
+@@ -161,7 +161,7 @@ Disc::Disc( TQWidget* parent, TQObject *objParent, const char *name ) : Kaffeine
+ 	enc->setTextPosition( TQToolButton::Under );
+ 	enc->setUsesTextLabel( true );
+ 	enc->setIconSet( KGlobal::iconLoader()->loadIconSet("kilogram", KIcon::Small) );
+-	enc->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Fixed, TQSizePolicy::Fixed ) );
++	enc->setSizePolicy( TQSizePolicy( TQSizePolicy::Fixed, TQSizePolicy::Fixed ) );
+ 	connect( enc, TQT_SIGNAL(clicked()), this, TQT_SLOT(encode()) );
+ 	vb->addWidget( encodeWidget );
+ 	encodeWidget->hide();
+diff --git a/kaffeine/src/input/disc/paranoiasettings.ui b/kaffeine/src/input/disc/paranoiasettings.ui
+index e20c98f..1d163d3 100644
+--- a/kaffeine/src/input/disc/paranoiasettings.ui
++++ b/kaffeine/src/input/disc/paranoiasettings.ui
+@@ -165,7 +165,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>60</height>
+@@ -190,7 +190,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>152</width>
+                                     <height>20</height>
+diff --git a/kaffeine/src/input/disc/plugins/mp3lame/lameconfig.ui b/kaffeine/src/input/disc/plugins/mp3lame/lameconfig.ui
+index 09a2a87..d956e5b 100644
+--- a/kaffeine/src/input/disc/plugins/mp3lame/lameconfig.ui
++++ b/kaffeine/src/input/disc/plugins/mp3lame/lameconfig.ui
+@@ -108,7 +108,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>16</height>
+@@ -133,7 +133,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>107</width>
+                                     <height>20</height>
+diff --git a/kaffeine/src/input/disc/plugins/oggvorbis/oggconfig.ui b/kaffeine/src/input/disc/plugins/oggvorbis/oggconfig.ui
+index b07342a..b243300 100644
+--- a/kaffeine/src/input/disc/plugins/oggvorbis/oggconfig.ui
++++ b/kaffeine/src/input/disc/plugins/oggvorbis/oggconfig.ui
+@@ -98,7 +98,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>81</height>
+@@ -123,7 +123,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>157</width>
+                                     <height>20</height>
+diff --git a/kaffeine/src/input/dvb/audioeditorui.ui b/kaffeine/src/input/dvb/audioeditorui.ui
+index 2324983..1131eec 100644
+--- a/kaffeine/src/input/dvb/audioeditorui.ui
++++ b/kaffeine/src/input/dvb/audioeditorui.ui
+@@ -118,7 +118,7 @@
+                                             <property name="sizeType">
+                                                 <enum>Expanding</enum>
+                                             </property>
+-                                            <property name="tqsizeHint">
++                                            <property name="sizeHint">
+                                                 <size>
+                                                     <width>40</width>
+                                                     <height>20</height>
+@@ -137,7 +137,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>20</width>
+                                             <height>40</height>
+@@ -274,7 +274,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>40</width>
+                                     <height>20</height>
+diff --git a/kaffeine/src/input/dvb/broadcasteditorui.ui b/kaffeine/src/input/dvb/broadcasteditorui.ui
+index 86da4cf..a0939a2 100644
+--- a/kaffeine/src/input/dvb/broadcasteditorui.ui
++++ b/kaffeine/src/input/dvb/broadcasteditorui.ui
+@@ -117,7 +117,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>20</width>
+                                             <height>20</height>
+@@ -150,7 +150,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>20</width>
+                                             <height>20</height>
+@@ -244,7 +244,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>20</height>
+diff --git a/kaffeine/src/input/dvb/channeleditorui.ui b/kaffeine/src/input/dvb/channeleditorui.ui
+index 24abfbb..ceb3d62 100644
+--- a/kaffeine/src/input/dvb/channeleditorui.ui
++++ b/kaffeine/src/input/dvb/channeleditorui.ui
+@@ -72,7 +72,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>40</width>
+                                     <height>20</height>
+@@ -633,7 +633,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>166</height>
+@@ -666,7 +666,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>150</width>
+                                     <height>20</height>
+diff --git a/kaffeine/src/input/dvb/crontimerui.ui b/kaffeine/src/input/dvb/crontimerui.ui
+index 5b7a3bd..87baff7 100644
+--- a/kaffeine/src/input/dvb/crontimerui.ui
++++ b/kaffeine/src/input/dvb/crontimerui.ui
+@@ -45,7 +45,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>32</width>
+                                     <height>20</height>
+@@ -138,7 +138,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>20</width>
+                                             <height>67</height>
+@@ -157,7 +157,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>39</width>
+                                     <height>20</height>
+@@ -243,7 +243,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>32</width>
+                                     <height>20</height>
+@@ -262,7 +262,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>95</height>
+@@ -295,7 +295,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>177</width>
+                                     <height>20</height>
+diff --git a/kaffeine/src/input/dvb/dvbevents.cpp b/kaffeine/src/input/dvb/dvbevents.cpp
+index b842018..a777f79 100644
+--- a/kaffeine/src/input/dvb/dvbevents.cpp
++++ b/kaffeine/src/input/dvb/dvbevents.cpp
+@@ -170,7 +170,7 @@ bool DVBevents::tableEIT( unsigned char* buffer )
+ 	TQPtrList<EventDesc> *currentEvents;
+ 	bool nodesc, parse;
+ 	TQDateTime start, cur, dt;
+-	unsigned int cdt = TQDateTime::tqcurrentDateTime().toTime_t();
++	unsigned int cdt = TQDateTime::currentDateTime().toTime_t();
+ 
+ 	tid = getBits(buf,0,8);
+ 	length = getBits(buf,12,12);
+@@ -298,7 +298,7 @@ ifend:
+ 		if ( parse )
+ 			++(desc->sn);
+ 		if ( nodesc ) {
+-			cur = TQDateTime::tqcurrentDateTime();
++			cur = TQDateTime::currentDateTime();
+ 			dt = desc->startDateTime;
+ 			sec = desc->duration.hour()*3600+desc->duration.minute()*60+desc->duration.second();
+ 			if ( dt.addSecs( sec )<cur || desc->title.length()<3 ) {
+diff --git a/kaffeine/src/input/dvb/dvbout.cpp b/kaffeine/src/input/dvb/dvbout.cpp
+index bd94126..1f392a8 100644
+--- a/kaffeine/src/input/dvb/dvbout.cpp
++++ b/kaffeine/src/input/dvb/dvbout.cpp
+@@ -402,7 +402,7 @@ bool DVBout::goRec( const TQString &name, int maxsize, RecTimer *t )
+ 
+ 	haveRec = true;
+ 	if ( recTimer ) {
+-		TQTime t = recTimer->duration.addSecs( TQDateTime::tqcurrentDateTime().secsTo(recTimer->begin) );
++		TQTime t = recTimer->duration.addSecs( TQDateTime::currentDateTime().secsTo(recTimer->begin) );
+ 		stopRecTimer.start( TQTime().msecsTo( t ), true );
+ 	}
+ 	else
+diff --git a/kaffeine/src/input/dvb/dvbpanel.cpp b/kaffeine/src/input/dvb/dvbpanel.cpp
+index 3623d7f..1b54229 100644
+--- a/kaffeine/src/input/dvb/dvbpanel.cpp
++++ b/kaffeine/src/input/dvb/dvbpanel.cpp
+@@ -114,7 +114,7 @@ DvbPanel::DvbPanel( TQWidget *parent, TQObject *objParent, const char *name ) :
+ 	dvb.setAutoDelete( true );
+ 
+ 	mainWidget = new TQVBox( parent );
+-	mainWidget->tqsetSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::Preferred) );
++	mainWidget->setSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::Preferred) );
+ 	split = new TQSplitter( mainWidget );
+ 	split->setOpaqueResize( true );
+ 	pbox = new TQVBox( split );
+@@ -129,7 +129,7 @@ DvbPanel::DvbPanel( TQWidget *parent, TQObject *objParent, const char *name ) :
+ 	iconView->setSpacing(0);
+ 	iconView->setItemsMovable(false);
+ 	iconView->setResizeMode(TQIconView::Adjust);
+-	iconView->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::Minimum ) );
++	iconView->setSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::Minimum ) );
+ 	playerBox = new TQVBox( pbox );
+ 	playerBox->setMinimumWidth( 200 );
+ 	panel = new TQFrame( split );
+@@ -192,7 +192,7 @@ DvbPanel::DvbPanel( TQWidget *parent, TQObject *objParent, const char *name ) :
+ 	channelsCb->addColumn( i18n("Name") );
+ 	channelsCb->addColumn( i18n("Source") );
+ 	channelsCb->setAllColumnsShowFocus( true );
+-	channelsCb->tqsetSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding) );
++	channelsCb->setSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding) );
+ 	//channelsCb->setEnabled( false );
+ 	vb->addWidget( channelsCb );
+ 
+@@ -209,14 +209,14 @@ DvbPanel::DvbPanel( TQWidget *parent, TQObject *objParent, const char *name ) :
+ 	h1 = new TQHBoxLayout();
+ 	h1->addItem( new TQSpacerItem( 1, 1, TQSizePolicy::Preferred, TQSizePolicy::Minimum ) );
+ 	shiftLed = new KLed( panel );
+-	shiftLed->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Fixed, TQSizePolicy::Fixed ) );
++	shiftLed->setSizePolicy( TQSizePolicy( TQSizePolicy::Fixed, TQSizePolicy::Fixed ) );
+ 	shiftLed->setDarkFactor( 500 );
+ 	shiftLed->off();
+ 	TQToolTip::add( shiftLed, i18n("Time shifting") );
+ 	h1->addWidget( shiftLed );
+ 	h1->addItem( new TQSpacerItem( 1, 1, TQSizePolicy::Preferred, TQSizePolicy::Minimum ) );
+ 	recordLed = new KLed( panel );
+-	recordLed->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Fixed, TQSizePolicy::Fixed ) );
++	recordLed->setSizePolicy( TQSizePolicy( TQSizePolicy::Fixed, TQSizePolicy::Fixed ) );
+ 	recordLed->setColor( TQColor( 255,0,0 ) );
+ 	recordLed->setDarkFactor( 500 );
+ 	recordLed->off();
+@@ -224,7 +224,7 @@ DvbPanel::DvbPanel( TQWidget *parent, TQObject *objParent, const char *name ) :
+ 	h1->addWidget( recordLed );
+ 	h1->addItem( new TQSpacerItem( 1, 1, TQSizePolicy::Preferred, TQSizePolicy::Minimum ) );
+ 	broadcastLed = new KLed( panel );
+-	broadcastLed->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Fixed, TQSizePolicy::Fixed ) );
++	broadcastLed->setSizePolicy( TQSizePolicy( TQSizePolicy::Fixed, TQSizePolicy::Fixed ) );
+ 	broadcastLed->setColor( TQColor( 255,128,0 ) );
+ 	broadcastLed->setDarkFactor( 500 );
+ 	broadcastLed->off();
+@@ -272,7 +272,7 @@ DvbPanel::DvbPanel( TQWidget *parent, TQObject *objParent, const char *name ) :
+ 	connect( &showOsdTimer, TQT_SIGNAL(timeout()), this, TQT_SLOT(dvbOSD()) );
+ 	connect( &tuningTimer, TQT_SIGNAL(timeout()), this, TQT_SLOT(setTuning()) );
+ 	connect( &stopTuningTimer, TQT_SIGNAL(timeout()), this, TQT_SLOT(setTuning()) );
+-	connect( &diskTimer, TQT_SIGNAL(timeout()), this, TQT_SLOT(disktqStatus()) );
++	connect( &diskTimer, TQT_SIGNAL(timeout()), this, TQT_SLOT(diskStatus()) );
+ 
+ 	setConfig();
+ 
+@@ -295,7 +295,7 @@ void DvbPanel::togglePanel()
+ 
+ 
+ 
+-void DvbPanel::disktqStatus()
++void DvbPanel::diskStatus()
+ {
+ 	double freemb;
+ 	struct statvfs buf;
+@@ -644,7 +644,7 @@ void DvbPanel::dumpEvents()
+ 	if ( f.open(IO_WriteOnly|IO_Truncate) ) {
+ 		fprintf( stderr, "Creating events file.\n");
+ 		TQTextStream tt( &f );
+-		tt << "Saved: "+TQDateTime::tqcurrentDateTime().toString( "dd-MM-yyyy hh:mm:ss" )+"\n";
++		tt << "Saved: "+TQDateTime::currentDateTime().toString( "dd-MM-yyyy hh:mm:ss" )+"\n";
+ 		k= 0;
+ 		for( i=0; i<events.getNSource(); i++ ) {
+ 			if ( !(esrc=events.getNEventSource( i )) )
+@@ -956,7 +956,7 @@ void DvbPanel::dvbOSD(ChannelDesc liveChannel, DvbStream *d, int timeShift /* =
+ 			s = s+" - ";
+ 			s = s+desc->title;
+ 			if ( !osdMode && !first && !myshift ) {
+-				TQDateTime dt = TQDateTime::tqcurrentDateTime();
++				TQDateTime dt = TQDateTime::currentDateTime();
+ 				int secs = desc->startDateTime.secsTo( dt );
+ 				i = TQTime().secsTo( desc->duration );
+ 				if ( i!=0 )
+@@ -1131,7 +1131,7 @@ void DvbPanel::camClicked( int devNum )
+ 
+ 
+ 
+-TQPtrList<Transponder> DvbPanel::getSourcestqStatus()
++TQPtrList<Transponder> DvbPanel::getSourcesStatus()
+ {
+ 	int i, j;
+ 	TQStringList list;
+@@ -1163,7 +1163,7 @@ void DvbPanel::fillChannelList( ChannelDesc *ch )
+ 	ChannelDesc *chan;
+ 	KListViewItem *it, *visible=0;
+ 	bool cont=false;
+-	TQPtrList<Transponder> trans = getSourcestqStatus();
++	TQPtrList<Transponder> trans = getSourcesStatus();
+ 	trans.setAutoDelete( true );
+ 
+ 	searchLE->clear();
+@@ -1320,7 +1320,7 @@ void DvbPanel::checkTimers()
+ 	bool live=false;
+ 	RecTimer *t;
+ 	ChannelDesc *chan;
+-	TQDateTime cur=TQDateTime::tqcurrentDateTime();
++	TQDateTime cur=TQDateTime::currentDateTime();
+ 	DvbStream *d;
+ 
+ 	for ( i=0; i<(int)timers.count(); i++ ) {
+@@ -1409,13 +1409,13 @@ void DvbPanel::setRecord()
+ 		if ( !dvbConfig->filenameFormat.contains("%chan") )
+ 			s = curchan.name;
+ 		if ( !dvbConfig->filenameFormat.contains("%date") )
+-			s+="_"+TQDateTime::tqcurrentDateTime().toString( "yyyyMMdd-hhmmss" );
++			s+="_"+TQDateTime::currentDateTime().toString( "yyyyMMdd-hhmmss" );
+ 	}
+ 
+ 	rt = new RecTimer();
+ 	rt->name = s;
+ 	rt->channel = curchan.name;
+-	rt->begin = TQDateTime::tqcurrentDateTime();
++	rt->begin = TQDateTime::currentDateTime();
+ 	rt->duration = TQTime( 0,0,0).addSecs( dvbConfig->instantDuration*60 ) ;
+ 	rt->running = 1;
+ 	rt->mode = 0;
+@@ -2074,7 +2074,7 @@ void DvbPanel::pauseLiveTV()
+ 	if ( !d )
+ 		return;
+ 
+-	timeShiftFileName = dvbConfig->shiftDir+"DVBLive-"+TQDateTime::tqcurrentDateTime().toString("yyyyMMddThhmmss")+".m2t";
++	timeShiftFileName = dvbConfig->shiftDir+"DVBLive-"+TQDateTime::currentDateTime().toString("yyyyMMddThhmmss")+".m2t";
+ 	if ( d->doPause( timeShiftFileName ) )
+ 		emit setTimeShiftFilename( timeShiftFileName );
+ }
+diff --git a/kaffeine/src/input/dvb/dvbpanel.h b/kaffeine/src/input/dvb/dvbpanel.h
+index d126bb6..4dbf554 100644
+--- a/kaffeine/src/input/dvb/dvbpanel.h
++++ b/kaffeine/src/input/dvb/dvbpanel.h
+@@ -154,7 +154,7 @@ public slots:
+ 
+ 	void dvbNewTimer( TQString name, TQString channel, TQString datetime, TQString duration );
+ 	int getSNR( int device );
+-	void disktqStatus();
++	void diskStatus();
+ 	void camClicked( int devNum );
+ 
+ private:
+@@ -163,7 +163,7 @@ private:
+ 	bool getTimerList();
+ 	bool saveTimerList();
+ 	void fillChannelList( ChannelDesc *ch=0 );
+-	TQPtrList<Transponder> getSourcestqStatus();
++	TQPtrList<Transponder> getSourcesStatus();
+ 	void updateModeTimer( RecTimer *t );
+ 	DvbStream* getWorkingDvb( int mode, ChannelDesc *chan );
+ 
+diff --git a/kaffeine/src/input/dvb/dvbstream.cpp b/kaffeine/src/input/dvb/dvbstream.cpp
+index b3ca31d..4ef290b 100644
+--- a/kaffeine/src/input/dvb/dvbstream.cpp
++++ b/kaffeine/src/input/dvb/dvbstream.cpp
+@@ -84,7 +84,7 @@ DvbStream::DvbStream( Device *d, const TQString &charset, EventTable *et )
+ 	cam = NULL;
+ 	plug = NULL;
+ 
+-	connect( &statusTimer, TQT_SIGNAL(timeout()), this, TQT_SLOT(checktqStatus()) );
++	connect( &statusTimer, TQT_SIGNAL(timeout()), this, TQT_SLOT(checkStatus()) );
+ }
+ 
+ 
+@@ -221,7 +221,7 @@ bool DvbStream::closeFe()
+ 
+ 
+ 
+-void DvbStream::connecttqStatus( bool con )
++void DvbStream::connectStatus( bool con )
+ {
+ 	if ( con )
+ 		statusTimer.start( 1000 );
+@@ -879,7 +879,7 @@ void DvbStream::removeOut( DVBout *o )
+ 
+ 
+ 
+-bool DvbStream::checktqStatus()
++bool DvbStream::checkStatus()
+ {
+ 	int32_t strength;
+ 	fe_status_t festatus;
+@@ -887,19 +887,19 @@ bool DvbStream::checktqStatus()
+ 
+        strength=0;
+ 	ioctl(fdFrontend,FE_READ_SIGNAL_STRENGTH,&strength);
+-	emit signaltqStatus(strength*100/65535);
++	emit signalStatus(strength*100/65535);
+ 
+ 	strength=0;
+ 	ioctl(fdFrontend,FE_READ_SNR,&strength);
+-	emit snrtqStatus(strength*100/65535);
++	emit snrStatus(strength*100/65535);
+ 
+ 	memset( &festatus, 0, sizeof(festatus) );
+ 	ioctl(fdFrontend,FE_READ_STATUS,&festatus);
+ 
+ 	if (festatus & FE_HAS_LOCK)
+-		emit locktqStatus( true );
++		emit lockStatus( true );
+ 	else {
+-		emit locktqStatus( false );
++		emit lockStatus( false );
+ 		ret = false;
+ 	}
+ 
+@@ -1481,7 +1481,7 @@ void DvbStream::stopFrontend()
+ 
+ void DvbStream::setScanning( bool b )
+ {
+-	connecttqStatus( b );
++	connectStatus( b );
+ }
+ 
+ 
+diff --git a/kaffeine/src/input/dvb/dvbstream.h b/kaffeine/src/input/dvb/dvbstream.h
+index f793aa0..1d2d780 100644
+--- a/kaffeine/src/input/dvb/dvbstream.h
++++ b/kaffeine/src/input/dvb/dvbstream.h
+@@ -99,7 +99,7 @@ public :
+ 
+ public slots:
+ 
+-	bool checktqStatus();
++	bool checkStatus();
+ 	void receivePlayDvb();
+ 	void recordEnded( DVBout *o, RecTimer *t, bool kill );
+ 	void receiveShifting( bool b );
+@@ -125,7 +125,7 @@ private :
+ 	void startReading();
+ 	bool openFe();
+ 	bool closeFe();
+-	void connecttqStatus( bool con );
++	void connectStatus( bool con );
+ 
+ 	TQFile liveFile;
+ 	bool timeShifting;
+@@ -157,9 +157,9 @@ signals:
+ 	void timerEnded(RecTimer*);
+ 
+ 	void errorMsg( TQString );
+-	void snrtqStatus( int );
+-	void signaltqStatus( int );
+-	void locktqStatus( bool );
++	void snrStatus( int );
++	void signalStatus( int );
++	void lockStatus( bool );
+ 	void shifting( bool );
+ 
+ };
+diff --git a/kaffeine/src/input/dvb/kgradprogress.cpp b/kaffeine/src/input/dvb/kgradprogress.cpp
+index d81f671..7898f84 100644
+--- a/kaffeine/src/input/dvb/kgradprogress.cpp
++++ b/kaffeine/src/input/dvb/kgradprogress.cpp
+@@ -34,7 +34,7 @@ KGradProgress::KGradProgress( TQWidget *parent ) : TQLabel( parent )
+ 	setFrameStyle( TQFrame::Box | TQFrame::Plain );
+ 	setLineWidth(1);
+ 	setMidLineWidth(0);
+-	tqsetSizePolicy( TQSizePolicy::MinimumExpanding, TQSizePolicy::Preferred );
++	setSizePolicy( TQSizePolicy::MinimumExpanding, TQSizePolicy::Preferred );
+ }
+ 
+ 
+@@ -113,7 +113,7 @@ void KGradProgress::paintEvent(TQPaintEvent *event)
+ 
+ 
+ 
+-TQSize KGradProgress::tqsizeHint()
++TQSize KGradProgress::sizeHint()
+ {
+ 	TQLabel lab( "This is a progress bar.", 0 );
+ 	return TQSize( lab.width(), int(font().pointSize()*1.2) );
+diff --git a/kaffeine/src/input/dvb/kgradprogress.h b/kaffeine/src/input/dvb/kgradprogress.h
+index 887019d..84aeee0 100644
+--- a/kaffeine/src/input/dvb/kgradprogress.h
++++ b/kaffeine/src/input/dvb/kgradprogress.h
+@@ -37,7 +37,7 @@ public:
+ 	KGradProgress( TQWidget *parent );
+ 	~KGradProgress();
+ 	virtual void paintEvent(TQPaintEvent *event);
+-	virtual TQSize tqsizeHint();
++	virtual TQSize sizeHint();
+ 	virtual TQSizePolicy sizePolicy();
+ 
+ public slots:
+diff --git a/kaffeine/src/input/dvb/ktimereditor.cpp b/kaffeine/src/input/dvb/ktimereditor.cpp
+index c66c5d1..be5c5af 100644
+--- a/kaffeine/src/input/dvb/ktimereditor.cpp
++++ b/kaffeine/src/input/dvb/ktimereditor.cpp
+@@ -85,7 +85,7 @@ KTimerEditor::KTimerEditor( bool newone, TQStringList &chanList, RecTimer t, TQW
+ 	channelComb->insertStringList( chanList );
+ 
+ 	if ( newone ) {
+-		begin->setDateTime( TQDateTime::tqcurrentDateTime() );
++		begin->setDateTime( TQDateTime::currentDateTime() );
+ 		duration->setTime( TQTime(2,0,0) );
+ 	}
+ 	else {
+diff --git a/kaffeine/src/input/dvb/plugins/epg/kaffeinedvbevents.cpp b/kaffeine/src/input/dvb/plugins/epg/kaffeinedvbevents.cpp
+index f05ff3a..ea00f76 100644
+--- a/kaffeine/src/input/dvb/plugins/epg/kaffeinedvbevents.cpp
++++ b/kaffeine/src/input/dvb/plugins/epg/kaffeinedvbevents.cpp
+@@ -297,7 +297,7 @@ void EventTable::loadEpg()
+ 	char buf[EPGBUFSIZE];
+ 	int num=0;
+ 	unsigned char sync;
+-	TQDateTime cur=TQDateTime::tqcurrentDateTime();
++	TQDateTime cur=TQDateTime::currentDateTime();
+ 	TQTime t1=TQTime::currentTime();
+ 
+ 	if ( epgLoaded )
+@@ -416,7 +416,7 @@ void EventTable::run()
+ 
+ 	setpriority(PRIO_PROCESS, 0, 19);
+ 
+-	cur = TQDateTime::tqcurrentDateTime();
++	cur = TQDateTime::currentDateTime();
+ 	for( k=0; k<getNSource(); k++ ) {
+ 		if ( !(esrc=getNEventSource( k )) )
+ 			continue;
+diff --git a/kaffeine/src/input/dvb/scandialog.cpp b/kaffeine/src/input/dvb/scandialog.cpp
+index f433054..7f760e6 100644
+--- a/kaffeine/src/input/dvb/scandialog.cpp
++++ b/kaffeine/src/input/dvb/scandialog.cpp
+@@ -148,9 +148,9 @@ ScanDialog::ScanDialog( TQPtrList<DvbStream> *d, TQPtrList<ChannelDesc> *ch, TQS
+ 		offsetGroup->hide();
+ 	bool ok=false;
+ 	dvbsi = new DVBsi( &ok, ds->getAdapter(), ds->getTuner(), ds, defaultCharset );
+-	connect( ds, TQT_SIGNAL(snrtqStatus(int)), snr, TQT_SLOT(setProgress(int)) );
+-	connect( ds, TQT_SIGNAL(signaltqStatus(int)), signal, TQT_SLOT(setProgress(int)) );
+-	connect( ds, TQT_SIGNAL(locktqStatus(bool)), this, TQT_SLOT(setLock(bool)) );
++	connect( ds, TQT_SIGNAL(snrStatus(int)), snr, TQT_SLOT(setProgress(int)) );
++	connect( ds, TQT_SIGNAL(signalStatus(int)), signal, TQT_SLOT(setProgress(int)) );
++	connect( ds, TQT_SIGNAL(lockStatus(bool)), this, TQT_SLOT(setLock(bool)) );
+ 	connect( dvbsi, TQT_SIGNAL(end(bool)), this, TQT_SLOT(siEnded(bool)) );
+ 
+ 	connect( &checkTimer, TQT_SIGNAL( timeout() ), this, TQT_SLOT( checkNewChannel() ) );
+@@ -209,9 +209,9 @@ void ScanDialog::setDvb( int index )
+ 				checkTimer.stop();
+ 			if ( progressTimer.isActive() )
+ 				progressTimer.stop();
+-			disconnect( ds, TQT_SIGNAL(snrtqStatus(int)), snr, TQT_SLOT(setProgress(int)) );
+-			disconnect( ds, TQT_SIGNAL(signaltqStatus(int)), signal, TQT_SLOT(setProgress(int)) );
+-			disconnect( ds, TQT_SIGNAL(locktqStatus(bool)), this, TQT_SLOT(setLock(bool)) );
++			disconnect( ds, TQT_SIGNAL(snrStatus(int)), snr, TQT_SLOT(setProgress(int)) );
++			disconnect( ds, TQT_SIGNAL(signalStatus(int)), signal, TQT_SLOT(setProgress(int)) );
++			disconnect( ds, TQT_SIGNAL(lockStatus(bool)), this, TQT_SLOT(setLock(bool)) );
+ 			disconnect( dvbsi, TQT_SIGNAL(end(bool)), this, TQT_SLOT(siEnded(bool)) );
+ 			ds->setScanning( false );
+ 			dvbsi->stop();
+@@ -219,9 +219,9 @@ void ScanDialog::setDvb( int index )
+ 			ds = dvb->at(i);
+ 			ds->setScanning( true );
+ 			dvbsi = new DVBsi( &ok, ds->getAdapter(), ds->getTuner(), ds, defaultCharset );
+-			connect( ds, TQT_SIGNAL(snrtqStatus(int)), snr, TQT_SLOT(setProgress(int)) );
+-			connect( ds, TQT_SIGNAL(signaltqStatus(int)), signal, TQT_SLOT(setProgress(int)) );
+-			connect( ds, TQT_SIGNAL(locktqStatus(bool)), this, TQT_SLOT(setLock(bool)) );
++			connect( ds, TQT_SIGNAL(snrStatus(int)), snr, TQT_SLOT(setProgress(int)) );
++			connect( ds, TQT_SIGNAL(signalStatus(int)), signal, TQT_SLOT(setProgress(int)) );
++			connect( ds, TQT_SIGNAL(lockStatus(bool)), this, TQT_SLOT(setLock(bool)) );
+ 			connect( dvbsi, TQT_SIGNAL(end(bool)), this, TQT_SLOT(siEnded(bool)) );
+ 			break;
+ 		}
+diff --git a/kaffeine/src/input/dvb/scandialogui.ui b/kaffeine/src/input/dvb/scandialogui.ui
+index d85d58f..dbcff8b 100644
+--- a/kaffeine/src/input/dvb/scandialogui.ui
++++ b/kaffeine/src/input/dvb/scandialogui.ui
+@@ -118,7 +118,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>40</width>
+                                             <height>20</height>
+@@ -257,7 +257,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>20</width>
+                                             <height>18</height>
+@@ -282,7 +282,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>21</width>
+                                             <height>19</height>
+@@ -503,7 +503,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>40</width>
+                                     <height>20</height>
+diff --git a/kaffeine/src/input/dvb/subeditorui.ui b/kaffeine/src/input/dvb/subeditorui.ui
+index 3935e78..fb8d391 100644
+--- a/kaffeine/src/input/dvb/subeditorui.ui
++++ b/kaffeine/src/input/dvb/subeditorui.ui
+@@ -51,7 +51,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -159,7 +159,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>40</width>
+                                             <height>20</height>
+@@ -178,7 +178,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>180</height>
+diff --git a/kaffeine/src/input/dvbclient/cdwidget.cpp b/kaffeine/src/input/dvbclient/cdwidget.cpp
+index 19e82ed..ede428f 100644
+--- a/kaffeine/src/input/dvbclient/cdwidget.cpp
++++ b/kaffeine/src/input/dvbclient/cdwidget.cpp
+@@ -33,14 +33,14 @@ CdWidget::CdWidget( const TQString &ad, int port, int info, const TQString &tspa
+ 	: KaffeineInput( objParent, name )
+ {
+ 	mainWidget = new TQVBox( parent );
+-	mainWidget->tqsetSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::Preferred) );
++	mainWidget->setSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::Preferred) );
+ 	split = new TQSplitter( mainWidget );
+ 	split->setOpaqueResize( true );
+ 	playerBox = new TQVBox( split );
+ 	playerBox->setMinimumWidth( 200 );
+ 	channelsLb = new TQListBox( split );
+ 	split->moveToFirst( channelsLb );
+-	channelsLb->tqsetSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding) );
++	channelsLb->setSizePolicy( TQSizePolicy (TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding) );
+ 	split->setResizeMode( channelsLb, TQSplitter::KeepSize );
+ 
+ 	cdAddress = ad;
+@@ -324,7 +324,7 @@ void CdWidget::pauseLiveTV()
+ 	if ( !dump )
+ 		return;
+ 	if ( dump->running() ) {
+-		timeShiftFileName = cdShiftDir+"DVBClient-"+TQDateTime::tqcurrentDateTime().toString( Qt::ISODate )+".ts";
++		timeShiftFileName = cdShiftDir+"DVBClient-"+TQDateTime::currentDateTime().toString( Qt::ISODate )+".ts";
+ 		if ( dump->doPause( timeShiftFileName ) ) emit setTimeShiftFilename( timeShiftFileName );
+ 	}
+ }
+diff --git a/kaffeine/src/inputmanager.cpp b/kaffeine/src/inputmanager.cpp
+index 0e9dcdf..a110a0a 100644
+--- a/kaffeine/src/inputmanager.cpp
++++ b/kaffeine/src/inputmanager.cpp
+@@ -323,7 +323,7 @@ bool InputManager::playbackFinished( MRL &mrl )
+ 
+ void InputManager::statusBarMessage( const TQString &msg )
+ {
+-	kaffeine->slotChangePlaylisttqStatus( msg );
++	kaffeine->slotChangePlaylistStatus( msg );
+ }
+ 
+ 
+@@ -530,13 +530,13 @@ void InputManager::fullscreen( bool b )
+ 	int id=0;
+ 
+ 	if ( b ) {
+-		stack->tqsetSizePolicy(TQSizePolicy::Ignored, TQSizePolicy::Ignored);
++		stack->setSizePolicy(TQSizePolicy::Ignored, TQSizePolicy::Ignored);
+ 		oldMainWidget = currentMainWidget;
+ 		show( 2 );
+ 		mtBar->hide();
+ 	}
+ 	else {
+-		stack->tqsetSizePolicy(TQSizePolicy::Expanding, TQSizePolicy::Expanding);
++		stack->setSizePolicy(TQSizePolicy::Expanding, TQSizePolicy::Expanding);
+ 		mtBar->show();
+ 		if ( oldMainWidget==startWindow )
+ 			id = 1;
+@@ -578,7 +578,7 @@ void PlayerContainer::dropEvent(TQDropEvent* dev)
+ 		{
+ 			for (uint i=0; i < urls.count() ;i++)
+ 			{
+-				//KURL url(TQUriDrag::tqunicodeUriToUri(urls[i]));
++				//KURL url(TQUriDrag::unicodeUriToUri(urls[i]));
+ 				//newurls << url.path(-1);
+ 				//kdDebug() << "Kaffeine: Dropped " << url.path() << endl;
+ 				newurls << urls[i];
+@@ -596,7 +596,7 @@ void PlayerContainer::dropEvent(TQDropEvent* dev)
+ 	else
+ 		if (strcmp(dev->format(), "text/x-moz-url") == 0)    // for mozilla drops
+ 		{
+-			TQByteArray data = dev->tqencodedData("text/plain");
++			TQByteArray data = dev->encodedData("text/plain");
+ 			TQString md(data);
+ 			emit signalURLDropEvent(md);
+ 		}
+diff --git a/kaffeine/src/instwizard.cpp b/kaffeine/src/instwizard.cpp
+index c8cca22..8e2f412 100644
+--- a/kaffeine/src/instwizard.cpp
++++ b/kaffeine/src/instwizard.cpp
+@@ -272,7 +272,7 @@ void InstWizard::internalWizard()
+ 
+ void InstWizard::slotStdout(KProcess *, char *buffer, int buflen)
+ {
+-	TQString output = TQString::tqfromLatin1(buffer, buflen);
++	TQString output = TQString::fromLatin1(buffer, buflen);
+ 	kdDebug() << "WizardDialog: got from hdparm: " << output << "\n";
+ 	stdout.append(output);
+ }
+diff --git a/kaffeine/src/kaffeine.cpp b/kaffeine/src/kaffeine.cpp
+index 9a83567..5b188da 100644
+--- a/kaffeine/src/kaffeine.cpp
++++ b/kaffeine/src/kaffeine.cpp
+@@ -653,7 +653,7 @@ void Kaffeine::dropEvent(TQDropEvent* dev)
+   else
+   if (strcmp(dev->format(), "text/x-moz-url") == 0)    // for mozilla drops
+   {
+-    TQByteArray data = dev->tqencodedData("text/plain");
++    TQByteArray data = dev->encodedData("text/plain");
+     TQString md(data);
+     load(md);
+   }
+@@ -1087,7 +1087,7 @@ void Kaffeine::slotOpenFile()
+ 	KURL::List kurlList = KFileDialog::getOpenURLs(":kaffeine_openFile", fileFilter, 0, i18n("Open File(s)"));
+ 
+ 	for (KURL::List::Iterator it = kurlList.begin(); it != kurlList.end(); ++it)
+-		if ((*it).isLocalFile() && (*it).path().tqendsWith(".iso", false))
++		if ((*it).isLocalFile() && (*it).path().endsWith(".iso", false))
+ 			(*it).setProtocol("dvd");
+ 
+ 	TQStringList urlList = kurlList.toStringList();
+@@ -1557,7 +1557,7 @@ void Kaffeine::slotChangeStatusbar(const TQString& )
+ }
+ 
+ 
+-void Kaffeine::slotChangePlaylisttqStatus(const TQString& )
++void Kaffeine::slotChangePlaylistStatus(const TQString& )
+ {
+ 	//statusBar()->changeItem(text, 9);
+ }
+diff --git a/kaffeine/src/kaffeine.h b/kaffeine/src/kaffeine.h
+index 79ad0cc..4496d93 100644
+--- a/kaffeine/src/kaffeine.h
++++ b/kaffeine/src/kaffeine.h
+@@ -128,7 +128,7 @@ public slots:
+ 	void slotLoadURLS(const TQStringList&);
+ 	void slotSwitchToPlayerWindow();
+ 	void slotChangeStatusbar(const TQString&);
+-	void slotChangePlaylisttqStatus(const TQString&);
++	void slotChangePlaylistStatus(const TQString&);
+ 	void slotStop();
+ 	void slotPlayUnPause();
+ 
+diff --git a/kaffeine/src/kmultitabbar.cpp b/kaffeine/src/kmultitabbar.cpp
+index 1c32cae..308bfa5 100644
+--- a/kaffeine/src/kmultitabbar.cpp
++++ b/kaffeine/src/kmultitabbar.cpp
+@@ -121,9 +121,9 @@ void KMultiTabBarInternal::drawContents ( TQPainter * paint, int clipx, int clip
+ 	if (m_position==KMultiTabBar::Right)
+ 	{
+ 
+-                paint->setPen(tqcolorGroup().shadow());
++                paint->setPen(colorGroup().shadow());
+                 paint->drawLine(0,0,0,viewport()->height());
+-                paint->setPen(tqcolorGroup().background().dark(120));
++                paint->setPen(colorGroup().background().dark(120));
+                 paint->drawLine(1,0,1,viewport()->height());
+ 
+ 
+@@ -131,28 +131,28 @@ void KMultiTabBarInternal::drawContents ( TQPainter * paint, int clipx, int clip
+ 	else
+ 	if (m_position==KMultiTabBar::Left)
+ 	{
+-                paint->setPen(tqcolorGroup().light());
++                paint->setPen(colorGroup().light());
+ 		paint->drawLine(23,0,23,viewport()->height());
+                 paint->drawLine(22,0,22,viewport()->height());
+ 
+-                paint->setPen(tqcolorGroup().shadow());
++                paint->setPen(colorGroup().shadow());
+                 paint->drawLine(0,0,0,viewport()->height());
+ 	}
+ 	else
+ 	if (m_position==KMultiTabBar::Bottom)
+ 	{
+-		paint->setPen(tqcolorGroup().shadow());
++		paint->setPen(colorGroup().shadow());
+ 		paint->drawLine(0,0,viewport()->width(),0);
+-                paint->setPen(tqcolorGroup().background().dark(120));
++                paint->setPen(colorGroup().background().dark(120));
+                 paint->drawLine(0,1,viewport()->width(),1);
+ 	}
+ 	else
+ 	{
+-	        paint->setPen(tqcolorGroup().light());
++	        paint->setPen(colorGroup().light());
+ 		paint->drawLine(0,23,viewport()->width(),23);
+                 paint->drawLine(0,22,viewport()->width(),22);
+ 
+-/*                paint->setPen(tqcolorGroup().shadow());
++/*                paint->setPen(colorGroup().shadow());
+                 paint->drawLine(0,0,0,viewport()->height());*/
+ 
+ 	}
+@@ -458,7 +458,7 @@ void KMultiTabBarButton::showEvent( TQShowEvent* he) {
+ }
+ 
+ 
+-TQSize KMultiTabBarButton::tqsizeHint() const
++TQSize KMultiTabBarButton::sizeHint() const
+ {
+     constPolish();
+ 
+@@ -474,7 +474,7 @@ TQSize KMultiTabBarButton::tqsizeHint() const
+     }
+ #endif
+     if ( isMenuButton() )
+-        w += tqstyle().tqpixelMetric(TQStyle::PM_MenuButtonIndicator, this);
++        w += tqstyle().pixelMetric(TQStyle::PM_MenuButtonIndicator, this);
+ 
+     if ( pixmap() ) {
+         TQPixmap *pm = (TQPixmap *)pixmap();
+@@ -484,7 +484,7 @@ TQSize KMultiTabBarButton::tqsizeHint() const
+         TQString s( text() );
+         bool empty = s.isEmpty();
+         if ( empty )
+-            s = TQString::tqfromLatin1("XXXX");
++            s = TQString::fromLatin1("XXXX");
+         TQFontMetrics fm = fontMetrics();
+         TQSize sz = fm.size( ShowPrefix, s );
+         if(!empty || !w)
+@@ -581,12 +581,12 @@ void KMultiTabBarTab::updateState()
+ 		if ((m_position==KMultiTabBar::Right || m_position==KMultiTabBar::Left)) {
+ 			setFixedWidth(24);
+ 			if ((m_style==KMultiTabBar::KDEV3)  || (m_style==KMultiTabBar::KDEV3ICON) || (down)) {
+-				setFixedHeight(KMultiTabBarButton::tqsizeHint().width());
++				setFixedHeight(KMultiTabBarButton::sizeHint().width());
+ 			} else setFixedHeight(36);
+ 		} else {
+ 			setFixedHeight(24);
+ 			if ((m_style==KMultiTabBar::KDEV3)  || (m_style==KMultiTabBar::KDEV3ICON) || (down)) {
+-				setFixedWidth(KMultiTabBarButton::tqsizeHint().width());
++				setFixedWidth(KMultiTabBarButton::sizeHint().width());
+ 			} else setFixedWidth(36);
+ 		}
+ 	} else {
+@@ -637,7 +637,7 @@ void KMultiTabBarTab::drawButtonStyled(TQPainter *paint) {
+ 	const int height = 24;
+ 	if ((m_style==KMultiTabBar::KDEV3) || (m_style==KMultiTabBar::KDEV3ICON) || (down)) {
+ 		 if ((m_position==KMultiTabBar::Left) || (m_position==KMultiTabBar::Right))
+-			sh=TQSize(this->height(),this->width());//KMultiTabBarButton::tqsizeHint();
++			sh=TQSize(this->height(),this->width());//KMultiTabBarButton::sizeHint();
+ 			else sh=TQSize(this->width(),this->height());
+ 	}
+ 	else
+@@ -654,8 +654,8 @@ void KMultiTabBarTab::drawButtonStyled(TQPainter *paint) {
+ 
+ 	if (down) st|=TQStyle::Style_On;
+ 
+-	tqstyle().tqdrawControl(TQStyle::CE_PushButton,&painter,this, TQRect(0,0,pixmap.width(),pixmap.height()), tqcolorGroup(),st);
+-	tqstyle().tqdrawControl(TQStyle::CE_PushButtonLabel,&painter,this, TQRect(0,0,pixmap.width(),pixmap.height()), tqcolorGroup(),st);
++	tqstyle().drawControl(TQStyle::CE_PushButton,&painter,this, TQRect(0,0,pixmap.width(),pixmap.height()), colorGroup(),st);
++	tqstyle().drawControl(TQStyle::CE_PushButtonLabel,&painter,this, TQRect(0,0,pixmap.width(),pixmap.height()), colorGroup(),st);
+ 
+ 	switch (m_position) {
+ 		case KMultiTabBar::Left:
+@@ -671,8 +671,8 @@ void KMultiTabBarTab::drawButtonStyled(TQPainter *paint) {
+ 			paint->drawPixmap(0,0,pixmap);
+ 			break;
+ 	}
+-//	tqstyle().tqdrawControl(TQStyle::CE_PushButtonLabel,painter,this, TQRect(0,0,pixmap.width(),pixmap.height()),
+-//		tqcolorGroup(),TQStyle::Style_Enabled);
++//	tqstyle().drawControl(TQStyle::CE_PushButtonLabel,painter,this, TQRect(0,0,pixmap.width(),pixmap.height()),
++//		colorGroup(),TQStyle::Style_Enabled);
+ 
+ 
+ }
+@@ -682,58 +682,58 @@ void KMultiTabBarTab::drawButtonClassic(TQPainter *paint)
+         TQPixmap pixmap;
+ 	if ( iconSet())
+         	pixmap = iconSet()->pixmap( TQIconSet::Small, TQIconSet::Normal );
+-	paint->fillRect(0, 0, 24, 24, tqcolorGroup().background());
++	paint->fillRect(0, 0, 24, 24, colorGroup().background());
+ 
+ 	if (!down)
+ 	{
+ 
+ 		if (m_position==KMultiTabBar::Right)
+ 		{
+-			paint->fillRect(0,0,21,21,TQBrush(tqcolorGroup().background()));
++			paint->fillRect(0,0,21,21,TQBrush(colorGroup().background()));
+ 
+-			paint->setPen(tqcolorGroup().background().dark(150));
++			paint->setPen(colorGroup().background().dark(150));
+ 			paint->drawLine(0,22,23,22);
+ 
+ 			paint->drawPixmap(12-pixmap.width()/2,12-pixmap.height()/2,pixmap);
+ 
+-			paint->setPen(tqcolorGroup().shadow());
++			paint->setPen(colorGroup().shadow());
+ 			paint->drawLine(0,0,0,23);
+-			paint->setPen(tqcolorGroup().background().dark(120));
++			paint->setPen(colorGroup().background().dark(120));
+ 			paint->drawLine(1,0,1,23);
+ 
+ 		}
+ 		else
+ 		if ((m_position==KMultiTabBar::Bottom) || (m_position==KMultiTabBar::Top))
+ 		{
+-                        paint->fillRect(0,1,23,22,TQBrush(tqcolorGroup().background()));
++                        paint->fillRect(0,1,23,22,TQBrush(colorGroup().background()));
+ 
+                         paint->drawPixmap(12-pixmap.width()/2,12-pixmap.height()/2,pixmap);
+ 
+-                        paint->setPen(tqcolorGroup().background().dark(120));
++                        paint->setPen(colorGroup().background().dark(120));
+                         paint->drawLine(23,0,23,23);
+ 
+ 
+-                        paint->setPen(tqcolorGroup().light());
++                        paint->setPen(colorGroup().light());
+                         paint->drawLine(0,22,23,22);
+                         paint->drawLine(0,23,23,23);
+-                	paint->setPen(tqcolorGroup().shadow());
++                	paint->setPen(colorGroup().shadow());
+                 	paint->drawLine(0,0,23,0);
+-                        paint->setPen(tqcolorGroup().background().dark(120));
++                        paint->setPen(colorGroup().background().dark(120));
+                         paint->drawLine(0,1,23,1);
+ 
+ 		}
+ 		else
+ 		{
+-			paint->setPen(tqcolorGroup().background().dark(120));
++			paint->setPen(colorGroup().background().dark(120));
+ 			paint->drawLine(0,23,23,23);
+-			paint->fillRect(0,0,23,21,TQBrush(tqcolorGroup().background()));
++			paint->fillRect(0,0,23,21,TQBrush(colorGroup().background()));
+ 			paint->drawPixmap(12-pixmap.width()/2,12-pixmap.height()/2,pixmap);
+ 
+-			paint->setPen(tqcolorGroup().light());
++			paint->setPen(colorGroup().light());
+ 			paint->drawLine(23,0,23,23);
+ 			paint->drawLine(22,0,22,23);
+ 
+-			paint->setPen(tqcolorGroup().shadow());
++			paint->setPen(colorGroup().shadow());
+ 			paint->drawLine(0,0,0,23);
+ 
+ 		}
+@@ -744,12 +744,12 @@ void KMultiTabBarTab::drawButtonClassic(TQPainter *paint)
+ 	{
+ 		if (m_position==KMultiTabBar::Right)
+ 		{
+-			paint->setPen(tqcolorGroup().shadow());
++			paint->setPen(colorGroup().shadow());
+ 			paint->drawLine(0,height()-1,23,height()-1);
+ 			paint->drawLine(0,height()-2,23,height()-2);
+ 			paint->drawLine(23,0,23,height()-1);
+ 			paint->drawLine(22,0,22,height()-1);
+-			paint->fillRect(0,0,21,height()-3,TQBrush(tqcolorGroup().light()));
++			paint->fillRect(0,0,21,height()-3,TQBrush(colorGroup().light()));
+ 			paint->drawPixmap(10-pixmap.width()/2,10-pixmap.height()/2,pixmap);
+ 
+ 			if (m_showActiveTabText)
+@@ -759,9 +759,9 @@ void KMultiTabBarTab::drawButtonClassic(TQPainter *paint)
+ 				TQPixmap tpixmap(height()-25-3, width()-2);
+ 				TQPainter painter(&tpixmap);
+ 
+-				painter.fillRect(0,0,tpixmap.width(),tpixmap.height(),TQBrush(tqcolorGroup().light()));
++				painter.fillRect(0,0,tpixmap.width(),tpixmap.height(),TQBrush(colorGroup().light()));
+ 
+-				painter.setPen(tqcolorGroup().text());
++				painter.setPen(colorGroup().text());
+ 				painter.drawText(0,+width()/2+TQFontMetrics(TQFont()).height()/2,m_text);
+ 
+ 				paint->rotate(90);
+@@ -773,25 +773,25 @@ void KMultiTabBarTab::drawButtonClassic(TQPainter *paint)
+ 		else
+ 		if (m_position==KMultiTabBar::Top)
+ 		{
+-			paint->fillRect(0,0,width()-1,23,TQBrush(tqcolorGroup().light()));
++			paint->fillRect(0,0,width()-1,23,TQBrush(colorGroup().light()));
+ 			paint->drawPixmap(10-pixmap.width()/2,10-pixmap.height()/2,pixmap);
+ 			if (m_showActiveTabText)
+ 			{
+-				paint->setPen(tqcolorGroup().text());
++				paint->setPen(colorGroup().text());
+ 				paint->drawText(25,height()/2+TQFontMetrics(TQFont()).height()/2,m_text);
+ 			}
+ 		}
+ 		else
+ 		if (m_position==KMultiTabBar::Bottom)
+ 		{
+-			paint->setPen(tqcolorGroup().shadow());
++			paint->setPen(colorGroup().shadow());
+ 			paint->drawLine(0,23,width()-1,23);
+ 			paint->drawLine(0,22,width()-1,22);
+-			paint->fillRect(0,0,width()-1,21,TQBrush(tqcolorGroup().light()));
++			paint->fillRect(0,0,width()-1,21,TQBrush(colorGroup().light()));
+ 			paint->drawPixmap(10-pixmap.width()/2,10-pixmap.height()/2,pixmap);
+ 			if (m_showActiveTabText)
+ 			{
+-				paint->setPen(tqcolorGroup().text());
++				paint->setPen(colorGroup().text());
+ 				paint->drawText(25,height()/2+TQFontMetrics(TQFont()).height()/2,m_text);
+ 			}
+ 
+@@ -800,10 +800,10 @@ void KMultiTabBarTab::drawButtonClassic(TQPainter *paint)
+ 		{
+ 
+ 
+-			paint->setPen(tqcolorGroup().shadow());
++			paint->setPen(colorGroup().shadow());
+ 			paint->drawLine(0,height()-1,23,height()-1);
+ 			paint->drawLine(0,height()-2,23,height()-2);
+-			paint->fillRect(0,0,23,height()-3,TQBrush(tqcolorGroup().light()));
++			paint->fillRect(0,0,23,height()-3,TQBrush(colorGroup().light()));
+ 			paint->drawPixmap(10-pixmap.width()/2,10-pixmap.height()/2,pixmap);
+ 			if (m_showActiveTabText)
+ 			{
+@@ -813,9 +813,9 @@ void KMultiTabBarTab::drawButtonClassic(TQPainter *paint)
+                                 TQPixmap tpixmap(height()-25-3, width()-2);
+                                 TQPainter painter(&tpixmap);
+ 
+-                                painter.fillRect(0,0,tpixmap.width(),tpixmap.height(),TQBrush(tqcolorGroup().light()));
++                                painter.fillRect(0,0,tpixmap.width(),tpixmap.height(),TQBrush(colorGroup().light()));
+ 
+-                                painter.setPen(tqcolorGroup().text());
++                                painter.setPen(colorGroup().text());
+                                 painter.drawText(tpixmap.width()-TQFontMetrics(TQFont()).width(m_text),+width()/2+TQFontMetrics(TQFont()).height()/2,m_text);
+ 
+                                 paint->rotate(-90);
+@@ -842,13 +842,13 @@ KMultiTabBar::KMultiTabBar(KMultiTabBarMode bm, TQWidget *parent,const char *nam
+ 	if (bm==Vertical)
+ 	{
+ 		m_l=new TQVBoxLayout(this);
+-		tqsetSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Expanding, true);
++		setSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Expanding, true);
+ //		setFixedWidth(24);
+ 	}
+ 	else
+ 	{
+ 		m_l=new TQHBoxLayout(this);
+-		tqsetSizePolicy(TQSizePolicy::Expanding, TQSizePolicy::Fixed, true);
++		setSizePolicy(TQSizePolicy::Expanding, TQSizePolicy::Fixed, true);
+ //		setFixedHeight(24);
+ 	}
+ 	m_l->setMargin(0);
+diff --git a/kaffeine/src/kmultitabbar.h b/kaffeine/src/kmultitabbar.h
+index 25aa255..bc9a615 100644
+--- a/kaffeine/src/kmultitabbar.h
++++ b/kaffeine/src/kmultitabbar.h
+@@ -182,7 +182,7 @@ public slots:
+          */
+ 	void setText(const TQString &);
+ 
+-	TQSize tqsizeHint() const;
++	TQSize sizeHint() const;
+ 
+ protected:
+ 	KMultiTabBar::KMultiTabBarPosition m_position;
+diff --git a/kaffeine/src/player-parts/gstreamer-part/videosettings.cpp b/kaffeine/src/player-parts/gstreamer-part/videosettings.cpp
+index 29d8587..2d0244a 100644
+--- a/kaffeine/src/player-parts/gstreamer-part/videosettings.cpp
++++ b/kaffeine/src/player-parts/gstreamer-part/videosettings.cpp
+@@ -39,7 +39,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contr, int bright, TQWidget *
+   grid->setSpacing(5);
+ 
+   TQLabel* hueText = new TQLabel(i18n("Hue"), page);
+-  hueText->tqsetAlignment(AlignRight);
++  hueText->setAlignment(AlignRight);
+   m_hueSlider = new TQSlider(Qt::Horizontal, page);
+   m_hueSlider->setRange(-1000, 1000);
+   m_hueSlider->setSteps(10, 100);
+@@ -49,7 +49,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contr, int bright, TQWidget *
+   grid->addWidget(m_hueSlider, 0, 1);
+ 
+   TQLabel* satText = new TQLabel(i18n("Saturation"), page);
+-  satText->tqsetAlignment(AlignRight);
++  satText->setAlignment(AlignRight);
+   m_satSlider = new TQSlider(Qt::Horizontal, page);
+   m_satSlider->setRange(-1000, 1000);
+   m_satSlider->setSteps(10, 100);
+@@ -59,7 +59,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contr, int bright, TQWidget *
+   grid->addWidget(m_satSlider, 1, 1);
+ 
+   TQLabel* contrastText = new TQLabel(i18n("Contrast"), page);
+-  contrastText->tqsetAlignment(AlignRight);
++  contrastText->setAlignment(AlignRight);
+   m_contrastSlider = new TQSlider(Qt::Horizontal, page);
+   m_contrastSlider->setRange(-1000, 1000);
+   m_contrastSlider->setSteps(10, 100);
+@@ -69,7 +69,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contr, int bright, TQWidget *
+   grid->addWidget(m_contrastSlider, 2, 1);
+ 
+   TQLabel* brightText = new TQLabel(i18n("Brightness"), page);
+-  brightText->tqsetAlignment(AlignRight);
++  brightText->setAlignment(AlignRight);
+   m_brightSlider = new TQSlider(Qt::Horizontal, page);
+   m_brightSlider->setRange(-1000, 1000);
+   m_brightSlider->setSteps(10, 100);
+diff --git a/kaffeine/src/player-parts/xine-part/deinterlacequality.cpp b/kaffeine/src/player-parts/xine-part/deinterlacequality.cpp
+index 9abb266..c8d253c 100644
+--- a/kaffeine/src/player-parts/xine-part/deinterlacequality.cpp
++++ b/kaffeine/src/player-parts/xine-part/deinterlacequality.cpp
+@@ -78,12 +78,12 @@ DeinterlaceQuality::DeinterlaceQuality(TQWidget* filterDialog, TQWidget *parent,
+   connect(m_customBox, TQT_SIGNAL(toggled(bool)), this, TQT_SLOT(slotCustomBoxToggled(bool)));
+ 
+   m_customConfigButton = new KPushButton(i18n("Configure tvtime Deinterlace Plugin..."), mainWidget);
+-  m_customConfigButton->tqsetSizePolicy(TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
++  m_customConfigButton->setSizePolicy(TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
+   grid->addWidget(m_customConfigButton, 7, 1);
+   connect(m_customConfigButton, TQT_SIGNAL(clicked()), filterDialog, TQT_SLOT(show()));
+ 
+   TQLabel* note = new TQLabel(i18n("* <i>May require a patched 2.4 kernel (like RedHat one) or 2.6 kernel.</i>"), mainWidget);
+-  note->tqsetAlignment(TQLabel::WordBreak | TQLabel::AlignVCenter);
++  note->setAlignment(TQLabel::WordBreak | TQLabel::AlignVCenter);
+   grid->addMultiCellWidget(note, 9, 9, 0, 1);
+ }
+ 
+diff --git a/kaffeine/src/player-parts/xine-part/kxinewidget.cpp b/kaffeine/src/player-parts/xine-part/kxinewidget.cpp
+index 9385759..58a9818 100644
+--- a/kaffeine/src/player-parts/xine-part/kxinewidget.cpp
++++ b/kaffeine/src/player-parts/xine-part/kxinewidget.cpp
+@@ -721,7 +721,7 @@ void KXineWidget::timerEvent( TQTimerEvent* tevent )
+ 		}
+ 		case TIMER_EVENT_NEW_STATUS:
+ 		{
+-			emit signalXinetqStatus(m_statusString);
++			emit signalXineStatus(m_statusString);
+ 			break;
+ 		}
+ 		case TIMER_EVENT_CHANGE_CURSOR:
+@@ -1109,7 +1109,7 @@ bool KXineWidget::initXine()
+ 	if (isXineReady())
+ 		return true;
+ 
+-	emit signalXinetqStatus(i18n("Init xine..."));
++	emit signalXineStatus(i18n("Init xine..."));
+ 	globalPosChanged(); /* get global pos of the window */
+ 
+ 	/**** INIT XINE DISPLAY  ****/
+@@ -1377,7 +1377,7 @@ bool KXineWidget::initXine()
+ 
+ 	debugOut("xine init successful");
+ 
+-	emit signalXinetqStatus(i18n("Ready"));
++	emit signalXineStatus(i18n("Ready"));
+ 	emit signalXineReady();
+ 
+ 	/** something to play? **/
+@@ -1508,7 +1508,7 @@ bool KXineWidget::playDvb()
+ 	m_posTimer.start(1000);
+ 
+ 	emit signalXinePlaying();
+-	emit signalXinetqStatus(i18n("Playing"));
++	emit signalXineStatus(i18n("Playing"));
+ 
+ 	return true;
+ }
+@@ -1882,7 +1882,7 @@ bool KXineWidget::openDvb()
+ 	}
+ 	else fprintf(stderr,"xine pipe opened %s\n", m_trackURL.ascii());
+ 	m_trackURL = "DVB";
+-	emit signalXinetqStatus(i18n("DVB: opening..."));
++	emit signalXineStatus(i18n("DVB: opening..."));
+ 	TQTimer::singleShot( 0, this, TQT_SLOT(playDvb()) );
+ 
+ 	return true;
+@@ -1936,7 +1936,7 @@ void KXineWidget::slotPlay()
+ 	m_queue.remove(m_queue.find(m_trackURL));
+ 
+ 	if (m_trackURL != m_logoFile)
+-		emit signalXinetqStatus(i18n("Opening..."));
++		emit signalXineStatus(i18n("Opening..."));
+ 
+ 	/* check for external subtitle file or save url */
+ 	m_trackSubtitleURL = TQString();
+@@ -2053,7 +2053,7 @@ void KXineWidget::slotPlay()
+ 	CodecUtf8 = TQTextCodec::codecForName("UTF-8");
+ 
+ 	TQString infotag;
+-	infotag = TQString::tqfromLatin1(xine_get_meta_info(m_xineStream, XINE_META_INFO_TITLE));
++	infotag = TQString::fromLatin1(xine_get_meta_info(m_xineStream, XINE_META_INFO_TITLE));
+ 
+ 	if (currentUtf8Locale)
+ 		m_trackTitle = infotag;
+@@ -2068,9 +2068,9 @@ void KXineWidget::slotPlay()
+ 		TQString trackArtist=NULL;
+ 		TQString trackAlbum=NULL;
+ 		TQString trackComment=NULL;
+-		trackArtist = TQString::tqfromLatin1(xine_get_meta_info(m_xineStream, XINE_META_INFO_ARTIST));
+-		trackAlbum = TQString::tqfromLatin1(xine_get_meta_info(m_xineStream, XINE_META_INFO_ALBUM));
+-		trackComment = TQString::tqfromLatin1(xine_get_meta_info(m_xineStream, XINE_META_INFO_COMMENT));
++		trackArtist = TQString::fromLatin1(xine_get_meta_info(m_xineStream, XINE_META_INFO_ARTIST));
++		trackAlbum = TQString::fromLatin1(xine_get_meta_info(m_xineStream, XINE_META_INFO_ALBUM));
++		trackComment = TQString::fromLatin1(xine_get_meta_info(m_xineStream, XINE_META_INFO_COMMENT));
+ 		if (currentUtf8Locale)
+ 		{
+ 			m_trackArtist = trackArtist;
+@@ -2157,9 +2157,9 @@ void KXineWidget::slotPlay()
+ 	{
+ 		emit signalXinePlaying();
+ 		if (hasSaveURL())
+-			emit signalXinetqStatus(i18n("Recording"));
++			emit signalXineStatus(i18n("Recording"));
+ 		else
+-			emit signalXinetqStatus(i18n("Playing"));
++			emit signalXineStatus(i18n("Playing"));
+ 	}
+ }
+ 
+@@ -2239,7 +2239,7 @@ void KXineWidget::sendXineError()
+ 	{
+ 		if (m_trackURL != m_logoFile)
+ 		{
+-			emit signalXinetqStatus(i18n("Error"));
++			emit signalXineStatus(i18n("Error"));
+ 			emit signalXineError(error);
+ 		}
+ 		else
+@@ -2671,7 +2671,7 @@ void KXineWidget::slotSetVolume(int vol)
+ 		//debugOut(TQString("Set audio mixer volume: %1").tqarg(vol));
+ 		xine_set_param(m_xineStream, XINE_PARAM_AUDIO_VOLUME, vol);
+ 	}
+-	emit signalXinetqStatus(i18n("Volume") + ": " + TQString::number(vol) +"%");
++	emit signalXineStatus(i18n("Volume") + ": " + TQString::number(vol) +"%");
+ }
+ 
+ uint KXineWidget::getVolume() const
+@@ -2707,12 +2707,12 @@ void KXineWidget::slotToggleMute()
+ 	if (xine_get_param(m_xineStream, muteParam))
+ 	{
+ 		xine_set_param(m_xineStream, muteParam, 0); /* mute off */
+-		emit signalXinetqStatus(i18n("Mute Off"));
++		emit signalXineStatus(i18n("Mute Off"));
+ 	}
+ 	else
+ 	{
+ 		xine_set_param(m_xineStream, muteParam, 1); /* mute on */
+-		emit signalXinetqStatus(i18n("Mute On"));
++		emit signalXineStatus(i18n("Mute On"));
+ 	}
+ }
+ 
+@@ -2867,7 +2867,7 @@ void KXineWidget::slotStop()
+ 		TQTimer::singleShot(0, this, TQT_SLOT(slotPlay()));
+ 	}
+ 
+-	emit signalXinetqStatus(i18n("Stop"));
++	emit signalXineStatus(i18n("Stop"));
+ }
+ 
+ void KXineWidget::slotSetAudiocdDevice(const TQString& device)
+@@ -2997,7 +2997,7 @@ void KXineWidget::slotSpeedPause()
+ 		xine_set_param(m_xineStream, XINE_PARAM_SPEED, XINE_SPEED_PAUSE);
+ 		m_posTimer.stop();
+ 		if (m_currentSpeed != Undefined)
+-			emit signalXinetqStatus(i18n("Pause"));
++			emit signalXineStatus(i18n("Pause"));
+ 		m_currentSpeed = Pause;
+ 	}
+ }
+@@ -3007,7 +3007,7 @@ void KXineWidget::slotSpeedNormal()
+ 	xine_set_param(m_xineStream, XINE_PARAM_SPEED, XINE_SPEED_NORMAL);
+ 	m_posTimer.start(200);
+ 	m_currentSpeed = Normal;
+-	emit signalXinetqStatus(i18n("Playing") + " ");
++	emit signalXineStatus(i18n("Playing") + " ");
+ }
+ 
+ void KXineWidget::slotSpeedFaster()
+@@ -3018,7 +3018,7 @@ void KXineWidget::slotSpeedFaster()
+ 		{
+ 			xine_set_param(m_xineStream, XINE_PARAM_SPEED, XINE_SPEED_FAST_4);
+ 			m_currentSpeed = Fast2;
+-			emit signalXinetqStatus(i18n("Fast Forward %1").tqarg("x2"));
++			emit signalXineStatus(i18n("Fast Forward %1").tqarg("x2"));
+ 			break;
+ 		}
+ 		case Fast2:
+@@ -3035,14 +3035,14 @@ void KXineWidget::slotSpeedFaster()
+ 		{
+ 			xine_set_param(m_xineStream, XINE_PARAM_SPEED, XINE_SPEED_SLOW_2);
+ 			m_currentSpeed = Slow1;
+-			emit signalXinetqStatus(i18n("Slow Motion %1").tqarg("x1"));
++			emit signalXineStatus(i18n("Slow Motion %1").tqarg("x1"));
+ 			break;
+ 		}
+ 		default:
+ 		{
+ 			xine_set_param(m_xineStream, XINE_PARAM_SPEED, XINE_SPEED_FAST_2);
+ 			m_currentSpeed = Fast1;
+-			emit signalXinetqStatus(i18n("Fast Forward %1").tqarg("x1"));
++			emit signalXineStatus(i18n("Fast Forward %1").tqarg("x1"));
+ 			break;
+ 		}
+ 	}
+@@ -3056,7 +3056,7 @@ void KXineWidget::slotSpeedSlower()
+ 		{
+ 			xine_set_param(m_xineStream, XINE_PARAM_SPEED, XINE_SPEED_SLOW_4);
+ 			m_currentSpeed = Slow2;
+-			emit signalXinetqStatus(i18n("Slow Motion %1").tqarg("x2"));
++			emit signalXineStatus(i18n("Slow Motion %1").tqarg("x2"));
+ 			break;
+ 		}
+ 		case Slow2:
+@@ -3073,14 +3073,14 @@ void KXineWidget::slotSpeedSlower()
+ 		{
+ 			xine_set_param(m_xineStream, XINE_PARAM_SPEED, XINE_SPEED_FAST_2);
+ 			m_currentSpeed = Fast1;
+-			emit signalXinetqStatus(i18n("Fast Forward %1").tqarg("x1"));
++			emit signalXineStatus(i18n("Fast Forward %1").tqarg("x1"));
+ 			break;
+ 		}
+ 		default:
+ 		{
+ 			xine_set_param(m_xineStream, XINE_PARAM_SPEED, XINE_SPEED_SLOW_2);
+ 			m_currentSpeed = Slow1;
+-			emit signalXinetqStatus(i18n("Slow Motion %1").tqarg("x1"));
++			emit signalXineStatus(i18n("Slow Motion %1").tqarg("x1"));
+ 			break;
+ 		}
+ 	}
+@@ -3343,31 +3343,31 @@ void KXineWidget::slotToggleDeinterlace()
+ void KXineWidget::slotAspectRatioAuto()
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_ASPECT_RATIO, XINE_VO_ASPECT_AUTO);
+-	emit signalXinetqStatus(i18n("Aspect Ratio") + ": " + i18n("Auto"));
++	emit signalXineStatus(i18n("Aspect Ratio") + ": " + i18n("Auto"));
+ }
+ 
+ void KXineWidget::slotAspectRatio4_3()
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_ASPECT_RATIO, XINE_VO_ASPECT_4_3);
+-	emit signalXinetqStatus(i18n("Aspect Ratio") + ": " + i18n("4:3"));
++	emit signalXineStatus(i18n("Aspect Ratio") + ": " + i18n("4:3"));
+ }
+ 
+ void KXineWidget::slotAspectRatioAnamorphic()
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_ASPECT_RATIO, XINE_VO_ASPECT_ANAMORPHIC);
+-	emit signalXinetqStatus(i18n("Aspect Ratio") + ": " + i18n("16:9"));
++	emit signalXineStatus(i18n("Aspect Ratio") + ": " + i18n("16:9"));
+ }
+ 
+ void KXineWidget::slotAspectRatioSquare()
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_ASPECT_RATIO, XINE_VO_ASPECT_SQUARE);
+-	emit signalXinetqStatus(i18n("Aspect Ratio") + ": " + i18n("1:1"));
++	emit signalXineStatus(i18n("Aspect Ratio") + ": " + i18n("1:1"));
+ }
+ 
+ void KXineWidget::slotAspectRatioDVB()
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_ASPECT_RATIO, XINE_VO_ASPECT_DVB);
+-	emit signalXinetqStatus(i18n("Aspect Ratio") + ": " + i18n("2.11:1"));
++	emit signalXineStatus(i18n("Aspect Ratio") + ": " + i18n("2.11:1"));
+ }
+ 
+ void KXineWidget::slotZoomOutX()
+@@ -3376,7 +3376,7 @@ void KXineWidget::slotZoomOutX()
+ 	{
+ 		m_currentZoomX -= 5;
+ 		xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_X, m_currentZoomX);
+-		emit signalXinetqStatus(i18n("Zoom X") + ": " + TQString::number(m_currentZoomX) + "%");
++		emit signalXineStatus(i18n("Zoom X") + ": " + TQString::number(m_currentZoomX) + "%");
+ 	}
+ }
+ 
+@@ -3386,7 +3386,7 @@ void KXineWidget::slotZoomInX()
+ 	{
+ 		m_currentZoomX += 5;
+ 		xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_X, m_currentZoomX);
+-		emit signalXinetqStatus(i18n("Zoom X") + ": " + TQString::number(m_currentZoomX) + "%");
++		emit signalXineStatus(i18n("Zoom X") + ": " + TQString::number(m_currentZoomX) + "%");
+ 	}
+ }
+ 
+@@ -3396,7 +3396,7 @@ void KXineWidget::slotZoomOutY()
+ 	{
+ 		m_currentZoomY -= 5;
+ 		xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_Y, m_currentZoomY);
+-		emit signalXinetqStatus(i18n("Zoom Y") + ": " + TQString::number(m_currentZoomY) + "%");
++		emit signalXineStatus(i18n("Zoom Y") + ": " + TQString::number(m_currentZoomY) + "%");
+ 	}
+ }
+ 
+@@ -3406,7 +3406,7 @@ void KXineWidget::slotZoomInY()
+ 	{
+ 		m_currentZoomY += 5;
+ 		xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_Y, m_currentZoomY);
+-		emit signalXinetqStatus(i18n("Zoom Y") + ": " + TQString::number(m_currentZoomY) + "%");
++		emit signalXineStatus(i18n("Zoom Y") + ": " + TQString::number(m_currentZoomY) + "%");
+ 	}
+ }
+ 
+@@ -3418,7 +3418,7 @@ void KXineWidget::slotZoomOut()
+ 		m_currentZoomX = m_currentZoomY = m_currentZoom;
+ 		xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_X, m_currentZoom);
+ 		xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_Y, m_currentZoom);
+-		emit signalXinetqStatus(i18n("Zoom") + ": " + TQString::number(m_currentZoom) + "%");
++		emit signalXineStatus(i18n("Zoom") + ": " + TQString::number(m_currentZoom) + "%");
+ 	}
+ }
+ 
+@@ -3430,7 +3430,7 @@ void KXineWidget::slotZoomIn()
+ 		m_currentZoomX = m_currentZoomY = m_currentZoom;
+ 		xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_X, m_currentZoom);
+ 		xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_Y, m_currentZoom);
+-		emit signalXinetqStatus(i18n("Zoom") + ": " + TQString::number(m_currentZoom) + "%");
++		emit signalXineStatus(i18n("Zoom") + ": " + TQString::number(m_currentZoom) + "%");
+ 	}
+ }
+ 
+@@ -3440,7 +3440,7 @@ void KXineWidget::slotZoomOff()
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_ZOOM_Y, 100);
+ 	m_currentZoom = 100;
+ 	m_currentZoomX = m_currentZoomY = m_currentZoom;
+-	emit signalXinetqStatus(i18n("Zoom") + ": " + TQString::number(m_currentZoom) + "%");
++	emit signalXineStatus(i18n("Zoom") + ": " + TQString::number(m_currentZoom) + "%");
+ }
+ 
+ TQTime KXineWidget::getLengthInfo()
+@@ -3513,37 +3513,37 @@ void KXineWidget::getspuOffset(int& spuOffset) const
+ void KXineWidget::slotSetHue(int hue)
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_HUE, hue);
+-	emit signalXinetqStatus(i18n("Hue") + ": " + TQString::number((hue*100)/65535) + "%");
++	emit signalXineStatus(i18n("Hue") + ": " + TQString::number((hue*100)/65535) + "%");
+ }
+ 
+ void KXineWidget::slotSetSaturation(int sat)
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_SATURATION, sat);
+-	emit signalXinetqStatus(i18n("Saturation") + ": " + TQString::number((sat*100)/65535) + "%");
++	emit signalXineStatus(i18n("Saturation") + ": " + TQString::number((sat*100)/65535) + "%");
+ }
+ 
+ void KXineWidget::slotSetContrast(int contrast)
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_CONTRAST, contrast);
+-	emit signalXinetqStatus(i18n("Contrast") + ": " + TQString::number((contrast*100)/65535) + "%");
++	emit signalXineStatus(i18n("Contrast") + ": " + TQString::number((contrast*100)/65535) + "%");
+ }
+ 
+ void KXineWidget::slotSetBrightness(int bright)
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_VO_BRIGHTNESS, bright);
+-	emit signalXinetqStatus(i18n("Brightness") + ": " + TQString::number((bright*100)/65535) + "%");
++	emit signalXineStatus(i18n("Brightness") + ": " + TQString::number((bright*100)/65535) + "%");
+ }
+ 
+ void KXineWidget::slotSetAVOffset(int av)
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_AV_OFFSET, av);
+-	emit signalXinetqStatus(i18n("Audio/Video Offset") + ": " + TQString::number(av/90) + i18n("msec"));
++	emit signalXineStatus(i18n("Audio/Video Offset") + ": " + TQString::number(av/90) + i18n("msec"));
+ }
+ 
+ void KXineWidget::slotSetSpuOffset(int spu)
+ {
+ 	xine_set_param(m_xineStream, XINE_PARAM_SPU_OFFSET, spu);
+-	emit signalXinetqStatus(i18n("Subtitle Offset") + ": " + TQString::number(spu/90) + i18n("msec"));
++	emit signalXineStatus(i18n("Subtitle Offset") + ": " + TQString::number(spu/90) + i18n("msec"));
+ }
+ 
+ 
+diff --git a/kaffeine/src/player-parts/xine-part/kxinewidget.h b/kaffeine/src/player-parts/xine-part/kxinewidget.h
+index 1ec989a..62fef7c 100644
+--- a/kaffeine/src/player-parts/xine-part/kxinewidget.h
++++ b/kaffeine/src/player-parts/xine-part/kxinewidget.h
+@@ -192,7 +192,7 @@ signals:
+ 	void signalXineFatal(const TQString& message);   /** initXine() not successfull! **/
+ 	void signalXineError(const TQString& message);
+ 	void signalXineMessage(const TQString& message);
+-	void signalXinetqStatus(const TQString& status);
++	void signalXineStatus(const TQString& status);
+ 	void signalXineReady();
+ 	void signalXinePlaying();
+ 
+diff --git a/kaffeine/src/player-parts/xine-part/postfilter.cpp b/kaffeine/src/player-parts/xine-part/postfilter.cpp
+index a54cdd5..8a691b8 100644
+--- a/kaffeine/src/player-parts/xine-part/postfilter.cpp
++++ b/kaffeine/src/player-parts/xine-part/postfilter.cpp
+@@ -50,7 +50,7 @@ PostFilter::PostFilter(const TQString& name, xine_t* engine, xine_audio_port_t*
+     xine_post_in_t* inputAPI = NULL;
+ 
+     m_groupBox = new TQGroupBox(name, parent);
+-    m_groupBox->tqsetSizePolicy(TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
++    m_groupBox->setSizePolicy(TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
+     TQGridLayout* grid = new TQGridLayout(m_groupBox, 2, 2);
+     grid->setMargin( 20 );
+     grid->setSpacing( 5 );
+@@ -147,7 +147,7 @@ PostFilter::PostFilter(const TQString& name, xine_t* engine, xine_audio_port_t*
+         }
+ 
+         descr = new TQLabel(TQString::fromUtf8(m_xinePostParameter->description ), m_groupBox);
+-        descr->tqsetAlignment(TQLabel::WordBreak | TQLabel::AlignVCenter);
++        descr->setAlignment(TQLabel::WordBreak | TQLabel::AlignVCenter);
+         grid->addWidget(descr, row, 1);
+         row++;
+         m_xinePostParameter++;
+@@ -157,14 +157,14 @@ PostFilter::PostFilter(const TQString& name, xine_t* engine, xine_audio_port_t*
+     grid->addMultiCellWidget(sep, row, row, 0, 1);
+     row++;
+     KPushButton* deleteButton = new KPushButton(i18n("Delete Filter"), m_groupBox);
+-    deleteButton->tqsetSizePolicy (TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
++    deleteButton->setSizePolicy (TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
+     connect(deleteButton, TQT_SIGNAL(clicked()), this, TQT_SLOT( slotDeletePressed()));
+     grid->addWidget(deleteButton, row, 0);
+ 
+     if(inputAPI)
+     {
+       KPushButton* helpButton = new KPushButton(i18n("Help"), m_groupBox);
+-      helpButton->tqsetSizePolicy(TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
++      helpButton->setSizePolicy(TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
+       connect(helpButton, TQT_SIGNAL(clicked()), this, TQT_SLOT(slotHelpPressed()));
+       grid->addWidget(helpButton, row, 1);
+     }
+diff --git a/kaffeine/src/player-parts/xine-part/videosettings.cpp b/kaffeine/src/player-parts/xine-part/videosettings.cpp
+index 955efcf..c64f627 100644
+--- a/kaffeine/src/player-parts/xine-part/videosettings.cpp
++++ b/kaffeine/src/player-parts/xine-part/videosettings.cpp
+@@ -48,7 +48,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contrast, int bright,
+   videoGrid->setMargin(10);
+ 
+   TQLabel* hueText = new TQLabel(i18n("Hue"), videoGroup);
+-  hueText->tqsetAlignment(AlignRight);
++  hueText->setAlignment(AlignRight);
+   m_hueSlider = new TQSlider(Qt::Horizontal, videoGroup);
+   m_hueSlider->setRange(0, 65535);
+   m_hueSlider->setSteps(10, 1000);
+@@ -58,7 +58,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contrast, int bright,
+   videoGrid->addWidget(m_hueSlider, 0, 1);
+ 
+   TQLabel* satText = new TQLabel(i18n("Saturation"), videoGroup);
+-  satText->tqsetAlignment(AlignRight);
++  satText->setAlignment(AlignRight);
+   m_satSlider = new TQSlider(Qt::Horizontal, videoGroup);
+   m_satSlider->setRange(0, 65535);
+   m_satSlider->setSteps(10, 1000);
+@@ -68,7 +68,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contrast, int bright,
+   videoGrid->addWidget(m_satSlider, 1, 1);
+ 
+   TQLabel* contrastText = new TQLabel(i18n("Contrast"), videoGroup);
+-  contrastText->tqsetAlignment(AlignRight);
++  contrastText->setAlignment(AlignRight);
+   m_contrastSlider = new TQSlider(Qt::Horizontal, videoGroup);
+   m_contrastSlider->setRange(0, 65535);
+   m_contrastSlider->setSteps(10, 1000);
+@@ -78,7 +78,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contrast, int bright,
+   videoGrid->addWidget(m_contrastSlider, 2, 1);
+ 
+   TQLabel* brightText = new TQLabel(i18n("Brightness"), videoGroup);
+-  brightText->tqsetAlignment(AlignRight);
++  brightText->setAlignment(AlignRight);
+   m_brightSlider = new TQSlider(Qt::Horizontal, videoGroup);
+   m_brightSlider->setRange(0, 65535);
+   m_brightSlider->setSteps(10, 1000);
+@@ -88,7 +88,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contrast, int bright,
+   videoGrid->addWidget(m_brightSlider, 3, 1);
+ 
+   TQLabel* avOffsetText = new TQLabel(i18n("Audio/Video Offset"), videoGroup);
+-  avOffsetText->tqsetAlignment(AlignRight);
++  avOffsetText->setAlignment(AlignRight);
+   m_avOffsetSlider = new TQSlider(Qt::Horizontal, videoGroup);
+   m_avOffsetSlider->setRange(-90000, 90000); // +/- 1 sec
+   m_avOffsetSlider->setSteps(100, 10000);
+@@ -98,7 +98,7 @@ VideoSettings::VideoSettings(int hue, int sat, int contrast, int bright,
+   videoGrid->addWidget(m_avOffsetSlider, 4, 1);
+ 
+   TQLabel* spuOffsetText = new TQLabel(i18n("Subtitle Offset"), videoGroup);
+-  spuOffsetText->tqsetAlignment(AlignRight);
++  spuOffsetText->setAlignment(AlignRight);
+   m_spuOffsetSlider = new TQSlider(Qt::Horizontal, videoGroup);
+   m_spuOffsetSlider->setRange(-90000, 90000);  // +/- 1 sec
+   m_spuOffsetSlider->setSteps(100, 10000);
+diff --git a/kaffeine/src/player-parts/xine-part/xine_part.cpp b/kaffeine/src/player-parts/xine-part/xine_part.cpp
+index 9991f1c..f9b3fb1 100644
+--- a/kaffeine/src/player-parts/xine-part/xine_part.cpp
++++ b/kaffeine/src/player-parts/xine-part/xine_part.cpp
+@@ -1058,7 +1058,7 @@ void XinePart::slotMessage(const TQString& message)
+ 	KMessageBox::information(0, msg, i18n("xine Message"));
+ }
+ 
+-void XinePart::slottqStatus(const TQString& status)
++void XinePart::slotStatus(const TQString& status)
+ {
+ 	emit setStatusBarText(status);
+ 	if ((status != i18n("Ready")) && (status != i18n("Playing")))
+@@ -1442,7 +1442,7 @@ void XinePart::initActions()
+ 		(m_playTime, i18n("Short click: Toggle Timer Forward/Backward\nLong click: Toggle Timer OSD"));
+ 	TQFontMetrics met(KGlobalSettings::generalFont());
+ 	m_playTime->setFixedWidth(met.width("-55:55:55") + 6);
+-	m_playTime->tqsetSizePolicy(TQSizePolicy (TQSizePolicy::Fixed, TQSizePolicy::Fixed));
++	m_playTime->setSizePolicy(TQSizePolicy (TQSizePolicy::Fixed, TQSizePolicy::Fixed));
+ 	m_playTime->setFocusPolicy(TQ_NoFocus);
+ 	new KWidgetAction(m_playTime, i18n("Playtime"), 0, 0, 0, actionCollection(), "player_playtime");
+ 	connect(m_playTime, TQT_SIGNAL(pressed()), TQT_TQOBJECT(this), TQT_SLOT(slotButtonTimerPressed()));
+@@ -1473,7 +1473,7 @@ void XinePart::initConnections()
+ 	        this, TQT_SLOT(slotChannelInfo(const TQStringList&, const TQStringList&, int, int )));
+ 	connect(m_xine, TQT_SIGNAL(signalXinePlaying()), TQT_TQOBJECT(this), TQT_SLOT(slotTrackPlaying()));
+ 	connect(m_xine, TQT_SIGNAL(signalNewPosition(int, const TQTime&)), TQT_TQOBJECT(this), TQT_SLOT(slotNewPosition(int, const TQTime&)));
+-	connect(m_xine, TQT_SIGNAL(signalXinetqStatus(const TQString&)), TQT_TQOBJECT(this), TQT_SLOT(slottqStatus(const TQString&)));
++	connect(m_xine, TQT_SIGNAL(signalXineStatus(const TQString&)), TQT_TQOBJECT(this), TQT_SLOT(slotStatus(const TQString&)));
+ 	connect(m_xine, TQT_SIGNAL(signalXineError(const TQString&)), TQT_TQOBJECT(this), TQT_SLOT(slotError(const TQString&)));
+ 	connect(m_xine, TQT_SIGNAL(signalXineMessage(const TQString&)), TQT_TQOBJECT(this), TQT_SLOT(slotMessage(const TQString&)));
+ 	connect(m_xine, TQT_SIGNAL(signalPlaybackFinished()), TQT_TQOBJECT(this), TQT_SLOT(slotPlaybackFinished()));
+diff --git a/kaffeine/src/player-parts/xine-part/xine_part.h b/kaffeine/src/player-parts/xine-part/xine_part.h
+index 78c809e..07bf027 100644
+--- a/kaffeine/src/player-parts/xine-part/xine_part.h
++++ b/kaffeine/src/player-parts/xine-part/xine_part.h
+@@ -169,7 +169,7 @@ private slots:
+ 	void slotConfigXine();
+ 	void slotError(const TQString&);
+ 	void slotMessage(const TQString&);
+-	void slottqStatus(const TQString&);
++	void slotStatus(const TQString&);
+ 	void slotNewTitle();
+ 	void slotNewLength();
+ 	void slotNewFrameSize();
+@@ -206,7 +206,7 @@ private:
+ 	TQPoint m_oldPosition;
+ 	TQTimer m_posCheckTimer;
+ 	TQTimer m_osdTimerEnabler;  /* Provide Long click on timer button */
+-	bool m_isOsdTimer;  /* tqStatus of Osd Timer (on/off) */
++	bool m_isOsdTimer;  /* Status of Osd Timer (on/off) */
+ 	int m_timerDirection;  /* Counting Up or Down */
+ 	int m_brightness, m_hue, m_contrast, m_saturation;
+ 
+diff --git a/kaffeine/src/player-parts/xine-part/xineconfig.cpp b/kaffeine/src/player-parts/xine-part/xineconfig.cpp
+index 277a850..74076e4 100644
+--- a/kaffeine/src/player-parts/xine-part/xineconfig.cpp
++++ b/kaffeine/src/player-parts/xine-part/xineconfig.cpp
+@@ -132,7 +132,7 @@ XineConfigEntry::XineConfigEntry(TQWidget* parent, TQGridLayout* grid, int row,
+ 	m_keyName.remove( 0, m_keyName.find(".") + 1 );
+ 
+ 	TQLabel* description = new TQLabel(m_keyName + "\n" + TQString::fromLocal8Bit(entry->description), parent);
+-	description->tqsetAlignment( TQLabel::WordBreak | TQLabel::AlignVCenter );
++	description->setAlignment( TQLabel::WordBreak | TQLabel::AlignVCenter );
+ 	grid->addWidget(description, row, 1);
+ 
+ 	KSeparator* separator = new KSeparator(Qt::Horizontal, parent);
+diff --git a/kaffeine/src/pref.cpp b/kaffeine/src/pref.cpp
+index 0544d35..4359f15 100644
+--- a/kaffeine/src/pref.cpp
++++ b/kaffeine/src/pref.cpp
+@@ -141,7 +141,7 @@ KaffeinePreferences::KaffeinePreferences() : KDialogBase(IconList,i18n("Kaffeine
+ 	gb = new TQGroupBox( "", misc );
+ 	grid = new TQGridLayout( gb, 1, 1, 20, 6 );
+ 	KPushButton* clearRecent = new KPushButton( i18n("Clear"), gb);
+-	clearRecent->tqsetSizePolicy( TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
++	clearRecent->setSizePolicy( TQSizePolicy (TQSizePolicy::Minimum, TQSizePolicy::Fixed));
+ 	connect(clearRecent, TQT_SIGNAL(clicked()), this, TQT_SIGNAL(signalClearRecent()));
+ 	grid->addWidget(clearRecent, 0, 0);
+ 	TQLabel* clearLabel = new TQLabel(i18n("Clear recent files list"), gb);
+diff --git a/kaffeine/src/startwindow.cpp b/kaffeine/src/startwindow.cpp
+index 20a5941..a86696e 100644
+--- a/kaffeine/src/startwindow.cpp
++++ b/kaffeine/src/startwindow.cpp
+@@ -66,7 +66,7 @@ SLabel::SLabel( TQWidget *parent ) : TQLabel( parent )
+ void SLabel::paintEvent( TQPaintEvent *pe )
+ {
+ 	TQLabel::paintEvent( pe );
+-	TQColorGroup cg = parentWidget()->tqcolorGroup();
++	TQColorGroup cg = parentWidget()->colorGroup();
+ 	TQColor base = cg.base();
+ 	TQColor selection = cg.highlight();
+ 	int r = (base.red() + selection.red()) / 2;
+@@ -92,7 +92,7 @@ StartWindow::StartWindow(TQWidget* parent, const char* name) : TQWidget(parent,
+ 
+ 	panel = new TQWidget( this );
+ 	panel->setPaletteBackgroundColor(TQColor("White"));
+-	panel->tqsetSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding ) );
++	panel->setSizePolicy( TQSizePolicy( TQSizePolicy::Preferred, TQSizePolicy::MinimumExpanding ) );
+ 
+ 	buttons.setAutoDelete( true );
+ }
+@@ -118,7 +118,7 @@ void StartWindow::registerTarget( const TQString& uiName, const TQString& pixNam
+ 	btn->setTextPosition( TQToolButton::Under );
+ 	btn->setUsesTextLabel( true );
+ 	btn->setIconSet( KGlobal::iconLoader()->loadIconSet(pixName, KIcon::Panel) );
+-	TQSize size = btn->tqsizeHint();
++	TQSize size = btn->sizeHint();
+ 	size.setHeight( size.height()+5 );
+ 	btn->resize( size );
+ 	connect( btn, TQT_SIGNAL(executed(const TQString&)), this, TQT_SIGNAL(execTarget(const TQString&)) );
+diff --git a/kaffeine/src/systemtray.cpp b/kaffeine/src/systemtray.cpp
+index 79028aa..745360f 100644
+--- a/kaffeine/src/systemtray.cpp
++++ b/kaffeine/src/systemtray.cpp
+@@ -72,7 +72,7 @@ SystemTray::SystemTray(TQWidget *parent, const char *name ) : KSystemTray(parent
+ 	m_osd = new TitleLabel;
+ 	m_osd->setFrameStyle(TQFrame::Panel | TQFrame::Plain);
+ 	m_osd->setLineWidth(1);
+-	m_osd->tqsetAlignment(SingleLine);
++	m_osd->setAlignment(SingleLine);
+ 	connect(&m_hideTimer, TQT_SIGNAL(timeout()), TQT_TQOBJECT(this), TQT_SLOT(slotHideOSD()));
+ 
+ 	setPixmap(KGlobal::iconLoader()->loadIcon("kaffeine", KIcon::Panel, 22));
