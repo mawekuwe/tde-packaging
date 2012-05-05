@@ -1,0 +1,22 @@
+--- k3b/src/projects/k3baudioeditorwidget.cpp
++++ k3b/src/projects/k3baudioeditorwidget.cpp	2012-04-18 16:48:00.794902506 -0500
+@@ -663,15 +663,16 @@
+ {
+   m_draggedRange = 0;
+   m_draggedMarker = 0;
+-
+   bool end;
+-  if( Range* r = findRangeEdge( e->pos(), &end ) ) {
++  Range* r = findRangeEdge( e->pos(), &end );
++
++  if (r) {
+     m_draggedRange = r;
+     m_draggingRangeEnd = end;
+     setSelectedRange( r );
+   }
+   else {
+-    Range* r = findRange( e->pos() );
++    r = findRange( e->pos() );
+     d->movedRange = r;
+     d->lastMovePosition = posToMsf( e->pos().x() );
+     setSelectedRange( r );

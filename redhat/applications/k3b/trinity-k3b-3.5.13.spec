@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -48,6 +48,9 @@ Patch106: trinity-k3b-icons.patch
 
 # TDE 3.5.13 library directory changed
 Patch107: k3b-i18n-trinity.patch
+
+# [k3b] Fix compilation with GCC 4.7 [Bug #958]
+Patch108:	k3b-3.5.13-fix_Range_r_3-gcc47.patch
 
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: desktop-file-utils
@@ -120,15 +123,17 @@ Requires: %{name}-libs = %{version}-%{release}
 %patch4 -p1 -b .manualbufsize
 %patch106 -p1 -b .desktopfile
 %patch107
+%patch108 -p1
 
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -213,7 +218,7 @@ update-desktop-database -q &> /dev/null
 %{_bindir}/k3b
 %{tde_libdir}/*.so
 %{tde_libdir}/*.la
-%doc %{_docdir}/HTML/*/k3b/*
+%doc %{tde_docdir}/HTML/en/k3b
 
 %files common
 %defattr(-,root,root,-)
@@ -242,6 +247,10 @@ update-desktop-database -q &> /dev/null
 
 
 %changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Rebuilt for Fedora 17
+- Fix compilation with GCC 4.7 [Bug #958]
+
 * Sat Nov 05 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Updates BuildRequires
 
