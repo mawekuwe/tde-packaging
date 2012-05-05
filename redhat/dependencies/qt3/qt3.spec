@@ -21,14 +21,14 @@
 Name:			qt3
 Epoch:			1
 Version:		%{?version}
-Release:		7%{?dist}
+Release:		8%{?dist}
 Summary:		The shared library for the Qt 3 GUI toolkit
 
 License:		QPL or GPLv2 or GPLv3
 Group:			System Environment/Libraries
 URL:			http://www.trinitydesktop.org/
 
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes:		qt < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:		qt = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -168,7 +168,7 @@ BuildRequires: make
 Summary: Graphical configuration tool for programs using Qt 3
 Group: User Interface/Desktops
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes: qt-config < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-config = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -196,7 +196,7 @@ Requires: libjpeg-devel
 Requires: libmng-devel
 Requires: mesa-libGL-devel
 Requires: mesa-libGLU-devel
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes: qt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -205,7 +205,7 @@ Provides:  qt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 Summary: Documentation for the Qt 3 GUI toolkit
 Group: Development/Libraries
 Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes: qt-devel-docs < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-devel-docs = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -214,7 +214,7 @@ Provides:  qt-devel-docs = %{?epoch:%{epoch}:}%{version}-%{release}
 Summary: ODBC drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes: qt-ODBC < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-ODBC = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -223,7 +223,7 @@ Provides:  qt-ODBC = %{?epoch:%{epoch}:}%{version}-%{release}
 Summary: MySQL drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes: qt-MySQL < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-MySQL = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -232,7 +232,7 @@ Provides:  qt-MySQL = %{?epoch:%{epoch}:}%{version}-%{release}
 Summary: PostgreSQL drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes: qt-PostgreSQL < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-PostgreSQL = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -241,7 +241,7 @@ Provides:  qt-PostgreSQL = %{?epoch:%{epoch}:}%{version}-%{release}
 Summary: sqlite drivers for Qt 3's SQL classes
 Group: System Environment/Libraries
 Requires: %{name} = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes: qt-sqlite < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-sqlite = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -251,7 +251,7 @@ Provides:  qt-sqlite = %{?epoch:%{epoch}:}%{version}-%{release}
 Summary: Interface designer (IDE) for the Qt 3 toolkit
 Group: Development/Tools
 Requires: %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-%if 0%{?rhel} <= 5
+%if 0%{?rhel} <= 5 && 0%{?fedora} <= 7
 Obsoletes: qt-designer < %{?epoch:%{epoch}:}%{version}-%{release}
 Provides:  qt-designer = %{?epoch:%{epoch}:}%{version}-%{release}
 %endif
@@ -721,6 +721,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sat Apr 28 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-8
+- Fix Provides and Obsoletes, again and again ...
+
 * Sat Apr 28 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-7
 - Fix Provides and Obsoletes. Now only for RHEL 5.
 
