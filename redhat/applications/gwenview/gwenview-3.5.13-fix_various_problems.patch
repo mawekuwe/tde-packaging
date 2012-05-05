@@ -1,0 +1,114 @@
+commit 1eac443e690763dd571aec664aba52f6683f9916
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1334285947 -0500
+
+    Fix inadvertent tqt changes. Part of an extensive cleanup of various problems
+    with kipi-plugins, digikam, and gwenview to resolve bug reports 241, 962, 963.
+
+diff --git a/src/gvcore/fileviewcontroller.cpp b/src/gvcore/fileviewcontroller.cpp
+index 86a0282..a8d0bee 100644
+--- a/src/gvcore/fileviewcontroller.cpp
++++ b/src/gvcore/fileviewcontroller.cpp
+@@ -309,7 +309,7 @@ FileViewController::FileViewController(TQWidget* parent,KActionCollection* actio
+ 	mBottomThumbnailMode->setExclusiveGroup("thumbnails");
+ 
+ 	// Size slider
+-	mSizeSlider=new TQSlider(Qt::Horizontal, d->mToolBar);
++	mSizeSlider=new TQSlider(Horizontal, d->mToolBar);
+ 	mSizeSlider->setFixedWidth(120);
+ 	mSizeSlider->setRange(
+ 		ThumbnailSize::MIN/SLIDER_RESOLUTION,
+diff --git a/src/gvcore/imageviewtools.cpp b/src/gvcore/imageviewtools.cpp
+index da9044a..a749ff3 100644
+--- a/src/gvcore/imageviewtools.cpp
++++ b/src/gvcore/imageviewtools.cpp
+@@ -177,7 +177,7 @@ void ImageView::ScrollTool::wheelEvent(TQWheelEvent* event) {
+ 	if (ImageViewConfig::mouseWheelScroll()) {
+ 		int deltaX, deltaY;
+ 
+-		if (event->state() & AltButton || event->orientation()==Qt::Horizontal) {
++		if (event->state() & AltButton || event->orientation()==Horizontal) {
+ 			deltaX = event->delta();
+ 			deltaY = 0;
+ 		} else {
+diff --git a/src/imageutils/transupp.c b/src/imageutils/transupp.c
+index 3bc6f20..e5ec564 100644
+--- a/src/imageutils/transupp.c
++++ b/src/imageutils/transupp.c
+@@ -30,7 +30,7 @@
+  * or recompression of the image.
+  * Thanks to Guido Vollbeding for the initial design and code of this feature.
+  *
+- *Qt::Horizontal flipping is done in-place, using a single top-to-bottom
++ * Horizontal flipping is done in-place, using a single top-to-bottom
+  * pass through the virtual source array.  It will thus be much the
+  * fastest option for images larger than main memory.
+  *
+@@ -65,7 +65,7 @@
+ LOCAL(void)
+ do_flip_h (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
+ 	   jvirt_barray_ptr *src_coef_arrays)
+-/*Qt::Horizontal flip; done in-place, so no separate dest array is required */
++/* Horizontal flip; done in-place, so no separate dest array is required */
+ {
+   JDIMENSION MCU_cols, comp_width, blk_x, blk_y;
+   int ci, k, offset_y;
+@@ -74,7 +74,7 @@ do_flip_h (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
+   JCOEF temp1, temp2;
+   jpeg_component_info *compptr;
+ 
+-  /*Qt::Horizontal mirroring of DCT blocks is accomplished by swapping
++  /* Horizontal mirroring of DCT blocks is accomplished by swapping
+    * pairs of blocks in-place.  Within a DCT block, we perform horizontal
+    * mirroring by changing the signs of odd-numbered columns.
+    * Partial iMCUs at the right edge are left untouched.
+@@ -115,7 +115,7 @@ LOCAL(void)
+ do_flip_v (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
+ 	   jvirt_barray_ptr *src_coef_arrays,
+ 	   jvirt_barray_ptr *dst_coef_arrays)
+-/*Qt::Vertical flip */
++/* Vertical flip */
+ {
+   JDIMENSION MCU_rows, comp_height, dst_blk_x, dst_blk_y;
+   int ci, i, j, offset_y;
+@@ -232,7 +232,7 @@ do_rot_90 (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
+ 	   jvirt_barray_ptr *dst_coef_arrays)
+ /* 90 degree rotation is equivalent to
+  *   1. Transposing the image;
+- *   2.Qt::Horizontal mirroring.
++ *   2. Horizontal mirroring.
+  * These two steps are merged into a single processing routine.
+  */
+ {
+@@ -295,7 +295,7 @@ do_rot_270 (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
+ 	    jvirt_barray_ptr *src_coef_arrays,
+ 	    jvirt_barray_ptr *dst_coef_arrays)
+ /* 270 degree rotation is equivalent to
+- *   1.Qt::Horizontal mirroring;
++ *   1. Horizontal mirroring;
+  *   2. Transposing the image.
+  * These two steps are merged into a single processing routine.
+  */
+@@ -359,8 +359,8 @@ do_rot_180 (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
+ 	    jvirt_barray_ptr *src_coef_arrays,
+ 	    jvirt_barray_ptr *dst_coef_arrays)
+ /* 180 degree rotation is equivalent to
+- *   1.Qt::Vertical mirroring;
+- *   2.Qt::Horizontal mirroring.
++ *   1. Vertical mirroring;
++ *   2. Horizontal mirroring.
+  * These two steps are merged into a single processing routine.
+  */
+ {
+@@ -463,9 +463,9 @@ do_transverse (j_decompress_ptr srcinfo, j_compress_ptr dstinfo,
+  *   1. 180 degree rotation;
+  *   2. Transposition;
+  * or
+- *   1.Qt::Horizontal mirroring;
++ *   1. Horizontal mirroring;
+  *   2. Transposition;
+- *   3.Qt::Horizontal mirroring.
++ *   3. Horizontal mirroring.
+  * These steps are merged into a single processing routine.
+  */
+ {

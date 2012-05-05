@@ -1,12 +1,13 @@
 # Default version for this component
 %define kdecomp gwenview
 %define version 1.4.2
-%define release 6
+%define release 7
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
+%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -33,8 +34,26 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
-# TDE 3.5.13 on RHEL/Fedora specific patches
-Patch0:		gwenview-3.5.13-jpegint-ftbfs.patch
+# [gwenview] Rename old tq methods that no longer need a unique name [Commit #d0bdd0d7]
+Patch1:	gwenview-3.5.13-rename_old_tq_method.patch
+# [gwenview] Remove additional unneeded tq method conversions [Commit #eba1d381]
+Patch2:	gwenview-3.5.13-remove_additional_tq_conversions.patch
+# [gwenview] Rename obsolete tq methods to standard names [Commit #04fccf73]
+Patch3:	gwenview-3.5.13-rename_obsolete_tq_methods.patch
+# [gwenview] Rename a few stragglers [Commit #b4881a61]
+Patch4:	gwenview-3.5.13-rename_a_few_stragglers.patch
+# [gwenview] Fix FTBFS [Commit #1ca2f739]
+Patch5:	gwenview-3.5.13-fix_ftbfs.patch
+# [gwenview] Fix FTBFS in jpeg code [Commit #ace6f270]
+Patch6:	gwenview-3.5.13-fix_ftbfs_in_jpeg_code.patch
+# [gwenview] Fix linear alphabet string errors [Commit #9cb99cdb]
+Patch7:	gwenview-3.5.13-fix_alphabet_string_error.patch
+# [gwenview] Fix building with libpng 1.5. [Commit #303be455]
+Patch8:	gwenview-3.5.13-fix_building_libpng15.patch
+# [gwenview] Fix inadvertent tqt changes. Part of an extensive cleanup of various problems
+#   with kipi-plugins, digikam, and gwenview to resolve bug reports 241, 962, 963. [Commit #1eac443e]
+Patch9:	gwenview-3.5.13-fix_various_problems.patch
+
 
 
 BuildRequires: tqtinterface-devel
@@ -51,7 +70,7 @@ Conflicts: kdegraphics
 
 
 %description
-Gwenview is a fast and easy to use image viewer/browser for KDE.
+Gwenview is a fast and easy to use image viewer/browser for TDE.
 All common image formats are supported, such as PNG(including transparency),
 JPEG(including EXIF tags and lossless transformations), GIF, XCF (Gimp
 image format), BMP, XPM and others. Standard features include slideshow,
@@ -66,20 +85,30 @@ KIPI image framework.
 
 %prep
 %setup -q -n applications/%{kdecomp}
-%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
 %build
+unset QTDIR || : ; source /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
@@ -123,12 +152,18 @@ fi
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in crystalsvg hicolor ; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
+/sbin/ldconfig
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in crystalsvg hicolor ; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
+/sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
@@ -140,17 +175,23 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/apps/*/
 %{_datadir}/config.kcfg/*
 %{tde_docdir}/HTML/en/*/
-%{_datadir}/icons/*/*/*/*
+%{_datadir}/icons/crystalsvg/*/*/*
+%{_datadir}/icons/hicolor/*/*/*
 %{_mandir}/man*/*
 
 %{_libdir}/*.so
 %{_libdir}/*.la
-%{_libdir}/*/*.so
-%{_libdir}/*/*.la
+%{tde_libdir}/*.so
+%{tde_libdir}/*.la
 
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-7
+- Rebuilt for Fedora 17
+- Fix post and postun
+- Adds patches from GIT
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-6
 - Fix HTML directory location
 

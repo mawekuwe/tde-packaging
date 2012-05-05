@@ -1,0 +1,146 @@
+commit 303be4553ad5bbe79d50a8708cf1f8f0e4d220af
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1334285908 -0500
+
+    Fix building with libpng 1.5.
+
+diff --git a/src/gvcore/pngformattype.cpp b/src/gvcore/pngformattype.cpp
+index 77bf7b3..8da8089 100644
+--- a/src/gvcore/pngformattype.cpp
++++ b/src/gvcore/pngformattype.cpp
+@@ -211,7 +211,7 @@ void setup_qt( TQImage& image, png_structp png_ptr, png_infop info_ptr )
+ 
+     if ( color_type == PNG_COLOR_TYPE_GRAY ) {
+ 	// Black & White or 8-bit grayscale
+-	if ( bit_depth == 1 && info_ptr->channels == 1 ) {
++      if ( bit_depth == 1 && png_get_channels(png_ptr, info_ptr) == 1 ) {
+ 	    png_set_invert_mono( png_ptr );
+ 	    png_read_update_info( png_ptr, info_ptr );
+ 	    if (!image.create( width, height, 1, 2, TQImage::BigEndian ))
+@@ -246,7 +246,11 @@ void setup_qt( TQImage& image, png_structp png_ptr, png_infop info_ptr )
+ 	    }
+ 	    if ( png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS) ) {
+ #if PNG_LIBPNG_VER_MAJOR>1 || ( PNG_LIBPNG_VER_MAJOR==1 && PNG_LIBPNG_VER_MINOR>=4 )
+-		const int g = info_ptr->trans_color.gray;
++		png_bytep trans_alpha;
++		int num_trans;
++		png_color_16p trans_color;
++		png_get_tRNS(png_ptr, info_ptr, &trans_alpha, &num_trans, &trans_color);
++		const int g = trans_color->gray;
+ #else
+  		const int g = info_ptr->trans_values.gray;
+ #endif
+@@ -256,9 +260,13 @@ void setup_qt( TQImage& image, png_structp png_ptr, png_infop info_ptr )
+ 		}
+ 	    }
+ 	}
+-    } else if ( color_type == PNG_COLOR_TYPE_PALETTE
++    } else {
++     png_colorp palette;
++     int num_palette;
++     png_get_PLTE(png_ptr, info_ptr, &palette, &num_palette);
++     if ( color_type == PNG_COLOR_TYPE_PALETTE
+      && png_get_valid(png_ptr, info_ptr, PNG_INFO_PLTE)
+-     && info_ptr->num_palette <= 256 )
++     && num_palette <= 256 )
+     {
+ 	// 1-bit and 8-bit color
+ 	if ( bit_depth != 1 )
+@@ -266,20 +274,28 @@ void setup_qt( TQImage& image, png_structp png_ptr, png_infop info_ptr )
+ 	png_read_update_info( png_ptr, info_ptr );
+ 	png_get_IHDR(png_ptr, info_ptr,
+ 	    &width, &height, &bit_depth, &color_type, 0, 0, 0);
+-	if (!image.create(width, height, bit_depth, info_ptr->num_palette,
++	if (!image.create(width, height, bit_depth, num_palette,
+ 	    TQImage::BigEndian))
+ 	    return;
+ 	int i = 0;
+ 	if ( png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS) ) {
++	    png_bytep trans_alpha;
++	    int num_trans;
++	    png_color_16p trans_color;
++	    png_get_tRNS(png_ptr, info_ptr, &trans_alpha, &num_trans, &trans_color);
+ 	    image.setAlphaBuffer( TRUE );
+-	    while ( i < info_ptr->num_trans ) {
++	    while ( i < num_trans ) {
+ 		image.setColor(i, tqRgba(
+-		    info_ptr->palette[i].red,
+-		    info_ptr->palette[i].green,
+-		    info_ptr->palette[i].blue,
+-#if PNG_LIBPNG_VER_MAJOR>1 || ( PNG_LIBPNG_VER_MAJOR==1 && PNG_LIBPNG_VER_MINOR>=4 )
+-		    info_ptr->trans_alpha[i]
+-#else
++		    palette[i].red,
++		    palette[i].green,
++		    palette[i].blue,
++#if PNG_LIBPNG_VER_MAJOR>1 || ( PNG_LIBPNG_VER_MAJOR==1 && PNG_LIBPNG_VER_MINOR>=5 )
++		    trans_alpha[i]
++#endif
++#if ( PNG_LIBPNG_VER_MAJOR==1 && PNG_LIBPNG_VER_MINOR==4 )
++        info_ptr->trans_alpha[i]
++#endif
++#if ( PNG_LIBPNG_VER_MAJOR==1 && PNG_LIBPNG_VER_MINOR<=3 )
+  		    info_ptr->trans[i]
+ #endif
+ 		    )
+@@ -287,11 +303,11 @@ void setup_qt( TQImage& image, png_structp png_ptr, png_infop info_ptr )
+ 		i++;
+ 	    }
+ 	}
+-	while ( i < info_ptr->num_palette ) {
++	while ( i < num_palette ) {
+ 	    image.setColor(i, tqRgba(
+-		info_ptr->palette[i].red,
+-		info_ptr->palette[i].green,
+-		info_ptr->palette[i].blue,
++		palette[i].red,
++		palette[i].green,
++		palette[i].blue,
+ 		0xff
+ 		)
+ 	    );
+@@ -326,12 +342,13 @@ void setup_qt( TQImage& image, png_structp png_ptr, png_infop info_ptr )
+ 	}
+ 
+ 	png_read_update_info(png_ptr, info_ptr);
+-    }
++      }
+ 
+     // TQt==ARGB==Big(ARGB)==Little(BGRA)
+     if ( TQImage::systemByteOrder() == TQImage::LittleEndian ) {
+ 	png_set_bgr(png_ptr);
+     }
++    }
+ }
+ 
+ 
+@@ -389,7 +406,7 @@ int PNGFormat::decode(TQImage& img, TQImageConsumer* cons,
+ 	    return -1;
+ 	}
+ 
+-	if (setjmp((png_ptr)->jmpbuf)) {
++	if (setjmp(png_jmpbuf(png_ptr))) {
+ 	    png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+ 	    image = 0;
+ 	    return -1;
+@@ -417,7 +434,7 @@ int PNGFormat::decode(TQImage& img, TQImageConsumer* cons,
+ 
+     if ( !png_ptr ) return 0;
+ 
+-    if (setjmp(png_ptr->jmpbuf)) {
++    if (setjmp(png_jmpbuf(png_ptr))) {
+ 	png_destroy_read_struct(&png_ptr, &info_ptr, 0);
+ 	image = 0;
+ 	state = MovieStart;
+@@ -484,7 +501,11 @@ void PNGFormat::end(png_structp png, png_infop info)
+     consumer->frameDone(TQPoint(offx,offy),r);
+     consumer->end();
+     state = FrameStart;
++#if PNG_LIBPNG_VER_MAJOR>1 || ( PNG_LIBPNG_VER_MAJOR==1 && PNG_LIBPNG_VER_MINOR>=5 )
++    unused_data = png_process_data_pause(png, 1);
++#else
+     unused_data = (int)png->buffer_size; // Since libpng doesn't tell us
++#endif
+ }
+ 
+ #ifdef PNG_USER_CHUNKS_SUPPORTED

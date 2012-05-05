@@ -1,0 +1,915 @@
+commit eba1d381626d92b860239417f21d813f02ee6394
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324316139 -0600
+
+    Remove additional unneeded tq method conversions
+
+diff --git a/src/app/bookmarkviewcontroller.cpp b/src/app/bookmarkviewcontroller.cpp
+index 68ee9f0..d09156a 100644
+--- a/src/app/bookmarkviewcontroller.cpp
++++ b/src/app/bookmarkviewcontroller.cpp
+@@ -392,11 +392,11 @@ void BookmarkViewController::deleteCurrentBookmark() {
+ 	TQString title;
+ 	if (bookmark.isGroup()) {
+ 		msg=i18n("Are you sure you want to delete the bookmark folder <b>%1</b>?<br>This will delete the folder and all the bookmarks in it.")
+-			.tqarg(bookmark.text());
++			.arg(bookmark.text());
+ 		title=i18n("Delete Bookmark &Folder");
+ 	} else {
+ 		msg=i18n("Are you sure you want to delete the bookmark <b>%1</b>?")
+-			.tqarg(bookmark.text());
++			.arg(bookmark.text());
+ 		title=i18n("Delete &Bookmark");
+ 	}
+ 
+diff --git a/src/app/configdialog.cpp b/src/app/configdialog.cpp
+index d274188..a429095 100644
+--- a/src/app/configdialog.cpp
++++ b/src/app/configdialog.cpp
+@@ -247,7 +247,7 @@ void ConfigDialog::calculateCacheSize() {
+ 	KURL url;
+ 	url.setPath(ThumbnailLoadJob::thumbnailBaseDir());
+ 	unsigned long size=KDirSize::dirSize(url);
+-	KMessageBox::information( this,i18n("Cache size is %1").tqarg(KIO::convertSize(size)) );
++	KMessageBox::information( this,i18n("Cache size is %1").arg(KIO::convertSize(size)) );
+ }
+ 
+ 
+@@ -281,7 +281,7 @@ void ConfigDialog::emptyCache() {
+ 
+ 	int response=KMessageBox::warningContinueCancel(this,
+ 		"<qt>" + i18n("Are you sure you want to empty the thumbnail cache?"
+-		" This will delete the folder <b>%1</b>.").tqarg(TQStyleSheet::escape(dir)) + "</qt>",
++		" This will delete the folder <b>%1</b>.").arg(TQStyleSheet::escape(dir)) + "</qt>",
+ 		TQString(),
+ 		KStdGuiItem::del());
+ 
+diff --git a/src/app/configimageviewpage.ui b/src/app/configimageviewpage.ui
+index 32fb346..2f816c0 100644
+--- a/src/app/configimageviewpage.ui
++++ b/src/app/configimageviewpage.ui
+@@ -217,7 +217,7 @@
+                                 <string>Using this option, Gwenview will display the image as fast as possible, and smooth it after a short delay.
+ Use this option if your computer is not very fast.</string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>WordBreak|AlignTop</set>
+                             </property>
+                             <property name="buddy" stdset="0">
+diff --git a/src/app/kipiinterface.cpp b/src/app/kipiinterface.cpp
+index 9a35ef3..f95fe54 100644
+--- a/src/app/kipiinterface.cpp
++++ b/src/app/kipiinterface.cpp
+@@ -163,7 +163,7 @@ KIPI::ImageCollection KIPIInterface::currentSelection() {
+ 	LOG("");
+ 	KURL::List list=d->mFileView->selectedImageURLs();
+ 	KURL url=d->mFileView->dirURL();
+-	return KIPI::ImageCollection(new ImageCollection(url, i18n("%1 (Selected Images)").tqarg(url.fileName()), list));
++	return KIPI::ImageCollection(new ImageCollection(url, i18n("%1 (Selected Images)").arg(url.fileName()), list));
+ }
+ 
+ 
+@@ -189,12 +189,12 @@ int KIPIInterface::features() const {
+  * here, it is however necessary to discard caches if the plugin preserves timestamp
+  */
+ bool KIPIInterface::addImage(const KURL& url, TQString&) {
+-	Cache::instance()->tqinvalidate( url );
++	Cache::instance()->invalidate( url );
+ 	return true;
+ }
+ 
+ void KIPIInterface::delImage(const KURL& url) {
+-	Cache::instance()->tqinvalidate( url );
++	Cache::instance()->invalidate( url );
+ }
+ 
+ // TODO currently KDirWatch doesn't have watching of files in a directory
+@@ -203,7 +203,7 @@ void KIPIInterface::refreshImages( const KURL::List& urls ) {
+ 	for( KURL::List::ConstIterator it = urls.begin();
+ 	     it != urls.end();
+ 	     ++it ) {
+-		Cache::instance()->tqinvalidate( *it );
++		Cache::instance()->invalidate( *it );
+ 	}
+ 	d->mFileView->refreshItems( urls );
+ }
+diff --git a/src/app/mainwindow.cpp b/src/app/mainwindow.cpp
+index f9acc9b..2f2275b 100644
+--- a/src/app/mainwindow.cpp
++++ b/src/app/mainwindow.cpp
+@@ -806,7 +806,7 @@ void MainWindow::updateStatusInfo() {
+ 		int pos = mFileViewController->shownFilePosition();
+ 		uint count = mFileViewController->fileCount();
+ 		if (count > 0) {
+-			tokens << i18n("%1/%2").tqarg(pos+1).tqarg(count);
++			tokens << i18n("%1/%2").arg(pos+1).arg(count);
+ 		} else {
+ 			tokens << i18n("No images");
+ 		}
+@@ -816,7 +816,7 @@ void MainWindow::updateStatusInfo() {
+ 
+ 	TQSize size = mDocument->image().size();
+ 	if (!size.isEmpty()) {
+-		tokens << i18n("%1 x %2 pixels").tqarg(size.width()).tqarg(size.height());
++		tokens << i18n("%1 x %2 pixels").arg(size.width()).arg(size.height());
+ 	}
+ 	
+ 	mSBDetailLabel->setText(tokens.join(" - "));
+@@ -1094,9 +1094,9 @@ void MainWindow::createObjectInteractions() {
+ void MainWindow::createHideShowAction(KDockWidget* dock) {
+ 	TQString caption;
+ 	if (dock->mayBeHide()) {
+-		caption=i18n("Hide %1").tqarg(dock->caption());
++		caption=i18n("Hide %1").arg(dock->caption());
+ 	} else {
+-		caption=i18n("Show %1").tqarg(dock->caption());
++		caption=i18n("Show %1").arg(dock->caption());
+ 	}
+ 
+ 	KAction* action=new KAction(caption, 0, TQT_TQOBJECT(dock), TQT_SLOT(changeHideShowState()), (TQObject*)0 );
+diff --git a/src/app/metaedit.cpp b/src/app/metaedit.cpp
+index 3fa9e19..7aa3ced 100644
+--- a/src/app/metaedit.cpp
++++ b/src/app/metaedit.cpp
+@@ -132,7 +132,7 @@ void MetaEdit::setComment(const TQString& comment) {
+ void MetaEdit::setMessage(const TQString& msg) {
+ 	mCommentEdit->setTextFormat(TQTextEdit::RichText);
+ 	mCommentEdit->setReadOnly(true);
+-	mCommentEdit->setText(TQString("<i>%1</i>").tqarg(msg));
++	mCommentEdit->setText(TQString("<i>%1</i>").arg(msg));
+ }
+ 
+ } // namespace
+diff --git a/src/gvcore/cache.cpp b/src/gvcore/cache.cpp
+index 448d8f6..8f4bfb3 100644
+--- a/src/gvcore/cache.cpp
++++ b/src/gvcore/cache.cpp
+@@ -179,7 +179,7 @@ void Cache::addThumbnail( const KURL& url, const TQPixmap& thumbnail, TQSize ima
+ 	checkMaxSize();
+ }
+ 
+-void Cache::tqinvalidate( const KURL& url ) {
++void Cache::invalidate( const KURL& url ) {
+ 	d->mImages.remove( url );
+ }
+ 
+diff --git a/src/gvcore/cache.h b/src/gvcore/cache.h
+index 199bc46..68591a5 100644
+--- a/src/gvcore/cache.h
++++ b/src/gvcore/cache.h
+@@ -52,7 +52,7 @@ public:
+ 	void getFrames( const KURL& url, ImageFrames* frames, TQCString* format ) const;
+ 	TQPixmap thumbnail( const KURL& url, TQSize& imagesize ) const;
+ 	void setPriorityURL( const KURL& url, bool set );
+-	void tqinvalidate( const KURL& url );
++	void invalidate( const KURL& url );
+ 	void checkThumbnailSize( int size );
+ 	void readConfig(KConfig*,const TQString& group);
+ 	void updateAge();
+diff --git a/src/gvcore/captionformatter.cpp b/src/gvcore/captionformatter.cpp
+index 74514f3..4b0a593 100644
+--- a/src/gvcore/captionformatter.cpp
++++ b/src/gvcore/captionformatter.cpp
+@@ -35,7 +35,7 @@ TQString CaptionFormatter::format(const TQString& format) {
+ 
+ 	TQString resolution;
+ 	if (mImageSize.isValid()) {
+-		resolution = TQString( "%1x%2" ).tqarg( mImageSize.width()).tqarg( mImageSize.height());
++		resolution = TQString( "%1x%2" ).arg( mImageSize.width()).arg( mImageSize.height());
+ 	}
+ 	
+ 	TQString str=format;
+diff --git a/src/gvcore/clicklineedit.cpp b/src/gvcore/clicklineedit.cpp
+index 58c09ac..dfbe3bb 100644
+--- a/src/gvcore/clicklineedit.cpp
++++ b/src/gvcore/clicklineedit.cpp
+@@ -40,14 +40,14 @@ ClickLineEdit::ClickLineEdit(TQWidget *parent, const char* name ) :
+ void ClickLineEdit::setClickMessage( const TQString &msg )
+ {
+     mClickMessage = msg;
+-    tqrepaint();
++    repaint();
+ }
+ 
+ 
+ void ClickLineEdit::setText( const TQString &txt )
+ {
+     mDrawClickMsg = txt.isEmpty();
+-    tqrepaint();
++    repaint();
+     KLineEdit::setText( txt );
+ }
+ 
+@@ -86,7 +86,7 @@ void ClickLineEdit::focusInEvent( TQFocusEvent *ev )
+ {
+     if ( mDrawClickMsg == true ) {
+         mDrawClickMsg = false;
+-        tqrepaint();
++        repaint();
+     }
+     TQLineEdit::focusInEvent( ev );
+ }
+@@ -96,7 +96,7 @@ void ClickLineEdit::focusOutEvent( TQFocusEvent *ev )
+ {
+     if ( text().isEmpty() ) {
+         mDrawClickMsg = true;
+-        tqrepaint();
++        repaint();
+     }
+     TQLineEdit::focusOutEvent( ev );
+ }
+diff --git a/src/gvcore/deletedialogbase.ui b/src/gvcore/deletedialogbase.ui
+index 6abab10..f7d6f90 100644
+--- a/src/gvcore/deletedialogbase.ui
++++ b/src/gvcore/deletedialogbase.ui
+@@ -56,7 +56,7 @@
+                     <property name="text">
+                         <string>Deletion method placeholder, not in GUI</string>
+                     </property>
+-                    <property name="tqalignment">
++                    <property name="alignment">
+                         <set>WordBreak|AlignCenter</set>
+                     </property>
+                 </widget>
+@@ -80,7 +80,7 @@
+             <property name="text">
+                 <string>Placeholder for number of files, not in GUI</string>
+             </property>
+-            <property name="tqalignment">
++            <property name="alignment">
+                 <set>AlignVCenter|AlignRight</set>
+             </property>
+         </widget>
+diff --git a/src/gvcore/document.cpp b/src/gvcore/document.cpp
+index caa93f5..b81a229 100644
+--- a/src/gvcore/document.cpp
++++ b/src/gvcore/document.cpp
+@@ -343,7 +343,7 @@ void Document::slotLoaded() {
+ //
+ //---------------------------------------------------------------------
+ void Document::reload() {
+-	Cache::instance()->tqinvalidate( url());
++	Cache::instance()->invalidate( url());
+ 	load();
+ 	emit reloaded(url());
+ }
+@@ -378,7 +378,7 @@ void Document::doPaint(KPrinter *printer, TQPainter *painter) {
+ 	TQString t = "true";
+ 	TQString f = "false";
+ 
+-	int tqalignment = (printer->option("app-gwenview-position").isEmpty() ?
++	int alignment = (printer->option("app-gwenview-position").isEmpty() ?
+ 		TQt::AlignCenter : printer->option("app-gwenview-position").toInt());
+ 
+ 	// Compute filename offset
+@@ -407,7 +407,7 @@ void Document::doPaint(KPrinter *printer, TQPainter *painter) {
+ 	if (scaling==GV_FITTOPAGE /* Fit to page */) {
+ 		bool enlargeToFit = printer->option( "app-gwenview-enlargeToFit" ) != f;
+ 		if ((image.width() > pdWidth || image.height() > pdHeight) || enlargeToFit) {
+-			size.tqscale( pdWidth, pdHeight, TQSize::ScaleMin );
++			size.scale( pdWidth, pdHeight, TQSize::ScaleMin );
+ 		}
+ 	} else {
+ 		if (scaling==GV_SCALE /* Scale To */) {
+@@ -452,24 +452,24 @@ void Document::doPaint(KPrinter *printer, TQPainter *painter) {
+ 				printer->abort();
+ 				return;
+ 			} else if (resp == KMessageBox::No) { // Shrink
+-				size.tqscale(pdWidth, pdHeight, TQSize::ScaleMin);
++				size.scale(pdWidth, pdHeight, TQSize::ScaleMin);
+ 			}
+ 		}
+ 	}
+ 
+ 	// Compute x and y
+-	if ( tqalignment & TQt::AlignHCenter )
++	if ( alignment & TQt::AlignHCenter )
+ 		x = (pdWidth - size.width())/2;
+-	else if ( tqalignment & TQt::AlignLeft )
++	else if ( alignment & TQt::AlignLeft )
+ 		x = 0;
+-	else if ( tqalignment & TQt::AlignRight )
++	else if ( alignment & TQt::AlignRight )
+ 		x = pdWidth - size.width();
+ 
+-	if ( tqalignment & TQt::AlignVCenter )
++	if ( alignment & TQt::AlignVCenter )
+ 		y = (pdHeight - size.height())/2;
+-	else if ( tqalignment & TQt::AlignTop )
++	else if ( alignment & TQt::AlignTop )
+ 		y = 0;
+-	else if ( tqalignment & TQt::AlignBottom )
++	else if ( alignment & TQt::AlignBottom )
+ 		y = pdHeight - size.height();
+ 
+ 	// Draw, the image will be scaled to fit the given area if necessary
+@@ -532,7 +532,7 @@ void Document::saveBeforeClosing() {
+ 	if (!d->mModified) return;
+ 
+ 	TQString msg=i18n("<qt>The image <b>%1</b> has been modified, do you want to save the changes?</qt>")
+-		.tqarg(url().prettyURL());
++		.arg(url().prettyURL());
+ 
+ 	int result=KMessageBox::questionYesNo(dialogParentWidget(), msg, TQString(),
+ 		KStdGuiItem::save(), KStdGuiItem::discard(), CONFIG_SAVE_AUTOMATICALLY);		
+@@ -605,7 +605,7 @@ TQString Document::saveInternal(const KURL& url, const TQCString& format) {
+ 	
+ 	LOG("Save failed: " << msg);
+ 	return TQString("<qt><b>%1</b><br/>")
+-		.tqarg(i18n("Could not save the image to %1.").tqarg(url.prettyURL()))
++		.arg(i18n("Could not save the image to %1.").arg(url.prettyURL()))
+ 		+ msg + "</qt>";
+ }
+ 
+diff --git a/src/gvcore/documentloadedimpl.cpp b/src/gvcore/documentloadedimpl.cpp
+index aacea94..31baec0 100644
+--- a/src/gvcore/documentloadedimpl.cpp
++++ b/src/gvcore/documentloadedimpl.cpp
+@@ -134,7 +134,7 @@ TQString DocumentLoadedImpl::save(const KURL& _url, const TQCString& format) con
+ 			if (!parent.isWritable()) {
+ 				return
+ 					i18n("The %1 folder is read-only.")
+-					.tqarg(parent.filePath());
++					.arg(parent.filePath());
+ 			}
+ 		}
+ 	}
+@@ -152,7 +152,7 @@ TQString DocumentLoadedImpl::save(const KURL& _url, const TQCString& format) con
+ 	if (tmp.status()!=0) {
+ 		TQString reason( strerror(tmp.status()) );
+ 		return i18n("Could not create a temporary file.\nReason: %1.")
+-			.tqarg(reason);
++			.arg(reason);
+ 	}
+ 	TQFile* file=tmp.file();
+ 	msg=localSave(file, format);
+@@ -162,7 +162,7 @@ TQString DocumentLoadedImpl::save(const KURL& _url, const TQCString& format) con
+ 	if (tmp.status()!=0) {
+ 		TQString reason( strerror(tmp.status()) );
+ 		return i18n("Saving image to a temporary file failed.\nReason: %1.")
+-			.tqarg(reason);
++			.arg(reason);
+ 	}
+ 	
+ 	TQString tmpName=tmp.name();
+@@ -172,11 +172,11 @@ TQString DocumentLoadedImpl::save(const KURL& _url, const TQCString& format) con
+ 	// Move the tmp file to the final dest
+ 	if (url.isLocalFile()) {
+ 		if( ::rename( TQFile::encodeName(tmpName), TQFile::encodeName( url.path())) < 0 ) {
+-			return i18n("Could not write to %1.").tqarg(url.path());
++			return i18n("Could not write to %1.").arg(url.path());
+ 		}
+ 	} else {
+ 		if (!KIO::NetAccess::upload(tmp.name(), url, KApplication::kApplication()->mainWidget() )) {
+-			return i18n("Could not upload the file to %1.").tqarg(url.prettyURL());
++			return i18n("Could not upload the file to %1.").arg(url.prettyURL());
+ 		}
+ 	}
+ 
+diff --git a/src/gvcore/documentloadingimpl.cpp b/src/gvcore/documentloadingimpl.cpp
+index 072229e..02020ad 100644
+--- a/src/gvcore/documentloadingimpl.cpp
++++ b/src/gvcore/documentloadingimpl.cpp
+@@ -99,7 +99,7 @@ void DocumentLoadingImpl::init() {
+ 			emitImageRectUpdated();
+ 		} else {
+ 			setImage(image);
+-			TQMemArray< TQRect > rects = TQRegion(d->mLoader->loadedRegion()).tqrects();
++			TQMemArray< TQRect > rects = TQRegion(d->mLoader->loadedRegion()).rects();
+ 			for( unsigned int i = 0; i < rects.count(); ++i ) {
+ 				emit rectUpdated(rects[i]);
+ 			}
+diff --git a/src/gvcore/dragpixmapgenerator.h b/src/gvcore/dragpixmapgenerator.h
+index efbbd93..308c391 100644
+--- a/src/gvcore/dragpixmapgenerator.h
++++ b/src/gvcore/dragpixmapgenerator.h
+@@ -128,7 +128,7 @@ public:
+ 		if (listCropped) {
+ 			// If list has been cropped, leave space for item count text
+ 			height += fm.height();
+-			bottomText = i18n("%1 items").tqarg(mItemList.count());
++			bottomText = i18n("%1 items").arg(mItemList.count());
+ 			width = TQMAX(width, fm.width("... " + bottomText));
+ 		}
+ 		
+diff --git a/src/gvcore/externaltooldialog.cpp b/src/gvcore/externaltooldialog.cpp
+index e579b99..a71351b 100644
+--- a/src/gvcore/externaltooldialog.cpp
++++ b/src/gvcore/externaltooldialog.cpp
+@@ -144,7 +144,7 @@ struct ExternalToolDialogPrivate {
+ 		for (; item; item=item->nextSibling()) {
+ 			if (item==mSelectedItem) continue;
+ 			if (name==item->text(0)) {
+-				KMessageBox::sorry(mContent, i18n("There is already a tool named \"%1\"").tqarg(name));
++				KMessageBox::sorry(mContent, i18n("There is already a tool named \"%1\"").arg(name));
+ 				return false;
+ 			}
+ 		}
+diff --git a/src/gvcore/externaltoolmanager.cpp b/src/gvcore/externaltoolmanager.cpp
+index 4fd4e03..3a43d26 100644
+--- a/src/gvcore/externaltoolmanager.cpp
++++ b/src/gvcore/externaltoolmanager.cpp
+@@ -222,7 +222,7 @@ TQDict<KDesktopFile>& ExternalToolManager::desktopFiles() const {
+ 
+ void ExternalToolManager::hideDesktopFile(KDesktopFile* desktopFile) {
+ 	TQFileInfo fi(desktopFile->fileName());
+-	TQString name=TQString("%1.desktop").tqarg( fi.baseName(true) );
++	TQString name=TQString("%1.desktop").arg( fi.baseName(true) );
+ 	d->mDesktopFiles.take(name);
+ 	
+ 	if (desktopFile->isReadOnly()) {
+@@ -240,7 +240,7 @@ KDesktopFile* ExternalToolManager::editSystemDesktopFile(const KDesktopFile* des
+ 	TQFileInfo fi(desktopFile->fileName());
+ 
+ 	TQString name=fi.baseName(true);
+-	d->mDesktopFiles.remove(TQString("%1.desktop").tqarg(name));
++	d->mDesktopFiles.remove(TQString("%1.desktop").arg(name));
+ 	
+ 	return createUserDesktopFile(name);
+ }
+@@ -250,7 +250,7 @@ KDesktopFile* ExternalToolManager::createUserDesktopFile(const TQString& name) {
+ 	Q_ASSERT(!name.isEmpty());
+ 	KDesktopFile* desktopFile=new KDesktopFile(
+ 		d->mUserToolDir + "/" + name + ".desktop", false);
+-	d->mDesktopFiles.insert(TQString("%1.desktop").tqarg(name), desktopFile);	
++	d->mDesktopFiles.insert(TQString("%1.desktop").arg(name), desktopFile);	
+ 
+ 	return desktopFile;
+ }
+diff --git a/src/gvcore/filedetailview.cpp b/src/gvcore/filedetailview.cpp
+index a8eba49..a7d9f64 100644
+--- a/src/gvcore/filedetailview.cpp
++++ b/src/gvcore/filedetailview.cpp
+@@ -525,8 +525,8 @@ void FileDetailView::setShownFileItem(KFileItem* fileItem)
+ 	FileDetailViewItem* newShownItem=viewItem(fileItem);
+ 	
+ 	FileViewBase::setShownFileItem(fileItem);
+-	if (oldShownItem) oldShownItem->tqrepaint();
+-	if (newShownItem) newShownItem->tqrepaint();
++	if (oldShownItem) oldShownItem->repaint();
++	if (newShownItem) newShownItem->repaint();
+ }
+ 
+ 
+diff --git a/src/gvcore/fileopobject.cpp b/src/gvcore/fileopobject.cpp
+index 9f09438..cf6b036 100644
+--- a/src/gvcore/fileopobject.cpp
++++ b/src/gvcore/fileopobject.cpp
+@@ -259,7 +259,7 @@ void FileOpTrashObject::operator()() {
+ 		} else {
+ 			TQString filename=TQStyleSheet::escape(mURLList.first().filename());
+ 			response=KMessageBox::warningContinueCancel(mParent,
+-				i18n("<p>Do you really want to move <b>%1</b> to the trash?</p>").tqarg(filename),i18n("Trash used as a verb", "Trash File"),KGuiItem(i18n("Trash used as a verb", "&Trash"),"edittrash"));
++				i18n("<p>Do you really want to move <b>%1</b> to the trash?</p>").arg(filename),i18n("Trash used as a verb", "Trash File"),KGuiItem(i18n("Trash used as a verb", "&Trash"),"edittrash"));
+ 		}
+ 		if (response!=KMessageBox::Continue) return;
+ 	}
+@@ -287,7 +287,7 @@ void FileOpRealDeleteObject::operator()() {
+ 		} else {
+ 			TQString filename=TQStyleSheet::escape(mURLList.first().filename());
+ 			response=KMessageBox::warningContinueCancel(mParent,
+-				i18n("<p>Do you really want to delete <b>%1</b>?</p>").tqarg(filename),
++				i18n("<p>Do you really want to delete <b>%1</b>?</p>").arg(filename),
+ 				i18n("Delete File"),
+ 				KStdGuiItem::del()
+ 				);
+@@ -309,7 +309,7 @@ void FileOpRenameObject::operator()() {
+ 	TQString filename = srcURL.filename();
+ 	InputDialog dlg(mParent);
+ 	dlg.setCaption(i18n("Renaming File"));
+-	dlg.setLabel(i18n("<p>Rename file <b>%1</b> to:</p>").tqarg(TQStyleSheet::escape(filename)));
++	dlg.setLabel(i18n("<p>Rename file <b>%1</b> to:</p>").arg(TQStyleSheet::escape(filename)));
+ 	dlg.setButtonOK( KGuiItem(i18n("&Rename"), "edit") );
+ 
+ 	dlg.lineEdit()->setText(filename);
+diff --git a/src/gvcore/filethumbnailview.cpp b/src/gvcore/filethumbnailview.cpp
+index 3910e48..c6760fe 100644
+--- a/src/gvcore/filethumbnailview.cpp
++++ b/src/gvcore/filethumbnailview.cpp
+@@ -285,7 +285,7 @@ void FileThumbnailView::setThumbnailPixmap(const KFileItem* fileItem, const TQPi
+ 	if (size.isValid()) {
+ 		iconItem->setImageSize(size);
+ 	}
+-	iconItem->tqrepaint();
++	iconItem->repaint();
+ 
+ 	// Notify progress
+ 	if (d->mProgressWidget) {
+diff --git a/src/gvcore/fileviewcontroller.cpp b/src/gvcore/fileviewcontroller.cpp
+index bb57a07..1cd795e 100644
+--- a/src/gvcore/fileviewcontroller.cpp
++++ b/src/gvcore/fileviewcontroller.cpp
+@@ -747,7 +747,7 @@ void FileViewController::updateViewMode() {
+ 
+ void FileViewController::updateThumbnailSize(int size) {
+ 	size*=SLIDER_RESOLUTION;
+-	d->mSliderTracker->setText(i18n("Thumbnail size: %1x%2").tqarg(size).tqarg(size));
++	d->mSliderTracker->setText(i18n("Thumbnail size: %1x%2").arg(size).arg(size));
+ 	FileViewConfig::setThumbnailSize(size);
+ 	mFileThumbnailView->setThumbnailSize(size);
+ 	Cache::instance()->checkThumbnailSize(size);
+diff --git a/src/gvcore/imageloader.cpp b/src/gvcore/imageloader.cpp
+index 699d088..c74b7ae 100644
+--- a/src/gvcore/imageloader.cpp
++++ b/src/gvcore/imageloader.cpp
+@@ -113,7 +113,7 @@ public:
+ 	int getch() {
+ 		if (mThread->testCancel()) {
+ 			LOG("cancel detected");
+-			seStatus(IO_ReadError);
++			setStatus(IO_ReadError);
+ 			return -1;
+ 		}
+ 		return TQBuffer::getch();
+diff --git a/src/gvcore/imagesavedialog.cpp b/src/gvcore/imagesavedialog.cpp
+index 7831830..17101e2 100644
+--- a/src/gvcore/imagesavedialog.cpp
++++ b/src/gvcore/imagesavedialog.cpp
+@@ -70,7 +70,7 @@ ImageSaveDialog::ImageSaveDialog(KURL& url, const TQCString& imageFormat, TQWidg
+ 			if (!patterns.contains(pattern)) patterns.append(pattern);
+ 		}
+ 		if (patterns.isEmpty()) {
+-			patterns.append( TQString("*.%1").tqarg(format.lower()) );
++			patterns.append( TQString("*.%1").arg(format.lower()) );
+ 		}
+ 		TQString patternString=patterns.join(" ");
+ 
+diff --git a/src/gvcore/imageview.cpp b/src/gvcore/imageview.cpp
+index f9da66f..cbfc459 100644
+--- a/src/gvcore/imageview.cpp
++++ b/src/gvcore/imageview.cpp
+@@ -113,7 +113,7 @@ as approximate as possible). However when converting from widget to image and ba
+ this can result in the final rectangle being smaller than the original.
+ The widgetToImageBounding() function converts from widget to image coordinates
+ in a way which makes sure the reverse conversion will be at least as large
+-as the original tqgeometry.
++as the original geometry.
+ 
+ There are no conversion functions for only width/height, as their conversion
+ depends on the position (because of the rounding etc.). For similar reasons
+@@ -257,7 +257,7 @@ struct ImageView::Private {
+ 		const double zoomValues[] = { 0.5, 1, 2 };
+ 		int nbValues=sizeof(zoomValues) / sizeof(double);
+ 		for (int pos=0; pos<nbValues; ++pos) {
+-			TQString txt=TQString("%1%").tqarg( int(zoomValues[pos]*100) );
++			TQString txt=TQString("%1%").arg( int(zoomValues[pos]*100) );
+ 			mZoomCombo->insertItem(txt);
+ 		}
+ 	}
+@@ -423,7 +423,7 @@ ImageView::~ImageView() {
+ void ImageView::slotLoaded() {
+ 	if (d->mDocument->isNull()) {
+ 		resizeContents(0,0);
+-		viewport()->tqrepaint(false);
++		viewport()->repaint(false);
+ 		return;
+ 	}
+ 
+@@ -488,7 +488,7 @@ KToggleAction* ImageView::zoomToFit() const {
+ 
+ 
+ void ImageView::updateFromSettings() {
+-	// Reset, so that next tqrepaint doesn't possibly take longer because of
++	// Reset, so that next repaint doesn't possibly take longer because of
+ 	// smoothing
+ 	ImageViewConfig::setMaxRepaintSize(DEFAULT_MAX_REPAINT_SIZE);
+ 	ImageViewConfig::setMaxScaleRepaintSize(DEFAULT_MAX_REPAINT_SIZE);
+@@ -625,7 +625,7 @@ void ImageView::drawContents(TQPainter* painter,int clipx,int clipy,int clipw,in
+ 	TQRect widgetRect = TQRect(0, 0, visibleWidth(), visibleHeight());
+ 
+ 	TQRegion region = TQRegion(widgetRect) - imageRect;
+-	TQMemArray<TQRect> rects = region.tqrects();
++	TQMemArray<TQRect> rects = region.rects();
+ 	for(unsigned int pos = 0; pos < rects.count(); ++pos ) {
+ 		painter->eraseRect(rects[pos]);
+ 	}
+@@ -701,7 +701,7 @@ void ImageView::limitPaintSize( PendingPaint& paint ) {
+ 	// don't paint more than max_size pixels at a time
+ 	int maxHeight = ( maxSize + paint.rect.width() - 1 ) / paint.rect.width(); // round up
+ 	maxHeight = TQMAX( maxHeight, 5 ); // at least 5 lines together
+-	// can't tqrepaint whole paint at once, adjust height and schedule the rest
++	// can't repaint whole paint at once, adjust height and schedule the rest
+ 	if( maxHeight < paint.rect.height()) {
+ 		TQRect remaining = paint.rect;
+ 		remaining.setTop( remaining.top() + maxHeight );
+@@ -781,12 +781,12 @@ void ImageView::slotBusyLevelChanged( BusyLevel level ) {
+ // How to do painting:
+ // When something needs to be erased: TQPainter on viewport and eraseRect()
+ // When whole picture needs to be repainted: fullRepaint()
+-// When a part of the picture needs to be updated: viewport()->tqrepaint(area,false)
++// When a part of the picture needs to be updated: viewport()->repaint(area,false)
+ // All other paints will be changed to progressive painting.
+ void ImageView::fullRepaint() {
+ 	if( !viewport()->isUpdatesEnabled()) return;
+ 	cancelPending();
+-	viewport()->tqrepaint(false);
++	viewport()->repaint(false);
+ }
+ 
+ void ImageView::cancelPending() {
+@@ -832,7 +832,7 @@ void ImageView::performPaint( TQPainter* painter, int clipx, int clipy, int clip
+ 	int extraPixels = ImageUtils::extraScalePixels( smoothAlgo, zoom());
+ 	TQRect imageRect = d->widgetToImageBounding( TQRect(clipx,clipy,clipw,cliph), extraPixels );
+ 	imageRect = imageRect.intersect( TQRect( 0, 0, d->mDocument->width(), d->mDocument->height()));
+-	TQMemArray< TQRect > rects = TQRegion(d->mValidImageArea.intersect( imageRect )).tqrects();
++	TQMemArray< TQRect > rects = TQRegion(d->mValidImageArea.intersect( imageRect )).rects();
+ 	for( unsigned int i = 1; i < rects.count(); ++i ) {
+ 		addPendingPaint( secondPass, d->imageToWidget( rects[ i ] ));
+ 	}
+@@ -1024,7 +1024,7 @@ bool ImageView::eventFilter(TQObject* obj, TQEvent* event) {
+ 		return true;
+ 
+ 	// Getting/loosing focus causes repaints, but repainting here is expensive,
+-	// and there's no need to tqrepaint on focus changes, as the focus is not
++	// and there's no need to repaint on focus changes, as the focus is not
+ 	// indicated.
+ 	case TQEvent::FocusIn:
+ 	case TQEvent::FocusOut:
+@@ -1313,7 +1313,7 @@ void ImageView::slotImageSizeUpdated() {
+ 
+ void ImageView::slotImageRectUpdated(const TQRect& imageRect) {
+ 	d->mValidImageArea += imageRect;
+-	viewport()->tqrepaint( d->imageToWidget( imageRect ), false );
++	viewport()->repaint( d->imageToWidget( imageRect ), false );
+ }
+ 
+ 
+@@ -1339,7 +1339,7 @@ double ImageView::computeZoomToFit() const {
+ 		return 1.0;
+ 	}
+ 	TQSize size=d->mDocument->image().size();
+-	size.tqscale(width(),height(),TQSize::ScaleMin);
++	size.scale(width(),height(),TQSize::ScaleMin);
+ 
+ 	double zoom=double(size.width())/d->mDocument->width();
+ 	if (zoom>1.0 && !ImageViewConfig::enlargeSmallImages()) return 1.0;
+@@ -1350,7 +1350,7 @@ double ImageView::computeZoomToWidth() const {
+ 	if (d->mDocument->isNull()) {
+ 		return 1.0;
+ 	}
+-	int sw = verticalScrollBar()->sizeHint().width(); // tqgeometry is not valid before first show()
++	int sw = verticalScrollBar()->sizeHint().width(); // geometry is not valid before first show()
+ 	int w = width();
+ 	int dw = d->mDocument->width();
+ 	switch( vScrollBarMode()) {
+@@ -1425,7 +1425,7 @@ void ImageView::updateImageOffset() {
+ 	int zpixHeight=int(d->mDocument->height() * d->mZoom);
+ 
+ 	if (zpixWidth>viewWidth && hScrollBarMode()!=AlwaysOff) {
+-		// use sizeHint() - tqgeometry is not valid before first show()
++		// use sizeHint() - geometry is not valid before first show()
+ 		viewHeight-=horizontalScrollBar()->sizeHint().height();
+ 	}
+ 	if (zpixHeight>viewHeight && vScrollBarMode()!=AlwaysOff) {
+@@ -1457,7 +1457,7 @@ void ImageView::updateZoomActions() {
+ 	if (d->mZoomMode==ZOOM_FREE) {
+ 		d->mZoomIn->setEnabled(d->mZoom<MAX_ZOOM);
+ 		d->mZoomOut->setEnabled(d->mZoom>1/MAX_ZOOM);
+-		TQString zoomText=TQString("%1%").tqarg(int(d->mZoom*100));
++		TQString zoomText=TQString("%1%").arg(int(d->mZoom*100));
+ 		d->mZoomCombo->setCurrentText(zoomText);
+ 	} else {
+ 		d->mZoomIn->setEnabled(true);
+diff --git a/src/gvcore/imageviewtools.cpp b/src/gvcore/imageviewtools.cpp
+index 699868a..da9044a 100644
+--- a/src/gvcore/imageviewtools.cpp
++++ b/src/gvcore/imageviewtools.cpp
+@@ -36,7 +36,7 @@ namespace Gwenview {
+ // Helper function
+ static TQCursor loadCursor(const TQString& name) {
+ 	TQString path;
+-	path=locate("data", TQString("gwenview/cursors/%1.png").tqarg(name));
++	path=locate("data", TQString("gwenview/cursors/%1.png").arg(name));
+ 	return TQCursor(TQPixmap(path));
+ }
+ 
+diff --git a/src/gvcore/printdialog.cpp b/src/gvcore/printdialog.cpp
+index 98524af..003fb3a 100644
+--- a/src/gvcore/printdialog.cpp
++++ b/src/gvcore/printdialog.cpp
+@@ -169,57 +169,57 @@ void PrintDialogPage::setScaleHeight( double value ) {
+ }
+ 
+ int PrintDialogPage::getPosition(const TQString& align) {
+-	int tqalignment;
++	int alignment;
+ 
+ 	if (align == i18n("Central-Left")) {
+-		tqalignment = TQt::AlignLeft | TQt::AlignVCenter;
++		alignment = TQt::AlignLeft | TQt::AlignVCenter;
+ 	} else if (align == i18n("Central-Right")) {
+-		tqalignment = TQt::AlignRight | TQt::AlignVCenter;
++		alignment = TQt::AlignRight | TQt::AlignVCenter;
+ 	} else if (align == i18n("Top-Left")) {
+-		tqalignment = TQt::AlignTop | TQt::AlignLeft;
++		alignment = TQt::AlignTop | TQt::AlignLeft;
+ 	} else if (align == i18n("Top-Right")) {
+-		tqalignment = TQt::AlignTop | TQt::AlignRight;
++		alignment = TQt::AlignTop | TQt::AlignRight;
+ 	} else if (align == i18n("Bottom-Left")) {
+-		tqalignment = TQt::AlignBottom | TQt::AlignLeft;
++		alignment = TQt::AlignBottom | TQt::AlignLeft;
+ 	} else if (align == i18n("Bottom-Right")) {
+-		tqalignment = TQt::AlignBottom | TQt::AlignRight;
++		alignment = TQt::AlignBottom | TQt::AlignRight;
+ 	} else if (align == i18n("Top-Central")) {
+-		tqalignment = TQt::AlignTop | TQt::AlignHCenter;
++		alignment = TQt::AlignTop | TQt::AlignHCenter;
+ 	} else if (align == i18n("Bottom-Central")) {
+-		tqalignment = TQt::AlignBottom | TQt::AlignHCenter;
++		alignment = TQt::AlignBottom | TQt::AlignHCenter;
+ 	} else	{
+ 		// Central
+-		tqalignment = TQt::AlignCenter; // TQt::AlignHCenter || TQt::AlignVCenter
++		alignment = TQt::AlignCenter; // TQt::AlignHCenter || TQt::AlignVCenter
+ 	}
+ 
+-	return tqalignment;
++	return alignment;
+ }
+ 
+ TQString PrintDialogPage::setPosition(int align) {
+-	TQString tqalignment;
++	TQString alignment;
+ 
+ 	if (align == (TQt::AlignLeft | TQt::AlignVCenter)) {
+-		tqalignment = i18n("Central-Left");
++		alignment = i18n("Central-Left");
+ 	} else if (align == (TQt::AlignRight | TQt::AlignVCenter)) {
+-		tqalignment = i18n("Central-Right");
++		alignment = i18n("Central-Right");
+ 	} else if (align == (TQt::AlignTop | TQt::AlignLeft)) {
+-		tqalignment = i18n("Top-Left");
++		alignment = i18n("Top-Left");
+ 	} else if (align == (TQt::AlignTop | TQt::AlignRight)) {
+-		tqalignment = i18n("Top-Right");
++		alignment = i18n("Top-Right");
+ 	} else if (align == (TQt::AlignBottom | TQt::AlignLeft)) {
+-		tqalignment = i18n("Bottom-Left");
++		alignment = i18n("Bottom-Left");
+ 	} else if (align == (TQt::AlignBottom | TQt::AlignRight)) {
+-		tqalignment = i18n("Bottom-Right");
++		alignment = i18n("Bottom-Right");
+ 	} else if (align == (TQt::AlignTop | TQt::AlignHCenter)) {
+-		tqalignment = i18n("Top-Central");
++		alignment = i18n("Top-Central");
+ 	} else if (align == (TQt::AlignBottom | TQt::AlignHCenter)) {
+-		tqalignment = i18n("Bottom-Central");
++		alignment = i18n("Bottom-Central");
+ 	} else	{
+ 		// Central: TQt::AlignCenter or (TQt::AlignHCenter || TQt::AlignVCenter)
+-		tqalignment = i18n("Central");
++		alignment = i18n("Central");
+ 	}
+ 
+-	return tqalignment;
++	return alignment;
+ }
+ 
+ // SLOTS
+diff --git a/src/gvcore/qxcfi.cpp b/src/gvcore/qxcfi.cpp
+index 27ad0b9..8e6559f 100644
+--- a/src/gvcore/qxcfi.cpp
++++ b/src/gvcore/qxcfi.cpp
+@@ -486,7 +486,7 @@ void XCFImageFormat::readXCF ( TQImageIO* image_io )
+   }
+ 
+   image_io->setImage( xcf_image.image );
+-  image_io->seStatus( 0 );
++  image_io->setStatus( 0 );
+ }
+ 
+ /*!
+diff --git a/src/gvcore/xpm.cpp b/src/gvcore/xpm.cpp
+index b56ba59..a021c55 100644
+--- a/src/gvcore/xpm.cpp
++++ b/src/gvcore/xpm.cpp
+@@ -161,7 +161,7 @@ static void read_xpm_image_or_array( TQImageIO * iio, const char * const * sourc
+     int i, cpp, ncols, w, h, index = 0;
+ 
+     if ( iio ) {
+-	iio->seStatus( 1 );
++	iio->setStatus( 1 );
+ 	d = iio ? iio->ioDevice() : 0;
+ 	d->readLine( buf.data(), buf.size() );	// "/* XPM */"
+ 	TQRegExp r( TQString::fromLatin1("/\\*.XPM.\\*/") );
+@@ -291,7 +291,7 @@ static void read_xpm_image_or_array( TQImageIO * iio, const char * const * sourc
+     }
+     if ( iio ) {
+ 	iio->setImage( image );
+-	iio->seStatus( 0 );			// image ok
++	iio->setStatus( 0 );			// image ok
+     }
+ }
+ 
+@@ -340,7 +340,7 @@ static const char* xpm_color_name( int cpp, int index )
+ static void write_xpm_image( TQImageIO * iio )
+ {
+     if ( iio )
+-	iio->seStatus( 1 );
++	iio->setStatus( 1 );
+     else
+ 	return;
+ 
+@@ -424,7 +424,7 @@ static void write_xpm_image( TQImageIO * iio )
+     }
+     s << "};" << endl;
+ 
+-    iio->seStatus( 0 );
++    iio->setStatus( 0 );
+ }
+ 
+ // TQt code end ---------------------------
+diff --git a/src/gvdirpart/gvdirpart.cpp b/src/gvdirpart/gvdirpart.cpp
+index 4745bfe..3f321e5 100644
+--- a/src/gvdirpart/gvdirpart.cpp
++++ b/src/gvdirpart/gvdirpart.cpp
+@@ -173,7 +173,7 @@ bool GVDirPart::openURL(const KURL& url) {
+ void GVDirPart::loaded(const KURL& url) {
+ 	TQString caption = url.filename();
+ 	if( !mDocument->image().isNull())
+-		caption += TQString(" %1 x %2").tqarg(mDocument->width()).tqarg(mDocument->height());
++		caption += TQString(" %1 x %2").arg(mDocument->width()).arg(mDocument->height());
+ 	emit setWindowCaption(caption);
+ 	emit completed();
+ }
+diff --git a/src/gvimagepart/gvimagepart.cpp b/src/gvimagepart/gvimagepart.cpp
+index 95712b5..95c67e3 100644
+--- a/src/gvimagepart/gvimagepart.cpp
++++ b/src/gvimagepart/gvimagepart.cpp
+@@ -194,7 +194,7 @@ void GVImagePart::slotLoading() {
+ }
+ 
+ void GVImagePart::slotLoaded(const KURL& url) {
+-	TQString caption = url.filename() + TQString(" - %1x%2").tqarg(mDocument->width()).tqarg(mDocument->height());
++	TQString caption = url.filename() + TQString(" - %1x%2").arg(mDocument->width()).arg(mDocument->height());
+ 	emit setWindowCaption(caption);
+ 	emit completed();
+ 	emit setStatusBarText(i18n("Done."));
+@@ -363,7 +363,7 @@ void GVImagePart::saveOriginalAs() {
+ 		if (!file.open(IO_WriteOnly)) {
+ 			KMessageBox::error(
+ 				widget(),
+-				i18n("Could not open '%1' for writing.").tqarg(path));
++				i18n("Could not open '%1' for writing.").arg(path));
+ 			return;
+ 		}
+ 		storeData(widget(), &file, data);
+diff --git a/src/imageutils/jpegcontent.cpp b/src/imageutils/jpegcontent.cpp
+index 5bcb7ef..c007267 100644
+--- a/src/imageutils/jpegcontent.cpp
++++ b/src/imageutils/jpegcontent.cpp
+@@ -120,7 +120,7 @@ struct inmem_dest_mgr : public jpeg_destination_mgr {
+ void inmem_init_destination(j_compress_ptr cinfo) {
+ 	inmem_dest_mgr* dest=(inmem_dest_mgr*)(cinfo->dest);
+ 	if (dest->mOutput->size()==0) {
+-		bool result=dest->mOutput->tqresize(INMEM_DST_DELTA);
++		bool result=dest->mOutput->resize(INMEM_DST_DELTA);
+ 		Q_ASSERT(result);
+ 	}
+ 	dest->free_in_buffer=dest->mOutput->size();
+@@ -129,7 +129,7 @@ void inmem_init_destination(j_compress_ptr cinfo) {
+ 
+ int inmem_empty_output_buffer(j_compress_ptr cinfo) {
+ 	inmem_dest_mgr* dest=(inmem_dest_mgr*)(cinfo->dest);
+-	bool result=dest->mOutput->tqresize(dest->mOutput->size() + INMEM_DST_DELTA);
++	bool result=dest->mOutput->resize(dest->mOutput->size() + INMEM_DST_DELTA);
+ 	Q_ASSERT(result);
+ 	dest->next_output_byte=(JOCTET*)( dest->mOutput->data() + dest->mOutput->size() - INMEM_DST_DELTA );
+ 	dest->free_in_buffer=INMEM_DST_DELTA;
+@@ -141,7 +141,7 @@ void inmem_term_destination(j_compress_ptr cinfo) {
+ 	inmem_dest_mgr* dest=(inmem_dest_mgr*)(cinfo->dest);
+ 	int finalSize=dest->next_output_byte - (JOCTET*)(dest->mOutput->data());
+ 	Q_ASSERT(finalSize>=0);
+-	dest->mOutput->tqresize(finalSize);
++	dest->mOutput->resize(finalSize);
+ }
+ 
+ 
+diff --git a/src/imageutils/scale.cpp b/src/imageutils/scale.cpp
+index c8a70a7..733dc1a 100644
+--- a/src/imageutils/scale.cpp
++++ b/src/imageutils/scale.cpp
+@@ -1929,7 +1929,7 @@ TQImage scale(const TQImage& image, int width, int height,
+ 	if( image.isNull()) return image.copy();
+ 	
+ 	TQSize newSize( image.size() );
+-	newSize.tqscale( TQSize( width, height ), (TQSize::ScaleMode)mode ); // ### remove cast in TQt 4.0
++	newSize.scale( TQSize( width, height ), (TQSize::ScaleMode)mode ); // ### remove cast in TQt 4.0
+ 	newSize = newSize.expandedTo( TQSize( 1, 1 )); // make sure it doesn't become null
+ 
+ 	if ( newSize == image.size() ) return image.copy();
+diff --git a/src/spec/gwenview-mdk.spec b/src/spec/gwenview-mdk.spec
+index e2ad754..67a3cdf 100644
+--- a/src/spec/gwenview-mdk.spec
++++ b/src/spec/gwenview-mdk.spec
+@@ -272,7 +272,7 @@ rm -rf $RPM_BUILD_ROOT
+    o Update the EXIF thumbnail when rotating a JPEG file.
+    o In the folder view, folders now open with a single click (By Daniel Thaler).
+    o Reworked coordinate conversions in order to avoid subtle paint errors.
+-   o Remember computed optimal tqrepaint sizes in the config file, 
++   o Remember computed optimal repaint sizes in the config file, 
+      so they are available immediately after next start.
+    o Remember shown URL after session restore.
+ * Sat Oct 16 2004 Angelo Naselli <anaselli@mandrake.org> 1.1.5-0.3mdk

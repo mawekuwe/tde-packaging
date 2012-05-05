@@ -1,0 +1,19 @@
+commit 9cb99cdb5337032764d897c94a5e7c8803784d4e
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1327529624 -0600
+
+    Fix linear alphabet string errors
+
+diff --git a/src/gvcore/xpm.cpp b/src/gvcore/xpm.cpp
+index a021c55..f9018b8 100644
+--- a/src/gvcore/xpm.cpp
++++ b/src/gvcore/xpm.cpp
+@@ -308,7 +308,7 @@ static const char* xpm_color_name( int cpp, int index )
+ {
+     static char returnable[5];
+     static const char code[] = ".#abcdefghijklmnopqrstuvwxyzABCD"
+-			       "EFGHIJKLMNOPTQRSTUVWXYZ0123456789";
++			       "EFGHIJKLMNOPQRSTUVWXYZ0123456789";
+     // cpp is limited to 4 and index is limited to 64^cpp
+     if ( cpp > 1 ) {
+ 	if ( cpp > 2 ) {
