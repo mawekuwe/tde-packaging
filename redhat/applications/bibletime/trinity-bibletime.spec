@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp bibletime
 %define version 1.6.6.0
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -35,6 +35,8 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 
 # Fix detection of older versions of clucene in Fedora >= 16
 Patch0:		bibletime-3.5.13-clucene_detection.patch
+# [bibletime] Fix compilation with GCC 4.7
+Patch1:		bibletime-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -62,15 +64,16 @@ texts, write own notes, save, print etc.).
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch0 -p0
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -127,5 +130,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.6.0-2
+- Fix compilation on RHEL 5
+- Fix compilation with GCC 4.7
+
 * Tue Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.6.0-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
