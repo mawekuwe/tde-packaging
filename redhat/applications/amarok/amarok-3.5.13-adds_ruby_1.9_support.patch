@@ -1,0 +1,138 @@
+--- amarok/amarok/src/mediadevice/daap/mongrel/http11/CMakeLists.txt.ORI	2012-05-01 11:32:31.604163233 +0200
++++ amarok/amarok/src/mediadevice/daap/mongrel/http11/CMakeLists.txt	2012-05-01 11:32:39.764016446 +0200
+@@ -16,6 +16,7 @@
+ 
+ include_directories(
+   ${RUBY_INCLUDE_DIR}
++  ${RUBY_ARCH_INCLUDE_DIR}
+ )
+ 
+ ##### other data ################################
+--- amarok/amarok/src/mediadevice/daap/ConfigureChecks.cmake.ruby	2011-05-03 07:45:53.000000000 +0200
++++ amarok/amarok/src/mediadevice/daap/ConfigureChecks.cmake	2012-05-01 17:12:11.980323997 +0200
+@@ -32,8 +32,33 @@
+   tde_message_fatal( "Unable to run ${RUBY_EXECUTABLE}!\n RUBY is correctly installed?" )
+ endif( )
+ 
++execute_process(
++  COMMAND ${RUBY_EXECUTABLE} -rrbconfig -e "puts Config.expand( Config::MAKEFILE_CONFIG['MAJOR'] )"
++  OUTPUT_VARIABLE RUBY_MAJOR_VERSION
++  RESULT_VARIABLE _result
++  OUTPUT_STRIP_TRAILING_WHITESPACE)
++if( _result )
++  tde_message_fatal( "Unable to run ${RUBY_EXECUTABLE}!\n RUBY is correctly installed?" )
++endif( )
++
++execute_process(
++  COMMAND ${RUBY_EXECUTABLE} -rrbconfig -e "puts Config.expand( Config::MAKEFILE_CONFIG['MINOR'] )"
++  OUTPUT_VARIABLE RUBY_MINOR_VERSION
++  RESULT_VARIABLE _result
++  OUTPUT_STRIP_TRAILING_WHITESPACE)
++if( _result )
++  tde_message_fatal( "Unable to run ${RUBY_EXECUTABLE}!\n RUBY is correctly installed?" )
++endif( )
++
+ if( RUBY_INCLUDE_DIR AND RUBY_LDFLAGS )
+   message( STATUS "Found RUBY: ${RUBY_EXECUTABLE}" )
+   message( STATUS "  RUBY_INCLUDE_DIR: ${RUBY_INCLUDE_DIR}" )
+   message( STATUS "  RUBY_LDFLAGS: ${RUBY_LDFLAGS}" )
++  message( STATUS "  RUBY_MAJOR_VERSION: ${RUBY_MAJOR_VERSION}")
++  message( STATUS "  RUBY_MINOR_VERSION: ${RUBY_MINOR_VERSION}")
+ endif( )
++
++if ( "${RUBY_MAJOR_VERSION}.${RUBY_MINOR_VERSION}" VERSION_LESS "1.9" )
++  message( STATUS "  You have an old version of Ruby ! (<1.9)")
++  set ( HAVE_OLD_RUBY 1 CACHE INTERNAL "" )
++endif( )
+--- amarok/config.h.cmake.ORI	2012-05-01 17:12:53.044914450 +0200
++++ amarok/config.h.cmake	2012-05-01 17:13:08.307133030 +0200
+@@ -16,3 +16,5 @@
+ 
+ #cmakedefine TAGLIB_15 1
+ #cmakedefine HAVE_QGLWIDGET 1
++
++#cmakedefine HAVE_OLD_RUBY @HAVE_OLD_RUBY@
+--- amarok/amarok/src/mediadevice/daap/mongrel/http11/CMakeLists.txt.ORI	2012-05-01 18:34:12.577433198 +0200
++++ amarok/amarok/src/mediadevice/daap/mongrel/http11/CMakeLists.txt	2012-05-01 18:34:23.840269058 +0200
+@@ -15,6 +15,7 @@
+ )
+ 
+ include_directories(
++  ${CMAKE_BINARY_DIR}
+   ${RUBY_INCLUDE_DIR}
+   ${RUBY_ARCH_INCLUDE_DIR}
+ )
+--- amarok/amarok/src/mediadevice/daap/mongrel/http11/http11.c.ruby	2011-09-19 06:40:11.000000000 +0200
++++ amarok/amarok/src/mediadevice/daap/mongrel/http11/http11.c	2012-05-01 16:25:32.486067476 +0200
+@@ -2,6 +2,7 @@
+  * Copyright (c) 2005 Zed A. Shaw
+  * You can redistribute it and/or modify it under the same terms as Ruby.
+  */
++#include "config.h"
+ #include "ruby.h"
+ #include "ext_help.h"
+ #include <assert.h>
+@@ -74,7 +75,11 @@
+   f = rb_str_dup(global_http_prefix);
+   f = rb_str_buf_cat(f, field, flen); 
+ 
++#ifdef HAVE_OLD_RUBY
+   for(ch = RSTRING(f)->ptr, end = ch + RSTRING(f)->len; ch < end; ch++) {
++#else
++  for(ch = RSTRING_PTR(f), end = ch + RSTRING_LEN(f); ch < end; ch++) {
++#endif
+     if(*ch == '-') {
+       *ch = '_';
+     } else {
+@@ -157,12 +162,25 @@
+ 
+   rb_hash_aset(req, global_gateway_interface, global_gateway_interface_value);
+   if((temp = rb_hash_aref(req, global_http_host)) != Qnil) {
++#ifdef HAVE_OLD_RUBY
+     colon = strchr(RSTRING(temp)->ptr, ':');
++#else
++    colon = strchr(RSTRING_PTR(temp), ':');
++#endif
+     if(colon != NULL) {
++#ifdef HAVE_OLD_RUBY
+       rb_hash_aset(req, global_server_name, rb_str_substr(temp, 0, colon - RSTRING(temp)->ptr));
++#else
++      rb_hash_aset(req, global_server_name, rb_str_substr(temp, 0, colon - RSTRING_PTR(temp)));
++#endif
+       rb_hash_aset(req, global_server_port, 
++#ifdef HAVE_OLD_RUBY
+           rb_str_substr(temp, colon - RSTRING(temp)->ptr+1, 
+             RSTRING(temp)->len));
++#else
++          rb_str_substr(temp, colon - RSTRING_PTR(temp)+1, 
++            RSTRING_LEN(temp)));
++#endif
+     } else {
+       rb_hash_aset(req, global_server_name, temp);
+       rb_hash_aset(req, global_server_port, global_port_80);
+@@ -281,8 +299,13 @@
+   DATA_GET(self, http_parser, http);
+ 
+   from = FIX2INT(start);
++#ifdef HAVE_OLD_RUBY
+   dptr = RSTRING(data)->ptr;
+   dlen = RSTRING(data)->len;
++#else
++  dptr = RSTRING_PTR(data);
++  dlen = RSTRING_LEN(data);
++#endif
+ 
+   if(from >= dlen) {
+     rb_raise(eHttpParserError, "Requested start is after data buffer end.");
+@@ -512,7 +535,11 @@
+     if(pref_len == 1 && uri_str[0] == '/') {
+       rb_ary_push(result, uri);
+     } else {
++#ifdef HAVE_OLD_RUBY
+       rb_ary_push(result, rb_str_substr(uri, pref_len, RSTRING(uri)->len));
++#else
++      rb_ary_push(result, rb_str_substr(uri, pref_len, RSTRING_LEN(uri)));
++#endif
+     }
+ 
+     rb_ary_push(result, (VALUE)handler);

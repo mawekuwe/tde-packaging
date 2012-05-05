@@ -1,0 +1,37 @@
+commit 899586da27ae7a85cea8637849a964a88f3df8b2
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1326222183 -0600
+
+    Fix inotify detection
+
+diff --git a/ConfigureChecks.cmake b/ConfigureChecks.cmake
+index 0e14311..090c73b 100644
+--- a/ConfigureChecks.cmake
++++ b/ConfigureChecks.cmake
+@@ -21,7 +21,25 @@ check_type_size( "long" SIZEOF_LONG BUILTIN_TYPES_ONLY )
+ 
+ check_include_file( stdint.h HAVE_STDINT_H )
+ check_include_file( systems.h HAVE_SYSTEMS_H )
+-check_include_file( linux/inotify.h HAVE_INOTIFY )
++
++##### check for inotify ###########################
++
++# if( WITH_INOTIFY )
++  check_include_file( "inotify.h" INOTIFY_FOUND )
++  check_include_file( "sys/inotify.h" INOTIFY_SYS_FOUND )
++  if( NOT INOTIFY_FOUND )
++    if( NOT INOTIFY_SYS_FOUND )
++      message(FATAL_ERROR "\ninotify support was requested, but inotify was not found on your system" )
++    endif( NOT INOTIFY_SYS_FOUND )
++  endif( NOT INOTIFY_FOUND )
++  if( INOTIFY_FOUND )
++      set( HAVE_INOTIFY 1 )
++  endif( INOTIFY_FOUND )
++  if( INOTIFY_SYS_FOUND )
++      set( HAVE_INOTIFY 1 )
++      set( HAVE_SYS_INOTIFY 1 )
++  endif( INOTIFY_SYS_FOUND )
++# endif( )
+ 
+ check_function_exists( statvfs HAVE_STATVFS )
+ 

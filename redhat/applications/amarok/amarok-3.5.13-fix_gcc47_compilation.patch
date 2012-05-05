@@ -1,0 +1,11 @@
+--- amarok/amarok/src/mediadevice/mtp/mtpmediadevice.cpp.ORI	2012-05-01 11:44:16.868838499 +0200
++++ amarok/amarok/src/mediadevice/mtp/mtpmediadevice.cpp	2012-05-01 11:44:27.427731738 +0200
+@@ -24,6 +24,8 @@
+ 
+ #define DEBUG_PREFIX "MtpMediaDevice"
+ 
++#include <stdlib.h>
++
+ #include <config.h>
+ #include "mtpmediadevice.h"
+ 

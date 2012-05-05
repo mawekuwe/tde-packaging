@@ -1,12 +1,12 @@
 # Basic package informations
 %define kdecomp amarok
 %define version 1.4.10
-%define release 5
+%define release 6
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -14,6 +14,9 @@ BuildRequires:	cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
+
+# Ruby 1.9 includes are located in strance directories ... (taken from ruby 1.9 spec file)
+%global	_normalized_cpu	%(echo %{_target_cpu} | sed 's/^ppc/powerpc/;s/i.86/i386/;s/sparcv./sparc/;s/armv.*/arm/')
 
 
 Name:    trinity-%{kdecomp}
@@ -38,12 +41,20 @@ Patch3:		amarok-3.5.13-taglib_include.patch
 Patch4:		amarok-3.5.13-enable_riokarma.patch
 Patch5:		amarok-3.5.13-enable_akode.patch
 
+Patch6:		amarok-3.5.13-adds_ruby_1.9_support.patch
+Patch7:		amarok-3.5.13-fix_gcc47_compilation.patch
+
+# [amarok] Fix inotify detection [Commit #899586da]
+Patch11:	amarok-3.5.13-fix_inotify_support.patch
+
 BuildRequires:  alsa-lib-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  esound-devel
 BuildRequires:  gettext
+BuildRequires:	tqtinterface-devel
 BuildRequires:  trinity-kdelibs-devel
 BuildRequires:  trinity-kdebase-devel
+BuildRequires:	pcre-devel
 BuildRequires:  taglib-devel 
 BuildRequires:  libifp-devel
 # Ipod
@@ -67,19 +78,15 @@ BuildRequires:  libusb-devel
 BuildRequires:  libvisual-devel
 BuildRequires:  mysql-devel
 BuildRequires:  postgresql-devel
-BuildRequires:  ruby-devel ruby
 BuildRequires:  SDL-devel
 BuildRequires:  taglib-devel
 BuildRequires:	sqlite-devel
-BuildRequires:	libkarma-devel karma-sharp
+BuildRequires:	trinity-libkarma-devel karma-sharp
 # not used anymore, in favor of libvisual ? -- Rex
 #%{?fedora:BuildRequires:  xmms-devel}
 BuildRequires:	dbus-devel
 BuildRequires:	dbus-tqt-devel
-BuildRequires:	akode-devel
-
-# For dir ownership and some default plugins (lyrics), -ruby subpkg?  -- Rex
-Requires:  ruby
+BuildRequires:	trinity-akode-devel
 
 # To open the selected browser, works with Patch2
 Requires:  xdg-utils
@@ -114,6 +121,17 @@ Amarok is a multimedia player with:
  - nice GUI, integrates into the KDE look, but with a unique touch
 
 
+%package ruby
+Summary:	%{name} Ruby support
+Group: 	    Applications/Multimedia
+BuildRequires:  ruby-devel ruby
+Requires: %{name} = %{version}-%{release}
+# For dir ownership and some default plugins (lyrics)
+Requires:  ruby
+%description ruby
+%{summary}.
+
+
 %package konqueror
 Summary: Amarok konqueror (service menus, sidebar) support
 Group:   Applications/Multimedia
@@ -140,6 +158,10 @@ use any of xmms' visualisation plugins with Amarok.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1 -b .ruby
+%patch7 -p1
+
+%patch11 -p1 -b .inotify
 
 
 %build
@@ -163,7 +185,8 @@ cd build
 	-DWITH_RIOKARMA=ON \
 	-DWITH_DAAP=ON \
 	-DBUILD_ALL=ON \
-	-DQT_LIBRARY_DIRS=${QTLIB} \
+	-DQT_LIBRARY_DIRS="${QTLIB}" \
+	-DRUBY_ARCH_INCLUDE_DIR="%{_usr}/include/%{_normalized_cpu}-%{_target_os}" \
 	..
 
 %__make %{?_smp_mflags}
@@ -234,8 +257,6 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 %{_datadir}/services/amarokpcast.protocol
 # -libs ?  -- Rex
 %{_libdir}/libamarok.*
-# -ruby ? -- Rex
-%{_libdir}/ruby_lib/*
 # DAAP
 %{_bindir}/amarok_daapserver.rb
 %{tde_libdir}/libamarok_daap-mediadevice.*
@@ -283,6 +304,9 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 %{_datadir}/services/amarok_aKode-engine.desktop
 %{tde_libdir}/libamarok_aKode-engine.*
 
+%files ruby
+%defattr(-,root,root,-)
+%{_libdir}/ruby_lib/*
 
 
 %files konqueror
@@ -297,6 +321,11 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 
 
 %changelog
+* Mon Apr 29 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.10-6
+- Rebuilt for Fedora 17
+- Fix compilation with GCC 4.7
+- Fix inotify detection [Commit #899586da]
+
 * Mon Mar 19 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.10-5
 - Replaces BR "libgpod" with "trinity-libgpod" for EL5
 
