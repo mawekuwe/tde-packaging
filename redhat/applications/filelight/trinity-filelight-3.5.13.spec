@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp filelight
 %define version 1.0
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -49,15 +49,17 @@ directories on your computer.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
 %build
+unset QTDIR || : ; source /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
@@ -79,12 +81,16 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in crystalsvg hicolor ; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in crystalsvg hicolor ; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 
 
 %files
@@ -93,16 +99,23 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_bindir}/*
 %{_datadir}/applications/*/*.desktop
 %{_datadir}/apps/*/
-%{_datadir}/icons/*/*/*/*
-%{_datadir}/locale/*/*/*.mo
+%{_datadir}/icons/crystalsvg/*/*/*
+%{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/config/filelightrc
 %{_datadir}/services/*.desktop
-%{_docdir}/HTML/*/*/
 
-%{_libdir}/*/*.so
-%exclude %{_libdir}/*/*.la
+%{tde_libdir}/*.so
+%exclude %{tde_libdir}/*.la
+
+# Translations files are packaged in 'filelight-l10n'
+%exclude %{tde_docdir}/HTML/*/*/
+%exclude %{_datadir}/locale/
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-4
+- Rebuilt for Fedora 17
+- Fix HTML directory location
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.0-3
 - Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
 
