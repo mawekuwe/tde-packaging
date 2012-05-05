@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -11,8 +11,8 @@
 
 # TDE 3.5.13 specific building variables
 BuildRequires: cmake >= 2.8
-BuildRequires:	qt3-devel >= 3.3.8d
-Requires:	qt3 >= 3.3.8d
+BuildRequires:	qt3-devel >= 3.3.8.d
+Requires:	qt3 >= 3.3.8.d
 
 
 Name:		dbus-tqt
@@ -81,6 +81,9 @@ cd build
 %{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Updates BuildRequires
+
 * Tue Nov 07 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Updates BuildRequires
 

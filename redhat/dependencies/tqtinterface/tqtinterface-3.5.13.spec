@@ -2,7 +2,7 @@
 %if "%{?version}" == ""
 %define version 3.5.13
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -37,6 +37,8 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}.tar.gz
 
+# [tqtinterface] Add missing endian-ness defines [Bug #727] [Commit #458e74a6]
+Patch1:		tqtinterface-3.5.13-add_missing_endianness_defines.patch
 
 BuildRequires:	gcc-c++
 BuildRequires:	libXi-devel
@@ -57,6 +59,7 @@ Development files for %{name}
 
 %prep
 %setup -q -n dependencies/%{name}
+%patch1 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -110,6 +113,10 @@ done
 
 
 %changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
+- Rebuilt for Fedora 17
+- Add missing endian-ness defines [Bug #727] [Commit #458e74a6]
+
 * Sun Nov 06 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Add missing Requires
 
