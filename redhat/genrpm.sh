@@ -6,7 +6,7 @@ while [ $# -gt 0 ]; do
 	case "$1" in
 		"--auto") AUTO=1;;
 		"--version") REQVERSION="$2"; shift;;
-		*) COMP="$1";;
+		*) COMP="${1%%/}";;
 	esac
 	shift
 done

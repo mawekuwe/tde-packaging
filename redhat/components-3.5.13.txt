@@ -1,13 +1,8 @@
 dependencies/qt3
-dependencies/tqt3
 dependencies/tqtinterface
 dependencies/arts
 dependencies/dbus-tqt
 dependencies/dbus-1-tqt
-dependencies/tqca
-dependencies/tqca-tls
-dependencies/avahi-tqt
-dependencies/tqscintilla
 dependencies/libcaldav
 dependencies/libcarddav
 kdelibs
@@ -39,7 +34,6 @@ extras/akode
 extras/kasablanca
 extras/ksensors
 extras/libkarma
-#extras/libkexif
 extras/kdebluetooth
 extras/trinity-desktop
 extras/trinity-live
