@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp dolphin
 %define version 0.9.2
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -17,7 +17,7 @@ BuildRequires: autoconf automake libtool m4
 
 
 Name:		trinity-%{kdecomp}
-Summary:	File manager for KDE focusing on usability 
+Summary:	File manager for TDE focusing on usability 
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
@@ -51,11 +51,12 @@ interface for the task of file management.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -123,13 +124,17 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_bindir}/*
 %{_datadir}/applications/*.desktop
 %{_datadir}/apps/*/
-%doc %lang(en) %{_docdir}/HTML/en/*/
+%doc %lang(en) %{tde_docdir}/HTML/en/*/
 %{_datadir}/icons/hicolor/128x128/apps/*.png
 %{_datadir}/icons/hicolor/??x??/apps/*.png
 %{_datadir}/locale/*/*/d3lphin.mo
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.2-4
+- Rebuild for Fedora 17
+- Fix HTML installation directory
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.2-3
 - Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
 
