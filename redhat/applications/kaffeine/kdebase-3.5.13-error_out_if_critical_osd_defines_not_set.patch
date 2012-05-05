@@ -1,0 +1,25 @@
+commit 25b89439bbdcbc245b2a4125d2345afaa32fb952
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1326858742 -0600
+
+    Error out if critical OSD-related defines are not set
+
+diff --git a/kaffeine/src/player-parts/xine-part/kxinewidget.cpp b/kaffeine/src/player-parts/xine-part/kxinewidget.cpp
+index acc9937..68d47ac 100644
+--- a/kaffeine/src/player-parts/xine-part/kxinewidget.cpp
++++ b/kaffeine/src/player-parts/xine-part/kxinewidget.cpp
+@@ -1513,6 +1513,14 @@ bool KXineWidget::playDvb()
+ 	return true;
+ }
+ 
++#ifndef Q_BYTE_ORDER
++#error Q_BYTE_ORDER is not defined!
++#endif
++
++#ifndef TQ_LITTLE_ENDIAN
++#error TQ_LITTLE_ENDIAN is not defined!
++#endif
++
+ #if Q_BYTE_ORDER == TQ_LITTLE_ENDIAN
+ #define rgb2yuv(R,G,B) ((((((66*R+129*G+25*B+128)>>8)+16)<<8)|(((112*R-94*G-18*B+128)>>8)+128))<<8|(((-38*R-74*G+112*B+128)>>8)+128))
+ #else

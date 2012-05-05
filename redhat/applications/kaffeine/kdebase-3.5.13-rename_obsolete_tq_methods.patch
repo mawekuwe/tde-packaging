@@ -1,0 +1,643 @@
+commit 66805bafb9e1db535090dd74f6bdc56c2ac431c0
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324497848 -0600
+
+    Rename obsolete tq methods to standard names
+
+diff --git a/kaffeine/src/input/audiobrowser/playlist.cpp b/kaffeine/src/input/audiobrowser/playlist.cpp
+index e67603e..c48cf28 100644
+--- a/kaffeine/src/input/audiobrowser/playlist.cpp
++++ b/kaffeine/src/input/audiobrowser/playlist.cpp
+@@ -169,10 +169,10 @@ struct CoverPopup : public TQWidget
+     CoverPopup(const TQPixmap &image, const TQPoint &p) :
+         TQWidget(0, 0, WDestructiveClose | WX11BypassWM)
+     {
+-        TQHBoxLayout *tqlayout = new TQHBoxLayout(this);
++        TQHBoxLayout *layout = new TQHBoxLayout(this);
+         TQLabel *label = new TQLabel(this);
+ 
+-        tqlayout->addWidget(label);
++        layout->addWidget(label);
+         label->setFrameStyle(TQFrame::Box | TQFrame::Raised);
+         label->setLineWidth(1);
+         label->setPixmap(image);
+@@ -342,7 +342,7 @@ PlayList::PlayList( TQWidget* parent, TQObject *objParent, const char *name ) :
+ 	KIO::NetAccess::mkdir(m_playlistDirectory, mainWidget);
+ 	kdDebug() << "PLAYLIST" << endl;
+ 
+-	TQGridLayout* tqlayout = new TQGridLayout( playlist, 4, 2, 3 );
++	TQGridLayout* layout = new TQGridLayout( playlist, 4, 2, 3 );
+ 
+ 	m_list = new UrlListView(playlist);
+ 	mainWidget->setAcceptDrops(true);
+@@ -379,12 +379,12 @@ PlayList::PlayList( TQWidget* parent, TQObject *objParent, const char *name ) :
+ 	m_list->setRenameable(TRACK_COLUMN);
+ 	m_list->setAllColumnsShowFocus(true);
+ 	m_list->setShowSortIndicator(true);
+-	tqlayout->addMultiCellWidget(m_list, 3, 3, 0, 1);
++	layout->addMultiCellWidget(m_list, 3, 3, 0, 1);
+ 
+ 	coverFrame = new CoverFrame( playlist );
+ 	coverFrame->setFixedWidth( 80 );
+ 	coverFrame->setFixedHeight( 80 );
+-	tqlayout->addMultiCellWidget(coverFrame, 0, 2, 0, 0);
++	layout->addMultiCellWidget(coverFrame, 0, 2, 0, 0);
+ 
+ 	TQHBoxLayout *h1 = new TQHBoxLayout();
+ 	searchBtn = new TQToolButton( playlist );
+@@ -397,7 +397,7 @@ PlayList::PlayList( TQWidget* parent, TQObject *objParent, const char *name ) :
+ 	m_playlistFilter = new KLineEdit(playlist);
+ 	m_playlistFilter->setFocusPolicy(TQ_ClickFocus);
+ 	h1->addWidget(m_playlistFilter);
+-	tqlayout->addLayout( h1, 2, 1 );
++	layout->addLayout( h1, 2, 1 );
+ 
+ 	TQHBoxLayout *h2 = new TQHBoxLayout();
+ 	TQLabel* playlistLabel = new TQLabel(i18n("Playlist:"), playlist);
+@@ -410,10 +410,10 @@ PlayList::PlayList( TQWidget* parent, TQObject *objParent, const char *name ) :
+ 	m_playlistSelector->setFocusPolicy(TQ_ClickFocus);
+ 	TQToolTip::add(m_playlistSelector, i18n("Select the active playlist. To change playlist name edit it and confirm with 'Return'."));
+ 	h2->addWidget(m_playlistSelector);
+-	tqlayout->addLayout( h2, 1, 1 );
++	layout->addLayout( h2, 1, 1 );
+ 
+ 	roller = new RollTitle( playlist );
+-	tqlayout->addWidget( roller, 0, 1 );
++	layout->addWidget( roller, 0, 1 );
+ 
+ 	KAccel* accel = new KAccel(mainWidget);
+ 	accel->insert("Delete selected", TQt::Key_Delete, this, TQT_SLOT(slotRemoveSelected()));
+@@ -2145,7 +2145,7 @@ void PlayList::slotPaste()
+ 
+ 	TQStrList list;
+ 
+-	if (TQUriDrag::decode(TQApplication::tqclipboard()->data(), list))
++	if (TQUriDrag::decode(TQApplication::clipboard()->data(), list))
+ 	{
+ 		TQStringList urls;
+ 		for (TQStrListIterator it(list); *it; ++it)
+@@ -2155,7 +2155,7 @@ void PlayList::slotPaste()
+ 	}
+ 	/** try to decode as text **/
+ 	TQString text;
+-	if (TQTextDrag::decode(TQApplication::tqclipboard()->data(), text))
++	if (TQTextDrag::decode(TQApplication::clipboard()->data(), text))
+ 	{
+ 		add(text, lastSelected);
+ 	}
+@@ -2173,7 +2173,7 @@ void PlayList::slotCopy()
+ 		urlList.append(TQUriDrag::unicodeUriToUri(dynamic_cast<PlaylistItem *>(selected.at(i))->url()));
+ 	}
+ 
+-	TQApplication::tqclipboard()->setData(new TQUriDrag(urlList));
++	TQApplication::clipboard()->setData(new TQUriDrag(urlList));
+ }
+ 
+ void PlayList::slotSelectAll()
+diff --git a/kaffeine/src/input/disc/paranoiasettings.ui b/kaffeine/src/input/disc/paranoiasettings.ui
+index 1d163d3..30bbe54 100644
+--- a/kaffeine/src/input/disc/paranoiasettings.ui
++++ b/kaffeine/src/input/disc/paranoiasettings.ui
+@@ -24,7 +24,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout3</cstring>
++                <cstring>layout3</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -174,7 +174,7 @@
+                 </spacer>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout8</cstring>
++                        <cstring>layout8</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/kaffeine/src/input/disc/plugins/mp3lame/lameconfig.ui b/kaffeine/src/input/disc/plugins/mp3lame/lameconfig.ui
+index d956e5b..03485cf 100644
+--- a/kaffeine/src/input/disc/plugins/mp3lame/lameconfig.ui
++++ b/kaffeine/src/input/disc/plugins/mp3lame/lameconfig.ui
+@@ -24,7 +24,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout5</cstring>
++                <cstring>layout5</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -51,7 +51,7 @@
+                         </widget>
+                         <widget class="TQLayoutWidget" row="0" column="0">
+                             <property name="name">
+-                                <cstring>tqlayout7</cstring>
++                                <cstring>layout7</cstring>
+                             </property>
+                             <hbox>
+                                 <property name="name">
+@@ -117,7 +117,7 @@
+                 </spacer>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout4</cstring>
++                        <cstring>layout4</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/kaffeine/src/input/disc/plugins/oggvorbis/oggconfig.ui b/kaffeine/src/input/disc/plugins/oggvorbis/oggconfig.ui
+index b243300..f414545 100644
+--- a/kaffeine/src/input/disc/plugins/oggvorbis/oggconfig.ui
++++ b/kaffeine/src/input/disc/plugins/oggvorbis/oggconfig.ui
+@@ -24,7 +24,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout9</cstring>
++                <cstring>layout9</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -107,7 +107,7 @@
+                 </spacer>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/kaffeine/src/input/dvb/audioeditorui.ui b/kaffeine/src/input/dvb/audioeditorui.ui
+index 1131eec..ab94806 100644
+--- a/kaffeine/src/input/dvb/audioeditorui.ui
++++ b/kaffeine/src/input/dvb/audioeditorui.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout24</cstring>
++                <cstring>layout24</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -29,7 +29,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout23</cstring>
++                        <cstring>layout23</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -60,7 +60,7 @@
+                         </widget>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout21</cstring>
++                                <cstring>layout21</cstring>
+                             </property>
+                             <vbox>
+                                 <property name="name">
+@@ -68,7 +68,7 @@
+                                 </property>
+                                 <widget class="TQLayoutWidget">
+                                     <property name="name">
+-                                        <cstring>tqlayout16</cstring>
++                                        <cstring>layout16</cstring>
+                                     </property>
+                                     <hbox>
+                                         <property name="name">
+@@ -76,7 +76,7 @@
+                                         </property>
+                                         <widget class="TQLayoutWidget">
+                                             <property name="name">
+-                                                <cstring>tqlayout15</cstring>
++                                                <cstring>layout15</cstring>
+                                             </property>
+                                             <vbox>
+                                                 <property name="name">
+@@ -146,7 +146,7 @@
+                                 </spacer>
+                                 <widget class="TQLayoutWidget">
+                                     <property name="name">
+-                                        <cstring>tqlayout14</cstring>
++                                        <cstring>layout14</cstring>
+                                     </property>
+                                     <hbox>
+                                         <property name="name">
+@@ -154,7 +154,7 @@
+                                         </property>
+                                         <widget class="TQLayoutWidget">
+                                             <property name="name">
+-                                                <cstring>tqlayout13</cstring>
++                                                <cstring>layout13</cstring>
+                                             </property>
+                                             <vbox>
+                                                 <property name="name">
+@@ -258,7 +258,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout19</cstring>
++                        <cstring>layout19</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/kaffeine/src/input/dvb/camdialog.ui b/kaffeine/src/input/dvb/camdialog.ui
+index 9463cee..c255575 100644
+--- a/kaffeine/src/input/dvb/camdialog.ui
++++ b/kaffeine/src/input/dvb/camdialog.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout5</cstring>
++                <cstring>layout5</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -29,7 +29,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/kaffeine/src/input/dvb/cammenudialog.ui b/kaffeine/src/input/dvb/cammenudialog.ui
+index f6b5a00..022993a 100644
+--- a/kaffeine/src/input/dvb/cammenudialog.ui
++++ b/kaffeine/src/input/dvb/cammenudialog.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout7</cstring>
++                <cstring>layout7</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -34,7 +34,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout6</cstring>
++                        <cstring>layout6</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/kaffeine/src/input/dvb/channeleditorui.ui b/kaffeine/src/input/dvb/channeleditorui.ui
+index ceb3d62..add07e2 100644
+--- a/kaffeine/src/input/dvb/channeleditorui.ui
++++ b/kaffeine/src/input/dvb/channeleditorui.ui
+@@ -35,7 +35,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout7</cstring>
++                <cstring>layout7</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -43,7 +43,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout8</cstring>
++                        <cstring>layout8</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -83,7 +83,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -138,7 +138,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout6</cstring>
++                        <cstring>layout6</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -261,7 +261,7 @@
+                                 </property>
+                                 <widget class="TQLayoutWidget">
+                                     <property name="name">
+-                                        <cstring>tqlayout7</cstring>
++                                        <cstring>layout7</cstring>
+                                     </property>
+                                     <grid>
+                                         <property name="name">
+@@ -642,7 +642,7 @@
+                 </spacer>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout14</cstring>
++                        <cstring>layout14</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/kaffeine/src/input/dvb/crontimerui.ui b/kaffeine/src/input/dvb/crontimerui.ui
+index 87baff7..5441bee 100644
+--- a/kaffeine/src/input/dvb/crontimerui.ui
++++ b/kaffeine/src/input/dvb/crontimerui.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout13</cstring>
++                <cstring>layout13</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -29,7 +29,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout12</cstring>
++                        <cstring>layout12</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -54,7 +54,7 @@
+                         </spacer>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout11</cstring>
++                                <cstring>layout11</cstring>
+                             </property>
+                             <vbox>
+                                 <property name="name">
+@@ -271,7 +271,7 @@
+                 </spacer>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout9</cstring>
++                        <cstring>layout9</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+diff --git a/kaffeine/src/input/dvb/scandialogui.ui b/kaffeine/src/input/dvb/scandialogui.ui
+index dbcff8b..654e762 100644
+--- a/kaffeine/src/input/dvb/scandialogui.ui
++++ b/kaffeine/src/input/dvb/scandialogui.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout9</cstring>
++                <cstring>layout9</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -29,7 +29,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout8</cstring>
++                        <cstring>layout8</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -129,7 +129,7 @@
+                         </widget>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout7</cstring>
++                                <cstring>layout7</cstring>
+                             </property>
+                             <vbox>
+                                 <property name="name">
+@@ -487,7 +487,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout9</cstring>
++                        <cstring>layout9</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/kaffeine/src/input/dvb/subeditorui.ui b/kaffeine/src/input/dvb/subeditorui.ui
+index fb8d391..857cdc5 100644
+--- a/kaffeine/src/input/dvb/subeditorui.ui
++++ b/kaffeine/src/input/dvb/subeditorui.ui
+@@ -35,7 +35,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="2" column="0">
+             <property name="name">
+-                <cstring>tqlayout19</cstring>
++                <cstring>layout19</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -70,7 +70,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout13</cstring>
++                <cstring>layout13</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -101,7 +101,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout12</cstring>
++                        <cstring>layout12</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -109,7 +109,7 @@
+                         </property>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout16</cstring>
++                                <cstring>layout16</cstring>
+                             </property>
+                             <hbox>
+                                 <property name="name">
+@@ -117,7 +117,7 @@
+                                 </property>
+                                 <widget class="TQLayoutWidget">
+                                     <property name="name">
+-                                        <cstring>tqlayout15</cstring>
++                                        <cstring>layout15</cstring>
+                                     </property>
+                                     <vbox>
+                                         <property name="name">
+@@ -187,7 +187,7 @@
+                         </spacer>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout11</cstring>
++                                <cstring>layout11</cstring>
+                             </property>
+                             <hbox>
+                                 <property name="name">
+@@ -195,7 +195,7 @@
+                                 </property>
+                                 <widget class="TQLayoutWidget">
+                                     <property name="name">
+-                                        <cstring>tqlayout13</cstring>
++                                        <cstring>layout13</cstring>
+                                     </property>
+                                     <vbox>
+                                         <property name="name">
+@@ -232,7 +232,7 @@
+                                         </property>
+                                         <widget class="TQLayoutWidget">
+                                             <property name="name">
+-                                                <cstring>tqlayout10</cstring>
++                                                <cstring>layout10</cstring>
+                                             </property>
+                                             <vbox>
+                                                 <property name="name">
+@@ -274,7 +274,7 @@
+                                         </widget>
+                                         <widget class="TQLayoutWidget">
+                                             <property name="name">
+-                                                <cstring>tqlayout9</cstring>
++                                                <cstring>layout9</cstring>
+                                             </property>
+                                             <vbox>
+                                                 <property name="name">
+diff --git a/kaffeine/src/kaffeine.cpp b/kaffeine/src/kaffeine.cpp
+index 9efebc9..10bd4be 100644
+--- a/kaffeine/src/kaffeine.cpp
++++ b/kaffeine/src/kaffeine.cpp
+@@ -1591,7 +1591,7 @@ void Kaffeine::slotFakeKeyEvent()
+ 		}
+ }
+ 
+-/** slots for meta to tqunicode encoding **/
++/** slots for meta to unicode encoding **/
+ 
+ void Kaffeine::slotUseAlternateEncoding(bool useEncoding)
+ {
+diff --git a/kaffeine/src/kmultitabbar.cpp b/kaffeine/src/kmultitabbar.cpp
+index ecfa2c5..4ff1154 100644
+--- a/kaffeine/src/kmultitabbar.cpp
++++ b/kaffeine/src/kmultitabbar.cpp
+@@ -474,7 +474,7 @@ TQSize KMultiTabBarButton::sizeHint() const
+     }
+ #endif
+     if ( isMenuButton() )
+-        w += tqstyle().pixelMetric(TQStyle::PM_MenuButtonIndicator, this);
++        w += style().pixelMetric(TQStyle::PM_MenuButtonIndicator, this);
+ 
+     if ( pixmap() ) {
+         TQPixmap *pm = (TQPixmap *)pixmap();
+@@ -493,7 +493,7 @@ TQSize KMultiTabBarButton::sizeHint() const
+             h = TQMAX(h, sz.height());
+     }
+ 
+-    return (tqstyle().tqsizeFromContents(TQStyle::CT_ToolButton, this, TQSize(w, h)).
++    return (style().tqsizeFromContents(TQStyle::CT_ToolButton, this, TQSize(w, h)).
+             expandedTo(TQApplication::globalStrut()));
+ }
+ 
+diff --git a/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp b/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp
+index dd843f5..ccb56f3 100644
+--- a/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp
++++ b/kaffeine/src/player-parts/gstreamer-part/gstreamerconfig.cpp
+@@ -40,47 +40,47 @@ GStreamerConfig::GStreamerConfig(const TQStringList& audioDrivers, const TQStrin
+ 	setInitialSize(TQSize(400,300), true);
+ 
+ 	TQFrame* frame = NULL;
+-	TQGridLayout* tqlayout = NULL;
++	TQGridLayout* layout = NULL;
+ 	TQLabel* label = NULL;
+ 
+ 	//Audio Page
+ 	frame = addPage(i18n("Audio"), i18n("Audio Options"), KGlobal::iconLoader()->loadIcon("sound", KIcon::Panel,
+ 	                KIcon::SizeMedium));
+-	tqlayout = new TQGridLayout(frame, 10, 2);
+-	tqlayout->setMargin(10);
+-	tqlayout->setSpacing(10);
++	layout = new TQGridLayout(frame, 10, 2);
++	layout->setMargin(10);
++	layout->setSpacing(10);
+ 	m_audioDriverBox = new KComboBox(frame);
+ 	m_audioDriverBox->insertStringList(audioDrivers);
+ 	label = new TQLabel(i18n("Prefered audio driver"), frame);
+-	tqlayout->addWidget(label, 1, 0);
+-	tqlayout->addWidget(m_audioDriverBox, 1, 1);
+-	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	layout->addWidget(label, 1, 0);
++	layout->addWidget(m_audioDriverBox, 1, 1);
++	layout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
+ 
+ 	//Video Page
+ 	frame = addPage(i18n("Video"), i18n("Video Options"), KGlobal::iconLoader()->loadIcon("video", KIcon::Panel,
+ 	                KIcon::SizeMedium));
+-	tqlayout = new TQGridLayout(frame, 10, 2);
+-	tqlayout->setMargin(10);
+-	tqlayout->setSpacing(10);
++	layout = new TQGridLayout(frame, 10, 2);
++	layout->setMargin(10);
++	layout->setSpacing(10);
+ 	m_videoDriverBox = new KComboBox(frame);
+ 	m_videoDriverBox->insertStringList(videoDrivers);
+ 	label = new TQLabel(i18n("Prefered video driver")+ "*", frame);
+-	tqlayout->addWidget(label, 1, 0);
+-	tqlayout->addWidget(m_videoDriverBox, 1, 1);
+-	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
+-	tqlayout->addWidget(new TQLabel(TQString("<small>") + i18n("* Restart required!") + "</small>", frame), 10, 1);
++	layout->addWidget(label, 1, 0);
++	layout->addWidget(m_videoDriverBox, 1, 1);
++	layout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	layout->addWidget(new TQLabel(TQString("<small>") + i18n("* Restart required!") + "</small>", frame), 10, 1);
+ 
+ 	//Media page
+ 	frame = addPage(i18n("Media"), i18n("Media Options"), KGlobal::iconLoader()->loadIcon("cdrom_unmount", KIcon::Panel,
+ 	                KIcon::SizeMedium));
+-	tqlayout = new TQGridLayout(frame, 10, 2);
+-	tqlayout->setMargin(10);
+-	tqlayout->setSpacing(10);
++	layout = new TQGridLayout(frame, 10, 2);
++	layout->setMargin(10);
++	layout->setSpacing(10);
+ 	m_driveEdit = new KLineEdit(frame);
+ 	label = new TQLabel(i18n("CD, VCD, DVD drive"), frame);
+-	tqlayout->addWidget(label, 1, 0);
+-	tqlayout->addWidget(m_driveEdit, 1, 1);
+-	tqlayout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
++	layout->addWidget(label, 1, 0);
++	layout->addWidget(m_driveEdit, 1, 1);
++	layout->addMultiCellWidget(new KSeparator(Qt::Horizontal, frame), 2, 2, 0, 1);
+ }
+ 
+ GStreamerConfig::~GStreamerConfig()
+diff --git a/kaffeine/src/player-parts/xine-part/xine_part.cpp b/kaffeine/src/player-parts/xine-part/xine_part.cpp
+index 1b9c123..98ff969 100644
+--- a/kaffeine/src/player-parts/xine-part/xine_part.cpp
++++ b/kaffeine/src/player-parts/xine-part/xine_part.cpp
+@@ -212,7 +212,7 @@ bool XinePart::openURL(const MRL& mrl)
+ 			if (firstLine.contains("smil", false))
+ 			{
+ 				kdDebug() << "XinePart: Try loading smil playlist\n";
+-				if (KMessageBox::warningYesNo(0, i18n("SMIL (Synchronized Multimedia Integration Language) support is rudimentary!\nXinePart can now try to playback contained video sources without any tqlayout. Proceed?"), TQString(), KStdGuiItem::yes(), KStdGuiItem::no(), "smil_warning") == KMessageBox::Yes)
++				if (KMessageBox::warningYesNo(0, i18n("SMIL (Synchronized Multimedia Integration Language) support is rudimentary!\nXinePart can now try to playback contained video sources without any layout. Proceed?"), TQString(), KStdGuiItem::yes(), KStdGuiItem::no(), "smil_warning") == KMessageBox::Yes)
+ 				{
+ 					if (!PlaylistImport::smil(localFile, m_mrl, m_playlist))
+ 					{
+@@ -1240,7 +1240,7 @@ void XinePart::slotInfo()
+ 	if (m_xine->hasSaveURL())
+ 		ts << "<tr><td><b>" << i18n("Save Stream as") << ":</b></td><td> " << m_xine->getSaveURL() << "</td></tr>";
+ 
+-	ts << "<tr><td></td><td></td></tr>"; // added for better tqlayout
++	ts << "<tr><td></td><td></td></tr>"; // added for better layout
+ 	ts << "</table></qt>";
+ 	KMessageBox::information(0, info, i18n("Track info") );
+ }

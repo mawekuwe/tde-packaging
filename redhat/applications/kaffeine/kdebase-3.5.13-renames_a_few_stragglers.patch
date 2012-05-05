@@ -1,0 +1,30 @@
+commit 89b5fd35299d63e54cb2b36ec366d0071381458b
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324748015 -0600
+
+    Rename a few stragglers
+
+diff --git a/kaffeine/src/kmultitabbar.cpp b/kaffeine/src/kmultitabbar.cpp
+index 4ff1154..8d85e01 100644
+--- a/kaffeine/src/kmultitabbar.cpp
++++ b/kaffeine/src/kmultitabbar.cpp
+@@ -654,8 +654,8 @@ void KMultiTabBarTab::drawButtonStyled(TQPainter *paint) {
+ 
+ 	if (down) st|=TQStyle::Style_On;
+ 
+-	tqstyle().drawControl(TQStyle::CE_PushButton,&painter,this, TQRect(0,0,pixmap.width(),pixmap.height()), colorGroup(),st);
+-	tqstyle().drawControl(TQStyle::CE_PushButtonLabel,&painter,this, TQRect(0,0,pixmap.width(),pixmap.height()), colorGroup(),st);
++	style().drawControl(TQStyle::CE_PushButton,&painter,this, TQRect(0,0,pixmap.width(),pixmap.height()), colorGroup(),st);
++	style().drawControl(TQStyle::CE_PushButtonLabel,&painter,this, TQRect(0,0,pixmap.width(),pixmap.height()), colorGroup(),st);
+ 
+ 	switch (m_position) {
+ 		case KMultiTabBar::Left:
+@@ -671,7 +671,7 @@ void KMultiTabBarTab::drawButtonStyled(TQPainter *paint) {
+ 			paint->drawPixmap(0,0,pixmap);
+ 			break;
+ 	}
+-//	tqstyle().drawControl(TQStyle::CE_PushButtonLabel,painter,this, TQRect(0,0,pixmap.width(),pixmap.height()),
++//	style().drawControl(TQStyle::CE_PushButtonLabel,painter,this, TQRect(0,0,pixmap.width(),pixmap.height()),
+ //		colorGroup(),TQStyle::Style_Enabled);
+ 
+ 

@@ -40,15 +40,15 @@ Patch1:			kaffeine-3.5.13-rename_old_tq_methods.patch
 # [kaffeine] Remove additional unneeded tq method conversions [Commit #701a1249]
 Patch2:			kaffeine-3.5.13-remove_additional_tq_conversions.patch
 # [kaffeine] Rename obsolete tq methods to standard names [Commit #66805baf]
-Patch3:			kdebase-3.5.13-rename_obsolete_tq_methods.patch
+Patch3:			kaffeine-3.5.13-rename_obsolete_tq_methods.patch
 # [kaffeine] Rename a few stragglers [Commit #89b5fd35]
-Patch4:			kdebase-3.5.13-renames_a_few_stragglers.patch
+Patch4:			kaffeine-3.5.13-renames_a_few_stragglers.patch
 # [kaffeine] Error out if critical OSD-related defines are not set [Commit #25b89439]
-Patch5:			kdebase-3.5.13-error_out_if_critical_osd_defines_not_set.patch
+Patch5:			kaffeine-3.5.13-error_out_if_critical_osd_defines_not_set.patch
 # [kaffeine] Work around Xine crash when displaying still logo image by creating a small movie file to replace it [Bug #559, #511] [Commit #508cb342]
 Patch6:			kaffeine-3.5.13-work_around_xine_crash.patch
 # [kaffeine] Fix nominal "tqt" typos and fix slow DVB start. [Bug #729, #899] [Commit #fd68e4c4]
-Patch7:			kdebase-3.5.13-fix_slow_dvb_start.patch
+Patch7:			kaffeine-3.5.13-fix_slow_dvb_start.patch
 # [kaffeine] Change location where Kaffeine stores temporary pipe files from $HOME to the more appropriate $TDEHOME/tmp-$HOSTNAME. [Commit #b480e3db]
 Patch8:			kaffeine-3.5.13-fix_temporary_location.patch
 # [kaffeine] Fix typos, branding, and inadvertent tqt changes. [Commit #0e3d0ed6]
