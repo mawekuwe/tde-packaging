@@ -34,8 +34,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 # TDE 3.5.13 on RHEL/Fedora specific patches
-Patch0:		digikam-3.5.13-jpegint-ftbfs.patch
-
+Patch1:		digikam-3.5.13-jpegint-ftbfs.patch
+# [digikam] Add support for libpng 1.4 [Bug #595]
+Patch2:		digikam-3.5.13-fix_libpng_1.4.patch
+# [digikam] gcc 4.7 + libpng 1.5 patch for digikam (consolidated) [Bug #958]
+Patch3:		digikam-3.5.13-libpng15+gcc47_1.patch
+# [digikam] Fix libpng support (again !!!)
+Patch4:		digikam-3.5.13-fix_libpng_support.patch
+# [digikam] Fix compilation with GCC 4.7
+Patch5:		digikam-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
@@ -46,7 +53,11 @@ BuildRequires: gettext
 BuildRequires: trinity-libkexiv2-devel
 BuildRequires: trinity-libkdcraw-devel
 BuildRequires: trinity-libkipi-devel
+%if 0%{?rhel} == 5
+BuildRequires: gphoto2-devel
+%else
 BuildRequires: libgphoto2-devel
+%endif
 BuildRequires: libtiff-devel
 BuildRequires: jasper-devel
 
@@ -83,15 +94,22 @@ Requires:	%{name} = %{version}
 
 %prep
 %setup -q -n applications/%{kdecomp}
-%patch0 -p5
+%patch1 -p5
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1 -b .libpng
+%if 0%{?fedora} >= 17
+%patch5 -p1 -b .gcc47
+%endif
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -139,8 +157,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/services/*.protocol
 %{_datadir}/servicetypes/digikamimageplugin.desktop
 %{_datadir}/apps/*/
-%{_docdir}/HTML/en/*/
-%{_datadir}/icons/*/*/*/*
+%{tde_docdir}/HTML/en/*/
+%{_datadir}/icons/hicolor/*/*/*
 %{_mandir}/man*/*
 
 
@@ -154,6 +172,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
-* Sun Nov 06 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.6-0
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-2
+- gcc 4.7 + libpng 1.5 patch for digikam (consolidated) [Bug #958]
+
+* Sun Nov 06 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.6-1
 - Initial release for RHEL 6, RHEL 5 and Fedora 15
 

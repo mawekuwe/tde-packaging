@@ -1,0 +1,24 @@
+--- digikam/digikam/libs/dimg/loaders/pngloader.cpp.libpng	2012-05-01 15:02:57.235666444 +0200
++++ digikam/digikam/libs/dimg/loaders/pngloader.cpp	2012-05-01 15:04:30.737122439 +0200
+@@ -408,10 +408,11 @@
+     TQMap<int, TQByteArray>& metaData = imageMetaData();
+ 
+     png_charp   profile_name, profile_data=NULL;
++	unsigned char* uprofile_data = reinterpret_cast<unsigned char*>(profile_data);
+     png_uint_32 profile_size;
+     int         compression_type;
+ 
+-    png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, &profile_data, &profile_size);
++    png_get_iCCP(png_ptr, info_ptr, &profile_name, &compression_type, &uprofile_data, &profile_size);
+ 
+     if (profile_data != NULL)
+     {
+@@ -607,7 +608,7 @@
+ 
+     if (!profile_rawdata.isEmpty())
+     {
+-        png_set_iCCP(png_ptr, info_ptr, (png_charp)"icc", PNG_COMPRESSION_TYPE_BASE, profile_rawdata.data(), profile_rawdata.size());
++        png_set_iCCP(png_ptr, info_ptr, (png_charp)"icc", PNG_COMPRESSION_TYPE_BASE, (unsigned char*)profile_rawdata.data(), profile_rawdata.size());
+     }
+ 
+     // -------------------------------------------------------------------
