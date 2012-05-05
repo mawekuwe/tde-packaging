@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kdesudo
 %define version 2.5.1
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -51,12 +51,14 @@ It allows you to run programs as another user by entering your password.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__make -f "admin/Makefile.common"
+
 
 %build
 unset QTDIR || : ; source /etc/profile.d/qt.sh
@@ -100,25 +102,21 @@ fi
 %__rm -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-
-%postun
-/sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %files
 %defattr(-,root,root,-)
 %{_bindir}/kdesudo
-%{_docdir}/HTML/en/kdesudo/common
-%{_docdir}/HTML/en/kdesudo/index.cache.bz2
-%{_docdir}/HTML/en/kdesudo/index.docbook
+%{tde_docdir}/HTML/en/kdesudo/common
+%{tde_docdir}/HTML/en/kdesudo/index.cache.bz2
+%{tde_docdir}/HTML/en/kdesudo/index.docbook
 %{_datadir}/locale/fr/LC_MESSAGES/kdesudo.mo
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 2.5.1-2
+- Rebuilt for Fedora 17
+- Fix HTML directory location
+- Removes post and postun
+
 * Wed Nov 02 2011 Francois Andriot <francois.andriot@free.fr> - 2.5.1-1
 - Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

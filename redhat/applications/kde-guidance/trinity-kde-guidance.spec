@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp guidance
 %define version 0.8.0svn20080103
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -18,7 +18,7 @@ BuildRequires: autoconf automake libtool m4
 %define __arch_install_post %{nil}
 
 Name:		trinity-%{kdecomp}
-Summary:	collection of KDE system administration tools for GNU/Linux [Trinity]
+Summary:	A collection of system administration tools for Trinity
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
@@ -256,14 +256,22 @@ find %{buildroot} -name "*.egg-info" -exec rm -f {} \;
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 /sbin/ldconfig || :
 
 %postun
+touch --no-create %{_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
+/sbin/ldconfig || :
+
+%post powermanager
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-/sbin/ldconfig || :
+
+%postun powermanager
+touch --no-create %{_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %files -f %{kdecomp}.lang
@@ -313,5 +321,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-2
+- Rebuilt for Fedora 17
+- Fix post and postun
+
 * Thu Dec 01 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

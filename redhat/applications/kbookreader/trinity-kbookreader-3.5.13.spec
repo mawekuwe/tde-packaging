@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kbookreader
 %define version 0.2.0
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -51,12 +51,13 @@ within the Trinity Desktop Environment.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f "admin/Makefile.common"
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__make -f admin/Makefile.common
 
 
 %build
@@ -118,11 +119,16 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/applnk/*/*.desktop
 %{_datadir}/apps/*/
 %{_datadir}/config.kcfg/*
-%{_docdir}/HTML/en/*/
-%{_datadir}/icons/*/*/*/*
+%{tde_docdir}/HTML/en/*/
+%{_datadir}/icons/hicolor/*/*/*
 
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.2.0-2
+- Rebuilt for Fedora 17
+- Fix post and postun
+- Fix HTML directory location
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.2.0-1
 - Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

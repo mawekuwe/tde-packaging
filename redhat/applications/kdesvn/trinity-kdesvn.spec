@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kdesvn
 %define version 1.0.4
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -32,6 +32,9 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
+
+# [kdesvn] Fix compilation with GCC 4.7
+Patch1:		kdesvn-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -90,6 +93,7 @@ This package is part of tdesvn-trinity.
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -137,11 +141,15 @@ export PATH="%{_bindir}:${PATH}"
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-/sbin/ldconfig || :
 
 %postun
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+
+%post -n trinity-libsvnqt
+/sbin/ldconfig || :
+
+%postun -n trinity-libsvnqt
 /sbin/ldconfig || :
 
 
@@ -192,5 +200,10 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.4-2
+- Rebuilt for Fedora 17
+- Fix post and postun
+- Fix compilation with GCC 4.7
+ 
 * Thu Dec 01 2011 Francois Andriot <francois.andriot@free.fr> - 1.0.4-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
