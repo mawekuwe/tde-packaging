@@ -49,7 +49,7 @@ DEB_INSTALL_DOCS_ALL :=
 
 DEB_INSTALL_CHANGELOGS_ALL = $(shell for f in ChangeLog CHANGELOG CHANGES; do if test -s $(DEB_SRCDIR)/$(cdbs_curpkg)/$$f; then echo $(DEB_SRCDIR)/$(cdbs_curpkg)/$$f; break; fi; done)
 
-DEB_DH_MAKESHLIBS_ARGS_libtdeedu3-trinity := -V'libtdeedu3-trinity (>= 4:3.5.8)'
-DEB_DH_MAKESHLIBS_ARGS_libkiten1-trinity := -V'libkiten1-trinity (>= 4:3.5.8)'
+DEB_DH_MAKESHLIBS_ARGS_libtdeedu3-trinity := -V'libtdeedu3-trinity'
+DEB_DH_MAKESHLIBS_ARGS_libkiten1-trinity := -V'libkiten1-trinity'
 
 PACKAGES_WITH_LIBS := libtdeedu3-trinity libkiten1-trinity kvoctrain-trinity

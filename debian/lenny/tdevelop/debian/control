@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Jeremy Lain <jeremy.laine@m4x.org>
-Build-Depends: cdbs (>= 0.4.38), debhelper (>= 5), tdelibs4-trinity-dev (>= 4:3.5.10), gettext, tdelibs4-trinity-doc, libtqtinterface-doc, flex, python, libcvsservice-trinity-dev (>= 4:3.5.10), groff-base, libsvn-dev, libaprutil1-dev, libdb-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.38), debhelper (>= 5), tdelibs4-trinity-dev, gettext, tdelibs4-trinity-doc, libtqtinterface-doc, flex, python, libcvsservice-trinity-dev, groff-base, libsvn-dev, libaprutil1-dev, libdb-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdevelop-trinity

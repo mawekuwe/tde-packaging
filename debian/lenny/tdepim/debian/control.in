@@ -5,7 +5,7 @@ Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
 Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), automake1.9,
- cdparanoia, gawk, gettext, tdelibs4-dev (>= 4:3.5.8), bison, byacc, bzip2,
+ cdparanoia, gawk, gettext, tdelibs4-dev, bison, byacc, bzip2,
  flex, groff-base, libopensync0-dev,
  libbluetooth2-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64],
  libboost-dev (>= 1.33.1), libgnokii3-dev, libgpgme11-dev, liblockdev1-dev,
@@ -481,7 +481,7 @@ Description: KDE PIM library
 Package: libtdepim1-dev
 Section: libdevel
 Architecture: any
-Depends: libtdepim1a (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: libtdepim1a (= ${Source-Version}), tdelibs4-dev
 Replaces: tdepim-dev (<< 4:3.4.1)
 Description: KDE PIM library [development]
  This is the development package which contains the headers for the libtdepim

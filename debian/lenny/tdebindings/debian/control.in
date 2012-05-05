@@ -2,7 +2,7 @@ Source: tdebindings
 Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5),
  python-dev (>= 2.3.5-11), python-support (>= 0.5), quilt, gawk,
  gettext, default-jdk [amd64 i386 ia64 lpia powerpc s390 sparc],
- tdelibs4-dev (>= 4:3.5.7), libgtk1.2-dev, libqt3-compat-headers (>= 3:3.3.5),
+ tdelibs4-dev, libgtk1.2-dev, libqt3-compat-headers (>= 3:3.3.5),
  ruby, ruby1.8-dev
 Section: devel
 Priority: optional

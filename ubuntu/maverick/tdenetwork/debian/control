@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Modestas Vainius <geromanas@mailas.com>, Sarah Hobbs <hobbsee@ubuntu.com>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, docbook-to-man, doxygen, gawk, gettext, tdelibs4-trinity-dev (>= 4:3.5.10), libgadu-dev, libiw-dev (>> 27+28pre8), libmeanwhile-dev (>= 1.0.2), libslp-dev, libsqlite3-dev, libtiff4-dev, libxml2-dev, libxslt1-dev, libxtst-dev, libtqtinterface-doc, sharutils, valgrind [!armel], libxxf86vm-dev, libv4l-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, docbook-to-man, doxygen, gawk, gettext, tdelibs4-trinity-dev, libgadu-dev, libiw-dev (>> 27+28pre8), libmeanwhile-dev (>= 1.0.2), libslp-dev, libsqlite3-dev, libtiff4-dev, libxml2-dev, libxslt1-dev, libxtst-dev, libtqtinterface-doc, sharutils, valgrind [!armel], libxxf86vm-dev, libv4l-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdenetwork-trinity
@@ -308,7 +308,7 @@ Section: devel
 Architecture: any
 Replaces: kdenetwork-trinity-dev (<< 4:14.0.0)
 Breaks: kdenetwork-trinity-dev (<< 4:14.0.0)
-Depends: kdict-trinity (= ${Source-Version}), kopete-trinity (= ${Source-Version}), ksirc-trinity (= ${Source-Version}), librss1-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: kdict-trinity (= ${Source-Version}), kopete-trinity (= ${Source-Version}), ksirc-trinity (= ${Source-Version}), librss1-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Description: development files for the Trinity network module
  This is the development package which contains the headers for the KDE RSS
  library as well as the Kopete chat client, as well as miscellaneous

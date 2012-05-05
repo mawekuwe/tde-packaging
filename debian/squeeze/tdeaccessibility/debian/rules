@@ -20,8 +20,5 @@ DEB_DH_STRIP_ARGS  := --dbg-package=tdeaccessibility-trinity-dbg
 
 PACKAGES_WITH_LIBS := kttsd-trinity ksayit-trinity
 
-DEB_DH_MAKESHLIBS_ARGS_kttsd-trinity	:= -V'kttsd-trinity (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_ksayit-trinity	:= -V'ksayit-trinity (>= 4:3.5.8-1)'
-
 #shlibs_ver = 4:3.5.0
 #$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))

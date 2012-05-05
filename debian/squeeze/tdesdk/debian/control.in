@@ -5,9 +5,9 @@ Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
 Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk,
- gettext, pkg-config, tdelibs4-dev (>= 4:3.5.8), binutils-dev, bison, flex,
- tdepim-dev (>= 4:3.5.8), libapr1-dev, libkcal2-dev (>= 4:3.5.8),
- libktnef1-dev (>= 4:3.5.8), libsvn-dev
+ gettext, pkg-config, tdelibs4-dev, binutils-dev, bison, flex,
+ tdepim-dev, libapr1-dev, libkcal2-dev,
+ libktnef1-dev, libsvn-dev
 Standards-Version: 3.7.2
 
 Package: tdesdk
@@ -63,7 +63,7 @@ Description: a graphical CVS front end for KDE
 Package: kapptemplate
 Architecture: all
 Section: devel
-Recommends: automake1.9 | automaken, tdelibs4-dev (>= 4:3.5.8)
+Recommends: automake1.9 | automaken, tdelibs4-dev
 Description: creates a framework to develop a KDE application
  KAppTemplate is a shell script that will create the necessary
  framework to develop various KDE applications.  It takes care of the
@@ -96,7 +96,7 @@ Description: PO-file editing suite for KDE
 Package: kbabel-dev
 Architecture: any
 Section: libdevel
-Depends: kbabel (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: kbabel (= ${Source-Version}), tdelibs4-dev
 Replaces: kbabel (<< 4:3.0.8-0)
 Description: PO-file editing suite for KDE (development files)
  This is a suite of programs for editing gettext message files (PO-files).
@@ -245,7 +245,7 @@ Description: a KDE GUI for viewing differences between files
 Package: kspy
 Architecture: any
 Section: devel
-Depends: ${shlibs:Depends}, tdelibs4-dev (>= 4:3.5.8)
+Depends: ${shlibs:Depends}, tdelibs4-dev
 Description: examines the internal state of a Qt/KDE app
  KSpy is a tiny library which can be used to graphically display
  the QObjects in use by a Qt/KDE app.  In addition to the object tree,
@@ -295,7 +295,7 @@ Description: DCOP service for accessing CVS repositories
 Package: libcvsservice-dev
 Architecture: any
 Section: libdevel
-Depends: libcvsservice0 (= ${Source-Version}), tdelibs4-dev (>= 4:3.5.8)
+Depends: libcvsservice0 (= ${Source-Version}), tdelibs4-dev
 Replaces: cervisia (<< 4:3.2.0)
 Description: development files for CVS DCOP service
  The library libcvsservice provides a DCOP service for accessing and

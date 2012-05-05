@@ -5,9 +5,9 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fboudra@free.fr>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
 Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk,
- gettext, pkg-config, tdelibs4-trinity-dev (>= 4:3.5.10), binutils-dev, bison, flex,
- tdepim-trinity-dev (>= 4:3.5.10), libapr1-dev, libkcal2-trinity-dev (>= 4:3.5.10),
- libktnef1-trinity-dev (>= 4:3.5.10), libsvn-dev, libdb-dev,
+ gettext, pkg-config, tdelibs4-trinity-dev, binutils-dev, bison, flex,
+ tdepim-trinity-dev, libapr1-dev, libkcal2-trinity-dev,
+ libktnef1-trinity-dev, libsvn-dev, libdb-dev,
  automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
@@ -73,7 +73,7 @@ Section: devel
 Replaces: kapptemplate-trinity (<< 4:14.0.0)
 Breaks: kapptemplate-trinity (<< 4:14.0.0)
 Conflicts: kapptemplate
-Recommends: automake1.9 | automaken, tdelibs4-trinity-dev (>= 4:3.5.8)
+Recommends: automake1.9 | automaken, tdelibs4-trinity-dev
 Description: creates a framework to develop a Trinity application
  KAppTemplate is a shell script that will create the necessary
  framework to develop various KDE applications.  It takes care of the
@@ -111,7 +111,7 @@ Architecture: any
 Section: libdevel
 Replaces: kbabel-trinity-dev (<< 4:14.0.0)
 Breaks: kbabel-trinity-dev (<< 4:14.0.0)
-Depends: kbabel-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: kbabel-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Conflicts: kbabel
 Description: PO-file editing suite for Trinity (development files)
  This is a suite of programs for editing gettext message files (PO-files).
@@ -282,7 +282,7 @@ Architecture: any
 Section: devel
 Replaces: kspy-trinity (<< 4:14.0.0)
 Breaks: kspy-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: ${shlibs:Depends}, tdelibs4-trinity-dev
 Conflicts: kspy
 Description: examines the internal state of a Qt/KDE app
  KSpy is a tiny library which can be used to graphically display
@@ -340,7 +340,7 @@ Architecture: any
 Section: libdevel
 Replaces: libcvsservice-trinity-dev (<< 4:14.0.0)
 Breaks: libcvsservice-trinity-dev (<< 4:14.0.0)
-Depends: libcvsservice0-trinity (= ${Source-Version}), tdelibs4-trinity-dev (>= 4:3.5.8)
+Depends: libcvsservice0-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Conflicts: libcvsservice-dev
 Description: development files for CVS DCOP service
  The library libcvsservice provides a DCOP service for accessing and

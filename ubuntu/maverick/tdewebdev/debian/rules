@@ -30,7 +30,5 @@ DEB_DH_STRIP_ARGS  := --dbg-package=tdewebdev-trinity-dbg
 
 PACKAGES_WITH_LIBS := kommander-trinity
 
-DEB_DH_MAKESHLIBS_ARGS_kommander-trinity := -V'kommander-trinity (>= 4:3.5.8-1)'
-
 #shlibs_ver = 4:3.5.0-1
 #$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))

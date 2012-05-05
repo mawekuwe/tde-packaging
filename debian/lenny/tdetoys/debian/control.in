@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-dev (>= 4:3.5.7), gawk, gettext, sharutils
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, tdelibs4-dev, gawk, gettext, sharutils
 Standards-Version: 3.7.2
 
 Package: tdetoys
