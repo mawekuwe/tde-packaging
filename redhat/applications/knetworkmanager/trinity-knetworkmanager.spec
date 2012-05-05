@@ -5,7 +5,7 @@
 %else
 %define version 0.8
 %endif
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -130,7 +130,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_sysconfdir}/dbus-1/system.d/knetworkmanager.conf
 %{_datadir}/applications/kde/knetworkmanager.desktop
 %{_datadir}/apps/knetworkmanager
-%{_datadir}/icons/*/*/apps/knetworkmanager*
+%{_datadir}/icons/hicolor/*/apps/knetworkmanager*
 %{_datadir}/servicetypes/knetworkmanager_plugin.desktop
 %{_datadir}/servicetypes/knetworkmanager_vpnplugin.desktop
 
@@ -142,6 +142,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{tde_libdir}/*.so
 
 %changelog
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-3 / 0.9-3
+- Rebuild for Fedora 17
+
 * Sat Nov 13 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-2 / 0.9-2
 - Remove faulty patch for WPA authentication
 

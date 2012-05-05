@@ -1,6 +1,6 @@
 # Default version for this component
-%define kdecomp knetstats
-%define version 1.6.1
+%define kdecomp kvpnc
+%define version 0.9.6a
 %define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -17,7 +17,7 @@ BuildRequires: autoconf automake libtool m4
 
 
 Name:		trinity-%{kdecomp}
-Summary:	network interfaces monitor for the Trinity systray
+Summary:	vpn clients frontend for TDE
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}
 
@@ -26,36 +26,46 @@ Group:		Applications/Utilities
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org
+URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{kdecomp}-3.5.13.tar.gz
+Source0:	%{kdecomp}-master.tar.gz
+Source1:	admin-master.tar.gz
 
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
-
+BuildRequires: tqtinterface-devel
+BuildRequires: trinity-kdelibs-devel
+BuildRequires: trinity-kdebase-devel
+BuildRequires: desktop-file-utils
 
 %description
-A simple KDE network monitor that show rx/tx LEDs of any
-network interface on a system tray icon
+KVpnc is a TDE frontend for various vpn clients.
+
+It supports :
+ * Cisco-compatible VPN client (vpnc)
+ * IPSec (freeswan, openswan, racoon)
+ * Point-to-Point Tunneling Protocol (PPTP) client (pptp-linux)
+ * Virtual Private Network daemon (openvpn)
 
 
 %prep
-%setup -q -n applications/%{kdecomp}
+unset QTDIR; . /etc/profile.d/qt.sh
+%setup -q -n %{kdecomp}-master
+
+# 'admin' folder from GIT
+%setup -q -n %{kdecomp}-master -a 1
+%__rm -rf admin
+%__mv -f admin-master admin
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+	-e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
+	-e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
 
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -65,19 +75,15 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 %configure \
 	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt
+    --with-extra-includes=%{_includedir}/tqt \
+    --enable-closure
 
-# SMP safe !
 %__make %{?_smp_mflags}
-
 
 %install
 export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
-
-%find_lang %{kdecomp}
-
 
 
 %clean
@@ -87,23 +93,21 @@ export PATH="%{_bindir}:${PATH}"
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+/sbin/ldconfig || :
 
 %postun
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+/sbin/ldconfig || :
 
 
-%files -f %{kdecomp}.lang
+%files
 %defattr(-,root,root,-)
-%{_bindir}/knetstats
-%{_datadir}/applications/kde/knetstats.desktop
-%{_datadir}/apps/knetstats
-%{tde_docdir}/HTML/en/knetstats/common
-%{tde_docdir}/HTML/en/knetstats/index.cache.bz2
-%{tde_docdir}/HTML/en/knetstats/index.docbook
-%{_datadir}/icons/hicolor/*/apps/knetstats.png
+%doc AUTHORS ChangeLog COPYING README TODO
+
 
 
 %Changelog
-* Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.1-1
+* Sat Dec 10 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.6a-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+

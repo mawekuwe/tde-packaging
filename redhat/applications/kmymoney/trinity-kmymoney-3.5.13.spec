@@ -1,12 +1,13 @@
 # Default version for this component
 %define kdecomp kmymoney
 %define version 1.0.5
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
+%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -36,11 +37,14 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 Source1:	kmymoneytitlelabel.png
 Patch0:		kmymoney-3.5.13-recode_ftbfs.patch
 
-## TDE Commit: 2a54aa58cfe166f48d6f1395cbc6c9bfd5e31bfc
+# TDE Commit: 2a54aa58cfe166f48d6f1395cbc6c9bfd5e31bfc
 Patch1:		kmymoney-3.5.13-lots_of_crash.patch
 
-## TDE Commit: 8654cea10f6902719006d5975db7dc07b2fcc713
+# TDE Commit: 8654cea10f6902719006d5975db7dc07b2fcc713
 Patch2:		kmymoney-3.5.13-update_to_1.0.5.patch
+
+# [kmymoney] Fix compilation with GCC 4.7 [Bug #958]
+Patch3:		kmymoney-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
@@ -87,16 +91,17 @@ This package contains development files needed for KMyMoney plugins.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -142,19 +147,25 @@ if [ -d %{buildroot}$HTML_DIR ]; then
 	done
 fi
 
+%find_lang kmymoney2
+
 %clean
 %__rm -rf %{buildroot}
 
 
 %post
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in hicolor locolor Tango oxygen; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 
 %postun
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in hicolor locolor Tango oxygen; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 
 %files
 %defattr(-,root,root,-)
@@ -168,7 +179,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{tde_libdir}/kmm_ofximport.la
 %{tde_libdir}/kmm_ofximport.so
 
-%files common
+%files common -f kmymoney2.lang
 %defattr(-,root,root,-)
 %{_datadir}/apps/kmymoney2/html/
 %{_datadir}/apps/kmymoney2/icons/*/*/*/*.png
@@ -178,9 +189,12 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/apps/kmymoney2/templates/*/*.kmt
 %{_datadir}/apps/kmymoney2/tips
 %{_datadir}/config.kcfg/kmymoney2.kcfg
-%{_datadir}/icons/*/*/*/*.png
-%{_datadir}/icons/*/*/*.svgz
-%{_datadir}/locale/*/LC_MESSAGES/*.mo
+%{_datadir}/icons/hicolor/*/*/*.png
+%{_datadir}/icons/Tango/*/*/*.png
+%{_datadir}/icons/Tango/scalable/*.svgz
+%{_datadir}/icons/locolor/*/*/*.png
+%{_datadir}/icons/oxygen/*/*/*.png
+%{_datadir}/icons/oxygen/scalable/*.svgz
 %{tde_docdir}/HTML/en/kmymoney2/*.docbook
 %{tde_docdir}/HTML/en/kmymoney2/*.png
 %{tde_docdir}/HTML/en/kmymoney2/common
@@ -201,6 +215,10 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_usr}/%{_lib}/qt-3.3/plugins/designer/libkmymoney.so
 
 %Changelog
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-2
+- Rebuild for Fedora 17
+- Fix compilation with GCC 4.7 [Bug #958]
+
 * Sun Jan 15 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-1
 - Updates to upstream 1.0.5
 

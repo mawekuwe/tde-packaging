@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kgtk-qt3
 %define version 0.10.2
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -88,17 +88,6 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
 
-%post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-/sbin/ldconfig || :
-
-%postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-/sbin/ldconfig || :
-
-
 %files -f kdialogd3.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README TODO
@@ -112,5 +101,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.2-2
+- Rebuilt for Fedora 17
+- Removes post and postun
+
 * Thu Dec 01 2011 Francois Andriot <francois.andriot@free.fr> - 0.10.2-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

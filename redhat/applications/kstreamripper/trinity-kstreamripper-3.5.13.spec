@@ -94,15 +94,6 @@ fi
 %__rm -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-
-%postun
-/sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %files
 %defattr(-,root,root,-)

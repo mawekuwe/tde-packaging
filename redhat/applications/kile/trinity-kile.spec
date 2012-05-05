@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kile
 %define version 2.0.2
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -32,7 +32,6 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
-Source1:	%{kdecomp}.xpm
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -446,7 +445,6 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%__install -D -p -m0644 %{SOURCE1} %{buildroot}%{_datadir}/pixmaps/kile.xpm
 %__chmod +x %{buildroot}%{_datadir}/apps/kile/test/runTests.sh
 
 %clean
@@ -475,7 +473,6 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/icons/hicolor/scalable/apps/kile.svgz
 %{tde_docdir}/HTML/en/kile
 %{_datadir}/mimelnk/text/x-kilepr.desktop
-%{_datadir}/pixmaps/kile.xpm
 
 %files i18n-da
 %lang(da) %{tde_docdir}/HTML/da/kile
@@ -623,6 +620,10 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-3
+- Rebuilt for Fedora 17
+- Removes the XPM icon
+
 * Fri Apr 20 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-2
 - Fix file conflict with trinity-kdelibs
 

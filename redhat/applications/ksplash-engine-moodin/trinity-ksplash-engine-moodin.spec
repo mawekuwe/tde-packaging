@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp ksplash-engine-moodin
 %define version 0.4.2
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -52,7 +52,7 @@ Features:
 * custom image arrangement
 * resolution independent themes
 
-This KDE splash screen engine is based upon Linspire's
+This TDE splash screen engine is based upon Linspire's
 engine by Sean Meiners <Sean.Meiners@LinspireInc.com>
 
 Homepage: http://moodwrod.com
@@ -63,11 +63,12 @@ Homepage: http://moodwrod.com
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -92,15 +93,6 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
 
-%post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-
-%postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-
-
 %files
 %defattr(-,root,root,-)
 %{tde_libdir}/ksplashmoodin.la
@@ -110,5 +102,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.2-2
+- Rebuild for Fedora 17
+- Removes post and postun
+
 * Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.2-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kio-locate
 %define version 0.4.5
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,6 +33,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [kio-locate] Fix compilation with GCC 4.7
+Patch1:		kio-locate-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -43,7 +45,7 @@ BuildRequires:	scons
 
 %description
 Adds support for the "locate:" and "locater:"
-protocols to Konqueror and other KDE applications.
+protocols to Konqueror and other TDE applications.
 
 This enables you to perform locate searches as you
 would in a terminal. The result is displayed just
@@ -51,16 +53,17 @@ as a directory.
 
 
 %prep
-unset QTDIR; . /etc/profile.d/qt.sh
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside SCONS files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/kde.py \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g"
 
 
 %build
+unset QTDIR; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 scons configure
@@ -75,14 +78,6 @@ scons install DESTDIR=%{buildroot}
 %clean
 %__rm -rf %{buildroot}
 
-
-%post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-
-%postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %files
@@ -100,6 +95,11 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.5-2
+- Rebuilt for Fedora 17
+- Removes post and postun
+- Fix compilation with GCC 4.7
+
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.5-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 

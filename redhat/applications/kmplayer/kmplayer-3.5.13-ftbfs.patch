@@ -4,7 +4,7 @@
  kgstplayer_SOURCES= gstplayer.cpp
  
  knpplayer_LDADD= $(LIBNSPR_LIBS)
-+knpplayer_LDFLAGS= -lX11
++knpplayer_LDFLAGS= -lX11 -lgmodule-2.0
  knpplayer_SOURCES= npplayer.c
  
  xdg_apps_DATA = kmplayer.desktop

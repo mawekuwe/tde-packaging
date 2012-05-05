@@ -6,7 +6,7 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -117,7 +117,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/applications/kde/kpowersave.desktop
 %{_datadir}/apps/kpowersave/eventsrc
 %{_datadir}/apps/kpowersave/icons/*/*/*/*.png
-%{_datadir}/icons/*/*/*/*.png
+%{_datadir}/icons/hicolor/*/*/*.png
 %{_datadir}/autostart/kpowersave-autostart.desktop
 %{_datadir}/config/kpowersaverc
 

@@ -92,9 +92,6 @@ BuildRequires:  gettext-devel
 BuildRequires:  mysql-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  perl
-BuildRequires:  trinity-wv2-devel >= 0.4.0
-#BuildRequires:  trinity-libpqxx-devel >= 2.6.0
-BuildRequires:  libpqxx-devel
 BuildRequires:  doxygen
 BuildRequires:  aspell-devel
 BuildRequires:  libxslt-devel
@@ -108,10 +105,12 @@ BuildRequires:  ruby ruby-devel >= 1.8.2
 BuildRequires:  libpaper-devel
 BuildRequires:  libXi-devel
 BuildRequires:	libutempter-devel
-BuildRequires:	poppler-qt-devel >= 0.1.2
 BuildRequires:	GraphicsMagick-devel >= 1.1.0
-BuildRequires:	trinity-libwpd-devel
 
+BuildRequires:  trinity-wv2-devel
+BuildRequires:	trinity-poppler-qt3-devel >= 0.1.2
+BuildRequires:	trinity-libwpd-devel
+BuildRequires:  trinity-libpqxx-devel
 
 %description
 KOffice is an integrated office suite.
@@ -308,8 +307,10 @@ This package is part of the TDE Office Suite.
 %patch10 -p0
 %patch11 -p0
 %patch12 -p1 -b .gcc47
-%patch13 -p1
-%patch14 -p5
+%if 0%{?fedora} >= 17
+%patch13 -p1 -b .ruby
+%patch14 -p1 -b .libpng
+%endif
 
 # use LGC variant instead
 %__sed -i.dejavu-lgc \
@@ -324,7 +325,7 @@ This package is part of the TDE Office Suite.
   -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -343,6 +344,8 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
   --with-extra-includes=%{_includedir}/tqt \
   --enable-closure \
   --disable-kexi-macros \
+  --with-pqxx-includes=%{_includedir} \
+  --with-pqxx-libraries=%{_libdir} \
 %if 0%{?with_kross} > 0
   --enable-scripting \
 %else

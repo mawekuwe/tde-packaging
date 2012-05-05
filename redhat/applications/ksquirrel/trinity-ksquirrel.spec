@@ -1,12 +1,13 @@
 # Default version for this component
 %define kdecomp ksquirrel
 %define version 0.8.0
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
+%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -44,7 +45,7 @@ BuildRequires:	trinity-libksquirrel-devel
 #BuildRequires:	libkexif-devel
 
 %description
-KSquirrel is an image viewer for KDE with disk navigator, file tree,
+KSquirrel is an image viewer for TDE with disk navigator, file tree,
 multiple directory view, thumbnails, extended thumbnails, dynamic
 format support, DCOP interface, KEXIF and KIPI plugins support.
 
@@ -57,11 +58,12 @@ OpenGL and dynamic format support.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -112,13 +114,17 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/config/magic/x-ras.magic
 %{_datadir}/config/magic/x-sun.magic
 %{_datadir}/config/magic/x-utah.magic
-%{_docdir}/HTML/*/ksquirrel
+%{tde_docdir}/HTML/*/ksquirrel
 %{_datadir}/icons/hicolor/*/apps/ksquirrel.png
 %{_datadir}/mimelnk/image/*.desktop
 %{_datadir}/services/ksquirrelpart.desktop
 %{_datadir}/locale/*/LC_MESSAGES/ksquirrel.mo
-%{_mandir}/man1/ksquirrel.1.gz
+%{_mandir}/man1/ksquirrel.1
 
 %Changelog
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.1-2
+- Rebuild for Fedora 17
+- Fix HTML directory location
+
 * Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.0-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

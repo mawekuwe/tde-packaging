@@ -1,12 +1,13 @@
 # Default version for this component
 %define kdecomp kdiff3
 %define version 0.9.91
-%define release 3
+%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
+%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -43,7 +44,7 @@ BuildRequires: desktop-file-utils
 Shows the differences line by line and character by character (!).
 Provides an automatic merge-facility and
 an integrated editor for comfortable solving of merge-conflicts.
-Supports KIO on KDE (allows accessing ftp, sftp, fish, smb etc.).
+Supports KIO on TDE (allows accessing ftp, sftp, fish, smb etc.).
 Unicode & UTF-8 support
 
 
@@ -52,11 +53,12 @@ Unicode & UTF-8 support
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -83,12 +85,16 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in hicolor locolor; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in hicolor locolor; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 
 
 %files
@@ -96,9 +102,10 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %doc AUTHORS COPYING
 %{_bindir}/*
 %{_datadir}/apps/*/
-%{_datadir}/icons/*/*/*/*
+%{_datadir}/icons/hicolor/*/*/*
+%{_datadir}/icons/locolor/*/*/*
 %{_datadir}/locale/*/*/*.mo
-%{_docdir}/HTML/*/*
+%{tde_docdir}/HTML/*/*
 %{_datadir}/services/*.desktop
 %{tde_libdir}/*.so
 %{_datadir}/applnk/Development/*.desktop
@@ -108,6 +115,11 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{tde_libdir}/*.la
 
 %Changelog
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.91-4
+- Rebuilt for Fedora 17
+- Fix HTML directory location
+- Fix post and postun
+
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.91-3
 - Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
 

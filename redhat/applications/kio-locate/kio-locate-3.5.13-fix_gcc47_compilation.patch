@@ -1,0 +1,22 @@
+--- kio-locate/src/SConscript.ORI	2012-05-02 00:23:36.637608539 +0200
++++ kio-locate/src/SConscript	2012-05-02 00:23:44.142459165 +0200
+@@ -28,7 +28,7 @@
+     pattern.cpp
+ """
+ obj.libs='tqt kio'
+-obj.linkflags='-module' # add more link flags
++#obj.linkflags='-module' # add more link flags
+ obj.execute()
+ 
+ # Install the protocol files
+--- kio-locate/admin/kde.py.ORI	2012-05-02 00:37:55.095993387 +0200
++++ kio-locate/admin/kde.py	2012-05-02 00:38:34.615142101 +0200
+@@ -781,7 +781,7 @@
+ 		lenv.KDEinstall( 'KDEDOC', lenv.join(lang,destination), lenv.join(folder,'index.cache.bz2') )
+ 		
+ 		if env['_INSTALL']:
+-			dir=lenv.join(lenv.getInstDirForResType('KDEDOC'), lang, destination)
++			dir=lenv.join(env['DESTDIR'], lenv.getInstDirForResType('KDEDOC'), lang, destination)
+ 			comp='mkdir -p %s && cd %s && rm -f common && ln -s ../common common' % (dir, dir)
+ 			lenv.Execute(comp)
+ 

@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kmyfirewall
 %define version 1.1.1
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,6 +33,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [kmyfirewall] GCC 4.7 fixes. [Commit #88d2d2a7]
+Patch1:		kmyfirewall-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -64,15 +66,16 @@ Requires:		%{name} = %{version}-%{release}
 %prep
 unset QTDIR; . /etc/profile.d/qt.sh
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -98,13 +101,17 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in hicolor Locolor; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 /sbin/ldconfig || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in hicolor Locolor; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 /sbin/ldconfig || :
 
 
@@ -158,7 +165,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{tde_docdir}/HTML/en/kmyfirewall/common
 %{tde_docdir}/HTML/en/kmyfirewall/index.cache.bz2
 %{tde_docdir}/HTML/en/kmyfirewall/index.docbook
-%{_datadir}/icons/*/*/apps/kmyfirewall.png
+%{_datadir}/icons/hicolor/*/apps/kmyfirewall.png
+%{_datadir}/icons/Locolor/*/apps/kmyfirewall.png
 %{_datadir}/mimelnk/application/kmfgrs.desktop
 %{_datadir}/mimelnk/application/kmfnet.desktop
 %{_datadir}/mimelnk/application/kmfpkg.desktop
@@ -174,6 +182,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_libdir}/libkmfwidgets.so
 
 %Changelog
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 1.0-1
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.1.1-2
+- GCC 4.7 fixes. [Commit #88d2d2a7]
+
+* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 1.1.1-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 

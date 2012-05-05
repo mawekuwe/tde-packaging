@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kopete-otr
 %define version 0.7
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -57,11 +57,11 @@ unset QTDIR; . /etc/profile.d/qt.sh
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-	-e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-	-e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -87,13 +87,13 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 /sbin/ldconfig || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 /sbin/ldconfig || :
 
 
@@ -120,6 +120,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.7-2
+- Rebuild for Fedora 17
+
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.7-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 

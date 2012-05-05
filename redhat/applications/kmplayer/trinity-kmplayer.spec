@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp kmplayer
 %define version 0.10.0c
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -33,6 +33,9 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 Patch0:		kmplayer-3.5.13-ftbfs.patch
+
+# [kmplayer] Fix compilation with GCC 4.7 [Commit #5106117b]
+Patch1:		kmplayer-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -96,16 +99,18 @@ Documention for KMPlayer, a basic audio/video viewer application for KDE.
 unset QTDIR; . /etc/profile.d/qt.sh
 %setup -q -n applications/%{kdecomp}
 %patch0 -p1
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-	-e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-	-e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
+
 
 
 %build
@@ -150,7 +155,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
-%doc README TODO
+%doc AUTHORS COPYING ChangeLog INSTALL README TODO kmplayer.lsm
 %{_bindir}/kmplayer
 %{_bindir}/knpplayer
 %{_bindir}/kxvplayer
@@ -193,6 +198,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-2
+- Fix compilation with GCC 4.7 [Commit #5106117b]
+
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 
