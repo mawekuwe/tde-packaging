@@ -7,7 +7,7 @@ Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
 Build-Depends: cdbs, debhelper (>= 5), chrpath, tdelibs4-trinity-dev,
  libpythonize0-trinity-dev, libtool, libxml2-utils, libxss-dev, libxxf86vm-dev,
  pytdeextensions-trinity, pytqt-tools, python-tqt, python-trinity-trinity, python-trinity-trinity-dev, python-sip4-dev,
- python-support (>= 0.6), python2.6 (>= 2.5), python2.6-dev (>= 2.5), x11proto-scrnsaver-dev, python-tqt-dev, hwdata
+ python-support (>= 0.6), python (>= 2.5), python-dev (>= 2.5), x11proto-scrnsaver-dev, python-tqt-dev, hwdata
 Standards-Version: 3.8.4
 
 Package: tde-guidance-trinity
