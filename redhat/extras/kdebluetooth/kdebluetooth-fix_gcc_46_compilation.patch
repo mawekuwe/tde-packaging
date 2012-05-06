@@ -1,0 +1,67 @@
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/libqobex/qobex/qobexbttransport.cpp.ORI	2012-05-06 16:47:30.512410613 -0400
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/libqobex/qobex/qobexbttransport.cpp	2012-05-06 16:47:33.712352364 -0400
+@@ -54,8 +54,9 @@
+ QObexBtTransport::QObexBtTransport( QObject* parent, const char* name )
+   : QObexTransport( parent, name ) {
+   myDebug(( "QObexBtTransport::QObexBtTransport( ... )" ));
+-  bacpy( &mDest, BDADDR_ANY );
+-  bacpy( &mSrc, BDADDR_ANY );
++  bdaddr_t bdaddr_any = {{0, 0, 0, 0, 0, 0}};
++  bacpy( &mDest, &bdaddr_any );
++  bacpy( &mSrc, &bdaddr_any );
+   mChannel = -1;
+ 
+   open();
+@@ -76,7 +77,9 @@
+   
+   mRegisterSdp = false;
+   mSdpHandle = 0;
+-  bacpy( &mSrc, BDADDR_ANY );
++  
++  bdaddr_t bdaddr_any = {{0, 0, 0, 0, 0, 0}};
++  bacpy( &mSrc, &bdaddr_any );
+   mChannel = -1;
+ }
+ 
+@@ -119,7 +122,8 @@
+ 
+   // If the user has not specified an address
+   // discover devices speaking OBEX, take the first best ...
+-  if ( 0 == bacmp( &mDest, BDADDR_ANY ) ) {
++  bdaddr_t bdaddr_any = {{0, 0, 0, 0, 0, 0}};
++  if ( 0 == bacmp( &mDest, &bdaddr_any ) ) {
+     if ( !discover() ) {
+       myDebug(( "QObexBtTransport::connect(): Can not discover device" ));
+       error( ConnectionRefused );
+@@ -326,7 +330,8 @@
+   // If this profile is not found return an error.
+   int channel = -1;
+ 
+-  sdp_session_t *sdp = sdp_connect( BDADDR_ANY, &addr, SDP_STANDARD_CONNECT_FLAGS );
++  bdaddr_t bdaddr_any = {{0, 0, 0, 0, 0, 0}};
++  sdp_session_t *sdp = sdp_connect( &bdaddr_any, &addr, SDP_STANDARD_CONNECT_FLAGS );
+   if ( sdp ) {
+     myDebug(( "QObexBtTransport::getRfCommChannel(): sdp session opened" ));
+     
+@@ -369,7 +374,9 @@
+ {
+   myDebug(( "QObexBtTransport::registerSdp()" ));
+ 
+-  sdp_session_t *sdp = sdp_connect( BDADDR_ANY, BDADDR_LOCAL, SDP_STANDARD_CONNECT_FLAGS );
++  bdaddr_t bdaddr_any = {{0, 0, 0, 0, 0, 0}};
++  bdaddr_t bdaddr_local = {{0, 0, 0, 0xff, 0xff, 0xff}};
++  sdp_session_t *sdp = sdp_connect( &bdaddr_any, &bdaddr_local, SDP_STANDARD_CONNECT_FLAGS );
+   if ( !sdp )
+     return false;
+ 
+@@ -479,7 +486,9 @@
+ {
+   myDebug(( "QObexBtTransport::unregisterSdp()" ));
+ 
+-  sdp_session_t *sdp = sdp_connect( BDADDR_ANY, BDADDR_LOCAL, SDP_STANDARD_CONNECT_FLAGS );
++  bdaddr_t bdaddr_any = {{0, 0, 0, 0, 0, 0}};
++  bdaddr_t bdaddr_local = {{0, 0, 0, 0xff, 0xff, 0xff}};
++  sdp_session_t *sdp = sdp_connect( &bdaddr_any, &bdaddr_local, SDP_STANDARD_CONNECT_FLAGS );
+   if ( !sdp )
+     return false;
+ 

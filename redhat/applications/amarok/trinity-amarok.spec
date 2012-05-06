@@ -15,9 +15,6 @@ BuildRequires:	cmake >= 2.8
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
-# Ruby 1.9 includes are located in strance directories ... (taken from ruby 1.9 spec file)
-%global	_normalized_cpu	%(echo %{_target_cpu} | sed 's/^ppc/powerpc/;s/i.86/i386/;s/sparcv./sparc/;s/armv.*/arm/')
-
 
 Name:    trinity-%{kdecomp}
 Summary: Media player
@@ -186,7 +183,6 @@ cd build
 	-DWITH_DAAP=ON \
 	-DBUILD_ALL=ON \
 	-DQT_LIBRARY_DIRS="${QTLIB}" \
-	-DRUBY_ARCH_INCLUDE_DIR="%{_usr}/include/%{_normalized_cpu}-%{_target_os}" \
 	..
 
 %__make %{?_smp_mflags}

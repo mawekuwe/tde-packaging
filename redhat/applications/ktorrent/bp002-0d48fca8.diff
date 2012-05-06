@@ -1,0 +1,1585 @@
+commit 0d48fca8ae41ab963c780104fdeca45d7dad0a51
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324497973 -0600
+
+    Rename obsolete tq methods to standard names
+
+diff --git a/apps/ktorrent/addpeerwidgetbase.ui b/apps/ktorrent/addpeerwidgetbase.ui
+index 6aee5e0..d3359a2 100644
+--- a/apps/ktorrent/addpeerwidgetbase.ui
++++ b/apps/ktorrent/addpeerwidgetbase.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout10</cstring>
++                <cstring>layout10</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -86,7 +86,7 @@
+         </spacer>
+         <widget class="TQLayoutWidget" row="2" column="0">
+             <property name="name">
+-                <cstring>tqlayout11</cstring>
++                <cstring>layout11</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/apps/ktorrent/advancedpref.ui b/apps/ktorrent/advancedpref.ui
+index 0b8f00a..8a54e29 100644
+--- a/apps/ktorrent/advancedpref.ui
++++ b/apps/ktorrent/advancedpref.ui
+@@ -32,7 +32,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout15</cstring>
++                        <cstring>layout15</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -127,7 +127,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout25</cstring>
++                        <cstring>layout25</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -179,7 +179,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -234,7 +234,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout5_2</cstring>
++                        <cstring>layout5_2</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -294,7 +294,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout8</cstring>
++                        <cstring>layout8</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -359,7 +359,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -416,7 +416,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout10</cstring>
++                        <cstring>layout10</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -483,7 +483,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout33</cstring>
++                        <cstring>layout33</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -491,7 +491,7 @@
+                         </property>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout32</cstring>
++                                <cstring>layout32</cstring>
+                             </property>
+                             <grid>
+                                 <property name="name">
+@@ -572,7 +572,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/apps/ktorrent/downloadpref.ui b/apps/ktorrent/downloadpref.ui
+index 47f1f4c..378cbbc 100644
+--- a/apps/ktorrent/downloadpref.ui
++++ b/apps/ktorrent/downloadpref.ui
+@@ -29,7 +29,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout49</cstring>
++                        <cstring>layout49</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -37,7 +37,7 @@
+                         </property>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout42</cstring>
++                                <cstring>layout42</cstring>
+                             </property>
+                             <vbox>
+                                 <property name="name">
+@@ -45,7 +45,7 @@
+                                 </property>
+                                 <widget class="TQLayoutWidget">
+                                     <property name="name">
+-                                        <cstring>tqlayout16</cstring>
++                                        <cstring>layout16</cstring>
+                                     </property>
+                                     <hbox>
+                                         <property name="name">
+@@ -106,7 +106,7 @@
+                         </widget>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout46</cstring>
++                                <cstring>layout46</cstring>
+                             </property>
+                             <vbox>
+                                 <property name="name">
+@@ -164,7 +164,7 @@
+                                 </widget>
+                                 <widget class="TQLayoutWidget">
+                                     <property name="name">
+-                                        <cstring>tqlayout45</cstring>
++                                        <cstring>layout45</cstring>
+                                     </property>
+                                     <hbox>
+                                         <property name="name">
+@@ -214,7 +214,7 @@
+                         </widget>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout48</cstring>
++                                <cstring>layout48</cstring>
+                             </property>
+                             <vbox>
+                                 <property name="name">
+@@ -222,7 +222,7 @@
+                                 </property>
+                                 <widget class="TQLayoutWidget">
+                                     <property name="name">
+-                                        <cstring>tqlayout14</cstring>
++                                        <cstring>layout14</cstring>
+                                     </property>
+                                     <hbox>
+                                         <property name="name">
+@@ -316,7 +316,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout42</cstring>
++                        <cstring>layout42</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -356,7 +356,7 @@
+                         </widget>
+                         <widget class="TQLayoutWidget" row="0" column="0">
+                             <property name="name">
+-                                <cstring>tqlayout18</cstring>
++                                <cstring>layout18</cstring>
+                             </property>
+                             <hbox>
+                                 <property name="name">
+@@ -425,7 +425,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout41</cstring>
++                        <cstring>layout41</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -546,7 +546,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout40</cstring>
++                        <cstring>layout40</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+diff --git a/apps/ktorrent/fileselectdlgbase.ui b/apps/ktorrent/fileselectdlgbase.ui
+index f289025..546d72c 100644
+--- a/apps/ktorrent/fileselectdlgbase.ui
++++ b/apps/ktorrent/fileselectdlgbase.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0" rowspan="1" colspan="3">
+             <property name="name">
+-                <cstring>tqlayout4</cstring>
++                <cstring>layout4</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -44,7 +44,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="1" column="0" rowspan="1" colspan="3">
+             <property name="name">
+-                <cstring>tqlayout6</cstring>
++                <cstring>layout6</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -52,7 +52,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -246,7 +246,7 @@
+                 </spacer>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout33</cstring>
++                        <cstring>layout33</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -280,7 +280,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="1">
+                     <property name="name">
+-                        <cstring>tqlayout34</cstring>
++                        <cstring>layout34</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+diff --git a/apps/ktorrent/filterbar.cpp b/apps/ktorrent/filterbar.cpp
+index 0be4049..6084e66 100644
+--- a/apps/ktorrent/filterbar.cpp
++++ b/apps/ktorrent/filterbar.cpp
+@@ -42,30 +42,30 @@ FilterBar::FilterBar(TQWidget *parent, const char *name) :
+ 	TQVBoxLayout* foo = new TQVBoxLayout(this);
+ 	foo->addSpacing(gap);
+ 	
+-	TQHBoxLayout* tqlayout = new TQHBoxLayout(foo);
+-	tqlayout->addSpacing(gap);
++	TQHBoxLayout* layout = new TQHBoxLayout(foo);
++	layout->addSpacing(gap);
+ 	
+ 	m_close = new KToolBarButton("fileclose",0,this);
+ 	connect(m_close,TQT_SIGNAL(clicked()),this,TQT_SLOT(hide()));
+-	tqlayout->addWidget(m_close);
++	layout->addWidget(m_close);
+ 	
+ 	m_filter = new TQLabel(i18n("Find:"), this);
+-	tqlayout->addWidget(m_filter);
+-	tqlayout->addSpacing(KDialog::spacingHint());
++	layout->addWidget(m_filter);
++	layout->addSpacing(KDialog::spacingHint());
+ 	
+ 	m_filterInput = new KLineEdit(this);
+-	tqlayout->addWidget(m_filterInput);
++	layout->addWidget(m_filterInput);
+ 	
+ 	m_clear = new KPushButton(this);
+ 	m_clear->setIconSet(SmallIcon("clear_left"));
+ 	m_clear->setFlat(true);
+-	tqlayout->addWidget(m_clear);
+-	tqlayout->addSpacing(gap);
++	layout->addWidget(m_clear);
++	layout->addSpacing(gap);
+ 	
+ 	m_case_sensitive = new TQCheckBox(i18n("Case sensitive"),this);
+ 	m_case_sensitive->setChecked(true);
+-	tqlayout->addWidget(m_case_sensitive);
+-	tqlayout->addItem(new TQSpacerItem(10,10,TQSizePolicy::Expanding));
++	layout->addWidget(m_case_sensitive);
++	layout->addItem(new TQSpacerItem(10,10,TQSizePolicy::Expanding));
+ 		
+ 	connect(m_filterInput, TQT_SIGNAL(textChanged(const TQString&)),
+ 		this, TQT_SLOT(slotChangeFilter(const TQString&)));
+diff --git a/apps/ktorrent/generalpref.ui b/apps/ktorrent/generalpref.ui
+index a1ba5e9..529686f 100644
+--- a/apps/ktorrent/generalpref.ui
++++ b/apps/ktorrent/generalpref.ui
+@@ -104,7 +104,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -174,7 +174,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout3</cstring>
++                        <cstring>layout3</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -237,7 +237,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="1" rowspan="2" colspan="1">
+                     <property name="name">
+-                        <cstring>tqlayout13</cstring>
++                        <cstring>layout13</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -310,7 +310,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget" row="0" column="0" rowspan="1" colspan="2">
+                     <property name="name">
+-                        <cstring>tqlayout24</cstring>
++                        <cstring>layout24</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -355,7 +355,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="1" column="1" rowspan="3" colspan="1">
+                     <property name="name">
+-                        <cstring>tqlayout14</cstring>
++                        <cstring>layout14</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+diff --git a/apps/ktorrent/ipfilterwidgetbase.ui b/apps/ktorrent/ipfilterwidgetbase.ui
+index e29ffe7..7d8c383 100644
+--- a/apps/ktorrent/ipfilterwidgetbase.ui
++++ b/apps/ktorrent/ipfilterwidgetbase.ui
+@@ -82,7 +82,7 @@
+                 </spacer>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout8</cstring>
++                        <cstring>layout8</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -111,7 +111,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="1" rowspan="3" colspan="1">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+diff --git a/apps/ktorrent/ktorrentview.cpp b/apps/ktorrent/ktorrentview.cpp
+index 5c04732..447eaee 100644
+--- a/apps/ktorrent/ktorrentview.cpp
++++ b/apps/ktorrent/ktorrentview.cpp
+@@ -85,8 +85,8 @@ bool TorrentView::eventFilter(TQObject* watched, TQEvent* e)
+ KTorrentView::KTorrentView(TQWidget *parent)
+ 	: TQWidget(parent),menu(0),current_group(0),running(0),total(0),view(0),filter_bar(0)
+ {
+-	TQVBoxLayout* tqlayout = new TQVBoxLayout(this);
+-	tqlayout->setAutoAdd(true);
++	TQVBoxLayout* layout = new TQVBoxLayout(this);
++	layout->setAutoAdd(true);
+ 	view = new TorrentView(this);
+ 	filter_bar = new FilterBar(this);
+ 	filter_bar->setHidden(true);
+diff --git a/apps/ktorrent/newui/button.cpp b/apps/ktorrent/newui/button.cpp
+index 4819657..100ab62 100644
+--- a/apps/ktorrent/newui/button.cpp
++++ b/apps/ktorrent/newui/button.cpp
+@@ -133,7 +133,7 @@ void Button::drawButton(TQPainter *p)
+ 
+     tqstyle().drawControl(TQStyle::CE_PushButton,&p2,this, TQRect(0,0,pm.width(),pm.height()), colorGroup(),flags);
+ 
+-    tqstyle().drawControl(TQStyle::CE_PushButtonLabel, &p2, this,
++    style().drawControl(TQStyle::CE_PushButtonLabel, &p2, this,
+                         TQRect(0,0,pm.width(),pm.height()),
+                         colorGroup(), flags, TQStyleOption());
+ 
+@@ -211,7 +211,7 @@ TQSize Button::sizeHint(const TQString &text) const
+         h = TQMAX( h, ih );
+     }
+     if ( isMenuButton() )
+-        w += tqstyle().pixelMetric(TQStyle::PM_MenuButtonIndicator, this);
++        w += style().pixelMetric(TQStyle::PM_MenuButtonIndicator, this);
+     if ( pixmap() ) {
+         TQPixmap *pm = (TQPixmap *)pixmap();
+         w += pm->width();
+@@ -229,7 +229,7 @@ TQSize Button::sizeHint(const TQString &text) const
+             h = TQMAX(h, sz.height());
+     }
+ 
+-    return (tqstyle().tqsizeFromContents(TQStyle::CT_ToolButton, this, TQSize(w, h)).
++    return (style().tqsizeFromContents(TQStyle::CT_ToolButton, this, TQSize(w, h)).
+             expandedTo(TQApplication::globalStrut()));
+ }
+ 
+diff --git a/apps/ktorrent/newui/buttonbar.h b/apps/ktorrent/newui/buttonbar.h
+index d517cd7..8128fe6 100644
+--- a/apps/ktorrent/newui/buttonbar.h
++++ b/apps/ktorrent/newui/buttonbar.h
+@@ -32,7 +32,7 @@ namespace Ideal {
+ class Button;
+ class ButtonBar;
+ 
+-/**@short A tqlayout for a ButtonBar class.
++/**@short A layout for a ButtonBar class.
+ 
+ Overrides minimumSize method to allow shrinking button bar buttons.*/
+ class ButtonLayout: public TQBoxLayout{
+diff --git a/apps/ktorrent/pastedialog.cpp b/apps/ktorrent/pastedialog.cpp
+index 7d3bff9..f96381b 100644
+--- a/apps/ktorrent/pastedialog.cpp
++++ b/apps/ktorrent/pastedialog.cpp
+@@ -33,7 +33,7 @@ PasteDialog::PasteDialog(KTorrentCore* core, TQWidget *parent, const char *name)
+ 		:PasteDlgBase(parent, name)
+ {
+ 	m_core = core;
+-	TQClipboard *cb = TQApplication::tqclipboard();
++	TQClipboard *cb = TQApplication::clipboard();
+ 	TQString text = cb->text(TQClipboard::Clipboard);
+ 	KURL url = KURL::fromPathOrURL(text);
+ 	if ( url.isValid() )
+diff --git a/apps/ktorrent/pastedlgbase.ui b/apps/ktorrent/pastedlgbase.ui
+index 700d12d..9121734 100644
+--- a/apps/ktorrent/pastedlgbase.ui
++++ b/apps/ktorrent/pastedlgbase.ui
+@@ -38,7 +38,7 @@
+         </property>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout2</cstring>
++                <cstring>layout2</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -75,7 +75,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout4</cstring>
++                <cstring>layout4</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/apps/ktorrent/queuedlg.ui b/apps/ktorrent/queuedlg.ui
+index 7e4769f..00a194f 100644
+--- a/apps/ktorrent/queuedlg.ui
++++ b/apps/ktorrent/queuedlg.ui
+@@ -47,7 +47,7 @@
+                             </property>
+                             <widget class="TQLayoutWidget" row="0" column="0">
+                                 <property name="name">
+-                                    <cstring>tqlayout25</cstring>
++                                    <cstring>layout25</cstring>
+                                 </property>
+                                 <vbox>
+                                     <property name="name">
+@@ -121,7 +121,7 @@
+                             </widget>
+                             <widget class="TQLayoutWidget" row="0" column="1">
+                                 <property name="name">
+-                                    <cstring>tqlayout26</cstring>
++                                    <cstring>layout26</cstring>
+                                 </property>
+                                 <vbox>
+                                     <property name="name">
+@@ -263,7 +263,7 @@
+                             </property>
+                             <widget class="TQLayoutWidget" row="0" column="0">
+                                 <property name="name">
+-                                    <cstring>tqlayout15</cstring>
++                                    <cstring>layout15</cstring>
+                                 </property>
+                                 <vbox>
+                                     <property name="name">
+@@ -337,7 +337,7 @@
+                             </widget>
+                             <widget class="TQLayoutWidget" row="0" column="1">
+                                 <property name="name">
+-                                    <cstring>tqlayout27</cstring>
++                                    <cstring>layout27</cstring>
+                                 </property>
+                                 <vbox>
+                                     <property name="name">
+@@ -392,7 +392,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="0" column="1">
+             <property name="name">
+-                <cstring>tqlayout7</cstring>
++                <cstring>layout7</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -400,7 +400,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout49</cstring>
++                        <cstring>layout49</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/apps/ktorrent/scandlgbase.ui b/apps/ktorrent/scandlgbase.ui
+index 189e551..18c76f1 100644
+--- a/apps/ktorrent/scandlgbase.ui
++++ b/apps/ktorrent/scandlgbase.ui
+@@ -40,7 +40,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout5</cstring>
++                <cstring>layout5</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -48,7 +48,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout3</cstring>
++                        <cstring>layout3</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -74,7 +74,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout4</cstring>
++                        <cstring>layout4</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -148,7 +148,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout8</cstring>
++                <cstring>layout8</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/apps/ktorrent/speedlimitsdlgbase.ui b/apps/ktorrent/speedlimitsdlgbase.ui
+index 17dc49c..520a705 100644
+--- a/apps/ktorrent/speedlimitsdlgbase.ui
++++ b/apps/ktorrent/speedlimitsdlgbase.ui
+@@ -29,7 +29,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout8</cstring>
++                <cstring>layout8</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -37,7 +37,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -63,7 +63,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -83,7 +83,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout6</cstring>
++                        <cstring>layout6</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -125,7 +125,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout3</cstring>
++                <cstring>layout3</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/apps/ktorrent/torrentcreatordlgbase.ui b/apps/ktorrent/torrentcreatordlgbase.ui
+index d051a0e..a9199bc 100644
+--- a/apps/ktorrent/torrentcreatordlgbase.ui
++++ b/apps/ktorrent/torrentcreatordlgbase.ui
+@@ -24,7 +24,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout2</cstring>
++                <cstring>layout2</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -66,7 +66,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -188,7 +188,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="5" column="0">
+             <property name="name">
+-                <cstring>tqlayout9</cstring>
++                <cstring>layout9</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -319,7 +319,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout9</cstring>
++                        <cstring>layout9</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/apps/ktupnptest/mainwidget.ui b/apps/ktupnptest/mainwidget.ui
+index e46bbd1..ed2022c 100644
+--- a/apps/ktupnptest/mainwidget.ui
++++ b/apps/ktupnptest/mainwidget.ui
+@@ -23,7 +23,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout1</cstring>
++                <cstring>layout1</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/libktorrent/expandablewidget.cpp b/libktorrent/expandablewidget.cpp
+index a6ec44d..fe7a0df 100644
+--- a/libktorrent/expandablewidget.cpp
++++ b/libktorrent/expandablewidget.cpp
+@@ -53,7 +53,7 @@ namespace kt
+ 		se->pos = pos;
+ 		se->next = begin;
+ 
+-		// remove old top from tqlayout
++		// remove old top from layout
+ 		top_layout->remove(begin->w);
+ 			
+ 		// create new toplevel splitter
+@@ -84,7 +84,7 @@ namespace kt
+ 		// make se new top of stack
+ 		begin = se;
+ 
+-		// add toplevel splitter to tqlayout
++		// add toplevel splitter to layout
+ 		top_layout->add(s);
+ 		
+ 		// show s
+diff --git a/libktorrent/labelview.cpp b/libktorrent/labelview.cpp
+index 3823516..d7ce947 100644
+--- a/libktorrent/labelview.cpp
++++ b/libktorrent/labelview.cpp
+@@ -105,13 +105,13 @@ namespace kt
+ 	
+ 	class LabelViewBox : public TQWidget
+ 	{
+-		TQVBoxLayout* tqlayout;
++		TQVBoxLayout* layout;
+ 	public:
+ 		LabelViewBox(TQWidget* parent) : TQWidget(parent)
+ 		{
+ 			setPaletteBackgroundColor(KGlobalSettings::baseColor());
+-			tqlayout = new TQVBoxLayout(this);
+-			tqlayout->setMargin(0);
++			layout = new TQVBoxLayout(this);
++			layout->setMargin(0);
+ 		}
+ 		
+ 		virtual ~LabelViewBox()
+@@ -120,24 +120,24 @@ namespace kt
+ 		void add(LabelViewItem* item)
+ 		{
+ 			item->reparent(this,TQPoint(0,0));
+-			tqlayout->add(item);
++			layout->add(item);
+ 			item->show();
+ 		}
+ 		
+ 		void remove(LabelViewItem* item)
+ 		{
+ 			item->hide();
+-			tqlayout->remove(item);
++			layout->remove(item);
+ 			item->reparent(0,TQPoint(0,0));
+ 		}
+ 		
+ 		void sorted(const std::list<LabelViewItem*> items)
+ 		{
+ 			for (LabelViewCItr i = items.begin();i != items.end();i++)
+-				tqlayout->remove(*i);
++				layout->remove(*i);
+ 			
+ 			for (LabelViewCItr i = items.begin();i != items.end();i++)
+-				tqlayout->add(*i);
++				layout->add(*i);
+ 		}
+ 	};
+ 	
+diff --git a/libktorrent/labelviewitembase.ui b/libktorrent/labelviewitembase.ui
+index 861f703..fbce874 100644
+--- a/libktorrent/labelviewitembase.ui
++++ b/libktorrent/labelviewitembase.ui
+@@ -35,7 +35,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout3</cstring>
++                <cstring>layout3</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+diff --git a/libktorrent/pluginmanagerwidget.ui b/libktorrent/pluginmanagerwidget.ui
+index a43575b..6b077f5 100644
+--- a/libktorrent/pluginmanagerwidget.ui
++++ b/libktorrent/pluginmanagerwidget.ui
+@@ -34,7 +34,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout1</cstring>
++                <cstring>layout1</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+diff --git a/libktorrent/torrent/peerid.cpp b/libktorrent/torrent/peerid.cpp
+index 802fca6..e6a3387 100644
+--- a/libktorrent/torrent/peerid.cpp
++++ b/libktorrent/torrent/peerid.cpp
+@@ -174,7 +174,7 @@ namespace bt
+ 			Map["TS"] = "Torrent Storm";
+ 			Map["TT"] = "TuoTu";
+ 			Map["UL"] = "uLeecher!";
+-			Map["UT"] = TQString("%1Torrent").arg(TQChar(0x00B5)); // µTorrent, 0x00B5 is tqunicode for µ
++			Map["UT"] = TQString("%1Torrent").arg(TQChar(0x00B5)); // µTorrent, 0x00B5 is unicode for µ
+ 			Map["WT"] = "BitLet";
+ 			Map["WY"] = "FireTorrent";
+ 			Map["XL"] = "Xunlei";
+diff --git a/plugins/infowidget/chunkdownloadviewbase.ui b/plugins/infowidget/chunkdownloadviewbase.ui
+index ddac38e..a68b412 100644
+--- a/plugins/infowidget/chunkdownloadviewbase.ui
++++ b/plugins/infowidget/chunkdownloadviewbase.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout8</cstring>
++                <cstring>layout8</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -29,7 +29,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout11</cstring>
++                        <cstring>layout11</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -67,7 +67,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout14</cstring>
++                        <cstring>layout14</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -105,7 +105,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout13</cstring>
++                        <cstring>layout13</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -143,7 +143,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout38</cstring>
++                        <cstring>layout38</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -181,7 +181,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout38_2</cstring>
++                        <cstring>layout38_2</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -219,7 +219,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout24</cstring>
++                        <cstring>layout24</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/plugins/infowidget/statustabbase.ui b/plugins/infowidget/statustabbase.ui
+index 789c0e6..fc6a187 100644
+--- a/plugins/infowidget/statustabbase.ui
++++ b/plugins/infowidget/statustabbase.ui
+@@ -41,7 +41,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout16</cstring>
++                <cstring>layout16</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -49,7 +49,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout15</cstring>
++                        <cstring>layout15</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -115,7 +115,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout14</cstring>
++                        <cstring>layout14</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -181,7 +181,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout12</cstring>
++                        <cstring>layout12</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -266,7 +266,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout17</cstring>
++                <cstring>layout17</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -274,7 +274,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout23</cstring>
++                        <cstring>layout23</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -282,7 +282,7 @@
+                         </property>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout25</cstring>
++                                <cstring>layout25</cstring>
+                             </property>
+                             <vbox>
+                                 <property name="name">
+@@ -431,7 +431,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout16</cstring>
++                        <cstring>layout16</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -459,7 +459,7 @@
+                         </widget>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout15</cstring>
++                                <cstring>layout15</cstring>
+                             </property>
+                             <grid>
+                                 <property name="name">
+@@ -497,7 +497,7 @@
+                                 </widget>
+                                 <widget class="TQLayoutWidget" row="2" column="1">
+                                     <property name="name">
+-                                        <cstring>tqlayout11</cstring>
++                                        <cstring>layout11</cstring>
+                                     </property>
+                                     <hbox>
+                                         <property name="name">
+diff --git a/plugins/infowidget/trackerviewbase.ui b/plugins/infowidget/trackerviewbase.ui
+index ef49ec3..24d92c2 100644
+--- a/plugins/infowidget/trackerviewbase.ui
++++ b/plugins/infowidget/trackerviewbase.ui
+@@ -50,7 +50,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="2" column="1">
+             <property name="name">
+-                <cstring>tqlayout8</cstring>
++                <cstring>layout8</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -129,7 +129,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout6</cstring>
++                <cstring>layout6</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/plugins/ipfilter/convert_dlg.ui b/plugins/ipfilter/convert_dlg.ui
+index 2a1938c..23e59ef 100644
+--- a/plugins/ipfilter/convert_dlg.ui
++++ b/plugins/ipfilter/convert_dlg.ui
+@@ -82,7 +82,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="3" column="0">
+             <property name="name">
+-                <cstring>tqlayout6</cstring>
++                <cstring>layout6</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/plugins/ipfilter/ipblockingpref.ui b/plugins/ipfilter/ipblockingpref.ui
+index a74fe6d..bd58d65 100644
+--- a/plugins/ipfilter/ipblockingpref.ui
++++ b/plugins/ipfilter/ipblockingpref.ui
+@@ -63,7 +63,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="1" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -92,7 +92,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="2" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout3</cstring>
++                        <cstring>layout3</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/plugins/partfileimport/importdlgbase.ui b/plugins/partfileimport/importdlgbase.ui
+index f171831..29697e3 100644
+--- a/plugins/partfileimport/importdlgbase.ui
++++ b/plugins/partfileimport/importdlgbase.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout6</cstring>
++                <cstring>layout6</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -29,7 +29,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -67,7 +67,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout4</cstring>
++                        <cstring>layout4</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -102,7 +102,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout3</cstring>
++                <cstring>layout3</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/plugins/rssfeed/rssfeedwidget.ui b/plugins/rssfeed/rssfeedwidget.ui
+index 4a35633..62c2af8 100644
+--- a/plugins/rssfeed/rssfeedwidget.ui
++++ b/plugins/rssfeed/rssfeedwidget.ui
+@@ -48,7 +48,7 @@
+                         </property>
+                         <widget class="TQLayoutWidget">
+                             <property name="name">
+-                                <cstring>tqlayout2</cstring>
++                                <cstring>layout2</cstring>
+                             </property>
+                             <grid>
+                                 <property name="name">
+@@ -194,7 +194,7 @@
+                                 </widget>
+                                 <widget class="TQLayoutWidget" row="2" column="0" rowspan="1" colspan="2">
+                                     <property name="name">
+-                                        <cstring>tqlayout13</cstring>
++                                        <cstring>layout13</cstring>
+                                     </property>
+                                     <hbox>
+                                         <property name="name">
+@@ -277,7 +277,7 @@
+                                 </widget>
+                                 <widget class="TQLayoutWidget" row="0" column="0" rowspan="1" colspan="2">
+                                     <property name="name">
+-                                        <cstring>tqlayout47</cstring>
++                                        <cstring>layout47</cstring>
+                                     </property>
+                                     <hbox>
+                                         <property name="name">
+@@ -367,7 +367,7 @@
+                     </property>
+                     <widget class="TQLayoutWidget">
+                         <property name="name">
+-                            <cstring>tqlayout28</cstring>
++                            <cstring>layout28</cstring>
+                         </property>
+                         <vbox>
+                             <property name="name">
+@@ -476,7 +476,7 @@
+                     </widget>
+                     <widget class="TQLayoutWidget">
+                         <property name="name">
+-                            <cstring>tqlayout14</cstring>
++                            <cstring>layout14</cstring>
+                         </property>
+                         <vbox>
+                             <property name="name">
+@@ -484,7 +484,7 @@
+                             </property>
+                             <widget class="TQLayoutWidget">
+                                 <property name="name">
+-                                    <cstring>tqlayout9</cstring>
++                                    <cstring>layout9</cstring>
+                                 </property>
+                                 <hbox>
+                                     <property name="name">
+@@ -526,7 +526,7 @@
+                             </widget>
+                             <widget class="TQLayoutWidget">
+                                 <property name="name">
+-                                    <cstring>tqlayout12</cstring>
++                                    <cstring>layout12</cstring>
+                                 </property>
+                                 <hbox>
+                                     <property name="name">
+@@ -565,7 +565,7 @@
+                                     </widget>
+                                     <widget class="TQLayoutWidget">
+                                         <property name="name">
+-                                            <cstring>tqlayout11</cstring>
++                                            <cstring>layout11</cstring>
+                                         </property>
+                                         <vbox>
+                                             <property name="name">
+@@ -573,7 +573,7 @@
+                                             </property>
+                                             <widget class="TQLayoutWidget">
+                                                 <property name="name">
+-                                                    <cstring>tqlayout28</cstring>
++                                                    <cstring>layout28</cstring>
+                                                 </property>
+                                                 <hbox>
+                                                     <property name="name">
+@@ -648,7 +648,7 @@
+                                                     </property>
+                                                     <widget class="TQLayoutWidget">
+                                                         <property name="name">
+-                                                            <cstring>tqlayout9</cstring>
++                                                            <cstring>layout9</cstring>
+                                                         </property>
+                                                         <hbox>
+                                                             <property name="name">
+@@ -686,7 +686,7 @@
+                                                     </widget>
+                                                     <widget class="TQLayoutWidget">
+                                                         <property name="name">
+-                                                            <cstring>tqlayout10</cstring>
++                                                            <cstring>layout10</cstring>
+                                                         </property>
+                                                         <grid>
+                                                             <property name="name">
+@@ -792,7 +792,7 @@
+                             </widget>
+                             <widget class="TQLayoutWidget">
+                                 <property name="name">
+-                                    <cstring>tqlayout33</cstring>
++                                    <cstring>layout33</cstring>
+                                 </property>
+                                 <hbox>
+                                     <property name="name">
+@@ -880,7 +880,7 @@
+                                     </widget>
+                                     <widget class="TQLayoutWidget">
+                                         <property name="name">
+-                                            <cstring>tqlayout13</cstring>
++                                            <cstring>layout13</cstring>
+                                         </property>
+                                         <hbox>
+                                             <property name="name">
+diff --git a/plugins/scanfolder/sfprefwidgetbase.ui b/plugins/scanfolder/sfprefwidgetbase.ui
+index 3fd83e4..e9ddfdc 100644
+--- a/plugins/scanfolder/sfprefwidgetbase.ui
++++ b/plugins/scanfolder/sfprefwidgetbase.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout16</cstring>
++                <cstring>layout16</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+diff --git a/plugins/scheduler/bwspage.ui b/plugins/scheduler/bwspage.ui
+index 547bee1..547de3f 100644
+--- a/plugins/scheduler/bwspage.ui
++++ b/plugins/scheduler/bwspage.ui
+@@ -36,7 +36,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="1">
+             <property name="name">
+-                <cstring>tqlayout21</cstring>
++                <cstring>layout21</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -411,7 +411,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="1" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout8</cstring>
++                        <cstring>layout8</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -461,7 +461,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="3" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout9</cstring>
++                        <cstring>layout9</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -511,7 +511,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="5" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout10</cstring>
++                        <cstring>layout10</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -596,7 +596,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="2" column="1">
+             <property name="name">
+-                <cstring>tqlayout34</cstring>
++                <cstring>layout34</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -650,7 +650,7 @@
+         </spacer>
+         <widget class="TQLayoutWidget" row="4" column="1">
+             <property name="name">
+-                <cstring>tqlayout32</cstring>
++                <cstring>layout32</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -658,7 +658,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout31</cstring>
++                        <cstring>layout31</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+@@ -737,7 +737,7 @@
+                 </spacer>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout29</cstring>
++                        <cstring>layout29</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+diff --git a/plugins/search/htmlpart.cpp b/plugins/search/htmlpart.cpp
+index bad55d6..d4b39e1 100644
+--- a/plugins/search/htmlpart.cpp
++++ b/plugins/search/htmlpart.cpp
+@@ -60,7 +60,7 @@ namespace kt
+ 	void HTMLPart::copy()
+ 	{
+ 		TQString txt = selectedText();
+-		TQClipboard *cb = TQApplication::tqclipboard();
++		TQClipboard *cb = TQApplication::clipboard();
+ 		// Copy text into the clipboard
+ 		if (cb)
+ 			cb->setText(txt,TQClipboard::Clipboard);
+diff --git a/plugins/search/searchpref.ui b/plugins/search/searchpref.ui
+index fb03f02..2baa1af 100644
+--- a/plugins/search/searchpref.ui
++++ b/plugins/search/searchpref.ui
+@@ -65,7 +65,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout29</cstring>
++                        <cstring>layout29</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -129,7 +129,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout22</cstring>
++                        <cstring>layout22</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -152,7 +152,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout23</cstring>
++                        <cstring>layout23</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -235,7 +235,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/plugins/search/searchwidget.cpp b/plugins/search/searchwidget.cpp
+index 67f6dfa..01c27f7 100644
+--- a/plugins/search/searchwidget.cpp
++++ b/plugins/search/searchwidget.cpp
+@@ -59,8 +59,8 @@ namespace kt
+ 	
+ 	SearchWidget::SearchWidget(SearchPlugin* sp) : html_part(0),sp(sp)
+ 	{
+-		TQVBoxLayout* tqlayout = new TQVBoxLayout(this);
+-		tqlayout->setAutoAdd(true);
++		TQVBoxLayout* layout = new TQVBoxLayout(this);
++		layout->setAutoAdd(true);
+ 		sbar = new SearchBar(this);
+ 		html_part = new HTMLPart(this);
+ 	
+diff --git a/plugins/stats/StatsCon.cc b/plugins/stats/StatsCon.cc
+index 548b38a..568005d 100644
+--- a/plugins/stats/StatsCon.cc
++++ b/plugins/stats/StatsCon.cc
+@@ -26,16 +26,16 @@ StatsCon::StatsCon(TQWidget * p) :  StatsConWgt(p), pmPeersConCht(new ChartDrawe
+ 				pmDHTCht(new ChartDrawer(DHTGbw, StatsPluginSettings::dHTMeasurements()))
+ {
+ 	PeersConGbw->setColumnLayout(0, Qt::Vertical );
+-	PeersConGbw->tqlayout()->setSpacing( 6 );
+-	PeersConGbw->tqlayout()->setMargin( 11 );
++	PeersConGbw->layout()->setSpacing( 6 );
++	PeersConGbw->layout()->setMargin( 11 );
+ 	
+-	pmPeersConLay = new TQVBoxLayout(PeersConGbw -> tqlayout());
++	pmPeersConLay = new TQVBoxLayout(PeersConGbw -> layout());
+ 	
+ 	DHTGbw->setColumnLayout(0, Qt::Vertical );
+-	DHTGbw->tqlayout()->setSpacing( 6 );
+-	DHTGbw->tqlayout()->setMargin( 11 );
++	DHTGbw->layout()->setSpacing( 6 );
++	DHTGbw->layout()->setMargin( 11 );
+ 	
+-	pmDHTLay = new TQVBoxLayout(DHTGbw -> tqlayout());
++	pmDHTLay = new TQVBoxLayout(DHTGbw -> layout());
+ 	
+ 	//-------------
+ 	
+diff --git a/plugins/stats/StatsSpd.cc b/plugins/stats/StatsSpd.cc
+index 0ea427a..c8cb157 100644
+--- a/plugins/stats/StatsSpd.cc
++++ b/plugins/stats/StatsSpd.cc
+@@ -29,22 +29,22 @@ StatsSpd::StatsSpd(TQWidget *p) : StatsSpdWgt(p),
+ {
+ 
+ 	DownSpeedGbw->setColumnLayout(0, Qt::Vertical );
+-	DownSpeedGbw->tqlayout()->setSpacing( 6 );
+-	DownSpeedGbw->tqlayout()->setMargin( 11 );
++	DownSpeedGbw->layout()->setSpacing( 6 );
++	DownSpeedGbw->layout()->setMargin( 11 );
+ 	
+-	pmDSpdLay = new TQVBoxLayout(DownSpeedGbw -> tqlayout());
++	pmDSpdLay = new TQVBoxLayout(DownSpeedGbw -> layout());
+ 	
+ 	UpSpeedGbw->setColumnLayout(0, Qt::Vertical );
+-	UpSpeedGbw->tqlayout()->setSpacing( 6 );
+-	UpSpeedGbw->tqlayout()->setMargin( 11 );
++	UpSpeedGbw->layout()->setSpacing( 6 );
++	UpSpeedGbw->layout()->setMargin( 11 );
+ 	
+-	pmUSpdLay = new TQVBoxLayout(UpSpeedGbw -> tqlayout());
++	pmUSpdLay = new TQVBoxLayout(UpSpeedGbw -> layout());
+ 	
+ 	PeersSpdGbw->setColumnLayout(0, Qt::Vertical );
+-	PeersSpdGbw->tqlayout()->setSpacing( 6 );
+-	PeersSpdGbw->tqlayout()->setMargin( 11 );
++	PeersSpdGbw->layout()->setSpacing( 6 );
++	PeersSpdGbw->layout()->setMargin( 11 );
+ 	
+-	pmPeersSpdLay = new TQVBoxLayout(PeersSpdGbw -> tqlayout());
++	pmPeersSpdLay = new TQVBoxLayout(PeersSpdGbw -> layout());
+ 
+ 	//-----------------
+ 	
+diff --git a/plugins/stats/sprefwgt.ui b/plugins/stats/sprefwgt.ui
+index 0ad1c7f..b6ce139 100644
+--- a/plugins/stats/sprefwgt.ui
++++ b/plugins/stats/sprefwgt.ui
+@@ -32,7 +32,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout2</cstring>
++                        <cstring>layout2</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -78,7 +78,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout4</cstring>
++                        <cstring>layout4</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -140,7 +140,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout11</cstring>
++                        <cstring>layout11</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -197,7 +197,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout3</cstring>
++                        <cstring>layout3</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -275,7 +275,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -314,7 +314,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -346,7 +346,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="1" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout5_2</cstring>
++                        <cstring>layout5_2</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -378,7 +378,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="2" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout5_3</cstring>
++                        <cstring>layout5_3</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -410,7 +410,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="1">
+                     <property name="name">
+-                        <cstring>tqlayout5_5</cstring>
++                        <cstring>layout5_5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -442,7 +442,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="1" column="1">
+                     <property name="name">
+-                        <cstring>tqlayout5_4</cstring>
++                        <cstring>layout5_4</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/plugins/stats/statsconwgt.ui b/plugins/stats/statsconwgt.ui
+index c76e6eb..3565a3c 100644
+--- a/plugins/stats/statsconwgt.ui
++++ b/plugins/stats/statsconwgt.ui
+@@ -18,7 +18,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout3</cstring>
++                <cstring>layout3</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/plugins/stats/statsspdwgt.ui b/plugins/stats/statsspdwgt.ui
+index 25a3cd8..b04e19a 100644
+--- a/plugins/stats/statsspdwgt.ui
++++ b/plugins/stats/statsspdwgt.ui
+@@ -18,7 +18,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="0">
+             <property name="name">
+-                <cstring>tqlayout5</cstring>
++                <cstring>layout5</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/plugins/upnp/upnpwidget.ui b/plugins/upnp/upnpwidget.ui
+index 3dc7944..d06576a 100644
+--- a/plugins/upnp/upnpwidget.ui
++++ b/plugins/upnp/upnpwidget.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout1</cstring>
++                <cstring>layout1</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -77,7 +77,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout3</cstring>
++                <cstring>layout3</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/plugins/webinterface/webinterfacepref.ui b/plugins/webinterface/webinterfacepref.ui
+index a36f7f8..4927673 100644
+--- a/plugins/webinterface/webinterfacepref.ui
++++ b/plugins/webinterface/webinterfacepref.ui
+@@ -46,7 +46,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout5</cstring>
++                        <cstring>layout5</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -128,7 +128,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="1" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout4</cstring>
++                        <cstring>layout4</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -151,7 +151,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="3" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout6</cstring>
++                        <cstring>layout6</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -159,7 +159,7 @@
+                         </property>
+                         <widget class="TQLayoutWidget" row="0" column="0">
+                             <property name="name">
+-                                <cstring>tqlayout5</cstring>
++                                <cstring>layout5</cstring>
+                             </property>
+                             <hbox>
+                                 <property name="name">
+@@ -192,7 +192,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="2" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout7</cstring>
++                        <cstring>layout7</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">

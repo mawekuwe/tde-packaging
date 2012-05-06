@@ -1,0 +1,662 @@
+commit c7e29c4606e72cf1d3d0052eec08805c8cf3fce7
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324253375 -0600
+
+    Rename old tq methods that no longer need a unique name
+
+diff --git a/src/diff.h b/src/diff.h
+index ee3076e..a4015d1 100644
+--- a/src/diff.h
++++ b/src/diff.h
+@@ -169,10 +169,10 @@ public:
+ typedef std::vector<Diff3WrapLine> Diff3WrapLineVector;
+ 
+ 
+-class TotalDifftqStatus
++class TotalDiffStatus
+ {
+ public:
+-   TotalDifftqStatus(){ reset(); }
++   TotalDiffStatus(){ reset(); }
+    void reset() {bBinaryAEqC=false; bBinaryBEqC=false; bBinaryAEqB=false;
+                  bTextAEqC=false;   bTextBEqC=false;   bTextAEqB=false;
+                  nofUnsolvedConflicts=0; nofSolvedConflicts=0;
+diff --git a/src/difftextwindow.cpp b/src/difftextwindow.cpp
+index 3c570e4..361eb73 100644
+--- a/src/difftextwindow.cpp
++++ b/src/difftextwindow.cpp
+@@ -860,9 +860,9 @@ void DiffTextWindowData::writeLine(
+             else
+             {
+                p.fillRect( xOffset + fontWidth*outPos, yOffset,
+-                           fontWidth*(spaces), fontHeight, m_pDiffTextWindow->tqcolorGroup().highlight() );
++                           fontWidth*(spaces), fontHeight, m_pDiffTextWindow->colorGroup().highlight() );
+ 
+-               p.setPen( m_pDiffTextWindow->tqcolorGroup().highlightedText() );
++               p.setPen( m_pDiffTextWindow->colorGroup().highlightedText() );
+                p.drawText( xOffset + fontWidth*outPos, yOffset + fontAscent, s );
+ 
+                m_selection.bSelectionContainsData = true;
+@@ -875,7 +875,7 @@ void DiffTextWindowData::writeLine(
+       if( m_selection.lineWithin( line ) && m_selection.lineWithin( line+1 ) )
+       {
+          p.fillRect( xOffset + fontWidth*outPos, yOffset,
+-                     deviceWidth, fontHeight, m_pDiffTextWindow->tqcolorGroup().highlight() );
++                     deviceWidth, fontHeight, m_pDiffTextWindow->colorGroup().highlight() );
+       }
+    }
+ 
+diff --git a/src/directorymergewindow.cpp b/src/directorymergewindow.cpp
+index 7565e20..0520af3 100644
+--- a/src/directorymergewindow.cpp
++++ b/src/directorymergewindow.cpp
+@@ -387,7 +387,7 @@ static TQPixmap pixCombiner2( const TQPixmap* pm1, const TQPixmap* pm2 )
+    return pix;
+ }
+ 
+-static void calcDirtqStatus( bool bThreeDirs, DirMergeItem* i, int& nofFiles,
++static void calcDirStatus( bool bThreeDirs, DirMergeItem* i, int& nofFiles,
+                            int& nofDirs, int& nofEqualFiles, int& nofManualMerges )
+ {
+    if ( i->m_pMFI->m_bDirA || i->m_pMFI->m_bDirB || i->m_pMFI->m_bDirC )
+@@ -408,7 +408,7 @@ static void calcDirtqStatus( bool bThreeDirs, DirMergeItem* i, int& nofFiles,
+       }
+    }
+    for( TQListViewItem* p = i->firstChild();  p!=0; p = p->nextSibling() )
+-      calcDirtqStatus( bThreeDirs, static_cast<DirMergeItem*>(p), nofFiles, nofDirs, nofEqualFiles, nofManualMerges );
++      calcDirStatus( bThreeDirs, static_cast<DirMergeItem*>(p), nofFiles, nofDirs, nofEqualFiles, nofManualMerges );
+ }
+ 
+ static TQString sortString(const TQString& s, bool bCaseSensitive)
+@@ -698,7 +698,7 @@ bool DirectoryMergeWindow::init
+       int nofEqualFiles=0;
+       int nofManualMerges=0;
+       for( TQListViewItem* p = firstChild();  p!=0; p = p->nextSibling() )
+-         calcDirtqStatus( m_dirC.isValid(), static_cast<DirMergeItem*>(p),
++         calcDirStatus( m_dirC.isValid(), static_cast<DirMergeItem*>(p),
+                         nofFiles, nofDirs, nofEqualFiles, nofManualMerges );
+ 
+       TQString s;
+@@ -915,10 +915,10 @@ void DirectoryMergeWindow::compareFilesAndCalcAges( MergeFileInfos& mfi )
+             mfi.m_bExistsInB ? mfi.m_fileInfoB.absFilePath() : TQString(""),
+             mfi.m_bExistsInC ? mfi.m_fileInfoC.absFilePath() : TQString(""),
+             "",
+-            "","","",&mfi.m_totalDifftqStatus
++            "","","",&mfi.m_totalDiffStatus
+             );
+-         int nofNonwhiteConflicts = mfi.m_totalDifftqStatus.nofUnsolvedConflicts + 
+-            mfi.m_totalDifftqStatus.nofSolvedConflicts - mfi.m_totalDifftqStatus.nofWhitespaceConflicts;
++         int nofNonwhiteConflicts = mfi.m_totalDiffStatus.nofUnsolvedConflicts + 
++            mfi.m_totalDiffStatus.nofSolvedConflicts - mfi.m_totalDiffStatus.nofWhitespaceConflicts;
+ 
+          if (m_pOptions->m_bDmWhiteSpaceEqual && nofNonwhiteConflicts == 0)
+          {
+@@ -928,25 +928,25 @@ void DirectoryMergeWindow::compareFilesAndCalcAges( MergeFileInfos& mfi )
+          }
+          else
+          {
+-            mfi.m_bEqualAB = mfi.m_totalDifftqStatus.bBinaryAEqB;
+-            mfi.m_bEqualBC = mfi.m_totalDifftqStatus.bBinaryBEqC;
+-            mfi.m_bEqualAC = mfi.m_totalDifftqStatus.bBinaryAEqC;
++            mfi.m_bEqualAB = mfi.m_totalDiffStatus.bBinaryAEqB;
++            mfi.m_bEqualBC = mfi.m_totalDiffStatus.bBinaryBEqC;
++            mfi.m_bEqualAC = mfi.m_totalDiffStatus.bBinaryAEqC;
+          }
+       }
+    }
+    else
+    {
+       bool bError;
+-      TQString eqtqStatus;
++      TQString eqStatus;
+       if( mfi.m_bExistsInA && mfi.m_bExistsInB )
+       {
+          if( mfi.m_bDirA ) mfi.m_bEqualAB=true;
+-         else fastFileComparison( mfi.m_fileInfoA, mfi.m_fileInfoB, mfi.m_bEqualAB, bError, eqtqStatus );
++         else fastFileComparison( mfi.m_fileInfoA, mfi.m_fileInfoB, mfi.m_bEqualAB, bError, eqStatus );
+       }
+       if( mfi.m_bExistsInA && mfi.m_bExistsInC )
+       {
+          if( mfi.m_bDirA ) mfi.m_bEqualAC=true;
+-         else fastFileComparison( mfi.m_fileInfoA, mfi.m_fileInfoC, mfi.m_bEqualAC, bError, eqtqStatus );
++         else fastFileComparison( mfi.m_fileInfoA, mfi.m_fileInfoC, mfi.m_bEqualAC, bError, eqStatus );
+       }
+       if( mfi.m_bExistsInB && mfi.m_bExistsInC )
+       {
+@@ -955,7 +955,7 @@ void DirectoryMergeWindow::compareFilesAndCalcAges( MergeFileInfos& mfi )
+          else
+          {
+             if( mfi.m_bDirB ) mfi.m_bEqualBC=true;
+-            else fastFileComparison( mfi.m_fileInfoB, mfi.m_fileInfoC, mfi.m_bEqualBC, bError, eqtqStatus );
++            else fastFileComparison( mfi.m_fileInfoB, mfi.m_fileInfoC, mfi.m_bEqualBC, bError, eqStatus );
+          }
+       }
+    }
+@@ -1723,7 +1723,7 @@ void DirMergeItem::init(MergeFileInfos* pMFI)
+ {
+    pMFI->m_pDMI = this;
+    m_pMFI = pMFI;
+-   TotalDifftqStatus& tds = pMFI->m_totalDifftqStatus;
++   TotalDiffStatus& tds = pMFI->m_totalDiffStatus;
+    if ( m_pMFI->m_bDirA || m_pMFI->m_bDirB || m_pMFI->m_bDirC )
+    {
+    }
+@@ -2820,7 +2820,7 @@ TQTextStream& operator<<( TQTextStream& ts, MergeFileInfos& mfi )
+    //FileAccess m_fileInfoB;
+    //FileAccess m_fileInfoC;
+ 
+-   //TotalDifftqStatus m_totalDifftqStatus;
++   //TotalDiffStatus m_totalDiffStatus;
+    
+    vm.save(ts);
+    
+diff --git a/src/directorymergewindow.h b/src/directorymergewindow.h
+index 25a66f7..99c0405 100644
+--- a/src/directorymergewindow.h
++++ b/src/directorymergewindow.h
+@@ -26,7 +26,7 @@
+ #include <map>
+ #include "common.h"
+ #include "fileaccess.h"
+-#include "diff.h" //TotalDifftqStatus
++#include "diff.h" //TotalDiffStatus
+ 
+ class OptionDialog;
+ class KIconLoader;
+@@ -37,7 +37,7 @@ class TQLabel;
+ class KAction;
+ class KToggleAction;
+ class KActionCollection;
+-class TotalDifftqStatus;
++class TotalDiffStatus;
+ 
+ enum e_MergeOperation
+ {
+@@ -99,7 +99,7 @@ public:
+    FileAccess m_fileInfoB;
+    FileAccess m_fileInfoC;
+ 
+-   TotalDifftqStatus m_totalDifftqStatus;   
++   TotalDiffStatus m_totalDiffStatus;   
+ };
+ 
+ class DirMergeItem : public TQListViewItem
+@@ -319,7 +319,7 @@ protected:
+    KAction* m_pDirSaveMergeState;
+    KAction* m_pDirLoadMergeState;
+ signals:
+-   void startDiffMerge(TQString fn1,TQString fn2, TQString fn3, TQString ofn, TQString,TQString,TQString,TotalDifftqStatus*);
++   void startDiffMerge(TQString fn1,TQString fn2, TQString fn3, TQString ofn, TQString,TQString,TQString,TotalDiffStatus*);
+    void checkIfCanContinue( bool* pbContinue );
+    void updateAvailabilities();
+    void statusBarMessage( const TQString& msg );
+diff --git a/src/fileaccess.cpp b/src/fileaccess.cpp
+index c2be1dc..01b8d48 100644
+--- a/src/fileaccess.cpp
++++ b/src/fileaccess.cpp
+@@ -407,11 +407,11 @@ bool FileAccess::writeFile( const void* pSrcBuffer, unsigned long length )
+          if ( isExecutable() )  // value is true if the old file was executable
+          {
+             // Preserve attributes
+-            struct stat srcFiletqStatus;
+-            int statResult = ::stat( filePath().ascii(), &srcFiletqStatus );
++            struct stat srcFileStatus;
++            int statResult = ::stat( filePath().ascii(), &srcFileStatus );
+             if (statResult==0)
+             {
+-               ::chmod ( filePath().ascii(), srcFiletqStatus.st_mode | S_IXUSR );
++               ::chmod ( filePath().ascii(), srcFileStatus.st_mode | S_IXUSR );
+             }
+          }
+ #endif
+@@ -938,28 +938,28 @@ bool FileAccessJobHandler::copyFile( const TQString& dest )
+ 
+    // Update the times of the destFile
+ #ifdef _WIN32
+-   struct _stat srcFiletqStatus;
+-   int statResult = ::_stat( srcName.ascii(), &srcFiletqStatus );
++   struct _stat srcFileStatus;
++   int statResult = ::_stat( srcName.ascii(), &srcFileStatus );
+    if (statResult==0)
+    {
+       _utimbuf destTimes;
+-      destTimes.actime = srcFiletqStatus.st_atime;/* time of last access */
+-      destTimes.modtime = srcFiletqStatus.st_mtime;/* time of last modification */
++      destTimes.actime = srcFileStatus.st_atime;/* time of last access */
++      destTimes.modtime = srcFileStatus.st_mtime;/* time of last modification */
+ 
+       _utime ( destName.ascii(), &destTimes );
+-      _chmod ( destName.ascii(), srcFiletqStatus.st_mode );
++      _chmod ( destName.ascii(), srcFileStatus.st_mode );
+    }
+ #else
+-   struct stat srcFiletqStatus;
+-   int statResult = ::stat( srcName.ascii(), &srcFiletqStatus );
++   struct stat srcFileStatus;
++   int statResult = ::stat( srcName.ascii(), &srcFileStatus );
+    if (statResult==0)
+    {
+       utimbuf destTimes;
+-      destTimes.actime = srcFiletqStatus.st_atime;/* time of last access */
+-      destTimes.modtime = srcFiletqStatus.st_mtime;/* time of last modification */
++      destTimes.actime = srcFileStatus.st_atime;/* time of last access */
++      destTimes.modtime = srcFileStatus.st_mtime;/* time of last modification */
+ 
+       utime ( destName.ascii(), &destTimes );
+-      chmod ( destName.ascii(), srcFiletqStatus.st_mode );
++      chmod ( destName.ascii(), srcFileStatus.st_mode );
+    }
+ #endif
+    return true;
+@@ -1010,7 +1010,7 @@ void CvsIgnoreList::init( FileAccess& dir, bool bUseLocalCvsIgnore )
+            ".nse_depinfo #* .#* cvslog.* ,* CVS CVS.adm .del-* *.a *.olb *.o *.obj "
+            "*.so *.Z *~ *.old *.elc *.ln *.bak *.BAK *.orig *.rej *.exe _$* *$";
+ 
+-   addEntriesFromString(TQString::tqfromLatin1(ignorestr));
++   addEntriesFromString(TQString::fromLatin1(ignorestr));
+    addEntriesFromFile(TQDir::homeDirPath() + "/.cvsignore");
+    addEntriesFromString(TQString::fromLocal8Bit(::getenv("CVSIGNORE")));
+ 
+@@ -1032,7 +1032,7 @@ void CvsIgnoreList::init( FileAccess& dir, bool bUseLocalCvsIgnore )
+                {
+                   if (pos>pos1)
+                   {
+-                     addEntry( TQString::tqfromLatin1( &buf[pos1], pos-pos1 ) );
++                     addEntry( TQString::fromLatin1( &buf[pos1], pos-pos1 ) );
+                   }
+                   ++pos1;
+                }
+diff --git a/src/kdiff3.cpp b/src/kdiff3.cpp
+index c3541ec..e6b3f40 100644
+--- a/src/kdiff3.cpp
++++ b/src/kdiff3.cpp
+@@ -280,8 +280,8 @@ KDiff3App::KDiff3App(TQWidget* pParent, const char* name, KDiff3Part* pKDiff3Par
+       KApplication::kApplication()->iconLoader() );
+    m_pDirectoryMergeInfo = new DirectoryMergeInfo( m_pDirectoryMergeSplitter );
+    m_pDirectoryMergeWindow->setDirectoryMergeInfo( m_pDirectoryMergeInfo );
+-   connect( m_pDirectoryMergeWindow, TQT_SIGNAL(startDiffMerge(TQString,TQString,TQString,TQString,TQString,TQString,TQString,TotalDifftqStatus*)),
+-            TQT_TQOBJECT(this), TQT_SLOT( slotFileOpen2(TQString,TQString,TQString,TQString,TQString,TQString,TQString,TotalDifftqStatus*)));
++   connect( m_pDirectoryMergeWindow, TQT_SIGNAL(startDiffMerge(TQString,TQString,TQString,TQString,TQString,TQString,TQString,TotalDiffStatus*)),
++            TQT_TQOBJECT(this), TQT_SLOT( slotFileOpen2(TQString,TQString,TQString,TQString,TQString,TQString,TQString,TotalDiffStatus*)));
+    connect( m_pDirectoryMergeWindow, TQT_SIGNAL(selectionChanged()), TQT_TQOBJECT(this), TQT_SLOT(slotUpdateAvailabilities()));
+    connect( m_pDirectoryMergeWindow, TQT_SIGNAL(currentChanged(TQListViewItem*)), TQT_TQOBJECT(this), TQT_SLOT(slotUpdateAvailabilities()));
+    connect( m_pDirectoryMergeWindow, TQT_SIGNAL(checkIfCanContinue(bool*)), TQT_TQOBJECT(this), TQT_SLOT(slotCheckIfCanContinue(bool*)));
+@@ -341,13 +341,13 @@ void KDiff3App::completeInit( const TQString& fn1, const TQString& fn2, const TQ
+          SourceData* pSD=0;
+          if ( m_sd3.isEmpty() )
+          {
+-            if ( m_totalDifftqStatus.bBinaryAEqB ){ pSD = &m_sd1; }
++            if ( m_totalDiffStatus.bBinaryAEqB ){ pSD = &m_sd1; }
+          }
+          else
+          {
+-            if      ( m_totalDifftqStatus.bBinaryBEqC ){ pSD = &m_sd3; } // B==C (assume A is old)
+-            else if ( m_totalDifftqStatus.bBinaryAEqB ){ pSD = &m_sd3; } // assuming C has changed
+-            else if ( m_totalDifftqStatus.bBinaryAEqC ){ pSD = &m_sd2; } // assuming B has changed
++            if      ( m_totalDiffStatus.bBinaryBEqC ){ pSD = &m_sd3; } // B==C (assume A is old)
++            else if ( m_totalDiffStatus.bBinaryAEqB ){ pSD = &m_sd3; } // assuming C has changed
++            else if ( m_totalDiffStatus.bBinaryAEqC ){ pSD = &m_sd2; } // assuming B has changed
+          }
+ 
+          if ( pSD!=0 )
+diff --git a/src/kdiff3.h b/src/kdiff3.h
+index f5e240f..c81ae71 100644
+--- a/src/kdiff3.h
++++ b/src/kdiff3.h
+@@ -144,7 +144,7 @@ class KDiff3App : public TQSplitter
+     /** open a file and load it into the document*/
+     void slotFileOpen();
+     void slotFileOpen2( TQString fn1, TQString fn2, TQString fn3, TQString ofn,
+-                        TQString an1, TQString an2, TQString an3, TotalDifftqStatus* pTotalDifftqStatus );
++                        TQString an1, TQString an2, TQString an3, TotalDiffStatus* pTotalDiffStatus );
+ 
+     void slotFileNameChanged(const TQString& fileName, int winIdx);
+ 
+@@ -281,7 +281,7 @@ class KDiff3App : public TQSplitter
+ 
+     TQWidget* m_pCornerWidget;
+ 
+-    TotalDifftqStatus m_totalDifftqStatus;
++    TotalDiffStatus m_totalDiffStatus;
+ 
+     SourceData m_sd1;
+     SourceData m_sd2;
+@@ -310,7 +310,7 @@ class KDiff3App : public TQSplitter
+    OptionDialog* m_pOptionDialog;
+    FindDialog*   m_pFindDialog;
+ 
+-   void init( bool bAuto=false, TotalDifftqStatus* pTotalDifftqStatus=0, bool bLoadFiles=true );
++   void init( bool bAuto=false, TotalDiffStatus* pTotalDiffStatus=0, bool bLoadFiles=true );
+ 
+    virtual bool eventFilter( TQObject* o, TQEvent* e );
+    virtual void resizeEvent(TQResizeEvent*);
+diff --git a/src/mergeresultwindow.cpp b/src/mergeresultwindow.cpp
+index 119294f..a222a14 100644
+--- a/src/mergeresultwindow.cpp
++++ b/src/mergeresultwindow.cpp
+@@ -72,7 +72,7 @@ MergeResultWindow::MergeResultWindow(
+    m_sizeC = 0;
+ 
+    m_pDiff3LineList = 0;
+-   m_pTotalDifftqStatus = 0;
++   m_pTotalDiffStatus = 0;
+    m_pStatusBar = pStatusBar;
+ 
+    m_pOptionDialog = pOptionDialog;
+@@ -97,7 +97,7 @@ void MergeResultWindow::init(
+    const LineData* pLineDataB, int sizeB,
+    const LineData* pLineDataC, int sizeC,
+    const Diff3LineList* pDiff3LineList,
+-   TotalDifftqStatus* pTotalDifftqStatus
++   TotalDiffStatus* pTotalDiffStatus
+    )
+ {
+    m_firstLine = 0;
+@@ -118,7 +118,7 @@ void MergeResultWindow::init(
+    m_sizeC = sizeC;
+ 
+    m_pDiff3LineList = pDiff3LineList;
+-   m_pTotalDifftqStatus = pTotalDifftqStatus;
++   m_pTotalDiffStatus = pTotalDiffStatus;
+    
+    m_selection.reset();
+    m_cursorXPos=0;
+@@ -140,7 +140,7 @@ void MergeResultWindow::init(
+ void MergeResultWindow::reset()
+ {
+    m_pDiff3LineList = 0;
+-   m_pTotalDifftqStatus = 0;
++   m_pTotalDiffStatus = 0;
+    m_pldA = 0;
+    m_pldB = 0;
+    m_pldC = 0;
+@@ -467,9 +467,9 @@ void MergeResultWindow::merge(bool bAutoSolve, int defaultSelector, bool bConfli
+          ++nrOfWhiteSpaceConflicts;
+    }
+ 
+-   m_pTotalDifftqStatus->nofUnsolvedConflicts = nrOfUnsolvedConflicts;
+-   m_pTotalDifftqStatus->nofSolvedConflicts = nrOfSolvedConflicts;
+-   m_pTotalDifftqStatus->nofWhitespaceConflicts = nrOfWhiteSpaceConflicts;
++   m_pTotalDiffStatus->nofUnsolvedConflicts = nrOfUnsolvedConflicts;
++   m_pTotalDiffStatus->nofSolvedConflicts = nrOfSolvedConflicts;
++   m_pTotalDiffStatus->nofWhitespaceConflicts = nrOfWhiteSpaceConflicts;
+ 
+ 
+    m_cursorXPos=0;
+@@ -804,17 +804,17 @@ void MergeResultWindow::showNrOfConflicts()
+          ++nrOfConflicts;
+    }
+    TQString totalInfo;
+-   if ( m_pTotalDifftqStatus->bBinaryAEqB && m_pTotalDifftqStatus->bBinaryAEqC )
++   if ( m_pTotalDiffStatus->bBinaryAEqB && m_pTotalDiffStatus->bBinaryAEqC )
+       totalInfo += i18n("All input files are binary equal.");
+-   else  if ( m_pTotalDifftqStatus->bTextAEqB && m_pTotalDifftqStatus->bTextAEqC )
++   else  if ( m_pTotalDiffStatus->bTextAEqB && m_pTotalDiffStatus->bTextAEqC )
+       totalInfo += i18n("All input files contain the same text.");
+    else {
+-      if    ( m_pTotalDifftqStatus->bBinaryAEqB ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("A").tqarg("B");
+-      else if ( m_pTotalDifftqStatus->bTextAEqB ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("A").tqarg("B");
+-      if    ( m_pTotalDifftqStatus->bBinaryAEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("A").tqarg("C");
+-      else if ( m_pTotalDifftqStatus->bTextAEqC ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("A").tqarg("C");
+-      if    ( m_pTotalDifftqStatus->bBinaryBEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("B").tqarg("C");
+-      else if ( m_pTotalDifftqStatus->bTextBEqC ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("B").tqarg("C");
++      if    ( m_pTotalDiffStatus->bBinaryAEqB ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("A").tqarg("B");
++      else if ( m_pTotalDiffStatus->bTextAEqB ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("A").tqarg("B");
++      if    ( m_pTotalDiffStatus->bBinaryAEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("A").tqarg("C");
++      else if ( m_pTotalDiffStatus->bTextAEqC ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("A").tqarg("C");
++      if    ( m_pTotalDiffStatus->bBinaryBEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("B").tqarg("C");
++      else if ( m_pTotalDiffStatus->bTextBEqC ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("B").tqarg("C");
+    }
+ 
+    int nrOfUnsolvedConflicts = getNrOfUnsolvedConflicts();
+@@ -1661,12 +1661,12 @@ void MergeResultWindow::writeLine(
+ 
+          if( m_selection.lineWithin( line+1 ) )
+             p.fillRect( xOffset + fontWidth*(firstPosInLine2-m_firstColumn), yOffset,
+-               width(), fontHeight, tqcolorGroup().highlight() );
++               width(), fontHeight, colorGroup().highlight() );
+          else if ( lengthInLine2>0 )
+             p.fillRect( xOffset + fontWidth*(firstPosInLine2-m_firstColumn), yOffset,
+-               fontWidth*lengthInLine2, fontHeight, tqcolorGroup().highlight() );
++               fontWidth*lengthInLine2, fontHeight, colorGroup().highlight() );
+ 
+-         p.setPen( tqcolorGroup().highlightedText() );
++         p.setPen( colorGroup().highlightedText() );
+          p.drawText( xOffset + fontWidth*(firstPosInLine2-m_firstColumn), yOffset+fontAscent,
+             s.mid(firstPosInLine2,lengthInLine2), true );
+       }
+@@ -3072,7 +3072,7 @@ WindowTitleWidget::WindowTitleWidget(OptionDialog* pOptionDialog, TQWidget* pPar
+ 
+    m_pModifiedLabel = new TQLabel(i18n("[Modified]"),this);
+    pHLayout->addWidget( m_pModifiedLabel );
+-   m_pModifiedLabel->setMinimumSize( m_pModifiedLabel->tqsizeHint() );
++   m_pModifiedLabel->setMinimumSize( m_pModifiedLabel->sizeHint() );
+    m_pModifiedLabel->setText("");
+ 
+    pHLayout->addStretch(1);
+@@ -3137,7 +3137,7 @@ void WindowTitleWidget::setEncodings( TQTextCodec* pCodecForA, TQTextCodec* pCod
+       m_codecMap[i]=it->second;
+       ++i;
+    }
+-   m_pEncodingSelector->setMinimumSize( m_pEncodingSelector->tqsizeHint() );
++   m_pEncodingSelector->setMinimumSize( m_pEncodingSelector->sizeHint() );
+ 
+    if ( pCodecForC && pCodecForB && pCodecForA )
+    {
+diff --git a/src/mergeresultwindow.h b/src/mergeresultwindow.h
+index ed524a5..2b61e6f 100644
+--- a/src/mergeresultwindow.h
++++ b/src/mergeresultwindow.h
+@@ -110,7 +110,7 @@ public:
+       const LineData* pLineDataB, int sizeB,
+       const LineData* pLineDataC, int sizeC,
+       const Diff3LineList* pDiff3LineList,
+-      TotalDifftqStatus* pTotalDifftqStatus
++      TotalDiffStatus* pTotalDiffStatus
+       );
+ 
+    void reset();
+@@ -187,7 +187,7 @@ private:
+    int m_sizeC;
+ 
+    const Diff3LineList* m_pDiff3LineList;
+-   TotalDifftqStatus* m_pTotalDifftqStatus;
++   TotalDiffStatus* m_pTotalDiffStatus;
+ 
+    bool m_bPaintingAllowed;
+    int m_delayedDrawTimer;
+diff --git a/src/pdiff.cpp b/src/pdiff.cpp
+index 033fd31..1452eca 100644
+--- a/src/pdiff.cpp
++++ b/src/pdiff.cpp
+@@ -235,14 +235,14 @@ bool KDiff3App::runDiff( const LineData* p1, int size1, const LineData* p2, int
+    return true;
+ }
+ 
+-void KDiff3App::init( bool bAuto, TotalDifftqStatus* pTotalDifftqStatus, bool bLoadFiles )
++void KDiff3App::init( bool bAuto, TotalDiffStatus* pTotalDiffStatus, bool bLoadFiles )
+ {
+    ProgressProxy pp;
+    // When doing a full analysis in the directory-comparison, then the statistics-results
+-   // will be stored in the given TotalDifftqStatus. Otherwise it will be 0.
+-   bool bGUI = pTotalDifftqStatus == 0;
+-   if (pTotalDifftqStatus==0) 
+-      pTotalDifftqStatus = &m_totalDifftqStatus;
++   // will be stored in the given TotalDiffStatus. Otherwise it will be 0.
++   bool bGUI = pTotalDiffStatus == 0;
++   if (pTotalDiffStatus==0) 
++      pTotalDiffStatus = &m_totalDiffStatus;
+ 
+    bool bPreserveCarriageReturn = m_pOptionDialog->m_bPreserveCarriageReturn;
+ 
+@@ -310,11 +310,11 @@ void KDiff3App::init( bool bAuto, TotalDifftqStatus* pTotalDifftqStatus, bool bL
+          pp.setMaxNofSteps( 6 );  // 3 comparisons, 3 finediffs
+    }
+ 
+-   pTotalDifftqStatus->reset();
++   pTotalDiffStatus->reset();
+    // Run the diff.
+    if ( m_sd3.isEmpty() )
+    {
+-      pTotalDifftqStatus->bBinaryAEqB = m_sd1.isBinaryEqualWith( m_sd2 );
++      pTotalDiffStatus->bBinaryAEqB = m_sd1.isBinaryEqualWith( m_sd2 );
+       pp.setInformation(i18n("Diff: A <-> B"));
+ 
+       runDiff( m_sd1.getLineDataForDiff(), m_sd1.getSizeLines(), m_sd2.getLineDataForDiff(), m_sd2.getSizeLines(), m_diffList12,1,2 );
+@@ -323,8 +323,8 @@ void KDiff3App::init( bool bAuto, TotalDifftqStatus* pTotalDifftqStatus, bool bL
+ 
+       pp.setInformation(i18n("Linediff: A <-> B"));
+       calcDiff3LineListUsingAB( &m_diffList12, m_diff3LineList );
+-      fineDiff( m_diff3LineList, 1, m_sd1.getLineDataForDisplay(), m_sd2.getLineDataForDisplay(), pTotalDifftqStatus->bTextAEqB );
+-      if ( m_sd1.getSizeBytes()==0 ) pTotalDifftqStatus->bTextAEqB=false;
++      fineDiff( m_diff3LineList, 1, m_sd1.getLineDataForDisplay(), m_sd2.getLineDataForDisplay(), pTotalDiffStatus->bTextAEqB );
++      if ( m_sd1.getSizeBytes()==0 ) pTotalDiffStatus->bTextAEqB=false;
+ 
+       pp.step();
+    }
+@@ -337,9 +337,9 @@ void KDiff3App::init( bool bAuto, TotalDifftqStatus* pTotalDifftqStatus, bool bL
+          pp.step();
+       }
+ 
+-      pTotalDifftqStatus->bBinaryAEqB = m_sd1.isBinaryEqualWith( m_sd2 );
+-      pTotalDifftqStatus->bBinaryAEqC = m_sd1.isBinaryEqualWith( m_sd3 );
+-      pTotalDifftqStatus->bBinaryBEqC = m_sd3.isBinaryEqualWith( m_sd2 );
++      pTotalDiffStatus->bBinaryAEqB = m_sd1.isBinaryEqualWith( m_sd2 );
++      pTotalDiffStatus->bBinaryAEqC = m_sd1.isBinaryEqualWith( m_sd3 );
++      pTotalDiffStatus->bBinaryBEqC = m_sd3.isBinaryEqualWith( m_sd2 );
+ 
+       pp.setInformation(i18n("Diff: A <-> B"));
+       runDiff( m_sd1.getLineDataForDiff(), m_sd1.getSizeLines(), m_sd2.getLineDataForDiff(), m_sd2.getSizeLines(), m_diffList12,1,2 );
+@@ -364,16 +364,16 @@ void KDiff3App::init( bool bAuto, TotalDifftqStatus* pTotalDifftqStatus, bool bL
+       debugLineCheck( m_diff3LineList, m_sd3.getSizeLines(), 3 );
+ 
+       pp.setInformation(i18n("Linediff: A <-> B"));
+-      fineDiff( m_diff3LineList, 1, m_sd1.getLineDataForDisplay(), m_sd2.getLineDataForDisplay(), pTotalDifftqStatus->bTextAEqB );
++      fineDiff( m_diff3LineList, 1, m_sd1.getLineDataForDisplay(), m_sd2.getLineDataForDisplay(), pTotalDiffStatus->bTextAEqB );
+       pp.step();
+       pp.setInformation(i18n("Linediff: B <-> C"));
+-      fineDiff( m_diff3LineList, 2, m_sd2.getLineDataForDisplay(), m_sd3.getLineDataForDisplay(), pTotalDifftqStatus->bTextBEqC );
++      fineDiff( m_diff3LineList, 2, m_sd2.getLineDataForDisplay(), m_sd3.getLineDataForDisplay(), pTotalDiffStatus->bTextBEqC );
+       pp.step();
+       pp.setInformation(i18n("Linediff: A <-> C"));
+-      fineDiff( m_diff3LineList, 3, m_sd3.getLineDataForDisplay(), m_sd1.getLineDataForDisplay(), pTotalDifftqStatus->bTextAEqC );
++      fineDiff( m_diff3LineList, 3, m_sd3.getLineDataForDisplay(), m_sd1.getLineDataForDisplay(), pTotalDiffStatus->bTextAEqC );
+       pp.step();
+-      if ( m_sd1.getSizeBytes()==0 ) { pTotalDifftqStatus->bTextAEqB=false;  pTotalDifftqStatus->bTextAEqC=false; }
+-      if ( m_sd2.getSizeBytes()==0 ) { pTotalDifftqStatus->bTextAEqB=false;  pTotalDifftqStatus->bTextBEqC=false; }
++      if ( m_sd1.getSizeBytes()==0 ) { pTotalDiffStatus->bTextAEqB=false;  pTotalDiffStatus->bTextAEqC=false; }
++      if ( m_sd2.getSizeBytes()==0 ) { pTotalDiffStatus->bTextAEqB=false;  pTotalDiffStatus->bTextBEqC=false; }
+    }
+    m_diffBufferInfo.init( &m_diff3LineList, &m_diff3LineVector,
+       m_sd1.getLineDataForDiff(), m_sd1.getSizeLines(),
+@@ -420,7 +420,7 @@ void KDiff3App::init( bool bAuto, TotalDifftqStatus* pTotalDifftqStatus, bool bL
+       m_sd2.getLineDataForDisplay(), m_sd2.getSizeLines(),
+       m_bTripleDiff ? m_sd3.getLineDataForDisplay() : 0, m_sd3.getSizeLines(),
+       &m_diff3LineList,
+-      pTotalDifftqStatus      
++      pTotalDiffStatus      
+       );
+    m_pMergeResultWindowTitle->setFileName( m_outputFilename.isEmpty() ? TQString("unnamed.txt") : m_outputFilename );
+ 
+@@ -507,17 +507,17 @@ void KDiff3App::init( bool bAuto, TotalDifftqStatus* pTotalDifftqStatus, bool bL
+          )
+       {
+          TQString totalInfo;
+-         if ( pTotalDifftqStatus->bBinaryAEqB && pTotalDifftqStatus->bBinaryAEqC )
++         if ( pTotalDiffStatus->bBinaryAEqB && pTotalDiffStatus->bBinaryAEqC )
+             totalInfo += i18n("All input files are binary equal.");
+-         else  if ( pTotalDifftqStatus->bTextAEqB && pTotalDifftqStatus->bTextAEqC )
++         else  if ( pTotalDiffStatus->bTextAEqB && pTotalDiffStatus->bTextAEqC )
+             totalInfo += i18n("All input files contain the same text, but are not binary equal.");
+          else {
+-            if    ( pTotalDifftqStatus->bBinaryAEqB ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("A").tqarg("B");
+-            else if ( pTotalDifftqStatus->bTextAEqB ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("A").tqarg("B");
+-            if    ( pTotalDifftqStatus->bBinaryAEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("A").tqarg("C");
+-            else if ( pTotalDifftqStatus->bTextAEqC ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("A").tqarg("C");
+-            if    ( pTotalDifftqStatus->bBinaryBEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("B").tqarg("C");
+-            else if ( pTotalDifftqStatus->bTextBEqC ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("B").tqarg("C");
++            if    ( pTotalDiffStatus->bBinaryAEqB ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("A").tqarg("B");
++            else if ( pTotalDiffStatus->bTextAEqB ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("A").tqarg("B");
++            if    ( pTotalDiffStatus->bBinaryAEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("A").tqarg("C");
++            else if ( pTotalDiffStatus->bTextAEqC ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("A").tqarg("C");
++            if    ( pTotalDiffStatus->bBinaryBEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("B").tqarg("C");
++            else if ( pTotalDiffStatus->bTextBEqC ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("B").tqarg("C");
+          }
+ 
+          if ( !totalInfo.isEmpty() )
+@@ -609,12 +609,12 @@ void KDiff3App::sourceMask( int srcMask, int enabledMask )
+ 
+ 
+ 
+-// Function uses setMinSize( tqsizeHint ) before adding the widget.
++// Function uses setMinSize( sizeHint ) before adding the widget.
+ // void addWidget(TQBoxLayout* tqlayout, TQWidget* widget);
+ template <class W, class L>
+ void addWidget( L* tqlayout, W* widget)
+ {
+-   TQSize s = widget->tqsizeHint();
++   TQSize s = widget->sizeHint();
+    widget->setMinimumSize( TQSize(max2(s.width(),0),max2(s.height(),0) ) );
+    tqlayout->addWidget( widget );
+ }
+@@ -1071,7 +1071,7 @@ void KDiff3App::slotFileOpen()
+ }
+ 
+ void KDiff3App::slotFileOpen2(TQString fn1, TQString fn2, TQString fn3, TQString ofn,
+-                              TQString an1, TQString an2, TQString an3, TotalDifftqStatus* pTotalDifftqStatus )
++                              TQString an1, TQString an2, TQString an3, TotalDiffStatus* pTotalDiffStatus )
+ {
+    if ( !canContinue() ) return;
+ 
+@@ -1111,9 +1111,9 @@ void KDiff3App::slotFileOpen2(TQString fn1, TQString fn2, TQString fn3, TQString
+    else
+    {
+       m_bDirCompare = bDirCompare;  // Don't allow this to change here.
+-      init( false, pTotalDifftqStatus );
++      init( false, pTotalDiffStatus );
+ 
+-      if ( pTotalDifftqStatus!=0 )
++      if ( pTotalDiffStatus!=0 )
+          return;
+ 
+       if ( ! m_sd1.isEmpty() && ! m_sd1.hasData()  ||
+@@ -1969,7 +1969,7 @@ void KDiff3App::slotMergeCurrentFile()
+ 
+ void KDiff3App::slotWinFocusNext()
+ {
+-   TQWidget* focus = tqApp->tqfocusWidget();
++   TQWidget* focus = tqApp->focusWidget();
+    if ( focus == m_pDirectoryMergeWindow && m_pDirectoryMergeWindow->isVisible() && ! dirShowBoth->isChecked() )
+    {
+       slotDirViewToggle();
+@@ -1999,7 +1999,7 @@ void KDiff3App::slotWinFocusNext()
+ 
+ void KDiff3App::slotWinFocusPrev()
+ {
+-   TQWidget* focus = tqApp->tqfocusWidget();
++   TQWidget* focus = tqApp->focusWidget();
+    if ( focus == m_pDirectoryMergeWindow  && m_pDirectoryMergeWindow->isVisible() && ! dirShowBoth->isChecked() )
+    {
+       slotDirViewToggle();
+diff --git a/src/smalldialogs.cpp b/src/smalldialogs.cpp
+index 7dc6340..5ed0c26 100644
+--- a/src/smalldialogs.cpp
++++ b/src/smalldialogs.cpp
+@@ -170,7 +170,7 @@ OpenDialog::OpenDialog(
+    connect( button, TQT_SIGNAL(clicked()), this, TQT_SLOT( reject() ) );
+    l->addWidget( button,1 );
+ 
+-   TQSize sh = tqsizeHint();
++   TQSize sh = sizeHint();
+    setFixedHeight( sh.height() );
+    m_bInputFileNameChanged = false;
+ 
+@@ -498,7 +498,7 @@ RegExpTester::RegExpTester( TQWidget* pParent, const TQString& autoMergeRegExpTo
+    pGrid->addWidget(pButton,line,1);
+    connect( pButton, TQT_SIGNAL(clicked()), this, TQT_SLOT(reject()));
+ 
+-   resize( 800, tqsizeHint().height() );
++   resize( 800, sizeHint().height() );
+ }
+ 
+ void RegExpTester::init( const TQString& autoMergeRegExp, const TQString& historyStartRegExp, const TQString& historyEntryStartRegExp, const TQString historySortKeyOrder )

@@ -1,10 +1,10 @@
-# Always install under '/usr'
-%define _prefix /usr
+%define _prefix /opt/trinity
+%define _docdir %{_datadir}/doc
 
 Summary: Audio-decoding framework 
-Name:	 akode 
+Name:	 trinity-akode 
 Version: 2.0.2
-Release: 6%{?dist}
+Release: 1%{?dist}
 
 License: LGPLv2+
 Group: 	 System Environment/Libraries
@@ -101,11 +101,11 @@ Requires: %{name} = %{version}-%{release}
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f admin/Makefile.common cvs
 
 %build
@@ -193,69 +193,6 @@ done
 
 
 %changelog
-* Fri Jan 13 2012 Francois Andriot <francois.andriot@free.fr> 2.0.2-6
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> 2.0.2-1
 - Port to TDE 3.5.13
 - Based on spec file from Fedora 9 'akode-2.0.2-5'
-
-* Tue Feb 12 2008 Rex Dieter <rdieter@fedoraproject.org> 2.0.2-5 
-- gcc43 patch 
-
-* Mon Jan 07 2008 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.2-4
-- -Requires: %%name-pulseaudio (can be added to kde-settings-pulseaudio)
-
-* Sun Dec 23 2007 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.2-3
-- fix flac113 support
-
-* Sun Dec 23 2007 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.2-2
-- fix multilib conflicts (#340591)
-
-* Sun Dec 23 2007 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.2-1
-- akode-2.0.2
-
-* Wed Sep 26 2007 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.1-9
-- BR: pulseaudio-libs-devel
-
-* Mon Aug 20 2007 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.1-8
-- -libsamplerate: License: GPLv2+
-- omit oss_sink
-
-* Sat Aug 11 2007 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.1-7
-- Requires: %%{name}-pulseaudio (f8+)
-- License: LGPLv2+
-
-* Thu Feb 15 2007 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.1-6
-- respin (for flac, fc7+)
-
-* Mon Feb 12 2007 Rex Dieter <rdieter[AT]fedoraproject.org> 2.0.1-5
-- enable pulseaudio support
-- Requires: akode-pulseaudio (f7+)
-
-* Thu Dec 14 2006 Rex Dieter <rexdieter[AT]users.sf.net> 2.0.1-4
-- enable jack support (subpkg)
-- package (GPL'd) libsamplerate-based resampler separately, 
-  to keep main pkg LGPL-clean
-
-* Mon Aug 28 2006 Rex Dieter <rexdieter[AT]users.sf.net> 2.0.1-2
-- fc6 respin
-
-* Mon Aug 07 2006 Rex Dieter <rexdieter[AT]users.sf.net> 2.0.1-1
-- 2.0.1
-
-* Fri Jul 21 2006 Rex Dieter <rexdieter[AT]users.sf.net>
-- fc6: gcc/glibc respin
-
-* Fri Feb 10 2006 Rex Dieter <rexdieter[AT]users.sf.net> 
-- fc5: gcc/glibc respin
-
-* Mon Dec 19 2005 Rex Dieter <rexdieter[AT]users.sf.net> 2.0-1
-- 2.0(final)
-
-* Wed Nov 23 2005 Rex Dieter <rexdieter[AT]users.sf.net> 2.0-0.4.rc1
-- 2.0rc1 
-
-* Wed Nov 23 2005 Rex Dieter <rexdieter[AT]users.sf.net. 2.0-0.2.b3
-- --without-libltdl
-
-* Tue Nov 22 2005 Rex Dieter <rexdieter[AT]users.sf.net> 2.0-0.1.b3
-- akode-2.0b3
-

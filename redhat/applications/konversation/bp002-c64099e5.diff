@@ -1,0 +1,697 @@
+commit c64099e59a4e9ba6bdb8eebecd88e3363aee479b
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324497946 -0600
+
+    Rename obsolete tq methods to standard names
+
+diff --git a/konversation/src/alias_preferencesui.ui b/konversation/src/alias_preferencesui.ui
+index 3783955..10d926a 100644
+--- a/konversation/src/alias_preferencesui.ui
++++ b/konversation/src/alias_preferencesui.ui
+@@ -21,7 +21,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="1" column="0">
+             <property name="name">
+-                <cstring>tqlayout7</cstring>
++                <cstring>layout7</cstring>
+             </property>
+             <grid>
+                 <property name="name">
+@@ -114,7 +114,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="0" column="1" rowspan="2" colspan="1">
+             <property name="name">
+-                <cstring>tqlayout8</cstring>
++                <cstring>layout8</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+diff --git a/konversation/src/autoreplace_preferencesui.ui b/konversation/src/autoreplace_preferencesui.ui
+index 769ba9b..494427f 100644
+--- a/konversation/src/autoreplace_preferencesui.ui
++++ b/konversation/src/autoreplace_preferencesui.ui
+@@ -22,7 +22,7 @@
+         </property>
+         <widget class="TQLayoutWidget" row="0" column="1" rowspan="2" colspan="1">
+             <property name="name">
+-                <cstring>tqlayout6</cstring>
++                <cstring>layout6</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -137,7 +137,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="1" column="0">
+             <property name="name">
+-                <cstring>tqlayout16</cstring>
++                <cstring>layout16</cstring>
+             </property>
+             <grid>
+                 <property name="name">
+diff --git a/konversation/src/channeloptionsui.ui b/konversation/src/channeloptionsui.ui
+index 33bb6ff..529207d 100644
+--- a/konversation/src/channeloptionsui.ui
++++ b/konversation/src/channeloptionsui.ui
+@@ -215,7 +215,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     </widget>
+                     <widget class="TQLayoutWidget">
+                         <property name="name">
+-                            <cstring>tqlayout11</cstring>
++                            <cstring>layout11</cstring>
+                         </property>
+                         <grid>
+                             <property name="name">
+@@ -289,7 +289,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     </widget>
+                     <widget class="TQLayoutWidget">
+                         <property name="name">
+-                            <cstring>tqlayout2</cstring>
++                            <cstring>layout2</cstring>
+                         </property>
+                         <hbox>
+                             <property name="name">
+diff --git a/konversation/src/colorsappearance_preferences.ui b/konversation/src/colorsappearance_preferences.ui
+index 909e5b3..b0e9c1e 100644
+--- a/konversation/src/colorsappearance_preferences.ui
++++ b/konversation/src/colorsappearance_preferences.ui
+@@ -726,7 +726,7 @@ the Free Software Foundation; either version 2 of the License, or
+                 </widget>
+                 <widget class="TQLayoutWidget" row="2" column="0" rowspan="1" colspan="12">
+                     <property name="name">
+-                        <cstring>tqlayout18</cstring>
++                        <cstring>layout18</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/konversation/src/dccrecipientdialog.cpp b/konversation/src/dccrecipientdialog.cpp
+index 6be72d2..bb5d334 100644
+--- a/konversation/src/dccrecipientdialog.cpp
++++ b/konversation/src/dccrecipientdialog.cpp
+@@ -30,7 +30,7 @@ DccRecipientDialog::DccRecipientDialog(TQWidget* parent, const TQStringList &lis
+     // Create the top level widget
+     TQWidget* page=new TQWidget(this);
+     setMainWidget(page);
+-    // Add the tqlayout to the widget
++    // Add the layout to the widget
+     TQVBoxLayout* dialogLayout=new TQVBoxLayout(page);
+     dialogLayout->setSpacing(spacingHint());
+     // Add the nickname list widget
+diff --git a/konversation/src/dcctransferdetailedinfopanelui.ui b/konversation/src/dcctransferdetailedinfopanelui.ui
+index 967b1ae..ea04cf8 100644
+--- a/konversation/src/dcctransferdetailedinfopanelui.ui
++++ b/konversation/src/dcctransferdetailedinfopanelui.ui
+@@ -26,7 +26,7 @@
+         </property>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout7</cstring>
++                <cstring>layout7</cstring>
+             </property>
+             <grid>
+                 <property name="name">
+@@ -115,7 +115,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="6" column="1">
+                     <property name="name">
+-                        <cstring>tqlayout6</cstring>
++                        <cstring>layout6</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -162,7 +162,7 @@
+         </widget>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout26</cstring>
++                <cstring>layout26</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+@@ -170,7 +170,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout24</cstring>
++                        <cstring>layout24</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -344,7 +344,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout25</cstring>
++                        <cstring>layout25</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+diff --git a/konversation/src/editnotifydialog.cpp b/konversation/src/editnotifydialog.cpp
+index 312d69c..8874463 100644
+--- a/konversation/src/editnotifydialog.cpp
++++ b/konversation/src/editnotifydialog.cpp
+@@ -37,8 +37,8 @@ KDialogBase::Ok,true)
+     TQWidget* page=new TQWidget(this);
+     setMainWidget(page);
+ 
+-    TQHBoxLayout* tqlayout = new TQHBoxLayout(page);
+-    tqlayout->setSpacing(spacingHint());
++    TQHBoxLayout* layout = new TQHBoxLayout(page);
++    layout->setSpacing(spacingHint());
+ 
+     TQLabel* networkNameLabel=new TQLabel(i18n("&Network name:"),page);
+     TQString networkNameWT = i18n(
+@@ -80,10 +80,10 @@ KDialogBase::Ok,true)
+         if(*it == network) m_networkNameCombo->setCurrentItem(m_networkNameCombo->count()-1);
+     }
+ 
+-    tqlayout->addWidget(networkNameLabel);
+-    tqlayout->addWidget(m_networkNameCombo);
+-    tqlayout->addWidget(nicknameLabel);
+-    tqlayout->addWidget(m_nicknameInput);
++    layout->addWidget(networkNameLabel);
++    layout->addWidget(m_networkNameCombo);
++    layout->addWidget(nicknameLabel);
++    layout->addWidget(m_nicknameInput);
+ 
+     setButtonOK(KGuiItem(i18n("&OK"),"button_ok",i18n("Change notify information")));
+     setButtonCancel(KGuiItem(i18n("&Cancel"),"button_cancel",i18n("Discards all changes made")));
+diff --git a/konversation/src/highlight_preferencesui.ui b/konversation/src/highlight_preferencesui.ui
+index 3b42a4d..df28e7e 100644
+--- a/konversation/src/highlight_preferencesui.ui
++++ b/konversation/src/highlight_preferencesui.ui
+@@ -93,7 +93,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="4" rowspan="5" colspan="1">
+                     <property name="name">
+-                        <cstring>tqlayout13</cstring>
++                        <cstring>layout13</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">
+diff --git a/konversation/src/identitydialog.cpp b/konversation/src/identitydialog.cpp
+index 0f9e672..cfa592a 100644
+--- a/konversation/src/identitydialog.cpp
++++ b/konversation/src/identitydialog.cpp
+@@ -90,7 +90,7 @@ namespace Konversation
+ 
+         TQGroupBox* nicknameGBox = new TQGroupBox(0, Qt::Horizontal, i18n("Nickname"), generalWidget);
+         nicknameGBox->setMargin(marginHint());
+-        TQGridLayout* nicknameLayout = new TQGridLayout(nicknameGBox->tqlayout(), 1, 2, spacingHint());
++        TQGridLayout* nicknameLayout = new TQGridLayout(nicknameGBox->layout(), 1, 2, spacingHint());
+ 
+         m_nicknameLBox = new TQListBox(nicknameGBox);
+         TQWhatsThis::add(m_nicknameLBox, i18n("This is your list of nicknames. A nickname is the name that other users will know you by. You may use any name you desire. The first character must be a letter.\n\nSince nicknames must be unique across an entire IRC network, your desired name may be rejected by the server because someone else is already using that nickname. Enter alternate nicknames for yourself. If your first choice is rejected by the server, Konversation will try the alternate nicknames."));
+@@ -126,7 +126,7 @@ namespace Konversation
+ 
+         TQGroupBox* autoIdentifyGBox = new TQGroupBox(0, Qt::Horizontal, i18n("Auto Identify"), generalWidget);
+         autoIdentifyGBox->setMargin(marginHint());
+-        TQGridLayout* autoIdentifyLayout = new TQGridLayout(autoIdentifyGBox->tqlayout(), 1, 2, spacingHint());
++        TQGridLayout* autoIdentifyLayout = new TQGridLayout(autoIdentifyGBox->layout(), 1, 2, spacingHint());
+ 
+         TQLabel* botLabel=new TQLabel(i18n("Ser&vice:"), autoIdentifyGBox);
+         TQWhatsThis::add(botLabel,i18n("Service name can be <b><i>nickserv</i></b> or a network dependant name like  <b><i>nickserv@services.dal.net</i></b>"));
+@@ -167,7 +167,7 @@ namespace Konversation
+         m_automaticAwayGBox->setCheckable(true);
+         m_automaticAwayGBox->setColumnLayout(0, Qt::Horizontal);
+         m_automaticAwayGBox->setMargin(marginHint());
+-        TQGridLayout* automaticAwayLayout = new TQGridLayout(m_automaticAwayGBox->tqlayout(), 1, 2, spacingHint());
++        TQGridLayout* automaticAwayLayout = new TQGridLayout(m_automaticAwayGBox->layout(), 1, 2, spacingHint());
+ 
+         TQWhatsThis::add(m_automaticAwayGBox, i18n("If you check this box, Konversation will automatically set all connections using this Identity away when the screensaver starts or after a period of user inactivity configured below."));
+ 
+@@ -198,7 +198,7 @@ namespace Konversation
+         m_awayMessageGBox->setCheckable(true);
+         m_awayMessageGBox->setColumnLayout(0, Qt::Horizontal);
+         m_awayMessageGBox->setMargin(marginHint());
+-        TQGridLayout* messagesLayout = new TQGridLayout(m_awayMessageGBox->tqlayout(), 1, 2, spacingHint());
++        TQGridLayout* messagesLayout = new TQGridLayout(m_awayMessageGBox->layout(), 1, 2, spacingHint());
+ 
+         TQWhatsThis::add(m_awayMessageGBox, i18n("If you check this box, Konversation will automatically send the Away message to all channels joined with this Identity. <b>%s</b> is replaced with <b>msg</b>. Whenever you perform an <b>/away</b> command, the Return message will be displayed in all channels joined with this Identity."));
+ 
+diff --git a/konversation/src/ignore_preferencesui.ui b/konversation/src/ignore_preferencesui.ui
+index 88aa423..501fa89 100644
+--- a/konversation/src/ignore_preferencesui.ui
++++ b/konversation/src/ignore_preferencesui.ui
+@@ -145,7 +145,7 @@ the Free Software Foundation; either version 2 of the License, or
+         </widget>
+         <widget class="TQLayoutWidget" row="0" column="2" rowspan="3" colspan="1">
+             <property name="name">
+-                <cstring>tqlayout20</cstring>
++                <cstring>layout20</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+diff --git a/konversation/src/irccharsets.cpp b/konversation/src/irccharsets.cpp
+index 0849cfc..692820c 100644
+--- a/konversation/src/irccharsets.cpp
++++ b/konversation/src/irccharsets.cpp
+@@ -130,7 +130,7 @@ namespace Konversation
+ 
+         // setup m_shortNameAliases
+         // use only [a-z0-9] for keys!
+-        m_shortNameAliases["tqunicode"] = "utf8";
++        m_shortNameAliases["unicode"] = "utf8";
+         m_shortNameAliases["latin1"] = "iso-8859-1";
+ 
+         // setup m_shortNames, m_descriptiveNames, m_simplifiedShortNames
+diff --git a/konversation/src/ircinput.cpp b/konversation/src/ircinput.cpp
+index e76b032..7766351 100644
+--- a/konversation/src/ircinput.cpp
++++ b/konversation/src/ircinput.cpp
+@@ -371,7 +371,7 @@ void IRCInput::paste(bool useSelection)
+ 
+ void IRCInput::paste()
+ {
+-    TQClipboard *cb = KApplication::kApplication()->tqclipboard();
++    TQClipboard *cb = KApplication::kApplication()->clipboard();
+     setFocus();
+ 
+     // Copy text from the clipboard (paste)
+diff --git a/konversation/src/ircview.cpp b/konversation/src/ircview.cpp
+index 94a10b5..b2711ff 100644
+--- a/konversation/src/ircview.cpp
++++ b/konversation/src/ircview.cpp
+@@ -645,7 +645,7 @@ TQString IRCView::createNickLine(const TQString& nick, bool encapsulateNick, boo
+ 
+             for (uint index = 0; index < nick.length(); index++)
+             {
+-                nickvalue += nick[index].tqunicode();
++                nickvalue += nick[index].unicode();
+             }
+ 
+             nickColor = Preferences::nickColor((nickvalue % 8)).name();
+@@ -1344,7 +1344,7 @@ bool IRCView::contextMenu(TQContextMenuEvent* ce)
+                 break;
+             case CopyUrl:
+             {
+-                TQClipboard *cb = KApplication::kApplication()->tqclipboard();
++                TQClipboard *cb = KApplication::kApplication()->clipboard();
+                 cb->setText(m_urlToCopy,TQClipboard::Selection);
+                 cb->setText(m_urlToCopy,TQClipboard::Clipboard);
+                 break;
+@@ -1621,8 +1621,8 @@ TQPopupMenu* IRCView::getPopup() const
+ }
+ 
+ // for more information about these RTFM
+-//    http://www.tqunicode.org/reports/tr9/
+-//    http://www.w3.org/TR/tqunicode-xml/
++//    http://www.unicode.org/reports/tr9/
++//    http://www.w3.org/TR/unicode-xml/
+ TQChar IRCView::LRM = (ushort)0x200e; // Right-to-Left Mark
+ TQChar IRCView::RLM = (ushort)0x200f; // Left-to-Right Mark
+ TQChar IRCView::LRE = (ushort)0x202a; // Left-to-Right Embedding
+diff --git a/konversation/src/konversationapplication.h b/konversation/src/konversationapplication.h
+index 4795659..8651b19 100644
+--- a/konversation/src/konversationapplication.h
++++ b/konversation/src/konversationapplication.h
+@@ -89,7 +89,7 @@ class KonversationApplication : public KUniqueApplication
+         static KonversationApplication* instance();
+ 
+         /** For dcop and addressbook, a user can be specified as user@irc.server.net
+-         *  or user\@servergroup or using the tqunicode separator symbol 0xE120 instead
++         *  or user\@servergroup or using the unicode separator symbol 0xE120 instead
+          *  of the "@".  This function takes a string like the above examples, and
+          *  modifies ircnick and serverOrGroup to contain the split up string.  If
+          *  the string doesn't have an @ or 0xE120, ircnick is set to the
+diff --git a/konversation/src/linkaddressbook/addressbook_base.cpp b/konversation/src/linkaddressbook/addressbook_base.cpp
+index 48f6973..935dcd0 100644
+--- a/konversation/src/linkaddressbook/addressbook_base.cpp
++++ b/konversation/src/linkaddressbook/addressbook_base.cpp
+@@ -194,7 +194,7 @@ namespace Konversation
+             lnick_servergroup = lnick + TQChar(0xE120) + servergroup.lower();
+ 
+         //We should now have lnick = ircnick, and versions with servername and servergroup -
+-        // like johnflux, johnflux@freenode, or johnflux@irc.kde.org    except with the tqunicode
++        // like johnflux, johnflux@freenode, or johnflux@irc.kde.org    except with the unicode
+         // separator char 0xe120 instead of the @
+ 
+         kdDebug() << "nick" << ircnick<< endl;
+diff --git a/konversation/src/linkaddressbook/linkaddressbookui_base.ui b/konversation/src/linkaddressbook/linkaddressbookui_base.ui
+index e67d306..1fa3c3e 100644
+--- a/konversation/src/linkaddressbook/linkaddressbookui_base.ui
++++ b/konversation/src/linkaddressbook/linkaddressbookui_base.ui
+@@ -125,7 +125,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
+             <property name="name">
+-                <cstring>tqlayout1</cstring>
++                <cstring>layout1</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/konversation/src/multilineedit.cpp b/konversation/src/multilineedit.cpp
+index 3999bbc..b4af548 100644
+--- a/konversation/src/multilineedit.cpp
++++ b/konversation/src/multilineedit.cpp
+@@ -28,7 +28,7 @@ KGuiItem(i18n("Add &Quotation Indicators")))
+     // Create the top level widget
+     TQWidget* page=new TQWidget(this);
+     setMainWidget(page);
+-    // Add the tqlayout to the widget
++    // Add the layout to the widget
+     TQVBoxLayout* dialogLayout=new TQVBoxLayout(page);
+     dialogLayout->setSpacing(spacingHint());
+     // add the text editor
+diff --git a/konversation/src/nick.cpp b/konversation/src/nick.cpp
+index 640003a..2f44e4d 100644
+--- a/konversation/src/nick.cpp
++++ b/konversation/src/nick.cpp
+@@ -238,7 +238,7 @@ void Nick::paintCell(TQPainter * p, const TQColorGroup & cg, int column, int wid
+ 
+     if(nickInfo->isAway())
+     {
+-        cg2.setColor(TQColorGroup::Text, kapp->tqpalette(listView()).disabled().text());
++        cg2.setColor(TQColorGroup::Text, kapp->palette(listView()).disabled().text());
+     }
+ 
+     KListViewItem::paintCell(p,cg2,column,width,align);
+diff --git a/konversation/src/nickinfo.cpp b/konversation/src/nickinfo.cpp
+index 17765ca..efc218e 100644
+--- a/konversation/src/nickinfo.cpp
++++ b/konversation/src/nickinfo.cpp
+@@ -85,7 +85,7 @@ uint NickInfo::getNickColor()
+ 
+         for (uint index = 0; index < m_nickname.length(); index++)
+         {
+-            nickvalue += m_nickname[index].tqunicode();
++            nickvalue += m_nickname[index].unicode();
+         }
+ 
+         m_nickColor = (nickvalue % 8) + 1;
+diff --git a/konversation/src/queuetunerbase.ui b/konversation/src/queuetunerbase.ui
+index 6bb1c7a..2a974e0 100644
+--- a/konversation/src/queuetunerbase.ui
++++ b/konversation/src/queuetunerbase.ui
+@@ -32,7 +32,7 @@
+         </property>
+         <widget class="TQLayoutWidget">
+             <property name="name">
+-                <cstring>tqlayout92</cstring>
++                <cstring>layout92</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+@@ -132,7 +132,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
+                     <property name="name">
+-                        <cstring>tqlayout164</cstring>
++                        <cstring>layout164</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -185,7 +185,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout242</cstring>
++                        <cstring>layout242</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -239,7 +239,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="1">
+                     <property name="name">
+-                        <cstring>tqlayout236_2_2</cstring>
++                        <cstring>layout236_2_2</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -314,7 +314,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
+                     <property name="name">
+-                        <cstring>tqlayout163</cstring>
++                        <cstring>layout163</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -367,7 +367,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="1">
+                     <property name="name">
+-                        <cstring>tqlayout236_2</cstring>
++                        <cstring>layout236_2</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -415,7 +415,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout240</cstring>
++                        <cstring>layout240</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -496,7 +496,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget" row="1" column="0" rowspan="1" colspan="2">
+                     <property name="name">
+-                        <cstring>tqlayout161</cstring>
++                        <cstring>layout161</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+@@ -552,7 +552,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="0">
+                     <property name="name">
+-                        <cstring>tqlayout237</cstring>
++                        <cstring>layout237</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -606,7 +606,7 @@
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="1">
+                     <property name="name">
+-                        <cstring>tqlayout236</cstring>
++                        <cstring>layout236</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+@@ -681,7 +681,7 @@
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout88</cstring>
++                        <cstring>layout88</cstring>
+                     </property>
+                     <grid>
+                         <property name="name">
+diff --git a/konversation/src/quickbuttons_preferencesui.ui b/konversation/src/quickbuttons_preferencesui.ui
+index 4e22b30..c0fd88f 100644
+--- a/konversation/src/quickbuttons_preferencesui.ui
++++ b/konversation/src/quickbuttons_preferencesui.ui
+@@ -63,7 +63,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="1" column="0">
+             <property name="name">
+-                <cstring>tqlayout3</cstring>
++                <cstring>layout3</cstring>
+             </property>
+             <grid>
+                 <property name="name">
+@@ -161,7 +161,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="0" column="1" rowspan="3" colspan="1">
+             <property name="name">
+-                <cstring>tqlayout1</cstring>
++                <cstring>layout1</cstring>
+             </property>
+             <vbox>
+                 <property name="name">
+diff --git a/konversation/src/quickconnectdialog.cpp b/konversation/src/quickconnectdialog.cpp
+index 671b17a..0d86fcc 100644
+--- a/konversation/src/quickconnectdialog.cpp
++++ b/konversation/src/quickconnectdialog.cpp
+@@ -31,9 +31,9 @@ KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Ok, true)
+     TQWidget* page = new TQWidget(this);
+     setMainWidget(page);
+ 
+-    TQGridLayout* tqlayout = new TQGridLayout(page, 2, 4);
+-    tqlayout->setSpacing(spacingHint());
+-    tqlayout->setColStretch(1, 10);
++    TQGridLayout* layout = new TQGridLayout(page, 2, 4);
++    layout->setSpacing(spacingHint());
++    layout->setColStretch(1, 10);
+ 
+     TQLabel* hostNameLabel = new TQLabel(i18n("&Server host:"), page);
+     TQString hostNameWT = i18n("Enter the host of the network here.");
+@@ -66,17 +66,17 @@ KDialogBase::Ok | KDialogBase::Cancel, KDialogBase::Ok, true)
+     sslCheckBox = new TQCheckBox(page, "sslCheckBox");
+     sslCheckBox->setText(i18n("&Use SSL"));
+ 
+-    tqlayout->addWidget(hostNameLabel, 0, 0);
+-    tqlayout->addWidget(hostNameInput, 0, 1);
+-    tqlayout->addWidget(portLabel, 0, 2);
+-    tqlayout->addWidget(portInput, 0, 3);
++    layout->addWidget(hostNameLabel, 0, 0);
++    layout->addWidget(hostNameInput, 0, 1);
++    layout->addWidget(portLabel, 0, 2);
++    layout->addWidget(portInput, 0, 3);
+ 
+-    tqlayout->addWidget(nickLabel, 1, 0);
+-    tqlayout->addWidget(nickInput, 1, 1);
+-    tqlayout->addWidget(passwordLabel, 1, 2);
+-    tqlayout->addWidget(passwordInput, 1, 3);
++    layout->addWidget(nickLabel, 1, 0);
++    layout->addWidget(nickInput, 1, 1);
++    layout->addWidget(passwordLabel, 1, 2);
++    layout->addWidget(passwordInput, 1, 3);
+ 
+-    tqlayout->addWidget(sslCheckBox, 2, 0);
++    layout->addWidget(sslCheckBox, 2, 0);
+ 
+     hostNameInput->setFocus();
+ 
+diff --git a/konversation/src/serverlistdialog.cpp b/konversation/src/serverlistdialog.cpp
+index 38ad8f4..cd37cd1 100644
+--- a/konversation/src/serverlistdialog.cpp
++++ b/konversation/src/serverlistdialog.cpp
+@@ -133,14 +133,14 @@ namespace Konversation
+         showAtStartup->setChecked(Preferences::showServerList());
+         connect(showAtStartup, TQT_SIGNAL(toggled(bool)), this, TQT_SLOT(setShowAtStartup(bool)));
+ 
+-        TQGridLayout* tqlayout = new TQGridLayout(mainWidget, 5, 2, 0, spacingHint());
+-
+-        tqlayout->addMultiCellWidget(m_serverList, 0, 3, 0, 0);
+-        tqlayout->addWidget(m_addButton, 0, 1);
+-        tqlayout->addWidget(m_editButton, 1, 1);
+-        tqlayout->addWidget(m_delButton, 2, 1);
+-        tqlayout->addMultiCellWidget(showAtStartup, 4, 4, 0, 1);
+-        tqlayout->setRowStretch(3, 10);
++        TQGridLayout* layout = new TQGridLayout(mainWidget, 5, 2, 0, spacingHint());
++
++        layout->addMultiCellWidget(m_serverList, 0, 3, 0, 0);
++        layout->addWidget(m_addButton, 0, 1);
++        layout->addWidget(m_editButton, 1, 1);
++        layout->addWidget(m_delButton, 2, 1);
++        layout->addMultiCellWidget(showAtStartup, 4, 4, 0, 1);
++        layout->setRowStretch(3, 10);
+ 
+         m_serverList->setFocus();
+ 
+diff --git a/konversation/src/tabs_preferencesui.ui b/konversation/src/tabs_preferencesui.ui
+index 73b914c..a039acb 100644
+--- a/konversation/src/tabs_preferencesui.ui
++++ b/konversation/src/tabs_preferencesui.ui
+@@ -39,7 +39,7 @@ the Free Software Foundation; either version 2 of the License, or
+                 </property>
+                 <widget class="TQLayoutWidget">
+                     <property name="name">
+-                        <cstring>tqlayout2</cstring>
++                        <cstring>layout2</cstring>
+                     </property>
+                     <hbox>
+                         <property name="name">
+diff --git a/konversation/src/theme_preferencesui.ui b/konversation/src/theme_preferencesui.ui
+index 90c3a2b..f804677 100644
+--- a/konversation/src/theme_preferencesui.ui
++++ b/konversation/src/theme_preferencesui.ui
+@@ -29,7 +29,7 @@
+         </widget>
+         <widget class="TQLayoutWidget" row="2" column="0" rowspan="1" colspan="3">
+             <property name="name">
+-                <cstring>tqlayout17</cstring>
++                <cstring>layout17</cstring>
+             </property>
+             <hbox>
+                 <property name="name">
+diff --git a/konversation/src/topiclabel.cpp b/konversation/src/topiclabel.cpp
+index c618026..5b03382 100644
+--- a/konversation/src/topiclabel.cpp
++++ b/konversation/src/topiclabel.cpp
+@@ -199,7 +199,7 @@ namespace Konversation
+                     break;
+                 case CopyUrl:
+                 {
+-                    TQClipboard *cb = KApplication::kApplication()->tqclipboard();
++                    TQClipboard *cb = KApplication::kApplication()->clipboard();
+                     cb->setText(m_urlToCopy,TQClipboard::Selection);
+                     cb->setText(m_urlToCopy,TQClipboard::Clipboard);
+                     break;
+diff --git a/konversation/src/urlcatcher.cpp b/konversation/src/urlcatcher.cpp
+index 76ff9e5..0fe0732 100644
+--- a/konversation/src/urlcatcher.cpp
++++ b/konversation/src/urlcatcher.cpp
+@@ -40,7 +40,7 @@
+ 
+ UrlCatcher::UrlCatcher(TQWidget* parent) : ChatWindow(parent)
+ {
+-    tqlayout()->setAutoAdd(false);
++    layout()->setAutoAdd(false);
+     setName(i18n("URL Catcher"));
+     setType(ChatWindow::UrlCatcher);
+ 
+@@ -96,9 +96,9 @@ UrlCatcher::UrlCatcher(TQWidget* parent) : ChatWindow(parent)
+     saveListButton->setEnabled(false);
+     clearListButton->setEnabled(false);
+ 
+-    tqlayout()->add(searchWidget);
+-    tqlayout()->add(urlListView);
+-    tqlayout()->add(buttonBox);
++    layout()->add(searchWidget);
++    layout()->add(urlListView);
++    layout()->add(buttonBox);
+ 
+     urlSelected();
+ }
+@@ -167,7 +167,7 @@ void UrlCatcher::copyUrlClicked()
+     TQListViewItem* item=urlListView->selectedItem();
+     if(item)
+     {
+-        TQClipboard *cb=KApplication::kApplication()->tqclipboard();
++        TQClipboard *cb=KApplication::kApplication()->clipboard();
+         cb->setText(item->text(1),TQClipboard::Selection);
+         cb->setText(item->text(1),TQClipboard::Clipboard);
+     }
+diff --git a/konversation/src/viewcontainer.cpp b/konversation/src/viewcontainer.cpp
+index 7b92a86..cbb0ba6 100644
+--- a/konversation/src/viewcontainer.cpp
++++ b/konversation/src/viewcontainer.cpp
+@@ -1058,12 +1058,12 @@ void ViewContainer::unsetViewNotification(ChatWindow* view)
+             Channel *channel = static_cast<Channel*>(view);
+ 
+             if (!channel->joined())
+-                textColor = KonversationApplication::instance()->tqpalette(m_viewTree).disabled().text();
++                textColor = KonversationApplication::instance()->palette(m_viewTree).disabled().text();
+         }
+         else if (view->getType() == ChatWindow::Query)
+         {
+             if (!view->getServer()->isConnected())
+-                textColor = KonversationApplication::instance()->tqpalette(m_tabWidget).disabled().text();
++                textColor = KonversationApplication::instance()->palette(m_tabWidget).disabled().text();
+         }
+ 
+         m_viewTree->setViewColor(view, textColor);
+@@ -1100,12 +1100,12 @@ void ViewContainer::unsetViewNotification(ChatWindow* view)
+             Channel *channel = static_cast<Channel*>(view);
+ 
+             if (!channel->joined())
+-                textColor = KonversationApplication::instance()->tqpalette(m_tabWidget).disabled().text();
++                textColor = KonversationApplication::instance()->palette(m_tabWidget).disabled().text();
+         }
+         else if (view->getType() == ChatWindow::Query)
+         {
+             if (!view->getServer()->isConnected())
+-                textColor = KonversationApplication::instance()->tqpalette(m_tabWidget).disabled().text();
++                textColor = KonversationApplication::instance()->palette(m_tabWidget).disabled().text();
+         }
+ 
+         m_tabWidget->setTabColor(view, textColor);
+diff --git a/konversation/src/watchednicknames_preferencesui.ui b/konversation/src/watchednicknames_preferencesui.ui
+index 6f9860b..9df9782 100644
+--- a/konversation/src/watchednicknames_preferencesui.ui
++++ b/konversation/src/watchednicknames_preferencesui.ui
+@@ -273,7 +273,7 @@ When the nickname watcher is turned on, you will be notified when the nicknames
+                 </widget>
+                 <widget class="TQLayoutWidget" row="0" column="4" rowspan="2" colspan="1">
+                     <property name="name">
+-                        <cstring>tqlayout3</cstring>
++                        <cstring>layout3</cstring>
+                     </property>
+                     <vbox>
+                         <property name="name">

@@ -1,17 +1,10 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 21
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
 
@@ -23,8 +16,8 @@ BuildRequires: cmake >= 2.8
 
 
 Name:		trinity-kdebase
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	22%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
@@ -61,7 +54,7 @@ Patch9:		kdebase-3.5.13-startkde_ldpreload.patch
 Patch10:	kdebase-3.5.13-kdesu-noignorebutton.patch
 ## [kdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
 Patch11:	kdebase-3.5.12-desktop-openterminalhere.patch
-## [kdebase/kioslave] Forces HAL backend to use HAL mount options [RHEL/Fedora]
+## [kdebase/kioslave] Forces HAL backend to use HAL mount options [Bug #986]
 Patch12:	kdebase-3.5.12-halmountoptions.patch
 ## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession' [RHEL/Fedora]
 Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
@@ -139,7 +132,8 @@ Patch51:	kdebase-3.5.13-engage_lock_in_near_real_time_continued.patch
 Patch52:	kdebase-3.5.13-fix_lock_failure.patch
 ## [kdebase/kioslave] Temporary fix for a probable race condition on some systems. [Bug #760]
 Patch53:	kdebase-3.5.13-fix_race_condition.patch
-
+## [kdebase] Adds USB default mount options in control panel [Bug #986]
+Patch54:	kdebase-3.5.13-add_usbstorage_panel.patch
 
 ### FEDORA / RHEL distribution-specific settings ###
 
@@ -194,6 +188,7 @@ Requires:	redhat-indexhtml
 %endif
 
 
+BuildRequires:	cmake >= 2.8
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -384,6 +379,7 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch51 -p1
 %patch52 -p1
 %patch53 -p1
+%patch54 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -770,6 +766,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_datadir}/cmake/*.cmake
 
 %changelog
+* Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-22
+- Adds panel to choose default mounting options for removable storage [Bug #986]
+
 * Mon Apr 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-21
 - Commit the rest of 8d521d0b, not merged due to GIT glitch [Commit #49526413]
 

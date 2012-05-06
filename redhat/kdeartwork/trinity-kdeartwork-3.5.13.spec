@@ -1,17 +1,10 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 2
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
 %define tde_libdir %{_libdir}/trinity
 
 # kdeartwork specific settings
@@ -23,8 +16,8 @@ BuildRequires: cmake >= 2.8
 
 Name:    trinity-kdeartwork
 Summary: Additional artwork (themes, sound themes, ...) for TDE
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Version: 3.5.13
+Release: 2%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		User Interface/Desktops
@@ -39,6 +32,7 @@ Source: kdeartwork-%{version}.tar.gz
 # FIXME: this should go in kde-settings -- Rex
 Source1: webcollagerc
 
+BuildRequires: cmake >= 2.8
 BuildRequires: trinity-kdebase-devel
 
 BuildRequires: gettext
@@ -57,7 +51,7 @@ BuildRequires: libart_lgpl-devel
 Requires: trinity-kdebase
 
 %description
-Additional artwork (themes, sound themes, screensavers ...) for KDE.
+Additional artwork (themes, sound themes, screensavers ...) for TDE.
 
 # TODO: build this subpkg noarch
 %package icons

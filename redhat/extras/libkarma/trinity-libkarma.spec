@@ -1,7 +1,9 @@
-%define major 0
+%define _prefix /opt/trinity
+%define _docdir %{_datadir}/doc
+%define _mandir %{_datadir}/man
 
 Summary:   	Rio Karma tools
-Name:      	libkarma
+Name:      	trinity-libkarma
 Version:   	0.1.2
 Release:   	1%{?dist}
 License:   	GPLv2+
@@ -16,6 +18,7 @@ BuildRequires: mono-devel
 BuildRequires: taglib-devel
 BuildRequires: libusb-devel
 BuildRequires: zlib-devel
+
 Requires: %{name}-libs >= %version
 %define _requires_exceptions libkarma
 
@@ -33,9 +36,7 @@ Rio Karma access library
 %package devel
 Summary:   	Rio Karma development files
 Group:     	Development/C
-Requires: %{name}-libs = %version
-Provides: %name-devel = %version-%release
-Obsoletes: %name-devel
+Requires:	%{name}-libs = %version
 
 %description devel
 Rio Karma development files
@@ -44,7 +45,7 @@ Rio Karma development files
 %package -n karma-sharp
 Summary:   	Rio Karma C# bindings
 Group:     	Development/Other
-Requires: %name = %version
+Requires:	%{name} = %version
 
 %description -n karma-sharp
 Rio Karma C# bindings
@@ -104,11 +105,11 @@ rm -rf $RPM_BUILD_ROOT
 %_mandir/man1/*.1*
 %attr(4755,root,root) %_bindir/karma_helper
 %_datadir/icons/hicolor/32x32/devices/multimedia-player-rio-karma.png
-%_docdir/%{name}
+%_docdir/libkarma
 
 %files libs
 %defattr(-,root,root)
-%_libdir/libkarma.so.%{major}*
+%_libdir/libkarma.so.0*
 
 %files devel
 %defattr(-,root,root)
@@ -125,7 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Mon Nov 28 2011 Francois Andriot <francois.andriot@free.fr> 0.1.2-1
-- Build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+* Mon Apr 30 2012 Francois Andriot <francois.andriot@free.fr> 0.1.2-1
+- Build for RHEL 5, RHEL 6, Fedora 15, Fedora 16, Fedora 17
 - Based on 'libkarma-0.1.2-1mdv2011.0'
 

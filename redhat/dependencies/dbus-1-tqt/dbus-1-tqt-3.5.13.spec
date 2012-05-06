@@ -1,23 +1,11 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 1
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
-BuildRequires:	qt3-devel >= 3.3.8d
-Requires:	qt3 >= 3.3.8d
-
-
 Name:		dbus-1-tqt
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	Dbus TQT Interface
 Group:		System Environment/Libraries
@@ -30,12 +18,15 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}.tar.gz
 
-# Fix for a nasty memleak in knetworkmanager
-Patch0:		dbus1tqt-3.5.13-memory_leak.patch
-
 BuildRequires:	gcc-c++
 BuildRequires:	dbus-devel
 BuildRequires:	tqtinterface-devel
+
+# TDE 3.5.13 specific building variables
+BuildRequires:	cmake >= 2.8
+BuildRequires:	qt3-devel >= 3.3.8.d
+Requires:		qt3 >= 3.3.8.d
+
 
 %description
 Dbus TQT Interface
@@ -52,7 +43,6 @@ Development files for %{name}
 
 %prep
 %setup -q -n dependencies/%{name}
-#patch0 -p1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh

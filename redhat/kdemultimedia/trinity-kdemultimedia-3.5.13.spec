@@ -1,17 +1,10 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 6
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -30,9 +23,9 @@ BuildRequires: cmake >= 2.8
 %endif
 
 Name:    trinity-kdemultimedia
-Summary: Multimedia applications for the K Desktop Environment (KDE)
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Summary: Multimedia applications for the Trinity Desktop Environment (TDE)
+Version: 3.5.13
+Release: 6%{?dist}%{?_variant}
 
 License: GPLv2
 Group:   Applications/Multimedia
@@ -64,6 +57,7 @@ Patch22:	kdemultimedia-3.5.13-fix_linear_alphabet.patch
 
 Requires: %{name}-libs = %{version}-%{release}
 
+BuildRequires: cmake >= 2.8
 BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
 

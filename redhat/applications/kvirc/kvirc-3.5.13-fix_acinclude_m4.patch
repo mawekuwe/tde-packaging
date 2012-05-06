@@ -1,0 +1,66 @@
+diff -u a/acinclude.m4 b/acinclude.m4
+--- a/acinclude.m4
++++ b/acinclude.m4
+@@ -2149,7 +2149,7 @@
+ 	if test -n "$KDEDIR"; then
+ 		ss_kde_general_test_dirs="$KDEDIR $ss_kde_general_test_dirs"
+ 	fi
+-	ss_kde_general_test_path_suffix="kde kde3.0 kde3 KDE Kde KDE3 kde3 ."
++	ss_kde_general_test_path_suffix="trinity kde kde3.0 kde3 KDE Kde KDE3 kde3 ."
+ 
+ 	AC_SS_FIND_FILE_PATH_EXT($SS_KDE_GENERAL_FILE_TO_SEARCH,$ss_kde_general_test_dirs,$ss_kde_general_test_path_suffix,SS_KDE_GENERAL_DIR)
+ 
+@@ -2524,7 +2524,7 @@
+ 
+ 	if test -n "$SS_OTHER_LIBDIRS"; then
+ 		SS_LIBDIRS="$SS_LIBDIRS $SS_OTHER_LIBDIRS"
+-		$SS_OTHER_LIBDIRS=`echo "$SS_OTHER_LIBDIRS" | sed -e s/-L//g`
++		SS_OTHER_LIBDIRS=`echo "$SS_OTHER_LIBDIRS" | sed -e s/-L//g`
+ 		SS_RPATH="$SS_RPATH -rpath $SS_OTHER_LIBDIRS"
+ 	fi
+ 
+diff -u a/admin/acinclude.m4.in b/admin/acinclude.m4.in
+--- a/admin/acinclude.m4.in
++++ b/admin/acinclude.m4.in
+@@ -2149,7 +2149,7 @@
+ 	if test -n "$KDEDIR"; then
+ 		ss_kde_general_test_dirs="$KDEDIR $ss_kde_general_test_dirs"
+ 	fi
+-	ss_kde_general_test_path_suffix="kde kde3.0 kde3 KDE Kde KDE3 kde3 ."
++	ss_kde_general_test_path_suffix="trinity kde kde3.0 kde3 KDE Kde KDE3 kde3 ."
+ 
+ 	AC_SS_FIND_FILE_PATH_EXT($SS_KDE_GENERAL_FILE_TO_SEARCH,$ss_kde_general_test_dirs,$ss_kde_general_test_path_suffix,SS_KDE_GENERAL_DIR)
+ 
+@@ -2524,7 +2524,7 @@
+ 
+ 	if test -n "$SS_OTHER_LIBDIRS"; then
+ 		SS_LIBDIRS="$SS_LIBDIRS $SS_OTHER_LIBDIRS"
+-		$SS_OTHER_LIBDIRS=`echo "$SS_OTHER_LIBDIRS" | sed -e s/-L//g`
++		SS_OTHER_LIBDIRS=`echo "$SS_OTHER_LIBDIRS" | sed -e s/-L//g`
+ 		SS_RPATH="$SS_RPATH -rpath $SS_OTHER_LIBDIRS"
+ 	fi
+ 
+diff -u a/src/modules/mediaplayer/Makefile.am b/src/modules/mediaplayer/Makefile.am
+--- a/src/modules/mediaplayer/Makefile.am
++++ b/src/modules/mediaplayer/Makefile.am
+@@ -10,7 +10,7 @@
+ #%.moc: %.h
+ #	$(SS_QT_MOC) $< -o $@
+ 
+-libkvimediaplayer_la_LDFLAGS = -avoid-version -module
++libkvimediaplayer_la_LDFLAGS = -avoid-version -module $(SS_LDFLAGS) $(SS_LIBDIRS)
+ 
+ libkvimediaplayer_la_SOURCES = libkvimediaplayer.cpp \
+ 		mp_amarokinterface.cpp \
+diff -u a/src/modules/torrent/Makefile.am b/src/modules/torrent/Makefile.am
+--- a/src/modules/torrent/Makefile.am
++++ b/src/modules/torrent/Makefile.am
+@@ -10,7 +10,7 @@
+ #%.moc: %.h
+ #	$(SS_QT_MOC) $< -o $@
+ 
+-libkvitorrent_la_LDFLAGS = -avoid-version -module
++libkvitorrent_la_LDFLAGS = -avoid-version -module $(SS_LDFLAGS) $(SS_LIBDIRS)
+ 
+ libkvitorrent_la_SOURCES = libkvitorrent.cpp \
+ 		tc_interface.cpp \

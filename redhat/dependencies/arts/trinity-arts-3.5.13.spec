@@ -1,21 +1,11 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 4
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
-
-
 Name:		trinity-arts
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	4%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the KDE sound system
 Group:		System Environment/Daemons 
@@ -44,6 +34,9 @@ BuildRequires:	gsl-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	esound-devel
 BuildRequires:	jack-audio-connection-kit-devel
+
+# TDE 3.5.13 specific building variables
+BuildRequires: cmake >= 2.8
 
 Requires:		tqtinterface
 Requires:		audiofile

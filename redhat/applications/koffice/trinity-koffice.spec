@@ -108,9 +108,13 @@ BuildRequires:	libutempter-devel
 BuildRequires:	GraphicsMagick-devel >= 1.1.0
 
 BuildRequires:  trinity-wv2-devel
-BuildRequires:	trinity-poppler-qt3-devel >= 0.1.2
 BuildRequires:	trinity-libwpd-devel
 BuildRequires:  trinity-libpqxx-devel
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+BuildRequires:	poppler-qt-devel >= 0.1.2
+%else
+BuildRequires:	trinity-poppler-qt3-devel >= 0.1.2
+%endif
 
 %description
 KOffice is an integrated office suite.

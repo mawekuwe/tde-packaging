@@ -1,0 +1,627 @@
+commit 9b57232f1beb774a8a4bab4ae1f85999e193d037
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324316180 -0600
+
+    Remove additional unneeded tq method conversions
+
+diff --git a/kdiff3plugin/kdiff3plugin.cpp b/kdiff3plugin/kdiff3plugin.cpp
+index 53360b6..ec008f1 100755
+--- a/kdiff3plugin/kdiff3plugin.cpp
++++ b/kdiff3plugin/kdiff3plugin.cpp
+@@ -101,17 +101,17 @@ KDiff3Plugin::KDiff3Plugin( KonqPopupMenu* pPopupmenu, const char *name, const T
+    if(m_list.count() == 1)
+    {
+       int historyCount = s_pHistory ? s_pHistory->count() : 0;
+-      s = i18n("Compare with %1").tqarg( historyCount>0 ? s_pHistory->front() : TQString() );
++      s = i18n("Compare with %1").arg( historyCount>0 ? s_pHistory->front() : TQString() );
+       pAction = new KAction ( s,0, this, TQT_SLOT(slotCompareWith()), actionCollection());
+       pAction->setEnabled( m_list.count()>0 && historyCount>0 );
+       pActionMenu->insert (pAction);
+ 
+-      s = i18n("Merge with %1").tqarg( historyCount>0 ? s_pHistory->front() : TQString() );
++      s = i18n("Merge with %1").arg( historyCount>0 ? s_pHistory->front() : TQString() );
+       pAction = new KAction( s, 0, this, TQT_SLOT(slotMergeWith()), actionCollection());
+       pAction->setEnabled( m_list.count()>0 && historyCount>0 );
+       pActionMenu->insert (pAction);
+ 
+-      s = i18n("Save '%1' for later").tqarg( ( m_list.front() ) );
++      s = i18n("Save '%1' for later").arg( ( m_list.front() ) );
+       pAction = new KAction ( s, 0, this, TQT_SLOT(slotSaveForLater()), actionCollection());
+       pAction->setEnabled( m_list.count()>0 );
+       pActionMenu->insert(pAction);
+diff --git a/src/diff.cpp b/src/diff.cpp
+index 136275c..722950f 100644
+--- a/src/diff.cpp
++++ b/src/diff.cpp
+@@ -492,7 +492,7 @@ void SourceData::readAndPreprocess( TQTextCodec* pEncoding, bool bAutoDetectUnic
+             KMessageBox::error(m_pOptionDialog, 
+                i18n("Preprocessing possibly failed. Check this command:\n\n  %1"
+                   "\n\nThe preprocessing command will be disabled now."
+-               ).tqarg(cmd) );
++               ).arg(cmd) );
+             m_pOptionDialog->m_PreProcessorCmd = "";
+             m_normalData.readFile( fileNameIn1 );
+             pEncoding1 = m_pEncoding;
+@@ -527,7 +527,7 @@ void SourceData::readAndPreprocess( TQTextCodec* pEncoding, bool bAutoDetectUnic
+             KMessageBox::error(m_pOptionDialog, 
+                i18n("The line-matching-preprocessing possibly failed. Check this command:\n\n  %1"
+                     "\n\nThe line-matching-preprocessing command will be disabled now."
+-                   ).tqarg(cmd) );
++                   ).arg(cmd) );
+             m_pOptionDialog->m_LineMatchingPreProcessorCmd = "";
+             m_lmppData.readFile( fileNameIn2 );
+          }
+@@ -1190,7 +1190,7 @@ void correctManualDiffAlignment( Diff3LineList& d3ll, ManualDiffHelpList* pManua
+    if ( pManualDiffHelpList->empty() )
+       return;
+ 
+-   // If a line appears unaligned in comparison to the manual tqalignment, correct this.
++   // If a line appears unaligned in comparison to the manual alignment, correct this.
+ 
+    ManualDiffHelpList::iterator iMDHL;
+    for( iMDHL =  pManualDiffHelpList->begin(); iMDHL != pManualDiffHelpList->end(); ++iMDHL )
+@@ -1228,7 +1228,7 @@ void correctManualDiffAlignment( Diff3LineList& d3ll, ManualDiffHelpList* pManua
+ 
+       if (wi>=1 && wi <= 3)
+       {
+-         // Found manual tqalignment for one source
++         // Found manual alignment for one source
+          Diff3LineList::iterator iDest = i3;
+ 
+          // Move lines up until the next firstLine is found. Omit wi from move and search.
+diff --git a/src/difftextwindow.cpp b/src/difftextwindow.cpp
+index 361eb73..e8124fa 100644
+--- a/src/difftextwindow.cpp
++++ b/src/difftextwindow.cpp
+@@ -1656,7 +1656,7 @@ void DiffTextWindowFrame::setFirstLine( int firstLine )
+          s += " " + TQString::number( l+1 );
+ 
+       d->m_pTopLine->setText( s );
+-      d->m_pTopLine->tqrepaint();
++      d->m_pTopLine->repaint();
+    }
+ }
+ 
+diff --git a/src/directorymergewindow.cpp b/src/directorymergewindow.cpp
+index 0520af3..b4f6b20 100644
+--- a/src/directorymergewindow.cpp
++++ b/src/directorymergewindow.cpp
+@@ -187,13 +187,13 @@ void DirectoryMergeWindow::fastFileComparison(
+    TempRemover tr1( fileName1, fi1 );
+    if ( !tr1.success() )
+    {
+-      status = i18n("Creating temp copy of %1 failed.").tqarg(fileName1);
++      status = i18n("Creating temp copy of %1 failed.").arg(fileName1);
+       return;
+    }
+    TempRemover tr2( fileName2, fi2 );
+    if ( !tr2.success() )
+    {
+-      status = i18n("Creating temp copy of %1 failed.").tqarg(fileName2);
++      status = i18n("Creating temp copy of %1 failed.").arg(fileName2);
+       return;
+    }
+ 
+@@ -204,7 +204,7 @@ void DirectoryMergeWindow::fastFileComparison(
+ 
+    if ( ! file1.open(IO_ReadOnly) )
+    {
+-      status = i18n("Opening %1 failed.").tqarg(fileName1);
++      status = i18n("Opening %1 failed.").arg(fileName1);
+       return;
+    }
+ 
+@@ -212,7 +212,7 @@ void DirectoryMergeWindow::fastFileComparison(
+ 
+    if ( ! file2.open(IO_ReadOnly) )
+    {
+-      status = i18n("Opening %1 failed.").tqarg(fileName2);
++      status = i18n("Opening %1 failed.").arg(fileName2);
+       return;
+    }
+ 
+@@ -230,13 +230,13 @@ void DirectoryMergeWindow::fastFileComparison(
+       int len = min2( sizeLeft, (t_FileSize)buf1.size() );
+       if( len != file1.readBlock( &buf1[0], len ) )
+       {
+-         status = i18n("Error reading from %1").tqarg(fileName1);
++         status = i18n("Error reading from %1").arg(fileName1);
+          return;
+       }
+ 
+       if( len != file2.readBlock( &buf2[0], len ) )
+       {
+-         status = i18n("Error reading from %1").tqarg(fileName2);
++         status = i18n("Error reading from %1").arg(fileName2);
+          return;
+       }
+ 
+@@ -507,13 +507,13 @@ bool DirectoryMergeWindow::init
+        TQString text( i18n("Opening of directories failed:") );
+        text += "\n\n";
+        if ( !dirA.isDir() )
+-       {  text += i18n("Dir A \"%1\" does not exist or is not a directory.\n").tqarg(m_dirA.prettyAbsPath()); }
++       {  text += i18n("Dir A \"%1\" does not exist or is not a directory.\n").arg(m_dirA.prettyAbsPath()); }
+ 
+        if ( !dirB.isDir() )
+-       {  text += i18n("Dir B \"%1\" does not exist or is not a directory.\n").tqarg(m_dirB.prettyAbsPath()); }
++       {  text += i18n("Dir B \"%1\" does not exist or is not a directory.\n").arg(m_dirB.prettyAbsPath()); }
+ 
+        if ( m_dirC.isValid() && !m_dirC.isDir() )
+-       {  text += i18n("Dir C \"%1\" does not exist or is not a directory.\n").tqarg(m_dirC.prettyAbsPath()); }
++       {  text += i18n("Dir C \"%1\" does not exist or is not a directory.\n").arg(m_dirC.prettyAbsPath()); }
+ 
+        KMessageBox::sorry( this, text, i18n("Directory Open Error") );
+        return false;
+@@ -2138,7 +2138,7 @@ void DirectoryMergeWindow::slotRunOperationForCurrentItem()
+    if ( m_mergeItemList.empty() )
+    {
+       TQListViewItem* pBegin = currentItem();
+-      TQListViewItem* pEnd = treeIterator(pBegin,false,false); // find next visible sibling (no tqchildren)
++      TQListViewItem* pEnd = treeIterator(pBegin,false,false); // find next visible sibling (no children)
+ 
+       prepareMergeStart( pBegin, pEnd, bVerbose );
+       mergeContinue(true, bVerbose);
+@@ -2411,16 +2411,16 @@ bool DirectoryMergeWindow::deleteFLD( const TQString& name, bool bCreateBackup )
+       bool bSuccess = renameFLD( name, name+".orig" );
+       if (!bSuccess)
+       {
+-         m_pStatusInfo->addText( i18n("Error: While deleting %1: Creating backup failed.").tqarg(name) );
++         m_pStatusInfo->addText( i18n("Error: While deleting %1: Creating backup failed.").arg(name) );
+          return false;
+       }
+    }
+    else
+    {
+       if ( fi.isDir() && !fi.isSymLink() )
+-         m_pStatusInfo->addText(i18n("delete directory recursively( %1 )").tqarg(name));
++         m_pStatusInfo->addText(i18n("delete directory recursively( %1 )").arg(name));
+       else
+-         m_pStatusInfo->addText(i18n("delete( %1 )").tqarg(name));
++         m_pStatusInfo->addText(i18n("delete( %1 )").arg(name));
+ 
+       if ( m_bSimulatedMergeStarted )
+       {
+@@ -2454,7 +2454,7 @@ bool DirectoryMergeWindow::deleteFLD( const TQString& name, bool bCreateBackup )
+             bSuccess = FileAccess::removeDir( name );
+             if ( !bSuccess )
+             {
+-               m_pStatusInfo->addText( i18n("Error: rmdir( %1 ) operation failed.").tqarg(name));
++               m_pStatusInfo->addText( i18n("Error: rmdir( %1 ) operation failed.").arg(name));
+                return false;
+             }
+          }
+@@ -2490,7 +2490,7 @@ bool DirectoryMergeWindow::mergeFLD( const TQString& nameA,const TQString& nameB
+          return false;
+    }
+ 
+-   m_pStatusInfo->addText(i18n("manual merge( %1, %2, %3 -> %4)").tqarg(nameA).tqarg(nameB).tqarg(nameC).tqarg(nameDest));
++   m_pStatusInfo->addText(i18n("manual merge( %1, %2, %3 -> %4)").arg(nameA).arg(nameB).arg(nameC).arg(nameDest));
+    if ( m_bSimulatedMergeStarted )
+    {
+       m_pStatusInfo->addText(i18n("     Note: After a manual merge the user should continue by pressing F7.") );
+@@ -2517,7 +2517,7 @@ bool DirectoryMergeWindow::copyFLD( const TQString& srcName, const TQString& des
+       if ( !bSuccess )
+       {
+          m_pStatusInfo->addText(i18n("Error: copy( %1 -> %2 ) failed."
+-            "Deleting existing destination failed.").tqarg(srcName).tqarg(destName));
++            "Deleting existing destination failed.").arg(srcName).arg(destName));
+          return false;
+       }
+    }
+@@ -2526,7 +2526,7 @@ bool DirectoryMergeWindow::copyFLD( const TQString& srcName, const TQString& des
+ 
+    if ( fi.isSymLink() && (fi.isDir() && !m_bFollowDirLinks  ||  !fi.isDir() && !m_bFollowFileLinks) )
+    {
+-      m_pStatusInfo->addText(i18n("copyLink( %1 -> %2 )").tqarg(srcName).tqarg(destName));
++      m_pStatusInfo->addText(i18n("copyLink( %1 -> %2 )").arg(srcName).arg(destName));
+ #ifdef _WIN32
+       // What are links?
+ #else
+@@ -2563,7 +2563,7 @@ bool DirectoryMergeWindow::copyFLD( const TQString& srcName, const TQString& des
+          return false;
+    }
+ 
+-   m_pStatusInfo->addText(i18n("copy( %1 -> %2 )").tqarg(srcName).tqarg(destName));
++   m_pStatusInfo->addText(i18n("copy( %1 -> %2 )").arg(srcName).arg(destName));
+ 
+    if ( m_bSimulatedMergeStarted )
+    {
+@@ -2590,12 +2590,12 @@ bool DirectoryMergeWindow::renameFLD( const TQString& srcName, const TQString& d
+       if (!bSuccess)
+       {
+          m_pStatusInfo->addText( i18n("Error during rename( %1 -> %2 ): "
+-                             "Cannot delete existing destination." ).tqarg(srcName).tqarg(destName));
++                             "Cannot delete existing destination." ).arg(srcName).arg(destName));
+          return false;
+       }
+    }
+ 
+-   m_pStatusInfo->addText(i18n("rename( %1 -> %2 )").tqarg(srcName).tqarg(destName));
++   m_pStatusInfo->addText(i18n("rename( %1 -> %2 )").arg(srcName).arg(destName));
+    if ( m_bSimulatedMergeStarted )
+    {
+       return true;
+@@ -2623,7 +2623,7 @@ bool DirectoryMergeWindow::makeDir( const TQString& name, bool bQuiet )
+       if (!bSuccess)
+       {
+          m_pStatusInfo->addText( i18n("Error during makeDir of %1. "
+-                             "Cannot delete existing file." ).tqarg(name));
++                             "Cannot delete existing file." ).arg(name));
+          return false;
+       }
+    }
+@@ -2638,7 +2638,7 @@ bool DirectoryMergeWindow::makeDir( const TQString& name, bool bQuiet )
+    }
+ 
+    if ( ! bQuiet )
+-      m_pStatusInfo->addText(i18n("makeDir( %1 )").tqarg(name));
++      m_pStatusInfo->addText(i18n("makeDir( %1 )").arg(name));
+ 
+    if ( m_bSimulatedMergeStarted )
+    {
+diff --git a/src/fileaccess.cpp b/src/fileaccess.cpp
+index 01b8d48..1f90d5d 100644
+--- a/src/fileaccess.cpp
++++ b/src/fileaccess.cpp
+@@ -625,7 +625,7 @@ bool FileAccessJobHandler::stat( int detail, bool bWantToWrite )
+ 
+    connect( pStatJob, TQT_SIGNAL(result(KIO::Job*)), this, TQT_SLOT(slotStatResult(KIO::Job*)));
+ 
+-   g_pProgressDialog->enterEventLoop( pStatJob, i18n("Getting file status: %1").tqarg(m_pFileAccess->prettyAbsPath()) );
++   g_pProgressDialog->enterEventLoop( pStatJob, i18n("Getting file status: %1").arg(m_pFileAccess->prettyAbsPath()) );
+ 
+    return m_bSuccess;
+ }
+@@ -668,7 +668,7 @@ bool FileAccessJobHandler::get(void* pDestBuffer, long maxLength )
+       connect( pJob, TQT_SIGNAL(data(KIO::Job*,const TQByteArray &)), this, TQT_SLOT(slotGetData(KIO::Job*, const TQByteArray&)));
+       connect( pJob, TQT_SIGNAL(percent(KIO::Job*,unsigned long)), this, TQT_SLOT(slotPercent(KIO::Job*, unsigned long)));
+ 
+-      g_pProgressDialog->enterEventLoop( pJob, i18n("Reading file: %1").tqarg(m_pFileAccess->prettyAbsPath()) );
++      g_pProgressDialog->enterEventLoop( pJob, i18n("Reading file: %1").arg(m_pFileAccess->prettyAbsPath()) );
+       return m_bSuccess;
+    }
+    else
+@@ -704,7 +704,7 @@ bool FileAccessJobHandler::put(const void* pSrcBuffer, long maxLength, bool bOve
+       connect( pJob, TQT_SIGNAL(dataReq(KIO::Job*, TQByteArray&)), this, TQT_SLOT(slotPutData(KIO::Job*, TQByteArray&)));
+       connect( pJob, TQT_SIGNAL(percent(KIO::Job*,unsigned long)), this, TQT_SLOT(slotPercent(KIO::Job*, unsigned long)));
+ 
+-      g_pProgressDialog->enterEventLoop( pJob, i18n("Writing file: %1").tqarg(m_pFileAccess->prettyAbsPath()) );
++      g_pProgressDialog->enterEventLoop( pJob, i18n("Writing file: %1").arg(m_pFileAccess->prettyAbsPath()) );
+       return m_bSuccess;
+    }
+    else
+@@ -721,7 +721,7 @@ void FileAccessJobHandler::slotPutData( KIO::Job* pJob, TQByteArray& data )
+    {
+       long maxChunkSize = 100000;
+       long length = min2( maxChunkSize, m_maxLength - m_transferredBytes );
+-      bool bSuccess = data.tqresize( length );
++      bool bSuccess = data.resize( length );
+       if ( bSuccess )
+       {
+          if ( length>0 )
+@@ -767,7 +767,7 @@ bool FileAccessJobHandler::mkDir( const TQString& dirName )
+       KIO::SimpleJob* pJob = KIO::mkdir( dirURL );
+       connect( pJob, TQT_SIGNAL(result(KIO::Job*)), this, TQT_SLOT(slotSimpleJobResult(KIO::Job*)));
+ 
+-      g_pProgressDialog->enterEventLoop( pJob, i18n("Making directory: %1").tqarg(dirName) );
++      g_pProgressDialog->enterEventLoop( pJob, i18n("Making directory: %1").arg(dirName) );
+       return m_bSuccess;
+    }
+ }
+@@ -787,7 +787,7 @@ bool FileAccessJobHandler::rmDir( const TQString& dirName )
+       KIO::SimpleJob* pJob = KIO::rmdir( dirURL );
+       connect( pJob, TQT_SIGNAL(result(KIO::Job*)), this, TQT_SLOT(slotSimpleJobResult(KIO::Job*)));
+ 
+-      g_pProgressDialog->enterEventLoop(pJob, i18n("Removing directory: %1").tqarg(dirName));
++      g_pProgressDialog->enterEventLoop(pJob, i18n("Removing directory: %1").arg(dirName));
+       return m_bSuccess;
+    }
+ }
+@@ -802,7 +802,7 @@ bool FileAccessJobHandler::removeFile( const TQString& fileName )
+       KIO::SimpleJob* pJob = KIO::file_delete( KURL::fromPathOrURL(fileName), false );
+       connect( pJob, TQT_SIGNAL(result(KIO::Job*)), this, TQT_SLOT(slotSimpleJobResult(KIO::Job*)));
+ 
+-      g_pProgressDialog->enterEventLoop( pJob, i18n("Removing file: %1").tqarg(fileName) );
++      g_pProgressDialog->enterEventLoop( pJob, i18n("Removing file: %1").arg(fileName) );
+       return m_bSuccess;
+    }
+ }
+@@ -818,7 +818,7 @@ bool FileAccessJobHandler::symLink( const TQString& linkTarget, const TQString&
+       connect( pJob, TQT_SIGNAL(result(KIO::Job*)), this, TQT_SLOT(slotSimpleJobResult(KIO::Job*)));
+ 
+       g_pProgressDialog->enterEventLoop( pJob,
+-         i18n("Creating symbolic link: %1 -> %2").tqarg(linkLocation).tqarg(linkTarget) );
++         i18n("Creating symbolic link: %1 -> %2").arg(linkLocation).arg(linkTarget) );
+       return m_bSuccess;
+    }
+ }
+@@ -848,7 +848,7 @@ bool FileAccessJobHandler::rename( const TQString& dest )
+       connect( pJob, TQT_SIGNAL(percent(KIO::Job*,unsigned long)), this, TQT_SLOT(slotPercent(KIO::Job*, unsigned long)));
+ 
+       g_pProgressDialog->enterEventLoop( pJob,
+-         i18n("Renaming file: %1 -> %2").tqarg(m_pFileAccess->prettyAbsPath()).tqarg(dest) );
++         i18n("Renaming file: %1 -> %2").arg(m_pFileAccess->prettyAbsPath()).arg(dest) );
+       return m_bSuccess;
+    }
+ }
+@@ -884,7 +884,7 @@ bool FileAccessJobHandler::copyFile( const TQString& dest )
+       connect( pJob, TQT_SIGNAL(result(KIO::Job*)), this, TQT_SLOT(slotSimpleJobResult(KIO::Job*)));
+       connect( pJob, TQT_SIGNAL(percent(KIO::Job*,unsigned long)), this, TQT_SLOT(slotPercent(KIO::Job*, unsigned long)));
+       g_pProgressDialog->enterEventLoop( pJob,
+-         i18n("Copying file: %1 -> %2").tqarg(m_pFileAccess->prettyAbsPath()).tqarg(dest) );
++         i18n("Copying file: %1 -> %2").arg(m_pFileAccess->prettyAbsPath()).arg(dest) );
+ 
+       return m_bSuccess;
+       // Note that the KIO-slave preserves the original date, if this is supported.
+@@ -898,13 +898,13 @@ bool FileAccessJobHandler::copyFile( const TQString& dest )
+    bool bReadSuccess = srcFile.open( IO_ReadOnly );
+    if ( bReadSuccess == false )
+    {
+-      m_pFileAccess->m_statusText = i18n("Error during file copy operation: Opening file for reading failed. Filename: %1").tqarg(srcName);
++      m_pFileAccess->m_statusText = i18n("Error during file copy operation: Opening file for reading failed. Filename: %1").arg(srcName);
+       return false;
+    }
+    bool bWriteSuccess = destFile.open( IO_WriteOnly );
+    if ( bWriteSuccess == false )
+    {
+-      m_pFileAccess->m_statusText = i18n("Error during file copy operation: Opening file for writing failed. Filename: %1").tqarg(destName);
++      m_pFileAccess->m_statusText = i18n("Error during file copy operation: Opening file for writing failed. Filename: %1").arg(destName);
+       return false;
+    }
+ 
+@@ -916,7 +916,7 @@ bool FileAccessJobHandler::copyFile( const TQString& dest )
+       TQ_LONG readSize = srcFile.readBlock( &buffer[0], min2( srcSize, bufSize ) );
+       if ( readSize==-1 || readSize==0 )
+       {
+-         m_pFileAccess->m_statusText = i18n("Error during file copy operation: Reading failed. Filename: %1").tqarg(srcName);
++         m_pFileAccess->m_statusText = i18n("Error during file copy operation: Reading failed. Filename: %1").arg(srcName);
+          return false;
+       }
+       srcSize -= readSize;
+@@ -925,7 +925,7 @@ bool FileAccessJobHandler::copyFile( const TQString& dest )
+          TQ_LONG writeSize = destFile.writeBlock( &buffer[0], readSize );
+          if ( writeSize==-1 || writeSize==0 )
+          {
+-            m_pFileAccess->m_statusText = i18n("Error during file copy operation: Writing failed. Filename: %1").tqarg(destName);
++            m_pFileAccess->m_statusText = i18n("Error during file copy operation: Writing failed. Filename: %1").arg(destName);
+             return false;
+          }
+          readSize -= writeSize;
+@@ -1344,7 +1344,7 @@ bool FileAccessJobHandler::listDir( t_DirectoryList* pDirList, bool bRecursive,
+          //connect( pListJob, TQT_SIGNAL(percent(KIO::Job*,unsigned long)), this, TQT_SLOT(slotPercent(KIO::Job*, unsigned long)));
+ 
+          g_pProgressDialog->enterEventLoop( pListJob,
+-            i18n("Listing directory: %1").tqarg(m_pFileAccess->prettyAbsPath()) );
++            i18n("Listing directory: %1").arg(m_pFileAccess->prettyAbsPath()) );
+       }
+    }
+ 
+diff --git a/src/gnudiff_diff.h b/src/gnudiff_diff.h
+index 7bc8b92..482435c 100644
+--- a/src/gnudiff_diff.h
++++ b/src/gnudiff_diff.h
+@@ -110,7 +110,7 @@ bool brief;
+ bool expand_tabs;
+ 
+ /* Use a tab in the output, rather than a space, before the text of an
+-   input line, so as to keep the proper tqalignment in the input line
++   input line, so as to keep the proper alignment in the input line
+    without changing the characters in it (-T).  */
+ bool initial_tab;
+ 
+diff --git a/src/kdiff3.cpp b/src/kdiff3.cpp
+index e6b3f40..ef1a843 100644
+--- a/src/kdiff3.cpp
++++ b/src/kdiff3.cpp
+@@ -259,7 +259,7 @@ KDiff3App::KDiff3App(TQWidget* pParent, const char* name, KDiff3Part* pKDiff3Par
+       slotViewStatusBar();
+       if( toolBar("mainToolBar")!=0 )
+          toolBar("mainToolBar")->setBarPos( (KToolBar::BarPosition) m_pOptionDialog->m_toolBarPos );
+-/*      TQSize size = m_pOptionDialog->m_tqgeometry;
++/*      TQSize size = m_pOptionDialog->m_geometry;
+       TQPoint pos = m_pOptionDialog->m_position;
+       if(!size.isEmpty())
+       {
+@@ -303,7 +303,7 @@ void KDiff3App::completeInit( const TQString& fn1, const TQString& fn2, const TQ
+ {
+    if (m_pKDiff3Shell!=0)
+    {
+-      TQSize size=m_pOptionDialog->m_tqgeometry;
++      TQSize size=m_pOptionDialog->m_geometry;
+       TQPoint pos=m_pOptionDialog->m_position;
+       if(!size.isEmpty())
+       {
+@@ -577,7 +577,7 @@ void KDiff3App::saveOptions( KConfig* config )
+          m_pOptionDialog->m_bMaximised = m_pKDiff3Shell->isMaximized();
+          if( ! m_pKDiff3Shell->isMaximized() && m_pKDiff3Shell->isVisible() )
+          {
+-            m_pOptionDialog->m_tqgeometry = m_pKDiff3Shell->size();
++            m_pOptionDialog->m_geometry = m_pKDiff3Shell->size();
+             m_pOptionDialog->m_position = m_pKDiff3Shell->pos();
+          }
+          if ( toolBar("mainToolBar")!=0 )
+diff --git a/src/kdiff3.h b/src/kdiff3.h
+index c81ae71..46c0d3c 100644
+--- a/src/kdiff3.h
++++ b/src/kdiff3.h
+@@ -110,7 +110,7 @@ class KDiff3App : public TQSplitter
+     /** initializes the KActions of the application */
+     void initActions( KActionCollection* );
+ 
+-    /** save general Options like all bar positions and status as well as the tqgeometry
++    /** save general Options like all bar positions and status as well as the geometry
+         and the recent file list to the configuration file */
+     void saveOptions( KConfig* );
+ 
+diff --git a/src/kreplacements/kreplacements.cpp b/src/kreplacements/kreplacements.cpp
+index 75894a1..c49adaf 100644
+--- a/src/kreplacements/kreplacements.cpp
++++ b/src/kreplacements/kreplacements.cpp
+@@ -676,7 +676,7 @@ KToggleAction* KStdAction::showStatusbar( TQWidget* parent, const char* slot, KA
+ KAction* KStdAction::preferences( TQWidget* parent, const char* slot, KActionCollection* actionCollection)
+ {
+    KMainWindow* p = actionCollection->m_pMainWindow;
+-   KAction* a = new KAction( i18n("&Configure %1...").tqarg("KDiff3"), 0, parent, slot, actionCollection, "settings", false, false );
++   KAction* a = new KAction( i18n("&Configure %1...").arg("KDiff3"), 0, parent, slot, actionCollection, "settings", false, false );
+    if(p) a->addTo( p->settingsMenu );
+    return a;
+ }
+diff --git a/src/mergeresultwindow.cpp b/src/mergeresultwindow.cpp
+index a222a14..dea1407 100644
+--- a/src/mergeresultwindow.cpp
++++ b/src/mergeresultwindow.cpp
+@@ -134,7 +134,7 @@ void MergeResultWindow::init(
+    int nofUnsolved = getNrOfUnsolvedConflicts(&wsc);
+    if (m_pStatusBar)
+       m_pStatusBar->message( i18n("Number of remaining unsolved conflicts: %1 (of which %2 are whitespace)")
+-         .tqarg(nofUnsolved).tqarg(wsc) );
++         .arg(nofUnsolved).arg(wsc) );
+ }
+ 
+ void MergeResultWindow::reset()
+@@ -809,12 +809,12 @@ void MergeResultWindow::showNrOfConflicts()
+    else  if ( m_pTotalDiffStatus->bTextAEqB && m_pTotalDiffStatus->bTextAEqC )
+       totalInfo += i18n("All input files contain the same text.");
+    else {
+-      if    ( m_pTotalDiffStatus->bBinaryAEqB ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("A").tqarg("B");
+-      else if ( m_pTotalDiffStatus->bTextAEqB ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("A").tqarg("B");
+-      if    ( m_pTotalDiffStatus->bBinaryAEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("A").tqarg("C");
+-      else if ( m_pTotalDiffStatus->bTextAEqC ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("A").tqarg("C");
+-      if    ( m_pTotalDiffStatus->bBinaryBEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").tqarg("B").tqarg("C");
+-      else if ( m_pTotalDiffStatus->bTextBEqC ) totalInfo += i18n("Files %1 and %2 have equal text.\n").tqarg("B").tqarg("C");
++      if    ( m_pTotalDiffStatus->bBinaryAEqB ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").arg("A").arg("B");
++      else if ( m_pTotalDiffStatus->bTextAEqB ) totalInfo += i18n("Files %1 and %2 have equal text.\n").arg("A").arg("B");
++      if    ( m_pTotalDiffStatus->bBinaryAEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").arg("A").arg("C");
++      else if ( m_pTotalDiffStatus->bTextAEqC ) totalInfo += i18n("Files %1 and %2 have equal text.\n").arg("A").arg("C");
++      if    ( m_pTotalDiffStatus->bBinaryBEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n").arg("B").arg("C");
++      else if ( m_pTotalDiffStatus->bTextBEqC ) totalInfo += i18n("Files %1 and %2 have equal text.\n").arg("B").arg("C");
+    }
+ 
+    int nrOfUnsolvedConflicts = getNrOfUnsolvedConflicts();
+@@ -948,7 +948,7 @@ void MergeResultWindow::choose( int selector )
+    int wsc;
+    int nofUnsolved = getNrOfUnsolvedConflicts(&wsc);
+    m_pStatusBar->message( i18n("Number of remaining unsolved conflicts: %1 (of which %2 are whitespace)")
+-         .tqarg(nofUnsolved).tqarg(wsc) );
++         .arg(nofUnsolved).arg(wsc) );
+ }
+ 
+ // bConflictsOnly: automatically choose for conflicts only (true) or for everywhere (false)
+@@ -962,7 +962,7 @@ void MergeResultWindow::chooseGlobal(int selector, bool bConflictsOnly, bool bWh
+    int wsc;
+    int nofUnsolved = getNrOfUnsolvedConflicts(&wsc);
+    m_pStatusBar->message( i18n("Number of remaining unsolved conflicts: %1 (of which %2 are whitespace)")
+-         .tqarg(nofUnsolved).tqarg(wsc) );
++         .arg(nofUnsolved).arg(wsc) );
+ }
+ 
+ void MergeResultWindow::slotAutoSolve()
+@@ -974,7 +974,7 @@ void MergeResultWindow::slotAutoSolve()
+    int wsc;
+    int nofUnsolved = getNrOfUnsolvedConflicts(&wsc);
+    m_pStatusBar->message( i18n("Number of remaining unsolved conflicts: %1 (of which %2 are whitespace)")
+-         .tqarg(nofUnsolved).tqarg(wsc) );
++         .arg(nofUnsolved).arg(wsc) );
+ }
+ 
+ void MergeResultWindow::slotUnsolve()
+@@ -986,7 +986,7 @@ void MergeResultWindow::slotUnsolve()
+    int wsc;
+    int nofUnsolved = getNrOfUnsolvedConflicts(&wsc);
+    m_pStatusBar->message( i18n("Number of remaining unsolved conflicts: %1 (of which %2 are whitespace)")
+-         .tqarg(nofUnsolved).tqarg(wsc) );
++         .arg(nofUnsolved).arg(wsc) );
+ }
+ 
+ static TQString calcHistoryLead(const TQString& s )
+@@ -2105,9 +2105,9 @@ void MergeResultWindow::slotCursorUpdate()
+       int xCursor = ( m_cursorXPos - m_firstColumn ) * fontWidth + xOffset;
+ 
+       if (!m_pOptionDialog->m_bRightToLeftLanguage)
+-         tqrepaint( xCursor-2, yOffset, 5, fm.ascent()+2 );
++         repaint( xCursor-2, yOffset, 5, fm.ascent()+2 );
+       else
+-         tqrepaint( width()-1-4-(xCursor-2), yOffset, 5, fm.ascent()+2 );
++         repaint( width()-1-4-(xCursor-2), yOffset, 5, fm.ascent()+2 );
+ 
+       m_bCursorUpdate=false;
+    }
+diff --git a/src/optiondialog.cpp b/src/optiondialog.cpp
+index 9b46a6d..8b15dc8 100644
+--- a/src/optiondialog.cpp
++++ b/src/optiondialog.cpp
+@@ -495,7 +495,7 @@ void OptionDialog::setupOtherOptions()
+    new OptionToggleAction( true,  "Show Statusbar", &m_bShowStatusBar, this );
+ 
+    new OptionNum( (int)KToolBar::Top, "ToolBarPos", &m_toolBarPos, this );
+-   new OptionSize( TQSize(600,400),"Geometry", &m_tqgeometry, this );
++   new OptionSize( TQSize(600,400),"Geometry", &m_geometry, this );
+    new OptionPoint( TQPoint(0,22), "Position", &m_position, this );
+    new OptionToggleAction( false, "WindowStateMaximised", &m_bMaximised, this );
+ 
+diff --git a/src/optiondialog.h b/src/optiondialog.h
+index 697dfe3..b7a27e6 100644
+--- a/src/optiondialog.h
++++ b/src/optiondialog.h
+@@ -59,7 +59,7 @@ public:
+     TQString calcOptionHelp();
+ 
+     // Some settings are not available in the option dialog:
+-    TQSize  m_tqgeometry;
++    TQSize  m_geometry;
+     TQPoint m_position;
+     bool   m_bMaximised; 
+     bool   m_bShowToolBar;
+diff --git a/src/pdiff.cpp b/src/pdiff.cpp
+index 1452eca..3986596 100644
+--- a/src/pdiff.cpp
++++ b/src/pdiff.cpp
+@@ -512,12 +512,12 @@ void KDiff3App::init( bool bAuto, TotalDiffStatus* pTotalDiffStatus, bool bLoadF
+          else  if ( pTotalDiffStatus->bTextAEqB && pTotalDiffStatus->bTextAEqC )
+             totalInfo += i18n("All input files contain the same text, but are not binary equal.");
+          else {
+-            if    ( pTotalDiffStatus->bBinaryAEqB ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("A").tqarg("B");
+-            else if ( pTotalDiffStatus->bTextAEqB ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("A").tqarg("B");
+-            if    ( pTotalDiffStatus->bBinaryAEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("A").tqarg("C");
+-            else if ( pTotalDiffStatus->bTextAEqC ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("A").tqarg("C");
+-            if    ( pTotalDiffStatus->bBinaryBEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).tqarg("B").tqarg("C");
+-            else if ( pTotalDiffStatus->bTextBEqC ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").tqarg("B").tqarg("C");
++            if    ( pTotalDiffStatus->bBinaryAEqB ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).arg("A").arg("B");
++            else if ( pTotalDiffStatus->bTextAEqB ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").arg("A").arg("B");
++            if    ( pTotalDiffStatus->bBinaryAEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).arg("A").arg("C");
++            else if ( pTotalDiffStatus->bTextAEqC ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").arg("A").arg("C");
++            if    ( pTotalDiffStatus->bBinaryBEqC ) totalInfo += i18n("Files %1 and %2 are binary equal.\n"                          ).arg("B").arg("C");
++            else if ( pTotalDiffStatus->bTextBEqC ) totalInfo += i18n("Files %1 and %2 have equal text, but are not binary equal. \n").arg("B").arg("C");
+          }
+ 
+          if ( !totalInfo.isEmpty() )
+diff --git a/src/smalldialogs.cpp b/src/smalldialogs.cpp
+index 5ed0c26..ff7ca56 100644
+--- a/src/smalldialogs.cpp
++++ b/src/smalldialogs.cpp
+@@ -111,15 +111,15 @@ OpenDialog::OpenDialog(
+ 
+    TQPopupMenu* m = new TQPopupMenu(this);
+    int id=0;
+-   m->insertItem( i18n("Swap %1<->%2").tqarg("A").tqarg("B"), id++ );
+-   m->insertItem( i18n("Swap %1<->%2").tqarg("B").tqarg("C"), id++ );
+-   m->insertItem( i18n("Swap %1<->%2").tqarg("C").tqarg("A"), id++ );
+-   m->insertItem( i18n("Copy %1->Output").tqarg("A"), id++ );
+-   m->insertItem( i18n("Copy %1->Output").tqarg("B"), id++ );
+-   m->insertItem( i18n("Copy %1->Output").tqarg("C"), id++  );
+-   m->insertItem( i18n("Swap %1<->Output").tqarg("A"), id++  );
+-   m->insertItem( i18n("Swap %1<->Output").tqarg("B"), id++  );
+-   m->insertItem( i18n("Swap %1<->Output").tqarg("C"), id++  );
++   m->insertItem( i18n("Swap %1<->%2").arg("A").arg("B"), id++ );
++   m->insertItem( i18n("Swap %1<->%2").arg("B").arg("C"), id++ );
++   m->insertItem( i18n("Swap %1<->%2").arg("C").arg("A"), id++ );
++   m->insertItem( i18n("Copy %1->Output").arg("A"), id++ );
++   m->insertItem( i18n("Copy %1->Output").arg("B"), id++ );
++   m->insertItem( i18n("Copy %1->Output").arg("C"), id++  );
++   m->insertItem( i18n("Swap %1<->Output").arg("A"), id++  );
++   m->insertItem( i18n("Swap %1<->Output").arg("B"), id++  );
++   m->insertItem( i18n("Swap %1<->Output").arg("C"), id++  );
+    connect( m, TQT_SIGNAL(activated(int)), this, TQT_SLOT(slotSwapCopyNames(int)));
+    button->setPopup(m);
+ 

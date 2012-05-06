@@ -1,0 +1,32 @@
+commit 51bbe9e5da9c9ebf2109ab59f98d182c3ee23d86
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1327529886 -0600
+
+    Fix linear alphabet string errors
+
+diff --git a/src/kvilib/core/kvi_string.cpp b/src/kvilib/core/kvi_string.cpp
+index 54a1c4a..a02d6c7 100644
+--- a/src/kvilib/core/kvi_string.cpp
++++ b/src/kvilib/core/kvi_string.cpp
+@@ -1342,7 +1342,7 @@ int KviStr::hexToBuffer(char ** buffer,bool bNullToNewlines)
+ 	return len;
+ }
+ 
+-static const char * base64_chars = "ABCDEFGHIJKLMNOPTQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
++static const char * base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+ 
+ 
+ void KviStr::bufferToBase64(const char * buffer,int len)
+diff --git a/src/modules/rijndael/libkvirijndael.cpp b/src/modules/rijndael/libkvirijndael.cpp
+index 2bd8e6e..e9c7051 100644
+--- a/src/modules/rijndael/libkvirijndael.cpp
++++ b/src/modules/rijndael/libkvirijndael.cpp
+@@ -471,7 +471,7 @@
+ 		*/
+ 	}
+ 	
+-	static unsigned char fake_base64[]="./0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPTQRSTUVWXYZ";
++	static unsigned char fake_base64[]="./0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ 
+ 	unsigned int fake_base64dec(unsigned char c)
+ 	{

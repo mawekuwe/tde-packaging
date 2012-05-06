@@ -40,6 +40,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
 BuildRequires:	libsndfile-devel
+BuildRequires:	lirc-devel
 
 %description
 KRadio is a comfortable radio application for KDE 3.x with support for 
@@ -118,12 +119,12 @@ done
 %{_libdir}/kradio/plugins/*.la
 %{_libdir}/kradio/plugins/*.so
 %{_datadir}/applications/kde/kradio.desktop
+%{_datadir}/apps/kradio/default-dot-lircrc
 %{_datadir}/apps/kradio/icons/hicolor/*/*/*.png
 %{_datadir}/apps/kradio/icons/locolor/*/*/*.png
 %{_datadir}/apps/kradio/presets/*/*.krp
 %{_datadir}/apps/kradio/presets/*/*/*.krp
 %{_datadir}/locale/*/LC_MESSAGES/kradio-*.mo
-
 
 %Changelog
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-2

@@ -1,12 +1,12 @@
 # Default version for this component
 %define kdecomp rosegarden
 %define version 1.7.0
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -32,7 +32,14 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
+
 Patch0:		rosegarden-3.5.13-ftbfs.patch
+
+# [rosegarden] Updated to build with gcc 4.7. [Commit #15276f36]
+Patch1:		rosegarden-3.5.13-fix_gcc47_compilation.patch
+
+# [rosegarden] Updated to build with gcc 4.7. [Bug #958]
+Patch2:		rosegarden-3.5.13-fix_gcc47_compilation_2.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -45,6 +52,7 @@ BuildRequires:	dssi-devel
 BuildRequires:	liblo-devel
 BuildRequires:	liblrdf-devel
 BuildRequires:	fontconfig-devel
+BuildRequires:	jack-audio-connection-kit-devel
 
 Requires:	lilypond
 Requires:	perl-XML-Twig
@@ -80,12 +88,14 @@ This package provides the data files necessary for running Rosegarden
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 # Hard-coded path to TQT binaries spotted !!!
 %__sed -i CMakeLists.txt \
-	-e "s,/usr/bin/uic-tqt,%{_bindir}/uic-tqt,g" \
-	-e "s,/usr/bin/tmoc,%{_bindir}/tmoc,g" \
-	-e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+	-e "s|/usr/bin/uic-tqt|%{_bindir}/uic-tqt|g" \
+	-e "s|/usr/bin/tmoc|%{_bindir}/tmoc|g" \
+	-e "s|/usr/include/tqt|%{_includedir}/tqt|g"
 
 %build
 unset QTDIR && . %{_sysconfdir}/profile.d/qt.sh
@@ -99,7 +109,7 @@ cd build
 	-DWANT_DEBUG=OFF \
 	-DWANT_FULLDBG=OFF \
 	-DWANT_SOUND=ON \
-	-DWANT_JACK=OFF \
+	-DWANT_JACK=ON \
 	-DWANT_DSSI=ON \
 %if 0%{?fedora} > 0
 	-DWANT_LIRC=ON \
@@ -127,12 +137,16 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in hicolor locolor; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+for f in hicolor locolor; do
+  touch --no-create %{_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+done
 
 
 %files
@@ -152,7 +166,8 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %lang(ja) %{tde_docdir}/HTML/ja/rosegarden
 %lang(sv) %{tde_docdir}/HTML/sv/rosegarden
 %{_datadir}/apps/rosegarden
-%{_datadir}/icons/*/*/*/*
+%{_datadir}/icons/hicolor/*/*/*
+%{_datadir}/icons/locolor/*/*/*
 %{_datadir}/mimelnk/audio/x-rosegarden-device.desktop
 %{_datadir}/mimelnk/audio/x-rosegarden.desktop
 %{_datadir}/mimelnk/audio/x-rosegarden21.desktop
@@ -160,5 +175,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Sun Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-2
+- Updated to build with gcc 4.7. [Commit #15276f36]
+- Enables JACK support
+
 * Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 1.7.0-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

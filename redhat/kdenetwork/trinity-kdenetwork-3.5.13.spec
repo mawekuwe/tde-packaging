@@ -1,13 +1,7 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 4
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -30,9 +24,9 @@ BuildRequires: cmake >= 2.8
 %define console_helper 1 
 
 Name:    trinity-kdenetwork
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
-Summary: K Desktop Environment - Network Applications
+Version: 3.5.13
+Release: 4%{?dist}%{?_variant}
+Summary: Trinity Desktop Environment - Network Applications
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>

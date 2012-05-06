@@ -13,23 +13,30 @@ done
 
 clear
 cat <<EOF
-$(< /etc/redhat-release) $(uname -m)
+$(< /etc/redhat-release) [$(uname -m)]
 This script generates RPM of TDE from source tarball.
 Please choose a TDE component to build.
 
 EOF
 
 # Checks RPMBUILD environment
-if [ $( rpm -E "%{rhel}" ) = "%{rhel}" ] && [ $( rpm -E "%{fedora}" ) = "%{fedora}" ]; then
+RHEL="$( rpm -E "%{rhel}" )"
+FEDORA="$( rpm -E "%{fedora}" )"
+if [ "${RHEL}" = "%{rhel}" ] && [ "${FEDORA}" = "%{fedora}" ]; then
 	cat <<EOF
 Error: RPM macro %rhel or %fedora must be set to the distribution version to build !
 E.g:
-%rhel 6 
-or
-%fedora 15
+  %rhel 6 
+or:
+  %fedora 15
 EOF
 	exit 1
 fi
+
+# Checks TDE version to use
+#if [ -z "${REQVERSION}" ]; then
+#	REQVERSION="3.5.13"
+#fi
 
 if [ -z "${COMP}" ]; then
 	select COMP in $( cut -f1 "components.txt" | grep -v "^#" ) ; do break; done

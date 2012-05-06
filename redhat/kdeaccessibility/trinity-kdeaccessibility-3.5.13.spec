@@ -1,17 +1,10 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 2
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -19,8 +12,8 @@ BuildRequires: cmake >= 2.8
 
 Summary: K Desktop Environment - Accessibility
 Name:    trinity-kdeaccessibility
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Version: 3.5.13
+Release: 2%{?dist}%{?_variant}
 
 License: GPLv2
 Group: User Interface/Desktops
@@ -33,13 +26,13 @@ Source0: kdeaccessibility-%{version}.tar.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-
 Provides: kdeaccessibility3 = %{version}-%{release}
 
 Requires: trinity-kdelibs
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 
+BuildRequires: cmake >= 2.8
 BuildRequires: desktop-file-utils
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: alsa-lib-devel
@@ -70,11 +63,11 @@ Requires: trinity-kdelibs-devel
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 

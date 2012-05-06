@@ -6,7 +6,7 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -65,8 +65,8 @@ unset QTDIR; . /etc/profile.d/qt.sh
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i "src/Makefile" \
-	-e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-	-e "s,/usr/include/qt3,${QTINC},g"
+	-e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+	-e "s|/usr/include/qt3|${QTINC}|g"
 
 %__sed -i "Makefile" \
 	-e "s|/usr/lib/perl5/Chipcard|/usr/lib64/perl5/vendor_perl/Chipcard|g"

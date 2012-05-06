@@ -1,23 +1,11 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 3
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
-BuildRequires:	qt3-devel >= 3.3.8.d
-Requires:	qt3 >= 3.3.8.d
-
-
 Name:		dbus-tqt
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	3%{?dist}%{?_variant}
 License:	GPL
 Summary:	Dbus TQT Interface
 Group:		System Environment/Libraries
@@ -34,17 +22,23 @@ BuildRequires:	gcc-c++
 BuildRequires:	dbus-devel
 BuildRequires:	tqtinterface-devel
 
-Provides:		dbus-qt
+# TDE 3.5.13 specific building variables
+BuildRequires:	cmake >= 2.8
+BuildRequires:	qt3-devel >= 3.3.8.d
+
+Requires:		qt3 >= 3.3.8.d
+
+#Provides:		dbus-qt
 
 %description
 Dbus TQT Interface
 
 
 %package devel
-Requires:	%{name}
-Summary:	%{name} - Development files
-Group:		Development/Libraries
-Provides:		dbus-qt-devel
+Requires:		%{name}
+Summary:		%{name} - Development files
+Group:			Development/Libraries
+#Provides:		dbus-qt-devel
 
 %description devel
 Development files for %{name}

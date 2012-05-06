@@ -1,0 +1,19 @@
+commit ff96f491739a5bee6e9d9c2b0c6b9b38e790f9af
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1325294026 -0600
+
+    Fix FTBFS
+
+diff --git a/src/modules/options/mkcreateinstanceproc.sh b/src/modules/options/mkcreateinstanceproc.sh
+index 9947aff..c426230 100755
+--- a/src/modules/options/mkcreateinstanceproc.sh
++++ b/src/modules/options/mkcreateinstanceproc.sh
+@@ -355,7 +355,7 @@ KviOptionsWidget * KviOptionsInstanceManager::getInstance(KviOptionsWidgetInstan
+ 	if(e->pWidget->parent() != par)
+ 	{
+ 		QWidget * oldPar = (QWidget *)e->pWidget->parent();
+-		e->pWidget->reparent(par,QPoint(0,0));
++		e->pWidget->reparent(par,TQPoint(0,0));
+ 		delete oldPar;
+ 	}
+ 	if(e->bIsContainer)

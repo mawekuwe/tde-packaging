@@ -1,0 +1,3358 @@
+commit f91149819be7e7f45e68f22876f3c0062a11d4b9
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324316404 -0600
+
+    Remove additional unneeded tq method conversions
+
+diff --git a/src/kvilib/core/kvi_qstring.cpp b/src/kvilib/core/kvi_qstring.cpp
+index 3b564c1..b02e308 100644
+--- a/src/kvilib/core/kvi_qstring.cpp
++++ b/src/kvilib/core/kvi_qstring.cpp
+@@ -165,24 +165,24 @@ namespace KviTQString
+ 	{
+ 		double size = bytes;
+ 		if(size<900)
+-			return TQString(__tr2qs("%1 bytes")).tqarg(size,0,'f',3);
++			return TQString(__tr2qs("%1 bytes")).arg(size,0,'f',3);
+ 
+ 		size/=1024;
+ 		if(size<900)
+-			return TQString(__tr2qs("%1 KB")).tqarg(size,0,'f',3);
++			return TQString(__tr2qs("%1 KB")).arg(size,0,'f',3);
+ 
+ 		size/=1024;
+ 		if(size<900)
+-			return TQString(__tr2qs("%1 MB")).tqarg(size,0,'f',3);
++			return TQString(__tr2qs("%1 MB")).arg(size,0,'f',3);
+ 
+ 		//Pirated DVD?;)
+ 		size/=1024;
+ 		if(size<900)
+-			return TQString(__tr2qs("%1 GB")).tqarg(size,0,'f',3);
++			return TQString(__tr2qs("%1 GB")).arg(size,0,'f',3);
+ 
+ 		//Uhm.. We are downloading a whole internet:)))
+ 		size/=1024;
+-		return TQString(__tr2qs("%1 TB")).tqarg(size,0,'f',3);
++		return TQString(__tr2qs("%1 TB")).arg(size,0,'f',3);
+ 	}
+ 
+ 	bool equalCS(const TQString &sz1,const TQString &sz2)
+diff --git a/src/kvilib/ext/kvi_osinfo.cpp b/src/kvilib/ext/kvi_osinfo.cpp
+index 9d443c0..f2f39d2 100644
+--- a/src/kvilib/ext/kvi_osinfo.cpp
++++ b/src/kvilib/ext/kvi_osinfo.cpp
+@@ -350,17 +350,17 @@ static TQString queryWinInfo( QueryInfo info)
+ 				TEXT("SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Hotfix\\Q246009"),
+ 				0, KEY_TQUERY_VALUE, &hKey );
+ 			if( lRet == ERROR_SUCCESS )
+-				szVersion+= TQString("Service Pack 6a (Build %1)").tqarg( osvi.dwBuildNumber & 0xFFFF );         
++				szVersion+= TQString("Service Pack 6a (Build %1)").arg( osvi.dwBuildNumber & 0xFFFF );         
+ 			else // Windows NT 4.0 prior to SP6a
+ 			{
+-				szVersion+= TQString( "%1 (Build %2)").tqarg( osvi.szCSDVersion).tqarg( osvi.dwBuildNumber & 0xFFFF);
++				szVersion+= TQString( "%1 (Build %2)").arg( osvi.szCSDVersion).arg( osvi.dwBuildNumber & 0xFFFF);
+ 			}
+ 
+ 			RegCloseKey( hKey );
+ 		}
+ 		else // not Windows NT 4.0 
+ 		{
+-			szVersion+= TQString( "%1 (Build %2)").tqarg( osvi.szCSDVersion).tqarg( osvi.dwBuildNumber & 0xFFFF);
++			szVersion+= TQString( "%1 (Build %2)").arg( osvi.szCSDVersion).arg( osvi.dwBuildNumber & 0xFFFF);
+ 		}
+ 
+ 		break;
+diff --git a/src/kvilib/net/kvi_http.cpp b/src/kvilib/net/kvi_http.cpp
+index 6b3dd91..9e87d78 100644
+--- a/src/kvilib/net/kvi_http.cpp
++++ b/src/kvilib/net/kvi_http.cpp
+@@ -164,7 +164,7 @@ bool KviHttpRequest::start()
+ 	if((!kvi_strEqualCI(m_url.protocol().ptr(),"http")) && (!kvi_strEqualCI(m_url.protocol().ptr(),"https")))
+ 	{
+ 		resetInternalStatus();
+-		m_szLastError=__tr2qs("Unsupported protocol %1").tqarg(m_url.protocol().ptr());
++		m_szLastError=__tr2qs("Unsupported protocol %1").arg(m_url.protocol().ptr());
+ 		return false;
+ 	}
+ 
+@@ -409,7 +409,7 @@ bool KviHttpRequest::openFile()
+ 				TQString tmp = m_szFileName;
+ 				do {
+ 					i++;
+-					m_szFileName = tmp + TQString(".kvirnm-%1").tqarg(i);
++					m_szFileName = tmp + TQString(".kvirnm-%1").arg(i);
+ 				} while(KviFile::exists(m_szFileName));
+ 			}
+ 			break;
+@@ -419,7 +419,7 @@ bool KviHttpRequest::openFile()
+ 				TQString tmp;
+ 				do {
+ 					i++;
+-					tmp = m_szFileName + TQString(".kvirnm-%1").tqarg(i);
++					tmp = m_szFileName + TQString(".kvirnm-%1").arg(i);
+ 				} while(KviFile::exists(tmp));
+ 				TQDir d;
+ 				if(!d.rename(m_szFileName,tmp))
+@@ -494,7 +494,7 @@ bool KviHttpRequest::processHeader(KviStr &szHeader)
+ 	{
+ 		// the response is invalid ?
+ 		resetInternalStatus();
+-		m_szLastError=__tr2qs("Invalid HTTP response: %s").tqarg(szResponse.ptr());
++		m_szLastError=__tr2qs("Invalid HTTP response: %s").arg(szResponse.ptr());
+ 		emit terminated(false);
+ 		return false;
+ 	}
+diff --git a/src/kvilib/system/kvi_locale.cpp b/src/kvilib/system/kvi_locale.cpp
+index 7bf7e34..3ee2ef8 100644
+--- a/src/kvilib/system/kvi_locale.cpp
++++ b/src/kvilib/system/kvi_locale.cpp
+@@ -957,9 +957,9 @@ namespace KviLocale
+ 		// first of all try to find out the current locale
+ 		g_szLang="";
+ #ifdef COMPILE_USE_QT4
+-		TQString szLangFile=TQString("%1/.kvirc_force_locale").tqarg(TQDir::homePath());
++		TQString szLangFile=TQString("%1/.kvirc_force_locale").arg(TQDir::homePath());
+ #else
+-		TQString szLangFile=TQString("%1/.kvirc_force_locale").tqarg(TQDir::homeDirPath());
++		TQString szLangFile=TQString("%1/.kvirc_force_locale").arg(TQDir::homeDirPath());
+ #endif
+ 		if(KviFileUtils::fileExists(szLangFile))
+ 		{
+diff --git a/src/kvilib/tal/kvi_tal_listview.cpp b/src/kvilib/tal/kvi_tal_listview.cpp
+index 1a7f975..68e6967 100644
+--- a/src/kvilib/tal/kvi_tal_listview.cpp
++++ b/src/kvilib/tal/kvi_tal_listview.cpp
+@@ -324,7 +324,7 @@
+ 	         && d->exclusive && d->exclusive->d
+ 	         && d->exclusive->d->exclusive == this)
+ 	        d->exclusive->turnOffChild();
+-	    d->exclusive = 0; // so the tqchildren won't try to access us.
++	    d->exclusive = 0; // so the children won't try to access us.
+ 	    delete d;
+ 	    d = 0;
+ 	}
+@@ -403,7 +403,7 @@
+ 	
+ 	                        updateController(update, store);
+ 	                } else {
+-	                    // if there are no tqchildren we simply set the CheckBoxController and update its parent
++	                    // if there are no children we simply set the CheckBoxController and update its parent
+ 	                    setCurrentState(s);
+ 	                    stateChange(state());
+ 	                    if (parent() && parent()->rtti() == 1
+@@ -430,7 +430,7 @@
+ 	        }
+ 	        stateChange(state());
+ 	    }
+-	    tqrepaint();
++	    repaint();
+ 	}
+ 	
+ 	void KviTalCheckListItem::setCurrentState(ToggleState s)
+@@ -551,13 +551,13 @@
+ 	    case CheckBox:
+ 	        setCurrentState(storedState(key));
+ 	        stateChange(state());
+-	        tqrepaint();
++	        repaint();
+ 	        break;
+ 	    case CheckBoxController: {
+ 	        KviTalListViewItem *item = firstChild();
+ 	        int childCount = 0;
+ 	        while (item) {
+-	            // recursively calling restoreState for tqchildren of type CheckBox and CheckBoxController
++	            // recursively calling restoreState for children of type CheckBox and CheckBoxController
+ 	            if (item->rtti() == 1 &&
+ 	                 (((KviTalCheckListItem*)item)->type() == CheckBox ||
+ 	                   ((KviTalCheckListItem*)item)->type() == CheckBoxController)) {
+@@ -572,7 +572,7 @@
+ 	            else
+ 	                updateController(false);
+ 	        } else {
+-	            // if there are no tqchildren we retrieve the CheckBoxController state directly.
++	            // if there are no children we retrieve the CheckBoxController state directly.
+ 	            setState(storedState(key), true, false);
+ 	        }
+ 	    }
+@@ -622,7 +622,7 @@
+ 	        if (update && controller) {
+ 	            controller->updateController(update, store);
+ 	        }
+-	        tqrepaint();
++	        repaint();
+ 	    }
+ 	}
+ 	
+@@ -642,7 +642,7 @@
+ 	        }
+ 	        item = item->nextSibling();
+ 	    }
+-	    // this state is only needed if the CheckBoxController has no CheckBox / CheckBoxController tqchildren.
++	    // this state is only needed if the CheckBoxController has no CheckBox / CheckBoxController children.
+ 	    setStoredState(internalState() , key);
+ 	}
+ 	
+@@ -1056,7 +1056,7 @@
+ 		 && d->exclusive && d->exclusive->d
+ 		 && d->exclusive->d->exclusive == this )
+ 		d->exclusive->turnOffChild();
+-	    d->exclusive = 0; // so the tqchildren won't try to access us.
++	    d->exclusive = 0; // so the children won't try to access us.
+ 	    if ( d->statesDict )
+ 		delete d->statesDict;
+ 	    delete d;
+@@ -1137,7 +1137,7 @@
+ 	
+ 				updateController( update, store );
+ 			} else {
+-			    // if there are no tqchildren we simply set the CheckBoxController and update its parent
++			    // if there are no children we simply set the CheckBoxController and update its parent
+ 			    setCurrentState( s );
+ 			    stateChange( state() );
+ 			    if ( parent() && parent()->rtti() == 1
+@@ -1164,7 +1164,7 @@
+ 		}
+ 		stateChange( state() );
+ 	    }
+-	    tqrepaint();
++	    repaint();
+ 	}
+ 	
+ 	void KviTalCheckListItem::setCurrentState( ToggleState s )
+@@ -1287,13 +1287,13 @@
+ 	    case CheckBox:
+ 		setCurrentState( storedState( key ) );
+ 		stateChange( state() );
+-		tqrepaint();
++		repaint();
+ 		break;
+ 	    case CheckBoxController: {
+ 		KviTalListViewItem *item = firstChild();
+ 		int childCount = 0;
+ 		while ( item ) {
+-		    // recursively calling restoreState for tqchildren of type CheckBox and CheckBoxController
++		    // recursively calling restoreState for children of type CheckBox and CheckBoxController
+ 		    if ( item->rtti() == 1 &&
+ 			 ( ((KviTalCheckListItem*)item)->type() == CheckBox ||
+ 			   ((KviTalCheckListItem*)item)->type() == CheckBoxController ) ) {
+@@ -1308,7 +1308,7 @@
+ 		    else
+ 			updateController( FALSE );
+ 		} else {
+-		    // if there are no tqchildren we retrieve the CheckBoxController state directly.
++		    // if there are no children we retrieve the CheckBoxController state directly.
+ 		    setState( storedState( key ), TRUE, FALSE );
+ 		}
+ 	    }
+@@ -1358,7 +1358,7 @@
+ 		if ( update && controller ) {
+ 		    controller->updateController( update, store );
+ 		}
+-		tqrepaint();
++		repaint();
+ 	    }
+ 	}
+ 	
+@@ -1378,7 +1378,7 @@
+ 		}
+ 		item = item->nextSibling();
+ 	    }
+-	    // this state is only needed if the CheckBoxController has no CheckBox / CheckBoxController tqchildren.
++	    // this state is only needed if the CheckBoxController has no CheckBox / CheckBoxController children.
+ 	    setStoredState( internalState() , key );
+ 	}
+ 	
+diff --git a/src/kvilib/tal/kvi_tal_listview_qt3.h b/src/kvilib/tal/kvi_tal_listview_qt3.h
+index cf72e9f..47d23fb 100644
+--- a/src/kvilib/tal/kvi_tal_listview_qt3.h
++++ b/src/kvilib/tal/kvi_tal_listview_qt3.h
+@@ -143,7 +143,7 @@ public:
+ 	KviTalCheckListItem( KviTalListView *parent, const TQString &text,const TQPixmap & );
+ 	~KviTalCheckListItem();
+ 
+-	void paintCell( TQPainter *,const TQColorGroup & cg,int column, int width, int tqalignment );
++	void paintCell( TQPainter *,const TQColorGroup & cg,int column, int width, int alignment );
+     virtual void paintFocus( TQPainter *, const TQColorGroup & cg,
+ 			     const TQRect & r );
+     int width( const TQFontMetrics&, const KviTalListView*, int column) const;
+diff --git a/src/kvilib/tal/kvi_tal_listview_qt4.h b/src/kvilib/tal/kvi_tal_listview_qt4.h
+index 83e4686..15acac6 100644
+--- a/src/kvilib/tal/kvi_tal_listview_qt4.h
++++ b/src/kvilib/tal/kvi_tal_listview_qt4.h
+@@ -152,7 +152,7 @@ public:
+     ~KviTalCheckListItem();
+ 
+     void paintCell(TQPainter *, const TQColorGroup & cg,
+-                    int column, int width, int tqalignment);
++                    int column, int width, int alignment);
+     virtual void paintFocus(TQPainter *, const TQColorGroup &cg,
+                              const TQRect & r);
+     int width(const TQFontMetrics&, const KviTalListView*, int column) const;
+diff --git a/src/kvilib/tal/kvi_tal_wizard.cpp b/src/kvilib/tal/kvi_tal_wizard.cpp
+index a0aee30..396aa65 100644
+--- a/src/kvilib/tal/kvi_tal_wizard.cpp
++++ b/src/kvilib/tal/kvi_tal_wizard.cpp
+@@ -413,7 +413,7 @@ void KviTalWizard::setCurrentPage(KviTalWizardPageData * pData)
+ 		szSteps = "<nobr><font color=\"";
+ 		szSteps += clrMid.name();
+ 		szSteps += "\"><b>[";
+-		szSteps += TQString("Step %1 of %2").tqarg(pData->iVisibleIndex).tqarg(m_p->iEnabledPageCount);
++		szSteps += TQString("Step %1 of %2").arg(pData->iVisibleIndex).arg(m_p->iEnabledPageCount);
+ 		szSteps += "]</b></font></nobr>";
+ 	}
+ 
+diff --git a/src/kvirc/kernel/kvi_app.cpp b/src/kvirc/kernel/kvi_app.cpp
+index c0afdad..1f9224c 100644
+--- a/src/kvirc/kernel/kvi_app.cpp
++++ b/src/kvirc/kernel/kvi_app.cpp
+@@ -1038,7 +1038,7 @@ void KviApp::fileDownloadTerminated(bool bSuccess,const TQString &szRemoteUrl,co
+ 				if(szNick.isEmpty())
+ 					szMsg = __tr2qs("File download failed");
+ 				else
+-					szMsg = __tr2qs("File download from %1 failed").tqarg(szNick);
++					szMsg = __tr2qs("File download from %1 failed").arg(szNick);
+ 				szMsg += ": ";
+ 				szMsg += szError;
+ 				szMsg += " (";
+@@ -1049,7 +1049,7 @@ void KviApp::fileDownloadTerminated(bool bSuccess,const TQString &szRemoteUrl,co
+ 				if(szNick.isEmpty())
+ 					szMsg = __tr2qs("File download successfully complete");
+ 				else
+-					szMsg = __tr2qs("File download from %1 successfully complete").tqarg(szNick);
++					szMsg = __tr2qs("File download from %1 successfully complete").arg(szNick);
+ 				szMsg += " (";
+ 				szMsg += szLocalFileName;
+ 				szMsg += ")";
+@@ -1117,7 +1117,7 @@ void KviApp::fileDownloadTerminated(bool bSuccess,const TQString &szRemoteUrl,co
+ #endif
+ 			rinfo.activate();
+ 
+-		    TQString name = TQString("DESKTOP%1").tqarg(rinfo.currentDesktop());
++		    TQString name = TQString("DESKTOP%1").arg(rinfo.currentDesktop());
+ 
+ 			g_pKdeDesktopBackground = new KSharedPixmap();
+ 			connect(g_pKdeDesktopBackground,TQT_SIGNAL(done(bool)),this,TQT_SLOT(kdeRootPixmapDownloadComplete(bool)));
+@@ -1141,7 +1141,7 @@ void KviApp::fileDownloadTerminated(bool bSuccess,const TQString &szRemoteUrl,co
+ 				return;
+ 			}
+ 
+-			if(!g_pKdeDesktopBackground->loadFromShared(TQString("DESKTOP%1").tqarg(rinfo.currentDesktop())))
++			if(!g_pKdeDesktopBackground->loadFromShared(TQString("DESKTOP%1").arg(rinfo.currentDesktop())))
+ 			{
+ 				debug("Can't load the KDE root background image...");
+ 				delete g_pKdeDesktopBackground;
+diff --git a/src/kvirc/kernel/kvi_coreactions.cpp b/src/kvirc/kernel/kvi_coreactions.cpp
+index 4051d21..fb6fa04 100644
+--- a/src/kvirc/kernel/kvi_coreactions.cpp
++++ b/src/kvirc/kernel/kvi_coreactions.cpp
+@@ -958,7 +958,7 @@ void KviChangeUserModeAction::popupAboutToShow()
+ 	{
+ 		TQChar ccc = szModes[0];
+ 		szModes.remove(0,1);
+-		id = m_pPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_MODE)),TQString("+%1 Mode").tqarg(ccc));
++		id = m_pPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_MODE)),TQString("+%1 Mode").arg(ccc));
+ 		m_pPopup->setItemChecked(id,c->connection()->userInfo()->hasUserMode(ccc.latin1()));
+ 	}
+ }
+diff --git a/src/kvirc/kernel/kvi_filetransfer.cpp b/src/kvirc/kernel/kvi_filetransfer.cpp
+index 3f39398..d3d4114 100644
+--- a/src/kvirc/kernel/kvi_filetransfer.cpp
++++ b/src/kvirc/kernel/kvi_filetransfer.cpp
+@@ -186,5 +186,5 @@ int KviFileTransfer::displayHeight(int iLineSpacing)
+ 
+ void KviFileTransfer::displayUpdate()
+ {
+-	if(m_pDisplayItem)m_pDisplayItem->tqrepaint();
++	if(m_pDisplayItem)m_pDisplayItem->repaint();
+ }
+diff --git a/src/kvirc/kernel/kvi_ipc.cpp b/src/kvirc/kernel/kvi_ipc.cpp
+index da6246a..2487617 100644
+--- a/src/kvirc/kernel/kvi_ipc.cpp
++++ b/src/kvirc/kernel/kvi_ipc.cpp
+@@ -108,21 +108,21 @@
+ 			}
+ 	
+ 			Window root,parent;
+-			Window * tqchildren;
++			Window * children;
+ 			unsigned int nChildren;
+ 	
+-			if(!XQueryTree(kvi_ipc_get_xdisplay(),win,&root,&parent,&tqchildren,&nChildren))
++			if(!XQueryTree(kvi_ipc_get_xdisplay(),win,&root,&parent,&children,&nChildren))
+ 			{
+-				if(tqchildren)XFree((char *)tqchildren);
++				if(children)XFree((char *)children);
+ 				return 0;
+ 			}
+ 	
+ 			Window found = 0;
+ 	
+ 		    for(int i=nChildren-1;(!found) && (i >= 0);i--)
+-				found = kvi_x11_findIpcSentinel(tqchildren[i]);
++				found = kvi_x11_findIpcSentinel(children[i]);
+ 	
+-	 		if(tqchildren)XFree((char *)tqchildren);
++	 		if(children)XFree((char *)children);
+ 	
+ 			return found;
+ 		}
+diff --git a/src/kvirc/kernel/kvi_ircurl.cpp b/src/kvirc/kernel/kvi_ircurl.cpp
+index 0dafad9..f496603 100644
+--- a/src/kvirc/kernel/kvi_ircurl.cpp
++++ b/src/kvirc/kernel/kvi_ircurl.cpp
+@@ -222,7 +222,7 @@ void KviIrcUrl::join(TQString &uri, KviIrcServer* server)
+ 
+ 		uri.append("://");
+ 		uri.append(server->hostName());
+-		if(server->port()!=6667) uri.append(TQString(":%1").tqarg(server->port()));
++		if(server->port()!=6667) uri.append(TQString(":%1").arg(server->port()));
+ 		uri.append("/");
+ 	}
+ }
+@@ -310,7 +310,7 @@ int KviIrcUrl::run(const TQString& text,int contextSpec,KviConsole* pConsole)
+ 			szCommand.append(szJoinCommand);
+ 			szCommand.append("\" ");
+ 		}
+-		szCommand.append(TQString("%1 %2 ").tqarg(parts.szHost).tqarg(parts.iPort));
++		szCommand.append(TQString("%1 %2 ").arg(parts.szHost).arg(parts.iPort));
+ 
+ 		if(pConsole->connection()) {
+ 			KviIrcServer* server = pConsole->connection()->target()->server();
+diff --git a/src/kvirc/kvs/kvi_kvs_eventtable.cpp b/src/kvirc/kvs/kvi_kvs_eventtable.cpp
+index 55c086d..b2fc61b 100644
+--- a/src/kvirc/kvs/kvi_kvs_eventtable.cpp
++++ b/src/kvirc/kvs/kvi_kvs_eventtable.cpp
+@@ -254,7 +254,7 @@ KviKvsEvent KviKvsEventManager::m_appEventTable[KVI_NUM_SCRIPT_EVENTS]=
+ 		@description:
+ 			This event is triggered in the first console of a new frame window.
+ 			A frame window is the toplevel window that contains the consoles
+-			and the other MDI tqchildren windows.
++			and the other MDI children windows.
+ 		@seealso:
+ 			[event:onframewindowdestroyed]OnFrameWindowDestroyed[/event]
+ 	*/
+diff --git a/src/kvirc/kvs/kvi_kvs_object.cpp b/src/kvirc/kvs/kvi_kvs_object.cpp
+index eaae3fd..e5ff0a5 100644
+--- a/src/kvirc/kvs/kvi_kvs_object.cpp
++++ b/src/kvirc/kvs/kvi_kvs_object.cpp
+@@ -69,11 +69,11 @@
+ 		[big]Basic concepts[/big]
+ 
+ 		Objects are arranged in tree structures.
+-		Each object that you create is either toplevel object or a tqchildren
++		Each object that you create is either toplevel object or a children
+ 		of another object. A toplevel object is a parentless one.
+-		Obviously all objects can have tqchildren objects.[br][br]
++		Obviously all objects can have children objects.[br][br]
+ 
+-		When an object is destroyed , all its tqchildren are also destroyed.
++		When an object is destroyed , all its children are also destroyed.
+ 		The toplevel objects are automatically destroyed when KVIrc quits.
+ 		The objects are global to the entire application (this is different
+ 		from previous KVIrc releases where the objects were local
+@@ -121,7 +121,7 @@
+ 		[example]
+ 			[cmd]delete[/cmd] %myobject
+ 		[/example]
+-		If the destroyed object has tqchildren objects , these are destroyed too.[br][br]
++		If the destroyed object has children objects , these are destroyed too.[br][br]
+ 
+ 		[big]Fields : objects as pseudo-structures[/big]
+ 
+@@ -196,15 +196,15 @@
+ 			[cmd]delete[/cmd] %tmp
+ 		[/example]
+ 		Another cool function exported by the [class:object]object[/class] class is the
+-		[classfnc:object]$tqchildren[/classfnc]() function.
+-		It returns a comma separated list of tqchildren identifiers.[br]
++		[classfnc:object]$children[/classfnc]() function.
++		It returns a comma separated list of children identifiers.[br]
+ 		[example]
+ 			%tmp = [fnc]$new[/fnc]([class]object[/class],0,myobject)
+ 			%tmpchild = [fnc]$new[/fnc]([class]object[/class],%tmp,child1)
+ 			%tmpchild = [fnc]$new[/fnc]([class]object[/class],%tmp,child2)
+ 			%tmpchild = [fnc]$new[/fnc]([class]object[/class],%tmp,child3)
+-			[cmd]echo[/cmd] The object's tqchildren list is : %tmp->[classfnc:object]$tqchildren[/classfnc]()
+-			# Destroy the object and the tqchildren
++			[cmd]echo[/cmd] The object's children list is : %tmp->[classfnc:object]$children[/classfnc]()
++			# Destroy the object and the children
+ 			[cmd]delete[/cmd] %tmp
+ 		[/example]
+ 		There are two special functions for each objects: the "constructor" and the "destructor".
+@@ -230,25 +230,25 @@
+ 			[cmd]privateimpl[/cmd](%tmp,destructor)
+ 			{
+ 				%count = 0;
+-				[cmd]foreach[/cmd](%t,[fnc]$this[/fnc]-&gt;[classfnc:object]$tqchildren[/classfnc]())
++				[cmd]foreach[/cmd](%t,[fnc]$this[/fnc]-&gt;[classfnc:object]$children[/classfnc]())
+ 				{
+ 					[cmd]echo[/cmd] Children : %t-&gt;[classfnc:object]$name[/classfnc]() with class %t-&gt;[classfnc:object]$class[/classfnc]()
+ 					%count++
+ 				}
+-				[cmd]echo[/cmd] Just before destroying my %count tqchildren.
++				[cmd]echo[/cmd] Just before destroying my %count children.
+ 			}
+-			# Destroy the object and the tqchildren
++			# Destroy the object and the children
+ 			[cmd]delete[/cmd] %tmp
+ 		[/example]
+ 
+ 		In the example above four objects have been created.
+-		A "parent" object named "myobject" , and three tqchildren objects.
++		A "parent" object named "myobject" , and three children objects.
+ 		The destructor has been reimplemented for each child object,
+ 		to make it "say" its name (Please note the usage of [fnc]$this[/fnc]).
+-		In the parent destructor the tqchildren have been counted and listed.[br]
++		In the parent destructor the children have been counted and listed.[br]
+ 		Then the parent object is destroyed causing to:[br]
+ 		- trigger the parent destructor.[br]
+-		- destroy all the tqchildren (and conseguently trigger all the "individual" destructors).[br][br]
++		- destroy all the children (and conseguently trigger all the "individual" destructors).[br][br]
+ 
+ 		Not all the object functions must return a value:
+ 		If a function does not return a meaningful value , or you just want to ignore it , you can call it in the following way:[br]
+@@ -339,7 +339,7 @@
+ 
+ 		The above class is named "helloworld". It inherits the [class]object[/class] class.
+ 		This means that it acquires all the [class]object[/class] fuunctions: [classfnc:object]$name[/classfnc]() ,
+-		[classfnc:object]$class[/class]() , [classfnc:object]$tqchildren[/classfnc]()...
++		[classfnc:object]$class[/class]() , [classfnc:object]$children[/classfnc]()...
+ 		Additionally , it has the $sayhello() function, that "echoes Hello world" to the console.
+ 		Now you can create an instance of this class:
+ 		[example]
+@@ -486,7 +486,7 @@
+ 	@description:
+ 		This is the base class for all the builtin KVirc object classes.
+ 		It exports the functions to retrieve the object name, to iterate
+-		through tqchildren objects and to lookup a child object by name or class.
++		through children objects and to lookup a child object by name or class.
+ 		Additionally , this class provides the builtin timer functionality.
+ 		The [classfnc]$constructor[/classfnc] and [classfnc]$destructor[/classfnc]
+ 		functions are empty implementations that all the other classes inherit.
+@@ -521,15 +521,15 @@
+ 		Returns the first child that matches <class> and <name>.
+ 		If <class> is an empty string, any class matches,
+ 		if <name> is an empty string, any name matches.
+-		This function traverses the entire tree of tqchildren
++		This function traverses the entire tree of children
+ 		but is NOT recursive.
+ 		!fn: $childCount()
+-		Returns the number of tqchildren objects
++		Returns the number of children objects
+ 		!fn: $emit(<signal_name>[,parameters])
+ 		Emits the signal <signal_name> passing the optional [parameters].
+ 		See the [doc:objects]objects documentation[/doc] for an overview of signals and slots.
+-		!fn: $tqchildren()
+-		Returns an array of tqchildren object identifiers.
++		!fn: $children()
++		Returns an array of children object identifiers.
+ 		!fn: $signalSender()
+ 		Returns the current signal sender when in a slot connected to a signal.
+ 		In other contexts this function returns an empty string.
+@@ -955,7 +955,7 @@ bool KviKvsObject::function_destructor(KviKvsObjectFunctionCall * c)
+ 	return true;
+ }
+ 
+-bool KviKvsObject::function_tqchildren(KviKvsObjectFunctionCall * c)
++bool KviKvsObject::function_children(KviKvsObjectFunctionCall * c)
+ {
+ 	KviKvsArray * a = new KviKvsArray();
+ 	int id=0;
+diff --git a/src/kvirc/kvs/kvi_kvs_object.h b/src/kvirc/kvs/kvi_kvs_object.h
+index a19bd5f..f59c098 100644
+--- a/src/kvirc/kvs/kvi_kvs_object.h
++++ b/src/kvirc/kvs/kvi_kvs_object.h
+@@ -164,7 +164,7 @@ protected:
+ 	bool function_findChild(KviKvsObjectFunctionCall *c);
+ 	bool function_childCount(KviKvsObjectFunctionCall *c);
+ 	bool function_emit(KviKvsObjectFunctionCall *c);
+-	bool function_tqchildren(KviKvsObjectFunctionCall *c);
++	bool function_children(KviKvsObjectFunctionCall *c);
+ 	bool function_signalSender(KviKvsObjectFunctionCall *c);
+ 	bool function_signalName(KviKvsObjectFunctionCall *c);
+ 	bool function_destructor(KviKvsObjectFunctionCall *c);
+diff --git a/src/kvirc/kvs/kvi_kvs_object_controller.cpp b/src/kvirc/kvs/kvi_kvs_object_controller.cpp
+index b2c1c8b..4739f33 100644
+--- a/src/kvirc/kvs/kvi_kvs_object_controller.cpp
++++ b/src/kvirc/kvs/kvi_kvs_object_controller.cpp
+@@ -73,7 +73,7 @@ void KviKvsObjectController::init()
+ 	m_pObjectClass->registerFunctionHandler("findChild",KVI_PTR2MEMBER(KviKvsObject::function_findChild));
+ 	m_pObjectClass->registerFunctionHandler("childCount",KVI_PTR2MEMBER(KviKvsObject::function_childCount));
+ 	m_pObjectClass->registerFunctionHandler("emit",KVI_PTR2MEMBER(KviKvsObject::function_emit));
+-	m_pObjectClass->registerFunctionHandler("tqchildren",KVI_PTR2MEMBER(KviKvsObject::function_tqchildren));
++	m_pObjectClass->registerFunctionHandler("children",KVI_PTR2MEMBER(KviKvsObject::function_children));
+ 	m_pObjectClass->registerFunctionHandler("signalSender",KVI_PTR2MEMBER(KviKvsObject::function_signalSender));
+ 	m_pObjectClass->registerFunctionHandler("signalName",KVI_PTR2MEMBER(KviKvsObject::function_signalName));
+ 	m_pObjectClass->registerFunctionHandler("destructor",KVI_PTR2MEMBER(KviKvsObject::function_destructor));
+diff --git a/src/kvirc/kvs/kvi_kvs_processmanager.cpp b/src/kvirc/kvs/kvi_kvs_processmanager.cpp
+index 2f3219c..53ac882 100644
+--- a/src/kvirc/kvs/kvi_kvs_processmanager.cpp
++++ b/src/kvirc/kvs/kvi_kvs_processmanager.cpp
+@@ -330,7 +330,7 @@ void KviKvsProcessAsyncOperation::processExited()
+ 	if(m_pData->iFlags & KVI_KVS_PROCESSDESCRIPTOR_TRIGGERTERMINATED)
+ 	{
+ 		TQString szRetVal;
+-		szRetVal.setNum(m_pProcess->exiStatus());
++		szRetVal.setNum(m_pProcess->exitStatus());
+ 		trigger(EventTerminated,szRetVal);
+ 	}
+ 	
+diff --git a/src/kvirc/kvs/kvi_kvs_treenode_compositedata.cpp b/src/kvirc/kvs/kvi_kvs_treenode_compositedata.cpp
+index c303ceb..42338ae 100644
+--- a/src/kvirc/kvs/kvi_kvs_treenode_compositedata.cpp
++++ b/src/kvirc/kvs/kvi_kvs_treenode_compositedata.cpp
+@@ -34,7 +34,7 @@ KviKvsTreeNodeCompositeData::KviKvsTreeNodeCompositeData(const TQChar * pLocatio
+ : KviKvsTreeNodeData(pLocation)
+ {
+ #ifdef DEBUGME
+-	if(pSubData->count() < 2)debug("KviKvsTreeNodeCompositeData constructor called with less than two tqchildren!");
++	if(pSubData->count() < 2)debug("KviKvsTreeNodeCompositeData constructor called with less than two children!");
+ #endif
+ 	m_pSubData = pSubData;
+ 	m_pSubData->setAutoDelete(true);
+diff --git a/src/kvirc/sparser/kvi_sp_ctcp.cpp b/src/kvirc/sparser/kvi_sp_ctcp.cpp
+index 86e129d..b7150e8 100644
+--- a/src/kvirc/sparser/kvi_sp_ctcp.cpp
++++ b/src/kvirc/sparser/kvi_sp_ctcp.cpp
+@@ -1156,12 +1156,12 @@ void KviServerParser::parseCtcpRequestVersion(KviCtcpMessage *msg)
+ 
+ #ifdef COMPILE_ON_WINDOWS
+ 			szVersion = "KVIrc " KVI_VERSION QT4_TAG " '" KVI_RELEASE_NAME "' " KVI_SOURCES_DATE " - build " KVI_BUILD_DATE;
+-			szVersion.append(TQString(" - %1").tqarg(KviOsInfo::version()));
++			szVersion.append(TQString(" - %1").arg(KviOsInfo::version()));
+ #else
+ 			szVersion = "KVIrc " KVI_VERSION QT4_TAG " '" KVI_RELEASE_NAME "' " KVI_SOURCES_DATE " - build " KVI_BUILD_DATE " - " KVI_BUILD_FLAGS;
+-			szVersion.append(TQString(" - %1 (%2)").tqarg(KviOsInfo::name()).tqarg(KviOsInfo::release()));
++			szVersion.append(TQString(" - %1 (%2)").arg(KviOsInfo::name()).arg(KviOsInfo::release()));
+ #endif
+-			//szVersion.append(TQString(" - QT Version: %1 - %2").tqarg(qVersion()).tqarg(__tr2qs("http://www.kvirc.net/")));
++			//szVersion.append(TQString(" - QT Version: %1 - %2").arg(qVersion()).arg(__tr2qs("http://www.kvirc.net/")));
+ 			if(!KVI_OPTION_STRING(KviOption_stringCtcpVersionPostfix).isEmpty())
+ 			{
+ 				TQString sz = KVI_OPTION_STRING(KviOption_stringCtcpVersionPostfix);
+@@ -1460,7 +1460,7 @@ void KviServerParser::parseCtcpRequestAction(KviCtcpMessage *msg)
+ 
+ 	if(bTargetFound)
+ 	{
+-		TQString szMsg = TQString("\r!n\r%1\r ").tqarg(msg->pSource->nick());
++		TQString szMsg = TQString("\r!n\r%1\r ").arg(msg->pSource->nick());
+ 		szMsg += szData;
+ 		if(bIsChannel)
+ 		{
+@@ -1531,7 +1531,7 @@ void KviServerParser::parseCtcpRequestAvatar(KviCtcpMessage *msg)
+ 								KVI_OPTION_UINT(KviOption_uintAvatarOfferTimeoutInSecs),&(a->name()),&(a->localPath()),&szUserMask);
+ 						}
+ 					}
+-					//if(o)szReply.append(TQString(" %1").tqarg(o->fileSize()));
++					//if(o)szReply.append(TQString(" %1").arg(o->fileSize()));
+ 				}
+ 				
+ 				szReply.append(szGenderTag);
+diff --git a/src/kvirc/ui/kvi_channel.cpp b/src/kvirc/ui/kvi_channel.cpp
+index c35b1fe..c22b36b 100644
+--- a/src/kvirc/ui/kvi_channel.cpp
++++ b/src/kvirc/ui/kvi_channel.cpp
+@@ -704,7 +704,7 @@ void KviChannel::getTalkingUsersStats(TQString &buffer,TQStringList &l,bool bPas
+ 		} else {
+ 			// (l.count() - 1) is > 1
+ 			buffer += "</b> ";
+-			buffer += __tr2qs("and other %1 users").tqarg(l.count() - 1);
++			buffer += __tr2qs("and other %1 users").arg(l.count() - 1);
+ 		}
+ 		buffer += " ";
+ 		buffer += bPast ? __tr2qs("were talking recently") : __tr2qs("are talking");
+@@ -1607,14 +1607,14 @@ void KviChannel::preprocessMessage(TQString & szMessage)
+ 	for ( TQStringList::Iterator it = strings.begin(); it != strings.end(); ++it ) {
+ 		if((*it).contains('\r')) continue;
+ 		TQString tmp = KviMircCntrl::stripControlBytes(*it);
+-		if( findEntry(*it) ) 	*it=TQString("\r!n\r%1\r").tqarg(*it);
++		if( findEntry(*it) ) 	*it=TQString("\r!n\r%1\r").arg(*it);
+ 		if(m_pConsole)
+ 			if(m_pConsole->connection())
+ 				if(m_pConsole->connection()->serverInfo()->supportedChannelTypes().contains(tmp[0]))
+ 					if((*it)==tmp)
+-						*it=TQString("\r!c\r%1\r").tqarg(*it);
++						*it=TQString("\r!c\r%1\r").arg(*it);
+ 					else
+-						*it=TQString("\r!c%1\r%2\r").tqarg(tmp).tqarg(*it);
++						*it=TQString("\r!c%1\r%2\r").arg(tmp).arg(*it);
+ 	}
+ 	szMessage=strings.join(" ");
+ }
+diff --git a/src/kvirc/ui/kvi_console.cpp b/src/kvirc/ui/kvi_console.cpp
+index b2a19f4..a4eba90 100644
+--- a/src/kvirc/ui/kvi_console.cpp
++++ b/src/kvirc/ui/kvi_console.cpp
+@@ -353,7 +353,7 @@ void KviConsole::getUserTipText(const TQString &nick,KviIrcUserEntry *e,TQString
+ #else
+ 		TQMimeSourceFactory::defaultFactory()->setPixmap("ulv_avatar",*(e->avatar()->pixmap()));
+ #endif
+-		buffer += TQString("<tr><td><center><img src=\"ulv_avatar\" width=\"%1\"></center></td></tr>").tqarg(e->avatar()->pixmap()->width());
++		buffer += TQString("<tr><td><center><img src=\"ulv_avatar\" width=\"%1\"></center></td></tr>").arg(e->avatar()->pixmap()->width());
+ 	}
+ 
+ 	if(e->hasRealName())
+@@ -404,12 +404,12 @@ void KviConsole::getUserTipText(const TQString &nick,KviIrcUserEntry *e,TQString
+ 	if(e->hasServer())
+ 	{
+ 		buffer += "<tr><td bgcolor=\"#F0F0F0\"><nobr>";
+-		buffer += __tr2qs("Using server <b>%1</b>").tqarg(e->server());
++		buffer += __tr2qs("Using server <b>%1</b>").arg(e->server());
+ 
+ 		if(e->hasHops())
+ 		{
+ 			buffer += " (";
+-			buffer += __tr2qs("%1 hops").tqarg(e->hops());
++			buffer += __tr2qs("%1 hops").arg(e->hops());
+ 			buffer += ")</nobr></td></tr>";
+ 		} else {
+ 			buffer += "</nobr></td></tr></table>";
+@@ -445,7 +445,7 @@ void KviConsole::saveProperties(KviConfig *cfg)
+ 
+ void KviConsole::getBaseLogFileName(TQString &buffer)
+ {
+-	buffer=TQString("CONSOLE%1").tqarg(ircContextId());
++	buffer=TQString("CONSOLE%1").arg(ircContextId());
+ }
+ 
+ void KviConsole::showNotifyList(bool bShow)
+@@ -649,7 +649,7 @@ int KviConsole::applyHighlighting(KviWindow *wnd,int type,const TQString &nick,c
+ 	szSource.prepend(' ');
+ 	if(KVI_OPTION_BOOL(KviOption_boolAlwaysHighlightNick) && connection())
+ 	{
+-		if(szSource.find(TQString(" %1 ").tqarg(connection()->userInfo()->nickName()),0,false) > -1)
++		if(szSource.find(TQString(" %1 ").arg(connection()->userInfo()->nickName()),0,false) > -1)
+ 			return triggerOnHighlight(wnd,type,nick,user,host,szMsg,connection()->userInfo()->nickName());
+ 	}
+ 
+@@ -661,7 +661,7 @@ int KviConsole::applyHighlighting(KviWindow *wnd,int type,const TQString &nick,c
+ 			if((*it).isEmpty())
+ 				continue;
+ 			// FIXME : This is SLOOOOOOOOW (TQString -> ascii translation!!) !!!!
+-			if(szSource.find(TQString(" %1 ").tqarg(*it),0,false) > -1)
++			if(szSource.find(TQString(" %1 ").arg(*it),0,false) > -1)
+ 			{
+ 				return triggerOnHighlight(wnd,type,nick,user,host,szMsg,*it);
+ 			}
+@@ -835,7 +835,7 @@ void KviConsole::outputPrivmsg(KviWindow *wnd,
+ 						KVI_COLOR_EXT_USER_HALFOP : ((e->flags() & KVI_USERFLAG_VOICE) ? \
+ 						KVI_COLOR_EXT_USER_VOICE : KVI_COLOR_EXT_USER_USEROP))));
+ 				}
+-				szNick.prepend(TQString("%1").tqarg(color));
++				szNick.prepend(TQString("%1").arg(color));
+ 				szNick.prepend(KVI_TEXT_COLOR);
+ 				szNick.append(KVI_TEXT_COLOR);
+ 			}
+diff --git a/src/kvirc/ui/kvi_customtoolbar.cpp b/src/kvirc/ui/kvi_customtoolbar.cpp
+index e6b234e..e974b94 100644
+--- a/src/kvirc/ui/kvi_customtoolbar.cpp
++++ b/src/kvirc/ui/kvi_customtoolbar.cpp
+@@ -169,9 +169,9 @@ void KviCustomToolBar::beginCustomize()
+ 	if(m_pFilteredChildren)delete m_pFilteredChildren;
+ 	m_pFilteredChildren = new KviPointerHashTable<void *,bool>;
+ 	m_pFilteredChildren->setAutoDelete(true);
+-	// filter the events for all the tqchildren
++	// filter the events for all the children
+ #ifdef COMPILE_USE_QT4
+-	TQList<TQObject*> l = tqchildren();
++	TQList<TQObject*> l = children();
+ 	for(TQList<TQObject*>::Iterator it = l.begin();it != l.end();++it)
+ 	{
+ 		if((*it)->isWidgetType())
+@@ -193,7 +193,7 @@ void KviCustomToolBar::endCustomize()
+ {
+ 	// stop filtering events
+ #ifdef COMPILE_USE_QT4
+-	TQList<TQObject*> l = tqchildren();
++	TQList<TQObject*> l = children();
+ 	for(TQList<TQObject*>::Iterator it = l.begin();it != l.end();++it)
+ 	{
+ 		if((*it)->isWidgetType())
+@@ -209,7 +209,7 @@ void KviCustomToolBar::endCustomize()
+ 		++it;
+ 	}
+ #endif
+-	// FIXME: We SHOULD MAKE SURE that the tqchildren are re-enabled...
++	// FIXME: We SHOULD MAKE SURE that the children are re-enabled...
+ 	// this could be done by calling setEnabled(isEnabled()) on each action ?
+ 	if(m_pFilteredChildren)
+ 	{
+@@ -238,7 +238,7 @@ void KviCustomToolBar::childEvent(TQChildEvent *e)
+ {
+ 	if(KviActionManager::customizingToolBars())
+ 	{
+-		// this is useful for droppped and dragged-out tqchildren
++		// this is useful for droppped and dragged-out children
+ 		if(e->type() == TQEvent::ChildInserted)
+ 		{
+ 			if(e->child()->isWidgetType())
+@@ -345,7 +345,7 @@ int KviCustomToolBar::dropIndexAt(const TQPoint &pnt,TQWidget * exclude,int * ex
+ 	if(!l)return 0;
+ 	TQLayoutIterator it = l->iterator();
+ 	
+-	// find the tqchildren with minimum distance
++	// find the children with minimum distance
+ 	int iMinDistIdx = -1;
+ 	TQWidget * pMinDistW = 0;
+ 	unsigned int uMinDist = 0xffffffff;
+@@ -527,11 +527,11 @@ bool KviCustomToolBar::eventFilter(TQObject *o,TQEvent *e)
+ 	if(!KviActionManager::customizingToolBars())goto unhandled; // anything here is done when customizing only
+ 	if(e->type() == TQEvent::Enter)
+ 	{
+-		if(m_pMovedChild)return true; // kill it while moving other tqchildren
++		if(m_pMovedChild)return true; // kill it while moving other children
+ 	}
+ 	if(e->type() == TQEvent::Leave)
+ 	{
+-		if(m_pMovedChild)return true; // kill it while moving other tqchildren
++		if(m_pMovedChild)return true; // kill it while moving other children
+ 	}
+ 	if(e->type() == TQEvent::MouseButtonPress)
+ 	{
+@@ -550,7 +550,7 @@ bool KviCustomToolBar::eventFilter(TQObject *o,TQEvent *e)
+ 					))
+ 				{
+ 					m_pMovedChild = (TQWidget *)o;
+-					// allow resizing of tqchildren
++					// allow resizing of children
+ 					// FIXME: do it only if the child is really resizable
+ 					if(m_pMovedChild->width() > 20) // might be an applet
+ 					{
+diff --git a/src/kvirc/ui/kvi_frame.cpp b/src/kvirc/ui/kvi_frame.cpp
+index 96c63e6..49084c3 100644
+--- a/src/kvirc/ui/kvi_frame.cpp
++++ b/src/kvirc/ui/kvi_frame.cpp
+@@ -1085,7 +1085,7 @@ void KviFrame::fillToolBarsPopup(KviTalPopupMenu * p)
+ 	{
+ 		for(KviModuleExtensionDescriptor * d = l->first();d;d = l->next())
+ 		{
+-			TQString label = __tr2qs("Show %1").tqarg(d->visibleName());
++			TQString label = __tr2qs("Show %1").arg(d->visibleName());
+ 			if(d->icon())id = p->insertItem(*(d->icon()),label);
+ 			else id = p->insertItem(label);
+ 			p->setItemChecked(id,moduleExtensionToolBar(d->id()));
+@@ -1101,7 +1101,7 @@ void KviFrame::fillToolBarsPopup(KviTalPopupMenu * p)
+ 		if(cnt > 0)p->insertSeparator();
+ 		while(KviCustomToolBarDescriptor * d = it2.current())
+ 		{
+-			TQString label = __tr2qs("Show %1").tqarg(d->label());
++			TQString label = __tr2qs("Show %1").arg(d->label());
+ 			TQString ico = d->iconId();
+ 			// use the icon only if there is no check
+ 			if(d->toolBar())
+diff --git a/src/kvirc/ui/kvi_frame.h b/src/kvirc/ui/kvi_frame.h
+index 5f18eb4..cf5c430 100644
+--- a/src/kvirc/ui/kvi_frame.h
++++ b/src/kvirc/ui/kvi_frame.h
+@@ -110,7 +110,7 @@ protected:
+ 	KviDockExtension                      * m_pDockExtension;                // the frame's dock extension: this should be prolly moved ?
+ 	KviAccel                              * m_pAccel;                        // the global accelelrator
+ public:
+-	// the mdi manager: handles mdi tqchildren
++	// the mdi manager: handles mdi children
+ 	KviMdiManager * mdiManager(){ return m_pMdi; };
+ 	// the splitter is the central widget for this frame
+ 	TQSplitter * splitter(){ return m_pSplitter; };
+diff --git a/src/kvirc/ui/kvi_input.cpp b/src/kvirc/ui/kvi_input.cpp
+index 5445738..5d2e1c6 100644
+--- a/src/kvirc/ui/kvi_input.cpp
++++ b/src/kvirc/ui/kvi_input.cpp
+@@ -1325,7 +1325,7 @@ void KviInputEditor::imComposeEvent(TQIMEvent *e)
+ #endif
+ 
+ 
+-	// tqrepaint
++	// repaint
+ 	m_bUpdatesEnabled = true;
+ 	repaintWithCursorOn();
+ 	e->accept();
+@@ -1347,7 +1347,7 @@ void KviInputEditor::imEndEvent(TQIMEvent *e)
+ 	// move cursor to after the IM result text
+ 	moveCursorTo(m_iIMStart + m_iIMLength);
+ 
+-	// tqrepaint
++	// repaint
+ 	m_bUpdatesEnabled = true;
+ 	repaintWithCursorOn();
+ 
+@@ -2497,7 +2497,7 @@ void KviInput::keyPressEvent(TQKeyEvent *e)
+ 												"here to prevent you from accidentally sending<br>" \
+ 												"a really large message just because you didn't edit it<br>" \
+ 												"properly after pasting text from the clipboard.<br><br>" \
+-												"Do you want the message to be sent?").tqarg(nLines),
++												"Do you want the message to be sent?").arg(nLines),
+ 										__tr2qs("Yes, always"),
+ 										__tr2qs("Yes"),
+ 										__tr2qs("No"),
+@@ -2543,7 +2543,7 @@ void KviInput::multilineEditorButtonToggled(bool bOn)
+ 		KviScriptEditor::destroyInstance(m_pMultiLineEditor);
+ 		m_pMultiLineEditor = 0;
+ 		m_pInputEditor->show();
+-		m_pWindow->tqchildrenTreeChanged(0);
++		m_pWindow->childrenTreeChanged(0);
+ 		m_pInputEditor->setFocus();
+ 		m_pMultiEditorButton->setOn(false);
+ 	} else {
+@@ -2556,7 +2556,7 @@ void KviInput::multilineEditorButtonToggled(bool bOn)
+ 		m_pMultiLineEditor->setFindLineeditReadOnly(true);
+ 		m_pInputEditor->hide();
+ 		m_pMultiLineEditor->show();
+-		m_pWindow->tqchildrenTreeChanged(m_pMultiLineEditor);
++		m_pWindow->childrenTreeChanged(m_pMultiLineEditor);
+ 		m_pMultiLineEditor->setFocus();
+ 		m_pMultiEditorButton->setOn(true);
+ 	}
+@@ -2596,14 +2596,14 @@ void KviInput::historyButtonClicked()
+ 
+ void KviInput::setFocus()
+ {
+-	// redirect setFocus() to the right tqchildren
++	// redirect setFocus() to the right children
+ 	if(m_pMultiLineEditor)m_pMultiLineEditor->setFocus();
+ 	else m_pInputEditor->setFocus();
+ }
+ 
+ void KviInput::focusInEvent(TQFocusEvent * e)
+ {
+-	// if we get a focus in event , redirect the focus to the tqchildren
++	// if we get a focus in event , redirect the focus to the children
+ 	if(m_pMultiLineEditor)m_pMultiLineEditor->setFocus();
+ 	else m_pInputEditor->setFocus();
+ }
+diff --git a/src/kvirc/ui/kvi_ircview.cpp b/src/kvirc/ui/kvi_ircview.cpp
+index 9d469f7..9eb166c 100644
+--- a/src/kvirc/ui/kvi_ircview.cpp
++++ b/src/kvirc/ui/kvi_ircview.cpp
+@@ -290,7 +290,7 @@ KviIrcView::KviIrcView(TQWidget *parent,KviFrame *pFrm,KviWindow *pWnd)
+ #ifdef COMPILE_USE_QT4
+ 	setAttribute(TQt::WA_NoSystemBackground); // This disables automatic qt double buffering
+ 	setAttribute(TQt::WA_OpaquePaintEvent);
+-	//setAttribute(TQt::WA_PaintOnScreen); // disable qt backing store (that would force us to trigger tqrepaint() instead of the 10 times faster paintEvent(0))
++	//setAttribute(TQt::WA_PaintOnScreen); // disable qt backing store (that would force us to trigger repaint() instead of the 10 times faster paintEvent(0))
+ #endif
+ 
+ 	m_iFlushTimer = 0;
+@@ -346,7 +346,7 @@ KviIrcView::KviIrcView(TQWidget *parent,KviFrame *pFrm,KviWindow *pWnd)
+ 	m_pMessagesStoppedWhileSelecting = new KviPointerList<KviIrcViewLine>;
+ 	m_pMessagesStoppedWhileSelecting->setAutoDelete(false);
+ 
+-	// say qt to avoid erasing on tqrepaint
++	// say qt to avoid erasing on repaint
+ #ifdef COMPILE_USE_QT4
+ 	setAutoFillBackground(false);
+ #else
+@@ -723,7 +723,7 @@ bool KviIrcView::startLogging(const TQString& fname,bool bPrependCurBuffer)
+ 
+ void KviIrcView::add2Log(const TQString &szBuffer,int iMsgType)
+ {
+-	TQString szToWrite=TQString("%1 %2\n").tqarg(iMsgType).tqarg(szBuffer);
++	TQString szToWrite=TQString("%1 %2\n").arg(iMsgType).arg(szBuffer);
+ 	KviTQCString szTmp = KviTQString::toUtf8(szToWrite);
+ 	if(m_pLogFile->writeBlock(szTmp.data(),szTmp.length())==-1) debug("WARNING : Can not write to the log file.");
+ }
+@@ -900,7 +900,7 @@ void KviIrcView::scrollBarPositionChanged(int newValue)
+ 		}
+ 	}
+ 	if(!m_bSkipScrollBarRepaint)
+-		tqrepaint();
++		repaint();
+ 		//update();
+ //	if(!m_bSkipScrollBarRepaint)postUpdateEvent();
+ }
+@@ -911,7 +911,7 @@ bool KviIrcView::event(TQEvent *e)
+ 	{
+ 		__range_valid(m_bPostedPaintEventPending);
+ 		if(m_iUnprocessedPaintEventRequests)
+-			tqrepaint();
++			repaint();
+ 		// else we just had a pointEvent that did the job
+ 		m_bPostedPaintEventPending = false;
+ 		return true;
+@@ -935,12 +935,12 @@ void KviIrcView::wheelEvent(TQWheelEvent *e)
+ 
+ void KviIrcView::postUpdateEvent()
+ {
+-	// This will post a TQEvent with a full tqrepaint request
++	// This will post a TQEvent with a full repaint request
+ 	if(!m_bPostedPaintEventPending)
+ 	{
+ 		m_bPostedPaintEventPending = true;
+ 		TQEvent *e = new TQEvent(TQEvent::User);
+-		g_pApp->postEvent(this,e); // queue a tqrepaint
++		g_pApp->postEvent(this,e); // queue a repaint
+ 	}
+ 
+ 	m_iUnprocessedPaintEventRequests++; // paintEvent() will set it to 0
+@@ -956,7 +956,7 @@ void KviIrcView::postUpdateEvent()
+ 			fastScroll(3);
+ #endif
+ 		else
+-			tqrepaint();
++			repaint();
+ 	}
+ }
+ 
+@@ -1093,7 +1093,7 @@ void KviIrcView::removeHeadLine(bool bRepaint)
+ 		m_pLastLine  = 0;
+ 	}
+ 	if(bRepaint)
+-		tqrepaint();
++		repaint();
+ }
+ 
+ void KviIrcView::splitMessagesTo(KviIrcView *v)
+@@ -1150,12 +1150,12 @@ void KviIrcView::splitMessagesTo(KviIrcView *v)
+ 	m_pScrollBar->setRange(0,m_iNumLines);
+ 	m_pScrollBar->setValue(m_iNumLines);
+ 	
+-	tqrepaint();
++	repaint();
+ 
+ 	v->m_iLastScrollBarValue = v->m_iNumLines;
+ 	v->m_pScrollBar->setRange(0,v->m_iNumLines);
+ 	v->m_pScrollBar->setValue(v->m_iNumLines);
+-	v->tqrepaint();
++	v->repaint();
+ 
+ }
+ 
+@@ -1183,7 +1183,7 @@ void KviIrcView::appendMessagesFrom(KviIrcView *v)
+ 	m_pScrollBar->setRange(0,m_iNumLines);
+ 	m_pScrollBar->setValue(m_iNumLines);
+ 	
+-	tqrepaint();
++	repaint();
+ }
+ 
+ void KviIrcView::joinMessagesFrom(KviIrcView *v)
+@@ -1243,7 +1243,7 @@ void KviIrcView::joinMessagesFrom(KviIrcView *v)
+ 	m_pScrollBar->setRange(0,m_iNumLines);
+ 	m_pScrollBar->setValue(m_iNumLines);
+ 	
+-	tqrepaint();
++	repaint();
+ }
+ 
+ void KviIrcView::appendText(int iMsgType,const kvi_wchar_t *data_ptr,int iFlags)
+@@ -2713,8 +2713,8 @@ void KviIrcView::fastScroll(int lines)
+ 	if(!m_pFm)
+ 	{
+ 		// We must get the metrics from a real paint event :/
+-		// must do a full tqrepaint to get them...
+-		tqrepaint();
++		// must do a full repaint to get them...
++		repaint();
+ 		return;
+ 	}
+ 
+@@ -2788,7 +2788,7 @@ void KviIrcView::paintEvent(TQPaintEvent *p)
+ 	int widgetWidth  = width() - scrollbarWidth;
+ 	if(!isVisible() || (widgetWidth < 20))
+ 	{
+-		m_iUnprocessedPaintEventRequests = 0; // assume a full tqrepaint when this widget is shown...
++		m_iUnprocessedPaintEventRequests = 0; // assume a full repaint when this widget is shown...
+ 		return; //can't show stuff here
+ 	}
+ 
+@@ -2800,7 +2800,7 @@ void KviIrcView::paintEvent(TQPaintEvent *p)
+ 		(m_pKviWindow->mdiParent() != g_pFrame->mdiManager()->topChild()) &&
+ 		(m_pKviWindow->mdiParent()))
+ 	{
+-		m_iUnprocessedPaintEventRequests = 0; // assume a full tqrepaint when this widget is shown...
++		m_iUnprocessedPaintEventRequests = 0; // assume a full repaint when this widget is shown...
+ 		return; // totally hidden behind other windows
+ 	}
+ 
+@@ -3955,7 +3955,7 @@ void KviIrcView::toggleToolWidget()
+ 		delete m_pToolWidget;
+ 		m_pToolWidget = 0;
+ 		m_pCursorLine = 0;
+-		tqrepaint();
++		repaint();
+ 
+ 	} else {
+ 		m_pToolWidget = new KviIrcViewToolWidget(this);
+@@ -3979,7 +3979,7 @@ void KviIrcView::setCursorLine(KviIrcViewLine * l)
+ 	if(m_pCursorLine == m_pCurLine)
+ 	{
+ 	
+-	tqrepaint();
++	repaint();
+ 
+ 		return;
+ 	}
+@@ -4000,7 +4000,7 @@ void KviIrcView::setCursorLine(KviIrcViewLine * l)
+ 			m_iLastScrollBarValue = sc;
+ 			m_pScrollBar->setValue(sc);
+ 		} else {
+-			tqrepaint();
++			repaint();
+ 		}
+ 	} else {
+ 		// The cursor line is over the current line
+@@ -4034,7 +4034,7 @@ void KviIrcView::setCursorLine(KviIrcViewLine * l)
+ 			m_iLastScrollBarValue = sc;
+ 			m_pScrollBar->setValue(sc);
+ 		} else {
+-			tqrepaint();
++			repaint();
+ 		}
+ 	}
+ }
+@@ -4086,7 +4086,7 @@ do_pNext:
+ 		} while(l != start);
+ 	}
+ 	m_pCursorLine = 0;
+-	tqrepaint();
++	repaint();
+ 	if(m_pToolWidget)m_pToolWidget->setFindResult(__tr2qs("Not found"));
+ }
+ 
+@@ -4140,7 +4140,7 @@ do_pPrev:
+ 	}
+ 	m_pCursorLine = 0;
+ 
+-	tqrepaint();
++	repaint();
+ 	if(m_pToolWidget)m_pToolWidget->setFindResult(__tr2qs("Not found"));
+ }
+ 
+@@ -4302,12 +4302,12 @@ KviIrcViewWrappedBlock * KviIrcView::getLinkUnderMouse(int xPos,int yPos,TQRect
+ 													szLink.append(TQChar(KVI_TEXT_COLOR));
+ 													if(l->pBlocks[iEndOfLInk].pChunk->colors.fore != KVI_NOCHANGE)
+ 													{
+-														szLink.append(TQString("%1").tqarg((int)(l->pBlocks[iEndOfLInk].pChunk->colors.fore)));
++														szLink.append(TQString("%1").arg((int)(l->pBlocks[iEndOfLInk].pChunk->colors.fore)));
+ 													}
+ 													if(l->pBlocks[iEndOfLInk].pChunk->colors.back != KVI_NOCHANGE)
+ 													{
+ 														szLink.append(TQChar(','));
+-														szLink.append(TQString("%1").tqarg((int)(l->pBlocks[iEndOfLInk].pChunk->colors.back)));
++														szLink.append(TQString("%1").arg((int)(l->pBlocks[iEndOfLInk].pChunk->colors.back)));
+ 													}
+ 												break;
+ 											}
+@@ -4581,7 +4581,7 @@ void KviIrcView::mouseDoubleClickEvent(TQMouseEvent *e)
+ 						c->raise();
+ 						c->setFocus();
+ 					} else {
+-						cmd = TQString("join %1").tqarg(szChan);
++						cmd = TQString("join %1").arg(szChan);
+ 					}
+ 				}
+ 			}
+@@ -4619,7 +4619,7 @@ void KviIrcView::mousePressEvent(TQMouseEvent *e)
+ 		if(m_pToolWidget)
+ 		{
+ 			m_pCursorLine = getVisibleLineAt(e->pos().x(),e->pos().y());
+-			tqrepaint();
++			repaint();
+ 		}
+ 
+ 		m_mousePressPos   = e->pos();
+@@ -4802,7 +4802,7 @@ void KviIrcView::mouseReleaseEvent(TQMouseEvent *)
+ 			m_pMessagesStoppedWhileSelecting->removeFirst();
+ 			appendLine(l,false);
+ 		}
+-		tqrepaint();
++		repaint();
+ 	}
+ }
+ 
+@@ -4858,11 +4858,11 @@ void KviIrcView::mouseMoveEvent(TQMouseEvent *e)
+ 					int lastBottom = m_iLastLinkRectTop + m_iLastLinkRectHeight;
+ 					int thisBottom = rectTop + rectHeight;
+ 					TQRect r(0,top,width(),((lastBottom > thisBottom) ? lastBottom : thisBottom) - top);
+-					tqrepaint(r);
++					repaint(r);
+ 				} else {
+ 					// no prev link
+ 					TQRect r(0,rectTop,width(),rectHeight);
+-					tqrepaint(r);
++					repaint(r);
+ 				}
+ 				m_iLastLinkRectTop = rectTop;
+ 				m_iLastLinkRectHeight = rectHeight;
+@@ -4872,7 +4872,7 @@ void KviIrcView::mouseMoveEvent(TQMouseEvent *e)
+ 				{
+ 					// There was a previous bottom rect
+ 					TQRect r(0,m_iLastLinkRectTop,width(),m_iLastLinkRectHeight);
+-					tqrepaint(r);
++					repaint(r);
+ 					m_iLastLinkRectTop = -1;
+ 					m_iLastLinkRectHeight = -1;
+ 				}
+@@ -5100,7 +5100,7 @@ void KviIrcView::timerEvent(TQTimerEvent *e)
+ 	if(e->timerId() == m_iSelectTimer)
+ 	{
+ 		calculateSelectionBounds();
+-		tqrepaint();
++		repaint();
+ 	}
+ 	if(e->timerId() == m_iMouseTimer)
+ 	{
+diff --git a/src/kvirc/ui/kvi_ircviewtools.cpp b/src/kvirc/ui/kvi_ircviewtools.cpp
+index c6f4138..d60ba16 100644
+--- a/src/kvirc/ui/kvi_ircviewtools.cpp
++++ b/src/kvirc/ui/kvi_ircviewtools.cpp
+@@ -278,7 +278,7 @@ void KviIrcViewToolWidget::filterSave()
+ void KviIrcViewToolWidget::forceRepaint()
+ {
+ 	#if defined(COMPILE_USE_QT4) && defined(COMPILE_ON_WINDOWS) 
+-		m_pIrcView->tqrepaint();
++		m_pIrcView->repaint();
+ 	#else
+ 		m_pIrcView->paintEvent(0);
+ 	#endif
+diff --git a/src/kvirc/ui/kvi_listview.cpp b/src/kvirc/ui/kvi_listview.cpp
+index c0dd4ba..168db46 100644
+--- a/src/kvirc/ui/kvi_listview.cpp
++++ b/src/kvirc/ui/kvi_listview.cpp
+@@ -190,7 +190,7 @@ void KviListView::resizeEvent(TQResizeEvent * e)
+ {
+ 	KviTalListView::resizeEvent(e);
+ 	if(m_pBackgroundOverlayPixmap)
+-	repaintContents(); // force a full tqrepaint (otherwise qt does not honor static background here)
++	repaintContents(); // force a full repaint (otherwise qt does not honor static background here)
+ }
+ 
+ #ifdef COMPILE_ON_WINDOWS
+diff --git a/src/kvirc/ui/kvi_mdichild.cpp b/src/kvirc/ui/kvi_mdichild.cpp
+index 248a2a1..1a8dccc 100644
+--- a/src/kvirc/ui/kvi_mdichild.cpp
++++ b/src/kvirc/ui/kvi_mdichild.cpp
+@@ -112,7 +112,7 @@ TQRect KviMdiChild::restoredGeometry()
+ {
+ 	if(m_state == Maximized)return m_restoredGeometry;
+ 	else return TQRect(x(),y(),width(),height());
+-//	else return tqgeometry();
++//	else return geometry();
+ 
+ }
+ 
+@@ -172,7 +172,7 @@ void KviMdiChild::setCaption(const TQString & plain,const TQString & xmlActive,c
+ void KviMdiChild::maximize()
+ {
+ 	if(m_state == Minimized)restore(); // restore first
+-	if(m_state == Normal)m_restoredGeometry = tqgeometry();
++	if(m_state == Normal)m_restoredGeometry = geometry();
+ 	m_state = Maximized;
+ 	manager()->maximizeChild(this);
+ }
+@@ -225,7 +225,7 @@ void KviMdiChild::minimize()
+ 			m_pManager->childMinimized(this,true);
+ 		break;
+ 		case Normal:
+-			m_restoredGeometry = tqgeometry();
++			m_restoredGeometry = geometry();
+ 			hide();
+ 			m_state = Minimized;
+ 			m_pManager->childMinimized(this,false);
+diff --git a/src/kvirc/ui/kvi_mdimanager.cpp b/src/kvirc/ui/kvi_mdimanager.cpp
+index 59f5850..607f699 100644
+--- a/src/kvirc/ui/kvi_mdimanager.cpp
++++ b/src/kvirc/ui/kvi_mdimanager.cpp
+@@ -199,7 +199,7 @@ void KviMdiManager::setTopChild(KviMdiChild *lpC,bool bSetFocus)
+ 			return; // no such child ?
+ 		}
+ 
+-		// disable the labels of all the other tqchildren
++		// disable the labels of all the other children
+ 		//for(KviMdiChild *pC=m_pZ->first();pC;pC=m_pZ->next())
+ 		//{
+ 		//	pC->captionLabel()->setActive(false);
+@@ -313,7 +313,7 @@ void KviMdiManager::childMoved(KviMdiChild *)
+ 
+ void KviMdiManager::maximizeChild(KviMdiChild * lpC)
+ {
+-	// the tqchildren must be moved once by the means of TQScrollView::moveChild()
++	// the children must be moved once by the means of TQScrollView::moveChild()
+ 	// so the TQScrollView internal structures get updated with the negative
+ 	// position of the widget, otherwise, when restoring with moveChild()
+ 	// it will refuse to move it back to the original position
+@@ -338,14 +338,14 @@ void KviMdiManager::maximizeChild(KviMdiChild * lpC)
+ 		lpC->setFocus();
+ 	}
+ 	
+-	// fixme: we could hide all the other tqchildren now!
++	// fixme: we could hide all the other children now!
+ }
+ 
+ 
+ 
+ void KviMdiManager::resizeEvent(TQResizeEvent *e)
+ {
+-	//If we have a maximized tqchildren at the top , adjust its size
++	//If we have a maximized children at the top , adjust its size
+ 	KviTalScrollView::resizeEvent(e);
+ 	KviMdiChild *lpC=m_pZ->last();
+ 	if(lpC)
+@@ -431,7 +431,7 @@ void KviMdiManager::focusTopChild()
+ 	if(!lpC->isVisible())return;
+ 	//	if(lpC->state()==KviMdiChild::Minimized)return;
+ 	//	debug("Focusing top child %s",lpC->name());
+-	//disable the labels of all the other tqchildren
++	//disable the labels of all the other children
+ 	for(KviMdiChild *pC=m_pZ->first();pC;pC=m_pZ->next())
+ 	{
+ 		if(pC != lpC)
+diff --git a/src/kvirc/ui/kvi_modew.cpp b/src/kvirc/ui/kvi_modew.cpp
+index 7c817dd..9f9aba0 100755
+--- a/src/kvirc/ui/kvi_modew.cpp
++++ b/src/kvirc/ui/kvi_modew.cpp
+@@ -75,9 +75,9 @@ void KviModeWidget::refreshModes()
+ {
+ 	TQString szMode=m_pChannel->channelMode();
+ 	if(!m_pChannel->channelKey().isEmpty())
+-		szMode+=TQString(" k:%1").tqarg(m_pChannel->channelKey());
++		szMode+=TQString(" k:%1").arg(m_pChannel->channelKey());
+ 	if(!m_pChannel->channelLimit().isEmpty())
+-		szMode+=TQString(" l:%1").tqarg(m_pChannel->channelLimit().ptr());
++		szMode+=TQString(" l:%1").arg(m_pChannel->channelLimit().ptr());
+ 	if(m_pLabel)
+ 		m_pLabel->setText(szMode);
+ }
+diff --git a/src/kvirc/ui/kvi_query.cpp b/src/kvirc/ui/kvi_query.cpp
+index a5455bb..ef70a1d 100644
+--- a/src/kvirc/ui/kvi_query.cpp
++++ b/src/kvirc/ui/kvi_query.cpp
+@@ -167,9 +167,9 @@ TQString KviQuery::getInfoLabelTipText()
+ 			txt +=          "<tr><td>";
+ 		
+ 			if(e->hasRealName())
+-				tmp=__tr2qs("%1 is %2 (%3)").tqarg(m_szName).tqarg(szMask).tqarg(KviMircCntrl::stripControlBytes(e->realName()));
++				tmp=__tr2qs("%1 is %2 (%3)").arg(m_szName).arg(szMask).arg(KviMircCntrl::stripControlBytes(e->realName()));
+ 			else
+-				tmp=__tr2qs("%1 is %2").tqarg(m_szName).tqarg(szMask);
++				tmp=__tr2qs("%1 is %2").arg(m_szName).arg(szMask);
+ 			
+ 			tmp.replace('&',"&amp;");
+ 			tmp.replace('<',"&lt;");
+@@ -183,21 +183,21 @@ TQString KviQuery::getInfoLabelTipText()
+ 			{
+ 				txt+="<tr><td>";
+ 				if(e->hasHops())
+-					txt+=__tr2qs("%1 is using irc server: %2 (%3 hops)").tqarg(m_szName).tqarg(e->server()).tqarg(e->hops());
++					txt+=__tr2qs("%1 is using irc server: %2 (%3 hops)").arg(m_szName).arg(e->server()).arg(e->hops());
+ 				else
+-					txt+=__tr2qs("%1 is using irc server: %2").tqarg(m_szName).tqarg(e->server());
++					txt+=__tr2qs("%1 is using irc server: %2").arg(m_szName).arg(e->server());
+ 				txt+="</td></tr>";
+ 			}
+ 			
+ 			if(e->isAway())
+ 			{
+ 				txt+="<tr><td>";
+-				txt+=__tr2qs("%1 is probably away").tqarg(m_szName);
++				txt+=__tr2qs("%1 is probably away").arg(m_szName);
+ 				txt+="</td></tr>";
+ 			}
+ 			
+ 			txt+="<tr><td>";
+-			tmp=__tr2qs("Common channels with %1: %2").tqarg(m_szName).tqarg(szChans);
++			tmp=__tr2qs("Common channels with %1: %2").arg(m_szName).arg(szChans);
+ 			
+ 			tmp.replace('&',"&amp;");
+ 			tmp.replace('<',"&lt;");
+@@ -237,19 +237,19 @@ TQString KviQuery::getInfoLabelText()
+ 				else 
+ 					szMask+="*";
+ 				if(e->hasRealName())
+-					tmp=__tr2qs("Query with %1!%2 (%3)").tqarg(m_szName).tqarg(szMask).tqarg(KviMircCntrl::stripControlBytes(e->realName()));
++					tmp=__tr2qs("Query with %1!%2 (%3)").arg(m_szName).arg(szMask).arg(KviMircCntrl::stripControlBytes(e->realName()));
+ 				else
+-					tmp=__tr2qs("Query with %1!%2").tqarg(m_szName).tqarg(szMask);
++					tmp=__tr2qs("Query with %1!%2").arg(m_szName).arg(szMask);
+ 				if(e->hasServer())
+-					tmp+=__tr2qs(", using server %1").tqarg(e->server());
++					tmp+=__tr2qs(", using server %1").arg(e->server());
+ 				if(e->hasHops())
+-					tmp+=__tr2qs(" (%1 hops)").tqarg(e->hops());
++					tmp+=__tr2qs(" (%1 hops)").arg(e->hops());
+ 				if(e->isAway())
+ 					tmp+=__tr2qs(", probably away");
+ 				tmp+="\n";
+ 				TQString szChans;
+ 				connection()->getCommonChannels(m_szName,szChans,0);
+-				tmp+=__tr2qs("Common channels: %2").tqarg(szChans);
++				tmp+=__tr2qs("Common channels: %2").arg(szChans);
+ 			} else {
+ 				tmp=__tr2qs("[Dead Query]");
+ 			}
+diff --git a/src/kvirc/ui/kvi_splash.cpp b/src/kvirc/ui/kvi_splash.cpp
+index d91be01..d3783c0 100644
+--- a/src/kvirc/ui/kvi_splash.cpp
++++ b/src/kvirc/ui/kvi_splash.cpp
+@@ -160,7 +160,7 @@ void KviSplashScreen::setProgress(int progress)
+ 	painter.end();
+ #endif
+ 	//raise();
+-	tqrepaint();
++	repaint();
+ 	g_pApp->processEvents(); //damn...
+ }
+ 
+diff --git a/src/kvirc/ui/kvi_styled_controls.cpp b/src/kvirc/ui/kvi_styled_controls.cpp
+index e67cef1..6f7e8e6 100644
+--- a/src/kvirc/ui/kvi_styled_controls.cpp
++++ b/src/kvirc/ui/kvi_styled_controls.cpp
+@@ -84,7 +84,7 @@ void KviStyledControlInternal::paintTimerShot ()
+ 			m_pControl->m_pTimer->stop();
+ 		}
+ 	}
+-	m_pControl->m_pWidget->tqrepaint( false );
++	m_pControl->m_pWidget->repaint( false );
+ }
+ 
+ KviStyledControl::KviStyledControl(TQWidget* w)
+@@ -118,7 +118,7 @@ void KviStyledControl::enterEvent ( TQEvent * )
+ 		}
+ 		m_bMouseEnter=1;
+ 		m_iStepNumber++;
+-		m_pWidget->tqrepaint( false );
++		m_pWidget->repaint( false );
+ 	}
+ }
+ 
+@@ -137,7 +137,7 @@ void KviStyledControl::leaveEvent ( TQEvent * )
+ 		}
+ 		m_bMouseEnter=0;
+ 		m_iStepNumber--;
+-		m_pWidget->tqrepaint( false );
++		m_pWidget->repaint( false );
+ 	}
+ }
+ 
+diff --git a/src/kvirc/ui/kvi_taskbar.cpp b/src/kvirc/ui/kvi_taskbar.cpp
+index 952501f..171e411 100644
+--- a/src/kvirc/ui/kvi_taskbar.cpp
++++ b/src/kvirc/ui/kvi_taskbar.cpp
+@@ -421,7 +421,7 @@ void KviTaskBarButton::setProgress(int progress)
+ {
+ 	if(progress == m_iProgress)return;
+ 	m_iProgress = progress;
+-	update(); // tqrepaint(false) ?
++	update(); // repaint(false) ?
+ }
+ 
+ void KviTaskBarButton::unhighlight()
+@@ -439,7 +439,7 @@ void KviTaskBarButton::highlight(int iLevel)
+ 	m_iHighlightLevel = iLevel;
+ 	if(g_pFrame->dockExtension())g_pFrame->dockExtension()->refresh();
+ 	if(m_bActive)return;
+-	update(); // tqrepaint(false) ?
++	update(); // repaint(false) ?
+ }
+ 
+ 
+@@ -833,7 +833,7 @@ void KviTreeTaskBarItem::applyOptions()
+ void KviTreeTaskBarItem::captionChanged()
+ {
+ 	// FIXME: can we do better ?
+-	tqrepaint();
++	repaint();
+ }
+ 
+ void KviTreeTaskBarItem::unhighlight()
+@@ -841,7 +841,7 @@ void KviTreeTaskBarItem::unhighlight()
+ 	if(m_iHighlightLevel < 1)return;
+ 	m_iHighlightLevel = 0;
+ 	if(g_pFrame->dockExtension())g_pFrame->dockExtension()->refresh();
+-	tqrepaint();
++	repaint();
+ }
+ 
+ void KviTreeTaskBarItem::highlight(int iLevel)
+@@ -851,14 +851,14 @@ void KviTreeTaskBarItem::highlight(int iLevel)
+ 	m_iHighlightLevel = iLevel;
+ 	if(g_pFrame->dockExtension())g_pFrame->dockExtension()->refresh();
+ 	if(isSelected())return;
+-	tqrepaint(); // tqrepaint(false) ?
++	repaint(); // repaint(false) ?
+ }
+ 
+ void KviTreeTaskBarItem::setProgress(int progress)
+ {
+ 	if(progress == m_iProgress)return;
+ 	m_iProgress = progress;
+-	tqrepaint(); // tqrepaint(false) ?
++	repaint(); // repaint(false) ?
+ }
+ 
+ void KviTreeTaskBarItem::setActive(bool bActive)
+@@ -868,7 +868,7 @@ void KviTreeTaskBarItem::setActive(bool bActive)
+ //		m_bHighlighted = false;
+ //		m_bAltColor    = false;
+ 		m_iHighlightLevel = 0;
+-		// was not selected: the listView will tqrepaint it
++		// was not selected: the listView will repaint it
+ 	} else {
+ 		if(isSelected())
+ 		{
+@@ -876,7 +876,7 @@ void KviTreeTaskBarItem::setActive(bool bActive)
+ //			m_bHighlighted = false;
+ //			m_bAltColor = false;
+ 			m_iHighlightLevel = 0;
+-			// was selected: the list view will tqrepaint it
++			// was selected: the list view will repaint it
+ 		}
+ 	}
+ }
+@@ -1081,7 +1081,7 @@ void KviTreeTaskBarItem::timerShot()
+ 		m_pAnimTimer->stop();
+ 		m_iStepNumber=0; //make shure, that we cannot get out of range
+ 	}
+-	tqrepaint();
++	repaint();
+ }
+ 
+ void KviTreeTaskBarItem::mouseEnter()
+@@ -1405,7 +1405,7 @@ KviTaskBarItem * KviTreeTaskBar::nextItem()
+ 	{
+ 		m_pCurrentItem = (KviTreeTaskBarItem *)m_pCurrentItem->firstChild();
+ 	} else {
+-		// this item has no tqchildren: try the next sibling
++		// this item has no children: try the next sibling
+ 		if(m_pCurrentItem->nextSibling())
+ 		{
+ 			m_pCurrentItem = (KviTreeTaskBarItem *)m_pCurrentItem->nextSibling();
+diff --git a/src/kvirc/ui/kvi_taskbar.h b/src/kvirc/ui/kvi_taskbar.h
+index 9e9ebe2..6c5794c 100644
+--- a/src/kvirc/ui/kvi_taskbar.h
++++ b/src/kvirc/ui/kvi_taskbar.h
+@@ -226,7 +226,7 @@ protected:
+ 	int m_iBlueDiff;
+ public:
+ 	virtual TQString key(int column,bool) const;
+-	virtual void paintCell(TQPainter *p,const TQColorGroup &cg,int column,int width,int tqalignment);
++	virtual void paintCell(TQPainter *p,const TQColorGroup &cg,int column,int width,int alignment);
+ #ifdef COMPILE_USE_QT4
+ 	virtual void paintBranches(TQPainter *p,const TQColorGroup &cg,int w,int y,int h);
+ #else
+diff --git a/src/kvirc/ui/kvi_userlistview.cpp b/src/kvirc/ui/kvi_userlistview.cpp
+index cc3d866..d86b864 100644
+--- a/src/kvirc/ui/kvi_userlistview.cpp
++++ b/src/kvirc/ui/kvi_userlistview.cpp
+@@ -305,7 +305,7 @@ void KviUserListView::applyOptions()
+ 	m_pUsersLabel->setFont(KVI_OPTION_FONT(KviOption_fontUserListView));
+ 	setMinimumWidth(100);
+ 	resizeEvent(0); // this will call update() too
+-	tqrepaint();
++	repaint();
+ }
+ void KviUserListView::updateArea()
+ {
+@@ -1281,7 +1281,7 @@ void KviUserListView::maybeTip(KviUserListToolTip * tip,const TQPoint &pnt)
+ 				TQDateTime dt;
+ 				dt.setTime_t(it->m_joinTime);
+ 				buffer += "<tr><td bgcolor=\"#F0F0F0\"><nobr>";
+-				buffer += __tr2qs("Joined on <b>%1</b>").tqarg(dt.toString());
++				buffer += __tr2qs("Joined on <b>%1</b>").arg(dt.toString());
+ 				buffer += "</nobr></td></tr>";
+ 			}
+ 	
+@@ -1293,7 +1293,7 @@ void KviUserListView::maybeTip(KviUserListToolTip * tip,const TQPoint &pnt)
+ 				int hors = mins / 60;
+ 				mins = mins % 60;
+ 				buffer += "<tr><td bgcolor=\"#F0F0F0\"><nobr>";
+-				buffer += __tr2qs("Quiet for <b>%1h %2m %3s</b>").tqarg(hors).tqarg(mins).tqarg(secs);
++				buffer += __tr2qs("Quiet for <b>%1h %2m %3s</b>").arg(hors).arg(mins).arg(secs);
+ 				buffer += "</nobr></td></tr>";
+ 			}
+ 			buffer += "</table>";
+diff --git a/src/kvirc/ui/kvi_window.cpp b/src/kvirc/ui/kvi_window.cpp
+index e0c8621..a4828bf 100644
+--- a/src/kvirc/ui/kvi_window.cpp
++++ b/src/kvirc/ui/kvi_window.cpp
+@@ -1006,7 +1006,7 @@ void KviWindow::focusInEvent(TQFocusEvent *)
+ 		if(m_pIrcView)m_pFocusHandler = m_pIrcView;
+ 		else {
+ #ifdef COMPILE_USE_QT4
+-			TQList<TQObject *> list = tqchildren();
++			TQList<TQObject *> list = children();
+ 			for(TQList<TQObject *>::Iterator it = list.begin();it != list.end();++it)
+ 			{
+ 				TQObject * c = *it;
+@@ -1042,7 +1042,7 @@ void KviWindow::focusInEvent(TQFocusEvent *)
+ 	}
+ 
+ 	// Setting the focus to the focus handler usually
+-	// triggers our filter for the tqchildren's focusInEvent.
++	// triggers our filter for the children's focusInEvent.
+ 	// This should call activateSelf() and thus
+ 	// we should be already the active window at this point.
+ 	// If we're not, then run activateSelf() to fix this.
+@@ -1124,7 +1124,7 @@ void KviWindow::childInserted(TQWidget * o)
+ 	}
+ 
+ #ifdef COMPILE_USE_QT4
+-	TQList<TQObject *> list = o->tqchildren();
++	TQList<TQObject *> list = o->children();
+ 	for(TQList<TQObject *>::Iterator it = list.begin();it != list.end();++it)
+ 	{
+ 		TQObject * c = *it;
+@@ -1162,7 +1162,7 @@ void KviWindow::childRemoved(TQWidget * o)
+ 		m_pLastFocusedChild = 0;
+ 
+ #ifdef COMPILE_USE_QT4
+-	TQList<TQObject *> list = o->tqchildren();
++	TQList<TQObject *> list = o->children();
+ 	for(TQList<TQObject *>::Iterator it = list.begin();it != list.end();++it)
+ 	{
+ 		TQObject * c = *it;
+@@ -1180,7 +1180,7 @@ void KviWindow::childRemoved(TQWidget * o)
+ 			if(c->isWidgetType())
+ 				childRemoved((TQWidget *)c);
+ 		}
+-	} //else debug("The removed object has no tqchildren");
++	} //else debug("The removed object has no children");
+ #endif
+ }
+ 
+@@ -1202,7 +1202,7 @@ void KviWindow::wheelEvent(TQWheelEvent *e)
+ }
+ 
+ 
+-void KviWindow::tqchildrenTreeChanged(TQWidget * widgetAdded)
++void KviWindow::childrenTreeChanged(TQWidget * widgetAdded)
+ {
+ 	//	if(widgetAdded && m_pFocusHandler)setFocusHandler(m_pFocusHandler,widgetAdded);
+ 	// FIXME: This might be useless
+@@ -1217,7 +1217,7 @@ void KviWindow::updateBackgrounds(TQObject * obj)
+ 	if(!obj)
+ 		obj = TQT_TQOBJECT(this);
+ #ifdef COMPILE_USE_QT4
+-	TQList<TQObject *> list = obj->tqchildren();
++	TQList<TQObject *> list = obj->children();
+ 	if (list.count())
+ 	{
+ 	
+@@ -1317,7 +1317,7 @@ TQRect KviWindow::externalGeometry()
+ #ifndef Q_OS_MACX
+ 	return mdiParent() ? mdiParent()->restoredGeometry() : frameGeometry();
+ #else
+-	return mdiParent() ? mdiParent()->restoredGeometry() : tqgeometry();
++	return mdiParent() ? mdiParent()->restoredGeometry() : geometry();
+ #endif
+ }
+ 
+@@ -1490,10 +1490,10 @@ void KviWindow::preprocessMessage(TQString & szMessage)
+ 			if(m_pConsole->connection())
+ 				if(m_pConsole->connection()->serverInfo()->supportedChannelTypes().contains(tmp[0]))
+ 					if((*it)==tmp)
+-						*it=TQString("\r!c\r%1\r").tqarg(*it);
++						*it=TQString("\r!c\r%1\r").arg(*it);
+ 					else
+ 					{
+-						*it=TQString("\r!c%1\r%2\r").tqarg(tmp).tqarg(*it);
++						*it=TQString("\r!c%1\r%2\r").arg(tmp).arg(*it);
+ 					}	
+ 	}
+ 	szMessage=strings.join(" ");
+diff --git a/src/kvirc/ui/kvi_window.h b/src/kvirc/ui/kvi_window.h
+index a044bae..913c63b 100644
+--- a/src/kvirc/ui/kvi_window.h
++++ b/src/kvirc/ui/kvi_window.h
+@@ -181,7 +181,7 @@ protected: // almost private: don't touch :D
+ //	KviToolWindowsContainer             * m_pEditorsContainer;
+ public:
+ 	// The global ID of this window: unique in the application
+-	TQString id(){ return TQString("%1").tqarg(m_uId); };
++	TQString id(){ return TQString("%1").arg(m_uId); };
+ 	unsigned long int numericId(){ return m_uId; };
+ public:
+ 	// THIS is the function that should be used
+@@ -262,7 +262,7 @@ public:
+ 	bool isMaximized();
+ 	// Retrieves the default log file name: this is pre-build
+ 	void getDefaultLogFileName(TQString &buffer);
+-	// Well...the external tqgeometry :)
++	// Well...the external geometry :)
+ 	TQRect externalGeometry();
+ 
+ 	void delayedClose(); // close that jumps out of the current event loop
+@@ -374,7 +374,7 @@ protected:
+ 
+ 	BUTTON_CLASS * createToolButton(TQWidget * par,const char * nam,int pixon,int pixoff,const TQString & tooltip,bool bOn);
+ 	// This is called by KviInput: actually it links the widgetAdded
+-	virtual void tqchildrenTreeChanged(TQWidget * widgetAdded);
++	virtual void childrenTreeChanged(TQWidget * widgetAdded);
+ 	
+ 	virtual bool focusNextPrevChild(bool bNext);
+ 	
+diff --git a/src/modules/action/libkviaction.cpp b/src/modules/action/libkviaction.cpp
+index ead09cd..9404b8b 100644
+--- a/src/modules/action/libkviaction.cpp
++++ b/src/modules/action/libkviaction.cpp
+@@ -109,10 +109,10 @@ static bool action_kvs_cmd_trigger(KviKvsModuleCommandCall * c)
+ 			a->activate();
+ 		} else {
+ 			if(!c->switches()->find('q',"quiet"))
+-				c->warning(__tr2qs("The action \"%1\" is disabled").tqarg(szName));
++				c->warning(__tr2qs("The action \"%1\" is disabled").arg(szName));
+ 		}
+ 	} else {
+-		c->warning(__tr2qs("The action \"%1\" does not exist").tqarg(szName));
++		c->warning(__tr2qs("The action \"%1\" does not exist").arg(szName));
+ 	}
+ 
+ 	return true;
+@@ -158,7 +158,7 @@ static bool action_kvs_cmd_enable(KviKvsModuleCommandCall * c)
+ 		if(!a->isEnabled())a->setEnabled(true);
+ 	} else {
+ 		if(!c->switches()->find('q',"quiet"))
+-			c->warning(__tr2qs("The action \"%1\" does not exist").tqarg(szName));
++			c->warning(__tr2qs("The action \"%1\" does not exist").arg(szName));
+ 	}
+ 
+ 	return true;
+@@ -206,7 +206,7 @@ static bool action_kvs_cmd_disable(KviKvsModuleCommandCall * c)
+ 		if(a->isEnabled())a->setEnabled(false);
+ 	} else {
+ 		if(!c->switches()->find('q',"quiet"))
+-			c->warning(__tr2qs("The action \"%1\" does not exist").tqarg(szName));
++			c->warning(__tr2qs("The action \"%1\" does not exist").arg(szName));
+ 	}
+ 
+ 	return true;
+@@ -252,11 +252,11 @@ static bool action_kvs_cmd_destroy(KviKvsModuleCommandCall * c)
+ 			a->suicide();
+ 		} else {
+ 			if(!c->switches()->find('q',"quiet"))
+-				c->warning(__tr2qs("The action \"%1\" is a core action and cannot be destroyed").tqarg(szName));
++				c->warning(__tr2qs("The action \"%1\" is a core action and cannot be destroyed").arg(szName));
+ 		}
+ 	} else {
+ 		if(!c->switches()->find('q',"quiet"))
+-			c->warning(__tr2qs("The action \"%1\" does not exist").tqarg(szName));
++			c->warning(__tr2qs("The action \"%1\" does not exist").arg(szName));
+ 	}
+ 
+ 	return true;
+@@ -417,7 +417,7 @@ static bool action_kvs_cmd_create(KviKvsModuleCallbackCommandCall * c)
+ 		if(old->isKviUserActionNeverOverrideThis())
+ 			old->suicide();
+ 		else {
+-			c->warning(__tr2qs("The action \"%1\" is already defined as core action and cannot be overridden").tqarg(szName));
++			c->warning(__tr2qs("The action \"%1\" is already defined as core action and cannot be overridden").arg(szName));
+ 			return false;
+ 		}
+ 	}
+diff --git a/src/modules/addon/libkviaddon.cpp b/src/modules/addon/libkviaddon.cpp
+index 08f1808..9d3b0eb 100644
+--- a/src/modules/addon/libkviaddon.cpp
++++ b/src/modules/addon/libkviaddon.cpp
+@@ -195,7 +195,7 @@ static bool addon_kvs_cmd_uninstall(KviKvsModuleCommandCall * c)
+ 		KviKvsScriptAddonManager::instance()->unregisterAddon(szName,c->window(),!c->switches()->find('n',"no-callback"));
+ 	} else {
+ 		if(!c->switches()->find('q',"quiet"))
+-			c->warning(__tr2qs("The addon \"%1\" does not exist").tqarg(szName));
++			c->warning(__tr2qs("The addon \"%1\" does not exist").arg(szName));
+ 	}
+ 
+ 	return true;
+@@ -235,13 +235,13 @@ static bool addon_kvs_cmd_configure(KviKvsModuleCommandCall * c)
+ 		if(ss.isEmpty())
+ 		{
+ 			if(!c->switches()->find('q',"quiet"))
+-				c->warning(__tr2qs("The addon \"%1\" has no configure callback set").tqarg(szName));
++				c->warning(__tr2qs("The addon \"%1\" has no configure callback set").arg(szName));
+ 		} else {
+ 			a->executeConfigureCallback(c->window());
+ 		}
+ 	} else {
+ 		if(!c->switches()->find('q',"quiet"))
+-			c->warning(__tr2qs("The addon \"%1\" does not exist").tqarg(szName));
++			c->warning(__tr2qs("The addon \"%1\" does not exist").arg(szName));
+ 	}
+ 
+ 	return true;
+@@ -282,13 +282,13 @@ static bool addon_kvs_cmd_help(KviKvsModuleCommandCall * c)
+ 		if(ss.isEmpty())
+ 		{
+ 			if(!c->switches()->find('q',"quiet"))
+-				c->warning(__tr2qs("The addon \"%1\" has no help callback set").tqarg(szName));
++				c->warning(__tr2qs("The addon \"%1\" has no help callback set").arg(szName));
+ 		} else {
+ 			a->executeHelpCallback(c->window());
+ 		}
+ 	} else {
+ 		if(!c->switches()->find('q',"quiet"))
+-			c->warning(__tr2qs("The addon \"%1\" does not exist").tqarg(szName));
++			c->warning(__tr2qs("The addon \"%1\" does not exist").arg(szName));
+ 	}
+ 
+ 	return true;
+@@ -334,7 +334,7 @@ static bool addon_kvs_cmd_setconfigurecallback(KviKvsModuleCallbackCommandCall *
+ 		a->setConfigureCallback(c->callback()->code());
+ 	} else {
+ 		if(!c->switches()->find('q',"quiet"))
+-			c->warning(__tr2qs("The addon \"%1\" does not exist").tqarg(szName));
++			c->warning(__tr2qs("The addon \"%1\" does not exist").arg(szName));
+ 	}
+ 	
+ 	return true;
+@@ -381,7 +381,7 @@ static bool addon_kvs_cmd_sethelpcallback(KviKvsModuleCallbackCommandCall * c)
+ 		a->setHelpCallback(c->callback()->code());
+ 	} else {
+ 		if(!c->switches()->find('q',"quiet"))
+-			c->warning(__tr2qs("The addon \"%1\" does not exist").tqarg(szName));
++			c->warning(__tr2qs("The addon \"%1\" does not exist").arg(szName));
+ 	}
+ 	
+ 	return true;
+diff --git a/src/modules/addon/managementdialog.cpp b/src/modules/addon/managementdialog.cpp
+index 8b08c54..beb9f4f 100644
+--- a/src/modules/addon/managementdialog.cpp
++++ b/src/modules/addon/managementdialog.cpp
+@@ -330,7 +330,7 @@ void KviScriptManagementDialog::uninstallScript()
+ 	if(!it)return;
+ 
+ 	TQString txt = "<p>";
+-	txt += __tr2qs("Do you really want to uninstall the addon \"%1\" ?").tqarg(it->addon()->visibleName());
++	txt += __tr2qs("Do you really want to uninstall the addon \"%1\" ?").arg(it->addon()->visibleName());
+ 	txt += "</p>";
+ 	
+ 	if(TQMessageBox::question(this,
+diff --git a/src/modules/aliaseditor/aliaseditor.cpp b/src/modules/aliaseditor/aliaseditor.cpp
+index 0f1201e..d020105 100644
+--- a/src/modules/aliaseditor/aliaseditor.cpp
++++ b/src/modules/aliaseditor/aliaseditor.cpp
+@@ -794,7 +794,7 @@ bool KviAliasEditor::removeItem(KviAliasEditorListViewItem *it,bool * pbYesToAll
+ 		else {
+ 			KviTQString::sprintf(szMsg,__tr2qs("Do you really want to remove the namespace \"%Q\" ?"),&szName);
+ 			szMsg += "<br>";
+-			szMsg += __tr2qs("Please note that all the tqchildren items will be deleted too.");
++			szMsg += __tr2qs("Please note that all the children items will be deleted too.");
+ 		}
+ 
+ 		g_pAliasEditorModule->lock();
+diff --git a/src/modules/avatar/libkviavatar.cpp b/src/modules/avatar/libkviavatar.cpp
+index a71f497..8386942 100644
+--- a/src/modules/avatar/libkviavatar.cpp
++++ b/src/modules/avatar/libkviavatar.cpp
+@@ -119,7 +119,7 @@ void KviAsyncAvatarSelectionDialog::okClicked()
+ 	{
+ 		TQString tmp = m_szAvatarName;
+ 		tmp.replace("\\","\\\\");
+-		TQString szBuffer=TQString("avatar.set \"%1\"").tqarg(tmp);
++		TQString szBuffer=TQString("avatar.set \"%1\"").arg(tmp);
+ 		KviKvsScript::run(szBuffer,m_pConnection->console());
+ 	}
+ 	
+diff --git a/src/modules/config/libkviconfig.cpp b/src/modules/config/libkviconfig.cpp
+index 97c92ec..64b9a10 100644
+--- a/src/modules/config/libkviconfig.cpp
++++ b/src/modules/config/libkviconfig.cpp
+@@ -124,7 +124,7 @@ static bool config_kvs_fnc_open(KviKvsModuleFunctionCall * c)
+ 
+ 	KviConfig * cfg = new KviConfig(szAbsFile,fileMode);
+ 	g_iNextConfigId++;
+-	TQString tmp = TQString("%1").tqarg(g_iNextConfigId);
++	TQString tmp = TQString("%1").arg(g_iNextConfigId);
+ 	g_pConfigDict->insert(tmp,cfg);
+ 	c->returnValue()->setString(tmp);
+ 	return true;
+diff --git a/src/modules/dcc/broker.cpp b/src/modules/dcc/broker.cpp
+index f472817..976b638 100644
+--- a/src/modules/dcc/broker.cpp
++++ b/src/modules/dcc/broker.cpp
+@@ -268,7 +268,7 @@ void KviDccBroker::handleChatRequest(KviDccDescriptor * dcc)
+ 		TQString tmp = __tr2qs_ctx( \
+ 				"<b>%1 [%2@%3]</b> requests a " \
+ 				"<b>Direct Client Connection</b> in <b>%4</b> mode.<br>", \
+-				"dcc").tqarg(dcc->szNick).tqarg(dcc->szUser).tqarg(dcc->szHost).tqarg(dcc->szType);
++				"dcc").arg(dcc->szNick).arg(dcc->szUser).arg(dcc->szHost).arg(dcc->szType);
+ 
+ #ifdef COMPILE_SSL_SUPPORT
+ 		if(dcc->bIsSSL)tmp += __tr2qs_ctx("The connection will be secured using SSL.<br>","dcc");
+@@ -282,11 +282,11 @@ void KviDccBroker::handleChatRequest(KviDccDescriptor * dcc)
+ 		} else {
+ 			tmp += __tr2qs_ctx( \
+ 					"The connection target will be host <b>%1</b> on port <b>%2</b><br>" \
+-					,"dcc").tqarg(dcc->szIp).tqarg(dcc->szPort);
++					,"dcc").arg(dcc->szIp).arg(dcc->szPort);
+ 		}
+ 
+ 
+-		TQString caption = __tr2qs_ctx("DCC %1 Request - KVIrc","dcc").tqarg(dcc->szType);
++		TQString caption = __tr2qs_ctx("DCC %1 Request - KVIrc","dcc").arg(dcc->szType);
+ 
+ 		KviDccAcceptBox * box = new KviDccAcceptBox(this,dcc,tmp,caption);
+ 
+@@ -315,7 +315,7 @@ void KviDccBroker::executeChat(KviDccBox *box,KviDccDescriptor * dcc)
+ 	KviStr szSubProto = dcc->szType;
+ 	szSubProto.toLower();
+ 
+-	TQString tmp = TQString("dcc: %1 %2@%3:%4").tqarg(szSubProto.ptr()).tqarg(dcc->szNick).tqarg(dcc->szIp).tqarg(dcc->szPort);
++	TQString tmp = TQString("dcc: %1 %2@%3:%4").arg(szSubProto.ptr()).arg(dcc->szNick).arg(dcc->szIp).arg(dcc->szPort);
+ 	KviDccChat * chat = new KviDccChat(dcc->console()->frame(),dcc,tmp.utf8().data());
+ 
+ 	bool bMinimized = dcc->bOverrideMinimize ? dcc->bShowMinimized : \
+@@ -341,7 +341,7 @@ void KviDccBroker::activeVoiceManage(KviDccDescriptor * dcc)
+ 					"<b>Direct Client Connection</b> in <b>VOICE</b> mode.<br>" \
+ 					"The connection target will be host <b>%4</b> on port <b>%5</b><br>" \
+ 				,"dcc" \
+-			).tqarg(dcc->szNick).tqarg(dcc->szUser).tqarg(dcc->szHost).tqarg(dcc->szIp).tqarg(dcc->szPort);
++			).arg(dcc->szNick).arg(dcc->szUser).arg(dcc->szHost).arg(dcc->szIp).arg(dcc->szPort);
+ 
+ 		KviDccAcceptBox * box = new KviDccAcceptBox(this,dcc,tmp,__tr2qs_ctx("DCC VOICE request","dcc"));
+ 		m_pBoxList->append(box);
+@@ -412,7 +412,7 @@ void KviDccBroker::activeCanvasManage(KviDccDescriptor * dcc)
+ 					"<b>Direct Client Connection</b> in <b>CANVAS</b> mode.<br>" \
+ 					"The connection target will be host <b>%4</b> on port <b>%5</b><br>" \
+ 				,"dcc" \
+-			).tqarg(dcc->szNick).tqarg(dcc->szUser).tqarg(dcc->szHost).tqarg(dcc->szIp).tqarg(dcc->szPort);
++			).arg(dcc->szNick).arg(dcc->szUser).arg(dcc->szHost).arg(dcc->szIp).arg(dcc->szPort);
+ 
+ 		KviDccAcceptBox * box = new KviDccAcceptBox(this,dcc,tmp,__tr2qs_ctx("DCC CANVAS request","dcc"));
+ 		m_pBoxList->append(box);
+@@ -505,9 +505,9 @@ void KviDccBroker::recvFileManage(KviDccDescriptor * dcc)
+ 						"<b>%5</b> large.<br>" \
+ 						"The connection target will be host <b>%6</b> on port <b>%7</b><br>" \
+ 					,"dcc" \
+-				).tqarg(dcc->szNick).tqarg(dcc->szUser).tqarg(dcc->szHost).tqarg(
+-				dcc->szFileName).tqarg(KviTQString::makeSizeReadable(dcc->szFileSize.toInt())).tqarg(
+-					dcc->szIp).tqarg(dcc->szPort);
++				).arg(dcc->szNick).arg(dcc->szUser).arg(dcc->szHost).arg(
++				dcc->szFileName).arg(KviTQString::makeSizeReadable(dcc->szFileSize.toInt())).arg(
++					dcc->szIp).arg(dcc->szPort);
+ 
+ 		} else {
+ 			// passive: we will be listening!
+@@ -518,8 +518,8 @@ void KviDccBroker::recvFileManage(KviDccDescriptor * dcc)
+ 						"<b>%5</b> large.<br>" \
+ 						"You will be the passive side of the connection.<br>" \
+ 					,"dcc" \
+-				).tqarg(dcc->szNick).tqarg(dcc->szUser).tqarg(dcc->szHost).tqarg(
+-					dcc->szFileName).tqarg(KviTQString::makeSizeReadable(dcc->szFileSize.toInt()));
++				).arg(dcc->szNick).arg(dcc->szUser).arg(dcc->szHost).arg(
++					dcc->szFileName).arg(KviTQString::makeSizeReadable(dcc->szFileSize.toInt()));
+ 		}
+ 
+ 		if(dcc->bIsIncomingAvatar)
+@@ -540,7 +540,7 @@ void KviDccBroker::recvFileManage(KviDccDescriptor * dcc)
+ 
+ //#warning "Maybe remove the pending avatar if rejected ?"
+ 
+-		TQString title = __tr2qs_ctx("DCC %1 Request - KVIrc","dcc").tqarg(dcc->szType);
++		TQString title = __tr2qs_ctx("DCC %1 Request - KVIrc","dcc").arg(dcc->szType);
+ 
+ 		KviDccAcceptBox * box = new KviDccAcceptBox(this,dcc,tmp,title);
+ 		m_pBoxList->append(box);
+@@ -669,7 +669,7 @@ void KviDccBroker::renameOverwriteResume(KviDccBox *box,KviDccDescriptor * dcc)
+ 							"<b>auto-rename</b> the new file, or<br>" \
+ 							"<b>resume</b> an incomplete download?" \
+ 						,"dcc" \
+-					).tqarg(dcc->szLocalFileName).tqarg(KviTQString::makeSizeReadable(fi.size()));
++					).arg(dcc->szLocalFileName).arg(KviTQString::makeSizeReadable(fi.size()));
+ 			} else {
+ 				bDisableResume = true;
+ 				// the file on disk is larger or equal to the remote one
+@@ -680,7 +680,7 @@ void KviDccBroker::renameOverwriteResume(KviDccBox *box,KviDccDescriptor * dcc)
+ 							"<b>overwrite</b> the existing file, or<br> " \
+ 							"<b>auto-rename</b> the new file ?" \
+ 						,"dcc" \
+-					).tqarg(dcc->szLocalFileName);
++					).arg(dcc->szLocalFileName);
+ 			}
+ 
+ 			KviDccRenameBox * box = new KviDccRenameBox(this,dcc,tmp,bDisableResume);
+diff --git a/src/modules/dcc/canvaswidget.cpp b/src/modules/dcc/canvaswidget.cpp
+index 47bacf5..06f5d2f 100644
+--- a/src/modules/dcc/canvaswidget.cpp
++++ b/src/modules/dcc/canvaswidget.cpp
+@@ -1509,14 +1509,14 @@ KviCanvasWidget::KviCanvasWidget(TQWidget * par)
+ 	connect(m_pPropertiesWidget,TQT_SIGNAL(propertyChanged(const TQString &,const TQVariant &)),m_pCanvasView,TQT_SLOT(propertyChanged(const TQString &,const TQVariant &)));
+ 
+ 	KviTalPopupMenu * add = new KviTalPopupMenu(m_pMenuBar);
+-	KviTalPopupMenu * tqshapes = new KviTalPopupMenu(add);
++	KviTalPopupMenu * shapes = new KviTalPopupMenu(add);
+ 	KviTalPopupMenu * polygons = new KviTalPopupMenu(add);
+ 	KviTalPopupMenu * items = new KviTalPopupMenu(add);
+-	tqshapes->insertItem(__tr2qs_ctx("&Line","dcc"),m_pCanvasView,TQT_SLOT(insertLine()));
+-	tqshapes->insertItem(__tr2qs_ctx("&Rectangle","dcc"),m_pCanvasView,TQT_SLOT(insertRectangle()));
+-	tqshapes->insertItem(__tr2qs_ctx("&Ellipse","dcc"),m_pCanvasView,TQT_SLOT(insertEllipse()));
+-	tqshapes->insertItem(__tr2qs_ctx("&Pie","dcc"),m_pCanvasView,TQT_SLOT(insertPie()));
+-	tqshapes->insertItem(__tr2qs_ctx("&Chord","dcc"),m_pCanvasView,TQT_SLOT(insertChord()));
++	shapes->insertItem(__tr2qs_ctx("&Line","dcc"),m_pCanvasView,TQT_SLOT(insertLine()));
++	shapes->insertItem(__tr2qs_ctx("&Rectangle","dcc"),m_pCanvasView,TQT_SLOT(insertRectangle()));
++	shapes->insertItem(__tr2qs_ctx("&Ellipse","dcc"),m_pCanvasView,TQT_SLOT(insertEllipse()));
++	shapes->insertItem(__tr2qs_ctx("&Pie","dcc"),m_pCanvasView,TQT_SLOT(insertPie()));
++	shapes->insertItem(__tr2qs_ctx("&Chord","dcc"),m_pCanvasView,TQT_SLOT(insertChord()));
+ 
+ 	items->insertItem(__tr2qs_ctx("&Rich text (html)","dcc"),m_pCanvasView,TQT_SLOT(insertRichText()));
+ 
+@@ -1525,7 +1525,7 @@ KviCanvasWidget::KviCanvasWidget(TQWidget * par)
+ 	polygons->insertItem(__tr2qs_ctx("&Pentagon","dcc"),m_pCanvasView,TQT_SLOT(insertPolygonPentagon()));
+ 	polygons->insertItem(__tr2qs_ctx("&Hexagon","dcc"),m_pCanvasView,TQT_SLOT(insertPolygonHexagon()));
+ 
+-	add->insertItem(__tr2qs_ctx("&Shape","dcc"),tqshapes);
++	add->insertItem(__tr2qs_ctx("&Shape","dcc"),shapes);
+ 	add->insertItem(__tr2qs_ctx("&Item","dcc"),items);
+ 	add->insertItem(__tr2qs_ctx("&Polygons","dcc"),polygons);
+ 
+diff --git a/src/modules/dcc/chat.cpp b/src/modules/dcc/chat.cpp
+index 660191f..a917171 100644
+--- a/src/modules/dcc/chat.cpp
++++ b/src/modules/dcc/chat.cpp
+@@ -221,7 +221,7 @@ void KviDccChat::connectionInProgress()
+ 			struct in_addr a;
+ 			if(kvi_stringIpToBinaryIp(ip.ptr(),&a))ip.setNum(htonl(a.s_addr));
+ 
+-			TQString szReq = TQString("PRIVMSG %1 :%2DCC %3 chat %4 %5").tqarg(m_pDescriptor->szNick).tqarg((char)0x01).tqarg(m_pDescriptor->szType).tqarg(ip.ptr()).tqarg(port);
++			TQString szReq = TQString("PRIVMSG %1 :%2DCC %3 chat %4 %5").arg(m_pDescriptor->szNick).arg((char)0x01).arg(m_pDescriptor->szType).arg(ip.ptr()).arg(port);
+ 
+ 			if(m_pDescriptor->isZeroPortRequest())	
+ 			{
+@@ -268,13 +268,13 @@ const TQString & KviDccChat::target()
+ 
+ void KviDccChat::fillCaptionBuffers()
+ {
+-	TQString tmp = TQString("DCC %1 %2@%3:%4").tqarg(
++	TQString tmp = TQString("DCC %1 %2@%3:%4").arg(
+ #ifdef COMPILE_SSL_SUPPORT
+-		m_pDescriptor->bIsSSL ? "SChat" : "Chat").tqarg(
++		m_pDescriptor->bIsSSL ? "SChat" : "Chat").arg(
+ #else
+-		"Chat").tqarg(
++		"Chat").arg(
+ #endif
+-		m_pDescriptor->szNick).tqarg(m_pDescriptor->szIp).tqarg(m_pDescriptor->szPort);
++		m_pDescriptor->szNick).arg(m_pDescriptor->szIp).arg(m_pDescriptor->szPort);
+ 
+ 	m_szPlainTextCaption = tmp;
+ 
+diff --git a/src/modules/dcc/libkvidcc.cpp b/src/modules/dcc/libkvidcc.cpp
+index 56f28b3..03f5d30 100644
+--- a/src/modules/dcc/libkvidcc.cpp
++++ b/src/modules/dcc/libkvidcc.cpp
+@@ -1543,8 +1543,8 @@ static bool dcc_module_cmd_canvas(KviModule *m,KviCommand *c)
+ 		[br]
+ 		[big]DCC File Transfer[/big][br]
+ 		DCC Send: Send a file, sender is passive, receiver is active (not good for firewalled senders)[br]
+-		DCC Recv: Receive a file, sender is active, receiver is passive (not good for firewalled tqreceivers)[br]
+-		DCC RSend: Send a file, sender is active, receiver is passive (not good for firewalled tqreceivers)[br]
++		DCC Recv: Receive a file, sender is active, receiver is passive (not good for firewalled receivers)[br]
++		DCC RSend: Send a file, sender is active, receiver is passive (not good for firewalled receivers)[br]
+ 		DCC Get: Receive a file, sender is passive if not firewalled, receiver active if sender not firewalled (will fail only if both are firewalled)[br]
+ 		The "turbo" extension disables the stream of acknowledges and is activated by prepending the 'T' character to the DCC subprotocol name[br]
+ 		The "SSL" extension causes a Secure Socket Layer to be used and is activated by prepending the 'S' character to the DCC subprotocol name[br]
+diff --git a/src/modules/dcc/requests.cpp b/src/modules/dcc/requests.cpp
+index 00a1d1e..bf8a919 100644
+--- a/src/modules/dcc/requests.cpp
++++ b/src/modules/dcc/requests.cpp
+@@ -80,7 +80,7 @@ static void dcc_module_request_error(KviDccRequest * dcc,const TQString& errText
+ 
+ 	if(KVI_OPTION_BOOL(KviOption_boolNotifyFailedDccHandshakes))
+ 	{
+-		TQString szError = TQString("Sorry, your DCC %1 request can't be satisfied: %2").tqarg(dcc->szType.ptr()).tqarg(errText);
++		TQString szError = TQString("Sorry, your DCC %1 request can't be satisfied: %2").arg(dcc->szType.ptr()).arg(errText);
+ 		dcc_module_reply_errmsg(dcc,szError);
+ 	}
+ }
+diff --git a/src/modules/dcc/send.cpp b/src/modules/dcc/send.cpp
+index 969a54a..74dbf16 100644
+--- a/src/modules/dcc/send.cpp
++++ b/src/modules/dcc/send.cpp
+@@ -811,11 +811,11 @@ void KviDccFileTransfer::startConnection()
+ 	if(!(m_pDescriptor->bActive))
+ 	{
+ 		// PASSIVE CONNECTION
+-		m_szStatusString = __tr2qs_ctx("Attempting a passive DCC %1 connection","dcc").tqarg(m_szDccType.ptr());
++		m_szStatusString = __tr2qs_ctx("Attempting a passive DCC %1 connection","dcc").arg(m_szDccType.ptr());
+ 		outputAndLog(m_szStatusString);
+ 	} else {
+ 		// ACTIVE CONNECTION
+-		m_szStatusString = __tr2qs_ctx("Attempting an active DCC %1 connection","dcc").tqarg(m_szDccType.ptr());
++		m_szStatusString = __tr2qs_ctx("Attempting an active DCC %1 connection","dcc").arg(m_szDccType.ptr());
+ 		outputAndLog(m_szStatusString);
+ 	}
+ 
+@@ -841,7 +841,7 @@ void KviDccFileTransfer::startConnection()
+ 				m_pDescriptor->szPort.utf8().data(),
+ 				m_pDescriptor->szLocalFileSize.utf8().data(),0x01);
+ 		}
+-		m_szStatusString = __tr2qs_ctx("Sent DCC RESUME request to %1, waiting for ACCEPT","dcc").tqarg(m_pDescriptor->szNick);
++		m_szStatusString = __tr2qs_ctx("Sent DCC RESUME request to %1, waiting for ACCEPT","dcc").arg(m_pDescriptor->szNick);
+ 		outputAndLog(m_szStatusString);
+ 
+ 		// setup the resume timer: we don't want to wait forever
+@@ -1236,18 +1236,18 @@ void KviDccFileTransfer::displayPaint(TQPainter * p,int column,int width,int hei
+ 					if(iW2 > 0)p->fillRect(5 + iL2,5,iW2,10,bIsTerminated ? TQColor(150,130,110) : TQColor(220,170,100));
+ 					p->fillRect(5,5,iL2,10,bIsTerminated ? TQColor(140,110,110) : TQColor(200,100,100));
+ 
+-					txt = TQString(__tr2qs_ctx("%1 of %2 (%3%)","dcc")).tqarg(KviTQString::makeSizeReadable(iAckedBytes)).tqarg(KviTQString::makeSizeReadable(m_uTotalFileSize)).tqarg(dPerc2,0,'f',2);
++					txt = TQString(__tr2qs_ctx("%1 of %2 (%3%)","dcc")).arg(KviTQString::makeSizeReadable(iAckedBytes)).arg(KviTQString::makeSizeReadable(m_uTotalFileSize)).arg(dPerc2,0,'f',2);
+ 				} else {
+ 					// we are receiving a file or not sending acks
+ 					double dPerc = (double)(((double)uTransferred) * 100.0) / (double)m_uTotalFileSize;
+ 					int iL = (int) ((((double)iW) * dPerc) / 100.0);
+ 					p->fillRect(5,5,iL,10,bIsTerminated ? TQColor(140,110,110) : TQColor(200,100,100));
+ 
+-					txt = TQString(__tr2qs_ctx("%1 of %2 (%3%)","dcc")).tqarg(KviTQString::makeSizeReadable(uTransferred)).tqarg(KviTQString::makeSizeReadable(m_uTotalFileSize)).tqarg(dPerc,0,'f',2);
++					txt = TQString(__tr2qs_ctx("%1 of %2 (%3%)","dcc")).arg(KviTQString::makeSizeReadable(uTransferred)).arg(KviTQString::makeSizeReadable(m_uTotalFileSize)).arg(dPerc,0,'f',2);
+ 				}
+ 
+ 			} else {
+-				txt = TQString(__tr2qs_ctx("%1","dcc")).tqarg(KviTQString::makeSizeReadable(uTransferred));
++				txt = TQString(__tr2qs_ctx("%1","dcc")).arg(KviTQString::makeSizeReadable(uTransferred));
+ 			}
+ 
+ 			p->setPen(TQt::black);
+@@ -1343,7 +1343,7 @@ TQString KviDccFileTransfer::tipText()
+ 
+ 	TQString s;
+ 
+-	s = TQString("<table><tr><td bgcolor=\"#000000\"><font color=\"#FFFFFF\"><b>DCC %1 (ID %2)</b></font></td></tr>").tqarg(m_szDccType.ptr()).tqarg(id());
++	s = TQString("<table><tr><td bgcolor=\"#000000\"><font color=\"#FFFFFF\"><b>DCC %1 (ID %2)</b></font></td></tr>").arg(m_szDccType.ptr()).arg(id());
+ 
+ 	s += "<tr><td bgcolor=\"#404040\"><font color=\"#FFFFFF\">";
+ 	s += __tr2qs_ctx("Transfer Log","dcc");
+@@ -1477,14 +1477,14 @@ void KviDccFileTransfer::connectionInProgress()
+ //			if(TRIGGER_EVENT_5PARAM_RETVALUE(KviEvent_OnDCCSendConnected,this,m_pDescriptor->szPort.ptr(),m_pDescriptor->szFileName.ptr(),m_pDescriptor->szNick.ptr(),m_pDescriptor->szUser.ptr(),m_pDescriptor->szHost.ptr()));
+ //		}
+ //
+-		m_szStatusString = __tr2qs_ctx("Contacting host %1 on port %2","dcc").tqarg(m_pDescriptor->szIp).tqarg(m_pDescriptor->szPort);
++		m_szStatusString = __tr2qs_ctx("Contacting host %1 on port %2","dcc").arg(m_pDescriptor->szIp).arg(m_pDescriptor->szPort);
+ 		outputAndLog(m_szStatusString);
+ 		displayUpdate();
+ 		return;
+ 	}
+ 
+ 	// PASSIVE CONNECTION
+-	m_szStatusString = __tr2qs_ctx("Listening on interface %1 port %2","dcc").tqarg(m_pMarshal->localIp()).tqarg(m_pMarshal->localPort());
++	m_szStatusString = __tr2qs_ctx("Listening on interface %1 port %2","dcc").arg(m_pMarshal->localIp()).arg(m_pMarshal->localPort());
+ 	outputAndLog(m_szStatusString);
+ 
+ 	if(m_pDescriptor->bSendRequest)
+@@ -1507,7 +1507,7 @@ void KviDccFileTransfer::connectionInProgress()
+ 						if(!tmp.isEmpty())
+ 						{
+ 							ip = tmp;
+-							outputAndLog(__tr2qs_ctx("The local IP address is private, determining from IRC server: %1","dcc").tqarg(ip));
++							outputAndLog(__tr2qs_ctx("The local IP address is private, determining from IRC server: %1","dcc").arg(ip));
+ 						} else {
+ 							outputAndLog(__tr2qs_ctx("The local IP address is private, but unable to determine it from the IRC server","dcc"));
+ 						}
+@@ -1558,9 +1558,9 @@ void KviDccFileTransfer::connectionInProgress()
+ 					ip.utf8().data(),port.ptr(),
+ 					&(m_pDescriptor->szLocalFileSize),0x01);
+ 		}
+-		outputAndLog(__tr2qs_ctx("Sent DCC %1 request to %2, waiting for remote client to connect...","dcc").tqarg(szReq.ptr()).tqarg(m_pDescriptor->szNick));
++		outputAndLog(__tr2qs_ctx("Sent DCC %1 request to %2, waiting for remote client to connect...","dcc").arg(szReq.ptr()).arg(m_pDescriptor->szNick));
+ 	} else {
+-		outputAndLog(__tr2qs_ctx("DCC %1 request not sent, awaiting manual connection","dcc").tqarg(m_szDccType.ptr()));
++		outputAndLog(__tr2qs_ctx("DCC %1 request not sent, awaiting manual connection","dcc").arg(m_szDccType.ptr()));
+ 	}
+ 
+ 	KVS_TRIGGER_EVENT_1(KviEvent_OnDCCFileTransferConnectionInProgress,eventWindow(),m_pDescriptor->idString());
+@@ -1579,7 +1579,7 @@ void KviDccFileTransfer::startingSSLHandshake()
+ void KviDccFileTransfer::sslError(const char * msg)
+ {
+ #ifdef COMPILE_SSL_SUPPORT
+-	outputAndLog(KVI_OUT_DCCERROR,__tr2qs_ctx("[SSL ERROR]: %1","dcc").tqarg(msg));
++	outputAndLog(KVI_OUT_DCCERROR,__tr2qs_ctx("[SSL ERROR]: %1","dcc").arg(msg));
+ #endif
+ }
+ 
+@@ -1687,8 +1687,8 @@ void KviDccFileTransfer::handleMarshalError(int err)
+ 
+ void KviDccFileTransfer::connected()
+ {
+-	outputAndLog(__tr2qs_ctx("Connected to %1:%2","dcc").tqarg(m_pMarshal->remoteIp()).tqarg(m_pMarshal->remotePort()));
+-	outputAndLog(__tr2qs_ctx("Local end is %1:%2","dcc").tqarg(m_pMarshal->localIp()).tqarg(m_pMarshal->localPort()));
++	outputAndLog(__tr2qs_ctx("Connected to %1:%2","dcc").arg(m_pMarshal->remoteIp()).arg(m_pMarshal->remotePort()));
++	outputAndLog(__tr2qs_ctx("Local end is %1:%2","dcc").arg(m_pMarshal->localIp()).arg(m_pMarshal->localPort()));
+ 
+ 	m_tTransferStartTime = kvi_unixTime();
+ 
+@@ -1758,7 +1758,7 @@ bool KviDccFileTransfer::resumeAccepted(const char *filename,const char *port,co
+ 	delete m_pResumeTimer;
+ 	m_pResumeTimer = 0;
+ 
+-	outputAndLog(__tr2qs_ctx("RESUME accepted, transfer will begin at position %1","dcc").tqarg(m_pDescriptor->szLocalFileSize));
++	outputAndLog(__tr2qs_ctx("RESUME accepted, transfer will begin at position %1","dcc").arg(m_pDescriptor->szLocalFileSize));
+ 
+ 	listenOrConnect();
+ 
+@@ -1768,7 +1768,7 @@ bool KviDccFileTransfer::resumeAccepted(const char *filename,const char *port,co
+ 
+ 	if(ret != KviError_success)handleMarshalError(ret);
+ 	else {
+-		m_szStatusString = __tr2qs_ctx("Contacting host %1 on port %2","dcc").tqarg(m_pDescriptor->szIp).tqarg(m_pDescriptor->szPort);
++		m_szStatusString = __tr2qs_ctx("Contacting host %1 on port %2","dcc").arg(m_pDescriptor->szIp).arg(m_pDescriptor->szPort);
+ 		outputAndLog(m_szStatusString);
+ 		displayUpdate();
+ 	}
+@@ -1794,11 +1794,11 @@ bool KviDccFileTransfer::doResume(const char * filename,const char * port,unsign
+ 			}
+ 			if(iLocalFileSize <= filePos)
+ 			{
+-				outputAndLog(KVI_OUT_DCCERROR,__tr2qs_ctx("Invalid RESUME request: Position %1 is larger than file size","dcc").tqarg(filePos));
++				outputAndLog(KVI_OUT_DCCERROR,__tr2qs_ctx("Invalid RESUME request: Position %1 is larger than file size","dcc").arg(filePos));
+ 				return false;
+ 			}
+ 
+-			outputAndLog(KVI_OUT_DCCERROR,__tr2qs_ctx("Accepting RESUME request, transfer will begin at position %1","dcc").tqarg(filePos));
++			outputAndLog(KVI_OUT_DCCERROR,__tr2qs_ctx("Accepting RESUME request, transfer will begin at position %1","dcc").arg(filePos));
+ 
+ 			m_pDescriptor->szFileSize.setNum(filePos);
+ 
+@@ -1830,7 +1830,7 @@ KviDccFileTransferBandwidthDialog::KviDccFileTransferBandwidthDialog(TQWidget *
+ 	m_pTransfer = t;
+ 	int iVal = m_pTransfer->bandwidthLimit();
+ 
+-	TQString szText = __tr2qs_ctx("Configure bandwidth for DCC transfer %1","dcc").tqarg(t->id());
++	TQString szText = __tr2qs_ctx("Configure bandwidth for DCC transfer %1","dcc").arg(t->id());
+ 	setCaption(szText);
+ 
+ 	szText = t->isFileUpload() ? __tr2qs_ctx("Limit upload bandwidth to","dcc") : __tr2qs_ctx("Limit download bandwidth to","dcc");
+diff --git a/src/modules/dockwidget/libkvidockwidget_qt3.cpp b/src/modules/dockwidget/libkvidockwidget_qt3.cpp
+index 6978ce0..ce454b2 100644
+--- a/src/modules/dockwidget/libkvidockwidget_qt3.cpp
++++ b/src/modules/dockwidget/libkvidockwidget_qt3.cpp
+@@ -447,10 +447,10 @@ void KviDockWidget::fillContextPopup()
+ 					int id;
+ 					if(pConsole->connection()->userInfo()->isAway())
+ 					{
+-						id=m_pAwayPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_CONSOLE)),__tr2qs("Back on %1").tqarg(pConsole->currentNetworkName()),this,TQT_SLOT(doAway(int)));
++						id=m_pAwayPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_CONSOLE)),__tr2qs("Back on %1").arg(pConsole->currentNetworkName()),this,TQT_SLOT(doAway(int)));
+ 						bAllUnaway=0;
+ 					} else {
+-						id=m_pAwayPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_CONSOLE)),__tr2qs("Away on %1").tqarg(pConsole->currentNetworkName()),this,TQT_SLOT(doAway(int)));
++						id=m_pAwayPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_CONSOLE)),__tr2qs("Away on %1").arg(pConsole->currentNetworkName()),this,TQT_SLOT(doAway(int)));
+ 						bAllAway=0;
+ 					}
+ 					m_pAwayPopup->setItemParameter(id,pConsole->ircContextId());
+diff --git a/src/modules/dockwidget/libkvidockwidget_qt4.cpp b/src/modules/dockwidget/libkvidockwidget_qt4.cpp
+index d1f4eff..54033af 100644
+--- a/src/modules/dockwidget/libkvidockwidget_qt4.cpp
++++ b/src/modules/dockwidget/libkvidockwidget_qt4.cpp
+@@ -279,10 +279,10 @@ void KviDockWidget::fillContextPopup()
+ 					int id;
+ 					if(pConsole->connection()->userInfo()->isAway())
+ 					{
+-						id=m_pAwayPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_CONSOLE)),__tr2qs("Back on %1").tqarg(pConsole->currentNetworkName()),this,TQT_SLOT(doAway(int)));
++						id=m_pAwayPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_CONSOLE)),__tr2qs("Back on %1").arg(pConsole->currentNetworkName()),this,TQT_SLOT(doAway(int)));
+ 						bAllUnaway=0;
+ 					} else {
+-						id=m_pAwayPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_CONSOLE)),__tr2qs("Away on %1").tqarg(pConsole->currentNetworkName()),this,TQT_SLOT(doAway(int)));
++						id=m_pAwayPopup->insertItem(*(g_pIconManager->getSmallIcon(KVI_SMALLICON_CONSOLE)),__tr2qs("Away on %1").arg(pConsole->currentNetworkName()),this,TQT_SLOT(doAway(int)));
+ 						bAllAway=0;
+ 					}
+ 					m_pAwayPopup->setItemParameter(id,pConsole->ircContextId());
+diff --git a/src/modules/editor/scripteditor.cpp b/src/modules/editor/scripteditor.cpp
+index 525acfd..6945cd1 100644
+--- a/src/modules/editor/scripteditor.cpp
++++ b/src/modules/editor/scripteditor.cpp
+@@ -369,7 +369,7 @@ void KviScriptEditorWidget::keyPressEvent(TQKeyEvent * e)
+ 				TQString szPrev=text(para-1);
+ 				if(!szPrev.isEmpty())
+ 				{
+-					if(szPrev.tqat(szPrev.length() - 1).tqunicode() == ' ')
++					if(szPrev.at(szPrev.length() - 1).tqunicode() == ' ')
+ 						szPrev.remove(szPrev.length() - 1,1);
+ 					TQString szCur;
+ 					const TQChar * pCur = (const TQChar *)szPrev.ucs2();
+diff --git a/src/modules/filetransferwindow/filetransferwindow.cpp b/src/modules/filetransferwindow/filetransferwindow.cpp
+index 3fcf59d..9274946 100644
+--- a/src/modules/filetransferwindow/filetransferwindow.cpp
++++ b/src/modules/filetransferwindow/filetransferwindow.cpp
+@@ -313,7 +313,7 @@ void KviFileTransferWindow::rightButtonPressed(KviTalListViewItem *it,const TQPo
+ 				if(fi.exists())
+ 				{
+ 					tmp += "<nobr>";
+-					tmp += __tr2qs_ctx("Size: %1","filetransferwindow").tqarg(KviTQString::makeSizeReadable(fi.size()));
++					tmp += __tr2qs_ctx("Size: %1","filetransferwindow").arg(KviTQString::makeSizeReadable(fi.size()));
+ 					tmp += "</nobr><br>";
+ 				}
+ 
+diff --git a/src/modules/http/httpfiletransfer.cpp b/src/modules/http/httpfiletransfer.cpp
+index cfe9087..8ad7c8f 100644
+--- a/src/modules/http/httpfiletransfer.cpp
++++ b/src/modules/http/httpfiletransfer.cpp
+@@ -211,8 +211,8 @@ void KviHttpFileTransfer::displayPaint(TQPainter * p,int column,int width,int he
+ 				//iR = iW - iL;
+ 				p->fillRect(5,5,iL,10,bIsTerminated ? TQColor(140,110,110) : TQColor(200,100,100));
+ 
+-				txt = TQString(__tr2qs_ctx("%1 of %2 (%3 %)","http")).tqarg(KviTQString::makeSizeReadable(uRecvd))
+-					.tqarg(KviTQString::makeSizeReadable(uTotal)).tqarg(dPerc,0,'f',2);
++				txt = TQString(__tr2qs_ctx("%1 of %2 (%3 %)","http")).arg(KviTQString::makeSizeReadable(uRecvd))
++					.arg(KviTQString::makeSizeReadable(uTotal)).arg(dPerc,0,'f',2);
+ 			} else {
+ 				txt = KviTQString::makeSizeReadable(m_pHttpRequest->receivedSize());
+ 			}
+@@ -265,17 +265,17 @@ void KviHttpFileTransfer::displayPaint(TQPainter * p,int column,int width,int he
+ 			{
+ 				KviTimeUtils::secondsToDaysHoursMinsSecs(kvi_timeSpan(m_tTransferEndTime,m_tTransferStartTime),&uD,&uH,&uM,&uS);
+ 				txt = "TOT: ";
+-				if(uD > 0)txt += TQString(__tr2qs_ctx("%1d %2h %3m %4s","http")).tqarg(uD).tqarg(uH).tqarg(uM).tqarg(uS);
+-				else if(uH > 0)txt += TQString(__tr2qs_ctx("%2h %3m %4s","http")).tqarg(uH).tqarg(uM).tqarg(uS);
+-				else txt += TQString(__tr2qs_ctx("%3m %4s","http")).tqarg(uM).tqarg(uS);
++				if(uD > 0)txt += TQString(__tr2qs_ctx("%1d %2h %3m %4s","http")).arg(uD).arg(uH).arg(uM).arg(uS);
++				else if(uH > 0)txt += TQString(__tr2qs_ctx("%2h %3m %4s","http")).arg(uH).arg(uM).arg(uS);
++				else txt += TQString(__tr2qs_ctx("%3m %4s","http")).arg(uM).arg(uS);
+ 			} else {
+ 				if(iEta >= 0)
+ 				{
+ 					KviTimeUtils::secondsToDaysHoursMinsSecs(iEta,&uD,&uH,&uM,&uS);
+ 					txt = "ETA: ";
+-					if(uD > 0)txt += TQString(__tr2qs_ctx("%1d %2h %3m %4s","http")).tqarg(uD).tqarg(uH).tqarg(uM).tqarg(uS);
+-					else if(uH > 0)txt += TQString(__tr2qs_ctx("%2h %3m %4s","http")).tqarg(uH).tqarg(uM).tqarg(uS);
+-					else txt += TQString(__tr2qs_ctx("%3m %4s","http")).tqarg(uM).tqarg(uS);
++					if(uD > 0)txt += TQString(__tr2qs_ctx("%1d %2h %3m %4s","http")).arg(uD).arg(uH).arg(uM).arg(uS);
++					else if(uH > 0)txt += TQString(__tr2qs_ctx("%2h %3m %4s","http")).arg(uH).arg(uM).arg(uS);
++					else txt += TQString(__tr2qs_ctx("%3m %4s","http")).arg(uM).arg(uS);
+ 				} else {
+ 					txt = "ETA: Unknown";
+ 				}
+@@ -301,7 +301,7 @@ int KviHttpFileTransfer::displayHeight(int iLineSpacing)
+ TQString KviHttpFileTransfer::tipText()
+ {
+ 	TQString s;
+-	s = TQString("<table><tr><td bgcolor=\"#000000\"><font color=\"#FFFFFF\"><b>HTTP Transfer (ID %1)</b></font></td></tr>").tqarg(id());
++	s = TQString("<table><tr><td bgcolor=\"#000000\"><font color=\"#FFFFFF\"><b>HTTP Transfer (ID %1)</b></font></td></tr>").arg(id());
+ 
+ 	if(m_lRequest.count() > 0)
+ 	{
+@@ -390,13 +390,13 @@ void KviHttpFileTransfer::connectionEstabilished()
+ 
+ void KviHttpFileTransfer::resolvingHost(const TQString &hostname)
+ {
+-	m_szStatusString = __tr2qs_ctx("Resolving host %1","http").tqarg(hostname);
++	m_szStatusString = __tr2qs_ctx("Resolving host %1","http").arg(hostname);
+ 	displayUpdate();
+ }
+ 
+ void KviHttpFileTransfer::contactingHost(const TQString &ipandport)
+ {
+-	m_szStatusString = __tr2qs_ctx("Contacting host %1","http").tqarg(ipandport);
++	m_szStatusString = __tr2qs_ctx("Contacting host %1","http").arg(ipandport);
+ 	displayUpdate();
+ }
+ 
+@@ -404,7 +404,7 @@ void KviHttpFileTransfer::receivedResponse(const TQString &response)
+ {
+ 	m_lHeaders.clear();
+ 	m_lHeaders.append(response);
+-	m_szStatusString = __tr2qs_ctx("Transferring data (%1)","http").tqarg(response);
++	m_szStatusString = __tr2qs_ctx("Transferring data (%1)","http").arg(response);
+ 	m_tTransferStartTime = kvi_unixTime();
+ 	m_eGeneralStatus = Downloading;
+ 	displayUpdate();
+diff --git a/src/modules/links/linkswindow.cpp b/src/modules/links/linkswindow.cpp
+index 51ebce1..f2f51dd 100644
+--- a/src/modules/links/linkswindow.cpp
++++ b/src/modules/links/linkswindow.cpp
+@@ -301,7 +301,7 @@ void KviLinksWindow::endOfLinks()
+ 	while(!m_pLinkList->isEmpty())m_pLinkList->removeFirst();
+ 
+ 	m_pListView->setUpdatesEnabled(true);
+-	m_pListView->tqrepaint();
++	m_pListView->repaint();
+ }
+ 
+ KviTalListViewItem * KviLinksWindow::insertLink(KviLink *l)
+diff --git a/src/modules/logview/logviewmdiwindow.cpp b/src/modules/logview/logviewmdiwindow.cpp
+index bab0a96..55b3622 100644
+--- a/src/modules/logview/logviewmdiwindow.cpp
++++ b/src/modules/logview/logviewmdiwindow.cpp
+@@ -202,11 +202,11 @@ void KviLogViewMDIWindow::fillCaptionBuffers()
+ {
+ 	m_szPlainTextCaption = __tr2qs_ctx("Log Viewer","logview");
+ 
+-	m_szHtmlActiveCaption = TQString("<nobr><font color=\"%1\"><b>").tqarg(TQString(KVI_OPTION_COLOR(KviOption_colorCaptionTextActive).name()).ascii());
++	m_szHtmlActiveCaption = TQString("<nobr><font color=\"%1\"><b>").arg(TQString(KVI_OPTION_COLOR(KviOption_colorCaptionTextActive).name()).ascii());
+ 	m_szHtmlActiveCaption.append(m_szPlainTextCaption);
+ 	m_szHtmlActiveCaption.append("</b></font></nobr>");
+ 
+-	m_szHtmlInactiveCaption = TQString("<nobr><font color=\"%1\"><b>").tqarg(TQString(KVI_OPTION_COLOR(KviOption_colorCaptionTextInactive).name()).ascii());
++	m_szHtmlInactiveCaption = TQString("<nobr><font color=\"%1\"><b>").arg(TQString(KVI_OPTION_COLOR(KviOption_colorCaptionTextInactive).name()).ascii());
+ 	m_szHtmlInactiveCaption.append(m_szPlainTextCaption);
+ 	m_szHtmlInactiveCaption.append("</b></font></nobr>");
+ }
+@@ -361,7 +361,7 @@ void KviLogViewMDIWindow::itemSelected(KviTalListViewItem * it)
+ 		else
+ 			outputNoFmt(0,*it,KviIrcView::NoRepaint | KviIrcView::NoTimestamp);
+ 	}
+-	m_pIrcView->tqrepaint(false);
++	m_pIrcView->repaint(false);
+ }
+ 
+ TQStringList KviLogViewMDIWindow::getFileNames()
+diff --git a/src/modules/mircimport/libkvimircimport.cpp b/src/modules/mircimport/libkvimircimport.cpp
+index bdd21f1..e106623 100644
+--- a/src/modules/mircimport/libkvimircimport.cpp
++++ b/src/modules/mircimport/libkvimircimport.cpp
+@@ -243,7 +243,7 @@ void KviRemoteMircServerImportWizard::getListTerminated(bool bSuccess)
+ 	if(bSuccess)
+ 	{
+ 		m_pOutput->setText(__tr2qs("File downloaded: processing ..."));
+-		m_pOutput->tqrepaint();
++		m_pOutput->repaint();
+ #ifndef COMPILE_ON_WINDOWS
+ 		g_pApp->syncX();
+ #endif //!COMPILE_ON_WINDOWS
+@@ -252,7 +252,7 @@ void KviRemoteMircServerImportWizard::getListTerminated(bool bSuccess)
+ 
+ 		TQString tmp;
+ 		if(iCount > 0)
+-			tmp = __tr2qs("%1 servers imported succesfully").tqarg(iCount);
++			tmp = __tr2qs("%1 servers imported succesfully").arg(iCount);
+ 		else
+ 			tmp = __tr2qs("No servers imported");
+ 		m_pOutput->setText(tmp);
+diff --git a/src/modules/notifier/notifierwindow.cpp b/src/modules/notifier/notifierwindow.cpp
+index 3a7568b..bbc1298 100644
+--- a/src/modules/notifier/notifierwindow.cpp
++++ b/src/modules/notifier/notifierwindow.cpp
+@@ -1191,7 +1191,7 @@ void KviNotifierWindow::redrawWindow()
+ }
+ 
+ inline void KviNotifierWindow::setCursor(int cur) {
+-	if (m_cursor.tqshape() != cur) {
++	if (m_cursor.shape() != cur) {
+ 		if(TQApplication::overrideCursor()) TQApplication::restoreOverrideCursor();
+ 		m_cursor.setShape((Qt::CursorShape)cur);
+ 		TQApplication::setOverrideCursor(m_cursor);
+diff --git a/src/modules/objects/class_buttongroup.cpp b/src/modules/objects/class_buttongroup.cpp
+index 9f6e26a..0a4f58a 100644
+--- a/src/modules/objects/class_buttongroup.cpp
++++ b/src/modules/objects/class_buttongroup.cpp
+@@ -48,7 +48,7 @@
+ 	@description:
+ 		This widget organizes buttons in a group.
+ 		It will be usually a parent for other child controls.
+-		You can either use a child tqlayout to manage the tqchildren geometries
++		You can either use a child tqlayout to manage the children geometries
+ 		or use $setColumnLayout function to manage the tqlayout automatically.
+ 		The class ineriths groupbox.
+ 
+diff --git a/src/modules/objects/class_dockwindow.cpp b/src/modules/objects/class_dockwindow.cpp
+index 40fc473..852db9d 100644
+--- a/src/modules/objects/class_dockwindow.cpp
++++ b/src/modules/objects/class_dockwindow.cpp
+@@ -50,7 +50,7 @@
+ 	@description:
+ 		A window dockable to the KVIrc main frame borders (like a toolbar).
+ 		The window has an implicit tqlayout that will automatically manage
+-		the tqchildren depending on the dock window's orientation.
++		the children depending on the dock window's orientation.
+ 	@functions:
+ 		!fn: $addWidget(<widget:hobject>)
+ 			Adds <widget> to the internal tqlayout of this dock window.[br]
+diff --git a/src/modules/objects/class_groupbox.cpp b/src/modules/objects/class_groupbox.cpp
+index d0ecae0..a1f5c11 100644
+--- a/src/modules/objects/class_groupbox.cpp
++++ b/src/modules/objects/class_groupbox.cpp
+@@ -29,7 +29,7 @@
+ #include "kvi_locale.h"
+ #include "kvi_iconmanager.h"
+ 
+-// Tables used in $setAlignment , $tqalignment and in $setOrientation & $orientation
++// Tables used in $setAlignment , $alignment and in $setOrientation & $orientation
+ 
+ const char * const align_tbl[] = {
+ 			"Left",
+@@ -60,7 +60,7 @@ const int align_cod[] = {
+ 	@description:
+ 		This widget can be used to display a groupbox.
+ 		It will be usually a parent for other child controls.
+-		You can either use a child tqlayout to manage the tqchildren geometries
++		You can either use a child tqlayout to manage the children geometries
+ 		or use $setColumnLayout to manage the tqlayout automatically.
+ 	@functions:
+ 		!fn: $setTitle(<text:String>)
+@@ -89,14 +89,14 @@ const int align_cod[] = {
+ 		Returns the number of columns or rows in the groupbox.
+ 		!fn: $addSpace()
+ 		Adds an empty cell at the next free position.
+-		!fn: <string> $tqalignment()
+-		Returns the tqalignment of the group box title.
+-		!fn: $setAlignment(<tqalignment:string>)
+-		Set the tqalignment of the groupbox;  Valid values are Left,Right,HCenter.
++		!fn: <string> $alignment()
++		Returns the alignment of the group box title.
++		!fn: $setAlignment(<alignment:string>)
++		Set the alignment of the groupbox;  Valid values are Left,Right,HCenter.
+ 		!fn: $setOrientation<orientation:string>
+ 		Sets the group box's orientation. Valid values are:Qt::Horizontal,Qt::Vertical.
+ 		!fn: $setColumnLayout(<columns:integer>,<orientation:string>)
+-		Enables the automatic tqlayout management. The tqchildren are arranged in n columns with the specified orientation.[br]
++		Enables the automatic tqlayout management. The children are arranged in n columns with the specified orientation.[br]
+ 		Valid values for <orientation> are:Qt::Horizontal,Qt::Vertical.
+ 	@examples:
+ 		[example]
+@@ -137,8 +137,8 @@ const int align_cod[] = {
+ 		%layoutbtn->$addwidget(%btnok,0,0)[br]
+ 		%layoutbtn->$addwidget(%btncancel,0,1)[br]
+ 		[br]
+-		#And finally we create a main tqlayout with the groupbox (and its "tqchildren")[br]
+-		#and fakewiget (with its buttons tqchildren).
++		#And finally we create a main tqlayout with the groupbox (and its "children")[br]
++		#and fakewiget (with its buttons children).
+ 		%maintqlayout=$new(tqlayout,%widget)[br]
+ 		%maintqlayout->$setspacing(10)[br]
+ 		%maintqlayout->$setmargin(10)[br]
+@@ -165,7 +165,7 @@ KVSO_BEGIN_REGISTERCLASS(KviKvsObject_groupbox,"groupbox","widget")
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_groupbox,"setColumns", functionSetColumns)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_groupbox,"columns", functionColumns)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_groupbox,"addSpace", functionAddSpace)
+-	KVSO_REGISTER_HANDLER(KviKvsObject_groupbox,"tqalignment", functionAlignment)
++	KVSO_REGISTER_HANDLER(KviKvsObject_groupbox,"alignment", functionAlignment)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_groupbox,"setAlignment", functionSetAlignment)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_groupbox,"setOrientation", functionSetOrientation)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_groupbox,"isChecked", functionIsChecked)
+@@ -310,7 +310,7 @@ bool KviKvsObject_groupbox::functionSetAlignment(KviKvsObjectFunctionCall *c)
+ {
+ 	TQString szAlign;
+ 	KVSO_PARAMETERS_BEGIN(c)
+-		KVSO_PARAMETER("tqalignment",KVS_PT_STRING,0,szAlign)
++		KVSO_PARAMETER("alignment",KVS_PT_STRING,0,szAlign)
+ 	KVSO_PARAMETERS_END(c)
+ 	if (!widget()) return true;
+ 	for(unsigned int i = 0; i < align_num; i++)
+@@ -321,12 +321,12 @@ bool KviKvsObject_groupbox::functionSetAlignment(KviKvsObjectFunctionCall *c)
+ 			return true;
+ 		}
+ 	}
+-	c->warning(__tr2qs("Unknown tqalignment"));
++	c->warning(__tr2qs("Unknown alignment"));
+ 	return true;
+ }
+ bool KviKvsObject_groupbox::functionAlignment(KviKvsObjectFunctionCall *c)
+ {
+-	int mode = ((KviTalGroupBox *)widget())->tqalignment();
++	int mode = ((KviTalGroupBox *)widget())->alignment();
+ 	TQString szAlignment="";
+ 	for(unsigned int i = 0; i < align_num; i++)
+ 	{
+diff --git a/src/modules/objects/class_hbox.cpp b/src/modules/objects/class_hbox.cpp
+index 58c518c..0f6ae24 100644
+--- a/src/modules/objects/class_hbox.cpp
++++ b/src/modules/objects/class_hbox.cpp
+@@ -35,11 +35,11 @@
+ 	@type:
+ 		class
+ 	@short:
+-		Manages child widget horizontal tqgeometry
++		Manages child widget horizontal geometry
+ 	@inherits:
+ 		[class]object[/class]
+ 	@description:
+-		The hbox class widget provides horizontal tqgeometry management for its child widgets.
++		The hbox class widget provides horizontal geometry management for its child widgets.
+ 	@functions:
+ 		!fn: $setSpacing(<spacing:uint>)
+ 		Sets the default spacing of the widgets in pixels
+diff --git a/src/modules/objects/class_label.cpp b/src/modules/objects/class_label.cpp
+index 580f93b..f0e93e2 100644
+--- a/src/modules/objects/class_label.cpp
++++ b/src/modules/objects/class_label.cpp
+@@ -34,7 +34,7 @@
+ 
+ 
+ 
+-// Tables used in $setAlignment & $tqalignment
++// Tables used in $setAlignment & $alignment
+ const char * const align_tbl[] = {
+ 			"Left", 
+ 			"Right",
+@@ -120,7 +120,7 @@ const int frame_cod[] = {
+ 		[class]widget[/class]
+ 	@description:
+ 		This widget can be used to display a text or an image. It can
+-		have different frame styles and text/image tqalignment.
++		have different frame styles and text/image alignment.
+ 	@functions:
+ 		!fn: $setText(<text:string>)
+ 		Sets the text to be displayed by the label.
+@@ -144,15 +144,15 @@ const int frame_cod[] = {
+ 		automagically resize itself accordingly to the 'size' of the
+ 		text it contains. 
+ 		See also [classfnc]$autoResize[/classfnc]().
+-		!fn: <string> $tqalignment()
+-		Returns a string containing tqalignment flags that are set for 
++		!fn: <string> $alignment()
++		Returns a string containing alignment flags that are set for 
+ 		this label. The flags are separated by commas. An example output
+ 		could look like this:[br]
+ 		[pre]Bottom, Right[/pre][br]
+ 		See [classfnc]$setAlignment[/classfnc]() for explanation of all
+-		tqalignment flags.
++		alignment flags.
+ 		!fn: $setAlignment(<flag1:string>, <flag2:string>, ...)
+-		This function sets tqalignment flags, given as parameters, for 
++		This function sets alignment flags, given as parameters, for 
+ 		this label. Valid flags are:
+ 		[pre]
+ 		Right     - Text is aligned to right border[br]
+@@ -179,8 +179,8 @@ const int frame_cod[] = {
+ 		frame-style flags and their explenation.
+ 		!fn: $setFrameStyle(<flag1>, <flag2>, ...)
+ 		Sets the frame-style flags to the ones passed as arguments.
+-		The flags can either decide of the tqshape or shadow of the
+-		label's frame. Valid tqshape flags are:[br]
++		The flags can either decide of the shape or shadow of the
++		label's frame. Valid shape flags are:[br]
+ 		[pre]
+ 		NoFrame     - draw no frame. You shouldn't specify a shadow when
+ 		using this.[br]
+@@ -216,7 +216,7 @@ KVSO_BEGIN_REGISTERCLASS(KviKvsObject_label,"label","widget")
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_label,"setMargin", functionSetMargin)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_label,"autoResize", functionAutoResize)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_label,"setAutoResize", functionSetAutoResize)
+-	KVSO_REGISTER_HANDLER(KviKvsObject_label,"tqalignment", functionAlignment)
++	KVSO_REGISTER_HANDLER(KviKvsObject_label,"alignment", functionAlignment)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_label,"setAlignment", functionSetAlignment)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_label,"clear", functionClear)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_label,"frameStyle", functionFrameStyle)
+@@ -297,13 +297,13 @@ bool KviKvsObject_label::functionAutoResize(KviKvsObjectFunctionCall *c)
+ //
+ bool KviKvsObject_label::functionSetAlignment(KviKvsObjectFunctionCall *c)
+ {
+-	TQStringList tqalignment;
++	TQStringList alignment;
+ 	KVSO_PARAMETERS_BEGIN(c)
+-		KVSO_PARAMETER("tqalignment",KVS_PT_STRINGLIST,KVS_PF_OPTIONAL,tqalignment)
++		KVSO_PARAMETER("alignment",KVS_PT_STRINGLIST,KVS_PF_OPTIONAL,alignment)
+ 	KVSO_PARAMETERS_END(c)
+ 	if (!widget()) return true;
+ 	int align,sum=0;
+-	for ( TQStringList::Iterator it = tqalignment.begin(); it != tqalignment.end(); ++it )
++	for ( TQStringList::Iterator it = alignment.begin(); it != alignment.end(); ++it )
+ 		{
+ 		
+ 			align = 0;
+@@ -318,7 +318,7 @@ bool KviKvsObject_label::functionSetAlignment(KviKvsObjectFunctionCall *c)
+ 			if(align)
+ 				sum = sum | align;
+ 			else
+-				c->warning(__tr2qs("Unknown tqalignment: '%Q'"),&(*it));
++				c->warning(__tr2qs("Unknown alignment: '%Q'"),&(*it));
+ 			
+ 		}
+ 	((TQLabel *)widget())->setAlignment(sum);
+@@ -326,7 +326,7 @@ bool KviKvsObject_label::functionSetAlignment(KviKvsObjectFunctionCall *c)
+ }
+ bool KviKvsObject_label::functionAlignment(KviKvsObjectFunctionCall *c)
+ {
+-	int mode = ((TQLabel *)widget())->tqalignment();
++	int mode = ((TQLabel *)widget())->alignment();
+ 	TQString szAlignment="";
+ 	for(unsigned int i = 0; i < align_num; i++)
+ 	{
+diff --git a/src/modules/objects/class_layout.cpp b/src/modules/objects/class_layout.cpp
+index 4381416..5caac1d 100644
+--- a/src/modules/objects/class_layout.cpp
++++ b/src/modules/objects/class_layout.cpp
+@@ -48,11 +48,11 @@
+ 	@type:
+ 		class
+ 	@short:
+-		Manages child widget tqgeometry
++		Manages child widget geometry
+ 	@inherits:
+ 		[class]object[/class]
+ 	@description:
+-		The tqlayout is a tqgeometry management tool for child widgets.
++		The tqlayout is a geometry management tool for child widgets.
+ 		You create a tqlayout , give it some widgets to manage and it will tqlayout them
+ 		automatically.[br]
+ 		The parent of the tqlayout must be the widget for which child widget geometries have to be managed.
+diff --git a/src/modules/objects/class_listview.cpp b/src/modules/objects/class_listview.cpp
+index 1bfe95a..f21417c 100644
+--- a/src/modules/objects/class_listview.cpp
++++ b/src/modules/objects/class_listview.cpp
+@@ -55,7 +55,7 @@
+ 		[class]widget[/class]
+ 	@description:
+ 		It can display and control a hierarchy of multi-column items, and provides the ability to add new items at any time.
+-		The items are added by creating tqchildren [class]listviewitem[/class] objects: simply allocating them with $new
++		The items are added by creating children [class]listviewitem[/class] objects: simply allocating them with $new
+ 		will add the items to the listview and simply deleting them will remove them.
+ 		Allocating a [class]listviewitem[/class] item2 as a child of item1 will insert it to the same listview creating
+ 		a subtree of items spannig from item1. The subtree can be opened or closed by a simple click either
+@@ -132,11 +132,11 @@
+ 		The default implementation emits the [classfnc]$onItem[/classfnc]() signal.
+ 
+ 		!fn: $itemExpandedEvent(<item:object>)
+-		This event is called when an item has been expanded, i.e. when the tqchildren of item are shown.
++		This event is called when an item has been expanded, i.e. when the children of item are shown.
+ 		The default implementation emits the [classfnc]$expanded[/classfnc]() signal.
+ 
+ 		!fn: $itemCollapsedEvent(<item:object>)
+-		This event is called when an item has been collapsed, i.e. when the tqchildren of item are hidden.
++		This event is called when an item has been collapsed, i.e. when the children of item are hidden.
+ 		The default implementation emits the [classfnc]$collapsed[/classfnc]() signal.
+ 
+ 		!fn: $itemRenamedEvent(<item:object>,<col:integer>,<text:string>)
+diff --git a/src/modules/objects/class_listviewitem.cpp b/src/modules/objects/class_listviewitem.cpp
+index 49c448e..605fcee 100644
+--- a/src/modules/objects/class_listviewitem.cpp
++++ b/src/modules/objects/class_listviewitem.cpp
+@@ -71,7 +71,7 @@
+ 		Returns $true if this item is enabled and $false otherwise
+ 
+ 		!fn: $setOpen(<bOpen:boolean>)
+-		Opens or closes the item to show its tqchildren items
++		Opens or closes the item to show its children items
+ 
+ 		!fn: $isOpen()
+ 		Returns the open state of this item
+@@ -80,7 +80,7 @@
+ 		Makes this item checkable or not. This function should be called immediately
+ 		after the item creation: changing this property later at runtime may have
+ 		strange results (like the item being moved inside the list, text disappearing,
+-		hidden tqchildren etc... don't do it :D ).
++		hidden children etc... don't do it :D ).
+ 
+ 		!fn: $isCheckable()
+ 		Returns $true if this item is checkable and $false otherwise
+@@ -94,7 +94,7 @@
+ 		have been previously called.
+ 
+ 		!fn: <listviewitem> $firstChild()
+-		Returns the first child item of this listviewitem or $null if this item has no tqchildren.
++		Returns the first child item of this listviewitem or $null if this item has no children.
+ 
+ 		!fn: <listviewitem> $nextSibling()
+ 		Returns the next sibling item of this listviewitem or $null if there are no sibling items.
+diff --git a/src/modules/objects/class_multilineedit.cpp b/src/modules/objects/class_multilineedit.cpp
+index 70d5086..1d14fcb 100644
+--- a/src/modules/objects/class_multilineedit.cpp
++++ b/src/modules/objects/class_multilineedit.cpp
+@@ -226,15 +226,15 @@ static int mod_cod[] =	{
+ 		Returns 1(TRUE) if undo is available; otherwise returns 0(FALSE).
+ 		!fn: <boolean> $isRedoAvailable ()
+ 		Returns 1(TRUE) if redo is available; otherwise returns 0(FALSE).
+-		!fn: $setAlignment(<tqalignment:string>)
+-		Sets the tqalignment of the current paragraph to <tqalignment>. Valid values are:[br]
++		!fn: $setAlignment(<alignment:string>)
++		Sets the alignment of the current paragraph to <alignment>. Valid values are:[br]
+ 		- AlignAuto - Aligns according to the language.[br]
+ 		- TQt::AlignLeft - Aligns with the left edge.[br]
+ 		- TQt::AlignRight - Aligns with the right edge.[br]
+ 		- TQt::AlignCenter - Centers in both dimensions.
+-		!fn: $setVerticalAlignment(<vertical_tqalignment:string>)
+-		Sets the vertical tqalignment of the current format to <Valignemnt>. Valid Values are:[br]
+-		- AlignNormal - Normal tqalignment.[br]
++		!fn: $setVerticalAlignment(<vertical_alignment:string>)
++		Sets the vertical alignment of the current format to <Valignemnt>. Valid Values are:[br]
++		- AlignNormal - Normal alignment.[br]
+ 		- AlignSuperScript - Superscript.[br]
+ 		- AlignSubScript - Subscript.
+ 		!fn: $setAutoFormatting(<afvalue:string>)
+@@ -1095,7 +1095,7 @@ bool KviKvsObject_mledit::functionsetAlignment(KviKvsObjectFunctionCall *c)
+ {
+ 	TQString szAlignment;
+ 	KVSO_PARAMETERS_BEGIN(c)
+-		KVSO_PARAMETER("tqalignment",KVS_PT_STRING,0,szAlignment)
++		KVSO_PARAMETER("alignment",KVS_PT_STRING,0,szAlignment)
+ 	KVSO_PARAMETERS_END(c)
+ 	if(!widget()) return true;
+ 	if(KviTQString::equalCI(szAlignment,"Left"))
+@@ -1106,7 +1106,7 @@ bool KviKvsObject_mledit::functionsetAlignment(KviKvsObjectFunctionCall *c)
+ 		((KviTalMultiLineEdit *)widget())->setAlignment(TQt::AlignCenter);
+ 	else if(KviTQString::equalCI(szAlignment,"Justify"))
+ 		((KviTalMultiLineEdit *)widget())->setAlignment(TQt::AlignJustify);
+-	else c->warning(__tr2qs("Unknown tqalignment '%Q'"),&szAlignment);
++	else c->warning(__tr2qs("Unknown alignment '%Q'"),&szAlignment);
+ 	return true;
+ }
+ 
+@@ -1131,18 +1131,18 @@ bool KviKvsObject_mledit::functionsetAutoFormatting(KviKvsObjectFunctionCall *c)
+ bool KviKvsObject_mledit::functionsetVerticalAlignment(KviKvsObjectFunctionCall *c)
+ 
+ {
+-	TQString szVtqalignment;
++	TQString szValignment;
+ 	KVSO_PARAMETERS_BEGIN(c)
+-		KVSO_PARAMETER("tqalignment",KVS_PT_STRING,0,szVtqalignment)
++		KVSO_PARAMETER("alignment",KVS_PT_STRING,0,szValignment)
+ 	KVSO_PARAMETERS_END(c)
+ 	if(!widget()) return true;
+-	if(KviTQString::equalCI(szVtqalignment,"Normal"))
++	if(KviTQString::equalCI(szValignment,"Normal"))
+ 		((KviTalMultiLineEdit *)widget())->setVerticalAlignment(KviTalMultiLineEdit::AlignNormal);
+-	else if(KviTQString::equalCI(szVtqalignment,"SuperScript"))
++	else if(KviTQString::equalCI(szValignment,"SuperScript"))
+ 		((KviTalMultiLineEdit *)widget())->setVerticalAlignment(KviTalMultiLineEdit::AlignSuperScript);
+-	else if(KviTQString::equalCI(szVtqalignment,"SubScript"))
++	else if(KviTQString::equalCI(szValignment,"SubScript"))
+ 		((KviTalMultiLineEdit *)widget())->setVerticalAlignment(KviTalMultiLineEdit::AlignSubScript);
+-	else c->warning(__tr2qs("Unknown vertical tqalignment '%Q'"),&szVtqalignment);
++	else c->warning(__tr2qs("Unknown vertical alignment '%Q'"),&szValignment);
+ 	return true;
+ }
+ 
+diff --git a/src/modules/objects/class_painter.cpp b/src/modules/objects/class_painter.cpp
+index 826d119..81cc3f6 100644
+--- a/src/modules/objects/class_painter.cpp
++++ b/src/modules/objects/class_painter.cpp
+@@ -41,12 +41,12 @@
+ 	@type:
+ 		class
+ 	@short:
+-		This class provide a painter to paint line and tqshapes.
++		This class provide a painter to paint line and shapes.
+ 	@inherits:
+ 		[class]object[/class]
+ 		[class]widget[/class]
+ 	@description:
+-		With this class you can draw many graphics objects from simple lines to complex tqshapes like pies and chords.[br]
++		With this class you can draw many graphics objects from simple lines to complex shapes like pies and chords.[br]
+ 		It can also draw aligned text and pixmaps. Normally, it draws in a "natural" coordinate system, but it can also do view and world transformation.[br]
+ 		The class need to be implemented into a [classfnc]$paintEvent[/classfnc]();
+ 		@functions:
+@@ -196,8 +196,8 @@
+ 			timerevent()[br] 
+ 			{[br]
+ 				$$->%b = $(($$->%b + 1) & 15);[br] 
+-				if ($$->%nextanim == 1)  $$->$tqrepaint(1);[br] 
+-				$$->$tqrepaint(0);[br] 
++				if ($$->%nextanim == 1)  $$->$repaint(1);[br] 
++				$$->$repaint(0);[br] 
+ 			}[br] 
+ 			drawAnim()[br] 
+ 			{[br] 
+@@ -414,12 +414,12 @@ if(__pXOrArray->isArray())\
+ 		KviKvsVariant * pH = __pXOrArray->array()->at(3);\
+ 		if(!(pX && pY && pW && pH))\
+ 		{\
+-			c->error(__tr2qs("One of the tqgeometry array parameters is empty"));\
++			c->error(__tr2qs("One of the geometry array parameters is empty"));\
+ 			return false;\
+ 		}\
+ 		if(!(pX->asInteger(iX) && pY->asInteger(__iY) && pW->asInteger(__iW) && pH->asInteger(__iH)))\
+ 		{\
+-			c->error(__tr2qs("One of the tqgeometry array parameters didn't evaluate to an integer"));\
++			c->error(__tr2qs("One of the geometry array parameters didn't evaluate to an integer"));\
+ 			return false;\
+ 		}\
+ 	} else {\
+diff --git a/src/modules/objects/class_tabwidget.cpp b/src/modules/objects/class_tabwidget.cpp
+index d30a6b6..fc22188 100644
+--- a/src/modules/objects/class_tabwidget.cpp
++++ b/src/modules/objects/class_tabwidget.cpp
+@@ -129,10 +129,10 @@
+ 			%labelwp=$new(label,%secondtab)
+ 			%labelwp->$settext("Enjoy the new Class provided by")
+ 			%layoutsecondtab->$addwidget(%labelwp,0,0)
+-			%labelwp->$settqalignment("Center")
++			%labelwp->$setalignment("Center")
+ 			%labelgen=$new(label,%secondtab)
+ 			%labelgen->$settext(Grifisx \& Noldor)
+-			%labelgen->$settqalignment("Center")
++			%labelgen->$setalignment("Center")
+ 			%layoutsecondtab->$addwidget(%labelgen,1,0)
+ 			%Tabwidget->$addTab(%secondtab,&About,50)
+ 			
+diff --git a/src/modules/objects/class_urllabel.cpp b/src/modules/objects/class_urllabel.cpp
+index 639b311..2d0416b 100644
+--- a/src/modules/objects/class_urllabel.cpp
++++ b/src/modules/objects/class_urllabel.cpp
+@@ -152,7 +152,7 @@ bool KviScriptUrlLabelObject::eventFilter(TQObject * o, TQEvent * e)
+ 		!fn: $setText(<text>)
+ 		Sets the label's text. Reimplemented from internal reasons.
+ 		!fn: $setCursorChange(<bEnabled:boolean>)
+-		Tells the label wheather to change or not the tqshape of cursor,
++		Tells the label wheather to change or not the shape of cursor,
+ 		when it is above the widget. Default is false.
+ 		!fn: <boolean> $cursorChange()
+ 		Returns true if the cursor changes over the label, false if not.
+diff --git a/src/modules/objects/class_vbox.cpp b/src/modules/objects/class_vbox.cpp
+index d068156..bfc8014 100644
+--- a/src/modules/objects/class_vbox.cpp
++++ b/src/modules/objects/class_vbox.cpp
+@@ -35,11 +35,11 @@
+ 	@type:
+ 		class
+ 	@short:
+-		Manages child widget vertical tqgeometry
++		Manages child widget vertical geometry
+ 	@inherits:
+ 		[class]object[/class]
+ 	@description:
+-		The vbox class widget provides vertical tqgeometry management for its child widgets.
++		The vbox class widget provides vertical geometry management for its child widgets.
+ 	@functions:
+ 		!fn: $setSpacing(<spacing:int>)
+ 		Sets the default spacing of the widgets in pixels
+diff --git a/src/modules/objects/class_widget.cpp b/src/modules/objects/class_widget.cpp
+index fec3925..83d5608 100644
+--- a/src/modules/objects/class_widget.cpp
++++ b/src/modules/objects/class_widget.cpp
+@@ -137,12 +137,12 @@ const int widgettypes_cod[] = {
+ 		All the other widget-type classes inherit from this one.
+ 	@functions:
+ 		!fn: $show()
+-		Shows this widget and the tqchildren.
++		Shows this widget and the children.
+ 		See also [classfnc]$hide[/classfnc]() and [classfnc]$isVisible[/classfnc].
+ 		!fn: $hide()
+-		Hides this widget (and conseguently all the tqchildren).
++		Hides this widget (and conseguently all the children).
+ 		See also [classfnc]$show[/classfnc]() and [classfnc]$isVisible[/classfnc].
+-		!fn: $tqrepaint(<bool erase>)
++		!fn: $repaint(<bool erase>)
+ 		Repaints the widget directly by calling [classfnc]$paintEvent[/classfnc]() immediately.[br]
+ 		If erase is TRUE, erases the widget before the $paintEvent() call.
+ 		!fn: $x()
+@@ -157,11 +157,11 @@ const int widgettypes_cod[] = {
+ 		Returns the width of this widget in pixels.
+ 		!fn: $height()
+ 		Returns the height of this widget in pixels.
+-		!fn: $tqgeometry()
+-		Returns the widget tqgeometry in this form:[br]
++		!fn: $geometry()
++		Returns the widget geometry in this form:[br]
+ 		x, y, width, height.
+ 		!fn: $setGeometry(<x_or_array>,[<y>,<width>,<heigth>])
+-		Sets the tqgeometry of this widget. <x> and <y> are relative
++		Sets the geometry of this widget. <x> and <y> are relative
+ 		to the parent widget or to the desktop (if this widget is
+ 		a toplevel one). All the parameters are in pixels.
+ 		!fn: $setMinimumWidth(<value>)
+@@ -341,7 +341,7 @@ const int widgettypes_cod[] = {
+ 		If a tooltip has setted with [classfnc]$setTooltip[/classfnc] the dynamic tooltip will be ignored.
+ 		The default implementation does nothing.		
+ 		!fn: $paintEvent()
+-		This event handler can be reimplemented to tqrepaint all or part of the widget.
++		This event handler can be reimplemented to repaint all or part of the widget.
+ 		It's needed by the Painter class.
+ 		It's very useful for drawing flicker free animations or low level special graphic effects.
+ 		If you call "[cmd]return[/cmd] $true" you will stop the internal processing
+@@ -522,7 +522,7 @@ const int widgettypes_cod[] = {
+ 	// ... now that I think about it , it
+ 	// may happen that widget() will be zero here too:
+ 	// If the TQt "physical" widget gets destroyed
+-	// by some external factor (for example when tqchildren
++	// by some external factor (for example when children
+ 	// of a wrapper widget destroyed by KVIrc).
+ 	//
+ 	// as a convention:
+@@ -546,7 +546,7 @@ KVSO_BEGIN_REGISTERCLASS(KviKvsObject_widget,"widget","object")
+ 	// apparence
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"show",function_show)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"hide",function_hide)
+-	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"tqrepaint",function_tqrepaint)
++	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"repaint",function_repaint)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"isTopLevel",function_isTopLevel)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"isVisible",function_isVisible)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"raise",function_raise)
+@@ -567,10 +567,10 @@ KVSO_BEGIN_REGISTERCLASS(KviKvsObject_widget,"widget","object")
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"fontMetricsWidth",function_fontMetricsWidth)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"fontMetricsHeight",function_fontMetricsHeight)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"setFont",function_setFont)
+-	// tqgeometry
++	// geometry
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"screenResolution",function_screenResolution)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"centerToScreen",function_centerToScreen)
+-	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"geometry",function_tqgeometry)
++	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"geometry",function_geometry)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"setGeometry",function_setGeometry)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"mapToGlobal",function_mapToGlobal)
+ 	KVSO_REGISTER_HANDLER(KviKvsObject_widget,"mapFromGlobal",function_mapFromGlobal)
+@@ -916,14 +916,14 @@ bool KviKvsObject_widget::function_fontAscent(KviKvsObjectFunctionCall * c)
+ 
+ }
+ 
+-bool KviKvsObject_widget::function_tqrepaint(KviKvsObjectFunctionCall * c)
++bool KviKvsObject_widget::function_repaint(KviKvsObjectFunctionCall * c)
+ {
+ 	bool bEnabled;
+ 	KVSO_PARAMETERS_BEGIN(c)
+ 		KVSO_PARAMETER("bEnabled",KVS_PT_BOOL,0,bEnabled)
+ 	KVSO_PARAMETERS_END(c)
+ 	if(!widget()) return true;
+-    widget()->tqrepaint(bEnabled);
++    widget()->repaint(bEnabled);
+ 	return true;
+ }
+ 
+@@ -955,9 +955,9 @@ bool KviKvsObject_widget::function_screenResolution(KviKvsObjectFunctionCall * c
+ 	return true;
+ }
+ 
+-bool KviKvsObject_widget::function_tqgeometry(KviKvsObjectFunctionCall *c)
++bool KviKvsObject_widget::function_geometry(KviKvsObjectFunctionCall *c)
+ {
+-	TQRect r = widget() ? widget()->tqgeometry() : TQRect(0,0,0,0);
++	TQRect r = widget() ? widget()->geometry() : TQRect(0,0,0,0);
+ 	KviKvsArray * a = new KviKvsArray();
+ 	a->set(0,new KviKvsVariant((kvs_int_t)r.x()));
+ 	a->set(1,new KviKvsVariant((kvs_int_t)r.y()));
+@@ -992,7 +992,7 @@ bool KviKvsObject_widget::function_setGeometry(KviKvsObjectFunctionCall *c)
+ 
+ 	if(pXOrArray->isArray())
+ 	{
+-		// the user has passed a complete tqgeometry array as first parameter
++		// the user has passed a complete geometry array as first parameter
+ 		// make sure it has at least 4 elements
+ 		if(pXOrArray->array()->size() < 4)
+ 		{
+@@ -1009,12 +1009,12 @@ bool KviKvsObject_widget::function_setGeometry(KviKvsObjectFunctionCall *c)
+ 		// no parameter was set in that place
+ 		if(!(pX && pY && pW && pH))
+ 		{
+-			c->error(__tr2qs("One of the tqgeometry array parameters is empty"));
++			c->error(__tr2qs("One of the geometry array parameters is empty"));
+ 			return false;
+ 		}
+ 		if(!(pX->asInteger(iX) && pY->asInteger(iY) && pW->asInteger(iW) && pH->asInteger(iH)))
+ 		{
+-			c->error(__tr2qs("One of the tqgeometry array parameters didn't evaluate to an integer"));
++			c->error(__tr2qs("One of the geometry array parameters didn't evaluate to an integer"));
+ 			return false;
+ 		}
+ 		// ok: the params are correct
+diff --git a/src/modules/objects/class_widget.h b/src/modules/objects/class_widget.h
+index edbe610..47d13cd 100644
+--- a/src/modules/objects/class_widget.h
++++ b/src/modules/objects/class_widget.h
+@@ -59,7 +59,7 @@ protected:
+ 	bool function_fontMetricsHeight(KviKvsObjectFunctionCall * c);
+ 	bool function_fontMetricsWidth(KviKvsObjectFunctionCall * c);
+ 	bool function_foregroundColor(KviKvsObjectFunctionCall *c);
+-	bool function_tqgeometry(KviKvsObjectFunctionCall *c);
++	bool function_geometry(KviKvsObjectFunctionCall *c);
+ 	bool function_globalCursorX(KviKvsObjectFunctionCall *c);
+ 	bool function_globalCursorY(KviKvsObjectFunctionCall *c);
+ 	bool function_hasFocus(KviKvsObjectFunctionCall *c);
+@@ -74,7 +74,7 @@ protected:
+ 	bool function_move(KviKvsObjectFunctionCall *c);
+ 	bool function_parentWidget(KviKvsObjectFunctionCall *c);
+ 	bool function_raise(KviKvsObjectFunctionCall *);
+-	bool function_tqrepaint(KviKvsObjectFunctionCall *c);
++	bool function_repaint(KviKvsObjectFunctionCall *c);
+ 	bool function_reparent(KviKvsObjectFunctionCall *c);
+ 	bool function_resize(KviKvsObjectFunctionCall *c);
+ 	bool function_screenResolution(KviKvsObjectFunctionCall * c);
+diff --git a/src/modules/objects/class_window.cpp b/src/modules/objects/class_window.cpp
+index 393c296..918f541 100644
+--- a/src/modules/objects/class_window.cpp
++++ b/src/modules/objects/class_window.cpp
+@@ -119,7 +119,7 @@ bool KviKvsObject_window::init(KviKvsRunTimeContext * pContext,KviKvsVariantList
+ 	KviWindow * w = new KviKvsScriptWindowWindow(pContext->window()->frame(),name());
+ 	setObject(TQT_TQOBJECT(w));
+ 	pContext->window()->frame()->addWindow(w,false);
+-	w->minimize(); // must be minimized before tqchildren are added, otherwise the focus handling goes nuts...
++	w->minimize(); // must be minimized before children are added, otherwise the focus handling goes nuts...
+ 
+ 	return true;
+ }
+diff --git a/src/modules/objects/class_wrapper.cpp b/src/modules/objects/class_wrapper.cpp
+index 928ddaf..38901ed 100644
+--- a/src/modules/objects/class_wrapper.cpp
++++ b/src/modules/objects/class_wrapper.cpp
+@@ -72,7 +72,7 @@
+                 The first entry in this example is a KVIrc server window, class "KviFrame" and name "kvirc_frame":
+                 it is a toplevel widget.[br]
+                 The "qt_top_dock", "qt_custom_toolbar" and the "qt_dockwidget_internal" are
+-                direct tqchildren of that widget.[br]
++                direct children of that widget.[br]
+                 To indicate a specific widget we will use the "class::name" form.[br]
+                 So to indicate the main KVIrc frame you will use "KviFrame::kvirc_main_frame".
+                 Look at this example:[br]
+diff --git a/src/modules/objects/libkviobjects.cpp b/src/modules/objects/libkviobjects.cpp
+index 3a939ff..2a4dc9d 100644
+--- a/src/modules/objects/libkviobjects.cpp
++++ b/src/modules/objects/libkviobjects.cpp
+@@ -153,7 +153,7 @@ static bool objects_kvs_cmd_killClass(KviKvsModuleCommandCall * c)
+ 			Suppresses any warning message
+ 		@description:
+ 			Removes the definition of the class <class_name>.[br]
+-			All the instances of the class are killed (thus tqchildren objects are killed too).[br]
++			All the instances of the class are killed (thus children objects are killed too).[br]
+ 			All the derived class definitions are removed as well.[br]
+ 			Builtin class definitions cannot be removed and this commands
+ 			kills only all the instances of that class (derived class definitions
+@@ -913,7 +913,7 @@ static bool objects_kvs_fnc_listObjects(KviKvsModuleFunctionCall * cmd)
+ static void dumpChildObjects(KviWindow *pWnd, TQObject *parent, const char *spacing, bool bFlag, KviKvsArray *n, int &idx)
+ {
+ #ifdef COMPILE_USE_QT4
+-	const TQObjectList list = parent->tqchildren();
++	const TQObjectList list = parent->children();
+ 	if( !list.count() ) return;
+ 	TQString sp(spacing);
+ 	sp.append(">");
+diff --git a/src/modules/options/dialog.cpp b/src/modules/options/dialog.cpp
+index 107c597..4f1dedf 100644
+--- a/src/modules/options/dialog.cpp
++++ b/src/modules/options/dialog.cpp
+@@ -179,7 +179,7 @@ KviOptionsDialog::KviOptionsDialog(TQWidget * par,const TQString &szGroup)
+ 					"</td>" \
+ 				"</tr>" \
+ 			"</table>"
+-		).tqarg(szDialogTitle).tqarg(szDialog).tqarg(szInfoTips).tqarg(szOkCancelButtons);
++		).arg(szDialogTitle).arg(szDialog).arg(szInfoTips).arg(szOkCancelButtons);
+ 
+ 	TQString szCaption = szDialogTitle + " - KVIrc";
+ 	setCaption(szCaption);
+@@ -534,10 +534,10 @@ void KviOptionsDialog::fillListView(KviTalListViewItem * p,KviPointerList<KviOpt
+ 		{
+ 			if(e->bIsContainer)
+ 			{
+-				// it's a container: add only eventual not contained tqchildren (containers or explicitly marked as not contained)
++				// it's a container: add only eventual not contained children (containers or explicitly marked as not contained)
+ 				fillListView(it,e->pChildList,szGroup,true);
+ 			} else {
+-				// it's not a container, add any tqchildren
++				// it's not a container, add any children
+ 				fillListView(it,e->pChildList,szGroup,false);
+ 			}
+ 		}
+@@ -578,7 +578,7 @@ KviOptionsListViewItem * KviOptionsDialog::findItemByPage(KviOptionsListViewItem
+ 	if(it->m_pOptionsWidget == pPage)return it;
+ 
+ 	KviOptionsListViewItem *i;
+-	// run through the tqchildren
++	// run through the children
+ 	i = (KviOptionsListViewItem *)(it->firstChild());
+ 	if(i)
+ 	{
+@@ -586,7 +586,7 @@ KviOptionsListViewItem * KviOptionsDialog::findItemByPage(KviOptionsListViewItem
+ 		if(i)return i;
+ 	}
+ 	
+-	// not found in the tqchildren tree.. look in the next sibling
++	// not found in the children tree.. look in the next sibling
+ 	i = (KviOptionsListViewItem *)(it->nextSibling());
+ 	if(i)
+ 	{
+@@ -647,7 +647,7 @@ void KviOptionsDialog::closeEvent(TQCloseEvent *e)
+ 
+ void KviOptionsDialog::recursiveCommit(KviOptionsListViewItem *it)
+ {
+-	// First commit the tqchildren
++	// First commit the children
+ 	if(!it) return;
+ 	KviOptionsListViewItem *it2 = (KviOptionsListViewItem *)it->firstChild();
+ 	while(it2)
+diff --git a/src/modules/options/mkcreateinstanceproc.sh b/src/modules/options/mkcreateinstanceproc.sh
+index 1a25a14..9947aff 100755
+--- a/src/modules/options/mkcreateinstanceproc.sh
++++ b/src/modules/options/mkcreateinstanceproc.sh
+@@ -271,7 +271,7 @@ printclass()
+ 	fi
+ }
+ 
+-addtqchildren()
++addchildren()
+ {
+ 	if [ -f "$CLASSDIR/$2" ]; then
+ 		LEVEL=`cat $CLASSDIR/$2`
+@@ -282,7 +282,7 @@ addtqchildren()
+ 				echo "$3	e$1->pChildList = new KviPointerList<KviOptionsWidgetInstanceEntry>;" >> $TARGET
+ 				echo "$3	e$1->pChildList->setAutoDelete(true);" >> $TARGET
+ 				NEXTLEVEL=`expr $1 + 1`
+-				addtqchildren $NEXTLEVEL $achild "$3	"
++				addchildren $NEXTLEVEL $achild "$3	"
+ 			else
+ 				echo "$3	e$1->pChildList = 0;" >> $TARGET
+ 			fi
+@@ -290,7 +290,7 @@ addtqchildren()
+ 	fi
+ }
+ 
+-addtqchildren 0 NOPARENT ""
++addchildren 0 NOPARENT ""
+ 
+ 
+ rm -fr $CLASSDIR
+diff --git a/src/modules/options/optw_irc.cpp b/src/modules/options/optw_irc.cpp
+index f39add0..a6cee9d 100644
+--- a/src/modules/options/optw_irc.cpp
++++ b/src/modules/options/optw_irc.cpp
+@@ -181,7 +181,7 @@ KviChannelAdvancedOptionsWidget::KviChannelAdvancedOptionsWidget(TQWidget * pPar
+ 		
+ 		hostmask.mask(tmp1,(KviIrcMask::MaskType)i);
+ 		ipmask.mask(tmp2,(KviIrcMask::MaskType)i);
+-		m_pBanTypeCombo->insertItem(TQString("%1 (%2)").tqarg(tmp1).tqarg(tmp2));
++		m_pBanTypeCombo->insertItem(TQString("%1 (%2)").arg(tmp1).arg(tmp2));
+ 	}
+ 	m_pBanTypeCombo->setCurrentItem(KVI_OPTION_UINT(KviOption_uintDefaultBanType));
+ 
+diff --git a/src/modules/options/optw_servers.cpp b/src/modules/options/optw_servers.cpp
+index 309344c..2c26ac5 100644
+--- a/src/modules/options/optw_servers.cpp
++++ b/src/modules/options/optw_servers.cpp
+@@ -732,7 +732,7 @@ KviServerDetailsWidget::KviServerDetailsWidget(TQWidget * par,KviIrcServer * s)
+ 	KviPointerList<KviProxy> * proxylist = g_pProxyDataBase->proxyList();
+ 	for(KviProxy * p = proxylist->first();p;p = proxylist->next())
+ 	{
+-		m_pProxyEditor->insertItem(TQString("%1:%2").tqarg(p->hostname()).tqarg(p->port()));
++		m_pProxyEditor->insertItem(TQString("%1:%2").arg(p->hostname()).arg(p->port()));
+ 	}
+ 	if(m_pProxyEditor->count() > (s->proxy()+2))
+ 		m_pProxyEditor->setCurrentItem(s->proxy()+2);
+diff --git a/src/modules/options/optw_textencoding.cpp b/src/modules/options/optw_textencoding.cpp
+index 495df00..fc915ed 100644
+--- a/src/modules/options/optw_textencoding.cpp
++++ b/src/modules/options/optw_textencoding.cpp
+@@ -68,7 +68,7 @@ KviTextEncodingOptionsWidget::KviTextEncodingOptionsWidget(TQWidget * parent)
+ 	m_pForcedLocaleCombo->insertItem(__tr2qs_ctx("Automatic detection","options"));
+ 	m_pForcedLocaleCombo->insertItem(__tr2qs_ctx("en","options"));
+ 	
+-	TQString szLangFile=TQString("%1/.kvirc_force_locale").tqarg(TQDir::homeDirPath());
++	TQString szLangFile=TQString("%1/.kvirc_force_locale").arg(TQDir::homeDirPath());
+ 
+ 	bool bIsDefaultLocale = !KviFileUtils::fileExists(szLangFile);
+ 	//We Have setted locale, but not restarted kvirc
+@@ -121,7 +121,7 @@ void KviTextEncodingOptionsWidget::commit()
+ 	}
+ 	
+ 	idx=m_pForcedLocaleCombo->currentItem();
+-	TQString szLangFile=TQString("%1/.kvirc_force_locale").tqarg(TQDir::homeDirPath());
++	TQString szLangFile=TQString("%1/.kvirc_force_locale").arg(TQDir::homeDirPath());
+ 	if(idx==0) {
+ 		if(KviFileUtils::fileExists(szLangFile))
+ 			KviFileUtils::removeFile(szLangFile);
+diff --git a/src/modules/reguser/dialog.cpp b/src/modules/reguser/dialog.cpp
+index 59fc732..254c5fe 100644
+--- a/src/modules/reguser/dialog.cpp
++++ b/src/modules/reguser/dialog.cpp
+@@ -312,7 +312,7 @@ KviRegisteredUsersDialog::~KviRegisteredUsersDialog()
+ 	if(!parent())KVI_OPTION_RECT(KviOption_rectRegisteredUsersDialogGeometry) = TQRect(pos().x(),pos().y(),
+ 			size().width(),size().height());
+ #else
+-	if(!parent())KVI_OPTION_RECT(KviOption_rectRegisteredUsersDialogGeometry) = tqgeometry();
++	if(!parent())KVI_OPTION_RECT(KviOption_rectRegisteredUsersDialogGeometry) = geometry();
+ #endif
+ 
+ 	g_pRegisteredUsersDialog = 0;
+diff --git a/src/modules/setup/setupwizard.cpp b/src/modules/setup/setupwizard.cpp
+index b0c72cf..1a8b5c4 100644
+--- a/src/modules/setup/setupwizard.cpp
++++ b/src/modules/setup/setupwizard.cpp
+@@ -736,7 +736,7 @@ void KviSetupWizard::chooseOldDataPath()
+ 				__tr2qs("Do not overwrite folder? - KVIrc"),
+ 				tqtr("A folder %1 seems to be not a valid KVIrc settings folder."
+ 					"Do you want to use it anyway?")
+-					.tqarg( szBuffer ),
++					.arg( szBuffer ),
+ 				__tr2qs("&Yes"), __tr2qs("&No"),
+ 				TQString(), 0, 1 ) == 0
+ 			) {
+@@ -1005,7 +1005,7 @@ void KviSetupWizard::accept()
+ 	
+ #ifndef COMPILE_ON_WINDOWS
+ 		// Make local->global link
+-		TQString localPath = TQString("%1/global").tqarg(g_pApp->m_szLocalKvircDir);
++		TQString localPath = TQString("%1/global").arg(g_pApp->m_szLocalKvircDir);
+ 		unlink(TQTextCodec::codecForLocale()->fromUnicode(localPath).data());
+ 		symlink(TQTextCodec::codecForLocale()->fromUnicode(g_pApp->m_szGlobalKvircDir).data(),TQTextCodec::codecForLocale()->fromUnicode(localPath).data());
+ #endif
+diff --git a/src/modules/sharedfileswindow/sharedfileswindow.cpp b/src/modules/sharedfileswindow/sharedfileswindow.cpp
+index c8aa9e4..11e320d 100644
+--- a/src/modules/sharedfileswindow/sharedfileswindow.cpp
++++ b/src/modules/sharedfileswindow/sharedfileswindow.cpp
+@@ -411,7 +411,7 @@ void KviSharedFilesWindow::rightButtonPressed(KviTalListViewItem *it,const TQPoi
+ 				if(fi.exists())
+ 				{
+ 					tmp += "<nobr>";
+-					tmp += __tr2qs_ctx("Size: %1 bytes","filetransferwindow").tqarg(fi.size());
++					tmp += __tr2qs_ctx("Size: %1 bytes","filetransferwindow").arg(fi.size());
+ 					tmp += "</nobr><br>";
+ 				}
+ 
+diff --git a/src/modules/theme/packthemedialog.cpp b/src/modules/theme/packthemedialog.cpp
+index 6f2e24c..269fbfe 100644
+--- a/src/modules/theme/packthemedialog.cpp
++++ b/src/modules/theme/packthemedialog.cpp
+@@ -293,7 +293,7 @@ KviPackThemeDialog::KviPackThemeDialog(TQWidget * pParent,KviPointerList<KviThem
+ 	pLayout = new TQGridLayout(pPage,4,1,4,4);
+ 
+ 	pLabel = new TQLabel(pPage);
+-	pLabel->setText(__tr2qs_ctx("Here you must choose the file name for the theme package. It should have a *.%1 extension.","theme").tqarg(KVI_FILEEXTENSION_THEMEPACKAGE));
++	pLabel->setText(__tr2qs_ctx("Here you must choose the file name for the theme package. It should have a *.%1 extension.","theme").arg(KVI_FILEEXTENSION_THEMEPACKAGE));
+ 	pLabel->setTextFormat(TQt::RichText);
+ 	pLayout->addWidget(pLabel,0,0);
+ 
+diff --git a/src/modules/toolbareditor/toolbareditor.cpp b/src/modules/toolbareditor/toolbareditor.cpp
+index 927fbf7..208c269 100644
+--- a/src/modules/toolbareditor/toolbareditor.cpp
++++ b/src/modules/toolbareditor/toolbareditor.cpp
+@@ -371,7 +371,7 @@ void KviCustomizeToolBarsDialog::deleteToolBar()
+ 	if(!t)return;
+ 	if(TQMessageBox::question(this,
+ 			__tr2qs("Confirm ToolBar Deletion"),
+-			__tr2qs("Do you really want to delete toolbar \"%1\" ?").tqarg(t->label()),
++			__tr2qs("Do you really want to delete toolbar \"%1\" ?").arg(t->label()),
+ 			__tr2qs("No"),
+ 			__tr2qs("Yes")) == 0)return;
+ 	KviCustomToolBarManager::instance()->destroyDescriptor(t->descriptor()->id());
+@@ -462,7 +462,7 @@ void KviCustomizeToolBarsDialog::renameToolBar()
+ 	if(!t)return;
+ 
+ 	KviCustomToolBarPropertiesDialog * dlg = new KviCustomToolBarPropertiesDialog(this,
+-		__tr2qs("Please specify the properties for the toolbar \"%1\"").tqarg(t->label()),
++		__tr2qs("Please specify the properties for the toolbar \"%1\"").arg(t->label()),
+ 		t->descriptor()->id(),
+ 		t->descriptor()->labelCode(),
+ 		t->descriptor()->iconId());
+diff --git a/src/modules/torrent/tc_statusbarapplet.cpp b/src/modules/torrent/tc_statusbarapplet.cpp
+index 45b32db..e8b6528 100644
+--- a/src/modules/torrent/tc_statusbarapplet.cpp
++++ b/src/modules/torrent/tc_statusbarapplet.cpp
+@@ -39,12 +39,12 @@ void KviTorrentStatusBarApplet::selfRegister(KviStatusBar *bar)
+ TQString formatSize(float sz)
+ {
+ 	if (sz >= 1024.0f*1024.0f*1024.0f)
+-		return TQString("%1 GB").tqarg(sz / (1024.0f*1024.0f*1024.0f), 2, 'f', 2);
++		return TQString("%1 GB").arg(sz / (1024.0f*1024.0f*1024.0f), 2, 'f', 2);
+ 	if (sz >= 1024.0f*1024.0f)
+-		return TQString("%1 MB").tqarg(sz / (1024.0f*1024.0f), 2, 'f', 2);
++		return TQString("%1 MB").arg(sz / (1024.0f*1024.0f), 2, 'f', 2);
+ 	if (sz >= 1024.0f)
+-		return TQString("%1 KB").tqarg(sz / 1024.0f, 2, 'f', 2);
+-	return TQString("%1 B").tqarg(sz, 2, 'f', 2);
++		return TQString("%1 KB").arg(sz / 1024.0f, 2, 'f', 2);
++	return TQString("%1 B").arg(sz, 2, 'f', 2);
+ }
+ 
+ void KviTorrentStatusBarApplet::update()
+@@ -52,10 +52,10 @@ void KviTorrentStatusBarApplet::update()
+ 	if (KviTorrentInterface::selected())
+ 	{
+ 		TQString msg = TQString("up: %1 K/s (%2), dn: %3 K/s (%4)")
+-					.tqarg(KviTorrentInterface::selected()->speedUp(), 2)
+-					.tqarg(formatSize(KviTorrentInterface::selected()->trafficUp()))
+-					.tqarg(KviTorrentInterface::selected()->speedDown(), 2)
+-					.tqarg(formatSize(KviTorrentInterface::selected()->trafficDown()));
++					.arg(KviTorrentInterface::selected()->speedUp(), 2)
++					.arg(formatSize(KviTorrentInterface::selected()->trafficUp()))
++					.arg(KviTorrentInterface::selected()->speedDown(), 2)
++					.arg(formatSize(KviTorrentInterface::selected()->trafficDown()));
+ 
+ 		setText(msg);
+ 
+diff --git a/src/modules/url/libkviurl.cpp b/src/modules/url/libkviurl.cpp
+index b3edd19..c0e647c 100644
+--- a/src/modules/url/libkviurl.cpp
++++ b/src/modules/url/libkviurl.cpp
+@@ -285,7 +285,7 @@ void UrlDialog::popup(KviTalListViewItem *item, const TQPoint &point, int col)
+ void UrlDialog::sayToWin(int itemID)
+ {
+ 	KviWindow *wnd = g_pApp->findWindowByCaption(m_pListPopup->text(itemID).utf8().data());
+-	TQString say=TQString("PRIVMSG %1 %2").tqarg(wnd->windowName()).tqarg(m_szUrl.ptr());
++	TQString say=TQString("PRIVMSG %1 %2").arg(wnd->windowName()).arg(m_szUrl.ptr());
+ 	if (wnd) {
+ 		KviKvsScript::run(say,wnd);
+ 		wnd->raise();
+diff --git a/src/modules/window/libkviwindow.cpp b/src/modules/window/libkviwindow.cpp
+index 7c83051..3624402 100644
+--- a/src/modules/window/libkviwindow.cpp
++++ b/src/modules/window/libkviwindow.cpp
+@@ -1499,7 +1499,7 @@ static bool window_module_init(KviModule *m)
+ 
+ 	// saveOutput (view()->saveBuffer())
+ /*
+-	m->registerFunction("geometry",window_module_fnc_tqgeometry);
++	m->registerFunction("geometry",window_module_fnc_geometry);
+ 	m->registerCommand("setGeometry",window_module_cmd_setGeometry);
+ 
+ 	m->registerFunction("isActive",window_module_fnc_isActive);

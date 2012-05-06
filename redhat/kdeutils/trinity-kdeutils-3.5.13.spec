@@ -1,25 +1,18 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 5
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
 
 Name:		trinity-kdeutils
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	5%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Utilities
 Group:		Applications/System
@@ -53,6 +46,7 @@ Requires(postun): /sbin/ldconfig
 Requires:	tqtinterface
 Requires:	trinity-kdelibs
 
+BuildRequires: autoconf automake libtool m4
 BuildRequires: gettext
 BuildRequires: net-snmp-devel
 BuildRequires: python-devel

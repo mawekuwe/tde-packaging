@@ -1,0 +1,19 @@
+commit 1c00d6ffa847ef0cc0cc6deaf1da412c8264f7ac
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324748257 -0600
+
+    Rename a few stragglers
+
+diff --git a/src/modules/list/listwindow.cpp b/src/modules/list/listwindow.cpp
+index b7bd8bc..c5ed5ea 100644
+--- a/src/modules/list/listwindow.cpp
++++ b/src/modules/list/listwindow.cpp
+@@ -140,7 +140,7 @@ void KviChannelListViewItem::paintCell(TQPainter * p,const TQColorGroup &cg,int
+ 		if ( isEnabled() || !lv )
+ 			p->setPen( cg.highlightedText() );
+ 		else if ( !isEnabled() && lv)
+-			p->setPen( lv->tqpalette().disabled().highlightedText() );
++			p->setPen( lv->palette().disabled().highlightedText() );
+ 	} else {
+ 		if ( isEnabled() || !lv )
+ 			p->setPen( cg.text() );

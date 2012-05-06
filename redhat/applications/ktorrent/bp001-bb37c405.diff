@@ -1,0 +1,3511 @@
+commit bb37c4052a9edfff2196984cef241b1ce2df7bb3
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324316389 -0600
+
+    Remove additional unneeded tq method conversions
+
+diff --git a/apps/ktcachecheck/cachechecker.cpp b/apps/ktcachecheck/cachechecker.cpp
+index f05fb18..c8371a7 100644
+--- a/apps/ktcachecheck/cachechecker.cpp
++++ b/apps/ktcachecheck/cachechecker.cpp
+@@ -44,7 +44,7 @@ namespace ktdebug
+ 		this->index_file = index_file;
+ 		File fptr;
+ 		if (!fptr.open(index_file,"rb"))
+-			throw Error(i18n("Cannot open index file %1 : %2").tqarg(index_file).tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot open index file %1 : %2").arg(index_file).arg(fptr.errorString()));
+ 
+ 		if (fptr.seek(File::END,0) != 0)
+ 		{
+@@ -73,7 +73,7 @@ namespace ktdebug
+ 
+ 		File fptr;
+ 		if (!fptr.open(index_file,"wb"))
+-			throw Error(i18n("Cannot open index file %1 : %2").tqarg(index_file).tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot open index file %1 : %2").arg(index_file).arg(fptr.errorString()));
+ 
+ 		std::set<bt::Uint32>::iterator i;
+ 		// first remove failed chunks from downloaded
+diff --git a/apps/ktcachecheck/multicachechecker.cpp b/apps/ktcachecheck/multicachechecker.cpp
+index 3132e12..53e8fee 100644
+--- a/apps/ktcachecheck/multicachechecker.cpp
++++ b/apps/ktcachecheck/multicachechecker.cpp
+@@ -79,7 +79,7 @@ namespace ktdebug
+ 					// we can read the chunk from this file
+ 					File fptr;
+ 					if (!fptr.open(cache + tf.getPath(),"rb"))
+-						throw Error(TQString("Cannot open %1 : %2").tqarg(cache + tf.getPath()).tqarg(fptr.errorString()));
++						throw Error(TQString("Cannot open %1 : %2").arg(cache + tf.getPath()).arg(fptr.errorString()));
+ 
+ 					fptr.seek(File::BEGIN,curr_file_off);
+ 					fptr.read(buf + bytes_offset,to_read);
+@@ -94,7 +94,7 @@ namespace ktdebug
+ // 					Out() << "Partially reading " << to_read << endl;
+ 					File fptr;
+ 					if (!fptr.open(cache + tf.getPath(),"rb"))
+-						throw Error(TQString("Cannot open %1 : %2").tqarg(cache + tf.getPath()).tqarg(fptr.errorString()));
++						throw Error(TQString("Cannot open %1 : %2").arg(cache + tf.getPath()).arg(fptr.errorString()));
+ 
+ 					fptr.seek(File::BEGIN,curr_file_off);
+ 					fptr.read(buf + bytes_offset,to_read);
+diff --git a/apps/ktcachecheck/singlecachechecker.cpp b/apps/ktcachecheck/singlecachechecker.cpp
+index c311db1..ab64fc3 100644
+--- a/apps/ktcachecheck/singlecachechecker.cpp
++++ b/apps/ktcachecheck/singlecachechecker.cpp
+@@ -48,7 +48,7 @@ namespace ktdebug
+ 		if (!fptr.open(cache,"rb"))
+ 		{
+ 			throw Error(TQString("Cannot open file : %1 : %2")
+-					.tqarg(cache).tqarg( fptr.errorString()));
++					.arg(cache).arg( fptr.errorString()));
+ 		}
+ 
+ 		Uint32 num_ok = 0,num_not_ok = 0,num_not_downloaded = 0,extra_ok = 0;
+diff --git a/apps/ktorrent/groups/groupview.cpp b/apps/ktorrent/groups/groupview.cpp
+index 11a6aa6..92b78c3 100644
+--- a/apps/ktorrent/groups/groupview.cpp
++++ b/apps/ktorrent/groups/groupview.cpp
+@@ -163,7 +163,7 @@ namespace kt
+ 		
+ 		if (gman->find(name))
+ 		{
+-			KMessageBox::error(this,i18n("The group %1 already exists.").tqarg(name));
++			KMessageBox::error(this,i18n("The group %1 already exists.").arg(name));
+ 			return;
+ 		}
+ 		
+@@ -214,7 +214,7 @@ namespace kt
+ 		
+ 		if (gman->find(name)) 
+ 		{
+-			KMessageBox::error(this,i18n("The group %1 already exists.").tqarg(name));
++			KMessageBox::error(this,i18n("The group %1 already exists.").arg(name));
+ 		}
+ 		else
+ 		{
+diff --git a/apps/ktorrent/groups/torrentgroup.cpp b/apps/ktorrent/groups/torrentgroup.cpp
+index 65fed38..d44b744 100644
+--- a/apps/ktorrent/groups/torrentgroup.cpp
++++ b/apps/ktorrent/groups/torrentgroup.cpp
+@@ -51,7 +51,7 @@ namespace kt
+ 			if (hashes.count(tor->getInfoHash()))
+ 			{
+ 		/*		bt::Out(SYS_GEN|LOG_DEBUG) << 
+-						TQString("TG %1 : Torrent %2 from hashes list").tqarg(groupName()).tqarg(tor->getStats().torrent_name) << endl;
++						TQString("TG %1 : Torrent %2 from hashes list").arg(groupName()).arg(tor->getStats().torrent_name) << endl;
+ 		*/ 
+ 				hashes.erase(tor->getInfoHash());
+ 				torrents.insert(tor);
+diff --git a/apps/ktorrent/ipfilterwidget.cpp b/apps/ktorrent/ipfilterwidget.cpp
+index 76ba43f..152e8c1 100644
+--- a/apps/ktorrent/ipfilterwidget.cpp
++++ b/apps/ktorrent/ipfilterwidget.cpp
+@@ -140,7 +140,7 @@ void IPFilterWidget::saveFilter(TQString& fn)
+ 	
+ 	if (!fptr.open(IO_WriteOnly))
+ 	{
+-		Out(SYS_GEN|LOG_NOTICE) << TQString("Could not open file %1 for writing.").tqarg(fn) << endl;
++		Out(SYS_GEN|LOG_NOTICE) << TQString("Could not open file %1 for writing.").arg(fn) << endl;
+ 		return;
+ 	}
+ 	
+diff --git a/apps/ktorrent/ipfilterwidgetbase.ui b/apps/ktorrent/ipfilterwidgetbase.ui
+index dea4bc2..e29ffe7 100644
+--- a/apps/ktorrent/ipfilterwidgetbase.ui
++++ b/apps/ktorrent/ipfilterwidgetbase.ui
+@@ -29,7 +29,7 @@
+             <property name="text">
+                 <string>Note: Blacklist applies to current session only. Use save/open to save your entries or use IPFilter plugin (PeerGuardian).</string>
+             </property>
+-            <property name="tqalignment">
++            <property name="alignment">
+                 <set>WordBreak|AlignVCenter</set>
+             </property>
+         </widget>
+diff --git a/apps/ktorrent/ktorrent.cpp b/apps/ktorrent/ktorrent.cpp
+index 85cb4f0..a113576 100644
+--- a/apps/ktorrent/ktorrent.cpp
++++ b/apps/ktorrent/ktorrent.cpp
+@@ -791,14 +791,14 @@ void KTorrent::updatedStats()
+ 	
+ 	//m_statusInfo->setText(i18n("Some info here e.g. connected/disconnected"));
+ 	TQString tmp = i18n("Speed down: %1 / up: %2")
+-			.tqarg(KBytesPerSecToString((double)stats.download_speed/1024.0))
+-			.tqarg(KBytesPerSecToString((double)stats.upload_speed/1024.0));
++			.arg(KBytesPerSecToString((double)stats.download_speed/1024.0))
++			.arg(KBytesPerSecToString((double)stats.upload_speed/1024.0));
+ 
+ 	m_statusSpeed->setText(tmp);
+ 
+ 	TQString tmp1 = i18n("Transferred down: %1 / up: %2")
+-			.tqarg(BytesToString(stats.bytes_downloaded))
+-			.tqarg(BytesToString(stats.bytes_uploaded));
++			.arg(BytesToString(stats.bytes_downloaded))
++			.arg(BytesToString(stats.bytes_uploaded));
+ 	m_statusTransfer->setText(tmp1);
+ 	
+ 	if (ServerAuthenticate::isFirewalled() && m_core->getNumTorrentsRunning() > 0) 
+@@ -817,7 +817,7 @@ void KTorrent::updatedStats()
+ 	{
+ 		const dht::Stats & s = Globals::instance().getDHT().getStats();
+ 		m_statusDHT->setText(i18n("DHT: %1 nodes, %2 tasks")
+-				.tqarg(s.num_peers).tqarg(s.num_tasks));
++				.arg(s.num_peers).arg(s.num_tasks));
+ 	}
+ 	else
+ 		m_statusDHT->setText(i18n("DHT: off"));
+diff --git a/apps/ktorrent/ktorrentcore.cpp b/apps/ktorrent/ktorrentcore.cpp
+index e97dc84..de0984a 100644
+--- a/apps/ktorrent/ktorrentcore.cpp
++++ b/apps/ktorrent/ktorrentcore.cpp
+@@ -114,7 +114,7 @@ KTorrentCore::KTorrentCore(kt::GUIInterface* gui) : max_downloads(0),keep_seedin
+ 			KMessageBox::information(0,
+ 			                         i18n("Specified port (%1) is unavailable or in"
+ 			                              " use by another application. KTorrent is now using port %2.")
+-			                         .tqarg(port).tqarg(port + i - 1));
++			                         .arg(port).arg(port + i - 1));
+ 
+ 		Out(SYS_GEN|LOG_NOTICE) << "Bound to port " << (port + i - 1) << endl;
+ 	}
+@@ -122,7 +122,7 @@ KTorrentCore::KTorrentCore(kt::GUIInterface* gui) : max_downloads(0),keep_seedin
+ 	{
+ 		KMessageBox::error(0,
+ 			i18n("KTorrent is unable to accept connections because the ports %1 to %2 are "
+-			   "already in use by another program.").tqarg(port).tqarg(port + i - 1));
++			   "already in use by another program.").arg(port).arg(port + i - 1));
+ 		Out(SYS_GEN|LOG_IMPORTANT) << "Cannot find free port" << endl;
+ 	}
+ 
+@@ -465,7 +465,7 @@ TQString KTorrentCore::findNewTorrentDir() const
+ 	while (true)
+ 	{
+ 		TQDir d;
+-		TQString dir = data_dir + TQString("tor%1/").tqarg(i);
++		TQString dir = data_dir + TQString("tor%1/").arg(i);
+ 		if (!d.exists(dir))
+ 		{
+ 			return dir;
+@@ -764,7 +764,7 @@ void KTorrentCore::makeTorrent(const TQString & file,const TQStringList & tracke
+ 
+ 		// Show error message
+ 		KMessageBox::error(0,
+-		                   i18n("Cannot create torrent: %1").tqarg(e.toString()),
++		                   i18n("Cannot create torrent: %1").arg(e.toString()),
+ 		                   i18n("Error"));
+ 	}
+ }
+@@ -889,7 +889,7 @@ void KTorrentCore::queue(kt::TorrentInterface* tc)
+ 
+ TorrentInterface* KTorrentCore::getTorFromNumber(int tornumber)
+ {
+-        TQString tordir = data_dir + "tor" + TQString("%1").tqarg(tornumber) + "/";
++        TQString tordir = data_dir + "tor" + TQString("%1").arg(tornumber) + "/";
+ 	Out() << "tordir " << tordir << endl;
+         TQPtrList<TorrentInterface>::iterator i = qman->begin();
+         while(i != qman->end())
+@@ -1025,7 +1025,7 @@ void KTorrentCore::aboutToBeStarted(kt::TorrentInterface* tc,bool & ret)
+ 	
+ 	if (tc->getStats().multi_file_torrent)
+ 	{
+-		TQString msg = i18n("Several data files of the torrent \"%1\" are missing, do you want to recreate them, or do you want to not download them?").tqarg(tc->getStats().torrent_name);
++		TQString msg = i18n("Several data files of the torrent \"%1\" are missing, do you want to recreate them, or do you want to not download them?").arg(tc->getStats().torrent_name);
+ 					
+ 		int ret = KMessageBox::warningYesNoCancelList(0,msg,missing,TQString(),
+ 				KGuiItem(i18n("Recreate")),KGuiItem(i18n("Do Not Download")));
+@@ -1038,7 +1038,7 @@ void KTorrentCore::aboutToBeStarted(kt::TorrentInterface* tc,bool & ret)
+ 			}
+ 			catch (bt::Error & e)
+ 			{
+-				KMessageBox::error(0,i18n("Cannot recreate missing files: %1").tqarg(e.toString()));
++				KMessageBox::error(0,i18n("Cannot recreate missing files: %1").arg(e.toString()));
+ 				tc->handleError(i18n("Data files are missing"));
+ 				ret = false;
+ 			}
+@@ -1052,7 +1052,7 @@ void KTorrentCore::aboutToBeStarted(kt::TorrentInterface* tc,bool & ret)
+ 			}
+ 			catch (bt::Error & e)
+ 			{
+-				KMessageBox::error(0,i18n("Cannot deselect missing files: %1").tqarg(e.toString()));
++				KMessageBox::error(0,i18n("Cannot deselect missing files: %1").arg(e.toString()));
+ 				tc->handleError(i18n("Data files are missing"));
+ 				ret = false;
+ 			}
+@@ -1065,7 +1065,7 @@ void KTorrentCore::aboutToBeStarted(kt::TorrentInterface* tc,bool & ret)
+ 	}
+ 	else
+ 	{
+-		TQString msg = i18n("The file where the data is saved of the torrent \"%1\" is missing, do you want to recreate it?").tqarg(tc->getStats().torrent_name);
++		TQString msg = i18n("The file where the data is saved of the torrent \"%1\" is missing, do you want to recreate it?").arg(tc->getStats().torrent_name);
+ 		int ret = KMessageBox::warningYesNo(0,msg, i18n("Recreate"),KGuiItem(i18n("Recreate")),KGuiItem(i18n("Do Not Recreate")));
+ 		if (ret == KMessageBox::Yes)
+ 		{
+@@ -1075,7 +1075,7 @@ void KTorrentCore::aboutToBeStarted(kt::TorrentInterface* tc,bool & ret)
+ 			}
+ 			catch (bt::Error & e)
+ 			{
+-				KMessageBox::error(0,i18n("Cannot recreate data file: %1").tqarg(e.toString()));
++				KMessageBox::error(0,i18n("Cannot recreate data file: %1").arg(e.toString()));
+ 				tc->handleError(i18n("Data file is missing"));
+ 				ret = false;
+ 			}
+diff --git a/apps/ktorrent/ktorrentview.cpp b/apps/ktorrent/ktorrentview.cpp
+index e445fbb..5c04732 100644
+--- a/apps/ktorrent/ktorrentview.cpp
++++ b/apps/ktorrent/ktorrentview.cpp
+@@ -198,9 +198,9 @@ void KTorrentView::setCurrentGroup(Group* group)
+ 	}
+ 	
+ 	if (current_group)
+-		setCaption(TQString("%1 %2/%3").tqarg(current_group->groupName()).tqarg(running).tqarg(total));
++		setCaption(TQString("%1 %2/%3").arg(current_group->groupName()).arg(running).arg(total));
+ 	else
+-		setCaption(i18n("All Torrents %1/%2").tqarg(running).tqarg(total));
++		setCaption(i18n("All Torrents %1/%2").arg(running).arg(total));
+ 	
+ 	onSelectionChanged();
+ 	onExecuted(view->currentItem());
+@@ -208,7 +208,7 @@ void KTorrentView::setCurrentGroup(Group* group)
+ 
+ void KTorrentView::saveSettings(KConfig* cfg,int idx)
+ {
+-	TQString group = TQString("KTorrentView-%1").tqarg(idx);
++	TQString group = TQString("KTorrentView-%1").arg(idx);
+ 	view->saveLayout(cfg,group);
+ 	cfg->setGroup(group);
+ 	filter_bar->saveSettings(cfg);
+@@ -217,7 +217,7 @@ void KTorrentView::saveSettings(KConfig* cfg,int idx)
+ 
+ void KTorrentView::loadSettings(KConfig* cfg,int idx)
+ {
+-	TQString group = TQString("KTorrentView-%1").tqarg(idx);
++	TQString group = TQString("KTorrentView-%1").arg(idx);
+ 	view->restoreLayout(cfg,group);
+ 	view->setDragEnabled(true);
+ 
+@@ -373,7 +373,7 @@ void KTorrentView::removeDownloads()
+ 			if (!s.completed)
+ 			{
+ 				TQString msg = i18n("The torrent %1 has not finished downloading, "
+-						"do you want to delete the incomplete data, too?").tqarg(s.torrent_name);
++						"do you want to delete the incomplete data, too?").arg(s.torrent_name);
+ 				int ret = KMessageBox::questionYesNoCancel(
+ 						this,msg,i18n("Remove Download"),
+ 						i18n("Delete Data"),i18n("Keep Data"));
+@@ -546,9 +546,9 @@ void KTorrentView::update()
+ 		total = t;
+ 		
+ 		if (current_group)
+-			setCaption(TQString("%1 %2/%3").tqarg(current_group->groupName()).tqarg(running).tqarg(total));
++			setCaption(TQString("%1 %2/%3").arg(current_group->groupName()).arg(running).arg(total));
+ 		else
+-			setCaption(i18n("All Torrents %1/%2").tqarg(running).tqarg(total));
++			setCaption(i18n("All Torrents %1/%2").arg(running).arg(total));
+ 		onSelectionChanged();
+ 	}
+ 	
+@@ -628,7 +628,7 @@ void KTorrentView::checkDataIntegrity()
+ 	}
+ 	else
+ 	{
+-		KMessageBox::error(0,i18n("You are already checking the data of the torrent %1 !").tqarg(tc->getStats().torrent_name));
++		KMessageBox::error(0,i18n("You are already checking the data of the torrent %1 !").arg(tc->getStats().torrent_name));
+ 	}
+ }
+ 
+@@ -748,7 +748,7 @@ void KTorrentView::setDownloadLocationSlot()
+ 		if (tc)
+ 		{
+ 			TQString dn;
+-			dn = KFileDialog::getExistingDirectory(tc->getStats().output_path, this, i18n("Choose download location for %1").tqarg(tc->getStats().torrent_name));
++			dn = KFileDialog::getExistingDirectory(tc->getStats().output_path, this, i18n("Choose download location for %1").arg(tc->getStats().torrent_name));
+ 								
+ 			if(dn.isNull() || dn.isEmpty())
+ 				continue;
+@@ -872,9 +872,9 @@ void KTorrentView::updateCaption()
+ 		total = t;
+ 		
+ 		if (current_group)
+-			setCaption(TQString("%1 %2/%3").tqarg(current_group->groupName()).tqarg(running).tqarg(total));
++			setCaption(TQString("%1 %2/%3").arg(current_group->groupName()).arg(running).arg(total));
+ 		else
+-			setCaption(i18n("All Torrents %1/%2").tqarg(running).tqarg(total));
++			setCaption(i18n("All Torrents %1/%2").arg(running).arg(total));
+ 	}
+ }
+ 
+diff --git a/apps/ktorrent/ktorrentviewitem.cpp b/apps/ktorrent/ktorrentviewitem.cpp
+index 048692b..a9392bd 100644
+--- a/apps/ktorrent/ktorrentviewitem.cpp
++++ b/apps/ktorrent/ktorrentviewitem.cpp
+@@ -222,7 +222,7 @@ void KTorrentViewItem::update()
+ 			Uint32 secs = tc->getETA();
+ 			if(secs == -1)
+ 			{
+-				setText(7,TQString("%1").tqarg(TQChar(0x221E)));
++				setText(7,TQString("%1").arg(TQChar(0x221E)));
+ 				eta = -2;
+ 			}
+ 			else
+@@ -233,7 +233,7 @@ void KTorrentViewItem::update()
+ 		}
+ 		else
+ 		{
+-			setText(7,TQString("%1").tqarg(TQChar(0x221E)));
++			setText(7,TQString("%1").arg(TQChar(0x221E)));
+ 			eta = -2;
+ 		}
+ 	}
+@@ -242,23 +242,23 @@ void KTorrentViewItem::update()
+ 	
+ 	if(m_parent->columnVisible(8))
+ 	{
+-		setText(8,TQString("%1 (%2)").tqarg(TQString::number(s.seeders_connected_to)).tqarg(TQString::number(s.seeders_total)));	
++		setText(8,TQString("%1 (%2)").arg(TQString::number(s.seeders_connected_to)).arg(TQString::number(s.seeders_total)));	
+ 	}
+ 
+ 	if(m_parent->columnVisible(9))
+ 	{
+-		setText(9,TQString("%1 (%2)").tqarg(TQString::number(s.leechers_connected_to)).tqarg(TQString::number(s.leechers_total)));
++		setText(9,TQString("%1 (%2)").arg(TQString::number(s.leechers_connected_to)).arg(TQString::number(s.leechers_total)));
+ 	}
+ 
+ 	if(m_parent->columnVisible(10))
+ 	{
+-		setText(10,i18n("%1 %").tqarg(KGlobal::locale()->formatNumber(Percentage(s),2)));
++		setText(10,i18n("%1 %").arg(KGlobal::locale()->formatNumber(Percentage(s),2)));
+ 	}
+ 	
+ 	if(m_parent->columnVisible(11))
+ 	{
+ 		float ratio = kt::ShareRatio(s);
+-		setText(11,TQString("%1").tqarg(KGlobal::locale()->formatNumber(ratio,2)));
++		setText(11,TQString("%1").arg(KGlobal::locale()->formatNumber(ratio,2)));
+ 	}
+ 	
+ 	if (m_parent->columnVisible(12))
+diff --git a/apps/ktorrent/leaktrace.cpp b/apps/ktorrent/leaktrace.cpp
+index f3bdb5f..76439ce 100644
+--- a/apps/ktorrent/leaktrace.cpp
++++ b/apps/ktorrent/leaktrace.cpp
+@@ -180,7 +180,7 @@ static void DeregisterAlloc(void* ptr)
+ 				
+ 		if (!p->left && !p->right)
+ 		{
+-			// no tqchildren so just free p
++			// no children so just free p
+ 			if (prev->left == p)
+ 			{
+ 				free(prev->left);
+@@ -214,7 +214,7 @@ static void DeregisterAlloc(void* ptr)
+ 		}
+ 		else
+ 		{
+-			// both tqchildren exist
++			// both children exist
+ 			if (prev->left == p)
+ 			{
+ 				// attach the left child of p
+diff --git a/apps/ktorrent/main.cpp b/apps/ktorrent/main.cpp
+index 5e9fcb2..fa21922 100644
+--- a/apps/ktorrent/main.cpp
++++ b/apps/ktorrent/main.cpp
+@@ -79,7 +79,7 @@ static const char description[] =
+ bool GrabPIDLock()
+ {
+ 	// create a lock file in /tmp/ with the user id of the current user included in the name
+-	TQString pid_file = TQString("/tmp/.ktorrent_%1.lock").tqarg(getuid());
++	TQString pid_file = TQString("/tmp/.ktorrent_%1.lock").arg(getuid());
+ 		
+ 	int fd = open(TQFile::encodeName(pid_file),O_RDWR|O_CREAT,0640);
+ 	if (fd < 0)
+diff --git a/apps/ktorrent/newui/button.cpp b/apps/ktorrent/newui/button.cpp
+index 33bdf7f..4819657 100644
+--- a/apps/ktorrent/newui/button.cpp
++++ b/apps/ktorrent/newui/button.cpp
+@@ -62,9 +62,9 @@ Button::Button(ButtonBar *parent, const TQString text, const TQIconSet &icon,
+ 
+     KConfig *config = kapp->config();
+     config->setGroup("UI");
+-    TQString accel = config->readEntry(TQString("button_%1").tqarg(text), "");
++    TQString accel = config->readEntry(TQString("button_%1").arg(text), "");
+     if (!accel.isEmpty())
+-        setRealText(TQString("&%1 %2").tqarg(accel).tqarg(m_realText));
++        setRealText(TQString("&%1 %2").arg(accel).arg(m_realText));
+ }
+ 
+ Button::~Button()
+@@ -80,11 +80,11 @@ Button::~Button()
+         TQString text = m_realText;
+         if (text.contains(r2))
+             text.remove(r2);
+-        config->writeEntry(TQString("button_%1").tqarg(text), r.cap(1));
++        config->writeEntry(TQString("button_%1").arg(text), r.cap(1));
+     }
+     else
+     {
+-        config->writeEntry(TQString("button_%1").tqarg(m_realText), "");
++        config->writeEntry(TQString("button_%1").arg(m_realText), "");
+     }
+ }
+ 
+@@ -320,7 +320,7 @@ void Button::assignAccel()
+     if (ok)
+     {
+         TQString text = realTextWithoutAccel();
+-        text = TQString("&%1 %2").tqarg(num).tqarg(text);
++        text = TQString("&%1 %2").arg(num).arg(text);
+         setRealText(text);
+     }
+ }
+diff --git a/apps/ktorrent/newui/ddockwindow.cpp b/apps/ktorrent/newui/ddockwindow.cpp
+index 3b67ff3..114927a 100644
+--- a/apps/ktorrent/newui/ddockwindow.cpp
++++ b/apps/ktorrent/newui/ddockwindow.cpp
+@@ -104,7 +104,7 @@ void DDockWindow::setVisible(bool v)
+ {
+     //write dock width to the config file
+     KConfig *config = kapp->config();
+-    TQString group = TQString("%1").tqarg(m_name);
++    TQString group = TQString("%1").arg(m_name);
+     config->setGroup(group);
+ 
+     if (m_visible)
+@@ -115,7 +115,7 @@ void DDockWindow::setVisible(bool v)
+     v ? m_widgetStack->show() : m_widgetStack->hide();
+     m_visible = v;
+ 
+-    m_internalLayout->tqinvalidate();
++    m_internalLayout->invalidate();
+     if (!m_visible)
+     {
+         if (m_position == DDockWindow::Bottom)
+@@ -148,7 +148,7 @@ void DDockWindow::loadSettings()
+ void DDockWindow::saveSettings()
+ {
+     KConfig *config = kapp->config();
+-    TQString group = TQString("%1").tqarg(m_name);
++    TQString group = TQString("%1").arg(m_name);
+     int invisibleWidth = 0;
+     config->setGroup(group);
+     if (config->hasKey("ViewWidth"))
+@@ -200,7 +200,7 @@ void DDockWindow::addWidget(const TQString &title, TQWidget *widget, bool skipAc
+         //if the widget was selected last time the dock is deleted
+         //we need to show it
+         KConfig *config = kapp->config();
+-        TQString group = TQString("%1").tqarg(m_name);
++        TQString group = TQString("%1").arg(m_name);
+         config->setGroup(group);
+         if (config->readEntry("ViewLastWidget") == title)
+         {
+diff --git a/apps/ktorrent/newui/dmainwindow.cpp b/apps/ktorrent/newui/dmainwindow.cpp
+index a21fa5c..d5edb2f 100644
+--- a/apps/ktorrent/newui/dmainwindow.cpp
++++ b/apps/ktorrent/newui/dmainwindow.cpp
+@@ -190,7 +190,7 @@ DTabWidget *DMainWindow::splitVertical()
+ void DMainWindow::invalidateActiveTabWidget()
+ {
+ /*    TQWidget *focused = m_central->focusWidget();
+-    kdDebug(9000) << "tqinvalidate: " << focused << endl;
++    kdDebug(9000) << "invalidate: " << focused << endl;
+     if (focused == 0)
+         return;
+     if (!m_widgets.contains(focused))
+diff --git a/apps/ktorrent/newui/dtabwidget.cpp b/apps/ktorrent/newui/dtabwidget.cpp
+index fd7fad0..202396a 100644
+--- a/apps/ktorrent/newui/dtabwidget.cpp
++++ b/apps/ktorrent/newui/dtabwidget.cpp
+@@ -90,7 +90,7 @@ void DTabWidget::insertTab(TQWidget *child, const TQString &label, int index)
+     if (m_closeButton && m_closeButtonShown)
+         m_closeButton->show();
+     KTabWidget::insertTab(child, label, index);
+-    if (index != -1) tabBar()->tqrepaint();
++    if (index != -1) tabBar()->repaint();
+ }
+ 
+ void DTabWidget::insertTab(TQWidget *child, const TQIconSet &iconset, 
+@@ -99,7 +99,7 @@ void DTabWidget::insertTab(TQWidget *child, const TQIconSet &iconset,
+     if (m_closeButton && m_closeButtonShown)
+         m_closeButton->show();
+     KTabWidget::insertTab(child, iconset, label, index);
+-    if (index != -1) tabBar()->tqrepaint();
++    if (index != -1) tabBar()->repaint();
+ }
+ 
+ /*void DTabWidget::updateHistory(TQWidget *w)
+diff --git a/apps/ktorrent/pref.cpp b/apps/ktorrent/pref.cpp
+index 4fbc0fd..826663a 100644
+--- a/apps/ktorrent/pref.cpp
++++ b/apps/ktorrent/pref.cpp
+@@ -281,7 +281,7 @@ bool GeneralPrefPage::apply()
+ 		{
+ 			TQString err = KResolver::errorString(res.error());
+ 			TQString msg = i18n("Cannot lookup %1: %2\n"
+-							   "Please provide a valid IP address or hostname.").tqarg(externalIP).tqarg(err);
++							   "Please provide a valid IP address or hostname.").arg(externalIP).arg(err);
+ 			KMessageBox::error(0, msg, i18n("Error"));
+ 			return false;
+ 		}
+diff --git a/apps/ktorrent/queuedialog.cpp b/apps/ktorrent/queuedialog.cpp
+index 80c6440..d5cb5e5 100644
+--- a/apps/ktorrent/queuedialog.cpp
++++ b/apps/ktorrent/queuedialog.cpp
+@@ -300,7 +300,7 @@ void QueueDialog::downloadList_currentChanged(TQListViewItem* item)
+ 	
+ 	dlStatus->setText(tc->statusToString());
+ 	dlTracker->setText(tc->getTrackersList()->getTrackerURL().prettyURL());
+-	dlRatio->setText(TQString("%1").tqarg((float)s.bytes_uploaded / s.bytes_downloaded,0,'f',2));
++	dlRatio->setText(TQString("%1").arg((float)s.bytes_uploaded / s.bytes_downloaded,0,'f',2));
+ 	dlBytes->setText(BytesToString(s.bytes_left_to_download));
+ 	dlDHT->setText(s.priv_torrent ? i18n("No (private torrent)") : i18n("Yes"));
+ }
+@@ -321,7 +321,7 @@ void QueueDialog::seedList_currentChanged(TQListViewItem* item)
+ 	
+ 	ulStatus->setText(tc->statusToString());
+ 	ulTracker->setText(tc->getTrackersList()->getTrackerURL().prettyURL());
+-	ulRatio->setText(TQString("%1").tqarg((float)s.bytes_uploaded / s.bytes_downloaded,0,'f',2));
++	ulRatio->setText(TQString("%1").arg((float)s.bytes_uploaded / s.bytes_downloaded,0,'f',2));
+ 	ulBytes->setText(BytesToString(s.bytes_uploaded));
+ 	ulDHT->setText(s.priv_torrent ? i18n("No (private torrent)") : i18n("Yes"));
+ }
+diff --git a/apps/ktorrent/scandialog.cpp b/apps/ktorrent/scandialog.cpp
+index 292c1ea..80fd681 100644
+--- a/apps/ktorrent/scandialog.cpp
++++ b/apps/ktorrent/scandialog.cpp
+@@ -67,14 +67,14 @@ void ScanDialog::scan()
+ 	}
+ 	catch (bt::Error & err)
+ 	{
+-		KMessageBox::error(0,i18n("Error scanning data: %1").tqarg(err.toString()));
++		KMessageBox::error(0,i18n("Error scanning data: %1").arg(err.toString()));
+ 	}
+ 	
+ }
+ 
+ void ScanDialog::execute(kt::TorrentInterface* tc,bool silently)
+ {
+-	m_torrent_label->setText(i18n("Scanning data of <b>%1</b> :").tqarg(tc->getStats().torrent_name));
++	m_torrent_label->setText(i18n("Scanning data of <b>%1</b> :").arg(tc->getStats().torrent_name));
+ 	adjustSize();
+ 	m_cancel->setEnabled(true);
+ 	this->silently = silently;
+diff --git a/apps/ktorrent/scandlgbase.ui b/apps/ktorrent/scandlgbase.ui
+index 2538680..189e551 100644
+--- a/apps/ktorrent/scandlgbase.ui
++++ b/apps/ktorrent/scandlgbase.ui
+@@ -96,7 +96,7 @@
+                             <property name="text">
+                                 <string>0</string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -119,7 +119,7 @@
+                             <property name="text">
+                                 <string>0</string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+diff --git a/apps/ktorrent/speedlimitsdlg.cpp b/apps/ktorrent/speedlimitsdlg.cpp
+index 5fbe5b4..69c6a48 100644
+--- a/apps/ktorrent/speedlimitsdlg.cpp
++++ b/apps/ktorrent/speedlimitsdlg.cpp
+@@ -33,7 +33,7 @@ using namespace kt;
+ SpeedLimitsDlg::SpeedLimitsDlg(kt::TorrentInterface* ti,TQWidget* parent, const char* name)
+ 		: SpeedLimitsDlgBase(parent,name,true,0),tor(ti)
+ {
+-	m_main_caption->setText(i18n("Speed limits for <b>%1</b>:").tqarg(tor->getStats().torrent_name));
++	m_main_caption->setText(i18n("Speed limits for <b>%1</b>:").arg(tor->getStats().torrent_name));
+ 	Uint32 up,down;
+ 	tor->getTrafficLimits(up,down);
+ 	m_upload_rate->setValue(up / 1024);
+diff --git a/apps/ktorrent/torrentcreatordlg.cpp b/apps/ktorrent/torrentcreatordlg.cpp
+index d42c06f..8518de3 100644
+--- a/apps/ktorrent/torrentcreatordlg.cpp
++++ b/apps/ktorrent/torrentcreatordlg.cpp
+@@ -46,7 +46,7 @@ TorrentCreatorDlg::TorrentCreatorDlg(KTorrentCore* core,TQWidget *parent, const
+ 	TQMap<TQString, int> n = bt::Globals::instance().getDHT().getClosestGoodNodes(10);
+ 	
+ 	for(TQMap<TQString, int>::iterator it = n.begin(); it!=n.end(); ++it)
+-		new TQListViewItem(m_nodeList, it.key(), TQString("%1").tqarg(it.data()));
++		new TQListViewItem(m_nodeList, it.key(), TQString("%1").arg(it.data()));
+ }
+ 
+ TorrentCreatorDlg::~TorrentCreatorDlg()
+@@ -105,7 +105,7 @@ void TorrentCreatorDlg::onCreate()
+ 		s += ".torrent";
+ 
+ 	KProgressDialog* dlg = new KProgressDialog(this,0);
+-	dlg->setLabel(i18n("Creating %1...").tqarg(s));
++	dlg->setLabel(i18n("Creating %1...").arg(s));
+ 	dlg->setModal(true);
+ 	dlg->setAllowCancel(false);
+ 	dlg->show();
+@@ -136,7 +136,7 @@ void TorrentCreatorDlg::btnRemoveNode_clicked()
+ 
+ void TorrentCreatorDlg::btnAddNode_clicked()
+ {
+-	new TQListViewItem(m_nodeList, m_node->text(), TQString("%1").tqarg(m_port->value()));
++	new TQListViewItem(m_nodeList, m_node->text(), TQString("%1").arg(m_port->value()));
+ }
+ 
+ void TorrentCreatorDlg::m_nodeList_selectionChanged(TQListViewItem*)
+diff --git a/apps/ktorrent/torrentcreatordlgbase.ui b/apps/ktorrent/torrentcreatordlgbase.ui
+index 3db0c49..d051a0e 100644
+--- a/apps/ktorrent/torrentcreatordlgbase.ui
++++ b/apps/ktorrent/torrentcreatordlgbase.ui
+@@ -436,7 +436,7 @@
+                     <property name="text">
+                         <string>NOTE: Some known good DHT nodes are already inserted. You should probably insert your own IP address and port too if you plan to seed this torrent.</string>
+                     </property>
+-                    <property name="tqalignment">
++                    <property name="alignment">
+                         <set>WordBreak|AlignVCenter</set>
+                     </property>
+                 </widget>
+diff --git a/apps/ktorrent/trayicon.cpp b/apps/ktorrent/trayicon.cpp
+index 14a3db7..8588fc2 100644
+--- a/apps/ktorrent/trayicon.cpp
++++ b/apps/ktorrent/trayicon.cpp
+@@ -88,24 +88,24 @@ void TrayIcon::leaveEvent(TQEvent* )
+ void TrayIcon::updateStats(const CurrentStats stats, bool showBars,int downloadBandwidth, int uploadBandwidth )
+ {
+ 	TQString tip = i18n("<table cellpadding='2' cellspacing='2' align='center'><tr><td><b>Speed:</b></td><td></td></tr><tr><td>Download: <font color='#1c9a1c'>%1</font></td><td>Upload: <font color='#990000'>%2</font></td></tr><tr><td><b>Transfer:</b></td><td></td></tr><tr><td>Download: <font color='#1c9a1c'>%3</font></td><td>Upload: <font color='#990000'>%4</font></td></tr></table>")
+-			.tqarg(KBytesPerSecToString((double)stats.download_speed/1024.0))
+-			.tqarg(KBytesPerSecToString((double)stats.upload_speed/1024.0))
+-			.tqarg(BytesToString(stats.bytes_downloaded))
+-			.tqarg(BytesToString(stats.bytes_uploaded));
++			.arg(KBytesPerSecToString((double)stats.download_speed/1024.0))
++			.arg(KBytesPerSecToString((double)stats.upload_speed/1024.0))
++			.arg(BytesToString(stats.bytes_downloaded))
++			.arg(BytesToString(stats.bytes_uploaded));
+ 	m_hover_popup->updateText(tip);
+ 	
+ 	if(showBars)
+ 		drawSpeedBar(stats.download_speed/1024,stats.upload_speed/1024, downloadBandwidth, uploadBandwidth);
+ 	else if (previousDownloadHeight > 0 || previousUploadHeight > 0)
+ 	{
+-		tqrepaint(); // clear the bars if they are disabled
++		repaint(); // clear the bars if they are disabled
+ 		previousDownloadHeight = previousUploadHeight = 0;
+ 	}
+ }
+ 
+ void TrayIcon::drawSpeedBar(int downloadSpeed, int uploadSpeed, int downloadBandwidth, int uploadBandwidth )
+ {
+-	//check if need tqrepaint
++	//check if need repaint
+ 	if (uploadBandwidth == 0)
+ 		 uploadBandwidth = 1;
+ 	if (downloadBandwidth == 0)
+@@ -116,7 +116,7 @@ void TrayIcon::drawSpeedBar(int downloadSpeed, int uploadSpeed, int downloadBand
+ 	if(previousDownloadHeight==DownloadHeight && previousUploadHeight==UploadHeight)
+ 		return;
+ 	
+-	tqrepaint ();
++	repaint ();
+ 
+ 	TQBrush brushD(green);
+ 	TQBrush brushU(red);
+@@ -146,9 +146,9 @@ void TrayIcon::finished(TorrentInterface* tc)
+ 
+ 	TQString msg = i18n("<b>%1</b> has completed downloading."
+ 						"<br>Average speed: %2 DL / %3 UL.")
+-						.tqarg(s.torrent_name)
+-						.tqarg(KBytesPerSecToString(speed_down / tc->getRunningTimeDL()))
+-						.tqarg(KBytesPerSecToString(speed_up / tc->getRunningTimeUL()));
++						.arg(s.torrent_name)
++						.arg(KBytesPerSecToString(speed_down / tc->getRunningTimeDL()))
++						.arg(KBytesPerSecToString(speed_up / tc->getRunningTimeUL()));
+ 
+ 	showPassivePopup(msg,i18n("Download completed"));
+ }
+@@ -164,10 +164,10 @@ void TrayIcon::maxShareRatioReached(kt::TorrentInterface* tc)
+ 	
+ 	TQString msg = i18n("<b>%1</b> has reached its maximum share ratio of %2 and has been stopped."
+ 			"<br>Uploaded %3 at an average speed of %4.")
+-			.tqarg(s.torrent_name)
+-			.tqarg(loc->formatNumber(s.max_share_ratio,2))
+-			.tqarg(BytesToString(s.bytes_uploaded))
+-			.tqarg(KBytesPerSecToString(speed_up / tc->getRunningTimeUL()));
++			.arg(s.torrent_name)
++			.arg(loc->formatNumber(s.max_share_ratio,2))
++			.arg(BytesToString(s.bytes_uploaded))
++			.arg(KBytesPerSecToString(speed_up / tc->getRunningTimeUL()));
+ 	
+ 	showPassivePopup(msg,i18n("Seeding completed"));
+ }
+@@ -183,10 +183,10 @@ void TrayIcon::maxSeedTimeReached(kt::TorrentInterface* tc)
+ 	
+ 	TQString msg = i18n("<b>%1</b> has reached its maximum seed time of %2 hours and has been stopped."
+ 			"<br>Uploaded %3 at an average speed of %4.")
+-			.tqarg(s.torrent_name)
+-			.tqarg(loc->formatNumber(s.max_seed_time,2))
+-			.tqarg(BytesToString(s.bytes_uploaded))
+-			.tqarg(KBytesPerSecToString(speed_up / tc->getRunningTimeUL()));
++			.arg(s.torrent_name)
++			.arg(loc->formatNumber(s.max_seed_time,2))
++			.arg(BytesToString(s.bytes_uploaded))
++			.arg(KBytesPerSecToString(speed_up / tc->getRunningTimeUL()));
+ 	
+ 	showPassivePopup(msg,i18n("Seeding completed"));
+ }
+@@ -198,7 +198,7 @@ void TrayIcon::torrentStoppedByError(kt::TorrentInterface* tc, TQString msg)
+ 	
+ 	const TorrentStats & s = tc->getStats();
+ 	TQString err_msg = i18n("<b>%1</b> has been stopped with the following error: <br>%2")
+-				.tqarg(s.torrent_name).tqarg(msg);
++				.arg(s.torrent_name).arg(msg);
+ 	
+ 	showPassivePopup(err_msg,i18n("Error"));
+ }
+@@ -211,7 +211,7 @@ void TrayIcon::corruptedData(kt::TorrentInterface* tc)
+ 	const TorrentStats & s = tc->getStats();
+ 	TQString err_msg = i18n("Corrupted data has been found in the torrent <b>%1</b>"
+ 			"<br>It would be a good idea to do a data integrity check on the torrent.")
+-			.tqarg(s.torrent_name);
++			.arg(s.torrent_name);
+ 	showPassivePopup(err_msg,i18n("Error"));
+ }
+ 
+@@ -227,10 +227,10 @@ void TrayIcon::queuingNotPossible(kt::TorrentInterface* tc)
+ 	 
+ 	if (tc->overMaxRatio())
+ 		msg = i18n("<b>%1</b> has reached its maximum share ratio of %2 and cannot be enqueued. Remove the limit manually if you want to continue seeding.")
+-				.tqarg(s.torrent_name).tqarg(loc->formatNumber(s.max_share_ratio,2));
++				.arg(s.torrent_name).arg(loc->formatNumber(s.max_share_ratio,2));
+ 	else
+ 		msg = i18n("<b>%1</b> has reached its maximum seed time of %2 hours and cannot be enqueued. Remove the limit manually if you want to continue seeding.")
+-				.tqarg(s.torrent_name).tqarg(loc->formatNumber(s.max_seed_time,2));
++				.arg(s.torrent_name).arg(loc->formatNumber(s.max_seed_time,2));
+ 	
+ 	showPassivePopup(msg,i18n("Torrent cannot be enqueued."));
+ }
+@@ -240,7 +240,7 @@ void TrayIcon::canNotStart(kt::TorrentInterface* tc,kt::TorrentStartResponse rea
+ 	if (!Settings::showPopups())
+ 		return;
+ 	
+-	TQString msg = i18n("Cannot start <b>%1</b> : <br>").tqarg(tc->getStats().torrent_name);
++	TQString msg = i18n("Cannot start <b>%1</b> : <br>").arg(tc->getStats().torrent_name);
+ 	switch (reason)
+ 	{
+ 	case kt::TQM_LIMITS_REACHED:
+@@ -274,7 +274,7 @@ void TrayIcon::lowDiskSpace(kt::TorrentInterface * tc, bool stopped)
+ 	
+ 	const TorrentStats & s = tc->getStats();
+ 	
+-	TQString msg = i18n("Your disk is running out of space.<br /><b>%1</b> is being downloaded to '%2'.").tqarg(s.torrent_name).tqarg(tc->getDataDir());
++	TQString msg = i18n("Your disk is running out of space.<br /><b>%1</b> is being downloaded to '%2'.").arg(s.torrent_name).arg(tc->getDataDir());
+ 	
+ 	if(stopped)
+ 		msg.prepend(i18n("Torrent has been stopped.<br />"));
+@@ -335,10 +335,10 @@ void SetMaxRate::makeMenu()
+ 			{
+ 				if(rate == valuePair[j] && j==0)
+ 				{
+-					setItemChecked(insertItem(TQString("%1").tqarg(valuePair[j]),-1, (j == 0) ? 2 : count()), true);
++					setItemChecked(insertItem(TQString("%1").arg(valuePair[j]),-1, (j == 0) ? 2 : count()), true);
+ 				}
+ 				else
+-					insertItem(TQString("%1").tqarg(valuePair[j]),-1, (j == 0) ? 2 : count());
++					insertItem(TQString("%1").arg(valuePair[j]),-1, (j == 0) ? 2 : count());
+ 			}
+ 		}
+ 
+diff --git a/libktorrent/datachecker/multidatachecker.cpp b/libktorrent/datachecker/multidatachecker.cpp
+index 526fd08..e98a64f 100644
+--- a/libktorrent/datachecker/multidatachecker.cpp
++++ b/libktorrent/datachecker/multidatachecker.cpp
+@@ -109,8 +109,8 @@ namespace bt
+ 		File fptr;
+ 		if (!fptr.open(cache + tf.getPath(), "rb"))
+ 		{
+-			Out() << TQString("Warning : Cannot open %1 : %2").tqarg(cache + 
+-					tf.getPath()).tqarg(fptr.errorString()) << endl;
++			Out() << TQString("Warning : Cannot open %1 : %2").arg(cache + 
++					tf.getPath()).arg(fptr.errorString()) << endl;
+ 			return 0;
+ 		}
+ 		
+@@ -183,8 +183,8 @@ namespace bt
+ 				File fptr;
+ 				if (!fptr.open(cache + f.getPath(), "rb"))
+ 				{
+-					Out() << TQString("Warning : Cannot open %1 : %2").tqarg(cache + 
+-							f.getPath()).tqarg(fptr.errorString()) << endl;
++					Out() << TQString("Warning : Cannot open %1 : %2").arg(cache + 
++							f.getPath()).arg(fptr.errorString()) << endl;
+ 					return false;
+ 				}
+ 				else
+diff --git a/libktorrent/datachecker/singledatachecker.cpp b/libktorrent/datachecker/singledatachecker.cpp
+index e086e90..948537c 100644
+--- a/libktorrent/datachecker/singledatachecker.cpp
++++ b/libktorrent/datachecker/singledatachecker.cpp
+@@ -48,7 +48,7 @@ namespace bt
+ 		if (!fptr.open(path,"rb"))
+ 		{
+ 			throw Error(i18n("Cannot open file : %1 : %2")
+-					.tqarg(path).tqarg( fptr.errorString()));
++					.arg(path).arg( fptr.errorString()));
+ 		}
+ 
+ 		// initialize the bitsets
+diff --git a/libktorrent/interfaces/filetreediritem.cpp b/libktorrent/interfaces/filetreediritem.cpp
+index 86481f2..93db727 100644
+--- a/libktorrent/interfaces/filetreediritem.cpp
++++ b/libktorrent/interfaces/filetreediritem.cpp
+@@ -73,7 +73,7 @@ namespace kt
+ 		int p = path.find(bt::DirSeparator());
+ 		if (p == -1)
+ 		{
+-			tqchildren.insert(path,newFileTreeItem(path,file));
++			children.insert(path,newFileTreeItem(path,file));
+ 		}
+ 		else
+ 		{
+@@ -98,8 +98,8 @@ namespace kt
+ 			manual_change = false;
+ 		}
+ 	// first set all the child items
+-		bt::PtrMap<TQString,FileTreeItem>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		bt::PtrMap<TQString,FileTreeItem>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			i->second->setChecked(on,keep_data);
+ 			i++;
+@@ -118,8 +118,8 @@ namespace kt
+ 	void FileTreeDirItem::invertChecked()
+ 	{
+ 	// first set all the child items
+-		bt::PtrMap<TQString,FileTreeItem>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		bt::PtrMap<TQString,FileTreeItem>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			FileTreeItem* item = i->second;
+ 			item->setChecked(!item->isOn());
+@@ -171,8 +171,8 @@ namespace kt
+ 	{
+ 		Uint64 tot = 0;
+ 		// first check all the child items
+-		bt::PtrMap<TQString,FileTreeItem>::const_iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		bt::PtrMap<TQString,FileTreeItem>::const_iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			const FileTreeItem* item = i->second;
+ 			tot += item->bytesToDownload();
+@@ -192,8 +192,8 @@ namespace kt
+ 	bool FileTreeDirItem::allChildrenOn()
+ 	{
+ 		// first check all the child items
+-		bt::PtrMap<TQString,FileTreeItem>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		bt::PtrMap<TQString,FileTreeItem>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			FileTreeItem* item = i->second;
+ 			if (!item->isOn())
+@@ -214,7 +214,7 @@ namespace kt
+ 
+ 	void FileTreeDirItem::childStateChange()
+ 	{
+-	// only set this dir on if all tqchildren are on
++	// only set this dir on if all children are on
+ 		manual_change = true;
+ 		setOn(allChildrenOn());
+ 		manual_change = false;
+@@ -248,8 +248,8 @@ namespace kt
+ 	{
+ 	// first check all the child items
+ 		TorrentFileInterface & nullfile = (TorrentFileInterface &)TorrentFile::null;
+-		bt::PtrMap<TQString,FileTreeItem>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		bt::PtrMap<TQString,FileTreeItem>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			FileTreeItem* file = i->second;
+ 			if (file == (FileTreeItem*)item)
+diff --git a/libktorrent/interfaces/filetreediritem.h b/libktorrent/interfaces/filetreediritem.h
+index 37de320..6deaab8 100644
+--- a/libktorrent/interfaces/filetreediritem.h
++++ b/libktorrent/interfaces/filetreediritem.h
+@@ -49,7 +49,7 @@ namespace kt
+ 	protected:
+ 		TQString name;
+ 		Uint64 size;
+-		bt::PtrMap<TQString,FileTreeItem> tqchildren;
++		bt::PtrMap<TQString,FileTreeItem> children;
+ 		bt::PtrMap<TQString,FileTreeDirItem> subdirs;
+ 		FileTreeDirItem* parent;
+ 		bool manual_change;
+diff --git a/libktorrent/interfaces/functions.cpp b/libktorrent/interfaces/functions.cpp
+index cade53a..6a19d7f 100644
+--- a/libktorrent/interfaces/functions.cpp
++++ b/libktorrent/interfaces/functions.cpp
+@@ -32,19 +32,19 @@ namespace kt
+ 	{
+ 		KLocale* loc = KGlobal::locale();
+ 		if (bytes >= 1024 * 1024 * 1024)
+-			return i18n("%1 GB").tqarg(loc->formatNumber(bytes / TO_GIG,precision < 0 ? 2 : precision));
++			return i18n("%1 GB").arg(loc->formatNumber(bytes / TO_GIG,precision < 0 ? 2 : precision));
+ 		else if (bytes >= 1024*1024)
+-			return i18n("%1 MB").tqarg(loc->formatNumber(bytes / TO_MEG,precision < 0 ? 1 : precision));
++			return i18n("%1 MB").arg(loc->formatNumber(bytes / TO_MEG,precision < 0 ? 1 : precision));
+ 		else if (bytes >= 1024)
+-			return i18n("%1 KB").tqarg(loc->formatNumber(bytes / TO_KB,precision < 0 ? 1 : precision));
++			return i18n("%1 KB").arg(loc->formatNumber(bytes / TO_KB,precision < 0 ? 1 : precision));
+ 		else
+-			return i18n("%1 B").tqarg(bytes);
++			return i18n("%1 B").arg(bytes);
+ 	}
+ 
+ 	TQString KBytesPerSecToString(double speed,int precision)
+ 	{
+ 		KLocale* loc = KGlobal::locale();
+-		return i18n("%1 KB/s").tqarg(loc->formatNumber(speed,precision));
++		return i18n("%1 KB/s").arg(loc->formatNumber(speed,precision));
+ 	}
+ 
+ 	TQString DurationToString(Uint32 nsecs)
+diff --git a/libktorrent/kademlia/dhttrackerbackend.cpp b/libktorrent/kademlia/dhttrackerbackend.cpp
+index 96277a3..f266744 100644
+--- a/libktorrent/kademlia/dhttrackerbackend.cpp
++++ b/libktorrent/kademlia/dhttrackerbackend.cpp
+@@ -137,7 +137,7 @@ namespace dht
+ 			{
+ 				Out(SYS_DHT|LOG_NOTICE) << 
+ 						TQString("DHT: Got %1 potential peers for torrent %2")
+-						.tqarg(cnt).tqarg(tor->getStats().torrent_name) << endl;
++						.arg(cnt).arg(tor->getStats().torrent_name) << endl;
+ 				peersReady(this);
+ 			}
+ 		}
+diff --git a/libktorrent/kademlia/rpcmsg.cpp b/libktorrent/kademlia/rpcmsg.cpp
+index 6ef62b9..90d2484 100644
+--- a/libktorrent/kademlia/rpcmsg.cpp
++++ b/libktorrent/kademlia/rpcmsg.cpp
+@@ -192,7 +192,7 @@ namespace dht
+ 		if (mt_id.length() == 0)
+ 			return 0;
+ 		
+-		Uint8 mtid = (char)mt_id.tqat(0).latin1();
++		Uint8 mtid = (char)mt_id.at(0).latin1();
+ 		TQString str = vn->data().toString();
+ 		
+ 		return new ErrMsg(mtid,id,str);
+@@ -266,7 +266,7 @@ namespace dht
+ 	
+ 	void PingReq::print()
+ 	{
+-		Out(SYS_DHT|LOG_DEBUG) << TQString("REQ: %1 %2 : ping").tqarg(mtid).tqarg(id.toString()) << endl;
++		Out(SYS_DHT|LOG_DEBUG) << TQString("REQ: %1 %2 : ping").arg(mtid).arg(id.toString()) << endl;
+ 	}
+ 	
+ 	void PingReq::encode(TQByteArray & arr)
+@@ -303,7 +303,7 @@ namespace dht
+ 	void FindNodeReq::print()
+ 	{
+ 		Out(SYS_DHT|LOG_NOTICE) << TQString("REQ: %1 %2 : find_node %3")
+-				.tqarg(mtid).tqarg(id.toString()).tqarg(target.toString()) << endl;
++				.arg(mtid).arg(id.toString()).arg(target.toString()) << endl;
+ 	}
+ 	
+ 	void FindNodeReq::encode(TQByteArray & arr)
+@@ -342,7 +342,7 @@ namespace dht
+ 	void GetPeersReq::print()
+ 	{
+ 		Out(SYS_DHT|LOG_DEBUG) << TQString("REQ: %1 %2 : get_peers %3")
+-				.tqarg(mtid).tqarg(id.toString()).tqarg(info_hash.toString()) << endl;
++				.arg(mtid).arg(id.toString()).arg(info_hash.toString()) << endl;
+ 	}
+ 	
+ 	void GetPeersReq::encode(TQByteArray & arr)
+@@ -381,8 +381,8 @@ namespace dht
+ 	void AnnounceReq::print()
+ 	{
+ 		Out(SYS_DHT|LOG_DEBUG) << TQString("REQ: %1 %2 : announce_peer %3 %4 %5")
+-				.tqarg(mtid).tqarg(id.toString()).tqarg(info_hash.toString())
+-				.tqarg(port).tqarg(token.toString()) << endl;
++				.arg(mtid).arg(id.toString()).arg(info_hash.toString())
++				.arg(port).arg(token.toString()) << endl;
+ 	}
+ 	
+ 	void AnnounceReq::encode(TQByteArray & arr)
+@@ -421,7 +421,7 @@ namespace dht
+ 	void PingRsp::print()
+ 	{
+ 		Out(SYS_DHT|LOG_DEBUG) << TQString("RSP: %1 %2 : ping")
+-					.tqarg(mtid).tqarg(id.toString()) << endl;
++					.arg(mtid).arg(id.toString()) << endl;
+ 	}
+ 	
+ 	void PingRsp::encode(TQByteArray & arr)
+@@ -456,7 +456,7 @@ namespace dht
+ 	void FindNodeRsp::print()
+ 	{
+ 		Out(SYS_DHT|LOG_DEBUG) << TQString("RSP: %1 %2 : find_node")
+-				.tqarg(mtid).tqarg(id.toString()) << endl;
++				.arg(mtid).arg(id.toString()) << endl;
+ 	}
+ 	
+ 	void FindNodeRsp::encode(TQByteArray & arr)
+@@ -498,7 +498,7 @@ namespace dht
+ 	void GetPeersRsp::print()
+ 	{
+ 		Out() << TQString("RSP: %1 %2 : get_peers(%3)")
+-				.tqarg(mtid).tqarg(id.toString()).tqarg(data.size() > 0 ? "nodes" : "values") << endl;
++				.arg(mtid).arg(id.toString()).arg(data.size() > 0 ? "nodes" : "values") << endl;
+ 	}
+ 
+ 	void GetPeersRsp::encode(TQByteArray & arr)
+@@ -552,7 +552,7 @@ namespace dht
+ 	void AnnounceRsp::print()
+ 	{
+ 		Out() << TQString("RSP: %1 %2 : announce_peer")
+-				.tqarg(mtid).tqarg(id.toString()) << endl;
++				.arg(mtid).arg(id.toString()) << endl;
+ 	}
+ 	
+ 	void AnnounceRsp::encode(TQByteArray & arr)
+diff --git a/libktorrent/migrate/ccmigrate.cpp b/libktorrent/migrate/ccmigrate.cpp
+index 3975de4..e824830 100644
+--- a/libktorrent/migrate/ccmigrate.cpp
++++ b/libktorrent/migrate/ccmigrate.cpp
+@@ -116,13 +116,13 @@ namespace bt
+ 		// open the old current_chunks file
+ 		File old_cc;
+ 		if (!old_cc.open(current_chunks,"rb"))
+-			throw Error(i18n("Cannot open file %1 : %2").tqarg(current_chunks).tqarg(old_cc.errorString()));
++			throw Error(i18n("Cannot open file %1 : %2").arg(current_chunks).arg(old_cc.errorString()));
+ 		
+ 		// open a new file in the /tmp dir
+ 		File new_cc;
+ 		TQString tmp = current_chunks + ".tmp";
+ 		if (!new_cc.open(tmp,"wb"))
+-			throw Error(i18n("Cannot open file %1 : %2").tqarg(tmp).tqarg(old_cc.errorString()));
++			throw Error(i18n("Cannot open file %1 : %2").arg(tmp).arg(old_cc.errorString()));
+ 		
+ 		// read the number of chunks
+ 		Uint32 num = 0;
+diff --git a/libktorrent/migrate/migrate.cpp b/libktorrent/migrate/migrate.cpp
+index a59f83c..ef6ddf1 100644
+--- a/libktorrent/migrate/migrate.cpp
++++ b/libktorrent/migrate/migrate.cpp
+@@ -42,7 +42,7 @@ namespace bt
+ 	{
+ 		// check if directory exists
+ 		if (!bt::Exists(tor_dir))
+-			throw Error(i18n("The directory %1 does not exist").tqarg(tor_dir));
++			throw Error(i18n("The directory %1 does not exist").arg(tor_dir));
+ 		
+ 		// make sure it ends with a /
+ 		TQString tdir = tor_dir;
+diff --git a/libktorrent/mse/functions.cpp b/libktorrent/mse/functions.cpp
+index d9ed5cf..a478cda 100644
+--- a/libktorrent/mse/functions.cpp
++++ b/libktorrent/mse/functions.cpp
+@@ -66,7 +66,7 @@ namespace mse
+ 		lg << name << " (" << nb << ") = ";
+ 		for (Uint32 i = 0;i < nb;i++)
+ 		{
+-			lg << TQString("0x%1 ").tqarg(buf[i],0,16);
++			lg << TQString("0x%1 ").arg(buf[i],0,16);
+ 		}
+ 		lg << endl;
+ 	}
+diff --git a/libktorrent/net/address.cpp b/libktorrent/net/address.cpp
+index e1de8d0..d4877da 100644
+--- a/libktorrent/net/address.cpp
++++ b/libktorrent/net/address.cpp
+@@ -58,10 +58,10 @@ namespace net
+ 	TQString Address::toString() const
+ 	{
+ 		return TQString("%1.%2.%3.%4")
+-				.tqarg((m_ip & 0xFF000000) >> 24)
+-				.tqarg((m_ip & 0x00FF0000) >> 16)
+-				.tqarg((m_ip & 0x0000FF00) >> 8)
+-				.tqarg(m_ip & 0x000000FF);
++				.arg((m_ip & 0xFF000000) >> 24)
++				.arg((m_ip & 0x00FF0000) >> 16)
++				.arg((m_ip & 0x0000FF00) >> 8)
++				.arg(m_ip & 0x000000FF);
+ 	}
+ 
+ }
+diff --git a/libktorrent/net/socket.cpp b/libktorrent/net/socket.cpp
+index ff09a34..e1e67ea 100644
+--- a/libktorrent/net/socket.cpp
++++ b/libktorrent/net/socket.cpp
+@@ -60,7 +60,7 @@ namespace net
+ 		int val = 1; 
+ 		if (setsockopt(m_fd,SOL_SOCKET,SO_NOSIGPIPE,&val,sizeof(int)) < 0)
+ 		{
+-			Out(SYS_CON|LOG_NOTICE) << TQString("Failed to set the NOSIGPIPE option : %1").tqarg(strerror(errno)) << endl;
++			Out(SYS_CON|LOG_NOTICE) << TQString("Failed to set the NOSIGPIPE option : %1").arg(strerror(errno)) << endl;
+ 		}
+ #endif
+ 		cacheAddress();
+@@ -71,14 +71,14 @@ namespace net
+ 		int fd = socket(PF_INET,tcp ? SOCK_STREAM : SOCK_DGRAM,0);
+ 		if (fd < 0)
+ 		{
+-			Out(SYS_GEN|LOG_IMPORTANT) << TQString("Cannot create socket : %1").tqarg(strerror(errno)) << endl;
++			Out(SYS_GEN|LOG_IMPORTANT) << TQString("Cannot create socket : %1").arg(strerror(errno)) << endl;
+ 		}
+ 		m_fd = fd;
+ #if defined(Q_OS_MACX) || defined(Q_OS_DARWIN) || (defined(Q_OS_FREEBSD) && !defined(__DragonFly__) && __FreeBSD_version < 600020)
+ 		int val = 1;
+ 		if (setsockopt(m_fd,SOL_SOCKET,SO_NOSIGPIPE,&val,sizeof(int)) < 0)
+ 		{
+-			Out(SYS_CON|LOG_NOTICE) << TQString("Failed to set the NOSIGPIPE option : %1").tqarg(strerror(errno)) << endl;
++			Out(SYS_CON|LOG_NOTICE) << TQString("Failed to set the NOSIGPIPE option : %1").arg(strerror(errno)) << endl;
+ 		}
+ #endif	
+ 	}
+@@ -127,7 +127,7 @@ namespace net
+ 			else
+ 			{
+ 				Out(SYS_CON|LOG_NOTICE) << TQString("Cannot connect to host %1:%2 : %3")
+-					.tqarg(a.toString()).tqarg(a.port()).tqarg(strerror(errno)) << endl;
++					.arg(a.toString()).arg(a.port()).arg(strerror(errno)) << endl;
+ 				return false;
+ 			}
+ 		}
+@@ -145,20 +145,20 @@ namespace net
+ 	
+ 		if (::bind(m_fd,(struct sockaddr*)&addr,sizeof(struct sockaddr)) < 0)
+ 		{
+-			Out(SYS_CON|LOG_IMPORTANT) << TQString("Cannot bind to port %1 : %2").tqarg(port).tqarg(strerror(errno)) << endl;
++			Out(SYS_CON|LOG_IMPORTANT) << TQString("Cannot bind to port %1 : %2").arg(port).arg(strerror(errno)) << endl;
+ 			return false;
+ 		}
+ 
+ 		if (also_listen && listen(m_fd,5) < 0)
+ 		{
+-			Out(SYS_CON|LOG_IMPORTANT) << TQString("Cannot listen to port %1 : %2").tqarg(port).tqarg(strerror(errno)) << endl;
++			Out(SYS_CON|LOG_IMPORTANT) << TQString("Cannot listen to port %1 : %2").arg(port).arg(strerror(errno)) << endl;
+ 			return false;
+ 		}
+ 
+ 		int val = 1;
+ 		if (setsockopt(m_fd,SOL_SOCKET,SO_REUSEADDR,&val,sizeof(int)) < 0)
+ 		{
+-			Out(SYS_CON|LOG_NOTICE) << TQString("Failed to set the reuseaddr option : %1").tqarg(strerror(errno)) << endl;
++			Out(SYS_CON|LOG_NOTICE) << TQString("Failed to set the reuseaddr option : %1").arg(strerror(errno)) << endl;
+ 		}
+ 		m_state = BOUND;
+ 		return true;
+@@ -272,7 +272,7 @@ namespace net
+ 		if (setsockopt(m_fd,IPPROTO_IP,IP_TOS,&c,sizeof(c)) < 0)
+ 		{
+ 			Out(SYS_CON|LOG_NOTICE) << TQString("Failed to set TOS to %1 : %2")
+-					.tqarg(type_of_service).tqarg(strerror(errno)) << endl;
++					.arg(type_of_service).arg(strerror(errno)) << endl;
+ 			return false;
+ 		}
+ 		return true;
+diff --git a/libktorrent/pluginmanager.cpp b/libktorrent/pluginmanager.cpp
+index 3ea1282..dcd4749 100644
+--- a/libktorrent/pluginmanager.cpp
++++ b/libktorrent/pluginmanager.cpp
+@@ -71,7 +71,7 @@ namespace kt
+ 			{
+ 				Out(SYS_GEN|LOG_NOTICE) <<
+ 						TQString("Plugin %1 version does not match KTorrent version, unloading it.")
+-						.tqarg(service->library()) << endl;
++						.arg(service->library()) << endl;
+ 
+ 				delete plugin;
+ 				// unload the library again, no need to have it loaded
+diff --git a/libktorrent/pluginmanagerprefpage.cpp b/libktorrent/pluginmanagerprefpage.cpp
+index 70a8777..8a6e33c 100644
+--- a/libktorrent/pluginmanagerprefpage.cpp
++++ b/libktorrent/pluginmanagerprefpage.cpp
+@@ -51,9 +51,9 @@ namespace kt
+ 		{
+ 			setTitle("<h3>" + p->getGuiName() + "</h3>");
+ 			setDescription(
+-				i18n("%1<br>Status: <b>%2</b><br>Author: %3").tqarg(p->getDescription())
+-					.tqarg(p->isLoaded() ? i18n("Loaded") : i18n("Not loaded"))
+-					.tqarg(p->getAuthor()));
++				i18n("%1<br>Status: <b>%2</b><br>Author: %3").arg(p->getDescription())
++					.arg(p->isLoaded() ? i18n("Loaded") : i18n("Not loaded"))
++					.arg(p->getAuthor()));
+ 		}
+ 		
+ 		TQString pluginName() {return p->getName();}
+diff --git a/libktorrent/torrent/bdecoder.cpp b/libktorrent/torrent/bdecoder.cpp
+index 778cf8a..e965eb5 100644
+--- a/libktorrent/torrent/bdecoder.cpp
++++ b/libktorrent/torrent/bdecoder.cpp
+@@ -59,7 +59,7 @@ namespace bt
+ 		}
+ 		else
+ 		{
+-			throw Error(i18n("Illegal token: %1").tqarg(data[pos]));
++			throw Error(i18n("Illegal token: %1").arg(data[pos]));
+ 		}
+ 	}
+ 
+@@ -161,7 +161,7 @@ namespace bt
+ 			Int64 bi = 0LL;
+ 			bi = n.toLongLong(&ok);
+ 			if (!ok)
+-				throw Error(i18n("Cannot convert %1 to an int").tqarg(n));
++				throw Error(i18n("Cannot convert %1 to an int").arg(n));
+ 
+ 			pos++;
+ 			if (verbose) Out() << "INT64 = " << n << endl;
+@@ -195,7 +195,7 @@ namespace bt
+ 		len = n.toInt(&ok);
+ 		if (!ok)
+ 		{
+-			throw Error(i18n("Cannot convert %1 to an int").tqarg(n));
++			throw Error(i18n("Cannot convert %1 to an int").arg(n));
+ 		}
+ 		// move pos to the first part of the string
+ 		pos++;
+@@ -204,7 +204,7 @@ namespace bt
+ 			
+ 		TQByteArray arr(len);
+ 		for (unsigned int i = pos;i < pos + len;i++)
+-			arr.tqat(i-pos) = data[i];
++			arr.at(i-pos) = data[i];
+ 		pos += len;
+ 		// read the string into n
+ 
+diff --git a/libktorrent/torrent/bencoder.cpp b/libktorrent/torrent/bencoder.cpp
+index ef01123..cb82db7 100644
+--- a/libktorrent/torrent/bencoder.cpp
++++ b/libktorrent/torrent/bencoder.cpp
+@@ -87,7 +87,7 @@ namespace bt
+ 	{
+ 		if (!out) return;
+ 		
+-		TQCString s = TQString("i%1e").tqarg(val).utf8();
++		TQCString s = TQString("i%1e").arg(val).utf8();
+ 		out->write(s,s.length());
+ 	}
+ 
+@@ -95,7 +95,7 @@ namespace bt
+ 	{
+ 		if (!out) return;
+ 		
+-		TQCString s = TQString("i%1e").tqarg(val).utf8();
++		TQCString s = TQString("i%1e").arg(val).utf8();
+ 		out->write(s,s.length());
+ 	}
+ 	
+@@ -104,7 +104,7 @@ namespace bt
+ 		if (!out) return;
+ 		
+ 		TQCString u = str.utf8();
+-		TQCString s = TQString("%1:").tqarg(u.length()).utf8();
++		TQCString s = TQString("%1:").arg(u.length()).utf8();
+ 		out->write(s,s.length());
+ 		out->write(u,u.length());
+ 	}
+@@ -123,7 +123,7 @@ namespace bt
+ 	{
+ 		if (!out) return;
+ 		
+-		TQCString s = TQString("%1:").tqarg(size).utf8();
++		TQCString s = TQString("%1:").arg(size).utf8();
+ 		out->write(s,s.length());
+ 		out->write((const char*)data,size);
+ 	}
+diff --git a/libktorrent/torrent/bnode.cpp b/libktorrent/torrent/bnode.cpp
+index 07b7ba0..c32f09b 100644
+--- a/libktorrent/torrent/bnode.cpp
++++ b/libktorrent/torrent/bnode.cpp
+@@ -56,8 +56,8 @@ namespace bt
+ 	
+ 	BDictNode::~BDictNode()
+ 	{
+-		TQValueList<DictEntry>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		TQValueList<DictEntry>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			DictEntry & e = *i;
+ 			delete e.node;
+@@ -70,13 +70,13 @@ namespace bt
+ 		DictEntry entry;
+ 		entry.key = key;
+ 		entry.node = node;
+-		tqchildren.append(entry);
++		children.append(entry);
+ 	}
+ 	
+ 	BNode* BDictNode::getData(const TQString & key)
+ 	{
+-		TQValueList<DictEntry>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		TQValueList<DictEntry>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			DictEntry & e = *i;
+ 			if (TQString(e.key) == key)
+@@ -88,8 +88,8 @@ namespace bt
+ 	
+ 	BDictNode* BDictNode::getDict(const TQByteArray & key)
+ 	{
+-		TQValueList<DictEntry>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		TQValueList<DictEntry>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			DictEntry & e = *i;
+ 			if (e.key == key)
+@@ -120,8 +120,8 @@ namespace bt
+ 	void BDictNode::printDebugInfo()
+ 	{
+ 		Out() << "DICT" << endl;
+-		TQValueList<DictEntry>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		TQValueList<DictEntry>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			DictEntry & e = *i;
+ 			Out() << TQString(e.key) << ": " << endl;
+@@ -135,7 +135,7 @@ namespace bt
+ 
+ 	BListNode::BListNode(Uint32 off) : BNode(LIST,off)
+ 	{
+-		tqchildren.setAutoDelete(true);
++		children.setAutoDelete(true);
+ 	}
+ 	
+ 	
+@@ -145,7 +145,7 @@ namespace bt
+ 	
+ 	void BListNode::append(BNode* node)
+ 	{
+-		tqchildren.append(node);
++		children.append(node);
+ 	}
+ 
+ 	BListNode* BListNode::getList(Uint32 idx)
+@@ -165,10 +165,10 @@ namespace bt
+ 	
+ 	void BListNode::printDebugInfo()
+ 	{
+-		Out() << "LIST " <<  tqchildren.count() << endl;
+-		for (Uint32 i = 0;i < tqchildren.count();i++)
++		Out() << "LIST " <<  children.count() << endl;
++		for (Uint32 i = 0;i < children.count();i++)
+ 		{
+-			BNode* n = tqchildren.at(i);
++			BNode* n = children.at(i);
+ 			n->printDebugInfo();
+ 		}
+ 		Out() << "END" << endl;
+diff --git a/libktorrent/torrent/bnode.h b/libktorrent/torrent/bnode.h
+index ccd2c94..84b306e 100644
+--- a/libktorrent/torrent/bnode.h
++++ b/libktorrent/torrent/bnode.h
+@@ -102,7 +102,7 @@ namespace bt
+ 			TQByteArray key;
+ 			BNode* node;
+ 		};
+-		TQValueList<DictEntry> tqchildren;
++		TQValueList<DictEntry> children;
+ 	public:
+ 		BDictNode(Uint32 off);
+ 		virtual ~BDictNode();
+@@ -159,7 +159,7 @@ namespace bt
+ 	 */
+ 	class BListNode : public BNode
+ 	{
+-		TQPtrList<BNode> tqchildren;
++		TQPtrList<BNode> children;
+ 	public:
+ 		BListNode(Uint32 off);
+ 		virtual ~BListNode();
+@@ -172,14 +172,14 @@ namespace bt
+ 		void printDebugInfo();
+ 
+ 		/// Get the number of nodes in the list.
+-		Uint32 getNumChildren() const {return tqchildren.count();}
++		Uint32 getNumChildren() const {return children.count();}
+ 		
+ 		/**
+ 		 * Get a node from the list
+ 		 * @param idx The index
+ 		 * @return The node or 0 if idx is out of bounds
+ 		 */
+-		BNode* getChild(Uint32 idx) {return tqchildren.at(idx);}
++		BNode* getChild(Uint32 idx) {return children.at(idx);}
+ 
+ 		/**
+ 		 * Get a BListNode.
+diff --git a/libktorrent/torrent/cachefile.cpp b/libktorrent/torrent/cachefile.cpp
+index 678124a..7f02b6b 100644
+--- a/libktorrent/torrent/cachefile.cpp
++++ b/libktorrent/torrent/cachefile.cpp
+@@ -92,7 +92,7 @@ namespace bt
+ 		
+ 		if (fd < 0)
+ 		{
+-			throw Error(i18n("Cannot open %1 : %2").tqarg(path).tqarg(strerror(errno)));
++			throw Error(i18n("Cannot open %1 : %2").arg(path).arg(strerror(errno)));
+ 		}
+ 		
+ 		file_size = FileSize(fd);
+@@ -118,7 +118,7 @@ namespace bt
+ 		
+ 		if (read_only && mode != READ)
+ 		{
+-			throw Error(i18n("Cannot open %1 for writing : readonly filesystem").tqarg(path));
++			throw Error(i18n("Cannot open %1 for writing : readonly filesystem").arg(path));
+ 		}
+ 		
+ 		if (off + size > max_size)
+@@ -217,7 +217,7 @@ namespace bt
+ 		}
+ 		
+ 		if (read_only)
+-			throw Error(i18n("Cannot open %1 for writing : readonly filesystem").tqarg(path));
++			throw Error(i18n("Cannot open %1 for writing : readonly filesystem").arg(path));
+ 		
+ 		// jump to the end of the file
+ 		SeekFile(fd,0,SEEK_END);
+@@ -237,22 +237,22 @@ namespace bt
+ 			int nb = to_write > 1024 ? 1024 : to_write;
+ 			int ret = ::write(fd,buf,nb);
+ 			if (ret < 0)
+-				throw Error(i18n("Cannot expand file %1 : %2").tqarg(path).tqarg(strerror(errno)));
++				throw Error(i18n("Cannot expand file %1 : %2").arg(path).arg(strerror(errno)));
+ 			else if (ret != nb)
+-				throw Error(i18n("Cannot expand file %1 : incomplete write").tqarg(path));
++				throw Error(i18n("Cannot expand file %1 : incomplete write").arg(path));
+ 			to_write -= nb;
+ 		}
+ 		file_size += num;
+ //		
+-	//	Out() << TQString("growing %1 = %2").tqarg(path).tqarg(kt::BytesToString(file_size)) << endl;
++	//	Out() << TQString("growing %1 = %2").arg(path).arg(kt::BytesToString(file_size)) << endl;
+ 
+ 		if (file_size != FileSize(fd))
+ 		{
+-//			Out() << TQString("Homer Simpson %1 %2").tqarg(file_size).tqarg(sb.st_size) << endl;
++//			Out() << TQString("Homer Simpson %1 %2").arg(file_size).arg(sb.st_size) << endl;
+ 			fsync(fd);
+ 			if (file_size != FileSize(fd))
+ 			{
+-				throw Error(i18n("Cannot expand file %1").tqarg(path));
++				throw Error(i18n("Cannot expand file %1").arg(path));
+ 			}
+ 		}
+ 	}
+@@ -292,7 +292,7 @@ namespace bt
+ 		
+ 		if (ret < 0)
+ 		{
+-			Out(SYS_DIO|LOG_IMPORTANT) << TQString("Munmap failed with error %1 : %2").tqarg(errno).tqarg(strerror(errno)) << endl;
++			Out(SYS_DIO|LOG_IMPORTANT) << TQString("Munmap failed with error %1 : %2").arg(errno).arg(strerror(errno)) << endl;
+ 		}
+ 	}
+ 		
+@@ -326,7 +326,7 @@ namespace bt
+ 						
+ 			if (ret < 0)
+ 			{
+-				Out(SYS_DIO|LOG_IMPORTANT) << TQString("Munmap failed with error %1 : %2").tqarg(errno).tqarg(strerror(errno)) << endl;
++				Out(SYS_DIO|LOG_IMPORTANT) << TQString("Munmap failed with error %1 : %2").arg(errno).arg(strerror(errno)) << endl;
+ 			}	
+ 		}
+ 		::close(fd);
+@@ -348,7 +348,7 @@ namespace bt
+ 		
+ 		if (off >= file_size || off >= max_size)
+ 		{
+-			throw Error(i18n("Error : Reading past the end of the file %1").tqarg(path));
++			throw Error(i18n("Error : Reading past the end of the file %1").arg(path));
+ 		}
+ 		
+ 		// jump to right position
+@@ -358,7 +358,7 @@ namespace bt
+ 			if (close_again)
+ 				closeTemporary();
+ 			
+-			throw Error(i18n("Error reading from %1").tqarg(path));
++			throw Error(i18n("Error reading from %1").arg(path));
+ 		}
+ 		
+ 		if (close_again)
+@@ -379,7 +379,7 @@ namespace bt
+ 		}
+ 		
+ 		if (read_only)
+-			throw Error(i18n("Cannot open %1 for writing : readonly filesystem").tqarg(path));
++			throw Error(i18n("Cannot open %1 for writing : readonly filesystem").arg(path));
+ 		
+ 		if (off + size > max_size)
+ 		{
+@@ -389,7 +389,7 @@ namespace bt
+ 		
+ 		if (file_size < off)
+ 		{
+-			//Out() << TQString("Writing %1 bytes at %2").tqarg(size).tqarg(off) << endl;
++			//Out() << TQString("Writing %1 bytes at %2").arg(size).arg(off) << endl;
+ 			growFile(off - file_size);
+ 		}
+ 		
+@@ -400,11 +400,11 @@ namespace bt
+ 			closeTemporary();
+ 		
+ 		if (ret == -1)
+-			throw Error(i18n("Error writing to %1 : %2").tqarg(path).tqarg(strerror(errno)));
++			throw Error(i18n("Error writing to %1 : %2").arg(path).arg(strerror(errno)));
+ 		else if ((Uint32)ret != size)
+ 		{
+-			Out() << TQString("Incomplete write of %1 bytes, should be %2").tqarg(ret).tqarg(size) << endl;
+-			throw Error(i18n("Error writing to %1").tqarg(path));
++			Out() << TQString("Incomplete write of %1 bytes, should be %2").arg(ret).arg(size) << endl;
++			throw Error(i18n("Error writing to %1").arg(path));
+ 		}
+ 		
+ 		if (off + size > file_size)
+@@ -445,7 +445,7 @@ namespace bt
+ 			if (close_again)
+ 				closeTemporary();
+ 			
+-			throw Error(i18n("Cannot open %1 for writing : readonly filesystem").tqarg(path));
++			throw Error(i18n("Cannot open %1 for writing : readonly filesystem").arg(path));
+ 		}
+ 
+ 		try
+@@ -472,7 +472,7 @@ namespace bt
+ 				if (close_again)
+ 					closeTemporary();
+ 				
+-				throw Error(i18n("Cannot preallocate diskspace : %1").tqarg(strerror(errno)));
++				throw Error(i18n("Cannot preallocate diskspace : %1").arg(strerror(errno)));
+ 			}
+ 		}
+ 
+diff --git a/libktorrent/torrent/chunkdownload.cpp b/libktorrent/torrent/chunkdownload.cpp
+index 3475441..38e4fec 100644
+--- a/libktorrent/torrent/chunkdownload.cpp
++++ b/libktorrent/torrent/chunkdownload.cpp
+@@ -196,7 +196,7 @@ namespace bt
+ 	{
+ 		if (chunk->getIndex() == r.getIndex())
+ 		{
+-//			Out(SYS_CON|LOG_DEBUG) << TQString("Request rejected %1 %2 %3 %4").tqarg(r.getIndex()).tqarg(r.getOffset()).tqarg(r.getLength()).tqarg(r.getPeer()) << endl;
++//			Out(SYS_CON|LOG_DEBUG) << TQString("Request rejected %1 %2 %3 %4").arg(r.getIndex()).arg(r.getOffset()).arg(r.getLength()).arg(r.getPeer()) << endl;
+ 		
+ 			notDownloaded(r,true);
+ 		}
+@@ -207,7 +207,7 @@ namespace bt
+ 		// see if we are dealing with a piece of ours
+ 		if (chunk->getIndex() == r.getIndex())
+ 		{
+-			Out(SYS_CON|LOG_DEBUG) << TQString("Request timed out %1 %2 %3 %4").tqarg(r.getIndex()).tqarg(r.getOffset()).tqarg(r.getLength()).tqarg(r.getPeer()) << endl;
++			Out(SYS_CON|LOG_DEBUG) << TQString("Request timed out %1 %2 %3 %4").arg(r.getIndex()).arg(r.getOffset()).arg(r.getLength()).arg(r.getPeer()) << endl;
+ 		
+ 			notDownloaded(r,false);
+ 		}
+diff --git a/libktorrent/torrent/chunkmanager.cpp b/libktorrent/torrent/chunkmanager.cpp
+index a0849a4..e98c58b 100644
+--- a/libktorrent/torrent/chunkmanager.cpp
++++ b/libktorrent/torrent/chunkmanager.cpp
+@@ -204,7 +204,7 @@ namespace bt
+ 	{
+ 		File fptr;
+ 		if (!fptr.open(index_file,"wb"))
+-			throw Error(i18n("Cannot open index file %1 : %2").tqarg(index_file).tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot open index file %1 : %2").arg(index_file).arg(fptr.errorString()));
+ 		
+ 		for (unsigned int i = 0;i < tor.getNumChunks();i++)
+ 		{
+@@ -387,7 +387,7 @@ namespace bt
+ 			}
+ 		}
+ 	//	Uint32 num_in_mem = loaded.count();
+-	//	Out() << TQString("Cleaned %1 chunks, %2 still in memory").tqarg(num_removed).tqarg(num_in_mem) << endl;
++	//	Out() << TQString("Cleaned %1 chunks, %2 still in memory").arg(num_removed).arg(num_in_mem) << endl;
+ 	}
+ 	
+ 	void ChunkManager::saveChunk(unsigned int i,bool update_index)
+@@ -429,7 +429,7 @@ namespace bt
+ 			// try again
+ 			if (!fptr.open(index_file,"r+b"))
+ 				// panick if it failes
+-				throw Error(i18n("Cannot open index file %1 : %2").tqarg(index_file).tqarg(fptr.errorString()));
++				throw Error(i18n("Cannot open index file %1 : %2").arg(index_file).arg(fptr.errorString()));
+ 		}
+ 
+ 		
+diff --git a/libktorrent/torrent/dndfile.cpp b/libktorrent/torrent/dndfile.cpp
+index 2ca669b..dffb763 100644
+--- a/libktorrent/torrent/dndfile.cpp
++++ b/libktorrent/torrent/dndfile.cpp
+@@ -105,7 +105,7 @@ namespace bt
+ 		
+ 		File fptr;
+ 		if (!fptr.open(path,"wb"))
+-			throw Error(i18n("Cannot create file %1 : %2").tqarg(path).tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot create file %1 : %2").arg(path).arg(fptr.errorString()));
+ 		
+ 		fptr.write(&hdr,sizeof(DNDFileHeader));
+ 		fptr.close();
+@@ -172,7 +172,7 @@ namespace bt
+ 			create();
+ 			if (!fptr.open(path,"r+b"))
+ 			{
+-				throw Error(i18n("Failed to write first chunk to DND file : %1").tqarg(fptr.errorString()));
++				throw Error(i18n("Failed to write first chunk to DND file : %1").arg(fptr.errorString()));
+ 			}
+ 		}
+ 		
+@@ -230,7 +230,7 @@ namespace bt
+ 			create();
+ 			if (!fptr.open(path,"r+b"))
+ 			{
+-				throw Error(i18n("Failed to write last chunk to DND file : %1").tqarg(fptr.errorString()));
++				throw Error(i18n("Failed to write last chunk to DND file : %1").arg(fptr.errorString()));
+ 			}
+ 		}
+ 		
+diff --git a/libktorrent/torrent/ipblocklist.cpp b/libktorrent/torrent/ipblocklist.cpp
+index 547b6ad..f524d6b 100644
+--- a/libktorrent/torrent/ipblocklist.cpp
++++ b/libktorrent/torrent/ipblocklist.cpp
+@@ -338,7 +338,7 @@ namespace bt
+ 		if(tmpmask == 0)
+ 			out.prepend("*");
+ 		else
+-			out.prepend(TQString("%1").tqarg(tmp));
++			out.prepend(TQString("%1").arg(tmp));
+ 		ip >>= 8;
+ 		mask >>= 8;
+ 		tmp = ip;
+@@ -348,7 +348,7 @@ namespace bt
+ 		if(tmpmask == 0)
+ 			out.prepend("*.");
+ 		else
+-			out.prepend(TQString("%1.").tqarg(tmp));
++			out.prepend(TQString("%1.").arg(tmp));
+ 		ip >>= 8;
+ 		mask >>= 8;
+ 		tmp = ip;
+@@ -358,7 +358,7 @@ namespace bt
+ 		if(tmpmask == 0)
+ 			out.prepend("*.");
+ 		else
+-			out.prepend(TQString("%1.").tqarg(tmp));
++			out.prepend(TQString("%1.").arg(tmp));
+ 		ip >>= 8;
+ 		mask >>= 8;
+ 		tmp = ip;
+@@ -368,7 +368,7 @@ namespace bt
+ 		if(tmpmask == 0)
+ 			out.prepend("*.");
+ 		else
+-			out.prepend(TQString("%1.").tqarg(tmp));
++			out.prepend(TQString("%1.").arg(tmp));
+ 	
+ 		return out;
+ 	}
+diff --git a/libktorrent/torrent/multifilecache.cpp b/libktorrent/torrent/multifilecache.cpp
+index e842560..9d41fb8 100644
+--- a/libktorrent/torrent/multifilecache.cpp
++++ b/libktorrent/torrent/multifilecache.cpp
+@@ -592,7 +592,7 @@ namespace bt
+ 		DNDFile out(dst_file);
+ 		File fptr;
+ 		if (!fptr.open(src_file,"rb"))
+-			throw Error(i18n("Cannot open file %1 : %2").tqarg(src_file).tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot open file %1 : %2").arg(src_file).arg(fptr.errorString()));
+ 		
+ 		Uint32 cs = 0;
+ 		if (tf->getFirstChunk() == tor.getNumChunks() - 1)
+@@ -654,7 +654,7 @@ namespace bt
+ 			// first attempt failed, must be fat so try that
+ 			if (!FatPreallocate(output_file,tf->getSize()))
+ 			{	
+-				throw Error(i18n("Cannot preallocate diskspace : %1").tqarg(strerror(errno)));
++				throw Error(i18n("Cannot preallocate diskspace : %1").arg(strerror(errno)));
+ 			}
+ 		}
+ 		
+@@ -670,7 +670,7 @@ namespace bt
+ 		
+ 		File fptr;
+ 		if (!fptr.open(output_file,"r+b"))
+-			throw Error(i18n("Cannot open file %1 : %2").tqarg(output_file).tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot open file %1 : %2").arg(output_file).arg(fptr.errorString()));
+ 			
+ 		
+ 		Uint32 ts = cs - tf->getFirstChunkOffset() > tf->getLastChunkSize() ? 
+@@ -782,7 +782,7 @@ namespace bt
+ 			else
+ 			{
+ 				
+-				// tqchildren, so we cannot delete any more directories higher up
++				// children, so we cannot delete any more directories higher up
+ 				return;
+ 			}
+ 		}
+diff --git a/libktorrent/torrent/packet.cpp b/libktorrent/torrent/packet.cpp
+index 4e6cf01..e5b1aa0 100644
+--- a/libktorrent/torrent/packet.cpp
++++ b/libktorrent/torrent/packet.cpp
+@@ -138,16 +138,16 @@ namespace bt
+ 		
+ 		switch (data[4])
+ 		{
+-			case CHOKE : return TQString("CHOKE %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			case UNCHOKE : return TQString("UNCHOKE %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			case INTERESTED : return TQString("INTERESTED %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			case NOT_INTERESTED : return TQString("NOT_INTERESTED %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			case HAVE : return TQString("HAVE %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			case BITFIELD : return TQString("BITFIELD %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			case PIECE : return TQString("PIECE %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			case REQUEST : return TQString("REQUEST %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			case CANCEL : return TQString("CANCEL %1 %2").tqarg(hdr_length).tqarg(data_length);
+-			default: return TQString("UNKNOWN %1 %2").tqarg(hdr_length).tqarg(data_length);
++			case CHOKE : return TQString("CHOKE %1 %2").arg(hdr_length).arg(data_length);
++			case UNCHOKE : return TQString("UNCHOKE %1 %2").arg(hdr_length).arg(data_length);
++			case INTERESTED : return TQString("INTERESTED %1 %2").arg(hdr_length).arg(data_length);
++			case NOT_INTERESTED : return TQString("NOT_INTERESTED %1 %2").arg(hdr_length).arg(data_length);
++			case HAVE : return TQString("HAVE %1 %2").arg(hdr_length).arg(data_length);
++			case BITFIELD : return TQString("BITFIELD %1 %2").arg(hdr_length).arg(data_length);
++			case PIECE : return TQString("PIECE %1 %2").arg(hdr_length).arg(data_length);
++			case REQUEST : return TQString("REQUEST %1 %2").arg(hdr_length).arg(data_length);
++			case CANCEL : return TQString("CANCEL %1 %2").arg(hdr_length).arg(data_length);
++			default: return TQString("UNKNOWN %1 %2").arg(hdr_length).arg(data_length);
+ 		}
+ 	}
+ 	*/
+diff --git a/libktorrent/torrent/packetreader.cpp b/libktorrent/torrent/packetreader.cpp
+index 3d4910a..b17becc 100644
+--- a/libktorrent/torrent/packetreader.cpp
++++ b/libktorrent/torrent/packetreader.cpp
+@@ -36,13 +36,13 @@ namespace bt
+ #ifdef LOG_PACKET
+ 	static void LogPacket(const Uint8* data,Uint32 size,Uint32 len)
+ 	{
+-		TQString file = TQString("/tmp/kt-packetreader-%1.log").tqarg(getpid());
++		TQString file = TQString("/tmp/kt-packetreader-%1.log").arg(getpid());
+ 		File fptr;
+ 		if (!fptr.open(file,"a"))
+ 			return;
+ 		
+ 		
+-		TQString tmp = TQString("PACKET len = %1, type = %2\nDATA: \n").tqarg(len).tqarg(data[0]);
++		TQString tmp = TQString("PACKET len = %1, type = %2\nDATA: \n").arg(len).arg(data[0]);
+ 		
+ 		fptr.write(tmp.ascii(),tmp.length());
+ 		
+@@ -51,7 +51,7 @@ namespace bt
+ 		{
+ 			for (Uint32 i = 0;i < size;i++)
+ 			{
+-				tmp = TQString("0x%1 ").tqarg(data[i],0,16);
++				tmp = TQString("0x%1 ").arg(data[i],0,16);
+ 				fptr.write(tmp.ascii(),tmp.length());
+ 				j++;
+ 				if (j > 10)
+@@ -65,7 +65,7 @@ namespace bt
+ 		{
+ 			for (Uint32 i = 0;i < 20;i++)
+ 			{
+-				tmp = TQString("0x%1 ").tqarg(data[i],0,16);
++				tmp = TQString("0x%1 ").arg(data[i],0,16);
+ 				fptr.write(tmp.ascii(),tmp.length());
+ 				j++;
+ 				if (j > 10)
+@@ -78,7 +78,7 @@ namespace bt
+ 			fptr.write(tmp.ascii(),tmp.length());
+ 			for (Uint32 i = size - 20;i < size;i++)
+ 			{
+-				tmp = TQString("0x%1 ").tqarg(data[i],0,16);
++				tmp = TQString("0x%1 ").arg(data[i],0,16);
+ 				fptr.write(tmp.ascii(),tmp.length());
+ 				j++;
+ 				if (j > 10)
+diff --git a/libktorrent/torrent/packetwriter.cpp b/libktorrent/torrent/packetwriter.cpp
+index 6c186dc..21d26cf 100644
+--- a/libktorrent/torrent/packetwriter.cpp
++++ b/libktorrent/torrent/packetwriter.cpp
+@@ -195,7 +195,7 @@ namespace bt
+ 		else
+ 		{
+ 	/*		Out(SYS_CON|LOG_DEBUG) << TQString("Uploading %1 %2 %3 %4 %5")
+-					.tqarg(index).tqarg(begin).tqarg(len).tqarg((TQ_ULLONG)ch,0,16).tqarg((TQ_ULLONG)ch->getData(),0,16) 
++					.arg(index).arg(begin).arg(len).arg((TQ_ULLONG)ch,0,16).arg((TQ_ULLONG)ch->getData(),0,16) 
+ 					<< endl;;
+ 	*/
+ 			queuePacket(new Packet(index,begin,len,ch));
+@@ -218,7 +218,7 @@ namespace bt
+ 			enc.write(TQString("p")); 
+ 			enc.write((Uint32)port);
+ 		}
+-		enc.write(TQString("v")); enc.write(TQString("KTorrent %1").tqarg(kt::VERSION_STRING));
++		enc.write(TQString("v")); enc.write(TQString("KTorrent %1").arg(kt::VERSION_STRING));
+ 		enc.end();
+ 		sendExtProtMsg(0,arr);
+ 	}
+diff --git a/libktorrent/torrent/peerid.cpp b/libktorrent/torrent/peerid.cpp
+index 09b4bff..802fca6 100644
+--- a/libktorrent/torrent/peerid.cpp
++++ b/libktorrent/torrent/peerid.cpp
+@@ -174,7 +174,7 @@ namespace bt
+ 			Map["TS"] = "Torrent Storm";
+ 			Map["TT"] = "TuoTu";
+ 			Map["UL"] = "uLeecher!";
+-			Map["UT"] = TQString("%1Torrent").tqarg(TQChar(0x00B5)); // µTorrent, 0x00B5 is tqunicode for µ
++			Map["UT"] = TQString("%1Torrent").arg(TQChar(0x00B5)); // µTorrent, 0x00B5 is tqunicode for µ
+ 			Map["WT"] = "BitLet";
+ 			Map["WY"] = "FireTorrent";
+ 			Map["XL"] = "Xunlei";
+@@ -201,31 +201,31 @@ namespace bt
+ 		}
+ 
+ 		TQString name = i18n("Unknown client");
+-		if (peer_id.tqat(0) == '-' &&
+-			peer_id.tqat(1).isLetter() &&
+-			peer_id.tqat(2).isLetter() ) //AZ style
++		if (peer_id.at(0) == '-' &&
++			peer_id.at(1).isLetter() &&
++			peer_id.at(2).isLetter() ) //AZ style
+ 		{
+ 			TQString ID(peer_id.mid(1,2));
+ 			if (Map.contains(ID))
+-				name = Map[ID] + " " + peer_id.tqat(3) + "." + peer_id.tqat(4) + "."
+-					+ peer_id.tqat(5) + "." + peer_id.tqat(6);
++				name = Map[ID] + " " + peer_id.at(3) + "." + peer_id.at(4) + "."
++					+ peer_id.at(5) + "." + peer_id.at(6);
+ 		}
+-		else if (peer_id.tqat(0).isLetter() &&
+-				peer_id.tqat(1).isDigit() &&
+-				peer_id.tqat(2).isDigit() )  //Shadow's style
++		else if (peer_id.at(0).isLetter() &&
++				peer_id.at(1).isDigit() &&
++				peer_id.at(2).isDigit() )  //Shadow's style
+ 		{
+-			TQString ID = TQString(peer_id.tqat(0));
++			TQString ID = TQString(peer_id.at(0));
+ 			if (Map.contains(ID))
+-				name = Map[ID] + " " + peer_id.tqat(1) + "." +
+-						peer_id.tqat(2) + "." + peer_id.tqat(3);
++				name = Map[ID] + " " + peer_id.at(1) + "." +
++						peer_id.at(2) + "." + peer_id.at(3);
+ 		}
+-		else if (peer_id.tqat(0) == 'M' && peer_id.tqat(2) == '-' && (peer_id.tqat(4) == '-' || peer_id.tqat(5) == '-'))
++		else if (peer_id.at(0) == 'M' && peer_id.at(2) == '-' && (peer_id.at(4) == '-' || peer_id.at(5) == '-'))
+ 		{
+-			name = Map["M"] + " " + peer_id.tqat(1) + "." + peer_id.tqat(3);
+-			if(peer_id.tqat(4) == '-')
+-				name += "." + peer_id.tqat(5);
++			name = Map["M"] + " " + peer_id.at(1) + "." + peer_id.at(3);
++			if(peer_id.at(4) == '-')
++				name += "." + peer_id.at(5);
+ 			else
+-				name += peer_id.tqat(4) + "." + peer_id.tqat(6);
++				name += peer_id.at(4) + "." + peer_id.at(6);
+ 		}
+ 		else if (peer_id.startsWith("OP"))
+ 		{
+@@ -245,7 +245,7 @@ namespace bt
+ 		}
+ 		else if ( peer_id.startsWith("Mbrst"))
+ 		{
+-			name = Map["Mbrst"] + " " + peer_id.tqat(5) + "." + peer_id.tqat(7);
++			name = Map["Mbrst"] + " " + peer_id.at(5) + "." + peer_id.at(7);
+ 		}
+ 			
+ 		return name;
+diff --git a/libktorrent/torrent/peermanager.cpp b/libktorrent/torrent/peermanager.cpp
+index adacbae..eefd246 100644
+--- a/libktorrent/torrent/peermanager.cpp
++++ b/libktorrent/torrent/peermanager.cpp
+@@ -475,10 +475,10 @@ namespace bt
+ 				
+ 				// convert IP address to string 
+ 				pp.ip = TQString("%1.%2.%3.%4")
+-						.tqarg((e.ip & 0xFF000000) >> 24)
+-						.tqarg((e.ip & 0x00FF0000) >> 16)
+-						.tqarg((e.ip & 0x0000FF00) >> 8)
+-						.tqarg( e.ip & 0x000000FF);
++						.arg((e.ip & 0xFF000000) >> 24)
++						.arg((e.ip & 0x00FF0000) >> 16)
++						.arg((e.ip & 0x0000FF00) >> 8)
++						.arg( e.ip & 0x000000FF);
+ 				pp.port = e.port;
+ 				addPotentialPeer(pp);
+ 			}
+@@ -564,10 +564,10 @@ namespace bt
+ 			pp.port = ReadUint16(tmp,4);
+ 			Uint32 ip = ReadUint32(tmp,0);
+ 			pp.ip = TQString("%1.%2.%3.%4")
+-						.tqarg((ip & 0xFF000000) >> 24)
+-						.tqarg((ip & 0x00FF0000) >> 16)
+-						.tqarg((ip & 0x0000FF00) >> 8)
+-						.tqarg( ip & 0x000000FF);
++						.arg((ip & 0xFF000000) >> 24)
++						.arg((ip & 0x00FF0000) >> 16)
++						.arg((ip & 0x0000FF00) >> 8)
++						.arg( ip & 0x000000FF);
+ 			pp.local = false;
+ 			
+ 			addPotentialPeer(pp);
+diff --git a/libktorrent/torrent/peeruploader.cpp b/libktorrent/torrent/peeruploader.cpp
+index 4881dc8..2de899b 100644
+--- a/libktorrent/torrent/peeruploader.cpp
++++ b/libktorrent/torrent/peeruploader.cpp
+@@ -45,7 +45,7 @@ namespace bt
+ 	void PeerUploader::addRequest(const Request & r)
+ 	{
+ 	//	Out(SYS_CON|LOG_DEBUG) << 
+-	//			TQString("PeerUploader::addRequest %1 %2 %3\n").tqarg(r.getIndex()).tqarg(r.getOffset()).tqarg(r.getLength()) << endl;
++	//			TQString("PeerUploader::addRequest %1 %2 %3\n").arg(r.getIndex()).arg(r.getOffset()).arg(r.getLength()) << endl;
+ 		
+ 		// allowed fast chunks go to the front of the queue
+ 		requests.append(r);
+@@ -54,7 +54,7 @@ namespace bt
+ 	void PeerUploader::removeRequest(const Request & r)
+ 	{
+ 	//	Out(SYS_CON|LOG_DEBUG) << 
+-	//			TQString("PeerUploader::removeRequest %1 %2 %3\n").tqarg(r.getIndex()).tqarg(r.getOffset()).tqarg(r.getLength()) << endl;
++	//			TQString("PeerUploader::removeRequest %1 %2 %3\n").arg(r.getIndex()).arg(r.getOffset()).arg(r.getLength()) << endl;
+ 		requests.remove(r);
+ 		peer->getPacketWriter().doNotSendPiece(r,peer->getStats().fast_extensions);
+ 	}
+diff --git a/libktorrent/torrent/queuemanager.cpp b/libktorrent/torrent/queuemanager.cpp
+index affedf5..0c76b8a 100644
+--- a/libktorrent/torrent/queuemanager.cpp
++++ b/libktorrent/torrent/queuemanager.cpp
+@@ -132,7 +132,7 @@ namespace bt
+ 							return kt::NOT_ENOUGH_DISKSPACE;
+ 
+ 						case 1: //ask user
+-							if (KMessageBox::questionYesNo(0, i18n("You don't have enough disk space to download this torrent. Are you sure you want to continue?"), i18n("Insufficient disk space for %1").tqarg(s.torrent_name)) == KMessageBox::No)
++							if (KMessageBox::questionYesNo(0, i18n("You don't have enough disk space to download this torrent. Are you sure you want to continue?"), i18n("Insufficient disk space for %1").arg(s.torrent_name)) == KMessageBox::No)
+ 							{
+ 								tc->setPriority(0);
+ 								return kt::USER_CANCELED;
+@@ -154,7 +154,7 @@ namespace bt
+ 
+ 			if (s.completed && max_ratio > 0 && ratio >= max_ratio)
+ 			{
+-				if (KMessageBox::questionYesNo(0, i18n("Torrent \"%1\" has reached its maximum share ratio. Ignore the limit and start seeding anyway?").tqarg(s.torrent_name), i18n("Maximum share ratio limit reached.")) == KMessageBox::Yes)
++				if (KMessageBox::questionYesNo(0, i18n("Torrent \"%1\" has reached its maximum share ratio. Ignore the limit and start seeding anyway?").arg(s.torrent_name), i18n("Maximum share ratio limit reached.")) == KMessageBox::Yes)
+ 				{
+ 					tc->setMaxShareRatio(0.00f);
+ 					startSafely(tc);
+@@ -234,7 +234,7 @@ namespace bt
+ 				{
+ 					TQString msg =
+ 						i18n("Error stopping torrent %1 : %2")
+-						.tqarg(s.torrent_name).tqarg(err.toString());
++						.arg(s.torrent_name).arg(err.toString());
+ 					KMessageBox::error(0, msg, i18n("Error"));
+ 				}
+ 			}
+@@ -740,7 +740,7 @@ namespace bt
+ 
+ 			TQString msg =
+ 				i18n("Error starting torrent %1 : %2")
+-				.tqarg(s.torrent_name).tqarg(err.toString());
++				.arg(s.torrent_name).arg(err.toString());
+ 
+ 			KMessageBox::error(0, msg, i18n("Error"));
+ 		}
+@@ -758,7 +758,7 @@ namespace bt
+ 
+ 			TQString msg =
+ 				i18n("Error stopping torrent %1 : %2")
+-				.tqarg(s.torrent_name).tqarg(err.toString());
++				.arg(s.torrent_name).arg(err.toString());
+ 
+ 			KMessageBox::error(0, msg, i18n("Error"));
+ 		}
+diff --git a/libktorrent/torrent/torrent.cpp b/libktorrent/torrent/torrent.cpp
+index c5d8459..c175be9 100644
+--- a/libktorrent/torrent/torrent.cpp
++++ b/libktorrent/torrent/torrent.cpp
+@@ -101,7 +101,7 @@ namespace bt
+ 		TQFile fptr(file);
+ 		if (!fptr.open(IO_ReadOnly))
+ 			throw Error(i18n(" Unable to open torrent file %1 : %2")
+-					.tqarg(file).tqarg(fptr.errorString()));
++					.arg(file).arg(fptr.errorString()));
+ 		
+ 		TQByteArray data(fptr.size());
+ 	//	Out() << "File size = " << fptr.size() << endl;
+@@ -366,7 +366,7 @@ namespace bt
+ 	const SHA1Hash & Torrent::getHash(Uint32 idx) const
+ 	{
+ 		if (idx >= hash_pieces.count())
+-			throw Error(TQString("Torrent::getHash %1 is out of bounds").tqarg(idx));
++			throw Error(TQString("Torrent::getHash %1 is out of bounds").arg(idx));
+ 		
+ 		return hash_pieces[idx];
+ 	}
+diff --git a/libktorrent/torrent/torrentcontrol.cpp b/libktorrent/torrent/torrentcontrol.cpp
+index 590a517..3e22ec1 100644
+--- a/libktorrent/torrent/torrentcontrol.cpp
++++ b/libktorrent/torrent/torrentcontrol.cpp
+@@ -506,7 +506,7 @@ namespace bt
+ 			delete tor;
+ 			tor = 0;
+ 			throw Error(i18n("An error occurred while loading the torrent."
+-					" The torrent is probably corrupt or is not a torrent file.\n%1").tqarg(torrent));
++					" The torrent is probably corrupt or is not a torrent file.\n%1").arg(torrent));
+ 		}
+ 		
+ 		initInternal(qman,tmpdir,ddir,default_save_dir,torrent.startsWith(tmpdir));
+@@ -544,7 +544,7 @@ namespace bt
+ 		TQFile fptr(tor_copy);
+ 		if (!fptr.open(IO_WriteOnly))
+ 			throw Error(i18n("Unable to create %1 : %2")
+-					.tqarg(tor_copy).tqarg(fptr.errorString()));
++					.arg(tor_copy).arg(fptr.errorString()));
+ 	
+ 		fptr.writeBlock(data.data(),data.size());
+ 	}
+@@ -559,12 +559,12 @@ namespace bt
+ 			{
+ 				qman->mergeAnnounceList(tor->getInfoHash(),tor->getTrackerList());
+ 
+-				throw Error(i18n("You are already downloading this torrent %1, the list of trackers of both torrents has been merged.").tqarg(tor->getNameSuggestion()));
++				throw Error(i18n("You are already downloading this torrent %1, the list of trackers of both torrents has been merged.").arg(tor->getNameSuggestion()));
+ 			}
+ 			else
+ 			{
+ 				throw Error(i18n("You are already downloading the torrent %1")
+-						.tqarg(tor->getNameSuggestion()));
++						.arg(tor->getNameSuggestion()));
+ 			}
+ 		}
+ 	}
+@@ -670,7 +670,7 @@ namespace bt
+ 				
+ 				throw Error(
+ 						i18n("Cannot migrate %1 : %2")
+-						.tqarg(tor->getNameSuggestion()).tqarg(err.toString()));
++						.arg(tor->getNameSuggestion()).arg(err.toString()));
+ 			}
+ 		}
+ 		setupData(ddir);
+@@ -993,20 +993,20 @@ namespace bt
+ 		if (stats.running)
+ 		{
+ 			TQDateTime now = TQDateTime::currentDateTime();
+-			st.write("RUNNING_TIME_DL",TQString("%1").tqarg(istats.running_time_dl + istats.time_started_dl.secsTo(now)));
+-			st.write("RUNNING_TIME_UL",TQString("%1").tqarg(istats.running_time_ul + istats.time_started_ul.secsTo(now)));
++			st.write("RUNNING_TIME_DL",TQString("%1").arg(istats.running_time_dl + istats.time_started_dl.secsTo(now)));
++			st.write("RUNNING_TIME_UL",TQString("%1").arg(istats.running_time_ul + istats.time_started_ul.secsTo(now)));
+ 		}
+ 		else
+ 		{
+-			st.write("RUNNING_TIME_DL", TQString("%1").tqarg(istats.running_time_dl));
+-			st.write("RUNNING_TIME_UL", TQString("%1").tqarg(istats.running_time_ul));
++			st.write("RUNNING_TIME_DL", TQString("%1").arg(istats.running_time_dl));
++			st.write("RUNNING_TIME_UL", TQString("%1").arg(istats.running_time_ul));
+ 		}
+ 		
+-		st.write("PRIORITY", TQString("%1").tqarg(istats.priority));
+-		st.write("AUTOSTART", TQString("%1").tqarg(stats.autostart));
+-		st.write("IMPORTED", TQString("%1").tqarg(stats.imported_bytes));
++		st.write("PRIORITY", TQString("%1").arg(istats.priority));
++		st.write("AUTOSTART", TQString("%1").arg(stats.autostart));
++		st.write("IMPORTED", TQString("%1").arg(stats.imported_bytes));
+ 		st.write("CUSTOM_OUTPUT_NAME",istats.custom_output_name ? "1" : "0");
+-		st.write("MAX_RATIO", TQString("%1").tqarg(stats.max_share_ratio,0,'f',2));
++		st.write("MAX_RATIO", TQString("%1").arg(stats.max_share_ratio,0,'f',2));
+ 		st.write("MAX_SEED_TIME",TQString::number(stats.max_seed_time));
+ 		st.write("RESTART_DISK_PREALLOCATION",prealloc ? "1" : "0");
+ 		
+@@ -1274,7 +1274,7 @@ namespace bt
+ 							" To make sure this torrent still works with this version of KTorrent, "
+ 							"we will migrate this torrent. You will be asked for a location to save "
+ 							"the torrent to. If you press cancel, we will select your home directory.")
+-								.tqarg(tor->getNameSuggestion()));
++								.arg(tor->getNameSuggestion()));
+ 					outputdir = KFileDialog::getExistingDirectory(TQString(), 0,i18n("Select Folder to Save To"));
+ 					if (outputdir.isNull())
+ 						outputdir = TQDir::homeDirPath();
+diff --git a/libktorrent/torrent/torrentcreator.cpp b/libktorrent/torrent/torrentcreator.cpp
+index 5538b9e..fae7d75 100644
+--- a/libktorrent/torrent/torrentcreator.cpp
++++ b/libktorrent/torrent/torrentcreator.cpp
+@@ -120,7 +120,7 @@ namespace bt
+ 	{
+ 		File fptr;
+ 		if (!fptr.open(url,"wb"))
+-			throw Error(i18n("Cannot open file %1: %2").tqarg(url).tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot open file %1: %2").arg(url).arg(fptr.errorString()));
+ 
+ 		BEncoder enc(&fptr);
+ 		enc.beginDict(); // top dict
+@@ -147,7 +147,7 @@ namespace bt
+ 			enc.write(TQString("comments"));
+ 			enc.write(comments);
+ 		}
+-		enc.write(TQString("created by"));enc.write(TQString("KTorrent %1").tqarg(kt::VERSION_STRING));
++		enc.write(TQString("created by"));enc.write(TQString("KTorrent %1").arg(kt::VERSION_STRING));
+ 		enc.write(TQString("creation date"));enc.write((Uint64)time(0));
+ 		enc.write(TQString("info"));
+ 		saveInfo(enc);
+@@ -237,7 +237,7 @@ namespace bt
+ 		File fptr;
+ 		if (!fptr.open(target,"rb"))
+ 			throw Error(i18n("Cannot open file %1: %2")
+-					.tqarg(target).tqarg(fptr.errorString()));
++					.arg(target).arg(fptr.errorString()));
+ 
+ 		Uint32 s = cur_chunk != num_chunks - 1 ? chunk_size : last_size;
+ 		fptr.seek(File::BEGIN,(Int64)cur_chunk*chunk_size);
+@@ -275,7 +275,7 @@ namespace bt
+ 			if (!fptr.open(target + f.getPath(),"rb"))
+ 			{
+ 				throw Error(i18n("Cannot open file %1: %2")
+-						.tqarg(f.getPath()).tqarg(fptr.errorString()));
++						.arg(f.getPath()).arg(fptr.errorString()));
+ 			}
+ 
+ 			// first calculate offset into file
+@@ -336,7 +336,7 @@ namespace bt
+ 		// write full index file
+ 		File fptr;
+ 		if (!fptr.open(dd + "index","wb"))
+-			throw Error(i18n("Cannot create index file: %1").tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot create index file: %1").arg(fptr.errorString()));
+ 
+ 		for (Uint32 i = 0;i < num_chunks;i++)
+ 		{
+diff --git a/libktorrent/torrent/udptracker.cpp b/libktorrent/torrent/udptracker.cpp
+index 6597349..ab33771 100644
+--- a/libktorrent/torrent/udptracker.cpp
++++ b/libktorrent/torrent/udptracker.cpp
+@@ -144,10 +144,10 @@ namespace bt
+ 		{
+ 			Uint32 ip = ReadUint32(buf,i);
+ 			addPeer(TQString("%1.%2.%3.%4")
+-					.tqarg((ip & (0xFF000000)) >> 24)
+-					.tqarg((ip & (0x00FF0000)) >> 16)
+-					.tqarg((ip & (0x0000FF00)) >> 8)
+-					.tqarg(ip & 0x000000FF),
++					.arg((ip & (0xFF000000)) >> 24)
++					.arg((ip & (0x00FF0000)) >> 16)
++					.arg((ip & (0x0000FF00)) >> 8)
++					.arg(ip & 0x000000FF),
+ 					ReadUint16(buf,i+4));
+ 		}
+ 		
+diff --git a/libktorrent/torrent/udptrackersocket.cpp b/libktorrent/torrent/udptrackersocket.cpp
+index e440e3c..78be6ad 100644
+--- a/libktorrent/torrent/udptrackersocket.cpp
++++ b/libktorrent/torrent/udptrackersocket.cpp
+@@ -59,7 +59,7 @@ namespace bt
+ 		if (!bound)
+ 		{
+ 			KMessageBox::error(0,
+-				i18n("Cannot bind to udp port %1 or the 10 following ports.").tqarg(port));
++				i18n("Cannot bind to udp port %1 or the 10 following ports.").arg(port));
+ 		}
+ 		else
+ 		{
+diff --git a/libktorrent/util/autorotatelogjob.cpp b/libktorrent/util/autorotatelogjob.cpp
+index d3a2d8a..de4d1c5 100644
+--- a/libktorrent/util/autorotatelogjob.cpp
++++ b/libktorrent/util/autorotatelogjob.cpp
+@@ -46,8 +46,8 @@ namespace bt
+ 	{
+ 		while (cnt > 1)
+ 		{
+-			TQString prev = TQString("%1-%2.gz").tqarg(file).tqarg(cnt - 1);
+-			TQString curr = TQString("%1-%2.gz").tqarg(file).tqarg(cnt);
++			TQString prev = TQString("%1-%2.gz").arg(file).arg(cnt - 1);
++			TQString curr = TQString("%1-%2.gz").arg(file).arg(cnt);
+ 			if (bt::Exists(prev)) // if file exists start the move job
+ 			{
+ 				KIO::Job* sj = KIO::file_move(KURL::fromPathOrURL(prev),KURL::fromPathOrURL(curr),-1,true,false,false);
+diff --git a/libktorrent/util/file.cpp b/libktorrent/util/file.cpp
+index f757142..d27ccba 100644
+--- a/libktorrent/util/file.cpp
++++ b/libktorrent/util/file.cpp
+@@ -84,7 +84,7 @@ namespace bt
+ 			if (errno == ENOSPC)
+ 				Out() << "Disk full !" << endl;
+ 			
+-			throw Error(i18n("Cannot write to %1 : %2").tqarg(file).tqarg(strerror(errno)));
++			throw Error(i18n("Cannot write to %1 : %2").arg(file).arg(strerror(errno)));
+ 		}
+ 		return ret;
+ 	}
+@@ -98,7 +98,7 @@ namespace bt
+ 		if (ferror(fptr))
+ 		{
+ 			clearerr(fptr);
+-			throw Error(i18n("Cannot read from %1").tqarg(file));
++			throw Error(i18n("Cannot read from %1").arg(file));
+ 		}
+ 		return ret;
+ 	}
+diff --git a/libktorrent/util/fileops.cpp b/libktorrent/util/fileops.cpp
+index a83134a..d9ef172 100644
+--- a/libktorrent/util/fileops.cpp
++++ b/libktorrent/util/fileops.cpp
+@@ -76,10 +76,10 @@ namespace bt
+ 		{
+ 			if (!nothrow)
+ 				throw Error(i18n("Cannot create directory %1: %2")
+-					.tqarg(dir).tqarg(strerror(errno)));
++					.arg(dir).arg(strerror(errno)));
+ 			else
+ 			{
+-				Out() << TQString("Error : Cannot create directory %1 : %2").tqarg(dir).tqarg(strerror(errno))<< endl;
++				Out() << TQString("Error : Cannot create directory %1 : %2").arg(dir).arg(strerror(errno))<< endl;
+ 			}
+ 		}
+ 	}
+@@ -90,12 +90,12 @@ namespace bt
+ 		{
+ 			if (!nothrow)
+ 				throw Error(i18n("Cannot symlink %1 to %2: %3")
+-					.tqarg(link_url.utf8().data()).tqarg(link_to.utf8().data())
+-					.tqarg(strerror(errno)));
++					.arg(link_url.utf8().data()).arg(link_to.utf8().data())
++					.arg(strerror(errno)));
+ 			else
+ 				Out() << TQString("Error : Cannot symlink %1 to %2: %3")
+-						.tqarg(link_url.utf8().data()).tqarg(link_to.utf8().data())
+-				.tqarg(strerror(errno)) << endl;
++						.arg(link_url.utf8().data()).arg(link_to.utf8().data())
++				.arg(strerror(errno)) << endl;
+ 		}
+ 	}
+ 
+@@ -106,12 +106,12 @@ namespace bt
+ 		{
+ 			if (!nothrow)
+ 				throw Error(i18n("Cannot move %1 to %2: %3")
+-					.tqarg(src).tqarg(dst)
+-						.tqarg(KIO::NetAccess::lastErrorString()));
++					.arg(src).arg(dst)
++						.arg(KIO::NetAccess::lastErrorString()));
+ 			else
+ 				Out() << TQString("Error : Cannot move %1 to %2: %3")
+-						.tqarg(src).tqarg(dst)
+-						.tqarg(KIO::NetAccess::lastErrorString()) << endl;
++						.arg(src).arg(dst)
++						.arg(KIO::NetAccess::lastErrorString()) << endl;
+ 		
+ 		}
+ 	}
+@@ -122,12 +122,12 @@ namespace bt
+ 		{
+ 			if (!nothrow)
+ 				throw Error(i18n("Cannot copy %1 to %2: %3")
+-						.tqarg(src).tqarg(dst)
+-						.tqarg(KIO::NetAccess::lastErrorString()));
++						.arg(src).arg(dst)
++						.arg(KIO::NetAccess::lastErrorString()));
+ 			else
+ 				Out() << TQString("Error : Cannot copy %1 to %2: %3")
+-						.tqarg(src).tqarg(dst)
+-						.tqarg(KIO::NetAccess::lastErrorString()) << endl;
++						.arg(src).arg(dst)
++						.arg(KIO::NetAccess::lastErrorString()) << endl;
+ 	
+ 		}
+ 	}
+@@ -138,12 +138,12 @@ namespace bt
+ 		{
+ 			if (!nothrow)
+ 				throw Error(i18n("Cannot copy %1 to %2: %3")
+-						.tqarg(src).tqarg(dst)
+-						.tqarg(KIO::NetAccess::lastErrorString()));
++						.arg(src).arg(dst)
++						.arg(KIO::NetAccess::lastErrorString()));
+ 			else
+ 				Out() << TQString("Error : Cannot copy %1 to %2: %3")
+-						.tqarg(src).tqarg(dst)
+-						.tqarg(KIO::NetAccess::lastErrorString()) << endl;
++						.arg(src).arg(dst)
++						.arg(KIO::NetAccess::lastErrorString()) << endl;
+ 	
+ 		}
+ 	}
+@@ -230,8 +230,8 @@ namespace bt
+ 		if (!ok)
+ 		{
+ 			TQString err = i18n("Cannot delete %1: %2")
+-					.tqarg(url)
+-					.tqarg(strerror(errno));
++					.arg(url)
++					.arg(strerror(errno));
+ 			if (!nothrow)
+ 				throw Error(err);
+ 			else
+@@ -249,8 +249,8 @@ namespace bt
+ 		{
+ 			if (!nothrow)
+ 				throw Error(i18n("Cannot create %1: %2")
+-						.tqarg(url)
+-						.tqarg(fptr.errorString()));
++						.arg(url)
++						.arg(fptr.errorString()));
+ 			else
+ 				Out() << "Error : Cannot create " << url << " : "
+ 						<< fptr.errorString() << endl;
+@@ -270,7 +270,7 @@ namespace bt
+ #endif
+ 		if (ret < 0)
+ 			throw Error(i18n("Cannot calculate the filesize of %1: %2")
+-					.tqarg(url).tqarg(strerror(errno)));
++					.arg(url).arg(strerror(errno)));
+ 		
+ 		return (Uint64)sb.st_size;
+ 	}
+@@ -286,7 +286,7 @@ namespace bt
+ 		ret = fstat(fd,&sb);
+ #endif
+ 		if (ret < 0)
+-			throw Error(i18n("Cannot calculate the filesize : %2").tqarg(strerror(errno)));
++			throw Error(i18n("Cannot calculate the filesize : %2").arg(strerror(errno)));
+ 		
+ 		return (Uint64)sb.st_size;
+ 	}
+@@ -314,7 +314,7 @@ namespace bt
+ 	{
+ 		int fd = ::open(TQFile::encodeName(path),O_RDWR | O_LARGEFILE);
+ 		if (fd < 0)
+-			throw Error(i18n("Cannot open %1 : %2").tqarg(path).tqarg(strerror(errno)));
++			throw Error(i18n("Cannot open %1 : %2").arg(path).arg(strerror(errno)));
+ 		
+ 		bool ret = FatPreallocate(fd,size);
+ 		close(fd);
+@@ -343,7 +343,7 @@ namespace bt
+ 	{
+ 		int fd = ::open(TQFile::encodeName(path), O_RDWR | O_LARGEFILE);
+ 		if (fd < 0)
+-			throw Error(i18n("Cannot open %1 : %2").tqarg(path).tqarg(strerror(errno)));
++			throw Error(i18n("Cannot open %1 : %2").arg(path).arg(strerror(errno)));
+ 		
+ 		bool ret = XfsPreallocate(fd,size);
+ 		close(fd);
+@@ -364,16 +364,16 @@ namespace bt
+ #else
+ 			if (ftruncate(fd,size) == -1)
+ #endif	
+-				throw Error(i18n("Cannot expand file : %1").tqarg(strerror(errno)));
++				throw Error(i18n("Cannot expand file : %1").arg(strerror(errno)));
+ 		}
+ 		else
+ 		{
+ #if HAVE_POSIX_FALLOCATE64
+ 			if (posix_fallocate64(fd,0,size) != 0)
+-				throw Error(i18n("Cannot expand file : %1").tqarg(strerror(errno)));
++				throw Error(i18n("Cannot expand file : %1").arg(strerror(errno)));
+ #elif HAVE_POSIX_FALLOCATE
+ 			if (posix_fallocate(fd,0,size) != 0)
+-				throw Error(i18n("Cannot expand file : %1").tqarg(strerror(errno)));
++				throw Error(i18n("Cannot expand file : %1").arg(strerror(errno)));
+ #else
+ 			SeekFile(fd,0,SEEK_SET);
+ 			bt::Array<Uint8> buf(4096);
+@@ -388,9 +388,9 @@ namespace bt
+ 				
+ 				int ret = write(fd,buf,to_write);
+ 				if (ret < 0)
+-					throw Error(i18n("Cannot expand file : %1").tqarg(strerror(errno)));
++					throw Error(i18n("Cannot expand file : %1").arg(strerror(errno)));
+ 				else if (ret == 0 || ret != (int)to_write)
+-					throw Error(i18n("Cannot expand file").tqarg(strerror(errno)));
++					throw Error(i18n("Cannot expand file").arg(strerror(errno)));
+ 				else
+ 					written += to_write;
+ 			}
+@@ -402,7 +402,7 @@ namespace bt
+ 	{
+ 		int fd = ::open(TQFile::encodeName(path),O_RDWR | O_LARGEFILE);
+ 		if (fd < 0)
+-			throw Error(i18n("Cannot open %1 : %2").tqarg(path).tqarg(strerror(errno)));
++			throw Error(i18n("Cannot open %1 : %2").arg(path).arg(strerror(errno)));
+ 		
+ 		try
+ 		{
+@@ -423,7 +423,7 @@ namespace bt
+ #else
+ 		if (lseek(fd,off,whence) == -1)
+ #endif
+-			throw Error(i18n("Cannot seek in file : %1").tqarg(strerror(errno)));
++			throw Error(i18n("Cannot seek in file : %1").arg(strerror(errno)));
+ 	}
+ 	
+ 	bool FreeDiskSpace(const TQString & path,Uint64 & bytes_free)
+diff --git a/libktorrent/util/log.cpp b/libktorrent/util/log.cpp
+index 2cb53da..2fb36f9 100644
+--- a/libktorrent/util/log.cpp
++++ b/libktorrent/util/log.cpp
+@@ -79,8 +79,8 @@ namespace bt
+ 			// move all log files one up
+ 			for (Uint32 i = 10;i > 1;i--)
+ 			{
+-				TQString prev = TQString("%1-%2.gz").tqarg(file).tqarg(i - 1);
+-				TQString curr = TQString("%1-%2.gz").tqarg(file).tqarg(i);
++				TQString prev = TQString("%1-%2.gz").arg(file).arg(i - 1);
++				TQString curr = TQString("%1-%2.gz").arg(file).arg(i);
+ 				if (bt::Exists(prev))
+ 					bt::Move(prev,curr,true);
+ 			}
+@@ -100,7 +100,7 @@ namespace bt
+ 
+ 			fptr.setName(file);
+ 			if (!fptr.open(IO_WriteOnly))
+-				throw Error(i18n("Cannot open log file %1 : %2").tqarg(file).tqarg(fptr.errorString()));
++				throw Error(i18n("Cannot open log file %1 : %2").arg(file).arg(fptr.errorString()));
+ 
+ 			out->setDevice(TQT_TQIODEVICE(&fptr));
+ 		}
+diff --git a/libktorrent/util/profiler.cpp b/libktorrent/util/profiler.cpp
+index a0f42d2..4da9e7f 100644
+--- a/libktorrent/util/profiler.cpp
++++ b/libktorrent/util/profiler.cpp
+@@ -30,7 +30,7 @@ namespace bt
+ 		min = max = avg = 0.0;
+ 		count = 0;
+ 		start_time = 0.0;
+-		tqchildren.setAutoDelete(true);
++		children.setAutoDelete(true);
+ 	}
+ 	
+ 	Profile::~Profile()
+@@ -63,8 +63,8 @@ namespace bt
+ 		
+ 	Profile* Profile::child(const TQString & name)
+ 	{
+-		TQPtrList<Profile>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		TQPtrList<Profile>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			Profile* p = *i;
+ 			if (p->name == name)
+@@ -73,7 +73,7 @@ namespace bt
+ 		}
+ 		
+ 		Profile* p = new Profile(this,name);
+-		tqchildren.append(p);
++		children.append(p);
+ 		return p;
+ 	}
+ 	
+@@ -84,8 +84,8 @@ namespace bt
+ 		out.precision(5);
+ 		out << qSetW(60) << nb << qSetW(10) << min << qSetW(10) << max << qSetW(10) << avg << qSetW(10) << count << endl;
+ 		
+-		TQPtrList<Profile>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		TQPtrList<Profile>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			Profile* p = *i;
+ 			p->save(out,nb);
+diff --git a/libktorrent/util/profiler.h b/libktorrent/util/profiler.h
+index 917a671..1b220b1 100644
+--- a/libktorrent/util/profiler.h
++++ b/libktorrent/util/profiler.h
+@@ -35,7 +35,7 @@ namespace bt
+ 	class Profile
+ 	{
+ 		Profile* parent;
+-		TQPtrList<Profile> tqchildren;
++		TQPtrList<Profile> children;
+ 		
+ 		TQString name;
+ 		double min,max,avg;
+diff --git a/plugins/infowidget/chunkdownloadview.cpp b/plugins/infowidget/chunkdownloadview.cpp
+index eaed47e..90595bd 100644
+--- a/plugins/infowidget/chunkdownloadview.cpp
++++ b/plugins/infowidget/chunkdownloadview.cpp
+@@ -43,7 +43,7 @@ namespace kt
+ 		cd->getStats(s);
+ 			
+ 		setText(0,TQString::number(s.chunk_index));
+-		setText(1,TQString("%1 / %2").tqarg(s.pieces_downloaded).tqarg(s.total_pieces));
++		setText(1,TQString("%1 / %2").arg(s.pieces_downloaded).arg(s.total_pieces));
+ 		setText(2,s.current_peer_id);
+ 		setText(3,KBytesPerSecToString(s.download_speed / 1024.0));
+ 		setText(4,TQString::number(s.num_downloaders));
+diff --git a/plugins/infowidget/chunkdownloadviewbase.ui b/plugins/infowidget/chunkdownloadviewbase.ui
+index 01386e0..ddac38e 100644
+--- a/plugins/infowidget/chunkdownloadviewbase.ui
++++ b/plugins/infowidget/chunkdownloadviewbase.ui
+@@ -59,7 +59,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -97,7 +97,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -135,7 +135,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -173,7 +173,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -211,7 +211,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -249,7 +249,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+diff --git a/plugins/infowidget/fileview.cpp b/plugins/infowidget/fileview.cpp
+index b8d371f..6c80bf7 100644
+--- a/plugins/infowidget/fileview.cpp
++++ b/plugins/infowidget/fileview.cpp
+@@ -186,7 +186,7 @@ namespace kt
+ 			else if (percent > 100.0)
+ 				percent = 100.0;
+ 			KLocale* loc = KGlobal::locale();
+-			it.current()->setText(4,i18n("%1 %").tqarg(loc->formatNumber(percent,2)));
++			it.current()->setText(4,i18n("%1 %").arg(loc->formatNumber(percent,2)));
+ 		}
+ 	}
+ 
+diff --git a/plugins/infowidget/flagdb.cpp b/plugins/infowidget/flagdb.cpp
+index c7ec520..c1e1fb4 100644
+--- a/plugins/infowidget/flagdb.cpp
++++ b/plugins/infowidget/flagdb.cpp
+@@ -40,9 +40,9 @@ kt::FlagDBSource::FlagDBSource()
+ TQString kt::FlagDBSource::FlagDBSource::getPath(const TQString& country) const
+ {
+ 	if (type) {
+-		return locate(type, pathPattern.tqarg(country));
++		return locate(type, pathPattern.arg(country));
+ 	} else {
+-		return pathPattern.tqarg(country);
++		return pathPattern.arg(country);
+ 	}
+ }
+ 
+diff --git a/plugins/infowidget/iwfiletreediritem.cpp b/plugins/infowidget/iwfiletreediritem.cpp
+index c143e7e..2abd159 100644
+--- a/plugins/infowidget/iwfiletreediritem.cpp
++++ b/plugins/infowidget/iwfiletreediritem.cpp
+@@ -51,8 +51,8 @@ namespace kt
+ 	void IWFileTreeDirItem::updatePercentageInformation()
+ 	{
+ 		// first set all the child items
+-		bt::PtrMap<TQString,FileTreeItem>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		bt::PtrMap<TQString,FileTreeItem>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			IWFileTreeItem* item = (IWFileTreeItem*)i->second;
+ 			item->updatePercentageInformation();
+@@ -71,8 +71,8 @@ namespace kt
+ 	void IWFileTreeDirItem::updatePreviewInformation(kt::TorrentInterface* tc)
+ 	{
+ 		// first set all the child items
+-		bt::PtrMap<TQString,FileTreeItem>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		bt::PtrMap<TQString,FileTreeItem>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			IWFileTreeItem* item = (IWFileTreeItem*)i->second;
+ 			item->updatePreviewInformation(tc);
+@@ -91,11 +91,11 @@ namespace kt
+ 	Priority IWFileTreeDirItem::updatePriorityInformation(kt::TorrentInterface* tc)
+ 	{
+                 // first set all the child items
+-		bt::PtrMap<TQString,FileTreeItem>::iterator i = tqchildren.begin();
++		bt::PtrMap<TQString,FileTreeItem>::iterator i = children.begin();
+ 		bool setpriority = false;
+ 		bool oneexcluded = false;
+ 		Priority priority = PREVIEW_PRIORITY;
+-		if(i != tqchildren.end())
++		if(i != children.end())
+ 		{
+ 			IWFileTreeItem* item = (IWFileTreeItem*)i->second;
+ 			item->updatePriorityInformation(tc);
+@@ -105,7 +105,7 @@ namespace kt
+ 				oneexcluded = true;
+ 			setpriority = true;
+ 		}
+-		while (i != tqchildren.end())
++		while (i != children.end())
+ 		{
+ 			IWFileTreeItem* item = (IWFileTreeItem*)i->second;
+ 			item->updatePriorityInformation(tc);
+@@ -118,7 +118,7 @@ namespace kt
+ 
+                 // then recursivly move on to subdirs
+ 		bt::PtrMap<TQString,FileTreeDirItem>::iterator j = subdirs.begin();
+-		if(j != subdirs.end() && tqchildren.begin() == tqchildren.end())
++		if(j != subdirs.end() && children.begin() == children.end())
+ 		{
+ 			Priority priority =
+ 					((IWFileTreeDirItem*)j->second)->updatePriorityInformation(tc);
+@@ -189,8 +189,8 @@ namespace kt
+ 	void IWFileTreeDirItem::updateDNDInformation()
+ 	{
+ 			// first set all the child items
+-		bt::PtrMap<TQString,FileTreeItem>::iterator i = tqchildren.begin();
+-		while (i != tqchildren.end())
++		bt::PtrMap<TQString,FileTreeItem>::iterator i = children.begin();
++		while (i != children.end())
+ 		{
+ 			IWFileTreeItem* item = (IWFileTreeItem*)i->second;
+ 			item->updateDNDInformation();
+diff --git a/plugins/infowidget/iwfiletreeitem.cpp b/plugins/infowidget/iwfiletreeitem.cpp
+index fbfdb4b..04a4e41 100644
+--- a/plugins/infowidget/iwfiletreeitem.cpp
++++ b/plugins/infowidget/iwfiletreeitem.cpp
+@@ -92,7 +92,7 @@ namespace kt
+ 		else if (percent > 100.0)
+ 			percent = 100.0;
+ 		KLocale* loc = KGlobal::locale();
+-		setText(4,i18n("%1 %").tqarg(loc->formatNumber(percent,2)));
++		setText(4,i18n("%1 %").arg(loc->formatNumber(percent,2)));
+ 		perc_complete = percent;
+ 	}
+ 	
+diff --git a/plugins/infowidget/peerview.cpp b/plugins/infowidget/peerview.cpp
+index 35d2024..365e79d 100644
+--- a/plugins/infowidget/peerview.cpp
++++ b/plugins/infowidget/peerview.cpp
+@@ -170,11 +170,11 @@ namespace kt
+ 		setText(5,s.choked ? i18n("Yes") : i18n("No"));
+ 		//setPixmap(6,!s.snubbed ? yes_pix : no_pix);
+ 		setText(6,s.snubbed ? i18n("Yes") : i18n("No"));
+-		setText(7,TQString("%1 %").tqarg(loc->formatNumber(s.perc_of_file,2)));
++		setText(7,TQString("%1 %").arg(loc->formatNumber(s.perc_of_file,2)));
+ 		setPixmap(8,s.dht_support ? yes_pix : no_pix);
+ 		setText(9,loc->formatNumber(s.aca_score,2));
+ 		setPixmap(10,s.has_upload_slot ? yes_pix : TQPixmap());
+-		setText(11,TQString("%1 / %2").tqarg(s.num_down_requests).tqarg(s.num_up_requests));
++		setText(11,TQString("%1 / %2").arg(s.num_down_requests).arg(s.num_up_requests));
+ 		setText(12, BytesToString(s.bytes_downloaded));
+ 		setText(13, BytesToString(s.bytes_uploaded));
+ 	}
+diff --git a/plugins/infowidget/statustab.cpp b/plugins/infowidget/statustab.cpp
+index dee05fc..44fe656 100644
+--- a/plugins/infowidget/statustab.cpp
++++ b/plugins/infowidget/statustab.cpp
+@@ -142,16 +142,16 @@ namespace kt
+ 		m_tracker_status->setText(s.trackerstatus);
+ 		
+ 		m_seeders->setText(TQString("%1 (%2)")
+-				.tqarg(s.seeders_connected_to).tqarg(s.seeders_total));
++				.arg(s.seeders_connected_to).arg(s.seeders_total));
+ 	
+ 		m_leechers->setText(TQString("%1 (%2)")
+-				.tqarg(s.leechers_connected_to).tqarg(s.leechers_total));
++				.arg(s.leechers_connected_to).arg(s.leechers_total));
+ 	
+ 		float ratio = kt::ShareRatio(s);
+ 		if(!maxRatio->hasFocus() && useLimit->isChecked())
+ 			maxRatioUpdate();
+ 		
+-		m_share_ratio->setText(TQString("<font color=\"%1\">%2</font>").tqarg(ratio <= 0.8 ? "#ff0000" : "#1c9a1c").tqarg(KGlobal::locale()->formatNumber(ratio,2)));
++		m_share_ratio->setText(TQString("<font color=\"%1\">%2</font>").arg(ratio <= 0.8 ? "#ff0000" : "#1c9a1c").arg(KGlobal::locale()->formatNumber(ratio,2)));
+ 	
+ 		Uint32 secs = curr_tc->getRunningTimeUL(); 
+ 		if (secs == 0)
+diff --git a/plugins/infowidget/statustabbase.ui b/plugins/infowidget/statustabbase.ui
+index f50e503..789c0e6 100644
+--- a/plugins/infowidget/statustabbase.ui
++++ b/plugins/infowidget/statustabbase.ui
+@@ -87,7 +87,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -107,7 +107,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -145,7 +145,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -165,7 +165,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -219,7 +219,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -239,7 +239,7 @@
+                             <property name="text">
+                                 <string></string>
+                             </property>
+-                            <property name="tqalignment">
++                            <property name="alignment">
+                                 <set>AlignVCenter|AlignRight</set>
+                             </property>
+                         </widget>
+@@ -573,7 +573,7 @@
+                                     <property name="text">
+                                         <string></string>
+                                     </property>
+-                                    <property name="tqalignment">
++                                    <property name="alignment">
+                                         <set>AlignVCenter|AlignRight</set>
+                                     </property>
+                                 </widget>
+diff --git a/plugins/ipfilter/antip2p.cpp b/plugins/ipfilter/antip2p.cpp
+index b3755ec..d37300e 100644
+--- a/plugins/ipfilter/antip2p.cpp
++++ b/plugins/ipfilter/antip2p.cpp
+@@ -67,19 +67,19 @@ namespace kt
+ 	
+ 		tmp = ip;
+ 		tmp &= 0x000000FF;
+-		out.prepend(TQString("%1").tqarg(tmp));
++		out.prepend(TQString("%1").arg(tmp));
+ 		ip >>= 8;
+ 		tmp = ip;
+ 		tmp &= 0x000000FF;
+-		out.prepend(TQString("%1.").tqarg(tmp));
++		out.prepend(TQString("%1.").arg(tmp));
+ 		ip >>= 8;
+ 		tmp = ip;
+ 		tmp &= 0x000000FF;
+-		out.prepend(TQString("%1.").tqarg(tmp));
++		out.prepend(TQString("%1.").arg(tmp));
+ 		ip >>= 8;
+ 		tmp = ip;
+ 		tmp &= 0x000000FF;
+-		out.prepend(TQString("%1.").tqarg(tmp));
++		out.prepend(TQString("%1.").arg(tmp));
+ 	
+ 		return out;
+ 	}
+diff --git a/plugins/ipfilter/convert_dlg.ui b/plugins/ipfilter/convert_dlg.ui
+index a77b639..2a1938c 100644
+--- a/plugins/ipfilter/convert_dlg.ui
++++ b/plugins/ipfilter/convert_dlg.ui
+@@ -46,7 +46,7 @@
+             <property name="scaledContents">
+                 <bool>false</bool>
+             </property>
+-            <property name="tqalignment">
++            <property name="alignment">
+                 <set>WordBreak|AlignVCenter</set>
+             </property>
+             <property name="indent">
+diff --git a/plugins/partfileimport/importdialog.cpp b/plugins/partfileimport/importdialog.cpp
+index d7f92d0..ba43ac9 100644
+--- a/plugins/partfileimport/importdialog.cpp
++++ b/plugins/partfileimport/importdialog.cpp
+@@ -97,7 +97,7 @@ namespace kt
+ 		catch (Error & e)
+ 		{
+ 			delete dc;
+-			KMessageBox::error(this,i18n("Cannot verify data : %1").tqarg(e.toString()),i18n("Error"));
++			KMessageBox::error(this,i18n("Cannot verify data : %1").arg(e.toString()),i18n("Error"));
+ 			reject();
+ 			return;
+ 		}
+@@ -204,7 +204,7 @@ namespace kt
+ 			}
+ 			catch (Error & e)
+ 			{
+-				KMessageBox::error(this,i18n("Cannot load the torrent file : %1").tqarg(e.toString()),
++				KMessageBox::error(this,i18n("Cannot load the torrent file : %1").arg(e.toString()),
+ 								   i18n("Error"));
+ 				reject();
+ 				return;
+@@ -240,7 +240,7 @@ namespace kt
+ 			}
+ 			catch (Error & e)
+ 			{
+-				KMessageBox::error(this,i18n("Cannot load the torrent file : %1").tqarg(e.toString()),
++				KMessageBox::error(this,i18n("Cannot load the torrent file : %1").arg(e.toString()),
+ 								   i18n("Error"));
+ 				reject();
+ 				return;
+@@ -254,7 +254,7 @@ namespace kt
+ 		// first try to open it
+ 		File fptr;
+ 		if (!fptr.open(file,"wb"))
+-			throw Error(i18n("Cannot open %1 : %2").tqarg(file).tqarg(fptr.errorString()));
++			throw Error(i18n("Cannot open %1 : %2").arg(file).arg(fptr.errorString()));
+ 		
+ 		// write all chunks to the file
+ 		for (Uint32 i = 0;i < chunks.getNumBits();i++)
+@@ -332,8 +332,8 @@ namespace kt
+ 		out << "PRIORITY=0" << ::endl;
+ 		out << "AUTOSTART=1" << ::endl;
+ 		if (core->getGlobalMaxShareRatio() > 0)
+-			out << TQString("MAX_RATIO=%1").tqarg(core->getGlobalMaxShareRatio(),0,'f',2) << ::endl;
+-		out << TQString("IMPORTED=%1").tqarg(imported) << ::endl;
++			out << TQString("MAX_RATIO=%1").arg(core->getGlobalMaxShareRatio(),0,'f',2) << ::endl;
++		out << TQString("IMPORTED=%1").arg(imported) << ::endl;
+ 		if (custom_output_name)
+ 			out << "CUSTOM_OUTPUT_NAME=1" << endl;
+ 	}
+diff --git a/plugins/rssfeed/rsslinkdownloader.cpp b/plugins/rssfeed/rsslinkdownloader.cpp
+index 57db6ee..4c11bb9 100644
+--- a/plugins/rssfeed/rsslinkdownloader.cpp
++++ b/plugins/rssfeed/rsslinkdownloader.cpp
+@@ -42,7 +42,7 @@ namespace kt
+ 			if (!KURL(link).isValid())
+ 			{
+ 				// no valid URL, so just display an error message
+-				KMessageBox::error(0,i18n("Failed to find and download a valid torrent for %1").tqarg(curLink));
++				KMessageBox::error(0,i18n("Failed to find and download a valid torrent for %1").arg(curLink));
+ 				TQTimer::singleShot(50,this,TQT_SLOT(suicide()));
+ 			}
+ 			else
+@@ -180,7 +180,7 @@ namespace kt
+ 			else
+ 				{
+ 				//failed to download a selected article from a feed
+-				KMessageBox::error(0,i18n("Failed to find and download a valid torrent for %1").tqarg(curLink));
++				KMessageBox::error(0,i18n("Failed to find and download a valid torrent for %1").arg(curLink));
+ 				}
+ 				deleteLater();
+ 			}
+diff --git a/plugins/scanfolder/scanfolderprefpagewidget.cpp b/plugins/scanfolder/scanfolderprefpagewidget.cpp
+index af70fc6..5a96afd 100644
+--- a/plugins/scanfolder/scanfolderprefpagewidget.cpp
++++ b/plugins/scanfolder/scanfolderprefpagewidget.cpp
+@@ -73,7 +73,7 @@ namespace kt
+ 		TQString message = i18n( "ScanFolder - Folder %1: Invalid URL or folder does not exist. Please, choose a valid directory." );
+ 		if(!TQFile::exists(sfPath1) && usesf1)
+ 		{
+-			KMessageBox::sorry(0, message.tqarg( 1 ) );
++			KMessageBox::sorry(0, message.arg( 1 ) );
+ 			usesf1 = false;
+ 		}
+ 		else
+@@ -81,7 +81,7 @@ namespace kt
+ 
+ 		if(!TQFile::exists(sfPath2) && usesf2)
+ 		{
+-			KMessageBox::sorry(0, message.tqarg( 2 ) );
++			KMessageBox::sorry(0, message.arg( 2 ) );
+ 			usesf2 = false;
+ 		}
+ 		else
+@@ -89,7 +89,7 @@ namespace kt
+ 
+ 		if(!TQFile::exists(sfPath3) && usesf3)
+ 		{
+-			KMessageBox::sorry(0, message.tqarg( 3 ) );
++			KMessageBox::sorry(0, message.arg( 3 ) );
+ 			usesf3 = false;
+ 		}
+ 		else
+diff --git a/plugins/scheduler/bwscheduler.cpp b/plugins/scheduler/bwscheduler.cpp
+index a8b41af..56256a4 100644
+--- a/plugins/scheduler/bwscheduler.cpp
++++ b/plugins/scheduler/bwscheduler.cpp
+@@ -162,7 +162,7 @@ namespace kt
+ 		
+ 		TQDateTime now = TQDateTime::currentDateTime();
+ 
+-		TQString prefix = TQString("BWS: %1 :: ").tqarg(now.toString());
++		TQString prefix = TQString("BWS: %1 :: ").arg(now.toString());
+ 		
+ 		int t1 = now.date().dayOfWeek();
+ 		int t2 = now.time().hour();
+@@ -173,7 +173,7 @@ namespace kt
+ 			case CAT_NORMAL:
+ 				Out(SYS_SCD|LOG_NOTICE) << prefix << "Switching to NORMAL category" << endl;
+ 				Out(SYS_SCD|LOG_NOTICE) << prefix << TQString("%1 Up, %2 Down")
+-						.tqarg(m_core->getMaxUploadSpeed()).tqarg(m_core->getMaxDownloadSpeed()) << endl;
++						.arg(m_core->getMaxUploadSpeed()).arg(m_core->getMaxDownloadSpeed()) << endl;
+ 				if(!m_core)
+ 					break;
+ 				m_core->setPausedState(false);
+@@ -183,7 +183,7 @@ namespace kt
+ 			case CAT_FIRST:
+ 				Out(SYS_SCD|LOG_NOTICE) << prefix << "Switching to FIRST category" << endl;
+ 				Out(SYS_SCD|LOG_NOTICE) << prefix << TQString("%1 Up, %2 Down")
+-						.tqarg(m_schedule.getUpload(0)).tqarg(m_schedule.getDownload(0)) << endl;
++						.arg(m_schedule.getUpload(0)).arg(m_schedule.getDownload(0)) << endl;
+ 				if(!m_core)
+ 					break;
+ 				m_core->setPausedState(false);
+@@ -193,7 +193,7 @@ namespace kt
+ 			case CAT_SECOND:
+ 				Out(SYS_SCD|LOG_NOTICE) << prefix << "Switching to SECOND category" << endl;
+ 				Out(SYS_SCD|LOG_NOTICE) << prefix << TQString("%1 Up, %2 Down")
+-						.tqarg(m_schedule.getUpload(1)).tqarg(m_schedule.getDownload(1)) << endl;
++						.arg(m_schedule.getUpload(1)).arg(m_schedule.getDownload(1)) << endl;
+ 				if(!m_core)
+ 					break;
+ 				m_core->setPausedState(false);
+@@ -203,7 +203,7 @@ namespace kt
+ 			case CAT_THIRD:
+ 				Out(SYS_SCD|LOG_NOTICE) << prefix << "Switching to THIRD category" << endl;
+ 				Out(SYS_SCD|LOG_NOTICE) << prefix << TQString("%1 Up, %2 Down")
+-						.tqarg(m_schedule.getUpload(2)).tqarg(m_schedule.getDownload(2)) << endl;
++						.arg(m_schedule.getUpload(2)).arg(m_schedule.getDownload(2)) << endl;
+ 				if(!m_core)
+ 					break;
+ 				m_core->setPausedState(false);
+diff --git a/plugins/scheduler/bwspage.ui b/plugins/scheduler/bwspage.ui
+index 474969c..547bee1 100644
+--- a/plugins/scheduler/bwspage.ui
++++ b/plugins/scheduler/bwspage.ui
+@@ -625,7 +625,7 @@
+                     <property name="text">
+                         <string>* zero means no limit</string>
+                     </property>
+-                    <property name="tqalignment">
++                    <property name="alignment">
+                         <set>AlignVCenter|AlignRight</set>
+                     </property>
+                 </widget>
+diff --git a/plugins/search/searchplugin.cpp b/plugins/search/searchplugin.cpp
+index b22e858..2f63f4e 100644
+--- a/plugins/search/searchplugin.cpp
++++ b/plugins/search/searchplugin.cpp
+@@ -108,7 +108,7 @@ namespace kt
+ 			if(SearchPluginSettings::useDefaultBrowser())
+ 				kapp->invokeBrowser(url.url());
+ 			else
+-				KRun::runCommand(TQString("%1 \"%2\"").tqarg(SearchPluginSettings::customBrowser()).tqarg(url.url()), SearchPluginSettings::customBrowser(), "viewmag" );
++				KRun::runCommand(TQString("%1 \"%2\"").arg(SearchPluginSettings::customBrowser()).arg(url.url()), SearchPluginSettings::customBrowser(), "viewmag" );
+ 			
+ 			return;
+ 		}
+diff --git a/plugins/search/searchprefpage.cpp b/plugins/search/searchprefpage.cpp
+index adf78ba..c3f1517 100644
+--- a/plugins/search/searchprefpage.cpp
++++ b/plugins/search/searchprefpage.cpp
+@@ -53,9 +53,9 @@ namespace kt
+ 				" (capital letters) on the search engine you want to add. <br> "
+ 				"Then copy the URL in the addressbar after the search is finished, and paste it here.<br><br>Searching for %1"
+ 				" on Google for example, will result in http://www.google.com/search?q=FOOBAR&ie=UTF-8&oe=UTF-8. <br> "
+-				"If you add this URL here, ktorrent can search using Google.").tqarg("FOOBAR").tqarg("FOOBAR");
++				"If you add this URL here, ktorrent can search using Google.").arg("FOOBAR").arg("FOOBAR");
+ 		TQString info_short = i18n("Use your web browser to search for the string %1 (capital letters) "
+-				"on the search engine you want to add. Use the resulting URL below.").tqarg("FOOBAR");
++				"on the search engine you want to add. Use the resulting URL below.").arg("FOOBAR");
+ 		m_infoLabel->setText(info_short);
+ 		TQToolTip::add(m_infoLabel,info);
+ 		TQToolTip::add(m_engine_name,info);
+diff --git a/plugins/search/searchwidget.cpp b/plugins/search/searchwidget.cpp
+index abe1f39..67f6dfa 100644
+--- a/plugins/search/searchwidget.cpp
++++ b/plugins/search/searchwidget.cpp
+@@ -175,7 +175,7 @@ namespace kt
+ 		s_url.replace("FOOBAR", KURL::encode_string(text), true);
+ 		KURL url = KURL::fromPathOrURL(s_url);
+ 	
+-		statusBarMsg(i18n("Searching for %1...").tqarg(text));
++		statusBarMsg(i18n("Searching for %1...").arg(text));
+ 		//html_part->openURL(url);
+  		html_part->openURLRequest(url,KParts::URLArgs());
+ 	}	
+diff --git a/plugins/stats/ChartDrawer.cc b/plugins/stats/ChartDrawer.cc
+index 4c7c1d3..6eb08b4 100644
+--- a/plugins/stats/ChartDrawer.cc
++++ b/plugins/stats/ChartDrawer.cc
+@@ -416,7 +416,7 @@ void ChartDrawer::MakeLegendTooltip()
+ {
+ 	TQToolTip::remove(this);
+ 	
+-	TQString helpstr(TQString("<b>%1:</b><br><br>").tqarg(i18n("Legend")));
++	TQString helpstr(TQString("<b>%1:</b><br><br>").arg(i18n("Legend")));
+ 	TQMimeSourceFactory* factory = TQMimeSourceFactory::defaultFactory();
+ 	std::vector<TQImage> img;
+ 	
+@@ -434,7 +434,7 @@ void ChartDrawer::MakeLegendTooltip()
+ 		}
+ 		
+ 		factory->setImage(mEls[i].GetName().replace(' ', '_') + "-" + TQString::number(i), img[i]);
+-		helpstr += TQString("<img src='%1'>&nbsp;&nbsp;-&nbsp;&nbsp;%2<br>").tqarg(mEls[i].GetName().replace(" ", "_") + "-" + TQString::number(i)).tqarg( mEls[i].GetName() );	
++		helpstr += TQString("<img src='%1'>&nbsp;&nbsp;-&nbsp;&nbsp;%2<br>").arg(mEls[i].GetName().replace(" ", "_") + "-" + TQString::number(i)).arg( mEls[i].GetName() );	
+ 	}
+ 	
+ 	TQToolTip::add(this, helpstr);
+diff --git a/plugins/stats/sprefwgt.ui b/plugins/stats/sprefwgt.ui
+index 62cb6d3..0ad1c7f 100644
+--- a/plugins/stats/sprefwgt.ui
++++ b/plugins/stats/sprefwgt.ui
+@@ -253,7 +253,7 @@
+                     <property name="text">
+                         <string>Gathering data about many connected peers can be CPU consuming.</string>
+                     </property>
+-                    <property name="tqalignment">
++                    <property name="alignment">
+                         <set>WordBreak|AlignVCenter</set>
+                     </property>
+                 </widget>
+diff --git a/plugins/upnp/soap.cpp b/plugins/upnp/soap.cpp
+index f80d5af..c44ab1e 100644
+--- a/plugins/upnp/soap.cpp
++++ b/plugins/upnp/soap.cpp
+@@ -29,7 +29,7 @@ namespace kt
+ 				"<SOAP-ENV:Body>"
+ 				"<m:%1 xmlns:m=\"%2\"/>"
+ 				"</SOAP-ENV:Body></SOAP-ENV:Envelope>"
+-				"\r\n").tqarg(action).tqarg(service);
++				"\r\n").arg(action).arg(service);
+ 		
+ 		return comm;
+ 	}
+@@ -39,7 +39,7 @@ namespace kt
+ 		TQString comm = TQString("<?xml version=\"1.0\"?>\r\n"
+ 				"<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">"
+ 				"<SOAP-ENV:Body>"
+-				"<m:%1 xmlns:m=\"%2\">").tqarg(action).tqarg(service);
++				"<m:%1 xmlns:m=\"%2\">").arg(action).arg(service);
+ 		
+ 		for (TQValueList<Arg>::const_iterator i = args.begin();i != args.end();i++)
+ 		{
+@@ -47,7 +47,7 @@ namespace kt
+ 			comm += "<" + a.element + ">" + a.value + "</" + a.element + ">";
+ 		}
+ 		
+-		comm += TQString("</m:%1></SOAP-ENV:Body></SOAP-ENV:Envelope>\r\n").tqarg(action);
++		comm += TQString("</m:%1></SOAP-ENV:Body></SOAP-ENV:Envelope>\r\n").arg(action);
+ 		return comm;
+ 	}
+ }
+diff --git a/plugins/upnp/upnprouter.cpp b/plugins/upnp/upnprouter.cpp
+index e5593ea..05d47a4 100644
+--- a/plugins/upnp/upnprouter.cpp
++++ b/plugins/upnp/upnprouter.cpp
+@@ -113,7 +113,7 @@ namespace kt
+ 	UPnPRouter::UPnPRouter(const TQString & server,const KURL & location,bool verbose) : server(server),location(location),verbose(verbose)
+ 	{
+ 		// make the tmp_file unique, current time * a random number should be enough
+-		tmp_file = TQString("/tmp/ktorrent_upnp_description-%1.xml").tqarg(bt::GetCurrentTime() * rand());
++		tmp_file = TQString("/tmp/ktorrent_upnp_description-%1.xml").arg(bt::GetCurrentTime() * rand());
+ 	}
+ 	
+ 	
+@@ -227,7 +227,7 @@ namespace kt
+ 		
+ 		a.element = "NewPortMappingDescription";
+ 		static Uint32 cnt = 0;
+-		a.value = TQString("KTorrent UPNP %1").tqarg(cnt++);	// TODO: change this
++		a.value = TQString("KTorrent UPNP %1").arg(cnt++);	// TODO: change this
+ 		args.append(a);
+ 		
+ 		a.element = "NewLeaseDuration";
+@@ -335,7 +335,7 @@ namespace kt
+ 				"Content-length: $CONTENT_LENGTH\r\n"
+ 				"Content-Type: text/xml\r\n"
+ 				"SOAPAction: \"%4\"\r\n"
+-				"\r\n").tqarg(controlurl).tqarg(location.host()).tqarg(location.port()).tqarg(soapact);
++				"\r\n").arg(controlurl).arg(location.host()).arg(location.port()).arg(soapact);
+ 
+ 		
+ 		HTTPRequest* r = new HTTPRequest(http_hdr,query,location.host(),location.port(),verbose);
+diff --git a/plugins/webinterface/httpclienthandler.cpp b/plugins/webinterface/httpclienthandler.cpp
+index 1ad2d8d..cba0372 100644
+--- a/plugins/webinterface/httpclienthandler.cpp
++++ b/plugins/webinterface/httpclienthandler.cpp
+@@ -171,7 +171,7 @@ namespace kt
+ 	void HttpClientHandler::send500(HttpResponseHeader & hdr)
+ 	{
+ 	//	Out(SYS_WEB|LOG_DEBUG) << "Sending 500 " << endl;
+-		TQString data = TQString(HTTP_500_ERROR).tqarg("An internal server error occured !");
++		TQString data = TQString(HTTP_500_ERROR).arg("An internal server error occured !");
+ 		hdr.setValue("Content-Length",TQString::number(data.length()));
+ 
+ 		TQTextStream os(client);
+@@ -199,7 +199,7 @@ namespace kt
+ 		php = new PhpHandler(php_exe,php_iface);
+ 		if (!php->executeScript(php_file,args))
+ 		{
+-			TQString data = TQString(HTTP_500_ERROR).tqarg("Failed to launch PHP executable !");
++			TQString data = TQString(HTTP_500_ERROR).arg("Failed to launch PHP executable !");
+ 			hdr.setResponseCode(500);
+ 			hdr.setValue("Content-Length",TQString::number(data.utf8().length()));
+ 			
+diff --git a/plugins/webinterface/httpresponseheader.cpp b/plugins/webinterface/httpresponseheader.cpp
+index 7b87892..3056f79 100644
+--- a/plugins/webinterface/httpresponseheader.cpp
++++ b/plugins/webinterface/httpresponseheader.cpp
+@@ -61,12 +61,12 @@ namespace kt
+ 	TQString HttpResponseHeader::toString() const
+ 	{
+ 		TQString str;
+-		str += TQString("HTTP/1.1 %1 %2\r\n").tqarg(response_code).tqarg(ResponseCodeToString(response_code));
++		str += TQString("HTTP/1.1 %1 %2\r\n").arg(response_code).arg(ResponseCodeToString(response_code));
+ 		
+ 		TQMap<TQString,TQString>::const_iterator itr = fields.begin();
+ 		while (itr != fields.end())
+ 		{
+-			str += TQString("%1: %2\r\n").tqarg(itr.key()).tqarg(itr.data());
++			str += TQString("%1: %2\r\n").arg(itr.key()).arg(itr.data());
+ 			itr++;
+ 		}
+ 		str += "\r\n";
+diff --git a/plugins/webinterface/httpserver.cpp b/plugins/webinterface/httpserver.cpp
+index 915e28f..4d582a7 100644
+--- a/plugins/webinterface/httpserver.cpp
++++ b/plugins/webinterface/httpserver.cpp
+@@ -237,12 +237,12 @@ namespace kt
+ 	{
+ 		if (!cookie)
+ 			return now.toString("%1, dd %2 yyyy hh:mm:ss UTC")
+-				.tqarg(days[now.date().dayOfWeek() - 1])
+-				.tqarg(months[now.date().month() - 1]);
++				.arg(days[now.date().dayOfWeek() - 1])
++				.arg(months[now.date().month() - 1]);
+ 		else
+ 			return now.toString("%1, dd-%2-yyyy hh:mm:ss GMT")
+-				.tqarg(days[now.date().dayOfWeek() - 1])
+-				.tqarg(months[now.date().month() - 1]);
++				.arg(days[now.date().dayOfWeek() - 1])
++				.arg(months[now.date().month() - 1]);
+ 	}
+ 		
+ 	void HttpServer::setDefaultResponseHeaders(HttpResponseHeader & hdr,const TQString & content_type,bool with_session_info)
+@@ -253,7 +253,7 @@ namespace kt
+ 		hdr.setValue("Connection","keep-alive");
+ 		if (with_session_info && session.sessionId && session.logged_in)
+ 		{
+-			hdr.setValue("Set-Cookie",TQString("KT_SESSID=%1").tqarg(session.sessionId));
++			hdr.setValue("Set-Cookie",TQString("KT_SESSID=%1").arg(session.sessionId));
+ 		}
+ 	}
+ 	
+@@ -329,7 +329,7 @@ namespace kt
+ 			{
+ 				// clear cookie in case of login page
+ 				TQDateTime dt = TQDateTime::currentDateTime().addDays(-1);
+-				TQString cookie = TQString("KT_SESSID=666; expires=%1 +0000").tqarg(DateTimeToString(dt,true));
++				TQString cookie = TQString("KT_SESSID=666; expires=%1 +0000").arg(DateTimeToString(dt,true));
+ 				rhdr.setValue("Set-Cookie",cookie);
+ 			}
+ 			
+diff --git a/plugins/webinterface/php_handler.cpp b/plugins/webinterface/php_handler.cpp
+index 9b5ac85..d2c2f55 100644
+--- a/plugins/webinterface/php_handler.cpp
++++ b/plugins/webinterface/php_handler.cpp
+@@ -82,7 +82,7 @@ namespace kt
+ 			
+ 		for ( it = args.begin(); it != args.end(); ++it )
+ 		{
+-			ts << TQString("$_REQUEST['%1']=\"%2\";\n").tqarg(it.key()).tqarg(it.data());
++			ts << TQString("$_REQUEST['%1']=\"%2\";\n").arg(it.key()).arg(it.data());
+ 		}
+ 		ts.writeRawBytes(php_s.data() + off,php_s.size() - off); // the rest of the script
+ 		ts << flush;
+diff --git a/plugins/webinterface/php_interface.cpp b/plugins/webinterface/php_interface.cpp
+index e98a309..048310d 100644
+--- a/plugins/webinterface/php_interface.cpp
++++ b/plugins/webinterface/php_interface.cpp
+@@ -48,19 +48,19 @@ namespace kt
+ 	{
+ 		KLocale* loc = KGlobal::locale();
+ 		if (bytes >= 1024 * 1024 * 1024)
+-			return TQString("%1 GB").tqarg(loc->formatNumber(bytes / TO_GIG,precision < 0 ? 2 : precision));
++			return TQString("%1 GB").arg(loc->formatNumber(bytes / TO_GIG,precision < 0 ? 2 : precision));
+ 		else if (bytes >= 1024*1024)
+-			return TQString("%1 MB").tqarg(loc->formatNumber(bytes / TO_MEG,precision < 0 ? 1 : precision));
++			return TQString("%1 MB").arg(loc->formatNumber(bytes / TO_MEG,precision < 0 ? 1 : precision));
+ 		else if (bytes >= 1024)
+-			return TQString("%1 KB").tqarg(loc->formatNumber(bytes / TO_KB,precision < 0 ? 1 : precision));
++			return TQString("%1 KB").arg(loc->formatNumber(bytes / TO_KB,precision < 0 ? 1 : precision));
+ 		else
+-			return TQString("%1 B").tqarg(bytes);
++			return TQString("%1 B").arg(bytes);
+ 	}
+ 
+ 	TQString KBytesPerSecToString2(double speed,int precision = 2)
+ 	{
+ 		KLocale* loc = KGlobal::locale();
+-		return TQString("%1 KB/s").tqarg(loc->formatNumber(speed,precision));
++		return TQString("%1 KB/s").arg(loc->formatNumber(speed,precision));
+ 	}
+ 
+ 	/************************
+@@ -91,42 +91,42 @@ namespace kt
+ 				out << ",\n";
+ 			
+ 			stats=(*i)->getStats();
+-			out << TQString("\n%1 => array(").tqarg(k);
++			out << TQString("\n%1 => array(").arg(k);
+ 			
+-			out << TQString("\"imported_bytes\" => %1,\n").tqarg(stats.imported_bytes);
+-			out << TQString("\"bytes_downloaded\" => \"%1\",\n").tqarg(BytesToString2(stats.bytes_downloaded));
+-			out << TQString("\"bytes_uploaded\" => \"%1\",\n").tqarg(BytesToString2(stats.bytes_uploaded));
+-			out << TQString("\"bytes_left\" => %1,\n").tqarg(stats.bytes_left);
+-			out << TQString("\"bytes_left_to_download\" => %1,\n").tqarg(stats.bytes_left_to_download);
+-			out << TQString("\"total_bytes\" => \"%1\",\n").tqarg(BytesToString2(stats.total_bytes));
+-			out << TQString("\"total_bytes_to_download\" => %1,\n").tqarg(stats.total_bytes_to_download);
+-			out << TQString("\"download_rate\" => \"%1\",\n").tqarg(KBytesPerSecToString2(stats.download_rate / 1024.0));
+-			out << TQString("\"upload_rate\" => \"%1\",\n").tqarg(KBytesPerSecToString2(stats.upload_rate / 1024.0));
+-			out << TQString("\"num_peers\" => %1,\n").tqarg(stats.num_peers);
+-			out << TQString("\"num_chunks_downloading\" => %1,\n").tqarg(stats.num_chunks_downloading);
+-			out << TQString("\"total_chunks\" => %1,\n").tqarg(stats.total_chunks);
+-			out << TQString("\"num_chunks_downloaded\" => %1,\n").tqarg(stats.num_chunks_downloaded);
+-			out << TQString("\"num_chunks_excluded\" => %1,\n").tqarg(stats.num_chunks_excluded);
+-			out << TQString("\"chunk_size\" => %1,\n").tqarg(stats.chunk_size);
+-			out << TQString("\"seeders_total\" => %1,\n").tqarg(stats.seeders_total);
+-			out << TQString("\"seeders_connected_to\" => %1,\n").tqarg(stats.seeders_connected_to);
+-			out << TQString("\"leechers_total\" => %1,\n").tqarg(stats.leechers_total);
+-			out << TQString("\"leechers_connected_to\" => %1,\n").tqarg(stats.leechers_connected_to);
+-			out << TQString("\"status\" => %1,\n").tqarg(stats.status);
+-			out << TQString("\"running\" => %1,\n").tqarg(stats.running);
+-			out << TQString("\"trackerstatus\" => \"%1\",\n").tqarg(stats.trackerstatus.replace("\\", "\\\\").replace("\"", "\\\"").replace("$", "\\$"));
+-			out << TQString("\"session_bytes_downloaded\" => %1,\n").tqarg(stats.session_bytes_downloaded);
+-			out << TQString("\"session_bytes_uploaded\" => %1,\n").tqarg(stats.session_bytes_uploaded);
+-			out << TQString("\"trk_bytes_downloaded\" => %1,\n").tqarg(stats.trk_bytes_downloaded);
+-			out << TQString("\"trk_bytes_uploaded\" => %1,\n").tqarg(stats.trk_bytes_uploaded);
+-			out << TQString("\"torrent_name\" => \"%1\",\n").tqarg(stats.torrent_name.replace("\\", "\\\\").replace("\"", "\\\"").replace("$", "\\$"));
+-			out << TQString("\"output_path\" => \"%1\",\n").tqarg(stats.output_path.replace("\\", "\\\\").replace("\"", "\\\"").replace("$", "\\$"));
+-			out << TQString("\"stopped_by_error\" => \"%1\",\n").tqarg(stats.stopped_by_error);
+-			out << TQString("\"completed\" => \"%1\",\n").tqarg(stats.completed);
+-			out << TQString("\"user_controlled\" => \"%1\",\n").tqarg(stats.user_controlled);
+-			out << TQString("\"max_share_ratio\" => %1,\n").tqarg(stats.max_share_ratio);
+-			out << TQString("\"priv_torrent\" => \"%1\",\n").tqarg(stats.priv_torrent);
+-			out << TQString("\"num_files\" => \"%1\",\n").tqarg((*i)->getNumFiles());			
++			out << TQString("\"imported_bytes\" => %1,\n").arg(stats.imported_bytes);
++			out << TQString("\"bytes_downloaded\" => \"%1\",\n").arg(BytesToString2(stats.bytes_downloaded));
++			out << TQString("\"bytes_uploaded\" => \"%1\",\n").arg(BytesToString2(stats.bytes_uploaded));
++			out << TQString("\"bytes_left\" => %1,\n").arg(stats.bytes_left);
++			out << TQString("\"bytes_left_to_download\" => %1,\n").arg(stats.bytes_left_to_download);
++			out << TQString("\"total_bytes\" => \"%1\",\n").arg(BytesToString2(stats.total_bytes));
++			out << TQString("\"total_bytes_to_download\" => %1,\n").arg(stats.total_bytes_to_download);
++			out << TQString("\"download_rate\" => \"%1\",\n").arg(KBytesPerSecToString2(stats.download_rate / 1024.0));
++			out << TQString("\"upload_rate\" => \"%1\",\n").arg(KBytesPerSecToString2(stats.upload_rate / 1024.0));
++			out << TQString("\"num_peers\" => %1,\n").arg(stats.num_peers);
++			out << TQString("\"num_chunks_downloading\" => %1,\n").arg(stats.num_chunks_downloading);
++			out << TQString("\"total_chunks\" => %1,\n").arg(stats.total_chunks);
++			out << TQString("\"num_chunks_downloaded\" => %1,\n").arg(stats.num_chunks_downloaded);
++			out << TQString("\"num_chunks_excluded\" => %1,\n").arg(stats.num_chunks_excluded);
++			out << TQString("\"chunk_size\" => %1,\n").arg(stats.chunk_size);
++			out << TQString("\"seeders_total\" => %1,\n").arg(stats.seeders_total);
++			out << TQString("\"seeders_connected_to\" => %1,\n").arg(stats.seeders_connected_to);
++			out << TQString("\"leechers_total\" => %1,\n").arg(stats.leechers_total);
++			out << TQString("\"leechers_connected_to\" => %1,\n").arg(stats.leechers_connected_to);
++			out << TQString("\"status\" => %1,\n").arg(stats.status);
++			out << TQString("\"running\" => %1,\n").arg(stats.running);
++			out << TQString("\"trackerstatus\" => \"%1\",\n").arg(stats.trackerstatus.replace("\\", "\\\\").replace("\"", "\\\"").replace("$", "\\$"));
++			out << TQString("\"session_bytes_downloaded\" => %1,\n").arg(stats.session_bytes_downloaded);
++			out << TQString("\"session_bytes_uploaded\" => %1,\n").arg(stats.session_bytes_uploaded);
++			out << TQString("\"trk_bytes_downloaded\" => %1,\n").arg(stats.trk_bytes_downloaded);
++			out << TQString("\"trk_bytes_uploaded\" => %1,\n").arg(stats.trk_bytes_uploaded);
++			out << TQString("\"torrent_name\" => \"%1\",\n").arg(stats.torrent_name.replace("\\", "\\\\").replace("\"", "\\\"").replace("$", "\\$"));
++			out << TQString("\"output_path\" => \"%1\",\n").arg(stats.output_path.replace("\\", "\\\\").replace("\"", "\\\"").replace("$", "\\$"));
++			out << TQString("\"stopped_by_error\" => \"%1\",\n").arg(stats.stopped_by_error);
++			out << TQString("\"completed\" => \"%1\",\n").arg(stats.completed);
++			out << TQString("\"user_controlled\" => \"%1\",\n").arg(stats.user_controlled);
++			out << TQString("\"max_share_ratio\" => %1,\n").arg(stats.max_share_ratio);
++			out << TQString("\"priv_torrent\" => \"%1\",\n").arg(stats.priv_torrent);
++			out << TQString("\"num_files\" => \"%1\",\n").arg((*i)->getNumFiles());			
+ 			out << TQString("\"files\" => array(");
+ 			out << flush;
+ 			if (stats.multi_file_torrent)
+@@ -138,11 +138,11 @@ namespace kt
+ 						out << ",\n";
+ 					
+ 					TorrentFileInterface & file = (*i)->getTorrentFile(j);
+-					out << TQString("\"%1\" => array(\n").tqarg(j);
+-					out << TQString("\"name\" => \"%1\",\n").tqarg(file.getPath());
+-					out << TQString("\"size\" => \"%1\",\n").tqarg(KIO::convertSize(file.getSize()));
+-					out << TQString("\"perc_done\" => \"%1\",\n").tqarg(file.getDownloadPercentage());
+-					out << TQString("\"status\" => \"%1\"\n").tqarg(file.getPriority());
++					out << TQString("\"%1\" => array(\n").arg(j);
++					out << TQString("\"name\" => \"%1\",\n").arg(file.getPath());
++					out << TQString("\"size\" => \"%1\",\n").arg(KIO::convertSize(file.getSize()));
++					out << TQString("\"perc_done\" => \"%1\",\n").arg(file.getDownloadPercentage());
++					out << TQString("\"status\" => \"%1\"\n").arg(file.getPriority());
+ 					out << TQString(")\n");
+ 					out << flush;
+ 				}
+@@ -166,16 +166,16 @@ namespace kt
+ 		out << "function globalInfo()\n{\nreturn array(";
+ 		CurrentStats stats=core->getStats();
+ 	
+-		out << TQString("\"download_speed\" => \"%1\",").tqarg(KBytesPerSecToString2(stats.download_speed / 1024.0));
+-		out << TQString("\"upload_speed\" => \"%1\",").tqarg(KBytesPerSecToString2(stats.upload_speed / 1024.0));
+-		out << TQString("\"bytes_downloaded\" => \"%1\",").tqarg(stats.bytes_downloaded);
+-		out << TQString("\"bytes_uploaded\" => \"%1\",").tqarg(stats.bytes_uploaded);
+-		out << TQString("\"max_download_speed\" => \"%1\",").tqarg(core->getMaxDownloadSpeed());
+-		out << TQString("\"max_upload_speed\" => \"%1\",").tqarg(core->getMaxUploadSpeed());
+-		out << TQString("\"max_downloads\" => \"%1\",").tqarg(Settings::maxDownloads());
+-		out << TQString("\"max_seeds\"=> \"%1\",").tqarg(Settings::maxSeeds());
+-		out << TQString("\"dht_support\" => \"%1\",").tqarg(Settings::dhtSupport());
+-		out << TQString("\"use_encryption\" => \"%1\"").tqarg(Settings::useEncryption());
++		out << TQString("\"download_speed\" => \"%1\",").arg(KBytesPerSecToString2(stats.download_speed / 1024.0));
++		out << TQString("\"upload_speed\" => \"%1\",").arg(KBytesPerSecToString2(stats.upload_speed / 1024.0));
++		out << TQString("\"bytes_downloaded\" => \"%1\",").arg(stats.bytes_downloaded);
++		out << TQString("\"bytes_uploaded\" => \"%1\",").arg(stats.bytes_uploaded);
++		out << TQString("\"max_download_speed\" => \"%1\",").arg(core->getMaxDownloadSpeed());
++		out << TQString("\"max_upload_speed\" => \"%1\",").arg(core->getMaxUploadSpeed());
++		out << TQString("\"max_downloads\" => \"%1\",").arg(Settings::maxDownloads());
++		out << TQString("\"max_seeds\"=> \"%1\",").arg(Settings::maxSeeds());
++		out << TQString("\"dht_support\" => \"%1\",").arg(Settings::dhtSupport());
++		out << TQString("\"use_encryption\" => \"%1\"").arg(Settings::useEncryption());
+ 		out << ");\n}\n";
+ 	}
+ 	
+diff --git a/plugins/webinterface/webinterfaceprefwidget.cpp b/plugins/webinterface/webinterfaceprefwidget.cpp
+index 6f4baed..48ab0c7 100644
+--- a/plugins/webinterface/webinterfaceprefwidget.cpp
++++ b/plugins/webinterface/webinterfaceprefwidget.cpp
+@@ -113,23 +113,23 @@ void WebInterfacePrefWidget::changeLedState()
+ {
+        TQFileInfo fi(phpExecutablePath->url());
+        if(fi.isExecutable() && (fi.isFile() || fi.isSymLink())){
+-               TQToolTip::add( kled, i18n("%1 exists and it is executable").tqarg(phpExecutablePath->url()));
++               TQToolTip::add( kled, i18n("%1 exists and it is executable").arg(phpExecutablePath->url()));
+                kled->setColor(green);
+        }
+        else if (!fi.exists()){
+-               TQToolTip::add( kled, i18n("%1 does not exist").tqarg(phpExecutablePath->url()) );
++               TQToolTip::add( kled, i18n("%1 does not exist").arg(phpExecutablePath->url()) );
+                kled->setColor(red);
+        }
+        else if (!fi.isExecutable()){
+-               TQToolTip::add( kled, i18n("%1 is not executable").tqarg(phpExecutablePath->url()) );
++               TQToolTip::add( kled, i18n("%1 is not executable").arg(phpExecutablePath->url()) );
+                kled->setColor(red);
+        }
+        else if (fi.isDir()){
+-               TQToolTip::add( kled, i18n("%1 is a directory").tqarg(phpExecutablePath->url()) );
++               TQToolTip::add( kled, i18n("%1 is a directory").arg(phpExecutablePath->url()) );
+                kled->setColor(red);
+        }
+        else{
+-               TQToolTip::add( kled, i18n("%1 is not php executable path").tqarg(phpExecutablePath->url()) );
++               TQToolTip::add( kled, i18n("%1 is not php executable path").arg(phpExecutablePath->url()) );
+                kled->setColor(red);
+        }
+ }
+diff --git a/plugins/webinterface/www/default/wz_tooltip.js b/plugins/webinterface/www/default/wz_tooltip.js
+index 0405498..1329a1b 100644
+--- a/plugins/webinterface/www/default/wz_tooltip.js
++++ b/plugins/webinterface/www/default/wz_tooltip.js
+@@ -300,7 +300,7 @@ function tt_DeAlt(t_tag)
+ 	{
+ 		if(t_tag.alt) t_tag.alt = "";
+ 		if(t_tag.title) t_tag.title = "";
+-		var t_c = t_tag.tqchildren || t_tag.childNodes || null;
++		var t_c = t_tag.children || t_tag.childNodes || null;
+ 		if(t_c)
+ 		{
+ 			for(var t_i = t_c.length; t_i; )
+diff --git a/plugins/zeroconf/avahiservice.cpp b/plugins/zeroconf/avahiservice.cpp
+index a77d9ff..aebaa00 100644
+--- a/plugins/zeroconf/avahiservice.cpp
++++ b/plugins/zeroconf/avahiservice.cpp
+@@ -66,7 +66,7 @@ namespace kt
+ 			}
+ 		}
+ 	
+-		const char* name    = avahi_strdup(TQString("%1__%2%3").tqarg(service->id).tqarg((rand() % 26) + 65).tqarg((rand() % 26) + 65).ascii());
++		const char* name    = avahi_strdup(TQString("%1__%2%3").arg(service->id).arg((rand() % 26) + 65).arg((rand() % 26) + 65).ascii());
+ 		const char* type    = avahi_strdup("_bittorrent._tcp");
+ 		const char* subtype = avahi_strdup(TQString("_" + service->infoHash + "._sub._bittorrent._tcp").ascii());
+ 	
+@@ -75,7 +75,7 @@ namespace kt
+ 				(AvahiPublishFlags)0, name, type, NULL, NULL, service->port, NULL)) 
+ 		{
+ 			if (avahi_client_errno(c) != -8) 
+-				Out(SYS_ZCO|LOG_DEBUG) << TQString("ZC: Failed to add the service (%i).").tqarg(avahi_client_errno(c)) << endl;
++				Out(SYS_ZCO|LOG_DEBUG) << TQString("ZC: Failed to add the service (%i).").arg(avahi_client_errno(c)) << endl;
+ 			else
+ 				publish_service(service, c);
+ 			return;
+@@ -85,7 +85,7 @@ namespace kt
+ 				service->group, AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC,
+ 				(AvahiPublishFlags)0, name, type, NULL, subtype)) 
+ 		{
+-			Out(SYS_ZCO|LOG_DEBUG) << TQString("ZC: Failed to add the service subtype (%i).").tqarg( avahi_client_errno(c)) << endl;
++			Out(SYS_ZCO|LOG_DEBUG) << TQString("ZC: Failed to add the service subtype (%i).").arg( avahi_client_errno(c)) << endl;
+ 			return;
+ 		}
+ 	
+diff --git a/utests/biginttest.cpp b/utests/biginttest.cpp
+index 36a896a..514663e 100644
+--- a/utests/biginttest.cpp
++++ b/utests/biginttest.cpp
+@@ -43,7 +43,7 @@ namespace utest
+ 		b.toBuffer(buf,10);
+ 		for (Uint32 i = 0;i < 10;i++)
+ 		{
+-			Out() << TQString("0x%1 ").tqarg(buf[i],0,16);
++			Out() << TQString("0x%1 ").arg(buf[i],0,16);
+ 		}
+ 		Out() << endl;
+ 	}
+@@ -67,7 +67,7 @@ namespace utest
+ 		a.toBuffer(foobar,5);
+ 		for (Uint32 i = 0;i < 5;i++)
+ 		{
+-			Out() << TQString("0x%1 ").tqarg(foobar[i],0,16);
++			Out() << TQString("0x%1 ").arg(foobar[i],0,16);
+ 		}
+ 		Out() << endl;
+ 		Out() << "Third test" << endl;

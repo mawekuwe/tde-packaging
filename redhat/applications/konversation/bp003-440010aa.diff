@@ -1,0 +1,36 @@
+commit 440010aa593e209ce5993a73b1b7cb0a843a2716
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1327529820 -0600
+
+    Fix linear alphabet string errors
+
+diff --git a/konversation/src/blowfish/b64stuff.cpp b/konversation/src/blowfish/b64stuff.cpp
+index 79d5e64..72f0776 100644
+--- a/konversation/src/blowfish/b64stuff.cpp
++++ b/konversation/src/blowfish/b64stuff.cpp
+@@ -36,10 +36,10 @@
+ //---------------------------------------------------------------------------
+ 
+ //---------------------------------------------------------------------------
+-//static char b64table[64] = "ABCDEFGHIJKLMNOPTQRSTUVWXYZ"
++//static char b64table[64] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ //                           "abcdefghijklmnopqrstuvwxyz"
+ //                           "0123456789+/";
+-static char b64table[] = "ABCDEFGHIJKLMNOPTQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
++static char b64table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+ 
+ /* Accepts a binary buffer with an associated size.
+  * Returns a base64-encoded, NULL-terminated string.
+diff --git a/konversation/src/blowfish/oldblowfish.cpp b/konversation/src/blowfish/oldblowfish.cpp
+index 3eab870..1f274db 100644
+--- a/konversation/src/blowfish/oldblowfish.cpp
++++ b/konversation/src/blowfish/oldblowfish.cpp
+@@ -271,7 +271,7 @@ void oldCBlowFish::Decode (BYTE * pInput, BYTE * pOutput, DWORD lSize)
+ #define SALT2  0x23f6b095
+ 
+ // Convert 64-bit encrypted passphrase to text for userfile
+-char base64[] = "./0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPTQRSTUVWXYZ";
++char base64[] = "./0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ 
+ int base64dec(char c)
+ {

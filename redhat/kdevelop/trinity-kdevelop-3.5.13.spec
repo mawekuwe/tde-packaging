@@ -1,29 +1,18 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 3
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific variables
-BuildRequires:	cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
-%define _default_patch_fuzz 2
-%define qt_version 3.3.8d
-%define qt_ver %{qt_version}
-
 Name:    trinity-kdevelop
 Summary: Integrated Development Environment for C++/C
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Version: 3.5.13
+Release: 3%{?dist}%{?_variant}
 
 
 License: GPLv2
@@ -39,15 +28,16 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source: kdevelop-%{version}.tar.gz
 Source1: ftp://129.187.206.68/pub/unix/ide/KDevelop/c_cpp_reference-2.0.2_for_KDE_3.0.tar.bz2
 
-# RedHat Legacy patches
+# [c_cpp_ref] Fix library directories detection
 Patch1: c_cpp_reference-2.0.2-config.patch
 
-# TDE 3.5.13 patches
-## RHEL / Fedora RPM specific patches
+# [kdevelop] fix FTBFS
 Patch2: kdevelop-3.5.13-kdevdesigner-ftbfs.patch
-# Fix compilation with GCC 4.7
+
+# [kdevelop] Fix compilation with GCC 4.7 [Bug #958]
 Patch3: kdevelop-3.5.13-gcc47.patch
-# Fix installation of 'asm' files
+
+# [c_cpp_ref] Fix installation of 'asm' files
 Patch4:	c_cpp_reference-2.0.2-install.patch
 
 Provides: kdevelop3 = %{version}-%{release}
@@ -63,6 +53,7 @@ Requires: qt3-designer
 Requires: gettext
 Requires: ctags
 
+BuildRequires: cmake >= 2.8
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
 BuildRequires: trinity-kdelibs-devel
@@ -134,13 +125,15 @@ Requires: %{name} = %{version}-%{release}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
+%__sed -i "admin/acinclude.m4.in" \
   -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
   -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 
 %__rm -rf c_cpp_reference-2.0.2_for_KDE_3.0/admin
-%__cp -a admin c_cpp_reference-2.0.2_for_KDE_3.0/
+%__cp -ar admin c_cpp_reference-2.0.2_for_KDE_3.0/
 %__make -C c_cpp_reference-2.0.2_for_KDE_3.0 -f admin/Makefile.common cvs
 
 
@@ -154,8 +147,8 @@ export LD_LIBRARY_PATH="%{_libdir}"
 # c references
 pushd c_cpp_reference-2.0.2_for_KDE_3.0
 %configure \
-  --with-qt-libraries=$QTDIR/lib \
-  --with-qt-includes=$QTDIR/include \
+  --with-qt-libraries=${QTLIB} \
+  --with-qt-includes=${QTINC} \
   --with-extra-libs=%{_libdir}
 popd
 

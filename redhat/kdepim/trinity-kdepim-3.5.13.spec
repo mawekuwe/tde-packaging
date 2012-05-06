@@ -1,9 +1,3 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 4
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
@@ -24,8 +18,8 @@ BuildRequires: cmake >= 2.8
 
 
 Name:		trinity-kdepim
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	4%{?dist}%{?_variant}
 License:	GPL
 Group:		Applications/Productivity
 

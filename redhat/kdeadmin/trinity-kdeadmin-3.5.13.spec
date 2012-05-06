@@ -1,9 +1,3 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 4
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
@@ -11,7 +5,6 @@
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -19,8 +12,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:			trinity-kdeadmin
 Summary:		Administrative tools for TDE
-Version:		%{?version}
-Release:		%{?release}%{?dist}%{?_variant}
+Version:		3.5.13
+Release:		4%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			User Interface/Desktops
@@ -49,6 +42,7 @@ Requires: trinity-kdelibs
 Requires: pkgconfig
 Requires: usermode-gtk
 
+BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: rpm-devel
 

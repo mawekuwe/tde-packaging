@@ -6,7 +6,7 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -56,7 +56,7 @@ remembered so next time the user won't have to enter them again.
 # Ugly hack to modify TQT include directory inside SCONS files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i bksys/kde.py \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g"
 
 
 %build
@@ -89,12 +89,10 @@ scons install DESTDIR=%{buildroot}
 
 
 %post
-/sbin/ldconfig
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %postun
-/sbin/ldconfig
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 

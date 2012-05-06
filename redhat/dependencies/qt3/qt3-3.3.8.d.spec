@@ -1,8 +1,3 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.3.8.d
-%endif
-
 # Always install under standard prefix
 %define _prefix /usr
 
@@ -20,7 +15,7 @@
 
 Name:			qt3
 Epoch:			1
-Version:		%{?version}
+Version:		3.3.8.d
 Release:		8%{?dist}
 Summary:		The shared library for the Qt 3 GUI toolkit
 

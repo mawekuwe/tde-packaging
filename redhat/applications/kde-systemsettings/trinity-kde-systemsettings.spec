@@ -17,7 +17,7 @@ BuildRequires: autoconf automake libtool m4
 %define tde_libdir %{_libdir}/trinity
 
 
-Name:		trinity-%{kdecomp}
+Name:		trinity-systemsettings
 Summary:	easy to use control centre for TDE
 Version:	%{?version}
 Release:	%{?release}%{?dist}%{?_variant}

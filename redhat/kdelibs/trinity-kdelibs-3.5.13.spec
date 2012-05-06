@@ -1,17 +1,10 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 8
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific variables
-BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
 
@@ -23,8 +16,8 @@ BuildRequires: cmake >= 2.8
 
 
 Name:		trinity-kdelibs
-Version:	%{version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	8%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Libraries
 Group:		System Environment/Libraries
@@ -57,6 +50,7 @@ Patch17:	kdelibs-3.5.13-fix_kdirwatch.patch
 ## [kdelibs/dcop] Fix 'dcoptypes.h' for compilation with GCC 4.7
 Patch18:	kdelibs-3.5.13-fix_dcoptypes_h.patch
 
+BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel

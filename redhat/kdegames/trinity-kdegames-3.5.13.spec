@@ -1,9 +1,3 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 3
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
@@ -11,7 +5,6 @@
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -19,8 +12,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:    trinity-kdegames
 Summary: Trinity Desktop Environment - Games
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Version: 3.5.13
+Release: 3%{?dist}%{?_variant}
 
 License: GPLv2
 Group:   Amusements/Games
@@ -39,12 +32,13 @@ Patch0:		kdegames-3.5.13-ktuberling_fail_load_picture.patch
 
 Provides: kdegames3 = %{version}-%{release}
 
-Requires: %{name}-libs = %{version}-%{release}
-
+BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-kdelibs-devel
 
+Requires: %{name}-libs = %{version}-%{release}
+
 %description
-Games and gaming libraries for the K Desktop Environment.
+Games and gaming libraries for the Trinity Desktop Environment.
 Included with this package are: kenolaba, kasteroids, kblackbox, kmahjongg,
 kmines, konquest, kpat, kpoker, kreversi, ksame, kshisen, ksmiletris,
 ksnake, ksirtet, katomic, kjumpingcube, ktuberling.
@@ -59,7 +53,7 @@ Requires: trinity-kdelibs-devel
 %description devel
 %{summary}.
 Install %{name}-devel if you wish to develop or compile games for the
-KDE desktop.
+TDE desktop.
 
 %package libs
 Summary: %{name} runtime libraries

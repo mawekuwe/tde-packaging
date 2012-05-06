@@ -34,6 +34,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [kdiff3] Rename old tq methods that no longer need a unique name [Commit #c7e29c46]
+Patch0:		bp000-c7e29c46.diff
+# [kdiff3] Remove additional unneeded tq method conversions [Commit #9b57232f]
+Patch1:		bp001-9b57232f.diff
+# [kdiff3] Rename obsolete tq methods to standard names [Commit #d654b107]
+Patch2:		bp002-d654b107.diff
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -50,6 +56,9 @@ Unicode & UTF-8 support
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -119,6 +128,9 @@ done
 - Rebuilt for Fedora 17
 - Fix HTML directory location
 - Fix post and postun
+- Rename old tq methods that no longer need a unique name [Commit #c7e29c46]
+- Remove additional unneeded tq method conversions [Commit #9b57232f]
+- Rename obsolete tq methods to standard names [Commit #d654b107]
 
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.91-3
 - Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

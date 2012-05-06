@@ -1,0 +1,3130 @@
+commit 01f5ea83754cabfe6ebbcea0601cebaec976f708
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324253563 -0600
+
+    Rename old tq methods that no longer need a unique name
+
+diff --git a/konversation/src/alias_preferencesui.ui b/konversation/src/alias_preferencesui.ui
+index eb53d83..3783955 100644
+--- a/konversation/src/alias_preferencesui.ui
++++ b/konversation/src/alias_preferencesui.ui
+@@ -146,7 +146,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>350</height>
+diff --git a/konversation/src/autoreplace_preferencesui.ui b/konversation/src/autoreplace_preferencesui.ui
+index f617836..769ba9b 100644
+--- a/konversation/src/autoreplace_preferencesui.ui
++++ b/konversation/src/autoreplace_preferencesui.ui
+@@ -54,7 +54,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>506</height>
+diff --git a/konversation/src/channel.cpp b/konversation/src/channel.cpp
+index 21a507d..13e026e 100644
+--- a/konversation/src/channel.cpp
++++ b/konversation/src/channel.cpp
+@@ -139,7 +139,7 @@ Channel::Channel(TQWidget* parent, TQString _name) : ChatWindow(parent)
+ 
+     // The box holding the channel modes
+     modeBox = new TQHBox(topicWidget);
+-    modeBox->tqsetSizePolicy(hfixed);
++    modeBox->setSizePolicy(hfixed);
+     modeT = new ModeButton("T",modeBox,0);
+     modeN = new ModeButton("N",modeBox,1);
+     modeS = new ModeButton("S",modeBox,2);
+@@ -240,33 +240,33 @@ Channel::Channel(TQWidget* parent, TQString _name) : ChatWindow(parent)
+     channelInput->installEventFilter(this);
+ 
+     // Set the widgets size policies
+-    m_topicButton->tqsetSizePolicy(TQSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Fixed));
+-    topicLine->tqsetSizePolicy(TQSizePolicy(TQSizePolicy::Preferred, TQSizePolicy::Minimum));
++    m_topicButton->setSizePolicy(TQSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Fixed));
++    topicLine->setSizePolicy(TQSizePolicy(TQSizePolicy::Preferred, TQSizePolicy::Minimum));
+ 
+-    commandLineBox->tqsetSizePolicy(vfixed);
++    commandLineBox->setSizePolicy(vfixed);
+ 
+     limit->setMaximumSize(40,100);
+-    limit->tqsetSizePolicy(hfixed);
++    limit->setSizePolicy(hfixed);
+ 
+     modeT->setMaximumSize(20,100);
+-    modeT->tqsetSizePolicy(hfixed);
++    modeT->setSizePolicy(hfixed);
+     modeN->setMaximumSize(20,100);
+-    modeN->tqsetSizePolicy(hfixed);
++    modeN->setSizePolicy(hfixed);
+     modeS->setMaximumSize(20,100);
+-    modeS->tqsetSizePolicy(hfixed);
++    modeS->setSizePolicy(hfixed);
+     modeI->setMaximumSize(20,100);
+-    modeI->tqsetSizePolicy(hfixed);
++    modeI->setSizePolicy(hfixed);
+     modeP->setMaximumSize(20,100);
+-    modeP->tqsetSizePolicy(hfixed);
++    modeP->setSizePolicy(hfixed);
+     modeM->setMaximumSize(20,100);
+-    modeM->tqsetSizePolicy(hfixed);
++    modeM->setSizePolicy(hfixed);
+     modeK->setMaximumSize(20,100);
+-    modeK->tqsetSizePolicy(hfixed);
++    modeK->setSizePolicy(hfixed);
+     modeL->setMaximumSize(20,100);
+-    modeL->tqsetSizePolicy(hfixed);
++    modeL->setSizePolicy(hfixed);
+ 
+-    getTextView()->tqsetSizePolicy(greedy);
+-    nicknameListView->tqsetSizePolicy(hmodest);
++    getTextView()->setSizePolicy(greedy);
++    nicknameListView->setSizePolicy(hmodest);
+ 
+     connect(channelInput,TQT_SIGNAL (submit()),this,TQT_SLOT (channelTextEntered()) );
+     connect(channelInput,TQT_SIGNAL (envelopeCommand()),this,TQT_SLOT (channelPassthroughCommand()) );
+@@ -568,7 +568,7 @@ void Channel::popupCommand(int id)
+             break;
+         case Konversation::Ping:
+         {
+-            unsigned int time_t = TQDateTime::tqcurrentDateTime().toTime_t();
++            unsigned int time_t = TQDateTime::currentDateTime().toTime_t();
+             pattern=TQString(cc+"CTCP %u PING %1").tqarg(time_t);
+         }
+         break;
+@@ -796,7 +796,7 @@ void Channel::completeNick()
+                     {
+                         nick = it.current();
+ 
+-                        if(nick->getChannelNick()->getNickname().tqstartsWith(pattern, Preferences::nickCompletionCaseSensitive()) &&
++                        if(nick->getChannelNick()->getNickname().startsWith(pattern, Preferences::nickCompletionCaseSensitive()) &&
+                           (nick->getChannelNick()->timeStamp() > timeStamp))
+                         {
+                             timeStamp = nick->getChannelNick()->timeStamp();
+@@ -822,7 +822,7 @@ void Channel::completeNick()
+                         lookNick = lookNick.section( prefixCharacter,1 );
+                     }
+ 
+-                    if(lookNick.tqstartsWith(pattern, Preferences::nickCompletionCaseSensitive()))
++                    if(lookNick.startsWith(pattern, Preferences::nickCompletionCaseSensitive()))
+                     {
+                         foundNick = lookNick;
+                     }
+@@ -1521,7 +1521,7 @@ void Channel::setTopic(const TQString &newTopic)
+ 
+     if(m_topicHistory.first().section(' ', 2) != newTopic)
+     {
+-        m_topicHistory.prepend(TQString("%1 "+i18n("unknown")+" %2").tqarg(TQDateTime::tqcurrentDateTime().toTime_t()).tqarg(newTopic));
++        m_topicHistory.prepend(TQString("%1 "+i18n("unknown")+" %2").tqarg(TQDateTime::currentDateTime().toTime_t()).tqarg(newTopic));
+         emit topicHistoryChanged();
+     }
+ }
+@@ -1537,7 +1537,7 @@ void Channel::setTopic(const TQString &nickname, const TQString &newTopic) // Ov
+         appendCommandMessage(i18n("Topic"), i18n("%1 sets the channel topic to \"%2\".").tqarg(nickname).tqarg(newTopic));
+     }
+ 
+-    m_topicHistory.prepend(TQString("%1 %2 %3").tqarg(TQDateTime::tqcurrentDateTime().toTime_t()).tqarg(nickname).tqarg(newTopic));
++    m_topicHistory.prepend(TQString("%1 %2 %3").tqarg(TQDateTime::currentDateTime().toTime_t()).tqarg(nickname).tqarg(newTopic));
+     TQString topic = Konversation::removeIrcMarkup(newTopic);
+     topicLine->setText(topic);
+ 
+@@ -1557,7 +1557,7 @@ TQString Channel::getTopic()
+ void Channel::setTopicAuthor(const TQString& newAuthor, TQDateTime time)
+ {
+     if (time.isNull() || !time.isValid())
+-        time=TQDateTime::tqcurrentDateTime();
++        time=TQDateTime::currentDateTime();
+ 
+     if(topicAuthorUnknown)
+     {
+@@ -2253,8 +2253,8 @@ void Channel::updateAppearance()
+     }
+     else
+     {
+-        fg=tqcolorGroup().foreground();
+-        bg=tqcolorGroup().base();
++        fg=colorGroup().foreground();
++        bg=colorGroup().base();
+         abg=KGlobalSettings::alternateBackgroundColor();
+     }
+ 
+@@ -2797,7 +2797,7 @@ void Channel::append(const TQString& nickname, const TQString& message)
+         Nick* nick = getNickByName(nickname);
+ 
+         if(nick) {
+-            nick->getChannelNick()->setTimeStamp(TQDateTime::tqcurrentDateTime().toTime_t());
++            nick->getChannelNick()->setTimeStamp(TQDateTime::currentDateTime().toTime_t());
+         }
+     }
+ 
+@@ -2811,7 +2811,7 @@ void Channel::appendAction(const TQString& nickname, const TQString& message)
+         Nick* nick = getNickByName(nickname);
+ 
+         if(nick) {
+-            nick->getChannelNick()->setTimeStamp(TQDateTime::tqcurrentDateTime().toTime_t());
++            nick->getChannelNick()->setTimeStamp(TQDateTime::currentDateTime().toTime_t());
+         }
+     }
+ 
+diff --git a/konversation/src/channellistpanel.cpp b/konversation/src/channellistpanel.cpp
+index 364c34c..79a9168 100644
+--- a/konversation/src/channellistpanel.cpp
++++ b/konversation/src/channellistpanel.cpp
+@@ -223,7 +223,7 @@ void ChannelListPanel::saveList()
+ 
+         TQString header(i18n("Konversation Channel List: %1 - %2\n\n")
+             .tqarg(m_server->getServerName())
+-            .tqarg(TQDateTime::tqcurrentDateTime().toString()));
++            .tqarg(TQDateTime::currentDateTime().toString()));
+ 
+         // send header to stream
+         stream << header;
+diff --git a/konversation/src/channeloptionsui.ui b/konversation/src/channeloptionsui.ui
+index bfdaea8..33bb6ff 100644
+--- a/konversation/src/channeloptionsui.ui
++++ b/konversation/src/channeloptionsui.ui
+@@ -267,7 +267,7 @@ the Free Software Foundation; either version 2 of the License, or
+                                 <property name="sizeType">
+                                     <enum>Expanding</enum>
+                                 </property>
+-                                <property name="tqsizeHint">
++                                <property name="sizeHint">
+                                     <size>
+                                         <width>211</width>
+                                         <height>20</height>
+@@ -319,7 +319,7 @@ the Free Software Foundation; either version 2 of the License, or
+                                 <property name="sizeType">
+                                     <enum>Expanding</enum>
+                                 </property>
+-                                <property name="tqsizeHint">
++                                <property name="sizeHint">
+                                     <size>
+                                         <width>301</width>
+                                         <height>31</height>
+@@ -383,7 +383,7 @@ the Free Software Foundation; either version 2 of the License, or
+                         <property name="sizeType">
+                             <enum>Expanding</enum>
+                         </property>
+-                        <property name="tqsizeHint">
++                        <property name="sizeHint">
+                             <size>
+                                 <width>20</width>
+                                 <height>16</height>
+diff --git a/konversation/src/chatwindow.cpp b/konversation/src/chatwindow.cpp
+index f7eb651..9e37d92 100644
+--- a/konversation/src/chatwindow.cpp
++++ b/konversation/src/chatwindow.cpp
+@@ -219,7 +219,7 @@ void ChatWindow::setLogfileName(const TQString& name)
+     if(firstLog)
+     {
+         // status panels get special treatment here, since they have no server at the beginning
+-        if (getType() == tqStatus || getType() == DccChat)
++        if (getType() == Status || getType() == DccChat)
+         {
+             logName = name + ".log";
+         }
+@@ -236,7 +236,7 @@ void ChatWindow::setLogfileName(const TQString& name)
+             cdIntoLogPath();
+             // Show last log lines. This idea was stole ... um ... inspired by PMP :)
+             // Don't do this for the server status windows, though
+-            if((getType() != tqStatus) && logfile.open(IO_ReadOnly))
++            if((getType() != Status) && logfile.open(IO_ReadOnly))
+             {
+                 unsigned long filePosition;
+ 
+@@ -343,13 +343,13 @@ void ChatWindow::logText(const TQString& text)
+ 
+             if(firstLog)
+             {
+-                TQString intro(i18n("\n*** Logfile started\n*** on %1\n\n").tqarg(TQDateTime::tqcurrentDateTime().toString()));
++                TQString intro(i18n("\n*** Logfile started\n*** on %1\n\n").tqarg(TQDateTime::currentDateTime().toString()));
+                 logStream << intro;
+                 firstLog=false;
+             }
+ 
+             TQTime time=TQTime::currentTime();
+-            TQString logLine(TQString("[%1] [%2] %3\n").tqarg(TQDate::tqcurrentDate(Qt::LocalTime).toString()).
++            TQString logLine(TQString("[%1] [%2] %3\n").tqarg(TQDate::currentDate(Qt::LocalTime).toString()).
+                 tqarg(time.toString("hh:mm:ss")).tqarg(text));
+ 
+             logStream << logLine;
+diff --git a/konversation/src/chatwindow.h b/konversation/src/chatwindow.h
+index 947c789..d77f5d1 100644
+--- a/konversation/src/chatwindow.h
++++ b/konversation/src/chatwindow.h
+@@ -35,7 +35,7 @@ class ChatWindow : public TQVBox
+ 
+         enum WindowType
+         {
+-            tqStatus=0,
++            Status=0,
+             Channel,
+             Query,
+             DccChat,
+diff --git a/konversation/src/chatwindowappearance_preferences.ui b/konversation/src/chatwindowappearance_preferences.ui
+index a332268..c1c152c 100644
+--- a/konversation/src/chatwindowappearance_preferences.ui
++++ b/konversation/src/chatwindowappearance_preferences.ui
+@@ -74,7 +74,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>191</width>
+                             <height>20</height>
+@@ -129,7 +129,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>251</width>
+                             <height>20</height>
+@@ -205,7 +205,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>16</width>
+                             <height>20</height>
+@@ -233,7 +233,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>16</width>
+                             <height>20</height>
+@@ -269,7 +269,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>16</width>
+                             <height>20</height>
+@@ -320,7 +320,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>20</height>
+diff --git a/konversation/src/chatwindowbehaviour_preferences.ui b/konversation/src/chatwindowbehaviour_preferences.ui
+index 0e5c779..5968850 100644
+--- a/konversation/src/chatwindowbehaviour_preferences.ui
++++ b/konversation/src/chatwindowbehaviour_preferences.ui
+@@ -92,7 +92,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>410</width>
+                             <height>20</height>
+@@ -137,7 +137,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>230</width>
+                             <height>20</height>
+@@ -200,7 +200,7 @@
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>16</width>
+                             <height>20</height>
+@@ -236,7 +236,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>170</width>
+                             <height>20</height>
+@@ -253,7 +253,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>190</width>
+                             <height>20</height>
+@@ -331,7 +331,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>41</width>
+                     <height>20</height>
+diff --git a/konversation/src/colorsappearance_preferences.ui b/konversation/src/colorsappearance_preferences.ui
+index 54f68ac..909e5b3 100644
+--- a/konversation/src/colorsappearance_preferences.ui
++++ b/konversation/src/colorsappearance_preferences.ui
+@@ -141,7 +141,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -158,7 +158,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -175,7 +175,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -192,7 +192,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -209,7 +209,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -226,7 +226,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -243,7 +243,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -260,7 +260,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -277,7 +277,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -294,7 +294,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -536,7 +536,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -553,7 +553,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -570,7 +570,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -587,7 +587,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -652,7 +652,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -669,7 +669,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -761,7 +761,7 @@ the Free Software Foundation; either version 2 of the License, or
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>271</width>
+                                     <height>20</height>
+@@ -962,7 +962,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -979,7 +979,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -996,7 +996,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1013,7 +1013,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1030,7 +1030,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1047,7 +1047,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1064,7 +1064,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1081,7 +1081,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1162,7 +1162,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1179,7 +1179,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1196,7 +1196,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1213,7 +1213,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -1296,7 +1296,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>0</height>
+diff --git a/konversation/src/common.cpp b/konversation/src/common.cpp
+index 7e1d301..eba7508 100644
+--- a/konversation/src/common.cpp
++++ b/konversation/src/common.cpp
+@@ -144,7 +144,7 @@ namespace Konversation
+                 continue;
+             }
+ 
+-            if (urlPattern.cap(1).tqstartsWith("www.", false))
++            if (urlPattern.cap(1).startsWith("www.", false))
+                 protocol = "http://";
+             else if (urlPattern.cap(1).isEmpty())
+                 protocol = "mailto:";
+diff --git a/konversation/src/connectionbehavior_preferences.ui b/konversation/src/connectionbehavior_preferences.ui
+index 8c2f2a1..752c26c 100644
+--- a/konversation/src/connectionbehavior_preferences.ui
++++ b/konversation/src/connectionbehavior_preferences.ui
+@@ -60,7 +60,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>278</width>
+                             <height>20</height>
+@@ -119,7 +119,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>280</width>
+                             <height>20</height>
+@@ -138,7 +138,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>21</width>
+                     <height>60</height>
+diff --git a/konversation/src/dcc_preferencesui.ui b/konversation/src/dcc_preferencesui.ui
+index 9ae128a..ccff213 100644
+--- a/konversation/src/dcc_preferencesui.ui
++++ b/konversation/src/dcc_preferencesui.ui
+@@ -114,7 +114,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>16</height>
+@@ -214,7 +214,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Maximum</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>70</width>
+                     <height>20</height>
+@@ -231,7 +231,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>70</width>
+                     <height>20</height>
+@@ -248,7 +248,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>70</width>
+                     <height>20</height>
+@@ -329,7 +329,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>21</height>
+@@ -396,7 +396,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>21</height>
+diff --git a/konversation/src/dccchat.cpp b/konversation/src/dccchat.cpp
+index 58002f9..f40d1ae 100644
+--- a/konversation/src/dccchat.cpp
++++ b/konversation/src/dccchat.cpp
+@@ -418,7 +418,7 @@ void DccChat::showEvent(TQShowEvent* /* event */)
+     if(m_initialShow) {
+         m_initialShow = false;
+         TQValueList<int> sizes;
+-        sizes << m_sourceLine->tqsizeHint().height() << (height() - m_sourceLine->tqsizeHint().height());
++        sizes << m_sourceLine->sizeHint().height() << (height() - m_sourceLine->sizeHint().height());
+         m_headerSplitter->setSizes(sizes);
+     }
+ }
+@@ -435,8 +435,8 @@ void DccChat::updateAppearance()
+     }
+     else
+     {
+-        fg=tqcolorGroup().foreground();
+-        bg=tqcolorGroup().base();
++        fg=colorGroup().foreground();
++        bg=colorGroup().base();
+     }
+ 
+     m_dccChatInput->unsetPalette();
+diff --git a/konversation/src/dccresumedialog.cpp b/konversation/src/dccresumedialog.cpp
+index d2d3c7e..30b687b 100644
+--- a/konversation/src/dccresumedialog.cpp
++++ b/konversation/src/dccresumedialog.cpp
+@@ -97,7 +97,7 @@ DccResumeDialog::DccResumeDialog(DccTransferRecv* item, const TQString& caption,
+     }
+ 
+     updateDialogButtons();
+-    setInitialSize(TQSize(500, tqsizeHint().height()));
++    setInitialSize(TQSize(500, sizeHint().height()));
+ 
+ }
+ 
+diff --git a/konversation/src/dcctransfer.cpp b/konversation/src/dcctransfer.cpp
+index cec058c..c12147f 100644
+--- a/konversation/src/dcctransfer.cpp
++++ b/konversation/src/dcctransfer.cpp
+@@ -43,7 +43,7 @@ DccTransfer::DccTransfer( DccType dccType, TQObject* parent ) : TQObject(parent)
+ 
+     connect( &m_loggerTimer, TQT_SIGNAL( timeout() ), this, TQT_SLOT( logTransfer() ) );
+ 
+-    m_timeOffer = TQDateTime::tqcurrentDateTime();
++    m_timeOffer = TQDateTime::currentDateTime();
+ }
+ 
+ DccTransfer::~DccTransfer()
+@@ -60,7 +60,7 @@ DccTransfer::DccTransfer( const DccTransfer& obj )
+     m_bufferSize = 0;
+     m_averageSpeed = obj.getAverageSpeed();
+     m_currentSpeed = obj.getCurrentSpeed();
+-    m_status = obj.gettqStatus();
++    m_status = obj.getStatus();
+     m_statusDetail = obj.getStatusDetail();
+     m_type = obj.getType();
+     m_fileName = obj.getFileName();
+@@ -88,20 +88,20 @@ DccTransfer::DccTransfer( const DccTransfer& obj )
+ 
+ void DccTransfer::setConnectionId( int id )
+ {
+-    if ( gettqStatus() == Configuring || gettqStatus() == Queued )
++    if ( getStatus() == Configuring || getStatus() == Queued )
+         m_connectionId = id;
+ }
+ 
+ void DccTransfer::setPartnerNick( const TQString& nick )
+ {
+-    if ( gettqStatus() == Configuring || gettqStatus() == Queued )
++    if ( getStatus() == Configuring || getStatus() == Queued )
+         m_partnerNick = nick;
+ }
+ 
+ bool DccTransfer::queue()
+ {
+     kdDebug() << "DccTransfer::queue()" << endl;
+-    if ( gettqStatus() != Configuring )
++    if ( getStatus() != Configuring )
+         return false;
+ 
+     if ( m_fileName.isEmpty() )
+@@ -110,13 +110,13 @@ bool DccTransfer::queue()
+     if ( m_connectionId == -1 || m_partnerNick.isEmpty() )
+         return false;
+ 
+-    settqStatus( Queued );
++    setStatus( Queued );
+     return true;
+ }
+ 
+ void DccTransfer::startTransferLogger()
+ {
+-    m_timeTransferStarted = TQDateTime::tqcurrentDateTime();
++    m_timeTransferStarted = TQDateTime::currentDateTime();
+     m_loggerBaseTime.start();
+     m_loggerTimer.start( 100 );
+ }
+@@ -124,7 +124,7 @@ void DccTransfer::startTransferLogger()
+ void DccTransfer::finishTransferLogger()
+ {
+     if ( m_timeTransferFinished.isNull() )
+-        m_timeTransferFinished = TQDateTime::tqcurrentDateTime();
++        m_timeTransferFinished = TQDateTime::currentDateTime();
+     m_loggerTimer.stop();
+     updateTransferMeters();
+ }
+@@ -137,21 +137,21 @@ void DccTransfer::logTransfer()
+     updateTransferMeters();
+ }
+ 
+-void DccTransfer::settqStatus( DcctqStatus status, const TQString& statusDetail )
++void DccTransfer::setStatus( DccStatus status, const TQString& statusDetail )
+ {
+     bool changed = ( status != m_status );
+-    DcctqStatus oldtqStatus = m_status;
++    DccStatus oldStatus = m_status;
+     m_status = status;
+     m_statusDetail = statusDetail;
+     if ( changed )
+-        emit statusChanged( this, m_status, oldtqStatus );
++        emit statusChanged( this, m_status, oldStatus );
+ }
+ 
+ void DccTransfer::updateTransferMeters()
+ {
+     const int timeToCalc = 5;
+ 
+-    if ( gettqStatus() == Transferring )
++    if ( getStatus() == Transferring )
+     {
+         // update CurrentSpeed
+ 
+@@ -174,7 +174,7 @@ void DccTransfer::updateTransferMeters()
+         if ( m_transferLogTime.count() >= 2 )
+         {
+             // FIXME: precision of average speed is too bad
+-            m_averageSpeed = (double)( m_transferringPosition - m_transferStartPosition ) / (double)m_timeTransferStarted.secsTo( TQDateTime::tqcurrentDateTime() );
++            m_averageSpeed = (double)( m_transferringPosition - m_transferStartPosition ) / (double)m_timeTransferStarted.secsTo( TQDateTime::currentDateTime() );
+             m_currentSpeed = (double)( m_transferLogPosition.last() - m_transferLogPosition.front() ) / (double)( m_transferLogTime.last() - m_transferLogTime.front() ) * 1000;
+         }
+         else // avoid zero devision
+@@ -240,7 +240,7 @@ DccTransfer::DccType DccTransfer::getType() const
+     return m_type;
+ }
+ 
+-DccTransfer::DcctqStatus DccTransfer::gettqStatus() const
++DccTransfer::DccStatus DccTransfer::getStatus() const
+ {
+     return m_status;
+ }
+diff --git a/konversation/src/dcctransfer.h b/konversation/src/dcctransfer.h
+index 64d3827..5765bdd 100644
+--- a/konversation/src/dcctransfer.h
++++ b/konversation/src/dcctransfer.h
+@@ -39,7 +39,7 @@ class DccTransfer : public TQObject
+             Send
+         };
+ 
+-        enum DcctqStatus
++        enum DccStatus
+         {
+             Configuring = 0,                      // Not queud yet (this means that user can't see the item at this time)
+             Queued,                               // Newly added DCC, waiting user's response
+@@ -52,7 +52,7 @@ class DccTransfer : public TQObject
+             Aborted
+         };
+ 
+-        enum UnavailabletqStatus
++        enum UnavailableStatus
+         {
+             Calculating = -1,
+             NotInTransfer = -2,
+@@ -66,7 +66,7 @@ class DccTransfer : public TQObject
+         DccTransfer( const DccTransfer& obj );
+ 
+         DccType            getType()                  const;
+-        DcctqStatus          gettqStatus()                const;
++        DccStatus          getStatus()                const;
+         const TQString&     getStatusDetail()          const;
+         TQDateTime          getTimeOffer()             const;
+         int                getConnectionId()         const;
+@@ -100,7 +100,7 @@ class DccTransfer : public TQObject
+     signals:
+         void transferStarted( DccTransfer* item );
+         void done( DccTransfer* item );
+-        void statusChanged( DccTransfer* item, int newtqStatus, int oldtqStatus );
++        void statusChanged( DccTransfer* item, int newStatus, int oldStatus );
+ 
+     public slots:
+         virtual bool queue();
+@@ -108,7 +108,7 @@ class DccTransfer : public TQObject
+         virtual void abort() {};
+ 
+     protected:
+-        void settqStatus( DcctqStatus status, const TQString& statusDetail = TQString() );
++        void setStatus( DccStatus status, const TQString& statusDetail = TQString() );
+         void startTransferLogger();
+         void finishTransferLogger();
+ 
+@@ -122,7 +122,7 @@ class DccTransfer : public TQObject
+     protected:
+         // transfer information
+         DccType m_type;
+-        DcctqStatus m_status;
++        DccStatus m_status;
+         TQString m_statusDetail;
+         bool m_resumed;
+         bool m_reverse;
+diff --git a/konversation/src/dcctransferdetailedinfopanel.cpp b/konversation/src/dcctransferdetailedinfopanel.cpp
+index 635faf2..6bd6961 100644
+--- a/konversation/src/dcctransferdetailedinfopanel.cpp
++++ b/konversation/src/dcctransferdetailedinfopanel.cpp
+@@ -61,7 +61,7 @@ void DccTransferDetailedInfoPanel::setItem( DccTransferPanelItem* item )
+ 
+     // If the file is already being transferred, the timer must be started here,
+     // otherwise the information will not be updated every 0.5sec
+-    if (m_item->transfer()->gettqStatus() == DccTransfer::Transferring)
++    if (m_item->transfer()->getStatus() == DccTransfer::Transferring)
+         m_autoViewUpdateTimer->start(500, false);
+     connect( m_item->transfer(), TQT_SIGNAL( statusChanged( DccTransfer*, int, int ) ), this, TQT_SLOT( slotTransferStatusChanged( DccTransfer*, int, int ) ) );
+ 
+@@ -83,10 +83,10 @@ void DccTransferDetailedInfoPanel::updateView()
+ 
+     // Location:
+     m_urlreqLocation->setURL( transfer->getFileURL().prettyURL() );
+-    //m_urlreqLocation->lineEdit()->setFocusPolicy( transfer->gettqStatus() == DccTransfer::Queued ? StrongFocus : ClickFocus );
+-    m_urlreqLocation->lineEdit()->setReadOnly( transfer->gettqStatus() != DccTransfer::Queued );
+-    m_urlreqLocation->lineEdit()->setFrame( transfer->gettqStatus() == DccTransfer::Queued );
+-    m_urlreqLocation->button()->setEnabled( transfer->gettqStatus() == DccTransfer::Queued );
++    //m_urlreqLocation->lineEdit()->setFocusPolicy( transfer->getStatus() == DccTransfer::Queued ? StrongFocus : ClickFocus );
++    m_urlreqLocation->lineEdit()->setReadOnly( transfer->getStatus() != DccTransfer::Queued );
++    m_urlreqLocation->lineEdit()->setFrame( transfer->getStatus() == DccTransfer::Queued );
++    m_urlreqLocation->button()->setEnabled( transfer->getStatus() == DccTransfer::Queued );
+     m_buttonOpenFolder->setEnabled( !m_urlreqLocation->lineEdit()->text().isEmpty() );
+ 
+     // Partner:
+@@ -110,11 +110,11 @@ void DccTransferDetailedInfoPanel::updateView()
+     else
+         m_labelSelf->setText( i18n( "%1 (port %2)" ).tqarg( transfer->getOwnIp() ).tqarg( transfer->getOwnPort() ) );
+ 
+-    // tqStatus:
+-    if ( transfer->gettqStatus() == DccTransfer::Transferring )
+-        m_labeltqStatus->setText( m_item->getStatusText() + " ( " + m_item->getCurrentSpeedPrettyText() + " )" );
++    // Status:
++    if ( transfer->getStatus() == DccTransfer::Transferring )
++        m_labelStatus->setText( m_item->getStatusText() + " ( " + m_item->getCurrentSpeedPrettyText() + " )" );
+     else
+-        m_labeltqStatus->setText( transfer->getStatusDetail().isEmpty() ? m_item->getStatusText() : m_item->getStatusText() + " (" + transfer->getStatusDetail() + ')' );
++        m_labelStatus->setText( transfer->getStatusDetail().isEmpty() ? m_item->getStatusText() : m_item->getStatusText() + " (" + transfer->getStatusDetail() + ')' );
+ 
+     // Progress:
+     m_progress->setProgress( transfer->getProgress() );
+@@ -146,7 +146,7 @@ void DccTransferDetailedInfoPanel::updateView()
+ 
+         // The transfer is still in progress
+         if ( transfer->getTimeTransferFinished().isNull() )
+-            transferringTime = transfer->getTimeTransferStarted().secsTo( TQDateTime::tqcurrentDateTime() );
++            transferringTime = transfer->getTimeTransferStarted().secsTo( TQDateTime::currentDateTime() );
+         // The transfer has finished
+         else
+             transferringTime = transfer->getTimeTransferStarted().secsTo( transfer->getTimeTransferFinished() );
+@@ -176,15 +176,15 @@ void DccTransferDetailedInfoPanel::updateView()
+         m_labelTimeFinished->setText( "" );
+ }
+ 
+-void DccTransferDetailedInfoPanel::slotTransferStatusChanged( DccTransfer* /* transfer */, int newtqStatus, int oldtqStatus )
++void DccTransferDetailedInfoPanel::slotTransferStatusChanged( DccTransfer* /* transfer */, int newStatus, int oldStatus )
+ {
+     updateView();
+-    if ( newtqStatus == DccTransfer::Transferring )
++    if ( newStatus == DccTransfer::Transferring )
+     {
+         // start auto view-update timer
+         m_autoViewUpdateTimer->start( 500, false );
+     }
+-    else if ( oldtqStatus == DccTransfer::Transferring )
++    else if ( oldStatus == DccTransfer::Transferring )
+     {
+         // stop auto view-update timer
+         m_autoViewUpdateTimer->stop();
+diff --git a/konversation/src/dcctransferdetailedinfopanel.h b/konversation/src/dcctransferdetailedinfopanel.h
+index 7fbcf65..8433822 100644
+--- a/konversation/src/dcctransferdetailedinfopanel.h
++++ b/konversation/src/dcctransferdetailedinfopanel.h
+@@ -33,7 +33,7 @@ class DccTransferDetailedInfoPanel : public DccTransferDetailedInfoPanelUI
+ 
+     private slots:
+         void updateView();
+-        void slotTransferStatusChanged( DccTransfer* transfer, int newtqStatus, int oldtqStatus );
++        void slotTransferStatusChanged( DccTransfer* transfer, int newStatus, int oldStatus );
+         void slotLocationChanged( const TQString& url );
+         void slotOpenFolderButtonClicked();
+ 
+diff --git a/konversation/src/dcctransferdetailedinfopanelui.ui b/konversation/src/dcctransferdetailedinfopanelui.ui
+index 24f6742..b11b2e1 100644
+--- a/konversation/src/dcctransferdetailedinfopanelui.ui
++++ b/konversation/src/dcctransferdetailedinfopanelui.ui
+@@ -71,7 +71,7 @@
+                         <cstring>textLabel10</cstring>
+                     </property>
+                     <property name="text">
+-                        <string>tqStatus:</string>
++                        <string>Status:</string>
+                     </property>
+                 </widget>
+                 <widget class="TQLabel" row="6" column="0">
+@@ -92,7 +92,7 @@
+                 </widget>
+                 <widget class="TQLabel" row="4" column="1">
+                     <property name="name">
+-                        <cstring>m_labeltqStatus</cstring>
++                        <cstring>m_labelStatus</cstring>
+                     </property>
+                 </widget>
+                 <widget class="TQLabel" row="2" column="1">
+@@ -188,7 +188,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>130</width>
+                                     <height>0</height>
+@@ -218,7 +218,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>130</width>
+                                     <height>0</height>
+@@ -240,7 +240,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>130</width>
+                                     <height>0</height>
+@@ -278,7 +278,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>130</width>
+                                     <height>0</height>
+@@ -316,7 +316,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>130</width>
+                                     <height>0</height>
+@@ -386,7 +386,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>130</width>
+                                     <height>0</height>
+@@ -424,7 +424,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>130</width>
+                                     <height>0</height>
+@@ -470,7 +470,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>110</width>
+                             <height>20</height>
+diff --git a/konversation/src/dcctransfermanager.cpp b/konversation/src/dcctransfermanager.cpp
+index 3e4357c..ec36840 100644
+--- a/konversation/src/dcctransfermanager.cpp
++++ b/konversation/src/dcctransfermanager.cpp
+@@ -62,7 +62,7 @@ DccTransferRecv* DccTransferManager::resumeDownload( int connectionId, const TQS
+     TQValueListConstIterator< DccTransferRecv* > it;
+     for ( it = m_recvItems.begin() ; it != m_recvItems.end() ; ++it )
+     {
+-        if ( ( (*it)->gettqStatus() == DccTransfer::Queued || (*it)->gettqStatus() == DccTransfer::WaitingRemote ) &&
++        if ( ( (*it)->getStatus() == DccTransfer::Queued || (*it)->getStatus() == DccTransfer::WaitingRemote ) &&
+              (*it)->getConnectionId() == connectionId &&
+              (*it)->getPartnerNick() == partnerNick &&
+              (*it)->getFileName() == fileName &&
+@@ -92,7 +92,7 @@ DccTransferSend* DccTransferManager::resumeUpload( int connectionId, const TQStr
+     TQValueListConstIterator< DccTransferSend* > it;
+     for ( it = m_sendItems.begin() ; it != m_sendItems.end() ; ++it )
+     {
+-        if ( ( (*it)->gettqStatus() == DccTransfer::Queued || (*it)->gettqStatus() == DccTransfer::WaitingRemote ) &&
++        if ( ( (*it)->getStatus() == DccTransfer::Queued || (*it)->getStatus() == DccTransfer::WaitingRemote ) &&
+              (*it)->getConnectionId() == connectionId &&
+              (*it)->getPartnerNick() == partnerNick &&
+              (*it)->getFileName() == fileName &&
+@@ -124,7 +124,7 @@ DccTransferSend* DccTransferManager::startReverseSending( int connectionId, cons
+     for ( it = m_sendItems.begin() ; it != m_sendItems.end() ; ++it )
+     {
+         if (
+-            (*it)->gettqStatus() == DccTransfer::WaitingRemote &&
++            (*it)->getStatus() == DccTransfer::WaitingRemote &&
+             (*it)->getConnectionId() == connectionId &&
+             (*it)->getPartnerNick() == partnerNick &&
+             (*it)->getFileName() == fileName &&
+@@ -155,8 +155,8 @@ bool DccTransferManager::isLocalFileInWritingProcess( const KURL& url ) const
+     TQValueListConstIterator< DccTransferRecv* > it;
+     for ( it = m_recvItems.begin() ; it != m_recvItems.end() ; ++it )
+     {
+-        if ( ( (*it)->gettqStatus() == DccTransfer::Connecting ||
+-               (*it)->gettqStatus() == DccTransfer::Transferring ) &&
++        if ( ( (*it)->getStatus() == DccTransfer::Connecting ||
++               (*it)->getStatus() == DccTransfer::Transferring ) &&
+              (*it)->getFileURL() == url )
+         {
+             return true;
+@@ -175,25 +175,25 @@ bool DccTransferManager::hasActiveTransfers()
+     TQValueListConstIterator< DccTransferSend* > it;
+     for ( it = m_sendItems.begin() ; it != m_sendItems.end() ; ++it )
+     {
+-        if ((*it)->gettqStatus() == DccTransfer::Transferring)
++        if ((*it)->getStatus() == DccTransfer::Transferring)
+             return true;
+     }
+ 
+     TQValueListConstIterator< DccTransferRecv* > it2;
+     for ( it2 = m_recvItems.begin() ; it2 != m_recvItems.end() ; ++it2 )
+     {
+-        if ((*it2)->gettqStatus() == DccTransfer::Transferring)
++        if ((*it2)->getStatus() == DccTransfer::Transferring)
+             return true;
+     }
+ 
+     return false;
+ }
+ 
+-void DccTransferManager::slotTransferStatusChanged( DccTransfer* item, int newtqStatus, int oldtqStatus )
++void DccTransferManager::slotTransferStatusChanged( DccTransfer* item, int newStatus, int oldStatus )
+ {
+-    kdDebug() << "DccTransferManager::slotTransferStatusChanged(): " << oldtqStatus << " -> " << newtqStatus << " " << item->getFileName() << " (" << item->getType() << ")" << endl;
++    kdDebug() << "DccTransferManager::slotTransferStatusChanged(): " << oldStatus << " -> " << newStatus << " " << item->getFileName() << " (" << item->getType() << ")" << endl;
+ 
+-    if ( newtqStatus == DccTransfer::Queued )
++    if ( newStatus == DccTransfer::Queued )
+         emit newTransferQueued( item );
+ }
+ 
+@@ -205,7 +205,7 @@ void DccTransferManager::slotSettingsChanged()
+         TQValueListConstIterator< DccTransferRecv* > it;
+         for ( it = m_recvItems.begin() ; it != m_recvItems.end() ; ++it )
+         {
+-            if ( (*it)->gettqStatus() == DccTransfer::Queued &&
++            if ( (*it)->getStatus() == DccTransfer::Queued &&
+                  (*it)->getFileURL().directory() == m_defaultIncomingFolder )
+             {
+                 KURL url;
+diff --git a/konversation/src/dcctransfermanager.h b/konversation/src/dcctransfermanager.h
+index c5753f7..0a34c3b 100644
+--- a/konversation/src/dcctransfermanager.h
++++ b/konversation/src/dcctransfermanager.h
+@@ -79,7 +79,7 @@ class DccTransferManager : public TQObject
+         void initTransfer( DccTransfer* transfer );
+ 
+     private slots:
+-        void slotTransferStatusChanged( DccTransfer* item, int newtqStatus, int oldtqStatus );
++        void slotTransferStatusChanged( DccTransfer* item, int newStatus, int oldStatus );
+         void removeSendItem( DccTransfer* item );
+         void removeRecvItem( DccTransfer* item );
+ 
+diff --git a/konversation/src/dcctransferpanel.cpp b/konversation/src/dcctransferpanel.cpp
+index 385850b..8b89afa 100644
+--- a/konversation/src/dcctransferpanel.cpp
++++ b/konversation/src/dcctransferpanel.cpp
+@@ -76,7 +76,7 @@ void DccTransferPanel::initGUI()
+ 
+     //m_listView->setColumnText(Column::TypeIcon,      "");
+     m_listView->setColumnText(Column::OfferDate,     i18n("Started at"));
+-    m_listView->setColumnText(Column::tqStatus,        i18n("Status"));
++    m_listView->setColumnText(Column::Status,        i18n("Status"));
+     m_listView->setColumnText(Column::FileName,      i18n("File"));
+     m_listView->setColumnText(Column::PartnerNick,   i18n("Partner"));
+     m_listView->setColumnText(Column::Progress,      i18n("Progress"));
+@@ -201,7 +201,7 @@ void DccTransferPanel::updateButton()
+         DccTransferPanelItem* item = static_cast<DccTransferPanelItem*>( it.current() );
+ 
+         DccTransfer::DccType type = item->transfer()->getType();
+-        DccTransfer::DcctqStatus status = item->transfer()->gettqStatus();
++        DccTransfer::DccStatus status = item->transfer()->getStatus();
+ 
+         selectAll = true;
+         selectAllCompleted |= ( status >= DccTransfer::Done );
+@@ -276,7 +276,7 @@ void DccTransferPanel::acceptDcc()
+         {
+             DccTransferPanelItem* item=static_cast<DccTransferPanelItem*>( it.current() );
+             DccTransfer* transfer = item->transfer();
+-            if( transfer->getType() == DccTransfer::Receive && transfer->gettqStatus() == DccTransfer::Queued )
++            if( transfer->getType() == DccTransfer::Receive && transfer->getStatus() == DccTransfer::Queued )
+                 transfer->start();
+         }
+         ++it;
+@@ -292,7 +292,7 @@ void DccTransferPanel::abortDcc()
+         {
+             DccTransferPanelItem* item=static_cast<DccTransferPanelItem*>( it.current() );
+             DccTransfer* transfer = item->transfer();
+-            if( transfer->gettqStatus() < DccTransfer::Done )
++            if( transfer->getStatus() < DccTransfer::Done )
+                 transfer->abort();
+         }
+         ++it;
+@@ -308,7 +308,7 @@ void DccTransferPanel::resendFile()
+         {
+             DccTransferPanelItem* item=static_cast<DccTransferPanelItem*>( it.current() );
+             DccTransfer* transfer = item->transfer();
+-            if( transfer->getType() == DccTransfer::Send && transfer->gettqStatus() >= DccTransfer::Done )
++            if( transfer->getType() == DccTransfer::Send && transfer->getStatus() >= DccTransfer::Done )
+             {
+                 DccTransferSend* newTransfer = KonversationApplication::instance()->getDccTransferManager()->newUpload();
+ 
+@@ -335,7 +335,7 @@ void DccTransferPanel::clearDcc()
+     {
+         DccTransferPanelItem* item = static_cast<DccTransferPanelItem*>( it.current() );
+         // should we check that [item] is not null?
+-        if( it.current()->isSelected() && item->transfer()->gettqStatus() >= DccTransfer::Done )
++        if( it.current()->isSelected() && item->transfer()->getStatus() >= DccTransfer::Done )
+             lst.append( it.current() );
+         ++it;
+     }
+@@ -377,7 +377,7 @@ void DccTransferPanel::runDcc()
+         {
+             DccTransferPanelItem* item=static_cast<DccTransferPanelItem*>( it.current() );
+             DccTransfer* transfer = item->transfer();
+-            if( transfer->getType() == DccTransfer::Send || transfer->gettqStatus() == DccTransfer::Done )
++            if( transfer->getType() == DccTransfer::Send || transfer->getStatus() == DccTransfer::Done )
+                 item->runFile();
+         }
+         ++it;
+@@ -392,7 +392,7 @@ void DccTransferPanel::showFileInfo()
+         if( it.current()->isSelected() )
+         {
+             DccTransferPanelItem* item=static_cast<DccTransferPanelItem*>( it.current() );
+-            if( item->transfer()->getType() == DccTransfer::Send || item->transfer()->gettqStatus() == DccTransfer::Done )
++            if( item->transfer()->getType() == DccTransfer::Send || item->transfer()->getStatus() == DccTransfer::Done )
+                 item->openFileInfoDialog();
+         }
+         ++it;
+@@ -416,7 +416,7 @@ void DccTransferPanel::selectAllCompleted()
+     while ( it.current() )
+     {
+         DccTransferPanelItem* item=static_cast<DccTransferPanelItem*>( it.current() );
+-        m_listView->setSelected( *it, item->transfer()->gettqStatus() >= DccTransfer::Done );
++        m_listView->setSelected( *it, item->transfer()->getStatus() >= DccTransfer::Done );
+         ++it;
+     }
+     updateButton();
+diff --git a/konversation/src/dcctransferpanel.h b/konversation/src/dcctransferpanel.h
+index 09afaeb..7b88bcb 100644
+--- a/konversation/src/dcctransferpanel.h
++++ b/konversation/src/dcctransferpanel.h
+@@ -39,7 +39,7 @@ class DccTransferPanel : public ChatWindow
+                 {
+                     TypeIcon,
+                     OfferDate,
+-                    tqStatus,
++                    Status,
+                     FileName,
+                     PartnerNick,
+                     Progress,
+diff --git a/konversation/src/dcctransferpanelitem.cpp b/konversation/src/dcctransferpanelitem.cpp
+index 8737a3b..d2cb9ee 100644
+--- a/konversation/src/dcctransferpanelitem.cpp
++++ b/konversation/src/dcctransferpanelitem.cpp
+@@ -67,10 +67,10 @@ DccTransferPanelItem::~DccTransferPanelItem()
+ void DccTransferPanelItem::updateView()
+ {
+     setPixmap( DccTransferPanel::Column::TypeIcon, getTypeIcon() );
+-    setPixmap( DccTransferPanel::Column::tqStatus,   getStatusIcon() );
++    setPixmap( DccTransferPanel::Column::Status,   getStatusIcon() );
+ 
+     setText( DccTransferPanel::Column::OfferDate,     m_transfer->getTimeOffer().toString( "hh:mm:ss" ) );
+-    setText( DccTransferPanel::Column::tqStatus,        getStatusText() );
++    setText( DccTransferPanel::Column::Status,        getStatusText() );
+     setText( DccTransferPanel::Column::FileName,      m_transfer->getFileName() );
+     setText( DccTransferPanel::Column::PartnerNick,   m_transfer->getPartnerNick() );
+     setText( DccTransferPanel::Column::Position,      getPositionPrettyText() );
+@@ -104,9 +104,9 @@ int DccTransferPanelItem::compare( TQListViewItem* i, int col, bool ascending )
+             if ( m_transfer->getTimeOffer() < item->transfer()->getTimeOffer() ) return -1;
+             return 0;
+             break;
+-        case DccTransferPanel::Column::tqStatus:
+-            if ( m_transfer->gettqStatus() > item->transfer()->gettqStatus() ) return 1;
+-            if ( m_transfer->gettqStatus() < item->transfer()->gettqStatus() ) return -1;
++        case DccTransferPanel::Column::Status:
++            if ( m_transfer->getStatus() > item->transfer()->getStatus() ) return 1;
++            if ( m_transfer->getStatus() < item->transfer()->getStatus() ) return -1;
+             return 0;
+             break;
+         case DccTransferPanel::Column::Position:
+@@ -130,11 +130,11 @@ int DccTransferPanelItem::compare( TQListViewItem* i, int col, bool ascending )
+     return TQListViewItem::compare( i, col, ascending );
+ }
+ 
+-void DccTransferPanelItem::slotStatusChanged( DccTransfer* /* transfer */, int newtqStatus, int /* oldtqStatus */ )
++void DccTransferPanelItem::slotStatusChanged( DccTransfer* /* transfer */, int newStatus, int /* oldStatus */ )
+ {
+     updateView();
+ 
+-    if ( newtqStatus == DccTransfer::Transferring )
++    if ( newStatus == DccTransfer::Transferring )
+         startAutoViewUpdate();
+ }
+ 
+@@ -167,7 +167,7 @@ void DccTransferPanelItem::showProgressBar()
+ {
+     if ( m_transfer->getFileSize() )
+     {
+-        TQRect rect = listView()->tqitemRect( this );
++        TQRect rect = listView()->itemRect( this );
+         TQHeader *head = listView()->header();
+         rect.setLeft( head->sectionPos( DccTransferPanel::Column::Progress ) - head->offset() );
+         rect.setWidth( head->sectionSize( DccTransferPanel::Column::Progress ) );
+@@ -178,13 +178,13 @@ void DccTransferPanelItem::showProgressBar()
+ 
+ void DccTransferPanelItem::runFile()
+ {
+-    if ( m_transfer->getType() == DccTransfer::Send || m_transfer->gettqStatus() == DccTransfer::Done )
++    if ( m_transfer->getType() == DccTransfer::Send || m_transfer->getStatus() == DccTransfer::Done )
+         new KRun( m_transfer->getFileURL(), listView() );
+ }
+ 
+ void DccTransferPanelItem::openFileInfoDialog()
+ {
+-    if ( m_transfer->getType() == DccTransfer::Send || m_transfer->gettqStatus() == DccTransfer::Done )
++    if ( m_transfer->getType() == DccTransfer::Send || m_transfer->getStatus() == DccTransfer::Done )
+     {
+         TQStringList infoList;
+ 
+@@ -278,7 +278,7 @@ TQPixmap DccTransferPanelItem::getTypeIcon() const
+ TQPixmap DccTransferPanelItem::getStatusIcon() const
+ {
+     TQString icon;
+-    switch ( m_transfer->gettqStatus() )
++    switch ( m_transfer->getStatus() )
+     {
+         case DccTransfer::Queued:
+             icon = "player_stop";
+@@ -306,7 +306,7 @@ TQPixmap DccTransferPanelItem::getStatusIcon() const
+ 
+ TQString DccTransferPanelItem::getStatusText() const
+ {
+-    DccTransfer::DcctqStatus status = m_transfer->gettqStatus();
++    DccTransfer::DccStatus status = m_transfer->getStatus();
+     DccTransfer::DccType type = m_transfer->getType();
+ 
+     if ( status == DccTransfer::Queued )
+diff --git a/konversation/src/dcctransferpanelitem.h b/konversation/src/dcctransferpanelitem.h
+index 7e1b113..eef6305 100644
+--- a/konversation/src/dcctransferpanelitem.h
++++ b/konversation/src/dcctransferpanelitem.h
+@@ -71,7 +71,7 @@ class DccTransferPanelItem : public TQObject, public KListViewItem
+         static TQString secToHMS( long sec );
+ 
+     private slots:
+-        void slotStatusChanged( DccTransfer* transfer, int newtqStatus, int oldtqStatus );
++        void slotStatusChanged( DccTransfer* transfer, int newStatus, int oldStatus );
+         void updateView();
+ 
+     private:
+diff --git a/konversation/src/dcctransferrecv.cpp b/konversation/src/dcctransferrecv.cpp
+index 6a5820a..9922bbb 100644
+--- a/konversation/src/dcctransferrecv.cpp
++++ b/konversation/src/dcctransferrecv.cpp
+@@ -113,44 +113,44 @@ void DccTransferRecv::cleanUp()
+ // just for convenience
+ void DccTransferRecv::failed( const TQString& errorMessage )
+ {
+-    settqStatus( Failed, errorMessage );
++    setStatus( Failed, errorMessage );
+     cleanUp();
+     emit done( this );
+ }
+ 
+ void DccTransferRecv::setPartnerIp( const TQString& ip )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_partnerIp = ip;
+ }
+ 
+ void DccTransferRecv::setPartnerPort( const TQString& port )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_partnerPort = port;
+ }
+ 
+ void DccTransferRecv::setFileSize( unsigned long fileSize )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_fileSize = fileSize;
+ }
+ 
+ void DccTransferRecv::setFileName( const TQString& fileName )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_fileName = fileName;
+ }
+ 
+ void DccTransferRecv::setFileURL( const KURL& url )
+ {
+-    if ( gettqStatus() == Configuring || gettqStatus() == Queued )
++    if ( getStatus() == Configuring || getStatus() == Queued )
+         m_fileURL = url;
+ }
+ 
+ void DccTransferRecv::setReverse( bool reverse, const TQString& reverseToken )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+     {
+         m_reverse = reverse;
+         if ( reverse )
+@@ -165,7 +165,7 @@ bool DccTransferRecv::queue()
+ {
+     kdDebug() << "DccTransferRecv::queue()" << endl;
+ 
+-    if ( gettqStatus() != Configuring )
++    if ( getStatus() != Configuring )
+         return false;
+ 
+     if ( m_partnerIp.isEmpty() || m_partnerPort.isEmpty() )
+@@ -237,7 +237,7 @@ void DccTransferRecv::abort()                     // public slot
+         m_writeCacheHandler->write( true );       // flush
+     }
+ 
+-    settqStatus( Aborted );
++    setStatus( Aborted );
+     cleanUp();
+     emit done( this );
+ }
+@@ -246,10 +246,10 @@ void DccTransferRecv::start()                     // public slot
+ {
+     kdDebug() << "DccTransferRecv::start() [BEGIN]" << endl;
+ 
+-    if ( gettqStatus() != Queued )
++    if ( getStatus() != Queued )
+         return;
+ 
+-    settqStatus( Preparing );
++    setStatus( Preparing );
+ 
+     prepareLocalKio( false, false );
+ 
+@@ -305,7 +305,7 @@ void DccTransferRecv::askAndPrepareLocalKio( const TQString& message, int enable
+             break;
+         case DccResumeDialog::RA_Cancel:
+         default:
+-            settqStatus( Queued );
++            setStatus( Queued );
+     }
+ }
+ 
+@@ -444,7 +444,7 @@ void DccTransferRecv::connectWithSender()
+         m_ownIp = DccCommon::getOwnIp( server );
+         m_ownPort = TQString::number( DccCommon::getServerSocketPort( m_serverSocket ) );
+ 
+-        settqStatus( WaitingRemote, i18n( "Waiting for connection" ) );
++        setStatus( WaitingRemote, i18n( "Waiting for connection" ) );
+ 
+         server->dccReverseSendAck( m_partnerNick, m_fileName, DccCommon::textIpToNumericalIp( m_ownIp ), m_ownPort, m_fileSize, m_reverseToken );
+ 
+@@ -460,7 +460,7 @@ void DccTransferRecv::requestResume()
+ {
+     kdDebug() << "DccTransferRecv::requestResume()" << endl;
+ 
+-    settqStatus( WaitingRemote, i18n( "Waiting for remote host's acceptance" ) );
++    setStatus( WaitingRemote, i18n( "Waiting for remote host's acceptance" ) );
+ 
+     startConnectionTimer( 30 );
+ 
+@@ -503,7 +503,7 @@ void DccTransferRecv::connectToSendServer()
+ 
+     // connect to sender
+ 
+-    settqStatus( Connecting );
++    setStatus( Connecting );
+ 
+     m_recvSocket = new KNetwork::KStreamSocket( m_partnerIp, m_partnerPort, this);
+ 
+@@ -577,7 +577,7 @@ void DccTransferRecv::startReceiving()
+     connect( m_recvSocket, TQT_SIGNAL( readyWrite() ),                       this, TQT_SLOT( sendAck() )               );
+     connect( m_recvSocket, TQT_SIGNAL( closed() ),                           this, TQT_SLOT( slotSocketClosed() )      );
+ 
+-    settqStatus( Transferring );
++    setStatus( Transferring );
+ 
+     m_transferStartPosition = m_transferringPosition;
+ 
+@@ -633,7 +633,7 @@ void DccTransferRecv::sendAck()                   // slot
+ void DccTransferRecv::slotLocalWriteDone()        // <-WriteCacheHandler::done()
+ {
+     kdDebug() << "DccTransferRecv::slotLocalWriteDone()" << endl;
+-    settqStatus( Done );
++    setStatus( Done );
+     cleanUp();
+     emit done( this );
+ }
+@@ -670,7 +670,7 @@ void DccTransferRecv::connectionTimeout()         // slot
+ void DccTransferRecv::slotSocketClosed()
+ {
+     finishTransferLogger();
+-    if ( gettqStatus() == Transferring )
++    if ( getStatus() == Transferring )
+         failed( i18n( "Remote user disconnected" ) );
+ }
+ 
+diff --git a/konversation/src/dcctransfersend.cpp b/konversation/src/dcctransfersend.cpp
+index 295a12b..db0bad2 100644
+--- a/konversation/src/dcctransfersend.cpp
++++ b/konversation/src/dcctransfersend.cpp
+@@ -91,38 +91,38 @@ void DccTransferSend::cleanUp()
+ // just for convenience
+ void DccTransferSend::failed( const TQString& errorMessage )
+ {
+-    settqStatus( Failed, errorMessage );
++    setStatus( Failed, errorMessage );
+     cleanUp();
+     emit done( this );
+ }
+ 
+ void DccTransferSend::setFileURL( const KURL& url )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_fileURL = url;
+ }
+ 
+ void DccTransferSend::setFileName( const TQString& fileName )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_fileName = fileName;
+ }
+ 
+ void DccTransferSend::setOwnIp( const TQString& ownIp )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_ownIp = ownIp;
+ }
+ 
+ void DccTransferSend::setFileSize( KIO::filesize_t fileSize )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_fileSize = fileSize;
+ }
+ 
+ void DccTransferSend::setReverse( bool reverse )
+ {
+-    if ( gettqStatus() == Configuring )
++    if ( getStatus() == Configuring )
+         m_reverse = reverse;
+ }
+ 
+@@ -130,7 +130,7 @@ bool DccTransferSend::queue()
+ {
+     kdDebug() << "DccTransferSend::queue()" << endl;
+ 
+-    if ( gettqStatus() != Configuring )
++    if ( getStatus() != Configuring )
+         return false;
+ 
+     if ( m_ownIp.isEmpty() )
+@@ -217,7 +217,7 @@ void DccTransferSend::abort()                     // public slot
+ {
+     kdDebug() << "DccTransferSend::abort()" << endl;
+ 
+-    settqStatus( Aborted );
++    setStatus( Aborted );
+     cleanUp();
+     emit done( this );
+ }
+@@ -226,7 +226,7 @@ void DccTransferSend::start()                     // public slot
+ {
+     kdDebug() << "DccTransferSend::start()" << endl;
+ 
+-    if ( gettqStatus() != Queued )
++    if ( getStatus() != Queued )
+         return;
+ 
+     // common procedure
+@@ -283,7 +283,7 @@ void DccTransferSend::start()                     // public slot
+         server->dccPassiveSendRequest( m_partnerNick, m_fileName, getNumericalIpText( m_ownIp ), m_fileSize, m_reverseToken );
+     }
+ 
+-    settqStatus( WaitingRemote, i18n( "Waiting remote user's acceptance" ) );
++    setStatus( WaitingRemote, i18n( "Waiting remote user's acceptance" ) );
+ }
+ 
+ void DccTransferSend::connectToReceiver( const TQString& partnerHost, const TQString& partnerPort )
+@@ -300,7 +300,7 @@ void DccTransferSend::connectToReceiver( const TQString& partnerHost, const TQSt
+     connect( m_sendSocket, TQT_SIGNAL( connected( const KResolverEntry& ) ), this, TQT_SLOT( startSending() ) );
+     connect( m_sendSocket, TQT_SIGNAL( gotError( int ) ), this, TQT_SLOT( slotConnectionFailed( int ) ) );
+ 
+-    settqStatus( Connecting );
++    setStatus( Connecting );
+ 
+     m_sendSocket->connect();
+ }
+@@ -309,7 +309,7 @@ bool DccTransferSend::setResume( unsigned long position )
+ {
+     kdDebug() << "DccTransferSend::setResume(): position=" << position << endl;
+ 
+-    if ( gettqStatus() > WaitingRemote )
++    if ( getStatus() > WaitingRemote )
+         return false;
+ 
+     if ( position >= m_fileSize )
+@@ -359,7 +359,7 @@ void DccTransferSend::startSending()
+         m_file.at( m_transferringPosition );
+         m_transferStartPosition = m_transferringPosition;
+ 
+-        settqStatus( Transferring );
++        setStatus( Transferring );
+         m_sendSocket->enableWrite( true );
+         m_sendSocket->enableRead( m_fastSend );
+         startTransferLogger();                      // initialize CPS counter, ETA counter, etc...
+@@ -407,7 +407,7 @@ void DccTransferSend::getAck()                    // slot
+         {
+             kdDebug() << "DccTransferSend::getAck(): Received final ACK." << endl;
+             finishTransferLogger();
+-            settqStatus( Done );
++            setStatus( Done );
+             cleanUp();
+             emit done( this );
+             break;                                // for safe
+@@ -457,7 +457,7 @@ void DccTransferSend::slotSendSocketClosed()
+ {
+     kdDebug() << "DccTransferSend::slotSendSocketClosed()" << endl;
+     finishTransferLogger();
+-    if ( gettqStatus() == Transferring && m_transferringPosition < (KIO::fileoffset_t)m_fileSize )
++    if ( getStatus() == Transferring && m_transferringPosition < (KIO::fileoffset_t)m_fileSize )
+         failed( i18n( "Remote user disconnected" ) );
+ }
+ 
+diff --git a/konversation/src/fontappearance_preferences.ui b/konversation/src/fontappearance_preferences.ui
+index 389a252..a50b3a0 100644
+--- a/konversation/src/fontappearance_preferences.ui
++++ b/konversation/src/fontappearance_preferences.ui
+@@ -54,7 +54,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>161</height>
+diff --git a/konversation/src/generalbehavior_preferences.ui b/konversation/src/generalbehavior_preferences.ui
+index 164ca58..0354e67 100644
+--- a/konversation/src/generalbehavior_preferences.ui
++++ b/konversation/src/generalbehavior_preferences.ui
+@@ -60,7 +60,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>31</width>
+                             <height>20</height>
+@@ -88,7 +88,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>31</width>
+                             <height>20</height>
+@@ -301,7 +301,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>20</height>
+diff --git a/konversation/src/highlight_preferencesui.ui b/konversation/src/highlight_preferencesui.ui
+index 65baf8f..3b42a4d 100644
+--- a/konversation/src/highlight_preferencesui.ui
++++ b/konversation/src/highlight_preferencesui.ui
+@@ -141,7 +141,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>250</height>
+@@ -362,7 +362,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>120</width>
+                     <height>20</height>
+@@ -379,7 +379,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>50</width>
+                     <height>20</height>
+@@ -396,7 +396,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>50</width>
+                     <height>21</height>
+diff --git a/konversation/src/ignore_preferencesui.ui b/konversation/src/ignore_preferencesui.ui
+index b726d29..88aa423 100644
+--- a/konversation/src/ignore_preferencesui.ui
++++ b/konversation/src/ignore_preferencesui.ui
+@@ -185,7 +185,7 @@ the Free Software Foundation; either version 2 of the License, or
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>40</height>
+diff --git a/konversation/src/inputfilter.cpp b/konversation/src/inputfilter.cpp
+index f597812..f2e78ec 100644
+--- a/konversation/src/inputfilter.cpp
++++ b/konversation/src/inputfilter.cpp
+@@ -371,7 +371,7 @@ void InputFilter::parseClientCommand(const TQString &prefix, const TQString &com
+                     i18n("Received CTCP-%1 request from %2, sending answer.")
+                     .tqarg("TIME").tqarg(sourceNick)
+                     );
+-                server->ctcpReply(sourceNick,TQString("TIME ")+TQDateTime::tqcurrentDateTime().toString());
++                server->ctcpReply(sourceNick,TQString("TIME ")+TQDateTime::currentDateTime().toString());
+             }
+ 
+             // No known CTCP request, give a general message
+@@ -431,7 +431,7 @@ void InputFilter::parseClientCommand(const TQString &prefix, const TQString &com
+                     // pong reply, calculate turnaround time
+                     if(replyReason.lower()=="ping")
+                     {
+-                        int dateArrived=TQDateTime::tqcurrentDateTime().toTime_t();
++                        int dateArrived=TQDateTime::currentDateTime().toTime_t();
+                         int dateSent=reply.toInt();
+                         int time = dateArrived-dateSent;
+                         TQString unit = "seconds";
+diff --git a/konversation/src/ircinput.cpp b/konversation/src/ircinput.cpp
+index 568adc9..20d3edf 100644
+--- a/konversation/src/ircinput.cpp
++++ b/konversation/src/ircinput.cpp
+@@ -61,7 +61,7 @@ IRCInput::IRCInput(TQWidget* parent) : KTextEdit(parent)
+     connect(completionBox, TQT_SIGNAL(activated(const TQString&)), this, TQT_SLOT(insertCompletion(const TQString&)));
+ 
+     // widget may not be resized vertically
+-    tqsetSizePolicy(TQSizePolicy(TQSizePolicy::MinimumExpanding,TQSizePolicy::Fixed));
++    setSizePolicy(TQSizePolicy(TQSizePolicy::MinimumExpanding,TQSizePolicy::Fixed));
+ 
+     //NoWrap coupled with the size policy constrains the line edit to be one row high
+     setWordWrap(m_multiRow ? WidgetWidth : NoWrap);
+@@ -130,7 +130,7 @@ void IRCInput::updateAppearance()
+ {
+     m_multiRow = Preferences::useMultiRowInputBox();
+     setWordWrap(m_multiRow ? WidgetWidth : NoWrap);
+-    m_lastHeight=heightForWidth(tqsizeHint().width());
++    m_lastHeight=heightForWidth(sizeHint().width());
+     ensureCursorVisible(); //appears to trigger updateGeometry
+ }
+ 
+@@ -144,7 +144,7 @@ void IRCInput::resizeContents( int w, int h )
+ }
+ 
+ // widget must be only one line high - luckily QT will enforce this via wrappping policy
+-TQSize IRCInput::tqsizeHint() const
++TQSize IRCInput::sizeHint() const
+ {
+     constPolish();
+ 
+diff --git a/konversation/src/ircinput.h b/konversation/src/ircinput.h
+index f372b24..f4fa095 100644
+--- a/konversation/src/ircinput.h
++++ b/konversation/src/ircinput.h
+@@ -38,7 +38,7 @@ class IRCInput : public KTextEdit
+         int getOldCursorPosition();
+         TQString lastCompletion() const { return m_lastCompletion; }
+ 
+-        virtual TQSize tqsizeHint() const;
++        virtual TQSize sizeHint() const;
+         TQString text() const;
+ 
+     signals:
+diff --git a/konversation/src/ircview.cpp b/konversation/src/ircview.cpp
+index 6b3342b..fb57094 100644
+--- a/konversation/src/ircview.cpp
++++ b/konversation/src/ircview.cpp
+@@ -532,7 +532,7 @@ bool doHighlight, bool parseURL, bool self)
+                         (whoSent.find(needleReg) != -1));
+ 
+                     // remember captured patterns for later
+-                    captures=needleReg.tqcapturedTexts();
++                    captures=needleReg.capturedTexts();
+ 
+                 }
+                 else
+@@ -1709,7 +1709,7 @@ TQString IRCView::timeStamp()
+         }
+         else
+         {
+-            TQDate date = TQDate::tqcurrentDate();
++            TQDate date = TQDate::currentDate();
+             timeString = TQString("<font color=\"" +
+                 timeColor + "\">[%1 %2]</font> ")
+                     .tqarg(KGlobal::locale()->formatDate(date, true /*short format*/),
+diff --git a/konversation/src/ircviewbox.cpp b/konversation/src/ircviewbox.cpp
+index 9318cbf..24401dd 100644
+--- a/konversation/src/ircviewbox.cpp
++++ b/konversation/src/ircviewbox.cpp
+@@ -84,14 +84,14 @@ void IRCViewBox::searchNext(bool reversed)
+     if (match)
+     {
+         m_searchBar->setHasMatch(true);
+-        m_searchBar->settqStatus(TQPixmap(), "");
++        m_searchBar->setStatus(TQPixmap(), "");
+         return;
+     }
+ 
+     if (!m_matchedOnce)
+     {
+         m_searchBar->setHasMatch(false);
+-        m_searchBar->settqStatus(getIcon("messagebox_warning"),
++        m_searchBar->setStatus(getIcon("messagebox_warning"),
+                               i18n("Phrase not found"));
+         return;
+     }
+@@ -105,13 +105,13 @@ void IRCViewBox::searchNext(bool reversed)
+     if (!match)
+     {
+         m_searchBar->setHasMatch(false);
+-        m_searchBar->settqStatus(getIcon("messagebox_warning"),
++        m_searchBar->setStatus(getIcon("messagebox_warning"),
+                               i18n("Phrase not found"));
+         return;
+     }
+ 
+     m_searchBar->setHasMatch(true);
+-    m_searchBar->settqStatus(getIcon("messagebox_info"),
++    m_searchBar->setStatus(getIcon("messagebox_info"),
+                           i18n("Wrapped search"));
+ }
+ 
+@@ -126,12 +126,12 @@ void IRCViewBox::slotSearchChanged(const TQString& pattern)
+     if (match)
+     {
+         m_searchBar->setHasMatch(true);
+-        m_searchBar->settqStatus(TQPixmap(), "");
++        m_searchBar->setStatus(TQPixmap(), "");
+     }
+     else
+     {
+         m_searchBar->setHasMatch(false);
+-        m_searchBar->settqStatus(getIcon("messagebox_warning"),
++        m_searchBar->setStatus(getIcon("messagebox_warning"),
+             i18n("Phrase not found"));
+     }
+ 
+diff --git a/konversation/src/konversationapplication.cpp b/konversation/src/konversationapplication.cpp
+index d8f5891..083a1ee 100644
+--- a/konversation/src/konversationapplication.cpp
++++ b/konversation/src/konversationapplication.cpp
+@@ -343,7 +343,7 @@ void KonversationApplication::readOptions()
+     osd->setShadow(Preferences::oSDDrawShadow());
+ 
+     osd->setOffset(Preferences::oSDOffsetX(), Preferences::oSDOffsetY());
+-    osd->tqsetAlignment((OSDWidget::Alignment)Preferences::oSDAlignment());
++    osd->setAlignment((OSDWidget::Alignment)Preferences::oSDAlignment());
+ 
+     if(Preferences::oSDUseCustomColors())
+     {
+@@ -856,7 +856,7 @@ TQString KonversationApplication::doAutoreplace(const TQString& text,bool output
+                     if(index != -1)
+                     {
+                         // remember captured patterns
+-                        TQStringList captures = needleReg.tqcapturedTexts();
++                        TQStringList captures = needleReg.capturedTexts();
+ 
+                         // replace %0 - %9 in regex groups
+                         for(unsigned int capture=0;capture<captures.count();capture++)
+diff --git a/konversation/src/konversationstatusbar.cpp b/konversation/src/konversationstatusbar.cpp
+index 86ddb24..bd8e61e 100644
+--- a/konversation/src/konversationstatusbar.cpp
++++ b/konversation/src/konversationstatusbar.cpp
+@@ -33,7 +33,7 @@ KonversationStatusBar::KonversationStatusBar(KonversationMainWindow* window)
+ 
+     m_mainLabel = new KSqueezedTextLabel(m_window->statusBar(),"mainLabel");
+     setMainLabelText(i18n("Ready."));
+-    m_mainLabel->tqsetSizePolicy(TQSizePolicy(TQSizePolicy::Preferred, TQSizePolicy::Fixed));
++    m_mainLabel->setSizePolicy(TQSizePolicy(TQSizePolicy::Preferred, TQSizePolicy::Fixed));
+     m_mainLabel->setMinimumWidth(0);
+ 
+     // KSqueezedLabel calculates the wrong height. Popular workaround.
+diff --git a/konversation/src/konvibookmarkhandler.cpp b/konversation/src/konvibookmarkhandler.cpp
+index 79cf12a..5a76682 100644
+--- a/konversation/src/konvibookmarkhandler.cpp
++++ b/konversation/src/konvibookmarkhandler.cpp
+@@ -63,7 +63,7 @@ KonviBookmarkHandler::~KonviBookmarkHandler()
+ void KonviBookmarkHandler::slotEditBookmarks()
+ {
+     KProcess proc;
+-    proc << TQString::tqfromLatin1("keditbookmarks");
++    proc << TQString::fromLatin1("keditbookmarks");
+     proc << "--nobrowser";
+     proc << "--caption" << i18n("Konversation Bookmarks Editor");
+     proc << m_file;
+diff --git a/konversation/src/linkaddressbook/addressbook.cpp b/konversation/src/linkaddressbook/addressbook.cpp
+index 6a050af..7d09c49 100644
+--- a/konversation/src/linkaddressbook/addressbook.cpp
++++ b/konversation/src/linkaddressbook/addressbook.cpp
+@@ -98,7 +98,7 @@ namespace Konversation
+             kdDebug() << "Addressbook::presenceString() called with an empty uid" << endl;
+             return TQString("Error");
+         }
+-        switch( presencetqStatus(uid))
++        switch( presenceStatus(uid))
+         {
+             case 0:
+                 return "";
+@@ -113,7 +113,7 @@ namespace Konversation
+         }
+         return TQString("Error");
+     }
+-    int Addressbook::presencetqStatus(const TQString &uid)
++    int Addressbook::presenceStatus(const TQString &uid)
+     {
+         return presenceStatusByAddressee(addressBook->findByUid(uid));
+     }
+@@ -125,7 +125,7 @@ namespace Konversation
+             kdDebug() << "Addressbook::canReceiveFiles() called with empty uid" << endl;
+             return false;
+         }
+-        int presence = presencetqStatus(uid);
++        int presence = presenceStatus(uid);
+ 
+         return (presence == 4) || (presence == 3);
+     }
+@@ -137,7 +137,7 @@ namespace Konversation
+             return false;
+         }
+         //this should return false if they are offline.
+-        int result = presencetqStatus(uid);
++        int result = presenceStatus(uid);
+         if(result == 3 || result == 4) return true;
+         return false;
+     }
+@@ -161,7 +161,7 @@ namespace Konversation
+         if(!isPresent(uid))
+             return TQPixmap();
+ 
+-        switch(presencetqStatus(uid))
++        switch(presenceStatus(uid))
+         {
+             case 0:                               //Unknown
+             case 1:                               //Offline
+@@ -331,7 +331,7 @@ void Addressbook::emitContactPresenceChanged(const TQString &uid)
+         return;
+     };
+ 
+-    emitContactPresenceChanged(uid, presencetqStatus(uid));
++    emitContactPresenceChanged(uid, presenceStatus(uid));
+ }
+ 
+ }                                                 //NAMESPACE
+diff --git a/konversation/src/linkaddressbook/addressbook.h b/konversation/src/linkaddressbook/addressbook.h
+index 222a05f..95fc6c5 100644
+--- a/konversation/src/linkaddressbook/addressbook.h
++++ b/konversation/src/linkaddressbook/addressbook.h
+@@ -52,7 +52,7 @@ namespace Konversation
+             // metadata
+             TQPixmap icon( const TQString &uid );
+             TQString context( const TQString &uid );
+-            virtual int presencetqStatus(const TQString &uid);
++            virtual int presenceStatus(const TQString &uid);
+             // App capabilities
+             TQStringList protocols();
+ 
+diff --git a/konversation/src/linkaddressbook/kimiface.h b/konversation/src/linkaddressbook/kimiface.h
+index bd6ab85..257bb42 100644
+--- a/konversation/src/linkaddressbook/kimiface.h
++++ b/konversation/src/linkaddressbook/kimiface.h
+@@ -88,7 +88,7 @@ class KIMIface : virtual public DCOPObject
+      * @param uid the KABC uid you want the presence for.
+      * @return a numeric representation of presence - currently one of 0 (Unknown), 1 (Offline), 2 (Connecting), 3 (Away), 4 (Online)
+      */
+-    virtual int presencetqStatus( const TQString & uid ) = 0;
++    virtual int presenceStatus( const TQString & uid ) = 0;
+     /**
+      * Indicate if a given uid can receive files
+      * @param uid the KABC uid you are interested in.
+@@ -175,7 +175,7 @@ class KIMIface : virtual public DCOPObject
+      * Indicates that a contact's presence has changed
+      * @param uid the contact whose presence changed.
+      * @param appId the dcop application id of the program the signal originates from.
+-     * @param presence the new numeric presence @ref presencetqStatus
++     * @param presence the new numeric presence @ref presenceStatus
+      */
+     void contactPresenceChanged( TQString uid, TQCString appId, int presence );
+ };
+diff --git a/konversation/src/linkaddressbook/linkaddressbookui_base.ui b/konversation/src/linkaddressbook/linkaddressbookui_base.ui
+index 5d630c4..e67d306 100644
+--- a/konversation/src/linkaddressbook/linkaddressbookui_base.ui
++++ b/konversation/src/linkaddressbook/linkaddressbookui_base.ui
+@@ -37,7 +37,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>405</width>
+                     <height>20</height>
+diff --git a/konversation/src/linkaddressbook/nicklisttooltip.cpp b/konversation/src/linkaddressbook/nicklisttooltip.cpp
+index f49d7a0..732b32e 100644
+--- a/konversation/src/linkaddressbook/nicklisttooltip.cpp
++++ b/konversation/src/linkaddressbook/nicklisttooltip.cpp
+@@ -52,17 +52,17 @@ namespace Konversation
+             return;
+ 
+         TQString toolTip;
+-        TQRect tqitemRect = m_listView->tqitemRect( item );
++        TQRect itemRect = m_listView->itemRect( item );
+ 
+         uint leftMargin = m_listView->treeStepSize() *
+             ( item->depth() + ( m_listView->rootIsDecorated() ? 1 : 0 ) ) +
+             m_listView->itemMargin();
+-        uint xAdjust = tqitemRect.left() + leftMargin;
+-        uint yAdjust = tqitemRect.top();
++        uint xAdjust = itemRect.left() + leftMargin;
++        uint yAdjust = itemRect.top();
+         TQPoint relativePos( pos.x() - xAdjust, pos.y() - yAdjust );
+         toolTip = Konversation::removeIrcMarkup(nick->getChannelNick()->tooltip());
+         if(!toolTip.isEmpty())
+-            tip(tqitemRect, toolTip);
++            tip(itemRect, toolTip);
+     }
+ 
+ }                                                 // namespace Konversation
+diff --git a/konversation/src/linkaddressbook/nicksonlinetooltip.cpp b/konversation/src/linkaddressbook/nicksonlinetooltip.cpp
+index 6315e10..9c4df71 100644
+--- a/konversation/src/linkaddressbook/nicksonlinetooltip.cpp
++++ b/konversation/src/linkaddressbook/nicksonlinetooltip.cpp
+@@ -51,17 +51,17 @@ namespace Konversation
+         if(!nickInfo )
+             return;
+         TQString toolTip;
+-        TQRect tqitemRect = m_listView->tqitemRect( item );
++        TQRect itemRect = m_listView->itemRect( item );
+ 
+         uint leftMargin = m_listView->treeStepSize() *
+             ( item->depth() + ( m_listView->rootIsDecorated() ? 1 : 0 ) ) +
+             m_listView->itemMargin();
+-        uint xAdjust = tqitemRect.left() + leftMargin;
+-        uint yAdjust = tqitemRect.top();
++        uint xAdjust = itemRect.left() + leftMargin;
++        uint yAdjust = itemRect.top();
+         TQPoint relativePos( pos.x() - xAdjust, pos.y() - yAdjust );
+         toolTip = nickInfo->tooltip();
+         if(!toolTip.isEmpty())
+-            tip(tqitemRect, toolTip);
++            tip(itemRect, toolTip);
+     }
+ 
+ }                                                 // namespace Konversation
+diff --git a/konversation/src/log_preferences.ui b/konversation/src/log_preferences.ui
+index 0ffdfc7..13326e6 100644
+--- a/konversation/src/log_preferences.ui
++++ b/konversation/src/log_preferences.ui
+@@ -92,7 +92,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>21</width>
+                     <height>10</height>
+diff --git a/konversation/src/multilinetextedit.cpp b/konversation/src/multilinetextedit.cpp
+index 880d0d1..be42a1f 100644
+--- a/konversation/src/multilinetextedit.cpp
++++ b/konversation/src/multilinetextedit.cpp
+@@ -44,7 +44,7 @@ void MultilineTextEdit::drawWhitespaces()
+   TQPainter pa(viewport());
+ 
+   // get a sane color
+-  TQColor col=tqcolorGroup().link();
++  TQColor col=colorGroup().link();
+   // and a brush of the same color
+   TQBrush fillBrush(col);
+   // use it for line drawing
+diff --git a/konversation/src/nickinfo.cpp b/konversation/src/nickinfo.cpp
+index fb2cde4..17765ca 100644
+--- a/konversation/src/nickinfo.cpp
++++ b/konversation/src/nickinfo.cpp
+@@ -99,7 +99,7 @@ bool NickInfo::isIdentified() const { return m_identified; }
+ TQString NickInfo::getPrettyOnlineSince() const
+ {
+     TQString prettyOnlineSince;
+-    int daysto = m_onlineSince.date().daysTo( TQDate::tqcurrentDate());
++    int daysto = m_onlineSince.date().daysTo( TQDate::currentDate());
+     if(daysto == 0) prettyOnlineSince = i18n("Today");
+     else if(daysto == 1) prettyOnlineSince = i18n("Yesterday");
+     else prettyOnlineSince = m_onlineSince.toString("ddd d MMMM yyyy");
+diff --git a/konversation/src/nicklistbehavior_preferencesui.ui b/konversation/src/nicklistbehavior_preferencesui.ui
+index 3df61f0..53b06ae 100644
+--- a/konversation/src/nicklistbehavior_preferencesui.ui
++++ b/konversation/src/nicklistbehavior_preferencesui.ui
+@@ -54,7 +54,7 @@ the Free Software Foundation; either version 2 of the License, or
+         </widget>
+         <widget class="TQCheckBox" row="3" column="0">
+             <property name="name">
+-                <cstring>kcfg_SortBytqStatus</cstring>
++                <cstring>kcfg_SortByStatus</cstring>
+             </property>
+             <property name="sizePolicy">
+                 <sizepolicy>
+@@ -133,13 +133,13 @@ the Free Software Foundation; either version 2 of the License, or
+ </widget>
+ <connections>
+     <connection>
+-        <sender>kcfg_SortBytqStatus</sender>
++        <sender>kcfg_SortByStatus</sender>
+         <signal>toggled(bool)</signal>
+         <receiver>sortOrder</receiver>
+         <slot>setEnabled(bool)</slot>
+     </connection>
+     <connection>
+-        <sender>kcfg_SortBytqStatus</sender>
++        <sender>kcfg_SortByStatus</sender>
+         <signal>toggled(bool)</signal>
+         <receiver>orderHintLabel</receiver>
+         <slot>setEnabled(bool)</slot>
+@@ -148,7 +148,7 @@ the Free Software Foundation; either version 2 of the License, or
+ <tabstops>
+     <tabstop>kcfg_ChannelDoubleClickAction</tabstop>
+     <tabstop>kcfg_SortCaseInsensitive</tabstop>
+-    <tabstop>kcfg_SortBytqStatus</tabstop>
++    <tabstop>kcfg_SortByStatus</tabstop>
+     <tabstop>sortOrder</tabstop>
+ </tabstops>
+ <layoutdefaults spacing="6" margin="11"/>
+diff --git a/konversation/src/nicklistview.cpp b/konversation/src/nicklistview.cpp
+index ab98437..26e6bdd 100644
+--- a/konversation/src/nicklistview.cpp
++++ b/konversation/src/nicklistview.cpp
+@@ -86,14 +86,14 @@ KListView(parent)
+ 
+         int newitem;
+         newitem = popup->insertItem(i18n("Open &Query"),Konversation::OpenQuery);
+-        popup->tqsetWhatsThis(newitem, "<qt>Start a private chat between you and this person.<p/><em>Technical note:</em><br>The conversation between you and this person will be sent via the server.  This means that the conversation will be affected by server lag, server stability, and will be terminated when you disconnect from the server.</qt>");
++        popup->setWhatsThis(newitem, "<qt>Start a private chat between you and this person.<p/><em>Technical note:</em><br>The conversation between you and this person will be sent via the server.  This means that the conversation will be affected by server lag, server stability, and will be terminated when you disconnect from the server.</qt>");
+         newitem = popup->insertItem(i18n("Open DCC &Chat"),Konversation::StartDccChat);
+-        popup->tqsetWhatsThis(newitem, "<qt>Start a private <em>D</em>irect <em>C</em>lient <em>C</em>onnection chat between you and this person.<p/><em>Technical note:</em><br />The conversation between you and this person will be sent directly.  This means it is independent from the server - so if the server connection fails, or use disconnect, your DCC Chat will be unaffected.  It also means that no irc server admin can view or spy on this chat.</qt>");
++        popup->setWhatsThis(newitem, "<qt>Start a private <em>D</em>irect <em>C</em>lient <em>C</em>onnection chat between you and this person.<p/><em>Technical note:</em><br />The conversation between you and this person will be sent directly.  This means it is independent from the server - so if the server connection fails, or use disconnect, your DCC Chat will be unaffected.  It also means that no irc server admin can view or spy on this chat.</qt>");
+ 
+         if (kapp->authorize("allow_downloading"))
+         {
+             newitem = popup->insertItem(SmallIcon("2rightarrow"),i18n("Send &File..."),Konversation::DccSend);
+-            popup->tqsetWhatsThis(newitem, "<qt>Send a file to this person.  If you are having problem sending files, or they are sending slowly, see the Konversation Handbook and DCC preferences page.</qt>");
++            popup->setWhatsThis(newitem, "<qt>Send a file to this person.  If you are having problem sending files, or they are sending slowly, see the Konversation Handbook and DCC preferences page.</qt>");
+         }
+         popup->insertItem(SmallIconSet("mail_generic"),i18n("&Send Email..."), Konversation::SendEmail);
+ 
+diff --git a/konversation/src/nicksonline.cpp b/konversation/src/nicksonline.cpp
+index 5cc7bf1..1dd88f2 100644
+--- a/konversation/src/nicksonline.cpp
++++ b/konversation/src/nicksonline.cpp
+@@ -102,7 +102,7 @@ NicksOnline::NicksOnline(TQWidget* parent): ChatWindow(parent)
+         "When you select a nickname in the list above, the buttons here are used "
+         "to associate the nickname with an entry in KAddressBook.");
+     TQWhatsThis::add(addressbookLabel, addressbookLabelWT);
+-    addressbookLabel->tqsetAlignment(TQt::AlignRight | TQt::AlignVCenter);
++    addressbookLabel->setAlignment(TQt::AlignRight | TQt::AlignVCenter);
+     m_editContactButton = new TQPushButton(i18n("Edit C&ontact..."),
+         buttonBox, "nicksonline_editcontact_button");
+     TQString editContactButtonWT = i18n(
+diff --git a/konversation/src/osd.cpp b/konversation/src/osd.cpp
+index b228a73..8bd1745 100644
+--- a/konversation/src/osd.cpp
++++ b/konversation/src/osd.cpp
+@@ -206,7 +206,7 @@ void OSDWidget::setOffset( int /*x*/, int y )
+     reposition();
+ }
+ 
+-void OSDWidget::tqsetAlignment( Alignment a )
++void OSDWidget::setAlignment( Alignment a )
+ {
+     m_tqalignment = a;
+     reposition();
+@@ -402,7 +402,7 @@ void OSDPreviewWidget::mouseMoveEvent( TQMouseEvent *e )
+ 
+ // the code was taken from pilotDaemon.cc in KPilot
+                                                   // static
+-OSDWidget::KDesktopLocktqStatus OSDWidget::isKDesktopLockRunning()
++OSDWidget::KDesktopLockStatus OSDWidget::isKDesktopLockRunning()
+ {
+     if (!Preferences::oSDCheckDesktopLock())
+ 	return NotLocked;
+diff --git a/konversation/src/osd.h b/konversation/src/osd.h
+index 68bf408..f71f1d7 100644
+--- a/konversation/src/osd.h
++++ b/konversation/src/osd.h
+@@ -41,7 +41,7 @@ class OSDWidget : public TQWidget
+         void setTextColor(const TQColor &newcolor);
+         void setBackgroundColor(const TQColor &newColor);
+         void setOffset( int x, int y );
+-        void tqsetAlignment(Alignment);
++        void setAlignment(Alignment);
+         void setScreen(uint screen);
+         void setText(const TQString &text) { m_currentText = text; refresh(); }
+ 
+@@ -79,8 +79,8 @@ class OSDWidget : public TQWidget
+         /* called after most set*() calls to update the OSD */
+         void refresh();
+ 
+-        enum KDesktopLocktqStatus { NotLocked=0, Locked=1, DCOPError=2 };
+-        static KDesktopLocktqStatus isKDesktopLockRunning();
++        enum KDesktopLockStatus { NotLocked=0, Locked=1, DCOPError=2 };
++        static KDesktopLockStatus isKDesktopLockRunning();
+ 
+         static const int MARGIN = 15;
+ 
+diff --git a/konversation/src/osd_preferences.cpp b/konversation/src/osd_preferences.cpp
+index aa68f83..7a765ef 100644
+--- a/konversation/src/osd_preferences.cpp
++++ b/konversation/src/osd_preferences.cpp
+@@ -108,7 +108,7 @@ void OSD_Config::saveSettings()
+ 
+         //x is ignored anyway, but leave incase we use in future
+         konvApp->osd->setOffset(kcfg_OSDOffsetX->value(), kcfg_OSDOffsetY->value());
+-        konvApp->osd->tqsetAlignment((OSDWidget::Alignment)kcfg_OSDAlignment->value());
++        konvApp->osd->setAlignment((OSDWidget::Alignment)kcfg_OSDAlignment->value());
+     }
+ 
+ }
+@@ -116,7 +116,7 @@ void OSD_Config::saveSettings()
+ void OSD_Config::showEvent(TQShowEvent*)
+ {
+     //Update the preview
+-    m_pOSDPreview->tqsetAlignment((OSDWidget::Alignment)( kcfg_OSDAlignment->value() ) );
++    m_pOSDPreview->setAlignment((OSDWidget::Alignment)( kcfg_OSDAlignment->value() ) );
+     m_pOSDPreview->setOffset(kcfg_OSDOffsetX->value(),kcfg_OSDOffsetY->value());
+ 
+     m_pOSDPreview->setShown(kcfg_UseOSD->isChecked());
+diff --git a/konversation/src/osd_preferencesui.ui b/konversation/src/osd_preferencesui.ui
+index f854584..2837552 100644
+--- a/konversation/src/osd_preferencesui.ui
++++ b/konversation/src/osd_preferencesui.ui
+@@ -29,7 +29,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>21</width>
+                     <height>10</height>
+@@ -263,7 +263,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>31</height>
+@@ -340,7 +340,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>21</height>
+diff --git a/konversation/src/outputfilter.cpp b/konversation/src/outputfilter.cpp
+index 47800f3..749e278 100644
+--- a/konversation/src/outputfilter.cpp
++++ b/konversation/src/outputfilter.cpp
+@@ -181,8 +181,8 @@ namespace Konversation
+         // someone didn't notice leading spaces
+         {
+             TQString testNickServ( inputLine.stripWhiteSpace() );
+-            if(testNickServ.tqstartsWith(commandChar+"nickserv", false)
+-              || testNickServ.tqstartsWith(commandChar+"ns", false))
++            if(testNickServ.startsWith(commandChar+"nickserv", false)
++              || testNickServ.startsWith(commandChar+"ns", false))
+             {
+                     inputLine = testNickServ;
+             }
+@@ -762,7 +762,7 @@ namespace Konversation
+ 
+         if (request == "PING")
+         {
+-            unsigned int time_t = TQDateTime::tqcurrentDateTime().toTime_t();
++            unsigned int time_t = TQDateTime::currentDateTime().toTime_t();
+             result.toServer = TQString("PRIVMSG %1 :\x01PING %2\x01").tqarg(recipient).tqarg(time_t);
+             result.output = i18n("Sending CTCP-%1 request to %2.").tqarg("PING").tqarg(recipient);
+         }
+diff --git a/konversation/src/query.cpp b/konversation/src/query.cpp
+index c4e1fb5..b04c703 100644
+--- a/konversation/src/query.cpp
++++ b/konversation/src/query.cpp
+@@ -57,10 +57,10 @@ Query::Query(TQWidget* parent, TQString _name) : ChatWindow(parent)
+     awayState=false;
+     TQHBox *box = new TQHBox(m_headerSplitter);
+     addresseeimage = new TQLabel(box, "query_image");
+-    addresseeimage->tqsetSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Fixed);
++    addresseeimage->setSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Fixed);
+     addresseeimage->hide();
+     addresseelogoimage = new TQLabel(box, "query_logo_image");
+-    addresseelogoimage->tqsetSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Fixed);
++    addresseelogoimage->setSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Fixed);
+     addresseelogoimage->hide();
+ 
+     queryHostmask=new Konversation::TopicLabel(box, "query_hostmask");
+@@ -284,8 +284,8 @@ void Query::updateAppearance()
+     }
+     else
+     {
+-        fg=tqcolorGroup().foreground();
+-        bg=tqcolorGroup().base();
++        fg=colorGroup().foreground();
++        bg=colorGroup().base();
+     }
+ 
+     queryInput->unsetPalette();
+@@ -365,7 +365,7 @@ void Query::showEvent(TQShowEvent*)
+     if(m_initialShow) {
+         m_initialShow = false;
+         TQValueList<int> sizes;
+-        sizes << queryHostmask->tqsizeHint().height() << (height() - queryHostmask->tqsizeHint().height());
++        sizes << queryHostmask->sizeHint().height() << (height() - queryHostmask->sizeHint().height());
+         m_headerSplitter->setSizes(sizes);
+     }
+ }
+diff --git a/konversation/src/queuetunerbase.ui b/konversation/src/queuetunerbase.ui
+index e81effd..6bb1c7a 100644
+--- a/konversation/src/queuetunerbase.ui
++++ b/konversation/src/queuetunerbase.ui
+@@ -54,7 +54,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>16</width>
+                             <height>34</height>
+@@ -96,7 +96,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>16</width>
+                             <height>33</height>
+diff --git a/konversation/src/quickbuttons_preferencesui.ui b/konversation/src/quickbuttons_preferencesui.ui
+index 91d66a4..4e22b30 100644
+--- a/konversation/src/quickbuttons_preferencesui.ui
++++ b/konversation/src/quickbuttons_preferencesui.ui
+@@ -193,7 +193,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>230</height>
+diff --git a/konversation/src/searchbar.cpp b/konversation/src/searchbar.cpp
+index 38946c0..913e435 100644
+--- a/konversation/src/searchbar.cpp
++++ b/konversation/src/searchbar.cpp
+@@ -126,7 +126,7 @@ void SearchBar::slotFind()
+         m_searchEdit->unsetPalette();
+         m_findNextButton->setEnabled(false);
+         m_findPreviousButton->setEnabled(false);
+-        settqStatus(TQPixmap(), "");
++        setStatus(TQPixmap(), "");
+         return;
+     }
+ 
+@@ -140,7 +140,7 @@ void SearchBar::slotFindNext()
+         m_searchEdit->unsetPalette();
+         m_findNextButton->setEnabled(false);
+         m_findPreviousButton->setEnabled(false);
+-        settqStatus(TQPixmap(), "");
++        setStatus(TQPixmap(), "");
+         return;
+     }
+ 
+@@ -154,7 +154,7 @@ void SearchBar::slotFindPrevious()
+         m_searchEdit->unsetPalette();
+         m_findNextButton->setEnabled(false);
+         m_findPreviousButton->setEnabled(false);
+-        settqStatus(TQPixmap(), "");
++        setStatus(TQPixmap(), "");
+         return;
+     }
+ 
+@@ -170,7 +170,7 @@ void SearchBar::setHasMatch(bool value)
+     m_findPreviousButton->setEnabled(value);
+ }
+ 
+-void SearchBar::settqStatus(const TQPixmap& pix, const TQString& text)
++void SearchBar::setStatus(const TQPixmap& pix, const TQString& text)
+ {
+     if(!text.isEmpty()) {
+         m_statusPixLabel->show();
+diff --git a/konversation/src/searchbar.h b/konversation/src/searchbar.h
+index 8c3204c..6fa113f 100644
+--- a/konversation/src/searchbar.h
++++ b/konversation/src/searchbar.h
+@@ -34,7 +34,7 @@ class SearchBar : public SearchBarBase
+         ~SearchBar();
+ 
+         void setHasMatch(bool value);
+-        void settqStatus(const TQPixmap& pix, const TQString& text);
++        void setStatus(const TQPixmap& pix, const TQString& text);
+ 
+         TQString pattern() const;
+ 
+diff --git a/konversation/src/server.cpp b/konversation/src/server.cpp
+index eb9c625..f6cf5ad 100644
+--- a/konversation/src/server.cpp
++++ b/konversation/src/server.cpp
+@@ -324,7 +324,7 @@ void Server::connectSignals()
+     connect(&m_inputFilter, TQT_SIGNAL(addToChannelList(const TQString&, int, const TQString& )),
+         this, TQT_SLOT(addToChannelList(const TQString&, int, const TQString& )));
+ 
+-    // tqStatus View
++    // Status View
+     connect(this, TQT_SIGNAL(serverOnline(bool)), getStatusView(), TQT_SLOT(serverOnline(bool)));
+ 
+     // Scripts
+@@ -1882,10 +1882,10 @@ void Server::dccGetDone(DccTransfer* item)
+     if(showfile.startsWith("\"") && showfile.endsWith("\""))
+         showfile = showfile.mid(1, showfile.length() - 2);
+ 
+-    if(item->gettqStatus()==DccTransfer::Done)
++    if(item->getStatus()==DccTransfer::Done)
+         appendMessageToFrontmost(i18n("DCC"),i18n("%1 = file name, %2 = nickname of sender",
+             "Download of \"%1\" from %2 finished.").tqarg(showfile, item->getPartnerNick()));
+-    else if(item->gettqStatus()==DccTransfer::Failed)
++    else if(item->getStatus()==DccTransfer::Failed)
+         appendMessageToFrontmost(i18n("DCC"),i18n("%1 = file name, %2 = nickname of sender",
+             "Download of \"%1\" from %2 failed. Reason: %3.").tqarg(showfile,
+             item->getPartnerNick(), item->getStatusDetail()));
+@@ -1901,16 +1901,16 @@ void Server::dccSendDone(DccTransfer* item)
+     if(showfile.startsWith("\"") && showfile.endsWith("\""))
+         showfile = showfile.mid(1, showfile.length() - 2);
+ 
+-    if(item->gettqStatus()==DccTransfer::Done)
++    if(item->getStatus()==DccTransfer::Done)
+         appendMessageToFrontmost(i18n("DCC"),i18n("%1 = file name, %2 = nickname of recipient",
+             "Upload of \"%1\" to %2 finished.").tqarg(showfile, item->getPartnerNick()));
+-    else if(item->gettqStatus()==DccTransfer::Failed)
++    else if(item->getStatus()==DccTransfer::Failed)
+         appendMessageToFrontmost(i18n("DCC"),i18n("%1 = file name, %2 = nickname of recipient",
+             "Upload of \"%1\" to %2 failed. Reason: %3.").tqarg(showfile, item->getPartnerNick(),
+             item->getStatusDetail()));
+ }
+ 
+-void Server::dccStatusChanged(DccTransfer *item, int newtqStatus, int oldtqStatus)
++void Server::dccStatusChanged(DccTransfer *item, int newStatus, int oldStatus)
+ {
+     if(!item)
+         return;
+@@ -1923,13 +1923,13 @@ void Server::dccStatusChanged(DccTransfer *item, int newtqStatus, int oldtqStatu
+     if ( item->getType() == DccTransfer::Send )
+     {
+         // when resuming, a message about the receiver's acceptance has been shown already, so suppress this message
+-        if ( newtqStatus == DccTransfer::Transferring && oldtqStatus == DccTransfer::WaitingRemote && !item->isResumed() )
++        if ( newStatus == DccTransfer::Transferring && oldStatus == DccTransfer::WaitingRemote && !item->isResumed() )
+             appendMessageToFrontmost( i18n( "DCC" ), i18n( "%1 = file name, %2 nickname of recipient",
+                 "Sending \"%1\" to %2...").tqarg( showfile, item->getPartnerNick() ) );
+     }
+     else  // type == Receive
+     {
+-        if ( newtqStatus == DccTransfer::Transferring && !item->isResumed() )
++        if ( newStatus == DccTransfer::Transferring && !item->isResumed() )
+         {
+             appendMessageToFrontmost( i18n( "DCC" ),
+                                         i18n( "%1 = file name, %2 = file size, %3 = nickname of sender", "Downloading \"%1\" (%2) from %3...")
+@@ -2068,7 +2068,7 @@ void Server::updateChannelMode(const TQString &updater, const TQString &channelN
+         if (plus)
+         {
+             TQDateTime when;
+-            addBan(channelName, TQString("%1 %2 %3").tqarg(parameter).tqarg(updater).tqarg(TQDateTime::tqcurrentDateTime().toTime_t()));
++            addBan(channelName, TQString("%1 %2 %3").tqarg(parameter).tqarg(updater).tqarg(TQDateTime::currentDateTime().toTime_t()));
+         } else {
+             removeBan(channelName, parameter);
+         }
+@@ -3226,7 +3226,7 @@ TQString Server::awayTime() const
+ 
+     if (m_away)
+     {
+-        int diff = TQDateTime::tqcurrentDateTime().toTime_t() - m_awayTime;
++        int diff = TQDateTime::currentDateTime().toTime_t() - m_awayTime;
+         int num = diff / 3600;
+ 
+         if (num < 10)
+@@ -3254,7 +3254,7 @@ TQString Server::awayTime() const
+ 
+ void Server::startAwayTimer()
+ {
+-    m_awayTime = TQDateTime::tqcurrentDateTime().toTime_t();
++    m_awayTime = TQDateTime::currentDateTime().toTime_t();
+ }
+ 
+ KABC::Addressee Server::getOfflineNickAddressee(TQString& nickname)
+diff --git a/konversation/src/server.h b/konversation/src/server.h
+index 959319c..ff8b0d7 100644
+--- a/konversation/src/server.h
++++ b/konversation/src/server.h
+@@ -502,7 +502,7 @@ void resetNickSelection();
+         void resumeDccSendTransfer(const TQString& sourceNick,const TQStringList& dccArguments);
+         void dccGetDone(DccTransfer* item);
+         void dccSendDone(DccTransfer* item);
+-        void dccStatusChanged(DccTransfer* item, int newtqStatus, int oldtqStatus);
++        void dccStatusChanged(DccTransfer* item, int newStatus, int oldStatus);
+         void scriptNotFound(const TQString& name);
+         void scriptExecutionError(const TQString& name);
+         void userhost(const TQString& nick,const TQString& hostmask,bool away,bool ircOp);
+diff --git a/konversation/src/servergroupdialogui.ui b/konversation/src/servergroupdialogui.ui
+index 4ef4866..933e019 100644
+--- a/konversation/src/servergroupdialogui.ui
++++ b/konversation/src/servergroupdialogui.ui
+@@ -185,7 +185,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>0</width>
+                             <height>20</height>
+@@ -264,7 +264,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>255</width>
+                             <height>20</height>
+diff --git a/konversation/src/serverlistview.cpp b/konversation/src/serverlistview.cpp
+index 0035c53..be33e43 100644
+--- a/konversation/src/serverlistview.cpp
++++ b/konversation/src/serverlistview.cpp
+@@ -66,7 +66,7 @@ void ServerListView::findDrop(const TQPoint &pos, TQListViewItem *&parent, TQLis
+     else
+     {
+         // Get the closest item before us ('atpos' or the one above, if any)
+-        if (p.y() - tqitemRect(atpos).topLeft().y() < (atpos->height()/2))
++        if (p.y() - itemRect(atpos).topLeft().y() < (atpos->height()/2))
+             above = atpos->itemAbove();
+         else
+             above = atpos;
+diff --git a/konversation/src/statuspanel.cpp b/konversation/src/statuspanel.cpp
+index 9615c1d..e2ff9f1 100644
+--- a/konversation/src/statuspanel.cpp
++++ b/konversation/src/statuspanel.cpp
+@@ -32,7 +32,7 @@
+ 
+ StatusPanel::StatusPanel(TQWidget* parent) : ChatWindow(parent)
+ {
+-    setType(ChatWindow::tqStatus);
++    setType(ChatWindow::Status);
+ 
+     setChannelEncodingSupported(true);
+ 
+@@ -164,8 +164,8 @@ void StatusPanel::updateAppearance()
+     }
+     else
+     {
+-        fg=tqcolorGroup().foreground();
+-        bg=tqcolorGroup().base();
++        fg=colorGroup().foreground();
++        bg=colorGroup().base();
+     }
+ 
+     statusInput->unsetPalette();
+diff --git a/konversation/src/tabnotifications_preferences.ui b/konversation/src/tabnotifications_preferences.ui
+index aaf68ac..3b62feb 100644
+--- a/konversation/src/tabnotifications_preferences.ui
++++ b/konversation/src/tabnotifications_preferences.ui
+@@ -73,7 +73,7 @@
+                         <bool>true</bool>
+                     </property>
+                     <property name="whatsThis" stdset="0">
+-                        <string>Application events occur in Konsole tabs, the DCC tqStatus tab and other application tabs not used directly for chatting.</string>
++                        <string>Application events occur in Konsole tabs, the DCC Status tab and other application tabs not used directly for chatting.</string>
+                     </property>
+                 </widget>
+                 <spacer row="5" column="3">
+@@ -86,7 +86,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>21</height>
+@@ -122,7 +122,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>21</height>
+@@ -154,7 +154,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>60</width>
+                             <height>21</height>
+@@ -208,7 +208,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -225,7 +225,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>21</height>
+@@ -283,7 +283,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>50</width>
+                             <height>20</height>
+@@ -337,7 +337,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>21</width>
+                     <height>60</height>
+diff --git a/konversation/src/tabs_preferencesui.ui b/konversation/src/tabs_preferencesui.ui
+index 9e8dbbe..73b914c 100644
+--- a/konversation/src/tabs_preferencesui.ui
++++ b/konversation/src/tabs_preferencesui.ui
+@@ -83,7 +83,7 @@ the Free Software Foundation; either version 2 of the License, or
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>111</width>
+                                     <height>20</height>
+@@ -178,7 +178,7 @@ the Free Software Foundation; either version 2 of the License, or
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>100</height>
+diff --git a/konversation/src/theme_preferencesui.ui b/konversation/src/theme_preferencesui.ui
+index bf7d7ab..44c01e8 100644
+--- a/konversation/src/theme_preferencesui.ui
++++ b/konversation/src/theme_preferencesui.ui
+@@ -66,7 +66,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>131</width>
+                     <height>20</height>
+@@ -77,7 +77,7 @@
+             <property name="name">
+                 <cstring>frame3_2</cstring>
+             </property>
+-            <property name="tqminimumSize">
++            <property name="minimumSize">
+                 <size>
+                     <width>0</width>
+                     <height>0</height>
+diff --git a/konversation/src/topiclabel.cpp b/konversation/src/topiclabel.cpp
+index e04a1d0..0fdbe18 100644
+--- a/konversation/src/topiclabel.cpp
++++ b/konversation/src/topiclabel.cpp
+@@ -60,13 +60,13 @@ namespace Konversation
+     {
+     }
+ 
+-    TQSize TopicLabel::tqminimumSizeHint() const
++    TQSize TopicLabel::minimumSizeHint() const
+     {
+         int minHeight = fontMetrics().lineSpacing() + fontMetrics().descent();
+         return TQSize(0, minHeight);
+     }
+ 
+-    TQSize TopicLabel::tqsizeHint() const
++    TQSize TopicLabel::sizeHint() const
+     {
+         int minHeight = fontMetrics().lineSpacing() + fontMetrics().descent();
+         return TQSize(0, minHeight);
+diff --git a/konversation/src/topiclabel.h b/konversation/src/topiclabel.h
+index 4e22dbc..0a649b6 100644
+--- a/konversation/src/topiclabel.h
++++ b/konversation/src/topiclabel.h
+@@ -33,8 +33,8 @@ namespace Konversation
+             explicit TopicLabel(TQWidget *parent = 0, const char *name = 0);
+             ~TopicLabel();
+ 
+-            TQSize tqminimumSizeHint() const;
+-            TQSize tqsizeHint() const;
++            TQSize minimumSizeHint() const;
++            TQSize sizeHint() const;
+             void setServer(Server* server);
+ 
+             enum PopupIDs { Copy,CopyUrl,SelectAll,Bookmark };
+diff --git a/konversation/src/viewcontainer.cpp b/konversation/src/viewcontainer.cpp
+index 89be010..04d6635 100644
+--- a/konversation/src/viewcontainer.cpp
++++ b/konversation/src/viewcontainer.cpp
+@@ -157,7 +157,7 @@ void ViewContainer::setupTabWidget()
+     KPushButton* closeBtn = new KPushButton(m_tabWidget);
+     closeBtn->setPixmap(KGlobal::iconLoader()->loadIcon("tab_remove", KIcon::Small));
+     closeBtn->resize(22, 22);
+-    closeBtn->tqsetSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Fixed);
++    closeBtn->setSizePolicy(TQSizePolicy::Fixed, TQSizePolicy::Fixed);
+     m_tabWidget->setCornerWidget(closeBtn);
+     connect(closeBtn, TQT_SIGNAL(clicked()), this, TQT_SLOT(closeCurrentView()));
+ 
+@@ -220,7 +220,7 @@ void ViewContainer::setupViewTree()
+             {
+                 ChatWindow* view = static_cast<ChatWindow*>(m_tabWidget->page(i));
+ 
+-                if (view->getType() == ChatWindow::tqStatus)
++                if (view->getType() == ChatWindow::Status)
+                 {
+                     if (view == m_frontView)
+                         m_viewTree->addView(view->getName(), view, m_tabWidget->tabIconSet(view), true);
+@@ -233,7 +233,7 @@ void ViewContainer::setupViewTree()
+             {
+                 ChatWindow* view = static_cast<ChatWindow*>(m_tabWidget->page(i));
+ 
+-                if (!view->getType() == ChatWindow::tqStatus)
++                if (!view->getType() == ChatWindow::Status)
+                 {
+                     if (view == m_frontView)
+                         m_viewTree->addView(view->getName(), view, m_tabWidget->tabIconSet(view), true);
+@@ -426,7 +426,7 @@ void ViewContainer::updateViewActions(int index)
+             if (action) action->setEnabled(index < (m_tabWidget->count() - 1));
+         }
+ 
+-        if (server && (viewType == ChatWindow::tqStatus || server == m_frontServer))
++        if (server && (viewType == ChatWindow::Status || server == m_frontServer))
+         {
+             action = actionCollection()->action("reconnect_server");
+             if (action) action->setEnabled(true);
+@@ -457,7 +457,7 @@ void ViewContainer::updateViewActions(int index)
+         if (notifyAction)
+         {
+             notifyAction->setEnabled(viewType == ChatWindow::Channel || viewType == ChatWindow::Query ||
+-                                     viewType == ChatWindow::tqStatus || viewType == ChatWindow::Konsole ||
++                                     viewType == ChatWindow::Status || viewType == ChatWindow::Konsole ||
+                                      viewType == ChatWindow::DccTransferPanel || viewType == ChatWindow::RawLog);
+             notifyAction->setChecked(view->notificationsEnabled());
+         }
+@@ -702,7 +702,7 @@ void ViewContainer::updateFrontView()
+     {
+         case ChatWindow::Channel:
+         case ChatWindow::Query:
+-        case ChatWindow::tqStatus:
++        case ChatWindow::Status:
+         case ChatWindow::ChannelList:
+         case ChatWindow::RawLog:
+             emit setStatusBarLagLabelShown(true);
+@@ -729,7 +729,7 @@ void ViewContainer::updateViews(const Konversation::ServerGroupSettings* serverG
+ 
+         if (serverGroup)
+         {
+-            if (view->getType() == ChatWindow::tqStatus && view->getServer()->getServerGroup() == serverGroup)
++            if (view->getType() == ChatWindow::Status && view->getServer()->getServerGroup() == serverGroup)
+             {
+                 TQString label = view->getServer()->getDisplayName();
+ 
+@@ -762,7 +762,7 @@ void ViewContainer::updateViews(const Konversation::ServerGroupSettings* serverG
+ 
+ 
+             if (!Preferences::tabNotificationsText())
+-                m_viewTree->setViewColor(view, m_window->tqcolorGroup().foreground());
++                m_viewTree->setViewColor(view, m_window->colorGroup().foreground());
+         }
+         else if (m_tabWidget)
+         {
+@@ -773,7 +773,7 @@ void ViewContainer::updateViews(const Konversation::ServerGroupSettings* serverG
+                 m_tabWidget->setTabIconSet(view, images->getCloseIcon());
+ 
+             if (!Preferences::tabNotificationsText())
+-                m_tabWidget->setTabColor(view, m_window->tqcolorGroup().foreground());
++                m_tabWidget->setTabColor(view, m_window->colorGroup().foreground());
+         }
+ 
+         if (Preferences::tabNotificationsLeds() || Preferences::tabNotificationsText())
+@@ -1040,7 +1040,7 @@ void ViewContainer::unsetViewNotification(ChatWindow* view)
+                     m_viewTree->setViewIcon(view, images->getPrivateLed(false));
+                     break;
+ 
+-                case ChatWindow::tqStatus:
++                case ChatWindow::Status:
+                     m_viewTree->setViewIcon(view, images->getServerLed(false));
+                     break;
+ 
+@@ -1051,7 +1051,7 @@ void ViewContainer::unsetViewNotification(ChatWindow* view)
+         }
+ 
+         TQColor textColor = (Preferences::inputFieldsBackgroundColor()
+-            ? Preferences::color(Preferences::ChannelMessage) : m_window->tqcolorGroup().foreground());
++            ? Preferences::color(Preferences::ChannelMessage) : m_window->colorGroup().foreground());
+ 
+         if (view->getType() == ChatWindow::Channel)
+         {
+@@ -1083,7 +1083,7 @@ void ViewContainer::unsetViewNotification(ChatWindow* view)
+                     m_tabWidget->setTabIconSet(view, images->getPrivateLed(false));
+                     break;
+ 
+-                case ChatWindow::tqStatus:
++                case ChatWindow::Status:
+                     m_tabWidget->setTabIconSet(view, images->getServerLed(false));
+                     break;
+ 
+@@ -1093,7 +1093,7 @@ void ViewContainer::unsetViewNotification(ChatWindow* view)
+             }
+         }
+ 
+-        TQColor textColor = m_window->tqcolorGroup().foreground();
++        TQColor textColor = m_window->colorGroup().foreground();
+ 
+         if (view->getType() == ChatWindow::Channel)
+         {
+@@ -1196,7 +1196,7 @@ void ViewContainer::addView(ChatWindow* view, const TQString& label, bool weinit
+             {
+                 tmp_ChatWindow = static_cast<ChatWindow *>(m_tabWidget->page(sindex));
+ 
+-                if (tmp_ChatWindow->getType() == ChatWindow::tqStatus && tmp_ChatWindow->getServer() == view->getServer())
++                if (tmp_ChatWindow->getType() == ChatWindow::Status && tmp_ChatWindow->getServer() == view->getServer())
+                 {
+                     for (int index = sindex + 1; index < m_tabWidget->count(); index++)
+                     {
+@@ -1226,7 +1226,7 @@ void ViewContainer::addView(ChatWindow* view, const TQString& label, bool weinit
+             {
+                 tmp_ChatWindow = static_cast<ChatWindow *>(m_tabWidget->page(sindex));
+ 
+-                if (tmp_ChatWindow->getType() == ChatWindow::tqStatus && tmp_ChatWindow->getServer() == view->getServer())
++                if (tmp_ChatWindow->getType() == ChatWindow::Status && tmp_ChatWindow->getServer() == view->getServer())
+                 {
+                     placement = sindex + 1;
+                     break;
+@@ -1245,7 +1245,7 @@ void ViewContainer::addView(ChatWindow* view, const TQString& label, bool weinit
+             {
+                 tmp_ChatWindow = static_cast<ChatWindow *>(m_tabWidget->page(sindex));
+ 
+-                if (tmp_ChatWindow->getType() == ChatWindow::tqStatus && tmp_ChatWindow->getServer() == view->getServer())
++                if (tmp_ChatWindow->getType() == ChatWindow::Status && tmp_ChatWindow->getServer() == view->getServer())
+                 {
+                     for (int index = sindex + 1; index < m_tabWidget->count(); index++)
+                     {
+@@ -1276,7 +1276,7 @@ void ViewContainer::addView(ChatWindow* view, const TQString& label, bool weinit
+                 tmp_ChatWindow = static_cast<ChatWindow*>(m_tabWidget->page(sindex));
+                 wtype = tmp_ChatWindow->getType();
+ 
+-                if (wtype != ChatWindow::tqStatus && wtype != ChatWindow::Channel
++                if (wtype != ChatWindow::Status && wtype != ChatWindow::Channel
+                     && wtype != ChatWindow::RawLog && wtype != ChatWindow::Query
+                     && wtype != ChatWindow::DccChat && wtype != ChatWindow::ChannelList)
+                 {
+@@ -1286,7 +1286,7 @@ void ViewContainer::addView(ChatWindow* view, const TQString& label, bool weinit
+             }
+             break;
+ 
+-        case ChatWindow::tqStatus:
++        case ChatWindow::Status:
+             if (Preferences::tabNotificationsLeds())
+                 iconSet = images->getServerLed(false);
+             else if (Preferences::closeButtons())
+@@ -1299,7 +1299,7 @@ void ViewContainer::addView(ChatWindow* view, const TQString& label, bool weinit
+                     tmp_ChatWindow = static_cast<ChatWindow *>(m_tabWidget->page(sindex));
+ 
+                     if (tmp_ChatWindow->getType() != ChatWindow::Channel
+-                        && tmp_ChatWindow->getType() != ChatWindow::tqStatus
++                        && tmp_ChatWindow->getType() != ChatWindow::Status
+                         && tmp_ChatWindow->getType() != ChatWindow::RawLog
+                         && tmp_ChatWindow->getType() != ChatWindow::Query
+                         && tmp_ChatWindow->getType() != ChatWindow::DccChat)
+@@ -1624,7 +1624,7 @@ void ViewContainer::updateViewEncoding(ChatWindow* view)
+ 
+         if (codecAction)
+         {
+-            if(viewType == ChatWindow::Channel || viewType == ChatWindow::Query || viewType == ChatWindow::tqStatus)
++            if(viewType == ChatWindow::Channel || viewType == ChatWindow::Query || viewType == ChatWindow::Status)
+             {
+                 codecAction->setEnabled(view->isChannelEncodingSupported());
+                 TQString encoding = view->getChannelEncoding();
+@@ -1682,7 +1682,7 @@ void ViewContainer::showViewContextMenu(TQWidget* tab, const TQPoint& pos)
+             }
+         }
+ 
+-        if (viewType == ChatWindow::tqStatus)
++        if (viewType == ChatWindow::Status)
+         {
+             TQPtrList<KAction> serverActions;
+             KAction* action = actionCollection()->action("disconnect_server");
+@@ -1825,7 +1825,7 @@ void ViewContainer::appendToFrontmost(const TQString& type,const TQString& messa
+     }
+ 
+     // This might happen if canBeFrontView() is false for active ChatWindow
+-    // and the view does not belong to any server (e.g. DCC tqStatus View).
++    // and the view does not belong to any server (e.g. DCC Status View).
+     // Discard message in this case.
+     if (!serverView) return;
+ 
+@@ -1957,7 +1957,7 @@ void ViewContainer::openLogFile()
+         ChatWindow* view=static_cast<ChatWindow*>(m_frontView);
+         ChatWindow::WindowType viewType=view->getType();
+         if (viewType==ChatWindow::Channel || viewType==ChatWindow::Query ||
+-            viewType==ChatWindow::tqStatus || viewType==ChatWindow::DccChat)
++            viewType==ChatWindow::Status || viewType==ChatWindow::DccChat)
+         {
+             openLogFile(view->getName(), view->logFileName());
+         }
+diff --git a/konversation/src/viewtree.cpp b/konversation/src/viewtree.cpp
+index d62bee4..67efaf5 100644
+--- a/konversation/src/viewtree.cpp
++++ b/konversation/src/viewtree.cpp
+@@ -56,7 +56,7 @@ void ViewTree::ToolTip::maybeTip (const TQPoint &pos)
+ 
+     ViewTreeItem* view = static_cast<ViewTreeItem*>(viewTree->itemAt(pos));
+ 
+-    if (view && view->isTruncated()) tip(viewTree->tqitemRect(view), view->getName());
++    if (view && view->isTruncated()) tip(viewTree->itemRect(view), view->getName());
+ }
+ 
+ 
+@@ -503,7 +503,7 @@ void ViewTree::enableCloseButton()
+ 
+ bool ViewTree::isAboveIcon(TQPoint point, ViewTreeItem* item)
+ {
+-    TQPoint inItem = point - tqitemRect(item).topLeft();
++    TQPoint inItem = point - itemRect(item).topLeft();
+ 
+     int MARGIN = 2;
+     int LED_ICON_SIZE = 14;
+@@ -748,7 +748,7 @@ void ViewTree::findDrop(const TQPoint &pos, TQListViewItem *&parent, TQListViewI
+     else
+     {
+         // Get the closest item before us ('atpos' or the one above, if any).
+-        if (p.y() - tqitemRect(atpos).topLeft().y() < (atpos->height()/2))
++        if (p.y() - itemRect(atpos).topLeft().y() < (atpos->height()/2))
+             above = atpos->itemAbove();
+         else
+             above = atpos;
+@@ -913,7 +913,7 @@ ViewTreeItem* ViewTree::getParentItemForView(ChatWindow* view)
+ 
+     while (item)
+     {
+-        if (item->getViewType() == ChatWindow::tqStatus
++        if (item->getViewType() == ChatWindow::Status
+             && item->getView()
+             && item->getView()->getServer() == server)
+         {
+diff --git a/konversation/src/viewtreeitem.cpp b/konversation/src/viewtreeitem.cpp
+index 1d18a8d..f831fbb 100644
+--- a/konversation/src/viewtreeitem.cpp
++++ b/konversation/src/viewtreeitem.cpp
+@@ -246,7 +246,7 @@ bool ViewTreeItem::sortLast() const
+ {
+     if (!m_isSeparator)
+     {
+-        if (getViewType() == ChatWindow::tqStatus
++        if (getViewType() == ChatWindow::Status
+             || getViewType() == ChatWindow::Channel
+             || getViewType() == ChatWindow::Query
+             || getViewType() == ChatWindow::RawLog
+diff --git a/konversation/src/watchednicknames_preferencesui.ui b/konversation/src/watchednicknames_preferencesui.ui
+index 6fbcc36..6f9860b 100644
+--- a/konversation/src/watchednicknames_preferencesui.ui
++++ b/konversation/src/watchednicknames_preferencesui.ui
+@@ -106,7 +106,7 @@ command is placed in the &lt;b&gt;Input Line&lt;/b&gt; on the server window.&lt;
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>150</width>
+                     <height>20</height>
+@@ -333,7 +333,7 @@ When the nickname watcher is turned on, you will be notified when the nicknames
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>160</height>

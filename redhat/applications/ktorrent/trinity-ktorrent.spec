@@ -1,12 +1,12 @@
 # Default version for this component
 %define kdecomp ktorrent
-%define version 2.2.6
+%define version 2.2.8
 %define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -33,6 +33,26 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [ktorrent] Rename old tq methods that no longer need a unique name [Commit #a90eb215]
+Patch0:		bp000-a90eb215.diff
+# [ktorrent] Remove additional unneeded tq method conversions [Commit #bb37c405]
+Patch1:		bp001-bb37c405.diff
+# [ktorrent] Rename obsolete tq methods to standard names [Commit #0d48fca8]
+Patch2:		bp002-0d48fca8.diff
+# [ktorrent] Rename a few stragglers [Commit #c3480dfe]
+Patch3:		bp003-c3480dfe.diff
+# [ktorrent] Fix inadvertent "TQ" changes. [Commit #445a5152]
+Patch4:		bp004-445a5152.diff
+# [ktorrent] Fix configure output message to clarify that missing avahi support is caused by missing avahi-tqt package as well as avahi-client. [Commit #03d0c794]
+Patch5:		bp005-03d0c794.diff
+# [ktorrent] Additional renaming of kde to tde
+Patch6:		ktorrent-3.5.13-5dcbbbba-partial.diff
+# [ktorrent] Update ktorrent package to 2.2.8 and fix internal geoip database. [Bug #363] [Commit #5af9907f]
+Patch7:		bp006-5af9907f.diff
+# [ktorrent] Change default configuration to use external geoip database when found and use internal database only when external database is not found. [Bug #443] [Commit #355c6b69]
+Patch8:		bp007-355c6b69.diff
+
+
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	trinity-kdebase-devel
@@ -49,15 +69,24 @@ enabling background downloading.
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -105,7 +134,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_bindir}/ktshell
 %{_bindir}/kttorinfo
 %{_bindir}/ktupnptest
-%{_libdir}/libktorrent-2.2.6.so
+%{_libdir}/libktorrent-%{version}.so
 %{_libdir}/libktorrent.la
 %{_libdir}/libktorrent.so
 %{tde_libdir}/ktinfowidgetplugin.la
@@ -140,5 +169,15 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 2.2.8-1
+- Rename old tq methods that no longer need a unique name [Commit #a90eb215]
+- Remove additional unneeded tq method conversions [Commit #bb37c405]
+- Rename obsolete tq methods to standard names [Commit #0d48fca8]
+- Rename a few stragglers [Commit #c3480dfe]
+- Fix inadvertent "TQ" changes. [Commit #445a5152]
+- Fix configure output message to clarify that missing avahi support is caused by missing avahi-tqt package as well as avahi-client. [Commit #03d0c794]
+- Update ktorrent package to 2.2.8 and fix internal geoip database. [Bug #363] [Commit #5af9907f]
+- Change default configuration to use external geoip database when found and use internal database only when external database is not found. [Bug #443] [Commit #355c6b69]
+
 * Tue Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 2.2.6-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

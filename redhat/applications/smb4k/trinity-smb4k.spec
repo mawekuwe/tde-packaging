@@ -1,12 +1,12 @@
 # Default version for this component
 %define kdecomp smb4k
 %define version 0.9.4
-%define release 1
+%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -33,6 +33,9 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [smb4k] Fix compilation with GCC 4.7 |Commit #b4c7fd48]
+Patch1:		smb4k-3.5.13-fix_gcc47_compilation.patch
+
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	trinity-kdebase-devel
@@ -49,15 +52,16 @@ possible.
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -86,13 +90,13 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 /sbin/ldconfig || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 /sbin/ldconfig || :
 
 
@@ -141,5 +145,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Sun Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.4-2
+- Rebuild for Fedora 17
+- Fix compilation with GCC 4.7 |Commit #b4c7fd48]
+
 * Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.4-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

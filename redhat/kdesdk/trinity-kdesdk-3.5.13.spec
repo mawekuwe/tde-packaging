@@ -1,31 +1,24 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 1
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
 
 
 Name:    trinity-kdesdk
 Summary: The KDE Software Development Kit (SDK)
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Version: 3.5.13
+Release: 1%{?dist}%{?_variant}
 
-License: GPLv2
-Group: User Interface/Desktops
-URL:		http://www.trinitydesktop.org/
-Vendor: Trinity Project
-Packager: Francois Andriot <francois.andriot@free.fr>
+License:		GPLv2
+Group:			User Interface/Desktops
+URL:			http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -39,6 +32,7 @@ Provides: kdesdk3 = %{version}-%{release}
 
 Requires: %{name}-libs = %{version}-%{release}
 
+BuildRequires: cmake >= 2.8
 BuildRequires: libtool
 BuildRequires: tqtinterface-devel
 BuildRequires: pcre-devel
@@ -70,7 +64,7 @@ Provides:  umbrello = %{umbrello_ver}-%{release}
 A collection of applications and tools used by developers, including:
 * cervisia: a CVS frontend
 * kbabel: PO file management
-* kbugbuster: a tool to manage the KDE bug report system
+* kbugbuster: a tool to manage the TDE bug report system
 * kcachegrind: a browser for data produced by profiling tools (e.g. cachegrind)
 * kompare: diff tool
 * kuiviewer: displays designer's UI files
@@ -116,8 +110,7 @@ cd build
   -DBUILD_ALL=ON \
   ..
 
-# Do not use %{?_smp_mflags} !
-%__make
+%__make %{?_smp_mflags}
 
 
 %install

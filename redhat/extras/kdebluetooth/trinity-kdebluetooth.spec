@@ -1,8 +1,11 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
+
+%define tde_docdir %{_docdir}/kde
+
 
 Name:			trinity-kdebluetooth
 Version:		1.0_beta9_r769275
@@ -18,6 +21,7 @@ Source0:		kdebluetooth_1.0~beta9~r769275.orig.tar.gz
 Patch0:			kdebluetooth-1.0_beta8-gcc43.patch
 Patch1:			kdebluetooth_1.0~beta9~r769275-0ubuntu1.diff.gz
 Patch2:			kdebluetooth-trinity.patch
+Patch3:			kdebluetooth-fix_gcc_46_compilation.patch
 
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	gettext
@@ -31,7 +35,7 @@ BuildRequires:	openobex-devel >= 1.1
 BuildRequires:	libusb-devel
 BuildRequires:	pkgconfig
 Buildrequires:	libidn-devel
-Buildrequires:	dbus-qt-devel
+Buildrequires:	dbus-tqt-devel
 BuildRequires:	obexftp-devel
 BuildRequires:	automake >= 1.6.1
 BuildRequires:	autoconf >= 2.52
@@ -77,25 +81,27 @@ KDE Bluetooth framework development libraries and headers.
 %setup -q -n kdebluetooth-1.0~beta9~r769275
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+%patch2 -p1 -b .trinity
+%patch3 -p1 -b .gcc46
+
+# Ugly hack to modify TQT include directory inside autoconf files.
+# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
+%__sed -i admin/acinclude.m4.in \
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-if [ -r "/usr/share/libtool/config/ltmain.sh" ]; then
-  %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-else
-  %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-fi
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
 %build
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-export CXXFLAGS="-fpermissive"
+export CXXFLAGS="${CXXFLAGS} -I%{_includedir}/dbus-1.0"
 
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 %configure \
-	--with-bluetooth-libraries=%{_libdir}	\
 	--disable-rpath							\
 	--enable-new-ldflags					\
 	--disable-debug							\
@@ -104,13 +110,13 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 	--enable-closure						\
 	--with-extra-includes=%{_includedir}/tqt
 
-make %{?_smp_mflags} LIBTOOL=/usr/bin/libtool
+%__make %{?_smp_mflags} LIBTOOL=/usr/bin/libtool
 
 
 %install
 export PATH="%{_bindir}:${PATH}"
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+%__rm -rf $RPM_BUILD_ROOT
+%__make install DESTDIR=$RPM_BUILD_ROOT
 
 for DESK_PATH in applications/kde applnk/Utilities ; do
 	desktop-file-install												\
@@ -168,17 +174,17 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor 2> /dev/null ||:
 %{_datadir}/icons/hicolor/*/*/*
 %{_datadir}/mimelnk/bluetooth/
 %{_datadir}/service*/*
-%lang(ca) %{_docdir}/HTML/ca/kdebluetooth/
-%lang(da) %{_docdir}/HTML/da/kdebluetooth/
-%lang(en) %{_docdir}/HTML/en/kdebluetooth/
-%lang(es) %{_docdir}/HTML/es/kdebluetooth/
-%lang(et) %{_docdir}/HTML/et/kdebluetooth/
-%lang(fr) %{_docdir}/HTML/fr/kdebluetooth/
-%lang(it) %{_docdir}/HTML/it/kdebluetooth/
-%lang(nl) %{_docdir}/HTML/nl/kdebluetooth/
-%lang(pt) %{_docdir}/HTML/pt/kdebluetooth/
-%lang(ru) %{_docdir}/HTML/ru/kdebluetooth/
-%lang(sv) %{_docdir}/HTML/sv/kdebluetooth/
+%lang(ca) %{tde_docdir}/HTML/ca/kdebluetooth/
+%lang(da) %{tde_docdir}/HTML/da/kdebluetooth/
+%lang(en) %{tde_docdir}/HTML/en/kdebluetooth/
+%lang(es) %{tde_docdir}/HTML/es/kdebluetooth/
+%lang(et) %{tde_docdir}/HTML/et/kdebluetooth/
+%lang(fr) %{tde_docdir}/HTML/fr/kdebluetooth/
+%lang(it) %{tde_docdir}/HTML/it/kdebluetooth/
+%lang(nl) %{tde_docdir}/HTML/nl/kdebluetooth/
+%lang(pt) %{tde_docdir}/HTML/pt/kdebluetooth/
+%lang(ru) %{tde_docdir}/HTML/ru/kdebluetooth/
+%lang(sv) %{tde_docdir}/HTML/sv/kdebluetooth/
 
 
 %files libs

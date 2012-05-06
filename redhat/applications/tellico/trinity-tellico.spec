@@ -1,12 +1,12 @@
 # Default version for this component
 %define kdecomp tellico
 %define version 1.3.2.1
-%define release 2
+%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -32,7 +32,10 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
-Source1:	tellico.xpm
+
+
+# [tellico] Fix compilation with GCC 4.7 [Bug #958]
+Patch1:		tellico-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -44,7 +47,7 @@ Requires:	%{name}-data = %{version}-%{release}
 Requires:	%{name}-scripts = %{version}-%{release}
 
 %description
-Tellico is a collection manager for KDE. It includes default collections for
+Tellico is a collection manager for TDE. It includes default collections for
 books, bibliographies, comic books, videos, music, coins, stamps, trading
 cards, and wines, and also allows custom collections; with unlimited
 user-defined fields allowed. Automatically formatted names, sorting by any
@@ -63,7 +66,7 @@ Group:		Applications/Utilities
 Summary:	collection manager for books, videos, music [data] [Trinity]
 
 %description data
-Tellico is a collection manager for KDE. It includes default collections for
+Tellico is a collection manager for TDE. It includes default collections for
 books, bibliographies, comic books, videos, music, coins, stamps, trading
 cards, and wines, and also allows custom collections; with unlimited
 user-defined fields allowed. Automatically formatted names, sorting by any
@@ -84,7 +87,7 @@ Group:		Applications/Utilities
 Summary:	collection manager for books, videos, music [scripts] [Trinity]
 
 %description scripts
-Tellico is a collection manager for KDE. It includes default collections for
+Tellico is a collection manager for TDE. It includes default collections for
 books, bibliographies, comic books, videos, music, coins, stamps, trading
 cards, and wines, and also allows custom collections; with unlimited
 user-defined fields allowed. Automatically formatted names, sorting by any
@@ -104,15 +107,16 @@ as a separate package which can be updated through debian-volatile.
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -139,8 +143,6 @@ export PATH="%{_bindir}:${PATH}"
 # Remove  dead symlink from French translation
 %__rm %{?buildroot}%{tde_docdir}/HTML/fr/tellico/common
 
-%__install -D -c -p -m 644 -T %{SOURCE1} %{?buildroot}%{_datadir}/pixmaps/tellico.xpm
-
 
 %find_lang %{kdecomp}
 
@@ -161,7 +163,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
 %{_bindir}/tellico
-%{_datadir}/pixmaps
+#%{_datadir}/pixmaps
 %{_datadir}/applications
 %{_datadir}/config/tellicorc
 
@@ -195,6 +197,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
 %Changelog
+* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-3
+- Fix compilation with GCC 4.7 [Bug #958]
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-2
 - Fix HTML directory location
 

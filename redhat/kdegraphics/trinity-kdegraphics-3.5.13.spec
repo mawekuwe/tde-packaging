@@ -1,32 +1,20 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 4
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
-# KDEGRAPHICS components
-%if 0%{?fedora}
-%define with_ksvg 1
-%endif
-
 
 Name:		trinity-kdegraphics
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{_variant}
+Version:	3.5.13
+Release:	4%{?dist}%{_variant}
 License:	GPL
-Summary:    K Desktop Environment - Graphics Applications
+Summary:    Trinity Desktop Environment - Graphics Applications
 
 Group:      Applications/Multimedia
 Prefix:		%{_prefix}
@@ -53,7 +41,10 @@ Patch3:		kdegraphics-3.5.13-xpdf_disable_mkstemps.patch
 Patch4:		kdegraphics-3.5.13-kpovmodeler_missing_gl_ldflags.patch
 # [kdegraphics] Fix compilation with GCC 4.7
 Patch5:		kdegraphics-3.5.13-fix_gcc47_compilation.patch
+# [kdegraphics] Fix FTBFS due to poppler-tqt
+Patch6:		kdegraphics-3.5.13-fix_poppler_support.patch
 
+BuildRequires: cmake >= 2.8
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: trinity-kdebase-devel
@@ -75,16 +66,20 @@ BuildRequires: libXxf86vm-devel
 BuildRequires: OpenEXR-devel
 # kpdf
 BuildRequires: freetype-devel
-BuildRequires: poppler-devel
-BuildRequires: poppler-qt3-devel >= 0.12
+%if 0%{?rhel} >=6 || 0%{?fedora} >= 15
+BuildRequires: poppler-devel >= 0.12
+BuildRequires: poppler-qt-devel >= 0.12
+%else
+BuildRequires: trinity-poppler-devel
+BuildRequires: trinity-poppler-qt3-devel >= 0.12
+%endif
+
 BuildRequires: libpaper-devel
 # ksvg
-%if 0%{?with_ksvg}
 BuildRequires: fontconfig-devel
 BuildRequires: lcms-devel
 BuildRequires: libart_lgpl-devel
 BuildRequires: libXmu-devel
-%endif
 
 # kpovmodeler
 BuildRequires: libGL-devel libGLU-devel libXi-devel
@@ -106,7 +101,7 @@ Conflicts: kdegraphics
 %endif
 
 %description
-Graphics applications for the K Desktop Environment, including
+Graphics applications for the Trinity Desktop Environment, including
 * kamera (digital camera support)
 * kcoloredit (palette editor and color chooser)
 * kdvi (displays TeX .dvi files)
@@ -157,10 +152,13 @@ Requires: %{name} = %{version}-%{release}
 %patch1 -p1
 %patch2 -p1
 %if 0%{?rhel} && 0%{?rhel} <= 5
-%patch3 -p1
+%patch3 -p1 -b .mkstemps
 %endif
 %patch4 -p1
 %patch5 -p1 -b .gcc47
+%patch6 -p1 -b .poppler
+
+# Hardcoded path 
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh

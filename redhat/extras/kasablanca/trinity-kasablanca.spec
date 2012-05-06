@@ -1,4 +1,11 @@
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?_prefix}" != "/usr"
+%define _variant .opt
+%define _docdir %{_datadir}/doc
+%endif
+
 %define kdecomp kasablanca
+%define tde_docdir %{_docdir}/kde
 
 Name:		trinity-%{kdecomp}
 Summary:	Graphical FTP client
@@ -41,11 +48,11 @@ Kasablanca is an ftp client, among its features are currently:
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -128,7 +135,7 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 %{_datadir}/apps/kasablanca/
 %{_datadir}/config*/*
 %{_datadir}/icons/hicolor/*/*/*
-
+%{tde_docdir}/HTML/en/kasablanca
 
 %changelog
 * Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.0.2-1

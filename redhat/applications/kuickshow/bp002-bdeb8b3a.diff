@@ -1,0 +1,166 @@
+commit bdeb8b3ad3118b2be6fc62687092753cc12b2976
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324497974 -0600
+
+    Rename obsolete tq methods to standard names
+
+diff --git a/kuickshow/src/defaultswidget.cpp b/kuickshow/src/defaultswidget.cpp
+index e444605..7e94b1b 100644
+--- a/kuickshow/src/defaultswidget.cpp
++++ b/kuickshow/src/defaultswidget.cpp
+@@ -105,13 +105,13 @@ DefaultsWidget::DefaultsWidget( TQWidget *parent, const char *name)
+   ////////////////
+ 
+ 
+-  // tqlayout management
++  // layout management
+   TQVBoxLayout *mainLayout = new TQVBoxLayout( this, 0,
+-            KDialog::spacingHint(), "main tqlayout" );
++            KDialog::spacingHint(), "main layout" );
+ 
+-  TQVBoxLayout *gbScaleLayout = new TQVBoxLayout( gbScale->tqlayout(),
++  TQVBoxLayout *gbScaleLayout = new TQVBoxLayout( gbScale->layout(),
+             KDialog::spacingHint());
+-  TQVBoxLayout *gbGeometryLayout = new TQVBoxLayout(gbGeometry->tqlayout(),
++  TQVBoxLayout *gbGeometryLayout = new TQVBoxLayout(gbGeometry->layout(),
+             KDialog::spacingHint());
+   TQGridLayout *gbPreviewLayout = new TQGridLayout(gbPreview, 2, 3, 0,
+             KDialog::spacingHint());
+diff --git a/kuickshow/src/filewidget.cpp b/kuickshow/src/filewidget.cpp
+index 5f8df74..2662df4 100644
+--- a/kuickshow/src/filewidget.cpp
++++ b/kuickshow/src/filewidget.cpp
+@@ -196,7 +196,7 @@ bool FileWidget::eventFilter( TQObject *o, TQEvent *e )
+ 	    }
+ 	
+ 	    const TQString& text = k->text();
+-	    if ( !text.isEmpty() && text.tqunicode()->isPrint() ) {
++	    if ( !text.isEmpty() && text.unicode()->isPrint() ) {
+                 k->accept();
+ 		
+                 if ( !m_fileFinder ) {
+diff --git a/kuickshow/src/generalwidget.cpp b/kuickshow/src/generalwidget.cpp
+index bde353d..1308885 100644
+--- a/kuickshow/src/generalwidget.cpp
++++ b/kuickshow/src/generalwidget.cpp
+@@ -36,8 +36,8 @@
+ GeneralWidget::GeneralWidget( TQWidget *parent, const char *name )
+   : TQWidget( parent, name )
+ {
+-  TQVBoxLayout *tqlayout = new TQVBoxLayout( this );
+-  tqlayout->setSpacing( KDialog::spacingHint() );
++  TQVBoxLayout *layout = new TQVBoxLayout( this );
++  layout->setSpacing( KDialog::spacingHint() );
+ 
+   TQPixmap pixmap = UserIcon( "logo" );
+   KURLLabel *logo = new KURLLabel( this );
+@@ -50,7 +50,7 @@ GeneralWidget::GeneralWidget( TQWidget *parent, const char *name )
+   connect( logo, TQT_SIGNAL( leftClickedURL( const TQString & ) ),
+             TQT_SLOT( slotURLClicked( const TQString & ) ) );
+ 
+-  tqlayout->addWidget( logo, 0, AlignRight );
++  layout->addWidget( logo, 0, AlignRight );
+ 
+   cbFullscreen = new TQCheckBox( i18n("Fullscreen mode"), this, "boscreen" );
+ 
+@@ -70,17 +70,17 @@ GeneralWidget::GeneralWidget( TQWidget *parent, const char *name )
+   gridLayout->addWidget( l1, 1, 0 );
+   gridLayout->addWidget( editFilter, 1, 1 );
+ 
+-  tqlayout->addWidget( cbFullscreen );
+-  tqlayout->addWidget( cbPreload );
+-  tqlayout->addWidget( cbLastdir );
+-  tqlayout->addLayout( gridLayout );
++  layout->addWidget( cbFullscreen );
++  layout->addWidget( cbPreload );
++  layout->addWidget( cbLastdir );
++  layout->addLayout( gridLayout );
+ 
+   ////////////////////////////////////////////////////////////////////////
+ 
+   TQVGroupBox *gbox2 = new TQVGroupBox( i18n("Quality/Speed"),
+ 				     this, "qualitybox" );
+-  tqlayout->addWidget( gbox2 );
+-  tqlayout->addStretch();
++  layout->addWidget( gbox2 );
++  layout->addStretch();
+ 
+   cbSmoothScale = new TQCheckBox( i18n("Smooth scaling"), gbox2, "smoothscale" );
+   cbFastRender = new TQCheckBox( i18n("Fast rendering"), gbox2, "fastrender" );
+diff --git a/kuickshow/src/mainwidget.cpp b/kuickshow/src/mainwidget.cpp
+index d94d332..47b3d83 100644
+--- a/kuickshow/src/mainwidget.cpp
++++ b/kuickshow/src/mainwidget.cpp
+@@ -35,7 +35,7 @@ MainWidget::~MainWidget()
+ }
+ 
+ 
+-// for now, no tqlayout managers
++// for now, no layout managers
+ void MainWidget::resizeEvent( TQResizeEvent * )
+ {
+   box->resize( width(), height() );
+diff --git a/kuickshow/src/printing.cpp b/kuickshow/src/printing.cpp
+index 7005bbe..0d003a0 100644
+--- a/kuickshow/src/printing.cpp
++++ b/kuickshow/src/printing.cpp
+@@ -199,21 +199,21 @@ KuickPrintDialogPage::KuickPrintDialogPage( TQWidget *parent, const char *name )
+ {
+     setTitle( i18n("Image Settings") );
+ 
+-    TQVBoxLayout *tqlayout = new TQVBoxLayout( this );
+-    tqlayout->setMargin( KDialog::marginHint() );
+-    tqlayout->setSpacing( KDialog::spacingHint() );
++    TQVBoxLayout *layout = new TQVBoxLayout( this );
++    layout->setMargin( KDialog::marginHint() );
++    layout->setSpacing( KDialog::spacingHint() );
+ 
+     m_addFileName = new TQCheckBox( i18n("Print fi&lename below image"), this);
+     m_addFileName->setChecked( true );
+-    tqlayout->addWidget( m_addFileName );
++    layout->addWidget( m_addFileName );
+ 
+     m_blackwhite = new TQCheckBox ( i18n("Print image in &black and white"), this);
+     m_blackwhite->setChecked( false );
+-    tqlayout->addWidget (m_blackwhite );
++    layout->addWidget (m_blackwhite );
+ 
+     TQVButtonGroup *group = new TQVButtonGroup( i18n("Scaling"), this );
+     group->setRadioButtonExclusive( true );
+-    tqlayout->addWidget( group );
++    layout->addWidget( group );
+     // m_shrinkToFit = new TQRadioButton( i18n("Shrink image to &fit, if necessary"), group );
+     m_shrinkToFit = new TQCheckBox( i18n("Shrink image to &fit, if necessary"), group );
+     m_shrinkToFit->setChecked( true );
+diff --git a/kuickshow/src/slideshowwidget.cpp b/kuickshow/src/slideshowwidget.cpp
+index ed2bedc..9727c20 100644
+--- a/kuickshow/src/slideshowwidget.cpp
++++ b/kuickshow/src/slideshowwidget.cpp
+@@ -31,8 +31,8 @@ SlideShowWidget::SlideShowWidget( TQWidget *parent, const char *name )
+ {
+ //     setTitle( i18n("Slideshow") );
+ 
+-    TQVBoxLayout *tqlayout = new TQVBoxLayout( this );
+-    tqlayout->setSpacing( KDialog::spacingHint() );
++    TQVBoxLayout *layout = new TQVBoxLayout( this );
++    layout->setSpacing( KDialog::spacingHint() );
+ 
+     m_fullScreen = new TQCheckBox( i18n("Switch to &full-screen"), this );
+     m_startWithCurrent = new TQCheckBox( i18n("S&tart with current image"), this);
+@@ -48,11 +48,11 @@ SlideShowWidget::SlideShowWidget( TQWidget *parent, const char *name )
+     m_cycles->setSpecialValueText( i18n("infinite") );
+     m_cycles->setRange( 0, 500 );
+     
+-    tqlayout->addWidget( m_fullScreen );
+-    tqlayout->addWidget( m_startWithCurrent );
+-    tqlayout->addWidget( m_delayTime );
+-    tqlayout->addWidget( m_cycles );
+-    tqlayout->addStretch( 1 );
++    layout->addWidget( m_fullScreen );
++    layout->addWidget( m_startWithCurrent );
++    layout->addWidget( m_delayTime );
++    layout->addWidget( m_cycles );
++    layout->addStretch( 1 );
+ 
+     loadSettings( *kdata );
+ }

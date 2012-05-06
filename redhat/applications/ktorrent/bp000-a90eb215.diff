@@ -1,0 +1,3901 @@
+commit a90eb215f53c95d81f95b32255098066d90556d9
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1324253621 -0600
+
+    Rename old tq methods that no longer need a unique name
+
+diff --git a/apps/ktorrent/addpeerwidgetbase.ui b/apps/ktorrent/addpeerwidgetbase.ui
+index 3ae532a..6aee5e0 100644
+--- a/apps/ktorrent/addpeerwidgetbase.ui
++++ b/apps/ktorrent/addpeerwidgetbase.ui
+@@ -77,7 +77,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>16</height>
+diff --git a/apps/ktorrent/advancedpref.ui b/apps/ktorrent/advancedpref.ui
+index a144aa6..0b8f00a 100644
+--- a/apps/ktorrent/advancedpref.ui
++++ b/apps/ktorrent/advancedpref.ui
+@@ -108,7 +108,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>148</width>
+                                     <height>20</height>
+@@ -223,7 +223,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>111</width>
+                                     <height>20</height>
+@@ -283,7 +283,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>111</width>
+                                     <height>20</height>
+@@ -405,7 +405,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>20</height>
+@@ -459,7 +459,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>41</width>
+                                     <height>20</height>
+@@ -553,7 +553,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>383</width>
+                                     <height>20</height>
+@@ -601,7 +601,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>81</width>
+                                     <height>20</height>
+@@ -622,7 +622,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>30</height>
+diff --git a/apps/ktorrent/downloadpref.ui b/apps/ktorrent/downloadpref.ui
+index 6315cba..47f1f4c 100644
+--- a/apps/ktorrent/downloadpref.ui
++++ b/apps/ktorrent/downloadpref.ui
+@@ -69,7 +69,7 @@
+                                             <property name="sizeType">
+                                                 <enum>Expanding</enum>
+                                             </property>
+-                                            <property name="tqsizeHint">
++                                            <property name="sizeHint">
+                                                 <size>
+                                                     <width>40</width>
+                                                     <height>20</height>
+@@ -246,7 +246,7 @@
+                                             <property name="sizeType">
+                                                 <enum>Expanding</enum>
+                                             </property>
+-                                            <property name="tqsizeHint">
++                                            <property name="sizeHint">
+                                                 <size>
+                                                     <width>10</width>
+                                                     <height>20</height>
+@@ -273,7 +273,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>191</width>
+                                             <height>20</height>
+@@ -290,7 +290,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>207</width>
+                                             <height>20</height>
+@@ -380,7 +380,7 @@
+                                     <property name="sizeType">
+                                         <enum>Expanding</enum>
+                                     </property>
+-                                    <property name="tqsizeHint">
++                                    <property name="sizeHint">
+                                         <size>
+                                             <width>40</width>
+                                             <height>20</height>
+@@ -594,7 +594,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>208</width>
+                                     <height>20</height>
+@@ -611,7 +611,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>208</width>
+                                     <height>20</height>
+@@ -628,7 +628,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>208</width>
+                                     <height>20</height>
+@@ -697,7 +697,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>20</height>
+diff --git a/apps/ktorrent/fileselectdlg.cpp b/apps/ktorrent/fileselectdlg.cpp
+index 5f0e33d..98d927a 100644
+--- a/apps/ktorrent/fileselectdlg.cpp
++++ b/apps/ktorrent/fileselectdlg.cpp
+@@ -217,9 +217,9 @@ void FileSelectDlg::updateSizeLabels()
+ 	lblRequired->setText(kt::BytesToString(bytes_to_download));
+ 
+ 	if (bytes_to_download > bytes_free)
+-		lbltqStatus->setText("<font color=\"#ff0000\">" + kt::BytesToString(-1*(long long)(bytes_free - bytes_to_download)) + i18n(" short!"));
++		lblStatus->setText("<font color=\"#ff0000\">" + kt::BytesToString(-1*(long long)(bytes_free - bytes_to_download)) + i18n(" short!"));
+ 	else
+-		lbltqStatus->setText(kt::BytesToString(bytes_free - bytes_to_download));
++		lblStatus->setText(kt::BytesToString(bytes_free - bytes_to_download));
+ }
+ 
+ void FileSelectDlg::treeItemChanged()
+diff --git a/apps/ktorrent/fileselectdlgbase.ui b/apps/ktorrent/fileselectdlgbase.ui
+index 152c057..f289025 100644
+--- a/apps/ktorrent/fileselectdlgbase.ui
++++ b/apps/ktorrent/fileselectdlgbase.ui
+@@ -207,7 +207,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>135</height>
+@@ -237,7 +237,7 @@
+                     <property name="sizeType">
+                         <enum>Preferred</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -298,7 +298,7 @@
+                         </widget>
+                         <widget class="TQLabel">
+                             <property name="name">
+-                                <cstring>lbltqStatus</cstring>
++                                <cstring>lblStatus</cstring>
+                             </property>
+                         </widget>
+                     </vbox>
+@@ -315,7 +315,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>220</width>
+                     <height>20</height>
+diff --git a/apps/ktorrent/generalpref.ui b/apps/ktorrent/generalpref.ui
+index 33eb8f3..a1ba5e9 100644
+--- a/apps/ktorrent/generalpref.ui
++++ b/apps/ktorrent/generalpref.ui
+@@ -29,7 +29,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>50</height>
+@@ -142,7 +142,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>40</width>
+                                     <height>20</height>
+diff --git a/apps/ktorrent/ipfilterwidgetbase.ui b/apps/ktorrent/ipfilterwidgetbase.ui
+index c02218d..dea4bc2 100644
+--- a/apps/ktorrent/ipfilterwidgetbase.ui
++++ b/apps/ktorrent/ipfilterwidgetbase.ui
+@@ -73,7 +73,7 @@
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -144,7 +144,7 @@
+                             <property name="sizeType">
+                                 <enum>Fixed</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>20</height>
+@@ -192,7 +192,7 @@
+                             <property name="sizeType">
+                                 <enum>Fixed</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>16</height>
+@@ -234,7 +234,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>30</height>
+diff --git a/apps/ktorrent/ktorrentviewitem.cpp b/apps/ktorrent/ktorrentviewitem.cpp
+index 1156b88..048692b 100644
+--- a/apps/ktorrent/ktorrentviewitem.cpp
++++ b/apps/ktorrent/ktorrentviewitem.cpp
+@@ -30,7 +30,7 @@
+ using namespace bt;
+ using namespace kt;
+ /*
+-static TQString StatusToString(TorrentInterface* tc,TorrenttqStatus s)
++static TQString StatusToString(TorrentInterface* tc,TorrentStatus s)
+ {
+ 	switch (s)
+ 	{
+@@ -55,7 +55,7 @@ static TQString StatusToString(TorrentInterface* tc,TorrenttqStatus s)
+ }
+ */
+ 
+-static TQColor StatusToColor(TorrenttqStatus s,const TQColorGroup & cg)
++static TQColor StatusToColor(TorrentStatus s,const TQColorGroup & cg)
+ {
+ 	TQColor green(40,205,40);
+ 	TQColor yellow(255,174,0);
+diff --git a/apps/ktorrent/leaktrace.cpp b/apps/ktorrent/leaktrace.cpp
+index ae41d3f..f3bdb5f 100644
+--- a/apps/ktorrent/leaktrace.cpp
++++ b/apps/ktorrent/leaktrace.cpp
+@@ -91,7 +91,7 @@ static void WriteLeakReport()
+ 	fclose(report);
+ }
+ 
+-static void PrinttqStatus()
++static void PrintStatus()
+ {
+ 	if (mtree.count == 0)
+ 	{
+@@ -124,7 +124,7 @@ static void RegisterAlloc(void* ptr,Uint32 size)
+ 		for (Uint32 b = 0;b < SOME_PRIME;b++)
+ 			mtree.buckets[b] = 0;
+ 		mtree.num_buckets = SOME_PRIME;
+-		atexit(PrinttqStatus);
++		atexit(PrintStatus);
+ 	}
+ 	
+ 	// hash the address
+diff --git a/apps/ktorrent/newui/button.cpp b/apps/ktorrent/newui/button.cpp
+index cbbfbed..33bdf7f 100644
+--- a/apps/ktorrent/newui/button.cpp
++++ b/apps/ktorrent/newui/button.cpp
+@@ -49,8 +49,8 @@ Button::Button(ButtonBar *parent, const TQString text, const TQIconSet &icon,
+     setToggleButton(true);
+     setFocusPolicy(TQ_NoFocus);
+     setDescription(m_description);
+-    tqsetSizePolicy(TQSizePolicy::Minimum, TQSizePolicy::Minimum);
+-    resize(tqsizeHint());
++    setSizePolicy(TQSizePolicy::Minimum, TQSizePolicy::Minimum);
++    resize(sizeHint());
+     fixDimensions(Ideal::Bottom);
+ 
+     TQToolTip::add(this, m_realText);
+@@ -131,11 +131,11 @@ void Button::drawButton(TQPainter *p)
+     pm.fill(eraseColor());
+     TQPainter p2(&pm);
+ 
+-    tqstyle().tqdrawControl(TQStyle::CE_PushButton,&p2,this, TQRect(0,0,pm.width(),pm.height()), tqcolorGroup(),flags);
++    tqstyle().drawControl(TQStyle::CE_PushButton,&p2,this, TQRect(0,0,pm.width(),pm.height()), colorGroup(),flags);
+ 
+-    tqstyle().tqdrawControl(TQStyle::CE_PushButtonLabel, &p2, this,
++    tqstyle().drawControl(TQStyle::CE_PushButtonLabel, &p2, this,
+                         TQRect(0,0,pm.width(),pm.height()),
+-                        tqcolorGroup(), flags, TQStyleOption());
++                        colorGroup(), flags, TQStyleOption());
+ 
+     switch (m_place)
+     {
+@@ -178,7 +178,7 @@ void Button::fixDimensions(Place oldPlace)
+             if ((oldPlace == Ideal::Bottom) || (oldPlace == Ideal::Top))
+             {
+                 setFixedWidth(height());
+-                setMinimumHeight(tqsizeHint().width());
++                setMinimumHeight(sizeHint().width());
+                 setMaximumHeight(32767);
+             }
+             break;
+@@ -187,19 +187,19 @@ void Button::fixDimensions(Place oldPlace)
+             if ((oldPlace == Ideal::Left) || (oldPlace == Ideal::Right))
+             {
+                 setFixedHeight(width());
+-                setMinimumWidth(tqsizeHint().height());
++                setMinimumWidth(sizeHint().height());
+                 setMaximumWidth(32767);
+             }
+             break;
+     }
+ }
+ 
+-TQSize Button::tqsizeHint() const
++TQSize Button::sizeHint() const
+ {
+-    return tqsizeHint(text());
++    return sizeHint(text());
+ }
+ 
+-TQSize Button::tqsizeHint(const TQString &text) const
++TQSize Button::sizeHint(const TQString &text) const
+ {
+     constPolish();
+     int w = 0, h = 0;
+@@ -211,7 +211,7 @@ TQSize Button::tqsizeHint(const TQString &text) const
+         h = TQMAX( h, ih );
+     }
+     if ( isMenuButton() )
+-        w += tqstyle().tqpixelMetric(TQStyle::PM_MenuButtonIndicator, this);
++        w += tqstyle().pixelMetric(TQStyle::PM_MenuButtonIndicator, this);
+     if ( pixmap() ) {
+         TQPixmap *pm = (TQPixmap *)pixmap();
+         w += pm->width();
+@@ -220,7 +220,7 @@ TQSize Button::tqsizeHint(const TQString &text) const
+         TQString s( text );
+         bool empty = s.isEmpty();
+         if ( empty )
+-            s = TQString::tqfromLatin1("XXXX");
++            s = TQString::fromLatin1("XXXX");
+         TQFontMetrics fm = fontMetrics();
+         TQSize sz = fm.size( ShowPrefix, s );
+         if(!empty || !w)
+@@ -239,12 +239,12 @@ void Button::updateSize()
+     {
+         case Ideal::Left:
+         case Ideal::Right:
+-             setMinimumHeight(tqsizeHint().width());
+-             resize(tqsizeHint().height(), tqsizeHint().width());
++             setMinimumHeight(sizeHint().width());
++             resize(sizeHint().height(), sizeHint().width());
+             break;
+         case Ideal::Top:
+         case Ideal::Bottom:
+-            resize(tqsizeHint().width(), tqsizeHint().height());
++            resize(sizeHint().width(), sizeHint().height());
+             break;
+     }
+ }
+diff --git a/apps/ktorrent/newui/button.h b/apps/ktorrent/newui/button.h
+index fae0b56..18aecd4 100644
+--- a/apps/ktorrent/newui/button.h
++++ b/apps/ktorrent/newui/button.h
+@@ -54,8 +54,8 @@ public:
+     /**Sets the mode of a button.*/
+     void setMode(Ideal::ButtonMode mode);
+ 
+-    TQSize tqsizeHint() const;
+-    TQSize tqsizeHint(const TQString &text) const;
++    TQSize sizeHint() const;
++    TQSize sizeHint(const TQString &text) const;
+ 
+     /**Updates size of a widget. Used after squeezing button's text.*/
+     void updateSize();
+diff --git a/apps/ktorrent/newui/buttonbar.cpp b/apps/ktorrent/newui/buttonbar.cpp
+index 47227a8..56673b4 100644
+--- a/apps/ktorrent/newui/buttonbar.cpp
++++ b/apps/ktorrent/newui/buttonbar.cpp
+@@ -37,9 +37,9 @@ ButtonLayout::ButtonLayout(ButtonBar *parent, Direction d, int margin, int spaci
+ {
+ }
+ 
+-TQSize ButtonLayout::tqminimumSize() const
++TQSize ButtonLayout::minimumSize() const
+ {
+-    TQSize size = TQBoxLayout::tqminimumSize();
++    TQSize size = TQBoxLayout::minimumSize();
+ 
+     if (!m_buttonBar->autoResize())
+         return size;
+@@ -54,7 +54,7 @@ TQSize ButtonLayout::tqminimumSize() const
+         case Ideal::Bottom:
+             return TQSize(0,size.height());
+     }
+-    return TQBoxLayout::tqminimumSize();
++    return TQBoxLayout::minimumSize();
+ }
+ 
+ 
+@@ -128,14 +128,14 @@ void ButtonBar::fixDimensions()
+     {
+         case Ideal::Left:
+         case Ideal::Right:
+-            setFixedWidth(tqsizeHint().width());
+-            setMinimumHeight(tqsizeHint().height());
++            setFixedWidth(sizeHint().width());
++            setMinimumHeight(sizeHint().height());
+             setMaximumHeight(32767);
+             break;
+         case Ideal::Top:
+         case Ideal::Bottom:
+-            setFixedHeight(tqsizeHint().height());
+-            setMinimumWidth(tqsizeHint().width());
++            setFixedHeight(sizeHint().height());
++            setMinimumWidth(sizeHint().width());
+             setMaximumWidth(32767);
+             break;
+     }
+@@ -156,13 +156,13 @@ void ButtonBar::resizeEvent(TQResizeEvent *ev)
+     {
+         case Ideal::Left:
+         case Ideal::Right:
+-            preferredDimension = l->TQBoxLayout::tqminimumSize().height();
++            preferredDimension = l->TQBoxLayout::minimumSize().height();
+             actualDimension = size().height();
+             oldDimension = ev->oldSize().height();
+             break;
+         case Ideal::Top:
+         case Ideal::Bottom:
+-            preferredDimension = l->TQBoxLayout::tqminimumSize().width();
++            preferredDimension = l->TQBoxLayout::minimumSize().width();
+             actualDimension = size().width();
+             oldDimension = ev->oldSize().width();
+             break;
+@@ -285,7 +285,7 @@ int ButtonBar::originalDimension()
+     int size = 0;
+     for (ButtonList::const_iterator it = m_buttons.constBegin(); it != m_buttons.constEnd(); ++it)
+     {
+-        size += (*it)->tqsizeHint((*it)->realText()).width();
++        size += (*it)->sizeHint((*it)->realText()).width();
+     }
+     return size;
+ }
+diff --git a/apps/ktorrent/newui/buttonbar.h b/apps/ktorrent/newui/buttonbar.h
+index a2e8ecc..d517cd7 100644
+--- a/apps/ktorrent/newui/buttonbar.h
++++ b/apps/ktorrent/newui/buttonbar.h
+@@ -34,12 +34,12 @@ class ButtonBar;
+ 
+ /**@short A tqlayout for a ButtonBar class.
+ 
+-Overrides tqminimumSize method to allow shrinking button bar buttons.*/
++Overrides minimumSize method to allow shrinking button bar buttons.*/
+ class ButtonLayout: public TQBoxLayout{
+ public:
+     ButtonLayout(ButtonBar *parent, Direction d, int margin = 0, int spacing = -1, const char * name = 0);
+ 
+-    virtual TQSize tqminimumSize() const;
++    virtual TQSize minimumSize() const;
+ 
+ private:
+     ButtonBar *m_buttonBar;
+diff --git a/apps/ktorrent/newui/ddockwindow.cpp b/apps/ktorrent/newui/ddockwindow.cpp
+index f008e56..3b67ff3 100644
+--- a/apps/ktorrent/newui/ddockwindow.cpp
++++ b/apps/ktorrent/newui/ddockwindow.cpp
+@@ -119,9 +119,9 @@ void DDockWindow::setVisible(bool v)
+     if (!m_visible)
+     {
+         if (m_position == DDockWindow::Bottom)
+-            setFixedExtentHeight(m_internalLayout->tqsizeHint().height());
++            setFixedExtentHeight(m_internalLayout->sizeHint().height());
+         else
+-            setFixedExtentWidth(m_internalLayout->tqsizeHint().width());
++            setFixedExtentWidth(m_internalLayout->sizeHint().width());
+         emit hidden();
+     }
+     else
+@@ -130,12 +130,12 @@ void DDockWindow::setVisible(bool v)
+         int size = 0;
+         if (m_position == DDockWindow::Bottom)
+         {
+-            size = config->readNumEntry("ViewWidth", m_internalLayout->tqminimumSize().height());
++            size = config->readNumEntry("ViewWidth", m_internalLayout->minimumSize().height());
+             setFixedExtentHeight(size);
+         }
+         else
+         {
+-            size = config->readNumEntry("ViewWidth", m_internalLayout->tqminimumSize().width());
++            size = config->readNumEntry("ViewWidth", m_internalLayout->minimumSize().width());
+             setFixedExtentWidth(size);
+         }
+     }
+@@ -338,7 +338,7 @@ bool DDockWindow::isActive()
+ {
+     if (m_toggledButton)
+     {
+-        TQWidget *w = tqApp->tqfocusWidget();
++        TQWidget *w = tqApp->focusWidget();
+         if (!w)
+             return false;
+         TQWidget *toolWidget = m_widgets[m_toggledButton];
+diff --git a/apps/ktorrent/newui/dmainwindow.cpp b/apps/ktorrent/newui/dmainwindow.cpp
+index 26186d0..a21fa5c 100644
+--- a/apps/ktorrent/newui/dmainwindow.cpp
++++ b/apps/ktorrent/newui/dmainwindow.cpp
+@@ -189,7 +189,7 @@ DTabWidget *DMainWindow::splitVertical()
+ 
+ void DMainWindow::invalidateActiveTabWidget()
+ {
+-/*    TQWidget *focused = m_central->tqfocusWidget();
++/*    TQWidget *focused = m_central->focusWidget();
+     kdDebug(9000) << "tqinvalidate: " << focused << endl;
+     if (focused == 0)
+         return;
+diff --git a/apps/ktorrent/newui/docksplitter.cpp b/apps/ktorrent/newui/docksplitter.cpp
+index 4931ad0..6da580f 100644
+--- a/apps/ktorrent/newui/docksplitter.cpp
++++ b/apps/ktorrent/newui/docksplitter.cpp
+@@ -113,7 +113,7 @@ void DockSplitter::removeDock(uint row, uint col, bool alsoDelete)
+         w->hide();
+     }
+ 
+-    m_splitters[row]->setMinimumSize(m_splitters[row]->tqminimumSizeHint());
++    m_splitters[row]->setMinimumSize(m_splitters[row]->minimumSizeHint());
+ 
+     if (isRowEmpty(row))
+     {
+diff --git a/apps/ktorrent/pastedlgbase.ui b/apps/ktorrent/pastedlgbase.ui
+index 6762dfe..700d12d 100644
+--- a/apps/ktorrent/pastedlgbase.ui
++++ b/apps/ktorrent/pastedlgbase.ui
+@@ -20,7 +20,7 @@
+             <verstretch>0</verstretch>
+         </sizepolicy>
+     </property>
+-    <property name="tqminimumSize">
++    <property name="minimumSize">
+         <size>
+             <width>0</width>
+             <height>0</height>
+@@ -64,7 +64,7 @@
+                             <verstretch>0</verstretch>
+                         </sizepolicy>
+                     </property>
+-                    <property name="tqminimumSize">
++                    <property name="minimumSize">
+                         <size>
+                             <width>400</width>
+                             <height>0</height>
+@@ -91,7 +91,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>297</width>
+                             <height>20</height>
+diff --git a/apps/ktorrent/queuedialog.cpp b/apps/ktorrent/queuedialog.cpp
+index 508789b..80c6440 100644
+--- a/apps/ktorrent/queuedialog.cpp
++++ b/apps/ktorrent/queuedialog.cpp
+@@ -123,7 +123,7 @@ QueueDialog::QueueDialog(bt::QueueManager* qm, TQWidget *parent, const char *nam
+ 	for( ; it != qman->end(); ++it)
+ 	{
+ 		TorrentInterface* tc = *it;
+-		TorrenttqStatus ts = tc->getStats().status;
++		TorrentStatus ts = tc->getStats().status;
+ 		
+ 		if(ts == kt::SEEDING || ts == kt::DOWNLOAD_COMPLETE || 
+ 			ts == kt::SEEDING_COMPLETE || tc->getStats().completed)
+@@ -288,7 +288,7 @@ void QueueDialog::downloadList_currentChanged(TQListViewItem* item)
+ {
+ 	if(!item)
+ 	{
+-		dltqStatus->clear();
++		dlStatus->clear();
+ 		dlTracker->clear();
+ 		dlRatio->clear();
+ 		dlDHT->clear();
+@@ -298,7 +298,7 @@ void QueueDialog::downloadList_currentChanged(TQListViewItem* item)
+ 	const TorrentInterface* tc = ((QueueItem*)item)->getTC();
+ 	TorrentStats s = tc->getStats();
+ 	
+-	dltqStatus->setText(tc->statusToString());
++	dlStatus->setText(tc->statusToString());
+ 	dlTracker->setText(tc->getTrackersList()->getTrackerURL().prettyURL());
+ 	dlRatio->setText(TQString("%1").tqarg((float)s.bytes_uploaded / s.bytes_downloaded,0,'f',2));
+ 	dlBytes->setText(BytesToString(s.bytes_left_to_download));
+@@ -309,7 +309,7 @@ void QueueDialog::seedList_currentChanged(TQListViewItem* item)
+ {
+ 	if(!item)
+ 	{
+-		ultqStatus->clear();
++		ulStatus->clear();
+ 		ulTracker->clear();
+ 		ulRatio->clear();
+ 		ulDHT->clear();
+@@ -319,7 +319,7 @@ void QueueDialog::seedList_currentChanged(TQListViewItem* item)
+ 	const TorrentInterface* tc = ((QueueItem*)item)->getTC();
+ 	TorrentStats s = tc->getStats();
+ 	
+-	ultqStatus->setText(tc->statusToString());
++	ulStatus->setText(tc->statusToString());
+ 	ulTracker->setText(tc->getTrackersList()->getTrackerURL().prettyURL());
+ 	ulRatio->setText(TQString("%1").tqarg((float)s.bytes_uploaded / s.bytes_downloaded,0,'f',2));
+ 	ulBytes->setText(BytesToString(s.bytes_uploaded));
+diff --git a/apps/ktorrent/queuedlg.ui b/apps/ktorrent/queuedlg.ui
+index 8517b57..7e4769f 100644
+--- a/apps/ktorrent/queuedlg.ui
++++ b/apps/ktorrent/queuedlg.ui
+@@ -129,7 +129,7 @@
+                                     </property>
+                                     <widget class="TQLabel">
+                                         <property name="name">
+-                                            <cstring>dltqStatus</cstring>
++                                            <cstring>dlStatus</cstring>
+                                         </property>
+                                         <property name="text">
+                                             <string></string>
+@@ -345,7 +345,7 @@
+                                     </property>
+                                     <widget class="TQLabel">
+                                         <property name="name">
+-                                            <cstring>ultqStatus</cstring>
++                                            <cstring>ulStatus</cstring>
+                                         </property>
+                                         <property name="text">
+                                             <string></string>
+@@ -416,7 +416,7 @@
+                             <property name="sizeType">
+                                 <enum>Preferred</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>20</height>
+@@ -452,7 +452,7 @@
+                             <property name="sizeType">
+                                 <enum>Preferred</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>40</width>
+                                     <height>20</height>
+@@ -471,7 +471,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>30</height>
+@@ -504,7 +504,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -540,7 +540,7 @@
+                     <property name="sizeType">
+                         <enum>Preferred</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -573,7 +573,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+diff --git a/apps/ktorrent/scandlgbase.ui b/apps/ktorrent/scandlgbase.ui
+index 89ffb9f..2538680 100644
+--- a/apps/ktorrent/scandlgbase.ui
++++ b/apps/ktorrent/scandlgbase.ui
+@@ -84,7 +84,7 @@
+                             <property name="name">
+                                 <cstring>m_chunks_found</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>100</width>
+                                     <height>0</height>
+@@ -104,7 +104,7 @@
+                             <property name="name">
+                                 <cstring>m_chunks_failed</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>100</width>
+                                     <height>0</height>
+@@ -164,7 +164,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>181</width>
+                             <height>20</height>
+diff --git a/apps/ktorrent/speedlimitsdlgbase.ui b/apps/ktorrent/speedlimitsdlgbase.ui
+index f4313e2..17dc49c 100644
+--- a/apps/ktorrent/speedlimitsdlgbase.ui
++++ b/apps/ktorrent/speedlimitsdlgbase.ui
+@@ -141,7 +141,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>121</width>
+                             <height>20</height>
+diff --git a/apps/ktorrent/torrentcreatordlgbase.ui b/apps/ktorrent/torrentcreatordlgbase.ui
+index fa02179..3db0c49 100644
+--- a/apps/ktorrent/torrentcreatordlgbase.ui
++++ b/apps/ktorrent/torrentcreatordlgbase.ui
+@@ -148,7 +148,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>21</width>
+                                     <height>20</height>
+@@ -233,7 +233,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+@@ -372,7 +372,7 @@
+                     <property name="sizeType">
+                         <enum>Maximum</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -422,7 +422,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>40</height>
+diff --git a/apps/ktorrent/trayhoverpopup.cpp b/apps/ktorrent/trayhoverpopup.cpp
+index 7df590f..5cce261 100644
+--- a/apps/ktorrent/trayhoverpopup.cpp
++++ b/apps/ktorrent/trayhoverpopup.cpp
+@@ -114,7 +114,7 @@ void TrayHoverPopup::create()
+ 		hb->setSpacing(KDialog::spacingHint());
+ 		TQLabel* pix_lbl = new TQLabel(hb,"title_icon");
+ 		pix_lbl->setPixmap(pix);
+-		pix_lbl->tqsetAlignment(AlignLeft);
++		pix_lbl->setAlignment(AlignLeft);
+ 	}
+ 	 
+ 	
+@@ -122,13 +122,13 @@ void TrayHoverPopup::create()
+ 	TQFont fnt = title->font();
+ 	fnt.setBold( true );
+ 	title->setFont( fnt );
+-	title->tqsetAlignment( TQt::AlignHCenter );
++	title->setAlignment( TQt::AlignHCenter );
+ 	if ( hb )
+ 		hb->setStretchFactor(title, 10 ); // enforce centering
+ 
+ 	// text will be filled later
+ 	text = new TQLabel( "Dummy", vb, "msg_label" );
+-				text->tqsetAlignment( AlignLeft );
++				text->setAlignment( AlignLeft );
+ 	setView(vb);
+ }
+ 	
+diff --git a/apps/ktupnptest/mainwidget.ui b/apps/ktupnptest/mainwidget.ui
+index 0aacede..e46bbd1 100644
+--- a/apps/ktupnptest/mainwidget.ui
++++ b/apps/ktupnptest/mainwidget.ui
+@@ -39,7 +39,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>61</width>
+                             <height>20</height>
+diff --git a/estimation-scripts/enable-logging.diff b/estimation-scripts/enable-logging.diff
+index e030443..57dc703 100644
+--- a/estimation-scripts/enable-logging.diff
++++ b/estimation-scripts/enable-logging.diff
+@@ -45,7 +45,7 @@ Index: estimation-scripts/enable-logging.diff
+ -+ 		{
+ -+ 			if(!started)
+ -+ 			{
+--+ 				Out() << "{" << tc->getTorrentName() << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << tc->getDownloadRate() << "," << tc->getBytesDownloaded() << "," << tc->getBytesLeft() << "," << tc->getNumPeers() << ",ACTIVATED" << endl;
++-+ 				Out() << "{" << tc->getTorrentName() << "}," << QDateTime::currentDateTime().toTime_t() << "," << tc->getDownloadRate() << "," << tc->getBytesDownloaded() << "," << tc->getBytesLeft() << "," << tc->getNumPeers() << ",ACTIVATED" << endl;
+ -+ 				tmpLog = false;
+ -+ 				started = true;
+ -+ 				toLog = true;
+@@ -56,7 +56,7 @@ Index: estimation-scripts/enable-logging.diff
+ -+ 		{
+ -+ 			if(started)
+ -+ 			{
+--+ 				Out() << "{" << tc->getTorrentName() << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << tc->getDownloadRate() << "," << tc->getBytesDownloaded() << "," << tc->getBytesLeft() << "," << tc->getNumPeers() << ",DEACTIVATED" <<endl;
++-+ 				Out() << "{" << tc->getTorrentName() << "}," << QDateTime::currentDateTime().toTime_t() << "," << tc->getDownloadRate() << "," << tc->getBytesDownloaded() << "," << tc->getBytesLeft() << "," << tc->getNumPeers() << ",DEACTIVATED" <<endl;
+ -+ 				tmpLog = false;
+ -+ 				started = false;
+ -+ 			}
+@@ -71,7 +71,7 @@ Index: estimation-scripts/enable-logging.diff
+ - 	if (tc->getBytesLeft() == 0)
+ - 	{
+ -+ 		if(toLog && tmpLog) 
+--+ 			Out() << "{" << tc->getTorrentName() << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << tc->getDownloadRate() << "," << tc->getBytesDownloaded() << "," << 0 << "," << tc->getNumPeers() << ",FINISHED" << endl;
++-+ 			Out() << "{" << tc->getTorrentName() << "}," << QDateTime::currentDateTime().toTime_t() << "," << tc->getDownloadRate() << "," << tc->getBytesDownloaded() << "," << 0 << "," << tc->getNumPeers() << ",FINISHED" << endl;
+ -+ 		toLog = false;
+ -+
+ - 		setText(7,i18n("finished"));
+@@ -83,13 +83,13 @@ Index: estimation-scripts/enable-logging.diff
+ - 			if (tc->getDownloadRate() == 0)
+ -+			{
+ -+ 				if(toLog && tmpLog) 
+--+ 					Out() << "{" << tc->getTorrentName() << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << 0 << "," << tc->getBytesDownloaded() << "," << tc->getBytesLeft() << "," << tc->getNumPeers() << ",RUNNING" << endl;
++-+ 					Out() << "{" << tc->getTorrentName() << "}," << QDateTime::currentDateTime().toTime_t() << "," << 0 << "," << tc->getBytesDownloaded() << "," << tc->getBytesLeft() << "," << tc->getNumPeers() << ",RUNNING" << endl;
+ - 				setText(7,i18n("infinity"));
+ -+			}
+ - 			else
+ - 			{
+ -+				if(toLog && tmpLog) 
+--+ 					Out() << "{" << tc->getTorrentName() << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << tc->getDownloadRate() << "," << tc->getBytesDownloaded() << "," << tc->getBytesLeft() << "," << tc->getNumPeers() << ",RUNNING" << endl;
++-+ 					Out() << "{" << tc->getTorrentName() << "}," << QDateTime::currentDateTime().toTime_t() << "," << tc->getDownloadRate() << "," << tc->getBytesDownloaded() << "," << tc->getBytesLeft() << "," << tc->getNumPeers() << ",RUNNING" << endl;
+ -+
+ - 				Uint32 secs = (int)floor( (float)tc->getBytesLeft() / (float)tc->getDownloadRate() );
+ - 				QTime t;
+@@ -155,7 +155,7 @@ Index: apps/ktorrent/ktorrentviewitem.cpp
+ +  		{
+ +  			if(!started)
+ +  			{
+-+  				Out() << "{" << s.torrent_name << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << s.download_rate << "," << s.bytes_downloaded << "," << s.bytes_left << "," << s.num_peers << ",ACTIVATED" << endl;
+++  				Out() << "{" << s.torrent_name << "}," << QDateTime::currentDateTime().toTime_t() << "," << s.download_rate << "," << s.bytes_downloaded << "," << s.bytes_left << "," << s.num_peers << ",ACTIVATED" << endl;
+ +  				tmpLog = false;
+ +  				started = true;
+ +  				toLog = true;
+@@ -166,7 +166,7 @@ Index: apps/ktorrent/ktorrentviewitem.cpp
+ +  		{
+ +  			if(started)
+ +  			{
+-+  				Out() << "{" << s.torrent_name << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << s.download_rate << "," << s.bytes_downloaded << "," << s.bytes_left << "," << s.num_peers << ",DEACTIVATED" <<endl;
+++  				Out() << "{" << s.torrent_name << "}," << QDateTime::currentDateTime().toTime_t() << "," << s.download_rate << "," << s.bytes_downloaded << "," << s.bytes_left << "," << s.num_peers << ",DEACTIVATED" <<endl;
+ +  				tmpLog = false;
+ +  				started = false;
+ +  			}
+@@ -182,7 +182,7 @@ Index: apps/ktorrent/ktorrentviewitem.cpp
+  	if (s.bytes_left == 0)
+  	{
+ +  		if(toLog && tmpLog) 
+-+  			Out() << "{" << s.torrent_name << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << s.download_rate << "," << s.bytes_downloaded << "," << 0 << "," << s.num_peers << ",FINISHED" << endl;
+++  			Out() << "{" << s.torrent_name << "}," << QDateTime::currentDateTime().toTime_t() << "," << s.download_rate << "," << s.bytes_downloaded << "," << 0 << "," << s.num_peers << ",FINISHED" << endl;
+ +  		toLog = false;
+ + 
+ +
+@@ -195,14 +195,14 @@ Index: apps/ktorrent/ktorrentviewitem.cpp
+  			if (s.download_rate == 0)
+ +			{
+ +  				if(toLog && tmpLog) 
+-+  					Out() << "{" << s.torrent_name << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << 0 << "," << s.bytes_downloaded << "," << s.bytes_left << "," << s.num_peers << ",RUNNING" << endl;
+++  					Out() << "{" << s.torrent_name << "}," << QDateTime::currentDateTime().toTime_t() << "," << 0 << "," << s.bytes_downloaded << "," << s.bytes_left << "," << s.num_peers << ",RUNNING" << endl;
+ +
+  				setText(7,i18n("infinity"));
+ +			}
+  			else
+  			{
+ + 				if(toLog && tmpLog) 
+-+  					Out() << "{" << s.torrent_name << "}," << QDateTime::tqcurrentDateTime().toTime_t() << "," << s.download_rate << "," << s.bytes_downloaded << "," << s.bytes_left << "," << s.num_peers << ",RUNNING" << endl;
+++  					Out() << "{" << s.torrent_name << "}," << QDateTime::currentDateTime().toTime_t() << "," << s.download_rate << "," << s.bytes_downloaded << "," << s.bytes_left << "," << s.num_peers << ",RUNNING" << endl;
+ +
+  				Uint32 secs = (int)floor( (float)s.bytes_left / (float)s.download_rate);
+  				setText(7,DurationToString(secs));
+diff --git a/libktorrent/interfaces/torrentinterface.h b/libktorrent/interfaces/torrentinterface.h
+index 14ad532..4ab3c74 100644
+--- a/libktorrent/interfaces/torrentinterface.h
++++ b/libktorrent/interfaces/torrentinterface.h
+@@ -44,7 +44,7 @@ namespace kt
+ 	class TorrentFileInterface;
+ 	class PeerSource;
+ 	
+-	enum TorrenttqStatus
++	enum TorrentStatus
+ 	{
+ 		NOT_STARTED,
+ 		SEEDING_COMPLETE,
+@@ -118,8 +118,8 @@ namespace kt
+ 		Uint32 leechers_total;
+ 		/// Num leechers connected to
+ 		Uint32 leechers_connected_to;
+-		/// tqStatus of the download
+-		TorrenttqStatus status;
++		/// Status of the download
++		TorrentStatus status;
+ 		/// The status of the tracker
+ 		TQString trackerstatus;
+ 		/// The number of bytes downloaded in this session
+diff --git a/libktorrent/labelview.cpp b/libktorrent/labelview.cpp
+index b46de3a..3823516 100644
+--- a/libktorrent/labelview.cpp
++++ b/libktorrent/labelview.cpp
+@@ -184,11 +184,11 @@ namespace kt
+ 				selected = 0;
+ 			
+ 			// update odd status of each item
+-			updateOddtqStatus();	
++			updateOddStatus();	
+ 		}
+ 	}
+ 	
+-	void LabelView::updateOddtqStatus()
++	void LabelView::updateOddStatus()
+ 	{
+ 		bool odd = true;
+ 		LabelViewItr i = items.begin();
+@@ -250,7 +250,7 @@ namespace kt
+ 	{
+ 		items.sort(LabelViewItemCmp());
+ 		item_box->sorted(items);
+-		updateOddtqStatus();
++		updateOddStatus();
+ 	}
+ 
+ }
+diff --git a/libktorrent/labelview.h b/libktorrent/labelview.h
+index 550e2d5..eba2036 100644
+--- a/libktorrent/labelview.h
++++ b/libktorrent/labelview.h
+@@ -110,7 +110,7 @@ namespace kt
+ 		void onItemClicked(LabelViewItem* it);
+ 		
+ 	private:
+-		void updateOddtqStatus();
++		void updateOddStatus();
+ 		
+ 	signals:
+ 		/// The current item has changed
+diff --git a/libktorrent/labelviewitembase.ui b/libktorrent/labelviewitembase.ui
+index cb6821c..861f703 100644
+--- a/libktorrent/labelviewitembase.ui
++++ b/libktorrent/labelviewitembase.ui
+@@ -23,7 +23,7 @@
+             <property name="name">
+                 <cstring>icon_lbl</cstring>
+             </property>
+-            <property name="tqminimumSize">
++            <property name="minimumSize">
+                 <size>
+                     <width>64</width>
+                     <height>64</height>
+diff --git a/libktorrent/pluginmanagerwidget.ui b/libktorrent/pluginmanagerwidget.ui
+index aae2416..a43575b 100644
+--- a/libktorrent/pluginmanagerwidget.ui
++++ b/libktorrent/pluginmanagerwidget.ui
+@@ -82,7 +82,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>31</height>
+diff --git a/libktorrent/torrent/chunk.cpp b/libktorrent/torrent/chunk.cpp
+index aaee35e..6873713 100644
+--- a/libktorrent/torrent/chunk.cpp
++++ b/libktorrent/torrent/chunk.cpp
+@@ -37,7 +37,7 @@ namespace bt
+ 		clear();
+ 	}
+ 
+-	void Chunk::setData(Uint8* d,tqStatus nstatus)
++	void Chunk::setData(Uint8* d,Status nstatus)
+ 	{
+ 		clear();
+ 		status = nstatus;
+diff --git a/libktorrent/torrent/chunk.h b/libktorrent/torrent/chunk.h
+index 08d63c3..0896e96 100644
+--- a/libktorrent/torrent/chunk.h
++++ b/libktorrent/torrent/chunk.h
+@@ -45,7 +45,7 @@ namespace bt
+ 		Chunk(unsigned int index,Uint32 size);
+ 		~Chunk();
+ 
+-		enum tqStatus
++		enum Status
+ 		{
+ 			MMAPPED,
+ 			BUFFERED,
+@@ -54,13 +54,13 @@ namespace bt
+ 		};
+ 
+ 		/// Get the chunks status.
+-		tqStatus gettqStatus() const;
++		Status getStatus() const;
+ 
+ 		/**
+ 		 * Set the chunks status
+ 		 * @param s 
+ 		 */
+-		void settqStatus(tqStatus s);
++		void setStatus(Status s);
+ 
+ 		/// Get the data
+ 		const Uint8* getData() const;
+@@ -69,7 +69,7 @@ namespace bt
+ 		Uint8* getData();
+ 
+ 		/// Set the data and the new status
+-		void setData(Uint8* d,tqStatus nstatus);
++		void setData(Uint8* d,Status nstatus);
+ 
+ 		/// Clear the chunk (delete data depending on the mode)
+ 		void clear();
+@@ -118,7 +118,7 @@ namespace bt
+ 		virtual void unmapped();
+ 		
+ 	private:
+-		tqStatus status;
++		Status status;
+ 		Uint32 index;
+ 		Uint8* data;
+ 		Uint32 size;
+@@ -126,12 +126,12 @@ namespace bt
+ 		Priority priority;
+ 	};
+ 
+-	inline Chunk::tqStatus Chunk::gettqStatus() const
++	inline Chunk::Status Chunk::getStatus() const
+ 	{
+ 		return status;
+ 	}
+ 
+-	inline void Chunk::settqStatus(Chunk::tqStatus s)
++	inline void Chunk::setStatus(Chunk::Status s)
+ 	{
+ 		status = s;
+ 	}
+diff --git a/libktorrent/torrent/chunkdownload.cpp b/libktorrent/torrent/chunkdownload.cpp
+index 04eb87f..3475441 100644
+--- a/libktorrent/torrent/chunkdownload.cpp
++++ b/libktorrent/torrent/chunkdownload.cpp
+@@ -35,17 +35,17 @@
+ namespace bt
+ {	
+ 
+-	class DownloadtqStatus : public std::set<Uint32>
++	class DownloadStatus : public std::set<Uint32>
+ 	{
+ 	public:
+ 	//	typedef std::set<Uint32>::iterator iterator;
+ 		
+-		DownloadtqStatus()
++		DownloadStatus()
+ 		{
+ 	
+ 		}
+ 
+-		~DownloadtqStatus()
++		~DownloadStatus()
+ 		{
+ 		}
+ 
+@@ -111,7 +111,7 @@ namespace bt
+ 			return false;
+ 
+ 	
+-		DownloadtqStatus* ds = dstatus.find(p.getPeer());
++		DownloadStatus* ds = dstatus.find(p.getPeer());
+ 		if (ds)
+ 			ds->remove(pp);
+ 		
+@@ -169,7 +169,7 @@ namespace bt
+ 			
+ 		pd->grab();
+ 		pdown.append(pd);
+-		dstatus.insert(pd->getPeer()->getID(),new DownloadtqStatus());
++		dstatus.insert(pd->getPeer()->getID(),new DownloadStatus());
+ 		sendRequests(pd);
+ 		connect(pd,TQT_SIGNAL(timedout(const Request& )),this,TQT_SLOT(onTimeout(const Request& )));
+ 		connect(pd,TQT_SIGNAL(rejected( const Request& )),this,TQT_SLOT(onRejected( const Request& )));
+@@ -179,7 +179,7 @@ namespace bt
+ 	void ChunkDownload::notDownloaded(const Request & r,bool reject)
+ 	{
+ 		// find the peer 
+-		DownloadtqStatus* ds = dstatus.find(r.getPeer());
++		DownloadStatus* ds = dstatus.find(r.getPeer());
+ 		if (ds)
+ 		{
+ 			//	Out() << "ds != 0"  << endl;
+@@ -216,7 +216,7 @@ namespace bt
+ 	void ChunkDownload::sendRequests(PeerDownloader* pd)
+ 	{
+ 		timer.update();
+-		DownloadtqStatus* ds = dstatus.find(pd->getPeer()->getID());
++		DownloadStatus* ds = dstatus.find(pd->getPeer()->getID());
+ 		if (!ds)
+ 			return;
+ 			
+@@ -262,11 +262,11 @@ namespace bt
+ 	
+ 	void ChunkDownload::sendCancels(PeerDownloader* pd)
+ 	{
+-		DownloadtqStatus* ds = dstatus.find(pd->getPeer()->getID());
++		DownloadStatus* ds = dstatus.find(pd->getPeer()->getID());
+ 		if (!ds)
+ 			return;
+ 		
+-		DownloadtqStatus::iterator itr = ds->begin();
++		DownloadStatus::iterator itr = ds->begin();
+ 		while (itr != ds->end())
+ 		{
+ 			Uint32 i = *itr;
+@@ -287,7 +287,7 @@ namespace bt
+ 		while (i != pdown.end())
+ 		{
+ 			PeerDownloader* pd = *i;
+-			DownloadtqStatus* ds = dstatus.find(pd->getPeer()->getID());
++			DownloadStatus* ds = dstatus.find(pd->getPeer()->getID());
+ 			Uint32 pp = p.getOffset() / MAX_PIECE_LEN;
+ 			if (ds && ds->contains(pp))
+ 			{
+@@ -360,7 +360,7 @@ namespace bt
+ 		ChunkDownloadHeader hdr;
+ 		hdr.index = chunk->getIndex();
+ 		hdr.num_bits = pieces.getNumBits();
+-		hdr.buffered = chunk->gettqStatus() == Chunk::BUFFERED ? 1 : 0;
++		hdr.buffered = chunk->getStatus() == Chunk::BUFFERED ? 1 : 0;
+ 		// save the chunk header
+ 		file.write(&hdr,sizeof(ChunkDownloadHeader));
+ 		// save the bitset
+@@ -370,7 +370,7 @@ namespace bt
+ 			// if it's a buffered chunk, save the contents to
+ 			file.write(chunk->getData(),chunk->getSize());
+ 			chunk->clear();
+-			chunk->settqStatus(Chunk::ON_DISK);
++			chunk->setStatus(Chunk::ON_DISK);
+ 		}
+ 	}
+ 		
+diff --git a/libktorrent/torrent/chunkdownload.h b/libktorrent/torrent/chunkdownload.h
+index c8bd2ae..83fd3e3 100644
+--- a/libktorrent/torrent/chunkdownload.h
++++ b/libktorrent/torrent/chunkdownload.h
+@@ -41,7 +41,7 @@ namespace bt
+ 	class Peer;
+ 	class Request;
+ 	class PeerDownloader;
+-	class DownloadtqStatus;
++	class DownloadStatus;
+ 	
+ 	struct ChunkDownloadHeader
+ 	{
+@@ -193,7 +193,7 @@ namespace bt
+ 		Uint32 last_size;
+ 		Timer timer;
+ 		TQPtrList<PeerDownloader> pdown;
+-		PtrMap<Uint32,DownloadtqStatus> dstatus;
++		PtrMap<Uint32,DownloadStatus> dstatus;
+ 		std::set<Uint32> piece_providers;
+ 		
+ 
+diff --git a/libktorrent/torrent/chunkmanager.cpp b/libktorrent/torrent/chunkmanager.cpp
+index ac45be5..a0849a4 100644
+--- a/libktorrent/torrent/chunkmanager.cpp
++++ b/libktorrent/torrent/chunkmanager.cpp
+@@ -189,7 +189,7 @@ namespace bt
+ 				Chunk* c = getChunk(hdr.index);
+ 				if (c)
+ 				{
+-					c->settqStatus(Chunk::ON_DISK);
++					c->setStatus(Chunk::ON_DISK);
+ 					bitset.set(hdr.index,true);
+ 					todo.set(hdr.index,false);
+ 					recalc_chunks_left = true;
+@@ -209,7 +209,7 @@ namespace bt
+ 		for (unsigned int i = 0;i < tor.getNumChunks();i++)
+ 		{
+ 			Chunk* c = getChunk(i);
+-			if (c->gettqStatus() != Chunk::NOT_DOWNLOADED)
++			if (c->getStatus() != Chunk::NOT_DOWNLOADED)
+ 			{
+ 				NewChunkHeader hdr;
+ 				hdr.index = i;
+@@ -267,16 +267,16 @@ namespace bt
+ 		for (Uint32 i = 0;i < bitset.getNumBits();i++)
+ 		{
+ 			Chunk* c = chunks[i];
+-			if (c->gettqStatus() == Chunk::MMAPPED)
++			if (c->getStatus() == Chunk::MMAPPED)
+ 			{
+ 				cache->save(c);
+ 				c->clear();
+-				c->settqStatus(Chunk::ON_DISK);
++				c->setStatus(Chunk::ON_DISK);
+ 			}
+-			else if (c->gettqStatus() == Chunk::BUFFERED)
++			else if (c->getStatus() == Chunk::BUFFERED)
+ 			{
+ 				c->clear();
+-				c->settqStatus(Chunk::ON_DISK);
++				c->setStatus(Chunk::ON_DISK);
+ 			}
+ 		}
+ 		cache->close();
+@@ -288,11 +288,11 @@ namespace bt
+ 			return 0;
+ 		
+ 		Chunk* c = chunks[i];
+-		if (c->gettqStatus() == Chunk::NOT_DOWNLOADED || c->isExcluded())
++		if (c->getStatus() == Chunk::NOT_DOWNLOADED || c->isExcluded())
+ 		{
+ 			return 0;
+ 		}
+-		else if (c->gettqStatus() == Chunk::ON_DISK)
++		else if (c->getStatus() == Chunk::ON_DISK)
+ 		{
+ 			// load the chunk if it is on disk
+ 			cache->load(c);
+@@ -338,10 +338,10 @@ namespace bt
+ 		Chunk* c = chunks[i];
+ 		if (!c->taken())
+ 		{
+-			if (c->gettqStatus() == Chunk::MMAPPED)
++			if (c->getStatus() == Chunk::MMAPPED)
+ 				cache->save(c);
+ 			c->clear();
+-			c->settqStatus(Chunk::ON_DISK);
++			c->setStatus(Chunk::ON_DISK);
+ 			loaded.remove(i);
+ 		}
+ 	}
+@@ -352,10 +352,10 @@ namespace bt
+ 			return;
+ 		
+ 		Chunk* c = chunks[i];
+-		if (c->gettqStatus() == Chunk::MMAPPED)
++		if (c->getStatus() == Chunk::MMAPPED)
+ 			cache->save(c);
+ 		c->clear();
+-		c->settqStatus(Chunk::NOT_DOWNLOADED);
++		c->setStatus(Chunk::NOT_DOWNLOADED);
+ 		bitset.set(i,false);
+ 		todo.set(i,!excluded_chunks.get(i) && !only_seed_chunks.get(i));
+ 		loaded.remove(i);
+@@ -372,10 +372,10 @@ namespace bt
+ 			// get rid of chunk if nobody asked for it in the last 5 seconds
+ 			if (!c->taken() && bt::GetCurrentTime() - i.data() > 5000)
+ 			{
+-				if (c->gettqStatus() == Chunk::MMAPPED)
++				if (c->getStatus() == Chunk::MMAPPED)
+ 					cache->save(c);
+ 				c->clear();
+-				c->settqStatus(Chunk::ON_DISK);
++				c->setStatus(Chunk::ON_DISK);
+ 				TQMap<Uint32,TimeStamp>::iterator j = i;
+ 				i++;
+ 				loaded.erase(j);
+@@ -413,7 +413,7 @@ namespace bt
+ 		else
+ 		{
+ 			c->clear();
+-			c->settqStatus(Chunk::NOT_DOWNLOADED);
++			c->setStatus(Chunk::NOT_DOWNLOADED);
+ 			Out(SYS_DIO|LOG_IMPORTANT) << "Warning: attempted to save a chunk which was excluded" << endl;
+ 		}
+ 	}
+@@ -1016,7 +1016,7 @@ namespace bt
+ 	
+ 	bool ChunkManager::prepareChunk(Chunk* c,bool allways)
+ 	{
+-		if (!allways && c->gettqStatus() != Chunk::NOT_DOWNLOADED)
++		if (!allways && c->getStatus() != Chunk::NOT_DOWNLOADED)
+ 			return false;
+ 		
+ 		return cache->prep(c);
+@@ -1044,7 +1044,7 @@ namespace bt
+ 				bitset.set(i,true);
+ 				todo.set(i,false);
+ 				// the chunk must be on disk
+-				c->settqStatus(Chunk::ON_DISK);
++				c->setStatus(Chunk::ON_DISK);
+ 				tor.updateFilePercentage(i,bitset); 
+ 			}
+ 			else if (!ok_chunks.get(i) && bitset.get(i))
+@@ -1053,12 +1053,12 @@ namespace bt
+ 				// We think we have a chunk, but we don't
+ 				bitset.set(i,false);
+ 				todo.set(i,!only_seed_chunks.get(i) && !excluded_chunks.get(i));
+-				if (c->gettqStatus() == Chunk::ON_DISK)
++				if (c->getStatus() == Chunk::ON_DISK)
+ 				{
+-					c->settqStatus(Chunk::NOT_DOWNLOADED);
++					c->setStatus(Chunk::NOT_DOWNLOADED);
+ 					tor.updateFilePercentage(i,bitset);
+ 				}
+-				else if (c->gettqStatus() == Chunk::MMAPPED || c->gettqStatus() == Chunk::BUFFERED)
++				else if (c->getStatus() == Chunk::MMAPPED || c->getStatus() == Chunk::BUFFERED)
+ 				{
+ 					resetChunk(i);
+ 				}
+diff --git a/libktorrent/torrent/chunkselector.cpp b/libktorrent/torrent/chunkselector.cpp
+index 9c05629..b1c42fa 100644
+--- a/libktorrent/torrent/chunkselector.cpp
++++ b/libktorrent/torrent/chunkselector.cpp
+@@ -165,7 +165,7 @@ namespace bt
+ 		for (Uint32 i = from;i <= to;i++)
+ 		{
+ 			bool in_chunks = std::find(chunks.begin(),chunks.end(),i) != chunks.end();
+-			if (!in_chunks && cman.getChunk(i)->gettqStatus() != Chunk::ON_DISK)
++			if (!in_chunks && cman.getChunk(i)->getStatus() != Chunk::ON_DISK)
+ 			{
+ 			//	Out(SYS_DIO|LOG_DEBUG) << "ChunkSelector::reIncluded " << i << endl;
+ 				chunks.push_back(i);
+diff --git a/libktorrent/torrent/downloader.cpp b/libktorrent/torrent/downloader.cpp
+index a63163e..582fa7e 100644
+--- a/libktorrent/torrent/downloader.cpp
++++ b/libktorrent/torrent/downloader.cpp
+@@ -87,7 +87,7 @@ namespace bt
+ 		}
+ 		
+ 		// if the chunk is not in memory, reload it
+-		if (cd->getChunk()->gettqStatus() == Chunk::ON_DISK)
++		if (cd->getChunk()->getStatus() == Chunk::ON_DISK)
+ 		{
+ 			cman.prepareChunk(cd->getChunk(),true);
+ 		}
+@@ -119,7 +119,7 @@ namespace bt
+ 				downloaded += p.getLength();
+ 			
+ 			// save to disk again, if it is idle
+-			if (cd->isIdle() && cd->getChunk()->gettqStatus() == Chunk::MMAPPED)
++			if (cd->isIdle() && cd->getChunk()->getStatus() == Chunk::MMAPPED)
+ 			{
+ 				cman.saveChunk(cd->getChunk()->getIndex(),false);
+ 			}
+@@ -160,7 +160,7 @@ namespace bt
+ 			if (cd->isIdle()) // idle chunks do not need to be in memory
+ 			{
+ 				Chunk* c = cd->getChunk();
+-				if (c->gettqStatus() == Chunk::MMAPPED)
++				if (c->getStatus() == Chunk::MMAPPED)
+ 				{
+ 					cman.saveChunk(cd->getChunk()->getIndex(),false);
+ 				}
+@@ -169,7 +169,7 @@ namespace bt
+ 			{
+ 				cd->releaseAllPDs();
+ 				Chunk* c = cd->getChunk();
+-				if (c->gettqStatus() == Chunk::MMAPPED)
++				if (c->getStatus() == Chunk::MMAPPED)
+ 				{
+ 					cman.saveChunk(cd->getChunk()->getIndex(),false);
+ 				}
+@@ -277,7 +277,7 @@ namespace bt
+ 		if (sel)
+ 		{
+ 			// if it is on disk, reload it
+-			if (sel->getChunk()->gettqStatus() == Chunk::ON_DISK)
++			if (sel->getChunk()->getStatus() == Chunk::ON_DISK)
+ 				cman.prepareChunk(sel->getChunk(),true);
+ 			
+ 			sel->assignPeer(pd);
+@@ -341,7 +341,7 @@ namespace bt
+ 			if (cdmin) 
+ 			{
+ 				// if it is on disk, reload it
+-				if (cdmin->getChunk()->gettqStatus() == Chunk::ON_DISK)
++				if (cdmin->getChunk()->getStatus() == Chunk::ON_DISK)
+ 				{
+ 					cman.prepareChunk(cdmin->getChunk(),true);
+ 				}
+@@ -438,10 +438,10 @@ namespace bt
+ 		{
+ 			Uint32 ch = i->first;
+ 			Chunk* c = i->second->getChunk();
+-			if (c->gettqStatus() == Chunk::MMAPPED)
++			if (c->getStatus() == Chunk::MMAPPED)
+ 				cman.saveChunk(ch,false);
+ 			
+-			c->settqStatus(Chunk::NOT_DOWNLOADED);
++			c->setStatus(Chunk::NOT_DOWNLOADED);
+ 		}
+ 		current_chunks.clear();
+ 	}
+diff --git a/libktorrent/torrent/multifilecache.cpp b/libktorrent/torrent/multifilecache.cpp
+index b7dae26..e842560 100644
+--- a/libktorrent/torrent/multifilecache.cpp
++++ b/libktorrent/torrent/multifilecache.cpp
+@@ -425,7 +425,7 @@ namespace bt
+ 			{
+ 				// if mmap fails or is not possible use buffered mode
+ 				c->allocate();
+-				c->settqStatus(Chunk::BUFFERED);
++				c->setStatus(Chunk::BUFFERED);
+ 			}
+ 			else
+ 			{
+@@ -436,7 +436,7 @@ namespace bt
+ 		{
+ 			// just allocate it
+ 			c->allocate();
+-			c->settqStatus(Chunk::BUFFERED);
++			c->setStatus(Chunk::BUFFERED);
+ 		}
+ 		return true;
+ 	}
+@@ -446,7 +446,7 @@ namespace bt
+ 		TQValueList<Uint32> tflist;
+ 		tor.calcChunkPos(c->getIndex(),tflist);
+ 		
+-		if (c->gettqStatus() == Chunk::MMAPPED)
++		if (c->getStatus() == Chunk::MMAPPED)
+ 		{
+ 			// mapped chunks are easy
+ 			CacheFile* fd = files.find(tflist[0]);
+@@ -455,7 +455,7 @@ namespace bt
+ 			
+ 			fd->unmap(c->getData(),c->getSize());
+ 			c->clear();
+-			c->settqStatus(Chunk::ON_DISK);
++			c->setStatus(Chunk::ON_DISK);
+ 			return;
+ 		}
+ 	
+@@ -506,7 +506,7 @@ namespace bt
+ 		
+ 		// set the chunk to on disk and clear it
+ 		c->clear();
+-		c->settqStatus(Chunk::ON_DISK);
++		c->setStatus(Chunk::ON_DISK);
+ 	}
+ 	
+ 	void MultiFileCache::downloadStatusChanged(TorrentFile* tf, bool download)
+diff --git a/libktorrent/torrent/peersourcemanager.cpp b/libktorrent/torrent/peersourcemanager.cpp
+index 44303c4..136d9e5 100644
+--- a/libktorrent/torrent/peersourcemanager.cpp
++++ b/libktorrent/torrent/peersourcemanager.cpp
+@@ -386,7 +386,7 @@ namespace bt
+ 				// 30 minutes
+ 				curr->setInterval(FINAL_WAIT_TIME);
+ 				timer.start(FINAL_WAIT_TIME * 1000,true);
+-				request_time = TQDateTime::tqcurrentDateTime();
++				request_time = TQDateTime::currentDateTime();
+ 			}
+ 			else if (curr->failureCount() > 2)
+ 			{
+@@ -394,14 +394,14 @@ namespace bt
+ 				// a minute or 5, no need for hammering every 30 seconds
+ 				curr->setInterval(LONGER_WAIT_TIME);
+ 				timer.start(LONGER_WAIT_TIME * 1000,true);
+-				request_time = TQDateTime::tqcurrentDateTime();
++				request_time = TQDateTime::currentDateTime();
+ 			}
+ 			else
+ 			{
+ 				// lets not hammer and wait 30 seconds
+ 				curr->setInterval(INITIAL_WAIT_TIME);
+ 				timer.start(INITIAL_WAIT_TIME * 1000,true);
+-				request_time = TQDateTime::tqcurrentDateTime();
++				request_time = TQDateTime::currentDateTime();
+ 			}
+ 		}
+ 		else
+@@ -418,7 +418,7 @@ namespace bt
+ 			{
+ 				curr->setInterval(FINAL_WAIT_TIME);
+ 				timer.start(FINAL_WAIT_TIME * 1000,true);
+-				request_time = TQDateTime::tqcurrentDateTime();
++				request_time = TQDateTime::currentDateTime();
+ 			}
+ 			else if (trk->failureCount() > 2)
+ 			{
+@@ -426,14 +426,14 @@ namespace bt
+ 				// wait 5 minutes and try again
+ 				curr->setInterval(LONGER_WAIT_TIME);
+ 				timer.start(LONGER_WAIT_TIME * 1000,true);
+-				request_time = TQDateTime::tqcurrentDateTime();
++				request_time = TQDateTime::currentDateTime();
+ 			}
+ 			else
+ 			{
+ 				// wait 30 seconds and try again
+ 				curr->setInterval(INITIAL_WAIT_TIME);
+ 				timer.start(INITIAL_WAIT_TIME * 1000,true);
+-				request_time = TQDateTime::tqcurrentDateTime();
++				request_time = TQDateTime::currentDateTime();
+ 			}
+ 		}
+ 	}
+@@ -449,7 +449,7 @@ namespace bt
+ 		pending = false;
+ 		if (started)
+ 			statusChanged(i18n("OK"));
+-		request_time = TQDateTime::tqcurrentDateTime();
++		request_time = TQDateTime::currentDateTime();
+ 	}
+ 		
+ 	void PeerSourceManager::onTrackerRequestPending()
+@@ -504,7 +504,7 @@ namespace bt
+ 		if (pending || !started || !curr)
+ 			return 0;
+ 		
+-		return curr->getInterval() - request_time.secsTo(TQDateTime::tqcurrentDateTime());
++		return curr->getInterval() - request_time.secsTo(TQDateTime::currentDateTime());
+ 	}
+ 	
+ 	Uint32 PeerSourceManager::getNumSeeders() const
+diff --git a/libktorrent/torrent/peersourcemanager.h b/libktorrent/torrent/peersourcemanager.h
+index c46bbb8..d256397 100644
+--- a/libktorrent/torrent/peersourcemanager.h
++++ b/libktorrent/torrent/peersourcemanager.h
+@@ -165,7 +165,7 @@ namespace bt
+ 		
+ 	signals:
+ 		/**
+-		 * tqStatus has changed of the tracker.
++		 * Status has changed of the tracker.
+ 		 * @param ns The new status
+ 		 */
+ 		void statusChanged(const TQString & ns);
+diff --git a/libktorrent/torrent/singlefilecache.cpp b/libktorrent/torrent/singlefilecache.cpp
+index 4843c1f..8986f98 100644
+--- a/libktorrent/torrent/singlefilecache.cpp
++++ b/libktorrent/torrent/singlefilecache.cpp
+@@ -76,7 +76,7 @@ namespace bt
+ 		{
+ 			// mmap continuously fails, so stop using it
+ 			c->allocate();
+-			c->settqStatus(Chunk::BUFFERED);
++			c->setStatus(Chunk::BUFFERED);
+ 		}
+ 		else
+ 		{
+@@ -88,7 +88,7 @@ namespace bt
+ 				// buffer it if mmapping fails
+ 				Out(SYS_GEN|LOG_IMPORTANT) << "Warning : mmap failure, falling back to buffered mode" << endl;
+ 				c->allocate();
+-				c->settqStatus(Chunk::BUFFERED);
++				c->setStatus(Chunk::BUFFERED);
+ 			}
+ 			else
+ 			{
+@@ -105,7 +105,7 @@ namespace bt
+ 		if (mmap_failures >= 3 || !(buf = (Uint8*)fd->map(c,off,c->getSize(),CacheFile::READ)))
+ 		{
+ 			c->allocate();
+-			c->settqStatus(Chunk::BUFFERED);
++			c->setStatus(Chunk::BUFFERED);
+ 			fd->read(c->getData(),c->getSize(),off);
+ 			if (mmap_failures < 3)
+ 				mmap_failures++;
+@@ -119,18 +119,18 @@ namespace bt
+ 	void SingleFileCache::save(Chunk* c)
+ 	{
+ 		// unmap the chunk if it is mapped
+-		if (c->gettqStatus() == Chunk::MMAPPED)
++		if (c->getStatus() == Chunk::MMAPPED)
+ 		{
+ 			fd->unmap(c->getData(),c->getSize());
+ 			c->clear();
+-			c->settqStatus(Chunk::ON_DISK);
++			c->setStatus(Chunk::ON_DISK);
+ 		}
+-		else if (c->gettqStatus() == Chunk::BUFFERED)
++		else if (c->getStatus() == Chunk::BUFFERED)
+ 		{
+ 			Uint64 off = c->getIndex() * tor.getChunkSize();
+ 			fd->write(c->getData(),c->getSize(),off);
+ 			c->clear();
+-			c->settqStatus(Chunk::ON_DISK);
++			c->setStatus(Chunk::ON_DISK);
+ 		}
+ 	}
+ 
+diff --git a/libktorrent/torrent/torrentcontrol.cpp b/libktorrent/torrent/torrentcontrol.cpp
+index a586356..590a517 100644
+--- a/libktorrent/torrent/torrentcontrol.cpp
++++ b/libktorrent/torrent/torrentcontrol.cpp
+@@ -200,7 +200,7 @@ namespace bt
+ 			if (stats.completed && !comp)
+ 			{
+ 				pman->killSeeders();
+-				TQDateTime now = TQDateTime::tqcurrentDateTime();
++				TQDateTime now = TQDateTime::currentDateTime();
+ 				istats.running_time_dl += istats.time_started_dl.secsTo(now);
+ 				updateStatusMsg();
+ 				updateStats();
+@@ -228,7 +228,7 @@ namespace bt
+ 				else
+ 					psman->manualUpdate();
+ 				istats.last_announce = bt::GetCurrentTime();
+-				istats.time_started_dl = TQDateTime::tqcurrentDateTime();
++				istats.time_started_dl = TQDateTime::currentDateTime();
+ 			}
+ 			updateStatusMsg();
+ 			
+@@ -351,7 +351,7 @@ namespace bt
+ 			throw;
+ 		}
+ 		
+-		istats.time_started_ul = istats.time_started_dl = TQDateTime::tqcurrentDateTime();
++		istats.time_started_ul = istats.time_started_dl = TQDateTime::currentDateTime();
+ 		resetTrackerStats();
+ 		
+ 		if (prealloc)
+@@ -408,7 +408,7 @@ namespace bt
+ 
+ 	void TorrentControl::stop(bool user,WaitJob* wjob)
+ 	{
+-		TQDateTime now = TQDateTime::tqcurrentDateTime();
++		TQDateTime now = TQDateTime::currentDateTime();
+ 		if(!stats.completed)
+ 			istats.running_time_dl += istats.time_started_dl.secsTo(now);
+ 		istats.running_time_ul += istats.time_started_ul.secsTo(now);
+@@ -992,7 +992,7 @@ namespace bt
+ 		
+ 		if (stats.running)
+ 		{
+-			TQDateTime now = TQDateTime::tqcurrentDateTime();
++			TQDateTime now = TQDateTime::currentDateTime();
+ 			st.write("RUNNING_TIME_DL",TQString("%1").tqarg(istats.running_time_dl + istats.time_started_dl.secsTo(now)));
+ 			st.write("RUNNING_TIME_UL",TQString("%1").tqarg(istats.running_time_ul + istats.time_started_ul.secsTo(now)));
+ 		}
+@@ -1222,7 +1222,7 @@ namespace bt
+ 		if (!stats.running || stats.completed)
+ 			return istats.running_time_dl;
+ 		else
+-			return istats.running_time_dl + istats.time_started_dl.secsTo(TQDateTime::tqcurrentDateTime());
++			return istats.running_time_dl + istats.time_started_dl.secsTo(TQDateTime::currentDateTime());
+ 	}
+ 
+ 	Uint32 TorrentControl::getRunningTimeUL() const
+@@ -1230,7 +1230,7 @@ namespace bt
+ 		if (!stats.running)
+ 			return istats.running_time_ul;
+ 		else
+-			return istats.running_time_ul + istats.time_started_ul.secsTo(TQDateTime::tqcurrentDateTime());
++			return istats.running_time_ul + istats.time_started_ul.secsTo(TQDateTime::currentDateTime());
+ 	}
+ 
+ 	Uint32 TorrentControl::getNumFiles() const
+diff --git a/libktorrent/util/log.cpp b/libktorrent/util/log.cpp
+index 6030e99..2cb53da 100644
+--- a/libktorrent/util/log.cpp
++++ b/libktorrent/util/log.cpp
+@@ -116,7 +116,7 @@ namespace bt
+ 			// this could result in the loss of some messages
+ 			if (!rotate_job) 
+ 			{
+-				*out << TQDateTime::tqcurrentDateTime().toString() << ": " << tmp << ::endl;
++				*out << TQDateTime::currentDateTime().toString() << ": " << tmp << ::endl;
+ 				fptr.flush();
+ 				if (to_cout)
+ 					std::cout << TQString(tmp.local8Bit()) << std::endl;
+diff --git a/plugins/infowidget/chunkbar.cpp b/plugins/infowidget/chunkbar.cpp
+index ad6dfd6..06fed4a 100644
+--- a/plugins/infowidget/chunkbar.cpp
++++ b/plugins/infowidget/chunkbar.cpp
+@@ -71,15 +71,15 @@ namespace kt
+ 		TQMimeSourceFactory* factory = TQMimeSourceFactory::defaultFactory();
+ 		
+ 		TQImage excluded(16, 16, 32);
+-		FillAndFrameBlack(&excluded, TQColor(bar->tqcolorGroup().color(TQColorGroup::Mid)).pixel(), 16);
++		FillAndFrameBlack(&excluded, TQColor(bar->colorGroup().color(TQColorGroup::Mid)).pixel(), 16);
+ 		factory->setImage("excluded_color", excluded);
+ 		
+ 		TQImage available(16, 16, 32);
+-		FillAndFrameBlack(&available, bar->tqcolorGroup().highlight().pixel(), 16);
++		FillAndFrameBlack(&available, bar->colorGroup().highlight().pixel(), 16);
+ 		factory->setImage("available_color", available);
+ 		
+ 		TQImage unavailable(16, 16, 32);
+-		FillAndFrameBlack(&unavailable, bar->tqcolorGroup().base().pixel(), 16);
++		FillAndFrameBlack(&unavailable, bar->colorGroup().base().pixel(), 16);
+ 		factory->setImage("unavailable_color", unavailable);
+ 	}
+ 	
+@@ -121,7 +121,7 @@ namespace kt
+ 		//	PROFILE("ChunkBar::updateBar");
+ 		//	Out() << "Pixmap : " << s.width() << " " << s.height() << endl;
+ 			pixmap.resize(s);
+-			pixmap.fill(tqcolorGroup().color(TQColorGroup::Base));
++			pixmap.fill(colorGroup().color(TQColorGroup::Base));
+ 			TQPainter painter(&pixmap);
+ 			drawBarContents(&painter);
+ 			update();
+@@ -132,9 +132,9 @@ namespace kt
+ 	{
+ 		// first draw background
+ 		if (isEnabled())
+-			p->setBrush(tqcolorGroup().base());
++			p->setBrush(colorGroup().base());
+ 		else
+-			p->setBrush(tqcolorGroup().background());
++			p->setBrush(colorGroup().background());
+ 	
+ 		p->setPen(TQt::NoPen);
+ 		p->drawRect(contentsRect());
+@@ -148,7 +148,7 @@ namespace kt
+ 		TQSize s = contentsRect().size();
+ 		//Out() << "Pixmap : " << s.width() << " " << s.height() << endl;
+ 		pixmap.resize(s);
+-		pixmap.fill(tqcolorGroup().color(TQColorGroup::Base));
++		pixmap.fill(colorGroup().color(TQColorGroup::Base));
+ 		TQPainter painter(&pixmap);
+ 		drawBarContents(&painter);
+ 		update();
+@@ -164,15 +164,15 @@ namespace kt
+ 			const BitSet & bs = getBitSet();
+ 			curr = bs;
+ 			if (bs.allOn())
+-				drawAllOn(p,tqcolorGroup().highlight());
++				drawAllOn(p,colorGroup().highlight());
+ 			else if (s.total_chunks > w)
+-				drawMoreChunksThenPixels(p,bs,tqcolorGroup().highlight());
++				drawMoreChunksThenPixels(p,bs,colorGroup().highlight());
+ 			else
+-				drawEqual(p,bs,tqcolorGroup().highlight());
++				drawEqual(p,bs,colorGroup().highlight());
+ 	
+ 			if (show_excluded && s.num_chunks_excluded > 0)
+ 			{
+-				TQColor c = tqcolorGroup().color(TQColorGroup::Mid);
++				TQColor c = colorGroup().color(TQColorGroup::Mid);
+ 				if (curr_ebs.allOn())
+ 					drawAllOn(p,c);
+ 				else if (s.total_chunks > w)
+@@ -186,7 +186,7 @@ namespace kt
+ 	
+ 	void ChunkBar::drawEqual(TQPainter *p,const BitSet & bs,const TQColor & color)
+ 	{
+-		//p->setPen(TQPen(tqcolorGroup().highlight(),1,TQt::SolidLine));
++		//p->setPen(TQPen(colorGroup().highlight(),1,TQt::SolidLine));
+ 		TQColor c = color;
+ 	
+ 		Uint32 w = contentsRect().width();
+diff --git a/plugins/infowidget/chunkdownloadviewbase.ui b/plugins/infowidget/chunkdownloadviewbase.ui
+index 82db212..01386e0 100644
+--- a/plugins/infowidget/chunkdownloadviewbase.ui
++++ b/plugins/infowidget/chunkdownloadviewbase.ui
+@@ -47,7 +47,7 @@
+                             <property name="name">
+                                 <cstring>m_total_chunks</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>50</width>
+                                     <height>0</height>
+@@ -85,7 +85,7 @@
+                             <property name="name">
+                                 <cstring>m_chunks_downloading</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>50</width>
+                                     <height>0</height>
+@@ -123,7 +123,7 @@
+                             <property name="name">
+                                 <cstring>m_chunks_downloaded</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>50</width>
+                                     <height>0</height>
+@@ -161,7 +161,7 @@
+                             <property name="name">
+                                 <cstring>m_excluded_chunks</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>50</width>
+                                     <height>0</height>
+@@ -199,7 +199,7 @@
+                             <property name="name">
+                                 <cstring>m_chunks_left</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>50</width>
+                                     <height>0</height>
+@@ -237,7 +237,7 @@
+                             <property name="name">
+                                 <cstring>m_size_chunks</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>80</width>
+                                     <height>0</height>
+@@ -265,7 +265,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+diff --git a/plugins/infowidget/floatspinbox.cpp b/plugins/infowidget/floatspinbox.cpp
+index 35f5c42..883c7a0 100644
+--- a/plugins/infowidget/floatspinbox.cpp
++++ b/plugins/infowidget/floatspinbox.cpp
+@@ -43,7 +43,7 @@ kt::FloatSpinBox::FloatSpinBox(
+ 	setStep( 0.25f );
+ 	connect(this, TQT_SIGNAL(valueChanged ( int )), this, TQT_SLOT(internalValueChanged( int )));
+ 	setValidator( new LocaleFloatValidator( TQT_TQOBJECT(dynamic_cast<TQSpinBox * > (this)) ));
+-	editor()->tqsetAlignment(TQt::AlignRight);
++	editor()->setAlignment(TQt::AlignRight);
+ }
+ 
+ kt::FloatSpinBox::FloatSpinBox(
+diff --git a/plugins/infowidget/iwpref.ui b/plugins/infowidget/iwpref.ui
+index ed4a9e1..a26160b 100644
+--- a/plugins/infowidget/iwpref.ui
++++ b/plugins/infowidget/iwpref.ui
+@@ -45,7 +45,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>21</height>
+diff --git a/plugins/infowidget/statustab.cpp b/plugins/infowidget/statustab.cpp
+index 7317437..dee05fc 100644
+--- a/plugins/infowidget/statustab.cpp
++++ b/plugins/infowidget/statustab.cpp
+@@ -37,7 +37,7 @@ namespace kt
+ 	StatusTab::StatusTab(TQWidget* parent, const char* name, WFlags fl)
+ 			: StatusTabBase(parent,name,fl),curr_tc(0)
+ 	{
+-		TQColorGroup cg = tqcolorGroup();
++		TQColorGroup cg = colorGroup();
+ 		// do not use hardcoded colors
+ 		m_info_caption->setPaletteBackgroundColor(cg.mid());
+ 		m_chunks_caption->setPaletteBackgroundColor(cg.mid());
+diff --git a/plugins/infowidget/statustabbase.ui b/plugins/infowidget/statustabbase.ui
+index 0a73993..f50e503 100644
+--- a/plugins/infowidget/statustabbase.ui
++++ b/plugins/infowidget/statustabbase.ui
+@@ -75,7 +75,7 @@
+                             <property name="name">
+                                 <cstring>m_seeders</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>100</width>
+                                     <height>0</height>
+@@ -95,7 +95,7 @@
+                             <property name="name">
+                                 <cstring>m_leechers</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>100</width>
+                                     <height>0</height>
+@@ -133,7 +133,7 @@
+                             <property name="name">
+                                 <cstring>m_avg_down</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>100</width>
+                                     <height>0</height>
+@@ -153,7 +153,7 @@
+                             <property name="name">
+                                 <cstring>m_avg_up</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>100</width>
+                                     <height>0</height>
+@@ -207,7 +207,7 @@
+                             <property name="name">
+                                 <cstring>m_tracker_status</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>100</width>
+                                     <height>0</height>
+@@ -227,7 +227,7 @@
+                             <property name="name">
+                                 <cstring>m_tracker_update_time</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>100</width>
+                                     <height>0</height>
+@@ -255,7 +255,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>207</width>
+                             <height>20</height>
+@@ -344,7 +344,7 @@
+                                             <verstretch>0</verstretch>
+                                         </sizepolicy>
+                                     </property>
+-                                    <property name="tqminimumSize">
++                                    <property name="minimumSize">
+                                         <size>
+                                             <width>0</width>
+                                             <height>20</height>
+@@ -379,7 +379,7 @@
+                                             <verstretch>0</verstretch>
+                                         </sizepolicy>
+                                     </property>
+-                                    <property name="tqminimumSize">
++                                    <property name="minimumSize">
+                                         <size>
+                                             <width>0</width>
+                                             <height>20</height>
+@@ -398,7 +398,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>16</height>
+@@ -477,7 +477,7 @@
+                                             <verstretch>0</verstretch>
+                                         </sizepolicy>
+                                     </property>
+-                                    <property name="tqminimumSize">
++                                    <property name="minimumSize">
+                                         <size>
+                                             <width>20</width>
+                                             <height>0</height>
+@@ -515,7 +515,7 @@
+                                                     <verstretch>0</verstretch>
+                                                 </sizepolicy>
+                                             </property>
+-                                            <property name="tqminimumSize">
++                                            <property name="minimumSize">
+                                                 <size>
+                                                     <width>20</width>
+                                                     <height>0</height>
+@@ -561,7 +561,7 @@
+                                     <property name="name">
+                                         <cstring>m_share_ratio</cstring>
+                                     </property>
+-                                    <property name="tqminimumSize">
++                                    <property name="minimumSize">
+                                         <size>
+                                             <width>50</width>
+                                             <height>0</height>
+@@ -589,7 +589,7 @@
+                             <property name="sizeType">
+                                 <enum>MinimumExpanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>20</width>
+                                     <height>20</height>
+diff --git a/plugins/infowidget/trackerview.cpp b/plugins/infowidget/trackerview.cpp
+index c928a7f..7a84f12 100644
+--- a/plugins/infowidget/trackerview.cpp
++++ b/plugins/infowidget/trackerview.cpp
+@@ -167,7 +167,7 @@ namespace kt
+ 		// only enable change when we can actually change and the torrent is running
+ 		btnChange->setEnabled(s.running && listTrackers->childCount() > 1);
+ 
+-		lbltqStatus->setText("<b>" + s.trackerstatus + "</b>");
++		lblStatus->setText("<b>" + s.trackerstatus + "</b>");
+ 		if (tc->getTrackersList())
+ 		{
+ 			TQString t = tc->getTrackersList()->getTrackerURL().prettyURL();
+@@ -191,7 +191,7 @@ namespace kt
+ 		listTrackers->clear();
+ 		if(!tc)
+ 		{
+-			lbltqStatus->clear();
++			lblStatus->clear();
+ 			lblCurrent->clear();
+ 			lblUpdate->clear();
+ 			txtTracker->clear();
+diff --git a/plugins/infowidget/trackerviewbase.ui b/plugins/infowidget/trackerviewbase.ui
+index 154842b..ef49ec3 100644
+--- a/plugins/infowidget/trackerviewbase.ui
++++ b/plugins/infowidget/trackerviewbase.ui
+@@ -85,7 +85,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>68</height>
+@@ -180,7 +180,7 @@
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>16</width>
+                             <height>20</height>
+@@ -205,7 +205,7 @@
+                 </widget>
+                 <widget class="TQLabel">
+                     <property name="name">
+-                        <cstring>lbltqStatus</cstring>
++                        <cstring>lblStatus</cstring>
+                     </property>
+                     <property name="sizePolicy">
+                         <sizepolicy>
+@@ -229,7 +229,7 @@
+                     <property name="sizeType">
+                         <enum>Fixed</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>16</width>
+                             <height>20</height>
+diff --git a/plugins/ipfilter/convert_dlg.ui b/plugins/ipfilter/convert_dlg.ui
+index 640e786..a77b639 100644
+--- a/plugins/ipfilter/convert_dlg.ui
++++ b/plugins/ipfilter/convert_dlg.ui
+@@ -73,7 +73,7 @@
+                     <verstretch>0</verstretch>
+                 </sizepolicy>
+             </property>
+-            <property name="tqminimumSize">
++            <property name="minimumSize">
+                 <size>
+                     <width>390</width>
+                     <height>0</height>
+diff --git a/plugins/ipfilter/ipblockingpref.ui b/plugins/ipfilter/ipblockingpref.ui
+index 44d48a9..a74fe6d 100644
+--- a/plugins/ipfilter/ipblockingpref.ui
++++ b/plugins/ipfilter/ipblockingpref.ui
+@@ -29,7 +29,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>20</height>
+@@ -108,7 +108,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>361</width>
+                                     <height>20</height>
+@@ -152,7 +152,7 @@ NOTE: ZIP file from bluetack.co.uk is supported.</string>
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>20</height>
+diff --git a/plugins/logviewer/logprefwidgetbase.ui b/plugins/logviewer/logprefwidgetbase.ui
+index f940a87..1fcf3bb 100644
+--- a/plugins/logviewer/logprefwidgetbase.ui
++++ b/plugins/logviewer/logprefwidgetbase.ui
+@@ -29,7 +29,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>110</height>
+diff --git a/plugins/logviewer/logviewer.cpp b/plugins/logviewer/logviewer.cpp
+index ac3e02e..8107191 100644
+--- a/plugins/logviewer/logviewer.cpp
++++ b/plugins/logviewer/logviewer.cpp
+@@ -50,7 +50,7 @@ namespace kt
+ 		setTextFormat(TQt::LogText);
+ 		setMaxLogLines(200);
+ 		setMinimumSize(TQSize(0,50));
+-		tqsetSizePolicy(TQSizePolicy::Expanding,TQSizePolicy::Expanding);
++		setSizePolicy(TQSizePolicy::Expanding,TQSizePolicy::Expanding);
+ 		KGlobal::config()->setGroup("LogViewer");
+ 		if (KGlobal::config()->hasKey("LogViewerWidgetSize"))
+ 		{
+diff --git a/plugins/partfileimport/importdlgbase.ui b/plugins/partfileimport/importdlgbase.ui
+index 9d1dd95..f171831 100644
+--- a/plugins/partfileimport/importdlgbase.ui
++++ b/plugins/partfileimport/importdlgbase.ui
+@@ -39,7 +39,7 @@
+                             <property name="name">
+                                 <cstring>textLabel1</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>60</width>
+                                     <height>0</height>
+@@ -53,7 +53,7 @@
+                             <property name="name">
+                                 <cstring>textLabel2</cstring>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>60</width>
+                                     <height>0</height>
+@@ -118,7 +118,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>61</width>
+                             <height>20</height>
+diff --git a/plugins/rssfeed/rss/article.cpp b/plugins/rssfeed/rss/article.cpp
+index 9e52589..47413b3 100644
+--- a/plugins/rssfeed/rss/article.cpp
++++ b/plugins/rssfeed/rss/article.cpp
+@@ -54,7 +54,7 @@ Article::Article(const TQDomNode &node, Format format) : d(new Private)
+ 
+ 	d->numComments=0;
+ 
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("title"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("title"))).isNull())
+ 		d->title = elemText;
+    
+ 
+@@ -62,14 +62,14 @@ Article::Article(const TQDomNode &node, Format format) : d(new Private)
+ 	bool foundTorrentEnclosure = false;
+ 	for (n = node.firstChild(); !n.isNull(); n = n.nextSibling()) {
+ 		const TQDomElement e = n.toElement();
+-		if ( (e.tagName()==TQString::tqfromLatin1("enclosure") ) )
++		if ( (e.tagName()==TQString::fromLatin1("enclosure") ) )
+ 			{
+-			TQString enclosureAttr = e.attribute(TQString::tqfromLatin1("type"));
++			TQString enclosureAttr = e.attribute(TQString::fromLatin1("type"));
+ 			if (!enclosureAttr.isNull() )
+ 				{
+ 				if (enclosureAttr == "application/x-bittorrent")
+ 					{
+-					enclosureAttr = e.attribute(TQString::tqfromLatin1("url"));
++					enclosureAttr = e.attribute(TQString::fromLatin1("url"));
+ 					if (!enclosureAttr.isNull() )
+ 						{
+ 						d->link=enclosureAttr;
+@@ -88,41 +88,41 @@ Article::Article(const TQDomNode &node, Format format) : d(new Private)
+ 			TQDomNode n;
+ 			for (n = node.firstChild(); !n.isNull(); n = n.nextSibling()) {
+ 				const TQDomElement e = n.toElement();
+-				if ( (e.tagName()==TQString::tqfromLatin1("link")) &&
+-					(e.attribute(TQString::tqfromLatin1("rel"))==TQString::tqfromLatin1("alternate")))
++				if ( (e.tagName()==TQString::fromLatin1("link")) &&
++					(e.attribute(TQString::fromLatin1("rel"))==TQString::fromLatin1("alternate")))
+ 					{   
+-						d->link=n.toElement().attribute(TQString::tqfromLatin1("href"));
++						d->link=n.toElement().attribute(TQString::fromLatin1("href"));
+ 						break;
+ 					}
+ 			}
+ 		}
+ 		else
+ 		{
+-			if (!(elemText = extractNode(node, TQString::tqfromLatin1("link"))).isNull())
++			if (!(elemText = extractNode(node, TQString::fromLatin1("link"))).isNull())
+ 				d->link = elemText;
+ 		}
+ 	}
+ 
+ 
+     // prefer content/content:encoded over summary/description for feeds that provide it
+-    TQString tagName=(format==AtomFeed)? TQString::tqfromLatin1("content"): TQString::tqfromLatin1("content:encoded");
++    TQString tagName=(format==AtomFeed)? TQString::fromLatin1("content"): TQString::fromLatin1("content:encoded");
+     
+     if (!(elemText = extractNode(node, tagName, false)).isNull())
+         d->description = elemText;
+     
+     if (d->description.isEmpty())
+     {
+-		if (!(elemText = extractNode(node, TQString::tqfromLatin1("body"), false)).isNull())
++		if (!(elemText = extractNode(node, TQString::fromLatin1("body"), false)).isNull())
+ 	    	d->description = elemText;
+     
+ 		if (d->description.isEmpty())  // 3rd try: see http://www.intertwingly.net/blog/1299.html
+ 		{
+-			if (!(elemText = extractNode(node, TQString::tqfromLatin1((format==AtomFeed)? "summary" : "description"), false)).isNull())
++			if (!(elemText = extractNode(node, TQString::fromLatin1((format==AtomFeed)? "summary" : "description"), false)).isNull())
+ 				d->description = elemText;
+ 		}
+     }
+     
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1((format==AtomFeed)? "created": "pubDate"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1((format==AtomFeed)? "created": "pubDate"))).isNull())
+     {
+ 		time_t _time;
+ 		if (format==AtomFeed)
+@@ -134,7 +134,7 @@ Article::Article(const TQDomNode &node, Format format) : d(new Private)
+         if (_time != 0)
+ 		  d->pubDate.setTime_t(_time);
+ 	}
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("dc:date"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("dc:date"))).isNull())
+     {
+ 		time_t _time = parseISO8601Date(elemText);
+ 
+@@ -146,23 +146,23 @@ Article::Article(const TQDomNode &node, Format format) : d(new Private)
+ 	//no luck so far - so let's set it to the current time
+ 	if (!d->pubDate.isValid())
+ 	{
+-		d->pubDate = TQDateTime::tqcurrentDateTime();
++		d->pubDate = TQDateTime::currentDateTime();
+ 	}
+ 	
+ 
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("wfw:comment"))).isNull()) {
++	if (!(elemText = extractNode(node, TQString::fromLatin1("wfw:comment"))).isNull()) {
+ 		d->commentsLink = elemText;
+ 	}
+ 
+-    if (!(elemText = extractNode(node, TQString::tqfromLatin1("slash:comments"))).isNull()) {
++    if (!(elemText = extractNode(node, TQString::fromLatin1("slash:comments"))).isNull()) {
+         d->numComments = elemText.toInt();
+     }
+ 
+-    tagName=(format==AtomFeed)? TQString::tqfromLatin1("id"): TQString::tqfromLatin1("guid");
++    tagName=(format==AtomFeed)? TQString::fromLatin1("id"): TQString::fromLatin1("guid");
+     n = node.namedItem(tagName);
+ 	if (!n.isNull()) {
+ 		d->guidIsPermaLink = (format==AtomFeed)? false : true;
+-		if (n.toElement().attribute(TQString::tqfromLatin1("isPermaLink"), "true") == "false") d->guidIsPermaLink = false;
++		if (n.toElement().attribute(TQString::fromLatin1("isPermaLink"), "true") == "false") d->guidIsPermaLink = false;
+ 
+ 		if (!(elemText = extractNode(node, tagName)).isNull())
+ 			d->guid = elemText;
+@@ -176,14 +176,14 @@ Article::Article(const TQDomNode &node, Format format) : d(new Private)
+ 		md5Machine.update(d->title.utf8());
+ 		md5Machine.update(d->description.utf8());
+ 		d->guid = TQString(md5Machine.hexDigest().data());
+-        d->meta[TQString::tqfromLatin1("guidIsHash")] = TQString::tqfromLatin1("true");
++        d->meta[TQString::fromLatin1("guidIsHash")] = TQString::fromLatin1("true");
+ 	}
+ 
+     for (TQDomNode i = node.firstChild(); !i.isNull(); i = i.nextSibling())
+     {
+-        if (i.isElement() && i.toElement().tagName() == TQString::tqfromLatin1("metaInfo:meta"))
++        if (i.isElement() && i.toElement().tagName() == TQString::fromLatin1("metaInfo:meta"))
+         {
+-            TQString type = i.toElement().attribute(TQString::tqfromLatin1("type"));
++            TQString type = i.toElement().attribute(TQString::fromLatin1("type"));
+             d->meta[type] = i.toElement().text();
+         }
+     }
+diff --git a/plugins/rssfeed/rss/document.cpp b/plugins/rssfeed/rss/document.cpp
+index c65e263..d820613 100644
+--- a/plugins/rssfeed/rss/document.cpp
++++ b/plugins/rssfeed/rss/document.cpp
+@@ -79,42 +79,42 @@ Document::Document(const TQDomDocument &doc) : d(new Private)
+     TQString attr;
+ 
+     // we should probably check that it ISN'T feed or rss, rather than check if it is xhtml
+-    if (rootNode.toElement().tagName()==TQString::tqfromLatin1("html"))
++    if (rootNode.toElement().tagName()==TQString::fromLatin1("html"))
+         d->valid=false;
+     else
+         d->valid=true;
+     
+-    attr = rootNode.toElement().attribute(TQString::tqfromLatin1("version"), TQString());
++    attr = rootNode.toElement().attribute(TQString::fromLatin1("version"), TQString());
+     if (!attr.isNull()) {
+         if (rootNode.toElement().tagName()=="feed")
+         {
+             d->format=AtomFeed;
+-            if (attr == TQString::tqfromLatin1("0.3"))
++            if (attr == TQString::fromLatin1("0.3"))
+                 d->version = vAtom_0_3;
+-            else if (attr == TQString::tqfromLatin1("0.2")) /* smt -> review */
++            else if (attr == TQString::fromLatin1("0.2")) /* smt -> review */
+                d->version = vAtom_0_2;
+-            else if (attr == TQString::tqfromLatin1("0.1")) /* smt -> review */
++            else if (attr == TQString::fromLatin1("0.1")) /* smt -> review */
+               d->version = vAtom_0_1;
+         }
+         else
+         {
+             d->format=RSSFeed;
+-            if (attr == TQString::tqfromLatin1("0.91"))
++            if (attr == TQString::fromLatin1("0.91"))
+                 d->version = v0_91;
+-            else if (attr == TQString::tqfromLatin1("0.92"))
++            else if (attr == TQString::fromLatin1("0.92"))
+                 d->version = v0_92;
+-            else if (attr == TQString::tqfromLatin1("0.93"))
++            else if (attr == TQString::fromLatin1("0.93"))
+                 d->version = v0_93;
+-            else if (attr == TQString::tqfromLatin1("0.94"))
++            else if (attr == TQString::fromLatin1("0.94"))
+                 d->version = v0_94;
+-            else if (attr.startsWith("2.0") || attr == TQString::tqfromLatin1("2")) // http://www.breuls.org/rss puts 2.00 in version (BR #0000016)
++            else if (attr.startsWith("2.0") || attr == TQString::fromLatin1("2")) // http://www.breuls.org/rss puts 2.00 in version (BR #0000016)
+                 d->version = v2_0;
+         }
+     }
+ 
+     if (d->format==UnknownFormat)
+     {
+-        attr = rootNode.toElement().attribute(TQString::tqfromLatin1("xmlns"), TQString());
++        attr = rootNode.toElement().attribute(TQString::fromLatin1("xmlns"), TQString());
+         if (!attr.isNull()) {
+         /*
+          * Hardcoding these URLs is actually a bad idea, since the DTD doesn't
+@@ -124,11 +124,11 @@ Document::Document(const TQDomDocument &doc) : d(new Private)
+          * distinguish the RSS versions by analyzing the relationship between
+          * the nodes.
+          */
+-            if (attr == TQString::tqfromLatin1("http://my.netscape.com/rdf/simple/0.9/")) {
++            if (attr == TQString::fromLatin1("http://my.netscape.com/rdf/simple/0.9/")) {
+                 d->format=RSSFeed;
+                 d->version = v0_90;
+              }
+-            else if (attr == TQString::tqfromLatin1("http://purl.org/rss/1.0/")) {
++            else if (attr == TQString::fromLatin1("http://purl.org/rss/1.0/")) {
+                 d->format=RSSFeed;
+                 d->version = v1_0;
+             }
+@@ -140,13 +140,13 @@ Document::Document(const TQDomDocument &doc) : d(new Private)
+     if (d->format == AtomFeed)
+         channelNode=rootNode;
+     else
+-        channelNode=rootNode.namedItem(TQString::tqfromLatin1("channel"));
++        channelNode=rootNode.namedItem(TQString::fromLatin1("channel"));
+ 
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("title"))).isNull())
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1("title"))).isNull())
+         d->title = elemText;
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("description"))).isNull())
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1("description"))).isNull())
+         d->description = elemText;
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("link"))).isNull())
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1("link"))).isNull())
+         d->link = elemText;
+ 
+     
+@@ -159,27 +159,27 @@ Document::Document(const TQDomDocument &doc) : d(new Private)
+     else
+     {
+ 	// following is a HACK for broken 0.91 feeds like xanga.com's
+-	if (!rootNode.namedItem(TQString::tqfromLatin1("item")).isNull())
++	if (!rootNode.namedItem(TQString::fromLatin1("item")).isNull())
+ 	    parentNode = rootNode;
+ 	else
+             parentNode = channelNode;
+     }
+     
+     // image and textinput aren't supported by Atom.. handle in case feed provides
+-    TQDomNode n = parentNode.namedItem(TQString::tqfromLatin1("image"));
++    TQDomNode n = parentNode.namedItem(TQString::fromLatin1("image"));
+     if (!n.isNull())
+         d->image = new Image(n);
+ 
+-    n = parentNode.namedItem(TQString::tqfromLatin1("textinput"));
++    n = parentNode.namedItem(TQString::fromLatin1("textinput"));
+     if (!n.isNull())
+         d->textInput = new TextInput(n);
+ 
+     // Our (hopefully faster) version of elementsByTagName()
+     TQString tagName;
+     if (d->format == AtomFeed)
+-        tagName=TQString::tqfromLatin1("entry");
++        tagName=TQString::fromLatin1("entry");
+     else
+-        tagName=TQString::tqfromLatin1("item");
++        tagName=TQString::fromLatin1("item");
+ 
+     for (n = parentNode.firstChild(); !n.isNull(); n = n.nextSibling()) {
+         const TQDomElement e = n.toElement();
+@@ -187,212 +187,212 @@ Document::Document(const TQDomDocument &doc) : d(new Private)
+             d->articles.append(Article(e, d->format));
+     }
+ 
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("copyright"))).isNull())
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1("copyright"))).isNull())
+         d->copyright = elemText;
+ 
+     if (d->format == AtomFeed)
+-        elemText = rootNode.toElement().attribute(TQString::tqfromLatin1("xml:lang"), TQString());
++        elemText = rootNode.toElement().attribute(TQString::fromLatin1("xml:lang"), TQString());
+     else
+-        elemText = extractNode(channelNode, TQString::tqfromLatin1("language"));
++        elemText = extractNode(channelNode, TQString::fromLatin1("language"));
+ 
+     if (!elemText.isNull()){
+-        if (elemText == TQString::tqfromLatin1("af"))
++        if (elemText == TQString::fromLatin1("af"))
+             d->language = af;
+-        else if (elemText == TQString::tqfromLatin1("sq"))
++        else if (elemText == TQString::fromLatin1("sq"))
+             d->language = sq;
+-        else if (elemText == TQString::tqfromLatin1("eu"))
++        else if (elemText == TQString::fromLatin1("eu"))
+             d->language = eu;
+-        else if (elemText == TQString::tqfromLatin1("be"))
++        else if (elemText == TQString::fromLatin1("be"))
+             d->language = be;
+-        else if (elemText == TQString::tqfromLatin1("bg"))
++        else if (elemText == TQString::fromLatin1("bg"))
+             d->language = bg;
+-        else if (elemText == TQString::tqfromLatin1("ca"))
++        else if (elemText == TQString::fromLatin1("ca"))
+             d->language = ca;
+-        else if (elemText == TQString::tqfromLatin1("zh-cn"))
++        else if (elemText == TQString::fromLatin1("zh-cn"))
+             d->language = zh_cn;
+-        else if (elemText == TQString::tqfromLatin1("zh-tw"))
++        else if (elemText == TQString::fromLatin1("zh-tw"))
+             d->language = zh_tw;
+-        else if (elemText == TQString::tqfromLatin1("hr"))
++        else if (elemText == TQString::fromLatin1("hr"))
+             d->language = hr;
+-        else if (elemText == TQString::tqfromLatin1("cs"))
++        else if (elemText == TQString::fromLatin1("cs"))
+             d->language = cs;
+-        else if (elemText == TQString::tqfromLatin1("da"))
++        else if (elemText == TQString::fromLatin1("da"))
+             d->language = da;
+-        else if (elemText == TQString::tqfromLatin1("nl"))
++        else if (elemText == TQString::fromLatin1("nl"))
+             d->language = nl;
+-        else if (elemText == TQString::tqfromLatin1("nl-be"))
++        else if (elemText == TQString::fromLatin1("nl-be"))
+             d->language = nl_be;
+-        else if (elemText == TQString::tqfromLatin1("nl-nl"))
++        else if (elemText == TQString::fromLatin1("nl-nl"))
+             d->language = nl_nl;
+-        else if (elemText == TQString::tqfromLatin1("en"))
++        else if (elemText == TQString::fromLatin1("en"))
+             d->language = en;
+-        else if (elemText == TQString::tqfromLatin1("en-au"))
++        else if (elemText == TQString::fromLatin1("en-au"))
+             d->language = en_au;
+-        else if (elemText == TQString::tqfromLatin1("en-bz"))
++        else if (elemText == TQString::fromLatin1("en-bz"))
+             d->language = en_bz;
+-        else if (elemText == TQString::tqfromLatin1("en-ca"))
++        else if (elemText == TQString::fromLatin1("en-ca"))
+             d->language = en_ca;
+-        else if (elemText == TQString::tqfromLatin1("en-ie"))
++        else if (elemText == TQString::fromLatin1("en-ie"))
+             d->language = en_ie;
+-        else if (elemText == TQString::tqfromLatin1("en-jm"))
++        else if (elemText == TQString::fromLatin1("en-jm"))
+             d->language = en_jm;
+-        else if (elemText == TQString::tqfromLatin1("en-nz"))
++        else if (elemText == TQString::fromLatin1("en-nz"))
+             d->language = en_nz;
+-        else if (elemText == TQString::tqfromLatin1("en-ph"))
++        else if (elemText == TQString::fromLatin1("en-ph"))
+             d->language = en_ph;
+-        else if (elemText == TQString::tqfromLatin1("en-za"))
++        else if (elemText == TQString::fromLatin1("en-za"))
+             d->language = en_za;
+-        else if (elemText == TQString::tqfromLatin1("en-tt"))
++        else if (elemText == TQString::fromLatin1("en-tt"))
+             d->language = en_tt;
+-        else if (elemText == TQString::tqfromLatin1("en-gb"))
++        else if (elemText == TQString::fromLatin1("en-gb"))
+             d->language = en_gb;
+-        else if (elemText == TQString::tqfromLatin1("en-us"))
++        else if (elemText == TQString::fromLatin1("en-us"))
+             d->language = en_us;
+-        else if (elemText == TQString::tqfromLatin1("en-zw"))
++        else if (elemText == TQString::fromLatin1("en-zw"))
+             d->language = en_zw;
+-        else if (elemText == TQString::tqfromLatin1("fo"))
++        else if (elemText == TQString::fromLatin1("fo"))
+             d->language = fo;
+-        else if (elemText == TQString::tqfromLatin1("fi"))
++        else if (elemText == TQString::fromLatin1("fi"))
+             d->language = fi;
+-        else if (elemText == TQString::tqfromLatin1("fr"))
++        else if (elemText == TQString::fromLatin1("fr"))
+             d->language = fr;
+-        else if (elemText == TQString::tqfromLatin1("fr-be"))
++        else if (elemText == TQString::fromLatin1("fr-be"))
+             d->language = fr_be;
+-        else if (elemText == TQString::tqfromLatin1("fr-ca"))
++        else if (elemText == TQString::fromLatin1("fr-ca"))
+             d->language = fr_ca;
+-        else if (elemText == TQString::tqfromLatin1("fr-fr"))
++        else if (elemText == TQString::fromLatin1("fr-fr"))
+             d->language = fr_fr;
+-        else if (elemText == TQString::tqfromLatin1("fr-lu"))
++        else if (elemText == TQString::fromLatin1("fr-lu"))
+             d->language = fr_lu;
+-        else if (elemText == TQString::tqfromLatin1("fr-mc"))
++        else if (elemText == TQString::fromLatin1("fr-mc"))
+             d->language = fr_mc;
+-        else if (elemText == TQString::tqfromLatin1("fr-ch"))
++        else if (elemText == TQString::fromLatin1("fr-ch"))
+             d->language = fr_ch;
+-        else if (elemText == TQString::tqfromLatin1("gl"))
++        else if (elemText == TQString::fromLatin1("gl"))
+             d->language = gl;
+-        else if (elemText == TQString::tqfromLatin1("gd"))
++        else if (elemText == TQString::fromLatin1("gd"))
+             d->language = gd;
+-        else if (elemText == TQString::tqfromLatin1("de"))
++        else if (elemText == TQString::fromLatin1("de"))
+             d->language = de;
+-        else if (elemText == TQString::tqfromLatin1("de-at"))
++        else if (elemText == TQString::fromLatin1("de-at"))
+             d->language = de_at;
+-        else if (elemText == TQString::tqfromLatin1("de-de"))
++        else if (elemText == TQString::fromLatin1("de-de"))
+             d->language = de_de;
+-        else if (elemText == TQString::tqfromLatin1("de-li"))
++        else if (elemText == TQString::fromLatin1("de-li"))
+             d->language = de_li;
+-        else if (elemText == TQString::tqfromLatin1("de-lu"))
++        else if (elemText == TQString::fromLatin1("de-lu"))
+             d->language = de_lu;
+-        else if (elemText == TQString::tqfromLatin1("de-ch"))
++        else if (elemText == TQString::fromLatin1("de-ch"))
+             d->language = de_ch;
+-        else if (elemText == TQString::tqfromLatin1("el"))
++        else if (elemText == TQString::fromLatin1("el"))
+             d->language = el;
+-        else if (elemText == TQString::tqfromLatin1("hu"))
++        else if (elemText == TQString::fromLatin1("hu"))
+             d->language = hu;
+-        else if (elemText == TQString::tqfromLatin1("is"))
++        else if (elemText == TQString::fromLatin1("is"))
+             d->language = is;
+-        else if (elemText == TQString::tqfromLatin1("id"))
++        else if (elemText == TQString::fromLatin1("id"))
+             d->language = id;
+-        else if (elemText == TQString::tqfromLatin1("ga"))
++        else if (elemText == TQString::fromLatin1("ga"))
+             d->language = ga;
+-        else if (elemText == TQString::tqfromLatin1("it"))
++        else if (elemText == TQString::fromLatin1("it"))
+             d->language = it;
+-        else if (elemText == TQString::tqfromLatin1("it-it"))
++        else if (elemText == TQString::fromLatin1("it-it"))
+             d->language = it_it;
+-        else if (elemText == TQString::tqfromLatin1("it-ch"))
++        else if (elemText == TQString::fromLatin1("it-ch"))
+             d->language = it_ch;
+-        else if (elemText == TQString::tqfromLatin1("ja"))
++        else if (elemText == TQString::fromLatin1("ja"))
+             d->language = ja;
+-        else if (elemText == TQString::tqfromLatin1("ko"))
++        else if (elemText == TQString::fromLatin1("ko"))
+             d->language = ko;
+-        else if (elemText == TQString::tqfromLatin1("mk"))
++        else if (elemText == TQString::fromLatin1("mk"))
+             d->language = mk;
+-        else if (elemText == TQString::tqfromLatin1("no"))
++        else if (elemText == TQString::fromLatin1("no"))
+             d->language = no;
+-        else if (elemText == TQString::tqfromLatin1("pl"))
++        else if (elemText == TQString::fromLatin1("pl"))
+             d->language = pl;
+-        else if (elemText == TQString::tqfromLatin1("pt"))
++        else if (elemText == TQString::fromLatin1("pt"))
+             d->language = pt;
+-        else if (elemText == TQString::tqfromLatin1("pt-br"))
++        else if (elemText == TQString::fromLatin1("pt-br"))
+             d->language = pt_br;
+-        else if (elemText == TQString::tqfromLatin1("pt-pt"))
++        else if (elemText == TQString::fromLatin1("pt-pt"))
+             d->language = pt_pt;
+-        else if (elemText == TQString::tqfromLatin1("ro"))
++        else if (elemText == TQString::fromLatin1("ro"))
+             d->language = ro;
+-        else if (elemText == TQString::tqfromLatin1("ro-mo"))
++        else if (elemText == TQString::fromLatin1("ro-mo"))
+             d->language = ro_mo;
+-        else if (elemText == TQString::tqfromLatin1("ro-ro"))
++        else if (elemText == TQString::fromLatin1("ro-ro"))
+             d->language = ro_ro;
+-        else if (elemText == TQString::tqfromLatin1("ru"))
++        else if (elemText == TQString::fromLatin1("ru"))
+             d->language = ru;
+-        else if (elemText == TQString::tqfromLatin1("ru-mo"))
++        else if (elemText == TQString::fromLatin1("ru-mo"))
+             d->language = ru_mo;
+-        else if (elemText == TQString::tqfromLatin1("ru-ru"))
++        else if (elemText == TQString::fromLatin1("ru-ru"))
+             d->language = ru_ru;
+-        else if (elemText == TQString::tqfromLatin1("sr"))
++        else if (elemText == TQString::fromLatin1("sr"))
+             d->language = sr;
+-        else if (elemText == TQString::tqfromLatin1("sk"))
++        else if (elemText == TQString::fromLatin1("sk"))
+             d->language = sk;
+-        else if (elemText == TQString::tqfromLatin1("sl"))
++        else if (elemText == TQString::fromLatin1("sl"))
+             d->language = sl;
+-        else if (elemText == TQString::tqfromLatin1("es"))
++        else if (elemText == TQString::fromLatin1("es"))
+             d->language = es;
+-        else if (elemText == TQString::tqfromLatin1("es-ar"))
++        else if (elemText == TQString::fromLatin1("es-ar"))
+             d->language = es_ar;
+-        else if (elemText == TQString::tqfromLatin1("es-bo"))
++        else if (elemText == TQString::fromLatin1("es-bo"))
+             d->language = es_bo;
+-        else if (elemText == TQString::tqfromLatin1("es-cl"))
++        else if (elemText == TQString::fromLatin1("es-cl"))
+             d->language = es_cl;
+-        else if (elemText == TQString::tqfromLatin1("es-co"))
++        else if (elemText == TQString::fromLatin1("es-co"))
+             d->language = es_co;
+-        else if (elemText == TQString::tqfromLatin1("es-cr"))
++        else if (elemText == TQString::fromLatin1("es-cr"))
+             d->language = es_cr;
+-        else if (elemText == TQString::tqfromLatin1("es-do"))
++        else if (elemText == TQString::fromLatin1("es-do"))
+             d->language = es_do;
+-        else if (elemText == TQString::tqfromLatin1("es-ec"))
++        else if (elemText == TQString::fromLatin1("es-ec"))
+             d->language = es_ec;
+-        else if (elemText == TQString::tqfromLatin1("es-sv"))
++        else if (elemText == TQString::fromLatin1("es-sv"))
+             d->language = es_sv;
+-        else if (elemText == TQString::tqfromLatin1("es-gt"))
++        else if (elemText == TQString::fromLatin1("es-gt"))
+             d->language = es_gt;
+-        else if (elemText == TQString::tqfromLatin1("es-hn"))
++        else if (elemText == TQString::fromLatin1("es-hn"))
+             d->language = es_hn;
+-        else if (elemText == TQString::tqfromLatin1("es-mx"))
++        else if (elemText == TQString::fromLatin1("es-mx"))
+             d->language = es_mx;
+-        else if (elemText == TQString::tqfromLatin1("es-ni"))
++        else if (elemText == TQString::fromLatin1("es-ni"))
+             d->language = es_ni;
+-        else if (elemText == TQString::tqfromLatin1("es-pa"))
++        else if (elemText == TQString::fromLatin1("es-pa"))
+             d->language = es_pa;
+-        else if (elemText == TQString::tqfromLatin1("es-py"))
++        else if (elemText == TQString::fromLatin1("es-py"))
+             d->language = es_py;
+-        else if (elemText == TQString::tqfromLatin1("es-pe"))
++        else if (elemText == TQString::fromLatin1("es-pe"))
+             d->language = es_pe;
+-        else if (elemText == TQString::tqfromLatin1("es-pr"))
++        else if (elemText == TQString::fromLatin1("es-pr"))
+             d->language = es_pr;
+-        else if (elemText == TQString::tqfromLatin1("es-es"))
++        else if (elemText == TQString::fromLatin1("es-es"))
+             d->language = es_es;
+-        else if (elemText == TQString::tqfromLatin1("es-uy"))
++        else if (elemText == TQString::fromLatin1("es-uy"))
+             d->language = es_uy;
+-        else if (elemText == TQString::tqfromLatin1("es-ve"))
++        else if (elemText == TQString::fromLatin1("es-ve"))
+             d->language = es_ve;
+-        else if (elemText == TQString::tqfromLatin1("sv"))
++        else if (elemText == TQString::fromLatin1("sv"))
+             d->language = sv;
+-        else if (elemText == TQString::tqfromLatin1("sv-fi"))
++        else if (elemText == TQString::fromLatin1("sv-fi"))
+             d->language = sv_fi;
+-        else if (elemText == TQString::tqfromLatin1("sv-se"))
++        else if (elemText == TQString::fromLatin1("sv-se"))
+             d->language = sv_se;
+-        else if (elemText == TQString::tqfromLatin1("tr"))
++        else if (elemText == TQString::fromLatin1("tr"))
+             d->language = tr;
+-        else if (elemText == TQString::tqfromLatin1("uk"))
++        else if (elemText == TQString::fromLatin1("uk"))
+             d->language = uk;
+         else
+             d->language = UndefinedLanguage;
+     }
+ 
+     if (d->format == AtomFeed)
+-        tagName=TQString::tqfromLatin1("issued"); // atom doesn't specify this for feeds
++        tagName=TQString::fromLatin1("issued"); // atom doesn't specify this for feeds
+                                                // but some broken feeds do this
+     else
+-        tagName=TQString::tqfromLatin1("pubDate");
++        tagName=TQString::fromLatin1("pubDate");
+ 
+     if (!(elemText = extractNode(channelNode, tagName)).isNull()) {
+         time_t _time;
+@@ -408,7 +408,7 @@ Document::Document(const TQDomDocument &doc) : d(new Private)
+         d->pubDate.setTime_t(_time);
+     }
+ 
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("dc:date"))).isNull()) {
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1("dc:date"))).isNull()) {
+         time_t _time = parseISO8601Date(elemText);
+         /* \bug This isn't really the right way since it will set the date to
+          * Jan 1 1970, 1:00:00 if the passed date was invalid; this means that
+@@ -418,9 +418,9 @@ Document::Document(const TQDomDocument &doc) : d(new Private)
+     }
+ 
+     if (d->format == AtomFeed)
+-        tagName=TQString::tqfromLatin1("modified");
++        tagName=TQString::fromLatin1("modified");
+     else
+-        tagName=TQString::tqfromLatin1("lastBuildDate");
++        tagName=TQString::fromLatin1("lastBuildDate");
+     if (!(elemText = extractNode(channelNode, tagName)).isNull()) {
+         time_t _time;
+         if (d->format == AtomFeed)
+@@ -430,44 +430,44 @@ Document::Document(const TQDomDocument &doc) : d(new Private)
+         d->lastBuildDate.setTime_t(_time);
+     }
+ 
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("rating"))).isNull())
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1("rating"))).isNull())
+         d->rating = elemText;
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("docs"))).isNull())
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1("docs"))).isNull())
+         d->docs = elemText;
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1((d->format == AtomFeed) ? "author" : "managingEditor"))).isNull())
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1((d->format == AtomFeed) ? "author" : "managingEditor"))).isNull())
+         d->managingEditor = elemText;
+-    if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("webMaster"))).isNull())
++    if (!(elemText = extractNode(channelNode, TQString::fromLatin1("webMaster"))).isNull())
+         d->webMaster = elemText;
+ 
+-	if (!(elemText = extractNode(channelNode, TQString::tqfromLatin1("ttl"))).isNull())
++	if (!(elemText = extractNode(channelNode, TQString::fromLatin1("ttl"))).isNull())
+         d->ttl = elemText.toUInt();
+ 
+-    n = channelNode.namedItem(TQString::tqfromLatin1("skipHours"));
++    n = channelNode.namedItem(TQString::fromLatin1("skipHours"));
+     if (!n.isNull())
+         for (TQDomElement e = n.firstChild().toElement(); !e.isNull(); e = e.nextSibling().toElement())
+-            if (e.tagName() == TQString::tqfromLatin1("hour"))
++            if (e.tagName() == TQString::fromLatin1("hour"))
+                 d->skipHours.append(e.text().toUInt());
+ 
+-    n = channelNode.namedItem(TQString::tqfromLatin1("skipDays"));
++    n = channelNode.namedItem(TQString::fromLatin1("skipDays"));
+     if (!n.isNull()) {
+         Day day;
+         TQString elemText;
+         for (TQDomElement e = n.firstChild().toElement(); !e.isNull(); e = e.nextSibling().toElement())
+-            if (e.tagName() == TQString::tqfromLatin1("day")) {
++            if (e.tagName() == TQString::fromLatin1("day")) {
+                 elemText = e.text().lower();
+-                if (elemText == TQString::tqfromLatin1("monday"))
++                if (elemText == TQString::fromLatin1("monday"))
+                     day = Monday;
+-                else if (elemText == TQString::tqfromLatin1("tuesday"))
++                else if (elemText == TQString::fromLatin1("tuesday"))
+                     day = Tuesday;
+-                else if (elemText == TQString::tqfromLatin1("wednesday"))
++                else if (elemText == TQString::fromLatin1("wednesday"))
+                     day = Wednesday;
+-                else if (elemText == TQString::tqfromLatin1("thursday"))
++                else if (elemText == TQString::fromLatin1("thursday"))
+                     day = Thursday;
+-                else if (elemText == TQString::tqfromLatin1("friday"))
++                else if (elemText == TQString::fromLatin1("friday"))
+                     day = Friday;
+-                else if (elemText == TQString::tqfromLatin1("saturday"))
++                else if (elemText == TQString::fromLatin1("saturday"))
+                     day = Saturday;
+-                else if (elemText == TQString::tqfromLatin1("sunday"))
++                else if (elemText == TQString::fromLatin1("sunday"))
+                     day = Sunday;
+                 else
+                     day = UndefinedDay;
+@@ -496,16 +496,16 @@ Version Document::version() const
+ TQString Document::verbVersion() const
+ {
+     switch (d->version) {
+-        case v0_90: return TQString::tqfromLatin1("0.90");
+-        case v0_91: return TQString::tqfromLatin1("0.91");
+-        case v0_92: return TQString::tqfromLatin1("0.92");
+-        case v0_93: return TQString::tqfromLatin1("0.93");
+-        case v0_94: return TQString::tqfromLatin1("0.94");
+-        case v1_0: return TQString::tqfromLatin1("1.0");
+-        case v2_0: return TQString::tqfromLatin1("2.0");
+-        case vAtom_0_3: return TQString::tqfromLatin1("0.3");
+-        case vAtom_0_2: return TQString::tqfromLatin1("0.2");
+-        case vAtom_0_1: return TQString::tqfromLatin1("0.1");
++        case v0_90: return TQString::fromLatin1("0.90");
++        case v0_91: return TQString::fromLatin1("0.91");
++        case v0_92: return TQString::fromLatin1("0.92");
++        case v0_93: return TQString::fromLatin1("0.93");
++        case v0_94: return TQString::fromLatin1("0.94");
++        case v1_0: return TQString::fromLatin1("1.0");
++        case v2_0: return TQString::fromLatin1("2.0");
++        case vAtom_0_3: return TQString::fromLatin1("0.3");
++        case vAtom_0_2: return TQString::fromLatin1("0.2");
++        case vAtom_0_1: return TQString::fromLatin1("0.1");
+     }
+     return TQString();
+ }
+diff --git a/plugins/rssfeed/rss/global.h b/plugins/rssfeed/rss/global.h
+index e4bc7c7..92d3866 100644
+--- a/plugins/rssfeed/rss/global.h
++++ b/plugins/rssfeed/rss/global.h
+@@ -39,7 +39,7 @@ namespace RSS
+ 	 * Possible status values returned by the signal
+ 	 * Loader::loadingComplete().
+ 	 */
+-	enum tqStatus {
++	enum Status {
+ 		Success,	   /**
+ 						* Nothing went wrong so far, but you still have to check
+ 						* what values are returned by the classes since it's not
+diff --git a/plugins/rssfeed/rss/image.cpp b/plugins/rssfeed/rss/image.cpp
+index 98074be..cb8d7c8 100644
+--- a/plugins/rssfeed/rss/image.cpp
++++ b/plugins/rssfeed/rss/image.cpp
+@@ -48,17 +48,17 @@ Image::Image(const TQDomNode &node) : TQObject(), d(new Private)
+ {
+ 	TQString elemText;
+ 
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("title"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("title"))).isNull())
+ 		d->title = elemText;
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("url"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("url"))).isNull())
+ 		d->url = elemText;
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("link"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("link"))).isNull())
+ 		d->link = elemText;
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("description"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("description"))).isNull())
+ 		d->description = elemText;
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("height"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("height"))).isNull())
+ 		d->height = elemText.toUInt();
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("width"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("width"))).isNull())
+ 		d->width = elemText.toUInt();
+ }
+ 
+diff --git a/plugins/rssfeed/rss/loader.cpp b/plugins/rssfeed/rss/loader.cpp
+index 835a2e6..6c5b3d5 100644
+--- a/plugins/rssfeed/rss/loader.cpp
++++ b/plugins/rssfeed/rss/loader.cpp
+@@ -240,7 +240,7 @@ Loader *Loader::create()
+ Loader *Loader::create(TQObject *object, const char *slot)
+ {
+    Loader *loader = create();
+-   connect(loader, TQT_SIGNAL(loadingComplete(Loader *, Document, tqStatus)),
++   connect(loader, TQT_SIGNAL(loadingComplete(Loader *, Document, Status)),
+            object, slot);
+    return loader;
+ }
+@@ -300,7 +300,7 @@ void Loader::slotRetrieverDone(const TQByteArray &data, bool success)
+    d->retriever = NULL;
+ 
+    Document rssDoc;
+-   tqStatus status = Success;
++   Status status = Success;
+ 
+    if (success) {
+       TQDomDocument doc;
+diff --git a/plugins/rssfeed/rss/loader.h b/plugins/rssfeed/rss/loader.h
+index 438ebaf..807bee5 100644
+--- a/plugins/rssfeed/rss/loader.h
++++ b/plugins/rssfeed/rss/loader.h
+@@ -209,8 +209,8 @@ namespace RSS
+ 	 *
+ 	 * \code
+ 	 * Loader *loader = Loader::create();
+-	 * connect(loader, TQT_SIGNAL(loadingComplete(Loader *, Document, tqStatus)),
+-	 *         this, TQT_SLOT(slotLoadingComplete(Loader *, Document, tqStatus)));
++	 * connect(loader, TQT_SIGNAL(loadingComplete(Loader *, Document, Status)),
++	 *         this, TQT_SLOT(slotLoadingComplete(Loader *, Document, Status)));
+ 	 * loader->loadFrom("http://www.blah.org/foobar.rdf", new FileRetriever);
+ 	 * \endcode
+ 	 *
+@@ -234,7 +234,7 @@ namespace RSS
+ 	 * 'slotLoadingComplete' method might look like this:
+ 	 *
+ 	 * \code
+-	 * void MyClass::slotLoadingComplete(Loader *loader, Document doc, tqStatus status)
++	 * void MyClass::slotLoadingComplete(Loader *loader, Document doc, Status status)
+ 	 * {
+ 	 *     // Note that Loader::~Loader() is private, so you cannot delete Loader instances.
+ 	 *     // You don't need to do that anyway since Loader instances delete themselves.
+@@ -320,9 +320,9 @@ namespace RSS
+ 			 * the case if you intend to call getPixmap() on Document::image()!
+ 			 * @param status A status byte telling whether there were any problems
+ 			 * while retrieving or parsing the data.
+-			 * @see Document, tqStatus
++			 * @see Document, Status
+ 			 */
+-			void loadingComplete(Loader *loader, Document doc, tqStatus status);
++			void loadingComplete(Loader *loader, Document doc, Status status);
+ 
+ 		private slots:
+ 			void slotRetrieverDone(const TQByteArray &data, bool success);
+diff --git a/plugins/rssfeed/rss/testlibrss.cpp b/plugins/rssfeed/rss/testlibrss.cpp
+index 571717a..7d88c3d 100644
+--- a/plugins/rssfeed/rss/testlibrss.cpp
++++ b/plugins/rssfeed/rss/testlibrss.cpp
+@@ -19,12 +19,12 @@ static const KCmdLineOptions options[] =
+ void Tester::test( const TQString &url )
+ {
+ 	Loader *loader = Loader::create();
+-	connect( loader, TQT_SIGNAL( loadingComplete( Loader *, Document, tqStatus ) ),
+-	         this, TQT_SLOT( slotLoadingComplete( Loader *, Document, tqStatus ) ) );
++	connect( loader, TQT_SIGNAL( loadingComplete( Loader *, Document, Status ) ),
++	         this, TQT_SLOT( slotLoadingComplete( Loader *, Document, Status ) ) );
+ 	loader->loadFrom( url, new FileRetriever );
+ }
+ 
+-void Tester::slotLoadingComplete( Loader *loader, Document doc, tqStatus status )
++void Tester::slotLoadingComplete( Loader *loader, Document doc, Status status )
+ {
+ 	if ( status == Success )
+ 	{
+diff --git a/plugins/rssfeed/rss/testlibrss.h b/plugins/rssfeed/rss/testlibrss.h
+index 18e1832..3d3e963 100644
+--- a/plugins/rssfeed/rss/testlibrss.h
++++ b/plugins/rssfeed/rss/testlibrss.h
+@@ -10,7 +10,7 @@
+ 
+ using RSS::Loader;
+ using RSS::Document;
+-using RSS::tqStatus;
++using RSS::Status;
+ 
+ class Tester : public TQObject
+ {
+@@ -20,7 +20,7 @@ class Tester : public TQObject
+ 		void test( const TQString &url );
+ 
+ 	private slots:
+-		void slotLoadingComplete( Loader *loader, Document doc, tqStatus status );
++		void slotLoadingComplete( Loader *loader, Document doc, Status status );
+ };
+ 
+ #endif
+diff --git a/plugins/rssfeed/rss/textinput.cpp b/plugins/rssfeed/rss/textinput.cpp
+index a12442f..04799fc 100644
+--- a/plugins/rssfeed/rss/textinput.cpp
++++ b/plugins/rssfeed/rss/textinput.cpp
+@@ -38,13 +38,13 @@ TextInput::TextInput(const TQDomNode &node) : d(new Private)
+ {
+ 	TQString elemText;
+ 
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("title"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("title"))).isNull())
+ 		d->title = elemText;
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("description"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("description"))).isNull())
+ 		d->description = elemText;
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("name"))))
++	if (!(elemText = extractNode(node, TQString::fromLatin1("name"))))
+ 		d->name = elemText;
+-	if (!(elemText = extractNode(node, TQString::tqfromLatin1("link"))).isNull())
++	if (!(elemText = extractNode(node, TQString::fromLatin1("link"))).isNull())
+ 		d->link = elemText;
+ }
+ 
+diff --git a/plugins/rssfeed/rssfeed.cpp b/plugins/rssfeed/rssfeed.cpp
+index f051f1b..2b70193 100644
+--- a/plugins/rssfeed/rssfeed.cpp
++++ b/plugins/rssfeed/rssfeed.cpp
+@@ -223,7 +223,7 @@ namespace kt
+ 		RssArticle::List::iterator it;
+ 		for ( it = m_articles.begin(); it != m_articles.end();  )
+ 			{
+-			if ((*it).pubDate().daysTo(TQDateTime::tqcurrentDateTime()) > m_articleAge)
++			if ((*it).pubDate().daysTo(TQDateTime::currentDateTime()) > m_articleAge)
+ 				{
+ 				it = m_articles.erase(it);
+ 				removed = true;
+@@ -254,12 +254,12 @@ namespace kt
+ 		feedLoading = true;
+ 		cleanArticles();
+ 		Loader * feedLoader = Loader::create();
+-		connect( feedLoader, TQT_SIGNAL( loadingComplete( Loader *, Document, tqStatus ) ),
+-			this, TQT_SLOT( feedLoaded( Loader *, Document, tqStatus ) ) );
++		connect( feedLoader, TQT_SIGNAL( loadingComplete( Loader *, Document, Status ) ),
++			this, TQT_SLOT( feedLoaded( Loader *, Document, Status ) ) );
+ 		feedLoader->loadFrom( m_feedUrl, new FileRetriever );
+ 	}
+ 	
+-	void RssFeed::feedLoaded(Loader *feedLoader, Document doc, tqStatus status)
++	void RssFeed::feedLoaded(Loader *feedLoader, Document doc, Status status)
+ 	{
+ 		feedLoading = false;
+ 
+@@ -290,7 +290,7 @@ namespace kt
+ 			for (int i=doc.articles().count()-1; i>=0; i--)
+ 			{
+ 				curArticle = doc.articles()[i];
+-				if (curArticle.pubDate().daysTo(TQDateTime::tqcurrentDateTime()) < m_articleAge && !m_articles.contains(curArticle))
++				if (curArticle.pubDate().daysTo(TQDateTime::currentDateTime()) < m_articleAge && !m_articles.contains(curArticle))
+ 				{
+ 					m_articles.prepend(curArticle);
+ 					emit scanRssArticle(curArticle);
+@@ -306,8 +306,8 @@ namespace kt
+ 			qDebug( "There was and error loading the feed\n");
+ 		}
+ 		
+-		disconnect( feedLoader, TQT_SIGNAL( loadingComplete( Loader *, Document, tqStatus ) ),
+-			this, TQT_SLOT( feedLoaded( Loader *, Document, tqStatus ) ) );
++		disconnect( feedLoader, TQT_SIGNAL( loadingComplete( Loader *, Document, Status ) ),
++			this, TQT_SLOT( feedLoaded( Loader *, Document, Status ) ) );
+ 		feedLoader->deleteLater();
+ 
+ 	}
+diff --git a/plugins/rssfeed/rssfeed.h b/plugins/rssfeed/rssfeed.h
+index 5213d8f..835d1b3 100644
+--- a/plugins/rssfeed/rssfeed.h
++++ b/plugins/rssfeed/rssfeed.h
+@@ -73,7 +73,7 @@ namespace kt
+ 
+ 		public slots:
+ 			void refreshFeed();
+-			void feedLoaded(Loader *feedLoader, Document doc, tqStatus status);
++			void feedLoaded(Loader *feedLoader, Document doc, Status status);
+ 			
+ 			void clearArticles();
+ 			
+diff --git a/plugins/rssfeed/rssfeedwidget.ui b/plugins/rssfeed/rssfeedwidget.ui
+index 5cd8e89..4a35633 100644
+--- a/plugins/rssfeed/rssfeedwidget.ui
++++ b/plugins/rssfeed/rssfeedwidget.ui
+@@ -152,7 +152,7 @@
+                                             <property name="sizeType">
+                                                 <enum>Expanding</enum>
+                                             </property>
+-                                            <property name="tqsizeHint">
++                                            <property name="sizeHint">
+                                                 <size>
+                                                     <width>90</width>
+                                                     <height>21</height>
+@@ -252,7 +252,7 @@
+                                             <property name="sizeType">
+                                                 <enum>Expanding</enum>
+                                             </property>
+-                                            <property name="tqsizeHint">
++                                            <property name="sizeHint">
+                                                 <size>
+                                                     <width>60</width>
+                                                     <height>21</height>
+@@ -600,7 +600,7 @@
+                                                         <property name="sizeType">
+                                                             <enum>Preferred</enum>
+                                                         </property>
+-                                                        <property name="tqsizeHint">
++                                                        <property name="sizeHint">
+                                                             <size>
+                                                                 <width>50</width>
+                                                                 <height>21</height>
+@@ -614,7 +614,7 @@
+                                                         <property name="enabled">
+                                                             <bool>true</bool>
+                                                         </property>
+-                                                        <property name="tqmaximumSize">
++                                                        <property name="maximumSize">
+                                                             <size>
+                                                                 <width>60</width>
+                                                                 <height>32767</height>
+@@ -633,7 +633,7 @@
+                                                 <property name="name">
+                                                     <cstring>seriesBox</cstring>
+                                                 </property>
+-                                                <property name="tqmaximumSize">
++                                                <property name="maximumSize">
+                                                     <size>
+                                                         <width>32000</width>
+                                                         <height>32000</height>
+@@ -664,7 +664,7 @@
+                                                                 <property name="sizeType">
+                                                                     <enum>Expanding</enum>
+                                                                 </property>
+-                                                                <property name="tqsizeHint">
++                                                                <property name="sizeHint">
+                                                                     <size>
+                                                                         <width>20</width>
+                                                                         <height>21</height>
+@@ -910,7 +910,7 @@
+                                                 <property name="sizeType">
+                                                     <enum>Expanding</enum>
+                                                 </property>
+-                                                <property name="tqsizeHint">
++                                                <property name="sizeHint">
+                                                     <size>
+                                                         <width>170</width>
+                                                         <height>21</height>
+diff --git a/plugins/rssfeed/rssfilter.cpp b/plugins/rssfeed/rssfilter.cpp
+index 51ac2ff..32d13d0 100644
+--- a/plugins/rssfeed/rssfilter.cpp
++++ b/plugins/rssfeed/rssfilter.cpp
+@@ -302,8 +302,8 @@ namespace kt
+ 				regEx.setPattern(*episodeFormats.at(i));
+ 				if (regEx.search(article.title()) >= 0)
+ 				{
+-					season = (*regEx.tqcapturedTexts().at(1)).toInt();
+-					episode = (*regEx.tqcapturedTexts().at(2)).toInt();
++					season = (*regEx.capturedTexts().at(1)).toInt();
++					episode = (*regEx.capturedTexts().at(2)).toInt();
+ 					if (!episodeInRange(season,episode,ignoreMatches,alreadyDownloaded))
+ 					{
+ 						return false;
+@@ -313,8 +313,8 @@ namespace kt
+ 			
+ 				if (regEx.search(article.link().prettyURL()) >= 0)
+ 				{
+-					season = (*regEx.tqcapturedTexts().at(1)).toInt();
+-					episode = (*regEx.tqcapturedTexts().at(2)).toInt();
++					season = (*regEx.capturedTexts().at(1)).toInt();
++					episode = (*regEx.capturedTexts().at(2)).toInt();
+ 					if (!episodeInRange(season,episode,ignoreMatches,alreadyDownloaded))
+ 					{
+ 						return false;
+@@ -324,8 +324,8 @@ namespace kt
+ 			
+ 				if (regEx.search(article.description()) >= 0)
+ 				{
+-					season = (*regEx.tqcapturedTexts().at(1)).toInt();
+-					episode = (*regEx.tqcapturedTexts().at(2)).toInt();
++					season = (*regEx.capturedTexts().at(1)).toInt();
++					episode = (*regEx.capturedTexts().at(2)).toInt();
+ 					if (!episodeInRange(season,episode,ignoreMatches,alreadyDownloaded))
+ 					{
+ 						return false;
+diff --git a/plugins/rssfeed/rssfilter.h b/plugins/rssfeed/rssfilter.h
+index 53695f5..2a24d7d 100644
+--- a/plugins/rssfeed/rssfilter.h
++++ b/plugins/rssfeed/rssfilter.h
+@@ -42,8 +42,8 @@ namespace kt
+ 	{
+ 		public:
+ 		
+-			FilterMatch() { m_season = 0; m_episode = 0; m_time = TQDateTime::tqcurrentDateTime().toString(); m_link=TQString(); };
+-			FilterMatch(int season, int episode, TQString link, TQString time = TQDateTime::tqcurrentDateTime().toString());
++			FilterMatch() { m_season = 0; m_episode = 0; m_time = TQDateTime::currentDateTime().toString(); m_link=TQString(); };
++			FilterMatch(int season, int episode, TQString link, TQString time = TQDateTime::currentDateTime().toString());
+ 			FilterMatch(const FilterMatch &other);
+ 			FilterMatch &operator=(const FilterMatch &other);
+ 			bool operator==(const FilterMatch &other) const;
+diff --git a/plugins/rssfeed/rsslinkdownloader.cpp b/plugins/rssfeed/rsslinkdownloader.cpp
+index 972a220..57db6ee 100644
+--- a/plugins/rssfeed/rsslinkdownloader.cpp
++++ b/plugins/rssfeed/rsslinkdownloader.cpp
+@@ -59,10 +59,10 @@ namespace kt
+ 			
+ 		}
+ 		
+-	void RssLinkDownloader::processLink(KIO::Job* jobtqStatus)
++	void RssLinkDownloader::processLink(KIO::Job* jobStatus)
+ 		{
+ 		
+-		if (!jobtqStatus->error())
++		if (!jobStatus->error())
+ 			{
+ 			//the file downloaded ok - so let's check if it's a torrent
+ 			KMimeType linkType = *KMimeType::findByContent(curFile->data());
+@@ -100,15 +100,15 @@ namespace kt
+ 							hrefText = TQString("HREF=\"?([^\">< ]*)[\" ]");
+ 							hrefText.setCaseSensitive(false);
+ 				
+-							hrefTags.tqcapturedTexts()[0].find(hrefText);
++							hrefTags.capturedTexts()[0].find(hrefText);
+ 							//lets get the captured
+ 							TQString hrefLink = hrefText.capturedTexts()[1];
+ 								
+-							if (hrefLink.tqstartsWith("/"))
++							if (hrefLink.startsWith("/"))
+ 								{
+ 								hrefLink = url.protocol() + "://" + url.host() + hrefLink;
+ 								} 
+-							else if (!hrefLink.tqstartsWith("http://", false)) 
++							else if (!hrefLink.startsWith("http://", false)) 
+ 								{
+ 								hrefLink = url.url().left(url.url().findRev("/")+1) + hrefLink;
+ 								}
+diff --git a/plugins/rssfeed/rsslinkdownloader.h b/plugins/rssfeed/rsslinkdownloader.h
+index 2bd8bf1..17d8676 100644
+--- a/plugins/rssfeed/rsslinkdownloader.h
++++ b/plugins/rssfeed/rsslinkdownloader.h
+@@ -59,7 +59,7 @@ namespace kt
+  			
+ 
+ 		public slots:
+-			void processLink(KIO::Job* jobtqStatus);
++			void processLink(KIO::Job* jobStatus);
+ 			void suicide();
+ 			
+ 		signals:
+diff --git a/plugins/scanfolder/sfprefwidgetbase.ui b/plugins/scanfolder/sfprefwidgetbase.ui
+index ae599b3..3fd83e4 100644
+--- a/plugins/scanfolder/sfprefwidgetbase.ui
++++ b/plugins/scanfolder/sfprefwidgetbase.ui
+@@ -188,7 +188,7 @@
+             <property name="sizeType">
+                 <enum>Fixed</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>20</height>
+@@ -205,7 +205,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>90</height>
+diff --git a/plugins/scheduler/bwscheduler.cpp b/plugins/scheduler/bwscheduler.cpp
+index a669360..a8b41af 100644
+--- a/plugins/scheduler/bwscheduler.cpp
++++ b/plugins/scheduler/bwscheduler.cpp
+@@ -160,7 +160,7 @@ namespace kt
+ 		if(!m_enabled)
+ 			return;
+ 		
+-		TQDateTime now = TQDateTime::tqcurrentDateTime();
++		TQDateTime now = TQDateTime::currentDateTime();
+ 
+ 		TQString prefix = TQString("BWS: %1 :: ").tqarg(now.toString());
+ 		
+diff --git a/plugins/scheduler/bwspage.ui b/plugins/scheduler/bwspage.ui
+index 12fdbd4..474969c 100644
+--- a/plugins/scheduler/bwspage.ui
++++ b/plugins/scheduler/bwspage.ui
+@@ -12,13 +12,13 @@
+             <height>530</height>
+         </rect>
+     </property>
+-    <property name="tqminimumSize">
++    <property name="minimumSize">
+         <size>
+             <width>0</width>
+             <height>0</height>
+         </size>
+     </property>
+-    <property name="tqmaximumSize">
++    <property name="maximumSize">
+         <size>
+             <width>750</width>
+             <height>540</height>
+@@ -73,7 +73,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -95,7 +95,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -117,7 +117,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -139,7 +139,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -177,7 +177,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -245,7 +245,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -267,7 +267,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -289,7 +289,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -311,7 +311,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -349,7 +349,7 @@
+                                     <verstretch>0</verstretch>
+                                 </sizepolicy>
+                             </property>
+-                            <property name="tqminimumSize">
++                            <property name="minimumSize">
+                                 <size>
+                                     <width>30</width>
+                                     <height>15</height>
+@@ -581,13 +581,13 @@
+                     <verstretch>0</verstretch>
+                 </sizepolicy>
+             </property>
+-            <property name="tqminimumSize">
++            <property name="minimumSize">
+                 <size>
+                     <width>379</width>
+                     <height>510</height>
+                 </size>
+             </property>
+-            <property name="tqmaximumSize">
++            <property name="maximumSize">
+                 <size>
+                     <width>379</width>
+                     <height>508</height>
+@@ -604,7 +604,7 @@
+                 </property>
+                 <widget class="TQLabel">
+                     <property name="name">
+-                        <cstring>lbltqStatus</cstring>
++                        <cstring>lblStatus</cstring>
+                     </property>
+                     <property name="text">
+                         <string></string>
+@@ -641,7 +641,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>16</height>
+@@ -700,7 +700,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>36</width>
+                             <height>20</height>
+@@ -728,7 +728,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>35</width>
+                             <height>20</height>
+diff --git a/plugins/scheduler/bwsprefpagewidget.cpp b/plugins/scheduler/bwsprefpagewidget.cpp
+index 95f72d6..391ccbf 100644
+--- a/plugins/scheduler/bwsprefpagewidget.cpp
++++ b/plugins/scheduler/bwsprefpagewidget.cpp
+@@ -51,7 +51,7 @@ namespace kt
+ 
+ 		loadDefault();
+ 
+-		lbltqStatus->clear();
++		lblStatus->clear();
+ 
+ 		pix_icon->setPixmap(KGlobal::iconLoader()->loadIcon("clock",KIcon::NoGroup));
+ 		
+@@ -162,7 +162,7 @@ namespace kt
+ 				stream << (int) schedule.getCategory(i, j);
+ 
+ 		file.close();
+-		lbltqStatus->setText(i18n("Schedule saved."));
++		lblStatus->setText(i18n("Schedule saved."));
+ 	}
+ 
+ 	void BWSPrefPageWidget::loadSchedule(TQString& fn, bool showmsg)
+@@ -205,7 +205,7 @@ namespace kt
+ 		file.close();
+ 
+ 		m_bwsWidget->setSchedule(schedule);
+-		lbltqStatus->setText(i18n("Schedule loaded."));
++		lblStatus->setText(i18n("Schedule loaded."));
+ 	}
+ 
+ 	void BWSPrefPageWidget::loadDefault()
+@@ -228,7 +228,7 @@ namespace kt
+ 		ulCat2->setValue(0);
+ 		ulCat3->setValue(0);
+ 
+-		lbltqStatus->clear();
++		lblStatus->clear();
+ 	}
+ 
+ 	void BWSPrefPageWidget::apply()
+diff --git a/plugins/scheduler/schedulerpage.ui b/plugins/scheduler/schedulerpage.ui
+index 9b6f292..0fc52b3 100644
+--- a/plugins/scheduler/schedulerpage.ui
++++ b/plugins/scheduler/schedulerpage.ui
+@@ -72,7 +72,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>40</width>
+                             <height>20</height>
+@@ -89,7 +89,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>20</width>
+                             <height>80</height>
+@@ -108,7 +108,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>40</height>
+diff --git a/plugins/scheduler/schedulerplugin.cpp b/plugins/scheduler/schedulerplugin.cpp
+index ddef7c8..436f32b 100644
+--- a/plugins/scheduler/schedulerplugin.cpp
++++ b/plugins/scheduler/schedulerplugin.cpp
+@@ -74,7 +74,7 @@ namespace kt
+ 		getGUI()->addPrefPage(Pref);
+ 		BWScheduler::instance().setCoreInterface(getCore());
+ 		
+-		TQDateTime now = TQDateTime::tqcurrentDateTime();
++		TQDateTime now = TQDateTime::currentDateTime();
+ 		
+ 		//each hour
+ 		TQDateTime hour = now.addSecs(3600);
+@@ -115,7 +115,7 @@ namespace kt
+ 	void SchedulerPlugin::timer_triggered()
+ 	{
+ 		m_timer.changeInterval(3600*1000);
+-		TQDateTime now = TQDateTime::tqcurrentDateTime();
++		TQDateTime now = TQDateTime::currentDateTime();
+ 		BWScheduler::instance().trigger();
+ 	}
+ 	
+diff --git a/plugins/search/searchbar.ui b/plugins/search/searchbar.ui
+index 370da86..7784264 100644
+--- a/plugins/search/searchbar.ui
++++ b/plugins/search/searchbar.ui
+@@ -63,7 +63,7 @@
+             <property name="sizeType">
+                 <enum>Maximum</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>60</width>
+                     <height>20</height>
+diff --git a/plugins/search/searchpref.ui b/plugins/search/searchpref.ui
+index cadfbd8..fb03f02 100644
+--- a/plugins/search/searchpref.ui
++++ b/plugins/search/searchpref.ui
+@@ -20,7 +20,7 @@
+             <verstretch>0</verstretch>
+         </sizepolicy>
+     </property>
+-    <property name="tqminimumSize">
++    <property name="minimumSize">
+         <size>
+             <width>500</width>
+             <height>350</height>
+@@ -97,7 +97,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>40</width>
+                                     <height>20</height>
+@@ -223,7 +223,7 @@
+                             <verstretch>0</verstretch>
+                         </sizepolicy>
+                     </property>
+-                    <property name="tqminimumSize">
++                    <property name="minimumSize">
+                         <size>
+                             <width>0</width>
+                             <height>50</height>
+@@ -267,7 +267,7 @@
+                             <property name="sizeType">
+                                 <enum>Maximum</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>16</width>
+                                     <height>20</height>
+diff --git a/plugins/stats/sprefwgt.ui b/plugins/stats/sprefwgt.ui
+index 980f024..62cb6d3 100644
+--- a/plugins/stats/sprefwgt.ui
++++ b/plugins/stats/sprefwgt.ui
+@@ -484,7 +484,7 @@
+             <property name="sizeType">
+                 <enum>Expanding</enum>
+             </property>
+-            <property name="tqsizeHint">
++            <property name="sizeHint">
+                 <size>
+                     <width>20</width>
+                     <height>40</height>
+diff --git a/plugins/upnp/upnpdescriptionparser.cpp b/plugins/upnp/upnpdescriptionparser.cpp
+index bd933a4..1e73362 100644
+--- a/plugins/upnp/upnpdescriptionparser.cpp
++++ b/plugins/upnp/upnpdescriptionparser.cpp
+@@ -32,7 +32,7 @@ namespace kt
+ 	
+ 	class XMLContentHandler : public TQXmlDefaultHandler
+ 	{
+-		enum tqStatus
++		enum Status
+ 		{
+ 		    TOPLEVEL,ROOT,DEVICE,SERVICE,FIELD,OTHER
+ 		};
+@@ -40,7 +40,7 @@ namespace kt
+ 		TQString tmp;
+ 		UPnPRouter* router;
+ 		UPnPService curr_service;
+-		TQValueStack<tqStatus> status_stack;
++		TQValueStack<Status> status_stack;
+ 	public:
+ 		XMLContentHandler(UPnPRouter* router);
+ 		virtual ~XMLContentHandler();
+diff --git a/plugins/upnp/upnpwidget.ui b/plugins/upnp/upnpwidget.ui
+index 50e1e1a..3dc7944 100644
+--- a/plugins/upnp/upnpwidget.ui
++++ b/plugins/upnp/upnpwidget.ui
+@@ -109,7 +109,7 @@
+                     <property name="sizeType">
+                         <enum>Expanding</enum>
+                     </property>
+-                    <property name="tqsizeHint">
++                    <property name="sizeHint">
+                         <size>
+                             <width>70</width>
+                             <height>20</height>
+diff --git a/plugins/webinterface/httpserver.cpp b/plugins/webinterface/httpserver.cpp
+index d04449b..915e28f 100644
+--- a/plugins/webinterface/httpserver.cpp
++++ b/plugins/webinterface/httpserver.cpp
+@@ -248,7 +248,7 @@ namespace kt
+ 	void HttpServer::setDefaultResponseHeaders(HttpResponseHeader & hdr,const TQString & content_type,bool with_session_info)
+ 	{
+ 		hdr.setValue("Server","KTorrent/" KT_VERSION_MACRO);
+-		hdr.setValue("Date",DateTimeToString(TQDateTime::tqcurrentDateTime(Qt::UTC),false));
++		hdr.setValue("Date",DateTimeToString(TQDateTime::currentDateTime(Qt::UTC),false));
+ 		hdr.setValue("Content-Type",content_type);
+ 		hdr.setValue("Connection","keep-alive");
+ 		if (with_session_info && session.sessionId && session.logged_in)
+@@ -328,7 +328,7 @@ namespace kt
+ 			if (path.endsWith("login.html"))
+ 			{
+ 				// clear cookie in case of login page
+-				TQDateTime dt = TQDateTime::tqcurrentDateTime().addDays(-1);
++				TQDateTime dt = TQDateTime::currentDateTime().addDays(-1);
+ 				TQString cookie = TQString("KT_SESSID=666; expires=%1 +0000").tqarg(DateTimeToString(dt,true));
+ 				rhdr.setValue("Set-Cookie",cookie);
+ 			}
+@@ -351,7 +351,7 @@ namespace kt
+ 					setDefaultResponseHeaders(rhdr,"text/html",true);
+ 					rhdr.setValue("Cache-Control","max-age=0");
+ 					rhdr.setValue("Last-Modified",DateTimeToString(fi.lastModified(),false));
+-					rhdr.setValue("Expires",DateTimeToString(TQDateTime::tqcurrentDateTime(Qt::UTC).addSecs(3600),false));
++					rhdr.setValue("Expires",DateTimeToString(TQDateTime::currentDateTime(Qt::UTC).addSecs(3600),false));
+ 					hdlr->sendResponse(rhdr);
+ 					return;
+ 				}
+@@ -361,7 +361,7 @@ namespace kt
+ 			HttpResponseHeader rhdr(200);
+ 			setDefaultResponseHeaders(rhdr,ExtensionToContentType(ext),true);
+ 			rhdr.setValue("Last-Modified",DateTimeToString(fi.lastModified(),false));
+-			rhdr.setValue("Expires",DateTimeToString(TQDateTime::tqcurrentDateTime(Qt::UTC).addSecs(3600),false));
++			rhdr.setValue("Expires",DateTimeToString(TQDateTime::currentDateTime(Qt::UTC).addSecs(3600),false));
+ 			rhdr.setValue("Cache-Control","private");
+ 			if (!hdlr->sendFile(rhdr,path))
+ 			{
+diff --git a/plugins/webinterface/php_handler.cpp b/plugins/webinterface/php_handler.cpp
+index 87c8acd..9b5ac85 100644
+--- a/plugins/webinterface/php_handler.cpp
++++ b/plugins/webinterface/php_handler.cpp
+@@ -76,7 +76,7 @@ namespace kt
+ 		ts.setEncoding( TQTextStream::UnicodeUTF8 );
+ 		ts.writeRawBytes(php_s.data(),off); // first write the opening tag from the script
+ 		php_i->globalInfo(ts);
+-		php_i->downloadtqStatus(ts);
++		php_i->downloadStatus(ts);
+ 		
+ 		TQMap<TQString,TQString>::const_iterator it;
+ 			
+diff --git a/plugins/webinterface/php_interface.cpp b/plugins/webinterface/php_interface.cpp
+index 9e2a577..e98a309 100644
+--- a/plugins/webinterface/php_interface.cpp
++++ b/plugins/webinterface/php_interface.cpp
+@@ -72,12 +72,12 @@ namespace kt
+ 	}
+ 	
+ 	/*Generate php code
+-	* function downloadtqStatus()
++	* function downloadStatus()
+ 	* {
+ 	*	return array( ... );
+ 	* }
+ 	*/
+-	void PhpCodeGenerator::downloadtqStatus(TQTextStream & out)
++	void PhpCodeGenerator::downloadStatus(TQTextStream & out)
+ 	{
+ 		TorrentStats stats;
+ 		//Priority file_priority;
+@@ -156,7 +156,7 @@ namespace kt
+ 	}
+ 	
+ 	/*Generate php code
+-	* function globaltqStatus()
++	* function globalStatus()
+ 	* {
+ 	*	return array( ... );
+ 	* }
+diff --git a/plugins/webinterface/php_interface.h b/plugins/webinterface/php_interface.h
+index 4995ae6..acfd8c7 100644
+--- a/plugins/webinterface/php_interface.h
++++ b/plugins/webinterface/php_interface.h
+@@ -40,7 +40,7 @@ namespace kt
+ 			PhpCodeGenerator(CoreInterface *c);
+ 			virtual ~PhpCodeGenerator(){}
+ 			
+-			void downloadtqStatus(TQTextStream & out);
++			void downloadStatus(TQTextStream & out);
+ 			void globalInfo(TQTextStream & out);
+ 		private:
+ 			CoreInterface *core;
+diff --git a/plugins/webinterface/webinterfacepref.ui b/plugins/webinterface/webinterfacepref.ui
+index dca1d84..a36f7f8 100644
+--- a/plugins/webinterface/webinterfacepref.ui
++++ b/plugins/webinterface/webinterfacepref.ui
+@@ -20,7 +20,7 @@
+             <verstretch>0</verstretch>
+         </sizepolicy>
+     </property>
+-    <property name="tqminimumSize">
++    <property name="minimumSize">
+         <size>
+             <width>500</width>
+             <height>350</height>
+@@ -92,7 +92,7 @@
+                             <property name="sizeType">
+                                 <enum>Expanding</enum>
+                             </property>
+-                            <property name="tqsizeHint">
++                            <property name="sizeHint">
+                                 <size>
+                                     <width>54</width>
+                                     <height>21</height>
+diff --git a/plugins/webinterface/www/default/details.php b/plugins/webinterface/www/default/details.php
+index 92c8d48..a19d57e 100644
+--- a/plugins/webinterface/www/default/details.php
++++ b/plugins/webinterface/www/default/details.php
+@@ -1,5 +1,5 @@
+ <?php
+-$stats=downloadtqStatus();
++$stats=downloadStatus();
+ $num_torrent=$_REQUEST['torrent'];
+ 
+ function cut_name_if_long($string)
+@@ -61,7 +61,7 @@ $display_name=cut_name_if_long($stats[$num_torrent]['torrent_name']);
+ 		<tr>
+ 			<th>Actions</th>
+ 			<th>File</th>
+-			<th>tqStatus</th>
++			<th>Status</th>
+ 			<th>Size</th>
+ 			<th>Complete</th>
+ 		</tr>
+diff --git a/plugins/webinterface/www/default/interface.php b/plugins/webinterface/www/default/interface.php
+index f34e651..6432798 100644
+--- a/plugins/webinterface/www/default/interface.php
++++ b/plugins/webinterface/www/default/interface.php
+@@ -1,6 +1,6 @@
+ <?php
+ $globalinfo=globalInfo();
+-$stats=downloadtqStatus();
++$stats=downloadStatus();
+ 
+ function get_torrent_status_name($status_id)
+ {
+@@ -18,7 +18,7 @@ function get_torrent_status_name($status_id)
+ 	10 => 'Checking Data'
+ 	);
+ 	if (array_key_exists($status_id, $table)) return $table[$status_id];
+-	else return 'Not supported tqStatus';
++	else return 'Not supported Status';
+ }
+ 
+ function generate_button_code($img, $alt, $href='')
+@@ -104,7 +104,7 @@ function generate_button_code($img, $alt, $href='')
+ 		<tr>
+ 			<th>Actions</th>
+ 			<th>File</th>
+-			<th>tqStatus</th>
++			<th>Status</th>
+ 			<th>Downloaded</th>
+ 			<th>Size</th>
+ 			<th>Uploaded</th>
+diff --git a/plugins/webinterface/www/mobile/interface.php b/plugins/webinterface/www/mobile/interface.php
+index 3f5e88b..57582de 100644
+--- a/plugins/webinterface/www/mobile/interface.php
++++ b/plugins/webinterface/www/mobile/interface.php
+@@ -18,7 +18,7 @@
+ <table  width="100%">
+   <tbody>
+     	<?php
+-		$stats=downloadtqStatus();
++		$stats=downloadStatus();
+ 		$a = 0;
+ 		foreach ($stats as $torrent) {
+ 			echo "<tr>";
+diff --git a/plugins/webinterface/www/mobile/torrent.php b/plugins/webinterface/www/mobile/torrent.php
+index b041d3f..a1e451d 100644
+--- a/plugins/webinterface/www/mobile/torrent.php
++++ b/plugins/webinterface/www/mobile/torrent.php
+@@ -8,7 +8,7 @@
+     <tr>
+       <td align="center"><IMG src="ktorrentwebinterfacelogo.png" width="340" height="150" align="top" border="0"></td>
+       <?php
+-      	$stats=downloadtqStatus();
++      	$stats=downloadStatus();
+       	$t=$stats[$_REQUEST['id']];
+       	echo "<td><strong>ktorrent-><a href=\"interface.php\">transfers</a></strong>->{$t['torrent_name']}</td>";
+       	echo "<td><a href=\"torrent.php?id={$_REQUEST['id']}\" >refresh</a></td>";

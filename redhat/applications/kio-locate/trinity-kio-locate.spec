@@ -6,7 +6,7 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -54,11 +54,11 @@ as a directory.
 
 %prep
 %setup -q -n applications/%{kdecomp}
-%patch1 -p1
+%patch1 -p1 -b .install
 
 # Ugly hack to modify TQT include directory inside SCONS files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/kde.py \
+%__sed -i "admin/kde.py" \
   -e "s|/usr/include/tqt|%{_includedir}/tqt|g"
 
 
@@ -85,6 +85,7 @@ scons install DESTDIR=%{buildroot}
 %doc AUTHORS ChangeLog COPYING TODO
 %{tde_libdir}/kio_locate.la
 %{tde_libdir}/kio_locate.so
+%{tde_docdir}/HTML/en/kio-locate/common
 %{tde_docdir}/HTML/en/kio-locate/index.cache.bz2
 %{tde_docdir}/HTML/en/kio-locate/index.docbook
 %{tde_docdir}/HTML/en/kio-locate/screenshot.png

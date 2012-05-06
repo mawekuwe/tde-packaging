@@ -56,7 +56,7 @@ BuildRequires: trinity-kdelibs-devel
 BuildRequires: desktop-file-utils
 BuildRequires: alsa-lib-devel
 BuildRequires: audiofile-devel
-BuildRequires: dbus-qt-devel hal-devel
+BuildRequires: dbus-tqt-devel hal-devel
 BuildRequires: flac-devel
 BuildRequires: gettext
 BuildRequires: libdvdread-devel

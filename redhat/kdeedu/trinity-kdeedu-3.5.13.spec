@@ -1,17 +1,10 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 3
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.12 specific building variables
-BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -19,8 +12,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:    trinity-kdeedu
 Summary: Educational/Edutainment applications
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Version: 3.5.13
+Release: 3%{?dist}%{?_variant}
 
 License: GPLv2
 Group:   Amusements/Games
@@ -44,6 +37,7 @@ Requires(postun): /sbin/ldconfig
 
 Requires: %{name}-libs = %{version}-%{release}
 
+BuildRequires: autoconf automake libtool m4
 BuildRequires: desktop-file-utils
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: python-devel python
@@ -53,7 +47,6 @@ BuildRequires: ocaml(compiler)
 %else
 BuildRequires: ocaml
 %endif
-#BuildRequires: ocaml-facile-devel
 
 
 %description
@@ -106,13 +99,8 @@ Requires: %{name} = %{version}-%{release}
   -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
   -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
-%if 0%{?rhel} > 0
-rm -rf doc/kgeography kgeography
-perl -pi -e "s|kgeography||" subdirs
-%endif
-
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
@@ -232,6 +220,7 @@ update-desktop-database >& /dev/null ||:
 %changelog
 * Wed Apr 25 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Fix compilation with GCC 4.7 [Bug #958]
+- Enable 'kgeography' on RHEL
 
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
 - Fix HTML directory location

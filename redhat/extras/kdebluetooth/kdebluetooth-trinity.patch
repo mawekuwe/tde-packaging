@@ -54,8 +54,12 @@ diff -Nuar kdebluetooth.ORI/admin/cvs.sh kdebluetooth.P/admin/cvs.sh
      ;;
 --- kdebluetooth-1.0~beta9~r769275/kdebluetooth/libkbluetooth/Makefile.am.ORI	2012-02-12 14:40:37.124683567 +0100
 +++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/libkbluetooth/Makefile.am	2012-02-12 14:41:13.572933231 +0100
-@@ -12,7 +12,7 @@
- libkbluetooth_la_LIBADD = $(LIB_KDECORE) $(DBUS_LIBS) $(LIB_KIO) $(BLUETOOTH_LIBS) -ldbus-qt-1
+@@ -9,10 +9,10 @@
+ 			   namerequest.cpp adapter_old.cpp obexmanager.cpp obexsession.cpp
+ 
+ libkbluetooth_la_LDFLAGS = $(all_libraries)
+-libkbluetooth_la_LIBADD = $(LIB_KDECORE) $(DBUS_LIBS) $(LIB_KIO) $(BLUETOOTH_LIBS) -ldbus-qt-1
++libkbluetooth_la_LIBADD = $(LIB_KDECORE) $(DBUS_LIBS) $(LIB_KIO) $(BLUETOOTH_LIBS) -ldbus-tqt-1
  
  libkbluetoothincludedir = $(includedir)/libkbluetooth
 -libkbluetoothinclude_HEADERS = adapter.h dbusinit.h dbussignal.h dbussignal.h manager.h inputdevice.h inputmanager.h \
@@ -70,7 +74,7 @@ diff -Nuar kdebluetooth.ORI/admin/cvs.sh kdebluetooth.P/admin/cvs.sh
  
  kbluetooth_SOURCES = adapterconfig.cpp adapterdialog.ui authorize.cpp authdialog.ui deviceconfig.cpp trayicon.cpp main.cpp application.cpp pindefdialog.ui pindialog.cpp confirmationdlgbase.ui confirmation.cpp rfcommportlistener.cpp procinheritsock.cpp portlistener.cpp sdprecord.cpp
 -kbluetooth_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries)
-+kbluetooth_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries) -lDCOP -lkdefx
++kbluetooth_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-tqt-1 $(all_libraries) -lDCOP -lkdefx
  kbluetooth_LDADD = ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI)
  
  # this is where the desktop file will go
@@ -81,7 +85,7 @@ diff -Nuar kdebluetooth.ORI/admin/cvs.sh kdebluetooth.P/admin/cvs.sh
  
  kbluemon_SOURCES = main.cpp monitor.cpp mondialog.ui
 -kbluemon_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries)
-+kbluemon_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries) -lkdefx
++kbluemon_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-tqt-1 $(all_libraries) -lkdefx
  kbluemon_LDADD = ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI)
  
  # this is where the desktop file will go
@@ -92,7 +96,7 @@ diff -Nuar kdebluetooth.ORI/admin/cvs.sh kdebluetooth.P/admin/cvs.sh
  
  kbluelock_SOURCES = main.cpp kbluelock.cpp lockdialog.ui
 -kbluelock_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries)
-+kbluelock_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries) -lDCOP -lkdefx
++kbluelock_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-tqt-1 $(all_libraries) -lDCOP -lkdefx
  kbluelock_LDADD = ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI)
  
  # this is where the desktop file will go
@@ -103,7 +107,7 @@ diff -Nuar kdebluetooth.ORI/admin/cvs.sh kdebluetooth.P/admin/cvs.sh
  
  kinputwizard_SOURCES = main.cpp inputwizard.cpp inputdialog.ui inputdialog_ext.ui
 -kinputwizard_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries)
-+kinputwizard_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-qt-1 $(all_libraries) -lkdefx
++kinputwizard_LDFLAGS = $(KDE_RPATH) $(DBUS_LIBS) -ldbus-tqt-1 $(all_libraries) -lkdefx
  kinputwizard_LDADD = ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI)
  
  
@@ -120,12 +124,25 @@ diff -Nuar kdebluetooth.ORI/admin/cvs.sh kdebluetooth.P/admin/cvs.sh
  # this is where the desktop file will go 
 --- kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbtobexclient/Makefile.am.ORI	2012-02-12 15:35:17.239735523 +0100
 +++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/kbtobexclient/Makefile.am	2012-02-12 15:35:25.381845659 +0100
-@@ -17,7 +17,7 @@
+@@ -17,8 +17,8 @@
  
  # the application source, library search path, and link libraries
  
 -kbtobexclient_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 +kbtobexclient_LDFLAGS = $(KDE_RPATH) $(all_libraries) -lkdefx
- kbtobexclient_LDADD = ../libkbluetooth/libkbluetooth.la ../libkobex/libkobex.la $(LIB_KIO) $(OPENOBEX_LIBS) -lkio $(LIB_KDEUI) $(BLUETOOTH_LIBS) $(DBUS_LIBS) -ldbus-qt-1
+-kbtobexclient_LDADD = ../libkbluetooth/libkbluetooth.la ../libkobex/libkobex.la $(LIB_KIO) $(OPENOBEX_LIBS) -lkio $(LIB_KDEUI) $(BLUETOOTH_LIBS) $(DBUS_LIBS) -ldbus-qt-1
++kbtobexclient_LDADD = ../libkbluetooth/libkbluetooth.la ../libkobex/libkobex.la $(LIB_KIO) $(OPENOBEX_LIBS) -lkio $(LIB_KDEUI) $(BLUETOOTH_LIBS) $(DBUS_LIBS) -ldbus-tqt-1
  
  # this is where the desktop file will go
+ #shelldesktopdir = $(kde_appsdir)/Utilities
+--- kdebluetooth-1.0~beta9~r769275/kdebluetooth/kcm_btpaired/Makefile.am.ORI	2012-05-06 16:27:34.359953095 -0400
++++ kdebluetooth-1.0~beta9~r769275/kdebluetooth/kcm_btpaired/Makefile.am	2012-05-06 16:27:41.351939071 -0400
+@@ -6,7 +6,7 @@
+ 
+ kcm_btpaired_la_SOURCES = pairedtabbase.ui pairedtab.cpp kcm_btpaired.cpp \
+ 		exportdialog.ui
+-kcm_btpaired_la_LIBADD = $(LIB_KIO) ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI) $(SDP_LIBS) $(DBUS_LIBS) -ldbus-qt-1
++kcm_btpaired_la_LIBADD = $(LIB_KIO) ../libkbluetooth/libkbluetooth.la $(LIB_KIO) $(LIB_KDEUI) $(SDP_LIBS) $(DBUS_LIBS) -ldbus-tqt-1
+ kcm_btpaired_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ #kbluetoothdcm_DATA = kcm_btpaired.desktop

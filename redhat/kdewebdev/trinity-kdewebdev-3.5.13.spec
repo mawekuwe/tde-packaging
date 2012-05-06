@@ -1,24 +1,17 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 2
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
 Name:		trinity-kdewebdev
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	2%{?dist}%{?_variant}
 License:	GPL
 Summary:	Web development applications 
 Group:		Applications/Editors
@@ -41,6 +34,7 @@ Patch0: javascript.patch
 Patch1: kdewebdev-3.5.4-kxsldbg-icons.patch
 
 
+BuildRequires: autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
 BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	trinity-kdesdk-devel
@@ -99,17 +93,17 @@ Requires: trinity-kdelibs
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,kde_htmldir='.*',kde_htmldir='%{tde_docdir}/HTML',g"
+  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__make -f "admin/Makefile.common"
 
 %patch0 -p0 -b .javascript
 %patch1 -p1 -b .kxsldbg-icons
 
 %__install -m644 -p %{SOURCE5} kxsldbg/
-
-%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common
 
 
 %build

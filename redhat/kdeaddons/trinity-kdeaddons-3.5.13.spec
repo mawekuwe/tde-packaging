@@ -1,9 +1,3 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 4
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
@@ -11,7 +5,6 @@
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -19,8 +12,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-kdeaddons
 Summary:	Trinity Desktop Environment - Plugins
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	4%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		User Interface/Desktops
@@ -36,6 +29,7 @@ Source0: kdeaddons-%{version}.tar.gz
 Source1: metabar-fedora.tar.bz2
 Source2: metabarrc
 
+BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-kdebase-devel
 BuildRequires: trinity-kdegames-devel
 BuildRequires: trinity-kdemultimedia-devel
@@ -60,7 +54,7 @@ Requires(postun): /sbin/ldconfig
 
 
 %description
-A collection of KDE Addons/Plugins, including: 
+A collection of TDE Addons/Plugins, including: 
 * konq-plugins: akregator, babelfish, domtreeviewer, imagerotation, validators, webarchiver
 * kate (plugins) 
 * kicker-applets: kbinaryclock, kolourpicker, ktimemon, mediacontrol

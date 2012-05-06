@@ -1,0 +1,10 @@
+--- tellico/src/mainwindow.cpp.ORI	2012-05-06 12:54:09.395765577 +0200
++++ tellico/src/mainwindow.cpp	2012-05-06 12:54:30.626306963 +0200
+@@ -53,6 +53,7 @@
+ #include "core/drophandler.h"
+ #include "latin1literal.h"
+ 
++#include <unistd.h>
+ #include <kapplication.h>
+ #include <kcombobox.h>
+ #include <kiconloader.h>
