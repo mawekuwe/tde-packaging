@@ -83,7 +83,7 @@ endif # pysupport
 
 ifndef DEB_PYTHON_SYSTEM
 DEB_PYTHON_COMPILE_VERSION = 
-DEB_PYTHON_VERSIONS = 2.1 2.2 2.3 2.4 2.5 2.6
+DEB_PYTHON_VERSIONS = 2.1 2.2 2.3 2.4 2.5 2.6 2.7
 else
 # default package is the first one declared in 'debian/control'
 # (override if necessary)
