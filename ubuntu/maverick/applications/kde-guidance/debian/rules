@@ -93,7 +93,7 @@ install/guidance-backends-trinity::
 	install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
 		$(PYSUPPORT_PATH)/guidance-backends-trinity/displayconfig-hwprobe.py
 
-	cp $(DEB_DESTDIR)/usr/lib/python2.6/site-packages/xf86misc.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/usr/lib/python*/site-packages/xf86misc.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MicroHAL.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/ScanPCI.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/infimport.py $(PYSUPPORT_PATH)/guidance-backends-trinity
