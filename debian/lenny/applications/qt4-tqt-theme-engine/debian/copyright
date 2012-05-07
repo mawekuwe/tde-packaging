@@ -1,12 +1,9 @@
-This package was debianized by Raphaël Pinson <raphink@raphink.net> on
-Fri, 16 Dec 2005 19:52:51 +0100.
+This package was debianized by Timothy Pearson <kb9vqf@pearsoncomputing.net> on
+Mon, 07 May 2012 01:21:00 -0600.
 
-It was downloaded from http://www.kde-apps.org/content/download.php?content=45975&id=1
+Upstream Author:  Timothy Pearson <kb9vqf@pearsoncomputing.net>
 
-Upstream Author:  Stephen Leaf <smileaf@smileaf.org>
-
-Copyright (C) 1997 Janos Farkas (chexum@shadow.banki.hu)
-copyright (C) 2006 Stephen Leaf <smileaf@smileaf.org>
+Copyright (C) 2012 Timothy Pearson <kb9vqf@pearsoncomputing.net>
 
 License:
 
@@ -27,6 +24,6 @@ License:
 On Debian systems, the complete text of the GNU General
 Public License can be found in `/usr/share/common-licenses/GPL'.
 
-The Debian packaging is (C) 2007, Raphaël Pinson <raphink@raphink.net> 
+The Debian packaging is (C) 2012, Timothy Pearson <kb9vqf@pearsoncomputing.net>
 is licensed under the GPL, see above.
 
