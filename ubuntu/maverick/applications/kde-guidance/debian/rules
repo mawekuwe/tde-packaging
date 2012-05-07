@@ -93,7 +93,13 @@ install/guidance-backends-trinity::
 	install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
 		$(PYSUPPORT_PATH)/guidance-backends-trinity/displayconfig-hwprobe.py
 
-	cp $(DEB_DESTDIR)/usr/lib/python*/site-packages/xf86misc.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	for PYDIR in python2.5 python2.6 python2.7 python2.8; do \
+		echo "Looking for $(DEB_DESTDIR)/usr/lib/$$PYDIR"; \
+		if test -d $(DEB_DESTDIR)/usr/lib/$$PYDIR; then \
+			cp $(DEB_DESTDIR)/usr/lib/$$PYDIR/site-packages/xf86misc.py $(PYSUPPORT_PATH)/guidance-backends-trinity; \
+		fi; \
+	done
+
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MicroHAL.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/ScanPCI.py $(PYSUPPORT_PATH)/guidance-backends-trinity
 	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/infimport.py $(PYSUPPORT_PATH)/guidance-backends-trinity
