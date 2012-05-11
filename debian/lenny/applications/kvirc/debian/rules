@@ -68,20 +68,6 @@ common-install-indep::
 	#
 	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc/3.4/license/COPYING \
 	   $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc/3.4/license/EULA
-	#
-	#	Move KDE service files to a better position
-	#
-#	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/services \
-#	   $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc/3.4/
-
-#	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc-trinity
-	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc/3.4/applnk $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/
-	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc/3.4/icons $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/
-	mkdir -p $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/applnk/Internet
-	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/applnk/kvirc.desktop $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/applnk/Internet/kvirc.desktop
-	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/icons $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/hicolor
-	mkdir -p $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/icons
-	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/hicolor $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/icons/
 
 common-install-arch::
 	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/lib/
