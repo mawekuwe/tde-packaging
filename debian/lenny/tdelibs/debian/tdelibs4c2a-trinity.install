@@ -319,4 +319,4 @@ debian/tmp/opt/trinity/share/services/kfile_elf.desktop
 debian/tmp/opt/trinity/lib/trinity/kfile_elf.so
 debian/tmp/opt/trinity/lib/trinity/kfile_elf.la
 debian/tmp/opt/trinity/share/apps/tdehwlib/deviceclasses/*
-debian/tmp/opt/trinity/share/apps/tdehwlib/pnpdev/pnp.ids
+debian/tmp/opt/trinity/share/apps/tdehwlib/pnpdev/*
