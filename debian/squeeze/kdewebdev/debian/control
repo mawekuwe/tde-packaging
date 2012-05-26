@@ -44,7 +44,7 @@ Package: quanta-trinity
 Architecture: any
 Section: web
 Depends: ${shlibs:Depends}, kfilereplace-trinity, klinkstatus-trinity, kommander-trinity, quanta-data-trinity, tidy
-Recommends: cervisia, gnupg, kompare-trinity, kxsldbg-trinity, docbook-defguide
+Recommends: cervisia-trinity, gnupg, kompare-trinity, kxsldbg-trinity, docbook-defguide
 Suggests: gubed, kimagemapeditor-trinity, wget, khelpcenter-trinity, php-doc
 Description: web development environment for KDE [Trinity]
  Quanta Plus is a web development environment for working with HTML
