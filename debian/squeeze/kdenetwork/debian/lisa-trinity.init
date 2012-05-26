@@ -9,7 +9,7 @@
 
 
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
-DAEMON=/usr/sbin/lisa
+DAEMON=/opt/trinity/sbin/lisa
 NAME=lisa-trinity
 PIDFILE=/var/run/$NAME.pid
 DESC="LAN Information Server"
