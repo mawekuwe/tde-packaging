@@ -1,12 +1,9 @@
-# Default version for this component
-%define kdecomp guidance
-%define version 0.8.0svn20080103
-%define release 2
+%{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -17,10 +14,10 @@ BuildRequires: autoconf automake libtool m4
 
 %define __arch_install_post %{nil}
 
-Name:		trinity-%{kdecomp}
+Name:		trinity-guidance
 Summary:	A collection of system administration tools for Trinity
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.8.0svn20080103
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -41,11 +38,25 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
 BuildRequires:	trinity-pykdeextensions
+BuildRequires:	trinity-libpythonize0-devel
+BuildRequires:	python-trinity
 BuildRequires:	chrpath
+BuildRequires:	gcc-c++
+
+%if 0%{?rhel} == 5
+BuildRequires:	trinity-PyQt-devel
+BuildRequires:	trinity-sip-devel
+Requires:		trinity-PyQt
+%else
+BuildRequires:	PyQt-devel
+BuildRequires:	sip-devel
+Requires:		PyQt
+%endif
+
 Requires:		python-trinity
 Requires:		%{name}-backends
 Requires:		hwdata
-Requires:		python >= 2.5
+Requires:		python
 
 %if "%{_prefix}" == "/usr"
 Conflicts:	guidance-power-manager
@@ -58,10 +69,9 @@ look after your system:
  o  userconfig - User and Group administration
  o  serviceconfig - Service/daemon administration
  o  mountconfig - Disk and filesystem administration
- o  displayconfig - Screen and display configuration
  o  wineconfig - Wine configuration
 
-These tools are available in KDE Control Center, System Settings 
+These tools are available in Trinity Control Center, System Settings 
 or can be run as standalone applications.
 
 
@@ -70,7 +80,7 @@ or can be run as standalone applications.
 Group:		Applications/Utilities
 Summary:	collection of system administration tools for GNU/Linux [Trinity]
 Requires:	hwdata
-Requires:	python >= 2.5
+Requires:	python
 
 %description backends
 This package contains the platform neutral backends used in the
@@ -92,20 +102,25 @@ suspend using HAL.
 
 
 %build
+unset QTDIR; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-./setup.py build
+export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
 
+export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export EXTRA_MODULE_DIR="%{python_sitearch}/%{name}"
+
+./setup.py build
 
 
 %install
 export PATH="%{_bindir}:${PATH}"
+export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
+
+export EXTRA_MODULE_DIR="%{python_sitearch}/%{name}"
 %__rm -rf %{buildroot}
 ./setup.py install \
 	--prefix=%{_prefix} \
 	--root=%{buildroot}
-
-%find_lang %{kdecomp} || touch %{kdecomp}.lang
 
 # Fix building directories stored inside .py files
 for f in %{buildroot}%{_datadir}/apps/guidance/*.py; do
@@ -129,28 +144,14 @@ done
 	%{buildroot}%{_datadir}/icons/crystalsvg/16x16/apps/wineconfig.png
 
 # fix binary-or-shlib-defines-rpath
-chrpath -d %{buildroot}%{tde_libdir}/kcm_*.so.*
+chrpath -d %{buildroot}%{tde_libdir}/kcm_*.so
 
 # fix executable-not-elf-or-script
 %__chmod 0644 %{buildroot}%{_datadir}/apps/guidance/pics/kdewinewizard.png
 
 # move python modules in %{python_sitearch}
-%__mkdir_p %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/SMBShareSelectDialog.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/SimpleCommandRunner.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/displayconfig.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/displayconfigwidgets.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/fuser.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/fuser_ui.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/grubconfig.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/ktimerdialog.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/mountconfig.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/servertestdialog.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/serviceconfig.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/sizeview.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/unixauthdb.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/userconfig.py %{buildroot}%{python_sitearch}/%{name}
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/wineconfig.py %{buildroot}%{python_sitearch}/%{name}
+%__mkdir_p %{buildroot}%{python_sitearch}/%{name} 
+%__mv -f %{buildroot}%{_datadir}/apps/guidance/*.py %{buildroot}%{python_sitearch}/%{name}
 
 # fix the link properly
 %__rm -f %{buildroot}%{_bindir}/*
@@ -162,37 +163,21 @@ chrpath -d %{buildroot}%{tde_libdir}/kcm_*.so.*
 %__ln_s -f %{python_sitearch}/%{name}/grubconfig.py %{buildroot}%{_bindir}/grubconfig
 
 # put this here since gnome people probably don't want it by default
-%__ln_s -f %{_python_sitearch}/guidance-backends-trinity/displayconfig-restore.py %{buildroot}%{_bindir}/displayconfig-restore
+%__ln_s -f %{_python_sitearch}/%{name}/displayconfig-restore.py %{buildroot}%{_bindir}/displayconfig-restore
 
 # fix script-not-executable
 %__chmod 0755 %{buildroot}%{python_sitearch}/%{name}/fuser.py
 %__chmod 0755 %{buildroot}%{python_sitearch}/%{name}/grubconfig.py
-
-# Moves libraries
-%__mv -f %{buildroot}%{tde_libdir}/*.so.* %{buildroot}%{_libdir}
-%__mv -f %{buildroot}%{tde_libdir}/*.so %{buildroot}%{_libdir}
-%__mv -f %{buildroot}%{tde_libdir}/*.la %{buildroot}%{_libdir}
-%__mv -f %{buildroot}%{tde_libdir}/*.a %{buildroot}%{_libdir}
 
 %__mv -f %{buildroot}%{_datadir}/applications/kde/displayconfig.desktop %{buildroot}%{_datadir}/applications/kde/guidance-displayconfig.desktop
 
 ##### BACKENDS INSTALLATION
 # install displayconfig-hwprobe.py script
 %__install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
-	%{buildroot}%{python_sitearch}/trinity-guidance-backends/displayconfig-hwprobe.py
+	%{buildroot}%{python_sitearch}/%{name}/displayconfig-hwprobe.py
 
 %__mv -f %{buildroot}%{_libdir}/python*/site-packages/ixf86misc.so %{buildroot}%{python_sitearch}
-%__mv -f %{buildroot}%{_libdir}/python*/site-packages/xf86misc.py* %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/MicroHAL.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/ScanPCI.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/infimport.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/displayconfigabstraction.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/displayconfig-restore.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/drivedetect.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/execwithcapture.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/wineread.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/winewrite.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/xorgconfig.py %{buildroot}%{python_sitearch}/trinity-guidance-backends
+%__mv -f %{buildroot}%{_libdir}/python*/site-packages/xf86misc.py* %{buildroot}%{python_sitearch}/%{name}
 
 %__rm -f %{buildroot}%{_datadir}/apps/guidance/MonitorsDB
 %__ln_s -f /usr/share/hwdata/MonitorsDB %{buildroot}%{_datadir}/apps/guidance/MonitorsDB
@@ -211,27 +196,21 @@ chrpath -d %{buildroot}%{tde_libdir}/kcm_*.so.*
 		%{buildroot}%{_datadir}/autostart/guidance-power-manager.desktop
 
 # copy python modules in PYSUPPORT_PATH
-%__mkdir_p %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
-%__cp %{buildroot}%{python_sitearch}/trinity-guidance-backends/MicroHAL.py %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/guidance-power-manager.py %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/powermanage.py %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/gpmhelper.py %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
-%__mv -f %{buildroot}%{_datadir}/apps/guidance/powermanager_ui.py %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
-%__cp powermanager/guidance_power_manager_ui.py %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
-%__cp powermanager/notify.py %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
-%__cp powermanager/tooltip.py %{buildroot}%{python_sitearch}/trinity-guidance-powermanager
+%__cp powermanager/guidance_power_manager_ui.py %{buildroot}%{python_sitearch}/%{name}
+%__cp powermanager/notify.py %{buildroot}%{python_sitearch}/%{name}
+%__cp powermanager/tooltip.py %{buildroot}%{python_sitearch}/%{name}
 
 # generate guidance-power-manager script
 cat <<EOF >%{buildroot}%{_bindir}/guidance-power-manager
 #!/bin/sh
-export PYTHONPATH=%{python_sitearch}/trinity-guidance-backends
-%{python_sitearch}/trinity-guidance-powermanager/guidance-power-manager.py &
+export PYTHONPATH=%{python_sitearch}/%{name}
+%{python_sitearch}/%{name}/guidance-power-manager.py &
 EOF
 chmod +x %{buildroot}%{_bindir}/guidance-power-manager
 
 # fix script-not-executable
-chmod 0755 %{buildroot}%{python_sitearch}/trinity-guidance-powermanager/powermanage.py
-chmod 0755 %{buildroot}%{python_sitearch}/trinity-guidance-powermanager/gpmhelper.py
+chmod 0755 %{buildroot}%{python_sitearch}/%{name}/powermanage.py
+chmod 0755 %{buildroot}%{python_sitearch}/%{name}/gpmhelper.py
 
 
 # Replace all '#!' calls to python with /usr/bin/python
@@ -249,6 +228,7 @@ for i in `find %{buildroot} -type f`; do
 done
 
 find %{buildroot} -name "*.egg-info" -exec rm -f {} \;
+#find %{buildroot}%{_libdir} -name "*.a" -exec rm -f {} \;
 
 
 %clean
@@ -274,7 +254,7 @@ touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 
-%files -f %{kdecomp}.lang
+%files
 %defattr(-,root,root,-)
 %doc ChangeLog COPYING README TODO
 %{_bindir}/displayconfig
@@ -284,22 +264,47 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_bindir}/serviceconfig
 %{_bindir}/userconfig
 %{_bindir}/wineconfig
-%{_libdir}/*.so.*
-%{_libdir}/*.so
-%{_libdir}/*.la
-%{_libdir}/*.a
+%attr(0644,root,root) %{tde_libdir}/*.so
+%attr(0644,root,root) %{tde_libdir}/*.la
 %{_datadir}/apps/guidance
-%{python_sitearch}/trinity-guidance
 %{_datadir}/applications/kde/*.desktop
-%{tde_docdir}/HTML/en/guidance
 %{_datadir}/icons/crystalsvg/*/*/*.png
-%exclude %{_datadir}/icons/crystalsvg/*/*/*.svg
-#%{python_sitearch}/guidance-*.egg-info
+%{_datadir}/icons/crystalsvg/*/*/*.svg
+%{tde_docdir}/HTML/en/guidance
 %exclude /etc/X11/Xsession.d/40guidance-displayconfig_restore
+%{python_sitearch}/%{name}/SMBShareSelectDialog.py 
+%{python_sitearch}/%{name}/SimpleCommandRunner.py
+%{python_sitearch}/%{name}/fuser.py
+%{python_sitearch}/%{name}/fuser_ui.py
+%{python_sitearch}/%{name}/grubconfig.py
+%{python_sitearch}/%{name}/ktimerdialog.py
+%{python_sitearch}/%{name}/mountconfig.py
+%{python_sitearch}/%{name}/servertestdialog.py
+%{python_sitearch}/%{name}/serviceconfig.py
+%{python_sitearch}/%{name}/sizeview.py
+%{python_sitearch}/%{name}/unixauthdb.py
+%{python_sitearch}/%{name}/userconfig.py
+%{python_sitearch}/%{name}/wineconfig.py
+
+# Removes obsolete display config manager
+%exclude %{tde_libdir}/kcm_displayconfig.*
+%exclude %{python_sitearch}/%{name}/displayconfig.py
+%exclude %{python_sitearch}/%{name}/displayconfigwidgets.py 
 
 %files -n trinity-guidance-backends
 %defattr(-,root,root,-)
-%{python_sitearch}/trinity-guidance-backends
+%{python_sitearch}/%{name}/MicroHAL.py
+%{python_sitearch}/%{name}/ScanPCI.py
+%{python_sitearch}/%{name}/infimport.py
+%{python_sitearch}/%{name}/displayconfigabstraction.py
+%{python_sitearch}/%{name}/displayconfig-hwprobe.py
+%{python_sitearch}/%{name}/displayconfig-restore.py
+%{python_sitearch}/%{name}/drivedetect.py
+%{python_sitearch}/%{name}/execwithcapture.py
+%{python_sitearch}/%{name}/wineread.py
+%{python_sitearch}/%{name}/winewrite.py
+%{python_sitearch}/%{name}/xf86misc.py
+%{python_sitearch}/%{name}/xorgconfig.py
 %{python_sitearch}/ixf86misc.so
 %{_datadir}/apps/guidance/vesamodes
 %{_datadir}/apps/guidance/extramodes
@@ -309,21 +314,37 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/apps/guidance/MonitorsDB
 
 
+
 %files powermanager
 %defattr(-,root,root,-)
 %{_bindir}/guidance-power-manager
-%{python_sitearch}/trinity-guidance-powermanager
+%{python_sitearch}/%{name}/MicroHAL.py
+%{python_sitearch}/%{name}/guidance-power-manager.py
+%{python_sitearch}/%{name}/powermanage.py
+%{python_sitearch}/%{name}/gpmhelper.py
+%{python_sitearch}/%{name}/powermanager_ui.py
+%{python_sitearch}/%{name}/guidance_power_manager_ui.py
+%{python_sitearch}/%{name}/notify.py
+%{python_sitearch}/%{name}/tooltip.py
 %{_datadir}/icons/hicolor/22x22/apps/power-manager.png
 %{_datadir}/apps/guidance/pics/ac-adapter.png
 %{_datadir}/apps/guidance/pics/battery*.png
 %{_datadir}/apps/guidance/pics/processor.png
 %{_datadir}/autostart/guidance-power-manager.desktop
 
+%exclude %{python_sitearch}/%{name}/*.pyc
+%exclude %{python_sitearch}/%{name}/*.pyo
+
+
 
 %Changelog
+* Fri May 11 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-3
+- Fix Python search dir
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-2
 - Rebuilt for Fedora 17
 - Fix post and postun
+- Fix library locations
 
 * Thu Dec 01 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
