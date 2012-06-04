@@ -1,0 +1,20 @@
+commit c48253af15badc7a81db7ea2f22465405a897110
+Author: Slávek Banko <slavek.banko@axis.cz>
+Date:   1337752740 +0200
+
+    Fix knotes to not close notes during saving session.
+    This closes Bug 987
+
+diff --git a/knotes/knote.cpp b/knotes/knote.cpp
+index 08c24b8..e68c8ca 100644
+--- a/knotes/knote.cpp
++++ b/knotes/knote.cpp
+@@ -1267,6 +1267,8 @@ void KNote::resizeEvent( TQResizeEvent *qre )
+ 
+ void KNote::closeEvent( TQCloseEvent *event )
+ {
++    if(kapp->sessionSaving())
++        return;
+     event->ignore(); //We don't want to close (and delete the widget). Just hide it
+     slotClose();
+ }

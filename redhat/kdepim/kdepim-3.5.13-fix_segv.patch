@@ -1,0 +1,33 @@
+--- kdepim/kioslaves/imap4/imapparser.cc.segv	2012-05-29 20:22:52.187840588 +0200
++++ kdepim/kioslaves/imap4/imapparser.cc	2012-05-29 20:29:30.723545443 +0200
+@@ -1354,10 +1354,10 @@
+         label = parseOneWordC (inWords);
+       }
+ 
+-      if (inWords[0] == ')')
++      if (!inWords.isEmpty () && inWords[0] == ')')
+         inWords.pos++;
+     }
+-    if (inWords[0] == ']')
++    if (!inWords.isEmpty () && inWords[0] == ']')
+       inWords.pos++;
+     skipWS (inWords);
+ 
+@@ -1479,6 +1479,7 @@
+     {
+       TQCString word = parseLiteralC(inWords, false, true);
+ 
++      if(!word.isEmpty()) {
+       switch (word[0])
+       {
+       case 'E':
+@@ -1602,6 +1603,9 @@
+         parseLiteralC(inWords);
+         break;
+       }
++      } else {
++        parseLiteralC(inWords);
++	  }
+     }
+   }
+ 

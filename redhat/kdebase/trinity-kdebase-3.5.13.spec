@@ -130,10 +130,22 @@ Patch50:	kdebase-3.5.13-engage_lock_in_near_real_time.patch
 Patch51:	kdebase-3.5.13-engage_lock_in_near_real_time_continued.patch
 ## [kdebase/kdesktop/lock] Fix desktop lock failure due to race condition within signal handler between qt and xcb [Commit #67a3a8f3]
 Patch52:	kdebase-3.5.13-fix_lock_failure.patch
-## [kdebase/kioslave] Temporary fix for a probable race condition on some systems. [Bug #760]
+## [kdebase/kioslave] Temporary fix for a probable race condition on some systems. [Bug #760] [Commit #d41f5217]
 Patch53:	kdebase-3.5.13-fix_race_condition.patch
 ## [kdebase] Adds USB default mount options in control panel [Bug #986]
 Patch54:	kdebase-3.5.13-add_usbstorage_panel.patch
+## [tdebase] Add the ability to reorder documents in kate [Commit #46a657f7]
+Patch55:	kdebase-3.5.13-add_reorder_documents_in_kate.patch
+## [tdebase] Add drag and drop to kate file list in manual mode [Commit #b0fa10df]
+Patch56:	kdebase-3.5.13-add_drag_drop_to_kate_file_list.patch
+## [tdebase] Disable keyboard shortcuts for file location moving, as they did not work properly 
+##  and have very little practical use [Commit #9a948c1a]
+Patch57:	kdebase-3.5.13-disable_keyboard_shortcuts_for_file_location_moving.patch
+## [tdebase] Fix KHTML smooth scrolling control center option [Bug #1001] [Commit #b45b4bd7]
+Patch58:	kdebase-3.5.13-fix_khtml_smooth_scrolling.patch
+## [tdebase] Fix fancy logout not allowing interaction with save dialogs [Bug #922]
+##   Fix desktop wallpaper export failing when triggered by krootbacking or ksmserver and konsole or kdesktop_lock not previously loaded [Commit #d2f8fca9]
+Patch59:	kdebase-3.5.13-fix_fancy_logout.patch
 
 ### FEDORA / RHEL distribution-specific settings ###
 
@@ -192,6 +204,7 @@ BuildRequires:	cmake >= 2.8
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	trinity-kdelibs-devel
+BuildRequires:	gcc-c++ make
 BuildRequires:	qt%{?_qt_suffix}-devel
 BuildRequires:	openssl-devel
 BuildRequires:	avahi-devel avahi-qt3-devel
@@ -220,6 +233,8 @@ BuildRequires:	libXdamage-devel
 BuildRequires:	xorg-x11-font-utils
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	nas-devel
+BuildRequires:	pcre-devel
+BuildRequires:	perl-Digest-MD5
 
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires:	libudev-devel
@@ -380,6 +395,11 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %patch52 -p1
 %patch53 -p1
 %patch54 -p1
+%patch55 -p1
+%patch56 -p1
+%patch57 -p1
+%patch58 -p1
+%patch59 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -768,6 +788,14 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %changelog
 * Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-22
 - Adds panel to choose default mounting options for removable storage [Bug #986]
+- Add the ability to reorder documents in kate [Commit #46a657f7]
+- Add drag and drop to kate file list in manual mode [Commit #b0fa10df]
+- Disable keyboard shortcuts for file location moving, as they did not work properly 
+  and have very little practical use [Commit #9a948c1a]
+- Fix KHTML smooth scrolling control center option [Bug #1001] [Commit #b45b4bd7]
+- Fix fancy logout not allowing interaction with save dialogs [Bug #922]
+  Fix desktop wallpaper export failing when triggered by krootbacking or ksmserver and konsole or 
+  kdesktop_lock not previously loaded [Commit #d2f8fca9]
 
 * Mon Apr 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-21
 - Commit the rest of 8d521d0b, not merged due to GIT glitch [Commit #49526413]
@@ -777,7 +805,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 - Start minimal dcop system to support twin in tdm [Commit #66a19439]
 - Update lock process to engage the lock in near real time [Commit #8d521d0b]
 - Fix desktop lock failure due to race condition within signal handler between qt and xcb [Commit #67a3a8f3]
-- Temporary fix for a probable race condition on some systems. [Bug #760]
+- Temporary fix for a probable race condition on some systems. [Bug #760] [Commit #d41f5217]
 
 * Tue Apr 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-19
 - Build for Fedora 17

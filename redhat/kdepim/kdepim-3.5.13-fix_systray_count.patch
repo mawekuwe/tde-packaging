@@ -1,0 +1,20 @@
+commit 40c435e566bcfddd3fd69b55efec786b1162a8be
+Author: Slávek Banko <slavek.banko@axis.cz>
+Date:   1337997785 +0200
+
+    Fix KMail counting of unread messages in the system tray icon
+    Thanks to Francois Andriot
+
+diff --git a/kmail/kmsystemtray.cpp b/kmail/kmsystemtray.cpp
+index 001453a..d36bd3e 100644
+--- a/kmail/kmsystemtray.cpp
++++ b/kmail/kmsystemtray.cpp
+@@ -493,7 +493,7 @@ void KMSystemTray::updateNewMessages()
+    * our last known version, and adjust mCount with that difference */
+   else
+   {
+-    int diff = unread - it.data();
++    int diff = unread - unread_it.data();
+     mCount += diff;
+   }
+ 

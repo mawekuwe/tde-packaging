@@ -1,11 +1,13 @@
 #!/bin/bash
 
 cd "$( dirname "$0" )"
+ARGS=""
 
 while [ $# -gt 0 ]; do
 	case "$1" in
-		"--auto") AUTO=1;;
-		"--version") REQVERSION="$2"; shift;;
+		"--auto"|"-a") AUTO=1;;
+		"--version"|"-v") REQVERSION="$2"; shift;;
+		"--"*) ARGS="${ARGS} $1";;
 		*) COMP="${1%%/}";;
 	esac
 	shift
@@ -110,6 +112,7 @@ LOGFILE=/tmp/log.${COMP##*/}
 set -x
 (
 rpmbuild -ba \
+	${ARGS} \
 	--define "_sourcedir ${PWD}/${COMP}" \
 	--define "_prefix ${PREFIX:-/opt/trinity}" \
 	--define "version ${VERSION:-3.5.13}" \

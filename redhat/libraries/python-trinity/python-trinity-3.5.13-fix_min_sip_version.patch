@@ -1,0 +1,11 @@
+--- python-trinity/configure.py.ORI	2012-05-12 10:52:21.457246722 +0200
++++ python-trinity/configure.py	2012-05-12 10:52:43.558700741 +0200
+@@ -74,7 +74,7 @@
+ kde_version_extra  = None
+ kde_max_version    = 0x030503
+ 
+-sip_min_v4_version = 0x040900
++sip_min_v4_version = 0x040400
+ qt_min_version     = 0x030200
+ pyqt_min_version   = 0x031000
+ 

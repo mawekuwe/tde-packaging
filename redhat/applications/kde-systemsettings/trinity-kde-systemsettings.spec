@@ -1,13 +1,11 @@
 # Default version for this component
 %define kdecomp kde-systemsettings
-%define version 0.0svn20070312
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
-%define _sysconfdir %{_prefix}/etc
+%define _docdir %{_datadir}/doc
+#define _sysconfdir %{_prefix}/etc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -19,8 +17,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-systemsettings
 Summary:	easy to use control centre for TDE
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.0svn20070312
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -40,6 +38,7 @@ BuildRequires: trinity-kdelibs-devel
 BuildRequires: trinity-kdebase-devel
 BuildRequires: desktop-file-utils
 
+Requires:	trinity-kde-guidance
 
 %description
 System preferences is a replacement for the TDE
@@ -47,7 +46,6 @@ Control Centre with an improved user interface.
 
 
 %prep
-unset QTDIR; . /etc/profile.d/qt.sh
 %setup -q -n applications/%{kdecomp}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
@@ -62,6 +60,7 @@ unset QTDIR; . /etc/profile.d/qt.sh
 
 
 %build
+unset QTDIR; . /etc/profile.d/qt.sh
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 

@@ -1,12 +1,9 @@
-# Default version for this component
-%define kdecomp python-trinity
-%define version 3.16.3
-%define release 2
+%{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -16,10 +13,10 @@ BuildRequires: autoconf automake libtool m4
 %define tde_libdir %{_libdir}/trinity
 
 
-Name:		%{kdecomp}
+Name:		python-trinity
 Summary:	Trinity bindings for Python [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.16.3
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -31,7 +28,7 @@ URL:		http://www.simonzone.com/software/pykdeextensions
 Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{kdecomp}-3.5.13.tar.gz
+Source0:	python-trinity-3.5.13.tar.gz
 
 ## RHEL/Fedora patches
 Patch1:		python-trinity-3.5.13-install_directories.patch
@@ -46,7 +43,14 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
 BuildRequires:	python
+
+%if 0%{?rhel} == 5
+BuildRequires:	trinity-sip-devel
+BuildRequires:	trinity-PyQt-devel
+%else
+BuildRequires:	sip-devel
 BuildRequires:	PyQt-devel
+%endif
 
 
 %description
@@ -77,7 +81,7 @@ tips and working code you can use to learn from.
 
 
 %prep
-%setup -q -n libraries/%{kdecomp}
+%setup -q -n libraries/python-trinity
 %patch1 -p1
 %patch2 -p1
 
@@ -89,10 +93,13 @@ tips and working code you can use to learn from.
 export PATH="%{_bindir}:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
+export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
+
 %__python configure.py \
 	-k %{_prefix} \
 	-L %{_lib} \
 	-v %{_datadir}/sip/trinity
+
 %__make %{_smp_mflags}
 
 %install
@@ -132,6 +139,7 @@ export PATH="%{_bindir}:${PATH}"
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.16.3-2
 - Rebuild for Fedora 17
 - Fix compilation with GCC 4.7
+- Fix compilation for RHEL 5
  
 * Fri Dec 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.16.3-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

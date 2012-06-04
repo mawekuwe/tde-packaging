@@ -1,0 +1,38 @@
+commit b45b4bd730da3196a4658773f7eef46e004a39d6
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1337063762 -0500
+
+    Fix KHTML smooth scrolling control center option
+    This closes Bug 1001
+    Thanks to Roman Savochenko for the patch!
+
+diff --git a/kcontrol/konqhtml/htmlopts.cpp b/kcontrol/konqhtml/htmlopts.cpp
+index 0b81421..9e199cb 100644
+--- a/kcontrol/konqhtml/htmlopts.cpp
++++ b/kcontrol/konqhtml/htmlopts.cpp
+@@ -299,7 +299,7 @@ void KMiscHTMLOptions::load( bool useDefaults )
+     KConfig kdeglobals("kdeglobals", true, false);
+     kdeglobals.setReadDefaults( useDefaults );
+ 	 kdeglobals.setGroup("KDE");
+-    bool smoothScrolling = kdeglobals.readBoolEntry("SmoothScroll", DEFAULT_SMOOTHSCROLL);
++    bool smoothScrolling = kdeglobals.readBoolEntry("SmoothScrolling", DEFAULT_SMOOTHSCROLL);
+     if (smoothScrolling)
+ 	m_pSmoothScrollingCombo->setCurrentItem( SmoothScrollingAlways );
+     else
+@@ -374,13 +374,13 @@ void KMiscHTMLOptions::save()
+     switch(m_pSmoothScrollingCombo->currentItem())
+     {
+       case SmoothScrollingAlways:
+-        kdeglobals.writeEntry( "SmoothScroll", true );
++        kdeglobals.writeEntry( "SmoothScrolling", true );
+         break;
+       case SmoothScrollingNever:
+-        kdeglobals.writeEntry( "SmoothScroll", false );
++        kdeglobals.writeEntry( "SmoothScrolling", false );
+         break;
+       // case SmoothScrollingWhenEfficient:
+-        // kdeglobals.writeEntry( "SmoothScroll", somethingelse );
++        // kdeglobals.writeEntry( "SmoothScrolling", somethingelse );
+         // break;
+     }
+     kdeglobals.sync();

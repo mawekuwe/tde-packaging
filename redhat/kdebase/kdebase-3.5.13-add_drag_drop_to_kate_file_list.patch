@@ -1,0 +1,33 @@
+commit b0fa10df6cf9ba377d6bfdef719efc8ca4fe57a0
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1337062555 -0500
+
+    Add drag and drop to kate file list in manual mode
+
+diff --git a/kate/app/katefilelist.cpp b/kate/app/katefilelist.cpp
+index bc5b0a1..bd2d087 100644
+--- a/kate/app/katefilelist.cpp
++++ b/kate/app/katefilelist.cpp
+@@ -102,7 +102,7 @@ KateFileList::KateFileList (KateMainWindow *main,
+   addColumn("Document Name");
+ 
+   setSelectionMode( TQListView::Single );
+-  setSorting( 0, true );
++  setSortType(KateFileList::sortByID);
+   setShowToolTips( false );
+ 
+   setupActions ();
+@@ -408,9 +408,13 @@ void KateFileList::setSortType (int s)
+   m_sort = s;
+   if (m_sort == KateFileList::sortManual) {
+     setSorting( -1, true );
++    setDragEnabled(true);
++    setAcceptDrops(true);
+   }
+   else {
+     setSorting( 0, true );
++    setDragEnabled(false);
++    setAcceptDrops(false);
+     updateSort ();
+   }
+ }

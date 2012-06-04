@@ -25,7 +25,7 @@
 Name:    trinity-kdemultimedia
 Summary: Multimedia applications for the Trinity Desktop Environment (TDE)
 Version: 3.5.13
-Release: 6%{?dist}%{?_variant}
+Release: 7%{?dist}%{?_variant}
 
 License: GPLv2
 Group:   Applications/Multimedia
@@ -53,7 +53,8 @@ Patch10:	kdemultimedia-3.5.13-fix_mmx_detection.patch
 Patch21:	kdemultimedia-3.5.13-remove_more_applications.patch
 # [tdemultimedia] Fix linear alphabet string errors [Commit #fd6afacf]
 Patch22:	kdemultimedia-3.5.13-fix_linear_alphabet.patch
-
+# [tdemultimedia] Fix kmix not autostarting in the user's session. [Bug #503]
+Patch23:	kdemultimedia-3.5.13-fix_kmix_autostart.patch
 
 Requires: %{name}-libs = %{version}-%{release}
 
@@ -135,8 +136,10 @@ Requires: %{name} = %{version}-%{release}
 %patch3 -p1 -b .xdg
 %patch5 -p1 -b .pthread
 %patch10 -p1
-%patch21 -p1
+%patch21 -p1 -b .moreapplications
 %patch22 -p1
+%patch23 -p1 -b .kmixautostart
+
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -416,6 +419,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %exclude %{_libdir}/libyafxplayer.so
 
 %changelog
+* Wed May 09 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
+- Fix kmix not autostarting in the user's session. [Bug #503]
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
 - Updates BuildRequires
 - Remove "More Applications" from TDE menu. [Commit #31e44a7b]

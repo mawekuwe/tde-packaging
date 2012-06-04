@@ -1,0 +1,61 @@
+--- kdepim/libkmime/kmime_util.cpp.addquotes	2012-05-28 22:58:31.257167175 +0200
++++ kdepim/libkmime/kmime_util.cpp	2012-05-29 20:02:19.679233274 +0200
+@@ -436,49 +436,26 @@
+ 
+ void removeQuots(TQCString &str)
+ {
+-  bool inQuote=false;
+-
+-  for (int i=0; i < (int)str.length(); i++) {
+-    if (str[i] == '"') {
+-      str.remove(i,1);
+-      i--;
+-      inQuote = !inQuote;
+-    } else {
+-      if (inQuote && (str[i] == '\\'))
+-        str.remove(i,1);
+-    }
+-  }
++  str.replace(TQRegExp("\\\""), "\"");
++  str.replace(TQRegExp("\\\\"), "\\");
+ }
+ 
+ 
+ void removeQuots(TQString &str)
+ {
+-  bool inQuote=false;
+-
+-  for (int i=0; i < (int)str.length(); i++) {
+-    if (str[i] == '"') {
+-      str.remove(i,1);
+-      i--;
+-      inQuote = !inQuote;
+-    } else {
+-      if (inQuote && (str[i] == '\\'))
+-        str.remove(i,1);
+-    }
+-  }
++  str.replace(TQRegExp("\\\""), "\"");
++  str.replace(TQRegExp("\\\\"), "\\");
+ }
+ 
+ 
+ void addQuotes(TQCString &str, bool forceQuotes)
+ {
+   bool needsQuotes=false;
+-  for (unsigned int i=0; i < str.length(); i++) {
+-    if (strchr("()<>@,.;:[]=\\\"",str[i])!=0)
+-      needsQuotes = true;
+-    if (str[i]=='\\' || str[i]=='\"') {
+-      str.insert(i, '\\');
+-      i++;
+-    }
+-  }
++  if ( TQString( str ) .contains( TQRegExp( TQString( "\"|\\\\|=|\\]|\\[|:|;|,|\\.|,|@|<|>|\\)|\\(" ) ) ) )
++    needsQuotes = true;
++
++  str.replace(TQRegExp("\\"), "\\\\");
++  str.replace(TQRegExp("\""), "\\\"");
+ 
+   if (needsQuotes || forceQuotes) {
+     str.insert(0,'\"');

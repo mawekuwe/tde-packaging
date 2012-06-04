@@ -1,0 +1,19 @@
+--- pykdeextensions/src/kdedistutils.py.libtool	2012-05-11 23:45:11.738618661 +0200
++++ pykdeextensions/src/kdedistutils.py	2012-05-11 23:46:11.469447204 +0200
+@@ -712,6 +712,7 @@
+             
+             # Build the 'stub' code.
+             cppcode = self.cpptemplate % {"moduledir": self.data_dir,
++                                            "extramodule": os.getenv("EXTRA_MODULE_DIR"),
+                                             "modulename": modulename,
+                                             "factoryfunction": factoryfunction,
+                                             "python_version": python_version}
+@@ -855,7 +856,7 @@
+ #include <sip.h>
+ 
+ #define MODULE_DIR "%(moduledir)s"
+-#define EXTRA_MODULE_DIR "/opt/trinity/share/python-support/kde-guidance-trinity"
++#define EXTRA_MODULE_DIR "%(extramodule)s"
+ #define EXTRA_MODULE_DIR_TWO "/opt/trinity/share/python-support/guidance-backends-trinity"
+ #define EXTRA_MODULE_DIR_THREE "/opt/trinity/share/python-support/kde-guidance-powermanager-trinity"
+ #define MODULE_NAME "%(modulename)s"

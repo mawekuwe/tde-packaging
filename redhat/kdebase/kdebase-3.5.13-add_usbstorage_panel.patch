@@ -2,14 +2,8 @@ Index: kdebase/kioslave/media/kcmodule/managermoduleview.ui
 ===================================================================
 --- kdebase/kioslave/media/kcmodule/managermoduleview.ui	(revision 604326)
 +++ kdebase/kioslave/media/kcmodule/managermoduleview.ui	(working copy)
-@@ -8,10 +8,13 @@
-         <rect>
-             <x>0</x>
-             <y>0</y>
--            <width>600</width>
--            <height>480</height>
-+            <width>340</width>
-+            <height>476</height>
+@@ -12,6 +12,9 @@
+             <height>480</height>
          </rect>
      </property>
 +    <property name="caption">
