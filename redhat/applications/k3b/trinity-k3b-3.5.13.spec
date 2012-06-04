@@ -1,13 +1,7 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 3
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -19,8 +13,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:    trinity-k3b
 Summary: CD/DVD burning application
-Version: %{?version}
-Release: %{?release}%{?dist}%{?_variant}
+Version: 3.5.13
+Release: 4%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -37,17 +31,14 @@ Group:   Applications/Archiving
 License: GPLv2+
 
 Source0: k3b-%{version}.tar.gz
-Source1: k3b-i18n-1.0.5.tar.bz2
 Source2: k3brc
 
 # Legacy RedHat / Fedora patches
 # manual bufsize (upstream?)
 Patch4: k3b-1.0.4-manualbufsize.patch
+
 # RHEL6: Fix K3B icon
 Patch106: trinity-k3b-icons.patch
-
-# TDE 3.5.13 library directory changed
-Patch107: k3b-i18n-trinity.patch
 
 # [k3b] Fix compilation with GCC 4.7 [Bug #958]
 Patch108:	k3b-3.5.13-fix_Range_r_3-gcc47.patch
@@ -70,9 +61,6 @@ BuildRequires: zlib-devel
 
 Obsoletes: k3b-extras < 0:1.0-1
 Provides:  k3b-extras = %{version}-%{release} 
-
-Obsoletes: %{name}-i18n
-Provides: %{name}-i18n
 
 Requires(post): coreutils
 Requires(postun): coreutils
@@ -117,12 +105,11 @@ Requires: %{name}-libs = %{version}-%{release}
 
 
 %prep
-%setup -q -a 1 -n applications/k3b
+%setup -q -a 0 -n applications/k3b
 
 # set in k3brc too 
 %patch4 -p1 -b .manualbufsize
 %patch106 -p1 -b .desktopfile
-%patch107
 %patch108 -p1
 
 
@@ -164,24 +151,16 @@ CXXFLAGS="%optflags -fno-strict-aliasing" \
 
 %__make %{?_smp_mflags}
 
-# Build for i18n tarball
-pushd k3b-i18n-1.0.5
-autoreconf
-%configure
-%__make %{?_smp_mflags}
-popd
-
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
-%__make install DESTDIR=%{buildroot} -C k3b-i18n-1.0.5
 %__install -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/config/k3brc
 
 # remove the .la files
 %__rm -f %{buildroot}%{_libdir}/libk3b*.la 
 
 # remove i18n for Plattdeutsch (Low Saxon)
-%__rm -fr %{buildroot}%{_datadir}/locale/nds
+#%__rm -fr %{buildroot}%{_datadir}/locale/nds
 
 
 %check
@@ -218,7 +197,7 @@ update-desktop-database -q &> /dev/null
 %{_bindir}/k3b
 %{tde_libdir}/*.so
 %{tde_libdir}/*.la
-%doc %{tde_docdir}/HTML/en/k3b
+%{tde_docdir}/HTML/en/k3b
 
 %files common
 %defattr(-,root,root,-)
@@ -247,6 +226,9 @@ update-desktop-database -q &> /dev/null
 
 
 %changelog
+* Wed May 09 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Removes i18 files (built separately)
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Rebuilt for Fedora 17
 - Fix compilation with GCC 4.7 [Bug #958]
