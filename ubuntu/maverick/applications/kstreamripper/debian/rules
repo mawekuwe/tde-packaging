@@ -2,11 +2,13 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 DEB_INSTALL_MANPAGES_kstreamripper:=debian/kstreamripper.1
 
+PATH := /opt/trinity/bin:$(PATH)
+
 build/kstreamripper::	
-	env PATH=/opt/trinity/bin:$(PATH) QTDIR=/usr/share/qt3 CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/tde DESTDIR=$(DEB_DESTDIR)/opt/trinity $(MAKE)
+	env PATH=/opt/trinity/bin:$(PATH) QTDIR=/usr/share/tqt3 CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/tde DESTDIR=$(DEB_DESTDIR)/opt/trinity $(MAKE)
 
 install/kstreamripper::
-	env PATH=/opt/trinity/bin:$(PATH) QTDIR=/usr/share/qt3 CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/tde $(MAKE) install
+	env PATH=/opt/trinity/bin:$(PATH) QTDIR=/usr/share/tqt3 CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/tde $(MAKE) install
 	mkdir -p $(DEB_DESTDIR)/opt/trinity/share/pixmaps/
 	mkdir -p $(DEB_DESTDIR)/opt/trinity/share/doc/tde/HTML/
 	install -m 644 ./src/hi32-app-kstreamripper.png \
