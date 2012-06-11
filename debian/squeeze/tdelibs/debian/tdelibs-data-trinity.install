@@ -3558,7 +3558,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/mimetypes/widget_doc.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/mimetypes/wordprocessing.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/mimetypes/zip.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/index.theme
-debian/tmp/opt/trinity/share/icons/default.kde
+debian/tmp/opt/trinity/share/icons/default.tde
 debian/tmp/opt/trinity/share/locale/all_languages
 debian/tmp/opt/trinity/share/mimelnk/*
 debian/tmp/opt/trinity/share/services/bmp.kimgio
