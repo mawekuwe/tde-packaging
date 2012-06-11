@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/ktimer
-debian/tmp/opt/trinity/share/applications/kde/ktimer.desktop
+debian/tmp/opt/trinity/share/applications/tde/ktimer.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/ktimer/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/ktimer/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/ktimer/index.docbook

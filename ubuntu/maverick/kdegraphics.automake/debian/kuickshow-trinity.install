@@ -2,7 +2,7 @@ debian/tmp/opt/trinity/bin/kuickshow
 debian/tmp/opt/trinity/lib/trinity/kuickshow.la
 debian/tmp/opt/trinity/lib/trinity/kuickshow.so
 debian/tmp/opt/trinity/lib/libtdeinit_kuickshow.so
-debian/tmp/opt/trinity/share/applications/kde/kuickshow.desktop
+debian/tmp/opt/trinity/share/applications/tde/kuickshow.desktop
 debian/tmp/opt/trinity/share/apps/kuickshow/im_palette.pal
 debian/tmp/opt/trinity/share/apps/kuickshow/pics/about.png
 debian/tmp/opt/trinity/share/apps/kuickshow/pics/calibrate.png

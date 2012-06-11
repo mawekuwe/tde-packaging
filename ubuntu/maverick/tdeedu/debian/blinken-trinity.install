@@ -1,5 +1,5 @@
 opt/trinity/bin/blinken
-/opt/trinity/share/applications/kde/blinken.desktop
+/opt/trinity/share/applications/tde/blinken.desktop
 /opt/trinity/share/apps/blinken/images
 /opt/trinity/share/apps/blinken/sounds
 /opt/trinity/share/config.kcfg/blinken.kcfg

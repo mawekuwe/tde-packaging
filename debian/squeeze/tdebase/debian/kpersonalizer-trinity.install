@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kpersonalizer
-debian/tmp/opt/trinity/share/applications/kde/kpersonalizer.desktop
+debian/tmp/opt/trinity/share/applications/tde/kpersonalizer.desktop
 debian/tmp/opt/trinity/share/applnk/System/kpersonalizer.desktop
 debian/tmp/opt/trinity/share/apps/kpersonalizer/pics/step1.png
 debian/tmp/opt/trinity/share/apps/kpersonalizer/pics/step2.png

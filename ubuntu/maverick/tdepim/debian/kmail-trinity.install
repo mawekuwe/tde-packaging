@@ -16,8 +16,8 @@
 /opt/trinity/lib/trinity/libkmailpart.so
 /opt/trinity/lib/libkmailprivate.la
 /opt/trinity/lib/libkmailprivate.so
-/opt/trinity/share/applications/kde/KMail.desktop
-/opt/trinity/share/applications/kde/kmail_view.desktop
+/opt/trinity/share/applications/tde/KMail.desktop
+/opt/trinity/share/applications/tde/kmail_view.desktop
 /opt/trinity/share/apps/kconf_update/kmail-3.1-update-new-mail-notification-settings.pl
 /opt/trinity/share/apps/kconf_update/kmail-3.1-use-UOID-for-identities.pl
 /opt/trinity/share/apps/kconf_update/kmail-3.1.4-dont-use-UOID-0-for-any-identity.pl

@@ -1,5 +1,5 @@
 debian/kword.xpm opt/trinity/share/pixmaps
-debian/tmp/opt/trinity/share/applications/kde/kword.desktop
+debian/tmp/opt/trinity/share/applications/tde/kword.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kword_konqi.desktop
 debian/tmp/opt/trinity/share/apps/kword
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kword/*.bz2

@@ -5,7 +5,7 @@
 /opt/trinity/share/icons/hicolor/32x32/apps/kpoker.png
 /opt/trinity/share/icons/hicolor/22x22/apps/kpoker.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kpoker.png
-/opt/trinity/share/applications/kde/kpoker.desktop
+/opt/trinity/share/applications/tde/kpoker.desktop
 /opt/trinity/games/kpoker
 /opt/trinity/share/doc/tde/HTML/en/kpoker/*
 ../icons/kpoker.xpm /opt/trinity/share/pixmaps

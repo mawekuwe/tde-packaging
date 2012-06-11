@@ -70,7 +70,7 @@ debian/tmp/opt/trinity/lib/libtaskmanager.so.1
 debian/tmp/opt/trinity/lib/libtaskmanager.so.1.0.0
 debian/tmp/opt/trinity/lib/libkickoffsearch_interfaces.so.0
 debian/tmp/opt/trinity/lib/libkickoffsearch_interfaces.so.0.0.0
-debian/tmp/opt/trinity/share/applications/kde/kcmkicker.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcmkicker.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kicker_config_arrangement.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kicker_config_hiding.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kicker_config_menus.desktop

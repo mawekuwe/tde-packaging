@@ -27,10 +27,10 @@ opt/trinity/share/doc/tde/HTML/en/guidance/installation.html
 opt/trinity/share/doc/tde/HTML/en/guidance/requirements.html
 opt/trinity/share/doc/tde/HTML/en/guidance/compilation.html
 opt/trinity/share/doc/tde/HTML/en/guidance/configuration.html
-opt/trinity/share/applications/kde/serviceconfig.desktop
-opt/trinity/share/applications/kde/userconfig.desktop
-opt/trinity/share/applications/kde/mountconfig.desktop
-opt/trinity/share/applications/kde/wineconfig.desktop
+opt/trinity/share/applications/tde/serviceconfig.desktop
+opt/trinity/share/applications/tde/userconfig.desktop
+opt/trinity/share/applications/tde/mountconfig.desktop
+opt/trinity/share/applications/tde/wineconfig.desktop
 opt/trinity/share/apps/guidance/pics/laserwarn.png
 opt/trinity/share/apps/guidance/pics/hi32-app-daemons.png
 opt/trinity/share/apps/guidance/pics/hi16-encrypted.png

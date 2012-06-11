@@ -26,7 +26,7 @@ debian/tmp/opt/trinity/lib/libkimageviewer.so.0
 debian/tmp/opt/trinity/lib/libkimageviewer.so.0.0.0
 debian/tmp/opt/trinity/lib/trinity/libphotobook.la
 debian/tmp/opt/trinity/lib/trinity/libphotobook.so
-debian/tmp/opt/trinity/share/applications/kde/kview.desktop
+debian/tmp/opt/trinity/share/applications/tde/kview.desktop
 debian/tmp/opt/trinity/share/apps/kview/kpartplugins/kvieweffects.desktop
 debian/tmp/opt/trinity/share/apps/kview/kpartplugins/kvieweffects.rc
 debian/tmp/opt/trinity/share/apps/kview/kpartplugins/kviewpresenter.desktop

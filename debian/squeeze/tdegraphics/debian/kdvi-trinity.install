@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kdvi
 debian/tmp/opt/trinity/lib/trinity/kdvipart.la
 debian/tmp/opt/trinity/lib/trinity/kdvipart.so
-debian/tmp/opt/trinity/share/applications/kde/kdvi.desktop
+debian/tmp/opt/trinity/share/applications/tde/kdvi.desktop
 debian/tmp/opt/trinity/share/apps/kdvi/kdvi_part.rc
 debian/tmp/opt/trinity/share/apps/kdvi/kviewshell.rc
 debian/tmp/opt/trinity/share/apps/kdvi/tips

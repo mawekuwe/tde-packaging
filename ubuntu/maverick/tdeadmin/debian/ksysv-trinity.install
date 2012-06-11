@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/ksysv
-debian/tmp/opt/trinity/share/applications/kde/ksysv.desktop
+debian/tmp/opt/trinity/share/applications/tde/ksysv.desktop
 debian/tmp/opt/trinity/share/apps/ksysv/ksysvui.rc
 debian/tmp/opt/trinity/share/apps/ksysv/pics/ksysv_locked.png
 debian/tmp/opt/trinity/share/apps/ksysv/pics/ksysv_restart.png

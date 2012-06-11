@@ -1,6 +1,6 @@
 /opt/trinity/bin/kalarm
 /opt/trinity/bin/kalarmd
-/opt/trinity/share/applications/kde/kalarm.desktop
+/opt/trinity/share/applications/tde/kalarm.desktop
 /opt/trinity/share/applnk/.hidden/kalarmd.desktop
 /opt/trinity/share/applnk/Applications/kalarm.desktop
 /opt/trinity/share/apps/kalarm

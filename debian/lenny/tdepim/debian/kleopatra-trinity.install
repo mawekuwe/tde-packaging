@@ -2,7 +2,7 @@
 /opt/trinity/bin/kwatchgnupg
 /opt/trinity/lib/trinity/kcm_kleopatra.la
 /opt/trinity/lib/trinity/kcm_kleopatra.so
-/opt/trinity/share/applications/kde/kleopatra_import.desktop
+/opt/trinity/share/applications/tde/kleopatra_import.desktop
 /opt/trinity/share/apps/kleopatra
 /opt/trinity/share/apps/kwatchgnupg
 /opt/trinity/share/doc/tde/HTML/en/kleopatra

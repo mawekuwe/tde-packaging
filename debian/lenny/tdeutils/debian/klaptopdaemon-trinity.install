@@ -6,8 +6,8 @@ debian/tmp/opt/trinity/lib/trinity/kded_klaptopdaemon.la
 debian/tmp/opt/trinity/lib/trinity/kded_klaptopdaemon.so
 debian/tmp/opt/trinity/lib/libkcmlaptop.so.0
 debian/tmp/opt/trinity/lib/libkcmlaptop.so.0.0.0
-debian/tmp/opt/trinity/share/applications/kde/laptop.desktop
-debian/tmp/opt/trinity/share/applications/kde/pcmcia.desktop
+debian/tmp/opt/trinity/share/applications/tde/laptop.desktop
+debian/tmp/opt/trinity/share/applications/tde/pcmcia.desktop
 debian/tmp/opt/trinity/share/apps/klaptopdaemon/icons/crystalsvg/16x16/actions/alt2_laptop_nobattery.png
 debian/tmp/opt/trinity/share/apps/klaptopdaemon/icons/crystalsvg/16x16/actions/alt2_laptop_nocharge.png
 debian/tmp/opt/trinity/share/apps/klaptopdaemon/icons/crystalsvg/16x16/actions/alt2_laptop_power.png

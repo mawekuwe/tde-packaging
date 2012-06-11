@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kdat
-debian/tmp/opt/trinity/share/applications/kde/kdat.desktop
+debian/tmp/opt/trinity/share/applications/tde/kdat.desktop
 debian/tmp/opt/trinity/share/apps/kdat/icons/hicolor/16x16/apps/kdat.png
 debian/tmp/opt/trinity/share/apps/kdat/icons/crystalsvg/16x16/apps/kdat_archive.png
 debian/tmp/opt/trinity/share/apps/kdat/icons/crystalsvg/16x16/apps/kdat_backup.png

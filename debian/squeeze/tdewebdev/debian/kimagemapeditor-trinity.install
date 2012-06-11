@@ -3,7 +3,7 @@ debian/icons/kimagemapeditor.xpm	/opt/trinity/share/pixmaps
 debian/tmp/opt/trinity/bin/kimagemapeditor
 debian/tmp/opt/trinity/lib/trinity/libkimagemapeditor.la
 debian/tmp/opt/trinity/lib/trinity/libkimagemapeditor.so
-debian/tmp/opt/trinity/share/applications/kde/kimagemapeditor.desktop
+debian/tmp/opt/trinity/share/applications/tde/kimagemapeditor.desktop
 debian/tmp/opt/trinity/share/apps/kimagemapeditor
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kimagemapeditor.png
 debian/tmp/opt/trinity/share/apps/kimagemapeditor/icons/hicolor/22x22/actions/addpoint.png

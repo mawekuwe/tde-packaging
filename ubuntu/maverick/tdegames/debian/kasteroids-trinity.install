@@ -5,7 +5,7 @@
 /opt/trinity/share/icons/hicolor/32x32/apps/kasteroids.png
 /opt/trinity/share/icons/hicolor/22x22/apps/kasteroids.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kasteroids.png
-/opt/trinity/share/applications/kde/kasteroids.desktop
+/opt/trinity/share/applications/tde/kasteroids.desktop
 /opt/trinity/share/apps/kasteroids/*
 /opt/trinity/share/config.kcfg/kasteroids.kcfg
 /opt/trinity/share/doc/tde/HTML/en/kasteroids/*

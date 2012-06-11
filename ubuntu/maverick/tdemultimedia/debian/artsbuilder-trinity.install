@@ -141,8 +141,8 @@ debian/tmp/opt/trinity/lib/mcop/Arts/Synth_XFADE.mcopclass
 debian/tmp/opt/trinity/lib/mcop/Arts/VBox.mcopclass
 debian/tmp/opt/trinity/lib/mcop/Arts/VoiceRemovalGuiFactory.mcopclass
 debian/tmp/opt/trinity/lib/mcop/Arts/Widget.mcopclass
-debian/tmp/opt/trinity/share/applications/kde/artsbuilder.desktop
-debian/tmp/opt/trinity/share/applications/kde/artscontrol.desktop
+debian/tmp/opt/trinity/share/applications/tde/artsbuilder.desktop
+debian/tmp/opt/trinity/share/applications/tde/artscontrol.desktop
 debian/tmp/opt/trinity/share/apps/artsbuilder/artsbuilderui.rc
 debian/tmp/opt/trinity/share/apps/artsbuilder/examples/example_adsr.arts
 debian/tmp/opt/trinity/share/apps/artsbuilder/examples/example_atan_saturate.arts

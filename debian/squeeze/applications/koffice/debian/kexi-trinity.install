@@ -61,7 +61,7 @@ debian/tmp/opt/trinity/lib/libkexisql2.so.*
 debian/tmp/opt/trinity/lib/libkexisql3.so.*
 debian/tmp/opt/trinity/lib/libkexiutils.so.*
 debian/tmp/opt/trinity/lib/libkformdesigner.so.*
-debian/tmp/opt/trinity/share/applications/kde/kexi.desktop
+debian/tmp/opt/trinity/share/applications/tde/kexi.desktop
 debian/tmp/opt/trinity/share/apps/kexi/examples/Simple_Database.kexi
 debian/tmp/opt/trinity/share/apps/kexi/icons/crystalsvg/128x128/actions/form_action.png
 debian/tmp/opt/trinity/share/apps/kexi/icons/crystalsvg/16x16/actions/add_field.png

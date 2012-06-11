@@ -3,8 +3,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_wifi.la
 debian/tmp/opt/trinity/lib/trinity/kcm_wifi.so
 debian/tmp/opt/trinity/lib/libkwireless.la
 debian/tmp/opt/trinity/lib/libkwireless.so
-debian/tmp/opt/trinity/share/applications/kde/kcmwifi.desktop
-debian/tmp/opt/trinity/share/applications/kde/kwifimanager.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcmwifi.desktop
+debian/tmp/opt/trinity/share/applications/tde/kwifimanager.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/kwireless.desktop
 debian/tmp/opt/trinity/share/apps/kwifimanager/kwifimanagerui.rc
 debian/tmp/opt/trinity/share/apps/kwifimanager/locations/DE_BW_Karlsruhe_University.loc

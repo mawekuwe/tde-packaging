@@ -1,6 +1,6 @@
 etc/trinity/khangmanrc
 opt/trinity/bin/khangman
-/opt/trinity/share/applications/kde/khangman.desktop
+/opt/trinity/share/applications/tde/khangman.desktop
 /opt/trinity/share/apps/khangman/data
 /opt/trinity/share/apps/khangman/khangmanui.rc
 /opt/trinity/share/apps/khangman/pics

@@ -1,5 +1,5 @@
 opt/trinity/bin/klatin
-/opt/trinity/share/applications/kde/klatin.desktop
+/opt/trinity/share/applications/tde/klatin.desktop
 /opt/trinity/share/apps/klatin
 /opt/trinity/share/config.kcfg/klatin.kcfg
 /opt/trinity/share/doc/tde/HTML/en/klatin/*.bz2

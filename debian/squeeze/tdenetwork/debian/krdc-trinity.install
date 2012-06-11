@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/krdc
-debian/tmp/opt/trinity/share/applications/kde/krdc.desktop
+debian/tmp/opt/trinity/share/applications/tde/krdc.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/smb2rdc.desktop
 debian/tmp/opt/trinity/share/apps/krdc/pics/close.png
 debian/tmp/opt/trinity/share/apps/krdc/pics/iconify.png

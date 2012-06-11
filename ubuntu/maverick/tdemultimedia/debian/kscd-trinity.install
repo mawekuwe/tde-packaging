@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kscd
 debian/tmp/opt/trinity/bin/workman2cddb.pl
-debian/tmp/opt/trinity/share/applications/kde/kscd.desktop
+debian/tmp/opt/trinity/share/applications/tde/kscd.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/audiocd_play.desktop
 debian/tmp/opt/trinity/share/apps/kscd/icons/crystalsvg/22x22/actions/cdsmall.png
 debian/tmp/opt/trinity/share/apps/profiles/kscd.profile.xml

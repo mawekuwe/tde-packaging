@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kppp
 debian/tmp/opt/trinity/bin/kppplogview
-debian/tmp/opt/trinity/share/applications/kde/Kppp.desktop
-debian/tmp/opt/trinity/share/applications/kde/kppplogview.desktop
+debian/tmp/opt/trinity/share/applications/tde/Kppp.desktop
+debian/tmp/opt/trinity/share/applications/tde/kppplogview.desktop
 debian/tmp/opt/trinity/share/apps/kppp/pics/dock_both.png
 debian/tmp/opt/trinity/share/apps/kppp/pics/dock_left.png
 debian/tmp/opt/trinity/share/apps/kppp/pics/dock_none.png

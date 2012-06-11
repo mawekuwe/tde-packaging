@@ -5,7 +5,7 @@
 /opt/trinity/share/icons/hicolor/48x48/apps/kenolaba.png
 /opt/trinity/share/icons/hicolor/64x64/apps/kenolaba.png
 /opt/trinity/share/icons/hicolor/128x128/apps/kenolaba.png
-/opt/trinity/share/applications/kde/kenolaba.desktop
+/opt/trinity/share/applications/tde/kenolaba.desktop
 /opt/trinity/games/kenolaba
 /opt/trinity/share/doc/tde/HTML/en/kenolaba/*
 ../icons/kenolaba.xpm /opt/trinity/share/pixmaps

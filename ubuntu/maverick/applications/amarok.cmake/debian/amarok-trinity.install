@@ -1,4 +1,4 @@
-debian/tmp/opt/trinity/share/applications/kde/amarok.desktop
+debian/tmp/opt/trinity/share/applications/tde/amarok.desktop
 debian/tmp/opt/trinity/share/services/amarokitpc.protocol
 debian/tmp/opt/trinity/share/services/amaroklastfm.protocol
 debian/tmp/opt/trinity/share/services/amarokpcast.protocol

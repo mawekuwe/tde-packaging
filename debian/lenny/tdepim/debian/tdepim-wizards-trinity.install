@@ -18,7 +18,7 @@
 /opt/trinity/lib/trinity/libscalixwizard.so
 /opt/trinity/lib/trinity/libsloxwizard.la
 /opt/trinity/lib/trinity/libsloxwizard.so
-/opt/trinity/share/applications/kde/groupwarewizard.desktop
+/opt/trinity/share/applications/tde/groupwarewizard.desktop
 /opt/trinity/share/config.kcfg/egroupware.kcfg
 /opt/trinity/share/config.kcfg/groupwise.kcfg
 /opt/trinity/share/config.kcfg/kolab.kcfg

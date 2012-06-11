@@ -2,7 +2,7 @@ debian/tmp/opt/trinity/bin/kxsldbg
 debian/tmp/opt/trinity/bin/xsldbg
 debian/tmp/opt/trinity/lib/trinity/libkxsldbgpart.la
 debian/tmp/opt/trinity/lib/trinity/libkxsldbgpart.so
-debian/tmp/opt/trinity/share/applications/kde/kxsldbg.desktop
+debian/tmp/opt/trinity/share/applications/tde/kxsldbg.desktop
 debian/tmp/opt/trinity/share/apps/kxsldbg
 debian/tmp/opt/trinity/share/apps/kxsldbgpart
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kxsldbg/*.bz2

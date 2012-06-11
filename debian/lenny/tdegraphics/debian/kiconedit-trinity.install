@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kiconedit
-debian/tmp/opt/trinity/share/applications/kde/kiconedit.desktop
+debian/tmp/opt/trinity/share/applications/tde/kiconedit.desktop
 debian/tmp/opt/trinity/share/apps/kiconedit/kiconeditui.rc
 debian/tmp/opt/trinity/share/apps/kiconedit/pics/aim-cursor.xpm
 debian/tmp/opt/trinity/share/apps/kiconedit/pics/aim.png

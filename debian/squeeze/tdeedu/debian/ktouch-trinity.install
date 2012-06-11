@@ -1,5 +1,5 @@
 opt/trinity/bin/ktouch
-/opt/trinity/share/applications/kde/ktouch.desktop
+/opt/trinity/share/applications/tde/ktouch.desktop
 /opt/trinity/share/apps/ktouch
 /opt/trinity/share/config.kcfg/ktouch.kcfg
 /opt/trinity/share/doc/tde/HTML/en/ktouch/common

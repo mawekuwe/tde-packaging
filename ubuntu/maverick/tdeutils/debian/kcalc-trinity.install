@@ -2,7 +2,7 @@ debian/tmp/opt/trinity/bin/kcalc
 debian/tmp/opt/trinity/lib/trinity/kcalc.la
 debian/tmp/opt/trinity/lib/trinity/kcalc.so
 debian/tmp/opt/trinity/lib/libtdeinit_kcalc.so
-debian/tmp/opt/trinity/share/applications/kde/kcalc.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcalc.desktop
 debian/tmp/opt/trinity/share/apps/kcalc/kcalcui.rc
 debian/tmp/opt/trinity/share/apps/kconf_update/kcalcrc.upd
 debian/tmp/opt/trinity/share/config.kcfg/kcalc.kcfg

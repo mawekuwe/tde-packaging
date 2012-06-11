@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/ksnapshot
-debian/tmp/opt/trinity/share/applications/kde/ksnapshot.desktop
+debian/tmp/opt/trinity/share/applications/tde/ksnapshot.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksnapshot/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksnapshot/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/ksnapshot/index.docbook

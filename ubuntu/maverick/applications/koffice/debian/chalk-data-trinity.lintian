@@ -14,4 +14,4 @@ chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/torturef
 chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/changecs/changecs.rb
 chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/invertruby/invert.rb
 chalk-data: executable-not-elf-or-script ./usr/share/apps/chalk/scripts/randompaint/randompaint.rc
-chalk-data: desktop-command-not-in-package /usr/share/applications/kde/chalk.desktop chalk
+chalk-data: desktop-command-not-in-package /usr/share/applications/tde/chalk.desktop chalk

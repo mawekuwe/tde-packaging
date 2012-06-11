@@ -1,5 +1,5 @@
 debian/chalk.xpm opt/trinity/share/pixmaps
-debian/tmp/opt/trinity/share/applications/kde/chalk.desktop
+debian/tmp/opt/trinity/share/applications/tde/chalk.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/chalk_jpeg.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/chalk_openexr.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/chalk_pdf.desktop

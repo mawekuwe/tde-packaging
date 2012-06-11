@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kaudiocreator
-debian/tmp/opt/trinity/share/applications/kde/kaudiocreator.desktop
+debian/tmp/opt/trinity/share/applications/tde/kaudiocreator.desktop
 debian/tmp/opt/trinity/share/apps/kaudiocreator/eventsrc
 debian/tmp/opt/trinity/share/apps/kaudiocreator/kaudiocreatorui.rc
 debian/tmp/opt/trinity/share/apps/kaudiocreator/pics/check.png

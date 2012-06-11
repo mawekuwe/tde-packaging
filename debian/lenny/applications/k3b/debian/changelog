@@ -713,7 +713,7 @@ k3b (0.12.10-2) unstable; urgency=low
 
   * Rename the menu file so that it shows up in the Debian menu system
     and install the freedesktop menu item into /usr/share/applications
-    directly instead of /usr/share/applications/kde so that it shows up in the
+    directly instead of /usr/share/applications/tde so that it shows up in the
     GNOME menu (closes: #345989)
   * Update the build dependencies for KDE 3.5, dbus 0.6 and the new hal
     (closes: #337882)

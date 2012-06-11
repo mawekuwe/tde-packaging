@@ -53,9 +53,9 @@ debian/tmp/opt/trinity/lib/trinity/kbabeldict_pocompendium.la
 debian/tmp/opt/trinity/lib/trinity/kbabeldict_pocompendium.so
 debian/tmp/opt/trinity/lib/trinity/kbabeldict_tmxcompendium.la
 debian/tmp/opt/trinity/lib/trinity/kbabeldict_tmxcompendium.so
-debian/tmp/opt/trinity/share/applications/kde/catalogmanager.desktop
-debian/tmp/opt/trinity/share/applications/kde/kbabel.desktop
-debian/tmp/opt/trinity/share/applications/kde/kbabeldict.desktop
+debian/tmp/opt/trinity/share/applications/tde/catalogmanager.desktop
+debian/tmp/opt/trinity/share/applications/tde/kbabel.desktop
+debian/tmp/opt/trinity/share/applications/tde/kbabeldict.desktop
 debian/tmp/opt/trinity/share/apps/catalogmanager/catalogmanagerui.rc
 debian/tmp/opt/trinity/share/apps/kbabel/kbabelui.rc
 debian/tmp/opt/trinity/share/apps/kbabel/regexplist.xml

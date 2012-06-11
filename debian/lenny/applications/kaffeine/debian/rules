@@ -33,7 +33,7 @@ install/kaffeine-trinity::
 	install -D -p -m0644 debian/kaffeine.xpm debian/kaffeine/opt/trinity/share/pixmaps/kaffeine.xpm
 	install -D -p -m0644 debian/kaffeine-trinity.lintian-overrides debian/kaffeine/opt/trinity/share/lintian/overrides/kaffeine
 	install -D -p -m0755 debian/install-css.sh debian/kaffeine/opt/trinity/share/doc/kaffeine/install-css.sh
-	install -D -p -m0644 debian/kaffeine-iso.desktop debian/kaffeine/opt/trinity/share/applications/kde/kaffeine-iso.desktop
+	install -D -p -m0644 debian/kaffeine-iso.desktop debian/kaffeine/opt/trinity/share/applications/tde/kaffeine-iso.desktop
 
 	#Debian additions
 	install -D -p -m0755 debian/install-codecs debian/kaffeine/opt/trinity/lib/kaffeine/install-codecs

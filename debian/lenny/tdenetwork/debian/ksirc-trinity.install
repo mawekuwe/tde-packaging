@@ -4,7 +4,7 @@ debian/tmp/opt/trinity/bin/ksirc
 debian/tmp/opt/trinity/lib/trinity/ksirc.la
 debian/tmp/opt/trinity/lib/trinity/ksirc.so
 debian/tmp/opt/trinity/lib/libtdeinit_ksirc.so
-debian/tmp/opt/trinity/share/applications/kde/ksirc.desktop
+debian/tmp/opt/trinity/share/applications/tde/ksirc.desktop
 debian/tmp/opt/trinity/share/apps/ksirc/autodcc.pl
 debian/tmp/opt/trinity/share/apps/ksirc/eventsrc
 debian/tmp/opt/trinity/share/apps/ksirc/filters.pl

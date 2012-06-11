@@ -5,7 +5,7 @@
 /opt/trinity/share/icons/hicolor/32x32/apps/kblackbox.png
 /opt/trinity/share/icons/hicolor/22x22/apps/kblackbox.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kblackbox.png
-/opt/trinity/share/applications/kde/kblackbox.desktop
+/opt/trinity/share/applications/tde/kblackbox.desktop
 /opt/trinity/games/kblackbox
 /opt/trinity/share/doc/tde/HTML/en/kblackbox/*
 ../icons/kblackbox.xpm /opt/trinity/share/pixmaps

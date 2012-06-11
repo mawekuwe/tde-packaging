@@ -8,7 +8,7 @@ opt/trinity/lib/trinity/kfile_kig.la
 opt/trinity/lib/trinity/kfile_kig.so
 opt/trinity/lib/trinity/libkigpart.la
 opt/trinity/lib/trinity/libkigpart.so
-/opt/trinity/share/applications/kde/kig.desktop
+/opt/trinity/share/applications/tde/kig.desktop
 /opt/trinity/share/apps/katepart/syntax/python-kig.xml
 /opt/trinity/share/apps/kig
 /opt/trinity/share/doc/tde/HTML/en/kig/*.bz2

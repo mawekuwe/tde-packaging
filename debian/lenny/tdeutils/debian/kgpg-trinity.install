@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kgpg
-debian/tmp/opt/trinity/share/applications/kde/kgpg.desktop
+debian/tmp/opt/trinity/share/applications/tde/kgpg.desktop
 debian/tmp/opt/trinity/share/apps/kgpg/icons/crystalsvg/16x16/actions/kgpg_key1.png
 debian/tmp/opt/trinity/share/apps/kgpg/icons/crystalsvg/16x16/actions/kgpg_key2.png
 debian/tmp/opt/trinity/share/apps/kgpg/icons/crystalsvg/16x16/actions/kgpg_key3.png

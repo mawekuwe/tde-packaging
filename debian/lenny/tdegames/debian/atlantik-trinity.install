@@ -9,7 +9,7 @@
 /opt/trinity/lib/trinity/kio_atlantik.so
 /opt/trinity/share/services/atlantik.protocol
 /opt/trinity/share/doc/tde/HTML/en/atlantik/*
-/opt/trinity/share/applications/kde/atlantik.desktop
+/opt/trinity/share/applications/tde/atlantik.desktop
 /opt/trinity/share/icons/hicolor/48x48/apps/atlantik.png
 /opt/trinity/share/icons/hicolor/32x32/apps/atlantik.png
 /opt/trinity/share/icons/hicolor/16x16/apps/atlantik.png

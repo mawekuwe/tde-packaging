@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/umbodoc
 debian/tmp/opt/trinity/bin/umbrello
-debian/tmp/opt/trinity/share/applications/kde/umbrello.desktop
+debian/tmp/opt/trinity/share/applications/tde/umbrello.desktop
 debian/tmp/opt/trinity/share/apps/umbrello/tips
 debian/tmp/opt/trinity/share/apps/umbrello/umbrelloui.rc
 debian/tmp/opt/trinity/share/apps/umbrello/headings/heading.adb

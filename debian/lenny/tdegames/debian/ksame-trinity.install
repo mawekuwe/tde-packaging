@@ -7,6 +7,6 @@
 /opt/trinity/share/icons/hicolor/22x22/apps/ksame.png
 /opt/trinity/share/icons/hicolor/16x16/apps/ksame.png
 /opt/trinity/share/apps/ksame/*
-/opt/trinity/share/applications/kde/ksame.desktop
+/opt/trinity/share/applications/tde/ksame.desktop
 ../icons/ksame.xpm /opt/trinity/share/pixmaps
 ../icons/ksame-16.xpm /opt/trinity/share/pixmaps

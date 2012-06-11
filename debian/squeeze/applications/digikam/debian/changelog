@@ -846,7 +846,7 @@ digikam (0.7.2-4) unstable; urgency=medium
 
 digikam (0.7.2-3) unstable; urgency=low
 
-  * move digikam.desktop file to /usr/share/applications/kde/
+  * move digikam.desktop file to /usr/share/applications/tde/
     The desktop file is already XDG compliant.  (Closes: #271562)
   * fix grammar in long description.  Thx Justin!  (Closes: #300122)
   * Add 16x16 and 32x32 xpm icons for debian menu file

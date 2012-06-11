@@ -1,5 +1,5 @@
 debian/kivio.xpm opt/trinity/share/pixmaps
-debian/tmp/opt/trinity/share/applications/kde/kivio.desktop
+debian/tmp/opt/trinity/share/applications/tde/kivio.desktop
 debian/tmp/opt/trinity/share/apps/kivio
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kivio_konqi.desktop
 debian/tmp/opt/trinity/share/config.kcfg/kivio.kcfg

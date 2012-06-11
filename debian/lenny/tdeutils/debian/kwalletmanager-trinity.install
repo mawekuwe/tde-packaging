@@ -1,9 +1,9 @@
 debian/tmp/opt/trinity/bin/kwalletmanager
 debian/tmp/opt/trinity/lib/trinity/kcm_kwallet.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kwallet.so
-debian/tmp/opt/trinity/share/applications/kde/kwalletconfig.desktop
-debian/tmp/opt/trinity/share/applications/kde/kwalletmanager.desktop
-debian/tmp/opt/trinity/share/applications/kde/kwalletmanager-kwalletd.desktop
+debian/tmp/opt/trinity/share/applications/tde/kwalletconfig.desktop
+debian/tmp/opt/trinity/share/applications/tde/kwalletmanager.desktop
+debian/tmp/opt/trinity/share/applications/tde/kwalletmanager-kwalletd.desktop
 debian/tmp/opt/trinity/share/apps/kwalletmanager/icons/crystalsvg/22x22/actions/folder_closed.png
 debian/tmp/opt/trinity/share/apps/kwalletmanager/icons/crystalsvg/22x22/actions/folder_open.png
 debian/tmp/opt/trinity/share/apps/kwalletmanager/icons/crystalsvg/22x22/actions/wallet_closed.png

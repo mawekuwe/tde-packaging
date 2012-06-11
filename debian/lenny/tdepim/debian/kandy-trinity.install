@@ -1,6 +1,6 @@
 /opt/trinity/bin/kandy
 /opt/trinity/bin/kandy_client
-/opt/trinity/share/applications/kde/kandy.desktop
+/opt/trinity/share/applications/tde/kandy.desktop
 /opt/trinity/share/applnk/Utilities/kandy.desktop
 /opt/trinity/share/apps/kandy
 /opt/trinity/share/config.kcfg/kandy.kcfg

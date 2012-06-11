@@ -6,7 +6,7 @@ debian/tmp/opt/trinity/lib/libKTTSD_Lib.la
 debian/tmp/opt/trinity/lib/libKTTSD_Lib.so
 debian/tmp/opt/trinity/lib/libKTTSD_Lib.so.0
 debian/tmp/opt/trinity/lib/libKTTSD_Lib.so.0.0.1
-debian/tmp/opt/trinity/share/applications/kde/ksayit.desktop
+debian/tmp/opt/trinity/share/applications/tde/ksayit.desktop
 debian/tmp/opt/trinity/share/apps/ksayit/ContextMenus.xml
 debian/tmp/opt/trinity/share/apps/ksayit/ksayitui.rc
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/ksayit.png

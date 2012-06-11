@@ -12,7 +12,7 @@ debian/tmp/opt/trinity/lib/trinity/libaudiocd_encoder_wav.la
 debian/tmp/opt/trinity/lib/trinity/libaudiocd_encoder_wav.so
 debian/tmp/opt/trinity/lib/libaudiocdplugins.so.1
 debian/tmp/opt/trinity/lib/libaudiocdplugins.so.1.0.0
-debian/tmp/opt/trinity/share/applications/kde/audiocd.desktop
+debian/tmp/opt/trinity/share/applications/tde/audiocd.desktop
 debian/tmp/opt/trinity/share/apps/kconf_update/audiocd.upd
 debian/tmp/opt/trinity/share/apps/kconf_update/upgrade-metadata.sh
 debian/tmp/opt/trinity/share/config.kcfg/audiocd_lame_encoder.kcfg

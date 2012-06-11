@@ -11,8 +11,8 @@ debian/tmp/opt/trinity/lib/libkateutils.so.0
 debian/tmp/opt/trinity/lib/libkateutils.so.0.0.0
 debian/tmp/opt/trinity/lib/libtdeinit_kate.so
 debian/tmp/opt/trinity/lib/libtdeinit_kwrite.so
-debian/tmp/opt/trinity/share/applications/kde/kate.desktop
-debian/tmp/opt/trinity/share/applications/kde/kwrite.desktop
+debian/tmp/opt/trinity/share/applications/tde/kate.desktop
+debian/tmp/opt/trinity/share/applications/tde/kwrite.desktop
 debian/tmp/opt/trinity/share/apps/kate/externaltools
 debian/tmp/opt/trinity/share/apps/kate/icons/crystalsvg/16x16/actions/curfiledir.png
 debian/tmp/opt/trinity/share/apps/kate/icons/crystalsvg/16x16/actions/highlighting.png

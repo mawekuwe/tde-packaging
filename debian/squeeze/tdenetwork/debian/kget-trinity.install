@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kget
 debian/tmp/opt/trinity/lib/trinity/khtml_kget.la
 debian/tmp/opt/trinity/lib/trinity/khtml_kget.so
-debian/tmp/opt/trinity/share/applications/kde/kget.desktop
+debian/tmp/opt/trinity/share/applications/tde/kget.desktop
 debian/tmp/opt/trinity/share/apps/kget/eventsrc
 debian/tmp/opt/trinity/share/apps/kget/icons/crystalsvg/22x22/actions/bar0.png
 debian/tmp/opt/trinity/share/apps/kget/icons/crystalsvg/22x22/actions/bar1.png

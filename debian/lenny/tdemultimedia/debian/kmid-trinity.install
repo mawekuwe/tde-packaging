@@ -3,7 +3,7 @@ debian/tmp/opt/trinity/lib/trinity/libkmidpart.la
 debian/tmp/opt/trinity/lib/trinity/libkmidpart.so
 debian/tmp/opt/trinity/lib/libkmidlib.so.0
 debian/tmp/opt/trinity/lib/libkmidlib.so.0.0.0
-debian/tmp/opt/trinity/share/applications/kde/kmid.desktop
+debian/tmp/opt/trinity/share/applications/tde/kmid.desktop
 debian/tmp/opt/trinity/share/apps/kmid/DiesIrae.kar
 debian/tmp/opt/trinity/share/apps/kmid/Guantanamera.kar
 debian/tmp/opt/trinity/share/apps/kmid/MariaDeLasMercedes.kar

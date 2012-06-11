@@ -6,7 +6,7 @@
 /opt/trinity/share/icons/hicolor/32x32/apps/kshisen.png
 /opt/trinity/share/icons/hicolor/22x22/apps/kshisen.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kshisen.png
-/opt/trinity/share/applications/kde/kshisen.desktop
+/opt/trinity/share/applications/tde/kshisen.desktop
 /opt/trinity/games/kshisen
 /opt/trinity/share/doc/tde/HTML/en/kshisen/*
 ../icons/kshisen.xpm /opt/trinity/share/pixmaps

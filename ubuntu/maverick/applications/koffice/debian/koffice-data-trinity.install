@@ -1,4 +1,4 @@
-debian/tmp/opt/trinity/share/applications/kde/koffice.desktop
+debian/tmp/opt/trinity/share/applications/tde/koffice.desktop
 debian/tmp/opt/trinity/share/apps/koffice
 debian/tmp/opt/trinity/share/apps/kofficewidgets
 debian/tmp/opt/trinity/share/apps/xsltfilter

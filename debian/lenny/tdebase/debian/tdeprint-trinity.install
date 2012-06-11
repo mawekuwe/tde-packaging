@@ -13,9 +13,9 @@ debian/tmp/opt/trinity/lib/trinity/libtdeprint_part.la
 debian/tmp/opt/trinity/lib/trinity/libtdeprint_part.so
 debian/tmp/opt/trinity/lib/libtdeinit_kjobviewer.so
 debian/tmp/opt/trinity/lib/libtdeinit_kprinter.so
-debian/tmp/opt/trinity/share/applications/kde/tdeprintfax.desktop
-debian/tmp/opt/trinity/share/applications/kde/kjobviewer.desktop
-debian/tmp/opt/trinity/share/applications/kde/printers.desktop
+debian/tmp/opt/trinity/share/applications/tde/tdeprintfax.desktop
+debian/tmp/opt/trinity/share/applications/tde/kjobviewer.desktop
+debian/tmp/opt/trinity/share/applications/tde/printers.desktop
 debian/tmp/opt/trinity/share/apps/tdeprintfax/anytops
 debian/tmp/opt/trinity/share/apps/tdeprintfax/faxfilters
 debian/tmp/opt/trinity/share/apps/tdeprintfax/icons/crystalsvg/16x16/actions/abentry.png

@@ -46,7 +46,7 @@ debian/tmp/opt/trinity/lib/trinity/libwmfimport.la
 debian/tmp/opt/trinity/lib/trinity/libwmfimport.so
 debian/tmp/opt/trinity/lib/libkarboncommon.so.*
 debian/tmp/opt/trinity/lib/libtdeinit_karbon.so
-debian/tmp/opt/trinity/share/applications/kde/karbon.desktop
+debian/tmp/opt/trinity/share/applications/tde/karbon.desktop
 debian/tmp/opt/trinity/share/apps/karbon
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/karbon_konqi.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/karbon/*.bz2

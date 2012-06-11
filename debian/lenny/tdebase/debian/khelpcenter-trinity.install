@@ -7,7 +7,7 @@ debian/tmp/opt/trinity/bin/khelpcenter
 debian/tmp/opt/trinity/lib/trinity/khelpcenter.la
 debian/tmp/opt/trinity/lib/trinity/khelpcenter.so
 debian/tmp/opt/trinity/lib/libtdeinit_khelpcenter.so
-debian/tmp/opt/trinity/share/applications/kde/Help.desktop
+debian/tmp/opt/trinity/share/applications/tde/Help.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/glossary.html.in
 debian/tmp/opt/trinity/share/apps/khelpcenter/glossary.xslt
 debian/tmp/opt/trinity/share/apps/khelpcenter/index.html.in

@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kworldclock
 debian/tmp/opt/trinity/lib/trinity/ww_panelapplet.la
 debian/tmp/opt/trinity/lib/trinity/ww_panelapplet.so
-debian/tmp/opt/trinity/share/applications/kde/kworldclock.desktop
+debian/tmp/opt/trinity/share/applications/tde/kworldclock.desktop
 debian/tmp/opt/trinity/share/apps/kdesktop/programs/kdeworld.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/kwwapplet.desktop
 debian/tmp/opt/trinity/share/apps/kworldclock

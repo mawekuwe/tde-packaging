@@ -4,7 +4,7 @@ debian/tmp/opt/trinity/lib/trinity/ark.so
 debian/tmp/opt/trinity/lib/trinity/libarkpart.la
 debian/tmp/opt/trinity/lib/trinity/libarkpart.so
 debian/tmp/opt/trinity/lib/libtdeinit_ark.so
-debian/tmp/opt/trinity/share/applications/kde/ark.desktop
+debian/tmp/opt/trinity/share/applications/tde/ark.desktop
 debian/tmp/opt/trinity/share/apps/ark/ark_part.rc
 debian/tmp/opt/trinity/share/apps/ark/ark_part_readonly.rc
 debian/tmp/opt/trinity/share/apps/ark/arkui.rc

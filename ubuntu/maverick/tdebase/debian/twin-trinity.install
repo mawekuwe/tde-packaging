@@ -49,10 +49,10 @@ debian/tmp/opt/trinity/lib/libtdecorations.so.1
 debian/tmp/opt/trinity/lib/libtdecorations.so.1.0.0
 debian/tmp/opt/trinity/lib/libtdeinit_twin_rules_dialog.so
 debian/tmp/opt/trinity/lib/libtdeinit_twin.so
-debian/tmp/opt/trinity/share/applications/kde/showdesktop.desktop
-debian/tmp/opt/trinity/share/applications/kde/twindecoration.desktop
-debian/tmp/opt/trinity/share/applications/kde/twinoptions.desktop
-debian/tmp/opt/trinity/share/applications/kde/twinrules.desktop
+debian/tmp/opt/trinity/share/applications/tde/showdesktop.desktop
+debian/tmp/opt/trinity/share/applications/tde/twindecoration.desktop
+debian/tmp/opt/trinity/share/applications/tde/twinoptions.desktop
+debian/tmp/opt/trinity/share/applications/tde/twinrules.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/twinactions.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/twinadvanced.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/twinfocus.desktop

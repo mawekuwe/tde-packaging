@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kruler
-debian/tmp/opt/trinity/share/applications/kde/kruler.desktop
+debian/tmp/opt/trinity/share/applications/tde/kruler.desktop
 debian/tmp/opt/trinity/share/applnk/Graphics/kruler.desktop
 debian/tmp/opt/trinity/share/apps/kruler/eventsrc
 debian/tmp/opt/trinity/share/apps/kruler/pics/kruler-east.png

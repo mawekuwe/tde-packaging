@@ -38,7 +38,7 @@ debian/tmp/opt/trinity/lib/trinity/libqproimport.la
 debian/tmp/opt/trinity/lib/trinity/libqproimport.so
 debian/tmp/opt/trinity/lib/libtdeinit_kspread.so
 debian/tmp/opt/trinity/lib/libkspreadcommon.so.*
-debian/tmp/opt/trinity/share/applications/kde/kspread.desktop
+debian/tmp/opt/trinity/share/applications/tde/kspread.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kspread_konqi.desktop
 debian/tmp/opt/trinity/share/apps/kspread
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kspread/*.bz2

@@ -71,7 +71,7 @@ debian/tmp/opt/trinity/lib/mcop/noatunarts.mcopclass
 debian/tmp/opt/trinity/lib/mcop/noatunarts.mcoptype
 debian/tmp/opt/trinity/lib/mcop/winskinvis.mcopclass
 debian/tmp/opt/trinity/lib/mcop/winskinvis.mcoptype
-debian/tmp/opt/trinity/share/applications/kde/noatun.desktop
+debian/tmp/opt/trinity/share/applications/tde/noatun.desktop
 debian/tmp/opt/trinity/share/apps/kconf_update/noatun.upd
 debian/tmp/opt/trinity/share/apps/noatun/dcopiface.plugin
 debian/tmp/opt/trinity/share/apps/noatun/eq.preset/preset.dance

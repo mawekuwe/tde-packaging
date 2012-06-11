@@ -6,7 +6,7 @@ debian/tmp/opt/trinity/lib/trinity/quantadebuggerdbgp.la
 debian/tmp/opt/trinity/lib/trinity/quantadebuggerdbgp.so
 debian/tmp/opt/trinity/lib/trinity/quantadebuggergubed.la
 debian/tmp/opt/trinity/lib/trinity/quantadebuggergubed.so
-debian/tmp/opt/trinity/share/applications/kde/quanta.desktop
+debian/tmp/opt/trinity/share/applications/tde/quanta.desktop
 debian/tmp/opt/trinity/share/apps/kafkapart
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/quanta/*.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/quanta/common

@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/konversation
-debian/tmp/opt/trinity/share/applications/kde/konversation.desktop
+debian/tmp/opt/trinity/share/applications/tde/konversation.desktop
 debian/tmp/opt/trinity/share/apps/kconf_update/*
 debian/tmp/opt/trinity/share/apps/konversation/eventsrc
 debian/tmp/opt/trinity/share/apps/konversation/konversationui.rc

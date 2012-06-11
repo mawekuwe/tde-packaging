@@ -8,6 +8,6 @@
 /opt/trinity/share/icons/hicolor/32x32/apps/lskat.png
 /opt/trinity/share/icons/hicolor/22x22/apps/lskat.png
 /opt/trinity/share/icons/hicolor/16x16/apps/lskat.png
-/opt/trinity/share/applications/kde/lskat.desktop
+/opt/trinity/share/applications/tde/lskat.desktop
 ../icons/lskat.xpm /opt/trinity/share/pixmaps
 ../icons/lskat-16.xpm /opt/trinity/share/pixmaps

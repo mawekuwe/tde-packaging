@@ -5,7 +5,7 @@ debian/tmp/opt/trinity/lib/trinity/libkhexedit2part.la
 debian/tmp/opt/trinity/lib/trinity/libkhexedit2part.so
 debian/tmp/opt/trinity/lib/libkhexeditcommon.so.0
 debian/tmp/opt/trinity/lib/libkhexeditcommon.so.0.0.0
-debian/tmp/opt/trinity/share/applications/kde/khexedit.desktop
+debian/tmp/opt/trinity/share/applications/tde/khexedit.desktop
 debian/tmp/opt/trinity/share/apps/khexedit/khexeditui.rc
 debian/tmp/opt/trinity/share/apps/khexedit/pics/hexdrag.png
 debian/tmp/opt/trinity/share/apps/khexedit/pics/hexmask.png

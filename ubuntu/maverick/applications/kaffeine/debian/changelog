@@ -166,7 +166,7 @@ kaffeine (0.8.4-1) unstable; urgency=low
     - fails to properly play files with names containing '#' character
     (Closes: #362807)
   * Build-Depends: libogg-dev
-  * Add /usr/share/applications/kde/kaffeine-iso.desktop
+  * Add /usr/share/applications/tde/kaffeine-iso.desktop
     - play DVD ISO files on filesystem (rather than in DVD drive)
     automatically (Closes: #402382)
 

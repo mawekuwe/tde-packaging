@@ -12,7 +12,7 @@ debian/tmp/opt/trinity/lib/trinity/ksplashstandard.la
 debian/tmp/opt/trinity/lib/trinity/ksplashstandard.so
 debian/tmp/opt/trinity/lib/libksplashthemes.so.0
 debian/tmp/opt/trinity/lib/libksplashthemes.so.0.0.0
-debian/tmp/opt/trinity/share/applications/kde/ksplashthememgr.desktop
+debian/tmp/opt/trinity/share/applications/tde/ksplashthememgr.desktop
 debian/tmp/opt/trinity/share/apps/ksplash/pics/splash.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/blue-bend/Preview.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/blue-bend/splash_active_bar.png

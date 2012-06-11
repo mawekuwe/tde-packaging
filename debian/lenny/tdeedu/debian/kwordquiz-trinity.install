@@ -1,6 +1,6 @@
 etc/trinity/kwordquizrc
 opt/trinity/bin/kwordquiz
-/opt/trinity/share/applications/kde/kwordquiz.desktop
+/opt/trinity/share/applications/tde/kwordquiz.desktop
 /opt/trinity/share/apps/kwordquiz
 /opt/trinity/share/config.kcfg/kwordquiz.kcfg
 /opt/trinity/share/doc/tde/HTML/en/kwordquiz/*.bz2

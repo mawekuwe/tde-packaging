@@ -3,7 +3,7 @@ debian/tmp/opt/trinity/lib/trinity/libkpovmodelerpart.la
 debian/tmp/opt/trinity/lib/trinity/libkpovmodelerpart.so
 debian/tmp/opt/trinity/lib/libkpovmodeler.so.0
 debian/tmp/opt/trinity/lib/libkpovmodeler.so.0.0.0
-debian/tmp/opt/trinity/share/applications/kde/kpovmodeler.desktop
+debian/tmp/opt/trinity/share/applications/tde/kpovmodeler.desktop
 debian/tmp/opt/trinity/share/apps/kpovmodeler/baseinsertrules.xml
 debian/tmp/opt/trinity/share/apps/kpovmodeler/examples/includes/inlined/chars.kpm
 debian/tmp/opt/trinity/share/apps/kpovmodeler/examples/includes/inlined/finish.kpm

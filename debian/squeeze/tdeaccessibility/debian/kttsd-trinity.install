@@ -32,8 +32,8 @@ debian/tmp/opt/trinity/lib/libkttsd.la
 debian/tmp/opt/trinity/lib/libkttsd.so
 debian/tmp/opt/trinity/lib/libkttsd.so.1
 debian/tmp/opt/trinity/lib/libkttsd.so.1.0.0
-debian/tmp/opt/trinity/share/applications/kde/kcmkttsd.desktop
-debian/tmp/opt/trinity/share/applications/kde/kttsmgr.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcmkttsd.desktop
+debian/tmp/opt/trinity/share/applications/tde/kttsmgr.desktop
 debian/tmp/opt/trinity/share/apps/ktexteditor_kttsd/ktexteditor_kttsdui.rc
 debian/tmp/opt/trinity/share/apps/kttsd/festivalint/sabletowave.scm
 debian/tmp/opt/trinity/share/apps/kttsd/festivalint/voices

@@ -3,7 +3,7 @@ debian/tmp/opt/trinity/bin/koshell
 debian/tmp/opt/trinity/lib/trinity/koshell.la
 debian/tmp/opt/trinity/lib/trinity/koshell.so
 debian/tmp/opt/trinity/lib/libtdeinit_koshell.so
-debian/tmp/opt/trinity/share/applications/kde/koshell.desktop
+debian/tmp/opt/trinity/share/applications/tde/koshell.desktop
 debian/tmp/opt/trinity/share/apps/koshell/koshellui.rc
 debian/tmp/opt/trinity/share/config.kcfg/koshell.kcfg
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/koshell/*.bz2

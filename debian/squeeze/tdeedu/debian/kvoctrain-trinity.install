@@ -5,7 +5,7 @@ opt/trinity/lib/libkvoctraincore.la
 opt/trinity/lib/libkvoctraincore.so
 opt/trinity/lib/libkvoctraincore.so.0
 opt/trinity/lib/libkvoctraincore.so.0.0.0
-/opt/trinity/share/applications/kde/kvoctrain.desktop
+/opt/trinity/share/applications/tde/kvoctrain.desktop
 /opt/trinity/share/apps/kvoctrain
 /opt/trinity/share/mimelnk/text/x-kvtml.desktop
 /opt/trinity/share/config.kcfg/kvoctrain.kcfg

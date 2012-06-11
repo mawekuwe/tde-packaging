@@ -3,7 +3,7 @@ debian/tmp/opt/trinity/lib/trinity/libkregexpeditorgui.la
 debian/tmp/opt/trinity/lib/trinity/libkregexpeditorgui.so
 debian/tmp/opt/trinity/lib/libkregexpeditorcommon.so.1
 debian/tmp/opt/trinity/lib/libkregexpeditorcommon.so.1.0.0
-debian/tmp/opt/trinity/share/applications/kde/kregexpeditor.desktop
+debian/tmp/opt/trinity/share/applications/tde/kregexpeditor.desktop
 debian/tmp/opt/trinity/share/apps/kregexpeditor/pics/altn.png
 debian/tmp/opt/trinity/share/apps/kregexpeditor/pics/anychar.png
 debian/tmp/opt/trinity/share/apps/kregexpeditor/pics/autoverify.png

@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kfilereplace
 debian/tmp/opt/trinity/lib/trinity/libkfilereplacepart.la
 debian/tmp/opt/trinity/lib/trinity/libkfilereplacepart.so
-debian/tmp/opt/trinity/share/applications/kde/kfilereplace.desktop
+debian/tmp/opt/trinity/share/applications/tde/kfilereplace.desktop
 debian/tmp/opt/trinity/share/apps/kfilereplace/kfilereplaceui.rc
 debian/tmp/opt/trinity/share/apps/kfilereplacepart
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kfilereplace/*.bz2

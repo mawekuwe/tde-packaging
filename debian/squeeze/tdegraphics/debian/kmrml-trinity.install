@@ -10,7 +10,7 @@ debian/tmp/opt/trinity/lib/trinity/libkmrmlpart.so
 debian/tmp/opt/trinity/lib/trinity/mrmlsearch.la
 debian/tmp/opt/trinity/lib/trinity/mrmlsearch.so
 debian/tmp/opt/trinity/lib/libtdeinit_mrmlsearch.so
-debian/tmp/opt/trinity/share/applications/kde/kcmkmrml.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcmkmrml.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/mrml-servicemenu.desktop
 debian/tmp/opt/trinity/share/mimelnk/text/mrml.desktop
 debian/tmp/opt/trinity/share/services/kded/daemonwatcher.desktop

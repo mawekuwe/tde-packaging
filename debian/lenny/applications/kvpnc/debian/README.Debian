@@ -17,7 +17,7 @@ Howto setup kvpnc for use without root password using sudo:
    # User privilege specification
    ALL ALL=NOPASSWD:KVPNC
 
- * Edit desktop link /usr/share/applications/kde/Internet/kvpnc.desktop
+ * Edit desktop link /usr/share/applications/tde/Internet/kvpnc.desktop
 
    * replace the folling lines:
 

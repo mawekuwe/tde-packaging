@@ -70,8 +70,8 @@ install: build
 	dh_installdirs
 	dh_icons
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/knowit-trinity
-	mkdir -p $(CURDIR)/debian/knowit-trinity/opt/trinity/share/applications/kde
-	mv $(CURDIR)/debian/knowit-trinity/opt/trinity/share/applnk/Applications/knowit.desktop $(CURDIR)/debian/knowit-trinity/opt/trinity/share/applications/kde/knowit.desktop
+	mkdir -p $(CURDIR)/debian/knowit-trinity/opt/trinity/share/applications/tde
+	mv $(CURDIR)/debian/knowit-trinity/opt/trinity/share/applnk/Applications/knowit.desktop $(CURDIR)/debian/knowit-trinity/opt/trinity/share/applications/tde/knowit.desktop
 	rm -r $(CURDIR)/debian/knowit-trinity/opt/trinity/share/applnk
 
 # Build architecture-independent files here.

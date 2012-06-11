@@ -1,4 +1,4 @@
-# this file is "/usr/share/applications/kde/kaffeine-iso.desktop"
+# this file is "/usr/share/applications/tde/kaffeine-iso.desktop"
 [Desktop Entry]
 Exec=kaffeine dvd:%f
 Icon=kaffeine

@@ -7,7 +7,7 @@ debian/tmp/opt/trinity/lib/trinity/libkformulapart.so
 debian/tmp/opt/trinity/lib/trinity/libkfosvgexport.la
 debian/tmp/opt/trinity/lib/trinity/libkfosvgexport.so
 debian/tmp/opt/trinity/lib/libtdeinit_kformula.so
-debian/tmp/opt/trinity/share/applications/kde/kformula.desktop
+debian/tmp/opt/trinity/share/applications/tde/kformula.desktop
 debian/tmp/opt/trinity/share/apps/kformula
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kformula_konqi.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kformula/*.bz2

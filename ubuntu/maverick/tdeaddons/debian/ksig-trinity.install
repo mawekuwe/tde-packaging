@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/ksig
-debian/tmp/opt/trinity/share/applications/kde/ksig.desktop
+debian/tmp/opt/trinity/share/applications/tde/ksig.desktop
 debian/tmp/opt/trinity/share/apps/ksig/ksigui.rc
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/ksig.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/ksig.png

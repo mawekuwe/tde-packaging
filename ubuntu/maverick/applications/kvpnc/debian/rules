@@ -32,7 +32,7 @@ install/kvpnc-trinity::
 
 	# install desktop file in applications
 	install -D -p -m0644 src/kvpnc.desktop \
-	  debian/kvpnc-trinity/opt/trinity/share/applications/kde/kvpnc.desktop
+	  debian/kvpnc-trinity/opt/trinity/share/applications/tde/kvpnc.desktop
 
 binary-post-install/kvpnc-trinity::
 	rm -rf debian/kvpnc-trinity/opt/trinity/share/applnk/

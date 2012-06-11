@@ -37,8 +37,8 @@ install/tde-systemsettings-trinity::
 	# Don't clash files, just Use the ones from kcontrol
 	rm debian/tde-systemsettings-trinity/opt/trinity/share/desktop-directories/kde-settings-power.directory
 	rm debian/tde-systemsettings-trinity/opt/trinity/share/desktop-directories/kde-settings-system.directory
-	rm debian/tde-systemsettings-trinity/opt/trinity/share/applications/kde/kcmfontinst.desktop
-	rm debian/tde-systemsettings-trinity/opt/trinity/share/applications/kde/laptoppowermanagement.desktop
+	rm debian/tde-systemsettings-trinity/opt/trinity/share/applications/tde/kcmfontinst.desktop
+	rm debian/tde-systemsettings-trinity/opt/trinity/share/applications/tde/laptoppowermanagement.desktop
 	cp debian/kde-settings-laptops.directory debian/tde-systemsettings-trinity/opt/trinity/share/desktop-directories/
 
 DEB_INSTALL_MANPAGES_tde-systemsettings-trinity = systemsettings.1

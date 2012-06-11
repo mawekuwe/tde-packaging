@@ -3,7 +3,7 @@ debian/tmp/opt/trinity/lib/trinity/libkuiviewerpart.so
 debian/tmp/opt/trinity/lib/trinity/libkuiviewerpart.la
 debian/tmp/opt/trinity/lib/trinity/quithumbnail.so
 debian/tmp/opt/trinity/lib/trinity/quithumbnail.la
-debian/tmp/opt/trinity/share/applications/kde/kuiviewer.desktop
+debian/tmp/opt/trinity/share/applications/tde/kuiviewer.desktop
 debian/tmp/opt/trinity/share/apps/kuiviewer/kuiviewerui.rc
 debian/tmp/opt/trinity/share/apps/kuiviewerpart/kuiviewer_part.rc
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kuiviewer.png

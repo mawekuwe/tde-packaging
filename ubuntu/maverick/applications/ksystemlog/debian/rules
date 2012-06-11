@@ -32,7 +32,7 @@ build/ksystemlog-trinity::
 
 install/ksystemlog-trinity::
 	install -D -p -m0644 ksystemlog/src/ksystemlog.desktop \
-	  debian/ksystemlog-trinity/opt/trinity/share/applications/kde/ksystemlog.desktop
+	  debian/ksystemlog-trinity/opt/trinity/share/applications/tde/ksystemlog.desktop
 
 binary-post-install/ksystemlog-trinity::
 	rm -rf debian/ksystemlog/opt/trinity/share/applnk/

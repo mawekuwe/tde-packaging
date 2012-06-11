@@ -22,7 +22,7 @@ debian/tmp/opt/trinity/lib/libkchartcommon.so.*
 debian/tmp/opt/trinity/lib/libkchartimageexport.so.*
 debian/tmp/opt/trinity/lib/libkdchart.*
 debian/tmp/opt/trinity/lib/libtdeinit_kchart.so
-debian/tmp/opt/trinity/share/applications/kde/kchart.desktop
+debian/tmp/opt/trinity/share/applications/tde/kchart.desktop
 debian/tmp/opt/trinity/share/apps/kchart
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kchart_konqi.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kchart/*.bz2

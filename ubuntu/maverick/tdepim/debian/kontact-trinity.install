@@ -17,8 +17,8 @@
 /opt/trinity/lib/libkontact.so.1.0.0
 /opt/trinity/lib/libkpinterfaces.so.1
 /opt/trinity/lib/libkpinterfaces.so.1.0.0
-/opt/trinity/share/applications/kde/Kontact.desktop
-/opt/trinity/share/applications/kde/kontactdcop.desktop
+/opt/trinity/share/applications/tde/Kontact.desktop
+/opt/trinity/share/applications/tde/kontactdcop.desktop
 /opt/trinity/share/apps/kontact
 /opt/trinity/share/apps/kontactsummary/kontactsummary_part.rc
 /opt/trinity/share/config.kcfg/kontact.kcfg

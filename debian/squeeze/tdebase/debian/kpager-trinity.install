@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kpager
-debian/tmp/opt/trinity/share/applications/kde/kpager.desktop
+debian/tmp/opt/trinity/share/applications/tde/kpager.desktop
 debian/tmp/opt/trinity/share/applnk/Utilities/kpager.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpager/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpager/index.cache.bz2

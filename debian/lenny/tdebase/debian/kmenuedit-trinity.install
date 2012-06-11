@@ -6,7 +6,7 @@ debian/tmp/opt/trinity/lib/trinity/kmenuedit.la
 debian/tmp/opt/trinity/lib/trinity/kmenuedit.so
 debian/tmp/opt/trinity/lib/libtdeinit_kcontroledit.so
 debian/tmp/opt/trinity/lib/libtdeinit_kmenuedit.so
-debian/tmp/opt/trinity/share/applications/kde/kmenuedit.desktop
+debian/tmp/opt/trinity/share/applications/tde/kmenuedit.desktop
 debian/tmp/opt/trinity/share/applnk/System/kmenuedit.desktop
 debian/tmp/opt/trinity/share/apps/kcontroledit/icons/crystalsvg/22x22/actions/menu_new.png
 debian/tmp/opt/trinity/share/apps/kcontroledit/icons/crystalsvg/22x22/actions/menu_new_sep.png

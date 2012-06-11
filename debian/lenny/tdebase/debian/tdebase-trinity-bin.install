@@ -52,10 +52,10 @@ debian/tmp/opt/trinity/lib/libtdeinit_khotkeys.so
 debian/tmp/opt/trinity/lib/libtdeinit_kxkb.so
 debian/tmp/opt/trinity/lib/libkhotkeys_shared.so.1
 debian/tmp/opt/trinity/lib/libkhotkeys_shared.so.1.0.0
-debian/tmp/opt/trinity/share/applications/kde/keyboard.desktop
-debian/tmp/opt/trinity/share/applications/kde/keyboard_layout.desktop
-debian/tmp/opt/trinity/share/applications/kde/khotkeys.desktop
-debian/tmp/opt/trinity/share/applications/kde/knetattach.desktop
+debian/tmp/opt/trinity/share/applications/tde/keyboard.desktop
+debian/tmp/opt/trinity/share/applications/tde/keyboard_layout.desktop
+debian/tmp/opt/trinity/share/applications/tde/khotkeys.desktop
+debian/tmp/opt/trinity/share/applications/tde/knetattach.desktop
 debian/tmp/opt/trinity/share/applnk/System/ScreenSavers/KBlankscreen.desktop
 debian/tmp/opt/trinity/share/applnk/System/ScreenSavers/KRandom.desktop
 debian/tmp/opt/trinity/share/apps/drkonqi/debuggers/gdbrc

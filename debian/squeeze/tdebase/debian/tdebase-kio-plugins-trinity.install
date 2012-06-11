@@ -82,7 +82,7 @@ debian/tmp/opt/trinity/lib/trinity/media_propsdlgplugin.la
 debian/tmp/opt/trinity/lib/trinity/media_propsdlgplugin.so
 debian/tmp/opt/trinity/lib/trinity/textthumbnail.la
 debian/tmp/opt/trinity/lib/trinity/textthumbnail.so
-debian/tmp/opt/trinity/share/applications/kde/kcmcgi.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcmcgi.desktop
 debian/tmp/opt/trinity/share/apps/kio_finger/kio_finger.css
 debian/tmp/opt/trinity/share/apps/kio_finger/kio_finger.pl
 debian/tmp/opt/trinity/share/apps/kio_info/kde-info2html

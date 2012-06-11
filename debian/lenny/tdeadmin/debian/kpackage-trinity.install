@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kpackage
-debian/tmp/opt/trinity/share/applications/kde/kpackage.desktop
+debian/tmp/opt/trinity/share/applications/tde/kpackage.desktop
 debian/tmp/opt/trinity/share/apps/kpackage/kpackageui.rc
 debian/tmp/opt/trinity/share/apps/kpackage/pics/bnew.png
 debian/tmp/opt/trinity/share/apps/kpackage/pics/bsd.png

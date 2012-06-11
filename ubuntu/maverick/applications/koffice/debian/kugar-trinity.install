@@ -16,8 +16,8 @@ debian/tmp/opt/trinity/lib/libtdeinit_kugar.so
 debian/tmp/opt/trinity/lib/libkudesignercore.la
 debian/tmp/opt/trinity/lib/libkudesignercore.so
 debian/tmp/opt/trinity/lib/libkugarlib.so.*
-debian/tmp/opt/trinity/share/applications/kde/kudesigner.desktop
-debian/tmp/opt/trinity/share/applications/kde/kugar.desktop
+debian/tmp/opt/trinity/share/applications/tde/kudesigner.desktop
+debian/tmp/opt/trinity/share/applications/tde/kugar.desktop
 debian/tmp/opt/trinity/share/apps/kudesigner
 debian/tmp/opt/trinity/share/apps/kugar
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kugar/*.bz2

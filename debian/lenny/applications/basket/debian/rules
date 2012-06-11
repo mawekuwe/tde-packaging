@@ -76,8 +76,8 @@ install: build
 	# Install into package-build-dir
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 
-#	mkdir -p $(CURDIR)/debian/basket-trinity/opt/trinity/share/applications/kde/
-#	mv $(CURDIR)/debian/basket-trinity/opt/trinity/share/applnk/Utilities/basket.desktop $(CURDIR)/debian/basket-trinity/opt/trinity/share/applications/kde/
+#	mkdir -p $(CURDIR)/debian/basket-trinity/opt/trinity/share/applications/tde/
+#	mv $(CURDIR)/debian/basket-trinity/opt/trinity/share/applnk/Utilities/basket.desktop $(CURDIR)/debian/basket-trinity/opt/trinity/share/applications/tde/
 
 binary-indep: build install
 

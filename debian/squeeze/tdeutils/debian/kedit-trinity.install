@@ -2,7 +2,7 @@ debian/tmp/opt/trinity/bin/kedit
 debian/tmp/opt/trinity/lib/trinity/kedit.la
 debian/tmp/opt/trinity/lib/trinity/kedit.so
 debian/tmp/opt/trinity/lib/libtdeinit_kedit.so
-debian/tmp/opt/trinity/share/applications/kde/KEdit.desktop
+debian/tmp/opt/trinity/share/applications/tde/KEdit.desktop
 debian/tmp/opt/trinity/share/apps/kedit/keditui.rc
 debian/tmp/opt/trinity/share/config.kcfg/kedit.kcfg
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kedit/common

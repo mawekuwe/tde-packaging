@@ -6,7 +6,7 @@
 /opt/trinity/share/icons/hicolor/22x22/apps/kjumpingcube.png
 /opt/trinity/share/icons/hicolor/16x16/apps/kjumpingcube.png
 /opt/trinity/share/apps/kjumpingcube/*
-/opt/trinity/share/applications/kde/kjumpingcube.desktop
+/opt/trinity/share/applications/tde/kjumpingcube.desktop
 /opt/trinity/share/config.kcfg/kjumpingcube.kcfg
 /opt/trinity/share/doc/tde/HTML/en/kjumpingcube/*
 ../icons/kjumpingcube.xpm /opt/trinity/share/pixmaps

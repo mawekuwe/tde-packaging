@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kolourpaint
-debian/tmp/opt/trinity/share/applications/kde/kolourpaint.desktop
+debian/tmp/opt/trinity/share/applications/tde/kolourpaint.desktop
 debian/tmp/opt/trinity/share/apps/kolourpaint/icons/crystalsvg/16x16/actions/tool_brush.png
 debian/tmp/opt/trinity/share/apps/kolourpaint/icons/crystalsvg/16x16/actions/tool_color_picker.png
 debian/tmp/opt/trinity/share/apps/kolourpaint/icons/crystalsvg/16x16/actions/tool_color_washer.png

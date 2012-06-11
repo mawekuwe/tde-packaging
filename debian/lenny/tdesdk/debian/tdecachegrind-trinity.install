@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/tdecachegrind
-debian/tmp/opt/trinity/share/applications/kde/tdecachegrind.desktop
+debian/tmp/opt/trinity/share/applications/tde/tdecachegrind.desktop
 debian/tmp/opt/trinity/share/apps/tdecachegrind/icons/hicolor/16x16/actions/fromrec.png
 debian/tmp/opt/trinity/share/apps/tdecachegrind/icons/hicolor/16x16/actions/percent.png
 debian/tmp/opt/trinity/share/apps/tdecachegrind/icons/hicolor/16x16/actions/recrec.png

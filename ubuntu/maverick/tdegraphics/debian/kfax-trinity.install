@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kfax
-debian/tmp/opt/trinity/share/applications/kde/kfax.desktop
+debian/tmp/opt/trinity/share/applications/tde/kfax.desktop
 debian/tmp/opt/trinity/share/apps/kfax/kfaxui.rc
 debian/tmp/opt/trinity/share/apps/kfax/pics/kfax.tif
 debian/tmp/opt/trinity/share/apps/kfax/pics/kfaxlogo.xpm

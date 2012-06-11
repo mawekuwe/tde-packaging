@@ -1,5 +1,5 @@
 debian/kpresenter.xpm opt/trinity/share/pixmaps
-debian/tmp/opt/trinity/share/applications/kde/kpresenter.desktop
+debian/tmp/opt/trinity/share/applications/tde/kpresenter.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kpresenter_konqi.desktop
 debian/tmp/opt/trinity/share/apps/kpresenter
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kpresenter/*.bz2

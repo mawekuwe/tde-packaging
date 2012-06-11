@@ -3,7 +3,7 @@ opt/trinity/bin/digi*
 opt/trinity/lib
 /opt/trinity/share/apps/digikam
 /opt/trinity/share/apps/konqueror/servicemenus/digikam*.desktop
-/opt/trinity/share/applications/kde/digikam.desktop
+/opt/trinity/share/applications/tde/digikam.desktop
 /opt/trinity/share/icons/hicolor/*/apps/digikam.png
 /opt/trinity/share/locale
 /opt/trinity/share/servicetypes/digikamimageplugin.desktop

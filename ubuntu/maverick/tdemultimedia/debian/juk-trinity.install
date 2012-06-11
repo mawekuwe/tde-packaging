@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/juk
-debian/tmp/opt/trinity/share/applications/kde/juk.desktop
+debian/tmp/opt/trinity/share/applications/tde/juk.desktop
 debian/tmp/opt/trinity/share/apps/juk/jukui-rtl.rc
 debian/tmp/opt/trinity/share/apps/juk/jukui.rc
 debian/tmp/opt/trinity/share/apps/juk/pics/playing.png

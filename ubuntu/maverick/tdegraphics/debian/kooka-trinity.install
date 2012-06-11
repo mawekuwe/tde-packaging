@@ -1,6 +1,6 @@
 debian/tmp/etc/trinity/kookarc
 debian/tmp/opt/trinity/bin/kooka
-debian/tmp/opt/trinity/share/applications/kde/kooka.desktop
+debian/tmp/opt/trinity/share/applications/tde/kooka.desktop
 debian/tmp/opt/trinity/share/apps/kooka/kookaui.rc
 debian/tmp/opt/trinity/share/apps/kooka/pics/gocr.png
 debian/tmp/opt/trinity/share/apps/kooka/pics/lockzoom.png

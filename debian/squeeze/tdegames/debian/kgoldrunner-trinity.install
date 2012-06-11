@@ -5,7 +5,7 @@
 /opt/trinity/share/icons/hicolor/48x48/apps/kgoldrunner.png
 /opt/trinity/share/icons/hicolor/64x64/apps/kgoldrunner.png
 /opt/trinity/share/icons/hicolor/128x128/apps/kgoldrunner.png
-/opt/trinity/share/applications/kde/KGoldrunner.desktop
+/opt/trinity/share/applications/tde/KGoldrunner.desktop
 /opt/trinity/games/kgoldrunner
 /opt/trinity/share/doc/tde/HTML/en/kgoldrunner/*
 ../icons/kgoldrunner.xpm /opt/trinity/share/pixmaps

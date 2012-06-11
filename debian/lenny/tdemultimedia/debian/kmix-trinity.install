@@ -8,7 +8,7 @@ debian/tmp/opt/trinity/lib/trinity/kmixctrl.la
 debian/tmp/opt/trinity/lib/trinity/kmixctrl.so
 debian/tmp/opt/trinity/lib/libtdeinit_kmix.so
 debian/tmp/opt/trinity/lib/libtdeinit_kmixctrl.so
-debian/tmp/opt/trinity/share/applications/kde/kmix.desktop
+debian/tmp/opt/trinity/share/applications/tde/kmix.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/kmixapplet.desktop
 debian/tmp/opt/trinity/share/apps/kmix/kmixui.rc
 debian/tmp/opt/trinity/share/apps/kmix/pics/Listener.png

@@ -28,7 +28,7 @@ debian/stamp-bootstrap:
 	touch debian/stamp-bootstrap
 
 install/k9copy::
-	dh_install src/k9copy.desktop opt/trinity/share/applications/kde
+	dh_install src/k9copy.desktop opt/trinity/share/applications/tde
 	dh_link usr/share/doc/tde/HTML/en/k9copy usr/share/doc/k9copy/html
 
 build/k9copy::

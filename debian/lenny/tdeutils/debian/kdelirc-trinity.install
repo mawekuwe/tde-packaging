@@ -4,8 +4,8 @@ debian/tmp/opt/trinity/lib/trinity/irkick.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kcmlirc.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kcmlirc.so
 debian/tmp/opt/trinity/lib/libtdeinit_irkick.so
-debian/tmp/opt/trinity/share/applications/kde/irkick.desktop
-debian/tmp/opt/trinity/share/applications/kde/kcmlirc.desktop
+debian/tmp/opt/trinity/share/applications/tde/irkick.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcmlirc.desktop
 debian/tmp/opt/trinity/share/apps/irkick/icons/hicolor/16x16/actions/irkick.png
 debian/tmp/opt/trinity/share/apps/irkick/icons/hicolor/16x16/actions/irkickflash.png
 debian/tmp/opt/trinity/share/apps/irkick/icons/hicolor/16x16/actions/irkickoff.png

@@ -3,4 +3,4 @@ opt/trinity/bin/kmymoney*
 opt/trinity/lib/trinity/kmm_ofximport.la
 opt/trinity/lib/trinity/kmm_ofximport.so
 opt/trinity/lib/lib*.so.*
-opt/trinity/share/applications/kde/kmymoney2.desktop
+opt/trinity/share/applications/tde/kmymoney2.desktop

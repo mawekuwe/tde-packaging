@@ -1,5 +1,5 @@
 opt/trinity/bin/kturtle
-/opt/trinity/share/applications/kde/kturtle.desktop
+/opt/trinity/share/applications/tde/kturtle.desktop
 /opt/trinity/share/apps/katepart/syntax/logohighlightstyle*
 /opt/trinity/share/apps/kturtle
 /opt/trinity/share/config.kcfg/kturtle.kcfg

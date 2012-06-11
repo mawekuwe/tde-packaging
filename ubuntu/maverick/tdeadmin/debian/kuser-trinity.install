@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kuser
-debian/tmp/opt/trinity/share/applications/kde/kuser.desktop
+debian/tmp/opt/trinity/share/applications/tde/kuser.desktop
 debian/tmp/opt/trinity/share/apps/kuser/icons/crystalsvg/22x22/actions/add_group.png
 debian/tmp/opt/trinity/share/apps/kuser/icons/crystalsvg/22x22/actions/add_user.png
 debian/tmp/opt/trinity/share/apps/kuser/icons/crystalsvg/22x22/actions/delete_group.png

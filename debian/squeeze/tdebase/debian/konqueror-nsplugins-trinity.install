@@ -4,5 +4,5 @@ debian/tmp/opt/trinity/lib/trinity/kcm_nsplugins.la
 debian/tmp/opt/trinity/lib/trinity/kcm_nsplugins.so
 debian/tmp/opt/trinity/lib/trinity/libnsplugin.la
 debian/tmp/opt/trinity/lib/trinity/libnsplugin.so
-debian/tmp/opt/trinity/share/applications/kde/khtml_plugins.desktop
+debian/tmp/opt/trinity/share/applications/tde/khtml_plugins.desktop
 debian/tmp/opt/trinity/share/apps/plugin/nspluginpart.rc

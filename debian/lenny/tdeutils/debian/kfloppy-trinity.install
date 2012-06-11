@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kfloppy
-debian/tmp/opt/trinity/share/applications/kde/KFloppy.desktop
+debian/tmp/opt/trinity/share/applications/tde/KFloppy.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/floppy_format.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kfloppy/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kfloppy/index.cache.bz2

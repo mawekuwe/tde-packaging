@@ -6,7 +6,7 @@
 /opt/trinity/share/icons/hicolor/64x64/apps/ktron.png
 /opt/trinity/share/icons/hicolor/128x128/apps/ktron.png
 /opt/trinity/share/doc/tde/HTML/en/ktron/*
-/opt/trinity/share/applications/kde/ktron.desktop
+/opt/trinity/share/applications/tde/ktron.desktop
 /opt/trinity/share/apps/ktron/*
 /opt/trinity/share/config.kcfg/ktron.kcfg
 ../icons/ktron.xpm /opt/trinity/share/pixmaps

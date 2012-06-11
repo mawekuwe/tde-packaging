@@ -1,6 +1,6 @@
 opt/trinity/bin/kiten
 opt/trinity/bin/kitengen
-/opt/trinity/share/applications/kde/kiten.desktop
+/opt/trinity/share/applications/tde/kiten.desktop
 /opt/trinity/share/doc/tde/HTML/en/kiten/common
 /opt/trinity/share/doc/tde/HTML/en/kiten/index.cache.bz2
 /opt/trinity/share/doc/tde/HTML/en/kiten/*.docbook

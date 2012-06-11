@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kappfinder
-debian/tmp/opt/trinity/share/applications/kde/kappfinder.desktop
+debian/tmp/opt/trinity/share/applications/tde/kappfinder.desktop
 debian/tmp/opt/trinity/share/applnk/System/kappfinder.desktop
 debian/tmp/opt/trinity/share/apps/kappfinder/apps/Development/assistant.desktop
 debian/tmp/opt/trinity/share/apps/kappfinder/apps/Development/ddd.desktop

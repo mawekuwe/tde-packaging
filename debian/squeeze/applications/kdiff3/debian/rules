@@ -80,8 +80,8 @@ install: build
 	mkdir --parents $(CURDIR)/debian/tmp/opt/trinity/share/doc/kdiff3-doc/html/
 	mv $(CURDIR)/debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdiff3/*.html $(CURDIR)/debian/tmp/opt/trinity/share/doc/kdiff3-doc/html/
 	# move kdiff3.desktop to freedesktop.org conforming place
-	mkdir --parents $(CURDIR)/debian/tmp/opt/trinity/share/applications/kde/
-	mv $(CURDIR)/debian/tmp/opt/trinity/share/applnk/Development/kdiff3.desktop $(CURDIR)/debian/tmp/opt/trinity/share/applications/kde/
+	mkdir --parents $(CURDIR)/debian/tmp/opt/trinity/share/applications/tde/
+	mv $(CURDIR)/debian/tmp/opt/trinity/share/applnk/Development/kdiff3.desktop $(CURDIR)/debian/tmp/opt/trinity/share/applications/tde/
 
 
 # Build architecture-independent files here.

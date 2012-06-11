@@ -8,8 +8,8 @@ debian/tmp/opt/trinity/lib/trinity/konsole.so
 debian/tmp/opt/trinity/lib/trinity/libkonsolepart.la
 debian/tmp/opt/trinity/lib/trinity/libkonsolepart.so
 debian/tmp/opt/trinity/lib/libtdeinit_konsole.so
-debian/tmp/opt/trinity/share/applications/kde/konsole.desktop
-debian/tmp/opt/trinity/share/applications/kde/konsolesu.desktop
+debian/tmp/opt/trinity/share/applications/tde/konsole.desktop
+debian/tmp/opt/trinity/share/applications/tde/konsolesu.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kcmkonsole.desktop
 debian/tmp/opt/trinity/share/apps/kconf_update/konsole.upd
 debian/tmp/opt/trinity/share/apps/kconf_update/schemaStrip.pl

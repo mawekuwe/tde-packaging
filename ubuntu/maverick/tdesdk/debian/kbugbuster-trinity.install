@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/bin/kbugbuster
 debian/tmp/opt/trinity/lib/trinity/kcal_bugzilla.la
 debian/tmp/opt/trinity/lib/trinity/kcal_bugzilla.so
-debian/tmp/opt/trinity/share/applications/kde/kbugbuster.desktop
+debian/tmp/opt/trinity/share/applications/tde/kbugbuster.desktop
 debian/tmp/opt/trinity/share/apps/kbugbuster/kbugbusterui.rc
 debian/tmp/opt/trinity/share/apps/kbugbuster/pics/bars.png
 debian/tmp/opt/trinity/share/apps/kbugbuster/pics/logo.png

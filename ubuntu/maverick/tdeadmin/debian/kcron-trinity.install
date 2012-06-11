@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/kcron
-debian/tmp/opt/trinity/share/applications/kde/kcron.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcron.desktop
 debian/tmp/opt/trinity/share/apps/kcron/kcronui.rc
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcron/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcron/index.cache.bz2

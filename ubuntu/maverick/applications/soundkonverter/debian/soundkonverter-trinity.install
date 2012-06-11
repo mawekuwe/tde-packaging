@@ -1,5 +1,5 @@
 opt/trinity/bin/soundkonverter
-opt/trinity/share/applications/kde/soundkonverter.desktop
+opt/trinity/share/applications/tde/soundkonverter.desktop
 opt/trinity/share/apps/soundkonverter/soundkonverterui.rc
 opt/trinity/share/apps/konqueror/servicemenus/audiocd_extract_with_soundkonverter.desktop
 opt/trinity/share/apps/soundkonverter/format_infos/
