@@ -1,7 +1,7 @@
 ?package(kfax):\
 	needs="X11"\
 	section="Applications/Viewers"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KFax"\
 	icon32x32="/usr/share/pixmaps/kfax.xpm"\
 	icon16x16="/usr/share/pixmaps/kfax-16.xpm"\

@@ -1,7 +1,7 @@
 ?package(ksirtet):\
 	needs="x11"\
 	section="Games/Tetris-like"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDE Sirtet"\
 	icon32x32="/usr/share/pixmaps/ksirtet.xpm"\
 	icon16x16="/usr/share/pixmaps/ksirtet-16.xpm"\

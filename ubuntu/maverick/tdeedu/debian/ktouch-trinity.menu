@@ -1,6 +1,6 @@
 ?package(ktouch):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="KTouch"\
   longtitle="KTouch (Touch Typing Tutor)"\
   command="/opt/trinity/bin/ktouch"\

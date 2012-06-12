@@ -268,7 +268,7 @@ tdevelop (4:3.3.4-1) unstable; urgency=low
   * New upstream release
   * Suggest khelpcenter (Closes: #273664)
   * Clean up tdevelop-doc dependencies
-  * No longer remove X-KDE-KDevelopIDE from *.desktop files
+  * No longer remove X-TDE-KDevelopIDE from *.desktop files
   * Fix C++ curses template project (Closes: #378336)
   * Add support for autoconf 2.6 in KDE templates (Closes: #378762)
   * Fix "Qt XIM bug that breaks tdevelop" (Closes: #369291)
@@ -469,7 +469,7 @@ tdevelop3 (4:3.2.2-0.1) unstable; urgency=low
    - Add Vietnamese debconf translation (Closes: #312160)
    - Update Brazilian translation (Closes: #304419)
   * Fix adding new classes to qmake projects (Closes: #315170)
-  * Remove X-KDE-KDevelopIDE category from .desktop entries
+  * Remove X-TDE-KDevelopIDE category from .desktop entries
   * Add --disable-rpath to configure flags (Closes: #327710) 
   * Fix debian/menu , package is 'tdevelop3' not 'tdevelop' (Closes: #311153)
   * Fix some references to 'tdevelop' in .desktop files (Closes: #304203)

@@ -1,6 +1,6 @@
 ?package(kdepasswd):\
 	needs="X11"\
 	section="Applications/System/Administration"\
-	hints="KDE"\
+	hints="TDE"\
 	title="kdepasswd"\
 	command="/opt/trinity/bin/kdepasswd"

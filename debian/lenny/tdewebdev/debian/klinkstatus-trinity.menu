@@ -1,6 +1,6 @@
 ?package(klinkstatus):\
     needs="X11"\
-    hints="KDE"\
+    hints="TDE"\
     section="Apps/Net"\
     title="KLinkStatus"\
     longtitle="KLinkStatus (Link Checker)"\

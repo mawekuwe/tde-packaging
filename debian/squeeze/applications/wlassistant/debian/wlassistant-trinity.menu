@@ -1,7 +1,7 @@
 ?package(wlassistant):\
         needs="X11"\
         section="Applications/Network/Monitoring"\
-        hints="KDE"\
+        hints="TDE"\
         icon32x32="/usr/share/pixmaps/wlassistant.xpm"\
         icon16x16="/usr/share/pixmaps/wlassistant-16.xpm"\
         title="wlassistant"\

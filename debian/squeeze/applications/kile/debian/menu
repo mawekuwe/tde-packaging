@@ -1,6 +1,6 @@
 ?package(kile):needs="X11" \
   section="Applications/Editors" \
-  hints="KDE" \
+  hints="TDE" \
   title="Kile" \
   longtitle="Kile (LaTeX development environment)" \
   command="/opt/trinity/bin/kile" \

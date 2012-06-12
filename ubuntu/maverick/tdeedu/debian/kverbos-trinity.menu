@@ -1,6 +1,6 @@
 ?package(kverbos):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="Kverbos"\
   longtitle="Kverbos (Study Spanish Verbforms)"\
   command="/opt/trinity/bin/kverbos"\

@@ -3,9 +3,9 @@
 @@ -18,7 +18,7 @@
  GenericName[xx]=xxVPN Client GUIxx
  
- Categories=Network;RemoteAccess;KDE;Qt
+ Categories=Network;RemoteAccess;TDE;Qt
 -Exec=kvpnc
 +Exec=su-to-root -X -c /opt/trinity/bin/kvpnc
- X-KDE-SubstituteUID=true
+ X-TDE-SubstituteUID=true
  Icon=kvpnc
  Type=Application

@@ -1,7 +1,7 @@
 ?package(kontact):\
 	needs="X11"\
 	section="Applications/Data Management"\
-	hints="KDE"\
+	hints="TDE"\
 	title="Kontact"\
 	icon32x32="/usr/share/pixmaps/kontact.xpm"\
 	icon16x16="/usr/share/pixmaps/kontact-16.xpm"\

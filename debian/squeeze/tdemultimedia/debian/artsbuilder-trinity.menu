@@ -1,7 +1,7 @@
 ?package(artsbuilder):\
 	needs="X11"\
 	section="Apps/Sound"\
-	hints="KDE"\
+	hints="TDE"\
 	title="aRts Builder"\
 	icon="/opt/trinity/share/pixmaps/artsbuilder.xpm"\
 	command="/opt/trinity/bin/artsbuilder"
@@ -9,7 +9,7 @@
 ?package(artsbuilder):\
 	needs="X11"\
 	section="Apps/Sound"\
-	hints="KDE"\
+	hints="TDE"\
 	title="aRts Control"\
 	icon="/opt/trinity/share/pixmaps/artscontrol.xpm"\
 	command="/opt/trinity/bin/artscontrol"

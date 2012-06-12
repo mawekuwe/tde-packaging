@@ -1,6 +1,6 @@
 ?package(klatin):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="KLatin"\
   longtitle="KLatin (Latin Reviser)"\
   command="/opt/trinity/bin/klatin"\

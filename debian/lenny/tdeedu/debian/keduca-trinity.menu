@@ -1,6 +1,6 @@
 ?package(keduca):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="KEduca"\
   longtitle="KEduca (Tests and Exams)"\
   command="/opt/trinity/bin/keduca"\
@@ -8,7 +8,7 @@
 
 ?package(keduca):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="KEduca-Editor"\
   longtitle="KEduca-Editor (Tests and Exams Editor)"\
   command="/opt/trinity/bin/keducabuilder"\

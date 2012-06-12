@@ -1,7 +1,7 @@
 ?package(ksnapshot):\
 	needs="X11"\
 	section="Applications/Graphics"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KSnapshot"\
 	icon32x32="/usr/share/pixmaps/ksnapshot.xpm"\
 	icon16x16="/usr/share/pixmaps/ksnapshot-16.xpm"\

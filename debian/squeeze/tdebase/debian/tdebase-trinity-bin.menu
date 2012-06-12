@@ -1,13 +1,13 @@
 ?package(tdebase-bin):\
 	needs="X11"\
 	section="Applications/System/Administration"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDebugDialog"\
 	command="/opt/trinity/bin/kdebugdialog"
 
 ?package(tdebase-bin):\
 	needs="X11"\
 	section="Applications/System/Monitoring"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDCOP"\
 	command="/opt/trinity/bin/kdcop"

@@ -1,6 +1,6 @@
 ?package(kstars):needs="X11"\
   section="Applications/Science/Astronomy"\
-  hints="KDE"\
+  hints="TDE"\
   title="KStars"\
   longtitle="KStars (Desktop Planetarium)"\
   command="/opt/trinity/bin/kstars"\

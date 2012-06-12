@@ -1,7 +1,7 @@
 ?package(kompare):\
         needs="x11"\
         section="Applications/Text"\
-        hints="KDE"\
+        hints="TDE"\
         title="Kompare"\
         longtitle="Kompare (Diff/Patch Frontend)"\
         icon="/usr/share/pixmaps/kompare.xpm"\

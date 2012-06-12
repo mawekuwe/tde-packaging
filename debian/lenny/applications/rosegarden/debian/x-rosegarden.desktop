@@ -6,4 +6,4 @@ Icon=x-rosegarden.png
 MimeType=audio/x-rosegarden
 Patterns=*.rg;*.RG
 Type=MimeType
-X-KDE-AutoEmbed=false
+X-TDE-AutoEmbed=false

@@ -1,7 +1,7 @@
 ?package(klines):\
 	needs="x11"\
 	section="Games/Board"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KLines"\
 	icon32x32="/usr/share/pixmaps/klines.xpm"\
 	icon16x16="/usr/share/pixmaps/klines-16.xpm"\

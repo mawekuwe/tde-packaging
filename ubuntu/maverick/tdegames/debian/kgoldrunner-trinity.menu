@@ -1,7 +1,7 @@
 ?package(kgoldrunner):\
 	needs="x11"\
 	section="Games/Arcade"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KGoldrunner"\
 	icon32x32="/usr/share/pixmaps/kgoldrunner.xpm"\
 	icon16x16="/usr/share/pixmaps/kgoldrunner-16.xpm"\

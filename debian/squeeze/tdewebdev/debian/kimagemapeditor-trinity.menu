@@ -1,6 +1,6 @@
 ?package(kimagemapeditor):\
     needs="X11"\
-    hints="KDE"\
+    hints="TDE"\
     section="Apps/Editors"\
     title="KImageMapEditor"\
     longtitle="KImageMapEditor (HTML Image Map Editor)"\

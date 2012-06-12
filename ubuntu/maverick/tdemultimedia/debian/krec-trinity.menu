@@ -1,7 +1,7 @@
 ?package(krec):\
 	needs="X11"\
 	section="Apps/Sound"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KRec"\
 	icon32x32="/opt/trinity/share/pixmaps/krec.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/krec-16.xpm"\

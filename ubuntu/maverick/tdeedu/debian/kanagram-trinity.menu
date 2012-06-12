@@ -1,6 +1,6 @@
 ?package(kanagram):needs="X11"\
   section="Games/Puzzles"\
-  hints="KDE"\
+  hints="TDE"\
   title="KAnagram"\
   longtitle="KAnagram (Letter Order Game)"\
   command="/opt/trinity/bin/kanagram"\

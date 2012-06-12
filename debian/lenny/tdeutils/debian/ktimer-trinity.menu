@@ -1,7 +1,7 @@
 ?package(ktimer):\
 	needs="X11"\
 	section="Apps/Tools"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KTimer"\
 	icon32x32="/usr/share/pixmaps/ktimer.xpm"\
 	icon16x16="/usr/share/pixmaps/ktimer-16.xpm"\

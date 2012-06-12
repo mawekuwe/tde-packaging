@@ -1,7 +1,7 @@
 ?package(juk):\
 	needs="X11"\
 	section="Apps/Sound"\
-	hints="KDE"\
+	hints="TDE"\
 	title="JuK"\
 	icon32x32="/opt/trinity/share/pixmaps/juk.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/juk-16.xpm"\

@@ -1,13 +1,13 @@
 ?package(kleopatra):\
 	needs="X11"\
 	section="Applications/Data Management"\
-	hints="KDE"\
+	hints="TDE"\
 	title="Kleopatra"\
 	command="/opt/trinity/bin/kleopatra"
 
 ?package(kleopatra):\
 	needs="X11"\
 	section="Applications/Data Management"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KWatchGnuPG"\
 	command="/opt/trinity/bin/kwatchgnupg"

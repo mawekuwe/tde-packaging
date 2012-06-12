@@ -22,11 +22,11 @@ Howto setup kvpnc for use without root password using sudo:
    * replace the folling lines:
 
      Exec=su-to-root -X -c /usr/bin/kvpnc
-     X-KDE-SubstituteUID=true
+     X-TDE-SubstituteUID=true
 
      with:
 
      Exec=sudo kvpnc
-     X-KDE-SubstituteUID=false
+     X-TDE-SubstituteUID=false
 
  -- Fathi Boudra <fboudra@free.fr>, Thu, 18 May 2006 15:17:52 +0100

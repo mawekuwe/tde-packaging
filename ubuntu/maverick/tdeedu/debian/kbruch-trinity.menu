@@ -1,6 +1,6 @@
 ?package(kbruch):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="KBruch"\
   longtitle="KBruch (Exercise Fractions)"\
   command="/opt/trinity/bin/kbruch"\

@@ -3,5 +3,5 @@
 @@ -82,3 +82,4 @@
  
  X-DCOP-ServiceType=Unique
- Categories=Qt;KDE;Settings;
+ Categories=Qt;TDE;Settings;
 +OnlyShowIn=Old;

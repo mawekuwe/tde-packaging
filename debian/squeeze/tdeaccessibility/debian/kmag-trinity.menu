@@ -1,7 +1,7 @@
 ?package(kmag):\
 	needs="x11"\
 	section="Applications/Accessibility"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KMag"\
 	icon32x32="/opt/trinity/share/pixmaps/kmag.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kmag-16.xpm"\

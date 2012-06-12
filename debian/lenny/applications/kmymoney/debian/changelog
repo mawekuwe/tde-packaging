@@ -443,7 +443,7 @@ kmymoney2 (0.7.0-1) unstable; urgency=low
     - File a wishlist bug report at http://bugs.debian.org/kmymoney2
   * Add Build-Depends: libofx-dev
   * Closes: #270028: it does not appear in the proper KDE menu section.
-    - Add Categories=Qt;KDE;Office to kmymoney2.destop
+    - Add Categories=Qt;TDE;Office to kmymoney2.destop
 
  -- Mark Purcell <msp@debian.org>  Sun, 15 May 2005 12:45:18 +0100
 

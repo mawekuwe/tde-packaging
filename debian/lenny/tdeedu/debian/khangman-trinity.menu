@@ -1,6 +1,6 @@
 ?package(khangman):needs="X11"\
   section="Games/Puzzles"\
-  hints="KDE"\
+  hints="TDE"\
   title="KHangMan"\
   longtitle="KHangMan (Hangman Game)"\
   command="/opt/trinity/bin/khangman"\

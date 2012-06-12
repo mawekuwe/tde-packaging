@@ -1,6 +1,6 @@
 ?package(kwordquiz):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="KWordQuiz"\
   longtitle="KWordQuiz (Vocabulary Trainer)"\
   command="/opt/trinity/bin/kwordquiz"\

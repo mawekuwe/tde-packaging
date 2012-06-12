@@ -1,7 +1,7 @@
 ?package(konsole):\
 	needs="X11"\
 	section="Applications/Terminal Emulators"\
-	hints="KDE"\
+	hints="TDE"\
 	title="Konsole"\
 	icon32x32="/opt/trinity/share/pixmaps/konsole.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/konsole-16.xpm"\

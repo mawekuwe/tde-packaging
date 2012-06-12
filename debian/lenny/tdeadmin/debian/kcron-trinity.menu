@@ -1,7 +1,7 @@
 ?package(kcron):\
 	needs="X11"\
 	section="Applications/Editors"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDE Task Scheduler"\
 	icon32x32="/usr/share/pixmaps/kcron.xpm"\
 	icon16x16="/usr/share/pixmaps/kcron-16.xpm"\

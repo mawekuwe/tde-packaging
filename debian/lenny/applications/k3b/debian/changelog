@@ -495,7 +495,7 @@ k3b (1.0~rc5-0ubuntu1) feisty; urgency=low
        - disable splash screen on startup
      kubuntu_107_iso_cue_mimetypes.diff
        - add application/x-iso and application/x-cue to MimeType and
-         X-KDE-NativeMimeType
+         X-TDE-NativeMimeType
      kubuntu_108_add_specify_device_arg_on_cmd_line.diff
        - add an optional command line argument to specify the writer device
      kubuntu_109_disable_firstrun.diff
@@ -767,7 +767,7 @@ k3b (0.12.14-0ubuntu4) dapper; urgency=low
 
 k3b (0.12.14-0ubuntu3) dapper; urgency=low
 
-  * Remove X-KDE-settings-system; from Categories in
+  * Remove X-TDE-settings-system; from Categories in
     kubuntu_06_hide_k3bsetup.diff so the module doesn't show in SystemSettings.
 
  -- Raphaël Pinson <raphink@ubuntu.com>  Thu, 16 Mar 2006 22:57:23 +0100

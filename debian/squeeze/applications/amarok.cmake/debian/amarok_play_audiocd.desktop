@@ -2,7 +2,7 @@
 ServiceTypes=media/audiocd
 Actions=Play;
 Encoding=UTF-8
-X-KDE-Priority=TopLevel
+X-TDE-Priority=TopLevel
 
 [Desktop Action Play]
 Name=Play Audio CD with amaroK

@@ -1,7 +1,7 @@
 ?package(kshisen):\
 	needs="x11"\
 	section="Games/Board"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDE Shisen-Sho"\
 	icon32x32="/usr/share/pixmaps/kshisen.xpm"\
 	icon16x16="/usr/share/pixmaps/kshisen-16.xpm"\

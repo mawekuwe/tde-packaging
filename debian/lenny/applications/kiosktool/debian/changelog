@@ -62,7 +62,7 @@ kiosktool (0.9-2) unstable; urgency=low
   * Solved a problem with upstream sources due to some messages translated to Spanish
   * Changed description
   * First Debian upload, closes: #267595
-  * Erased line Categories=Qt;KDE;System in kiosktool.desktop because this file is installed in Utilities category
+  * Erased line Categories=Qt;TDE;System in kiosktool.desktop because this file is installed in Utilities category
   
  -- Pedro Jurado Maqueda <melenas@kdehispano.org>  Wed,  5 Jan 2005 15:18:17 +0100
 

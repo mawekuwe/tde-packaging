@@ -2,6 +2,6 @@
 +++ tdebase/konsole/konsolesu.desktop
 @@ -64,3 +64,4 @@
  Name[zh_CN]=终端程序 - 超级用户模式
- X-KDE-AuthorizeAction=shell_access
- Categories=Qt;KDE;X-KDE-System-su;
+ X-TDE-AuthorizeAction=shell_access
+ Categories=Qt;TDE;X-TDE-System-su;
 +NoDisplay=true

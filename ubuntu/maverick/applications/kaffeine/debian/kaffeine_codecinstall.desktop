@@ -1,13 +1,13 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=ServiceType
-X-KDE-ServiceType=Kaffeine/CodecInstall
+X-TDE-ServiceType=Kaffeine/CodecInstall
 
 # The unplayable codec
-[PropertyDef::X-KDE-Kaffeine-codec]
+[PropertyDef::X-TDE-Kaffeine-codec]
 Type=QString
 
-[PropertyDef::X-KDE-Kaffeine-engine]
+[PropertyDef::X-TDE-Kaffeine-engine]
 Type=QString
 
 [PropertyDef::Exec]

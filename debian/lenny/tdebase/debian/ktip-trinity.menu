@@ -1,7 +1,7 @@
 ?package(ktip):\
 	needs="X11"\
 	section="Help"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KTip"\
 	icon32x32="/opt/trinity/share/pixmaps/ktip.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/ktip-16.xpm"\

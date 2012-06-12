@@ -1,7 +1,7 @@
 ?package(kmid):\
 	needs="X11"\
 	section="Apps/Sound"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KMid"\
 	icon32x32="/opt/trinity/share/pixmaps/kmid.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kmid-16.xpm"\

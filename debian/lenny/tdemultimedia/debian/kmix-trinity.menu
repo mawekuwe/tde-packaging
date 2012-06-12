@@ -1,7 +1,7 @@
 ?package(kmix):\
 	needs="X11"\
 	section="Apps/Sound"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KMix"\
 	icon32x32="/opt/trinity/share/pixmaps/kmix.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kmix-16.xpm"\

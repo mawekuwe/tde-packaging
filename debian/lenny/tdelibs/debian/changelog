@@ -908,12 +908,12 @@ tdelibs (4:3.5.5a.dfsg.1-4) unstable; urgency=medium
 tdelibs (4:3.5.5a.dfsg.1-3) unstable; urgency=medium
 
   * Patch: 41_x_kde_getactionmenu_no_timeout.diff
-    Do not time out when waiting for the reply for the X-KDE-GetActionMenu
+    Do not time out when waiting for the reply for the X-TDE-GetActionMenu
     DCOP call. DCOP protocol is synchronouos by design and a reply for the
     timed out call (i.e. garbage) still arrives and might be falsely returned
     as a valid reply for the subsequent DCOP call on the same connection. The
     application currently known to be badly hurt by this is tdesvn and its
-    konqueror service menu integration. Its X-KDE-GetActionMenu might take
+    konqueror service menu integration. Its X-TDE-GetActionMenu might take
     longer than current 100 milisecond timeout to complete. As a result
     then, a late reply will "pollute" a main DCOP connection of the client
     application (e.g. konqueror) causing further DCOP failures.

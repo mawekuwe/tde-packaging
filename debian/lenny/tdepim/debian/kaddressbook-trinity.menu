@@ -1,7 +1,7 @@
 ?package(kaddressbook):\
 	needs="X11"\
 	section="Applications/Data Management"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KAddressbook"\
 	icon32x32="/usr/share/pixmaps/kaddressbook.xpm"\
 	icon16x16="/usr/share/pixmaps/kaddressbook-16.xpm"\

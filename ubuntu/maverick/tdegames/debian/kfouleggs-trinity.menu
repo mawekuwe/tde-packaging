@@ -1,7 +1,7 @@
 ?package(kfouleggs):\
         needs="x11"\
         section="Games/Tetris-like"\
-	hints="KDE"\
+	hints="TDE"\
         title="KDE Foul Eggs"\
 	icon32x32="/usr/share/pixmaps/kfouleggs.xpm"\
 	icon16x16="/usr/share/pixmaps/kfouleggs-16.xpm"\

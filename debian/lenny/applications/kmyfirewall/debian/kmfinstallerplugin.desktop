@@ -1,8 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=ServiceType
-X-KDE-ServiceType=KMyFirewall/Installer
-X-KDE-Library=libkmfinstallerplugin
+X-TDE-ServiceType=KMyFirewall/Installer
+X-TDE-Library=libkmfinstallerplugin
 
 Name=KMyFirewall Installer Plugin
 Name[bg]=Приставка-инсталатор на KMyFirewall

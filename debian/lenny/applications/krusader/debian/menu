@@ -1,7 +1,7 @@
 ?package(krusader):\
 	needs="X11"\
 	section="Applications/Network/File Transfer"\
-	hints="KDE"\
+	hints="TDE"\
 	title="krusader (File Manager)"\
 	icon32x32="/usr/share/pixmaps/krusader_user.xpm"\
 	icon16x16="/usr/share/pixmaps/krusader_user-16.xpm"\
@@ -10,7 +10,7 @@
 ?package(krusader):\
 	needs="X11"\
 	section="Applications/Network/File Transfer"\
-	hints="KDE"\
+	hints="TDE"\
 	title="krusader - root-mode (File Manager)"\
 	icon32x32="/usr/share/pixmaps/krusader_root.xpm"\
 	icon16x16="/usr/share/pixmaps/krusader_root-16.xpm"\

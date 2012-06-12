@@ -4,5 +4,5 @@ diff -Nur tdebase-3.5.4/kcontrol/componentchooser/componentchooser.desktop tdeba
 @@ -214,3 +214,4 @@
  Keywords[zu]=amalunga,umkhethi welunga,amathuluzi okusebenza,umxhasi weposi lekhomputha,umlingisi wethuluzi langaphandle
  
- Categories=Qt;KDE;X-KDE-settings-components;
+ Categories=Qt;TDE;X-TDE-settings-components;
 +NoDisplay=true

@@ -2,5 +2,5 @@
   needs="X11"\
   section="Applications/Network/Communication"\
   title="kvpnc"\
-  hints="KDE"\
+  hints="TDE"\
   command="su-to-root -X -c kvpnc"

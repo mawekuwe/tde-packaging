@@ -2,5 +2,5 @@
  section="Apps/Math"\
  title="AbaKus"\
  command="/opt/trinity/bin/abakus"\
- hints="KDE"\
+ hints="TDE"\
  icon="/usr/share/pixmaps/abakus.xpm"

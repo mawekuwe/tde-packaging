@@ -1,6 +1,6 @@
 ?package(kradio):needs="X11" \
   section="Applications/TV and Radio" \
-  hints="KDE" \
+  hints="TDE" \
   title="KRadio" \
   longtitle="K-Radio Application" \
   command="/opt/trinity/bin/kradio" \

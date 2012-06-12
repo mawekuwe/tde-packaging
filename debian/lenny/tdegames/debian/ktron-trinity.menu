@@ -1,7 +1,7 @@
 ?package(ktron):\
 	needs="x11"\
 	section="Games/Arcade"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDE Tron"\
 	icon32x32="/usr/share/pixmaps/ktron.xpm"\
 	icon16x16="/usr/share/pixmaps/ktron-16.xpm"\

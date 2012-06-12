@@ -1,7 +1,7 @@
 ?package(kiconedit):\
 	needs="X11"\
 	section="Applications/Graphics"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KIconEdit"\
 	icon32x32="/usr/share/pixmaps/kiconedit.xpm"\
 	icon16x16="/usr/share/pixmaps/kiconedit-16.xpm"\

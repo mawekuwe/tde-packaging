@@ -1,6 +1,6 @@
 ?package(ksig):needs="X11"\
   section="Applications/Network/Communication"\
-  hints="KDE"\
+  hints="TDE"\
   title="KSig"\
   longtitle="KSig (Signature Editor)"\
   command="/opt/trinity/bin/ksig"\

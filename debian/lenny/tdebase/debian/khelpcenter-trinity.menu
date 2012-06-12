@@ -1,7 +1,7 @@
 ?package(khelpcenter):\
 	needs="X11"\
 	section="Help"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDE Help Center"\
 	icon32x32="/opt/trinity/share/pixmaps/khelpcenter.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/khelpcenter-16.xpm"\

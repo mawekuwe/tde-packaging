@@ -1,6 +1,6 @@
 ?package(konq-plugins):needs="X11"\
   section="Applications/System/Monitoring"\
-  hints="KDE"\
+  hints="TDE"\
   title="FSView"\
   longtitle="FSView (Graphical Disk Usage / Filesystem Viewer)"\
   command="/opt/trinity/bin/fsview"\

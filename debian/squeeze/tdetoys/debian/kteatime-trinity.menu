@@ -1,7 +1,7 @@
 ?package(kteatime):\
 	needs="x11"\
 	section="Games/Toys"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KTeaTime"\
 	longtitle="KTeaTime (Tea Cooker)"\
 	icon="/opt/trinity/share/pixmaps/kteatime.xpm"\

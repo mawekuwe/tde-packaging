@@ -1,7 +1,7 @@
 ?package(ksmiletris):\
 	needs="x11"\
 	section="Games/Tetris-like"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDE Smiletris"\
 	icon32x32="/usr/share/pixmaps/ksmiletris.xpm"\
 	icon16x16="/usr/share/pixmaps/ksmiletris-16.xpm"\

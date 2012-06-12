@@ -1,6 +1,6 @@
 ?package(blinken):needs="X11"\
   section="Games/Puzzles"\
-  hints="KDE"\
+  hints="TDE"\
   title="Blinken"\
   longtitle="Blinken (Memory Game)"\
   command="/opt/trinity/bin/blinken"\

@@ -1,6 +1,6 @@
 ?package(kturtle):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="KTurtle"\
   longtitle="KTurtle (Logo Programming Environment)"\
   command="/opt/trinity/bin/kturtle"\

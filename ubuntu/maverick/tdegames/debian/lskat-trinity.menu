@@ -1,7 +1,7 @@
 ?package(lskat):\
 	needs="x11"\
 	section="Games/Card"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDE Lieutnant Skat"\
 	icon32x32="/usr/share/pixmaps/lskat.xpm"\
 	icon16x16="/usr/share/pixmaps/lskat-16.xpm"\

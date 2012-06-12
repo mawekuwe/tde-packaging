@@ -1,6 +1,6 @@
 ?package(kommander):\
     needs="X11"\
-    hints="KDE"\
+    hints="TDE"\
     section="Apps/Tools"\
     title="Kommander Editor"\
     longtitle="Kommander Editor (Dynamic Dialog Editor)"\

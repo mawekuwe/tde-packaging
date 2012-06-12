@@ -1,7 +1,7 @@
 ?package(ksayit):\
 	needs="x11"\
 	section="Applications/Accessibility"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KSayIt"\
 	icon32x32="/opt/trinity/share/pixmaps/ksayit.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/ksayit-16.xpm"\

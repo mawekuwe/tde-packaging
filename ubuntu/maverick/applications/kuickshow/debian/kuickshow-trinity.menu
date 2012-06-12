@@ -1,7 +1,7 @@
 ?package(kuickshow):\
 	needs="X11"\
 	section="Apps/Graphics"\
-	hints="KDE"\
+	hints="TDE"\
 	title="Kuickshow"\
 	icon32x32="/usr/share/pixmaps/kuickshow.xpm"\
 	icon16x16="/usr/share/pixmaps/kuickshow-16.xpm"\

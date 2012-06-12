@@ -53,7 +53,7 @@ sub processfiles
         #warn("Using $filename");
         
         #my $regexp = qr{^(Name|Comment|Language|Keywords|About|Description|GenericName)=};
-        my $regexp = qr{^(Name|Comment|Language|Keywords|About|Description|GenericName|Query|ExtraNames|X-KDE-Submenu)=};
+        my $regexp = qr{^(Name|Comment|Language|Keywords|About|Description|GenericName|Query|ExtraNames|X-TDE-Submenu)=};
     
         while( <FH> )
         {

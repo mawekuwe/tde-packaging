@@ -1,6 +1,6 @@
 ?package(kxsldbg):\
     needs="X11"\
-    hints="KDE"\
+    hints="TDE"\
     section="Apps/Text"\
     title="KXSLDbg"\
     longtitle="KXSLDbg (XSLT Debugger)"\

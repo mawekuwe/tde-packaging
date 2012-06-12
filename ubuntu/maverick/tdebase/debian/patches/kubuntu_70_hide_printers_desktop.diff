@@ -5,5 +5,5 @@ diff -Nur tdebase-3.5.4/tdeprint/printmgr/printers.desktop tdebase-3.5.4.new/tde
  Keywords[zh_TW]=print,printer,printing management,列印,印表機,列印管理
  Keywords[zu]=shicilela,umshicileli,abaphathi boshicilelo
  
--Categories=Qt;KDE;X-KDE-settings-hardware;Settings;
-+Categories=Qt;KDE;X-KDE-settings-hardware;
+-Categories=Qt;TDE;X-TDE-settings-hardware;Settings;
++Categories=Qt;TDE;X-TDE-settings-hardware;

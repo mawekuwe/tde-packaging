@@ -1,7 +1,7 @@
 ?package(khexedit):\
 	needs="X11"\
 	section="Apps/Tools"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KHexEdit"\
 	icon32x32="/usr/share/pixmaps/khexedit.xpm"\
 	icon16x16="/usr/share/pixmaps/khexedit-16.xpm"\

@@ -1,7 +1,7 @@
 ?package(kmouth):\
 	needs="x11"\
 	section="Applications/Accessibility"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KMouth"\
 	icon32x32="/opt/trinity/share/pixmaps/kmouth.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kmouth-16.xpm"\

@@ -1,7 +1,7 @@
 ?package(kcoloredit):\
 	needs="X11"\
 	section="Applications/Graphics"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KColorChooser"\
 	icon32x32="/usr/share/pixmaps/kcolorchooser.xpm"\
 	icon16x16="/usr/share/pixmaps/kcolorchooser-16.xpm"\
@@ -10,7 +10,7 @@
 ?package(kcoloredit):\
 	needs="X11"\
 	section="Applications/Graphics"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KColorEdit"\
 	icon32x32="/usr/share/pixmaps/kcoloredit.xpm"\
 	icon16x16="/usr/share/pixmaps/kcoloredit-16.xpm"\

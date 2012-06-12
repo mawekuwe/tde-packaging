@@ -1,6 +1,6 @@
 ?package(quanta):\
     needs="X11"\
-    hints="KDE"\
+    hints="TDE"\
     section="Apps/Editors"\
     title="Quanta Plus"\
     longtitle="Quanta Plus (Web Development Environment)"\

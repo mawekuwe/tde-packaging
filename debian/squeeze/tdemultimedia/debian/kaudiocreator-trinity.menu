@@ -1,7 +1,7 @@
 ?package(kaudiocreator):\
 	needs="X11"\
 	section="Apps/Sound"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KAudioCreator"\
 	icon32x32="/opt/trinity/share/pixmaps/kaudiocreator.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kaudiocreator-16.xpm"\

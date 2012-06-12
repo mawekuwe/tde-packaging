@@ -1,7 +1,7 @@
 ?package(kgpg):\
 	needs="X11"\
 	section="Apps/Tools"\
-	hints="KDE"\
+	hints="TDE"\
 	title="Kgpg"\
 	icon32x32="/usr/share/pixmaps/kgpg.xpm"\
 	icon16x16="/usr/share/pixmaps/kgpg-16.xpm"\

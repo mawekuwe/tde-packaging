@@ -3,5 +3,5 @@
 @@ -64,3 +64,4 @@
  Name[zh_CN]=菜单更新工具
  X-DCOP-ServiceType=Multi
- Categories=Qt;KDE;Settings;
+ Categories=Qt;TDE;Settings;
 +NoDisplay=true

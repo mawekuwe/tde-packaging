@@ -1071,7 +1071,7 @@ tdepim (4:3.5-rc1-0ubuntu1) dapper; urgency=low
 
   * New upstream pre-release
   * Sync with Debian
-  * Remove kubuntu_02_kalarm_kmenu_tidy.diff (now X-KDE-PIM, not X-KDE-More)
+  * Remove kubuntu_02_kalarm_kmenu_tidy.diff (now X-TDE-PIM, not X-TDE-More)
   * Remove kubuntu_03_karm_kmenu_tidy.diff
   * libkleopatra0a now libkleopatra1
   * libkleopatra0-dev now libkleopatra1-dev

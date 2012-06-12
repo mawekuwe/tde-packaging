@@ -2,6 +2,6 @@
 +++ tdebase/konqueror/konquerorsu.desktop
 @@ -82,3 +82,4 @@
  
- Categories=Qt;KDE;X-KDE-System-su;
+ Categories=Qt;TDE;X-TDE-System-su;
  NotShowIn=GNOME;
 +NoDisplay=true

@@ -1,7 +1,7 @@
 ?package(kmousetool):\
 	needs="x11"\
 	section="Applications/Accessibility"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KMousetool"\
 	icon32x32="/opt/trinity/share/pixmaps/kmousetool.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kmousetool-16.xpm"\

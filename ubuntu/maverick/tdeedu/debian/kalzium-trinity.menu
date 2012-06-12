@@ -1,6 +1,6 @@
 ?package(kalzium):needs="X11"\
   section="Apps/Science/Chemistry"\
-  hints="KDE"\
+  hints="TDE"\
   title="Kalzium"\
   longtitle="Kalzium (Periodic Table of Elements)"\
   command="/opt/trinity/bin/kalzium"\

@@ -1,7 +1,7 @@
 ?package(kpat):\
 	needs="x11"\
 	section="Games/Card"\
-	hints="KDE"\
+	hints="TDE"\
 	title="KDE Patience"\
 	icon32x32="/usr/share/pixmaps/kpat.xpm"\
 	icon16x16="/usr/share/pixmaps/kpat-16.xpm"\

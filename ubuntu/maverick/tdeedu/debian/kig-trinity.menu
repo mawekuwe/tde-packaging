@@ -1,6 +1,6 @@
 ?package(kig):needs="X11"\
   section="Applications/Science/Mathematics"\
-  hints="KDE"\
+  hints="TDE"\
   title="Kig"\
   longtitle="Kig (Interactive Geometry)"\
   command="/opt/trinity/bin/kig"\

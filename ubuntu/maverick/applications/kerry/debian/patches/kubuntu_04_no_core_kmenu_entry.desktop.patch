@@ -12,8 +12,8 @@ diff -Nur -x '*.orig' -x '*~' kerry-0.2.1/kerry/src/kerry.desktop kerry-0.2.1.ne
  Exec=kerry --show-searchdialog
  Icon=kerry
  Type=Application
--Categories=Qt;KDE;Application;Core;Utility;Filesystem;
-+Categories=Qt;KDE;Application;Utility;Filesystem;
+-Categories=Qt;TDE;Application;Core;Utility;Filesystem;
++Categories=Qt;TDE;Application;Utility;Filesystem;
  Terminal=false
  X-DCOP-ServiceType=Unique
- X-KDE-StartupNotify=false
+ X-TDE-StartupNotify=false

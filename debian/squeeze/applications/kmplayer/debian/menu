@@ -1,6 +1,6 @@
 ?package(kmplayer):\
 	needs="X11"\
 	section="Applications/Video"\
-	hints="KDE"\
+	hints="TDE"\
 	title="Kmplayer"\
 	command="/opt/trinity/bin/kmplayer"

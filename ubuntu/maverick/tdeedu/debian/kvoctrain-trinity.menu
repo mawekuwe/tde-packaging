@@ -1,6 +1,6 @@
 ?package(kvoctrain):needs="X11"\
   section="Applications/Education"\
-  hints="KDE"\
+  hints="TDE"\
   title="KVocTrain"\
   longtitle="KVocTrain (Vocabulary Trainer)"\
   command="/opt/trinity/bin/kvoctrain"\
