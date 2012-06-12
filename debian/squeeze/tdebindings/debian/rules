@@ -31,7 +31,7 @@ endif
 
 DEB_CONFIGURE_EXTRA_FLAGS = $(WITH_JAVA) \
 			    --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib \
-		  	    DO_NOT_COMPILE='dcopperl kalyptus qtsharp xparts python'
+		  	    DO_NOT_COMPILE='dcopc dcopperl kalyptus qtsharp xparts python'
 
 DEB_COMPRESS_EXCLUDE += .java .ui .js .rb .map .wav .bmp .cpp .sk
 
