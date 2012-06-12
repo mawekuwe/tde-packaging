@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+PKG_CONFIG_PATH := /opt/trinity/lib/pkgconfig/:$(PKG_CONFIG_PATH)
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include debian/cdbs/debian-qt-kde.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
