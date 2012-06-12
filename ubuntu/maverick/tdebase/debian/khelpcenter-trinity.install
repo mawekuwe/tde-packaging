@@ -97,7 +97,7 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/accessibility
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/amarok-icon.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/amarok.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/a-window.png
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/base-kde-applications.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/base-tde-applications.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/browser-fine-tuning.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/burning-cds.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/common
@@ -122,10 +122,10 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kaboodle-icon
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kaboodle.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kcalc-systray.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kcontrol.png
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kde-as-root.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kde-edutainment.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kde-for-admins.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kde-office.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/tde-as-root.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/tde-edutainment.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/tde-for-admins.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/tde-office.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kmag.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kmousetool.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/kmouth2.png
@@ -176,7 +176,7 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/under-the-hoo
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/usenet.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/where-next.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/windows-how-to.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/your-kde-account.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/userguide/your-tde-account.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/visualdict/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/visualdict/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/visualdict/index.docbook
