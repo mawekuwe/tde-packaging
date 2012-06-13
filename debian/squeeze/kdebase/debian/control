@@ -204,6 +204,7 @@ Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}, enscript, poster, psutils
 Recommends: kghostview-trinity | postscript-viewer
+Conflicts: foomatic-db-compressed-ppds
 Suggests: khelpcenter-trinity, efax | hylafax-client | mgetty-fax, smbclient
 Replaces: kdebase-trinity (<< 4:3.0.0), kdebase-trinity-doc (<< 4:3.0.0)
 Description: print system for KDE
