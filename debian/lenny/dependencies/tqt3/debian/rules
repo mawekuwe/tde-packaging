@@ -15,6 +15,10 @@ DEB_HOST_ARCH		?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_ARCH_CPU	?= $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 DEB_HOST_MULTIARCH	?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
+# Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
+# never build in parallel, regardless of DEB_BUILD_OPTIONS.
+DEB_BUILD_PARALLEL = true
+
 ifeq ($(DEB_HOST_ARCH_OS),hurd)
 	PLATFORM_ARG = hurd-g++
 else #hurd
