@@ -222,6 +222,7 @@ Replaces: kdeprint-trinity (<< 4:14.0.0)
 Breaks: kdeprint-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, enscript, poster, psutils
 Recommends: kghostview-trinity | postscript-viewer
+Conflicts: foomatic-db-compressed-ppds
 Suggests: khelpcenter-trinity, efax | hylafax-client | mgetty-fax, smbclient
 Description: print system for KDE
  This package contains the KDE printing subsystem. It can use CUPS,
