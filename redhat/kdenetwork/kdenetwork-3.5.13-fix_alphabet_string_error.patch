@@ -1,0 +1,97 @@
+commit 3516f9bc3f3af5ae21cdbd2d3af835645cf72274
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1327531037 -0600
+
+    Fix linear alphabet string errors
+
+diff --git a/kopete/protocols/jabber/jingle/libjingle/talk/base/base64.cc b/kopete/protocols/jabber/jingle/libjingle/talk/base/base64.cc
+index 63130db..e0ec1b9 100644
+--- a/kopete/protocols/jabber/jingle/libjingle/talk/base/base64.cc
++++ b/kopete/protocols/jabber/jingle/libjingle/talk/base/base64.cc
+@@ -24,7 +24,7 @@ static const string::size_type np = string::npos;
+ const string Base64::Base64Table(
+    // 0000000000111111111122222222223333333333444444444455555555556666
+    // 0123456789012345678901234567890123456789012345678901234567890123
+-     "ABCDEFGHIJKLMNOPTQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
++     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
+ 
+ // Decode Table gives the index of any valid base64 character in the Base64 table]
+ // 65 == A, 97 == a, 48 == 0, 43 == +, 47 == /
+diff --git a/kopete/protocols/jabber/libiris/cutestuff/util/base64.cpp b/kopete/protocols/jabber/libiris/cutestuff/util/base64.cpp
+index fcdd3d4..06df3f7 100644
+--- a/kopete/protocols/jabber/libiris/cutestuff/util/base64.cpp
++++ b/kopete/protocols/jabber/libiris/cutestuff/util/base64.cpp
+@@ -44,7 +44,7 @@ TQByteArray Base64::encode(const TQByteArray &s)
+ {
+ 	int i;
+ 	int len = s.size();
+-	char tbl[] = "ABCDEFGHIJKLMNOPTQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
++	char tbl[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+ 	int a, b, c;
+ 
+ 	TQByteArray p((len+2)/3*4);
+diff --git a/kopete/protocols/oscar/liboscar/md5.c b/kopete/protocols/oscar/liboscar/md5.c
+index 1ca18d1..e627358 100644
+--- a/kopete/protocols/oscar/liboscar/md5.c
++++ b/kopete/protocols/oscar/liboscar/md5.c
+@@ -55,7 +55,7 @@ main()
+ 	"abc", /*900150983cd24fb0d6963f7d28e17f72*/
+ 	"message digest", /*f96b697d7cb7938d525a2f31aaf161d0*/
+ 	"abcdefghijklmnopqrstuvwxyz", /*c3fcd3d76192e4007dfb496cca67e13b*/
+-	"ABCDEFGHIJKLMNOPTQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
++	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+ 				/*d174ab98d277d9f5a5611c2c9f419d9f*/
+ 	"12345678901234567890123456789012345678901234567890123456789012345678901234567890" /*57edf4a22be3c955ac49da2e2107b67a*/
+     };
+diff --git a/kopete/protocols/yahoo/libkyahoo/crypt.c b/kopete/protocols/yahoo/libkyahoo/crypt.c
+index 76620bc..ee15c34 100644
+--- a/kopete/protocols/yahoo/libkyahoo/crypt.c
++++ b/kopete/protocols/yahoo/libkyahoo/crypt.c
+@@ -45,7 +45,7 @@ static const char md5_salt_prefix[] = "$1$";
+ 
+ /* Table with characters for base64 transformation.  */
+ static const char b64t[64] =
+-"./0123456789ABCDEFGHIJKLMNOPTQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
++"./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+ 
+ char *yahoo_crypt(const char *key, const char *salt);
+ 
+diff --git a/kopete/protocols/yahoo/libkyahoo/libyahoo.c b/kopete/protocols/yahoo/libkyahoo/libyahoo.c
+index 32e6f2b..a97e7be 100644
+--- a/kopete/protocols/yahoo/libkyahoo/libyahoo.c
++++ b/kopete/protocols/yahoo/libkyahoo/libyahoo.c
+@@ -60,7 +60,7 @@ extern char *yahoo_crypt(char *, char *);
+ void yahooBase64(unsigned char *out, const unsigned char *in, int inlen)
+ /* raw bytes in quasi-big-endian order to base 64 string (NUL-terminated) */
+ {
+-	char base64digits[] = 	"ABCDEFGHIJKLMNOPTQRSTUVWXYZ"
++	char base64digits[] = 	"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+ 				"abcdefghijklmnopqrstuvwxyz"
+ 				"0123456789._";
+ 
+diff --git a/kopete/protocols/yahoo/libkyahoo/md5.c b/kopete/protocols/yahoo/libkyahoo/md5.c
+index 5bc2c13..5a537e0 100644
+--- a/kopete/protocols/yahoo/libkyahoo/md5.c
++++ b/kopete/protocols/yahoo/libkyahoo/md5.c
+@@ -69,7 +69,7 @@ main()
+ 	"abc", /*900150983cd24fb0d6963f7d28e17f72*/
+ 	"message digest", /*f96b697d7cb7938d525a2f31aaf161d0*/
+ 	"abcdefghijklmnopqrstuvwxyz", /*c3fcd3d76192e4007dfb496cca67e13b*/
+-	"ABCDEFGHIJKLMNOPTQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
++	"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+ 				/*d174ab98d277d9f5a5611c2c9f419d9f*/
+ 	"12345678901234567890123456789012345678901234567890123456789012345678901234567890" /*57edf4a22be3c955ac49da2e2107b67a*/
+     };
+diff --git a/kppp/providerdb.cpp b/kppp/providerdb.cpp
+index d7f6004..4129754 100644
+--- a/kppp/providerdb.cpp
++++ b/kppp/providerdb.cpp
+@@ -44,7 +44,7 @@
+ #include <ksimpleconfig.h>
+ 
+ 
+-#define UNENCODED_CHARS "ABCDEFGHIJKLMNOPTQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
++#define UNENCODED_CHARS "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
+ 
+ TQWizard* ProviderDB::wiz = 0L;
+ 
