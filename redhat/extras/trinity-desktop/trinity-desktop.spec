@@ -1,18 +1,12 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 3
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 Name:		trinity-desktop
-Version:	%{version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.5.13
+Release:	4%{?dist}%{?_variant}
 License:	GPL
 Summary:	Meta-package to install TDE
 Group:		User Interface/Desktops
@@ -74,7 +68,7 @@ Requires:	trinity-kdeaddons-extras >= %{version}
 Requires:	trinity-kdebase-extras >= %{version}
 Requires:	trinity-kdegraphics-extras >= %{version}
 Requires:	trinity-kdemultimedia-extras >= %{version}
-Requires:	trinity-kdenetwork-extras >= %{version}
+#Requires:	trinity-kdenetwork-extras >= %{version}
 Requires:	trinity-kdeutils-extras >= %{version}
 
 %description extras
@@ -118,7 +112,6 @@ Summary:	Yum configuration files for Trinity
 %if 0%{?rhel} > 0
 %__sed %{SOURCE1} \
   -e 's/\$releasever/%{rhel}/g' \
-  -e 's/-rhel/-el%{rhel}/g' \
   >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13-el%{rhel}.repo
 %endif
 
@@ -136,6 +129,9 @@ Summary:	Yum configuration files for Trinity
 %{_sysconfdir}/yum.repos.d/*.repo
 
 %changelog
+* Wed Jun 06 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Enable mirrorlist
+
 * Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Fix repo files name and content
 
