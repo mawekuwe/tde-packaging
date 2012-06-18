@@ -1,36 +1,41 @@
-[trinity-3.5.13-fedora]
-name=trinity-3.5.13-fedora
-baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13/RPMS/$basearch
+[trinity-3.5.13]
+name=trinity-3.5.13
+#baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13/RPMS/$basearch
+mirrorlist=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13-$basearch.list
 enabled=1
 gpgcheck=0
 
-[trinity-3.5.13-fedora-noarch]
-name=trinity-3.5.13-fedora-noarch
-baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13/RPMS/noarch
+[trinity-3.5.13-noarch]
+name=trinity-3.5.13-noarch
+#baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13/RPMS/noarch
+mirrorlist=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13-noarch.list
 enabled=1
 gpgcheck=0
 
-[trinity-3.5.13-fedora-source]
-name=trinity-3.5.13-fedora-source
-baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13/SRPMS
+[trinity-3.5.13-source]
+name=trinity-3.5.13-source
+#baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13/SRPMS
+mirrorlist=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-3.5.13-SRPMS.list
 enabled=1
 gpgcheck=0
 
-[trinity-extras-fedora]
-name=trinity-extras-fedora
-baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras/RPMS/$basearch
+[trinity-extras]
+name=trinity-extras
+#baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras/RPMS/$basearch
+mirrorlist=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras-$basearch.list
 enabled=1
 gpgcheck=0
 
-[trinity-extras-fedora-noarch]
-name=trinity-extras-fedora-noarch
-baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras/RPMS/noarch
+[trinity-extras-noarch]
+name=trinity-extras-noarch
+#baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras/RPMS/noarch
+mirrorlist=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras-noarch.list
 enabled=1
 gpgcheck=0
 
-[trinity-extras-fedora-source]
-name=trinity-extras-fedora-source
-baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras/SRPMS
+[trinity-extras-source]
+name=trinity-extras-source
+#baseurl=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras/SRPMS
+mirrorlist=http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity/rpm/f$releasever/trinity-extras-SRPMS.list
 enabled=1
 gpgcheck=0
-

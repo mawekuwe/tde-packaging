@@ -21,7 +21,7 @@ BuildRequires: cmake >= 2.8
 %define _with_wifi --with-wifi
 %endif
 
-Name:    trinity-kdenetwork
+Name:    tdenetwork
 Version: 3.5.13
 Release: 5%{?dist}%{?_variant}
 Summary: Trinity Desktop Environment - Network Applications
@@ -57,6 +57,12 @@ Patch13:	kdenetwork-3.5.13-kopete_motionawayplugin_ftbfs.patch
 Patch14:	kdenetwork-3.5.13-reference_to_qmake_h.patch
 # WTF is this ? shitty hack in autotool was forgotten in CMAKE port ! [Bug #695]
 Source10:	kdenetwork-3.5.13-dummy.cpp
+# [tdenetwork] Fix linear alphabet string errors [Commit #3516f9bc]
+Patch15:	kdenetwork-3.5.13-fix_alphabet_string_error.patch
+# [tdenetwork] Remove "More Applications" from TDE menu. [Bug #653] [Commit #f86a2538]
+Patch17:	kdenetwork-3.5.13-remove_more_applications_from_menu.patch
+# [tdenetwork] Improve Kaffeine support in Kopete now listening plugin [Commit #f6708531]
+Patch18:	kdenetwork-3.5.13-improve_kaffeine_support_in_nowlistening_plugin.patch
 
 BuildRequires:	gettext
 BuildRequires:	trinity-kdelibs-devel
@@ -88,27 +94,31 @@ BuildRequires: valgrind
 BuildRequires:	libv4l-devel
 %endif
 
+Obsoletes:	trinity-kdenetwork < %{version}-%{release}
+Obsoletes:	trinity-kdenetwork-libs
+Obsoletes:	trinity-kdenetwork-extras
+Provides:	trinity-kdenetwork = %{version}-%{release}
+Provides:	trinity-kdenetwork-extras = %{version}-%{release}
 
 Requires: usermode-gtk
 
-Requires: %{name}-dcoprss = %{version}-%{release}
+Requires: trinity-dcoprss = %{version}-%{release}
 Requires: %{name}-filesharing = %{version}-%{release}
-Requires: %{name}-kdict = %{version}-%{release}
+Requires: trinity-kdict = %{version}-%{release}
 Requires: %{name}-kfile-plugins = %{version}-%{release}
-Requires: %{name}-kget = %{version}-%{release}
-Requires: %{name}-kio_lan = %{version}-%{release}
-Requires: %{name}-knewsticker = %{version}-%{release}
-Requires: %{name}-kopete = %{version}-%{release}
-Requires: %{name}-kopete-nowlistening = %{version}-%{release}
-Requires: %{name}-kpf = %{version}-%{release}
-Requires: %{name}-kppp = %{version}-%{release}
-Requires: %{name}-krdc = %{version}-%{release}
-Requires: %{name}-krfb = %{version}-%{release}
-Requires: %{name}-ksirc = %{version}-%{release}
-Requires: %{name}-ktalkd = %{version}-%{release}
-Requires: %{name}-kwifimanager = %{version}-%{release}
-Requires: %{name}-librss1 = %{version}-%{release}
-Requires: %{name}-lisa = %{version}-%{release}
+Requires: trinity-kget = %{version}-%{release}
+Requires: trinity-knewsticker = %{version}-%{release}
+Requires: trinity-kopete = %{version}-%{release}
+Requires: trinity-kopete-nowlistening = %{version}-%{release}
+Requires: trinity-kpf = %{version}-%{release}
+Requires: trinity-kppp = %{version}-%{release}
+Requires: trinity-krdc = %{version}-%{release}
+Requires: trinity-krfb = %{version}-%{release}
+Requires: trinity-ksirc = %{version}-%{release}
+Requires: trinity-ktalkd = %{version}-%{release}
+Requires: trinity-kwifimanager = %{version}-%{release}
+Requires: trinity-librss = %{version}-%{release}
+Requires: trinity-lisa = %{version}-%{release}
 
 %description
 This metapackage includes a collection of network and networking related
@@ -120,7 +130,6 @@ Networking applications, including:
 * kdict: Dictionary client for Trinity
 * kfile-plugins: Torrent metainfo plugin for Trinity
 * kget: downloader manager
-* kio_lan: lan browsing kio slave
 * knewsticker: RDF newsticker applet
 * kopete: chat client
 * kopete-nowlistening: (xmms) plugin for Kopete.
@@ -131,34 +140,34 @@ Networking applications, including:
 * ksirc: IRC client for Trinity
 * ktalkd: Talk daemon for Trinity
 * kwifimanager: Wireless lan manager for Trinity
-* librss1: RSS library for Trinity
+* librss: RSS library for Trinity
 * lisa: lan information server
 
 
 ##########
 
-%package dcoprss
+%package -n trinity-dcoprss
 Summary:		RSS utilities for Trinity
 Group:			Applications/Internet
 
-%description dcoprss
+%description -n trinity-dcoprss
 dcoprss is a RSS to DCOP bridge, allowing all
 DCOP aware applications to access RSS news feeds. There is also
 a few sample utilities provided.
 RSS is a standard for publishing news headlines.
-DCOP is the KDE interprocess communication protocol.
+DCOP is the TDE interprocess communication protocol.
 
-%files dcoprss
+%files -n trinity-dcoprss
 %defattr(-,root,root,-)
 %{_bindir}/feedbrowser
 %{_bindir}/rssclient
 %{_bindir}/rssservice
 %{_datadir}/services/rssservice.desktop
 
-%post dcoprss
+%post -n trinity-dcoprss
 update-desktop-database 2> /dev/null || : 
 
-%postun dcoprss
+%postun -n trinity-dcoprss
 update-desktop-database 2> /dev/null || : 
 
 ##########
@@ -166,12 +175,14 @@ update-desktop-database 2> /dev/null || :
 %package devel
 Summary:		Development files for the Trinity network module
 Group:			Development/Libraries
-Requires:		%{name}-libs = %{version}-%{release}
-Requires:		%{name}-kdict-trinity = %{version}-%{release}
-Requires:		%{name}-kopete-trinity = %{version}-%{release}
-Requires:		%{name}-ksirc = %{version}-%{release}
-Requires:		%{name}-librss1 = %{version}-%{release}
+Requires:		trinity-kdict = %{version}-%{release}
+Requires:		trinity-kopete = %{version}-%{release}
+Requires:		trinity-ksirc = %{version}-%{release}
+Requires:		trinity-librss = %{version}-%{release}
 Requires:		trinity-kdelibs-devel
+
+Obsoletes:	trinity-kdenetwork-devel < %{version}-%{release}
+Provides:	trinity-kdenetwork-devel = %{version}-%{release}
 
 %description devel
 This is the development package which contains the headers for the KDE RSS
@@ -207,6 +218,7 @@ development-related files for the TDE network module.
 %package filesharing
 #Recommends:	perl-suid
 Summary:		Network filesharing configuration module for Trinity
+Group:   		Applications/Internet
 
 %description filesharing
 This package provides a TDE Control Center module to configure
@@ -239,18 +251,17 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package kdict
-#Suggests:		khelpcenter-trinity
-Provides:		dict-client-trinity
+%package -n trinity-kdict
 Summary:		Dictionary client for Trinity
+Group:			Applications/Internet
 
-%description kdict
+%description -n trinity-kdict
 KDict is an advanced TDE graphical client for the DICT Protocol, with full
 Unicode support. It enables you to search through dictionary databases for a
 word or phrase, then displays suitable definitions. KDict tries to ease
 basic as well as advanced queries.
 
-%files kdict
+%files -n trinity-kdict
 %defattr(-,root,root,-)
 %{_bindir}/kdict
 %{tde_libdir}/kdict.*
@@ -262,13 +273,13 @@ basic as well as advanced queries.
 %{_datadir}/icons/hicolor/*/apps/kdict.*
 %{tde_docdir}/HTML/en/kdict
 
-%post kdict
+%post -n trinity-kdict
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun kdict
+%postun -n trinity-kdict
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -278,6 +289,7 @@ update-desktop-database 2> /dev/null || :
 
 %package kfile-plugins
 Summary:		Torrent metainfo plugin for Trinity
+Group:			Applications/Internet
 
 %description kfile-plugins
 This package provides a metainformation plugin for bittorrent files.
@@ -297,19 +309,19 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package kget
-#Suggests: khelpcenter-trinity
+%package -n trinity-kget
 Summary:		download manager for Trinity
+Group:			Applications/Internet
 
-%description kget
+%description -n trinity-kget
 KGet is a a download manager similar to GetRight or Go!zilla. It keeps
 all your downloads in one dialog and you can add and remove transfers.
 Transfers can be paused, resumed, queued or scheduled.
 Dialogs display info about status of transfers - progress, size, speed
-and remaining time. Program supports drag & drop from KDE
+and remaining time. Program supports drag & drop from TDE
 applications and Netscape.
 
-%files kget
+%files -n trinity-kget
 %defattr(-,root,root,-)
 %{_bindir}/kget
 %{tde_libdir}/khtml_kget.la
@@ -329,13 +341,13 @@ applications and Netscape.
 %{_datadir}/sounds/KGet_Started.ogg
 %{tde_docdir}/HTML/en/kget
 
-%post kget
+%post -n trinity-kget
 for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun kget
+%postun -n trinity-kget
 for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -343,17 +355,18 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package knewsticker
+%package -n trinity-knewsticker
 Summary:		news ticker applet for Trinity
+Group:			Applications/Internet
 
-%description knewsticker
+%description -n trinity-knewsticker
 This is a news ticker applet for the Trinity panel. It can scroll news from
 your favorite news sites, such as lwn.net, /. and freshmeat.net.
 To achieve this, KNewsTicker requires the news sites to provide a
 RSS feed to newsitems. KNewsTicker already comes with a selection of
 good news sources which provide such files.
 
-%files knewsticker
+%files -n trinity-knewsticker
 %defattr(-,root,root,-)
 %{_bindir}/knewstickerstub
 %{tde_libdir}/knewsticker_panelapplet.la
@@ -370,13 +383,13 @@ good news sources which provide such files.
 %{_datadir}/services/kntsrcfilepropsdlg.desktop
 %{tde_docdir}/HTML/en/knewsticker
 
-%post knewsticker
+%post -n trinity-knewsticker
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun knewsticker
+%postun -n trinity-knewsticker
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -384,7 +397,11 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package kopete
+%package -n trinity-kopete
+Summary:		instant messenger for Trinity
+Group:			Applications/Internet
+URL:			http://kopete.kde.org
+
 #Recommends: qca-tls
 #Suggests: tdeartwork-emoticons-trinity, khelpcenter-trinity, imagemagick, gnupg, gnomemeeting
 BuildRequires:	libxml2-devel
@@ -400,16 +417,14 @@ BuildRequires:	speex-devel
 # jabber/ssl
 #{?fedora:Requires(hint): qca-tls}
 Requires:		jasper
-URL:			http://kopete.kde.org
-Summary:		instant messenger for Trinity
 
-%description kopete
+%description -n trinity-kopete
 Kopete is an instant messenger program which can communicate with a variety
 of IM systems, such as Yahoo, ICQ, MSN, IRC and Jabber.
 
 Support for more IM protocols can be added through a plugin system.
 
-%files kopete
+%files -n trinity-kopete
 %defattr(-,root,root,-)
 # nowlistening support
 %exclude %{_datadir}/apps/kopete/*nowlisteningchatui*
@@ -552,14 +567,14 @@ Support for more IM protocols can be added through a plugin system.
 %{_datadir}/config.kcfg/smpppdcs.kcfg
 
 
-%post kopete
+%post -n trinity-kopete
 for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 /sbin/ldconfig
 
-%postun kopete
+%postun -n trinity-kopete
 for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -568,16 +583,16 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package kopete-nowlistening
-Summary:	Nowlistening (xmms) plugin for Kopete.
-#Requires(hint): samba-client
+%package -n trinity-kopete-nowlistening
+Summary:		Nowlistening (xmms) plugin for Kopete.
+Group:			Applications/Internet
 
-%description kopete-nowlistening
+%description -n trinity-kopete-nowlistening
 Kopete includes the "Now Listening" plug-in that can report what music you
 are currently listening to, in a number of different players, including
 noatun, kscd, juk, kaffeine and amarok.
 
-%files kopete-nowlistening
+%files -n trinity-kopete-nowlistening
 %defattr(-,root,root,-)
 %{_datadir}/apps/kopete/*nowlisteningchatui*
 %{_datadir}/apps/kopete/*nowlisteningui*
@@ -588,17 +603,17 @@ noatun, kscd, juk, kaffeine and amarok.
 
 ##########
 
-%package kpf
-#Suggests: khelpcenter-trinity
+%package -n trinity-kpf
 Summary:		Public fileserver for Trinity
+Group:			Applications/Internet
 
-%description kpf
+%description -n trinity-kpf
 kpf provides simple file sharing using HTTP. kpf is strictly a public
 fileserver, which means that there are no access restrictions to shared
 files. Whatever you select for sharing is available to anyone. kpf is
 designed to be used for sharing files with friends.
 
-%files kpf
+%files -n trinity-kpf
 %defattr(-,root,root,-)
 %{tde_libdir}/kpf*
 %{_datadir}/apps/kicker/applets/kpfapplet.desktop
@@ -606,13 +621,13 @@ designed to be used for sharing files with friends.
 %{_datadir}/services/kpfpropertiesdialogplugin.desktop
 %{tde_docdir}/HTML/en/kpf
 
-%post kpf
+%post -n trinity-kpf
 for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun kpf
+%postun -n trinity-kpf
 for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -620,11 +635,12 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package kppp
+%package -n trinity-kppp
 Summary:		modem dialer and ppp frontend for Trinity
+Group:			Applications/Internet
 Requires:		ppp
 
-%description kppp
+%description -n trinity-kppp
 KPPP is a dialer and front end for pppd. It allows for interactive
 script generation and network setup. It will automate the dialing in
 process to your ISP while letting you conveniently monitor the entire
@@ -633,7 +649,7 @@ process.
 Once connected KPPP will provide a rich set of statistics and keep
 track of the time spent online for you.
 
-%files kppp
+%files -n trinity-kppp
 %defattr(-,root,root,-)
 %config(noreplace) /etc/security/console.apps/kppp3
 %config(noreplace) /etc/pam.d/kppp3
@@ -647,13 +663,13 @@ track of the time spent online for you.
 %{_datadir}/icons/hicolor/*/apps/kppp.png
 %{tde_docdir}/HTML/en/kppp
 
-%post kppp
+%post -n trinity-kppp
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun kppp
+%postun -n trinity-kppp
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -661,16 +677,17 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package krdc
+%package -n trinity-krdc
 Summary:		Remote Desktop Connection for Trinity
+Group:			Applications/Internet
 Requires:		rdesktop
 
-%description krdc
-krdc is an KDE graphical client for the rfb protocol, used by VNC,
+%description -n trinity-krdc
+krdc is an TDE graphical client for the rfb protocol, used by VNC,
 and if rdesktop is installed, krdc can connect to Windows Terminal
 Servers using RDP.
 
-%files krdc
+%files -n trinity-krdc
 %defattr(-,root,root,-)
 %{_bindir}/krdc
 %{tde_appdir}/krdc.desktop
@@ -681,13 +698,13 @@ Servers using RDP.
 %{_datadir}/services/vnc.protocol
 %{tde_docdir}/HTML/en/krdc
 
-%post krdc
+%post -n trinity-krdc
 for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun krdc
+%postun -n trinity-krdc
 for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -695,12 +712,11 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package krfb
-#Suggests: khelpcenter-trinity
-#Recommends: libjpeg-turbo62
+%package -n trinity-krfb
 Summary:		Desktop Sharing for Trinity
+Group:			Applications/Internet
 
-%description krfb
+%description -n trinity-krfb
 Desktop Sharing (krfb) is a server application that allows you to share
 your current session with a user on another machine, who can use a
 VNC client like krdc to view or even control the desktop. It doesn't
@@ -708,7 +724,7 @@ require you to start a new X session - it can share the current session.
 This makes it very useful when you want someone to help you perform a
 task.
 
-%files krfb
+%files -n trinity-krfb
 %defattr(-,root,root,-)
 %{_bindir}/krfb
 %{_bindir}/krfb_httpd
@@ -728,13 +744,13 @@ task.
 %{_datadir}/servicetypes/kinetdmodule.desktop
 %{tde_docdir}/HTML/en/krfb
 
-%post krfb
+%post -n trinity-krfb
 for f in crystalsvg locolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun krfb
+%postun -n trinity-krfb
 for f in crystalsvg locolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -742,20 +758,18 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package ksirc
-#Depends: ${shlibs:Depends}, ${perl:Depends}
-#Recommends: libio-socket-ssl-perl
-#Suggests: khelpcenter-trinity
+%package -n trinity-ksirc
 Summary:		IRC client for Trinity
+Group:			Applications/Internet
 
-%description ksirc
+%description -n trinity-ksirc
 KSirc is an IRC chat client for KDE. It supports scripting with Perl and has a
 lot of compatibility with mIRC for general use.
 
 If you want to connect to an IRC server via SSL, you will need to install the
 recommended package libio-socket-ssl-perl.
 
-%files ksirc
+%files -n trinity-ksirc
 %defattr(-,root,root,-)
 %{_bindir}/dsirc
 %{_bindir}/ksirc
@@ -767,7 +781,7 @@ recommended package libio-socket-ssl-perl.
 %{_datadir}/icons/hicolor/*/apps/ksirc.*
 %{tde_docdir}/HTML/??/ksirc/
 
-%post ksirc
+%post -n trinity-ksirc
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -775,7 +789,7 @@ update-desktop-database 2> /dev/null || :
 /sbin/ldconfig
 
 
-%postun ksirc
+%postun -n trinity-ksirc
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -784,19 +798,17 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package ktalkd
-#Depends: ${shlibs:Depends}, netbase, update-inetd
-#Recommends: talk, ytalk
-#Suggests: khelpcenter-trinity
+%package -n trinity-ktalkd
 Summary:		Talk daemon for Trinity
+Group:			Applications/Internet
 
-%description ktalkd
+%description -n trinity-ktalkd
 KTalkd is an enhanced talk daemon - a program to handle incoming talk
 requests, announce them and allow you to respond to it using a talk
 client. Note that KTalkd is designed to run on a single-user workstation,
 and shouldn't be run on a multi-user machine.
 
-%files ktalkd
+%files -n trinity-ktalkd
 %defattr(-,root,root,-)
 %{_bindir}/ktalkd*
 %{_bindir}/mail.local
@@ -809,13 +821,13 @@ and shouldn't be run on a multi-user machine.
 %{tde_docdir}/HTML/en/kcontrol/kcmtalkd
 %{tde_docdir}/HTML/en/ktalkd
 
-%post ktalkd
+%post -n trinity-ktalkd
 for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun ktalkd
+%postun -n trinity-ktalkd
 for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -824,18 +836,19 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %if "%{?_with_wifi:1}" == "1"
-%package kwifimanager
+%package -n trinity-kwifimanager
 #Depends: ${shlibs:Depends}, wireless-tools
 #Suggests: khelpcenter-trinity
 Summary:		Wireless lan manager for Trinity
+Group:			Applications/Internet
 
-%description kwifimanager
+%description -n trinity-kwifimanager
 KWiFiManager suite is a set of tools which allows you to manage your
 wireless LAN connection under the K Desktop Environment. It provides
 information about your current connection. KWiFiManager supports every
 wavelan card that uses the wireless extensions interface.
 
-%files kwifimanager
+%files -n trinity-kwifimanager
 %defattr(-,root,root,-)
 %{_bindir}/kwifimanager
 %{tde_libdir}/kcm_wifi.*
@@ -849,13 +862,13 @@ wavelan card that uses the wireless extensions interface.
 %{_datadir}/icons/hicolor/*/apps/kwifimanager.svgz
 %doc %{tde_docdir}/HTML/en/kwifimanager
 
-%post kwifimanager
+%post -n trinity-kwifimanager
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
-%postun kwifimanager
+%postun -n trinity-kwifimanager
 for f in hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
@@ -864,37 +877,38 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package librss1
-#Section: libs
+%package -n trinity-librss
 Summary:		RSS library for Trinity
+Group:			Environment/Libraries
 
-%description librss1
-This is the runtime package for programs that use the KDE RSS library.
+%description -n trinity-librss
+This is the runtime package for programs that use the TDE RSS library.
 End users should not need to install this, it should get installed
 automatically when needed.
 
-%files librss1
+%files -n trinity-librss
 %defattr(-,root,root,-)
 %{_libdir}/librss.so.*
 
-%post librss1
+%post -n trinity-librss
 /sbin/ldconfig
 
-%postun librss1
+%postun -n trinity-librss
 /sbin/ldconfig
 
 ##########
 
-%package lisa
+%package -n trinity-lisa
 Summary:			LAN information server for Trinity
+Group:				Applications/Internet
 Requires(preun):	chkconfig
 Requires(post):		chkconfig
 
-%description lisa
+%description -n trinity-lisa
 LISa is intended to provide KDE with a kind of "network neighborhood"
 but relying only on the TCP/IP protocol.
 
-%files lisa
+%files -n trinity-lisa
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/lisarc*
 %config(noreplace) %{_initrddir}/lisa
@@ -918,11 +932,11 @@ but relying only on the TCP/IP protocol.
 %{_bindir}/lisa
 %{_bindir}/reslisa
 
-%post lisa
+%post -n trinity-lisa
 /sbin/chkconfig --add lisa ||:
 update-desktop-database 2> /dev/null || : 
 
-%postun lisa
+%postun -n trinity-lisa
 if [ $1 -eq 0 ]; then
   /sbin/chkconfig --del lisa ||:
   /sbin/service lisa stop > /dev/null 2>&1 ||:
@@ -931,16 +945,17 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%package kdnssd
+%package -n trinity-kdnssd
 #Recommends: avahi-daemon
 #Suggests: avahi-autoipd | zeroconf
 Summary: Zeroconf support for KDE
+Group:			Applications/Internet
 
-%description kdnssd
+%description -n trinity-kdnssd
 A kioslave and kded module that provide Zeroconf support. Try
 "zeroconf:/" in Konqueror.
 
-%files kdnssd
+%files -n trinity-kdnssd
 %defattr(-,root,root,-)
 %{_datadir}/services/zeroconf.protocol
 %{_datadir}/services/invitation.protocol
@@ -958,10 +973,10 @@ A kioslave and kded module that provide Zeroconf support. Try
 %{tde_libdir}/kded_dnssdwatcher.so
 %{tde_libdir}/kded_dnssdwatcher.la
 
-%post kdnssd
+%post -n trinity-kdnssd
 update-desktop-database 2> /dev/null || : 
 
-%postun kdnssd
+%postun -n trinity-kdnssd
 update-desktop-database 2> /dev/null || : 
 
 ##########
@@ -977,6 +992,9 @@ update-desktop-database 2> /dev/null || :
 %patch12 -p1
 %patch13 -p1
 %patch14 -p4
+%patch15 -p1
+%patch17 -p1
+%patch18 -p1
 
 
 # TDE 3.5.13: missing 'dummy.cpp' in MSN protocol
@@ -1003,7 +1021,7 @@ cd build
   ..
 
 # kdenetwork building is not SMP safe
-%__make
+%__make 
 
 
 %install
@@ -1077,10 +1095,13 @@ EOF
 
 
 %changelog
-* Wed May 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+* Sat Jun 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Split single package in multiple packages
 - Removes useless 'Provides'
 - Updates 'BuildRequires'
+- Fix linear alphabet string errors [Commit #3516f9bc]
+- Remove "More Applications" from TDE menu. [Bug #653] [Commit #f86a2538]
+- Improve Kaffeine support in Kopete now listening plugin [Commit #f6708531]
 
 * Sun Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Enable Kopete protocols & plugins compilation

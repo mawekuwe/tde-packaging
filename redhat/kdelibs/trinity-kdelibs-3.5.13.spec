@@ -72,6 +72,7 @@ BuildRequires:	libtool-ltdl-devel
 BuildRequires:	glib2-devel
 BuildRequires:	gamin-devel
 BuildRequires:	xorg-x11-proto-devel
+BuildRequires:	libXcomposite-devel
 
 Requires:		tqtinterface
 Requires:		trinity-arts

@@ -37,6 +37,7 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 Patch1:		smb4k-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires:	tqtinterface-devel
+BuildRequires:	trinity-arts-devel
 BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	trinity-kdebase-devel
 BuildRequires:	desktop-file-utils

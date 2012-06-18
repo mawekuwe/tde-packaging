@@ -1,0 +1,19 @@
+commit 228ad1c6df4be49fde421520e25fb9645ee922e7
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1339265402 -0500
+
+    Update kalarmd icon reference, which does not exist, to kalarm.
+
+diff --git a/kalarm/kalarmd/kalarmd.autostart.desktop b/kalarm/kalarmd/kalarmd.autostart.desktop
+index 7342be1..c9a72db 100644
+--- a/kalarm/kalarmd/kalarmd.autostart.desktop
++++ b/kalarm/kalarmd/kalarmd.autostart.desktop
+@@ -46,7 +46,7 @@ Name[uk]=Демон KAlarm
+ Name[zh_CN]=KAlarm 进程
+ Name[zh_TW]=KAlarm 守護程式
+ Exec=kalarmd --autostart
+-Icon=kalarmd
++Icon=kalarm
+ Type=Application
+ Comment=KAlarm alarm daemon autostart at login
+ Comment[af]=Begin KAlarm bediener outomaties tydens aanteken

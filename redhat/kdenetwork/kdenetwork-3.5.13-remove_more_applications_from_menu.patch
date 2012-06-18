@@ -1,0 +1,39 @@
+commit f86a25380b4901bbd828dde8f35adb5b789d40c6
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1331690526 -0500
+
+    Remove "More Applications" from TDE menu.
+    This partially resolves bug report 653.
+
+diff --git a/kdict/kdict.desktop b/kdict/kdict.desktop
+index d274d23..0b63798 100644
+--- a/kdict/kdict.desktop
++++ b/kdict/kdict.desktop
+@@ -150,4 +150,4 @@ GenericName[zu]=Isichaza magama esixhumekile
+ X-KDE-StartupNotify=true
+ X-DCOP-ServiceType=Unique
+ DocPath=kdict/index.html
+-Categories=Qt;KDE;Network;X-KDE-More;Office;Dictionary;
++Categories=Qt;KDE;Network;Office;Dictionary;
+diff --git a/knewsticker/knewsticker-standalone.desktop b/knewsticker/knewsticker-standalone.desktop
+index b164e52..08d0d1e 100644
+--- a/knewsticker/knewsticker-standalone.desktop
++++ b/knewsticker/knewsticker-standalone.desktop
+@@ -92,5 +92,5 @@ GenericName[zu]=Umlungiseleli Wezindaba
+ Terminal=false
+ X-KDE-StartupNotify=true
+ X-DCOP-ServiceType=Unique
+-Categories=Qt;KDE;Network;X-KDE-More;News;
++Categories=Qt;KDE;Network;News;
+ NoDisplay=true
+diff --git a/kppp/logview/kppplogview.desktop b/kppp/logview/kppplogview.desktop
+index 39ba64f..401718f 100644
+--- a/kppp/logview/kppplogview.desktop
++++ b/kppp/logview/kppplogview.desktop
+@@ -74,5 +74,5 @@ Path=
+ Type=Application
+ Terminal=false
+ X-DCOP-ServiceType=Multi
+-Categories=Qt;KDE;Network;X-KDE-More;Dialup;
++Categories=Qt;KDE;Network;Dialup;
+ NoDisplay=true

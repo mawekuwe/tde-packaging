@@ -1,0 +1,66 @@
+commit f670853164f8a23f3656fa9de72b12b962b9bcaa
+Author: Slávek Banko <slavek.banko@axis.cz>
+Date:   1339294006 +0200
+
+    Improve Kaffeine support in Kopete now listening plugin
+
+diff --git a/kopete/plugins/nowlistening/nlkaffeine.cpp b/kopete/plugins/nowlistening/nlkaffeine.cpp
+index c2b70ba..77dd84c 100644
+--- a/kopete/plugins/nowlistening/nlkaffeine.cpp
++++ b/kopete/plugins/nowlistening/nlkaffeine.cpp
+@@ -40,7 +40,7 @@ void NLKaffeine::update()
+ 	m_newTrack = false;
+ 	TQString newTrack;
+ 	bool error = true; // Asume we have a error first. 
+-	TQCString kaffeineIface("Kaffeine"), kaffeineGetTrack("getTitle()");
++	TQCString kaffeineIface("KaffeineIface"), kaffeineGetTrack("title()");
+ 
+ 	// see if kaffeine is  registered with DCOP
+ 	if ( m_client->isApplicationRegistered( "kaffeine" ) )
+@@ -52,10 +52,10 @@ void NLKaffeine::update()
+ 		if ( !m_client->call( "kaffeine", kaffeineIface, "isPlaying()", data,
+ 					replyType, replyData ) )
+ 		{
+-			kdDebug ( 14307 ) << k_funcinfo << " Trying DCOP interface of Kaffeine >= 0.5" << endl;
+-			// Trying with the new Kaffeine DCOP interface (>=0.5)
+-			kaffeineIface = "KaffeineIface";
+-			kaffeineGetTrack = "title()";
++			kdDebug ( 14307 ) << k_funcinfo << " Trying DCOP interface of Kaffeine < 0.5" << endl;
++			// Trying with the old Kaffeine DCOP interface (<0.5)
++			kaffeineIface = "Kaffeine";
++			kaffeineGetTrack = "getTitle()";
+ 			if( !m_client->call( "kaffeine", kaffeineIface, "isPlaying()", data, replyType, replyData ) )
+ 			{
+ 				kdDebug( 14307 ) << k_funcinfo << " DCOP error on Kaffeine." << endl;
+@@ -94,6 +94,31 @@ void NLKaffeine::update()
+ 			m_newTrack = true;
+ 			m_track = newTrack;
+ 		}
++		if ( kaffeineIface == "Kaffeine" )
++		{
++			// old Kaffeine DCOP interface (<0.5)
++			return;
++		}
++
++		if ( m_client->call( "kaffeine", kaffeineIface, "album()", data,
++					replyType, replyData ) )
++		{
++			TQDataStream reply( replyData, IO_ReadOnly );
++
++			if ( replyType == TQSTRING_OBJECT_NAME_STRING ) {
++				reply >> m_album;
++			}
++		}
++
++		if ( m_client->call( "kaffeine", kaffeineIface, "artist()", data,
++					replyType, replyData ) )
++		{
++			TQDataStream reply( replyData, IO_ReadOnly );
++
++			if ( replyType == TQSTRING_OBJECT_NAME_STRING ) {
++				reply >> m_artist;
++			}
++		}
+ 	}
+ 	else
+ 		kdDebug ( 14307 ) << "Kaffeine is not running!\n" << endl;
