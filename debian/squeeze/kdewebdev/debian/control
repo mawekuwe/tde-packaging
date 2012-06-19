@@ -153,7 +153,7 @@ Description: visual dialog builder and executor tool [Trinity]
 Package: kommander-trinity-dev
 Architecture: any
 Section: libdevel
-Depends: kommander-trinity (= ${binary:Version}), kdelibs4-dev (>= 4:3.5.8)
+Depends: kommander-trinity (= ${binary:Version}), kdelibs4-trinity-dev (>= 4:3.5.8)
 Description: development files for Kommander [Trinity]
  This package contains the headers and other development files for
  building plugins or otherwise extending Kommander.

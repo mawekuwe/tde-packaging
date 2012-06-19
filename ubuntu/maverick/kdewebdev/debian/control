@@ -171,7 +171,7 @@ Architecture: any
 Section: libdevel
 Replaces: kommander-kde3-dev (<< 4:3.5.13)
 Breaks: kommander-kde3-dev (<< 4:3.5.13)
-Depends: kommander-trinity (= ${binary:Version}), kdelibs4-dev (>= 4:3.5.8)
+Depends: kommander-trinity (= ${binary:Version}), kdelibs4-trinity-dev (>= 4:3.5.8)
 Description: development files for Kommander [Trinity]
  This package contains the headers and other development files for
  building plugins or otherwise extending Kommander.
