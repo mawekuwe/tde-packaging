@@ -171,7 +171,7 @@ Architecture: any
 Section: libdevel
 Replaces: kommander-trinity-dev (<< 4:14.0.0)
 Breaks: kommander-trinity-dev (<< 4:14.0.0)
-Depends: kommander-trinity (= ${binary:Version}), tdelibs4-dev
+Depends: kommander-trinity (= ${binary:Version}), tdelibs4-trinity-dev
 Description: development files for Kommander [Trinity]
  This package contains the headers and other development files for
  building plugins or otherwise extending Kommander.
