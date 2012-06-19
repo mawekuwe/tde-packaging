@@ -5,11 +5,11 @@ set -e
 case "$1" in
   upgrade) ;;
   remove|failed-upgrade|deconfigure)
-    update-alternatives --remove moc "/usr/bin/moc-tqt3"
-    update-alternatives --remove uic "/usr/bin/uic-tqt3"
-    update-alternatives --remove lupdate "/usr/bin/lupdate-tqt3"
-    update-alternatives --remove lrelease "/usr/bin/lrelease-tqt3"
-    update-alternatives --remove qmake "/usr/bin/qmake-tqt3"
+    update-alternatives --remove moc "/usr/bin/tqmoc"
+    update-alternatives --remove uic "/usr/bin/tquic"
+    update-alternatives --remove lupdate "/usr/bin/tqlupdate"
+    update-alternatives --remove lrelease "/usr/bin/tqlrelease"
+    update-alternatives --remove qmake "/usr/bin/tqmake"
     ;;
 esac
 

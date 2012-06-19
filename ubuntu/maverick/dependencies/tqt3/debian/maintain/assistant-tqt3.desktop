@@ -1,10 +1,10 @@
 [Desktop Entry]
 Encoding=UTF-8
-Exec=assistant-tqt3
-Name=Qt3 Assistant
-Name[de]=Qt3 Assistent
-Comment=Qt3 Helpcenter
-Comment[de]= Qt3 Hilfezentrum
+Exec=tqassistant
+Name=TQt3 Assistant
+Name[de]=TQt3 Assistent
+Comment=TQt3 Helpcenter
+Comment[de]= TQt3 Hilfezentrum
 MimeType=application/x-assistant;
 Icon=assistant
 Terminal=false
