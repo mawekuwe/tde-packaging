@@ -437,6 +437,10 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
 gtk-update-icon-cache %{_datadir}/icons/locolor &> /dev/null || :
 update-desktop-database -q &> /dev/null ||:
 
+%post karbon -p /sbin/ldconfig
+
+%postun karbon -p /sbin/ldconfig
+
 %post kword -p /sbin/ldconfig
 
 %postun kword -p /sbin/ldconfig
