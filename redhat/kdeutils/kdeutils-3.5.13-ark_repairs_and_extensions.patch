@@ -1,0 +1,1281 @@
+commit 1c84948d57c174bcd9732a5a0a51d42d3626d000
+Author: Slávek Banko <slavek.banko@axis.cz>
+Date:   1339952967 +0200
+
+    [Ark] Repairs and extensions
+    Added support for Arj
+    Added support for check archives
+    Added support for password processing
+    Fix show broken filenames into real UTF-8
+    This closes Bug 1030
+
+diff --git a/ark/Makefile.am b/ark/Makefile.am
+index 9761a28..14f33f5 100644
+--- a/ark/Makefile.am
++++ b/ark/Makefile.am
+@@ -9,19 +9,19 @@ tdeinit_LTLIBRARIES = ark.la
+ lib_LTLIBRARIES =
+ 
+ ark_la_SOURCES = main.cpp arkapp.cpp mainwindow.cpp
+-ark_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN)
+-ark_la_LIBADD = libark_common.la $(LIB_KPARTS)
++ark_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(KDE_PLUGIN)
++ark_la_LIBADD = $(LIB_KDED) -lDCOP $(LIB_KHTML) $(LIB_KIO) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)  libark_common.la $(LIB_KPARTS)
+ ark_la_COMPILE_FIRST = settings.h
+ 
+ noinst_LTLIBRARIES = libark_common.la
+ 
+ libark_common_la_SOURCES = settings.kcfgc archiveformatinfo.cpp
+ libark_common_la_LDFLAGS = $(all_libraries) -no-undefined
+-libark_common_la_LIBADD  = $(LIB_KFILE)
++libark_common_la_LIBADD  = $(LIB_KDED) -lDCOP $(LIB_KHTML) $(LIB_KIO) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)  $(LIB_KFILE)
+ 
+ kde_module_LTLIBRARIES = libarkpart.la
+ libarkpart_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries)
+-libarkpart_la_LIBADD = libark_common.la $(LIB_KPARTS)
++libarkpart_la_LIBADD = $(LIB_KDED) -lDCOP $(LIB_KHTML) $(LIB_KIO) $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT)  libark_common.la $(LIB_KPARTS)
+ libarkpart_la_COMPILE_FIRST = settings.h
+ 
+ libarkpart_la_SOURCES = ark_part.cpp arkfactory.cpp zip.cpp tar.cpp \
+@@ -31,7 +31,7 @@ libarkpart_la_SOURCES = ark_part.cpp arkfactory.cpp zip.cpp tar.cpp \
+                         arkwidget.cpp searchbar.cpp \
+                         addition.ui extraction.ui general.ui \
+                         arkviewer.cpp sevenzip.cpp extractiondialog.cpp \
+-                        ace.cpp tarlistingthread.cpp
++                        ace.cpp tarlistingthread.cpp arj.cpp
+ 
+ METASOURCES = AUTO
+ 
+diff --git a/ark/addition.ui b/ark/addition.ui
+index 401c146..46541ca 100644
+--- a/ark/addition.ui
++++ b/ark/addition.ui
+@@ -16,6 +16,15 @@
+         <property name="name">
+             <cstring>unnamed</cstring>
+         </property>
++
++        <widget class="TQCheckBox">
++            <property name="name">
++                <cstring>kcfg_askCreatePassword</cstring>
++            </property>
++            <property name="text">
++                <string>Ask for &amp;password when create archive if possible</string>
++            </property>
++        </widget>
+         <widget class="TQCheckBox">
+             <property name="name">
+                 <cstring>kcfg_replaceOnlyWithNewer</cstring>
+diff --git a/ark/arch.cpp b/ark/arch.cpp
+index ee2a23e..b4fc0e8 100644
+--- a/ark/arch.cpp
++++ b/ark/arch.cpp
+@@ -33,6 +33,7 @@
+ // QT includes
+ #include <tqapplication.h>
+ #include <tqfile.h>
++#include <tqtextcodec.h>
+ 
+ // KDE includes
+ #include <kdebug.h>
+@@ -59,6 +60,7 @@
+ #include "ar.h"
+ #include "sevenzip.h"
+ #include "ace.h"
++#include "arj.h"
+ 
+ Arch::ArchColumns::ArchColumns( int col, TQRegExp reg, int length, bool opt )
+   : colRef( col ), pattern( reg ), maxLength( length ), optional( opt )
+@@ -288,7 +290,7 @@ void Arch::slotReceivedTOC( KProcess*, char* data, int length )
+ 
+     data[ lfChar ] = '\0';
+ 
+-    m_buffer.append( TQString::fromUtf8(data + startChar).latin1() );
++    m_buffer.append( data + startChar );
+ 
+     data[ lfChar ] = '\n';
+     startChar = lfChar + 1;
+@@ -333,12 +335,16 @@ bool Arch::processLine( const TQCString &line )
+   unsigned int pos = 0;
+   int strpos, len;
+ 
++  TQTextCodec::setCodecForCStrings(TQTextCodec::codecForLocale());
++  TQTextCodec *codec = TQTextCodec::codecForLocale();
++  TQString tqunicode_line = codec->toUnicode( line );
++
+   // Go through our columns, try to pick out data, return silently on failure
+   for ( TQPtrListIterator <ArchColumns>col( m_archCols ); col.current(); ++col )
+   {
+     ArchColumns *curCol = *col;
+ 
+-    strpos = curCol->pattern.search( line, pos );
++    strpos = curCol->pattern.search( tqunicode_line, pos );
+     len = curCol->pattern.matchedLength();
+ 
+     if ( ( strpos == -1 ) || ( len > curCol->maxLength ) )
+@@ -354,7 +360,7 @@ bool Arch::processLine( const TQCString &line )
+ 
+     pos = strpos + len;
+ 
+-    columns[curCol->colRef] = TQString::fromLocal8Bit( line.mid(strpos, len) );
++    columns[curCol->colRef] = tqunicode_line.mid(strpos, len).utf8();
+   }
+ 
+ 
+@@ -388,6 +394,60 @@ bool Arch::processLine( const TQCString &line )
+   return true;
+ }
+ 
++void Arch::test()
++{
++    emit sigTest(false);
++    KMessageBox::information(0, i18n("Not implemented."));
++}
++
++void Arch::slotTestExited( KProcess *_kp )
++{
++  bool success = ( _kp->normalExit() && ( _kp->exitStatus() == 0 ) );
++
++  if( !success )
++  {
++    if ( passwordRequired() )
++    {
++        TQString msg;
++        if ( !m_password.isEmpty() )
++            msg = i18n("The password was incorrect. ");
++        if (KPasswordDialog::getPassword( m_password, msg+i18n("You must enter a password to extract the file:") ) == KPasswordDialog::Accepted )
++        {
++            delete _kp;
++            _kp = m_currentProcess = 0;
++            clearShellOutput();
++            test(); // try to test the archive again with a password
++            return;
++        }
++        m_password = "";
++        emit sigTest( false );
++        delete _kp;
++        _kp = m_currentProcess = 0;
++        return;
++    }
++    else if ( m_password.isEmpty() || _kp->exitStatus() > 1 )
++    {
++        TQApplication::restoreOverrideCursor();
++
++        TQString msg = i18n( "The test operation failed." );
++
++        if ( !getLastShellOutput().isNull() )
++        {
++            //getLastShellOutput() is a TQString. errorList is expecting TQStringLists to show in multiple lines
++            TQStringList list = TQStringList::split( "\n", getLastShellOutput() );
++            KMessageBox::errorList( m_gui, msg, list );
++            clearShellOutput();
++        }
++        else
++        {
++            KMessageBox::error( m_gui, msg );
++        }
++    }
++  }
++  delete _kp;
++  _kp = m_currentProcess = 0;
++  emit sigTest( success );
++}
+ 
+ Arch *Arch::archFactory( ArchType aType,
+                          ArkWidget *parent, const TQString &filename,
+@@ -422,6 +482,9 @@ Arch *Arch::archFactory( ArchType aType,
+     case ACE_FORMAT:
+       return new AceArch( parent, filename );
+ 
++    case ARJ_FORMAT:
++      return new ArjArch( parent, filename );
++
+     case UNKNOWN_FORMAT:
+     default:
+       return 0;
+diff --git a/ark/arch.h b/ark/arch.h
+index 7aa18ac..85c6c7d 100644
+--- a/ark/arch.h
++++ b/ark/arch.h
+@@ -65,7 +65,7 @@ class ArkWidget;
+ 
+ enum ArchType { UNKNOWN_FORMAT, ZIP_FORMAT, TAR_FORMAT, AA_FORMAT,
+                 LHA_FORMAT, RAR_FORMAT, ZOO_FORMAT, COMPRESSED_FORMAT,
+-                SEVENZIP_FORMAT, ACE_FORMAT };
++                SEVENZIP_FORMAT, ACE_FORMAT, ARJ_FORMAT };
+ 
+ typedef TQValueList< TQPair< TQString, TQt::AlignmentFlags > > ColumnList;
+ 
+@@ -101,6 +101,7 @@ class Arch : public TQObject
+     virtual void open() = 0;
+     virtual void create() = 0;
+     virtual void remove( TQStringList * ) = 0;
++    virtual void test();
+ 
+     virtual void addFile( const TQStringList & ) = 0;
+     virtual void addDir( const TQString & ) = 0;
+@@ -150,12 +151,16 @@ class Arch : public TQObject
+     static Arch *archFactory( ArchType aType, ArkWidget *parent,
+                               const TQString &filename,
+                               const TQString &openAsMimeType = TQString() );
++    TQString password() { return m_password; }
++    void setPassword(const TQString & pw) { m_password = pw.local8Bit(); }
++    virtual void createPassword() {}
+ 
+   protected slots:
+     void slotOpenExited( KProcess* );
+     void slotExtractExited( KProcess* );
+     void slotDeleteExited( KProcess* );
+     void slotAddExited( KProcess* );
++    void slotTestExited( KProcess* );
+ 
+     void slotReceivedOutput( KProcess *, char*, int );
+ 
+@@ -168,6 +173,7 @@ class Arch : public TQObject
+     void sigDelete( bool );
+     void sigExtract( bool );
+     void sigAdd( bool );
++    void sigTest( bool );
+     void headers( const ColumnList& columns );
+ 
+   protected:  // data
+diff --git a/ark/archiveformatinfo.cpp b/ark/archiveformatinfo.cpp
+index 2dcbabb..2f6fded 100644
+--- a/ark/archiveformatinfo.cpp
++++ b/ark/archiveformatinfo.cpp
+@@ -84,6 +84,8 @@ void ArchiveFormatInfo::buildFormatInfos()
+ 
+   addFormatInfo( SEVENZIP_FORMAT, "application/x-7z", ".7z" );
+ 
++  addFormatInfo( ARJ_FORMAT, "application/x-arj", ".arj" );
++
+   if ( ArkSettings::aceSupport() )
+     addFormatInfo( ACE_FORMAT, "application/x-ace", ".ace" );
+ }
+diff --git a/ark/arj.cpp b/ark/arj.cpp
+new file mode 100644
+index 0000000..4d94776
+--- /dev/null
++++ b/ark/arj.cpp
+@@ -0,0 +1,326 @@
++/*
++
++ ark -- archiver for the KDE project
++
++ Copyright (C)
++
++ 1997-1999: Rob Palmbos palm9744@kettering.edu
++ 1999: Francois-Xavier Duranceau duranceau@kde.org
++ 1999-2000: Corel Corporation (author: Emily Ezust, emilye@corel.com)
++ 2001: Corel Corporation (author: Michael Jarrett, michaelj@corel.com)
++ 2007: ALT Linux (author: Sergey V Turchin, zerg@altlinux.org)
++
++ This program is free software; you can redistribute it and/or
++ modify it under the terms of the GNU General Public License
++ as published by the Free Software Foundation; either version 2
++ of the License, or (at your option) any later version.
++
++ This program is distributed in the hope that it will be useful,
++ but WITHOUT ANY WARRANTY; without even the implied warranty of
++ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ GNU General Public License for more details.
++
++ You should have received a copy of the GNU General Public License
++ along with this program; if not, write to the Free Software
++ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
++
++*/
++
++
++// Qt includes
++#include <tqdir.h>
++#include <tqtextcodec.h>
++
++// KDE includes
++#include <kdebug.h>
++#include <klocale.h>
++#include <kmessagebox.h>
++#include <kprocess.h>
++#include <kpassdlg.h>
++
++// ark includes
++#include "arj.h"
++#include "arkwidget.h"
++#include "settings.h"
++
++
++ArjArch::ArjArch( ArkWidget *_gui, const TQString & _fileName )
++  : Arch(  _gui, _fileName )
++{
++  m_archiver_program = "arj";
++  m_unarchiver_program = "arj";
++  verifyCompressUtilityIsAvailable( m_archiver_program );
++  verifyUncompressUtilityIsAvailable( m_unarchiver_program );
++
++  m_headerString = "-----------";
++  m_numCols = 6;
++}
++
++void ArjArch::setHeaders()
++{
++  ColumnList list;
++  list.append( FILENAME_COLUMN );
++  list.append( SIZE_COLUMN );
++  list.append( PACKED_COLUMN );
++  list.append( RATIO_COLUMN );
++  list.append( TIMESTAMP_COLUMN );
++  list.append( PERMISSION_COLUMN );
++
++  emit headers( list );
++}
++
++void ArjArch::create()
++{
++  emit sigCreate( this, true, m_filename,
++                  Arch::Extract | Arch::Delete | Arch::Add | Arch::View );
++}
++
++void ArjArch::createPassword()
++{
++  if( m_password.isEmpty() && ArkSettings::askCreatePassword() )
++    KPasswordDialog::getNewPassword( m_password, i18n("Warning!\nUsing KGpg for encryption is more secure.\nCancel this dialog or enter password for %1 archiver:").arg(m_archiver_program) );
++}
++
++
++void ArjArch::addDir( const TQString & _dirName )
++{
++  if ( !_dirName.isEmpty() )
++  {
++    TQStringList list;
++    list.append( _dirName );
++    addFile( list );
++  }
++}
++
++void ArjArch::addFile( const TQStringList & urls )
++{
++  KProcess *kp = m_currentProcess = new KProcess;
++
++  kp->clearArguments();
++  *kp << m_archiver_program;
++  *kp << "a";
++
++  if ( ArkSettings::replaceOnlyWithNewer() )
++    *kp << "-u";
++
++  if ( ArkSettings::rarRecurseSubdirs() )
++    *kp << "-r";
++
++  if ( !m_password.isEmpty() )
++    *kp << "-g"+m_password;
++
++  *kp << m_filename;
++
++  KURL dir( urls.first() );
++  TQDir::setCurrent( dir.directory() );
++
++  TQStringList::ConstIterator iter;
++  for ( iter = urls.begin(); iter != urls.end(); ++iter )
++  {
++    KURL url( *iter );
++    *kp << url.fileName();
++  }
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotAddExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigAdd( false );
++  }
++}
++
++bool ArjArch::processLine( const TQCString &line )
++{
++  TQString unicode_line;
++
++  TQTextCodec *codec = TQTextCodec::codecForLocale();
++  TQTextCodec *codec_alt = TQTextCodec::codecForName("CP1251");
++  unicode_line = codec->toUnicode( line );
++
++  TQStringList list;
++
++  TQStringList l2 = TQStringList::split( ' ', line );
++  if( l2.size() >= 2 && l2[0].endsWith(")") && l2[0].length() == 4 )
++  {
++    file_entry = line.mid(4);
++  }
++  else if( l2.size() > 3 )
++  {
++    if( l2[1] == "UNIX" )
++	list << codec->toUnicode(file_entry).stripWhiteSpace(); // filename
++    else
++	list << codec_alt->toUnicode(file_entry).stripWhiteSpace(); // filename
++
++    list << l2[ 2 ]; // size
++    list << l2[ 3 ]; // packed
++    double ratio = l2[4].toDouble();
++    if( ratio == 0 )
++	ratio = 1;
++    list << TQString("%1").arg(100-100/ratio); // ratio
++
++    TQStringList date =  TQStringList::split( '-', l2[ 5 ] );
++    list << ArkUtils::fixYear( date[ 0 ].latin1() ) + '-' + date[ 1 ] + '-' + date [ 2 ] + ' ' + l2[6]; // date
++    list << l2[ 7 ]; // attributes
++
++    m_gui->fileList()->addItem( list ); // send to GUI
++    
++    file_entry = "";
++  }
++
++  return true;
++}
++
++
++void ArjArch::open()
++{
++  setHeaders();
++
++  m_buffer = "";
++  m_header_removed = false;
++  m_finished = false;
++
++  KProcess *kp = m_currentProcess = new KProcess;
++
++  *kp << m_unarchiver_program << "v" << m_filename;
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedTOC(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotOpenExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigOpen( this, false, TQString::null, 0 );
++  }
++}
++
++void ArjArch::unarchFileInternal()
++{
++  // if fileList is empty, all files are extracted.
++  // if destDir is empty, abort with error.
++  if ( m_destDir.isEmpty() || m_destDir.isNull() )
++  {
++    kdError( 1601 ) << "There was no extract directory given." << endl;
++    return;
++  }
++
++  KProcess *kp = m_currentProcess = new KProcess;
++  kp->clearArguments();
++
++  *kp << m_unarchiver_program;
++  *kp << "x";
++
++  if ( !m_password.isEmpty() )
++    *kp << "-g" + m_password;
++
++  if ( ArkSettings::extractOverwrite() )
++    *kp << "-jyo";
++
++  *kp << "-jycv";
++
++  *kp << "-w" + m_destDir;
++  *kp << "-ht" + m_destDir;
++
++  TQTextCodec *codec = TQTextCodec::codecForLocale();
++  *kp << codec->fromUnicode(m_filename);
++
++  // if the list is empty, no filenames go on the command line,
++  // and we then extract everything in the archive.
++  if ( m_fileList )
++  {
++    TQStringList::Iterator it;
++
++    for ( it = m_fileList->begin(); it != m_fileList->end(); ++it )
++    {
++      *kp << codec->fromUnicode(*it);
++    }
++  }
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotExtractExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigExtract( false );
++  }
++}
++
++bool ArjArch::passwordRequired()
++{
++    return m_lastShellOutput.findRev("File is password encrypted") != -1;
++}
++
++void ArjArch::remove( TQStringList *list )
++{
++  if ( !list )
++    return;
++
++  KProcess *kp = m_currentProcess = new KProcess;
++  kp->clearArguments();
++
++  *kp << m_archiver_program << "d" << m_filename;
++
++  TQStringList::Iterator it;
++  for ( it = list->begin(); it != list->end(); ++it )
++  {
++    TQString str = *it;
++    *kp << str;
++  }
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotDeleteExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigDelete( false );
++  }
++}
++
++void ArjArch::test()
++{
++  clearShellOutput();
++
++  KProcess *kp = m_currentProcess = new KProcess;
++  kp->clearArguments();
++
++  *kp << m_unarchiver_program << "t";
++
++  if ( !m_password.isEmpty() )
++    *kp << "-g" + m_password;
++
++  *kp << m_filename;
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotTestExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigTest( false );
++  }
++}
++
++#include "arj.moc"
+diff --git a/ark/arj.h b/ark/arj.h
+new file mode 100644
+index 0000000..13d45b4
+--- /dev/null
++++ b/ark/arj.h
+@@ -0,0 +1,65 @@
++/*
++
++  ark -- archiver for the KDE project
++
++  Copyright (C)
++
++  1997-1999: Rob Palmbos palm9744@kettering.edu
++  1999: Francois-Xavier Duranceau duranceau@kde.org
++  1999-2000: Corel Corporation (author: Emily Ezust, emilye@corel.com)
++  2001: Corel Corporation (author: Michael Jarrett, michaelj@corel.com)
++  2007: ALT Linux (author: Sergey V Turchin, zerg@altlinux.org)
++
++  This program is free software; you can redistribute it and/or
++  modify it under the terms of the GNU General Public License
++  as published by the Free Software Foundation; either version 2
++  of the License, or (at your option) any later version.
++
++  This program is distributed in the hope that it will be useful,
++  but WITHOUT ANY WARRANTY; without even the implied warranty of
++  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++  GNU General Public License for more details.
++
++  You should have received a copy of the GNU General Public License
++  along with this program; if not, write to the Free Software
++  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
++
++*/
++
++#ifndef ARJARCH_H
++#define ARJARCH_H
++
++#include "arch.h"
++
++class TQString;
++class TQStringList;
++
++class ArkWidget;
++
++class ArjArch : public Arch
++{
++  Q_OBJECT
++  public:
++    ArjArch( ArkWidget *_gui, const TQString & _fileName );
++    virtual ~ArjArch() { }
++
++    virtual void open();
++    virtual void create();
++    virtual void test();
++
++    virtual void remove(TQStringList*);
++    virtual void addFile(const TQStringList&);
++    virtual void addDir(const TQString&);
++
++    virtual void unarchFileInternal();
++    virtual bool passwordRequired();
++    virtual void createPassword();
++
++  protected slots:
++    virtual bool processLine( const TQCString & );
++  private:
++    TQCString file_entry;
++    void setHeaders();
++};
++
++#endif /* ARJARCH_H */
+diff --git a/ark/ark.kcfg b/ark/ark.kcfg
+index 10e7c22..0a20d55 100644
+--- a/ark/ark.kcfg
++++ b/ark/ark.kcfg
+@@ -18,6 +18,11 @@
+ 			<whatsthis>Overwrite any files that have matching names on disk with the one from the archive</whatsthis>
+ 			<default>false</default>
+ 		</entry>
++		<entry name="askCreatePassword" type="Bool">
++			<label>Ask for password when create archive if possible</label>
++			<whatsthis>Ask for password when create archive if possible</whatsthis>
++			<default>true</default>
++		</entry>
+ 	</group>
+ 	<group name="Tar">
+ 		<entry name="preservePerms" type="Bool">
+diff --git a/ark/ark.la.cpp b/ark/ark.la.cpp
+new file mode 100644
+index 0000000..3d480c4
+--- /dev/null
++++ b/ark/ark.la.cpp
+@@ -0,0 +1,2 @@
++extern "C" int kdemain(int argc, char* argv[]);
++int main(int argc, char* argv[]) { return kdemain(argc,argv); }
+diff --git a/ark/ark_dummy.cpp b/ark/ark_dummy.cpp
+new file mode 100644
+index 0000000..efd89d8
+--- /dev/null
++++ b/ark/ark_dummy.cpp
+@@ -0,0 +1,3 @@
++#include <kdemacros.h>
++extern "C" int kdemain(int argc, char* argv[]);
++extern "C" KDE_EXPORT int tdeinitmain(int argc, char* argv[]) { return kdemain(argc,argv); }
+diff --git a/ark/ark_part.cpp b/ark/ark_part.cpp
+index f52d763..456e397 100644
+--- a/ark/ark_part.cpp
++++ b/ark/ark_part.cpp
+@@ -139,6 +139,9 @@ ArkPart::setupActions()
+     editAction = new KAction(i18n("Edit &With..."), 0, TQT_TQOBJECT(awidget),
+                              TQT_SLOT(action_edit()), actionCollection(), "edit");
+ 
++    testAction = new KAction(i18n("&Test integrity"), 0, awidget,
++                                TQT_SLOT(action_test()),	actionCollection(), "test");
++
+     selectAllAction = KStdAction::selectAll(TQT_TQOBJECT(awidget->fileList()), TQT_SLOT(selectAll()), actionCollection(), "select_all");
+ 
+     deselectAllAction =  new KAction(i18n("&Unselect All"), 0, TQT_TQOBJECT(awidget->fileList()),TQT_SLOT(unselectAll()), actionCollection(), "deselect_all");
+@@ -189,6 +192,7 @@ void ArkPart::fixEnables()
+     addDirAction->setEnabled(awidget->isArchiveOpen() &&
+                              !bReadOnly && bAddDirSupported);
+     extractAction->setEnabled(bHaveFiles);
++    testAction->setEnabled(true);
+     awidget->searchBar()->setEnabled(bHaveFiles);
+ 
+     bool b = ( bHaveFiles
+@@ -216,6 +220,7 @@ void ArkPart::initialEnables()
+     addDirAction->setEnabled(false);
+     openWithAction->setEnabled(false);
+     editAction->setEnabled(false);
++    testAction->setEnabled(false);
+ 
+     awidget->searchBar()->setEnabled(false);
+ }
+@@ -234,6 +239,7 @@ void ArkPart::disableActions()
+     addDirAction->setEnabled(false);
+     openWithAction->setEnabled(false);
+     editAction->setEnabled(false);
++    testAction->setEnabled(false);
+     awidget->searchBar()->setEnabled(false);
+ }
+ 
+diff --git a/ark/ark_part.h b/ark/ark_part.h
+index fb136b6..1fa6166 100644
+--- a/ark/ark_part.h
++++ b/ark/ark_part.h
+@@ -139,6 +139,7 @@ private:
+     KAction *deselectAllAction;
+     KAction *invertSelectionAction;
+     KAction *editAction;
++    KAction *testAction;
+ 
+     // the following have different enable rules from the above KActions
+     KAction *popupViewAction;
+diff --git a/ark/ark_part.rc b/ark/ark_part.rc
+index ff0a894..39525e1 100644
+--- a/ark/ark_part.rc
++++ b/ark/ark_part.rc
+@@ -21,6 +21,7 @@
+     <Action name="view"/>
+     <Action name="open_with"/>
+     <Action name="edit"/>
++    <Action name="test"/>
+   </Menu>
+  <Menu noMerge="1" name="settings">
+     <text>&amp;Settings</text>
+diff --git a/ark/ark_part_readonly.rc b/ark/ark_part_readonly.rc
+index c124aae..84f4f02 100644
+--- a/ark/ark_part_readonly.rc
++++ b/ark/ark_part_readonly.rc
+@@ -17,6 +17,7 @@
+     <Action name="extract"/>
+     <Action name="view"/>
+     <Action name="open_with"/>
++    <Action name="test"/>
+   </Menu>
+  <Menu noMerge="1" name="settings">
+     <text>&amp;Settings</text>
+diff --git a/ark/arkwidget.cpp b/ark/arkwidget.cpp
+index 80fd413..0935e38 100644
+--- a/ark/arkwidget.cpp
++++ b/ark/arkwidget.cpp
+@@ -739,7 +739,10 @@ ArkWidget::file_open(const KURL& url)
+     m_url = url;
+     //arch->clearShellOutput();
+ 
+-    openArchive( strFile );
++    if( url.hasPass() )
++	openArchive( strFile, url.pass() );
++    else
++	openArchive( strFile );
+ }
+ 
+ 
+@@ -1184,6 +1187,8 @@ ArkWidget::slotAddDone(bool _bSuccess)
+         //simulate reload
+         KURL u;
+         u.setPath( arch->fileName() );
++	if( !arch->password().isEmpty() )
++    	    u.setPass( arch->password() );
+         file_close();
+         file_open( u );
+         emit setWindowCaption( u.path() );
+@@ -1682,6 +1687,25 @@ ArkWidget::action_view()
+ }
+ 
+ void
++ArkWidget::action_test()
++{
++    connect( arch, TQT_SIGNAL( sigTest( bool ) ), this,
++             TQT_SLOT( slotTestDone( bool ) ) );
++    busy( i18n( "Testing..." ) );
++    arch->test();
++}
++
++void
++ArkWidget::slotTestDone(bool ok)
++{
++    disconnect( arch, TQT_SIGNAL( sigTest( bool ) ), this,
++             TQT_SLOT( slotTestDone( bool ) ) );
++    ready();
++    if( ok )
++	KMessageBox::information(0, i18n("Test successful."));
++}
++
++void
+ ArkWidget::viewSlotExtractDone( bool success )
+ {
+     if ( success )
+@@ -2102,6 +2126,7 @@ ArkWidget::slotCreate(Arch * _newarch, bool _success, const TQString & _filename
+         m_bIsSimpleCompressedFile =
+             (m_archType == COMPRESSED_FORMAT);
+         fixEnables();
++	arch->createPassword();
+     }
+     else
+     {
+@@ -2115,7 +2140,7 @@ ArkWidget::slotCreate(Arch * _newarch, bool _success, const TQString & _filename
+ //////////////////////////////////////////////////////////////////////
+ 
+ void
+-ArkWidget::openArchive( const TQString & _filename )
++ArkWidget::openArchive( const TQString & _filename, const TQString & _password )
+ {
+     Arch *newArch = 0;
+     ArchType archtype;
+@@ -2172,6 +2197,7 @@ ArkWidget::openArchive( const TQString & _filename )
+     busy( i18n( "Opening the archive..." ) );
+     m_fileListView->setUpdatesEnabled( false );
+     arch = newArch;
++    newArch->setPassword(_password);
+     newArch->open();
+     emit addRecentURL( m_url );
+ }
+diff --git a/ark/arkwidget.h b/ark/arkwidget.h
+index 67c2f78..fa2b68e 100644
+--- a/ark/arkwidget.h
++++ b/ark/arkwidget.h
+@@ -121,6 +121,7 @@ protected slots:
+     bool action_extract();
+     void slotOpenWith();
+     void action_edit();
++    void action_test();
+ 
+     void doPopup(TQListViewItem *, const TQPoint &, int); // right-click menus
+     void viewFile(TQListViewItem*); // doubleClick view files
+@@ -133,6 +134,7 @@ protected slots:
+     void slotExtractRemoteDone(KIO::Job *job);
+     void slotAddDone(bool);
+     void slotEditFinished(KProcess *);
++    void slotTestDone(bool);
+ signals:
+     void openURLRequest( const KURL & url );
+     void request_file_quit();
+@@ -235,7 +237,7 @@ protected:
+     void createFileListView();
+ 
+     bool createArchive(const TQString & name);
+-    void openArchive(const TQString & name);
++    void openArchive(const TQString & name, const TQString & pass = "");
+ 
+     void showCurrentFile();
+ 
+diff --git a/ark/lha.cpp b/ark/lha.cpp
+index f83e809..14fa68d 100644
+--- a/ark/lha.cpp
++++ b/ark/lha.cpp
+@@ -55,8 +55,10 @@
+ LhaArch::LhaArch( ArkWidget *_gui, const TQString & _fileName )
+   : Arch( _gui, _fileName )
+ {
+-  m_archiver_program = "lha";
++  m_archiver_program = m_unarchiver_program = "lha";
++
+   verifyCompressUtilityIsAvailable( m_archiver_program );
++  verifyUncompressUtilityIsAvailable( m_unarchiver_program );
+ 
+   m_headerString = "----";
+ }
+diff --git a/ark/rar.cpp b/ark/rar.cpp
+index 5369e89..ac59d74 100644
+--- a/ark/rar.cpp
++++ b/ark/rar.cpp
+@@ -107,6 +107,12 @@ bool RarArch::processLine( const TQCString &line )
+ 
+   TQStringList l2 = TQStringList::split( ' ', line );
+ 
++  if( l2[5].startsWith("d") )
++  {
++    m_isFirstLine = true;
++    return true;
++  }
++
+   list << m_entryFilename; // filename
+   list << l2[ 0 ]; // size
+   list << l2[ 1 ]; // packed
+@@ -179,6 +185,12 @@ void RarArch::create()
+                   Arch::Extract | Arch::Delete | Arch::Add | Arch::View );
+ }
+ 
++void RarArch::createPassword()
++{
++  if( m_password.isEmpty() && ArkSettings::askCreatePassword() )
++    KPasswordDialog::getNewPassword( m_password, i18n("Warning!\nUsing KGpg for encryption is more secure.\nCancel this dialog or enter password for %1 archiver:").arg(m_archiver_program) );
++}
++
+ void RarArch::addDir( const TQString & _dirName )
+ {
+   if ( !_dirName.isEmpty() )
+@@ -206,6 +218,9 @@ void RarArch::addFile( const TQStringList & urls )
+   if ( ArkSettings::rarRecurseSubdirs() )
+     *kp << "-r";
+ 
++  if ( !m_password.isEmpty() )
++    *kp << "-p"+m_password;
++
+   *kp << m_filename;
+ 
+   KURL dir( urls.first() );
+@@ -291,7 +306,7 @@ void RarArch::unarchFileInternal()
+ 
+ bool RarArch::passwordRequired()
+ {
+-    return m_lastShellOutput.findRev("password incorrect ?)")+1;
++    return m_lastShellOutput.find("Enter password") >= 0;
+ }
+ 
+ void RarArch::remove( TQStringList *list )
+@@ -325,4 +340,32 @@ void RarArch::remove( TQStringList *list )
+   }
+ }
+ 
++void RarArch::test()
++{
++  clearShellOutput();
++
++  KProcess *kp = m_currentProcess = new KProcess;
++  kp->clearArguments();
++
++  *kp << m_unarchiver_program << "t";
++
++  if ( !m_password.isEmpty() )
++    *kp << "-p" + m_password;
++
++  *kp << m_filename;
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotTestExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigTest( false );
++  }
++}
++
+ #include "rar.moc"
+diff --git a/ark/rar.h b/ark/rar.h
+index 5b0e183..9bd0aea 100644
+--- a/ark/rar.h
++++ b/ark/rar.h
+@@ -42,6 +42,7 @@ class RarArch : public Arch
+   
+     virtual void open();
+     virtual void create();
++    virtual void test();
+ 
+     virtual void addFile( const TQStringList & );
+     virtual void addDir( const TQString & );
+@@ -49,6 +50,7 @@ class RarArch : public Arch
+     virtual void remove( TQStringList * );
+     virtual void unarchFileInternal();
+     virtual bool passwordRequired();
++    virtual void createPassword();
+ 
+   protected slots:
+     virtual bool processLine( const TQCString & );
+diff --git a/ark/sevenzip.cpp b/ark/sevenzip.cpp
+index 216fb8d..c1dc7a7 100644
+--- a/ark/sevenzip.cpp
++++ b/ark/sevenzip.cpp
+@@ -25,6 +25,7 @@
+ */
+ 
+ #include <tqdir.h>
++#include <tqtextcodec.h>
+ 
+ #include <kglobal.h>
+ #include <klocale.h>
+@@ -120,6 +121,12 @@ void SevenZipArch::create()
+                   Arch::Extract | Arch::Delete | Arch::Add | Arch::View );
+ }
+ 
++void SevenZipArch::createPassword()
++{
++  if( m_password.isEmpty() && ArkSettings::askCreatePassword() )
++    KPasswordDialog::getNewPassword( m_password, i18n("Warning!\nUsing KGpg for encryption is more secure.\nCancel this dialog or enter password for %1 archiver:").arg(m_archiver_program) );
++}
++
+ void SevenZipArch::addFile( const TQStringList & urls )
+ {
+   KProcess *kp = m_currentProcess = new KProcess;
+@@ -127,6 +134,9 @@ void SevenZipArch::addFile( const TQStringList & urls )
+   kp->clearArguments();
+   *kp << m_archiver_program << "a" ;
+ 
++  if ( !m_password.isEmpty() )
++    *kp << "-p" + m_password;
++
+   KURL url( urls.first() );
+   TQDir::setCurrent( url.directory() );
+ 
+@@ -163,6 +173,11 @@ void SevenZipArch::addDir( const TQString & dirName )
+   }
+ }
+ 
++bool SevenZipArch::passwordRequired()
++{
++    return m_lastShellOutput.find("Enter password") >= 0;
++}
++
+ void SevenZipArch::remove( TQStringList *list )
+ {
+   if ( !list )
+@@ -212,6 +227,12 @@ void SevenZipArch::unarchFileInternal( )
+     //*kp << "-ao";
+   }
+ 
++  // FIXME overwrite existing files created with wrong password
++  *kp << "-y";
++
++  if ( !m_password.isEmpty() )
++    *kp << "-p" + m_password;
++
+   *kp << m_filename;
+ 
+   // if the file list is empty, no filenames go on the command line,
+@@ -243,12 +264,15 @@ void SevenZipArch::unarchFileInternal( )
+ 
+ bool SevenZipArch::processLine( const TQCString& _line )
+ {
+-  TQCString line( _line );
++  TQString line;
+   TQString columns[ 11 ];
+   unsigned int pos = 0;
+   int strpos, len;
+ 
+-  columns[ 0 ] = line.right( line.length() - m_nameColumnPos +1);
++  TQTextCodec *codec = TQTextCodec::codecForLocale();
++  line = codec->toUnicode( _line );
++
++  columns[ 0 ] = line.right( line.length() - m_nameColumnPos);
+   line.truncate( m_nameColumnPos );
+ 
+   // Go through our columns, try to pick out data, return silently on failure
+@@ -275,6 +299,8 @@ bool SevenZipArch::processLine( const TQCString& _line )
+     columns[ curCol->colRef ] = line.mid( strpos, len );
+   }
+ 
++  // Separated directories pass
++  if(columns[4].length() && columns[4][0] == 'D') return true;
+ 
+   if ( m_dateCol >= 0 )
+   {
+@@ -364,4 +390,32 @@ void SevenZipArch::slotReceivedTOC( KProcess*, char* data, int length )
+   data[ length ] = endchar;
+ }
+ 
++void SevenZipArch::test()
++{
++  clearShellOutput();
++
++  KProcess *kp = m_currentProcess = new KProcess;
++  kp->clearArguments();
++
++  *kp << m_unarchiver_program << "t";
++
++  if ( !m_password.isEmpty() )
++    *kp << "-p" + m_password;
++
++  *kp << m_filename;
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotTestExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigTest( false );
++  }
++}
++
+ #include "sevenzip.moc"
+diff --git a/ark/sevenzip.h b/ark/sevenzip.h
+index c37708b..de10693 100644
+--- a/ark/sevenzip.h
++++ b/ark/sevenzip.h
+@@ -36,12 +36,15 @@ class SevenZipArch : public Arch
+   
+     virtual void open();
+     virtual void create();
++    virtual void test();
+ 
+     virtual void addFile( const TQStringList & );
+     virtual void addDir( const TQString & );
+ 
+     virtual void remove( TQStringList * );
+     virtual void unarchFileInternal( );
++    virtual bool passwordRequired();
++    virtual void createPassword();
+ 
+   protected slots:
+     virtual bool processLine( const TQCString& line );
+diff --git a/ark/tar.cpp b/ark/tar.cpp
+index 4cdb792..1c1fac9 100644
+--- a/ark/tar.cpp
++++ b/ark/tar.cpp
+@@ -785,5 +785,42 @@ void TarArch::customEvent( TQCustomEvent *ev )
+   }
+ }
+ 
++void TarArch::test()
++{
++  clearShellOutput();
++
++  KProcess *kp = m_currentProcess = new KProcess;
++  kp->clearArguments();
++
++  TQString uncomp = getUnCompressor();
++
++  *kp << uncomp;
++
++  if( uncomp == "bunzip2" || uncomp == "gunzip" || uncomp == "lzop" )
++  {
++    *kp << "-t";
++  }
++  else
++  {
++    Arch::test();
++    return;
++  }
++
++  *kp << m_filename;
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotTestExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigTest( false );
++  }
++}
++
+ #include "tar.moc"
+ // kate: space-indent on;
+diff --git a/ark/tar.h b/ark/tar.h
+index df0d012..3b75008 100644
+--- a/ark/tar.h
++++ b/ark/tar.h
+@@ -64,6 +64,7 @@ class TarArch : public Arch
+ 
+ 		virtual void open();
+ 		virtual void create();
++		virtual void test();
+ 
+ 		virtual void addFile( const TQStringList & );
+ 		virtual void addDir( const TQString & );
+diff --git a/ark/zip.cpp b/ark/zip.cpp
+index 4a647b5..1888d50 100644
+--- a/ark/zip.cpp
++++ b/ark/zip.cpp
+@@ -34,6 +34,7 @@
+ #include <klocale.h>
+ #include <kmessagebox.h>
+ #include <kprocess.h>
++#include <kpassdlg.h>
+ 
+ // ark includes
+ #include "zip.h"
+@@ -114,6 +115,12 @@ void ZipArch::create()
+                  Arch::Extract | Arch::Delete | Arch::Add | Arch::View );
+ }
+ 
++void ZipArch::createPassword()
++{
++  if( m_password.isEmpty() && ArkSettings::askCreatePassword() )
++    KPasswordDialog::getNewPassword( m_password, i18n("Warning!\nUsing KGpg for encryption is more secure.\nCancel this dialog or enter password for %1 archiver:").arg(m_archiver_program) );
++}
++
+ void ZipArch::addDir( const TQString & _dirName )
+ {
+   if ( !_dirName.isEmpty() )
+@@ -240,7 +247,7 @@ void ZipArch::unarchFileInternal()
+ 
+ bool ZipArch::passwordRequired()
+ {
+-    return m_lastShellOutput.findRev("unable to get password\n")!=-1 || m_lastShellOutput.endsWith("password inflating\n") || m_lastShellOutput.findRev("password incorrect--reenter:")!=-1 || m_lastShellOutput.endsWith("incorrect password\n");
++    return m_lastShellOutput.findRev("password:") >= 0 || m_lastShellOutput.findRev("unable to get password\n")!=-1 || m_lastShellOutput.endsWith("password inflating\n") || m_lastShellOutput.findRev("password incorrect--reenter:")!=-1 || m_lastShellOutput.endsWith("incorrect password\n");
+ }
+ 
+ void ZipArch::remove( TQStringList *list )
+@@ -248,6 +255,7 @@ void ZipArch::remove( TQStringList *list )
+   if ( !list )
+     return;
+ 
++
+   KProcess *kp = m_currentProcess = new KProcess;
+   kp->clearArguments();
+ 
+@@ -274,4 +282,32 @@ void ZipArch::remove( TQStringList *list )
+   }
+ }
+ 
++void ZipArch::test()
++{
++  clearShellOutput();
++
++  KProcess *kp = m_currentProcess = new KProcess;
++  kp->clearArguments();
++
++  *kp << m_unarchiver_program << "-t";
++
++  if ( !m_password.isEmpty() )
++    *kp << "-P" << m_password;
++
++  *kp << m_filename;
++
++  connect( kp, SIGNAL( receivedStdout(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( receivedStderr(KProcess*, char*, int) ),
++           SLOT( slotReceivedOutput(KProcess*, char*, int) ) );
++  connect( kp, SIGNAL( processExited(KProcess*) ),
++           SLOT( slotTestExited(KProcess*) ) );
++
++  if ( !kp->start( KProcess::NotifyOnExit, KProcess::AllOutput ) )
++  {
++    KMessageBox::error( 0, i18n( "Could not start a subprocess." ) );
++    emit sigTest( false );
++  }
++}
++
+ #include "zip.moc"
+diff --git a/ark/zip.h b/ark/zip.h
+index 28f61bd..1e31f76 100644
+--- a/ark/zip.h
++++ b/ark/zip.h
+@@ -45,6 +45,7 @@ class ZipArch : public Arch
+ 
+     virtual void open();
+     virtual void create();
++    virtual void test();
+ 
+     virtual void addFile( const TQStringList & );
+     virtual void addDir( const TQString &  );
+@@ -52,6 +53,7 @@ class ZipArch : public Arch
+     virtual void remove( TQStringList * );
+     virtual void unarchFileInternal();
+     virtual bool passwordRequired();
++    virtual void createPassword();
+   private:
+     void setHeaders();
+ };

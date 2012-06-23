@@ -1,0 +1,57 @@
+commit 7780bb7b2050cadc6b77d0adc2b0b9629365379c
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1331778476 -0500
+
+    Reorganize KControl menu tree.
+    * Move former KInfoCenter items -> Hardware/Information.
+    * Move Laptop Battery -> Hardware.
+
+diff --git a/kdf/kcmdf.desktop b/kdf/kcmdf.desktop
+index 4c2613b..62cc3f6 100644
+--- a/kdf/kcmdf.desktop
++++ b/kdf/kcmdf.desktop
+@@ -2,6 +2,7 @@
+ X-KDE-ModuleType=Library
+ X-KDE-Library=kdf
+ X-KDE-FactoryName=kdf
++X-KDE-ParentApp=kinfocenter
+ X-KDE-LocalUser=false
+ Exec=kcmshell kcmdf
+ Icon=kcmdf
+@@ -135,4 +136,4 @@ Comment[zh_CN]=显示挂接设备的磁盘使用率
+ Comment[zh_TW]=顯示連接的設備的磁碟使用率
+ Comment[zu]=Ikhombisa ukusebenziswa kwediski yamathuluzi okunyuka
+ 
+-Categories=Qt;KDE;X-KDE-settings-hardware;
++Categories=Qt;KDE;X-KDE-settings-information;
+diff --git a/klaptopdaemon/applnk/laptop.desktop b/klaptopdaemon/applnk/laptop.desktop
+index 5c4101c..5a3ce26 100644
+--- a/klaptopdaemon/applnk/laptop.desktop
++++ b/klaptopdaemon/applnk/laptop.desktop
+@@ -6,7 +6,7 @@ Exec=kcmshell laptop
+ Icon=laptop_battery
+ Type=Application
+ DocPath=kcontrol/laptop/index.html
+-Categories=Qt;KDE;X-KDE-settings-power;
++Categories=Qt;KDE;X-KDE-settings-hardware;
+ Comment=Laptop Battery
+ Comment[af]=Draagbare rekenaar Batery
+ Comment[ar]=بطّاريّة الحاسوب المحمول
+diff --git a/klaptopdaemon/applnk/pcmcia.desktop b/klaptopdaemon/applnk/pcmcia.desktop
+index f139c2a..a519aec 100644
+--- a/klaptopdaemon/applnk/pcmcia.desktop
++++ b/klaptopdaemon/applnk/pcmcia.desktop
+@@ -2,6 +2,7 @@
+ X-KDE-ModuleType=Library
+ X-KDE-Library=laptop
+ X-KDE-FactoryName=pcmcia
++X-KDE-ParentApp=kinfocenter
+ Exec=kcmshell pcmcia
+ Icon=laptop_pcmcia
+ Type=Application
+@@ -81,4 +82,4 @@ Name[pt_BR]=Cartões PCMCIA
+ Name[ta]= PCMCIA
+ Name[th]=อุปกรณ์ PCMCIA
+ 
+-Categories=Qt;KDE;X-KDE-settings-hardware;
++Categories=Qt;KDE;X-KDE-settings-information;

@@ -1,0 +1,49 @@
+commit b970fc42f21431495c12a97f52e6f0699b173170
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1331779039 -0500
+
+    Further organize TDE Menu.
+
+diff --git a/kcalc/kcalc.desktop b/kcalc/kcalc.desktop
+index 19ae663..6481922 100644
+--- a/kcalc/kcalc.desktop
++++ b/kcalc/kcalc.desktop
+@@ -85,4 +85,4 @@ GenericName[zu]=Umshini wokubala ezenzululwazi
+ Terminal=false
+ Type=Application
+ X-KDE-StartupNotify=true
+-Categories=Qt;KDE;Utility;X-KDE-Utilities-Desktop;
++Categories=Qt;KDE;Utility;
+diff --git a/kdelirc/irkick/irkick.desktop b/kdelirc/irkick/irkick.desktop
+index 24a17b6..2f85103 100644
+--- a/kdelirc/irkick/irkick.desktop
++++ b/kdelirc/irkick/irkick.desktop
+@@ -58,7 +58,7 @@ X-KDE-autostart-after=panel
+ X-KDE-StartupNotify=false
+ X-DCOP-ServiceType=Unique
+ X-KDE-autostart-condition=irkickrc:General:AutoStart:false
+-Categories=Qt;KDE;Utility;X-KDE-Utilities-Peripherals;
++Categories=Qt;KDE;Utility;
+ 
+ Exec=irkick
+ Icon=irkick
+diff --git a/kedit/KEdit.desktop b/kedit/KEdit.desktop
+index 0170151..f4e3abc 100644
+--- a/kedit/KEdit.desktop
++++ b/kedit/KEdit.desktop
+@@ -79,4 +79,4 @@ Name[xh]=Abahleli Be K
+ Name[zh_TW]=KDE 編輯器
+ X-KDE-StartupNotify=true
+ X-DCOP-ServiceType=Multi
+-Categories=Qt;KDE;Utility;TextEditor;
++Categories=Qt;KDE;TextEditor;
+diff --git a/kfloppy/KFloppy.desktop b/kfloppy/KFloppy.desktop
+index 113a24d..e1f7a59 100644
+--- a/kfloppy/KFloppy.desktop
++++ b/kfloppy/KFloppy.desktop
+@@ -93,4 +93,4 @@ Type=Application
+ Terminal=false
+ X-KDE-StartupNotify=true
+ X-DCOP-ServiceType=Multi
+-Categories=Qt;KDE;Utility;X-KDE-Utilities-Peripherals;
++Categories=Qt;KDE;Utility

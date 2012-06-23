@@ -5,14 +5,15 @@
 %endif
 
 # TDE 3.5.13 specific building variables
+%define tde_appdir %{_datadir}/applications/kde
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
 
 
-Name:		trinity-kdeutils
+Name:		tdeutils
 Version:	3.5.13
-Release:	5%{?dist}%{?_variant}
+Release:	6%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Utilities
 Group:		Applications/System
@@ -25,13 +26,14 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdeutils-%{version}.tar.gz
-Source1: klaptop_acpi_helper.pam
-Source2: klaptop_acpi_helper.console
-Source3: kcmlaptoprc
+Source1:	klaptop_acpi_helper.pam
+Source2:	klaptop_acpi_helper.console
+Source3:	kcmlaptoprc
 
-BuildRequires:	tqtinterface
-BuildRequires:	trinity-arts
-BuildRequires:	trinity-kdelibs
+Obsoletes:	trinity-kdeutils < %{version}-%{release}
+Provides:	trinity-kdeutils = %{version}-%{release}
+Obsoletes:	trinity-kdeutils-extras < %{version}-%{release}
+Provides:	trinity-kdeutils-extras = %{version}-%{release}
 
 # RedHat / Fedora legacy patches
 Patch1:		kdf-3.0.2-label.patch
@@ -39,29 +41,65 @@ Patch1:		kdf-3.0.2-label.patch
 # TDE 3.5.13 RHEL/Fedora patches
 ## [kdeutils/klaptodaemon] removes dpkg commands
 Patch2:		kdeutils-3.5.13-klaptopdaemon_dpkg_command.patch
+## [tdeutils] Allow ark embedding [Bug #670] [Commit #2a1d4a67]
+Patch3:		kdeutils-3.5.13-fix_ark_embedding.patch
+## [tdeutils] Remove "More Applications" from TDE menu. Add Utility category to KEdit. [Bug #653] [Commit #803f4752]
+Patch4:		kdeutils-3.5.13-remove_more_applications.patch
+## [tdeutils] Reorganize KControl menu tree. [Commit #7780bb7b]
+##   * Move former KInfoCenter items -> Hardware/Information.
+##   * Move Laptop Battery -> Hardware.
+Patch5:		kdeutils-3.5.13-reorganize_kcontrol_menu_tree.patch
+## [tdeutils] Further organize TDE Menu. [Commit #b970fc42]
+Patch6:		kdeutils-3.5.13-further_organise_menu.patch
+## [tdeutils] [Ark] Repairs and extensions [Bug #1030] [Commit #1c84948d]
+##  Added support for Arj
+##  Added support for check archives
+##  Added support for password processing
+##  Fix show broken filenames into real UTF-8
+Patch7:		kdeutils-3.5.13-ark_repairs_and_extensions.patch
 
-Requires(post): /sbin/ldconfig
-Requires(postun): /sbin/ldconfig
+BuildRequires:	tqtinterface-devel
+BuildRequires:	trinity-arts-devel
+BuildRequires:	tdelibs-devel
+BuildRequires:	autoconf automake libtool m4
+BuildRequires:	gettext
+BuildRequires:	net-snmp-devel
+BuildRequires:	python-devel
+BuildRequires:	gmp-devel
 
-Requires:	tqtinterface
-Requires:	trinity-kdelibs
-
-BuildRequires: autoconf automake libtool m4
-BuildRequires: gettext
-BuildRequires: net-snmp-devel
-BuildRequires: python-devel
-BuildRequires: gmp-devel
 %if 0%{?fedora} > 4 || 0%{?rhel} > 4
-BuildRequires: libXScrnSaver-devel libXtst-devel
+BuildRequires:	libXScrnSaver-devel libXtst-devel
 %endif
 
 %if 0%{?fedora}
-BuildRequires: xmms-devel
+BuildRequires:	xmms-devel
 %endif
 
-%define superkaramba_ver 0.39
-Obsoletes: superkaramba < 0:%{superkaramba_ver}
-Provides:  superkaramba = 0:%{superkaramba_ver}
+Requires: trinity-ark = %{version}-%{release}
+Requires: trinity-kcalc = %{version}-%{release}
+Requires: trinity-kcharselect = %{version}-%{release}
+Requires: trinity-kdelirc = %{version}-%{release}
+Requires: trinity-kdessh = %{version}-%{release}
+Requires: trinity-kdf = %{version}-%{release}
+Requires: trinity-kedit = %{version}-%{release}
+Requires: trinity-kfloppy = %{version}-%{release}
+Requires: trinity-kgpg = %{version}-%{release}
+Requires: trinity-khexedit = %{version}-%{release}
+Requires: trinity-kjots = %{version}-%{release}
+Requires: trinity-klaptopdaemon = %{version}-%{release}
+Requires: trinity-kmilo = %{version}-%{release}
+Requires: trinity-kmilo-legacy = %{version}-%{release}
+Requires: trinity-kregexpeditor = %{version}-%{release}
+Requires: trinity-ksim = %{version}-%{release}
+Requires: trinity-ktimer = %{version}-%{release}
+Requires: trinity-kwalletmanager = %{version}-%{release}
+Requires: trinity-superkaramba = %{version}-%{release}
+
+Requires(post):		/sbin/ldconfig
+Requires(postun):	/sbin/ldconfig
+
+%files
+
 
 %description
 Utilities for the Trinity Desktop Environment, including:
@@ -76,41 +114,820 @@ Utilities for the Trinity Desktop Environment, including:
   * kgpg (gpg gui)
   * khexedit (hex editor)
   * kjots (note taker)
+  * klaptopdaemon (battery monitoring and management for laptops);
+  * kmilo
   * kregexpeditor (regular expression editor)
+  * ksim (system information monitor);
   * ktimer (task scheduler)
   * kwikdisk (removable media utility)
 
+##########
+
+%package -n trinity-ark
+Summary:	graphical archiving tool for Trinity
+Group:		Applications/Utilities
+#Requires:	ncompress
+Requires:	unzip, zip
+#Requires:	zoo
+Requires:	bzip2
+#Requires:	p7zip
+Requires:	xz
+Requires:	lzma
+#Requires:	rar, unrar
+
+%description -n trinity-ark
+Ark is a graphical program for managing various archive formats within the
+TDE environment. Archives can be viewed, extracted, created and modified
+from within Ark.
+ 
+The program can handle various formats such as tar, gzip, bzip2, zip, rar and
+lha (if appropriate command-line programs are installed).
+
+Ark can work closely with Konqueror in the KDE environment to handle archives,
+if you install the Konqueror Integration plugin available in the konq-plugins
+package.
+
+%files -n trinity-ark
+%defattr(-,root,root,-)
+%{_bindir}/ark
+%{tde_libdir}/ark.la
+%{tde_libdir}/ark.so
+%{tde_libdir}/libarkpart.la
+%{tde_libdir}/libarkpart.so
+%{_libdir}/lib[kt]deinit_ark.so
+%{tde_appdir}/ark.desktop
+%{_datadir}/apps/ark/
+%{_datadir}/config.kcfg/ark.kcfg
+%{_datadir}/icons/hicolor/*/apps/ark.png
+%{_datadir}/icons/hicolor/scalable/apps/ark.svgz
+%{_datadir}/services/ark_part.desktop
+%{tde_docdir}/HTML/en/ark/
+
+%post -n trinity-ark
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-ark
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kcalc
+Summary:	calculator for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kcalc
+KCalc is TDE's scientific calculator.
+
+It provides:
+* trigonometric functions, logic operations, and statistical calculations
+* easy cut and paste of numbers from/into its display
+* a results-stack which lets you conveniently recall previous results
+* configurable precision, and number of digits after the period
+
+%files -n trinity-kcalc
+%defattr(-,root,root,-)
+%{_bindir}/kcalc
+%{tde_libdir}/kcalc.la
+%{tde_libdir}/kcalc.so
+%{_libdir}/lib[kt]deinit_kcalc.so
+%{tde_appdir}/kcalc.desktop
+%{_datadir}/apps/kcalc/
+%{_datadir}/apps/kconf_update/kcalcrc.upd
+%{_datadir}/config.kcfg/kcalc.kcfg
+%{_datadir}/icons/hicolor/*/apps/kcalc.png
+%{_datadir}/icons/hicolor/scalable/apps/kcalc.svgz
+%{tde_docdir}/HTML/en/kcalc/
+
+%post -n trinity-kcalc
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kcalc
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kcharselect
+Summary:	character selector for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kcharselect
+A character set selector for TDE.
+
+%files -n trinity-kcharselect
+%defattr(-,root,root,-)
+%{_bindir}/kcharselect
+%{tde_libdir}/kcharselect_panelapplet.la
+%{tde_libdir}/kcharselect_panelapplet.so
+%{tde_appdir}/KCharSelect.desktop
+%{_datadir}/apps/kcharselect/
+%{_datadir}/apps/kconf_update/kcharselect.upd
+%{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
+%{_datadir}/icons/hicolor/*/apps/kcharselect.png
+%{tde_docdir}/HTML/en/kcharselect/
+
+%post -n trinity-kcharselect
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kcharselect
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kdelirc
+Summary:	infrared control for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kdelirc
+This is a frontend for the LIRC suite to use infrared devices with TDE.
+
+%files -n trinity-kdelirc
+%defattr(-,root,root,-)
+%{_bindir}/irkick
+%{tde_libdir}/irkick.la
+%{tde_libdir}/irkick.so
+%{tde_libdir}/kcm_kcmlirc.la
+%{tde_libdir}/kcm_kcmlirc.so
+%{_libdir}/lib[kt]deinit_irkick.so
+%{tde_appdir}/irkick.desktop
+%{tde_appdir}/kcmlirc.desktop
+%{_datadir}/apps/irkick/
+%{_datadir}/apps/profiles/klauncher.profile.xml
+%{_datadir}/apps/profiles/konqueror.profile.xml
+%{_datadir}/apps/profiles/noatun.profile.xml
+%{_datadir}/apps/profiles/profile.dtd
+%{_datadir}/apps/remotes/RM-0010.remote.xml
+%{_datadir}/apps/remotes/cimr100.remote.xml
+%{_datadir}/apps/remotes/hauppauge.remote.xml
+%{_datadir}/apps/remotes/remote.dtd
+%{_datadir}/apps/remotes/sherwood.remote.xml
+%{_datadir}/apps/remotes/sonytv.remote.xml
+%{_datadir}/autostart/irkick.desktop
+%{_datadir}/icons/hicolor/*/apps/irkick.png
+%{_datadir}/icons/locolor/*/apps/irkick.png
+%{tde_docdir}/HTML/en/irkick/
+%{tde_docdir}/HTML/en/kcmlirc/
+
+%post -n trinity-kdelirc
+/sbin/ldconfig
+for f in hicolor locolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kdelirc
+/sbin/ldconfig
+for f in hicolor locolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kdessh
+Summary:	ssh frontend for Trinity
+Group:		Applications/Utilities
+Requires:	openssh-clients
+
+%description -n trinity-kdessh
+This package contains TDE's frontend for ssh.
+
+%files -n trinity-kdessh
+%defattr(-,root,root,-)
+%{_bindir}/kdessh
+
+##########
+
+%package -n trinity-kdf
+Summary:	disk space utility for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kdf
+KDiskFree displays the available file devices (hard drive partitions, floppy
+and CD drives, etc.) along with information on their capacity, free space, type
+and mount point. It also allows you to mount and unmount drives and view them
+in a file manager.
+
+%files -n trinity-kdf
+%defattr(-,root,root,-)
+%{_bindir}/kdf
+%{_bindir}/kwikdisk
+%{tde_libdir}/kcm_kdf.la
+%{tde_libdir}/kcm_kdf.so
+%{tde_appdir}/kcmdf.desktop
+%{tde_appdir}/kdf.desktop
+%{tde_appdir}/kwikdisk.desktop
+%{_datadir}/apps/kdf/
+%{_datadir}/icons/crystalsvg/*/apps/kcmdf.png
+%{_datadir}/icons/hicolor/*/apps/kdf.png
+%{_datadir}/icons/hicolor/*/apps/kwikdisk.png
+%{tde_docdir}/HTML/en/kdf/
+%{tde_docdir}/HTML/en/kinfocenter/blockdevices/
+
+%post -n trinity-kdf
+for f in crystalsvg hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kdf
+for f in crystalsvg hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kedit
+Summary:	basic text editor for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kedit
+A simple text editor for TDE.
+
+It can be used with Konqueror for text and configuration file browsing.
+KEdit also serves well for creating small plain text documents. KEdit's
+functionality will intentionally remain rather limited to ensure a
+reasonably fast start.
+
+%files -n trinity-kedit
+%defattr(-,root,root,-)
+%{_bindir}/kedit
+%{tde_libdir}/kedit.la
+%{tde_libdir}/kedit.so
+%{_libdir}/lib[kt]deinit_kedit.so
+%{tde_appdir}/KEdit.desktop
+%{_datadir}/apps/kedit/keditui.rc
+%{_datadir}/config.kcfg/kedit.kcfg
+%{_datadir}/icons/hicolor/*/apps/kedit.png
+%{tde_docdir}/HTML/en/kedit/
+
+%post -n trinity-kedit
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kedit
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kfloppy
+Summary:	floppy formatter for Trinity
+Group:		Applications/Utilities
+Requires:	dosfstools
+
+%description -n trinity-kfloppy
+Kfloppy is a utility that provides a straightforward graphical means
+to format 3.5" and 5.25" floppy disks.
+
+%files -n trinity-kfloppy
+%defattr(-,root,root,-)
+%{_bindir}/kfloppy
+%{tde_appdir}/KFloppy.desktop
+%{_datadir}/apps/konqueror/servicemenus/floppy_format.desktop
+%{_datadir}/icons/hicolor/*/apps/kfloppy.png
+%{tde_docdir}/HTML/en/kfloppy/
+
+%post -n trinity-kfloppy
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kfloppy
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kgpg
+Summary:	GnuPG frontend for Trinity
+Group:		Applications/Utilities
+Requires:	trinity-konsole
+Requires:	gnupg
+
+%description -n trinity-kgpg
+Kgpg is a frontend for GNU Privacy Guard (GnuPG). It provides file
+encryption, file decryption and key management.
+
+Features:
+* an editor mode for easily and quickly encrypting or decrypting a file
+  or message which is typed, copied, pasted or dragged into the editor,
+  or which is double-clicked in the file manager
+* Konqueror integration for encrypting or decrypting files
+* a panel applet for encrypting / decrypting files or the clipboard
+  contents, etc.
+* key management functions (generation, import, export, deletion and
+  signing)
+* decrypting clipboard contents, including integration with Klipper
+
+%files -n trinity-kgpg
+%defattr(-,root,root,-)
+%{_bindir}/kgpg
+%{tde_appdir}/kgpg.desktop
+%{_datadir}/apps/kgpg/
+%{_datadir}/apps/konqueror/servicemenus/encryptfile.desktop
+%{_datadir}/apps/konqueror/servicemenus/encryptfolder.desktop
+%{_datadir}/autostart/kgpg.desktop
+%{_datadir}/config.kcfg/kgpg.kcfg
+%{_datadir}/icons/hicolor/*/apps/kgpg.png
+%{tde_docdir}/HTML/en/kgpg/
+
+%post -n trinity-kgpg
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kgpg
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-khexedit
+Summary:	Trinity hex editor
+Group:		Applications/Utilities
+
+%description -n trinity-khexedit
+KHexEdit is an editor for the raw data of binary files.  It includes
+find/replace functions, bookmarks, many configuration options, drag and drop
+support and other powerful features.
+
+%files -n trinity-khexedit
+%defattr(-,root,root,-)
+%{_bindir}/khexedit
+%{tde_libdir}/libkbyteseditwidget.la
+%{tde_libdir}/libkbyteseditwidget.so
+%{tde_libdir}/libkhexedit2part.la
+%{tde_libdir}/libkhexedit2part.so
+%{_libdir}/libkhexeditcommon.so.*
+%{tde_appdir}/khexedit.desktop
+%{_datadir}/apps/khexedit/
+%{_datadir}/apps/khexedit2part/khexedit2partui.rc
+%{_datadir}/icons/hicolor/*/apps/khexedit.png
+%{_datadir}/services/kbyteseditwidget.desktop
+%{_datadir}/services/khexedit2part.desktop
+%{tde_docdir}/HTML/en/khexedit/
+
+%post -n trinity-khexedit
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-khexedit
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kjots
+Summary:	note taking utility for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kjots
+Kjots is a small note taker program. Name and idea are taken from the jots
+program included in the tkgoodstuff package.
+
+%files -n trinity-kjots
+%defattr(-,root,root,-)
+%{_bindir}/kjots
+%{tde_appdir}/Kjots.desktop
+%{_datadir}/apps/kjots/
+%{_datadir}/config.kcfg/kjots.kcfg
+%{_datadir}/icons/hicolor/*/apps/kjots.png
+%{tde_docdir}/HTML/en/kjots/
+
+%post -n trinity-kjots
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kjots
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-klaptopdaemon
+Summary:	battery monitoring and management for laptops using Trinity
+Group:		Applications/Utilities
+Requires:	pm-utils
+Requires:	usermode
+
+%description -n trinity-klaptopdaemon
+This package contains utilities to monitor batteries and configure
+power management, for laptops, from within TDE.
+
+%files -n trinity-klaptopdaemon
+%defattr(-,root,root,-)
+%{_bindir}/klaptop_acpi_helper
+%{_bindir}/klaptop_check
+%{tde_libdir}/kcm_laptop.la
+%{tde_libdir}/kcm_laptop.so
+%{tde_libdir}/kded_klaptopdaemon.la
+%{tde_libdir}/kded_klaptopdaemon.so
+%{_libdir}/libkcmlaptop.so.*
+%{tde_appdir}/laptop.desktop
+%{tde_appdir}/pcmcia.desktop
+%{_datadir}/apps/klaptopdaemon/
+%{_datadir}/icons/crystalsvg/*/apps/laptop_battery.png
+%{_datadir}/icons/crystalsvg/*/apps/laptop_pcmcia.png
+%{_datadir}/icons/crystalsvg/scalable/apps/laptop_battery.svgz
+%{_datadir}/services/kded/klaptopdaemon.desktop
+%{tde_docdir}/HTML/en/kcontrol/kcmlowbatcrit/
+%{tde_docdir}/HTML/en/kcontrol/kcmlowbatwarn/
+%{tde_docdir}/HTML/en/kcontrol/laptop/
+%{tde_docdir}/HTML/en/kcontrol/powerctrl/
+
+# RHEL/Fedora specific
+%{_sysconfdir}/pam.d/klaptop_acpi_helper
+%attr(644,root,root) %{_sysconfdir}/security/console.apps/klaptop_acpi_helper
+%{_sbindir}/klaptop_acpi_helper
+%config %{_datadir}/config/kcmlaptoprc
+
+%post -n trinity-klaptopdaemon
+/sbin/ldconfig
+for f in crystalsvg ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-klaptopdaemon
+/sbin/ldconfig
+for f in crystalsvg ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kmilo
+Summary:	laptop special keys support for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kmilo
+KMilo lets you use the special keys on some keyboards and laptops.
+
+Usually this includes volume keys and other features. Currently, KMilo
+comes with plugins for Powerbooks, Thinkpads, Vaios and generic keyboards
+with special keys.
+
+%files -n trinity-kmilo
+%defattr(-,root,root,-)
+%{tde_libdir}/kded_kmilod.la
+%{tde_libdir}/kded_kmilod.so
+%{tde_libdir}/kmilo_generic.la
+%{tde_libdir}/kmilo_generic.so
+%{_libdir}/libkmilo.so.*
+%{_datadir}/services/kded/kmilod.desktop
+%{_datadir}/services/kmilo/kmilo_generic.desktop
+%{_datadir}/servicetypes/kmilo/kmilopluginsvc.desktop
+
+%post -n trinity-kmilo
+/sbin/ldconfig
+
+%postun -n trinity-kmilo
+/sbin/ldconfig
+
+##########
+
+%package -n trinity-kmilo-legacy
+Summary:	non-standard plugins for KMilo
+Group:		Applications/Utilities
+Requires:	trinity-kmilo = %{version}-%{release}
+
+%description -n trinity-kmilo-legacy
+KMilo lets you use the special keys on some keyboards and laptops.
+
+Usually this includes volume keys and other features. Currently, KMilo
+comes with plugins for Powerbooks, Thinkpads and Vaios.
+
+The intention is that all laptops work with the generic kmilo
+plugin, if you need this package please file a bug.
+
+%files -n trinity-kmilo-legacy
+%defattr(-,root,root,-)
+%{tde_libdir}/kcm_kvaio.la
+%{tde_libdir}/kcm_kvaio.so
+%{tde_libdir}/kcm_thinkpad.la
+%{tde_libdir}/kcm_thinkpad.so
+%{tde_libdir}/kmilo_asus.la
+%{tde_libdir}/kmilo_asus.so
+%{tde_libdir}/kmilo_delli8k.la
+%{tde_libdir}/kmilo_delli8k.so
+%{tde_libdir}/kmilo_kvaio.la
+%{tde_libdir}/kmilo_kvaio.so
+%{tde_libdir}/kmilo_thinkpad.la
+%{tde_libdir}/kmilo_thinkpad.so
+%{tde_appdir}/kvaio.desktop
+%{tde_appdir}/thinkpad.desktop
+%{_datadir}/services/kmilo/kmilo_asus.desktop
+%{_datadir}/services/kmilo/kmilo_delli8k.desktop
+%{_datadir}/services/kmilo/kmilo_kvaio.desktop
+%{_datadir}/services/kmilo/kmilo_thinkpad.desktop
+
+##########
+
+%package -n trinity-kregexpeditor
+Summary:	graphical regular expression editor plugin for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kregexpeditor
+This package contains a graphical regular expression editor plugin for use
+with TDE. It let you draw your regular expression in an unambiguous way.
+
+%files -n trinity-kregexpeditor
+%defattr(-,root,root,-)
+%{_bindir}/kregexpeditor
+%{tde_libdir}/libkregexpeditorgui.la
+%{tde_libdir}/libkregexpeditorgui.so
+%{_libdir}/libkregexpeditorcommon.so.*
+%{tde_appdir}/kregexpeditor.desktop
+%{_datadir}/apps/kregexpeditor/
+%{_datadir}/icons/hicolor/*/apps/kregexpeditor.png
+%{_datadir}/services/kregexpeditorgui.desktop
+%{tde_docdir}/HTML/en/KRegExpEditor/
+
+%post -n trinity-kregexpeditor
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kregexpeditor
+/sbin/ldconfig
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-ksim
+Summary:	system information monitor for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-ksim
+KSim is a system monitor app which has its own plugin system with support
+for GKrellm skins. It allows users to follow uptime, memory usage, network
+connections, power, etc.
+
+%files -n trinity-ksim
+%defattr(-,root,root,-)
+%config %{_datadir}/config/ksim_panelextensionrc
+%{tde_libdir}/ksim_*.la
+%{tde_libdir}/ksim_*.so
+%{_libdir}/libksimcore.so.*
+%{_datadir}/apps/kicker/extensions/ksim.desktop
+%{_datadir}/apps/ksim/
+%{tde_docdir}/HTML/en/ksim/
+%{_datadir}/icons/crystalsvg/*/apps/ksim.png
+%{_datadir}/icons/crystalsvg/*/devices/ksim_cpu.png
+
+%post -n trinity-ksim
+/sbin/ldconfig
+for f in crystalsvg ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+
+%postun -n trinity-ksim
+/sbin/ldconfig
+for f in crystalsvg ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+
+##########
+
+%package -n trinity-ktimer
+Summary:	timer utility for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-ktimer
+This is a timer application for TDE. It allows you to execute commands after
+a certain amount of time. It supports looping commands as well as delayed
+command execution.
+
+%files -n trinity-ktimer
+%defattr(-,root,root,-)
+%{_bindir}/ktimer
+%{tde_appdir}/ktimer.desktop
+%{_datadir}/icons/hicolor/*/apps/ktimer.png
+%{tde_docdir}/HTML/en/ktimer/
+
+%post -n trinity-ktimer
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-ktimer
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kwalletmanager
+Summary:	wallet manager for Trinity
+Group:		Applications/Utilities
+
+%description -n trinity-kwalletmanager
+This program keeps various wallets for any kind of data that the user can
+store encrypted with passwords and can also serve as a password manager that
+keeps a master password to all wallets.
+
+%files -n trinity-kwalletmanager
+%defattr(-,root,root,-)
+%{_bindir}/kwalletmanager
+%{tde_libdir}/kcm_kwallet.la
+%{tde_libdir}/kcm_kwallet.so
+%{tde_appdir}/kwalletconfig.desktop
+%{tde_appdir}/kwalletmanager.desktop
+%{tde_appdir}/kwalletmanager-kwalletd.desktop
+%{_datadir}/apps/kwalletmanager/
+%{_datadir}/icons/hicolor/*/apps/kwalletmanager.png
+%{_datadir}/services/kwallet_config.desktop
+%{_datadir}/services/kwalletmanager_show.desktop
+%{tde_docdir}/HTML/en/kwallet/
+
+%post -n trinity-kwalletmanager
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+%postun -n trinity-kwalletmanager
+for f in hicolor ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-superkaramba
+Summary:	a program based on karamba improving the eyecandy of TDE
+Group:		Applications/Utilities
+
+%description -n trinity-superkaramba
+SuperKaramba is a tool based on karamba that allows anyone to easily create
+and run little interactive widgets on a TDE desktop. Widgets are defined in a
+simple text file and can be augmented with Python code to make them
+interactive.
+
+Here are just some examples of the things that can be done:
+* Display system information such as CPU Usage, MP3 playing, etc.
+* Create cool custom toolbars that work any way imaginable.
+* Create little games or virtual pets that live on your desktop.
+* Display information from the internet, such as weather and headlines.
+
+%files -n trinity-superkaramba
+%defattr(-,root,root,-)
+%{_bindir}/superkaramba
+%{_datadir}/applnk/Utilities/superkaramba.desktop
+%{_datadir}/apps/superkaramba/superkarambaui.rc
+%{_datadir}/icons/crystalsvg/*/apps/superkaramba.png
+%{_datadir}/icons/crystalsvg/*/mimetypes/superkaramba_theme.png
+%{_datadir}/icons/crystalsvg/scalable/apps/superkaramba.svgz
+%{_datadir}/icons/crystalsvg/scalable/mimetypes/superkaramba_theme.svgz
+%{_datadir}/mimelnk/application/x-superkaramba.desktop
+%{tde_docdir}/HTML/en/superkaramba/
+
+%post -n trinity-superkaramba
+for f in crystalsvg ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+
+%postun -n trinity-superkaramba
+for f in crystalsvg ; do
+  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+done
+
+##########
 
 # afaik, nobody BR's it, and it pulls kdeutils into multilib -- Rex
 %package devel
-Summary: Development files for %{name} 
-Group: Development/Libraries
-Requires: %{name} = %{version}-%{release}
-Requires: %{name}-extras = %{version}-%{release}
-Requires: trinity-kdelibs-devel
+Summary:	Development files for %{name} 
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	tdelibs-devel
+
+Obsoletes:	trinity-kdeutils-devel < %{version}-%{release}
+Provides:	trinity-kdeutils-devel = %{version}-%{release}
+
 %description devel
 Development files for %{name}.
 
-%package extras
-Summary: Extras packages from %{name} 
-Group: Applications/Internet
-Requires: %{name} = %{version}-%{release}
-%if 0%{?fedora} > 5 || 0%{?rhel} > 4
-Requires: pm-utils
-%endif
-Requires: usermode
-%description extras
-More Utilities for the K Desktop Environment:
- * kmilo
- * ksim (system information monitor);
- * klaptopdaemon (battery monitoring and management for laptops);
+%files devel
+%defattr(-,root,root,-)
+%{tde_includedir}/*
+%{_libdir}/libkcmlaptop.la
+%{_libdir}/libkcmlaptop.so
+%{_libdir}/lib[kt]deinit_ark.la
+%{_libdir}/lib[kt]deinit_irkick.la
+%{_libdir}/lib[kt]deinit_kcalc.la
+%{_libdir}/lib[kt]deinit_kedit.la
+%{_libdir}/libkmilo.la
+%{_libdir}/libkmilo.so
+%{_libdir}/libkregexpeditorcommon.la
+%{_libdir}/libkregexpeditorcommon.so
+%{_libdir}/libksimcore.la
+%{_libdir}/libksimcore.so
+%{_libdir}/libkhexeditcommon.la
+%{_libdir}/libkhexeditcommon.so
 
+%post devel
+/sbin/ldconfig
+
+%postun devel
+/sbin/ldconfig
+
+##########
 
 %prep
 %setup -q -n kdeutils
 
 %patch1 -p1 -b .label
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -156,8 +973,6 @@ for i in kcalc kregexpeditor Kjots ktimer kdf kcmdf ksim KFloppy KEdit \
 done
 
 ## File lists
-# locale's
-%find_lang %{name} || touch %{name}.lang
 # HTML (1.0)
 HTML_DIR=$(kde-config --expandvars --install html)
 if [ -d %{buildroot}$HTML_DIR ]; then
@@ -198,150 +1013,16 @@ popd
 %__rm -rf %{?buildroot}
 
 
-%post
-/sbin/ldconfig
-for f in crystalsvg hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
-done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
-
-%postun
-/sbin/ldconfig
-for f in crystalsvg hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
-done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
-
-%post extras
-/sbin/ldconfig
-for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
-done
-
-%postun extras
-/sbin/ldconfig
-for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
-done
-
-
-%files extras
-%defattr(-,root,root,-)
-# kmilo
-%{tde_libdir}/kded_kmilod.*
-%{tde_libdir}/kmilo*
-%{_libdir}/libkmilo.la
-%{_libdir}/libkmilo.so.*
-%{_datadir}/services/kded/kmilod.desktop
-%{_datadir}/services/kmilo
-%{_datadir}/servicetypes/kmilo
-
-# ksim
-%doc %{tde_docdir}/HTML/*/ksim/
-%{tde_libdir}/ksim*
-%{_libdir}/libksimcore.la
-%{_libdir}/libksimcore.so.*
-%{_datadir}/apps/kicker/extensions/ksim.desktop
-%{_datadir}/apps/ksim/
-%config %{_datadir}/config/ksim_panelextensionrc
-%{_datadir}/icons/crystalsvg/??x??/apps/ksim.png
-%{_datadir}/icons/crystalsvg/16x16/devices/ksim_cpu.png
-
-# klaptop
-%doc %{tde_docdir}/HTML/en/kcontrol
-%{_sysconfdir}/pam.d/klaptop_acpi_helper
-%attr(644,root,root) %{_sysconfdir}/security/console.apps/klaptop_acpi_helper
-%{_bindir}/klaptop*
-%{tde_libdir}/kded_klaptopdaemon.*
-%{_sbindir}/klaptop_acpi_helper
-%{_datadir}/apps/klaptopdaemon
-%{_datadir}/services/kded/klaptopdaemon.desktop
-%{tde_libdir}/kcm_laptop.*
-%{_libdir}/libkcmlaptop.*
-%{_datadir}/applications/kde/laptop.desktop
-%config %{_datadir}/config/kcmlaptoprc
-%{_datadir}/icons/crystalsvg/128x128/apps/laptop_battery.png
-%{_datadir}/icons/crystalsvg/??x??/apps/laptop_battery.png
-%{_datadir}/icons/crystalsvg/scalable/apps/laptop_battery.svgz
-
-
-%files -f %{name}.lang
-%defattr(-,root,root,-)
-
-# kmilo
-%exclude %{tde_libdir}/kded_kmilod.*
-%exclude %{tde_libdir}/kmilo*
-%exclude %{_libdir}/libkmilo.la
-%exclude %{_libdir}/libkmilo.so.*
-%exclude %{_datadir}/services/kded/kmilod.desktop
-%exclude %{_datadir}/services/kmilo
-%exclude %{_datadir}/servicetypes/kmilo
-
-# ksim
-%exclude %{tde_docdir}/HTML/*/ksim/
-%exclude %{tde_libdir}/ksim*
-%exclude %{_libdir}/libksimcore.la
-%exclude %{_libdir}/libksimcore.so.*
-%exclude %{_datadir}/apps/kicker/extensions/ksim.desktop
-%exclude %{_datadir}/apps/ksim/
-%exclude %{_datadir}/config/ksim_panelextensionrc
-%exclude %{_datadir}/icons/crystalsvg/??x??/apps/ksim.png
-%exclude %{_datadir}/icons/crystalsvg/16x16/devices/ksim_cpu.png
-
-# klaptop
-%exclude %{_sysconfdir}/pam.d/klaptop_acpi_helper
-%exclude %{_sysconfdir}/security/console.apps/klaptop_acpi_helper
-%exclude %{_bindir}/klaptop*
-%exclude %{tde_libdir}/kded_klaptopdaemon.*
-%exclude %{_sbindir}/klaptop_acpi_helper
-%exclude %{_datadir}/apps/klaptopdaemon
-%exclude %{_datadir}/services/kded/klaptopdaemon.desktop
-%exclude %{tde_libdir}/kcm_laptop.*
-%exclude %{_libdir}/libkcmlaptop.*
-%exclude %{_datadir}/applications/kde/laptop.desktop
-%exclude %{_datadir}/config/kcmlaptoprc
-%exclude %{tde_docdir}/HTML/en/kcontrol/
-%exclude %{_datadir}/icons/crystalsvg/128x128/apps/laptop_battery.png
-%exclude %{_datadir}/icons/crystalsvg/??x??/apps/laptop_battery.png
-%exclude %{_datadir}/icons/crystalsvg/scalable/apps/laptop_battery.svgz
-
-%attr(644,root,root) %{_sysconfdir}/security/console.apps/*
-%attr(644,root,root) %{_sysconfdir}/pam.d/*
-%{_bindir}/*
-%{_sbindir}/*
-%{tde_libdir}/*
-%{_libdir}/*.la
-%{_libdir}/libkdeinit*.so
-%{_libdir}/lib*.so.*
-%{_datadir}/icons/*/*/*/*
-%{_datadir}/apps/*
-%config %{_datadir}/config/*
-%{_datadir}/config.kcfg/*
-%{_datadir}/services/*
-%{_datadir}/servicetypes/*
-%{_datadir}/applications/kde/*
-%if 0%{?rhel} >= 5 || 0%{?fedora}
-%{_datadir}/applnk/Utilities/*
-%{_datadir}/mimelnk/application/*
-%endif
-%{_datadir}/autostart/*
-%doc %lang(en) %{tde_docdir}/HTML/en/*
-
-%files devel
-%defattr(-,root,root,-)
-%{tde_includedir}/*
-%{_libdir}/libkcmlaptop.so
-%{_libdir}/libkhexeditcommon.so
-%{_libdir}/libkmilo.so
-%{_libdir}/libkregexpeditorcommon.so
-%{_libdir}/libksimcore.so
-
 
 %changelog
+* Fri Jun 22 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Split in several packages
+- Allow ark embedding [Bug #670] [Commit #2a1d4a67]
+- Remove "More Applications" from TDE menu. Add Utility category to KEdit. [Bug #653] [Commit #803f4752]
+- [tdeutils] Reorganize KControl menu tree. [Commit #7780bb7b]
+- Further organize TDE Menu. [Commit #b970fc42]
+- [Ark] Repairs and extensions [Bug #1030] [Commit #1c84948d]
+
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Fix HTML directory location
 
