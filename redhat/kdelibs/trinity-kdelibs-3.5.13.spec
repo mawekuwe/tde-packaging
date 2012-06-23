@@ -15,9 +15,9 @@
 %endif
 
 
-Name:		trinity-kdelibs
+Name:		tdelibs
 Version:	3.5.13
-Release:	8%{?dist}%{?_variant}
+Release:	9%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Libraries
 Group:		System Environment/Libraries
@@ -30,6 +30,11 @@ Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdelibs-%{version}.tar.gz
+
+Obsoletes:	trinity-kdelibs < %{version}-%{release}
+Provides:	trinity-kdelibs = %{version}-%{release}
+Obsoletes:	trinity-kdelibs-apidocs < %{version}-%{release}
+Provides:	trinity-kdelibs-apidocs = %{version}-%{release}
 
 ## [kdelibs/kio] Disable 'max line length' detection [Bug #656]
 Patch10:	kdelibs-3.5.13-maxlinelength.patch
@@ -49,6 +54,27 @@ Patch16:	kdelibs-3.5.13-fix_add_printer.patch
 Patch17:	kdelibs-3.5.13-fix_kdirwatch.patch
 ## [kdelibs/dcop] Fix 'dcoptypes.h' for compilation with GCC 4.7
 Patch18:	kdelibs-3.5.13-fix_dcoptypes_h.patch
+## [tdelibs] Fix konq filter in list view mode. [Commit #06b51484]
+Patch19:	kdelibs-3.5.13-fix_konq_filter.patch
+## [tdelibs] Fix tdesu internal pathing [Bug #766] [Commit #e131f10b]
+Patch20:	kdelibs-3.5.13-fix_tdesu_internal_pathing.patch
+## [tdelibs] Fix slider drawing on external paint devices [Commit #a1c30c14]
+Patch21:	kdelibs-3.5.13-fix_slide_drawing.patch
+## [tdelibs] Reduce "More Applications" and extra koffice items from TDE menu. [Commit #1c06ae32]
+Patch22:	kdelibs-3.5.13-reduce_more_applications.patch
+## [tdelibs] Fix creation of profile directory in system root [Bug #293] [Commit #049525ee]
+Patch23:	kdelibs-3.5.13-fix_creation_of_profile_directory.patch
+## [tdelibs] Initialize X11 threading when kinit is used to launch a program [Bug #812] [Commit #6c806af1]
+Patch24:	kdelibs-3.5.13-fix_x11_threading_when_kinit_is_used.patch
+## [tdelibs] Fix composition extension detection [Commit #41ea89f7]
+Patch25:	kdelibs-3.5.13-fix_composition_extension_detection.patch
+## [tdelibs] Fix KTempFile not obeying special bits on file creation [Bug #349] [Commit #9068fffd]
+Patch26:	kdelibs-3.5.13-fix_ktempfile_special_bits.patch
+## [tdelibs] Add dynamic label support to kpassworddialog [Commit #3c752316]
+Patch27:	kdelibs-3.5.13-add_dynamic_label_to_kpassword.patch
+## [tdelibs] Fix FTBFS - incomplete build kspell2 [Bug #657] [Commit #3e284fad]
+Patch28:	kdelibs-3.5.13-fix_build_kspell2.patch
+
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
@@ -80,128 +106,16 @@ Requires:		avahi
 Requires:		qt%{?_qt_suffix}
 Requires:		avahi-qt3
 
-
-%if "%{?_prefix}" == "/usr"
-Provides:	kdelibs%{?_qt_suffix} = %{version}
-Obsoletes:		kdelibs%{?_qt_suffix} <= 3.5.10
-%endif
-
 %description
 Libraries for the Trinity Desktop Environment:
-KDE Libraries included: kdecore (KDE core library), kdeui (user interface),
+TDE Libraries included: tdecore (TDE core library), kdeui (user interface),
 kfm (file manager), khtmlw (HTML widget), kio (Input/Output, networking),
 kspell (spelling checker), jscript (javascript), kab (addressbook),
 kimgio (image manipulation).
 
-
-%package devel
-Summary:	%{name} - Development files
-Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-%if "%{?_prefix}" == "/usr"
-Provides:	kdelibs%{?_qt_suffix}-devel = %{version}
-Obsoletes:	kdelibs%{?_qt_suffix}-devel <= 3.5.10
-%endif
-
-%description devel
-This package includes the header files you will need to compile
-applications for TDE.
-
-%package apidocs
-Group:		Development/Libraries
-Summary:	%{name} - API documentation
-Requires:	%{name} = %{version}-%{release}
-%if "%{?_prefix}" == "/usr"
-Provides:	kdelibs%{?_qt_suffix}-apidocs = %{version}
-Obsoletes:	kdelibs%{?_qt_suffix}-apidocs <= 3.5.10
-%endif
-
-%description apidocs
-This package includes the TDE API documentation in HTML
-format for easy browsing
-
-
-%prep
-%setup -q -n kdelibs
-%patch10 -p1
-%patch11 -p0
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
-%patch17 -p1
-%patch18 -p1
-
-
-%build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LD_LIBRARY_PATH="%{_libdir}"
-export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
-
-%__mkdir build
-cd build
-%cmake \
-  -DWITH_ARTS=ON \
-  -DWITH_ALSA=ON \
-  -DWITH_LIBART=ON \
-  -DWITH_LIBIDN=OFF \
-  -DWITH_SSL=ON \
-  -DWITH_CUPS=ON \
-  -DWITH_LUA=OFF \
-  -DWITH_TIFF=ON \
-  -DWITH_JASPER=ON \
-  -DWITH_OPENEXR=ON \
-  -DWITH_UTEMPTER=ON \
-  -DWITH_AVAHI=ON \
-  -DWITH_ASPELL=OFF \
-  -DWITH_HSPELL=OFF \
-  -DWITH_PCRE=ON \
-  -DWITH_INOTIFY=ON \
-  -DWITH_GAMIN=ON \
-  ..
-
-%__make %{?_smp_mflags}
-
-
-%install
-%__rm -rf %{?buildroot}
-%__make install DESTDIR=%{?buildroot} -C build
-
-%__mkdir_p %{?buildroot}%{_sysconfdir}/ld.so.conf.d
-cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
-%if "%{?_prefix}" != "/usr"
-%{_libdir}
-%endif
-%{tde_libdir}
-EOF
-
-# Moves the XDG configuration files to TDE directory
-%if "%{_prefix}" != "/usr"
-%__install -p -D -m644 \
-	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" \
-	"%{?buildroot}%{_prefix}/etc/xdg/menus/kde-applications.menu"
-%__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
-%else
-%__mv -f "%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" "%{?buildroot}%{_sysconfdir}/xdg/menus/kde-applications.menu"
-%endif
-
-
-%clean
-%__rm -rf %{?buildroot}
-
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
-
 %files
 %defattr(-,root,root,-)
-%doc README
-%doc COPYING.LIB
+%doc AUTHORS COPYING COPYING-DOCS COPYING.LIB README TODO
 %{_bindir}/artsmessage
 %{_bindir}/cupsdconf
 %{_bindir}/cupsdoprint
@@ -259,8 +173,8 @@ EOF
 %{_bindir}/start_kdeinit_wrapper
 %attr(4755,root,root) %{_bindir}/kgrantpty
 %{_libdir}/lib*.so.*
-%{_libdir}/libkdeinit_*.so
-%{_libdir}/lib*.la
+%{_libdir}/lib[kt]deinit_*.la
+%{_libdir}/lib[kt]deinit_*.so
 %{tde_libdir}/
 %{_datadir}/applications/kde/*.desktop
 %{_datadir}/autostart/kab2kabc.desktop
@@ -285,6 +199,7 @@ EOF
 %{_datadir}/icons/hicolor/index.theme
 %{_datadir}/locale/all_languages
 %{tde_docdir}/HTML/en/common/*
+%{_sysconfdir}/ld.so.conf.d/trinity.conf
 %else
 %exclude %{_bindir}/checkXML
 %exclude %{_bindir}/ksvgtopng
@@ -299,7 +214,6 @@ EOF
 %exclude %{_datadir}/locale/all_languages
 %exclude %{tde_docdir}/HTML/en/common/*
 %endif
-%{_sysconfdir}/ld.so.conf.d/trinity.conf
 
 # Avoid conflict with 'redhat-menus' package
 %if "%{_prefix}" == "/usr"
@@ -311,27 +225,162 @@ EOF
 # New in TDE 3.5.13
 %{_bindir}/kdetcompmgr
 
+%post -p /sbin/ldconfig
+
+%postun -p /sbin/ldconfig
+
+##########
+
+%package devel
+Summary:	%{name} - Development files
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+Obsoletes:	trinity-kdelibs-devel < %{version}-%{release}
+Provides:	trinity-kdelibs-devel = %{version}-%{release}
+
+%description devel
+This package includes the header files you will need to compile
+applications for TDE.
+
 %files devel
 %defattr(-,root,root,-)
 %{_bindir}/dcopidl*
 %{_bindir}/kconfig_compiler
 %{_bindir}/makekdewidgets
 %{_datadir}/apps/ksgmltools2/
-%{_includedir}/
-%{_libdir}/lib*.so
-%{_libdir}/lib*.a
+%{_includedir}/*
+%{_libdir}/*.la
+%{_libdir}/*.so
+%{_libdir}/*.a
+%exclude %{_libdir}/libkdeinit_*.la
 %exclude %{_libdir}/libkdeinit_*.so
 
 # New in TDE 3.5.13
 %{_datadir}/cmake/kdelibs.cmake
 
+%post devel -p /sbin/ldconfig
+
+%postun devel -p /sbin/ldconfig
+
+##########
+
+%if 0
+%package apidocs
+Group:		Development/Libraries
+Summary:	%{name} - API documentation
+Requires:	%{name} = %{version}-%{release}
+
+Obsoletes:	trinity-kdelibs-devel < %{version}-%{release}
+Provides:	trinity-kdelibs-devel = %{version}-%{release}
+
+%description apidocs
+This package includes the TDE API documentation in HTML
+format for easy browsing
+
 %files apidocs
 %defattr(-,root,root,-)
-%{_docdir}/%{name}-%{version}/
 #%{tde_docdir}/HTML/en/kdelibs*
+%endif
+
+##########
+
+%prep
+%setup -q -n kdelibs
+%patch10 -p1
+%patch11 -p0
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
+%patch15 -p1
+%patch16 -p1
+%patch17 -p1
+%patch18 -p1
+%patch19 -p1
+%patch20 -p1
+%patch21 -p1
+%patch22 -p1
+%patch23 -p1
+%patch24 -p1
+%patch25 -p1
+%patch26 -p1
+%patch27 -p1
+%patch28 -p1
+
+
+%build
+unset QTDIR || : ; . /etc/profile.d/qt.sh
+export PATH="%{_bindir}:${PATH}"
+export LD_LIBRARY_PATH="%{_libdir}"
+export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
+
+%__mkdir build
+cd build
+%cmake \
+  -DWITH_ARTS=ON \
+  -DWITH_ALSA=ON \
+  -DWITH_LIBART=ON \
+  -DWITH_LIBIDN=OFF \
+  -DWITH_SSL=ON \
+  -DWITH_CUPS=ON \
+  -DWITH_LUA=OFF \
+  -DWITH_TIFF=ON \
+  -DWITH_JASPER=ON \
+  -DWITH_OPENEXR=ON \
+  -DWITH_UTEMPTER=ON \
+  -DWITH_AVAHI=ON \
+  -DWITH_ASPELL=OFF \
+  -DWITH_HSPELL=OFF \
+  -DWITH_PCRE=ON \
+  -DWITH_INOTIFY=ON \
+  -DWITH_GAMIN=ON \
+  ..
+
+%__make %{?_smp_mflags}
+
+
+%install
+%__rm -rf %{?buildroot}
+%__make install DESTDIR=%{?buildroot} -C build
+
+%if "%{?_prefix}" != "/usr"
+%__mkdir_p %{?buildroot}%{_sysconfdir}/ld.so.conf.d
+cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
+%{_libdir}
+EOF
+%endif
+
+# Moves the XDG configuration files to TDE directory
+%if "%{_prefix}" != "/usr"
+%__install -p -D -m644 \
+	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" \
+	"%{?buildroot}%{_prefix}/etc/xdg/menus/kde-applications.menu"
+%__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
+%else
+%__mv -f "%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" "%{?buildroot}%{_sysconfdir}/xdg/menus/kde-applications.menu"
+%endif
+
+
+%clean
+%__rm -rf %{?buildroot}
 
 
 %changelog
+* Tue Jun 19 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
+- Renames to 'tdelib'
+- Fix 'ld.so.conf' file
+- Fix konq filter in list view mode. [Commit #06b51484]
+- Fix tdesu internal pathing [Bug #766] [Commit #e131f10b]
+- Fix slider drawing on external paint devices [Commit #a1c30c14]
+- Reduce "More Applications" and extra koffice items from TDE menu. [Commit #1c06ae32]
+- Fix creation of profile directory in system root [Bug #293] [Commit #049525ee]
+- Initialize X11 threading when kinit is used to launch a program [Bug #812] [Commit #6c806af1]
+- Fix composition extension detection [Commit #41ea89f7]
+- Fix KTempFile not obeying special bits on file creation [Bug #349] [Commit #9068fffd]
+- Add dynamic label support to kpassworddialog [Commit #3c752316]
+- Fix FTBFS - incomplete build kspell2 [Bug #657] [Commit #3e284fad]
+
 * Tue Apr 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
 - Fix "Konqueror: Does not update file pane with file changes" [Bug #756] 
 - Fix compilation with GCC 4.7

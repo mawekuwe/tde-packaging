@@ -1,0 +1,159 @@
+commit 41ea89f79d28c456b296e8ddcce0a12c21e13f94
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1337872714 -0500
+
+    Fix composition extension detection
+
+diff --git a/kdecore/kapplication.cpp b/kdecore/kapplication.cpp
+index 5c60e6f..b4caefc 100644
+--- a/kdecore/kapplication.cpp
++++ b/kdecore/kapplication.cpp
+@@ -1804,9 +1804,7 @@ bool KApplication::isCompositionManagerAvailable() {
+ 
+         // Now that we did all that by way of introduction...read the file!
+ 	FILE *pFile;
+-	char buffer[255];
+ 	pFile = fopen(filename, "r");
+-	int kompmgrpid = 0;
+ 	if (pFile) {
+ 		have_manager = true;
+ 		fclose(pFile);
+@@ -1840,18 +1838,23 @@ bool KApplication::detectCompositionManagerAvailable(bool force_available, bool
+ 			compositing_manager_available = false;
+ 		}
+ 		else {
+-			Window root_window = XDefaultRootWindow(dpy);
+-			XCompositeRedirectSubwindows(dpy, root_window, CompositeRedirectManual);
+-			XSync(dpy, false);
+-			if (x11_composite_error_generated == true) {
+-				compositing_manager_available = true;
++			if (available) {		// FIXME This variable does double duty to avoid breaking the ABI for R14.0.  In reality it should be called perform_deep_check
++				Window root_window = XDefaultRootWindow(dpy);
++				XCompositeRedirectSubwindows(dpy, root_window, CompositeRedirectManual);
++				XSync(dpy, false);
++				if (x11_composite_error_generated == true) {
++					compositing_manager_available = true;
++				}
++				else {
++					XCompositeUnredirectSubwindows(dpy, root_window, CompositeRedirectManual);
++					compositing_manager_available = false;
++				}
++				XSetErrorHandler(NULL);
++				XCloseDisplay(dpy);
+ 			}
+ 			else {
+-				XCompositeUnredirectSubwindows(dpy, root_window, CompositeRedirectManual);
+-				compositing_manager_available = false;
++				compositing_manager_available = true;
+ 			}
+-			XSetErrorHandler(NULL);
+-			XCloseDisplay(dpy);
+ 		}
+ 	}
+ 	
+@@ -1913,7 +1916,7 @@ Qt::HANDLE KApplication::getX11RGBAVisual(Display *dpy) {
+ 		return argb_x11_visual;
+ 	}
+ 	else {
+-		return NULL;
++		return (Qt::HANDLE)NULL;
+ 	}
+ }
+ 
+@@ -1923,7 +1926,7 @@ Qt::HANDLE KApplication::getX11RGBAColormap(Display *dpy) {
+ 		return argb_x11_colormap;
+ 	}
+ 	else {
+-		return NULL;
++		return (Qt::HANDLE)NULL;
+ 	}
+ }
+ 
+@@ -1997,8 +2000,20 @@ bool KApplication::detectCompositionManagerAvailable(bool force_available) {
+ 	strcat(filename, home);
+ 	strcat(filename, configfile);
+ 
+-	/* now that we did all that by way of introduction...remove the file! */
+-	unlink(filename);
++	/* now that we did all that by way of introduction...create or remove the file! */
++	if (force_available) {
++		FILE *pFile;
++		char buffer[255];
++		sprintf(buffer, "available");
++		pFile = fopen(filename, "w");
++		if (pFile) {
++			fwrite(buffer,1,strlen(buffer), pFile);
++			fclose(pFile);
++		}
++	}
++	else {
++		unlink(filename);
++	}
+ 
+ 	free(filename);
+ 	filename = NULL;
+@@ -2886,12 +2901,15 @@ void KApplication::invokeMailer(const TQString &_to, const TQString &_cc, const
+    TQString error;
+    // TODO this should check if cmd has a .desktop file, and use data from it, together
+    // with sending more ASN data
+-   if (kdeinitExec(cmd, cmdTokens, &error, NULL, startup_id ))
+-     if (Tty != kapp->type())
++   if (kdeinitExec(cmd, cmdTokens, &error, NULL, startup_id )) {
++     if (Tty != kapp->type()) {
+        TQMessageBox::critical(kapp->mainWidget(), i18n("Could not Launch Mail Client"),
+              i18n("Could not launch the mail client:\n\n%1").arg(error), i18n("&OK"));
+-     else
++       }
++     else {
+        kdWarning() << "Could not launch mail client:\n" << error << endl;
++     }
++   }
+ }
+ #endif
+ 
+@@ -3597,7 +3615,9 @@ void KApplication::sigpipeHandler(int)
+ #ifndef NDEBUG
+     char msg[1000];
+     sprintf(msg, "*** SIGPIPE *** (ignored, pid = %ld)\n", (long) getpid());
+-    write(2, msg, strlen(msg));
++    if (write(2, msg, strlen(msg)) < 0) {
++      // ERROR
++    }
+ #endif
+ 
+     // Do nothing.
+diff --git a/kdecore/kdetcompmgr.cpp b/kdecore/kdetcompmgr.cpp
+index bfc3ac6..8b9b480 100644
+--- a/kdecore/kdetcompmgr.cpp
++++ b/kdecore/kdetcompmgr.cpp
+@@ -84,7 +84,6 @@ int main(int argc, char **argv)
+             if (lSize > 254)
+                 lSize = 254;
+             rewind (pFile);
+-            size_t result = fread (buffer, 1, lSize, pFile);
+             fclose(pFile);
+             kompmgrpid = atoi(buffer);
+         }
+@@ -97,9 +96,7 @@ int main(int argc, char **argv)
+         }
+     }
+ 
+-//     app.detectCompositionManagerAvailable();
+-
+-//    if (!app.isCompositionManagerAvailable()) {
++     if (app.detectCompositionManagerAvailable(false, false)) {		// Perform a shallow check for the composite extension (a deep check would cause noticeable flicker)
+ 	KConfig config2("kwinrc", true);
+ 	config2.setGroup( "Notification Messages" );
+ 	if (config2.readBoolEntry("UseTranslucency",false)) {
+@@ -110,6 +107,10 @@ int main(int argc, char **argv)
+ 		app.detectCompositionManagerAvailable(true, false);
+ 		return 0;
+ 	}
+-//    }
++     }
++     else {
++	app.detectCompositionManagerAvailable(true, false);
++	return 1;
++     }
+ }
+ 

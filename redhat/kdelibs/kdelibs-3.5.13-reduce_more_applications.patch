@@ -1,0 +1,41 @@
+commit 1c06ae32f64450c38f1294b8adda2fd9a6cc98b1
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1331690106 -0500
+
+    Reduce "More Applications" and extra koffice items from TDE menu.
+    This partially resolves bug report 653.
+
+diff --git a/kded/applications.menu b/kded/applications.menu
+index 4b30a56..380196e 100644
+--- a/kded/applications.menu
++++ b/kded/applications.menu
+@@ -272,16 +272,6 @@
+ 			</And>
+ 		</Include>
+ 		<Menu>
+-			<Name>Email</Name>
+-			<Directory>kde-internet-email.directory</Directory>
+-			<Include>
+-				<And>
+-				<Category>Email</Category>
+-				<Not><Category>X-KDE-More</Category></Not>
+-				</And>
+-			</Include>
+-		</Menu>
+-		<Menu>
+ 		  <Name>Terminal</Name>
+ 		  <Directory>kde-internet-terminal.directory</Directory>
+ 		</Menu>
+@@ -321,12 +311,6 @@
+ 		<Directory>kde-office.directory</Directory>
+ 		<Layout>
+ 			<Merge type="menus"/>
+-			<Filename>kde-koshell.desktop</Filename>
+-			<Filename>kde-Kontact.desktop</Filename>
+-			<Separator/>
+-			<Filename>kde-kword.desktop</Filename>
+-			<Filename>kde-kspread.desktop</Filename>
+-			<Filename>kde-kpresenter.desktop</Filename>
+ 			<Merge type="files"/>
+ 			<Separator/>
+ 			<Menuname>More</Menuname>
