@@ -2,5 +2,5 @@
         needs="x11"\
         section="Applications/Programming"\
         hints="TDE"\
-        title="Qt3 Assistant"\
-        command="/usr/bin/assistant-tqt3"
+        title="TQt3 Assistant"\
+        command="/usr/bin/tqassistant"

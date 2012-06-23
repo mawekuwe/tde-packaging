@@ -2,6 +2,6 @@
         needs="x11"\
         section="Applications/Programming"\
         hints="TDE"\
-        title="Qt3 Designer"\
-        command="/usr/bin/designer-tqt3"
+        title="TQt3 Designer"\
+        command="/usr/bin/tqdesigner"
 

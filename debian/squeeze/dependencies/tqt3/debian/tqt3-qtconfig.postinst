@@ -3,7 +3,7 @@
 set -e
 
 update-alternatives --install \
-	/usr/bin/qtconfig qtconfig "/usr/bin/qtconfig-tqt3" "45" \
+	/usr/bin/qtconfig qtconfig "/usr/bin/tqtconfig" "45" \
 	--slave /usr/share/man/man1/qtconfig.1.gz qtconfig.1.gz \
 	"/usr/share/man/man1/qtconfig-tqt3.1.gz"
 
