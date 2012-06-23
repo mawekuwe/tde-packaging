@@ -35,7 +35,7 @@ install/tde-guidance-trinity::
 		$(DEB_DESTDIR)/usr/share/lintian/overrides/tde-guidance-trinity
 
 	# fix binary-or-shlib-defines-rpath
-	chrpath -d $(DEB_DESTDIR)/opt/trinity/lib/trinity/kcm_*.so.*
+	chrpath -d $(DEB_DESTDIR)/opt/trinity/lib/trinity/kcm_*.so*
 
 	# fix executable-not-elf-or-script
 	chmod 0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/kdewinewizard.png
