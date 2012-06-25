@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 
-PKG_CONFIG_PATH := /opt/trinity/lib/pkgconfig/:$(PKG_CONFIG_PATH)
-
 include /usr/share/cdbs/1/rules/debhelper.mk
 include debian/cdbs/debian-qt-kde.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
@@ -11,6 +9,7 @@ DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
 DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+DEB_CONFIGURE_SCRIPT_ENV += PKG_CONFIG_PATH=/opt/trinity/lib/pkgconfig:$PKG_CONFIG_PATH
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
