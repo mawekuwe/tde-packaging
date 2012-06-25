@@ -36,9 +36,8 @@ debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Manpages/mann.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Scrollkeeper/.directory
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Scrollkeeper/scrollkeeper.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/support.desktop
-debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Tutorials/.directory
-debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Tutorials/quickstart.desktop
-debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Tutorials/visualdict.desktop
+debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/quickstart.desktop
+debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/visualdict.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/userguide.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/welcome.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/searchhandlers/docbook.desktop
