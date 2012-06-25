@@ -1,13 +1,9 @@
-opt/trinity/lib/trinity/kcm_serviceconfig.so.0.0.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_serviceconfig.la opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_serviceconfig.a opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_userconfig.so.0.0.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_userconfig.la opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_userconfig.a opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_mountconfig.so.0.0.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_mountconfig.la opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_mountconfig.a opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_wineconfig.so.0.0.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_wineconfig.la opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_wineconfig.a opt/trinity/lib/
 opt/trinity/share/icons/crystalsvg/32x32/apps/daemons.png
@@ -81,12 +77,8 @@ opt/trinity/share/python-support/tde-guidance-trinity/sizeview.py
 opt/trinity/share/python-support/tde-guidance-trinity/unixauthdb.py
 opt/trinity/share/python-support/tde-guidance-trinity/userconfig.py
 opt/trinity/share/python-support/tde-guidance-trinity/wineconfig.py
-opt/trinity/lib/trinity/kcm_serviceconfig.so.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_serviceconfig.so opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_userconfig.so.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_userconfig.so opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_mountconfig.so.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_mountconfig.so opt/trinity/lib/
-opt/trinity/lib/trinity/kcm_wineconfig.so.0 opt/trinity/lib/
 opt/trinity/lib/trinity/kcm_wineconfig.so opt/trinity/lib/
 usr/share/lintian/overrides/tde-guidance-trinity
