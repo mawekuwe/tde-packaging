@@ -52,7 +52,7 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/contact.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/about.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/configkde.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/configtde.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/contrib.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/desktop.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/filemng.docbook
@@ -61,10 +61,10 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/install.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/intro.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/kdeapps.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/tdeapps.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/misc.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/moreinfo.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/nonkdeapps.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/nontdeapps.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/notrelated.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/panel.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/khelpcenter/faq/qt.docbook
