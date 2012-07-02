@@ -8,19 +8,12 @@
 %define tde_docdir %{_docdir}/kde
 %define tde_libdir %{_libdir}/trinity
 
-# Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
-# whereas newer versions use "qt3", "qt3-devel" ...
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8
-%define _qt_suffix 3
-%endif
-
-
-Name:		tdelibs
+Name:		trinity-tdelibs
 Version:	3.5.13
-Release:	9%{?dist}%{?_variant}
+Release:	10%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Libraries
-Group:		System Environment/Libraries
+Group:		Environment/Libraries
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -31,6 +24,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdelibs-%{version}.tar.gz
 
+Obsoletes:	tdelibs < %{version}-%{release}
+Provides:	tdelibs = %{version}-%{release}
 Obsoletes:	trinity-kdelibs < %{version}-%{release}
 Provides:	trinity-kdelibs = %{version}-%{release}
 Obsoletes:	trinity-kdelibs-apidocs < %{version}-%{release}
@@ -74,14 +69,14 @@ Patch26:	kdelibs-3.5.13-fix_ktempfile_special_bits.patch
 Patch27:	kdelibs-3.5.13-add_dynamic_label_to_kpassword.patch
 ## [tdelibs] Fix FTBFS - incomplete build kspell2 [Bug #657] [Commit #3e284fad]
 Patch28:	kdelibs-3.5.13-fix_build_kspell2.patch
-
+## [tdelibs] Export kdemain symbol in iso kioslave [Bug #465] [Commit #0536f0b7]
+Patch29:	kdelibs-3.5.13-fix_iso_kioslave.patch
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
 BuildRequires:	avahi-devel
-#BuildRequires:	lua-devel
 BuildRequires:	krb5-devel libxslt-devel cups-devel libart_lgpl-devel pcre-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	bzip2-devel
@@ -89,7 +84,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	gcc-c++
 BuildRequires:	alsa-lib-devel
 BuildRequires:	libidn-devel
-BuildRequires:	qt%{?_qt_suffix}-devel
+BuildRequires:	qt3-devel
 BuildRequires:	avahi-qt3-devel
 BuildRequires:	jasper-devel
 BuildRequires:	libtiff-devel
@@ -99,11 +94,15 @@ BuildRequires:	glib2-devel
 BuildRequires:	gamin-devel
 BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	libXcomposite-devel
+BuildRequires:	aspell-devel
+BuildRequires:	hspell-devel
+# LUA support are not ready yet
+#BuildRequires:	lua-devel
 
 Requires:		tqtinterface
 Requires:		trinity-arts
 Requires:		avahi
-Requires:		qt%{?_qt_suffix}
+Requires:		qt3
 Requires:		avahi-qt3
 
 %description
@@ -236,6 +235,8 @@ Summary:	%{name} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
+Obsoletes:	tdelibs-devel < %{version}-%{release}
+Provides:	tdelibs-devel = %{version}-%{release}
 Obsoletes:	trinity-kdelibs-devel < %{version}-%{release}
 Provides:	trinity-kdelibs-devel = %{version}-%{release}
 
@@ -270,9 +271,6 @@ applications for TDE.
 Group:		Development/Libraries
 Summary:	%{name} - API documentation
 Requires:	%{name} = %{version}-%{release}
-
-Obsoletes:	trinity-kdelibs-devel < %{version}-%{release}
-Provides:	trinity-kdelibs-devel = %{version}-%{release}
 
 %description apidocs
 This package includes the TDE API documentation in HTML
@@ -321,7 +319,7 @@ cd build
   -DWITH_ARTS=ON \
   -DWITH_ALSA=ON \
   -DWITH_LIBART=ON \
-  -DWITH_LIBIDN=OFF \
+  -DWITH_LIBIDN=ON \
   -DWITH_SSL=ON \
   -DWITH_CUPS=ON \
   -DWITH_LUA=OFF \
@@ -330,8 +328,8 @@ cd build
   -DWITH_OPENEXR=ON \
   -DWITH_UTEMPTER=ON \
   -DWITH_AVAHI=ON \
-  -DWITH_ASPELL=OFF \
-  -DWITH_HSPELL=OFF \
+  -DWITH_ASPELL=ON \
+  -DWITH_HSPELL=ON \
   -DWITH_PCRE=ON \
   -DWITH_INOTIFY=ON \
   -DWITH_GAMIN=ON \
@@ -367,8 +365,13 @@ EOF
 
 
 %changelog
+* Tue Jun 26 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-10
+- Renames to 'trinity-tdelibs'
+- Enable 'aspell', 'hspell' and 'libidn'
+- Export kdemain symbol in iso kioslave [Bug #465] [Commit #0536f0b7]
+
 * Tue Jun 19 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
-- Renames to 'tdelib'
+- Renames to 'tdelibs'
 - Fix 'ld.so.conf' file
 - Fix konq filter in list view mode. [Commit #06b51484]
 - Fix tdesu internal pathing [Bug #766] [Commit #e131f10b]

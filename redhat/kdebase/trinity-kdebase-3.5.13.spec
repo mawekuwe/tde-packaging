@@ -17,18 +17,21 @@
 %endif
 
 
-Name:		tdebase
+Name:		trinity-tdebase
 Version:	3.5.13
-Release:	23%{?release}%{?dist}%{?_variant}
+Release:	24%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
 
 Obsoletes:	trinity-kdebase < %{version}-%{release}
+Provides:	trinity-kdebase = %{version}-%{release}
 Obsoletes:	trinity-kdebase-libs < %{version}-%{release}
 Obsoletes:	trinity-kdebase-extras < %{version}-%{release}
-Provides:	trinity-kdebase = %{version}-%{release}
 Provides:	trinity-kdebase-extras = %{version}-%{release}
+Obsoletes:	tdebase < %{version}-%{release}
+Provides:	tdebase = %{version}-%{release}
+
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -154,6 +157,9 @@ Patch58:	kdebase-3.5.13-fix_khtml_smooth_scrolling.patch
 ## [tdebase] Fix fancy logout not allowing interaction with save dialogs [Bug #922]
 ##   Fix desktop wallpaper export failing when triggered by krootbacking or ksmserver and konsole or kdesktop_lock not previously loaded [Commit #d2f8fca9]
 Patch59:	kdebase-3.5.13-fix_fancy_logout.patch
+## [tdebase] Update default konqueror maximum image preview size to 10MB. [Commit #03e19305]
+Patch60:	kdebase-3.5.13-update_default_konq_max_image_prev_size.patch
+
 
 ### FEDORA / RHEL distribution-specific settings ###
 
@@ -252,11 +258,11 @@ BuildRequires:	perl-Digest-MD5
 %endif
 
 # tdebase is a metapackage that installs all sub-packages
-Requires: tdebase-runtime-data-common = %{version}-%{release}
-Requires: tdebase-data = %{version}-%{release}
-Requires: tdebase-bin = %{version}-%{release}
-Requires: tdebase-kio-plugins = %{version}-%{release}
-Requires: tdebase-kio-pim-plugins = %{version}-%{release}
+Requires: %{name}-runtime-data-common = %{version}-%{release}
+Requires: %{name}-data = %{version}-%{release}
+Requires: %{name}-bin = %{version}-%{release}
+Requires: %{name}-kio-plugins = %{version}-%{release}
+Requires: %{name}-kio-pim-plugins = %{version}-%{release}
 Requires: trinity-kappfinder = %{version}-%{release}
 Requires: trinity-kate = %{version}-%{release}
 Requires: trinity-kwrite = %{version}-%{release}
@@ -282,7 +288,7 @@ Requires: trinity-ksysguardd = %{version}-%{release}
 Requires: trinity-ktip = %{version}-%{release}
 Requires: trinity-twin = %{version}-%{release}
 Requires: trinity-libkonq = %{version}-%{release}
-Requires: tdebase-libtqt3-integration = %{version}-%{release}
+Requires: %{name}-libtqt3-integration = %{version}-%{release}
  
 Requires:	tqtinterface
 Requires:	trinity-arts
@@ -319,8 +325,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 
-Requires:	tdebase-bin-devel = %{version}-%{release}
-Requires:	tdebase-cmake = %{version}-%{release}
+Requires:	%{name}-bin-devel = %{version}-%{release}
 Requires:	trinity-kate-devel = %{version}-%{release}
 Requires:	trinity-kcontrol-devel = %{version}-%{release}
 Requires:	trinity-kdesktop-devel = %{version}-%{release}
@@ -334,6 +339,11 @@ Requires:	trinity-twin-devel = %{version}-%{release}
 
 Provides:	trinity-kdebase-devel = %{version}-%{release}
 Obsoletes:	trinity-kdebase-devel < %{version}-%{release}
+Provides:	tdebase-devel = %{version}-%{release}
+Obsoletes:	tdebase-devel < %{version}-%{release}
+
+Obsoletes:	trinity-kdebase-cmake < %{version}-%{release}
+Obsoletes:	tdebase-cmake < %{version}-%{release}
 
 %description devel
 This is a meta-package that installs all tdebase development packages.
@@ -343,19 +353,6 @@ Install tdebase-devel if you want to develop or compile Konqueror,
 Kate plugins or KWin styles.
 
 %files devel
-
-##########
-
-%package cmake
-Summary:	CMAKE macros for tdebase
-Group:		Development/Libraries
-Requires:	cmake
-
-%description cmake
-%{summary}
-
-%files cmake
-%defattr(-,root,root,-)
 %{_datadir}/cmake/*.cmake
 
 ##########
@@ -363,8 +360,11 @@ Requires:	cmake
 %package kio-pim-plugins
 Summary:	PIM KIOslaves from %{name}
 Group:		Environment/Libraries
+
 Provides:	trinity-kdebase-pim-ioslaves = %{version}-%{release}
 Obsoletes:	trinity-kdebase-pim-ioslaves < %{version}-%{release}
+Provides:	tdebase-kio-pim-plugins = %{version}-%{release}
+Obsoletes:	tdebase-kio-pim-plugins < %{version}-%{release}
 
 %description kio-pim-plugins
 Protocol handlers (KIOslaves) for personal information management, including:
@@ -397,6 +397,9 @@ Protocol handlers (KIOslaves) for personal information management, including:
 %package runtime-data-common
 Summary:	Shared common files for Trinity and KDE4
 Group:		Environment/Libraries
+
+Provides:	tdebase-runtime-data-common = %{version}-%{release}
+Obsoletes:	tdebase-runtime-data-common < %{version}-%{release}
 
 %description runtime-data-common
 Shared common files for both Trinity and KDE4
@@ -435,7 +438,7 @@ done
 %package -n trinity-kappfinder
 Summary:	non-KDE application finder for KDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kappfinder
 kappfinder searches your workstation for many common applications and
@@ -480,7 +483,7 @@ Group:		Environment/Libraries
 %package -n trinity-kate
 Summary:	advanced text editor for TDE
 Group:		Applications/Text
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-kwrite = %{version}-%{release}
 Requires:	trinity-libkateinterfaces = %{version}-%{release}
 
@@ -564,7 +567,7 @@ Requires:	trinity-kate = %{version}-%{release}
 %package -n trinity-kwrite
 Summary:	advanced text editor for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-libkateinterfaces = %{version}-%{release}
 
 %description -n trinity-kwrite
@@ -603,7 +606,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %package -n trinity-kcontrol
 Summary:	control center for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	hwdata
 Requires:	usbutils
 
@@ -902,8 +905,11 @@ Requires:	trinity-kcontrol = %{version}-%{release}
 %package bin
 Summary:	core binaries for the TDE base module
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	pam
+
+Provides:	tdebase-bin = %{version}-%{release}
+Obsoletes:	tdebase-bin < %{version}-%{release}
 
 %description bin
 This package contains miscellaneous programs needed by other
@@ -1003,6 +1009,9 @@ Summary:	Development files for core binaries for the TDE base module
 Group:		Development/Libraries
 Requires:	%{name}-bin = %{version}-%{release}
 
+Obsoletes:	tdebase-bin-devel < %{version}-%{release}
+Provides:	tdebase-bin-devel = %{version}-%{release}
+
 %description bin-devel
 %{summary}
 
@@ -1021,7 +1030,10 @@ Requires:	%{name}-bin = %{version}-%{release}
 %package data
 Summary:	shared data files for the TDE base module
 Group:		Environment/Libraries
-Requires:	tdebase-runtime-data-common = %{version}-%{release}
+Requires:	%{name}-runtime-data-common = %{version}-%{release}
+
+Obsoletes:	tdebase-data < %{version}-%{release}
+Provides:	tdebase-data = %{version}-%{release}
 
 %description data
 This package contains the architecture-independent shared data files
@@ -1321,6 +1333,9 @@ Requires:	cyrus-sasl
 Requires:	psmisc
 Requires:	cryptsetup-luks
 
+Obsoletes:	tdebase-kio-plugins < %{version}-%{release}
+Provides:	tdebase-kio-plugins = %{version}-%{release}
+
 %description kio-plugins
 This package includes the base kioslaves. They include, amongst many
 others, file, http, and ftp.
@@ -1512,7 +1527,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %package -n trinity-tdeprint
 Summary:	print system for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	psutils
 
 %description -n trinity-tdeprint
@@ -1581,8 +1596,8 @@ done
 %package -n trinity-kdesktop
 Summary:	miscellaneous binaries and files for the TDE desktop
 Group:		Applications/Utilities
-Requires:	tdebase-bin = %{version}-%{release}
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-bin = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-libkonq = %{version}-%{release}
 Requires:	eject
 Requires:	xdg-utils
@@ -1647,8 +1662,8 @@ Requires:	trinity-kdesktop = %{version}-%{release}
 %package -n trinity-tdm
 Summary:	X Display manager for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-bin = %{version}-%{release}
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-bin = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	pam
 
 # Provides the global Xsession script (/etc/X11/xinit/Xsession)
@@ -1718,7 +1733,7 @@ Requires:	trinity-tdm = %{version}-%{release}
 %package -n trinity-kfind
 Summary:	file-find utility for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kfind
 kfind can be used to find files and directories on your
@@ -1755,7 +1770,7 @@ done
 %package -n trinity-khelpcenter
 Summary:	help center for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	htdig
 
 %description -n trinity-khelpcenter
@@ -1806,7 +1821,7 @@ done
 %package -n trinity-kicker
 Summary:	desktop panel for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kicker
 Kicker provides the TDE panel on you desktop. It can be used as a
@@ -1966,7 +1981,7 @@ Requires:	trinity-kicker = %{version}-%{release}
 %package -n trinity-klipper
 Summary:	clipboard utility for Trinity
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-klipper
 klipper provides standard clipboard functions (cut and paste, history
@@ -2015,7 +2030,7 @@ done
 %package -n trinity-kmenuedit
 Summary:	menu editor for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kmenuedit
 The TDE menu editor allows you to make customisations to the KDE menu
@@ -2052,9 +2067,9 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %package -n trinity-konqueror
 Summary:	TDE's advanced file manager, web browser and document viewer
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-kcontrol = %{version}-%{release}
-Requires:	tdebase-kio-plugins = %{version}-%{release}
+Requires:	%{name}-kio-plugins = %{version}-%{release}
 Requires:	trinity-kdesktop = %{version}-%{release}
 Requires:	trinity-kfind = %{version}-%{release}
 Requires:	trinity-konqueror-nsplugins = %{version}-%{release}
@@ -2248,7 +2263,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %package -n trinity-konsole
 Summary:	X terminal emulator for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-konsole
 Konsole is an X terminal emulation which provides a command-line interface
@@ -2316,7 +2331,7 @@ done
 %package -n trinity-kpager
 Summary:	desktop pager for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kpager
 This package contains TDE's desktop pager, which displays your virtual
@@ -2350,7 +2365,7 @@ done
 %package -n trinity-kpersonalizer
 Summary:	installation personalizer for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kpersonalizer
 TDE Personalizer is the application that configures the TDE desktop for you.
@@ -2385,7 +2400,7 @@ done
 %package -n trinity-ksmserver
 Summary:	session manager for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-twin = %{version}-%{release}
 
 %description -n trinity-ksmserver
@@ -2421,7 +2436,7 @@ KDE will start, but many good defaults will not be set.
 %package -n trinity-ksplash
 Summary:	the TDE splash screen
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-ksplash
 This package includes the TDE Splash screen, which is seen when
@@ -2486,7 +2501,7 @@ Requires:	trinity-ksplash = %{version}-%{release}
 %package -n trinity-ksysguard
 Summary:	system guard for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-ksysguardd = %{version}-%{release}
 
 %description -n trinity-ksysguard
@@ -2549,7 +2564,7 @@ Requires:	trinity-ksysguard = %{version}-%{release}
 %package -n trinity-ksysguardd
 Summary:	system guard daemon for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-ksysguardd
 TDE System Guard Daemon is the daemon part of ksysguard. The daemon can
@@ -2570,7 +2585,7 @@ to monitor it through the daemon running there.
 %package -n trinity-ktip
 Summary:	useful tips for TDE
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-ktip
 ktip provides many useful tips on using KDE when you log in.
@@ -2604,7 +2619,7 @@ done
 %package -n trinity-twin
 Summary:	the TDE window manager
 Group:		Applications/Utilities
-Requires:	tdebase-data = %{version}-%{release}
+Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-twin
 This package contains the default X window manager for KDE.
@@ -2736,6 +2751,9 @@ Konqueror and the kdesktop package.
 Summary:	Integration library between TQt3 and TDE
 Group:		Environment/Libraries
 
+Obsoletes:	tdebase-libtqt3-integration < %{version}-%{release}
+Provides:	tdebase-libtqt3-integration = %{version}-%{release}
+
 %description libtqt3-integration
 These libraries allow you to use TDE dialogs in native TQt3 applications.
 
@@ -2838,6 +2856,7 @@ Konqueror libraries.
 %patch57 -p1
 %patch58 -p1
 %patch59 -p1
+%patch60 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -2969,7 +2988,12 @@ cd build
 
 
 %changelog
+* Sun Jul 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-24
+- Renames 'tdebase' to 'trinity-tdebase'
+- Update default konqueror maximum image preview size to 10MB. [Commit #03e19305]
+
 * Sun Jun 17 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-23
+- Renames 'trinity-kdebase' to 'tdebase'
 - Split into several packages
 
 * Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-22

@@ -23,9 +23,9 @@ BuildRequires: cmake >= 2.8
 %define		with_kitchensync 0
 
 
-Name:		tdepim
+Name:		trinity-tdepim
 Version:	3.5.13
-Release:	6%{?dist}%{?_variant}
+Release:	7%{?dist}%{?_variant}
 License:	GPL
 Group:		Applications/Productivity
 
@@ -53,11 +53,13 @@ Patch6:		kdepim-3.5.13-fix_knotes_on_suspend.patch
 Patch7:		kdepim-3.5.13-fix_linear_alphabet.patch
 # [tdepim] Fix infinite loop on IMAP4 authentication failure [Bug #1007]
 Patch8:		kdepim-3.5.13-fix_kio_imap4_infinite_loop.patch
-# [tdepim] Fix infinite loop on kmime_utils addquotes
+# [tdepim] Fix infinite loop on kmime_utils addquotes [Bug #1009] [Commit #9b43d6e1] [Commit #b0c92b30]
 Patch9:		kdepim-3.5.13-fix_kio_imap4_addquotes.patch
 Patch10:	kdepim-3.5.13-fix_segv.patch
 # [tdepim] Update kalarmd icon reference, which does not exist, to kalarm. [Commit #228ad1c6]
 Patch11:	kdepim-3.5.13-fix_kalarm_icon_reference.patch
+# [tdepim] Disable unneccesary fsync() in cached IMAP handler [Bug #467] [Commit #82d4a938]
+Patch12:	kdepim-3.5.13-disable_fsync_in_cached_imap.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -91,11 +93,11 @@ BuildRequires:	trinity-libcurl-devel
 BuildRequires:	curl-devel
 %endif
 
-Requires:	libtdepim = %{version}-%{release}
-Requires:	tdepim-kfile-plugins = %{version}-%{release}
-Requires:	tdepim-kio-plugins = %{version}-%{release}
-Requires:	tdepim-kresources = %{version}-%{release}
-Requires:	tdepim-wizards = %{version}-%{release}
+Requires:	trinity-libtdepim = %{version}-%{release}
+Requires:	%{name}-kfile-plugins = %{version}-%{release}
+Requires:	%{name}-kio-plugins = %{version}-%{release}
+Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-wizards = %{version}-%{release}
 Requires:	trinity-akregator = %{version}-%{release}
 Requires:	trinity-kaddressbook = %{version}-%{release}
 Requires:	trinity-kalarm = %{version}-%{release}
@@ -126,6 +128,8 @@ Requires:	trinity-libmimelib = %{version}-%{release}
 
 Obsoletes:	trinity-kdepim < %{version}-%{release}
 Provides:	trinity-kdepim = %{version}-%{release}
+Obsoletes:	tdepim < %{version}-%{release}
+Provides:	tdepim = %{version}-%{release}
 
 %description
 This metapackage includes a collection of Personal Information Management
@@ -139,11 +143,15 @@ This metapackage includes a collection of Personal Information Management
 Summary:	Development files for %{name}
 Group:		Development/Libraries
 
+Obsoletes:	tdepim-cmake < %{version}-%{release}
+
 Obsoletes:	trinity-kdepim-devel < %{version}-%{release}
 Provides:	trinity-kdepim-devel = %{version}-%{release}
+Obsoletes:	tdepim-devel < %{version}-%{release}
+Provides:	tdepim-devel = %{version}-%{release}
 
 Requires:	%{name} = %{version}-%{release}
-Requires:	libtdepim-devel = %{version}-%{release}
+Requires:	trinity-libtdepim-devel = %{version}-%{release}
 Requires:	trinity-karm-devel = %{version}-%{release}
 Requires:	trinity-knotes-devel = %{version}-%{release}
 Requires:	trinity-kontact-devel = %{version}-%{release}
@@ -158,20 +166,21 @@ Requires:	trinity-libkpimidentities-devel = %{version}-%{release}
 Requires:	trinity-libksieve-devel = %{version}-%{release}
 Requires:	trinity-libktnef-devel = %{version}-%{release}
 Requires:	trinity-libmimelib-devel = %{version}-%{release}
-Requires:	tdepim-cmake = %{version}-%{release}
-Requires:	tdepim-kresources-devel = %{version}-%{release}
+Requires:	%{name}-kresources-devel = %{version}-%{release}
 
 %description devel
 This metapackage includes all development files for TDE PIM.
+It also contains the CMAKE macros.
 
 %files devel
+%{_datadir}/cmake/*
 
 ##########
 
 %package -n trinity-akregator
 Summary:	RSS feed aggregator for TDE
 Group:		Applications/Internet
-Requires:	libtdepim = %{version}-%{release}
+Requires:	trinity-libtdepim = %{version}-%{release}
 Requires:	trinity-libkcal = %{version}-%{release}
 
 %description -n trinity-akregator
@@ -236,7 +245,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 Summary:	TDE addressbook application
 Group:		Applications/Communications
 Requires:	trinity-kdebase-pim-ioslaves
-Requires:	tdepim-kresources = %{version}-%{release}
+Requires:	%{name}-kresources = %{version}-%{release}
 
 %description -n trinity-kaddressbook
 KAddressBook is the main address book application for TDE; it enables you
@@ -260,17 +269,11 @@ LDAP servers, and SQL databases.
 %{tde_libdir}/libkaddrbk_*.so
 %{tde_libdir}/libkaddressbookpart.la
 %{tde_libdir}/libkaddressbookpart.so
-%{_libdir}/libkabinterfaces.so.1
-%{_libdir}/libkabinterfaces.so.1.0.0
-%{_libdir}/libkaddressbook.so.0
-%{_libdir}/libkaddressbook.so.0.0.0
+%{_libdir}/libkabinterfaces.so.*
+%{_libdir}/libkaddressbook.so.*
 %{tde_appdir}/kaddressbook.desktop
 %{_datadir}/apps/kaddressbook
-%{_datadir}/icons/hicolor/128x128/apps/kaddressbook.png
-%{_datadir}/icons/hicolor/16x16/apps/kaddressbook.png
-%{_datadir}/icons/hicolor/32x32/apps/kaddressbook.png
-%{_datadir}/icons/hicolor/48x48/apps/kaddressbook.png
-%{_datadir}/icons/hicolor/64x64/apps/kaddressbook.png
+%{_datadir}/icons/hicolor/*/apps/kaddressbook.png
 %{_datadir}/services/kabconfig.desktop
 %{_datadir}/services/kabcustomfields.desktop
 %{_datadir}/services/kabldapconfig.desktop
@@ -342,11 +345,8 @@ TDE-based, but will also run on other desktops.
 %{_datadir}/apps/kalarm
 %{_datadir}/autostart/kalarm.tray.desktop
 %{_datadir}/autostart/kalarmd.autostart.desktop
-%{_datadir}/icons/crystalsvg/16x16/actions/kalarm.png
-%{_datadir}/icons/hicolor/16x16/apps/kalarm.png
-%{_datadir}/icons/crystalsvg/22x22/actions/kalarm.png
-%{_datadir}/icons/hicolor/32x32/apps/kalarm.png
-%{_datadir}/icons/hicolor/48x48/apps/kalarm.png
+%{_datadir}/icons/crystalsvg/*/actions/kalarm.png
+%{_datadir}/icons/hicolor/*/apps/kalarm.png
 %{tde_docdir}/HTML/en/kalarm
 
 %post -n trinity-kalarm
@@ -404,8 +404,7 @@ time they spend on various tasks.
 
 %files -n trinity-karm
 %{_bindir}/karm
-%{_libdir}/libkarm.so.0
-%{_libdir}/libkarm.so.0.0.0
+%{_libdir}/libkarm.so.*
 %{tde_libdir}/libkarmpart.la
 %{tde_libdir}/libkarmpart.so
 %{tde_appdir}/karm.desktop
@@ -458,6 +457,8 @@ Group:		Development/Libraries
 Summary:	TDE File dialog plugins for palm and vcf files
 Group:		Environment/Libraries
 
+Obsoletes:	tdepim-kfile-plugins < %{version}-%{release}
+
 %description kfile-plugins
 File dialog plugins for palm and vcf files.
 
@@ -474,6 +475,8 @@ File dialog plugins for palm and vcf files.
 %package kio-plugins
 Summary:	Trinity pim I/O Slaves
 Group:		Environment/Libraries
+
+Obsoletes:	tdepim-kio-plugins < %{version}-%{release}
 
 %description kio-plugins
 This package includes the pim kioslaves. This includes imap4, sieve,
@@ -511,6 +514,8 @@ Group:		Environment/Libraries
 Requires:	libcaldav
 Requires:	libcarddav
 
+Obsoletes:	tdepim-kresources < %{version}-%{release}
+
 %description kresources
 This package includes several plugins needed to interface with groupware
 servers. It also includes plugins for features such as blogging and
@@ -541,54 +546,30 @@ tracking feature plans.
 %{tde_libdir}/knotes_scalix.so
 %{tde_libdir}/knotes_xmlrpc.la
 %{tde_libdir}/knotes_xmlrpc.so
-%{_libdir}/libkabckolab.so.0
-%{_libdir}/libkabckolab.so.0.0.0
-%{_libdir}/libkabcscalix.so.0
-%{_libdir}/libkabcscalix.so.0.0.0
-%{_libdir}/libkabc_groupdav.so.1
-%{_libdir}/libkabc_groupdav.so.1.0.0
-%{_libdir}/libkabc_groupwise.so.1
-%{_libdir}/libkabc_groupwise.so.1.0.0
-%{_libdir}/libkabc_newexchange.so.1
-%{_libdir}/libkabc_newexchange.so.1.0.0
-%{_libdir}/libkabc_slox.so.0
-%{_libdir}/libkabc_slox.so.0.0.0
-%{_libdir}/libkabc_xmlrpc.so.1
-%{_libdir}/libkabc_xmlrpc.so.1.0.0
-%{_libdir}/libkcalkolab.so.0
-%{_libdir}/libkcalkolab.so.0.0.0
-%{_libdir}/libkcalscalix.so.0
-%{_libdir}/libkcalscalix.so.0.0.0
-%{_libdir}/libkcal_caldav.so.1
-%{_libdir}/libkcal_caldav.so.1.0.0
-%{_libdir}/libkabc_carddav.so.1
-%{_libdir}/libkabc_carddav.so.1.0.0
-%{_libdir}/libkcal_groupdav.so.1
-%{_libdir}/libkcal_groupdav.so.1.0.0
-%{_libdir}/libkcal_groupwise.so.1
-%{_libdir}/libkcal_groupwise.so.1.0.0
-%{_libdir}/libkcal_newexchange.so.1
-%{_libdir}/libkcal_newexchange.so.1.0.0
-%{_libdir}/libkcal_resourcefeatureplan.so.1
-%{_libdir}/libkcal_resourcefeatureplan.so.1.0.0
-%{_libdir}/libkcal_slox.so.0
-%{_libdir}/libkcal_slox.so.0.0.0
-%{_libdir}/libkcal_xmlrpc.so.1
-%{_libdir}/libkcal_xmlrpc.so.1.0.0
-%{_libdir}/libkgroupwarebase.so.0
-%{_libdir}/libkgroupwarebase.so.0.0.0
-%{_libdir}/libkgroupwaredav.so.0
-%{_libdir}/libkgroupwaredav.so.0.0.0
-%{_libdir}/libknoteskolab.so.0
-%{_libdir}/libknoteskolab.so.0.0.0
-%{_libdir}/libknotesscalix.so.0
-%{_libdir}/libknotesscalix.so.0.0.0
-%{_libdir}/libknotes_xmlrpc.so.1
-%{_libdir}/libknotes_xmlrpc.so.1.0.0
-%{_libdir}/libkslox.so.0
-%{_libdir}/libkslox.so.0.0.0
-%{_libdir}/libgwsoap.so.0
-%{_libdir}/libgwsoap.so.0.0.0
+%{_libdir}/libkabckolab.so.*
+%{_libdir}/libkabcscalix.so.*
+%{_libdir}/libkabc_groupdav.so.*
+%{_libdir}/libkabc_groupwise.so.*
+%{_libdir}/libkabc_newexchange.so.*
+%{_libdir}/libkabc_slox.so.*
+%{_libdir}/libkabc_xmlrpc.so.*
+%{_libdir}/libkcalkolab.so.*
+%{_libdir}/libkcalscalix.so.*
+%{_libdir}/libkcal_caldav.so.*
+%{_libdir}/libkabc_carddav.so.*
+%{_libdir}/libkcal_groupdav.so.*
+%{_libdir}/libkcal_groupwise.so.*
+%{_libdir}/libkcal_newexchange.so.*
+%{_libdir}/libkcal_resourcefeatureplan.so.*
+%{_libdir}/libkcal_slox.so.*
+%{_libdir}/libkcal_xmlrpc.so.*
+%{_libdir}/libkgroupwarebase.so.*
+%{_libdir}/libkgroupwaredav.so.*
+%{_libdir}/libknoteskolab.so.*
+%{_libdir}/libknotesscalix.so.*
+%{_libdir}/libknotes_xmlrpc.so.*
+%{_libdir}/libkslox.so.*
+%{_libdir}/libgwsoap.so.*
 %{_datadir}/services/kresources/kabc/kabc_groupdav.desktop
 %{_datadir}/services/kresources/kabc/kabc_groupwise.desktop
 %{_datadir}/services/kresources/kabc/kabc_newexchange.desktop
@@ -646,9 +627,11 @@ tracking feature plans.
 %package kresources-devel
 Summary:	Development files for kresources
 Group:		Development/Libraries
-Requires:	tdepim-kresources = %{version}-%{release}
+Requires:	%{name}-kresources = %{version}-%{release}
 Requires:	libcaldav
 Requires:	libcarddav
+
+Obsoletes:	tdepim-kresources-devel < %{version}-%{release}
 
 %description kresources-devel
 %{summary}
@@ -716,6 +699,8 @@ Requires:	libcarddav
 Summary:	Trinity server configuration wizards
 Group:		Applications/Communications
 
+Obsoletes:	tdepim-wizards < %{version}-%{release}
+
 %description wizards
 This package contains KDE-based wizards for configuring eGroupware,
 Kolab, and SUSE Linux Openexchange servers.
@@ -772,15 +757,10 @@ development (?).  Kitchensync uses opensync.
 %{tde_libdir}/libkitchensyncpart.la
 %{tde_libdir}/libkitchensyncpart.so
 %{_datadir}/apps/kitchensync
-%{_libdir}/libkitchensync.so.0
-%{_libdir}/libkitchensync.so.0.0.0
-%{_libdir}/libqopensync.so.0
-%{_libdir}/libqopensync.so.0.0.0
+%{_libdir}/libkitchensync.so.*
+%{_libdir}/libqopensync.so.*
 %{tde_appdir}/kitchensync.desktop
-%{_datadir}/icons/hicolor/16x16/apps/kitchensync.png
-%{_datadir}/icons/hicolor/22x22/apps/kitchensync.png
-%{_datadir}/icons/hicolor/32x32/apps/kitchensync.png
-%{_datadir}/icons/hicolor/48x48/apps/kitchensync.png
+%{_datadir}/icons/hicolor/*/apps/kitchensync.png
 
 %post -n trinity-kitchensync
 /sbin/ldconfig
@@ -827,7 +807,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-kmail
 Summary:	Trinity Email client
 Group:		Applications/Communications
-Requires:	tdepim-kio-plugins = %{version}-%{release}
+Requires:	%{name}-kio-plugins = %{version}-%{release}
 Requires:	gnupg2
 Requires:	pinentry
 Requires:	procmail
@@ -842,8 +822,8 @@ KMail is a fully-featured email client that fits nicely into the TDE
 desktop. It has features such as support for IMAP, POP3, multiple accounts,
 mail filtering and sorting, PGP/GnuPG privacy, and inline attachments.
 
-You need to install tdepim-kio-plugins if you want to use IMAP or
-mbox files, and/or tdebase-kio-plugins if you want to use POP3.
+You need to install %{name}-kio-plugins if you want to use IMAP or
+mbox files, and/or trinity-tdebase-kio-plugins if you want to use POP3.
 
 %files -n trinity-kmail
 %{_datadir}/config/kmail.antispamrc
@@ -892,14 +872,8 @@ mbox files, and/or tdebase-kio-plugins if you want to use POP3.
 %{_datadir}/config.kcfg/customtemplates_kfg.kcfg
 %{_datadir}/config.kcfg/replyphrases.kcfg
 %{_datadir}/config.kcfg/templatesconfiguration_kfg.kcfg
-%{_datadir}/icons/hicolor/128x128/apps/kmail.png
-%{_datadir}/icons/hicolor/16x16/apps/kmail.png
-%{_datadir}/icons/hicolor/22x22/apps/kmail.png
-%{_datadir}/icons/crystalsvg/22x22/apps/kmaillight.png
-%{_datadir}/icons/hicolor/32x32/apps/kmail.png
-%{_datadir}/icons/crystalsvg/32x32/apps/kmaillight.png
-%{_datadir}/icons/hicolor/48x48/apps/kmail.png
-%{_datadir}/icons/hicolor/64x64/apps/kmail.png
+%{_datadir}/icons/crystalsvg/*/apps/kmaillight.png
+%{_datadir}/icons/hicolor/*/apps/kmail.png
 %{_datadir}/icons/hicolor/scalable/apps/kmail.svgz
 %{_datadir}/services/kmail_config_*.desktop
 %{_datadir}/services/kontact/kmailplugin.desktop
@@ -940,9 +914,7 @@ include Outlook Express, Evolution, and plain mbox.
 %{_bindir}/kmailcvt
 %{_datadir}/applnk/Utilities/kmailcvt.desktop
 %{_datadir}/apps/kmailcvt
-%{_datadir}/icons/crystalsvg/16x16/apps/kmailcvt.png
-%{_datadir}/icons/crystalsvg/32x32/apps/kmailcvt.png
-%{_datadir}/icons/crystalsvg/48x48/apps/kmailcvt.png
+%{_datadir}/icons/crystalsvg/*/apps/kmailcvt.png
 
 %post -n trinity-kmailcvt
 for f in crystalsvg ; do
@@ -981,16 +953,8 @@ signatures.
 %{tde_appdir}/KNode.desktop
 %{_datadir}/apps/knode
 %{tde_docdir}/HTML/en/knode
-%{_datadir}/icons/hicolor/128x128/apps/knode.png
-%{_datadir}/icons/hicolor/128x128/apps/knode2.png
-%{_datadir}/icons/hicolor/16x16/apps/knode.png
-%{_datadir}/icons/hicolor/16x16/apps/knode2.png
-%{_datadir}/icons/hicolor/32x32/apps/knode.png
-%{_datadir}/icons/hicolor/32x32/apps/knode2.png
-%{_datadir}/icons/hicolor/48x48/apps/knode.png
-%{_datadir}/icons/hicolor/48x48/apps/knode2.png
-%{_datadir}/icons/hicolor/64x64/apps/knode.png
-%{_datadir}/icons/hicolor/64x64/apps/knode2.png
+%{_datadir}/icons/hicolor/*/apps/knode.png
+%{_datadir}/icons/hicolor/*/apps/knode2.png
 %{_datadir}/services/knewsservice.protocol
 %{_datadir}/services/knode_config_*.desktop
 %{_datadir}/services/kontact/knodeplugin.desktop
@@ -1016,7 +980,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-knotes
 Summary:	Trinity sticky notes
 Group:		Applications/Utilities
-Requires:	tdepim-kresources = %{version}-%{release}
+Requires:	trinity-tdepim-kresources = %{version}-%{release}
 
 %description -n trinity-knotes
 KNotes is a program that lets you write sticky notes. The notes are saved
@@ -1027,8 +991,7 @@ program.  The program supports printing and mailing your notes.
 %{_bindir}/knotes
 %{tde_libdir}/knotes_local.la
 %{tde_libdir}/knotes_local.so
-%{_libdir}/libknotes.so.0
-%{_libdir}/libknotes.so.0.0.0
+%{_libdir}/libknotes.so.*
 %{tde_appdir}/knotes.desktop
 %{_datadir}/apps/knotes
 %{_datadir}/config.kcfg/knoteconfig.kcfg
@@ -1062,7 +1025,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 Summary:	Development files for knots
 Group:		Development/Libraries
 Requires:	trinity-knotes = %{version}-%{release}
-Requires:	tdepim-kresources-devel = %{version}-%{release}
+Requires:	%{name}-kresources-devel = %{version}-%{release}
 
 %description -n trinity-knotes-devel
 %{summary}
@@ -1095,8 +1058,7 @@ described by RelaxNG schemes.
 %{_bindir}/kxml_compiler
 %{_libdir}/libkode.la
 %{_libdir}/libkode.so
-%{_libdir}/libkode.so.1
-%{_libdir}/libkode.so.1.0.0
+%{_libdir}/libkode.so.*
 
 %post -n trinity-kode
 /sbin/ldconfig
@@ -1118,9 +1080,7 @@ frontend to manage your calendars.
 %files -n trinity-konsolekalendar
 %{_bindir}/konsolekalendar
 %{tde_appdir}/konsolekalendar.desktop
-%{_datadir}/icons/crystalsvg/16x16/apps/konsolekalendar.png
-%{_datadir}/icons/crystalsvg/22x22/apps/konsolekalendar.png
-%{_datadir}/icons/crystalsvg/32x32/apps/konsolekalendar.png
+%{_datadir}/icons/crystalsvg/*/apps/konsolekalendar.png
 %{tde_docdir}/HTML/en/konsolekalendar
 
 %post -n trinity-konsolekalendar
@@ -1171,10 +1131,8 @@ scheduling, address book and other PIM functionality.
 %{tde_libdir}/kcm_sdsummary.so
 %{tde_libdir}/libkontact_*.la
 %{tde_libdir}/libkontact_*.so
-%{_libdir}/libkontact.so.1
-%{_libdir}/libkontact.so.1.0.0
-%{_libdir}/libkpinterfaces.so.1
-%{_libdir}/libkpinterfaces.so.1.0.0
+%{_libdir}/libkontact.so.*
+%{_libdir}/libkpinterfaces.so.*
 %{tde_appdir}/Kontact.desktop
 %{tde_appdir}/kontactdcop.desktop
 %{_datadir}/apps/kontact
@@ -1242,7 +1200,7 @@ Summary:	Trinity personal organizer
 Group:		Applications/Productivity
 Requires:	trinity-libkpimidentities = %{version}-%{release}
 Requires:	trinity-libkpimexchange = %{version}-%{release}
-Requires:	tdepim-kresources = %{version}-%{release}
+Requires:	%{name}-kresources = %{version}-%{release}
 
 %description -n trinity-korganizer
 This package contains KOrganizer, a calendar and scheduling program.
@@ -1266,27 +1224,18 @@ installed.
 %{tde_libdir}/libkorg_*.so
 %{tde_libdir}/libkorganizerpart.la
 %{tde_libdir}/libkorganizerpart.so
-%{_libdir}/libkocorehelper.so.1
-%{_libdir}/libkocorehelper.so.1.0.0
-%{_libdir}/libkorg_stdprinting.so.1
-%{_libdir}/libkorg_stdprinting.so.1.0.0
-%{_libdir}/libkorganizer.so.1
-%{_libdir}/libkorganizer.so.1.0.0
-%{_libdir}/libkorganizer_calendar.so.1
-%{_libdir}/libkorganizer_calendar.so.1.0.0
-%{_libdir}/libkorganizer_eventviewer.so.1
-%{_libdir}/libkorganizer_eventviewer.so.1.0.0
+%{_libdir}/libkocorehelper.so.*
+%{_libdir}/libkorg_stdprinting.so.*
+%{_libdir}/libkorganizer.so.*
+%{_libdir}/libkorganizer_calendar.so.*
+%{_libdir}/libkorganizer_eventviewer.so.*
 %{tde_appdir}/korganizer.desktop
 %{_datadir}/apps/kconf_update/korganizer.upd
 %{_datadir}/apps/korgac
 %{_datadir}/apps/korganizer
 %{_datadir}/autostart/korgac.desktop
 %{_datadir}/config.kcfg/korganizer.kcfg
-%{_datadir}/icons/hicolor/128x128/apps/korganizer.png
-%{_datadir}/icons/hicolor/16x16/apps/korganizer.png
-%{_datadir}/icons/hicolor/32x32/apps/korganizer.png
-%{_datadir}/icons/hicolor/48x48/apps/korganizer.png
-%{_datadir}/icons/hicolor/64x64/apps/korganizer.png
+%{_datadir}/icons/hicolor/*/apps/korganizer.png
 %{_datadir}/services/kontact/korganizerplugin.desktop
 %{_datadir}/services/kontact/journalplugin.desktop
 %{_datadir}/services/kontact/todoplugin.desktop
@@ -1352,7 +1301,7 @@ Requires:	trinity-korganizer = %{version}-%{release}
 %package -n trinity-korn
 Summary:	Trinity mail checker
 Group:		Applications/Communications
-Requires:	tdepim-kio-plugins = %{version}-%{release}
+Requires:	%{name}-kio-plugins = %{version}-%{release}
 #Requires:	tdebase-kio-plugins-trinity
 
 %description -n trinity-korn
@@ -1371,9 +1320,7 @@ Korn run a program once you click on the docked icon in Kicker.
 %{_datadir}/apps/kconf_update/korn-3-5-metadata-update.pl
 %{_datadir}/apps/kconf_update/korn-3-5-ssl-update.pl
 %{_datadir}/apps/kconf_update/korn-3-5-update.upd
-%{_datadir}/icons/hicolor/16x16/apps/korn.png
-%{_datadir}/icons/hicolor/32x32/apps/korn.png
-%{_datadir}/icons/hicolor/48x48/apps/korn.png
+%{_datadir}/icons/hicolor/*/apps/korn.png
 %{tde_docdir}/HTML/en/korn
 
 %post -n trinity-korn
@@ -1407,9 +1354,8 @@ mail servers and embed the mail properties as well as the actual attachments.
 %{_bindir}/ktnef
 %{tde_appdir}/ktnef.desktop
 %{_datadir}/apps/ktnef
-%{_datadir}/icons/hicolor/48x48/apps/ktnef.png
-%{_datadir}/icons/locolor/16x16/apps/ktnef.png
-%{_datadir}/icons/locolor/32x32/apps/ktnef.png
+%{_datadir}/icons/hicolor/*/apps/ktnef.png
+%{_datadir}/icons/locolor/*/apps/ktnef.png
 %{_datadir}/mimelnk/application/ms-tnef.desktop
 %{tde_docdir}/HTML/en/ktnef
 
@@ -1440,8 +1386,7 @@ to implement fast searches in mail bodies.
 This is the runtime package for programs that use the libindex library.
 
 %files -n trinity-libindex
-%{_libdir}/libindex.so.0
-%{_libdir}/libindex.so.0.0.0
+%{_libdir}/libindex.so.*
 
 %post -n trinity-libindex
 /sbin/ldconfig
@@ -1480,7 +1425,7 @@ library.
 %package -n trinity-libkcal
 Summary:	Trinity calendaring library
 Group:		Environment/Libraries
-#Requires:	tdepim-kresources = %{version}-%{release}
+#Requires:	%{name}-kresources = %{version}-%{release}
 
 %description -n trinity-libkcal
 This library provides a C++ API for handling the vCalendar and iCalendar
@@ -1497,12 +1442,9 @@ This is the runtime package for programs that use the libkcal-trinity library.
 %{tde_libdir}/kcal_local.so
 %{tde_libdir}/kcal_remote.la
 %{tde_libdir}/kcal_remote.so
-%{_libdir}/libkcal.so.2
-%{_libdir}/libkcal.so.2.0.0
-%{_libdir}/libkcal_resourceremote.so.1
-%{_libdir}/libkcal_resourceremote.so.1.0.0
-%{_libdir}/libkholidays.so.1
-%{_libdir}/libkholidays.so.1.0.0
+%{_libdir}/libkcal.so.*
+%{_libdir}/libkcal_resourceremote.so.*
+%{_libdir}/libkholidays.so.*
 %{_datadir}/apps/libkholidays
 %{_datadir}/services/kresources/kcal/imap.desktop
 %{_datadir}/services/kresources/kcal/kabc.desktop
@@ -1523,7 +1465,7 @@ This is the runtime package for programs that use the libkcal-trinity library.
 Summary:	Trinity calendaring library [development]
 Group:		Development/Libraries
 Requires:	trinity-libkcal = %{version}-%{release}
-Requires:	libtdepim-devel = %{version}-%{release}
+Requires:	trinity-libtdepim-devel = %{version}-%{release}
 Requires:	trinity-libktnef-devel = %{version}-%{release}
 
 %description -n trinity-libkcal-devel
@@ -1552,21 +1494,23 @@ library.
 
 ##########
 
-%package -n libtdepim
+%package -n trinity-libtdepim
 Summary:	Trinity PIM library
 Group:		Environment/Libraries
 Requires:	trinity-libkcal = %{version}-%{release}
 
-%description -n libtdepim
+Obsoletes:	libtdepim < %{version}-%{release}
+Provides:	libtdepim = %{version}-%{release}
+
+%description -n trinity-libtdepim
 This is the runtime package for programs that use the libtdepim-trinity library.
 
-%files -n libtdepim
+%files -n trinity-libtdepim
 %{tde_libdir}/plugins/designer/[kt]depimwidgets.la
 %{tde_libdir}/plugins/designer/[kt]depimwidgets.so
 %{tde_libdir}/plugins/designer/kpartsdesignerplugin.la
 %{tde_libdir}/plugins/designer/kpartsdesignerplugin.so
-%{_libdir}/lib[kt]depim.so.1
-%{_libdir}/lib[kt]depim.so.1.0.0
+%{_libdir}/lib[kt]depim.so.*
 %{_datadir}/apps/[kt]depimwidgets
 %{_datadir}/apps/lib[kt]depim
 %{_datadir}/apps/[kt]depim
@@ -1574,14 +1518,14 @@ This is the runtime package for programs that use the libtdepim-trinity library.
 %{_datadir}/icons/crystalsvg/22x22/actions/button_fewer.png
 %{_datadir}/icons/crystalsvg/22x22/actions/button_more.png
 
-%post -n libtdepim
+%post -n trinity-libtdepim
 for f in crystalsvg ; do
   touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
 done
 /sbin/ldconfig
 
-%postun -n libtdepim
+%postun -n trinity-libtdepim
 for f in crystalsvg ; do
   touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
   gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
@@ -1590,25 +1534,28 @@ done
 
 ##########
 
-%package -n libtdepim-devel
+%package -n trinity-libtdepim-devel
 Summary:	Trinity PIM library [development]
 Group:		Development/Libraries
-Requires:	libtdepim = %{version}-%{release}
+Requires:	trinity-libtdepim = %{version}-%{release}
 Requires:	trinity-kdelibs-devel
 
-%description -n libtdepim-devel
+Obsoletes:	libtdepim-devel < %{version}-%{release}
+Provides:	libtdepim-devel = %{version}-%{release}
+
+%description -n trinity-libtdepim-devel
 This is the development package which contains the headers for the libtdepim-trinity
 library.
 
-%files -n libtdepim-devel
+%files -n trinity-libtdepim-devel
 %{tde_includedir}/[kt]depimmacros.h
 %{_libdir}/lib[kt]depim.la
 %{_libdir}/lib[kt]depim.so
 
-%post -n libtdepim-devel
+%post -n trinity-libtdepim-devel
 /sbin/ldconfig
 
-%postun -n libtdepim-devel
+%postun -n trinity-libtdepim-devel
 /sbin/ldconfig
 
 ##########
@@ -1621,8 +1568,7 @@ Group:		Environment/Libraries
 This is the runtime package for programs that use the libkgantt-trinity library.
 
 %files -n trinity-libkgantt
-%{_libdir}/libkgantt.so.0
-%{_libdir}/libkgantt.so.0.0.2
+%{_libdir}/libkgantt.so.*
 %{_datadir}/apps/kgantt
 
 %post -n trinity-libkgantt
@@ -1637,7 +1583,7 @@ This is the runtime package for programs that use the libkgantt-trinity library.
 Summary:	Trinity gantt charting library [development]
 Group:		Development/Libraries
 Requires:	trinity-libkgantt = %{version}-%{release}
-Requires:	libtdepim-devel = %{version}-%{release}
+Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
 %description -n trinity-libkgantt-devel
 This is the development package which contains the headers for the libkgantt-trinity
@@ -1669,23 +1615,15 @@ This is the runtime package for programs that use the libkleopatra-trinity libra
 
 %files -n trinity-libkleopatra
 %{_datadir}/config/libkleopatrarc
-%{_libdir}/libgpgme++.so.0
-%{_libdir}/libgpgme++.so.0.4.0
-%{_libdir}/libkleopatra.so.1
-%{_libdir}/libkleopatra.so.1.0.0
-%{_libdir}/libkpgp.so.2
-%{_libdir}/libkpgp.so.2.2.0
-%{_libdir}/libqgpgme.so.0
-%{_libdir}/libqgpgme.so.0.0.0
+%{_libdir}/libgpgme++.so.*
+%{_libdir}/libkleopatra.so.*
+%{_libdir}/libkpgp.so.*
+%{_libdir}/libqgpgme.so.*
 %{_datadir}/apps/kconf_update/kpgp-3.1-upgrade-address-data.pl
 %{_datadir}/apps/kconf_update/kpgp.upd
-%{_datadir}/apps/libkleopatra
-%{_datadir}/icons/crystalsvg/16x16/apps/gpg.png
-%{_datadir}/icons/crystalsvg/16x16/apps/gpgsm.png
-%{_datadir}/icons/crystalsvg/22x22/apps/gpg.png
-%{_datadir}/icons/crystalsvg/22x22/apps/gpgsm.png
-%{_datadir}/icons/crystalsvg/32x32/apps/gpg.png
-%{_datadir}/icons/crystalsvg/32x32/apps/gpgsm.png
+%{_datadir}/apps/libkleopatra/
+%{_datadir}/icons/crystalsvg/*/apps/gpg.png
+%{_datadir}/icons/crystalsvg/*/apps/gpgsm.png
 
 %post -n trinity-libkleopatra
 for f in crystalsvg ; do
@@ -1707,7 +1645,7 @@ done
 Summary:	Trinity GnuPG interface libraries [development]
 Group:		Development/Libraries
 Requires:	trinity-libkleopatra = %{version}-%{release}
-Requires:	libtdepim-devel = %{version}-%{release}
+Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
 %description -n trinity-libkleopatra-devel
 This library is used by several KDE applications to interface to the
@@ -1749,8 +1687,7 @@ This library provides a C++ interface to MIME messages, parsing them into
 an object tree.
 
 %files -n trinity-libkmime
-%{_libdir}/libkmime.so.2
-%{_libdir}/libkmime.so.2.2.0
+%{_libdir}/libkmime.so.*
 
 %post -n trinity-libkmime
 /sbin/ldconfig
@@ -1791,8 +1728,7 @@ library.
 %files -n trinity-libkpimexchange
 %{tde_libdir}/resourcecalendarexchange.la
 %{tde_libdir}/resourcecalendarexchange.so
-%{_libdir}/libkpimexchange.so.1
-%{_libdir}/libkpimexchange.so.1.0.0
+%{_libdir}/libkpimexchange.so.*
 
 %post -n trinity-libkpimexchange
 /sbin/ldconfig
@@ -1807,7 +1743,7 @@ Summary:	Trinity PIM Exchange library [development]
 Group:		Development/Libraries
 Requires:	trinity-libkpimexchange = %{version}-%{release}
 Requires:	trinity-libkcal-devel = %{version}-%{release}
-Requires:	libtdepim-devel = %{version}-%{release}
+Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
 %description -n trinity-libkpimexchange-devel
 This is the development package which contains the headers for the
@@ -1839,8 +1775,7 @@ This is the runtime package for programs that use the libkpimidentities-trinity
 library.
 
 %files -n trinity-libkpimidentities
-%{_libdir}/libkpimidentities.so.1
-%{_libdir}/libkpimidentities.so.1.0.0
+%{_libdir}/libkpimidentities.so.*
 
 %post -n trinity-libkpimidentities
 /sbin/ldconfig
@@ -1878,8 +1813,7 @@ Group:		Environment/Libraries
 This is the runtime package for programs that use the libksieve-trinity library.
 
 %files -n trinity-libksieve
-%{_libdir}/libksieve.so.0
-%{_libdir}/libksieve.so.0.0.0
+%{_libdir}/libksieve.so.*
 
 %post -n trinity-libksieve
 /sbin/ldconfig
@@ -1893,7 +1827,7 @@ This is the runtime package for programs that use the libksieve-trinity library.
 Summary:	Trinity mail/news message filtering library [development]
 Group:		Development/Libraries
 Requires:	trinity-libksieve = %{version}-%{release}
-Requires:	libtdepim-devel = %{version}-%{release}
+Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
 %description -n trinity-libksieve-devel
 This is the development package which contains the headers for the libksieve-trinity
@@ -1925,8 +1859,7 @@ attachments.
 This is the runtime library for packages using the ktnef-trinity library.
 
 %files -n trinity-libktnef
-%{_libdir}/libktnef.so.1
-%{_libdir}/libktnef.so.1.0.0
+%{_libdir}/libktnef.so.*
 
 %post -n trinity-libktnef
 /sbin/ldconfig
@@ -1937,10 +1870,10 @@ This is the runtime library for packages using the ktnef-trinity library.
 ##########
 
 %package -n trinity-libktnef-devel
-Summary: KTNEF handler library [development]
+Summary:	KTNEF handler library [development]
 Group:		Development/Libraries
-Requires: trinity-libktnef = %{version}-%{release}
-Requires: libtdepim-devel = %{version}-%{release}
+Requires:	trinity-libktnef = %{version}-%{release}
+Requires:	trinity-libtdepim-devel = %{version}-%{release}
 
 %description -n trinity-libktnef-devel
 This library handles mail attachments using the TNEF format. These
@@ -1974,8 +1907,7 @@ This library is used by several Trinity applications to handle mime types.
 This is the runtime package for programs that use the libmimelib-trinity library.
 
 %files -n trinity-libmimelib
-%{_libdir}/libmimelib.so.1
-%{_libdir}/libmimelib.so.1.0.1
+%{_libdir}/libmimelib.so.*
 
 %post -n trinity-libmimelib
 /sbin/ldconfig
@@ -2055,18 +1987,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%package cmake
-Summary:	CMAKE files and macros for tdepim.
-Group:		Development/Libraries
-
-%description cmake
-%{summary}
-
-%files cmake
-%{_datadir}/cmake
-
-##########
-
 %prep
 %setup -q -n kdepim
 %patch1 -p1 -b .gcc47
@@ -2080,6 +2000,7 @@ Group:		Development/Libraries
 %patch9 -p1 -b .addquotes
 %patch10 -p1 -b .segv
 %patch11 -p1
+%patch12 -p1
 
 
 %build
@@ -2131,6 +2052,10 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %changelog
+* Sat Jun 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
+- Rename 'tdepim' to 'trinity-tdepim'
+- Disable unneccesary fsync() in cached IMAP handler [Bug #467] [Commit #82d4a938]
+
 * Sat Jun 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
 - Rename 'kdepim' to 'tdepim'
 - Add 'Requires: trinity-kdebase-pim-ioslaves' to add POP3 support to kmail
