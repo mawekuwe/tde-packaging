@@ -2,7 +2,7 @@ Source: libtqtinterface
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>> 4.0.0), libqt3-mt-dev, libavahi-tqt-dev, qt3-apps-dev, cmake, cdbs
+Build-Depends: debhelper (>> 4.0.0), quilt, libqt3-mt-dev, libavahi-tqt-dev, qt3-apps-dev, cmake, cdbs
 Standards-Version: 3.8.4
 
 Package: libtqtinterface
