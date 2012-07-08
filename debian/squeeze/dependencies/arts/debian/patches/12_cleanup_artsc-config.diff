@@ -8,4 +8,4 @@
 +	  flags="$flags -L$libdir -lartsc"
  	  ;;
      --cflags)
- 	  flags="$flags -I$includedir/artsc @GLIB_CFLAGS@"
+ 	  flags="$flags -I$includedir @GLIB_CFLAGS@"
