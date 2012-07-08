@@ -1,5 +1,5 @@
---- tdm/config.def
-+++ tdm/config.def
+--- a/tdm/config.def
++++ b/tdm/config.def
 @@ -2614,8 +2614,8 @@
  
  Key: UseTheme

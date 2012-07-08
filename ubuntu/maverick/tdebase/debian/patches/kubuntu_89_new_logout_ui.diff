@@ -1,5 +1,5 @@
---- tdm/kfrontend/tdmshutdown.cpp
-+++ tdm/kfrontend/tdmshutdown.cpp
+--- a/tdm/kfrontend/tdmshutdown.cpp
++++ b/tdm/kfrontend/tdmshutdown.cpp
 @@ -467,7 +467,7 @@
  	, targetList( 0 )
  {
