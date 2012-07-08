@@ -1,5 +1,5 @@
---- kdm/config.def
-+++ kdm/config.def
+--- a/kdm/config.def
++++ b/kdm/config.def
 @@ -2614,8 +2614,8 @@
  
  Key: UseTheme

@@ -1,5 +1,5 @@
---- kdm/kfrontend/kdmshutdown.cpp
-+++ kdm/kfrontend/kdmshutdown.cpp
+--- a/kdm/kfrontend/kdmshutdown.cpp
++++ b/kdm/kfrontend/kdmshutdown.cpp
 @@ -467,7 +467,7 @@
  	, targetList( 0 )
  {

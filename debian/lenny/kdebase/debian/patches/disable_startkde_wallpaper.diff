@@ -1,5 +1,5 @@
---- startkde
-+++ startkde
+--- a/startkde
++++ b/startkde
 @@ -288,17 +288,17 @@
    . "$kdehome/share/config/startupconfig"
  fi
