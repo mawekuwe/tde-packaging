@@ -11,7 +11,7 @@ export LD_LIBRARY_PATH
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/cmake.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
+#include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/rules/utils.mk
 include debian/cdbs/debian-qt-kde.mk
 
