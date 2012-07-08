@@ -10,8 +10,8 @@
  	TQVBoxLayout* vbox = new TQVBoxLayout( this );
  	TQHBoxLayout *hbox = new TQHBoxLayout( this, KDmh, KDsh );
 
---- ksmserver/shutdowndlg.cpp
-+++ ksmserver/shutdowndlg.cpp
+--- a/ksmserver/shutdowndlg.cpp
++++ b/ksmserver/shutdowndlg.cpp
 @@ -278,7 +278,7 @@
                              2 * KDialog::spacingHint() );
  
