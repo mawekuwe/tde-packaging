@@ -1,5 +1,5 @@
---- starttde
-+++ starttde
+--- a/starttde
++++ b/starttde
 @@ -288,17 +288,17 @@
    . "$tdehome/share/config/startupconfig"
  fi
