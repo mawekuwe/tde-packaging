@@ -1,18 +1,17 @@
 --- a/kdm/kfrontend/kdmshutdown.cpp
 +++ b/kdm/kfrontend/kdmshutdown.cpp
-@@ -467,7 +467,7 @@
- 	, targetList( 0 )
+@@ -472,7 +472,7 @@
  {
+ 	setCaption(i18n("Shutdown TDE"));
  
 -	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Shutdown").readBoolEntry("doUbuntuLogout", false);
 +	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Shutdown").readBoolEntry("doUbuntuLogout", true);
  
- 	TQVBoxLayout* vbox = new TQVBoxLayout( this );
- 	TQHBoxLayout *hbox = new TQHBoxLayout( this, KDmh, KDsh );
-
+ 	TQFrame* lfrm = new TQFrame( this );
+ 	TQHBoxLayout* hbuttonbox;
 --- a/ksmserver/shutdowndlg.cpp
 +++ b/ksmserver/shutdowndlg.cpp
-@@ -278,7 +278,7 @@
+@@ -688,7 +688,7 @@
                              2 * KDialog::spacingHint() );
  
  	// default factor
