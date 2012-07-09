@@ -1,6 +1,6 @@
 --- a/tdm/config.def
 +++ b/tdm/config.def
-@@ -2614,8 +2614,8 @@
+@@ -2644,9 +2644,9 @@
  
  Key: UseTheme
  Type: bool
@@ -12,3 +12,4 @@
  Comment: &
  Description:
   Whether the greeter should be themed.
+ 
