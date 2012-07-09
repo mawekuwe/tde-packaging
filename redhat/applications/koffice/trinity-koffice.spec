@@ -1,7 +1,7 @@
 # Default version for this component
 %define kdecomp koffice
 %define version 1.6.3
-%define release 4
+%define release 5
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -11,6 +11,7 @@
 
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
+%define tde_appdir %{_datadir}/applications/kde
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -70,6 +71,14 @@ Patch12:	koffice-3.5.13-fix_gcc47_compilation.patch
 Patch13:	koffice-3.5.13-fix_ruby_1.9.patch 
 # [koffice] Fix compilation with libpng [Bug #603]
 Patch14:	koffice-3.5.13-fix_libpng.patch
+# [koffice] Fix FTBFS due to missing libraries [Bug #657] [Commit #5c69fcd3]
+#  Clean up lib paths in LDFLAGS - moved to LIBADD
+#  For KWord and and KPresenter added linking kspell2
+#  For KSpread added linking kutils
+Patch15:	koffice-3.5.13-fix_bug_657.patch
+# [koffice] Fix accidental conversions of binary files [Bug #1033] [Commit #dbe89307]
+Source1:	koffice-3.5.13-damaged_binary_files.tar.gz
+
 
 # BuildRequires: world-devel ;)
 BuildRequires:  trinity-kdelibs-devel
@@ -245,12 +254,8 @@ Requires:       %{name}-core = %{version}-%{release}
 Summary:        A powerful formula editor
 Group:          Applications/Productivity
 Requires:       %{name}-core = %{version}-%{release}
-#if 0%{?fedora} > 9 
 Requires:       lyx-cmex10-fonts
-#else
-#Requires:       mathml-fonts
-#endif
-%if 0%{?fedora} > 10
+%if 0%{?fedora} >= 11 || 0%{?rhel} >= 6
 Requires:       dejavu-lgc-sans-fonts
 %else
 Requires:       dejavu-lgc-fonts 
@@ -299,6 +304,8 @@ This package is part of the TDE Office Suite.
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%setup -q -n applications/%{kdecomp} -a 1
+
 #patch0 -p1
 #patch1 -p1
 %patch2 -p1
@@ -315,6 +322,7 @@ This package is part of the TDE Office Suite.
 %patch13 -p1 -b .ruby
 %patch14 -p1 -b .libpng
 %endif
+%patch15 -p1
 
 # use LGC variant instead
 %__sed -i.dejavu-lgc \
@@ -380,7 +388,7 @@ done
 popd
 
 desktop-file-install \
-  --dir=%{buildroot}%{_datadir}/applications/kde \
+  --dir=%{buildroot}%{tde_appdir} \
   --vendor="" \
   --delete-original \
   %{buildroot}%{_datadir}/applnk/Office/*.desktop
@@ -541,9 +549,9 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/servicetypes/koplugin.desktop
 %{_datadir}/servicetypes/kwmailmerge.desktop
 %{_datadir}/servicetypes/widgetfactory.desktop
-%{_datadir}/applications/kde/*koffice.desktop
-%{_datadir}/applications/kde/*KThesaurus.desktop
-%{_datadir}/applications/kde/*koshell.desktop
+%{tde_appdir}/*koffice.desktop
+%{tde_appdir}/*KThesaurus.desktop
+%{tde_appdir}/*koshell.desktop
 %{_datadir}/apps/kofficewidgets/
 %if 0%{?with_kross} > 0
 %{_datadir}/apps/kross/
@@ -599,7 +607,7 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/services/kwserial*.desktop
 %{_datadir}/templates/TextDocument.desktop
 %{_datadir}/templates/.source/TextDocument.kwt
-%{_datadir}/applications/kde/*kword.desktop
+%{tde_appdir}/*kword.desktop
 
 %files kspread
 %defattr(-,root,root,-)
@@ -622,7 +630,7 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/services/kspread*.desktop
 %{_datadir}/templates/SpreadSheet.desktop
 %{_datadir}/templates/.source/SpreadSheet.kst
-%{_datadir}/applications/kde/*kspread.desktop
+%{tde_appdir}/*kspread.desktop
 %if 0%{?with_kross} > 0
 %{tde_libdir}/kspreadscripting.*
 %{tde_libdir}/krosskspreadcore.*
@@ -641,7 +649,7 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/services/kpresenter*.desktop
 %{_datadir}/templates/Presentation.desktop
 %{_datadir}/templates/.source/Presentation.kpt
-%{_datadir}/applications/kde/*kpresenter.desktop
+%{tde_appdir}/*kpresenter.desktop
 
 %files karbon
 %defattr(-,root,root,-)
@@ -656,7 +664,7 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/servicetypes/karbon_module.desktop
 %{_datadir}/templates/Illustration.desktop
 %{_datadir}/templates/.source/Illustration.karbon
-%{_datadir}/applications/kde/*karbon.desktop
+%{tde_appdir}/*karbon.desktop
 
 %files kugar
 %defattr(-,root,root,-)
@@ -674,8 +682,8 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/apps/kudesigner/
 %{_datadir}/apps/kugar/
 %{_datadir}/services/kugar*.desktop
-%{_datadir}/applications/kde/*kugar.desktop
-%{_datadir}/applications/kde/*kudesigner.desktop
+%{tde_appdir}/*kugar.desktop
+%{tde_appdir}/*kudesigner.desktop
 
 %files kexi
 %defattr(-,root,root,-)
@@ -699,7 +707,7 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/services/kexi/
 %{_datadir}/apps/kexi/
 %{_datadir}/services/kformdesigner/*
-%{_datadir}/applications/kde/*kexi.desktop
+%{tde_appdir}/*kexi.desktop
 %{_datadir}/services/kexidb_sqlite*driver.desktop
 %if 0%{?with_kross} > 0
 %{_bindir}/krossrunner
@@ -730,7 +738,7 @@ update-desktop-database -q &> /dev/null ||:
 %{tde_libdir}/*kchart*.*
 %{_datadir}/apps/kchart/
 %{_datadir}/services/kchart*.desktop
-%{_datadir}/applications/kde/*kchart.desktop
+%{tde_appdir}/*kchart.desktop
 
 %files kformula
 %defattr(-,root,root,-)
@@ -740,7 +748,7 @@ update-desktop-database -q &> /dev/null ||:
 %{tde_libdir}/*kformula*.*
 %{_datadir}/apps/kformula/
 %{_datadir}/services/kformula*.desktop
-%{_datadir}/applications/kde/*kformula.desktop
+%{tde_appdir}/*kformula.desktop
 
 %files kivio
 %defattr(-,root,root,-)
@@ -753,7 +761,7 @@ update-desktop-database -q &> /dev/null ||:
 %{_datadir}/apps/kivio/
 %{_datadir}/config.kcfg/kivio.kcfg
 %{_datadir}/services/kivio*.desktop
-%{_datadir}/applications/kde/*kivio.desktop
+%{tde_appdir}/*kivio.desktop
 
 %files filters
 %defattr(-,root,root,-)
@@ -818,7 +826,7 @@ update-desktop-database -q &> /dev/null ||:
 %{tde_libdir}/libkplatopart.*
 %{_datadir}/apps/kplato/
 %{_datadir}/services/kplatopart.desktop
-%{_datadir}/applications/kde/*kplato.desktop
+%{tde_appdir}/*kplato.desktop
 
 %files chalk
 %defattr(-,root,root,-)
@@ -985,7 +993,7 @@ update-desktop-database -q &> /dev/null ||:
 %endif
 
 %files chalk-data
-%{_datadir}/applications/kde/chalk.desktop
+%{tde_appdir}/chalk.desktop
 %{_datadir}/applnk/.hidden/chalk_*.desktop
 %{_datadir}/apps/konqueror/servicemenus/chalk_konqi.desktop
 %{_datadir}/apps/chalk
@@ -997,6 +1005,14 @@ update-desktop-database -q &> /dev/null ||:
 
 
 %changelog
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-5
+- Fix kformula dependancies (for RHEL6)
+- Fix FTBFS due to missing libraries [Bug #657] [Commit #5c69fcd3]
+  Clean up lib paths in LDFLAGS - moved to LIBADD
+  For KWord and and KPresenter added linking kspell2
+  For KSpread added linking kutils
+- Fix accidental conversions of binary files [Bug #1033] [Commit #dbe89307]
+
 * Thu Apr 26 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-4
 - Updates BuildRequires
 - Build for Fedora 17

@@ -1,0 +1,2662 @@
+commit 5c69fcd39111465de16c933763d3c918703048d8
+Author: Slávek Banko <slavek.banko@axis.cz>
+Date:   1339569472 +0200
+
+    Fix FTBFS due to missing libraries
+    Clean up lib paths in LDFLAGS - moved to LIBADD
+    For KWord and and KPresenter added linking kspell2
+    For KSpread added linking kutils
+    This closes Bug 657
+
+diff --git a/chalk/Makefile.am b/chalk/Makefile.am
+index e06e155..3a0c3eb 100644
+--- a/chalk/Makefile.am
++++ b/chalk/Makefile.am
+@@ -9,8 +9,8 @@ libchalkcommon_la_LIBADD = sdk/libchalksdk.la core/libchalkimage.la ui/libchalku
+ ## The part
+ kde_module_LTLIBRARIES = libchalkpart.la
+ libchalkpart_la_SOURCES = chalk_part_init.cc
+-libchalkpart_la_LDFLAGS = $(all_libraries) $(LIB_QT) -L../lib/kofficecore/.libs/ -lkofficecore -L../lib/kofficeui/.libs/ -lkofficeui -L../lib/store/.libs/ -lkstore -L../chalk/ui/.libs -lchalkui -module $(KDE_PLUGIN)
+-libchalkpart_la_LIBADD = libchalkcommon.la
++libchalkpart_la_LDFLAGS = $(all_libraries) $(LIB_QT) -module $(KDE_PLUGIN)
++libchalkpart_la_LIBADD = $(KOFFICE_LIBS) libchalkcommon.la ../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+ 
+diff --git a/chalk/colorspaces/wet/Makefile.am b/chalk/colorspaces/wet/Makefile.am
+index b12d3f3..8ad9b0d 100644
+--- a/chalk/colorspaces/wet/Makefile.am
++++ b/chalk/colorspaces/wet/Makefile.am
+@@ -20,9 +20,11 @@ kde_module_LTLIBRARIES = chalkwetplugin.la
+ chalkwetplugin_la_SOURCES = kis_wet_colorspace.cc wet_plugin.cc kis_wetop.cc kis_wet_palette_widget.cc kis_wetness_visualisation_filter.cc kis_texture_painter.cc kis_texture_filter.cc wetphysicsfilter.cc wdgpressure.ui
+ noinst_HEADERS = kis_wet_colorspace.h wet_plugin.h wetphysicsfilter.h kis_wetop.cc kis_wet_palette_widget.h kis_texture_painter.h kis_wetness_visualisation_filter.h kis_texture_filter.h wetphysicsfilter.h
+ 
+-chalkwetplugin_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -llcms -L../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../chalk/core/.libs -lchalkimage \
+-	-L../../../chalk/ui/.libs -lchalkui
+-chalkwetplugin_la_LIBADD =  ../../libchalkcommon.la $(LIB_KOPAINTER) $(LIB_KOFFICECORE)
++chalkwetplugin_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -llcms
++chalkwetplugin_la_LIBADD =  ../../libchalkcommon.la $(LIB_KOPAINTER) $(LIB_KOFFICECORE) \
++	../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la
+ 
+ chalkwetplugin_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/filters/blur/Makefile.am b/chalk/plugins/filters/blur/Makefile.am
+index ac622d7..d54d65b 100644
+--- a/chalk/plugins/filters/blur/Makefile.am
++++ b/chalk/plugins/filters/blur/Makefile.am
+@@ -14,9 +14,11 @@ chalkblurfilter_la_SOURCES = wdgblur.ui blur.cc kis_blur_filter.cc kis_wdg_blur.
+ kde_module_LTLIBRARIES = chalkblurfilter.la
+ noinst_HEADERS = blur.h kis_blur_filter.h
+ 
+-chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkblurfilter_la_LIBADD = ../../../libchalkcommon.la
++chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkblurfilter_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/filters/bumpmap/Makefile.am b/chalk/plugins/filters/bumpmap/Makefile.am
+index c783157..156a60a 100644
+--- a/chalk/plugins/filters/bumpmap/Makefile.am
++++ b/chalk/plugins/filters/bumpmap/Makefile.am
+@@ -12,8 +12,10 @@ chalkbumpmap_la_SOURCES = bumpmap.cc wdgbumpmap.ui
+ kde_module_LTLIBRARIES = chalkbumpmap.la
+ noinst_HEADERS = bumpmap.h
+ 
+-chalkbumpmap_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-	-L../../../../chalk/ui/.libs -lchalkui
+-chalkbumpmap_la_LIBADD =  ../../../libchalkcommon.la 
++chalkbumpmap_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkbumpmap_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkbumpmap_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/cimg/Makefile.am b/chalk/plugins/filters/cimg/Makefile.am
+index 19e58bd..2553773 100644
+--- a/chalk/plugins/filters/cimg/Makefile.am
++++ b/chalk/plugins/filters/cimg/Makefile.am
+@@ -25,9 +25,11 @@ noinst_HEADERS = \
+ 	kis_cimg_plugin.h\
+ 	kis_cimgconfig_widget.h
+ 
+-chalkcimg_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkcimg_la_LIBADD =  ../../../libchalkcommon.la
++chalkcimg_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkcimg_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkcimg_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/filters/colorify/Makefile.am b/chalk/plugins/filters/colorify/Makefile.am
+index d69de33..65e7243 100644
+--- a/chalk/plugins/filters/colorify/Makefile.am
++++ b/chalk/plugins/filters/colorify/Makefile.am
+@@ -14,9 +14,11 @@ INCLUDES = -I$(srcdir)/../../../sdk \
+ kde_module_LTLIBRARIES = chalkcolorify.la
+ 
+ 
+-chalkcolorify_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkcolorify_la_LIBADD =  ../../../libchalkcommon.la
++chalkcolorify_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkcolorify_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+ chalkcolorify_la_SOURCES = Colorify.cpp KisWdgColorify.cpp\
+diff --git a/chalk/plugins/filters/colors/Makefile.am b/chalk/plugins/filters/colors/Makefile.am
+index 523915c..0da38c0 100644
+--- a/chalk/plugins/filters/colors/Makefile.am
++++ b/chalk/plugins/filters/colors/Makefile.am
+@@ -14,8 +14,10 @@ chalkextensioncolorsfilters_la_SOURCES = colors.cc kis_minmax_filters.cc kis_col
+ kde_module_LTLIBRARIES = chalkextensioncolorsfilters.la
+ noinst_HEADERS = colors.h
+ 
+-chalkextensioncolorsfilters_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkextensioncolorsfilters_la_LIBADD = ../../../libchalkcommon.la
++chalkextensioncolorsfilters_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkextensioncolorsfilters_la_LIBADD = ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/colorsfilters/Makefile.am b/chalk/plugins/filters/colorsfilters/Makefile.am
+index cd4745e..6aeaaee 100644
+--- a/chalk/plugins/filters/colorsfilters/Makefile.am
++++ b/chalk/plugins/filters/colorsfilters/Makefile.am
+@@ -17,9 +17,11 @@ noinst_HEADERS = colorsfilters.h \
+ 	kis_perchannel_filter.h \
+ 	kis_brightness_contrast_filter.h
+ 
+-chalkcolorsfilters_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkcolorsfilters_la_LIBADD =  ../../../libchalkcommon.la 
++chalkcolorsfilters_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkcolorsfilters_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ kde_module_LTLIBRARIES = chalkcolorsfilters.la
+ 
+diff --git a/chalk/plugins/filters/convolutionfilters/Makefile.am b/chalk/plugins/filters/convolutionfilters/Makefile.am
+index 133a684..32f5cbd 100644
+--- a/chalk/plugins/filters/convolutionfilters/Makefile.am
++++ b/chalk/plugins/filters/convolutionfilters/Makefile.am
+@@ -21,8 +21,10 @@ noinst_HEADERS = convolutionfilters.h \
+ 	kis_custom_convolution_filter_configuration_widget.h \
+ 	kis_convolution_filter.h
+ 
+-chalkconvolutionfilters_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkconvolutionfilters_la_LIBADD =  ../../../libchalkcommon.la
++chalkconvolutionfilters_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkconvolutionfilters_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkconvolutionfilters_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/embossfilter/Makefile.am b/chalk/plugins/filters/embossfilter/Makefile.am
+index d0116fe..19b54e4 100644
+--- a/chalk/plugins/filters/embossfilter/Makefile.am
++++ b/chalk/plugins/filters/embossfilter/Makefile.am
+@@ -17,8 +17,10 @@ chalkembossfilter_la_SOURCES = kis_emboss_filter_plugin.cc \
+ noinst_HEADERS = kis_emboss_filter_plugin.h \
+         kis_emboss_filter.h
+ 
+-chalkembossfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkembossfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalkembossfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkembossfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkembossfilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/example/Makefile.am b/chalk/plugins/filters/example/Makefile.am
+index 33b55da..5dcd349 100644
+--- a/chalk/plugins/filters/example/Makefile.am
++++ b/chalk/plugins/filters/example/Makefile.am
+@@ -15,8 +15,10 @@ chalkexample_la_SOURCES = example.cc
+ kde_module_LTLIBRARIES = chalkexample.la
+ noinst_HEADERS = example.h
+ 
+-chalkexample_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkexample_la_LIBADD =  ../../../libchalkcommon.la
++chalkexample_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkexample_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkexample_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/fastcolortransfer/Makefile.am b/chalk/plugins/filters/fastcolortransfer/Makefile.am
+index 424231d..24b9f38 100644
+--- a/chalk/plugins/filters/fastcolortransfer/Makefile.am
++++ b/chalk/plugins/filters/fastcolortransfer/Makefile.am
+@@ -16,8 +16,10 @@ chalkfastcolortransfer_la_SOURCES = wdgfastcolortransfer.ui fastcolortransfer.cc
+ kde_module_LTLIBRARIES = chalkfastcolortransfer.la
+ noinst_HEADERS = fastcolortransfer.h kis_wdg_fastcolortransfer.h
+ 
+-chalkfastcolortransfer_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficecore/.libs -lkofficecore
+-chalkfastcolortransfer_la_LIBADD = ../../../libchalkcommon.la
++chalkfastcolortransfer_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkfastcolortransfer_la_LIBADD = $(LIB_KOFFICECORE) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/imageenhancement/Makefile.am b/chalk/plugins/filters/imageenhancement/Makefile.am
+index d2477eb..32b9bd7 100644
+--- a/chalk/plugins/filters/imageenhancement/Makefile.am
++++ b/chalk/plugins/filters/imageenhancement/Makefile.am
+@@ -15,12 +15,14 @@ chalkimageenhancement_la_SOURCES = imageenhancement.cpp \
+ 
+ kde_module_LTLIBRARIES = chalkimageenhancement.la
+ 
+-chalkimageenhancement_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
++chalkimageenhancement_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
+ 
+ noinst_HEADERS = imageenhancement.h kis_wavelet_noise_reduction.h
+ 
+-chalkimageenhancement_la_LIBADD =  ../../../libchalkcommon.la 
++chalkimageenhancement_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkimageenhencement_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/filters/lenscorrectionfilter/Makefile.am b/chalk/plugins/filters/lenscorrectionfilter/Makefile.am
+index b853281..c794fee 100644
+--- a/chalk/plugins/filters/lenscorrectionfilter/Makefile.am
++++ b/chalk/plugins/filters/lenscorrectionfilter/Makefile.am
+@@ -16,8 +16,10 @@ chalklenscorrectionfilter_la_SOURCES = lenscorrectionfilter.cc \
+ kde_module_LTLIBRARIES = chalklenscorrectionfilter.la
+ noinst_HEADERS = lenscorrectionfilter.h
+ 
+-chalklenscorrectionfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalklenscorrectionfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalklenscorrectionfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalklenscorrectionfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/levelfilter/Makefile.am b/chalk/plugins/filters/levelfilter/Makefile.am
+index 5c04e69..314c442 100644
+--- a/chalk/plugins/filters/levelfilter/Makefile.am
++++ b/chalk/plugins/filters/levelfilter/Makefile.am
+@@ -16,9 +16,11 @@ noinst_HEADERS = levelfilter.h \
+ 	kis_level_filter.h \
+ 	kgradientslider.h
+ 
+-chalklevelfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalklevelfilter_la_LIBADD =  ../../../libchalkcommon.la 
++chalklevelfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalklevelfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ kde_module_LTLIBRARIES = chalklevelfilter.la
+ 
+diff --git a/chalk/plugins/filters/noisefilter/Makefile.am b/chalk/plugins/filters/noisefilter/Makefile.am
+index 3a085fc..aea0c05 100644
+--- a/chalk/plugins/filters/noisefilter/Makefile.am
++++ b/chalk/plugins/filters/noisefilter/Makefile.am
+@@ -16,8 +16,10 @@ chalknoisefilter_la_SOURCES = noisefilter.cc wdgnoiseoptions.ui \
+ kde_module_LTLIBRARIES = chalknoisefilter.la
+ noinst_HEADERS = noisefilter.h kis_wdg_noise.h
+ 
+-chalknoisefilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalknoisefilter_la_LIBADD =  ../../../libchalkcommon.la
++chalknoisefilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalknoisefilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalknoisefilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/oilpaintfilter/Makefile.am b/chalk/plugins/filters/oilpaintfilter/Makefile.am
+index cef2125..60878f6 100644
+--- a/chalk/plugins/filters/oilpaintfilter/Makefile.am
++++ b/chalk/plugins/filters/oilpaintfilter/Makefile.am
+@@ -17,8 +17,10 @@ chalkoilpaintfilter_la_SOURCES = kis_oilpaint_filter_plugin.cc \
+ noinst_HEADERS = kis_oilpaint_filter_plugin.h \
+ 	kis_oilpaint_filter.h
+ 
+-chalkoilpaintfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkoilpaintfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalkoilpaintfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkoilpaintfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkoilpaintfilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/pixelizefilter/Makefile.am b/chalk/plugins/filters/pixelizefilter/Makefile.am
+index cc12358..e46e0ea 100644
+--- a/chalk/plugins/filters/pixelizefilter/Makefile.am
++++ b/chalk/plugins/filters/pixelizefilter/Makefile.am
+@@ -17,8 +17,10 @@ chalkpixelizefilter_la_SOURCES = kis_pixelize_filter_plugin.cc \
+ noinst_HEADERS = kis_pixelize_filter_plugin.h \
+ 	kis_pixelize_filter.h
+ 
+-chalkpixelizefilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkpixelizefilter_la_LIBADD =  ../../../libchalkcommon.la
++chalkpixelizefilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkpixelizefilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkpixelizefilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/raindropsfilter/Makefile.am b/chalk/plugins/filters/raindropsfilter/Makefile.am
+index ba88e62..584ef96 100644
+--- a/chalk/plugins/filters/raindropsfilter/Makefile.am
++++ b/chalk/plugins/filters/raindropsfilter/Makefile.am
+@@ -17,8 +17,10 @@ chalkraindropsfilter_la_SOURCES = kis_raindrops_filter_plugin.cc \
+ noinst_HEADERS = kis_raindrops_filter_plugin.h \
+ 	kis_raindrops_filter.h
+ 
+-chalkraindropsfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkraindropsfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalkraindropsfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkraindropsfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkraindropsfilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/randompickfilter/Makefile.am b/chalk/plugins/filters/randompickfilter/Makefile.am
+index e46dc64..b7a1657 100644
+--- a/chalk/plugins/filters/randompickfilter/Makefile.am
++++ b/chalk/plugins/filters/randompickfilter/Makefile.am
+@@ -16,8 +16,10 @@ chalkrandompickfilter_la_SOURCES = randompickfilter.cc wdgrandompickoptions.ui \
+ kde_module_LTLIBRARIES = chalkrandompickfilter.la
+ noinst_HEADERS = randompickfilter.h
+ 
+-chalkrandompickfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkrandompickfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalkrandompickfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkrandompickfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkrandompickfilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/roundcorners/Makefile.am b/chalk/plugins/filters/roundcorners/Makefile.am
+index 0b74580..ee9f141 100644
+--- a/chalk/plugins/filters/roundcorners/Makefile.am
++++ b/chalk/plugins/filters/roundcorners/Makefile.am
+@@ -16,8 +16,10 @@ chalkroundcornersfilter_la_SOURCES = kis_round_corners_filter_plugin.cc \
+ noinst_HEADERS = kis_round_corners_filter_plugin.h \
+ 	kis_round_corners_filter.h
+ 
+-chalkroundcornersfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkroundcornersfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalkroundcornersfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkroundcornersfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkroundcornersfilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/smalltilesfilter/Makefile.am b/chalk/plugins/filters/smalltilesfilter/Makefile.am
+index f139c29..ae28ed1 100644
+--- a/chalk/plugins/filters/smalltilesfilter/Makefile.am
++++ b/chalk/plugins/filters/smalltilesfilter/Makefile.am
+@@ -16,8 +16,10 @@ chalksmalltilesfilter_la_SOURCES = kis_small_tiles_filter_plugin.cc \
+ noinst_HEADERS = kis_small_tiles_filter_plugin.h \
+ 	kis_small_tiles_filter.h
+ 
+-chalksmalltilesfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalksmalltilesfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalksmalltilesfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalksmalltilesfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalksmalltilesfilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/sobelfilter/Makefile.am b/chalk/plugins/filters/sobelfilter/Makefile.am
+index 9726f4d..da3fd16 100644
+--- a/chalk/plugins/filters/sobelfilter/Makefile.am
++++ b/chalk/plugins/filters/sobelfilter/Makefile.am
+@@ -16,8 +16,10 @@ chalksobelfilter_la_SOURCES = kis_sobel_filter_plugin.cc \
+ noinst_HEADERS = kis_sobel_filter_plugin.h \
+ 	kis_sobel_filter.h
+ 
+-chalksobelfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalksobelfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalksobelfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalksobelfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalksobelfilter_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/unsharp/Makefile.am b/chalk/plugins/filters/unsharp/Makefile.am
+index 5c6eda7..1c1289f 100644
+--- a/chalk/plugins/filters/unsharp/Makefile.am
++++ b/chalk/plugins/filters/unsharp/Makefile.am
+@@ -13,8 +13,10 @@ chalkunsharpfilter_la_SOURCES = wdgunsharp.ui kis_wdg_unsharp.cc unsharp.cc kis_
+ 
+ kde_module_LTLIBRARIES = chalkunsharpfilter.la
+ 
+-chalkunsharpfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkunsharpfilter_la_LIBADD = ../../../libchalkcommon.la
++chalkunsharpfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkunsharpfilter_la_LIBADD = ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+diff --git a/chalk/plugins/filters/wavefilter/Makefile.am b/chalk/plugins/filters/wavefilter/Makefile.am
+index 6d2fec5..65b047c 100644
+--- a/chalk/plugins/filters/wavefilter/Makefile.am
++++ b/chalk/plugins/filters/wavefilter/Makefile.am
+@@ -16,8 +16,10 @@ chalkwavefilter_la_SOURCES = wavefilter.cc wdgwaveoptions.ui \
+ kde_module_LTLIBRARIES = chalkwavefilter.la
+ noinst_HEADERS = wavefilter.h kis_wdg_wave.h
+ 
+-chalkwavefilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkwavefilter_la_LIBADD =  ../../../libchalkcommon.la
++chalkwavefilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkwavefilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+diff --git a/chalk/plugins/paintops/defaultpaintops/Makefile.am b/chalk/plugins/paintops/defaultpaintops/Makefile.am
+index ce91e83..186d501 100644
+--- a/chalk/plugins/paintops/defaultpaintops/Makefile.am
++++ b/chalk/plugins/paintops/defaultpaintops/Makefile.am
+@@ -32,8 +32,10 @@ noinst_HEADERS = defaultpaintops_plugin.h 	kis_airbrushop.h 	kis_brushop.h \
+ 
+ kde_module_LTLIBRARIES = chalkdefaultpaintops.la
+ 
+-chalkdefaultpaintops_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkdefaultpaintops_la_LIBADD =  ../../../libchalkcommon.la $(LIB_KOPAINTER) $(LIB_KOFFICECORE)
++chalkdefaultpaintops_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkdefaultpaintops_la_LIBADD =  ../../../libchalkcommon.la $(LIB_KOPAINTER) $(LIB_KOFFICECORE) \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkdefaultpaintops_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/tools/defaulttools/Makefile.am b/chalk/plugins/tools/defaulttools/Makefile.am
+index 16c4be5..329e9bb 100644
+--- a/chalk/plugins/tools/defaulttools/Makefile.am
++++ b/chalk/plugins/tools/defaulttools/Makefile.am
+@@ -44,9 +44,11 @@ noinst_HEADERS = \
+ 	kis_tool_pan.h 
+ 
+ 
+-chalkdefaulttools_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkdefaulttools_la_LIBADD =  ../../../libchalkcommon.la $(LIB_KOPAINTER) $(LIB_KOFFICECORE)
++chalkdefaulttools_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkdefaulttools_la_LIBADD =  ../../../libchalkcommon.la $(LIB_KOPAINTER) $(LIB_KOFFICECORE) \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkdefaulttools_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/selectiontools/Makefile.am b/chalk/plugins/tools/selectiontools/Makefile.am
+index cfaa8f3..7f6c089 100644
+--- a/chalk/plugins/tools/selectiontools/Makefile.am
++++ b/chalk/plugins/tools/selectiontools/Makefile.am
+@@ -28,9 +28,11 @@ noinst_HEADERS = \
+ 	kis_tool_select_elliptical.h 
+ 
+ 
+-chalkselectiontools_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalkselectiontools_la_LIBADD =  ../../../libchalkcommon.la
++chalkselectiontools_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkselectiontools_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkselectiontools_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_crop/Makefile.am b/chalk/plugins/tools/tool_crop/Makefile.am
+index d1d73a7..9091a52 100644
+--- a/chalk/plugins/tools/tool_crop/Makefile.am
++++ b/chalk/plugins/tools/tool_crop/Makefile.am
+@@ -21,9 +21,11 @@ noinst_HEADERS = \
+ 	tool_crop.h \
+ 	kis_tool_crop.h 
+ 
+-chalktoolcrop_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolcrop_la_LIBADD =  ../../../libchalkcommon.la
++chalktoolcrop_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolcrop_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktoolcrop_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_curves/Makefile.am b/chalk/plugins/tools/tool_curves/Makefile.am
+index 1f847fe..03d3395 100644
+--- a/chalk/plugins/tools/tool_curves/Makefile.am
++++ b/chalk/plugins/tools/tool_curves/Makefile.am
+@@ -33,9 +33,11 @@ noinst_HEADERS = \
+ 	kis_tool_bezier_select.h \
+ 	kis_tool_moutline.h
+ 
+-chalktoolcurves_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolcurves_la_LIBADD =  ../../../libchalkcommon.la
++chalktoolcurves_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolcurves_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktoolcurves_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_filter/Makefile.am b/chalk/plugins/tools/tool_filter/Makefile.am
+index 0f14b70..35c2381 100644
+--- a/chalk/plugins/tools/tool_filter/Makefile.am
++++ b/chalk/plugins/tools/tool_filter/Makefile.am
+@@ -22,9 +22,11 @@ noinst_HEADERS = \
+ 	kis_tool_filter.h \
+ 	tool_filter.h
+ 
+-chalktoolfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolfilter_la_LIBADD =  ../../../libchalkcommon.la
++chalktoolfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolfilter_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktoolfilter_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_perspectivegrid/Makefile.am b/chalk/plugins/tools/tool_perspectivegrid/Makefile.am
+index 80b6d35..ffa0832 100644
+--- a/chalk/plugins/tools/tool_perspectivegrid/Makefile.am
++++ b/chalk/plugins/tools/tool_perspectivegrid/Makefile.am
+@@ -20,9 +20,11 @@ noinst_HEADERS = \
+ 	tool_perspectivegrid.h \
+ 	kis_tool_perspectivegrid.h 
+ 
+-chalktoolperspectivegrid_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolperspectivegrid_la_LIBADD =  ../../../libchalkcommon.la
++chalktoolperspectivegrid_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolperspectivegrid_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_perspectivetransform/Makefile.am b/chalk/plugins/tools/tool_perspectivetransform/Makefile.am
+index 9f6dfb2..2491618 100644
+--- a/chalk/plugins/tools/tool_perspectivetransform/Makefile.am
++++ b/chalk/plugins/tools/tool_perspectivetransform/Makefile.am
+@@ -20,9 +20,11 @@ noinst_HEADERS = \
+ 	tool_perspectivetransform.h \
+ 	kis_tool_perspectivetransform.h 
+ 
+-chalktoolperspectivetransform_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolperspectivetransform_la_LIBADD =  ../../../libchalkcommon.la
++chalktoolperspectivetransform_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolperspectivetransform_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktoolperspectivetransform_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_polygon/Makefile.am b/chalk/plugins/tools/tool_polygon/Makefile.am
+index ef2d230..2155322 100644
+--- a/chalk/plugins/tools/tool_polygon/Makefile.am
++++ b/chalk/plugins/tools/tool_polygon/Makefile.am
+@@ -20,9 +20,11 @@ noinst_HEADERS = \
+ 	tool_polygon.h \
+ 	kis_tool_polygon.h 
+ 
+-chalktoolpolygon_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolpolygon_la_LIBADD =  ../../../libchalkcommon.la
++chalktoolpolygon_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolpolygon_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktoolpolygon_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_polyline/Makefile.am b/chalk/plugins/tools/tool_polyline/Makefile.am
+index acbe8e6..2beb650 100644
+--- a/chalk/plugins/tools/tool_polyline/Makefile.am
++++ b/chalk/plugins/tools/tool_polyline/Makefile.am
+@@ -20,9 +20,11 @@ noinst_HEADERS = \
+ 	tool_polyline.h \
+ 	kis_tool_polyline.h 
+ 
+-chalktoolpolyline_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolpolyline_la_LIBADD =  ../../../libchalkcommon.la 
++chalktoolpolyline_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolpolyline_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktoolpolyline_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_selectsimilar/Makefile.am b/chalk/plugins/tools/tool_selectsimilar/Makefile.am
+index 416c9a6..70d5885 100644
+--- a/chalk/plugins/tools/tool_selectsimilar/Makefile.am
++++ b/chalk/plugins/tools/tool_selectsimilar/Makefile.am
+@@ -14,9 +14,11 @@ noinst_HEADERS = selectsimilar.h kis_tool_selectsimilar.h
+ 
+ kde_module_LTLIBRARIES = chalktoolselectsimilar.la
+ 
+-chalktoolselectsimilar_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolselectsimilar_la_LIBADD =  ../../../libchalkcommon.la
++chalktoolselectsimilar_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolselectsimilar_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktoolselectsimilar_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_star/Makefile.am b/chalk/plugins/tools/tool_star/Makefile.am
+index e068a62..a6b9a47 100644
+--- a/chalk/plugins/tools/tool_star/Makefile.am
++++ b/chalk/plugins/tools/tool_star/Makefile.am
+@@ -21,9 +21,11 @@ noinst_HEADERS = \
+ 	tool_star.h \
+ 	kis_tool_star.h 
+ 
+-chalktoolstar_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktoolstar_la_LIBADD =  ../../../libchalkcommon.la
++chalktoolstar_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktoolstar_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktoolstar_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/tools/tool_transform/Makefile.am b/chalk/plugins/tools/tool_transform/Makefile.am
+index bb68737..b606e17 100644
+--- a/chalk/plugins/tools/tool_transform/Makefile.am
++++ b/chalk/plugins/tools/tool_transform/Makefile.am
+@@ -21,9 +21,11 @@ noinst_HEADERS = \
+ 	tool_transform.h \
+ 	kis_tool_transform.h 
+ 
+-chalktooltransform_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui
+-chalktooltransform_la_LIBADD =  ../../../libchalkcommon.la
++chalktooltransform_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalktooltransform_la_LIBADD =  ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalktooltransform_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/viewplugins/colorrange/Makefile.am b/chalk/plugins/viewplugins/colorrange/Makefile.am
+index 19fb51e..57abd95 100644
+--- a/chalk/plugins/viewplugins/colorrange/Makefile.am
++++ b/chalk/plugins/viewplugins/colorrange/Makefile.am
+@@ -10,9 +10,11 @@ kde_module_LTLIBRARIES = chalkcolorrange.la
+ chalkcolorrange_la_SOURCES = colorrange.cc dlg_colorrange.cc wdg_colorrange.ui
+ noinst_HEADERS = wdg_colorrange.h dlg_colorrange.h colorrange.h
+ 
+-chalkcolorrange_la_LIBADD =  ../../../libchalkcommon.la
+-chalkcolorrange_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
++chalkcolorrange_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
++chalkcolorrange_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
+ 
+ chalkrcdir = $(kde_datadir)/chalkplugins
+ chalkrc_DATA = colorrange.rc
+diff --git a/chalk/plugins/viewplugins/colorspaceconversion/Makefile.am b/chalk/plugins/viewplugins/colorspaceconversion/Makefile.am
+index 5469f41..a6da506 100644
+--- a/chalk/plugins/viewplugins/colorspaceconversion/Makefile.am
++++ b/chalk/plugins/viewplugins/colorspaceconversion/Makefile.am
+@@ -17,9 +17,11 @@ kde_module_LTLIBRARIES = chalkcolorspaceconversion.la
+ chalkcolorspaceconversion_la_SOURCES = wdgconvertcolorspace.ui colorspaceconversion.cc dlg_colorspaceconversion.cc
+ noinst_HEADERS = wdgconvertcolorspace.h dlg_colorspaceconversion.h colorspaceconversion.h
+ 
+-chalkcolorspaceconversion_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkcolorspaceconversion_la_LIBADD =  ../../../libchalkcommon.la
++chalkcolorspaceconversion_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkcolorspaceconversion_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkcolorspaceconversion_la_METASOURCES = AUTO
+ 
+diff --git a/chalk/plugins/viewplugins/dropshadow/Makefile.am b/chalk/plugins/viewplugins/dropshadow/Makefile.am
+index a09b78e..137b57d 100644
+--- a/chalk/plugins/viewplugins/dropshadow/Makefile.am
++++ b/chalk/plugins/viewplugins/dropshadow/Makefile.am
+@@ -20,9 +20,11 @@ chalkdropshadow_la_SOURCES = wdg_dropshadow.ui \
+ noinst_HEADERS = wdg_dropshadow.h kis_dropshadow_plugin.h \
+ 		kis_dropshadow.h dlg_dropshadow.h
+ 
+-chalkdropshadow_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkdropshadow_la_LIBADD =  ../../../libchalkcommon.la ../../../colorspaces/rgb_u8/libchalkrgb.la
++chalkdropshadow_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkdropshadow_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la ../../../colorspaces/rgb_u8/libchalkrgb.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ kde_services_DATA = chalkdropshadow.desktop
+ 
+diff --git a/chalk/plugins/viewplugins/filtersgallery/Makefile.am b/chalk/plugins/viewplugins/filtersgallery/Makefile.am
+index b326ddb..b200967 100644
+--- a/chalk/plugins/viewplugins/filtersgallery/Makefile.am
++++ b/chalk/plugins/viewplugins/filtersgallery/Makefile.am
+@@ -19,8 +19,10 @@ noinst_HEADERS = filters_gallery.h kis_dlg_filtersgallery.h
+ 
+ kde_services_DATA = chalkfiltersgallery.desktop
+ 
+-chalkfiltersgallery_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkfiltersgallery_la_LIBADD =  ../../../libchalkcommon.la 
++chalkfiltersgallery_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkfiltersgallery_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkfiltersgallery_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/viewplugins/histogram/Makefile.am b/chalk/plugins/viewplugins/histogram/Makefile.am
+index 4b372cf..a5c5e3d 100644
+--- a/chalk/plugins/viewplugins/histogram/Makefile.am
++++ b/chalk/plugins/viewplugins/histogram/Makefile.am
+@@ -18,8 +18,10 @@ noinst_HEADERS = dlg_histogram.h histogram.h wdghistogram.h kis_histogram_widget
+ 
+ kde_services_DATA = chalkhistogram.desktop
+ 
+-chalkhistogram_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkhistogram_la_LIBADD =  ../../../libchalkcommon.la
++chalkhistogram_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkhistogram_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkhistogram_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/viewplugins/histogram_docker/Makefile.am b/chalk/plugins/viewplugins/histogram_docker/Makefile.am
+index 02864fc..d63edff 100644
+--- a/chalk/plugins/viewplugins/histogram_docker/Makefile.am
++++ b/chalk/plugins/viewplugins/histogram_docker/Makefile.am
+@@ -15,8 +15,10 @@ chalkhistogramdocker_la_SOURCES = histogramdocker.cc  kis_imagerasteredcache.cc
+ kde_module_LTLIBRARIES = chalkhistogramdocker.la
+ noinst_HEADERS = histogramdocker.h kis_imagerasteredcache.h kis_cachedhistogram.h kis_accumulating_producer.h
+ 
+-chalkhistogramdocker_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkhistogramdocker_la_LIBADD =  ../../../libchalkcommon.la
++chalkhistogramdocker_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkhistogramdocker_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkhistogramdocker_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/viewplugins/imagesize/Makefile.am b/chalk/plugins/viewplugins/imagesize/Makefile.am
+index 11da5c9..73a096b 100644
+--- a/chalk/plugins/viewplugins/imagesize/Makefile.am
++++ b/chalk/plugins/viewplugins/imagesize/Makefile.am
+@@ -18,8 +18,10 @@ noinst_HEADERS = wdg_imagesize.h dlg_imagesize.h imagesize.h dlg_layersize.h
+ 
+ kde_module_LTLIBRARIES = chalkimagesize.la
+ 
+-chalkimagesize_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkimagesize_la_LIBADD =  ../../../libchalkcommon.la 
++chalkimagesize_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkimagesize_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkimagesize_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/viewplugins/modify_selection/Makefile.am b/chalk/plugins/viewplugins/modify_selection/Makefile.am
+index 0346768..c19b298 100644
+--- a/chalk/plugins/viewplugins/modify_selection/Makefile.am
++++ b/chalk/plugins/viewplugins/modify_selection/Makefile.am
+@@ -20,8 +20,10 @@ dlg_shrink_selection.h dlg_border_selection.h modify_selection.h
+ 
+ kde_module_LTLIBRARIES = chalkmodifyselection.la
+ 
+-chalkmodifyselection_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkmodifyselection_la_LIBADD =  ../../../libchalkcommon.la 
++chalkmodifyselection_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkmodifyselection_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkmodifyselection_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/viewplugins/performancetest/Makefile.am b/chalk/plugins/viewplugins/performancetest/Makefile.am
+index 52cafd7..32da2ec 100644
+--- a/chalk/plugins/viewplugins/performancetest/Makefile.am
++++ b/chalk/plugins/viewplugins/performancetest/Makefile.am
+@@ -16,9 +16,11 @@ kde_module_LTLIBRARIES = chalkperftest.la
+ chalkperftest_la_SOURCES = wdg_perftest.ui perftest.cc dlg_perftest.cc
+ noinst_HEADERS = wdg_perftest.h dlg_perftest.h perftest.h
+ 
+-chalkperftest_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkperftest_la_LIBADD =  ../../../libchalkcommon.la
++chalkperftest_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkperftest_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ kde_services_DATA = chalkperftest.desktop
+ 
+diff --git a/chalk/plugins/viewplugins/rotateimage/Makefile.am b/chalk/plugins/viewplugins/rotateimage/Makefile.am
+index 25d48e3..61d729b 100644
+--- a/chalk/plugins/viewplugins/rotateimage/Makefile.am
++++ b/chalk/plugins/viewplugins/rotateimage/Makefile.am
+@@ -16,9 +16,11 @@ kde_module_LTLIBRARIES = chalkrotateimage.la
+ chalkrotateimage_la_SOURCES = wdg_rotateimage.ui rotateimage.cc dlg_rotateimage.cc
+ noinst_HEADERS = wdg_rotateimage.h dlg_rotateimage.h rotateimage.h
+ 
+-chalkrotateimage_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkrotateimage_la_LIBADD =  ../../../libchalkcommon.la
++chalkrotateimage_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkrotateimage_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ kde_services_DATA = chalkrotateimage.desktop
+ 
+diff --git a/chalk/plugins/viewplugins/screenshot/Makefile.am b/chalk/plugins/viewplugins/screenshot/Makefile.am
+index 7bde056..5394cf7 100644
+--- a/chalk/plugins/viewplugins/screenshot/Makefile.am
++++ b/chalk/plugins/viewplugins/screenshot/Makefile.am
+@@ -15,9 +15,11 @@ kde_module_LTLIBRARIES = chalkscreenshot.la
+ chalkscreenshot_la_SOURCES = screenshot.cpp ksnapshot.cpp regiongrabber.cpp ksnapshotwidget.ui
+ noinst_HEADERS = screenshot.h ksnapshot.h regiongrabber.h ksnapshotwidget.h ksnapshotwidget.ui.h
+ 
+-chalkscreenshot_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui -lkdeprint
+-chalkscreenshot_la_LIBADD =  ../../../libchalkcommon.la 
++chalkscreenshot_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -lkdeprint
++chalkscreenshot_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ kde_services_DATA = chalkscreenshot.desktop
+ 
+diff --git a/chalk/plugins/viewplugins/scripting/Makefile.am b/chalk/plugins/viewplugins/scripting/Makefile.am
+index eec3697..5757c06 100644
+--- a/chalk/plugins/viewplugins/scripting/Makefile.am
++++ b/chalk/plugins/viewplugins/scripting/Makefile.am
+@@ -20,9 +20,11 @@ chalkscripting_la_SOURCES = scripting.cc
+ kde_module_LTLIBRARIES = chalkscripting.la
+ noinst_HEADERS = scripting.h
+ 
+-chalkscripting_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkscripting_la_LIBADD =  $(top_builddir)/chalk/libchalkcommon.la $(top_builddir)/lib/kross/main/libkrossmain.la ./chalkscripting/libchalkscripting.la
++chalkscripting_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkscripting_la_LIBADD = $(LIB_KOFFICEUI) $(top_builddir)/chalk/libchalkcommon.la $(top_builddir)/lib/kross/main/libkrossmain.la ./chalkscripting/libchalkscripting.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ KDE_CXXFLAGS = $(USE_EXCEPTIONS)
+ 
+diff --git a/chalk/plugins/viewplugins/scripting/chalkcore/Makefile.am b/chalk/plugins/viewplugins/scripting/chalkcore/Makefile.am
+index ac4a959..e3eee89 100644
+--- a/chalk/plugins/viewplugins/scripting/chalkcore/Makefile.am
++++ b/chalk/plugins/viewplugins/scripting/chalkcore/Makefile.am
+@@ -11,15 +11,18 @@ krosschalkcore_la_SOURCES = chalkcoremodule.cpp krs_doc.cpp krs_paint_layer.cpp
+ 	krs_brush.cpp krs_pattern.cpp krs_filter.cpp krs_filter_configuration.cpp \
+ 	krs_wavelet.cpp
+ 
+-krosschalkcore_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -module $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../../chalk/ui/.libs -lchalkui -L../../../../../lib/kofficeui/.libs -lkofficeui -L../../../../../lib/kofficecore/.libs -lkofficecore
++krosschalkcore_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -module $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
+ krosschalkcore_la_LIBADD = \
++    $(LIB_KOFFICE_CORE) $(LIB_KOFFICEUI) \
+     $(LIB_QT) \
+     $(LIB_KDECORE) \
+     $(top_builddir)/lib/kross/api/libkrossapi.la \
+     $(top_builddir)/lib/kross/main/libkrossmain.la \
+     $(top_builddir)/chalk/libchalkcommon.la \
+-    $(top_builddir)/chalk/plugins/viewplugins/scripting/chalkscripting/libchalkscripting.la
++    $(top_builddir)/chalk/plugins/viewplugins/scripting/chalkscripting/libchalkscripting.la \
++    ../../../../../chalk/chalkcolor/libchalkcolor.la \
++    ../../../../../chalk/core/libchalkimage.la \
++    ../../../../../chalk/ui/libchalkui.la
+ 
+ METASOURCES = AUTO
+ SUBDIRS = .
+diff --git a/chalk/plugins/viewplugins/selectopaque/Makefile.am b/chalk/plugins/viewplugins/selectopaque/Makefile.am
+index 0682311..80ef392 100644
+--- a/chalk/plugins/viewplugins/selectopaque/Makefile.am
++++ b/chalk/plugins/viewplugins/selectopaque/Makefile.am
+@@ -10,9 +10,11 @@ kde_module_LTLIBRARIES = chalkselectopaque.la
+ chalkselectopaque_la_SOURCES = selectopaque.cc 
+ noinst_HEADERS = selectopaque.h
+ 
+-chalkselectopaque_la_LIBADD =  ../../../libchalkcommon.la
+-chalkselectopaque_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
++chalkselectopaque_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
++chalkselectopaque_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
+ 
+ chalkrcdir = $(kde_datadir)/chalkplugins
+ chalkrc_DATA = selectopaque.rc
+diff --git a/chalk/plugins/viewplugins/separate_channels/Makefile.am b/chalk/plugins/viewplugins/separate_channels/Makefile.am
+index 130a5ff..ce279a1 100644
+--- a/chalk/plugins/viewplugins/separate_channels/Makefile.am
++++ b/chalk/plugins/viewplugins/separate_channels/Makefile.am
+@@ -20,8 +20,10 @@ noinst_HEADERS = wdg_separations.h kis_separate_channels_plugin.h \
+ 
+ kde_services_DATA = chalkseparatechannels.desktop
+ 
+-chalkseparatechannels_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui -L../../../../lib/kofficecore/.libs -lkofficecore
+-chalkseparatechannels_la_LIBADD =  ../../../libchalkcommon.la 
++chalkseparatechannels_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkseparatechannels_la_LIBADD = $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkseparatechannels_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/viewplugins/shearimage/Makefile.am b/chalk/plugins/viewplugins/shearimage/Makefile.am
+index 937088b..5d3bd01 100644
+--- a/chalk/plugins/viewplugins/shearimage/Makefile.am
++++ b/chalk/plugins/viewplugins/shearimage/Makefile.am
+@@ -18,8 +18,10 @@ kde_services_DATA = chalkshearimage.desktop
+ chalkshearimage_la_SOURCES = wdg_shearimage.ui shearimage.cc dlg_shearimage.cc
+ noinst_HEADERS = wdg_shearimage.h dlg_shearimage.h shearimage.h
+ 
+-chalkshearimage_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkshearimage_la_LIBADD =  ../../../libchalkcommon.la
++chalkshearimage_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkshearimage_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ chalkshearimage_la_METASOURCES = AUTO
+diff --git a/chalk/plugins/viewplugins/substrate/Makefile.am b/chalk/plugins/viewplugins/substrate/Makefile.am
+index 5e0fe4c..0d5e275 100644
+--- a/chalk/plugins/viewplugins/substrate/Makefile.am
++++ b/chalk/plugins/viewplugins/substrate/Makefile.am
+@@ -17,9 +17,11 @@ kde_module_LTLIBRARIES = chalksubstrate.la
+ chalksubstrate_la_SOURCES = substrate.cc dlg_substrate.cc wdgsubstrate.ui kis_repeating_substrate.cc
+ noinst_HEADERS = wdgsubstrate.h dlg_substrate.h kis_repeating_substrate.h substrate.h
+ 
+-chalksubstrate_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalksubstrate_la_LIBADD =  ../../../libchalkcommon.la
++chalksubstrate_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalksubstrate_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ kde_services_DATA = chalksubstrate.desktop
+ 
+diff --git a/chalk/plugins/viewplugins/variations/Makefile.am b/chalk/plugins/viewplugins/variations/Makefile.am
+index df07a2a..26b01aa 100644
+--- a/chalk/plugins/viewplugins/variations/Makefile.am
++++ b/chalk/plugins/viewplugins/variations/Makefile.am
+@@ -17,9 +17,11 @@ kde_module_LTLIBRARIES = chalkvariations.la
+ chalkvariations_la_SOURCES = variations.cc dlg_variations.cc wdg_variations.ui 
+ noinst_HEADERS = wdg_variations.h
+ 
+-chalkvariations_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts -L../../../../chalk/chalkcolor/.libs -lchalkcolor -L../../../../chalk/core/.libs -lchalkimage \
+-        -L../../../../chalk/ui/.libs -lchalkui -L../../../../lib/kofficeui/.libs -lkofficeui
+-chalkvariations_la_LIBADD =  ../../../libchalkcommon.la
++chalkvariations_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) chalkblurfilter_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(LIB_QT) -lkdecore -lkdeui -lkjs -lkdefx -lkio -lkparts
++chalkvariations_la_LIBADD = $(LIB_KOFFICEUI) ../../../libchalkcommon.la \
++	../../../../chalk/chalkcolor/libchalkcolor.la \
++	../../../../chalk/core/libchalkimage.la \
++	../../../../chalk/ui/libchalkui.la
+ 
+ kde_services_DATA = chalkvariations.desktop
+ 
+diff --git a/filters/chalk/gmagick/Makefile.am b/filters/chalk/gmagick/Makefile.am
+index 99f468e..dc56704 100644
+--- a/filters/chalk/gmagick/Makefile.am
++++ b/filters/chalk/gmagick/Makefile.am
+@@ -1,20 +1,24 @@
+ kde_module_LTLIBRARIES = libchalkgmagickimport.la libchalkgmagickexport.la
+ 
+ libchalkgmagickexport_la_LDFLAGS = $(KDE_PLUGIN) $(LIBGMAGICK_LDFLAGS) $(KDE_RPATH) $(LIBGMAGICK_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkgmagickexport_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(LIBGMAGICK_LIBS) \
+-	$(top_builddir)/chalk/libchalkcommon.la
++	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ libchalkgmagickimport_la_LDFLAGS = $(KDE_PLUGIN) $(LIBGMAGICK_LDFLAGS) $(KDE_RPATH) $(LIBGMAGICK_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkgmagickimport_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(LIBGMAGICK_LIBS) \
+-	$(top_builddir)/chalk/libchalkcommon.la
++	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ INCLUDES= \
+ 	-I$(srcdir) \
+diff --git a/filters/chalk/jpeg/Makefile.am b/filters/chalk/jpeg/Makefile.am
+index 780a3e2..7cefb8a 100644
+--- a/filters/chalk/jpeg/Makefile.am
++++ b/filters/chalk/jpeg/Makefile.am
+@@ -2,24 +2,32 @@ noinst_LTLIBRARIES = libchalkconverter.la
+ kde_module_LTLIBRARIES = libchalkjpegimport.la libchalkjpegexport.la
+ 
+ libchalkconverter_la_LDFLAGS = $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkconverter_la_SOURCES = kis_jpeg_converter.cc iccjpeg.c
+-libchalkconverter_la_LIBADD = $(top_builddir)/filters/chalk/libkisexif/libkisexif.la
++libchalkconverter_la_LIBADD = $(KOFFICE_LIBS) $(top_builddir)/filters/chalk/libkisexif/libkisexif.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ libchalkjpegexport_la_LDFLAGS = -avoid-version -module -no-undefined \
+ 	$(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkjpegexport_la_LIBADD = $(top_builddir)/chalk/libchalkcommon.la \
+-	libchalkconverter.la $(KOFFICE_LIBS) -ljpeg -lexif
++	libchalkconverter.la $(KOFFICE_LIBS) \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la \
++	-ljpeg -lexif
+ 
+ libchalkjpegimport_la_LDFLAGS = -avoid-version -module -no-undefined \
+ 	$(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkjpegimport_la_LIBADD = $(top_builddir)/chalk/libchalkcommon.la \
+-	libchalkconverter.la $(KOFFICE_LIBS) -ljpeg -lexif
++	libchalkconverter.la $(KOFFICE_LIBS) \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la \
++	-ljpeg -lexif
+ 
+ INCLUDES= \
+ 	-I$(srcdir) \
+diff --git a/filters/chalk/libkisexif/Makefile.am b/filters/chalk/libkisexif/Makefile.am
+index d46bf3f..d8f40fa 100644
+--- a/filters/chalk/libkisexif/Makefile.am
++++ b/filters/chalk/libkisexif/Makefile.am
+@@ -12,8 +12,11 @@ INCLUDES = \
+         $(all_includes) 
+ METASOURCES = AUTO
+ libkisexif_la_LDFLAGS = $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
++libkisexif_la_LIBADD = $(KOFFICE_LIBS) \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ noinst_LTLIBRARIES = libkisexif.la
+ 
+ 
+diff --git a/filters/chalk/magick/Makefile.am b/filters/chalk/magick/Makefile.am
+index 129f69a..745ad6b 100644
+--- a/filters/chalk/magick/Makefile.am
++++ b/filters/chalk/magick/Makefile.am
+@@ -1,20 +1,24 @@
+ kde_module_LTLIBRARIES = libchalkmagickimport.la libchalkmagickexport.la
+ 
+ libchalkmagickexport_la_LDFLAGS = $(KDE_PLUGIN) $(LIBMAGICK_LDFLAGS) $(KDE_RPATH) $(LIBMAGICK_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkmagickexport_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(LIBMAGICK_LIBS) \
+-	$(top_builddir)/chalk/libchalkcommon.la
++	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ libchalkmagickimport_la_LDFLAGS = $(KDE_PLUGIN) $(LIBMAGICK_LDFLAGS) $(KDE_RPATH) $(LIBMAGICK_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkmagickimport_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(LIBMAGICK_LIBS) \
+-	$(top_builddir)/chalk/libchalkcommon.la
++	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ INCLUDES= \
+ 	-I$(srcdir) \
+diff --git a/filters/chalk/openexr/Makefile.am b/filters/chalk/openexr/Makefile.am
+index e186036..4c3ff9e 100644
+--- a/filters/chalk/openexr/Makefile.am
++++ b/filters/chalk/openexr/Makefile.am
+@@ -15,25 +15,28 @@ AM_CPPFLAGS= \
+ 
+ kde_module_LTLIBRARIES = libchalk_openexr_import.la libchalk_openexr_export.la
+ 
+-libchalk_openexr_export_la_LDFLAGS = $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -module -avoid-version -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-	-L../../../lib/kofficecore/.libs/ -lkofficecore \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++libchalk_openexr_export_la_LDFLAGS = $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -module -avoid-version -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libchalk_openexr_export_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(OPENEXR_LIBS) \
+ 	$(top_builddir)/chalk/libchalkcommon.la \
+ 	$(top_builddir)/chalk/colorspaces/rgb_f32/libchalk_rgb_f32.la \
+-	$(top_builddir)/chalk/colorspaces/rgb_f16half/libchalk_rgb_f16half.la
++	$(top_builddir)/chalk/colorspaces/rgb_f16half/libchalk_rgb_f16half.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ 
+-libchalk_openexr_import_la_LDFLAGS = $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -module -avoid-version -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++libchalk_openexr_import_la_LDFLAGS = $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -module -avoid-version -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libchalk_openexr_import_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(OPENEXR_LIBS) \
+ 	$(top_builddir)/chalk/libchalkcommon.la \
+ 	$(top_builddir)/chalk/colorspaces/rgb_f32/libchalk_rgb_f32.la \
+-	$(top_builddir)/chalk/colorspaces/rgb_f16half/libchalk_rgb_f16half.la
++	$(top_builddir)/chalk/colorspaces/rgb_f16half/libchalk_rgb_f16half.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ 
+ service_DATA = chalk_openexr_import.desktop chalk_openexr_export.desktop
+diff --git a/filters/chalk/pdf/Makefile.am b/filters/chalk/pdf/Makefile.am
+index e1c7c65..89d0281 100644
+--- a/filters/chalk/pdf/Makefile.am
++++ b/filters/chalk/pdf/Makefile.am
+@@ -18,10 +18,12 @@ kdelnkdir = $(kde_appsdir)/.hidden
+ METASOURCES = AUTO
+ kde_module_LTLIBRARIES = libchalkpdfimport.la
+ libchalkpdfimport_la_LDFLAGS = -avoid-version -module -no-undefined  $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkpdfimport_la_LIBADD = $(top_builddir)/chalk/libchalkcommon.la \
+-	-lpoppler-tqt $(KOFFICE_LIBS) $(POPPLER_LIBS)
++	-lpoppler-tqt $(KOFFICE_LIBS) $(POPPLER_LIBS) \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ noinst_HEADERS = kis_pdf_import.h kis_pdf_import_widget.h
+ libchalkpdfimport_la_SOURCES = kis_pdf_import.cpp pdfimportwidgetbase.ui \
+diff --git a/filters/chalk/png/Makefile.am b/filters/chalk/png/Makefile.am
+index 929fbc7..857c368 100644
+--- a/filters/chalk/png/Makefile.am
++++ b/filters/chalk/png/Makefile.am
+@@ -1,19 +1,23 @@
+ kde_module_LTLIBRARIES = libchalkpngimport.la libchalkpngexport.la
+ 
+ libchalkpngexport_la_LDFLAGS = $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkpngexport_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la \
+ 	-lpng
+ 
+ libchalkpngimport_la_LDFLAGS = $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkpngimport_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la \
+ 	-lpng
+ 
+ INCLUDES= \
+diff --git a/filters/chalk/raw/Makefile.am b/filters/chalk/raw/Makefile.am
+index dffd88c..f48bb94 100644
+--- a/filters/chalk/raw/Makefile.am
++++ b/filters/chalk/raw/Makefile.am
+@@ -12,12 +12,14 @@ AM_CPPFLAGS= \
+ kde_module_LTLIBRARIES = libchalk_raw_import.la 
+ 
+ libchalk_raw_import_la_LDFLAGS = $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalk_raw_import_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(raw_LIBS) \
+-	$(top_builddir)/chalk/libchalkcommon.la 
++	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ 
+ service_DATA = chalk_raw_import.desktop
+diff --git a/filters/chalk/tiff/Makefile.am b/filters/chalk/tiff/Makefile.am
+index 3275055..c16e7f1 100644
+--- a/filters/chalk/tiff/Makefile.am
++++ b/filters/chalk/tiff/Makefile.am
+@@ -2,17 +2,23 @@ kde_module_LTLIBRARIES = libchalktiffimport.la libchalktiffexport.la
+ 
+ libchalktiffexport_la_LDFLAGS = -avoid-version -module -no-undefined \
+ 	$(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalktiffexport_la_LIBADD = $(top_builddir)/chalk/libchalkcommon.la \
+-	libchalktiffconverter.la $(KOFFICE_LIBS) -ltiff
++	libchalktiffconverter.la $(KOFFICE_LIBS) \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la \
++	-ltiff
+ 
+ libchalktiffimport_la_LDFLAGS = -avoid-version -module -no-undefined \
+ 	$(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalktiffimport_la_LIBADD = $(top_builddir)/chalk/libchalkcommon.la \
+-	libchalktiffconverter.la $(KOFFICE_LIBS) -ltiff
++	libchalktiffconverter.la $(KOFFICE_LIBS) \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la \
++	-ltiff
+ 
+ INCLUDES= \
+ 	-I$(srcdir) \
+@@ -48,8 +54,11 @@ kdelnk_DATA = chalk_tiff.desktop
+ noinst_HEADERS = kis_dlg_options_tiff.h kis_tiff_writer_visitor.h \
+ 	kis_tiff_ycbcr_reader.h
+ libchalktiffconverter_la_LDFLAGS = -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
++libchalktiffconverter_la_LIBADD = $(KOFFICE_LIBS) \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ noinst_LTLIBRARIES = libchalktiffconverter.la
+ libchalktiffconverter_la_SOURCES = kis_tiff_converter.cc kis_tiff_stream.cc \
+ 	kis_tiff_writer_visitor.cpp kis_tiff_reader.cc kis_tiff_ycbcr_reader.cc
+diff --git a/filters/chalk/xcf/Makefile.am b/filters/chalk/xcf/Makefile.am
+index 6f163b4..5415f09 100644
+--- a/filters/chalk/xcf/Makefile.am
++++ b/filters/chalk/xcf/Makefile.am
+@@ -1,20 +1,24 @@
+ kde_module_LTLIBRARIES = libchalkxcfimport.la libchalkxcfexport.la
+ 
+ libchalkxcfexport_la_LDFLAGS = $(KDE_PLUGIN) $(LIBMAGICK_LDFLAGS) $(KDE_RPATH) $(LIBMAGICK_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkxcfexport_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(LIBMAGICK_LIBS) \
+-	$(top_builddir)/chalk/libchalkcommon.la
++	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ libchalkxcfimport_la_LDFLAGS = $(KDE_PLUGIN) $(LIBMAGICK_LDFLAGS) $(KDE_RPATH) $(LIBMAGICK_RPATH) $(all_libraries) -module -avoid-version -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts \
+-        -L../../../lib/kofficecore/.libs/ -lkofficecore -llcms \
+-        -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../chalk/core/.libs/ -lchalkimage -L../../../chalk/ui/.libs/ -lchalkui -L../../../chalk/chalkcolor/.libs/ -lchalkcolor
++        -llcms
+ libchalkxcfimport_la_LIBADD = \
+ 	$(KOFFICE_LIBS) \
+ 	$(LIBMAGICK_LIBS) \
+-	$(top_builddir)/chalk/libchalkcommon.la
++	$(top_builddir)/chalk/libchalkcommon.la \
++	../../../chalk/core/libchalkimage.la \
++	../../../chalk/ui/libchalkui.la \
++	../../../chalk/chalkcolor/libchalkcolor.la
+ 
+ INCLUDES= \
+ 	-I$(srcdir) \
+diff --git a/filters/karbon/eps/Makefile.am b/filters/karbon/eps/Makefile.am
+index b0ad08c..47b0135 100644
+--- a/filters/karbon/eps/Makefile.am
++++ b/filters/karbon/eps/Makefile.am
+@@ -6,12 +6,12 @@ libkarbonepsexport_la_SOURCES = \
+ 	epsexport.cc \
+ 	epsexportdlg.cc
+ 
+-libkarbonepsexport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-libkarbonepsexport_la_LIBADD  = $(LIB_KOFFICEUI) ../../../karbon/libkarboncommon.la
++libkarbonepsexport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkarbonepsexport_la_LIBADD  = $(KOFFICE_LIBS) ../../../karbon/libkarboncommon.la
+ 
+ libkarbonepsimport_la_SOURCES = epsimport.cc pscommentlexer.cc
+-libkarbonepsimport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-libkarbonepsimport_la_LIBADD  = $(LIB_KOFFICEUI)
++libkarbonepsimport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkarbonepsimport_la_LIBADD  = $(KOFFICE_LIBS)
+ 
+ INCLUDES = \
+ 	$(KOFFICE_INCLUDES) \
+diff --git a/filters/karbon/kontour/Makefile.am b/filters/karbon/kontour/Makefile.am
+index ff24495..29202e8 100644
+--- a/filters/karbon/kontour/Makefile.am
++++ b/filters/karbon/kontour/Makefile.am
+@@ -10,7 +10,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) $(KOPAINTER_INCLUDES) -I$(top_srcdir)/
+ kde_module_LTLIBRARIES = libkarbonkontourimport.la
+ 
+ libkarbonkontourimport_la_SOURCES = kontourimport.cpp
+-libkarbonkontourimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkarbonkontourimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkarbonkontourimport_la_LIBADD = $(KOFFICE_LIBS) ../../../karbon/libkarboncommon.la
+ 
+ METASOURCES = AUTO
+diff --git a/filters/karbon/png/Makefile.am b/filters/karbon/png/Makefile.am
+index 3439b12..d997484 100644
+--- a/filters/karbon/png/Makefile.am
++++ b/filters/karbon/png/Makefile.am
+@@ -1,8 +1,8 @@
+ kde_module_LTLIBRARIES = libkarbonpngexport.la
+ 
+-libkarbonpngexport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkarbonpngexport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkarbonpngexport_la_LIBADD = \
+-	$(LIB_KOFFICEUI) \
++	$(KOFFICE_LIBS) \
+ 	../../../karbon/libkarboncommon.la
+ 
+ INCLUDES = \
+diff --git a/filters/karbon/svg/Makefile.am b/filters/karbon/svg/Makefile.am
+index 0f2e80f..72eaf15 100644
+--- a/filters/karbon/svg/Makefile.am
++++ b/filters/karbon/svg/Makefile.am
+@@ -1,13 +1,13 @@
+ kde_module_LTLIBRARIES = libkarbonsvgexport.la libkarbonsvgimport.la
+ 
+-libkarbonsvgexport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkarbonsvgexport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkarbonsvgexport_la_LIBADD = \
+-	$(LIB_KOFFICEUI) \
++	$(KOFFICE_LIBS) \
+ 	../../../karbon/libkarboncommon.la
+ 
+-libkarbonsvgimport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkarbonsvgimport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkarbonsvgimport_la_LIBADD = \
+-	$(LIB_KOFFICEUI) \
++	$(KOFFICE_LIBS) \
+ 	../../../karbon/libkarboncommon.la
+ 
+ INCLUDES = \
+diff --git a/filters/karbon/wmf/Makefile.am b/filters/karbon/wmf/Makefile.am
+index df310c4..82d0c0a 100644
+--- a/filters/karbon/wmf/Makefile.am
++++ b/filters/karbon/wmf/Makefile.am
+@@ -11,11 +11,11 @@ INCLUDES= \
+ 
+ kde_module_LTLIBRARIES = libwmfimport.la libwmfexport.la
+ 
+-libwmfimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libwmfimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libwmfimport_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KOWMF) ../../../karbon/libkarboncommon.la
+ libwmfimport_la_SOURCES = wmfimport.cc wmfimportparser.cc
+ 
+-libwmfexport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libwmfexport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libwmfexport_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KOWMF) ../../../karbon/libkarboncommon.la
+ libwmfexport_la_SOURCES = wmfexport.cc
+ 
+diff --git a/filters/karbon/xcf/Makefile.am b/filters/karbon/xcf/Makefile.am
+index cd35667..49e5193 100644
+--- a/filters/karbon/xcf/Makefile.am
++++ b/filters/karbon/xcf/Makefile.am
+@@ -1,8 +1,8 @@
+ kde_module_LTLIBRARIES = libkarbonxcfexport.la
+ 
+-libkarbonxcfexport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkarbonxcfexport_la_LDFLAGS = $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkarbonxcfexport_la_LIBADD = \
+-	$(LIB_KOFFICEUI) \
++	$(KOFFICE_LIBS) \
+ 	../../../karbon/libkarboncommon.la
+ 
+ INCLUDES = \
+diff --git a/filters/kchart/bmp/Makefile.am b/filters/kchart/bmp/Makefile.am
+index 63e6ff2..260601f 100644
+--- a/filters/kchart/bmp/Makefile.am
++++ b/filters/kchart/bmp/Makefile.am
+@@ -12,7 +12,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkchartbmpexport.la
+ 
+ libkchartbmpexport_la_SOURCES = bmpexport.cpp
+-libkchartbmpexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkchartbmpexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkchartbmpexport_la_LIBADD = ../../../kchart/libkchartcommon.la ../libimageexport/libkchartimageexport.la ../../../filters/libdialogfilter/libdialogfilter.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	bmpexport.h
+diff --git a/filters/kchart/jpeg/Makefile.am b/filters/kchart/jpeg/Makefile.am
+index f00a9ba..3907a5d 100644
+--- a/filters/kchart/jpeg/Makefile.am
++++ b/filters/kchart/jpeg/Makefile.am
+@@ -13,7 +13,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkchartjpegexport.la
+ 
+ libkchartjpegexport_la_SOURCES = jpegexport.cpp
+-libkchartjpegexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkchartjpegexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkchartjpegexport_la_LIBADD = ../../../kchart/libkchartcommon.la ../libimageexport/libkchartimageexport.la ../../../filters/libdialogfilter/libdialogfilter.la $(KOFFICE_LIBS)
+  
+ noinst_HEADERS = \
+diff --git a/filters/kchart/mng/Makefile.am b/filters/kchart/mng/Makefile.am
+index d46a9e0..22d611f 100644
+--- a/filters/kchart/mng/Makefile.am
++++ b/filters/kchart/mng/Makefile.am
+@@ -12,7 +12,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkchartmngexport.la
+ 
+ libkchartmngexport_la_SOURCES = mngexport.cpp
+-libkchartmngexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkchartmngexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkchartmngexport_la_LIBADD = ../../../kchart/libkchartcommon.la ../libimageexport/libkchartimageexport.la ../../../filters/libdialogfilter/libdialogfilter.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	mngexport.h
+diff --git a/filters/kchart/png/Makefile.am b/filters/kchart/png/Makefile.am
+index a2455ef..7af0f16 100644
+--- a/filters/kchart/png/Makefile.am
++++ b/filters/kchart/png/Makefile.am
+@@ -13,7 +13,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkchartpngexport.la
+ 
+ libkchartpngexport_la_SOURCES = pngexport.cpp
+-libkchartpngexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkchartpngexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkchartpngexport_la_LIBADD = ../../../kchart/libkchartcommon.la ../libimageexport/libkchartimageexport.la ../../../filters/libdialogfilter/libdialogfilter.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	pngexport.h 
+diff --git a/filters/kchart/svg/Makefile.am b/filters/kchart/svg/Makefile.am
+index a85cfd0..c5025f3 100644
+--- a/filters/kchart/svg/Makefile.am
++++ b/filters/kchart/svg/Makefile.am
+@@ -10,7 +10,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkchartsvgexport.la
+ 
+ libkchartsvgexport_la_SOURCES = svgexport.cc
+-libkchartsvgexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkchartsvgexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkchartsvgexport_la_LIBADD = ../../../kchart/libkchartcommon.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	svgexport.h
+diff --git a/filters/kchart/xbm/Makefile.am b/filters/kchart/xbm/Makefile.am
+index 5c21b89..7a1a859 100644
+--- a/filters/kchart/xbm/Makefile.am
++++ b/filters/kchart/xbm/Makefile.am
+@@ -13,7 +13,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkchartxbmexport.la
+ 
+ libkchartxbmexport_la_SOURCES = xbmexport.cpp
+-libkchartxbmexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkchartxbmexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkchartxbmexport_la_LIBADD = ../../../kchart/libkchartcommon.la ../libimageexport/libkchartimageexport.la ../../../filters/libdialogfilter/libdialogfilter.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	xbmexport.h
+diff --git a/filters/kchart/xpm/Makefile.am b/filters/kchart/xpm/Makefile.am
+index 387dbee..3cb421d 100644
+--- a/filters/kchart/xpm/Makefile.am
++++ b/filters/kchart/xpm/Makefile.am
+@@ -13,7 +13,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkchartxpmexport.la
+ 
+ libkchartxpmexport_la_SOURCES = xpmexport.cpp
+-libkchartxpmexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkchartxpmexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkchartxpmexport_la_LIBADD = ../../../kchart/libkchartcommon.la ../libimageexport/libkchartimageexport.la ../../../filters/libdialogfilter/libdialogfilter.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	xpmexport.h
+diff --git a/filters/kivio/imageexport/Makefile.am b/filters/kivio/imageexport/Makefile.am
+index 9e5fae9..04d03c5 100644
+--- a/filters/kivio/imageexport/Makefile.am
++++ b/filters/kivio/imageexport/Makefile.am
+@@ -11,7 +11,7 @@ kde_module_LTLIBRARIES = libkivioimageexport.la
+ 
+ libkivioimageexport_la_SOURCES = kivio_imageexport.cpp \
+ 	kivio_imageexportwidget.ui kivio_imageexportdialog.cpp
+-libkivioimageexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkivioimageexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkivioimageexport_la_LIBADD = $(top_builddir)/kivio/kiviopart/libkiviocommon.la $(KOFFICE_LIBS)
+ 
+ service_DATA = kivio_image_export.desktop
+diff --git a/filters/kpresenter/bmp/Makefile.am b/filters/kpresenter/bmp/Makefile.am
+index 9574baa..2d85478 100644
+--- a/filters/kpresenter/bmp/Makefile.am
++++ b/filters/kpresenter/bmp/Makefile.am
+@@ -12,7 +12,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkpresenterbmpexport.la
+ 
+ libkpresenterbmpexport_la_SOURCES = bmpexport.cpp
+-libkpresenterbmpexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkpresenterbmpexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkpresenterbmpexport_la_LIBADD = ../../../kpresenter/libkpresenterprivate.la ../../../filters/libdialogfilter/libdialogfilter.la ../libimageexport/libkpresenterimageexport.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	bmpexport.h
+diff --git a/filters/kpresenter/jpeg/Makefile.am b/filters/kpresenter/jpeg/Makefile.am
+index 34540bb..40a3109 100644
+--- a/filters/kpresenter/jpeg/Makefile.am
++++ b/filters/kpresenter/jpeg/Makefile.am
+@@ -12,7 +12,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkpresenterjpegexport.la
+ 
+ libkpresenterjpegexport_la_SOURCES = jpegexport.cpp
+-libkpresenterjpegexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkpresenterjpegexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkpresenterjpegexport_la_LIBADD = ../../../kpresenter/libkpresenterprivate.la ../../../filters/libdialogfilter/libdialogfilter.la ../libimageexport/libkpresenterimageexport.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	jpegexport.h
+diff --git a/filters/kpresenter/mng/Makefile.am b/filters/kpresenter/mng/Makefile.am
+index 966197c..e51e800 100644
+--- a/filters/kpresenter/mng/Makefile.am
++++ b/filters/kpresenter/mng/Makefile.am
+@@ -12,7 +12,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkpresentermngexport.la
+ 
+ libkpresentermngexport_la_SOURCES = mngexport.cpp
+-libkpresentermngexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkpresentermngexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkpresentermngexport_la_LIBADD = ../../../kpresenter/libkpresenterprivate.la ../../../filters/libdialogfilter/libdialogfilter.la ../libimageexport/libkpresenterimageexport.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	mngexport.h
+diff --git a/filters/kpresenter/png/Makefile.am b/filters/kpresenter/png/Makefile.am
+index 9a05d53..0872168 100644
+--- a/filters/kpresenter/png/Makefile.am
++++ b/filters/kpresenter/png/Makefile.am
+@@ -12,7 +12,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkpresenterpngexport.la
+ 
+ libkpresenterpngexport_la_SOURCES = pngexport.cpp
+-libkpresenterpngexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkpresenterpngexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkpresenterpngexport_la_LIBADD = ../../../kpresenter/libkpresenterprivate.la ../../../filters/libdialogfilter/libdialogfilter.la ../libimageexport/libkpresenterimageexport.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	pngexport.h
+diff --git a/filters/kpresenter/svg/Makefile.am b/filters/kpresenter/svg/Makefile.am
+index 764bd30..d4b0b85 100644
+--- a/filters/kpresenter/svg/Makefile.am
++++ b/filters/kpresenter/svg/Makefile.am
+@@ -9,7 +9,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkpresentersvgexport.la
+ 
+ libkpresentersvgexport_la_SOURCES = svgexport.cc
+-libkpresentersvgexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkpresentersvgexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkpresentersvgexport_la_LIBADD = ../../../kpresenter/libkpresenterprivate.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	svgexport.h
+diff --git a/filters/kpresenter/xbm/Makefile.am b/filters/kpresenter/xbm/Makefile.am
+index 7cdb0e8..b57ad5f 100644
+--- a/filters/kpresenter/xbm/Makefile.am
++++ b/filters/kpresenter/xbm/Makefile.am
+@@ -12,7 +12,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkpresenterxbmexport.la
+ 
+ libkpresenterxbmexport_la_SOURCES = xbmexport.cpp
+-libkpresenterxbmexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkpresenterxbmexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkpresenterxbmexport_la_LIBADD = ../../../kpresenter/libkpresenterprivate.la ../../../filters/libdialogfilter/libdialogfilter.la ../libimageexport/libkpresenterimageexport.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	xbmexport.h
+diff --git a/filters/kpresenter/xpm/Makefile.am b/filters/kpresenter/xpm/Makefile.am
+index 188027b..5ce1efa 100644
+--- a/filters/kpresenter/xpm/Makefile.am
++++ b/filters/kpresenter/xpm/Makefile.am
+@@ -12,7 +12,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) \
+ kde_module_LTLIBRARIES = libkpresenterxpmexport.la
+ 
+ libkpresenterxpmexport_la_SOURCES = xpmexport.cpp
+-libkpresenterxpmexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkpresenterxpmexport_la_LDFLAGS = -module $(KDE_PLUGIN) -no-undefined $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkpresenterxpmexport_la_LIBADD = ../../../kpresenter/libkpresenterprivate.la ../../../filters/libdialogfilter/libdialogfilter.la ../libimageexport/libkpresenterimageexport.la $(KOFFICE_LIBS)
+ noinst_HEADERS = \
+ 	xpmexport.h
+diff --git a/filters/kspread/applixspread/Makefile.am b/filters/kspread/applixspread/Makefile.am
+index eac8fb4..f85c2ac 100644
+--- a/filters/kspread/applixspread/Makefile.am
++++ b/filters/kspread/applixspread/Makefile.am
+@@ -8,7 +8,7 @@ kde_module_LTLIBRARIES = libapplixspreadimport.la
+ 
+ libapplixspreadimport_la_SOURCES = applixspreadimport.cc
+ libapplixspreadimport_la_LIBADD = $(KOFFICE_LIBS)
+-libapplixspreadimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libapplixspreadimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ noinst_HEADERS = applixspreadimport.h
+ 
+ METASOURCES = AUTO
+diff --git a/filters/kspread/dbase/Makefile.am b/filters/kspread/dbase/Makefile.am
+index c1e6049..cea95e5 100644
+--- a/filters/kspread/dbase/Makefile.am
++++ b/filters/kspread/dbase/Makefile.am
+@@ -8,7 +8,7 @@ kde_module_LTLIBRARIES = libdbaseimport.la
+ 
+ libdbaseimport_la_SOURCES = dbaseimport.cc dbase.cpp
+ libdbaseimport_la_LIBADD = $(KOFFICE_LIBS)
+-libdbaseimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libdbaseimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ noinst_HEADERS = dbaseimport.h dbase.h
+ 
+ METASOURCES = AUTO
+diff --git a/filters/kspread/excel/import/Makefile.am b/filters/kspread/excel/import/Makefile.am
+index 34adf0c..fffd45e 100644
+--- a/filters/kspread/excel/import/Makefile.am
++++ b/filters/kspread/excel/import/Makefile.am
+@@ -8,7 +8,7 @@ kde_module_LTLIBRARIES = libexcelimport.la
+ 
+ libexcelimport_la_SOURCES = excelimport.cc 
+ libexcelimport_la_LIBADD = $(KOFFICE_LIBS) ../sidewinder/libsidewinder.la
+-libexcelimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../../lib/kofficecore/.libs/ -lkofficecore -L../../../../lib/kofficeui/.libs/ -lkofficeui -L../../../../lib/store/.libs/ -lkstore
++libexcelimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ noinst_HEADERS = excelimport.h
+ 
+ METASOURCES = AUTO
+diff --git a/filters/kugar/kugarnop/Makefile.am b/filters/kugar/kugarnop/Makefile.am
+index fa2e3d4..bf5bac0 100644
+--- a/filters/kugar/kugarnop/Makefile.am
++++ b/filters/kugar/kugarnop/Makefile.am
+@@ -5,7 +5,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) $(all_includes)
+ kde_module_LTLIBRARIES = libkugarnopimport.la
+ 
+ libkugarnopimport_la_SOURCES = kugarnopimport.cpp
+-libkugarnopimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libkugarnopimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libkugarnopimport_la_LIBADD = $(KOFFICE_LIBS)
+ 
+ noinst_HEADERS = kugarnopimport.h 
+diff --git a/filters/kword/hancomword/Makefile.am b/filters/kword/hancomword/Makefile.am
+index 55f6a99..535abf0 100644
+--- a/filters/kword/hancomword/Makefile.am
++++ b/filters/kword/hancomword/Makefile.am
+@@ -8,7 +8,7 @@ kde_module_LTLIBRARIES = libhancomwordimport.la
+ 
+ libhancomwordimport_la_SOURCES = pole.cpp hancomwordimport.cpp
+ libhancomwordimport_la_LIBADD = $(KOFFICE_LIBS) 
+-libhancomwordimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libhancomwordimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ noinst_HEADERS = pole.h hancomwordimport.h
+ 
+ METASOURCES = AUTO
+diff --git a/filters/kword/msword/Makefile.am b/filters/kword/msword/Makefile.am
+index 7de039c..deb8887 100644
+--- a/filters/kword/msword/Makefile.am
++++ b/filters/kword/msword/Makefile.am
+@@ -8,7 +8,7 @@ kde_module_LTLIBRARIES = libmswordimport.la
+ 
+ libmswordimport_la_SOURCES = mswordimport.cpp document.cpp conversion.cpp \
+ 	texthandler.cpp tablehandler.cpp graphicshandler.cpp
+-libmswordimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libmswordimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libmswordimport_la_LIBADD = $(KOFFICE_LIBS) $(LIBWV2_LIBS)
+ 
+ METASOURCES = AUTO
+diff --git a/filters/kword/mswrite/Makefile.am b/filters/kword/mswrite/Makefile.am
+index 423261e..596315f 100644
+--- a/filters/kword/mswrite/Makefile.am
++++ b/filters/kword/mswrite/Makefile.am
+@@ -9,12 +9,12 @@ kde_module_LTLIBRARIES = libmswriteimport.la libmswriteexport.la
+ libmswriteimport_la_SOURCES = mswriteimport.cc \
+ 								libmswrite_defs.cpp structures_generated.cpp structures_private.cpp structures.cpp libmswrite.cpp ImportDialogUI.ui ImportDialog.cc
+ 
+-libmswriteimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libmswriteimport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libmswriteimport_la_LIBADD = $(KOFFICE_LIBS)
+ 
+ libmswriteexport_la_SOURCES = mswriteexport.cc	\
+ 								libmswrite_defs.cpp structures_generated.cpp structures_private.cpp structures.cpp libmswrite.cpp
+-libmswriteexport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libmswriteexport_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libmswriteexport_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KOWMF) ../libexport/libkwordexportfilters.la
+ 
+ noinst_HEADERS = mswriteimport.h mswriteexport.h \
+diff --git a/filters/kword/pdf/Makefile.am b/filters/kword/pdf/Makefile.am
+index 2a063f0..afcf443 100644
+--- a/filters/kword/pdf/Makefile.am
++++ b/filters/kword/pdf/Makefile.am
+@@ -9,8 +9,8 @@ kde_module_LTLIBRARIES = libpdfimport.la
+ libpdfimport_la_SOURCES = misc.cpp transform.cpp data.cpp fstring.cpp \
+                           FilterPage.cpp FilterDevice.cpp \
+                           pdfdocument.cpp dialog.cpp pdfimport.cpp
+-libpdfimport_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-libpdfimport_la_LIBADD = $(LIB_KOFFICECORE) $(LIBPAPER) ./xpdf/xpdf/libxpdf.la ./xpdf/goo/libgoo.la
++libpdfimport_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libpdfimport_la_LIBADD = $(KOFFICE_LIBS) $(LIBPAPER) ./xpdf/xpdf/libxpdf.la ./xpdf/goo/libgoo.la
+ 
+ METASOURCES = dialog.moc pdfimport.moc
+ 
+diff --git a/filters/xsltfilter/export/Makefile.am b/filters/xsltfilter/export/Makefile.am
+index fdf7466..d5bb41e 100644
+--- a/filters/xsltfilter/export/Makefile.am
++++ b/filters/xsltfilter/export/Makefile.am
+@@ -8,7 +8,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES) $(all_includes) $(LIBXML_CFLAGS) $(LIB
+ kde_module_LTLIBRARIES = libxsltexport.la
+ 
+ libxsltexport_la_SOURCES = xsltexport.cc xsltexportdia.cc xsltproc.cc xsltdialog.ui
+-libxsltexport_la_LDFLAGS = $(KDE_RPATH) $(LIBXML_RPATH) $(LIBXSLT_RPATH) $(all_libraries) -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libxsltexport_la_LDFLAGS = $(KDE_RPATH) $(LIBXML_RPATH) $(LIBXSLT_RPATH) $(all_libraries) -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libxsltexport_la_LIBADD	= $(KOFFICE_LIBS) $(LIBXSLT_LIBS) $(LIBXML_LIBS)
+ 
+ noinst_HEADERS = xsltexport.h xsltexportdia.h xsltproc.h
+diff --git a/filters/xsltfilter/import/Makefile.am b/filters/xsltfilter/import/Makefile.am
+index e72b85a..c1e58a4 100644
+--- a/filters/xsltfilter/import/Makefile.am
++++ b/filters/xsltfilter/import/Makefile.am
+@@ -7,7 +7,7 @@ INCLUDES= -I$(srcdir) $(KOFFICE_INCLUDES)  $(all_includes) $(LIBXML_CFLAGS) $(LI
+ kde_module_LTLIBRARIES = libxsltimport.la
+ 
+ libxsltimport_la_SOURCES = xsltimport.cc xsltimportdia.cc xsltproc.cc xsltdialog.ui
+-libxsltimport_la_LDFLAGS = $(KDE_RPATH) $(LIBXML_RPATH) $(LIBXSLT_RPATH) $(all_libraries) -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
++libxsltimport_la_LDFLAGS = $(KDE_RPATH) $(LIBXML_RPATH) $(LIBXSLT_RPATH) $(all_libraries) -module $(KDE_PLUGIN) $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ libxsltimport_la_LIBADD	= $(KOFFICE_LIBS) $(LIBXSLT_LIBS) $(LIBXML_LIBS)
+ 
+ noinst_HEADERS = xsltimport.h xsltimportdia.h xsltproc.h
+diff --git a/karbon/plugins/flattenpath/Makefile.am b/karbon/plugins/flattenpath/Makefile.am
+index a61e0e6..da55ebc 100644
+--- a/karbon/plugins/flattenpath/Makefile.am
++++ b/karbon/plugins/flattenpath/Makefile.am
+@@ -3,10 +3,10 @@ INCLUDES = $(KOFFICE_INCLUDES) -I$(top_srcdir)/karbon  -I$(top_srcdir)/karbon/co
+ kde_module_LTLIBRARIES = karbon_flattenpathplugin.la
+ 
+ karbon_flattenpathplugin_la_SOURCES = flattenpathplugin.cc
+-karbon_flattenpathplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICEUI) \
+-				../../libkarboncommon.la
++karbon_flattenpathplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) \
++				$(LIB_KOPAINTER) ../../libkarboncommon.la
+ 
+-karbon_flattenpathplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kopainter/.libs/ -lkopainter $(all_libraries) -module $(KDE_PLUGIN)
++karbon_flattenpathplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(all_libraries) -module $(KDE_PLUGIN)
+ 
+ partpluginsdir   = $(kde_datadir)/karbon/kpartplugins
+ partplugins_DATA = flattenpathplugin.rc
+diff --git a/karbon/plugins/imagetool/Makefile.am b/karbon/plugins/imagetool/Makefile.am
+index f476cc2..4459522 100644
+--- a/karbon/plugins/imagetool/Makefile.am
++++ b/karbon/plugins/imagetool/Makefile.am
+@@ -5,10 +5,10 @@ INCLUDES = $(KOFFICE_INCLUDES) -I$(top_srcdir)/karbon  -I$(top_srcdir)/karbon/co
+ kde_module_LTLIBRARIES = karbon_imagetoolplugin.la
+ 
+ karbon_imagetoolplugin_la_SOURCES = imagetoolplugin.cc vimagetool.cc
+-karbon_imagetoolplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICEUI) \
+-				../../libkarboncommon.la
++karbon_imagetoolplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) \
++				$(LIB_KOPAINTER) ../../libkarboncommon.la
+ 
+-karbon_imagetoolplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kopainter/.libs/ -lkopainter $(all_libraries) -module $(KDE_PLUGIN)
++karbon_imagetoolplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(all_libraries) -module $(KDE_PLUGIN)
+ 
+ METASOURCES = AUTO
+ 
+diff --git a/karbon/plugins/insertknots/Makefile.am b/karbon/plugins/insertknots/Makefile.am
+index 1e01481..46f350c 100644
+--- a/karbon/plugins/insertknots/Makefile.am
++++ b/karbon/plugins/insertknots/Makefile.am
+@@ -3,10 +3,10 @@ INCLUDES = $(KOFFICE_INCLUDES) -I$(top_srcdir)/karbon  -I$(top_srcdir)/karbon/co
+ kde_module_LTLIBRARIES = karbon_insertknotsplugin.la
+ 
+ karbon_insertknotsplugin_la_SOURCES = insertknotsplugin.cc
+-karbon_insertknotsplugin_la_LIBADD = $(LIB_KPARTS) \
+-					../../libkarboncommon.la
++karbon_insertknotsplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) \
++					$(LIB_KOPAINTER) ../../libkarboncommon.la
+ 
+-karbon_insertknotsplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kopainter/.libs/ -lkopainter $(all_libraries) -module $(KDE_PLUGIN)
++karbon_insertknotsplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(all_libraries) -module $(KDE_PLUGIN)
+ 
+ partpluginsdir   = $(kde_datadir)/karbon/kpartplugins
+ partplugins_DATA = insertknotsplugin.rc
+diff --git a/karbon/plugins/roundcorners/Makefile.am b/karbon/plugins/roundcorners/Makefile.am
+index 7a3ee55..a4c6ac2 100644
+--- a/karbon/plugins/roundcorners/Makefile.am
++++ b/karbon/plugins/roundcorners/Makefile.am
+@@ -3,10 +3,10 @@ INCLUDES = $(KOFFICE_INCLUDES) -I$(top_srcdir)/karbon  -I$(top_srcdir)/karbon/co
+ kde_module_LTLIBRARIES = karbon_roundcornersplugin.la
+ 
+ karbon_roundcornersplugin_la_SOURCES = roundcornersplugin.cc
+-karbon_roundcornersplugin_la_LIBADD = $(LIB_KPARTS) \
+-					../../libkarboncommon.la
++karbon_roundcornersplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) \
++					$(LIB_KOPAINTER) ../../libkarboncommon.la
+ 
+-karbon_roundcornersplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kopainter/.libs/ -lkopainter $(all_libraries) -module $(KDE_PLUGIN)
++karbon_roundcornersplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(all_libraries) -module $(KDE_PLUGIN)
+ 
+ partpluginsdir   = $(kde_datadir)/karbon/kpartplugins
+ partplugins_DATA = roundcornersplugin.rc
+diff --git a/karbon/plugins/shadoweffect/Makefile.am b/karbon/plugins/shadoweffect/Makefile.am
+index 8a534c8..23ba030 100644
+--- a/karbon/plugins/shadoweffect/Makefile.am
++++ b/karbon/plugins/shadoweffect/Makefile.am
+@@ -3,10 +3,10 @@ INCLUDES = $(KOFFICE_INCLUDES) $(KOPAINTER_INCLUDES) -I$(top_srcdir)/karbon  -I$
+ kde_module_LTLIBRARIES = karbon_shadoweffectplugin.la
+ 
+ karbon_shadoweffectplugin_la_SOURCES = shadoweffectplugin.cc vshadowdecorator.cc 
+-karbon_shadoweffectplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICEUI) \
+-					../../libkarboncommon.la
++karbon_shadoweffectplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) \
++					$(LIB_KOPAINTER) ../../libkarboncommon.la
+ 
+-karbon_shadoweffectplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kopainter/.libs/ -lkopainter $(all_libraries) -module $(KDE_PLUGIN)
++karbon_shadoweffectplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(all_libraries) -module $(KDE_PLUGIN)
+ 
+ partpluginsdir   = $(kde_datadir)/karbon/kpartplugins
+ partplugins_DATA = shadoweffectplugin.rc
+diff --git a/karbon/plugins/whirlpinch/Makefile.am b/karbon/plugins/whirlpinch/Makefile.am
+index 600ccc6..cd8223d 100644
+--- a/karbon/plugins/whirlpinch/Makefile.am
++++ b/karbon/plugins/whirlpinch/Makefile.am
+@@ -3,11 +3,11 @@ INCLUDES = $(KOFFICE_INCLUDES) -I$(top_srcdir)/karbon -I$(top_srcdir)/karbon/cor
+ kde_module_LTLIBRARIES = karbon_whirlpinchplugin.la
+ 
+ karbon_whirlpinchplugin_la_SOURCES = whirlpinchplugin.cc
+-karbon_whirlpinchplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOPAINTER) \
++karbon_whirlpinchplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOPAINTER) $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) \
+ 				../../libkarboncommon.la
+ 
+ 
+-karbon_whirlpinchplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kopainter/.libs/ -lkopainter $(all_libraries) -module $(KDE_PLUGIN)
++karbon_whirlpinchplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(all_libraries) -module $(KDE_PLUGIN)
+ 
+ partpluginsdir   = $(kde_datadir)/karbon/kpartplugins
+ partplugins_DATA = whirlpinchplugin.rc
+diff --git a/karbon/plugins/zoomtool/Makefile.am b/karbon/plugins/zoomtool/Makefile.am
+index ef50f24..74dcf60 100644
+--- a/karbon/plugins/zoomtool/Makefile.am
++++ b/karbon/plugins/zoomtool/Makefile.am
+@@ -5,10 +5,10 @@ INCLUDES = $(KOFFICE_INCLUDES) -I$(top_srcdir)/karbon  -I$(top_srcdir)/karbon/co
+ kde_module_LTLIBRARIES = karbon_zoomtoolplugin.la
+ 
+ karbon_zoomtoolplugin_la_SOURCES = vzoomtool.cc zoomtoolplugin.cc
+-karbon_zoomtoolplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICEUI) \
+-				../../libkarboncommon.la
++karbon_zoomtoolplugin_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) \
++				$(LIB_KOPAINTER) ../../libkarboncommon.la
+ 
+-karbon_zoomtoolplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kopainter/.libs/ -lkopainter $(all_libraries) -module $(KDE_PLUGIN)
++karbon_zoomtoolplugin_la_LDFLAGS = -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(all_libraries) -module $(KDE_PLUGIN)
+ 
+ METASOURCES = AUTO
+ 
+diff --git a/karbon/tools/Makefile.am b/karbon/tools/Makefile.am
+index ef666c1..f90ebb6 100644
+--- a/karbon/tools/Makefile.am
++++ b/karbon/tools/Makefile.am
+@@ -56,8 +56,8 @@ karbon_defaulttools_la_SOURCES = \
+ 	vtexttool.cc \
+ 	vdefaulttools.cc
+ 
+-karbon_defaulttools_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICEUI) ../libkarboncommon.la
+-karbon_defaulttools_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -L../../lib/kofficeui/.libs/ -lkofficeui -L../../lib/kofficecore/.libs/ -lkofficecore -L../../lib/kopainter/.libs/ -lkopainter
++karbon_defaulttools_la_LIBADD = $(LIB_KPARTS) $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) $(LIB_KOPAINTER) ../libkarboncommon.la
++karbon_defaulttools_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio
+ 
+ karbon_defaulttools_la_METASOURCES = \
+ 	AUTO
+diff --git a/kexi/formeditor/factories/Makefile.am b/kexi/formeditor/factories/Makefile.am
+index 72571e4..dd87e8b 100644
+--- a/kexi/formeditor/factories/Makefile.am
++++ b/kexi/formeditor/factories/Makefile.am
+@@ -4,13 +4,15 @@ INCLUDES = -I$(top_srcdir)/kexi -I$(top_srcdir)/kexi/formeditor \
+ 	-I$(top_srcdir)/kexi/core \
+ 	-I$(top_srcdir)/lib -I$(top_srcdir)/lib/koproperty -I$(top_srcdir)/lib/kofficecore $(all_includes)
+ kde_module_LTLIBRARIES = kformdesigner_containers.la kformdesigner_stdwidgets.la
+-kformdesigner_containers_la_LDFLAGS =  $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../lib/koproperty/.libs/ -lkoproperty
++kformdesigner_containers_la_LDFLAGS =  $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ kformdesigner_containers_la_SOURCES =  containerfactory.cpp
+-kformdesigner_containers_la_LIBADD = $(top_builddir)/kexi/formeditor/libkformdesigner.la
++kformdesigner_containers_la_LIBADD = $(KOFFICE_LIBS) $(top_builddir)/kexi/formeditor/libkformdesigner.la \
++	../../../lib/koproperty/libkoproperty.la
+ 
+-kformdesigner_stdwidgets_la_LDFLAGS =  $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../lib/koproperty/.libs/ -lkoproperty
++kformdesigner_stdwidgets_la_LDFLAGS =  $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ kformdesigner_stdwidgets_la_SOURCES =  stdwidgetfactory.cpp
+-kformdesigner_stdwidgets_la_LIBADD = $(top_builddir)/kexi/formeditor/libkformdesigner.la
++kformdesigner_stdwidgets_la_LIBADD = $(KOFFICE_LIBS) $(top_builddir)/kexi/formeditor/libkformdesigner.la \
++	../../../lib/koproperty/libkoproperty.la
+ 
+ 
+ servicesdir=$(kde_servicesdir)/kformdesigner
+diff --git a/kexi/kexidb/drivers/mySQL/Makefile.am b/kexi/kexidb/drivers/mySQL/Makefile.am
+index 2892bed..1678d52 100644
+--- a/kexi/kexidb/drivers/mySQL/Makefile.am
++++ b/kexi/kexidb/drivers/mySQL/Makefile.am
+@@ -16,13 +16,13 @@ kexidb_mysqldriver_la_SOURCES = \
+   mysqlkeywords.cpp \
+   mysqlpreparedstatement.cpp
+ 
+-kexidb_mysqldriver_la_LIBADD = $(LIB_KPARTS) \
++kexidb_mysqldriver_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KPARTS) \
+   $(LIB_QT) \
+   $(MYSQL_LIBS) \
+   -lmysqlclient \
+   ../../libkexidb.la
+ 
+-kexidb_mysqldriver_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(VER_INFO) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../../lib/kofficecore/.libs/ -lkofficecore -L../../../../lib/kofficeui/.libs/ -lkofficeui -L../../../../lib/store/.libs/ -lkstore
++kexidb_mysqldriver_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(VER_INFO) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+ 
+ kde_services_DATA = kexidb_mysqldriver.desktop
+diff --git a/kexi/kexidb/drivers/pqxx/Makefile.am b/kexi/kexidb/drivers/pqxx/Makefile.am
+index 03dccbc..38fef64 100644
+--- a/kexi/kexidb/drivers/pqxx/Makefile.am
++++ b/kexi/kexidb/drivers/pqxx/Makefile.am
+@@ -9,11 +9,11 @@ kexidb_pqxxsqldriver_la_METASOURCES = AUTO
+ kexidb_pqxxsqldriver_la_SOURCES = pqxxdriver.cpp pqxxcursor.cpp pqxxconnection.cpp \
+ 	pqxxkeywords.cpp pqxxconnection_p.cpp pqxxpreparedstatement.cpp
+ 
+-kexidb_pqxxsqldriver_la_LIBADD = $(LIB_KPARTS) $(LIB_QT) -lpqxx ../../libkexidb.la
++kexidb_pqxxsqldriver_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KPARTS) $(LIB_QT) -lpqxx ../../libkexidb.la
+ 
+ kexidb_pqxxsqldriver_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) \
+ 	-L$(PQXX_LIBDIR) -L$(PG_LIBDIR) $(VER_INFO) -no-undefined \
+-	-lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../../lib/kofficecore/.libs/ -lkofficecore -L../../../../lib/kofficeui/.libs/ -lkofficeui -L../../../../lib/store/.libs/ -lkstore
++	-lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+ kde_services_DATA = kexidb_pqxxsqldriver.desktop
+ 
+diff --git a/kexi/kexidb/drivers/sqlite/Makefile.am b/kexi/kexidb/drivers/sqlite/Makefile.am
+index 9d124bc..2722ea1 100644
+--- a/kexi/kexidb/drivers/sqlite/Makefile.am
++++ b/kexi/kexidb/drivers/sqlite/Makefile.am
+@@ -11,12 +11,13 @@ kexidb_sqlite3driver_la_SOURCES = sqliteconnection.cpp sqlitedriver.cpp sqlitecu
+ sqlitekeywords.cpp sqlitepreparedstatement.cpp sqlitevacuum.cpp sqliteadmin.cpp \
+ sqlitealter.cpp
+ 
+-kexidb_sqlite3driver_la_LIBADD = $(LIB_KPARTS) $(LIB_QT) \
++kexidb_sqlite3driver_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KPARTS) $(LIB_QT) \
+  $(top_builddir)/kexi/3rdparty/kexisql3/src/libkexisql3.la \
+  $(top_builddir)/kexi/kexidb/libkexidb.la \
+- $(top_builddir)/kexi/kexidb/parser/libkexidbparser.la
++ $(top_builddir)/kexi/kexidb/parser/libkexidbparser.la \
++ ../../../../kexi/kexiutils/libkexiutils.la
+ 
+-kexidb_sqlite3driver_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(VER_INFO) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../../lib/kofficecore/.libs/ -lkofficecore -L../../../../lib/kofficeui/.libs/ -lkofficeui -L../../../../lib/store/.libs/ -lkstore -L../../../../kexi/kexiutils/.libs/ -lkexiutils
++kexidb_sqlite3driver_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(VER_INFO) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+ 
+ kde_services_DATA = kexidb_sqlite3driver.desktop
+diff --git a/kexi/kexidb/drivers/sqlite2/Makefile.am b/kexi/kexidb/drivers/sqlite2/Makefile.am
+index bd07f28..7484a27 100644
+--- a/kexi/kexidb/drivers/sqlite2/Makefile.am
++++ b/kexi/kexidb/drivers/sqlite2/Makefile.am
+@@ -15,12 +15,13 @@ kexidb_sqlite2driver_la_METASOURCES = AUTO
+ kexidb_sqlite2driver_la_SOURCES = sqliteconnection.cpp sqlitedriver.cpp sqlitecursor.cpp \
+ 	sqlitepreparedstatement.cpp sqliteadmin.cpp sqlitealter.cpp
+ 
+-kexidb_sqlite2driver_la_LIBADD = $(LIB_KPARTS) $(LIB_QT) \
++kexidb_sqlite2driver_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KPARTS) $(LIB_QT) \
+  $(top_builddir)/kexi/3rdparty/kexisql/src/libkexisql2.la \
+  $(top_builddir)/kexi/kexidb/libkexidb.la \
+- $(top_builddir)/kexi/kexidb/parser/libkexidbparser.la
++ $(top_builddir)/kexi/kexidb/parser/libkexidbparser.la \
++ ../../../../kexi/kexiutils/libkexiutils.la
+ 
+-kexidb_sqlite2driver_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(VER_INFO) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../../lib/kofficecore/.libs/ -lkofficecore -L../../../../lib/kofficeui/.libs/ -lkofficeui -L../../../../lib/store/.libs/ -lkstore -L../../../../kexi/kexiutils/.libs/ -lkexiutils
++kexidb_sqlite2driver_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(VER_INFO) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+ 
+ kde_services_DATA = kexidb_sqlite2driver.desktop
+diff --git a/kexi/migration/mysql/Makefile.am b/kexi/migration/mysql/Makefile.am
+index 9423931..63b9626 100644
+--- a/kexi/migration/mysql/Makefile.am
++++ b/kexi/migration/mysql/Makefile.am
+@@ -8,9 +8,11 @@ keximigrate_mysql_la_METASOURCES = AUTO
+ 
+ keximigrate_mysql_la_SOURCES = mysqlmigrate.cpp
+ 
+-keximigrate_mysql_la_LIBADD = $(LIB_KPARTS) $(LIB_QT) ../libkeximigrate.la $(MYSQL_LIBS) -lmysqlclient
++keximigrate_mysql_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KPARTS) $(LIB_QT) ../libkeximigrate.la $(MYSQL_LIBS) -lmysqlclient \
++	../../../kexi/kexidb/libkexidb.la \
++	../../../kexi/kexiutils/libkexiutils.la
+ 
+-keximigrate_mysql_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(VER_INFO) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils
++keximigrate_mysql_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) $(VER_INFO) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+ kde_services_DATA = keximigrate_mysql.desktop
+ 
+diff --git a/kexi/migration/pqxx/Makefile.am b/kexi/migration/pqxx/Makefile.am
+index 8405de9..bdf7630 100644
+--- a/kexi/migration/pqxx/Makefile.am
++++ b/kexi/migration/pqxx/Makefile.am
+@@ -10,9 +10,11 @@ keximigrate_pqxx_la_SOURCES = pqxxmigrate.cpp
+ 
+ #TODO share -libs with pqxx kexidb drv!
+ #keximigrate_pqxx_la_LIBADD = $(LIB_KPARTS) $(LIB_QT) -lcom_err -lkrb5 -lssl -lcrypto -lcrypt -lpqxx ../libkeximigrate.la
+-keximigrate_pqxx_la_LIBADD = $(LIB_KPARTS) $(LIB_QT) -lpqxx ../libkeximigrate.la
++keximigrate_pqxx_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KPARTS) $(LIB_QT) -lpqxx ../libkeximigrate.la \
++	../../../kexi/kexidb/libkexidb.la \
++	../../../kexi/kexiutils/libkexiutils.la
+ 
+-keximigrate_pqxx_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -L$(PQXX_LIBDIR) -L$(PG_LIBDIR) $(VER_INFO) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils
++keximigrate_pqxx_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -L$(PQXX_LIBDIR) -L$(PG_LIBDIR) $(VER_INFO) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+ kde_services_DATA = keximigrate_pqxx.desktop
+ 
+diff --git a/kexi/plugins/forms/Makefile.am b/kexi/plugins/forms/Makefile.am
+index 2cc9688..7d6d077 100644
+--- a/kexi/plugins/forms/Makefile.am
++++ b/kexi/plugins/forms/Makefile.am
+@@ -4,31 +4,45 @@ kde_module_LTLIBRARIES = kexihandler_form.la kformdesigner_kexidbwidgets.la
+ 
+ kexihandler_form_la_SOURCES = kexiforms.cpp
+ 
+-kexihandler_form_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils -L../../../kexi/widget/.libs/ -lkexiextendedwidgets -L../../../kexi/widget/utils/.libs/ -lkexiguiutils
+-kexihandler_form_la_LIBADD = $(top_builddir)/kexi/core/libkexicore.la \
++kexihandler_form_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kexihandler_form_la_LIBADD = $(KOFFICE_LIBS) $(top_builddir)/kexi/core/libkexicore.la \
+ 	$(top_builddir)/kexi/widget/utils/libkexiguiutils.la \
+ 	$(top_builddir)/kexi/widget/tableview/libkexidatatable.la \
+ 	$(top_builddir)/kexi/widget/libkexiextendedwidgets.la \
+ 	$(top_builddir)/kexi/formeditor/libkformdesigner.la \
+ 	$(top_builddir)/lib/koproperty/libkoproperty.la \
+-	./libkexiformutils.la
++	./libkexiformutils.la \
++	../../../kexi/kexidb/libkexidb.la \
++	../../../kexi/kexiutils/libkexiutils.la \
++	../../../kexi/widget/libkexiextendedwidgets.la \
++	../../../kexi/widget/utils/libkexiguiutils.la
+ 
+-kformdesigner_kexidbwidgets_la_LDFLAGS =  $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils -L../../../kexi/widget/.libs/ -lkexiextendedwidgets -L../../../kexi/widget/utils/.libs/ -lkexiguiutils
++
++kformdesigner_kexidbwidgets_la_LDFLAGS =  $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ kformdesigner_kexidbwidgets_la_SOURCES = kexidbfactory.cpp
+-kformdesigner_kexidbwidgets_la_LIBADD = $(top_builddir)/kexi/formeditor/libkformdesigner.la \
++kformdesigner_kexidbwidgets_la_LIBADD = $(KOFFICE_LIBS) $(top_builddir)/kexi/formeditor/libkformdesigner.la \
+ 	$(top_builddir)/kexi/widget/libkexiextendedwidgets.la \
+-	./libkexiformutils.la
++	./libkexiformutils.la \
++	../../../kexi/kexidb/libkexidb.la \
++	../../../kexi/kexiutils/libkexiutils.la \
++	../../../kexi/widget/libkexiextendedwidgets.la \
++	../../../kexi/widget/utils/libkexiguiutils.la
++
+ 
+ lib_LTLIBRARIES = libkexiformutils.la
+ libkexiformutils_la_SOURCES = kexiformdataiteminterface.cpp kexidataawarewidgetinfo.cpp \
+ 	kexidataprovider.cpp kexiformscrollview.cpp kexiformeventhandler.cpp \
+ 	kexidbtextwidgetinterface.cpp kexiactionselectiondialog.cpp kexiformmanager.cpp \
+ 	kexidatasourcepage.cpp kexiformpart.cpp kexiformview.cpp
+-libkexiformutils_la_LDFLAGS = $(all_libraries) $(VER_INFO) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils -L../../../kexi/widget/.libs/ -lkexiextendedwidgets -L../../../kexi/widget/utils/.libs/ -lkexiguiutils
+-libkexiformutils_la_LIBADD = $(top_builddir)/kexi/core/libkexicore.la \
++libkexiformutils_la_LDFLAGS = $(all_libraries) $(VER_INFO) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkexiformutils_la_LIBADD = $(KOFFICE_LIBS) $(top_builddir)/kexi/core/libkexicore.la \
+ 	$(top_builddir)/kexi/widget/libkexiextendedwidgets.la \
+ 	$(top_builddir)/kexi/formeditor/libkformdesigner.la \
+-	$(top_builddir)/kexi/plugins/forms/widgets/libkexiformutilswidgets.la
++	$(top_builddir)/kexi/plugins/forms/widgets/libkexiformutilswidgets.la \
++	../../../kexi/kexidb/libkexidb.la \
++	../../../kexi/kexiutils/libkexiutils.la \
++	../../../kexi/widget/libkexiextendedwidgets.la \
++	../../../kexi/widget/utils/libkexiguiutils.la
+ 
+ kformdesignerservicesdir=$(kde_servicesdir)/kformdesigner
+ kformdesignerservices_DATA=kformdesigner_kexidbfactory.desktop
+diff --git a/kexi/plugins/importexport/csv/Makefile.am b/kexi/plugins/importexport/csv/Makefile.am
+index 5249d93..dba9018 100644
+--- a/kexi/plugins/importexport/csv/Makefile.am
++++ b/kexi/plugins/importexport/csv/Makefile.am
+@@ -5,10 +5,13 @@ kde_module_LTLIBRARIES = kexihandler_csv_importexport.la
+ kexihandler_csv_importexport_la_SOURCES = kexicsv_importexportpart.cpp kexicsvimportdialog.cpp \
+ 	kexicsvimportoptionsdlg.cpp kexicsvwidgets.cpp kexicsvexport.cpp kexicsvexportwizard.cpp
+ 
+-kexihandler_csv_importexport_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../../lib/kofficecore/.libs/ -lkofficecore -L../../../../lib/kofficeui/.libs/ -lkofficeui -L../../../../lib/store/.libs/ -lkstore -L../../../../kexi/kexidb/.libs/ -lkexidb -L../../../../kexi/kexiutils/.libs/ -lkexiutils \
+-	-L../../../../kexi/main/.libs/ -lkeximain -L../../../../kexi/widget/.libs/ -lkexiextendedwidgets
+-kexihandler_csv_importexport_la_LIBADD = ../../../core/libkexicore.la \
+-	../../../migration/libkeximigrate.la
++kexihandler_csv_importexport_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kexihandler_csv_importexport_la_LIBADD = $(KOFFICE_LIBS) ../../../core/libkexicore.la \
++	../../../migration/libkeximigrate.la \
++	../../../../kexi/kexidb/libkexidb.la \
++	../../../../kexi/kexiutils/libkexiutils.la \
++	../../../../kexi/main/libkeximain.la \
++	../../../../kexi/widget/libkexiextendedwidgets.la
+ 
+ INCLUDES= -I$(top_srcdir)/kexi/core -I$(top_srcdir)/kexi \
+ 		-I$(top_srcdir)/kexi/widget -I$(top_srcdir)/kexi/migration \
+diff --git a/kexi/plugins/migration/Makefile.am b/kexi/plugins/migration/Makefile.am
+index 3c15d37..2d92873 100644
+--- a/kexi/plugins/migration/Makefile.am
++++ b/kexi/plugins/migration/Makefile.am
+@@ -4,9 +4,11 @@ kde_module_LTLIBRARIES = kexihandler_migration.la
+ 
+ kexihandler_migration_la_SOURCES = keximigrationpart.cpp
+ 
+-kexihandler_migration_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils
+-kexihandler_migration_la_LIBADD = ../../core/libkexicore.la \
+-	../../migration/libkeximigrate.la
++kexihandler_migration_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kexihandler_migration_la_LIBADD = $(KOFFICE_LIBS) ../../core/libkexicore.la \
++	../../migration/libkeximigrate.la \
++	../../../kexi/kexidb/libkexidb.la \
++	../../../kexi/kexiutils/libkexiutils.la
+ 
+ INCLUDES= -I$(top_srcdir)/kexi/core -I$(top_srcdir)/kexi \
+ 		-I$(top_srcdir)/kexi/widget -I$(top_srcdir)/kexi/migration \
+diff --git a/kexi/plugins/queries/Makefile.am b/kexi/plugins/queries/Makefile.am
+index 1b1052d..5dbb14f 100644
+--- a/kexi/plugins/queries/Makefile.am
++++ b/kexi/plugins/queries/Makefile.am
+@@ -5,13 +5,16 @@ kde_module_LTLIBRARIES = kexihandler_query.la
+ kexihandler_query_la_SOURCES = kexiquerypart.cpp kexiquerydesignersql.cpp \
+ 				kexiquerydesignersqlhistory.cpp kexiquerydesignerguieditor.cpp \
+ 				kexiqueryview.cpp
+-kexihandler_query_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils -L../../../kexi/kexidb/parser/.libs/ -lkexidbparser
+-kexihandler_query_la_LIBADD = ../../core/libkexicore.la \
++kexihandler_query_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kexihandler_query_la_LIBADD = $(KOFFICE_LIBS) ../../core/libkexicore.la \
+   $(top_builddir)/kexi/kexidb/libkexidb.la \
+   $(top_builddir)/kexi/widget/libkexiextendedwidgets.la \
+   $(top_builddir)/kexi/widget/tableview/libkexidatatable.la \
+   $(top_builddir)/kexi/widget/relations/libkexirelationsview.la \
+-  $(top_builddir)/lib/koproperty/libkoproperty.la
++  $(top_builddir)/lib/koproperty/libkoproperty.la \
++  ../../../kexi/kexidb/libkexidb.la \
++  ../../../kexi/kexiutils/libkexiutils.la \
++  ../../../kexi/kexidb/parser/libkexidbparser.la
+ 
+ INCLUDES= -I$(top_srcdir)/kexi/core -I$(top_srcdir)/kexi \
+ 	-I$(top_srcdir)/kexi/widget -I$(top_srcdir)/kexi/widget/tableview \
+diff --git a/kexi/plugins/relations/Makefile.am b/kexi/plugins/relations/Makefile.am
+index 47a263a..779b47e 100644
+--- a/kexi/plugins/relations/Makefile.am
++++ b/kexi/plugins/relations/Makefile.am
+@@ -8,9 +8,11 @@ kde_module_LTLIBRARIES = kexihandler_relation.la
+ kexihandler_relation_la_SOURCES = kexirelationpartimpl.cpp \
+ 				kexirelationmaindlg.cpp
+ 
+-kexihandler_relation_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils
+-kexihandler_relation_la_LIBADD = ../../core/libkexicore.la \
+-	../../widget/relations/libkexirelationsview.la
++kexihandler_relation_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kexihandler_relation_la_LIBADD = $(KOFFICE_LIBS) ../../core/libkexicore.la \
++	../../widget/relations/libkexirelationsview.la \
++	../../../kexi/kexidb/libkexidb.la \
++	../../../kexi/kexiutils/libkexiutils.la
+ 
+ INCLUDES= -I$(top_srcdir)/kexi/core -I$(top_srcdir)/kexi \
+ 		-I$(top_srcdir)/kexi/widget -I$(top_srcdir)/kexi/widget/relations \
+diff --git a/kexi/plugins/scripting/kexiscripting/Makefile.am b/kexi/plugins/scripting/kexiscripting/Makefile.am
+index e9d0889..6b857e7 100644
+--- a/kexi/plugins/scripting/kexiscripting/Makefile.am
++++ b/kexi/plugins/scripting/kexiscripting/Makefile.am
+@@ -7,14 +7,16 @@ kexihandler_script_la_SOURCES = \
+ 
+ kexihandler_script_la_LDFLAGS = \
+     $(KDE_PLUGIN) -module -no-undefined -Wnounresolved $(all_libraries) $(VER_INFO) \
+-    -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../../lib/kofficecore/.libs/ -lkofficecore -L../../../../lib/kofficeui/.libs/ -lkofficeui -L../../../../lib/store/.libs/ -lkstore -L../../../../kexi/kexidb/.libs/ -lkexidb -L../../../../kexi/kexiutils/.libs/ -lkexiutils \
+-    -L../../../../lib/kross/api/.libs/ -lkrossapi
++    -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+-kexihandler_script_la_LIBADD = \
++kexihandler_script_la_LIBADD = $(KOFFICE_LIBS) \
+     $(top_builddir)/lib/kross/main/libkrossmain.la \
+     $(top_builddir)/kexi/core/libkexicore.la \
+     $(top_builddir)/kexi/widget/libkexiextendedwidgets.la \
+-    $(top_builddir)/lib/koproperty/libkoproperty.la
++    $(top_builddir)/lib/koproperty/libkoproperty.la \
++    ../../../../kexi/kexidb/libkexidb.la \
++    ../../../../kexi/kexiutils/libkexiutils.la \
++    ../../../../lib/kross/api/libkrossapi.la
+ 
+ INCLUDES = \
+     $(KOFFICE_INCLUDES) \
+diff --git a/kexi/plugins/tables/Makefile.am b/kexi/plugins/tables/Makefile.am
+index 2ee5a4a..eb38839 100644
+--- a/kexi/plugins/tables/Makefile.am
++++ b/kexi/plugins/tables/Makefile.am
+@@ -5,12 +5,14 @@ kde_module_LTLIBRARIES = kexihandler_table.la
+ kexihandler_table_la_SOURCES = kexitablepart.cpp kexitabledesignerview.cpp kexitabledesignerview_p.cpp \
+ 	kexitabledesigner_dataview.cpp kexitabledesignercommands.cpp kexilookupcolumnpage.cpp
+ 
+-kexihandler_table_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore -L../../../kexi/kexidb/.libs/ -lkexidb -L../../../kexi/kexiutils/.libs/ -lkexiutils -lkmdi
+-kexihandler_table_la_LIBADD = $(top_builddir)/kexi/core/libkexicore.la \
++kexihandler_table_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(VER_INFO) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -lkmdi
++kexihandler_table_la_LIBADD = $(KOFFICE_LIBS) $(top_builddir)/kexi/core/libkexicore.la \
+ 	$(top_builddir)/kexi/kexidb/libkexidb.la \
+ 	$(top_builddir)/kexi/widget/tableview/libkexidatatable.la \
+ 	$(top_builddir)/kexi/widget/libkexiextendedwidgets.la \
+-	$(top_builddir)/lib/koproperty/libkoproperty.la
++	$(top_builddir)/lib/koproperty/libkoproperty.la \
++	../../../kexi/kexidb/libkexidb.la \
++	../../../kexi/kexiutils/libkexiutils.la
+ 
+ INCLUDES= $(KOFFICE_INCLUDES) \
+ 	-I$(top_srcdir)/kexi/core -I$(top_srcdir)/kexi \
+diff --git a/kexi/tests/newapi/Makefile.am b/kexi/tests/newapi/Makefile.am
+index 940e7c1..85eeab3 100644
+--- a/kexi/tests/newapi/Makefile.am
++++ b/kexi/tests/newapi/Makefile.am
+@@ -18,8 +18,9 @@ METASOURCES = AUTO
+ kexidbtest_SOURCES = main.cpp
+ kexidbtest_LDADD = $(LIB_QT) $(LIB_KDECORE) $(top_builddir)/kexi/kexidb/libkexidb.la \
+  ../../kexidb/parser/libkexidbparser.la \
+- $(top_builddir)/kexi/widget/libkexiextendedwidgets.la
+-kexidbtest_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor -L../../widget/tableview/.libs/ -lkexidatatable
++ $(top_builddir)/kexi/widget/libkexiextendedwidgets.la \
++ ../../widget/tableview/libkexidatatable.la
++kexidbtest_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor
+ 
+ #kexidbmysqlcursor_SOURCES = mysqlcursor.cpp
+ #kexidbmysqlcursor_LDADD = $(LIB_QT) $(LIB_KDECORE) $(top_builddir)/kexi/kexidb/libkexidb.la \
+diff --git a/kformula/Makefile.am b/kformula/Makefile.am
+index e5b882a..fa49a75 100644
+--- a/kformula/Makefile.am
++++ b/kformula/Makefile.am
+@@ -6,8 +6,8 @@ kde_module_LTLIBRARIES = libkformulapart.la
+ libkformulapart_la_SOURCES = kformula_doc.cc \
+ 	kformula_view.cc kformula_factory.cc kformulawidget.cc kfconfig.cc \
+ 	kformula_view_iface.skel kformula_view_iface.cc formulastring.cc fsparser.cc
+-libkformulapart_la_LDFLAGS = $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(KDE_PLUGIN) -lDCOP -lkparts -L../lib/kofficecore/.libs/ -lkofficecore -L../lib/kofficeui/.libs/ -lkofficeui -L../lib/store/.libs/ -lkstore
+-libkformulapart_la_LIBADD = $(LIB_KOFFICEUI) $(LIB_KFORMULA) $(LIB_KOTEXT)
++libkformulapart_la_LDFLAGS = $(all_libraries) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio $(KDE_PLUGIN) -lDCOP -lkparts
++libkformulapart_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KFORMULA) $(LIB_KOTEXT)
+ libkformulapart_la_METASOURCES = AUTO
+ 
+ ## The kdeinit loadable module
+diff --git a/kivio/plugins/kivioconnectortool/Makefile.am b/kivio/plugins/kivioconnectortool/Makefile.am
+index 45af1cb..d5ca3fe 100644
+--- a/kivio/plugins/kivioconnectortool/Makefile.am
++++ b/kivio/plugins/kivioconnectortool/Makefile.am
+@@ -25,8 +25,8 @@ EXTRA_DIST = \
+ 		kivio_connector_cursor2.xpm\
+ 		kivio_connector_cursor1.xpm
+ 
+-libkivioconnectortool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficeui/.libs/ -lkofficeui
+-libkivioconnectortool_la_LIBADD = $(LIB_KOPAINTER) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
++libkivioconnectortool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkivioconnectortool_la_LIBADD = $(LIB_KOPAINTER) $(LIB_KOFFICEUI) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
+ 
+ rc_DATA = kivioconnectortool.rc
+ rcdir = $(kde_datadir)/kivio/kpartplugins
+diff --git a/kivio/plugins/kivioselecttool/Makefile.am b/kivio/plugins/kivioselecttool/Makefile.am
+index 56bddbc..3cbe78a 100644
+--- a/kivio/plugins/kivioselecttool/Makefile.am
++++ b/kivio/plugins/kivioselecttool/Makefile.am
+@@ -19,8 +19,8 @@ EXTRA_DIST = \
+ 		tool_select.cpp\
+ 		tool_select.h\
+ 		kivioselecttool.rc
+-libkivioselecttool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui
+-libkivioselecttool_la_LIBADD = $(LIB_KOTEXT) $(LIB_KOPAINTER) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
++libkivioselecttool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkivioselecttool_la_LIBADD = $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) $(LIB_KOTEXT) $(LIB_KOPAINTER) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
+ 
+ rc_DATA = kivioselecttool.rc
+ rcdir = $(kde_datadir)/kivio/kpartplugins
+diff --git a/kivio/plugins/kiviotargettool/Makefile.am b/kivio/plugins/kiviotargettool/Makefile.am
+index c3335a1..888b11f 100644
+--- a/kivio/plugins/kiviotargettool/Makefile.am
++++ b/kivio/plugins/kiviotargettool/Makefile.am
+@@ -8,8 +8,8 @@ INCLUDES = -I$(top_srcdir)/kivio/kiviopart/config \
+ METASOURCES = AUTO
+ 
+ kde_module_LTLIBRARIES =  libkiviotargettool.la
+-libkiviotargettool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui
+-libkiviotargettool_la_LIBADD = $(LIB_KOTEXT) $(LIB_KOPAINTER) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
++libkiviotargettool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkiviotargettool_la_LIBADD = $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) $(LIB_KOTEXT) $(LIB_KOPAINTER) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
+ libkiviotargettool_la_SOURCES = kiviotargettool.cpp kiviotargettoolfactory.cpp
+ 
+ noinst_HEADERS =  kiviotargettool.h kiviotargettoolfactory.h
+diff --git a/kivio/plugins/kiviotexttool/Makefile.am b/kivio/plugins/kiviotexttool/Makefile.am
+index d250466..8b3183f 100644
+--- a/kivio/plugins/kiviotexttool/Makefile.am
++++ b/kivio/plugins/kiviotexttool/Makefile.am
+@@ -22,8 +22,8 @@ EXTRA_DIST = \
+ 		kivio_text_cursor.xpm\
+ 		Text.sml\
+ 		Text.xpm
+-libkiviotexttool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficeui/.libs/ -lkofficeui
+-libkiviotexttool_la_LIBADD =$(LIB_KOTEXT) $(LIB_KOPAINTER) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
++libkiviotexttool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkiviotexttool_la_LIBADD =$(LIB_KOTEXT) $(LIB_KOPAINTER) $(LIB_KOFFICEUI) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
+ 
+ rc_DATA = kiviotexttool.rc
+ rcdir = $(kde_datadir)/kivio/kpartplugins
+diff --git a/kivio/plugins/kiviozoomtool/Makefile.am b/kivio/plugins/kiviozoomtool/Makefile.am
+index bcb513c..5ff1c22 100644
+--- a/kivio/plugins/kiviozoomtool/Makefile.am
++++ b/kivio/plugins/kiviozoomtool/Makefile.am
+@@ -18,8 +18,8 @@ EXTRA_DIST = \
+ 		kiviozoomtool.rc\
+ 		tool_zoom.cpp\
+ 		tool_zoom.h
+-libkiviozoomtool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui
+-libkiviozoomtool_la_LIBADD = $(LIB_KOTEXT) $(LIB_KOPAINTER) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
++libkiviozoomtool_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkiviozoomtool_la_LIBADD = $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) $(LIB_KOTEXT) $(LIB_KOPAINTER) $(top_builddir)/kivio/kiviopart/libkiviocommon.la
+ 
+ rc_DATA = kiviozoomtool.rc
+ rcdir = $(kde_datadir)/kivio/kpartplugins
+diff --git a/kplato/Makefile.am b/kplato/Makefile.am
+index 6ccd319..865920a 100644
+--- a/kplato/Makefile.am
++++ b/kplato/Makefile.am
+@@ -102,8 +102,8 @@ noinst_HEADERS = \
+ ## The part
+ lib_LTLIBRARIES = 
+ kde_module_LTLIBRARIES = libkplatopart.la
+-libkplatopart_la_LDFLAGS = $(KDE_LDFLAGS) $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../lib/kofficecore/.libs/ -lkofficecore -L../lib/kofficeui/.libs/ -lkofficeui -L../lib/store/.libs/ -lkstore -lkdeprint
+-libkplatopart_la_LIBADD = $(LIB_KABC) $(LIB_KOFFICEUI) -lDCOP \
++libkplatopart_la_LDFLAGS = $(KDE_LDFLAGS) $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -lkdeprint
++libkplatopart_la_LIBADD = $(LIB_KABC) $(KOFFICE_LIBS) -lDCOP \
+                           $(top_builddir)/kdgantt/libkdgantt.la
+ ##                          $(top_builddir)/kugar/lib/libkugarlib.la
+ 
+@@ -113,8 +113,8 @@ libkplatopart_la_METASOURCES = AUTO
+ kdeinit_LTLIBRARIES = kplato.la
+ bin_PROGRAMS =
+ kplato_la_SOURCES = main.cc
+-kplato_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../lib/kofficecore/.libs/ -lkofficecore -L../lib/kofficeui/.libs/ -lkofficeui -L../lib/store/.libs/ -lkstore -lkdeprint
+-kplato_la_LIBADD = $(LIB_KOFFICECORE)
++kplato_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -lkdeprint
++kplato_la_LIBADD = $(KOFFICE_LIBS)
+ 
+ xdg_apps_DATA = kplato.desktop
+ 
+diff --git a/kpresenter/Makefile.am b/kpresenter/Makefile.am
+index 401160c..69f5b18 100644
+--- a/kpresenter/Makefile.am
++++ b/kpresenter/Makefile.am
+@@ -68,7 +68,7 @@ libkpresenterprivate_la_SOURCES = KoPointArray.cpp KPrCanvas.cpp \
+ 	slidetransitionwidget.ui KPrSlideTransitionDia.cpp \
+ 	KPrPrinterDlg.cpp
+ 
+-libkpresenterprivate_la_LDFLAGS = $(all_libraries) -version-info 4:0 -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkpresenterprivate_la_LDFLAGS = $(all_libraries) -version-info 4:0 -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts $(LIBKSPELL2)
+ if include_ARTS
+ ARTSKDE = -lartskde
+ endif
+diff --git a/kspread/Makefile.am b/kspread/Makefile.am
+index 63bc28a..d65764f 100644
+--- a/kspread/Makefile.am
++++ b/kspread/Makefile.am
+@@ -28,7 +28,7 @@ libkspreadcommon_la_SOURCES = digest.cc commands.cc damages.cc dependencies.cc \
+ 		kspread_genvalidationstyle.cc region.cc selection.cc manipulator.cc manipulator_data.cc \
+ 	kspread_generalProperty.cpp kspread_propertyEditor.cpp 
+ 
+-libkspreadcommon_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkspreadcommon_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -lkutils
+ libkspreadcommon_la_LIBADD = $(top_builddir)/interfaces/libkochart.la \
+ 	dialogs/libdialogs.la tests/libtests.la \
+ 	$(LIB_KOFFICEUI) $(LIB_KOTEXT) -lkspell
+diff --git a/kspread/plugins/scripting/kspreadcore/Makefile.am b/kspread/plugins/scripting/kspreadcore/Makefile.am
+index 6bfe86f..c9f1f55 100644
+--- a/kspread/plugins/scripting/kspreadcore/Makefile.am
++++ b/kspread/plugins/scripting/kspreadcore/Makefile.am
+@@ -7,8 +7,9 @@ kde_module_LTLIBRARIES = krosskspreadcore.la
+ 
+ krosskspreadcore_la_SOURCES = kspreadcoremodule.cpp krs_doc.cpp krs_sheet.cpp krs_cell.cpp
+ 
+-krosskspreadcore_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../../lib/kofficecore/.libs/ -lkofficecore -L../../../../lib/kofficeui/.libs/ -lkofficeui
++krosskspreadcore_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -module -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ krosskspreadcore_la_LIBADD = \
++    $(LIB_KOFFICECORE) $(LIB_KOFFICEUI) \
+     $(LIB_QT) \
+     $(LIB_KDECORE) \
+     $(top_builddir)/lib/kross/api/libkrossapi.la \
+diff --git a/kword/Makefile.am b/kword/Makefile.am
+index 523c2d9..1b89a71 100644
+--- a/kword/Makefile.am
++++ b/kword/Makefile.am
+@@ -9,8 +9,8 @@ lib_LTLIBRARIES = libkwmailmerge_interface.la libkwordprivate.la
+ 
+ ## The part
+ libkwordpart_la_SOURCES = KWFactoryInit.cpp
+-libkwordpart_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../lib/kofficecore/.libs/ -lkofficecore -L../lib/kofficeui/.libs/ -lkofficeui -L../lib/store/.libs/ -lkstore
+-libkwordpart_la_LIBADD = libkwordprivate.la
++libkwordpart_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkwordpart_la_LIBADD = $(KOFFICE_LIBS) libkwordprivate.la
+ 
+ ## A lib with all the code
+ libkwordprivate_la_SOURCES = KWTableFrameSet.cpp KWCanvas.cpp KWFrame.cpp KWFormulaFrameSet.cpp \
+@@ -54,15 +54,15 @@ libkwordprivate_la_SOURCES = KWTableFrameSet.cpp KWCanvas.cpp KWFrame.cpp KWForm
+ 		KWLoadingInfo.cpp
+ 
+ 
+-libkwordprivate_la_LDFLAGS = $(all_libraries) -version-info 4:0 -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../lib/kofficecore/.libs/ -lkofficecore -L../lib/kofficeui/.libs/ -lkofficeui -L../lib/store/.libs/ -lkstore
+-libkwordprivate_la_LIBADD = $(LIB_KOFFICEUI) $(LIB_KOTEXT) ../lib/kformula/libkformulalib.la ./libkwmailmerge_interface.la 
++libkwordprivate_la_LDFLAGS = $(all_libraries) -version-info 4:0 -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts $(LIBKSPELL2)
++libkwordprivate_la_LIBADD = $(KOFFICE_LIBS) $(LIB_KOTEXT) ../lib/kformula/libkformulalib.la ./libkwmailmerge_interface.la 
+ 
+ METASOURCES = AUTO
+ 
+ ## The mailmerge interface library
+ libkwmailmerge_interface_la_SOURCES = KWMailMergeDataSource.cpp KWMailMergeDataSource.skel
+-libkwmailmerge_interface_la_LDFLAGS = $(all_libraries) -version-info 4:0 -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../lib/kofficecore/.libs/ -lkofficecore -L../lib/kofficeui/.libs/ -lkofficeui -L../lib/store/.libs/ -lkstore
+-libkwmailmerge_interface_la_LIBADD = $(LIB_QT) -lDCOP
++libkwmailmerge_interface_la_LDFLAGS = $(all_libraries) -version-info 4:0 -no-undefined -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++libkwmailmerge_interface_la_LIBADD = $(KOFFICE_LIBS) $(LIB_QT) -lDCOP
+ kwincludedir = $(includedir)/kword
+ kwinclude_HEADERS = KWMailMergeDataSource.h
+ 
+@@ -73,8 +73,8 @@ kwmailmerge_servicetypedir=$(kde_servicetypesdir)
+ kdeinit_LTLIBRARIES = kword.la
+ bin_PROGRAMS =
+ kword_la_SOURCES = main.cpp
+-kword_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../lib/kofficecore/.libs/ -lkofficecore -L../lib/kofficeui/.libs/ -lkofficeui -L../lib/store/.libs/ -lkstore
+-kword_la_LIBADD = $(LIB_KOFFICECORE)
++kword_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kword_la_LIBADD = $(KOFFICE_LIBS)
+ 
+ xdg_apps_DATA = kword.desktop
+ 
+diff --git a/kword/mailmerge/Makefile.am b/kword/mailmerge/Makefile.am
+index 497897c..ccc86c5 100644
+--- a/kword/mailmerge/Makefile.am
++++ b/kword/mailmerge/Makefile.am
+@@ -6,8 +6,8 @@ kde_module_LTLIBRARIES = kwmailmerge_classic.la
+ 
+ ## Plugin encapsulating the (old) internally stored style
+ kwmailmerge_classic_la_SOURCES = KWClassicSerialDataSource.cpp
+-kwmailmerge_classic_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../lib/kofficecore/.libs/ -lkofficecore -L../../lib/kofficeui/.libs/ -lkofficeui -L../../lib/store/.libs/ -lkstore
+-kwmailmerge_classic_la_LIBADD = ../libkwmailmerge_interface.la $(LIB_KDEUI) $(LIB_KOTEXT)
++kwmailmerge_classic_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kwmailmerge_classic_la_LIBADD = $(KOFFICE_LIBS) ../libkwmailmerge_interface.la $(LIB_KDEUI) $(LIB_KOTEXT)
+ 
+ METASOURCES = AUTO
+ 
+diff --git a/kword/mailmerge/kabc/Makefile.am b/kword/mailmerge/kabc/Makefile.am
+index de7f026..d5a8535 100644
+--- a/kword/mailmerge/kabc/Makefile.am
++++ b/kword/mailmerge/kabc/Makefile.am
+@@ -7,8 +7,8 @@ kde_module_LTLIBRARIES = kwmailmerge_kabc.la
+ 
+ ## Plugin encapsulating the QT SQL database interface
+ kwmailmerge_kabc_la_SOURCES = KWMailMergeKABC.cpp KWMailMergeKABCConfig.cpp addresspicker.ui
+-kwmailmerge_kabc_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-kwmailmerge_kabc_la_LIBADD = ../../libkwmailmerge_interface.la $(LIB_KDEUI) $(LIB_KABC)
++kwmailmerge_kabc_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kwmailmerge_kabc_la_LIBADD = $(KOFFICE_LIBS) ../../libkwmailmerge_interface.la $(LIB_KDEUI) $(LIB_KABC)
+ 
+ METASOURCES = AUTO
+ 
+diff --git a/kword/mailmerge/kspread/Makefile.am b/kword/mailmerge/kspread/Makefile.am
+index dfb5e2d..04bb0b1 100644
+--- a/kword/mailmerge/kspread/Makefile.am
++++ b/kword/mailmerge/kspread/Makefile.am
+@@ -6,8 +6,8 @@ INCLUDES = $(KOFFICE_INCLUDES) $(KOTEXT_INCLUDES)  \
+ kde_module_LTLIBRARIES = kwmailmerge_kspread.la
+ 
+ kwmailmerge_kspread_la_SOURCES = kwmailmerge_kspread.cpp kwmailmerge_kspread_config.cpp
+-kwmailmerge_kspread_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-kwmailmerge_kspread_la_LIBADD = ../../libkwmailmerge_interface.la \
++kwmailmerge_kspread_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kwmailmerge_kspread_la_LIBADD = $(KOFFICE_LIBS) ../../libkwmailmerge_interface.la \
+                                 $(top_builddir)/kspread/libkspreadcommon.la $(LIB_KDEUI)
+ 
+ METASOURCES = AUTO
+diff --git a/kword/mailmerge/sql/Makefile.am b/kword/mailmerge/sql/Makefile.am
+index 4dd4816..082ddc3 100644
+--- a/kword/mailmerge/sql/Makefile.am
++++ b/kword/mailmerge/sql/Makefile.am
+@@ -6,14 +6,14 @@ kde_module_LTLIBRARIES = kwmailmerge_qtsqldb.la kwmailmerge_qtsqldb_power.la
+ ## Plugin encapsulating the QT SQL database interface
+ kwmailmerge_qtsqldb_la_SOURCES = KWQtSqlSerialDataSource.cpp qtsqldatasourceeditor.ui \
+ 				 KWQtSqlEasyFilter.cpp
+-kwmailmerge_qtsqldb_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-kwmailmerge_qtsqldb_la_LIBADD = libmailmergesqlcommon.la ../../libkwmailmerge_interface.la $(LIB_KDEUI)
++kwmailmerge_qtsqldb_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kwmailmerge_qtsqldb_la_LIBADD = $(KOFFICE_LIBS) libmailmergesqlcommon.la ../../libkwmailmerge_interface.la $(LIB_KDEUI)
+ kwmailmerge_qtsqldb_la_COMPILE_FIRST = qtsqlopenwidget.h
+ 
+ ## 2. Plugin encapsulating the QT SQL database interface
+ kwmailmerge_qtsqldb_power_la_SOURCES = KWQtSqlPowerSerialDataSource.cpp kwqtsqlpower.ui KWQtSqlPowerSerialDataSource.skel
+-kwmailmerge_qtsqldb_power_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-kwmailmerge_qtsqldb_power_la_LIBADD = libmailmergesqlcommon.la ../../libkwmailmerge_interface.la $(LIB_KDEUI)
++kwmailmerge_qtsqldb_power_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lDCOP -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kwmailmerge_qtsqldb_power_la_LIBADD = $(KOFFICE_LIBS) libmailmergesqlcommon.la ../../libkwmailmerge_interface.la $(LIB_KDEUI)
+ kwmailmerge_qtsqldb_power_la_COMPILE_FIRST = qtsqlopenwidget.h
+ 
+ # Common files
+diff --git a/tools/kfile-plugins/abiword/Makefile.am b/tools/kfile-plugins/abiword/Makefile.am
+index efeee86..81e8a65 100644
+--- a/tools/kfile-plugins/abiword/Makefile.am
++++ b/tools/kfile-plugins/abiword/Makefile.am
+@@ -9,8 +9,8 @@ noinst_HEADERS   = kfile_abiword.h
+ kde_module_LTLIBRARIES = kfile_abiword.la
+ 
+ kfile_abiword_la_SOURCES = kfile_abiword.cpp
+-kfile_abiword_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-kfile_abiword_la_LIBADD = $(LIB_KOFFICECORE)
++kfile_abiword_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kfile_abiword_la_LIBADD = $(KOFFICE_LIBS)
+ 
+ # let automoc handle all of the meta source files (moc)
+ METASOURCES = AUTO
+diff --git a/tools/kfile-plugins/gnumeric/Makefile.am b/tools/kfile-plugins/gnumeric/Makefile.am
+index 94c90e9..c5d9704 100644
+--- a/tools/kfile-plugins/gnumeric/Makefile.am
++++ b/tools/kfile-plugins/gnumeric/Makefile.am
+@@ -9,8 +9,8 @@ noinst_HEADERS   = kfile_gnumeric.h
+ kde_module_LTLIBRARIES = kfile_gnumeric.la
+ 
+ kfile_gnumeric_la_SOURCES = kfile_gnumeric.cpp
+-kfile_gnumeric_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-kfile_gnumeric_la_LIBADD = $(LIB_KOFFICECORE)
++kfile_gnumeric_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kfile_gnumeric_la_LIBADD = $(KOFFICE_LIBS)
+ 
+ # let automoc handle all of the meta source files (moc)
+ METASOURCES = AUTO
+diff --git a/tools/kfile-plugins/koffice/Makefile.am b/tools/kfile-plugins/koffice/Makefile.am
+index a4770ce..6d81afa 100644
+--- a/tools/kfile-plugins/koffice/Makefile.am
++++ b/tools/kfile-plugins/koffice/Makefile.am
+@@ -9,8 +9,8 @@ noinst_HEADERS   = kfile_koffice.h
+ kde_module_LTLIBRARIES = kfile_koffice.la
+ 
+ kfile_koffice_la_SOURCES = kfile_koffice.cpp
+-kfile_koffice_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-kfile_koffice_la_LIBADD = $(LIB_KOFFICECORE)
++kfile_koffice_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kfile_koffice_la_LIBADD = $(KOFFICE_LIBS)
+ 
+ # let automoc handle all of the meta source files (moc)
+ METASOURCES = AUTO
+diff --git a/tools/kfile-plugins/ooo/Makefile.am b/tools/kfile-plugins/ooo/Makefile.am
+index 8c785ef..1e47978 100644
+--- a/tools/kfile-plugins/ooo/Makefile.am
++++ b/tools/kfile-plugins/ooo/Makefile.am
+@@ -9,8 +9,8 @@ noinst_HEADERS   = kfile_ooo.h
+ kde_module_LTLIBRARIES = kfile_ooo.la
+ 
+ kfile_ooo_la_SOURCES = kfile_ooo.cpp
+-kfile_ooo_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../../lib/kofficecore/.libs/ -lkofficecore -L../../../lib/kofficeui/.libs/ -lkofficeui -L../../../lib/store/.libs/ -lkstore
+-kfile_ooo_la_LIBADD = $(LIB_KOFFICECORE)
++kfile_ooo_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
++kfile_ooo_la_LIBADD = $(KOFFICE_LIBS)
+ 
+ # let automoc handle all of the meta source files (moc)
+ METASOURCES = AUTO
+diff --git a/tools/thumbnail/Makefile.am b/tools/thumbnail/Makefile.am
+index f63fd83..cf41afd 100644
+--- a/tools/thumbnail/Makefile.am
++++ b/tools/thumbnail/Makefile.am
+@@ -4,12 +4,12 @@ METASOURCES = AUTO
+ kde_module_LTLIBRARIES = clipartthumbnail.la kofficethumbnail.la
+ 
+ clipartthumbnail_la_SOURCES = clipartcreator.cpp
+-clipartthumbnail_la_LIBADD = $(LIB_KOFFICECORE) # for KoClipartCollection
+-clipartthumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../lib/kofficecore/.libs/ -lkofficecore -L../../lib/kofficeui/.libs/ -lkofficeui -L../../lib/store/.libs/ -lkstore
++clipartthumbnail_la_LIBADD = $(KOFFICE_LIBS) # for KoClipartCollection
++clipartthumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+ kofficethumbnail_la_SOURCES = kofficecreator.cpp
+-kofficethumbnail_la_LIBADD = $(LIB_KOFFICECORE)
+-kofficethumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts -L../../lib/kofficecore/.libs/ -lkofficecore -L../../lib/kofficeui/.libs/ -lkofficeui -L../../lib/store/.libs/ -lkstore
++kofficethumbnail_la_LIBADD = $(KOFFICE_LIBS)
++kofficethumbnail_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -lkdecore -lkdeui $(LIB_QT) -lkjs -lkdefx -lkio -lkparts
+ 
+ # otherofficethumbnail.desktop is currently not installed, as it gives too many problems
+ kde_services_DATA = clipartthumbnail.desktop kofficethumbnail.desktop

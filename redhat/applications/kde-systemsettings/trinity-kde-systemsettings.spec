@@ -18,7 +18,7 @@ BuildRequires: autoconf automake libtool m4
 Name:		trinity-systemsettings
 Summary:	easy to use control centre for TDE
 Version:	0.0svn20070312
-Release:	2%{?dist}%{?_variant}
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -33,12 +33,15 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{kdecomp}-3.5.13.tar.gz
 Source1:	kde-settings-laptops.directory
 
+Provides:	trinity-kde-systemsettings = %{version}-%{release}
+Obsoletes:	trinity-kde-systemsettings < %{version}-%{release}
+
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
-Requires:	trinity-kde-guidance
+Requires:	trinity-guidance
 
 %description
 System preferences is a replacement for the TDE
@@ -96,7 +99,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 %defattr(-,root,root,-)
 %doc README TODO
 %{_sysconfdir}/xdg/menus/applications-merged/system-settings-merge.menu
-%{_sysconfdir}/xdg/menus/system-settings.menu
+%exclude %{_sysconfdir}/xdg/menus/system-settings.menu
 %{_bindir}/systemsettings
 %{_datadir}/applications/kde/audioencoding.desktop
 %{_datadir}/applications/kde/defaultapplication.desktop
@@ -115,6 +118,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 
 
 %Changelog
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-3
+- Updates 'Requires: trinity-guidance' to reflect package renaming
+
 * Wed Dec 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-2
 - Fix XDG menu directory location
 

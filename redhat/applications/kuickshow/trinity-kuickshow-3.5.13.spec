@@ -1,7 +1,5 @@
 # Default version for this component
 %define kdecomp kuickshow
-%define version 0.8.13
-%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -18,8 +16,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-%{kdecomp}
 Summary:	Quick picture viewer for KDE 
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.8.13
+Release:	4%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -27,6 +25,8 @@ Group:		Applications/Utilities
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
+
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
@@ -38,8 +38,6 @@ Patch1:		bp001-28d9c774.diff
 Patch2:		bp002-bdeb8b3a.diff
 # [kuickshow] Remove inadvertent renaming [Commit #d97e403f] [Bug #863]
 Patch3:		bp003-d97e403f.diff
-
-Conflicts:	trinity-kdegraphics
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-kdelibs-devel
@@ -109,15 +107,18 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_bindir}/*
 %{_datadir}/applications/*/*.desktop
 %{_datadir}/apps/*/
-%{tde_docdir}/HTML/en/*/
 %{_datadir}/icons/hicolor/*/*/*
-%{_libdir}/libkdeinit_%{kdecomp}.so
+%{_libdir}/lib[kt]deinit_%{kdecomp}.so
 %{_libdir}/*.la
 %{tde_libdir}/*.so
 %{tde_libdir}/*.la
+%{tde_docdir}/HTML/en/*/
 
 
 %Changelog
+* Mon Jul 09 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.13-3
+- Removes conflict with 'kdegraphics'
+
 * Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.13-3
 - Rename old tq methods that no longer need a unique name [Commit #8712ab46]
 - Remove additional unneeded tq method conversions [Commit #28d9c774]

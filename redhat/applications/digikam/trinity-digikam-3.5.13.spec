@@ -1,16 +1,16 @@
 # Default version for this component
 %define kdecomp digikam
-%define version 0.9.6
-%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
+%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
+%define tde_appdir %{_datadir}/applications/kde
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -18,8 +18,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-%{kdecomp}
 Summary:	digital photo management application for KDE [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.9.6
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -60,6 +60,7 @@ BuildRequires: libgphoto2-devel
 %endif
 BuildRequires: libtiff-devel
 BuildRequires: jasper-devel
+BuildRequires: exiv2-devel
 
 
 %description
@@ -68,18 +69,18 @@ application, which makes importing, organizing and manipulating
 digital photos a "snap".  An interface is provided to connect to
 your digital camera, preview the images and download and/or
 delete them.
-.
+
 The digiKam built-in image editor makes the common photo correction
 a simple task. The image editor is extensible via plugins and,
 the digikamimageplugins project has been merged to digiKam core
 since release 0.9.2, all useful image editor plugins are available
 in the base installation.
-.
+
 digiKam can also make use of the KIPI image handling plugins to
 extend its capabilities even further for photo manipulations,
 import and export, etc. The kipi-plugins package contains many
 very useful extentions.
-.
+
 digiKam is based in part on the work of the Independent JPEG Group.
 
 
@@ -140,10 +141,18 @@ export PATH="%{_bindir}:${PATH}"
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+/sbin/ldconfig
 
 %postun
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+/sbin/ldconfig
+
+%post devel
+/sbin/ldconfig
+
+%postun devel
+/sbin/ldconfig
 
 
 %files
@@ -151,7 +160,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %doc AUTHORS COPYING
 %{_bindir}/*
 %{_libdir}/*.so.*
-%{_datadir}/applications/*/*.desktop
+%{tde_appdir}/*.desktop
 %{_datadir}/locale/*/LC_MESSAGES/digikam.mo
 %{_datadir}/services/*.desktop
 %{_datadir}/services/*.protocol
@@ -160,18 +169,24 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{tde_docdir}/HTML/en/*/
 %{_datadir}/icons/hicolor/*/*/*
 %{_mandir}/man*/*
+%{tde_libdir}/*.so
+%{tde_libdir}/*.la
 
 
 %files devel
 %{_includedir}/*.h
-%{_includedir}/digikam
+%{_includedir}/digikam/
 %{_libdir}/*.so
 %{_libdir}/*.la
-%{_libdir}/*/*.so
-%{_libdir}/*/*.la
 
 
 %Changelog
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-3
+- Fix man directory location
+- Fix postinstall
+- Fix description
+- Add "BuildRequires: exiv2-devel"
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-2
 - gcc 4.7 + libpng 1.5 patch for digikam (consolidated) [Bug #958]
 

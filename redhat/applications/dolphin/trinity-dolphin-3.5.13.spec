@@ -1,12 +1,10 @@
 # Default version for this component
 %define kdecomp dolphin
-%define version 0.9.2
-%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -18,8 +16,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-%{kdecomp}
 Summary:	File manager for TDE focusing on usability 
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.9.2
+Release:	5%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -104,6 +102,9 @@ for lang_dir in %{buildroot}$HTML_DIR/* ; do
 done
 fi
 
+# Makes 'media_safelyremove.desktop' an alternative
+%__mv -f %{buildroot}%{_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop %{buildroot}%{_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_d3lphin
+%__ln_s /etc/alternatives/media_safelyremove.desktop_d3lphin %{buildroot}%{_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop
 
 %clean
 %__rm -rf %{buildroot}
@@ -112,10 +113,21 @@ fi
 %post
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+alternatives --install \
+  %{_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop \
+  media_safelyremove.desktop_d3lphin \
+  %{_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_d3lphin \
+  10
+
 
 %postun
 touch --no-create %{_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+if [ $1 -eq 0 ]; then
+  alternatives --remove \
+    media_safelyremove.desktop_d3lphin \
+    %{_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_d3lphin
+fi
 
 
 %files
@@ -125,12 +137,14 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_datadir}/applications/*.desktop
 %{_datadir}/apps/*/
 %doc %lang(en) %{tde_docdir}/HTML/en/*/
-%{_datadir}/icons/hicolor/128x128/apps/*.png
-%{_datadir}/icons/hicolor/??x??/apps/*.png
+%{_datadir}/icons/hicolor/*/apps/*.png
 %{_datadir}/locale/*/*/d3lphin.mo
 
 
 %Changelog
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.2-5
+- Add alternatives with 'kio-umountwrapper'
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.2-4
 - Rebuild for Fedora 17
 - Fix HTML installation directory

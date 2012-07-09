@@ -5,6 +5,7 @@
 %endif
 
 # TDE 3.5.13 specific variables
+%define tde_appdir %{_datadir}/applications/kde
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -12,7 +13,7 @@
 Name:    trinity-kdevelop
 Summary: Integrated Development Environment for C++/C
 Version: 3.5.13
-Release: 3%{?dist}%{?_variant}
+Release: 4%{?dist}%{?_variant}
 
 
 License: GPLv2
@@ -40,12 +41,9 @@ Patch3: kdevelop-3.5.13-gcc47.patch
 # [c_cpp_ref] Fix installation of 'asm' files
 Patch4:	c_cpp_reference-2.0.2-install.patch
 
-Provides: kdevelop3 = %{version}-%{release}
-
 Requires: %{name}-libs = %{version}-%{release}
 
 
-Requires: trinity-kdelibs-devel
 Requires: make
 Requires: perl
 Requires: flex >= 2.5.4
@@ -56,8 +54,7 @@ Requires: ctags
 BuildRequires: cmake >= 2.8
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdelibs-apidocs
+BuildRequires: trinity-tdelibs-devel
 BuildRequires: qt3-devel-docs
 BuildRequires: db4-devel
 BuildRequires: flex
@@ -96,9 +93,7 @@ individual needs.
 %package devel
 Summary: Development files for %{name}
 Group: Development/Libraries
-Provides: kdevelop3-devel = %{version}-%{release}
 Requires: %{name}-libs = %{version}-%{release}
-Requires: trinity-kdelibs-devel
 %description devel
 %{summary}.
 
@@ -106,8 +101,6 @@ Requires: trinity-kdelibs-devel
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
 Requires: trinity-kdelibs
-# helps multilib upgrades
-Obsoletes: %{name} < %{version}-%{release}
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
 Requires: %{name} = %{version}-%{release}
 %description libs
@@ -207,7 +200,7 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 %{_bindir}/*
 %{tde_libdir}/*
 %{_libdir}/kconf_update_bin/*
-%{_datadir}/applications/kde/*
+%{tde_appdir}/*
 %{_datadir}/apps/*
 %{_datadir}/config/*
 %{_datadir}/desktop-directories/*
@@ -230,6 +223,9 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %changelog
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Removes runtime dependency to 'trinity-kdelibs'
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Fix installation on Fedora 17
 - Fix compilation on GCC 4.7

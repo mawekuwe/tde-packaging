@@ -1,0 +1,18 @@
+commit 59ee4f6630e6ed6b2712600a88d3ba9ce383620b
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1339467335 -0500
+
+    Fix tdesu/tdesudo argument compatibility problem
+
+diff --git a/kdesu/kdesu/kdesu.cpp b/kdesu/kdesu/kdesu.cpp
+index 3511b1f..8ea82fb 100644
+--- a/kdesu/kdesu/kdesu.cpp
++++ b/kdesu/kdesu/kdesu.cpp
+@@ -63,6 +63,7 @@ static KCmdLineOptions options[] = {
+     { "p <prio>", I18N_NOOP("Set priority value: 0 <= prio <= 100, 0 is lowest"), "50" },
+     { "r", I18N_NOOP("Use realtime scheduling"), 0 },
+     { "nonewdcop", I18N_NOOP("Let command use existing dcopserver"), 0 },
++    { "comment <comment>", I18N_NOOP("Ignored"), "" },
+     { "noignorebutton", I18N_NOOP("Do not display ignore button"), 0 },
+     { "i <icon name>", I18N_NOOP("Specify icon to use in the password dialog"), 0},
+     { "d", I18N_NOOP("Do not show the command to be run in the dialog"), 0},

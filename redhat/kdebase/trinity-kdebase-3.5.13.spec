@@ -19,7 +19,7 @@
 
 Name:		trinity-tdebase
 Version:	3.5.13
-Release:	24%{?release}%{?dist}%{?_variant}
+Release:	25%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
@@ -159,7 +159,8 @@ Patch58:	kdebase-3.5.13-fix_khtml_smooth_scrolling.patch
 Patch59:	kdebase-3.5.13-fix_fancy_logout.patch
 ## [tdebase] Update default konqueror maximum image preview size to 10MB. [Commit #03e19305]
 Patch60:	kdebase-3.5.13-update_default_konq_max_image_prev_size.patch
-
+## [tdebase] Fix menu crash with disabled search field [Bug #1081] [Commit #0afb2d8a]
+Patch61:	kdebase-3.5.13-fix_menu_crash_with_disabled_search.patch
 
 ### FEDORA / RHEL distribution-specific settings ###
 
@@ -2179,6 +2180,7 @@ ever launching another application.
 %exclude %{_datadir}/apps/konqueror/servicemenus/konsolehere.desktop
 %exclude %{_datadir}/apps/konqueror/servicemenus/installfont.desktop
 %{_datadir}/apps/konqueror/servicemenus/*.desktop
+%{_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
 %{_datadir}/apps/konqueror/tiles/*.png
 %{_datadir}/autostart/konqy_preload.desktop
 %{_datadir}/config.kcfg/keditbookmarks.kcfg
@@ -2200,6 +2202,11 @@ for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 /sbin/ldconfig || :
+alternatives --install \
+  %{_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop \
+  media_safelyremove.desktop_konqueror \
+  %{_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase \
+  10
 
 %postun -n trinity-konqueror
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -2208,6 +2215,11 @@ for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
 done
 /sbin/ldconfig || :
+if [ $1 -eq 0 ]; then
+  alternatives --remove \
+    media_safelyremove.desktop_konqueror
+    %{_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
+fi
 
 ##########
 
@@ -2857,6 +2869,7 @@ Konqueror libraries.
 %patch58 -p1
 %patch59 -p1
 %patch60 -p1
+%patch61 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -2978,6 +2991,11 @@ cd build
 %__rm -f "%{?buildroot}%{_datadir}/apps/usb.ids"
 %__ln_s -f "/usr/share/hwdata/usb.ids" "%{?buildroot}%{_datadir}/apps/usb.ids"
 
+# Makes 'media_safelyremove.desktop' an alternative
+%__mv -f %{buildroot}%{_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop %{buildroot}%{_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
+%__ln_s /etc/alternatives/media_safelyremove.desktop_tdebase %{buildroot}%{_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop
+
+
 %clean
 %__rm -rf %{?buildroot}
 
@@ -2988,6 +3006,10 @@ cd build
 
 
 %changelog
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-25
+- Fix menu crash with disabled search field [Bug #1081] [Commit #0afb2d8a]
+- Makes 'media_safelyremove.desktop' an alternative
+
 * Sun Jul 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-24
 - Renames 'tdebase' to 'trinity-tdebase'
 - Update default konqueror maximum image preview size to 10MB. [Commit #03e19305]

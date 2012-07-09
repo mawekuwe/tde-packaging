@@ -1,7 +1,5 @@
 # Default version for this component
 %define kdecomp kradio
-%define version 0.1.1.1
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -11,6 +9,7 @@
 
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
+%define tde_appdir %{_datadir}/applications/kde
 %define tde_docdir %{_docdir}/kde
 %define tde_includedir %{_includedir}/kde
 %define tde_libdir %{_libdir}/trinity
@@ -18,8 +17,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-%{kdecomp}
 Summary:	Comfortable Radio Application for KDE [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.1.1.1
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -41,9 +40,10 @@ BuildRequires:	gettext
 
 BuildRequires:	libsndfile-devel
 BuildRequires:	lirc-devel
+BuildRequires:	lame-devel
 
 %description
-KRadio is a comfortable radio application for KDE 3.x with support for 
+KRadio is a comfortable radio application for Trinity with support for 
 V4L and V4L2 radio cards drivers.
 
 KRadio currently provides
@@ -104,12 +104,14 @@ for f in hicolor locolor ; do
   touch --no-create %{_datadir}/icons/${f} || :
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
 done
+update-desktop-database -q &> /dev/null ||:
 
 %postun
 for f in hicolor locolor ; do
   touch --no-create %{_datadir}/icons/${f} || :
   gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
 done
+update-desktop-database -q &> /dev/null ||:
 
 
 %files -f %{kdecomp}.lang
@@ -118,15 +120,15 @@ done
 %{_bindir}/kradio
 %{_libdir}/kradio/plugins/*.la
 %{_libdir}/kradio/plugins/*.so
-%{_datadir}/applications/kde/kradio.desktop
-%{_datadir}/apps/kradio/default-dot-lircrc
-%{_datadir}/apps/kradio/icons/hicolor/*/*/*.png
-%{_datadir}/apps/kradio/icons/locolor/*/*/*.png
-%{_datadir}/apps/kradio/presets/*/*.krp
-%{_datadir}/apps/kradio/presets/*/*/*.krp
+%{tde_appdir}/kradio.desktop
+%{_datadir}/apps/kradio/
 %{_datadir}/locale/*/LC_MESSAGES/kradio-*.mo
 
 %Changelog
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-3
+- Rebuild for RHEL 5
+- Fix postinstall
+
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-2
 - Rebuild for Fedora 17
 - Fix HTML directory location
