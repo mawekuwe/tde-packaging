@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, gettext, groff-base, kdelibs4-trinity-dev, kdemultimedia-trinity-dev, libakode-dev, libxtst-dev, sharutils, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), quilt, gawk, gettext, groff-base, kdelibs4-trinity-dev, kdemultimedia-trinity-dev, libakode-dev, libxtst-dev, sharutils, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kdeaccessibility-trinity
