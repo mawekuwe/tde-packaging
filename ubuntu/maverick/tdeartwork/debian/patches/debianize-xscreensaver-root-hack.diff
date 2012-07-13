@@ -1,6 +1,6 @@
 diff -urN kscreensaver/krootbacking/Makefile.am kscreensaver/krootbacking/Makefile.am
---- kscreensaver/krootbacking/Makefile.am
-+++ kscreensaver/krootbacking/Makefile.am
+--- a/kscreensaver/krootbacking/Makefile.am
++++ b/kscreensaver/krootbacking/Makefile.am
 @@ -1,6 +1,6 @@
  INCLUDES = $(all_includes)
  
