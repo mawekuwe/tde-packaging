@@ -5,7 +5,7 @@ PATH := /opt/trinity/bin:$(PATH)
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/cmake.mk
 include /usr/share/cdbs/1/rules/utils.mk
-include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+#include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
