@@ -6,7 +6,7 @@ XSBC-Original-Maintainer: Harald Sitter <apachelogger@ubuntu.com>
 Build-Depends: debhelper (>= 5), cdbs, pkg-config, libmng-dev,librsvg2-bin,
  medcon, libjasper-dev, libungif4-dev, libwmf-dev, libopenexr-dev,
  djvulibre-bin, transfig, x11proto-core-dev, netpbm, libtiff4-dev,
- libkonq4-trinity-dev, kipi-plugins-trinity, libkipi0-trinity-dev, dpatch, build-essential,
+ libkonq4-trinity-dev, kipi-plugins-trinity, libkipi0-trinity-dev, build-essential,
  automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homagepage: http://ksquirrel.sourceforge.net
