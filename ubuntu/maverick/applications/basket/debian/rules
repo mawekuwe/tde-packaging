@@ -23,7 +23,7 @@ else
 	CFLAGS += -O2
 endif
 
-include /usr/share/quilt/quilt.make
+#include /usr/share/quilt/quilt.make
 
 
 config.status: $(QUILT_STAMPFN)
@@ -56,7 +56,7 @@ build-stamp:  config.status
 
 	touch build-stamp
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
 
