@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Achim Bohnet <ach@mpe.mpg.de>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>> 4.1), libexif-dev, kdelibs4-trinity-dev (>= 4:3.4.3-2), automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>> 4.1), quilt, libexif-dev, kdelibs4-trinity-dev (>= 4:3.4.3-2), automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: libkipi0-trinity-dev
