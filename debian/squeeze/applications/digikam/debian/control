@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Achim Bohnet <ach@mpe.mpg.de>, Mark Purcell <msp@debian.org>, Fathi Boudra <fabo@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), kdelibs4-trinity-dev,
+Build-Depends: cdbs, debhelper (>= 5), quilt, kdelibs4-trinity-dev,
  libtiff4-dev, libgphoto2-2-dev, libkipi0-trinity-dev,
  libsqlite3-dev, liblcms1-dev, libkexiv2-3-trinity-dev (>= 0.1.6),
  libjasper-dev, libpng12-dev | libpng-dev, libexiv2-dev,
