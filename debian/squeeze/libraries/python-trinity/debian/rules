@@ -11,7 +11,7 @@ DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
-include /usr/share/dpatch/dpatch.make
+#include /usr/share/dpatch/dpatch.make
 # This has to be exported to make some magic below work.
 export DH_OPTIONS
 export QTDIR=/usr/share/qt3
@@ -39,7 +39,7 @@ endif
 
 configure: $(PYTHONS:%=build-%/configure-stamp) $(DBG_PYTHONS:%=dbg-build-%/configure-stamp)
 
-build-%/configure-stamp: patch-stamp
+build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
 	cd build-$* && python$* ../configure.py \
@@ -47,7 +47,7 @@ build-%/configure-stamp: patch-stamp
 		-v /opt/trinity/share/sip/trinity -j $(SPLIT)
 	touch $@
 
-dbg-build-%/configure-stamp: patch-stamp
+dbg-build-%/configure-stamp:
 	dh_testdir
 	mkdir -p dbg-build-$*
 	cd dbg-build-$* && python$*-dbg ../configure.py \
@@ -67,7 +67,7 @@ dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 	$(MAKE) -C dbg-build-$*
 	touch $@
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f *-stamp
