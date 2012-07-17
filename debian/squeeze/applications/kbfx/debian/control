@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), cmake, kdelibs4-trinity-dev
+Build-Depends: cdbs, debhelper (>= 5), quilt, cmake, kdelibs4-trinity-dev
 Standards-Version: 3.8.4
 
 Package: kbfx-trinity
