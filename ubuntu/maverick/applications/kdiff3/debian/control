@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Eike Sauer <eike@debian.org>
-Build-Depends: debhelper (>= 4.0.0), kdelibs4-trinity-dev, libkonq4-trinity-dev, docbook-to-man, libacl1-dev, libattr1-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 4.0.0), quilt, kdelibs4-trinity-dev, libkonq4-trinity-dev, docbook-to-man, libacl1-dev, libattr1-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kdiff3-trinity
