@@ -42,11 +42,10 @@ endif
 
 -include debian/debiandirs
 
-build: patch debian/build-kde
+build: debian/build-kde
 
-patch: patch-stamp
-patch-stamp:
-	dpatch apply-all
+debian/build-kde:
+	dh_testdir
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
@@ -54,15 +53,6 @@ patch-stamp:
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
 	
 	make -f admin/Makefile.common cvs
-	touch debian/stamp-bootstrap
-	touch patch-stamp
-
-unpatch:
-	dpatch deapply-all
-	$(RM) -rf patch-stamp debian/patched
-
-debian/build-kde:
-	dh_testdir
 #	automake
 #	autoconf
 	test -e config.sub -a -L config.sub || \
@@ -74,7 +64,7 @@ debian/build-kde:
 	$(MAKE) -C build-kde
 	touch debian/build-kde
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
 	$(RM) -f build-stamp 
