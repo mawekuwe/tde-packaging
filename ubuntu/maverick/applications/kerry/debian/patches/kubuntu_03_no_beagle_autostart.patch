@@ -9,4 +9,4 @@ diff -Nur kerry-0.2.1/kerry/src/Makefile.am kerry-0.2.1.new/kerry/src/Makefile.a
 +autostart_DATA = kerry.autostart.desktop
  
  shutdowndir = $(prefix)/bin
- shutdown_SCRIPTS = beagled-shutdown.sh
+ shutdown_SCRIPTS = beagled-shutdown
