@@ -18,7 +18,6 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
-include /usr/share/dpatch/dpatch.make
 
 CFLAGS = -Wall -g
 
@@ -37,7 +36,7 @@ debian/knights.xpm: media/hi32-app-knights.png
 	convert $< $@
 
 
-config.status: configure patch
+config.status: configure
 	dh_testdir
 
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
@@ -61,9 +60,7 @@ build-stamp:  config.status debian/knights.xpm
 	$(MAKE)
 	touch build-stamp
 
-clean: clean-patched unpatch
-
-clean-patched:
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f po/de.gmo
