@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Sune Vuorela <debian@pusling.com>
-Build-Depends: debhelper (>= 5.0.0), cdbs, kdebase-trinity-dev, sharutils, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0.0), quilt, cdbs, kdebase-trinity-dev, sharutils, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kwin-style-crystal-trinity
