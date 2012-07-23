@@ -36,7 +36,7 @@ config-stamp:  configure
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-	$(MAKE) -f /usr/share/quilt/quilt.make patch
+	#$(MAKE) -f /usr/share/quilt/quilt.make patch
 
 ifneq "$(wildcard /usr/share/misc/config.sub)" ""
 	cp -f /usr/share/misc/config.sub config.sub
@@ -77,7 +77,7 @@ clean:
 	rm -f po/*.gmo
 	rm -f src/common/global/svn_revision/svn_revision.h
 	rm -f config.sub config.guess config.status config.log
-	$(MAKE) -f /usr/share/quilt/quilt.make unpatch
+	#$(MAKE) -f /usr/share/quilt/quilt.make unpatch
 	dh_clean 
 
 install: build-stamp
