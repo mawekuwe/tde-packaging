@@ -31,7 +31,7 @@ endif
 
 apply-patches:
 	#apply patches first
-	QUILT_PATCHES="debian/patches" quilt push -a -v
+	#QUILT_PATCHES="debian/patches" quilt push -a -v
 
 	#regenerate the acinclude file with the "Debian" libtool
 	cp -a /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
