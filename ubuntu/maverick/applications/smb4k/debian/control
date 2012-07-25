@@ -2,7 +2,7 @@ Source: smb4k-trinity
 Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: kdebase-trinity-dev, kdelibs4-trinity-dev, libart-2.0-dev, libpng3-dev, zlib1g-dev, debhelper (>= 4.1.0), cdbs, libx11-dev, libxext-dev, libxpm-dev, x-dev | x11proto-core-dev | libx11-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: kdebase-trinity-dev, kdelibs4-trinity-dev, libart-2.0-dev, libpng3-dev, zlib1g-dev, debhelper (>= 4.1.0), quilt, cdbs, libx11-dev, libxext-dev, libxpm-dev, x-dev | x11proto-core-dev | libx11-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://smb4k.berlios.de/
 
