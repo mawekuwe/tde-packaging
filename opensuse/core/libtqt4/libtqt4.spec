@@ -155,6 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/Qt/q*.h
 %{_includedir}/tq*.h
 %{_libdir}/pkgconfig/tqt.pc
+%{_libdir}/pkgconfig/tqtqui.pc
 %{_libdir}/libtqt.so
 %{_libdir}/libtqassistantclient.so
 %{_bindir}/convert_qt_tqt1
