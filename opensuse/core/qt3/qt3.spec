@@ -77,9 +77,9 @@ Patch117:       qtimer-debug.diff
 Patch127:       mng-reading-fix.patch
 Patch134:       fix-xinput-clash.diff
 Patch135:       parseFontName.diff
-Patch136:       qt3-no-date.diff
+#Patch136:       qt3-no-date.diff
 Patch139:       gcc46.diff
-Patch140:       revert-iodbc-to-uodbc.diff
+#Patch140:       revert-iodbc-to-uodbc.diff
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -127,9 +127,9 @@ ln -sf $PWD/src/kernel/qximinputcontext_p.h       include/private/
 %patch127
 %patch134
 %patch135
-%patch136
+#%patch136
 %patch139
-%patch140
+#%patch140
 cd translations
 tar xvjf %SOURCE12
 cd ..
