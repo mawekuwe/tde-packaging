@@ -1,4 +1,9 @@
 -------------------------------------------------------------------
+Sat Jul 28 21:34:15 UTC 2012 - robxu9@gmail.com
+
+- rebuild dbus-tqt/libdbus-tqt-1-0 for suse12.1
+
+-------------------------------------------------------------------
 Wed Aug 24 19:36:38 UTC 2011 - rxu@lincomlinux.org
 
 - fix naming error: libdbus-tqt-1-0
