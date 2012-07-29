@@ -5,8 +5,6 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
-include /usr/share/dpatch/dpatch.make
-
 DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
@@ -40,12 +38,12 @@ configure-stamp:
 
 build: build-stamp
 
-build-stamp: configure-stamp patch-stamp 
+build-stamp: configure-stamp
 	dh_testdir
 	env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde make
 	touch build-stamp
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
 
