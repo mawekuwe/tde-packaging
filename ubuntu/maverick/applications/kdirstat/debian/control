@@ -2,7 +2,7 @@ Source: kdirstat-trinity
 Section: misc
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: cdbs (>= 0.4.41), debhelper (>= 5), kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.41), quilt, debhelper (>= 5), kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://kdirstat.sourceforge.net/
 
