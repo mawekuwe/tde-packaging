@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Richard A. Johnson <nixternal@ubuntu.com> 
-Build-Depends: debhelper (>= 5), cdbs, kdelibs4-trinity-dev, patchutils, libx11-dev, libxext-dev, libxpm-dev, x-dev | x11proto-core-dev | libx11-dev, perl, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5), quilt, cdbs, kdelibs4-trinity-dev, patchutils, libx11-dev, libxext-dev, libxpm-dev, x-dev | x11proto-core-dev | libx11-dev, perl, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: krename-trinity

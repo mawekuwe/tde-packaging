@@ -4,7 +4,7 @@ DEB_BUILD_ARCH ?= $(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/kde.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
+#include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
 DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
