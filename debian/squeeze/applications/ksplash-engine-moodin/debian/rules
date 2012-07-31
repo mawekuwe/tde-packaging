@@ -33,20 +33,7 @@ endif
 debian/debiandirs: admin/debianrules
 	perl -w admin/debianrules echodirs > debian/debiandirs
 
-patch-stamp:
-	# Apply Debian specific patches
-	if test ! -f patch-stamp; then \
-		for patch in $(CURDIR)/debian/patches/*.diff ;\
-		do \
-			echo APPLYING PATCH\: $${patch##*/};\
-			patch -p1 < $$patch ;\
-		done ;\
-		touch patch-stamp ;\
-	fi
-
-patch: patch-stamp
-
-config.status: configure patch
+config.status: configure
 	dh_testdir
 	
 	CFLAGS="$(CFLAGS) -Wl,-z,defs" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) $(configkde) --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
@@ -91,16 +78,6 @@ endif
 ifneq "$(wildcard /usr/share/misc/config.guess)" ""
 	cp -f /usr/share/misc/config.guess config.guess
 endif
-
-	# Remove Debian specific patches
-	if test -f patch-stamp; then \
-		for patch in $(CURDIR)/debian/patches/*.diff ;\
-		do \
-			echo REMOVING PATCH\: $${patch##*/};\
-			patch -p1 -R < $$patch ;\
-		done ;\
-		rm -f patch-stamp ;\
-	fi
 
 	dh_clean  
 

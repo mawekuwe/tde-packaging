@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: debhelper (>= 5.0.24), autotools-dev, kdebase-trinity-dev, ksplash-trinity, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0.24), quilt, autotools-dev, kdebase-trinity-dev, ksplash-trinity, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: ksplash-engine-moodin-trinity
