@@ -3,7 +3,7 @@
 cdbs_kde_enable_debug = --disable-debug
 
 include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
+#include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include debian/cdbs/kde.mk
 
 DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
