@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Christoph Wegscheider <christoph.wegscheider@wegi.net>
 Uploaders: Bartosz Fenski <fenio@debian.org>
-Build-Depends: debhelper (>= 5.0.51), kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0.51), quilt, kdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: potracegui-trinity
