@@ -1,12 +1,10 @@
 # Default version for this component
 %define kdecomp kstreamripper
-%define version 0.3.4
-%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -19,8 +17,8 @@ BuildRequires: autoconf automake libtool m4
 Name:		trinity-%{kdecomp}
 Summary:	TDE frontend for streamripper
 
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.3.4
+Release:	1%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities

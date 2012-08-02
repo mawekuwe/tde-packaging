@@ -1,12 +1,10 @@
 # Default version for this component
 %define kdecomp kima
-%define version 0.7.3.2
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -18,8 +16,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-%{kdecomp}
 Summary:	kicker monitoring applet [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.7.3.2
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -51,7 +49,7 @@ panel.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
+%__sed -i "admin/acinclude.m4.in" \
   -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
   -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
 
@@ -86,22 +84,13 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
 
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
-
-
 %files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{tde_libdir}/libkima.la
 %{tde_libdir}/libkima.so
 %{_datadir}/apps/kicker/applets/kima.desktop
-%{tde_docdir}/HTML/en/kima/common
-%{tde_docdir}/HTML/en/kima/index.cache.bz2
-%{tde_docdir}/HTML/en/kima/index.docbook
+%{tde_docdir}/HTML/en/kima/
 
 
 %Changelog

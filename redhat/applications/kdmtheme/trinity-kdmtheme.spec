@@ -1,12 +1,10 @@
 # Default version for this component
 %define kdecomp kdmtheme
-%define version 1.2.2
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -18,8 +16,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-%{kdecomp}
 Summary:	theme manager for KDM [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.2.2
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -41,7 +39,7 @@ BuildRequires:	gettext
 
 
 %description
-kdmtheme is a theme manager for KDM. It provides a KDE Control Module (KCM)
+kdmtheme is a theme manager for KDM. It provides a TDE Control Module (KCM)
 that allows you to easily install, remove and change your KDM themes.
 
 
@@ -87,9 +85,7 @@ export PATH="%{_bindir}:${PATH}"
 %{tde_libdir}/kcm_kdmtheme.la
 %{tde_libdir}/kcm_kdmtheme.so
 %{_datadir}/applications/kde/kdmtheme.desktop
-%{tde_docdir}/HTML/en/kdmtheme/common
-%{tde_docdir}/HTML/en/kdmtheme/index.cache.bz2
-%{tde_docdir}/HTML/en/kdmtheme/index.docbook
+%{tde_docdir}/HTML/en/kdmtheme/
 
 
 %Changelog

@@ -1,7 +1,5 @@
 # Default version for this component
 %define kdecomp krusader
-%define version 1.90.0
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
@@ -19,8 +17,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-%{kdecomp}
 Summary:	twin-panel (commander-style) file manager for KDE (and other desktops)
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.90.0
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -125,8 +123,8 @@ done
 %{_datadir}/applications/kde/krusader.desktop
 %{_datadir}/applications/kde/krusader_root-mode.desktop
 %{_datadir}/apps/krusader
-%{tde_docdir}/HTML/en/krusader
-%{tde_docdir}/HTML/ru/krusader
+%{tde_docdir}/HTML/en/krusader/
+%lang(ru) %{tde_docdir}/HTML/ru/krusader/
 %{_datadir}/icons/crystalsvg/*/apps/*.png
 %{_datadir}/icons/locolor/*/apps/*.png
 %{_datadir}/services/krarc.protocol

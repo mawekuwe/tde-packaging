@@ -5,7 +5,9 @@
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
 %define _docdir %{_datadir}/doc
-#define _sysconfdir %{_prefix}/etc
+
+# Currently, menu files under /etc/xdg conflict with KDE4
+%define _sysconfdir %{_prefix}/etc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -18,7 +20,7 @@ BuildRequires: autoconf automake libtool m4
 Name:		trinity-systemsettings
 Summary:	easy to use control centre for TDE
 Version:	0.0svn20070312
-Release:	3%{?dist}%{?_variant}
+Release:	4%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -99,7 +101,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 %defattr(-,root,root,-)
 %doc README TODO
 %{_sysconfdir}/xdg/menus/applications-merged/system-settings-merge.menu
-%exclude %{_sysconfdir}/xdg/menus/system-settings.menu
+%{_sysconfdir}/xdg/menus/system-settings.menu
 %{_bindir}/systemsettings
 %{_datadir}/applications/kde/audioencoding.desktop
 %{_datadir}/applications/kde/defaultapplication.desktop
@@ -118,6 +120,9 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
 
 
 %Changelog
+* Wed Jul 11 2012 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-4
+- Fix XDG menu directory location (again)
+
 * Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-3
 - Updates 'Requires: trinity-guidance' to reflect package renaming
 

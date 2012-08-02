@@ -1,25 +1,29 @@
 # Default version for this component
 %define kdecomp kdesvn
-%define version 1.0.4
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
-%define _mandir %{_prefix}/share/man
 %endif
 
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
 
 Name:		trinity-%{kdecomp}
 Summary:	subversion client with tight KDE integration [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.0.4
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -37,8 +41,8 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 Patch1:		kdesvn-3.5.13-fix_gcc47_compilation.patch
 
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -114,12 +118,19 @@ find . -name "*.cmake" -exec %__sed -i {} \
 
 %build
 unset QTDIR; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{_bindir}:${QTDIR}/bin:${PATH}"
 export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
-%__mkdir_p build
-cd build
-%cmake ..
+%{?!mgaversion:%__mkdir build; cd build}
+%cmake \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DMAN_INSTALL_DIR=%{tde_mandir}/man1 \
+  -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DCMAKE_SKIP_RPATH="OFF" \
+  ..
 
 # SMP safe !
 %__make %{?_smp_mflags}
@@ -132,6 +143,18 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %find_lang %{kdecomp} || touch %{kdecomp}.lang
+
+# Installs SVN protocols as alternatives
+%__mv -f %{?buildroot}%{tde_datadir}/services/svn+file.protocol %{?buildroot}%{tde_datadir}/services/svn+file.protocol_tdesvn
+%__mv -f %{?buildroot}%{tde_datadir}/services/svn+http.protocol %{?buildroot}%{tde_datadir}/services/svn+http.protocol_tdesvn
+%__mv -f %{?buildroot}%{tde_datadir}/services/svn+https.protocol %{?buildroot}%{tde_datadir}/services/svn+https.protocol_tdesvn
+%__mv -f %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol_tdesvn
+%__mv -f %{?buildroot}%{tde_datadir}/services/svn.protocol %{?buildroot}%{tde_datadir}/services/svn.protocol_tdesvn
+%__ln_s /etc/alternatives/svn+file.protocol %{?buildroot}%{tde_datadir}/services/svn+file.protocol
+%__ln_s /etc/alternatives/svn+http.protocol %{?buildroot}%{tde_datadir}/services/svn+http.protocol
+%__ln_s /etc/alternatives/svn+https.protocol %{?buildroot}%{tde_datadir}/services/svn+https.protocol
+%__ln_s /etc/alternatives/svn+ssh.protocol %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol
+%__ln_s /etc/alternatives/svn.protocol %{?buildroot}%{tde_datadir}/services/svn.protocol
 
 
 %clean
@@ -149,6 +172,26 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %post -n trinity-libsvnqt
 /sbin/ldconfig || :
 
+%post kio-plugins
+for proto in svn+file svn+http svn+https svn+ssh svn; do
+  alternatives --install \
+    %{tde_datadir}/services/${proto}.protocol \
+    ${proto}.protocol \
+    %{tde_datadir}/services/${proto}.protocol_tdesvn \
+    20
+done
+
+%preun kio-plugins
+if [ $1 -eq 0 ]; then
+  for proto in svn+file svn+http svn+https svn+ssh svn; do
+    alternatives --remove \
+      ${proto}.protocol \
+      %{tde_datadir}/services/${proto}.protocol_tdesvn
+  done
+fi
+
+
+
 %postun -n trinity-libsvnqt
 /sbin/ldconfig || :
 
@@ -156,50 +199,58 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{_bindir}/kdesvn
-%{_bindir}/kdesvnaskpass
-%{tde_libdir}/libkdesvnpart.la
-%{tde_libdir}/libkdesvnpart.so
-%{_datadir}/applications/kde/kdesvn.desktop
-%{_datadir}/apps/kconf_update/kdesvn-use-external-update.sh
-%{_datadir}/apps/kconf_update/kdesvnpartrc-use-external.upd
-%{_datadir}/apps/kdesvn/kdesvnui.rc
-%{_datadir}/apps/kdesvnpart/kdesvn_part.rc
-%{_datadir}/apps/konqueror/servicemenus/kdesvn_subversion.desktop
-%{_datadir}/config.kcfg/kdesvn_part.kcfg
-%{_datadir}/icons/hicolor/*/*/*.png
-%{_datadir}/icons/hicolor/*/*/*.svgz
-%{_mandir}/man1/kdesvn.1
-%{_mandir}/man1/kdesvnaskpass.1
-%{tde_docdir}/HTML
+%{tde_bindir}/kdesvn
+%{tde_bindir}/kdesvnaskpass
+%{tde_tdelibdir}/libkdesvnpart.la
+%{tde_tdelibdir}/libkdesvnpart.so
+%{tde_datadir}/applications/kde/kdesvn.desktop
+%{tde_datadir}/apps/kconf_update/kdesvn-use-external-update.sh
+%{tde_datadir}/apps/kconf_update/kdesvnpartrc-use-external.upd
+%{tde_datadir}/apps/kdesvn/kdesvnui.rc
+%{tde_datadir}/apps/kdesvnpart/kdesvn_part.rc
+%{tde_datadir}/apps/konqueror/servicemenus/kdesvn_subversion.desktop
+%{tde_datadir}/config.kcfg/kdesvn_part.kcfg
+%{tde_datadir}/icons/hicolor/*/*/*.png
+%{tde_datadir}/icons/hicolor/*/*/*.svgz
+%{tde_mandir}/man1/kdesvn.1
+%{tde_mandir}/man1/kdesvnaskpass.1
+%{tde_tdedocdir}/HTML/*/
 
 %files -n trinity-libsvnqt
-%{_libdir}/libsvnqt.so.4
-%{_libdir}/libsvnqt.so.4.2.2
+%{tde_libdir}/libsvnqt.so.4
+%{tde_libdir}/libsvnqt.so.4.2.2
 
 %files -n trinity-libsvnqt-devel
-%{_includedir}/svnqt
-%{_libdir}/libsvnqt.so
+%{tde_includedir}/svnqt
+%{tde_libdir}/libsvnqt.so
 
 %files kio-plugins
-%{_datadir}/services/kded/kdesvnd.desktop
-%{_datadir}/services/ksvn+file.protocol
-%{_datadir}/services/ksvn+http.protocol
-%{_datadir}/services/ksvn+https.protocol
-%{_datadir}/services/ksvn+ssh.protocol
-%{_datadir}/services/ksvn.protocol
-%{_datadir}/services/svn+file.protocol
-%{_datadir}/services/svn+http.protocol
-%{_datadir}/services/svn+https.protocol
-%{_datadir}/services/svn+ssh.protocol
-%{_datadir}/services/svn.protocol
-%{tde_libdir}/kio_ksvn.la
-%{tde_libdir}/kio_ksvn.so
-%{tde_libdir}/kded_kdesvnd.la
-%{tde_libdir}/kded_kdesvnd.so
+%{tde_datadir}/services/kded/kdesvnd.desktop
+%{tde_datadir}/services/ksvn+file.protocol
+%{tde_datadir}/services/ksvn+http.protocol
+%{tde_datadir}/services/ksvn+https.protocol
+%{tde_datadir}/services/ksvn+ssh.protocol
+%{tde_datadir}/services/ksvn.protocol
+%{tde_datadir}/services/svn+file.protocol
+%{tde_datadir}/services/svn+http.protocol
+%{tde_datadir}/services/svn+https.protocol
+%{tde_datadir}/services/svn+ssh.protocol
+%{tde_datadir}/services/svn.protocol
+%{tde_datadir}/services/svn+file.protocol_tdesvn
+%{tde_datadir}/services/svn+http.protocol_tdesvn
+%{tde_datadir}/services/svn+https.protocol_tdesvn
+%{tde_datadir}/services/svn+ssh.protocol_tdesvn
+%{tde_datadir}/services/svn.protocol_tdesvn
+%{tde_tdelibdir}/kio_ksvn.la
+%{tde_tdelibdir}/kio_ksvn.so
+%{tde_tdelibdir}/kded_kdesvnd.la
+%{tde_tdelibdir}/kded_kdesvnd.so
 
 
 %Changelog
+* Mon Jul 30 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.4-3
+- Installs SVN protocols as alternative, avoids conlict with TDESDK
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.4-2
 - Rebuilt for Fedora 17
 - Fix post and postun
