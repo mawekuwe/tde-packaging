@@ -1,14 +1,8 @@
-# Default version for this component
-%if "%{?version}" == ""
-%define version 3.5.13
-%endif
-%define release 3
-
-%define _datadir %{_usr}/share
+%define _prefix /usr
 
 Name:		trinity-live
-Version:	%{version}
-Release:	%{?release}%{?dist}
+Version:	3.5.13
+Release:	4%{?dist}
 License:	GPL
 Summary:	Trinity Spins
 Group:		Applications/System
@@ -33,7 +27,7 @@ LiveCD containing Fedora.
 
 %package openbox
 Summary:	bootstrap 'openbox' script that runs TDE's kwin
-Requires:	trinity-kdebase
+Requires:	trinity-twin
 BuildArch:	noarch
 Group:		Applications/System
 
@@ -79,6 +73,9 @@ EOF
 
 
 %changelog
+* Wed Jul 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
+- Updates with new split packages
+
 * Sat Jan 07 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
 - Start kmix automatically in LiveCD
 - Add 'yumex' package manager

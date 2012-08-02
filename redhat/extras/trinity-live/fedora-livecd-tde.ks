@@ -10,6 +10,7 @@
 %include fedora-live-tde-base.ks
 %include fedora-live-minimization.ks
 
+
 %packages
 # Additional packages that are not default in trinity-desktop but useful
 trinity-desktop-extras
@@ -19,15 +20,15 @@ trinity-live-openbox
 trinity-amarok
 trinity-digikam
 trinity-dolphin
-trinity-gtk-qt-engine
+#trinity-gtk-qt-engine
 trinity-gwenview
 trinity-k3b
 trinity-kaffeine
 trinity-kasablanca
 trinity-kbookreader
 trinity-kdebluetooth
-trinity-kde-style-lipstik
-trinity-kgtk-qt3
+trinity-style-lipstik
+#trinity-kgtk-qt3
 trinity-kio-umountwrapper
 trinity-kwin-style-crystal
 #trinity-knetworkmanager
@@ -35,25 +36,19 @@ trinity-konversation
 trinity-kpowersave
 trinity-ksensors
 trinity-kstreamripper
-trinity-smb4k
+#trinity-smb4k
 trinity-yakuake
 
 # Some TDE translations
-trinity-kde-i18n-French
+#trinity-kde-i18n-French
 #trinity-kde-i18n-German
 #trinity-kde-i18n-Spanish
-trinity-kde-i18n-Chinese-Big5
+#trinity-kde-i18n-Chinese-Big5
 
 # Fedora stuff
 fuse
 liveusb-creator
 yumex
-
-### more desktop stuff
-fedora-icon-theme
-adwaita-cursor-theme
-adwaita-gtk2-theme
-adwaita-gtk3-theme
 
 # use yum-presto by default
 yum-presto
@@ -62,9 +57,11 @@ yum-presto
 
 # fonts (we make no bones about admitting we're english-only)
 wqy-microhei-fonts	# a compact CJK font, to replace:
+-nhn-nanum-gothic-fonts	# Korean
 -un-core-dotum-fonts	# Korean
 -vlgothic-fonts		# Japanese
--wqy-zenhei-fonts	# Chinese
+-wqy-zenhei-fonts	# simplified Chinese
+-cjkuni-uming-fonts	# traditional Chinese
 
 -paratype-pt-sans-fonts	# Cyrillic (already supported by DejaVu), huge
 #-stix-fonts		# mathematical symbols
@@ -79,6 +76,9 @@ wqy-microhei-fonts	# a compact CJK font, to replace:
 # save some space (from @base)
 -make
 -nss_db
+
+# save space (it pulls in gdisk/udisks2/libicu)
+-gnome-disk-utility
 
 ## avoid serious bugs by omitting broken stuff
 

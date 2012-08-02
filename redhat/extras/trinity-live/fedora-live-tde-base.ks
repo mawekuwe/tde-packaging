@@ -8,7 +8,8 @@ repo --name=trinity-extras-noarch --baseurl=http://trinity.mangafrance.com/f$rel
 
 %packages
 
-### The KDE-Desktop
+### The Trinity Desktop
+
 trinity-desktop
 hal
 
@@ -35,11 +36,16 @@ DESKTOP="KDE"
 DISPLAYMANAGER="/opt/trinity/bin/kdm"
 EOF
 
-# make oxygen-gtk the default GTK+ 2 theme for root (see #683855, #689070)
+# make oxygen-gtk the default GTK+ theme for root (see #683855, #689070, #808062)
 cat > /root/.gtkrc-2.0 << EOF
 include "/usr/share/themes/oxygen-gtk/gtk-2.0/gtkrc"
 include "/etc/gtk-2.0/gtkrc"
 gtk-theme-name="oxygen-gtk"
+EOF
+mkdir -p /root/.config/gtk-3.0
+cat > /root/.config/gtk-3.0/settings.ini << EOF
+[Settings]
+gtk-theme-name = oxygen-gtk
 EOF
 
 # add initscript
@@ -66,6 +72,10 @@ sed -i 's/#DefaultUser=johndoe/DefaultUser=liveuser/' /opt/trinity/share/config/
 
 # add liveinst.desktop to favorites menu
 mkdir -p /home/liveuser/.trinity/share/config/
+cat > /home/liveuser/.trinity/share/config/kickoffrc << MENU_EOF
+[Favorites]
+FavoriteURLs=/usr/share/applications/kde4/konqbrowser.desktop,/usr/share/applications/kde4/dolphin.desktop,/usr/share/applications/kde4/systemsettings.desktop,/usr/share/applications/liveinst.desktop
+MENU_EOF
 
 # show liveinst.desktop on desktop and in menu
 sed -i 's/NoDisplay=true/NoDisplay=false/' /usr/share/applications/liveinst.desktop
@@ -89,10 +99,10 @@ mkdir -p /home/liveuser/Documents
 # Kmix (from TDE) should be started automatically
 #mkdir -p /home/liveuser/.trinity/Autostart
 #ln -sf /opt/trinity/share/applications/kde/kmix.desktop /home/liveuser/.trinity/Autostart/kmix.desktop
-cat <<EOF >/home/liveuser/.trinity/share/config/kmixrc
+cat <<KMIX_EOF >/home/liveuser/.trinity/share/config/kmixrc
 Autostart=true
 Visible=false
-EOF
+KMIX_EOF
 
 # make sure to set the right permissions and selinux contexts
 chown -R liveuser:liveuser /home/liveuser/
