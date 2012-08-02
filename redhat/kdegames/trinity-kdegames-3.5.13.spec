@@ -46,6 +46,7 @@ BuildRequires:	libtool
 
 BuildRequires:	tqtinterface-devel >= 3.5.13
 BuildRequires:	trinity-arts-devel >= 3.5.13
+BuildRequires:	trinity-tdemultimedia-devel >= 3.5.13
 BuildRequires:	qt3-devel >= 3.3.8.d
 
 Obsoletes:		trinity-kdegames < %{version}-%{release}
@@ -72,7 +73,6 @@ Requires: trinity-kmahjongg = %{version}-%{release}
 Requires: trinity-kmines = %{version}-%{release}
 Requires: trinity-knetwalk = %{version}-%{release}
 Requires: trinity-kolf = %{version}-%{release}
-Requires: trinity-kolf-devel = %{version}-%{release}
 Requires: trinity-konquest = %{version}-%{release}
 Requires: trinity-kpat = %{version}-%{release}
 Requires: trinity-kpoker = %{version}-%{release}
@@ -109,6 +109,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-tdelibs-devel >= 3.5.13
 Requires:	trinity-libtdegames-devel = %{version}-%{release}
 Requires:	trinity-atlantik-devel = %{version}-%{release}
+Requires:	trinity-kolf-devel = %{version}-%{release}
 
 Obsoletes:		trinity-kdegames-devel < %{version}-%{release}
 Provides:		trinity-kdegames-devel = %{version}-%{release}
@@ -142,8 +143,6 @@ This package is part of TDE, and a component of the TDE games module.
 %{tde_datadir}/apps/[kt]degames/pics/star.png
 %{tde_datadir}/icons/crystalsvg/*/actions/roll.png
 %{tde_datadir}/icons/crystalsvg/*/actions/highscore.png
-%{tde_libdir}/lib[kt]degames.so
-%{tde_libdir}/lib[kt]degames.la
 %{tde_tdedocdir}/HTML/en/[kt]degames-apidocs/
 
 %post -n trinity-libtdegames1
@@ -177,6 +176,8 @@ This package is part of Trinity, and a component of the TDE games module.
 %defattr(-,root,root,-)
 %{tde_tdeincludedir}/*.h
 %{tde_tdeincludedir}/kgame
+%{tde_libdir}/lib[kt]degames.so
+%{tde_libdir}/lib[kt]degames.la
 
 ##########
 

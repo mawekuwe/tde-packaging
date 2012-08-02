@@ -737,8 +737,6 @@ This package contains akode plugins for aRts.
 
 %files -n trinity-libarts-akode
 %defattr(-,root,root,-)
-%{tde_libdir}/libarts_akode.la
-%{tde_libdir}/libarts_akode.so
 %{tde_libdir}/libarts_akode.so.*
 %{tde_libdir}/mcop/akodearts.mcoptype
 %{tde_libdir}/mcop/akodearts.mcopclass
@@ -747,6 +745,8 @@ This package contains akode plugins for aRts.
 %{tde_libdir}/mcop/akodeSpeexStreamPlayObject.mcopclass
 %{tde_libdir}/mcop/akodeVorbisStreamPlayObject.mcopclass
 %{tde_libdir}/mcop/akodeXiphPlayObject.mcopclass
+
+# -devel
 
 %post -n trinity-libarts-akode
 /sbin/ldconfig
@@ -765,8 +765,6 @@ This package contains audiofile plugins for aRts.
 
 %files -n trinity-libarts-audiofile
 %defattr(-,root,root,-)
-%{tde_libdir}/libarts_audiofile.la
-%{tde_libdir}/libarts_audiofile.so
 %{tde_libdir}/libarts_audiofile.so.*
 %{tde_libdir}/mcop/Arts/audiofilePlayObject.mcopclass
 %{tde_libdir}/mcop/audiofilearts.mcopclass
@@ -794,8 +792,6 @@ This is the arts (TDE Sound daemon) plugin.
 %defattr(-,root,root,-)
 %{tde_bindir}/mpeglibartsplay
 %{tde_libdir}/libarts_mpeglib-0.3.0.so.*
-%{tde_libdir}/libarts_mpeglib.la
-%{tde_libdir}/libarts_splay.la
 %{tde_libdir}/libarts_splay.so.*
 %{tde_libdir}/mcop/CDDAPlayObject.mcopclass
 %{tde_libdir}/mcop/MP3PlayObject.mcopclass
@@ -824,8 +820,6 @@ multimedia engine though aRts.
 %defattr(-,root,root,-)
 %{tde_tdelibdir}/videothumbnail.la
 %{tde_tdelibdir}/videothumbnail.so
-%{tde_libdir}/libarts_xine.la
-%{tde_libdir}/libarts_xine.so
 %{tde_libdir}/libarts_xine.so.*
 %{tde_libdir}/mcop/xineAudioPlayObject.mcopclass
 %{tde_libdir}/mcop/xineVideoPlayObject.mcopclass
@@ -1018,8 +1012,16 @@ noatun plugins.
 %files devel
 %defattr(-,root,root,-)
 %{tde_includedir}/*
+%{tde_libdir}/libarts_akode.la
+%{tde_libdir}/libarts_akode.so
+%{tde_libdir}/libarts_audiofile.la
+%{tde_libdir}/libarts_audiofile.so
+%{tde_libdir}/libarts_mpeglib.la
 %{tde_libdir}/libarts_mpeglib.so
+%{tde_libdir}/libarts_splay.la
 %{tde_libdir}/libarts_splay.so
+%{tde_libdir}/libarts_xine.la
+%{tde_libdir}/libarts_xine.so
 %{tde_libdir}/libartsbuilder.so
 %{tde_libdir}/libartscontrolapplet.so
 %{tde_libdir}/libartscontrolsupport.so

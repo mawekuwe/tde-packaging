@@ -920,9 +920,10 @@ mbox files, and/or trinity-tdebase-kio-plugins if you want to use POP3.
 %{tde_datadir}/services/kontact/kmailplugin.desktop
 %{tde_datadir}/servicetypes/dcopimap.desktop
 %{tde_datadir}/servicetypes/dcopmail.desktop
+# 'libkmailprivate.so' is required at runtime, not devel !
+%{tde_libdir}/libkmailprivate.so
+%{tde_libdir}/libkmailprivate.la
 %{tde_tdedocdir}/HTML/en/kmail/
-%{tde_tdeincludedir}/kmail/
-%{tde_tdeincludedir}/kmail*.h
 
 %post -n trinity-kmail
 for f in crystalsvg hicolor ; do
@@ -950,8 +951,8 @@ Group:		Development/Libraries
 %{summary}
 
 %files -n trinity-kmail-devel
-%{tde_libdir}/libkmailprivate.la
-%{tde_libdir}/libkmailprivate.so
+%{tde_tdeincludedir}/kmail/
+%{tde_tdeincludedir}/kmail*.h
 
 %post -n trinity-kmail-devel
 /sbin/ldconfig || :

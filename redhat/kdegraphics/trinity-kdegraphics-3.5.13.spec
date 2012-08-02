@@ -59,9 +59,9 @@ Patch8:		kdegraphics-3.5.13-add_poppler_tqt_pc.patch
 Patch9:		kdegraphics-3.5.13-fix_poppler_include_dir.patch
 
 BuildRequires: cmake >= 2.8
-BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: tqtinterface-devel >= 3.5.13
+BuildRequires: trinity-tdelibs-devel >= 3.5.13
+BuildRequires: trinity-tdebase-devel >= 3.5.13
 BuildRequires: gettext
 BuildRequires: libmng-devel
 BuildRequires: libpng-devel
@@ -365,8 +365,6 @@ kfax application once it reproduces all of kfax's features.
 %defattr(-,root,root,-)
 %{tde_bindir}/kfaxview
 %{tde_libdir}/libkfaximage.so.*
-%{tde_libdir}/libkfaximage.so
-%{tde_libdir}/libkfaximage.la
 %{tde_tdelibdir}/kfaxviewpart.*
 %{tde_tdeappdir}/kfaxview.desktop
 %{tde_datadir}/apps/kfaxview/
@@ -869,6 +867,10 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 %{tde_libdir}/libksvg.so
 %{tde_libdir}/libtext2path.la
 %{tde_libdir}/libtext2path.so
+# kfaxview
+%{tde_libdir}/libkfaximage.so
+%{tde_libdir}/libkfaximage.la
+# cmake
 %{tde_datadir}/cmake/*
 
 ############
