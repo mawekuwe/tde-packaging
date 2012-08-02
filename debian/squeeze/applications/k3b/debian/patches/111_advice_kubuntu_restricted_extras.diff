@@ -11,4 +11,4 @@ diff -Nur k3b-1.0.2/src/k3bsystemproblemdialog.cpp k3b-1.0.2.new/src/k3bsystempr
 +					      "(or kubuntu-restricted-extras on Debian)."),
  					 false ) );
    }
- 
+ */
