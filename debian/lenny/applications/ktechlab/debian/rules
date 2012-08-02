@@ -28,7 +28,6 @@ debian/ktechlab.xpm: icons/hi32-app-ktechlab.png
 
 config.status: configure.in
 	dh_testdir
-	dpatch apply-all
 
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
@@ -63,8 +62,6 @@ clean:
 	dh_testroot
 	rm -f build-stamp
 	[ ! -f po/Makefile ] || $(MAKE) -C po clean
-	dpatch deapply-all
-	rm -rf debian/patched
 
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh

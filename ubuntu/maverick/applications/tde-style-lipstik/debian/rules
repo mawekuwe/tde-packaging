@@ -51,8 +51,7 @@ build-stamp:  config.status
 
 	touch build-stamp
 
-clean: clean-patched unpatch
-clean-patched:
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp
@@ -70,10 +69,7 @@ endif
 
 	dh_clean 
 
-patch: patch-stamp
-patch-stamp:
-	dpatch apply-all
-	#dpatch call-all -a=pkg-info > patch-stamp
+patch:
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
@@ -82,10 +78,6 @@ patch-stamp:
 	
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
-
-unpatch:
-	dpatch deapply-all
-	rm -rf patch-stamp debian/patched
 
 install: build
 	dh_testdir

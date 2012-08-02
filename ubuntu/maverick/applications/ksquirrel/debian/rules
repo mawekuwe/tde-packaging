@@ -22,7 +22,7 @@ DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
 
-config.status: patch configure
+config.status: configure
 	dh_testdir
 	# Add here commands to configure the package.
 ifneq "$(wildcard /usr/share/misc/config.sub)" ""
@@ -54,36 +54,16 @@ build-stamp:  config.status
 
 	touch $@
 
-clean: clean-patched unpatch
-
-clean-patched:
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp 
-
-	! [ -f /usr/share/libtool/ltmain.sh ] || \
-	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
-	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
-	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
-	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-
-	make -f admin/Makefile.common cvs
 
 	# Add here commands to clean up after the build process.
 	[ ! -f Makefile ] || $(MAKE) distclean
 	rm -f config.sub config.guess
 
 	dh_clean 
-
-patch: patch-stamp
-
-patch-stamp:
-	dpatch apply-all
-	dpatch cat-all >patch-stamp
-
-unpatch:
-	dpatch deapply-all
-	rm -rf patch-stamp debian/patched
 
 install: build
 	dh_testdir
