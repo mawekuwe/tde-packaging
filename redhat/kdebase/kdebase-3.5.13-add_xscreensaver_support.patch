@@ -1,0 +1,76 @@
+commit 80deb52955cbd917e10f015f37699d830cb681ce
+Author: Slávek Banko <slavek.banko@axis.cz>
+Date:   1339336699 +0200
+
+    Add xscreensaver support to CMake
+    This closes Bug 859
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 31fb46c..3da5b2f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -67,6 +67,7 @@
+ option( WITH_XDAMAGE "Enable xdamage support" OFF )
+ option( WITH_XEXT "Enable xext support" OFF )
+ option( WITH_XTEST "Enable xext support" OFF )
++option( WITH_XSCREENSAVER "Enable xscreensaver support" ${WITH_ALL_OPTIONS} )
+ option( WITH_LIBUSB "Enable control of some mouse models through libusb" OFF )
+ option( WITH_LIBRAW1394 "Enable visualization of ieee1394 devices through libraw1394" OFF )
+ option( WITH_SUDO_KDESU_BACKEND "Use sudo as backend for kdesu (default is su)" OFF )
+diff --git a/ConfigureChecks.cmake b/ConfigureChecks.cmake
+index ded1d00..1d9c83d 100644
+--- a/ConfigureChecks.cmake
++++ b/ConfigureChecks.cmake
+@@ -144,6 +144,26 @@ if( WITH_XTEST )
+ endif( )
+ 
+ 
++# xscreensaver ()
++if( WITH_XSCREENSAVER )
++  check_library_exists( Xss XScreenSaverQueryInfo "" HAVE_XSSLIB )
++  if( HAVE_XSSLIB )
++    pkg_search_module( XSS xscrnsaver )
++  else( )
++    check_library_exists( Xext XScreenSaverQueryInfo "" HAVE_XSSLIB )
++    if( HAVE_XSSLIB )
++      pkg_search_module( XSS xext )
++    endif( )
++  endif( )
++  check_include_file( X11/extensions/scrnsaver.h HAVE_XSCREENSAVER_H )
++  if( HAVE_XSSLIB AND HAVE_XSCREENSAVER_H )
++    set( HAVE_XSCREENSAVER 1 )
++  else( )
++    tde_message_fatal( "xscreensaver is requested, but was not found on your system" )
++  endif( )
++endif( )
++
++
+ # GL
+ if( BUILD_KDESKTOP OR BUILD_KCONTROL OR BUILD_KSCREENSAVER )
+ check_library_exists( GL glXChooseVisual "" HAVE_GLXCHOOSEVISUAL )
+diff --git a/config.h.cmake b/config.h.cmake
+index 39d6d85..772ca88 100644
+--- a/config.h.cmake
++++ b/config.h.cmake
+@@ -21,6 +21,9 @@
+ // kxkb
+ #cmakedefine HAVE_XTEST 1
+ 
++// xscreensaver
++#cmakedefine HAVE_XSCREENSAVER 1
++
+ // kdm, kioslave
+ #cmakedefine HAVE_TERMIOS_H 1
+ 
+diff --git a/kdesktop/CMakeLists.txt b/kdesktop/CMakeLists.txt
+index 99d86d1..b2e4628 100644
+--- a/kdesktop/CMakeLists.txt
++++ b/kdesktop/CMakeLists.txt
+@@ -94,6 +94,7 @@ tde_add_tdeinit_executable( ${target} AUTOMOC
+     kdesktopsettings-static bgnd-static dmctl-static
+     konq-shared kutils-shared
+     ${XRENDER_LIBRARIES} ${XCURSOR_LIBRARIES} Xext dl
++    ${XSS_LIBRARIES}
+ )
+ 
+ 

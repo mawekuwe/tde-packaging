@@ -1,14 +1,21 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_appdir %{_datadir}/applications/kde
-%define tde_docdir %{_docdir}
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 # former extras bits
 %define _with_akode --with-akode
@@ -42,8 +49,11 @@ Provides: kdemultimedia3 = %{version}-%{release}
 %endif
 
 # RedHat Legacy patches (from Fedora 8)
-Patch3: kdemultimedia-3.4.0-xdg.patch
-Patch5: kdemultimedia-3.5.7-pthread.patch
+Patch3:		kdemultimedia-3.4.0-xdg.patch
+Patch5:		kdemultimedia-3.5.7-pthread.patch
+
+# Missing LDFLAGS on Mageia cause FTBFS
+Patch1:		kdemultimedia-3.5.13-missing_ldflags.patch
 
 # [kdemultimedia] Fix MMX detection [Bug #800]
 Patch10:	kdemultimedia-3.5.13-fix_mmx_detection.patch
@@ -73,18 +83,30 @@ BuildRequires: libvorbis-devel
 BuildRequires: audiofile-devel
 BuildRequires: desktop-file-utils
 BuildRequires: libtheora-devel
-BuildRequires: flac-devel
 BuildRequires: alsa-lib-devel 
-BuildRequires: cdparanoia-devel cdparanoia
-BuildRequires: gstreamer-devel
 BuildRequires: automake libtool
 %{?_with_akode:BuildRequires: trinity-akode-devel}
 %{?_with_musicbrainz:BuildRequires: libmusicbrainz-devel libtunepimp-devel}
 %{?_with_taglib:BuildRequires: taglib-devel}
+BuildRequires:	cdparanoia
+
+%if 0%{?mgaversion}
+BuildRequires:	%{_lib}gstreamer0.10-devel
+BuildRequires:	%{_lib}flac-devel
+%{?_with_xine:BuildRequires: %{_lib}xine-devel}
+BuildRequires:	%{_lib}xxf86dga-devel
+BuildRequires:	%{_lib}xxf86vm-devel
+BuildRequires:	%{_lib}xtst-devel
+BuildRequires:	libcdda-devel
+%else
+BuildRequires: gstreamer-devel
+BuildRequires: flac-devel
+BuildRequires: cdparanoia-devel
 %{?_with_xine:BuildRequires: xine-lib-devel}
 BuildRequires:	libXxf86dga-devel
 BuildRequires:	libXxf86vm-devel
 BuildRequires:	libXt-devel
+%endif
 
 Requires: trinity-artsbuilder = %{version}-%{release}
 Requires: trinity-juk = %{version}-%{release}
@@ -133,174 +155,175 @@ Group:		Applications/Multimedia
 This is the analog Realtime synthesizer's graphical design tool.
 
 %files -n trinity-artsbuilder
-%{_bindir}/artsbuilder
-%{_bindir}/artscontrol
-%{_bindir}/midisend
-%{_libdir}/libartsbuilder.la
-%{_libdir}/libartsbuilder.so.*
-%{_libdir}/libartscontrolapplet.la
-%{_libdir}/libartscontrolapplet.so.*
-%{_libdir}/libartscontrolsupport.la
-%{_libdir}/libartscontrolsupport.so.*
-%{_libdir}/libartsgui_idl.la
-%{_libdir}/libartsgui_idl.so.*
-%{_libdir}/libartsgui_kde.la
-%{_libdir}/libartsgui_kde.so.*
-%{_libdir}/libartsgui.la
-%{_libdir}/libartsgui.so.*
-%{_libdir}/libartsmidi_idl.la
-%{_libdir}/libartsmidi_idl.so.*
-%{_libdir}/libartsmidi.la
-%{_libdir}/libartsmidi.so.*
-%{_libdir}/libartsmodulescommon.la
-%{_libdir}/libartsmodulescommon.so.*
-%{_libdir}/libartsmoduleseffects.la
-%{_libdir}/libartsmoduleseffects.so.*
-%{_libdir}/libartsmodulesmixers.la
-%{_libdir}/libartsmodulesmixers.so.*
-%{_libdir}/libartsmodules.la
-%{_libdir}/libartsmodules.so.*
-%{_libdir}/libartsmodulessynth.la
-%{_libdir}/libartsmodulessynth.so.*
-%{_libdir}/mcop/Arts/ArtsBuilderLoader.mcopclass
-%{_libdir}/mcop/artsbuilder.mcopclass
-%{_libdir}/mcop/artsbuilder.mcoptype
-%{_libdir}/mcop/Arts/Button.mcopclass
-%{_libdir}/mcop/Arts/EffectRackGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/Effect_WAVECAPTURE.mcopclass
-%{_libdir}/mcop/Arts/Environment/Container.mcopclass
-%{_libdir}/mcop/Arts/Environment/EffectRackItem.mcopclass
-%{_libdir}/mcop/Arts/Environment/InstrumentItemGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/Environment/InstrumentItem.mcopclass
-%{_libdir}/mcop/Arts/Environment/MixerItem.mcopclass
-%{_libdir}/mcop/Arts/Fader.mcopclass
-%{_libdir}/mcop/Arts/FiveBandMonoComplexEQGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/FiveBandMonoComplexEQ.mcopclass
-%{_libdir}/mcop/Arts/FreeverbGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/GenericGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/GraphLine.mcopclass
-%{_libdir}/mcop/artsgui.mcopclass
-%{_libdir}/mcop/artsgui.mcoptype
-%{_libdir}/mcop/Arts/HBox.mcopclass
-%{_libdir}/mcop/Arts/Label.mcopclass
-%{_libdir}/mcop/Arts/LayoutBox.mcopclass
-%{_libdir}/mcop/Arts/LevelMeter.mcopclass
-%{_libdir}/mcop/Arts/LineEdit.mcopclass
-%{_libdir}/mcop/Arts/LittleStereoMixerChannelGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/LittleStereoMixerChannel.mcopclass
-%{_libdir}/mcop/Arts/LocalFactory.mcopclass
-%{_libdir}/mcop/Arts/MidiManager.mcopclass
-%{_libdir}/mcop/artsmidi.mcopclass
-%{_libdir}/mcop/artsmidi.mcoptype
-%{_libdir}/mcop/Arts/MixerGuiFactory.mcopclass
-%{_libdir}/mcop/artsmodulescommon.mcopclass
-%{_libdir}/mcop/artsmodulescommon.mcoptype
-%{_libdir}/mcop/artsmoduleseffects.mcopclass
-%{_libdir}/mcop/artsmoduleseffects.mcoptype
-%{_libdir}/mcop/artsmodules.mcopclass
-%{_libdir}/mcop/artsmodules.mcoptype
-%{_libdir}/mcop/artsmodulesmixers.mcopclass
-%{_libdir}/mcop/artsmodulesmixers.mcoptype
-%{_libdir}/mcop/artsmodulessynth.mcopclass
-%{_libdir}/mcop/artsmodulessynth.mcoptype
-%{_libdir}/mcop/Arts/MonoSimpleMixerChannelGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/MonoSimpleMixerChannel.mcopclass
-%{_libdir}/mcop/Arts/MonoToStereo.mcopclass
-%{_libdir}/mcop/Arts/PopupBox.mcopclass
-%{_libdir}/mcop/Arts/Poti.mcopclass
-%{_libdir}/mcop/Arts/SimpleMixerChannelGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/SimpleMixerChannel.mcopclass
-%{_libdir}/mcop/Arts/SpinBox.mcopclass
-%{_libdir}/mcop/Arts/StereoBalanceGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/StereoBalance.mcopclass
-%{_libdir}/mcop/Arts/StereoCompressorGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/StereoFirEqualizerGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/StereoToMono.mcopclass
-%{_libdir}/mcop/Arts/StereoVolumeControlGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/StereoVolumeControlGui.mcopclass
-%{_libdir}/mcop/Arts/StructureBuilder.mcopclass
-%{_libdir}/mcop/Arts/StructureDesc.mcopclass
-%{_libdir}/mcop/Arts/Synth_ATAN_SATURATE.mcopclass
-%{_libdir}/mcop/Arts/Synth_AUTOPANNER.mcopclass
-%{_libdir}/mcop/Arts/Synth_BRICKWALL_LIMITER.mcopclass
-%{_libdir}/mcop/Arts/Synth_CAPTURE_WAV.mcopclass
-%{_libdir}/mcop/Arts/Synth_CDELAY.mcopclass
-%{_libdir}/mcop/Arts/Synth_COMPRESSOR.mcopclass
-%{_libdir}/mcop/Arts/Synth_DATA.mcopclass
-%{_libdir}/mcop/Arts/Synth_DEBUG.mcopclass
-%{_libdir}/mcop/Arts/Synth_DELAY.mcopclass
-%{_libdir}/mcop/Arts/Synth_DIV.mcopclass
-%{_libdir}/mcop/Arts/Synth_ENVELOPE_ADSR.mcopclass
-%{_libdir}/mcop/Arts/Synth_FM_SOURCE.mcopclass
-%{_libdir}/mcop/Arts/Synth_FREEVERB.mcopclass
-%{_libdir}/mcop/Arts/Synth_FX_CFLANGER.mcopclass
-%{_libdir}/mcop/Arts/Synth_MIDI_DEBUG.mcopclass
-%{_libdir}/mcop/Arts/Synth_MIDI_TEST.mcopclass
-%{_libdir}/mcop/Arts/Synth_MOOG_VCF.mcopclass
-%{_libdir}/mcop/Arts/Synth_NIL.mcopclass
-%{_libdir}/mcop/Arts/Synth_NOISE.mcopclass
-%{_libdir}/mcop/Arts/Synth_OSC.mcopclass
-%{_libdir}/mcop/Arts/Synth_PITCH_SHIFT_FFT.mcopclass
-%{_libdir}/mcop/Arts/Synth_PITCH_SHIFT.mcopclass
-%{_libdir}/mcop/Arts/Synth_PLAY_PAT.mcopclass
-%{_libdir}/mcop/Arts/Synth_PSCALE.mcopclass
-%{_libdir}/mcop/Arts/Synth_RC.mcopclass
-%{_libdir}/mcop/Arts/Synth_SEQUENCE_FREQ.mcopclass
-%{_libdir}/mcop/Arts/Synth_SEQUENCE.mcopclass
-%{_libdir}/mcop/Arts/Synth_SHELVE_CUTOFF.mcopclass
-%{_libdir}/mcop/Arts/Synth_STD_EQUALIZER.mcopclass
-%{_libdir}/mcop/Arts/Synth_STEREO_COMPRESSOR.mcopclass
-%{_libdir}/mcop/Arts/Synth_STEREO_FIR_EQUALIZER.mcopclass
-%{_libdir}/mcop/Arts/Synth_STEREO_PITCH_SHIFT_FFT.mcopclass
-%{_libdir}/mcop/Arts/Synth_STEREO_PITCH_SHIFT.mcopclass
-%{_libdir}/mcop/Arts/Synth_TREMOLO.mcopclass
-%{_libdir}/mcop/Arts/Synth_VOICE_REMOVAL.mcopclass
-%{_libdir}/mcop/Arts/Synth_WAVE_PULSE.mcopclass
-%{_libdir}/mcop/Arts/Synth_WAVE_SOFTSAW.mcopclass
-%{_libdir}/mcop/Arts/Synth_WAVE_SQUARE.mcopclass
-%{_libdir}/mcop/Arts/Synth_WAVE_TRI.mcopclass
-%{_libdir}/mcop/Arts/Synth_XFADE.mcopclass
-%{_libdir}/mcop/Arts/VBox.mcopclass
-%{_libdir}/mcop/Arts/VoiceRemovalGuiFactory.mcopclass
-%{_libdir}/mcop/Arts/Widget.mcopclass
-%{tde_appdir}/artsbuilder.desktop
-%{tde_appdir}/artscontrol.desktop
-%{_datadir}/apps/artsbuilder/
-%{_datadir}/apps/artscontrol/
-%{_datadir}/apps/kicker/applets/artscontrolapplet.desktop
-%{_datadir}/icons/crystalsvg/*/actions/artsaudiomanager.png
-%{_datadir}/icons/crystalsvg/*/actions/artsbuilderexecute.png
-%{_datadir}/icons/crystalsvg/*/actions/artsenvironment.png
-%{_datadir}/icons/crystalsvg/*/actions/artsfftscope.png
-%{_datadir}/icons/crystalsvg/*/actions/artsmediatypes.png
-%{_datadir}/icons/crystalsvg/*/actions/artsmidimanager.png
-%{_datadir}/icons/crystalsvg/scalable/actions/artsaudiomanager.svgz
-%{_datadir}/icons/crystalsvg/scalable/actions/artsenvironment.svgz
-%{_datadir}/icons/crystalsvg/scalable/actions/artsfftscope.svgz
-%{_datadir}/icons/crystalsvg/scalable/actions/artsmediatypes.svgz
-%{_datadir}/icons/crystalsvg/scalable/actions/artsmidimanager.svgz
-%{_datadir}/icons/hicolor/*/apps/artsbuilder.png
-%{_datadir}/icons/hicolor/*/apps/artscontrol.png
-%{_datadir}/icons/hicolor/scalable/apps/artsbuilder.svgz
-%{_datadir}/icons/hicolor/scalable/apps/artscontrol.svgz
-%{_datadir}/mimelnk/application/x-artsbuilder.desktop
-%{tde_docdir}/HTML/en/artsbuilder/
+%defattr(-,root,root,-)
+%{tde_bindir}/artsbuilder
+%{tde_bindir}/artscontrol
+%{tde_bindir}/midisend
+%{tde_libdir}/libartsbuilder.la
+%{tde_libdir}/libartsbuilder.so.*
+%{tde_libdir}/libartscontrolapplet.la
+%{tde_libdir}/libartscontrolapplet.so.*
+%{tde_libdir}/libartscontrolsupport.la
+%{tde_libdir}/libartscontrolsupport.so.*
+%{tde_libdir}/libartsgui_idl.la
+%{tde_libdir}/libartsgui_idl.so.*
+%{tde_libdir}/libartsgui_kde.la
+%{tde_libdir}/libartsgui_kde.so.*
+%{tde_libdir}/libartsgui.la
+%{tde_libdir}/libartsgui.so.*
+%{tde_libdir}/libartsmidi_idl.la
+%{tde_libdir}/libartsmidi_idl.so.*
+%{tde_libdir}/libartsmidi.la
+%{tde_libdir}/libartsmidi.so.*
+%{tde_libdir}/libartsmodulescommon.la
+%{tde_libdir}/libartsmodulescommon.so.*
+%{tde_libdir}/libartsmoduleseffects.la
+%{tde_libdir}/libartsmoduleseffects.so.*
+%{tde_libdir}/libartsmodulesmixers.la
+%{tde_libdir}/libartsmodulesmixers.so.*
+%{tde_libdir}/libartsmodules.la
+%{tde_libdir}/libartsmodules.so.*
+%{tde_libdir}/libartsmodulessynth.la
+%{tde_libdir}/libartsmodulessynth.so.*
+%{tde_libdir}/mcop/Arts/ArtsBuilderLoader.mcopclass
+%{tde_libdir}/mcop/artsbuilder.mcopclass
+%{tde_libdir}/mcop/artsbuilder.mcoptype
+%{tde_libdir}/mcop/Arts/Button.mcopclass
+%{tde_libdir}/mcop/Arts/EffectRackGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/Effect_WAVECAPTURE.mcopclass
+%{tde_libdir}/mcop/Arts/Environment/Container.mcopclass
+%{tde_libdir}/mcop/Arts/Environment/EffectRackItem.mcopclass
+%{tde_libdir}/mcop/Arts/Environment/InstrumentItemGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/Environment/InstrumentItem.mcopclass
+%{tde_libdir}/mcop/Arts/Environment/MixerItem.mcopclass
+%{tde_libdir}/mcop/Arts/Fader.mcopclass
+%{tde_libdir}/mcop/Arts/FiveBandMonoComplexEQGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/FiveBandMonoComplexEQ.mcopclass
+%{tde_libdir}/mcop/Arts/FreeverbGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/GenericGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/GraphLine.mcopclass
+%{tde_libdir}/mcop/artsgui.mcopclass
+%{tde_libdir}/mcop/artsgui.mcoptype
+%{tde_libdir}/mcop/Arts/HBox.mcopclass
+%{tde_libdir}/mcop/Arts/Label.mcopclass
+%{tde_libdir}/mcop/Arts/LayoutBox.mcopclass
+%{tde_libdir}/mcop/Arts/LevelMeter.mcopclass
+%{tde_libdir}/mcop/Arts/LineEdit.mcopclass
+%{tde_libdir}/mcop/Arts/LittleStereoMixerChannelGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/LittleStereoMixerChannel.mcopclass
+%{tde_libdir}/mcop/Arts/LocalFactory.mcopclass
+%{tde_libdir}/mcop/Arts/MidiManager.mcopclass
+%{tde_libdir}/mcop/artsmidi.mcopclass
+%{tde_libdir}/mcop/artsmidi.mcoptype
+%{tde_libdir}/mcop/Arts/MixerGuiFactory.mcopclass
+%{tde_libdir}/mcop/artsmodulescommon.mcopclass
+%{tde_libdir}/mcop/artsmodulescommon.mcoptype
+%{tde_libdir}/mcop/artsmoduleseffects.mcopclass
+%{tde_libdir}/mcop/artsmoduleseffects.mcoptype
+%{tde_libdir}/mcop/artsmodules.mcopclass
+%{tde_libdir}/mcop/artsmodules.mcoptype
+%{tde_libdir}/mcop/artsmodulesmixers.mcopclass
+%{tde_libdir}/mcop/artsmodulesmixers.mcoptype
+%{tde_libdir}/mcop/artsmodulessynth.mcopclass
+%{tde_libdir}/mcop/artsmodulessynth.mcoptype
+%{tde_libdir}/mcop/Arts/MonoSimpleMixerChannelGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/MonoSimpleMixerChannel.mcopclass
+%{tde_libdir}/mcop/Arts/MonoToStereo.mcopclass
+%{tde_libdir}/mcop/Arts/PopupBox.mcopclass
+%{tde_libdir}/mcop/Arts/Poti.mcopclass
+%{tde_libdir}/mcop/Arts/SimpleMixerChannelGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/SimpleMixerChannel.mcopclass
+%{tde_libdir}/mcop/Arts/SpinBox.mcopclass
+%{tde_libdir}/mcop/Arts/StereoBalanceGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/StereoBalance.mcopclass
+%{tde_libdir}/mcop/Arts/StereoCompressorGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/StereoFirEqualizerGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/StereoToMono.mcopclass
+%{tde_libdir}/mcop/Arts/StereoVolumeControlGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/StereoVolumeControlGui.mcopclass
+%{tde_libdir}/mcop/Arts/StructureBuilder.mcopclass
+%{tde_libdir}/mcop/Arts/StructureDesc.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_ATAN_SATURATE.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_AUTOPANNER.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_BRICKWALL_LIMITER.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_CAPTURE_WAV.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_CDELAY.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_COMPRESSOR.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_DATA.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_DEBUG.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_DELAY.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_DIV.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_ENVELOPE_ADSR.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_FM_SOURCE.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_FREEVERB.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_FX_CFLANGER.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_MIDI_DEBUG.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_MIDI_TEST.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_MOOG_VCF.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_NIL.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_NOISE.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_OSC.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_PITCH_SHIFT_FFT.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_PITCH_SHIFT.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_PLAY_PAT.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_PSCALE.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_RC.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_SEQUENCE_FREQ.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_SEQUENCE.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_SHELVE_CUTOFF.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_STD_EQUALIZER.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_STEREO_COMPRESSOR.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_STEREO_FIR_EQUALIZER.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_STEREO_PITCH_SHIFT_FFT.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_STEREO_PITCH_SHIFT.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_TREMOLO.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_VOICE_REMOVAL.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_WAVE_PULSE.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_WAVE_SOFTSAW.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_WAVE_SQUARE.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_WAVE_TRI.mcopclass
+%{tde_libdir}/mcop/Arts/Synth_XFADE.mcopclass
+%{tde_libdir}/mcop/Arts/VBox.mcopclass
+%{tde_libdir}/mcop/Arts/VoiceRemovalGuiFactory.mcopclass
+%{tde_libdir}/mcop/Arts/Widget.mcopclass
+%{tde_tdeappdir}/artsbuilder.desktop
+%{tde_tdeappdir}/artscontrol.desktop
+%{tde_datadir}/apps/artsbuilder/
+%{tde_datadir}/apps/artscontrol/
+%{tde_datadir}/apps/kicker/applets/artscontrolapplet.desktop
+%{tde_datadir}/icons/crystalsvg/*/actions/artsaudiomanager.png
+%{tde_datadir}/icons/crystalsvg/*/actions/artsbuilderexecute.png
+%{tde_datadir}/icons/crystalsvg/*/actions/artsenvironment.png
+%{tde_datadir}/icons/crystalsvg/*/actions/artsfftscope.png
+%{tde_datadir}/icons/crystalsvg/*/actions/artsmediatypes.png
+%{tde_datadir}/icons/crystalsvg/*/actions/artsmidimanager.png
+%{tde_datadir}/icons/crystalsvg/scalable/actions/artsaudiomanager.svgz
+%{tde_datadir}/icons/crystalsvg/scalable/actions/artsenvironment.svgz
+%{tde_datadir}/icons/crystalsvg/scalable/actions/artsfftscope.svgz
+%{tde_datadir}/icons/crystalsvg/scalable/actions/artsmediatypes.svgz
+%{tde_datadir}/icons/crystalsvg/scalable/actions/artsmidimanager.svgz
+%{tde_datadir}/icons/hicolor/*/apps/artsbuilder.png
+%{tde_datadir}/icons/hicolor/*/apps/artscontrol.png
+%{tde_datadir}/icons/hicolor/scalable/apps/artsbuilder.svgz
+%{tde_datadir}/icons/hicolor/scalable/apps/artscontrol.svgz
+%{tde_datadir}/mimelnk/application/x-artsbuilder.desktop
+%{tde_tdedocdir}/HTML/en/artsbuilder/
 
 %post -n trinity-artsbuilder
 /sbin/ldconfig
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-artsbuilder
 /sbin/ldconfig
 for f in crystalsvg hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -327,27 +350,28 @@ Some of JuK's features include:
   with other TDE and X apps
 
 %files -n trinity-juk
-%{_bindir}/juk
-%{tde_appdir}/juk.desktop
-%{_datadir}/apps/juk/
-%{_datadir}/apps/konqueror/servicemenus/jukservicemenu.desktop
-%{_datadir}/icons/crystalsvg/*/actions/juk_dock.png
-%{_datadir}/icons/hicolor/*/apps/juk.png
-%{tde_docdir}/HTML/en/juk/
+%defattr(-,root,root,-)
+%{tde_bindir}/juk
+%{tde_tdeappdir}/juk.desktop
+%{tde_datadir}/apps/juk/
+%{tde_datadir}/apps/konqueror/servicemenus/jukservicemenu.desktop
+%{tde_datadir}/icons/crystalsvg/*/actions/juk_dock.png
+%{tde_datadir}/icons/hicolor/*/apps/juk.png
+%{tde_tdedocdir}/HTML/en/juk/
 
 %post -n trinity-juk
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-juk
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -362,29 +386,30 @@ Kaboodle is a light, embedded media player, supporting both video and audio,
 for TDE. It uses the aRts framework for playing media files.
 
 %files -n trinity-kaboodle
-%{_bindir}/kaboodle
-%{tde_libdir}/libkaboodlepart.la
-%{tde_libdir}/libkaboodlepart.so
-%{tde_appdir}/kaboodle.desktop
-%{_datadir}/apps/kaboodle/
-%{_datadir}/icons/hicolor/*/apps/kaboodle.png
-%{_datadir}/services/kaboodle_component.desktop
-%{_datadir}/services/kaboodleengine.desktop
-%{tde_docdir}/HTML/en/kaboodle/
+%defattr(-,root,root,-)
+%{tde_bindir}/kaboodle
+%{tde_tdelibdir}/libkaboodlepart.la
+%{tde_tdelibdir}/libkaboodlepart.so
+%{tde_tdeappdir}/kaboodle.desktop
+%{tde_datadir}/apps/kaboodle/
+%{tde_datadir}/icons/hicolor/*/apps/kaboodle.png
+%{tde_datadir}/services/kaboodle_component.desktop
+%{tde_datadir}/services/kaboodleengine.desktop
+%{tde_tdedocdir}/HTML/en/kaboodle/
 
 %post -n trinity-kaboodle
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kaboodle
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -402,32 +427,33 @@ keep your WAV files, or convert them to Ogg/Vorbis, MP3, or FLAC. It also
 searches CDDB to retrieve the information of the disk.
 
 %files -n trinity-kaudiocreator
-%{_bindir}/kaudiocreator
-%{tde_appdir}/kaudiocreator.desktop
-%{_datadir}/apps/kaudiocreator/
-%{_datadir}/apps/kconf_update/kaudiocreator-libkcddb.upd
-%{_datadir}/apps/kconf_update/kaudiocreator-meta.upd
-%{_datadir}/apps/kconf_update/upgrade-kaudiocreator-metadata.sh
-%{_datadir}/apps/konqueror/servicemenus/audiocd_extract.desktop
-%{_datadir}/config.kcfg/kaudiocreator.kcfg
-%{_datadir}/config.kcfg/kaudiocreator_encoders.kcfg
-%{_datadir}/icons/hicolor/*/apps/kaudiocreator.png
-%{_datadir}/icons/locolor/*/apps/kaudiocreator.png
-%{tde_docdir}/HTML/en/kaudiocreator/
+%defattr(-,root,root,-)
+%{tde_bindir}/kaudiocreator
+%{tde_tdeappdir}/kaudiocreator.desktop
+%{tde_datadir}/apps/kaudiocreator/
+%{tde_datadir}/apps/kconf_update/kaudiocreator-libkcddb.upd
+%{tde_datadir}/apps/kconf_update/kaudiocreator-meta.upd
+%{tde_datadir}/apps/kconf_update/upgrade-kaudiocreator-metadata.sh
+%{tde_datadir}/apps/konqueror/servicemenus/audiocd_extract.desktop
+%{tde_datadir}/config.kcfg/kaudiocreator.kcfg
+%{tde_datadir}/config.kcfg/kaudiocreator_encoders.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kaudiocreator.png
+%{tde_datadir}/icons/locolor/*/apps/kaudiocreator.png
+%{tde_tdedocdir}/HTML/en/kaudiocreator/
 
 %post -n trinity-kaudiocreator
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kaudiocreator
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -439,39 +465,40 @@ Group:		Applications/Multimedia
 au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
 
 %files kfile-plugins
-%{tde_libdir}/kfile_au.la
-%{tde_libdir}/kfile_au.so
-%{tde_libdir}/kfile_avi.la
-%{tde_libdir}/kfile_avi.so
-%{tde_libdir}/kfile_flac.la
-%{tde_libdir}/kfile_flac.so
-%{tde_libdir}/kfile_m3u.la
-%{tde_libdir}/kfile_m3u.so
-%{tde_libdir}/kfile_mp3.la
-%{tde_libdir}/kfile_mp3.so
-%{tde_libdir}/kfile_mpc.la
-%{tde_libdir}/kfile_mpc.so
-%{tde_libdir}/kfile_mpeg.la
-%{tde_libdir}/kfile_mpeg.so
-%{tde_libdir}/kfile_ogg.la
-%{tde_libdir}/kfile_ogg.so
-%{tde_libdir}/kfile_sid.la
-%{tde_libdir}/kfile_sid.so
-%{tde_libdir}/kfile_theora.la
-%{tde_libdir}/kfile_theora.so
-%{tde_libdir}/kfile_wav.la
-%{tde_libdir}/kfile_wav.so
-%{_datadir}/services/kfile_au.desktop
-%{_datadir}/services/kfile_avi.desktop
-%{_datadir}/services/kfile_flac.desktop
-%{_datadir}/services/kfile_m3u.desktop
-%{_datadir}/services/kfile_mp3.desktop
-%{_datadir}/services/kfile_mpc.desktop
-%{_datadir}/services/kfile_mpeg.desktop
-%{_datadir}/services/kfile_ogg.desktop
-%{_datadir}/services/kfile_sid.desktop
-%{_datadir}/services/kfile_theora.desktop
-%{_datadir}/services/kfile_wav.desktop
+%defattr(-,root,root,-)
+%{tde_tdelibdir}/kfile_au.la
+%{tde_tdelibdir}/kfile_au.so
+%{tde_tdelibdir}/kfile_avi.la
+%{tde_tdelibdir}/kfile_avi.so
+%{tde_tdelibdir}/kfile_flac.la
+%{tde_tdelibdir}/kfile_flac.so
+%{tde_tdelibdir}/kfile_m3u.la
+%{tde_tdelibdir}/kfile_m3u.so
+%{tde_tdelibdir}/kfile_mp3.la
+%{tde_tdelibdir}/kfile_mp3.so
+%{tde_tdelibdir}/kfile_mpc.la
+%{tde_tdelibdir}/kfile_mpc.so
+%{tde_tdelibdir}/kfile_mpeg.la
+%{tde_tdelibdir}/kfile_mpeg.so
+%{tde_tdelibdir}/kfile_ogg.la
+%{tde_tdelibdir}/kfile_ogg.so
+%{tde_tdelibdir}/kfile_sid.la
+%{tde_tdelibdir}/kfile_sid.so
+%{tde_tdelibdir}/kfile_theora.la
+%{tde_tdelibdir}/kfile_theora.so
+%{tde_tdelibdir}/kfile_wav.la
+%{tde_tdelibdir}/kfile_wav.so
+%{tde_datadir}/services/kfile_au.desktop
+%{tde_datadir}/services/kfile_avi.desktop
+%{tde_datadir}/services/kfile_flac.desktop
+%{tde_datadir}/services/kfile_m3u.desktop
+%{tde_datadir}/services/kfile_mp3.desktop
+%{tde_datadir}/services/kfile_mpc.desktop
+%{tde_datadir}/services/kfile_mpeg.desktop
+%{tde_datadir}/services/kfile_ogg.desktop
+%{tde_datadir}/services/kfile_sid.desktop
+%{tde_datadir}/services/kfile_theora.desktop
+%{tde_datadir}/services/kfile_wav.desktop
 
 ##########
 
@@ -485,8 +512,9 @@ Requires: 	trinity-kappfinder
 This package provides data on multimedia applications for kappfinder.
 
 %files kappfinder-data
-%{_datadir}/apps/kappfinder/*
-%{_datadir}/desktop-directories/[kt]de-multimedia-music.directory
+%defattr(-,root,root,-)
+%{tde_datadir}/apps/kappfinder/*
+%{tde_datadir}/desktop-directories/[kt]de-multimedia-music.directory
 %{_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu
 
 ##########
@@ -500,34 +528,35 @@ This package allow audio CDs to be browsed like a file system using
 Konqueror and the audiocd:/ URL.
 
 %files kio-plugins
-%{tde_libdir}/kcm_audiocd.la
-%{tde_libdir}/kcm_audiocd.so
-%{tde_libdir}/kio_audiocd.la
-%{tde_libdir}/kio_audiocd.so
-%{tde_libdir}/libaudiocd_encoder_flac.la
-%{tde_libdir}/libaudiocd_encoder_flac.so
-%{tde_libdir}/libaudiocd_encoder_lame.la
-%{tde_libdir}/libaudiocd_encoder_lame.so
-%{tde_libdir}/libaudiocd_encoder_vorbis.la
-%{tde_libdir}/libaudiocd_encoder_vorbis.so
-%{tde_libdir}/libaudiocd_encoder_wav.la
-%{tde_libdir}/libaudiocd_encoder_wav.so
-%{_libdir}/libaudiocdplugins.so.*
-%{tde_appdir}/audiocd.desktop
-%{_datadir}/apps/kconf_update/audiocd.upd
-%{_datadir}/apps/kconf_update/upgrade-metadata.sh
-%{_datadir}/config.kcfg/audiocd_lame_encoder.kcfg
-%{_datadir}/config.kcfg/audiocd_vorbis_encoder.kcfg
-%{_datadir}/services/audiocd.protocol
-%{tde_docdir}/HTML/en/kioslave/audiocd.docbook
+%defattr(-,root,root,-)
+%{tde_tdelibdir}/kcm_audiocd.la
+%{tde_tdelibdir}/kcm_audiocd.so
+%{tde_tdelibdir}/kio_audiocd.la
+%{tde_tdelibdir}/kio_audiocd.so
+%{tde_tdelibdir}/libaudiocd_encoder_flac.la
+%{tde_tdelibdir}/libaudiocd_encoder_flac.so
+%{tde_tdelibdir}/libaudiocd_encoder_lame.la
+%{tde_tdelibdir}/libaudiocd_encoder_lame.so
+%{tde_tdelibdir}/libaudiocd_encoder_vorbis.la
+%{tde_tdelibdir}/libaudiocd_encoder_vorbis.so
+%{tde_tdelibdir}/libaudiocd_encoder_wav.la
+%{tde_tdelibdir}/libaudiocd_encoder_wav.so
+%{tde_libdir}/libaudiocdplugins.so.*
+%{tde_tdeappdir}/audiocd.desktop
+%{tde_datadir}/apps/kconf_update/audiocd.upd
+%{tde_datadir}/apps/kconf_update/upgrade-metadata.sh
+%{tde_datadir}/config.kcfg/audiocd_lame_encoder.kcfg
+%{tde_datadir}/config.kcfg/audiocd_vorbis_encoder.kcfg
+%{tde_datadir}/services/audiocd.protocol
+%{tde_tdedocdir}/HTML/en/kioslave/audiocd.docbook
 
 %post kio-plugins
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun kio-plugins
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -539,32 +568,33 @@ Group:		Applications/Multimedia
 This package provides a MIDI and karaoke player for TDE.
 
 %files -n trinity-kmid
-%{_bindir}/kmid
-%{tde_libdir}/libkmidpart.la
-%{tde_libdir}/libkmidpart.so
-%{_libdir}/libkmidlib.so.*
-%{tde_appdir}/kmid.desktop
-%{_datadir}/apps/kmid/
-%{_datadir}/icons/hicolor/*/apps/kmid.png
-%{_datadir}/mimelnk/audio/x-karaoke.desktop
-%{_datadir}/servicetypes/audiomidi.desktop
-%{tde_docdir}/HTML/en/kmid/
+%defattr(-,root,root,-)
+%{tde_bindir}/kmid
+%{tde_tdelibdir}/libkmidpart.la
+%{tde_tdelibdir}/libkmidpart.so
+%{tde_libdir}/libkmidlib.so.*
+%{tde_tdeappdir}/kmid.desktop
+%{tde_datadir}/apps/kmid/
+%{tde_datadir}/icons/hicolor/*/apps/kmid.png
+%{tde_datadir}/mimelnk/audio/x-karaoke.desktop
+%{tde_datadir}/servicetypes/audiomidi.desktop
+%{tde_tdedocdir}/HTML/en/kmid/
 
 %post -n trinity-kmid
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kmid
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -576,39 +606,40 @@ Group:		Applications/Multimedia
 This package includes TDE's dockable sound mixer applet.
 
 %files -n trinity-kmix
-%{_bindir}/kmix
-%{_bindir}/kmixctrl
-%{tde_libdir}/kmix.la
-%{tde_libdir}/kmix.so
-%{tde_libdir}/kmix_panelapplet.la
-%{tde_libdir}/kmix_panelapplet.so
-%{tde_libdir}/kmixctrl.la
-%{tde_libdir}/kmixctrl.so
-%{_libdir}/lib[kt]deinit_kmix.so
-%{_libdir}/lib[kt]deinit_kmixctrl.so
-%{tde_appdir}/kmix.desktop
-%{_datadir}/apps/kicker/applets/kmixapplet.desktop
-%{_datadir}/apps/kmix/
-%{_datadir}/autostart/restore_kmix_volumes.desktop
-%{_datadir}/icons/hicolor/*/apps/kmix.png
-%{_datadir}/services/kmixctrl_restore.desktop
-%{tde_docdir}/HTML/en/kmix/
+%defattr(-,root,root,-)
+%{tde_bindir}/kmix
+%{tde_bindir}/kmixctrl
+%{tde_tdelibdir}/kmix.la
+%{tde_tdelibdir}/kmix.so
+%{tde_tdelibdir}/kmix_panelapplet.la
+%{tde_tdelibdir}/kmix_panelapplet.so
+%{tde_tdelibdir}/kmixctrl.la
+%{tde_tdelibdir}/kmixctrl.so
+%{tde_libdir}/lib[kt]deinit_kmix.so
+%{tde_libdir}/lib[kt]deinit_kmixctrl.so
+%{tde_tdeappdir}/kmix.desktop
+%{tde_datadir}/apps/kicker/applets/kmixapplet.desktop
+%{tde_datadir}/apps/kmix/
+%{tde_datadir}/autostart/restore_kmix_volumes.desktop
+%{tde_datadir}/icons/hicolor/*/apps/kmix.png
+%{tde_datadir}/services/kmixctrl_restore.desktop
+%{tde_tdedocdir}/HTML/en/kmix/
 
 %post -n trinity-kmix
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kmix
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -620,43 +651,44 @@ Group:		Applications/Multimedia
 This is a sound recording utility for Trinity.
 
 %files -n trinity-krec
-%{_bindir}/krec
-%{tde_libdir}/kcm_krec.la
-%{tde_libdir}/kcm_krec.so
-%{tde_libdir}/kcm_krec_files.la
-%{tde_libdir}/kcm_krec_files.so
-%{tde_libdir}/krec.la
-%{tde_libdir}/krec.so
-%{tde_libdir}/libkrecexport_ogg.la
-%{tde_libdir}/libkrecexport_ogg.so
-%{tde_libdir}/libkrecexport_wave.la
-%{tde_libdir}/libkrecexport_wave.so
-%{_libdir}/lib[kt]deinit_krec.so
-%{tde_appdir}/krec.desktop
-%{_datadir}/apps/krec/
-%{_datadir}/icons/hicolor/*/apps/krec.png
-%{_datadir}/services/kcm_krec.desktop
-%{_datadir}/services/kcm_krec_files.desktop
-%{_datadir}/services/krec_exportogg.desktop
-%{_datadir}/services/krec_exportwave.desktop
-%{_datadir}/servicetypes/krec_exportitem.desktop
-%{tde_docdir}/HTML/en/krec/
+%defattr(-,root,root,-)
+%{tde_bindir}/krec
+%{tde_tdelibdir}/kcm_krec.la
+%{tde_tdelibdir}/kcm_krec.so
+%{tde_tdelibdir}/kcm_krec_files.la
+%{tde_tdelibdir}/kcm_krec_files.so
+%{tde_tdelibdir}/krec.la
+%{tde_tdelibdir}/krec.so
+%{tde_tdelibdir}/libkrecexport_ogg.la
+%{tde_tdelibdir}/libkrecexport_ogg.so
+%{tde_tdelibdir}/libkrecexport_wave.la
+%{tde_tdelibdir}/libkrecexport_wave.so
+%{tde_libdir}/lib[kt]deinit_krec.so
+%{tde_tdeappdir}/krec.desktop
+%{tde_datadir}/apps/krec/
+%{tde_datadir}/icons/hicolor/*/apps/krec.png
+%{tde_datadir}/services/kcm_krec.desktop
+%{tde_datadir}/services/kcm_krec_files.desktop
+%{tde_datadir}/services/krec_exportogg.desktop
+%{tde_datadir}/services/krec_exportwave.desktop
+%{tde_datadir}/servicetypes/krec_exportitem.desktop
+%{tde_tdedocdir}/HTML/en/krec/
 
 %post -n trinity-krec
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-krec
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -668,30 +700,31 @@ Group:		Applications/Multimedia
 This is Trinity's audio CD player.
 
 %files -n trinity-kscd
-%{_bindir}/kscd
-%{_bindir}/workman2cddb.pl
-%{tde_appdir}/kscd.desktop
-%{_datadir}/apps/konqueror/servicemenus/audiocd_play.desktop
-%{_datadir}/apps/kscd/
-%{_datadir}/apps/profiles/kscd.profile.xml
-%{_datadir}/config.kcfg/kscd.kcfg
-%{_datadir}/icons/hicolor/*/apps/kscd.png
-%{_datadir}/mimelnk/text/xmcd.desktop
-%{tde_docdir}/HTML/en/kscd/
+%defattr(-,root,root,-)
+%{tde_bindir}/kscd
+%{tde_bindir}/workman2cddb.pl
+%{tde_tdeappdir}/kscd.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/audiocd_play.desktop
+%{tde_datadir}/apps/kscd/
+%{tde_datadir}/apps/profiles/kscd.profile.xml
+%{tde_datadir}/config.kcfg/kscd.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kscd.png
+%{tde_datadir}/mimelnk/text/xmcd.desktop
+%{tde_tdedocdir}/HTML/en/kscd/
 
 %post -n trinity-kscd
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kscd
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -703,16 +736,17 @@ Group:		Environment/Libraries
 This package contains akode plugins for aRts.
 
 %files -n trinity-libarts-akode
-%{_libdir}/libarts_akode.la
-%{_libdir}/libarts_akode.so
-%{_libdir}/libarts_akode.so.*
-%{_libdir}/mcop/akodearts.mcoptype
-%{_libdir}/mcop/akodearts.mcopclass
-%{_libdir}/mcop/akodeMPCPlayObject.mcopclass
-%{_libdir}/mcop/akodePlayObject.mcopclass
-%{_libdir}/mcop/akodeSpeexStreamPlayObject.mcopclass
-%{_libdir}/mcop/akodeVorbisStreamPlayObject.mcopclass
-%{_libdir}/mcop/akodeXiphPlayObject.mcopclass
+%defattr(-,root,root,-)
+%{tde_libdir}/libarts_akode.la
+%{tde_libdir}/libarts_akode.so
+%{tde_libdir}/libarts_akode.so.*
+%{tde_libdir}/mcop/akodearts.mcoptype
+%{tde_libdir}/mcop/akodearts.mcopclass
+%{tde_libdir}/mcop/akodeMPCPlayObject.mcopclass
+%{tde_libdir}/mcop/akodePlayObject.mcopclass
+%{tde_libdir}/mcop/akodeSpeexStreamPlayObject.mcopclass
+%{tde_libdir}/mcop/akodeVorbisStreamPlayObject.mcopclass
+%{tde_libdir}/mcop/akodeXiphPlayObject.mcopclass
 
 %post -n trinity-libarts-akode
 /sbin/ldconfig
@@ -730,12 +764,13 @@ Group:		Environment/Libraries
 This package contains audiofile plugins for aRts.
 
 %files -n trinity-libarts-audiofile
-%{_libdir}/libarts_audiofile.la
-%{_libdir}/libarts_audiofile.so
-%{_libdir}/libarts_audiofile.so.*
-%{_libdir}/mcop/Arts/audiofilePlayObject.mcopclass
-%{_libdir}/mcop/audiofilearts.mcopclass
-%{_libdir}/mcop/audiofilearts.mcoptype
+%defattr(-,root,root,-)
+%{tde_libdir}/libarts_audiofile.la
+%{tde_libdir}/libarts_audiofile.so
+%{tde_libdir}/libarts_audiofile.so.*
+%{tde_libdir}/mcop/Arts/audiofilePlayObject.mcopclass
+%{tde_libdir}/mcop/audiofilearts.mcopclass
+%{tde_libdir}/mcop/audiofilearts.mcoptype
 
 %post -n trinity-libarts-audiofile
 /sbin/ldconfig
@@ -756,17 +791,18 @@ audio and video.
 This is the arts (TDE Sound daemon) plugin.
 
 %files -n trinity-libarts-mpeglib
-%{_bindir}/mpeglibartsplay
-%{_libdir}/libarts_mpeglib-0.3.0.so.*
-%{_libdir}/libarts_mpeglib.la
-%{_libdir}/libarts_splay.la
-%{_libdir}/libarts_splay.so.*
-%{_libdir}/mcop/CDDAPlayObject.mcopclass
-%{_libdir}/mcop/MP3PlayObject.mcopclass
-%{_libdir}/mcop/NULLPlayObject.mcopclass
-%{_libdir}/mcop/OGGPlayObject.mcopclass
-%{_libdir}/mcop/SplayPlayObject.mcopclass
-%{_libdir}/mcop/WAVPlayObject.mcopclass
+%defattr(-,root,root,-)
+%{tde_bindir}/mpeglibartsplay
+%{tde_libdir}/libarts_mpeglib-0.3.0.so.*
+%{tde_libdir}/libarts_mpeglib.la
+%{tde_libdir}/libarts_splay.la
+%{tde_libdir}/libarts_splay.so.*
+%{tde_libdir}/mcop/CDDAPlayObject.mcopclass
+%{tde_libdir}/mcop/MP3PlayObject.mcopclass
+%{tde_libdir}/mcop/NULLPlayObject.mcopclass
+%{tde_libdir}/mcop/OGGPlayObject.mcopclass
+%{tde_libdir}/mcop/SplayPlayObject.mcopclass
+%{tde_libdir}/mcop/WAVPlayObject.mcopclass
 
 %post -n trinity-libarts-mpeglib
 /sbin/ldconfig
@@ -785,17 +821,18 @@ This package contains aRts' xine plugin, allowing the use of the xine
 multimedia engine though aRts.
 
 %files -n trinity-libarts-xine
-%{tde_libdir}/videothumbnail.la
-%{tde_libdir}/videothumbnail.so
-%{_libdir}/libarts_xine.la
-%{_libdir}/libarts_xine.so
-%{_libdir}/libarts_xine.so.*
-%{_libdir}/mcop/xineAudioPlayObject.mcopclass
-%{_libdir}/mcop/xineVideoPlayObject.mcopclass
-%{_datadir}/apps/videothumbnail/sprocket-large.png
-%{_datadir}/apps/videothumbnail/sprocket-medium.png
-%{_datadir}/apps/videothumbnail/sprocket-small.png
-%{_datadir}/services/videothumbnail.desktop
+%defattr(-,root,root,-)
+%{tde_tdelibdir}/videothumbnail.la
+%{tde_tdelibdir}/videothumbnail.so
+%{tde_libdir}/libarts_xine.la
+%{tde_libdir}/libarts_xine.so
+%{tde_libdir}/libarts_xine.so.*
+%{tde_libdir}/mcop/xineAudioPlayObject.mcopclass
+%{tde_libdir}/mcop/xineVideoPlayObject.mcopclass
+%{tde_datadir}/apps/videothumbnail/sprocket-large.png
+%{tde_datadir}/apps/videothumbnail/sprocket-medium.png
+%{tde_datadir}/apps/videothumbnail/sprocket-small.png
+%{tde_datadir}/services/videothumbnail.desktop
 
 %post -n trinity-libarts-xine
 /sbin/ldconfig
@@ -815,20 +852,21 @@ CD meta-information (track titles, artist information, etc.) from on-line
 databases, for TDE applications.
 
 %files -n trinity-libkcddb
-%{tde_libdir}/kcm_cddb.la
-%{tde_libdir}/kcm_cddb.so
-%{_libdir}/libkcddb.so.*
-%{tde_appdir}/libkcddb.desktop
-%{_datadir}/apps/kconf_update/kcmcddb-emailsettings.upd
-%{_datadir}/config.kcfg/libkcddb.kcfg
+%defattr(-,root,root,-)
+%{tde_tdelibdir}/kcm_cddb.la
+%{tde_tdelibdir}/kcm_cddb.so
+%{tde_libdir}/libkcddb.so.*
+%{tde_tdeappdir}/libkcddb.desktop
+%{tde_datadir}/apps/kconf_update/kcmcddb-emailsettings.upd
+%{tde_datadir}/config.kcfg/libkcddb.kcfg
 
 %post -n trinity-libkcddb
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-libkcddb
 /sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -843,15 +881,16 @@ MPEG-1 audio (layers 1, 2, 3), MPEG-1 video, MPEG-1 system layer,
 and WAV playback
 
 %files -n trinity-mpeglib
-%{_bindir}/yaf-cdda
-%{_bindir}/yaf-mpgplay
-%{_bindir}/yaf-splay
-%{_bindir}/yaf-tplay
-%{_bindir}/yaf-vorbis
-%{_bindir}/yaf-yuv
-%{_libdir}/libmpeg-0.3.0.so
-%{_libdir}/libyafcore.so
-%{_libdir}/libyafxplayer.so
+%defattr(-,root,root,-)
+%{tde_bindir}/yaf-cdda
+%{tde_bindir}/yaf-mpgplay
+%{tde_bindir}/yaf-splay
+%{tde_bindir}/yaf-tplay
+%{tde_bindir}/yaf-vorbis
+%{tde_bindir}/yaf-yuv
+%{tde_libdir}/libmpeg-0.3.0.so
+%{tde_libdir}/libyafcore.so
+%{tde_libdir}/libyafxplayer.so
 
 %post -n trinity-mpeglib
 /sbin/ldconfig
@@ -865,103 +904,98 @@ and WAV playback
 Summary:	Media player for Trinity
 Group:		Applications/Multimedia
 
+%if 0%{?mgaversion}
+Provides:	devel(libnoatunarts)
+Provides:	devel(libnoatunarts(64bit))
+%endif
+
 %description -n trinity-noatun
 Noatun is an aRts-based audio and video player for Trinity. It supports all
 formats supported by your installation of aRts (including aRts plugins).
 
 %files -n trinity-noatun
-%{_bindir}/noatun
-%{_libdir}/kconf_update_bin/noatun20update
-%{tde_libdir}/noatun.la
-%{tde_libdir}/noatun.so
-%{tde_libdir}/noatun_dcopiface.la
-%{tde_libdir}/noatun_dcopiface.so
-%{tde_libdir}/noatun_excellent.la
-%{tde_libdir}/noatun_excellent.so
-%{tde_libdir}/noatun_htmlexport.la
-%{tde_libdir}/noatun_htmlexport.so
-%{tde_libdir}/noatun_infrared.la
-%{tde_libdir}/noatun_infrared.so
-%{tde_libdir}/noatun_kaiman.la
-%{tde_libdir}/noatun_kaiman.so
-%{tde_libdir}/noatun_keyz.la
-%{tde_libdir}/noatun_keyz.so
-%{tde_libdir}/noatun_kjofol.la
-%{tde_libdir}/noatun_kjofol.so
-%{tde_libdir}/noatun_marquis.la
-%{tde_libdir}/noatun_marquis.so
-%{tde_libdir}/noatun_metatag.la
-%{tde_libdir}/noatun_metatag.so
-%{tde_libdir}/noatun_monoscope.la
-%{tde_libdir}/noatun_monoscope.so
-%{tde_libdir}/noatun_net.la
-%{tde_libdir}/noatun_net.so
-%{tde_libdir}/noatun_splitplaylist.la
-%{tde_libdir}/noatun_splitplaylist.so
-%{tde_libdir}/noatun_systray.la
-%{tde_libdir}/noatun_systray.so
-%{tde_libdir}/noatun_ui.la
-%{tde_libdir}/noatun_ui.so
-%{tde_libdir}/noatun_voiceprint.la
-%{tde_libdir}/noatun_voiceprint.so
-%{tde_libdir}/noatun_winskin.la
-%{tde_libdir}/noatun_winskin.so
-%{tde_libdir}/noatunsimple.la
-%{tde_libdir}/noatunsimple.so
-%{_libdir}/libartseffects.la
-%{_libdir}/libartseffects.so
-%{_libdir}/lib[kt]deinit_noatun.so
-%{_libdir}/libnoatun.so.*
-%{_libdir}/libnoatunarts.la
-%{_libdir}/libnoatunarts.so
-%{_libdir}/libnoatuncontrols.so.*
-%{_libdir}/libnoatuntags.so.*
-%{_libdir}/libwinskinvis.la
-%{_libdir}/libwinskinvis.so
-%{_libdir}/mcop/ExtraStereo.mcopclass
-%{_libdir}/mcop/ExtraStereoGuiFactory.mcopclass
-%{_libdir}/mcop/Noatun/Equalizer.mcopclass
-%{_libdir}/mcop/Noatun/EqualizerSSE.mcopclass
-%{_libdir}/mcop/Noatun/FFTScope.mcopclass
-%{_libdir}/mcop/Noatun/FFTScopeStereo.mcopclass
-%{_libdir}/mcop/Noatun/Listener.mcopclass
-%{_libdir}/mcop/Noatun/RawScope.mcopclass
-%{_libdir}/mcop/Noatun/RawScopeStereo.mcopclass
-%{_libdir}/mcop/Noatun/Session.mcopclass
-%{_libdir}/mcop/Noatun/StereoEffectStack.mcopclass
-%{_libdir}/mcop/Noatun/StereoVolumeControl.mcopclass
-%{_libdir}/mcop/Noatun/StereoVolumeControlSSE.mcopclass
-%{_libdir}/mcop/Noatun/WinSkinFFT.mcopclass
-%{_libdir}/mcop/RawWriter.mcopclass
-%{_libdir}/mcop/VoiceRemoval.mcopclass
-%{_libdir}/mcop/artseffects.mcopclass
-%{_libdir}/mcop/artseffects.mcoptype
-%{_libdir}/mcop/noatunarts.mcopclass
-%{_libdir}/mcop/noatunarts.mcoptype
-%{_libdir}/mcop/winskinvis.mcopclass
-%{_libdir}/mcop/winskinvis.mcoptype
-%{tde_appdir}/noatun.desktop
-%{_datadir}/apps/kconf_update/noatun.upd
-%{_datadir}/apps/noatun/
-%{_datadir}/icons/hicolor/*/apps/noatun.png
-%{_datadir}/mimelnk/interface/x-winamp-skin.desktop
-%{tde_docdir}/HTML/en/noatun/
+%defattr(-,root,root,-)
+%{tde_bindir}/noatun
+%{tde_libdir}/kconf_update_bin/noatun20update
+%{tde_tdelibdir}/noatun.la
+%{tde_tdelibdir}/noatun.so
+%{tde_tdelibdir}/noatun_dcopiface.la
+%{tde_tdelibdir}/noatun_dcopiface.so
+%{tde_tdelibdir}/noatun_excellent.la
+%{tde_tdelibdir}/noatun_excellent.so
+%{tde_tdelibdir}/noatun_htmlexport.la
+%{tde_tdelibdir}/noatun_htmlexport.so
+%{tde_tdelibdir}/noatun_infrared.la
+%{tde_tdelibdir}/noatun_infrared.so
+%{tde_tdelibdir}/noatun_kaiman.la
+%{tde_tdelibdir}/noatun_kaiman.so
+%{tde_tdelibdir}/noatun_keyz.la
+%{tde_tdelibdir}/noatun_keyz.so
+%{tde_tdelibdir}/noatun_kjofol.la
+%{tde_tdelibdir}/noatun_kjofol.so
+%{tde_tdelibdir}/noatun_marquis.la
+%{tde_tdelibdir}/noatun_marquis.so
+%{tde_tdelibdir}/noatun_metatag.la
+%{tde_tdelibdir}/noatun_metatag.so
+%{tde_tdelibdir}/noatun_monoscope.la
+%{tde_tdelibdir}/noatun_monoscope.so
+%{tde_tdelibdir}/noatun_net.la
+%{tde_tdelibdir}/noatun_net.so
+%{tde_tdelibdir}/noatun_splitplaylist.la
+%{tde_tdelibdir}/noatun_splitplaylist.so
+%{tde_tdelibdir}/noatun_systray.la
+%{tde_tdelibdir}/noatun_systray.so
+%{tde_tdelibdir}/noatun_ui.la
+%{tde_tdelibdir}/noatun_ui.so
+%{tde_tdelibdir}/noatun_voiceprint.la
+%{tde_tdelibdir}/noatun_voiceprint.so
+%{tde_tdelibdir}/noatun_winskin.la
+%{tde_tdelibdir}/noatun_winskin.so
+%{tde_tdelibdir}/noatunsimple.la
+%{tde_tdelibdir}/noatunsimple.so
+%{tde_libdir}/libartseffects.la
+%{tde_libdir}/libartseffects.so
+%{tde_libdir}/lib[kt]deinit_noatun.so
+%{tde_libdir}/libnoatun.so.*
+%{tde_libdir}/libnoatunarts.la
+%{tde_libdir}/libnoatunarts.so
+%{tde_libdir}/libnoatuncontrols.so.*
+%{tde_libdir}/libnoatuntags.so.*
+%{tde_libdir}/libwinskinvis.la
+%{tde_libdir}/libwinskinvis.so
+%{tde_libdir}/mcop/ExtraStereo.mcopclass
+%{tde_libdir}/mcop/ExtraStereoGuiFactory.mcopclass
+%{tde_libdir}/mcop/Noatun/
+%{tde_libdir}/mcop/RawWriter.mcopclass
+%{tde_libdir}/mcop/VoiceRemoval.mcopclass
+%{tde_libdir}/mcop/artseffects.mcopclass
+%{tde_libdir}/mcop/artseffects.mcoptype
+%{tde_libdir}/mcop/noatunarts.mcopclass
+%{tde_libdir}/mcop/noatunarts.mcoptype
+%{tde_libdir}/mcop/winskinvis.mcopclass
+%{tde_libdir}/mcop/winskinvis.mcoptype
+%{tde_tdeappdir}/noatun.desktop
+%{tde_datadir}/apps/kconf_update/noatun.upd
+%{tde_datadir}/apps/noatun/
+%{tde_datadir}/icons/hicolor/*/apps/noatun.png
+%{tde_datadir}/mimelnk/interface/x-winamp-skin.desktop
+%{tde_tdedocdir}/HTML/en/noatun/
 
 %post -n trinity-noatun
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-noatun
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -982,42 +1016,43 @@ applications using aRtsbuilder, aRtsmidi, aRtskde, aRts modules or
 noatun plugins.
 
 %files devel
+%defattr(-,root,root,-)
 %{tde_includedir}/*
-%{_libdir}/libarts_mpeglib.so
-%{_libdir}/libarts_splay.so
-%{_libdir}/libartsbuilder.so
-%{_libdir}/libartscontrolapplet.so
-%{_libdir}/libartscontrolsupport.so
-%{_libdir}/libartsgui.so
-%{_libdir}/libartsgui_idl.so
-%{_libdir}/libartsgui_kde.so
-%{_libdir}/libartsmidi.so
-%{_libdir}/libartsmidi_idl.so
-%{_libdir}/libartsmodules.so
-%{_libdir}/libartsmodulescommon.so
-%{_libdir}/libartsmoduleseffects.so
-%{_libdir}/libartsmodulesmixers.so
-%{_libdir}/libartsmodulessynth.so
-%{_libdir}/libaudiocdplugins.la
-%{_libdir}/libaudiocdplugins.so
-%{_libdir}/libkcddb.la
-%{_libdir}/libkcddb.so
-%{_libdir}/lib[kt]deinit_kmix.la
-%{_libdir}/lib[kt]deinit_kmixctrl.la
-%{_libdir}/lib[kt]deinit_krec.la
-%{_libdir}/lib[kt]deinit_noatun.la
-%{_libdir}/libkmidlib.la
-%{_libdir}/libkmidlib.so
-%{_libdir}/libmpeg.la
-%{_libdir}/libmpeg.so
-%{_libdir}/libnoatun.la
-%{_libdir}/libnoatun.so
-%{_libdir}/libnoatuncontrols.la
-%{_libdir}/libnoatuncontrols.so
-%{_libdir}/libnoatuntags.la
-%{_libdir}/libnoatuntags.so
-%{_libdir}/libyafcore.la
-%{_libdir}/libyafxplayer.la
+%{tde_libdir}/libarts_mpeglib.so
+%{tde_libdir}/libarts_splay.so
+%{tde_libdir}/libartsbuilder.so
+%{tde_libdir}/libartscontrolapplet.so
+%{tde_libdir}/libartscontrolsupport.so
+%{tde_libdir}/libartsgui.so
+%{tde_libdir}/libartsgui_idl.so
+%{tde_libdir}/libartsgui_kde.so
+%{tde_libdir}/libartsmidi.so
+%{tde_libdir}/libartsmidi_idl.so
+%{tde_libdir}/libartsmodules.so
+%{tde_libdir}/libartsmodulescommon.so
+%{tde_libdir}/libartsmoduleseffects.so
+%{tde_libdir}/libartsmodulesmixers.so
+%{tde_libdir}/libartsmodulessynth.so
+%{tde_libdir}/libaudiocdplugins.la
+%{tde_libdir}/libaudiocdplugins.so
+%{tde_libdir}/libkcddb.la
+%{tde_libdir}/libkcddb.so
+%{tde_libdir}/lib[kt]deinit_kmix.la
+%{tde_libdir}/lib[kt]deinit_kmixctrl.la
+%{tde_libdir}/lib[kt]deinit_krec.la
+%{tde_libdir}/lib[kt]deinit_noatun.la
+%{tde_libdir}/libkmidlib.la
+%{tde_libdir}/libkmidlib.so
+%{tde_libdir}/libmpeg.la
+%{tde_libdir}/libmpeg.so
+%{tde_libdir}/libnoatun.la
+%{tde_libdir}/libnoatun.so
+%{tde_libdir}/libnoatuncontrols.la
+%{tde_libdir}/libnoatuncontrols.so
+%{tde_libdir}/libnoatuntags.la
+%{tde_libdir}/libnoatuntags.so
+%{tde_libdir}/libyafcore.la
+%{tde_libdir}/libyafxplayer.la
 
 %post devel
 /sbin/ldconfig
@@ -1030,6 +1065,7 @@ noatun plugins.
 
 %prep
 %setup -q -n kdemultimedia
+%patch1 -p1 -b .ftbfs
 %patch3 -p1 -b .xdg
 %patch5 -p1 -b .pthread
 %patch10 -p1
@@ -1040,8 +1076,8 @@ noatun plugins.
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -1050,13 +1086,21 @@ noatun plugins.
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
+
+# Required for some distro
+export KDEDIRS=%{_prefix}
 
 %configure  \
+   --exec-prefix=%{_prefix} \
+   --bindir=%{tde_bindir} \
+   --libdir=%{tde_libdir} \
+   --includedir=%{tde_includedir} \
+   --datadir=%{tde_datadir} \
    --enable-new-ldflags \
    --disable-dependency-tracking \
-   --includedir=%{tde_includedir} \
    --with-cdparanoia \
    --with-flac \
    --with-theora \
@@ -1072,29 +1116,19 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?_with_xine} %{!?_with_xine:--without-xine} \
-   --with-extra-includes="%{_usr}/include/cdda:%{_includedir}/tqt" \
+   --with-extra-includes="%{_usr}/include/cdda:%{_usr}/include/cddb:%{tde_includedir}/tqt" \
    --enable-closure
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot} 
 %__make install DESTDIR=%{buildroot}
 
-## Remove/uninstall (conflicting) bits we don't want
-#%__rm -f $RPM_BUILD_ROOT%{_libdir}/mcop/akode*MPEGPlayObject.mcopclass
-
-# only show in KDE, really? -- Rex (FIXME)
-#for f in %{buildroot}%{tde_appdir}/*.desktop ; do
-#  if [ -f %{buildroot}%{tde_appdir}/*.desktop ] ; then
-#    echo "OnlyShowIn=KDE;" >> $f
-#  fi
-#done
-
 # don't make these world-writeable
-chmod go-w %{buildroot}%{_datadir}/apps/kscd/*
+chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
 
 # locale's
 HTML_DIR=$(kde-config --expandvars --install html)
@@ -1112,19 +1146,6 @@ for lang_dir in %{buildroot}$HTML_DIR/* ; do
   fi
 done
 fi
-
-# rpmdocs
-for dir in k* ; do
-  for file in AUTHORS ChangeLog README TODO ; do
-    if test -s "$dir/$file" ; then
-       install -p -m644 -D "$dir/$file" "rpmdocs/$dir/$file"
-       # exclude kaboodle, juk, noatun
-       if [ $dir != kaboodle -a $dir != juk -a $dir != noatun ] ; then
-         echo "%doc rpmdocs/$dir/" >> %{name}.lang
-       fi
-    fi
-  done
-done
 
 # Moves the XDG configuration files to TDE directory
 %__install -p -D -m644 \

@@ -1,0 +1,35 @@
+commit d1c71f692f5329dbfe817bbed41c5137be608efa
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1341199632 -0500
+
+    Fix spinbox text entry when base is not 10
+
+diff --git a/kdeui/knuminput.cpp b/kdeui/knuminput.cpp
+index 27b86f9..118af6c 100644
+--- a/kdeui/knuminput.cpp
++++ b/kdeui/knuminput.cpp
+@@ -206,6 +206,7 @@ KIntSpinBox::KIntSpinBox(TQWidget *parent, const char *name)
+ {
+     editor()->tqsetAlignment(AlignRight);
+     val_base = 10;
++    setValidator(new KIntValidator(this, val_base));
+     setValue(0);
+ }
+ 
+@@ -219,11 +220,16 @@ KIntSpinBox::KIntSpinBox(int lower, int upper, int step, int value, int base,
+ {
+     editor()->tqsetAlignment(AlignRight);
+     val_base = base;
++    setValidator(new KIntValidator(this, val_base));
+     setValue(value);
+ }
+ 
+ void KIntSpinBox::setBase(int base)
+ {
++    const KIntValidator* kvalidator = dynamic_cast<const KIntValidator*>(validator());
++    if (kvalidator) {
++    	const_cast<KIntValidator*>(kvalidator)->setBase(base);
++    }
+     val_base = base;
+ }
+ 

@@ -1,0 +1,22 @@
+--- kdeaccessibility/ksayit/KTTSD_Lib/Makefile.am.ORI	2012-07-31 13:37:10.811009510 +0200
++++ kdeaccessibility/ksayit/KTTSD_Lib/Makefile.am	2012-07-31 13:37:33.505555438 +0200
+@@ -5,7 +5,7 @@
+ METASOURCES = AUTO
+ libKTTSD_Lib_la_LDFLAGS = -no-undefined $(all_libraries) -version-info 0:1
+ lib_LTLIBRARIES = libKTTSD_Lib.la
+-libKTTSD_Lib_la_LIBADD = $(LIB_KDEUI) $(LIB_KDECORE)
++libKTTSD_Lib_la_LIBADD = $(LIB_KDEUI) $(LIB_KDECORE) -lqt-mt -lDCOP
+ noinst_HEADERS = kttsdlib.h kttsdlibsetupimpl.h kttsdlibtalker2.h kdeexportfix.h
+ 
+ kspeech_DIR = $(KTTS_KSPEECH_DIR)
+--- kdeaccessibility/kttsd/libkttsd/Makefile.am.ORI	2012-07-31 17:09:08.905460827 +0200
++++ kdeaccessibility/kttsd/libkttsd/Makefile.am	2012-07-31 17:09:20.272109013 +0200
+@@ -26,7 +26,7 @@
+ 	notify.cpp
+ 
+ libkttsd_la_LDFLAGS = -version-info 1:0:0 $(all_libraries) -no-undefined
+-libkttsd_la_LIBADD = $(LIB_KIO)
++libkttsd_la_LIBADD = $(LIB_KIO) -lqt-mt -lkdeui -lkdecore
+ 
+ # Header files that should not be installed.
+ noinst_HEADERS = \

@@ -1,0 +1,46 @@
+commit 2d699f523902244113eeec627ca6b9b18b740da0
+Author: Slávek Banko <slavek.banko@axis.cz>
+Date:   1340214777 +0200
+
+    Fix html special chars in kopete nowlistening plugin
+    This partially resolves Bug 994
+
+diff --git a/kopete/plugins/nowlistening/nowlisteningplugin.cpp b/kopete/plugins/nowlistening/nowlisteningplugin.cpp
+index a914818..1f1fed5 100644
+--- a/kopete/plugins/nowlistening/nowlisteningplugin.cpp
++++ b/kopete/plugins/nowlistening/nowlisteningplugin.cpp
+@@ -20,6 +20,7 @@
+ 
+ #include <tqtimer.h>
+ #include <tqstringlist.h>
++#include <tqstylesheet.h>
+ #include <tqregexp.h>
+ 
+ #include <kdebug.h>
+@@ -189,7 +190,7 @@ void NowListeningPlugin::slotOutgoingMessage(Kopete::Message& msg)
+ 	if(!NowListeningConfig::self()->chatAdvertising())
+ 		return;
+ 
+-	TQString originalBody = msg.plainBody();
++	TQString originalBody = msg.escapedBody();
+ 
+ 	// If it is a /media message, don't process it
+ 	if(originalBody.startsWith(NowListeningConfig::self()->header()))
+@@ -222,7 +223,7 @@ void NowListeningPlugin::slotOutgoingMessage(Kopete::Message& msg)
+ 	{
+ 		TQString advert = mediaPlayerAdvert(false); // false since newTrackPlaying() did the update
+ 		if( !advert.isEmpty() )
+-			newBody = originalBody + "<br>" + advert;
++			newBody = originalBody + "<br>" + TQStyleSheet::escape(advert);
+ 
+ 		// If we send because the information has changed since it was last sent, we must
+ 		// rebuild the list of contacts the latest information was sent to.
+@@ -501,7 +502,7 @@ void NowListeningPlugin::advertiseToChat( Kopete::ChatSession *theChat, TQString
+ 			pl,
+ 			message,
+ 			Kopete::Message::Outbound,
+-			Kopete::Message::RichText );
++			Kopete::Message::PlainText );
+ 	theChat->sendMessage( msg );
+ }
+ 

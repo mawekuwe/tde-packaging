@@ -1,10 +1,27 @@
-%define _prefix /opt/trinity
-%define _docdir %{_datadir}/doc
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
+# TDE 3.5.13 specific building variables
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 Summary: Audio-decoding framework 
 Name:	 trinity-akode 
 Version: 2.0.2
-Release: 1%{?dist}
+Release: 1%{?dist}%{?_variant}
 
 License: LGPLv2+
 Group: 	 System Environment/Libraries
@@ -30,18 +47,25 @@ Patch10: akode-autotools.patch
 %define _with_libsamplerate --with-libsamplerate
 
 # Pulseaudio is not available on RHEL 5 and earlier
-%if 0%{?fedora} >= 15 || 0%{?rhel} >= 6
+%if 0%{?fedora} >= 15 || 0%{?rhel} >= 6 || 0%{?mgaversion}
 %define _with_pulseaudio --with-pulseaudio
 %endif
 
 BuildRequires: automake libtool
 BuildRequires: alsa-lib-devel
-%{?_with_flac:BuildRequires: flac-devel}
-%{?_with_jack:BuildRequires: jack-audio-connection-kit-devel}
 %{?_with_libsamplerate:BuildRequires: libsamplerate-devel}
 BuildRequires: libvorbis-devel
-%{?_with_pulseaudio:BuildRequires: pulseaudio-libs-devel}
 BuildRequires: speex-devel
+
+%if 0%{?mgaversion}
+%{?_with_jack:BuildRequires: %{_lib}jack-devel}
+%{?_with_flac:BuildRequires: %{_lib}flac-devel}
+%{?_with_pulseaudio:BuildRequires: %{_lib}pulseaudio-devel}
+%else
+%{?_with_flac:BuildRequires: flac-devel}
+%{?_with_jack:BuildRequires: jack-audio-connection-kit-devel}
+%{?_with_pulseaudio:BuildRequires: pulseaudio-libs-devel}
+%endif
 
 %description
 aKode is a simple audio-decoding frame-work that provides a uniform
@@ -100,9 +124,9 @@ Requires: %{name} = %{version}-%{release}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+%__sed -i "admin/acinclude.m4.in" \
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -110,6 +134,10 @@ Requires: %{name} = %{version}-%{release}
 
 %build
 %configure \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --includedir=%{tde_includedir} \
+  --datadir=%{tde_datadir} \
   --disable-static \
   --enable-shared \
   --disable-debug --disable-warnings --disable-dependency-tracking \
@@ -136,9 +164,7 @@ Requires: %{name} = %{version}-%{release}
 %__make install DESTDIR=%{buildroot}
 
 # unpackaged files
-%__rm -f %{buildroot}%{_libdir}/lib*.la
 %__rm -f %{buildroot}%{_libdir}/lib*.a
-#rm -f %{buildroot}%{_libdir}/libakode_oss_sink.so
 
 # rpmdocs
 for file in AUTHORS COPYING NEWS README TODO ; do
@@ -150,49 +176,68 @@ done
 %__rm -rf %{buildroot} 
 
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%postun 
+/sbin/ldconfig
+
+%post devel
+/sbin/ldconfig
+
+%postun devel
+/sbin/ldconfig
 
 
 %files
 %defattr(-,root,root,-)
 %doc rpmdocs/* 
-%{_bindir}/akodeplay
-%{_libdir}/libakode.so.*
-%{_libdir}/libakode_alsa_sink.so
-%{_libdir}/libakode_mpc_decoder.so
-%{_libdir}/libakode_oss_sink.so
-%{_libdir}/libakode_xiph_decoder.so
+%{tde_bindir}/akodeplay
+%{tde_libdir}/libakode.so.*
+%{tde_libdir}/libakode_alsa_sink.la
+%{tde_libdir}/libakode_alsa_sink.so
+%{tde_libdir}/libakode_mpc_decoder.la
+%{tde_libdir}/libakode_mpc_decoder.so
+%{tde_libdir}/libakode_oss_sink.la
+%{tde_libdir}/libakode_oss_sink.so
+%{tde_libdir}/libakode_xiph_decoder.la
+%{tde_libdir}/libakode_xiph_decoder.so
 
 %files devel
 %defattr(-,root,root,-)
-%{_bindir}/akode-config
-%{_includedir}/*
-%{_libdir}/libakode.so
-%{_libdir}/pkgconfig/*.pc
+%{tde_bindir}/akode-config
+%{tde_includedir}/*
+%{tde_libdir}/libakode.la
+%{tde_libdir}/libakode.so
+%{tde_libdir}/pkgconfig/*.pc
 
 %if "%{?_with_jack:1}" == "1"
 %files jack 
 %defattr(-,root,root,-)
-%{_libdir}/libakode_jack_sink.so
+%{tde_libdir}/libakode_jack_sink.la
+%{tde_libdir}/libakode_jack_sink.so
 %endif
 
 # License: GPLv2+
 %if "%{?_with_libsamplerate:1}" == "1"
 %files libsamplerate
 %defattr(-,root,root,-)
-%{_libdir}/libakode_src_resampler.so
+%{tde_libdir}/libakode_src_resampler.la
+%{tde_libdir}/libakode_src_resampler.so
 %endif
 
 %if "%{?_with_pulseaudio:1}" == "1"
 %files pulseaudio
 %defattr(-,root,root,-)
-%{_libdir}/libakode_polyp_sink.so
+%{tde_libdir}/libakode_polyp_sink.la
+%{tde_libdir}/libakode_polyp_sink.so
 %endif
 
 
 %changelog
+* Tue Jul 30 2012 Francois Andriot <francois.andriot@free.fr> 2.0.2-2
+- Re-adds '.la' files
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> 2.0.2-1
 - Port to TDE 3.5.13
 - Based on spec file from Fedora 9 'akode-2.0.2-5'

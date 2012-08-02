@@ -3,6 +3,12 @@
 %define _variant .opt
 %endif
 
+%define tde_bindir %{_prefix}/bin
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+
+%define _docdir %{_prefix}/share/doc
+
 Name:		trinity-arts
 Version:	3.5.13
 Release:	4%{?dist}%{?_variant}
@@ -29,11 +35,17 @@ BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
-BuildRequires:	libtool-ltdl-devel
 BuildRequires:	gsl-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	esound-devel
+
+%if 0%{?mgaversion}
+BuildRequires:	%{_lib}jack-devel
+BuildRequires:	%{_lib}ltdl-devel
+%else
 BuildRequires:	jack-audio-connection-kit-devel
+BuildRequires:	libtool-ltdl-devel
+%endif
 
 # TDE 3.5.13 specific building variables
 BuildRequires: cmake >= 2.8
@@ -76,18 +88,20 @@ Development files for %{name}
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
-%__mkdir build
-cd build
+%{?!mgaversion:%__mkdir build; cd build}
 %cmake \
-  -DINCLUDE_INSTALL_DIR=%{_includedir}/arts \
-  -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \
+  -DINCLUDE_INSTALL_DIR=%{tde_includedir}/arts \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
   -DWITH_ALSA=ON \
   -DWITH_AUDIOFILE=ON \
   -DWITH_VORBIS=ON \
   -DWITH_MAD=OFF \
   -DWITH_ESOUND=ON \
   -DWITH_JACK=ON \
+  -DCMAKE_SKIP_RPATH="OFF" \
   ..
 
 
@@ -103,30 +117,30 @@ cd build
 %files
 %defattr(-,root,root,-)
 %doc COPYING.LIB
-%dir %{_libdir}/mcop
-%dir %{_libdir}/mcop/Arts
-%{_libdir}/mcop/Arts/*
-%{_libdir}/mcop/*.mcopclass
-%{_libdir}/mcop/*.mcoptype
-%{_libdir}/lib*.so.*
-%{_libdir}/lib*.la
-%{_bindir}/artscat
-%{_bindir}/artsd
-%{_bindir}/artsdsp
-%{_bindir}/artsplay
-%{_bindir}/artsrec
-%{_bindir}/artsshell
-%{_bindir}/artswrapper
+%dir %{tde_libdir}/mcop
+%dir %{tde_libdir}/mcop/Arts
+%{tde_libdir}/mcop/Arts/*
+%{tde_libdir}/mcop/*.mcopclass
+%{tde_libdir}/mcop/*.mcoptype
+%{tde_libdir}/lib*.so.*
+%{tde_libdir}/lib*.la
+%{tde_bindir}/artscat
+%{tde_bindir}/artsd
+%{tde_bindir}/artsdsp
+%{tde_bindir}/artsplay
+%{tde_bindir}/artsrec
+%{tde_bindir}/artsshell
+%{tde_bindir}/artswrapper
 
 %files devel
 %defattr(-,root,root,-)
-%{_bindir}/mcopidl
-%dir %{_includedir}
-%{_includedir}/*/
-%{_bindir}/artsc-config
-%{_libdir}/lib*.so
-%{_libdir}/pkgconfig/*.pc
-%{_libdir}/*.a
+%{tde_bindir}/mcopidl
+%dir %{tde_includedir}
+%{tde_includedir}/*/
+%{tde_bindir}/artsc-config
+%{tde_libdir}/lib*.so
+%{tde_libdir}/pkgconfig/*.pc
+%{tde_libdir}/*.a
 
 
 %changelog

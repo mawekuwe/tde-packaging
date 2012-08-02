@@ -1,18 +1,25 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
 BuildRequires: cmake >= 2.8
-%define tde_appdir %{_datadir}/applications/kde
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 # KDEPIM specific features
-%if 0%{?fedora}
+%if 0%{?fedora} || 0%{?mgaversion}
 %define with_gnokii 1
 %else
 %define with_gnokii 0
@@ -25,7 +32,7 @@ BuildRequires: cmake >= 2.8
 
 Name:		trinity-tdepim
 Version:	3.5.13
-Release:	7%{?dist}%{?_variant}
+Release:	8%{?dist}%{?_variant}
 License:	GPL
 Group:		Applications/Productivity
 
@@ -71,11 +78,10 @@ BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
 BuildRequires:	libical-devel
 BuildRequires:	boost-devel
-BuildRequires:	cyrus-sasl-devel
-BuildRequires:	libXcomposite-devel
 BuildRequires:	pcre-devel
 BuildRequires:	glib2-devel
 BuildRequires:	gcc-c++ make
+BuildRequires:	libidn-devel
 
 BuildRequires:	libcaldav-devel
 BuildRequires:	libcarddav-devel
@@ -91,6 +97,14 @@ BuildRequires:	flex-static
 BuildRequires:	trinity-libcurl-devel
 %else
 BuildRequires:	curl-devel
+%endif
+
+%if 0%{?mgaversion}
+BuildRequires:	%{_lib}xcomposite1-devel
+BuildRequires:	%{_lib}sasl2-devel
+%else
+BuildRequires:	libXcomposite-devel
+BuildRequires:	cyrus-sasl-devel
 %endif
 
 Requires:	trinity-libtdepim = %{version}-%{release}
@@ -151,9 +165,14 @@ Obsoletes:	tdepim-devel < %{version}-%{release}
 Provides:	tdepim-devel = %{version}-%{release}
 
 Requires:	%{name} = %{version}-%{release}
+Requires:	trinity-akregator-devel = %{version}-%{release}
 Requires:	trinity-libtdepim-devel = %{version}-%{release}
+Requires:	trinity-kaddressbook-devel = %{version}-%{release}
 Requires:	trinity-karm-devel = %{version}-%{release}
+Requires:	trinity-kmail-devel = %{version}-%{release}
+Requires:	trinity-knode-devel = %{version}-%{release}
 Requires:	trinity-knotes-devel = %{version}-%{release}
+Requires:	trinity-kode-devel = %{version}-%{release}
 Requires:	trinity-kontact-devel = %{version}-%{release}
 Requires:	trinity-korganizer-devel = %{version}-%{release}
 Requires:	trinity-libindex-devel = %{version}-%{release}
@@ -173,7 +192,7 @@ This metapackage includes all development files for TDE PIM.
 It also contains the CMAKE macros.
 
 %files devel
-%{_datadir}/cmake/*
+%{tde_datadir}/cmake/*
 
 ##########
 
@@ -189,55 +208,64 @@ for TDE.  It allows you to quickly browse through hundreds of
 thousands of internet feeds in a quick, efficient, and familiar way.
 
 %files -n trinity-akregator
-%{_bindir}/akregator
-%{tde_libdir}/libakregatorpart.la
-%{tde_libdir}/libakregatorpart.so
-%{tde_libdir}/libakregator_mk4storage_plugin.la
-%{tde_libdir}/libakregator_mk4storage_plugin.so
-%{_libdir}/libakregatorprivate.la
-%{_libdir}/libakregatorprivate.so
-%{_libdir}/libakregatorprivate.so.0
-%{_libdir}/libakregatorprivate.so.0.0.0
-%{tde_appdir}/akregator.desktop
-%{_datadir}/apps/akregator
-%{_datadir}/config.kcfg/akregator.kcfg
-%{_datadir}/config.kcfg/mk4config.kcfg
-%{_datadir}/icons/hicolor/128x128/apps/akregator.png
-%{_datadir}/icons/crystalsvg/16x16/actions/rss_tag.png
-%{_datadir}/icons/crystalsvg/22x22/actions/rss_tag.png
-%{_datadir}/icons/crystalsvg/32x32/actions/rss_tag.png
-%{_datadir}/icons/crystalsvg/48x48/actions/rss_tag.png
-%{_datadir}/icons/crystalsvg/64x64/actions/rss_tag.png
-%{_datadir}/icons/crystalsvg/16x16/apps/akregator_empty.png
-%{_datadir}/icons/hicolor/16x16/apps/akregator.png
-%{_datadir}/icons/hicolor/22x22/apps/akregator.png
-%{_datadir}/icons/hicolor/32x32/apps/akregator.png
-%{_datadir}/icons/hicolor/48x48/apps/akregator.png
-%{_datadir}/icons/hicolor/64x64/apps/akregator.png
-%{_datadir}/icons/hicolor/scalable/apps/akregator.svgz
-%{_datadir}/services/akregator_mk4storage_plugin.desktop
-%{_datadir}/services/akregator_part.desktop
-%{_datadir}/services/feed.protocol
-%{_datadir}/services/kontact/akregatorplugin*.desktop
-%{_datadir}/servicetypes/akregator_plugin.desktop
-%{tde_docdir}/HTML/en/akregator
-%{tde_includedir}/akregator
+%{tde_bindir}/akregator
+%{tde_tdelibdir}/libakregatorpart.la
+%{tde_tdelibdir}/libakregatorpart.so
+%{tde_tdelibdir}/libakregator_mk4storage_plugin.la
+%{tde_tdelibdir}/libakregator_mk4storage_plugin.so
+%{tde_libdir}/libakregatorprivate.so.*
+%{tde_tdeappdir}/akregator.desktop
+%{tde_datadir}/apps/akregator
+%{tde_datadir}/config.kcfg/akregator.kcfg
+%{tde_datadir}/config.kcfg/mk4config.kcfg
+%{tde_datadir}/icons/hicolor/128x128/apps/akregator.png
+%{tde_datadir}/icons/crystalsvg/*/actions/rss_tag.png
+%{tde_datadir}/icons/crystalsvg/16x16/apps/akregator_empty.png
+%{tde_datadir}/icons/hicolor/*/apps/akregator.png
+%{tde_datadir}/icons/hicolor/scalable/apps/akregator.svgz
+%{tde_datadir}/services/akregator_mk4storage_plugin.desktop
+%{tde_datadir}/services/akregator_part.desktop
+%{tde_datadir}/services/feed.protocol
+%{tde_datadir}/services/kontact/akregatorplugin*.desktop
+%{tde_datadir}/servicetypes/akregator_plugin.desktop
+%{tde_tdedocdir}/HTML/en/akregator/
 
 %post -n trinity-akregator
-/sbin/ldconfig
+/sbin/ldconfig || :
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-akregator
-/sbin/ldconfig
+/sbin/ldconfig || :
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-akregator-devel
+Summary:	Development files for trinity-akregator
+Group:		Development/Libraries
+Requires:	trinity-akregator = %{version}-%{release}
+
+%description -n trinity-akregator-devel
+%{summary}
+
+%files -n trinity-akregator-devel
+%{tde_tdeincludedir}/akregator/
+%{tde_libdir}/libakregatorprivate.la
+%{tde_libdir}/libakregatorprivate.so
+
+%post -n trinity-akregator-devel
+/sbin/ldconfig || :
+
+%postun -n trinity-akregator-devel
+/sbin/ldconfig || :
 
 ##########
 
@@ -254,65 +282,81 @@ your contacts to many different locations, including the local file system,
 LDAP servers, and SQL databases.
 
 %files -n trinity-kaddressbook
-%{_bindir}/kabc2mutt
-%{_bindir}/kaddressbook
-%{_bindir}/kabcdistlistupdater
-%{tde_libdir}/kcm_kabconfig.la
-%{tde_libdir}/kcm_kabconfig.so
-%{tde_libdir}/kcm_kabcustomfields.la
-%{tde_libdir}/kcm_kabcustomfields.so
-%{tde_libdir}/kcm_kabldapconfig.la
-%{tde_libdir}/kcm_kabldapconfig.so
-%{tde_libdir}/ldifvcardthumbnail.la
-%{tde_libdir}/ldifvcardthumbnail.so
-%{tde_libdir}/libkaddrbk_*.la
-%{tde_libdir}/libkaddrbk_*.so
-%{tde_libdir}/libkaddressbookpart.la
-%{tde_libdir}/libkaddressbookpart.so
-%{_libdir}/libkabinterfaces.so.*
-%{_libdir}/libkaddressbook.so.*
-%{tde_appdir}/kaddressbook.desktop
-%{_datadir}/apps/kaddressbook
-%{_datadir}/icons/hicolor/*/apps/kaddressbook.png
-%{_datadir}/services/kabconfig.desktop
-%{_datadir}/services/kabcustomfields.desktop
-%{_datadir}/services/kabldapconfig.desktop
-%{_datadir}/services/kaddressbook
-%{_datadir}/services/kontact/kaddressbookplugin.desktop
-%{_datadir}/services/kresources/kabc/imap.desktop
-%{_datadir}/services/ldifvcardthumbnail.desktop
-%{_datadir}/servicetypes/dcopaddressbook.desktop
-%{_datadir}/servicetypes/kaddressbook_contacteditorwidget.desktop
-%{_datadir}/servicetypes/kaddressbookimprotocol.desktop
-%{_datadir}/servicetypes/kaddressbook_extension.desktop
-%{_datadir}/servicetypes/kaddressbook_view.desktop
-%{_datadir}/servicetypes/kaddressbook_xxport.desktop
-%{tde_docdir}/HTML/en/kaddressbook
-%{_datadir}/autostart/kabcdistlistupdater.desktop
-%{tde_includedir}/kaddressbook
-%{tde_includedir}/kabc
-
-# kaddressbook-devel
-%{_libdir}/libkabinterfaces.la
-%{_libdir}/libkabinterfaces.so
-%{_libdir}/libkaddressbook.la
-%{_libdir}/libkaddressbook.so
+%{tde_bindir}/kabc2mutt
+%{tde_bindir}/kaddressbook
+%{tde_bindir}/kabcdistlistupdater
+%{tde_tdelibdir}/kcm_kabconfig.la
+%{tde_tdelibdir}/kcm_kabconfig.so
+%{tde_tdelibdir}/kcm_kabcustomfields.la
+%{tde_tdelibdir}/kcm_kabcustomfields.so
+%{tde_tdelibdir}/kcm_kabldapconfig.la
+%{tde_tdelibdir}/kcm_kabldapconfig.so
+%{tde_tdelibdir}/ldifvcardthumbnail.la
+%{tde_tdelibdir}/ldifvcardthumbnail.so
+%{tde_tdelibdir}/libkaddrbk_*.la
+%{tde_tdelibdir}/libkaddrbk_*.so
+%{tde_tdelibdir}/libkaddressbookpart.la
+%{tde_tdelibdir}/libkaddressbookpart.so
+%{tde_libdir}/libkabinterfaces.so.*
+%{tde_libdir}/libkaddressbook.so.*
+%{tde_tdeappdir}/kaddressbook.desktop
+%{tde_datadir}/apps/kaddressbook
+%{tde_datadir}/icons/hicolor/*/apps/kaddressbook.png
+%{tde_datadir}/services/kabconfig.desktop
+%{tde_datadir}/services/kabcustomfields.desktop
+%{tde_datadir}/services/kabldapconfig.desktop
+%{tde_datadir}/services/kaddressbook
+%{tde_datadir}/services/kontact/kaddressbookplugin.desktop
+%{tde_datadir}/services/kresources/kabc/imap.desktop
+%{tde_datadir}/services/ldifvcardthumbnail.desktop
+%{tde_datadir}/servicetypes/dcopaddressbook.desktop
+%{tde_datadir}/servicetypes/kaddressbook_contacteditorwidget.desktop
+%{tde_datadir}/servicetypes/kaddressbookimprotocol.desktop
+%{tde_datadir}/servicetypes/kaddressbook_extension.desktop
+%{tde_datadir}/servicetypes/kaddressbook_view.desktop
+%{tde_datadir}/servicetypes/kaddressbook_xxport.desktop
+%{tde_tdedocdir}/HTML/en/kaddressbook/
+%{tde_datadir}/autostart/kabcdistlistupdater.desktop
+%{tde_tdeincludedir}/kaddressbook
+%{tde_tdeincludedir}/kabc
 
 %post -n trinity-kaddressbook
-/sbin/ldconfig
+/sbin/ldconfig || :
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kaddressbook
-/sbin/ldconfig
+/sbin/ldconfig || :
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kaddressbook-devel
+Summary:	Development files for trinity-kaddressbook
+Group:		Development/Libraries
+Requires:	trinity-kaddressbook = %{version}-%{release}
+
+%description -n trinity-kaddressbook-devel
+%{summary}
+
+%files -n trinity-kaddressbook-devel
+%{tde_libdir}/libkabinterfaces.la
+%{tde_libdir}/libkabinterfaces.so
+%{tde_libdir}/libkaddressbook.la
+%{tde_libdir}/libkaddressbook.so
+
+%post -n trinity-kaddressbook-devel
+/sbin/ldconfig || :
+
+%postun -n trinity-kaddressbook-devel
+/sbin/ldconfig || :
 
 ##########
 
@@ -337,31 +381,31 @@ from the command line or via DCOP calls from other programs. KAlarm is
 TDE-based, but will also run on other desktops.
 
 %files -n trinity-kalarm
-%{_bindir}/kalarm
-%{_bindir}/kalarmd
-%{tde_appdir}/kalarm.desktop
-%{_datadir}/applnk/.hidden/kalarmd.desktop
-%{_datadir}/applnk/Applications/kalarm.desktop
-%{_datadir}/apps/kalarm
-%{_datadir}/autostart/kalarm.tray.desktop
-%{_datadir}/autostart/kalarmd.autostart.desktop
-%{_datadir}/icons/crystalsvg/*/actions/kalarm.png
-%{_datadir}/icons/hicolor/*/apps/kalarm.png
-%{tde_docdir}/HTML/en/kalarm
+%{tde_bindir}/kalarm
+%{tde_bindir}/kalarmd
+%{tde_tdeappdir}/kalarm.desktop
+%{tde_datadir}/applnk/.hidden/kalarmd.desktop
+%{tde_datadir}/applnk/Applications/kalarm.desktop
+%{tde_datadir}/apps/kalarm
+%{tde_datadir}/autostart/kalarm.tray.desktop
+%{tde_datadir}/autostart/kalarmd.autostart.desktop
+%{tde_datadir}/icons/crystalsvg/*/actions/kalarm.png
+%{tde_datadir}/icons/hicolor/*/apps/kalarm.png
+%{tde_tdedocdir}/HTML/en/kalarm/
 
 %post -n trinity-kalarm
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kalarm
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -378,19 +422,19 @@ book to the TDE address book.
 Kandy is aimed at mobile phones with integrated (GSM) modems.
 
 %files -n trinity-kandy
-%{_bindir}/kandy
-%{_bindir}/kandy_client
-%{tde_appdir}/kandy.desktop
-%{_datadir}/applnk/Utilities/kandy.desktop
-%{_datadir}/apps/kandy
-%{_datadir}/config.kcfg/kandy.kcfg
-%{tde_docdir}/HTML/en/kandy
+%{tde_bindir}/kandy
+%{tde_bindir}/kandy_client
+%{tde_tdeappdir}/kandy.desktop
+%{tde_datadir}/applnk/Utilities/kandy.desktop
+%{tde_datadir}/apps/kandy
+%{tde_datadir}/config.kcfg/kandy.kcfg
+%{tde_tdedocdir}/HTML/en/kandy/
 
 %post -n trinity-kandy
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kandy
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -403,34 +447,34 @@ KArm is a time tracker for busy people who need to keep track of the amount of
 time they spend on various tasks.
 
 %files -n trinity-karm
-%{_bindir}/karm
-%{_libdir}/libkarm.so.*
-%{tde_libdir}/libkarmpart.la
-%{tde_libdir}/libkarmpart.so
-%{tde_appdir}/karm.desktop
-%{_datadir}/applnk/Utilities/karm.desktop
-%{_datadir}/apps/karm
-%{_datadir}/apps/karmpart
-%{_datadir}/icons/hicolor/*/apps/karm.png
-%{_datadir}/services/karm_part.desktop
-%{_datadir}/services/kontact/karmplugin.desktop
-%{tde_docdir}/HTML/en/karm
+%{tde_bindir}/karm
+%{tde_libdir}/libkarm.so.*
+%{tde_tdelibdir}/libkarmpart.la
+%{tde_tdelibdir}/libkarmpart.so
+%{tde_tdeappdir}/karm.desktop
+%{tde_datadir}/applnk/Utilities/karm.desktop
+%{tde_datadir}/apps/karm
+%{tde_datadir}/apps/karmpart
+%{tde_datadir}/icons/hicolor/*/apps/karm.png
+%{tde_datadir}/services/karm_part.desktop
+%{tde_datadir}/services/kontact/karmplugin.desktop
+%{tde_tdedocdir}/HTML/en/karm/
 
 %post -n trinity-karm
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-karm
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -442,14 +486,14 @@ Group:		Development/Libraries
 %{summary}
 
 %files -n trinity-karm-devel
-%{_libdir}/libkarm.so
-%{_libdir}/libkarm.la
+%{tde_libdir}/libkarm.so
+%{tde_libdir}/libkarm.la
 
 %post -n trinity-karm-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-karm-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -463,12 +507,12 @@ Obsoletes:	tdepim-kfile-plugins < %{version}-%{release}
 File dialog plugins for palm and vcf files.
 
 %files kfile-plugins
-%{tde_libdir}/kfile_ics.la
-%{tde_libdir}/kfile_ics.so
-%{tde_libdir}/kfile_vcf.la
-%{tde_libdir}/kfile_vcf.so
-%{_datadir}/services/kfile_ics.desktop
-%{_datadir}/services/kfile_vcf.desktop
+%{tde_tdelibdir}/kfile_ics.la
+%{tde_tdelibdir}/kfile_ics.so
+%{tde_tdelibdir}/kfile_vcf.la
+%{tde_tdelibdir}/kfile_vcf.so
+%{tde_datadir}/services/kfile_ics.desktop
+%{tde_datadir}/services/kfile_vcf.desktop
 
 ##########
 
@@ -483,25 +527,24 @@ This package includes the pim kioslaves. This includes imap4, sieve,
 and mbox.
 
 %files kio-plugins
-%{tde_libdir}/kio_groupwise.la
-%{tde_libdir}/kio_groupwise.so
-%{tde_libdir}/kio_imap4.la
-%{tde_libdir}/kio_imap4.so
-%{tde_libdir}/kio_mbox.la
-%{tde_libdir}/kio_mbox.so
-%{tde_libdir}/kio_scalix.la
-%{tde_libdir}/kio_scalix.so
-%{tde_libdir}/kio_sieve.la
-%{tde_libdir}/kio_sieve.so
-%{_datadir}/services/groupwise.protocol
-%{_datadir}/services/groupwises.protocol
-%{_datadir}/services/imap4.protocol
-%{_datadir}/services/imaps.protocol
-%{_datadir}/services/mbox.protocol
-%{_datadir}/services/scalix.protocol
-%{_datadir}/services/scalixs.protocol
-%{_datadir}/services/sieve.protocol
-
+%{tde_tdelibdir}/kio_groupwise.la
+%{tde_tdelibdir}/kio_groupwise.so
+%{tde_tdelibdir}/kio_imap4.la
+%{tde_tdelibdir}/kio_imap4.so
+%{tde_tdelibdir}/kio_mbox.la
+%{tde_tdelibdir}/kio_mbox.so
+%{tde_tdelibdir}/kio_scalix.la
+%{tde_tdelibdir}/kio_scalix.so
+%{tde_tdelibdir}/kio_sieve.la
+%{tde_tdelibdir}/kio_sieve.so
+%{tde_datadir}/services/groupwise.protocol
+%{tde_datadir}/services/groupwises.protocol
+%{tde_datadir}/services/imap4.protocol
+%{tde_datadir}/services/imaps.protocol
+%{tde_datadir}/services/mbox.protocol
+%{tde_datadir}/services/scalix.protocol
+%{tde_datadir}/services/scalixs.protocol
+%{tde_datadir}/services/sieve.protocol
 
 ##########
 
@@ -522,105 +565,105 @@ servers. It also includes plugins for features such as blogging and
 tracking feature plans.
 
 %files kresources
-%{tde_libdir}/kcal_caldav.la
-%{tde_libdir}/kcal_caldav.so
-%{tde_libdir}/kcal_groupdav.la
-%{tde_libdir}/kcal_groupdav.so
-%{tde_libdir}/kcal_groupwise.la
-%{tde_libdir}/kcal_groupwise.so
-%{tde_libdir}/kcal_kolab.la
-%{tde_libdir}/kcal_kolab.so
-%{tde_libdir}/kcal_scalix.la
-%{tde_libdir}/kcal_scalix.so
-%{tde_libdir}/kcal_newexchange.la
-%{tde_libdir}/kcal_newexchange.so
-%{tde_libdir}/kcal_resourcefeatureplan.la
-%{tde_libdir}/kcal_resourcefeatureplan.so
-%{tde_libdir}/kcal_slox.la
-%{tde_libdir}/kcal_slox.so
-%{tde_libdir}/kcal_xmlrpc.la
-%{tde_libdir}/kcal_xmlrpc.so
-%{tde_libdir}/knotes_kolab.la
-%{tde_libdir}/knotes_kolab.so
-%{tde_libdir}/knotes_scalix.la
-%{tde_libdir}/knotes_scalix.so
-%{tde_libdir}/knotes_xmlrpc.la
-%{tde_libdir}/knotes_xmlrpc.so
-%{_libdir}/libkabckolab.so.*
-%{_libdir}/libkabcscalix.so.*
-%{_libdir}/libkabc_groupdav.so.*
-%{_libdir}/libkabc_groupwise.so.*
-%{_libdir}/libkabc_newexchange.so.*
-%{_libdir}/libkabc_slox.so.*
-%{_libdir}/libkabc_xmlrpc.so.*
-%{_libdir}/libkcalkolab.so.*
-%{_libdir}/libkcalscalix.so.*
-%{_libdir}/libkcal_caldav.so.*
-%{_libdir}/libkabc_carddav.so.*
-%{_libdir}/libkcal_groupdav.so.*
-%{_libdir}/libkcal_groupwise.so.*
-%{_libdir}/libkcal_newexchange.so.*
-%{_libdir}/libkcal_resourcefeatureplan.so.*
-%{_libdir}/libkcal_slox.so.*
-%{_libdir}/libkcal_xmlrpc.so.*
-%{_libdir}/libkgroupwarebase.so.*
-%{_libdir}/libkgroupwaredav.so.*
-%{_libdir}/libknoteskolab.so.*
-%{_libdir}/libknotesscalix.so.*
-%{_libdir}/libknotes_xmlrpc.so.*
-%{_libdir}/libkslox.so.*
-%{_libdir}/libgwsoap.so.*
-%{_datadir}/services/kresources/kabc/kabc_groupdav.desktop
-%{_datadir}/services/kresources/kabc/kabc_groupwise.desktop
-%{_datadir}/services/kresources/kabc/kabc_newexchange.desktop
-%{_datadir}/services/kresources/kabc/kabc_opengroupware.desktop
-%{_datadir}/services/kresources/kabc/kabc_ox.desktop
-%{_datadir}/services/kresources/kabc/kabc_slox.desktop
-%{_datadir}/services/kresources/kabc/kabc_xmlrpc.desktop
-%{_datadir}/services/kresources/kabc/kolab.desktop
-%{_datadir}/services/kresources/kabc/scalix.desktop
-%{_datadir}/services/kresources/kcal/exchange.desktop
-%{_datadir}/services/kresources/kcal/kcal_caldav.desktop
-%{_datadir}/services/kresources/kabc/kabc_carddav.desktop
-%{_datadir}/services/kresources/kcal/kcal_groupdav.desktop
-%{_datadir}/services/kresources/kcal/kcal_groupwise.desktop
-%{_datadir}/services/kresources/kcal/kcal_newexchange.desktop
-%{_datadir}/services/kresources/kcal/kcal_opengroupware.desktop
-%{_datadir}/services/kresources/kcal/kcal_ox.desktop
-%{_datadir}/services/kresources/kcal/kcal_resourcefeatureplan.desktop
-%{_datadir}/services/kresources/kcal/kcal_slox.desktop
-%{_datadir}/services/kresources/kcal/kcal_xmlrpc.desktop
-%{_datadir}/services/kresources/kcal/kolab.desktop
-%{_datadir}/services/kresources/kcal/scalix.desktop
-%{_datadir}/services/kresources/knotes/knotes_xmlrpc.desktop
-%{_datadir}/services/kresources/knotes/kolabresource.desktop
-%{_datadir}/services/kresources/knotes/scalix.desktop
+%{tde_tdelibdir}/kcal_caldav.la
+%{tde_tdelibdir}/kcal_caldav.so
+%{tde_tdelibdir}/kcal_groupdav.la
+%{tde_tdelibdir}/kcal_groupdav.so
+%{tde_tdelibdir}/kcal_groupwise.la
+%{tde_tdelibdir}/kcal_groupwise.so
+%{tde_tdelibdir}/kcal_kolab.la
+%{tde_tdelibdir}/kcal_kolab.so
+%{tde_tdelibdir}/kcal_scalix.la
+%{tde_tdelibdir}/kcal_scalix.so
+%{tde_tdelibdir}/kcal_newexchange.la
+%{tde_tdelibdir}/kcal_newexchange.so
+%{tde_tdelibdir}/kcal_resourcefeatureplan.la
+%{tde_tdelibdir}/kcal_resourcefeatureplan.so
+%{tde_tdelibdir}/kcal_slox.la
+%{tde_tdelibdir}/kcal_slox.so
+%{tde_tdelibdir}/kcal_xmlrpc.la
+%{tde_tdelibdir}/kcal_xmlrpc.so
+%{tde_tdelibdir}/knotes_kolab.la
+%{tde_tdelibdir}/knotes_kolab.so
+%{tde_tdelibdir}/knotes_scalix.la
+%{tde_tdelibdir}/knotes_scalix.so
+%{tde_tdelibdir}/knotes_xmlrpc.la
+%{tde_tdelibdir}/knotes_xmlrpc.so
+%{tde_libdir}/libkabckolab.so.*
+%{tde_libdir}/libkabcscalix.so.*
+%{tde_libdir}/libkabc_groupdav.so.*
+%{tde_libdir}/libkabc_groupwise.so.*
+%{tde_libdir}/libkabc_newexchange.so.*
+%{tde_libdir}/libkabc_slox.so.*
+%{tde_libdir}/libkabc_xmlrpc.so.*
+%{tde_libdir}/libkcalkolab.so.*
+%{tde_libdir}/libkcalscalix.so.*
+%{tde_libdir}/libkcal_caldav.so.*
+%{tde_libdir}/libkabc_carddav.so.*
+%{tde_libdir}/libkcal_groupdav.so.*
+%{tde_libdir}/libkcal_groupwise.so.*
+%{tde_libdir}/libkcal_newexchange.so.*
+%{tde_libdir}/libkcal_resourcefeatureplan.so.*
+%{tde_libdir}/libkcal_slox.so.*
+%{tde_libdir}/libkcal_xmlrpc.so.*
+%{tde_libdir}/libkgroupwarebase.so.*
+%{tde_libdir}/libkgroupwaredav.so.*
+%{tde_libdir}/libknoteskolab.so.*
+%{tde_libdir}/libknotesscalix.so.*
+%{tde_libdir}/libknotes_xmlrpc.so.*
+%{tde_libdir}/libkslox.so.*
+%{tde_libdir}/libgwsoap.so.*
+%{tde_datadir}/services/kresources/kabc/kabc_groupdav.desktop
+%{tde_datadir}/services/kresources/kabc/kabc_groupwise.desktop
+%{tde_datadir}/services/kresources/kabc/kabc_newexchange.desktop
+%{tde_datadir}/services/kresources/kabc/kabc_opengroupware.desktop
+%{tde_datadir}/services/kresources/kabc/kabc_ox.desktop
+%{tde_datadir}/services/kresources/kabc/kabc_slox.desktop
+%{tde_datadir}/services/kresources/kabc/kabc_xmlrpc.desktop
+%{tde_datadir}/services/kresources/kabc/kolab.desktop
+%{tde_datadir}/services/kresources/kabc/scalix.desktop
+%{tde_datadir}/services/kresources/kcal/exchange.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_caldav.desktop
+%{tde_datadir}/services/kresources/kabc/kabc_carddav.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_groupdav.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_groupwise.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_newexchange.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_opengroupware.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_ox.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_resourcefeatureplan.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_slox.desktop
+%{tde_datadir}/services/kresources/kcal/kcal_xmlrpc.desktop
+%{tde_datadir}/services/kresources/kcal/kolab.desktop
+%{tde_datadir}/services/kresources/kcal/scalix.desktop
+%{tde_datadir}/services/kresources/knotes/knotes_xmlrpc.desktop
+%{tde_datadir}/services/kresources/knotes/kolabresource.desktop
+%{tde_datadir}/services/kresources/knotes/scalix.desktop
 
-%{_datadir}/apps/kconf_update/upgrade-resourcetype.pl
-%{_datadir}/apps/kconf_update/kolab-resource.upd
+%{tde_datadir}/apps/kconf_update/upgrade-resourcetype.pl
+%{tde_datadir}/apps/kconf_update/kolab-resource.upd
 
-%{tde_libdir}/kabc_carddav.la
-%{tde_libdir}/kabc_carddav.so
-%{tde_libdir}/kabc_groupdav.la
-%{tde_libdir}/kabc_groupdav.so
-%{tde_libdir}/kabc_groupwise.la
-%{tde_libdir}/kabc_groupwise.so
-%{tde_libdir}/kabc_kolab.la
-%{tde_libdir}/kabc_kolab.so
-%{tde_libdir}/kabc_newexchange.la
-%{tde_libdir}/kabc_newexchange.so
-%{tde_libdir}/kabc_scalix.la
-%{tde_libdir}/kabc_scalix.so
-%{tde_libdir}/kabc_slox.la
-%{tde_libdir}/kabc_slox.so
-%{tde_libdir}/kabc_xmlrpc.la
-%{tde_libdir}/kabc_xmlrpc.so
+%{tde_tdelibdir}/kabc_carddav.la
+%{tde_tdelibdir}/kabc_carddav.so
+%{tde_tdelibdir}/kabc_groupdav.la
+%{tde_tdelibdir}/kabc_groupdav.so
+%{tde_tdelibdir}/kabc_groupwise.la
+%{tde_tdelibdir}/kabc_groupwise.so
+%{tde_tdelibdir}/kabc_kolab.la
+%{tde_tdelibdir}/kabc_kolab.so
+%{tde_tdelibdir}/kabc_newexchange.la
+%{tde_tdelibdir}/kabc_newexchange.so
+%{tde_tdelibdir}/kabc_scalix.la
+%{tde_tdelibdir}/kabc_scalix.so
+%{tde_tdelibdir}/kabc_slox.la
+%{tde_tdelibdir}/kabc_slox.so
+%{tde_tdelibdir}/kabc_xmlrpc.la
+%{tde_tdelibdir}/kabc_xmlrpc.so
 
 %post kresources
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun kresources
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -637,61 +680,61 @@ Obsoletes:	tdepim-kresources-devel < %{version}-%{release}
 %{summary}
 
 %files kresources-devel
-%{_libdir}/libkslox.la
-%{_libdir}/libkslox.so
-%{_libdir}/libkabc_groupdav.la
-%{_libdir}/libkabc_groupdav.so
-%{_libdir}/libkabc_groupwise.la
-%{_libdir}/libkabc_groupwise.so
-%{_libdir}/libgwsoap.la
-%{_libdir}/libgwsoap.so
-%{_libdir}/libkabc_carddav.la
-%{_libdir}/libkabc_carddav.so
-%{_libdir}/libkabc_newexchange.la
-%{_libdir}/libkabc_newexchange.so
-%{_libdir}/libkabc_slox.la
-%{_libdir}/libkabc_slox.so
-%{_libdir}/libkabc_xmlrpc.la
-%{_libdir}/libkabc_xmlrpc.so
-%{_libdir}/libkabckolab.la
-%{_libdir}/libkabckolab.so
-%{_libdir}/libkabcscalix.la
-%{_libdir}/libkabcscalix.so
-%{_libdir}/libkcal_caldav.la
-%{_libdir}/libkcal_caldav.so
-%{_libdir}/libkcal_groupdav.la
-%{_libdir}/libkcal_groupdav.so
-%{_libdir}/libkcal_groupwise.la
-%{_libdir}/libkcal_groupwise.so
-%{_libdir}/libkcal_newexchange.la
-%{_libdir}/libkcal_newexchange.so
-%{_libdir}/libkcal_resourcefeatureplan.la
-%{_libdir}/libkcal_resourcefeatureplan.so
-%{_libdir}/libkcal_slox.la
-%{_libdir}/libkcal_slox.so
-%{_libdir}/libkcal_xmlrpc.la
-%{_libdir}/libkcal_xmlrpc.so
-%{_libdir}/libkcalkolab.la
-%{_libdir}/libkcalkolab.so
-%{_libdir}/libkcalscalix.la
-%{_libdir}/libkcalscalix.so
-%{_libdir}/libkgroupwarebase.la
-%{_libdir}/libkgroupwarebase.so
-%{_libdir}/libkgroupwaredav.la
-%{_libdir}/libkgroupwaredav.so
-%{_libdir}/libknotes_xmlrpc.la
-%{_libdir}/libknotes_xmlrpc.so
-%{_libdir}/libknoteskolab.la
-%{_libdir}/libknoteskolab.so
-%{_libdir}/libknotesscalix.la
-%{_libdir}/libknotesscalix.so
-%{tde_includedir}/kpimprefs.h
+%{tde_libdir}/libkslox.la
+%{tde_libdir}/libkslox.so
+%{tde_libdir}/libkabc_groupdav.la
+%{tde_libdir}/libkabc_groupdav.so
+%{tde_libdir}/libkabc_groupwise.la
+%{tde_libdir}/libkabc_groupwise.so
+%{tde_libdir}/libgwsoap.la
+%{tde_libdir}/libgwsoap.so
+%{tde_libdir}/libkabc_carddav.la
+%{tde_libdir}/libkabc_carddav.so
+%{tde_libdir}/libkabc_newexchange.la
+%{tde_libdir}/libkabc_newexchange.so
+%{tde_libdir}/libkabc_slox.la
+%{tde_libdir}/libkabc_slox.so
+%{tde_libdir}/libkabc_xmlrpc.la
+%{tde_libdir}/libkabc_xmlrpc.so
+%{tde_libdir}/libkabckolab.la
+%{tde_libdir}/libkabckolab.so
+%{tde_libdir}/libkabcscalix.la
+%{tde_libdir}/libkabcscalix.so
+%{tde_libdir}/libkcal_caldav.la
+%{tde_libdir}/libkcal_caldav.so
+%{tde_libdir}/libkcal_groupdav.la
+%{tde_libdir}/libkcal_groupdav.so
+%{tde_libdir}/libkcal_groupwise.la
+%{tde_libdir}/libkcal_groupwise.so
+%{tde_libdir}/libkcal_newexchange.la
+%{tde_libdir}/libkcal_newexchange.so
+%{tde_libdir}/libkcal_resourcefeatureplan.la
+%{tde_libdir}/libkcal_resourcefeatureplan.so
+%{tde_libdir}/libkcal_slox.la
+%{tde_libdir}/libkcal_slox.so
+%{tde_libdir}/libkcal_xmlrpc.la
+%{tde_libdir}/libkcal_xmlrpc.so
+%{tde_libdir}/libkcalkolab.la
+%{tde_libdir}/libkcalkolab.so
+%{tde_libdir}/libkcalscalix.la
+%{tde_libdir}/libkcalscalix.so
+%{tde_libdir}/libkgroupwarebase.la
+%{tde_libdir}/libkgroupwarebase.so
+%{tde_libdir}/libkgroupwaredav.la
+%{tde_libdir}/libkgroupwaredav.so
+%{tde_libdir}/libknotes_xmlrpc.la
+%{tde_libdir}/libknotes_xmlrpc.so
+%{tde_libdir}/libknoteskolab.la
+%{tde_libdir}/libknoteskolab.so
+%{tde_libdir}/libknotesscalix.la
+%{tde_libdir}/libknotesscalix.so
+%{tde_tdeincludedir}/kpimprefs.h
 
 %post kresources-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun kresources-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -706,38 +749,38 @@ This package contains KDE-based wizards for configuring eGroupware,
 Kolab, and SUSE Linux Openexchange servers.
 
 %files wizards
-%{_bindir}/egroupwarewizard
-%{_bindir}/exchangewizard
-%{_bindir}/groupwarewizard
-%{_bindir}/groupwisewizard
-%{_bindir}/kolabwizard
-%{_bindir}/scalixadmin
-%{_bindir}/scalixwizard
-%{_bindir}/sloxwizard
-%{tde_libdir}/libegroupwarewizard.la
-%{tde_libdir}/libegroupwarewizard.so
-%{tde_libdir}/libexchangewizard.la
-%{tde_libdir}/libexchangewizard.so
-%{tde_libdir}/libgroupwisewizard.la
-%{tde_libdir}/libgroupwisewizard.so
-%{tde_libdir}/libkolabwizard.la
-%{tde_libdir}/libkolabwizard.so
-%{tde_libdir}/libscalixwizard.la
-%{tde_libdir}/libscalixwizard.so
-%{tde_libdir}/libsloxwizard.la
-%{tde_libdir}/libsloxwizard.so
-%{tde_appdir}/groupwarewizard.desktop
-%{_datadir}/config.kcfg/egroupware.kcfg
-%{_datadir}/config.kcfg/groupwise.kcfg
-%{_datadir}/config.kcfg/kolab.kcfg
-%{_datadir}/config.kcfg/scalix.kcfg
-%{_datadir}/config.kcfg/slox.kcfg
+%{tde_bindir}/egroupwarewizard
+%{tde_bindir}/exchangewizard
+%{tde_bindir}/groupwarewizard
+%{tde_bindir}/groupwisewizard
+%{tde_bindir}/kolabwizard
+%{tde_bindir}/scalixadmin
+%{tde_bindir}/scalixwizard
+%{tde_bindir}/sloxwizard
+%{tde_tdelibdir}/libegroupwarewizard.la
+%{tde_tdelibdir}/libegroupwarewizard.so
+%{tde_tdelibdir}/libexchangewizard.la
+%{tde_tdelibdir}/libexchangewizard.so
+%{tde_tdelibdir}/libgroupwisewizard.la
+%{tde_tdelibdir}/libgroupwisewizard.so
+%{tde_tdelibdir}/libkolabwizard.la
+%{tde_tdelibdir}/libkolabwizard.so
+%{tde_tdelibdir}/libscalixwizard.la
+%{tde_tdelibdir}/libscalixwizard.so
+%{tde_tdelibdir}/libsloxwizard.la
+%{tde_tdelibdir}/libsloxwizard.so
+%{tde_tdeappdir}/groupwarewizard.desktop
+%{tde_datadir}/config.kcfg/egroupware.kcfg
+%{tde_datadir}/config.kcfg/groupwise.kcfg
+%{tde_datadir}/config.kcfg/kolab.kcfg
+%{tde_datadir}/config.kcfg/scalix.kcfg
+%{tde_datadir}/config.kcfg/slox.kcfg
 
 %post wizards
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun wizards
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -753,22 +796,22 @@ This package contains a synchronization framework, still under heavy
 development (?).  Kitchensync uses opensync.
 
 %files -n trinity-kitchensync
-%{_bindir}/kitchensync
-%{tde_libdir}/libkitchensyncpart.la
-%{tde_libdir}/libkitchensyncpart.so
-%{_datadir}/apps/kitchensync
-%{_libdir}/libkitchensync.so.*
-%{_libdir}/libqopensync.so.*
-%{tde_appdir}/kitchensync.desktop
-%{_datadir}/icons/hicolor/*/apps/kitchensync.png
+%{tde_bindir}/kitchensync
+%{tde_tdelibdir}/libkitchensyncpart.la
+%{tde_tdelibdir}/libkitchensyncpart.so
+%{tde_datadir}/apps/kitchensync
+%{tde_libdir}/libkitchensync.so.*
+%{tde_libdir}/libqopensync.so.*
+%{tde_tdeappdir}/kitchensync.desktop
+%{tde_datadir}/icons/hicolor/*/apps/kitchensync.png
 
 %post -n trinity-kitchensync
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kitchensync
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %endif
 
 ##########
@@ -785,22 +828,22 @@ Kleopatra is the TDE tool for managing X.509 certificates in the gpgsm
 keybox and for retrieving certificates from LDAP servers.
 
 %files -n trinity-kleopatra
-%{_bindir}/kleopatra
-%{_bindir}/kwatchgnupg
-%{tde_libdir}/kcm_kleopatra.la
-%{tde_libdir}/kcm_kleopatra.so
-%{tde_appdir}/kleopatra_import.desktop
-%{_datadir}/apps/kleopatra
-%{_datadir}/apps/kwatchgnupg
-%{_datadir}/services/kleopatra_config_*.desktop
-%{tde_docdir}/HTML/en/kleopatra
-%{tde_docdir}/HTML/en/kwatchgnupg
+%{tde_bindir}/kleopatra
+%{tde_bindir}/kwatchgnupg
+%{tde_tdelibdir}/kcm_kleopatra.la
+%{tde_tdelibdir}/kcm_kleopatra.so
+%{tde_tdeappdir}/kleopatra_import.desktop
+%{tde_datadir}/apps/kleopatra
+%{tde_datadir}/apps/kwatchgnupg
+%{tde_datadir}/services/kleopatra_config_*.desktop
+%{tde_tdedocdir}/HTML/en/kleopatra/
+%{tde_tdedocdir}/HTML/en/kwatchgnupg/
 
 %post -n trinity-kleopatra
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kleopatra
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -826,78 +869,95 @@ You need to install %{name}-kio-plugins if you want to use IMAP or
 mbox files, and/or trinity-tdebase-kio-plugins if you want to use POP3.
 
 %files -n trinity-kmail
-%{_datadir}/config/kmail.antispamrc
-%{_datadir}/config/kmail.antivirusrc
-%{_bindir}/kmail
-%{_bindir}/kmail_*.sh
-%{tde_libdir}/kcm_kmail.la
-%{tde_libdir}/kcm_kmail.so
-%{tde_libdir}/libkmail_bodypartformatter_application_octetstream.la
-%{tde_libdir}/libkmail_bodypartformatter_application_octetstream.so
-%{tde_libdir}/libkmail_bodypartformatter_text_calendar.la
-%{tde_libdir}/libkmail_bodypartformatter_text_calendar.so
-%{tde_libdir}/libkmail_bodypartformatter_text_vcard.la
-%{tde_libdir}/libkmail_bodypartformatter_text_vcard.so
-%{tde_libdir}/libkmail_bodypartformatter_text_xdiff.la
-%{tde_libdir}/libkmail_bodypartformatter_text_xdiff.so
-%{tde_libdir}/libkmailpart.la
-%{tde_libdir}/libkmailpart.so
-%{_libdir}/libkmailprivate.la
-%{_libdir}/libkmailprivate.so
-%{tde_appdir}/KMail.desktop
-%{tde_appdir}/kmail_view.desktop
-%{_datadir}/apps/kconf_update/kmail-3.1-update-new-mail-notification-settings.pl
-%{_datadir}/apps/kconf_update/kmail-3.1-use-UOID-for-identities.pl
-%{_datadir}/apps/kconf_update/kmail-3.1.4-dont-use-UOID-0-for-any-identity.pl
-%{_datadir}/apps/kconf_update/kmail-3.2-misc.sh
-%{_datadir}/apps/kconf_update/kmail-3.2-update-loop-on-goto-unread-settings.sh
-%{_datadir}/apps/kconf_update/kmail-3.3-aegypten.pl
-%{_datadir}/apps/kconf_update/kmail-3.3-misc.pl
-%{_datadir}/apps/kconf_update/kmail-3.3-move-identities.pl
-%{_datadir}/apps/kconf_update/kmail-3.3-split-sign-encr-keys.sh
-%{_datadir}/apps/kconf_update/kmail-3.3-use-ID-for-accounts.pl
-%{_datadir}/apps/kconf_update/kmail-3.3b1-misc.pl
-%{_datadir}/apps/kconf_update/kmail-3.4-misc.pl
-%{_datadir}/apps/kconf_update/kmail-3.4.1-update-status-filters.pl
-%{_datadir}/apps/kconf_update/kmail-3.5-trigger-flag-migration.pl
-%{_datadir}/apps/kconf_update/kmail-3.5-filter-icons.pl
-%{_datadir}/apps/kconf_update/kmail-pgpidentity.pl
-%{_datadir}/apps/kconf_update/kmail-upd-identities.pl
-%{_datadir}/apps/kconf_update/kmail.upd
-%{_datadir}/apps/kconf_update/upgrade-signature.pl
-%{_datadir}/apps/kconf_update/upgrade-transport.pl
-%{_datadir}/apps/kmail
-%{_datadir}/config.kcfg/custommimeheader.kcfg
-%{_datadir}/config.kcfg/kmail.kcfg
-%{_datadir}/config.kcfg/customtemplates_kfg.kcfg
-%{_datadir}/config.kcfg/replyphrases.kcfg
-%{_datadir}/config.kcfg/templatesconfiguration_kfg.kcfg
-%{_datadir}/icons/crystalsvg/*/apps/kmaillight.png
-%{_datadir}/icons/hicolor/*/apps/kmail.png
-%{_datadir}/icons/hicolor/scalable/apps/kmail.svgz
-%{_datadir}/services/kmail_config_*.desktop
-%{_datadir}/services/kontact/kmailplugin.desktop
-%{_datadir}/servicetypes/dcopimap.desktop
-%{_datadir}/servicetypes/dcopmail.desktop
-%{tde_docdir}/HTML/en/kmail
-%{tde_includedir}/kmail
-%{tde_includedir}/kmail*.h
+%{tde_datadir}/config/kmail.antispamrc
+%{tde_datadir}/config/kmail.antivirusrc
+%{tde_bindir}/kmail
+%{tde_bindir}/kmail_*.sh
+%{tde_tdelibdir}/kcm_kmail.la
+%{tde_tdelibdir}/kcm_kmail.so
+%{tde_tdelibdir}/libkmail_bodypartformatter_application_octetstream.la
+%{tde_tdelibdir}/libkmail_bodypartformatter_application_octetstream.so
+%{tde_tdelibdir}/libkmail_bodypartformatter_text_calendar.la
+%{tde_tdelibdir}/libkmail_bodypartformatter_text_calendar.so
+%{tde_tdelibdir}/libkmail_bodypartformatter_text_vcard.la
+%{tde_tdelibdir}/libkmail_bodypartformatter_text_vcard.so
+%{tde_tdelibdir}/libkmail_bodypartformatter_text_xdiff.la
+%{tde_tdelibdir}/libkmail_bodypartformatter_text_xdiff.so
+%{tde_tdelibdir}/libkmailpart.la
+%{tde_tdelibdir}/libkmailpart.so
+%{tde_tdeappdir}/KMail.desktop
+%{tde_tdeappdir}/kmail_view.desktop
+%{tde_datadir}/apps/kconf_update/kmail-3.1-update-new-mail-notification-settings.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.1-use-UOID-for-identities.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.1.4-dont-use-UOID-0-for-any-identity.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.2-misc.sh
+%{tde_datadir}/apps/kconf_update/kmail-3.2-update-loop-on-goto-unread-settings.sh
+%{tde_datadir}/apps/kconf_update/kmail-3.3-aegypten.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.3-misc.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.3-move-identities.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.3-split-sign-encr-keys.sh
+%{tde_datadir}/apps/kconf_update/kmail-3.3-use-ID-for-accounts.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.3b1-misc.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.4-misc.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.4.1-update-status-filters.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.5-trigger-flag-migration.pl
+%{tde_datadir}/apps/kconf_update/kmail-3.5-filter-icons.pl
+%{tde_datadir}/apps/kconf_update/kmail-pgpidentity.pl
+%{tde_datadir}/apps/kconf_update/kmail-upd-identities.pl
+%{tde_datadir}/apps/kconf_update/kmail.upd
+%{tde_datadir}/apps/kconf_update/upgrade-signature.pl
+%{tde_datadir}/apps/kconf_update/upgrade-transport.pl
+%{tde_datadir}/apps/kmail
+%{tde_datadir}/config.kcfg/custommimeheader.kcfg
+%{tde_datadir}/config.kcfg/kmail.kcfg
+%{tde_datadir}/config.kcfg/customtemplates_kfg.kcfg
+%{tde_datadir}/config.kcfg/replyphrases.kcfg
+%{tde_datadir}/config.kcfg/templatesconfiguration_kfg.kcfg
+%{tde_datadir}/icons/crystalsvg/*/apps/kmaillight.png
+%{tde_datadir}/icons/hicolor/*/apps/kmail.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kmail.svgz
+%{tde_datadir}/services/kmail_config_*.desktop
+%{tde_datadir}/services/kontact/kmailplugin.desktop
+%{tde_datadir}/servicetypes/dcopimap.desktop
+%{tde_datadir}/servicetypes/dcopmail.desktop
+%{tde_tdedocdir}/HTML/en/kmail/
+%{tde_tdeincludedir}/kmail/
+%{tde_tdeincludedir}/kmail*.h
 
 %post -n trinity-kmail
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kmail
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-kmail-devel
+Summary:	Development files for kmail
+Group:		Development/Libraries
+
+%description -n trinity-kmail-devel
+%{summary}
+
+%files -n trinity-kmail-devel
+%{tde_libdir}/libkmailprivate.la
+%{tde_libdir}/libkmailprivate.so
+
+%post -n trinity-kmail-devel
+/sbin/ldconfig || :
+
+%postun -n trinity-kmail-devel
+/sbin/ldconfig || :
 
 ##########
  
@@ -911,21 +971,21 @@ Converts mail folders to KMail format.  Formats supported for import
 include Outlook Express, Evolution, and plain mbox.
 
 %files -n trinity-kmailcvt
-%{_bindir}/kmailcvt
-%{_datadir}/applnk/Utilities/kmailcvt.desktop
-%{_datadir}/apps/kmailcvt
-%{_datadir}/icons/crystalsvg/*/apps/kmailcvt.png
+%{tde_bindir}/kmailcvt
+%{tde_datadir}/applnk/Utilities/kmailcvt.desktop
+%{tde_datadir}/apps/kmailcvt
+%{tde_datadir}/icons/crystalsvg/*/apps/kmailcvt.png
 
 %post -n trinity-kmailcvt
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 
 %postun -n trinity-kmailcvt
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 
 ##########
@@ -941,39 +1001,56 @@ MIME attachments, article scoring, and creating and verifying GnuPG
 signatures.
 
 %files -n trinity-knode
-%{_bindir}/knode
-%{tde_libdir}/kcm_knode.la
-%{tde_libdir}/kcm_knode.so
-%{tde_libdir}/libknodepart.la
-%{tde_libdir}/libknodepart.so
-%{_libdir}/libknodecommon.la
-%{_libdir}/libknodecommon.so
-%{_libdir}/libknodecommon.so.3
-%{_libdir}/libknodecommon.so.3.0.0
-%{tde_appdir}/KNode.desktop
-%{_datadir}/apps/knode
-%{tde_docdir}/HTML/en/knode
-%{_datadir}/icons/hicolor/*/apps/knode.png
-%{_datadir}/icons/hicolor/*/apps/knode2.png
-%{_datadir}/services/knewsservice.protocol
-%{_datadir}/services/knode_config_*.desktop
-%{_datadir}/services/kontact/knodeplugin.desktop
+%{tde_bindir}/knode
+%{tde_tdelibdir}/kcm_knode.la
+%{tde_tdelibdir}/kcm_knode.so
+%{tde_tdelibdir}/libknodepart.la
+%{tde_tdelibdir}/libknodepart.so
+%{tde_libdir}/libknodecommon.so.*
+%{tde_tdeappdir}/KNode.desktop
+%{tde_datadir}/apps/knode/
+%{tde_datadir}/icons/hicolor/*/apps/knode.png
+%{tde_datadir}/icons/hicolor/*/apps/knode2.png
+%{tde_datadir}/services/knewsservice.protocol
+%{tde_datadir}/services/knode_config_*.desktop
+%{tde_datadir}/services/kontact/knodeplugin.desktop
+%{tde_tdedocdir}/HTML/en/knode/
 
 %post -n trinity-knode
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-knode
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%package -n trinity-knode-devel
+Summary:	Development files for trinity-knode
+Group:		Development/Libraries
+Requires:	trinity-knode = %{version}-%{release}
+
+%description -n trinity-knode-devel
+%{summary}
+
+%files -n trinity-knode-devel
+%{tde_libdir}/libknodecommon.la
+%{tde_libdir}/libknodecommon.so
+
+%post -n trinity-knode-devel
+/sbin/ldconfig || :
+
+%postun -n trinity-knode-devel
+/sbin/ldconfig || :
 
 ##########
 
@@ -988,36 +1065,36 @@ automatically when you exit the program, and they display when you open the
 program.  The program supports printing and mailing your notes.
 
 %files -n trinity-knotes
-%{_bindir}/knotes
-%{tde_libdir}/knotes_local.la
-%{tde_libdir}/knotes_local.so
-%{_libdir}/libknotes.so.*
-%{tde_appdir}/knotes.desktop
-%{_datadir}/apps/knotes
-%{_datadir}/config.kcfg/knoteconfig.kcfg
-%{_datadir}/config.kcfg/knotesglobalconfig.kcfg
-%{_datadir}/icons/hicolor/*/apps/knotes.png
-%{_datadir}/services/kresources/knotes/imap.desktop
-%{_datadir}/services/kresources/knotes/local.desktop
-%{_datadir}/services/kresources/knotes_manager.desktop
-%{_datadir}/services/kontact/knotesplugin.desktop
-%{tde_docdir}/HTML/en/knotes
+%{tde_bindir}/knotes
+%{tde_tdelibdir}/knotes_local.la
+%{tde_tdelibdir}/knotes_local.so
+%{tde_libdir}/libknotes.so.*
+%{tde_tdeappdir}/knotes.desktop
+%{tde_datadir}/apps/knotes
+%{tde_datadir}/config.kcfg/knoteconfig.kcfg
+%{tde_datadir}/config.kcfg/knotesglobalconfig.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/knotes.png
+%{tde_datadir}/services/kresources/knotes/imap.desktop
+%{tde_datadir}/services/kresources/knotes/local.desktop
+%{tde_datadir}/services/kresources/knotes_manager.desktop
+%{tde_datadir}/services/kontact/knotesplugin.desktop
+%{tde_tdedocdir}/HTML/en/knotes/
 
 %post -n trinity-knotes
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-knotes
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1031,16 +1108,16 @@ Requires:	%{name}-kresources-devel = %{version}-%{release}
 %{summary}
 
 %files -n trinity-knotes-devel
-%{_libdir}/libknotes.so
-%{_libdir}/libknotes.la
-%{tde_includedir}/KNotesAppIface.h
-%{tde_includedir}/KNotesIface.h
+%{tde_libdir}/libknotes.so
+%{tde_libdir}/libknotes.la
+%{tde_tdeincludedir}/KNotesAppIface.h
+%{tde_tdeincludedir}/KNotesIface.h
 
 %post -n trinity-knotes-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-knotes-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1054,17 +1131,35 @@ and kxml_compiler for generation of C++ classes representing XML data
 described by RelaxNG schemes.
 
 %files -n trinity-kode
-%{_bindir}/kode
-%{_bindir}/kxml_compiler
-%{_libdir}/libkode.la
-%{_libdir}/libkode.so
-%{_libdir}/libkode.so.*
+%{tde_bindir}/kode
+%{tde_bindir}/kxml_compiler
+%{tde_libdir}/libkode.so.*
 
 %post -n trinity-kode
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-kode
-/sbin/ldconfig
+/sbin/ldconfig || :
+
+##########
+
+%package -n trinity-kode-devel
+Summary:	Development files for trinity-kode
+Group:		Development/Libraries
+Requires:	trinity-kode = %{version}-%{release}
+
+%description -n trinity-kode-devel
+%{summary}
+
+%files -n trinity-kode-devel
+%{tde_libdir}/libkode.la
+%{tde_libdir}/libkode.so
+
+%post -n trinity-kode-devel
+/sbin/ldconfig || :
+
+%postun -n trinity-kode-devel
+/sbin/ldconfig || :
 
 ##########
 
@@ -1078,24 +1173,24 @@ Konsolekalendar complements the TDE KOrganizer by providing a console
 frontend to manage your calendars.
 
 %files -n trinity-konsolekalendar
-%{_bindir}/konsolekalendar
-%{tde_appdir}/konsolekalendar.desktop
-%{_datadir}/icons/crystalsvg/*/apps/konsolekalendar.png
-%{tde_docdir}/HTML/en/konsolekalendar
+%{tde_bindir}/konsolekalendar
+%{tde_tdeappdir}/konsolekalendar.desktop
+%{tde_datadir}/icons/crystalsvg/*/apps/konsolekalendar.png
+%{tde_tdedocdir}/HTML/en/konsolekalendar/
 
 %post -n trinity-konsolekalendar
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-konsolekalendar
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1116,59 +1211,59 @@ KAddressBook into a single interface to provide easy access to mail,
 scheduling, address book and other PIM functionality.
 
 %files -n trinity-kontact
-%{_bindir}/kontact
-%{tde_libdir}/kcm_kmailsummary.la
-%{tde_libdir}/kcm_kmailsummary.so
-%{tde_libdir}/kcm_kontact.la
-%{tde_libdir}/kcm_kontact.so
-%{tde_libdir}/kcm_kontactknt.la
-%{tde_libdir}/kcm_kontactknt.so
-%{tde_libdir}/kcm_kontactsummary.la
-%{tde_libdir}/kcm_kontactsummary.so
-%{tde_libdir}/kcm_korgsummary.la
-%{tde_libdir}/kcm_korgsummary.so
-%{tde_libdir}/kcm_sdsummary.la
-%{tde_libdir}/kcm_sdsummary.so
-%{tde_libdir}/libkontact_*.la
-%{tde_libdir}/libkontact_*.so
-%{_libdir}/libkontact.so.*
-%{_libdir}/libkpinterfaces.so.*
-%{tde_appdir}/Kontact.desktop
-%{tde_appdir}/kontactdcop.desktop
-%{_datadir}/apps/kontact
-%{_datadir}/apps/kontactsummary/kontactsummary_part.rc
-%{_datadir}/config.kcfg/kontact.kcfg
-%{_datadir}/icons/hicolor/*/apps/kontact.png
-%{_datadir}/icons/crystalsvg/*/actions/kontact_*.png
-%{_datadir}/services/kcmkmailsummary.desktop
-%{_datadir}/services/kcmkontactknt.desktop
-%{_datadir}/services/kcmkontactsummary.desktop
-%{_datadir}/services/kcmkorgsummary.desktop
-%{_datadir}/services/kcmsdsummary.desktop
-%{_datadir}/services/kontact/newstickerplugin.desktop
-%{_datadir}/services/kontact/specialdatesplugin.desktop
-%{_datadir}/services/kontact/summaryplugin.desktop
-%{_datadir}/services/kontact/weatherplugin.desktop
-%{_datadir}/services/kontactconfig.desktop
-%{_datadir}/servicetypes/kontactplugin.desktop
-%{tde_docdir}/HTML/en/kontact
-%{tde_docdir}/HTML/en/kpilot
+%{tde_bindir}/kontact
+%{tde_tdelibdir}/kcm_kmailsummary.la
+%{tde_tdelibdir}/kcm_kmailsummary.so
+%{tde_tdelibdir}/kcm_kontact.la
+%{tde_tdelibdir}/kcm_kontact.so
+%{tde_tdelibdir}/kcm_kontactknt.la
+%{tde_tdelibdir}/kcm_kontactknt.so
+%{tde_tdelibdir}/kcm_kontactsummary.la
+%{tde_tdelibdir}/kcm_kontactsummary.so
+%{tde_tdelibdir}/kcm_korgsummary.la
+%{tde_tdelibdir}/kcm_korgsummary.so
+%{tde_tdelibdir}/kcm_sdsummary.la
+%{tde_tdelibdir}/kcm_sdsummary.so
+%{tde_tdelibdir}/libkontact_*.la
+%{tde_tdelibdir}/libkontact_*.so
+%{tde_libdir}/libkontact.so.*
+%{tde_libdir}/libkpinterfaces.so.*
+%{tde_tdeappdir}/Kontact.desktop
+%{tde_tdeappdir}/kontactdcop.desktop
+%{tde_datadir}/apps/kontact
+%{tde_datadir}/apps/kontactsummary/kontactsummary_part.rc
+%{tde_datadir}/config.kcfg/kontact.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kontact.png
+%{tde_datadir}/icons/crystalsvg/*/actions/kontact_*.png
+%{tde_datadir}/services/kcmkmailsummary.desktop
+%{tde_datadir}/services/kcmkontactknt.desktop
+%{tde_datadir}/services/kcmkontactsummary.desktop
+%{tde_datadir}/services/kcmkorgsummary.desktop
+%{tde_datadir}/services/kcmsdsummary.desktop
+%{tde_datadir}/services/kontact/newstickerplugin.desktop
+%{tde_datadir}/services/kontact/specialdatesplugin.desktop
+%{tde_datadir}/services/kontact/summaryplugin.desktop
+%{tde_datadir}/services/kontact/weatherplugin.desktop
+%{tde_datadir}/services/kontactconfig.desktop
+%{tde_datadir}/servicetypes/kontactplugin.desktop
+%{tde_tdedocdir}/HTML/en/kontact/
+%{tde_tdedocdir}/HTML/en/kpilot/
 
 %post -n trinity-kontact
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kontact
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1181,17 +1276,17 @@ Requires:	trinity-kontact = %{version}-%{release}
 %{summary}
 
 %files -n trinity-kontact-devel
-%{_libdir}/libkontact.la
-%{_libdir}/libkontact.so
-%{_libdir}/libkpinterfaces.la
-%{_libdir}/libkpinterfaces.so
-%{tde_includedir}/kontact
+%{tde_libdir}/libkontact.la
+%{tde_libdir}/libkontact.so
+%{tde_libdir}/libkpinterfaces.la
+%{tde_libdir}/libkpinterfaces.so
+%{tde_tdeincludedir}/kontact/
 
 %post -n trinity-kontact-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-kontact-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1201,6 +1296,7 @@ Group:		Applications/Productivity
 Requires:	trinity-libkpimidentities = %{version}-%{release}
 Requires:	trinity-libkpimexchange = %{version}-%{release}
 Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	perl
 
 %description -n trinity-korganizer
 This package contains KOrganizer, a calendar and scheduling program.
@@ -1215,58 +1311,58 @@ KOrganizer offers full synchronization with Palm Pilots, if kpilot is
 installed.
 
 %files -n trinity-korganizer
-%{_bindir}/ical2vcal
-%{_bindir}/korgac
-%{_bindir}/korganizer
-%{tde_libdir}/kcm_korganizer.la
-%{tde_libdir}/kcm_korganizer.so
-%{tde_libdir}/libkorg_*.la
-%{tde_libdir}/libkorg_*.so
-%{tde_libdir}/libkorganizerpart.la
-%{tde_libdir}/libkorganizerpart.so
-%{_libdir}/libkocorehelper.so.*
-%{_libdir}/libkorg_stdprinting.so.*
-%{_libdir}/libkorganizer.so.*
-%{_libdir}/libkorganizer_calendar.so.*
-%{_libdir}/libkorganizer_eventviewer.so.*
-%{tde_appdir}/korganizer.desktop
-%{_datadir}/apps/kconf_update/korganizer.upd
-%{_datadir}/apps/korgac
-%{_datadir}/apps/korganizer
-%{_datadir}/autostart/korgac.desktop
-%{_datadir}/config.kcfg/korganizer.kcfg
-%{_datadir}/icons/hicolor/*/apps/korganizer.png
-%{_datadir}/services/kontact/korganizerplugin.desktop
-%{_datadir}/services/kontact/journalplugin.desktop
-%{_datadir}/services/kontact/todoplugin.desktop
-%{_datadir}/services/korganizer_*.desktop
-%{_datadir}/services/korganizer
-%{_datadir}/services/webcal.protocol
-%{_datadir}/servicetypes/calendardecoration.desktop
-%{_datadir}/servicetypes/calendarplugin.desktop
-%{_datadir}/servicetypes/dcopcalendar.desktop
-%{_datadir}/servicetypes/korganizerpart.desktop
-%{_datadir}/servicetypes/korgprintplugin.desktop
-%{tde_docdir}/HTML/en/korganizer
-%{_includedir}/korganizer
+%{tde_bindir}/ical2vcal
+%{tde_bindir}/korgac
+%{tde_bindir}/korganizer
+%{tde_tdelibdir}/kcm_korganizer.la
+%{tde_tdelibdir}/kcm_korganizer.so
+%{tde_tdelibdir}/libkorg_*.la
+%{tde_tdelibdir}/libkorg_*.so
+%{tde_tdelibdir}/libkorganizerpart.la
+%{tde_tdelibdir}/libkorganizerpart.so
+%{tde_libdir}/libkocorehelper.so.*
+%{tde_libdir}/libkorg_stdprinting.so.*
+%{tde_libdir}/libkorganizer.so.*
+%{tde_libdir}/libkorganizer_calendar.so.*
+%{tde_libdir}/libkorganizer_eventviewer.so.*
+%{tde_tdeappdir}/korganizer.desktop
+%{tde_datadir}/apps/kconf_update/korganizer.upd
+%{tde_datadir}/apps/korgac
+%{tde_datadir}/apps/korganizer
+%{tde_datadir}/autostart/korgac.desktop
+%{tde_datadir}/config.kcfg/korganizer.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/korganizer.png
+%{tde_datadir}/services/kontact/korganizerplugin.desktop
+%{tde_datadir}/services/kontact/journalplugin.desktop
+%{tde_datadir}/services/kontact/todoplugin.desktop
+%{tde_datadir}/services/korganizer_*.desktop
+%{tde_datadir}/services/korganizer
+%{tde_datadir}/services/webcal.protocol
+%{tde_datadir}/servicetypes/calendardecoration.desktop
+%{tde_datadir}/servicetypes/calendarplugin.desktop
+%{tde_datadir}/servicetypes/dcopcalendar.desktop
+%{tde_datadir}/servicetypes/korganizerpart.desktop
+%{tde_datadir}/servicetypes/korgprintplugin.desktop
 %{tde_includedir}/korganizer
-%{tde_includedir}/calendar
+%{tde_tdeincludedir}/korganizer
+%{tde_tdeincludedir}/calendar
+%{tde_tdedocdir}/HTML/en/korganizer/
 
 %post -n trinity-korganizer
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-korganizer
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1279,22 +1375,22 @@ Requires:	trinity-korganizer = %{version}-%{release}
 %{summary}
 
 %files -n trinity-korganizer-devel
-%{_libdir}/libkocorehelper.la
-%{_libdir}/libkocorehelper.so
-%{_libdir}/libkorg_stdprinting.la
-%{_libdir}/libkorg_stdprinting.so
-%{_libdir}/libkorganizer.la
-%{_libdir}/libkorganizer.so
-%{_libdir}/libkorganizer_calendar.la
-%{_libdir}/libkorganizer_calendar.so
-%{_libdir}/libkorganizer_eventviewer.la
-%{_libdir}/libkorganizer_eventviewer.so
+%{tde_libdir}/libkocorehelper.la
+%{tde_libdir}/libkocorehelper.so
+%{tde_libdir}/libkorg_stdprinting.la
+%{tde_libdir}/libkorg_stdprinting.so
+%{tde_libdir}/libkorganizer.la
+%{tde_libdir}/libkorganizer.so
+%{tde_libdir}/libkorganizer_calendar.la
+%{tde_libdir}/libkorganizer_calendar.so
+%{tde_libdir}/libkorganizer_eventviewer.la
+%{tde_libdir}/libkorganizer_eventviewer.so
 
 %post -n trinity-korganizer-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-korganizer-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1313,31 +1409,31 @@ the color/icon of the Kicker display.  In addition to this you can have
 Korn run a program once you click on the docked icon in Kicker.
 
 %files -n trinity-korn
-%{_bindir}/korn
-%{_libdir}/kconf_update_bin/korn-3-4-config_change
-%{tde_appdir}/KOrn.desktop
-%{_datadir}/apps/kconf_update/korn-3-4-config_change.upd
-%{_datadir}/apps/kconf_update/korn-3-5-metadata-update.pl
-%{_datadir}/apps/kconf_update/korn-3-5-ssl-update.pl
-%{_datadir}/apps/kconf_update/korn-3-5-update.upd
-%{_datadir}/icons/hicolor/*/apps/korn.png
-%{tde_docdir}/HTML/en/korn
+%{tde_bindir}/korn
+%{tde_libdir}/kconf_update_bin/korn-3-4-config_change
+%{tde_tdeappdir}/KOrn.desktop
+%{tde_datadir}/apps/kconf_update/korn-3-4-config_change.upd
+%{tde_datadir}/apps/kconf_update/korn-3-5-metadata-update.pl
+%{tde_datadir}/apps/kconf_update/korn-3-5-ssl-update.pl
+%{tde_datadir}/apps/kconf_update/korn-3-5-update.upd
+%{tde_datadir}/icons/hicolor/*/apps/korn.png
+%{tde_tdedocdir}/HTML/en/korn/
 
 %post -n trinity-korn
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-korn
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+/sbin/ldconfig || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1351,27 +1447,27 @@ format. These attachments are usually found in mails coming from Microsoft
 mail servers and embed the mail properties as well as the actual attachments.
 
 %files -n trinity-ktnef
-%{_bindir}/ktnef
-%{tde_appdir}/ktnef.desktop
-%{_datadir}/apps/ktnef
-%{_datadir}/icons/hicolor/*/apps/ktnef.png
-%{_datadir}/icons/locolor/*/apps/ktnef.png
-%{_datadir}/mimelnk/application/ms-tnef.desktop
-%{tde_docdir}/HTML/en/ktnef
+%{tde_bindir}/ktnef
+%{tde_tdeappdir}/ktnef.desktop
+%{tde_datadir}/apps/ktnef
+%{tde_datadir}/icons/hicolor/*/apps/ktnef.png
+%{tde_datadir}/icons/locolor/*/apps/ktnef.png
+%{tde_datadir}/mimelnk/application/ms-tnef.desktop
+%{tde_tdedocdir}/HTML/en/ktnef/
 
 %post -n trinity-ktnef
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ktnef
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1386,13 +1482,13 @@ to implement fast searches in mail bodies.
 This is the runtime package for programs that use the libindex library.
 
 %files -n trinity-libindex
-%{_libdir}/libindex.so.*
+%{tde_libdir}/libindex.so.*
 
 %post -n trinity-libindex
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libindex
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1409,16 +1505,16 @@ This is the development package which contains the headers for the libindex-trin
 library.
 
 %files -n trinity-libindex-devel
-%{_bindir}/indexlib-config
-%{tde_includedir}/index
-%{_libdir}/libindex.la
-%{_libdir}/libindex.so
+%{tde_bindir}/indexlib-config
+%{tde_tdeincludedir}/index
+%{tde_libdir}/libindex.la
+%{tde_libdir}/libindex.so
 
 %post -n trinity-libindex-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libindex-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1434,30 +1530,30 @@ formats.
 This is the runtime package for programs that use the libkcal-trinity library.
 
 %files -n trinity-libkcal
-%{tde_libdir}/kcal_kabc.la
-%{tde_libdir}/kcal_kabc.so
-%{tde_libdir}/kcal_localdir.la
-%{tde_libdir}/kcal_localdir.so
-%{tde_libdir}/kcal_local.la
-%{tde_libdir}/kcal_local.so
-%{tde_libdir}/kcal_remote.la
-%{tde_libdir}/kcal_remote.so
-%{_libdir}/libkcal.so.*
-%{_libdir}/libkcal_resourceremote.so.*
-%{_libdir}/libkholidays.so.*
-%{_datadir}/apps/libkholidays
-%{_datadir}/services/kresources/kcal/imap.desktop
-%{_datadir}/services/kresources/kcal/kabc.desktop
-%{_datadir}/services/kresources/kcal/local.desktop
-%{_datadir}/services/kresources/kcal/localdir.desktop
-%{_datadir}/services/kresources/kcal/remote.desktop
-%{_datadir}/services/kresources/kcal_manager.desktop
+%{tde_tdelibdir}/kcal_kabc.la
+%{tde_tdelibdir}/kcal_kabc.so
+%{tde_tdelibdir}/kcal_localdir.la
+%{tde_tdelibdir}/kcal_localdir.so
+%{tde_tdelibdir}/kcal_local.la
+%{tde_tdelibdir}/kcal_local.so
+%{tde_tdelibdir}/kcal_remote.la
+%{tde_tdelibdir}/kcal_remote.so
+%{tde_libdir}/libkcal.so.*
+%{tde_libdir}/libkcal_resourceremote.so.*
+%{tde_libdir}/libkholidays.so.*
+%{tde_datadir}/apps/libkholidays
+%{tde_datadir}/services/kresources/kcal/imap.desktop
+%{tde_datadir}/services/kresources/kcal/kabc.desktop
+%{tde_datadir}/services/kresources/kcal/local.desktop
+%{tde_datadir}/services/kresources/kcal/localdir.desktop
+%{tde_datadir}/services/kresources/kcal/remote.desktop
+%{tde_datadir}/services/kresources/kcal_manager.desktop
 
 %post -n trinity-libkcal
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkcal
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1476,21 +1572,21 @@ This is the development package which contains the headers for the libkcal-trini
 library.
 
 %files -n trinity-libkcal-devel
-%{tde_includedir}/libemailfunctions/idmapper.h
+%{tde_tdeincludedir}/libemailfunctions/idmapper.h
+%{tde_tdeincludedir}/libkcal
 %{tde_includedir}/libkcal
-%{_includedir}/libkcal
-%{_libdir}/libkcal.la
-%{_libdir}/libkcal.so
-%{_libdir}/libkcal_resourceremote.la
-%{_libdir}/libkcal_resourceremote.so
-%{_libdir}/libkholidays.la
-%{_libdir}/libkholidays.so
+%{tde_libdir}/libkcal.la
+%{tde_libdir}/libkcal.so
+%{tde_libdir}/libkcal_resourceremote.la
+%{tde_libdir}/libkcal_resourceremote.so
+%{tde_libdir}/libkholidays.la
+%{tde_libdir}/libkholidays.so
 
 %post -n trinity-libkcal-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkcal-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1506,31 +1602,31 @@ Provides:	libtdepim = %{version}-%{release}
 This is the runtime package for programs that use the libtdepim-trinity library.
 
 %files -n trinity-libtdepim
-%{tde_libdir}/plugins/designer/[kt]depimwidgets.la
-%{tde_libdir}/plugins/designer/[kt]depimwidgets.so
-%{tde_libdir}/plugins/designer/kpartsdesignerplugin.la
-%{tde_libdir}/plugins/designer/kpartsdesignerplugin.so
-%{_libdir}/lib[kt]depim.so.*
-%{_datadir}/apps/[kt]depimwidgets
-%{_datadir}/apps/lib[kt]depim
-%{_datadir}/apps/[kt]depim
-%{_datadir}/config.kcfg/pimemoticons.kcfg
-%{_datadir}/icons/crystalsvg/22x22/actions/button_fewer.png
-%{_datadir}/icons/crystalsvg/22x22/actions/button_more.png
+%{tde_tdelibdir}/plugins/designer/[kt]depimwidgets.la
+%{tde_tdelibdir}/plugins/designer/[kt]depimwidgets.so
+%{tde_tdelibdir}/plugins/designer/kpartsdesignerplugin.la
+%{tde_tdelibdir}/plugins/designer/kpartsdesignerplugin.so
+%{tde_libdir}/lib[kt]depim.so.*
+%{tde_datadir}/apps/[kt]depimwidgets
+%{tde_datadir}/apps/lib[kt]depim
+%{tde_datadir}/apps/[kt]depim
+%{tde_datadir}/config.kcfg/pimemoticons.kcfg
+%{tde_datadir}/icons/crystalsvg/22x22/actions/button_fewer.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/button_more.png
 
 %post -n trinity-libtdepim
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libtdepim
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1548,15 +1644,15 @@ This is the development package which contains the headers for the libtdepim-tri
 library.
 
 %files -n trinity-libtdepim-devel
-%{tde_includedir}/[kt]depimmacros.h
-%{_libdir}/lib[kt]depim.la
-%{_libdir}/lib[kt]depim.so
+%{tde_tdeincludedir}/[kt]depimmacros.h
+%{tde_libdir}/lib[kt]depim.la
+%{tde_libdir}/lib[kt]depim.so
 
 %post -n trinity-libtdepim-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libtdepim-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1568,14 +1664,14 @@ Group:		Environment/Libraries
 This is the runtime package for programs that use the libkgantt-trinity library.
 
 %files -n trinity-libkgantt
-%{_libdir}/libkgantt.so.*
-%{_datadir}/apps/kgantt
+%{tde_libdir}/libkgantt.so.*
+%{tde_datadir}/apps/kgantt
 
 %post -n trinity-libkgantt
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkgantt
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1590,15 +1686,15 @@ This is the development package which contains the headers for the libkgantt-tri
 library.
 
 %files -n trinity-libkgantt-devel
-%{tde_includedir}/kgantt
-%{_libdir}/libkgantt.la
-%{_libdir}/libkgantt.so
+%{tde_tdeincludedir}/kgantt
+%{tde_libdir}/libkgantt.la
+%{tde_libdir}/libkgantt.so
 
 %post -n trinity-libkgantt-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkgantt-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1614,30 +1710,30 @@ GnuPG program.
 This is the runtime package for programs that use the libkleopatra-trinity library.
 
 %files -n trinity-libkleopatra
-%{_datadir}/config/libkleopatrarc
-%{_libdir}/libgpgme++.so.*
-%{_libdir}/libkleopatra.so.*
-%{_libdir}/libkpgp.so.*
-%{_libdir}/libqgpgme.so.*
-%{_datadir}/apps/kconf_update/kpgp-3.1-upgrade-address-data.pl
-%{_datadir}/apps/kconf_update/kpgp.upd
-%{_datadir}/apps/libkleopatra/
-%{_datadir}/icons/crystalsvg/*/apps/gpg.png
-%{_datadir}/icons/crystalsvg/*/apps/gpgsm.png
+%{tde_datadir}/config/libkleopatrarc
+%{tde_libdir}/libgpgme++.so.*
+%{tde_libdir}/libkleopatra.so.*
+%{tde_libdir}/libkpgp.so.*
+%{tde_libdir}/libqgpgme.so.*
+%{tde_datadir}/apps/kconf_update/kpgp-3.1-upgrade-address-data.pl
+%{tde_datadir}/apps/kconf_update/kpgp.upd
+%{tde_datadir}/apps/libkleopatra/
+%{tde_datadir}/icons/crystalsvg/*/apps/gpg.png
+%{tde_datadir}/icons/crystalsvg/*/apps/gpgsm.png
 
 %post -n trinity-libkleopatra
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkleopatra
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1655,25 +1751,25 @@ This is the development package which contains the headers for the
 libkleopatra-trinity library.
 
 %files -n trinity-libkleopatra-devel
+%{tde_tdeincludedir}/gpgme++
 %{tde_includedir}/gpgme++
-%{_includedir}/gpgme++
+%{tde_tdeincludedir}/kleo
 %{tde_includedir}/kleo
-%{_includedir}/kleo
-%{tde_includedir}/qgpgme
-%{_libdir}/libgpgme++.la
-%{_libdir}/libgpgme++.so
-%{_libdir}/libkleopatra.la
-%{_libdir}/libkleopatra.so
-%{_libdir}/libkpgp.la
-%{_libdir}/libkpgp.so
-%{_libdir}/libqgpgme.la
-%{_libdir}/libqgpgme.so
+%{tde_tdeincludedir}/qgpgme
+%{tde_libdir}/libgpgme++.la
+%{tde_libdir}/libgpgme++.so
+%{tde_libdir}/libkleopatra.la
+%{tde_libdir}/libkleopatra.so
+%{tde_libdir}/libkpgp.la
+%{tde_libdir}/libkpgp.so
+%{tde_libdir}/libqgpgme.la
+%{tde_libdir}/libqgpgme.so
 
 %post -n trinity-libkleopatra-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkleopatra-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1687,13 +1783,13 @@ This library provides a C++ interface to MIME messages, parsing them into
 an object tree.
 
 %files -n trinity-libkmime
-%{_libdir}/libkmime.so.*
+%{tde_libdir}/libkmime.so.*
 
 %post -n trinity-libkmime
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkmime
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1706,14 +1802,14 @@ Requires:	trinity-libkmime = %{version}-%{release}
 %{summary}
 
 %files -n trinity-libkmime-devel
-%{_libdir}/libkmime.la
-%{_libdir}/libkmime.so
+%{tde_libdir}/libkmime.la
+%{tde_libdir}/libkmime.so
 
 %post -n trinity-libkmime-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkmime-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1726,15 +1822,15 @@ This is the runtime package for programs that use the libkpimexchange-trinity
 library. 
 
 %files -n trinity-libkpimexchange
-%{tde_libdir}/resourcecalendarexchange.la
-%{tde_libdir}/resourcecalendarexchange.so
-%{_libdir}/libkpimexchange.so.*
+%{tde_tdelibdir}/resourcecalendarexchange.la
+%{tde_tdelibdir}/resourcecalendarexchange.so
+%{tde_libdir}/libkpimexchange.so.*
 
 %post -n trinity-libkpimexchange
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkpimexchange
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1750,16 +1846,16 @@ This is the development package which contains the headers for the
 libkpimexchange-trinity library.
 
 %files -n trinity-libkpimexchange-devel
-%{tde_includedir}/[kt]depim/exchangeaccount.h
-%{tde_includedir}/[kt]depim/exchangeclient.h
-%{_libdir}/libkpimexchange.la
-%{_libdir}/libkpimexchange.so
+%{tde_tdeincludedir}/[kt]depim/exchangeaccount.h
+%{tde_tdeincludedir}/[kt]depim/exchangeclient.h
+%{tde_libdir}/libkpimexchange.la
+%{tde_libdir}/libkpimexchange.so
 
 %post -n trinity-libkpimexchange-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkpimexchange-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1775,13 +1871,13 @@ This is the runtime package for programs that use the libkpimidentities-trinity
 library.
 
 %files -n trinity-libkpimidentities
-%{_libdir}/libkpimidentities.so.*
+%{tde_libdir}/libkpimidentities.so.*
 
 %post -n trinity-libkpimidentities
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkpimidentities
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1794,14 +1890,14 @@ Requires:	trinity-libkpimidentities = %{version}-%{release}
 %{summary}
 
 %files -n trinity-libkpimidentities-devel
-%{_libdir}/libkpimidentities.la
-%{_libdir}/libkpimidentities.so
+%{tde_libdir}/libkpimidentities.la
+%{tde_libdir}/libkpimidentities.so
 
 %post -n trinity-libkpimidentities-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libkpimidentities-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1813,13 +1909,13 @@ Group:		Environment/Libraries
 This is the runtime package for programs that use the libksieve-trinity library.
 
 %files -n trinity-libksieve
-%{_libdir}/libksieve.so.*
+%{tde_libdir}/libksieve.so.*
 
 %post -n trinity-libksieve
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libksieve
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1834,15 +1930,15 @@ This is the development package which contains the headers for the libksieve-tri
 library.
 
 %files -n trinity-libksieve-devel
-%{tde_includedir}/ksieve
-%{_libdir}/libksieve.la
-%{_libdir}/libksieve.so
+%{tde_tdeincludedir}/ksieve
+%{tde_libdir}/libksieve.la
+%{tde_libdir}/libksieve.so
 
 %post -n trinity-libksieve-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libksieve-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1859,13 +1955,13 @@ attachments.
 This is the runtime library for packages using the ktnef-trinity library.
 
 %files -n trinity-libktnef
-%{_libdir}/libktnef.so.*
+%{tde_libdir}/libktnef.so.*
 
 %post -n trinity-libktnef
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libktnef
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1885,15 +1981,15 @@ This is the development package which contains the headers for the
 ktnef-trinity library.
 
 %files -n trinity-libktnef-devel
-%{tde_includedir}/ktnef
-%{_libdir}/libktnef.la
-%{_libdir}/libktnef.so
+%{tde_tdeincludedir}/ktnef
+%{tde_libdir}/libktnef.la
+%{tde_libdir}/libktnef.so
 
 %post -n trinity-libktnef-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libktnef-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1907,13 +2003,13 @@ This library is used by several Trinity applications to handle mime types.
 This is the runtime package for programs that use the libmimelib-trinity library.
 
 %files -n trinity-libmimelib
-%{_libdir}/libmimelib.so.*
+%{tde_libdir}/libmimelib.so.*
 
 %post -n trinity-libmimelib
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libmimelib
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1929,15 +2025,15 @@ This is the development package which contains the headers for the
 libmimelib library.
 
 %files -n trinity-libmimelib-devel
-%{tde_includedir}/mimelib
-%{_libdir}/libmimelib.la
-%{_libdir}/libmimelib.so
+%{tde_tdeincludedir}/mimelib
+%{tde_libdir}/libmimelib.la
+%{tde_libdir}/libmimelib.so
 
 %post -n trinity-libmimelib-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun -n trinity-libmimelib-devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 ##########
 
@@ -1951,39 +2047,39 @@ and manage mobile phones with your PC. It handles full SMS control,
 dialing calls, phonebook, and phone status monitoring.
 
 %files -n trinity-kmobile
-%{_bindir}/kmobile
-%{_datadir}/icons/default.kde/32x32/devices/mobile_camera.png
-%{_datadir}/icons/default.kde/32x32/devices/mobile_musicplayer.png
-%{_datadir}/icons/default.kde/32x32/devices/mobile_organizer.png
-%{_datadir}/icons/default.kde/32x32/devices/mobile_phone.png
-%{_datadir}/icons/default.kde/32x32/devices/mobile_unknown.png
-%{_datadir}/icons/hicolor/*/apps/kmobile.png
-%{_datadir}/services/libkmobile_digicam.desktop
-%{_datadir}/services/libkmobile_gammu.desktop
-%{_datadir}/services/libkmobile_skeleton.desktop
-%{_datadir}/servicetypes/libkmobile.desktop
-%{_datadir}/apps/kmobile/kmobileui.rc
-%{tde_appdir}/kmobile.desktop
-%{tde_libdir}/libkmobile_skeleton.la
-%{tde_libdir}/libkmobile_skeleton.so
-%{_libdir}/libkmobileclient.la
-%{_libdir}/libkmobileclient.so
-%{_libdir}/libkmobiledevice.la
-%{_libdir}/libkmobiledevice.so
+%{tde_bindir}/kmobile
+%{tde_datadir}/icons/default.kde/32x32/devices/mobile_camera.png
+%{tde_datadir}/icons/default.kde/32x32/devices/mobile_musicplayer.png
+%{tde_datadir}/icons/default.kde/32x32/devices/mobile_organizer.png
+%{tde_datadir}/icons/default.kde/32x32/devices/mobile_phone.png
+%{tde_datadir}/icons/default.kde/32x32/devices/mobile_unknown.png
+%{tde_datadir}/icons/hicolor/*/apps/kmobile.png
+%{tde_datadir}/services/libkmobile_digicam.desktop
+%{tde_datadir}/services/libkmobile_gammu.desktop
+%{tde_datadir}/services/libkmobile_skeleton.desktop
+%{tde_datadir}/servicetypes/libkmobile.desktop
+%{tde_datadir}/apps/kmobile/kmobileui.rc
+%{tde_tdeappdir}/kmobile.desktop
+%{tde_tdelibdir}/libkmobile_skeleton.la
+%{tde_tdelibdir}/libkmobile_skeleton.so
+%{tde_libdir}/libkmobileclient.la
+%{tde_libdir}/libkmobileclient.so
+%{tde_libdir}/libkmobiledevice.la
+%{tde_libdir}/libkmobiledevice.so
 
 %post -n trinity-kmobile
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kmobile
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -2005,14 +2101,19 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
-export LD_LIBRARY_PATH="%{_libdir}"
+export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%__mkdir build
-cd build
+%{?!mgaversion:%__mkdir build; cd build}
 %cmake \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DCMAKE_SKIP_RPATH="OFF" \
   -DWITH_ARTS=ON \
   -DWITH_SASL=ON \
   -DWITH_NEWDISTRLISTS=ON  \
@@ -2052,6 +2153,10 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %changelog
+* Sun Jul 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
+- Add more '-devel' packages
+- Add support for Mageia 2
+
 * Sat Jun 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
 - Rename 'tdepim' to 'trinity-tdepim'
 - Disable unneccesary fsync() in cached IMAP handler [Bug #467] [Commit #82d4a938]

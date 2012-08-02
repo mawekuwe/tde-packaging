@@ -1,5 +1,6 @@
 dependencies/qt3
 dependencies/tqtinterface
+dependencies/avahi-tqt
 dependencies/dbus-tqt
 dependencies/dbus-1-tqt
 dependencies/libcaldav

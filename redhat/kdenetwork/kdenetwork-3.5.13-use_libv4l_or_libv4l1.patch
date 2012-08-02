@@ -1,0 +1,114 @@
+commit d8cbbab802a063679a4db5cebc73122cdb1da100
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1343324022 -0500
+
+    Use libv4l if available, otherwise check for v4l1 headers
+
+diff --git a/kopete/ConfigureChecks.cmake b/kopete/ConfigureChecks.cmake
+index aece436..70e97f5 100644
+--- a/kopete/ConfigureChecks.cmake
++++ b/kopete/ConfigureChecks.cmake
+@@ -26,3 +26,10 @@ if ( HAVE_LIBV4L1_VIDEODEV_H )
+ endif ( )
+ # -- End libv4l1-videodev.h ----------------------------------------------
+ 
++# -- Check for linux/videodev.h presence --------------------
++CHECK_INCLUDE_FILE ( "linux/videodev.h" HAVE_LINUX_VIDEODEV_H )
++if ( HAVE_LINUX_VIDEODEV_H )
++  add_definitions( -DHAVE_LINUX_VIDEODEV_H )
++endif ( )
++# -- End linux-videodev.h ----------------------------------------------
++
+diff --git a/kopete/libkopete/avdevice/videocontrol.h b/kopete/libkopete/avdevice/videocontrol.h
+index c4db3b9..dbef6b5 100644
+--- a/kopete/libkopete/avdevice/videocontrol.h
++++ b/kopete/libkopete/avdevice/videocontrol.h
+@@ -15,8 +15,6 @@
+     *************************************************************************
+ */
+ 
+-#define ENABLE_AV
+-
+ #ifndef KOPETE_AVVIDEOCONTROL_H
+ #define KOPETE_AVVIDEOCONTROL_H
+ 
+diff --git a/kopete/libkopete/avdevice/videodevice.cpp b/kopete/libkopete/avdevice/videodevice.cpp
+index ea23544..e12fb02 100644
+--- a/kopete/libkopete/avdevice/videodevice.cpp
++++ b/kopete/libkopete/avdevice/videodevice.cpp
+@@ -15,8 +15,6 @@
+     *************************************************************************
+ */
+ 
+-#define ENABLE_AV
+-
+ #include <cstdlib>
+ #include <cerrno>
+ #include <cstring>
+diff --git a/kopete/libkopete/avdevice/videodevice.h b/kopete/libkopete/avdevice/videodevice.h
+index 7bba507..7e57513 100644
+--- a/kopete/libkopete/avdevice/videodevice.h
++++ b/kopete/libkopete/avdevice/videodevice.h
+@@ -15,11 +15,11 @@
+     *************************************************************************
+ */
+ 
+-#define ENABLE_AV
+-
+ #ifndef KOPETE_AVVIDEODEVICELISTITEM_H
+ #define KOPETE_AVVIDEODEVICELISTITEM_H
+ 
++#define ENABLE_AV
++
+ #if defined HAVE_CONFIG_H
+ #include <config.h>
+ #endif
+@@ -54,8 +54,10 @@
+ #include <linux/kernel.h>
+ #if defined(HAVE_LIBV4L1_VIDEODEV_H)
+ #include <libv4l1-videodev.h>
+-#else
++#elif defined(HAVE_LINUX_VIDEODEV_H)
+ #include <linux/videodev.h>
++#else
++#undef ENABLE_AV
+ #endif
+ #define VIDEO_MODE_PAL_Nc  3
+ #define VIDEO_MODE_PAL_M   4
+@@ -293,8 +295,10 @@ public:
+ void enumerateMenu (void);
+ 
+ #endif
++#ifndef ENABLE_AV
+ 	struct video_capability V4L_capabilities;
+ 	struct video_buffer V4L_videobuffer;
++#endif
+ #endif	
+ 	TQValueVector<Kopete::AV::VideoInput> m_input;
+ 	TQValueVector<Kopete::AV::VideoControl> m_control;
+diff --git a/kopete/libkopete/avdevice/videodevicepool.cpp b/kopete/libkopete/avdevice/videodevicepool.cpp
+index b725d5d..cbfe7cb 100644
+--- a/kopete/libkopete/avdevice/videodevicepool.cpp
++++ b/kopete/libkopete/avdevice/videodevicepool.cpp
+@@ -15,8 +15,6 @@
+     *************************************************************************
+ */
+ 
+-#define ENABLE_AV
+-
+ #include <assert.h>
+ #include <cstdlib>
+ #include <cerrno>
+diff --git a/kopete/libkopete/avdevice/videoinput.h b/kopete/libkopete/avdevice/videoinput.h
+index 9fc109a..dd7504f 100644
+--- a/kopete/libkopete/avdevice/videoinput.h
++++ b/kopete/libkopete/avdevice/videoinput.h
+@@ -15,8 +15,6 @@
+     *************************************************************************
+ */
+ 
+-#define ENABLE_AV
+-
+ #ifndef KOPETE_AVVIDEOINPUT_H
+ #define KOPETE_AVVIDEOINPUT_H
+ 

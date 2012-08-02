@@ -1,0 +1,41 @@
+commit b2d01d000c11d7c0dd183e1af059f81ac5249c25
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1339541595 -0500
+
+    Add poppler-tqt.pc file
+
+diff --git a/kfile-plugins/dependencies/poppler-tqt/CMakeLists.txt b/kfile-plugins/dependencies/poppler-tqt/CMakeLists.txt
+index d07e813..42d50a8 100644
+--- a/kfile-plugins/dependencies/poppler-tqt/CMakeLists.txt
++++ b/kfile-plugins/dependencies/poppler-tqt/CMakeLists.txt
+@@ -28,6 +28,12 @@ link_directories(
+   ${TQT_LIBRARY_DIRS}
+ )
+ 
++##### pc files ##################################
++
++configure_file( poppler-tqt.pc.cmake poppler-tqt.pc @ONLY )
++
++install( FILES ${CMAKE_CURRENT_BINARY_DIR}/poppler-tqt.pc DESTINATION ${PKGCONFIG_INSTALL_DIR} )
++
+ ##### headers ###################################
+ 
+ install( FILES
+diff --git a/kfile-plugins/dependencies/poppler-tqt/poppler-tqt.pc.cmake b/kfile-plugins/dependencies/poppler-tqt/poppler-tqt.pc.cmake
+new file mode 100644
+index 0000000..ce2b40d
+--- /dev/null
++++ b/kfile-plugins/dependencies/poppler-tqt/poppler-tqt.pc.cmake
+@@ -0,0 +1,12 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${exec_prefix}/lib
++includedir=${prefix}/include
++
++Name: poppler-tqt
++Description: TQt bindings for poppler
++Version: @POPPLER_VERSION@
++Requires: poppler = @POPPLER_VERSION@
++
++Libs: -L${libdir} -lpoppler-tqt
++Cflags: -I${includedir}

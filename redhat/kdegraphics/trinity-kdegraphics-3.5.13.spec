@@ -1,19 +1,26 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_appdir %{_datadir}/applications/kde
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-tdegraphics
 Version:	3.5.13
-Release:	5%{?dist}%{_variant}
+Release:	6%{?dist}%{_variant}
 License:	GPL
 Summary:    Trinity Desktop Environment - Graphics Applications
 
@@ -46,6 +53,10 @@ Patch5:		kdegraphics-3.5.13-fix_gcc47_compilation.patch
 Patch6:		kdegraphics-3.5.13-fix_poppler_support.patch
 # [tdegraphics] Fix corrupt image file. [Commit #d655a9f8]
 Patch7:		kdegraphics-3.5.13-fix_corrupt_image_file.patch
+# [tdegraphics] Add poppler-tqt.pc file [Commit #b2d01d00]
+Patch8:		kdegraphics-3.5.13-add_poppler_tqt_pc.patch
+# [tdegraphics] Fix poppler include directory location
+Patch9:		kdegraphics-3.5.13-fix_poppler_include_dir.patch
 
 BuildRequires: cmake >= 2.8
 BuildRequires: tqtinterface-devel
@@ -58,42 +69,64 @@ BuildRequires: libtiff-devel
 BuildRequires: libungif-devel
 BuildRequires: automake libtool
 BuildRequires: gphoto2-devel
-BuildRequires: sane-backends-devel
 BuildRequires: libusb-devel
-BuildRequires: t1lib-devel
 BuildRequires: libdrm-devel
+BuildRequires: pcre-devel
 
+%if 0%{?mgaversion}
+BuildRequires:	%{_lib}sane1-devel
+BuildRequires:	%{_lib}t1lib-devel
+BuildRequires:	%{_lib}paper-devel
+# kuickshow
+BuildRequires:	%{_lib}imlib-devel
+# kpovmodeler
+BuildRequires:	%{_lib}xi-devel
 # kgamma
-BuildRequires: libXxf86vm-devel
-#kfile-plugin
-BuildRequires: OpenEXR-devel
-# kpdf
-BuildRequires: freetype-devel
-%if 0%{?rhel} >=6 || 0%{?fedora} >= 15
-BuildRequires: poppler-devel >= 0.12
-BuildRequires: poppler-qt-devel >= 0.12
+BuildRequires:	%{_lib}xxf86vm-devel
+# ksvg
+BuildRequires:	%{_lib}xmu6-devel
+# kpovmodeler
+BuildRequires:	%{_lib}mesagl1-devel
+BuildRequires:	%{_lib}mesaglu1-devel
 %else
-BuildRequires: trinity-poppler-devel
-BuildRequires: trinity-poppler-qt3-devel >= 0.12
+BuildRequires:	sane-backends-devel
+BuildRequires:	t1lib-devel
+BuildRequires:	libpaper-devel
+# kuickshow
+BuildRequires:	imlib-devel
+# kpovmodeler
+BuildRequires:	libXi-devel
+# kgamma
+BuildRequires:	libXxf86vm-devel
+# ksvg
+BuildRequires:	libXmu-devel
+# kpovmodeler
+BuildRequires:	libGL-devel
+BuildRequires:	libGLU-devel
 %endif
 
-BuildRequires: libpaper-devel
+#kfile-plugin
+BuildRequires:	OpenEXR-devel
+
+# kpdf
+BuildRequires: freetype-devel
+%if 0%{?rhel} >=6 || 0%{?fedora} >= 15 || 0%{?mgaversion}
+BuildRequires: poppler-devel >= 0.12
+#BuildRequires:	poppler-qt-devel >= 0.12
+%else
+# On RHEL 5, the distro-provided poppler is too old. We built a newer one.
+BuildRequires:	trinity-poppler-devel
+BuildRequires:	trinity-poppler-qt3-devel >= 0.12
+%endif
+
 # ksvg
 BuildRequires: fontconfig-devel
 BuildRequires: lcms-devel
 BuildRequires: libart_lgpl-devel
-BuildRequires: libXmu-devel
 
-# kpovmodeler
-BuildRequires: libGL-devel libGLU-devel libXi-devel
 
 # kuickshow
-BuildRequires: imlib-devel
 BuildRequires: fribidi-devel
-
-#Requires: tqtinterface
-#Requires: trinity-arts
-#Requires: trinity-kdelibs
 
 
 Obsoletes:	trinity-kdegraphics < %{version}-%{release}
@@ -156,31 +189,31 @@ to allow access to your camera's pictures with the URL camera:/
 
 %post -n trinity-kamera
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kamera
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %files -n trinity-kamera
 %defattr(-,root,root,-)
-%{tde_libdir}/kcm_kamera.la
-%{tde_libdir}/kcm_kamera.so
-%{tde_libdir}/kio_kamera.la
-%{tde_libdir}/kio_kamera.so
-%{tde_appdir}/kamera.desktop
-%{_datadir}/icons/crystalsvg/*/actions/camera_test.png
-%{_datadir}/icons/crystalsvg/*/apps/camera.png
-%{_datadir}/icons/crystalsvg/*/devices/camera.png
-%{_datadir}/icons/crystalsvg/*/filesystems/camera.png
-%{_datadir}/services/camera.protocol
-%{tde_docdir}/HTML/en/kamera/
+%{tde_tdelibdir}/kcm_kamera.la
+%{tde_tdelibdir}/kcm_kamera.so
+%{tde_tdelibdir}/kio_kamera.la
+%{tde_tdelibdir}/kio_kamera.so
+%{tde_tdeappdir}/kamera.desktop
+%{tde_datadir}/icons/crystalsvg/*/actions/camera_test.png
+%{tde_datadir}/icons/crystalsvg/*/apps/camera.png
+%{tde_datadir}/icons/crystalsvg/*/devices/camera.png
+%{tde_datadir}/icons/crystalsvg/*/filesystems/camera.png
+%{tde_datadir}/services/camera.protocol
+%{tde_tdedocdir}/HTML/en/kamera/
 
 ##########
 
@@ -194,14 +227,14 @@ picker.
 
 %files -n trinity-kcoloredit
 %defattr(-,root,root,-)
-%{_bindir}/kcolorchooser
-%{_bindir}/kcoloredit
-%{tde_appdir}/kcolorchooser.desktop
-%{tde_appdir}/kcoloredit.desktop
-%{_datadir}/apps/kcoloredit/kcoloreditui.rc
-%{_datadir}/icons/hicolor/*/apps/kcolorchooser.png
-%{_datadir}/icons/hicolor/*/apps/kcoloredit.png
-%{tde_docdir}/HTML/en/kcoloredit/
+%{tde_bindir}/kcolorchooser
+%{tde_bindir}/kcoloredit
+%{tde_tdeappdir}/kcolorchooser.desktop
+%{tde_tdeappdir}/kcoloredit.desktop
+%{tde_datadir}/apps/kcoloredit/kcoloreditui.rc
+%{tde_datadir}/icons/hicolor/*/apps/kcolorchooser.png
+%{tde_datadir}/icons/hicolor/*/apps/kcoloredit.png
+%{tde_tdedocdir}/HTML/en/kcoloredit/
 
 ##########
 
@@ -215,63 +248,63 @@ tags, etc. all from within the file manager).
 
 %files kfile-plugins
 %defattr(-,root,root,-)
-%{tde_libdir}/gsthumbnail.la
-%{tde_libdir}/gsthumbnail.so
-%{tde_libdir}/kfile_bmp.la
-%{tde_libdir}/kfile_bmp.so
-%{tde_libdir}/kfile_dds.la
-%{tde_libdir}/kfile_dds.so
-%{tde_libdir}/kfile_dvi.la
-%{tde_libdir}/kfile_dvi.so
-%{tde_libdir}/kfile_exr.la
-%{tde_libdir}/kfile_exr.so
-%{tde_libdir}/kfile_gif.la
-%{tde_libdir}/kfile_gif.so
-%{tde_libdir}/kfile_ico.la
-%{tde_libdir}/kfile_ico.so
-%{tde_libdir}/kfile_jpeg.la
-%{tde_libdir}/kfile_jpeg.so
-%{tde_libdir}/kfile_pcx.la
-%{tde_libdir}/kfile_pcx.so
-%{tde_libdir}/kfile_pdf.la
-%{tde_libdir}/kfile_pdf.so
-%{tde_libdir}/kfile_png.la
-%{tde_libdir}/kfile_png.so
-%{tde_libdir}/kfile_pnm.la
-%{tde_libdir}/kfile_pnm.so
-%{tde_libdir}/kfile_ps.la
-%{tde_libdir}/kfile_ps.so
-%{tde_libdir}/kfile_raw.la
-%{tde_libdir}/kfile_raw.so
-%{tde_libdir}/kfile_rgb.la
-%{tde_libdir}/kfile_rgb.so
-%{tde_libdir}/kfile_tga.la
-%{tde_libdir}/kfile_tga.so
-%{tde_libdir}/kfile_tiff.la
-%{tde_libdir}/kfile_tiff.so
-%{tde_libdir}/kfile_xbm.la
-%{tde_libdir}/kfile_xbm.so
-%{tde_libdir}/kfile_xpm.la
-%{tde_libdir}/kfile_xpm.so
-%{_datadir}/services/gsthumbnail.desktop
-%{_datadir}/services/kfile_bmp.desktop
-%{_datadir}/services/kfile_dds.desktop
-%{_datadir}/services/kfile_dvi.desktop
-%{_datadir}/services/kfile_exr.desktop
-%{_datadir}/services/kfile_gif.desktop
-%{_datadir}/services/kfile_ico.desktop
-%{_datadir}/services/kfile_jpeg.desktop
-%{_datadir}/services/kfile_pcx.desktop
-%{_datadir}/services/kfile_pdf.desktop
-%{_datadir}/services/kfile_png.desktop
-%{_datadir}/services/kfile_pnm.desktop
-%{_datadir}/services/kfile_ps.desktop
-%{_datadir}/services/kfile_raw.desktop
-%{_datadir}/services/kfile_rgb.desktop
-%{_datadir}/services/kfile_tga.desktop
-%{_datadir}/services/kfile_tiff.desktop
-%{_datadir}/services/kfile_xbm.desktop
-%{_datadir}/services/kfile_xpm.desktop
+%{tde_tdelibdir}/gsthumbnail.la
+%{tde_tdelibdir}/gsthumbnail.so
+%{tde_tdelibdir}/kfile_bmp.la
+%{tde_tdelibdir}/kfile_bmp.so
+%{tde_tdelibdir}/kfile_dds.la
+%{tde_tdelibdir}/kfile_dds.so
+%{tde_tdelibdir}/kfile_dvi.la
+%{tde_tdelibdir}/kfile_dvi.so
+%{tde_tdelibdir}/kfile_exr.la
+%{tde_tdelibdir}/kfile_exr.so
+%{tde_tdelibdir}/kfile_gif.la
+%{tde_tdelibdir}/kfile_gif.so
+%{tde_tdelibdir}/kfile_ico.la
+%{tde_tdelibdir}/kfile_ico.so
+%{tde_tdelibdir}/kfile_jpeg.la
+%{tde_tdelibdir}/kfile_jpeg.so
+%{tde_tdelibdir}/kfile_pcx.la
+%{tde_tdelibdir}/kfile_pcx.so
+%{tde_tdelibdir}/kfile_pdf.la
+%{tde_tdelibdir}/kfile_pdf.so
+%{tde_tdelibdir}/kfile_png.la
+%{tde_tdelibdir}/kfile_png.so
+%{tde_tdelibdir}/kfile_pnm.la
+%{tde_tdelibdir}/kfile_pnm.so
+%{tde_tdelibdir}/kfile_ps.la
+%{tde_tdelibdir}/kfile_ps.so
+%{tde_tdelibdir}/kfile_raw.la
+%{tde_tdelibdir}/kfile_raw.so
+%{tde_tdelibdir}/kfile_rgb.la
+%{tde_tdelibdir}/kfile_rgb.so
+%{tde_tdelibdir}/kfile_tga.la
+%{tde_tdelibdir}/kfile_tga.so
+%{tde_tdelibdir}/kfile_tiff.la
+%{tde_tdelibdir}/kfile_tiff.so
+%{tde_tdelibdir}/kfile_xbm.la
+%{tde_tdelibdir}/kfile_xbm.so
+%{tde_tdelibdir}/kfile_xpm.la
+%{tde_tdelibdir}/kfile_xpm.so
+%{tde_datadir}/services/gsthumbnail.desktop
+%{tde_datadir}/services/kfile_bmp.desktop
+%{tde_datadir}/services/kfile_dds.desktop
+%{tde_datadir}/services/kfile_dvi.desktop
+%{tde_datadir}/services/kfile_exr.desktop
+%{tde_datadir}/services/kfile_gif.desktop
+%{tde_datadir}/services/kfile_ico.desktop
+%{tde_datadir}/services/kfile_jpeg.desktop
+%{tde_datadir}/services/kfile_pcx.desktop
+%{tde_datadir}/services/kfile_pdf.desktop
+%{tde_datadir}/services/kfile_png.desktop
+%{tde_datadir}/services/kfile_pnm.desktop
+%{tde_datadir}/services/kfile_ps.desktop
+%{tde_datadir}/services/kfile_raw.desktop
+%{tde_datadir}/services/kfile_rgb.desktop
+%{tde_datadir}/services/kfile_tga.desktop
+%{tde_datadir}/services/kfile_tiff.desktop
+%{tde_datadir}/services/kfile_xbm.desktop
+%{tde_datadir}/services/kfile_xpm.desktop
 
 ##########
 
@@ -284,16 +317,16 @@ This program and KPart allow the user to display *.DVI files from TeX.
 
 %files -n trinity-kdvi
 %defattr(-,root,root,-)
-%{_bindir}/kdvi
-%{tde_libdir}/kdvipart.la
-%{tde_libdir}/kdvipart.so
-%{tde_appdir}/kdvi.desktop
-%{_datadir}/apps/kdvi/
-%{_datadir}/config.kcfg/kdvi.kcfg
-%{_datadir}/icons/hicolor/*/apps/kdvi.png
-%{_datadir}/icons/hicolor/scalable/apps/kdvi.svgz
-%{_datadir}/services/kdvimultipage.desktop
-%{tde_docdir}/HTML/en/kdvi/
+%{tde_bindir}/kdvi
+%{tde_tdelibdir}/kdvipart.la
+%{tde_tdelibdir}/kdvipart.so
+%{tde_tdeappdir}/kdvi.desktop
+%{tde_datadir}/apps/kdvi/
+%{tde_datadir}/config.kcfg/kdvi.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kdvi.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kdvi.svgz
+%{tde_datadir}/services/kdvimultipage.desktop
+%{tde_tdedocdir}/HTML/en/kdvi/
 
 ##########
 
@@ -309,11 +342,11 @@ A fax viewer for Trinity, supporting the display of raw and tiffed fax images
 %files -n trinity-kfax
 %defattr(-,root,root,-)
 %doc rpmdocs/kfax/
-%{_bindir}/kfax
-%{tde_appdir}/kfax.desktop
-%{_datadir}/apps/kfax/
-%{_datadir}/icons/hicolor/??x??/apps/kfax.png
-%{_datadir}/icons/hicolor/scalable/apps/kfax.svgz
+%{tde_bindir}/kfax
+%{tde_tdeappdir}/kfax.desktop
+%{tde_datadir}/apps/kfax/
+%{tde_datadir}/icons/hicolor/??x??/apps/kfax.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kfax.svgz
 
 ##########
 
@@ -330,17 +363,17 @@ kfax application once it reproduces all of kfax's features.
 
 %files -n trinity-kfaxview
 %defattr(-,root,root,-)
-%{_bindir}/kfaxview
-%{_libdir}/libkfaximage.so.*
-%{_libdir}/libkfaximage.so
-%{_libdir}/libkfaximage.la
-%{tde_libdir}/kfaxviewpart.*
-%{tde_appdir}/kfaxview.desktop
-%{_datadir}/apps/kfaxview/
-%{_datadir}/icons/hicolor/??x??/apps/kfaxview.png
-%{_datadir}/icons/hicolor/scalable/apps/kfaxview.svgz
-%{_datadir}/services/kfaxmultipage.desktop
-%{_datadir}/services/kfaxmultipage_tiff.desktop
+%{tde_bindir}/kfaxview
+%{tde_libdir}/libkfaximage.so.*
+%{tde_libdir}/libkfaximage.so
+%{tde_libdir}/libkfaximage.la
+%{tde_tdelibdir}/kfaxviewpart.*
+%{tde_tdeappdir}/kfaxview.desktop
+%{tde_datadir}/apps/kfaxview/
+%{tde_datadir}/icons/hicolor/??x??/apps/kfaxview.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kfaxview.svgz
+%{tde_datadir}/services/kfaxmultipage.desktop
+%{tde_datadir}/services/kfaxmultipage_tiff.desktop
 
 ##########
 
@@ -357,13 +390,13 @@ Homepage: http://kgamma.berlios.de/index2.php
 
 %files -n trinity-kgamma
 %defattr(-,root,root,-)
-%{_bindir}/xf86gammacfg
-%{tde_libdir}/kcm_kgamma.la
-%{tde_libdir}/kcm_kgamma.so
-%{tde_appdir}/kgamma.desktop
-%{_datadir}/apps/kgamma/
-%{_datadir}/icons/hicolor/*/apps/kgamma.png
-%{tde_docdir}/HTML/en/kgamma/
+%{tde_bindir}/xf86gammacfg
+%{tde_tdelibdir}/kcm_kgamma.la
+%{tde_tdelibdir}/kcm_kgamma.so
+%{tde_tdeappdir}/kgamma.desktop
+%{tde_datadir}/apps/kgamma/
+%{tde_datadir}/icons/hicolor/*/apps/kgamma.png
+%{tde_tdedocdir}/HTML/en/kgamma/
 
 ##########
 
@@ -382,18 +415,18 @@ online.
 
 %files -n trinity-kghostview
 %defattr(-,root,root,-)
-%{_bindir}/kghostview
-%{tde_libdir}/libkghostviewpart.la
-%{tde_libdir}/libkghostviewpart.so
-%{_libdir}/libkghostviewlib.so.*
-%{tde_appdir}/kghostview.desktop
-%{_datadir}/apps/kconf_update/kghostview.upd
-%{_datadir}/apps/kconf_update/update-to-xt-names.pl
-%{_datadir}/apps/kghostview/
-%{_datadir}/config.kcfg/kghostview.kcfg
-%{_datadir}/icons/hicolor/*/apps/kghostview.png
-%{_datadir}/services/kghostview_part.desktop
-%{tde_docdir}/HTML/en/kghostview/
+%{tde_bindir}/kghostview
+%{tde_tdelibdir}/libkghostviewpart.la
+%{tde_tdelibdir}/libkghostviewpart.so
+%{tde_libdir}/libkghostviewlib.so.*
+%{tde_tdeappdir}/kghostview.desktop
+%{tde_datadir}/apps/kconf_update/kghostview.upd
+%{tde_datadir}/apps/kconf_update/update-to-xt-names.pl
+%{tde_datadir}/apps/kghostview/
+%{tde_datadir}/config.kcfg/kghostview.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kghostview.png
+%{tde_datadir}/services/kghostview_part.desktop
+%{tde_tdedocdir}/HTML/en/kghostview/
 
 ##########
 
@@ -406,11 +439,11 @@ KIconedit allows you easily to create and edit icons.
 
 %files -n trinity-kiconedit
 %defattr(-,root,root,-)
-%{_bindir}/kiconedit
-%{tde_appdir}/kiconedit.desktop
-%{_datadir}/apps/kiconedit/
-%{_datadir}/icons/hicolor/*/apps/kiconedit.png
-%{tde_docdir}/HTML/en/kiconedit/
+%{tde_bindir}/kiconedit
+%{tde_tdeappdir}/kiconedit.desktop
+%{tde_datadir}/apps/kiconedit/
+%{tde_datadir}/icons/hicolor/*/apps/kiconedit.png
+%{tde_tdedocdir}/HTML/en/kiconedit/
 
 ##########
 
@@ -426,24 +459,24 @@ MRML server.
 
 %files -n trinity-kmrml
 %defattr(-,root,root,-)
-%{_bindir}/mrmlsearch
-%{tde_libdir}/kcm_kmrml.la
-%{tde_libdir}/kcm_kmrml.so
-%{tde_libdir}/kded_daemonwatcher.la
-%{tde_libdir}/kded_daemonwatcher.so
-%{tde_libdir}/kio_mrml.la
-%{tde_libdir}/kio_mrml.so
-%{tde_libdir}/libkmrmlpart.la
-%{tde_libdir}/libkmrmlpart.so
-%{tde_libdir}/mrmlsearch.la
-%{tde_libdir}/mrmlsearch.so
-%{_libdir}/lib[kt]deinit_mrmlsearch.so
-%{tde_appdir}/kcmkmrml.desktop
-%{_datadir}/apps/konqueror/servicemenus/mrml-servicemenu.desktop
-%{_datadir}/mimelnk/text/mrml.desktop
-%{_datadir}/services/kded/daemonwatcher.desktop
-%{_datadir}/services/mrml.protocol
-%{_datadir}/services/mrml_part.desktop
+%{tde_bindir}/mrmlsearch
+%{tde_tdelibdir}/kcm_kmrml.la
+%{tde_tdelibdir}/kcm_kmrml.so
+%{tde_tdelibdir}/kded_daemonwatcher.la
+%{tde_tdelibdir}/kded_daemonwatcher.so
+%{tde_tdelibdir}/kio_mrml.la
+%{tde_tdelibdir}/kio_mrml.so
+%{tde_tdelibdir}/libkmrmlpart.la
+%{tde_tdelibdir}/libkmrmlpart.so
+%{tde_tdelibdir}/mrmlsearch.la
+%{tde_tdelibdir}/mrmlsearch.so
+%{tde_libdir}/lib[kt]deinit_mrmlsearch.so
+%{tde_tdeappdir}/kcmkmrml.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/mrml-servicemenu.desktop
+%{tde_datadir}/mimelnk/text/mrml.desktop
+%{tde_datadir}/services/kded/daemonwatcher.desktop
+%{tde_datadir}/services/mrml.protocol
+%{tde_datadir}/services/mrml_part.desktop
 
 ##########
 
@@ -468,12 +501,12 @@ Homepage: http://kolourpaint.sourceforge.net
 
 %files -n trinity-kolourpaint
 %defattr(-,root,root,-)
-%{_bindir}/kolourpaint
-%{tde_appdir}/kolourpaint.desktop
-%{_datadir}/apps/kolourpaint/
-%{_datadir}/icons/hicolor/*/apps/kolourpaint.png
-%{_datadir}/icons/hicolor/scalable/apps/kolourpaint.svgz
-%{tde_docdir}/HTML/en/kolourpaint/
+%{tde_bindir}/kolourpaint
+%{tde_tdeappdir}/kolourpaint.desktop
+%{tde_datadir}/apps/kolourpaint/
+%{tde_datadir}/icons/hicolor/*/apps/kolourpaint.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kolourpaint.svgz
+%{tde_tdedocdir}/HTML/en/kolourpaint/
 
 ##########
 
@@ -498,11 +531,11 @@ Homepage: http://kooka.kde.org/
 
 %files -n trinity-kooka
 %defattr(-,root,root,-)
-%{_datadir}/config/kookarc
-%{_bindir}/kooka
-%{tde_appdir}/kooka.desktop
-%{_datadir}/apps/kooka/
-%{tde_docdir}/HTML/en/kooka/
+%{tde_datadir}/config/kookarc
+%{tde_bindir}/kooka
+%{tde_tdeappdir}/kooka.desktop
+%{tde_datadir}/apps/kooka/
+%{tde_tdedocdir}/HTML/en/kooka/
 
 ##########
 
@@ -518,17 +551,17 @@ application.
 
 %files -n trinity-kpdf
 %defattr(-,root,root,-)
-%{_bindir}/kpdf
-%{tde_libdir}/libkpdfpart.la
-%{tde_libdir}/libkpdfpart.so
-%{tde_appdir}/kpdf.desktop
-%{_datadir}/apps/kpdf/shell.rc
-%{_datadir}/apps/kpdfpart/part.rc
-%{_datadir}/config.kcfg/kpdf.kcfg
-%{tde_docdir}/HTML/en/kpdf/
-%{_datadir}/icons/hicolor/*/apps/kpdf.png
-%{_datadir}/icons/hicolor/scalable/apps/kpdf.svgz
-%{_datadir}/services/kpdf_part.desktop
+%{tde_bindir}/kpdf
+%{tde_tdelibdir}/libkpdfpart.la
+%{tde_tdelibdir}/libkpdfpart.so
+%{tde_tdeappdir}/kpdf.desktop
+%{tde_datadir}/apps/kpdf/shell.rc
+%{tde_datadir}/apps/kpdfpart/part.rc
+%{tde_datadir}/config.kcfg/kpdf.kcfg
+%{tde_tdedocdir}/HTML/en/kpdf/
+%{tde_datadir}/icons/hicolor/*/apps/kpdf.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kpdf.svgz
+%{tde_datadir}/services/kpdf_part.desktop
 
 ##########
 
@@ -555,15 +588,15 @@ Homepage: http://www.kpovmodeler.org
 %files -n trinity-kpovmodeler
 %defattr(-,root,root,-)
 %doc rpmdocs/kpovmodeler/
-%{_bindir}/kpovmodeler
-%{_libdir}/libkpovmodeler.so.*
-%{_libdir}/libkpovmodeler.la
-%{tde_libdir}/libkpovmodelerpart.*
-%{tde_appdir}/kpovmodeler.desktop
-%{_datadir}/apps/kpovmodeler/
-%{_datadir}/icons/crystalsvg/*/mimetypes/kpovmodeler_doc.*
-%{_datadir}/icons/hicolor/*/apps/kpovmodeler.*
-%doc %{tde_docdir}/HTML/en/kpovmodeler/
+%{tde_bindir}/kpovmodeler
+%{tde_libdir}/libkpovmodeler.so.*
+%{tde_libdir}/libkpovmodeler.la
+%{tde_tdelibdir}/libkpovmodelerpart.*
+%{tde_tdeappdir}/kpovmodeler.desktop
+%{tde_datadir}/apps/kpovmodeler/
+%{tde_datadir}/icons/crystalsvg/*/mimetypes/kpovmodeler_doc.*
+%{tde_datadir}/icons/hicolor/*/apps/kpovmodeler.*
+%doc %{tde_tdedocdir}/HTML/en/kpovmodeler/
 
 ##########
 
@@ -576,12 +609,12 @@ Kruler is a screen ruler (using pixels) and color measurement tool for KDE.
 
 %files -n trinity-kruler
 %defattr(-,root,root,-)
-%{_bindir}/kruler
-%{tde_appdir}/kruler.desktop
-%{_datadir}/applnk/Graphics/kruler.desktop
-%{_datadir}/apps/kruler/
-%{_datadir}/icons/hicolor/*/apps/kruler.png
-%{tde_docdir}/HTML/en/kruler/
+%{tde_bindir}/kruler
+%{tde_tdeappdir}/kruler.desktop
+%{tde_datadir}/applnk/Graphics/kruler.desktop
+%{tde_datadir}/apps/kruler/
+%{tde_datadir}/icons/hicolor/*/apps/kruler.png
+%{tde_tdedocdir}/HTML/en/kruler/
 
 ##########
 
@@ -596,11 +629,11 @@ The images can then be saved in a variety of formats.
 
 %files -n trinity-ksnapshot
 %defattr(-,root,root,-)
-%{_bindir}/ksnapshot
-%{tde_appdir}/ksnapshot.desktop
-%{tde_docdir}/HTML/en/ksnapshot/
-%{_datadir}/icons/hicolor/*/apps/ksnapshot.png
-%{_datadir}/icons/hicolor/scalable/apps/ksnapshot.svgz
+%{tde_bindir}/ksnapshot
+%{tde_tdeappdir}/ksnapshot.desktop
+%{tde_tdedocdir}/HTML/en/ksnapshot/
+%{tde_datadir}/icons/hicolor/*/apps/ksnapshot.png
+%{tde_datadir}/icons/hicolor/scalable/apps/ksnapshot.svgz
 
 ##########
 
@@ -615,23 +648,23 @@ application.
 
 %files -n trinity-ksvg
 %defattr(-,root,root,-)
-%{_bindir}/printnodetest
-%{_bindir}/svgdisplay
-%{tde_libdir}/libksvgplugin.la
-%{tde_libdir}/libksvgplugin.so
-%{tde_libdir}/libksvgrendererlibart.la
-%{tde_libdir}/libksvgrendererlibart.so
-%{tde_libdir}/svgthumbnail.la
-%{tde_libdir}/svgthumbnail.so
-%{_libdir}/libksvg.so.0
-%{_libdir}/libksvg.so.0.0.1
-%{_libdir}/libtext2path.so.0
-%{_libdir}/libtext2path.so.0.0.0
-%{_datadir}/apps/ksvg/ksvgplugin.rc
-%{_datadir}/services/ksvglibartcanvas.desktop
-%{_datadir}/services/ksvgplugin.desktop
-%{_datadir}/services/svgthumbnail.desktop
-%{_datadir}/servicetypes/ksvgrenderer.desktop
+%{tde_bindir}/printnodetest
+%{tde_bindir}/svgdisplay
+%{tde_tdelibdir}/libksvgplugin.la
+%{tde_tdelibdir}/libksvgplugin.so
+%{tde_tdelibdir}/libksvgrendererlibart.la
+%{tde_tdelibdir}/libksvgrendererlibart.so
+%{tde_tdelibdir}/svgthumbnail.la
+%{tde_tdelibdir}/svgthumbnail.so
+%{tde_libdir}/libksvg.so.0
+%{tde_libdir}/libksvg.so.0.0.1
+%{tde_libdir}/libtext2path.so.0
+%{tde_libdir}/libtext2path.so.0.0.0
+%{tde_datadir}/apps/ksvg/ksvgplugin.rc
+%{tde_datadir}/services/ksvglibartcanvas.desktop
+%{tde_datadir}/services/ksvgplugin.desktop
+%{tde_datadir}/services/svgthumbnail.desktop
+%{tde_datadir}/servicetypes/ksvgrenderer.desktop
 
 ##########
 
@@ -646,52 +679,52 @@ as well.
 
 %files -n trinity-kview
 %defattr(-,root,root,-)
-%{_bindir}/kview
-%{tde_libdir}/kcm_kviewcanvasconfig.la
-%{tde_libdir}/kcm_kviewcanvasconfig.so
-%{tde_libdir}/kcm_kviewgeneralconfig.la
-%{tde_libdir}/kcm_kviewgeneralconfig.so
-%{tde_libdir}/kcm_kviewpluginsconfig.la
-%{tde_libdir}/kcm_kviewpluginsconfig.so
-%{tde_libdir}/kcm_kviewpresenterconfig.la
-%{tde_libdir}/kcm_kviewpresenterconfig.so
-%{tde_libdir}/kcm_kviewviewerpluginsconfig.la
-%{tde_libdir}/kcm_kviewviewerpluginsconfig.so
-%{tde_libdir}/kview.la
-%{tde_libdir}/kview.so
-%{tde_libdir}/kview_browserplugin.la
-%{tde_libdir}/kview_browserplugin.so
-%{tde_libdir}/kview_effectsplugin.la
-%{tde_libdir}/kview_effectsplugin.so
-%{tde_libdir}/kview_presenterplugin.la
-%{tde_libdir}/kview_presenterplugin.so
-%{tde_libdir}/kview_scannerplugin.la
-%{tde_libdir}/kview_scannerplugin.so
-%{tde_libdir}/libkviewcanvas.la
-%{tde_libdir}/libkviewcanvas.so
-%{tde_libdir}/libkviewviewer.la
-%{tde_libdir}/libkviewviewer.so
-%{_libdir}/lib[kt]deinit_kview.so
-%{_libdir}/libkimageviewer.so.*
-%{tde_libdir}/libphotobook.la
-%{tde_libdir}/libphotobook.so
-%{tde_appdir}/kview.desktop
-%{_datadir}/apps/kview/
-%{_datadir}/apps/kviewviewer/
-%{_datadir}/apps/photobook/photobookui.rc
-%{_datadir}/icons/crystalsvg/*/apps/photobook.png
-%{_datadir}/icons/hicolor/*/apps/kview.png
-%{_datadir}/services/kconfiguredialog/kviewcanvasconfig.desktop
-%{_datadir}/services/kconfiguredialog/kviewgeneralconfig.desktop
-%{_datadir}/services/kconfiguredialog/kviewpluginsconfig.desktop
-%{_datadir}/services/kconfiguredialog/kviewpresenterconfig.desktop
-%{_datadir}/services/kconfiguredialog/kviewviewerpluginsconfig.desktop
-%{_datadir}/services/kviewcanvas.desktop
-%{_datadir}/services/kviewviewer.desktop
-%{_datadir}/services/photobook.desktop
-%{_datadir}/servicetypes/kimageviewer.desktop
-%{_datadir}/servicetypes/kimageviewercanvas.desktop
-%{tde_docdir}/HTML/en/kview/
+%{tde_bindir}/kview
+%{tde_tdelibdir}/kcm_kviewcanvasconfig.la
+%{tde_tdelibdir}/kcm_kviewcanvasconfig.so
+%{tde_tdelibdir}/kcm_kviewgeneralconfig.la
+%{tde_tdelibdir}/kcm_kviewgeneralconfig.so
+%{tde_tdelibdir}/kcm_kviewpluginsconfig.la
+%{tde_tdelibdir}/kcm_kviewpluginsconfig.so
+%{tde_tdelibdir}/kcm_kviewpresenterconfig.la
+%{tde_tdelibdir}/kcm_kviewpresenterconfig.so
+%{tde_tdelibdir}/kcm_kviewviewerpluginsconfig.la
+%{tde_tdelibdir}/kcm_kviewviewerpluginsconfig.so
+%{tde_tdelibdir}/kview.la
+%{tde_tdelibdir}/kview.so
+%{tde_tdelibdir}/kview_browserplugin.la
+%{tde_tdelibdir}/kview_browserplugin.so
+%{tde_tdelibdir}/kview_effectsplugin.la
+%{tde_tdelibdir}/kview_effectsplugin.so
+%{tde_tdelibdir}/kview_presenterplugin.la
+%{tde_tdelibdir}/kview_presenterplugin.so
+%{tde_tdelibdir}/kview_scannerplugin.la
+%{tde_tdelibdir}/kview_scannerplugin.so
+%{tde_tdelibdir}/libkviewcanvas.la
+%{tde_tdelibdir}/libkviewcanvas.so
+%{tde_tdelibdir}/libkviewviewer.la
+%{tde_tdelibdir}/libkviewviewer.so
+%{tde_libdir}/lib[kt]deinit_kview.so
+%{tde_libdir}/libkimageviewer.so.*
+%{tde_tdelibdir}/libphotobook.la
+%{tde_tdelibdir}/libphotobook.so
+%{tde_tdeappdir}/kview.desktop
+%{tde_datadir}/apps/kview/
+%{tde_datadir}/apps/kviewviewer/
+%{tde_datadir}/apps/photobook/photobookui.rc
+%{tde_datadir}/icons/crystalsvg/*/apps/photobook.png
+%{tde_datadir}/icons/hicolor/*/apps/kview.png
+%{tde_datadir}/services/kconfiguredialog/kviewcanvasconfig.desktop
+%{tde_datadir}/services/kconfiguredialog/kviewgeneralconfig.desktop
+%{tde_datadir}/services/kconfiguredialog/kviewpluginsconfig.desktop
+%{tde_datadir}/services/kconfiguredialog/kviewpresenterconfig.desktop
+%{tde_datadir}/services/kconfiguredialog/kviewviewerpluginsconfig.desktop
+%{tde_datadir}/services/kviewcanvas.desktop
+%{tde_datadir}/services/kviewviewer.desktop
+%{tde_datadir}/services/photobook.desktop
+%{tde_datadir}/servicetypes/kimageviewer.desktop
+%{tde_datadir}/servicetypes/kimageviewercanvas.desktop
+%{tde_tdedocdir}/HTML/en/kview/
 
 ##########
 
@@ -709,25 +742,25 @@ DjVu images.
 
 %files -n trinity-kviewshell
 %defattr(-,root,root,-)
-%{_bindir}/kviewshell
-%{_libdir}/libdjvu.la
-%{_libdir}/libdjvu.so
-%{tde_libdir}/djvuviewpart.so
-%{tde_libdir}/djvuviewpart.la
-%{tde_libdir}/emptymultipagepart.la
-%{tde_libdir}/emptymultipagepart.so
-%{tde_libdir}/kviewerpart.la
-%{tde_libdir}/kviewerpart.so
-%{_libdir}/libkmultipage.so.*
-%{_datadir}/apps/djvumultipage.rc
-%{_datadir}/apps/kviewerpart/
-%{_datadir}/apps/kviewshell/kviewshell.rc
-%{_datadir}/config.kcfg/djvumultipage.kcfg
-%{_datadir}/config.kcfg/kviewshell.kcfg
-%{_datadir}/icons/crystalsvg/*/apps/kviewshell.png
-%{_datadir}/services/emptymultipage.desktop
-%{_datadir}/services/djvumultipage.desktop
-%{_datadir}/servicetypes/kmultipage.desktop
+%{tde_bindir}/kviewshell
+%{tde_libdir}/libdjvu.la
+%{tde_libdir}/libdjvu.so
+%{tde_tdelibdir}/djvuviewpart.so
+%{tde_tdelibdir}/djvuviewpart.la
+%{tde_tdelibdir}/emptymultipagepart.la
+%{tde_tdelibdir}/emptymultipagepart.so
+%{tde_tdelibdir}/kviewerpart.la
+%{tde_tdelibdir}/kviewerpart.so
+%{tde_libdir}/libkmultipage.so.*
+%{tde_datadir}/apps/djvumultipage.rc
+%{tde_datadir}/apps/kviewerpart/
+%{tde_datadir}/apps/kviewshell/kviewshell.rc
+%{tde_datadir}/config.kcfg/djvumultipage.kcfg
+%{tde_datadir}/config.kcfg/kviewshell.kcfg
+%{tde_datadir}/icons/crystalsvg/*/apps/kviewshell.png
+%{tde_datadir}/services/emptymultipage.desktop
+%{tde_datadir}/services/djvumultipage.desktop
+%{tde_datadir}/servicetypes/kmultipage.desktop
 
 ##########
 
@@ -742,12 +775,12 @@ It provides an easy-to-use library, which allows you to access your scanner
 
 %files -n trinity-libkscan
 %defattr(-,root,root,-)
-%{_libdir}/libkscan.so.*
-%{_datadir}/icons/crystalsvg/16x16/actions/palette_color.png
-%{_datadir}/icons/crystalsvg/16x16/actions/palette_gray.png
-%{_datadir}/icons/crystalsvg/16x16/actions/palette_halftone.png
-%{_datadir}/icons/crystalsvg/16x16/actions/palette_lineart.png
-%{_datadir}/services/scanservice.desktop
+%{tde_libdir}/libkscan.so.*
+%{tde_datadir}/icons/crystalsvg/16x16/actions/palette_color.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/palette_gray.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/palette_halftone.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/palette_lineart.png
+%{tde_datadir}/services/scanservice.desktop
 
 ##########
 
@@ -760,8 +793,8 @@ This package contains development files for Trinity's scanner library.
 
 %files -n trinity-libkscan-devel
 %defattr(-,root,root,-)
-%{_libdir}/libkscan.la
-%{_libdir}/libkscan.so
+%{tde_libdir}/libkscan.la
+%{tde_libdir}/libkscan.so
 
 ##########
 
@@ -775,7 +808,7 @@ This library is used by the Trinity graphics file plugins for PDF support.
 
 %files libpoppler-tqt
 %defattr(-,root,root,-)
-%{_libdir}/libpoppler-tqt.so.*
+%{tde_libdir}/libpoppler-tqt.so.*
 
 ##########
 
@@ -790,12 +823,12 @@ This package contains the development files needed to compile applications again
 
 %files libpoppler-tqt-devel
 %defattr(-,root,root,-)
-%{tde_includedir}/poppler-link-qt3.h
-%{tde_includedir}/poppler-page-transition.h
-%{tde_includedir}/poppler-qt.h
-%{_libdir}/libpoppler-tqt.la
-%{_libdir}/libpoppler-tqt.so
-#%{_libdir}/pkgconfig/poppler-tqt.pc
+%{tde_tdeincludedir}/poppler-link-qt3.h
+%{tde_tdeincludedir}/poppler-page-transition.h
+%{tde_tdeincludedir}/poppler-qt.h
+%{tde_libdir}/libpoppler-tqt.la
+%{tde_libdir}/libpoppler-tqt.so
+%{tde_libdir}/pkgconfig/poppler-tqt.pc
 
 ##########
 
@@ -814,42 +847,42 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/dom/
-#%{_includedir}/kfaximage.h
-%{_includedir}/kmultipageInterface.h
-%{_includedir}/ksvg/
-%{_includedir}/kviewshell/
-%{_includedir}/libtext2path-0.1/BezierPath.h
-%{_includedir}/libtext2path-0.1/Glyph.h
-%{_includedir}/libtext2path-0.1/GlyphTracer.h
-%{_libdir}/lib[kt]deinit_kview.la
-%{_libdir}/lib[kt]deinit_mrmlsearch.la
-%{_libdir}/libkghostviewlib.la
-%{_libdir}/libkghostviewlib.so
-%{_libdir}/libkimageviewer.la
-%{_libdir}/libkimageviewer.so
-%{_libdir}/libkmultipage.la
-%{_libdir}/libkmultipage.so
-%{_libdir}/libkpovmodeler.la
-%{_libdir}/libkpovmodeler.so
-%{_libdir}/libksvg.la
-%{_libdir}/libksvg.so
-%{_libdir}/libtext2path.la
-%{_libdir}/libtext2path.so
-%{_datadir}/cmake/*
+%{tde_tdeincludedir}/dom/
+#%{tde_tdeincludedir}/kfaximage.h
+%{tde_tdeincludedir}/kmultipageInterface.h
+%{tde_tdeincludedir}/ksvg/
+%{tde_tdeincludedir}/kviewshell/
+%{tde_tdeincludedir}/libtext2path-0.1/BezierPath.h
+%{tde_tdeincludedir}/libtext2path-0.1/Glyph.h
+%{tde_tdeincludedir}/libtext2path-0.1/GlyphTracer.h
+%{tde_libdir}/lib[kt]deinit_kview.la
+%{tde_libdir}/lib[kt]deinit_mrmlsearch.la
+%{tde_libdir}/libkghostviewlib.la
+%{tde_libdir}/libkghostviewlib.so
+%{tde_libdir}/libkimageviewer.la
+%{tde_libdir}/libkimageviewer.so
+%{tde_libdir}/libkmultipage.la
+%{tde_libdir}/libkmultipage.so
+%{tde_libdir}/libkpovmodeler.la
+%{tde_libdir}/libkpovmodeler.so
+%{tde_libdir}/libksvg.la
+%{tde_libdir}/libksvg.so
+%{tde_libdir}/libtext2path.la
+%{tde_libdir}/libtext2path.so
+%{tde_datadir}/cmake/*
 
 ############
 
 # Excludes kuickshow (built separately)
-%exclude %{_bindir}/kuickshow
-%exclude %{tde_libdir}/kuickshow.la
-%exclude %{tde_libdir}/kuickshow.so
-%exclude %{_libdir}/lib[kt]deinit_kuickshow.la
-%exclude %{_libdir}/lib[kt]deinit_kuickshow.so
-%exclude %{tde_appdir}/kuickshow.desktop
-%exclude %{_datadir}/apps/kuickshow/
-%exclude %{_datadir}/icons/hicolor/*/apps/kuickshow.png
-%exclude %{tde_docdir}/HTML/en/kuickshow/
+%exclude %{tde_bindir}/kuickshow
+%exclude %{tde_tdelibdir}/kuickshow.la
+%exclude %{tde_tdelibdir}/kuickshow.so
+%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.la
+%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.so
+%exclude %{tde_tdeappdir}/kuickshow.desktop
+%exclude %{tde_datadir}/apps/kuickshow/
+%exclude %{tde_datadir}/icons/hicolor/*/apps/kuickshow.png
+%exclude %{tde_tdedocdir}/HTML/en/kuickshow/
 
 ##########
 
@@ -865,18 +898,25 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 %patch5 -p1 -b .gcc47
 %patch6 -p1 -b .poppler
 %patch7 -p1
+%patch8 -p1
+%patch9 -p1
 
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
-export LD_LIBRARY_PATH="%{_libdir}"
+export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+#export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%__mkdir build
-cd build
+%{?!mgaversion:%__mkdir build; cd build}
 %cmake \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
+  -DCMAKE_SKIP_RPATH="OFF" \
   -DWITH_T1LIB=ON \
   -DWITH_LIBPAPER=ON \
   -DWITH_TIFF=ON \
@@ -889,12 +929,11 @@ cd build
 %__make %{?_smp_mflags}
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
 # locale's
-%find_lang %{name} || touch %{name}.lang
 HTML_DIR=$(kde-config --expandvars --install html)
 if [ -d %{buildroot}$HTML_DIR ]; then
 for lang_dir in %{buildroot}$HTML_DIR/* ; do
@@ -932,6 +971,9 @@ rm -f %{buildroot}/libkpovmodeler.so
 
 
 %changelog
+* Wed Aug 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Add poppler-tqt.pc file [Commit #b2d01d00]
+
 * Mon Jul 09 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Renames 'kdegraphics' to 'tdegraphics'
 - Split in several packages

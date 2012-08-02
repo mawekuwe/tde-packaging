@@ -1,0 +1,63 @@
+--- kdeutils/ark/arch.cpp~	2011-08-13 09:25:08.000000000 +0300
++++ kdeutils/ark/arch.cpp	2012-06-14 16:58:52.417875615 +0300
+@@ -33,6 +33,7 @@
+ // QT includes
+ #include <tqapplication.h>
+ #include <tqfile.h>
++#include <tqtextcodec.h>
+ 
+ // KDE includes
+ #include <kdebug.h>
+@@ -288,7 +290,7 @@
+ 
+     data[ lfChar ] = '\0';
+ 
+-    m_buffer.append( TQString::fromUtf8(data + startChar).latin1() );
++    m_buffer.append( data + startChar );
+ 
+     data[ lfChar ] = '\n';
+     startChar = lfChar + 1;
+@@ -333,12 +335,15 @@
+   unsigned int pos = 0;
+   int strpos, len;
+ 
++  TQTextCodec *codec = TQTextCodec::codecForLocale();
++  TQString tqunicode_line = codec->toUnicode( line );
++
+   // Go through our columns, try to pick out data, return silently on failure
+   for ( TQPtrListIterator <ArchColumns>col( m_archCols ); col.current(); ++col )
+   {
+     ArchColumns *curCol = *col;
+ 
+-    strpos = curCol->pattern.search( line, pos );
++    strpos = curCol->pattern.search( tqunicode_line, pos );
+     len = curCol->pattern.matchedLength();
+ 
+     if ( ( strpos == -1 ) || ( len > curCol->maxLength ) )
+@@ -354,7 +359,7 @@
+ 
+     pos = strpos + len;
+ 
+-    columns[curCol->colRef] = TQString::fromLocal8Bit( line.mid(strpos, len) );
++    columns[curCol->colRef] = tqunicode_line.mid(strpos, len).utf8();
+   }
+ 
+ 
+--- kdeutils-3.5.1/ark/arkapp.cpp~	2006-01-19 19:49:29 +0300
++++ kdeutils-3.5.1/ark/arkapp.cpp	2006-02-20 19:28:23 +0300
+@@ -32,6 +32,7 @@
+ #include <unistd.h>
+ #include <tqfile.h>
+ #include <errno.h>
++#include <qtextcodec.h>
+ 
+ 
+ #include "arkapp.h"
+@@ -110,6 +111,7 @@ ArkApplication::ArkApplication()
+ {
+ 	m_mainwidget = new TQWidget;
+ 	setMainWidget(m_mainwidget);
++	QTextCodec::setCodecForCStrings(QTextCodec::codecForLocale());
+ }
+ 
+ int

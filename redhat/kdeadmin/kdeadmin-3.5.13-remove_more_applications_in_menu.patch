@@ -1,0 +1,17 @@
+commit d3d702117d757d6c16d0dd41969bc44229123330
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1331690654 -0500
+
+    Remove "More Applications" from TDE menu.
+    This partially resolves bug report 653.
+
+diff --git a/kdat/kdat.desktop b/kdat/kdat.desktop
+index 3aeb7ac..7016d05 100644
+--- a/kdat/kdat.desktop
++++ b/kdat/kdat.desktop
+@@ -89,4 +89,4 @@ X-KDE-StartupNotify=true
+ DocPath=kdat/index.html
+ Terminal=false
+ X-DCOP-ServiceType=Multi
+-Categories=Qt;KDE;System;X-KDE-More;
++Categories=Qt;KDE;System;

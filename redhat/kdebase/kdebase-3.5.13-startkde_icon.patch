@@ -1,28 +1,15 @@
---- kdebase/startkde.ORI	2011-11-14 22:23:07.191346324 +0100
-+++ kdebase/startkde	2011-11-14 22:38:28.480321300 +0100
-@@ -206,6 +206,29 @@
+--- tdebase/startkde.ORI	2012-07-29 18:23:59.885538470 +0200
++++ tdebase/startkde	2012-07-29 18:26:19.022618054 +0200
+@@ -152,6 +152,16 @@
    fi
  fi
  
-+# Default Start Button icon
++# Default Start Button icon for TDE
 +if [ ! -e  $kdehome/share/config/kickerrc ]; then
-+  # Fedora
-+  if [ -r /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png ]; then
++  if [ -r "%{tde_starticon}" ]; then
 +    cat <<EOF >$kdehome/share/config/kickerrc
 +[KMenu]
-+CustomIcon=fedora-logo-icon
-+EOF
-+  # RHEL 6
-+  elif [ -r /usr/share/icons/hicolor/96x96/apps/system-logo-icon.png ]; then
-+    cat <<EOF >$kdehome/share/config/kickerrc
-+[KMenu]
-+CustomIcon=system-logo-icon
-+EOF
-+  # RHEL 5
-+  elif [ -r /usr/share/pixmaps/redhat-starthere.png ]; then
-+    cat <<EOF >$kdehome/share/config/kickerrc
-+[KMenu]
-+CustomIcon=/usr/share/pixmaps/redhat-starthere.png
++CustomIcon=%{tde_starticon}
 +EOF
 +  fi
 +fi

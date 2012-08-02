@@ -1,0 +1,61 @@
+--- kdeutils/kcalc/Makefile.am.ORI	2012-08-01 22:22:16.274750161 +0200
++++ kdeutils/kcalc/Makefile.am	2012-08-01 22:23:10.181783997 +0200
+@@ -19,7 +19,7 @@
+ 			kcalctype.h dlabel.h stats.h
+ 
+ kcalc_la_LDFLAGS = $(all_libraries) -module -avoid-version
+-kcalc_la_LIBADD = $(LIB_KDEUI) knumber/libknumber.la
++kcalc_la_LIBADD = $(LIB_KDEUI) knumber/libknumber.la $(LIB_QT) $(LIB_KDECORE)
+ 
+ KDE_ICON = kcalc
+ 
+--- kdeutils/kedit/Makefile.am.ORI	2012-08-01 22:26:20.127379647 +0200
++++ kdeutils/kedit/Makefile.am	2012-08-01 22:26:38.144056739 +0200
+@@ -12,7 +12,7 @@
+ kdeinit_LTLIBRARIES = kedit.la
+ 
+ kedit_la_SOURCES = kedit.cpp ktextfiledlg.cpp misc.ui color.ui prefs.kcfgc
+-kedit_la_LIBADD = -lkdeprint $(LIB_KFILE)
++kedit_la_LIBADD = -lkdeprint $(LIB_KFILE) $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI)
+ kedit_la_LDFLAGS = -module -avoid-version $(KDE_PLUGIN) $(all_libraries)
+ 
+ noinst_HEADERS = kedit.h ktextfiledlg.h\
+--- kdeutils/khexedit/lib/Makefile.am.ORI	2012-08-01 22:28:26.956106523 +0200
++++ kdeutils/khexedit/lib/Makefile.am	2012-08-01 22:28:33.941981315 +0200
+@@ -7,7 +7,7 @@
+ # this library is used by the kbytesedit part and the khepart part
+ lib_LTLIBRARIES =  libkhexeditcommon.la
+ libkhexeditcommon_la_LDFLAGS = $(all_libraries) -no-undefined
+-libkhexeditcommon_la_LIBADD =  controller/libkcontroller.la codecs/libkhecodecs.la $(LIB_KDECORE)
++libkhexeditcommon_la_LIBADD =  controller/libkcontroller.la codecs/libkhecodecs.la $(LIB_KDECORE) $(LIB_QT)
+ libkhexeditcommon_la_SOURCES = kcolumn.cpp kbordercolumn.cpp koffsetcolumn.cpp \
+                                kbuffercolumn.cpp kvaluecolumn.cpp kcharcolumn.cpp \
+                                kcolumnsview.cpp khexedit.cpp kbytesedit.cpp \
+--- kdeutils/kregexpeditor/Makefile.am.ORI	2012-08-01 22:31:33.556720026 +0200
++++ kdeutils/kregexpeditor/Makefile.am	2012-08-01 22:31:48.203381087 +0200
+@@ -29,7 +29,7 @@
+ 
+ libkregexpeditorcommon_la_LDFLAGS = $(all_libraries) -version-info 1:0:0 -no-undefined
+ libkregexpeditorcommon_la_LIBADD = KMultiFormListBox/libkmultiformlistbox.la \
+-	KWidgetStreamer/libkwidgetstreamer.la $(LIB_KIO)
++	KWidgetStreamer/libkwidgetstreamer.la $(LIB_KIO) $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI)
+ 
+ METASOURCES = AUTO
+ 
+--- kdeutils/ksim/library/Makefile.am.ORI	2012-08-01 22:35:30.852281916 +0200
++++ kdeutils/ksim/library/Makefile.am	2012-08-01 22:35:39.599384576 +0200
+@@ -1,4 +1,4 @@
+-lib_LTLIBRARIES = libksimcore.la
++lib_LTLIBRARIES = libksimcore.la 
+ 
+ libksimcore_la_SOURCES = common.cpp themeloader.cpp \
+                                         chart.cpp label.cpp \
+@@ -7,7 +7,7 @@
+                                         pluginmodule.cpp ksimconfig.cpp
+ 
+ libksimcore_la_LDFLAGS = $(all_libraries) -version-info 1:0 -no-undefined
+-libksimcore_la_LIBADD = $(LIB_KDEUI)
++libksimcore_la_LIBADD = $(LIB_KDEUI) $(LIB_QT) $(LIB_KDECORE) -lkdefx
+ 
+ ksiminclude_HEADERS = common.h themeloader.h \
+                                         chart.h label.h \

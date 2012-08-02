@@ -1,19 +1,27 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
+%define _docdir %{tde_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_appdir %{_datadir}/applications/kde
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+%define tde_sbindir %{_prefix}/sbin
 
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
 
-Name:		tdeutils
+%define _docdir %{tde_docdir}
+
+Name:		trinity-tdeutils
 Version:	3.5.13
-Release:	6%{?dist}%{?_variant}
+Release:	7%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Utilities
 Group:		Applications/System
@@ -34,12 +42,14 @@ Obsoletes:	trinity-kdeutils < %{version}-%{release}
 Provides:	trinity-kdeutils = %{version}-%{release}
 Obsoletes:	trinity-kdeutils-extras < %{version}-%{release}
 Provides:	trinity-kdeutils-extras = %{version}-%{release}
+Obsoletes:	tdeutils < %{version}-%{release}
+Provides:	tdeutils = %{version}-%{release}
 
 # RedHat / Fedora legacy patches
 Patch1:		kdf-3.0.2-label.patch
 
 # TDE 3.5.13 RHEL/Fedora patches
-## [kdeutils/klaptodaemon] removes dpkg commands
+## [kdeutils/klaptodaemon] removes dpkg commands [Commit #1e1a776f]
 Patch2:		kdeutils-3.5.13-klaptopdaemon_dpkg_command.patch
 ## [tdeutils] Allow ark embedding [Bug #670] [Commit #2a1d4a67]
 Patch3:		kdeutils-3.5.13-fix_ark_embedding.patch
@@ -57,10 +67,12 @@ Patch6:		kdeutils-3.5.13-further_organise_menu.patch
 ##  Added support for password processing
 ##  Fix show broken filenames into real UTF-8
 Patch7:		kdeutils-3.5.13-ark_repairs_and_extensions.patch
+# [kdeutils] Missing LDFLAGS cause FTBFS on Mageia 2
+Patch8:		kdeutils-3.5.13-missing_ldflags.patch
 
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-arts-devel
-BuildRequires:	tdelibs-devel
+BuildRequires:	tqtinterface-devel >= 3.5.13
+BuildRequires:	trinity-arts-devel >= 3.5.13
+BuildRequires:	trinity-tdelibs-devel >= 3.5.13
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gettext
 BuildRequires:	net-snmp-devel
@@ -68,7 +80,8 @@ BuildRequires:	python-devel
 BuildRequires:	gmp-devel
 
 %if 0%{?fedora} > 4 || 0%{?rhel} > 4
-BuildRequires:	libXScrnSaver-devel libXtst-devel
+BuildRequires:	libXScrnSaver-devel
+BuildRequires:	libXtst-devel
 %endif
 
 %if 0%{?fedora}
@@ -94,9 +107,6 @@ Requires: trinity-ksim = %{version}-%{release}
 Requires: trinity-ktimer = %{version}-%{release}
 Requires: trinity-kwalletmanager = %{version}-%{release}
 Requires: trinity-superkaramba = %{version}-%{release}
-
-Requires(post):		/sbin/ldconfig
-Requires(postun):	/sbin/ldconfig
 
 %files
 
@@ -127,7 +137,8 @@ Utilities for the Trinity Desktop Environment, including:
 Summary:	graphical archiving tool for Trinity
 Group:		Applications/Utilities
 #Requires:	ncompress
-Requires:	unzip, zip
+Requires:	unzip
+Requires:	zip
 #Requires:	zoo
 Requires:	bzip2
 #Requires:	p7zip
@@ -149,35 +160,35 @@ package.
 
 %files -n trinity-ark
 %defattr(-,root,root,-)
-%{_bindir}/ark
-%{tde_libdir}/ark.la
-%{tde_libdir}/ark.so
-%{tde_libdir}/libarkpart.la
-%{tde_libdir}/libarkpart.so
-%{_libdir}/lib[kt]deinit_ark.so
-%{tde_appdir}/ark.desktop
-%{_datadir}/apps/ark/
-%{_datadir}/config.kcfg/ark.kcfg
-%{_datadir}/icons/hicolor/*/apps/ark.png
-%{_datadir}/icons/hicolor/scalable/apps/ark.svgz
-%{_datadir}/services/ark_part.desktop
-%{tde_docdir}/HTML/en/ark/
+%{tde_bindir}/ark
+%{tde_tdelibdir}/ark.la
+%{tde_tdelibdir}/ark.so
+%{tde_tdelibdir}/libarkpart.la
+%{tde_tdelibdir}/libarkpart.so
+%{tde_libdir}/lib[kt]deinit_ark.so
+%{tde_tdeappdir}/ark.desktop
+%{tde_datadir}/apps/ark/
+%{tde_datadir}/config.kcfg/ark.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/ark.png
+%{tde_datadir}/icons/hicolor/scalable/apps/ark.svgz
+%{tde_datadir}/services/ark_part.desktop
+%{tde_tdedocdir}/HTML/en/ark/
 
 %post -n trinity-ark
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ark
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -196,33 +207,33 @@ It provides:
 
 %files -n trinity-kcalc
 %defattr(-,root,root,-)
-%{_bindir}/kcalc
-%{tde_libdir}/kcalc.la
-%{tde_libdir}/kcalc.so
-%{_libdir}/lib[kt]deinit_kcalc.so
-%{tde_appdir}/kcalc.desktop
-%{_datadir}/apps/kcalc/
-%{_datadir}/apps/kconf_update/kcalcrc.upd
-%{_datadir}/config.kcfg/kcalc.kcfg
-%{_datadir}/icons/hicolor/*/apps/kcalc.png
-%{_datadir}/icons/hicolor/scalable/apps/kcalc.svgz
-%{tde_docdir}/HTML/en/kcalc/
+%{tde_bindir}/kcalc
+%{tde_tdelibdir}/kcalc.la
+%{tde_tdelibdir}/kcalc.so
+%{tde_libdir}/lib[kt]deinit_kcalc.so
+%{tde_tdeappdir}/kcalc.desktop
+%{tde_datadir}/apps/kcalc/
+%{tde_datadir}/apps/kconf_update/kcalcrc.upd
+%{tde_datadir}/config.kcfg/kcalc.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kcalc.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kcalc.svgz
+%{tde_tdedocdir}/HTML/en/kcalc/
 
 %post -n trinity-kcalc
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kcalc
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -235,29 +246,29 @@ A character set selector for TDE.
 
 %files -n trinity-kcharselect
 %defattr(-,root,root,-)
-%{_bindir}/kcharselect
-%{tde_libdir}/kcharselect_panelapplet.la
-%{tde_libdir}/kcharselect_panelapplet.so
-%{tde_appdir}/KCharSelect.desktop
-%{_datadir}/apps/kcharselect/
-%{_datadir}/apps/kconf_update/kcharselect.upd
-%{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
-%{_datadir}/icons/hicolor/*/apps/kcharselect.png
-%{tde_docdir}/HTML/en/kcharselect/
+%{tde_bindir}/kcharselect
+%{tde_tdelibdir}/kcharselect_panelapplet.la
+%{tde_tdelibdir}/kcharselect_panelapplet.so
+%{tde_tdeappdir}/KCharSelect.desktop
+%{tde_datadir}/apps/kcharselect/
+%{tde_datadir}/apps/kconf_update/kcharselect.upd
+%{tde_datadir}/apps/kicker/applets/kcharselectapplet.desktop
+%{tde_datadir}/icons/hicolor/*/apps/kcharselect.png
+%{tde_tdedocdir}/HTML/en/kcharselect/
 
 %post -n trinity-kcharselect
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kcharselect
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -270,46 +281,46 @@ This is a frontend for the LIRC suite to use infrared devices with TDE.
 
 %files -n trinity-kdelirc
 %defattr(-,root,root,-)
-%{_bindir}/irkick
-%{tde_libdir}/irkick.la
-%{tde_libdir}/irkick.so
-%{tde_libdir}/kcm_kcmlirc.la
-%{tde_libdir}/kcm_kcmlirc.so
-%{_libdir}/lib[kt]deinit_irkick.so
-%{tde_appdir}/irkick.desktop
-%{tde_appdir}/kcmlirc.desktop
-%{_datadir}/apps/irkick/
-%{_datadir}/apps/profiles/klauncher.profile.xml
-%{_datadir}/apps/profiles/konqueror.profile.xml
-%{_datadir}/apps/profiles/noatun.profile.xml
-%{_datadir}/apps/profiles/profile.dtd
-%{_datadir}/apps/remotes/RM-0010.remote.xml
-%{_datadir}/apps/remotes/cimr100.remote.xml
-%{_datadir}/apps/remotes/hauppauge.remote.xml
-%{_datadir}/apps/remotes/remote.dtd
-%{_datadir}/apps/remotes/sherwood.remote.xml
-%{_datadir}/apps/remotes/sonytv.remote.xml
-%{_datadir}/autostart/irkick.desktop
-%{_datadir}/icons/hicolor/*/apps/irkick.png
-%{_datadir}/icons/locolor/*/apps/irkick.png
-%{tde_docdir}/HTML/en/irkick/
-%{tde_docdir}/HTML/en/kcmlirc/
+%{tde_bindir}/irkick
+%{tde_tdelibdir}/irkick.la
+%{tde_tdelibdir}/irkick.so
+%{tde_tdelibdir}/kcm_kcmlirc.la
+%{tde_tdelibdir}/kcm_kcmlirc.so
+%{tde_libdir}/lib[kt]deinit_irkick.so
+%{tde_tdeappdir}/irkick.desktop
+%{tde_tdeappdir}/kcmlirc.desktop
+%{tde_datadir}/apps/irkick/
+%{tde_datadir}/apps/profiles/klauncher.profile.xml
+%{tde_datadir}/apps/profiles/konqueror.profile.xml
+%{tde_datadir}/apps/profiles/noatun.profile.xml
+%{tde_datadir}/apps/profiles/profile.dtd
+%{tde_datadir}/apps/remotes/RM-0010.remote.xml
+%{tde_datadir}/apps/remotes/cimr100.remote.xml
+%{tde_datadir}/apps/remotes/hauppauge.remote.xml
+%{tde_datadir}/apps/remotes/remote.dtd
+%{tde_datadir}/apps/remotes/sherwood.remote.xml
+%{tde_datadir}/apps/remotes/sonytv.remote.xml
+%{tde_datadir}/autostart/irkick.desktop
+%{tde_datadir}/icons/hicolor/*/apps/irkick.png
+%{tde_datadir}/icons/locolor/*/apps/irkick.png
+%{tde_tdedocdir}/HTML/en/irkick/
+%{tde_tdedocdir}/HTML/en/kcmlirc/
 
 %post -n trinity-kdelirc
 /sbin/ldconfig
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kdelirc
 /sbin/ldconfig
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -323,7 +334,7 @@ This package contains TDE's frontend for ssh.
 
 %files -n trinity-kdessh
 %defattr(-,root,root,-)
-%{_bindir}/kdessh
+%{tde_bindir}/kdessh
 
 ##########
 
@@ -339,33 +350,33 @@ in a file manager.
 
 %files -n trinity-kdf
 %defattr(-,root,root,-)
-%{_bindir}/kdf
-%{_bindir}/kwikdisk
-%{tde_libdir}/kcm_kdf.la
-%{tde_libdir}/kcm_kdf.so
-%{tde_appdir}/kcmdf.desktop
-%{tde_appdir}/kdf.desktop
-%{tde_appdir}/kwikdisk.desktop
-%{_datadir}/apps/kdf/
-%{_datadir}/icons/crystalsvg/*/apps/kcmdf.png
-%{_datadir}/icons/hicolor/*/apps/kdf.png
-%{_datadir}/icons/hicolor/*/apps/kwikdisk.png
-%{tde_docdir}/HTML/en/kdf/
-%{tde_docdir}/HTML/en/kinfocenter/blockdevices/
+%{tde_bindir}/kdf
+%{tde_bindir}/kwikdisk
+%{tde_tdelibdir}/kcm_kdf.la
+%{tde_tdelibdir}/kcm_kdf.so
+%{tde_tdeappdir}/kcmdf.desktop
+%{tde_tdeappdir}/kdf.desktop
+%{tde_tdeappdir}/kwikdisk.desktop
+%{tde_datadir}/apps/kdf/
+%{tde_datadir}/icons/crystalsvg/*/apps/kcmdf.png
+%{tde_datadir}/icons/hicolor/*/apps/kdf.png
+%{tde_datadir}/icons/hicolor/*/apps/kwikdisk.png
+%{tde_tdedocdir}/HTML/en/kdf/
+%{tde_tdedocdir}/HTML/en/kinfocenter/blockdevices/
 
 %post -n trinity-kdf
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kdf
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -383,31 +394,31 @@ reasonably fast start.
 
 %files -n trinity-kedit
 %defattr(-,root,root,-)
-%{_bindir}/kedit
-%{tde_libdir}/kedit.la
-%{tde_libdir}/kedit.so
-%{_libdir}/lib[kt]deinit_kedit.so
-%{tde_appdir}/KEdit.desktop
-%{_datadir}/apps/kedit/keditui.rc
-%{_datadir}/config.kcfg/kedit.kcfg
-%{_datadir}/icons/hicolor/*/apps/kedit.png
-%{tde_docdir}/HTML/en/kedit/
+%{tde_bindir}/kedit
+%{tde_tdelibdir}/kedit.la
+%{tde_tdelibdir}/kedit.so
+%{tde_libdir}/lib[kt]deinit_kedit.so
+%{tde_tdeappdir}/KEdit.desktop
+%{tde_datadir}/apps/kedit/keditui.rc
+%{tde_datadir}/config.kcfg/kedit.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kedit.png
+%{tde_tdedocdir}/HTML/en/kedit/
 
 %post -n trinity-kedit
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kedit
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -422,25 +433,25 @@ to format 3.5" and 5.25" floppy disks.
 
 %files -n trinity-kfloppy
 %defattr(-,root,root,-)
-%{_bindir}/kfloppy
-%{tde_appdir}/KFloppy.desktop
-%{_datadir}/apps/konqueror/servicemenus/floppy_format.desktop
-%{_datadir}/icons/hicolor/*/apps/kfloppy.png
-%{tde_docdir}/HTML/en/kfloppy/
+%{tde_bindir}/kfloppy
+%{tde_tdeappdir}/KFloppy.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/floppy_format.desktop
+%{tde_datadir}/icons/hicolor/*/apps/kfloppy.png
+%{tde_tdedocdir}/HTML/en/kfloppy/
 
 %post -n trinity-kfloppy
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kfloppy
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -467,29 +478,29 @@ Features:
 
 %files -n trinity-kgpg
 %defattr(-,root,root,-)
-%{_bindir}/kgpg
-%{tde_appdir}/kgpg.desktop
-%{_datadir}/apps/kgpg/
-%{_datadir}/apps/konqueror/servicemenus/encryptfile.desktop
-%{_datadir}/apps/konqueror/servicemenus/encryptfolder.desktop
-%{_datadir}/autostart/kgpg.desktop
-%{_datadir}/config.kcfg/kgpg.kcfg
-%{_datadir}/icons/hicolor/*/apps/kgpg.png
-%{tde_docdir}/HTML/en/kgpg/
+%{tde_bindir}/kgpg
+%{tde_tdeappdir}/kgpg.desktop
+%{tde_datadir}/apps/kgpg/
+%{tde_datadir}/apps/konqueror/servicemenus/encryptfile.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/encryptfolder.desktop
+%{tde_datadir}/autostart/kgpg.desktop
+%{tde_datadir}/config.kcfg/kgpg.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kgpg.png
+%{tde_tdedocdir}/HTML/en/kgpg/
 
 %post -n trinity-kgpg
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kgpg
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -504,35 +515,35 @@ support and other powerful features.
 
 %files -n trinity-khexedit
 %defattr(-,root,root,-)
-%{_bindir}/khexedit
-%{tde_libdir}/libkbyteseditwidget.la
-%{tde_libdir}/libkbyteseditwidget.so
-%{tde_libdir}/libkhexedit2part.la
-%{tde_libdir}/libkhexedit2part.so
-%{_libdir}/libkhexeditcommon.so.*
-%{tde_appdir}/khexedit.desktop
-%{_datadir}/apps/khexedit/
-%{_datadir}/apps/khexedit2part/khexedit2partui.rc
-%{_datadir}/icons/hicolor/*/apps/khexedit.png
-%{_datadir}/services/kbyteseditwidget.desktop
-%{_datadir}/services/khexedit2part.desktop
-%{tde_docdir}/HTML/en/khexedit/
+%{tde_bindir}/khexedit
+%{tde_tdelibdir}/libkbyteseditwidget.la
+%{tde_tdelibdir}/libkbyteseditwidget.so
+%{tde_tdelibdir}/libkhexedit2part.la
+%{tde_tdelibdir}/libkhexedit2part.so
+%{tde_libdir}/libkhexeditcommon.so.*
+%{tde_tdeappdir}/khexedit.desktop
+%{tde_datadir}/apps/khexedit/
+%{tde_datadir}/apps/khexedit2part/khexedit2partui.rc
+%{tde_datadir}/icons/hicolor/*/apps/khexedit.png
+%{tde_datadir}/services/kbyteseditwidget.desktop
+%{tde_datadir}/services/khexedit2part.desktop
+%{tde_tdedocdir}/HTML/en/khexedit/
 
 %post -n trinity-khexedit
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-khexedit
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -546,26 +557,26 @@ program included in the tkgoodstuff package.
 
 %files -n trinity-kjots
 %defattr(-,root,root,-)
-%{_bindir}/kjots
-%{tde_appdir}/Kjots.desktop
-%{_datadir}/apps/kjots/
-%{_datadir}/config.kcfg/kjots.kcfg
-%{_datadir}/icons/hicolor/*/apps/kjots.png
-%{tde_docdir}/HTML/en/kjots/
+%{tde_bindir}/kjots
+%{tde_tdeappdir}/Kjots.desktop
+%{tde_datadir}/apps/kjots/
+%{tde_datadir}/config.kcfg/kjots.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kjots.png
+%{tde_tdedocdir}/HTML/en/kjots/
 
 %post -n trinity-kjots
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kjots
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -581,46 +592,46 @@ power management, for laptops, from within TDE.
 
 %files -n trinity-klaptopdaemon
 %defattr(-,root,root,-)
-%{_bindir}/klaptop_acpi_helper
-%{_bindir}/klaptop_check
-%{tde_libdir}/kcm_laptop.la
-%{tde_libdir}/kcm_laptop.so
-%{tde_libdir}/kded_klaptopdaemon.la
-%{tde_libdir}/kded_klaptopdaemon.so
-%{_libdir}/libkcmlaptop.so.*
-%{tde_appdir}/laptop.desktop
-%{tde_appdir}/pcmcia.desktop
-%{_datadir}/apps/klaptopdaemon/
-%{_datadir}/icons/crystalsvg/*/apps/laptop_battery.png
-%{_datadir}/icons/crystalsvg/*/apps/laptop_pcmcia.png
-%{_datadir}/icons/crystalsvg/scalable/apps/laptop_battery.svgz
-%{_datadir}/services/kded/klaptopdaemon.desktop
-%{tde_docdir}/HTML/en/kcontrol/kcmlowbatcrit/
-%{tde_docdir}/HTML/en/kcontrol/kcmlowbatwarn/
-%{tde_docdir}/HTML/en/kcontrol/laptop/
-%{tde_docdir}/HTML/en/kcontrol/powerctrl/
+%{tde_bindir}/klaptop_acpi_helper
+%{tde_bindir}/klaptop_check
+%{tde_tdelibdir}/kcm_laptop.la
+%{tde_tdelibdir}/kcm_laptop.so
+%{tde_tdelibdir}/kded_klaptopdaemon.la
+%{tde_tdelibdir}/kded_klaptopdaemon.so
+%{tde_libdir}/libkcmlaptop.so.*
+%{tde_tdeappdir}/laptop.desktop
+%{tde_tdeappdir}/pcmcia.desktop
+%{tde_datadir}/apps/klaptopdaemon/
+%{tde_datadir}/icons/crystalsvg/*/apps/laptop_battery.png
+%{tde_datadir}/icons/crystalsvg/*/apps/laptop_pcmcia.png
+%{tde_datadir}/icons/crystalsvg/scalable/apps/laptop_battery.svgz
+%{tde_datadir}/services/kded/klaptopdaemon.desktop
+%{tde_tdedocdir}/HTML/en/kcontrol/kcmlowbatcrit/
+%{tde_tdedocdir}/HTML/en/kcontrol/kcmlowbatwarn/
+%{tde_tdedocdir}/HTML/en/kcontrol/laptop/
+%{tde_tdedocdir}/HTML/en/kcontrol/powerctrl/
 
 # RHEL/Fedora specific
 %{_sysconfdir}/pam.d/klaptop_acpi_helper
 %attr(644,root,root) %{_sysconfdir}/security/console.apps/klaptop_acpi_helper
-%{_sbindir}/klaptop_acpi_helper
-%config %{_datadir}/config/kcmlaptoprc
+%{tde_sbindir}/klaptop_acpi_helper
+%config %{tde_datadir}/config/kcmlaptoprc
 
 %post -n trinity-klaptopdaemon
 /sbin/ldconfig
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-klaptopdaemon
 /sbin/ldconfig
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -637,14 +648,14 @@ with special keys.
 
 %files -n trinity-kmilo
 %defattr(-,root,root,-)
-%{tde_libdir}/kded_kmilod.la
-%{tde_libdir}/kded_kmilod.so
-%{tde_libdir}/kmilo_generic.la
-%{tde_libdir}/kmilo_generic.so
-%{_libdir}/libkmilo.so.*
-%{_datadir}/services/kded/kmilod.desktop
-%{_datadir}/services/kmilo/kmilo_generic.desktop
-%{_datadir}/servicetypes/kmilo/kmilopluginsvc.desktop
+%{tde_tdelibdir}/kded_kmilod.la
+%{tde_tdelibdir}/kded_kmilod.so
+%{tde_tdelibdir}/kmilo_generic.la
+%{tde_tdelibdir}/kmilo_generic.so
+%{tde_libdir}/libkmilo.so.*
+%{tde_datadir}/services/kded/kmilod.desktop
+%{tde_datadir}/services/kmilo/kmilo_generic.desktop
+%{tde_datadir}/servicetypes/kmilo/kmilopluginsvc.desktop
 
 %post -n trinity-kmilo
 /sbin/ldconfig
@@ -670,24 +681,24 @@ plugin, if you need this package please file a bug.
 
 %files -n trinity-kmilo-legacy
 %defattr(-,root,root,-)
-%{tde_libdir}/kcm_kvaio.la
-%{tde_libdir}/kcm_kvaio.so
-%{tde_libdir}/kcm_thinkpad.la
-%{tde_libdir}/kcm_thinkpad.so
-%{tde_libdir}/kmilo_asus.la
-%{tde_libdir}/kmilo_asus.so
-%{tde_libdir}/kmilo_delli8k.la
-%{tde_libdir}/kmilo_delli8k.so
-%{tde_libdir}/kmilo_kvaio.la
-%{tde_libdir}/kmilo_kvaio.so
-%{tde_libdir}/kmilo_thinkpad.la
-%{tde_libdir}/kmilo_thinkpad.so
-%{tde_appdir}/kvaio.desktop
-%{tde_appdir}/thinkpad.desktop
-%{_datadir}/services/kmilo/kmilo_asus.desktop
-%{_datadir}/services/kmilo/kmilo_delli8k.desktop
-%{_datadir}/services/kmilo/kmilo_kvaio.desktop
-%{_datadir}/services/kmilo/kmilo_thinkpad.desktop
+%{tde_tdelibdir}/kcm_kvaio.la
+%{tde_tdelibdir}/kcm_kvaio.so
+%{tde_tdelibdir}/kcm_thinkpad.la
+%{tde_tdelibdir}/kcm_thinkpad.so
+%{tde_tdelibdir}/kmilo_asus.la
+%{tde_tdelibdir}/kmilo_asus.so
+%{tde_tdelibdir}/kmilo_delli8k.la
+%{tde_tdelibdir}/kmilo_delli8k.so
+%{tde_tdelibdir}/kmilo_kvaio.la
+%{tde_tdelibdir}/kmilo_kvaio.so
+%{tde_tdelibdir}/kmilo_thinkpad.la
+%{tde_tdelibdir}/kmilo_thinkpad.so
+%{tde_tdeappdir}/kvaio.desktop
+%{tde_tdeappdir}/thinkpad.desktop
+%{tde_datadir}/services/kmilo/kmilo_asus.desktop
+%{tde_datadir}/services/kmilo/kmilo_delli8k.desktop
+%{tde_datadir}/services/kmilo/kmilo_kvaio.desktop
+%{tde_datadir}/services/kmilo/kmilo_thinkpad.desktop
 
 ##########
 
@@ -701,31 +712,31 @@ with TDE. It let you draw your regular expression in an unambiguous way.
 
 %files -n trinity-kregexpeditor
 %defattr(-,root,root,-)
-%{_bindir}/kregexpeditor
-%{tde_libdir}/libkregexpeditorgui.la
-%{tde_libdir}/libkregexpeditorgui.so
-%{_libdir}/libkregexpeditorcommon.so.*
-%{tde_appdir}/kregexpeditor.desktop
-%{_datadir}/apps/kregexpeditor/
-%{_datadir}/icons/hicolor/*/apps/kregexpeditor.png
-%{_datadir}/services/kregexpeditorgui.desktop
-%{tde_docdir}/HTML/en/KRegExpEditor/
+%{tde_bindir}/kregexpeditor
+%{tde_tdelibdir}/libkregexpeditorgui.la
+%{tde_tdelibdir}/libkregexpeditorgui.so
+%{tde_libdir}/libkregexpeditorcommon.so.*
+%{tde_tdeappdir}/kregexpeditor.desktop
+%{tde_datadir}/apps/kregexpeditor/
+%{tde_datadir}/icons/hicolor/*/apps/kregexpeditor.png
+%{tde_datadir}/services/kregexpeditorgui.desktop
+%{tde_tdedocdir}/HTML/en/KRegExpEditor/
 
 %post -n trinity-kregexpeditor
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kregexpeditor
 /sbin/ldconfig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -740,28 +751,28 @@ connections, power, etc.
 
 %files -n trinity-ksim
 %defattr(-,root,root,-)
-%config %{_datadir}/config/ksim_panelextensionrc
-%{tde_libdir}/ksim_*.la
-%{tde_libdir}/ksim_*.so
-%{_libdir}/libksimcore.so.*
-%{_datadir}/apps/kicker/extensions/ksim.desktop
-%{_datadir}/apps/ksim/
-%{tde_docdir}/HTML/en/ksim/
-%{_datadir}/icons/crystalsvg/*/apps/ksim.png
-%{_datadir}/icons/crystalsvg/*/devices/ksim_cpu.png
+%config %{tde_datadir}/config/ksim_panelextensionrc
+%{tde_tdelibdir}/ksim_*.la
+%{tde_tdelibdir}/ksim_*.so
+%{tde_libdir}/libksimcore.so.*
+%{tde_datadir}/apps/kicker/extensions/ksim.desktop
+%{tde_datadir}/apps/ksim/
+%{tde_tdedocdir}/HTML/en/ksim/
+%{tde_datadir}/icons/crystalsvg/*/apps/ksim.png
+%{tde_datadir}/icons/crystalsvg/*/devices/ksim_cpu.png
 
 %post -n trinity-ksim
 /sbin/ldconfig
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 
 %postun -n trinity-ksim
 /sbin/ldconfig
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null  ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 
 ##########
@@ -777,24 +788,24 @@ command execution.
 
 %files -n trinity-ktimer
 %defattr(-,root,root,-)
-%{_bindir}/ktimer
-%{tde_appdir}/ktimer.desktop
-%{_datadir}/icons/hicolor/*/apps/ktimer.png
-%{tde_docdir}/HTML/en/ktimer/
+%{tde_bindir}/ktimer
+%{tde_tdeappdir}/ktimer.desktop
+%{tde_datadir}/icons/hicolor/*/apps/ktimer.png
+%{tde_tdedocdir}/HTML/en/ktimer/
 
 %post -n trinity-ktimer
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ktimer
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -809,31 +820,31 @@ keeps a master password to all wallets.
 
 %files -n trinity-kwalletmanager
 %defattr(-,root,root,-)
-%{_bindir}/kwalletmanager
-%{tde_libdir}/kcm_kwallet.la
-%{tde_libdir}/kcm_kwallet.so
-%{tde_appdir}/kwalletconfig.desktop
-%{tde_appdir}/kwalletmanager.desktop
-%{tde_appdir}/kwalletmanager-kwalletd.desktop
-%{_datadir}/apps/kwalletmanager/
-%{_datadir}/icons/hicolor/*/apps/kwalletmanager.png
-%{_datadir}/services/kwallet_config.desktop
-%{_datadir}/services/kwalletmanager_show.desktop
-%{tde_docdir}/HTML/en/kwallet/
+%{tde_bindir}/kwalletmanager
+%{tde_tdelibdir}/kcm_kwallet.la
+%{tde_tdelibdir}/kcm_kwallet.so
+%{tde_tdeappdir}/kwalletconfig.desktop
+%{tde_tdeappdir}/kwalletmanager.desktop
+%{tde_tdeappdir}/kwalletmanager-kwalletd.desktop
+%{tde_datadir}/apps/kwalletmanager/
+%{tde_datadir}/icons/hicolor/*/apps/kwalletmanager.png
+%{tde_datadir}/services/kwallet_config.desktop
+%{tde_datadir}/services/kwalletmanager_show.desktop
+%{tde_tdedocdir}/HTML/en/kwallet/
 
 %post -n trinity-kwalletmanager
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kwalletmanager
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -855,26 +866,26 @@ Here are just some examples of the things that can be done:
 
 %files -n trinity-superkaramba
 %defattr(-,root,root,-)
-%{_bindir}/superkaramba
-%{_datadir}/applnk/Utilities/superkaramba.desktop
-%{_datadir}/apps/superkaramba/superkarambaui.rc
-%{_datadir}/icons/crystalsvg/*/apps/superkaramba.png
-%{_datadir}/icons/crystalsvg/*/mimetypes/superkaramba_theme.png
-%{_datadir}/icons/crystalsvg/scalable/apps/superkaramba.svgz
-%{_datadir}/icons/crystalsvg/scalable/mimetypes/superkaramba_theme.svgz
-%{_datadir}/mimelnk/application/x-superkaramba.desktop
-%{tde_docdir}/HTML/en/superkaramba/
+%{tde_bindir}/superkaramba
+%{tde_datadir}/applnk/Utilities/superkaramba.desktop
+%{tde_datadir}/apps/superkaramba/superkarambaui.rc
+%{tde_datadir}/icons/crystalsvg/*/apps/superkaramba.png
+%{tde_datadir}/icons/crystalsvg/*/mimetypes/superkaramba_theme.png
+%{tde_datadir}/icons/crystalsvg/scalable/apps/superkaramba.svgz
+%{tde_datadir}/icons/crystalsvg/scalable/mimetypes/superkaramba_theme.svgz
+%{tde_datadir}/mimelnk/application/x-superkaramba.desktop
+%{tde_tdedocdir}/HTML/en/superkaramba/
 
 %post -n trinity-superkaramba
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 
 %postun -n trinity-superkaramba
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 
 ##########
@@ -884,31 +895,33 @@ done
 Summary:	Development files for %{name} 
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	tdelibs-devel
+Requires:	trinity-tdelibs-devel
 
 Obsoletes:	trinity-kdeutils-devel < %{version}-%{release}
 Provides:	trinity-kdeutils-devel = %{version}-%{release}
+Obsoletes:	tdeutils-devel < %{version}-%{release}
+Provides:	tdeutils-devel = %{version}-%{release}
 
 %description devel
 Development files for %{name}.
 
 %files devel
 %defattr(-,root,root,-)
-%{tde_includedir}/*
-%{_libdir}/libkcmlaptop.la
-%{_libdir}/libkcmlaptop.so
-%{_libdir}/lib[kt]deinit_ark.la
-%{_libdir}/lib[kt]deinit_irkick.la
-%{_libdir}/lib[kt]deinit_kcalc.la
-%{_libdir}/lib[kt]deinit_kedit.la
-%{_libdir}/libkmilo.la
-%{_libdir}/libkmilo.so
-%{_libdir}/libkregexpeditorcommon.la
-%{_libdir}/libkregexpeditorcommon.so
-%{_libdir}/libksimcore.la
-%{_libdir}/libksimcore.so
-%{_libdir}/libkhexeditcommon.la
-%{_libdir}/libkhexeditcommon.so
+%{tde_tdeincludedir}/*
+%{tde_libdir}/libkcmlaptop.la
+%{tde_libdir}/libkcmlaptop.so
+%{tde_libdir}/lib[kt]deinit_ark.la
+%{tde_libdir}/lib[kt]deinit_irkick.la
+%{tde_libdir}/lib[kt]deinit_kcalc.la
+%{tde_libdir}/lib[kt]deinit_kedit.la
+%{tde_libdir}/libkmilo.la
+%{tde_libdir}/libkmilo.so
+%{tde_libdir}/libkregexpeditorcommon.la
+%{tde_libdir}/libkregexpeditorcommon.so
+%{tde_libdir}/libksimcore.la
+%{tde_libdir}/libksimcore.so
+%{tde_libdir}/libkhexeditcommon.la
+%{tde_libdir}/libkhexeditcommon.so
 
 %post devel
 /sbin/ldconfig
@@ -928,12 +941,13 @@ Development files for %{name}.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1 -b .ftbfs
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+%__sed -i "admin/acinclude.m4.in" \
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -941,25 +955,35 @@ Development files for %{name}.
 
 %build
 unset QTDIR || : ; source /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
+   --exec-prefix=%{_prefix} \
+   --bindir=%{tde_bindir} \
+   --libdir=%{tde_libdir} \
+   --datadir=%{tde_datadir} \
+   --includedir=%{tde_tdeincludedir} \
    --enable-new-ldflags \
    --disable-dependency-tracking \
    --disable-rpath \
    --disable-debug --disable-warnings \
    --enable-final \
-   --includedir=%{tde_includedir} \
+   --includedir=%{tde_tdeincludedir} \
    --with-snmp \
+%if 0%{?fedora}
+   --with-xmms \
+%else
+   --without-xmms \
+%endif
    --with-xscreensaver \
-   --with-extra-includes=%{_includedir}/tqt \
+   --with-extra-includes=%{tde_includedir}/tqt \
    --enable-closure
    
 %__make %{?_smp_mflags}
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot}
 
@@ -967,8 +991,8 @@ export PATH="%{_bindir}:${PATH}"
 for i in kcalc kregexpeditor Kjots ktimer kdf kcmdf ksim KFloppy KEdit \
   KCharSelect ark kwalletmanager kwalletconfig \
  irkick kcmlirc laptop pcmcia kvaio thinkpad kwikdisk; do
- if [ -f %{buildroot}%{_datadir}/applications/kde/$i.desktop ] ; then
-   echo "OnlyShowIn=KDE;" >> %{buildroot}%{_datadir}/applications/kde/$i.desktop
+ if [ -f %{buildroot}%{tde_datadir}/applications/kde/$i.desktop ] ; then
+   echo "OnlyShowIn=KDE;" >> %{buildroot}%{tde_datadir}/applications/kde/$i.desktop
  fi
 done
 
@@ -999,14 +1023,14 @@ fi
 %__install -p -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pam.d/klaptop_acpi_helper
 %__install -p -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/security/console.apps/klaptop_acpi_helper
 
-pushd %{buildroot}%{_bindir}
-  %__mkdir_p %{buildroot}%{_sbindir}
+pushd %{buildroot}%{tde_bindir}
+  %__mkdir_p %{buildroot}%{tde_sbindir}
   %__mv klaptop_acpi_helper ../sbin
   %__ln_s /usr/bin/consolehelper klaptop_acpi_helper
 popd
 
 # klaptop setting
-%__install -p -D -m 644 %{SOURCE3} %{buildroot}%{_datadir}/config/kcmlaptoprc
+%__install -p -D -m 644 %{SOURCE3} %{buildroot}%{tde_datadir}/config/kcmlaptoprc
 
 
 %clean
@@ -1015,6 +1039,9 @@ popd
 
 
 %changelog
+* Fri Jul 20 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
+- Renames 'tdeutils' to 'trinity-tdeutils'
+
 * Fri Jun 22 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
 - Split in several packages
 - Allow ark embedding [Bug #670] [Commit #2a1d4a67]

@@ -1,0 +1,1921 @@
+commit adee843c4d5c8fbce75abd3a768d643392e4ea90
+Author: Serghei Amelian <serghei.amelian@gmail.com>
+Date:   1329245722 +0200
+
+    [tdesdk/cmake] added forgotten files
+
+diff --git a/kdeaccounts-plugin/CMakeLists.txt b/kdeaccounts-plugin/CMakeLists.txt
+new file mode 100644
+index 0000000..2a14486
+--- /dev/null
++++ b/kdeaccounts-plugin/CMakeLists.txt
+@@ -0,0 +1,34 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES kdeaccountsplugin.desktop
++  DESTINATION ${DATA_INSTALL_DIR}/kabc/formats )
++
++
++##### kabcformat_kdeaccounts (module) ###########
++
++tde_add_kpart( kabcformat_kdeaccounts
++  SOURCES kdeaccountsformat.cpp
++  LINK kabc-shared
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/kfile-plugins/CMakeLists.txt b/kfile-plugins/CMakeLists.txt
+new file mode 100644
+index 0000000..6b769e5
+--- /dev/null
++++ b/kfile-plugins/CMakeLists.txt
+@@ -0,0 +1,14 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++add_subdirectory( diff )
++add_subdirectory( c++ )
++add_subdirectory( ts )
+diff --git a/kfile-plugins/c++/CMakeLists.txt b/kfile-plugins/c++/CMakeLists.txt
+new file mode 100644
+index 0000000..9b56e9d
+--- /dev/null
++++ b/kfile-plugins/c++/CMakeLists.txt
+@@ -0,0 +1,35 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES kfile_cpp.desktop kfile_h.desktop
++  DESTINATION ${SERVICES_INSTALL_DIR} )
++
++
++##### kfile_cpp (module) ########################
++
++tde_add_kpart( kfile_cpp AUTOMOC
++  SOURCES kfile_cpp.cpp
++  LINK kio-shared
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/kfile-plugins/diff/CMakeLists.txt b/kfile-plugins/diff/CMakeLists.txt
+new file mode 100644
+index 0000000..292372c
+--- /dev/null
++++ b/kfile-plugins/diff/CMakeLists.txt
+@@ -0,0 +1,34 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES kfile_diff.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
++
++
++##### kfile_diff (module) #######################
++
++tde_add_kpart( kfile_diff AUTOMOC
++  SOURCES kfile_diff.cpp
++  LINK kio-shared
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/kfile-plugins/ts/CMakeLists.txt b/kfile-plugins/ts/CMakeLists.txt
+new file mode 100644
+index 0000000..4e68beb
+--- /dev/null
++++ b/kfile-plugins/ts/CMakeLists.txt
+@@ -0,0 +1,35 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES kfile_ts.desktop
++  DESTINATION ${SERVICES_INSTALL_DIR} )
++
++
++##### kfile_ts (module) #########################
++
++tde_add_kpart( kfile_ts AUTOMOC
++  SOURCES kfile_ts.cpp
++  LINK kio-shared
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/kioslave/CMakeLists.txt b/kioslave/CMakeLists.txt
+new file mode 100644
+index 0000000..a23a176
+--- /dev/null
++++ b/kioslave/CMakeLists.txt
+@@ -0,0 +1,12 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++add_subdirectory( svn )
+diff --git a/kioslave/svn/CMakeLists.txt b/kioslave/svn/CMakeLists.txt
+new file mode 100644
+index 0000000..9d3c496
+--- /dev/null
++++ b/kioslave/svn/CMakeLists.txt
+@@ -0,0 +1,46 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include( ConfigureChecks.cmake )
++
++add_subdirectory( ksvnd )
++add_subdirectory( svnhelper )
++add_subdirectory( icons )
++
++include_directories(
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++  ${APR_INCLUDE_DIRS}
++  ${SVN_INCLUDE_DIR}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++  ${APR_LIBRARY_DIRS}
++  ${SVN_LIBRARY_DIR}
++)
++
++
++##### other data ################################
++
++install( FILES
++    svn+http.protocol svn+https.protocol svn+file.protocol
++    svn+ssh.protocol svn.protocol
++  DESTINATION ${SERVICES_INSTALL_DIR} )
++
++
++##### kio_svn (module) ##########################
++
++tde_add_kpart( kio_svn
++  SOURCES svn.cpp
++  LINK kio-shared ${APR_LIBRARIES} ${SVN_LIBRARIES}
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/kioslave/svn/ConfigureChecks.cmake b/kioslave/svn/ConfigureChecks.cmake
+new file mode 100644
+index 0000000..81358c6
+--- /dev/null
++++ b/kioslave/svn/ConfigureChecks.cmake
+@@ -0,0 +1,50 @@
++#################################################
++#
++#  (C) 2010-2011 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++pkg_search_module( APR apr-1 )
++if( APR_FOUND )
++  set( HAVE_APR 1 )
++else( )
++  tde_message_fatal( "apr-1 is required, but was not found on your system" )
++endif( )
++
++
++# check for subversion library
++
++check_library_exists( "svn_client-1" "svn_pool_create_ex" "${SVN_LIBRARY_DIR}" HAVE_SVN_POOL_CREATE_EX )
++
++if( HAVE_SVN_POOL_CREATE_EX )
++  set( SVN_LIBRARIES "svn_client-1;svn_subr-1;svn_ra-1" )
++else( )
++  tde_message_fatal( "svn_client-1 library was not found on your system.\n Subversion is installed?\n Try to set SVN_LIBRARY_DIR to subversion library directory." )
++endif( )
++
++
++# check for subversion headers
++
++set( CMAKE_REQUIRED_FLAGS "-I${APR_INCLUDE_DIRS}" )
++set( CMAKE_REQUIRED_DEFINITIONS "${APR_CFLAGS}" )
++
++if( SVN_INCLUDE_DIR )
++  set( CMAKE_REQUIRED_INCLUDES "${SVN_INCLUDE_DIR}" )
++  check_include_file( "svn_types.h" HAVE_SVN_TYPES_H )
++  tde_restore( CMAKE_REQUIRED_INCLUDES )
++else( )
++  # FIXME must be improved
++  check_include_file( "/usr/include/subversion-1/svn_types.h" HAVE_SVN_TYPES_H )
++  set( SVN_INCLUDE_DIR "/usr/include/subversion-1" )
++endif( )
++
++tde_restore( CMAKE_REQUIRED_FLAGS CMAKE_REQUIRED_DEFINITIONS )
++
++if( NOT HAVE_SVN_TYPES_H )
++  tde_message_fatal( "svn_types.h file was not found on your system.\n Subversion devel files are installed?\n Try to set SVN_INCLUDE_DIR to subversion include directory." )
++endif( )
+diff --git a/kioslave/svn/icons/CMakeLists.txt b/kioslave/svn/icons/CMakeLists.txt
+new file mode 100644
+index 0000000..96bca44
+--- /dev/null
++++ b/kioslave/svn/icons/CMakeLists.txt
+@@ -0,0 +1,12 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++tde_install_icons( )
+diff --git a/kioslave/svn/ksvnd/CMakeLists.txt b/kioslave/svn/ksvnd/CMakeLists.txt
+new file mode 100644
+index 0000000..d377ee7
+--- /dev/null
++++ b/kioslave/svn/ksvnd/CMakeLists.txt
+@@ -0,0 +1,36 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES ksvnd.desktop
++  DESTINATION ${SERVICES_INSTALL_DIR}/kded )
++
++
++##### kded_ksvnd (module) #######################
++
++tde_add_kpart( kded_ksvnd AUTOMOC
++  SOURCES commitdlg.ui ksvnd.cpp ksvnd.skel
++  LINK kio-shared kdeinit_kded-shared
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/kioslave/svn/svnhelper/CMakeLists.txt b/kioslave/svn/svnhelper/CMakeLists.txt
+new file mode 100644
+index 0000000..ad82d38
+--- /dev/null
++++ b/kioslave/svn/svnhelper/CMakeLists.txt
+@@ -0,0 +1,38 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES
++    subversion.desktop subversion_toplevel.desktop
++  DESTINATION ${DATA_INSTALL_DIR}/konqueror/servicemenus )
++
++
++##### kio_svn_helper (executable) ###############
++
++tde_add_executable( kio_svn_helper AUTOMOC
++  SOURCES
++    kio_svn_helper.cpp subversioncheckout.ui subversionswitch.ui
++    subversionlog.ui subversiondiff.ui
++  LINK kio-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/kmtrace/CMakeLists.txt b/kmtrace/CMakeLists.txt
+new file mode 100644
+index 0000000..600391b
+--- /dev/null
++++ b/kmtrace/CMakeLists.txt
+@@ -0,0 +1,76 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++set( LD_FLAGS "-Wl,-Bstatic -liberty -Wl,-Bdynamic" )
++
++
++##### other data ################################
++
++configure_file( kminspector.cmake kminspector @ONLY )
++
++install( FILES kde.excludes
++  DESTINATION ${DATA_INSTALL_DIR}/kmtrace )
++
++install( PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/kminspector
++  DESTINATION ${BIN_INSTALL_DIR} )
++
++
++##### ktrace_s (static) #########################
++
++tde_add_library( ktrace_s STATIC
++  SOURCES ktrace.c
++  DESTINATION ${LIB_INSTALL_DIR}
++)
++
++
++##### ktrace (shared) ###########################
++
++tde_add_library( ktrace SHARED
++  SOURCES ksotrace.cpp ktrace.c
++  LINK dl
++  DESTINATION ${LIB_INSTALL_DIR}/kmtrace
++)
++
++
++##### kmtrace (executable) ######################
++
++tde_add_executable( kmtrace
++  SOURCES kmtrace.cpp
++  LINK ${LD_FLAGS} kdecore-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
++
++
++##### demangle (executable) #####################
++
++tde_add_executable( demangle
++  SOURCES demangle.cpp
++  LINK ${LD_FLAGS} ${TQT_LIBRARIES}
++  DESTINATION ${BIN_INSTALL_DIR}
++)
++
++
++##### kmmatch (executable) ######################
++
++tde_add_executable( kmmatch
++  SOURCES match.cpp
++  LINK ${TQT_LIBRARIES}
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/kmtrace/kminspector.cmake b/kmtrace/kminspector.cmake
+new file mode 100644
+index 0000000..c572ba7
+--- /dev/null
++++ b/kmtrace/kminspector.cmake
+@@ -0,0 +1,9 @@
++#! /bin/sh
++
++export MALLOC_TREE=kminspector.tree
++export MALLOC_THRESHOLD=2000
++export LD_PRELOAD=@LIB_INSTALL_DIR@/kmtrace/libktrace.so
++
++$*
++
++cat kminspector.tree | less
+diff --git a/kompare/CMakeLists.txt b/kompare/CMakeLists.txt
+new file mode 100644
+index 0000000..42d5d45
+--- /dev/null
++++ b/kompare/CMakeLists.txt
+@@ -0,0 +1,55 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++add_subdirectory( interfaces )
++add_subdirectory( libdiff2 )
++add_subdirectory( libdialogpages )
++add_subdirectory( komparenavtreepart )
++add_subdirectory( komparepart )
++add_subdirectory( pics )
++
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_SOURCE_DIR}/libdiff2
++  ${CMAKE_CURRENT_SOURCE_DIR}/libdialogpages
++  ${CMAKE_CURRENT_SOURCE_DIR}/komparenavtreepart
++  ${CMAKE_CURRENT_SOURCE_DIR}/komparepart
++  ${CMAKE_CURRENT_SOURCE_DIR}/interfaces
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES kompare.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
++install( FILES kompareui.rc DESTINATION ${DATA_INSTALL_DIR}/kompare )
++
++install( FILES
++    komparenavigationpart.desktop kompareviewpart.desktop
++  DESTINATION ${SERVICETYPES_INSTALL_DIR} )
++
++
++##### kompare (executable) ######################
++
++tde_add_executable( kompare AUTOMOC
++  SOURCES
++    main.cpp kompare_shell.cpp kompareurldialog.cpp
++  LINK
++    dialogpages-static kompareinterface-shared kio-shared
++    kparts-shared ktexteditor-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/kompare/interfaces/CMakeLists.txt b/kompare/interfaces/CMakeLists.txt
+new file mode 100644
+index 0000000..bd6583e
+--- /dev/null
++++ b/kompare/interfaces/CMakeLists.txt
+@@ -0,0 +1,28 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### kompareinterface (shared) #################
++
++tde_add_library( kompareinterface SHARED
++  SOURCES kompareinterface.cpp
++  LINK ${TQT_LIBRARIES}
++  DESTINATION ${LIB_INSTALL_DIR}
++)
+diff --git a/kompare/komparenavtreepart/CMakeLists.txt b/kompare/komparenavtreepart/CMakeLists.txt
+new file mode 100644
+index 0000000..32af473
+--- /dev/null
++++ b/kompare/komparenavtreepart/CMakeLists.txt
+@@ -0,0 +1,36 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_SOURCE_DIR}/../libdiff2
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES komparenavtreepart.desktop
++  DESTINATION ${SERVICES_INSTALL_DIR} )
++
++
++##### libkomparenavtreepart (module) ############
++
++tde_add_kpart( libkomparenavtreepart AUTOMOC
++  SOURCES komparenavtreepart.cpp
++  LINK diff2-static kparts-shared
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/kompare/komparepart/CMakeLists.txt b/kompare/komparepart/CMakeLists.txt
+new file mode 100644
+index 0000000..00fe0e0
+--- /dev/null
++++ b/kompare/komparepart/CMakeLists.txt
+@@ -0,0 +1,46 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_SOURCE_DIR}/../libdiff2
++  ${CMAKE_CURRENT_SOURCE_DIR}/../libdialogpages
++  ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES komparepart.desktop
++  DESTINATION ${SERVICES_INSTALL_DIR} )
++
++install( FILES komparepartui.rc
++  DESTINATION ${DATA_INSTALL_DIR}/kompare )
++
++
++##### libkomparepart (module) ###################
++
++tde_add_kpart( libkomparepart AUTOMOC
++  SOURCES
++    kompare_part.cpp kompareconnectwidget.cpp komparesplitter.cpp
++    komparelistview.cpp kompareprefdlg.cpp komparesaveoptionsbase.ui
++    komparesaveoptionswidget.cpp
++  LINK
++    dialogpages-static diff2-static kompareinterface-shared
++    kparts-shared
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/kompare/libdialogpages/CMakeLists.txt b/kompare/libdialogpages/CMakeLists.txt
+new file mode 100644
+index 0000000..40f61bd
+--- /dev/null
++++ b/kompare/libdialogpages/CMakeLists.txt
+@@ -0,0 +1,26 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_SOURCE_DIR}/../libdiff2
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++
++##### dialogpages (static) ######################
++
++tde_add_library( dialogpages STATIC_PIC AUTOMOC
++  SOURCES
++    settingsbase.cpp diffsettings.cpp filessettings.cpp viewsettings.cpp
++    pagebase.cpp diffpage.cpp filespage.cpp viewpage.cpp
++)
+diff --git a/kompare/libdiff2/CMakeLists.txt b/kompare/libdiff2/CMakeLists.txt
+new file mode 100644
+index 0000000..65dd77e
+--- /dev/null
++++ b/kompare/libdiff2/CMakeLists.txt
+@@ -0,0 +1,31 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_SOURCE_DIR}
++  ${CMAKE_CURRENT_SOURCE_DIR}/../libdialogpages
++  ${CMAKE_CURRENT_SOURCE_DIR}/../komparepart
++  ${CMAKE_CURRENT_SOURCE_DIR}/../interfaces
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++
++##### diff2 (static) ############################
++
++tde_add_library( diff2 STATIC_PIC AUTOMOC
++  SOURCES
++    kompareprocess.cpp komparemodellist.cpp diffmodellist.cpp
++    diffmodel.cpp difference.cpp diffhunk.cpp levenshteintable.cpp
++    parser.cpp parserbase.cpp cvsdiffparser.cpp diffparser.cpp
++    perforceparser.cpp
++)
+diff --git a/kompare/pics/CMakeLists.txt b/kompare/pics/CMakeLists.txt
+new file mode 100644
+index 0000000..96bca44
+--- /dev/null
++++ b/kompare/pics/CMakeLists.txt
+@@ -0,0 +1,12 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++tde_install_icons( )
+diff --git a/kprofilemethod/CMakeLists.txt b/kprofilemethod/CMakeLists.txt
+new file mode 100644
+index 0000000..85ad07e
+--- /dev/null
++++ b/kprofilemethod/CMakeLists.txt
+@@ -0,0 +1,12 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++install( FILES kprofilemethod.h DESTINATION ${INCLUDE_INSTALL_DIR} )
+diff --git a/kspy/CMakeLists.txt b/kspy/CMakeLists.txt
+new file mode 100644
+index 0000000..2dee53a
+--- /dev/null
++++ b/kspy/CMakeLists.txt
+@@ -0,0 +1,40 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### headers ###################################
++
++install( FILES
++    kspy.h
++  DESTINATION ${INCLUDE_INSTALL_DIR} )
++
++
++##### kspy (shared) #############################
++
++tde_add_library( kspy SHARED AUTOMOC
++  SOURCES
++    navviewitem.cpp propsview.cpp navview.cpp spy.cpp sigslotview.cpp
++    receiversview.cpp classinfoview.cpp
++  VERSION 1.2.0
++  LINK kdeui-shared
++  DESTINATION ${LIB_INSTALL_DIR}
++)
+diff --git a/kstartperf/CMakeLists.txt b/kstartperf/CMakeLists.txt
+new file mode 100644
+index 0000000..5d377e7
+--- /dev/null
++++ b/kstartperf/CMakeLists.txt
+@@ -0,0 +1,38 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### kstartperf (shared) #######################
++
++tde_add_library( kstartperf SHARED AUTOMOC
++  SOURCES libkstartperf.c
++  VERSION 1.0.0
++  LINK ltdl
++  DESTINATION ${LIB_INSTALL_DIR}
++)
++
++
++##### kstartperf (executable) ###################
++
++tde_add_executable( kstartperf
++  SOURCES kstartperf.cpp
++  LINK kdecore-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/kuiviewer/CMakeLists.txt b/kuiviewer/CMakeLists.txt
+new file mode 100644
+index 0000000..0376ea1
+--- /dev/null
++++ b/kuiviewer/CMakeLists.txt
+@@ -0,0 +1,69 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++tde_install_icons( kuiviewer )
++
++install( FILES
++    kuiviewerui.rc
++  DESTINATION ${DATA_INSTALL_DIR}/kuiviewer )
++
++install( FILES
++    kuiviewer.desktop
++  DESTINATION ${XDG_APPS_INSTALL_DIR} )
++
++install( FILES
++    kuiviewer_part.desktop designerthumbnail.desktop
++  DESTINATION ${SERVICES_INSTALL_DIR} )
++
++install( FILES
++    kuiviewer_part.rc
++  DESTINATION ${DATA_INSTALL_DIR}/kuiviewerpart )
++
++
++##### libkuiviewerpart (module) #################
++
++tde_add_kpart( libkuiviewerpart AUTOMOC
++  SOURCES kuiviewer_part.cpp
++  LINK ktexteditor-shared qui
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
++
++
++##### quithumbnail (module) #####################
++
++tde_add_kpart( quithumbnail
++  SOURCES quicreator.cpp
++  LINK ${TQT_LIBRARIES} qui
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
++
++
++##### kuiviewer (executable) ####################
++
++tde_add_executable( kuiviewer AUTOMOC
++  SOURCES main.cpp kuiviewer.cpp
++  LINK ktexteditor-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/kunittest/CMakeLists.txt b/kunittest/CMakeLists.txt
+new file mode 100644
+index 0000000..6b3aefd
+--- /dev/null
++++ b/kunittest/CMakeLists.txt
+@@ -0,0 +1,49 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### headers ###################################
++
++install( FILES
++    runnergui.h
++  DESTINATION ${INCLUDE_INSTALL_DIR}/kunittest )
++
++install( PROGRAMS
++    kunittest kunittestmod kunittest_debughelper
++  DESTINATION ${BIN_INSTALL_DIR} )
++
++
++##### kunittestgui (shared) #####################
++
++tde_add_library( kunittestgui SHARED AUTOMOC
++  SOURCES testerwidget.ui runnergui.cpp dcopinterface.skel
++  LINK kunittest-shared
++  DESTINATION ${LIB_INSTALL_DIR}
++)
++
++
++##### kunittestguimodrunner (executable) ########
++
++tde_add_executable( kunittestguimodrunner
++  SOURCES guimodrunner.cpp
++  LINK kunittestgui-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/poxml/CMakeLists.txt b/poxml/CMakeLists.txt
+new file mode 100644
+index 0000000..ed6c1ae
+--- /dev/null
++++ b/poxml/CMakeLists.txt
+@@ -0,0 +1,70 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++add_definitions( -fexceptions )
++
++add_subdirectory( antlr )
++
++
++include_directories(
++  ${CMAKE_CURRENT_SOURCE_DIR}/antlr
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### split2po (executable) #####################
++
++tde_add_executable( split2po
++  SOURCES split.cpp parser.cpp
++  LINK kio-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
++
++
++##### xml2pot (executable) ######################
++
++tde_add_executable( xml2pot
++  SOURCES xml2pot.cpp parser.cpp
++  LINK kio-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
++
++
++##### po2xml (executable) #######################
++
++tde_add_executable( po2xml
++  SOURCES GettextLexer.cpp GettextParser.cpp po2xml.cpp parser.cpp
++  LINK antlr-static kio-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
++
++
++##### swappo (executable) #######################
++
++tde_add_executable( swappo
++  SOURCES GettextLexer.cpp GettextParser.cpp swappo.cpp parser.cpp
++  LINK antlr-static kio-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
++
++
++##### transxx (executable) ######################
++
++tde_add_executable( transxx
++  SOURCES GettextLexer.cpp GettextParser.cpp transxx.cpp parser.cpp
++  LINK antlr-static kio-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/poxml/antlr/CMakeLists.txt b/poxml/antlr/CMakeLists.txt
+new file mode 100644
+index 0000000..636d2f7
+--- /dev/null
++++ b/poxml/antlr/CMakeLists.txt
+@@ -0,0 +1,12 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++add_subdirectory( src )
+diff --git a/poxml/antlr/src/CMakeLists.txt b/poxml/antlr/src/CMakeLists.txt
+new file mode 100644
+index 0000000..cc54d00
+--- /dev/null
++++ b/poxml/antlr/src/CMakeLists.txt
+@@ -0,0 +1,33 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++string( REPLACE ${TQT_CXX_FLAGS} "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} )
++
++include_directories(
++  ${CMAKE_CURRENT_SOURCE_DIR}/..
++)
++
++
++##### antlr (static) ############################
++
++tde_add_library( antlr STATIC_PIC
++  SOURCES
++    ANTLRException.cpp ASTFactory.cpp ASTRefCount.cpp BaseAST.cpp
++    BitSet.cpp CharBuffer.cpp CharScanner.cpp CommonAST.cpp
++    CommonASTWithHiddenTokens.cpp CommonHiddenStreamToken.cpp
++    CommonToken.cpp InputBuffer.cpp LLkParser.cpp
++    LexerSharedInputState.cpp MismatchedCharException.cpp
++    MismatchedTokenException.cpp NoViableAltException.cpp
++    NoViableAltForCharException.cpp Parser.cpp ParserSharedInputState.cpp
++    RecognitionException.cpp String.cpp Token.cpp TokenBuffer.cpp
++    TokenStreamBasicFilter.cpp TokenStreamHiddenTokenFilter.cpp
++    TokenStreamSelector.cpp TreeParser.cpp TreeParserSharedInputState.cpp
++)
+diff --git a/scheck/CMakeLists.txt b/scheck/CMakeLists.txt
+new file mode 100644
+index 0000000..bef3a46
+--- /dev/null
++++ b/scheck/CMakeLists.txt
+@@ -0,0 +1,34 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES scheck.themerc DESTINATION ${DATA_INSTALL_DIR}/kstyle/themes )
++
++
++##### scheck (module) ############################
++
++tde_add_kpart( scheck AUTOMOC
++  SOURCES scheck.cpp
++  LINK kdeui-shared
++  DESTINATION ${PLUGIN_INSTALL_DIR}
++)
+diff --git a/scripts/CMakeLists.txt b/scripts/CMakeLists.txt
+new file mode 100644
+index 0000000..6ed8ca8
+--- /dev/null
++++ b/scripts/CMakeLists.txt
+@@ -0,0 +1,43 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++install( PROGRAMS
++    create_makefile create_makefiles adddebug cheatmake makeobj kde-build
++    build-progress.sh pruneemptydirs cvsbackport cvsversion cvscheck
++    cvslastchange cvslastlog cvsrevertlast noncvslist cvs-clean cvs2dist
++    cvsblame cvsforwardport create_cvsignore colorsvn create_svnignore
++    nonsvnlist svn2dist svnaddcurrentdir svnbackport svnforwardport
++    svn-clean svngettags svnlastchange svnlastlog svnrevertlast
++    svnversions svnchangesince findmissingcrystal kdesvn-build
++    kdedoc qtdoc extractrc extractattr zonetab2pot.py licensecheck
++    fixkdeincludes fixuifiles includemocs cxxmetric extend_dmalloc
++    kdekillall kdelnk2desktop.py package_crystalsvg png2mng.pl
++    kdemangen.pl
++  DESTINATION ${BIN_INSTALL_DIR} )
++
++
++install( FILES
++    kdesvn-buildrc.xml
++  DESTINATION ${DATA_INSTALL_DIR}/katepart/syntax )
++
++
++macro( _pod2man )
++  foreach( _pod ${ARGN} )
++    add_custom_command(
++      OUTPUT ${_pod}.1
++      COMMAND pod2man ${CMAKE_CURRENT_SOURCE_DIR}/${_pod} > ${_pod}.1
++      DEPENDS ${_pod} )
++    add_custom_target( "${_pod}-man" ALL DEPENDS ${_pod}.1 )
++    install( FILES ${CMAKE_CURRENT_BINARY_DIR}/${_pod}.1 DESTINATION ${MAN_INSTALL_DIR} )
++  endforeach( )
++endmacro()
++
++_pod2man( kde-build kdesvn-build cvsversion cvscheck noncvslist cvsblame includemocs )
+diff --git a/kcachegrind/CMakeLists.txt b/kcachegrind/CMakeLists.txt
+new file mode 100644
+index 0000000..8c2da80
+--- /dev/null
++++ b/kcachegrind/CMakeLists.txt
+@@ -0,0 +1,21 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include( ConfigureChecks.cmake )
++
++set( KCACHEGRIND_VERSION "0.4.6kde" )
++configure_file( version.h.in version.h @ONLY )
++configure_file( kcachegrind.spec.in kcachegrind.spec @ONLY )
++configure_file( kcachegrind.lsm.in kcachegrind.lsm @ONLY )
++
++add_subdirectory( kcachegrind )
++add_subdirectory( pics )
++add_subdirectory( converters )
+diff --git a/kcachegrind/ConfigureChecks.cmake b/kcachegrind/ConfigureChecks.cmake
+new file mode 100644
+index 0000000..e9b5cc2
+--- /dev/null
++++ b/kcachegrind/ConfigureChecks.cmake
+@@ -0,0 +1,12 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++check_function_exists( mmap HAVE_MMAP )
+diff --git a/kcachegrind/converters/CMakeLists.txt b/kcachegrind/converters/CMakeLists.txt
+new file mode 100644
+index 0000000..03e86bc
+--- /dev/null
++++ b/kcachegrind/converters/CMakeLists.txt
+@@ -0,0 +1,15 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++install( PROGRAMS
++    hotshot2calltree op2calltree pprof2calltree
++    dprof2calltree memprof2calltree
++  DESTINATION ${BIN_INSTALL_DIR} )
+diff --git a/kcachegrind/pics/CMakeLists.txt b/kcachegrind/pics/CMakeLists.txt
+new file mode 100644
+index 0000000..ee29446
+--- /dev/null
++++ b/kcachegrind/pics/CMakeLists.txt
+@@ -0,0 +1,14 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++add_subdirectory( hicolor )
++
++tde_install_icons( DESTINATION ${DATA_INSTALL_DIR}/kcachegrind/icons )
+diff --git a/kcachegrind/pics/hicolor/CMakeLists.txt b/kcachegrind/pics/hicolor/CMakeLists.txt
+new file mode 100644
+index 0000000..1c162a1
+--- /dev/null
++++ b/kcachegrind/pics/hicolor/CMakeLists.txt
+@@ -0,0 +1,12 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++tde_install_icons( DESTINATION ${DATA_INSTALL_DIR}/kcachegrind/icons )
+diff --git a/kcachegrind/kcachegrind/CMakeLists.txt b/kcachegrind/kcachegrind/CMakeLists.txt
+new file mode 100644
+index 0000000..cd284c3
+--- /dev/null
++++ b/kcachegrind/kcachegrind/CMakeLists.txt
+@@ -0,0 +1,50 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_SOURCE_DIR}
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++tde_install_icons( )
++install( FILES kcachegrind.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
++install( FILES kcachegrindui.rc tips DESTINATION ${DATA_INSTALL_DIR}/kcachegrind )
++install( FILES x-kcachegrind.desktop DESTINATION ${MIME_INSTALL_DIR}/application )
++
++
++##### kcachegrind (executable) ##################
++
++tde_add_executable( kcachegrind AUTOMOC
++  SOURCES
++    functionselectionbase.ui stackselectionbase.ui partselectionbase.ui
++    configdlgbase.ui loader.cpp cachegrindloader.cpp treemap.cpp pool.cpp
++    main.cpp configuration.cpp functionselection.cpp coverage.cpp
++    partgraph.cpp toplevel.cpp stackselection.cpp stackbrowser.cpp
++    subcost.cpp tracedata.cpp partselection.cpp configdlg.cpp
++    utils.cpp fixcost.cpp traceitemview.cpp instrview.cpp tabview.cpp
++    sourceview.cpp callmapview.cpp callview.cpp coverageview.cpp
++    costtypeview.cpp partview.cpp listutils.cpp costtypeitem.cpp
++    multiview.cpp callitem.cpp coverageitem.cpp sourceitem.cpp
++    costlistitem.cpp partlistitem.cpp functionitem.cpp instritem.cpp
++    stackitem.cpp callgraphview.cpp
++  LINK kio-shared
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/umbrello/CMakeLists.txt b/umbrello/CMakeLists.txt
+new file mode 100644
+index 0000000..5429f5a
+--- /dev/null
++++ b/umbrello/CMakeLists.txt
+@@ -0,0 +1,19 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include( ConfigureChecks.cmake )
++
++# generate version.h
++file( READ VERSION text )
++string( REGEX REPLACE "\n" "" text "${text}" )
++file( WRITE ${CMAKE_CURRENT_BINARY_DIR}/version.h "#define UMBRELLO_VERSION \"${text}\"\n" )
++
++add_subdirectory( umbrello )
+diff --git a/umbrello/ConfigureChecks.cmake b/umbrello/ConfigureChecks.cmake
+new file mode 100644
+index 0000000..2167ab9
+--- /dev/null
++++ b/umbrello/ConfigureChecks.cmake
+@@ -0,0 +1,20 @@
++#################################################
++#
++#  (C) 2010-2011 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++pkg_search_module( XML2 libxml-2.0 )
++if( NOT XML2_FOUND )
++  tde_message_fatal( "libxml-2.0 is required, but was not found on your system" )
++endif( )
++
++pkg_search_module( XSLT libxslt )
++if( NOT XSLT_FOUND )
++  tde_message_fatal( "libxslt is required, but was not found on your system" )
++endif( )
+diff --git a/umbrello/umbrello/CMakeLists.txt b/umbrello/umbrello/CMakeLists.txt
+new file mode 100644
+index 0000000..f7c299b
+--- /dev/null
++++ b/umbrello/umbrello/CMakeLists.txt
+@@ -0,0 +1,86 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++add_subdirectory( codeimport )
++add_subdirectory( dialogs )
++add_subdirectory( docgenerators )
++add_subdirectory( clipboard )
++add_subdirectory( pics )
++add_subdirectory( codegenerators )
++add_subdirectory( headings )
++add_subdirectory( refactoring )
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_BINARY_DIR}/.. # for version.h
++  ${CMAKE_CURRENT_BINARY_DIR}/dialogs
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++tde_install_icons( )
++install( FILES x-umbrello.desktop DESTINATION ${MIME_INSTALL_DIR}/application )
++install( FILES tips umbrelloui.rc DESTINATION ${DATA_INSTALL_DIR}/umbrello )
++install( FILES umbrello.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
++
++
++##### umbrello (executable) #####################
++
++tde_add_executable( umbrello AUTOMOC
++  SOURCES
++    activitywidget.cpp actor.cpp actorwidget.cpp aligntoolbar.cpp
++    artifact.cpp artifactwidget.cpp association.cpp associationwidget.cpp
++    assocrules.cpp attribute.cpp boxwidget.cpp classifier.cpp
++    classifiercodedocument.cpp classifierlistitem.cpp
++    classifierwidget.cpp cmdlineexportallviewsevent.cpp
++    codeaccessormethod.cpp codeblock.cpp codeblockwithcomments.cpp
++    codeclassfield.cpp codeclassfielddeclarationblock.cpp
++    codecomment.cpp codedocument.cpp codegenerationpolicy.cpp
++    codegenerator.cpp codegenobjectwithtextblocks.cpp codemethodblock.cpp
++    codeoperation.cpp codeparameter.cpp component.cpp componentwidget.cpp
++    configurable.cpp datatypewidget.cpp dialog_utils.cpp
++    docwindow.cpp entity.cpp entityattribute.cpp entitywidget.cpp
++    enum.cpp enumliteral.cpp enumwidget.cpp floatingtextwidget.cpp
++    floatingtextwidgetcontroller.cpp folder.cpp forkjoinwidget.cpp
++    kplayerslideraction.cpp hierarchicalcodeblock.cpp import_rose.cpp
++    kstartuplogo.cpp linepath.cpp linkwidget.cpp listpopupmenu.cpp
++    main.cpp messagewidget.cpp messagewidgetcontroller.cpp
++    model_utils.cpp node.cpp nodewidget.cpp notewidget.cpp
++    notewidgetcontroller.cpp objectwidget.cpp objectwidgetcontroller.cpp
++    object_factory.cpp operation.cpp optionstate.cpp ownedcodeblock.cpp
++    ownedhierarchicalcodeblock.cpp package.cpp packagewidget.cpp
++    petalnode.cpp petaltree2uml.cpp plugin.cpp pluginloader.cpp
++    seqlinewidget.cpp statewidget.cpp stereotype.cpp template.cpp
++    textblock.cpp toolbarstate.cpp toolbarstatearrow.cpp
++    toolbarstateassociation.cpp toolbarstatefactory.cpp
++    toolbarstatemessages.cpp toolbarstateother.cpp toolbarstatepool.cpp
++    uml.cpp umlattributelist.cpp umlentityattributelist.cpp
++    umlcanvasobject.cpp umlclassifierlistitemlist.cpp umldoc.cpp
++    umllistview.cpp umllistviewitem.cpp umlnamespace.cpp umlobject.cpp
++    umlobjectlist.cpp umlrole.cpp umlview.cpp umlviewcanvas.cpp
++    umlviewimageexporter.cpp umlviewimageexporterall.cpp
++    umlviewimageexportermodel.cpp umlwidget.cpp umlwidgetcontroller.cpp
++    uniqueid.cpp usecase.cpp usecasewidget.cpp widgetbase.cpp
++    widget_factory.cpp widget_utils.cpp worktoolbar.cpp
++  LINK
++    refactoring-static codeimport-static kdevcppparser-static clipboard-static
++    codegenerator-static docgenerators-static dialogs-static
++    kdeprint-shared kio-shared ${XML2_LIBRARIES} ${XSLT_LIBRARIES}
++  DESTINATION ${BIN_INSTALL_DIR}
++)
+diff --git a/umbrello/umbrello/clipboard/CMakeLists.txt b/umbrello/umbrello/clipboard/CMakeLists.txt
+new file mode 100644
+index 0000000..a2e6113
+--- /dev/null
++++ b/umbrello/umbrello/clipboard/CMakeLists.txt
+@@ -0,0 +1,25 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++
++##### clipboard (static) ########################
++
++tde_add_library( clipboard STATIC AUTOMOC
++  SOURCES
++    umldrag.cpp umlclipboard.cpp idchangelog.cpp
++)
+diff --git a/umbrello/umbrello/codegenerators/CMakeLists.txt b/umbrello/umbrello/codegenerators/CMakeLists.txt
+new file mode 100644
+index 0000000..7d68333
+--- /dev/null
++++ b/umbrello/umbrello/codegenerators/CMakeLists.txt
+@@ -0,0 +1,54 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_BINARY_DIR}/../dialogs
++  ${CMAKE_CURRENT_SOURCE_DIR}/../dialogs
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++
++##### codegenerator (static) ####################
++
++tde_add_library( codegenerator STATIC AUTOMOC
++  SOURCES
++    codegenfactory.cpp classifierinfo.cpp javacodegenerator.cpp
++    javaantcodedocument.cpp javacodeclassfield.cpp
++    javaclassifiercodedocument.cpp javacodecomment.cpp
++    javacodedocumentation.cpp javacodeoperation.cpp
++    javacodeaccessormethod.cpp javaclassdeclarationblock.cpp
++    javacodeclassfielddeclarationblock.cpp javacodegenerationpolicy.cpp
++    javacodegenerationpolicypage.cpp javacodegenerationformbase.ui
++    cppcodegenerator.cpp cppcodedocumentation.cpp cppcodeclassfield.cpp
++    cppcodecomment.cpp cppmakecodedocument.cpp cppsourcecodedocument.cpp
++    cppsourcecodeoperation.cpp cppsourcecodeaccessormethod.cpp
++    cppsourcecodeclassfielddeclarationblock.cpp
++    cppheadercodedocument.cpp cppheaderclassdeclarationblock.cpp
++    cppheadercodeoperation.cpp cppheadercodeaccessormethod.cpp
++    cppheadercodeclassfielddeclarationblock.cpp
++    cppcodegenerationpolicy.cpp cppcodegenerationpolicypage.cpp
++    cppcodegenerationformbase.ui cppcodegenerationform.cpp
++    rubycodegenerator.cpp rubycodeclassfield.cpp
++    rubyclassifiercodedocument.cpp rubycodecomment.cpp
++    rubycodedocumentation.cpp rubycodeoperation.cpp
++    rubycodeaccessormethod.cpp rubyclassdeclarationblock.cpp
++    rubycodeclassfielddeclarationblock.cpp rubycodegenerationpolicy.cpp
++    rubycodegenerationpolicypage.cpp rubycodegenerationformbase.ui
++    simplecodegenerator.cpp adawriter.cpp aswriter.cpp cppwriter.cpp
++    csharpwriter.cpp dwriter.cpp javawriter.cpp jswriter.cpp
++    idlwriter.cpp pascalwriter.cpp perlwriter.cpp php5writer.cpp
++    phpwriter.cpp pythonwriter.cpp rubywriter.cpp sqlwriter.cpp
++    tclwriter.cpp xmlschemawriter.cpp xmlelementcodeblock.cpp
++    xmlcodecomment.cpp codegen_utils.cpp
++)
+diff --git a/umbrello/umbrello/codeimport/CMakeLists.txt b/umbrello/umbrello/codeimport/CMakeLists.txt
+new file mode 100644
+index 0000000..d616ca6
+--- /dev/null
++++ b/umbrello/umbrello/codeimport/CMakeLists.txt
+@@ -0,0 +1,29 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++add_subdirectory( kdevcppparser )
++
++
++include_directories(
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++
++##### codeimport (static) ########################
++
++tde_add_library( codeimport STATIC
++  SOURCES
++    adaimport.cpp classimport.cpp cppimport.cpp idlimport.cpp
++    import_utils.cpp javaimport.cpp nativeimportbase.cpp pascalimport.cpp
++    pythonimport.cpp
++)
+diff --git a/umbrello/umbrello/codeimport/kdevcppparser/CMakeLists.txt b/umbrello/umbrello/codeimport/kdevcppparser/CMakeLists.txt
+new file mode 100644
+index 0000000..6c16fe3
+--- /dev/null
++++ b/umbrello/umbrello/codeimport/kdevcppparser/CMakeLists.txt
+@@ -0,0 +1,24 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++
++##### kdevcppparser (static) ####################
++
++tde_add_library( kdevcppparser STATIC
++  SOURCES
++    ast.cpp driver.cpp errors.cpp lexer.cpp lookup.cpp parser.cpp
++    tree_parser.cpp urlutil.cpp ast_utils.cpp cpptree2uml.cpp
++)
+diff --git a/umbrello/umbrello/dialogs/CMakeLists.txt b/umbrello/umbrello/dialogs/CMakeLists.txt
+new file mode 100644
+index 0000000..fbe04fa
+--- /dev/null
++++ b/umbrello/umbrello/dialogs/CMakeLists.txt
+@@ -0,0 +1,40 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++
++##### dialogs (static) ##########################
++
++tde_add_library( dialogs STATIC AUTOMOC
++  SOURCES
++    codegenerationoptionsbase.ui codegenerationpolicybase.ui
++    codegenerationwizardbase.ui codeviewerdialogbase.ui
++    codevieweroptionsbase.ui diagrampropertiespage.ui
++    exportallviewsdialogbase.ui umlrolepropertiesbase.ui
++    activitydialog.cpp activitypage.cpp assocgenpage.cpp
++    assocpage.cpp assocpropdlg.cpp assocrolepage.cpp classgenpage.cpp
++    classifierlistpage.cpp classoptionspage.cpp classpropdlg.cpp
++    classwizard.cpp codeeditor.cpp codegenerationoptionspage.cpp
++    codegenerationpolicypage.cpp codegenerationwizard.cpp
++    codeviewerdialog.cpp codevieweroptionspage.cpp
++    defaultcodegenpolicypage.cpp diagramprintpage.cpp
++    exportallviewsdialog.cpp notedialog.cpp overwritedialogue.cpp
++    pkgcontentspage.cpp parmpropdlg.cpp selectopdlg.cpp settingsdlg.cpp
++    statedialog.cpp umlattributedialog.cpp umlentityattributedialog.cpp
++    umloperationdialog.cpp umltemplatedialog.cpp umlroledialog.cpp
++    umlroleproperties.cpp umlviewdialog.cpp umlwidgetcolorpage.cpp
++)
+diff --git a/umbrello/umbrello/docgenerators/CMakeLists.txt b/umbrello/umbrello/docgenerators/CMakeLists.txt
+new file mode 100644
+index 0000000..7ab19cf
+--- /dev/null
++++ b/umbrello/umbrello/docgenerators/CMakeLists.txt
+@@ -0,0 +1,48 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_CURRENT_BINARY_DIR}/../.. # for version.h
++  ${CMAKE_CURRENT_SOURCE_DIR}/..
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++  ${XML2_INCLUDE_DIRS}
++)
++
++link_directories(
++  ${TQT_LIBRARY_DIRS}
++)
++
++
++##### other data ################################
++
++install( FILES
++    xmi2docbook.xsl docbook2xhtml.xsl xmi.css common.ent
++  DESTINATION ${DATA_INSTALL_DIR}/umbrello )
++
++
++##### umbodoc (executable) ######################
++
++tde_add_executable( umbodoc
++  SOURCES main.cpp
++  LINK kdecore-shared ${XML2_LIBRARIES} ${XSLT_LIBRARIES}
++  DESTINATION ${BIN_INSTALL_DIR}
++)
++
++
++##### docgenerators (static) ####################
++
++tde_add_library( docgenerators STATIC AUTOMOC
++  SOURCES
++    docbookgenerator.h docbookgenerator.cpp xhtmlgenerator.cpp
++)
+diff --git a/umbrello/umbrello/headings/CMakeLists.txt b/umbrello/umbrello/headings/CMakeLists.txt
+new file mode 100644
+index 0000000..aeac637
+--- /dev/null
++++ b/umbrello/umbrello/headings/CMakeLists.txt
+@@ -0,0 +1,16 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++install( FILES
++    heading.adb heading.ads heading.as heading.cpp heading.cs heading.d
++    heading.h heading.idl heading.java heading.js heading.php heading.pm
++    heading.py heading.rb heading.sql heading.xsd
++  DESTINATION ${DATA_INSTALL_DIR}/umbrello/headings )
+diff --git a/umbrello/umbrello/pics/CMakeLists.txt b/umbrello/umbrello/pics/CMakeLists.txt
+new file mode 100644
+index 0000000..2d350aa
+--- /dev/null
++++ b/umbrello/umbrello/pics/CMakeLists.txt
+@@ -0,0 +1,53 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++tde_install_icons(
++  umbrello_diagram_activity umbrello_diagram_class
++  umbrello_diagram_collaboration umbrello_diagram_component
++  umbrello_diagram_deployment umbrello_diagram_sequence
++  umbrello_diagram_state umbrello_diagram_usecase
++  umbrello_diagram_entityrelationship )
++
++
++install( FILES
++    actor.png aggregation.png align_left.png align_right.png
++    align_top.png align_bottom.png align_vert_middle.png
++    align_hori_middle.png align_vert_distribute.png
++    align_hori_distribute.png anchor.png andline.png arrow.png
++    association.png choice-rhomb.png choice-round.png component.png
++    composition.png containment.png CVglobal_meth.png CVglobal_var.png
++    CVimplementation_meth.png CVimplementation_signal.png
++    CVimplementation_slot.png CVimplementation_var.png CVnamespace.png
++    CVprivate_meth.png CVprivate_signal.png CVprivate_slot.png
++    CVprivate_var.png CVprotected_meth.png CVprotected_signal.png
++    CVprotected_slot.png CVprotected_var.png CVpublic_meth.png
++    CVpublic_signal.png CVpublic_slot.png CVpublic_var.png CVstruct.png
++    deep-history.png shallow-history.png dependency.png end_state.png
++    generalisation.png initial_state.png interface.png join.png
++    junction.png datatype.png enum.png message-synchronous.png
++    message-asynchronous.png note.png object.png startlogo.png
++    template.png text.png class.png uniassociation.png usecase.png
++    branch.png fork.png state-fork.png package.png subsystem.png
++    artifact.png box.png node.png entity.png relationship.png
++    cursor-actor.png cursor-andline.png cursor-choice-rhomb.png
++    cursor-choice-round.png cursor-deep-history.png cursor-join.png
++    cursor-junction.png cursor-shallow-history.png cursor-state-fork.png
++    cursor-usecase.png cursor-initial_state.png cursor-package.png
++    cursor-aggregation.png cursor-component.png cursor-containment.png
++    cursor-interface.png cursor-datatype.png cursor-enum.png
++    cursor-text.png cursor-anchor.png cursor-composition.png
++    cursor-message-asynchronous.png cursor-class.png cursor-artifact.png
++    cursor-dependency.png cursor-message-synchronous.png
++    cursor-uniassociation.png cursor-association.png cursor-end_state.png
++    cursor-node.png cursor-box.png cursor-fork.png cursor-note.png
++    cursor-branch.png cursor-generalisation.png cursor-object.png
++    cursor-entity.png cursor-relationship.png
++  DESTINATION ${DATA_INSTALL_DIR}/umbrello/pics )
+diff --git a/umbrello/umbrello/refactoring/CMakeLists.txt b/umbrello/umbrello/refactoring/CMakeLists.txt
+new file mode 100644
+index 0000000..fd20459
+--- /dev/null
++++ b/umbrello/umbrello/refactoring/CMakeLists.txt
+@@ -0,0 +1,24 @@
++#################################################
++#
++#  (C) 2012 Serghei Amelian
++#  serghei (DOT) amelian (AT) gmail.com
++#
++#  Improvements and feedback are welcome
++#
++#  This file is released under GPL >= 2
++#
++#################################################
++
++include_directories(
++  ${CMAKE_CURRENT_BINARY_DIR}
++  ${CMAKE_BINARY_DIR}
++  ${TDE_INCLUDE_DIR}
++  ${TQT_INCLUDE_DIRS}
++)
++
++
++##### refactoring (static) ######################
++
++tde_add_library( refactoring STATIC AUTOMOC
++  SOURCES refactoringassistant.cpp
++)

@@ -1,0 +1,133 @@
+--- kdemultimedia/arts/runtime/Makefile.am.ORI	2012-07-31 13:56:06.508165053 +0200
++++ kdemultimedia/arts/runtime/Makefile.am	2012-07-31 13:57:03.018059604 +0200
+@@ -11,7 +11,7 @@
+   structurebuilder_impl.cc structures_impl.cc moduleinfo.cc \
+   compatibility.cc localfactory_impl.cc artsbuilderloader_impl.cc
+ 
+-libartsbuilder_la_LIBADD = -lmcop -lartsflow $(LIBDL)
++libartsbuilder_la_LIBADD = -lmcop -lartsflow -lartsflow_idl $(LIBDL)
+ libartsbuilder_la_COMPILE_FIRST = artsbuilder.h
+ libartsbuilder_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) \
+   -no-undefined
+--- kdemultimedia/arts/gui/kde/Makefile.am.ORI	2012-07-31 14:06:50.128691312 +0200
++++ kdemultimedia/arts/gui/kde/Makefile.am	2012-07-31 14:07:00.431493289 +0200
+@@ -15,7 +15,7 @@
+   klevelmeter_normalbars.cpp klevelmeter_firebars.cpp \
+   ktickmarks_impl.cpp kvolumefader_impl.cpp klabel_impl.cpp
+ 
+-libartsgui_kde_la_LIBADD = $(LIB_KIO) -lkdecore -lkdeui \
++libartsgui_kde_la_LIBADD = $(LIB_KIO) -lkdecore -lkdeui -lkdefx -lqt-mt \
+   $(top_builddir)/arts/gui/common/libartsgui_idl.la
+ libartsgui_kde_la_LDFLAGS = $(all_libraries) -no-undefined
+ libartsgui_kde_la_COMPILE_FIRST = ../common/artsgui.h
+--- kdemultimedia/arts/modules/synth/Makefile.am.ORI	2012-07-31 12:30:46.465821368 +0000
++++ kdemultimedia/arts/modules/synth/Makefile.am	2012-07-31 12:32:09.287170210 +0000
+@@ -31,7 +31,7 @@
+ libartsmodulessynth_la_LIBADD = \
+ 	$(top_builddir)/arts/runtime/libartsbuilder.la \
+ 	$(top_builddir)/arts/midi/libartsmidi_idl.la \
+-	-lartsflow -lartsgsl -lartsflow_idl -lmcop
++	-lartsflow -lartsgsl -lartsflow_idl -lmcop -lglib-2.0
+ 
+ #libartsmodulessynth_la_LIBADD = $(top_builddir)/arts/gui/common/libartsgui_idl.la $(top_builddir)/arts/midi/libartsmidi_idl.la -lartsflow -lartsflow_idl -lmcop $(LIBDL) $(LIB_KDEUI) $(LIB_KDECORE)
+ libartsmodulessynth_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -lartsflow -lartsgsl -no-undefined
+--- kdemultimedia/arts/modules/common/Makefile.am.ORI	2012-07-31 12:36:08.682126035 +0000
++++ kdemultimedia/arts/modules/common/Makefile.am	2012-07-31 12:36:17.362939295 +0000
+@@ -25,7 +25,7 @@
+ 	$(top_builddir)/arts/gui/common/libartsgui_idl.la \
+ 	$(top_builddir)/arts/midi/libartsmidi_idl.la \
+ 	$(top_builddir)/arts/modules/synth/libartsmodulessynth.la \
+-	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE)
++	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) -lqt-mt -lvorbisfile
+ 
+ libartsmodulescommon_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -no-undefined
+ 
+--- kdemultimedia/juk/Makefile.am.ORI	2012-07-31 14:39:39.222531330 +0200
++++ kdemultimedia/juk/Makefile.am	2012-07-31 14:40:03.805986466 +0200
+@@ -85,7 +85,7 @@
+ ##################################################
+ 
+ juk_LDADD = -lm $(LDADD_GST) $(mblibs) $(LIB_KIO) $(taglib_libs) $(akode_libs) $(LIB_KHTML) $(LIB_ARTS)
+-juk_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDFLAGS_GST) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor -lmcop -lartsflow_idl -lkmedia2_idl -lsoundserver_idl
++juk_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDFLAGS_GST) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor -lmcop -lartsflow_idl -lkmedia2_idl -lsoundserver_idl -lakode
+ 
+ KDE_CXXFLAGS = $(USE_EXCEPTIONS)
+ 
+--- kdemultimedia/kmid/Makefile.am.ORI	2012-07-31 14:42:26.666868929 +0200
++++ kdemultimedia/kmid/Makefile.am	2012-07-31 14:43:01.345123193 +0200
+@@ -4,7 +4,7 @@
+ lib_LTLIBRARIES = libkmidlib.la
+ 
+ libkmidlib_la_LDFLAGS = $(all_libraries)
+-libkmidlib_la_LIBADD = $(LIB_KFILE) $(LIB_KPARTS) $(LIB_KIO) -lkmid
++libkmidlib_la_LIBADD = $(LIB_KFILE) $(LIB_KPARTS) $(LIB_KIO) -lkmid -lqt-mt -lkdeui -lDCOP -lkdecore
+ 
+ libkmidpart_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -module
+ libkmidpart_la_LIBADD = libkmidlib.la
+--- kdemultimedia/kmix/Makefile.am.ORI	2012-07-31 14:45:49.958546243 +0200
++++ kdemultimedia/kmix/Makefile.am	2012-07-31 14:47:51.780002978 +0200
+@@ -25,13 +25,13 @@
+ 	volume.cpp kledbutton.cpp verticaltext.cpp mixerIface.skel \
+ 	kmixtoolbox.cpp mixertoolbox.cpp dialogviewconfiguration.cpp KMixApp.cpp dialogselectmaster.cpp
+ 
+-kmix_la_LIBADD = $(LIB_KDEUI) $(LIB_KUTILS) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND)
++kmix_la_LIBADD = $(LIB_KDEUI) $(LIB_KUTILS) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND) -lqt-mt -lkdecore -lDCOP
+ kmix_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -avoid-version
+ 
+ kmixctrl_la_SOURCES = kmixctrl.cpp mixer.cpp mixset.cpp mixdevice.cpp volume.cpp mixerIface.skel \
+ 	mixertoolbox.cpp mixer_backend.cpp
+ 
+-kmixctrl_la_LIBADD = $(LIB_KDECORE) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND)
++kmixctrl_la_LIBADD = $(LIB_KDECORE) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND) -lqt-mt -lDCOP
+ kmixctrl_la_LDFLAGS = $(all_libraries) -module -avoid-version
+ 
+ kmix_panelapplet_la_SOURCES = kmixapplet.cpp \
+--- kdemultimedia/libkcddb/Makefile.am.ORI	2012-07-31 14:54:00.740438712 +0200
++++ kdemultimedia/libkcddb/Makefile.am	2012-07-31 14:54:14.899151410 +0200
+@@ -14,7 +14,7 @@
+     cdinfoencodingwidget.cpp cdinfoencodingwidgetbase.ui
+ 
+ libkcddb_la_LDFLAGS = $(all_libraries) -version-info 1:0:0
+-libkcddb_la_LIBADD  = $(LIB_KDECORE) $(LIB_KIO)
++libkcddb_la_LIBADD  = $(LIB_KDECORE) $(LIB_KIO) -lqt-mt -lkdeui
+ 
+ METASOURCES = AUTO
+ 
+--- kdemultimedia/noatun/library/noatunarts/Makefile.am.ORI	2012-07-31 15:07:07.507909928 +0200
++++ kdemultimedia/noatun/library/noatunarts/Makefile.am	2012-07-31 15:07:17.378685278 +0200
+@@ -7,7 +7,7 @@
+                            StereoVolumeControl_impl.cpp Session_impl.cpp
+ libnoatunarts_la_COMPILE_FIRST = noatunarts.h
+ libnoatunarts_la_LDFLAGS = $(all_libraries) -avoid-version -no-undefined
+-libnoatunarts_la_LIBADD =  -lkmedia2_idl -lsoundserver_idl -lartsflow
++libnoatunarts_la_LIBADD =  -lkmedia2_idl -lsoundserver_idl -lartsflow -lmcop -lartsflow_idl
+ libnoatunarts_la_METASOURCES = AUTO
+ 
+ noatunarts.mcoptype: noatunarts.h
+--- kdemultimedia/noatun/library/Makefile.am.ftbfs	2011-10-28 21:13:18.000000000 +0200
++++ kdemultimedia/noatun/library/Makefile.am	2012-07-31 15:20:52.961371759 +0200
+@@ -30,11 +30,11 @@
+ libnoatun_la_LIBADD      = $(top_builddir)/arts/gui/common/libartsgui.la \
+ 	$(top_builddir)/arts/gui/kde/libartsgui_kde.la $(top_builddir)/arts/modules/libartsmodules.la \
+ 	-lkio -lqtmcop -lkmedia2_idl $(top_builddir)/noatun/library/noatunarts/libnoatunarts.la \
+-	-lartsflow -lsoundserver_idl -lartskde $(LIBDL)
++	-lartsflow -lsoundserver_idl -lartskde $(LIBDL) -lqt-mt -lDCOP
+ 
+ libnoatuncontrols_la_SOURCES = controls.cpp scrollinglabel.cpp
+ libnoatuncontrols_la_LDFLAGS = -version-info 3:0:2 $(KDE_RPATH) $(all_libraries) -no-undefined
+-libnoatuncontrols_la_LIBADD  = $(LIBDL) $(LIB_KDEUI)
++libnoatuncontrols_la_LIBADD  = $(LIBDL) $(LIB_KDEUI) -lqt-mt -lkdecore
+ 
+ METASOURCES = AUTO
+ META_INCLUDES = $(srcdir)/noatun
+--- kdemultimedia/noatun/modules/winskin/vis/Makefile.am.ORI	2012-07-31 15:26:20.619544165 +0200
++++ kdemultimedia/noatun/modules/winskin/vis/Makefile.am	2012-07-31 15:26:33.802272534 +0200
+@@ -17,7 +17,7 @@
+ libwinskinvis_la_LDFLAGS=	$(all_libraries) -avoid-version \
+ 				-no-undefined
+ 
+-libwinskinvis_la_LIBADD =	-lkmedia2_idl -lsoundserver_idl -lartsflow
++libwinskinvis_la_LIBADD =	-lkmedia2_idl -lsoundserver_idl -lartsflow -lartsflow_idl -lmcop
+ libwinskinvis_la_COMPILE_FIRST = winskinvis.cc
+ libwinskinvis_la_METASOURCES =	AUTO
+ 

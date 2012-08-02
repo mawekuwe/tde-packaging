@@ -1,0 +1,31 @@
+commit 7eb7626c8a6d819c040cd9aba0b0bca3b484fde7
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1337622268 -0500
+
+    Reverse patch from GIT hash 2cc2e3a2.
+
+diff --git a/kmix/CMakeLists.txt b/kmix/CMakeLists.txt
+index 237c95d..a8a419f 100644
+--- a/kmix/CMakeLists.txt
++++ b/kmix/CMakeLists.txt
+@@ -26,7 +26,6 @@ link_directories(
+ ##### other data ################################
+ 
+ install( FILES kmix.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
+-install( FILES kmix.desktop DESTINATION ${AUTOSTART_INSTALL_DIR} )
+ install( FILES kmixui.rc DESTINATION ${DATA_INSTALL_DIR}/kmix )
+ install( FILES restore_kmix_volumes.desktop DESTINATION ${AUTOSTART_INSTALL_DIR} )
+ install( FILES kmixapplet.desktop DESTINATION ${DATA_INSTALL_DIR}/kicker/applets )
+diff --git a/kmix/Makefile.am b/kmix/Makefile.am
+index d2da702..5051363 100644
+--- a/kmix/Makefile.am
++++ b/kmix/Makefile.am
+@@ -49,7 +49,7 @@ xdg_apps_DATA = kmix.desktop
+ rcdir = $(kde_datadir)/kmix
+ rc_DATA = kmixui.rc
+ 
+-autostart_DATA = kmix.desktop restore_kmix_volumes.desktop
++autostart_DATA = restore_kmix_volumes.desktop
+ autostartdir = $(datadir)/autostart
+ 
+ lnkdir = $(kde_datadir)/kicker/applets

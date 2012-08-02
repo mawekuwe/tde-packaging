@@ -1,14 +1,21 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_appdir %{_datadir}/applications/kde
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 Name:		trinity-tdeaddons
 Summary:	Trinity Desktop Environment - Plugins
@@ -35,10 +42,10 @@ Source1: metabar-fedora.tar.bz2
 Source2: metabarrc
 
 BuildRequires: autoconf automake libtool m4
-BuildRequires: trinity-kdebase-devel
-BuildRequires: trinity-kdegames-devel
-BuildRequires: trinity-kdemultimedia-devel
-BuildRequires: trinity-kdepim-devel
+BuildRequires: trinity-tdebase-devel
+BuildRequires: trinity-tdegames-devel
+BuildRequires: trinity-tdemultimedia-devel
+BuildRequires: trinity-tdepim-devel
 
 BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
@@ -73,8 +80,6 @@ A collection of TDE Addons/Plugins, including:
 
 %files
 %defattr(-,root,root,-)
-%doc README
-%doc rpmdocs/*
 
 ##########
 
@@ -82,7 +87,7 @@ A collection of TDE Addons/Plugins, including:
 Summary:	Game board designer for Atlantik
 Group:		Applications/Games
 #Requires:	trinity-atlantik
-Requires:	trinity-kdegames
+Requires:	trinity-tdegames
 
 %description -n trinity-atlantikdesigner
 Atlantik Designer is a game board designer for the game Atlantik.
@@ -95,25 +100,25 @@ America and Europe.
 
 %files -n trinity-atlantikdesigner
 %defattr(-,root,root,-)
-%doc atlantikdesigner/TODO
-%{_bindir}/atlantikdesigner
-%{_datadir}/apps/atlantikdesigner
-%{tde_appdir}/atlantikdesigner.desktop
-%{_datadir}/icons/hicolor/*/apps/atlantikdesigner.png
+%doc README atlantikdesigner/TODO
+%{tde_bindir}/atlantikdesigner
+%{tde_datadir}/apps/atlantikdesigner
+%{tde_tdeappdir}/atlantikdesigner.desktop
+%{tde_datadir}/icons/hicolor/*/apps/atlantikdesigner.png
 
 %post -n trinity-atlantikdesigner
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-atlantikdesigner
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -132,12 +137,13 @@ by the German freemail provider GMX.
 
 %files -n trinity-kaddressbook-plugins
 %defattr(-,root,root,-)
-%{tde_libdir}/libkaddrbk_geo_xxport.la
-%{tde_libdir}/libkaddrbk_geo_xxport.so
-%{tde_libdir}/libkaddrbk_gmx_xxport.la
-%{tde_libdir}/libkaddrbk_gmx_xxport.so
-%{_datadir}/apps/kaddressbook
-%{_datadir}/services/kaddressbook
+%doc README
+%{tde_tdelibdir}/libkaddrbk_geo_xxport.la
+%{tde_tdelibdir}/libkaddrbk_geo_xxport.so
+%{tde_tdelibdir}/libkaddrbk_gmx_xxport.la
+%{tde_tdelibdir}/libkaddrbk_gmx_xxport.so
+%{tde_datadir}/apps/kaddressbook
+%{tde_datadir}/services/kaddressbook
 
 ##########
 
@@ -159,56 +165,57 @@ a tab bar, a Python browser and even more.
 
 %files -n trinity-kate-plugins
 %defattr(-,root,root,-)
-%{tde_libdir}/katecppsymbolviewerplugin.la
-%{tde_libdir}/katecppsymbolviewerplugin.so
-%{tde_libdir}/katefiletemplates.la
-%{tde_libdir}/katefiletemplates.so
-%{tde_libdir}/katefll_plugin.la
-%{tde_libdir}/katefll_plugin.so
-%{tde_libdir}/katehelloworldplugin.la
-%{tde_libdir}/katehelloworldplugin.so
-%{tde_libdir}/katehtmltoolsplugin.la
-%{tde_libdir}/katehtmltoolsplugin.so
-%{tde_libdir}/kateinsertcommandplugin.la
-%{tde_libdir}/kateinsertcommandplugin.so
-%{tde_libdir}/katemakeplugin.la
-%{tde_libdir}/katemakeplugin.so
-%{tde_libdir}/katemodelineplugin.la
-%{tde_libdir}/katemodelineplugin.so
-%{tde_libdir}/kateopenheaderplugin.la
-%{tde_libdir}/kateopenheaderplugin.so
-%{tde_libdir}/katepybrowseplugin.la
-%{tde_libdir}/katepybrowseplugin.so
-%{tde_libdir}/katesnippetsplugin.la
-%{tde_libdir}/katesnippetsplugin.so
-%{tde_libdir}/katetextfilterplugin.la
-%{tde_libdir}/katetextfilterplugin.so
-%{tde_libdir}/katexmlcheckplugin.la
-%{tde_libdir}/katexmlcheckplugin.so
-%{tde_libdir}/katexmltoolsplugin.la
-%{tde_libdir}/katexmltoolsplugin.so
-%{tde_libdir}/libkatetabbarextensionplugin.la
-%{tde_libdir}/libkatetabbarextensionplugin.so
-%{_datadir}/applnk/.hidden/katefll.desktop
-%{_datadir}/apps/kate
-%{_datadir}/apps/katepart
-%{_datadir}/apps/katexmltools
-%{_datadir}/services/katecppsymbolviewer.desktop
-%{_datadir}/services/katefiletemplates.desktop
-%{_datadir}/services/katefll_plugin.desktop
-%{_datadir}/services/katehelloworld.desktop
-%{_datadir}/services/katehtmltools.desktop
-%{_datadir}/services/kateinsertcommand.desktop
-%{_datadir}/services/katemake.desktop
-%{_datadir}/services/katemodeline.desktop
-%{_datadir}/services/kateopenheader.desktop
-%{_datadir}/services/katepybrowse.desktop
-%{_datadir}/services/katesnippets.desktop
-%{_datadir}/services/katetabbarextension.desktop
-%{_datadir}/services/katetextfilter.desktop
-%{_datadir}/services/katexmlcheck.desktop
-%{_datadir}/services/katexmltools.desktop
-%{tde_docdir}/HTML/en/kate-plugins/
+%doc kate/xmltools/ChangeLog kate/xmltools/README
+%{tde_tdelibdir}/katecppsymbolviewerplugin.la
+%{tde_tdelibdir}/katecppsymbolviewerplugin.so
+%{tde_tdelibdir}/katefiletemplates.la
+%{tde_tdelibdir}/katefiletemplates.so
+%{tde_tdelibdir}/katefll_plugin.la
+%{tde_tdelibdir}/katefll_plugin.so
+%{tde_tdelibdir}/katehelloworldplugin.la
+%{tde_tdelibdir}/katehelloworldplugin.so
+%{tde_tdelibdir}/katehtmltoolsplugin.la
+%{tde_tdelibdir}/katehtmltoolsplugin.so
+%{tde_tdelibdir}/kateinsertcommandplugin.la
+%{tde_tdelibdir}/kateinsertcommandplugin.so
+%{tde_tdelibdir}/katemakeplugin.la
+%{tde_tdelibdir}/katemakeplugin.so
+%{tde_tdelibdir}/katemodelineplugin.la
+%{tde_tdelibdir}/katemodelineplugin.so
+%{tde_tdelibdir}/kateopenheaderplugin.la
+%{tde_tdelibdir}/kateopenheaderplugin.so
+%{tde_tdelibdir}/katepybrowseplugin.la
+%{tde_tdelibdir}/katepybrowseplugin.so
+%{tde_tdelibdir}/katesnippetsplugin.la
+%{tde_tdelibdir}/katesnippetsplugin.so
+%{tde_tdelibdir}/katetextfilterplugin.la
+%{tde_tdelibdir}/katetextfilterplugin.so
+%{tde_tdelibdir}/katexmlcheckplugin.la
+%{tde_tdelibdir}/katexmlcheckplugin.so
+%{tde_tdelibdir}/katexmltoolsplugin.la
+%{tde_tdelibdir}/katexmltoolsplugin.so
+%{tde_tdelibdir}/libkatetabbarextensionplugin.la
+%{tde_tdelibdir}/libkatetabbarextensionplugin.so
+%{tde_datadir}/applnk/.hidden/katefll.desktop
+%{tde_datadir}/apps/kate
+%{tde_datadir}/apps/katepart
+%{tde_datadir}/apps/katexmltools
+%{tde_datadir}/services/katecppsymbolviewer.desktop
+%{tde_datadir}/services/katefiletemplates.desktop
+%{tde_datadir}/services/katefll_plugin.desktop
+%{tde_datadir}/services/katehelloworld.desktop
+%{tde_datadir}/services/katehtmltools.desktop
+%{tde_datadir}/services/kateinsertcommand.desktop
+%{tde_datadir}/services/katemake.desktop
+%{tde_datadir}/services/katemodeline.desktop
+%{tde_datadir}/services/kateopenheader.desktop
+%{tde_datadir}/services/katepybrowse.desktop
+%{tde_datadir}/services/katesnippets.desktop
+%{tde_datadir}/services/katetabbarextension.desktop
+%{tde_datadir}/services/katetextfilter.desktop
+%{tde_datadir}/services/katexmlcheck.desktop
+%{tde_datadir}/services/katexmltools.desktop
+%{tde_tdedocdir}/HTML/en/kate-plugins/
 
 ##########
 
@@ -229,36 +236,37 @@ provided for audio and image files.
 
 %files kfile-plugins
 %defattr(-,root,root,-)
-%{_bindir}/lnkforward
-%{tde_libdir}/kfile_cert.la
-%{tde_libdir}/kfile_cert.so
-%{tde_libdir}/kfile_desktop.la
-%{tde_libdir}/kfile_desktop.so
-%{tde_libdir}/kfile_folder.la
-%{tde_libdir}/kfile_folder.so
-%{tde_libdir}/kfile_html.la
-%{tde_libdir}/kfile_html.so
-%{tde_libdir}/kfile_lnk.la
-%{tde_libdir}/kfile_lnk.so
-%{tde_libdir}/kfile_mhtml.la
-%{tde_libdir}/kfile_mhtml.so
-%{tde_libdir}/kfile_txt.la
-%{tde_libdir}/kfile_txt.so
-%{tde_libdir}/librenaudioplugin.la
-%{tde_libdir}/librenaudioplugin.so
-%{tde_libdir}/librenimageplugin.la
-%{tde_libdir}/librenimageplugin.so
-%{_datadir}/applnk/.hidden/lnkforward.desktop
-%{_datadir}/mimelnk/application/x-win-lnk.desktop
-%{_datadir}/services/kfile_cert.desktop
-%{_datadir}/services/kfile_desktop.desktop
-%{_datadir}/services/kfile_folder.desktop
-%{_datadir}/services/kfile_html.desktop
-%{_datadir}/services/kfile_lnk.desktop
-%{_datadir}/services/kfile_mhtml.desktop
-%{_datadir}/services/kfile_txt.desktop
-%{_datadir}/services/renaudiodlg.desktop
-%{_datadir}/services/renimagedlg.desktop
+%doc kfile-plugins/lnk/README
+%{tde_bindir}/lnkforward
+%{tde_tdelibdir}/kfile_cert.la
+%{tde_tdelibdir}/kfile_cert.so
+%{tde_tdelibdir}/kfile_desktop.la
+%{tde_tdelibdir}/kfile_desktop.so
+%{tde_tdelibdir}/kfile_folder.la
+%{tde_tdelibdir}/kfile_folder.so
+%{tde_tdelibdir}/kfile_html.la
+%{tde_tdelibdir}/kfile_html.so
+%{tde_tdelibdir}/kfile_lnk.la
+%{tde_tdelibdir}/kfile_lnk.so
+%{tde_tdelibdir}/kfile_mhtml.la
+%{tde_tdelibdir}/kfile_mhtml.so
+%{tde_tdelibdir}/kfile_txt.la
+%{tde_tdelibdir}/kfile_txt.so
+%{tde_tdelibdir}/librenaudioplugin.la
+%{tde_tdelibdir}/librenaudioplugin.so
+%{tde_tdelibdir}/librenimageplugin.la
+%{tde_tdelibdir}/librenimageplugin.so
+%{tde_datadir}/applnk/.hidden/lnkforward.desktop
+%{tde_datadir}/mimelnk/application/x-win-lnk.desktop
+%{tde_datadir}/services/kfile_cert.desktop
+%{tde_datadir}/services/kfile_desktop.desktop
+%{tde_datadir}/services/kfile_folder.desktop
+%{tde_datadir}/services/kfile_html.desktop
+%{tde_datadir}/services/kfile_lnk.desktop
+%{tde_datadir}/services/kfile_mhtml.desktop
+%{tde_datadir}/services/kfile_txt.desktop
+%{tde_datadir}/services/renaudiodlg.desktop
+%{tde_datadir}/services/renimagedlg.desktop
 
 ##########
 
@@ -280,33 +288,34 @@ controls XMMS, install the xmms-kde-trinity package.
 
 %files -n trinity-kicker-applets
 %defattr(-,root,root,-)
-%{tde_libdir}/kolourpicker_panelapplet.la
-%{tde_libdir}/kolourpicker_panelapplet.so
-%{tde_libdir}/ktimemon_panelapplet.la
-%{tde_libdir}/ktimemon_panelapplet.so
-%{tde_libdir}/math_panelapplet.la
-%{tde_libdir}/math_panelapplet.so
-%{tde_libdir}/mediacontrol_panelapplet.la
-%{tde_libdir}/mediacontrol_panelapplet.so
-%{tde_libdir}/kbinaryclock_panelapplet.la
-%{tde_libdir}/kbinaryclock_panelapplet.so
-%{_datadir}/apps/kicker/applets
-%{_datadir}/apps/mediacontrol
-%{_datadir}/config.kcfg/kbinaryclock.kcfg
-%{_datadir}/icons/locolor/*/apps/ktimemon.png
-%{_datadir}/icons/crystalsvg/*/apps/ktimemon.png
-%{tde_docdir}/HTML/en/kicker-applets/
+%doc README 
+%{tde_tdelibdir}/kolourpicker_panelapplet.la
+%{tde_tdelibdir}/kolourpicker_panelapplet.so
+%{tde_tdelibdir}/ktimemon_panelapplet.la
+%{tde_tdelibdir}/ktimemon_panelapplet.so
+%{tde_tdelibdir}/math_panelapplet.la
+%{tde_tdelibdir}/math_panelapplet.so
+%{tde_tdelibdir}/mediacontrol_panelapplet.la
+%{tde_tdelibdir}/mediacontrol_panelapplet.so
+%{tde_tdelibdir}/kbinaryclock_panelapplet.la
+%{tde_tdelibdir}/kbinaryclock_panelapplet.so
+%{tde_datadir}/apps/kicker/applets
+%{tde_datadir}/apps/mediacontrol
+%{tde_datadir}/config.kcfg/kbinaryclock.kcfg
+%{tde_datadir}/icons/locolor/*/apps/ktimemon.png
+%{tde_datadir}/icons/crystalsvg/*/apps/ktimemon.png
+%{tde_tdedocdir}/HTML/en/kicker-applets/
 
 %post -n trinity-kicker-applets
 for f in crystalsvg locolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 
 %postun -n trinity-kicker-applets
 for f in crystalsvg locolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 
 ##########
@@ -331,7 +340,8 @@ and various local news sources.
 
 %files -n trinity-knewsticker-scripts
 %defattr(-,root,root,-)
-%{_datadir}/apps/knewsticker/
+%doc README
+%{tde_datadir}/apps/knewsticker/
 
 ##########
 
@@ -343,7 +353,7 @@ Requires:	python
 Requires:	rsync
 #Requires:	unison
 Requires:	trinity-konqueror
-%if 0%{?fedora} > 0
+%if 0%{?fedora}
 Requires:	python-exif
 %endif
 
@@ -365,156 +375,157 @@ graphical disk usage viewer and image conversions and transformations.
 
 %files -n trinity-konq-plugins
 %defattr(-,root,root,-)
-%{_datadir}/config/translaterc
-%{_bindir}/fsview
-%{_bindir}/jpegorient
-%{_bindir}/kio_media_realfolder
-%{tde_libdir}/konq_sidebarnews.la
-%{tde_libdir}/konq_sidebarnews.so
-%{tde_libdir}/konqsidebar_delicious.la
-%{tde_libdir}/konqsidebar_delicious.so
-%{tde_libdir}/konqsidebar_mediaplayer.la
-%{tde_libdir}/konqsidebar_mediaplayer.so
-%{tde_libdir}/konqsidebar_metabar.la
-%{tde_libdir}/konqsidebar_metabar.so
-%{tde_libdir}/libakregatorkonqfeedicon.la
-%{tde_libdir}/libakregatorkonqfeedicon.so
-%{tde_libdir}/libakregatorkonqplugin.la
-%{tde_libdir}/libakregatorkonqplugin.so
-%{tde_libdir}/libarkplugin.la
-%{tde_libdir}/libarkplugin.so
-%{tde_libdir}/libautorefresh.la
-%{tde_libdir}/libautorefresh.so
-%{tde_libdir}/libbabelfishplugin.la
-%{tde_libdir}/libbabelfishplugin.so
-%{tde_libdir}/libcrashesplugin.la
-%{tde_libdir}/libcrashesplugin.so
-%{tde_libdir}/libdirfilterplugin.la
-%{tde_libdir}/libdirfilterplugin.so
-%{tde_libdir}/librsyncplugin.la
-%{tde_libdir}/librsyncplugin.so
-%{tde_libdir}/libdomtreeviewerplugin.la
-%{tde_libdir}/libdomtreeviewerplugin.so
-%{tde_libdir}/libfsviewpart.la
-%{tde_libdir}/libfsviewpart.so
-%{tde_libdir}/libkhtmlsettingsplugin.la
-%{tde_libdir}/libkhtmlsettingsplugin.so
-%{tde_libdir}/kcm_kuick.la
-%{tde_libdir}/kcm_kuick.so
-%{tde_libdir}/libkimgallery.la
-%{tde_libdir}/libkimgallery.so
-%{tde_libdir}/libkuickplugin.la
-%{tde_libdir}/libkuickplugin.so
-%{tde_libdir}/libmfkonqmficon.la
-%{tde_libdir}/libmfkonqmficon.so
-%{tde_libdir}/libminitoolsplugin.la
-%{tde_libdir}/libminitoolsplugin.so
-%{tde_libdir}/librellinksplugin.la
-%{tde_libdir}/librellinksplugin.so
-%{tde_libdir}/libsearchbarplugin.la
-%{tde_libdir}/libsearchbarplugin.so
-%{tde_libdir}/libuachangerplugin.la
-%{tde_libdir}/libuachangerplugin.so
-%{tde_libdir}/libvalidatorsplugin.la
-%{tde_libdir}/libvalidatorsplugin.so
-%{tde_libdir}/libwebarchiverplugin.la
-%{tde_libdir}/libwebarchiverplugin.so
-%{tde_libdir}/webarchivethumbnail.la
-%{tde_libdir}/webarchivethumbnail.so
-%{_datadir}/applnk/.hidden/arkplugin.desktop
-%{_datadir}/applnk/.hidden/kcmkuick.desktop
-%{_datadir}/applnk/.hidden/kuickplugin.desktop
-%{_datadir}/applnk/.hidden/mediaplayerplugin.desktop
-%{_datadir}/applnk/.hidden/crashesplugin.desktop
-%{_datadir}/applnk/.hidden/dirfilterplugin.desktop
-%{_datadir}/applnk/.hidden/rsyncplugin.desktop
-%{_datadir}/applnk/.hidden/fsview.desktop
-%{_datadir}/applnk/.hidden/khtmlsettingsplugin.desktop
-%{_datadir}/applnk/.hidden/kimgalleryplugin.desktop
-%{_datadir}/applnk/.hidden/plugin_babelfish.desktop
-%{_datadir}/applnk/.hidden/plugin_domtreeviewer.desktop
-%{_datadir}/applnk/.hidden/plugin_validators.desktop
-%{_datadir}/applnk/.hidden/plugin_webarchiver.desktop
-%{_datadir}/applnk/.hidden/uachangerplugin.desktop
-%{_datadir}/apps/akregator
-%{_datadir}/apps/domtreeviewer
-%{_datadir}/apps/fsview
-%{_datadir}/apps/imagerotation/orient.py*
-%{_datadir}/apps/imagerotation/exif.py*
-%{_datadir}/apps/khtml/kpartplugins
-%{_datadir}/apps/konqiconview
-%{_datadir}/apps/konqlistview
-%{_datadir}/apps/konqsidebartng
-%{_datadir}/apps/konqueror/icons
-%{_datadir}/apps/konqueror/kpartplugins
-%{_datadir}/apps/konqueror/servicemenus
-%{_datadir}/apps/metabar/iconsrc
-%{_datadir}/apps/metabar/themes/default/default.css
-%{_datadir}/apps/metabar/themes/default/layout.html
-%{_datadir}/apps/microformat/pics/microformat.png
-%{_datadir}/config.kcfg/konq_sidebarnews.kcfg
-%{_datadir}/icons/locolor/16x16/apps/autorefresh.png
-%{_datadir}/icons/crystalsvg/16x16/actions/babelfish.png
-%{_datadir}/icons/crystalsvg/16x16/actions/cssvalidator.png
-%{_datadir}/icons/crystalsvg/16x16/actions/domtreeviewer.png
-%{_datadir}/icons/crystalsvg/16x16/actions/htmlvalidator.png
-%{_datadir}/icons/crystalsvg/16x16/actions/imagegallery.png
-%{_datadir}/icons/crystalsvg/16x16/actions/remotesync.png
-%{_datadir}/icons/crystalsvg/16x16/actions/remotesyncconfig.png
-%{_datadir}/icons/crystalsvg/16x16/actions/minitools.png
-%{_datadir}/icons/crystalsvg/16x16/actions/validators.png
-%{_datadir}/icons/crystalsvg/16x16/actions/webarchiver.png
-%{_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_delicious.png
-%{_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_mediaplayer.png
-%{_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_news.png
-%{_datadir}/icons/crystalsvg/22x22/actions/babelfish.png
-%{_datadir}/icons/crystalsvg/22x22/actions/cssvalidator.png
-%{_datadir}/icons/crystalsvg/22x22/actions/domtreeviewer.png
-%{_datadir}/icons/crystalsvg/22x22/actions/htmlvalidator.png
-%{_datadir}/icons/crystalsvg/22x22/actions/imagegallery.png
-%{_datadir}/icons/crystalsvg/22x22/actions/remotesync.png
-%{_datadir}/icons/crystalsvg/22x22/actions/remotesyncconfig.png
-%{_datadir}/icons/crystalsvg/22x22/actions/minitools.png
-%{_datadir}/icons/crystalsvg/22x22/actions/validators.png
-%{_datadir}/icons/crystalsvg/22x22/actions/webarchiver.png
-%{_datadir}/icons/crystalsvg/22x22/apps/konqsidebar_mediaplayer.png
-%{_datadir}/icons/crystalsvg/32x32/actions/minitools.png
-%{_datadir}/icons/crystalsvg/32x32/apps/konqsidebar_mediaplayer.png
-%{_datadir}/icons/crystalsvg/48x48/actions/minitools.png
-%{_datadir}/icons/crystalsvg/48x48/apps/konqsidebar_mediaplayer.png
-%{_datadir}/icons/hicolor/16x16/apps/metabar.png
-%{_datadir}/icons/hicolor/22x22/apps/fsview.png
-%{_datadir}/icons/hicolor/32x32/apps/fsview.png
-%{_datadir}/icons/hicolor/32x32/apps/metabar.png
-%{_datadir}/icons/hicolor/48x48/apps/metabar.png
-%{_datadir}/icons/hicolor/64x64/apps/metabar.png
-%{_datadir}/icons/hicolor/scalable/apps/metabar.svgz
-%{_datadir}/icons/hicolor/128x128/apps/metabar.png
-%{_datadir}/icons/locolor/32x32/apps/konqsidebar_mediaplayer.png
-%{_datadir}/services/akregator_konqplugin.desktop
-%{_datadir}/services/ark_plugin.desktop
-%{_datadir}/services/fsview_part.desktop
-%{_datadir}/services/kuick_plugin.desktop
-%{_datadir}/services/webarchivethumbnail.desktop
-%{tde_libdir}/libadblock.la
-%{tde_libdir}/libadblock.so
-%{tde_docdir}/HTML/en/konq-plugins/
+%doc konq-plugins/README
+%{tde_datadir}/config/translaterc
+%{tde_bindir}/fsview
+%{tde_bindir}/jpegorient
+%{tde_bindir}/kio_media_realfolder
+%{tde_tdelibdir}/konq_sidebarnews.la
+%{tde_tdelibdir}/konq_sidebarnews.so
+%{tde_tdelibdir}/konqsidebar_delicious.la
+%{tde_tdelibdir}/konqsidebar_delicious.so
+%{tde_tdelibdir}/konqsidebar_mediaplayer.la
+%{tde_tdelibdir}/konqsidebar_mediaplayer.so
+%{tde_tdelibdir}/konqsidebar_metabar.la
+%{tde_tdelibdir}/konqsidebar_metabar.so
+%{tde_tdelibdir}/libakregatorkonqfeedicon.la
+%{tde_tdelibdir}/libakregatorkonqfeedicon.so
+%{tde_tdelibdir}/libakregatorkonqplugin.la
+%{tde_tdelibdir}/libakregatorkonqplugin.so
+%{tde_tdelibdir}/libarkplugin.la
+%{tde_tdelibdir}/libarkplugin.so
+%{tde_tdelibdir}/libautorefresh.la
+%{tde_tdelibdir}/libautorefresh.so
+%{tde_tdelibdir}/libbabelfishplugin.la
+%{tde_tdelibdir}/libbabelfishplugin.so
+%{tde_tdelibdir}/libcrashesplugin.la
+%{tde_tdelibdir}/libcrashesplugin.so
+%{tde_tdelibdir}/libdirfilterplugin.la
+%{tde_tdelibdir}/libdirfilterplugin.so
+%{tde_tdelibdir}/librsyncplugin.la
+%{tde_tdelibdir}/librsyncplugin.so
+%{tde_tdelibdir}/libdomtreeviewerplugin.la
+%{tde_tdelibdir}/libdomtreeviewerplugin.so
+%{tde_tdelibdir}/libfsviewpart.la
+%{tde_tdelibdir}/libfsviewpart.so
+%{tde_tdelibdir}/libkhtmlsettingsplugin.la
+%{tde_tdelibdir}/libkhtmlsettingsplugin.so
+%{tde_tdelibdir}/kcm_kuick.la
+%{tde_tdelibdir}/kcm_kuick.so
+%{tde_tdelibdir}/libkimgallery.la
+%{tde_tdelibdir}/libkimgallery.so
+%{tde_tdelibdir}/libkuickplugin.la
+%{tde_tdelibdir}/libkuickplugin.so
+%{tde_tdelibdir}/libmfkonqmficon.la
+%{tde_tdelibdir}/libmfkonqmficon.so
+%{tde_tdelibdir}/libminitoolsplugin.la
+%{tde_tdelibdir}/libminitoolsplugin.so
+%{tde_tdelibdir}/librellinksplugin.la
+%{tde_tdelibdir}/librellinksplugin.so
+%{tde_tdelibdir}/libsearchbarplugin.la
+%{tde_tdelibdir}/libsearchbarplugin.so
+%{tde_tdelibdir}/libuachangerplugin.la
+%{tde_tdelibdir}/libuachangerplugin.so
+%{tde_tdelibdir}/libvalidatorsplugin.la
+%{tde_tdelibdir}/libvalidatorsplugin.so
+%{tde_tdelibdir}/libwebarchiverplugin.la
+%{tde_tdelibdir}/libwebarchiverplugin.so
+%{tde_tdelibdir}/webarchivethumbnail.la
+%{tde_tdelibdir}/webarchivethumbnail.so
+%{tde_datadir}/applnk/.hidden/arkplugin.desktop
+%{tde_datadir}/applnk/.hidden/kcmkuick.desktop
+%{tde_datadir}/applnk/.hidden/kuickplugin.desktop
+%{tde_datadir}/applnk/.hidden/mediaplayerplugin.desktop
+%{tde_datadir}/applnk/.hidden/crashesplugin.desktop
+%{tde_datadir}/applnk/.hidden/dirfilterplugin.desktop
+%{tde_datadir}/applnk/.hidden/rsyncplugin.desktop
+%{tde_datadir}/applnk/.hidden/fsview.desktop
+%{tde_datadir}/applnk/.hidden/khtmlsettingsplugin.desktop
+%{tde_datadir}/applnk/.hidden/kimgalleryplugin.desktop
+%{tde_datadir}/applnk/.hidden/plugin_babelfish.desktop
+%{tde_datadir}/applnk/.hidden/plugin_domtreeviewer.desktop
+%{tde_datadir}/applnk/.hidden/plugin_validators.desktop
+%{tde_datadir}/applnk/.hidden/plugin_webarchiver.desktop
+%{tde_datadir}/applnk/.hidden/uachangerplugin.desktop
+%{tde_datadir}/apps/akregator
+%{tde_datadir}/apps/domtreeviewer
+%{tde_datadir}/apps/fsview
+%{tde_datadir}/apps/imagerotation/orient.py*
+%{tde_datadir}/apps/imagerotation/exif.py*
+%{tde_datadir}/apps/khtml/kpartplugins
+%{tde_datadir}/apps/konqiconview
+%{tde_datadir}/apps/konqlistview
+%{tde_datadir}/apps/konqsidebartng
+%{tde_datadir}/apps/konqueror/icons
+%{tde_datadir}/apps/konqueror/kpartplugins
+%{tde_datadir}/apps/konqueror/servicemenus
+%{tde_datadir}/apps/metabar/iconsrc
+%{tde_datadir}/apps/metabar/themes/default/default.css
+%{tde_datadir}/apps/metabar/themes/default/layout.html
+%{tde_datadir}/apps/microformat/pics/microformat.png
+%{tde_datadir}/config.kcfg/konq_sidebarnews.kcfg
+%{tde_datadir}/icons/locolor/16x16/apps/autorefresh.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/babelfish.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/cssvalidator.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/domtreeviewer.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/htmlvalidator.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/imagegallery.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/remotesync.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/remotesyncconfig.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/minitools.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/validators.png
+%{tde_datadir}/icons/crystalsvg/16x16/actions/webarchiver.png
+%{tde_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_delicious.png
+%{tde_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_mediaplayer.png
+%{tde_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_news.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/babelfish.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/cssvalidator.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/domtreeviewer.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/htmlvalidator.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/imagegallery.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/remotesync.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/remotesyncconfig.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/minitools.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/validators.png
+%{tde_datadir}/icons/crystalsvg/22x22/actions/webarchiver.png
+%{tde_datadir}/icons/crystalsvg/22x22/apps/konqsidebar_mediaplayer.png
+%{tde_datadir}/icons/crystalsvg/32x32/actions/minitools.png
+%{tde_datadir}/icons/crystalsvg/32x32/apps/konqsidebar_mediaplayer.png
+%{tde_datadir}/icons/crystalsvg/48x48/actions/minitools.png
+%{tde_datadir}/icons/crystalsvg/48x48/apps/konqsidebar_mediaplayer.png
+%{tde_datadir}/icons/hicolor/16x16/apps/metabar.png
+%{tde_datadir}/icons/hicolor/22x22/apps/fsview.png
+%{tde_datadir}/icons/hicolor/32x32/apps/fsview.png
+%{tde_datadir}/icons/hicolor/32x32/apps/metabar.png
+%{tde_datadir}/icons/hicolor/48x48/apps/metabar.png
+%{tde_datadir}/icons/hicolor/64x64/apps/metabar.png
+%{tde_datadir}/icons/hicolor/scalable/apps/metabar.svgz
+%{tde_datadir}/icons/hicolor/128x128/apps/metabar.png
+%{tde_datadir}/icons/locolor/32x32/apps/konqsidebar_mediaplayer.png
+%{tde_datadir}/services/akregator_konqplugin.desktop
+%{tde_datadir}/services/ark_plugin.desktop
+%{tde_datadir}/services/fsview_part.desktop
+%{tde_datadir}/services/kuick_plugin.desktop
+%{tde_datadir}/services/webarchivethumbnail.desktop
+%{tde_tdelibdir}/libadblock.la
+%{tde_tdelibdir}/libadblock.so
+%{tde_tdedocdir}/HTML/en/konq-plugins/
 
 %if 0%{?fedora}
-%{_datadir}/apps/metabar/themes/fedora/
-%{_datadir}/config/metabarrc
+%{tde_datadir}/apps/metabar/themes/fedora/
+%{tde_datadir}/config/metabarrc
 %endif
 
 %post -n trinity-konq-plugins
 for f in crystalsvg hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 
 %postun -n trinity-konq-plugins
 for f in crystalsvg hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 
 ##########
@@ -535,25 +546,26 @@ signatures in external mail clients such as KMail.
 
 %files -n trinity-ksig
 %defattr(-,root,root,-)
-%{_bindir}/ksig
-%{tde_appdir}/ksig.desktop
-%{_datadir}/apps/ksig/ksigui.rc
-%{_datadir}/icons/hicolor/*/apps/ksig.png
-%{tde_docdir}/HTML/en/ksig/
+%doc README
+%{tde_bindir}/ksig
+%{tde_tdeappdir}/ksig.desktop
+%{tde_datadir}/apps/ksig/ksigui.rc
+%{tde_datadir}/icons/hicolor/*/apps/ksig.png
+%{tde_tdedocdir}/HTML/en/ksig/
 
 %post -n trinity-ksig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ksig
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -573,52 +585,53 @@ of user interfaces, playlists and visualisation plugins.
 
 %files -n trinity-noatun-plugins
 %defattr(-,root,root,-)
-%{_bindir}/noatunsynaescope.bin
-%{_bindir}/noatuntippecanoe.bin
-%{_bindir}/noatuntyler.bin
-%{tde_libdir}/noatunalsaplayer.la
-%{tde_libdir}/noatunalsaplayer.so
-%{tde_libdir}/noatunblurscope.la
-%{tde_libdir}/noatunblurscope.so
-%{tde_libdir}/noatuncharlatan.la
-%{tde_libdir}/noatuncharlatan.so
-%{tde_libdir}/noatundub.la
-%{tde_libdir}/noatundub.so
-%{tde_libdir}/noatun_ffrs.la
-%{tde_libdir}/noatun_ffrs.so
-%{tde_libdir}/noatunluckytag.la
-%{tde_libdir}/noatunluckytag.so
-%{tde_libdir}/noatunlyrics.la
-%{tde_libdir}/noatunlyrics.so
-%{tde_libdir}/noatunmadness.la
-%{tde_libdir}/noatunmadness.so
-%{tde_libdir}/noatun_oblique.la
-%{tde_libdir}/noatun_oblique.so
-%{tde_libdir}/noatunpitchablespeed.la
-%{tde_libdir}/noatunpitchablespeed.so
-%{tde_libdir}/noatunsynaescope.la
-%{tde_libdir}/noatunsynaescope.so
-%{tde_libdir}/noatuntippecanoe.la
-%{tde_libdir}/noatuntippecanoe.so
-%{tde_libdir}/noatuntyler.la
-%{tde_libdir}/noatuntyler.so
-%{tde_libdir}/noatunwakeup.la
-%{tde_libdir}/noatunwakeup.so
-%{tde_libdir}/noatunwavecapture.la
-%{tde_libdir}/noatunwavecapture.so
-%{_datadir}/apps/noatun/*
-%{_datadir}/icons/crystalsvg/16x16/apps/synaescope.png
+%doc README
+%{tde_bindir}/noatunsynaescope.bin
+%{tde_bindir}/noatuntippecanoe.bin
+%{tde_bindir}/noatuntyler.bin
+%{tde_tdelibdir}/noatunalsaplayer.la
+%{tde_tdelibdir}/noatunalsaplayer.so
+%{tde_tdelibdir}/noatunblurscope.la
+%{tde_tdelibdir}/noatunblurscope.so
+%{tde_tdelibdir}/noatuncharlatan.la
+%{tde_tdelibdir}/noatuncharlatan.so
+%{tde_tdelibdir}/noatundub.la
+%{tde_tdelibdir}/noatundub.so
+%{tde_tdelibdir}/noatun_ffrs.la
+%{tde_tdelibdir}/noatun_ffrs.so
+%{tde_tdelibdir}/noatunluckytag.la
+%{tde_tdelibdir}/noatunluckytag.so
+%{tde_tdelibdir}/noatunlyrics.la
+%{tde_tdelibdir}/noatunlyrics.so
+%{tde_tdelibdir}/noatunmadness.la
+%{tde_tdelibdir}/noatunmadness.so
+%{tde_tdelibdir}/noatun_oblique.la
+%{tde_tdelibdir}/noatun_oblique.so
+%{tde_tdelibdir}/noatunpitchablespeed.la
+%{tde_tdelibdir}/noatunpitchablespeed.so
+%{tde_tdelibdir}/noatunsynaescope.la
+%{tde_tdelibdir}/noatunsynaescope.so
+%{tde_tdelibdir}/noatuntippecanoe.la
+%{tde_tdelibdir}/noatuntippecanoe.so
+%{tde_tdelibdir}/noatuntyler.la
+%{tde_tdelibdir}/noatuntyler.so
+%{tde_tdelibdir}/noatunwakeup.la
+%{tde_tdelibdir}/noatunwakeup.so
+%{tde_tdelibdir}/noatunwavecapture.la
+%{tde_tdelibdir}/noatunwavecapture.so
+%{tde_datadir}/apps/noatun/*
+%{tde_datadir}/icons/crystalsvg/16x16/apps/synaescope.png
 
 %post -n trinity-noatun-plugins
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 
 %postun -n trinity-noatun-plugins
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/${f} 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/${f} 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 
 ##########
@@ -631,8 +644,8 @@ done
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -641,30 +654,37 @@ done
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
-  --includedir=%{tde_includedir} \
+  --exec-prefix=%{_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
   --disable-rpath \
   --enable-new-ldflags \
   --enable-closure \
   --disable-debug --disable-warnings \
   --disable-dependency-tracking --enable-final \
-  --with-extra-includes=%{_includedir}/tqt
+  --with-extra-includes=%{tde_includedir}/tqt:%{_usr}/include/db4 \
+  --without-xmms \
+  --with-sdl \
+  --with-berkeley-db
 
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
 # File lists for locale
 HTML_DIR=$(kde-config --expandvars --install html)
-touch %{name}.lang
 if [ -d %{buildroot}/$HTML_DIR ]; then
  for lang_dir in %{buildroot}/$HTML_DIR/* ; do
   if [ -d $lang_dir ]; then
@@ -680,17 +700,10 @@ if [ -d %{buildroot}/$HTML_DIR ]; then
  done
 fi
 
-# rpmdocs
-for dir in konq-plugins ; do
-  for file in AUTHORS ChangeLog README TODO ; do
-    test -s  "$dir/$file" && install -p -m644 -D "$dir/$file" "rpmdocs/$dir/$file"
-  done
-done
-
-%if 0%{?fedora} > 0
+%if 0%{?fedora}
 # install fedora metabar theme
-cp -prf fedora %{buildroot}%{_datadir}/apps/metabar/themes
-install -m644 -p %{SOURCE2} %{buildroot}%{_datadir}/config/
+cp -prf fedora %{buildroot}%{tde_datadir}/apps/metabar/themes
+install -m644 -p %{SOURCE2} %{buildroot}%{tde_datadir}/config/
 %endif
 
 

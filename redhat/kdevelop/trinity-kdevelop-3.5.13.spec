@@ -1,23 +1,29 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
-# TDE 3.5.13 specific variables
-%define tde_appdir %{_datadir}/applications/kde
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+# TDE 3.5.13 specific building variables
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
 
-Name:    trinity-kdevelop
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
+
+Name:    trinity-tdevelop
 Summary: Integrated Development Environment for C++/C
 Version: 3.5.13
-Release: 4%{?dist}%{?_variant}
+Release: 5%{?dist}%{?_variant}
 
-
-License: GPLv2
-Group: Development/Tools
+License:	GPLv2
+Group:		Development/Tools
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -47,29 +53,37 @@ Requires: %{name}-libs = %{version}-%{release}
 Requires: make
 Requires: perl
 Requires: flex >= 2.5.4
-Requires: qt3-designer
+%if 0%{?rhel} || 0%{?fedora}
+Requires:	qt3-designer >= 3.3.8.d
+%else
+Requires:	%{_lib}qt3-devel >= 3.3.8.d
+%endif
 Requires: gettext
 Requires: ctags
 
 BuildRequires: cmake >= 2.8
-BuildRequires: tqtinterface-devel
-BuildRequires: trinity-arts-devel
-BuildRequires: trinity-tdelibs-devel
-BuildRequires: qt3-devel-docs
+BuildRequires: tqtinterface-devel >= 3.5.13
+BuildRequires: trinity-arts-devel >= 3.5.13
+BuildRequires: trinity-tdelibs-devel >= 3.5.13
+#BuildRequires: qt3-devel-docs >= 3.3.8.d
 BuildRequires: db4-devel
 BuildRequires: flex
 # FIXME: No CVS support in KDevelop? This is going to suck...
 # Requires kdesdk3.
-BuildRequires: trinity-kdesdk-devel
-BuildRequires: subversion-devel neon-devel
+BuildRequires:	trinity-tdesdk-devel >= 3.5.13
+BuildRequires:	subversion-devel
+BuildRequires:	neon-devel
 # looks like this is dragged in by apr-devel (dep of subversion-devel), but not
 # a dependency
-BuildRequires: openldap-devel
+BuildRequires:	openldap-devel
+
+Obsoletes:	trinity-kdevelop < %{version}-%{release}
+Provides:	trinity-kdevelop = %{version}-%{release}
 
 %description
-The KDevelop Integrated Development Environment provides many features
+The TDevelop Integrated Development Environment provides many features
 that developers need as well as providing a unified interface to programs
-like gdb, the C/C++ compiler, and make. KDevelop manages or provides:
+like gdb, the C/C++ compiler, and make. TDevelop manages or provides:
 
 All development tools needed for C++ programming like Compiler,
 Linker, automake and autoconf; KAppWizard, which generates complete,
@@ -90,12 +104,63 @@ with KIconEdit; The inclusion of any other program you need for
 development by adding it to the "Tools"-menu according to your
 individual needs.
 
+%files
+%defattr(-,root,root,-)
+%{tde_bindir}/*
+%{tde_tdelibdir}/*
+%{tde_libdir}/kconf_update_bin/*
+%{tde_tdeappdir}/*
+%{tde_datadir}/apps/*
+%{tde_datadir}/config/*
+%{tde_datadir}/desktop-directories/*
+%{tde_datadir}/icons/hicolor/*/*/*
+%{tde_datadir}/icons/locolor/*/*/*
+%{tde_datadir}/mimelnk/*.desktop
+%{tde_datadir}/mimelnk/*/*
+%{tde_datadir}/services/*
+%{tde_datadir}/servicetypes/*
+%{tde_tdedocdir}/HTML/en/*
+
+%post
+for f in hicolor locolor ; do
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+
+%postun
+for f in hicolor locolor ; do
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
+done
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
 %package devel
 Summary: Development files for %{name}
 Group: Development/Libraries
 Requires: %{name}-libs = %{version}-%{release}
+
+Obsoletes:	trinity-kdevelop-devel < %{version}-%{release}
+Provides:	trinity-kdevelop-devel = %{version}-%{release}
+
 %description devel
 %{summary}.
+
+%files devel
+%defattr(-,root,root,-)
+%{tde_libdir}/lib*.so
+%{tde_libdir}/lib*.la
+%{tde_includedir}/*
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
+##########
 
 %package libs
 Summary: %{name} runtime libraries
@@ -103,13 +168,26 @@ Group:   System Environment/Libraries
 Requires: trinity-kdelibs
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
 Requires: %{name} = %{version}-%{release}
+
+Obsoletes:	trinity-kdevelop-libs < %{version}-%{release}
+Provides:	trinity-kdevelop-libs = %{version}-%{release}
+
 %description libs
 %{summary}.
 
+%files libs
+%defattr(-,root,root,-)
+%{tde_libdir}/lib*.so.*
 
+%post libs
+/sbin/ldconfig || :
+
+%postun libs
+/sbin/ldconfig || :
+
+##########
 
 %prep
-
 %setup -q -n kdevelop -a1
 %patch1 -p0 -b .config
 %patch2 -p1
@@ -119,8 +197,8 @@ Requires: %{name} = %{version}-%{release}
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -132,22 +210,31 @@ Requires: %{name} = %{version}-%{release}
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
-export LD_LIBRARY_PATH="%{_libdir}"
+export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # c references
 pushd c_cpp_reference-2.0.2_for_KDE_3.0
 %configure \
+  --exec-prefix=%{_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
   --with-qt-libraries=${QTLIB} \
   --with-qt-includes=${QTINC} \
-  --with-extra-libs=%{_libdir}
+  --with-extra-libs=%{tde_libdir}
 popd
 
-%__mkdir build
-cd build
+%{?!mgaversion:%__mkdir build; cd build}
 %cmake \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DCMAKE_SKIP_RPATH="OFF" \
   -DWITH_BUILDTOOL_ALL=ON \
   -DWITH_LANGUAGE_ALL=ON \
   -DWITH_VCS_ALL=OFF \
@@ -157,72 +244,28 @@ cd build
 
 %__make %{?_smp_mflags}
 
+# c references
 cd ..
 %__make %{?_smp_mflags} -C c_cpp_reference-2.0.2_for_KDE_3.0
 
 %install
 %__rm -rf %{buildroot}
-cd build
-%__make install DESTDIR=%{buildroot}
-cd ..
+%__make install DESTDIR=%{buildroot} -C build
 %__make install DESTDIR=%{buildroot} -C c_cpp_reference-2.0.2_for_KDE_3.0
 
 # remove useless files
 %__rm -rf %{buildroot}%{_prefix}/kdevbdb
 
 
-%post
-for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
-done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
-
-%postun
-for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
-done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
-
-%post libs -p /sbin/ldconfig
-
-%postun libs -p /sbin/ldconfig
-
-
 %clean
 %__rm -rf %{buildroot}
 
 
-%files
-%defattr(-,root,root,-)
-%{tde_docdir}/HTML/en/*
-%{_bindir}/*
-%{tde_libdir}/*
-%{_libdir}/kconf_update_bin/*
-%{tde_appdir}/*
-%{_datadir}/apps/*
-%{_datadir}/config/*
-%{_datadir}/desktop-directories/*
-%{_datadir}/icons/hicolor/*/*/*
-%{_datadir}/icons/locolor/*/*/*
-%{_datadir}/mimelnk/*.desktop
-%{_datadir}/mimelnk/*/*
-%{_datadir}/services/*
-%{_datadir}/servicetypes/*
-
-%files libs
-%defattr(-,root,root,-)
-%{_libdir}/lib*.so.*
-%{_libdir}/lib*.la
-
-%files devel
-%defattr(-,root,root,-)
-%{_libdir}/lib*.so
-%{_includedir}/*
-
-
 %changelog
+* Wed Aug 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Renames to 'trinity-tdevelop'
+- Add support for Mageia 2
+
 * Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Removes runtime dependency to 'trinity-kdelibs'
 

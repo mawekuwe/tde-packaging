@@ -1,0 +1,18 @@
+commit 9d1871a43cd11869f9a1eac7f6e1c6ae23b84072
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1330147966 -0600
+
+    Fix kbruch/Makefile.am to eliminate build error.
+    This resolves bug report 786.
+
+diff --git a/kbruch/Makefile.am b/kbruch/Makefile.am
+index b2c27d1..7b159ff 100644
+--- a/kbruch/Makefile.am
++++ b/kbruch/Makefile.am
+@@ -2,5 +2,5 @@ SUBDIRS = src testcases
+ 
+ EXTRA_DIST = AUTHORS ChangeLog README TODO kbruch.lsm VERSION
+ 
+-VERSION:=`cat ${PWD}/VERSION`
++VERSION=`cat ${PWD}/VERSION`
+ include ../admin/Doxyfile.am

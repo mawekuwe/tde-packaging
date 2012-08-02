@@ -8,7 +8,9 @@
 
 # TQT include files may conflict with QT4 includes, so we move them to a subdirectory.
 # Later compiled Trinity products should be aware of that !
-%define _includedir %{_prefix}/include/tqt
+%define tde_bindir %{_prefix}/bin
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
 
 Name:		tqtinterface
 Version:	3.5.13
@@ -34,8 +36,12 @@ BuildRequires:	qt3-devel >= 3.3.8.d
 Requires:		qt3 >= 3.3.8.d
 
 BuildRequires:	gcc-c++
-BuildRequires:	libXi-devel
 BuildRequires:	pth-devel
+%if 0%{?mgaversion}
+BuildRequires:	%{_lib}xi-devel
+%else
+BuildRequires:	libXi-devel
+%endif
 
 
 %description
@@ -57,16 +63,15 @@ Development files for %{name}
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 
-%__mkdir build
-cd build
-%__cmake \
+%{?!mgaversion:%__mkdir build; cd build}
+%cmake \
   -DQT_PREFIX_DIR=${QTDIR} \
   -DQT_VERSION=3 \
   -DCMAKE_INSTALL_PREFIX=%{_prefix} \
-  -DPKGCONFIG_INSTALL_DIR=%{_libdir}/pkgconfig \
-  -DBIN_INSTALL_DIR=%{_bindir} \
-  -DINCLUDE_INSTALL_DIR=%{_includedir} \
-  -DLIB_INSTALL_DIR=%{_libdir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_includedir}/tqt \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
   ..
 
 %__make %{?_smp_mflags}
@@ -87,21 +92,21 @@ done
 # Install 'cmake' modules for development use
 %__mkdir_p %{?buildroot}%{cmake_modules_dir}
 for i in cmake/modules/*.cmake; do
-  install -m 644 $i %{?buildroot}%{cmake_modules_dir}
+  %__install -m 644 $i %{?buildroot}%{cmake_modules_dir}
 done
 
 %clean
 %__rm -rf %{?buildroot}
 
 %files
-%{_bindir}/*
-%{_libdir}/*.so.*
+%{tde_bindir}/*
+%{tde_libdir}/*.so.*
 
 %files devel
-%{_includedir}
-%{_libdir}/*.so
-%{_libdir}/*.la
-%{_libdir}/pkgconfig/*.pc
+%{tde_includedir}/tqt
+%{tde_libdir}/*.so
+%{tde_libdir}/*.la
+%{tde_libdir}/pkgconfig/*.pc
 %{cmake_modules_dir}/*.cmake
 
 

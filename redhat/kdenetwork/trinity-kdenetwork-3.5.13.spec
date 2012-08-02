@@ -1,15 +1,22 @@
 # If TDE is built iwn a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
-%define tde_docdir %{_docdir}/kde
-%define tde_appdir %{_datadir}/applications/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{_prefix}/bin
+%define tde_datadir %{_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+%define tde_sbindir %{_prefix}/sbin
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 # Fedora review:  http://bugzilla.redhat.com/195486
@@ -21,9 +28,9 @@ BuildRequires: cmake >= 2.8
 %define _with_wifi --with-wifi
 %endif
 
-Name:    tdenetwork
+Name:    trinity-tdenetwork
 Version: 3.5.13
-Release: 5%{?dist}%{?_variant}
+Release: 6%{?dist}%{?_variant}
 Summary: Trinity Desktop Environment - Network Applications
 
 Vendor:		Trinity Project
@@ -63,13 +70,22 @@ Patch15:	kdenetwork-3.5.13-fix_alphabet_string_error.patch
 Patch17:	kdenetwork-3.5.13-remove_more_applications_from_menu.patch
 # [tdenetwork] Improve Kaffeine support in Kopete now listening plugin [Commit #f6708531]
 Patch18:	kdenetwork-3.5.13-improve_kaffeine_support_in_nowlistening_plugin.patch
+# [tdenetwork] Fix html special chars in kopete nowlistening plugin [Bug #944] [Commit #0a2892ed]
+Patch19:	kdenetwork-3.5.13-fix_html_specialchar_in_kopete_nowlistening.patch
+# [tdenetwork] Fix a fatal error message [Commit #5c988de1]
+Patch20:	kdenetwork-3.5.13-fix_a_fatal_error_message.patch
+# [tdenetwork] Fix a parallel build bug [Commit #35c41f35]
+Patch21:	kdenetwork-3.5.13-fix_parallel_build.patch
+# [tdenetwork] Use libv4l if available, otherwise check for v4l1 headers [Commit #d8cbbab8]
+Patch22:	kdenetwork-3.5.13-use_libv4l_or_libv4l1.patch
 
 BuildRequires:	gettext
 BuildRequires:	trinity-kdelibs-devel
 BuildRequires:	coreutils 
 BuildRequires:	openssl-devel
-BuildRequires:  avahi-qt3-devel
+#BuildRequires:  avahi-qt3-devel
 BuildRequires:	sqlite-devel
+BuildRequires:	gnutls-devel
 BuildRequires:	libgadu-devel
 BuildRequires:	speex-devel
 
@@ -80,12 +96,17 @@ BuildRequires: libXmu-devel libXScrnSaver-devel libXtst-devel libXxf86vm-devel
 %if 0%{?fedora} > 5 || 0%{?rhel} > 4
 BuildRequires: wireless-tools-devel
 %else
+%if 0%{?mgaversion}
+BuildRequires:	%{_lib}iw29-devel
+%else
+# RHEL 5
 BuildRequires: wireless-tools
+%endif
 %endif
 %endif
 BuildRequires: openslp-devel
 %ifarch %{ix86}
-# BR: %{_includedir}/valgrind/valgrind.h
+# BR: %{tde_includedir}/valgrind/valgrind.h
 BuildRequires: valgrind
 %endif
 %{?_with_xmms:BuildRequires: xmms-devel}
@@ -93,14 +114,18 @@ BuildRequires: valgrind
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires:	libv4l-devel
 %endif
+%if 0%{?mgaversion}
+BuildRequires:	%{_lib}v4l-devel
+%endif
 
 Obsoletes:	trinity-kdenetwork < %{version}-%{release}
-Obsoletes:	trinity-kdenetwork-libs
-Obsoletes:	trinity-kdenetwork-extras
 Provides:	trinity-kdenetwork = %{version}-%{release}
+Obsoletes:	trinity-kdenetwork-libs < %{version}-%{release}
+Provides:	trinity-kdenetwork-libs = %{version}-%{release}
+Obsoletes:	trinity-kdenetwork-extras < %{version}-%{release}
 Provides:	trinity-kdenetwork-extras = %{version}-%{release}
-
-Requires: usermode-gtk
+Obsoletes:	tdenetwork < %{version}-%{release}
+Provides:	tdenetwork = %{version}-%{release}
 
 Requires: trinity-dcoprss = %{version}-%{release}
 Requires: %{name}-filesharing = %{version}-%{release}
@@ -143,6 +168,10 @@ Networking applications, including:
 * librss: RSS library for Trinity
 * lisa: lan information server
 
+%files
+%defattr(-,root,root,-)
+%doc AUTHORS COPYING README
+
 
 ##########
 
@@ -159,10 +188,10 @@ DCOP is the TDE interprocess communication protocol.
 
 %files -n trinity-dcoprss
 %defattr(-,root,root,-)
-%{_bindir}/feedbrowser
-%{_bindir}/rssclient
-%{_bindir}/rssservice
-%{_datadir}/services/rssservice.desktop
+%{tde_bindir}/feedbrowser
+%{tde_bindir}/rssclient
+%{tde_bindir}/rssservice
+%{tde_datadir}/services/rssservice.desktop
 
 %post -n trinity-dcoprss
 update-desktop-database 2> /dev/null || : 
@@ -191,21 +220,21 @@ development-related files for the TDE network module.
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/kopete/*.h
-%{_includedir}/kopete/ui/*.h
-%{_includedir}/rss/*.h
-%{_libdir}/libkdeinit_kdict.la
-%{_libdir}/libkdeinit_ksirc.la
-%{_libdir}/libkopete.la
-%{_libdir}/libkopete.so
-%{_libdir}/libkopete_msn_shared.la
-%{_libdir}/libkopete_msn_shared.so
-%{_libdir}/libkopete_oscar.la
-%{_libdir}/libkopete_oscar.so
-%{_libdir}/libkopete_videodevice.la
-%{_libdir}/libkopete_videodevice.so
-%{_libdir}/librss.la
-%{_libdir}/librss.so
+%{tde_tdeincludedir}/kopete/*.h
+%{tde_tdeincludedir}/kopete/ui/*.h
+%{tde_tdeincludedir}/rss/*.h
+%{tde_libdir}/libkdeinit_kdict.la
+%{tde_libdir}/libkdeinit_ksirc.la
+%{tde_libdir}/libkopete.la
+%{tde_libdir}/libkopete.so
+%{tde_libdir}/libkopete_msn_shared.la
+%{tde_libdir}/libkopete_msn_shared.so
+%{tde_libdir}/libkopete_oscar.la
+%{tde_libdir}/libkopete_oscar.so
+%{tde_libdir}/libkopete_videodevice.la
+%{tde_libdir}/libkopete_videodevice.so
+%{tde_libdir}/librss.la
+%{tde_libdir}/librss.so
 
 %post devel
 /sbin/ldconfig
@@ -220,32 +249,35 @@ development-related files for the TDE network module.
 Summary:		Network filesharing configuration module for Trinity
 Group:   		Applications/Internet
 
+Obsoletes:		tdenetwork-filesharing < %{version}-%{release}
+Provides:		tdenetwork-filesharing = %{version}-%{release}
+
 %description filesharing
 This package provides a TDE Control Center module to configure
 NFS and Samba.
 
 %files filesharing
 %defattr(-,root,root,-)
-%{tde_libdir}/fileshare_propsdlgplugin.la
-%{tde_libdir}/fileshare_propsdlgplugin.so
-%{tde_libdir}/kcm_fileshare.la
-%{tde_libdir}/kcm_fileshare.so
-%{tde_libdir}/kcm_kcmsambaconf.la
-%{tde_libdir}/kcm_kcmsambaconf.so
-%{tde_appdir}/fileshare.desktop
-%{tde_appdir}/kcmsambaconf.desktop
-%{_datadir}/icons/hicolor/*/apps/kcmsambaconf.png
-%{_datadir}/services/fileshare_propsdlgplugin.desktop
+%{tde_tdelibdir}/fileshare_propsdlgplugin.la
+%{tde_tdelibdir}/fileshare_propsdlgplugin.so
+%{tde_tdelibdir}/kcm_fileshare.la
+%{tde_tdelibdir}/kcm_fileshare.so
+%{tde_tdelibdir}/kcm_kcmsambaconf.la
+%{tde_tdelibdir}/kcm_kcmsambaconf.so
+%{tde_tdeappdir}/fileshare.desktop
+%{tde_tdeappdir}/kcmsambaconf.desktop
+%{tde_datadir}/icons/hicolor/*/apps/kcmsambaconf.png
+%{tde_datadir}/services/fileshare_propsdlgplugin.desktop
 
 %post filesharing
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun filesharing
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -263,25 +295,25 @@ basic as well as advanced queries.
 
 %files -n trinity-kdict
 %defattr(-,root,root,-)
-%{_bindir}/kdict
-%{tde_libdir}/kdict.*
-%{tde_libdir}/kdict_panelapplet.*
-%{_libdir}/libkdeinit_kdict.*
-%{tde_appdir}/kdict.desktop
-%{_datadir}/apps/kdict
-%{_datadir}/apps/kicker/applets/kdictapplet.desktop
-%{_datadir}/icons/hicolor/*/apps/kdict.*
-%{tde_docdir}/HTML/en/kdict
+%{tde_bindir}/kdict
+%{tde_tdelibdir}/kdict.*
+%{tde_tdelibdir}/kdict_panelapplet.*
+%{tde_libdir}/libkdeinit_kdict.*
+%{tde_tdeappdir}/kdict.desktop
+%{tde_datadir}/apps/kdict
+%{tde_datadir}/apps/kicker/applets/kdictapplet.desktop
+%{tde_datadir}/icons/hicolor/*/apps/kdict.*
+%{tde_tdedocdir}/HTML/en/kdict
 
 %post -n trinity-kdict
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-kdict
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -291,15 +323,18 @@ update-desktop-database 2> /dev/null || :
 Summary:		Torrent metainfo plugin for Trinity
 Group:			Applications/Internet
 
+Obsoletes:		tdenetwork-kfile-plugins < %{version}-%{release}
+Provides:		tdenetwork-kfile-plugins = %{version}-%{release}
+
 %description kfile-plugins
 This package provides a metainformation plugin for bittorrent files.
 TDE uses kfile-plugins to provide metainfo tab in the files properties
 dialog in konqueror and other file-handling applications.
 
 %files kfile-plugins
-%{tde_libdir}/kfile_torrent.la
-%{tde_libdir}/kfile_torrent.so
-%{_datadir}/services/kfile_torrent.desktop
+%{tde_tdelibdir}/kfile_torrent.la
+%{tde_tdelibdir}/kfile_torrent.so
+%{tde_datadir}/services/kfile_torrent.desktop
 
 %post kfile-plugins
 update-desktop-database 2> /dev/null || : 
@@ -323,33 +358,33 @@ applications and Netscape.
 
 %files -n trinity-kget
 %defattr(-,root,root,-)
-%{_bindir}/kget
-%{tde_libdir}/khtml_kget.la
-%{tde_libdir}/khtml_kget.so
-%{tde_appdir}/kget.desktop
-%{_datadir}/apps/kget
-%{_datadir}/apps/khtml/kpartplugins/kget_plug_in.desktop
-%{_datadir}/apps/khtml/kpartplugins/kget_plug_in.rc
-%{_datadir}/apps/konqueror/servicemenus/kget_download.desktop
-%{_datadir}/icons/crystalsvg/*/actions/khtml_kget.png
-%{_datadir}/icons/crystalsvg/*/apps/kget.png
-%{_datadir}/icons/crystalsvg/*/mimetypes/kget_list.png
-%{_datadir}/mimelnk/application/x-kgetlist.desktop
-%{_datadir}/sounds/KGet_Added.ogg
-%{_datadir}/sounds/KGet_Finished.ogg
-%{_datadir}/sounds/KGet_Finished_All.ogg
-%{_datadir}/sounds/KGet_Started.ogg
-%{tde_docdir}/HTML/en/kget
+%{tde_bindir}/kget
+%{tde_tdelibdir}/khtml_kget.la
+%{tde_tdelibdir}/khtml_kget.so
+%{tde_tdeappdir}/kget.desktop
+%{tde_datadir}/apps/kget
+%{tde_datadir}/apps/khtml/kpartplugins/kget_plug_in.desktop
+%{tde_datadir}/apps/khtml/kpartplugins/kget_plug_in.rc
+%{tde_datadir}/apps/konqueror/servicemenus/kget_download.desktop
+%{tde_datadir}/icons/crystalsvg/*/actions/khtml_kget.png
+%{tde_datadir}/icons/crystalsvg/*/apps/kget.png
+%{tde_datadir}/icons/crystalsvg/*/mimetypes/kget_list.png
+%{tde_datadir}/mimelnk/application/x-kgetlist.desktop
+%{tde_datadir}/sounds/KGet_Added.ogg
+%{tde_datadir}/sounds/KGet_Finished.ogg
+%{tde_datadir}/sounds/KGet_Finished_All.ogg
+%{tde_datadir}/sounds/KGet_Started.ogg
+%{tde_tdedocdir}/HTML/en/kget
 
 %post -n trinity-kget
 for f in crystalsvg ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-kget
 for f in crystalsvg ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -368,30 +403,30 @@ good news sources which provide such files.
 
 %files -n trinity-knewsticker
 %defattr(-,root,root,-)
-%{_bindir}/knewstickerstub
-%{tde_libdir}/knewsticker_panelapplet.la
-%{tde_libdir}/knewsticker_panelapplet.so
-%{tde_libdir}/kntsrcfilepropsdlg.la
-%{tde_libdir}/kntsrcfilepropsdlg.so
-%{tde_appdir}/knewsticker-standalone.desktop
-%{_datadir}/applnk/.hidden/knewstickerstub.desktop
-%{_datadir}/apps/kconf_update/knewsticker.upd
-%{_datadir}/apps/kconf_update/knt-0.1-0.2.pl
-%{_datadir}/apps/kicker/applets/knewsticker.desktop
-%{_datadir}/apps/knewsticker/eventsrc
-%{_datadir}/icons/hicolor/*/apps/knewsticker.png
-%{_datadir}/services/kntsrcfilepropsdlg.desktop
-%{tde_docdir}/HTML/en/knewsticker
+%{tde_bindir}/knewstickerstub
+%{tde_tdelibdir}/knewsticker_panelapplet.la
+%{tde_tdelibdir}/knewsticker_panelapplet.so
+%{tde_tdelibdir}/kntsrcfilepropsdlg.la
+%{tde_tdelibdir}/kntsrcfilepropsdlg.so
+%{tde_tdeappdir}/knewsticker-standalone.desktop
+%{tde_datadir}/applnk/.hidden/knewstickerstub.desktop
+%{tde_datadir}/apps/kconf_update/knewsticker.upd
+%{tde_datadir}/apps/kconf_update/knt-0.1-0.2.pl
+%{tde_datadir}/apps/kicker/applets/knewsticker.desktop
+%{tde_datadir}/apps/knewsticker/eventsrc
+%{tde_datadir}/icons/hicolor/*/apps/knewsticker.png
+%{tde_datadir}/services/kntsrcfilepropsdlg.desktop
+%{tde_tdedocdir}/HTML/en/knewsticker
 
 %post -n trinity-knewsticker
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-knewsticker
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -427,156 +462,156 @@ Support for more IM protocols can be added through a plugin system.
 %files -n trinity-kopete
 %defattr(-,root,root,-)
 # nowlistening support
-%exclude %{_datadir}/apps/kopete/*nowlisteningchatui*
-%exclude %{_datadir}/apps/kopete/*nowlisteningui*
-%exclude %{_datadir}/config.kcfg/nowlisteningconfig.kcfg
-%exclude %{_datadir}/services/kconfiguredialog/*nowlistening*
-%exclude %{_datadir}/services/*nowlistening*
-%exclude %{tde_libdir}/*nowlistening*
+%exclude %{tde_datadir}/apps/kopete/*nowlisteningchatui*
+%exclude %{tde_datadir}/apps/kopete/*nowlisteningui*
+%exclude %{tde_datadir}/config.kcfg/nowlisteningconfig.kcfg
+%exclude %{tde_datadir}/services/kconfiguredialog/*nowlistening*
+%exclude %{tde_datadir}/services/*nowlistening*
+%exclude %{tde_tdelibdir}/*nowlistening*
 # Main kopete package
-%{_bindir}/kopete
-%{_bindir}/kopete_latexconvert.sh
-%{_libdir}/kconf_update_bin/kopete_account_kconf_update
-%{_libdir}/kconf_update_bin/kopete_nameTracking_kconf_update
-%{_libdir}/kconf_update_bin/kopete_pluginloader2_kconf_update
-%{tde_libdir}/kcm_kopete_*.so
-%{tde_libdir}/kcm_kopete_*.la
-%{tde_libdir}/kio_jabberdisco.la
-%{tde_libdir}/kio_jabberdisco.so
-%{tde_libdir}/kopete_*.la
-%{tde_libdir}/kopete_*.so
-%{tde_libdir}/libkrichtexteditpart.la
-%{tde_libdir}/libkrichtexteditpart.so
-%{_libdir}/libkopete_msn_shared.so.*
-%{_libdir}/libkopete_oscar.so.*
-%{_libdir}/libkopete.so.*
-%{_libdir}/libkopete_videodevice.so.*
-%{tde_appdir}/kopete.desktop
-%{_datadir}/apps/kconf_update/kopete-*
-%{_datadir}/apps/kopete
-%{_datadir}/apps/kopete_*/*.rc
-%{_datadir}/apps/kopeterichtexteditpart/kopeterichtexteditpartfull.rc
-%{_datadir}/config.kcfg/historyconfig.kcfg
-%{_datadir}/config.kcfg/kopeteidentityconfigpreferences.kcfg
-%{_datadir}/config.kcfg/kopete.kcfg
-%{_datadir}/config.kcfg/latexconfig.kcfg
-%{_datadir}/icons/crystalsvg/*/actions/voicecall.png
-%{_datadir}/icons/crystalsvg/*/actions/webcamreceive.png
-%{_datadir}/icons/crystalsvg/*/actions/webcamsend.png
-%{_datadir}/icons/crystalsvg/*/actions/account_offline_overlay.png
-%{_datadir}/icons/crystalsvg/*/actions/add_user.png
-%{_datadir}/icons/crystalsvg/*/actions/contact_away_overlay.png
-%{_datadir}/icons/crystalsvg/*/actions/contact_busy_overlay.png
-%{_datadir}/icons/crystalsvg/*/actions/contact_food_overlay.png
-%{_datadir}/icons/crystalsvg/*/actions/contact_invisible_overlay.png
-%{_datadir}/icons/crystalsvg/*/actions/contact_phone_overlay.png
-%{_datadir}/icons/crystalsvg/*/actions/contact_xa_overlay.png
-%{_datadir}/icons/crystalsvg/*/actions/delete_user.png
-%{_datadir}/icons/crystalsvg/*/actions/edit_user.png
-%{_datadir}/icons/crystalsvg/*/actions/emoticon.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_away.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_chatty.png
-#%{_datadir}/icons/crystalsvg/*/actions/jabber_connecting.mng
-%{_datadir}/icons/crystalsvg/*/actions/jabber_group.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_invisible.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_na.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_offline.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_online.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_original.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_raw.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_serv_off.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_serv_on.png
-%{_datadir}/icons/crystalsvg/*/actions/jabber_xa.png
-%{_datadir}/icons/crystalsvg/*/actions/kopeteavailable.png
-%{_datadir}/icons/crystalsvg/*/actions/kopeteaway.png
-%{_datadir}/icons/crystalsvg/*/actions/kopeteeditstatusmessage.png
-%{_datadir}/icons/crystalsvg/*/actions/kopetestatusmessage.png
-%{_datadir}/icons/crystalsvg/*/actions/metacontact_away.png
-%{_datadir}/icons/crystalsvg/*/actions/metacontact_offline.png
-%{_datadir}/icons/crystalsvg/*/actions/metacontact_online.png
-%{_datadir}/icons/crystalsvg/*/actions/metacontact_unknown.png
-%{_datadir}/icons/crystalsvg/*/actions/newmsg.png
-%{_datadir}/icons/crystalsvg/*/actions/search_user.png
-%{_datadir}/icons/crystalsvg/*/actions/show_offliners.png
-%{_datadir}/icons/crystalsvg/*/actions/status_unknown_overlay.png
-%{_datadir}/icons/crystalsvg/*/actions/status_unknown.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_aim.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_gadu.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_http-ws.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_icq.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_irc.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_msn.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_qq.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_smtp.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_tlen.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_gateway_yahoo.png
-%{_datadir}/icons/crystalsvg/*/apps/jabber_protocol.png
-%{_datadir}/icons/crystalsvg/*/apps/kopete_all_away.png
-%{_datadir}/icons/crystalsvg/*/apps/kopete_offline.png
-%{_datadir}/icons/crystalsvg/*/apps/kopete_some_away.png
-%{_datadir}/icons/crystalsvg/*/apps/kopete_some_online.png
-%{_datadir}/icons/crystalsvg/*/mimetypes/kopete_emoticons.png
-%{_datadir}/icons/crystalsvg/scalable/actions/account_offline_overlay.svgz
-%{_datadir}/icons/hicolor/*/apps/kopete.png
-%{_datadir}/icons/hicolor/*/actions/emoticon.png
-%{_datadir}/icons/hicolor/*/actions/jabber_away.png
-%{_datadir}/icons/hicolor/*/actions/jabber_chatty.png
-#%{_datadir}/icons/hicolor/*/actions/jabber_connecting.mng
-%{_datadir}/icons/hicolor/*/actions/jabber_group.png
-%{_datadir}/icons/hicolor/*/actions/jabber_invisible.png
-%{_datadir}/icons/hicolor/*/actions/jabber_na.png
-%{_datadir}/icons/hicolor/*/actions/jabber_offline.png
-%{_datadir}/icons/hicolor/*/actions/jabber_online.png
-%{_datadir}/icons/hicolor/*/actions/jabber_original.png
-%{_datadir}/icons/hicolor/*/actions/jabber_raw.png
-%{_datadir}/icons/hicolor/*/actions/jabber_serv_off.png
-%{_datadir}/icons/hicolor/*/actions/jabber_serv_on.png
-%{_datadir}/icons/hicolor/*/actions/jabber_xa.png
-%{_datadir}/icons/hicolor/*/actions/kopeteavailable.png
-%{_datadir}/icons/hicolor/*/actions/kopeteaway.png
-%{_datadir}/icons/hicolor/*/actions/newmsg.png
-%{_datadir}/icons/hicolor/*/actions/status_unknown_overlay.png
-%{_datadir}/icons/hicolor/*/actions/status_unknown.png
-%{_datadir}/icons/hicolor/*/apps/jabber_protocol.png
-%{_datadir}/icons/hicolor/scalable/apps/kopete2.svgz
-%{_datadir}/mimelnk/application/x-icq.desktop
-%{_datadir}/mimelnk/application/x-kopete-emoticons.desktop
-%{_datadir}/services/aim.protocol
-%{_datadir}/services/chatwindow.desktop
-%{_datadir}/services/emailwindow.desktop
-#%{_datadir}/services/irc.protocol /opt/trinity/share/apps/kopete/
-%{_datadir}/services/jabberdisco.protocol
-%{_datadir}/services/kconfiguredialog/kopete_*.desktop
-%{_datadir}/services/kopete_*.desktop
-%{_datadir}/icons/crystalsvg/16x16/apps/jabber_gateway_sms.png
-%{_datadir}/servicetypes/kopete*.desktop
-%{_datadir}/sounds/Kopete_*.ogg
-%{tde_docdir}/HTML/en/kopete
+%{tde_bindir}/kopete
+%{tde_bindir}/kopete_latexconvert.sh
+%{tde_libdir}/kconf_update_bin/kopete_account_kconf_update
+%{tde_libdir}/kconf_update_bin/kopete_nameTracking_kconf_update
+%{tde_libdir}/kconf_update_bin/kopete_pluginloader2_kconf_update
+%{tde_tdelibdir}/kcm_kopete_*.so
+%{tde_tdelibdir}/kcm_kopete_*.la
+%{tde_tdelibdir}/kio_jabberdisco.la
+%{tde_tdelibdir}/kio_jabberdisco.so
+%{tde_tdelibdir}/kopete_*.la
+%{tde_tdelibdir}/kopete_*.so
+%{tde_tdelibdir}/libkrichtexteditpart.la
+%{tde_tdelibdir}/libkrichtexteditpart.so
+%{tde_libdir}/libkopete_msn_shared.so.*
+%{tde_libdir}/libkopete_oscar.so.*
+%{tde_libdir}/libkopete.so.*
+%{tde_libdir}/libkopete_videodevice.so.*
+%{tde_tdeappdir}/kopete.desktop
+%{tde_datadir}/apps/kconf_update/kopete-*
+%{tde_datadir}/apps/kopete
+%{tde_datadir}/apps/kopete_*/*.rc
+%{tde_datadir}/apps/kopeterichtexteditpart/kopeterichtexteditpartfull.rc
+%{tde_datadir}/config.kcfg/historyconfig.kcfg
+%{tde_datadir}/config.kcfg/kopeteidentityconfigpreferences.kcfg
+%{tde_datadir}/config.kcfg/kopete.kcfg
+%{tde_datadir}/config.kcfg/latexconfig.kcfg
+%{tde_datadir}/icons/crystalsvg/*/actions/voicecall.png
+%{tde_datadir}/icons/crystalsvg/*/actions/webcamreceive.png
+%{tde_datadir}/icons/crystalsvg/*/actions/webcamsend.png
+%{tde_datadir}/icons/crystalsvg/*/actions/account_offline_overlay.png
+%{tde_datadir}/icons/crystalsvg/*/actions/add_user.png
+%{tde_datadir}/icons/crystalsvg/*/actions/contact_away_overlay.png
+%{tde_datadir}/icons/crystalsvg/*/actions/contact_busy_overlay.png
+%{tde_datadir}/icons/crystalsvg/*/actions/contact_food_overlay.png
+%{tde_datadir}/icons/crystalsvg/*/actions/contact_invisible_overlay.png
+%{tde_datadir}/icons/crystalsvg/*/actions/contact_phone_overlay.png
+%{tde_datadir}/icons/crystalsvg/*/actions/contact_xa_overlay.png
+%{tde_datadir}/icons/crystalsvg/*/actions/delete_user.png
+%{tde_datadir}/icons/crystalsvg/*/actions/edit_user.png
+%{tde_datadir}/icons/crystalsvg/*/actions/emoticon.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_away.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_chatty.png
+#%{tde_datadir}/icons/crystalsvg/*/actions/jabber_connecting.mng
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_group.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_invisible.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_na.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_offline.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_online.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_original.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_raw.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_serv_off.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_serv_on.png
+%{tde_datadir}/icons/crystalsvg/*/actions/jabber_xa.png
+%{tde_datadir}/icons/crystalsvg/*/actions/kopeteavailable.png
+%{tde_datadir}/icons/crystalsvg/*/actions/kopeteaway.png
+%{tde_datadir}/icons/crystalsvg/*/actions/kopeteeditstatusmessage.png
+%{tde_datadir}/icons/crystalsvg/*/actions/kopetestatusmessage.png
+%{tde_datadir}/icons/crystalsvg/*/actions/metacontact_away.png
+%{tde_datadir}/icons/crystalsvg/*/actions/metacontact_offline.png
+%{tde_datadir}/icons/crystalsvg/*/actions/metacontact_online.png
+%{tde_datadir}/icons/crystalsvg/*/actions/metacontact_unknown.png
+%{tde_datadir}/icons/crystalsvg/*/actions/newmsg.png
+%{tde_datadir}/icons/crystalsvg/*/actions/search_user.png
+%{tde_datadir}/icons/crystalsvg/*/actions/show_offliners.png
+%{tde_datadir}/icons/crystalsvg/*/actions/status_unknown_overlay.png
+%{tde_datadir}/icons/crystalsvg/*/actions/status_unknown.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_aim.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_gadu.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_http-ws.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_icq.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_irc.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_msn.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_qq.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_smtp.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_tlen.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_gateway_yahoo.png
+%{tde_datadir}/icons/crystalsvg/*/apps/jabber_protocol.png
+%{tde_datadir}/icons/crystalsvg/*/apps/kopete_all_away.png
+%{tde_datadir}/icons/crystalsvg/*/apps/kopete_offline.png
+%{tde_datadir}/icons/crystalsvg/*/apps/kopete_some_away.png
+%{tde_datadir}/icons/crystalsvg/*/apps/kopete_some_online.png
+%{tde_datadir}/icons/crystalsvg/*/mimetypes/kopete_emoticons.png
+%{tde_datadir}/icons/crystalsvg/scalable/actions/account_offline_overlay.svgz
+%{tde_datadir}/icons/hicolor/*/apps/kopete.png
+%{tde_datadir}/icons/hicolor/*/actions/emoticon.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_away.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_chatty.png
+#%{tde_datadir}/icons/hicolor/*/actions/jabber_connecting.mng
+%{tde_datadir}/icons/hicolor/*/actions/jabber_group.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_invisible.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_na.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_offline.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_online.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_original.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_raw.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_serv_off.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_serv_on.png
+%{tde_datadir}/icons/hicolor/*/actions/jabber_xa.png
+%{tde_datadir}/icons/hicolor/*/actions/kopeteavailable.png
+%{tde_datadir}/icons/hicolor/*/actions/kopeteaway.png
+%{tde_datadir}/icons/hicolor/*/actions/newmsg.png
+%{tde_datadir}/icons/hicolor/*/actions/status_unknown_overlay.png
+%{tde_datadir}/icons/hicolor/*/actions/status_unknown.png
+%{tde_datadir}/icons/hicolor/*/apps/jabber_protocol.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kopete2.svgz
+%{tde_datadir}/mimelnk/application/x-icq.desktop
+%{tde_datadir}/mimelnk/application/x-kopete-emoticons.desktop
+%{tde_datadir}/services/aim.protocol
+%{tde_datadir}/services/chatwindow.desktop
+%{tde_datadir}/services/emailwindow.desktop
+#%{tde_datadir}/services/irc.protocol /opt/trinity/share/apps/kopete/
+%{tde_datadir}/services/jabberdisco.protocol
+%{tde_datadir}/services/kconfiguredialog/kopete_*.desktop
+%{tde_datadir}/services/kopete_*.desktop
+%{tde_datadir}/icons/crystalsvg/16x16/apps/jabber_gateway_sms.png
+%{tde_datadir}/servicetypes/kopete*.desktop
+%{tde_datadir}/sounds/Kopete_*.ogg
+%{tde_tdedocdir}/HTML/en/kopete
 # jingle support for kopete
-%{_bindir}/relayserver
-%{_bindir}/stunserver
+%{tde_bindir}/relayserver
+%{tde_bindir}/stunserver
 # winpopup support for kopete
-%{_bindir}/winpopup-install.sh
-%{_bindir}/winpopup-send.sh
+%{tde_bindir}/winpopup-install.sh
+%{tde_bindir}/winpopup-send.sh
 # meanwhile protocol support for kopete
-%{tde_libdir}/new_target0.la
-%{tde_libdir}/new_target0.so
+%{tde_tdelibdir}/new_target0.la
+%{tde_tdelibdir}/new_target0.so
 # motionaway plugin for kopete
-%{_datadir}/config.kcfg/motionawayconfig.kcfg
+%{tde_datadir}/config.kcfg/motionawayconfig.kcfg
 # smpp plugin for kopete
-%{_datadir}/config.kcfg/smpppdcs.kcfg
+%{tde_datadir}/config.kcfg/smpppdcs.kcfg
 
 
 %post -n trinity-kopete
 for f in crystalsvg hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 /sbin/ldconfig
 
 %postun -n trinity-kopete
 for f in crystalsvg hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 /sbin/ldconfig
@@ -594,12 +629,12 @@ noatun, kscd, juk, kaffeine and amarok.
 
 %files -n trinity-kopete-nowlistening
 %defattr(-,root,root,-)
-%{_datadir}/apps/kopete/*nowlisteningchatui*
-%{_datadir}/apps/kopete/*nowlisteningui*
-%{_datadir}/config.kcfg/nowlisteningconfig.kcfg
-%{_datadir}/services/kconfiguredialog/*nowlistening*
-%{_datadir}/services/*nowlistening*
-%{tde_libdir}/*nowlistening*
+%{tde_datadir}/apps/kopete/*nowlisteningchatui*
+%{tde_datadir}/apps/kopete/*nowlisteningui*
+%{tde_datadir}/config.kcfg/nowlisteningconfig.kcfg
+%{tde_datadir}/services/kconfiguredialog/*nowlistening*
+%{tde_datadir}/services/*nowlistening*
+%{tde_tdelibdir}/*nowlistening*
 
 ##########
 
@@ -615,21 +650,21 @@ designed to be used for sharing files with friends.
 
 %files -n trinity-kpf
 %defattr(-,root,root,-)
-%{tde_libdir}/kpf*
-%{_datadir}/apps/kicker/applets/kpfapplet.desktop
-%{_datadir}/icons/crystalsvg/*/apps/kpf.*
-%{_datadir}/services/kpfpropertiesdialogplugin.desktop
-%{tde_docdir}/HTML/en/kpf
+%{tde_tdelibdir}/kpf*
+%{tde_datadir}/apps/kicker/applets/kpfapplet.desktop
+%{tde_datadir}/icons/crystalsvg/*/apps/kpf.*
+%{tde_datadir}/services/kpfpropertiesdialogplugin.desktop
+%{tde_tdedocdir}/HTML/en/kpf
 
 %post -n trinity-kpf
 for f in crystalsvg ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-kpf
 for f in crystalsvg ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -639,6 +674,11 @@ update-desktop-database 2> /dev/null || :
 Summary:		modem dialer and ppp frontend for Trinity
 Group:			Applications/Internet
 Requires:		ppp
+%if 0%{?rhel} || 0%{?fedora}
+Requires:		usermode-gtk
+%else
+Requires:		usermode
+%endif
 
 %description -n trinity-kppp
 KPPP is a dialer and front end for pppd. It allows for interactive
@@ -653,25 +693,25 @@ track of the time spent online for you.
 %defattr(-,root,root,-)
 %config(noreplace) /etc/security/console.apps/kppp3
 %config(noreplace) /etc/pam.d/kppp3
-%{_bindir}/kppp
-%{_bindir}/kppplogview
-%{_sbindir}/kppp
-%{tde_appdir}/Kppp.desktop
-%{tde_appdir}/kppplogview.desktop
-%{_datadir}/apps/checkrules
-%{_datadir}/apps/kppp
-%{_datadir}/icons/hicolor/*/apps/kppp.png
-%{tde_docdir}/HTML/en/kppp
+%{tde_bindir}/kppp
+%{tde_bindir}/kppplogview
+%{tde_sbindir}/kppp
+%{tde_tdeappdir}/Kppp.desktop
+%{tde_tdeappdir}/kppplogview.desktop
+%{tde_datadir}/apps/checkrules
+%{tde_datadir}/apps/kppp
+%{tde_datadir}/icons/hicolor/*/apps/kppp.png
+%{tde_tdedocdir}/HTML/en/kppp
 
 %post -n trinity-kppp
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-kppp
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -689,24 +729,24 @@ Servers using RDP.
 
 %files -n trinity-krdc
 %defattr(-,root,root,-)
-%{_bindir}/krdc
-%{tde_appdir}/krdc.desktop
-%{_datadir}/apps/konqueror/servicemenus/smb2rdc.desktop
-%{_datadir}/apps/krdc
-%{_datadir}/icons/crystalsvg/*/apps/krdc.png
-%{_datadir}/services/rdp.protocol
-%{_datadir}/services/vnc.protocol
-%{tde_docdir}/HTML/en/krdc
+%{tde_bindir}/krdc
+%{tde_tdeappdir}/krdc.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/smb2rdc.desktop
+%{tde_datadir}/apps/krdc
+%{tde_datadir}/icons/crystalsvg/*/apps/krdc.png
+%{tde_datadir}/services/rdp.protocol
+%{tde_datadir}/services/vnc.protocol
+%{tde_tdedocdir}/HTML/en/krdc
 
 %post -n trinity-krdc
 for f in crystalsvg ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-krdc
 for f in crystalsvg ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -726,33 +766,33 @@ task.
 
 %files -n trinity-krfb
 %defattr(-,root,root,-)
-%{_bindir}/krfb
-%{_bindir}/krfb_httpd
-%{tde_libdir}/kcm_krfb.la
-%{tde_libdir}/kcm_krfb.so
-%{tde_libdir}/kded_kinetd.la
-%{tde_libdir}/kded_kinetd.so
-%{tde_appdir}/kcmkrfb.desktop
-%{tde_appdir}/krfb.desktop
-%{_datadir}/apps/kinetd/eventsrc
-%{_datadir}/apps/krfb
-%{_datadir}/icons/crystalsvg/*/apps/krfb.png
-%{_datadir}/icons/locolor/*/apps/krfb.png
-%{_datadir}/services/kded/kinetd.desktop
-%{_datadir}/services/kinetd_krfb.desktop
-%{_datadir}/services/kinetd_krfb_httpd.desktop
-%{_datadir}/servicetypes/kinetdmodule.desktop
-%{tde_docdir}/HTML/en/krfb
+%{tde_bindir}/krfb
+%{tde_bindir}/krfb_httpd
+%{tde_tdelibdir}/kcm_krfb.la
+%{tde_tdelibdir}/kcm_krfb.so
+%{tde_tdelibdir}/kded_kinetd.la
+%{tde_tdelibdir}/kded_kinetd.so
+%{tde_tdeappdir}/kcmkrfb.desktop
+%{tde_tdeappdir}/krfb.desktop
+%{tde_datadir}/apps/kinetd/eventsrc
+%{tde_datadir}/apps/krfb
+%{tde_datadir}/icons/crystalsvg/*/apps/krfb.png
+%{tde_datadir}/icons/locolor/*/apps/krfb.png
+%{tde_datadir}/services/kded/kinetd.desktop
+%{tde_datadir}/services/kinetd_krfb.desktop
+%{tde_datadir}/services/kinetd_krfb_httpd.desktop
+%{tde_datadir}/servicetypes/kinetdmodule.desktop
+%{tde_tdedocdir}/HTML/en/krfb
 
 %post -n trinity-krfb
 for f in crystalsvg locolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-krfb
 for f in crystalsvg locolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -771,19 +811,19 @@ recommended package libio-socket-ssl-perl.
 
 %files -n trinity-ksirc
 %defattr(-,root,root,-)
-%{_bindir}/dsirc
-%{_bindir}/ksirc
-%{_libdir}/libkdeinit_ksirc.*
-%{tde_libdir}/ksirc.*
-%{tde_appdir}/ksirc.desktop
-%{_datadir}/apps/ksirc/
-%config(noreplace) %{_datadir}/config/ksircrc
-%{_datadir}/icons/hicolor/*/apps/ksirc.*
-%{tde_docdir}/HTML/??/ksirc/
+%{tde_bindir}/dsirc
+%{tde_bindir}/ksirc
+%{tde_libdir}/libkdeinit_ksirc.*
+%{tde_tdelibdir}/ksirc.*
+%{tde_tdeappdir}/ksirc.desktop
+%{tde_datadir}/apps/ksirc/
+%config(noreplace) %{tde_datadir}/config/ksircrc
+%{tde_datadir}/icons/hicolor/*/apps/ksirc.*
+%{tde_tdedocdir}/HTML/??/ksirc/
 
 %post -n trinity-ksirc
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 /sbin/ldconfig
@@ -791,7 +831,7 @@ update-desktop-database 2> /dev/null || :
 
 %postun -n trinity-ksirc
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 /sbin/ldconfig
@@ -810,26 +850,26 @@ and shouldn't be run on a multi-user machine.
 
 %files -n trinity-ktalkd
 %defattr(-,root,root,-)
-%{_bindir}/ktalkd*
-%{_bindir}/mail.local
-%{tde_libdir}/kcm_ktalkd.*
-%{tde_appdir}/kcmktalkd.desktop
-%config(noreplace) %{_datadir}/config/ktalkdrc
-%{_datadir}/icons/crystalsvg/*/apps/ktalkd.*
-%{_datadir}/sounds/ktalkd.wav
+%{tde_bindir}/ktalkd*
+%{tde_bindir}/mail.local
+%{tde_tdelibdir}/kcm_ktalkd.*
+%{tde_tdeappdir}/kcmktalkd.desktop
+%config(noreplace) %{tde_datadir}/config/ktalkdrc
+%{tde_datadir}/icons/crystalsvg/*/apps/ktalkd.*
+%{tde_datadir}/sounds/ktalkd.wav
 %config(noreplace) %{_sysconfdir}/xinetd.d/ktalk
-%{tde_docdir}/HTML/en/kcontrol/kcmtalkd
-%{tde_docdir}/HTML/en/ktalkd
+%{tde_tdedocdir}/HTML/en/kcontrol/kcmtalkd
+%{tde_tdedocdir}/HTML/en/ktalkd
 
 %post -n trinity-ktalkd
 for f in crystalsvg ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-ktalkd
 for f in crystalsvg ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
@@ -850,27 +890,27 @@ wavelan card that uses the wireless extensions interface.
 
 %files -n trinity-kwifimanager
 %defattr(-,root,root,-)
-%{_bindir}/kwifimanager
-%{tde_libdir}/kcm_wifi.*
-%{tde_libdir}/libkwireless.la
-%{tde_libdir}/libkwireless.so
-%{tde_appdir}/kcmwifi.desktop
-%{tde_appdir}/kwifimanager.desktop
-%{_datadir}/apps/kicker/applets/kwireless.desktop
-%{_datadir}/apps/kwifimanager
-%{_datadir}/icons/hicolor/*/apps/kwifimanager.png
-%{_datadir}/icons/hicolor/*/apps/kwifimanager.svgz
-%doc %{tde_docdir}/HTML/en/kwifimanager
+%{tde_bindir}/kwifimanager
+%{tde_tdelibdir}/kcm_wifi.*
+%{tde_tdelibdir}/libkwireless.la
+%{tde_tdelibdir}/libkwireless.so
+%{tde_tdeappdir}/kcmwifi.desktop
+%{tde_tdeappdir}/kwifimanager.desktop
+%{tde_datadir}/apps/kicker/applets/kwireless.desktop
+%{tde_datadir}/apps/kwifimanager
+%{tde_datadir}/icons/hicolor/*/apps/kwifimanager.png
+%{tde_datadir}/icons/hicolor/*/apps/kwifimanager.svgz
+%doc %{tde_tdedocdir}/HTML/en/kwifimanager
 
 %post -n trinity-kwifimanager
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-kwifimanager
 for f in hicolor ; do
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f}  2> /dev/null || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 update-desktop-database 2> /dev/null || : 
 %endif
@@ -888,7 +928,7 @@ automatically when needed.
 
 %files -n trinity-librss
 %defattr(-,root,root,-)
-%{_libdir}/librss.so.*
+%{tde_libdir}/librss.so.*
 
 %post -n trinity-librss
 /sbin/ldconfig
@@ -912,25 +952,25 @@ but relying only on the TCP/IP protocol.
 %defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/lisarc*
 %config(noreplace) %{_initrddir}/lisa
-%{tde_libdir}/kcm_lanbrowser.la
-%{tde_libdir}/kcm_lanbrowser.so
-%{tde_libdir}/kio_lan.la
-%{tde_libdir}/kio_lan.so
-%{_datadir}/applnk/.hidden/kcmkiolan.desktop
-%{_datadir}/applnk/.hidden/kcmlisa.desktop
-%{_datadir}/applnk/.hidden/kcmreslisa.desktop
-%{_datadir}/apps/konqsidebartng/virtual_folders/services/lisa.desktop
-%{_datadir}/apps/konqueror/dirtree/remote/lan.desktop
-%{_datadir}/apps/lisa/README
-%{_datadir}/apps/remoteview/lan.desktop
-%{tde_docdir}/HTML/en/kcontrol/lanbrowser/common
-%{tde_docdir}/HTML/en/kcontrol/lanbrowser/index.cache.bz2
-%{tde_docdir}/HTML/en/kcontrol/lanbrowser/index.docbook
-%{tde_docdir}/HTML/en/lisa
-%{_datadir}/services/lan.protocol
-%{_datadir}/services/rlan.protocol
-%{_bindir}/lisa
-%{_bindir}/reslisa
+%{tde_tdelibdir}/kcm_lanbrowser.la
+%{tde_tdelibdir}/kcm_lanbrowser.so
+%{tde_tdelibdir}/kio_lan.la
+%{tde_tdelibdir}/kio_lan.so
+%{tde_datadir}/applnk/.hidden/kcmkiolan.desktop
+%{tde_datadir}/applnk/.hidden/kcmlisa.desktop
+%{tde_datadir}/applnk/.hidden/kcmreslisa.desktop
+%{tde_datadir}/apps/konqsidebartng/virtual_folders/services/lisa.desktop
+%{tde_datadir}/apps/konqueror/dirtree/remote/lan.desktop
+%{tde_datadir}/apps/lisa/README
+%{tde_datadir}/apps/remoteview/lan.desktop
+%{tde_tdedocdir}/HTML/en/kcontrol/lanbrowser/common
+%{tde_tdedocdir}/HTML/en/kcontrol/lanbrowser/index.cache.bz2
+%{tde_tdedocdir}/HTML/en/kcontrol/lanbrowser/index.docbook
+%{tde_tdedocdir}/HTML/en/lisa
+%{tde_datadir}/services/lan.protocol
+%{tde_datadir}/services/rlan.protocol
+%{tde_bindir}/lisa
+%{tde_bindir}/reslisa
 
 %post -n trinity-lisa
 /sbin/chkconfig --add lisa ||:
@@ -957,21 +997,21 @@ A kioslave and kded module that provide Zeroconf support. Try
 
 %files -n trinity-kdnssd
 %defattr(-,root,root,-)
-%{_datadir}/services/zeroconf.protocol
-%{_datadir}/services/invitation.protocol
-%{_datadir}/services/kded/dnssdwatcher.desktop
-%{_datadir}/apps/remoteview/zeroconf.desktop
-%{_datadir}/apps/zeroconf/_http._tcp
-%{_datadir}/apps/zeroconf/_ftp._tcp
-%{_datadir}/apps/zeroconf/_ldap._tcp
-%{_datadir}/apps/zeroconf/_webdav._tcp
-%{_datadir}/apps/zeroconf/_nfs._tcp
-%{_datadir}/apps/zeroconf/_ssh._tcp
-%{_datadir}/apps/zeroconf/_rfb._tcp
-%{tde_libdir}/kio_zeroconf.so
-%{tde_libdir}/kio_zeroconf.la
-%{tde_libdir}/kded_dnssdwatcher.so
-%{tde_libdir}/kded_dnssdwatcher.la
+%{tde_datadir}/services/zeroconf.protocol
+%{tde_datadir}/services/invitation.protocol
+%{tde_datadir}/services/kded/dnssdwatcher.desktop
+%{tde_datadir}/apps/remoteview/zeroconf.desktop
+%{tde_datadir}/apps/zeroconf/_http._tcp
+%{tde_datadir}/apps/zeroconf/_ftp._tcp
+%{tde_datadir}/apps/zeroconf/_ldap._tcp
+%{tde_datadir}/apps/zeroconf/_webdav._tcp
+%{tde_datadir}/apps/zeroconf/_nfs._tcp
+%{tde_datadir}/apps/zeroconf/_ssh._tcp
+%{tde_datadir}/apps/zeroconf/_rfb._tcp
+%{tde_tdelibdir}/kio_zeroconf.so
+%{tde_tdelibdir}/kio_zeroconf.la
+%{tde_tdelibdir}/kded_dnssdwatcher.so
+%{tde_tdelibdir}/kded_dnssdwatcher.la
 
 %post -n trinity-kdnssd
 update-desktop-database 2> /dev/null || : 
@@ -995,6 +1035,9 @@ update-desktop-database 2> /dev/null || :
 %patch15 -p1
 %patch17 -p1
 %patch18 -p1
+%patch19 -p1
+%patch20 -p1
+%patch21 -p1
 
 
 # TDE 3.5.13: missing 'dummy.cpp' in MSN protocol
@@ -1002,14 +1045,18 @@ update-desktop-database 2> /dev/null || :
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
-export LD_LIBRARY_PATH="%{_libdir}"
+export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%__mkdir build
-cd build
+%{?!mgaversion:%__mkdir build; cd build}
+
 %cmake \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
   -DWITH_JINGLE=ON \
   -DWITH_SPEEX=ON \
   -DWITH_WEBCAM=ON \
@@ -1020,19 +1067,17 @@ cd build
   -DBUILD_KOPETE_PLUGIN_ALL=ON \
   ..
 
-# kdenetwork building is not SMP safe
-%__make 
+# Tdenetwork is not smp safe !
+%__make
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
 
 ## File lists
-# locale's
-%find_lang %{name} || touch %{name}.lang
 # HTML (1.0)
 HTML_DIR=$(kde-config --expandvars --install html)
 if [ -d %{buildroot}$HTML_DIR ]; then
@@ -1053,20 +1098,20 @@ fi
 # Show only in KDE, FIXME, need to re-evaluate these -- Rex
 for i in fileshare kcmkrfb kcmktalkd kcmwifi krfb kppp kppplogview \
    kwifimanager kget knewsticker ksirc kdict ; do
-   if [ -f %{buildroot}%{_datadir}/applications/kde/$i.desktop ] ; then
-      echo "OnlyShowIn=KDE;" >> %{buildroot}%{_datadir}/applications/kde/$i.desktop
+   if [ -f %{buildroot}%{tde_datadir}/applications/kde/$i.desktop ] ; then
+      echo "OnlyShowIn=KDE;" >> %{buildroot}%{tde_datadir}/applications/kde/$i.desktop
    fi
 done
 
 # Run kppp through consolehelper
 install -p -m644 -D %{SOURCE1} %{buildroot}/etc/pam.d/kppp3
-mkdir -p %{buildroot}%{_sbindir}
-mv %{buildroot}%{_bindir}/kppp %{buildroot}%{_sbindir}
-ln -s /usr/bin/consolehelper %{buildroot}%{_bindir}/kppp
+mkdir -p %{buildroot}%{tde_sbindir}
+mv %{buildroot}%{tde_bindir}/kppp %{buildroot}%{tde_sbindir}
+ln -s /usr/bin/consolehelper %{buildroot}%{tde_bindir}/kppp
 mkdir -p %{buildroot}/etc/security/console.apps
 cat > %{buildroot}/etc/security/console.apps/kppp3 <<EOF
 USER=root
-PROGRAM=%{_sbindir}/kppp
+PROGRAM=%{tde_sbindir}/kppp
 SESSION=true
 EOF
 
@@ -1083,18 +1128,21 @@ EOF
 %endif
 
 # Avoids conflict with trinity-kvirc
-%__mv -f %{buildroot}%{_datadir}/services/irc.protocol %{buildroot}%{_datadir}/apps/kopete/
+%__mv -f %{buildroot}%{tde_datadir}/services/irc.protocol %{buildroot}%{tde_datadir}/apps/kopete/
 
 %clean
 %__rm -rf %{buildroot}
 
 
-%files
-%defattr(-,root,root,-)
-%doc AUTHORS COPYING README
-
 
 %changelog
+* Wed Aug 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Renames to 'trinity-tdenetwork'
+- Fix html special chars in kopete nowlistening plugin [Bug #944] [Commit #0a2892ed]
+- Fix a fatal error message [Commit #5c988de1]
+- Fix a parallel build bug [Commit #35c41f35]
+- Use libv4l if available, otherwise check for v4l1 headers [Commit #d8cbbab8]
+
 * Sat Jun 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Split single package in multiple packages
 - Removes useless 'Provides'

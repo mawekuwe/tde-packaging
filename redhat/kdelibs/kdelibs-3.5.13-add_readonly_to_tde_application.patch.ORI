@@ -1,0 +1,178 @@
+commit d3a9d56143cf668c7d29b26a324a424d02036371
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1337109016 -0500
+
+    Add the ability to force read-only configuration file access in a TDE application
+    Force kde-config to use read-only access
+    This closes Bug 293
+
+diff --git a/kdecore/kconfigbackend.cpp b/kdecore/kconfigbackend.cpp
+index 9ee9dd6..4ad0e5f 100644
+--- a/kdecore/kconfigbackend.cpp
++++ b/kdecore/kconfigbackend.cpp
+@@ -247,17 +247,22 @@ void KConfigBackEnd::changeFileName(const TQString &_fileName,
+    mfileName = _fileName;
+    resType = _resType;
+    useKDEGlobals = _useKDEGlobals;
+-   if (mfileName.isEmpty())
++   if (mfileName.isEmpty()) {
+       mLocalFileName = TQString::null;
+-   else if (!TQDir::isRelativePath(mfileName))
++   }
++   else if (!TQDir::isRelativePath(mfileName)) {
+       mLocalFileName = mfileName;
+-   else
+-      mLocalFileName = KGlobal::dirs()->saveLocation(resType) + mfileName;
++   }
++   else {
++      mLocalFileName = KGlobal::dirs()->saveLocation(resType, TQString(), false) + mfileName;
++   }
+ 
+-   if (useKDEGlobals)
++   if (useKDEGlobals) {
+       mGlobalFileName = KGlobal::dirs()->saveLocation("config", TQString(), false) + TQString::fromLatin1("kdeglobals");
+-   else
++   }
++   else {
+       mGlobalFileName = TQString::null;
++   }
+ 
+    d->localLastModified = TQDateTime();
+    d->localLastSize = 0;
+diff --git a/kdecore/kconfigbase.cpp b/kdecore/kconfigbase.cpp
+index 9ad6600..c5c0a4e 100644
+--- a/kdecore/kconfigbase.cpp
++++ b/kdecore/kconfigbase.cpp
+@@ -1139,16 +1139,18 @@ static TQString translatePath( TQString path )
+ 
+    // return original path, if it refers to another type of URL (e.g. http:/), or
+    // if the path is already relative to another directory
+-   if (!startsWithFile && path[0] != '/' ||
+-        startsWithFile && path[5] != '/')
++   if (((!startsWithFile) && (path[0] != '/')) || (startsWithFile && (path[5] != '/'))) {
+ 	return path;
++   }
+ 
+-   if (startsWithFile)
++   if (startsWithFile) {
+         path.remove(0,5); // strip leading "file:/" off the string
++   }
+ 
+    // keep only one single '/' at the beginning - needed for cleanHomeDirPath()
+-   while (path[0] == '/' && path[1] == '/')
++   while (path[0] == '/' && path[1] == '/') {
+ 	path.remove(0,1);
++   }
+ 
+    // we can not use KGlobal::dirs()->relativeLocation("home", path) here,
+    // since it would not recognize paths without a trailing '/'.
+diff --git a/kdecore/kinstance.cpp b/kdecore/kinstance.cpp
+index fe0a515..5b3aa86 100644
+--- ./kdecore/kinstance.cpp.orig	2011-08-11 04:30:15.000000000 +0200
++++ ./kdecore/kinstance.cpp	2012-06-18 23:34:55.942376042 +0200
+@@ -70,7 +70,7 @@
+   : _dirs (0L),
+     _config (0L),
+     _iconLoader (0L),
+-    _name( name ), _aboutData( new KAboutData( name, "", 0 ) )
++    _name( name ), _aboutData( new KAboutData( name, "", 0 ) ), m_configReadOnly(false)
+ {
+     DEBUG_ADD
+     Q_ASSERT(!name.isEmpty());
+@@ -88,7 +88,7 @@
+   : _dirs (0L),
+     _config (0L),
+     _iconLoader (0L),
+-    _name( aboutData->appName() ), _aboutData( aboutData )
++    _name( aboutData->appName() ), _aboutData( aboutData ), m_configReadOnly(false)
+ {
+     DEBUG_ADD
+     Q_ASSERT(!_name.isEmpty());
+@@ -107,7 +107,7 @@
+   : _dirs ( src->_dirs ),
+     _config ( src->_config ),
+     _iconLoader ( src->_iconLoader ),
+-    _name( src->_name ), _aboutData( src->_aboutData )
++    _name( src->_name ), _aboutData( src->_aboutData ), m_configReadOnly(false)
+ {
+     DEBUG_ADD
+     Q_ASSERT(!_name.isEmpty());
+@@ -174,6 +174,11 @@
+ extern bool kde_kiosk_exception;
+ extern bool kde_kiosk_admin;
+ 
++void KInstance::setConfigReadOnly(bool ro)
++{
++    m_configReadOnly = ro;
++}
++
+ KConfig	*KInstance::config() const
+ {
+     DEBUG_CHECK_ALIVE
+@@ -199,7 +204,7 @@
+         if ( d->sharedConfig == 0 )
+         {
+ 	    if ( !_name.isEmpty() )
+-	        d->sharedConfig = KSharedConfig::openConfig( _name + "rc");
++	        d->sharedConfig = KSharedConfig::openConfig( _name + "rc"), m_configReadOnly;
+ 	    else
+ 	        d->sharedConfig = KSharedConfig::openConfig( TQString::null );
+ 	}
+diff --git a/kdecore/kinstance.h b/kdecore/kinstance.h
+index 75cc4b4..444a2d8 100644
+--- a/kdecore/kinstance.h
++++ b/kdecore/kinstance.h
+@@ -96,6 +96,14 @@ class kdecore_EXPORT KInstance
+     KSharedConfig      *sharedConfig() const;
+ 
+     /**
++     * Set a read-only flag on the configuration files
++     * This must be called before config() or dirs() to have any effect
++     * Defaults to FALSE
++     * @param ro read only if TRUE
++     */
++    void                setConfigReadOnly(bool ro);
++
++    /**
+      *  Returns an iconloader object.
+      * @return the iconloader object.
+      */
+@@ -162,6 +170,7 @@ protected:
+     virtual void virtual_hook( int id, void* data );
+ private:
+     KInstancePrivate *d;
++    bool m_configReadOnly;
+ };
+ 
+ #endif
+diff --git a/kdecore/kstandarddirs.cpp b/kdecore/kstandarddirs.cpp
+index bce4bf4..bb8ae97 100644
+--- ./kdecore/kstandarddirs.cpp.orig	2011-08-21 06:15:32.000000000 +0200
++++ ./kdecore/kstandarddirs.cpp	2012-06-18 23:46:56.765409982 +0200
+@@ -767,8 +766,12 @@
+          srv = findExe(TQString::tqfromLatin1("lnusertemp"));
+       if (!srv.isEmpty())
+       {
+-         system(TQFile::encodeName(srv)+" "+type);
+-         result = readlink(TQFile::encodeName(dir).data(), link, 1023);
++         if (system(TQFile::encodeName(srv)+" "+type) < 0 ) {
++             result = readlink(TQFile::encodeName(dir).data(), link, 1023);
++         }
++         else {
++             result = -1;
++         }
+       }
+    }
+    if (result > 0)
+diff --git a/kdecore/kde-config.cpp.in b/kdecore/kde-config.cpp.in
+index 90c5dae..c988b00 100644
+--- a/kdecore/kde-config.cpp.in
++++ b/kdecore/kde-config.cpp.in
+@@ -120,6 +120,7 @@ int main(int argc, char **argv)
+     KCmdLineArgs::addCmdLineOptions( options ); // Add my own options.
+ 
+     KInstance a("kde-config");
++    a.setConfigReadOnly(TRUE);
+     (void)KGlobal::dirs(); // trigger the creation
+     (void)KGlobal::config();
+ 

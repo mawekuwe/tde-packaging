@@ -3,6 +3,9 @@
 %define _variant .opt
 %endif
 
+%define tde_includedir %{_prefix}/include
+%define tde_libdir %{_prefix}/%{_lib}
+
 Name:		dbus-tqt
 Version:	3.5.13
 Release:	3%{?dist}%{?_variant}
@@ -28,7 +31,6 @@ BuildRequires:	qt3-devel >= 3.3.8.d
 
 Requires:		qt3 >= 3.3.8.d
 
-#Provides:		dbus-qt
 
 %description
 Dbus TQT Interface
@@ -49,10 +51,13 @@ Development files for %{name}
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
-%__mkdir build
-cd build
-%cmake ..
+%{?!mgaversion:%__mkdir build; cd build}
+%cmake \
+  -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  ..
 
 %__make %{?_smp_mflags}
 
@@ -66,13 +71,13 @@ cd build
 %__rm -rf %{?buildroot}
 
 %files
-%{_libdir}/*.so.*
+%{tde_libdir}/*.so.*
 
 %files devel
-%{_includedir}/dbus-1.0/*
-%{_libdir}/*.so
-%{_libdir}/*.la
-%{_libdir}/pkgconfig/*.pc
+%{tde_includedir}/dbus-1.0/*
+%{tde_libdir}/*.so
+%{tde_libdir}/*.la
+%{tde_libdir}/pkgconfig/*.pc
 
 %changelog
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3

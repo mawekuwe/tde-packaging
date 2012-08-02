@@ -1,0 +1,44 @@
+--- kdegames/libkdegames/Makefile.am.ORI	2012-07-31 20:25:24.961859509 +0200
++++ kdegames/libkdegames/Makefile.am	2012-07-31 20:25:32.306619391 +0200
+@@ -2,7 +2,7 @@
+ lib_LTLIBRARIES = libkdegames.la
+ libkdegames_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -no-undefined -version-info 3:0:2
+ libkdegames_la_LIBADD  = highscore/libkhighscore.la kgame/libkgame.la kgame/dialogs/libkgamedialogs.la \
+-		$(LIB_KSYCOCA) $(LIB_KDNSSD)
++		$(LIB_KSYCOCA) $(LIB_KDNSSD) $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI)
+ 
+ libkdegames_la_SOURCES = kcarddialog.cpp kstdgameaction.cpp \
+ 		kgamemisc.cpp kchatbase.cpp kchat.cpp \
+--- kdegames/atlantik/libatlantikclient/Makefile.am.ORI	2012-07-31 20:26:55.089913155 +0200
++++ kdegames/atlantik/libatlantikclient/Makefile.am	2012-07-31 20:27:00.414739083 +0200
+@@ -1,7 +1,7 @@
+ INCLUDES = -I$(top_srcdir)/atlantik/libatlantic $(all_includes)
+ lib_LTLIBRARIES = libatlantikclient.la
+ libatlantikclient_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -no-undefined -version-info 3:0:2
+-libatlantikclient_la_LIBADD = ../libatlantic/libatlantic.la $(LIB_KIO)
++libatlantikclient_la_LIBADD = ../libatlantic/libatlantic.la $(LIB_KIO) $(LIB_KDECORE)
+ 
+ libatlantikclient_la_SOURCES = atlantik_network.cpp monopdprotocol.cpp
+ 
+--- kdegames/atlantik/libatlantikui/Makefile.am.ORI	2012-07-31 20:29:44.177385572 +0200
++++ kdegames/atlantik/libatlantikui/Makefile.am	2012-07-31 20:30:27.821958801 +0200
+@@ -1,7 +1,7 @@
+ INCLUDES = -I$(top_srcdir)/atlantik/libatlantic $(all_includes)
+ lib_LTLIBRARIES = libatlantikui.la
+ libatlantikui_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -no-undefined -version-info 3:0:2
+-libatlantikui_la_LIBADD = ../libatlantic/libatlantic.la $(LIB_KIO)
++libatlantikui_la_LIBADD = ../libatlantic/libatlantic.la $(LIB_KIO) $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx
+ 
+ libatlantikui_la_SOURCES = auction_widget.cpp board.cpp estatedetails.cpp \
+ 	estateview.cpp kwrappedlistviewitem.cpp portfolioestate.cpp \
+--- kdegames/kolf/Makefile.am.ORI	2012-07-31 20:38:20.125518870 +0200
++++ kdegames/kolf/Makefile.am	2012-07-31 20:38:30.672174091 +0200
+@@ -12,7 +12,7 @@
+ 	floater.cpp slope.cpp
+ 
+ libkolf_la_LDFLAGS = $(all_libraries) -no-undefined -version-info 3:0:2
+-libkolf_la_LIBADD = $(LIB_KDEGAMES) $(LIB_KDEPRINT) $(LIB_KIO) -lartskde
++libkolf_la_LIBADD = $(LIB_KDEGAMES) $(LIB_KDEPRINT) $(LIB_KIO) -lartskde -lkdefx -lsoundserver_idl -lartsmodules
+ libkolf_la_DEPENDENCIES = $(LIB_KDEGAMES_DEP)
+ 
+ 

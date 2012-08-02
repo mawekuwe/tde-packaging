@@ -6,7 +6,7 @@
 
 Name:		trinity-desktop
 Version:	3.5.13
-Release:	4%{?dist}%{?_variant}
+Release:	5%{?dist}%{?_variant}
 License:	GPL
 Summary:	Meta-package to install TDE
 Group:		User Interface/Desktops
@@ -22,23 +22,28 @@ BuildArch:	noarch
 Source0:	trinity-3.5.13-fedora.repo
 Source1:	trinity-3.5.13-rhel.repo
 
-Requires:	trinity-kdeaccessibility >= %{version}
-Requires:	trinity-kdeaddons >= %{version}
-Requires:	trinity-kdeadmin >= %{version}
-Requires:	trinity-kdeartwork >= %{version}
-Requires:	trinity-kdeartwork-icons >= %{version}
-Requires:	trinity-kdebase >= %{version}
-Requires:	trinity-kdebindings >= %{version}
-Requires:	trinity-kdeedu >= %{version}
-Requires:	trinity-kdegames >= %{version}
-Requires:	trinity-kdegraphics >= %{version}
-Requires:	trinity-kdemultimedia >= %{version}
-Requires:	trinity-kdenetwork >= %{version}
-Requires:	trinity-kdepim >= %{version}
-Requires:	trinity-kdeutils >= %{version}
-Requires:	trinity-kdetoys >= %{version}
-Requires:	trinity-repo >= %{version}
+Obsoletes:	trinity-desktop-extras < %{version}-%{release}
+Provides:	trinity-desktop-extras = %{version}-%{release}
+
+Requires:	trinity-tdeaccessibility >= %{version}
+Requires:	trinity-tdeaddons >= %{version}
+Requires:	trinity-tdeadmin >= %{version}
+Requires:	trinity-tdeartwork >= %{version}
+Requires:	trinity-tdebase >= %{version}
+Requires:	trinity-tdebindings >= %{version}
+Requires:	trinity-tdeedu >= %{version}
+Requires:	trinity-tdegames >= %{version}
+Requires:	trinity-tdegraphics >= %{version}
+Requires:	trinity-tdemultimedia >= %{version}
+Requires:	trinity-tdenetwork >= %{version}
+Requires:	trinity-tdepim >= %{version}
+Requires:	trinity-tdeutils >= %{version}
+Requires:	trinity-tdetoys >= %{version}
 Requires:	hal
+
+%if 0%{?rhel} || 0%{?fedora}
+Requires:	trinity-repo >= %{version}
+%endif
 
 %description
 The TDE project aims to keep the KDE3.5 computing style alive, as well as 
@@ -49,48 +54,56 @@ Toward that end, significant new enhancements have already been made in
 areas such as display control, network connectivity, user 
 authentication, and much more!
 
-%package dev
+%files
+
+##########
+
+%package devel
 Group:		User Interface/Desktops
 Summary:	Meta-package to install TDE development tools
 
-Requires:	trinity-kdesdk >= %{version}
-Requires:	trinity-kdevelop >= %{version}
-Requires:	trinity-kdewebdev >= %{version}
+Obsoletes:	trinity-desktop-dev < %{version}-%{release}
+Provides:	trinity-desktop-dev = %{version}-%{release}
 
-%description dev
+Requires:	trinity-tdesdk >= %{version}
+Requires:	trinity-tdevelop >= %{version}
+Requires:	trinity-tdewebdev >= %{version}
+
+%description devel
 %{summary}
 
-%package extras
-Group:		User Interface/Desktops
-Summary:	Meta-package to install extra TDE packages
+%files devel
 
-Requires:	trinity-kdeaddons-extras >= %{version}
-Requires:	trinity-kdebase-extras >= %{version}
-Requires:	trinity-kdegraphics-extras >= %{version}
-Requires:	trinity-kdemultimedia-extras >= %{version}
-#Requires:	trinity-kdenetwork-extras >= %{version}
-Requires:	trinity-kdeutils-extras >= %{version}
-
-%description extras
-%{summary}
+##########
 
 %package all
 Group:		User Interface/Desktops
 Summary:	Meta-package to install all TDE packages
 
-Requires:	%{name} == %{version}
-Requires:	%{name}-dev == %{version}
-Requires:	%{name}-extras == %{version}
+Requires:	%{name} = %{version}
+Requires:	%{name}-devel = %{version}
 
 %description all
 %{summary}
 
+%files all
+
+##########
+
+%if 0%{?rhel} || 0%{?fedora}
 %package -n trinity-repo
 Group:		User Interface/Desktops
 Summary:	Yum configuration files for Trinity
 
 %description -n trinity-repo
 %{summary}
+
+%files -n trinity-repo
+%{_sysconfdir}/yum.repos.d/*.repo
+%endif
+
+
+##########
 
 %prep
 
@@ -115,20 +128,16 @@ Summary:	Yum configuration files for Trinity
   >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13-el%{rhel}.repo
 %endif
 
+%if 0%{?fedora} || 0%{?rhel}
 %__chmod 644 %{?buildroot}%{_sysconfdir}/yum.repos.d/*.repo
-
-%files
-
-%files dev
-
-%files extras
-
-%files all
-
-%files -n trinity-repo
-%{_sysconfdir}/yum.repos.d/*.repo
+%endif
 
 %changelog
+* Wed Aug 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Updates to reflect new packages names
+- Add Mageia 2 support
+- Removes 'extras' packages
+
 * Wed Jun 06 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Enable mirrorlist
 
