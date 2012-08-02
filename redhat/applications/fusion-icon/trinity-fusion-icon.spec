@@ -1,7 +1,5 @@
 # Default version for this component
 %define kdecomp fusion-icon
-%define version 0.0.0+git20071028
-%define release 1
 
 %define _prefix /usr
 %if "%{?python2_sitelib}" == ""
@@ -17,8 +15,8 @@ BuildRequires: autoconf automake libtool m4
 
 Name:		trinity-%{kdecomp}
 Summary:	tray icon to launch and manage Compiz Fusion [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.0.0+git20071028
+Release:	1%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
