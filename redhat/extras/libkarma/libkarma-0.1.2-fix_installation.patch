@@ -1,0 +1,85 @@
+--- libkarma-0.1.2/karma-sharp/karma-sharp.pc.in.ORI	2012-08-03 13:00:49.786984296 +0200
++++ libkarma-0.1.2/karma-sharp/karma-sharp.pc.in	2012-08-03 13:02:39.714283226 +0200
+@@ -1,8 +1,8 @@
+ prefix=@prefix@
+-exec_prefix=${prefix}
+-libdir=${prefix}/lib
+-includedir=${prefix}/include
+-Libraries=${prefix}/lib/karma-sharp/karma-sharp.dll
++exec_prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
++Libraries=${libdir}/karma-sharp/karma-sharp.dll
+ 
+ Name: karma-sharp
+ Description: karma-sharp - Library for interfacing with Rio Karma devices
+--- libkarma-0.1.2/src/Makefile.ORI	2012-08-03 13:14:57.231632405 +0200
++++ libkarma-0.1.2/src/Makefile	2012-08-03 13:16:05.653554314 +0200
+@@ -7,6 +7,7 @@
+ INST_HEADERS=lkarma.h utf8.h
+ 
+ LIBDIR=../lib
++LIB=lib
+ 
+ CC?=gcc
+ AR?=ar
+@@ -37,19 +38,19 @@
+ default: all
+ 
+ install: shared-lib-stamp static-lib-stamp
+-	../install-sh -m 0755 -d $(DESTDIR)$(PREFIX)/lib
++	../install-sh -m 0755 -d $(DESTDIR)$(PREFIX)/$(LIB)
+ 	../install-sh -m 0755 -d $(DESTDIR)$(PREFIX)/include
+ 	../install-sh -m 0755 -d $(DESTDIR)$(PREFIX)/include/libkarma
+-	../install-sh -m 0644 -t $(DESTDIR)$(PREFIX)/lib/ $(LIBDIR)/$(TARGET).a
+-	../install-sh -m 0755 -t $(DESTDIR)$(PREFIX)/lib/ $(LIBDIR)/$(OUT_VERSION)
+-	$(RM) $(DESTDIR)$(PREFIX)/lib/$(OUT_MAJOR)
+-	$(RM) $(DESTDIR)$(PREFIX)/lib/$(OUT_BASE)
+-	$(LN_S) $(OUT_VERSION) $(DESTDIR)$(PREFIX)/lib/$(OUT_MAJOR)
+-	$(LN_S) $(OUT_VERSION) $(DESTDIR)$(PREFIX)/lib/$(OUT_BASE)
++	../install-sh -m 0644 -t $(DESTDIR)$(PREFIX)/$(LIB)/ $(LIBDIR)/$(TARGET).a
++	../install-sh -m 0755 -t $(DESTDIR)$(PREFIX)/$(LIB)/ $(LIBDIR)/$(OUT_VERSION)
++	$(RM) $(DESTDIR)$(PREFIX)/$(LIB)/$(OUT_MAJOR)
++	$(RM) $(DESTDIR)$(PREFIX)/$(LIB)/$(OUT_BASE)
++	$(LN_S) $(OUT_VERSION) $(DESTDIR)$(PREFIX)/$(LIB)/$(OUT_MAJOR)
++	$(LN_S) $(OUT_VERSION) $(DESTDIR)$(PREFIX)/$(LIB)/$(OUT_BASE)
+ 	../install-sh -m 0644 -t $(DESTDIR)$(PREFIX)/include/libkarma/ $(INST_HEADERS)
+ 
+ uninstall:
+-	$(RM) $(PREFIX)/lib/$(TARGET).a $(PREFIX)/lib/$(OUT_MAJOR) $(PREFIX)/lib/$(OUT_BASE) $(PREFIX)/lib/$(OUT_VERSION)
++	$(RM) $(PREFIX)/$(LIB)/$(TARGET).a $(PREFIX)/$(LIB)/$(OUT_MAJOR) $(PREFIX)/$(LIB)/$(OUT_BASE) $(PREFIX)/$(LIB)/$(OUT_VERSION)
+ 	$(RM) -r $(PREFIX)/include/libkarma
+ 
+ OBJS = $(SRCS:.c=.o)
+--- libkarma-0.1.2/karma-sharp/Makefile.ORI	2012-08-03 13:21:02.657679440 +0200
++++ libkarma-0.1.2/karma-sharp/Makefile	2012-08-03 13:21:07.144597685 +0200
+@@ -22,22 +22,23 @@
+ 
+ karma-sharp.pc: FORCE
+ 	sed -e 's,@prefix@,$(PREFIX),g; s,@VERSION@,$(VERSION),g' \
++	    -e 's,@libdir@,$(PREFIX)/$(LIB),g; s,@includedir@,$(PREFIX)/include,g;' \
+ 	karma-sharp.pc.in > karma-sharp.pc
+ 
+ ifdef HAS_MONO
+ install: $(ASSEMBLY) karma-sharp.pc $(ASSEMBLY).config
+-	../install-sh -d $(DESTDIR)$(PREFIX)/lib/karma-sharp
+-	../install-sh -d $(DESTDIR)$(PREFIX)/lib/pkgconfig
+-	../install-sh -t $(DESTDIR)$(PREFIX)/lib/karma-sharp $(ASSEMBLY) $(ASSEMBLY).config
+-	../install-sh -t $(DESTDIR)$(PREFIX)/lib/pkgconfig -m 0644 karma-sharp.pc
++	../install-sh -d $(DESTDIR)$(PREFIX)/$(LIB)/karma-sharp
++	../install-sh -d $(DESTDIR)$(PREFIX)/$(LIB)/pkgconfig
++	../install-sh -t $(DESTDIR)$(PREFIX)/$(LIB)/karma-sharp $(ASSEMBLY) $(ASSEMBLY).config
++	../install-sh -t $(DESTDIR)$(PREFIX)/$(LIB)/pkgconfig -m 0644 karma-sharp.pc
+ else
+ install:
+ 
+ endif
+ 
+ uninstall: FORCE
+-	$(RM) -r $(PREFIX)/lib/karma-sharp
+-	$(RM) $(PREFIX)/lib/pkgconfig/karma-sharp.pc
++	$(RM) -r $(PREFIX)/$(LIB)/karma-sharp
++	$(RM) $(PREFIX)/$(LIB)/pkgconfig/karma-sharp.pc
+ 
+ $(ASSEMBLY): $(ASSEMBLY_SOURCES) $(ASSEMBLY_RESOURCES)
+ 	$(MCS) $(MCS_FLAGS) -unsafe -target:library -out:$@ $(ASSEMBLY_SOURCES) $(ASSEMBLY_RESOURCES:%=-resource:%) -r:Mono.Posix
