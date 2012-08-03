@@ -1,25 +1,31 @@
 # Default version for this component
 %define kdecomp bibletime
-%define version 1.6.6.0
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	A bible study tool for Trinity
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.6.6.0
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -37,6 +43,8 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 Patch0:		bibletime-3.5.13-clucene_detection.patch
 # [bibletime] Fix compilation with GCC 4.7
 Patch1:		bibletime-3.5.13-fix_gcc47_compilation.patch
+# [bibletime] Fix FTBFS on Mageia 2, error at linking with 'sword'
+Patch2:		bibletime-3.5.13-fix_sword_linking.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-kdelibs-devel
@@ -44,10 +52,15 @@ BuildRequires:	trinity-kdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
+# Bibletime only works with clucene 0.9 ! Mageia 2 does not ship with that old version !
 %if 0%{?fedora} >= 16
 BuildRequires:	clucene09-core-devel
 %else
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	clucene-devel
+%else
 BuildRequires:	clucene-core-devel
+%endif
 %endif
 
 BuildRequires:	sword-devel
@@ -64,13 +77,14 @@ texts, write own notes, save, print etc.).
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch0 -p0
-%patch1 -p1
+%patch1 -p1 -b .gcc47
+%patch2 -p1 -b .ftbfs
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -78,12 +92,19 @@ texts, write own notes, save, print etc.).
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
+	--prefix=%{tde_prefix} \
+	--exec-prefix=%{tde_prefix} \
+	--bindir=%{tde_bindir} \
+	--libdir=%{tde_libdir} \
+	--datadir=%{tde_datadir} \
+	--includedir=%{tde_tdeincludedir} \
 	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt
+    --with-extra-includes=%{tde_includedir}/tqt
 
 # Not SMP safe !
 %__make -C bibletime/frontend
@@ -93,13 +114,13 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%__chmod 644 %{buildroot}%{_datadir}/apps/bibletime/pics/*
-%__chmod 644 %{buildroot}%{_datadir}/apps/bibletime/bibletimeui.rc
-%__chmod 644 %{buildroot}%{_datadir}/apps/bibletime/tips
+%__chmod 644 %{buildroot}%{tde_datadir}/apps/bibletime/pics/*
+%__chmod 644 %{buildroot}%{tde_datadir}/apps/bibletime/bibletimeui.rc
+%__chmod 644 %{buildroot}%{tde_datadir}/apps/bibletime/tips
 
 
 
@@ -109,24 +130,24 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/bibletime
-%{_includedir}/bibletimeinterface.h
-%{_datadir}/applications/bibletime.desktop
-%{_datadir}/apps/bibletime
-%{_datadir}/icons/hicolor/*/*/*.png
-%{tde_docdir}/HTML/en/bibletime/
+%{tde_bindir}/bibletime
+%{tde_tdeincludedir}/bibletimeinterface.h
+%{tde_datadir}/applications/bibletime.desktop
+%{tde_datadir}/apps/bibletime/
+%{tde_datadir}/icons/hicolor/*/*/*.png
+%{tde_tdedocdir}/HTML/en/bibletime/
 
 
 %Changelog

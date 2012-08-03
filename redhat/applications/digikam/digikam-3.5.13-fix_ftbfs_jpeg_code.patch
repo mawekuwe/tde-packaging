@@ -1,6 +1,14 @@
---- /dev/shm/applications/digikam/digikam/libs/jpegutils/jpegint.h	2011-05-19 22:00:43.000000000 -0500
-+++ /dev/shm/applications/digikam/digikam/libs/jpegutils/jpegint.h.new	2011-11-05 23:20:17.144180063 -0500
-@@ -42,9 +42,9 @@
+commit b9419cd5ed26f4ed70b882243cc4bd8a6f19797e
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1326324936 -0600
+
+    Fix digikam FTBFS due to jpeg code
+
+diff --git a/digikam/libs/jpegutils/jpegint.h b/digikam/libs/jpegutils/jpegint.h
+index 1fa82f8..27546f3 100644
+--- a/digikam/libs/jpegutils/jpegint.h
++++ b/digikam/libs/jpegutils/jpegint.h
+@@ -42,9 +42,9 @@ typedef enum {			/* Operating modes for buffer controllers */
  
  /* Master control module */
  struct jpeg_comp_master {
@@ -13,7 +21,7 @@
  
    /* State variables made visible to other modules */
    boolean call_pass_startup;	/* True if pass_startup must be called */
-@@ -53,16 +53,16 @@
+@@ -53,16 +53,16 @@ struct jpeg_comp_master {
  
  /* Main buffer control (downsampled-data buffer) */
  struct jpeg_c_main_controller {
@@ -34,7 +42,7 @@
  				   JSAMPARRAY input_buf,
  				   JDIMENSION *in_row_ctr,
  				   JDIMENSION in_rows_avail,
-@@ -73,23 +73,23 @@
+@@ -73,23 +73,23 @@ struct jpeg_c_prep_controller {
  
  /* Coefficient buffer control */
  struct jpeg_c_coef_controller {
@@ -64,7 +72,7 @@
  			     JSAMPIMAGE input_buf, JDIMENSION in_row_index,
  			     JSAMPIMAGE output_buf,
  			     JDIMENSION out_row_group_index));
-@@ -99,9 +99,9 @@
+@@ -99,9 +99,9 @@ struct jpeg_downsampler {
  
  /* Forward DCT (also controls coefficient quantization) */
  struct jpeg_forward_dct {
@@ -76,7 +84,7 @@
  			      jpeg_component_info * compptr,
  			      JSAMPARRAY sample_data, JBLOCKROW coef_blocks,
  			      JDIMENSION start_row, JDIMENSION start_col,
-@@ -110,23 +110,23 @@
+@@ -110,23 +110,23 @@ struct jpeg_forward_dct {
  
  /* Entropy encoding */
  struct jpeg_entropy_encoder {
@@ -110,7 +118,7 @@
  };
  
  
-@@ -134,8 +134,8 @@
+@@ -134,8 +134,8 @@ struct jpeg_marker_writer {
  
  /* Master control module */
  struct jpeg_decomp_master {
@@ -121,7 +129,7 @@
  
    /* State variables made visible to other modules */
    boolean is_dummy_pass;	/* True during 1st pass for 2-pass quant */
-@@ -143,10 +143,10 @@
+@@ -143,10 +143,10 @@ struct jpeg_decomp_master {
  
  /* Input control module */
  struct jpeg_input_controller {
@@ -136,7 +144,7 @@
  
    /* State variables made visible to other modules */
    boolean has_multiple_scans;	/* True if file has multiple scans */
-@@ -155,18 +155,18 @@
+@@ -155,18 +155,18 @@ struct jpeg_input_controller {
  
  /* Main buffer control (downsampled-data buffer) */
  struct jpeg_d_main_controller {
@@ -161,7 +169,7 @@
  				 JSAMPIMAGE output_buf));
    /* Pointer to array of coefficient virtual arrays, or NULL if none */
    jvirt_barray_ptr *coef_arrays;
-@@ -174,8 +174,8 @@
+@@ -174,8 +174,8 @@ struct jpeg_d_coef_controller {
  
  /* Decompression postprocessing (color quantization buffer control) */
  struct jpeg_d_post_controller {
@@ -172,7 +180,7 @@
  				    JSAMPIMAGE input_buf,
  				    JDIMENSION *in_row_group_ctr,
  				    JDIMENSION in_row_groups_avail,
-@@ -186,12 +186,12 @@
+@@ -186,12 +186,12 @@ struct jpeg_d_post_controller {
  
  /* Marker reading & parsing */
  struct jpeg_marker_reader {
@@ -187,7 +195,7 @@
    /* Read a restart marker --- exported for use by entropy decoder only */
    jpeg_marker_parser_method read_restart_marker;
  
-@@ -206,8 +206,8 @@
+@@ -206,8 +206,8 @@ struct jpeg_marker_reader {
  
  /* Entropy decoding */
  struct jpeg_entropy_decoder {
@@ -198,7 +206,7 @@
  				JBLOCKROW *MCU_data));
  
    /* This is here to share code between baseline and progressive decoders; */
-@@ -216,21 +216,21 @@
+@@ -216,21 +216,21 @@ struct jpeg_entropy_decoder {
  };
  
  /* Inverse DCT (also performs dequantization) */
@@ -224,7 +232,7 @@
  			   JSAMPIMAGE input_buf,
  			   JDIMENSION *in_row_group_ctr,
  			   JDIMENSION in_row_groups_avail,
-@@ -243,20 +243,20 @@
+@@ -243,20 +243,20 @@ struct jpeg_upsampler {
  
  /* Colorspace conversion */
  struct jpeg_color_deconverter {

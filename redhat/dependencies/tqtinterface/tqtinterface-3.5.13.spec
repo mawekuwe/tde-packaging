@@ -68,6 +68,9 @@ unset QTDIR || : ; . /etc/profile.d/qt.sh
 cd build
 %endif
 
+# Note: specifying 'QT_LIBRARY_DIR' allow using QT3 libraries under
+#  another directory than QT3_PREFIX. (E.g. Mageia 2, Mandriva ...)
+#  Otherwise, it defaults to ${QTDIR}/lib !
 %cmake \
   -DQT_PREFIX_DIR=${QTDIR} \
   -DQT_VERSION=3 \
@@ -76,6 +79,7 @@ cd build
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DQT_LIBRARY_DIR=${QTLIB} \
   ..
 
 %__make %{?_smp_mflags}

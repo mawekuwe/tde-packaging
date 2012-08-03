@@ -460,6 +460,7 @@ export KDEDIRS=%{tde_prefix}
 export KDEDIR=%{tde_prefix}
 
 %configure \
+  --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \

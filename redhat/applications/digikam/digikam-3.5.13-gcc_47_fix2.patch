@@ -1,0 +1,33 @@
+commit a209c81b78b8af98c53748bc1eb9020ef6b2605e
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1335586778 -0500
+
+    GCC 4.7 fix.
+    This partially resolves bug report 958.
+    Thanks to David C. Rankin.
+
+diff --git a/digikam/digikam/albummanager.cpp b/digikam/digikam/albummanager.cpp
+index d6b9f74..07f43bb 100644
+--- a/digikam/digikam/albummanager.cpp
++++ b/digikam/digikam/albummanager.cpp
+@@ -1579,16 +1579,16 @@ void AlbumManager::slotDatesJobData(KIO::Job*, const TQByteArray& data)
+ 
+         // Check if Year Album already exist.
+         DAlbum *yAlbum = 0;
+-        AlbumIterator it(d->rootDAlbum);
+-        while (it.current())
++        AlbumIterator it2(d->rootDAlbum);
++        while (it2.current())
+         {
+-            DAlbum* a = (DAlbum*)(*it);
++            DAlbum* a = (DAlbum*)(*it2);
+             if (a->date() == TQDate(year, 1, 1) && a->range() == DAlbum::Year)
+             {
+                 yAlbum = a;
+                 break;
+             }
+-            ++it;
++            ++it2;
+         }
+ 
+         // If no, create Year album.

@@ -22,7 +22,7 @@
 Summary:   	Rio Karma tools
 Name:      	trinity-libkarma
 Version:   	0.1.2
-Release:   	2%{?dist}
+Release:   	2%{?dist}%{?_variant}
 License:   	GPLv2+
 Group:     	System/Libraries
 Url:	   	http://www.freakysoft.de/html/libkarma/
@@ -45,6 +45,8 @@ BuildRequires: zlib-devel
 Obsoletes:		trinity-libkarma-libs < %{version}-%{release}
 Provides:		trinity-libkarma-libs = %{version}-%{release}
 
+Provides:		libkarma = %{version}-%{release}
+
 %description
 Rio Karma access library
 
@@ -53,6 +55,7 @@ Rio Karma access library
 Summary:   	Rio Karma development files
 Group:     	Development/C
 Requires:	%{name} = %{version}-%{release}
+Provides:	libkarma-devel = %{version}-%{release}
 
 %description devel
 Rio Karma development files

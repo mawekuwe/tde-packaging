@@ -5,7 +5,7 @@
    compatibility.cc localfactory_impl.cc artsbuilderloader_impl.cc
  
 -libartsbuilder_la_LIBADD = -lmcop -lartsflow $(LIBDL)
-+libartsbuilder_la_LIBADD = -lmcop -lartsflow -lartsflow_idl $(LIBDL)
++libartsbuilder_la_LIBADD = -lmcop -lartsflow $(LIBDL) -lartsflow_idl
  libartsbuilder_la_COMPILE_FIRST = artsbuilder.h
  libartsbuilder_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) \
    -no-undefined
@@ -16,7 +16,7 @@
    ktickmarks_impl.cpp kvolumefader_impl.cpp klabel_impl.cpp
  
 -libartsgui_kde_la_LIBADD = $(LIB_KIO) -lkdecore -lkdeui \
-+libartsgui_kde_la_LIBADD = $(LIB_KIO) -lkdecore -lkdeui -lkdefx -lqt-mt \
++libartsgui_kde_la_LIBADD = $(LIB_KIO) $(LIB_KDECORE) $(LIB_KDEUI) $(LIB_QT) -lkdefx \
    $(top_builddir)/arts/gui/common/libartsgui_idl.la
  libartsgui_kde_la_LDFLAGS = $(all_libraries) -no-undefined
  libartsgui_kde_la_COMPILE_FIRST = ../common/artsgui.h
@@ -38,7 +38,7 @@
  	$(top_builddir)/arts/midi/libartsmidi_idl.la \
  	$(top_builddir)/arts/modules/synth/libartsmodulessynth.la \
 -	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE)
-+	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) -lqt-mt -lvorbisfile -lgthread-2.0
++	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) $(LIB_QT) $(VORBISFILE_LIBS) -lgthread-2.0
  
  libartsmodulescommon_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -no-undefined
  
@@ -49,7 +49,7 @@
  
  juk_LDADD = -lm $(LDADD_GST) $(mblibs) $(LIB_KIO) $(taglib_libs) $(akode_libs) $(LIB_KHTML) $(LIB_ARTS)
 -juk_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDFLAGS_GST) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor -lmcop -lartsflow_idl -lkmedia2_idl -lsoundserver_idl
-+juk_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDFLAGS_GST) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor -lmcop -lartsflow_idl -lkmedia2_idl -lsoundserver_idl -lakode
++juk_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LDFLAGS_GST) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor -lmcop -lartsflow_idl -lkmedia2_idl -lsoundserver_idl $(akode_libs)
  
  KDE_CXXFLAGS = $(USE_EXCEPTIONS)
  
@@ -60,7 +60,7 @@
  
  libkmidlib_la_LDFLAGS = $(all_libraries)
 -libkmidlib_la_LIBADD = $(LIB_KFILE) $(LIB_KPARTS) $(LIB_KIO) -lkmid
-+libkmidlib_la_LIBADD = $(LIB_KFILE) $(LIB_KPARTS) $(LIB_KIO) -lkmid -lqt-mt -lkdeui -lDCOP -lkdecore
++libkmidlib_la_LIBADD = $(LIB_KFILE) $(LIB_KPARTS) $(LIB_KIO) -lkmid $(LIB_QT) $(LIB_KDEUI) -lDCOP $(LIB_KDECORE)
  
  libkmidpart_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -module
  libkmidpart_la_LIBADD = libkmidlib.la
@@ -71,14 +71,14 @@
  	kmixtoolbox.cpp mixertoolbox.cpp dialogviewconfiguration.cpp KMixApp.cpp dialogselectmaster.cpp
  
 -kmix_la_LIBADD = $(LIB_KDEUI) $(LIB_KUTILS) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND)
-+kmix_la_LIBADD = $(LIB_KDEUI) $(LIB_KUTILS) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND) -lqt-mt -lkdecore -lDCOP
++kmix_la_LIBADD = $(LIB_KDEUI) $(LIB_KUTILS) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND) $(LIB_QT) $(LIB_KDECORE) -lDCOP
  kmix_la_LDFLAGS = $(all_libraries) -module $(KDE_PLUGIN) -avoid-version
  
  kmixctrl_la_SOURCES = kmixctrl.cpp mixer.cpp mixset.cpp mixdevice.cpp volume.cpp mixerIface.skel \
  	mixertoolbox.cpp mixer_backend.cpp
  
 -kmixctrl_la_LIBADD = $(LIB_KDECORE) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND)
-+kmixctrl_la_LIBADD = $(LIB_KDECORE) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND) -lqt-mt -lDCOP
++kmixctrl_la_LIBADD = $(LIB_KDECORE) $(LIBALIB) $(LIBOSSAUDIO) $(LIBASOUND) $(LIB_QT) -lDCOP
  kmixctrl_la_LDFLAGS = $(all_libraries) -module -avoid-version
  
  kmix_panelapplet_la_SOURCES = kmixapplet.cpp \
@@ -89,7 +89,7 @@
  
  libkcddb_la_LDFLAGS = $(all_libraries) -version-info 1:0:0
 -libkcddb_la_LIBADD  = $(LIB_KDECORE) $(LIB_KIO)
-+libkcddb_la_LIBADD  = $(LIB_KDECORE) $(LIB_KIO) -lqt-mt -lkdeui
++libkcddb_la_LIBADD  = $(LIB_KDECORE) $(LIB_KIO) $(LIB_QT) $(LIB_KDEUI)
  
  METASOURCES = AUTO
  
@@ -111,12 +111,12 @@
  	$(top_builddir)/arts/gui/kde/libartsgui_kde.la $(top_builddir)/arts/modules/libartsmodules.la \
  	-lkio -lqtmcop -lkmedia2_idl $(top_builddir)/noatun/library/noatunarts/libnoatunarts.la \
 -	-lartsflow -lsoundserver_idl -lartskde $(LIBDL)
-+	-lartsflow -lsoundserver_idl -lartskde $(LIBDL) -lqt-mt -lDCOP
++	-lartsflow -lsoundserver_idl -lartskde $(LIBDL) $(LIB_QT) -lDCOP
  
  libnoatuncontrols_la_SOURCES = controls.cpp scrollinglabel.cpp
  libnoatuncontrols_la_LDFLAGS = -version-info 3:0:2 $(KDE_RPATH) $(all_libraries) -no-undefined
 -libnoatuncontrols_la_LIBADD  = $(LIBDL) $(LIB_KDEUI)
-+libnoatuncontrols_la_LIBADD  = $(LIBDL) $(LIB_KDEUI) -lqt-mt -lkdecore
++libnoatuncontrols_la_LIBADD  = $(LIBDL) $(LIB_KDEUI) $(LIB_QT) $(LIB_KDECORE)
  
  METASOURCES = AUTO
  META_INCLUDES = $(srcdir)/noatun

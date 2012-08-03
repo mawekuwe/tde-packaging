@@ -5,7 +5,7 @@
  libKTTSD_Lib_la_LDFLAGS = -no-undefined $(all_libraries) -version-info 0:1
  lib_LTLIBRARIES = libKTTSD_Lib.la
 -libKTTSD_Lib_la_LIBADD = $(LIB_KDEUI) $(LIB_KDECORE)
-+libKTTSD_Lib_la_LIBADD = $(LIB_KDEUI) $(LIB_KDECORE) -lqt-mt -lDCOP
++libKTTSD_Lib_la_LIBADD = $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) -lDCOP
  noinst_HEADERS = kttsdlib.h kttsdlibsetupimpl.h kttsdlibtalker2.h kdeexportfix.h
  
  kspeech_DIR = $(KTTS_KSPEECH_DIR)
@@ -16,7 +16,7 @@
  
  libkttsd_la_LDFLAGS = -version-info 1:0:0 $(all_libraries) -no-undefined
 -libkttsd_la_LIBADD = $(LIB_KIO)
-+libkttsd_la_LIBADD = $(LIB_KIO) -lqt-mt -lkdeui -lkdecore
++libkttsd_la_LIBADD = $(LIB_KIO) $(LIB_QT) $(LIB_KDEUI) $(LIB_KDECORE)
  
  # Header files that should not be installed.
  noinst_HEADERS = \

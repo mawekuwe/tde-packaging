@@ -1,49 +1,59 @@
-diff -ruN digikam-0.9.6.old/digikam/kioslave/digikamthumbnail.cpp digikam-0.9.6/digikam/kioslave/digikamthumbnail.cpp
---- digikam-0.9.6.old/digikam/kioslave/digikamthumbnail.cpp 2009-07-03 07:19:41.000000000 +0200
-+++ digikam-0.9.6/digikam/kioslave/digikamthumbnail.cpp 2010-06-30 10:29:09.000000000 +0200
-@@ -370,7 +370,7 @@
-     unsigned char buf[PNG_BYTES_TO_CHECK];
+commit 3e27b07ff572b00aa5f013f039c3f63593016816
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1326324999 -0600
 
+    Fix FTBFS due to png code
+    This closes Bug 595
+
+diff --git a/digikam/kioslave/digikamthumbnail.cpp b/digikam/kioslave/digikamthumbnail.cpp
+index 33ba573..96cba8e 100644
+--- a/digikam/kioslave/digikamthumbnail.cpp
++++ b/digikam/kioslave/digikamthumbnail.cpp
+@@ -370,7 +370,7 @@ TQImage kio_digikamthumbnailProtocol::loadPNG(const TQString& path)
+     unsigned char buf[PNG_BYTES_TO_CHECK];
+ 
      fread(buf, 1, PNG_BYTES_TO_CHECK, f);
 -    if (!png_check_sig(buf, PNG_BYTES_TO_CHECK))
 +    if (png_sig_cmp(buf, 0, PNG_BYTES_TO_CHECK))
      {
          fclose(f);
          return qimage;
-@@ -465,7 +465,7 @@
+@@ -465,7 +465,7 @@ TQImage kio_digikamthumbnailProtocol::loadPNG(const TQString& path)
      {
          png_set_gray_to_rgb(png_ptr);
          if (png_get_bit_depth(png_ptr, info_ptr) < 8)
 -            png_set_gray_1_2_4_to_8(png_ptr);
 +            png_set_expand_gray_1_2_4_to_8(png_ptr);
      }
-
+ 
      int sizeOfUint = sizeof(unsigned int);
-diff -ruN digikam-0.9.6.old/digikam/libs/dimg/loaders/pngloader.cpp digikam-0.9.6/digikam/libs/dimg/loaders/pngloader.cpp
---- digikam-0.9.6.old/digikam/libs/dimg/loaders/pngloader.cpp 2009-07-03 07:19:41.000000000 +0200
-+++ digikam-0.9.6/digikam/libs/dimg/loaders/pngloader.cpp 2010-06-30 10:28:24.000000000 +0200
-@@ -88,7 +88,7 @@
+diff --git a/digikam/libs/dimg/loaders/pngloader.cpp b/digikam/libs/dimg/loaders/pngloader.cpp
+index ac1fcf8..3367561 100644
+--- a/digikam/libs/dimg/loaders/pngloader.cpp
++++ b/digikam/libs/dimg/loaders/pngloader.cpp
+@@ -88,7 +88,7 @@ bool PNGLoader::load(const TQString& filePath, DImgLoaderObserver *observer)
      unsigned char buf[PNG_BYTES_TO_CHECK];
-
+ 
      fread(buf, 1, PNG_BYTES_TO_CHECK, f);
 -    if (!png_check_sig(buf, PNG_BYTES_TO_CHECK))
 +    if (png_sig_cmp(buf, 0, PNG_BYTES_TO_CHECK))
      {
          DDebug() << k_funcinfo << "Not a PNG image file." << endl;
          fclose(f);
-@@ -252,7 +252,7 @@
+@@ -252,7 +252,7 @@ bool PNGLoader::load(const TQString& filePath, DImgLoaderObserver *observer)
  #ifdef ENABLE_DEBUG_MESSAGES
                  DDebug() << "PNG in PNG_COLOR_TYPE_GRAY" << endl;
  #endif
 -                png_set_gray_1_2_4_to_8(png_ptr);
 +                png_set_expand_gray_1_2_4_to_8(png_ptr);
                  png_set_gray_to_rgb(png_ptr);
-
+ 
                  if (TQImage::systemByteOrder() == TQImage::LittleEndian)       // Intel
-diff -ruN digikam-0.9.6.old/digikam/libs/greycstoration/CImg.h digikam-0.9.6/digikam/libs/greycstoration/CImg.h
---- digikam-0.9.6.old/digikam/libs/greycstoration/CImg.h  2009-07-03 07:19:41.000000000 +0200
-+++ digikam-0.9.6/digikam/libs/greycstoration/CImg.h  2010-06-30 10:28:52.000000000 +0200
-@@ -29449,7 +29449,7 @@
+diff --git a/digikam/libs/greycstoration/CImg.h b/digikam/libs/greycstoration/CImg.h
+index e240f99..714920e 100644
+--- a/digikam/libs/greycstoration/CImg.h
++++ b/digikam/libs/greycstoration/CImg.h
+@@ -29449,7 +29449,7 @@ namespace cimg_library {
          new_bit_depth = 8;
        }
        if (new_color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8){

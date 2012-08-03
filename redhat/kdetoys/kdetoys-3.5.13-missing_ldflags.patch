@@ -5,7 +5,7 @@
                                   weatherbutton.cpp
  weather_panelapplet_la_LDFLAGS = $(KDE_PLUGIN) -module $(all_libraries)
 -weather_panelapplet_la_LIBADD = $(LIB_KHTML)
-+weather_panelapplet_la_LIBADD = $(LIB_KHTML) -lqt-mt -lDCOP
++weather_panelapplet_la_LIBADD = $(LIB_KHTML) $(LIB_QT) -lDCOP
 +
  
  appletdir = $(kde_datadir)/kicker/applets
@@ -15,7 +15,7 @@
  
  kweatherreport_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -module -avoid-version
 -kweatherreport_la_LIBADD = $(LIB_KHTML) reportview.lo
-+kweatherreport_la_LIBADD = $(LIB_KHTML) reportview.lo -lqt-mt -lDCOP -lkdecore -lkdeui
++kweatherreport_la_LIBADD = $(LIB_KHTML) reportview.lo $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI) -lDCOP 
  kweatherreport_la_SOURCES = reportmain.cpp weatherservice.stub
  
  KDE_ICON = kweather

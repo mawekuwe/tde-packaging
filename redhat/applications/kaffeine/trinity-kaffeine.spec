@@ -2,7 +2,7 @@
 %define kdecomp kaffeine
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 

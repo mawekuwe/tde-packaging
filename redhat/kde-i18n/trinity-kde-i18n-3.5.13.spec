@@ -1,14 +1,15 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
 BuildRequires: autoconf automake libtool m4
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdedocdir %{tde_docdir}/kde
 
@@ -27,7 +28,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 # GFDL, with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
@@ -632,7 +633,8 @@ done
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 export kde_htmldir="%{tde_tdedocdir}/HTML"
@@ -641,7 +643,7 @@ for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*/; do
     if [ -d "${f}" ] && [ -x "${f}/configure" ] ; then 
       pushd ${f}
-      %configure --datadir=%{tde_datadir} --docdir=%{tde_docdir}
+      %configure --prefix=%{tde_prefix} --datadir=%{tde_datadir} --docdir=%{tde_docdir}
       %__make %{?_smp_mflags}
       popd
     fi
@@ -650,7 +652,7 @@ done
 
 %install
 %__rm -rf %{?buildroot}
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 
 for l in %{KDE_LANGS}; do
   for f in kde-i18n-${l}-*/; do
@@ -661,7 +663,7 @@ for l in %{KDE_LANGS}; do
 done
 
 # make symlinks relative
-%if "%{_prefix}" == "/usr"
+%if "%{tde_prefix}" == "/usr"
 pushd "%{buildroot}%{tde_tdedocdir}/HTML"
 for lang in *; do
   if [ -d "$lang" ]; then
@@ -700,7 +702,7 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %__rm -f %{buildroot}%{tde_datadir}/locale/*/flag.png
 
 # Removes conflict with KDE4
-%if "%{?_prefix}" == "/usr"
+%if "%{?tde_prefix}" == "/usr"
 %__rm -f %{buildroot}%{tde_datadir}/locale/*/entry.desktop
 %endif
 

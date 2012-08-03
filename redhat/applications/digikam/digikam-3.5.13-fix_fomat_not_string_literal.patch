@@ -1,0 +1,19 @@
+commit 029218cd9cd3192a2a61ac29d896a2c3640f2dd8
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1336066180 -0500
+
+    Fix 'format not a string literal' error
+
+diff --git a/digikam/libs/sqlite2/shell.c b/digikam/libs/sqlite2/shell.c
+index 1100f38..89898ab 100644
+--- a/digikam/libs/sqlite2/shell.c
++++ b/digikam/libs/sqlite2/shell.c
+@@ -692,7 +692,7 @@ static int do_meta_command(char *zLine, struct callback_data *p){
+   }else
+ 
+   if( c=='h' && strncmp(azArg[0], "help", n)==0 ){
+-    fprintf(stderr,zHelp);
++    fprintf(stderr, "%s", zHelp);
+   }else
+ 
+   if( c=='i' && strncmp(azArg[0], "indices", n)==0 && nArg>1 ){
