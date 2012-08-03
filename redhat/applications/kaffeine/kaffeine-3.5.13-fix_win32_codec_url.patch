@@ -1,0 +1,29 @@
+commit 5086f3584a9548aa92dd880139107187b9fc8509
+Author: Darrell Anderson <humanreadable@yahoo.com>
+Date:   1342026813 -0500
+
+    Fixed online hyperlink to win32 codecs download location.
+    Thanks to Kristopher Gamrat.
+
+diff --git a/kaffeine/src/instwizard.cpp b/kaffeine/src/instwizard.cpp
+index 279d78b..21336c2 100644
+--- a/kaffeine/src/instwizard.cpp
++++ b/kaffeine/src/instwizard.cpp
+@@ -113,7 +113,7 @@ void InstWizard::internalWizard()
+ 		info << "<font color=\"DarkGreen\">" << i18n("Ok.") << "</font>";
+ 	else
+ 		info << "<font color=\"DarkRed\">" << i18n("No WIN32 codecs found in /usr/lib/win32. You're not able to play Windows Media 9 files, newer Real Media files and some less common formats. Download the codecs here:")
+-		<< " <a href=\"http://www1.mplayerhq.hu/homepage/design7/codecs.html\">http://www.mplayerhq.hu</a>.</font>";
++		<< " <a href=\"http://www1.mplayerhq.hu/design7/dload.html#binary_codecs\">http://www1.mplayerhq.hu/design7/dload.html#binary_codecs</a>.</font>";
+ 
+ 	//LIBDVDCSS
+ 	info << "<br><hr><b>" << "libdvdcss" << "...</b><br>";
+@@ -190,7 +190,7 @@ void InstWizard::internalWizard()
+ 
+ 	if (infoString.contains("DarkRed"))
+ 	{
+-		info << i18n("Found some problems, but nevertheless Kaffeine may work.");
++		info << i18n("Found some problems, but nevertheless Kaffeine might work.");
+ 	}
+ 	else
+ 	{
