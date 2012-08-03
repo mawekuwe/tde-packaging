@@ -38,7 +38,7 @@
  	$(top_builddir)/arts/midi/libartsmidi_idl.la \
  	$(top_builddir)/arts/modules/synth/libartsmodulessynth.la \
 -	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE)
-+	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) -lqt-mt -lvorbisfile
++	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) -lqt-mt -lvorbisfile -lgthread-2.0
  
  libartsmodulescommon_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -no-undefined
  

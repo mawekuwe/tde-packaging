@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -19,7 +19,7 @@
 
 # kdeartwork specific settings
 # On RHEL 6, libart is too old !
-%if 0%{?fedora} >= 15 || 0%{?mgaversion}
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_libart 1
 %endif
 
@@ -48,14 +48,16 @@ BuildRequires: trinity-tdebase-devel >= 3.5.13
 BuildRequires: gettext
 BuildRequires: esound-devel
 
-%if 0%{?fedora} || 0%{?mgaversion}
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_xscreensaver 1
 BuildRequires: nas-devel
 BuildRequires: xscreensaver
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}jack-devel
+BuildRequires:	xscreensaver-base
 BuildRequires:	xscreensaver-extrusion
+BuildRequires:	xscreensaver-gl
 %else
 BuildRequires: jack-audio-connection-kit-devel
 %endif
@@ -280,7 +282,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/apps/kscreensaver/
 
 # RHEL 5 and 6 do not build theses files - not sure why ...
-%if 0%{?fedora} || 0%{?mgaversion}
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %{tde_bindir}/kspace.kss
 %{tde_bindir}/kclock.kss
 %{tde_bindir}/kswarm.kss
@@ -386,7 +388,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/skytentacles.desktop
 
 # These screensavers do not exist on Mageia 2
-%if 0%{?mgaversion} == 0
+%if 0%{?mgaversion} == 0 && 0%{?mdkversion} == 0
 %{tde_datadir}/applnk/System/ScreenSavers/glmatrix.desktop
 %endif
 
@@ -567,8 +569,8 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/xspirograph.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/zoom.desktop
 
-# These screensavers do not exist on Mageia 2
-%if 0%{?mgaversion} == 0
+# These screensavers do not exist on Mageia 2 and Mandriva 2011
+%if 0%{?mgaversion} == 0 && 0%{mdkversion}==0
 %{tde_datadir}/applnk/System/ScreenSavers/xjack.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/xmatrix.desktop
 %endif
@@ -589,10 +591,18 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
-  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DCMAKE_SKIP_RPATH="OFF" \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
 %if 0%{?with_xscreensaver}
   -DWITH_XSCREENSAVER=ON \
 %else

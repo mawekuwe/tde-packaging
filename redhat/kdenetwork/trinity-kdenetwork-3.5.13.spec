@@ -1,15 +1,15 @@
 # If TDE is built iwn a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
-%define tde_sbindir %{_prefix}/sbin
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_sbindir %{tde_prefix}/sbin
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -40,7 +40,7 @@ URL:		http://www.trinitydesktop.org/
 License: GPLv2
 Group:   Applications/Internet
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: kdenetwork-%{version}.tar.gz
@@ -96,7 +96,7 @@ BuildRequires: libXmu-devel libXScrnSaver-devel libXtst-devel libXxf86vm-devel
 %if 0%{?fedora} > 5 || 0%{?rhel} > 4
 BuildRequires: wireless-tools-devel
 %else
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}iw29-devel
 %else
 # RHEL 5
@@ -114,7 +114,7 @@ BuildRequires: valgrind
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires:	libv4l-devel
 %endif
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}v4l-devel
 %endif
 
@@ -1050,7 +1050,10 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
 
 %cmake \
   -DBIN_INSTALL_DIR=%{tde_bindir} \

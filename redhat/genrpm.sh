@@ -3,6 +3,13 @@
 cd "$( dirname "$0" )"
 ARGS=""
 
+if [ ! -d /var/cache/ccache ]; then
+  DIST="$(rpmdist.sh --dist)"
+  if [ -n "${DIST}" ]; then
+    export CCACHE_DIR=~/.ccache${DIST}.$(uname -m)
+  fi
+fi
+
 while [ $# -gt 0 ]; do
 	case "$1" in
 		"--auto"|"-a") AUTO=1;;
@@ -99,7 +106,7 @@ EOF
 	
 # Specific prefix for installation of some components
 case "${COMP##*/}" in
-	"qt3"|"libkarma") PREFIX="/usr";;
+	"qt3") PREFIX="/usr";;
 esac
 	
 # Determines if we are running an i386 or x86_64 distro
@@ -114,7 +121,7 @@ set -x
 rpmbuild -ba \
 	${ARGS} \
 	--define "_sourcedir ${PWD}/${COMP}" \
-	--define "_prefix ${PREFIX:-/opt/trinity}" \
+	--define "tde_prefix ${PREFIX:-/opt/trinity}" \
 	--define "version ${VERSION:-3.5.13}" \
 	${COMP}/${SPEC} || exit 1
 ) 2>&1 | tee ${LOGFILE}

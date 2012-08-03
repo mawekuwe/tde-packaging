@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -39,14 +39,11 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdemultimedia-%{version}.tar.gz
 
-%if "%{_prefix}" == "/usr"
-Provides: kdemultimedia3 = %{version}-%{release}
-%endif
 
 # RedHat Legacy patches (from Fedora 8)
 Patch3:		kdemultimedia-3.4.0-xdg.patch
@@ -90,14 +87,14 @@ BuildRequires: automake libtool
 %{?_with_taglib:BuildRequires: taglib-devel}
 BuildRequires:	cdparanoia
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}gstreamer0.10-devel
 BuildRequires:	%{_lib}flac-devel
+BuildRequires:	libcdda-devel
 %{?_with_xine:BuildRequires: %{_lib}xine-devel}
 BuildRequires:	%{_lib}xxf86dga-devel
 BuildRequires:	%{_lib}xxf86vm-devel
 BuildRequires:	%{_lib}xtst-devel
-BuildRequires:	libcdda-devel
 %else
 BuildRequires: gstreamer-devel
 BuildRequires: flac-devel
@@ -515,7 +512,7 @@ This package provides data on multimedia applications for kappfinder.
 %defattr(-,root,root,-)
 %{tde_datadir}/apps/kappfinder/*
 %{tde_datadir}/desktop-directories/[kt]de-multimedia-music.directory
-%{_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu
+%{tde_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu
 
 ##########
 
@@ -898,7 +895,8 @@ and WAV playback
 Summary:	Media player for Trinity
 Group:		Applications/Multimedia
 
-%if 0%{?mgaversion}
+# 20120802: Hack to avoir dependency issue on MGA2 and MDV2011
+%if 0%{?mgaversion} || 0%{?mdkversion}
 Provides:	devel(libnoatunarts)
 Provides:	devel(libnoatunarts(64bit))
 %endif
@@ -997,7 +995,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 Summary:	Development files for %{name}, aRts and noatun plugins
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-kdelibs-devel
+Requires:	trinity-tdelibs-devel >= 3.5.13
 
 Obsoletes:	trinity-kdemultimedia-devel < %{version}-%{release}
 Provides:	trinity-kdemultimedia-devel = %{version}-%{release}
@@ -1093,13 +1091,13 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 # Required for some distro
-export KDEDIRS=%{_prefix}
+export KDEDIRS=%{tde_prefix}
 
 %configure  \
-   --exec-prefix=%{_prefix} \
+   --exec-prefix=%{tde_prefix} \
    --bindir=%{tde_bindir} \
    --libdir=%{tde_libdir} \
-   --includedir=%{tde_includedir} \
+   --includedir=%{tde_tdeincludedir} \
    --datadir=%{tde_datadir} \
    --enable-new-ldflags \
    --disable-dependency-tracking \
@@ -1118,7 +1116,7 @@ export KDEDIRS=%{_prefix}
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?_with_xine} %{!?_with_xine:--without-xine} \
-   --with-extra-includes="%{_usr}/include/cdda:%{_usr}/include/cddb:%{tde_includedir}/tqt" \
+   --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_includedir}/tqt:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
    --enable-closure
 
 %__make %{?_smp_mflags}
@@ -1152,7 +1150,7 @@ fi
 # Moves the XDG configuration files to TDE directory
 %__install -p -D -m644 \
 	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications-merged/kde-multimedia-music.menu" \
-	"%{?buildroot}%{_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu"
+	"%{?buildroot}%{tde_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu"
 %__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
 
 

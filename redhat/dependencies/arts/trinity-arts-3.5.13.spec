@@ -1,13 +1,15 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-%define tde_bindir %{_prefix}/bin
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_bindir %{tde_prefix}/bin
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
-%define _docdir %{_prefix}/share/doc
+%define tde_tdeincludedir %{tde_includedir}/kde
+
+%define _docdir %{tde_prefix}/share/doc
 
 Name:		trinity-arts
 Version:	3.5.13
@@ -20,7 +22,7 @@ Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	arts-%{version}.tar.gz
@@ -39,7 +41,7 @@ BuildRequires:	gsl-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	esound-devel
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}jack-devel
 BuildRequires:	%{_lib}ltdl-devel
 %else
@@ -53,7 +55,7 @@ BuildRequires: cmake >= 2.8
 Requires:		tqtinterface
 Requires:		audiofile
 
-%if "%{?_prefix}" == "/usr"
+%if "%{?tde_prefix}" == "/usr"
 Obsoletes:	arts
 %endif
 
@@ -90,9 +92,15 @@ Development files for %{name}
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
-  -DINCLUDE_INSTALL_DIR=%{tde_includedir}/arts \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir}/arts \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
   -DWITH_ALSA=ON \
@@ -123,7 +131,6 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 %{tde_libdir}/mcop/*.mcopclass
 %{tde_libdir}/mcop/*.mcoptype
 %{tde_libdir}/lib*.so.*
-%{tde_libdir}/lib*.la
 %{tde_bindir}/artscat
 %{tde_bindir}/artsd
 %{tde_bindir}/artsdsp
@@ -131,12 +138,14 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 %{tde_bindir}/artsrec
 %{tde_bindir}/artsshell
 %{tde_bindir}/artswrapper
+# The '.la' files are runtime, not devel !
+%{tde_libdir}/lib*.la
 
 %files devel
 %defattr(-,root,root,-)
 %{tde_bindir}/mcopidl
-%dir %{tde_includedir}
-%{tde_includedir}/*/
+%{tde_tdeincludedir}/arts/
+%{tde_includedir}/artsc/
 %{tde_bindir}/artsc-config
 %{tde_libdir}/lib*.so
 %{tde_libdir}/pkgconfig/*.pc

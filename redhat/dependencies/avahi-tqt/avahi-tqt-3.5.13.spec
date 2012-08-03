@@ -1,15 +1,15 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_includedir %{_prefix}/include
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_includedir %{tde_prefix}/include
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_tdedocdir %{tde_docdir}/kde
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 
 Name:		avahi-tqt
@@ -23,7 +23,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}.tar.gz
@@ -35,9 +35,10 @@ BuildRequires:	tqtinterface-devel >= 3.5.13
 BuildRequires:	gettext-devel
 BuildRequires:	dbus-devel
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
-BuildRequires:	%{_lib}expat1-devel
+# On Mageia 2, package is 'lib64expat1-devel', but on Mandriva, 'lib64expat-devel'
+BuildRequires:	%{_lib}expat%{?mgaversion:1}-devel
 Provides:		%{_lib}avahi-qt3
 %else
 BuildRequires:	avahi-devel
@@ -58,7 +59,7 @@ Requires:	%{name}
 Summary:	%{name} - Development files
 Group:		Development/Libraries
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 Provides:		%{_lib}avahi-qt3-devel
 %endif
 
@@ -89,7 +90,7 @@ export CXXFLAGS="${CXXFLAGS} ${LDFLAGS}"
 ./autogen.sh
 
 %configure \
-  --exec-prefix=%{_prefix} \
+  --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --datadir=%{tde_datadir} \
   --docdir=%{tde_docdir} \
@@ -105,6 +106,9 @@ export CXXFLAGS="${CXXFLAGS} ${LDFLAGS}"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot}
 
+# Removes '.a' file
+%__rm -f %{?buildroot}%{tde_libdir}/libavahi-tqt.a
+
 %clean
 %__rm -rf %{?buildroot}
 
@@ -117,7 +121,6 @@ export CXXFLAGS="${CXXFLAGS} ${LDFLAGS}"
 %{tde_libdir}/*.so
 %{tde_libdir}/*.la
 %{tde_libdir}/pkgconfig/*.pc
-%exclude %{tde_libdir}/libavahi-tqt.a
 
 %changelog
 * Mon Jul 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1

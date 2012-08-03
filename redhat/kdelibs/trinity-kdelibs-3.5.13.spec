@@ -1,16 +1,17 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
@@ -26,7 +27,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdelibs-%{version}.tar.gz
@@ -112,11 +113,11 @@ BuildRequires:	avahi-tqt-devel >= 3.5.13
 # LUA support are not ready yet
 #BuildRequires:	lua-devel
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
 BuildRequires:	%{_lib}ltdl-devel
 BuildRequires:	x11-proto-devel
-BuildRequires:	%{_lib}xcomposite1-devel
+BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
 Requires:		%{_lib}avahi-client3
 %else
 BuildRequires:	avahi-devel
@@ -215,7 +216,7 @@ kimgio (image manipulation).
 %{tde_datadir}/icons/crystalsvg/
 %{tde_tdedocdir}/HTML/en/kspell/
 # remove conflicts with kdelibs-4
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %{tde_bindir}/checkXML
 %{tde_bindir}/ksvgtopng
 %{tde_bindir}/kunittestmodrunner
@@ -240,10 +241,10 @@ kimgio (image manipulation).
 %endif
 
 # Avoid conflict with 'redhat-menus' package
-%if "%{_prefix}" == "/usr"
+%if "%{tde_prefix}" == "/usr"
 %{_sysconfdir}/xdg/menus/kde-applications.menu
 %else
-%{_prefix}/etc/xdg/menus/kde-applications.menu
+%{tde_prefix}/etc/xdg/menus/kde-applications.menu
 %endif
 
 # New in TDE 3.5.13
@@ -277,7 +278,7 @@ applications for TDE.
 %{tde_bindir}/kconfig_compiler
 %{tde_bindir}/makekdewidgets
 %{tde_datadir}/apps/ksgmltools2/
-%{tde_includedir}/*
+%{tde_tdeincludedir}/*
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
 %{tde_libdir}/*.a
@@ -334,11 +335,16 @@ export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DDOC_INSTALL_DIR=%{tde_docdir} \
-  -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
@@ -369,7 +375,7 @@ export LD_LIBRARY_PATH="%{tde_libdir}"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
 
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %__mkdir_p %{?buildroot}%{_sysconfdir}/ld.so.conf.d
 cat <<EOF >%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf
 %{tde_libdir}
@@ -377,10 +383,10 @@ EOF
 %endif
 
 # Moves the XDG configuration files to TDE directory
-%if "%{_prefix}" != "/usr"
+%if "%{tde_prefix}" != "/usr"
 %__install -p -D -m644 \
 	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" \
-	"%{?buildroot}%{_prefix}/etc/xdg/menus/kde-applications.menu"
+	"%{?buildroot}%{tde_prefix}/etc/xdg/menus/kde-applications.menu"
 %__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
 %else
 %__mv -f "%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" "%{?buildroot}%{_sysconfdir}/xdg/menus/kde-applications.menu"

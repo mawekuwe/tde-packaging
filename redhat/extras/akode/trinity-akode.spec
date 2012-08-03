@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
@@ -21,7 +21,7 @@
 Summary: Audio-decoding framework 
 Name:	 trinity-akode 
 Version: 2.0.2
-Release: 1%{?dist}%{?_variant}
+Release: 2%{?dist}%{?_variant}
 
 License: LGPLv2+
 Group: 	 System Environment/Libraries
@@ -29,7 +29,8 @@ Group: 	 System Environment/Libraries
 URL:	 http://www.kde-apps.org/content/show.php?content=30375
 Source0: http://www.kde-apps.org/CONTENT/content-files/akode-%{version}.tar.bz2
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 
 # Legacy Fedora 9 patches
@@ -47,7 +48,7 @@ Patch10: akode-autotools.patch
 %define _with_libsamplerate --with-libsamplerate
 
 # Pulseaudio is not available on RHEL 5 and earlier
-%if 0%{?fedora} >= 15 || 0%{?rhel} >= 6 || 0%{?mgaversion}
+%if 0%{?fedora} >= 15 || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion}
 %define _with_pulseaudio --with-pulseaudio
 %endif
 
@@ -57,7 +58,7 @@ BuildRequires: alsa-lib-devel
 BuildRequires: libvorbis-devel
 BuildRequires: speex-devel
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 %{?_with_jack:BuildRequires: %{_lib}jack-devel}
 %{?_with_flac:BuildRequires: %{_lib}flac-devel}
 %{?_with_pulseaudio:BuildRequires: %{_lib}pulseaudio-devel}
@@ -164,7 +165,7 @@ Requires: %{name} = %{version}-%{release}
 %__make install DESTDIR=%{buildroot}
 
 # unpackaged files
-%__rm -f %{buildroot}%{_libdir}/lib*.a
+%__rm -f %{buildroot}%{tde_libdir}/*.a
 
 # rpmdocs
 for file in AUTHORS COPYING NEWS README TODO ; do

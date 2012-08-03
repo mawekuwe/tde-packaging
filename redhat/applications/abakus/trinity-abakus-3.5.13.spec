@@ -1,25 +1,30 @@
 # Default version for this component
 %define kdecomp abakus
-%define version 0.91
-%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
 
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 Name:		trinity-%{kdecomp}
 Summary:	Calculator for TDE
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.91
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,14 +33,14 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	tqtinterface-devel >= 3.5.13
+BuildRequires:	trinity-tdelibs-devel >= 3.5.13
+BuildRequires:	trinity-tdebase-devel >= 3.5.13
 BuildRequires:	desktop-file-utils
 BuildRequires:	scons
 BuildRequires:	bison
@@ -51,19 +56,21 @@ has the user-friendly menu options of a normal TDE application.
 %setup -q -n applications/%{kdecomp}
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-export CXXFLAGS="-I%{_includedir}/tqt"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export CXXFLAGS="-I%{tde_includedir}/tqt"
 
+# We are using a specific (non-autotool) configure script.
 ./configure
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot}%{_prefix}
+%__make install DESTDIR=%{buildroot}%{tde_prefix}
 
 
 %clean
@@ -71,22 +78,22 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{_bindir}/*
-%{_datadir}/apps/*/
-%{_datadir}/icons/hicolor/*/*/*
-%{tde_docdir}/HTML/*/*/
-%{_datadir}/applnk/Utilities/abakus.desktop
+%{tde_bindir}/abakus
+%{tde_datadir}/apps/abakus/
+%{tde_datadir}/icons/hicolor/*/apps/abakus.png
+%{tde_tdedocdir}/HTML/en/abakus/
+%{tde_datadir}/applnk/Utilities/abakus.desktop
 
 %Changelog
 * Wed Apr 25 2012 Francois Andriot <francois.andriot@free.fr> - 0.91-3

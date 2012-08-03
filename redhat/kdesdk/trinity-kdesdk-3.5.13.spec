@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
@@ -28,7 +28,7 @@ URL:			http://www.trinitydesktop.org/
 Vendor:			Trinity Project
 Packager:		Francois Andriot <francois.andriot@free.fr>
 
-Prefix:			%{_prefix}
+Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source: 		kdesdk-%{version}.tar.gz
@@ -51,7 +51,11 @@ BuildRequires: pcre-devel
 BuildRequires: trinity-tdelibs-devel
 # for kbugbuster/libkcal
 BuildRequires: trinity-tdepim-devel
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}db5.1-devel
+%else
 BuildRequires: db4-devel
+%endif
 BuildRequires: desktop-file-utils
 # kbabel,  F-7+: flex >= 2.5.33-9
 BuildRequires: flex
@@ -60,7 +64,7 @@ BuildRequires: libxslt-devel libxml2-devel
 BuildRequires:	perl
 BuildRequires:	subversion-devel neon-devel
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
 BuildRequires:	%{_lib}binutils-devel
 %else
@@ -613,7 +617,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 #debian/desktop-i18n/findfiles /opt/trinity/lib/kubuntu-desktop-i18n/
 #debian/desktop-i18n/msgsplit /opt/trinity/lib/kubuntu-desktop-i18n/
 
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %{tde_bindir}/licensecheck
 %else
 %exclude %{tde_bindir}/licensecheck
@@ -1042,7 +1046,11 @@ export LD_LIBRARY_PATH="%{tde_libdir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_includedir} \

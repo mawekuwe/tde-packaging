@@ -27,7 +27,7 @@
 
 Name: qt3
 Version: 3.3.8.d
-Release: %mkrel 1
+Release: %mkrel 1%{?dist}
 License: GPLv3+ and QPL
 Summary: Qt3 Sources
 Group: System/Libraries
@@ -99,6 +99,7 @@ BuildRequires: libiodbc-devel
 %if "%{_lib}" != "lib"
 BuildRequires: linux32
 %endif
+BuildRequires: postgresql-devel
 
 %description
 Qt is a complete and well-designed multi-platform object-oriented framework for
@@ -237,7 +238,7 @@ This package contains:
 Summary:	Config, language file for Qt
 Group:      Development/KDE and Qt
 Requires:   %libqt3name = %version
-Obsoletes:	libqt3-common
+Obsoletes:	libqt3-common < %{version}-%{release}
 Provides:	libqt3-common = %{version}-%{release}
 # Laurent : allow to install package which use this provides (commercial packages which want to install under distro and used this provides
 Provides:	qt = %{version}-%{release}

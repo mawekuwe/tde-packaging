@@ -1,15 +1,15 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_sbindir %{_prefix}/sbin
+%define tde_bindir %{tde_prefix}/bin
+%define tde_sbindir %{tde_prefix}/sbin
 %define tde_datadir %{_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -32,7 +32,7 @@ Vendor:			Trinity Project
 Packager:		Francois Andriot <francois.andriot@free.fr>
 URL:			http://www.trinitydesktop.org/
 
-Prefix:			%{_prefix}
+Prefix:			%{tde_prefix}
 
 Obsoletes:		trinity-kdeadmin < %{version}-%{release}
 Provides:		trinity-kdeadmin = %{version}-%{release}
@@ -55,7 +55,7 @@ BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-kdelibs-devel
 BuildRequires: rpm-devel
 BuildRequires: pam-devel
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	lilo
 %endif
 
@@ -67,7 +67,7 @@ Requires: trinity-knetworkconf = %{version}-%{release}
 Requires: trinity-kpackage = %{version}-%{release}
 Requires: trinity-ksysv = %{version}-%{release}
 Requires: trinity-kuser = %{version}-%{release}
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 Requires: trinity-lilo-config = %{version}-%{release}
 %endif
 
@@ -79,23 +79,6 @@ kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 
 %files
 %defattr(-,root,root,-)
-# The following files are not installed in any binary package.
-# This is deliberate.
-
-# - This file serves no purpose that we can see, and conflicts
-#   with GNOME system tools, so be sure to leave it out.
-%exclude %{tde_libdir}/pkgconfig/*.pc
-
-# Extract from changelog:
-# tdeadmin (4:3.5.5-2) unstable; urgency=low
-#  +++ Changes by Ana Beatriz Guerrero Lopez:
-#  * Removed useless program secpolicy. (Closes: #399426)
-%exclude %{tde_bindir}/secpolicy
-
-# LILO is not provided in RHEL or Fedora
-%if 0%{?rhel} || 0%{?fedora}
-%exclude %{tde_tdedocdir}/HTML/en/lilo-config/
-%endif
 
 ##########
 
@@ -340,7 +323,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 %package -n trinity-lilo-config
 Summary:	Trinity frontend for lilo configuration
 Group:		Applications/Utilities
@@ -392,7 +375,7 @@ export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-   --exec-prefix=%{_prefix} \
+   --exec-prefix=%{tde_prefix} \
    --bindir=%{tde_bindir} \
    --sbindir=%{tde_sbindir} \
    --libdir=%{tde_libdir} \
@@ -454,6 +437,24 @@ for dir in $comps ; do
     test -s  "$dir/$file" && install -p -m644 -D "$dir/$file" "rpmdocs/$dir/$file"
   done
 done
+
+# The following files are not installed in any binary package.
+# This is deliberate.
+
+# - This file serves no purpose that we can see, and conflicts
+#   with GNOME system tools, so be sure to leave it out.
+%__rm -f %{?buildroot}%{tde_libdir}/pkgconfig/*.pc
+
+# Extract from changelog:
+# tdeadmin (4:3.5.5-2) unstable; urgency=low
+#  +++ Changes by Ana Beatriz Guerrero Lopez:
+#  * Removed useless program secpolicy. (Closes: #399426)
+%__rm -f %{?buildroot}%{tde_bindir}/secpolicy
+
+# LILO is not provided in RHEL or Fedora
+%if 0%{?rhel} || 0%{?fedora}
+%exclude %{tde_tdedocdir}/HTML/en/lilo-config/
+%endif
 
 
 %clean

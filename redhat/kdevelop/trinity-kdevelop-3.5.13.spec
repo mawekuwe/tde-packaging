@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -29,7 +29,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source: kdevelop-%{version}.tar.gz
@@ -66,7 +66,11 @@ BuildRequires: tqtinterface-devel >= 3.5.13
 BuildRequires: trinity-arts-devel >= 3.5.13
 BuildRequires: trinity-tdelibs-devel >= 3.5.13
 #BuildRequires: qt3-devel-docs >= 3.3.8.d
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}db5.1-devel
+%else
 BuildRequires: db4-devel
+%endif
 BuildRequires: flex
 # FIXME: No CVS support in KDevelop? This is going to suck...
 # Requires kdesdk3.
@@ -218,7 +222,7 @@ export LD_LIBRARY_PATH="%{tde_libdir}"
 # c references
 pushd c_cpp_reference-2.0.2_for_KDE_3.0
 %configure \
-  --exec-prefix=%{_prefix} \
+  --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
@@ -228,7 +232,11 @@ pushd c_cpp_reference-2.0.2_for_KDE_3.0
   --with-extra-libs=%{tde_libdir}
 popd
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
@@ -254,7 +262,7 @@ cd ..
 %__make install DESTDIR=%{buildroot} -C c_cpp_reference-2.0.2_for_KDE_3.0
 
 # remove useless files
-%__rm -rf %{buildroot}%{_prefix}/kdevbdb
+#%__rm -rf %{buildroot}%{tde_prefix}/kdevbdb
 
 
 %clean

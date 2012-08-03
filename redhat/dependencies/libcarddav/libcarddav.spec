@@ -1,10 +1,10 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-libcarddav
 Version:	0.6.2
@@ -18,14 +18,18 @@ License:	GPL
 Group:		System Environment/Libraries
 Summary:	A portable CardDAV client implementation originally developed for the Trinity PIM suite.
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	libcarddav_0.6.2-2debian2.tar.gz
+
+# [libcarddav] Fix messy installation directories
+Patch1:		libcarddav-0.6.5-fix_installation.patch
 
 %if 0%{?fedora} || 0%{?rhel} >= 6
 BuildRequires:	libcurl-devel
 %else
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}curl-devel
 %else
 # Specific CURL version for TDE on RHEL 5 (and older)
@@ -55,22 +59,23 @@ Provides:	libcarddav-devel = %{version}-%{release}
 
 %prep
 %setup -q -n libcarddav-%{version}
+%patch1 -p1 -b .dir
 
 %build
+# CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
+export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${CFLAGS}"
+
 autoreconf --force --install --symlink
 %configure \
   --includedir=%{tde_includedir} \
   --libdir=%{tde_libdir} \
   
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} LIBTOOL=$(which libtool)
 
 %install
 %__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot}
+%__make install DESTDIR=%{buildroot} LIBTOOL=$(which libtool)
 
-# The include files do not go in the correct directory
-%__mv -f %{buildroot}%{tde_includedir}/libcarddav-0.6.1/*.h %{buildroot}%{tde_includedir}
-%__rm -rf %{buildroot}%{tde_includedir}/libcarddav-0.6.1
 
 %clean
 %__rm -rf %{buildroot}
@@ -85,6 +90,18 @@ autoreconf --force --install --symlink
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
 %{tde_libdir}/pkgconfig/libcarddav.pc
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+%post devel
+/sbin/ldconfig
+
+%postun devel
+/sbin/ldconfig
 
 
 %Changelog

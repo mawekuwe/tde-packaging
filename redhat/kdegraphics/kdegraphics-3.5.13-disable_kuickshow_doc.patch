@@ -1,0 +1,10 @@
+--- kdegraphics/doc/kuickshow/CMakeLists.txt.ORI	2012-08-02 20:57:35.855904888 +0000
++++ kdegraphics/doc/kuickshow/CMakeLists.txt	2012-08-02 20:57:53.872026818 +0000
+@@ -9,4 +9,6 @@
+ #
+ #################################################
+ 
+-tde_create_handbook( DESTINATION kuickshow )
++if( BUILD_KUICKSHOW )
++  tde_create_handbook( DESTINATION kuickshow )
++endif( )

@@ -1,16 +1,16 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define cmake_modules_dir %{_datadir}/cmake
+%define cmake_modules_dir %{tde_prefix}/share/cmake
 %else
 %define cmake_modules_dir %{_datadir}/cmake/Modules
 %endif
 
 # TQT include files may conflict with QT4 includes, so we move them to a subdirectory.
 # Later compiled Trinity products should be aware of that !
-%define tde_bindir %{_prefix}/bin
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_bindir %{tde_prefix}/bin
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		tqtinterface
 Version:	3.5.13
@@ -23,7 +23,7 @@ Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}.tar.gz
 
@@ -37,7 +37,7 @@ Requires:		qt3 >= 3.3.8.d
 
 BuildRequires:	gcc-c++
 BuildRequires:	pth-devel
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xi-devel
 %else
 BuildRequires:	libXi-devel
@@ -63,7 +63,11 @@ Development files for %{name}
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
   -DQT_PREFIX_DIR=${QTDIR} \
   -DQT_VERSION=3 \

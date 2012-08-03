@@ -41,49 +41,6 @@ index 2b1d2e7..57b9254 100644
   * @return 0 on success, -1 on failure.
   */
  typedef int (*en50221_app_auth_request_callback) (void *arg,
-diff --git a/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_teletext.h b/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_teletext.h
-index b5b85f1..ce6ef42 100644
---- a/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_teletext.h
-+++ b/kaffeine/src/input/dvb/lib/libdvben50221/en50221_app_teletext.h
-@@ -42,7 +42,7 @@ extern "C" {
-  * @param slot_id Slot id concerned.
-  * @param session_number Session number concerned.
-  * @param teletext_data Data for the request.
-- * @param teletext_data_lenghth Number of bytes.
-+ * @param teletext_data_length Number of bytes.
-  * @return 0 on success, -1 on failure.
-  */
- typedef int (*en50221_app_teletext_callback) (void *arg,
-diff --git a/kaffeine/src/kaffeine.cpp b/kaffeine/src/kaffeine.cpp
-index 2294956..6679b97 100644
---- a/kaffeine/src/kaffeine.cpp
-+++ b/kaffeine/src/kaffeine.cpp
-@@ -238,13 +238,13 @@ Kaffeine::Kaffeine() : DCOPObject("KaffeineIface"),
- 	}
- #endif
- 
--	/** KWin are you there? **/
-+	/** TWin are you there? **/
- 
- 	m_haveKWin = KApplication::dcopClient()->isApplicationRegistered("twin");
- 	if (m_haveKWin)
--		kdDebug() << "Window manager: KWin found" << endl;
-+		kdDebug() << "Window manager: TWin found" << endl;
- 	else
--		kdDebug() << "Window manager: not KWin - using save fullscreen mode" << endl;
-+		kdDebug() << "Window manager: not TWin - using save fullscreen mode" << endl;
- 
- 	connect(&m_screensaverTimer, TQT_SIGNAL(timeout()), TQT_TQOBJECT(this), TQT_SLOT(slotFakeKeyEvent()));
- 	m_screensaverTimer.start( 55000 );
-@@ -1261,7 +1261,7 @@ void Kaffeine::mouseDoubleClickEvent(TQMouseEvent*)
- void Kaffeine::mousePressEvent(TQMouseEvent* mev)
- {
- 	kdDebug() << "Kaffeine: Mouse press event" << endl;
--	if ( m_minimal->isChecked() && !m_fullscreen->isChecked() && (mev->button() == Qt::MidButton) ) {
-+	if ( m_minimal->isChecked() && !m_fullscreen->isChecked() && (mev->button() == MidButton) ) {
- 		if (topDock()->isVisible()) {
- 			hideToolbars(true);
- 			//menuBar()->hide;
 diff --git a/kaffeine/src/kmultitabbar.cpp b/kaffeine/src/kmultitabbar.cpp
 index 8d85e01..e8148a7 100644
 --- a/kaffeine/src/kmultitabbar.cpp
@@ -128,9 +85,9 @@ diff --git a/kaffeine/src/kmultitabbar.h b/kaffeine/src/kmultitabbar.h
 index 72fa884..2932cc2 100644
 --- a/kaffeine/src/kmultitabbar.h
 +++ b/kaffeine/src/kmultitabbar.h
-@@ -55,16 +55,16 @@ class /*KUTILS_EXPORT*/ KMultiTabBar: public TQWidget
+@@ -55,16 +55,16 @@
  	Q_OBJECT
-   
+   TQ_OBJECT
  public:
 -	enum KMultiTabBarMode{Horizontal,Vertical};
 +	enum KMultiTabBarMode{Horizontal, Vertical};

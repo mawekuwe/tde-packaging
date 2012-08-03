@@ -1,12 +1,12 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-%define tde_datadir %{_prefix}/share
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-libcaldav
 Version:	0.6.5
@@ -20,9 +20,13 @@ License:	GPL
 Group:		System Environment/Libraries
 Summary:	A client library that adds support for the CalDAV protocol (rfc4791).
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	libcaldav_0.6.5-2debian2.tar.gz
+
+# [libcaldav] Fix messy installation directories
+Patch1:		libcaldav-0.6.2-fix_installation.patch
 
 BuildRequires:	libtool
 BuildRequires:	glib2-devel
@@ -35,7 +39,7 @@ Provides:	libcaldav = %{version}-%{release}
 %if 0%{?fedora} || 0%{?rhel} >= 6
 BuildRequires:	libcurl-devel
 %else
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}curl-devel
 %else
 # Specific CURL version for TDE on RHEL 5 (and older)
@@ -61,8 +65,12 @@ Provides:	libcaldav-devel = %{version}-%{release}
 
 %prep
 %setup -q -n libcaldav-%{version}
+%patch1 -p1 -b .dir
 
 %build
+# CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
+export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${CFLAGS}"
+
 autoreconf --force --install --symlink
 %configure \
   --docdir=%{tde_docdir}/libcaldav \
@@ -75,9 +83,6 @@ autoreconf --force --install --symlink
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-# The include files do not go in the correct directory
-%__mv -f %{buildroot}%{tde_includedir}/libcaldav-0.6.2/*.h %{buildroot}%{tde_includedir}
-%__rm -rf %{buildroot}%{tde_includedir}/libcaldav-0.6.2
 
 %clean
 %__rm -rf %{buildroot}
@@ -85,14 +90,26 @@ autoreconf --force --install --symlink
 
 %files
 %{tde_libdir}/*.so.*
-%{tde_docdir}/libcaldav
+%{tde_docdir}/libcaldav/
 
 %files devel
-%{tde_includedir}/*.h
+%{tde_includedir}/caldav.h
 %{tde_libdir}/*.a
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
 %{tde_libdir}/pkgconfig/libcaldav.pc
+
+%post
+/sbin/ldconfig
+
+%postun
+/sbin/ldconfig
+
+%post devel
+/sbin/ldconfig
+
+%postun devel
+/sbin/ldconfig
 
 
 %Changelog

@@ -1,15 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -36,7 +35,8 @@ Source0:	kdeaccessibility-%{version}.tar.gz
 # [kdeaccessibility] Missing LDFLAGS causing FTBFS
 Patch1:		kdeaccessibility-3.5.13-missing_ldflags.patch
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	desktop-file-utils
@@ -50,13 +50,12 @@ BuildRequires:	trinity-tdemultimedia-devel >= 3.5.13
 BuildRequires: libXtst-devel
 %endif
 
-%if 0%{?mgaversion}
-# Special packages for missing '.la' files on Mageia 2
-BuildRequires:	%{_lib}xi-devel %{_lib}xi-devel-libtool
-BuildRequires:	%{_lib}xext6-devel %{_lib}xext6-devel-libtool
-BuildRequires:	%{_lib}x11_6-devel %{_lib}x11_6-devel-libtool
-BuildRequires:	%{_lib}xcb-devel %{_lib}xcb-devel-libtool
-BuildRequires:	%{_lib}xau6-devel %{_lib}xau6-devel-libtool
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xi-devel
+BuildRequires:	%{_lib}xext%{?mgaversion:6}-devel
+BuildRequires:	%{_lib}x11%{?mgaversion:_6}-devel
+BuildRequires:	%{_lib}xcb-devel
+BuildRequires:	%{_lib}xau%{?mgaversion:6}-devel
 %else
 BuildRequires:	libXi-devel
 BuildRequires:	libXext-devel
@@ -65,6 +64,15 @@ BuildRequires:	libX11-devel
 BuildRequires:	libxcb-devel
 %endif
 BuildRequires:	libXau-devel
+%endif
+
+# Mageia only: Special packages were built for missing '.la' files on Mageia 2 !!!
+%if 0%{?mgaversion}
+BuildRequires:	%{_lib}xi-devel-libtool
+BuildRequires:	%{_lib}xext6-devel-libtool
+BuildRequires:	%{_lib}x11_6-devel-libtool
+BuildRequires:	%{_lib}xcb-devel-libtool
+BuildRequires:	%{_lib}xau6-devel-libtool
 %endif
 
 Obsoletes:		trinity-kdeaccessibility < %{version}-%{release}
@@ -448,11 +456,11 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Avoir conflict with KDE4, if installed
 # see file: '/etc/profile.d/kde.sh' from package 'kde-settings'
-export KDEDIRS=%{_prefix}
-export KDEDIR=%{_prefix}
+export KDEDIRS=%{tde_prefix}
+export KDEDIR=%{tde_prefix}
 
 %configure \
-  --exec-prefix=%{_prefix} \
+  --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
@@ -464,7 +472,7 @@ export KDEDIR=%{_prefix}
   --enable-final \
   --enable-ksayit-audio-plugins \
   --with-akode \
-  --with-extra-includes=%{tde_includedir}/tqt
+  --with-extra-includes=%{tde_includedir}:%{tde_includedir}/tqt
 
 %__make %{?_smp_mflags}
 

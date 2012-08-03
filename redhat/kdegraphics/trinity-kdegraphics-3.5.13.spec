@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -25,7 +25,7 @@ License:	GPL
 Summary:    Trinity Desktop Environment - Graphics Applications
 
 Group:      Applications/Multimedia
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -57,6 +57,8 @@ Patch7:		kdegraphics-3.5.13-fix_corrupt_image_file.patch
 Patch8:		kdegraphics-3.5.13-add_poppler_tqt_pc.patch
 # [tdegraphics] Fix poppler include directory location
 Patch9:		kdegraphics-3.5.13-fix_poppler_include_dir.patch
+# [tdegraphics] Disable kuickshow documentation if kuickshow is not built
+Patch10:	kdegraphics-3.5.13-disable_kuickshow_doc.patch
 
 BuildRequires: cmake >= 2.8
 BuildRequires: tqtinterface-devel >= 3.5.13
@@ -73,7 +75,7 @@ BuildRequires: libusb-devel
 BuildRequires: libdrm-devel
 BuildRequires: pcre-devel
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}sane1-devel
 BuildRequires:	%{_lib}t1lib-devel
 BuildRequires:	%{_lib}paper-devel
@@ -84,7 +86,7 @@ BuildRequires:	%{_lib}xi-devel
 # kgamma
 BuildRequires:	%{_lib}xxf86vm-devel
 # ksvg
-BuildRequires:	%{_lib}xmu6-devel
+BuildRequires:	%{_lib}xmu%{?mgaversion:6}-devel
 # kpovmodeler
 BuildRequires:	%{_lib}mesagl1-devel
 BuildRequires:	%{_lib}mesaglu1-devel
@@ -110,13 +112,17 @@ BuildRequires:	OpenEXR-devel
 
 # kpdf
 BuildRequires: freetype-devel
-%if 0%{?rhel} >=6 || 0%{?fedora} >= 15 || 0%{?mgaversion}
+%if 0%{?rhel} >=6 || 0%{?fedora} >= 15
 BuildRequires: poppler-devel >= 0.12
 #BuildRequires:	poppler-qt-devel >= 0.12
+%else
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}poppler-devel
 %else
 # On RHEL 5, the distro-provided poppler is too old. We built a newer one.
 BuildRequires:	trinity-poppler-devel
 BuildRequires:	trinity-poppler-qt3-devel >= 0.12
+%endif
 %endif
 
 # ksvg
@@ -588,7 +594,6 @@ Homepage: http://www.kpovmodeler.org
 %doc rpmdocs/kpovmodeler/
 %{tde_bindir}/kpovmodeler
 %{tde_libdir}/libkpovmodeler.so.*
-%{tde_libdir}/libkpovmodeler.la
 %{tde_tdelibdir}/libkpovmodelerpart.*
 %{tde_tdeappdir}/kpovmodeler.desktop
 %{tde_datadir}/apps/kpovmodeler/
@@ -876,15 +881,15 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 ############
 
 # Excludes kuickshow (built separately)
-%exclude %{tde_bindir}/kuickshow
-%exclude %{tde_tdelibdir}/kuickshow.la
-%exclude %{tde_tdelibdir}/kuickshow.so
-%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.la
-%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.so
-%exclude %{tde_tdeappdir}/kuickshow.desktop
-%exclude %{tde_datadir}/apps/kuickshow/
-%exclude %{tde_datadir}/icons/hicolor/*/apps/kuickshow.png
-%exclude %{tde_tdedocdir}/HTML/en/kuickshow/
+#%exclude %{tde_bindir}/kuickshow
+#%exclude %{tde_tdelibdir}/kuickshow.la
+#%exclude %{tde_tdelibdir}/kuickshow.so
+#%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.la
+#%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.so
+#%exclude %{tde_tdeappdir}/kuickshow.desktop
+#%exclude %{tde_datadir}/apps/kuickshow/
+#%exclude %{tde_datadir}/icons/hicolor/*/apps/kuickshow.png
+#%exclude %{tde_tdedocdir}/HTML/en/kuickshow/
 
 ##########
 
@@ -902,6 +907,7 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1 -b .kuickshowdoc
 
 
 %build
@@ -911,7 +917,11 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 #export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
@@ -926,6 +936,7 @@ export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
   -DWITH_PDF=ON \
   -DWITH_PDF=ON \
   -DBUILD_ALL=ON \
+  -DBUILD_KUICKSHOW=OFF \
   ..
 
 %__make %{?_smp_mflags}
@@ -961,10 +972,6 @@ for dir in k* ; do
     fi
   done
 done
-
-# unpackaged files
-# omit kpovmodeler-devel files (for now) -- Rex
-rm -f %{buildroot}/libkpovmodeler.so
 
 
 %clean

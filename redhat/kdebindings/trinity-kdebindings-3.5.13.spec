@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
@@ -30,7 +30,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdebindings-%{version}.tar.gz
@@ -46,7 +46,8 @@ Patch3:		kdebindings-3.5.13-ruby_1.9.patch
 Patch4:		kdebindings-3.5.13-fixes.patch
 # [kdebindings] Fix smoke compilation on MGA2 (missing LDFLAGS)
 Patch5:		kdebindings-3.5.13-missing_ldflags.patch
-
+# [kdebindings] Fix directory for dcopc include
+Patch6:		kdebindings-3.5.13-fix_dcopc_header_location.patch
 
 BuildRequires: autoconf automake libtool m4
 BuildRequires: tqtinterface-devel
@@ -64,12 +65,12 @@ BuildRequires: xulrunner-devel
 BuildRequires: glib-devel
 BuildRequires: gtk+-devel
 %endif
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires: %{_lib}glib1.2-devel
 BuildRequires: %{_lib}gtk+-devel
 %endif
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}gdk_pixbuf2.0-devel
 %else
 %if 0%{?fedora} >= 17
@@ -354,7 +355,7 @@ This package is part of the official TDE bindings module.
 
 %files -n trinity-libsmokeqt-devel
 %defattr(-,root,root,-)
-%{tde_includedir}/smoke.h
+%{tde_tdeincludedir}/smoke.h
 %{tde_libdir}/libsmokeqt.so
 %{tde_libdir}/libsmokeqt.la
 
@@ -530,7 +531,7 @@ This package is part of the official TDE bindings module.
 
 %files -n trinity-libkjsembed-devel
 %defattr(-,root,root,-)
-%{tde_includedir}/kjsembed/
+%{tde_tdeincludedir}/kjsembed/
 %{tde_libdir}/libkjsembed.so
 %{tde_libdir}/libkjsembed.la
 %{tde_docdir}/trinity-libkjsembed-devel/plugin-examples/customobject/
@@ -765,7 +766,7 @@ Requires:	trinity-libkdexparts1 = %{version}-%{release}
 
 %files -n trinity-libxparts-devel
 %defattr(-,root,root,-)
-%{tde_includedir}/xkparts/
+%{tde_tdeincludedir}/xkparts/
 %{tde_libdir}/libgtkxparts.so
 %{tde_libdir}/libkdexparts.so
 
@@ -828,7 +829,7 @@ Requires:	trinity-libdcop-c = %{version}-%{release}
 %defattr(-,root,root,-)
 %{tde_libdir}/libdcopc.so
 %{tde_libdir}/libdcopc.la
-%{tde_includedir}/dcopc/
+%{tde_tdeincludedir}/dcopc/
 
 %post -n trinity-libdcop-c-devel
 /sbin/ldconfig || :
@@ -872,6 +873,7 @@ Development files for the TDE bindings.
 %endif
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1 -b .dcopcinclude
 
 # Adds non-standard Ruby include path in include dirs
 for d in \
@@ -911,11 +913,12 @@ unset JAVA_HOME ||:
 export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
 
 %configure \
-  --exec-prefix=%{_prefix} \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --datadir=%{tde_datadir} \
   --docdir=%{tde_docdir} \
-  --includedir=%{tde_includedir} \
+  --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --disable-rpath \

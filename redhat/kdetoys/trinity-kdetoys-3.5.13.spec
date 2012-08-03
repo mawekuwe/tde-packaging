@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -34,7 +34,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: autoconf automake libtool m4
@@ -96,7 +96,6 @@ This package is part of Trinity, and a component of the TDE toys module.
 %files -n trinity-amor
 %defattr(-,root,root,-)
 %{tde_bindir}/amor
-%exclude %{tde_tdeincludedir}/AmorIface.h
 %{tde_datadir}/apps/amor/
 %{tde_tdeappdir}/amor.desktop
 %{tde_datadir}/icons/hicolor/*/apps/amor.png
@@ -393,7 +392,8 @@ export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-   --exec-prefix=%{_prefix} \
+   --prefix=%{tde_prefix} \
+   --exec-prefix=%{tde_prefix} \
    --bindir=%{tde_bindir} \
    --libdir=%{tde_libdir} \
    --datadir=%{tde_datadir} \
@@ -433,6 +433,9 @@ for lang_dir in %{buildroot}$HTML_DIR/* ; do
   fi
 done
 fi
+
+# Useless include file from Amor
+%__rm -f %{buildroot}%{tde_tdeincludedir}/AmorIface.h
 
 
 %clean

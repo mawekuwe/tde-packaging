@@ -1,10 +1,10 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		dbus-tqt
 Version:	3.5.13
@@ -16,14 +16,14 @@ Group:		System Environment/Libraries
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}.tar.gz
 
 BuildRequires:	gcc-c++
 BuildRequires:	dbus-devel
-BuildRequires:	tqtinterface-devel
+BuildRequires:	tqtinterface-devel >= 3.5.13
 
 # TDE 3.5.13 specific building variables
 BuildRequires:	cmake >= 2.8
@@ -53,7 +53,11 @@ Development files for %{name}
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
   -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
@@ -64,7 +68,6 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 %install
 %__rm -rf %{?buildroot}
-%__mkdir_p %{?buildroot}%{_includedir}
 %__make install DESTDIR=%{?buildroot} -C build
 
 %clean

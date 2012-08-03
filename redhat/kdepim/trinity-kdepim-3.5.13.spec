@@ -1,15 +1,15 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
 BuildRequires: cmake >= 2.8
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -19,7 +19,7 @@ BuildRequires: cmake >= 2.8
 %define _docdir %{tde_docdir}
 
 # KDEPIM specific features
-%if 0%{?fedora} || 0%{?mgaversion}
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_gnokii 1
 %else
 %define with_gnokii 0
@@ -40,7 +40,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 Summary:	Personal Information Management apps from the official Trinity release
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 
 Source0:	kdepim-%{version}.tar.gz
 
@@ -67,6 +67,8 @@ Patch10:	kdepim-3.5.13-fix_segv.patch
 Patch11:	kdepim-3.5.13-fix_kalarm_icon_reference.patch
 # [tdepim] Disable unneccesary fsync() in cached IMAP handler [Bug #467] [Commit #82d4a938]
 Patch12:	kdepim-3.5.13-disable_fsync_in_cached_imap.patch
+# [tdepim] Fix include directory location
+Patch13:	kdepim-3.5.13-fix_include_directory.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -99,8 +101,8 @@ BuildRequires:	trinity-libcurl-devel
 BuildRequires:	curl-devel
 %endif
 
-%if 0%{?mgaversion}
-BuildRequires:	%{_lib}xcomposite1-devel
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
 BuildRequires:	%{_lib}sasl2-devel
 %else
 BuildRequires:	libXcomposite-devel
@@ -218,7 +220,6 @@ thousands of internet feeds in a quick, efficient, and familiar way.
 %{tde_datadir}/apps/akregator
 %{tde_datadir}/config.kcfg/akregator.kcfg
 %{tde_datadir}/config.kcfg/mk4config.kcfg
-%{tde_datadir}/icons/hicolor/128x128/apps/akregator.png
 %{tde_datadir}/icons/crystalsvg/*/actions/rss_tag.png
 %{tde_datadir}/icons/crystalsvg/16x16/apps/akregator_empty.png
 %{tde_datadir}/icons/hicolor/*/apps/akregator.png
@@ -1344,7 +1345,7 @@ installed.
 %{tde_datadir}/servicetypes/dcopcalendar.desktop
 %{tde_datadir}/servicetypes/korganizerpart.desktop
 %{tde_datadir}/servicetypes/korgprintplugin.desktop
-%{tde_includedir}/korganizer
+%{tde_tdeincludedir}/korganizer
 %{tde_tdeincludedir}/korganizer
 %{tde_tdeincludedir}/calendar
 %{tde_tdedocdir}/HTML/en/korganizer/
@@ -1575,7 +1576,6 @@ library.
 %files -n trinity-libkcal-devel
 %{tde_tdeincludedir}/libemailfunctions/idmapper.h
 %{tde_tdeincludedir}/libkcal
-%{tde_includedir}/libkcal
 %{tde_libdir}/libkcal.la
 %{tde_libdir}/libkcal.so
 %{tde_libdir}/libkcal_resourceremote.la
@@ -1753,9 +1753,7 @@ libkleopatra-trinity library.
 
 %files -n trinity-libkleopatra-devel
 %{tde_tdeincludedir}/gpgme++
-%{tde_includedir}/gpgme++
 %{tde_tdeincludedir}/kleo
-%{tde_includedir}/kleo
 %{tde_tdeincludedir}/qgpgme
 %{tde_libdir}/libgpgme++.la
 %{tde_libdir}/libgpgme++.so
@@ -2098,7 +2096,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %patch10 -p1 -b .segv
 %patch11 -p1
 %patch12 -p1
-
+%patch13 -p1 -b .incdir
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -2107,12 +2105,16 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%{?!mgaversion:%__mkdir build; cd build}
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
-  -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
-  -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
   -DCMAKE_SKIP_RPATH="OFF" \
   -DWITH_ARTS=ON \

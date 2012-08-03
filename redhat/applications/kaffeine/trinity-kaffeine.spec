@@ -1,27 +1,31 @@
 # Default version for this component
 %define kdecomp kaffeine
-%define version 0.8.8
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
-%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
 
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 Name:		trinity-%{kdecomp}
-Summary: Xine-based media player
+Summary:	Xine-based media player
 
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.8.8
+Release:	3%{?dist}%{?_variant}
 
 License: GPLv2+
 Group:   Applications/Multimedia
@@ -45,34 +49,54 @@ Patch3:			kaffeine-3.5.13-rename_obsolete_tq_methods.patch
 Patch4:			kaffeine-3.5.13-renames_a_few_stragglers.patch
 # [kaffeine] Error out if critical OSD-related defines are not set [Commit #25b89439]
 Patch5:			kaffeine-3.5.13-error_out_if_critical_osd_defines_not_set.patch
-# [kaffeine] Work around Xine crash when displaying still logo image by creating a small movie file to replace it [Bug #559, #511] [Commit #508cb342]
-Patch6:			kaffeine-3.5.13-work_around_xine_crash.patch
 # [kaffeine] Fix nominal "tqt" typos and fix slow DVB start. [Bug #729, #899] [Commit #fd68e4c4]
-Patch7:			kaffeine-3.5.13-fix_slow_dvb_start.patch
+Patch6:			kaffeine-3.5.13-fix_slow_dvb_start.patch
 # [kaffeine] Change location where Kaffeine stores temporary pipe files from $HOME to the more appropriate $TDEHOME/tmp-$HOSTNAME. [Commit #b480e3db]
-Patch8:			kaffeine-3.5.13-fix_temporary_location.patch
+Patch7:			kaffeine-3.5.13-fix_temporary_location.patch
 # [kaffeine] Fix typos, branding, and inadvertent tqt changes. [Commit #0e3d0ed6]
-Patch9:			kaffeine-3.5.13-fix_typos_branding_tqt.patch
+Patch8:			kaffeine-3.5.13-fix_typos_branding_tqt.patch
 # [kaffeine] Fix installation of localization files [Bug #858]
-Patch10:		kaffeine-3.5.13-fix_localization_files.patch
+Patch9:		kaffeine-3.5.13-fix_localization_files.patch
+# [kaffeine] Added automake initialization with proper program name and version [Bug #858] [Commit #4e982fa3]
+Patch10:		kaffeine-3.5.13-fix_program_name.patch
+# [kaffeine] Fixed online hyperlink to win32 codecs download location. [Commit #5086f358]
+Patch11:		kaffeine-3.5.13-fix_win32_codec_url.patch
+# [kaffeine] Missing LDFLAGS cause FTBFS under MGA2/MDV2011
+Patch12:	kaffeine-3.5.13-missing_ldflags.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: gettext
 BuildRequires: trinity-kdelibs-devel
-BuildRequires: cdparanoia-devel cdparanoia
 BuildRequires: libvorbis-devel
-BuildRequires: xine-lib-devel
-BuildRequires: libXext-devel libXinerama-devel libXtst-devel
 BuildRequires: libcdio-devel
+
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libcdda-devel
+BuildRequires:	%{_lib}xine-devel
+BuildRequires:	%{_lib}xext%{?mgaversion:6}-devel
+BuildRequires:	%{_lib}xtst-devel
+BuildRequires:	%{_lib}xinerama%{?mgaversion:1}-devel
+# dvb
+BuildRequires:	kernel-headers
+BuildRequires:	libgstreamer-devel >= 0.10
+BuildRequires:	libgstreamer-plugins-base-devel >= 0.10
+%else
+BuildRequires:	cdparanoia-devel cdparanoia
+BuildRequires:	xine-lib-devel
+BuildRequires:	libXext-devel 
+BuildRequires:	libXtst-devel
+BuildRequires:	libXinerama-devel
+# dvb
+BuildRequires:	glibc-kernheaders 
+BuildRequires:	gstreamer-devel >= 0.10
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10
+%endif
 
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires: libxcb-devel
 %endif
 
-# dvb
-BuildRequires: glibc-kernheaders 
-BuildRequires: gstreamer-devel >= 0.10, gstreamer-plugins-base-devel >= 0.10
 
 Requires: %{name}-libs = %{version}-%{release}
 
@@ -84,24 +108,81 @@ Additionally, Kaffeine is fully integrated in KDE, it supports drag
 and drop and provides an editable playlist, a bookmark system, a
 Konqueror plugin, OSD and much more.
 
+%files -f %{kdecomp}.lang
+%defattr(-,root,root,-)
+%doc AUTHORS ChangeLog COPYING README TODO
+%{tde_bindir}/kaffeine
+%{tde_libdir}/libkaffeinepart.so
+%{tde_tdelibdir}/lib*.*
+%{tde_datadir}/appl*/*/*.desktop
+%{tde_datadir}/apps/gstreamerpart/
+%{tde_datadir}/apps/kaffeine/
+%{tde_datadir}/apps/konqueror/servicemenus/*.desktop
+%{tde_datadir}/apps/profiles/
+%{tde_datadir}/icons/hicolor/*/*/*
+%{tde_datadir}/mimelnk/*/*.desktop
+%{tde_datadir}/service*/*.desktop
+%{tde_tdedocdir}/HTML/en/kaffeine
+%{tde_mandir}/*/*
+
+%post
+touch --no-create %{tde_datadir}/icons/hicolor ||:
+gtk-update-icon-cache -q %{tde_datadir}/icons/hicolor 2> /dev/null ||:
+update-desktop-database >& /dev/null ||:
+/sbin/ldconfig || :
+
+%postun
+touch --no-create %{_datadir}/icons/hicolor ||:
+gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
+update-desktop-database >& /dev/null ||:
+/sbin/ldconfig || :
+
+##########
+
 %package devel
 Summary: Development files for %{name}
 Group:   Development/Libraries
-Requires: %{name}-libs = %{version}-%{release}
-Requires: trinity-kdelibs-devel
+Requires:	%{name}-libs = %{version}-%{release}
+Requires:	trinity-tdelibs-devel
+
 %description devel
 %{summary}.
+
+%files devel
+%defattr(-,root,root,-)
+%{tde_tdeincludedir}/kaffeine/
+%{tde_libdir}/lib*.so
+%exclude %{tde_libdir}/libkaffeinepart.so
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
+##########
 
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-# helps multilib upgrades
-Obsoletes: %{name} < %{version}-%{release}
+
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
 Requires: %{name} = %{version}-%{release}
+
 %description libs
 %{summary}.
 
+%files libs
+%defattr(-,root,root,-)
+%{tde_libdir}/lib*.so.*
+
+%post libs
+/sbin/ldconfig || :
+
+%postun libs
+/sbin/ldconfig || :
+
+##########
 
 
 %prep
@@ -110,24 +191,40 @@ Requires: %{name} = %{version}-%{release}
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1 -b .ftbfs
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common
+%__make -f "admin/Makefile.common"
 
 %build
 unset QTDIR || : ; source /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 
 %configure \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  --mandir=%{tde_mandir} \
   --enable-new-ldflags \
   --disable-debug --disable-warnings \
   --disable-dependency-tracking --enable-final \
@@ -135,7 +232,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
   --with-xinerama \
   --with-gstreamer \
   --without-lame \
-  --with-extra-includes=%{_includedir}/tqt \
+  --with-extra-includes=%{tde_includedir}/tqt \
   --with-extra-libs=%{_prefix}/%{_lib} \
   --enable-closure \
 %if 0%{?rhel} > 0 && 0%{?rhel} <= 5
@@ -147,7 +244,7 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT
 
@@ -172,62 +269,23 @@ done
 fi
 
 # Unpackaged files
-rm -f $RPM_BUILD_ROOT%{_libdir}/lib*.la
-rm -f $RPM_BUILD_ROOT%{_datadir}/mimelnk/application/x-mplayer2.desktop
+rm -f $RPM_BUILD_ROOT%{tde_libdir}/lib*.la
+rm -f $RPM_BUILD_ROOT%{tde_datadir}/mimelnk/application/x-mplayer2.desktop
 
-%__install -D -m 644 %{SOURCE1} %{?buildroot}%{_datadir}/apps/kaffeine/logo
-%__install -D -m 644 %{SOURCE2} %{?buildroot}%{_mandir}/man1/kaffeine.1
+%__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/apps/kaffeine/logo
+%__install -D -m 644 %{SOURCE2} %{?buildroot}%{tde_mandir}/man1/kaffeine.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 
-%post
-touch --no-create %{_datadir}/icons/hicolor ||:
-gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
-update-desktop-database >& /dev/null ||:
-/sbin/ldconfig || :
-
-%postun
-touch --no-create %{_datadir}/icons/hicolor ||:
-gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
-update-desktop-database >& /dev/null ||:
-/sbin/ldconfig || :
-
-%post libs -p /sbin/ldconfig
-
-%postun libs -p /sbin/ldconfig
-
-
-%files -f %{kdecomp}.lang
-%defattr(-,root,root,-)
-%doc AUTHORS ChangeLog COPYING README TODO
-%{_bindir}/kaffeine
-%{_libdir}/libkaffeinepart.so
-%{tde_libdir}/lib*.*
-%{_datadir}/appl*/*/*.desktop
-%{_datadir}/apps/gstreamerpart/
-%{_datadir}/apps/kaffeine/
-%{_datadir}/apps/konqueror/servicemenus/*.desktop
-%{_datadir}/apps/profiles/
-%{_datadir}/icons/hicolor/*/*/*
-%{_datadir}/mimelnk/*/*.desktop
-%{_datadir}/service*/*.desktop
-%{tde_docdir}/HTML/en/kaffeine
-%{_mandir}/*/*
-
-%files libs
-%defattr(-,root,root,-)
-%{_libdir}/lib*.so.*
-
-%files devel
-%defattr(-,root,root,-)
-%{_includedir}/kaffeine/
-%{_libdir}/lib*.so
-%exclude %{_libdir}/libkaffeinepart.so
-
 
 %changelog
+* Fri Aug 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-3
+- Add support for Mageia 2 and Mandriva 2011
+- Added automake initialization with proper program name and version [Bug #858] [Commit #4e982fa3]
+- Fixed online hyperlink to win32 codecs download location. [Commit #5086f358]
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-2
 - Rebuilt for Fedora 17
 - Adds more patches from GIT.

@@ -1,14 +1,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/kde
@@ -34,7 +34,7 @@ Provides:	trinity-kdeaddons = %{version}-%{release}
 Obsoletes:	trinity-kdeaddons-extras < %{version}-%{release}
 Provides:	trinity-kdeaddons-extras = %{version}-%{release}
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0: kdeaddons-%{version}.tar.gz
@@ -348,7 +348,11 @@ and various local news sources.
 %package -n trinity-konq-plugins
 Summary:	plugins for Konqueror, the Trinity file/web/doc browser
 Group:		Applications/Utilities
+%if 0%{?mgaversion} || 0%{?mdkversion}
+Requires:	%{_lib}jpeg8
+%else
 Requires:	libjpeg
+%endif
 Requires:	python
 Requires:	rsync
 #Requires:	unison
@@ -659,7 +663,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
-  --exec-prefix=%{_prefix} \
+  --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
