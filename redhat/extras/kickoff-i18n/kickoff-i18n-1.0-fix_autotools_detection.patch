@@ -1,0 +1,11 @@
+--- kickoff-i18n-1.0/admin/cvs.sh.ORI	2012-08-03 21:16:36.104888893 +0200
++++ kickoff-i18n-1.0/admin/cvs.sh	2012-08-03 21:16:54.488505909 +0200
+@@ -68,7 +68,7 @@
+     echo "*** KDE requires automake $required_automake_version"
+     exit 1
+     ;;
+-  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.10*)
++  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.1[01]*)
+     echo "*** $AUTOMAKE_STRING found."
+     UNSERMAKE=no
+     ;;
