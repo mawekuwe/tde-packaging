@@ -1,0 +1,23 @@
+Source: k3b-i18n-trinity
+Section: otherosfs
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Francois Marier <francois@debian.org>, Fathi Boudra <fabo@debian.org>
+Build-Depends: debhelper (>= 6), quilt, automake, autoconf
+Build-Depends-Indep: kdelibs4-trinity-dev
+Standards-Version: 3.7.3
+Homepage: http://www.k3b.org
+Vcs-Svn: svn://svn.debian.org/pkg-kde/kde-extras/k3b-i18n/trunk/
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-kde/kde-extras/k3b/trunk/
+
+Package: k3b-i18n-trinity
+Architecture: all 
+Depends: k3b-trinity
+Pre-Depends: dpkg (>= 1.10.24)
+Recommends: kde-i18n-trinity
+Description: Internationalized (i18n) files for k3b-trinity
+ This package contains the translations for k3b-trinity.
+ .
+ K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.  Its
+ aim is to provide a very user friendly interface to all the tasks that come
+ with cd recording.
