@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp kbfx
-%define version 0.4.9.3.1
-%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	an alternative to K-Menu for KDE [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.4.9.3.1
+Release:	1%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,14 +35,20 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [kbfx] Missing LDFLAGS cause FTBFS on Mageia 2 and Mandriva 2011
+Patch1:		kbfx-3.5.13-missing_ldflags.patch
+# [kbfx] Some files are installed in wrong directories ...
+Patch2:		kbfx-3.5.13-fix_install_directories.patch
+
+
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 %description
@@ -51,21 +64,36 @@ Homepage: http://www.kbfx.org
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1 -b .ldflags
+%patch2 -p1 -b .dir
 
-# Fix TDE executable path in CMakeLists.txt
+# Fix TDE executable path in 'CMakeLists.txt' ...
 %__sed -i "CMakeLists.txt" \
-  -e "s,/usr/bin/uic-tqt,%{_bindir}/uic-tqt," \
-  -e "s,/usr/bin/tmoc,%{_bindir}/tmoc," \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,"
-
+  -e "s|/usr/bin/uic-tqt|%{tde_bindir}/uic-tqt|" \
+  -e "s|/usr/bin/tmoc|%{tde_bindir}/tmoc|" \
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|"
+  
+# Prevents hardcoded TDE directories ...
+%__sed -i "cmakemodules/FindKdeLibs.cmake" \
+  -e "s|^\(set(HTML_INSTALL_DIR.*\)|#\1|" \
+  -e "s|^\(set(INCLUDE_INSTALL_DIR.*\)|#\1|"
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-	
-%__mkdir build
+export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_tdeincludedir}:%{tde_includedir}/tqt"
+
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
 cd build
+%endif
+
 %cmake \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+  -DDOC_INSTALL_DIR=%{tde_tdedocdir} \
+  -DHTML_INSTALL_DIR=%{tde_tdedocdir}/HTML \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DUSE_STRIGI=OFF \
   -DUSE_MENUDRAKE=OFF \
   -DUSE_KDE4=OFF \
@@ -75,9 +103,9 @@ cd build
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot} -C build
+%__make install DESTDIR=%{buildroot} -C build VERBOSE=1
 
 
 %clean
@@ -86,48 +114,51 @@ export PATH="%{_bindir}:${PATH}"
 
 %post
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} &> /dev/null
 
 %postun
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/kbfxconfigapp
-%{_includedir}/kbfx
-%{_libdir}/kbfx/plugins/libkbfxplasmadataplasmoid.la
-%{_libdir}/kbfx/plugins/libkbfxplasmadataplasmoid.so
-%{_libdir}/kbfx/plugins/libkbfxplasmadatasettings.la
-%{_libdir}/kbfx/plugins/libkbfxplasmadatasettings.so
-%{_libdir}/kbfx/plugins/libkbfxplasmadatastub.la
-%{_libdir}/kbfx/plugins/libkbfxplasmadatastub.so
-%{_libdir}/kbfx/plugins/libkbfxplasmarecentstuff.la
-%{_libdir}/kbfx/plugins/libkbfxplasmarecentstuff.so
-%{_libdir}/libkbfxcommon.la
-%{_libdir}/libkbfxcommon.so
-%{_libdir}/libkbfxdata.la
-%{_libdir}/libkbfxdata.so
-%{tde_libdir}/libkbfxspinx.la
-%{tde_libdir}/libkbfxspinx.so
-%{_datadir}/applications/kde/kbfx_theme.desktop
-%{_datadir}/applications/kde/kbfxconfigapp.desktop
-%{_datadir}/apps/kbfx/skins/*/*
-%{_datadir}/apps/kbfxconfigapp/kbfxconfigappui.rc
-%{_datadir}/apps/kicker/applets/kbfxspinx.desktop
-%{_datadir}/apps/konqueror/servicemenus/kbfx_install_theme.desktop
-%{_datadir}/apps/konqueror/servicemenus/kbfx_prepare_theme.desktop
-%{_docdir}/HTML/en/common/kbfx-*.jpg
-%{_docdir}/HTML/en/kbfxconfigapp/index.cache.bz2
-%{_docdir}/HTML/en/kbfxconfigapp/index.docbook
-%{_docdir}/kbfx
-%{_datadir}/icons/hicolor/*/apps/kbfx.png
-%{_datadir}/icons/hicolor/*/apps/kbfxconfigapp.png
-%{_datadir}/locale/*/LC_MESSAGES/kbfxconfigapp.mo
-%{_datadir}/mimelnk/application/x-kbfxtheme.desktop
+%{tde_bindir}/kbfxconfigapp
+%{tde_tdeincludedir}/kbfx/
+%{tde_libdir}/kbfx/plugins/libkbfxplasmadataplasmoid.la
+%{tde_libdir}/kbfx/plugins/libkbfxplasmadataplasmoid.so
+%{tde_libdir}/kbfx/plugins/libkbfxplasmadatasettings.la
+%{tde_libdir}/kbfx/plugins/libkbfxplasmadatasettings.so
+%{tde_libdir}/kbfx/plugins/libkbfxplasmadatastub.la
+%{tde_libdir}/kbfx/plugins/libkbfxplasmadatastub.so
+%{tde_libdir}/kbfx/plugins/libkbfxplasmarecentstuff.la
+%{tde_libdir}/kbfx/plugins/libkbfxplasmarecentstuff.so
+%{tde_libdir}/libkbfxcommon.la
+%{tde_libdir}/libkbfxcommon.so
+%{tde_libdir}/libkbfxdata.la
+%{tde_libdir}/libkbfxdata.so
+%{tde_tdelibdir}/libkbfxspinx.la
+%{tde_tdelibdir}/libkbfxspinx.so
+%{tde_tdeappdir}/kbfx_theme.desktop
+%{tde_tdeappdir}/kbfxconfigapp.desktop
+%{tde_datadir}/apps/kbfx/skins/*/*
+%{tde_datadir}/apps/kbfxconfigapp/kbfxconfigappui.rc
+%{tde_datadir}/apps/kicker/applets/kbfxspinx.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/kbfx_install_theme.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/kbfx_prepare_theme.desktop
+%{tde_tdedocdir}/HTML/en/common/kbfx-*.jpg
+%{tde_tdedocdir}/HTML/en/kbfxconfigapp/index.cache.bz2
+%{tde_tdedocdir}/HTML/en/kbfxconfigapp/index.docbook
+%{tde_tdedocdir}/kbfx/
+%{tde_datadir}/icons/hicolor/*/apps/kbfx.png
+%{tde_datadir}/icons/hicolor/*/apps/kbfxconfigapp.png
+%{tde_datadir}/locale/*/LC_MESSAGES/kbfxconfigapp.mo
+%{tde_datadir}/mimelnk/application/x-kbfxtheme.desktop
+
 
 %Changelog
 * Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.9.3.1-1

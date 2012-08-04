@@ -1,54 +1,66 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
-Name:    trinity-k3b
-Summary: CD/DVD burning application
-Version: 3.5.13
-Release: 4%{?dist}%{?_variant}
+Name:		trinity-k3b
+Summary:	CD/DVD burning application
+Version:	3.5.13
+Release:	5%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %if "%{?_prefix}" == "/usr"
 Obsoletes: k3b
 %endif
 
-Group:   Applications/Archiving
-License: GPLv2+
+Group:		Applications/Archiving
+License:	GPLv2+
 
-Source0: k3b-%{version}.tar.gz
-Source2: k3brc
+Source0:	k3b-%{version}.tar.gz
+Source2:	k3brc
 
 # Legacy RedHat / Fedora patches
 # manual bufsize (upstream?)
-Patch4: k3b-1.0.4-manualbufsize.patch
-
+Patch4:		k3b-1.0.4-manualbufsize.patch
 # RHEL6: Fix K3B icon
-Patch106: trinity-k3b-icons.patch
-
+Patch106:	trinity-k3b-icons.patch
 # [k3b] Fix compilation with GCC 4.7 [Bug #958]
 Patch108:	k3b-3.5.13-fix_Range_r_3-gcc47.patch
+# [k3b] Missing LDFLAGS cause FTBFS on Mageia 2 / Mandriva 2011
+Patch109:	k3b-3.5.13-missing_ldflags.patch
+# [k3b] Fix dbus-tqt header detection, required for HAL support
+Patch110:	k3b-3.5.13-fix_dbus_tqt_detection.patch
 
-BuildRequires: trinity-kdelibs-devel
+BuildRequires: tqtinterface-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-arts-devel
 BuildRequires: desktop-file-utils
 BuildRequires: alsa-lib-devel
 BuildRequires: audiofile-devel
 BuildRequires: dbus-tqt-devel hal-devel
-BuildRequires: flac-devel
 BuildRequires: gettext
 BuildRequires: libdvdread-devel
 BuildRequires: libmpcdec-devel
@@ -58,9 +70,14 @@ BuildRequires: libsndfile-devel
 BuildRequires: libvorbis-devel
 BuildRequires: taglib-devel
 BuildRequires: zlib-devel
+BuildRequires: %{_lib}resmgr-devel
 
-Obsoletes: k3b-extras < 0:1.0-1
-Provides:  k3b-extras = %{version}-%{release} 
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}flac-devel
+BuildRequires:	%{_lib}flac++-devel
+%else
+BuildRequires:	flac-devel
+%endif
 
 Requires(post): coreutils
 Requires(postun): coreutils
@@ -79,30 +96,137 @@ steps of the burning process the beginner may find comfort in the
 automatic settings and the reasonable k3b defaults which allow a quick
 start.
 
+%files
+%defattr(-,root,root,-)
+%doc AUTHORS README COPYING TODO ChangeLog
+%{tde_bindir}/k3b
+%{tde_tdelibdir}/kfile_k3b.la
+%{tde_tdelibdir}/kfile_k3b.so
+%{tde_tdelibdir}/kio_videodvd.la
+%{tde_tdelibdir}/kio_videodvd.so
+%{tde_tdelibdir}/libk3balsaoutputplugin.la
+%{tde_tdelibdir}/libk3balsaoutputplugin.so
+%{tde_tdelibdir}/libk3bartsoutputplugin.la
+%{tde_tdelibdir}/libk3bartsoutputplugin.so
+%{tde_tdelibdir}/libk3baudiometainforenamerplugin.la
+%{tde_tdelibdir}/libk3baudiometainforenamerplugin.so
+%{tde_tdelibdir}/libk3baudioprojectcddbplugin.la
+%{tde_tdelibdir}/libk3baudioprojectcddbplugin.so
+%{tde_tdelibdir}/libk3bexternalencoder.la
+%{tde_tdelibdir}/libk3bexternalencoder.so
+%{tde_tdelibdir}/libk3bflacdecoder.la
+%{tde_tdelibdir}/libk3bflacdecoder.so
+%{tde_tdelibdir}/libk3blibsndfiledecoder.la
+%{tde_tdelibdir}/libk3blibsndfiledecoder.so
+%{tde_tdelibdir}/libk3bmpcdecoder.la
+%{tde_tdelibdir}/libk3bmpcdecoder.so
+%{tde_tdelibdir}/libk3boggvorbisdecoder.la
+%{tde_tdelibdir}/libk3boggvorbisdecoder.so
+%{tde_tdelibdir}/libk3boggvorbisencoder.la
+%{tde_tdelibdir}/libk3boggvorbisencoder.so
+%{tde_tdelibdir}/libk3bsoxencoder.la
+%{tde_tdelibdir}/libk3bsoxencoder.so
+%{tde_tdelibdir}/libk3bwavedecoder.la
+%{tde_tdelibdir}/libk3bwavedecoder.so
+%lang(en) %{tde_tdedocdir}/HTML/en/k3b/
+
+
+##########
+
 %package common
 Summary:  Common files of %{name}
 Group:    Applications/Archiving
 Requires: %{name} = %{version}-%{release}
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
 BuildArch: noarch
 %endif
+
 %description common
 %{summary}.
+
+%files common
+%defattr(-,root,root,-)
+%{tde_tdeappdir}/k3b.desktop
+%{tde_datadir}/applnk/.hidden/k3b-cue.desktop
+%{tde_datadir}/applnk/.hidden/k3b-iso.desktop
+%{tde_datadir}/apps/k3b/
+%{tde_datadir}/apps/konqsidebartng/virtual_folders/services/videodvd.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/k3b_audiocd_rip.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/k3b_cd_copy.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/k3b_dvd_copy.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/k3b_handle_empty_cd.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/k3b_handle_empty_dvd.desktop
+%{tde_datadir}/apps/konqueror/servicemenus/k3b_videodvd_rip.desktop
+%{tde_datadir}/config/k3brc
+%{tde_datadir}/mimelnk/application/x-k3b.desktop
+%{tde_datadir}/icons/hicolor/*/apps/k3b.png
+%{tde_datadir}/services/kfile_k3b.desktop
+%{tde_datadir}/services/videodvd.protocol
+%{tde_datadir}/sounds/k3b_error1.wav
+%{tde_datadir}/sounds/k3b_success1.wav
+%{tde_datadir}/sounds/k3b_wait_media1.wav
+
+
+%post common
+touch --no-create %{tde_datadir}/icons/hicolor ||:
+
+%postun common
+if [ $1 -eq 0 ] ; then
+  touch --no-create %{tde_datadir}/icons/hicolor &> /dev/null
+  gtk-update-icon-cache %{tde_datadir}/icons/hicolor &> /dev/null || :
+  update-desktop-database %{tde_appdir} -q &> /dev/null
+fi
+
+%posttrans common
+gtk-update-icon-cache %{tde_datadir}/icons/hicolor &> /dev/null || :
+update-desktop-database %{tde_appdir} -q &> /dev/null
+
+##########
 
 %package libs
 Summary: Runtime libraries for %{name}
 Group:   System Environment/Libraries
 Requires: %{name} = %{version}-%{release}
+
 %description libs
 %{summary}.
+
+%files libs
+%defattr(-,root,root,-)
+%{tde_libdir}/libk3b.so.3
+%{tde_libdir}/libk3b.so.3.0.0
+%{tde_libdir}/libk3bdevice.so.5
+%{tde_libdir}/libk3bdevice.so.5.0.0
+
+%post libs
+/sbin/ldconfig
+
+%postun libs
+/sbin/ldconfig
+
+##########
 
 %package devel
 Summary: Files for the development of applications which will use %{name} 
 Group: Development/Libraries
 Requires: %{name}-libs = %{version}-%{release}
+
 %description devel
 %{summary}.
 
+%files devel
+%defattr(-,root,root,-)
+%{tde_includedir}/k3b/
+%{tde_libdir}/libk3b.so
+%{tde_libdir}/libk3bdevice.so
+
+%post devel
+/sbin/ldconfig
+
+%postun devel
+/sbin/ldconfig
+
+##########
 
 %prep
 %setup -q -a 0 -n applications/k3b
@@ -111,13 +235,15 @@ Requires: %{name}-libs = %{version}-%{release}
 %patch4 -p1 -b .manualbufsize
 %patch106 -p1 -b .desktopfile
 %patch108 -p1
+%patch109 -p1 -b .ldflags
+%patch110 -p1 -b .dbustqt
 
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+%__sed -i "admin/acinclude.m4.in" \
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -126,13 +252,17 @@ Requires: %{name}-libs = %{version}-%{release}
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-CFLAGS="%optflags -fno-strict-aliasing" \
-CXXFLAGS="%optflags -fno-strict-aliasing" \
 %configure \
-  --includedir=%{_includedir}/k3b \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_includedir}/k3b \
   --disable-rpath \
   --enable-new-ldflags \
   --disable-debug --disable-warnings \
@@ -147,85 +277,35 @@ CXXFLAGS="%optflags -fno-strict-aliasing" \
   --with-sndfile \
   --without-ffmpeg --without-lame --without-libmad \
   --with-musepack \
-  --with-extra-includes=%{_includedir}/tqt
+  --with-extra-includes=%{tde_includedir}/tqt:%{tde_includedir}
 
 %__make %{?_smp_mflags}
 
 %install
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
-%__install -D -m 644 -p %{SOURCE2} %{buildroot}%{_datadir}/config/k3brc
+%__install -D -m 644 -p %{SOURCE2} %{buildroot}%{tde_datadir}/config/k3brc
 
 # remove the .la files
-%__rm -f %{buildroot}%{_libdir}/libk3b*.la 
+%__rm -f %{buildroot}%{tde_libdir}/libk3b*.la 
 
 # remove i18n for Plattdeutsch (Low Saxon)
-#%__rm -fr %{buildroot}%{_datadir}/locale/nds
+#%__rm -fr %{buildroot}%{tde_datadir}/locale/nds
 
-
-%check
-export PATH="%{_bindir}:${PATH}"
-desktop-file-validate %{buildroot}%{_datadir}/applications/kde/k3b.desktop
 
 
 %clean
 %__rm -rf %{buildroot}
 
 
-%post libs -p /sbin/ldconfig
-
-%postun libs -p /sbin/ldconfig
-
-%post common
-touch --no-create %{_datadir}/icons/hicolor ||:
-
-%postun common
-if [ $1 -eq 0 ] ; then
-touch --no-create %{_datadir}/icons/hicolor &> /dev/null
-gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
-update-desktop-database -q &> /dev/null
-fi
-
-%posttrans common
-gtk-update-icon-cache %{_datadir}/icons/hicolor &> /dev/null || :
-update-desktop-database -q &> /dev/null
-
-
-%files
-%defattr(-,root,root,-)
-%doc AUTHORS README COPYING TODO ChangeLog
-%{_bindir}/k3b
-%{tde_libdir}/*.so
-%{tde_libdir}/*.la
-%{tde_docdir}/HTML/en/k3b
-
-%files common
-%defattr(-,root,root,-)
-%{_datadir}/applications/kde/*.desktop
-%{_datadir}/applnk/.hidden/*.desktop
-%{_datadir}/apps/k3b/
-%{_datadir}/apps/konqueror/servicemenus/*.desktop
-%{_datadir}/apps/konqsidebartng/virtual_folders/services/videodvd.desktop
-%{_datadir}/config/k3brc
-%{_datadir}/mimelnk/application/x-k3b.desktop
-%{_datadir}/icons/hicolor/*/*/*
-%{_datadir}/services/kfile_k3b.desktop
-%{_datadir}/services/videodvd.protocol
-%{_datadir}/sounds/k3b_*.wav
-
-%files libs
-%defattr(-,root,root,-)
-%{_libdir}/libk3b.so.3*
-%{_libdir}/libk3bdevice.so.5*
-
-%files devel
-%defattr(-,root,root,-)
-%{_includedir}/*
-%{_libdir}/libk3b.so
-%{_libdir}/libk3bdevice.so
-
 
 %changelog
+* Sat Aug 04 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
+- Add support for Mageia 2 and Mandriva 2011
+- Fix DBUS-TQT detection that prevented HAL support
+- Adds requirement for resmgr
+
 * Wed May 09 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Removes i18 files (built separately)
 

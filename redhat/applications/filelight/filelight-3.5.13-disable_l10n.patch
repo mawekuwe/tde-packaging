@@ -1,0 +1,13 @@
+--- filelight/Makefile.am.ORI	2012-08-04 10:34:47.712896146 +0200
++++ filelight/Makefile.am	2012-08-04 10:34:52.911800735 +0200
+@@ -1,4 +1,4 @@
+-SUBDIRS = src misc doc po
++SUBDIRS = src misc doc
+ 
+ messages: rc.cpp
+ 	$(EXTRACTRC) `find . -name "*.rc" -o -name "*.ui"` >> rc.cpp
+--- filelight/doc/Makefile.am.ORI	2012-08-04 10:36:33.894947477 +0200
++++ filelight/doc/Makefile.am	2012-08-04 10:36:38.509862783 +0200
+@@ -1 +1 @@
+-SUBDIRS = $(AUTODIRS)
++SUBDIRS = filelight

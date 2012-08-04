@@ -73,6 +73,7 @@ if [ -z "${VERSION}" ]; then
 	fi
 	VERSION="${VERSION##${COMP##*/}-}"
 	VERSION="${VERSION%%.tar.gz}"
+	VERSION="${VERSION%%.tar.bz2}"
 # If version is defined in spec file: appends the date
 else
 	VERSION="${VERSION}.$(date +%Y%m%d)"

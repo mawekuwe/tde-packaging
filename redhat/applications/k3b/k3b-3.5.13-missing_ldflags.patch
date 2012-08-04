@@ -1,0 +1,131 @@
+--- k3b/libk3bdevice/Makefile.am.ORI	2012-08-04 14:09:53.794930123 +0200
++++ k3b/libk3bdevice/Makefile.am	2012-08-04 14:10:08.246593402 +0200
+@@ -6,7 +6,7 @@
+ 
+ lib_LTLIBRARIES = libk3bdevice.la
+ 
+-libk3bdevice_la_LIBADD = $(LIB_KIO) $(RESMGR_LIB) $(CAM_LIB) $(HAL_DBUS_LIBS)
++libk3bdevice_la_LIBADD = $(LIB_KIO) $(RESMGR_LIB) $(CAM_LIB) $(HAL_DBUS_LIBS) $(LIB_QT) $(LIB_KDECORE)
+ 
+ # lib version 5 for K3b 1.0
+ libk3bdevice_la_LDFLAGS = $(all_libraries) -version-info 5:0:0 -no-undefined
+--- k3b/libk3b/Makefile.am.ORI	2012-08-04 14:13:26.067400663 +0200
++++ k3b/libk3b/Makefile.am	2012-08-04 14:13:34.150243648 +0200
+@@ -16,7 +16,7 @@
+ 	plugin/libk3bplugin.la \
+ 	tools/libk3btools.la \
+ 	jobs/libjobs.la \
+-	$(VIDEODVDLIB) \
++	$(VIDEODVDLIB) $(LIB_KDEUI) $(LIB_QT) $(LIB_KDECORE) $(LIBDL) -lkdefx -lDCOP \
+ 	../libk3bdevice/libk3bdevice.la
+ 
+ libk3b_la_LDFLAGS = $(all_libraries) -version-info 3:0:0 -no-undefined
+--- k3b/plugins/decoder/wave/Makefile.am.ORI	2012-08-04 15:26:55.434435396 -0400
++++ k3b/plugins/decoder/wave/Makefile.am	2012-08-04 15:27:06.802685139 -0400
+@@ -4,7 +4,7 @@
+ 
+ libk3bwavedecoder_la_SOURCES = k3bwavedecoder.cpp
+ 
+-libk3bwavedecoder_la_LIBADD = $(LIB_KDECORE) ../../../libk3b/libk3b.la
++libk3bwavedecoder_la_LIBADD = $(LIB_KDECORE) $(LIB_QT) ../../../libk3b/libk3b.la ../../../libk3bdevice/libk3bdevice.la
+ libk3bwavedecoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/decoder/ogg/Makefile.am.ORI	2012-08-04 15:33:41.805310213 -0400
++++ k3b/plugins/decoder/ogg/Makefile.am	2012-08-04 15:34:09.767685132 -0400
+@@ -5,6 +5,6 @@
+ libk3boggvorbisdecoder_la_SOURCES = k3boggvorbisdecoder.cpp
+ 
+-libk3boggvorbisdecoder_la_LIBADD = ../../../libk3b/libk3b.la -logg -lvorbis -lvorbisfile 
++libk3boggvorbisdecoder_la_LIBADD = ../../../libk3b/libk3b.la ../../../libk3b/plugin/libk3bplugin.la ../../../libk3bdevice/libk3bdevice.la -logg -lvorbis -lvorbisfile $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI) $(LIB_KIO)
+ libk3boggvorbisdecoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/decoder/flac/Makefile.am.ORI	2012-08-04 15:39:28.418435409 -0400
++++ k3b/plugins/decoder/flac/Makefile.am	2012-08-04 15:39:41.490685093 -0400
+@@ -4,7 +4,7 @@
+ 
+ libk3bflacdecoder_la_SOURCES = k3bflacdecoder.cpp
+ 
+-libk3bflacdecoder_la_LIBADD = ../../../libk3b/libk3b.la $(LIB_KDEUI) -lFLAC++ -lFLAC $(taglib_libs) 
++libk3bflacdecoder_la_LIBADD = ../../../libk3b/libk3b.la ../../../libk3bdevice/libk3bdevice.la $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) -lFLAC++ -lFLAC $(taglib_libs)
+ libk3bflacdecoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/decoder/libsndfile/Makefile.am.ORI	2012-08-04 15:43:24.035435310 -0400
++++ k3b/plugins/decoder/libsndfile/Makefile.am	2012-08-04 15:43:33.579684947 -0400
+@@ -4,7 +4,7 @@
+ 
+ libk3blibsndfiledecoder_la_SOURCES = k3blibsndfiledecoder.cpp
+ 
+-libk3blibsndfiledecoder_la_LIBADD = ../../../libk3b/libk3b.la $(LIB_KDEUI) -lsndfile
++libk3blibsndfiledecoder_la_LIBADD = ../../../libk3b/libk3b.la ../../../libk3bdevice/libk3bdevice.la ../../../libk3b/plugin/libk3bplugin.la $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI) $(LIB_KIO) -lsndfile
+ libk3blibsndfiledecoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/decoder/musepack/Makefile.am.ORI	2012-08-04 15:46:29.503435327 -0400
++++ k3b/plugins/decoder/musepack/Makefile.am	2012-08-04 15:46:37.662685065 -0400
+@@ -7,7 +7,7 @@
+ 
+ libk3bmpcdecoder_la_SOURCES = k3bmpcdecoder.cpp k3bmpcwrapper.cpp
+ 
+-libk3bmpcdecoder_la_LIBADD = ../../../libk3b/libk3b.la $(MPC_LIBS)
++libk3bmpcdecoder_la_LIBADD = ../../../libk3b/libk3b.la ../../../libk3bdevice/libk3bdevice.la ../../../libk3b/plugin/libk3bplugin.la $(MPC_LIBS) $(LIB_QT) $(LIB_KDECORE) $(LIB_KIO) $(LIB_KDEUI)
+ libk3bmpcdecoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/encoder/sox/Makefile.am.ORI	2012-08-04 15:48:44.045310191 -0400
++++ k3b/plugins/encoder/sox/Makefile.am	2012-08-04 15:48:53.509685113 -0400
+@@ -4,7 +4,7 @@
+ 
+ libk3bsoxencoder_la_SOURCES = base_k3bsoxencoderconfigwidget.ui k3bsoxencoder.cpp
+ 
+-libk3bsoxencoder_la_LIBADD = ../../../libk3b/libk3b.la $(LIB_KDECORE)
++libk3bsoxencoder_la_LIBADD = ../../../libk3b/libk3b.la ../../../libk3bdevice/libk3bdevice.la $(LIB_KDECORE) $(LIB_QT)
+ libk3bsoxencoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/encoder/external/Makefile.am.ORI	2012-08-04 15:51:06.900310165 -0400
++++ k3b/plugins/encoder/external/Makefile.am	2012-08-04 15:51:16.084435154 -0400
+@@ -6,7 +6,7 @@
+ 	base_k3bexternalencodereditwidget.ui k3bexternalencoder.cpp \
+ 	k3bexternalencoderconfigwidget.cpp k3bexternalencodercommand.cpp
+ 
+-libk3bexternalencoder_la_LIBADD = ../../../libk3b/libk3b.la $(LIB_KDECORE)
++libk3bexternalencoder_la_LIBADD = ../../../libk3b/libk3b.la ../../../libk3bdevice/libk3bdevice.la $(LIB_KDECORE) $(LIB_QT) $(LIB_KDEUI)
+ libk3bexternalencoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/encoder/ogg/Makefile.am.ORI	2012-08-04 15:53:42.509310180 -0400
++++ k3b/plugins/encoder/ogg/Makefile.am	2012-08-04 15:53:52.493684861 -0400
+@@ -4,7 +4,7 @@
+ 
+ libk3boggvorbisencoder_la_SOURCES = base_k3boggvorbisencodersettingswidget.ui k3boggvorbisencoder.cpp
+ 
+-libk3boggvorbisencoder_la_LIBADD = ../../../libk3b/libk3b.la $(LIB_KDECORE) -logg -lvorbis -lvorbisenc
++libk3boggvorbisencoder_la_LIBADD = ../../../libk3b/libk3b.la $(LIB_KDECORE) -logg -lvorbis -lvorbisenc $(LIB_QT) $(LIB_KDEUI)
+ libk3boggvorbisencoder_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/audiooutput/arts/Makefile.am.ORI	2012-08-04 15:56:16.309435344 -0400
++++ k3b/plugins/audiooutput/arts/Makefile.am	2012-08-04 15:56:26.541685090 -0400
+@@ -4,7 +4,7 @@
+ 
+ libk3bartsoutputplugin_la_SOURCES = k3bartsoutputplugin.cpp
+ 
+-libk3bartsoutputplugin_la_LIBADD = ../../../libk3b/libk3b.la -lartsc
++libk3bartsoutputplugin_la_LIBADD = ../../../libk3b/libk3b.la -lartsc $(LIB_KDECORE) $(LIB_QT)
+ libk3bartsoutputplugin_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins
+--- k3b/plugins/audiooutput/alsa/Makefile.am.ORI	2012-08-04 15:58:27.539435332 -0400
++++ k3b/plugins/audiooutput/alsa/Makefile.am	2012-08-04 15:58:42.595685074 -0400
+@@ -5,7 +5,7 @@
+ libk3balsaoutputplugin_la_SOURCES = k3balsaoutputplugin.cpp
+ 
+ libk3balsaoutputplugin_la_CFLAGS = $(ALSA_CFLAGS)
+-libk3balsaoutputplugin_la_LIBADD = ../../../libk3b/libk3b.la $(ALSA_LIBS)
++libk3balsaoutputplugin_la_LIBADD = ../../../libk3b/libk3b.la $(ALSA_LIBS) $(LIB_KDECORE) $(LIB_QT) $(LIB_KDEUI)
+ libk3balsaoutputplugin_la_LDFLAGS = -avoid-version -module -no-undefined $(all_libraries)
+ 
+ pluginsdir = $(kde_datadir)/k3b/plugins

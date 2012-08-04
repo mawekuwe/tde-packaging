@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp gtk-qt-engine
-%define version 0.8
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	theme engine using Qt for GTK+ 2.x and Trinity
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.8
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -37,8 +44,8 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 Patch1:		gtk-qt-engine-3.5.13-fix_glib_include.patch
 
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -57,44 +64,61 @@ a way to configure it from within KControl.
 %setup -q -n applications/%{kdecomp}
 %patch1 -p1
 
+# Renames the '.po' files
+for f in po/*/*.po; do
+  pushd ${f%/*}
+  mv -f *.po gtk-qt-engine.po
+  popd
+done
+
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-sed -i CMakeLists.txt \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g"
+%__sed -i "CMakeLists.txt" \
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
 
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
-%__mkdir build
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
 cd build
+%endif
+
 %cmake \
+	-DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+	-DDATA_INSTALL_DIR=%{tde_datadir} \
+	-DLIB_INSTALL_DIR=%{tde_libdir} \
+	-DSHARE_INSTALL_PREFIX=%{tde_datadir} \
 	..
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
+%find_lang %{kdecomp}
 
 %clean
 %__rm -rf %{buildroot}
 
 
 
-%files
+%files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{tde_libdir}/kcm_kcmgtk.la
-%{tde_libdir}/kcm_kcmgtk.so
-%{_datadir}/applications/kcmgtk.desktop
-%{_usr}/%{_lib}/gtk-2.0/2.10.0/engines/libqtengine.so
-%{_usr}/share/themes/Qt/gtk-2.0/gtkrc
-%{_datadir}/locale/*/LC_MESSAGES/*.mo
+%{tde_tdelibdir}/kcm_kcmgtk.la
+%{tde_tdelibdir}/kcm_kcmgtk.so
+%{tde_appdir}/kcmgtk.desktop
+
+# The following files are outside TDE's directory
+%{_libdir}/gtk-2.0/2.10.0/engines/libqtengine.so
+%{_datadir}/themes/Qt/gtk-2.0/gtkrc
 
 
 %Changelog

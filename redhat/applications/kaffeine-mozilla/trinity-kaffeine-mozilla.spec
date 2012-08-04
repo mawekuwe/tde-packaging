@@ -1,27 +1,32 @@
 # Default version for this component
 %define kdecomp kaffeine-mozilla
-%define version 0.4.3.1
-%define release 2
-
-%define _prefix /usr
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	mozilla plugin that lanches kaffeine for supported media types [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.4.3.1
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Multimedia
@@ -30,7 +35,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
@@ -39,12 +44,17 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 Patch1:		kaffeine-mozilla-3.5.13-fix_nspr_include.patch
 
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
-
-BuildRequires:	libXaw-devel
 BuildRequires:	nspr-devel
+
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xaw-devel
+%else
+BuildRequires:	libXaw-devel
+%endif
+
 Requires:		trinity-kaffeine
 
 %description
@@ -63,42 +73,40 @@ autoreconf -fiv
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
 	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt \
+    --with-extra-includes=%{tde_includedir}/tqt \
     --enable-closure \
-    --prefix=%{_prefix}/%{_lib}/mozilla
+    --prefix=%{_libdir}/mozilla
 
 %__make %{?_smp_mflags}
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# Remove useless filess
+%__rm -f %{?buildroot}%{_libdir}/mozilla/plugins/kaffeineplugin.a
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README
-%exclude %{_libdir}/mozilla/plugins/kaffeineplugin.a
+# These files are installed outside TDE prefix
 %{_libdir}/mozilla/plugins/kaffeineplugin.la
 %{_libdir}/mozilla/plugins/kaffeineplugin.so
 

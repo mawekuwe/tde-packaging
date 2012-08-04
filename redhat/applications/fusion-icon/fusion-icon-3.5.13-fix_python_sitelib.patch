@@ -1,0 +1,17 @@
+--- fusion-icon/Makefile.ori	2012-08-04 11:13:26.208733002 +0200
++++ fusion-icon/Makefile	2012-08-04 11:16:13.354858961 +0200
+@@ -1,12 +1,13 @@
+ PREFIX = '/usr'
+ DESTDIR = '/'
++PYTHON_SITELIB = '/usr/lib/python2.7/site-packages'
+ #interfaces = 'gtk qt4'
+ 
+ all:
+ 	@python setup.py build
+ 
+ install:
+-	@python setup.py install --prefix=${PREFIX} --root=${DESTDIR}
++	@python setup.py install --prefix=${PREFIX} --root=${DESTDIR} --install-lib=${PYTHON_SITELIB}
+ 
+ uninstall:
+ 	@python setup.py uninstall

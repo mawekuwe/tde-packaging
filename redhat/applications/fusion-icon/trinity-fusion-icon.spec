@@ -1,22 +1,36 @@
 # Default version for this component
 %define kdecomp fusion-icon
 
-%define _prefix /usr
 %if "%{?python2_sitelib}" == ""
 %define python2_sitelib    %(python2 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
 %endif
 
+
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
+
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	tray icon to launch and manage Compiz Fusion [Trinity]
 Version:	0.0.0+git20071028
-Release:	1%{?dist}%{?_variant}
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -30,9 +44,12 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [fusion-icon] Allow python installation under /usr instead of tde_prefix
+Patch1:		fusion-icon-3.5.13-fix_python_sitelib.patch
+
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	python
 Requires:		python
@@ -48,20 +65,27 @@ decorators.
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1
 
-%__sed -i Makefile \
-  -e "s,^PREFIX = .*,PREFIX = '%{_prefix}'," \
-  -e "s,^DESTDIR = .*,DESTDIR = '%{buildroot}',"
 
 %build
-export PATH="%{_bindir}:${PATH}"
+unset QTDIR || : ; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+
 %__make
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot}
+%__make install \
+  DESTDIR=%{buildroot} \
+  PREFIX=%{tde_prefix} \
+  PYTHON_SITELIB=%{?python2_sitelib}
+
+# Removes 'egg-info'
+find "%{?buildroot}%{python2_sitelib}" -name "*.egg-info" -delete
 
 
 %clean
@@ -69,28 +93,26 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/fusion-icon
+%{tde_bindir}/fusion-icon
 %{python2_sitelib}/FusionIcon/
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
-%{python2_sitelib}/fusion_icon-0.0.0_git-py*.egg-info
-%endif
-%{_datadir}/applications/fusion-icon.desktop
-%{_datadir}/icons/hicolor/22x22/apps/fusion-icon.png
-%{_datadir}/icons/hicolor/24x24/apps/fusion-icon.png
-%{_datadir}/icons/hicolor/48x48/apps/fusion-icon.png
-%{_datadir}/icons/hicolor/scalable/apps/fusion-icon.svg
+%{tde_datadir}/applications/fusion-icon.desktop
+%{tde_datadir}/icons/hicolor/*/apps/fusion-icon.png
+%{tde_datadir}/icons/hicolor/scalable/apps/fusion-icon.svg
 
 
 %Changelog
+* Sat Aug 04 2012 Francois Andriot <francois.andriot@free.fr> - 0.0.0+git20071028-2
+- Fix python module installation
+
 * Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.0.0+git20071028-1
 - Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16

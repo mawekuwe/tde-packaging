@@ -1,0 +1,19 @@
+commit 62777d2782c7fa738eb047eff175785fc2cd24ff
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1336091409 -0500
+
+    Fix FTBFS
+
+diff --git a/kbarcode/csvimportdlg.cpp b/kbarcode/csvimportdlg.cpp
+index 6b07a7b..b5c6efa 100644
+--- a/kbarcode/csvimportdlg.cpp
++++ b/kbarcode/csvimportdlg.cpp
+@@ -374,7 +374,7 @@ void CSVImportDlg::accept()
+ 
+         TQSqlQuery query;
+         if( !query.exec( line ) )
+-            qDebug( "%s", i18n("Could not import the following line:") + line );
++            qDebug( "%s", (i18n("Could not import the following line:") + line).ascii() );
+             //KMessageBox::error( this, i18n("Could not import the following line:") + line );
+     }
+ 

@@ -1,26 +1,32 @@
 # Default version for this component
 %define kdecomp gwenview
-%define version 1.4.2
-%define release 7
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
-%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	Gwenview is an image viewer for KDE.
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.4.2
+Release:	8%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -53,18 +59,25 @@ Patch8:	gwenview-3.5.13-fix_building_libpng15.patch
 # [gwenview] Fix inadvertent tqt changes. Part of an extensive cleanup of various problems
 #   with kipi-plugins, digikam, and gwenview to resolve bug reports 241, 962, 963. [Commit #1eac443e]
 Patch9:	gwenview-3.5.13-fix_various_problems.patch
-
+# [gwenview] Missing LDFLAGS cause FTBFS on Mageia 2 / Mandriva 2011
+Patch10:	gwenview-3.5.13-missing_ldflags.patch
+# [gwenview] Define QT_CLEAN_NAMESPACE during libmng checks [Commit #59c7639f]
+Patch11:	gwenview-3.5.13-fix_libmng_check.patch
 
 
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}exiv2-devel
+%else
 BuildRequires: exiv2-devel
+%endif
 
-%if "%{?_prefix}" == "/usr"
+%if "%{?tde_prefix}" == "/usr"
 Conflicts: kdegraphics
 %endif
 
@@ -94,13 +107,14 @@ KIPI image framework.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-
+%patch10 -p1 -b .ldflags
+%patch11 -p1 -b .libmng
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -109,20 +123,26 @@ KIPI image framework.
 
 %build
 unset QTDIR || : ; source /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt \
-    --enable-closure
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --docdir=%{tde_tdedocdir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-closure
 
-%__make
-# %{?_smp_mflags}
+%__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
@@ -146,6 +166,14 @@ for lang_dir in %{buildroot}$HTML_DIR/* ; do
 done
 fi
 
+%if 0%{?rhel} == 5
+echo "%lang(en) %{tde_tdedocdir}/HTML/en/gwenview/" >"%{kdecomp}.lang"
+%else
+%find_lang %{kdecomp} --with-kde --without-mo
+%endif
+
+# Removes useless files (-devel ?)
+%__rm -f %{?buildroot}%{tde_libdir}/libgwenviewcore.so
 
 %clean
 %__rm -rf %{buildroot}
@@ -153,40 +181,66 @@ fi
 
 %post
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig
 
 %postun
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig
 
-%files
+%files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{_bindir}/*
-%{_libdir}/*.so.*
-%{_datadir}/applications/*/*.desktop
-%{_datadir}/services/*.desktop
-%{_datadir}/apps/*/
-%{_datadir}/config.kcfg/*
-%{tde_docdir}/HTML/en/*/
-%{_datadir}/icons/crystalsvg/*/*/*
-%{_datadir}/icons/hicolor/*/*/*
-%{_mandir}/man*/*
-
-%{_libdir}/*.so
-%{_libdir}/*.la
-%{tde_libdir}/*.so
-%{tde_libdir}/*.la
-
+%{tde_bindir}/gwenview
+%{tde_libdir}/libgwenviewcore.la
+%{tde_libdir}/libgwenviewcore.so.1
+%{tde_libdir}/libgwenviewcore.so.1.0.0
+%{tde_libdir}/libkdeinit_gwenview.la
+%{tde_libdir}/libkdeinit_gwenview.so
+%{tde_tdelibdir}/gwenview.la
+%{tde_tdelibdir}/gwenview.so
+%{tde_tdelibdir}/libgvdirpart.la
+%{tde_tdelibdir}/libgvdirpart.so
+%{tde_tdelibdir}/libgvimagepart.la
+%{tde_tdelibdir}/libgvimagepart.so
+%{tde_tdeappdir}/gwenview.desktop
+%{tde_datadir}/apps/gwenview/
+%{tde_datadir}/apps/gvdirpart/gvdirpart.rc
+%{tde_datadir}/apps/gvimagepart/gvimagepart.rc
+%{tde_datadir}/apps/gvimagepart/gvimagepartpopup.rc
+%{tde_datadir}/apps/kconf_update/gwenview_1.4_osdformat.sh
+%{tde_datadir}/apps/kconf_update/gwenview_1.4_osdformat.upd
+%{tde_datadir}/apps/kconf_update/gwenview_thumbnail_size.sh
+%{tde_datadir}/apps/kconf_update/gwenview_thumbnail_size.upd
+%{tde_datadir}/apps/konqueror/servicemenus/konqgwenview.desktop
+%{tde_datadir}/config.kcfg/fileoperationconfig.kcfg
+%{tde_datadir}/config.kcfg/fileviewconfig.kcfg
+%{tde_datadir}/config.kcfg/fullscreenconfig.kcfg
+%{tde_datadir}/config.kcfg/gvdirpartconfig.kcfg
+%{tde_datadir}/config.kcfg/imageviewconfig.kcfg
+%{tde_datadir}/config.kcfg/miscconfig.kcfg
+%{tde_datadir}/config.kcfg/slideshowconfig.kcfg
+%{tde_datadir}/icons/crystalsvg/*/apps/gvdirpart.png
+%{tde_datadir}/icons/crystalsvg/scalable/apps/gvdirpart.svg
+%{tde_datadir}/icons/hicolor/*/apps/gwenview.png
+%{tde_datadir}/icons/hicolor/*/apps/gvdirpart.png
+%{tde_datadir}/icons/hicolor/scalable/apps/gvdirpart.svg
+%{tde_datadir}/icons/hicolor/scalable/apps/gwenview.svgz
+%{tde_datadir}/man/man1/gwenview.1*
+%{tde_datadir}/services/gvdirpart.desktop
+%{tde_datadir}/services/gvimagepart.desktop
 
 
 %Changelog
+* Sat Aug 04 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-8
+- Add support for Mageia 2 and Mandriva 2011
+- Define QT_CLEAN_NAMESPACE during libmng checks [Commit #59c7639f]
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-7
 - Rebuilt for Fedora 17
 - Fix post and postun

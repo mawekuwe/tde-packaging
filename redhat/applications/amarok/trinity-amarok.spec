@@ -25,7 +25,7 @@
 Name:		trinity-%{kdecomp}
 Summary:	Media player
 Version:	1.4.10
-Release:	6%{?dist}%{?_variant}
+Release:	7%{?dist}%{?_variant}
 
 Group: 	    Applications/Multimedia
 License:    GPLv2+
@@ -49,6 +49,8 @@ Patch7:		amarok-3.5.13-fix_gcc47_compilation.patch
 
 # [amarok] Fix inotify detection [Commit #899586da]
 Patch11:	amarok-3.5.13-fix_inotify_support.patch
+# [amarok] Fix linear alphabet string errors [Commit #6e5a3b66]
+Patch12:	amarok-3.5.13-fix_linear_alphabet.patch
 
 BuildRequires:  alsa-lib-devel
 BuildRequires:  desktop-file-utils
@@ -147,7 +149,8 @@ Amarok is a multimedia player with:
 %{tde_datadir}/services/amaroklastfm.protocol
 %{tde_datadir}/services/amarokpcast.protocol
 # -libs ?  -- Rex
-%{tde_libdir}/libamarok.*
+%{tde_libdir}/libamarok.so.0
+%{tde_libdir}/libamarok.so.0.0.0
 # DAAP
 %{tde_bindir}/amarok_daapserver.rb
 %{tde_tdelibdir}/libamarok_daap-mediadevice.*
@@ -273,6 +276,7 @@ use any of xmms' visualisation plugins with Amarok.
 %patch7 -p1
 
 %patch11 -p1 -b .inotify
+%patch12 -p1 -b .alphabet
 
 
 %build
@@ -317,7 +321,8 @@ cd build
 
 # unpackaged files
 %__rm -f $RPM_BUILD_ROOT%{tde_libdir}/lib*.la
-
+# Removes '.so' to avoid automatic -devel dependency
+%__rm -f $RPM_BUILD_ROOT%{tde_libdir}/libamarok.so
 
 # HTML
 for lang_dir in $RPM_BUILD_ROOT%{tde_tdedocdir}/HTML/* ; do
@@ -347,6 +352,10 @@ done
 
 
 %changelog
+* Sat Aug 04 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.10-7
+- Fix linear alphabet string errors [Commit #6e5a3b66]
+- Fix dependencies issues with -devel packages.
+
 * Mon Apr 29 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.10-6
 - Rebuilt for Fedora 17
 - Fix compilation with GCC 4.7

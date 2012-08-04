@@ -1,0 +1,46 @@
+commit 6e5a3b666215cef086b9116b834475227dbf9343
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1327529588 -0600
+
+    Fix linear alphabet string errors
+
+diff --git a/amarok/src/sqlite/sqlite3.c b/amarok/src/sqlite/sqlite3.c
+index 1d55403..2b1d3e0 100644
+--- a/amarok/src/sqlite/sqlite3.c
++++ b/amarok/src/sqlite/sqlite3.c
+@@ -11964,7 +11964,7 @@ int os2OpenDirectory(
+ SQLITE_PRIVATE int sqlite3Os2TempFileName( char *zBuf ){
+   static const unsigned char zChars[] =
+     "abcdefghijklmnopqrstuvwxyz"
+-    "ABCDEFGHIJKLMNOPTQRSTUVWXYZ"
++    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+     "0123456789";
+   int i, j;
+   PSZ zTempPath = 0;
+@@ -13914,7 +13914,7 @@ SQLITE_PRIVATE int sqlite3UnixTempFileName(char *zBuf){
+   };
+   static const unsigned char zChars[] =
+     "abcdefghijklmnopqrstuvwxyz"
+-    "ABCDEFGHIJKLMNOPTQRSTUVWXYZ"
++    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+     "0123456789";
+   int i, j;
+   struct stat buf;
+@@ -17014,7 +17014,7 @@ static int winOpenDirectory(
+ SQLITE_PRIVATE int sqlite3WinTempFileName(char *zBuf){
+   static char zChars[] =
+     "abcdefghijklmnopqrstuvwxyz"
+-    "ABCDEFGHIJKLMNOPTQRSTUVWXYZ"
++    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+     "0123456789";
+   int i, j;
+   char zTempPath[SQLITE_TEMPNAME_SIZE];
+@@ -48880,7 +48880,7 @@ static void loadExt(sqlite3_context *context, int argc, sqlite3_value **argv){
+ static void randStr(sqlite3_context *context, int argc, sqlite3_value **argv){
+   static const unsigned char zSrc[] = 
+      "abcdefghijklmnopqrstuvwxyz"
+-     "ABCDEFGHIJKLMNOPTQRSTUVWXYZ"
++     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      "0123456789"
+      ".-!,:*^+=_|?/<> ";
+   int iMin, iMax, n, r, i;

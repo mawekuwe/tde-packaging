@@ -1,0 +1,28 @@
+commit a016df82c8970a2aaccbf3b061e102af3a3f04ab
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1336190259 -0500
+
+    Fix format string error
+
+diff --git a/k9vamps/k9vamps.cpp b/k9vamps/k9vamps.cpp
+index d7bd43d..ebf4164 100755
+--- a/k9vamps/k9vamps.cpp
++++ b/k9vamps/k9vamps.cpp
+@@ -399,7 +399,7 @@ int k9vamps::check_video_packet (uchar *ptr) {
+         pad_packet_start_code |= (uint32_t) (ptr [3]);
+ 
+         if (pad_packet_start_code != 0x000001be)
+-            qDebug (TQString("Bad padding packet start code at %1: %2").tqarg(rtell (ptr + vid_packet_length)).tqarg(pad_packet_start_code));
++            qDebug ("%s", (TQString("Bad padding packet start code at %1: %2").tqarg(rtell (ptr + vid_packet_length)).tqarg(pad_packet_start_code)).ascii());
+         else {
+             pad_packet_length  = ptr [4] << 8;
+             pad_packet_length |= ptr [5];
+@@ -409,7 +409,7 @@ int k9vamps::check_video_packet (uchar *ptr) {
+ 
+     // length of video packet plus padding packet must always match sector size
+     if (14 + vid_packet_length + pad_packet_length != SECT_SIZE)
+-        qDebug (TQString("Bad video packet length at %1: %2").tqarg(rtell (ptr)).tqarg(vid_packet_length));
++        qDebug ("%s", (TQString("Bad video packet length at %1: %2").tqarg(rtell (ptr)).tqarg(vid_packet_length)).ascii());
+ 
+     return rc;
+ }

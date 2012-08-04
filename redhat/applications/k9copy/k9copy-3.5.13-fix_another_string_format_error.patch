@@ -1,0 +1,19 @@
+commit b3bb8a8f4438bdab23809387e9f6b85a5b5914f3
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1336103211 -0500
+
+    Fix another string format error
+
+diff --git a/libk9copy/k9saveimage.cpp b/libk9copy/k9saveimage.cpp
+index edc4162..23613d8 100644
+--- a/libk9copy/k9saveimage.cpp
++++ b/libk9copy/k9saveimage.cpp
+@@ -76,7 +76,7 @@ void k9SaveImage::run() {
+     TQString sFileName=m_tempFile->name();
+     m_image.save(sFileName,"PNG");
+     sFileName="\rINFOIMAGE:"+sFileName;
+-    fprintf(stderr,sFileName.utf8());
++    fprintf(stderr,"%s",sFileName.utf8());
+ 
+     m_mutex.unlock();
+ }

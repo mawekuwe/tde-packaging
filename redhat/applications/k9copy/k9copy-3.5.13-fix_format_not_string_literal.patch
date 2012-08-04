@@ -1,0 +1,53 @@
+commit 3bfc84b0fc3558c377e2f5a99548a6903a9ee7c3
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1336066302 -0500
+
+    Fix 'format not a string literal' error
+    Clean up warning
+
+diff --git a/libk9copy/k9burndvd.cpp b/libk9copy/k9burndvd.cpp
+index e6f6675..9f95352 100644
+--- a/libk9copy/k9burndvd.cpp
++++ b/libk9copy/k9burndvd.cpp
+@@ -112,7 +112,7 @@ void k9BurnDVD::mkisoSizeStdout(KProcess *proc, char *buffer, int buflen) {
+     ;
+ }
+ 
+-const TQString &k9BurnDVD::getImageSize() {
++const TQString k9BurnDVD::getImageSize() {
+     TQString c;
+     c="mkisofs";
+     proc2=new k9Process;
+@@ -215,8 +215,8 @@ void k9BurnDVD::burnWithGenisoimage() {
+                 if ( KMessageBox::warningContinueCancel ( 0,i18n("Insert a recordable DVD"), i18n("DVD burning"))!=KMessageBox::Continue)
+                     cancelled=true;
+             }
+-            qDebug(proc->debug());
+-        }        
++            qDebug("%s", proc->debug());
++        }
+ 
+ 
+         if (!cancelled) {
+@@ -239,7 +239,7 @@ void k9BurnDVD::burnWithGenisoimage() {
+                     }
+                 }
+             }
+-        }      
++        }
+     }
+ }
+ 
+diff --git a/libk9copy/k9burndvd.h b/libk9copy/k9burndvd.h
+index fc2edce..94e1e71 100644
+--- a/libk9copy/k9burndvd.h
++++ b/libk9copy/k9burndvd.h
+@@ -71,7 +71,7 @@ private:
+     void getWodimCmd(k9Process *proc);
+ 
+     void burnWithK3b();
+-    const TQString &getImageSize();
++    const TQString getImageSize();
+     TQString imageSize;
+     TQString m_speed;
+ private slots: // Private slots    

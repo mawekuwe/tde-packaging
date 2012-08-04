@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp katapult
-%define version 0.3.2.1
-%define release 4
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	Faster access to applications, bookmarks, and other items.
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.3.2.1
+Release:	4%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,19 +35,19 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{tde_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 %description
-Katapult is an application for KDE, designed to allow faster access to
+Katapult is an application for TDE, designed to allow faster access to
 applications, bookmarks, and other items. It is plugin-based, so it can
 launch anything that is has a plugin for. Its display is driven by
 plugins as well, so its appearance is completely customizable. It was
@@ -52,9 +59,9 @@ inspired by Quicksilver for OS X.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+%__sed -i "admin/acinclude.m4.in" \
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -62,22 +69,33 @@ inspired by Quicksilver for OS X.
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt \
-    --enable-closure
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-closure
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+%find_lang %{kdecomp}
+
+# Removes useless files (-devel ?)
+%__rm -f %{?buildroot}%{tde_libdir}/*.so
+%__rm -f %{?buildroot}%{tde_libdir}/*.la
 
 %clean
 %__rm -rf %{buildroot}
@@ -85,37 +103,75 @@ export PATH="%{_bindir}:${PATH}"
 
 %post
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
-/sbin/ldconfig
+/sbin/ldconfig || :
+update-desktop-database %{tde_appdir} &> /dev/null
 
 %postun
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
-/sbin/ldconfig
+/sbin/ldconfig || :
+update-desktop-database %{tde_appdir} &> /dev/null
 
 
-%files
+%files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{_bindir}/*
-%{_datadir}/applications/*/*.desktop
-%{_datadir}/icons/crystalsvg/*/*/*
-%{_datadir}/icons/hicolor/*/*/*
-%{_datadir}/locale/*/*/*.mo
-%{_datadir}/services/*.desktop
-%{_datadir}/servicetypes/*.desktop
-%{tde_libdir}/*.so
-%{tde_libdir}/*.la
-%{_libdir}/*.so.*
-%{tde_docdir}/HTML/en/katapult
+%{tde_bindir}/katapult
+%{tde_libdir}/libkatapult.so.2
+%{tde_libdir}/libkatapult.so.2.0.0
+%{tde_tdelibdir}/katapult_amarokcatalog.la
+%{tde_tdelibdir}/katapult_amarokcatalog.so
+%{tde_tdelibdir}/katapult_bookmarkcatalog.la
+%{tde_tdelibdir}/katapult_bookmarkcatalog.so
+%{tde_tdelibdir}/katapult_calculatorcatalog.la
+%{tde_tdelibdir}/katapult_calculatorcatalog.so
+%{tde_tdelibdir}/katapult_documentcatalog.la
+%{tde_tdelibdir}/katapult_documentcatalog.so
+%{tde_tdelibdir}/katapult_execcatalog.la
+%{tde_tdelibdir}/katapult_execcatalog.so
+%{tde_tdelibdir}/katapult_glassdisplay.la
+%{tde_tdelibdir}/katapult_glassdisplay.so
+%{tde_tdelibdir}/katapult_googlecatalog.la
+%{tde_tdelibdir}/katapult_googlecatalog.so
+%{tde_tdelibdir}/katapult_o2display.la
+%{tde_tdelibdir}/katapult_o2display.so
+%{tde_tdelibdir}/katapult_programcatalog.la
+%{tde_tdelibdir}/katapult_programcatalog.so
+%{tde_tdelibdir}/katapult_puredisplay.la
+%{tde_tdelibdir}/katapult_puredisplay.so
+%{tde_tdelibdir}/katapult_spellcatalog.la
+%{tde_tdelibdir}/katapult_spellcatalog.so
+%{tde_tdeappdir}/katapult.desktop
+%{tde_datadir}/icons/crystalsvg/128x128/actions/katapultspellcheck.png
+%{tde_datadir}/icons/crystalsvg/scalable/actions/katapultspellcheck.svgz
+%{tde_datadir}/icons/hicolor/128x128/actions/checkmark.png
+%{tde_datadir}/icons/hicolor/128x128/actions/no.png
+%{tde_datadir}/icons/hicolor/128x128/apps/katapult.png
+%{tde_datadir}/icons/hicolor/128x128/apps/xcalc.png
+%{tde_datadir}/icons/hicolor/*/apps/katapult.png
+%{tde_datadir}/icons/hicolor/scalable/apps/katapult.svgz
+%{tde_datadir}/services/katapult_amarokcatalog.desktop
+%{tde_datadir}/services/katapult_bookmarkcatalog.desktop
+%{tde_datadir}/services/katapult_calculatorcatalog.desktop
+%{tde_datadir}/services/katapult_documentcatalog.desktop
+%{tde_datadir}/services/katapult_execcatalog.desktop
+%{tde_datadir}/services/katapult_glassdisplay.desktop
+%{tde_datadir}/services/katapult_googlecatalog.desktop
+%{tde_datadir}/services/katapult_o2display.desktop
+%{tde_datadir}/services/katapult_programcatalog.desktop
+%{tde_datadir}/services/katapult_puredisplay.desktop
+%{tde_datadir}/services/katapult_spellcatalog.desktop
+%{tde_datadir}/servicetypes/katapultcatalog.desktop
+%{tde_datadir}/servicetypes/katapultdisplay.desktop
+%{tde_tdedocdir}/HTML/en/katapult/
 
 
-%exclude %{_libdir}/*.so
-%exclude %{_libdir}/*.la
+
 
 %Changelog
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-4

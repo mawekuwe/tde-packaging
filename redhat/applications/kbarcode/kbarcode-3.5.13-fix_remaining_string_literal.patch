@@ -1,0 +1,32 @@
+commit b8dc3f5795c618c3617302973fff7d7bbf0ead2d
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1336099921 -0500
+
+    Fix remaining string format errors
+
+diff --git a/kbarcode/pixmapbarcode.cpp b/kbarcode/pixmapbarcode.cpp
+index 02cb19b..4768b3e 100644
+--- a/kbarcode/pixmapbarcode.cpp
++++ b/kbarcode/pixmapbarcode.cpp
+@@ -178,7 +178,7 @@ bool PixmapBarcode::createPixmap( TQPixmap* target, int resx, int resy )
+         cmd += input->name();
+ 	cmd += " -sNOPAUSE -q - -c showpage quit";
+ 	
+-        qDebug("cmd: " + cmd );
++        qDebug("cmd: %s", cmd.ascii() );
+ 	gs_pipe = popen( cmd.latin1(), "w" );
+         if( !gs_pipe )
+ 	{
+diff --git a/kbarcode/tbarcode2.cpp b/kbarcode/tbarcode2.cpp
+index 8490f7c..95cc64f 100644
+--- a/kbarcode/tbarcode2.cpp
++++ b/kbarcode/tbarcode2.cpp
+@@ -122,7 +122,7 @@ bool TBarcode2::createPostscript( char** postscript, long* postscript_size )
+                        tbarcode->height(),
+                        tbarcode->checksum() );
+ 
+-    qDebug( "Cmd = " + cmd );
++    qDebug( "Cmd = %s", cmd.ascii() );
+     if( !readFromPipe( cmd.latin1(), postscript, postscript_size ) )
+         return false;
+ 
