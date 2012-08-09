@@ -57,7 +57,7 @@ VERSION=$( awk '{ if ($1 == "'${COMP}'") { print $2; } }' components.txt )
 # If no version is set in text file, get version number from source tarball name
 if [ -z "${VERSION}" ]; then
 	if [ -n "${REQVERSION}" ]; then
-		set $( cd "${COMP}"; echo ${COMP##*/}*-${REQVERSION}.tar.gz)
+		set $( cd "${COMP}"; echo ${COMP##*/}*-${REQVERSION%-sru}*.tar.gz)
 	else
 		set $( cd "${COMP}"; echo ${COMP##*/}*.tar.* )
 	fi

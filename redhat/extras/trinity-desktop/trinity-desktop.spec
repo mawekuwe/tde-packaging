@@ -6,7 +6,7 @@
 
 Name:		trinity-desktop
 Version:	3.5.13
-Release:	5%{?dist}%{?_variant}
+Release:	6%{?dist}%{?_variant}
 License:	GPL
 Summary:	Meta-package to install TDE
 Group:		User Interface/Desktops
@@ -76,12 +76,141 @@ Requires:	trinity-tdewebdev >= %{version}
 
 ##########
 
+%package applications
+Group:		User Interface/Desktops
+Summary:	Meta-package to install all TDE applications
+
+Requires: trinity-abakus
+Requires: trinity-amarok
+Requires: trinity-basket
+Requires: trinity-bibletime
+#Requires: trinity-compizconfig-backend-kconfig
+#Requires: trinity-desktop-effects-kde
+Requires: trinity-digikam
+Requires: trinity-dolphin
+Requires: trinity-filelight
+#Requires: trinity-filelight-l10n
+# Fusion-icon requires 'trinity-compizconfig-backend-kconfig'
+#Requires: trinity-fusion-icon
+Requires: trinity-gwenview
+Requires: trinity-k3b
+# Warning, k9copy requires ffmpeg
+Requires: trinity-k9copy
+Requires: trinity-kaffeine
+Requires: trinity-kaffeine-mozilla
+Requires: trinity-katapult
+Requires: trinity-kbarcode
+Requires: trinity-kbfx
+Requires: trinity-kbookreader
+Requires: trinity-kchmviewer
+Requires: trinity-kcmautostart
+Requires: trinity-kcpuload
+Requires: trinity-kdbusnotification
+Requires: trinity-guidance
+Requires: trinity-style-lipstik
+Requires: trinity-style-qtcurve
+Requires: trinity-systemsettings
+Requires: trinity-kdesudo
+Requires: trinity-kdesvn
+Requires: trinity-kdiff3
+Requires: trinity-kdirstat
+Requires: trinity-kdmtheme
+Requires: trinity-keep
+Requires: trinity-kerry
+Requires: trinity-kgtk-qt3
+Requires: trinity-kile
+Requires: trinity-kima
+Requires: trinity-kio-locate
+Requires: trinity-kio-umountwrapper
+Requires: trinity-kiosktool
+Requires: trinity-kmplayer
+Requires: trinity-kmyfirewall
+Requires: trinity-kmymoney
+Requires: trinity-knemo
+Requires: trinity-knetload
+Requires: trinity-knetstats
+Requires: trinity-knetworkmanager
+Requires: trinity-knights
+Requires: trinity-knowit
+Requires: trinity-knutclient
+Requires: trinity-koffice-suite
+#Requires: trinity-konstruct
+Requires: trinity-konversation
+Requires: trinity-kopete-otr
+Requires: trinity-kpicosim
+Requires: trinity-kpilot
+# Warning, kradio requires libmp3lame
+Requires: trinity-kradio
+Requires: trinity-krename
+Requires: trinity-krusader
+Requires: trinity-ksplash-engine-moodin
+Requires: trinity-ksquirrel
+Requires: trinity-kstreamripper
+Requires: trinity-ksystemlog
+Requires: trinity-ktechlab
+Requires: trinity-ktorrent
+Requires: trinity-kuickshow
+Requires: trinity-kvirc
+Requires: trinity-kvkbd
+#Requires: trinity-kvpnc		# R14 only
+Requires: trinity-kwin-style-crystal
+Requires: trinity-piklab
+Requires: trinity-potracegui
+#Requires: trinity-qt4-tqt-theme-engine
+Requires: trinity-smartcardauth
+Requires: trinity-smb4k
+Requires: trinity-soundkonverter
+Requires: trinity-tellico
+Requires: trinity-wlassistant
+Requires: trinity-yakuake
+
+# On RHEL 5, HAL version is too old for kpowersave .
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
+Requires: trinity-kpowersave
+%endif
+
+# On RHEL 5, GTK2 version is too old for gtk-qt-engine.
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
+Requires: trinity-gtk-qt-engine
+%endif
+
+# On RHEL 5, lilypond is not available, so no rosegarden :'-(
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
+Requires: trinity-rosegarden
+%endif
+
+%description applications
+%{summary}
+
+%files  applications
+
+##########
+
+%package extras
+Group:		User Interface/Desktops
+Summary:	Meta-package to install all extras (unofficial) TDE packages
+
+Requires:	trinity-akode
+Requires:	trinity-kasablanca
+Requires:	trinity-kdebluetooth
+Requires:	trinity-ksensors
+Requires:	trinity-style-ia-oa
+
+%description extras
+%{summary}
+
+%files extras
+
+##########
+
 %package all
 Group:		User Interface/Desktops
 Summary:	Meta-package to install all TDE packages
 
 Requires:	%{name} = %{version}
+Requires:	%{name}-applications = %{version}
 Requires:	%{name}-devel = %{version}
+#Requires:	%{name}-extras = %{version}
 
 %description all
 %{summary}
@@ -133,6 +262,9 @@ Summary:	Yum configuration files for Trinity
 %endif
 
 %changelog
+* Mon Aug 06 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Add 'applications' subpackage
+
 * Wed Aug 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Updates to reflect new packages names
 - Add Mageia 2 support
