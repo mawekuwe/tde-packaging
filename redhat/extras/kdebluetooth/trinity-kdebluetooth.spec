@@ -1,10 +1,22 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
-%define tde_docdir %{_docdir}/kde
+# TDE 3.5.13 specific building variables
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+
+%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:			trinity-kdebluetooth
@@ -27,20 +39,26 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	gettext
 BuildRequires:	desktop-file-utils
 BuildRequires:	lockdev-devel
-BuildRequires:	xmms-devel
-BuildRequires:	bluez-libs-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdepim-devel
+#BuildRequires:	xmms-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdepim-devel
 BuildRequires:	openobex-devel >= 1.1
 BuildRequires:	libusb-devel
 BuildRequires:	pkgconfig
 Buildrequires:	libidn-devel
 Buildrequires:	dbus-tqt-devel
-BuildRequires:	obexftp-devel
 BuildRequires:	automake >= 1.6.1
 BuildRequires:	autoconf >= 2.52
+
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}bluez-devel
+%else
+BuildRequires:	bluez-libs-devel
+BuildRequires:	obexftp-devel
+%endif
+
 Requires:		%{name}-libs = %{version}-%{release}
-Requires:		%{_bindir}/kdesu
+Requires:		trinity-kdesu
 
 
 
@@ -54,7 +72,6 @@ enabled devices as straightforward as possible.
 %package libs
 Summary: Base libraries for %{name}
 Group:	 System Environment/Libraries
-Obsoletes:		%{name} < %{version}-%{release}
 
 %if 0%{?fedora} >= 8
 Provides:		dbus-bluez-pin-helper
@@ -86,9 +103,9 @@ KDE Bluetooth framework development libraries and headers.
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+%__sed -i "admin/acinclude.m4.in" \
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -96,21 +113,31 @@ KDE Bluetooth framework development libraries and headers.
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-export CXXFLAGS="${CXXFLAGS} -I%{_includedir}/dbus-1.0"
-
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-%configure \
-	--disable-rpath							\
-	--enable-new-ldflags					\
-	--disable-debug							\
-	--disable-dependency-tracking			\
-	--enable-final							\
-	--enable-closure						\
-	--with-extra-includes=%{_includedir}/tqt
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-%__make %{?_smp_mflags} LIBTOOL=/usr/bin/libtool
+export KDEDIR=%{tde_prefix}
+
+# FIXME: dbus-tqt headers are not found without this ...
+export CXXFLAGS="${CXXFLAGS} -I%{tde_includedir}/dbus-1.0"
+
+%configure \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --includedir=%{tde_tdeincludedir} \
+  --datadir=%{tde_datadir} \
+  --disable-rpath		\
+  --enable-new-ldflags		\
+  --disable-debug			\
+  --disable-dependency-tracking		\
+  --enable-final				\
+  --enable-closure			\ 
+  --with-extra-includes=%{tde_includedir}/tqt:
+
+%__make %{?_smp_mflags} LIBTOOL=$(which libtool)
 
 
 %install
@@ -122,14 +149,13 @@ for DESK_PATH in applications/kde applnk/Utilities ; do
 	desktop-file-install												\
 		--mode=644														\
 		--vendor=""														\
-		--dir=$RPM_BUILD_ROOT%{_datadir}/applications/kde				\
+		--dir=$RPM_BUILD_ROOT%{tde_datadir}/applications/kde				\
 		--remove-category="Network"										\
 		--add-category="System"											\
 		--delete-original												\
-		$RPM_BUILD_ROOT%{_datadir}/$DESK_PATH/*.desktop ||:
+		$RPM_BUILD_ROOT%{tde_datadir}/$DESK_PATH/*.desktop ||:
 done
 
-touch %{name}.lang
 PROG_LIST="kbluelock kbluemon kbluetooth kinputwizard
 			kcm_btpaired  kio_bluetooth kio_obex2 kio_sdp
 			libkbluetooth kdebluetooth"
@@ -139,8 +165,8 @@ done
 
 rm -f $RPM_BUILD_ROOT/%{_datadir}/applnk/Settings/Network/Bluetooth/.directory
 
-rm -f ${RPM_BUILD_ROOT}%{_libdir}/*.a
-rm -f ${RPM_BUILD_ROOT}%{_libdir}/kde3/*.a
+rm -f ${RPM_BUILD_ROOT}%{tde_libdir}/*.a
+rm -f ${RPM_BUILD_ROOT}%{tde_libdir}/kde3/*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -158,48 +184,48 @@ touch --no-create %{_datadir}/icons/hicolor ||:
 gtk-update-icon-cache -qf %{_datadir}/icons/hicolor 2> /dev/null ||:
 
 
-%files -f %{name}.lang
+%files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING INSTALL README
-%{_bindir}/kblue*
-%{_bindir}/kbtobexclient
-%{_bindir}/kioobex_start
-%{_bindir}/kinputwizard
-%{_datadir}/applications/kde/*.desktop
-%{_datadir}/applnk/.hidden/*.desktop
-%{_datadir}/apps/konqsidebartng/virtual_folders/services/*.desktop
-%{_datadir}/apps/*/*
-%{_datadir}/autostart/*
-%{_datadir}/desktop-directories/*
-%{_datadir}/icons/hicolor/*/*/*
-%{_datadir}/mimelnk/bluetooth/
-%{_datadir}/service*/*
-%lang(ca) %{tde_docdir}/HTML/ca/kdebluetooth/
-%lang(da) %{tde_docdir}/HTML/da/kdebluetooth/
-%lang(en) %{tde_docdir}/HTML/en/kdebluetooth/
-%lang(es) %{tde_docdir}/HTML/es/kdebluetooth/
-%lang(et) %{tde_docdir}/HTML/et/kdebluetooth/
-%lang(fr) %{tde_docdir}/HTML/fr/kdebluetooth/
-%lang(it) %{tde_docdir}/HTML/it/kdebluetooth/
-%lang(nl) %{tde_docdir}/HTML/nl/kdebluetooth/
-%lang(pt) %{tde_docdir}/HTML/pt/kdebluetooth/
-%lang(ru) %{tde_docdir}/HTML/ru/kdebluetooth/
-%lang(sv) %{tde_docdir}/HTML/sv/kdebluetooth/
+%{tde_bindir}/kblue*
+%{tde_bindir}/kbtobexclient
+%{tde_bindir}/kioobex_start
+%{tde_bindir}/kinputwizard
+%{tde_tdeappdir}/*.desktop
+%{tde_datadir}/applnk/.hidden/*.desktop
+%{tde_datadir}/apps/konqsidebartng/virtual_folders/services/*.desktop
+%{tde_datadir}/apps/*/*
+%{tde_datadir}/autostart/*
+%{tde_datadir}/desktop-directories/*
+%{tde_datadir}/icons/hicolor/*/*/*
+%{tde_datadir}/mimelnk/bluetooth/
+%{tde_datadir}/service*/*
+%lang(ca) %{tde_tdedocdir}/HTML/ca/kdebluetooth/
+%lang(da) %{tde_tdedocdir}/HTML/da/kdebluetooth/
+%lang(en) %{tde_tdedocdir}/HTML/en/kdebluetooth/
+%lang(es) %{tde_tdedocdir}/HTML/es/kdebluetooth/
+%lang(et) %{tde_tdedocdir}/HTML/et/kdebluetooth/
+%lang(fr) %{tde_tdedocdir}/HTML/fr/kdebluetooth/
+%lang(it) %{tde_tdedocdir}/HTML/it/kdebluetooth/
+%lang(nl) %{tde_tdedocdir}/HTML/nl/kdebluetooth/
+%lang(pt) %{tde_tdedocdir}/HTML/pt/kdebluetooth/
+%lang(ru) %{tde_tdedocdir}/HTML/ru/kdebluetooth/
+%lang(sv) %{tde_tdedocdir}/HTML/sv/kdebluetooth/
 
 
 %files libs
 %defattr(-,root,root,-)
-%{_libdir}/*.la
-%{_libdir}/*.so.*
-%{_libdir}/kde3/*.so
-%{_libdir}/kde3/*.la
-%{_libdir}/kdebluetooth/
+%{tde_libdir}/*.la
+%{tde_libdir}/*.so.*
+%{tde_tdelibdir}/*.so
+%{tde_tdelibdir}/*.la
+%{tde_libdir}/kdebluetooth/
 
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/*
-%{_libdir}/*.so
+%{tde_includedir}/*
+%{tde_libdir}/*.so
 
 
 %changelog
