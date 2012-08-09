@@ -41,6 +41,7 @@ Patch4: akode-2.0.2-gcc43.patch
 
 # New patch for Fedora 16 / TDE 3.5.13
 Patch10: akode-autotools.patch
+Patch11: akode-2.0.2-fix_ffmpeg_include.patch
 
 # Optional features that are always enabled :-)
 %define _with_flac --with-flac
@@ -122,6 +123,7 @@ Requires: %{name} = %{version}-%{release}
 %patch4 -p1 -b .gcc43
 
 %patch10 -p1
+%patch11 -p1 -b .ffmpeg
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -142,7 +144,7 @@ Requires: %{name} = %{version}-%{release}
   --disable-static \
   --enable-shared \
   --disable-debug --disable-warnings --disable-dependency-tracking \
-  --with-libltdl \
+  --without-libltdl \
   --with-alsa \
   --with-oss \
   %{?_with_flac} %{!?_with_flac:--without-flac} \
@@ -203,6 +205,11 @@ done
 %{tde_libdir}/libakode_oss_sink.so
 %{tde_libdir}/libakode_xiph_decoder.la
 %{tde_libdir}/libakode_xiph_decoder.so
+
+#files -libmad
+#   /opt/trinity/lib64/libakode_mpeg_decoder.la
+#   /opt/trinity/lib64/libakode_mpeg_decoder.so
+
 
 %files devel
 %defattr(-,root,root,-)
