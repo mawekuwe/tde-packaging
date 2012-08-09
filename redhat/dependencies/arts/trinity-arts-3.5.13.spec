@@ -122,6 +122,19 @@ cd build
 %clean
 %__rm -rf %{?buildroot}
 
+%post
+/sbin/ldconfig || :
+
+%postun
+/sbin/ldconfig || :
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
+
 %files
 %defattr(-,root,root,-)
 %doc COPYING.LIB

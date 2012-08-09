@@ -73,6 +73,18 @@ cd build
 %clean
 %__rm -rf %{?buildroot}
 
+%post
+/sbin/ldconfig || :
+
+%postun
+/sbin/ldconfig || :
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
 %files
 %{tde_bindir}/dbusxml2qt3
 %{tde_libdir}/*.so.*

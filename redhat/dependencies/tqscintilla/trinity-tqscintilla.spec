@@ -130,9 +130,11 @@ done
 %__rm -rf $RPM_BUILD_ROOT
 
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
 
 
 %files

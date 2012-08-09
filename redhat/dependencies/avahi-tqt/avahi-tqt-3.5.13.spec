@@ -112,6 +112,17 @@ export CXXFLAGS="${CXXFLAGS} ${LDFLAGS}"
 %clean
 %__rm -rf %{?buildroot}
 
+%post
+/sbin/ldconfig || :
+
+%postun
+/sbin/ldconfig || :
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
 
 %files
 %{tde_libdir}/*.so.*
