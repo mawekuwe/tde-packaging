@@ -53,6 +53,7 @@ BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	python
 Requires:		python
+Requires:		trinity-compizconfig-backend-kconfig
 
 %description
 The OpenCompositing Project brings 3D desktop visual effects that

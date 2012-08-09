@@ -32,10 +32,6 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%if "%{?_prefix}" == "/usr"
-Obsoletes: k3b
-%endif
-
 Group:		Applications/Archiving
 License:	GPLv2+
 

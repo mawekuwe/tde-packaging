@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp kde-style-qtcurve
-%define version 0.55.2
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-style-qtcurve
 Summary:	This is a set of widget styles for Trinity based apps
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.55.2
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,7 +35,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
@@ -36,8 +43,8 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 Patch0:		kde-style-qtcurve-1.6.2-libsuffix.patch
 
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -58,26 +65,29 @@ gtk2-engines-qtcurve.
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i CMakeLists.txt \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
 
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 
-export CXXFLAGS="-I${QTINC} ${CXXFLAGS}"
-	
-%__mkdir build
+export CXXFLAGS="-I${QTINC} -I%{tde_tdeincludedir} ${CXXFLAGS}"
+
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
 cd build
+%endif
+
 %cmake \
-	-DKDE3PREFIX=%{_prefix} \
+	-DKDE3PREFIX=%{tde_prefix} \
 	..
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
@@ -90,20 +100,20 @@ export PATH="%{_bindir}:${PATH}"
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{tde_libdir}/plugins/styles/qtcurve.so
-%{_datadir}/apps/QtCurve/Agua.qtcurve
-%{_datadir}/apps/QtCurve/Agua_II.qtcurve
-%{_datadir}/apps/QtCurve/Curve.qtcurve
-%{_datadir}/apps/QtCurve/Flat.qtcurve
-%{_datadir}/apps/QtCurve/Human.qtcurve
-%{_datadir}/apps/QtCurve/Inverted.qtcurve
-%{_datadir}/apps/QtCurve/Klearlooks.qtcurve
-%{_datadir}/apps/QtCurve/Milk.qtcurve
-%{_datadir}/apps/QtCurve/Murrine.qtcurve
-%{_datadir}/apps/QtCurve/Ozone.qtcurve
-%{_datadir}/apps/QtCurve/Plastic.qtcurve
-%{_datadir}/apps/QtCurve/Silk.qtcurve
-%{_datadir}/apps/kdisplay/color-schemes/QtCurve.kcsrc
+%{tde_tdelibdir}/plugins/styles/qtcurve.so
+%{tde_datadir}/apps/QtCurve/Agua.qtcurve
+%{tde_datadir}/apps/QtCurve/Agua_II.qtcurve
+%{tde_datadir}/apps/QtCurve/Curve.qtcurve
+%{tde_datadir}/apps/QtCurve/Flat.qtcurve
+%{tde_datadir}/apps/QtCurve/Human.qtcurve
+%{tde_datadir}/apps/QtCurve/Inverted.qtcurve
+%{tde_datadir}/apps/QtCurve/Klearlooks.qtcurve
+%{tde_datadir}/apps/QtCurve/Milk.qtcurve
+%{tde_datadir}/apps/QtCurve/Murrine.qtcurve
+%{tde_datadir}/apps/QtCurve/Ozone.qtcurve
+%{tde_datadir}/apps/QtCurve/Plastic.qtcurve
+%{tde_datadir}/apps/QtCurve/Silk.qtcurve
+%{tde_datadir}/apps/kdisplay/color-schemes/QtCurve.kcsrc
 
 
 %Changelog

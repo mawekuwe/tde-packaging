@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp tellico
-%define version 1.3.2.1
-%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_tdedocdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	Icollection manager for books, videos, music [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.3.2.1
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,7 +35,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://periapsis.org/tellico/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
@@ -36,10 +43,13 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 
 # [tellico] Fix compilation with GCC 4.7 [Bug #958]
 Patch1:		tellico-3.5.13-fix_gcc47_compilation.patch
+# [tellico] Fix "not a string literal" error
+Patch2:		tellico-3.5.13-fix_not_a_string_literal_error.patch
+
 
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -108,12 +118,13 @@ as a separate package which can be updated through debian-volatile.
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch1 -p1
+%patch2 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -121,27 +132,35 @@ as a separate package which can be updated through debian-volatile.
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_includedir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_includedir}/tqt
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
 # Add svg icons to xdg directories
-%__install -D -c -p -m 644 -T icons/tellico.svg %{?buildroot}%{_datadir}/icons/hicolor/scalable/apps/tellico.svg
-%__install -D -c -p -m 644 -T icons/tellico_mime.svg %{?buildroot}%{_datadir}/icons/hicolor/scalable/mimetypes/application-x-tellico.svg
+%__install -D -c -p -m 644 -T icons/tellico.svg %{?buildroot}%{tde_datadir}/icons/hicolor/scalable/apps/tellico.svg
+%__install -D -c -p -m 644 -T icons/tellico_mime.svg %{?buildroot}%{tde_datadir}/icons/hicolor/scalable/mimetypes/application-x-tellico.svg
 
 # Remove  dead symlink from French translation
-%__rm %{?buildroot}%{tde_docdir}/HTML/fr/tellico/common
+%__rm %{?buildroot}%{tde_tdedocdir}/HTML/fr/tellico/common
 
 
 %find_lang %{kdecomp}
@@ -152,48 +171,48 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
-%{_bindir}/tellico
-#%{_datadir}/pixmaps
-%{_datadir}/applications
-%{_datadir}/config/tellicorc
+%{tde_bindir}/tellico
+#%{tde_datadir}/pixmaps
+%{tde_datadir}/applications
+%{tde_datadir}/config/tellicorc
 
 %files data
 %defattr(-,root,root,-)
-%{_datadir}/apps/tellico/*.xsl
-%{_datadir}/apps/tellico/*.xml
-%{_datadir}/apps/tellico/*.png
-%{_datadir}/apps/tellico/entry-templates
-%{_datadir}/apps/tellico/*.py*
-%{_datadir}/apps/tellico/pics
-%{_datadir}/apps/tellico/report-templates
-%{_datadir}/apps/tellico/tellico.dtd
-%{_datadir}/apps/tellico/tellico.tips
-%{_datadir}/apps/tellico/tellico2html.js
-%{_datadir}/apps/tellico/tellicoui.rc
-%{_datadir}/apps/tellico/welcome.html
-%{_datadir}/config.kcfg
-%{tde_docdir}/HTML/*/tellico/
-%{_datadir}/icons
-%{_datadir}/apps/mime
-%{_datadir}/mimelnk
-%{_datadir}/apps/kconf_update/tellico-1-3-update.pl
-%{_datadir}/apps/kconf_update/tellico-rename.upd
-%{_datadir}/apps/kconf_update/tellico.upd
+%{tde_datadir}/apps/tellico/*.xsl
+%{tde_datadir}/apps/tellico/*.xml
+%{tde_datadir}/apps/tellico/*.png
+%{tde_datadir}/apps/tellico/entry-templates
+%{tde_datadir}/apps/tellico/*.py*
+%{tde_datadir}/apps/tellico/pics
+%{tde_datadir}/apps/tellico/report-templates
+%{tde_datadir}/apps/tellico/tellico.dtd
+%{tde_datadir}/apps/tellico/tellico.tips
+%{tde_datadir}/apps/tellico/tellico2html.js
+%{tde_datadir}/apps/tellico/tellicoui.rc
+%{tde_datadir}/apps/tellico/welcome.html
+%{tde_datadir}/config.kcfg
+%{tde_tdedocdir}/HTML/*/tellico/
+%{tde_datadir}/icons
+%{tde_datadir}/apps/mime
+%{tde_datadir}/mimelnk
+%{tde_datadir}/apps/kconf_update/tellico-1-3-update.pl
+%{tde_datadir}/apps/kconf_update/tellico-rename.upd
+%{tde_datadir}/apps/kconf_update/tellico.upd
 
 %files scripts
 %defattr(-,root,root,-)
-%{_datadir}/apps/tellico/data-sources
-%{_datadir}/apps/tellico/z3950-servers.cfg
+%{tde_datadir}/apps/tellico/data-sources
+%{tde_datadir}/apps/tellico/z3950-servers.cfg
 
 
 %Changelog

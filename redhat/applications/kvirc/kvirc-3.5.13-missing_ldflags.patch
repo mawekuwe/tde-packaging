@@ -1,0 +1,22 @@
+--- kvirc/src/kvilib/build/Makefile.am.ORI	2012-08-06 12:13:32.982315876 +0200
++++ kvirc/src/kvilib/build/Makefile.am	2012-08-06 12:13:44.438073791 +0200
+@@ -9,7 +9,7 @@
+ 
+ lib_LTLIBRARIES      = libkvilib.la
+ libkvilib_la_LDFLAGS = $(SS_LDFLAGS) -version-info 3:0:0 $(SS_LIBDIRS)
+-libkvilib_la_LIBADD  = $(SS_LIBLINK)
++libkvilib_la_LIBADD  = $(SS_LIBLINK) -lkio -lDCOP
+ 
+ #
+ # Command useful to find out all the sources
+--- kvirc/src/kvirc/build/Makefile.am.ORI	2011-11-26 22:37:04.065565368 +0100
++++ kvirc/src/kvirc/build/Makefile.am	2011-11-26 22:37:17.139565032 +0100
+@@ -8,7 +8,7 @@
+ AM_CPPFLAGS = -I$(SS_TOPSRCDIR)/src/kvilib/include/ -I$(SS_TOPSRCDIR)/src/kvirc/include/ \
+ $(SS_INCDIRS) $(SS_CPPFLAGS) -DGLOBAL_KVIRC_DIR=\"$(globalkvircdir)\"
+ 
+-kvirc_LDFLAGS = -export-dynamic $(SS_LDFLAGS) $(SS_LIBDIRS) $(SS_RPATH)
++kvirc_LDFLAGS = -export-dynamic $(SS_LDFLAGS) $(SS_LIBDIRS) $(SS_RPATH) -lDCOP -lkdefx -lkio
+ kvirc_LDADD = $(SS_LIBLINK) ../../kvilib/build/libkvilib.la
+ 
+ bin_PROGRAMS = kvirc

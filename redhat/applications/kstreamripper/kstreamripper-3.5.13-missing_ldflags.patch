@@ -1,0 +1,11 @@
+--- kstreamripper/src/SConscript.ORI	2012-08-06 10:46:01.509252125 +0200
++++ kstreamripper/src/SConscript	2012-08-06 10:46:10.021070424 +0200
+@@ -43,7 +43,7 @@
+ myenv.KDEaddpaths_includes( ['./', '../'] )
+ 
+ ## Necessary libraries to link against
+-myenv.KDEaddlibs( ['tqt', 'kio', 'kdeui'] )
++myenv.KDEaddlibs( ['tqt', 'kio', 'kdeui', 'qt-mt'] )
+ if env['KDEm2']>3: myenv.KDEaddlibs( ['kdnssd'])
+ #############################
+ ## Data to install

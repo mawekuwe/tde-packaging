@@ -1,0 +1,15 @@
+--- rosegarden/src/CMakeLists.txt.ORI	2012-08-06 15:14:11.135307943 +0200
++++ rosegarden/src/CMakeLists.txt	2012-08-06 15:14:13.950244825 +0200
+@@ -150,11 +150,11 @@
+ TARGET_LINK_LIBRARIES(rosegarden
+     dl
+     lo
++    ${XFT_LIBS}
+     ${QT_AND_KDECORE_LIBS} 
+     ${LIBLO_LIBS}
+     ${LRDF_LIBS}
+     ${FFTW3F_LIBS}
+-    ${XFT_LIBS}
+     ${LIRC_LIBS}
+     ${JACK_LIBS}
+     kio

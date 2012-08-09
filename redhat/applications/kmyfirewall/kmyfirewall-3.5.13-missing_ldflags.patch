@@ -1,0 +1,11 @@
+--- kmyfirewall/kmyfirewall/core/Makefile.am.ROI	2012-08-05 17:28:28.006801940 +0200
++++ kmyfirewall/kmyfirewall/core/Makefile.am	2012-08-05 17:28:40.878545270 +0200
+@@ -53,7 +53,7 @@
+ 
+ libkmfcoreincludedir = $(includedir)/kmyfirewall/core/
+ 
+-libkmfcore_la_LIBADD = $(LIB_KPARTS) $(LIB_KIO)
++libkmfcore_la_LIBADD = $(LIB_KPARTS) $(LIB_KIO) $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI)
+ 
+ libkmfcoreinclude_HEADERS = ipaddress.h \
+ 	iptable.h \

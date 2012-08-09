@@ -197,9 +197,11 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/kde/k3b.desktop
 %__rm -rf %{buildroot}
 
 
-%post libs -p /sbin/ldconfig
+%post libs
+/sbin/ldconfig
 
-%postun libs -p /sbin/ldconfig
+%postun libs
+/sbin/ldconfig
 
 %post common
 touch --no-create %{_datadir}/icons/hicolor ||:

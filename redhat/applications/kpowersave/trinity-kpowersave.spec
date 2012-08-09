@@ -1,24 +1,31 @@
 # Default version for this component
 %define kdecomp kpowersave
-%define version 0.7.3
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.7.3
+Release:	2%{?dist}%{?_variant}
 Summary:	HAL based power management applet for Trinityfiles or directories.
 
 License:	GPLv2+
@@ -28,15 +35,15 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 %description
@@ -75,18 +82,29 @@ settings for:
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
+
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 	
-%__mkdir build
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
 cd build
+%endif
+
 %cmake \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DCMAKE_SKIP_RPATH="OFF" \
 	..
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
@@ -96,30 +114,32 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
+update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
+update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{_bindir}/kpowersave
-%{_libdir}/libkdeinit_kpowersave.la
-%{_libdir}/libkdeinit_kpowersave.so
-%{tde_libdir}/kpowersave.la
-%{tde_libdir}/kpowersave.so
-%{_datadir}/applications/kde/kpowersave.desktop
-%{_datadir}/apps/kpowersave/eventsrc
-%{_datadir}/apps/kpowersave/icons/*/*/*/*.png
-%{_datadir}/icons/hicolor/*/*/*.png
-%{_datadir}/autostart/kpowersave-autostart.desktop
-%{_datadir}/config/kpowersaverc
+%{tde_bindir}/kpowersave
+%{tde_libdir}/libkdeinit_kpowersave.la
+%{tde_libdir}/libkdeinit_kpowersave.so
+%{tde_tdelibdir}/kpowersave.la
+%{tde_tdelibdir}/kpowersave.so
+%{tde_tdeappdir}/kpowersave.desktop
+%{tde_datadir}/apps/kpowersave/eventsrc
+%{tde_datadir}/apps/kpowersave/icons/*/*/*/*.png
+%{tde_datadir}/icons/hicolor/*/*/*.png
+%{tde_datadir}/autostart/kpowersave-autostart.desktop
+%{tde_datadir}/config/kpowersaverc
 
 %Changelog
 * Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-2

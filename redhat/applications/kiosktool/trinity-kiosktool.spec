@@ -1,24 +1,31 @@
 # Default version for this component
 %define kdecomp kiosktool
-%define version 1.0
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.0
+Release:	2%{?dist}%{?_variant}
 Summary:	tool to configure the TDE kiosk framework
 
 License:	GPLv2+
@@ -33,7 +40,7 @@ Source0: %{kdecomp}-3.5.13.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires: gettext
-BuildRequires: trinity-kdelibs-devel
+BuildRequires: trinity-tdelibs-devel
 
 
 %description
@@ -48,8 +55,8 @@ groups of users.
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -58,24 +65,30 @@ groups of users.
 
 %build
 unset QTDIR || : ; source /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 
 %configure \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
   --disable-rpath \
   --enable-new-ldflags \
   --disable-debug --disable-warnings \
   --disable-dependency-tracking --enable-final \
   --enable-closure \
-  --with-extra-includes=%{_includedir}/tqt
+  --with-extra-includes=%{tde_includedir}/tqt
   
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT
 
@@ -105,13 +118,13 @@ fi
 
 
 %post
-touch --no-create %{_datadir}/icons/crystalsvg ||:
-gtk-update-icon-cache -q %{_datadir}/icons/crystalsvg 2> /dev/null ||:
+touch --no-create %{tde_datadir}/icons/crystalsvg ||:
+gtk-update-icon-cache -q %{tde_datadir}/icons/crystalsvg 2> /dev/null ||:
 update-desktop-database >& /dev/null ||:
 
 %postun
-touch --no-create %{_datadir}/icons/crystalsvg ||:
-gtk-update-icon-cache -q %{_datadir}/icons/crystalsvg 2> /dev/null ||:
+touch --no-create %{tde_datadir}/icons/crystalsvg ||:
+gtk-update-icon-cache -q %{tde_datadir}/icons/crystalsvg 2> /dev/null ||:
 update-desktop-database >& /dev/null ||:
 
 
@@ -119,14 +132,14 @@ update-desktop-database >& /dev/null ||:
 %files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
 %doc ChangeLog COPYING README TODO
-%{_bindir}/kiosktool
-%{_bindir}/kiosktool-kdedirs
-%{_datadir}/applications/kde/kiosktool.desktop
-%{_datadir}/apps/kiosktool/*.png
-%{tde_docdir}/HTML/en/kiosktool/
-%{_datadir}/icons/crystalsvg/*/apps/kiosktool.png
-%{_datadir}/apps/kiosktool/kiosk_data.xml
-%{_datadir}/apps/kiosktool/kiosktoolui.rc
+%{tde_bindir}/kiosktool
+%{tde_bindir}/kiosktool-kdedirs
+%{tde_tdeappdir}/kiosktool.desktop
+%{tde_datadir}/apps/kiosktool/*.png
+%{tde_tdedocdir}/HTML/en/kiosktool/
+%{tde_datadir}/icons/crystalsvg/*/apps/kiosktool.png
+%{tde_datadir}/apps/kiosktool/kiosk_data.xml
+%{tde_datadir}/apps/kiosktool/kiosktoolui.rc
 
 %Changelog
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-2

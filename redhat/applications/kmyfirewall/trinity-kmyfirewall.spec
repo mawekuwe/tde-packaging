@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp kmyfirewall
-%define version 1.1.1
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	iptables based firewall configuration tool for KDE [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.1.1
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,17 +35,19 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 # [kmyfirewall] GCC 4.7 fixes. [Commit #88d2d2a7]
 Patch1:		kmyfirewall-3.5.13-fix_gcc47_compilation.patch
+# [kmyfirefall] Missing LDFLAGS cause FTBFS
+Patch2:		kmyfirewall-3.5.13-missing_ldflags.patch
 
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 
@@ -64,15 +73,15 @@ Requires:		%{name} = %{version}-%{release}
 
 
 %prep
-unset QTDIR; . /etc/profile.d/qt.sh
 %setup -q -n applications/%{kdecomp}
 %patch1 -p1
+%patch2 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -80,18 +89,26 @@ unset QTDIR; . /etc/profile.d/qt.sh
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt \
-    --enable-closure
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-closure
 
 %__make %{?_smp_mflags}
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
@@ -101,16 +118,18 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
+update-desktop-database %{tde_appdir} > /dev/null
 for f in hicolor Locolor; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig || :
 
 %postun
+update-desktop-database %{tde_appdir} > /dev/null
 for f in hicolor Locolor; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig || :
 
@@ -118,68 +137,66 @@ done
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING COPYING-DOCS README TODO
-%{_bindir}/kmyfirewall
-%{_libdir}/libkmfcore.so.*
-%{_libdir}/libkmfwidgets.so.*
-%{tde_libdir}/libkmfcompiler_ipt.la
-%{tde_libdir}/libkmfcompiler_ipt.so
-%{tde_libdir}/libkmfgenericinterfacepart.la
-%{tde_libdir}/libkmfgenericinterfacepart.so
-%{tde_libdir}/libkmfinstaller_linux.la
-%{tde_libdir}/libkmfinstaller_linux.so
-%{tde_libdir}/libkmfinstallerplugin.la
-%{tde_libdir}/libkmfinstallerplugin.so
-%{tde_libdir}/libkmfipteditorpart.la
-%{tde_libdir}/libkmfipteditorpart.so
-%{tde_libdir}/libkmfruleoptionedit_custom.la
-%{tde_libdir}/libkmfruleoptionedit_custom.so
-%{tde_libdir}/libkmfruleoptionedit_interface.la
-%{tde_libdir}/libkmfruleoptionedit_interface.so
-%{tde_libdir}/libkmfruleoptionedit_ip.la
-%{tde_libdir}/libkmfruleoptionedit_ip.so
-%{tde_libdir}/libkmfruleoptionedit_limit.la
-%{tde_libdir}/libkmfruleoptionedit_limit.so
-%{tde_libdir}/libkmfruleoptionedit_mac.la
-%{tde_libdir}/libkmfruleoptionedit_mac.so
-%{tde_libdir}/libkmfruleoptionedit_protocol.la
-%{tde_libdir}/libkmfruleoptionedit_protocol.so
-%{tde_libdir}/libkmfruleoptionedit_state.la
-%{tde_libdir}/libkmfruleoptionedit_state.so
-%{tde_libdir}/libkmfruleoptionedit_tos.la
-%{tde_libdir}/libkmfruleoptionedit_tos.so
-%{tde_libdir}/libkmfruletargetoptionedit_log.la
-%{tde_libdir}/libkmfruletargetoptionedit_log.so
-%{tde_libdir}/libkmfruletargetoptionedit_mark.la
-%{tde_libdir}/libkmfruletargetoptionedit_mark.so
-%{tde_libdir}/libkmfruletargetoptionedit_nat.la
-%{tde_libdir}/libkmfruletargetoptionedit_nat.so
-%{tde_libdir}/libkmfruletargetoptionedit_tos.la
-%{tde_libdir}/libkmfruletargetoptionedit_tos.so
-%{_datadir}/applications/kde/kmyfirewall.desktop
-%{_datadir}/apps/kmfgenericinterfacepart/kmfgenericinterfacepartui.rc
-%{_datadir}/apps/kmfipteditorpart/kmfipteditorpartui.rc
-%{_datadir}/apps/kmfsystray
-%{_datadir}/apps/kmyfirewall
-%{_datadir}/config.kcfg/kmfconfig.kcfg
-%{_datadir}/config/kmyfirewallrc
-%{tde_docdir}/HTML/en/kmyfirewall/common
-%{tde_docdir}/HTML/en/kmyfirewall/index.cache.bz2
-%{tde_docdir}/HTML/en/kmyfirewall/index.docbook
-%{_datadir}/icons/hicolor/*/apps/kmyfirewall.png
-%{_datadir}/icons/Locolor/*/apps/kmyfirewall.png
-%{_datadir}/mimelnk/application/kmfgrs.desktop
-%{_datadir}/mimelnk/application/kmfnet.desktop
-%{_datadir}/mimelnk/application/kmfpkg.desktop
-%{_datadir}/mimelnk/application/kmfrs.desktop
-%{_datadir}/services/kmf*.desktop
-%{_datadir}/servicetypes/kmf*.desktop
+%{tde_bindir}/kmyfirewall
+%{tde_libdir}/libkmfcore.so.*
+%{tde_libdir}/libkmfwidgets.so.*
+%{tde_tdelibdir}/libkmfcompiler_ipt.la
+%{tde_tdelibdir}/libkmfcompiler_ipt.so
+%{tde_tdelibdir}/libkmfgenericinterfacepart.la
+%{tde_tdelibdir}/libkmfgenericinterfacepart.so
+%{tde_tdelibdir}/libkmfinstaller_linux.la
+%{tde_tdelibdir}/libkmfinstaller_linux.so
+%{tde_tdelibdir}/libkmfinstallerplugin.la
+%{tde_tdelibdir}/libkmfinstallerplugin.so
+%{tde_tdelibdir}/libkmfipteditorpart.la
+%{tde_tdelibdir}/libkmfipteditorpart.so
+%{tde_tdelibdir}/libkmfruleoptionedit_custom.la
+%{tde_tdelibdir}/libkmfruleoptionedit_custom.so
+%{tde_tdelibdir}/libkmfruleoptionedit_interface.la
+%{tde_tdelibdir}/libkmfruleoptionedit_interface.so
+%{tde_tdelibdir}/libkmfruleoptionedit_ip.la
+%{tde_tdelibdir}/libkmfruleoptionedit_ip.so
+%{tde_tdelibdir}/libkmfruleoptionedit_limit.la
+%{tde_tdelibdir}/libkmfruleoptionedit_limit.so
+%{tde_tdelibdir}/libkmfruleoptionedit_mac.la
+%{tde_tdelibdir}/libkmfruleoptionedit_mac.so
+%{tde_tdelibdir}/libkmfruleoptionedit_protocol.la
+%{tde_tdelibdir}/libkmfruleoptionedit_protocol.so
+%{tde_tdelibdir}/libkmfruleoptionedit_state.la
+%{tde_tdelibdir}/libkmfruleoptionedit_state.so
+%{tde_tdelibdir}/libkmfruleoptionedit_tos.la
+%{tde_tdelibdir}/libkmfruleoptionedit_tos.so
+%{tde_tdelibdir}/libkmfruletargetoptionedit_log.la
+%{tde_tdelibdir}/libkmfruletargetoptionedit_log.so
+%{tde_tdelibdir}/libkmfruletargetoptionedit_mark.la
+%{tde_tdelibdir}/libkmfruletargetoptionedit_mark.so
+%{tde_tdelibdir}/libkmfruletargetoptionedit_nat.la
+%{tde_tdelibdir}/libkmfruletargetoptionedit_nat.so
+%{tde_tdelibdir}/libkmfruletargetoptionedit_tos.la
+%{tde_tdelibdir}/libkmfruletargetoptionedit_tos.so
+%{tde_tdeappdir}/kmyfirewall.desktop
+%{tde_datadir}/apps/kmfgenericinterfacepart/kmfgenericinterfacepartui.rc
+%{tde_datadir}/apps/kmfipteditorpart/kmfipteditorpartui.rc
+%{tde_datadir}/apps/kmfsystray
+%{tde_datadir}/apps/kmyfirewall
+%{tde_datadir}/config.kcfg/kmfconfig.kcfg
+%{tde_datadir}/config/kmyfirewallrc
+%{tde_tdedocdir}/HTML/en/kmyfirewall/
+%{tde_datadir}/icons/hicolor/*/apps/kmyfirewall.png
+%{tde_datadir}/icons/Locolor/*/apps/kmyfirewall.png
+%{tde_datadir}/mimelnk/application/kmfgrs.desktop
+%{tde_datadir}/mimelnk/application/kmfnet.desktop
+%{tde_datadir}/mimelnk/application/kmfpkg.desktop
+%{tde_datadir}/mimelnk/application/kmfrs.desktop
+%{tde_datadir}/services/kmf*.desktop
+%{tde_datadir}/servicetypes/kmf*.desktop
 
 %files devel
-%{_includedir}/kmyfirewall
-%{_libdir}/libkmfcore.la
-%{_libdir}/libkmfcore.so
-%{_libdir}/libkmfwidgets.la
-%{_libdir}/libkmfwidgets.so
+%{tde_tdeincludedir}/kmyfirewall
+%{tde_libdir}/libkmfcore.la
+%{tde_libdir}/libkmfcore.so
+%{tde_libdir}/libkmfwidgets.la
+%{tde_libdir}/libkmfwidgets.so
 
 %Changelog
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.1.1-2

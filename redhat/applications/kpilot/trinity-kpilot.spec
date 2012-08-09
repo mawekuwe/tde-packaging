@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp kpilot
-%define version 0.7
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	TDE Palm Pilot hot-sync tool
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.7
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,7 +35,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
@@ -36,9 +43,12 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 # Fix FTBFS
 Patch0:		kpilot-3.5.13-ftbfs.patch
 
+# [kpilot] Missing LDFLAGS cause FTBFS on Mageia / Mandriva
+Patch1:		kpilot-3.5.13-missing_ldflags.patch
+
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -55,12 +65,13 @@ and synchronize the built-in applications with their KDE counterparts.
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch0 -p1
+%patch1 -p1 -b .ldflags
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -68,24 +79,34 @@ and synchronize the built-in applications with their KDE counterparts.
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt:%{tde_includedir}
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_includedir}/tqt:%{tde_tdeincludedir}
 
 # SMP safe !
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# Unwanted files
+%__rm -f %{?buildroot}%{tde_libdir}/libkpilot.so
 
-%find_lang %{kdecomp} || touch %{kdecomp}.lang
+%find_lang %{kdecomp}
 
 
 
@@ -94,65 +115,66 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
+update-desktop-database %{tde_appdir} > /dev/null
 for f in hicolor locolor crystalsvg; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig || :
 
 %postun
+update-desktop-database %{tde_appdir} > /dev/null
 for f in hicolor locolor crystalsvg; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig || :
 
 
 %files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
-%{_bindir}/kpalmdoc
-%{_bindir}/kpilot
-%{_bindir}/kpilotDaemon
-%{_includedir}/kpilot
-%{_libdir}/libkpilot.la
-%{_libdir}/libkpilot.so
-%{_libdir}/libkpilot.so.0
-%{_libdir}/libkpilot.so.0.0.0
-%{tde_libdir}/conduit_address.la
-%{tde_libdir}/conduit_address.so
-%{tde_libdir}/conduit_doc.la
-%{tde_libdir}/conduit_doc.so
-%{tde_libdir}/conduit_knotes.la
-%{tde_libdir}/conduit_knotes.so
-%{tde_libdir}/conduit_memofile.la
-%{tde_libdir}/conduit_memofile.so
-%{tde_libdir}/conduit_notepad.la
-%{tde_libdir}/conduit_notepad.so
-%{tde_libdir}/conduit_popmail.la
-%{tde_libdir}/conduit_popmail.so
-%{tde_libdir}/conduit_sysinfo.la
-%{tde_libdir}/conduit_sysinfo.so
-%{tde_libdir}/conduit_time.la
-%{tde_libdir}/conduit_time.so
-%{tde_libdir}/conduit_todo.la
-%{tde_libdir}/conduit_todo.so
-%{tde_libdir}/conduit_vcal.la
-%{tde_libdir}/conduit_vcal.so
-%{tde_libdir}/kcm_kpilot.la
-%{tde_libdir}/kcm_kpilot.so
-%{_datadir}/applications/kde/kpalmdoc.desktop
-%{_datadir}/applications/kde/kpilot.desktop
-%{_datadir}/applications/kde/kpilotdaemon.desktop
-%{_datadir}/apps/kaddressbook/contacteditorpages/KPilotCustomFieldEditor.ui
-%{_datadir}/apps/kconf_update/kpalmdoc.upd
-%{_datadir}/apps/kconf_update/kpilot.upd
-%{_datadir}/apps/kpilot
-%{_datadir}/config.kcfg/*.kcfg
-%{_datadir}/icons/crystalsvg/*/apps/*.png
-%{_datadir}/icons/hicolor/*/apps/*.png
-%{_datadir}/icons/locolor/*/apps/*.png
-%{_datadir}/services/*.desktop
-%{_datadir}/servicetypes/kpilotconduit.desktop
+%{tde_bindir}/kpalmdoc
+%{tde_bindir}/kpilot
+%{tde_bindir}/kpilotDaemon
+%{tde_tdeincludedir}/kpilot
+%{tde_libdir}/libkpilot.la
+%{tde_libdir}/libkpilot.so.0
+%{tde_libdir}/libkpilot.so.0.0.0
+%{tde_tdelibdir}/conduit_address.la
+%{tde_tdelibdir}/conduit_address.so
+%{tde_tdelibdir}/conduit_doc.la
+%{tde_tdelibdir}/conduit_doc.so
+%{tde_tdelibdir}/conduit_knotes.la
+%{tde_tdelibdir}/conduit_knotes.so
+%{tde_tdelibdir}/conduit_memofile.la
+%{tde_tdelibdir}/conduit_memofile.so
+%{tde_tdelibdir}/conduit_notepad.la
+%{tde_tdelibdir}/conduit_notepad.so
+%{tde_tdelibdir}/conduit_popmail.la
+%{tde_tdelibdir}/conduit_popmail.so
+%{tde_tdelibdir}/conduit_sysinfo.la
+%{tde_tdelibdir}/conduit_sysinfo.so
+%{tde_tdelibdir}/conduit_time.la
+%{tde_tdelibdir}/conduit_time.so
+%{tde_tdelibdir}/conduit_todo.la
+%{tde_tdelibdir}/conduit_todo.so
+%{tde_tdelibdir}/conduit_vcal.la
+%{tde_tdelibdir}/conduit_vcal.so
+%{tde_tdelibdir}/kcm_kpilot.la
+%{tde_tdelibdir}/kcm_kpilot.so
+%{tde_tdeappdir}/kpalmdoc.desktop
+%{tde_tdeappdir}/kpilot.desktop
+%{tde_tdeappdir}/kpilotdaemon.desktop
+%{tde_datadir}/apps/kaddressbook/contacteditorpages/KPilotCustomFieldEditor.ui
+%{tde_datadir}/apps/kconf_update/kpalmdoc.upd
+%{tde_datadir}/apps/kconf_update/kpilot.upd
+%{tde_datadir}/apps/kpilot
+%{tde_datadir}/config.kcfg/*.kcfg
+%{tde_datadir}/icons/crystalsvg/*/apps/*.png
+%{tde_datadir}/icons/hicolor/*/apps/*.png
+%{tde_datadir}/icons/locolor/*/apps/*.png
+%{tde_datadir}/services/*.desktop
+%{tde_datadir}/servicetypes/kpilotconduit.desktop
 
 
 %Changelog

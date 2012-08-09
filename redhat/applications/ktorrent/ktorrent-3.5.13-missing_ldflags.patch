@@ -1,0 +1,9 @@
+--- ktorrent/libktorrent/Makefile.am.ORI	2012-08-06 11:11:35.700759480 +0200
++++ ktorrent/libktorrent/Makefile.am	2012-08-06 11:11:44.437574091 +0200
+@@ -18,5 +18,5 @@
+ libktorrent_la_LIBADD = ../libktorrent/net/libnet.la \
+ 	../libktorrent/datachecker/libdatachecker.la ../libktorrent/mse/libmse.la ../libktorrent/migrate/libmigrate.la \
+ 	../libktorrent/util/libutil.la ../libktorrent/torrent/libtorrent.la \
+-	../libktorrent/kademlia/libkademlia.la ../libktorrent/interfaces/libinterfaces.la $(LIB_KPARTS)
++	../libktorrent/kademlia/libkademlia.la ../libktorrent/interfaces/libinterfaces.la $(LIB_KPARTS) $(LIB_KIO) $(LIB_KDECORE) $(LIB_QT) $(LIB_KDEUI)
+ KDE_CXXFLAGS = $(USE_EXCEPTIONS) $(USE_RTTI)

@@ -1,26 +1,32 @@
 # Default version for this component
 %define kdecomp kvirc
-%define version 3.4.0
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
-%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	Trinity based next generation IRC client with module support
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	3.4.0
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -29,7 +35,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://kvirc.net/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
@@ -56,10 +62,10 @@ Patch8:		bp006-51bbe9e5.diff
 Patch9:		bp007-a24a8595.diff
 # [kvirc] Fix "acinclude.m4" file [Bug #980]
 Patch10:	kvirc-3.5.13-fix_acinclude_m4.patch
-    
+
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -121,14 +127,14 @@ with the K Desktop Environment version 3.
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 # Hardcoded absolute PATH to KDEDIR in source code ! That sucks !
 %__sed -i "src/kvirc/kernel/kvi_app_fs.cpp" \
-  -e "s|/opt/kde3/lib|%{_prefix}/%{_lib}|g"
+  -e "s|/opt/kde3/lib|%{tde_prefix}/%{_lib}|g"
 %__sed -i "src/kvirc/kernel/kvi_app_setup.cpp" \
-  -e "s|/opt/kde3|%{_prefix}|g"
+  -e "s|/opt/kde3|%{tde_prefix}|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -136,20 +142,32 @@ with the K Desktop Environment version 3.
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
-export KDEDIR=%{_prefix}
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export KDEDIR=%{tde_prefix}
+
+#export CXXFLAGS="${CXXFLAGS} -I%{tde_includedir} -lqt-mt"
 
 %configure \
-	--disable-rpath \
-	--with-fno-rtti --with-aa-fonts --with-big-channels \
-	--enable-perl --with-pic --enable-wall \
-	--with-ix86-asm \
-	--with-qt-moc=%{_bindir}/tmoc \
-	--with-extra-includes=%{_includedir}/tqt \
-	--with-kde-services-dir=%{_datadir}/services \
-	--with-kde-library-dir=%{_libdir} \
-	--with-kde-include-dir=%{_includedir}
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  --disable-rpath \
+  --with-fno-rtti --with-aa-fonts --with-big-channels \
+  --enable-perl --with-pic --enable-wall \
+  --with-ix86-asm \
+  --with-extra-includes=%{tde_includedir}/tqt:%{tde_includedir} \
+  --with-kde-services-dir=%{tde_datadir}/services \
+  --with-kde-library-dir=%{tde_libdir} \
+  --with-kde-include-dir=%{tde_tdeincludedir} \
+  --with-qt-library-dir=${QTLIB} \
+  --with-qt-include-dir=${QTINC} \
+  --with-qt-moc=${QTDIR}/bin/moc
 
 # Symbolic links must exist prior to parallel building
 %__make symlinks -C src/kvilib/build
@@ -159,14 +177,14 @@ export KDEDIR=%{_prefix}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
 # Debian maintainer has renamed 'COPYING' file to 'EULA', so we do the same ...
 %__mv \
-  %{?buildroot}%{_datadir}/kvirc/3.4/license/COPYING \
-  %{?buildroot}%{_datadir}/kvirc/3.4/license/EULA
+  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/COPYING \
+  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/EULA
 
 %clean
 %__rm -rf %{buildroot}
@@ -174,41 +192,41 @@ export PATH="%{_bindir}:${PATH}"
 
 %post
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %files
 %defattr(-,root,root,-)
 %doc ChangeLog FAQ README TODO
-%{_bindir}/kvirc
-%{_libdir}/*.so.*
-%{_libdir}/kvirc/*/modules/*.so
+%{tde_bindir}/kvirc
+%{tde_libdir}/*.so.*
+%{tde_libdir}/kvirc/*/modules/*.so
 
 %files data
 %defattr(-,root,root,-)
-%{_bindir}/kvi_run_netscape
-%{_bindir}/kvi_search_help
-%{_libdir}/kvirc/*/modules/caps/
-%{_datadir}/applnk/Internet/kvirc.desktop
-%{_datadir}/icons/hicolor/*
-%{_datadir}/kvirc
-%{_datadir}/mimelnk/text/*.desktop
-%{_datadir}/services/*.protocol
-%{_mandir}/man1/kvirc.1
+%{tde_bindir}/kvi_run_netscape
+%{tde_bindir}/kvi_search_help
+%{tde_libdir}/kvirc/*/modules/caps/
+%{tde_datadir}/applnk/Internet/kvirc.desktop
+%{tde_datadir}/icons/hicolor/*
+%{tde_datadir}/kvirc
+%{tde_datadir}/mimelnk/text/*.desktop
+%{tde_datadir}/services/*.protocol
+%{tde_mandir}/man1/kvirc.1
 
 %files devel
 %defattr(-,root,root,-)
-%{_bindir}/kvirc-config
-%{_includedir}/kvirc/
-%{_libdir}/*.la
-%{_libdir}/*.so
-%{_libdir}/kvirc/*/modules/*.la
+%{tde_bindir}/kvirc-config
+%{tde_includedir}/kvirc/
+%{tde_libdir}/*.la
+%{tde_libdir}/*.so
+%{tde_libdir}/kvirc/*/modules/*.la
 
 
 %Changelog

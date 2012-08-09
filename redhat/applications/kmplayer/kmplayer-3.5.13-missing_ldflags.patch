@@ -1,0 +1,21 @@
+--- kmplayer/src/Makefile.am.ORI	2012-08-05 17:09:59.963896862 +0200
++++ kmplayer/src/Makefile.am	2012-08-05 17:10:16.667563785 +0200
+@@ -6,7 +6,7 @@
+ 
+ libkmplayercommon_la_SOURCES = viewarea.cpp kmplayerview.cpp playlistview.cpp kmplayercontrolpanel.cpp kmplayerconfig.cpp pref.cpp kmplayerprocess.cpp kmplayer_callback.skel kmplayer_backend.stub kmplayerpartbase.cpp kmplayerplaylist.cpp kmplayer_asx.cpp kmplayer_smil.cpp kmplayer_rp.cpp kmplayer_rss.cpp kmplayer_atom.cpp kmplayer_xspf.cpp triestring.cpp kmplayerpartbase.skel
+ libkmplayercommon_la_LDFLAGS = -avoid-version $(all_libraries)
+-libkmplayercommon_la_LIBADD = -lkmediaplayer $(LIB_KPARTS) $(LIB_KUTILS) $(LIB_EXPAT) -lm $(LIBCAIRO_LIBS) $(LIBQTDBUS)
++libkmplayercommon_la_LIBADD = -lkmediaplayer $(LIB_KPARTS) $(LIB_KUTILS) $(LIB_EXPAT) -lm $(LIBCAIRO_LIBS) $(LIBQTDBUS) $(LIB_QT) -lDCOP $(LIB_KDECORE) -lkdefx $(LIB_KDEUI) $(LIB_KIO)
+ 
+ if include_koffice_support
+ kofficeplugin_lib= libkmplayerkofficepart.la
+--- kmplayer/src/Makefile.am.ORI	2011-12-03 23:22:01.601981533 +0100
++++ kmplayer/src/Makefile.am	2011-12-03 23:22:44.469655046 +0100
+@@ -58,6 +58,7 @@
+ kgstplayer_SOURCES= gstplayer.cpp
+ 
+ knpplayer_LDADD= $(LIBNSPR_LIBS)
++knpplayer_LDFLAGS= -lX11 -lgmodule-2.0
+ knpplayer_SOURCES= npplayer.c
+ 
+ xdg_apps_DATA = kmplayer.desktop

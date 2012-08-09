@@ -1,27 +1,42 @@
 # Default version for this component
 %define kdecomp kmymoney
-%define version 1.0.5
-%define release 2
+
+# Required for Mageia 2: removes the ldflag '--no-undefined'
+%define _disable_ld_no_undefined 1
+
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%define qt3pluginsdir %{_libdir}/qt3/plugins
+%else
+%define qt3pluginsdir %{_libdir}/qt-3.3/plugins
+%endif
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
-%define _mandir %{_datadir}/man
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	personal finance manager for TDE
 
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.0.5
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -30,7 +45,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
@@ -46,16 +61,27 @@ Patch2:		kmymoney-3.5.13-update_to_1.0.5.patch
 # [kmymoney] Fix compilation with GCC 4.7 [Bug #958]
 Patch3:		kmymoney-3.5.13-fix_gcc47_compilation.patch
 
+# [kmymoney] Missing LDFLAGS causing FTBFS
+Patch4:		kmymoney-3.5.13-missing_ldflags.patch
+
+# [kmymoney] Fix QT3 plugins directory location
+Patch5:		kmymoney-3.5.13-fix_qt3_plugins_location.patch
+
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 BuildRequires: recode
 BuildRequires: html2ps
-BuildRequires: opensp-devel
 BuildRequires: libofx-devel
+
+%if 0%{?mgaversion}
+BuildRequires: %{_lib}OpenSP5-devel
+%else
+BuildRequires: opensp-devel
+%endif
 
 Requires:		%{name}-common == %{version}
 
@@ -92,13 +118,15 @@ This package contains development files needed for KMyMoney plugins.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch5 -p1 -b .qtpluginsdir
+
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -106,26 +134,49 @@ This package contains development files needed for KMyMoney plugins.
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
+
+# Required to find the QT3 plugins directory
+%if 0%{?mgaversion} || 0%{?mdkversion}
+export QTPLUGINS=%{_libdir}/qt3/plugins
+%endif
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt \
-    --enable-closure \
-    --enable-pdf-docs \
-    --enable-ofxplugin \
-    --enable-ofxbanking \
-    --enable-qtdesigner \
-    --enable-sqlite3
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-closure \
+  --enable-pdf-docs \
+  --enable-ofxplugin \
+  --enable-ofxbanking \
+  --enable-qtdesigner \
+  --enable-sqlite3
+
+# Fix FTBFS inside sqlite3 archive
+patch -p1 < %{PATCH4}
 
 %__make %{?_smp_mflags}
 
-
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
+
+# Required to find the QT3 plugins directory
+%if 0%{?mgaversion} || 0%{?mdkversion}
+export QTPLUGINS=%{_libdir}/qt3/plugins
+%endif
+
 %__make install DESTDIR=%{buildroot}
+
 
 
 
@@ -154,65 +205,64 @@ fi
 
 
 %post
+update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
 for f in hicolor locolor Tango oxygen; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 
 %postun
+update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
 for f in hicolor locolor Tango oxygen; do
-  touch --no-create %{_datadir}/icons/${f} || :
-  gtk-update-icon-cache --quiet %{_datadir}/icons/${f} || :
+  touch --no-create %{tde_datadir}/icons/${f} || :
+  gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/kmymoney
-%{_bindir}/kmymoney2
-%{_datadir}/applications/kde/kmymoney2.desktop
-%{_datadir}/mimelnk/application/x-kmymoney2.desktop
-%{_datadir}/servicetypes/kmymoneyimporterplugin.desktop
-%{_datadir}/servicetypes/kmymoneyplugin.desktop
-%{_libdir}/*.so.*
-%{tde_libdir}/kmm_ofximport.la
-%{tde_libdir}/kmm_ofximport.so
+%{tde_bindir}/kmymoney
+%{tde_bindir}/kmymoney2
+%{tde_tdeappdir}/kmymoney2.desktop
+%{tde_datadir}/mimelnk/application/x-kmymoney2.desktop
+%{tde_datadir}/servicetypes/kmymoneyimporterplugin.desktop
+%{tde_datadir}/servicetypes/kmymoneyplugin.desktop
+%{tde_libdir}/*.so.*
+%{tde_tdelibdir}/kmm_ofximport.la
+%{tde_tdelibdir}/kmm_ofximport.so
 
 %files common -f kmymoney2.lang
 %defattr(-,root,root,-)
-%{_datadir}/apps/kmymoney2/html/
-%{_datadir}/apps/kmymoney2/icons/*/*/*/*.png
-%{_datadir}/apps/kmymoney2/kmymoney2ui.rc
-%{_datadir}/apps/kmymoney2/misc/financequote.pl
-%{_datadir}/apps/kmymoney2/pics/*.png
-%{_datadir}/apps/kmymoney2/templates/*/*.kmt
-%{_datadir}/apps/kmymoney2/tips
-%{_datadir}/config.kcfg/kmymoney2.kcfg
-%{_datadir}/icons/hicolor/*/*/*.png
-%{_datadir}/icons/Tango/*/*/*.png
-%{_datadir}/icons/Tango/scalable/*.svgz
-%{_datadir}/icons/locolor/*/*/*.png
-%{_datadir}/icons/oxygen/*/*/*.png
-%{_datadir}/icons/oxygen/scalable/*.svgz
-%{tde_docdir}/HTML/en/kmymoney2/*.docbook
-%{tde_docdir}/HTML/en/kmymoney2/*.png
-%{tde_docdir}/HTML/en/kmymoney2/common
-%{tde_docdir}/HTML/en/kmymoney2/index.cache.bz2
-%{_mandir}/man1/kmymoney2.*
-%{_datadir}/apps/kmm_ofximport/kmm_ofximport.rc
-%{_datadir}/services/kmm_ofximport.desktop
+%{tde_datadir}/apps/kmymoney2/html/
+%{tde_datadir}/apps/kmymoney2/icons/*/*/*/*.png
+%{tde_datadir}/apps/kmymoney2/kmymoney2ui.rc
+%{tde_datadir}/apps/kmymoney2/misc/financequote.pl
+%{tde_datadir}/apps/kmymoney2/pics/*.png
+%{tde_datadir}/apps/kmymoney2/templates/*/*.kmt
+%{tde_datadir}/apps/kmymoney2/tips
+%{tde_datadir}/config.kcfg/kmymoney2.kcfg
+%{tde_datadir}/icons/hicolor/*/*/*.png
+%{tde_datadir}/icons/Tango/*/*/*.png
+%{tde_datadir}/icons/Tango/scalable/*.svgz
+%{tde_datadir}/icons/locolor/*/*/*.png
+%{tde_datadir}/icons/oxygen/*/*/*.png
+%{tde_datadir}/icons/oxygen/scalable/*.svgz
+%{tde_tdedocdir}/HTML/en/kmymoney2/
+%{tde_mandir}/man1/kmymoney2.*
+%{tde_datadir}/apps/kmm_ofximport/kmm_ofximport.rc
+%{tde_datadir}/services/kmm_ofximport.desktop
 
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/kmymoney/*.h
-%{_libdir}/libkmm_kdchart.la
-%{_libdir}/libkmm_mymoney.la
-%{_libdir}/libkmm_plugin.la
-%{_libdir}/*.so
-%{_usr}/%{_lib}/qt-3.3/plugins/sqldrivers/libsqlite3*.so
-%{_usr}/%{_lib}/qt-3.3/plugins/designer/libkmymoney.so
+%{tde_tdeincludedir}/kmymoney/*.h
+%{tde_libdir}/libkmm_kdchart.la
+%{tde_libdir}/libkmm_mymoney.la
+%{tde_libdir}/libkmm_plugin.la
+%{tde_libdir}/*.so
+%{qt3pluginsdir}/sqldrivers/libsqlite3*.so
+%{qt3pluginsdir}/designer/libkmymoney.so
 
 %Changelog
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-2

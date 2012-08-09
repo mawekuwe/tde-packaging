@@ -1,0 +1,11 @@
+--- koffice/chalk/configure.in.in.ORI	2012-08-05 22:30:11.362533703 +0200
++++ koffice/chalk/configure.in.in	2012-08-05 22:30:31.456987824 +0200
+@@ -48,7 +48,7 @@
+ fi
+ 
+ 
+-ac_link='$LIBTOOL_SHELL --mode=link ${CXX-g++} -o conftest $CXXFLAGS $all_includes $CPPFLAGS $LDFLAGS $all_libraries -ltqt conftest.$ac_ext -llcms 1>&5'
++ac_link='$LIBTOOL_SHELL --mode=link --tag=LD ${CXX-g++} -o conftest $CXXFLAGS $all_includes $CPPFLAGS $LDFLAGS $all_libraries -ltqt conftest.$ac_ext -llcms 1>&5'
+ 
+ if AC_TRY_EVAL(ac_link) && test -s conftest; then
+     	AC_MSG_RESULT(yes)

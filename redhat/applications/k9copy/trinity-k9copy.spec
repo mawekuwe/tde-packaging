@@ -60,11 +60,12 @@ Patch7:		k9copy-3.5.13-fix_format_string_error.patch
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-tdelibs-devel
 BuildRequires: trinity-tdebase-devel
+BuildRequires: trinity-arts-devel
 BuildRequires: desktop-file-utils
 
 # Warning: the target distribution must have ffmpeg !
 BuildRequires: ffmpeg-devel
-Requires:	ffmpeg
+#Requires:	ffmpeg
 
 %description
 k9copy is a tabbed tool that allows to copy of one or more titles from a DVD9

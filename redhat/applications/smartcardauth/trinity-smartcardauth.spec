@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp smartcardauth
-%define version 1.0
-%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_tdedocdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	SmartCard Login and LUKS Decrypt, Setup Utility
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	1.0
+Release:	1%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/System
@@ -28,19 +35,23 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 Patch0:		smartcardauth-3.5.13-ftbfs.patch
 
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 #BuildRequires:	perl-PAR-Packer
+%if 0%{?mgaversion} || 0%{?mdkversion}
+Requires:		perl-pcsc-perl
+%else
 Requires:		pcsc-perl
+%endif
 
 %description
 This utility will allow you to set up your computer to accept a SmartCard as an authentication source for:
@@ -65,28 +76,28 @@ unset QTDIR; . /etc/profile.d/qt.sh
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i "src/Makefile" \
-	-e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
+	-e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
 	-e "s|/usr/include/qt3|${QTINC}|g"
 
 %__sed -i "Makefile" \
 	-e "s|/usr/lib/perl5/Chipcard|/usr/lib64/perl5/vendor_perl/Chipcard|g"
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 ./build_ckpasswd
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
-%__install -D -m 755 scriptor_standalone.pl %{buildroot}%{_bindir}/scriptor.pl
-%__install -D -m 755 src/ckpasswd %{buildroot}%{_bindir}/smartauthckpasswd
-#%__install -D -m 755 src/ckpasswd %{buildroot}%{_bindir}/smartauthmon
-%__ln_s smartauthckpasswd %{buildroot}%{_bindir}/smartauthmon
-%__cp -Rp usr/*  %{buildroot}%{_prefix}
+%__install -D -m 755 scriptor_standalone.pl %{buildroot}%{tde_bindir}/scriptor.pl
+%__install -D -m 755 src/ckpasswd %{buildroot}%{tde_bindir}/smartauthckpasswd
+#%__install -D -m 755 src/ckpasswd %{buildroot}%{tde_bindir}/smartauthmon
+%__ln_s smartauthckpasswd %{buildroot}%{tde_bindir}/smartauthmon
+%__cp -Rp usr/*  %{buildroot}%{tde_prefix}
 
 %__mkdir_p %{buildroot}%{_sysconfdir}
 %__cp -Rp etc/* %{buildroot}%{_sysconfdir}
@@ -97,12 +108,14 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} > /dev/null
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} > /dev/null
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %files
@@ -111,18 +124,18 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{_sysconfdir}/init/smartauthlogin.conf
 %{_sysconfdir}/smartauth/smartauth.sh.in
 %{_sysconfdir}/smartauth/smartauthmon.sh.in
-%{_bindir}/cryptosmartcard.sh
-%{_bindir}/scriptor.pl
-%{_bindir}/setupcard.sh
-%{_bindir}/setupslavecard.sh
-%{_bindir}/smartauth.sh
-%{_bindir}/smartauthckpasswd
-%{_bindir}/smartauthmon
-%{_datadir}/applications/smartcardauth.desktop
-%{_datadir}/applications/smartcardrestrict.desktop
-%{_datadir}/icons/hicolor/16x16/apps/smartcardauth.png
-%{_datadir}/icons/hicolor/32x32/apps/smartcardauth.png
-%{_datadir}/initramfs-tools/hooks/cryptlukssc
+%{tde_bindir}/cryptosmartcard.sh
+%{tde_bindir}/scriptor.pl
+%{tde_bindir}/setupcard.sh
+%{tde_bindir}/setupslavecard.sh
+%{tde_bindir}/smartauth.sh
+%{tde_bindir}/smartauthckpasswd
+%{tde_bindir}/smartauthmon
+%{tde_datadir}/applications/smartcardauth.desktop
+%{tde_datadir}/applications/smartcardrestrict.desktop
+%{tde_datadir}/icons/hicolor/16x16/apps/smartcardauth.png
+%{tde_datadir}/icons/hicolor/32x32/apps/smartcardauth.png
+%{tde_datadir}/initramfs-tools/hooks/cryptlukssc
 
 
 %Changelog

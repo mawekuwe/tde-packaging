@@ -86,6 +86,10 @@ BuildRequires:	%{_lib}exiv2-devel
 BuildRequires:	exiv2-devel
 %endif
 
+Requires:	trinity-libkexiv2
+Requires:	trinity-libkdcraw
+Requires:	trinity-libkipi
+
 %description
 An easy to use and powerful digital photo management
 application, which makes importing, organizing and manipulating
@@ -147,16 +151,16 @@ export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_tdeincludedir}"
 
 %configure \
-	--prefix=%{tde_prefix} \
-	--exec-prefix=%{tde_prefix} \
-	--bindir=%{tde_bindir} \
-	--libdir=%{tde_libdir} \
-	--datadir=%{tde_datadir} \
-	--mandir=%{tde_mandir} \
-	--includedir=%{tde_tdeincludedir} \
-	--disable-rpath \
-    --with-extra-includes=%{tde_tdeincludedir}/tqt \
-    --enable-closure
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_tdeincludedir}/tqt \
+  --enable-closure
 
 %__make %{?_smp_mflags}
 
@@ -187,10 +191,10 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
 
 %post devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 %postun devel
-/sbin/ldconfig
+/sbin/ldconfig || :
 
 
 %files -f %{kdecomp}.lang

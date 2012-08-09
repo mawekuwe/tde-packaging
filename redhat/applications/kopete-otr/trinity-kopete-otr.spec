@@ -1,25 +1,35 @@
 # Default version for this component
 %define kdecomp kopete-otr
-%define version 0.7
-%define release 2
+
+# Required for Mageia 2: removes the ldflag '--no-undefined'
+%define _disable_ld_no_undefined 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	Off-The-Record encryption for Kopete [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.7
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,20 +38,20 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 # Kopete is provided by kdenetwork
-BuildRequires:	trinity-kdenetwork-devel
-Requires:		trinity-kdenetwork
+BuildRequires:	trinity-tdenetwork-devel
+Requires:		trinity-tdenetwork
 BuildRequires:	libotr-devel
 
 %description
@@ -51,14 +61,13 @@ users with IM-Cients supporting the OTR encryption method.
 
 
 %prep
-unset QTDIR; . /etc/profile.d/qt.sh
 %setup -q -n applications/%{kdecomp}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -66,57 +75,65 @@ unset QTDIR; . /etc/profile.d/qt.sh
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt \
-    --enable-closure
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-closure
 
-%__make %{?_smp_mflags}
+%__make %{_smp_mflags}
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# Unwanted files
+%__rm -f %{?buildroot}%{tde_libdir}/libkotr.so
+
+%find_lang kopete_otr
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %post
-touch --no-create %{_datadir}/icons/crystalsvg || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
+touch --no-create %{tde_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 /sbin/ldconfig || :
 
 %postun
-touch --no-create %{_datadir}/icons/crystalsvg || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg || :
+touch --no-create %{tde_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 /sbin/ldconfig || :
 
 
-%files
+%files -f kopete_otr.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README TODO
-%{_libdir}/libkotr.la
-%{_libdir}/libkotr.so
-%{_libdir}/libkotr.so.0
-%{_libdir}/libkotr.so.0.0.0
-%{tde_libdir}/kcm_kopete_otr.la
-%{tde_libdir}/kcm_kopete_otr.so
-%{tde_libdir}/kopete_otr.la
-%{tde_libdir}/kopete_otr.so
-%{_datadir}/apps/kopete_otr
-%{_datadir}/config.kcfg/kopete_otr.kcfg
-%{tde_docdir}/HTML/en/kopete_otr/common
-%{tde_docdir}/HTML/en/kopete_otr/index.cache.bz2
-%{tde_docdir}/HTML/en/kopete_otr/index.docbook
-%{_datadir}/icons/crystalsvg/16x16/apps/kopete_otr.png
-%{_datadir}/locale/de/LC_MESSAGES/kopete_otr.mo
-%{_datadir}/services/kconfiguredialog/kopete_otr_config.desktop
-%{_datadir}/services/kopete_otr.desktop
+%{tde_libdir}/libkotr.la
+%{tde_libdir}/libkotr.so.0
+%{tde_libdir}/libkotr.so.0.0.0
+%{tde_tdelibdir}/kcm_kopete_otr.la
+%{tde_tdelibdir}/kcm_kopete_otr.so
+%{tde_tdelibdir}/kopete_otr.la
+%{tde_tdelibdir}/kopete_otr.so
+%{tde_datadir}/apps/kopete_otr
+%{tde_datadir}/config.kcfg/kopete_otr.kcfg
+%{tde_tdedocdir}/HTML/en/kopete_otr/
+%{tde_datadir}/icons/crystalsvg/16x16/apps/kopete_otr.png
+%{tde_datadir}/services/kconfiguredialog/kopete_otr_config.desktop
+%{tde_datadir}/services/kopete_otr.desktop
 
 
 %Changelog

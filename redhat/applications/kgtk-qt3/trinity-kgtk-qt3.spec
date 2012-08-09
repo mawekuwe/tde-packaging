@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp kgtk-qt3
-%define version 0.10.2
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	Use KDE dialogs in Gtk apps
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.10.2
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,14 +35,17 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
+# [kgtk-qt-engine] Fix libsuffix for 64 bits machines
+Patch1:		kgtk-qt3-3.5.13-fix_libsuffix.patch
+
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -52,30 +62,43 @@ This package includes the kqt3-wrapper
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 find . -name CMakeLists.txt -exec sed -i {} \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,/usr/bin/tmoc,%{_bindir}/tmoc,g" \
-  -e "s,/usr/bin/uic-tqt,%{_bindir}/uic-tqt,g" \
+  -e "s,/usr/include/tqt,%{tde_includedir}/tqt,g" \
+  -e "s,/usr/bin/tmoc,%{tde_bindir}/tmoc,g" \
+  -e "s,/usr/bin/uic-tqt,%{tde_bindir}/uic-tqt,g" \
   \;
 
 %build
 unset QTDIR; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir} -L${QTLIB} -lX11"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir} -L${QTLIB} -lX11"
 
+%if 0%{?rhel} || 0%{?fedora}
 %__mkdir_p build
 cd build
-%cmake ..
+%endif
+
+export CMAKE_INCLUDE_PATH="%{tde_tdeincludedir}"
+
+%cmake \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DCMAKE_SKIP_RPATH="OFF" \
+  ..
 
 # SMP safe !
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
@@ -91,13 +114,13 @@ export PATH="%{_bindir}:${PATH}"
 %files -f kdialogd3.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README TODO
-%{_bindir}/kdialogd-wrapper
-%{_bindir}/kdialogd3
-%{_bindir}/kgtk-wrapper
-%{_bindir}/kgtk2-wrapper
-%{_bindir}/kqt3-wrapper
-%{_libdir}/kgtk/libkgtk2.so
-%{_libdir}/kgtk/libkqt3.so
+%{tde_bindir}/kdialogd-wrapper
+%{tde_bindir}/kdialogd3
+%{tde_bindir}/kgtk-wrapper
+%{tde_bindir}/kgtk2-wrapper
+%{tde_bindir}/kqt3-wrapper
+%{tde_libdir}/kgtk/libkgtk2.so
+%{tde_libdir}/kgtk/libkqt3.so
 
 
 %Changelog

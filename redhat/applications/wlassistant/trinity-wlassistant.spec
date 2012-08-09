@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp wlassistant
-%define version 0.5.7
-%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_tdedocdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	User friendly KDE frontend for wireless network connection [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.5.7
+Release:	1%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,14 +35,14 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://wlassistant.sourceforge.net/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -56,31 +63,31 @@ remembered so next time the user won't have to enter them again.
 # Ugly hack to modify TQT include directory inside SCONS files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i bksys/kde.py \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
 
 
 %build
 unset QTDIR; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 scons configure \
-  prefix=%{_prefix} \
-  execprefix=%{_bindir} \
-  libdir=%{_libdir} \
+  prefix=%{tde_prefix} \
+  execprefix=%{tde_bindir} \
+  libdir=%{tde_libdir} \
   qtdir=${QTDIR} \
-  kdedir=%{_prefix} \
-  kdeincludes=%{_includedir} \
+  kdedir=%{tde_prefix} \
+  kdeincludes=%{tde_tdeincludedir} \
   qtincludes=${QTINC} \
-  kdelibs=%{_libdir} \
+  kdelibs=%{tde_libdir} \
   qtlibs=${QTLIB} \
-  extraincludes=%{_includedir}:%{_includedir}/tqt:${QTINC}
+  extraincludes=%{tde_includedir}:%{tde_includedir}/tqt:${QTINC}
 
 scons -j4
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 scons install DESTDIR=%{buildroot}
 
@@ -89,31 +96,31 @@ scons install DESTDIR=%{buildroot}
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %files
 %defattr(-,root,root,-)
 %doc ChangeLog VERSION
-%{_bindir}/wlassistant
-%{_datadir}/applnk/Utilities/wlassistant.desktop
-%{_datadir}/icons/hicolor/16x16/apps/wlassistant.png
-%{_datadir}/icons/hicolor/32x32/apps/wlassistant.png
-%lang(ar) %{_datadir}/locale/ar/LC_MESSAGES/wlassistant.mo
-%lang(ca) %{_datadir}/locale/ca/LC_MESSAGES/wlassistant.mo
-%lang(es) %{_datadir}/locale/es/LC_MESSAGES/wlassistant.mo
-%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/wlassistant.mo
-%lang(nb) %{_datadir}/locale/nb/LC_MESSAGES/wlassistant.mo
-%lang(pl) %{_datadir}/locale/pl/LC_MESSAGES/wlassistant.mo
-%lang(pt) %{_datadir}/locale/pt_BR/LC_MESSAGES/wlassistant.mo
-%lang(sv) %{_datadir}/locale/sv/LC_MESSAGES/wlassistant.mo
-%lang(zh_CN) %{_datadir}/locale/zh_CN/LC_MESSAGES/wlassistant.mo
-%lang(zh_TW) %{_datadir}/locale/zh_TW/LC_MESSAGES/wlassistant.mo
+%{tde_bindir}/wlassistant
+%{tde_datadir}/applnk/Utilities/wlassistant.desktop
+%{tde_datadir}/icons/hicolor/16x16/apps/wlassistant.png
+%{tde_datadir}/icons/hicolor/32x32/apps/wlassistant.png
+%lang(ar) %{tde_datadir}/locale/ar/LC_MESSAGES/wlassistant.mo
+%lang(ca) %{tde_datadir}/locale/ca/LC_MESSAGES/wlassistant.mo
+%lang(es) %{tde_datadir}/locale/es/LC_MESSAGES/wlassistant.mo
+%lang(fr) %{tde_datadir}/locale/fr/LC_MESSAGES/wlassistant.mo
+%lang(nb) %{tde_datadir}/locale/nb/LC_MESSAGES/wlassistant.mo
+%lang(pl) %{tde_datadir}/locale/pl/LC_MESSAGES/wlassistant.mo
+%lang(pt) %{tde_datadir}/locale/pt_BR/LC_MESSAGES/wlassistant.mo
+%lang(sv) %{tde_datadir}/locale/sv/LC_MESSAGES/wlassistant.mo
+%lang(zh_CN) %{tde_datadir}/locale/zh_CN/LC_MESSAGES/wlassistant.mo
+%lang(zh_TW) %{tde_datadir}/locale/zh_TW/LC_MESSAGES/wlassistant.mo
 
 
 %Changelog

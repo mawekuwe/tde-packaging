@@ -151,7 +151,6 @@ update-desktop-database %{tde_appdir} &> /dev/null
 %{tde_datadir}/icons/crystalsvg/scalable/actions/katapultspellcheck.svgz
 %{tde_datadir}/icons/hicolor/128x128/actions/checkmark.png
 %{tde_datadir}/icons/hicolor/128x128/actions/no.png
-%{tde_datadir}/icons/hicolor/128x128/apps/katapult.png
 %{tde_datadir}/icons/hicolor/128x128/apps/xcalc.png
 %{tde_datadir}/icons/hicolor/*/apps/katapult.png
 %{tde_datadir}/icons/hicolor/scalable/apps/katapult.svgz

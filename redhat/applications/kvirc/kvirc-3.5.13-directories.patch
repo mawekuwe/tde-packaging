@@ -13,3 +13,14 @@
  	AC_SUBST(modulelibdir)
  
  	defscriptdir="\${globalkvircdir}/defscript"
+--- kvirc/configure.in.ORI	2012-08-06 13:48:54.586710376 +0200
++++ kvirc/configure.in	2012-08-06 13:50:31.344841522 +0200
+@@ -100,7 +100,7 @@
+ 
+ AC_SS_HEADER([Checking KDE])
+ 
+-SS_KDE_GENERAL_FILE_TO_SEARCH="include/kwin.h"
++SS_KDE_GENERAL_FILE_TO_SEARCH="include/kwin.h include/kde/kwin.h"
+ SS_KDE_INCLUDE_FILE_TO_SEARCH="kwin.h"
+ 
+ AC_SS_FIND_KDE

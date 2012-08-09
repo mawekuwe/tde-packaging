@@ -1,0 +1,11 @@
+--- kpilot/lib/Makefile.am.ORI	2012-08-05 23:51:32.492490057 +0200
++++ kpilot/lib/Makefile.am	2012-08-05 23:51:42.771261684 +0200
+@@ -29,7 +29,7 @@
+ 	pilotTodoEntry.cc
+ 
+ libkpilot_la_LDFLAGS = $(PISOCK_LDFLAGS) -no-undefined $(all_libraries) $(KDE_EXTRA_RPATH) $(KDE_RPATH)
+-libkpilot_la_LIBADD = $(PISOCK_LIB) $(LIB_KDEUI) $(LIB_KABC) -lkcal
++libkpilot_la_LIBADD = $(PISOCK_LIB) $(LIB_KDEUI) $(LIB_KABC) -lkcal $(LIB_QT) $(LIB_KDECORE) -lDCOP $(LIB_KIO)
+ 
+ kpilotincludedir = $(includedir)/kpilot
+ kpilotinclude_HEADERS = \

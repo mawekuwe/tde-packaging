@@ -2,23 +2,26 @@
 %define kdecomp kdesvn
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_bindir %{_prefix}/bin
-%define tde_datadir %{_prefix}/share
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
-%define tde_includedir %{_prefix}/include
-%define tde_libdir %{_prefix}/%{_lib}
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdeappdir %{tde_appdir}/kde
 %define tde_tdedocdir %{tde_docdir}/kde
 %define tde_tdeincludedir %{tde_includedir}/kde
 %define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
+
 
 Name:		trinity-%{kdecomp}
 Summary:	subversion client with tight KDE integration [Trinity]
@@ -39,6 +42,8 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 
 # [kdesvn] Fix compilation with GCC 4.7
 Patch1:		kdesvn-3.5.13-fix_gcc47_compilation.patch
+# [kdesvn] Fix "not a string literal" error
+Patch2:		kdesvn-3.5.13-fix_not_a_string_literal_error.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-tdelibs-devel
@@ -98,18 +103,19 @@ This package is part of tdesvn-trinity.
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch1 -p1
+%patch2 -p1 -b .stringliteral
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 find . -name CMakeLists.txt -exec %__sed -i {} \
-  -e "s,/usr/include/tqt,%{_includedir}/tqt,g" \
-  -e "s,/usr/bin/tmoc,%{_bindir}/tmoc,g" \
-  -e "s,/usr/bin/uic-tqt,%{_bindir}/uic-tqt,g" \
+  -e "s,/usr/include/tqt,%{tde_includedir}/tqt,g" \
+  -e "s,/usr/bin/tmoc,%{tde_bindir}/tmoc,g" \
+  -e "s,/usr/bin/uic-tqt,%{tde_bindir}/uic-tqt,g" \
   \;
 
 # More ugly hack to add TQT include directory in CMakeLists.txt	
 %__sed -i CMakeLists.txt \
-  -e "s,^\(INCLUDE_DIRECTORIES (\)$,\1\n%{_includedir}/tqt,"
+  -e "s,^\(INCLUDE_DIRECTORIES (\)$,\1\n%{tde_includedir}/tqt,"
 
 # Moves HTML files to the correect location
 find . -name "*.cmake" -exec %__sed -i {} \
@@ -118,15 +124,23 @@ find . -name "*.cmake" -exec %__sed -i {} \
 
 %build
 unset QTDIR; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${QTDIR}/bin:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-%{?!mgaversion:%__mkdir build; cd build}
+export CMAKE_INCLUDE_PATH="%{tde_tdeincludedir}"
+
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
+cd build
+%endif
+
 %cmake \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DMAN_INSTALL_DIR=%{tde_mandir}/man1 \
+  -DDATA_INSTALL_DIR=%{tde_datadir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
   -DCMAKE_SKIP_RPATH="OFF" \

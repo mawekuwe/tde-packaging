@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp kio-locate
-%define version 0.4.5
-%define release 2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	kio-slave for the locate command [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	0.4.5
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,7 +35,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org
 
-Prefix:		%{_prefix}
+Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
@@ -36,9 +43,11 @@ Source0:	%{kdecomp}-3.5.13.tar.gz
 # [kio-locate] Fix compilation with GCC 4.7
 Patch1:		kio-locate-3.5.13-fix_gcc47_compilation.patch
 
+Patch2:		kio-locate-3.5.13-downgrade_3512.patch
+
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 BuildRequires:	scons
@@ -55,23 +64,24 @@ as a directory.
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch1 -p1 -b .install
+%patch2 -p7
 
 # Ugly hack to modify TQT include directory inside SCONS files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i "admin/kde.py" \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
 
 
 %build
 unset QTDIR; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 scons configure
 scons
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 scons install DESTDIR=%{buildroot}
 
@@ -83,16 +93,13 @@ scons install DESTDIR=%{buildroot}
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING TODO
-%{tde_libdir}/kio_locate.la
-%{tde_libdir}/kio_locate.so
-%{tde_docdir}/HTML/en/kio-locate/common
-%{tde_docdir}/HTML/en/kio-locate/index.cache.bz2
-%{tde_docdir}/HTML/en/kio-locate/index.docbook
-%{tde_docdir}/HTML/en/kio-locate/screenshot.png
-%{_datadir}/services/locate.protocol
-%{_datadir}/services/locater.protocol
-%{_datadir}/services/rlocate.protocol
-%{_datadir}/services/searchproviders/locate.desktop
+%{tde_tdelibdir}/kio_locate.la
+%{tde_tdelibdir}/kio_locate.so
+%{tde_tdedocdir}/HTML/en/kio-locate/
+%{tde_datadir}/services/locate.protocol
+%{tde_datadir}/services/locater.protocol
+%{tde_datadir}/services/rlocate.protocol
+%{tde_datadir}/services/searchproviders/locate.desktop
 
 
 %Changelog

@@ -1,26 +1,36 @@
 # Default version for this component
 %define kdecomp knetworkmanager
-%if 0%{?fedora} >= 15
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
 %define version 0.9
 %else
 %define version 0.8
 %endif
-%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
-%define tde_docdir %{_docdir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_tdedocdir}
+
 
 Name:			trinity-%{kdecomp}
 Version:		%{?version}
-Release:		%{?release}%{?dist}%{?_variant}
+Release:		3%{?dist}%{?_variant}
 
 Summary:        Trinity applet for Network Manager
 
@@ -42,9 +52,14 @@ Patch10:		knetworkmanager-3.5.13-subdir_version.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Requires:       NetworkManager-gnome
-Requires:       kde-filesystem
+#Requires:       kde-filesystem
 BuildRequires:  desktop-file-utils
+
+%if 0%{?rhel} || 0%{?fedora}
+Requires:       NetworkManager-gnome
+%else
+Requires:       networkmanager
+%endif
 
 BuildRequires:	dbus-1-tqt-devel
 BuildRequires:	dbus-tqt-devel
@@ -83,18 +98,29 @@ cd knetworkmanager-0.*/src
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
-export PATH="%{_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{_includedir}:%{_includedir}/tqt"
-export LD_LIBRARY_PATH="%{_libdir}"
+export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Missing TDE macros
 %__mkdir_p cmake
-%__ln_s %{_datadir}/cmake cmake/modules
+%__ln_s %{tde_datadir}/cmake cmake/modules
 
-%__mkdir build
+%if 0%{?rhel} || 0%{?fedora}
+%__mkdir_p build
 cd build
-%cmake ..
+%endif
+
+%cmake \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DCMAKE_SKIP_RPATH="OFF" \
+  ..
+  
 %__make %{?_smp_mflags} 
 
 %install
@@ -107,14 +133,16 @@ cd build
 
 
 %post
+update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
+update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %post devel
 /sbin/ldconfig
@@ -124,22 +152,22 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %files 
 %defattr(-,root,root,-)
-%{_bindir}/knetworkmanager
-%{_libdir}/*.la
-%{_libdir}/*.so
+%{tde_bindir}/knetworkmanager
+%{tde_libdir}/*.la
+%{tde_libdir}/*.so
 %{_sysconfdir}/dbus-1/system.d/knetworkmanager.conf
-%{_datadir}/applications/kde/knetworkmanager.desktop
-%{_datadir}/apps/knetworkmanager
-%{_datadir}/icons/hicolor/*/apps/knetworkmanager*
-%{_datadir}/servicetypes/knetworkmanager_plugin.desktop
-%{_datadir}/servicetypes/knetworkmanager_vpnplugin.desktop
+%{tde_tdeappdir}/knetworkmanager.desktop
+%{tde_datadir}/apps/knetworkmanager
+%{tde_datadir}/icons/hicolor/*/apps/knetworkmanager*
+%{tde_datadir}/servicetypes/knetworkmanager_plugin.desktop
+%{tde_datadir}/servicetypes/knetworkmanager_vpnplugin.desktop
 
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/*.h
-%{tde_libdir}/*.la
-%{tde_libdir}/*.so
+%{tde_tdeincludedir}/*.h
+%{tde_tdelibdir}/*.la
+%{tde_tdelibdir}/*.so
 
 %changelog
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-3 / 0.9-3

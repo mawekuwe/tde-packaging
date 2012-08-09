@@ -6,14 +6,14 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
+%define _docdir %{tde_prefix}/share/doc
 %endif
 
 # TDE 3.5.12 specific building variables
 BuildRequires: autoconf automake libtool m4
 %define tde_docdir %{_docdir}
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/kde3
+%define tde_includedir %{tde_includedir}/kde
+%define tde_libdir %{tde_libdir}/kde3
 
 
 Name:		trinity-%{kdecomp}
@@ -33,8 +33,8 @@ Source0:	%{kdecomp}-3.5.12.tar.gz
 Conflicts:	trinity-kdegraphics
 
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 BuildRequires: imlib-devel
 
@@ -53,19 +53,20 @@ Clicking on an image shows the image in its normal size.
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
 	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt \
+    --with-extra-includes=%{tde_includedir}/tqt \
     --enable-closure
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %make_install
 
@@ -75,26 +76,26 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{_bindir}/*
-%{_datadir}/applications/*/*.desktop
-%{_datadir}/apps/*/
-%{tde_docdir}/HTML/en/*/
-%{_datadir}/icons/*/*/*/*
-%{_libdir}/libkdeinit_%{kdecomp}.so
+%{tde_bindir}/*
+%{tde_datadir}/applications/*/*.desktop
+%{tde_datadir}/apps/*/
+%{tde_tdedocdir}/HTML/en/*/
+%{tde_datadir}/icons/*/*/*/*
+%{tde_libdir}/libkdeinit_%{kdecomp}.so
 
-%exclude %{_libdir}/*.la
-%exclude %{_libdir}/*/*.so
-%exclude %{_libdir}/*/*.la
+%exclude %{tde_libdir}/*.la
+%exclude %{tde_libdir}/*/*.so
+%exclude %{tde_libdir}/*/*.la
 
 
 %Changelog

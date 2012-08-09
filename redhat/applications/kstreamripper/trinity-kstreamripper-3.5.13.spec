@@ -2,16 +2,25 @@
 %define kdecomp kstreamripper
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
@@ -27,17 +36,23 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 Patch0:		kstreamripper-3.5.13-missing_include_tqt.patch
 
+# [kstreamripper] Missing LDFLAGS cause FTBFS on Mageia / Mandriva
+Patch1:		kstreamripper-3.5.13-missing_ldflags.patch
+
+# [kstreamripper] Fix directory of HTML documentation
+Patch2:		kstreamripper-3.5.13-fix_doc_directory.patch
+
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 BuildRequires: scons
 
@@ -52,18 +67,21 @@ you with managing/ripping your preferred streams.
 %prep
 %setup -q -n applications/%{kdecomp}
 %patch0 -p1
+%patch1 -p1 -b .ldflags
+%patch2 -p1 -b .doc
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-export CXXFLAGS="-I%{_includedir}/tqt"
+export CXXFLAGS="-I%{tde_includedir}/tqt"
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
@@ -95,10 +113,10 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/kstreamripper
-%{_datadir}/applnk/Utilities/kstreamripper.desktop
-%{_datadir}/apps/kstreamripper/kstreamripperui.rc
-%{tde_docdir}/HTML/en/en/index.cache.bz2
+%{tde_bindir}/kstreamripper
+%{tde_datadir}/applnk/Utilities/kstreamripper.desktop
+%{tde_datadir}/apps/kstreamripper/kstreamripperui.rc
+%{tde_tdedocdir}/HTML/en/kstreamripper/
 
 
 

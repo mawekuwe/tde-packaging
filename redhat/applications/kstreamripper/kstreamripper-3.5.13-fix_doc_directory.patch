@@ -1,0 +1,9 @@
+--- kstreamripper/doc/SConscript.ORI	2012-08-06 10:50:27.856547193 +0200
++++ kstreamripper/doc/SConscript	2012-08-06 10:50:34.599402333 +0200
+@@ -79,5 +79,5 @@
+ 	myenv.KDEinstall( 'KDEDOC', lang+'/'+destination, folder+'/index.cache.bz2' )
+ 
+ ## Use processfolder for each documentation directory
+-processfolder('en/', 'en')
++processfolder('en/', 'en', 'kstreamripper')
+ 

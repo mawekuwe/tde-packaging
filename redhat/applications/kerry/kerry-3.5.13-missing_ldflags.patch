@@ -1,0 +1,22 @@
+--- kerry/kerry/src/Makefile.am.ORI	2012-08-05 16:28:11.459614735 +0200
++++ kerry/kerry/src/Makefile.am	2012-08-05 16:28:35.195085921 +0200
+@@ -28,7 +28,7 @@
+ 		dcopinterface.skel dcopinterface.stub kerrylabel.cpp query.cpp
+ 
+ kerry_la_LDFLAGS = -Wl,-export-dynamic  $(KDE_RPATH) $(all_libraries) -module $(KDE_PLUGIN) $(GLIB_LDFLAGS) $(LIBBEAGLE_LDFLAGS) $(LIB_QT)
+-kerry_la_LIBADD = -lkio -lkonq $(LIB_KDEUI) $(LIBBEAGLE_LIBADD) $(GLIB_LIBADD) $(LIB_KABC) 
++kerry_la_LIBADD = -lkio -lkonq $(LIB_KDEUI) $(LIBBEAGLE_LIBADD) $(GLIB_LIBADD) $(LIB_KABC) -lDCOP $(LIB_QT) $(LIB_KDECORE)
+ 
+ autostartdir = $(datadir)/autostart
+ autostart_DATA = kerry.autostart.desktop beagled.desktop
+--- kerry/kerry/src/kcm/Makefile.am.ORI	2012-08-06 10:28:54.410310191 -0400
++++ kerry/kerry/src/kcm/Makefile.am	2012-08-06 10:29:27.804685127 -0400
+@@ -9,7 +9,7 @@
+                         select_privacy_resource.ui
+ 
+ kcm_beagle_la_LDFLAGS  = $(all_libraries) -module -avoid-version -no-undefined
+-kcm_beagle_la_LIBADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBBEAGLE_LIBADD)
++kcm_beagle_la_LIBADD = $(LIB_KDEUI) $(LIB_KIO) $(LIBBEAGLE_LIBADD) $(LIB_QT) $(LIB_KDECORE) -lDCOP
+ 
+ xdg_apps_DATA = kcmbeagle.desktop
+ 

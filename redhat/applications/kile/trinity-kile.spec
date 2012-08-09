@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp kile
-%define version 2.0.2
-%define release 3
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_prefix}/share/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	KDE Integrated LaTeX Environment [Trinity]
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	2.0.2
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Publishing
@@ -28,14 +35,14 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
 
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -420,201 +427,211 @@ Kile can support large projects consisting of several smaller files.
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || \
-%__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
   --disable-rpath \
-  --with-extra-includes=%{_includedir}/tqt
+  --with-extra-includes=%{tde_includedir}/tqt
 
 %__make %{?_smp_mflags}
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%__chmod +x %{buildroot}%{_datadir}/apps/kile/test/runTests.sh
+%__chmod +x %{buildroot}%{tde_datadir}/apps/kile/test/runTests.sh
+
+# Unwanted files ...
+%__rm -f %{?buildroot}%{tde_datadir}/apps/katepart/syntax/bibtex.xml
+%__rm -f %{?buildroot}%{tde_datadir}/apps/katepart/syntax/latex.xml
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} > /dev/null
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} > /dev/null
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/kile
-%{_datadir}/applications/kde/kile.desktop
-%exclude %{_datadir}/apps/katepart/syntax/bibtex.xml
-%exclude %{_datadir}/apps/katepart/syntax/latex.xml
-%{_datadir}/apps/kconf_update
-%{_datadir}/apps/kile
-%{_datadir}/config.kcfg/kile.kcfg
-%{_datadir}/icons/hicolor/*/apps/kile.png
-%{_datadir}/icons/hicolor/scalable/apps/kile.svgz
-%{tde_docdir}/HTML/en/kile
-%{_datadir}/mimelnk/text/x-kilepr.desktop
+%{tde_bindir}/kile
+%{tde_tdeappdir}/kile.desktop
+%{tde_datadir}/apps/kconf_update
+%{tde_datadir}/apps/kile
+%{tde_datadir}/config.kcfg/kile.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kile.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kile.svgz
+%{tde_tdedocdir}/HTML/en/kile
+%{tde_datadir}/mimelnk/text/x-kilepr.desktop
 
 %files i18n-da
-%lang(da) %{tde_docdir}/HTML/da/kile
-%lang(da) %{_datadir}/locale/da/LC_MESSAGES/kile.mo
+%lang(da) %{tde_tdedocdir}/HTML/da/kile
+%lang(da) %{tde_datadir}/locale/da/LC_MESSAGES/kile.mo
 
 %files i18n-es
-%lang(es) %{tde_docdir}/HTML/es/kile
-%lang(es) %{_datadir}/locale/es/LC_MESSAGES/kile.mo
+%lang(es) %{tde_tdedocdir}/HTML/es/kile
+%lang(es) %{tde_datadir}/locale/es/LC_MESSAGES/kile.mo
 
 %files i18n-et
-%lang(et) %{tde_docdir}/HTML/et/kile
-%lang(et) %{_datadir}/locale/et/LC_MESSAGES/kile.mo
+%lang(et) %{tde_tdedocdir}/HTML/et/kile
+%lang(et) %{tde_datadir}/locale/et/LC_MESSAGES/kile.mo
 
 %files i18n-it
-%lang(it) %{tde_docdir}/HTML/it/kile
-%lang(it) %{_datadir}/locale/it/LC_MESSAGES/kile.mo
+%lang(it) %{tde_tdedocdir}/HTML/it/kile
+%lang(it) %{tde_datadir}/locale/it/LC_MESSAGES/kile.mo
 
 %files i18n-nl
-%lang(nl) %{tde_docdir}/HTML/nl/kile
-%lang(nl) %{_datadir}/locale/nl/LC_MESSAGES/kile.mo
+%lang(nl) %{tde_tdedocdir}/HTML/nl/kile
+%lang(nl) %{tde_datadir}/locale/nl/LC_MESSAGES/kile.mo
 
 %files i18n-pt
-%lang(pt) %{tde_docdir}/HTML/pt/kile
-%lang(pt) %{_datadir}/locale/pt/LC_MESSAGES/kile.mo
+%lang(pt) %{tde_tdedocdir}/HTML/pt/kile
+%lang(pt) %{tde_datadir}/locale/pt/LC_MESSAGES/kile.mo
 
 %files i18n-sv
-%lang(sv) %{tde_docdir}/HTML/sv/kile
-%lang(sv) %{_datadir}/locale/sv/LC_MESSAGES/kile.mo
+%lang(sv) %{tde_tdedocdir}/HTML/sv/kile
+%lang(sv) %{tde_datadir}/locale/sv/LC_MESSAGES/kile.mo
 
 %files i18n-ar
-%lang(ar) %{_datadir}/locale/ar/LC_MESSAGES/kile.mo
+%lang(ar) %{tde_datadir}/locale/ar/LC_MESSAGES/kile.mo
 
 %files i18n-bg
-%lang(bg) %{_datadir}/locale/bg/LC_MESSAGES/kile.mo
+%lang(bg) %{tde_datadir}/locale/bg/LC_MESSAGES/kile.mo
 
 %files i18n-br
-%lang(br) %{_datadir}/locale/br/LC_MESSAGES/kile.mo
+%lang(br) %{tde_datadir}/locale/br/LC_MESSAGES/kile.mo
 
 %files i18n-ca
-%lang(ca) %{_datadir}/locale/ca/LC_MESSAGES/kile.mo
+%lang(ca) %{tde_datadir}/locale/ca/LC_MESSAGES/kile.mo
 
 %files i18n-cs
-%lang(cs) %{_datadir}/locale/cs/LC_MESSAGES/kile.mo
+%lang(cs) %{tde_datadir}/locale/cs/LC_MESSAGES/kile.mo
 
 %files i18n-cy
-%lang(cy) %{_datadir}/locale/cy/LC_MESSAGES/kile.mo
+%lang(cy) %{tde_datadir}/locale/cy/LC_MESSAGES/kile.mo
 
 %files i18n-de
-%lang(de) %{_datadir}/locale/de/LC_MESSAGES/kile.mo
+%lang(de) %{tde_datadir}/locale/de/LC_MESSAGES/kile.mo
 
 %files i18n-el
-%lang(el) %{_datadir}/locale/el/LC_MESSAGES/kile.mo
+%lang(el) %{tde_datadir}/locale/el/LC_MESSAGES/kile.mo
 
 %files i18n-engb
-%lang(en_GB) %{_datadir}/locale/en_GB/LC_MESSAGES/kile.mo
+%lang(en_GB) %{tde_datadir}/locale/en_GB/LC_MESSAGES/kile.mo
 
 %files i18n-eu
-%lang(eu) %{_datadir}/locale/eu/LC_MESSAGES/kile.mo
+%lang(eu) %{tde_datadir}/locale/eu/LC_MESSAGES/kile.mo
 
 %files i18n-fi
-%lang(fi) %{_datadir}/locale/fi/LC_MESSAGES/kile.mo
+%lang(fi) %{tde_datadir}/locale/fi/LC_MESSAGES/kile.mo
 
 %files i18n-fr
-%lang(fr) %{_datadir}/locale/fr/LC_MESSAGES/kile.mo
+%lang(fr) %{tde_datadir}/locale/fr/LC_MESSAGES/kile.mo
 
 %files i18n-ga
-%lang(ga) %{_datadir}/locale/ga/LC_MESSAGES/kile.mo
+%lang(ga) %{tde_datadir}/locale/ga/LC_MESSAGES/kile.mo
 
 %files i18n-gl
-%lang(gl) %{_datadir}/locale/gl/LC_MESSAGES/kile.mo
+%lang(gl) %{tde_datadir}/locale/gl/LC_MESSAGES/kile.mo
 
 %files i18n-hi
-%lang(hi) %{_datadir}/locale/hi/LC_MESSAGES/kile.mo
+%lang(hi) %{tde_datadir}/locale/hi/LC_MESSAGES/kile.mo
 
 %files i18n-hu
-%lang(hu) %{_datadir}/locale/hu/LC_MESSAGES/kile.mo
+%lang(hu) %{tde_datadir}/locale/hu/LC_MESSAGES/kile.mo
 
 %files i18n-is
-%lang(is) %{_datadir}/locale/is/LC_MESSAGES/kile.mo
+%lang(is) %{tde_datadir}/locale/is/LC_MESSAGES/kile.mo
 
 %files i18n-ja
-%lang(ja) %{_datadir}/locale/ja/LC_MESSAGES/kile.mo
+%lang(ja) %{tde_datadir}/locale/ja/LC_MESSAGES/kile.mo
 
 %files i18n-lt
-%lang(lt) %{_datadir}/locale/lt/LC_MESSAGES/kile.mo
+%lang(lt) %{tde_datadir}/locale/lt/LC_MESSAGES/kile.mo
 
 %files i18n-ms
-%lang(ms) %{_datadir}/locale/ms/LC_MESSAGES/kile.mo
+%lang(ms) %{tde_datadir}/locale/ms/LC_MESSAGES/kile.mo
 
 %files i18n-mt
-%lang(mt) %{_datadir}/locale/mt/LC_MESSAGES/kile.mo
+%lang(mt) %{tde_datadir}/locale/mt/LC_MESSAGES/kile.mo
 
 %files i18n-nb
-%lang(nb) %{_datadir}/locale/nb/LC_MESSAGES/kile.mo
+%lang(nb) %{tde_datadir}/locale/nb/LC_MESSAGES/kile.mo
 
 %files i18n-nds
-%lang(nds) %{_datadir}/locale/nds/LC_MESSAGES/kile.mo
+%lang(nds) %{tde_datadir}/locale/nds/LC_MESSAGES/kile.mo
 
 %files i18n-nn
-%lang(nn) %{_datadir}/locale/nn/LC_MESSAGES/kile.mo
+%lang(nn) %{tde_datadir}/locale/nn/LC_MESSAGES/kile.mo
 
 %files i18n-pa
-%lang(pa) %{_datadir}/locale/pa/LC_MESSAGES/kile.mo
+%lang(pa) %{tde_datadir}/locale/pa/LC_MESSAGES/kile.mo
 
 %files i18n-pl
-%lang(pl) %{_datadir}/locale/pl/LC_MESSAGES/kile.mo
+%lang(pl) %{tde_datadir}/locale/pl/LC_MESSAGES/kile.mo
 
 %files i18n-ptbr
-%lang(pt_BR) %{_datadir}/locale/pt_BR/LC_MESSAGES/kile.mo
+%lang(pt_BR) %{tde_datadir}/locale/pt_BR/LC_MESSAGES/kile.mo
 
 %files i18n-ro
-%lang(ro) %{_datadir}/locale/ro/LC_MESSAGES/kile.mo
+%lang(ro) %{tde_datadir}/locale/ro/LC_MESSAGES/kile.mo
 
 %files i18n-ru
-%lang(ru) %{_datadir}/locale/ru/LC_MESSAGES/kile.mo
+%lang(ru) %{tde_datadir}/locale/ru/LC_MESSAGES/kile.mo
 
 %files i18n-rw
-%lang(rw) %{_datadir}/locale/rw/LC_MESSAGES/kile.mo
+%lang(rw) %{tde_datadir}/locale/rw/LC_MESSAGES/kile.mo
 
 %files i18n-sk
-%lang(sk) %{_datadir}/locale/sk/LC_MESSAGES/kile.mo
+%lang(sk) %{tde_datadir}/locale/sk/LC_MESSAGES/kile.mo
 
 %files i18n-sr
-%lang(sr) %{_datadir}/locale/sr/LC_MESSAGES/kile.mo
+%lang(sr) %{tde_datadir}/locale/sr/LC_MESSAGES/kile.mo
 
 %files i18n-srlatin
-%lang(sr@Latn) %{_datadir}/locale/sr@Latn/LC_MESSAGES/kile.mo
+%lang(sr@Latn) %{tde_datadir}/locale/sr@Latn/LC_MESSAGES/kile.mo
 
 %files i18n-ta
-%lang(ta) %{_datadir}/locale/ta/LC_MESSAGES/kile.mo
+%lang(ta) %{tde_datadir}/locale/ta/LC_MESSAGES/kile.mo
 
 %files i18n-th
-%lang(th) %{_datadir}/locale/th/LC_MESSAGES/kile.mo
+%lang(th) %{tde_datadir}/locale/th/LC_MESSAGES/kile.mo
 
 %files i18n-tr
-%lang(tr) %{_datadir}/locale/tr/LC_MESSAGES/kile.mo
+%lang(tr) %{tde_datadir}/locale/tr/LC_MESSAGES/kile.mo
 
 %files i18n-uk
-%lang(uk) %{_datadir}/locale/uk/LC_MESSAGES/kile.mo
+%lang(uk) %{tde_datadir}/locale/uk/LC_MESSAGES/kile.mo
 
 %files i18n-zhcn
-%lang(zh_CN) %{_datadir}/locale/zh_CN/LC_MESSAGES/kile.mo
+%lang(zh_CN) %{tde_datadir}/locale/zh_CN/LC_MESSAGES/kile.mo
  
 
 

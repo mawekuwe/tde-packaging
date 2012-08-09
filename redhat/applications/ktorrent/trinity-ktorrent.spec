@@ -1,25 +1,32 @@
 # Default version for this component
 %define kdecomp ktorrent
-%define version 2.2.8
-%define release 1
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
-BuildRequires: autoconf automake libtool m4
-%define tde_docdir %{_docdir}/kde
-%define tde_includedir %{_includedir}/kde
-%define tde_libdir %{_libdir}/trinity
+%define tde_bindir %{tde_prefix}/bin
+%define tde_datadir %{tde_prefix}/share
+%define tde_docdir %{tde_datadir}/doc
+%define tde_includedir %{tde_prefix}/include
+%define tde_libdir %{tde_prefix}/%{_lib}
+%define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
+
+%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdedocdir %{tde_docdir}/kde
+%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdelibdir %{tde_libdir}/trinity
+
+%define _docdir %{tde_docdir}
 
 
 Name:		trinity-%{kdecomp}
 Summary:	BitTorrent client for Trinity
-Version:	%{?version}
-Release:	%{?release}%{?dist}%{?_variant}
+Version:	2.2.8
+Release:	1%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -28,7 +35,7 @@ Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://ktorrent.org
 
-Prefix:    %{_prefix}
+Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
@@ -51,11 +58,12 @@ Patch6:		ktorrent-3.5.13-5dcbbbba-partial.diff
 Patch7:		bp006-5af9907f.diff
 # [ktorrent] Change default configuration to use external geoip database when found and use internal database only when external database is not found. [Bug #443] [Commit #355c6b69]
 Patch8:		bp007-355c6b69.diff
-
+# [ktorrent] Missing LDFLAGS cause FTBFS on Mageia / Mandriva
+Patch9:		ktorrent-3.5.13-missing_ldflags.patch
 
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -78,12 +86,13 @@ enabling background downloading.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_docdir}/HTML'|g"
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -91,12 +100,20 @@ enabling background downloading.
 
 
 %build
-export PATH="%{_bindir}:${PATH}"
-export LDFLAGS="-L%{_libdir} -I%{_includedir}"
+unset QTDIR; . /etc/profile.d/qt.sh
+export PATH="%{tde_bindir}:${PATH}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{_includedir}/tqt
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  --disable-rpath \
+  --with-extra-includes=%{tde_includedir}/tqt
 
 
 # Not SMP safe !
@@ -104,12 +121,15 @@ export LDFLAGS="-L%{_libdir} -I%{_includedir}"
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
 
 %find_lang %{kdecomp}
+
+# Unwanted files
+%__rm -f %{?buildroot}%{tde_libdir}/libktorrent.so
 
 
 %clean
@@ -117,55 +137,56 @@ export PATH="%{_bindir}:${PATH}"
 
 
 %post
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} > /dev/null
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+update-desktop-database %{tde_appdir} > /dev/null
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 
 %files -f %{kdecomp}.lang
 %defattr(-,root,root,-)
-%{_bindir}/ktcachecheck
-%{_bindir}/ktorrent
-%{_bindir}/ktshell
-%{_bindir}/kttorinfo
-%{_bindir}/ktupnptest
-%{_libdir}/libktorrent-%{version}.so
-%{_libdir}/libktorrent.la
-%{_libdir}/libktorrent.so
-%{tde_libdir}/ktinfowidgetplugin.la
-%{tde_libdir}/ktinfowidgetplugin.so
-%{tde_libdir}/ktipfilterplugin.la
-%{tde_libdir}/ktipfilterplugin.so
-%{tde_libdir}/ktlogviewerplugin.la
-%{tde_libdir}/ktlogviewerplugin.so
-%{tde_libdir}/ktpartfileimportplugin.la
-%{tde_libdir}/ktpartfileimportplugin.so
-%{tde_libdir}/ktrssfeedplugin.la
-%{tde_libdir}/ktrssfeedplugin.so
-%{tde_libdir}/ktscanfolderplugin.la
-%{tde_libdir}/ktscanfolderplugin.so
-%{tde_libdir}/ktschedulerplugin.la
-%{tde_libdir}/ktschedulerplugin.so
-%{tde_libdir}/ktsearchplugin.la
-%{tde_libdir}/ktsearchplugin.so
-%{tde_libdir}/ktstatsplugin.la
-%{tde_libdir}/ktstatsplugin.so
-%{tde_libdir}/ktupnpplugin.la
-%{tde_libdir}/ktupnpplugin.so
-%{tde_libdir}/ktwebinterfaceplugin.la
-%{tde_libdir}/ktwebinterfaceplugin.so
-%{_datadir}/applications/kde/ktorrent.desktop
-%{_datadir}/apps/ktorrent
-%{_datadir}/config.kcfg/*.kcfg
-%{_datadir}/icons/hicolor/*/*/*.png
-%{_datadir}/icons/hicolor/*/*/*.svgz
-%{_datadir}/services/*.desktop
-%{_datadir}/servicetypes/ktorrentplugin.desktop
+%{tde_bindir}/ktcachecheck
+%{tde_bindir}/ktorrent
+%{tde_bindir}/ktshell
+%{tde_bindir}/kttorinfo
+%{tde_bindir}/ktupnptest
+%{tde_libdir}/libktorrent-%{version}.so
+%{tde_libdir}/libktorrent.la
+%{tde_tdelibdir}/ktinfowidgetplugin.la
+%{tde_tdelibdir}/ktinfowidgetplugin.so
+%{tde_tdelibdir}/ktipfilterplugin.la
+%{tde_tdelibdir}/ktipfilterplugin.so
+%{tde_tdelibdir}/ktlogviewerplugin.la
+%{tde_tdelibdir}/ktlogviewerplugin.so
+%{tde_tdelibdir}/ktpartfileimportplugin.la
+%{tde_tdelibdir}/ktpartfileimportplugin.so
+%{tde_tdelibdir}/ktrssfeedplugin.la
+%{tde_tdelibdir}/ktrssfeedplugin.so
+%{tde_tdelibdir}/ktscanfolderplugin.la
+%{tde_tdelibdir}/ktscanfolderplugin.so
+%{tde_tdelibdir}/ktschedulerplugin.la
+%{tde_tdelibdir}/ktschedulerplugin.so
+%{tde_tdelibdir}/ktsearchplugin.la
+%{tde_tdelibdir}/ktsearchplugin.so
+%{tde_tdelibdir}/ktstatsplugin.la
+%{tde_tdelibdir}/ktstatsplugin.so
+%{tde_tdelibdir}/ktupnpplugin.la
+%{tde_tdelibdir}/ktupnpplugin.so
+%{tde_tdelibdir}/ktwebinterfaceplugin.la
+%{tde_tdelibdir}/ktwebinterfaceplugin.so
+%{tde_tdeappdir}/ktorrent.desktop
+%{tde_datadir}/apps/ktorrent
+%{tde_datadir}/config.kcfg/*.kcfg
+%{tde_datadir}/icons/hicolor/*/*/*.png
+%{tde_datadir}/icons/hicolor/*/*/*.svgz
+%{tde_datadir}/services/*.desktop
+%{tde_datadir}/servicetypes/ktorrentplugin.desktop
 
 
 %Changelog
