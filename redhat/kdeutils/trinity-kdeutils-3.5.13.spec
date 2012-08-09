@@ -1,7 +1,9 @@
+# Avoids relinking, which breaks consolehelper
+%define dont_relink 1
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-%define _docdir %{tde_datadir}/doc
 %endif
 
 # TDE 3.5.13 specific building variables
@@ -615,6 +617,7 @@ power management, for laptops, from within TDE.
 %{_sysconfdir}/pam.d/klaptop_acpi_helper
 %attr(644,root,root) %{_sysconfdir}/security/console.apps/klaptop_acpi_helper
 %{tde_sbindir}/klaptop_acpi_helper
+%{_sbindir}/klaptop_acpi_helper
 %config %{tde_datadir}/config/kcmlaptoprc
 
 %post -n trinity-klaptopdaemon
@@ -1024,11 +1027,13 @@ fi
 %__install -p -D -m 644 %{SOURCE1} %{buildroot}%{_sysconfdir}/pam.d/klaptop_acpi_helper
 %__install -p -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/security/console.apps/klaptop_acpi_helper
 
-pushd %{buildroot}%{tde_bindir}
-  %__mkdir_p %{buildroot}%{tde_sbindir}
-  %__mv klaptop_acpi_helper ../sbin
-  %__ln_s /usr/bin/consolehelper klaptop_acpi_helper
-popd
+# Use consolehelper for 'klaptop_acpi_helper'
+%__mkdir_p %{buildroot}%{tde_sbindir} %{buildroot}%{_sbindir}
+%__mv %{buildroot}%{tde_bindir}/klaptop_acpi_helper %{buildroot}%{tde_sbindir}
+%__ln_s %{_bindir}/consolehelper %{buildroot}%{tde_bindir}/klaptop_acpi_helper
+%if "%{tde_prefix}" != "/usr"
+%__ln_s %{tde_sbindir}/klaptop_acpi_helper %{?buildroot}%{_sbindir}/klaptop_acpi_helper
+%endif
 
 # klaptop setting
 %__install -p -D -m 644 %{SOURCE3} %{buildroot}%{tde_datadir}/config/kcmlaptoprc

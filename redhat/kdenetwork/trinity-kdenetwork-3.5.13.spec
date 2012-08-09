@@ -1,3 +1,6 @@
+# Avoids relinking, which breaks consolehelper
+%define dont_relink 1
+
 # If TDE is built iwn a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
@@ -55,6 +58,8 @@ Patch4: kdenetwork-3.2.3-resolv.patch
 # include more/proper ppp headers
 Patch6: kdenetwork-3.5.9-krfb_httpd.patch
 
+# [kdenetworks] Missing LDFLAGS cause FTBFS
+Patch1:		kdenetwork-3.5.13-missing_ldflags.patch
 # [kdenetwork] Fix kopete protocol compilation [Bug #695]
 Patch10:	kdenetwork-3.5.13-kopete_msn_protocol.patch
 Patch11:	kdenetwork-3.5.13-kopete_sms_protocol.patch
@@ -76,8 +81,6 @@ Patch19:	kdenetwork-3.5.13-fix_html_specialchar_in_kopete_nowlistening.patch
 Patch20:	kdenetwork-3.5.13-fix_a_fatal_error_message.patch
 # [tdenetwork] Fix a parallel build bug [Commit #35c41f35]
 Patch21:	kdenetwork-3.5.13-fix_parallel_build.patch
-# [tdenetwork] Use libv4l if available, otherwise check for v4l1 headers [Commit #d8cbbab8]
-Patch22:	kdenetwork-3.5.13-use_libv4l_or_libv4l1.patch
 
 BuildRequires:	gettext
 BuildRequires:	trinity-kdelibs-devel
@@ -212,6 +215,8 @@ Requires:		trinity-kdelibs-devel
 
 Obsoletes:	trinity-kdenetwork-devel < %{version}-%{release}
 Provides:	trinity-kdenetwork-devel = %{version}-%{release}
+Obsoletes:	tdenetwork-devel < %{version}-%{release}
+Provides:	tdenetwork-devel = %{version}-%{release}
 
 %description devel
 This is the development package which contains the headers for the KDE RSS
@@ -579,7 +584,6 @@ Support for more IM protocols can be added through a plugin system.
 %{tde_datadir}/services/aim.protocol
 %{tde_datadir}/services/chatwindow.desktop
 %{tde_datadir}/services/emailwindow.desktop
-#%{tde_datadir}/services/irc.protocol /opt/trinity/share/apps/kopete/
 %{tde_datadir}/services/jabberdisco.protocol
 %{tde_datadir}/services/kconfiguredialog/kopete_*.desktop
 %{tde_datadir}/services/kopete_*.desktop
@@ -693,9 +697,10 @@ track of the time spent online for you.
 %defattr(-,root,root,-)
 %config(noreplace) /etc/security/console.apps/kppp3
 %config(noreplace) /etc/pam.d/kppp3
-%{tde_bindir}/kppp
+%{tde_bindir}/kppp3
 %{tde_bindir}/kppplogview
-%{tde_sbindir}/kppp
+%{_sbindir}/kppp3
+%{tde_sbindir}/kppp3
 %{tde_tdeappdir}/Kppp.desktop
 %{tde_tdeappdir}/kppplogview.desktop
 %{tde_datadir}/apps/checkrules
@@ -1024,6 +1029,7 @@ update-desktop-database 2> /dev/null || :
 %prep
 %setup -q -n kdenetwork
 
+%patch1 -p1 -b .ldflags
 %patch3 -p1 -b .kppp
 %patch4 -p1 -b .resolv
 %patch6 -p1 -b .krfb_httpd
@@ -1071,7 +1077,7 @@ cd build
   ..
 
 # Tdenetwork is not smp safe !
-%__make
+%__make VERBOSE=1
 
 
 %install
@@ -1106,17 +1112,21 @@ for i in fileshare kcmkrfb kcmktalkd kcmwifi krfb kppp kppplogview \
    fi
 done
 
-# Run kppp through consolehelper
-install -p -m644 -D %{SOURCE1} %{buildroot}/etc/pam.d/kppp3
-mkdir -p %{buildroot}%{tde_sbindir}
-mv %{buildroot}%{tde_bindir}/kppp %{buildroot}%{tde_sbindir}
-ln -s /usr/bin/consolehelper %{buildroot}%{tde_bindir}/kppp
-mkdir -p %{buildroot}/etc/security/console.apps
-cat > %{buildroot}/etc/security/console.apps/kppp3 <<EOF
+# Run kppp through consolehelper, and rename it to 'kppp3'
+%__install -p -m644 -D %{SOURCE1} %{buildroot}/etc/pam.d/kppp3
+%__mkdir_p %{buildroot}%{tde_sbindir} %{buildroot}%{_sbindir}
+%__mv %{buildroot}%{tde_bindir}/kppp %{buildroot}%{tde_sbindir}/kppp3
+%__ln_s %{_bindir}/consolehelper %{buildroot}%{tde_bindir}/kppp3
+%if "%{tde_prefix}" != "/usr"
+%__ln_s %{tde_sbindir}/kppp3 %{?buildroot}%{_sbindir}/kppp3
+%endif
+%__mkdir_p %{buildroot}%{_sysconfdir}/security/console.apps
+cat > %{buildroot}%{_sysconfdir}/security/console.apps/kppp3 <<EOF
 USER=root
-PROGRAM=%{tde_sbindir}/kppp
+PROGRAM=%{tde_sbindir}/kppp3
 SESSION=true
 EOF
+%__sed -i %{buildroot}%{tde_tdeappdir}/Kppp.desktop -e "/Exec=/ s|kppp|kppp3|"
 
 # ktalk
 %__install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
@@ -1144,7 +1154,6 @@ EOF
 - Fix html special chars in kopete nowlistening plugin [Bug #944] [Commit #0a2892ed]
 - Fix a fatal error message [Commit #5c988de1]
 - Fix a parallel build bug [Commit #35c41f35]
-- Use libv4l if available, otherwise check for v4l1 headers [Commit #d8cbbab8]
 
 * Sat Jun 16 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Split single package in multiple packages

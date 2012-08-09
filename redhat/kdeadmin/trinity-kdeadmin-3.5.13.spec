@@ -1,3 +1,6 @@
+# Avoids relinking, which breaks consolehelper
+%define dont_relink 1
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
@@ -6,7 +9,7 @@
 # TDE 3.5.13 specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_sbindir %{tde_prefix}/sbin
-%define tde_datadir %{_prefix}/share
+%define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -52,7 +55,9 @@ Patch2:		bp004-1f719050.diff
 Patch3:		kdeadmin-3.5.13-remove_more_applications_in_menu.patch
 
 BuildRequires: autoconf automake libtool m4
-BuildRequires: trinity-kdelibs-devel
+BuildRequires: tqtinterface-devel
+BuildRequires: trinity-arts-devel
+BuildRequires: trinity-tdelibs-devel
 BuildRequires: rpm-devel
 BuildRequires: pam-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -79,6 +84,10 @@ kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 
 %files
 %defattr(-,root,root,-)
+# LILO is not provided in RHEL or Fedora
+%if 0%{?rhel} || 0%{?fedora}
+%exclude %{tde_tdedocdir}/HTML/en/lilo-config/
+%endif
 
 ##########
 
@@ -284,6 +293,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %package -n trinity-kuser
 Summary:	Trinity user/group administration tool
 Group:		Applications/Utilities
+# package 'usermode' provides '/usr/bin/consolehelper-gtk'
 %if 0%{?rhel} || 0%{?fedora}
 Requires:	usermode-gtk
 %else
@@ -296,6 +306,7 @@ A user/group administration tool for TDE.
 %files -n trinity-kuser
 %defattr(-,root,root,-)
 %doc rpmdocs/kuser/*
+%{_sbindir}/kuser
 %{tde_bindir}/kuser
 %{tde_sbindir}/kuser
 %{tde_tdeappdir}/kuser.desktop
@@ -329,7 +340,7 @@ Summary:	Trinity frontend for lilo configuration
 Group:		Applications/Utilities
 Requires:	trinity-kcontrol
 Requires:	trinity-tdebase-bin
-Requires:	lilo
+#Requires:	lilo
 
 %description -n trinity-lilo-config
 lilo-config is a TDE based frontend to the lilo boot manager configuration.
@@ -344,6 +355,9 @@ tdebase-bin since it uses the tdesu command to gain root privileges.
 %{tde_tdelibdir}/kcm_lilo.so
 %{tde_tdeappdir}/lilo.desktop
 %{tde_tdedocdir}/HTML/en/lilo-config/
+
+%post -n trinity-lilo-config
+touch /etc/lilo.conf
 %endif
 
 ##########
@@ -375,11 +389,13 @@ export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
+   --prefix=%{tde_prefix} \
    --exec-prefix=%{tde_prefix} \
    --bindir=%{tde_bindir} \
    --sbindir=%{tde_sbindir} \
    --libdir=%{tde_libdir} \
    --datadir=%{tde_datadir} \
+   --docdir=%{tde_docdir} \
    --includedir=%{tde_tdeincludedir} \
    --enable-new-ldflags \
    --disable-dependency-tracking \
@@ -402,17 +418,21 @@ export PATH="%{tde_bindir}:${PATH}"
 
 comps="kcron kdat knetworkconf kpackage ksysv kuser"
 %__mkdir_p	%{buildroot}%{tde_datadir}/config \
-			%{buildroot}/etc/security/console.apps \
-			%{buildroot}/etc/pam.d \
-			%{buildroot}%{tde_sbindir}
+			%{buildroot}%{_sysconfdir}/security/console.apps \
+			%{buildroot}%{_sysconfdir}/pam.d \
+			%{buildroot}%{tde_sbindir} \
+			%{buildroot}%{_sbindir}
 
 %__install -p -m644 %{SOURCE5} %{SOURCE6} %{SOURCE7} %{buildroot}%{tde_datadir}/config/
 
 # Run kuser through consolehelper
-%__install -p -m644 %{SOURCE1} %{buildroot}/etc/security/console.apps/kuser
-%__install -p -m644 %{SOURCE2} %{buildroot}/etc/pam.d/kuser
+%__install -p -m644 %{SOURCE1} %{buildroot}%{_sysconfdir}/security/console.apps/kuser
+%__install -p -m644 %{SOURCE2} %{buildroot}%{_sysconfdir}/pam.d/kuser
 %__mv %{buildroot}%{tde_bindir}/kuser %{buildroot}%{tde_sbindir}
-%__ln_s consolehelper %{buildroot}%{tde_bindir}/kuser
+%__ln_s %{_bindir}/consolehelper %{buildroot}%{tde_bindir}/kuser
+%if "%{tde_prefix}" != "/usr"
+%__ln_s %{tde_sbindir}/kuser %{?buildroot}%{_sbindir}/kuser
+%endif
 
 # locale's
 HTML_DIR=$(kde-config --expandvars --install html)
@@ -451,10 +471,6 @@ done
 #  * Removed useless program secpolicy. (Closes: #399426)
 %__rm -f %{?buildroot}%{tde_bindir}/secpolicy
 
-# LILO is not provided in RHEL or Fedora
-%if 0%{?rhel} || 0%{?fedora}
-%exclude %{tde_tdedocdir}/HTML/en/lilo-config/
-%endif
 
 
 %clean
