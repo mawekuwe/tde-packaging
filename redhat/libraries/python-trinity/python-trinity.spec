@@ -50,8 +50,8 @@ Patch3:		python-trinity-3.5.13-fix_mandrake_detection.patch
 
 
 BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-kdelibs-devel
-BuildRequires:	trinity-kdebase-devel
+BuildRequires:	trinity-tdelibs-devel
+BuildRequires:	trinity-tdebase-devel
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
