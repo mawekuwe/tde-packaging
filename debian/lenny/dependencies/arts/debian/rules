@@ -14,7 +14,8 @@ include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/rules/utils.mk
 include debian/cdbs/debian-qt-kde.mk
 
-DEB_CMAKE_EXTRA_FLAGS := -DPKGCONFIG_INSTALL_DIR="/usr/lib/pkgconfig" -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/kde" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF"
+DEB_CMAKE_EXTRA_FLAGS := -DPKGCONFIG_INSTALL_DIR="/usr/lib/pkgconfig" -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/kde" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF" \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 # Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
 # never build in parallel, regardless of DEB_BUILD_OPTIONS.
