@@ -1,0 +1,31 @@
+--- pykdeextensions/src/kdedistutils.py.ori	2012-08-05 09:04:21.430039677 +0000
++++ pykdeextensions/src/kdedistutils.py	2012-08-05 09:04:33.013847354 +0000
+@@ -820,7 +820,7 @@
+             linklist.append("-L"+self.kde_lib_dir); linklist.append("-L/opt/trinity/lib"); linklist.append("-lkdecore"); linklist.append("-lpythonize")
+             linklist.append("-L"+self.qt_lib_dir); linklist.append("-lqt-mt")
+             linklist.append("-lm")
+-            linklist.append("-lstdc++")
++#            linklist.append("-lstdc++")
+             linklist.append("-lc")
+             linklist.append(self.clib)
+ 
+@@ -1734,7 +1734,7 @@
+             linklist.append("-L"+self.kde_lib_dir); linklist.append("-L/opt/trinity/lib"); linklist.append("-lkdecore"); linklist.append("-lpythonize")
+             linklist.append("-L"+self.qt_lib_dir); linklist.append("-lqt-mt")
+             linklist.append("-lm")
+-            linklist.append("-lstdc++")
++#            linklist.append("-lstdc++")
+             linklist.append("-lc")
+             linklist.append(self.clib)
+ 
+--- pykdeextensions/setup.py.ORI	2012-08-05 09:07:01.588332389 +0000
++++ pykdeextensions/setup.py	2012-08-05 09:07:07.795225579 +0000
+@@ -223,7 +223,7 @@
+         linklist.extend(sysconfig.get_config_var("LIBS").split())
+         
+         linklist.append("-lm")
+-        linklist.append("-lstdc++")
++#        linklist.append("-lstdc++")
+         linklist.append("-lc")
+         linklist.append(self.clib)
+ 
