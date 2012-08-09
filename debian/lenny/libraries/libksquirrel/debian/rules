@@ -28,6 +28,9 @@ DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 config.status: configure
 	dh_testdir
 
+configure:
+	dh_testdir
+
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
