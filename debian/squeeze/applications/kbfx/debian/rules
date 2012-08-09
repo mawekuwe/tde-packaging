@@ -21,7 +21,8 @@ DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
-DEB_CMAKE_EXTRA_FLAGS = -DLIB_SUFFIX="" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/tde" -DCMAKE_INSTALL_PREFIX="/opt/trinity/"
+DEB_CMAKE_EXTRA_FLAGS = -DLIB_SUFFIX="" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/tde" -DCMAKE_INSTALL_PREFIX="/opt/trinity/" \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo
 
 get-orig-source:
 	@@dh_testdir
