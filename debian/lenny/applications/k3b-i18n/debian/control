@@ -3,7 +3,7 @@ Section: otherosfs
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Francois Marier <francois@debian.org>, Fathi Boudra <fabo@debian.org>
-Build-Depends: debhelper (>= 6), quilt, automake, autoconf
+Build-Depends: debhelper (>= 6), quilt, automake, autoconf, libtool, libltdl-dev
 Build-Depends-Indep: tdelibs4-trinity-dev
 Standards-Version: 3.7.3
 Homepage: http://www.k3b.org
