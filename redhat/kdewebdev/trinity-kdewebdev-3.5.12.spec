@@ -176,9 +176,11 @@ done
 update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
-%post libs -p /sbin/ldconfig
+%post libs
+/sbin/ldconfig
 
-%postun libs -p /sbin/ldconfig
+%postun libs
+/sbin/ldconfig
 
 
 %clean

@@ -290,9 +290,11 @@ if [ $1 -eq 0 ]; then
   /sbin/service lisa stop > /dev/null 2>&1 ||:
 fi
 
-%post libs -p /sbin/ldconfig
+%post libs
+/sbin/ldconfig
 
-%postun libs -p /sbin/ldconfig
+%postun libs
+/sbin/ldconfig
 
 %post extras
 for f in crystalsvg hicolor ; do

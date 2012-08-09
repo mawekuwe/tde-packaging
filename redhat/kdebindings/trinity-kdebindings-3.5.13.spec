@@ -257,18 +257,27 @@ This package is part of the official TDE bindings module.
 %files -n trinity-libqt3-jni
 %defattr(-,root,root,-)
 %{tde_libdir}/libqtjavasupport.la
-%{tde_libdir}/libqtjavasupport.so
 %{tde_libdir}/libqtjavasupport.so.*
 %{tde_libdir}/jni/libqtjava.la
-%{tde_libdir}/jni/libqtjava.so
 %{tde_libdir}/jni/libqtjava.so.*
 %doc qtjava/ChangeLog
 
-%post -n trinity-libqt3-jni
-/sbin/ldconfig || :
+##########
 
-%postun -n trinity-libqt3-jni
-/sbin/ldconfig || :
+%package -n trinity-libqt3-jni-devel
+Summary:	Development files fo Java bindings for Qt ( Native libraries ) [Trinity]
+Group:		Development/Libraries
+Requires:	trinity-libqt3-jni = %{version}-%{release}
+
+%description -n trinity-libqt3-jni-devel
+This package contains the development files for trinity-libqt3-jni.
+
+This package is part of the official TDE bindings module.
+
+%files -n trinity-libqt3-jni-devel
+%defattr(-,root,root,-)
+%{tde_libdir}/libqtjavasupport.so
+%{tde_libdir}/jni/libqtjava.so
 
 ##########
 
@@ -308,9 +317,24 @@ This package is part of the official TDE bindings module.
 %files -n trinity-libtrinity-jni
 %defattr(-,root,root,-)
 %{tde_libdir}/jni/libkdejava.la
-%{tde_libdir}/jni/libkdejava.so
 %{tde_libdir}/jni/libkdejava.so.*
 %doc kdejava/ChangeLog
+
+##########
+
+%package -n trinity-libtrinity-jni-devel
+Summary:	Development files for tdelibs bindings for java ( Native libraries ) [Trinity]
+Group:		Development/Libraries
+Requires:	trinity-libtrinity-jni = %{version}-%{release}
+
+%description -n trinity-libtrinity-jni-devel
+This package contains the development files for trinity-libtrinity-jni.
+
+This package is part of the official TDE bindings module.
+
+%files -n trinity-libtrinity-jni-devel
+%defattr(-,root,root,-)
+%{tde_libdir}/jni/libkdejava.so
 
 ##########
 
@@ -854,7 +878,8 @@ Requires:	trinity-libsmokekde-devel = %{version}-%{release}
 Requires:	trinity-libkjsembed-devel = %{version}-%{release}
 Requires:	trinity-libxparts-devel = %{version}-%{release}
 Requires:	trinity-libdcop-c-devel = %{version}-%{release}
-Requires:	trinity-tdebindings-devel = %{version}-%{release}
+Requires:	trinity-libqt3-jni-devel = %{version}-%{release}
+Requires:	trinity-libtrinity-jni-devel = %{version}-%{release}
 
 %description devel
 Development files for the TDE bindings.

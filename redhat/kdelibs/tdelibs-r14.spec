@@ -174,9 +174,11 @@ EOF
 %__rm -rf %{?buildroot}
 
 
-%post -p /sbin/ldconfig
+%post
+/sbin/ldconfig
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
 
 
 %files

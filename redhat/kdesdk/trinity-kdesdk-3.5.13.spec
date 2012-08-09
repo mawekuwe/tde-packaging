@@ -52,7 +52,7 @@ BuildRequires: trinity-tdelibs-devel
 # for kbugbuster/libkcal
 BuildRequires: trinity-tdepim-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}db5.1-devel
+#BuildRequires:	%{_lib}db4.8-devel
 %else
 BuildRequires: db4-devel
 %endif
@@ -345,7 +345,7 @@ This package contains the KBabel development files.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kbabel-devel
-%{tde_includedir}/kbabel/
+%{tde_tdeincludedir}/kbabel/
 %{tde_libdir}/libkbabelcommon.la
 %{tde_libdir}/libkbabelcommon.so
 %{tde_libdir}/libkbabeldictplugin.la
@@ -505,7 +505,7 @@ Included are:
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files misc
-%{tde_includedir}/kprofilemethod.h
+%{tde_tdeincludedir}/kprofilemethod.h
 %{tde_tdelibdir}/kabcformat_kdeaccounts.la
 %{tde_tdelibdir}/kabcformat_kdeaccounts.so
 %{tde_tdelibdir}/scheck.so
@@ -716,7 +716,7 @@ loaded dynamically using KLibLoader.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kspy
-%{tde_includedir}/kspy.h
+%{tde_tdeincludedir}/kspy.h
 %{tde_libdir}/libkspy.la
 %{tde_libdir}/libkspy.so
 %{tde_libdir}/libkspy.so.*
@@ -822,9 +822,9 @@ Development files for libcvsservice are included in this package.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-libcvsservice-devel
-%{tde_includedir}/cvsjob_stub.h
-%{tde_includedir}/cvsservice_stub.h
-%{tde_includedir}/repository_stub.h
+%{tde_tdeincludedir}/cvsjob_stub.h
+%{tde_tdeincludedir}/cvsservice_stub.h
+%{tde_tdeincludedir}/repository_stub.h
 %{tde_libdir}/libcvsservice.la
 %{tde_libdir}/libcvsservice.so
 %{tde_libdir}/lib[kt]deinit_cvsaskpass.la
@@ -1003,7 +1003,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_libdir}/libkunittestgui.la
 %{tde_libdir}/libkunittestgui.so
 #%{tde_libdir}/libkunittestgui.so.*
-%{tde_includedir}/kunittest/runnergui.h
+%{tde_tdeincludedir}/kunittest/runnergui.h
 
 %post -n trinity-kunittest
 /sbin/ldconfig || :
@@ -1053,7 +1053,7 @@ cd build
 
 %cmake \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
-  -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DMAN_INSTALL_DIR=%{tde_mandir}/man1 \
   -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \

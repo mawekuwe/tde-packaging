@@ -189,9 +189,11 @@ for i in crystalsvg hicolor locolor ; do
 done
 update-desktop-database >& /dev/null ||:
 
-%post libs -p /sbin/ldconfig
+%post libs
+/sbin/ldconfig
 
-%postun libs -p /sbin/ldconfig
+%postun libs
+/sbin/ldconfig
 
 
 %files -f %{name}.lang
