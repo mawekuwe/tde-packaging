@@ -35,7 +35,7 @@ configure: configure-stamp
 
 configure-stamp:
 	dh_testdir
-	env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde CMAKE_INSTALL_PREFIX=/usr cmake .
+	env PATH=/opt/trinity/bin:$(PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde CMAKE_INSTALL_PREFIX=/usr CMAKE_BUILD_TYPE=RelWithDebInfo cmake .
 	touch configure-stamp
 
 build: build-stamp
