@@ -384,9 +384,11 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/crystalsvg  2> /dev/null || :
 update-desktop-database 2> /dev/null || : 
 
 
-%post libs -p /sbin/ldconfig
+%post libs
+/sbin/ldconfig
 
-%postun libs -p /sbin/ldconfig
+%postun libs
+/sbin/ldconfig
 
 %post extras
 for f in crystalsvg hicolor ; do

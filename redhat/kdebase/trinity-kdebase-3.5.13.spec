@@ -60,6 +60,8 @@ Source5:	pamd.kscreensaver-trinity%{?dist}
 Source6:	tiles-fixed-png-images.tar.gz
 
 # TDE 3.5.13 patches
+## [kdebase] Missing LDFLAGS cause FTBFS
+Patch2:		tdebase-3.5.13.1-missing_ldflags.patch
 ## [kdebase/kdm] adds gcrypt support [Bug #624]
 Patch7:		kdebase-3.5.13-kdm-crypt.patch
 ## [kdebase/kioslave/media/mediamanager] FTBFS missing dbus-tqt includes [RHEL/Fedora]
@@ -1786,21 +1788,18 @@ already. Most users won't need this.
 %{tde_datadir}/apps/[kt]dm/themes/
 %{tde_datadir}/config/[kt]dm/
 %{tde_tdedocdir}/HTML/en/[kt]dm/
+%{_sysconfdir}/pam.d/kdm-trinity
+%{_sysconfdir}/pam.d/kdm-trinity-np
 
 # Distribution specific stuff
 %if 0%{?rhel} || 0%{?fedora}
 %{_usr}/share/xsessions/tde.desktop
 %endif
-%{_sysconfdir}/pam.d/kdm-trinity
-%{_sysconfdir}/pam.d/kdm-trinity-np
+
+# https://wiki.mageia.org/en/How_to_add_a_new_Window_Manager_or_Display_Manager
 %if 0%{?mgaversion} || 0%{?mdkversion}
-%{_sysconfdir}/X11/wmsession.d/*
-
-%post -n trinity-tdm
-%make_session
-
-%postun -n trinity-tdm
-%make_session
+%{_sysconfdir}/X11/wmsession.d/45TDE
+%{_datadir}/X11/dm.d/45TDE.conf
 %endif
 
 ##########
@@ -2902,6 +2901,7 @@ Konqueror libraries.
 %setup -q -n kdebase
 %__tar xfz %{SOURCE6} -C kicker/data/tiles
 
+%patch2 -p1
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
@@ -2994,7 +2994,7 @@ Konqueror libraries.
 %__sed -i "startkde" \
 	-e "s|/opt/trinity|%{tde_prefix}|g"
 
-# TDE default start button icon
+# TDE default start button icon [See Patch15]
 %__sed -i "startkde" \
 	-e "s|%%{tde_starticon}|%{tde_starticon}|g"
 
@@ -3076,6 +3076,15 @@ DESC=The Trinity Desktop Environment
 EXEC=%{tde_bindir}/startkde
 SCRIPT:
 exec %{tde_bindir}/startkde
+EOF
+
+%__install -d -m 755 %{?buildroot}%{_datadir}/X11/dm.d
+cat <<EOF >"%{?buildroot}%{_datadir}/X11/dm.d/45TDE.conf"
+NAME=TDM
+DESCRIPTION=TDM (Trinity Display Manager)
+PACKAGE=trinity-tdm
+EXEC=%{tde_bindir}/kdm
+FNDSESSION_EXEC="/usr/sbin/chksession --generate=/usr/share/xsessions"
 EOF
 %endif
 
