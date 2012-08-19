@@ -102,12 +102,6 @@ BuildRequires:  libpaper-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	GraphicsMagick-devel >= 1.1.0
 
-#%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
-#BuildRequires:	poppler-qt-devel >= 0.1.2
-#%else
-#BuildRequires:	trinity-poppler-qt3-devel >= 0.1.2
-#%endif
-
 BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel
 
 # These libraries are either too old or too recent on distributions !

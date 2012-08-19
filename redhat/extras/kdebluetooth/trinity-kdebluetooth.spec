@@ -58,7 +58,9 @@ BuildRequires:	obexftp-devel
 %endif
 
 Requires:		%{name}-libs = %{version}-%{release}
-Requires:		trinity-kdesu
+
+# kdesu binary
+Requires:		trinity-tdebase-bin
 
 
 
@@ -134,8 +136,8 @@ export CXXFLAGS="${CXXFLAGS} -I%{tde_includedir}/dbus-1.0"
   --disable-debug			\
   --disable-dependency-tracking		\
   --enable-final				\
-  --enable-closure			\ 
-  --with-extra-includes=%{tde_includedir}/tqt:
+  --enable-closure			\
+  --with-extra-includes=%{tde_includedir}/tqt
 
 %__make %{?_smp_mflags} LIBTOOL=$(which libtool)
 
@@ -168,6 +170,15 @@ rm -f $RPM_BUILD_ROOT/%{_datadir}/applnk/Settings/Network/Bluetooth/.directory
 rm -f ${RPM_BUILD_ROOT}%{tde_libdir}/*.a
 rm -f ${RPM_BUILD_ROOT}%{tde_libdir}/kde3/*.a
 
+%find_lang kdebluetooth
+
+# Unwanted files
+%__rm -f %{buildroot}%{tde_tdelibdir}/kcm_btpaired.a
+%__rm -f %{buildroot}%{tde_tdelibdir}/kio_bluetooth.a
+%__rm -f %{buildroot}%{tde_tdelibdir}/kio_obex.a
+%__rm -f %{buildroot}%{tde_tdelibdir}/kio_sdp.a
+%__rm -f %{buildroot}%{tde_datadir}/applnk/Settings/Network/Bluetooth/.directory
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -184,7 +195,7 @@ touch --no-create %{_datadir}/icons/hicolor ||:
 gtk-update-icon-cache -qf %{_datadir}/icons/hicolor 2> /dev/null ||:
 
 
-%files
+%files -f kdebluetooth.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING INSTALL README
 %{tde_bindir}/kblue*
@@ -224,7 +235,7 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor 2> /dev/null ||:
 
 %files devel
 %defattr(-,root,root,-)
-%{tde_includedir}/*
+%{tde_tdeincludedir}/*
 %{tde_libdir}/*.so
 
 

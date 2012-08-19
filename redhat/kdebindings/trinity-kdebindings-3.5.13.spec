@@ -107,7 +107,10 @@ BuildRequires: java-1.6.0-openjdk-devel
 %define _with_java --with-java=%{java_home}
 
 ## Perl
+# There is no 'perl-devel' package on RHEL5
+%if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
 BuildRequires:	perl-devel
+%endif
 %define perl_vendorarch %{expand:%%(eval `perl -V:installvendorarch`; echo $installvendorarch)}
 
 

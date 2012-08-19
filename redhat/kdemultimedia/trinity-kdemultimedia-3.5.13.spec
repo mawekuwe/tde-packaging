@@ -27,13 +27,13 @@
 %define _with_xine --with-xine
 #%endif
 
-Name:    trinity-tdemultimedia
-Summary: Multimedia applications for the Trinity Desktop Environment (TDE)
-Version: 3.5.13
-Release: 8%{?dist}%{?_variant}
+Name:		trinity-tdemultimedia
+Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
+Version:	3.5.13
+Release:	9%{?dist}%{?_variant}
 
-License: GPLv2
-Group:   Applications/Multimedia
+License:	GPLv2
+Group:		Applications/Multimedia
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -58,6 +58,9 @@ Patch10:	kdemultimedia-3.5.13-fix_mmx_detection.patch
 Patch21:	kdemultimedia-3.5.13-remove_more_applications.patch
 # [tdemultimedia] Fix linear alphabet string errors [Commit #fd6afacf]
 Patch22:	kdemultimedia-3.5.13-fix_linear_alphabet.patch
+# [tdemultimedia] Fix kmix autostart. This resolves Bug 503, and re-applies commit 2cc2e3a2 as part of the fix. [Commit #7da06e55]
+Patch23:	kdemultimedia-3.5.13-fix_kmix_autostart.patch
+
 
 Obsoletes:	trinity-kdemultimedia < %{version}-%{release}
 Provides:	trinity-kdemultimedia = %{version}-%{release}
@@ -72,7 +75,7 @@ Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 BuildRequires: cmake >= 2.8
 BuildRequires: tqtinterface-devel
 BuildRequires: trinity-arts-devel
-BuildRequires: trinity-kdelibs-devel
+BuildRequires: trinity-tdelibs-devel
 BuildRequires: qt3-devel >= 3.3.8.d
 
 BuildRequires: zlib-devel
@@ -86,6 +89,7 @@ BuildRequires: automake libtool
 %{?_with_musicbrainz:BuildRequires: libmusicbrainz-devel libtunepimp-devel}
 %{?_with_taglib:BuildRequires: taglib-devel}
 BuildRequires:	cdparanoia
+BuildRequires:	trinity-akode-devel
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}gstreamer0.10-devel
@@ -617,6 +621,7 @@ This package includes TDE's dockable sound mixer applet.
 %{tde_tdeappdir}/kmix.desktop
 %{tde_datadir}/apps/kicker/applets/kmixapplet.desktop
 %{tde_datadir}/apps/kmix/
+%{tde_datadir}/autostart/kmix.desktop
 %{tde_datadir}/autostart/restore_kmix_volumes.desktop
 %{tde_datadir}/icons/hicolor/*/apps/kmix.png
 %{tde_datadir}/services/kmixctrl_restore.desktop
@@ -1071,11 +1076,12 @@ noatun plugins.
 %patch10 -p1
 %patch21 -p1 -b .moreapplications
 %patch22 -p1
+%patch23 -p1 -b .kmixautostart
 
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
+%__sed -i "admin/acinclude.m4.in" \
   -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
   -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
@@ -1159,6 +1165,10 @@ fi
 
 
 %changelog
+* Sat Aug 18 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-9
+- Rebuild for tdelibs-3.5.13-12
+- Fix kmix autostart. This resolves Bug 503, and re-applies commit 2cc2e3a2 as part of the fix. [Commit #7da06e55]
+
 * Sun Jul 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-8
 - Split in several packages
 - Enables Xine support on RHEL/CentOS

@@ -24,7 +24,7 @@
 
 Name:		trinity-tdebase
 Version:	3.5.13
-Release:	26%{?release}%{?dist}%{?_variant}
+Release:	27%{?release}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
@@ -170,6 +170,10 @@ Patch60:	kdebase-3.5.13-update_default_konq_max_image_prev_size.patch
 Patch61:	kdebase-3.5.13-fix_menu_crash_with_disabled_search.patch
 ## [tdebase] Add xscreensaver support to CMake [Bug #659] [Commit #80deb529]
 Patch62:	kdebase-3.5.13-add_xscreensaver_support.patch
+## [tdebase] Dirty patch to close tooltips when screensaver engages
+Patch63:	kdebase-3.5.13-fix_tooltip_lock.patch
+## [tdebase] Upgrade to v3.5.13-sru branch
+Patch100:	kdebase-3.5.13-upgrade_to_sru_20120806.patch
 
 ### FEDORA / RHEL distribution-specific settings ###
 
@@ -265,7 +269,8 @@ BuildRequires:	dbus-tqt-devel
 BuildRequires:	lm_sensors-devel
 BuildRequires:	libfontenc-devel
 BuildRequires:	hal-devel
-BuildRequires:	audiofile-devel alsa-lib-devel
+BuildRequires:	audiofile-devel
+BuildRequires:	alsa-lib-devel
 BuildRequires:	libraw1394-devel
 BuildRequires:	openldap-devel
 BuildRequires:	libvorbis-devel
@@ -278,7 +283,11 @@ BuildRequires:	nas-devel
 BuildRequires:	pcre-devel
 BuildRequires:	avahi-tqt-devel
 
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
+# TSAK support requires libudev-devel
+# On RHEL5, udev is built statically, so TSAK cannot build
+# On RHEL6, libudev-devel exists but is too old. No TSAK neither.
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_tsak 1
 BuildRequires:	libudev-devel
 %endif
 
@@ -980,8 +989,10 @@ TDE applications, particularly those in the TDE base module.
 %defattr(-,root,root,-)
 %{tde_bindir}/krootbacking
 #%{tde_bindir}/tdeinit_phase1
+%if 0%{?with_tsak}
 %attr(4511,root,root) %{tde_bindir}/[kt]dmtsak
 %{tde_bindir}/tsak
+%endif
 %{tde_bindir}/kdebugdialog
 %{tde_bindir}/kreadconfig
 %{tde_bindir}/kwriteconfig
@@ -1379,7 +1390,7 @@ for f in crystalsvg ; do
 done
 
 %if 0%{?mdkversion}
-# Mandriva-specific: we have to choose a background for current distribution variant
+# Mandriva-specific: we have to choose a background for current distribution variant (Free, One, Powerpack, ...)
 # First, we read the "product" key in /etc/product.id
 eval $(tr "," ";" </etc/product.id) 2>/dev/null
 # Then, we create a symbolic link to the corresponding background
@@ -2931,10 +2942,8 @@ Konqueror libraries.
 %patch30 -p1
 %patch31 -p1
 %patch32 -p1
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
 %patch33 -p1
 %patch34 -p1
-%endif
 %patch35 -p1
 %patch36 -p1
 %patch37 -p1
@@ -2963,6 +2972,8 @@ Konqueror libraries.
 %patch60 -p1
 %patch61 -p1
 %patch62 -p1
+%patch63 -p1 -b .tooltips
+%patch100 -p1
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -3024,7 +3035,7 @@ cd build
   -DWITH_XCOMPOSITE=ON \
   -DWITH_XCURSOR=ON \
   -DWITH_XFIXES=ON \
-%if 0%{?fedora} || 0%{?rhel} >= 6
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion}
   -DWITH_XRANDR=ON \
 %else
   -DWITH_XRANDR=OFF \
@@ -3046,6 +3057,9 @@ cd build
   -DKDM_PAM_SERVICE="kdm-trinity" \
   -DKSCREENSAVER_PAM_SERVICE="kscreensaver-trinity" \
   -DWITH_XSCREENSAVER=ON \
+%if 0%{?with_tsak} == 0
+  -DBUILD_TSAK=OFF \
+%endif
   ..
 
 %__make %{?_smp_mflags}
@@ -3134,6 +3148,12 @@ EOF
 
 
 %changelog
+* Sun Aug 19 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-27
+- Merge with v3.5.13-sru branch, but still using v3.5.13 tdelibs
+- See: http://git.trinitydesktop.org/cgit/tdebase/log/?h=origin/v3.5.13-sru
+- Removes the "tqapp" => "app" renaming from SRU, to keep applications compatibility
+- This is the final update for v3.5.13 . Next release should be 3.5.13.1 .
+
 * Sat Jul 14 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-26
 - Add xscreensaver support to CMake [Bug #659] [Commit #80deb529]
 - Enables 'shadow' support

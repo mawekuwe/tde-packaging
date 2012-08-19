@@ -69,6 +69,8 @@ Patch11:	kdepim-3.5.13-fix_kalarm_icon_reference.patch
 Patch12:	kdepim-3.5.13-disable_fsync_in_cached_imap.patch
 # [tdepim] Fix include directory location
 Patch13:	kdepim-3.5.13-fix_include_directory.patch
+# [tdepim] Missing LDFLAGS cause FTBFS on MGA2/MDV2011
+Patch14:	kdepim-3.5.13-missing_ldflags.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -2092,11 +2094,12 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
-%patch9 -p1 -b .addquotes
+#patch9 -p1 -b .addquotes
 %patch10 -p1 -b .segv
 %patch11 -p1
 %patch12 -p1
 %patch13 -p1 -b .incdir
+%patch14 -p1 -b .ldflags
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
@@ -2144,7 +2147,7 @@ cd build
   -DBUILD_ALL=ON \
   ..
 
-%__make  %{?_smp_mflags}
+%__make  %{?_smp_mflags} || %__make VERBOSE=1
 
 %install
 export PATH="%{_bindir}:${PATH}"

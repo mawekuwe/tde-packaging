@@ -18,7 +18,7 @@
 
 Name:		trinity-tdelibs
 Version:	3.5.13
-Release:	11%{?dist}%{?_variant}
+Release:	12%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Libraries
 Group:		Environment/Libraries
@@ -89,12 +89,20 @@ Patch32:	kdelibs-3.5.13-fix_spinbox_text_entry_when_base_not_10.patch
 Patch33:	kdelibs-3.5.13-update_iso_kioslave_better_handle_large_image.patch
 ## [tdelibs] Restore tdesu dialog "Keep password" check box default to disabled/unchecked. [Commit #87363770]
 Patch34:	kdelibs-3.5.13-restore_tdesu_keeppassword_default_disabled.patch
+## [tdelibs] Fix language switch inside application [Bug #1074]
+Patch35:	kdelibs-3.5.13-fix_all_languages_installation.patch
+## [tdelibs] Prevent XDG autostart files from starting multiple times [Bug #1096] [Commit #e9f29cfb]
+Patch36:	kdelibs-3.5.13-prevent_xdg_autostart_multiple_times.patch
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
-BuildRequires:	krb5-devel libxslt-devel cups-devel libart_lgpl-devel pcre-devel
+BuildRequires:	krb5-devel
+BuildRequires:	libxslt-devel
+BuildRequires:	cups-devel
+BuildRequires:	libart_lgpl-devel
+BuildRequires:	pcre-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	openssl-devel
@@ -250,6 +258,12 @@ kimgio (image manipulation).
 # New in TDE 3.5.13
 %{tde_bindir}/kdetcompmgr
 
+%pre
+# Bug 1074
+if [ -d %{tde_datadir}/locale/all_languages ]; then
+  rm -rf %{tde_datadir}/locale/all_languages
+fi
+
 %post
 /sbin/ldconfig || :
 
@@ -319,10 +333,14 @@ applications for TDE.
 %patch28 -p1
 %patch29 -p1
 %patch30 -p1
-%patch31 -p1
+%if 0%{?mdkversion} || 0%{?mgaversion}
+%patch31 -p1 -b .kled
+%endif
 %patch32 -p1
 %patch33 -p1
 %patch34 -p1
+%patch35 -p1
+%patch36 -p1
 
 
 %build
@@ -398,6 +416,11 @@ EOF
 
 
 %changelog
+* Sat Aug 18 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-12
+- Fix language switch inside application [Bug #1074]
+- Removes patch 'Add ability to set KLed off color [Commit #513ffc6e]'
+- Prevent XDG autostart files from starting multiple times [Bug #1096] [Commit #e9f29cfb]
+
 * Sun Jul 22 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-11
 - Fix iso kioslave not parsing large images properly [Commit #b4bba7b5]
 - Add ability to set KLed off color [Commit #513ffc6e]

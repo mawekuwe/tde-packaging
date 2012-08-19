@@ -1,0 +1,29 @@
+--- kdebase/kdesktop/lock/lockprocess.cc.tooltips	2012-08-10 15:16:14.047229047 +0200
++++ kdebase/kdesktop/lock/lockprocess.cc	2012-08-10 15:41:08.433645385 +0200
+@@ -960,6 +960,26 @@
+ 
+     setGeometry(0, 0, mRootWidth, mRootHeight);
+ 
++	// Hack to close all tooltips on screen
++	Window rootWindow = RootWindow(x11Display(), x11Screen());
++	Window parent;
++	Window* children = NULL;
++	Window* child = NULL;
++	unsigned int noOfChildren = 0;
++	XWindowAttributes childAttr;
++	Window childTransient;
++	 
++	if(XQueryTree(x11Display(), rootWindow, &rootWindow, &parent, &children, &noOfChildren) && noOfChildren>0 ) {
++		for (unsigned int i=0; i<noOfChildren; i++) {
++			if (XGetWindowAttributes(x11Display(), children[i], &childAttr) && XGetTransientForHint(x11Display(), children[i], &childTransient)) {
++				if((childAttr.map_state == IsViewable) && (childAttr.override_redirect) && (childTransient)) {
++					XUnmapWindow(x11Display(), children[i]);
++				}
++			}
++		}
++	}
++	
++
+     kdDebug(1204) << "Saver window Id: " << winId() << endl;
+ }
+ 

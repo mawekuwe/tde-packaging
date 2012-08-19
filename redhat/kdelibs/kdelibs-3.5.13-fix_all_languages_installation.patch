@@ -1,0 +1,20 @@
+--- kdelibs/kdecore/CMakeLists.txt.ORI	2012-08-09 21:10:26.125863261 +0200
++++ kdelibs/kdecore/CMakeLists.txt	2012-08-09 21:12:08.928750681 +0200
+@@ -73,7 +73,8 @@
+ 
+ ##### other data ################################
+ 
+-tde_install_empty_directory( ${LOCALE_INSTALL_DIR}/all_languages )
++install( FILES all_languages.desktop
++  DESTINATION ${LOCALE_INSTALL_DIR} RENAME all_languages )
+ 
+ install( FILES 40.colors Web.colors Royal.colors Rainbow.colors
+   DESTINATION ${CONFIG_INSTALL_DIR}/colors )
+@@ -87,7 +88,6 @@
+ install( FILES eventsrc
+   DESTINATION ${DATA_INSTALL_DIR}/knotify )
+ 
+-
+ ##### libkdecore ################################
+ 
+ set( target kdecore )

@@ -66,6 +66,7 @@ BuildRequires:	fontconfig-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}jack-devel
 %else
+BuildRequires:	lirc-devel
 BuildRequires:	jack-audio-connection-kit-devel
 %endif
 

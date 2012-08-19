@@ -19,10 +19,10 @@ BuildRequires: autoconf automake libtool m4
 %endif
 
 
-Name:		trinity-kde-i18n
+Name:		trinity-i18n
 Summary:	Internationalization support for Trinity
 Version:	3.5.13
-Release:	6%{?dist}%{?_variant}
+Release:	7%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -53,18 +53,18 @@ Patch1:		trinity-kde-i18n-fr-openterminalhere.patch
 Patch2:		kde-i18n-3.5.13-add_french_translations.patch
 
 # TDE 3.5.13: Updated translations for zh_TW, thanks to Wei-Lun Chao !
-Patch3:		kde-i18n-3.5.13-add_zh_TW_translations.patch
+Patch3:		kde-i18n-zh_TW-3.5.10.patch.gz
 
 BuildRequires:	findutils
 BuildRequires:	gettext
 BuildRequires:	trinity-arts-devel
-BuildRequires:	trinity-kdelibs-devel
+BuildRequires:	trinity-tdelibs-devel
 
 %description
 %{summary}.
 
 %package Afrikaans
-Summary: Afrikaans(af) language support for KDE3
+Summary: Afrikaans(af) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-af = %{version}-%{release}
 #Requires: kde-filesystem
@@ -72,7 +72,7 @@ Provides: %{name}-af = %{version}-%{release}
 %{summary}.
 
 %package Arabic 
-Summary: Arabic(ar) language support for KDE3
+Summary: Arabic(ar) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ar = %{version}-%{release}
 #Requires: kde-filesystem
@@ -80,7 +80,7 @@ Provides: %{name}-ar = %{version}-%{release}
 %{summary}.
 
 %package Azerbaijani
-Summary: Azerbaijani(az) language support for KDE3
+Summary: Azerbaijani(az) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-az = %{version}-%{release}
 #Requires: kde-filesystem
@@ -88,7 +88,7 @@ Provides: %{name}-az = %{version}-%{release}
 %{summary}.
 
 %package Belarusian
-Summary: Belarusian(be) language support for KDE3
+Summary: Belarusian(be) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-be = %{version}-%{release}
 #Requires: kde-filesystem
@@ -96,7 +96,7 @@ Provides: %{name}-be = %{version}-%{release}
 %{summary}.
 
 %package Bulgarian
-Summary: Bulgarian(bg) language support for KDE3
+Summary: Bulgarian(bg) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-bg = %{version}-%{release}
 #Requires: kde-filesystem
@@ -104,7 +104,7 @@ Provides: %{name}-bg = %{version}-%{release}
 %{summary}.
 
 %package Bengali
-Summary: Bengali(bn) language support for KDE3
+Summary: Bengali(bn) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-bn = %{version}-%{release}
 #Requires: kde-filesystem
@@ -112,7 +112,7 @@ Provides: %{name}-bn = %{version}-%{release}
 %{summary}.
 
 %package Tibetan
-Summary: Tibetan(bo) language support for KDE3
+Summary: Tibetan(bo) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-bo = %{version}-%{release}
 #Requires: kde-filesystem
@@ -120,7 +120,7 @@ Provides: %{name}-bo = %{version}-%{release}
 %{summary}.
 
 %package Breton
-Summary: Breton(br) language support for KDE3
+Summary: Breton(br) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-br = %{version}-%{release}
 #Requires: kde-filesystem
@@ -128,7 +128,7 @@ Provides: %{name}-br = %{version}-%{release}
 %{summary}.
 
 %package Bosnian
-Summary: Bosnian(bs) language support for KDE3
+Summary: Bosnian(bs) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-bs = %{version}-%{release}
 #Requires: kde-filesystem
@@ -136,7 +136,7 @@ Provides: %{name}-bs = %{version}-%{release}
 %{summary}.
 
 %package Catalan
-Summary: Catalan(ca) language support for KDE3
+Summary: Catalan(ca) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ca = %{version}-%{release}
 #Requires: kde-filesystem
@@ -144,7 +144,7 @@ Provides: %{name}-ca = %{version}-%{release}
 %{summary}.
 
 %package Czech
-Summary: Czech(cs) language support for KDE3
+Summary: Czech(cs) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-cs = %{version}-%{release}
 #Requires: kde-filesystem
@@ -152,14 +152,14 @@ Provides: %{name}-cs = %{version}-%{release}
 %{summary}.
 
 %package Cymraeg
-Summary: Cymraeg language support for KDE3
+Summary: Cymraeg language support for TDE
 Group: User Interface/Desktops
 #Requires: kde-filesystem
 %description Cymraeg
 %{summary}.
 
 %package Welsh
-Summary: Welsh(cy) language support for KDE3
+Summary: Welsh(cy) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-cy = %{version}-%{release}
 #Requires: kde-filesystem
@@ -167,7 +167,7 @@ Provides: %{name}-cy = %{version}-%{release}
 %{summary}.
 
 %package Danish
-Summary: Danish(da) language support for KDE3
+Summary: Danish(da) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-da = %{version}-%{release}
 #Requires: kde-filesystem
@@ -175,7 +175,7 @@ Provides: %{name}-da = %{version}-%{release}
 %{summary}.
 
 %package German
-Summary: German(de) language support for KDE3
+Summary: German(de) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-de = %{version}-%{release}
 #Requires: kde-filesystem
@@ -183,7 +183,7 @@ Provides: %{name}-de = %{version}-%{release}
 %{summary}.
 
 %package Greek
-Summary: Greek(el) language support for KDE3
+Summary: Greek(el) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-el = %{version}-%{release}
 #Requires: kde-filesystem
@@ -191,7 +191,7 @@ Provides: %{name}-el = %{version}-%{release}
 %{summary}.
 
 %package British
-Summary: British(en_GB) English support for KDE3
+Summary: British(en_GB) English support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-en_GB = %{version}-%{release}
 #Requires: kde-filesystem
@@ -199,7 +199,7 @@ Provides: %{name}-en_GB = %{version}-%{release}
 %{summary}.
 
 %package Esperanto
-Summary: Esperanto(eo) support for KDE3
+Summary: Esperanto(eo) support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-eo = %{version}-%{release}
 #Requires: kde-filesystem
@@ -207,7 +207,7 @@ Provides: %{name}-eo = %{version}-%{release}
 %{summary}.
 
 %package Spanish
-Summary: Spanish(es) language support for KDE3
+Summary: Spanish(es) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-es = %{version}-%{release}
 #Requires: kde-filesystem
@@ -215,7 +215,7 @@ Provides: %{name}-es = %{version}-%{release}
 %{summary}.
 
 %package Estonian
-Summary: Estonian(et) language support for KDE3
+Summary: Estonian(et) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-et = %{version}-%{release}
 #Requires: kde-filesystem
@@ -223,7 +223,7 @@ Provides: %{name}-et = %{version}-%{release}
 %{summary}.
 
 %package Basque
-Summary: Basque(eu) language support for KDE3
+Summary: Basque(eu) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-eu = %{version}-%{release}
 #Requires: kde-filesystem
@@ -231,7 +231,7 @@ Provides: %{name}-eu = %{version}-%{release}
 %{summary}.
 
 %package Farsi
-Summary: Farsi(fa) language support for KDE3
+Summary: Farsi(fa) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-fa = %{version}-%{release}
 #Requires: kde-filesystem
@@ -239,7 +239,7 @@ Provides: %{name}-fa = %{version}-%{release}
 %{summary}.
 
 %package Finnish
-Summary: Finnish(fi) language support for KDE3
+Summary: Finnish(fi) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-fi = %{version}-%{release}
 #Requires: kde-filesystem
@@ -247,7 +247,7 @@ Provides: %{name}-fi = %{version}-%{release}
 %{summary}.
 
 %package Faroese
-Summary: Faroese(fo) language support for KDE3
+Summary: Faroese(fo) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-fo = %{version}-%{release}
 #Requires: kde-filesystem
@@ -255,7 +255,7 @@ Provides: %{name}-fo = %{version}-%{release}
 %{summary}.
 
 %package French
-Summary: French(fr) language support for KDE3
+Summary: French(fr) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-fr = %{version}-%{release}
 #Requires: kde-filesystem
@@ -263,7 +263,7 @@ Provides: %{name}-fr = %{version}-%{release}
 %{summary}.
 
 %package Frisian
-Summary: Frisian(fy) language support for KDE3
+Summary: Frisian(fy) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-fy = %{version}-%{release}
 #Requires: kde-filesystem
@@ -271,7 +271,7 @@ Provides: %{name}-fy = %{version}-%{release}
 %{summary}.
 
 %package Irish
-Summary: Irish(ga) language support for KDE3
+Summary: Irish(ga) language support for TDE
 Group: User Interface/Desktops
 Obsoletes: kde-i18n-Gaeilge < %{version}
 Provides: %{name}-ga = %{version}-%{release}
@@ -280,7 +280,7 @@ Provides: %{name}-ga = %{version}-%{release}
 %{summary}.
 
 %package Galician
-Summary: Galician(gl) language support for KDE3
+Summary: Galician(gl) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-gl = %{version}-%{release}
 #Requires: kde-filesystem
@@ -288,7 +288,7 @@ Provides: %{name}-gl = %{version}-%{release}
 %{summary}.
 
 %package Hebrew
-Summary: Hebrew(he) language support for KDE3
+Summary: Hebrew(he) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-he = %{version}-%{release}
 #Requires: kde-filesystem
@@ -296,7 +296,7 @@ Provides: %{name}-he = %{version}-%{release}
 %{summary}.
 
 %package Hindi
-Summary: Hindi(hi) language support for KDE3
+Summary: Hindi(hi) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-hi = %{version}-%{release}
 #Requires: kde-filesystem
@@ -304,7 +304,7 @@ Provides: %{name}-hi = %{version}-%{release}
 %{summary}.
 
 %package Croatian
-Summary: Croatian(hr) language support for KDE3
+Summary: Croatian(hr) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-hr = %{version}-%{release}
 #Requires: kde-filesystem
@@ -312,7 +312,7 @@ Provides: %{name}-hr = %{version}-%{release}
 %{summary}.
 
 %package Hungarian
-Summary: Hungarian(hu) language support for KDE3
+Summary: Hungarian(hu) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-hu = %{version}-%{release}
 #Requires: kde-filesystem
@@ -320,7 +320,7 @@ Provides: %{name}-hu = %{version}-%{release}
 %{summary}.
 
 %package Indonesian
-Summary: Indonesian(id) language support for KDE3
+Summary: Indonesian(id) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-id = %{version}-%{release}
 #Requires: kde-filesystem
@@ -328,7 +328,7 @@ Provides: %{name}-id = %{version}-%{release}
 %{summary}.
 
 %package Icelandic
-Summary: Icelandic(is) language support for KDE3
+Summary: Icelandic(is) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-is = %{version}-%{release}
 #Requires: kde-filesystem
@@ -336,7 +336,7 @@ Provides: %{name}-is = %{version}-%{release}
 %{summary}.
 
 %package Italian
-Summary: Italian(it) language support for KDE3
+Summary: Italian(it) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-it = %{version}-%{release}
 #Requires: kde-filesystem
@@ -344,7 +344,7 @@ Provides: %{name}-it = %{version}-%{release}
 %{summary}.
 
 %package Japanese
-Summary: Japanese(ja) language support for KDE3
+Summary: Japanese(ja) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ja = %{version}-%{release}
 #Requires: kde-filesystem
@@ -352,7 +352,7 @@ Provides: %{name}-ja = %{version}-%{release}
 %{summary}.
 
 %package Korean
-Summary: Korean(ko) language support for KDE3
+Summary: Korean(ko) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ko = %{version}-%{release}
 #Requires: kde-filesystem
@@ -360,7 +360,7 @@ Provides: %{name}-ko = %{version}-%{release}
 %{summary}.
 
 %package Kurdish
-Summary: Kurdish(ku) language support for KDE3
+Summary: Kurdish(ku) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ku = %{version}-%{release}
 #Requires: kde-filesystem
@@ -368,7 +368,7 @@ Provides: %{name}-ku = %{version}-%{release}
 %{summary}.
 
 %package Lao
-Summary: Lao(lo) language support for KDE3
+Summary: Lao(lo) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-lo = %{version}-%{release}
 #Requires: kde-filesystem
@@ -376,7 +376,7 @@ Provides: %{name}-lo = %{version}-%{release}
 %{summary}.
 
 %package Lithuanian
-Summary: Lithuanian(lt) language support for KDE3
+Summary: Lithuanian(lt) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-lt = %{version}-%{release}
 #Requires: kde-filesystem
@@ -384,7 +384,7 @@ Provides: %{name}-lt = %{version}-%{release}
 %{summary}.
 
 %package Latvian
-Summary: Latvian(lv) language support for KDE3
+Summary: Latvian(lv) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-lv = %{version}-%{release}
 #Requires: kde-filesystem
@@ -392,7 +392,7 @@ Provides: %{name}-lv = %{version}-%{release}
 %{summary}.
 
 %package Maori
-Summary: Maori(mi) language support for KDE3
+Summary: Maori(mi) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-mi = %{version}-%{release}
 #Requires: kde-filesystem
@@ -400,7 +400,7 @@ Provides: %{name}-mi = %{version}-%{release}
 %{summary}.
 
 %package Macedonian
-Summary: Macedonian(mk) language support for KDE3
+Summary: Macedonian(mk) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-mk = %{version}-%{release}
 #Requires: kde-filesystem
@@ -408,7 +408,7 @@ Provides: %{name}-mk = %{version}-%{release}
 %{summary}.
 
 %package Maltese
-Summary: Maltese(mt) language support for KDE3
+Summary: Maltese(mt) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-mt = %{version}-%{release}
 #Requires: kde-filesystem
@@ -416,7 +416,7 @@ Provides: %{name}-mt = %{version}-%{release}
 %{summary}.
 
 %package Dutch
-Summary: Dutch(nl) language support for KDE3
+Summary: Dutch(nl) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-nl = %{version}-%{release}
 #Requires: kde-filesystem
@@ -424,7 +424,7 @@ Provides: %{name}-nl = %{version}-%{release}
 %{summary}.
 
 %package Norwegian
-Summary: Norwegian(no) (Bokmaal) language support for KDE3
+Summary: Norwegian(no) (Bokmaal) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-no = %{version}-%{release}
 #Requires: kde-filesystem
@@ -432,7 +432,7 @@ Provides: %{name}-no = %{version}-%{release}
 %{summary}.
 
 %package Norwegian-Nynorsk
-Summary: Norwegian(nn) (Nynorsk) language support for KDE3
+Summary: Norwegian(nn) (Nynorsk) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-nn = %{version}-%{release}
 #Requires: kde-filesystem
@@ -440,7 +440,7 @@ Provides: %{name}-nn = %{version}-%{release}
 %{summary}.
 
 %package Occitan
-Summary: Occitan(oc) language support for KDE3
+Summary: Occitan(oc) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-oc = %{version}-%{release}
 #Requires: kde-filesystem
@@ -448,7 +448,7 @@ Provides: %{name}-oc = %{version}-%{release}
 %{summary}.
 
 %package Polish
-Summary: Polish(pl) language support for KDE3
+Summary: Polish(pl) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-pl = %{version}-%{release}
 #Requires: kde-filesystem
@@ -456,7 +456,7 @@ Provides: %{name}-pl = %{version}-%{release}
 %{summary}.
 
 %package Portuguese
-Summary: Portuguese(pt) language support for KDE3
+Summary: Portuguese(pt) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-pt = %{version}-%{release}
 #Requires: kde-filesystem
@@ -464,7 +464,7 @@ Provides: %{name}-pt = %{version}-%{release}
 %{summary}.
 
 %package Punjabi
-Summary: Punjabi(pa) language support for KDE3
+Summary: Punjabi(pa) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-pa = %{version}-%{release}
 #Requires: kde-filesystem
@@ -472,7 +472,7 @@ Provides: %{name}-pa = %{version}-%{release}
 %{summary}.
 
 %package Brazil
-Summary: Brazil(pt_BR) Portuguese language support for KDE3
+Summary: Brazil(pt_BR) Portuguese language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-pt_BR = %{version}-%{release}
 #Requires: kde-filesystem
@@ -480,7 +480,7 @@ Provides: %{name}-pt_BR = %{version}-%{release}
 %{summary}.
 
 %package Romanian
-Summary: Romanian(ro) language support for KDE3
+Summary: Romanian(ro) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ro = %{version}-%{release}
 #Requires: kde-filesystem
@@ -488,7 +488,7 @@ Provides: %{name}-ro = %{version}-%{release}
 %{summary}.
 
 %package Russian
-Summary: Russian(ru) language support for KDE3
+Summary: Russian(ru) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ru = %{version}-%{release}
 #Requires: kde-filesystem
@@ -496,7 +496,7 @@ Provides: %{name}-ru = %{version}-%{release}
 %{summary}.
 
 %package Slovak
-Summary: Slovak(sk) language support for KDE3
+Summary: Slovak(sk) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-sk = %{version}-%{release}
 #Requires: kde-filesystem
@@ -504,7 +504,7 @@ Provides: %{name}-sk = %{version}-%{release}
 %{summary}.
 
 %package Slovenian
-Summary: Slovenian(sl) language support for KDE3
+Summary: Slovenian(sl) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-sl = %{version}-%{release}
 #Requires: kde-filesystem
@@ -512,7 +512,7 @@ Provides: %{name}-sl = %{version}-%{release}
 %{summary}.
 
 %package Serbian
-Summary: Serbian(sr) language support for KDE3
+Summary: Serbian(sr) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-sr = %{version}-%{release}
 #Requires: kde-filesystem
@@ -520,7 +520,7 @@ Provides: %{name}-sr = %{version}-%{release}
 %{summary}.
 
 %package Swedish
-Summary: Swedish(sv) language support for KDE3
+Summary: Swedish(sv) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-sv = %{version}-%{release}
 #Requires: kde-filesystem
@@ -528,7 +528,7 @@ Provides: %{name}-sv = %{version}-%{release}
 %{summary}.
 
 %package Tamil
-Summary: Tamil(ta) language support for KDE3
+Summary: Tamil(ta) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ta = %{version}-%{release}
 #Requires: kde-filesystem
@@ -536,7 +536,7 @@ Provides: %{name}-ta = %{version}-%{release}
 %{summary}.
 
 %package Tajik
-Summary: Tajik(tg) language support for KDE3
+Summary: Tajik(tg) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-tg = %{version}-%{release}
 #Requires: kde-filesystem
@@ -544,7 +544,7 @@ Provides: %{name}-tg = %{version}-%{release}
 %{summary}.
 
 %package Thai
-Summary: Thai(th) language support for KDE3
+Summary: Thai(th) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-th = %{version}-%{release}
 #Requires: kde-filesystem
@@ -552,7 +552,7 @@ Provides: %{name}-th = %{version}-%{release}
 %{summary}.
 
 %package Turkish
-Summary: Turkish(tr) language support for KDE3
+Summary: Turkish(tr) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-tr = %{version}-%{release}
 #Requires: kde-filesystem
@@ -560,7 +560,7 @@ Provides: %{name}-tr = %{version}-%{release}
 %{summary}.
 
 %package Ukrainian
-Summary: Ukrainian(uk) language support for KDE3
+Summary: Ukrainian(uk) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-uk = %{version}-%{release}
 #Requires: kde-filesystem
@@ -568,7 +568,7 @@ Provides: %{name}-uk = %{version}-%{release}
 %{summary}.
 
 %package Venda
-Summary: Venda(ven) language support for KDE3
+Summary: Venda(ven) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-ven = %{version}-%{release}
 #Requires: kde-filesystem
@@ -576,7 +576,7 @@ Provides: %{name}-ven = %{version}-%{release}
 %{summary}.
 
 %package Vietnamese
-Summary: Vietnamese(vi) language support for KDE3
+Summary: Vietnamese(vi) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-vi = %{version}-%{release}
 #Requires: kde-filesystem
@@ -584,7 +584,7 @@ Provides: %{name}-vi = %{version}-%{release}
 %{summary}.
 
 %package Walloon
-Summary: Walloon(wa) language support for KDE3
+Summary: Walloon(wa) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-wa = %{version}-%{release}
 #Requires: kde-filesystem
@@ -592,7 +592,7 @@ Provides: %{name}-wa = %{version}-%{release}
 %{summary}.
 
 %package Xhosa
-Summary: Xhosa(xh) (a Bantu language) support for KDE3
+Summary: Xhosa(xh) (a Bantu language) support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-xh = %{version}-%{release}
 #Requires: kde-filesystem
@@ -600,7 +600,7 @@ Provides: %{name}-xh = %{version}-%{release}
 %{summary}.
 
 %package Chinese
-Summary: Chinese(zh_CN) (Simplified Chinese) language support for KDE3
+Summary: Chinese(zh_CN) (Simplified Chinese) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-zh_CN = %{version}-%{release}
 #Requires: kde-filesystem
@@ -608,10 +608,11 @@ Provides: %{name}-zh_CN = %{version}-%{release}
 %{summary}.
 
 %package Chinese-Big5
-Summary: Chinese(zh_TW) (Big5) language support for KDE3
+Summary: Chinese(zh_TW) (Big5) language support for TDE
 Group: User Interface/Desktops
 Provides: %{name}-tz_TW = %{version}-%{release}
-#Requires: kde-filesystem
+Provides: trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
+Obsoletes: trinity-kde-i18n-Chinese-Big5 < %{version}-%{release}
 %description Chinese-Big5
 %{summary}.
 
@@ -626,9 +627,14 @@ for l in %{KDE_LANGS}; do
   done
 done
 
+# Patches for French translations
+%if "%( grep -w fr <<< '%{KDE_LANGS}' )" != ""
 %patch0
 %patch1
 %patch2 -p0
+%endif
+
+# Patches for Chinese (zh_TW) translations
 %patch3 -p0
 
 
@@ -1157,6 +1163,10 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %endif
 
 %changelog
+* Wed Aug 15 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
+- Renames to 'trinity-i18n'
+- Updates 'zh_TW' translations
+
 * Sun Dec 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
 - Updates French translations (mostly Kickoff Menu related)
 

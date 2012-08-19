@@ -33,6 +33,8 @@ Patch0:		arts-3.5.13-enable_oss.patch
 # TDE 3.5.13: Re-enable lost JACK support
 Patch1:		arts-3.5.13-enable_jack.patch
 
+Patch2:		arts-3.5.13-add_pulseaudio_support.patch
+
 BuildRequires:	tqtinterface-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
@@ -87,6 +89,7 @@ Development files for %{name}
 %setup -q -n dependencies/arts
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1 -b .pulse
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh

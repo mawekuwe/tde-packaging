@@ -23,7 +23,7 @@
 %define _docdir %{tde_docdir}
 
 # Disable Kross support for RHEL <= 5 (python is too old)
-%if 0%{?fedora} > 0 || 0%{?rhel} >= 6
+%if 0%{?fedora} > 0 || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_kross 1
 %endif
 
@@ -38,7 +38,7 @@
 
 
 Name:		trinity-%{kdecomp}
-Summary:        An integrated office suite
+Summary:	An integrated office suite
 Version:	1.6.3
 Release:	5%{?dist}%{?_variant}
 
@@ -117,30 +117,23 @@ BuildRequires:  libpaper-devel
 BuildRequires:	libutempter-devel
 BuildRequires:	GraphicsMagick-devel >= 1.1.0
 
-#%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
-#BuildRequires:	poppler-qt-devel >= 0.1.2
-#%else
-#BuildRequires:	trinity-poppler-qt3-devel >= 0.1.2
-#%endif
-
 BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel
 
 # These libraries are either too old or too recent on distributions !
 # We always provide our versions with TDE...
 BuildRequires:	trinity-libwpd-devel
+BuildRequires:  trinity-libpqxx-devel
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}mesagl1-devel
 BuildRequires:	%{_lib}mesaglu1-devel
 BuildRequires:	%{_lib}xi-devel
 BuildRequires:  wv2-devel
-BuildRequires:  libpqxx-devel
 %else
 BuildRequires:  libGL-devel
 BuildRequires:	libGLU-devel
 BuildRequires:  libXi-devel
 BuildRequires:  trinity-wv2-devel
-BuildRequires:  trinity-libpqxx-devel
 %endif
 
 %description
@@ -272,12 +265,18 @@ Requires:       %{name}-core = %{version}-%{release}
 Summary:        A powerful formula editor
 Group:          Applications/Productivity
 Requires:       %{name}-core = %{version}-%{release}
+
+%if 0%{?mgaversion} || 0%{?mdkversion}
+Requires:		fonts-ttf-dejavu
+%else
 Requires:       lyx-cmex10-fonts
 %if 0%{?fedora} >= 11 || 0%{?rhel} >= 6
 Requires:       dejavu-lgc-sans-fonts
 %else
 Requires:       dejavu-lgc-fonts 
 %endif
+%endif
+
 %description kformula
 %{summary}.
 
@@ -380,7 +379,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --with-pic --enable-shared --disable-static \
   --with-extra-libs=%{tde_libdir} \
   --enable-final \
-  --with-extra-includes=%{tde_includedir}/tqt \
+  --with-extra-includes=%{tde_includedir}/tqt:%{tde_includedir}/arts \
   --enable-closure \
   --disable-kexi-macros \
   --with-pqxx-includes=%{tde_includedir} \
@@ -422,10 +421,12 @@ desktop-file-install \
 
 ## Hack-in NoDisplay=True (http://bugzilla.redhat.com/245061)
 ## until http://bugzilla.redhat.com/245190 is fixed
+%if 0%{?rhel} || 0%{?fedora}
 for desktop_file in %{buildroot}%{tde_datadir}/applnk/.hidden/*.desktop ; do
   grep "^NoDisplay=" ${desktop_file} || \
     echo "NoDisplay=True" >> ${desktop_file}
 done
+%endif
 
 ## unpackaged files
 # fonts

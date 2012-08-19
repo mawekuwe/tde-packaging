@@ -51,9 +51,12 @@ BuildRequires:	gettext
 BuildRequires:	gettext-devel
 BuildRequires:	transfig
 BuildRequires:	djvulibre
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_xmedcon 1
 BuildRequires:	xmedcon
 BuildRequires:	xmedcon-devel
 BuildRequires:	librsvg
+%endif
 BuildRequires:	libwmf-devel
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -151,8 +154,10 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_libdir}/ksquirrel-libs/libkls_cut.so.0.8.0
 %{tde_libdir}/ksquirrel-libs/libkls_dds.so.0
 %{tde_libdir}/ksquirrel-libs/libkls_dds.so.0.8.0
+%if 0%{?with_xmedcon}
 %{tde_libdir}/ksquirrel-libs/libkls_dicom.so.0
 %{tde_libdir}/ksquirrel-libs/libkls_dicom.so.0.8.0
+%endif
 %{tde_libdir}/ksquirrel-libs/libkls_djvu.so.0
 %{tde_libdir}/ksquirrel-libs/libkls_djvu.so.0.8.0
 %{tde_libdir}/ksquirrel-libs/libkls_eps.so.0
@@ -281,8 +286,10 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_libdir}/ksquirrel-libs/libkls_cut.so
 %{tde_libdir}/ksquirrel-libs/libkls_dds.la
 %{tde_libdir}/ksquirrel-libs/libkls_dds.so
+%if 0%{?with_xmedcon}
 %{tde_libdir}/ksquirrel-libs/libkls_dicom.la
 %{tde_libdir}/ksquirrel-libs/libkls_dicom.so
+%endif
 %{tde_libdir}/ksquirrel-libs/libkls_djvu.la
 %{tde_libdir}/ksquirrel-libs/libkls_djvu.so
 %{tde_libdir}/ksquirrel-libs/libkls_eps.la
@@ -392,7 +399,9 @@ export PATH="%{tde_bindir}:${PATH}"
 %defattr(-,root,root,-)
 %{tde_bindir}/ksquirrel-libs-camera2ppm
 %{tde_bindir}/ksquirrel-libs-dcraw
+%if 0%{?with_xmedcon}
 %{tde_bindir}/ksquirrel-libs-dicom2png
+%endif
 %{tde_bindir}/ksquirrel-libs-fig2ppm
 %{tde_bindir}/ksquirrel-libs-iff2ppm
 %{tde_bindir}/ksquirrel-libs-leaf2ppm

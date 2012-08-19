@@ -118,7 +118,9 @@ This package contains development files needed for KMyMoney plugins.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%if 0%{?mgaversion} || 0%{?mdkversion}
 %patch5 -p1 -b .qtpluginsdir
+%endif
 
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
 

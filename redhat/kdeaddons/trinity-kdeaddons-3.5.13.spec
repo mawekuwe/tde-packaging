@@ -20,7 +20,7 @@
 Name:		trinity-tdeaddons
 Summary:	Trinity Desktop Environment - Plugins
 Version:	3.5.13
-Release:	5%{?dist}%{?_variant}
+Release:	6%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		User Interface/Desktops
@@ -41,7 +41,12 @@ Source0: kdeaddons-%{version}.tar.gz
 Source1: metabar-fedora.tar.bz2
 Source2: metabarrc
 
+# [tdeaddons] Updates from v3.5.13-sru branch
+Patch0:	 kdeaddons-3.5.13-sru-20120809.patch
+
 BuildRequires: autoconf automake libtool m4
+BuildRequires: trinity-arts-devel
+BuildRequires: trinity-tdelibs-devel
 BuildRequires: trinity-tdebase-devel
 BuildRequires: trinity-tdegames-devel
 BuildRequires: trinity-tdemultimedia-devel
@@ -363,7 +368,7 @@ Requires:	python-exif
 
 %description -n trinity-konq-plugins
 This package contains a variety of useful plugins for Konqueror, the
-file manager, web browser and document viewer for KDE.  Many of these
+file manager, web browser and document viewer for TDE.  Many of these
 plugins will appear in Konqueror's Tools menu.
 
 Highlights for web browsing include web page translation, web page archiving,
@@ -644,6 +649,7 @@ done
 
 %prep
 %setup -q -a 1 -n kdeaddons
+%patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -659,7 +665,7 @@ done
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+#export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
@@ -673,7 +679,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-closure \
   --disable-debug --disable-warnings \
   --disable-dependency-tracking --enable-final \
-  --with-extra-includes=%{tde_includedir}/tqt:%{_usr}/include/db4 \
+  --with-extra-includes=%{tde_includedir}/tqt:%{_includedir}/db4:%{tde_includedir}/arts:%{tde_includedir} \
   --without-xmms \
   --with-sdl \
   --with-berkeley-db
@@ -721,6 +727,10 @@ install -m644 -p %{SOURCE2} %{buildroot}%{tde_datadir}/config/
 
 
 %changelog
+* Thu Aug 09 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
+- Updates from v3.5.13-sru branch
+- Rebuilt for tdebase-3.5.13-27
+
 * Fri Jun 29 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
 - Split in several packages
 

@@ -804,6 +804,7 @@ This package contains development files for Trinity's scanner library.
 %package libpoppler-tqt
 Summary:	TQt support for Poppler
 Group:		Environment/Libraries
+Provides:	poppler-tqt = %{version}-%{release}
 
 %description libpoppler-tqt
 TQt support library for Poppler.
@@ -819,6 +820,7 @@ This library is used by the Trinity graphics file plugins for PDF support.
 Summary:	Development files for TQt support for Poppler
 Group:		Development/Libraries
 Requires:	%{name}-libpoppler-tqt
+Provides:	poppler-tqt-devel = %{version}-%{release}
 
 %description libpoppler-tqt-devel
 Development files of TQt support library for Poppler.

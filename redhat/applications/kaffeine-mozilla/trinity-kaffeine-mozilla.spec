@@ -68,7 +68,8 @@ unset QTDIR; . /etc/profile.d/qt.sh
 %patch1 -p1
 
 %__cp -f "/usr/share/aclocal/libtool.m4" .
-%__cp -f "/usr/share/libtool/config/ltmain.sh" .
+%__cp -f "/usr/share/libtool/config/ltmain.sh" . || %__cp "/usr/share/libtool/ltmain.sh" .
+
 autoreconf -fiv
 
 

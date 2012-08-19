@@ -67,7 +67,7 @@ BuildRequires: trinity-arts-devel >= 3.5.13
 BuildRequires: trinity-tdelibs-devel >= 3.5.13
 #BuildRequires: qt3-devel-docs >= 3.3.8.d
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}db5.1-devel
+#BuildRequires:	%{_lib}db5.1-devel
 %else
 BuildRequires: db4-devel
 %endif
@@ -194,7 +194,7 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 %prep
 %setup -q -n kdevelop -a1
 %patch1 -p0 -b .config
-%patch2 -p1
+#patch2 -p1
 %patch3 -p1 -b .gcc47
 %patch4 -p1
 
@@ -250,7 +250,7 @@ cd build
   ..
   
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} VERBOSE=1
 
 # c references
 cd ..

@@ -48,8 +48,9 @@ Patch1:		bp001-9b57232f.diff
 Patch2:		bp002-d654b107.diff
 
 BuildRequires: tqtinterface-devel
-BuildRequires: trinity-kdelibs-devel
-BuildRequires: trinity-kdebase-devel
+BuildRequires: trinity-arts-devel
+BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tdebase-devel
 BuildRequires: desktop-file-utils
 
 %description
@@ -130,7 +131,7 @@ done
 %{tde_tdedocdir}/HTML/*/*
 %{tde_datadir}/services/*.desktop
 %{tde_datadir}/applnk/Development/*.desktop
-%{tde_datadir}/applnk/.hidden/*.desktop
+%{tde_datadir}/applnk/.hidden/kdiff3plugin.desktop
 %{tde_mandir}/man*/*
 
 %{tde_tdelibdir}/*.so

@@ -1,10 +1,24 @@
-commit 2cc2e3a2f6d1afd47cc076b89215ac41a0d41a92
-Author: Darrell Anderson <humanreadable@yahoo.com>
-Date:   1336512887 -0500
+commit 7da06e558a75c035ea881347e9da69ef9ee57927
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1343199702 -0500
 
-    Fix kmix not autostarting in the user's session.
-    This resolves bug report 503.
+    Fix kmix autostart
+    This resolves Bug 503, and re-applies commit 2cc2e3a2 as part of the fix
 
+
+diff --git a/kmix/KMixApp.cpp b/kmix/KMixApp.cpp
+index d1df895..10e7b6a 100644
+--- a/kmix/KMixApp.cpp
++++ b/kmix/KMixApp.cpp
+@@ -28,6 +28,8 @@
+ KMixApp::KMixApp()
+     : KUniqueApplication(), m_kmix( 0 )
+ {
++   // We handle autostart via standard autostart-enabled .desktop file instead of the session manager
++   disableSessionManagement();
+ }
+ 
+ 
 diff --git a/kmix/Makefile.am b/kmix/Makefile.am
 index 5051363..d2da702 100644
 --- a/kmix/Makefile.am
