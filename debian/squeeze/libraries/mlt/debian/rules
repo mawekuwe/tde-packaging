@@ -45,7 +45,7 @@ configure: configure-stamp
 configure-stamp:
 	dh_testdir
 
-	QUILT_PATCHES=debian/patches quilt push -a || test $$? = 2
+	#QUILT_PATCHES=debian/patches quilt push -a || test $$? = 2
 
 	CFLAGS="$(CFLAGS)" PATH=/opt/trinity/bin:$(PATH) LD_LIBRARY_PATH=/opt/trinity/lib:$(LD_LIBRARY_PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/kde ./configure --enable-gpl \
 	--luma-compress --disable-mmx $(CONFIGURE_OPTS) \
@@ -69,7 +69,7 @@ clean:
 
 	[ ! -f config.mak ] || $(MAKE) dist-clean
 
-	QUILT_PATCHES=debian/patches quilt pop -a -R || test $$? = 2
+	#QUILT_PATCHES=debian/patches quilt pop -a -R || test $$? = 2
 
 	dh_clean *.pc src/modules/gtk2/config.h config.log
 
