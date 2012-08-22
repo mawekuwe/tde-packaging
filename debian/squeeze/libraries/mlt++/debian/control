@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Christian Marillat <marillat@debian.org>
 Homepage: http://www.dennedy.org/mlt/twiki/bin/view/MLT/WebHome
 Standards-Version: 3.8.4
-Build-Depends: debhelper (>= 5), libmlt-trinity-dev (>= 0.2.4.svn20071228), autoconf, automake
+Build-Depends: debhelper (>= 5), quilt, libmlt-trinity-dev (>= 0.2.4.svn20071228), autoconf, automake
 
 Package: libmlt++0.2.5-trinity
 Architecture: any
