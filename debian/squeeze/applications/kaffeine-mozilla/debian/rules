@@ -44,26 +44,6 @@ config.status:
 	autoconf
 	automake
 
-	# Apply Debian specific patches
-	if test -d $(CURDIR)/debian/patches ;\
-	then \
-		for i in $(CURDIR)/debian/patches/*.diff.uu ;\
-		do \
-			cd $(CURDIR)/debian/patches ;\
-			uudecode "$$i" ;\
-			cd $(CURDIR) ;\
-		done ;\
-		patches=$$(find $(CURDIR)/debian/patches -name *.diff | sort);\
-	fi ;\
-	if test ! -f patch-stamp; then \
-		for patch in $$patches ;\
-		do \
-			echo APPLYING PATCH\: "$${patch##*/}" ;\
-			patch -p1 < "$$patch" ;\
-		done ;\
-		touch patch-stamp ;\
-	fi
-	
 	# Add here commands to configure the package.
 	CFLAGS="$(CFLAGS)" ./configure --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --prefix=/opt/trinity --mandir=\$${prefix}/share/man --infodir=\$${prefix}/share/info
 	
@@ -95,24 +75,6 @@ clean:
 	rm -f build-stamp 
 
 	# Add here commands to clean up after the build process.
-	
-	# Remove Debian specific patches
-	if test -d $(CURDIR)/debian/patches ;\
-	then \
-		patches=$$(find $(CURDIR)/debian/patches -name *.diff | sort -r);\
-	fi ;\
-	if test -f patch-stamp; then \
-		for patch in $$patches ;\
-		do \
-			echo REMOVING PATCH\: "$${patch##*/}" ;\
-			patch -p1 -R < "$$patch" ;\
-		done ;\
-		for i in $(CURDIR)/debian/patches/*.diff.uu ;\
-		do \
-			 rm -f "$${i%%.uu}" ;\
-		done ;\
-		rm -f patch-stamp ;\
-	fi
 	
 	-$(MAKE) distclean
 ifneq "$(wildcard /usr/share/misc/config.sub)" ""

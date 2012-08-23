@@ -3,7 +3,7 @@ Section: web
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Riku Voipio <riku.voipio@iki.fi>
-Build-Depends: debhelper (>= 4.0.0), libxaw7-dev, libnspr4-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 4.0.0), quilt, libxaw7-dev, libnspr4-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kaffeine-mozilla-trinity
