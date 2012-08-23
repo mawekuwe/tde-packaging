@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), chrpath, kdelibs4-trinity-dev,
+Build-Depends: cdbs, debhelper (>= 5), quilt, chrpath, kdelibs4-trinity-dev,
  libpythonize0-trinity-dev, libtool, libxml2-utils, libxss-dev, libxxf86vm-dev,
  pykdeextensions-trinity, pyqt-tools, python-qt3 (>= 3.17.2-1ubuntu2), python-trinity-trinity, python-trinity-trinity-dev, python-sip4-dev,
  python-support (>= 0.6), python (>= 2.5), python-dev (>= 2.5), x11proto-scrnsaver-dev, python-qt-dev, hwdata
