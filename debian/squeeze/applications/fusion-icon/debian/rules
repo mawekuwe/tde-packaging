@@ -5,7 +5,7 @@ DEB_PYTHON_SYSTEM=pycentral
 include /usr/share/cdbs/1/rules/debhelper.mk
 # include /usr/share/cdbs/1/class/python-distutils.mk
 include debian/python-distutils-custom.mk
-include /usr/share/cdbs/1/rules/simple-patchsys.mk
+#include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
 binary-install/fusion-icon-trinity::
 	mkdir -p debian/fusion-icon-trinity/usr/local/lib

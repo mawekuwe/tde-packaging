@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Python Applications Packaging Team <python-apps-team@lists.alioth.debian.org>
 XS-Python-Version: all
-Build-Depends: cdbs (>= 0.4.49), debhelper (>= 5.0.37.1), pkg-config, python-all-dev
+Build-Depends: cdbs (>= 0.4.49), debhelper (>= 5.0.37.1), quilt, pkg-config, python-all-dev
 Build-Depends-Indep: python-central (>= 0.6.0), intltool
 Standards-Version: 3.8.4
 
