@@ -8,7 +8,7 @@ I18N_DIR_PREFIX := kde-i18n
 I18N_VERSION := 3.5.10
 I18N_DIR_PAT := $(I18N_DIR_PREFIX)-%-$(I18N_VERSION)
 I18N_DIRS := $(subst .tar.bz2,,$(wildcard $(I18N_DIR_PREFIX)-*-$(I18N_VERSION).tar.bz2))
-I18N_PATCHES := $(wildcard debian/patches/*.diff)
+#I18N_PATCHES := $(wildcard debian/patches/*.diff)
 
 # Stamps and support variables
 cur_lang = $(word 2,$(subst __, ,$@))
