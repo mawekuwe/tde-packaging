@@ -232,8 +232,8 @@ binary-install/kdebase-data-trinity::
 	install -p -D -m644 debian/tmp/etc/xdg/menus/kde-settings.menu debian/kdebase-data-trinity/opt/trinity/etc/xdg/menus/kde-settings.menu
 
 install/kdm-trinity::
-	sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/trinity/kdm/kdmrc
-	sed -i 's/Theme=@@@ToBeReplacedByDesktopBase@@@/Theme=\/opt\/trinity\/share\/apps\/kdm\/themes\/kubuntu-trinity/g' debian/tmp/etc/trinity/kdm/kdmrc
+	#sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/trinity/kdm/kdmrc
+	#sed -i 's/Theme=@@@ToBeReplacedByDesktopBase@@@/Theme=\/opt\/trinity\/share\/apps\/kdm\/themes\/kubuntu-trinity/g' debian/tmp/etc/trinity/kdm/kdmrc
 
 binary-install/kdm-trinity::
 	mkdir -p debian/kdm-trinity/etc/init
