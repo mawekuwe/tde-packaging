@@ -9,7 +9,7 @@ with a 2.4 series kernel.
 NB: The aKode library, used in conjunction with aRts, dramatically
 improves aRts' CPU usage and helps to maintain uninterrupted
 playback, often making realtime scheduling unnecessary. To make use
-of aKode, simply "apt-get install libarts1-akode".
+of aKode, simply "apt-get install libarts1-akode-trinity".
 
 Users running other kernels, or simply willing to risk it, can set
 SUID on artswrapper, thus enabling the possibility of realtime
