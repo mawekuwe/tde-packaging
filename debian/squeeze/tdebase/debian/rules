@@ -223,8 +223,8 @@ binary-install/tdebase-data-trinity::
 	install -p -D -m644 debian/tmp/etc/xdg/menus/tde-settings.menu debian/tdebase-data-trinity/opt/trinity/etc/xdg/menus/tde-settings.menu
 
 install/tdm-trinity::
-	sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/trinity/tdm/tdmrc
-	sed -i 's/Theme=@@@ToBeReplacedByDesktopBase@@@/Theme=\/usr\/share\/apps\/tdm\/themes\/debian-moreblue/g' debian/tmp/etc/trinity/tdm/tdmrc
+	#sed -i 's/#UseTheme=true/UseTheme=true/g' debian/tmp/etc/trinity/tdm/tdmrc
+	#sed -i 's/Theme=@@@ToBeReplacedByDesktopBase@@@/Theme=\/usr\/share\/apps\/tdm\/themes\/debian-moreblue/g' debian/tmp/etc/trinity/tdm/tdmrc
 
 binary-install/tdm-trinity::
 	mkdir -p debian/tdm-trinity/etc/init
