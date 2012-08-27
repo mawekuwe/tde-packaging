@@ -1,0 +1,17 @@
+Source: gwenview-i18n-trinity
+Section: kde
+Priority: optional
+Maintainer: Christopher Martin <chrsmrtn@debian.org>
+Build-Depends-Indep: kdelibs4-trinity-dev (>= 4:3.4.3)
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 6.0.0), quilt, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.0
+Homepage: http://gwenview.sourceforge.net
+
+Package: gwenview-i18n-trinity
+Architecture: all
+Depends: gwenview-trinity (>= 1.4.2)
+Replaces: gwenview-trinity (<< 1.4.0-1)
+Description: Internationalization (i18n) for Gwenview, an image viewer for KDE
+ This package provides internationalization (i18n) files (translations) for
+ Gwenview, an image viewer for the K Desktop Environment. See the 'gwenview'
+ package description for more information.
