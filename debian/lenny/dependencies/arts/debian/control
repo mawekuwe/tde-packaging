@@ -30,7 +30,7 @@ Package: libarts1c2a-trinity
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}
-Suggests: libarts1-akode
+Suggests: libarts1-akode-trinity
 Description: aRts sound system core components
  aRts is a short form for "analog realtime synthesizer". aRts is highly
  modular, creating and processing sound using small modules performing

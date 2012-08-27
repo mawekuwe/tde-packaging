@@ -31,7 +31,7 @@ Package: libarts1c2a
 Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, oss-compat
-Recommends: libarts1-akode
+Recommends: libarts1-akode-trinity
 Conflicts: libarts1, libarts1c2, libarts (<< 4:3.0.0), libarts-alsa (<< 4:3.0.0), kdelibs4c2a (<< 4:3.5.9)
 Replaces: libarts1, libarts1c2, libarts (<< 4:3.0.0), libarts-alsa (<< 4:3.0.0)
 Description: aRts sound system core components
