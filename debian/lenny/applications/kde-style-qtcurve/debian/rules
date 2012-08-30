@@ -1,5 +1,7 @@
 #!/usr/bin/make -f
 
+PATH := /opt/trinity/bin:$(PATH)
+
 # Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
 # Also include the main Trinity path
 ifeq ("$(LD_LIBRARY_PATH)", "")
