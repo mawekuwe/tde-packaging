@@ -85,8 +85,6 @@ install: build
 	# Add here commands to install the package into debian/k3b-i18n-trinity.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/k3b-i18n-trinity
 	mkdir -p $(CURDIR)/debian/k3b-i18n-trinity$(DEB_CONFIGURE_PREFIX)/share/doc/tde/
-	mv $(CURDIR)/debian/k3b-i18n-trinity$(DEB_CONFIGURE_PREFIX)/share/doc/HTML $(CURDIR)/debian/k3b-i18n-trinity$(DEB_CONFIGURE_PREFIX)/share/doc/tde/
-
 
 # Build architecture-independent files here.
 binary-indep: build install
