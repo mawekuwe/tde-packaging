@@ -26,7 +26,7 @@
 Name:		trinity-%{kdecomp}
 Summary:	Use KDE dialogs in Gtk apps
 Version:	0.10.2
-Release:	2%{?dist}%{?_variant}
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -102,8 +102,11 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
+# The "preload" file is used by "startkde" script
+%__install -d -m 755 "%{buildroot}%{tde_datadir}/kgtk"
+echo "%{tde_libdir}/kgtk/libkgtk2.so" >"%{buildroot}%{tde_datadir}/kgtk/preload"
 
-%find_lang kdialogd3 || touch %{kdecomp}.lang
+%find_lang kdialogd3
 
 
 
@@ -121,9 +124,12 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_bindir}/kqt3-wrapper
 %{tde_libdir}/kgtk/libkgtk2.so
 %{tde_libdir}/kgtk/libkqt3.so
-
+%{tde_datadir}/kgtk/preload
 
 %Changelog
+* Sun Aug 26 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.2-3
+- Add 'preload' file for startkde script
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.2-2
 - Rebuilt for Fedora 17
 - Removes post and postun
