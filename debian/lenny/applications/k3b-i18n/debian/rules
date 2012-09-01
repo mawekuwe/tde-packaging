@@ -29,6 +29,9 @@ endif
 config.status: configure
 	dh_testdir
 
+configure:
+	dh_testdir
+
 	# Regenerate build system
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
@@ -70,7 +73,6 @@ endif
 ifneq "$(wildcard /usr/share/misc/config.guess)" ""
 	cp -f /usr/share/misc/config.guess config.guess
 endif
-	-find . -name *gmo | xargs rm
 
 	dh_clean
 
@@ -83,8 +85,6 @@ install: build
 	# Add here commands to install the package into debian/k3b-i18n-trinity.
 	$(MAKE) install DESTDIR=$(CURDIR)/debian/k3b-i18n-trinity
 	mkdir -p $(CURDIR)/debian/k3b-i18n-trinity$(DEB_CONFIGURE_PREFIX)/share/doc/tde/
-	mv $(CURDIR)/debian/k3b-i18n-trinity$(DEB_CONFIGURE_PREFIX)/share/doc/HTML $(CURDIR)/debian/k3b-i18n-trinity$(DEB_CONFIGURE_PREFIX)/share/doc/tde/
-
 
 # Build architecture-independent files here.
 binary-indep: build install
