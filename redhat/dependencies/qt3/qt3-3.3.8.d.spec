@@ -88,7 +88,7 @@ Patch200: qt-x11-free-3.3.4-fullscreen.patch
 Patch300: qt3-3.3.8.d-updates_zh-tw_translations.patch
 
 ## [qt3] Fix Qt3 builds with libpng15. [Bug #683]
-Patch301: 1326063972:e278b858739babff5cc19ca81a661e1256d162e7.diff
+Patch301: qt3-3.3.8.d-fix_png15_support.patch
 
 %define qt_dirname qt-3.3
 %define qtdir %{_libdir}/%{qt_dirname}
