@@ -107,6 +107,7 @@ Requires: trinity-kcmautostart
 Requires: trinity-kcpuload
 Requires: trinity-kdbusnotification
 Requires: trinity-guidance
+Requires: trinity-guidance-powermanager
 Requires: trinity-style-lipstik
 Requires: trinity-style-qtcurve
 Requires: trinity-systemsettings
