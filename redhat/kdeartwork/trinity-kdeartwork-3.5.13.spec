@@ -570,7 +570,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/zoom.desktop
 
 # These screensavers do not exist on Mageia 2 and Mandriva 2011
-%if 0%{?mgaversion} == 0 && 0%{mdkversion}==0
+%if 0%{?mgaversion} == 0 && 0%{?mdkversion} == 0
 %{tde_datadir}/applnk/System/ScreenSavers/xjack.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/xmatrix.desktop
 %endif
