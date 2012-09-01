@@ -25,7 +25,7 @@
 Name:		trinity-%{kdecomp}
 Summary:	digital photo management application for KDE [Trinity]
 Version:	0.9.6
-Release:	3%{?dist}%{?_variant}
+Release:	4%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -300,6 +300,6 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 
 %Changelog
-* Wed Aug 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-3
+* Wed Aug 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-4
 - Switch to v3.5.13-sru branch.
 
