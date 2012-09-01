@@ -27,7 +27,7 @@
 
 Name: qt3
 Version: 3.3.8.d
-Release: %mkrel 1%{?dist}
+Release: %mkrel 2%{?dist}
 License: GPLv3+ and QPL
 Summary: Qt3 Sources
 Group: System/Libraries
@@ -65,11 +65,19 @@ Patch59: qt-3.3.6-fix-qfile-message-error2.patch
 Patch63: qt-x11-free-3.3.8-qmo35263.patch
 Patch64: qt-x11-free-3.3.8b-unixodb-64.patch
 Patch65: qt-x11-free-3.3.8b-cstddef.patch
-Patch66: qt-x11-free-3.3.8b-force-png12.patch
+#Patch66: qt-x11-free-3.3.8b-force-png12.patch
 #-------------- KDE qt-copy patches ( added the relevant ones )
 Patch102: 0017-qiconview-ctrl_rubber.patch 
 Patch104: 0035-qvaluelist-streaming-operator.patch 
 Patch115: 0078-argb-visual-hack.patch 
+
+# TDE 3.5.13 patches
+Patch300: qt3-3.3.8.d-updates_zh-tw_translations.patch
+
+## [qt3] Fix Qt3 builds with libpng15. [Bug #683]
+Patch301: qt3-3.3.8.d-fix_png15_support.patch
+
+
 Buildroot: %_tmppath/%name-%version-%release-root
 %if %buildSQL
 BuildRequires: mysql-devel 
@@ -92,7 +100,8 @@ BuildRequires: fontconfig-devel
 BuildRequires: bzip2-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libmng-devel
-BuildRequires: pkgconfig(libpng12)
+#BuildRequires: pkgconfig(libpng12)
+BuildRequires: pkgconfig(libpng15)
 BuildRequires: zlib-devel 
 BuildRequires: nas-devel
 BuildRequires: libiodbc-devel
@@ -483,11 +492,16 @@ find %_docdir -maxdepth 1 -type d -name qt-3.\* -exec rm -rf {} \;
 %patch64 -p0 -b .fix_unixodbc
 %endif
 %patch65 -p1 -b .gcc46
-%patch66 -p0 -b .libpng
+#patch66 -p0 -b .libpng
 # KDE qt-copy patches
 %patch102 -p0 -b .qt-copy
 %patch104 -p0 -b .qt-copy
 %patch115 -p0 -b .qt-copy
+
+# TDE 3.5.13 patches
+%patch300 -p1
+%patch301 -p1
+
 
 # (Anssi 01/2008)
 # Hack to disable stripping, a better fix for configure script welcome:
@@ -525,7 +539,7 @@ echo "yes" | ./configure \
 	-I/usr/include/Xft2 \
 	-I/usr/include/Xft2/X11/Xft \
 	-I/usr/include/mysql/ \
-	-I/usr/include/libpng12 \
+	-I/usr/include/libpng15 \
 	-prefix %qtdir/ \
 	-libdir %_libdir \
 	-plugindir %{plugindir} \
@@ -783,6 +797,10 @@ rm -fr %buildroot
 
 
 %changelog
+* Mon Aug 27 2012 Francois Andriot <francois.andriot@free.fr> 3.3.8.d-2
+- Rebuild with libpng 1.5
+- Updates zh_TW translations
+
 * Sat Jul 27 2012 Francois Andriot <francois.andriot@free.fr> 3.3.8.d-1
 - Initial build for MGA2
 
