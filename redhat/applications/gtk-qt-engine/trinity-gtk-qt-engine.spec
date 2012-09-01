@@ -26,7 +26,7 @@
 Name:		trinity-%{kdecomp}
 Summary:	theme engine using Qt for GTK+ 2.x and Trinity
 Version:	0.8
-Release:	2%{?dist}%{?_variant}
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -39,6 +39,9 @@ Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
+Source1:	gtk-qt-engine.rc.sh
+Source2:	gtkrc-2.0-kde4
+Source3:	gtkrc-2.0-kde-kde4
 
 # [gtk-qt-engine] Fix inclusion of 'glib.h'
 Patch1:		gtk-qt-engine-3.5.13-fix_glib_include.patch
@@ -104,6 +107,11 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %find_lang %{kdecomp}
 
+# Adds TDE's specific GTKRC
+%__install -D -m 644 %{SOURCE1} %{buildroot}%{tde_datadir}/kgtk/gtk-qt-engine.rc.sh
+%__install -D -m 644 %{SOURCE2} %{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde4
+%__install -D -m 644 %{SOURCE3} %{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde-kde4
+
 %clean
 %__rm -rf %{buildroot}
 
@@ -115,6 +123,9 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_tdelibdir}/kcm_kcmgtk.la
 %{tde_tdelibdir}/kcm_kcmgtk.so
 %{tde_appdir}/kcmgtk.desktop
+%{tde_datadir}/kgtk/gtk-qt-engine.rc.sh
+%{tde_datadir}/kgtk/.gtkrc-2.0-kde4
+%{tde_datadir}/kgtk/.gtkrc-2.0-kde-kde4
 
 # The following files are outside TDE's directory
 %{_libdir}/gtk-2.0/2.10.0/engines/libqtengine.so
@@ -122,6 +133,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %Changelog
+* Mon Aug 27 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-3
+- Add missing gtkrc files
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-2
 - Rebuilt for Fedora 17
 - Fix FTBFS with newer glib
