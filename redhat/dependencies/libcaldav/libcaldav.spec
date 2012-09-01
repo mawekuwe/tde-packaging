@@ -83,6 +83,7 @@ autoreconf --force --install --symlink
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+%__rm -f %{buildroot}%{tde_libdir}/*.a
 
 %clean
 %__rm -rf %{buildroot}
@@ -94,7 +95,6 @@ autoreconf --force --install --symlink
 
 %files devel
 %{tde_includedir}/caldav.h
-%{tde_libdir}/*.a
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
 %{tde_libdir}/pkgconfig/libcaldav.pc
