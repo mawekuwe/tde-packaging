@@ -81,8 +81,6 @@ Patch28:	kdelibs-3.5.13-fix_build_kspell2.patch
 Patch29:	kdelibs-3.5.13-fix_iso_kioslave.patch
 ## [tdelibs] Fix iso kioslave not parsing large images properly [Commit #b4bba7b5]
 Patch30:	kdelibs-3.5.13-fix_iso_kioslave_not_parsing_large_image_properly.patch
-## [tdelibs] Add ability to set KLed off color [Commit #513ffc6e]
-Patch31:	kdelibs-3.5.13-add_ability_to_set_kled_off_color.patch
 ## [tdelibs] Fix spinbox text entry when base is not 10 [Commit #d1c71f69]
 Patch32:	kdelibs-3.5.13-fix_spinbox_text_entry_when_base_not_10.patch
 ## [tdelibs] Update iso kioslave to better handle large images [Commit #dca4c677]
@@ -333,9 +331,6 @@ applications for TDE.
 %patch28 -p1
 %patch29 -p1
 %patch30 -p1
-%if 0%{?mdkversion} || 0%{?mgaversion}
-%patch31 -p1 -b .kled
-%endif
 %patch32 -p1
 %patch33 -p1
 %patch34 -p1
