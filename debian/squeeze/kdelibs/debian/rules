@@ -40,14 +40,14 @@ DEB_DH_MAKESHLIBS_ARGS_kdelibs4c2a-trinity := -V'kdelibs4c2a-trinity (>= 4:3.5.8
 binary-install/kdelibs-data-trinity::
 	install -p -D -m644 kded/applications.menu debian/kdelibs-data-trinity/opt/trinity/etc/xdg/menus/kde-applications.menu
 	install -p -D -m644 debian/trinitylibs.conf debian/kdelibs-data-trinity/etc/ld.so.conf.d/trinitylibs.conf
-	uudecode debian/icons/aboutkde-kubuntu.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/apps/kdeui/pics/aboutkde.png
+#	uudecode debian/icons/aboutkde-kubuntu.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/apps/kdeui/pics/aboutkde.png
 
-	uudecode debian/icons/cr16-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/devices/system.png
-	uudecode debian/icons/cr22-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/devices/system.png
-	uudecode debian/icons/cr32-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/devices/system.png
-	uudecode debian/icons/cr48-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/devices/system.png
-	uudecode debian/icons/cr64-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/64x64/devices/system.png
-	uudecode debian/icons/cr128-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/128x128/devices/system.png
+#	uudecode debian/icons/cr16-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/devices/system.png
+#	uudecode debian/icons/cr22-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/devices/system.png
+#	uudecode debian/icons/cr32-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/32x32/devices/system.png
+#	uudecode debian/icons/cr48-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/48x48/devices/system.png
+#	uudecode debian/icons/cr64-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/64x64/devices/system.png
+#	uudecode debian/icons/cr128-device-system.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/128x128/devices/system.png
 #	uudecode debian/icons/crsc-device-system.svgz.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/scalable/devices/system.svgz
 
 	uudecode debian/icons/cr16-action-hibernate.png.uu -o debian/kdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/actions/hibernate.png
