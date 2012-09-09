@@ -18,5 +18,5 @@ debian/tmp/opt/trinity/share/icons/hicolor/64x64/apps/kpdf.png
 debian/tmp/opt/trinity/share/icons/hicolor/scalable/apps/kpdf.svgz
 debian/tmp/opt/trinity/share/services/kpdf_part.desktop
 
-debian/icons/kpdf.xpm		/usr/share/pixmaps
-debian/icons/kpdf-16.xpm	/usr/share/pixmaps
+debian/icons/kpdf.xpm		/opt/trinity/share/pixmaps
+debian/icons/kpdf-16.xpm	/opt/trinity/share/pixmaps

@@ -62,5 +62,5 @@ debian/tmp/opt/trinity/share/services/photobook.desktop
 debian/tmp/opt/trinity/share/servicetypes/kimageviewer.desktop
 debian/tmp/opt/trinity/share/servicetypes/kimageviewercanvas.desktop
 
-debian/icons/kview.xpm		/usr/share/pixmaps
-debian/icons/kview-16.xpm	/usr/share/pixmaps
+debian/icons/kview.xpm		/opt/trinity/share/pixmaps
+debian/icons/kview-16.xpm	/opt/trinity/share/pixmaps

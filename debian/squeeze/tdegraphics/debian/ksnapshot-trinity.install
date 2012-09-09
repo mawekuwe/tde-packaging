@@ -11,5 +11,5 @@ debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/ksnapshot.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/ksnapshot.png
 debian/tmp/opt/trinity/share/icons/hicolor/scalable/apps/ksnapshot.svgz
 
-debian/icons/ksnapshot.xpm		/usr/share/pixmaps
-debian/icons/ksnapshot-16.xpm		/usr/share/pixmaps
+debian/icons/ksnapshot.xpm		/opt/trinity/share/pixmaps
+debian/icons/ksnapshot-16.xpm		/opt/trinity/share/pixmaps

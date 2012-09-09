@@ -3,8 +3,8 @@
 	section="Applications/Viewers"\
 	hints="KDE,Documents"\
 	title="KGhostView"\
-	icon32x32="/usr/share/pixmaps/kghostview.xpm"\
-	icon16x16="/usr/share/pixmaps/kghostview-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kghostview.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kghostview-16.xpm"\
 	command="/opt/trinity/bin/kghostview"
 
 # Icon 32x32 kghostview/cr32-app-kghostview.png kghostview.xpm

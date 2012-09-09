@@ -422,5 +422,5 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/mimetypes/kpovmodeler_doc.pn
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/mimetypes/kpovmodeler_doc.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/mimetypes/kpovmodeler_doc.png
 
-debian/icons/kpovmodeler.xpm		/usr/share/pixmaps
-debian/icons/kpovmodeler-16.xpm		/usr/share/pixmaps
+debian/icons/kpovmodeler.xpm		/opt/trinity/share/pixmaps
+debian/icons/kpovmodeler-16.xpm		/opt/trinity/share/pixmaps
