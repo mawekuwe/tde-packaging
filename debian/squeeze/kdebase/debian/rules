@@ -219,8 +219,8 @@ clean::
 	rm -f pics/crystalsvg/cr*decrypt.png pics/crystalsvg/cr*encrypt.png
 
 binary-install/kate-trinity::
-	cp -Rp debian/kate-trinity/usr/* debian/kate-trinity/opt/trinity/
-	rm -rf debian/kate-trinity/usr
+	#cp -Rp debian/kate-trinity/usr/* debian/kate-trinity/opt/trinity/
+	#rm -rf debian/kate-trinity/usr
 
 binary-install/kdebase-data-trinity::
 	# hack the oui.db install, as under kfreebsd it does not get installed and then breaks at dh_install time
@@ -248,15 +248,15 @@ binary-install/kcontrol-trinity::
 
 binary-install/konqueror-trinity::
 	install -p -D -m644 debian/edit-as-root.desktop debian/konqueror-trinity/opt/trinity/share/apps/konqueror/servicemenus/edit-as-root.desktop
-	cp -Rp debian/konqueror-trinity/usr/* debian/konqueror-trinity/opt/trinity/
-	rm -rf debian/konqueror-trinity/usr
+	#cp -Rp debian/konqueror-trinity/usr/* debian/konqueror-trinity/opt/trinity/
+	#rm -rf debian/konqueror-trinity/usr
 
 install/klipper-trinity::
 	sed -i '/X-Ubuntu-Gettext-Domain=/d' debian/tmp/etc/trinity/klipperrc
 
 binary-install/klipper-trinity::
-	cp -Rp debian/klipper-trinity/usr/* debian/klipper-trinity/opt/trinity/
-	rm -rf debian/klipper-trinity/usr
+	#cp -Rp debian/klipper-trinity/usr/* debian/klipper-trinity/opt/trinity/
+	#rm -rf debian/klipper-trinity/usr
 
 binary-install/kdebase-trinity-bin::
 	install -p -D -m644 debian/kcheckpass-trinity.pam debian/kdebase-trinity-bin/etc/pam.d/kcheckpass-trinity
