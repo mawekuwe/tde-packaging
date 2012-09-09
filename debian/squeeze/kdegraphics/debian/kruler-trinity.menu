@@ -3,8 +3,8 @@
 	section="Applications/Viewers"\
 	hints="KDE"\
 	title="KRuler"\
-	icon32x32="/usr/share/pixmaps/kruler.xpm"\
-	icon16x16="/usr/share/pixmaps/kruler-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kruler.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kruler-16.xpm"\
 	command="/opt/trinity/bin/kruler"
 
 # Icon 32x32 kruler/pics/cr32-app-kruler.png kruler.xpm

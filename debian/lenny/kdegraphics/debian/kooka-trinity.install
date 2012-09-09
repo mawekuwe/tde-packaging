@@ -28,5 +28,5 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kooka/toolbar.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kooka/toolbar1.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kooka/toolbar2.png
 
-debian/icons/kooka.xpm		/usr/share/pixmaps
-debian/icons/kooka-16.xpm	/usr/share/pixmaps
+debian/icons/kooka.xpm		/opt/trinity/share/pixmaps
+debian/icons/kooka-16.xpm	/opt/trinity/share/pixmaps

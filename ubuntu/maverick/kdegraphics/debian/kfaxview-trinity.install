@@ -13,5 +13,5 @@ debian/tmp/opt/trinity/share/icons/hicolor/scalable/apps/kfaxview.svgz
 debian/tmp/opt/trinity/share/services/kfaxmultipage.desktop
 debian/tmp/opt/trinity/share/services/kfaxmultipage_tiff.desktop
 
-debian/icons/kfaxview.xpm           /usr/share/pixmaps
-debian/icons/kfaxview-16.xpm        /usr/share/pixmaps
+debian/icons/kfaxview.xpm           /opt/trinity/share/pixmaps
+debian/icons/kfaxview-16.xpm        /opt/trinity/share/pixmaps

@@ -168,5 +168,5 @@ debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kolourpaint.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kolourpaint.png
 debian/tmp/opt/trinity/share/icons/hicolor/scalable/apps/kolourpaint.svgz
 
-debian/icons/kolourpaint.xpm		/usr/share/pixmaps
-debian/icons/kolourpaint-16.xpm		/usr/share/pixmaps
+debian/icons/kolourpaint.xpm		/opt/trinity/share/pixmaps
+debian/icons/kolourpaint-16.xpm		/opt/trinity/share/pixmaps

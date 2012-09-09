@@ -3,8 +3,8 @@
 	section="Applications/Graphics"\
 	hints="KDE"\
 	title="KolourPaint"\
-	icon32x32="/usr/share/pixmaps/kolourpaint.xpm"\
-	icon16x16="/usr/share/pixmaps/kolourpaint-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kolourpaint.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kolourpaint-16.xpm"\
 	command="/opt/trinity/bin/kolourpaint"
 
 # Icon 32x32 kolourpaint/pics/hi32-app-kolourpaint.png kolourpaint.xpm

@@ -15,5 +15,5 @@ debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kruler.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kruler.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kruler.png
 
-debian/icons/kruler.xpm		/usr/share/pixmaps
-debian/icons/kruler-16.xpm	/usr/share/pixmaps
+debian/icons/kruler.xpm		/opt/trinity/share/pixmaps
+debian/icons/kruler-16.xpm	/opt/trinity/share/pixmaps

@@ -3,8 +3,8 @@
 	section="Applications/Graphics"\
 	hints="KDE"\
 	title="KSnapshot"\
-	icon32x32="/usr/share/pixmaps/ksnapshot.xpm"\
-	icon16x16="/usr/share/pixmaps/ksnapshot-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/ksnapshot.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/ksnapshot-16.xpm"\
 	command="/opt/trinity/bin/ksnapshot"
 
 # Icon 32x32 ksnapshot/cr32-app-ksnapshot.png ksnapshot.xpm

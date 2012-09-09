@@ -3,8 +3,8 @@
 	section="Applications/Viewers"\
 	hints="KDE"\
 	title="KFaxView"\
-	icon32x32="/usr/share/pixmaps/kfaxview.xpm"\
-	icon16x16="/usr/share/pixmaps/kfaxview-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kfaxview.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kfaxview-16.xpm"\
 	command="/opt/trinity/bin/kfaxview"
 
 # Icon 32x32 kfaxview/hi32-app-kfaxview.png kfaxview.xpm
