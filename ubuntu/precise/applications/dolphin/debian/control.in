@@ -1,0 +1,34 @@
+Source: dolphin-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: @@@MAINTAINER@@@
+Uploaders: @@@UPLOADERS@@@
+Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, libkonq4-trinity-dev, autotools-dev, docbook2x, docbook-xml, tdesdk-scripts-trinity, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: dolphin-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: amarok-trinity, ark-trinity, k3b-trinity, kmail-trinity, digikam-trinity
+Suggests: kfloppy-trinity
+Description: File manager for KDE focusing on usability [Trinity]
+ Dolphin is not intended to be a competitor to Konqueror, the default KDE
+ file manager: Konqueror acts as universal viewer being able to show HTML
+ pages, text documents, directories and a lot more, whereas Dolphin focuses
+ on being only a file manager. This approach allows to optimize the user
+ interface for the task of file management.
+ .
+ Features include:
+  Sidebar
+  Navigation bar (breadcrumbs)
+  View properties remembered for each folder
+  Split views
+  Network transparency
+  Undo/redo functionality
+  Renaming of a variable number of selected items in one step.
+ .
+ This is the D3lphin fork of Dolphin, intended to keep development of
+ the KDE 3 version of Dolphin active.
+ .
+  Homepage: https://marrat.homelinux.org/D3lphin

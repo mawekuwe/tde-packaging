@@ -1,0 +1,10 @@
+export kde_prefix=/opt/trinity
+export sysconfdir=/etc
+export kde_includedir=/opt/trinity/include/tde
+export infodir=/opt/trinity/share/info
+export mandir=/opt/trinity/share/man
+export qtdir=/opt/trinity/share/qt3
+export kde_cgidir=/opt/trinity/lib/cgi-bin
+export kde_confdir=/etc/trinity
+export kde_htmldir=/opt/trinity/share/doc/tde/HTML
+configkde=--disable-debug --disable-rpath --prefix=$(kde_prefix) --sysconfdir=$(sysconfdir) --includedir=$(kde_includedir) --infodir=$(infodir) --mandir=$(mandir) --with-qt-dir=$(qtdir)

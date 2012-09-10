@@ -1,0 +1,3 @@
+debian/kmfinstallerplugin.desktop usr/share/servicetypes
+debian/kmyfirewall.desktop usr/share/applications/tde
+debian/kmyfirewall.xpm usr/share/pixmaps

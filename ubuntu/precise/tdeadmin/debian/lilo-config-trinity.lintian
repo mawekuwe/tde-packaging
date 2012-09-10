@@ -1,0 +1,1 @@
+lilo-config: menu-command-not-in-package /usr/share/menu/lilo-config:6 /opt/trinity/bin/tdesu

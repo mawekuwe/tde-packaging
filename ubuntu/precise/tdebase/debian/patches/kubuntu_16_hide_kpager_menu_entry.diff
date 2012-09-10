@@ -1,0 +1,7 @@
+--- tdebase/kpager/kpager.desktop
++++ tdebase/kpager/kpager.desktop
+@@ -96,3 +96,4 @@
+ X-TDE-StartupNotify=false
+ X-DCOP-ServiceType=Unique
+ Categories=Qt;TDE;Utility;X-TDE-Utilities-Desktop;
++NoDisplay=true

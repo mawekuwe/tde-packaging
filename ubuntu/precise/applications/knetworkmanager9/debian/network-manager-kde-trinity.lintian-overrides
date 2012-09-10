@@ -1,0 +1,2 @@
+network-manager-kde: package-name-doesnt-match-sonames libtdeinit-tdenetworkmanager
+network-manager-kde: shlib-without-versioned-soname opt/trinity/lib/libtdeinit_tdenetworkmanager.so libtdeinit_tdenetworkmanager.so

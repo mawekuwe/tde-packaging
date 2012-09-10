@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/kde.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,--as-needed"
+DEB_INSTALL_MANPAGES_kvpnc-trinity := debian/kvpnc-trinity.1
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
+
+makebuilddir/kvpnc-trinity::
+	cp -Rp /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	cp -Rp /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	$(MAKE) -C $(DEB_SRCDIR) -f admin/Makefile.common dist;
+	touch debian/stamp-cvs-make
+
+install/kvpnc-trinity::
+	# fix script-not-executable
+	chmod 0755 debian/kvpnc-trinity/opt/trinity/share/apps/kvpnc/ping_check.sh
+
+	# remove uneeded dir
+	rm -rf debian/kvpnc-trinity/opt/trinity/share/doc/tde/HTML/kvpnc
+
+	# install desktop file in applications
+	install -D -p -m0644 src/kvpnc.desktop \
+	  debian/kvpnc-trinity/opt/trinity/share/applications/tde/kvpnc.desktop
+
+binary-post-install/kvpnc-trinity::
+	rm -rf debian/kvpnc-trinity/opt/trinity/share/applnk/
+
+clean::
+	rm -f config.status config.log
+	find . -type f -name '*.gmo' | xargs rm -f

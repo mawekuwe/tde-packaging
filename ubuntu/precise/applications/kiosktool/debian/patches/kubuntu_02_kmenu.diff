@@ -1,0 +1,13 @@
+--- kiosktool/kiosktool/menueditComponent.cpp	2005-04-25 09:46:33.000000000 +0000
++++ kiosktool/kiosktool/menueditComponent.cpp	2005-12-18 14:45:26.000000000 +0000
+@@ -104,8 +104,8 @@
+ {
+    bool result;
+    TQString menuEditFile = KioskRun::self()->locateLocal("xdgconf-menu", "applications-kmenuedit.menu");
+-   TQString menuFile = KioskRun::self()->locate("xdgconf-menu", "applications.menu");
+-   TQString menuFileSave = KioskRun::self()->locateSave("xdgconf-menu", "applications.menu");
++   TQString menuFile = KioskRun::self()->locate("xdgconf-menu", "kde-applications.menu");
++   TQString menuFileSave = KioskRun::self()->locateSave("xdgconf-menu", "kde-applications.menu");
+ 
+    kdDebug() << "MenuEditComponent: menuEditFile = " << menuEditFile << endl;
+    kdDebug() << "MenuEditComponent: menuFile = " << menuFile << endl;

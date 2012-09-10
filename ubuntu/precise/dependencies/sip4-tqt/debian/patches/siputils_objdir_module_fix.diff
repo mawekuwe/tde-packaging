@@ -1,0 +1,18 @@
+Index: sip4-qt3-4.10/siputils.py
+===================================================================
+--- sip4-qt3-4.10.orig/siputils.py	2010-01-26 23:45:34.144734105 +0100
++++ sip4-qt3-4.10/siputils.py	2010-01-26 23:46:51.605699383 +0100
+@@ -1546,9 +1546,12 @@
+         mfile.write("\n$(OFILES): $(HFILES)\n")
+ 
+         for mf in self._build["tqmoc_headers"].split():
+-            root, discard = os.path.splitext(mf)
++            root, _ = os.path.splitext(mf)
+             cpp = "tqmoc_" + root + ".cpp"
+ 
++            if self._src_dir != self.dir:
++                mf = os.path.join(self._src_dir, mf)
++
+             mfile.write("\n%s: %s\n" % (cpp, mf))
+             mfile.write("\t$(TQMOC) -o %s %s\n" % (cpp, mf))
+ 

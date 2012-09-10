@@ -1,0 +1,9 @@
+diff -Nur tdebase-3.5.4/tdeprint/printmgr/printers.desktop tdebase-3.5.4.new/tdeprint/printmgr/printers.desktop
+--- tdebase-3.5.4/tdeprint/printmgr/printers.desktop	2006-07-22 10:15:47.000000000 +0200
++++ tdebase-3.5.4.new/tdeprint/printmgr/printers.desktop	2006-08-21 22:20:40.000000000 +0200
+@@ -219,4 +219,4 @@
+ Keywords[zh_TW]=print,printer,printing management,列印,印表機,列印管理
+ Keywords[zu]=shicilela,umshicileli,abaphathi boshicilelo
+ 
+-Categories=Qt;TDE;X-TDE-settings-hardware;Settings;
++Categories=Qt;TDE;X-TDE-settings-hardware;

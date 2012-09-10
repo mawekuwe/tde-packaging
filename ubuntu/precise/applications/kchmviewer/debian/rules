@@ -1,0 +1,120 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+
+CFLAGS = -Wall -g
+
+CONFIGURE_OPTIONS_KDE = \
+	--host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+	--prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib \
+	--includedir=/opt/trinity/include/tde --mandir=/opt/trinity/share/man \
+	--with-qt-dir=$(qtdir) \
+	--sysconfdir=$(sysconfdir) \
+	--infodir=/opt/trinity/share/info \
+	--disable-debug --disable-rpath \
+	--with-kde
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+
+-include debian/debiandirs
+
+build: debian/build-kde
+
+debian/build-kde:
+	dh_testdir
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+#	automake
+#	autoconf
+	test -e config.sub -a -L config.sub || \
+		ln -sf /usr/share/misc/config.sub config.sub
+	test -e config.guess -a -L config.guess || \
+		ln -sf /usr/share/misc/config.guess config.guess
+
+	mkdir build-kde && cd build-kde && ../configure CFLAGS="$(CFLAGS)" $(CONFIGURE_OPTIONS_KDE)
+	$(MAKE) -C build-kde
+	touch debian/build-kde
+
+clean:
+	dh_testdir
+	dh_testroot
+	$(RM) -f build-stamp 
+	$(RM) -rf debian/kchmviewer
+	$(RM) -rf build-kde
+	$(RM) -f debian/build-kde
+	[ ! -f Makefile ] || $(MAKE) distclean
+	$(RM) config.sub config.guess
+	dh_clean 
+
+install: build install-common debian/install-kde
+install-common:
+	dh_testdir
+	dh_clean -k 
+	dh_installdirs
+
+debian/install-kde:
+	dh_testroot
+	$(MAKE) -C build-kde install DESTDIR=$(CURDIR)/debian/kchmviewer-trinity
+	$(MAKE) -C build-kde/src/pics install DESTDIR=$(CURDIR)/debian/kchmviewer-trinity
+	mkdir -p $(CURDIR)/debian/kchmviewer-trinity/opt/trinity/share/man
+	cp -Rp $(CURDIR)/debian/additions/kchmviewer.1 $(CURDIR)/debian/kchmviewer-trinity/opt/trinity/share/man/kchmviewer.1
+
+# Build architecture-independent files here.
+binary-indep: build
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs ChangeLog
+	dh_installdocs
+	dh_installexamples
+#	dh_install
+	dh_installmenu
+#	dh_installdebconf	
+#	dh_installmime
+#	dh_installinfo
+#	dh_installman
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+#	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install 

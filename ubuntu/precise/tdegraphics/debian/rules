@@ -1,0 +1,134 @@
+#!/usr/bin/make -f
+
+# Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
+# Also include the main Trinity path
+ifeq ("$(LD_LIBRARY_PATH)", "")
+LD_LIBRARY_PATH=debian/tmp/opt/trinity/lib
+else
+LD_LIBRARY_PATH += :debian/tmp/opt/trinity/lib
+endif
+export LD_LIBRARY_PATH
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF" \
+-DWITH_TIFF="ON" -DWITH_OPENEXR="ON" -DWITH_PDF="ON" \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo
+
+# Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
+# never build in parallel, regardless of DEB_BUILD_OPTIONS.
+DEB_BUILD_PARALLEL = true
+
+DEB_DH_STRIP_ARGS  := --dbg-package=tdegraphics-trinity-dbg
+
+PACKAGES_WITH_LIBS := kfaxview-trinity kghostview-trinity kmrml-trinity kpovmodeler-trinity ksvg-trinity \
+			kuickshow-trinity kview-trinity kviewshell-trinity libkscan1-trinity
+
+DEB_DH_MAKESHLIBS_ARGS_kghostview-trinity	:= -V'kghostview-trinity (>= 4:3.5.5-1)'
+DEB_DH_MAKESHLIBS_ARGS_kpovmodeler-trinity	:= -V'kpovmodeler-trinity (>= 4:3.5.5-1)'
+DEB_DH_MAKESHLIBS_ARGS_ksvg-trinity	:= -V'ksvg-trinity (>= 4:3.5.5-1)'
+DEB_DH_MAKESHLIBS_ARGS_kview-trinity	:= -V'kview-trinity (>= 4:3.5.5-1)'
+DEB_DH_MAKESHLIBS_ARGS_kviewshell-trinity	:= -V'kviewshell-trinity (>= 4:3.5.5-1)'
+DEB_DH_MAKESHLIBS_ARGS_libkscan1-trinity	:= -V'libkscan1-trinity (>= 4:3.5.5-1)'
+
+binary-post-install/kuickshow-trinity::
+ifeq ($(DEB_HOST_ARCH), powerpc)
+	chrpath -d -k debian/kuickshow-trinity/opt/trinity/lib/libtdeinit_kuickshow.so
+endif
+
+#shlibs_ver = 4:3.5.0-1
+#$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))
+
+kuickshow-trinity-tar:
+	mkdir ../kuickshow-trinity-3.5.8
+	cp -f * ../kuickshow-trinity-3.5.8 || true
+	mkdir ../kuickshow-trinity-3.5.8/doc
+	cp doc/Makefile.am ../kuickshow-trinity-3.5.8/doc
+	cp -r doc/kuickshow ../kuickshow-trinity-3.5.8/doc
+	cp -r kuickshow ../kuickshow-trinity-3.5.8
+	cp -r admin ../kuickshow-trinity-3.5.8
+	cd ../kuickshow-trinity-3.5.8; make -f admin/Makefile.common dist
+	cd ..; tar zcf kuickshow-trinity_3.5.8.orig.tar.gz kuickshow-trinity-3.5.8
+
+binary-post-install/kpdf-trinity::
+	#cp -Rp debian/kpdf-trinity/usr/* debian/kpdf-trinity/opt/trinity/
+	#rm -rf debian/kpdf-trinity/usr/
+	mv debian/kpdf-trinity/usr/share/man debian/kpdf-trinity/opt/trinity/share/
+
+binary-post-install/kghostview-trinity::
+	#cp -Rp debian/kghostview-trinity/usr/* debian/kghostview-trinity/opt/trinity/
+	#rm -rf debian/kghostview-trinity/usr/
+	mv debian/kghostview-trinity/usr/share/man debian/kghostview-trinity/opt/trinity/share/
+
+binary-post-install/kcolorchooser-trinity::
+	#cp -Rp debian/kcolorchooser-trinity/usr/* debian/kcolorchooser-trinity/opt/trinity/
+	#rm -rf debian/kcolorchooser-trinity/usr/
+	mv debian/kcolorchooser-trinity/usr/share/man debian/kcolorchooser-trinity/opt/trinity/share/
+
+binary-post-install/kdvi-trinity::
+	#cp -Rp debian/kdvi-trinity/usr/* debian/kdvi-trinity/opt/trinity/
+	#rm -rf debian/kdvi-trinity/usr/
+	mv debian/kdvi-trinity/usr/share/man debian/kdvi-trinity/opt/trinity/share/
+
+binary-post-install/kfaxview-trinity::
+	#cp -Rp debian/kfaxview-trinity/usr/* debian/kfaxview-trinity/opt/trinity/
+	#rm -rf debian/kfaxview-trinity/usr/	
+	mv debian/kfaxview-trinity/usr/share/man debian/kfaxview-trinity/opt/trinity/share/
+
+binary-post-install/kiconedit-trinity::
+	#cp -Rp debian/kiconedit-trinity/usr/* debian/kiconedit-trinity/opt/trinity/
+	#rm -rf debian/kiconedit-trinity/usr/	
+	mv debian/kiconedit-trinity/usr/share/man debian/kiconedit-trinity/opt/trinity/share/
+
+binary-post-install/kooka-trinity::
+	#cp -Rp debian/kooka-trinity/usr/* debian/kooka-trinity/opt/trinity/
+	#rm -rf debian/kooka-trinity/usr/
+	mv debian/kooka-trinity/usr/share/man debian/kooka-trinity/opt/trinity/share/
+
+binary-post-install/kpovmodeler-trinity::
+	#cp -Rp debian/kpovmodeler-trinity/usr/* debian/kpovmodeler-trinity/opt/trinity/
+	#rm -rf debian/kpovmodeler-trinity/usr/
+	mv debian/kpovmodeler-trinity/usr/share/man debian/kpovmodeler-trinity/opt/trinity/share/
+
+binary-post-install/ksnapshot-trinity::
+	#cp -Rp debian/ksnapshot-trinity/usr/* debian/ksnapshot-trinity/opt/trinity/
+	#rm -rf debian/ksnapshot-trinity/usr/
+	mv debian/ksnapshot-trinity/usr/share/man debian/ksnapshot-trinity/opt/trinity/share/
+
+binary-post-install/kview-trinity::
+	#cp -Rp debian/kview-trinity/usr/* debian/kview-trinity/opt/trinity/
+	#rm -rf debian/kview-trinity/usr/
+	mv debian/kview-trinity/usr/share/man debian/kview-trinity/opt/trinity/share/
+
+binary-post-install/kcoloredit-trinity::
+	#cp -Rp debian/kcoloredit-trinity/usr/* debian/kcoloredit-trinity/opt/trinity/
+	#rm -rf debian/kcoloredit-trinity/usr/
+	mv debian/kcoloredit-trinity/usr/share/man debian/kcoloredit-trinity/opt/trinity/share/
+
+binary-post-install/kfax-trinity::
+	#cp -Rp debian/kfax-trinity/usr/* debian/kfax-trinity/opt/trinity/
+	#rm -rf debian/kfax-trinity/usr/
+	mv debian/kfax-trinity/usr/share/man debian/kfax-trinity/opt/trinity/share/
+
+binary-post-install/kolourpaint-trinity::
+	#cp -Rp debian/kolourpaint-trinity/usr/* debian/kolourpaint-trinity/opt/trinity/
+	#rm -rf debian/kolourpaint-trinity/usr/
+	mv debian/kolourpaint-trinity/usr/share/man debian/kolourpaint-trinity/opt/trinity/share/
+
+binary-post-install/kruler-trinity::
+	#cp -Rp debian/kruler-trinity/usr/* debian/kruler-trinity/opt/trinity/
+	#rm -rf debian/kruler-trinity/usr/
+	mv debian/kruler-trinity/usr/share/man debian/kruler-trinity/opt/trinity/share/
+
+binary-post-install/kuickshow-trinity::
+	#cp -Rp debian/kuickshow-trinity/usr/* debian/kuickshow-trinity/opt/trinity/
+	#rm -rf debian/kuickshow-trinity/usr/
+	mv debian/kuickshow-trinity/usr/share/man debian/kuickshow-trinity/opt/trinity/share/
+
+binary-post-install/kviewshell-trinity::
+	#cp -Rp debian/kviewshell-trinity/usr/* debian/kviewshell-trinity/opt/trinity/
+	#rm -rf debian/kviewshell-trinity/usr/
+	mv debian/kviewshell-trinity/usr/share/man debian/kviewshell-trinity/opt/trinity/share/

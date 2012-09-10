@@ -1,0 +1,6 @@
+version=3
+opts=downloadurlmangle=s/prdownload/download/ \
+  http://developer.berlios.de/project/showfiles.php?group_id=769 \
+  http://prdownload.berlios.de/smb4k/smb4k-([\d\.]+)\.tar\.bz2 
+
+

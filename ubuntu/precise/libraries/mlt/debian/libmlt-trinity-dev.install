@@ -1,0 +1,5 @@
+opt/trinity/bin/mlt-config
+/opt/trinity/include
+opt/trinity/lib/pkgconfig
+opt/trinity/lib/*.so
+/opt/trinity/share/mlt/packages.dat

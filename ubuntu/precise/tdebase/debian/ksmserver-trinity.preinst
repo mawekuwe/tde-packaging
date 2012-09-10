@@ -1,0 +1,53 @@
+#! /bin/sh -e
+
+case "$1" in
+
+    upgrade)
+	rm -f /etc/gdm/Sessions/KDE
+	rm -f /etc/trinity/debian/starttde
+	/usr/sbin/update-alternatives --remove x-session-manager /usr/bin/kde2
+	/usr/sbin/update-alternatives --remove x-session-manager /usr/bin/trinity
+	mkdir -p /usr/share/autostart
+
+	# Intrepid plasma
+        dpkg-divert --remove --rename /usr/share/autostart/plasma.desktop
+	mkdir -p /usr/bin
+        dpkg-divert --add --rename --divert /usr/bin/plasma.kde4 /usr/bin/plasma
+        rm -f /usr/bin/plasma
+        ln -s /usr/bin/plasma.autodetect /usr/bin/plasma
+
+	# Jaunty plasma-desktop
+        dpkg-divert --remove --rename /usr/share/autostart/plasma-desktop.desktop
+        mkdir -p /usr/bin
+        dpkg-divert --add --rename --divert /usr/bin/plasma-desktop.kde4 /usr/bin/plasma-desktop
+        rm -f /usr/bin/plasma-desktop
+        ln -s /usr/bin/plasma-desktop.autodetect /usr/bin/plasma-desktop
+    ;;
+
+    install)
+	# Intrepid plasma
+	mkdir -p /usr/bin
+	dpkg-divert --add --rename --divert /usr/bin/plasma.kde4 /usr/bin/plasma
+	rm -f /usr/bin/plasma
+	ln -s /usr/bin/plasma.autodetect /usr/bin/plasma
+
+	# Jaunty plasma-desktop
+        mkdir -p /usr/bin
+        dpkg-divert --add --rename --divert /usr/bin/plasma-desktop.kde4 /usr/bin/plasma-desktop
+        rm -f /usr/bin/plasma-desktop
+        ln -s /usr/bin/plasma-desktop.autodetect /usr/bin/plasma-desktop
+    ;;
+
+    abort-upgrade)
+    ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+
+esac
+
+#DEBHELPER#
+
+exit 0

@@ -1,0 +1,22 @@
+--- a/tdm/kfrontend/tdmshutdown.cpp
++++ b/tdm/kfrontend/tdmshutdown.cpp
+@@ -472,7 +472,7 @@
+ {
+ 	setCaption(i18n("Shutdown TDE"));
+ 
+-	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Shutdown").readBoolEntry("doUbuntuLogout", false);
++	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Shutdown").readBoolEntry("doUbuntuLogout", true);
+ 
+ 	TQFrame* lfrm = new TQFrame( this );
+ 	TQHBoxLayout* hbuttonbox;
+--- a/ksmserver/shutdowndlg.cpp
++++ b/ksmserver/shutdowndlg.cpp
+@@ -697,7 +697,7 @@
+ 							2 * KDialog::spacingHint() );
+ 
+ 	// default factor
+-	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Logout").readBoolEntry("doUbuntuLogout", false);
++	bool doUbuntuLogout = KConfigGroup(KGlobal::config(), "Logout").readBoolEntry("doUbuntuLogout", true);
+ 
+ 	// slighty more space for the new logout
+ 	int factor = 2;

@@ -1,0 +1,42 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+export KUBUNTU_DESKTOP_POT=extragear-utils_katapult
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+
+cleanbuilddir/katapult-trinity::
+	rm -f katapult.1
+
+build/katapult-trinity::
+	docbook2x-man debian/katapult.1.docbook
+
+DEB_INSTALL_MANPAGES_katapult-trinity = katapult.1
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+		cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+install/katapult-trinity::
+	rm -f $(CURDIR)/debian/katapult-trinity/opt/trinity/lib/libkatapult*.so
+	rm -f $(CURDIR)/debian/katapult-trinity/opt/trinity/lib/libkatapult*.la
+	dh_install $(DEB_SRCDIR)/debian/lintian opt/trinity/share/lintian/overrides/katapult
+#	dh_install $(DEB_SRCDIR)/katapult/katapult/katapult.desktop opt/trinity/share/autostart
+#	echo 'X-TDE-autostart-condition=katapultrc:General:Autostart:true' >> $(DEB_DESTDIR)/opt/trinity/share/autostart/katapult.desktop

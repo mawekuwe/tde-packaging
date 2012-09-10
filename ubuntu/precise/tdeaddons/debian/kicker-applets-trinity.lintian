@@ -1,0 +1,3 @@
+# Call is inserted by debhelper and is correct.
+kicker-applets: postinst-has-useless-call-to-ldconfig
+kicker-applets: postrm-has-useless-call-to-ldconfig

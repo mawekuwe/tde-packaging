@@ -1,0 +1,7 @@
+--- tdebase/konqueror/Home.desktop-orig	2005-03-17 02:27:51.835213072 +0000
++++ tdebase/konqueror/Home.desktop	2005-03-17 02:27:58.766159408 +0000
+@@ -151,3 +151,4 @@
+ GenericName[zu]=Amafayela Omuntu siqu
+ Categories=Qt;TDE;Core;
+ OnlyShowIn=TDE;
++NoDisplay=true

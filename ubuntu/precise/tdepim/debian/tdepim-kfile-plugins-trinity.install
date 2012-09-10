@@ -1,0 +1,6 @@
+/opt/trinity/lib/trinity/kfile_ics.la
+/opt/trinity/lib/trinity/kfile_ics.so
+/opt/trinity/lib/trinity/kfile_vcf.la
+/opt/trinity/lib/trinity/kfile_vcf.so
+/opt/trinity/share/services/kfile_ics.desktop
+/opt/trinity/share/services/kfile_vcf.desktop
