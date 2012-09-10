@@ -50,9 +50,11 @@ binary-install/kdesdk-scripts-trinity::
 		debian/kdesdk-scripts-trinity/opt/trinity/bin/svn-clean-kde
 	mv -f debian/kdesdk-scripts-trinity/opt/trinity/bin/svnversions \
 		debian/kdesdk-scripts-trinity/opt/trinity/bin/svnversion-kde
-	rm -rf debian/kdesdk-scripts-trinity/opt/share/man/pl
-	rm -rf debian/kdesdk-scripts-trinity/opt/share/man/py
-	rm -rf debian/kdesdk-scripts-trinity/opt/share/man/sh
+	rm -rf debian/kdesdk-scripts-trinity/usr/share/man/pl
+	rm -rf debian/kdesdk-scripts-trinity/usr/share/man/py
+	rm -rf debian/kdesdk-scripts-trinity/usr/share/man/sh
+	mv debian/kdesdk-scripts-trinity/usr/share/man/man1/* debian/kdesdk-scripts-trinity/opt/trinity/share/man/man1/
+	rm -rf debian/kdesdk-scripts-trinity/usr/share/man
 	install -p -D -m644 scripts/kde-buildrc \
 		debian/kdesdk-scripts-trinity/opt/trinity/share/doc/kdesdk-scripts-trinity/kde-buildrc.example
 
@@ -74,3 +76,37 @@ binary-install/kapptemplate-trinity::
 			Doxyfile.global install-sh missing mkinstalldirs nmcheck ylwrap; do \
 		chmod 755 debian/kapptemplate-trinity/opt/trinity/share/apps/kapptemplate/admin/$$admindirfile; \
 	done
+	mv debian/kapptemplate-trinity/usr/share/man debian/kapptemplate-trinity/opt/trinity/share/
+
+binary-install/kbabel-trinity::
+	mv debian/kbabel-trinity/usr/share/man debian/kbabel-trinity/opt/trinity/share/
+
+binary-install/kbugbuster-trinity::
+	mv debian/kbugbuster-trinity/usr/share/man debian/kbugbuster-trinity/opt/trinity/share/
+
+binary-install/kmtrace-trinity::
+	mv debian/kmtrace-trinity/usr/share/man debian/kmtrace-trinity/opt/trinity/share/
+
+binary-install/kompare-trinity::
+	mv debian/kompare-trinity/usr/share/man debian/kompare-trinity/opt/trinity/share/
+
+binary-install/kspy-trinity::
+	mv debian/kspy-trinity/usr/share/man debian/kspy-trinity/opt/trinity/share/
+
+binary-install/kuiviewer-trinity::
+	mv debian/kuiviewer-trinity/usr/share/man debian/kuiviewer-trinity/opt/trinity/share/
+
+binary-install/libcvsservice0-trinity::
+	mv debian/libcvsservice0-trinity/usr/share/man debian/libcvsservice0-trinity/opt/trinity/share/
+
+binary-install/poxml-trinity::
+	mv debian/poxml-trinity/usr/share/man debian/poxml-trinity/opt/trinity/share/
+
+binary-install/kcachegrind-converters-trinity::
+	mv debian/kcachegrind-converters-trinity/usr/share/man debian/kcachegrind-converters-trinity/opt/trinity/share/
+
+binary-install/kcachegrind-trinity::
+	mv debian/kcachegrind-trinity/usr/share/man debian/kcachegrind-trinity/opt/trinity/share/
+
+binary-install/umbrello-trinity::
+	mv debian/umbrello-trinity/usr/share/man debian/umbrello-trinity/opt/trinity/share/
