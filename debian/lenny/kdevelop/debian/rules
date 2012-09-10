@@ -56,4 +56,5 @@ DEB_CONFIGURE_EXTRA_FLAGS := \
 binary-install/kdevelop-trinity::
 	mkdir -p debian/kdevelop-trinity/opt/trinity/share/pixmaps
 	cp debian/kdevelop.xpm debian/kdevelop-trinity/opt/trinity/share/pixmaps
+	mv debian/kdevelop-trinity/usr/share/man debian/kdevelop-trinity/opt/trinity/share/
 
