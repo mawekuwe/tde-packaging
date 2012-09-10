@@ -56,4 +56,5 @@ DEB_CONFIGURE_EXTRA_FLAGS := \
 binary-install/tdevelop-trinity::
 	mkdir -p debian/tdevelop-trinity/opt/trinity/share/pixmaps
 	cp debian/tdevelop.xpm debian/tdevelop-trinity/opt/trinity/share/pixmaps
+	mv debian/tdevelop-trinity/usr/share/man debian/tdevelop-trinity/opt/trinity/share/
 
