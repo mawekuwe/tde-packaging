@@ -8,7 +8,7 @@ Build-Depends: debhelper (>= 5.0.31), quilt, cpio, libxext-dev (>= 4.3.0.dfsg.1-
  libx11-dev (>= 4.3.0.dfsg.1-4), libxt-dev (>= 4.3.0.dfsg.1-4), libxrender-dev,
  libxcursor-dev, libxinerama-dev, libxi-dev, zlib1g-dev, libjpeg62-dev,
  libmng-dev (>= 1.0.3), libpng12-dev | libpng12-0-dev, libfontconfig1-dev,
- libfreetype6-dev, libxft-dev, unixodbc-dev,
+ libfreetype6-dev, libxft-dev, unixodbc-dev, uuid-dev,
  libmysqlclient-dev, flex, libpq-dev, libaudio-dev, libcups2-dev,
  libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, libsqlite3-dev,
  firebird2.1-dev [i386 kfreebsd-i386 kfreebsd-amd64 knetbsd-i386 netbsd-i386 amd64 sparc powerpc] | firebird2-dev [i386 amd64]
