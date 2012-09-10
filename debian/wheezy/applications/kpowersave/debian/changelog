@@ -1,0 +1,372 @@
+kpowersave-trinity (0.7.3-0ubuntu3) karmic; urgency=low
+
+  * Karmic rebuild
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 02 July 2009 16:08:00 -0600
+
+kpowersave-trinity (0.7.3-0ubuntu2) intrepid; urgency=low
+
+  * Moved Trinity to /opt/trinity
+  * Integrated properly with KDE4.2+
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 05 March 2009 29:52:00 -0600
+
+kpowersave-trinity (0.7.3-0ubuntu1) intrepid; urgency=low
+
+  * Added -trinity suffix
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sun, 14 Dec 2008 15:12:00 -0600
+
+kpowersave (0.7.3-2ubuntu1) intrepid; urgency=low
+
+  * Merge from debian unstable, remaining changes:
+    - debian/patches/kubuntu_02_messages_target.diff
+    - Modified maintainer field per specification
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Fri, 25 Jan 2008 09:54:46 +0000
+
+kpowersave (0.7.3-2) unstable; urgency=low
+
+  * debian/control
+    - Bump Standards-Version to 3.7.3. No further changes required.
+    - Drop Recommends: pm-utils | powersaved | hibernate | acpi-support.
+      Let the hal package depend on the correct suspend framework.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 25 Jan 2008 06:02:09 +0100
+
+kpowersave (0.7.3-1ubuntu1) hardy; urgency=low
+
+  * Merge from debian unstable.
+  * Dropped debian/patches/kubuntu_01_kdepot.patch - in KDE CDBS class.
+  * Remaining Ubuntu changes:
+    - debian/patches/kubuntu_02_messages_target.diff
+
+ -- Jonathan Patrick Davies <jpatrick@kubuntu.org>  Wed, 24 Oct 2007 20:41:44 +0200
+
+kpowersave (0.7.3-1) unstable; urgency=low
+
+  * New upstream release.
+    - Fixes a crash in HardwareInfo::checkCurrentCPUFreqPolicy ().
+      Closes: #422057
+  * debian/control
+    - Use the new "Homepage:" field to specify the upstream URL.
+    - Add a Build-Conflicts against autoconf2.13.
+  * debian/menu
+    - Update to the new menu spec.
+  * debian/patches/10-kpowersave-crash-on-getenv.patch
+    - Removed, fixed upstream.
+  * debian/patches/06-handle_failed_suspend.patch
+    - Removed, merged upstream.
+  * debian/patches/05-restore_window.patch
+    - Removed, merged upstream.
+  * debian/patches/04-default_config.patch
+    - Updated, wodim is now already in the application blacklist that is
+      provided by upstream.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 04 Oct 2007 12:48:39 +0200
+
+kpowersave (0.7.2-3ubuntu1) gutsy; urgency=low
+
+  * Merge from debian unstable. 
+  * Remaining Ubuntu changes:
+    * debian/control: change Maintainer field
+    * debian/patches/kubuntu_01_kdepot.patch
+    * debian/patches/kubuntu_02_messages_target.diff
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Sat, 19 May 2007 13:22:26 +1000
+
+kpowersave (0.7.2-3) unstable; urgency=low
+
+  * debian/patches/10-kpowersave-crash-on-getenv.patch
+    - Fixes a crash when the environment variable DESKTOP_SESSION is not set.
+      Patch by Pierre Habouzit, thanks!  Closes: #422420
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 25 Apr 2007 21:07:05 +0200
+
+kpowersave (0.7.2-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/patches/05-restore_window.patch
+    - Pull from svn. Properly restore minimized configuration dialog.
+      Closes: #413638
+  * debian/patches/06-handle_failed_suspend.patch
+    - Pull from svn. Check the return code of the Suspend() method and display
+      a message box if it failed. Closes: #413811
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 25 Apr 2007 20:40:41 +0200
+
+kpowersave (0.7.2-1ubuntu1) feisty; urgency=low
+
+  * Merge from debian experimental
+  * Dropped Ubuntu changes:
+    * debian/control: drop Conflics/Replaces/Provides klaptopdaemon - does not
+      conflict anymore
+    * debian/rules: remove dh_iconcache - done by cdbs
+  * Remaining Ubuntu changes:
+    * debian/control: change Maintainer field
+    * debian/patches/kubuntu_01_kdepot.patch
+    * debian/patches/kubuntu_02_messages_target.diff
+
+ -- Luka Renko <lure@ubuntu.com>  Mon, 19 Mar 2007 22:30:13 +0100
+
+kpowersave (0.7.2-1) experimental; urgency=low
+
+  * New upstream release. Closes: #412647
+  * debian/patches/01-autoconf_2.6.patch,
+    debian/patches/02-close_dialog_on_destroy.patch
+    - Removed, merged upstream.
+  * debian/patches/04-default_config.patch
+    - Add wodim to application blacklist.
+    - Do not unmount external media on suspend.
+      kded/mediamanager in Debian is missing a patch which would allow that. 
+  * Beginning with this version, the dependency on powersaved as backend has
+    been dropped. All the heavy lifting is done via HAL now.
+    Update debian/control accordingly:
+    - Remove build dependency on libpowersave-dev.
+    - Remove dependency on powersaved, add a versioned dependency on 
+      hal (>= 0.5.8.1) instead (needed for cpu frequency scaling support).
+    - For proper suspend/resume support, hal should use one of the existing 
+      suspend frameworks. Add Recommends on these packages. 
+    - Update the package description.
+
+ -- Michael Biebl <biebl@debian.org>  Mon,  5 Mar 2007 07:24:09 +0100
+
+kpowersave (0.7.2-0ubuntu1) feisty; urgency=low
+
+  * New upstream release: uses HAL directly (no powersave dependency)
+  * Changes:
+    * drop 01-autoconf_2.6.patch: included upstream
+    * drop 02-close_dialog_on_destroy.patch: included upstream
+    * drop 03-reset_blankonly_to_default.patch: fixed upstream
+    * update kubuntu_01_kdepot.patch to apply
+    * drop Build-Depends on libpowersave-dev: now uses HAL 
+    * drop Depends on powersaved: now uses HAL
+    * update Maintainer field
+  * UVF exception approved by MOTU https://launchpad.net/bugs/88793
+
+ -- Luka Renko <lure@ubuntu.com>  Wed, 28 Feb 2007 22:35:46 +0100
+
+kpowersave (0.6.2-5ubuntu1) feisty; urgency=low
+
+  * Merge from debian unstable, remaining changes:
+    - Added dh_iconcache
+    - Add kubuntu_02_messages_target.diff fix messages 
+      target for .pot generation
+    - Added kubuntu_01_kdepot.diff for pot file extraction to rosetta
+    - Added a Conflicts/Replaces/Provides: klaptopdaemon to enforce 
+      its removal. 
+
+ -- ville palo <vi64pa@gmail.com>  Sun, 21 Jan 2007 09:21:00 +0000
+
+kpowersave (0.6.2-5) unstable; urgency=low
+
+  * Prepend a sequence number to all patches.
+  * debian/patches/03-reset_blankonly_to_default.patch
+    - Added. Reset kscreensaver settings to correct default values on scheme 
+      changes and on application shutdown.
+      Patch by Modestas Vainius, thanks! Closes: #399473
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 20 Jan 2007 19:49:40 +0100
+
+kpowersave (0.6.2-4) unstable; urgency=low
+
+  * debian/patches/close_dialog_on_destroy.patch
+    - Added. Correctly close the information dialog when activated over dcop.
+      Closes: #398201
+
+ -- Michael Biebl <biebl@debian.org>  Mon, 13 Nov 2006 06:05:56 +0100
+
+kpowersave (0.6.2-3) unstable; urgency=low
+
+  * Update maintainer email address to biebl@debian.org.
+
+ -- Michael Biebl <biebl@debian.org>  Fri, 20 Oct 2006 00:04:12 +0200
+
+kpowersave (0.6.2-2ubuntu2) edgy; urgency=low
+
+  * Rebuild against dbus 0.90
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Wed, 30 Aug 2006 22:04:58 +0200
+
+kpowersave (0.6.2-2ubuntu1) edgy; urgency=low
+
+  * Merge from debian unstable.
+
+ -- Luka Renko <lure@ubuntu.com>  Sat, 12 Aug 2006 17:17:17 +0200
+
+kpowersave (0.6.2-2) unstable; urgency=medium
+
+  * Updated admin/cvs.sh to support autoconf-2.6. Closes: #379824
+
+ -- Michael Biebl <biebl@teco.edu>  Tue, 25 Jul 2006 23:10:10 +0200
+
+kpowersave (0.6.2-1) unstable; urgency=low
+
+  * New upstream release.
+    - Display correct warning message if user lacks permissions to connect to
+      powersaved over dbus. Closes: #356609
+  * Requires powersave 0.12.8 or newer.
+
+ -- Michael Biebl <biebl@teco.edu>  Sat, 24 Jun 2006 19:16:02 +0200
+
+kpowersave (0.6.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Corrected typo in package description. Closes: #364191
+  * Removed kpowersave-fix-utf8_in_eventrc.diff, fixed upstream.
+  * Bumped Standards-Version to 3.7.2, no further changes required.
+
+ -- Michael Biebl <biebl@teco.edu>  Mon, 15 May 2006 02:28:48 +0200
+
+kpowersave (0.6.0-1ubuntu4) dapper; urgency=low
+
+  * Added dh_iconcache
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Sat, 13 May 2006 20:16:04 +1000
+
+kpowersave (0.6.0-1ubuntu3) dapper; urgency=low
+
+  * Add kubuntu_02_messages_target.diff fix messages 
+    target for .pot generation
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 14 Apr 2006 15:03:01 +0000
+
+kpowersave (0.6.0-1ubuntu2) dapper; urgency=low
+
+  * Added kubuntu_01_kdepot.diff for pot file extraction to rosetta
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Thu, 13 Apr 2006 00:40:57 +0200
+
+kpowersave (0.6.0-1ubuntu1) dapper; urgency=low
+
+  * Added kpowersave-fix-utf8_in_eventrc.diff
+
+ -- Luka Renko <lure.net@gmail.com>  Wed, 12 Apr 2006 19:39:57 +0200
+
+kpowersave (0.6.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Requires powersave 0.12.7 or newer.
+  * Added build dependency on libxtst-dev.
+  * Added kpowersave-fix-utf8_in_eventrc.diff. 
+
+ -- Michael Biebl <biebl@teco.edu>  Mon, 17 Apr 2006 18:21:14 +0200
+
+kpowersave (0.5.11-1ubuntu1) dapper; urgency=low
+
+  * New upstream release.
+
+ -- Luka Renko <lure.net@gmail.com>  Sun, 26 Mar 2006 18:59:38 +0200
+
+kpowersave (0.5.11-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@teco.edu>  Thu, 23 Mar 2006 09:45:35 +0100
+
+kpowersave (0.5.10-1ubuntu1) dapper; urgency=low
+
+  * Added a Conflicts/Replaces/Provides: klaptopdaemon to enforce its removal. 
+
+ -- Michael Biebl <biebl@teco.edu>  Thu,  9 Mar 2006 23:05:33 +0100
+
+kpowersave (0.5.10-1) unstable; urgency=low
+
+  * New upstream release.
+  * Requires powersave 0.12.2 or newer.
+
+ -- Michael Biebl <biebl@teco.edu>  Tue,  7 Mar 2006 23:45:01 +0100
+
+kpowersave (0.5.9-1) unstable; urgency=low
+
+  * New upstream release.
+  * Requires powersave 0.12.1 or newer.
+
+ -- Michael Biebl <biebl@teco.edu>  Thu,  2 Mar 2006 18:43:24 +0100
+
+kpowersave (0.5.8-1) unstable; urgency=low
+
+  * New upstream release.
+  * Bumped debhelper compatibility to 5.
+
+ -- Michael Biebl <biebl@teco.edu>  Tue, 21 Feb 2006 10:51:35 +0100
+
+kpowersave (0.5.7-1) unstable; urgency=low
+
+  * New upstream release.
+    - kpowersave now shows correct instructions how to start the powersaved
+      daemon. Closes: #352218
+    - Layout problem in the information dialog has been fixed. Closes: #352684 
+  * Corrected formatting of the homepage url in the long description.
+  
+ -- Michael Biebl <biebl@teco.edu>  Tue, 14 Feb 2006 23:27:37 +0100
+
+kpowersave (0.5.6-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@teco.edu>  Tue,  7 Feb 2006 02:51:39 +0100
+
+kpowersave (0.5.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed build dependency on libcpufreq-dev as it is now correctly handled
+    by libpowersave-dev.
+
+ -- Michael Biebl <biebl@teco.edu>  Tue, 31 Jan 2006 01:32:36 +0100
+
+kpowersave (0.5.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michael Biebl <biebl@teco.edu>  Mon, 23 Jan 2006 23:14:39 +0100
+
+kpowersave (0.5.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Requires powersave 0.11.5 or newer.
+
+ -- Michael Biebl <biebl@teco.edu>  Wed, 18 Jan 2006 05:10:26 +0100
+
+kpowersave (0.5.2-1ubuntu1) dapper; urgency=low
+
+  * Add kubuntu_01_desktop_autostart.patch to prevent kpowersave from starting
+    automatically in GNOME (Closes: Malone #32340).
+
+ -- Raphaël Pinson <raphink@ubuntu.com>  Sat,  4 Mar 2006 17:22:09 +0100
+
+kpowersave (0.5.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Removed patches absolute_build_path_fix.diff and sound_files_path.diff,
+    fixed upstream.
+  * Tightened dependencies on powersave, version 0.11.2 or newer is required.
+  * Use Debian libtool and regenerate the autotools files.
+    + Added build dependencies to automake1.9, autoconf and libtool.
+  * hal and dbus are now mandatory. Added the corresponding build
+    dependencies.
+  * Removed the build dependency on libqt3-compat-headers. Package has been
+    fixed upstream to compile cleanly without it. 
+
+ -- Michael Biebl <biebl@teco.edu>  Mon, 16 Jan 2006 02:02:45 +0100
+
+kpowersave (0.5.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * This release was not uploaded to unstable.
+
+ -- Michael Biebl <biebl@teco.edu>  Tue, 10 Jan 2006 02:25:11 +0100
+
+kpowersave (0.4.5-2) unstable; urgency=low
+
+  * Depend on powersaved (<< 0.10). kpowersave-0.4.x does not work properly with
+    powersaved (>= 0.10). 
+
+ -- Michael Biebl <biebl@teco.edu>  Sun,  8 Jan 2006 18:00:08 +0100
+
+kpowersave (0.4.5-1) unstable; urgency=low
+
+  * Initial release. Closes: #329922
+
+ -- Michael Biebl <biebl@teco.edu>  Wed,  9 Nov 2005 00:53:24 +0100
+

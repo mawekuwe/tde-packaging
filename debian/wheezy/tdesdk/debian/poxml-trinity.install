@@ -1,0 +1,5 @@
+debian/tmp/opt/trinity/bin/po2xml
+debian/tmp/opt/trinity/bin/split2po
+debian/tmp/opt/trinity/bin/swappo
+debian/tmp/opt/trinity/bin/transxx
+debian/tmp/opt/trinity/bin/xml2pot

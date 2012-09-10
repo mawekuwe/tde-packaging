@@ -1,0 +1,4 @@
+debian/tmp/opt/trinity/bin/adept_updater
+debian/tmp/opt/trinity/share/icons/hicolor/*/apps/adept_updater.{png,svgz}
+debian/tmp/opt/trinity/share/apps/adept_updater/adept_updaterui.rc
+debian/tmp/opt/trinity/share/applications/tde/adept_updater.desktop

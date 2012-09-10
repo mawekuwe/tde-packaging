@@ -1,0 +1,19 @@
+Source: kerry-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: @@@MAINTAINER@@@
+Uploaders: @@@UPLOADERS@@@
+Build-Depends: debhelper (>= 5.0.0), cdbs, tdelibs4-trinity-dev, libkonq4-trinity-dev, libqt3-mt-dev, libbeagle-dev (>= 0.3.0), docbook2x, chrpath, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
+Homepage: http://en.opensuse.org/Kerry
+Standards-Version: 3.8.3
+
+Package: kerry-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, beagle (>= 0.2.3)
+Description: a KDE frontend for the Beagle desktop search daemon [Trinity]
+ Kerry is a Trinity frontend for the Beagle desktop search daemon.
+ .
+ A program for indexing and searching user's data. At the moment, it can index
+ filesystems, chat logs, mail and data, RSS and other.
+ .

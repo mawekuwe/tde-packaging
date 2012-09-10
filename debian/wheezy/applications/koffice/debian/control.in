@@ -1,0 +1,300 @@
+Source: koffice-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: @@@MAINTAINER@@@
+Uploaders: @@@UPLOADERS@@@
+Build-Depends: cdbs (>= 0.4.52ubuntu18), debhelper (>= 5), binutils (>= 2.14.90.0.7), docbook-to-man, gawk, gettext, flex, tdelibs4-trinity-dev (>= 4:3.4.3), libaspell-dev, libfontconfig1-dev, libopenexr-dev, libpaper-dev, libreadline5-dev, libtiff4-dev, libwv2-dev (>= 0.2.2-4), libxml2-dev, libxslt1-dev, python-dev, ruby (>= 1.8.0), ruby1.8-dev, libwpd8-dev, libpqxx-dev, libmysqlclient16-dev, sharutils, bzip2, libpoppler-qt-dev, libexif-dev, libasound2-dev, libogg-dev-la, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
+Build-Depends-Indep: qt3-doc, graphviz, gsfonts-x11
+Standards-Version: 3.8.3
+Homepage: http://www.koffice.org
+
+Package: koffice-trinity
+Architecture: all
+Section: tde
+Depends: karbon-trinity (>= ${source:Version}), kchart-trinity (>= ${source:Version}), kexi-trinity (>= ${source:Version}), kformula-trinity (>= ${source:Version}), kivio-trinity (>= ${source:Version}), koshell-trinity (>= ${source:Version}), kplato-trinity (>= ${source:Version}), kpresenter-trinity (>= ${source:Version}), chalk-trinity (>= ${source:Version}), kspread-trinity (>= ${source:Version}), kugar-trinity (>= ${source:Version}), kword-trinity (>= ${source:Version}), kthesaurus-trinity (>= ${source:Version})
+Suggests: koffice-i18n-trinity, koffice-trinity-dev (>= ${source:Version}), koffice-trinity-doc (>= ${source:Version}), koffice-trinity-doc-html (= ${source:Version})
+Description: KDE Office Suite [Trinity]
+ KOffice is an integrated office suite for KDE, the K Desktop
+ Environment.  It offers a word processor, spreadsheet, presentation
+ program, graphics tools and more.
+ .
+ This package provides all the components of KOffice.
+
+Package: koffice-trinity-doc
+Section: doc
+Architecture: all
+Description: developer documentation for the KDE Office Suite [Trinity]
+ This package contains documentation for the KDE Office Suite, of
+ use more for developers creating applications than regular users.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: koffice-trinity-doc-html
+Architecture: all
+Section: doc
+Suggests: konqueror-trinity | www-browser, koffice-trinity
+Description: KDE Office Suite documentation in HTML format [Trinity]
+ KOffice is an integrated office suite for KDE, the K Desktop
+ Environment.  It offers a word processor, spreadsheet, presentation
+ program, graphics tools and more.
+ .
+ By default the KOffice applications only provide their documentation in
+ KDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the KOffice documentation converted to HTML
+ format so it can be read with any web browser.
+ .
+ The documentation will be installed into the usual directories
+ /usr/share/doc/tde/HTML/<language>/<app>/, for instance
+ /usr/share/doc/tde/HTML/en/kword/.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: karbon-trinity
+Architecture: any
+Section: graphics
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Description: a vector graphics application for the KDE Office Suite
+ Karbon is a vector graphics application.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kchart-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: a chart drawing program for the KDE Office Suite [Trinity]
+ KChart is a chart drawing application.  It can be used to embed charts
+ into KOffice documents.  KChart is easy to use and highly configurable.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kexi-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Suggests: kexi-mdb-plugin-trinity
+Description: integrated database environment for the KDE Office Suite [Trinity]
+ Kexi is an integrated data management application. It can be used for
+ creating database schemas, inserting data, performing queries, and
+ processing data. Forms can be created to provide a custom interface to
+ your data. All database objects - tables, queries and forms - are stored
+ in the database, making it easy to share data and design.
+ .
+ Kexi is considered as a long awaited Open Source competitor for MS Access,
+ Filemaker and Oracle Forms. Its development is motivated by the lack of
+ Rapid Application Development (RAD) tools for database systems that are
+ sufficiently powerful, inexpensive, open standards driven and portable
+ across many operating systems and hardware platforms.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kformula-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: a formula editor for the KDE Office Suite [Trinity]
+ KFormula is a formula editor that provides the basic input facilities
+ and the support functionality expected of a KOffice application.
+ .
+ Features include easy Greek letter insertion, intelligent cursor
+ movement, advanced syntax highlighting, multi-level undo support,
+ LaTeX export and MathML import.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kivio-trinity
+Architecture: any
+Section: graphics
+Depends: ${shlibs:Depends}, kivio-data-trinity (>> 1:1.4.90.2-1), kivio-data-trinity (>> ${KDE-Version3}), kivio-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
+Description: a flowcharting program for the KDE Office Suite [Trinity]
+ Kivio is a flowcharting program that offers basic flowcharting abilities,
+ but with a twist.  Objects are scriptable, and a backend plugin system
+ offers the ability to make objects do just about anything.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kivio-data-trinity
+Architecture: all
+Section: graphics
+Description: data files for Kivio flowcharting program [Trinity]
+ This package contains architecture-independent data files for Kivio,
+ the flowcharting program shipped with the KDE Office Suite.
+ .
+ See the kivio package for further information.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: koshell-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: koffice-trinity, khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: the KDE Office Suite workspace [Trinity]
+ The KOffice workspace is a desktop with easy one-click launchers for
+ KOffice applications.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kplato-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: an integrated project management and planning tool [Trinity]
+ KPlato is a project management application, allowing for the planning and
+ scheduling of projects. It is in the very early stages of development.
+ .
+ This package is part of the KDE Office Suite.
+
+
+Package: kpresenter-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, ${perl:Depends}, kpresenter-data-trinity (>> ${KDE-Version3}), kpresenter-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: a presentation program for the KDE Office Suite [Trinity]
+ KPresenter is a fully-featured presentation program.  Presentations can
+ be edited directly within KPresenter, and many advanced features for
+ screen presentations are available.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kpresenter-data-trinity
+Architecture: all
+Section: tde
+Description: data files for KPresenter presentation program [Trinity]
+ This package contains architecture-independent data files for KPresenter,
+ the presentation program shipped with the KDE Office Suite.
+ .
+ See the kpresenter package for further information.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: chalk-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, chalk-data-trinity (>> ${KDE-Version3}), chalk-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: dcraw, khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: a pixel-based image manipulation program for the KDE Office Suite [Trinity]
+ Chalk is a painting and image editing application for KOffice. Chalk contains
+ both ease-of-use and fun features like guided painting.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: chalk-data-trinity
+Architecture: all
+Section: tde
+Description: data files for Chalk painting program [Trinity]
+ This package contains architecture-independent data files for Chalk,
+ the painting program shipped with the KDE Office Suite.
+ .
+ See the chalk package for further information.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kspread-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: a spreadsheet for the KDE Office Suite [Trinity]
+ KSpread is a powerful spreadsheet application.  It is scriptable and
+ provides both table-oriented sheets and support for complex mathematical
+ formulae and statistics.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kugar-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: a business report maker for the KDE Office Suite [Trinity]
+ Kugar is a tool for generating business quality reports that can
+ be viewed and printed.  It includes a standalone report viewer and a
+ KPart report viewer.  The latter means that any KDE application can
+ embed the report viewing functionality and that reports can be viewed
+ using the Konqueror browser.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kword-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, kword-data-trinity (>> ${KDE-Version3}), kword-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: a word processor for the KDE Office Suite [Trinity]
+ KWord is a FrameMaker-like word processing and desktop publishing
+ application.  KWord is capable of creating demanding and professional
+ looking documents.  It can be used for desktop publishing, but also for
+ "normal" word processing, like writing letters, reports and so on.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kword-data-trinity
+Architecture: all
+Section: tde
+Description: data files for KWord word processor [Trinity]
+ This package contains architecture-independent data files for KWord,
+ the word processor shipped with the KDE Office Suite.
+ .
+ See the kword package for further information.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: kthesaurus-trinity
+Architecture: any
+Section: tde
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
+Description: thesaurus for the KDE Office Suite [Trinity]
+ KThesaurus lists words related to a given term and offers a user interface
+ to WordNet, a powerful lexical reference system. By default, only the English
+ language is supported.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: koffice-libs-trinity
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}, koffice-data-trinity (>> ${KDE-Version3}), koffice-data-trinity (<< ${KDE-Next-Version3})
+Recommends: latex-xft-fonts, ruby, python
+Suggests: wordnet, texlive-base
+Description: common libraries and binaries for the KDE Office Suite [Trinity]
+ This package provides the libraries and binaries that are shared amongst
+ the various components of KOffice.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: koffice-data-trinity
+Architecture: all
+Section: libs
+Recommends: khelpcenter-trinity | koffice-trinity-doc-html
+Description: common shared data for the KDE Office Suite [Trinity]
+ This package provides the architecture-independent data that is shared
+ amongst the various components of KOffice.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: koffice-trinity-dev
+Architecture: any
+Section: libdevel
+Depends: koffice-libs-trinity (= ${binary:Version}), karbon-trinity (= ${binary:Version}), kchart-trinity (= ${binary:Version}), kexi-trinity (= ${binary:Version}), kformula-trinity (= ${binary:Version}), kivio-trinity (= ${binary:Version}), koshell-trinity (= ${binary:Version}), kplato-trinity (= ${binary:Version}), kpresenter-trinity (= ${binary:Version}), chalk-trinity (= ${binary:Version}), kspread-trinity (= ${binary:Version}), kthesaurus-trinity (= ${binary:Version}), kugar-trinity (= ${binary:Version}), kword-trinity (= ${binary:Version}), tdelibs4-trinity-dev
+Description: common libraries for KOffice (development files) [Trinity]
+ This package provides the development files for the libraries that are
+ shared amongst the various components of KOffice.
+ .
+ This package is part of the KDE Office Suite.
+
+Package: koffice-trinity-dbg
+Section: libdevel
+Architecture: any
+Priority: extra
+Depends: koffice-libs-trinity (= ${binary:Version})
+Description: debugging symbols for koffice [Trinity]
+ This package contains the debugging symbols associated with koffice.
+ They will automatically be used by gdb for debugging koffice-related
+ issues.

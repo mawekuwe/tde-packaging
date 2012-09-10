@@ -1,0 +1,9 @@
+opt/trinity/bin
+opt/trinity/lib
+/opt/trinity/share/icons
+/opt/trinity/share/locale
+/opt/trinity/share/applications
+/opt/trinity/share/applnk
+/opt/trinity/share/apps
+/opt/trinity/share/man
+/opt/trinity/share/services

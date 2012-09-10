@@ -1,0 +1,6 @@
+# Use bzip2 instead of gzip
+compression = "bzip2"
+compression-level = 9
+
+# Don't run differences
+diff-ignore = .*

@@ -1,0 +1,4 @@
+# debian/watch file for KMPlayer.
+version=3
+
+http://kmplayer.kde.org/pkgs/kmplayer-(.*)\.tar\.bz2

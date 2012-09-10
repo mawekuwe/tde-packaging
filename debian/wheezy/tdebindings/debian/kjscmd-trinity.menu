@@ -1,0 +1,6 @@
+?package(kjscmd):\
+	needs="X11"\
+	section="Applications/Programming"\
+	hints="TDE"\
+	title="KDE JavaScript Console"\
+	command="/opt/trinity/bin/kjscmd --console --exec"

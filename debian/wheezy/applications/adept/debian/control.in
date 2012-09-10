@@ -1,0 +1,88 @@
+Source: adept-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: @@@MAINTAINER@@@
+Uploaders: @@@UPLOADERS@@@
+Build-Depends: cdbs, debhelper (>> 4.1), dh-buildinfo, libapt-front-dev (>= 0.4.0-0.1ubuntu5), libapt-front-dev (<< 0.5), libept-dev (>= 0.5.7), libept-dev (<< 0.6), libtagcoll2-dev (>= 2.0.6), libtagcoll2-dev (<< 2.1), libwibble-dev (>= 0.1.10), libwibble-dev (<< 0.2), tdelibs4-trinity-dev (>= 3.5.0), sharutils, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+
+Package: adept-trinity
+Section: tde
+Depends: adept-manager-trinity, adept-installer-trinity, adept-updater-trinity, adept-notifier-trinity, adept-batch-trinity
+Architecture: all
+Description: package management suite for Trinity
+ These packages belong to the adept suite:
+  * adept-manager-trinity - package manager
+  * adept-installer-trinity - application manager
+  * adept-updater-trinity - system upgrade wizard
+  * adept-notifier-trinity - systray notification of available updates
+
+Package: adept-common-trinity
+Section: tde
+Depends: debtags (>= 1.6.1), konsole-trinity (>= 3.5.0), ${shlibs:Depends}
+Architecture: all
+Description: package manager for Trinity -- common files
+ Icons and other common files for all adept components.
+
+Package: adept-manager-trinity
+Section: tde
+Depends: adept-common-trinity, ${shlibs:Depends}
+Recommends: libtqt-perl
+Architecture: any
+Description: package manager for Trinity
+ Adept Manager is a graphical user interface for package management.
+ .
+ Besides these basic functions the following features are provided:
+  * Search and filter the list of available packages (also using debtags)
+  * Perform smart system upgrades
+  * Edit the list of used repositories (sources.list)
+  * Configure packages through the debconf system
+ .
+ Please also install libtqt-perl if you want the KDE Debconf frontend
+ to function.
+
+Package: adept-installer-trinity
+Section: tde
+Depends: adept-common-trinity, app-install-data, ${shlibs:Depends}
+Recommends: libtqt-perl
+Architecture: any
+Description: simple user interface for application management (for Trinity)
+ Adept Installer presents a list of applications available through the
+ Advanced Package Tool (APT). An application is considered a package
+ that contains a .desktop file for use with KDE, GNOME or other
+ desktop environment.
+ .
+ Please also install libtqt-perl if you want the KDE Debconf frontend
+ to function.
+
+Package: adept-updater-trinity
+Section: tde
+Depends: adept-common-trinity, ${shlibs:Depends}
+Recommends: libtqt-perl
+Architecture: any
+Description: system update tool for Trinity
+ Adept Updater provides a simple wizard-style user interface to system
+ upgrades. It uses same algorithms as apt-get dist-upgrade.
+ .
+ Please also install libtqt-perl if you want the KDE Debconf frontend
+ to function.
+
+Package: adept-notifier-trinity
+Section: tde
+Depends: ${shlibs:Depends}, adept-updater-trinity, update-notifier-common
+Architecture: any
+Description: system tray notifier of available system updates
+ Adept Notifier provides a system tray icon notifying the user of
+ available updates.  It will run Adept Updater for the user when
+ clicked.
+
+Package: adept-batch-trinity
+Section: tde
+Depends: ${shlibs:Depends}, adept-manager-trinity
+Architecture: any
+Description: command line install for Adept
+ Adept Batch lets you install packages with Adept from the
+ command line.  It is intended for shell scripts and being run
+ by external applications.
+

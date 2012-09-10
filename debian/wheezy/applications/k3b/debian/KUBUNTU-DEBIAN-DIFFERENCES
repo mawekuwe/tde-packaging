@@ -1,0 +1,8 @@
+remove build-dep on libdvdread-dev
+
+libk3b3-extracodecs conflicts libk3b2-extracodecs
+transitional libk3b2-extracodecs package
+
+Do not recommend on tdebase-kio-plugins, kcontrol, 
+Change recommend to suggest for vcdimager
+

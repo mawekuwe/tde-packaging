@@ -1,0 +1,5 @@
+debian/man/extractkmdr-trinity.1
+debian/man/kmdr-editor-trinity.1
+debian/man/kmdr-executor-trinity.1
+debian/man/kmdr-plugins-trinity.1
+debian/man/kmdr2po-trinity.1

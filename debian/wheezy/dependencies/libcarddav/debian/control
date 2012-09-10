@@ -1,0 +1,23 @@
+Source: libcarddav
+Build-Depends: debhelper (>= 5), libcurl4-gnutls-dev, libglib2.0-dev, quilt, automake, autoconf, libtool, libltdl-dev
+Section: graphics
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Standards-Version: 3.8.4
+
+Package: libcarddav
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}
+Description: 
+ libcarddav provides a C interface for carddav PIM clients
+
+Package: libcarddav-dev
+Architecture: any
+Section: libdevel
+Depends: libcarddav (= ${binary:Version})
+Description: 
+ libcarddav provides a C interface for carddav PIM clients
+ .
+ This is the development package containing header files and link
+ libraries for libcarddav.

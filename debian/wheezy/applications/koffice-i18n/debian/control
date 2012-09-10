@@ -1,0 +1,398 @@
+Source: koffice-i18n-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Isaac Clerencia <isaac@debian.org>, Ben Burton <bab@debian.org>
+Build-Depends-Indep: tdelibs4-trinity-dev
+Build-Depends: debhelper (>= 5.0.0), quilt, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.7.2
+
+Package: koffice-i18n-bg-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-bg-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Bulgarian (bg) translations for KOffice
+ This package contains the Bulgarian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-ca-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-ca-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Catalan (ca) translations for KOffice
+ This package contains the Catalan translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-cs-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-cs-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Czech (cs) translations for KOffice
+ This package contains the Czech translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-cy-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-cy-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Welsh (cy) translations for KOffice
+ This package contains the Welsh translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-da-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-da-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Danish (da) translations for KOffice
+ This package contains the Danish translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-de-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-de-trinity
+Suggests: koffice-trinity, openthesaurus-de-kword
+Provides: koffice-i18n-trinity
+Description: German (de) translations for KOffice
+ This package contains the German translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-el-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-el-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Greek (el) translations for KOffice
+ This package contains the greek translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-engb-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-engb-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: British English (en_GB) translations for KOffice
+ This package contains the British English (en_GB) translations
+ for all applications in the KDE Office Suite.
+ 
+Package: koffice-i18n-es-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-es-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Spanish (es) translations for KOffice
+ This package contains the Spanish translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-et-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-et-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Estonian (et) translations for KOffice
+ This package contains the Estonian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-eu-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-eu-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Basque (eu) translations for KOffice
+ This package contains the Basque translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-fa-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-fa-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Farsi (fa) translations for KOffice
+ This package contains the Farsi translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-fi-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-fi-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Finnish (fi) translations for KOffice
+ This package contains the Finnish translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-fr-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-fr-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: French (fr) translations for KOffice
+ This package contains the French translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-ga-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-ga-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Irish Gaelic (ga) translations for KOffice
+ This package contains the Irish Gaelic translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-gl-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-gl-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Galician (gl) translations for KOffice
+ This package contains the Galician translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-hu-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-hu-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Hungarian (hu) translations for KOffice
+ This package contains the Hungarian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-it-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-it-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Italian (it) translations for KOffice
+ This package contains the Italian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-ja-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-ja-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Japanese (ja) translations for KOffice
+ This package contains the Japanese translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-km-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-km-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Khmer (km) translations for KOffice
+ This package contains the Khmer translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-lv-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-lv-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Latvian (lv) translations for KOffice
+ This package contains the Latvian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-ms-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-ms-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Malay (ms) translations for KOffice
+ This package contains the Malay translations for all applications
+ in the KDE Office Suite.
+ 
+Package: koffice-i18n-nb-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-nb-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Norwegian Bookmal (nb) translations for KOffice
+ This package contains the Norwegian Bookmal translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-nds-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-nds-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Low Saxon (nds) translations for KOffice
+ This package contains the Low Saxon translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-ne-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-ne-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Nepali (ne) translations for KOffice
+ This package contains the Nepali translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-nl-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-nl-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Dutch (nl) translations for KOffice
+ This package contains the Dutch translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-pl-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-pl-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Polish (pl) translations for KOffice
+ This package contains the Polish translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-pt-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-pt-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Portuguese (pt) translations for KOffice
+ This package contains the Portuguese translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-ptbr-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-ptbr-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Brazilian Portuguese (pt_BR) translations for KOffice
+ This package contains the Brazilian Portuguese translations for all
+ applications in the KDE Office Suite.
+ 
+Package: koffice-i18n-ru-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-ru-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Russian (ru) translations for KOffice
+ This package contains the Russian translations for all applications
+ in the KDE Office Suite.
+ 
+Package: koffice-i18n-sk-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-sk-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Slovak (sk) translations for KOffice
+ This package contains the Slovak translations for all applications
+ in the KDE Office Suite.
+ 
+Package: koffice-i18n-sl-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-sl-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Slovenian (sl) translations for KOffice
+ This package contains the Slovenian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-sr-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-sr-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Serbian (sr) translations for KOffice
+ This package contains the Serbian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-srlatin-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-srlatin-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Latin Serbian (sr@Latn) translations for KOffice
+ This package contains the Latin Serbian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-sv-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-sv-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Swedish (sv) translations for KOffice
+ This package contains the Swedish translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-tr-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-tr-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Turkish (tr) translations for KOffice
+ This package contains the Turkish translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-uk-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-uk-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Ukrainian (uk) translations for KOffice
+ This package contains the Ukrainian translations for all applications
+ in the KDE Office Suite.
+
+Package: koffice-i18n-zhcn-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-zhcn-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Chinese Simplified (zh_CN) translations for KOffice
+ This package contains the Chinese Simplified translations for all
+ applications in the KDE Office Suite.
+
+Package: koffice-i18n-zhtw-trinity
+Architecture: all
+Section: tde
+Recommends: tde-i18n-zhtw-trinity
+Suggests: koffice-trinity
+Provides: koffice-i18n-trinity
+Description: Chinese Traditional (zh_TW) translations for KOffice
+ This package contains the Chinese Traditional translations for all
+ applications in the KDE Office Suite.

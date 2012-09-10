@@ -1,0 +1,14 @@
+diff -Nur pytdeextensions/src/kdedistutils.py pytdeextensions/src/kdedistutils.py
+--- pytdeextensions/src/kdedistutils.py
++++ pytdeextensions/src/kdedistutils.py
+@@ -2184,7 +2184,7 @@
+ 
+ ###########################################################################
+ def get_libdir_name():
+-    if os.uname()[4] in ['x86_64','mips64','ppc64','sparc64','s390x']:
+-        return 'lib64'
+-    else:
++    #if os.uname()[4] in ['x86_64','mips64','ppc64','sparc64','s390x']:
++    #    return 'lib64'
++    #else:
+         return 'lib'

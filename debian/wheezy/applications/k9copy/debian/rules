@@ -1,0 +1,38 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/class/kde.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_INSTALL_MANPAGES_k9copy = k9copy-trinity.1
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --includedir="/opt/trinity/include/tde" --mandir="/opt/trinity/share/man" --infodir="/opt/trinity/share/info"
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+install/k9copy::
+	dh_install src/k9copy.desktop opt/trinity/share/applications/tde
+	dh_link usr/share/doc/tde/HTML/en/k9copy usr/share/doc/k9copy/html
+
+build/k9copy::
+	docbook2x-man debian/k9copy.1.docbook
+
+clean::
+	rm -f k9copy.1

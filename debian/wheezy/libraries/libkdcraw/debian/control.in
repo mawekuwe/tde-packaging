@@ -1,0 +1,35 @@
+Source: libkdcraw-trinity
+Section: libs
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: @@@MAINTAINER@@@
+Uploaders: @@@UPLOADERS@@@
+Build-Depends: cdbs, debhelper (>= 5), quilt, tdelibs4-trinity-dev,
+ liblcms1-dev, libjpeg62-dev, pkg-config,
+ automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
+Standards-Version: 3.8.3
+Homepage: http://www.kipi-plugins.org/
+
+Package: libkdcraw3-trinity-dev
+Section: libdevel
+Architecture: any
+Depends: libkdcraw3-trinity (= ${binary:Version}), pkg-config
+Conflicts: libkdcraw-dev
+Description: RAW picture decoding C++ library (development) [Trinity]
+ Libkdcraw is a C++ interface around dcraw binary program used to
+ decode Raw picture files.
+ .
+ libkdcraw-dev contains development files and documentation. The
+ library documentation is available on kdcraw.h header file.
+
+Package: libkdcraw3-trinity
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Raw picture decoding C++ library (runtime) [Trinity]
+ C++ interface around dcraw binary program used to decode RAW
+ picture files.
+ .
+ This library is used by kipi-plugins, digiKam and others kipi host programs.
+ .
+ libkdcraw3 contains the library of libkdcraw.

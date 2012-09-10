@@ -1,0 +1,7 @@
+?package(gwenview):\
+	needs="X11"\
+	section="Applications/Viewers"\
+	hints="KDE,Images"\
+	title="Gwenview"\
+	command="/opt/trinity/bin/gwenview"\
+	icon="/usr/share/pixmaps/gwenview.xpm"

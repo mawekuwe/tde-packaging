@@ -1,0 +1,63 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.TH FILELIGHT 1 "March 14, 2007"
+.\" Please adjust this date whenever revising the manpage.
+.SH NAME
+filelight \- graphically display disk usage
+.SH SYNOPSIS
+.B filelight
+.RI [ " path " ]
+.SH DESCRIPTION
+\fBfilelight\fP allows you to understand exactly where your disk space
+is being used by graphically representing your file system as a set
+of concentric segmented rings, where each segment subtends an angle
+proportional to the disk space occupied by that file or directory.
+.PP
+You can specify a directory to scan on startup at the command line eg:
+.nf
+  filelight /home/mxcl
+.fi
+Starting at the root requires a scan of the entire directory tree,
+which may take a while.
+.PP
+\fBfilelight\fP is available in Konqueror under \fBView | View Mode | RadialMap View\fP.
+.SH RUN-TIME COMMANDS
+
+.TP 
+.B Hover over segments 
+to find out more about the region of the file system it represents.
+.TP 
+.B Click on directories 
+to see them in more detail (recenter the
+display on that directory).
+.TP 
+.B Click on files 
+to launch in the appropriate viewer (as configured in
+Konqueror).
+.TP 
+.B Middle click 
+to open files/directories with Konqueror.
+.TP 
+.B Right click on the center white circle 
+to manipulate the directory the view is centered about.
+.TP 
+.B Enlarge the window 
+for more detail - small files are hidden at
+smaller window sizes.
+.SH SEE ALSO
+.BR du (1),
+.BR df (1),
+.BR fsviewer (1),
+.BR gdmap (1),
+.BR philesight (1),
+.BR xcruiser (1).
+.BR xdiskusage (1).
+.br
+.SH BUGS
+Please report any bugs using the built-in bug reporter under 
+the "help" menu, or to either filelight@methylblue.com or the forums at
+http://www.methylblue.com/filelight/.
+.SH AUTHOR
+\fBfilelight\fP was written by Max Howell (max.howell@methylblue.com).
+.PP
+This manual page was written by J. R. Van Zandt,
+for the Debian project (but may be used by others).
