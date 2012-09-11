@@ -42,4 +42,7 @@ common-binary-post-install-arch::
 		usr/share/doc/$$pkg/html; \
 		fi; \
 		dh_installmime -p$$pkg; \
+		if test -d debian/$$pkg/usr/share/man; then\
+		    mv debian/$$pkg/usr/share/man debian/$$pkg/opt/trinity/share/; \
+		fi; \
 	done
