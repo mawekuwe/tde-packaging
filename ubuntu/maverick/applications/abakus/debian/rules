@@ -36,5 +36,8 @@ common-install-arch::
 	chrpath -d debian/abakus-trinity/opt/trinity/bin/abakus
 	dh_icons -pabakus
 
+binary-install/abakus-trinity::
+	mv debian/abakus-trinity/usr/share/man debian/abakus-trinity/opt/trinity/share/
+
 clean::
 	rm -f debian/abakus.xpm
