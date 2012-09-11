@@ -39,3 +39,6 @@ endif
 install/digikam-trinity::
 	# remove empty API-docs dirs tree
 	rm -rf $(CURDIR)/debian/digikam-trinity/opt/trinity/share/doc/tde
+
+binary-install/digikam-trinity::
+	mv debian/digikam-trinity/usr/share/man debian/digikam-trinity/opt/trinity/share/
