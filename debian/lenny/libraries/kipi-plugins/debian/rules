@@ -44,3 +44,5 @@ print-version:
 	@@echo FILENAME: $(FILENAME)
 	@@echo URL: $(URL)
 
+binary-install/kipi-plugins-trinity::
+	mv debian/kipi-plugins-trinity/usr/share/man debian/kipi-plugins-trinity/opt/trinity/share/
