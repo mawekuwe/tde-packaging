@@ -92,6 +92,7 @@ binary-arch: build install
 #	dh_installlogrotate
 #	dh_installinfo
 	dh_installman debian/basket.1
+	mv debian/basket-trinity/usr/share/man debian/basket-trinity/opt/trinity/share/
 	dh_link
 	dh_strip
 	dh_compress
