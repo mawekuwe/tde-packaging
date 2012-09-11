@@ -96,7 +96,7 @@ Breaks: libtqt3-mt-dev (<< 4:14.0.0)
 Depends: libxext-dev (>= 4.3.0.dfsg.1-4), libxrandr-dev (>= 4.3.0.dfsg.1-4),
  libsm-dev (>= 4.3.0.dfsg.1-4), libxmu-dev (>= 4.3.0.dfsg.1-4),
  libice-dev (>= 4.3.0.dfsg.1-4), libx11-dev (>= 4.3.0.dfsg.1-4),
- libxt-dev (>= 4.3.0.dfsg.1-4), libxrender-dev, libxcursor-dev,
+ libxt-dev (>= 4.3.0.dfsg.1-4), libxrender-dev, libxcursor-dev, uuid-dev,
  libxinerama-dev, libxi-dev, zlib1g-dev, libjpeg-dev, libmng-dev (>= 1.0.3),
  libpng12-dev | libpng12-0-dev, libfontconfig1-dev, libfreetype6-dev,
  libxft-dev, libaudio-dev, libcups2-dev, libgl1-mesa-dev | libgl-dev,

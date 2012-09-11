@@ -14,10 +14,8 @@ Build-Depends: debhelper (>= 5.0.31), quilt, cpio, libxext-dev (>= 4.3.0.dfsg.1-
  firebird2.1-dev [i386 kfreebsd-i386 kfreebsd-amd64 knetbsd-i386 netbsd-i386 amd64 sparc powerpc] | firebird2-dev [i386 amd64]
 Section: libs
 Priority: optional
-Standards-Version: 3.7.3
-Homepage: http://trolltech.com
-Vcs-Browser: http://svn.debian.org/wsvn/pkg-kde/trunk/packages/qt-x11-free
-Vcs-Svn: svn://svn.debian.org/pkg-kde/trunk/packages/qt-x11-free
+Standards-Version: 3.8.4
+Homepage: http://www.trinitydesktop.org/
 
 Package: libqt3-mt
 Architecture: any
@@ -98,7 +96,7 @@ Breaks: libqt3-mt-dev (<< 4:14.0.0)
 Depends: libxext-dev (>= 4.3.0.dfsg.1-4), libxrandr-dev (>= 4.3.0.dfsg.1-4),
  libsm-dev (>= 4.3.0.dfsg.1-4), libxmu-dev (>= 4.3.0.dfsg.1-4),
  libice-dev (>= 4.3.0.dfsg.1-4), libx11-dev (>= 4.3.0.dfsg.1-4),
- libxt-dev (>= 4.3.0.dfsg.1-4), libxrender-dev, libxcursor-dev,
+ libxt-dev (>= 4.3.0.dfsg.1-4), libxrender-dev, libxcursor-dev, uuid-dev,
  libxinerama-dev, libxi-dev, zlib1g-dev, libjpeg62-dev, libmng-dev (>= 1.0.3),
  libpng12-dev | libpng12-0-dev, libfontconfig1-dev, libfreetype6-dev,
  libxft-dev, libaudio-dev, libcups2-dev, libgl1-mesa-dev | libgl-dev,
