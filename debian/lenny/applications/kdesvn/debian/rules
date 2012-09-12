@@ -51,3 +51,6 @@ common-install-impl::
 	cp -Rp debian/tmp/opt/trinity/lib/trinity/* debian/tmp/opt/trinity/lib/
 	rm -rf debian/tmp/opt/trinity/lib/trinity
 	rm -rf debian/tmp/opt/trinity/lib/removeme
+
+binary-install/kdesvn-trinity::
+	mv debian/kdesvn-trinity/usr/share/man debian/kdesvn-trinity/opt/trinity/share/
