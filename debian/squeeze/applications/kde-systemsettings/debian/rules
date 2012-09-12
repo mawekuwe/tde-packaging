@@ -42,3 +42,6 @@ install/kde-systemsettings-trinity::
 	cp debian/kde-settings-laptops.directory debian/kde-systemsettings-trinity/opt/trinity/share/desktop-directories/
 
 DEB_INSTALL_MANPAGES_kde-systemsettings-trinity = systemsettings.1
+
+binary-install/kde-systemsettings-trinity::
+	mv debian/kde-systemsettings-trinity/usr/share/man debian/kde-systemsettings-trinity/opt/trinity/share/
