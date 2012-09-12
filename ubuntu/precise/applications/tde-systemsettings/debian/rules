@@ -42,3 +42,6 @@ install/tde-systemsettings-trinity::
 	cp debian/tde-settings-laptops.directory debian/tde-systemsettings-trinity/opt/trinity/share/desktop-directories/
 
 DEB_INSTALL_MANPAGES_tde-systemsettings-trinity = systemsettings.1
+
+binary-install/tde-systemsettings-trinity::
+	mv debian/tde-systemsettings-trinity/usr/share/man debian/tde-systemsettings-trinity/opt/trinity/share/
