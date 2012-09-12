@@ -46,6 +46,9 @@ install/kaffeine-trinity::
 	# Bogus, shouldn't be shipped..
 	rm -f debian/kaffeine/opt/trinity/share/doc/tde/HTML/en/doc/CMakeLists.txt
 
+binary-install/kaffeine-trinity::
+	mv debian/kaffeine-trinity/usr/share/man debian/kaffeine-trinity/opt/trinity/share/
+
 get-orig-source:
 	 @@dh_testdir
 	 @@[ -d ../tarballs/. ]
