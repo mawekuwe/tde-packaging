@@ -40,3 +40,6 @@ install/katapult-trinity::
 	dh_install $(DEB_SRCDIR)/debian/lintian opt/trinity/share/lintian/overrides/katapult
 #	dh_install $(DEB_SRCDIR)/katapult/katapult/katapult.desktop opt/trinity/share/autostart
 #	echo 'X-TDE-autostart-condition=katapultrc:General:Autostart:true' >> $(DEB_DESTDIR)/opt/trinity/share/autostart/katapult.desktop
+
+binary-install/katapult-trinity::
+	mv debian/katapult-trinity/usr/share/man debian/katapult-trinity/opt/trinity/share/
