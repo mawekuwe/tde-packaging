@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Raúl Sánchez Siles <rasasi78@gmail.com>
-Build-Depends: cdbs (>= 0.4.52ubuntu18), debhelper (>= 5), quilt, binutils (>= 2.14.90.0.7), recode, docbook-to-man, gawk, gettext, flex, kdelibs4-trinity-dev (>= 4:3.4.3), libaspell-dev, libfontconfig1-dev, libopenexr-dev, libpaper-dev, libreadline5-dev | libreadline6-dev, libtiff-dev, libwv2-dev (>= 0.2.2-4), libxml2-dev, libxslt1-dev, python-dev, ruby (>= 1.8.0), ruby1.8-dev, libwpd8-dev, libpqxx-dev | libpqxx3-dev, libmysqlclient15-dev | libmysqlclient16-dev | libmysqlclient18-dev, sharutils, bzip2, libpoppler-tqt-dev, libexif-dev, libasound2-dev, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.52ubuntu18), debhelper (>= 5), quilt, binutils (>= 2.14.90.0.7), recode, docbook-to-man, gawk, gettext, flex, kdelibs4-trinity-dev (>= 4:3.4.3), libaspell-dev, libfontconfig1-dev, libopenexr-dev, libpaper-dev, libreadline5-dev | libreadline6-dev, libtiff-dev, libwv2-dev (>= 0.2.2-4), libxml2-dev, libxslt1-dev, python-dev, ruby (>= 1.8.0), ruby1.8-dev, libwpd8-dev, libpqxx-dev | libpqxx3-dev, libmysqlclient15-dev | libmysqlclient16-dev | libmysqlclient18-dev, sharutils, bzip2, libpoppler-tqt-dev, libexif-dev, libasound2-dev, libogg-dev, automake, autoconf, libtool, libltdl-dev
 Build-Depends-Indep: libtqtinterface-doc, graphviz, gsfonts-x11
 Standards-Version: 3.8.4
 Homepage: http://www.koffice.org

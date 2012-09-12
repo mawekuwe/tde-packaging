@@ -6,7 +6,7 @@ XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
 Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31),
  cdparanoia, gawk, gettext, kdelibs4-trinity-dev, bison, byacc, bzip2,
- flex, groff-base, libopensync0-dev, libogg-dev-la,
+ flex, groff-base, libopensync0-dev, libogg-dev,
  libboost-dev (>= 1.33.1), libgpgme11-dev, liblockdev1-dev,
  libpisock-dev, libreadline5-dev | libreadline6-dev, libsasl2-dev, libssl-dev,
  libtool (>= 1.5), libxpm-dev, libxss-dev, sharutils, texinfo, dpkg-dev (>= 1.14.4),

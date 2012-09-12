@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Fathi Boudra <fboudra@free.fr>, Sune Vuorela <debian@pusling.com>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, cdparanoia, gawk, gettext, kdelibs4-trinity-dev (>= 4:3.5.10), libcdparanoia0-dev, libesd0-dev, libflac-dev (>= 1.1.4-1), libgstreamer-plugins-base0.10-dev, libsamplerate0-dev, libspeex-dev (>> 1.1.5), libtag1-dev (>> 1.3.1), libtheora-dev, libxine-dev, sharutils, texinfo, libxxf86dga-dev, libxv-dev, libxxf86vm-dev, libakode-dev, libogg-dev, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, cdparanoia, gawk, gettext, kdelibs4-trinity-dev (>= 4:3.5.10), libcdparanoia0-dev, libesd0-dev, libflac-dev (>= 1.1.4-1), libgstreamer-plugins-base0.10-dev, libsamplerate0-dev, libspeex-dev (>> 1.1.5), libtag1-dev (>> 1.3.1), libtheora-dev, libxine-dev, sharutils, texinfo, libxxf86dga-dev, libxv-dev, libxxf86vm-dev, libakode-dev, libogg-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kdemultimedia-trinity
