@@ -37,3 +37,5 @@ get-orig-source:
 	@@[ -d ../tarballs/. ]
 	@@dpatch-get-origtargz ../tarballs
 
+binary-install/kbarcode-trinity::
+	mv debian/kbarcode-trinity/usr/share/man debian/kbarcode-trinity/opt/trinity/share/
