@@ -166,8 +166,12 @@ binary-common:
 	dh_testroot
 	dh_installchangelogs kcpuload/ChangeLog
 	dh_installdocs
+	mkdir debian/kcpuload-trinity/opt/trinity/share/doc
+	mv debian/kcpuload-trinity/usr/share/doc/tde debian/kcpuload-trinity/opt/trinity/share/doc/
+	rm -fr debian/kcpuload-trinity/usr/share/doc-base
 	dh_installexamples
 	dh_installmanpages
+	mv debian/kcpuload-trinity/usr/share/man debian/kcpuload-trinity/opt/trinity/share/
 	dh_installmenu
 	dh_installmime
 	dh_strip
