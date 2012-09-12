@@ -57,7 +57,7 @@ Architecture: any
 Section: libdevel
 Replaces: libarts1-trinity-dev (<< 4:14.0.0)
 Breaks: libarts1-trinity-dev (<< 4:14.0.0)
-Depends: libarts1c2a-trinity (= ${binary:Version}), libartsc0-trinity-dev (= ${binary:Version}), ${libasound2-dev}, libaudio-dev, libaudiofile-dev, libesd0-dev, libglib2.0-dev, libogg-dev, libogg-dev-la, libvorbis-dev, libtqtinterface-dev
+Depends: libarts1c2a-trinity (= ${binary:Version}), libartsc0-trinity-dev (= ${binary:Version}), ${libasound2-dev}, libaudio-dev, libaudiofile-dev, libesd0-dev, libglib2.0-dev, libogg-dev, libvorbis-dev, libtqtinterface-dev
 Description: development files for the aRts sound system core components
  This package contains the header files needed to build applications that
  use the aRts sound system.

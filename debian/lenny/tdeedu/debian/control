@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Daniel Schepler <schepler@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: ocaml-nox, libfacile-ocaml-dev, libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev, libboost-python-dev (>= 1.33.1), libusb-dev, sharutils, doxygen, libogg-dev, libogg-dev-la, automake, autoconf, libtool, libltdl-dev
+Build-Depends: ocaml-nox, libfacile-ocaml-dev, libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev, libboost-python-dev (>= 1.33.1), libusb-dev, sharutils, doxygen, libogg-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdeedu-trinity
