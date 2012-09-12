@@ -17,6 +17,7 @@ include debian/cdbs/debian-qt-kde.mk
 
 DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF"
 
-binary-install/dolphin::
-	mkdir -p debian/dolphin/opt/trinity/bin
-	ln -s /opt/trinity/bin/d3lphin debian/dolphin/opt/trinity/bin/dolphin
+binary-install/dolphin-trinity::
+	mkdir -p debian/dolphin-trinity/opt/trinity/bin
+	ln -s d3lphin debian/dolphin-trinity/opt/trinity/bin/dolphin
+	mv debian/dolphin-trinity/usr/share/man debian/dolphin-trinity/opt/trinity/share/
