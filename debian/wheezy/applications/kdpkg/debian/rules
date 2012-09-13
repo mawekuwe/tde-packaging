@@ -22,3 +22,6 @@ debian/stamp-bootstrap:
 
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
+
+binary-install/kdpkg-trinity::
+	mv debian/kdpkg-trinity/usr/share/man debian/kdpkg-trinity/opt/trinity/share/
