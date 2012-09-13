@@ -86,6 +86,7 @@ binary-arch: build install
 	dh_installdocs
 	dh_installexamples
 	dh_installman $(CURDIR)/debian/knowit.1
+	mv debian/knowit-trinity/usr/share/man debian/knowit-trinity/opt/trinity/share/
 	dh_link
 	dh_strip
 	dh_compress
