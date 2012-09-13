@@ -89,7 +89,7 @@ Depends: tdelibs4c2a-trinity (= ${Source-Version}), libart-2.0-dev (>= 2.3.17),
  libsasl2-dev, libssl-dev, libxcomposite-dev,
  libtiff4-dev (>= 3.7.3-1), libxml2-dev, libxml2-utils, libxslt1-dev,
  libavahi-client-dev (>= 0.4), libtqtinterface-dev,
- gettext-kde, libr-dev, libudev-dev
+ gettext-kde, libr-dev, libudev-dev, libdbus-1-tqt-dev
 Provides: tdelibs-trinity-dev
 Description: development files for the TDE core libraries
  This package contains all the headers and other related files needed
