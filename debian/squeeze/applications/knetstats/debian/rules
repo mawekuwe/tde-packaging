@@ -27,6 +27,9 @@ debian/stamp-bootstrap:
 
 build/knetstats-trinity::
 	docbook2x-man debian/knetstats.1.docbook
-	
+
+binary-install/knetstats-trinity::
+	mv debian/knetstats-trinity/usr/share/man debian/knetstats-trinity/opt/trinity/share/
+
 clean::
 	rm -f knetstats.1
