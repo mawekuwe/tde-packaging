@@ -31,6 +31,7 @@ binary-install/network-manager-kde-trinity::
 	# Install autostart file
 	install -D -m 644 knetworkmanager-0.8/src/knetworkmanager.desktop \
 		debian/network-manager-kde-trinity/opt/trinity/share/autostart/knetworkmanager-trinity.desktop
+	mv debian/network-manager-kde-trinity/usr/share/man debian/network-manager-kde-trinity/opt/trinity/share/
 
 clean::
 	find . -name Makefile.in | xargs rm -f
