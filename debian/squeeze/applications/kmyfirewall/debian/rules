@@ -33,8 +33,8 @@ endif
 -include debian/debiandirs
 
 # To be used with kde-style admin subdirectories if desired.
-debian/debiandirs: admin/debianrules
-	perl -w admin/debianrules echodirs > debian/debiandirs
+#debian/debiandirs: admin/debianrules
+#	perl -w admin/debianrules echodirs > debian/debiandirs
 
 
 config.status: configure
@@ -116,6 +116,7 @@ binary-arch: build install
 	dh_desktop
 	dh_installmenu
 	dh_installman
+	mv debian/kmyfirewall-trinity/usr/share/man debian/kmyfirewall-trinity/opt/trinity/share/
 	dh_link
 	dh_strip
 	dh_compress -X.bz2 -X.css -X.dcl -X.docbook -X-license -X.tag

@@ -2,7 +2,7 @@
 Type=Application
 MimeType=application/x-kmyfirewall;application/x-kmyfirewall-kmfrs;application/x-kmyfirewall-kmfgrs;application/x-kmyfirewall-kmfnet;
 Icon=kmyfirewall
-Exec=/usr/trinity/bin/kmyfirewall %u
+Exec=/opt/trinity/bin/kmyfirewall %u
 Terminal=false
 Categories=Qt;KDE;System;
 Name=KMyFirewall
