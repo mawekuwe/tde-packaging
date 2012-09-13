@@ -98,6 +98,7 @@ binary-arch: build install
 	dh_installmenu
 	dh_icons
 	dh_installman debian/knights.1
+	mv debian/knights-trinity/usr/share/man debian/knights-trinity/opt/trinity/share/
 	dh_link
 	dh_strip
 	dh_compress -X.docbook
