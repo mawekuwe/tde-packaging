@@ -114,6 +114,7 @@ binary-arch: build install
 	dh_installexamples
 	dh_installmenu
 	dh_installman
+	mv debian/kpicosim-trinity/usr/share/man debian/kpicosim-trinity/opt/trinity/share/
 	dh_link
 	dh_strip
 	dh_compress
