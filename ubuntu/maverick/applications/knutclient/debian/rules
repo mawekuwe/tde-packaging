@@ -114,6 +114,7 @@ binary-arch: build install
 #	dh_installcron
 #	dh_installinfo
 	dh_installman debian/knutclient.1x
+	mv debian/knutclient-trinity/usr/share/man debian/knutclient-trinity/opt/trinity/share/
 	dh_icons
 	dh_link
 	dh_strip
