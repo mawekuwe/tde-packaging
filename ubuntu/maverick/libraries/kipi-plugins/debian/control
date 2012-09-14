@@ -6,7 +6,7 @@ Uploaders: Mark Purcell <msp@debian.org>, Achim Bohnet <ach@mpe.mpg.de>, Fathi B
 Build-Depends: cdbs, debhelper (>= 5), quilt, pkg-config, kdelibs4-trinity-dev,
  libexiv2-dev, libgphoto2-2-dev, libgpod-nogtk-dev,
  libkcal2-trinity-dev, libkdcraw3-trinity-dev, libkexiv2-3-trinity-dev,
- libkipi0-trinity-dev, libtiff4-dev, libxslt1-dev, kdepim-trinity-dev,
+ libkipi0-trinity-dev, libtiff-dev, libxslt1-dev, kdepim-trinity-dev,
  automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://www.kipi-plugins.org/

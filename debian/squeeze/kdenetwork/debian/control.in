@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, docbook-to-man, doxygen, gawk, gettext, kdelibs4-dev (>= 4:3.5.8), libgadu-dev, libgsmme-dev, libiw-dev (>> 27+28pre8) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], libmeanwhile-dev (>= 1.0.2), libslp-dev, libtiff4-dev, libxml2-dev, libxslt1-dev, libxtst-dev, qt3-doc, sharutils, valgrind [i386 amd64], libxxf86vm-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, docbook-to-man, doxygen, gawk, gettext, kdelibs4-dev (>= 4:3.5.8), libgadu-dev, libgsmme-dev, libiw-dev (>> 27+28pre8) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], libmeanwhile-dev (>= 1.0.2), libslp-dev, libtiff-dev, libxml2-dev, libxslt1-dev, libxtst-dev, qt3-doc, sharutils, valgrind [i386 amd64], libxxf86vm-dev
 Standards-Version: 3.7.2
 
 Package: kdenetwork
