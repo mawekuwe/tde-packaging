@@ -7,7 +7,7 @@ Uploaders: @@@UPLOADERS@@@
 Build-Depends: cdbs, debhelper (>= 5), quilt, pkg-config, tdelibs4-trinity-dev,
  libexiv2-trinity-dev (>= 0.16), libgphoto2-2-dev, libgpod-nogtk-dev,
  libkcal2-trinity-dev, libkdcraw3-trinity-dev, libkexiv2-3-trinity-dev,
- libkipi0-trinity-dev, libtiff4-dev, libxslt1-dev, tdepim-trinity-dev,
+ libkipi0-trinity-dev, libtiff-dev, libxslt1-dev, tdepim-trinity-dev,
  automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
 Standards-Version: 3.8.3
 Homepage: http://www.kipi-plugins.org/
