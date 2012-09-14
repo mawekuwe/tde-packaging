@@ -48,7 +48,7 @@ config.status: configure
 		--mandir=\$${prefix}/share/man \
 		--infodir=\$${prefix}/share/info \
 		--disable-rpath --disable-debug \
-		kde_htmldir=/usr/share/doc/tde/HTML
+		kde_htmldir=\$${prefix}/share/doc/tde/HTML
 															
 
 
@@ -112,6 +112,7 @@ binary-arch: build install
 	dh_installdocs 
 	dh_installmenu
 	dh_installman
+	mv debian/kradio-trinity/usr/share/man debian/kradio-trinity/opt/trinity/share/
 	dh_link
 	dh_strip
 	dh_compress
