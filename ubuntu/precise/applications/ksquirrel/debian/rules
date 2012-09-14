@@ -94,6 +94,8 @@ binary-arch: build install
 	dh_installdocs
 	dh_installexamples
 	dh_installman debian/ksquirrel-libs-configurator.1
+	cp -a debian/ksquirrel-trinity/usr/share/man debian/ksquirrel-trinity/opt/trinity/share/
+	rm -fr debian/ksquirrel-trinity/usr/share/man
 	dh_link \
 	opt/trinity/share/man/man1/ksquirrel-libs-configurator.1 \
 	opt/trinity/share/man/man1/ksquirrel-libs-configurator-real.1
