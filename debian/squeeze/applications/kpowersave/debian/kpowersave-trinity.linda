@@ -1,4 +1,4 @@
 Tag: lib-not-in-shlibs
 
 Tag: no-shlib-file
-Data: /usr/trinity/lib/libtdeinit_*.so
+Data: /opt/trinity/lib/libtdeinit_*.so
