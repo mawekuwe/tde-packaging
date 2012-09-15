@@ -20,8 +20,8 @@ else
 	CFLAGS += -O2
 endif
 
-debian/debiandirs: admin/debianrules
-	perl -w admin/debianrules echodirs > debian/debiandirs
+#debian/debiandirs: admin/debianrules
+#	perl -w admin/debianrules echodirs > debian/debiandirs
 
 debian/ktechlab.xpm: icons/hi32-app-ktechlab.png
 	convert $< $@
@@ -99,6 +99,7 @@ binary-arch: build install
 	dh_installexamples
 	dh_installmenu
 	dh_installman
+	mv debian/ktechlab-trinity/usr/share/man debian/ktechlab-trinity/opt/trinity/share/
 	dh_link
 	dh_strip
 	dh_compress
