@@ -25,3 +25,6 @@ debian/stamp-bootstrap:
 	
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
+
+binary-install/kuickshow-trinity::
+	mv debian/kuickshow-trinity/usr/share/man debian/kuickshow-trinity/opt/trinity/share/
