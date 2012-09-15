@@ -138,6 +138,8 @@ binary-indep: build install
 	dh_testroot
 	dh_install -i
 	dh_installmime -ptellico-data
+	mkdir -p debian/tellico-data-trinity/usr/share/mime
+	mv debian/tellico-data-trinity/opt/trinity/share/apps/mime debian/tellico-data-trinity/usr/share/
 	dh_installchangelogs -i ChangeLog
 	dh_icons -i
 	dh_installdocs -i
@@ -160,6 +162,7 @@ binary-arch: build install
 	dh_installmenu
 	dh_desktop -ptellico
 	dh_installman -a debian/tellico.1x
+	mv debian/tellico-trinity/usr/share/man debian/tellico-trinity/opt/trinity/share/
 	dh_link -a
 	dh_strip
 	dh_compress -a
