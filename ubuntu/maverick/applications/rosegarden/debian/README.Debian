@@ -35,11 +35,11 @@ Rosegarden configuration dialog.
 
 You can find some Rosegarden example files in this directory:
 
-/usr/share/apps/rosegarden/examples
+/usr/share/doc/rosegarden-rosegarden/examples
 
 And some additional test files can be found under:
 
-/usr/share/doc/rosegarden/testfiles
+/usr/share/doc/rosegarden-trinity/testfiles
 
 
   Real Time issues
