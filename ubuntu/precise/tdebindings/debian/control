@@ -3,7 +3,7 @@ Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5),
  python-dev (>= 2.3.5-11), python-support (>= 0.5), quilt, gawk,
  gettext, default-jdk [amd64 i386 ia64 lpia powerpc s390 sparc],
  tdelibs4-trinity-dev, libtqt3-compat-headers (>= 3:3.3.5),
- ruby, ruby1.8-dev, flex, bison,
+ ruby, ruby-dev, flex, bison,
  automake, autoconf, libtool, libltdl-dev
 Section: devel
 Priority: optional
@@ -278,7 +278,7 @@ Architecture: any
 Section: interpreters
 Replaces: libqt0-ruby1.8-trinity (<< 4:14.0.0)
 Breaks: libqt0-ruby1.8-trinity (<< 4:14.0.0)
-Depends: ruby1.8, ${shlibs:Depends}
+Depends: ruby, ${shlibs:Depends}
 Description: Qt bindings for Ruby [Trinity]
  This package contains the files necessary for running and developing
  Ruby code using the Qt Ruby bindings.
