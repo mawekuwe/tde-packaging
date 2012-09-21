@@ -3,10 +3,10 @@ debian/tmp/opt/trinity/bin/rbkdeapi
 debian/tmp/opt/trinity/bin/krubyinit
 debian/tmp/opt/trinity/bin/rbkconfig_compiler
 
-debian/tmp/opt/trinity/lib/ruby/1.8/Korundum.rb
-debian/tmp/opt/trinity/lib/ruby/1.8/KDE/korundum.rb
+debian/tmp/opt/trinity/lib/ruby/*/Korundum.rb
+debian/tmp/opt/trinity/lib/ruby/*/KDE/korundum.rb
 
-debian/tmp/opt/trinity/lib/ruby/1.8/*/korundum.so*
-debian/tmp/opt/trinity/lib/ruby/1.8/*/korundum.la
+debian/tmp/opt/trinity/lib/ruby/*/*/korundum.so*
+debian/tmp/opt/trinity/lib/ruby/*/*/korundum.la
 
 korundum/ChangeLog /opt/trinity/share/doc/libkorundum0-ruby1.8
