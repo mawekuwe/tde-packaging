@@ -39,7 +39,9 @@ binary-arch: build install
 	dh_installmime
 	dh_installcron
 	dh_installman debian/rosegarden.1 debian/rosegarden-lilypondview.1 debian/rosegarden-project-package.1 debian/rosegarden-audiofile-importer.1
-	mv debian/rosegarden-trinity/usr/share/man debian/rosegarden-trinity/opt/trinity/share/
+	mkdir -p debian/rosegarden-trinity/opt/trinity/share/man/
+	cp -Rp debian/rosegarden-trinity/usr/share/man/* debian/rosegarden-trinity/opt/trinity/share/man/
+	rm -rf debian/rosegarden-trinity/usr/share/man
 	dh_desktop
 	cp debian/lintianoverrides debian/rosegarden-trinity/usr/share/lintian/overrides/rosegarden-trinity
 	dh_installinfo
