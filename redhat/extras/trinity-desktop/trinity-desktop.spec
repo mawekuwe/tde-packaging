@@ -5,8 +5,8 @@
 %endif
 
 Name:		trinity-desktop
-Version:	3.5.13
-Release:	6%{?dist}%{?_variant}
+Version:	3.5.13.1
+Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	Meta-package to install TDE
 Group:		User Interface/Desktops
@@ -42,6 +42,7 @@ Requires:	trinity-tdetoys >= %{version}
 Requires:	hal
 
 %if 0%{?rhel} || 0%{?fedora}
+# YUM configuration file
 Requires:	trinity-repo >= %{version}
 %endif
 
@@ -80,21 +81,37 @@ Requires:	trinity-tdewebdev >= %{version}
 Group:		User Interface/Desktops
 Summary:	Meta-package to install all TDE applications
 
+# Some applications are disabled for now ...
+# Compiz-related stuff
+#Requires: trinity-compizconfig-backend-kconfig
+#Requires: trinity-desktop-effects-kde
+#Requires: trinity-fusion-icon
+
+# Obsolete l10n package
+#Requires: trinity-filelight-l10n
+
+# Not even an RPM package ...
+#Requires: trinity-konstruct
+
+# Debian/Ubuntu specific ...
+#Requires: trinity-adept
+
+# Future R14 packages
+#Requires: trinity-kvpnc
+#Requires: trinity-qt4-tqt-theme-engine
+
+# Warning, k9copy requires ffmpeg
+# Warning, kradio requires libmp3lame
 Requires: trinity-abakus
 Requires: trinity-amarok
 Requires: trinity-basket
 Requires: trinity-bibletime
-#Requires: trinity-compizconfig-backend-kconfig
-#Requires: trinity-desktop-effects-kde
 Requires: trinity-digikam
 Requires: trinity-dolphin
 Requires: trinity-filelight
-#Requires: trinity-filelight-l10n
-# Fusion-icon requires 'trinity-compizconfig-backend-kconfig'
-#Requires: trinity-fusion-icon
 Requires: trinity-gwenview
+Requires: trinity-gwenview-i18n
 Requires: trinity-k3b
-# Warning, k9copy requires ffmpeg
 Requires: trinity-k9copy
 Requires: trinity-kaffeine
 Requires: trinity-kaffeine-mozilla
@@ -117,8 +134,6 @@ Requires: trinity-kdiff3
 Requires: trinity-kdirstat
 Requires: trinity-kdmtheme
 Requires: trinity-keep
-Requires: trinity-kerry
-Requires: trinity-kgtk-qt3
 Requires: trinity-kile
 Requires: trinity-kima
 Requires: trinity-kio-locate
@@ -130,17 +145,13 @@ Requires: trinity-kmymoney
 Requires: trinity-knemo
 Requires: trinity-knetload
 Requires: trinity-knetstats
-Requires: trinity-knetworkmanager
 Requires: trinity-knights
 Requires: trinity-knowit
 Requires: trinity-knutclient
 Requires: trinity-koffice-suite
-#Requires: trinity-konstruct
 Requires: trinity-konversation
 Requires: trinity-kopete-otr
 Requires: trinity-kpicosim
-Requires: trinity-kpilot
-# Warning, kradio requires libmp3lame
 Requires: trinity-kradio
 Requires: trinity-krename
 Requires: trinity-krusader
@@ -150,14 +161,11 @@ Requires: trinity-kstreamripper
 Requires: trinity-ksystemlog
 Requires: trinity-ktechlab
 Requires: trinity-ktorrent
-Requires: trinity-kuickshow
 Requires: trinity-kvirc
 Requires: trinity-kvkbd
-#Requires: trinity-kvpnc		# R14 only
 Requires: trinity-kwin-style-crystal
 Requires: trinity-piklab
 Requires: trinity-potracegui
-#Requires: trinity-qt4-tqt-theme-engine
 Requires: trinity-smartcardauth
 Requires: trinity-smb4k
 Requires: trinity-soundkonverter
@@ -165,19 +173,36 @@ Requires: trinity-tellico
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
 
+# Disabled applications for RHEL5
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 # On RHEL 5, HAL version is too old for kpowersave .
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
 Requires: trinity-kpowersave
-%endif
-
-# On RHEL 5, GTK2 version is too old for gtk-qt-engine.
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
+# On RHEL 5, GTK2 version is too old for GTK stuff ...
 Requires: trinity-gtk-qt-engine
+# On RHEL 5, lilypond is not available, so no rosegarden :'-(
+Requires: trinity-rosegarden
+# RHEL5: kpilot library is too old
+Requires: trinity-kpilot
 %endif
 
-# On RHEL 5, lilypond is not available, so no rosegarden :'-(
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
-Requires: trinity-rosegarden
+# This one causes several crashes .
+#Requires: trinity-kgtk-qt3
+
+# Disabled applications for OPENSUSE 12.2, Mageia 2
+%if 0%{?rhel} || 0%{?fedora} >= 15 || 0%{?mdkversion}
+# no imlib1.x library
+Requires: trinity-kuickshow
+%endif
+
+# RHEL, openSUSE 12: no Beagle library
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
+Requires: trinity-kerry
+%endif
+
+# RHEL 6 only: knetworkmanager8
+#  knetworkmanager9 is too unstable for now.
+%if 0%{?rhel} == 6
+Requires: trinity-knetworkmanager
 %endif
 
 %description applications
@@ -193,9 +218,10 @@ Summary:	Meta-package to install all extras (unofficial) TDE packages
 
 Requires:	trinity-akode
 Requires:	trinity-kasablanca
-Requires:	trinity-kdebluetooth
+#Requires:	trinity-kdebluetooth
+Requires:	trinity-kickoff-i18n
 Requires:	trinity-ksensors
-Requires:	trinity-style-ia-oa
+Requires:	trinity-style-ia-ora
 
 %description extras
 %{summary}
@@ -248,14 +274,15 @@ Summary:	Yum configuration files for Trinity
 %__sed %{SOURCE0} \
   -e 's/\$releasever/%{fedora}/g' \
   -e 's/-fedora/-f%{fedora}/g' \
-  >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13-f%{fedora}.repo
+  >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13.repo
 %endif
 
 # RHEL repo file
+# $releasever is replaced with its value
 %if 0%{?rhel} > 0
 %__sed %{SOURCE1} \
   -e 's/\$releasever/%{rhel}/g' \
-  >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13-el%{rhel}.repo
+  >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13.repo
 %endif
 
 %if 0%{?fedora} || 0%{?rhel}
@@ -263,6 +290,9 @@ Summary:	Yum configuration files for Trinity
 %endif
 
 %changelog
+* Mon Oct 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Update to major version 3.5.13.1
+
 * Mon Aug 06 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
 - Add 'applications' subpackage
 

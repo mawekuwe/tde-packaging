@@ -26,7 +26,7 @@ trinity-k3b
 trinity-kaffeine
 trinity-kasablanca
 trinity-kbookreader
-trinity-kdebluetooth
+#trinity-kdebluetooth
 trinity-style-lipstik
 #trinity-kgtk-qt3
 trinity-kio-umountwrapper

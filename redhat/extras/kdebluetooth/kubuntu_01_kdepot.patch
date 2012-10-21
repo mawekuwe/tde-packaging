@@ -1,0 +1,20 @@
+diff -Nur kdebluetooth-1.0~beta5~r695881/admin/cvs.sh kdebluetooth-1.0~beta5~r695881.new/admin/cvs.sh
+--- kdebluetooth-1.0~beta5~r695881/admin/cvs.sh	2007-08-02 13:29:02.000000000 +0200
++++ kdebluetooth-1.0~beta5~r695881.new/admin/cvs.sh	2007-08-03 10:19:55.000000000 +0200
+@@ -537,6 +537,8 @@
+ if test -z "$PREPARETIPS"; then PREPARETIPS=preparetips ; fi
+ export EXTRACTRC PREPARETIPS
+ 
++kdepotpath=/usr/include/kde/kde.pot
++
+ for subdir in $dirs; do
+   test -z "$VERBOSE" || echo "Making messages in $subdir"
+   (cd $subdir
+@@ -554,7 +556,6 @@
+    fi
+    perl -e '$mes=0; while (<STDIN>) { next if (/^(if\s|else\s|endif)/); if (/^messages:/) { $mes=1; print $_; next; } if ($mes) { if (/$\\(XGETTEXT\)/ && / -o/) { s/ -o \$\(podir\)/ _translatorinfo.cpp -o \$\(podir\)/ } print $_; } else { print $_; } }' < Makefile.am | egrep -v '^include ' > _transMakefile
+ 
+-   kdepotpath=${includedir:-`kde-config --expandvars --install include`}/kde.pot
+    if ! test -f $kdepotpath; then
+ 	kdepotpath=`kde-config --expandvars --prefix`/include/kde.pot
+    fi

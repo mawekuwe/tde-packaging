@@ -3,8 +3,6 @@
 %include fedora-live-base.ks
 repo --name=trinity --baseurl=http://trinity.mangafrance.com/f$releasever/trinity-3.5.13/RPMS/$basearch
 repo --name=trinity-noarch --baseurl=http://trinity.mangafrance.com/f$releasever/trinity-3.5.13/RPMS/noarch
-repo --name=trinity-extras --baseurl=http://trinity.mangafrance.com/f$releasever/trinity-extras/RPMS/$basearch
-repo --name=trinity-extras-noarch --baseurl=http://trinity.mangafrance.com/f$releasever/trinity-extras/RPMS/noarch
 
 %packages
 

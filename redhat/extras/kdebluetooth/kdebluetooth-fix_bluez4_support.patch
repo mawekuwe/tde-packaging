@@ -1,0 +1,22 @@
+--- a/kdebluetooth/libkbluetooth/dbusinit.h.ORI	2012-09-01 20:45:58.121444854 +0200
++++ a/kdebluetooth/libkbluetooth/dbusinit.h	2012-09-01 20:46:09.735185514 +0200
+@@ -32,7 +32,7 @@
+ #include <dbus/connection.h>
+ 
+ #define BLUEZ_SERVICE "org.bluez"
+-#define BLUEZ_PATH "/org/bluez"
++#define BLUEZ_PATH "/"
+ 
+ #define OBEX_SERVICE "org.openobex"
+ #define OBEX_PATH "/org/openobex"
+--- a/kdebluetooth/libkbluetooth/inputmanager.h.ORI	2012-09-01 20:48:03.215640910 +0200
++++ a/kdebluetooth/libkbluetooth/inputmanager.h	2012-09-01 20:48:12.643428667 +0200
+@@ -32,7 +32,7 @@
+ #include "dbussignal.h"
+ #include "dbusfilter.h"
+ 
+-#define BLUEZ_PATH_INPUTMANAGER "/org/bluez/input"
++#define BLUEZ_PATH_INPUTMANAGER "/input"
+ #define INTERFACE_INPUTMANAGER "org.bluez.input.Manager"
+ 
+ namespace KBluetooth

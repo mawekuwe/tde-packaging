@@ -1,0 +1,15 @@
+diff -Nur kdebluetooth-1.0~beta6~r706091/kdebluetooth/kbluetooth/Makefile.am kdebluetooth-1.0~beta6~r706091.new/kdebluetooth/kbluetooth/Makefile.am
+--- kdebluetooth-1.0~beta6~r706091/kdebluetooth/kbluetooth/Makefile.am	2007-08-29 14:03:27.000000000 +0200
++++ kdebluetooth-1.0~beta6~r706091.new/kdebluetooth/kbluetooth/Makefile.am	2007-08-29 16:39:13.000000000 +0200
+@@ -12,11 +12,6 @@
+ #shelldesktop_DATA = kbluetooth.desktop
+ xdg_apps_DATA = kbluetooth.desktop
+ 
+-# Autostart entry
+-autostartdir = $(datadir)/autostart
+-autostart_DATA = kbluetooth.autostart.desktop
+-
+-
+ #EXTRA_DIST = $(kbluetooth_SOURCES)\
+ #             $(kde_servicetypes_DATA) \
+ #	     eventsrc 

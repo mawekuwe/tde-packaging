@@ -1,0 +1,48 @@
+diff -Nur -x '*.orig' -x '*~' kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbluelock/kbluelock.desktop kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbluelock/kbluelock.desktop
+--- kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbluelock/kbluelock.desktop	2007-11-10 10:38:44.000000000 +0100
++++ kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbluelock/kbluelock.desktop	2007-11-16 11:08:12.000000000 +0100
+@@ -38,4 +38,5 @@
+ Comment[tg]=Намоишгари KDE Bluetooth
+ Comment[tr]=KDE Bluetooth İzleyici
+ Comment[xx]=xxKDE Bluetooth Monitorxx
++Hidden=true
+ 
+diff -Nur -x '*.orig' -x '*~' kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbluemon/kbluemon.desktop kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbluemon/kbluemon.desktop
+--- kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbluemon/kbluemon.desktop	2007-11-10 10:38:44.000000000 +0100
++++ kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbluemon/kbluemon.desktop	2007-11-16 11:08:12.000000000 +0100
+@@ -36,4 +36,5 @@
+ Comment[tg]=Намоишгари KDE Bluetooth
+ Comment[tr]=KDE Bluetooth İzleyici
+ Comment[xx]=xxKDE Bluetooth Monitorxx
++Hidden=true
+ 
+diff -Nur -x '*.orig' -x '*~' kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbluetooth/kbluetooth.desktop kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbluetooth/kbluetooth.desktop
+--- kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbluetooth/kbluetooth.desktop	2007-11-10 10:38:44.000000000 +0100
++++ kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbluetooth/kbluetooth.desktop	2007-11-16 11:08:12.000000000 +0100
+@@ -33,7 +33,7 @@
+ GenericName[tg]=Хидматгоҳи Bluetooth
+ GenericName[tr]=Bluetooth Sunucusu
+ GenericName[xx]=xxBluetooth Serverxx
+-Categories=Settings;HardwareSettings;
++Categories=Qt;KDE;System;
+ OnlyShowIn=KDE;
+ Comment=KDE Bluetooth Framework Metaserver
+ Comment[bg]=Мета сървър за Bluetooth Framework
+diff -Nur -x '*.orig' -x '*~' kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbtobexclient/kbtobexclient.desktop kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbtobexclient/kbtobexclient.desktop
+--- kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbtobexclient/kbtobexclient.desktop	2007-10-27 09:44:26.000000000 +0200
++++ kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbtobexclient/kbtobexclient.desktop	2007-11-16 11:08:57.000000000 +0100
+@@ -58,3 +58,5 @@
+ Comment[ta]=KDE புலுடுத் சட்டவேலைக்கான OBEX பொருள் கிளைஞ்சன்
+ Comment[tr]=KDEBluetooth Ortamı için OBEX Nesneleri Destek istemcisi
+ Comment[xx]=xxAn OBEX Object Push client for the KDEBluetooth Frameworkxx
++NoDisplay=true
++
+diff -Nur -x '*.orig' -x '*~' kdebluetooth-1.0~beta9~r734866/kdebluetooth/kinputwizard/kinputwizard.desktop kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kinputwizard/kinputwizard.desktop
+--- kdebluetooth-1.0~beta9~r734866/kdebluetooth/kinputwizard/kinputwizard.desktop	2007-11-10 10:38:44.000000000 +0100
++++ kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kinputwizard/kinputwizard.desktop	2007-11-16 11:08:12.000000000 +0100
+@@ -36,4 +36,5 @@
+ Comment[tg]=Устоди KDE Bluetooth
+ Comment[tr]=KDE Bluetooth Sihirbazı
+ Comment[xx]=xxKDE Bluetooth Wizardxx
++Hidden=true
+ 

@@ -10,8 +10,9 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdeappdir %{tde_appdir}/kde
 %define tde_tdedocdir %{tde_docdir}/kde
 %define tde_tdeincludedir %{tde_includedir}/kde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -21,7 +22,7 @@
 
 Name:			trinity-kdebluetooth
 Version:		1.0_beta9_r769275
-Release:		1%{?dist}%{?_variant}
+Release:		2%{?dist}%{?_variant}
 
 Summary:		The TDE Bluetooth Framework
 
@@ -30,12 +31,25 @@ Group:			Applications/Communications
 URL:			http://bluetooth.kmobiletools.org/
 
 Source0:		kdebluetooth_1.0~beta9~r769275.orig.tar.gz
-Patch0:			kdebluetooth-1.0_beta8-gcc43.patch
-Patch1:			kdebluetooth_1.0~beta9~r769275-0ubuntu1.diff.gz
+Source1:		kblueplugd.bluez3
+Source2:		kblueplugd.bluez4
+Source3:		kblueplugd.desktop
+
+Patch1:			kdebluetooth-1.0_beta8-gcc43.patch
 Patch2:			kdebluetooth-trinity.patch
 Patch3:			kdebluetooth-fix_gcc_46_compilation.patch
 
+Patch4:			kdebluetooth-fix_bluez4_support.patch
+
+Patch11:		kubuntu_01_kdepot.patch
+Patch12:		kubuntu_02_desktop_files.patch
+Patch13:		kubuntu_06_no_autostart.patch
+Patch14:		kubuntu_07_fix_header_include.patch
+Patch15:		kubuntu_08_load_kdebluetooth_catalogue.patch
+Patch16:		kubuntu_09_french_i18n.patch
+
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
 BuildRequires:	gettext
 BuildRequires:	desktop-file-utils
 BuildRequires:	lockdev-devel
@@ -49,20 +63,23 @@ Buildrequires:	libidn-devel
 Buildrequires:	dbus-tqt-devel
 BuildRequires:	automake >= 1.6.1
 BuildRequires:	autoconf >= 2.52
+BuildRequires:	obexftp-devel
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}bluez-devel
 %else
 BuildRequires:	bluez-libs-devel
-BuildRequires:	obexftp-devel
 %endif
-
-Requires:		%{name}-libs = %{version}-%{release}
 
 # kdesu binary
 Requires:		trinity-tdebase-bin
 
+%if 0%{?fedora} >= 8
+Provides:		dbus-bluez-pin-helper
+%endif
 
+Obsoletes:		%{name}-libs < %{version}-%{release}
+Provides:		%{name}-libs = %{version}-%{release}
 
 %description
 The KDE Bluetooth Framework is a set of tools built on top of Linux'
@@ -71,25 +88,11 @@ common Bluetooth profiles and to make data exchange with Bluetooth
 enabled devices as straightforward as possible.
 
 
-%package libs
-Summary: Base libraries for %{name}
-Group:	 System Environment/Libraries
-
-%if 0%{?fedora} >= 8
-Provides:		dbus-bluez-pin-helper
-%endif
-
-
-%description libs
-KDE Bluetooth framework libraries.
-
-
 %package devel
-Summary: Development files for %{name}
-Group:	 Development/Libraries
-Requires: trinity-kdelibs-devel
-Requires: bluez-libs-devel
-Requires: %{name}-libs = %{version}-%{release}
+Summary:	Development files for %{name}
+Group:		Development/Libraries
+Requires:	trinity-tdelibs-devel
+Requires:	bluez-libs-devel
 
 
 %description devel
@@ -98,10 +101,20 @@ KDE Bluetooth framework development libraries and headers.
 
 %prep
 %setup -q -n kdebluetooth-1.0~beta9~r769275
-%patch0 -p1
-%patch1 -p1
+%patch1 -p1 -b .gcc43
 %patch2 -p1 -b .trinity
 %patch3 -p1 -b .gcc46
+
+%if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
+%patch4 -p1 -b .bluez4
+%endif
+
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
+%patch15 -p1
+%patch16 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -147,6 +160,7 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT
 
+# icons
 for DESK_PATH in applications/kde applnk/Utilities ; do
 	desktop-file-install												\
 		--mode=644														\
@@ -158,6 +172,7 @@ for DESK_PATH in applications/kde applnk/Utilities ; do
 		$RPM_BUILD_ROOT%{tde_datadir}/$DESK_PATH/*.desktop ||:
 done
 
+# Locales
 PROG_LIST="kbluelock kbluemon kbluetooth kinputwizard
 			kcm_btpaired  kio_bluetooth kio_obex2 kio_sdp
 			libkbluetooth kdebluetooth"
@@ -165,52 +180,122 @@ for PROG in $PROG_LIST ; do
 	%find_lang $PROG && cat $PROG.lang >> %{name}.lang	||:
 done
 
-rm -f $RPM_BUILD_ROOT/%{_datadir}/applnk/Settings/Network/Bluetooth/.directory
-
-rm -f ${RPM_BUILD_ROOT}%{tde_libdir}/*.a
-rm -f ${RPM_BUILD_ROOT}%{tde_libdir}/kde3/*.a
-
-%find_lang kdebluetooth
-
 # Unwanted files
+%__rm -f %{buildroot}%{_datadir}/applnk/Settings/Network/Bluetooth/.directory
+%__rm -f %{buildroot}%{tde_libdir}/*.a
 %__rm -f %{buildroot}%{tde_tdelibdir}/kcm_btpaired.a
 %__rm -f %{buildroot}%{tde_tdelibdir}/kio_bluetooth.a
 %__rm -f %{buildroot}%{tde_tdelibdir}/kio_obex.a
 %__rm -f %{buildroot}%{tde_tdelibdir}/kio_sdp.a
 %__rm -f %{buildroot}%{tde_datadir}/applnk/Settings/Network/Bluetooth/.directory
 
+# Installs 'kblueplugd'
+%if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
+%__install -D -m 755 %{SOURCE2} %{buildroot}%{tde_bindir}/kblueplugd
+%else
+%__install -D -m 755 %{SOURCE1} %{buildroot}%{tde_bindir}/kblueplugd
+%endif
+%__install -D -m 644 %{SOURCE3} %{buildroot}%{tde_datadir}/autostart/kblueplugd.desktop
+
 %clean
-rm -rf $RPM_BUILD_ROOT
+%__rm -rf $RPM_BUILD_ROOT
 
 
 %post
-/sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor ||:
-gtk-update-icon-cache -qf %{_datadir}/icons/hicolor 2> /dev/null ||:
+touch --no-create %{tde_datadir}/icons/hicolor ||:
+gtk-update-icon-cache -qf %{tde_datadir}/icons/hicolor 2> /dev/null ||:
+/sbin/ldconfig || :
+update-desktop-database %{tde_appdir} 2> /dev/null || : 
 
 
 %postun
-/sbin/ldconfig
-touch --no-create %{_datadir}/icons/hicolor ||:
-gtk-update-icon-cache -qf %{_datadir}/icons/hicolor 2> /dev/null ||:
+touch --no-create %{tde_datadir}/icons/hicolor ||:
+gtk-update-icon-cache -qf %{tde_datadir}/icons/hicolor 2> /dev/null ||:
+/sbin/ldconfig || :
+update-desktop-database %{tde_appdir} 2> /dev/null || : 
 
+%post devel
+/sbin/ldconfig || :
 
-%files -f kdebluetooth.lang
+%postun devel
+/sbin/ldconfig || :
+
+%files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING INSTALL README
-%{tde_bindir}/kblue*
+%{tde_bindir}/kbluelock
+%{tde_bindir}/kbluemon
+%{tde_bindir}/kblueplugd
+%{tde_bindir}/kbluetooth
 %{tde_bindir}/kbtobexclient
 %{tde_bindir}/kioobex_start
 %{tde_bindir}/kinputwizard
-%{tde_tdeappdir}/*.desktop
 %{tde_datadir}/applnk/.hidden/*.desktop
 %{tde_datadir}/apps/konqsidebartng/virtual_folders/services/*.desktop
-%{tde_datadir}/apps/*/*
-%{tde_datadir}/autostart/*
-%{tde_datadir}/desktop-directories/*
-%{tde_datadir}/icons/hicolor/*/*/*
-%{tde_datadir}/mimelnk/bluetooth/
-%{tde_datadir}/service*/*
+%{tde_datadir}/apps/konqueror/servicemenus/kbtobexclient_sendfile.desktop
+%{tde_datadir}/apps/kbtobexclient/kbtobexclientui.rc
+%{tde_datadir}/apps/kdebluetooth/
+%{tde_tdeappdir}/dunhandler.desktop
+%{tde_tdeappdir}/faxhandler.desktop
+%{tde_tdeappdir}/kbluelock.desktop
+%{tde_tdeappdir}/kbluemon.desktop
+%{tde_tdeappdir}/kbluetooth.desktop
+%{tde_tdeappdir}/kbtobexclient.desktop
+%{tde_tdeappdir}/kbtobexsrv.desktop
+%{tde_tdeappdir}/kcm_btpaired.desktop
+%{tde_tdeappdir}/kinputwizard.desktop
+%{tde_datadir}/autostart/kblueplugd.desktop
+%{tde_datadir}/desktop-directories/kde-settings-network-bluetooth.directory
+%{tde_datadir}/icons/hicolor/*/apps/kbluetooth.png
+%{tde_datadir}/icons/hicolor/*/apps/kdebluetooth.png
+%{tde_datadir}/icons/hicolor/*/apps/kbluelock.png
+%{tde_datadir}/icons/hicolor/scalable/apps/kdebluetooth.svgz
+%{tde_datadir}/mimelnk/bluetooth/av-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/computer-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/dun-profile.desktop
+%{tde_datadir}/mimelnk/bluetooth/fax-profile.desktop
+%{tde_datadir}/mimelnk/bluetooth/handsfree-profile.desktop
+%{tde_datadir}/mimelnk/bluetooth/headset-profile.desktop
+%{tde_datadir}/mimelnk/bluetooth/imaging-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/keyboard-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/lan-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/misc-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/mouse-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/obex-ftp-profile.desktop
+%{tde_datadir}/mimelnk/bluetooth/obexobjectpush-profile.desktop
+%{tde_datadir}/mimelnk/bluetooth/peripheral-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/phone-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/serial-port-profile.desktop
+%{tde_datadir}/mimelnk/bluetooth/synchronization-profile.desktop
+%{tde_datadir}/mimelnk/bluetooth/unknown-device-class.desktop
+%{tde_datadir}/mimelnk/bluetooth/unknown-profile.desktop
+%{tde_datadir}/services/bluetooth.protocol
+%{tde_datadir}/services/btsdp.protocol
+%{tde_datadir}/services/kbluetooth_kbtobexsrv.desktop
+%{tde_datadir}/services/kbluetooth_kbtobexsrv.sdp.xml
+%{tde_datadir}/services/obex.protocol
+%{tde_datadir}/services/sdpmime-dun-profile.desktop
+%{tde_datadir}/services/sdpmime-fax-profile.desktop
+%{tde_datadir}/services/sdpmime-handsfree-profile.desktop
+%{tde_datadir}/services/sdpmime-headset-profile.desktop
+%{tde_datadir}/services/sdpmime-obex-client-profile.desktop
+%{tde_datadir}/services/sdpmime-obex-ftp-profile.desktop
+%{tde_datadir}/services/sdpmime-serial-port-profile.desktop
+%{tde_datadir}/services/sdpmime-synchronization-profile.desktop
+%{tde_datadir}/servicetypes/sdpservicehandler.desktop
+%{tde_libdir}/kdebluetooth/servers/kbtobexsrv
+%{tde_libdir}/libkbluetooth.so.0
+%{tde_libdir}/libkbluetooth.so.0.0.0
+%{tde_libdir}/libqobex.so.0
+%{tde_libdir}/libqobex.so.0.0.9
+%{tde_tdelibdir}/kcm_btpaired.la
+%{tde_tdelibdir}/kcm_btpaired.so
+%{tde_tdelibdir}/kio_bluetooth.la
+%{tde_tdelibdir}/kio_bluetooth.so
+%{tde_tdelibdir}/kio_obex.la
+%{tde_tdelibdir}/kio_obex.so
+%{tde_tdelibdir}/kio_sdp.la
+%{tde_tdelibdir}/kio_sdp.so
 %lang(ca) %{tde_tdedocdir}/HTML/ca/kdebluetooth/
 %lang(da) %{tde_tdedocdir}/HTML/da/kdebluetooth/
 %lang(en) %{tde_tdedocdir}/HTML/en/kdebluetooth/
@@ -224,22 +309,24 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor 2> /dev/null ||:
 %lang(sv) %{tde_tdedocdir}/HTML/sv/kdebluetooth/
 
 
-%files libs
-%defattr(-,root,root,-)
-%{tde_libdir}/*.la
-%{tde_libdir}/*.so.*
-%{tde_tdelibdir}/*.so
-%{tde_tdelibdir}/*.la
-%{tde_libdir}/kdebluetooth/
-
 
 %files devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/*
-%{tde_libdir}/*.so
+%{tde_tdeincludedir}/libkbluetooth/
+%{tde_tdeincludedir}/qobex/
+%{tde_libdir}/libkbluetooth.la
+%{tde_libdir}/libkbluetooth.so
+%{tde_libdir}/libqobex.la
+%{tde_libdir}/libqobex.so
 
 
 %changelog
+* Sat Sep 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.0_beta9_r769275-2
+- Rebuilt for Mageia 2 and Mandriva 2011
+- Drops useless '-libs' package
+- Correctly applies Ubuntu patches
+- Fix support for Bluez4
+
 * Sun Feb 12 2012 Francois Andriot <francois.andriot@free.fr> - 1.0_beta9_r769275-1
 - Initial version for TDE 3.5.13
 - Updates base version to 1.0_beta9_r769275 (taken from Ubuntu Hardy)
@@ -332,7 +419,7 @@ gtk-update-icon-cache -qf %{_datadir}/icons/hicolor 2> /dev/null ||:
 - Fix 64bit compile due to bad default in configure. (with_bluetooth_dir)
 - Missing BR: libtempter-devel.
 - Missing BT: libidn-devel.
-- Added: kbluepin wrapper - configure kbluepin as the old-style pin helper.
+- Added: kbluepin wrapper - cotde_datadirnfigure kbluepin as the old-style pin helper.
 
 * Wed Apr 04 2007 Gilboa Davara <gilboad[AT]gmail.com> 1-0-0.20.beta2
 - Re-merge Ville Skytta's latest .spec. (Got dropped by mistake)

@@ -31,7 +31,8 @@ EOF
 # Checks RPMBUILD environment
 RHEL="$( rpm -E "%{rhel}" )"
 FEDORA="$( rpm -E "%{fedora}" )"
-if [ "${RHEL}" = "%{rhel}" ] && [ "${FEDORA}" = "%{fedora}" ]; then
+SUSE="$( rpm -E "%{suse_version}" )"
+if [ "${RHEL}" = "%{rhel}" ] && [ "${FEDORA}" = "%{fedora}" ] && [ "${SUSE}" = "%{suse_version}" ]; then
 	cat <<EOF
 Error: RPM macro %rhel or %fedora must be set to the distribution version to build !
 E.g:

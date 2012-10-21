@@ -1,0 +1,50 @@
+diff -Nur -x '*.orig' -x '*~' kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbtobexclient/main.cpp kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbtobexclient/main.cpp
+--- kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbtobexclient/main.cpp	2007-08-30 17:30:15.000000000 +0200
++++ kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbtobexclient/main.cpp	2007-11-16 18:08:29.000000000 +0100
+@@ -42,6 +42,7 @@
+ 
+ int main(int argc, char **argv)
+ {
++    KLocale::setMainCatalogue("kdebluetooth");
+     KAboutData about("kbtobexclient",
+                      I18N_NOOP("Bluetooth OBEX Object Push client"),
+                      0, description,
+@@ -58,7 +59,6 @@
+ 
+     KApplication app;
+     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+-    KGlobal::locale()->insertCatalogue("libkbluetooth");
+ 
+     KURL url;
+     if (args->count() == 0) {
+diff -Nur -x '*.orig' -x '*~' kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbtserialchat/main.cpp kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbtserialchat/main.cpp
+--- kdebluetooth-1.0~beta9~r734866/kdebluetooth/kbtserialchat/main.cpp	2005-04-20 21:01:14.000000000 +0200
++++ kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kbtserialchat/main.cpp	2007-11-16 18:08:29.000000000 +0100
+@@ -37,6 +37,7 @@
+ 
+ int main(int argc, char **argv)
+ {
++    KLocale::setMainCatalogue("kdebluetooth");
+     KAboutData about("kbtserialchat",
+         I18N_NOOP("Bluetooth Serial Chat"),
+         version, description,
+@@ -49,7 +50,6 @@
+     KApplication app;
+     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+ 
+-    KGlobal::locale()->insertCatalogue("libkbluetooth");
+     if (args->isSet("rfcommconnection") && args->isSet("peeraddr") &&
+         args->isSet("peername")) {
+         int socket = QString(args->getOption("rfcommconnection"))
+diff -Nur -x '*.orig' -x '*~' kdebluetooth-1.0~beta9~r734866/kdebluetooth/kcm_btpaired/kcm_btpaired.cpp kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kcm_btpaired/kcm_btpaired.cpp
+--- kdebluetooth-1.0~beta9~r734866/kdebluetooth/kcm_btpaired/kcm_btpaired.cpp	2007-08-27 18:44:57.000000000 +0200
++++ kdebluetooth-1.0~beta9~r734866.new/kdebluetooth/kcm_btpaired/kcm_btpaired.cpp	2007-11-16 18:14:38.000000000 +0100
+@@ -82,7 +82,7 @@
+ {
+     KCModule *create_btpaired(QWidget *parent, const char* /*name*/)
+     {
+-        KGlobal::locale()->insertCatalogue("btpaired");
++        KGlobal::locale()->insertCatalogue("kdebluetooth");
+         return new kcm_btpaired(parent, "btpaired");
+     }
+ }

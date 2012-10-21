@@ -1,0 +1,59 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+"""
+Copyright (C) 2007 Achim Bohnet <allee@kubuntu.org>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+"""
+
+import sys
+from   PyQt4 import QtCore, Qt
+import dbus
+import dbus.mainloop.qt
+import distutils.spawn
+
+kbtcmd    = [ 'kbluetooth' ]
+quitprogs = [ 'kdebluetooth', 'kbluemon', 'kinputwizard' ]  # FIXME: quit kbluelock too?
+
+
+app = Qt.QCoreApplication(sys.argv)
+	
+dbus.mainloop.qt.DBusQtMainLoop(set_as_default=True)
+bus = dbus.SystemBus()
+
+try:
+        manager = dbus.Interface(bus.get_object('org.bluez', '/org/bluez'), 'org.bluez.Manager')
+except:
+        print "Unable to connect to bluez."
+        sys.exit(1)
+
+if len(manager.ListAdapters()):
+        print "# of devices at startup:", len(manager.ListAdapters())
+        distutils.spawn.spawn(kbtcmd)
+else:
+        print "No BT device found"
+
+
+def slotAdapterAdded(device):
+        print "bt dev added:", device, "# of devices:", len(manager.ListAdapters())
+        distutils.spawn.spawn(kbtcmd)
+
+def slotAdapterRemoved(device):
+        print "bt dev removed:", device, "# num of devices:", len(manager.ListAdapters())
+        if len(manager.ListAdapters()) == 0:
+                for p in quitprogs:
+                        print "exiting:", p, " ..."
+                        try:
+                                distutils.spawn.spawn(['dcop', p, 'MainApplication-Interface', 'quit'])
+                        except:
+                                pass
+
+manager.connect_to_signal("AdapterAdded", slotAdapterAdded)
+manager.connect_to_signal("AdapterRemoved", slotAdapterRemoved)
+
+print "waiting for bt device (un)plug events ..."
+
+app.exec_()

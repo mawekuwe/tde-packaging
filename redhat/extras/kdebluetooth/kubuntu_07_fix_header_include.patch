@@ -1,0 +1,10 @@
+diff -Nur kdebluetooth-1.0~beta6~r706853/kdebluetooth/kbtobexclient/Makefile.am kdebluetooth-1.0~beta6~r706853.new/kdebluetooth/kbtobexclient/Makefile.am
+--- kdebluetooth-1.0~beta6~r706853/kdebluetooth/kbtobexclient/Makefile.am	2007-08-31 11:52:00.000000000 +0200
++++ kdebluetooth-1.0~beta6~r706853.new/kdebluetooth/kbtobexclient/Makefile.am	2007-08-31 18:31:16.000000000 +0200
+@@ -1,5 +1,5 @@
+ # set the include path for X, qt and KDE
+-INCLUDES = -I$(top_srcdir)/kdebluetooth -I$(top_srcdir)/kdebluetooth/libkbluetooth/ -Ikio $(all_includes) $(OPENOBEX_CFLAGS) $(BLUETOOTH_CFLAGS) $(DBUS_CFLAGS)
++INCLUDES = -I$(top_builddir)/kdebluetooth/libkbluetooth/ -I$(build_dir)/kdebluetooth/libkbluetooth/ -I$(top_srcdir)/kdebluetooth -I$(top_srcdir)/kdebluetooth/libkbluetooth/ -Ikio $(all_includes) $(OPENOBEX_CFLAGS) $(BLUETOOTH_CFLAGS) $(DBUS_CFLAGS)
+ 
+ # these are the headers for your project
+ 

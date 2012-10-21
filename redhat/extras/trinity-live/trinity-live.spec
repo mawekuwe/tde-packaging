@@ -1,8 +1,10 @@
 %define _prefix /usr
 
+%define tde_bindir %{tde_prefix}/bin
+
 Name:		trinity-live
-Version:	3.5.13
-Release:	4%{?dist}
+Version:	3.5.13.1
+Release:	1%{?dist}
 License:	GPL
 Summary:	Trinity Spins
 Group:		Applications/System
@@ -45,7 +47,7 @@ cat <<EOF >openbox
 # This script is used by 'firstboot' only.
 # It allows to run TDE's kwin instead of openbox.
 
-export PATH=%{_bindir}:\${PATH}
+export PATH=%{tde_bindir}:\${PATH}
 export HOME=/root
 rm -rf \${HOME}/.DCOPserver*
 
@@ -73,6 +75,9 @@ EOF
 
 
 %changelog
+* Sun Oct 07 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1
+
 * Wed Jul 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Updates with new split packages
 
