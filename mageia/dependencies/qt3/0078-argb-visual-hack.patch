@@ -30,7 +30,7 @@ adds a magic flag to turn the side effects off.
      process_cmdline( &argc, argv );
 --- src/kernel/qapplication_x11.cpp.sav	2007-05-25 18:56:23.000000000 +0200
 +++ src/kernel/qapplication_x11.cpp	2007-05-29 16:24:58.000000000 +0200
-@@ -196,6 +196,7 @@ static bool	noxim		= FALSE;	// connect t
+@@ -201,6 +201,7 @@
  static Display *appDpy		= 0;		// X11 application display
  static char    *appDpyName	= 0;		// X11 display name
  static bool	appForeignDpy	= FALSE;        // we didn't create display
@@ -38,16 +38,16 @@ adds a magic flag to turn the side effects off.
  static bool	appSync		= FALSE;	// X11 synchronization
  #if defined(QT_DEBUG)
  static bool	appNoGrab	= FALSE;	// X11 grabbing enabled
-@@ -1541,7 +1542,7 @@ void qt_init_internal( int *argcptr, cha
-     setlocale( LC_ALL, "" );		// use correct char set mapping
-     setlocale( LC_NUMERIC, "C" );	// make sprintf()/scanf() work
+@@ -1639,7 +1640,7 @@
+     }
+ #endif
  
 -    if ( display ) {
 +    if ( display && !qt_no_foreign_hack ) {
  	// Qt part of other application
  
  	appForeignDpy = TRUE;
-@@ -1698,7 +1699,9 @@ void qt_init_internal( int *argcptr, cha
+@@ -1793,7 +1794,9 @@
  	// Connect to X server
  
  	if( qt_is_gui_used ) {
@@ -58,7 +58,7 @@ adds a magic flag to turn the side effects off.
  		qWarning( "%s: cannot connect to X server %s", appName,
  			  XDisplayName(appDpyName) );
  		qApp = 0;
-@@ -2345,6 +2348,10 @@ void qt_init( Display *display, Qt::HAND
+@@ -2439,6 +2442,10 @@
      qt_init_internal( 0, 0, display, visual, colormap );
  }
  
