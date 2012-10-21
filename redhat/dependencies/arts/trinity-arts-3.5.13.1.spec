@@ -7,13 +7,13 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdeincludedir %{tde_includedir}/tde
 
 %define _docdir %{tde_prefix}/share/doc
 
 Name:		trinity-arts
-Version:	3.5.13
-Release:	4%{?dist}%{?_variant}
+Version:	3.5.13.1
+Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the KDE sound system
 Group:		System Environment/Daemons 
@@ -25,15 +25,9 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	arts-%{version}.tar.gz
+Source0:	arts-3.5.13.1.tar.gz
 
-# TDE 3.5.13: Re-enable lost OSS support
-Patch0:		arts-3.5.13-enable_oss.patch
-
-# TDE 3.5.13: Re-enable lost JACK support
-Patch1:		arts-3.5.13-enable_jack.patch
-
-BuildRequires:	tqtinterface-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
@@ -45,7 +39,7 @@ BuildRequires:	esound-devel
 BuildRequires:	%{_lib}jack-devel
 BuildRequires:	%{_lib}ltdl-devel
 %endif
-%if 0%{?rhel} >= 5
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	libtool-ltdl-devel
 %endif
@@ -57,7 +51,7 @@ BuildRequires:	libltdl-devel
 # TDE 3.5.13 specific building variables
 BuildRequires: cmake >= 2.8
 
-Requires:		tqtinterface
+Requires:		trinity-tqtinterface >= %{version}
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"
@@ -117,7 +111,9 @@ Development files for %{name}
 %files devel
 %defattr(-,root,root,-)
 %{tde_bindir}/mcopidl
+# Arts includes are under 'tde' - this is on purpose !
 %{tde_tdeincludedir}/arts/
+# Artsc includes are not under 'tde'.
 %{tde_includedir}/artsc/
 %{tde_bindir}/artsc-config
 %{tde_libdir}/lib*.so
@@ -140,9 +136,7 @@ Development files for %{name}
 
 
 %prep
-%setup -q -n dependencies/arts
-%patch0 -p1
-%patch1 -p1
+%setup -q -n arts-3.5.13.1
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
@@ -156,7 +150,7 @@ cd build
 %cmake \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
-  -DINCLUDE_INSTALL_DIR=%{tde_includedir}/arts \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir}/arts \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
   -DWITH_ALSA=ON \
@@ -184,18 +178,5 @@ cd build
 
 
 %changelog
-* Fri Dec 16 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
-- Enables JACK support
-
-* Mon Nov 14 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Enables OSS and ESD support
-
-* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Add missing BuildRequires
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Import to GIT
-- Built with future TDE version (3.5.13 + cmake + QT3.3.8d)
+* Tue Sep 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1

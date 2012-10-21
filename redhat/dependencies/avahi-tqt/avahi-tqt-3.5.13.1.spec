@@ -12,7 +12,7 @@
 
 
 Name:		trinity-avahi-tqt
-Version:	3.5.13
+Version:	3.5.13.1
 Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	Avahi TQT Interface
@@ -25,13 +25,14 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	avahi-tqt-3.5.13.tar.gz
+Source0:	avahi-tqt-3.5.13.1.tar.gz
 
 BuildRequires:	gcc-c++
 BuildRequires:	cmake >= 2.8
 BuildRequires:	qt3-devel
-BuildRequires:	tqtinterface-devel >= 3.5.13
+BuildRequires:	tqtinterface-devel >= 3.5.13.1
 BuildRequires:	gettext-devel
+BuildRequires:	libtool
 %if 0%{?suse_version}
 BuildRequires:	dbus-1-devel
 %else
@@ -53,10 +54,11 @@ BuildRequires:	expat-devel
 %endif
 
 Requires:		qt3
-Requires:		tqtinterface >= 3.5.13
+Requires:		trinity-tqtinterface >= 3.5.13
 
 Obsoletes:		avahi-tqt < %{version}-%{release}
 Provides:		avahi-tqt = %{version}-%{release}
+
 
 %description
 Avahi TQT Interface
@@ -84,7 +86,7 @@ Development files for %{name}
 
 
 %prep
-%setup -q -n dependencies/avahi-tqt
+%setup -q -n avahi-tqt-3.5.13.1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -97,7 +99,7 @@ Development files for %{name}
 %__rm -f common/libtool.m4 common/ltoptions.m4 common/lt~obsolete.m4 common/ltsugar.m4 common/ltversion.m4
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt?.sh
+unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir} -I%{tde_includedir}/tqt"
 export CXXFLAGS="${CXXFLAGS} ${LDFLAGS}"
@@ -150,5 +152,5 @@ export CXXFLAGS="${CXXFLAGS} ${LDFLAGS}"
 %{tde_libdir}/pkgconfig/avahi-tqt.pc
 
 %changelog
-* Mon Jul 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial build for TDE 3.5.13
+* Tue Sep 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1

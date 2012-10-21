@@ -13,8 +13,8 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-tqtinterface
-Version:	3.5.13
-Release:	3%{?dist}%{?_variant}
+Version:	3.5.13.1
+Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
 Group:		System Environment/Libraries
@@ -25,7 +25,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Source0:	tqtinterface-3.5.13.tar.gz
+Source0:	tqtinterface-3.5.13.1.tar.gz
 
 # [tqtinterface] Add missing endian-ness defines [Bug #727] [Commit #458e74a6]
 Patch1:		tqtinterface-3.5.13-add_missing_endianness_defines.patch
@@ -72,11 +72,11 @@ Development files for %{name}
 
 
 %prep
-%setup -q -n dependencies/tqtinterface
+%setup -q -n tqtinterface-3.5.13.1
 %patch1 -p1
 
 %build
-unset QTDIR; . /etc/profile.d/qt?.sh
+unset QTDIR; . /etc/profile.d/qt3.sh
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
@@ -146,16 +146,5 @@ done
 
 
 %changelog
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Rebuilt for Fedora 17
-- Add missing endian-ness defines [Bug #727] [Commit #458e74a6]
-
-* Sun Nov 06 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Add missing Requires
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Sun Aug 28 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Import to GIT
-- Built with future TDE version (3.5.13 + cmake + QT3.3.8d)
+* Tue Sep 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Switch to v3.5.13-sru branch

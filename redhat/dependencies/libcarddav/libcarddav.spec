@@ -26,7 +26,7 @@ Source0:	libcarddav_0.6.2-2debian2.tar.gz
 # [libcarddav] Fix messy installation directories
 Patch1:		libcarddav-0.6.5-fix_installation.patch
 
-%if 0%{?fedora} || 0%{?rhel} >= 6
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
 BuildRequires:	libcurl-devel
 %else
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -36,6 +36,14 @@ BuildRequires:	%{_lib}curl-devel
 BuildRequires:	trinity-libcurl-devel
 %endif
 %endif
+
+%if 0%{?rhel} == 4
+BuildRequires:	evolution28-gtk2-devel
+%else
+BuildRequires:	glib2-devel
+BuildRequires:	gtk2-devel
+%endif
+BuildRequires:	make
 
 Obsoletes:	libcarddav < %{version}-%{release}
 Provides:	libcarddav = %{version}-%{release}
@@ -56,6 +64,10 @@ Provides:	libcarddav-devel = %{version}-%{release}
 %description devel
 %{summary}
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
 
 %prep
 %setup -q -n libcarddav-%{version}
@@ -64,6 +76,11 @@ Provides:	libcarddav-devel = %{version}-%{release}
 %build
 # CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
 export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${CFLAGS}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+
+if [ -d /usr/evolution28 ]; then
+  export PKG_CONFIG_PATH="/usr/evolution28/%{_lib}/pkgconfig:${PKG_CONFIG_PATH}"
+fi
 
 autoreconf --force --install --symlink
 %configure \
@@ -76,7 +93,7 @@ autoreconf --force --install --symlink
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} LIBTOOL=$(which libtool)
 
-%__rm -f %{buidroot}%{tde_libdir}/*.a
+%__rm -f %{buildroot}%{tde_libdir}/libcarddav.a
 
 %clean
 %__rm -rf %{buildroot}

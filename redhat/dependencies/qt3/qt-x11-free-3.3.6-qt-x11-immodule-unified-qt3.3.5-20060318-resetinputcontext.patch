@@ -1,6 +1,6 @@
---- qt-x11-free-3.3.6/src/widgets/qtextedit.cpp.preedit	2006-06-28 17:18:08.000000000 +0200
-+++ qt-x11-free-3.3.6/src/widgets/qtextedit.cpp	2006-06-28 17:20:09.000000000 +0200
-@@ -1906,9 +1906,6 @@
+--- ./src/widgets/qtextedit.cpp.resetinputcontext	2012-08-04 14:53:34.000000000 +0200
++++ ./src/widgets/qtextedit.cpp	2012-09-29 11:36:19.410163805 +0200
+@@ -1904,9 +1904,6 @@
  
  void QTextEdit::removeSelectedText( int selNum )
  {
@@ -10,7 +10,7 @@
      QTextCursor c1 = doc->selectionStartCursor( selNum );
      c1.restoreState();
      QTextCursor c2 = doc->selectionEndCursor( selNum );
-@@ -3171,7 +3168,6 @@
+@@ -3169,7 +3166,6 @@
  	return;
      }
  #endif
@@ -18,7 +18,7 @@
      QTextParagraph *p = doc->paragAt( para );
      if ( !p )
  	return;
-@@ -3198,7 +3194,6 @@
+@@ -3196,7 +3192,6 @@
  	return;
      }
  #endif
@@ -26,7 +26,7 @@
      for ( int i = 0; i < (int)doc->numSelections(); ++i )
  	doc->removeSelection( i );
  
-@@ -3240,7 +3235,6 @@
+@@ -3238,7 +3233,6 @@
      if ( d->optimMode )
  	return;
  #endif
@@ -34,7 +34,7 @@
      QTextParagraph *p = doc->paragAt( para );
      if ( !p )
  	return;
-@@ -3285,7 +3279,6 @@
+@@ -3283,7 +3277,6 @@
      if ( isReadOnly() || !doc->commands()->isUndoAvailable() || !undoEnabled )
  	return;
  
@@ -42,7 +42,7 @@
      for ( int i = 0; i < (int)doc->numSelections(); ++i )
  	doc->removeSelection( i );
  
-@@ -3336,7 +3329,6 @@
+@@ -3334,7 +3327,6 @@
      if ( isReadOnly() || !doc->commands()->isRedoAvailable() || !undoEnabled )
  	return;
  
@@ -50,7 +50,7 @@
      for ( int i = 0; i < (int)doc->numSelections(); ++i )
  	doc->removeSelection( i );
  
-@@ -3450,7 +3442,6 @@
+@@ -3448,7 +3440,6 @@
  {
      if ( isReadOnly() )
  	return;
@@ -58,7 +58,7 @@
      normalCopy();
      removeSelectedText();
      updateMicroFocusHint();
-@@ -3938,7 +3929,6 @@
+@@ -3936,7 +3927,6 @@
  	return;
      }
  #endif
@@ -66,7 +66,7 @@
      if ( !isModified() && isReadOnly() &&
  	 this->context() == context && this->text() == text )
  	return;
-@@ -4112,7 +4102,6 @@
+@@ -4110,7 +4100,6 @@
      if ( !p )
  	return;
  
@@ -74,7 +74,7 @@
      if ( index > p->length() - 1 )
  	index = p->length() - 1;
  
-@@ -4169,7 +4158,6 @@
+@@ -4167,7 +4156,6 @@
  	return;
      }
  #endif
@@ -82,8 +82,8 @@
      if ( doc->hasSelection( selNum ) ) {
  	doc->removeSelection( selNum );
  	repaintChanged();
-@@ -5072,7 +5060,6 @@
- {
+@@ -5074,7 +5062,6 @@
+     }
      if ( dc == doc )
  	return;
 -    resetInputContext();

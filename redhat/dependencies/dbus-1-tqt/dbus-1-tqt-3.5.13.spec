@@ -7,12 +7,15 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
-Name:		dbus-1-tqt
+Name:		trinity-dbus-1-tqt
 Version:	3.5.13
 Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	Dbus TQT Interface
 Group:		System Environment/Libraries
+
+Obsoletes:		dbus-1-tqt < %{version}-%{release}
+Provides:		dbus-1-tqt = %{version}-%{release}
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -20,16 +23,20 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}.tar.gz
+Source0:	dbus-1-tqt-3.5.13.tar.gz
 
 BuildRequires:	gcc-c++
+%if 0%{?suse_version}
+BuildRequires:	dbus-1-devel
+%else
 BuildRequires:	dbus-devel
+%endif
 BuildRequires:	tqtinterface-devel >= 3.5.13
 
 # TDE 3.5.13 specific building variables
 BuildRequires:	cmake >= 2.8
-BuildRequires:	qt3-devel >= 3.3.8.d
-Requires:		qt3 >= 3.3.8.d
+BuildRequires:	qt3-devel
+Requires:		qt3
 
 
 %description
@@ -41,18 +48,25 @@ Requires:	%{name}
 Summary:	%{name} - Development files
 Group:		Development/Libraries
 
+Obsoletes:		dbus-1-tqt-devel < %{version}-%{release}
+Provides:		dbus-1-tqt-devel = %{version}-%{release}
+
 %description devel
 Development files for %{name}
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
 
 %prep
-%setup -q -n dependencies/%{name}
+%setup -q -n dependencies/dbus-1-tqt
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
+unset QTDIR || : ; . /etc/profile.d/qt?.sh
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
@@ -87,12 +101,13 @@ cd build
 
 %files
 %{tde_bindir}/dbusxml2qt3
-%{tde_libdir}/*.so.*
+%{tde_libdir}/libdbus-1-tqt.so.0
+%{tde_libdir}/libdbus-1-tqt.so.0.0.0
 
 %files devel
 %{tde_includedir}/*.h
-%{tde_libdir}/*.so
-%{tde_libdir}/*.la
+%{tde_libdir}/libdbus-1-tqt.so
+%{tde_libdir}/libdbus-1-tqt.la
 %{tde_libdir}/pkgconfig/*.pc
 
 %changelog

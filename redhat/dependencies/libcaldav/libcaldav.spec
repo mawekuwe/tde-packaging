@@ -29,14 +29,18 @@ Source0:	libcaldav_0.6.5-2debian2.tar.gz
 Patch1:		libcaldav-0.6.2-fix_installation.patch
 
 BuildRequires:	libtool
+%if 0%{?rhel} == 4
+BuildRequires:	evolution28-gtk2-devel
+%else
 BuildRequires:	glib2-devel
 BuildRequires:	gtk2-devel
+%endif
 BuildRequires:	make
 
 Obsoletes:	libcaldav < %{version}-%{release}
 Provides:	libcaldav = %{version}-%{release}
 
-%if 0%{?fedora} || 0%{?rhel} >= 6
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
 BuildRequires:	libcurl-devel
 %else
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -62,6 +66,10 @@ Provides:	libcaldav-devel = %{version}-%{release}
 %description devel
 %{summary}
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
 
 %prep
 %setup -q -n libcaldav-%{version}
@@ -70,6 +78,11 @@ Provides:	libcaldav-devel = %{version}-%{release}
 %build
 # CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
 export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${CFLAGS}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+
+if [ -d /usr/evolution28 ]; then
+  export PKG_CONFIG_PATH="/usr/evolution28/%{_lib}/pkgconfig:${PKG_CONFIG_PATH}"
+fi
 
 autoreconf --force --install --symlink
 %configure \

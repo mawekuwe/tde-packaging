@@ -7,8 +7,8 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-dbus-tqt
-Version:	3.5.13
-Release:	3%{?dist}%{?_variant}
+Version:	3.5.13.1
+Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	Dbus TQT Interface
 Group:		System Environment/Libraries
@@ -19,7 +19,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	dbus-tqt-3.5.13.tar.gz
+Source0:	dbus-tqt-3.5.13.1.tar.gz
 
 # [dbus-tqt] Fix build on RHEL 4
 Patch1:		dbus-tqt-3.5.13-fix_old_dbus_types.patch
@@ -30,7 +30,7 @@ BuildRequires:	dbus-1-devel
 %else
 BuildRequires:	dbus-devel
 %endif
-BuildRequires:	tqtinterface-devel >= 3.5.13
+BuildRequires:	trinity-tqtinterface-devel >= %{version}
 
 # TDE 3.5.13 specific building variables
 BuildRequires:	cmake >= 2.8
@@ -64,7 +64,7 @@ Development files for %{name}
 
 
 %prep
-%setup -q -n dependencies/dbus-tqt
+%setup -q -n dbus-tqt-3.5.13.1
 
 %if 0%{?rhel} == 4
 %patch1 -p1 -b .dbustypes
@@ -121,15 +121,5 @@ cd build
 %{tde_libdir}/pkgconfig/dbus-tqt.pc
 
 %changelog
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Updates BuildRequires
-
-* Tue Nov 07 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Updates BuildRequires
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Sun Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13.0
-- Import to GIT
-- Built with future TDE version (3.5.13 + cmake + QT3.3.8d)
+* Tue Sep 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1

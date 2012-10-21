@@ -1,9 +1,8 @@
-diff -pruN qt-x11-free-3.3.6.org/src/kernel/qscriptengine_x11.cpp qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp
---- qt-x11-free-3.3.6.org/src/kernel/qscriptengine_x11.cpp	2007-02-13 14:41:25.000000000 +0530
-+++ qt-x11-free-3.3.6/src/kernel/qscriptengine_x11.cpp	2007-02-13 14:40:02.000000000 +0530
-@@ -253,7 +253,7 @@ static const unsigned char indicForms[0x
-     Unknown, Unknown, Unknown, Unknown,
-     Unknown, Unknown, Unknown, Unknown,
+--- qt3/src/kernel/qscriptengine_x11.cpp.fontrendering-gu-228452	2012-09-29 11:30:23.821539127 +0200
++++ qt3/src/kernel/qscriptengine_x11.cpp	2012-09-29 11:31:59.679413873 +0200
+@@ -261,7 +261,7 @@
+     Other, Other, Other, Other,
+     Other, Other, Other, Other,
  
 -    Other, Other, Other, Other,
 +    Other, Other, VowelMark, VowelMark,

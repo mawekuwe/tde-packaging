@@ -1,9 +1,6 @@
 # Always install under standard prefix
 %define _prefix /usr
 
-# This allows the legacy RHEL/Fedora patches to apply in TDE version.
-%define _default_patch_fuzz 2
-
 # The following QT4 packages should NOT be installed to
 # allow QT3 compilation (please uninstall them prior to compile)
 #  qt
@@ -16,7 +13,7 @@
 Name:			qt3
 Epoch:			1
 Version:		3.3.8.d
-Release:		8%{?dist}
+Release:		9%{?dist}
 Summary:		The shared library for the Qt 3 GUI toolkit
 
 License:		QPL or GPLv2 or GPLv3
@@ -30,7 +27,7 @@ Provides:		qt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: qt3-3.3.8.d.tar.gz
+Source0: qt3-3.5.13.1.tar.gz
 Source2: qt.sh
 Source3: qt.csh
 Source4: designer3.desktop
@@ -70,9 +67,6 @@ Patch200: qt-x11-free-3.3.4-fullscreen.patch
 
 # TDE 3.5.13 patches
 Patch300: qt3-3.3.8.d-updates_zh-tw_translations.patch
-
-## [qt3] Fix Qt3 builds with libpng15. [Bug #683]
-Patch301: qt3-3.3.8.d-fix_png15_support.patch
 
 %define qt_dirname qt-3.3
 %define qtdir %{_libdir}/%{qt_dirname}
@@ -303,7 +297,8 @@ for the Qt 3 toolkit.
 
 
 %prep
-%setup -q -n qt3
+%setup -q -n qt3-3.5.13.1
+
 %patch1 -p1 -b .cjk
 %patch2 -p1 -b .ndebug
 %patch3 -p1 -b .makefile
@@ -341,7 +336,6 @@ for the Qt 3 toolkit.
 
 # TDE 3.5.13 patches
 %patch300 -p1
-%patch301 -p1
 
 # convert to UTF-8
 iconv -f iso-8859-1 -t utf-8 < doc/man/man3/qdial.3qt > doc/man/man3/qdial.3qt_
@@ -510,8 +504,8 @@ for a in */*/Makefile ; do
   mv -v ${a}.2 $a
 done
 
-mkdir -p %{buildroot}/etc/profile.d
-install -m 644 %{SOURCE2} %{SOURCE3} %{buildroot}/etc/profile.d/
+install -D -m 644 %{SOURCE2} %{buildroot}/etc/profile.d/qt3.sh
+install -D -m 644 %{SOURCE3} %{buildroot}/etc/profile.d/qt3.csh
 
 # Add desktop files
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -675,6 +669,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Sat Sep 29 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-9
+- Initial build for TDE 3.5.13.1
+
 * Sat Apr 28 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-8
 - Fix Provides and Obsoletes, again and again ...
 
