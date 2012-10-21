@@ -16,31 +16,41 @@
 #
 
 
-
 Name:           qt3
 #Remember also to modify Requires in -devel package
-BuildRequires:  Mesa-devel c++_compiler cups-devel freetype2-devel libjpeg-devel libmng-devel pkgconfig update-desktop-files xorg-x11-devel
+BuildRequires:  Mesa-devel
+BuildRequires:  c++_compiler
+BuildRequires:  cups-devel
+BuildRequires:  freetype2-devel
+BuildRequires:  libjpeg-devel
+BuildRequires:  libmng-devel
+BuildRequires:  pkgconfig
+BuildRequires:  update-desktop-files
+BuildRequires:  xorg-x11-devel
+BuildRequires:	tar
 Url:            http://www.trolltech.com/
-License:        GPLv2 ; GPLv3 ; QPL ..
-%if %suse_version > 1120
-BuildRequires:  libpng14-compat-devel
+%if %suse_version > 1220
+BuildRequires:  libpng15-compat-devel
 %else
-BuildRequires:  libpng-devel
+BuildRequires:  libpng14-compat-devel
 %endif
-Group:          System/Libraries
 # bug437293
 %ifarch ppc64
 Obsoletes:      qt3-64bit
 %endif
 #
 Summary:        A library for developing applications with graphical user interfaces
-Version:        3.4.0
+License:        GPL-2.0 or GPL-3.0 or QPL-1.0
+Group:          System/Libraries
+Version:        3.3.8d
 Release:        1
 Provides:       qt_library_%version
 Recommends:     kdelibs3-default-style
 PreReq:         /bin/grep
 # COMMON-BEGIN
-Source0:        qt3-%{version}.tar.bz2
+%define x11_free -x11-free-
+%define rversion 3.3.8b
+Source0:        qt3-3.5.13.1.tar.gz
 Source1:        build_script.sh
 Source2:        qtconfig3.desktop
 Source3:        qtrc
@@ -52,8 +62,10 @@ Source9:        linguist.desktop
 Source5:        linguist.png
 Source10:       qt3.sh
 Source11:       qt3.csh
-# Translations did not change
+# Translations did not change at 3.3.8c
 Source12:       qt3-3.3.8b-translations.tar.bz2
+Source100:      qtkdeintegration_x11.cpp
+Source101:      qtkdeintegration_x11_p.h
 Source102:      baselibs.conf
 Source200:      attributes
 Source201:      update_spec.pl
@@ -67,19 +79,23 @@ Patch15:        pluginmanager-fix.diff
 Patch18:        no-rpath.dif
 Patch19:        shut-up.diff
 Patch23:        fix-accessible.diff
+# From http://www.freedesktop.org/wiki/Software_2fImmoduleQtDownload
+# Current version from http://freedesktop.org/~daisuke/qt-x11-immodule-unified-qt3.3.5-20060318.diff.bz2
 Patch31:        limit-image-size.diff
 Patch35:        qt-transparency.patch
 Patch37:        0055-qtextedit_zoom.patch
 Patch39:        fix-qtranslator-crash.diff
+Patch42:        add_qexport_visibility.patch
 Patch54:        kmenu-search-fix.diff
 Patch113:       fix-assistant-path.patch
 Patch117:       qtimer-debug.diff
+Patch121:       qt3-warnings.diff
+Patch125:       qcstring-format-warnings.diff
 Patch127:       mng-reading-fix.patch
 Patch134:       fix-xinput-clash.diff
 Patch135:       parseFontName.diff
-#Patch136:       qt3-no-date.diff
+Patch136:       qt3-no-date.diff
 Patch139:       gcc46.diff
-#Patch140:       revert-iodbc-to-uodbc.diff
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -99,7 +115,7 @@ the current Qt library!
 %define build_sub_dirs src plugins/src tools/designer/uilib/ tools/designer/uic tools/qtconfig tools/assistant/lib tools/assistant tutorial
 
 %prep
-%setup -q
+%setup -q -n qt3-3.5.13.1
 %patch1
 %patch2
 %patch4
@@ -116,30 +132,41 @@ fi
 %patch35
 %patch37
 %patch39
+%patch42
 %patch54
 %patch113
 %patch117
+%patch121
 ln -sf $PWD/src/inputmethod/qinputcontextfactory.h include/
 ln -sf $PWD/src/inputmethod/qinputcontextplugin.h  include/
 ln -sf $PWD/src/kernel/qinputcontext.h       include/
 ln -sf $PWD/src/kernel/qinputcontextinterface_p.h include/private/
 ln -sf $PWD/src/kernel/qximinputcontext_p.h       include/private/
+%patch125
 %patch127
 %patch134
 %patch135
-#%patch136
+%patch136
 %patch139
-#%patch140
+# copy qt kde integration files
+cp %SOURCE100 %SOURCE101 src/kernel/
+cp %SOURCE101 include/private/
 cd translations
 tar xvjf %SOURCE12
 cd ..
 # COMMON-END
 
 %package devel
-License:        GPLv2 ; GPLv3 ; QPL ..
 Summary:        Include Files and Libraries mandatory for Development
-Requires:       qt3 = %version 
-Requires:       pkgconfig cups-devel freetype2-devel libmng-devel libjpeg-devel c++_compiler xorg-x11-devel
+Group:          Development/Libraries/X11
+Requires:       c++_compiler
+Requires:       cups-devel
+Requires:       freetype2-devel
+Requires:       libjpeg-devel
+Requires:       libmng-devel
+Requires:       pkgconfig
+Requires:       qt3 = %version
+Requires:       xorg-x11-devel
 %if %suse_version > 1120
 Recommends:     libpng14-compat-devel
 Requires:       libpng-devel
@@ -149,7 +176,8 @@ Requires:       libpng-devel
 %if %suse_version > 1000
 Requires:       Mesa-devel
 %else
-Requires:       xorg-x11-Mesa xorg-x11-Mesa-devel
+Requires:       xorg-x11-Mesa
+Requires:       xorg-x11-Mesa-devel
 %endif
 %ifnarch x86_64 s390x sparc64 ppc64 mips64
 Conflicts:      devel_libs-32bit
@@ -159,7 +187,6 @@ Conflicts:      devel_libs-32bit
 Obsoletes:      qt3-devel-64bit
 %endif
 #
-Group:          Development/Libraries/X11
 
 %description devel
 You need this package if you want to compile programs with Qt 3. It
@@ -168,7 +195,6 @@ you will find include files.
 
 You need a license for using Qt with a non-GPL application. A license
 can be acquired at sales@trolltech.com.
-
 
 %build
 export VERSION=%suse_version
@@ -280,7 +306,7 @@ fi
 %files
 %defattr(-,root,root,755)
 # FIXME provide new changelog if kb9vqf will give one
-%doc changes-3.3.8d README* LICENSE* MANIFEST FAQ
+%doc changes-3.3.8b README* LICENSE* MANIFEST FAQ
 %dir /usr/lib/qt3/translations
 %dir /usr/lib/qt3
 %dir /usr/lib/qt3/bin
@@ -336,3 +362,5 @@ fi
 %config /etc/profile.d/qt3.*
 
 %changelog
+* Sat Sep 29 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-1
+- Initial build for TDE 3.5.13.1
