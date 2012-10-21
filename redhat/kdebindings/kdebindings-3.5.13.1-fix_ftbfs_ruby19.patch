@@ -1,0 +1,683 @@
+commit ef7a60860d18e9be343b6fa5fe8d76fd080cead0
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1347385969 -0500
+
+    Fix FTBS on ruby 1.9.x
+    Thanks to Darrell Anderson for the majority of the patch!
+
+diff --git a/korundum/bin/Makefile.am b/korundum/bin/Makefile.am
+index f8c0942..4c3e637 100644
+--- a/korundum/bin/Makefile.am
++++ b/korundum/bin/Makefile.am
+@@ -1,4 +1,4 @@
+-INCLUDES = $(all_includes) -I$(RUBY_ARCHDIR)
++INCLUDES = $(all_includes) -I$(RUBY_ARCHDIR) $(RUBY_CFLAGS)
+ 
+ bin_PROGRAMS = krubyinit
+ krubyinit_LDFLAGS = -module $(all_libraries) -version-info 0:0:0 -L$(top_srcdir)/smoke/kde/ -L$(RUBY_LIBDIR) -lkmdi -lknewstuff
+diff --git a/korundum/bin/krubyinit.cpp b/korundum/bin/krubyinit.cpp
+index 7ed0b0a..f53f830 100644
+--- a/korundum/bin/krubyinit.cpp
++++ b/korundum/bin/krubyinit.cpp
+@@ -1,5 +1,13 @@
+ #include <ruby.h>
+ 
++#include "config.h"
++
++#ifndef HAVE_RUBY_1_9
++#define RARRAY_LEN(x) (RARRAY(x)->len)
++#define RSTRING_LEN(x) (RSTRING(x)->len)
++#define rb_str_catf_1 rb_str_catf
++#endif
++
+ /***************************************************************************
+        krubyinit  -  makes use of kdeinit_wrapper possible for ruby programs
+                              -------------------
+@@ -24,6 +32,6 @@ static const char* script_name = "krubyinit_app";
+ int main(int argc, char **argv) {
+      ruby_init();
+      ruby_script((char*)script_name);
+-     ruby_options(argc, argv); 
+-     ruby_run();
++     void* node = ruby_options(argc, argv); 
++     ruby_run_node(node);
+ }
+diff --git a/korundum/rubylib/korundum/Korundum.cpp b/korundum/rubylib/korundum/Korundum.cpp
+index cc3ce2a..124e2a1 100644
+--- a/korundum/rubylib/korundum/Korundum.cpp
++++ b/korundum/rubylib/korundum/Korundum.cpp
+@@ -40,6 +40,14 @@
+ #include <smokeruby.h>
+ #include <smoke.h>
+ 
++#include "config.h"
++
++#ifndef HAVE_RUBY_1_9
++#define RARRAY_LEN(x) (RARRAY(x)->len)
++#define RSTRING_LEN(x) (RSTRING(x)->len)
++#define rb_str_catf_1 rb_str_catf
++#endif
++
+ extern "C" {
+ extern VALUE qt_internal_module;
+ extern VALUE kconfigskeleton_class;
+@@ -805,7 +813,7 @@ public:
+ 			// isn't in the Smoke runtime
+ 			TQValueList<DCOPRef> windowList;
+ 			
+-			for (long i = 0; i < RARRAY(result)->len; i++) {
++			for (long i = 0; i < RARRAY_LEN(result); i++) {
+ 				VALUE item = rb_ary_entry(result, i);
+ 				smokeruby_object *o = value_obj_info(item);
+ 				if( !o || !o->ptr)
+@@ -822,7 +830,7 @@ public:
+ 			// And special case this type too 
+ 			TQValueList<TQCString> propertyList;
+ 			
+-			for (long i = 0; i < RARRAY(result)->len; i++) {
++			for (long i = 0; i < RARRAY_LEN(result); i++) {
+ 				VALUE item = rb_ary_entry(result, i);
+ 				propertyList.append(TQCString(StringValuePtr(item)));
+ 			}
+@@ -836,7 +844,7 @@ public:
+ 			// Convert the ruby hash to an array of key/value arrays
+ 			VALUE temp = rb_funcall(result, rb_intern("to_a"), 0);
+ 
+-			for (long i = 0; i < RARRAY(temp)->len; i++) {
++			for (long i = 0; i < RARRAY_LEN(temp); i++) {
+ 				VALUE action = rb_ary_entry(rb_ary_entry(temp, i), 0);
+ 				VALUE item = rb_ary_entry(rb_ary_entry(temp, i), 1);
+ 				
+@@ -926,7 +934,7 @@ k_dcop_signal(int argc, VALUE * argv, VALUE self)
+ {
+ 	VALUE dcopObject = rb_funcall(kde_module, rb_intern("createDCOPObject"), 1, self);
+ 	
+-    TQString signalname(rb_id2name(rb_frame_last_func()));
++    TQString signalname(rb_id2name(rb_frame_this_func()));
+     VALUE args = getdcopinfo(self, signalname);
+ 
+     if(args == Qnil) return Qfalse;
+@@ -1020,7 +1028,7 @@ new_kde(int argc, VALUE * argv, VALUE klass)
+ 	
+ 	if (rb_funcall(kde_module, rb_intern("hasDCOPSignals"), 1, klass) == Qtrue) {
+ 		VALUE signalNames = rb_funcall(kde_module, rb_intern("getDCOPSignalNames"), 1, klass);
+-		for (long index = 0; index < RARRAY(signalNames)->len; index++) {
++		for (long index = 0; index < RARRAY_LEN(signalNames); index++) {
+ 			VALUE signal = rb_ary_entry(signalNames, index);
+ 			rb_define_method(klass, StringValuePtr(signal), (VALUE (*) (...)) k_dcop_signal, -1);
+ 		}
+@@ -1088,9 +1096,9 @@ konsole_part_startprogram(VALUE self, VALUE value_program, VALUE value_args)
+ 	TQStrList *args = new TQStrList;
+ 
+ 	if (value_args != Qnil) {
+-		for (long i = 0; i < RARRAY(value_args)->len; i++) {
++		for (long i = 0; i < RARRAY_LEN(value_args); i++) {
+ 			VALUE item = rb_ary_entry(value_args, i);
+-			args->append(TQString::fromLatin1(StringValuePtr(item), RSTRING(item)->len));
++			args->append(TQString::fromLatin1(StringValuePtr(item), RSTRING_LEN(item)));
+ 		}
+ 	}
+ 
+diff --git a/korundum/rubylib/korundum/kdehandlers.cpp b/korundum/rubylib/korundum/kdehandlers.cpp
+index 70932d5..6961301 100644
+--- a/korundum/rubylib/korundum/kdehandlers.cpp
++++ b/korundum/rubylib/korundum/kdehandlers.cpp
+@@ -52,6 +52,14 @@
+ #include <dom/dom_string.h>
+ #include <dom/html_element.h>
+ 
++#include "config.h"
++
++#ifndef HAVE_RUBY_1_9
++#define RARRAY_LEN(x) (RARRAY(x)->len)
++#define RSTRING_LEN(x) (RSTRING(x)->len)
++#define rb_str_catf_1 rb_str_catf
++#endif
++
+ extern "C" {
+ extern VALUE set_obj_info(const char * className, smokeruby_object * o);
+ };
+@@ -122,7 +130,7 @@ void marshall_TQCStringList(Marshall *m) {
+ 		break;
+ 	    }
+ 
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    QCStringList *stringlist = new QCStringList;
+ 
+ 	    for(long i = 0; i < count; i++) {
+@@ -131,7 +139,7 @@ void marshall_TQCStringList(Marshall *m) {
+ 		    stringlist->append(TQCString());
+ 		    continue;
+ 		}
+-		stringlist->append(TQCString(StringValuePtr(item), RSTRING(item)->len + 1));
++		stringlist->append(TQCString(StringValuePtr(item), RSTRING_LEN(item) + 1));
+ 	    }
+ 
+ 	    m->item().s_voidp = stringlist;
+@@ -184,19 +192,19 @@ void marshall_KCmdLineOptions(Marshall *m) {
+ 			VALUE optionslist = *(m->var());
+ 			if (optionslist == Qnil
+ 			|| TYPE(optionslist) != T_ARRAY
+-			|| RARRAY(optionslist)->len == 0 )
++			|| RARRAY_LEN(optionslist) == 0 )
+ 			{
+ 					m->item().s_voidp = 0;
+ 					break;
+ 			}
+ 
+ 			// Allocate 'length + 1' entries, to include an all NULLs last entry
+-			KCmdLineOptions *cmdLineOptions = (KCmdLineOptions *) calloc(	RARRAY(optionslist)->len + 1, 
++			KCmdLineOptions *cmdLineOptions = (KCmdLineOptions *) calloc(	RARRAY_LEN(optionslist) + 1, 
+ 																			sizeof(struct KCmdLineOptions) );
+ 			
+ 			VALUE options;
+ 			long i;
+-			for(i = 0; i < RARRAY(optionslist)->len; i++) {
++			for(i = 0; i < RARRAY_LEN(optionslist); i++) {
+ 				options = rb_ary_entry(optionslist, i);
+ 				VALUE temp = rb_ary_entry(options, 0);
+ 				cmdLineOptions[i].name = StringValuePtr(temp);
+@@ -244,7 +252,7 @@ void marshall_WIdList(Marshall *m) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    TQValueList<WId> *valuelist = new TQValueList<WId>;
+ 	    long i;
+ 	    for(i = 0; i < count; i++) {
+@@ -815,7 +823,7 @@ void marshall_KURLList(Marshall *m) {
+ 				m->item().s_voidp = 0;
+ 				break;
+ 			}
+-			int count = RARRAY(list)->len;
++			int count = RARRAY_LEN(list);
+ 			KURL::List *kurllist = new KURL::List;
+ 			long i;
+ 			for(i = 0; i < count; i++) {
+@@ -916,11 +924,11 @@ void marshall_UDSEntryList(Marshall *m) {
+ 		
+ 		KIO::UDSEntryList *cpplist = new KIO::UDSEntryList;
+ 		
+-		for(long i = 0; i < RARRAY(list)->len; i++) {
++		for(long i = 0; i < RARRAY_LEN(list); i++) {
+ 			VALUE item = rb_ary_entry(list, i);
+ 			KIO::UDSEntry *cppsublist = new KIO::UDSEntry;
+ 			
+-			for (int j = 0; j < RARRAY(item)->len; j++) {
++			for (int j = 0; j < RARRAY_LEN(item); j++) {
+ 				VALUE subitem = rb_ary_entry(item, j);
+ 				smokeruby_object *o = value_obj_info(subitem);
+ 				if(!o || !o->ptr)
+@@ -998,7 +1006,7 @@ void marshall_ItemList(Marshall *m) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    ItemList *cpplist = new ItemList;
+ 	    long i;
+ 	    for(i = 0; i < count; i++) {
+@@ -1103,7 +1111,7 @@ void marshall_ValueItemList(Marshall *m) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    ItemList *cpplist = new ItemList;
+ 	    long i;
+ 	    for(i = 0; i < count; i++) {
+@@ -1211,7 +1219,7 @@ void marshall_Map(Marshall *m) {
+ 		// Convert the ruby hash to an array of key/value arrays
+ 		VALUE temp = rb_funcall(hash, rb_intern("to_a"), 0);
+ 
+-		for (long i = 0; i < RARRAY(temp)->len; i++) {
++		for (long i = 0; i < RARRAY_LEN(temp); i++) {
+ 			VALUE key = rb_ary_entry(rb_ary_entry(temp, i), 0);
+ 			VALUE value = rb_ary_entry(rb_ary_entry(temp, i), 1);
+ 			
+@@ -1316,7 +1324,7 @@ void marshall_TQMapTQCStringDCOPRef(Marshall *m) {
+ 		// Convert the ruby hash to an array of key/value arrays
+ 		VALUE temp = rb_funcall(hash, rb_intern("to_a"), 0);
+ 
+-		for (long i = 0; i < RARRAY(temp)->len; i++) {
++		for (long i = 0; i < RARRAY_LEN(temp); i++) {
+ 			VALUE key = rb_ary_entry(rb_ary_entry(temp, i), 0);
+ 			VALUE value = rb_ary_entry(rb_ary_entry(temp, i), 1);
+ 			
+diff --git a/qtruby/bin/Makefile.am b/qtruby/bin/Makefile.am
+index e53bd0f..0e1dbdb 100644
+--- a/qtruby/bin/Makefile.am
++++ b/qtruby/bin/Makefile.am
+@@ -1,4 +1,4 @@
+-INCLUDES = $(all_includes) -I$(RUBY_ARCHDIR)
++INCLUDES = $(all_includes) -I$(RUBY_ARCHDIR) $(RUBY_CFLAGS)
+ 
+ bin_PROGRAMS = qtrubyinit
+ qtrubyinit_LDFLAGS = -module $(all_libraries) -version-info 0:0:0 -L$(top_srcdir)/smoke/qt/ -L$(RUBY_LIBDIR)
+diff --git a/qtruby/bin/qtrubyinit.cpp b/qtruby/bin/qtrubyinit.cpp
+index c4e8024..65c00c4 100644
+--- a/qtruby/bin/qtrubyinit.cpp
++++ b/qtruby/bin/qtrubyinit.cpp
+@@ -1,5 +1,13 @@
+ #include <ruby.h>
+ 
++#include "config.h"
++
++#ifndef HAVE_RUBY_1_9
++#define RARRAY_LEN(x) (RARRAY(x)->len)
++#define RSTRING_LEN(x) (RSTRING(x)->len)
++#define rb_str_catf_1 rb_str_catf
++#endif
++
+ /***************************************************************************
+ qrubyinit  -  makes use of kdeinit_wrapper possible for ruby programs
+ -------------------
+@@ -24,6 +32,6 @@ static const char* script_name = "qrubyinit_app";
+ int main(int argc, char **argv) {
+      ruby_init();
+      ruby_script((char*)script_name);
+-     ruby_options(argc, argv); 
+-     ruby_run();
++     void* node = ruby_options(argc, argv); 
++     ruby_run_node(node);
+ }
+diff --git a/qtruby/rubylib/designer/uilib/Makefile.am b/qtruby/rubylib/designer/uilib/Makefile.am
+index 04ce1c8..9900635 100644
+--- a/qtruby/rubylib/designer/uilib/Makefile.am
++++ b/qtruby/rubylib/designer/uilib/Makefile.am
+@@ -1,7 +1,7 @@
+-INCLUDES = -I$(top_srcdir)/smoke -I$(top_srcdir)/qtruby/rubylib/qtruby $(all_includes) -I$(RUBY_ARCHDIR)
++INCLUDES = -I$(top_srcdir)/smoke -I$(top_srcdir)/qtruby/rubylib/qtruby $(all_includes) -I$(RUBY_ARCHDIR) $(RUBY_CFLAGS)
+ 
+ rubylibdir = $(RUBY_ARCHDIR)
+ rubylib_LTLIBRARIES = qui.la
+ qui_la_SOURCES = qui.cpp
+ qui_la_LDFLAGS = -module -export-dynamic $(all_libraries) -version-info 0:0:0
+-qui_la_LIBADD = -lqui
+\ No newline at end of file
++qui_la_LIBADD = -lqui
+diff --git a/qtruby/rubylib/qtruby/Qt.cpp b/qtruby/rubylib/qtruby/Qt.cpp
+index 3d71cfc..370ad6d 100644
+--- a/qtruby/rubylib/qtruby/Qt.cpp
++++ b/qtruby/rubylib/qtruby/Qt.cpp
+@@ -60,6 +60,14 @@
+ #include "smokeruby.h"
+ #include "smoke.h"
+ 
++#include "config.h"
++
++#ifndef HAVE_RUBY_1_9
++#define RARRAY_LEN(x) (RARRAY(x)->len)
++#define RSTRING_LEN(x) (RSTRING(x)->len)
++#define rb_str_catf_1 rb_str_catf
++#endif
++
+ // #define DEBUG
+ 
+ #define QTRUBY_VERSION "1.0.13"
+@@ -110,7 +118,7 @@ bool application_terminated = false;
+ };
+ 
+ #define logger logger_backend
+-void rb_str_catf(VALUE self, const char *format, ...) __attribute__ ((format (printf, 2, 3)));
++void rb_str_catf_1(VALUE self, const char *format, ...) __attribute__ ((format (printf, 2, 3)));
+ 
+ static VALUE (*_new_kde)(int, VALUE *, VALUE) = 0;
+ static VALUE (*_kconfigskeletonitem_immutable)(VALUE) = 0;
+@@ -820,7 +828,7 @@ public:
+     }
+ };
+ 
+-void rb_str_catf(VALUE self, const char *format, ...) 
++void rb_str_catf_1(VALUE self, const char *format, ...) 
+ {
+     va_list ap;
+     va_start(ap, format);
+@@ -985,16 +993,16 @@ VALUE prettyPrintMethod(Smoke::Index id)
+     VALUE r = rb_str_new2("");
+     Smoke::Method &meth = qt_Smoke->methods[id];
+     const char *tname = qt_Smoke->types[meth.ret].name;
+-    if(meth.flags & Smoke::mf_static) rb_str_catf(r, "static ");
+-    rb_str_catf(r, "%s ", (tname ? tname:"void"));
+-    rb_str_catf(r, "%s::%s(", qt_Smoke->classes[meth.classId].className, qt_Smoke->methodNames[meth.name]);
++    if(meth.flags & Smoke::mf_static) rb_str_catf_1(r, "static ");
++    rb_str_catf_1(r, "%s ", (tname ? tname:"void"));
++    rb_str_catf_1(r, "%s::%s(", qt_Smoke->classes[meth.classId].className, qt_Smoke->methodNames[meth.name]);
+     for(int i = 0; i < meth.numArgs; i++) {
+-	if(i) rb_str_catf(r, ", ");
++	if(i) rb_str_catf_1(r, ", ");
+ 	tname = qt_Smoke->types[qt_Smoke->argumentList[meth.args+i]].name;
+-	rb_str_catf(r, "%s", (tname ? tname:"void"));
++	rb_str_catf_1(r, "%s", (tname ? tname:"void"));
+     }
+-    rb_str_catf(r, ")");
+-    if(meth.flags & Smoke::mf_const) rb_str_catf(r, " const");
++    rb_str_catf_1(r, ")");
++    if(meth.flags & Smoke::mf_const) rb_str_catf_1(r, " const");
+     return r;
+ }
+ 
+@@ -1177,7 +1185,7 @@ inspect_qobject(VALUE self)
+ 	// Start with #<Qt::HBoxLayout:0x30139030> from the original inspect() call
+ 	// Drop the closing '>'
+ 	VALUE inspect_str = rb_call_super(0, 0);	
+-	rb_str_resize(inspect_str, RSTRING(inspect_str)->len - 1);
++	rb_str_resize(inspect_str, RSTRING_LEN(inspect_str) - 1);
+ 	
+ 	smokeruby_object * o = 0;
+     Data_Get_Struct(self, smokeruby_object, o);	
+@@ -1220,7 +1228,7 @@ pretty_print_qobject(VALUE self, VALUE pp)
+ 	// Start with #<Qt::HBoxLayout:0x30139030>
+ 	// Drop the closing '>'
+ 	VALUE inspect_str = rb_funcall(self, rb_intern("to_s"), 0, 0);	
+-	rb_str_resize(inspect_str, RSTRING(inspect_str)->len - 1);
++	rb_str_resize(inspect_str, RSTRING_LEN(inspect_str) - 1);
+ 	rb_funcall(pp, rb_intern("text"), 1, inspect_str);
+ 	rb_funcall(pp, rb_intern("breakable"), 0);
+ 	
+@@ -1236,7 +1244,7 @@ pretty_print_qobject(VALUE self, VALUE pp)
+ 		VALUE obj = getPointerObject(qobject->parent());
+ 		if (obj != Qnil) {
+ 			VALUE parent_inspect_str = rb_funcall(obj, rb_intern("to_s"), 0, 0);	
+-			rb_str_resize(parent_inspect_str, RSTRING(parent_inspect_str)->len - 1);
++			rb_str_resize(parent_inspect_str, RSTRING_LEN(parent_inspect_str) - 1);
+ 			parentInspectString = StringValuePtr(parent_inspect_str);
+ 		} else {
+ 			parentInspectString.sprintf("#<%s:0x0", qobject->parent()->className());
+@@ -1382,7 +1390,7 @@ static Smoke::Index new_qvariant_qmap = 0;
+     	return *(c.var());
+ 	} else if (	argc == 1 
+ 				&& TYPE(argv[0]) == T_ARRAY
+-				&& RARRAY(argv[0])->len > 0
++				&& RARRAY_LEN(argv[0]) > 0
+ 				&& TYPE(rb_ary_entry(argv[0], 0)) != T_STRING )
+ 	{
+ 		_current_method = new_qvariant_qlist;
+@@ -1741,7 +1749,7 @@ new_qapplication(int argc, VALUE * argv, VALUE klass)
+ 		VALUE * local_argv = (VALUE *) calloc(argc + 1, sizeof(VALUE));
+ 		VALUE temp = rb_ary_dup(argv[0]);
+ 		rb_ary_unshift(temp, rb_gv_get("$0"));
+-		local_argv[0] = INT2NUM(RARRAY(temp)->len);
++		local_argv[0] = INT2NUM(RARRAY_LEN(temp));
+ 		local_argv[1] = temp;
+ 		result = new_qt(2, local_argv, klass);
+ 		free(local_argv);
+@@ -1772,7 +1780,7 @@ qapplication_argv(VALUE /*self*/)
+ VALUE
+ getmetainfo(VALUE self, int &offset, int &index)
+ {
+-    const char * signalname = rb_id2name(rb_frame_last_func());
++    const char * signalname = rb_id2name(rb_frame_this_func());
+     VALUE metaObject_value = rb_funcall(qt_internal_module, rb_intern("getMetaObject"), 1, self);
+ 
+     smokeruby_object *ometa = value_obj_info(metaObject_value);
+@@ -1862,7 +1870,7 @@ tqt_invoke(int /*argc*/, VALUE * argv, VALUE self)
+     // Now, I need to find out if this means me
+     int index;
+     char *slotname;
+-    bool isSignal = qstrcmp(rb_id2name(rb_frame_last_func()), "qt_emit") == 0;
++    bool isSignal = qstrcmp(rb_id2name(rb_frame_this_func()), "qt_emit") == 0;
+     VALUE mocArgs = getslotinfo(self, id, slotname, index, isSignal);
+     if(mocArgs == Qnil) {
+ 		// No ruby slot/signal found, assume the target is a C++ one
+@@ -2009,7 +2017,7 @@ qbytearray_setRawData(VALUE self, VALUE data)
+ 		return Qnil;
+ 	}
+ 	TQByteArray * dataArray = (TQByteArray*) o->ptr;
+-	dataArray->setRawData(StringValuePtr(data), RSTRING(data)->len);
++	dataArray->setRawData(StringValuePtr(data), RSTRING_LEN(data));
+ 	return self;
+ }
+ 
+@@ -2195,7 +2203,7 @@ make_QUMethod(VALUE /*self*/, VALUE name_value, VALUE params)
+     m->name = new char[strlen(name) + 1];	// this too
+     strcpy((char*)m->name, name);
+     m->parameters = 0;
+-    m->count = RARRAY(params)->len;
++    m->count = RARRAY_LEN(params);
+ 
+     if (m->count > 0) {
+ 	m->parameters = new QUParameter[m->count];
+@@ -2213,7 +2221,7 @@ make_QUMethod(VALUE /*self*/, VALUE name_value, VALUE params)
+ static VALUE
+ make_QMetaData_tbl(VALUE /*self*/, VALUE list)
+ {
+-    long count = RARRAY(list)->len;
++    long count = RARRAY_LEN(list);
+     QMetaData *m = new QMetaData[count];
+ 
+     for (long i = 0; i < count; i++) {
+@@ -2281,7 +2289,7 @@ add_metaobject_methods(VALUE self, VALUE klass)
+ static VALUE
+ add_signal_methods(VALUE self, VALUE klass, VALUE signalNames)
+ {
+-	for (long index = 0; index < RARRAY(signalNames)->len; index++) {
++	for (long index = 0; index < RARRAY_LEN(signalNames); index++) {
+ 		VALUE signal = rb_ary_entry(signalNames, index);
+ 		rb_define_method(klass, StringValuePtr(signal), (VALUE (*) (...)) qt_signal, -1);
+ 	}
+@@ -2597,28 +2605,28 @@ dumpCandidates(VALUE /*self*/, VALUE rmeths)
+ {
+     VALUE errmsg = rb_str_new2("");
+     if(rmeths != Qnil) {
+-	int count = RARRAY(rmeths)->len;
++	int count = RARRAY_LEN(rmeths);
+         for(int i = 0; i < count; i++) {
+-	    rb_str_catf(errmsg, "\t");
++	    rb_str_catf_1(errmsg, "\t");
+ 	    int id = NUM2INT(rb_ary_entry(rmeths, i));
+ 	    Smoke::Method &meth = qt_Smoke->methods[id];
+ 	    const char *tname = qt_Smoke->types[meth.ret].name;
+ 	    if(meth.flags & Smoke::mf_enum) {
+-			rb_str_catf(errmsg, "enum ");
+-			rb_str_catf(errmsg, "%s::%s", qt_Smoke->classes[meth.classId].className, qt_Smoke->methodNames[meth.name]);
+-			rb_str_catf(errmsg, "\n");
++			rb_str_catf_1(errmsg, "enum ");
++			rb_str_catf_1(errmsg, "%s::%s", qt_Smoke->classes[meth.classId].className, qt_Smoke->methodNames[meth.name]);
++			rb_str_catf_1(errmsg, "\n");
+ 	    } else {
+ 			if(meth.flags & Smoke::mf_static) rb_str_catf(errmsg, "static ");
+-			rb_str_catf(errmsg, "%s ", (tname ? tname:"void"));
+-			rb_str_catf(errmsg, "%s::%s(", qt_Smoke->classes[meth.classId].className, qt_Smoke->methodNames[meth.name]);
++			rb_str_catf_1(errmsg, "%s ", (tname ? tname:"void"));
++			rb_str_catf_1(errmsg, "%s::%s(", qt_Smoke->classes[meth.classId].className, qt_Smoke->methodNames[meth.name]);
+ 			for(int i = 0; i < meth.numArgs; i++) {
+-			if(i) rb_str_catf(errmsg, ", ");
++			if(i) rb_str_catf_1(errmsg, ", ");
+ 			tname = qt_Smoke->types[qt_Smoke->argumentList[meth.args+i]].name;
+-			rb_str_catf(errmsg, "%s", (tname ? tname:"void"));
++			rb_str_catf_1(errmsg, "%s", (tname ? tname:"void"));
+ 			}
+-			rb_str_catf(errmsg, ")");
+-			if(meth.flags & Smoke::mf_const) rb_str_catf(errmsg, " const");
+-			rb_str_catf(errmsg, "\n");
++			rb_str_catf_1(errmsg, ")");
++			if(meth.flags & Smoke::mf_const) rb_str_catf_1(errmsg, " const");
++			rb_str_catf_1(errmsg, "\n");
+         	}
+         }
+     }
+diff --git a/qtruby/rubylib/qtruby/handlers.cpp b/qtruby/rubylib/qtruby/handlers.cpp
+index 703c9d0..f3d0dda 100644
+--- a/qtruby/rubylib/qtruby/handlers.cpp
++++ b/qtruby/rubylib/qtruby/handlers.cpp
+@@ -47,6 +47,14 @@
+ #define HINT_BYTES HINT_BYTE
+ #endif
+ 
++#include "config.h"
++
++#ifndef HAVE_RUBY_1_9
++#define RARRAY_LEN(x) (RARRAY(x)->len)
++#define RSTRING_LEN(x) (RSTRING(x)->len)
++#define rb_str_catf_1 rb_str_catf
++#endif
++
+ extern "C" {
+ extern VALUE set_obj_info(const char * className, smokeruby_object * o);
+ extern VALUE qt_internal_module;
+@@ -755,7 +763,7 @@ static void marshall_charP(Marshall *m) {
+             break;
+         }
+ 	
+-        int len = RSTRING(rv)->len;
++        int len = RSTRING_LEN(rv);
+         char* mem = (char*) malloc(len+1);
+         memcpy(mem, StringValuePtr(rv), len);
+         mem[len] ='\0';
+@@ -788,7 +796,7 @@ void marshall_ucharP(Marshall *m) {
+             m->item().s_voidp = 0;
+             break;
+         }
+-        int len = RSTRING(rv)->len;
++        int len = RSTRING_LEN(rv);
+         char* mem = (char*) malloc(len+1);
+         memcpy(mem, StringValuePtr(rv), len);
+         mem[len] ='\0';
+@@ -824,7 +832,7 @@ qstringFromRString(VALUE rstring) {
+ 	
+ 	TQString *	s;
+ 	if (qstrcmp(KCODE, "UTF8") == 0)
+-		s = new TQString(TQString::fromUtf8(StringValuePtr(rstring), RSTRING(rstring)->len));
++		s = new TQString(TQString::fromUtf8(StringValuePtr(rstring), RSTRING_LEN(rstring)));
+ 	else if (qstrcmp(KCODE, "EUC") == 0)
+ 		s = new TQString(codec->toUnicode(StringValuePtr(rstring)));
+ 	else if (qstrcmp(KCODE, "SJIS") == 0)
+@@ -832,7 +840,7 @@ qstringFromRString(VALUE rstring) {
+ 	else if(qstrcmp(KCODE, "NONE") == 0)
+ 		s = new TQString(TQString::fromLatin1(StringValuePtr(rstring)));
+ 	else
+-		s = new TQString(TQString::fromLocal8Bit(StringValuePtr(rstring), RSTRING(rstring)->len));
++		s = new TQString(TQString::fromLocal8Bit(StringValuePtr(rstring), RSTRING_LEN(rstring)));
+ 	return s;
+ }
+ 
+@@ -944,7 +952,7 @@ static void marshall_TQCString(Marshall *m) {
+ 		s = new TQCString(); 
+         } else {
+ 		// Add 1 to the ruby string length to allow for a TQCString '\0' terminator
+-		s = new TQCString(StringValuePtr(*(m->var())), RSTRING(*(m->var()))->len + 1); 
++		s = new TQCString(StringValuePtr(*(m->var())), RSTRING_LEN(*(m->var())) + 1); 
+ 		}
+ 	    m->item().s_voidp = s;
+ 	    
+@@ -1007,7 +1015,7 @@ static void marshall_TQCOORD_array(Marshall *m) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+-	    int count = RARRAY(av)->len;
++	    int count = RARRAY_LEN(av);
+ 	    QCOORD *coord = new QCOORD[count + 2];
+ 	    for(long i = 0; i < count; i++) {
+ 		VALUE svp = rb_ary_entry(av, i);
+@@ -1167,15 +1175,15 @@ static void marshall_charP_array(Marshall *m) {
+ 	    VALUE arglist = *(m->var());
+ 	    if (arglist == Qnil
+ 	    || TYPE(arglist) != T_ARRAY
+-	    || RARRAY(arglist)->len == 0 )
++	    || RARRAY_LEN(arglist) == 0 )
+ 	    {
+                 m->item().s_voidp = 0;
+                 break;
+ 	    }
+ 
+-	    char **argv = new char *[RARRAY(arglist)->len + 1];
++	    char **argv = new char *[RARRAY_LEN(arglist) + 1];
+ 	    long i;
+-	    for(i = 0; i < RARRAY(arglist)->len; i++) {
++	    for(i = 0; i < RARRAY_LEN(arglist); i++) {
+                 VALUE item = rb_ary_entry(arglist, i);
+                 char *s = StringValuePtr(item);
+                 argv[i] = new char[strlen(s) + 1];
+@@ -1207,7 +1215,7 @@ void marshall_TQStringList(Marshall *m) {
+ 		break;
+ 	    }
+ 
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    TQStringList *stringlist = new QStringList;
+ 
+ 	    for(long i = 0; i < count; i++) {
+@@ -1269,7 +1277,7 @@ void marshall_TQStrList(Marshall *m) {
+ 		break;
+ 	    }
+ 
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    TQStrList *stringlist = new QStrList;
+ 
+ 	    for(long i = 0; i < count; i++) {
+@@ -1278,7 +1286,7 @@ void marshall_TQStrList(Marshall *m) {
+ 		    stringlist->append(TQString());
+ 		    continue;
+ 		}
+-		stringlist->append(TQString::fromUtf8(StringValuePtr(item), RSTRING(item)->len));
++		stringlist->append(TQString::fromUtf8(StringValuePtr(item), RSTRING_LEN(item)));
+ 	    }
+ 
+ 	    m->item().s_voidp = stringlist;
+@@ -1331,7 +1339,7 @@ void marshall_ItemList(Marshall *m) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    ItemList *cpplist = new ItemList;
+ 	    long i;
+ 	    for(i = 0; i < count; i++) {
+@@ -1421,7 +1429,7 @@ void marshall_TQValueListInt(Marshall *m) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    TQValueList<int> *valuelist = new TQValueList<int>;
+ 	    long i;
+ 	    for(i = 0; i < count; i++) {
+@@ -1513,7 +1521,7 @@ void marshall_TQMapTQStringTQString(Marshall *m) {
+ 		// Convert the ruby hash to an array of key/value arrays
+ 		VALUE temp = rb_funcall(hash, rb_intern("to_a"), 0);
+ 
+-		for (long i = 0; i < RARRAY(temp)->len; i++) {
++		for (long i = 0; i < RARRAY_LEN(temp); i++) {
+ 			VALUE key = rb_ary_entry(rb_ary_entry(temp, i), 0);
+ 			VALUE value = rb_ary_entry(rb_ary_entry(temp, i), 1);
+ 			(*map)[TQString(StringValuePtr(key))] = TQString(StringValuePtr(value));
+@@ -1569,7 +1577,7 @@ void marshall_TQMapTQStringTQVariant(Marshall *m) {
+ 		// Convert the ruby hash to an array of key/value arrays
+ 		VALUE temp = rb_funcall(hash, rb_intern("to_a"), 0);
+ 
+-		for (long i = 0; i < RARRAY(temp)->len; i++) {
++		for (long i = 0; i < RARRAY_LEN(temp); i++) {
+ 			VALUE key = rb_ary_entry(rb_ary_entry(temp, i), 0);
+ 			VALUE value = rb_ary_entry(rb_ary_entry(temp, i), 1);
+ 			
+@@ -1673,7 +1681,7 @@ void marshall_TQRgb_array(Marshall *m) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    QRgb *rgb = new QRgb[count + 2];
+ 	    long i;
+ 	    for(i = 0; i < count; i++) {
+@@ -1702,7 +1710,7 @@ void marshall_TQPairintint(Marshall *m) {
+       case Marshall::FromVALUE:
+ 	{
+ 	    VALUE list = *(m->var());
+-	    if (TYPE(list) != T_ARRAY || RARRAY(list)->len != 2) {
++	    if (TYPE(list) != T_ARRAY || RARRAY_LEN(list) != 2) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+@@ -1770,7 +1778,7 @@ void marshall_ValueItemList(Marshall *m) {
+ 		m->item().s_voidp = 0;
+ 		break;
+ 	    }
+-	    int count = RARRAY(list)->len;
++	    int count = RARRAY_LEN(list);
+ 	    ItemList *cpplist = new ItemList;
+ 	    long i;
+ 	    for(i = 0; i < count; i++) {

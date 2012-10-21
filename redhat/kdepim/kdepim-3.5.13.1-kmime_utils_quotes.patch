@@ -1,0 +1,41 @@
+--- kdepim-3.5.13.1/libkmime/kmime_util.cpp.quotes	2012-09-08 12:06:45.000000000 +0200
++++ kdepim-3.5.13.1/libkmime/kmime_util.cpp	2012-09-25 18:49:54.806551812 +0200
+@@ -436,29 +436,25 @@
+ 
+ void removeQuots(TQCString &str)
+ {
+-  str.replace(TQRegExp("\\\""), "\"");
+-  str.replace(TQRegExp("\\\\"), "\\");
++  // Removes any quote or backslash caracter
++  str.replace(TQRegExp("[\\\"]"), "");
+ }
+ 
+ 
+ void removeQuots(TQString &str)
+ {
+-  str.replace(TQRegExp("\\\""), "\"");
+-  str.replace(TQRegExp("\\\\"), "\\");
++  // Removes any quote or backslash caracter
++  str.replace(TQRegExp("[\\\"]"), "");
+ }
+ 
+ 
+ void addQuotes(TQCString &str, bool forceQuotes)
+ {
+-  bool needsQuotes=false;
+-  if ( TQString( str ) .contains( TQRegExp( TQString( "\"|\\\\|=|\\]|\\[|:|;|,|\\.|,|@|<|>|\\)|\\(" ) ) ) )
+-    needsQuotes = true;
+-
+-  str.replace(TQRegExp("\\"), "\\\\");
+-  str.replace(TQRegExp("\""), "\\\"");
+-
+-  if (needsQuotes || forceQuotes) {
+-    str.insert(0,'\"');
++  if ( forceQuotes || TQString(str).contains( TQRegExp( TQString( "\"|\\\\|=|\\]|\\[|:|;|,|\\.|,|@|<|>|\\)|\\(" ) ) ) ) {
++    // Adds a backslash in front of any existing quote or backslash caracter
++    str.replace(TQRegExp("([\\\"])"), "\\\\1");
++    // Adds quote at beginning and end of thestring
++    str.insert(0,'"');
+     str.append("\"");
+   }
+ }

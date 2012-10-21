@@ -1,0 +1,81 @@
+--- kdebase/kdesktop/bgmanager.cc.ORI	2012-09-06 17:20:49.564915154 -0400
++++ kdebase/kdesktop/bgmanager.cc	2012-09-06 17:21:01.969682348 -0400
+@@ -1013,13 +1013,13 @@
+   slotChangeDesktop(0);
+ }
+ 
+-#ifdef COMPOSITE
+ void KBackgroundManager::slotCmBackgroundChanged( bool )
+ {
++#ifdef COMPOSITE
+     m_tPixmap->fill(TQColor(0, 0x0));
+     m_Hash = 0;
+     slotChangeDesktop(0);
+-}
+ #endif
++}
+ 
+ #include "bgmanager.moc"
+--- kdebase/kdesktop/main.cc.ORI	2012-09-07 20:33:09.716283507 +0200
++++ kdebase/kdesktop/main.cc	2012-09-07 20:33:31.683842727 +0200
+@@ -43,7 +43,7 @@
+ #include <fcntl.h>
+ #include <stdlib.h>
+ 
+-#if defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
++#if defined(WITH_COMPOSITE) && defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
+ #define COMPOSITE
+ #endif
+ 
+--- kdebase/kdesktop/bgmanager.h.ORI	2012-09-07 20:36:28.196299160 +0200
++++ kdebase/kdesktop/bgmanager.h	2012-09-07 20:36:52.420812591 +0200
+@@ -15,7 +15,7 @@
+ 
+ #include <KBackgroundIface.h>
+ 
+-#if defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
++#if defined(WITH_COMPOSITE) && defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
+ #define COMPOSITE
+ #endif
+ 
+--- kdebase/kdesktop/kdesktopapp.h.ORI	2012-09-07 20:37:14.677365503 +0200
++++ kdebase/kdesktop/kdesktopapp.h	2012-09-07 20:37:25.194154223 +0200
+@@ -23,7 +23,7 @@
+ #include <config.h>
+ #include <kuniqueapplication.h>
+ 
+-#if defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
++#if defined(WITH_COMPOSITE) && defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
+ #define COMPOSITE
+ #endif
+ 
+--- kdebase/konsole/konsole/main.cpp.ORI	2012-09-07 20:37:37.749901966 +0200
++++ kdebase/konsole/konsole/main.cpp	2012-09-07 20:37:46.683722469 +0200
+@@ -46,7 +46,7 @@
+ 
+ #include "konsole.h"
+ 
+-#if defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
++#if defined(WITH_COMPOSITE) && defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
+ #define COMPOSITE
+ #endif
+ 
+--- kdebase/CMakeLists.txt.ORI	2012-09-07 20:41:11.142612361 +0200
++++ kdebase/CMakeLists.txt	2012-09-07 20:42:40.138822080 +0200
+@@ -78,6 +78,7 @@
+ option( WITH_ARTS "Enable aRts support" OFF )
+ option( WITH_I8K "Enable Dell laptop support (ksysguard)" OFF )
+ option( WITH_HAL "Enable HAL support" OFF )
++option( WITH_COMPOSITE "Enable COMPOSITE support" OFF )
+ 
+ 
+ ##### user requested modules ####################
+--- kdebase/config.h.cmake.composite	2012-09-07 20:44:49.980208832 +0200
++++ kdebase/config.h.cmake	2012-09-07 20:44:56.929068934 +0200
+@@ -177,3 +177,6 @@
+ 
+ // tsak
+ #cmakedefine BUILD_TSAK "@BUILD_TSAK@"
++ 
++ // kdesktop, konsole
++ #cmakedefine WITH_COMPOSITE "@WITH_COMPOSITE@"

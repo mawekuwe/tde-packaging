@@ -1,0 +1,13 @@
+--- kdesdk-3.5.13.1/kdecachegrind/kdecachegrind/CMakeLists.txt.kcachegrind	2012-09-08 12:06:51.000000000 +0200
++++ kdesdk-3.5.13.1/kdecachegrind/kdecachegrind/CMakeLists.txt	2012-09-30 21:43:25.863163587 +0200
+@@ -26,8 +26,8 @@
+ 
+ tde_install_icons( )
+ install( FILES kdecachegrind.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
+-install( FILES kdecachegrindui.rc tips DESTINATION ${DATA_INSTALL_DIR}/kcachegrind )
+-install( FILES x-kdecachegrind.desktop DESTINATION ${MIME_INSTALL_DIR}/application )
++install( FILES kdecachegrindui.rc tips DESTINATION ${DATA_INSTALL_DIR}/kdecachegrind )
++install( FILES x-kcachegrind.desktop DESTINATION ${MIME_INSTALL_DIR}/application )
+ 
+ 
+ ##### kdecachegrind (executable) ##################

@@ -91,33 +91,61 @@ Patch34:	kdelibs-3.5.13-restore_tdesu_keeppassword_default_disabled.patch
 Patch35:	kdelibs-3.5.13-fix_all_languages_installation.patch
 ## [tdelibs] Prevent XDG autostart files from starting multiple times [Bug #1096] [Commit #e9f29cfb]
 Patch36:	kdelibs-3.5.13-prevent_xdg_autostart_multiple_times.patch
+## [tdelibs] Fix xrender include dir
+Patch37:	kdelibs-3.5.13-fix_xrender_libdir.patch
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-arts-devel
+BuildRequires:	avahi-tqt-devel >= 3.5.13
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
 BuildRequires:	libart_lgpl-devel
 BuildRequires:	pcre-devel
-BuildRequires:	libutempter-devel
-BuildRequires:	bzip2-devel
 BuildRequires:	openssl-devel
 BuildRequires:	gcc-c++
 BuildRequires:	alsa-lib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	qt3-devel
-BuildRequires:	jasper-devel
 BuildRequires:	libtiff-devel
-BuildRequires:	OpenEXR-devel
 BuildRequires:	glib2-devel
 BuildRequires:	gamin-devel
+BuildRequires:	aspell
 BuildRequires:	aspell-devel
-BuildRequires:	hspell-devel
-BuildRequires:	avahi-tqt-devel >= 3.5.13
+BuildRequires:	OpenEXR-devel
 # LUA support are not ready yet
 #BuildRequires:	lua-devel
+
+%if 0%{?suse_version}
+BuildRequires:	utempter-devel
+BuildRequires:	libbz2-devel
+%else
+BuildRequires:	libutempter-devel
+BuildRequires:	bzip2-devel
+%endif
+
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel
+%else
+
+# Hspell support
+%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_hspell 1
+BuildRequires:	hspell-devel
+%endif
+
+# Jasper support
+%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%define with_jasper 1
+%if 0%{?suse_version}
+BuildRequires:	libjasper-devel
+%else
+BuildRequires:	jasper-devel
+%endif
+%endif
+
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
@@ -132,10 +160,13 @@ BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	libXcomposite-devel
 %endif
 
+Requires:		avahi
+%endif
+
 Requires:		tqtinterface >= 3.5.13
 Requires:		trinity-arts >= 3.5.13
-Requires:		avahi
-Requires:		qt3 >= 3.3.8.d
+Requires:		qt3
+
 
 %description
 Libraries for the Trinity Desktop Environment:
@@ -308,6 +339,12 @@ applications for TDE.
 
 ##########
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+##########
+
 %prep
 %setup -q -n kdelibs
 %patch10 -p1
@@ -336,10 +373,11 @@ applications for TDE.
 %patch34 -p1
 %patch35 -p1
 %patch36 -p1
+%patch37 -p1
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
+unset QTDIR || : ; . /etc/profile.d/qt?.sh
 export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
@@ -348,7 +386,7 @@ export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
 
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
@@ -370,14 +408,21 @@ cd build
   -DWITH_CUPS=ON \
   -DWITH_LUA=OFF \
   -DWITH_TIFF=ON \
-  -DWITH_JASPER=ON \
+  %{?with_jasper:-DWITH_JASPER=ON} \
+  %{?with_hspell:-DWITH_HSPELL=ON} \
+%if 0%{?rhel} == 4
+  -DWITH_OPENEXR=OFF \
+  -DWITH_PCRE=OFF \
+  -DWITH_INOTIFY=OFF \
+  -DWITH_AVAHI=OFF \
+%else
   -DWITH_OPENEXR=ON \
-  -DWITH_UTEMPTER=ON \
-  -DWITH_AVAHI=ON \
-  -DWITH_ASPELL=ON \
-  -DWITH_HSPELL=ON \
   -DWITH_PCRE=ON \
   -DWITH_INOTIFY=ON \
+  -DWITH_AVAHI=ON \
+%endif
+  -DWITH_UTEMPTER=ON \
+  -DWITH_ASPELL=ON \
   -DWITH_GAMIN=ON \
   ..
 

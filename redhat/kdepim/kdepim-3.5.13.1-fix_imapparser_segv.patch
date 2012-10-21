@@ -1,0 +1,44 @@
+--- kdepim-3.5.13.1/kioslaves/imap4/imapparser.cc.segv	2012-09-08 12:06:42.000000000 +0200
++++ kdepim-3.5.13.1/kioslaves/imap4/imapparser.cc	2012-09-26 12:05:13.897737893 +0200
+@@ -345,6 +345,7 @@
+   parseOneWordC(result);        // *
+   TQByteArray what = parseLiteral (result); // see whats coming next
+ 
++  if(!what.isEmpty ()) {
+   switch (what[0])
+   {
+     //the status responses
+@@ -482,6 +483,7 @@
+       if (valid)
+       {
+         what = parseLiteral (result);
++	if(!what.isEmpty ()) {
+         switch (what[0])
+         {
+         case 'E':
+@@ -520,10 +522,12 @@
+         default:
+           break;
+         }
++	}
+       }
+     }
+     break;
+   }                             //switch
++  }
+ }                               //func
+ 
+ 
+@@ -1915,9 +1919,10 @@
+   if (!inWords.isEmpty() && inWords[0] == '{')
+   {
+     TQCString retVal;
+-    ulong runLen = inWords.find ('}', 1);
+-    if (runLen > 0)
++    long srunLen = inWords.find ('}', 1); // Can return -1, so use a signed long
++    if (srunLen > 0)
+     {
++      ulong runLen = (ulong)srunLen;
+       bool proper;
+       ulong runLenSave = runLen + 1;
+       TQCString tmpstr(runLen);

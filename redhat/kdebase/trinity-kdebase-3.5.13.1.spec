@@ -11,20 +11,20 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 # Older RHEL/Fedora versions use packages named "qt", "qt-devel", ..
 # whereas newer versions use "qt3", "qt3-devel" ...
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8 || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 8 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define _qt_suffix 3
 %endif
 
 
 Name:		trinity-tdebase
 Version:	3.5.13.1
-Release:	0%{?dist}%{?_variant}
+Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
@@ -45,23 +45,25 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	kdebase-3.5.13.tar.gz
+Source0:	kdebase-3.5.13.1.tar.gz
 
 # Wrapper script to prevent Plasma launch at Trinity Startup
 Source1:	plasma-desktop
 
 # Pam configuration files for RHEL / Fedora
+%if 0%{?suse_version}
+Source4:	pamd.kcheckpass-trinity.opensuse%{?suse_version}
+%else
 Source2:	pamd.kdm-trinity%{?dist}
 Source3:	pamd.kdm-trinity-np%{?dist}
 Source4:	pamd.kcheckpass-trinity%{?dist}
 Source5:	pamd.kscreensaver-trinity%{?dist}
+%endif
 
-# [kdebase] Switch to v3.5.13-sru
-Patch0:		kdebase-3.5.13-sru-20120806.patch
-Patch1:		cmake-3.5.13-sru-20120807.patch
-Patch2:		tdebase-3.5.13.1-missing_ldflags.patch
 
 # TDE 3.5.13 patches
+## [kdebase] Fix syntax error in icon
+Patch1:		kdebase-3.5.13.1-fix_displayconfig_icon.patch
 ## [kdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
 Patch11:	kdebase-3.5.12-desktop-openterminalhere.patch
 ## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession' [RHEL/Fedora]
@@ -70,25 +72,25 @@ Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
 Patch15:	kdebase-3.5.13.1-startkde_icon.patch
 ## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db' [Bug #714]
 Patch21:	kdebase-3.5.13-kio_man_utf8.patch
-## [kdebase/kpersonalizer] Repair KPersonalizer settings to match system defaults [Bug #759]
-Patch26:	kdebase-3.5.13-kpersonalizer_default_doubleclick.patch
 ## [kdebase/kdm/kfrontend] Allows to hide KDM menu button [RHEL/Fedora]
 Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
-## [kdebase/kicker/applets] Adds option to disable desktop switch on mouse wheel cycling [Bug #908]
-Patch36:	kdebase-3.5.13-option_to_disable_scroll_desktop.patch
-## [kdebase/kicker] Ensures that 'pagersettings.kcfg' is installed [Bug #908, Commit bd9c1479]
-Patch44:	kdebase-3.5.13-ensure_pagersettings_is_installed.patch
-## [tdebase] Add the ability to reorder documents in kate [Commit #46a657f7]
-Patch55:	kdebase-3.5.13-add_reorder_documents_in_kate.patch
-## [tdebase] Add drag and drop to kate file list in manual mode [Commit #b0fa10df]
-Patch56:	kdebase-3.5.13-add_drag_drop_to_kate_file_list.patch
-## [tdebase] Disable keyboard shortcuts for file location moving, as they did not work properly 
-##  and have very little practical use [Commit #9a948c1a]
-Patch57:	kdebase-3.5.13-disable_keyboard_shortcuts_for_file_location_moving.patch
-## [tdebase] Update default konqueror maximum image preview size to 10MB. [Commit #03e19305]
-Patch60:	kdebase-3.5.13-update_default_konq_max_image_prev_size.patch
 
-### FEDORA / RHEL distribution-specific settings ###
+### Patches for RHEL4 (should not go upstream)
+
+## [tdebase] Fix build on RHEL4, detect old libraries without pkg file
+Patch201:	kdebase-3.5.13-fix_lib_detection.patch
+## [tdebase] Do not build against DBUS-TQT, only DBUS and DBUS-QT
+Patch202:	kdebase-3.5.13-build_without_dbustqt.patch
+## [tdebase] Do not build against ConsoleKit
+Patch203:	kdebase-3.5.13-build_without_consolekit.patch
+## [tdebase] Add WITH_COMPOSITE option to CMakeLists.txt
+Patch204:	kdebase-3.5.13-add_disable_composite_option.patch
+## [tdebase] Downgrade halbackend to support Hal 0.4
+Patch205:	kdebase-3.5.13-support_hal_04.patch
+## [tdebase] Other(s) FTBFS ...
+Patch206:	kdebase-3.5.13-fix_rhel4_compilation.patch
+
+### Distribution-specific settings ###
 
 # Fedora 15 Theme: "Lovelock"
 %if 0%{?fedora} == 15
@@ -121,6 +123,18 @@ Requires:	beefy-miracle-backgrounds-single
 Requires:	fedora-release-notes
 %define tde_aboutlabel Fedora 17
 %define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
+%endif
+
+# RHEL 4 Theme
+%if 0%{?rhel} == 4
+Requires:	desktop-backgrounds-basic
+%define tde_bg /usr/share/backgrounds/images/default.png
+Requires:	redhat-logos
+%define tde_starticon /usr/share/pixmaps/redhat/rpmlogo-64.xpm
+
+Requires:	indexhtml
+%define tde_aboutlabel Enterprise Linux 4
+%define tde_aboutpage /usr/share/doc/HTML/index.html
 %endif
 
 # RHEL 5 Theme
@@ -167,68 +181,169 @@ Requires:	indexhtml
 %define tde_aboutpage /usr/share/mdk/about/index.html
 %endif
 
+# OpenSuse 12.2 Theme
+%if "%{?suse_version}" == "1220"
+Requires:	wallpaper-branding
+%define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
+Requires:	hicolor-icon-theme-branding
+%define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
+
+Requires:	opensuse-manuals_en
+%define tde_aboutlabel OpenSuse 12.2
+%define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
+%endif
+
 BuildRequires:	cmake >= 2.8
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-arts-devel
-BuildRequires:	trinity-kdelibs-devel
+BuildRequires:	trinity-tqtinterface-devel >= %{version}
+BuildRequires:	trinity-arts-devel >= %{version}
+BuildRequires:	trinity-tdelibs-devel >= %{version}
 BuildRequires:	gcc-c++ make
 BuildRequires:	qt%{?_qt_suffix}-devel
 BuildRequires:	openssl-devel
-BuildRequires:	imake
-BuildRequires:	OpenEXR-devel
-BuildRequires:	libsmbclient-devel
-BuildRequires:	dbus-devel
-BuildRequires:	dbus-tqt-devel
-BuildRequires:	lm_sensors-devel
-BuildRequires:	libfontenc-devel
-BuildRequires:	hal-devel
-BuildRequires:	audiofile-devel alsa-lib-devel
+BuildRequires:	audiofile-devel
+BuildRequires:	alsa-lib-devel
 BuildRequires:	libraw1394-devel
-BuildRequires:	openldap-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	pam-devel
-BuildRequires:	libxkbfile-devel
 BuildRequires:	libusb-devel
 BuildRequires:	esound-devel
 BuildRequires:	glib2-devel
-BuildRequires:	nas-devel
 BuildRequires:	pcre-devel
-BuildRequires:	avahi-tqt-devel
 
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
+# OPENLDAP support
+%if 0%{?suse_version}
+BuildRequires:	openldap2-devel
+%else
+BuildRequires:	openldap-devel
+%endif
+
+# SENSORS support
+#  Disabled on OpenSuse
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel}
+BuildRequires:	lm_sensors-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	libsensors4-devel
+%endif
+
+# TSAK support (requires libudev-devel)
+#  On RHEL5, udev is built statically, so TSAK cannot build.
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%define with_tsak 1
 BuildRequires:	libudev-devel
+%endif
+
+# XRANDR support
+#  On RHEL5, xrandr library is too old.
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%define with_xrandr 1
+%endif
+
+# HAL support
+#  On RHEL4, we do not use HAL (too old)
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
+%define with_hal 1
+BuildRequires:	hal-devel >= 0.4.8
+%endif
+
+# OPENEXR support
+#  Disabled on RHEL4
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
+%define with_exr 1
+BuildRequires:	OpenEXR-devel
+%endif
+
+# XSCREENSAVER support
+#  Disabled on RHEL4
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
+%define with_xscreensaver 1
+%if 0%{?rhel} == 5
+BuildRequires:	xorg-x11-proto-devel
+BuildRequires:	gnome-screensaver
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
+BuildRequires:	libXScrnSaver-devel
+%endif
+%endif
+
+# AVAHI support
+#  Disabled on RHEL4 and RHEL5
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+BuildRequires:	trinity-avahi-tqt-devel
+Requires:		trinity-avahi-tqt
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}avahi-client-devel
+Requires:		%{_lib}avahi-client3
+%else
+BuildRequires:	avahi-devel
+Requires:		avahi
+%endif
+%endif
+
+# NAS support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	nas-devel
+%endif
+
+# DBUS support
+#  TQT bindings not available for RHEL4
+%if 0%{?rhel} == 4
+# Dbus bindings were rebuilt with Qt support
+BuildRequires:	dbus-devel >= 0.22-12.EL.9p1
+Requires:		dbus-qt
+%else
+BuildRequires:	trinity-dbus-tqt-devel
+Requires:		trinity-dbus-tqt >= %{version}
 %endif
 
 %if 0%{?fedora} >= 17
 BuildRequires:	perl-Digest-MD5
 %endif
 
+# JACK support
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}avahi-client-devel
 BuildRequires:	%{_lib}jack-devel
+%endif
+%if 0%{?fedora} || 0%{?rhel} >= 5
+BuildRequires:	jack-audio-connection-kit-devel
+%endif
+
+# X11 stuff ...
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel
+BuildRequires:	samba-common
+%else
+BuildRequires:	imake
+BuildRequires:	libxkbfile-devel
+BuildRequires:	libsmbclient-devel
+BuildRequires:	libfontenc-devel
+
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
 BuildRequires:	%{_lib}xdamage-devel
 BuildRequires:	%{_lib}xdmcp%{?mgaversion:6}-devel
 BuildRequires:	%{_lib}xtst-devel
 BuildRequires:	x11-font-util
 BuildRequires:	x11-proto-devel
-BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
-Requires:		%{_lib}avahi-client3
 %else
-BuildRequires:	avahi-devel
-BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	libXcomposite-devel
 BuildRequires:	libXdamage-devel
 BuildRequires:	libXdmcp-devel
 BuildRequires:	libXtst-devel
-BuildRequires:	xorg-x11-font-utils
 BuildRequires:	xorg-x11-proto-devel
-%if 0%{?rhel} == 5
-BuildRequires:	gnome-screensaver
+
+%if 0%{?suse_version}
+BuildRequires:	font-util
+BuildRequires:	bdftopcf
 %else
-BuildRequires:	xscreensaver
+BuildRequires:	xorg-x11-font-utils
 %endif
-Requires:		avahi-qt3
+
+%endif
+
 %endif
 
 # tdebase is a metapackage that installs all sub-packages
@@ -264,13 +379,12 @@ Requires: trinity-twin = %{version}-%{release}
 Requires: trinity-libkonq = %{version}-%{release}
 Requires: %{name}-libtqt3-integration = %{version}-%{release}
  
-Requires:	tqtinterface
-Requires:	trinity-arts
-Requires:	trinity-kdelibs
+Requires:	trinity-tqtinterface >= %{version}
+Requires:	trinity-arts >= %{version}
+Requires:	trinity-tdelibs >= %{version}
 Requires:	qt%{?_qt_suffix}
 Requires:	openssl
-Requires:	avahi
-Requires:	dbus-tqt
+
 
 # RHEL 6 Configuration files are provided in separate packages
 %if 0%{?rhel} || 0%{?fedora}
@@ -278,6 +392,10 @@ Requires:	dbus-tqt
 Requires:	kde-settings-kdm
 %endif
 Requires:	redhat-menus
+%endif
+
+%if 0%{?suse_version}
+Requires:	desktop-data-openSUSE
 %endif
 
 %description
@@ -301,7 +419,7 @@ web browser, X terminal emulator, and many other programs and components.
 Summary:	%{summary} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-kdelibs-devel
+Requires:	trinity-tdelibs-devel
 
 Requires:	%{name}-bin-devel = %{version}-%{release}
 Requires:	trinity-kate-devel = %{version}-%{release}
@@ -456,6 +574,12 @@ Group:		Environment/Libraries
 %files -n trinity-libkateinterfaces
 %{tde_libdir}/libkateinterfaces.so.*
 
+%post -n trinity-libkateinterfaces
+/sbin/ldconfig || :
+
+%postun -n trinity-libkateinterfaces
+/sbin/ldconfig || :
+
 ##########
 
 %package -n trinity-kate
@@ -585,8 +709,11 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 Summary:	control center for TDE
 Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
-Requires:	hwdata
 Requires:	usbutils
+
+%if 0%{?suse_version} == 0
+Requires:	hwdata
+%endif
 
 %description -n trinity-kcontrol
 The TDE Control Center provides you with a centralized and convenient
@@ -835,7 +962,7 @@ plugdev group.
 %{tde_datadir}/apps/kcmview1394/oui.db
 
 # The following features are not compiled under RHEL 5
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 %{tde_bindir}/krandrtray
 %{tde_tdelibdir}/kcm_displayconfig.la
 %{tde_tdelibdir}/kcm_displayconfig.so
@@ -897,8 +1024,10 @@ TDE applications, particularly those in the TDE base module.
 %defattr(-,root,root,-)
 %{tde_bindir}/krootbacking
 #%{tde_bindir}/tdeinit_phase1
+%if 0%{?with_tsak}
 %attr(4511,root,root) %{tde_bindir}/[kt]dmtsak
 %{tde_bindir}/tsak
+%endif
 %{tde_bindir}/kdebugdialog
 %{tde_bindir}/kreadconfig
 %{tde_bindir}/kwriteconfig
@@ -965,7 +1094,9 @@ TDE applications, particularly those in the TDE base module.
 %{tde_datadir}/services/kded/khotkeys.desktop
 %{tde_datadir}/services/kxkb.desktop
 %{_sysconfdir}/pam.d/kcheckpass-trinity
+%if 0%{?suse_version} == 0
 %{_sysconfdir}/pam.d/kscreensaver-trinity
+%endif
 %{tde_tdedocdir}/HTML/en/kdcop/
 %{tde_tdedocdir}/HTML/en/kdebugdialog//
 %{tde_tdedocdir}/HTML/en/[kt]desu/
@@ -1090,6 +1221,7 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/icons/crystalsvg/*/apps/package_development.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_favourite.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_games.png
+%{tde_datadir}/icons/crystalsvg/*/apps/package_games_kids.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_multimedia.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package_network.png
 %{tde_datadir}/icons/crystalsvg/*/apps/package.png
@@ -1150,6 +1282,7 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/icons/crystalsvg/scalable/apps/netscape.svgz
 %{tde_datadir}/icons/crystalsvg/scalable/apps/openoffice.svgz
 %{tde_datadir}/icons/crystalsvg/scalable/apps/package_development.svgz
+%{tde_datadir}/icons/crystalsvg/scalable/apps/package_games_kids.svgz
 %{tde_datadir}/icons/crystalsvg/scalable/apps/package_toys.svgz
 %{tde_datadir}/icons/crystalsvg/scalable/apps/penguin.svgz
 %{tde_datadir}/icons/crystalsvg/scalable/apps/personal.svgz
@@ -1296,7 +1429,7 @@ for f in crystalsvg ; do
 done
 
 %if 0%{?mdkversion}
-# Mandriva-specific: we have to choose a background for current distribution variant
+# Mandriva-specific: we have to choose a background for current distribution variant (Free, One, Powerpack, ...)
 # First, we read the "product" key in /etc/product.id
 eval $(tr "," ";" </etc/product.id) 2>/dev/null
 # Then, we create a symbolic link to the corresponding background
@@ -1317,7 +1450,14 @@ Group:		Applications/Utilities
 Requires:	trinity-kdesktop = %{version}-%{release}
 Requires:	cyrus-sasl
 Requires:	psmisc
+%if 0%{?with_hal}
+Requires:	hal >= 0.4.8
+%endif
+%if 0%{?rhel} == 4 || 0%{?suse_version}
+Requires:	cryptsetup
+%else
 Requires:	cryptsetup-luks
+%endif
 
 Obsoletes:	tdebase-kio-plugins < %{version}-%{release}
 Provides:	tdebase-kio-plugins = %{version}-%{release}
@@ -1340,8 +1480,6 @@ group.
 %{tde_tdelibdir}/cursorthumbnail.so
 %{tde_tdelibdir}/djvuthumbnail.la
 %{tde_tdelibdir}/djvuthumbnail.so
-%{tde_tdelibdir}/exrthumbnail.la
-%{tde_tdelibdir}/exrthumbnail.so
 %{tde_tdelibdir}/htmlthumbnail.la
 %{tde_tdelibdir}/htmlthumbnail.so
 %{tde_tdelibdir}/imagethumbnail.la
@@ -1406,8 +1544,6 @@ group.
 %{tde_tdelibdir}/kio_trash.so
 %{tde_tdelibdir}/libkmanpart.la
 %{tde_tdelibdir}/libkmanpart.so
-%{tde_tdelibdir}/media_propsdlgplugin.la
-%{tde_tdelibdir}/media_propsdlgplugin.so
 %{tde_tdelibdir}/textthumbnail.la
 %{tde_tdelibdir}/textthumbnail.so
 %{tde_tdeappdir}/kcmcgi.desktop
@@ -1432,7 +1568,6 @@ group.
 %{tde_datadir}/services/cgi.protocol
 %{tde_datadir}/services/cursorthumbnail.desktop
 %{tde_datadir}/services/djvuthumbnail.desktop
-%{tde_datadir}/services/exrthumbnail.desktop
 %{tde_datadir}/services/finger.protocol
 %{tde_datadir}/services/fish.protocol
 %{tde_datadir}/services/floppy.protocol
@@ -1452,7 +1587,6 @@ group.
 %{tde_datadir}/services/mac.protocol
 %{tde_datadir}/services/man.protocol
 %{tde_datadir}/services/media.protocol
-%{tde_datadir}/services/media_propsdlgplugin.desktop
 %{tde_datadir}/services/nfs.protocol
 %{tde_datadir}/services/nxfish.protocol
 %{tde_datadir}/services/programs.protocol
@@ -1469,6 +1603,16 @@ group.
 %{tde_datadir}/servicetypes/thumbcreator.desktop
 %{tde_datadir}/services/kfile_trash.desktop
 %{tde_tdedocdir}/HTML/en/kioslave/
+%if 0%{?with_exr}
+%{tde_tdelibdir}/exrthumbnail.la
+%{tde_tdelibdir}/exrthumbnail.so
+%{tde_datadir}/services/exrthumbnail.desktop
+%endif
+%if 0%{?with_hal}
+%{tde_tdelibdir}/media_propsdlgplugin.la
+%{tde_tdelibdir}/media_propsdlgplugin.so
+%{tde_datadir}/services/media_propsdlgplugin.desktop
+%endif
 
 %post kio-plugins
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -1592,7 +1736,9 @@ Requires:	%{name}-bin = %{version}-%{release}
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-libkonq = %{version}-%{release}
 Requires:	eject
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 Requires:	xdg-utils
+%endif
 
 %description -n trinity-kdesktop
 This package contains miscellaneous binaries and files integral to
@@ -1659,9 +1805,13 @@ Requires:	%{name}-data = %{version}-%{release}
 Requires:	pam
 
 # Provides the global Xsession script (/etc/X11/xinit/Xsession or /etc/X11/Xsession)
-%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} == 4
 Requires:	xinitrc
-%else
+%endif
+%if 0%{?suse_version}
+Requires:	xdm
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 Requires:	xorg-x11-xinit
 %endif
 
@@ -1705,21 +1855,20 @@ already. Most users won't need this.
 %{tde_datadir}/apps/[kt]dm/themes/
 %{tde_datadir}/config/[kt]dm/
 %{tde_tdedocdir}/HTML/en/[kt]dm/
-
-# Distribution specific stuff
-%if 0%{?rhel} || 0%{?fedora}
-%{_usr}/share/xsessions/tde.desktop
-%endif
+%if 0%{?suse_version} == 0
 %{_sysconfdir}/pam.d/kdm-trinity
 %{_sysconfdir}/pam.d/kdm-trinity-np
+%endif
+
+# Distribution specific stuff
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+%{_usr}/share/xsessions/tde.desktop
+%endif
+
+# https://wiki.mageia.org/en/How_to_add_a_new_Window_Manager_or_Display_Manager
 %if 0%{?mgaversion} || 0%{?mdkversion}
-%{_sysconfdir}/X11/wmsession.d/*
-
-%post -n trinity-tdm
-%make_session
-
-%postun -n trinity-tdm
-%make_session
+%{_sysconfdir}/X11/wmsession.d/45TDE
+%{_datadir}/X11/dm.d/45TDE.conf
 %endif
 
 ##########
@@ -1924,7 +2073,7 @@ functionality.
 %{tde_datadir}/autostart/panel.desktop
 %{tde_datadir}/config.kcfg/kickerSettings.kcfg
 %{tde_datadir}/config.kcfg/launcherapplet.kcfg
-#%{tde_datadir}/config.kcfg/pagersettings.kcfg
+%{tde_datadir}/config.kcfg/pagersettings.kcfg
 %{tde_datadir}/config.kcfg/taskbar.kcfg
 %{tde_datadir}/icons/crystalsvg/*/apps/systemtray.png
 %{tde_datadir}/icons/crystalsvg/*/apps/taskbar.png
@@ -2209,11 +2358,15 @@ for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 /sbin/ldconfig || :
+%if 0%{?suse_version}
+update-alternatives --install \
+%else
 alternatives --install \
+%endif
   %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop \
   media_safelyremove.desktop_konqueror \
   %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase \
-  10
+  10 || :
 
 %postun -n trinity-konqueror
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -2225,9 +2378,13 @@ done
 
 %preun -n trinity-konqueror
 if [ $1 -eq 0 ]; then
+%if 0%{?suse_version}
+  update-alternatives --remove \
+%else
   alternatives --remove \
+%endif
     media_safelyremove.desktop_konqueror \
-    %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
+    %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase || :
 fi
 
 ##########
@@ -2451,6 +2608,12 @@ KDE will start, but many good defaults will not be set.
 %if "%{?tde_prefix}" != "/usr"
 %{tde_bindir}/plasma-desktop
 %endif
+
+%post -n trinity-ksmserver
+/sbin/ldconfig || :
+
+%postun -n trinity-ksmserver
+/sbin/ldconfig || :
 
 ##########
 
@@ -2817,13 +2980,16 @@ Konqueror libraries.
 
 ##########
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+##########
+
 %prep
-%setup -q -n kdebase
+%setup -q -n kdebase-3.5.13.1
 
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-
+%patch1 -p1 -b .icon
 %patch11 -p1 -b .openterminalhere
 %if 0%{?rhel} || 0%{?fedora}
 %patch13 -p1 -b .Xsession
@@ -2832,14 +2998,16 @@ Konqueror libraries.
 %if 0%{?rhel} || 0%{?mgaversion} || 0%{?mdkversion}
 %patch21 -p1 -b .man
 %endif
-%patch26 -p1 -b .doubleclick
 %patch30 -p1 -b .xtestsupport
-%patch36 -p1 -b .disablescrolldesktop
-%patch44 -p1 -b .kxdglauncherdoc
-%patch55 -p1 -b .addreorderdocinkate
-%patch56 -p1 -b .adddraganddropinkate
-%patch57 -p1 -b .disablekeybshortcut
-%patch60 -p1 -b .defaultkonqmaxsizepreview
+
+%if 0%{?rhel} == 4
+%patch201 -p1 -b .libdetect
+%patch202 -p1 -b .dbustqt
+%patch203 -p1 -b .consolekit
+%patch204 -p1 -b .composite
+%patch205 -p1 -b .hal04
+%patch206 -p1 -b .rhel4
+%endif
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -2877,13 +3045,23 @@ Konqueror libraries.
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
+unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%if 0%{?rhel} || 0%{?fedora}
+# Avoids building against KDE3's old stuff, if installed
+export KDEDIR=%{tde_prefix}
+
+# Shitty hack for RHEL4 ...
+if [ -d /usr/X11R6 ]; then
+  export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH=}:/usr/X11R6/include:/usr/X11R6/%{_lib}"
+  export CFLAGS="${CFLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export CXXFLAGS="${CXXFLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+fi
+
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
@@ -2897,53 +3075,63 @@ cd build
   -DWITH_SASL=ON \
   -DWITH_LDAP=ON \
   -DWITH_SAMBA=ON \
-  -DWITH_OPENEXR=ON \
-  -DWITH_XCOMPOSITE=ON \
+  %{?with_exr:-DWITH_OPENEXR=ON} \
+  %{?with_hal:-DWITH_HAL=ON} \
+  %{?with_xscreensaver:-DWITH_XSCREENSAVER=ON} \
+%if 0%{?rhel} == 4
+  -DWITH_XTEST=OFF \
+%else
+  -DWITH_XTEST=ON \
+%endif
   -DWITH_XCURSOR=ON \
   -DWITH_XFIXES=ON \
-%if 0%{?fedora} || 0%{?rhel} >= 6
-  -DWITH_XRANDR=ON \
-%else
-  -DWITH_XRANDR=OFF \
-%endif
-  -DWITH_XRENDER=ON \
+  %{?with_xrandr:-DWITH_XRANDR=ON} \
   -DWITH_XDAMAGE=ON \
   -DWITH_XEXT=ON \
-  -DWITH_XTEST=ON \
   -DWITH_LIBUSB=ON \
   -DWITH_LIBRAW1394=ON \
   -DWITH_PAM=ON \
   -DWITH_XDMCP=ON \
   -DWITH_XINERAMA=ON \
+  -DWITH_XCOMPOSITE=ON \
+  -DWITH_XRENDER=ON \
   -DWITH_ARTS=ON \
   -DWITH_I8K=ON \
-  -DWITH_HAL=ON \
   -DBUILD_ALL=ON \
   -DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" \
+%if 0%{?suse_version}
+  -DKDM_PAM_SERVICE="xdm" \
+  -DKSCREENSAVER_PAM_SERVICE="kcheckpass-trinity" \
+%else
   -DKDM_PAM_SERVICE="kdm-trinity" \
   -DKSCREENSAVER_PAM_SERVICE="kscreensaver-trinity" \
-  -DWITH_XSCREENSAVER=ON \
+%endif
+  %{!?with_tsak:-DBUILD_TSAK=OFF} \
   ..
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
+
 
 %install
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
 
 
+# Under RHEL/Fedora/Suse, static 'xsessions' files go to '/usr/share/xsessions'.
+
 # Adds a GDM/KDM/XDM session called 'TDE'
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__install -D -m 644 \
 	"%{?buildroot}%{tde_datadir}/apps/kdm/sessions/tde.desktop" \
-	"%{?buildroot}%{_usr}/share/xsessions/tde.desktop"
+	"%{?buildroot}%{_datadir}/xsessions/tde.desktop"
 
 # Force session name to be 'TDE'
-%__sed -i "%{?buildroot}%{_usr}/share/xsessions/tde.desktop" \
+%__sed -i "%{?buildroot}%{_datadir}/xsessions/tde.desktop" \
 	-e "s,^Name=.*,Name=TDE,"
 %endif
 
 # Mageia/Mandriva stores its session file in different folder than RHEL/Fedora
+# Generated files for TDM/KDM4 are in '/usr/share/apps/kdm/sessions'
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/X11/wmsession.d
 cat <<EOF >"%{?buildroot}%{_sysconfdir}/X11/wmsession.d/45TDE"
@@ -2953,6 +3141,15 @@ DESC=The Trinity Desktop Environment
 EXEC=%{tde_bindir}/startkde
 SCRIPT:
 exec %{tde_bindir}/startkde
+EOF
+
+%__install -d -m 755 %{?buildroot}%{_datadir}/X11/dm.d
+cat <<EOF >"%{?buildroot}%{_datadir}/X11/dm.d/45TDE.conf"
+NAME=TDM
+DESCRIPTION=TDM (Trinity Display Manager)
+PACKAGE=trinity-tdm
+EXEC=%{tde_bindir}/kdm
+FNDSESSION_EXEC="/usr/sbin/chksession -K"
 EOF
 %endif
 
@@ -2967,14 +3164,18 @@ EOF
 %endif
 
 # PAM configuration files
+%if 0%{?suse_version}
+%__install -D -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
+%else
 %__install -D -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity"
 %__install -D -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
 %__install -D -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
 %__install -D -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
+%endif
 
 # KDM configuration for RHEL/Fedora
 %__sed -i "%{?buildroot}%{tde_datadir}/config/kdm/kdmrc" \
-%if 0%{?fedora} >= 16
+%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1220
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
 %else
 	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
@@ -2987,8 +3188,10 @@ EOF
 %endif
 
 # Symlinks 'usb.ids'
+%if 0%{?suse_version} == 0
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
 %__ln_s -f "/usr/share/hwdata/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
+%endif
 
 # Makes 'media_safelyremove.desktop' an alternative
 %__mv -f %{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop %{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
@@ -3002,8 +3205,5 @@ EOF
 
 
 %changelog
-* Sat Jul 14 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-26
-- Add xscreensaver support to CMake [Bug #659] [Commit #80deb529]
-- Enables 'shadow' support
-- Enables 'i8k' support
-
+* Mon Sep 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1

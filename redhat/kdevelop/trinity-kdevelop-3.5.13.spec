@@ -194,7 +194,7 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 %prep
 %setup -q -n kdevelop -a1
 %patch1 -p0 -b .config
-#patch2 -p1
+%patch2 -p1
 %patch3 -p1 -b .gcc47
 %patch4 -p1
 

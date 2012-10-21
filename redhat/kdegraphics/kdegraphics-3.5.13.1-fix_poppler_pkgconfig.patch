@@ -1,0 +1,12 @@
+--- kdegraphics-3.5.13.1/kfile-plugins/dependencies/poppler-tqt/poppler-tqt.pc.cmake.ORI	2012-10-14 15:03:54.880338162 +0200
++++ kdegraphics-3.5.13.1/kfile-plugins/dependencies/poppler-tqt/poppler-tqt.pc.cmake	2012-10-14 15:04:12.400975329 +0200
+@@ -1,7 +1,7 @@
+ prefix=@CMAKE_INSTALL_PREFIX@
+ exec_prefix=${prefix}
+-libdir=${exec_prefix}/lib
+-includedir=${prefix}/include/kde
++libdir=@LIB_INSTALL_DIR@
++includedir=@INCLUDE_INSTALL_DIR@
+ 
+ Name: poppler-tqt
+ Description: TQt bindings for poppler

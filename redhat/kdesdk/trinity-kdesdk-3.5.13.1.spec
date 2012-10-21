@@ -12,15 +12,15 @@
 %define tde_mandir %{tde_datadir}/man
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 
 Name:			trinity-tdesdk
 Summary:		The KDE Software Development Kit (SDK)
-Version:		3.5.13
-Release:		2%{?dist}%{?_variant}
+Version:		3.5.13.1
+Release:		1%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			User Interface/Desktops
@@ -31,47 +31,58 @@ Packager:		Francois Andriot <francois.andriot@free.fr>
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source: 		kdesdk-%{version}.tar.gz
+Source: 		kdesdk-3.5.13.1.tar.gz
 
-# RedHat Legacy patches
-Patch1:		kdesdk-3.5.7-subversion.patch
-# [tdesdk] cmake port [Commit #bfb0bc00]
-Patch2:		kdesdk-3.5.13-cmake_port.patch
-# [tdesdk/cmake] added forgotten files [Commit #adee843c]
-Patch3:		kdesdk-3.5.13-add_forgotten_cmake_files.patch
 # [tdesdk] fixes for RHEL/Fedora/MGA2 after previous patch
 Patch4:		kdesdk-3.5.13-misc_ftbfs.patch
 # [tdesdk] Fix FTBFS on newer subversion libraries [Bug #872] [Commit #572169a2]
 Patch5:		kdesdk-3.5.13-fix_ftbfs_on_newer_svn.patch
+# [tdesdk] Fix unknown macro 'tde_save_and_set'
+Patch6:		kdesdk-3.5.13.1-fix_cmake_macros.patch
+# [tdesdk] Fix build of kcachegrind
+Patch7:		kdesdk-3.5.13.1-add_missing_files.patch
+# [tdesdk] Use 'flex' instead of 'lex'
+Patch8:		kdesdk-3.5.13.1-use_flex_instead_of_lex.patch
 
 BuildRequires: cmake >= 2.8
 BuildRequires: libtool
-BuildRequires: tqtinterface-devel
 BuildRequires: pcre-devel
-BuildRequires: trinity-tdelibs-devel
+BuildRequires: trinity-tqtinterface-devel >= %{version}
+BuildRequires: trinity-tdelibs-devel >= %{version}
 # for kbugbuster/libkcal
-BuildRequires: trinity-tdepim-devel
+BuildRequires: trinity-tdepim-devel >= %{version}
 %if 0%{?mgaversion} || 0%{?mdkversion}
 #BuildRequires:	%{_lib}db4.8-devel
-%else
+%endif
+%if 0%{?rhel} || 0%{?fedora}
 BuildRequires: db4-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	libdb-4_8-devel
 %endif
 BuildRequires: desktop-file-utils
 # kbabel,  F-7+: flex >= 2.5.33-9
 BuildRequires: flex
 # umbrello
-BuildRequires: libxslt-devel libxml2-devel
+BuildRequires:	libxslt-devel
+BuildRequires:	libxml2-devel
 BuildRequires:	perl
-BuildRequires:	subversion-devel neon-devel
+BuildRequires:	subversion-devel
+BuildRequires:	neon-devel
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
 BuildRequires:	%{_lib}binutils-devel
 %else
+%if 0%{?fedora} >= 6 || 0%{?rhel} >= 5 || 0%{?suse_version}
 BuildRequires:	libtool-ltdl-devel
-%if 0%{?fedora} > 5 || 0%{?rhel} > 4
-BuildRequires: binutils-devel
+BuildRequires:	binutils-devel
 %endif
+%endif
+
+# KIOSLAVE
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%define build_kioslave 1
 %endif
 
 Obsoletes:		trinity-kdesdk < %{version}-%{release}
@@ -96,7 +107,7 @@ Requires: trinity-libcvsservice0 = %{version}-%{release}
 Requires: trinity-libcvsservice-devel = %{version}-%{release}
 Requires: trinity-poxml = %{version}-%{release}
 Requires: trinity-umbrello = %{version}-%{release}
-Requires: %{name}-kio-plugins = %{version}-%{release}
+%{?build_kioslave:Requires: %{name}-kio-plugins = %{version}-%{release}}
 Requires: trinity-kunittest = %{version}-%{release}
 
 
@@ -155,18 +166,18 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %post -n trinity-cervisia
 /sbin/ldconfig || :
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-cervisia
 /sbin/ldconfig || :
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -309,18 +320,18 @@ See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
 %post -n trinity-kbabel
 /sbin/ldconfig || :
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kbabel
 /sbin/ldconfig || :
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -383,17 +394,17 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %post -n trinity-kbugbuster
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kbugbuster
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -423,25 +434,29 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %post -n trinity-tdecachegrind
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-tdecachegrind
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
 %package -n trinity-tdecachegrind-converters
 Summary:	format converters for KCachegrind profiling visualisation tool
 Group:		Development/Utilities
-Requires:	php-cli
 Requires:	python
+%if 0%{?suse_version} || 0%{?rhel} == 4
+Requires:	php
+%else
+Requires:	php-cli
+%endif
 
 %description -n trinity-tdecachegrind-converters
 This is a collection of scripts for converting the output from
@@ -683,18 +698,18 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %post -n trinity-kompare
 /sbin/ldconfig || :
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kompare
 /sbin/ldconfig || :
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -758,14 +773,14 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %post -n trinity-kuiviewer
 for f in hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 
 %postun -n trinity-kuiviewer
 for f in crystalsvg hicolor locolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 
 ##########
@@ -893,19 +908,21 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %post -n trinity-umbrello
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-umbrello
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
+
+%if 0%{?build_kioslave}
 
 %package kio-plugins
 Summary:	subversion ioslave for Trinity
@@ -953,12 +970,16 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %post kio-plugins
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 
 for proto in svn+file svn+http svn+https svn+ssh svn; do
+%if 0%{?suse_version}
+  update-alternatives --install \
+%else
   alternatives --install \
+%endif
     %{tde_datadir}/services/${proto}.protocol \
     ${proto}.protocol \
     %{tde_datadir}/services/${proto}.protocol_tdesdk \
@@ -967,18 +988,24 @@ done
 
 %postun kio-plugins
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 
 %preun kio-plugins
 if [ $1 -eq 0 ]; then
   for proto in svn+file svn+http svn+https svn+ssh svn; do
+%if 0%{?suse_version}
+    update-alternatives --remove \
+%else
     alternatives --remove \
+%endif
       ${proto}.protocol \
       %{tde_datadir}/services/${proto}.protocol_tdesdk
   done
 fi
+
+%endif
 
 ##########
 
@@ -1030,14 +1057,21 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 ##########
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+##########
+
 
 %prep
-%setup -q -n kdesdk
-%patch1 -p1 -b .subversion
-%patch2 -p1 -b .cmake
-%patch3 -p1 -b .cmake
+%setup -q -n kdesdk-3.5.13.1
 %patch4 -p1 -b .ftbfs
 %patch5 -p1 -b .svn
+%patch6 -p1 -b .cmake
+%patch7 -p1
+%patch8 -p1 -b .flex
+
 
 %build
 unset QTDIR || :; . /etc/profile.d/qt3.sh
@@ -1046,10 +1080,15 @@ export LD_LIBRARY_PATH="%{tde_libdir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 
-%if 0%{?rhel} || 0%{?fedora}
+# Specific path for RHEL4
+if [ -d /usr/X11R6 ]; then
+  export CXXFLAGS="${CXXFLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+fi
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
+
 
 %cmake \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
@@ -1062,9 +1101,10 @@ cd build
   -DWITH_DBSEARCHENGINE=ON \
   -DWITH_KCAL=ON \
   -DBUILD_ALL=ON \
+  %{!?build_kioslave:-DBUILD_KIOSLAVE=OFF} \
   ..
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
@@ -1091,6 +1131,7 @@ fi
 %__install -D -m 644 kdepalettes/README %{?buildroot}%{tde_datadir}/kdepalettes
 
 # Installs SVN protocols as alternatives
+%if 0%{?build_kioslave}
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+file.protocol %{?buildroot}%{tde_datadir}/services/svn+file.protocol_tdesdk
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+http.protocol %{?buildroot}%{tde_datadir}/services/svn+http.protocol_tdesdk
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+https.protocol %{?buildroot}%{tde_datadir}/services/svn+https.protocol_tdesdk
@@ -1101,6 +1142,7 @@ fi
 %__ln_s /etc/alternatives/svn+https.protocol %{?buildroot}%{tde_datadir}/services/svn+https.protocol
 %__ln_s /etc/alternatives/svn+ssh.protocol %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol
 %__ln_s /etc/alternatives/svn.protocol %{?buildroot}%{tde_datadir}/services/svn.protocol
+%endif
 
 %clean
 %__rm -rf %{buildroot}
@@ -1115,16 +1157,5 @@ fi
 
 
 %changelog
-* Sun Jul 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Split into several packages
-- Renames to 'trinity-tdesdk'
-- Add Mageia 2 support
-- cmake port [Commit #bfb0bc00]
-- added forgotten files [Commit #adee843c]
-- installs SVN protocols as alternative to avoid conflict with kdesvn
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Mon Sep 05 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Import to GIT
+* Sun Sep 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1

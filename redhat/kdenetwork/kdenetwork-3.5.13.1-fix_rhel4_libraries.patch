@@ -1,0 +1,9 @@
+--- kdenetwork-3.5.13.1/krfb/ConfigureChecks.cmake.ORI	2012-10-09 20:58:42.674713186 +0200
++++ kdenetwork-3.5.13.1/krfb/ConfigureChecks.cmake	2012-10-09 20:59:17.585002712 +0200
+@@ -11,5 +11,5 @@
+ 
+ pkg_search_module( XTST xtst )
+ if( NOT XTST_FOUND )
+-  tde_message_fatal( "xtst is required, but was not found on your system" )
++  set( XTST_LIBRARIES "-lXtst" )
+ endif( )

@@ -1,0 +1,1033 @@
+--- kdebase/ksmserver/shutdowndlg.h.rhel4	2012-09-08 05:43:47.950945974 -0400
++++ kdebase/ksmserver/shutdowndlg.h	2012-09-08 05:45:55.807337959 -0400
+@@ -32,6 +32,9 @@
+ 
+ #include <config.h>
+ 
++// RHEL 4 dirty hack to remove HAL support in ksmshutdown
++#undef COMPILE_HALBACKEND
++
+ #ifndef NO_QT3_DBUS_SUPPORT
+ /* We acknowledge the the dbus API is unstable */
+ #define DBUS_API_SUBJECT_TO_CHANGE
+--- kdebase/kioslave/media/mediamanager/halbackend.cpp.hal04	2012-09-08 14:15:10.324373357 -0400
++++ kdebase/kioslave/media/mediamanager/halbackend.cpp	2012-09-08 14:26:12.422302958 -0400
+@@ -41,12 +41,10 @@
+ #include <kprocess.h>
+ 
+ #define MOUNT_SUFFIX    (                                                                       \
+-    (medium->isMounted() ? TQString("_mounted") : TQString("_unmounted")) +   \
+-    (medium->isEncrypted() ? (halClearVolume ? "_decrypted" : "_encrypted") : "" )          \
++    (medium->isMounted() ? TQString("_mounted") : TQString("_unmounted"))   \
+     )
+ #define MOUNT_ICON_SUFFIX   (                                                              \
+-    (medium->isMounted() ? TQString("_mount") : TQString("_unmount")) +   \
+-    (medium->isEncrypted() ? (halClearVolume ? "_decrypt" : "_encrypt") : "" )      \
++    (medium->isMounted() ? TQString("_mount") : TQString("_unmount"))   \
+     )
+ 
+ /* Static instance of this class, for static HAL callbacks */
+@@ -57,10 +55,10 @@
+ {
+     char*   _ppt_string;
+     TQString _ppt_QString;
+-    _ppt_string = libhal_device_get_property_string(ctx, udi, key, NULL);
++    _ppt_string = hal_device_get_property_string(ctx, udi, key);
+     if ( _ppt_string )
+         _ppt_QString = _ppt_string;
+-    libhal_free_string(_ppt_string);
++    hal_free_string(_ppt_string);
+     return _ppt_QString;
+ }
+ 
+@@ -92,7 +90,7 @@
+ 
+         /* Remove all the registered media first */
+         int numDevices;
+-        char** halDeviceList = libhal_get_all_devices( m_halContext, &numDevices, NULL );
++        char** halDeviceList = hal_get_all_devices( m_halContext, &numDevices );
+ 
+         if ( halDeviceList )
+         {
+@@ -102,70 +100,39 @@
+             }
+         }
+ 
+-        libhal_free_string_array( halDeviceList );
++        hal_free_string_array( halDeviceList );
+ 
+-        DBusError error;
+-        dbus_error_init(&error);
+-        libhal_ctx_shutdown(m_halContext, &error);
+-        libhal_ctx_free(m_halContext);
++        hal_shutdown(m_halContext);
+     }
+ 
+     if (m_halStoragePolicy)
+-        libhal_storage_policy_free(m_halStoragePolicy);
++        hal_storage_policy_free(m_halStoragePolicy);
+ }
+ 
+ /* Connect to the HAL */
+ bool HALBackend::InitHal()
+ {
+     kdDebug(1219) << "Context new" << endl;
+-    m_halContext = libhal_ctx_new();
++
++    /* libhal initialization */
++    m_halFunctions.main_loop_integration	= HALBackend::hal_main_loop_integration;
++    m_halFunctions.device_added		= HALBackend::hal_device_added;
++    m_halFunctions.device_removed		= HALBackend::hal_device_removed;
++    m_halFunctions.device_new_capability	= NULL;
++    m_halFunctions.device_lost_capability	= NULL;
++    m_halFunctions.device_property_modified	= HALBackend::hal_device_property_modified;
++    m_halFunctions.device_condition		= HALBackend::hal_device_condition;
++
++    m_halContext = hal_initialize(&m_halFunctions, false);
+     if (!m_halContext)
+     {
+         kdDebug(1219) << "Failed to initialize HAL!" << endl;
+         return false;
+     }
+ 
+-    // Main loop integration
+-    kdDebug(1219) << "Main loop integration" << endl;
+-    DBusError error;
+-    dbus_error_init(&error);
+-    dbus_connection = dbus_bus_get_private(DBUS_BUS_SYSTEM, &error);
+-
+-    if (!dbus_connection || dbus_error_is_set(&error)) {
+-        dbus_error_free(&error);
+-        libhal_ctx_free(m_halContext);
+-        m_halContext = NULL;
+-        return false;
+-    }
+-
+-    dbus_connection_set_exit_on_disconnect (dbus_connection, FALSE);
+-
+-    MainLoopIntegration(dbus_connection);
+-    libhal_ctx_set_dbus_connection(m_halContext, dbus_connection);
+-
+-    // HAL callback functions
+-    kdDebug(1219) << "Callback functions" << endl;
+-    libhal_ctx_set_device_added(m_halContext, HALBackend::hal_device_added);
+-    libhal_ctx_set_device_removed(m_halContext, HALBackend::hal_device_removed);
+-    libhal_ctx_set_device_new_capability (m_halContext, NULL);
+-    libhal_ctx_set_device_lost_capability (m_halContext, NULL);
+-    libhal_ctx_set_device_property_modified (m_halContext, HALBackend::hal_device_property_modified);
+-    libhal_ctx_set_device_condition(m_halContext, HALBackend::hal_device_condition);
+-
+-    kdDebug(1219) << "Context Init" << endl;
+-    if (!libhal_ctx_init(m_halContext, &error))
+-    {
+-        if (dbus_error_is_set(&error))
+-            dbus_error_free(&error);
+-        libhal_ctx_free(m_halContext);
+-        m_halContext = NULL;
+-        kdDebug(1219) << "Failed to init HAL context!" << endl;
+-        return false;
+-    }
+-
+     /** @todo customize watch policy */
+     kdDebug(1219) << "Watch properties" << endl;
+-    if (!libhal_device_property_watch_all(m_halContext, &error))
++    if (hal_device_property_watch_all(m_halContext))
+     {
+         kdDebug(1219) << "Failed to watch HAL properties!" << endl;
+         return false;
+@@ -173,7 +140,7 @@
+ 
+     /* libhal-storage initialization */
+     kdDebug(1219) << "Storage Policy" << endl;
+-    m_halStoragePolicy = libhal_storage_policy_new();
++    m_halStoragePolicy = hal_storage_policy_new();
+     /** @todo define libhal-storage icon policy */
+ 
+     /* List devices at startup */
+@@ -186,16 +153,19 @@
+     kdDebug(1219) << "ListDevices" << endl;
+ 
+     int numDevices;
+-    char** halDeviceList = libhal_get_all_devices(m_halContext, &numDevices, NULL);
++    char** halDeviceList = hal_get_all_devices(m_halContext, &numDevices);
+ 
+     if (!halDeviceList)
+         return false;
+ 
+     kdDebug(1219) << "HALBackend::ListDevices : " << numDevices << " devices found" << endl;
+-    for (int i = 0; i < numDevices; i++)
++    for (int i = 0; i < numDevices; i++) {
++		kdDebug(1219) << "HALBackend::ListDevices : adding device " << i << endl;
+         AddDevice(halDeviceList[i], false);
++		kdDebug(1219) << "HALBackend::ListDevices : end adding device " << i << endl;
++    }
+ 
+-    libhal_free_string_array( halDeviceList );
++    hal_free_string_array( halDeviceList );
+ 
+     return true;
+ }
+@@ -206,63 +176,54 @@
+ {
+     /* We don't deal with devices that do not expose their capabilities.
+        If we don't check this, we will get a lot of warning messages from libhal */
+-    if (!libhal_device_property_exists(m_halContext, udi, "info.capabilities", NULL))
++    if (!hal_device_property_exists(m_halContext, udi, "info.capabilities")) {
++        kdDebug(1219) << "HALBackend::AddDevice : Device does not expose capability. Skipping." << endl;   
+         return;
++    }
+ 
+     /* If the device is already listed, do not process.
+        This should not happen, but who knows... */
+     /** @todo : refresh properties instead ? */
+-    if (m_mediaList.findById(udi))
++    if (m_mediaList.findById(udi)) {
++        kdDebug(1219) << "HALBackend::AddDevice : Device is already listed. Skipping." << endl;   
+         return;
++    }
+ 
+-    if (libhal_device_get_property_bool(m_halContext, "/org/freedesktop/Hal/devices/computer", "storage.disable_volume_handling", NULL))
++    if (hal_device_get_property_bool(m_halContext, "/org/freedesktop/Hal/devices/computer", "storage.disable_volume_handling"))
+         allowNotification=false;
+ 
+     /* Add volume block devices */
+-    if (libhal_device_query_capability(m_halContext, udi, "volume", NULL))
++    if (hal_device_query_capability(m_halContext, udi, "volume"))
+     {
++		kdDebug(1219) << "HALBackend::AddDevice : Device is a volume." << endl;   
+         /* We only list volumes that...
+-         *  - are encrypted with LUKS or
+          *  - have a filesystem or
+          *  - have an audio track
+          */
+-        if ( ( libhal_device_get_property_QString(m_halContext, udi, "volume.fsusage") != "crypto" ||
+-               libhal_device_get_property_QString(m_halContext, udi, "volume.fstype") != "crypto_LUKS"
+-             ) &&
+-             libhal_device_get_property_QString(m_halContext, udi, "volume.fsusage") != "filesystem" &&
+-             !libhal_device_get_property_bool(m_halContext, udi, "volume.disc.has_audio", NULL) &&
+-             !libhal_device_get_property_bool(m_halContext, udi, "volume.disc.is_blank", NULL) )
++        if ( (libhal_device_get_property_QString(m_halContext, udi, "volume.fsusage") != "filesystem") &&
++             (!hal_device_get_property_bool(m_halContext, udi, "volume.disc.has_audio")) &&
++             (!hal_device_get_property_bool(m_halContext, udi, "volume.disc.is_blank")) ) {
++            kdDebug(1219) << "HALBackend::AddDevice : no filesystem, no audio track on device. Skipping." << endl;   
+             return;
++        }
+ 
+         /* Query drive udi */
+         TQString driveUdi = libhal_device_get_property_QString(m_halContext, udi, "block.storage_device");
+-        if ( driveUdi.isNull() ) // no storage - no fun
++        if ( driveUdi.isNull() ) { // no storage - no fun
++            kdDebug(1219) << "HALBackend::AddDevice : UDI is null. Skipping." << endl;   
+             return;
++        }
+ 
+         // if the device is locked do not act upon it
+-        if (libhal_device_get_property_bool(m_halContext, driveUdi.ascii(), "info.locked", NULL))
++        if (hal_device_get_property_bool(m_halContext, driveUdi.ascii(), "info.locked"))
+             allowNotification=false;
+ 
+         // if the device is locked do not act upon it
+-        if (libhal_device_get_property_bool(m_halContext, driveUdi.ascii(), "storage.partition_table_changed", NULL))
++        if (hal_device_get_property_bool(m_halContext, driveUdi.ascii(), "storage.partition_table_changed"))
+             allowNotification=false;
+ 
+         /** @todo check exclusion list **/
+ 
+-        /* Special handling for clear crypto volumes */
+-        LibHalVolume* halVolume = libhal_volume_from_udi(m_halContext, udi);
+-        if (!halVolume)
+-            return;
+-        const char* backingVolumeUdi = libhal_volume_crypto_get_backing_volume_udi(halVolume);
+-        if ( backingVolumeUdi != NULL )
+-        {
+-            /* The crypto drive was unlocked and may now be mounted... */
+-            kdDebug(1219) << "HALBackend::AddDevice : ClearVolume appeared for " << backingVolumeUdi << endl;
+-            ResetProperties(backingVolumeUdi, allowNotification);
+-            libhal_volume_free(halVolume);
+-            return;
+-        }
+-        libhal_volume_free(halVolume);
+ 
+         /* Create medium */
+         Medium* medium = new Medium(udi, "");
+@@ -272,18 +233,20 @@
+         {
+             // if it's not mountable by user and not by HAL, don't show it at all
+             if ( ( libhal_device_get_property_QString(m_halContext, udi, "volume.fsusage") == "filesystem" &&
+-                   !libhal_device_get_property_bool(m_halContext, udi, "volume.is_mounted", NULL ) ) &&
+-                 ( libhal_device_get_property_bool(m_halContext, udi, "volume.ignore", NULL ) ) )
++                   !hal_device_get_property_bool(m_halContext, udi, "volume.is_mounted") ) &&
++                 ( hal_device_get_property_bool(m_halContext, udi, "volume.ignore") ) )
+             {
++                kdDebug(1219) << "HALBackend::AddDevice : Device is not mountable. Skipping." << endl;   
+                 delete medium;
+                 return;
+             }
+         }
+         
+-	// instert medium into list
+-	m_mediaList.addMedium(medium, allowNotification);
++	    // insert medium into list
++        kdDebug(1219) << "HALBackend::AddDevice : Adding medium into list." << endl;   
++	    m_mediaList.addMedium(medium, allowNotification);
+ 
+-	// finally check for automount
++	    // finally check for automount
+         TQMap<TQString,TQString> options = MediaManagerUtils::splitOptions(mountoptions(udi));
+         kdDebug() << "automount " << options["automount"] << endl;
+         if (options["automount"] == "true" && allowNotification ) {
+@@ -294,14 +257,18 @@
+ 
+         return;
+     }
++    else
++    {
++		kdDebug(1219) << "HALBackend::AddDevice : Device is not a volume." << endl;   
++    }
+ 
+     /* Floppy & zip drives */
+-    if (libhal_device_query_capability(m_halContext, udi, "storage", NULL))
++    if (hal_device_query_capability(m_halContext, udi, "storage"))
+         if ((libhal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "floppy") ||
+             (libhal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "zip") ||
+             (libhal_device_get_property_QString(m_halContext, udi, "storage.drive_type") == "jaz"))
+         {
+-            if (! libhal_device_get_property_bool(m_halContext, udi, "storage.removable.media_available", NULL) )
++            if (! hal_device_get_property_bool(m_halContext, udi, "storage.removable.media_available") )
+                 allowNotification = false;
+             /* Create medium */
+             Medium* medium = new Medium(udi, "");
+@@ -314,11 +281,9 @@
+         }
+ 
+     /* Camera handled by gphoto2*/
+-    if (libhal_device_query_capability(m_halContext, udi, "camera", NULL) &&
+-        ((libhal_device_get_property_QString(m_halContext, udi, "camera.access_method")=="ptp") ||
+-
+-         (libhal_device_property_exists(m_halContext, udi, "camera.libgphoto2.support", NULL) &&
+-          libhal_device_get_property_bool(m_halContext, udi, "camera.libgphoto2.support", NULL)))
++    if (hal_device_query_capability(m_halContext, udi, "camera") &&
++         hal_device_property_exists(m_halContext, udi, "camera.libgphoto2.support") &&
++         hal_device_get_property_bool(m_halContext, udi, "camera.libgphoto3.support")
+         )
+     {
+         /* Create medium */
+@@ -327,6 +292,7 @@
+         m_mediaList.addMedium(medium, allowNotification);
+         return;
+     }
++    kdDebug(1219) << "HALBackend::AddDevice : Device was intentionally not added. Skipping." << endl;   
+ }
+ 
+ void HALBackend::RemoveDevice(const char *udi)
+@@ -348,7 +314,7 @@
+         return;
+     bool allowNotification = false;
+     if (strcmp(key, "storage.removable.media_available") == 0)
+-        allowNotification = libhal_device_get_property_bool(m_halContext, udi, key, NULL);
++        allowNotification = hal_device_get_property_bool(m_halContext, udi, key);
+     ResetProperties(mediumUdi, allowNotification);
+ }
+ 
+@@ -421,19 +387,13 @@
+         return medium->id().ascii();
+ 
+     /* Hard part : this is a volume whose drive is registered */
+-    if (libhal_device_property_exists(m_halContext, udi, "info.capabilities", NULL))
+-        if (libhal_device_query_capability(m_halContext, udi, "volume", NULL))
++    if (hal_device_property_exists(m_halContext, udi, "info.capabilities"))
++        if (hal_device_query_capability(m_halContext, udi, "volume"))
+         {
+             /* check if this belongs to an encrypted volume */
+-            LibHalVolume* halVolume = libhal_volume_from_udi(m_halContext, udi);
++            HalVolume* halVolume = hal_volume_from_udi(m_halContext, udi);
+             if (!halVolume) return NULL;
+-            const char* backingUdi = libhal_volume_crypto_get_backing_volume_udi(halVolume);
+-            if (backingUdi != NULL) {
+-                const char* result = findMediumUdiFromUdi(backingUdi);
+-                libhal_volume_free(halVolume);
+-                return result;
+-            }
+-            libhal_volume_free(halVolume);
++            hal_volume_free(halVolume);
+ 
+             /* this is a volume whose drive is registered */
+             TQString driveUdi = libhal_device_get_property_QString(m_halContext, udi, "block.storage_device");
+@@ -462,11 +422,11 @@
+ 
+     Medium* m = new Medium(mediumUdi, "");
+ 
+-    if (libhal_device_query_capability(m_halContext, mediumUdi, "volume", NULL))
++    if (hal_device_query_capability(m_halContext, mediumUdi, "volume"))
+         setVolumeProperties(m);
+-    if (libhal_device_query_capability(m_halContext, mediumUdi, "storage", NULL))
++    if (hal_device_query_capability(m_halContext, mediumUdi, "storage"))
+         setFloppyProperties(m);
+-    if (libhal_device_query_capability(m_halContext, mediumUdi, "camera", NULL))
++    if (hal_device_query_capability(m_halContext, mediumUdi, "camera"))
+         setCameraProperties(m);
+ 
+     m_mediaList.changeMediumState(*m, allowNotification);
+@@ -480,84 +440,50 @@
+ 
+     const char* udi = medium->id().ascii();
+     /* Check if the device still exists */
+-    if (!libhal_device_exists(m_halContext, udi, NULL))
++    if (!hal_device_exists(m_halContext, udi))
+         return;
+ 
+     /* Get device information from libhal-storage */
+-    LibHalVolume* halVolume = libhal_volume_from_udi(m_halContext, udi);
++    HalVolume* halVolume = hal_volume_from_udi(m_halContext, udi);
+     if (!halVolume)
+         return;
+-    TQString driveUdi = libhal_volume_get_storage_device_udi(halVolume);
+-    LibHalDrive*  halDrive  = 0;
++    TQString driveUdi = hal_volume_get_storage_device_udi(halVolume);
++    HalDrive*  halDrive  = 0;
+     if ( !driveUdi.isNull() )
+-        halDrive = libhal_drive_from_udi(m_halContext, driveUdi.ascii());
++        halDrive = hal_drive_from_udi(m_halContext, driveUdi.ascii());
+     if (!halDrive) {
+         // at times HAL sends an UnmountForced event before the device is removed
+-        libhal_volume_free(halVolume);
++        hal_volume_free(halVolume);
+         return;
+     }
+ 
+     medium->setName(
+-        generateName(libhal_volume_get_device_file(halVolume)) );
+-
+-    LibHalVolume* halClearVolume = NULL;
+-    if ( libhal_device_get_property_QString(m_halContext, udi, "volume.fsusage") == "crypto" )
+-    {
+-        kdDebug(1219) << "HALBackend::setVolumeProperties : crypto volume" << endl;
++        generateName(hal_volume_get_device_file(halVolume)) );
+ 
+-        medium->setEncrypted(true);
+-        char* clearUdi = libhal_volume_crypto_get_clear_volume_udi(m_halContext, halVolume);
+-	TQString clearUdiString;
+-        if (clearUdi != NULL) {
+-            kdDebug(1219) << "HALBackend::setVolumeProperties : crypto clear volume avail - " << clearUdi << endl;
+-            halClearVolume = libhal_volume_from_udi(m_halContext, clearUdi);
+-            // ignore if halClearVolume is NULL -> just not decrypted in this case
+-	    clearUdiString = clearUdi;
+-	    libhal_free_string(clearUdi);
+-        }
+-
+-        if (halClearVolume)
+-            medium->mountableState(
+-                libhal_volume_get_device_file(halVolume),		/* Device node */
+-                clearUdiString,
+-                libhal_volume_get_mount_point(halClearVolume),		/* Mount point */
+-                libhal_volume_get_fstype(halClearVolume),		/* Filesystem type */
+-                libhal_volume_is_mounted(halClearVolume) );		/* Mounted ? */
+-        else
+-            medium->mountableState(
+-                libhal_volume_get_device_file(halVolume),		/* Device node */
+-                TQString::null,
+-                TQString::null,		/* Mount point */
+-                TQString::null,		/* Filesystem type */
+-                false );		/* Mounted ? */
+-    }
+-    else
+-    {
+-        kdDebug(1219) << "HALBackend::setVolumeProperties : normal volume" << endl;
+-        medium->mountableState(
+-            libhal_volume_get_device_file(halVolume),		/* Device node */
+-            libhal_volume_get_mount_point(halVolume),		/* Mount point */
+-            libhal_volume_get_fstype(halVolume),		/* Filesystem type */
+-            libhal_volume_is_mounted(halVolume) );		/* Mounted ? */
+-    }
++    kdDebug(1219) << "HALBackend::setVolumeProperties : normal volume" << endl;
++    medium->mountableState(
++        hal_volume_get_device_file(halVolume),		/* Device node */
++        hal_volume_get_mount_point(halVolume),		/* Mount point */
++        hal_volume_get_fstype(halVolume),		/* Filesystem type */
++        hal_volume_is_mounted(halVolume) );		/* Mounted ? */
+ 
+ 
+-    char* name = libhal_volume_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
++    char* name = hal_volume_policy_compute_display_name(halDrive, halVolume, m_halStoragePolicy);
+     TQString volume_name = TQString::fromUtf8(name);
+     TQString media_name = volume_name;
+     medium->setLabel(media_name);
+     free(name);
+ 
+     TQString mimeType;
+-    if (libhal_volume_is_disc(halVolume))
++    if (hal_volume_is_disc(halVolume))
+     {
+         mimeType = "media/cdrom" + MOUNT_SUFFIX;
+ 
+-        LibHalVolumeDiscType discType = libhal_volume_get_disc_type(halVolume);
+-        if ((discType == LIBHAL_VOLUME_DISC_TYPE_CDROM) ||
+-            (discType == LIBHAL_VOLUME_DISC_TYPE_CDR) ||
+-            (discType == LIBHAL_VOLUME_DISC_TYPE_CDRW))
+-            if (libhal_volume_disc_is_blank(halVolume))
++        HalVolumeDiscType discType = hal_volume_get_disc_type(halVolume);
++        if ((discType == HAL_VOLUME_DISC_TYPE_CDROM) ||
++            (discType == HAL_VOLUME_DISC_TYPE_CDR) ||
++            (discType == HAL_VOLUME_DISC_TYPE_CDRW))
++            if (hal_volume_disc_is_blank(halVolume))
+             {
+                 mimeType = "media/blankcd";
+                 medium->unmountableState("");
+@@ -565,10 +491,10 @@
+             else
+                 mimeType = "media/cdwriter" + MOUNT_SUFFIX;
+ 
+-        if ((discType == LIBHAL_VOLUME_DISC_TYPE_DVDROM) || (discType == LIBHAL_VOLUME_DISC_TYPE_DVDRAM) ||
+-            (discType == LIBHAL_VOLUME_DISC_TYPE_DVDR) || (discType == LIBHAL_VOLUME_DISC_TYPE_DVDRW) ||
+-            (discType == LIBHAL_VOLUME_DISC_TYPE_DVDPLUSR) || (discType == LIBHAL_VOLUME_DISC_TYPE_DVDPLUSRW) )
+-            if (libhal_volume_disc_is_blank(halVolume))
++        if ((discType == HAL_VOLUME_DISC_TYPE_DVDROM) || (discType == HAL_VOLUME_DISC_TYPE_DVDRAM) ||
++            (discType == HAL_VOLUME_DISC_TYPE_DVDR) || (discType == HAL_VOLUME_DISC_TYPE_DVDRW) ||
++            (discType == HAL_VOLUME_DISC_TYPE_DVDPLUSR) || (discType == HAL_VOLUME_DISC_TYPE_DVDPLUSRW) )
++            if (hal_volume_disc_is_blank(halVolume))
+             {
+                 mimeType = "media/blankdvd";
+                 medium->unmountableState("");
+@@ -576,16 +502,16 @@
+             else
+                 mimeType = "media/dvd" + MOUNT_SUFFIX;
+ 
+-        if (libhal_volume_disc_has_audio(halVolume) && !libhal_volume_disc_has_data(halVolume))
++        if (hal_volume_disc_has_audio(halVolume) && !hal_volume_disc_has_data(halVolume))
+         {
+             mimeType = "media/audiocd";
+-            medium->unmountableState( "audiocd:/?device=" + TQString(libhal_volume_get_device_file(halVolume)) );
++            medium->unmountableState( "audiocd:/?device=" + TQString(hal_volume_get_device_file(halVolume)) );
+         }
+ 
+         medium->setIconName(TQString::null);
+ 
+         /* check if the disc id a vcd or a video dvd */
+-        DiscType type = LinuxCDPolling::identifyDiscType(libhal_volume_get_device_file(halVolume));
++        DiscType type = LinuxCDPolling::identifyDiscType(hal_volume_get_device_file(halVolume));
+         switch (type)
+         {
+         case DiscType::VCD:
+@@ -603,24 +529,24 @@
+     {
+         mimeType = "media/hdd" + MOUNT_SUFFIX;
+         medium->setIconName(TQString::null); // reset icon
+-        if (libhal_drive_is_hotpluggable(halDrive))
++        if (hal_drive_is_hotpluggable(halDrive))
+         {
+             mimeType = "media/removable" + MOUNT_SUFFIX;
+             medium->needMounting();
+-            switch (libhal_drive_get_type(halDrive)) {
+-            case LIBHAL_DRIVE_TYPE_COMPACT_FLASH:
++            switch (hal_drive_get_type(halDrive)) {
++            case HAL_DRIVE_TYPE_COMPACT_FLASH:
+                 medium->setIconName("compact_flash" + MOUNT_ICON_SUFFIX);
+                 break;
+-            case LIBHAL_DRIVE_TYPE_MEMORY_STICK:
++            case HAL_DRIVE_TYPE_MEMORY_STICK:
+                 medium->setIconName("memory_stick" + MOUNT_ICON_SUFFIX);
+                 break;
+-            case LIBHAL_DRIVE_TYPE_SMART_MEDIA:
++            case HAL_DRIVE_TYPE_SMART_MEDIA:
+                 medium->setIconName("smart_media" + MOUNT_ICON_SUFFIX);
+                 break;
+-            case LIBHAL_DRIVE_TYPE_SD_MMC:
++            case HAL_DRIVE_TYPE_SD_MMC:
+                 medium->setIconName("sd_mmc" + MOUNT_ICON_SUFFIX);
+                 break;
+-            case LIBHAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER:
++            case HAL_DRIVE_TYPE_PORTABLE_AUDIO_PLAYER:
+             {
+                 medium->setIconName("ipod" + MOUNT_ICON_SUFFIX);
+ 
+@@ -628,25 +554,25 @@
+ 		         KProtocolInfo::isKnownProtocol( TQString("ipod") ) )
+                 {
+                     medium->unmountableState( "ipod:/" );
+-                    medium->mountableState(  libhal_volume_is_mounted(halVolume) );
++                    medium->mountableState(  hal_volume_is_mounted(halVolume) );
+                 }
+                 break;
+             }
+-            case LIBHAL_DRIVE_TYPE_CAMERA:
++            case HAL_DRIVE_TYPE_CAMERA:
+             {
+                 mimeType = "media/camera" + MOUNT_SUFFIX;
+-                const char *physdev = libhal_drive_get_physical_device_udi(halDrive);
++                const char *physdev = hal_drive_get_physical_device_udi(halDrive);
+                 // get model from camera
+-                if (physdev && libhal_device_query_capability(m_halContext, physdev, "camera", NULL))
++                if (physdev && hal_device_query_capability(m_halContext, physdev, "camera"))
+                 {
+-                    if (libhal_device_property_exists(m_halContext, physdev, "usb_device.product", NULL))
++                    if (hal_device_property_exists(m_halContext, physdev, "usb_device.product"))
+                         medium->setLabel(libhal_device_get_property_QString(m_halContext, physdev, "usb_device.product"));
+-                    else if (libhal_device_property_exists(m_halContext, physdev, "usb.product", NULL))
++                    else if (hal_device_property_exists(m_halContext, physdev, "usb.product"))
+                         medium->setLabel(libhal_device_get_property_QString(m_halContext, physdev, "usb.product"));
+                 }
+                 break;
+             }
+-            case LIBHAL_DRIVE_TYPE_TAPE:
++            case HAL_DRIVE_TYPE_TAPE:
+                 medium->setIconName(TQString::null); //FIXME need icon
+                 break;
+             default:
+@@ -661,8 +587,8 @@
+     }
+     medium->setMimeType(mimeType);
+ 
+-    libhal_drive_free(halDrive);
+-    libhal_volume_free(halVolume);
++    hal_drive_free(halDrive);
++    hal_volume_free(halVolume);
+ }
+ 
+ bool HALBackend::setFstabProperties( Medium *medium )
+@@ -713,10 +639,10 @@
+ 
+     const char* udi = medium->id().ascii();
+     /* Check if the device still exists */
+-    if (!libhal_device_exists(m_halContext, udi, NULL))
++    if (!hal_device_exists(m_halContext, udi))
+         return false;
+ 
+-    LibHalDrive*  halDrive  = libhal_drive_from_udi(m_halContext, udi);
++    HalDrive*  halDrive  = hal_drive_from_udi(m_halContext, udi);
+     if (!halDrive)
+         return false;
+ 
+@@ -724,21 +650,21 @@
+ 
+     if (drive_type == "zip") {
+         int numVolumes;
+-        char** volumes = libhal_drive_find_all_volumes(m_halContext, halDrive, &numVolumes);
+-        libhal_free_string_array(volumes);
++        char** volumes = hal_drive_find_all_volumes(m_halContext, halDrive, &numVolumes);
++        hal_free_string_array(volumes);
+         kdDebug(1219) << " found " << numVolumes << " volumes" << endl;
+         if (numVolumes)
+         {
+-            libhal_drive_free(halDrive);
++            hal_drive_free(halDrive);
+             return false;
+         }
+     }
+ 
+-    medium->setName( generateName(libhal_drive_get_device_file(halDrive)) );
++    medium->setName( generateName(hal_drive_get_device_file(halDrive)) );
+     medium->setLabel(i18n("Unknown Drive"));
+ 
+     // HAL hates floppies - so we have to do it twice ;(
+-    medium->mountableState(libhal_drive_get_device_file(halDrive), TQString::null, TQString::null, false);
++    medium->mountableState(hal_drive_get_device_file(halDrive), TQString::null, TQString::null, false);
+     setFloppyMountState(medium);
+ 
+     if (drive_type == "floppy")
+@@ -762,7 +688,7 @@
+ 
+     medium->setIconName(TQString::null);
+ 
+-    libhal_drive_free(halDrive);
++    hal_drive_free(halDrive);
+ 
+     return true;
+ }
+@@ -796,7 +722,7 @@
+ 
+     const char* udi = medium->id().ascii();
+     /* Check if the device still exists */
+-    if (!libhal_device_exists(m_halContext, udi, NULL))
++    if (!hal_device_exists(m_halContext, udi))
+         return;
+ 
+     /** @todo find name */
+@@ -804,25 +730,25 @@
+ 
+     TQString device = "camera:/";
+ 
+-    char *cam = libhal_device_get_property_string(m_halContext, udi, "camera.libgphoto2.name", NULL);
++    char *cam = hal_device_get_property_string(m_halContext, udi, "camera.libgphoto2.name");
+     DBusError error;
+     dbus_error_init(&error);
+     if (cam &&
+-        libhal_device_property_exists(m_halContext, udi, "usb.linux.device_number", NULL) &&
+-        libhal_device_property_exists(m_halContext, udi, "usb.bus_number", NULL))
++        hal_device_property_exists(m_halContext, udi, "usb.linux.device_number") &&
++        hal_device_property_exists(m_halContext, udi, "usb.bus_number"))
+         device.sprintf("camera://%s@[usb:%03d,%03d]/", cam,
+-                       libhal_device_get_property_int(m_halContext, udi, "usb.bus_number", &error),
+-                       libhal_device_get_property_int(m_halContext, udi, "usb.linux.device_number", &error));
++                       hal_device_get_property_int(m_halContext, udi, "usb.bus_number"),
++                       hal_device_get_property_int(m_halContext, udi, "usb.linux.device_number"));
+ 
+-    libhal_free_string(cam);
++    hal_free_string(cam);
+ 
+     /** @todo find the rest of this URL */
+     medium->unmountableState(device);
+     medium->setMimeType("media/gphoto2camera");
+     medium->setIconName(TQString::null);
+-    if (libhal_device_property_exists(m_halContext, udi, "usb_device.product", NULL))
++    if (hal_device_property_exists(m_halContext, udi, "usb_device.product"))
+         medium->setLabel(libhal_device_get_property_QString(m_halContext, udi, "usb_device.product"));
+-    else if (libhal_device_property_exists(m_halContext, udi, "usb.product", NULL))
++    else if (hal_device_property_exists(m_halContext, udi, "usb.product"))
+         medium->setLabel(libhal_device_get_property_QString(m_halContext, udi, "usb.product"));
+     else
+         medium->setLabel(i18n("Camera"));
+@@ -837,6 +763,14 @@
+  ** HAL CALL-BACKS                        **
+  ******************************************/
+ 
++void HALBackend::hal_main_loop_integration(LibHalContext *ctx,
++                                         DBusConnection *dbus_connection)
++{
++    kdDebug(1219) << "HALBackend::hal_main_loop_integration" << endl;
++    Q_UNUSED(ctx);
++    s_HALBackend->MainLoopIntegration(dbus_connection);
++}
++
+ void HALBackend::hal_device_added(LibHalContext *ctx, const char *udi)
+ {
+     kdDebug(1219) << "HALBackend::hal_device_added " << udi <<  endl;
+@@ -863,7 +797,7 @@
+ 
+ void HALBackend::hal_device_condition(LibHalContext *ctx, const char *udi,
+                                       const char *condition_name,
+-                                      const char* message
++                                      DBusMessage* message
+     )
+ {
+     kdDebug(1219) << "HALBackend::hal_device_condition " << udi << " -- " << condition_name << endl;
+@@ -875,24 +809,24 @@
+ TQStringList HALBackend::getHALmountoptions(TQString udi)
+ {
+     const char*   _ppt_string;
+-    LibHalVolume* volume;
+-    LibHalDrive* drive;
++    HalVolume* volume;
++    HalDrive* drive;
+ 
+     TQString _ppt_TQString;
+ 
+-    volume = libhal_volume_from_udi( m_halContext, udi.latin1() );
++    volume = hal_volume_from_udi( m_halContext, udi.latin1() );
+     if( volume )
+-        drive = libhal_drive_from_udi( m_halContext, libhal_volume_get_storage_device_udi( volume ) );
++        drive = hal_drive_from_udi( m_halContext, hal_volume_get_storage_device_udi( volume ) );
+     else
+-        drive = libhal_drive_from_udi( m_halContext, udi.latin1() );
++        drive = hal_drive_from_udi( m_halContext, udi.latin1() );
+ 
+     if( !drive )
+            return TQString::null;
+ 
+     if( volume )
+-       _ppt_string = libhal_volume_policy_get_mount_options ( drive, volume, NULL );
++       _ppt_string = hal_volume_policy_get_mount_options ( drive, volume, NULL );
+     else
+-       _ppt_string = libhal_drive_policy_get_mount_options ( drive, NULL );
++       _ppt_string = hal_drive_policy_get_mount_options ( drive, NULL );
+ 
+     _ppt_TQString = TQString(_ppt_string ? _ppt_string : "");
+ 
+@@ -908,24 +842,6 @@
+         return TQStringList(); // not handled by HAL - fstab entry
+ 
+     TQString volume_udi = name;
+-    if (medium->isEncrypted()) {
+-        // see if we have a clear volume
+-        LibHalVolume* halVolume = libhal_volume_from_udi(m_halContext, medium->id().latin1());
+-        if (halVolume) {
+-            char* clearUdi = libhal_volume_crypto_get_clear_volume_udi(m_halContext, halVolume);
+-            if (clearUdi != NULL) {
+-	        volume_udi = clearUdi;
+-		libhal_free_string(clearUdi);
+-	    } else {
+-	        // if not decrypted yet then no mountoptions
+-		return TQStringList();
+-	    }
+-            libhal_volume_free(halVolume);
+-        } else {
+-	    // strange...
+-	    return TQStringList();
+-	}
+-    }
+ 
+     KConfig config("mediamanagerrc");
+     
+@@ -939,17 +855,7 @@
+     if (use_defaults)
+ 	config.setGroup("DefaultOptions");    
+ 
+-    char ** array = libhal_device_get_property_strlist(m_halContext, volume_udi.latin1(), "volume.mount.valid_options", NULL);
+     TQMap<TQString,bool> valids;
+-
+-    for (int index = 0; array && array[index]; ++index) {
+-        TQString t = array[index];
+-        if (t.endsWith("="))
+-            t = t.left(t.length() - 1);
+-        valids[t] = true;
+-        kdDebug() << "valid " << t << endl;
+-    }
+-    libhal_free_string_array(array);
+     TQStringList result;
+     TQString tmp;
+     
+@@ -963,8 +869,8 @@
+ 
+     bool removable = false;
+     if ( !drive_udi.isNull() )
+-        removable = libhal_device_get_property_bool(m_halContext, drive_udi.latin1(), "storage.removable", NULL)
+-                     || libhal_device_get_property_bool(m_halContext, drive_udi.latin1(), "storage.hotpluggable", NULL);
++        removable = hal_device_get_property_bool(m_halContext, drive_udi.latin1(), "storage.removable")
++                     || hal_device_get_property_bool(m_halContext, drive_udi.latin1(), "storage.hotpluggable");
+ 
+     bool value;
+     if (use_defaults)
+@@ -979,11 +885,11 @@
+ 	config.setGroup(current_group);
+     }
+ 
+-    if (libhal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.is_blank", NULL)
+-        || libhal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.is_vcd", NULL)
+-        || libhal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.is_svcd", NULL)
+-        || libhal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.is_videodvd", NULL)
+-        || libhal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.has_audio", NULL))
++    if (hal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.is_blank")
++        || hal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.is_vcd")
++        || hal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.is_svcd")
++        || hal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.is_videodvd")
++        || hal_device_get_property_bool(m_halContext, volume_udi.latin1(), "volume.disc.has_audio"))
+         value = false;
+ 
+     result << TQString("automount=%1").arg(value ? "true" : "false");
+@@ -1540,29 +1446,6 @@
+     }
+     options[noptions] = NULL;
+ 
+-    TQString qerror = i18n("Cannot mount encrypted drives!");
+-
+-    if (!medium->isEncrypted()) {
+-        // normal volume
+-    	qerror = mount_priv(medium->id().latin1(), mount_point.utf8(), options, noptions, dbus_connection);
+-    } else {
+-        // see if we have a clear volume
+-        LibHalVolume* halVolume = libhal_volume_from_udi(m_halContext, medium->id().latin1());
+-        if (halVolume) {
+-            char* clearUdi = libhal_volume_crypto_get_clear_volume_udi(m_halContext, halVolume);
+-            if (clearUdi != NULL) {
+-                qerror = mount_priv(clearUdi, mount_point.utf8(), options, noptions, dbus_connection);
+-                libhal_free_string(clearUdi);
+-            }
+-            libhal_volume_free(halVolume);
+-        }
+-    }
+-
+-    if (!qerror.isEmpty()) {
+-        kdError() << "mounting " << medium->id() << " returned " << qerror << endl;
+-        return qerror;
+-    }
+-
+     medium->setHalMounted(true);
+     ResetProperties(medium->id().latin1());
+ 
+@@ -1584,11 +1467,11 @@
+     if (!medium)
+     {   // now we get fancy: if the udi is no volume, it _might_ be a device with only one
+         // volume on it (think CDs) - so we're so nice to the caller to unmount that volume
+-        LibHalDrive*  halDrive  = libhal_drive_from_udi(m_halContext, _udi.latin1());
++        HalDrive*  halDrive  = hal_drive_from_udi(m_halContext, _udi.latin1());
+         if (halDrive)
+         {
+             int numVolumes;
+-            char** volumes = libhal_drive_find_all_volumes(m_halContext, halDrive, &numVolumes);
++            char** volumes = hal_drive_find_all_volumes(m_halContext, halDrive, &numVolumes);
+             if (numVolumes == 1)
+                 medium = m_mediaList.findById( volumes[0] );
+         }
+@@ -1626,19 +1509,8 @@
+     const char *options[2];
+     TQString udi = TQString::null;
+ 
+-    if (!medium->isEncrypted()) {
+-        // normal volume
+-        udi = medium->id();
+-    } else {
+-        // see if we have a clear volume
+-        LibHalVolume* halVolume = libhal_volume_from_udi(m_halContext, medium->id().latin1());
+-        if (halVolume) {
+-            char *clearUdi = libhal_volume_crypto_get_clear_volume_udi(m_halContext, halVolume);
+-	    udi = clearUdi;
+-	    libhal_free_string(clearUdi);
+-            libhal_volume_free(halVolume);
+-        }
+-    }
++    udi = medium->id();
++    
+     if (udi.isNull()) {
+         kdDebug() << "unmount failed: no udi" << endl;
+         return i18n("Internal Error");
+@@ -1748,111 +1620,4 @@
+     return TQString();
+ }
+ 
+-TQString HALBackend::decrypt(const TQString &_udi, const TQString &password)
+-{
+-    const Medium* medium = m_mediaList.findById(_udi);
+-    if (!medium)
+-        return i18n("No such medium: %1").arg(_udi);
+-
+-    if (!medium->isEncrypted() || !medium->clearDeviceUdi().isNull())
+-        return TQString();
+-
+-    const char *udi = medium->id().latin1();
+-    DBusMessage *msg = NULL;
+-    DBusMessage *reply = NULL;
+-    DBusError error;
+-
+-    kdDebug() << "Setting up " << udi << " for crypto\n" <<endl;
+-	
+-    msg = dbus_message_new_method_call ("org.freedesktop.Hal", udi,
+-                                        "org.freedesktop.Hal.Device.Volume.Crypto",
+-                                        "Setup");
+-    if (msg == NULL) {
+-        kdDebug() << "decrypt failed for " << udi << ": could not create dbus message\n";
+-        return i18n("Internal Error");
+-    }
+-
+-    TQCString pwdUtf8 = password.utf8();
+-    const char *pwd_utf8 = pwdUtf8;
+-    if (!dbus_message_append_args (msg, DBUS_TYPE_STRING, &pwd_utf8, DBUS_TYPE_INVALID)) {
+-        kdDebug() << "decrypt failed for " << udi << ": could not append args to dbus message\n";
+-        dbus_message_unref (msg);
+-        return i18n("Internal Error");
+-    }
+-
+-    dbus_error_init (&error);
+-    if (!(reply = dbus_connection_send_with_reply_and_block (dbus_connection, msg, -1, &error)) || 
+-        dbus_error_is_set (&error))
+-    {
+-        TQString qerror = i18n("Internal Error");
+-        kdDebug() << "decrypt failed for " << udi << ": " << error.name << " " << error.message << endl;
+-        if (strcmp (error.name, "org.freedesktop.Hal.Device.Volume.Crypto.SetupPasswordError") == 0) {
+-            qerror = i18n("Wrong password");
+-        }
+-        dbus_error_free (&error);
+-        dbus_message_unref (msg);
+-        while (dbus_connection_dispatch(dbus_connection) == DBUS_DISPATCH_DATA_REMAINS) ;
+-        return qerror;
+-    }
+-
+-    dbus_message_unref (msg);
+-    dbus_message_unref (reply);
+-
+-    while (dbus_connection_dispatch(dbus_connection) == DBUS_DISPATCH_DATA_REMAINS) ;
+-
+-    return TQString();
+-}
+-
+-TQString HALBackend::undecrypt(const TQString &_udi)
+-{
+-    const Medium* medium = m_mediaList.findById(_udi);
+-    if (!medium)
+-        return i18n("No such medium: %1").arg(_udi);
+-
+-    if (!medium->isEncrypted() || medium->clearDeviceUdi().isNull())
+-        return TQString();
+-
+-    const char *udi = medium->id().latin1();
+-    DBusMessage *msg = NULL;
+-    DBusMessage *reply = NULL;
+-    DBusError error;
+-
+-    kdDebug() << "Tear down " << udi << "\n" <<endl;
+-	
+-    msg = dbus_message_new_method_call ("org.freedesktop.Hal", udi,
+-                                        "org.freedesktop.Hal.Device.Volume.Crypto",
+-                                        "Teardown");
+-    if (msg == NULL) {
+-        kdDebug() << "teardown failed for " << udi << ": could not create dbus message\n";
+-        return i18n("Internal Error");
+-    }
+-
+-    if (!dbus_message_append_args (msg, DBUS_TYPE_INVALID)) {
+-        kdDebug() << "teardown failed for " << udi << ": could not append args to dbus message\n";
+-        dbus_message_unref (msg);
+-        return i18n("Internal Error");
+-    }
+-
+-    dbus_error_init (&error);
+-    if (!(reply = dbus_connection_send_with_reply_and_block (dbus_connection, msg, -1, &error)) || 
+-        dbus_error_is_set (&error))
+-    {
+-        TQString qerror = i18n("Internal Error");
+-        kdDebug() << "teardown failed for " << udi << ": " << error.name << " " << error.message << endl;
+-        dbus_error_free (&error);
+-        dbus_message_unref (msg);
+-        while (dbus_connection_dispatch(dbus_connection) == DBUS_DISPATCH_DATA_REMAINS) ;
+-        return qerror;
+-    }
+-
+-    dbus_message_unref (msg);
+-    dbus_message_unref (reply);
+-
+-    ResetProperties(udi);
+-
+-    while (dbus_connection_dispatch(dbus_connection) == DBUS_DISPATCH_DATA_REMAINS) ;
+-
+-    return TQString();
+-}
+-
+ #include "halbackend.moc"
+--- kdebase/kioslave/media/mediamanager/halbackend.h.hal04	2012-09-08 14:15:10.324373357 -0400
++++ kdebase/kioslave/media/mediamanager/halbackend.h	2012-09-08 14:27:34.564678553 -0400
+@@ -85,8 +85,6 @@
+ 	TQString mount(const TQString &id);
+ 	TQString mount(const Medium *medium);
+ 	TQString unmount(const TQString &id);
+-	TQString decrypt(const TQString &id, const TQString &password);
+-	TQString undecrypt(const TQString &id);
+ 
+ private:
+ 	/**
+@@ -152,6 +150,13 @@
+ 
+ /* Hal call-backs -- from gvm*/
+ public:
++	/** Invoked by libhal for integration with our mainloop.
++	*
++	*  @param  ctx                 LibHal context
++	*  @param  dbus_connection     D-BUS connection to integrate
++	*/
++	static void hal_main_loop_integration(LibHalContext *ctx, DBusConnection *dbus_connection);
++
+ 	/** Invoked when a device is added to the Global Device List.
+ 	*
+ 	*  @param  ctx                 LibHal context
+@@ -184,7 +189,7 @@
+ 	*/
+ 	static void hal_device_condition(LibHalContext *ctx, const char *udi,
+ 				const char *condition_name,
+-				const char* message
++				DBusMessage* message
+ 				);
+ 
+ 	TQStringList getHALmountoptions(TQString udi);
+@@ -196,9 +201,14 @@
+ 	LibHalContext*		m_halContext;
+ 
+ 	/**
++	* Structure defining the hal callback function for devices events
++	*/
++	LibHalFunctions 	m_halFunctions;
++
++	/**
+ 	* libhal-storage HAL policy, e.g. for icon names
+ 	*/
+-	LibHalStoragePolicy*	m_halStoragePolicy;
++	HalStoragePolicy*	m_halStoragePolicy;
+ 
+ 	/**
+ 	* The DBus-Qt bindings connection for mainloop integration

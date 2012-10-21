@@ -1,0 +1,135 @@
+commit 553923b25dc41e2c17ba9038eb225cd3bb9b1770
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1348270079 -0500
+
+    Forcibly prevent transient override redirect windows from showing up over the lock screen
+    This closes Bug 1079
+
+diff --git a/kdesktop/lock/lockdlg.cc b/kdesktop/lock/lockdlg.cc
+index 236bf8a..005ac99 100644
+--- a/kdesktop/lock/lockdlg.cc
++++ b/kdesktop/lock/lockdlg.cc
+@@ -573,9 +573,19 @@ void PasswordDlg::gplugActivity()
+ 
+ void PasswordDlg::gplugMsgBox( TQMessageBox::Icon type, const TQString &text )
+ {
+-    TQDialog dialog( this, 0, true, (WFlags)WX11BypassWM );
++    TQDialog dialog( this, 0, true, (trinity_desktop_lock_use_system_modal_dialogs?((WFlags)WStyle_StaysOnTop):((WFlags)WX11BypassWM)) );
++    if (trinity_desktop_lock_use_system_modal_dialogs) {
++        // Signal that we do not want any window controls to be shown at all
++        Atom kde_wm_system_modal_notification;
++        kde_wm_system_modal_notification = XInternAtom(qt_xdisplay(), "_KDE_WM_MODAL_SYS_NOTIFICATION", False);
++        XChangeProperty(qt_xdisplay(), dialog.winId(), kde_wm_system_modal_notification, XA_INTEGER, 32, PropModeReplace, (unsigned char *) "TRUE", 1L);
++    }
++    dialog.setCaption(i18n("Authentication Subsystem Notice"));
+     TQFrame *winFrame = new TQFrame( &dialog );
+-    winFrame->setFrameStyle( TQFrame::WinPanel | TQFrame::Raised );
++    if (trinity_desktop_lock_use_system_modal_dialogs)
++        winFrame->setFrameStyle( TQFrame::NoFrame );
++    else
++        winFrame->setFrameStyle( TQFrame::WinPanel | TQFrame::Raised );
+     winFrame->setLineWidth( 2 );
+     TQVBoxLayout *vbox = new TQVBoxLayout( &dialog );
+     vbox->addWidget( winFrame );
+diff --git a/kdesktop/lock/lockprocess.cc b/kdesktop/lock/lockprocess.cc
+index 2ce7507..5265bc6 100644
+--- a/kdesktop/lock/lockprocess.cc
++++ b/kdesktop/lock/lockprocess.cc
+@@ -960,6 +960,27 @@ void LockProcess::createSaverWindow()
+ 
+     setGeometry(0, 0, mRootWidth, mRootHeight);
+ 
++    // HACK
++    // Close all tooltips and notification windows
++    {
++        Window rootWindow = RootWindow(x11Display(), x11Screen());
++        Window parent;
++        Window* children = NULL;
++        unsigned int noOfChildren = 0;
++        XWindowAttributes childAttr;
++        Window childTransient;
++
++        if (XQueryTree(x11Display(), rootWindow, &rootWindow, &parent, &children, &noOfChildren) && noOfChildren>0 ) {
++            for (unsigned int i=0; i<noOfChildren; i++) {
++                if (XGetWindowAttributes(x11Display(), children[i], &childAttr) && XGetTransientForHint(x11Display(), children[i], &childTransient)) {
++                    if ((childAttr.map_state == IsViewable) && (childAttr.override_redirect) && (childTransient)) {
++                        XUnmapWindow(x11Display(), children[i]);
++                    }
++                }
++            }
++        }
++    }
++
+     kdDebug(1204) << "Saver window Id: " << winId() << endl;
+ }
+ 
+@@ -2162,9 +2183,19 @@ void LockProcess::unlockXF86()
+ 
+ void LockProcess::msgBox( TQMessageBox::Icon type, const TQString &txt )
+ {
+-    TQDialog box( 0, "messagebox", true, (WFlags)WX11BypassWM );
++    TQDialog box( 0, "messagebox", true, (trinity_desktop_lock_use_system_modal_dialogs?((WFlags)WStyle_StaysOnTop):((WFlags)WX11BypassWM)) );
++    if (trinity_desktop_lock_use_system_modal_dialogs) {
++        // Signal that we do not want any window controls to be shown at all
++        Atom kde_wm_system_modal_notification;
++        kde_wm_system_modal_notification = XInternAtom(qt_xdisplay(), "_KDE_WM_MODAL_SYS_NOTIFICATION", False);
++        XChangeProperty(qt_xdisplay(), box.winId(), kde_wm_system_modal_notification, XA_INTEGER, 32, PropModeReplace, (unsigned char *) "TRUE", 1L);
++    }
++    box.setCaption(i18n("Authentication Subsystem Notice"));
+     TQFrame *winFrame = new TQFrame( &box );
+-    winFrame->setFrameStyle( TQFrame::WinPanel | TQFrame::Raised );
++    if (trinity_desktop_lock_use_system_modal_dialogs)
++        winFrame->setFrameStyle( TQFrame::NoFrame );
++    else
++        winFrame->setFrameStyle( TQFrame::WinPanel | TQFrame::Raised );
+     winFrame->setLineWidth( 2 );
+     TQLabel *label1 = new TQLabel( winFrame );
+     label1->setPixmap( TQMessageBox::standardIcon( type ) );
+@@ -2264,8 +2295,10 @@ void LockProcess::windowAdded( WId w, bool managed )
+     int y = XDisplayHeight( qt_xdisplay(), qt_xscreen()) - attr_geom.height;
+     if( managed ) {
+         XSetWindowAttributes attr;
+-        attr.override_redirect = True;
+-        XChangeWindowAttributes( qt_xdisplay(), w, CWOverrideRedirect, &attr );
++        if (!trinity_desktop_lock_use_system_modal_dialogs) {
++            attr.override_redirect = True;
++            XChangeWindowAttributes( qt_xdisplay(), w, CWOverrideRedirect, &attr );
++        }
+         XReparentWindow( qt_xdisplay(), w, qt_xrootwin(), x, y );
+         XMapWindow( qt_xdisplay(), w );
+     }
+diff --git a/kdesktop/lock/main.cc b/kdesktop/lock/main.cc
+index 56b4b5f..e74d9f9 100644
+--- a/kdesktop/lock/main.cc
++++ b/kdesktop/lock/main.cc
+@@ -76,6 +76,30 @@ bool MyApp::x11EventFilter( XEvent *ev )
+             emit activity();
+         }
+     }
++    else if (ev->type == MapNotify) {
++        // HACK
++        // Close all tooltips and notification windows
++        XMapEvent map_event = ev->xmap;
++        XWindowAttributes childAttr;
++        Window childTransient;
++        if (XGetWindowAttributes(map_event.display, map_event.window, &childAttr) && XGetTransientForHint(map_event.display, map_event.window, &childTransient)) {
++            if((childAttr.map_state == IsViewable) && (childAttr.override_redirect) && (childTransient)) {
++                XUnmapWindow(map_event.display, map_event.window);
++            }
++        }
++    }
++    else if (ev->type == CreateNotify) {
++        // HACK
++        // Close all tooltips and notification windows
++        XCreateWindowEvent create_event = ev->xcreatewindow;
++        XWindowAttributes childAttr;
++        Window childTransient;
++        if (XGetWindowAttributes(create_event.display, create_event.window, &childAttr) && XGetTransientForHint(create_event.display, create_event.window, &childTransient)) {
++            if ((childAttr.override_redirect) && (childTransient)) {
++                XDestroyWindow(create_event.display, create_event.window);
++            }
++        }
++    }
+     return KApplication::x11EventFilter( ev );
+ }
+ 

@@ -80,6 +80,7 @@ from kio, kjs, khtml and kprint.
 %package devel
 Summary:		Trinity bindings for Python - Development files and scripts [Trinity]
 Group:			Development/Libraries
+Requires:		%{name} = %{version}-%{release}
 
 %description devel
 Development .sip files with definitions of PyKDE classes. They

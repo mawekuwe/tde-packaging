@@ -1,0 +1,15 @@
+--- kdepim-3.5.13.1/kioslaves/imap4/imapparser.h~	2012-09-26 14:43:52.932265697 +0200
++++ kdepim-3.5.13.1/kioslaves/imap4/imapparser.h	2012-09-26 14:45:33.190317168 +0200
+@@ -94,7 +94,11 @@
+   }
+   uint length()
+   {
+-    return data.size() - pos;
++    if( pos < data.size() ) {
++      return data.size() - pos;
++    } else {
++      return 0;
++    }
+   }
+   void fromString(const TQString &s)
+   {

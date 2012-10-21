@@ -1,0 +1,11 @@
+#%PAM-1.0
+auth       required	pam_stack.so service=system-auth
+auth       required	pam_nologin.so
+auth       sufficient	pam_timestamp.so
+account    required	pam_stack.so service=system-auth
+password   required	pam_stack.so service=system-auth
+session    required	pam_stack.so service=system-auth
+session    required  pam_loginuid.so
+session    optional	pam_timestamp.so
+session    optional	pam_selinux.so
+session    optional	pam_console.so

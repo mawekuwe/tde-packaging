@@ -52,6 +52,8 @@ Patch2:		pykdeextensions-3.5.13-fix_extra_module_dir.patch
 Patch3:		pykdeextensions-3.5.13-fix_libsuffix.patch
 # [pykdeextensions] Do not link with stdc++
 Patch4:		pykdeextensions-3.5.13-do_not_link_stdc++.patch
+# [pykdeextensions] Fix include directory search location
+Patch5:		pykdeextensions-3.5.13-fix_include_dir.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-tdelibs-devel
@@ -111,6 +113,7 @@ This package contains the libpythonize development files.
 %patch2 -p1 -b .extramodule
 %patch3 -p1 -b .libsuffix
 %patch4 -p1 -b .stdc++
+%patch5 -p1 -b .incdir
 
 # Changes library directory to 'lib64'
 for f in src/*.py; do

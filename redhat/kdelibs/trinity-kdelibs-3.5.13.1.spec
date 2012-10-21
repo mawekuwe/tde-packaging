@@ -10,15 +10,15 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
 
 Name:		trinity-tdelibs
 Version:	3.5.13.1
-Release:	0%{?dist}%{?_variant}
+Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Libraries
 Group:		Environment/Libraries
@@ -30,9 +30,7 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	kdelibs-3.5.13.tar.gz
-# [tdelibs] Diff between 3.5.13-stable and 3.5.13-sru
-Patch0:		tdelibs-3.5.13-sru-20120805.patch
+Source0:	kdelibs-3.5.13.1.tar.gz
 
 Obsoletes:	tdelibs < %{version}-%{release}
 Provides:	tdelibs = %{version}-%{release}
@@ -44,44 +42,112 @@ Provides:	trinity-kdelibs-apidocs = %{version}-%{release}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-arts-devel
-BuildRequires:	krb5-devel libxslt-devel cups-devel libart_lgpl-devel pcre-devel
-BuildRequires:	libutempter-devel
-BuildRequires:	bzip2-devel
+BuildRequires:	trinity-tqtinterface-devel >= %{version}
+BuildRequires:	trinity-arts-devel >= %{version}
+BuildRequires:	krb5-devel
+BuildRequires:	libxslt-devel
+BuildRequires:	cups-devel
+BuildRequires:	libart_lgpl-devel
+BuildRequires:	pcre-devel
 BuildRequires:	openssl-devel
 BuildRequires:	gcc-c++
 BuildRequires:	alsa-lib-devel
 BuildRequires:	libidn-devel
 BuildRequires:	qt3-devel
-BuildRequires:	jasper-devel
 BuildRequires:	libtiff-devel
-BuildRequires:	OpenEXR-devel
 BuildRequires:	glib2-devel
 BuildRequires:	gamin-devel
+BuildRequires:	aspell
 BuildRequires:	aspell-devel
-BuildRequires:	hspell-devel
-BuildRequires:	avahi-tqt-devel >= 3.5.13
 # LUA support are not ready yet
 #BuildRequires:	lua-devel
 
+
+
+# BZIP2 support
+%if 0%{?suse_version}
+BuildRequires:	libbz2-devel
+%else
+BuildRequires:	bzip2-devel
+%endif
+
+# UTEMPTER support
+%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libutempter-devel
+%endif
+%if 0%{?rhel} == 4
+BuildRequires:	utempter
+%endif
+%if 0%{?suse_version}
+BuildRequires:	utempter-devel
+%endif
+
+# HSPELL support
+%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_hspell 1
+BuildRequires:	hspell-devel
+%endif
+
+# JASPER support
+%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%define with_jasper 1
+%if 0%{?suse_version}
+BuildRequires:	libjasper-devel
+%else
+BuildRequires:	jasper-devel
+%endif
+%endif
+
+# AVAHI support
+%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%define with_avahi 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	trinity-avahi-tqt-devel >= %{version}
 BuildRequires:	%{_lib}avahi-client-devel
+Requires:		%{_lib}avahi-client3
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	trinity-avahi-tqt-devel >= %{version}
+BuildRequires:	avahi-devel
+Requires:		avahi
+%endif
+%endif
+
+# OPENEXR support
+%if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%define with_openexr 1
+BuildRequires:	OpenEXR-devel
+%endif
+
+# LIBTOOL
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	libtool-ltdl-devel
+%endif
+%if 0%{?rhel} == 4
+BuildRequires:	libtool
+%endif
+
+# X11 support
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	x11-proto-devel
 BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
-Requires:		%{_lib}avahi-client3
-%else
-BuildRequires:	avahi-devel
-BuildRequires:	libtool-ltdl-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
 BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	libXcomposite-devel
 %endif
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel
+%endif
 
-Requires:		tqtinterface >= 3.5.13
-Requires:		trinity-arts >= 3.5.13
-Requires:		avahi
+
+Requires:		trinity-tqtinterface >= %{version}
+Requires:		trinity-arts >= %{version}
 Requires:		qt3 >= 3.3.8.d
+
 
 %description
 Libraries for the Trinity Desktop Environment:
@@ -202,6 +268,12 @@ kimgio (image manipulation).
 # New in TDE 3.5.13
 %{tde_bindir}/kdetcompmgr
 
+%pre
+# Bug 1074
+if [ -d %{tde_datadir}/locale/all_languages ]; then
+  rm -rf %{tde_datadir}/locale/all_languages
+fi
+
 %post
 /sbin/ldconfig || :
 
@@ -248,13 +320,18 @@ applications for TDE.
 
 ##########
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+##########
+
 %prep
-%setup -q -n kdelibs
-%patch0 -p1
+%setup -q -n kdelibs-3.5.13.1
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
+unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
@@ -262,8 +339,12 @@ export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 # We need LD_LIBRARY_PATH here because ld.so.conf file has not been written yet
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
+if [ -d /usr/X11R6 ]; then
+  export CXXFLAGS="${CXXFLAGS} -L/usr/X11R6/%{_lib} -I/usr/X11R6/include"
+fi
 
-%if 0%{?rhel} || 0%{?fedora}
+
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
@@ -285,14 +366,19 @@ cd build
   -DWITH_CUPS=ON \
   -DWITH_LUA=OFF \
   -DWITH_TIFF=ON \
-  -DWITH_JASPER=ON \
-  -DWITH_OPENEXR=ON \
-  -DWITH_UTEMPTER=ON \
-  -DWITH_AVAHI=ON \
-  -DWITH_ASPELL=ON \
-  -DWITH_HSPELL=ON \
+  %{?with_jasper:-DWITH_JASPER=ON} \
+  %{?with_hspell:-DWITH_HSPELL=ON} \
+  %{?with_openexr:-DWITH_OPENEXR=ON} \
+  %{?with_avahi:-DWITH_AVAHI=ON} \
+%if 0%{?rhel} == 4
+  -DWITH_PCRE=OFF \
+  -DWITH_INOTIFY=OFF \
+%else
   -DWITH_PCRE=ON \
   -DWITH_INOTIFY=ON \
+%endif
+  -DWITH_UTEMPTER=ON \
+  -DWITH_ASPELL=ON \
   -DWITH_GAMIN=ON \
   ..
 
@@ -326,5 +412,5 @@ EOF
 
 
 %changelog
-* Sun Aug 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-0
-- Initial SRU build
+* Tue Sep 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1

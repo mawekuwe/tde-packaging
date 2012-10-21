@@ -11,8 +11,8 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
@@ -20,8 +20,8 @@
 
 Name:		trinity-tdegames
 Summary:	Trinity Desktop Environment - Games
-Version:	3.5.13
-Release:	5%{?dist}%{?_variant}
+Version:	3.5.13.1
+Release:	1%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		Amusements/Games
@@ -33,23 +33,16 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source: 	kdegames-%{version}.tar.gz
-
-# [kdegames/ktuberling] Fix ktuberling pictures loading
-Patch1:		kdegames-3.5.13-ktuberling_fail_load_picture.patch
-# [kdegames] Missing LDFLAGS cause FTBFS on Mageia 2
-Patch2:		kdegames-3.5.13-missing_ldflags.patch
-# [kdegames] Switch to v3.5.13-sru branch
-Patch3:		kdegames-3.5.13-sru-20120827.patch
+Source: 	kdegames-3.5.13.1.tar.gz
 
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	trinity-tdelibs-devel
 BuildRequires:	libtool
 
-BuildRequires:	tqtinterface-devel >= 3.5.13
-BuildRequires:	trinity-arts-devel >= 3.5.13
-BuildRequires:	trinity-tdemultimedia-devel >= 3.5.13
-BuildRequires:	qt3-devel >= 3.3.8.d
+BuildRequires:	tqtinterface-devel >= %{version}
+BuildRequires:	trinity-arts-devel >= %{version}
+BuildRequires:	trinity-tdemultimedia-devel >= %{version}
+BuildRequires:	qt3-devel
 
 Obsoletes:		trinity-kdegames < %{version}-%{release}
 Provides:		trinity-kdegames = %{version}-%{release}
@@ -145,19 +138,19 @@ This package is part of TDE, and a component of the TDE games module.
 %{tde_datadir}/apps/[kt]degames/pics/star.png
 %{tde_datadir}/icons/crystalsvg/*/actions/roll.png
 %{tde_datadir}/icons/crystalsvg/*/actions/highscore.png
-%{tde_tdedocdir}/HTML/en/[kt]degames-apidocs/
+%{tde_tdedocdir}/HTML/en/[kt]degames-3.5.13.1-apidocs/
 
 %post -n trinity-libtdegames1
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 /sbin/ldconfig || :
 
 %postun -n trinity-libtdegames1
 for f in crystalsvg ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 /sbin/ldconfig || :
 
@@ -227,19 +220,19 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-atlantik
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 /sbin/ldconfig || :
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-atlantik
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
 /sbin/ldconfig || :
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -298,17 +291,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kasteroids
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kasteroids
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -334,17 +327,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-katomic
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-katomic
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -372,17 +365,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kbackgammon
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kbackgammon
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -409,17 +402,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kbattleship
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kbattleship
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -447,17 +440,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kblackbox
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kblackbox
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -495,17 +488,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kbounce
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kbounce
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -535,17 +528,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kenolaba
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kenolaba
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -572,17 +565,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kfouleggs
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kfouleggs
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -618,17 +611,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kgoldrunner
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kgoldrunner
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -657,17 +650,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kjumpingcube
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kjumpingcube
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -693,17 +686,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-klickety
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-klickety
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -737,17 +730,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-klines
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-klines
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -773,17 +766,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kmahjongg
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kmahjongg
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -813,17 +806,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kmines
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kmines
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -848,17 +841,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-knetwalk
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-knetwalk
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -892,18 +885,18 @@ This package is part of Trinity, and a component of the TDE games module.
 %post -n trinity-kolf
 /sbin/ldconfig || :
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kolf
 /sbin/ldconfig || :
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -953,17 +946,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-konquest
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-konquest
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -987,17 +980,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kpat
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kpat
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1021,17 +1014,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kpoker
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kpoker
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1064,17 +1057,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kreversi
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kreversi
 for f in crystalsvg hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1100,17 +1093,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-ksame
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ksame
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1137,17 +1130,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kshisen
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kshisen
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1178,17 +1171,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-ksirtet
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ksirtet
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1213,17 +1206,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-ksmiletris
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ksmiletris
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1248,17 +1241,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-ksnake
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ksnake
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1297,17 +1290,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-ksokoban
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ksokoban
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1336,17 +1329,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-kspaceduel
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-kspaceduel
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1371,17 +1364,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-ktron
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ktron
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1419,17 +1412,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-ktuberling
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-ktuberling
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1463,17 +1456,17 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-twin4
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-twin4
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
@@ -1504,26 +1497,29 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %post -n trinity-lskat
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %postun -n trinity-lskat
 for f in hicolor ; do
-  touch --no-create %{_datadir}/icons/$f 2> /dev/null ||:
-  gtk-update-icon-cache -q %{_datadir}/icons/$f 2> /dev/null ||:
+  touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
+  gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
-update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
+update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
+
+##########
+
+%if 0%{?suse_version}
+%debug_package
+%endif
 
 ##########
 
 
 %prep
-%setup -q -n kdegames
-#patch1 -p1
-#patch2 -p1 -b .ftbfs
-%patch3 -p1
+%setup -q -n kdegames-3.5.13.1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -1537,11 +1533,20 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
+unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
+# Do not build against any "/usr" installed KDE
+export KDEDIR=%{tde_prefix}
+
+# Specific path for RHEL4
+if [ -d /usr/X11R6 ]; then
+  export CXXFLAGS="${CXXFLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+fi
+
 %configure \
+   --prefix=%{tde_prefix} \
    --exec-prefix=%{tde_prefix} \
    --bindir=%{tde_bindir} \
    --libdir=%{tde_libdir} \
@@ -1556,6 +1561,12 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
    --enable-closure \
    --disable-setgid \
    --with-extra-includes=%{tde_includedir}/tqt
+
+# WTF hack for RHEL4
+%if 0%{?rhel} == 4
+mkdir atlantik/libatlantic/.libs
+ln -s . atlantik/libatlantic/.libs/.libs
+%endif
 
 %__make %{?_smp_mflags}
 
@@ -1588,23 +1599,6 @@ fi
 
 
 
-
 %changelog
-* Mon Aug 27 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
-- Switch to v3.5.13-sru branch
-
-* Tue Jul 31 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
-- Split into several packages
-- Add support for Mageia 2
-
-* Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Fix ktuberling picture loading [TDE Bug #638]
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Fix HTML directory location
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Sat Sep 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Import to GIT
+* Sun Sep 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1

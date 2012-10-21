@@ -1,0 +1,10 @@
+--- kdebase/kdm/backend/CMakeLists.txt.ORI	2012-09-19 21:39:48.505001985 +0200
++++ kdebase/kdm/backend/CMakeLists.txt	2012-09-19 21:40:08.951005360 +0200
+@@ -14,6 +14,7 @@
+ include_directories(
+   ${CMAKE_CURRENT_BINARY_DIR}
+   ${CMAKE_BINARY_DIR}
++  ${DBUS_INCLUDE_DIRS}
+   ${DBUS_TQT_INCLUDE_DIRS}
+ )
+ 

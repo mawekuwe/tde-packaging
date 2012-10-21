@@ -11,16 +11,16 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
 
 Name:		trinity-tdeaddons
 Summary:	Trinity Desktop Environment - Plugins
-Version:	3.5.13
-Release:	6%{?dist}%{?_variant}
+Version:	3.5.13.1
+Release:	1%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		User Interface/Desktops
@@ -37,20 +37,15 @@ Provides:	trinity-kdeaddons-extras = %{version}-%{release}
 Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: kdeaddons-%{version}.tar.gz
-Source1: metabar-fedora.tar.bz2
-Source2: metabarrc
-
-# [tdeaddons] Updates from v3.5.13-sru branch
-Patch0:	 kdeaddons-3.5.13-sru-20120809.patch
+Source0: kdeaddons-3.5.13.1.tar.gz
 
 BuildRequires: autoconf automake libtool m4
-BuildRequires: trinity-arts-devel
-BuildRequires: trinity-tdelibs-devel
-BuildRequires: trinity-tdebase-devel
-BuildRequires: trinity-tdegames-devel
-BuildRequires: trinity-tdemultimedia-devel
-BuildRequires: trinity-tdepim-devel
+BuildRequires: trinity-arts-devel >= %{version}
+BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tdebase-devel >= %{version}
+BuildRequires: trinity-tdegames-devel >= %{version}
+BuildRequires: trinity-tdemultimedia-devel >= %{version}
+BuildRequires: trinity-tdepim-devel >= %{version}
 
 BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
@@ -360,8 +355,12 @@ Summary:	plugins for Konqueror, the Trinity file/web/doc browser
 Group:		Applications/Utilities
 %if 0%{?mgaversion} || 0%{?mdkversion}
 Requires:	%{_lib}jpeg8
-%else
+%endif
+%if 0%{?rhel} || 0%{?fedora}
 Requires:	libjpeg
+%endif
+%if 0%{?suse_version}
+Requires:	libjpeg62
 %endif
 Requires:	python
 Requires:	rsync
@@ -525,11 +524,6 @@ graphical disk usage viewer and image conversions and transformations.
 %{tde_tdelibdir}/libadblock.so
 %{tde_tdedocdir}/HTML/en/konq-plugins/
 
-%if 0%{?fedora}
-%{tde_datadir}/apps/metabar/themes/fedora/
-%{tde_datadir}/config/metabarrc
-%endif
-
 %post -n trinity-konq-plugins
 for f in crystalsvg hicolor locolor ; do
   touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
@@ -650,11 +644,16 @@ done
 
 ##########
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+##########
+
 
 
 %prep
-%setup -q -a 1 -n kdeaddons
-%patch0 -p1
+%setup -q -n kdeaddons-3.5.13.1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -670,10 +669,11 @@ done
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-#export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
+  --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \
@@ -715,14 +715,6 @@ if [ -d %{buildroot}/$HTML_DIR ]; then
  done
 fi
 
-%if 0%{?fedora}
-# install fedora metabar theme
-cp -prf fedora %{buildroot}%{tde_datadir}/apps/metabar/themes
-install -m644 -p %{SOURCE2} %{buildroot}%{tde_datadir}/config/
-%endif
-
-
-
 
 
 %clean
@@ -732,26 +724,5 @@ install -m644 -p %{SOURCE2} %{buildroot}%{tde_datadir}/config/
 
 
 %changelog
-* Thu Aug 09 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
-- Updates from v3.5.13-sru branch
-- Rebuilt for tdebase-3.5.13-27
-
-* Fri Jun 29 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
-- Split in several packages
-
-* Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
-- Removes SDL patch for noatun
-
-* Thu Dec 15 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Fix content of -extras package
-- Fix various packaging issues
-
-* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Updates BuildRequires
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Sat Oct 29 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Import to GIT
-
+* Sun Sep 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
+- Initial build for TDE 3.5.13.1

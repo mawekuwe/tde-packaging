@@ -1,0 +1,86 @@
+commit de49c7480893e7d52f64ec1166a55cdf97b2541e
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1347381606 -0500
+
+    Detect presence of Ruby pkg-config file and adjust directory search accordingly
+
+diff --git a/korundum/rubylib/korundum/configure.in.in b/korundum/rubylib/korundum/configure.in.in
+index 81ad0bc..5782123 100644
+--- a/korundum/rubylib/korundum/configure.in.in
++++ b/korundum/rubylib/korundum/configure.in.in
+@@ -1,13 +1,28 @@
++KDE_FIND_PATH(pkg-config, PKGCONFIG, [${prefix}/bin ${exec_prefix}/bin /usr/bin /usr/local/bin /opt/local/bin], [
++  AC_MSG_WARN([Could not find pkg-config])
++])
++
+ AC_CHECK_PROG(RUBY, ruby, ruby)
+ 
+ if test -z "$RUBY"; then
+   DO_NOT_COMPILE="$DO_NOT_COMPILE korundum"
+ else
+   AC_MSG_CHECKING(for ruby dirs)
+-  RUBY_ARCHDIR=`ruby -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"archdir"@:>@)'`
+-  RUBY_SITEARCHDIR=`ruby -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitearchdir"@:>@)'`
+-  RUBY_SITEDIR=`ruby -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitelibdir"@:>@)'`
+-  RUBY_RUBYLIBDIR=`ruby -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"rubylibdir"@:>@)'`
++  if test -n "$PKGCONFIG"; then
++    RUBY_VERSION=`$PKGCONFIG ruby --modversion 2>/dev/null`
++    if test -n "$RUBY_VERSION"; then
++      RUBY_ARCHDIR=`ruby -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"archdir"@:>@)'`
++      RUBY_SITEARCHDIR=`ruby -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"sitearchdir"@:>@)'`
++      RUBY_SITEDIR=`ruby -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"sitelibdir"@:>@)'`
++      RUBY_RUBYLIBDIR=`ruby -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"rubylibdir"@:>@)'`
++    fi
++  fi
++  if test -z "$RUBY_VERSION"; then
++    RUBY_ARCHDIR=`ruby -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"archdir"@:>@)'`
++    RUBY_SITEARCHDIR=`ruby -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitearchdir"@:>@)'`
++    RUBY_SITEDIR=`ruby -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitelibdir"@:>@)'`
++    RUBY_RUBYLIBDIR=`ruby -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"rubylibdir"@:>@)'`
++  fi
+   AC_MSG_RESULT([archdir $RUBY_ARCHDIR, sitearchdir $RUBY_SITEARCHDIR, sitedir $RUBY_SITEDIR])
+   AC_SUBST(RUBY_ARCHDIR)
+   AC_SUBST(RUBY_SITEARCHDIR)
+diff --git a/qtruby/rubylib/qtruby/configure.in.in b/qtruby/rubylib/qtruby/configure.in.in
+index 453bb68..3cfa630 100644
+--- a/qtruby/rubylib/qtruby/configure.in.in
++++ b/qtruby/rubylib/qtruby/configure.in.in
+@@ -1,15 +1,32 @@
++KDE_FIND_PATH(pkg-config, PKGCONFIG, [${prefix}/bin ${exec_prefix}/bin /usr/bin /usr/local/bin /opt/local/bin], [
++  AC_MSG_WARN([Could not find pkg-config])
++])
++
+ AC_CHECK_PROG(RUBY, ruby, ruby)
+ 
+ if test -z "$RUBY"; then
+   DO_NOT_COMPILE="$DO_NOT_COMPILE qtruby"
+ else
+   AC_MSG_CHECKING(for ruby dirs)
+-  RUBY_ARCHDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"archdir"@:>@)'`
+-  RUBY_SITEARCHDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitearchdir"@:>@)'`
+-  RUBY_SITEDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitelibdir"@:>@)'`
+-  RUBY_RUBYLIBDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"rubylibdir"@:>@)'`
+-  RUBY_LIBDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"libdir"@:>@)'`
+-  RUBY_LIBRUBYARG=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"LIBRUBYARG_SHARED"@:>@)'`
++  if test -n "$PKGCONFIG"; then
++    RUBY_VERSION=`$PKGCONFIG ruby --modversion 2>/dev/null`
++    if test -n "$RUBY_VERSION"; then
++      RUBY_ARCHDIR=`$RUBY -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"archdir"@:>@)'`
++      RUBY_SITEARCHDIR=`$RUBY -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"sitearchdir"@:>@)'`
++      RUBY_SITEDIR=`$RUBY -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"sitelibdir"@:>@)'`
++      RUBY_RUBYLIBDIR=`$RUBY -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"rubylibdir"@:>@)'`
++      RUBY_LIBDIR=`$RUBY -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"libdir"@:>@)'`
++      RUBY_LIBRUBYARG=`$RUBY -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"LIBRUBYARG_SHARED"@:>@)'`
++    fi
++  fi
++  if test -z "$RUBY_VERSION"; then
++    RUBY_ARCHDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"archdir"@:>@)'`
++    RUBY_SITEARCHDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitearchdir"@:>@)'`
++    RUBY_SITEDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitelibdir"@:>@)'`
++    RUBY_RUBYLIBDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"rubylibdir"@:>@)'`
++    RUBY_LIBDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"libdir"@:>@)'`
++    RUBY_LIBRUBYARG=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"LIBRUBYARG_SHARED"@:>@)'`
++  fi
+   AC_MSG_RESULT([archdir $RUBY_ARCHDIR, sitearchdir $RUBY_SITEARCHDIR, sitedir $RUBY_SITEDIR, libdir $RUBY_LIBDIR, librubyarg $RUBY_LIBRUBYARG])
+   AC_SUBST(RUBY_ARCHDIR)
+   AC_SUBST(RUBY_SITEARCHDIR)
