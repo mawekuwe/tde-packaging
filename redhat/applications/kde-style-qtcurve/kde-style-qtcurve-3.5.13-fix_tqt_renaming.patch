@@ -1,0 +1,237 @@
+--- a/style/qtcurve.h.ORI	2012-08-30 20:50:02.179242022 +0200
++++ a/style/qtcurve.h	2012-08-30 20:51:22.372546460 +0200
+@@ -1,5 +1,5 @@
+-#ifndef __TQTCURVE_H__
+-#define __TQTCURVE_H__
++#ifndef __QTCURVE_H__
++#define __QTCURVE_H__
+ 
+ /*
+   TQtCurve (C) Craig Drummond, 2003 - 2010 craig.p.drummond@gmail.com
+@@ -51,7 +51,7 @@
+ */
+ 
+ #include "config.h"
+-#ifdef TQTC_TQT_ONLY
++#ifdef QTC_QT_ONLY
+ #include "tqtc_kstyle.h"
+ #else
+ #include <kdeversion.h>
+@@ -68,7 +68,7 @@
+ class TQTimer;
+ class TQSlider;
+ 
+-#ifdef TQTC_TQT_ONLY
++#ifdef QTC_QT_ONLY
+ #define BASE_STYLE TQtCKStyle
+ #else
+ #define BASE_STYLE KStyle
+@@ -126,7 +126,7 @@
+         ENTRY_NONE
+     };
+ 
+-#ifdef TQTC_STYLE_SUPPORT
++#ifdef QTC_STYLE_SUPPORT
+     TQtCurveStyle(const TQString &name=TQString());
+ #else
+     TQtCurveStyle();
+@@ -278,7 +278,7 @@
+     mutable TQColor             itsColoredBackgroundCols[TOTAL_SHADES+1];
+     EApp                       itsThemedApp;
+     mutable TQCache<TQPixmap>    itsPixmapCache;
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+     bool                       itsIsTransKicker;
+ #endif
+     EHover                     itsHover;
+--- a/style/qtcurve.cpp.tqt	2012-08-30 21:28:00.664141509 +0200
++++ a/style/qtcurve.cpp	2012-08-30 21:28:18.078781087 +0200
+@@ -62,7 +62,7 @@
+ #include <tqtable.h>
+ 
+ #include "config.h"
+-#ifndef TQTC_TQT_ONLY
++#ifndef QTC_QT_ONLY
+ #include <kdeversion.h>
+ #endif
+ #include <tqsettings.h>
+@@ -196,7 +196,7 @@
+                 ? atoi(sessionVersion)<4
+                     ? 3
+                     : 4
+-#ifdef TQTC_DEFAULT_TO_KDE3
++#ifdef QTC_DEFAULT_TO_KDE3
+                 : 3;
+ #else
+                 : getenv("TDE_FULL_SESSION")
+@@ -292,7 +292,7 @@
+     return kdeHome[trinity ? 0 : 1];
+ }
+ 
+-#ifdef TQTC_STYLE_SUPPORT
++#ifdef QTC_STYLE_SUPPORT
+ static void getStyles(const TQString &dir, const char *sub, TQStringList &styles)
+ {
+     TQDir d(dir+sub);
+@@ -349,7 +349,7 @@
+         TQStringList list;
+         list << "TQtCurve";
+ 
+-#ifdef TQTC_STYLE_SUPPORT
++#ifdef QTC_STYLE_SUPPORT
+         getStyles(kdeHome(useTQt3Settings()), list);
+         getStyles(kdeHome(!useTQt3Settings()), list);
+         getStyles(KDE_PREFIX(useTQt3Settings() ? 3 : 4), list);
+@@ -363,7 +363,7 @@
+     {
+         return "qtcurve"==s.lower()
+                     ? new TQtCurveStyle
+-#ifdef TQTC_STYLE_SUPPORT
++#ifdef QTC_STYLE_SUPPORT
+                     : 0==s.find(THEME_PREFIX)
+                         ? new TQtCurveStyle(s)
+ #endif
+@@ -375,7 +375,7 @@
+ 
+ #define SKIP_TASKBAR (APP_SKIP_TASKBAR==itsThemedApp || APP_KPRINTER==itsThemedApp || APP_KDIALOG==itsThemedApp)
+ 
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+ #include <tqfile.h>
+ #endif
+ 
+@@ -393,7 +393,7 @@
+ 
+ #define DW_BGND 105
+ 
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+ // Try to read $KDEHOME/share/config/kickerrc to find out if kicker is transparent...
+ 
+ static bool kickerIsTrans()
+@@ -802,7 +802,7 @@
+     p->restore();
+ }
+ 
+-#ifdef TQTC_STYLE_SUPPORT
++#ifdef QTC_STYLE_SUPPORT
+ TQtCurveStyle::TQtCurveStyle(const TQString &name)
+ #else
+ TQtCurveStyle::TQtCurveStyle()
+@@ -820,7 +820,7 @@
+               itsMdiColors(0L),
+               itsThemedApp(APP_OTHER),
+               itsPixmapCache(150000, 499),
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+               itsIsTransKicker(false),
+ #endif
+               itsHover(HOVER_NONE),
+@@ -835,7 +835,7 @@
+               itsDragWidget(0L),
+               itsDragWidgetHadMouseTracking(false)
+ {
+-#ifdef TQTC_STYLE_SUPPORT
++#ifdef QTC_STYLE_SUPPORT
+     TQString rcFile;
+     if(!name.isEmpty())
+     {
+@@ -1161,7 +1161,7 @@
+     if ("kicker"==appName || "appletproxy"==appName)
+     {
+         itsThemedApp=APP_KICKER;
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+         itsIsTransKicker=kickerIsTrans();
+ #endif
+     }
+@@ -1196,7 +1196,7 @@
+     else if ("korn"==appName)
+     {
+         itsThemedApp=APP_KORN;
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+         itsIsTransKicker=kickerIsTrans();
+ #endif
+     }
+@@ -1236,7 +1236,7 @@
+ 
+     if(SHADE_NONE!=opts.menuStripe && opts.noMenuStripeApps.contains(appName))
+         opts.menuStripe=SHADE_NONE;
+-#ifdef TQTC_ENABLE_PARENTLESS_DIALOG_FIX_SUPPORT
++#ifdef QTC_ENABLE_PARENTLESS_DIALOG_FIX_SUPPORT
+     if(opts.fixParentlessDialogs && (opts.noDlgFixApps.contains(appName) || opts.noDlgFixApps.contains("kde")))
+         opts.fixParentlessDialogs=false;
+ #endif
+@@ -1762,7 +1762,7 @@
+         ((TQGroupBox *)widget)->setFlat(false);
+         ((TQGroupBox *)widget)->setFrameShape(TQFrame::NoFrame);
+     }
+-#ifdef TQTC_ENABLE_PARENTLESS_DIALOG_FIX_SUPPORT
++#ifdef QTC_ENABLE_PARENTLESS_DIALOG_FIX_SUPPORT
+     else if(opts.fixParentlessDialogs && ::tqqt_cast<TQDialog *>(widget))
+     {
+         TQDialog *dlg=(TQDialog *)widget;
+@@ -1931,7 +1931,7 @@
+     }
+     else if(widget->inherits("KTabCtl"))
+         widget->removeEventFilter(this);
+-#ifdef TQTC_ENABLE_PARENTLESS_DIALOG_FIX_SUPPORT
++#ifdef QTC_ENABLE_PARENTLESS_DIALOG_FIX_SUPPORT
+     else if(opts.fixParentlessDialogs && ::tqqt_cast<TQDialog *>(widget))
+         widget->removeEventFilter(this);
+ #endif
+@@ -2277,7 +2277,7 @@
+                     break;
+         }
+ 
+-#ifdef TQTC_ENABLE_PARENTLESS_DIALOG_FIX_SUPPORT
++#ifdef QTC_ENABLE_PARENTLESS_DIALOG_FIX_SUPPORT
+     if(opts.fixParentlessDialogs && ::tqqt_cast<TQDialog *>(object))
+     {
+         TQDialog *dlg=(TQDialog *)object;
+@@ -3152,7 +3152,7 @@
+                 if(flags&Style_Down)
+                     flags=((flags|Style_Down)^Style_Down)| Style_Sunken;
+                 flags|=Style_Enabled;
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+ #if defined KDE_VERSION && KDE_VERSION >= 0x30400 && KDE_VERSION < 0x30500
+                 if(HOVER_KICKER==itsHover && itsHoverWidget) //  && itsHoverWidget==p->device())
+                     flags|=Style_MouseOver;
+@@ -3161,7 +3161,7 @@
+ #endif
+                 drawLightBevel(p, r, cg, flags|Style_Horizontal, ROUNDED_ALL,
+                                getFill(flags, use), use, true, false);
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+                 itsFormMode=false;
+ #endif
+             }
+@@ -3313,7 +3313,7 @@
+                             ? cg.background().dark(DW_BGND)
+                             : */cg.background(),
+                            p, r, cg, glassMod ? flags : flags|Style_Horizontal,
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+                            (APP_KORN==itsThemedApp && itsIsTransKicker && PE_ButtonTool==pe) ||
+ #endif
+                            operaMdi || mdi
+@@ -3345,7 +3345,7 @@
+ 
+                 drawLightBevel(p, r, cg, glassMod ? flags : flags|Style_Horizontal,
+                                flags&CHECK_BUTTON
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+                                  || (APP_KORN==itsThemedApp && itsIsTransKicker && PE_ButtonTool==pe)
+ #endif
+                                     ? ROUNDED_NONE : ROUNDED_ALL,
+@@ -5540,7 +5540,7 @@
+                     bflags|=NO_ETCH_BUTTON;
+ 
+                 // If we're pressed, on, or raised...
+-#if defined TQTC_TQT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
++#if defined QTC_QT_ONLY || !defined KDE_VERSION || KDE_VERSION >= 0x30200
+                 if(bflags &(Style_Down | Style_On | Style_Raised) || onControlButtons)
+ #else
+                 if(bflags &(Style_Down | Style_On | Style_Raised | Style_MouseOver) ||

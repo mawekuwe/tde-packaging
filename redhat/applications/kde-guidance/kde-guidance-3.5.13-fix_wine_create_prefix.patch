@@ -1,0 +1,73 @@
+--- kde-guidance/wineconfig/winewrite.py.wine	2010-08-12 05:25:24.000000000 +0200
++++ kde-guidance/wineconfig/winewrite.py	2012-08-07 18:43:48.291577133 +0200
+@@ -60,14 +60,14 @@
+     SetShellLinks(drives[26:])
+             
+ def SetShellLinks(shelllinks):
+-    existingshelllinks = os.listdir(wineread.winepath + "/dosdevices/c:/windows/profiles/" + os.environ['USER'])
++    existingshelllinks = os.listdir(wineread.winepath + "/dosdevices/c:/users/" + os.environ['USER'])
+     set(existingshelllinks)
+     shellregistry = wineread.GetShellRegistry()
+     
+     for link in shelllinks:
+         createLink = False
+         if link[1] in existingshelllinks:	# The link exists
+-            linkpath = wineread.winepath + "/dosdevices/c:/windows/profiles/" + os.environ['USER'] + "/" + link[1]
++            linkpath = wineread.winepath + "/dosdevices/c:/users/" + os.environ['USER'] + "/" + link[1]
+             if link[2]:    # The folder is mapped
+                 # Compare for changes
+                 changed = False
+@@ -98,7 +98,7 @@
+                 continue
+             
+         if createLink:
+-            os.symlink(link[2], wineread.winepath + "/dosdevices/c:/windows/profiles/" + os.environ['USER'] + "/" + link[1])
++            os.symlink(link[2], wineread.winepath + "/dosdevices/c:/windows/users/" + os.environ['USER'] + "/" + link[1])
+             if shellregistry.has_key(link[1]):
+                 SetShellRegistry(link)
+                 
+@@ -426,7 +426,7 @@
+     if not path:
+         path = wineread.default_winepath
+     
+-    os.system("WINEPREFIX=" + path + " wineprefixcreate --wait")
++    os.system("WINEPREFIX=" + path + " wineboot")
+     
+ # ----- Theming -----
+             
+@@ -486,4 +486,4 @@
+         winport = ports_translation[port.rstrip("012345678")] +\
+             str(int(port.lstrip("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")) + 1)
+         os.symlink("/dev/" + port, wineread.winepath + "/dosdevices/" + winport)
+-    
+\ Pas de fin de ligne à la fin du fichier
++    
+--- kde-guidance/wineconfig/wineread.py.ORI	2012-08-07 18:44:08.910051574 +0200
++++ kde-guidance/wineconfig/wineread.py	2012-08-07 18:44:38.675294351 +0200
+@@ -23,7 +23,7 @@
+ # Assumes the fake windows is installed in ~/.wine
+ default_winepath = os.environ['HOME'] + "/.wine"
+ winepath = default_winepath
+-defaultwinfolderspath = "c:\\windows\\profiles\\" + os.environ['USER']
++defaultwinfolderspath = "c:\\users\\" + os.environ['USER']
+ 
+ # Where the dll's are
+ default_winebuildpath = "/usr/lib/wine"
+@@ -113,7 +113,7 @@
+     [30,"My Video","","","",""])
+     
+ folder_nonexistent = "This folder does not exist, please map it."
+-profilesdirectory = winepath + "/dosdevices/c:/windows/profiles/" + os.environ['USER']
++profilesdirectory = winepath + "/dosdevices/c:/users/" + os.environ['USER']
+         
+ def GetEmptyShellLinks():
+     """ Returns a list of important windows folders """
+@@ -537,7 +537,7 @@
+     if not path:
+         path = self.default_winepath
+     
+-    return os.path.exists(path + "/dosdevices/c:/windows/profiles/" + os.environ['USER']) and \
++    return os.path.exists(path + "/dosdevices/c:/users/" + os.environ['USER']) and \
+         os.path.exists(path + "/dosdevices/c:/windows/system32") and \
+         os.path.exists(path + "/system.reg") and os.path.exists(path + "/userdef.reg") and \
+         os.path.exists(path + "/user.reg")

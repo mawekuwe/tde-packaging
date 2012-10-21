@@ -16,8 +16,8 @@
 %define tde_appdir %{tde_datadir}/applications
 
 %define tde_tdeappdir %{tde_appdir}/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
@@ -26,7 +26,7 @@
 Name:		trinity-%{kdecomp}
 Summary:	Trinity based next generation IRC client with module support
 Version:	3.4.0
-Release:	2%{?dist}%{?_variant}
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -38,20 +38,18 @@ URL:		http://kvirc.net/
 Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{kdecomp}-3.5.13.tar.gz
+Source0:	%{kdecomp}-3.5.13.1.tar.gz
 
-# [kvirc] Release 3.5.13-sru
-Patch0:		kvirc-3.5.13-sru-20120806.patch
 # [kvirc] Modules do not install in correct folder [RHEL/Fedora]
-Patch1:		kvirc-3.5.13-directories.patch
+Patch0:		kvirc-3.5.13.1-directories.patch
 # [kvirc] FTBFS because of missing link libraries [Bug #991]
-Patch2:		kvirc-3.5.13-missing_ldflags.patch
+Patch1:		kvirc-3.5.13-ftbfs.patch
+# [kvirc] Fix arts detection
+Patch2:		kvirc-3.5.13.1-fix_arts_detection.patch
 
-
-
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-tdelibs-devel
-BuildRequires:	trinity-tdebase-devel
+BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.1
+BuildRequires:	trinity-tdelibs-devel >= 3.5.13.1
+BuildRequires:	trinity-tdebase-devel >= 3.5.13.1
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -96,12 +94,16 @@ KVIrc is a graphical IRC client based on the KDE widget set which integrates
 with the K Desktop Environment version 3.
 
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+
 %prep
-%setup -q -n applications/%{kdecomp}
+%setup -q -n %{kdecomp}-3.5.13.1
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1 -b .ldflags
-
+%patch2 -p1 -b .arts
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -121,15 +123,10 @@ with the K Desktop Environment version 3.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt.sh
+unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export KDEDIR=%{tde_prefix}
-
-#export CXXFLAGS="${CXXFLAGS} -I%{tde_includedir} -lqt-mt"
-
-# Workaround until the mess of TDE includedir is solved
-export CXXFLAGS="${CXXFLAGS} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -147,8 +144,8 @@ export CXXFLAGS="${CXXFLAGS} -I%{tde_includedir}"
   --with-kde-services-dir=%{tde_datadir}/services \
   --with-kde-library-dir=%{tde_libdir} \
   --with-kde-include-dir=%{tde_tdeincludedir} \
-  --with-qt-library-dir=${QTLIB} \
-  --with-qt-include-dir=${QTINC} \
+  --with-qt-library-dir=${QTLIB:-${QTDIR}/%{_lib}} \
+  --with-qt-include-dir=${QTINC:-${QTDIR}/include} \
   --with-qt-moc=${QTDIR}/bin/moc
 
 # Symbolic links must exist prior to parallel building
@@ -196,7 +193,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_bindir}/kvi_search_help
 %{tde_libdir}/kvirc/*/modules/caps/
 %{tde_datadir}/applnk/Internet/kvirc.desktop
-%{tde_datadir}/icons/hicolor/*
+%{tde_datadir}/icons/hicolor/*/*/*.png
+%{tde_datadir}/icons/hicolor/*/*/*.svgz
+%{tde_datadir}/icons/hicolor/*/*/*.xpm
 %{tde_datadir}/kvirc
 %{tde_datadir}/mimelnk/text/*.desktop
 %{tde_datadir}/services/*.protocol
@@ -211,7 +210,10 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_libdir}/kvirc/*/modules/*.la
 
 
-%Changelog
+%changelog
+* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 3.4.0-3
+- Initial build for TDE 3.5.13.1
+
 * Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.4.0-2
 - Rebuilt for Fedora 17
 - Fix HTML directory location

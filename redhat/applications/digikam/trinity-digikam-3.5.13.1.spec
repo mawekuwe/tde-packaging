@@ -15,8 +15,8 @@
 %define tde_mandir %{tde_datadir}/man
 
 %define tde_tdeappdir %{tde_datadir}/applications/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
@@ -37,40 +37,49 @@ URL:		http://www.trinitydesktop.org/
 Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{kdecomp}-3.5.13.tar.gz
+Source0:	%{kdecomp}-3.5.13.1.tar.gz
 
-# [digikam] Version 3.5.13-sru
-Patch0:		digikam-3.5.13-sru-20120808.patch
 # [digikam] Fix FTBFS on png >= 0.15 [Commit #18ecd512]
 Patch9:		digikam-3.5.13-fix_ftbfs_png_015.patch
 
 
-BuildRequires: tqtinterface-devel
-BuildRequires: trinity-arts-devel
-BuildRequires: trinity-tdelibs-devel
-BuildRequires: trinity-tdebase-devel
-BuildRequires: desktop-file-utils
-BuildRequires: gettext
-BuildRequires: trinity-libkexiv2-devel
-BuildRequires: trinity-libkdcraw-devel
-BuildRequires: trinity-libkipi-devel
+BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.1
+BuildRequires:	trinity-arts-devel >= 3.5.13.1
+BuildRequires:	trinity-tdelibs-devel >= 3.5.13.1
+BuildRequires:	trinity-tdebase-devel >= 3.5.13.1
+BuildRequires:	trinity-libkexiv2-devel >= 3.5.13.1
+BuildRequires:	trinity-libkdcraw-devel >= 3.5.13.1
+BuildRequires:	trinity-libkipi-devel >= 3.5.13.1
 %if 0%{?rhel} == 5 || 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires: gphoto2-devel
+BuildRequires:	gphoto2-devel
 %else
-BuildRequires: libgphoto2-devel
+BuildRequires:	libgphoto2-devel
 %endif
-BuildRequires: libtiff-devel
-BuildRequires: jasper-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	desktop-file-utils
+BuildRequires:	gettext
 
+# JASPER support
+%if 0%{?suse_version}
+BuildRequires:	libjasper-devel
+%else
+BuildRequires:	jasper-devel
+%endif
+
+# EXIV2 support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}exiv2-devel
-%else
+%endif
+%if 0%{?suse_version}
+BuildRequires:	libexiv2-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	exiv2-devel
 %endif
 
-Requires:	trinity-libkexiv2
-Requires:	trinity-libkdcraw
-Requires:	trinity-libkipi
+Requires:	trinity-libkexiv2 >= 3.5.13.1
+Requires:	trinity-libkdcraw >= 3.5.13.1
+Requires:	trinity-libkipi >= 3.5.13.1
 
 %description
 An easy to use and powerful digital photo management
@@ -102,11 +111,13 @@ Requires:	%{name} = %{version}
 %{summary}
 
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+
 %prep
-%setup -q -n applications/%{kdecomp}
-
-%patch0 -p1
-
+%setup -q -n %{kdecomp}-3.5.13.1
 %patch9 -p1 -b .png015
 
 
@@ -122,7 +133,7 @@ Requires:	%{name} = %{version}
 
 
 %build
-unset QTDIR || : ; source /etc/profile.d/qt.sh
+unset QTDIR || : ; source /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_tdeincludedir}"
 
@@ -186,12 +197,6 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %{tde_tdelibdir}/kio_digikamalbums.so
 %{tde_tdelibdir}/kio_digikamdates.la
 %{tde_tdelibdir}/kio_digikamdates.so
-%{tde_tdelibdir}/kio_digikamsearch.la
-%{tde_tdelibdir}/kio_digikamsearch.so
-%{tde_tdelibdir}/kio_digikamtags.la
-%{tde_tdelibdir}/kio_digikamtags.so
-%{tde_tdelibdir}/kio_digikamthumbnail.la
-%{tde_tdelibdir}/kio_digikamthumbnail.so
 %{tde_tdelibdir}/digikamimageplugin_adjustcurves.la
 %{tde_tdelibdir}/digikamimageplugin_adjustcurves.so
 %{tde_tdelibdir}/digikamimageplugin_adjustlevels.la
@@ -246,6 +251,12 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %{tde_tdelibdir}/digikamimageplugin_texture.so
 %{tde_tdelibdir}/digikamimageplugin_whitebalance.la
 %{tde_tdelibdir}/digikamimageplugin_whitebalance.so
+%{tde_tdelibdir}/kio_digikamsearch.la
+%{tde_tdelibdir}/kio_digikamsearch.so
+%{tde_tdelibdir}/kio_digikamtags.la
+%{tde_tdelibdir}/kio_digikamtags.so
+%{tde_tdelibdir}/kio_digikamthumbnail.la
+%{tde_tdelibdir}/kio_digikamthumbnail.so
 %{tde_tdeappdir}/digikam.desktop
 %{tde_tdeappdir}/showfoto.desktop
 %{tde_datadir}/apps/digikam/
@@ -289,7 +300,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %{tde_datadir}/services/digikamthumbnail.protocol
 %{tde_datadir}/servicetypes/digikamimageplugin.desktop
 %{tde_mandir}/man*/*
-%{tde_tdedocdir}/HTML/en/digikam-apidocs/
+#%{tde_tdedocdir}/HTML/en/digikam-apidocs/
 
 
 %files devel
@@ -299,7 +310,32 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %{tde_libdir}/libdigikam.la
 
 
-%Changelog
-* Wed Aug 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-4
-- Switch to v3.5.13-sru branch.
+%changelog
+* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-4
+- Initial build for TDE 3.5.13.1
+
+* Fri Aug 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-3
+- Add support for Mageia 2 and Mandriva 2011
+- Removes old patches, adds GIT patches.
+- Fix digikam FTBFS due to jpeg code [Commit #b9419cd5]
+- Fix FTBFS due to png code [Bug #595] [Commit #3e27b07f]
+- Remove version.h. Cruft from an older version prior to 0.9.6.
+- Fix usage of obsolete libpng jmpbuf member [Commit #7d0d82b7]
+- GCC 4.7 fix. [Bug #958] [Commit #a9489034]
+- GCC 4.7 fix. [Bug #958] [Commit #a209c81b]
+- Fix 'format not a string literal' error [Commit #029218cd]
+- Update patch in GIT hash a9489034 to use reinterpret_cast. [Commit #5a043853]
+- Fix FTBFS on png >= 0.15 [Commit #18ecd512]
+
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-3
+- Fix man directory location
+- Fix postinstall
+- Fix description
+- Add "BuildRequires: exiv2-devel"
+
+* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-2
+- gcc 4.7 + libpng 1.5 patch for digikam (consolidated) [Bug #958]
+
+* Sun Nov 06 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.6-1
+- Initial release for RHEL 6, RHEL 5 and Fedora 15
 

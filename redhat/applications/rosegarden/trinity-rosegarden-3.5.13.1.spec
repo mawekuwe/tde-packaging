@@ -1,6 +1,9 @@
 # Default version for this component
 %define kdecomp rosegarden
 
+# Required for Mageia 2: removes the ldflag '--no-undefined'
+%define _disable_ld_no_undefined 1
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
@@ -16,8 +19,8 @@
 %define tde_appdir %{tde_datadir}/applications
 
 %define tde_tdeappdir %{tde_appdir}/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_tdedocdir}
@@ -38,16 +41,13 @@ URL:		http://www.rosegardenmusic.com/
 Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{kdecomp}-3.5.13.tar.gz
+Source0:	%{kdecomp}-3.5.13.1.tar.gz
 
-# [rosegarden] Version 3.5.13-sru
-Patch0:		rosegarden-3.5.13-sru-20120806.patch
-# [rosegarden] Missing LDFLAGS cause FTBFS
-Patch1:		rosegarden-3.5.13-missing_ldflags.patch
+Patch0:		rosegarden-3.5.13-ftbfs.patch
 
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-tdelibs-devel
-BuildRequires:	trinity-tdebase-devel
+BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.1
+BuildRequires:	trinity-tdelibs-devel >= 3.5.13.1
+BuildRequires:	trinity-tdebase-devel >= 3.5.13.1
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -60,12 +60,22 @@ BuildRequires:	fontconfig-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}jack-devel
 %else
+BuildRequires:	lirc-devel
 BuildRequires:	jack-audio-connection-kit-devel
 %endif
 
 Requires:	lilypond
 Requires:	perl-XML-Twig
+
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+Requires:	libsndfile-progs
+%else
+%if 0%{?rhel}
+Requires:	libsndfile
+%else
 Requires:	libsndfile-utils
+%endif
+%endif
 
 # LIRC does not exist on RHEL.
 %if 0%{?fedora} > 0
@@ -94,10 +104,14 @@ lilypond and Csound files export, etc.
 This package provides the data files necessary for running Rosegarden
 
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+
 %prep
-%setup -q -n applications/%{kdecomp}
+%setup -q -n %{kdecomp}-3.5.13.1
 %patch0 -p1
-%patch1 -p1
 
 # Hard-coded path to TQT binaries spotted !!!
 %__sed -i CMakeLists.txt \
@@ -106,18 +120,18 @@ This package provides the data files necessary for running Rosegarden
 	-e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
 
 %build
-unset QTDIR; . /etc/profile.d/qt.sh
+unset QTDIR && . %{_sysconfdir}/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt:%{tde_tdeincludedir}"
 
-# Enables "messages" (debug)
-%__sed -i CMakeLists.txt -e "s|#MESSAGE|MESSAGE|g"
-
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
+
+### FIXME FIXME FIXME !!! FTBFS on Mageia 2 / Mandriva 2011
+export LDFLAGS="${LDFLAGS} -lXft -lfontconfig -lkio -lkdeprint -llrdf -lfftw3f -llirc_client -ljack"
 
 %cmake \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
@@ -141,7 +155,7 @@ cd build
   -DBUILD_ALL=ON \
   ..
 
-%__make %{?_smp_mflags} || %__make VERBOSE=1
+%__make %{?_smp_mflags}
 
 
 %install
@@ -196,10 +210,10 @@ done
 %{tde_datadir}/mimelnk/audio/x-soundfont.desktop
 
 
-%Changelog
-* Mon Aug 06 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-3
-- Switch to branch 3.5.13-sru
- 
+%changelog
+* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-3
+- Initial build for TDE 3.5.13.1
+
 * Sun Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-2
 - Updated to build with gcc 4.7. [Commit #15276f36]
 - Enables JACK support

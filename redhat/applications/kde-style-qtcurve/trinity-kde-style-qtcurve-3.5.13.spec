@@ -26,7 +26,7 @@
 Name:		trinity-style-qtcurve
 Summary:	This is a set of widget styles for Trinity based apps
 Version:	0.55.2
-Release:	2%{?dist}%{?_variant}
+Release:	3%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -39,8 +39,10 @@ Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.tar.gz
+Source1:	cmake-3.5.13.tar.gz
 
-Patch0:		kde-style-qtcurve-1.6.2-libsuffix.patch
+# [qtcurve] Version 3.5.13-sru
+Patch0:		kde-style-qtcurve-3.5.13-sru-20120909.patch
 
 BuildRequires:	tqtinterface-devel
 BuildRequires:	trinity-tdelibs-devel
@@ -49,6 +51,7 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
 Obsoletes:		trinity-kde-style-qtcurve
+Provides:		trinity-kde-style-qtcurve
 
 %description
 This package together with gtk2-engines-qtcurve aim to provide a unified look
@@ -60,17 +63,23 @@ gtk2-engines-qtcurve.
 
 %prep
 %setup -q -n applications/%{kdecomp}
+%setup -q -n applications/%{kdecomp} -a 1
+%__mv -f cmake-3.5.13/* cmake/
+
 %patch0 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i CMakeLists.txt \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
+%__sed -i "CMakeLists.txt" \
+  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|/usr/bin/uic-tqt|%{tde_bindir}/uic-tqt|g" \
+  -e "s|/usr/bin/tmoc|%{tde_bindir}/tmoc|g"
 
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt.sh
 export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 export CXXFLAGS="-I${QTINC} -I%{tde_tdeincludedir} ${CXXFLAGS}"
 
@@ -80,8 +89,16 @@ cd build
 %endif
 
 %cmake \
-	-DKDE3PREFIX=%{tde_prefix} \
-	..
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  -DCMAKE_SKIP_RPATH="OFF" \
+  -DTDE_INCLUDE_DIR=%{tde_tdeincludedir} \
+  -DQTC_QT_ONLY=false \
+  -DQTC_STYLE_SUPPORT=true \
+  -DBUILD_ALL=on \
+  ..
 
 %__make %{?_smp_mflags}
 
@@ -91,32 +108,30 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
+%find_lang qtcurve
+
 
 %clean
 %__rm -rf %{buildroot}
 
 
 
-%files
+%files -f qtcurve.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
+%{tde_tdelibdir}/kstyle_qtcurve_config.la
+%{tde_tdelibdir}/kstyle_qtcurve_config.so
 %{tde_tdelibdir}/plugins/styles/qtcurve.so
-%{tde_datadir}/apps/QtCurve/Agua.qtcurve
-%{tde_datadir}/apps/QtCurve/Agua_II.qtcurve
-%{tde_datadir}/apps/QtCurve/Curve.qtcurve
-%{tde_datadir}/apps/QtCurve/Flat.qtcurve
-%{tde_datadir}/apps/QtCurve/Human.qtcurve
-%{tde_datadir}/apps/QtCurve/Inverted.qtcurve
-%{tde_datadir}/apps/QtCurve/Klearlooks.qtcurve
-%{tde_datadir}/apps/QtCurve/Milk.qtcurve
-%{tde_datadir}/apps/QtCurve/Murrine.qtcurve
-%{tde_datadir}/apps/QtCurve/Ozone.qtcurve
-%{tde_datadir}/apps/QtCurve/Plastic.qtcurve
-%{tde_datadir}/apps/QtCurve/Silk.qtcurve
+%{tde_tdelibdir}/plugins/styles/qtcurve.la
 %{tde_datadir}/apps/kdisplay/color-schemes/QtCurve.kcsrc
+%{tde_datadir}/apps/kstyle/themes/qtcurve.themerc
+%{tde_datadir}/apps/QtCurve/*.qtcurve
 
 
 %Changelog
+* Sun Sep 09 2012 Francois Andriot <francois.andriot@free.fr> - 0.55.2-3
+- Switch to v3.5.13-sru branch
+
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.55.2-2
 - Rebuilt for Fedora 17
 - Removes post and postun

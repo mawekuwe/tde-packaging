@@ -1,0 +1,30 @@
+--- amarok-3.5.13.1/ConfigureChecks.cmake.ORI	2012-10-11 22:49:54.765461343 +0200
++++ amarok-3.5.13.1/ConfigureChecks.cmake	2012-10-11 22:49:59.897357764 +0200
+@@ -24,7 +24,7 @@
+ 
+ ##### check for inotify ###########################
+ 
+-# if( WITH_INOTIFY )
++if( WITH_INOTIFY )
+   check_include_file( "inotify.h" INOTIFY_FOUND )
+   check_include_file( "sys/inotify.h" INOTIFY_SYS_FOUND )
+   if( NOT INOTIFY_FOUND )
+@@ -39,7 +39,7 @@
+       set( HAVE_INOTIFY 1 )
+       set( HAVE_SYS_INOTIFY 1 )
+   endif( INOTIFY_SYS_FOUND )
+-# endif( )
++endif( )
+ 
+ check_function_exists( statvfs HAVE_STATVFS )
+ 
+--- amarok-3.5.13.1/CMakeLists.txt.ori	2012-10-11 22:50:45.323440818 +0200
++++ amarok-3.5.13.1/CMakeLists.txt	2012-10-11 22:51:00.569133033 +0200
+@@ -54,6 +54,7 @@
+ option( WITH_MTP "Enable mtp support" OFF )
+ option( WITH_RIOKARMA "Enable riokarma support" OFF )
+ option( WITH_DAAP "Enable daap support" OFF )
++option( WITH_INOTIFY "Enable inotify support" OFF )
+ 
+ 
+ ##### user requested modules ####################

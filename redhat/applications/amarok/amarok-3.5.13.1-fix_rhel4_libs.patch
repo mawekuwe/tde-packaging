@@ -1,0 +1,15 @@
+--- amarok-3.5.13.1/amarok/src/engine/yauap/ConfigureChecks.cmake.ORI	2012-10-11 22:54:02.017468265 +0200
++++ amarok-3.5.13.1/amarok/src/engine/yauap/ConfigureChecks.cmake	2012-10-11 22:54:52.644445209 +0200
+@@ -16,8 +16,8 @@
+ endif( )
+ 
+ # dbus-tqt
+-pkg_search_module( DBUS_TQT dbus-tqt )
+-if( NOT DBUS_TQT_FOUND )
+-  tde_message_fatal( "dbus-tqt is required, but was not found on your system" )
+-endif( )
++#pkg_search_module( DBUS_TQT dbus-tqt )
++#if( NOT DBUS_TQT_FOUND )
++#  tde_message_fatal( "dbus-tqt is required, but was not found on your system" )
++#endif( )
+ 

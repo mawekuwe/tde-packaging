@@ -1,0 +1,101 @@
+--- a/config/qtcurveconfig.cpp.ORI	2012-08-29 22:09:16.845292598 +0200
++++ a/config/qtcurveconfig.cpp	2012-08-29 22:13:35.992935999 +0200
+@@ -671,7 +671,7 @@
+     connect(activeTabAppearance, SIGNAL(activated(int)), SLOT(activeTabAppearanceChanged()));
+     connect(toolbarSeparators, SIGNAL(activated(int)), SLOT(updateChanged()));
+     connect(splitters, SIGNAL(activated(int)), SLOT(updateChanged()));
+-    connect(fixParentlessDialogs, SIGNAL(toggled(bool)), SLOT(updateChanged()));
++//    connect(fixParentlessDialogs, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(fillSlider, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(sliderStyle, SIGNAL(activated(int)), SLOT(updateChanged()));
+     connect(roundMbTopOnly, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+@@ -749,10 +749,10 @@
+     connect(gtkButtonOrder, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(mapKdeIcons, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(passwordChar, SIGNAL(clicked()), SLOT(passwordCharClicked()));
+-    connect(framelessGroupBoxes, SIGNAL(toggled(bool)), SLOT(updateChanged()));
++//    connect(framelessGroupBoxes, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(colorMenubarMouseOver, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(useHighlightForMenu, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+-    connect(groupBoxLine, SIGNAL(toggled(bool)), SLOT(updateChanged()));
++//    connect(groupBoxLine, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(fadeLines, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(menuIcons, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+     connect(stdBtnSizes, SIGNAL(toggled(bool)), SLOT(updateChanged()));
+@@ -1436,7 +1436,7 @@
+     opts.shadeMenubarOnlyWhenActive=shadeMenubarOnlyWhenActive->isChecked();
+     opts.thinnerMenuItems=thinnerMenuItems->isChecked();
+     opts.thinnerBtns=thinnerBtns->isChecked();
+-    opts.fixParentlessDialogs=fixParentlessDialogs->isChecked();
++//    opts.fixParentlessDialogs=fixParentlessDialogs->isChecked();
+     opts.animatedProgress=animatedProgress->isChecked();
+     opts.stripedProgress=(EStripe)stripedProgress->currentItem();
+     opts.lighterPopupMenuBgnd=lighterPopupMenuBgnd->value();
+@@ -1526,11 +1526,11 @@
+     opts.gtkButtonOrder=gtkButtonOrder->isChecked();
+     opts.mapKdeIcons=mapKdeIcons->isChecked();
+     opts.passwordChar=toInt(passwordChar->text());
+-    opts.framelessGroupBoxes=framelessGroupBoxes->isChecked();
++//    opts.framelessGroupBoxes=framelessGroupBoxes->isChecked();
+     opts.customGradient=customGradient;
+     opts.colorMenubarMouseOver=colorMenubarMouseOver->isChecked();
+     opts.useHighlightForMenu=useHighlightForMenu->isChecked();
+-    opts.groupBoxLine=groupBoxLine->isChecked();
++//    opts.groupBoxLine=groupBoxLine->isChecked();
+     opts.fadeLines=fadeLines->isChecked();
+     opts.menuIcons=menuIcons->isChecked();
+     opts.stdBtnSizes=stdBtnSizes->isChecked();
+@@ -1575,7 +1575,7 @@
+     shadeMenubarOnlyWhenActive->setChecked(opts.shadeMenubarOnlyWhenActive);
+     thinnerMenuItems->setChecked(opts.thinnerMenuItems);
+     thinnerBtns->setChecked(opts.thinnerBtns);
+-    fixParentlessDialogs->setChecked(opts.fixParentlessDialogs);
++//    fixParentlessDialogs->setChecked(opts.fixParentlessDialogs);
+     animatedProgress->setChecked(opts.animatedProgress);
+     stripedProgress->setCurrentItem(opts.stripedProgress);
+     embolden->setChecked(opts.embolden);
+@@ -1651,7 +1651,7 @@
+     customCheckRadioColor->setColor(opts.customCheckRadioColor);
+     colorMenubarMouseOver->setChecked(opts.colorMenubarMouseOver);
+     useHighlightForMenu->setChecked(opts.useHighlightForMenu);
+-    groupBoxLine->setChecked(opts.groupBoxLine);
++//    groupBoxLine->setChecked(opts.groupBoxLine);
+     fadeLines->setChecked(opts.fadeLines);
+     menuIcons->setChecked(opts.menuIcons);
+     stdBtnSizes->setChecked(opts.stdBtnSizes);
+@@ -1678,7 +1678,7 @@
+     gtkButtonOrder->setChecked(opts.gtkButtonOrder);
+     mapKdeIcons->setChecked(opts.mapKdeIcons);
+     setPasswordChar(opts.passwordChar);
+-    framelessGroupBoxes->setChecked(opts.framelessGroupBoxes);
++//    framelessGroupBoxes->setChecked(opts.framelessGroupBoxes);
+     customGradient=opts.customGradient;
+     gradCombo->setCurrentItem(APPEARANCE_CUSTOM1);
+ 
+@@ -1731,7 +1731,7 @@
+          shadeMenubarOnlyWhenActive->isChecked()!=currentStyle.shadeMenubarOnlyWhenActive ||
+          thinnerMenuItems->isChecked()!=currentStyle.thinnerMenuItems ||
+          thinnerBtns->isChecked()!=currentStyle.thinnerBtns ||
+-         fixParentlessDialogs->isChecked()!=currentStyle.fixParentlessDialogs ||
++//         fixParentlessDialogs->isChecked()!=currentStyle.fixParentlessDialogs ||
+          animatedProgress->isChecked()!=currentStyle.animatedProgress ||
+          stripedProgress->currentItem()!=currentStyle.stripedProgress ||
+          lighterPopupMenuBgnd->value()!=currentStyle.lighterPopupMenuBgnd ||
+@@ -1796,7 +1796,7 @@
+          splitters->currentItem()!=currentStyle.splitters ||
+          colorMenubarMouseOver->isChecked()!=currentStyle.colorMenubarMouseOver ||
+          useHighlightForMenu->isChecked()!=currentStyle.useHighlightForMenu ||
+-         groupBoxLine->isChecked()!=currentStyle.groupBoxLine ||
++//         groupBoxLine->isChecked()!=currentStyle.groupBoxLine ||
+          fadeLines->isChecked()!=currentStyle.fadeLines ||
+          menuIcons->isChecked()!=currentStyle.menuIcons ||
+          stdBtnSizes->isChecked()!=currentStyle.stdBtnSizes ||
+@@ -1819,7 +1819,7 @@
+          gtkComboMenus->isChecked()!=currentStyle.gtkComboMenus ||
+          gtkButtonOrder->isChecked()!=currentStyle.gtkButtonOrder ||
+          mapKdeIcons->isChecked()!=currentStyle.mapKdeIcons ||
+-         framelessGroupBoxes->isChecked()!=currentStyle.framelessGroupBoxes ||
++//         framelessGroupBoxes->isChecked()!=currentStyle.framelessGroupBoxes ||
+ 
+          getSquareFlags()!=currentStyle.square ||
+          getWindowBorderFlags()!=currentStyle.windowBorder||

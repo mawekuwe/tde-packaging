@@ -1,6 +1,9 @@
 # Default version for this component
 %define kdecomp koffice
 
+# Required for Mageia 2: removes the ldflag '--no-undefined'
+%define _disable_ld_no_undefined 1
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
@@ -16,17 +19,14 @@
 %define tde_appdir %{tde_datadir}/applications
 
 %define tde_tdeappdir %{tde_appdir}/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
 
-# Required for Mageia 2: removes the ldflag '--no-undefined'
-%define _disable_ld_no_undefined 1
-
 # Disable Kross support for RHEL <= 5 (python is too old)
-%if 0%{?fedora} > 0 || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?fedora} > 0 || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_kross 1
 %endif
 
@@ -41,7 +41,7 @@
 
 
 Name:		trinity-%{kdecomp}
-Summary:        An integrated office suite
+Summary:	An integrated office suite
 Version:	1.6.3
 Release:	6%{?dist}%{?_variant}
 
@@ -55,36 +55,31 @@ URL:		http://www.trinitydesktop.org/
 Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{kdecomp}-3.5.13.tar.gz
-Source100:      koshell.png
-
-# [koffice] version 3.5.13-SRU
-Patch0:		koffice-3.5.13-sru-20120805.patch
+Source0:	%{kdecomp}-3.5.13.1.tar.gz
 
 # [koffice] Fix compilation with Ruby 1.9 [Bug #735]
 Patch13:	koffice-3.5.13-fix_ruby_1.9.patch 
-# [koffice] Missing LDFLAGS cause FTBFS on Mageia / Mandriva
-Patch16:	koffice-3.5.13-missing_ldflags.patch
-# [koffice] LCMS library detection fails on Mageia / Mandriva
-Patch17:	koffice-3.5.13-fix_lcms_detection.patch
 
 # BuildRequires: world-devel ;)
-BuildRequires:  trinity-tdelibs-devel
-BuildRequires:  trinity-tdegraphics-devel
+BuildRequires:	trinity-tdelibs-devel >= 3.5.13.1
+BuildRequires:  trinity-tdegraphics-devel >= 3.5.13.1
+BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel >= 3.5.13.1
 BuildRequires:  automake libtool
 BuildRequires:  freetype-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  libart_lgpl-devel
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires:  %{_lib}png15-devel
+%else
 BuildRequires:  libpng-devel
+%endif
 BuildRequires:  libtiff-devel
 BuildRequires:  libjpeg-devel
 BuildRequires:  ImageMagick-devel
-BuildRequires:  bzip2-devel
 BuildRequires:  zlib-devel
 BuildRequires:  openssl-devel
 BuildRequires:  python-devel
 BuildRequires:  pcre-devel
-BuildRequires:  lcms-devel
 BuildRequires:  gettext-devel
 BuildRequires:  mysql-devel
 BuildRequires:  desktop-file-utils
@@ -98,11 +93,23 @@ BuildRequires:  readline-devel
 %if 0%{?with_ruby}
 BuildRequires:  ruby ruby-devel >= 1.8.2
 %endif
-BuildRequires:  libpaper-devel
-BuildRequires:	libutempter-devel
+%if 0%{?suse_version}
+BuildRequires:	GraphicsMagick >= 1.1.0
+%endif
 BuildRequires:	GraphicsMagick-devel >= 1.1.0
 
-BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel
+%if 0%{?suse_version}
+BuildRequires:	libbz2-devel
+BuildRequires:  liblcms-devel
+BuildRequires:	utempter-devel
+%else
+BuildRequires:  bzip2-devel
+BuildRequires:  lcms-devel
+BuildRequires:	libutempter-devel
+
+BuildRequires:  libpaper-devel
+%endif
+
 
 # These libraries are either too old or too recent on distributions !
 # We always provide our versions with TDE...
@@ -114,11 +121,18 @@ BuildRequires:	%{_lib}mesagl1-devel
 BuildRequires:	%{_lib}mesaglu1-devel
 BuildRequires:	%{_lib}xi-devel
 BuildRequires:  wv2-devel
-%else
+%endif
+%if 0%{?fedora} || 0%{?rhel}
 BuildRequires:  libGL-devel
 BuildRequires:	libGLU-devel
 BuildRequires:  libXi-devel
 BuildRequires:  trinity-wv2-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:  Mesa-libGL-devel
+BuildRequires:	Mesa-libGLU-devel
+BuildRequires:  libXi-devel
+BuildRequires:  wv2-devel
 %endif
 
 %description
@@ -254,11 +268,16 @@ Requires:       %{name}-core = %{version}-%{release}
 %if 0%{?mgaversion} || 0%{?mdkversion}
 Requires:		fonts-ttf-dejavu
 %else
-Requires:       lyx-cmex10-fonts
 %if 0%{?fedora} >= 11 || 0%{?rhel} >= 6
 Requires:       dejavu-lgc-sans-fonts
-%else
+Requires:       lyx-cmex10-fonts
+%endif
+%if 0%{?rhel} == 5
 Requires:       dejavu-lgc-fonts 
+Requires:       lyx-cmex10-fonts
+%endif
+%if 0%{?suse_version}
+Requires:       dejavu-fonts 
 %endif
 %endif
 
@@ -304,17 +323,17 @@ This package is part of the TDE Office Suite.
 
 
 
-%prep
-%setup -q -n applications/%{kdecomp}
-
-# SRU
-%patch0 -p1
-
-%if 0%{?fedora} >= 17
-%patch13 -p1 -b .ruby19
+%if 0%{?suse_version}
+%debug_package
 %endif
-%patch16 -p1
-%patch17 -p1
+
+
+%prep
+%setup -q -n %{kdecomp}-3.5.13.1
+
+%if 0%{?fedora} >= 17 || 0%{?suse_version} >= 1220
+%patch13 -p1 -b .ruby
+%endif
 
 # use LGC variant instead
 %__sed -i.dejavu-lgc \
@@ -334,10 +353,15 @@ This package is part of the TDE Office Suite.
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
+unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
+
+%if 0%{?suse_version} == 1220
+RD=$(ruby -r rbconfig -e 'printf("%s",Config::CONFIG["rubyhdrdir"])')
+export CXXFLAGS="${CXXFLAGS} -I${RD}/%_normalized_cpu-linux"
+%endif
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -358,7 +382,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --disable-kexi-macros \
   --with-pqxx-includes=%{tde_includedir} \
   --with-pqxx-libraries=%{tde_libdir} \
-%if 0%{?with_kross} > 0
+%if 0%{?with_kross}
   --enable-scripting \
 %else
   --disable-scripting \
@@ -371,8 +395,6 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-[ ! -f %{buildroot}%{tde_datadir}/icons/hicolor/48x48/apps/koshell.png ] && \
-%__install -p -D -m644 %{SOURCE100} %{buildroot}%{tde_datadir}/icons/hicolor/48x48/apps/koshell.png
 
 # Replace absolute symlinks with relative ones
 pushd %{buildroot}%{tde_tdedocdir}/HTML
@@ -575,7 +597,7 @@ update-desktop-database -q &> /dev/null ||:
 %{tde_tdeappdir}/*KThesaurus.desktop
 %{tde_tdeappdir}/*koshell.desktop
 %{tde_datadir}/apps/kofficewidgets/
-%if 0%{?with_kross} > 0
+%if 0%{?with_kross}
 %{tde_datadir}/apps/kross/
 %{tde_tdelibdir}/krosspython.*
 %if 0%{?with_ruby}
@@ -602,7 +624,7 @@ update-desktop-database -q &> /dev/null ||:
 %{tde_libdir}/libkformulalib.so.*
 %{tde_libdir}/libkopalette.so.*
 %{tde_libdir}/libkoproperty.so.*
-%if 0%{?with_kross} > 0
+%if 0%{?with_kross}
 %{tde_libdir}/libkrossapi.so.*
 %{tde_libdir}/libkrossmain.so.*
 %endif
@@ -653,7 +675,7 @@ update-desktop-database -q &> /dev/null ||:
 %{tde_datadir}/templates/SpreadSheet.desktop
 %{tde_datadir}/templates/.source/SpreadSheet.kst
 %{tde_tdeappdir}/*kspread.desktop
-%if 0%{?with_kross} > 0
+%if 0%{?with_kross}
 %{tde_tdelibdir}/kspreadscripting.*
 %{tde_tdelibdir}/krosskspreadcore.*
 %endif
@@ -731,7 +753,7 @@ update-desktop-database -q &> /dev/null ||:
 %{tde_datadir}/services/kformdesigner/*
 %{tde_tdeappdir}/*kexi.desktop
 %{tde_datadir}/services/kexidb_sqlite*driver.desktop
-%if 0%{?with_kross} > 0
+%if 0%{?with_kross}
 %{tde_bindir}/krossrunner
 %{tde_tdelibdir}/krosskexiapp.*
 %{tde_tdelibdir}/krosskexidb.*
@@ -1006,7 +1028,7 @@ update-desktop-database -q &> /dev/null ||:
 %{tde_libdir}/libchalkrgb.so.*
 %{tde_libdir}/libchalkui.so.*
 %{tde_libdir}/libchalk_ycbcr_*.so.*
-%if 0%{?with_kross} > 0
+%if 0%{?with_kross}
 %{tde_tdelibdir}/krosschalkcore.la
 %{tde_tdelibdir}/krosschalkcore.so
 %{tde_tdelibdir}/chalkscripting.la
@@ -1027,5 +1049,32 @@ update-desktop-database -q &> /dev/null ||:
 
 
 %changelog
-* Sun Aug 05 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-6
-- Switch to 3.5.13-sru branch
+* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-6
+- Initial build for TDE 3.5.13.1
+
+* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-5
+- Fix kformula dependancies (for RHEL6)
+- Fix FTBFS due to missing libraries [Bug #657] [Commit #5c69fcd3]
+  Clean up lib paths in LDFLAGS - moved to LIBADD
+  For KWord and and KPresenter added linking kspell2
+  For KSpread added linking kutils
+- Fix accidental conversions of binary files [Bug #1033] [Commit #dbe89307]
+
+* Thu Apr 26 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-4
+- Updates BuildRequires
+- Build for Fedora 17
+- Fix compilation with GCC 4.7 [Bug #958]
+- Fix compilation with Ruby 1.9 [Bug #735]
+- Fix compilation with libpng [Bug #603]
+
+* Sat Jan 07 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-3
+- Fix GraphicksMagick 1.3 support [Bug #353]
+- Various patches for kexi [Bug #777]
+
+* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.3-2
+- Fix HTML directory location
+
+* Tue Nov 22 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.3-1
+- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Based on Spec file from Fedora 11 'koffice-2:1.6.3-25.20090306svn'
+- Removed 'krita', added 'chalk'

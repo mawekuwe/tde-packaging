@@ -1,0 +1,243 @@
+--- kde-style-qtcurve/cmake/QtCurveQt3.cmake.ORI	2012-08-29 19:47:59.470536207 +0200
++++ kde-style-qtcurve/cmake/QtCurveQt3.cmake	2012-08-29 19:48:50.268522398 +0200
+@@ -1,5 +1,5 @@
+ FILE(GLOB GLOB_PATHS_BIN /usr/lib/qt-3*/bin/)
+-FIND_PATH(QT_PLUGINS_DIR imageformats
++FIND_PATH(QT_PLUGINS_DIR designer
+   $ENV{QTDIR}/plugins
+   ${GLOB_PATHS_BIN}
+   /usr/local/qt/plugins
+--- a/config/CMakeLists.txt.module	2011-08-22 00:39:00.000000000 +0200
++++ a/config/CMakeLists.txt	2012-08-29 22:21:41.673500945 +0200
+@@ -4,9 +4,23 @@
+     set(kstyle_qtcurve_config_PART_SRCS qtcurveconfig.cpp)
+ endif (QTC_STYLE_SUPPORT)
+ 
+-include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/common ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR})
+-trinity_add_ui_files(kstyle_qtcurve_config_PART_SRCS qtcurveconfigbase.ui)
+-trinity_add_kpart(kstyle_qtcurve_config ${kstyle_qtcurve_config_PART_SRCS})
+-trinity_automoc(${kstyle_qtcurve_config_PART_SRCS})
+-target_link_libraries(kstyle_qtcurve_config ${QT_AND_KDECORE_LIBS} kio kdeui)
+-install(TARGETS kstyle_qtcurve_config DESTINATION ${KDE3_LIB_DIR}/trinity)
++include_directories(
++	${CMAKE_SOURCE_DIR}
++	${CMAKE_SOURCE_DIR}/common
++	${CMAKE_CURRENT_BINARY_DIR}
++	${CMAKE_BINARY_DIR}
++	${TDE_INCLUDE_DIR}
++	${QT_INCLUDE_DIR}
++)
++
++link_directories(
++	${TQT_LIBRARY_DIRS}
++)
++
++tde_add_ui_files(kstyle_qtcurve_config_PART_SRCS qtcurveconfigbase.ui)
++tde_add_kpart(kstyle_qtcurve_config 
++	MODULE
++	SOURCES ${kstyle_qtcurve_config_PART_SRCS}
++	LINK ${QT_AND_KDECORE_LIBS} kio kdeui
++	DESTINATION ${TDE_LIB_DIR}/trinity)
++tde_automoc(${kstyle_qtcurve_config_PART_SRCS})
+--- a/CMakeLists.txt.module	2012-08-29 20:30:59.679915086 +0200
++++ b/CMakeLists.txt	2012-08-29 22:09:03.118576286 +0200
+@@ -3,7 +3,7 @@
+ 
+ set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README")
+ set(CPACK_GENERATOR "DEB;RPM;TGZ")
+-set(DEBIAN_PACKAGE_DESCRIPTION "QtCurve for Qt3/KDE3")
++set(DEBIAN_PACKAGE_DESCRIPTION "QtCurve for Qt3/TDE")
+ set(DEBIAN_PACKAGE_SECTION "kde")
+ set(CPACK_SOURCE_GENERATOR "TBZ2")
+ set(CPACK_PACKAGE_VERSION_MAJOR "1")
+@@ -16,39 +16,64 @@
+ set(CPACK_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${QTCURVE_VERSION_FULL}")
+ include(CPack)
+ 
++##### include essential cmake modules ###########
++
++include( FindPkgConfig )
++include( CheckIncludeFile )
++include( CheckSymbolExists )
++include( CheckFunctionExists )
++include( CheckCSourceCompiles )
++include( CheckCXXSourceCompiles )
++include( CheckTypeSize )
++include( CheckCSourceRuns )
++include( CheckLibraryExists )
++
++##### include our cmake modules #################
++
++set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules" )
++include( TDEMacros )
++include( TDESetupPaths )
++
++##### setup and find essential stuff ############
++
++tde_setup_paths( )
++find_package( TQt )
++
++
+ if(COMMAND cmake_policy)
+     cmake_policy(SET CMP0003 NEW)
+ endif(COMMAND cmake_policy)
+ 
+ if (QTC_BUILD_CONFIG_MODULE)
+     if (NOT QTC_QT_ONLY)
+-        find_package(KDE3)
+-        if (NOT KDE3_FOUND)
++        find_package(TDE)
++	if (NOT TDE_VERSION)
+             set(QTC_QT_ONLY true)
+-            message("INFO: KDE3 not found! Compiling for Qt only! (Not building the config module)")
+-        endif (NOT KDE3_FOUND)
++            message("INFO: Trinity not found! Compiling for Qt only! (Not building the config module)")
++    endif (NOT TDE_VERSION)
+     endif (NOT QTC_QT_ONLY)
+ else (QTC_BUILD_CONFIG_MODULE)
+     set(QTC_QT_ONLY true)
+ endif (QTC_BUILD_CONFIG_MODULE)
+ 
+ if (NOT QTC_QT_ONLY)
+-    include(KDE3Macros)
++    include(TDEMacros)
+ else (NOT QTC_QT_ONLY)
+-    if (NOT KDE3PREFIX)
+-      SET(KDE3PREFIX "/opt/trinity")
+-    endif (NOT KDE3PREFIX)
++    if (NOT TDEPREFIX)
++      SET(TDEPREFIX "/opt/trinity")
++    endif (NOT TDEPREFIX)
++endif (NOT QTC_QT_ONLY)
+ 
+     set(QT_MT_REQUIRED TRUE)
+     find_package(Qt3 REQUIRED)
+     set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake )
+     include(QtCurveQt3)
++    set( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules" )
+     if (QT_PLUGINS_DIR MATCHES NOTFOUND)
+       MESSAGE(STATUS_ERROR "Qt3 package not found--assuming TQt4")
+       SET(QT_INCLUDE_DIR "/usr/include/qt4")
+-      SET(QT_PLUGINS_DIR "${KDE3PREFIX}/lib${LIB_SUFFIX}/trinity/plugins")
++      SET(QT_PLUGINS_DIR "${TDEPREFIX}/lib${LIB_SUFFIX}/trinity/plugins")
+     endif (QT_PLUGINS_DIR MATCHES NOTFOUND)
+-endif (NOT QTC_QT_ONLY)
+ 
+ #if (NOT QTC_QT_ONLY)
+ exec_program(kde-config
+@@ -56,18 +81,15 @@
+              OUTPUT_VARIABLE CMAKE_INSTALL_PREFIX)
+ #endif (NOT QTC_QT_ONLY)
+ 
+-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/usr/include/tqt -include tqt.h -DTQT_THREAD_SUPPORT")
++SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/opt/trinity/include/tqt -include tqt.h -DTQT_THREAD_SUPPORT")
+ 
+ # NASTY HACK TO FORCE COMPILATION
+ # REMOVE WHEN FIXED
+ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/opt/trinity/include")
+ 
+-SET(QT_UIC_EXECUTABLE "/usr/bin/uic-tqt" CACHE FILEPATH "")
+-SET(QT_MOC_EXECUTABLE "/usr/bin/tmoc" CACHE FILEPATH "")
+-
+ exec_program(kde-config
+              ARGS --install locale --expandvars
+-             OUTPUT_VARIABLE KDE3_LOCALE_PREFIX)
++             OUTPUT_VARIABLE TDE_LOCALE_PREFIX)
+ 
+ file(TO_CMAKE_PATH "$ENV{KDEDIRS}" _KDEDIRS)
+ 
+@@ -87,31 +109,31 @@
+ endif(KDE4_KDECONFIG_EXECUTABLE)
+ 
+ if(NOT KDE4PREFIX)
+-    set(KDE4PREFIX ${KDE3PREFIX})
++    set(KDE4PREFIX ${TDEPREFIX})
+ endif(NOT KDE4PREFIX)
+ 
+ configure_file (config.h.cmake ${CMAKE_BINARY_DIR}/config.h)
+ #if (NOT QTC_QT_ONLY)
+-    add_definitions(${QT_DEFINITIONS} ${KDE3_DEFINITIONS})
+-    include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE3_INCLUDES})
++    add_definitions(${QT_DEFINITIONS} ${TDE_DEFINITIONS})
++    include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${TDE_INCLUDES})
+ #else (NOT QTC_QT_ONLY)
+ #    add_definitions(${QT_DEFINITIONS})
+ #    include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
+ #endif (NOT QTC_QT_ONLY)
+ 
+-set(DATA_INSTALL_DIR ${KDE3PREFIX}/share/apps)
++set(DATA_INSTALL_DIR ${TDEPREFIX}/share/apps)
+ 
+-if(QTC_DEFAULT_TO_KDE3)
+-    message("INFO: Defaulting to reading KDE3 settings if KDE_SESSION_VERSION is not set")
+-else(QTC_DEFAULT_TO_KDE3)
++if(QTC_DEFAULT_TO_TDE)
++    message("INFO: Defaulting to reading TDE settings if KDE_SESSION_VERSION is not set")
++else(QTC_DEFAULT_TO_TDE)
+     message("INFO: Defaulting to reading KDE4 settings if KDE_SESSION_VERSION is not set")
+-endif(QTC_DEFAULT_TO_KDE3)
++endif(QTC_DEFAULT_TO_TDE)
+ 
+ add_subdirectory(style)
+ #if (NOT QTC_QT_ONLY)
+     if (QTC_BUILD_CONFIG_MODULE)
+         message("**************************************************************\n"
+-                "Warning: The KDE3 config module is deprecated, and is no longer\n"
++                "Warning: The TDE config module is deprecated, and is no longer\n"
+                 "         actively maintained. This module NO LONGER COMPILES!\n"
+                 "         It is recommended to use the KDE4 version instead.\n"
+                 "**************************************************************\n")
+--- kde-style-qtcurve/po/CMakeLists.txt.ORI	2012-08-30 20:03:49.306967361 +0200
++++ kde-style-qtcurve/po/CMakeLists.txt	2012-08-30 20:03:55.714827822 +0200
+@@ -18,7 +18,7 @@
+             add_custom_command(TARGET translations
+                     COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} --check -o ${_gmoFile} ${_poFile}
+                     DEPENDS ${_poFile})
+-            install(FILES ${_gmoFile} DESTINATION  ${KDE3_LOCALE_PREFIX}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
++	    install(FILES ${_gmoFile} DESTINATION  ${TDE_LOCALE_PREFIX}/${_langCode}/LC_MESSAGES/ RENAME ${catalogname}.mo)
+         endif( _langCode )
+     endforeach(_poFile ${PO_FILES})
+ endif(NOT GETTEXT_MSGFMT_EXECUTABLE)
+--- kde-style-qtcurve/style/CMakeLists.txt.cmake	2011-08-22 00:39:00.000000000 +0200
++++ kde-style-qtcurve/style/CMakeLists.txt	2012-08-30 20:20:04.645840572 +0200
+@@ -1,14 +1,25 @@
+ if (NOT QTC_QT_ONLY)
+     set(qtcurve_SRCS qtcurve.cpp pixmaps.h)
+     add_definitions(-DQT_PLUGIN)
+-    include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/common)
+-    link_directories(${KDE3_LIB_DIR})
+-    trinity_automoc(${qtcurve_SRCS})
+-    add_library(qtcurve MODULE ${qtcurve_SRCS})
+-    set_target_properties(qtcurve PROPERTIES PREFIX "")
+-    target_link_libraries(qtcurve ${QT_LIBRARIES} kdefx)
+-    install(TARGETS qtcurve LIBRARY DESTINATION ${KDE3_LIB_DIR}/trinity/plugins/styles)
+-    install(FILES qtcurve.themerc DESTINATION ${KDE3PREFIX}/share/apps/kstyle/themes)
++    include_directories(
++	    ${CMAKE_SOURCE_DIR}
++	    ${CMAKE_CURRENT_BINARY_DIR}
++	    ${CMAKE_BINARY_DIR}
++	    ${TDE_INCLUDE_DIR}
++	    ${QT_INCLUDE_DIR}
++	    ${CMAKE_SOURCE_DIR}/common
++    )
++    link_directories(
++	    ${TDE_LIB_DIR}
++    )
++    tde_add_library(qtcurve
++	    MODULE
++	    PROPERTIES PREFIX ""
++	    SOURCES ${qtcurve_SRCS}
++	    LINK ${QT_LIBRARIES} kdefx
++	    DESTINATION ${TDE_LIB_DIR}/trinity/plugins/styles
++    )
++    install(FILES qtcurve.themerc DESTINATION ${TDEPREFIX}/share/apps/kstyle/themes)
+ else (NOT QTC_QT_ONLY)
+     set(qtcurve_MOC_CLASSES qtcurve.h qtc_kstyle.h)
+     QTCURVE_QT_WRAP_CPP(qtcurve_MOC_SRCS ${qtcurve_MOC_CLASSES})
+--- a/style/qtcurve.cpp.ORI	2012-08-30 20:57:36.256639146 +0200
++++ a/style/qtcurve.cpp	2012-08-30 20:57:40.338552798 +0200
+@@ -8684,4 +8684,3 @@
+         resetHover();
+ }
+ 
+-#include "qtcurve.moc"

@@ -15,8 +15,8 @@
 %define tde_appdir %{tde_datadir}/applications
 
 %define tde_tdeappdir %{tde_appdir}/kde
-%define tde_tdedocdir %{tde_docdir}/kde
-%define tde_tdeincludedir %{tde_includedir}/kde
+%define tde_tdedocdir %{tde_docdir}/tde
+%define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
@@ -26,7 +26,7 @@
 Name:		trinity-guidance
 Summary:	A collection of system administration tools for Trinity
 Version:	0.8.0svn20080103
-Release:	3%{?dist}%{?_variant}
+Release:	4%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -38,11 +38,11 @@ URL:		http://www.simonzone.com/software/guidance
 Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	kde-guidance-3.5.13.tar.gz
+Source0:	kde-guidance-3.5.13.1.tar.gz
 
-BuildRequires:	tqtinterface-devel
-BuildRequires:	trinity-tdelibs-devel
-BuildRequires:	trinity-tdebase-devel
+BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.1
+BuildRequires:	trinity-tdelibs-devel >= 3.5.13.1
+BuildRequires:	trinity-tdebase-devel >= 3.5.13.1
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -52,27 +52,42 @@ BuildRequires:	python-trinity
 BuildRequires:	chrpath
 BuildRequires:	gcc-c++
 
+# SIP support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	python-sip
+%endif
+%if 0%{?suse_version}
+BuildRequires:	python-sip-devel
+%endif
+%if 0%{?rhel} == 5
+BuildRequires:	trinity-sip-devel
+%endif
+%if 0%{?rhel} >= 6 || 0%{?fedora}
+BuildRequires:	sip-devel
+%endif
+
+# PYTHON-QT support
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	python-qt
 Requires:	python-qt
-%else
-%if 0%{?rhel} == 5
-BuildRequires:	trinity-PyQt-devel
-BuildRequires:	trinity-sip-devel
-Requires:		trinity-PyQt
-%else
-BuildRequires:	PyQt-devel
-BuildRequires:	sip-devel
-Requires:		PyQt
 %endif
+%if 0%{?rhel} == 5 || 0%{?suse_version}
+BuildRequires:	trinity-PyQt-devel
+Requires:	trinity-PyQt
+%endif
+%if 0%{?rhel} >= 6 || 0%{?fedora}
+BuildRequires:	PyQt-devel
+Requires:	PyQt
 %endif
 
 
 Requires:		python-trinity
 Requires:		%{name}-backends
-Requires:		hwdata
 Requires:		python
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+Requires:		hwdata
+%endif
+
 
 %if "%{tde_prefix}" == "/usr"
 Conflicts:	guidance-power-manager
@@ -95,7 +110,9 @@ or can be run as standalone applications.
 %package backends
 Group:		Applications/Utilities
 Summary:	collection of system administration tools for GNU/Linux [Trinity]
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 Requires:	hwdata
+%endif
 Requires:	python
 
 %description backends
@@ -113,12 +130,17 @@ A power management applet to indicate battery levels and perform hibernate or
 suspend using HAL.
 
 
+%if 0%{?suse_version}
+%debug_package
+%endif
+
+
 %prep
-%setup -q -n applications/kde-guidance
+%setup -q -n kde-guidance-3.5.13.1
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt.sh
+unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
@@ -132,7 +154,7 @@ export PYTHONDONTWRITEBYTECODE=
 
 
 %install
-unset QTDIR; . /etc/profile.d/qt.sh
+unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
@@ -204,9 +226,10 @@ chrpath -d %{buildroot}%{tde_tdelibdir}/kcm_*.so
 %__mv -f %{buildroot}%{tde_libdir}/python*/site-packages/ixf86misc.so %{buildroot}%{python_sitearch}
 %__mv -f %{buildroot}%{tde_libdir}/python*/site-packages/xf86misc.py* %{buildroot}%{python_sitearch}/%{name}
 
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %__rm -f %{buildroot}%{tde_datadir}/apps/guidance/MonitorsDB
 %__ln_s -f /usr/share/hwdata/MonitorsDB %{buildroot}%{tde_datadir}/apps/guidance/MonitorsDB
-
+%endif
 
 
 ##### POWERMANAGER INSTALLATION
@@ -254,10 +277,7 @@ done
 
 # Removes useless files
 find %{buildroot} -name "*.egg-info" -exec rm -f {} \;
-#find %{buildroot}%{_libdir} -name "*.a" -exec rm -f {} \;
-
-%__rm -f %{?buildroot}%{python_sitearch}/%{name}/*.pyc
-%__rm -f %{?buildroot}%{python_sitearch}/%{name}/*.pyo
+find %{buildroot}%{tde_libdir} -name "*.a" -exec rm -f {} \;
 
 # Removes obsolete display config manager
 %__rm -f %{?buildroot}/etc/X11/Xsession.d/40guidance-displayconfig_restore
@@ -305,19 +325,19 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/applications/kde/*.desktop
 %{tde_datadir}/icons/crystalsvg/*/*/*.png
 %{tde_datadir}/icons/crystalsvg/*/*/*.svg
-%{python_sitearch}/%{name}/SMBShareSelectDialog.py 
-%{python_sitearch}/%{name}/SimpleCommandRunner.py
-%{python_sitearch}/%{name}/fuser.py
-%{python_sitearch}/%{name}/fuser_ui.py
-%{python_sitearch}/%{name}/grubconfig.py
-%{python_sitearch}/%{name}/ktimerdialog.py
-%{python_sitearch}/%{name}/mountconfig.py
-%{python_sitearch}/%{name}/servertestdialog.py
-%{python_sitearch}/%{name}/serviceconfig.py
-%{python_sitearch}/%{name}/sizeview.py
-%{python_sitearch}/%{name}/unixauthdb.py
-%{python_sitearch}/%{name}/userconfig.py
-%{python_sitearch}/%{name}/wineconfig.py
+%{python_sitearch}/%{name}/SMBShareSelectDialog.py*
+%{python_sitearch}/%{name}/SimpleCommandRunner.py*
+%{python_sitearch}/%{name}/fuser.py*
+%{python_sitearch}/%{name}/fuser_ui.py*
+%{python_sitearch}/%{name}/grubconfig.py*
+%{python_sitearch}/%{name}/ktimerdialog.py*
+%{python_sitearch}/%{name}/mountconfig.py*
+%{python_sitearch}/%{name}/servertestdialog.py*
+%{python_sitearch}/%{name}/serviceconfig.py*
+%{python_sitearch}/%{name}/sizeview.py*
+%{python_sitearch}/%{name}/unixauthdb.py*
+%{python_sitearch}/%{name}/userconfig.py*
+%{python_sitearch}/%{name}/wineconfig.py*
 %{tde_tdedocdir}/HTML/en/guidance/
 
 # Files from backends
@@ -336,18 +356,18 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %files -n trinity-guidance-backends
 %defattr(-,root,root,-)
-%{python_sitearch}/%{name}/MicroHAL.py
-%{python_sitearch}/%{name}/ScanPCI.py
-%{python_sitearch}/%{name}/infimport.py
-%{python_sitearch}/%{name}/displayconfigabstraction.py
-%{python_sitearch}/%{name}/displayconfig-hwprobe.py
-%{python_sitearch}/%{name}/displayconfig-restore.py
-%{python_sitearch}/%{name}/drivedetect.py
-%{python_sitearch}/%{name}/execwithcapture.py
-%{python_sitearch}/%{name}/wineread.py
-%{python_sitearch}/%{name}/winewrite.py
-%{python_sitearch}/%{name}/xf86misc.py
-%{python_sitearch}/%{name}/xorgconfig.py
+%{python_sitearch}/%{name}/MicroHAL.py*
+%{python_sitearch}/%{name}/ScanPCI.py*
+%{python_sitearch}/%{name}/infimport.py*
+%{python_sitearch}/%{name}/displayconfigabstraction.py*
+%{python_sitearch}/%{name}/displayconfig-hwprobe.py*
+%{python_sitearch}/%{name}/displayconfig-restore.py*
+%{python_sitearch}/%{name}/drivedetect.py*
+%{python_sitearch}/%{name}/execwithcapture.py*
+%{python_sitearch}/%{name}/wineread.py*
+%{python_sitearch}/%{name}/winewrite.py*
+%{python_sitearch}/%{name}/xf86misc.py*
+%{python_sitearch}/%{name}/xorgconfig.py*
 %{python_sitearch}/ixf86misc.so
 %{tde_datadir}/apps/guidance/vesamodes
 %{tde_datadir}/apps/guidance/extramodes
@@ -361,14 +381,14 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %files powermanager
 %defattr(-,root,root,-)
 %{tde_bindir}/guidance-power-manager
-%{python_sitearch}/%{name}/MicroHAL.py
-%{python_sitearch}/%{name}/guidance-power-manager.py
-%{python_sitearch}/%{name}/powermanage.py
-%{python_sitearch}/%{name}/gpmhelper.py
-%{python_sitearch}/%{name}/powermanager_ui.py
-%{python_sitearch}/%{name}/guidance_power_manager_ui.py
-%{python_sitearch}/%{name}/notify.py
-%{python_sitearch}/%{name}/tooltip.py
+%{python_sitearch}/%{name}/MicroHAL.py*
+%{python_sitearch}/%{name}/guidance-power-manager.py*
+%{python_sitearch}/%{name}/powermanage.py*
+%{python_sitearch}/%{name}/gpmhelper.py*
+%{python_sitearch}/%{name}/powermanager_ui.py*
+%{python_sitearch}/%{name}/guidance_power_manager_ui.py*
+%{python_sitearch}/%{name}/notify.py*
+%{python_sitearch}/%{name}/tooltip.py*
 %{tde_datadir}/icons/hicolor/22x22/apps/power-manager.png
 %{tde_datadir}/apps/guidance/pics/ac-adapter.png
 %{tde_datadir}/apps/guidance/pics/battery*.png
@@ -377,7 +397,10 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 
-%Changelog
+%changelog
+* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-4
+- Initial build for TDE 3.5.13.1
+
 * Fri May 11 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-3
 - Fix Python search dir
 
