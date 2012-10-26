@@ -9,7 +9,6 @@ debian/tmp/opt/trinity/share/apps/kconf_update/knewsticker.upd
 debian/tmp/opt/trinity/share/apps/kconf_update/knt-0.1-0.2.pl
 debian/tmp/opt/trinity/share/apps/kicker/applets/knewsticker.desktop
 debian/tmp/opt/trinity/share/apps/knewsticker/eventsrc
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/knewsticker/TODO
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/knewsticker/about-icon.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/knewsticker/checknews-icon.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/knewsticker/common

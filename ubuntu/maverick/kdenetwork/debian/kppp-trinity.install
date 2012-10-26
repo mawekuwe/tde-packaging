@@ -496,7 +496,6 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/accounting.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/callback.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/chap.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/costsgraphs.fig
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/costsgraphs.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/dialog-setup.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/getting-online.docbook
@@ -515,14 +514,12 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp-config.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp-device-tab.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp-dialler-tab.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp-faq.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp.faq.question
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp-graph-tab.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp-misc-tab.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp-modem-tab.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/kppp-wizard.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/security.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/tricks.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/ttyS-cua.txt
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kppp/wizard.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/kppp.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kppp.png
