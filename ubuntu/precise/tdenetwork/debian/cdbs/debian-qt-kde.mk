@@ -10,9 +10,11 @@ _cdbs_class_debian-qt-kde := 1
 # Note: This _must_ be included before autotools.mk, or it won't work.
 common-configure-arch common-configure-indep:: debian/stamp-cvs-make
 debian/stamp-cvs-make:
+ifndef _cdbs_class_cmake
 	cp -Rp /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
 	cp -Rp /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	$(MAKE) -C $(DEB_SRCDIR) -f admin/Makefile.common dist;
+endif
 	touch debian/stamp-cvs-make
 
 include debian/cdbs/kde.mk$(_cdbs_makefile_suffix)
@@ -75,11 +77,11 @@ $(patsubst %,binary-install/%,$(DEB_PACKAGES)) :: binary-install/%:
 	if test -x /usr/bin/dh_desktop; then dh_desktop -p$(cdbs_curpkg) $(DEB_DH_DESKTOP_ARGS); fi
 	if test -e debian/$(cdbs_curpkg).lintian; then \
 		install -p -D -m644 debian/$(cdbs_curpkg).lintian \
-			debian/$(cdbs_curpkg)/opt/trinity/share/lintian/overrides/$(cdbs_curpkg); \
+			debian/$(cdbs_curpkg)/usr/share/lintian/overrides/$(cdbs_curpkg); \
 	fi
 	if test -e debian/$(cdbs_curpkg).presubj; then \
 		install -p -D -m644 debian/$(cdbs_curpkg).presubj \
-			debian/$(cdbs_curpkg)/opt/trinity/share/bug/$(cdbs_curpkg)/presubj; \
+			debian/$(cdbs_curpkg)/user/share/bug/$(cdbs_curpkg)/presubj; \
 	fi
 
 binary-install/$(DEB_SOURCE_PACKAGE)-doc-html::
@@ -96,6 +98,7 @@ binary-install/$(DEB_SOURCE_PACKAGE)-doc-html::
 	done
 
 clean::
+ifndef _cdbs_class_cmake
 	if test -n "$(DEB_KDE_CVS_MAKE)" && test -d $(DEB_SRCDIR); then \
 		cd $(DEB_SRCDIR); \
 		find . -name Makefile.in -print | \
@@ -104,6 +107,7 @@ clean::
 			configure configure.files configure.in stamp-h.in \
 			subdirs; \
 	fi
+endif
 	rm -f debian/stamp-cvs-make
 
 endif
