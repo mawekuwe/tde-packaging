@@ -1,6 +1,6 @@
-debian/tmp/opt/trinity/include/kde/cvsjob_stub.h
-debian/tmp/opt/trinity/include/kde/cvsservice_stub.h
-debian/tmp/opt/trinity/include/kde/repository_stub.h
+debian/tmp/opt/trinity/include/cvsjob_stub.h
+debian/tmp/opt/trinity/include/cvsservice_stub.h
+debian/tmp/opt/trinity/include/repository_stub.h
 debian/tmp/opt/trinity/lib/libcvsservice.la
 debian/tmp/opt/trinity/lib/libcvsservice.so
 debian/tmp/opt/trinity/lib/libkdeinit_cvsaskpass.la
