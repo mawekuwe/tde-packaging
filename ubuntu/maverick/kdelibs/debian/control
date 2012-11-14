@@ -61,8 +61,7 @@ Architecture: any
 Replaces: kdelibs4c2a-kde3 (<< 4:3.5.13)
 Breaks: kdelibs4c2a-kde3 (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, kdelibs-data-trinity,
- kdelibs-data-trinity, perl, xbase-clients,
- launchpad-integration, sudo
+ kdelibs-data-trinity, perl, xbase-clients, sudo
 Recommends: xdg-user-dirs
 Suggests: fam, perl-suid
 Description: core libraries and binaries for all TDE applications

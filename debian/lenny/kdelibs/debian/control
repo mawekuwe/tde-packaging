@@ -58,8 +58,7 @@ Package: kdelibs4c2a-trinity
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, kdelibs-data-trinity,
- kdelibs-data-trinity, perl, xbase-clients,
- launchpad-integration, sudo
+ kdelibs-data-trinity, perl, xbase-clients, sudo
 Recommends: xdg-user-dirs
 Suggests: fam, perl-suid
 Conflicts: kdelibs4-trinity, kdelibs4c2-trinity (>> 4:1.0.0), kdelibs-bin-trinity (<< 4:3.3.3), kdelibs4-trinity-dev (<< 4:3.5.7.dfsg.1-6)

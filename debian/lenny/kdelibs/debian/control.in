@@ -56,8 +56,7 @@ Package: kdelibs4c2a
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, kdelibs-data (>> ${KDE-Version3}),
- kdelibs-data (<< ${KDE-Next-Version3}), perl, xbase-clients,
- launchpad-integration, sudo
+ kdelibs-data (<< ${KDE-Next-Version3}), perl, xbase-clients, sudo
 Suggests: fam, perl-suid
 Conflicts: kdelibs4, kdelibs4c2, kdelibs-bin (<< 4:3.3.3), kdelibs4-dev (<< 4:3.5.7.dfsg.1-6)
 Replaces: kdelibs4, kdelibs4c2, kdeartwork-style (<< 4:3.4.0),
