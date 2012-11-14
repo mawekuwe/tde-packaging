@@ -56,8 +56,7 @@ Package: tdelibs4c2a
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, tdelibs-data (>> ${KDE-Version3}),
- tdelibs-data (<< ${KDE-Next-Version3}), perl, xbase-clients,
- launchpad-integration, sudo
+ tdelibs-data (<< ${KDE-Next-Version3}), perl, xbase-clients, sudo
 Suggests: fam, perl-suid
 Conflicts: tdelibs4, tdelibs4c2, tdelibs-bin (<< 4:3.3.3), tdelibs4-dev (<< 4:3.5.7.dfsg.1-6)
 Replaces: tdelibs4, tdelibs4c2, tdeartwork-style (<< 4:3.4.0),
