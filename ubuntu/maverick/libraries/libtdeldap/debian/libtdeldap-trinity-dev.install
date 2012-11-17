@@ -1,0 +1,3 @@
+opt/trinity/include/*
+opt/trinity/lib/lib*.so
+opt/trinity/lib/*.la
