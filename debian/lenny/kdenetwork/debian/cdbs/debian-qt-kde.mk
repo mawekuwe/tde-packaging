@@ -81,7 +81,7 @@ $(patsubst %,binary-install/%,$(DEB_PACKAGES)) :: binary-install/%:
 	fi
 	if test -e debian/$(cdbs_curpkg).presubj; then \
 		install -p -D -m644 debian/$(cdbs_curpkg).presubj \
-			debian/$(cdbs_curpkg)/user/share/bug/$(cdbs_curpkg)/presubj; \
+			debian/$(cdbs_curpkg)/usr/share/bug/$(cdbs_curpkg)/presubj; \
 	fi
 
 binary-install/$(DEB_SOURCE_PACKAGE)-doc-html::
