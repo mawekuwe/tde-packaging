@@ -57,7 +57,7 @@ And it is of course nice to look at. Upstream says:
 "- Don't forget to breathe, while drooling."
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

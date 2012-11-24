@@ -59,7 +59,7 @@ KSquirrel is a fast and convenient image viewer for KDE featuring
 OpenGL and dynamic format support.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

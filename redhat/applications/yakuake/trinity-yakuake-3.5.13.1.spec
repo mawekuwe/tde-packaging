@@ -48,7 +48,7 @@ BuildRequires: desktop-file-utils
 %description
 Yakuake is a Quake-style terminal emulator based on KDE Konsole technology.
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

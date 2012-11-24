@@ -80,7 +80,7 @@ As KRadio is based on an extendable plugin architecture, contributions
 of new plugins (e.g. Internet Radio Streams, new cool GUIs) are welcome.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

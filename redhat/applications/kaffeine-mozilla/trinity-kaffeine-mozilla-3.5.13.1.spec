@@ -67,7 +67,7 @@ This mozilla plugin launches kaffeine, the xine-based media player for KDE,
 when a page containing a supported media format is loaded.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

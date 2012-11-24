@@ -60,7 +60,7 @@ to collect informations for a report. Those data can be shared with co-workers b
 baskets to HTML.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

@@ -79,7 +79,7 @@ libkdcraw-devel contains development files and documentation. The
 library documentation is available on kdcraw.h header file.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

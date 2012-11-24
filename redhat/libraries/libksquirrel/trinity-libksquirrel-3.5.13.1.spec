@@ -54,9 +54,11 @@ BuildRequires:	djvulibre
 
 # XMEDCON support
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?pclinuxos} == 0
 %define with_xmedcon 1
 BuildRequires:	xmedcon
 BuildRequires:	xmedcon-devel
+%endif
 %endif
 
 # RSVG support
@@ -102,7 +104,7 @@ Requires:	%{name}
 Tools for KSquirrel.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

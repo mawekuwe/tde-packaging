@@ -107,7 +107,7 @@ generation of bibliographies and indices and other common tasks.
 
 Kile can support large projects consisting of several smaller files.
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

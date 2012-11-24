@@ -58,7 +58,7 @@ System preferences is a replacement for the TDE
 Control Centre with an improved user interface.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

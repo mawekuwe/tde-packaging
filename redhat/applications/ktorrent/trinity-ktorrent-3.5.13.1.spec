@@ -55,7 +55,7 @@ certain file types (video and audio) and integration into the KDE Panel
 enabling background downloading.
  
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

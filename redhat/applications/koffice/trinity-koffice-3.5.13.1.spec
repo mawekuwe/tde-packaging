@@ -68,7 +68,7 @@ BuildRequires:  automake libtool
 BuildRequires:  freetype-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  libart_lgpl-devel
-%if 0%{?mdkversion} || 0%{?mgaversion}
+%if ( 0%{?mdkversion} || 0%{?mgaversion} ) && 0%{?pclinuxos} == 0
 BuildRequires:  %{_lib}png15-devel
 %else
 BuildRequires:  libpng-devel
@@ -121,6 +121,7 @@ BuildRequires:	%{_lib}mesagl1-devel
 BuildRequires:	%{_lib}mesaglu1-devel
 BuildRequires:	%{_lib}xi-devel
 BuildRequires:  wv2-devel
+BuildRequires:	%{_lib}openjpeg-devel
 %endif
 %if 0%{?fedora} || 0%{?rhel}
 BuildRequires:  libGL-devel
@@ -323,7 +324,7 @@ This package is part of the TDE Office Suite.
 
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

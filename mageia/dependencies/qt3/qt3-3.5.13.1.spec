@@ -96,7 +96,11 @@ BuildRequires: fontconfig-devel
 BuildRequires: bzip2-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libmng-devel
+%if 0%{pclinuxos}
+BuildRequires: libpng-devel
+%else
 BuildRequires: pkgconfig(libpng15)
+%endif
 BuildRequires: zlib-devel 
 BuildRequires: nas-devel
 BuildRequires: libiodbc-devel
@@ -465,6 +469,9 @@ find %_docdir -maxdepth 1 -type d -name qt-3.\* -exec rm -rf {} \;
 
 #--------------------------------------------------------------------
 
+%if 0%{?pclinuxos}
+%debug_package
+%endif
 
 %prep
 %setup -q -n qt3-3.5.13.1
@@ -709,7 +716,7 @@ if (! \$?QT_XFT ) then
 endif
 EOF
 
-cat >> %buildroot/%_sysconfdir/profile.d/qt3.sh << EOF
+cat > %buildroot/%_sysconfdir/profile.d/qt3.sh << EOF
 #! /bin/bash
 [ -z "\$QTDIR" ] && QTDIR="%qtdir"
 [ -z "\$QTINC" ] && QTINC="%qtdir/include"

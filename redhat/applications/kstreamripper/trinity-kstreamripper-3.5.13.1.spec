@@ -58,7 +58,7 @@ on your harddisk and splits them up in mp3 files. KStreamRipper helps
 you with managing/ripping your preferred streams.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

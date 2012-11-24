@@ -54,7 +54,7 @@ Supports KIO on TDE (allows accessing ftp, sftp, fish, smb etc.).
 Unicode & UTF-8 support
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

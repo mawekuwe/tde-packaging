@@ -74,6 +74,8 @@ Patch15:	kdebase-3.5.13.1-startkde_icon.patch
 Patch21:	kdebase-3.5.13-kio_man_utf8.patch
 ## [kdebase/kdm/kfrontend] Allows to hide KDM menu button [RHEL/Fedora]
 Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
+## [kdebase/startkde] Fix wrong path setting
+Patch31:	kdebase-3.5.13.1-fix_startkde_path.patch
 
 ### Patches for RHEL4 (should not go upstream)
 
@@ -181,6 +183,18 @@ Requires:	indexhtml
 %define tde_aboutpage /usr/share/mdk/about/index.html
 %endif
 
+# PCLINUXOS 2012
+%if "%{?pclinuxos}" == "2012"
+Requires:	trinity-wallpaper-theme-default
+%define tde_bg %{tde_datadir}/wallpapers/Pulse2012/contents/images/1600x1200.jpg
+Requires:	desktop-common-data
+%define tde_starticon /usr/share/icons/pclinuxos.png
+
+Requires:	indexhtml
+%define tde_aboutlabel PCLinuxOS 2012
+%define tde_aboutpage /usr/share/mdk/about/index.html
+%endif
+
 # OpenSuse 12.2 Theme
 %if "%{?suse_version}" == "1220"
 Requires:	wallpaper-branding
@@ -205,7 +219,12 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	libraw1394-devel
 BuildRequires:	libvorbis-devel
 BuildRequires:	pam-devel
+%if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
+BuildRequires:	%{_lib}usb1.0-devel
+BuildRequires:	%{_lib}usb-compat0.1-devel
+%else
 BuildRequires:	libusb-devel
+%endif
 BuildRequires:	esound-devel
 BuildRequires:	glib2-devel
 BuildRequires:	pcre-devel
@@ -284,6 +303,7 @@ Requires:		avahi
 %endif
 
 # NAS support
+# (what is nas btw ?)
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	nas-devel
 %endif
@@ -1433,7 +1453,9 @@ done
 # First, we read the "product" key in /etc/product.id
 eval $(tr "," ";" </etc/product.id) 2>/dev/null
 # Then, we create a symbolic link to the corresponding background
-%__ln -sf "/usr/share/mdk/backgrounds/Mandriva-${product:-Free}-1280x1024-1300.jpg" "%{tde_bg}"
+if [ -r "/usr/share/mdk/backgrounds/Mandriva-${product:-Free}-1280x1024-1300.jpg" "%{tde_bg}" ]; then
+  %__ln -sf "/usr/share/mdk/backgrounds/Mandriva-${product:-Free}-1280x1024-1300.jpg" "%{tde_bg}"
+fi
 %endif
 
 %postun data
@@ -1816,7 +1838,13 @@ Requires:	xorg-x11-xinit
 %endif
 
 # Required for Fedora LiveCD
+%if 0%{?rhel} || 0%{?fedora}
 Provides:	service(graphical-login)
+%endif
+# Required for Mandriva's installer
+%if 0%{?mgaversion} || 0%{?mdkversion}
+Provides:	dm
+%endif
 
 %description -n trinity-tdm
 tdm manages a collection of X servers, which may be on the local host or
@@ -1869,6 +1897,12 @@ already. Most users won't need this.
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %{_sysconfdir}/X11/wmsession.d/45TDE
 %{_datadir}/X11/dm.d/45TDE.conf
+
+%post -n trinity-tdm
+%make_session
+
+%postun -n trinity-tdm
+%make_session
 %endif
 
 ##########
@@ -2980,7 +3014,7 @@ Konqueror libraries.
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -2999,6 +3033,7 @@ Konqueror libraries.
 %patch21 -p1 -b .man
 %endif
 %patch30 -p1 -b .xtestsupport
+%patch31 -p1 -b .startkde
 
 %if 0%{?rhel} == 4
 %patch201 -p1 -b .libdetect
@@ -3109,7 +3144,7 @@ cd build
   %{!?with_tsak:-DBUILD_TSAK=OFF} \
   ..
 
-%__make %{?_smp_mflags} || %__make
+%__make %{?_smp_mflags}
 
 
 %install

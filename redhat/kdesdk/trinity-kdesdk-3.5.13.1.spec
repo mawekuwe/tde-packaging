@@ -20,7 +20,7 @@
 Name:			trinity-tdesdk
 Summary:		The KDE Software Development Kit (SDK)
 Version:		3.5.13.1
-Release:		1%{?dist}%{?_variant}
+Release:		2%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			User Interface/Desktops
@@ -33,8 +33,6 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source: 		kdesdk-3.5.13.1.tar.gz
 
-# [tdesdk] fixes for RHEL/Fedora/MGA2 after previous patch
-Patch4:		kdesdk-3.5.13-misc_ftbfs.patch
 # [tdesdk] Fix FTBFS on newer subversion libraries [Bug #872] [Commit #572169a2]
 Patch5:		kdesdk-3.5.13-fix_ftbfs_on_newer_svn.patch
 # [tdesdk] Fix unknown macro 'tde_save_and_set'
@@ -43,26 +41,28 @@ Patch6:		kdesdk-3.5.13.1-fix_cmake_macros.patch
 Patch7:		kdesdk-3.5.13.1-add_missing_files.patch
 # [tdesdk] Use 'flex' instead of 'lex'
 Patch8:		kdesdk-3.5.13.1-use_flex_instead_of_lex.patch
+# [tdesdk] Fix various cmake issues [Bug #1262]
+Patch9:		kdesdk-3.5.13.1-fix_various_cmake_issues.patch
 
-BuildRequires: cmake >= 2.8
-BuildRequires: libtool
-BuildRequires: pcre-devel
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires:	cmake >= 2.8
+BuildRequires:	libtool
+BuildRequires:	pcre-devel
+BuildRequires:	trinity-tqtinterface-devel >= %{version}
+BuildRequires:	trinity-tdelibs-devel >= %{version}
 # for kbugbuster/libkcal
-BuildRequires: trinity-tdepim-devel >= %{version}
+BuildRequires:	trinity-tdepim-devel >= %{version}
 %if 0%{?mgaversion} || 0%{?mdkversion}
 #BuildRequires:	%{_lib}db4.8-devel
 %endif
 %if 0%{?rhel} || 0%{?fedora}
-BuildRequires: db4-devel
+BuildRequires:	db4-devel
 %endif
 %if 0%{?suse_version}
 BuildRequires:	libdb-4_8-devel
 %endif
-BuildRequires: desktop-file-utils
+BuildRequires:	desktop-file-utils
 # kbabel,  F-7+: flex >= 2.5.33-9
-BuildRequires: flex
+BuildRequires:	flex
 # umbrello
 BuildRequires:	libxslt-devel
 BuildRequires:	libxml2-devel
@@ -73,14 +73,14 @@ BuildRequires:	neon-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}ltdl-devel
 BuildRequires:	%{_lib}binutils-devel
-%else
+%endif
 %if 0%{?fedora} >= 6 || 0%{?rhel} >= 5 || 0%{?suse_version}
 BuildRequires:	libtool-ltdl-devel
 BuildRequires:	binutils-devel
 %endif
-%endif
 
 # KIOSLAVE
+# Does not build on RHEL4
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define build_kioslave 1
 %endif
@@ -160,7 +160,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_datadir}/icons/hicolor/*/apps/cervisia.png
 %{tde_datadir}/icons/crystalsvg/*/actions/vcs_*.png
 %{tde_datadir}/icons/crystalsvg/scalable/actions/vcs_*.svgz
-#%{tde_mandir}/man1/cervisia.1*
+%{tde_mandir}/man1/cervisia.1*
 %{tde_tdedocdir}/HTML/en/cervisia/
 
 %post -n trinity-cervisia
@@ -197,6 +197,11 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/kapptemplate
 %{tde_datadir}/apps/kapptemplate/
 
+%pre -n trinity-kapptemplate
+if [ -d "%{tde_bindir}/kapptemplate" ]; then
+  rm -rf "%{tde_bindir}/kapptemplate"
+fi
+
 ##########
 
 %package -n trinity-kbabel
@@ -215,7 +220,6 @@ PO-files at once.  KBabelDict is a dictionary to assist with searching
 for common translations.
 
 This package is part of Trinity, and a component of the TDE SDK module.
-See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
 
 %files -n trinity-kbabel
 %{tde_bindir}/catalogmanager
@@ -523,8 +527,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdeincludedir}/kprofilemethod.h
 %{tde_tdelibdir}/kabcformat_kdeaccounts.la
 %{tde_tdelibdir}/kabcformat_kdeaccounts.so
-%{tde_tdelibdir}/scheck.so
-%{tde_tdelibdir}/scheck.la
+%{tde_tdelibdir}/plugins/styles/scheck.so
+%{tde_tdelibdir}/plugins/styles/scheck.la
 %{tde_datadir}/apps/kabc/formats/kdeaccountsplugin.desktop
 %{tde_datadir}/apps/kstyle/themes/scheck.themerc
 %{tde_datadir}/kdepalettes/
@@ -656,10 +660,10 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/kminspector
 %{tde_bindir}/kmmatch
 %{tde_bindir}/kmtrace
-#%{tde_tdeincludedir}/ktrace.h
+%{tde_tdeincludedir}/ktrace.h
 %{tde_libdir}/kmtrace/libktrace.la
 %{tde_libdir}/kmtrace/libktrace.so
-%{tde_libdir}/libktrace_s.a
+%{tde_libdir}/kmtrace/libktrace_s.a
 %{tde_datadir}/apps/kmtrace/kde.excludes
 
 ##########
@@ -679,7 +683,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/kompare
 %{tde_libdir}/libkompareinterface.la
 %{tde_libdir}/libkompareinterface.so
-#%{tde_libdir}/libkompareinterface.so.*
+%{tde_libdir}/libkompareinterface.so.*
 %{tde_tdelibdir}/libkomparenavtreepart.la
 %{tde_tdelibdir}/libkomparenavtreepart.so
 %{tde_tdelibdir}/libkomparepart.la
@@ -778,7 +782,7 @@ for f in hicolor locolor ; do
 done
 
 %postun -n trinity-kuiviewer
-for f in crystalsvg hicolor locolor ; do
+for f in hicolor locolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
   gtk-update-icon-cache -q %{tde_datadir}/icons/$f 2> /dev/null ||:
 done
@@ -1029,7 +1033,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/kunittestguimodrunner
 %{tde_libdir}/libkunittestgui.la
 %{tde_libdir}/libkunittestgui.so
-#%{tde_libdir}/libkunittestgui.so.*
+%{tde_libdir}/libkunittestgui.so.*
 %{tde_tdeincludedir}/kunittest/runnergui.h
 
 %post -n trinity-kunittest
@@ -1057,7 +1061,7 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -1066,12 +1070,12 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 %prep
 %setup -q -n kdesdk-3.5.13.1
-%patch4 -p1 -b .ftbfs
 %patch5 -p1 -b .svn
 %patch6 -p1 -b .cmake
 %patch7 -p1
 %patch8 -p1 -b .flex
-
+%patch9 -p1 -b .cmake
+ 
 
 %build
 unset QTDIR || :; . /etc/profile.d/qt3.sh
@@ -1094,7 +1098,7 @@ cd build
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
-  -DMAN_INSTALL_DIR=%{tde_mandir}/man1 \
+  -DMAN_INSTALL_DIR=%{tde_mandir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
   -DCMAKE_SKIP_RPATH="OFF" \
@@ -1104,7 +1108,7 @@ cd build
   %{!?build_kioslave:-DBUILD_KIOSLAVE=OFF} \
   ..
 
-%__make %{?_smp_mflags} || %__make
+%__make %{?_smp_mflags}
 
 
 %install
@@ -1148,14 +1152,10 @@ fi
 %__rm -rf %{buildroot}
 
 
-# trick to replace a dir by a symlink -- Rex
-%pre
-if [ $1 -gt 0 -a ! -L  %{_docdir}/HTML/en/cervisia/common ]; then 
-  rm -rf %{tde_tdedocdir}/HTML/en/cervisia/common ||:
-fi
-
-
 
 %changelog
+* Wed Nov 07 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-2
+- Fix various cmake issues [Bug #1262]
+
 * Sun Sep 30 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
 - Initial build for TDE 3.5.13.1

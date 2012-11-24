@@ -26,7 +26,7 @@
 Name:		trinity-%{kdecomp}
 Summary:	media player for Trinity
 Version:	0.10.0c
-Release:	3%{?dist}%{?_variant}
+Release:	4%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Multimedia
@@ -115,7 +115,7 @@ Summary:		Handbook for KMPlayer [Trinity]
 Documention for KMPlayer, a basic audio/video viewer application for KDE.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -140,8 +140,6 @@ Documention for KMPlayer, a basic audio/video viewer application for KDE.
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
-export CXXFLAGS="${CXXFLAGS} -fpermissive"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -235,6 +233,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Sat Nov 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-4
+- Fix xine 1.2 support (openSUSE 12.2 only)
+
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-3
 - Initial build for TDE 3.5.13.1
 

@@ -58,7 +58,7 @@ shell of your choice, compress it to a .tar.bz2 archive, or define your
 own cleanup actions. 
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

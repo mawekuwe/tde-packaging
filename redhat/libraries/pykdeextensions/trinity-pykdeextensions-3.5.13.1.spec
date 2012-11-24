@@ -102,7 +102,7 @@ to support the creation and installation of KDE applications.
 This package contains the libpythonize development files.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -120,7 +120,9 @@ for f in src/*.py; do
     -e "s|/usr/lib/pyshared/python\*|%{python_sitearch}|g" \
     -e "s|'pykde-dir=',None,|'pykde-dir=','%{python_sitearch}',|g" \
     -e "s|self.pykde_dir = None|self.pykde_dir = \"%{python_sitearch}\"|g" \
-    -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
+    -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+    -e "s|%{tde_includedir}/kde|%{tde_tdeincludedir}|g" \
+    -e 's|"/kde"|"/tde"|'
 done
 
 %build
@@ -128,6 +130,7 @@ unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
+export KDEDIR=%{tde_prefix}
 
 %__mkdir_p build
 ./setup.py build_libpythonize

@@ -55,7 +55,7 @@ even more files in one go. The filenames can be created by parts of the original
 numbering the files or accessing hundreds of informations about the file, like creation date
 or Exif informations of an image. 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

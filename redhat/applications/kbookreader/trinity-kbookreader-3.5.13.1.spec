@@ -53,7 +53,7 @@ kbookreader is an application which allows you to view eBooks
 within the Trinity Desktop Environment.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

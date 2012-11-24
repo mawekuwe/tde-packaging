@@ -56,7 +56,7 @@ would in a terminal. The result is displayed just
 as a directory.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

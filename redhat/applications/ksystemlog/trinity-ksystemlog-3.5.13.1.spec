@@ -56,7 +56,7 @@ their computer. But it is also designed for advanced users, who want to
 quickly see problems occuring on their server.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

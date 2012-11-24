@@ -57,7 +57,7 @@ software does for Windows.  KPilot can back-up and restore your Palm Pilot
 and synchronize the built-in applications with their KDE counterparts.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

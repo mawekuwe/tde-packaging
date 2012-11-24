@@ -57,7 +57,7 @@ This package is most useful when installed together with
 gtk2-engines-qtcurve.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

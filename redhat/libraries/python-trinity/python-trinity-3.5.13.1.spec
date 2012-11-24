@@ -105,7 +105,7 @@ General documentation and examples for PyKDE providing programming
 tips and working code you can use to learn from.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -136,10 +136,14 @@ export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
 	-L %{_lib} \
 	-v %{_datadir}/sip/trinity
 
-%if 0%{?mgaversion} || 0%{?mdkversion}
 # Shitty hack to add LDFLAGS
+%if 0%{?mgaversion} || 0%{?mdkversion}
 %__sed -i */Makefile \
+%if 0%{?pclinuxos}
+	-e "/^LIBS = / s|$| -lpython2.6 -lDCOP -lkdecore -lkdefx -lkdeui -lkresources -lkabc -lkparts -lkio|"
+%else
 	-e "/^LIBS = / s|$| -lpython2.7 -lDCOP -lkdecore -lkdefx -lkdeui -lkresources -lkabc -lkparts -lkio|"
+%endif
 %endif
 
 %__make %{_smp_mflags}

@@ -63,7 +63,7 @@ Here's a quick list of Knights' key features:
 * Save your unfinished matches and play them again later.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

@@ -98,7 +98,7 @@ inside any KIO enabled KDE application.
 This package is part of tdesvn-trinity.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

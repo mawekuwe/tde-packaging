@@ -54,7 +54,7 @@ plugins as well, so its appearance is completely customizable. It was
 inspired by Quicksilver for OS X. 
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

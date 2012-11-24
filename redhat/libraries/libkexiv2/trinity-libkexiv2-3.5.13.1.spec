@@ -75,7 +75,7 @@ library.  The library documentation is available on kexiv2.h header file.
 Libkexif is a wrapper around Exiv2 library to manipulate pictures metadata.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

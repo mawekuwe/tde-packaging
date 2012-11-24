@@ -57,7 +57,7 @@ Wi-Fi settings. After a successful connection is made the settings are
 remembered so next time the user won't have to enter them again.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

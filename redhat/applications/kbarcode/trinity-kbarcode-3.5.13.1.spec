@@ -68,7 +68,7 @@ generated barcodes can be directly printed or you can export them into images
 to use them in another application.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

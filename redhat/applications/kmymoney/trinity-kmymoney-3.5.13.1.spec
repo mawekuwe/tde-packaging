@@ -71,7 +71,7 @@ BuildRequires: recode
 BuildRequires: html2ps
 BuildRequires: libofx-devel
 
-%if 0%{?mgaversion}
+%if 0%{?mgaversion} || 0%{?pclinuxos}
 BuildRequires: %{_lib}OpenSP5-devel
 %else
 BuildRequires: opensp-devel
@@ -106,7 +106,7 @@ Requires:	%{name} == %{version}
 This package contains development files needed for KMyMoney plugins.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -135,6 +135,7 @@ unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
+export KDEDIR=%{tde_prefix}
 
 # Required to find the QT3 plugins directory
 %if 0%{?mgaversion} || 0%{?mdkversion}

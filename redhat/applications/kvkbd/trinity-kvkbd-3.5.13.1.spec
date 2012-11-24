@@ -51,7 +51,7 @@ Virtual keyboard for KDE for use with accessibility. Application contains
 a systray widget as well as a dockwidget.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

@@ -114,17 +114,29 @@ BuildRequires: ruby-devel >= 1.8, ruby
 %global	_normalized_cpu	%(echo %{_target_cpu} | sed 's/^ppc/powerpc/;s/i.86/i386/;s/sparcv./sparc/;s/armv.*/arm/')
 
 ## java
-%if 0%{?rhel} > 0 && 0%{?rhel} < 6
+%if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
 BuildRequires:	java-1.4.2-gcj-compat-devel
 BuildRequires:	libgcj-devel
 BuildRequires:	gcc-java
+%endif
+
+%if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+
+# PCLinuxOS use SUN's Java
+%if 0%{?pclinuxos}
+BuildRequires:	java-1.6.0-sun
+BuildRequires:	java-1.6.0-sun-devel
 %else
+
+# Others use OpenJDK
 BuildRequires: java-openjdk
 BuildRequires: java-devel >= 1.4.2
 %if 0%{?fedora} >= 17 || 0%{?suse_version} >= 1220
 BuildRequires: java-1.7.0-openjdk-devel
 %else
 BuildRequires: java-1.6.0-openjdk-devel
+%endif
+
 %endif
 %endif
 
@@ -922,7 +934,7 @@ Development files for the TDE bindings.
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

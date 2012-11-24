@@ -56,7 +56,7 @@ and various different styles.
 KCPULoad has support for SMP and separate user/system loads.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

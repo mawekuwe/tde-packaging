@@ -60,7 +60,7 @@ bar a try.
 Homepage: http://www.kbfx.org
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

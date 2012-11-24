@@ -46,7 +46,7 @@ BuildRequires:	trinity-tdebase-devel >= 3.5.13.1
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
-BuildRequires:	trinity-pykdeextensions
+BuildRequires:	trinity-pytdeextensions
 BuildRequires:	trinity-libpythonize0-devel
 BuildRequires:	python-trinity
 BuildRequires:	chrpath
@@ -82,6 +82,7 @@ Requires:	PyQt
 
 
 Requires:		python-trinity
+Requires:		trinity-pytdeextensions
 Requires:		%{name}-backends
 Requires:		python
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
@@ -130,7 +131,7 @@ A power management applet to indicate battery levels and perform hibernate or
 suspend using HAL.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

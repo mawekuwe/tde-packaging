@@ -189,7 +189,7 @@ Requires: trinity-kpilot
 #Requires: trinity-kgtk-qt3
 
 # Disabled applications for OPENSUSE 12.2, Mageia 2
-%if 0%{?rhel} || 0%{?fedora} >= 15 || 0%{?mdkversion}
+%if 0%{?rhel} || 0%{?fedora} >= 15
 # no imlib1.x library
 Requires: trinity-kuickshow
 %endif

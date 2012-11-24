@@ -52,7 +52,7 @@ Filelight creates a complex, but data-rich graphical representation of the files
 directories on your computer. 
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

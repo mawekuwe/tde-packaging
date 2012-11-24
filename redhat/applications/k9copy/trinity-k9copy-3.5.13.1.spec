@@ -56,7 +56,7 @@ to a DVD5, in thesame way than DVDShrink for Microsoft Windows (R).
 This is the Trinity version
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -91,7 +91,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --with-extra-includes=%{tde_includedir}/tqt \
   --enable-closure
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

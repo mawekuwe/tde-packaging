@@ -53,7 +53,7 @@ BuildRequires: trinity-tdelibs-devel >= %{version}
 BuildRequires: trinity-tdebase-devel >= %{version}
 BuildRequires: gettext
 BuildRequires: libmng-devel
-%if 0%{?mdkversion}
+%if 0%{?mdkversion} && 0%{?pclinuxos} == 0
 BuildRequires: %{_lib}png15-devel
 %else
 BuildRequires: libpng-devel
@@ -1208,7 +1208,7 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

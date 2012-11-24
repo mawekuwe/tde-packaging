@@ -53,7 +53,7 @@ KdeSudo is a graphical frontend for the sudo utility.
 It allows you to run programs as another user by entering your password.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

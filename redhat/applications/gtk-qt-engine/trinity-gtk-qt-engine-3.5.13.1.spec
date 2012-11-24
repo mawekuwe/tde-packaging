@@ -60,7 +60,7 @@ Please note that this package is targeted at Trinity users and therefore provide
 a way to configure it from within KControl.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

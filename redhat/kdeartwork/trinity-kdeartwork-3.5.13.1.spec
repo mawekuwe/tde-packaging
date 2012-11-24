@@ -619,7 +619,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

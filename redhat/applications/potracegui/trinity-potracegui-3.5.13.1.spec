@@ -53,7 +53,7 @@ a lot more than the 4 recognized by the potrace commandline tool. Loading of
 remote files (web, ftp, ...) is also supported.  
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

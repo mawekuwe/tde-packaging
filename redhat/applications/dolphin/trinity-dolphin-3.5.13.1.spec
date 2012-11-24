@@ -52,7 +52,7 @@ This approach allows to optimize the user
 interface for the task of file management.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

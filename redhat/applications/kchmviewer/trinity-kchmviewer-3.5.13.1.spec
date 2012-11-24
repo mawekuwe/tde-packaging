@@ -69,7 +69,7 @@ cross-links and parent/child entries in index as well as Persistent bookmarks
 support. Correctly detects and shows encoding of any valid chm file.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

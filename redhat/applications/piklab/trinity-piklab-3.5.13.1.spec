@@ -61,7 +61,7 @@ PICkit2 programmers, the PicStart+ programmer, and most direct programmers
 are supported. A command-line programmer and debugger are also available.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

@@ -714,6 +714,7 @@ popd
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export KDEDIR=%{tde_prefix}
 
 export kde_htmldir="%{tde_tdedocdir}/HTML"
 

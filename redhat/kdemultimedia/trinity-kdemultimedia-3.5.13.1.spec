@@ -94,7 +94,7 @@ BuildRequires:	%{_lib}xtst-devel
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
 BuildRequires:	libXxf86dga-devel
 BuildRequires:	libXxf86vm-devel
 BuildRequires:	libXt-devel
@@ -1076,7 +1076,7 @@ noatun plugins.
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

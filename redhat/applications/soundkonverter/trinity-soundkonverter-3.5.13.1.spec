@@ -77,7 +77,7 @@ transferring them to your media device.
 See the 'soundkonverter-trinity' package for more information.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

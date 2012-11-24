@@ -72,7 +72,7 @@ and lexicons) and powerful features to work with these texts (search in
 texts, write own notes, save, print etc.).
  
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

@@ -354,12 +354,14 @@ and various local news sources.
 Summary:	plugins for Konqueror, the Trinity file/web/doc browser
 Group:		Applications/Utilities
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?pclinuxos} == 0
 Requires:	%{_lib}jpeg8
+%endif
 %endif
 %if 0%{?rhel} || 0%{?fedora}
 Requires:	libjpeg
 %endif
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 Requires:	libjpeg62
 %endif
 Requires:	python
@@ -644,7 +646,7 @@ done
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

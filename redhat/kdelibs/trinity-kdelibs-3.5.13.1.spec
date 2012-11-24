@@ -93,7 +93,11 @@ BuildRequires:	hspell-devel
 %define with_jasper 1
 %if 0%{?suse_version}
 BuildRequires:	libjasper-devel
-%else
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}jasper-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	jasper-devel
 %endif
 %endif
@@ -320,7 +324,7 @@ applications for TDE.
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

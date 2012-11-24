@@ -33,39 +33,42 @@
 
 Name:    trinity-tdenetwork
 Version: 3.5.13.1
-Release: 1%{?dist}%{?_variant}
+Release: 2%{?dist}%{?_variant}
 Summary: Trinity Desktop Environment - Network Applications
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
 URL:		http://www.trinitydesktop.org/
 
-License: GPLv2
-Group:   Applications/Internet
+License:	GPLv2
+Group:		Applications/Internet
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0: kdenetwork-3.5.13.1.tar.gz
-Source1: kppp.pamd
-Source2: ktalk
-Source4: lisarc
-Source5: lisa.redhat
+Source0:	kdenetwork-3.5.13.1.tar.gz
+Source1:	kppp.pamd
+Source2:	ktalk
+Source4:	lisarc
+Source5:	lisa.redhat
 
 # RedHat/Fedora legacy patches
-Patch3: kdenetwork-3.5.8-kppp.patch
-Patch4: kdenetwork-3.2.3-resolv.patch
+Patch3:		kdenetwork-3.5.8-kppp.patch
+Patch4: 	kdenetwork-3.2.3-resolv.patch
 # include more/proper ppp headers
-Patch6: kdenetwork-3.5.9-krfb_httpd.patch
+Patch6:		kdenetwork-3.5.9-krfb_httpd.patch
 
-# [kdenetworks] Missing LDFLAGS cause FTBFS
+# [kdenetwork] Missing LDFLAGS cause FTBFS
 Patch1:		kdenetwork-3.5.13-missing_ldflags.patch
-
-# [kdenetworks] FTBFS in SMS client [Bug #1241]
+# [kdenetwork] FTBFS in SMS client [Bug #1241]
 Patch2:		kdenetwork-3.5.13.1-fix_smsclient_ftbfs.patch
+# [kdenetwork] Fix iwlib support in openSUSE
+Patch7:		caedf8323c45b376c824de343f31de78664b2511.patch
+Patch8:		kdenetwork-wifi3.diff
 
 # RHEL4 specific
 Patch201:	kdenetwork-3.5.13.1-fix_rhel4_libraries.patch
+
 
 BuildRequires:	gettext
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
@@ -146,6 +149,8 @@ Requires:		jasper
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?suse_version}
 %define with_meanwhile 1
 BuildRequires:	meanwhile-devel
+%endif
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
 BuildRequires:	ortp-devel
 %endif
 
@@ -1008,8 +1013,8 @@ update-desktop-database 2> /dev/null || :
 
 %postun -n trinity-lisa
 if [ $1 -eq 0 ]; then
-  /sbin/chkconfig --del lisa ||:
   /sbin/service lisa stop > /dev/null 2>&1 ||:
+  /sbin/chkconfig --del lisa ||:
 fi
 update-desktop-database 2> /dev/null || : 
 
@@ -1051,7 +1056,7 @@ update-desktop-database 2> /dev/null || :
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -1065,6 +1070,8 @@ update-desktop-database 2> /dev/null || :
 %patch3 -p1 -b .kppp
 %patch4 -p1 -b .resolv
 %patch6 -p1 -b .krfb_httpd
+%patch7 -p1 -d cmake
+%patch8	-p1
 
 %if 0%{?rhel} == 4
 %patch201 -p1 -b .rhel4
@@ -1087,11 +1094,6 @@ fi
 cd build
 %endif
 
-# Ugly hack for opensuse 12.2 - libiw undefined reference to 'floor' etc ...
-%if 0%{?suse_version} >= 1220
-export LDFLAGS="${LDFLAGS} -lm"
-%endif
-
 %cmake \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
@@ -1110,7 +1112,7 @@ export LDFLAGS="${LDFLAGS} -lm"
   ..
 
 # Tdenetwork is not smp safe !
-%__make VERBOSE=1
+%__make %{?_smp_mflags} || %__make
 
 
 %install
@@ -1140,7 +1142,7 @@ fi
 # Show only in KDE, FIXME, need to re-evaluate these -- Rex
 for i in fileshare kcmkrfb kcmktalkd kcmwifi krfb kppp kppplogview \
    kwifimanager kget knewsticker ksirc kdict ; do
-   if [ -f %{buildroot}%{tde_datadir}/applications/kde/$i.desktop ] ; then
+   if [ -f %{buildroot}%{tde_tdeappdir}/$i.desktop ] ; then
       echo "OnlyShowIn=KDE;" >> %{buildroot}%{tde_datadir}/applications/kde/$i.desktop
    fi
 done

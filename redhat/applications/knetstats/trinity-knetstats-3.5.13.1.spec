@@ -52,7 +52,7 @@ A simple KDE network monitor that show rx/tx LEDs of any
 network interface on a system tray icon
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

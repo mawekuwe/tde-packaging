@@ -80,7 +80,7 @@ and experienced users alike will appreciate its many features:
 
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

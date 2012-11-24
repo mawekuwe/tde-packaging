@@ -53,7 +53,7 @@ that allows you to easily install, remove and change your KDM themes.
 
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

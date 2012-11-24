@@ -54,7 +54,7 @@ The environment has an editor with syntax highlighting, compiler,
 simulator and export functions to VHDL, HEX and MEM files.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

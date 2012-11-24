@@ -30,7 +30,7 @@ BuildRequires:	gnokii-devel
 
 Name:		trinity-tdepim
 Version:	3.5.13.1
-Release:	1%{?dist}%{?_variant}
+Release:	2%{?dist}%{?_variant}
 License:	GPL
 Group:		Applications/Productivity
 
@@ -1349,8 +1349,6 @@ installed.
 %{tde_datadir}/servicetypes/dcopcalendar.desktop
 %{tde_datadir}/servicetypes/korganizerpart.desktop
 %{tde_datadir}/servicetypes/korgprintplugin.desktop
-%{tde_tdeincludedir}/korganizer/
-%{tde_tdeincludedir}/calendar/
 %{tde_tdedocdir}/HTML/en/korganizer/
 
 %post -n trinity-korganizer
@@ -1380,6 +1378,8 @@ Requires:	trinity-korganizer = %{version}-%{release}
 %{summary}
 
 %files -n trinity-korganizer-devel
+%{tde_tdeincludedir}/korganizer/
+%{tde_tdeincludedir}/calendar/
 %{tde_libdir}/libkocorehelper.la
 %{tde_libdir}/libkocorehelper.so
 %{tde_libdir}/libkorg_stdprinting.la
@@ -2085,7 +2085,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -2148,10 +2148,19 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
 
+# Fix for Perl path in trinity-korganizer
+# Perl is '/usr/bin/perl' not '/bin/perl'
+%if 0%{?fedora} >= 17
+%__sed -i %{?buildroot}%{?tde_bindir}/ical2vcal -e "s|/bin/perl|/usr/bin/perl|"
+%endif
+
 %clean
 %__rm -rf %{?buildroot}
 
 
 %changelog
+* Sun Nov 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-2
+- Fix korganizer packaging
+
 * Tue Sep 25 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
 - Initial build for TDE 3.5.13.1

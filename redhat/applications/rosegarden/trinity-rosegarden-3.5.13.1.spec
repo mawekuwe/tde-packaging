@@ -104,7 +104,7 @@ lilypond and Csound files export, etc.
 This package provides the data files necessary for running Rosegarden
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

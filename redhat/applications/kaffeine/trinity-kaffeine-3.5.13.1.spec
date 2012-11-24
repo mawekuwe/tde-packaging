@@ -49,7 +49,9 @@ BuildRequires:	%{_lib}xext%{?mgaversion:6}-devel
 BuildRequires:	%{_lib}xtst-devel
 BuildRequires:	%{_lib}xinerama%{?mgaversion:1}-devel
 # dvb
+%if 0%{?pclinuxos} == 0
 BuildRequires:	kernel-headers
+%endif
 BuildRequires:	libgstreamer-devel >= 0.10
 BuildRequires:	libgstreamer-plugins-base-devel >= 0.10
 %else
@@ -169,7 +171,7 @@ Requires: %{name} = %{version}-%{release}
 ##########
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
@@ -192,7 +194,7 @@ Requires: %{name} = %{version}-%{release}
 unset QTDIR || : ; source /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
+export KDEDIR=%{tde_prefix}
 
 %configure \
   --prefix=%{tde_prefix} \

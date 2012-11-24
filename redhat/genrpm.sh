@@ -32,7 +32,8 @@ EOF
 RHEL="$( rpm -E "%{rhel}" )"
 FEDORA="$( rpm -E "%{fedora}" )"
 SUSE="$( rpm -E "%{suse_version}" )"
-if [ "${RHEL}" = "%{rhel}" ] && [ "${FEDORA}" = "%{fedora}" ] && [ "${SUSE}" = "%{suse_version}" ]; then
+PCLINUXOS="$( rpm -E "%{pclinuxos}" )"
+if [ "${RHEL}" = "%{rhel}" ] && [ "${FEDORA}" = "%{fedora}" ] && [ "${SUSE}" = "%{suse_version}" ] && [ "${PCLINUXOS}" = "%{pclinuxos}" ] ; then
 	cat <<EOF
 Error: RPM macro %rhel or %fedora must be set to the distribution version to build !
 E.g:

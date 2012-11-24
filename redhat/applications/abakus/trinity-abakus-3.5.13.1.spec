@@ -56,7 +56,7 @@ It also gives information about mathematical variables and
 has the user-friendly menu options of a normal TDE application.
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 

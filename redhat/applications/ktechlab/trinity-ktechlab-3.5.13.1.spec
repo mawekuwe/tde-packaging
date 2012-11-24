@@ -58,7 +58,7 @@ as PIC programming in its own Basic dialect and some form of assembler.
 Homepage: http://ktechlab.org/
 
 
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
