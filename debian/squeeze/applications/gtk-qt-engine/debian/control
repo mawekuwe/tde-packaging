@@ -12,6 +12,7 @@ Provides: gtk2-engines-gtk-qt-trinity
 Replaces: gtk-qt-engine-trinity (<< 4:14.0.0)
 Breaks: gtk-qt-engine-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: gtk3-tqt-engine
 Description: theme engine using Qt for GTK+ 2.x and Trinity
  The GTK-Qt Theme Engine (also known as gtk-qt-engine) is a GTK 2 theme engine
  that calls Qt to do the actual drawing. This makes your GTK 2 applications

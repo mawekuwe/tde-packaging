@@ -1,4 +1,4 @@
-debian/tmp/opt/trinity/include/tde/kprofilemethod.h
+debian/tmp/opt/trinity/include/kprofilemethod.h
 debian/tmp/opt/trinity/lib/trinity/kabcformat_kdeaccounts.la
 debian/tmp/opt/trinity/lib/trinity/kabcformat_kdeaccounts.so
 debian/tmp/opt/trinity/lib/trinity/plugins/styles/scheck.so

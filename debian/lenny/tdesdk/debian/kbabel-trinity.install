@@ -70,7 +70,7 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/*.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/*.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/*.png
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/TODO
+#debian/tmp/opt/trinity/share/doc/tde/HTML/en/kbabel/TODO
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/catalogmanager.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kbabel.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kbabeldict.png
@@ -82,10 +82,10 @@ debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/catalogmanager.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kbabel.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kbabeldict.png
 debian/tmp/opt/trinity/share/icons/locolor/16x16/apps/catalogmanager.png
-debian/tmp/opt/trinity/share/icons/locolor/16x16/apps/kbabel.png
+#debian/tmp/opt/trinity/share/icons/locolor/16x16/apps/kbabel.png
 debian/tmp/opt/trinity/share/icons/locolor/16x16/apps/kbabeldict.png
 debian/tmp/opt/trinity/share/icons/locolor/32x32/apps/catalogmanager.png
-debian/tmp/opt/trinity/share/icons/locolor/32x32/apps/kbabel.png
+#debian/tmp/opt/trinity/share/icons/locolor/32x32/apps/kbabel.png
 debian/tmp/opt/trinity/share/icons/locolor/32x32/apps/kbabeldict.png
 debian/tmp/opt/trinity/share/services/dbsearchengine.desktop
 debian/tmp/opt/trinity/share/services/kfile_po.desktop

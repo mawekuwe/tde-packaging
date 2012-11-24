@@ -59,8 +59,7 @@ Architecture: any
 Replaces: kdelibs4c2a-trinity (<< 4:14.0.0)
 Breaks: kdelibs4c2a-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdelibs-data-trinity,
- tdelibs-data-trinity, perl, xbase-clients,
- launchpad-integration, sudo
+ tdelibs-data-trinity, perl, xbase-clients, sudo
 Recommends: xdg-user-dirs
 Suggests: fam, perl-suid
 Conflicts: tdelibs4-trinity, tdelibs4c2-trinity (>> 4:1.0.0), tdelibs-bin-trinity (<< 4:3.3.3), tdelibs4-trinity-dev (<< 4:3.5.7.dfsg.1-6)
