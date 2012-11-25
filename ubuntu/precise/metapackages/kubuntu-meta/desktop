@@ -1,0 +1,328 @@
+Task-Per-Derivative: 1
+Task-Section: user
+Task-Description: Kubuntu desktop
+Task-Extended-Description: This task provides the Kubuntu desktop environment.
+Task-Key: kubuntu-desktop
+
+= Hardware and Architecture Support =
+
+== Architecture-independent ==
+
+ * hotkey-setup
+
+Power management:
+
+ * acpi-support
+ * (powernowd)
+ * powermanagement-interface [i386 amd64 powerpc ia64]
+
+Bluetooth:
+
+ * (bluez-utils) # base for bluetooth support
+ * (bluez-cups)  # allow connecting to bluetooth printers from CUPS
+
+== i386, i686, amd64 ==
+
+ * acpi
+ * acpid
+ * apmd [i386]
+
+== ppc32, ppc64 ==
+
+ * pbbuttonsd [powerpc]
+
+= Console-Based Tools =
+
+These tools are very commonly used by people who drop into a console shell to do some work.
+
+ * bc
+ * dc
+ * genisoimage
+ * (wodim)
+ * (cdparanoia)
+ * (dvd+rw-tools)
+ * screen
+ * lftp
+ * slocate              # tool to index user files
+ * zip
+ * unzip                # also used for .zip support in file-roller
+
+= Network Services =
+
+Basic network services and Windows integration.
+
+ * libnss-mdns         # IPv4 link-local DNS support
+ * avahi-autoipd       # IPv4 link-local interface configuration support
+ * smbclient           # to access files on other SAMBA and Windows servers
+ * wvdial              # for automatic dialup configuration via g-s-t
+
+These packages help with system integration
+
+ * libsasl2-modules    # allows integration with MTA and login system
+ * avahi-daemon
+
+= Printing =
+
+Printing and printer configuration is a real weak spot in Debian, and in Linux in general. We will need to stay at the front of the curve here.
+
+ * cupsys                       # our preferred printer management infrastructure
+ * cupsys-bsd                   # gives us lpc, lpq, lpr, lprm
+ * cupsys-client                # gives us cancel, cupstestppd, lp, lpoptions, lppasswd, lpstat, cupsaddsmb, accept, lpadmin, lpinfo, lpmove
+ * foomatic-db-engine           # integrate the foomatic printer driver engine
+ * foomatic-db                  # the foomatic printer driver database
+ * foomatic-filters             # converter from postscript to printer-specific formats
+ * foomatic-db-hpijs            # printer drivers from the hp inkjet project
+ * cupsys-driver-gutenprint     # a ton of cupsys ppds, for real comprehensive printer support
+ * openprinting-ppds            # Most common drivers we want in desktop; less common are in o-p-extra
+ * pnm2ppa                      # several ppds require this
+ * ghostscript-x
+ * (hplip)     			# support for HP all-in-one printers
+ * min12xxw			# support for KonicaMinolta PagePro 1200W, 1300W printers
+ * foo2zjs			# Support for printing to ZjStream-based printers
+
+= GUI infrastructure =
+
+Packages used for X preconfiguration are just Recommends; removing them after initial installation should be relatively safe.
+
+ * (xresprobe)
+ * (laptop-detect)
+ * (discover1)
+
+ * xorg                          # this includes xserver-xorg->xserver-xorg-{input|video}-* (no need to add specific drivers manually)
+ * xterm                         # Provide a backup terminal and complete X env.
+ * xkb-data                      # XKB data now lives here
+
+Fonts:
+
+ * x-ttcidfont-conf
+ * ttf-bitstream-vera
+ * ttf-dejavu                    # includes characters missing in Vera
+ * ttf-freefont
+ * (ttf-kochi-gothic)
+ * (ttf-kochi-mincho)
+ * (ttf-arphic-uming)
+ * (ttf-arphic-ukai)
+ * (ttf-arabeyes)
+ * (ttf-baekmuk)
+ * (ttf-indic-fonts)
+ * (ttf-malayalam-fonts)
+ * (ttf-mgopen)
+ * (ttf-thai-tlwg)
+ * (ttf-lao)
+ * (ttf-gentium)
+
+Input methods:
+
+ * (skim)
+ * (scim-qtimm)
+# * (scim-tables-additional) [i386] # input support for language packs that we ship
+
+= Desktop KDE Apps =
+
+We've chosen KDE as our desktop user interface of choice
+
+ * arts-trinity
+
+== kdebase-trinity ==
+
+ * (kate-trinity)
+ * kcontrol-trinity
+ * kdepasswd-trinity
+ * kdeprint-trinity
+ * kdesktop-trinity
+ * (kfind-trinity)
+ * khelpcenter-trinity
+ * kicker-trinity
+ * (klipper-trinity)
+ * kmenuedit-trinity
+ * (konqueror-trinity)
+ * (konqueror-nsplugins-trinity)
+ * konsole-trinity
+ * ksmserver-trinity
+ * ksplash-trinity
+ * (ksysguard-trinity)
+ * kwin-trinity
+ * kdm-trinity 			# we want trinity as loginmanager
+
+== kdeadmin-trinity ==
+
+ * kcron-trinity
+ * kdeadmin-kfile-plugins-trinity
+ * knetworkconf-trinity
+
+== kdegraphics-trinity ==
+
+ * (gwenview-trinity)
+ * (kipi-plugins-trinity) [i386 amd64]		# set of plugins for digikam and gwenview
+ * (kamera-trinity)
+ * kdegraphics-kfile-plugins-trinity
+ * (kooka-trinity)
+ * kpdf-trinity
+ * ksnapshot-trinity
+ * ksvg-trinity
+ * kghostview-trinity 		# For print preview
+
+== kdemultimedia-trinity ==
+
+ * libarts1-akode-trinity
+ * kdemultimedia-kfile-plugins-trinity
+ * kdemultimedia-kio-plugins-trinity
+ * kmix-trinity
+
+== kdenetwork-trinity ==
+
+ * kdenetwork-filesharing-trinity
+ * kdnssd-trinity
+ * (kopete-trinity)
+ * (kpf-trinity)
+ * (kppp-trinity)
+ * (krdc-trinity)
+ * (krfb-trinity)
+ * kdenetwork-kfile-plugins-trinity
+
+== kdepim-trinity ==
+
+ * (kontact-trinity)
+ * (kmail-trinity)
+ * (akregator-trinity)
+ * (korganizer-trinity)
+ * (kaddressbook-trinity)
+ * (knotes-trinity)
+ * (karm-trinity)
+ * (kdepim-wizards-trinity)
+
+== kdeutils-trinity ==
+
+ * ark-trinity
+ * (speedcrunch-trinity)
+ * (kmilo-trinity)
+ * (kwalletmanager-trinity)
+
+== koffice-trinity ==
+
+# * (krita-trinity)
+# * (kexi-trinity)                 # instead of openoffice-base
+
+== everything else KDE ==
+
+ * (k3b-trinity)			# kde CD burning
+ * (konversation-trinity)		# kde irc-client
+ * vorbis-tools	         # for kaudiocreator
+ * (amarok-trinity) 		# audio multimediaplayer
+ * (kaffeine-xine-trinity)	# video multimediaplayer
+ * (keep-trinity) 		# kde backuptool
+ * hal			# it's not very polished but it's the future
+ * (adept-trinity)		# better package manager
+ * konq-plugins-trinity
+ * kde-systemsettings-trinity   # kcontrol replacement
+ * dbus 		# for session dbus, #895.  Previously dbus-1-utils which brought in gtk, dbus-launch moved to dbus
+ * (kubuntu-default-settings-trinity)
+ * kio-locate-trinity           # file searching
+ * (katapult-trinity)             # program launcher
+ * (kubuntu-konqueror-shortcuts-trinity)
+ * qca-tls		# used by Kopete Jabber plugin
+ * (kdebluetooth-trinity)
+ * ksystemlog-trinity
+ * (kdepim-kio-plugins-trinity)   # Make sure we have both of these for KMail
+ * kdebase-kio-plugins-trinity
+ * (gtk-qt-engine-trinity)
+ * kde-guidance-trinity		# configuration tools
+ * (kde-guidance-powermanager-trinity)
+ * kio-apt-trinity
+ * ksplash-engine-moodin-trinity
+ * (ktorrent-trinity)
+ * (cdrdao)
+ * language-selector-qt
+ * (kmailcvt-trinity)
+ * (bogofilter)           # spam filter for KMail
+ * hwdb-client-kde
+ * libqt-perl           # for debconf
+ * (digikam-trinity) [i386 amd64]
+ * kde-style-polyester
+ * (networkstatus-trinity)
+ * software-properties-kde
+ * (apport-qt)
+ * (strigi-trinity)
+ * (strigi-applet-trinity)
+ * (pinentry-qt) # for SMIME e-mail support
+ * (gpg-agent) # for SMIME e-mail support
+ * (gdebi-kde-trinity)
+
+Don't use gstreamer for dapper, 0.8 is unsupported upstream and amarok/kaffeine are not yet ported to 0.10
+#The gstreamer0.10 packages we want to install:
+
+# * gstreamer0.10-alsa
+# * gstreamer0.10-esd
+# * gstreamer0.10-plugins-base-apps
+
+Accessibility tools:
+
+ * (kmag-trinity-trinity)
+ * (kde-icons-mono-trinity)
+ * (kbstate-trinity)
+ * (kmousetool-trinity)
+ * (xcursor-themes-trinity)
+ * (brltty-trinity)
+
+= Other Desktop GUI Apps =
+
+ * (openoffice.org-kde) [i386 powerpc amd64]  # before OOo to avoid openoffice.org-style-default
+ * (openoffice.org-writer) [i386 powerpc amd64]
+ * (openoffice.org-calc) [i386 powerpc amd64]
+ * (openoffice.org-impress) [i386 powerpc amd64]
+ * (openoffice.org-draw) [i386 powerpc amd64]
+ * (openoffice.org-math) [i386 powerpc amd64]
+ * (openoffice.org-java-common) [i386 powerpc amd64]
+ * (kscreensaver-trinity)
+
+= Games =
+
+ * (fortune-mod)		# Needed by some screensavers
+
+= Python =
+
+Python is a significant commitment, we will present Python wherever we can.
+
+Python Integrated Applications:
+
+Documentation:
+
+# * (diveintopython)
+ * (kubuntu-trinity-docs)
+
+= Development =
+
+Here we provide a minimal development environment sufficient to build kernel
+drivers, so that this is possible on the live CD and in scenarios where
+it is problematic to get these packages onto the installed system in order
+to compile a driver. -mdz
+
+ * (gcc)
+ * (make)
+ * (linux-headers-generic) [i386]
+ * (linux-headers-powerpc) [powerpc]
+ * (linux-headers-powerpc64-smp) [powerpc]
+ * (linux-headers-generic) [amd64]
+ * (linux-headers-itanium) [ia64]
+ * (linux-headers-mckinley) [ia64]
+ * (linux-headers-sparc64) [sparc]
+ * (linux-headers-hppa32) [hppa]
+ * (linux-headers-hppa64) [hppa]
+
+= Other =
+
+ * kubuntu-desktop-trinity # the metapackage itself
+ * anacron # generally appropriate for desktops
+ * (bogofilter)
+ * usplash
+ * libxp6 # required for some third party apps. See #15739
+ * kubuntu-artwork-usplash
+ * libpam-foreground
+# * (example-content) # dholbach: dapper feature goal (wiki.ubuntu.com/ExampleContent)
+ * (landscape-client)
+ * readahead
+
+= Germinate workarounds =
+
+ * libglut3 # depended upon by freeglut3
+ * libgl1-mesa-glx # depended upon by freeglut3
