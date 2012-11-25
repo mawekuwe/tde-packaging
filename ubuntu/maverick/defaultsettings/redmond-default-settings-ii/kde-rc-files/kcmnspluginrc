@@ -1,0 +1,4 @@
+[Misc]
+startkdeScan=true
+useArtsdsp=true
+PluginsListFile=/usr/share/redmond-default-settings/kde-profile/default/share/apps/konqueror/konq_plugins.xml
