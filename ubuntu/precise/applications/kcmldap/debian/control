@@ -1,0 +1,13 @@
+Source: kcontrol-ldapbonding-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Raphaël Pinson <raphink@raphink.net>
+Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, libtdeldap-trinity, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: kcontrol-ldapbonding-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients, libpam-krb5, libpam-ldap, nss-updatedb, libpam-ccreds
+Description: LDAP control module for the TDE control center
+ LDAP is a TDE control center module to manage TDE connections to LDAP realms.
