@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Raphaël Pinson <raphink@raphink.net>
-Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, libtdeldap-trinity, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, libtdeldap-trinity-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kcontrol-ldapbonding-trinity
