@@ -13,6 +13,7 @@ export DH_OPTIONS
 
 # include debian/cdbs/buildvars.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
 include debian/cdbs/debian-qt-kde.mk
 #include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/rules/utils.mk
@@ -25,6 +26,21 @@ DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+
+DEB_CMAKE_EXTRA_FLAGS := \
+ -DCMAKE_INSTALL_PREFIX="/opt/trinity" \
+ -DCONFIG_INSTALL_DIR="/etc/trinity" \
+ -DSYSCONF_INSTALL_DIR="/etc/trinity" \
+ -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+ -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+ -DCMAKE_VERBOSE_MAKEFILE="ON" \
+ -DCMAKE_SKIP_RPATH="OFF" \
+ -DBUILD_ALL="ON" \
+ -DWITH_WEBCAM="ON" \
+ -DWITH_ARTS="ON" \
+ -DWITH_SLP="ON" \
+ -DBUILD_KOPETE_PROTOCOL_ALL="ON" \
+ -DBUILD_KOPETE_PLUGIN_ALL="ON"
 
 DEB_DH_STRIP_ARGS  := --dbg-package=kdenetwork-trinity-dbg
 
