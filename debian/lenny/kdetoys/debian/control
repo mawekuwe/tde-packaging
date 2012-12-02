@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Modestas Vainius <geromanas@mailas.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, kdelibs4-trinity-dev (>= 4:3.5.10), gawk, gettext, sharutils, automake, autoconf, libtool, libltdl-dev
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), cmake, autotools-dev, kdelibs4-trinity-dev (>= 4:3.5.10), gawk, gettext, sharutils, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: kdetoys-trinity
