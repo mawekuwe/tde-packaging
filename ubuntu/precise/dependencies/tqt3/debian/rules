@@ -100,7 +100,6 @@ CONFIGURE_OPTS = \
 						\
 		-lfontconfig			\
 		-inputmethod			\
-		-glibmainloop			\
 		# End of CONFIGURE_OPTS
 
 interbase_archs := i386 amd64 sparc powerpc
