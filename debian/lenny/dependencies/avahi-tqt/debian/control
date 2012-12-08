@@ -5,6 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Uploaders: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper,
+               cdbs,
                pkg-config,
                python-support (>= 0.6),
                libglib2.0-dev (>= 2.4),
