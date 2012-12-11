@@ -17,6 +17,9 @@ DEB_KDE_APIDOX := no
 
 DEB_DH_STRIP_ARGS  := --dbg-package=koffice-trinity-dbg
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 PACKAGES_WITH_LIBS := karbon-trinity kchart-trinity kivio-trinity koffice-libs-trinity chalk-trinity kspread-trinity kugar-trinity kthesaurus-trinity
 
 DEB_INSTALL_CHANGELOGS_karbon-trinity := karbon/CHANGES

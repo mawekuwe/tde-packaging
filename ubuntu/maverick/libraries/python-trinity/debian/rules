@@ -11,6 +11,9 @@ DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 include /usr/share/dpatch/dpatch.make
 # This has to be exported to make some magic below work.
 export DH_OPTIONS
@@ -151,7 +154,7 @@ endif
 	dh_shlibdeps -l /opt/trinity/lib
 	dh_gencontrol
 	dh_md5sums
-	dh_builddeb
+	dh_builddeb $(DEB_DH_BUILDDEB_ARGS)
 
 # Build architecture independant packages using the common target.
 binary-indep: install-indep

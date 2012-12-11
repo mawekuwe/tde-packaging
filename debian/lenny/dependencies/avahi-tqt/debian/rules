@@ -13,6 +13,9 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 		--disable-gtk3 \
 		--with-systemdsystemunitdir=/lib/systemd/system
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 post-patches:: debian/stamp-bootstrap
 
 debian/stamp-bootstrap:

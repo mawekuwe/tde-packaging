@@ -15,6 +15,9 @@ DEB_INSTALL_MANPAGES_ktorrent = ktorrent.1
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 build/ktorrent-trinity::
 	docbook2x-man debian/ktorrent.1.docbook
 

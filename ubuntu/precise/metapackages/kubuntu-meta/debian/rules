@@ -2,6 +2,9 @@
 
 #export DH_VERBOSE=1
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 clean:
 	dh_testdir
 	dh_clean
@@ -35,7 +38,7 @@ binary-arch: install
 	dh_installdeb -a
 	dh_gencontrol -a
 	dh_md5sums -a
-	dh_builddeb -a
+	dh_builddeb -a $(DEB_DH_BUILDDEB_ARGS)
 
 binary-indep:
 

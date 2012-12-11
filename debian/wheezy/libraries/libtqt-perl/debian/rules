@@ -32,6 +32,9 @@ DEB_MAKE_INSTALL_TARGET := install \
 	PREFIX=$(CURDIR)/debian/libtqt-perl/usr \
 	SITEPREFIX=$(CURDIR)/debian/libtqt-perl/usr \
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 pre-build:: pre-build-stamp
 
 pre-build-stamp:

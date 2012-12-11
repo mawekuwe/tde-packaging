@@ -23,6 +23,9 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_CONFIGURE_EXTRA_FLAGS = --with-extra-libs=/opt/trinity/lib
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 install/soundkonverter-trinity::
 	install -D -p -m0644 debian/soundkonverter-trinity.lintian-overrides \
 	    debian/soundkonverter-trinity/usr/share/lintian/overrides/soundkonverter-trinity

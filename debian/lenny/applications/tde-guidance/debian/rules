@@ -15,6 +15,9 @@ PYSUPPORT_PATH = $(DEB_DESTDIR)/opt/trinity/share/python-support
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 LDFLAGS_APPEND := -L/opt/trinity/lib
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 install/tde-guidance-trinity::
 	# install icons to right place
 	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/hi32-app-daemons.png \
