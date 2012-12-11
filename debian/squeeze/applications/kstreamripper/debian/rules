@@ -2,6 +2,9 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 #DEB_INSTALL_MANPAGES_kstreamripper-trinity:=debian/kstreamripper.1
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 PATH := /opt/trinity/bin:$(PATH)
 
 build/kstreamripper-trinity::

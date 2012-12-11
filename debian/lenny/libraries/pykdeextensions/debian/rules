@@ -18,6 +18,9 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 install/pykdeextensions-trinity::
 	# We have no idea if the built product is site-packages or dist-packages
 	cd debian/tmp/usr/lib/python*/ && mv site-packages/ dist-packages/ || echo "site-packages --> dist-packages"

@@ -27,5 +27,8 @@ DEB_CMAKE_EXTRA_FLAGS := \
 
 DEB_DH_STRIP_ARGS  := --dbg-package=kdetoys-trinity-dbg
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 DEB_INSTALL_CHANGELOGS_kodo-trinity := kodo/ChangeLog
 DEB_INSTALL_CHANGELOGS_kteatime-trinity := kteatime/ChangeLog

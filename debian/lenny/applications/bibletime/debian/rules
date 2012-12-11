@@ -19,6 +19,9 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 binary-install/bibletime-trinity::
 	chmod 644 debian/bibletime-trinity/opt/trinity/share/apps/bibletime/pics/*
 	chmod 644 debian/bibletime-trinity/opt/trinity/share/apps/bibletime/bibletimeui.rc

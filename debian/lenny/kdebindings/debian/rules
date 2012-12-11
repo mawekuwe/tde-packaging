@@ -35,6 +35,9 @@ DEB_CONFIGURE_EXTRA_FLAGS = $(WITH_JAVA) \
 
 DEB_COMPRESS_EXCLUDE += .java .ui .js .rb .map .wav .bmp .cpp .sk
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 # These are not all the packages with libraries, but only those that
 # need to be in DEB_SHLIBDEPS_INCLUDE...
 PACKAGES_WITH_LIBS = libqt3-jni-trinity libsmokeqt1-trinity libsmokekde1-trinity libkjsembed1-trinity

@@ -40,6 +40,9 @@ DOC_HTML_PRUNE := kcontrol-trinity kinfocenter-trinity ktimer-trinity kcharselec
 
 DEB_DH_STRIP_ARGS  := --exclude=examples --dbg-package=kdeutils-trinity-dbg
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 PACKAGES_WITH_LIBS := khexedit-trinity klaptopdaemon-trinity kmilo-trinity kregexpeditor-trinity ksim-trinity
 
 DEB_DH_MAKESHLIBS_ARGS_khexedit-trinity		:= -V'khexedit-trinity (>= 4:3.5.8-1)'

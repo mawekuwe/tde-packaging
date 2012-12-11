@@ -10,3 +10,6 @@ include /usr/share/cdbs/1/class/cmake.mk
 
 # Strict library versioning
 DEB_DH_MAKESHLIBS_ARGS_ALL := -V
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)

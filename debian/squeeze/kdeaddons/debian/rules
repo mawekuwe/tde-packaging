@@ -16,6 +16,9 @@ DEB_CONFIGURE_EXTRA_FLAGS := --without-xmms --prefix=/opt/trinity --with-extra-l
 
 DEB_DH_STRIP_ARGS := --dbg-package=kdeaddons-trinity-dbg
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 DOC_HTML_PRUNE := konq-plugins-trinity/smbmounter
 
 binary-install/konq-plugins-trinity::

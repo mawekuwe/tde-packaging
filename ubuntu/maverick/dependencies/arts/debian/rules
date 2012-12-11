@@ -23,6 +23,9 @@ DEB_BUILD_PARALLEL = true
 
 DEB_DH_STRIP_ARGS := --dbg-package=arts-trinity-dbg
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 PACKAGES_WITH_LIBS := libarts1c2a-trinity libartsc0-trinity
 
 DEB_DH_MAKESHLIBS_ARGS_ALL := -V

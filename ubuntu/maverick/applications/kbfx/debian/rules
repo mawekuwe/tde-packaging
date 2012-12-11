@@ -24,6 +24,9 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 DEB_CMAKE_EXTRA_FLAGS = -DLIB_SUFFIX="" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/kde" -DCMAKE_INSTALL_PREFIX="/opt/trinity/" \
 -DCMAKE_BUILD_TYPE=RelWithDebInfo
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 get-orig-source:
 	@@dh_testdir
 	@@[ -d ../tarballs/. ]
@@ -74,6 +77,6 @@ binary-arch: build
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
-	dh_builddeb
+	dh_builddeb $(DEB_DH_BUILDDEB_ARGS)
 
 binary: binary-indep binary-arch

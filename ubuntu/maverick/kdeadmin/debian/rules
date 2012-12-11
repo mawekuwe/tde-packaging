@@ -14,6 +14,9 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_DH_STRIP_ARGS  := --dbg-package=kdeadmin-trinity-dbg
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 DEB_CONFIGURE_EXTRA_FLAGS := \
 	--without-rpm --with-pam=kde --with-shadow --with-nis \
 	--with-private-groups --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib

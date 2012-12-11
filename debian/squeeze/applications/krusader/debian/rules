@@ -18,6 +18,9 @@ DEB_DESTDIR = $(CURDIR)/debian/krusader-trinity/
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/kde
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 post-patches:: debian/stamp-bootstrap
 
 debian/stamp-bootstrap:

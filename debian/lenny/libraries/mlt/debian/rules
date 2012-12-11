@@ -10,6 +10,9 @@ DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 version := $(shell sed -n 's/Package: \(.*\)/\1/p' debian/control | head -n 1)
 
 NCPUS := $(shell getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)
@@ -114,7 +117,7 @@ binary-arch: build install
 	dh_shlibdeps --exclude=libmlt --exclude=libmiracle --exclude=libvalerie
 	dh_gencontrol
 	dh_md5sums
-	dh_builddeb
+	dh_builddeb $(DEB_DH_BUILDDEB_ARGS)
 
 binary: binary-indep binary-arch
 .PHONY: build clean binary-indep binary-arch binary install 

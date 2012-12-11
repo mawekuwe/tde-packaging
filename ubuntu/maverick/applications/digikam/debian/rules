@@ -15,6 +15,9 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 TARBALL_EXT=tar.bz2
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 DEB_CONFIGURE_EXTRA_FLAGS := --without-included-sqlite3 --prefix=/opt/trinity --disable-static
 
 DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,--as-needed"

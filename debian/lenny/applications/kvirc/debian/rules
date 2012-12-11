@@ -49,6 +49,9 @@ endif
 	#
 DEB_COMPRESS_EXCLUDE := .kvs
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 	#
 	#	Run dh_shlibdeps with the correct options
 	#

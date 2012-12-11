@@ -26,6 +26,9 @@ DEB_INSTALL_CHANGELOGS_ALL = $(shell for f in ChangeLog CHANGELOG CHANGES; do if
 
 DEB_INSTALL_CHANGELOGS_kdegames := $(DEB_SRCDIR)/ChangeLog
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 DEB_DH_MAKESHLIBS_ARGS_libkdegames1-trinity := -V'libkdegames1-trinity (>= 4:3.5.8)'
 DEB_DH_MAKESHLIBS_ARGS_atlantik-trinity := -V
 DEB_DH_MAKESHLIBS_ARGS_kolf-trinity := -V

@@ -11,6 +11,9 @@ export LD_LIBRARY_PATH=$(QTDIR)/lib:$(OLD_LD_LIBRARY_PATH)
 OLD_PATH := $(PATH)
 export PATH=$(QTDIR)/bin:$(OLD_PATH)
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 DEB_HOST_ARCH		?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_ARCH_CPU	?= $(shell dpkg-architecture -qDEB_HOST_ARCH_CPU)
 DEB_HOST_MULTIARCH	?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
@@ -326,7 +329,7 @@ binary-indep: build install
 	dh_gencontrol -i
 	dh_md5sums -i
 
-	dh_builddeb -i
+	dh_builddeb -i $(DEB_DH_BUILDDEB_ARGS)
 
 binary-arch: build install
 
@@ -468,7 +471,7 @@ binary-arch: build install
 
 	dh_gencontrol -a $(IBASE)
 	dh_md5sums -a $(IBASE)
-	dh_builddeb -a $(IBASE)
+	dh_builddeb -a $(IBASE) $(DEB_DH_BUILDDEB_ARGS)
 
 binary: binary-indep binary-arch
 .PHONY: build binary-indep binary-arch binary install clean patch unpatch

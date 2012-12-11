@@ -32,6 +32,9 @@ DEB_INSTALL_DOCS_ALL :=
 
 DEB_INSTALL_CHANGELOGS_ALL = $(shell for f in ChangeLog CHANGELOG CHANGES; do if test -s $(DEB_SRCDIR)/$(cdbs_curpkg)/$$f; then echo $(DEB_SRCDIR)/$(cdbs_curpkg)/$$f; break; fi; done)
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 shlibs_ver=4:3.5.7
 DEB_DH_MAKESHLIBS_ARGS_libindex0-trinity := -V'libindex0-trinity (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libkcal2b-trinity := -V'libkcal2b-trinity (>= $(shlibs_ver))'

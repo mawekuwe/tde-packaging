@@ -28,6 +28,9 @@ DEB_CMAKE_EXTRA_FLAGS := \
 
 DEB_DH_STRIP_ARGS  := --dbg-package=kdeartwork-trinity-dbg
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 clean::
 	rm -f IconThemes/kdeclassic/22x22/actions/kde/kde.png
 	rm -f IconThemes/kdeclassic/32x32/actions/kde/kde.png

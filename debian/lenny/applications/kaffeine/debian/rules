@@ -17,6 +17,9 @@ DEB_INSTALL_MANPAGES_kaffeine-trinity := debian/kaffeine.1
 
 DEB_FIXPERMS_EXCLUDE := install-css.sh install-codecs
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 post-patches:: debian/stamp-bootstrap
 
 debian/stamp-bootstrap:

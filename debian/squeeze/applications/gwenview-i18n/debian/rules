@@ -9,6 +9,9 @@ include /usr/share/cdbs/1/rules/utils.mk
 
 -include debian/debiandirs
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 DEB_INSTALL_DOCS_ALL :=
 
 DOC_LANGS = da de et fr it nl pl pt ru sv pt_BR

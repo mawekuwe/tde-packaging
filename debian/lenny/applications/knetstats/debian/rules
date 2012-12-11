@@ -13,6 +13,9 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_INSTALL_MANPAGES_knetstats-trinity = knetstats.1
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 post-patches:: debian/stamp-bootstrap
 
 debian/stamp-bootstrap:

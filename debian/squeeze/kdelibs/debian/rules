@@ -38,6 +38,9 @@ DEB_DH_STRIP_ARGS  := --dbg-package=kdelibs-trinity-dbg
 
 DEB_DH_MAKESHLIBS_ARGS_kdelibs4c2a-trinity := -V'kdelibs4c2a-trinity (>= 4:3.5.8-1)'
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 binary-install/kdelibs-data-trinity::
 	install -p -D -m644 kded/applications.menu debian/kdelibs-data-trinity/opt/trinity/etc/xdg/menus/kde-applications.menu
 	install -p -D -m644 debian/trinitylibs.conf debian/kdelibs-data-trinity/etc/ld.so.conf.d/trinitylibs.conf
