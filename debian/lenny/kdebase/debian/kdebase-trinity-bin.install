@@ -1,3 +1,4 @@
+debian/tmp/opt/trinity/bin/migratekde3
 debian/tmp/opt/trinity/bin/krootbacking
 debian/tmp/opt/trinity/bin/kdmtsak
 debian/tmp/opt/trinity/bin/tsak
