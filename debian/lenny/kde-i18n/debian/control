@@ -21,7 +21,7 @@ Architecture: all
 Section: kde
 Depends: kdelibs4c2a-trinity
 Suggests: kde
-Provides: kde-i18n-trinity-trinity
+Provides: kde-i18n-trinity
 Description: Arabic (ar) internationalized (i18n) files for KDE
  This package contains the Arabic internationalized (i18n) files for
  all KDE core applications.
@@ -421,7 +421,7 @@ Architecture: all
 Section: kde
 Depends: kdelibs4c2a-trinity
 Suggests: kde
-Provides: kde-i18n-trinity, kde-i18n-no
+Provides: kde-i18n-trinity, kde-i18n-no-trinity
 Description: Norwegian Bookmal (nb) internationalized (i18n) files for KDE
  This package contains the Norwegian Bookmal internationalized (i18n)
  files for all KDE core applications.
