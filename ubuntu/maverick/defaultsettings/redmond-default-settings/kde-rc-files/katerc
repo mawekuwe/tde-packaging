@@ -1,0 +1,9 @@
+[TipOfDay]
+RunOnStart=false
+
+[General]
+Session Exit=discard
+Startup Session=new
+
+[Kate Document Defaults]
+KTextEditor Plugin ktexteditor_isearch=true

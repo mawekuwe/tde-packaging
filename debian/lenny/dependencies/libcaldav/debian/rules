@@ -5,6 +5,9 @@ include /usr/share/quilt/quilt.make
 # Uncomment this to turn on verbose mode. 
 #export DH_VERBOSE=1
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 # This has to be exported to make some magic below work.
 export DH_OPTIONS
 
@@ -86,7 +89,7 @@ binary-common:
 	dh_shlibdeps
 	dh_gencontrol
 	dh_md5sums
-	dh_builddeb
+	dh_builddeb $(DEB_DH_BUILDDEB_ARGS)
 
 # Build architecture independent packages using the common target.
 binary-indep: build install

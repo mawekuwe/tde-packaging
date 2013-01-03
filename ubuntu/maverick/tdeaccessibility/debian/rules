@@ -18,6 +18,9 @@ DEB_CONFIGURE_EXTRA_FLAGS := \
 
 DEB_DH_STRIP_ARGS  := --dbg-package=tdeaccessibility-trinity-dbg
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 PACKAGES_WITH_LIBS := kttsd-trinity ksayit-trinity
 
 #shlibs_ver = 4:3.5.0

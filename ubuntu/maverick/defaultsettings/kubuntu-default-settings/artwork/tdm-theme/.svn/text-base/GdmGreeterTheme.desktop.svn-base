@@ -1,0 +1,10 @@
+# This is not really a .desktop file like the rest, but it's useful to treat
+# it as such
+
+[GdmGreeterTheme]
+Encoding=UTF-8
+Greeter=enterprise.xml
+Name=O2 Enterprise
+Description=A sleek and professional looking KDM theme for Trinity
+Author=Ken Wimer (wimer@kde.org) and Timothy Pearson (kb9vqf@pearsoncomputing.net)
+Screenshot=preview.png

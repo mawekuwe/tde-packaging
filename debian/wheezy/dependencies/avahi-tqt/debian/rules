@@ -1,17 +1,24 @@
 #!/usr/bin/make -f
 
-%:
-	dh $@
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/autotools.mk
 
 # Ensure at build time that the library has no dependencies on undefined
 # symbols, and speed up loading.
 export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,-z,defs -Wl,-O1
 
-override_dh_auto_configure:
-	./autogen.sh
-	dh_auto_configure -- $(CONFFLAGS) \
+DEB_CONFIGURE_EXTRA_FLAGS += \
 		--enable-compat-libdns_sd \
 		--disable-mono --disable-monodoc \
 		--disable-gtk3 \
 		--with-systemdsystemunitdir=/lib/systemd/system
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	./autogen.sh
+	rm ./ChangeLog
+	touch debian/stamp-bootstrap

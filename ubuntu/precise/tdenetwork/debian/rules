@@ -13,6 +13,7 @@ export DH_OPTIONS
 
 # include debian/cdbs/buildvars.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
 include debian/cdbs/debian-qt-kde.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/rules/utils.mk
@@ -26,7 +27,25 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
 
+DEB_CMAKE_EXTRA_FLAGS := \
+ -DCMAKE_INSTALL_PREFIX="/opt/trinity" \
+ -DCONFIG_INSTALL_DIR="/etc/trinity" \
+ -DSYSCONF_INSTALL_DIR="/etc/trinity" \
+ -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+ -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+ -DCMAKE_VERBOSE_MAKEFILE="ON" \
+ -DCMAKE_SKIP_RPATH="OFF" \
+ -DBUILD_ALL="ON" \
+ -DWITH_WEBCAM="ON" \
+ -DWITH_ARTS="ON" \
+ -DWITH_SLP="ON" \
+ -DBUILD_KOPETE_PROTOCOL_ALL="ON" \
+ -DBUILD_KOPETE_PLUGIN_ALL="ON"
+
 DEB_DH_STRIP_ARGS  := --dbg-package=tdenetwork-trinity-dbg
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
 
 PACKAGES_WITH_LIBS := librss1-trinity kopete-trinity ksirc-trinity kwifimanager-trinity
 

@@ -6,3 +6,6 @@ CFLAGS=-g -Wall -fPIC
 
 DEB_MAKE_INSTALL_TARGET := install DESTDIR="$(DEB_DESTDIR)"
 DEB_INSTALL_DOCS_ALL :=
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)

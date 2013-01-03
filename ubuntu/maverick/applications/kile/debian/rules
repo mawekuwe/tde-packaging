@@ -17,6 +17,9 @@ DEB_DH_INSTALL_ARGS := --sourcedir=debian/tmp
 DEB_INSTALL_MANPAGES_kile := debian/kile.1
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 post-patches:: debian/stamp-bootstrap
 
 debian/stamp-bootstrap:

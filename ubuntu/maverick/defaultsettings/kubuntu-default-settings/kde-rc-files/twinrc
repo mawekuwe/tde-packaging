@@ -1,0 +1,11 @@
+[Desktops]
+Number=2
+
+[Windows]
+TitlebarDoubleClickCommand=Maximize
+
+[Style]
+ButtonsOnLeft=M
+ButtonsOnRight=HIA_X
+CustomButtonPositions=true
+PluginLib=twin3_crystal

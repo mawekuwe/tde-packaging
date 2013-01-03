@@ -15,6 +15,9 @@ DEB_INSTALL_DOCS_ALL := -XNEWS -XTODO
 
 DEB_CONFIGURE_EXTRA_FLAGS := --with-openvpn --with-vpnc --with-pptp
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 post-patches:: debian/stamp-bootstrap
 
 debian/stamp-bootstrap:

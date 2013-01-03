@@ -16,6 +16,9 @@ DEB_DH_INSTALL_SOURCEDIR := $(DEB_DESTDIR)
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --includedir="/opt/trinity/include/tde" --mandir="/opt/trinity/share/man" --infodir="/opt/trinity/share/info"
 
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
 # Ensure that kig's python scripting built successfully.
 common-build-arch::
 	test -e $(DEB_BUILDDIR)/kig/scripting/libscripting.la

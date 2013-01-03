@@ -132,7 +132,7 @@ Package: kopete
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
-Recommends: qca-tls
+Recommends: tqca-tls
 Suggests: tdeartwork-emoticons, khelpcenter, imagemagick, gnupg, gnomemeeting
 Replaces: konversation (<= 0.14.0-4), sim (<= 0.9.3-2)
 Description: instant messenger for KDE

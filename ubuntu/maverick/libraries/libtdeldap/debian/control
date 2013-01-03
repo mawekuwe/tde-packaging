@@ -7,7 +7,7 @@ Standards-Version: 3.8.4
 
 Package: libtdeldap-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients
+Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients, nss-updatedb
 Description: LDAP interface library for TDE
  LDAP interface library for TDE management modules.
  .

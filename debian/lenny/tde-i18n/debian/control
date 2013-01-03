@@ -25,7 +25,7 @@ Replaces: kde-i18n-ar-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-ar-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
 Suggests: kde
-Provides: tde-i18n-trinity-trinity
+Provides: tde-i18n-trinity
 Description: Arabic (ar) internationalized (i18n) files for KDE
  This package contains the Arabic internationalized (i18n) files for
  all KDE core applications.
@@ -505,7 +505,7 @@ Replaces: kde-i18n-nb-trinity (<< 4:14.0.0)
 Breaks: kde-i18n-nb-trinity (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity
 Suggests: kde
-Provides: tde-i18n-trinity, tde-i18n-no
+Provides: tde-i18n-trinity, tde-i18n-no-trinity
 Description: Norwegian Bookmal (nb) internationalized (i18n) files for KDE
  This package contains the Norwegian Bookmal internationalized (i18n)
  files for all KDE core applications.

@@ -1,0 +1,16 @@
+[General]
+screenCount=1
+
+[LegacySession: saved at previous logout]
+count=0
+
+[Session: saved at previous logout]
+clientId1=10d8cecf96000111065458100000063760027
+clientId2=10d9d39668000112680660600000081280032
+count=2
+program1=kmix
+program2=katapult
+restartCommand1=kmix,-session,10d8cecf96000111065458100000063760027_1110891555_426100
+restartCommand2=katapult,-session,10d9d39668000112680660600000081280032_1169282257_747766
+restartStyleHint1=0
+restartStyleHint2=0

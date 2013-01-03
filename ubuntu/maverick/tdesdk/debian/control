@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fboudra@free.fr>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk,
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), cmake, autotools-dev, gawk,
  gettext, pkg-config, tdelibs4-trinity-dev, binutils-dev, bison, flex,
  tdepim-trinity-dev, libapr1-dev, libkcal2-trinity-dev,
  libktnef1-trinity-dev, libsvn-dev, libdb-dev,

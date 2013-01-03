@@ -1,0 +1,9 @@
+[General]
+AutoAdjustMinItems=0
+Buttons=kde-konqbrowser.desktop,kde-Kontact.desktop,kde-amarok.desktop,kde-kopete.desktop
+ConserveSpace=false
+
+[PopularityData]
+ServiceHistories=0/0/0/0/0/0/0/0,0/0/0/0/0/0/0/0,0/0/0/0/0/0/0/0,0/0/0/0/0/0/0/0,0/0/0/0/0/0/0/0
+ServiceInspos=4,1,3,2,5
+ServiceNames=kde-Help.desktop,kde-Home.desktop,kde-KControl.desktop,kde-konsole.desktop,kde-kwrite.desktop
