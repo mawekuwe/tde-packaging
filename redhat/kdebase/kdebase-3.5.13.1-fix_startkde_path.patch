@@ -1,0 +1,107 @@
+--- bin/startkde.ORI	2012-11-16 20:44:01.763131101 +0100
++++ bin/startkde	2012-11-16 21:24:12.865147976 +0100
+@@ -15,6 +15,26 @@
+   source $HOME/.xprofile
+ fi
+ 
++# Some functions to parse and check path correctly ...
++is_in_path() {
++  search="$1"; ifs="$IFS"; IFS=":"; set $PATH; IFS="$ifs"
++  for i in $*; do
++    [ "${i}" = "${search}" ] && return 0
++  done
++  return 1
++}
++
++# Usage: place_before_in_path /opt/trinity/games /usr/games
++place_before_in_path() {
++  insert="$1"; before="$2"; ifs="$IFS"; IFS=":"; set $PATH; IFS="$ifs"
++  NPATH=""
++  for i in $*; do
++    [ "${i}" = "${before}" ] && NPATH="${NPATH}:${insert}"
++    NPATH="${NPATH}:${i}"
++  done
++  export PATH=${NPATH}
++}
++
+ echo "[startkde] Starting startkde." 1>&2
+ echo "[startkde] This script is $0" 1>&2
+ 
+@@ -29,7 +49,7 @@
+ # Do not use kde-config to determine the version. That command creates a
+ # profile directory in the root of the file system. Refer to Bug Report 293.
+ if [ -x $BIN_DIR/konqueror ]; then
+-  KDE_VERSION="`$BIN_DIR/konqueror --version | grep KDE | awk '{print $2}'`"
++  KDE_VERSION=$($BIN_DIR/konqueror --version | while IFS=: read a b; do [[ "$a" =~ "KDE" ]] && echo $b; done)
+   echo "[startkde] TDE version is $KDE_VERSION" 1>&2
+   export KDEDIR=${BIN_DIR%/bin}
+   echo "[startkde] TDE base directory is $KDEDIR" 1>&2
+@@ -105,27 +125,12 @@
+   # This script and kstandardirs.h and kstandardirs.cpp must match.
+   # The latter two must be edited/patched before compiling.
+   echo "[startkde] KDEHOME is not set." 1>&2
+-  if [ -d $HOME/.trinity ]; then
+-    # OK, this one is obvious.
+-    export KDEHOME=$HOME/.trinity
+-  elif [ -f /usr/bin/kde4-config ]; then
+-    # Looks like KDE4 is installed.
+-    if [ -d $HOME/.kde ] && [ ! -d $HOME/.trinity ]; then
+-      # Presume $HOME/.kde is being used for KDE4 as it already exists.
+-      export KDEHOME=$HOME/.trinity
+-    else
+-      # Presume $HOME/.kde is being used for KDE4 to be on the safe side.
+-      export KDEHOME=$HOME/.trinity
+-    fi
+-  elif [ -f /opt/trinity/bin/kde-config ]; then
+-    # Looks like Trinity is installed.
+-    export KDEHOME=$HOME/.trinity
+-  elif [ -f /usr/bin/kde-config ] && [ -d $HOME/.kde ]; then
++  # Default value: $HOME/.trinity. Most users will use this.
++  export KDEHOME=$HOME/.trinity
++
++  if [ ! -d $HOME/.trinity ] && [ ! -f /usr/bin/kde4-config ] && [ -f /usr/bin/kde-config ] && [ -d $HOME/.kde ]; then
+     # Looks like Trinity is installed and not playing second fiddle to KDE4.
+     export KDEHOME=$HOME/.kde
+-  else
+-    # Resort to this and hope for the best!
+-    export KDEHOME=$HOME/.trinity
+   fi
+   echo "[startkde] Set KDEHOME to $KDEHOME." 1>&2
+ fi
+@@ -149,30 +154,30 @@
+ 
+ # Modify the following environment variables only as necessary.
+ if [ -d $KDEDIR/games ]; then
+-  if [ "`echo $PATH | grep \"$KDEDIR/games\"`" = "" ]; then
++  if ! is_in_path "$KDEDIR/games" ; then
+     # Respect the traditional path order. Don't blindly place $KDEDIR/games
+     # first in the path. Only place $KDEDIR/games before /usr/games. If packagers
+     # are adding $KDEDIR/games elsewhere, then they need to ensure the traditional
+     # search patch is respected.
+     # Is there a way we can check that $KDEDIR/games is always placed only just before
+     # /usr/games in the search path?
+-    if [ "`echo $PATH | grep \"^\\(.*:\\)\\?/usr/games\\(:.*\\)\\?$\"`" != "" ]; then
+-      export PATH="`echo $PATH | sed \"s|^\\(.*:\\)\\?/usr/games\\(:.*\\)\\?$|\\1$KDEDIR/games:/usr/games\\2|\"`"
++    if is_in_path "/usr/games"; then
++      place_before_in_path "$KDEDIR/games" "/usr/games"
+     else
+       export PATH=$KDEDIR/games:$PATH
+     fi
+   fi
+ fi
+ if [ -d $KDEDIR/bin ]; then
+-  if [ "`echo $PATH | grep \"$KDEDIR/bin\"`" = "" ]; then
++  if ! is_in_path "$KDEDIR/bin" ]; then
+     # Respect the traditional path order. Don't blindly place $KDEDIR/bin
+     # first in the path. Only place $KDEDIR/bin before /usr/bin. This order is
+     # consistent with kdelibs/kdesu/stub.cpp. If packagers are adding $KDEDIR/bin
+     # elsewhere, then they need to ensure the traditional search patch is respected.
+     # Is there a way we can check that $KDEDIR/bin is always placed only just before
+     # /usr/bin in the search path?
+-    if [ "`echo $PATH | grep \"^\\(.*:\\)\\?/usr/bin\\(:.*\\)\\?$\"`" != "" ]; then
+-      export PATH="`echo $PATH | sed \"s|^\\(.*:\\)\\?/usr/bin\\(:.*\\)\\?$|\\1$KDEDIR/bin:/usr/bin\\2|\"`"
++    if is_in_path "/usr/bin"; then
++      place_before_in_path "$KDEDIR/bin" "/usr/bin"
+     else
+       export PATH=$KDEDIR/bin:$PATH
+     fi

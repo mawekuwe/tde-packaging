@@ -106,7 +106,7 @@ KDE Bluetooth framework development libraries and headers.
 %patch3 -p1 -b .gcc46
 
 %if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
-%patch4 -p1 -b .bluez4
+#patch4 -p1 -b .bluez4
 %endif
 
 %patch11 -p1
@@ -120,6 +120,7 @@ KDE Bluetooth framework development libraries and headers.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i "admin/acinclude.m4.in" \
   -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
+  -e "s|include/kde|include/tde|g" \
   -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
@@ -128,10 +129,9 @@ KDE Bluetooth framework development libraries and headers.
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt.sh
+unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
 export KDEDIR=%{tde_prefix}
 
 # FIXME: dbus-tqt headers are not found without this ...

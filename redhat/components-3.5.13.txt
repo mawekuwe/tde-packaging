@@ -120,3 +120,4 @@ extras/kasablanca
 extras/ksensors
 extras/style-ia-ora
 extras/trinity-desktop
+extras/theme-baghira

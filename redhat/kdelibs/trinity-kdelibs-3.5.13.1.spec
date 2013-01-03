@@ -18,7 +18,7 @@
 
 Name:		trinity-tdelibs
 Version:	3.5.13.1
-Release:	1%{?dist}%{?_variant}
+Release:	2%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Libraries
 Group:		Environment/Libraries
@@ -31,6 +31,10 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kdelibs-3.5.13.1.tar.gz
+
+# [kdelibs] Security popup always appear on invalid SSL certificate, even when set
+#           to "always accept" [Bug #1287]
+Patch1:		kdelibs-3.5.13.1-disable_invalid_certificate_always_prompt.patch
 
 Obsoletes:	tdelibs < %{version}-%{release}
 Provides:	tdelibs = %{version}-%{release}
@@ -147,11 +151,20 @@ BuildRequires:	libXcomposite-devel
 BuildRequires:	xorg-x11-devel
 %endif
 
+# ICEAUTH
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+Requires:		iceauth
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora}
+Requires:		xorg-x11-server-utils
+%endif
+%if 0%{?rhel} == 4
+Requires:		xorg-x11
+%endif
 
 Requires:		trinity-tqtinterface >= %{version}
 Requires:		trinity-arts >= %{version}
 Requires:		qt3 >= 3.3.8.d
-
 
 %description
 Libraries for the Trinity Desktop Environment:
@@ -332,6 +345,7 @@ applications for TDE.
 
 %prep
 %setup -q -n kdelibs-3.5.13.1
+%patch1 -p1
 
 
 %build

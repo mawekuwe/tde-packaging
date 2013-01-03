@@ -1,0 +1,140 @@
+--- baghira-0.8/bab/main.cpp.ORI	2012-11-20 19:33:04.093794934 +0100
++++ baghira-0.8/bab/main.cpp	2012-11-20 19:33:08.022717622 +0100
+@@ -330,7 +330,7 @@
+    delete config;
+ }
+ 
+-QPoint *BabSwitcher::globalPos = new QPoint::QPoint(0,0);
++QPoint *BabSwitcher::globalPos = new QPoint(0,0);
+ 
+ BabSwitcher::BabSwitcher(bab *parent, const char *name) 
+                                           : KSystemTray(parent,name), DCOPObject("babInterface") {
+--- baghira-0.8/bab/Makefile.am.ORI	2012-11-20 19:34:26.540172464 +0100
++++ baghira-0.8/bab/Makefile.am	2012-11-20 19:34:35.265000752 +0100
+@@ -19,4 +19,4 @@
+ # the application source, library search path, and link libraries
+ bab_SOURCES = main.cpp styleconfdialog.cpp bab_iface.skel
+ bab_LDFLAGS = $(KDE_RPATH) $(all_libraries)
+-bab_LDADD = $(LIB_KDEUI)
++bab_LDADD = $(LIB_KDEUI) $(LIB_QT)
+--- baghira-0.8/config/generatePixmaps.sh.OLD	2012-11-20 19:53:24.431860823 +0100
++++ baghira-0.8/config/generatePixmaps.sh	2012-11-20 19:53:47.753402165 +0100
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ top_srcdir="${1:-../..}"
+ imagebase="$top_srcdir/imagebase"
+-UIC=$(grep "UIC = " ../Makefile | cut -f3- -d" ")
++UIC=$QTDIR/bin/uic
+ echo -e "#ifndef SCPIXMAPS_H\n#define SCPIXMAPS_H\n" > pixmaps.h
+ $UIC -embed baghira \
+ $imagebase/button-base \
+--- baghira-0.8/config/Makefile.am.ORI	2012-11-20 19:55:33.699318284 +0100
++++ baghira-0.8/config/Makefile.am	2012-11-20 19:55:37.841236807 +0100
+@@ -7,7 +7,7 @@
+ 
+ kstyle_baghira_config_la_SOURCES = kstyle_baghira_config.cpp colordialog.cpp colorpicker.cpp configdialog.ui help.ui about.ui
+ # kstyle_baghira_config_la_METASOURCES = AUTO
+-kstyle_baghira_config_la_LIBADD = $(LIB_KDEUI) $(LIB_KIO)
++kstyle_baghira_config_la_LIBADD = $(LIB_KDEUI) $(LIB_KIO) $(LIB_QT) $(LIB_KDECORE) -lDCOP
+ kstyle_baghira_config_la_LDFLAGS = -module -avoid-version $(all_libraries) -no-undefined $(KDE_PLUGIN)
+ 
+ 
+--- baghira-0.8/deco/config/generatePixmaps.sh.ORI	2012-11-20 19:59:34.835573683 +0100
++++ baghira-0.8/deco/config/generatePixmaps.sh	2012-11-20 19:59:45.590362018 +0100
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ top_srcdir="${1:-../..}"
+ imagebase="$top_srcdir/imagebase"
+-UIC=$(grep "UIC = " ../../Makefile | cut -f3- -d" ")
++UIC=$QTDIR/bin/uic
+ echo -e "#ifndef DCPIXMAPS_H\n#define DCPIXMAPS_H\n" > pixmaps.h
+ $UIC -embed baghira \
+ $imagebase/icon_help \
+--- baghira-0.8/deco/config/Makefile.am.ORI	2012-11-20 20:00:37.549339366 +0100
++++ baghira-0.8/deco/config/Makefile.am	2012-11-20 20:00:50.370087013 +0100
+@@ -9,7 +9,7 @@
+ kde_module_LTLIBRARIES = kwin_baghira_config.la
+ kwin_baghira_config_la_SOURCES = baghiraconfig.cc aquariusbutton.cc colorpicker.cc configdialog.ui
+ kwin_baghira_config_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -module
+-kwin_baghira_config_la_LIBADD = $(LIB_KDEUI)
++kwin_baghira_config_la_LIBADD = $(LIB_KDEUI) $(LIB_QT) $(LIB_KDECORE)
+ kwin_baghira_config_la_METASOURCES = AUTO
+ 
+ DISTCLEANFILES = $(kwin_baghira_config_la_METASOURCES)
+--- baghira-0.8/deco/generatePixmaps.sh.ORI	2012-11-20 20:03:20.543131500 +0100
++++ baghira-0.8/deco/generatePixmaps.sh	2012-11-20 20:03:29.464956023 +0100
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ top_srcdir="${1:-../..}"
+ imagebase="$top_srcdir/imagebase"
+-UIC=$(grep "UIC = " ../Makefile | cut -f3- -d" ")
++UIC=$QTDIR/bin/uic
+ echo -e "#ifndef DPIXMAPS_H\n#define DPIXMAPS_H\n" > pixmaps.h
+ $UIC -embed baghira \
+ $imagebase/brushed-gradient \
+--- baghira-0.8/deco/Makefile.am.ORI	2012-11-20 20:04:20.899944322 +0100
++++ baghira-0.8/deco/Makefile.am	2012-11-20 20:04:44.230485387 +0100
+@@ -16,7 +16,7 @@
+ kde_module_LTLIBRARIES = kwin3_baghira.la
+ kwin3_baghira_la_SOURCES = baghiraclient.cc
+ kwin3_baghira_la_LIBADD = $(kde_libraries)/libkdecorations.la
+-kwin3_baghira_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -lkdecore -module
++kwin3_baghira_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx -module
+ kwin3_baghira_la_METASOURCES = AUTO
+ 
+ DISTCLEANFILES = $(kwin3_baghira_la_METASOURCES)
+--- baghira-0.8/sessionapplet/dmctl.cpp~	2005-07-11 21:23:58.000000000 +0200
++++ baghira-0.8/sessionapplet/dmctl.cpp	2012-11-20 20:16:58.925023092 +0100
+@@ -37,7 +37,7 @@
+ 
+ DM::DM() : fd( -1 )
+ {
+-	char *ptr;
++	const char *ptr;
+ 	struct sockaddr_un sa;
+ 
+ 	if (DMType == Dunno) {
+--- baghira-0.8/style/generatePixmaps.sh.ORI	2012-11-20 20:20:08.024297835 +0100
++++ baghira-0.8/style/generatePixmaps.sh	2012-11-20 20:20:22.149019999 +0100
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ top_srcdir="${1:-../..}"
+ imagebase="$top_srcdir/imagebase"
+-UIC=$(grep "UIC = " ../Makefile | cut -f3- -d" ")
++UIC=$QTDIR/bin/uic
+ echo -e "#ifndef SPIXMAPS_H\n#define SPIXMAPS_H\n" > pixmaps.h
+ $UIC -embed baghira \
+ $imagebase/brushed-gradient \
+--- baghira-0.8/style/Makefile.am.ORI	2012-11-20 20:21:23.703809116 +0100
++++ baghira-0.8/style/Makefile.am	2012-11-20 20:21:34.795590907 +0100
+@@ -5,7 +5,7 @@
+ METASOURCES = AUTO
+ kde_style_LTLIBRARIES = baghira.la
+ baghira_la_LDFLAGS = $(all_libraries) $(KDE_PLUGIN) -module
+-baghira_la_LIBADD = -lkdefx -lXtst $(LIB_KDEUI)
++baghira_la_LIBADD = -lkdefx -lXtst $(LIB_KDEUI) $(LIB_QT) $(LIB_KDECORE)
+ baghira_la_SOURCES = baghira.cpp optionHandler.cpp polish.cpp utils.cpp
+ lnkdir = $(kde_datadir)/kstyle/themes
+ lnk_DATA = baghira.themerc
+--- baghira-0.8/kickermenu/Makefile.am.ORI	2012-11-20 20:23:35.843209238 +0100
++++ baghira-0.8/kickermenu/Makefile.am	2012-11-20 20:23:41.101105774 +0100
+@@ -9,7 +9,7 @@
+ b_menu_panelapplet_la_METASOURCES = AUTO
+ 
+ b_menu_panelapplet_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries)
+-b_menu_panelapplet_la_LIBADD = $(LIB_KDEUI)
++b_menu_panelapplet_la_LIBADD = $(LIB_KDEUI) $(LIB_QT) $(LIB_KDECORE) -lDCOP
+ 
+ messages:
+ 	$(XGETTEXT) *.cpp *.h -o $(podir)/kmenuapplet.pot
+--- baghira-0.8/sidebar/Makefile.am.ORI	2012-11-20 20:25:55.797454906 +0100
++++ baghira-0.8/sidebar/Makefile.am	2012-11-20 20:26:05.393266033 +0100
+@@ -7,7 +7,7 @@
+ 
+ konqsidebar_baghirasidebar_la_SOURCES = baghiralinkdrag.cpp baghirasidebar.cpp linkview.cpp listboxlink.cpp dndlistbox.cpp linkconfig.ui baghirasidebariface.skel
+ konqsidebar_baghirasidebar_la_LDFLAGS = -module $(KDE_PLUGIN) $(all_libraries) -lkonqsidebarplugin
+-konqsidebar_baghirasidebar_la_LIBADD = $(LIB_KPARTS) $(LIB_KFILE)
++konqsidebar_baghirasidebar_la_LIBADD = $(LIB_KPARTS) $(LIB_KFILE) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI)
+ 
+ baghirasidebar_entry_DATA = baghirasidebar.desktop
+ baghirasidebar_entrydir = $(kde_datadir)/konqsidebartng/entries

@@ -26,7 +26,7 @@
 Name:		trinity-%{kdecomp}
 Summary:	Comfortable Radio Application for KDE [Trinity]
 Version:	0.1.1.1
-Release:	4%{?dist}%{?_variant}
+Release:	5%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -39,6 +39,8 @@ Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.1.tar.gz
+
+Patch1:		kradio-3.5.13.1-updated_preset.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.1
 BuildRequires:	trinity-tdelibs-devel >= 3.5.13.1
@@ -87,6 +89,7 @@ of new plugins (e.g. Internet Radio Streams, new cool GUIs) are welcome.
 
 %prep
 %setup -q -n %{kdecomp}-3.5.13.1
+%patch1 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -161,6 +164,9 @@ update-desktop-database %{tde_appdir} -q &> /dev/null ||:
 %{tde_datadir}/locale/*/LC_MESSAGES/kradio-*.mo
 
 %changelog
+* Sat Dec 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-5
+- Updates presets
+
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-4
 - Initial build for TDE 3.5.13.1
 

@@ -1,0 +1,15 @@
+--- kdelibs-3.5.13.1/kio/kio/tcpslavebase.cpp.ORI	2012-12-29 11:25:06.736204632 +0100
++++ kdelibs-3.5.13.1/kio/kio/tcpslavebase.cpp	2012-12-29 11:25:32.731669416 +0100
+@@ -853,10 +853,12 @@
+             permacache = d->cc->isPermanent(pc);
+          }
+ 
++/*
+          if (!_IPmatchesCN && cp == KSSLCertificateCache::Accept) {
+             cp = KSSLCertificateCache::Prompt;
+ //            ksv = KSSLCertificate::Ok;
+          }
++*/
+ 
+          // Precondition: cp is one of Reject, Accept or Prompt
+          switch (cp) {

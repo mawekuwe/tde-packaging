@@ -24,7 +24,7 @@
 
 Name:		trinity-tdebase
 Version:	3.5.13.1
-Release:	1%{?dist}%{?_variant}
+Release:	2%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
@@ -60,6 +60,9 @@ Source4:	pamd.kcheckpass-trinity%{?dist}
 Source5:	pamd.kscreensaver-trinity%{?dist}
 %endif
 
+# openSUSE: configuration file for TDM
+Source6:	suse-displaymanagers-tdm
+
 
 # TDE 3.5.13 patches
 ## [kdebase] Fix syntax error in icon
@@ -68,6 +71,7 @@ Patch1:		kdebase-3.5.13.1-fix_displayconfig_icon.patch
 Patch11:	kdebase-3.5.12-desktop-openterminalhere.patch
 ## [kdebase/kdm/kfrontend] Global Xsession file is '/etc/X11/xinit/Xsession' [RHEL/Fedora]
 Patch13:	kdebase-3.5.13-genkdmconf_Xsession_location.patch
+Patch14:	kdebase-3.5.13-genkdmconf_Xsession_location_xdm.patch
 ## [kdebase/startkde] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
 Patch15:	kdebase-3.5.13.1-startkde_icon.patch
 ## [kdebase/kioslave/man] Fix kio_man for older distros without 'man-db' [Bug #714]
@@ -76,6 +80,8 @@ Patch21:	kdebase-3.5.13-kio_man_utf8.patch
 Patch30:	kdebase-3.5.12-kdm_hide_menu_button.patch
 ## [kdebase/startkde] Fix wrong path setting
 Patch31:	kdebase-3.5.13.1-fix_startkde_path.patch
+## [kdebase/kdm] Fix PID file is 'tdm.pid' instead of 'kdm.pid' (needed for openSUSE)
+Patch32:	kdebase-3.5.13.1-fix_tdm_pid_file.patch
 
 ### Patches for RHEL4 (should not go upstream)
 
@@ -1887,6 +1893,9 @@ already. Most users won't need this.
 %{_sysconfdir}/pam.d/kdm-trinity
 %{_sysconfdir}/pam.d/kdm-trinity-np
 %endif
+%if 0%{?suse_version}
+/usr/lib/X11/displaymanagers/tdm
+%endif
 
 # Distribution specific stuff
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -3028,12 +3037,16 @@ Konqueror libraries.
 %if 0%{?rhel} || 0%{?fedora}
 %patch13 -p1 -b .Xsession
 %endif
+%if 0%{?suse_version}
+%patch14 -p1 -b .Xsession
+%endif
 %patch15 -p1 -b .tdeicon
 %if 0%{?rhel} || 0%{?mgaversion} || 0%{?mdkversion}
 %patch21 -p1 -b .man
 %endif
 %patch30 -p1 -b .xtestsupport
 %patch31 -p1 -b .startkde
+%patch32 -p1 -b .pid
 
 %if 0%{?rhel} == 4
 %patch201 -p1 -b .libdetect
@@ -3232,6 +3245,12 @@ EOF
 %__mv -f %{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop %{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
 %__ln_s /etc/alternatives/media_safelyremove.desktop_tdebase %{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop
 
+# SUSE: creates DM config file, used by '/etc/init.d/xdm'
+#  You must set 'DISPLAYMANAGER=tdm' in '/etc/sysconfig/displaymanager'
+%if 0%{?suse_version}
+%__install -D -m 644 "%{SOURCE6}" "%{?buildroot}/usr/lib/X11/displaymanagers/tdm"
+%__sed -i "%{?buildroot}/usr/lib/X11/displaymanagers/tdm" -e "s|/opt/trinity/bin|%{tde_bindir}|g"
+%endif
 
 %clean
 %__rm -rf %{?buildroot}
@@ -3240,5 +3259,8 @@ EOF
 
 
 %changelog
+* Thu Nov 29 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-2
+- openSUSE: fix TDM detection by XDM scripts
+
 * Mon Sep 24 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
 - Initial build for TDE 3.5.13.1

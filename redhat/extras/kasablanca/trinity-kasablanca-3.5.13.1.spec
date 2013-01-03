@@ -87,7 +87,6 @@ Kasablanca is an ftp client, among its features are currently:
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
 export KDEDIR=%{tde_prefix}
 
 ## Needed(?) for older/legacy setups, harmless otherwise
