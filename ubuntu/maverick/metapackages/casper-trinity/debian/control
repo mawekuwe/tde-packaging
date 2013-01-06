@@ -1,0 +1,14 @@
+Source: casper-trinity
+Section: misc
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: cdbs, debhelper (>= 7.0.50~)
+Standards-Version: 3.8.4
+
+Package: casper-trinity
+Architecture: all
+Section: misc
+Priority: extra
+Depends: ${shlibs:Depends}, ${misc:Depends}, casper
+Tag: admin::boot, admin::filesystem, implemented-in::shell, protocol::smb, role::plugin, scope::utility, special::completely-tagged, works-with-format::iso9660
+Description: Casper addon scripts for Trinity

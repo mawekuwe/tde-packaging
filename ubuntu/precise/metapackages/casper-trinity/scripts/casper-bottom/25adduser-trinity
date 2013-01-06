@@ -1,0 +1,33 @@
+#!/bin/sh
+
+PREREQ=""
+DESCRIPTION="Adding live session user (Trinity)..."
+
+prereqs()
+{
+       echo "$PREREQ"
+}
+
+case $1 in
+# get pre-requisites
+prereqs)
+       prereqs
+       exit 0
+       ;;
+esac
+
+. /scripts/casper-functions
+
+log_begin_msg "$DESCRIPTION"
+
+#Trinity
+if [ -d "/root/etc/trinity" ]; then
+  if [ -f "/root/usr/share/applications/ubiquity-gtkui.desktop" ]; then
+    sed -i 's/\(OnlyShowIn=.*\)/\1KDE;TDE;/' "/root/usr/share/applications/ubiquity-gtkui.desktop"
+  fi
+  if [ -f "/root/home/$USERNAME/Desktop/ubiquity-gtkui.desktop" ]; then
+    sed -i 's/\(OnlyShowIn=.*\)/\1KDE;TDE;/' "/root/home/$USERNAME/Desktop/ubiquity-gtkui.desktop"
+  fi
+fi
+
+log_end_msg
