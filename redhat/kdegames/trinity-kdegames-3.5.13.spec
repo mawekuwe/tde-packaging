@@ -40,7 +40,7 @@ Patch1:		kdegames-3.5.13-ktuberling_fail_load_picture.patch
 # [kdegames] Missing LDFLAGS cause FTBFS on Mageia 2
 Patch2:		kdegames-3.5.13-missing_ldflags.patch
 # [kdegames] Switch to v3.5.13-sru branch
-Patch3:		kdegames-3.5.13-sru-20120827.patch
+Patch3:		kdegames-3.5.13-sru-20120827.patch.gz
 
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	trinity-tdelibs-devel

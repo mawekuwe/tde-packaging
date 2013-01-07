@@ -186,7 +186,7 @@ Patch66:	kdebase-3.5.13-genkdmconf_Xsession_location_xdm.patch
 Patch67:	kdebase-3.5.13-fix_dbus_include.patch
 
 ## [tdebase] Upgrade to v3.5.13-sru branch
-Patch100:	kdebase-3.5.13-upgrade_to_sru_20120806.patch
+Patch100:	kdebase-3.5.13-upgrade_to_sru_20120806.patch.gz
 ## [tdebase] Fix for SAK dialog are displayed even if TSAK is not built.
 Patch101:	kdebase-3.5.13-disable_tsak_dialog_if_not_built.patch
 

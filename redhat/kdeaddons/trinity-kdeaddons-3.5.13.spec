@@ -42,7 +42,7 @@ Source1: metabar-fedora.tar.bz2
 Source2: metabarrc
 
 # [tdeaddons] Updates from v3.5.13-sru branch
-Patch0:	 kdeaddons-3.5.13-sru-20120809.patch
+Patch0:	 kdeaddons-3.5.13-sru-20120809.patch.gz
 
 BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-arts-devel
