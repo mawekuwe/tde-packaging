@@ -23,7 +23,7 @@
 Name:		trinity-k3b
 Summary:	CD/DVD burning application
 Version:	3.5.13.1
-Release:	1%{?dist}%{?_variant}
+Release:	2%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -62,13 +62,6 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	taglib-devel
 BuildRequires:	zlib-devel
 
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}flac-devel
-BuildRequires:	%{_lib}flac++-devel
-%else
-BuildRequires:	flac-devel
-%endif
-
 Requires(post): coreutils
 Requires(postun): coreutils
 
@@ -78,6 +71,32 @@ Requires: %{name}-common = %{version}-%{release}
 Requires: cdrecord mkisofs
 Requires: cdrdao
 Requires: dvd+rw-tools
+
+# FLAC support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}flac-devel
+BuildRequires:	%{_lib}flac++-devel
+%else
+BuildRequires:	flac-devel
+%endif
+
+# MAD support
+%if 0%{?mdkversion} || 0%{?mgaversion}
+%define with_mad 1
+BuildRequires:		%{_lib}mad-devel
+%endif
+
+# LAME support
+%if 0%{?mdkversion} || 0%{?mgaversion}
+%define with_lame 1
+BuildRequires:		%{_lib}lame-devel
+%endif
+
+# FFMPEG support
+%if 0%{?mdkversion} || 0%{?mgaversion}
+%define with_ffmpeg 1
+BuildRequires:		%{_lib}ffmpeg-devel
+%endif
 
 %description
 K3b provides a comfortable user interface to perform most CD/DVD
@@ -218,6 +237,70 @@ Requires: %{name}-libs = %{version}-%{release}
 
 ##########
 
+%if 0%{?with_mad}
+%package plugin-mad
+Summary: The MAD plugin for K3B
+Group:   System Environment/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description plugin-mad
+%{summary}.
+
+MAD is a high-quality MPEG audio decoder. It currently supports MPEG-1
+and the MPEG-2  extension to Lower Sampling Frequencies, as well as the
+so-called MPEG 2.5 format. All three audio layers (Layer I, Layer II,
+and Layer III a.k.a. MP3) are fully implemented.
+
+%files plugin-mad
+%defattr(-,root,root,-)
+%{tde_tdelibdir}/libk3bmaddecoder.la
+%{tde_tdelibdir}/libk3bmaddecoder.so
+%endif
+
+##########
+
+%if 0%{?with_lame}
+%package plugin-lame
+Summary: The LAME plugin for K3B
+Group:   System Environment/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description plugin-lame
+%{summary}.
+
+Personal and commercial use of compiled versions of LAME (or any other mp3
+encoder) requires a patent license in some countries.
+
+This package is in tainted, as MP3 encoding is covered by software patents.
+
+%files plugin-lame
+%defattr(-,root,root,-)
+%{tde_tdelibdir}/libk3blameencoder.la
+%{tde_tdelibdir}/libk3blameencoder.so
+%endif
+
+##########
+
+%if 0%{?with_ffmpeg}
+%package plugin-ffmpeg
+Summary: The FFMPEG plugin for K3B
+Group:   System Environment/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description plugin-ffmpeg
+%{summary}.
+
+ffmpeg is a hyper fast realtime audio/video encoder, a streaming server
+and a generic audio and video file converter.
+
+%files plugin-ffmpeg
+%defattr(-,root,root,-)
+%{tde_tdelibdir}/libk3bffmpegdecoder.la
+%{tde_tdelibdir}/libk3bffmpegdecoder.so
+%endif
+
+##########
+
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
@@ -267,7 +350,9 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --with-libdvdread \
   --with-musicbrainz \
   --with-sndfile \
-  --without-ffmpeg --without-lame --without-libmad \
+  %{?with_ffmpeg:--with-ffmpeg} %{?!with_ffmpeg:--without-ffmpeg} \
+  %{?with_lame:--with-lame} %{?!with_lame:--without-lame} \
+  %{?with_mad:--with-libmad} %{?!with_mad:--without-libmad} \
   --with-musepack \
   --with-extra-includes=%{tde_includedir}/tqt:%{tde_includedir}
 
@@ -293,6 +378,11 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Sun Jan 06 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-2
+- Enables FFMPEG support
+- Enables LAME support
+- Enables MAD support
+
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
 - Initial build for TDE 3.5.13.1
 - Remove requirement for resmgr
