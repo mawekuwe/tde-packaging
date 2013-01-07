@@ -63,8 +63,8 @@ Patch1:		kdenetwork-3.5.13-missing_ldflags.patch
 # [kdenetwork] FTBFS in SMS client [Bug #1241]
 Patch2:		kdenetwork-3.5.13.1-fix_smsclient_ftbfs.patch
 # [kdenetwork] Fix iwlib support in openSUSE
-Patch7:		caedf8323c45b376c824de343f31de78664b2511.patch
-Patch8:		kdenetwork-wifi3.diff
+Patch7:		kdenetwork-3.5.13.1-add_cmake_macro.patch
+Patch8:		kdenetwork-3.5.13.1-wifi3.diff
 
 # RHEL4 specific
 Patch201:	kdenetwork-3.5.13.1-fix_rhel4_libraries.patch
