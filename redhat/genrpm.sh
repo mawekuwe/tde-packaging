@@ -3,8 +3,11 @@
 cd "$( dirname "$0" )"
 ARGS=""
 
+eval TARBALLS_DIR=~/tde/3.5.13.1
+
 if [ ! -d /var/cache/ccache ]; then
   DIST="$(rpmdist.sh --dist)"
+  [ -z "${DIST}" ] && DIST="$(rpm -E "%{dist}")"
   if [ -n "${DIST}" ]; then
     export CCACHE_DIR=~/.ccache${DIST}.$(uname -m)
   fi
@@ -33,7 +36,8 @@ RHEL="$( rpm -E "%{rhel}" )"
 FEDORA="$( rpm -E "%{fedora}" )"
 SUSE="$( rpm -E "%{suse_version}" )"
 PCLINUXOS="$( rpm -E "%{pclinuxos}" )"
-if [ "${RHEL}" = "%{rhel}" ] && [ "${FEDORA}" = "%{fedora}" ] && [ "${SUSE}" = "%{suse_version}" ] && [ "${PCLINUXOS}" = "%{pclinuxos}" ] ; then
+MGAVERSION="$( rpm -E "%{mgaversion}" )"
+if [ "${RHEL}" = "%{rhel}" ] && [ "${FEDORA}" = "%{fedora}" ] && [ "${SUSE}" = "%{suse_version}" ] && [ "${PCLINUXOS}" = "%{pclinuxos}" ] && [ "${MGAVERSION}" = "%{mgaversion}" ] ; then
 	cat <<EOF
 Error: RPM macro %rhel or %fedora must be set to the distribution version to build !
 E.g:
@@ -59,13 +63,13 @@ VERSION=$( awk '{ if ($1 == "'${COMP}'") { print $2; } }' components.txt )
 # If no version is set in text file, get version number from source tarball name
 if [ -z "${VERSION}" ]; then
 	if [ -n "${REQVERSION}" ]; then
-		set $( cd "${COMP}"; echo ${COMP##*/}*-${REQVERSION%-sru}*.tar.gz)
+		set $( cd "${TARBALLS_DIR}"; echo ${COMP##*/}*-${REQVERSION%-sru}*.tar.gz)
 	else
-		set $( cd "${COMP}"; echo ${COMP##*/}*.tar.* )
+		set $( cd "${TARBALLS_DIR}"; echo ${COMP##*/}*.tar.* )
 	fi
 	if [ $# -gt 1 ]; then
 		select VERSION in $*; do break; done
-	elif [ -r "${COMP}/$1" ]; then
+	elif [ -r "${TARBALLS_DIR}/$1" ]; then
 		VERSION="$1"
 	elif [ "${COMP}" = "trinity-live" ]; then
 		VERSION="3.5.13"
@@ -103,6 +107,8 @@ About to build '${COMP}':
   Version: '${VERSION}'
   Spec file: '${SPEC}'
 
+CCACHE_DIR='${CCACHE_DIR}'
+
 Press ENTER to build, or CTRL+C to abort.
 EOF
 [ -z "${AUTO}" ] && read rep
@@ -119,11 +125,22 @@ fi
 
 LOGFILE=/tmp/log.${COMP##*/}
 
+SOURCEDIR="$(mktemp -d)"
+# Puts the GIT files in SOURCEDIR
+cp -rf "${PWD}/${COMP}/"* "${SOURCEDIR}"
+# Puts the TARBALL in SOURCEDIR
+cp -f "${TARBALLS_DIR}/${COMP}-"*.tar* "${SOURCEDIR}"
+
+BUILDDIR="/dev/shm/BUILD${DIST}.$(uname -i)"
+BUILDROOTDIR="/dev/shm/BUILDROOT${DIST}.$(uname -i)"
+
 set -x
 (
 rpmbuild -ba \
 	${ARGS} \
-	--define "_sourcedir ${PWD}/${COMP}" \
+	--define "_sourcedir ${SOURCEDIR}" \
+    --define "_builddir ${BUILDDIR}" \
+    --define "_buildrootdir ${BUILDROOTDIR}" \
 	--define "tde_prefix ${PREFIX:-/opt/trinity}" \
 	--define "version ${VERSION:-3.5.13}" \
 	${COMP}/${SPEC} || exit 1
@@ -140,3 +157,5 @@ if grep -q "error: Failed build dependencies:" ${LOGFILE}; then
 	set $( grep " is needed by " ${LOGFILE} | cut -d " " -f1 )
 	exit 2
 fi
+
+rm -rf "${SOURCEDIR}"
