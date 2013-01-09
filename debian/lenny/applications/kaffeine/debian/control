@@ -6,7 +6,7 @@ XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.de
 Uploaders: Riku Voipio <riku.voipio@iki.fi>, Fathi Boudra <fboudra@free.fr>,
  Mark Purcell <msp@debian.org>
 Build-Depends: cdbs, debhelper (>= 5), kdelibs4-trinity-dev,
- libcdparanoia0-dev, libogg-dev, libxine-dev (>= 1.1.7), libxcb1-dev,
+ libcdparanoia0-dev, libogg-dev, libxine2-dev | libxine-dev (>= 1.1.7), libxcb1-dev,
  libxtst-dev, libgstreamer0.10-dev, libgstreamer-plugins-base0.10-dev,
  libcdio-cdda-dev, libcdio-paranoia-dev,
  automake, autoconf, libtool, libltdl-dev
@@ -14,7 +14,7 @@ Standards-Version: 3.8.4
 
 Package: kaffeine-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, hdparm
+Depends: ${shlibs:Depends}, hdparm, libxine2-x | libxine1-x (<< 1.1.20) | libxine1 (<< 1.1.8-2)
 Description: versatile media player for TDE
  Kaffeine is a media player for KDE. While it supports multiple player
  engines, its default engine is Xine, giving Kaffeine a wide variety of
