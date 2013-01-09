@@ -6,14 +6,14 @@ XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.de
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
 Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev,
  libcairo2-dev, libdbus-1-dev, libdbus-glib-1-dev, libdbus-tqt-1-dev,
- libgstreamer-plugins-base0.10-dev, libgtk2.0-dev, libxine-dev, libxv-dev, docbook2x,
+ libgstreamer-plugins-base0.10-dev, libgtk2.0-dev, libxine2-dev | libxine-dev, libxv-dev, docbook2x,
  automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://kmplayer.kde.org
 
 Package: kmplayer-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, kmplayer-base-trinity (= ${binary:Version}), libxine1-x | libxine1 (<< 1.1.8-2)
+Depends: ${shlibs:Depends}, kmplayer-base-trinity (= ${binary:Version}), libxine2-x | libxine1-x (<< 1.1.20) | libxine1 (<< 1.1.8-2)
 Replaces: kmplayer-trinity (<< 4:14.0.0)
 Breaks: kmplayer-trinity (<< 4:14.0.0)
 Recommends: kmplayer-plugin-trinity (= ${binary:Version})

@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev, atlantik-trinity-dev, tdebase-trinity-dev, tdemultimedia-trinity-dev, libtdegames-trinity-dev, libkonq4-trinity-dev, tdepim-trinity-dev, libsdl1.2-dev (>= 1.2.2-3.3), libssl-dev (>= 0.9.6), libxine-dev, libdb4.8++-dev | libdb++-dev, libogg-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev, atlantik-trinity-dev, tdebase-trinity-dev, tdemultimedia-trinity-dev, libtdegames-trinity-dev, libkonq4-trinity-dev, tdepim-trinity-dev, libsdl1.2-dev (>= 1.2.2-3.3), libssl-dev (>= 0.9.6), libdb4.8++-dev | libdb++-dev, libogg-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdeaddons-trinity
