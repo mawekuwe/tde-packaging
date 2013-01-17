@@ -12,7 +12,7 @@ Architecture: all
 Section: kde
 Priority: optional
 Depends: kde-core-trinity (>= 5:47), kde-core-trinity (>= 5:47), kdeedu-trinity (>= 4:3.5.5), kdegames-trinity (>= 4:3.5.5), kdetoys-trinity (>= 4:3.5.5), kdeaccessibility-trinity (>= 4:3.5.5), kdeaddons-trinity (>= 4:3.5.5), kdeadmin-trinity (>= 4:3.5.5), kdeartwork-trinity (>= 4:3.5.5), kdegraphics-trinity (>= 4:3.5.5), kdemultimedia-trinity (>= 4:3.5.5), kdenetwork-trinity (>= 4:3.5.5), kdepim-trinity (>= 4:3.5.5), kdeutils-trinity (>= 4:3.5.5), kdewebdev-trinity (>= 4:3.5.5), desktop-base-trinity
-Suggests: kde-i18n-trinity (>= 4:3.5.5), x-window-system-core, kdesudo-trinity, debian-kgtk-trinity
+Suggests: kde-i18n-trinity (>= 4:3.5.5), x-window-system-core, kdesudo-trinity, debian-kgtk-trinity, gtk-qt-engine-trinity, gtk3-tqt-engine-trinity, qt4-tqt-theme-engine
 Description: the K Desktop Environment official modules [Trinity]
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
