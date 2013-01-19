@@ -1,0 +1,5 @@
+network-manager-tde: no-shlibs-control-file opt/trinity/lib/libtdeinit_tdenetworkmanager.so
+network-manager-tde: package-name-doesnt-match-sonames libtdeinit-tdenetworkmanager
+network-manager-tde: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_tdenetworkmanager.so
+network-manager-tde: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_tdenetworkmanager.so
+
