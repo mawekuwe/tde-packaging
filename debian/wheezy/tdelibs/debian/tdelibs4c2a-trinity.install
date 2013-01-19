@@ -23,6 +23,7 @@ debian/tmp/opt/trinity/bin/kded
 debian/tmp/opt/trinity/bin/tdeinit
 debian/tmp/opt/trinity/bin/tdeinit_shutdown
 debian/tmp/opt/trinity/bin/tdeinit_wrapper
+debian/tmp/opt/trinity/bin/tde_dbus_hardwarecontrol
 debian/tmp/opt/trinity/bin/kdetcompmgr
 debian/tmp/opt/trinity/bin/kde-menu
 debian/tmp/opt/trinity/bin/tdesu_stub
@@ -320,3 +321,6 @@ debian/tmp/opt/trinity/lib/trinity/kfile_elf.so
 debian/tmp/opt/trinity/lib/trinity/kfile_elf.la
 debian/tmp/opt/trinity/share/apps/tdehwlib/deviceclasses/*
 debian/tmp/opt/trinity/share/apps/tdehwlib/pnpdev/*
+
+debian/tmp/etc/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
+debian/tmp/usr/share/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service
