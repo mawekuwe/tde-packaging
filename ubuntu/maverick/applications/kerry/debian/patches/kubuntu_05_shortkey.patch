@@ -2,7 +2,7 @@ diff -Nur kerry-0.2.1/kerry/src/kerryapp.cpp kerry-0.2.1.new/kerry/src/kerryapp.
 --- kerry-0.2.1/kerry/src/kerryapp.cpp
 +++ kerry-0.2.1.new/kerry/src/kerryapp.cpp
 @@ -122,8 +122,7 @@
-   globalKeys = new KGlobalAccel(TQT_TQOBJECT(this));
+   globalKeys = new TDEGlobalAccel(TQT_TQOBJECT(this));
    globalKeys->insert( "Program:kerry", i18n("Kerry Beagle Search") );
 
 -  KShortcut showDialogShortcut = KShortcut(ALT+Key_Space);
