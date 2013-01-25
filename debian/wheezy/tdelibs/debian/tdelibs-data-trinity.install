@@ -207,7 +207,7 @@ debian/tmp/opt/trinity/share/apps/tdeui/pics/ktip-bulb.png
 debian/tmp/opt/trinity/share/apps/kdewidgets/pics/kactionselector.png
 debian/tmp/opt/trinity/share/apps/kdewidgets/pics/kactivelabel.png
 debian/tmp/opt/trinity/share/apps/kdewidgets/pics/kcharselect.png
-debian/tmp/opt/trinity/share/apps/kdewidgets/pics/kcmodule.png
+debian/tmp/opt/trinity/share/apps/kdewidgets/pics/tdecmodule.png
 debian/tmp/opt/trinity/share/apps/kdewidgets/pics/kcolorbutton.png
 debian/tmp/opt/trinity/share/apps/kdewidgets/pics/kcolorcombo.png
 debian/tmp/opt/trinity/share/apps/kdewidgets/pics/kcombobox.png
@@ -3662,7 +3662,7 @@ debian/tmp/opt/trinity/share/servicetypes/browserview.desktop
 debian/tmp/opt/trinity/share/servicetypes/dcopinstantmessenger.desktop
 debian/tmp/opt/trinity/share/servicetypes/dcoptexttospeech.desktop
 debian/tmp/opt/trinity/share/servicetypes/kbytesedit.desktop
-debian/tmp/opt/trinity/share/servicetypes/kcmodule.desktop
+debian/tmp/opt/trinity/share/servicetypes/tdecmodule.desktop
 debian/tmp/opt/trinity/share/servicetypes/kcomprfilter.desktop
 debian/tmp/opt/trinity/share/servicetypes/kdatatool.desktop
 debian/tmp/opt/trinity/share/servicetypes/kdedmodule.desktop

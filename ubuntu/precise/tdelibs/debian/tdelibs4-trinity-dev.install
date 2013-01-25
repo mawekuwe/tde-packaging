@@ -158,11 +158,11 @@ debian/tmp/opt/trinity/include/kclientsocketbase.h
 debian/tmp/opt/trinity/include/kclipboard.h
 debian/tmp/opt/trinity/include/kcmdlineargs.h
 debian/tmp/opt/trinity/include/kcmenumngr.h
-debian/tmp/opt/trinity/include/kcmodulecontainer.h
-debian/tmp/opt/trinity/include/kcmodule.h
-debian/tmp/opt/trinity/include/kcmoduleinfo.h
-debian/tmp/opt/trinity/include/kcmoduleloader.h
-debian/tmp/opt/trinity/include/kcmoduleproxy.h
+debian/tmp/opt/trinity/include/tdecmodulecontainer.h
+debian/tmp/opt/trinity/include/tdecmodule.h
+debian/tmp/opt/trinity/include/tdecmoduleinfo.h
+debian/tmp/opt/trinity/include/tdecmoduleloader.h
+debian/tmp/opt/trinity/include/tdecmoduleproxy.h
 debian/tmp/opt/trinity/include/kcmultidialog.h
 debian/tmp/opt/trinity/include/kcolorbtn.h
 debian/tmp/opt/trinity/include/kcolorbutton.h

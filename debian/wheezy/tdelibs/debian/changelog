@@ -1525,7 +1525,7 @@ tdelibs (4:3.5.2-0ubuntu10) dapper; urgency=low
 
 tdelibs (4:3.5.2-0ubuntu9) dapper; urgency=low
 
-  * Add kubuntu_45_kcmoduleinfo.diff to fix module name test in
+  * Add kubuntu_45_tdecmoduleinfo.diff to fix module name test in
     KCModuleInfo::KCModuleInfo, thanks to Julien Richard-Foy
   * Add kubuntu_46_lisa_error.diff to display a custom error message in Lisa
     module tabs.

@@ -158,11 +158,11 @@ debian/tmp/opt/kde3/include/tde/kclientsocketbase.h
 debian/tmp/opt/kde3/include/tde/kclipboard.h
 debian/tmp/opt/kde3/include/tde/kcmdlineargs.h
 debian/tmp/opt/kde3/include/tde/kcmenumngr.h
-debian/tmp/opt/kde3/include/tde/kcmodulecontainer.h
-debian/tmp/opt/kde3/include/tde/kcmodule.h
-debian/tmp/opt/kde3/include/tde/kcmoduleinfo.h
-debian/tmp/opt/kde3/include/tde/kcmoduleloader.h
-debian/tmp/opt/kde3/include/tde/kcmoduleproxy.h
+debian/tmp/opt/kde3/include/tde/tdecmodulecontainer.h
+debian/tmp/opt/kde3/include/tde/tdecmodule.h
+debian/tmp/opt/kde3/include/tde/tdecmoduleinfo.h
+debian/tmp/opt/kde3/include/tde/tdecmoduleloader.h
+debian/tmp/opt/kde3/include/tde/tdecmoduleproxy.h
 debian/tmp/opt/kde3/include/tde/kcmultidialog.h
 debian/tmp/opt/kde3/include/tde/kcolorbtn.h
 debian/tmp/opt/kde3/include/tde/kcolorbutton.h
