@@ -6,7 +6,7 @@ debian/tmp/opt/kde3/bin/kfontinst
 debian/tmp/opt/kde3/bin/kfontview
 debian/tmp/opt/kde3/bin/kinfocenter
 debian/tmp/opt/kde3/bin/klocaldomainurifilterhelper
-debian/tmp/opt/kde3/bin/krandrtray
+debian/tmp/opt/kde3/bin/tderandrtray
 debian/tmp/opt/kde3/bin/krdb
 debian/tmp/opt/kde3/lib/kde3/fontthumbnail.la
 debian/tmp/opt/kde3/lib/kde3/fontthumbnail.so
@@ -54,8 +54,8 @@ debian/tmp/opt/kde3/lib/kde3/kcm_kded.la
 debian/tmp/opt/kde3/lib/kde3/kcm_kded.so
 debian/tmp/opt/kde3/lib/kde3/kcm_tdm.la
 debian/tmp/opt/kde3/lib/kde3/kcm_tdm.so
-debian/tmp/opt/kde3/lib/kde3/kcm_kdnssd.so
-debian/tmp/opt/kde3/lib/kde3/kcm_kdnssd.la
+debian/tmp/opt/kde3/lib/kde3/kcm_tdednssd.so
+debian/tmp/opt/kde3/lib/kde3/kcm_tdednssd.la
 debian/tmp/opt/kde3/lib/kde3/kcm_keys.la
 debian/tmp/opt/kde3/lib/kde3/kcm_keys.so
 debian/tmp/opt/kde3/lib/kde3/kcm_kicker.la
@@ -152,7 +152,7 @@ debian/tmp/opt/kde3/share/applications/kde/interrupts.desktop
 debian/tmp/opt/kde3/share/applications/kde/ioports.desktop
 debian/tmp/opt/kde3/share/applications/kde/ioslaveinfo.desktop
 debian/tmp/opt/kde3/share/applications/kde/joystick.desktop
-debian/tmp/opt/kde3/share/applications/kde/kcm_kdnssd.desktop
+debian/tmp/opt/kde3/share/applications/kde/kcm_tdednssd.desktop
 debian/tmp/opt/kde3/share/applications/kde/kcmaccess.desktop
 debian/tmp/opt/kde3/share/applications/kde/kcmcss.desktop
 debian/tmp/opt/kde3/share/applications/kde/kcmfontinst.desktop
@@ -168,11 +168,11 @@ debian/tmp/opt/kde3/share/applications/kde/KControl.desktop
 debian/tmp/opt/kde3/share/applications/kde/tdm.desktop
 debian/tmp/opt/kde3/share/applications/kde/keys.desktop
 debian/tmp/opt/kde3/share/applications/kde/kfontview.desktop
-debian/tmp/opt/kde3/share/applications/kde/khtml_behavior.desktop
-debian/tmp/opt/kde3/share/applications/kde/khtml_fonts.desktop
-debian/tmp/opt/kde3/share/applications/kde/khtml_java_js.desktop
-debian/tmp/opt/kde3/share/applications/kde/krandrtray.desktop
-debian/tmp/opt/kde3/share/autostart/krandrtray-autostart.desktop
+debian/tmp/opt/kde3/share/applications/kde/tdehtml_behavior.desktop
+debian/tmp/opt/kde3/share/applications/kde/tdehtml_fonts.desktop
+debian/tmp/opt/kde3/share/applications/kde/tdehtml_java_js.desktop
+debian/tmp/opt/kde3/share/applications/kde/tderandrtray.desktop
+debian/tmp/opt/kde3/share/autostart/tderandrtray-autostart.desktop
 debian/tmp/opt/kde3/share/applications/kde/kthememanager.desktop
 debian/tmp/opt/kde3/share/applications/kde/iccconfig.desktop
 debian/tmp/opt/kde3/share/applications/kde/lanbrowser.desktop
@@ -212,7 +212,7 @@ debian/tmp/opt/kde3/share/applnk/Settings/LookNFeel/kcmtaskbar.desktop
 debian/tmp/opt/kde3/share/applnk/Settings/LookNFeel/panel_appearance.desktop
 debian/tmp/opt/kde3/share/applnk/Settings/LookNFeel/panel.desktop
 debian/tmp/opt/kde3/share/applnk/Settings/LookNFeel/Themes/iconthemes.desktop
-debian/tmp/opt/kde3/share/applnk/Settings/WebBrowsing/khtml_appearance.desktop
+debian/tmp/opt/kde3/share/applnk/Settings/WebBrowsing/tdehtml_appearance.desktop
 debian/tmp/opt/kde3/share/applnk/Settings/WebBrowsing/nsplugin.desktop
 debian/tmp/opt/kde3/share/applnk/Settings/WebBrowsing/smb.desktop
 debian/tmp/opt/kde3/share/apps/kcm_componentchooser/kcm_browser.desktop

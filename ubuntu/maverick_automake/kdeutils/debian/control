@@ -11,7 +11,7 @@ Standards-Version: 3.8.3
 Package: kdeutils-kde3
 Section: kde
 Architecture: all
-Depends: ark-kde3 (>= ${Source-Version}), kcalc-kde3 (>= ${Source-Version}), kcharselect-kde3 (>= ${Source-Version}), kdelirc-kde3 (>= ${Source-Version}), kdessh-kde3 (>= ${Source-Version}), kdf-kde3 (>= ${Source-Version}), kedit-kde3 (>= ${Source-Version}), kfloppy-kde3 (>= ${Source-Version}), kgpg-kde3 (>= ${Source-Version}), khexedit-kde3 (>= ${Source-Version}), kjots-kde3 (>= ${Source-Version}), klaptopdaemon-kde3 (>= ${Source-Version}) | kpowersave-kde3, kmilo-kde3 (>= ${Source-Version}), kregexpeditor-kde3 (>= ${Source-Version}), ksim-kde3 (>= ${Source-Version}), ktimer-kde3 (>= ${Source-Version}), kwalletmanager-kde3 (>= ${Source-Version}), superkaramba-kde3 (>= ${Source-Version})
+Depends: ark-kde3 (>= ${Source-Version}), kcalc-kde3 (>= ${Source-Version}), kcharselect-kde3 (>= ${Source-Version}), kdelirc-kde3 (>= ${Source-Version}), kdessh-kde3 (>= ${Source-Version}), kdf-kde3 (>= ${Source-Version}), kedit-kde3 (>= ${Source-Version}), kfloppy-kde3 (>= ${Source-Version}), kgpg-kde3 (>= ${Source-Version}), khexedit-kde3 (>= ${Source-Version}), kjots-kde3 (>= ${Source-Version}), klaptopdaemon-kde3 (>= ${Source-Version}) | kpowersave-kde3, kmilo-kde3 (>= ${Source-Version}), kregexpeditor-kde3 (>= ${Source-Version}), ksim-kde3 (>= ${Source-Version}), ktimer-kde3 (>= ${Source-Version}), tdewalletmanager-kde3 (>= ${Source-Version}), superkaramba-kde3 (>= ${Source-Version})
 Suggests: kdeutils-kde3-doc-html (>= ${Source-Version})
 Description: general purpose utilities from the official KDE3 release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -303,7 +303,7 @@ Description: timer utility for KDE3
  This package is part of KDE3, as a component of the KDE utilities module.
  See the 'kde-kde3' and 'kdeutils-kde3' packages for more information.
 
-Package: kwalletmanager-kde3
+Package: tdewalletmanager-kde3
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}

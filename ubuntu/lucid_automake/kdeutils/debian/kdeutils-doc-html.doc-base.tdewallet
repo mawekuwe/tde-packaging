@@ -1,0 +1,10 @@
+Document: kdeutils-doc-html-tdewallet
+Title: KWallet Handbook
+Author: George Staikos, Lauri Watts
+Abstract: The wallet subsytem provides a convenient and secure way to manage all your passwords.
+Section: Tools
+
+Format: HTML
+Index: /usr/share/doc/kde/HTML/en/tdewallet/index.html
+Files: /usr/share/doc/kde/HTML/en/tdewallet/*.html
+

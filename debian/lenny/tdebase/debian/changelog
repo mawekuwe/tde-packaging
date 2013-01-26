@@ -1,7 +1,7 @@
 tdebase-trinity (4:3.5.10-2ubuntu12) karmic; urgency=low
 
   * Repaired kdesktop crash on load
-  * Fixed krandrtray crash when randr X extension is unavailable
+  * Fixed tderandrtray crash when randr X extension is unavailable
   * Added option to keys config dialog to alter Win key from modifier status
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Mon, 07 Dec 2009 13:24:00 -0600
@@ -67,7 +67,7 @@ tdebase-trinity (4:3.5.10-2ubuntu2) karmic; urgency=low
 tdebase-trinity (4:3.5.10-1ubuntu5) karmic; urgency=low
 
   * Added new ICC loading functionality to kcontrol and tdm
-  * Added new display output switching functionality to krandrtray
+  * Added new display output switching functionality to tderandrtray
   * Beginnings of customizable K menu icon
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 15 Oct 2009 10:46:00 -0600
@@ -750,7 +750,7 @@ tdebase (4:3.5.7-1ubuntu24) gutsy; urgency=low
   [ Sarah Hobbs ]
   * Added kubuntu_17_check_for_prelinking.diff. (Closes LP: #107694)
   * Added konqueror dependancy for konqueror-nsplugins. (LP: #139893)
-  * Added kubuntu_fix_kscreensaver_with_compiz_fixed_in_3.5.8.diff (LP:
+  * Added kubuntu_fix_tdescreensaver_with_compiz_fixed_in_3.5.8.diff (LP:
     #141628)
 
  -- Sarah Hobbs <hobbsee@ubuntu.com>  Fri, 28 Sep 2007 18:56:10 +1000
@@ -758,7 +758,7 @@ tdebase (4:3.5.7-1ubuntu24) gutsy; urgency=low
 tdebase (4:3.5.7-1ubuntu23) gutsy; urgency=low
 
   * Fixed kubuntu_52_gtk_qt_engine_config.diff and
-    kubuntu_53_kwallet_config.diff as $tdehome=$HOME/.kde so we should use
+    kubuntu_53_tdewallet_config.diff as $tdehome=$HOME/.kde so we should use
     $tdehome instead of $HOME/$tdehome
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Wed, 19 Sep 2007 12:22:46 +0200
@@ -781,7 +781,7 @@ tdebase (4:3.5.7-1ubuntu21) gutsy; urgency=low
 tdebase (4:3.5.7-1ubuntu20) gutsy; urgency=low
 
   * Changed (again) $TDEHOME to $tdehome in kubuntu_52_gtk_qt_engine_config.diff and 
-    kubuntu_53_kwallet_config.diff . (LP: #136560)
+    kubuntu_53_tdewallet_config.diff . (LP: #136560)
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 15 Sep 2007 23:12:26 +0100
 
@@ -800,14 +800,14 @@ tdebase (4:3.5.7-1ubuntu18) gutsy; urgency=low
   * Dropping kubuntu_9902_nspluginviewer_hangs_cpu.diff and the libgtk
     build-dep as they are no longer needed
   * Changed $TDEHOME to $tdehome in kubuntu_52_gtk_qt_engine_config.diff and 
-    kubuntu_53_kwallet_config.diff . (LP: #136560)
+    kubuntu_53_tdewallet_config.diff . (LP: #136560)
 
  -- Ryan Kavanagh <ryanakca@kubuntu.org>  Mon, 03 Sep 2007 10:26:36 -0400
 
 tdebase (4:3.5.7-1ubuntu17) gutsy; urgency=low
 
   * Edit kubuntu_52_gtk_qt_engine_config.diff and
-    kubuntu_53_kwallet_config.diff to use $TDEHOME instead of .kde
+    kubuntu_53_tdewallet_config.diff to use $TDEHOME instead of .kde
   * Remove kubuntu_77_kiosystem.diff, home:/ better than /home now
   * Edit kubuntu_27_aboutscreen_searchbar.diff to work with strigi
   * Add kubuntu_9903_api_docs_move.diff for new API website
@@ -1154,7 +1154,7 @@ tdebase (4:3.5.6-0ubuntu13) feisty; urgency=low
 
 tdebase (4:3.5.6-0ubuntu12) feisty; urgency=low
 
-  * Add kubuntu_92_krandrtray_config.diff, krandrtray now uses guidance
+  * Add kubuntu_92_tderandrtray_config.diff, tderandrtray now uses guidance
     display configuration module in the first place.
     Closes Malone #46877
 
@@ -2148,7 +2148,7 @@ tdebase (4:3.5.0-4) unstable; urgency=low
 
   +++ Changes by Isaac Clerencia
 
-  * Add kdnssd kcontrol module files to kcontrol package
+  * Add tdednssd kcontrol module files to kcontrol package
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 11 Jan 2006 23:05:12 +0100
 
@@ -2210,7 +2210,7 @@ tdebase (4:3.5.2-0ubuntu26) dapper; urgency=low
 
 tdebase (4:3.5.2-0ubuntu25) dapper; urgency=low
 
-  * Fix kubuntu_53_kwallet_config.diff to not install kwallet 
+  * Fix kubuntu_53_tdewallet_config.diff to not install tdewallet 
     file in wrong directory, closes Malone #45999
   * Install filemanagement and webbrowsing konqueror profiles, 
     closes Malone #45004
@@ -2408,7 +2408,7 @@ tdebase (4:3.5.1-0ubuntu13) dapper; urgency=low
 tdebase (4:3.5.1-0ubuntu12) dapper; urgency=low
 
   [ Anthony Mercatante ]
-  * Add kubuntu_53_kwallet_config.diff copy a default 
+  * Add kubuntu_53_tdewallet_config.diff copy a default 
     KWallet config for new users
   * Add kubuntu_54_system_protocol_home_dir.diff make
     system:/ use /home/foo not system:/home/foo keep 
@@ -2511,7 +2511,7 @@ tdebase (4:3.5.0-0ubuntu16) dapper; urgency=low
 
 tdebase (4:3.5.0-0ubuntu15) dapper; urgency=low
 
-  * kcontrol replaces old tdebase-bin for kcm_kdnssd.desktop
+  * kcontrol replaces old tdebase-bin for kcm_tdednssd.desktop
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 17 Jan 2006 15:20:42 +0000
 
@@ -2550,7 +2550,7 @@ tdebase (4:3.5.0-0ubuntu10) dapper; urgency=low
 tdebase (4:3.5.0-0ubuntu9) dapper; urgency=low
 
   * Add kubuntu_40_xmkmf.diff for new imake/xmkmf path
-  * Install kcm_kdnssd in kcontrol
+  * Install kcm_tdednssd in kcontrol
   * Add kubuntu_41_kcmdnssd_name_icon.diff to make kcontrol module
     more recognisable
 
@@ -4332,7 +4332,7 @@ tdebase (4:2.1-20010115-1) unstable; urgency=low
   * More upstream fixes
   * ask where the mozilla bookmarks are (Closes: #81710)
   * tip that was annoying to some seems to be gone (Closes: #82253)
-  * Adding in kscreensaver pam file
+  * Adding in tdescreensaver pam file
   * Updating tdmrc to match current features and all
   * Add a link in /etc/X11/tdm to tdmrc (Closes: #82643)
   * Updated kde2 start script that fixes overwriting of gtk confs

@@ -10,7 +10,7 @@ case "$1" in
 	rm -f /etc/kde3/colors/40\ Colors
 	rm -f /etc/kde3/colors/Royal
 	rm -f /etc/kde3/colors/Web
-	rm -f /etc/kde3/ktexteditor_autobookmarkerrc
+	rm -f /etc/kde3/tdetexteditor_autobookmarkerrc
 	[ -f "$FILE" ] || exit 0
 	MD5SUMOLD=`md5sum $FILE | awk '{print $1}'`
 	if dpkg --compare-versions "$2" lt "4:3.4.0-0pre5"; then

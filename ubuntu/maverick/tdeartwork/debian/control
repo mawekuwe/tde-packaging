@@ -13,8 +13,8 @@ Architecture: all
 Section: tde
 Replaces: kdeartwork-trinity (<< 4:14.0.0)
 Breaks: kdeartwork-trinity (<< 4:14.0.0)
-Depends: tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), kscreensaver-trinity (>= ${Source-Version})
-Recommends: kscreensaver-xsavers-trinity
+Depends: tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), tdescreensaver-trinity (>= ${Source-Version})
+Recommends: tdescreensaver-xsavers-trinity
 Description: themes, styles and more from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -110,13 +110,13 @@ Description: wallpapers released with Trinity
  This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kscreensaver-trinity
+Package: tdescreensaver-trinity
 Architecture: any
 Section: tde
-Replaces: kscreensaver-trinity (<< 4:14.0.0)
-Breaks: kscreensaver-trinity (<< 4:14.0.0)
+Replaces: tdescreensaver-trinity (<< 4:14.0.0)
+Breaks: tdescreensaver-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin
-Recommends: twin-trinity, kscreensaver-xsavers-trinity (= ${Source-Version})
+Recommends: twin-trinity, tdescreensaver-xsavers-trinity (= ${Source-Version})
 Description: additional screen savers released with Trinity
  This package contains the screen savers for Trinity. They can be tested and
  selected within the Appearance and Themes section of the Trinity Control
@@ -124,19 +124,19 @@ Description: additional screen savers released with Trinity
  .
  The hooks for the standard xscreensavers are no longer part of this
  package. To select and/or configure the standard xscreensavers through
- the KDE Control Center, install the separate package kscreensaver-xsavers.
+ the KDE Control Center, install the separate package tdescreensaver-xsavers.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kscreensaver-xsavers-trinity
+Package: tdescreensaver-xsavers-trinity
 Architecture: any
 Section: tde
-Replaces: kscreensaver-xsavers-trinity (<< 4:14.0.0)
-Breaks: kscreensaver-xsavers-trinity (<< 4:14.0.0)
+Replaces: tdescreensaver-xsavers-trinity (<< 4:14.0.0)
+Breaks: tdescreensaver-xsavers-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin, xscreensaver-data
-Recommends: twin-trinity, kscreensaver-trinity (= ${Source-Version}), xscreensaver-gl
-Suggests: kscreensaver-xsavers-webcollage-trinity
+Recommends: twin-trinity, tdescreensaver-trinity (= ${Source-Version}), xscreensaver-gl
+Suggests: tdescreensaver-xsavers-webcollage-trinity
 Description: Trinity hooks for standard xscreensavers
  This package allows a smooth integration of the standard xscreensavers
  into Trinity. With this package installed you can select and/or configure
@@ -145,19 +145,19 @@ Description: Trinity hooks for standard xscreensavers
  .
  Note that this package does not actually contain any screensavers itself.
  For the additional screensavers shipped with Trinity, see the separate package
- kscreensaver-trinity. This package does depend on the xscreensaver package, and
+ tdescreensaver-trinity. This package does depend on the xscreensaver package, and
  recommend the xscreensaver-gl package, as well as contain the necessary
  files to integrate these packages into Trinity.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kscreensaver-xsavers-webcollage-trinity
+Package: tdescreensaver-xsavers-webcollage-trinity
 Architecture: all
 Section: tde
-Replaces: kscreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
-Breaks: kscreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
-Depends: kscreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
+Replaces: tdescreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
+Breaks: tdescreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
+Depends: tdescreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
 Description: webcollage screensaver Trinity hook
  This package give access to the webcollage screensaver through the Trinity
  screensaver configuration.
@@ -171,19 +171,19 @@ Description: webcollage screensaver Trinity hook
  your computer in a working environment or in an environment with children.
  .
  If you still want to install this package, please read the file
- /usr/share/doc/kscreensaver-xsavers-webcollage/README.Debian after the 
+ /usr/share/doc/tdescreensaver-xsavers-webcollage/README.Debian after the 
  installation.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kscreensaver-xsavers-extra-trinity
+Package: tdescreensaver-xsavers-extra-trinity
 Architecture: all
 Section: tde
-Replaces: kscreensaver-xsavers-extra-trinity (<< 4:14.0.0)
-Breaks: kscreensaver-xsavers-extra-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, kscreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
-Recommends: twin-trinity, kscreensaver-trinity (= ${Source-Version})
+Replaces: tdescreensaver-xsavers-extra-trinity (<< 4:14.0.0)
+Breaks: tdescreensaver-xsavers-extra-trinity (<< 4:14.0.0)
+Depends: ${shlibs:Depends}, tdescreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
+Recommends: twin-trinity, tdescreensaver-trinity (= ${Source-Version})
 Description: Trinity hooks for standard xscreensavers
  This package allows a smooth integration of the universe xscreensavers
  into Trinity. With this package installed you can select and/or configure
@@ -192,7 +192,7 @@ Description: Trinity hooks for standard xscreensavers
  .
  Note that this package does not actually contain any screensavers itself.
  For the additional screensavers shipped with KDE, see the separate package
- kscreensaver.
+ tdescreensaver.
  .
  This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.

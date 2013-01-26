@@ -30,8 +30,8 @@ debian/tmp/opt/trinity/lib/trinity/libdomtreeviewerplugin.la
 debian/tmp/opt/trinity/lib/trinity/libdomtreeviewerplugin.so
 debian/tmp/opt/trinity/lib/trinity/libfsviewpart.la
 debian/tmp/opt/trinity/lib/trinity/libfsviewpart.so
-debian/tmp/opt/trinity/lib/trinity/libkhtmlsettingsplugin.la
-debian/tmp/opt/trinity/lib/trinity/libkhtmlsettingsplugin.so
+debian/tmp/opt/trinity/lib/trinity/libtdehtmlsettingsplugin.la
+debian/tmp/opt/trinity/lib/trinity/libtdehtmlsettingsplugin.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kuick.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kuick.so
 debian/tmp/opt/trinity/lib/trinity/libkimgallery.la
@@ -62,7 +62,7 @@ debian/tmp/opt/trinity/share/applnk/.hidden/crashesplugin.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/dirfilterplugin.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/rsyncplugin.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/fsview.desktop
-debian/tmp/opt/trinity/share/applnk/.hidden/khtmlsettingsplugin.desktop
+debian/tmp/opt/trinity/share/applnk/.hidden/tdehtmlsettingsplugin.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kimgalleryplugin.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/plugin_babelfish.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/plugin_domtreeviewer.desktop
@@ -74,7 +74,7 @@ debian/tmp/opt/trinity/share/apps/domtreeviewer
 debian/tmp/opt/trinity/share/apps/fsview
 debian/tmp/opt/trinity/share/apps/imagerotation/orient.py
 debian/tmp/opt/trinity/share/apps/imagerotation/exif.py
-debian/tmp/opt/trinity/share/apps/khtml/kpartplugins
+debian/tmp/opt/trinity/share/apps/tdehtml/kpartplugins
 debian/tmp/opt/trinity/share/apps/konqiconview
 debian/tmp/opt/trinity/share/apps/konqlistview
 debian/tmp/opt/trinity/share/apps/konqsidebartng
@@ -108,9 +108,9 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/imgallery/index.docboo
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/imgallery/*.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/index.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/khtmlsettings/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/khtmlsettings/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/khtmlsettings/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/tdehtmlsettings/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/tdehtmlsettings/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/tdehtmlsettings/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/kuick/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/kuick/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konq-plugins/kuick/index.docbook

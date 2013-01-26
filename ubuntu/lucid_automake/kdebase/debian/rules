@@ -17,7 +17,7 @@ DEB_KDE_APIDOX := yes
 CXXFLAGS := -DSMB_CTX_FLAG_USE_KERBEROS -DSMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS -g -Wall $(DEB_OPT_FLAG)
 
 DEB_CONFIGURE_EXTRA_FLAGS := --with-shadow --without-java --with-pam=kde-kde3 --prefix=/opt/kde3 \
-	--with-kcp-pam=kcheckpass-kde3 --with-tdm-pam=tdm-kde3 --with-kss-pam=kscreensaver-kde3 --with-extra-libs=/opt/kde3/lib \
+	--with-kcp-pam=kcheckpass-kde3 --with-tdm-pam=tdm-kde3 --with-kss-pam=tdescreensaver-kde3 --with-extra-libs=/opt/kde3/lib \
 	--with-extra-includes=/usr/include/sasl --with-usbids=/usr/share/misc/usb.ids --with-sudo-kdesu-backend \
 	--enable-closure
 
@@ -254,7 +254,7 @@ binary-install/klipper-kde3::
 
 binary-install/kdebase-kde3-bin::
 	install -p -D -m644 debian/kcheckpass-kde3.pam debian/kdebase-kde3-bin/etc/pam.d/kcheckpass-kde3
-	install -p -D -m644 debian/kscreensaver-kde3.pam debian/kdebase-kde3-bin/etc/pam.d/kscreensaver-kde3
+	install -p -D -m644 debian/tdescreensaver-kde3.pam debian/kdebase-kde3-bin/etc/pam.d/tdescreensaver-kde3
 	mkdir -p debian/kdebase-kde3-bin/opt/kde3/share/apps/kxkb/
 	install -p -D -m644 debian/ubuntu.xmodmap debian/kdebase-kde3-bin/opt/kde3/share/apps/kxkb/system.xmodmap
 	install -p -D -m644 debian/80ubuntu-xmodmap debian/kdebase-kde3-bin/etc/X11/Xsession.d/80ubuntu-kde3-xmodmap

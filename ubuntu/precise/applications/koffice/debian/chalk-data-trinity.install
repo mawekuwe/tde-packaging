@@ -352,7 +352,7 @@ debian/tmp/opt/trinity/share/services/chalk_rgb_u16_plugin.desktop
 debian/tmp/opt/trinity/share/services/chalkrotateimage.desktop
 debian/tmp/opt/trinity/share/services/chalkroundcornersfilter.desktop
 debian/tmp/opt/trinity/share/services/chalkscreenshot.desktop
-debian/tmp/opt/trinity/share/services/chalkscripting.desktop
+debian/tmp/opt/trinity/share/services/chaltdescripting.desktop
 debian/tmp/opt/trinity/share/services/chalkselectiontools.desktop
 debian/tmp/opt/trinity/share/services/chalkselectopaque.desktop
 debian/tmp/opt/trinity/share/services/chalkseparatechannels.desktop

@@ -268,7 +268,7 @@ tdeutils (4:3.5.5-1) unstable; urgency=low
 
   * New upstream release.
     + Fixes kcalc: Alt-H does not select hex. (Closes: #272026)
-    + Fixes kwalletmanager does not appear in kde system tray.
+    + Fixes tdewalletmanager does not appear in kde system tray.
       (Closes: #372258)
     + Fixes kgpg: Kgpg editor crashes on decrypting. (Closes: #372767)
 
@@ -287,7 +287,7 @@ tdeutils (4:3.5.4-1) unstable; urgency=low
   * New upstream release.
 
   * KDE_3_5_BRANCH update (up to r567761).
-    + Fixes kwalletmanager crashes on logout. (Closes: #372564, #377001)
+    + Fixes tdewalletmanager crashes on logout. (Closes: #372564, #377001)
 
   +++ Changes by Christopher Martin:
 
@@ -312,7 +312,7 @@ tdeutils (4:3.5.5-0ubuntu1) edgy; urgency=low
 
   * New upstream release
   * kubuntu_12_kmilo_actions.diff updated
-  * Remove kubuntu_13_downgrade_kwallet.diff
+  * Remove kubuntu_13_downgrade_tdewallet.diff
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  3 Oct 2006 10:56:05 +0000
 
@@ -325,8 +325,8 @@ tdeutils (4:3.5.4-0ubuntu5) edgy; urgency=low
 
 tdeutils (4:3.5.4-0ubuntu4) edgy; urgency=low
 
-  * Added kubuntu_13_downgrade_kwallet to avoid bug #57696, downgrading
-    kwalletmanager to 3.5.2, This bug has been reported on KDE 2 month
+  * Added kubuntu_13_downgrade_tdewallet to avoid bug #57696, downgrading
+    tdewalletmanager to 3.5.2, This bug has been reported on KDE 2 month
     ago (http://bugs.kde.org/show_bug.cgi?id=129161) and 3.5.4 has been
     released without any correction. 
     Because most apps' authentication system is based on this, the issue

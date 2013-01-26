@@ -149,7 +149,7 @@ debian/tmp/opt/kde3/include/tde/dom/SVGWindow.h
 debian/tmp/opt/kde3/include/tde/dom/SVGZoomAndPan.h
 debian/tmp/opt/kde3/include/tde/dom/SVGZoomEvent.h
 debian/tmp/opt/kde3/include/tde/kfaximage.h
-debian/tmp/opt/kde3/include/tde/kmultipageInterface.h
+debian/tmp/opt/kde3/include/tde/tdemultipageInterface.h
 debian/tmp/opt/kde3/include/tde/ksvg/CanvasFactory.h
 debian/tmp/opt/kde3/include/tde/ksvg/CanvasItem.h
 debian/tmp/opt/kde3/include/tde/ksvg/CanvasItems.h
@@ -164,7 +164,7 @@ debian/tmp/opt/kde3/include/tde/kviewshell/documentRenderer.h
 debian/tmp/opt/kde3/include/tde/kviewshell/documentWidget.h
 debian/tmp/opt/kde3/include/tde/kviewshell/history.h
 debian/tmp/opt/kde3/include/tde/kviewshell/hyperlink.h
-debian/tmp/opt/kde3/include/tde/kviewshell/kmultipage.h
+debian/tmp/opt/kde3/include/tde/kviewshell/tdemultipage.h
 debian/tmp/opt/kde3/include/tde/kviewshell/length.h
 debian/tmp/opt/kde3/include/tde/kviewshell/pageNumber.h
 debian/tmp/opt/kde3/include/tde/kviewshell/pageSize.h
@@ -185,8 +185,8 @@ debian/tmp/opt/kde3/lib/libkghostviewlib.la
 debian/tmp/opt/kde3/lib/libkghostviewlib.so
 debian/tmp/opt/kde3/lib/libkimageviewer.la
 debian/tmp/opt/kde3/lib/libkimageviewer.so
-debian/tmp/opt/kde3/lib/libkmultipage.la
-debian/tmp/opt/kde3/lib/libkmultipage.so
+debian/tmp/opt/kde3/lib/libtdemultipage.la
+debian/tmp/opt/kde3/lib/libtdemultipage.so
 debian/tmp/opt/kde3/lib/libkpovmodeler.la
 debian/tmp/opt/kde3/lib/libkpovmodeler.so
 debian/tmp/opt/kde3/lib/libksvg.la

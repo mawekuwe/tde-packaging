@@ -11,8 +11,8 @@ Standards-Version: 3.7.2
 Package: kdeartwork
 Architecture: all
 Section: kde
-Depends: kdeartwork-misc (>= ${Source-Version}), kdeartwork-emoticons (>= ${Source-Version}), kdeartwork-style (>= ${Source-Version}), kdeartwork-theme-icon (>= ${Source-Version}), kdeartwork-theme-window (>= ${Source-Version}), kdewallpapers (>= ${Source-Version}), kscreensaver (>= ${Source-Version})
-Recommends: kscreensaver-xsavers
+Depends: kdeartwork-misc (>= ${Source-Version}), kdeartwork-emoticons (>= ${Source-Version}), kdeartwork-style (>= ${Source-Version}), kdeartwork-theme-icon (>= ${Source-Version}), kdeartwork-theme-window (>= ${Source-Version}), kdewallpapers (>= ${Source-Version}), tdescreensaver (>= ${Source-Version})
+Recommends: tdescreensaver-xsavers
 Description: themes, styles and more from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -98,11 +98,11 @@ Description: wallpapers released with KDE
  This package is part of KDE, and a component of the KDE artwork module.
  See the 'kde' and 'kdeartwork' packages for more information.
 
-Package: kscreensaver
+Package: tdescreensaver
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdebase-bin
-Recommends: kwin, kscreensaver-xsavers (= ${Source-Version})
+Recommends: kwin, tdescreensaver-xsavers (= ${Source-Version})
 Description: additional screen savers released with KDE
  This package contains the screen savers for KDE. They can be tested and
  selected within the Appearance and Themes section of the KDE Control
@@ -110,17 +110,17 @@ Description: additional screen savers released with KDE
  .
  The hooks for the standard xscreensavers are no longer part of this
  package. To select and/or configure the standard xscreensavers through
- the KDE Control Center, install the separate package kscreensaver-xsavers.
+ the KDE Control Center, install the separate package tdescreensaver-xsavers.
  .
  This package is part of KDE, and a component of the KDE artwork module.
  See the 'kde' and 'kdeartwork' packages for more information.
 
-Package: kscreensaver-xsavers
+Package: tdescreensaver-xsavers
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdebase-bin, xscreensaver
-Recommends: kwin, kscreensaver (= ${Source-Version}), xscreensaver-gl
-Suggests: kscreensaver-xsavers-webcollage
+Recommends: kwin, tdescreensaver (= ${Source-Version}), xscreensaver-gl
+Suggests: tdescreensaver-xsavers-webcollage
 Description: KDE hooks for standard xscreensavers
  This package allows a smooth integration of the standard xscreensavers
  into KDE. With this package installed you can select and/or configure
@@ -129,17 +129,17 @@ Description: KDE hooks for standard xscreensavers
  .
  Note that this package does not actually contain any screensavers itself.
  For the additional screensavers shipped with KDE, see the separate package
- kscreensaver. This package does depend on the xscreensaver package, and
+ tdescreensaver. This package does depend on the xscreensaver package, and
  recommend the xscreensaver-gl package, as well as contain the necessary
  files to integrate these packages into KDE.
  .
  This package is part of KDE, and a component of the KDE artwork module.
  See the 'kde' and 'kdeartwork' packages for more information.
 
-Package: kscreensaver-xsavers-webcollage
+Package: tdescreensaver-xsavers-webcollage
 Architecture: all
 Section: kde
-Depends: kscreensaver-xsavers, miscfiles | wordlist, netpbm
+Depends: tdescreensaver-xsavers, miscfiles | wordlist, netpbm
 Description: webcollage screensaver KDE hook
  This package give access to the webcollage screensaver through the KDE
  screensaver configuration.
@@ -153,7 +153,7 @@ Description: webcollage screensaver KDE hook
  your computer in a working environment or in an environment with children.
  .
  If you still want to install this package, please read the file
- /usr/share/doc/kscreensaver-xsavers-webcollage/README.Debian after the 
+ /usr/share/doc/tdescreensaver-xsavers-webcollage/README.Debian after the 
  installation.
  .
  This package is part of KDE, and a component of the KDE artwork module.

@@ -63,10 +63,10 @@ DEB_DH_SHLIBDEPS_ARGS_kontact-trinity := \
 	-dDepends	# Since -u args go first in dpkg-shlibdeps call
 
 ## Move kaddressbook-trinity dependency (from libkabc_xmlrpc.so) to Recommends
-#DEB_DH_SHLIBDEPS_ARGS_tdepim-kresources-trinity := \
+#DEB_DH_SHLIBDEPS_ARGS_tdepim-tderesources-trinity := \
 #	-Xopt/lib/trinity/libkabc_xmlrpc.so.1 \
 #	-- -dRecommends \
-#	debian/tdepim-kresources/opt/trinity/lib/libkabc_xmlrpc.so.1.* \
+#	debian/tdepim-tderesources/opt/trinity/lib/libkabc_xmlrpc.so.1.* \
 #	-dDepends
 #
 ## Move kaddressbook dependency of libkcal2b-trinity to Recommends

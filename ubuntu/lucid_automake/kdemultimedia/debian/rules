@@ -23,12 +23,12 @@ DOC_HTML_PRUNE := kcontrol-kde3
 
 DEB_DH_STRIP_ARGS  := --dbg-package=kdemultimedia-kde3-dbg
 
-PACKAGES_WITH_LIBS := artsbuilder-kde3 kdemultimedia-kio-plugins-kde3 kmid-kde3 kmix-kde3 krec-kde3 \
+PACKAGES_WITH_LIBS := artsbuilder-kde3 kdemultimedia-kio-plugins-kde3 tdemid-kde3 kmix-kde3 krec-kde3 \
 	libarts1-akode-kde3 libarts1-audiofile-kde3 libarts1-mpeglib-kde3 libarts1-xine-kde3 \
 	libkcddb1-kde3 mpeglib-kde3 noatun-kde3
 
 DEB_DH_MAKESHLIBS_ARGS_artsbuilder-kde3			:= -V'artsbuilder-kde3 (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kmid-kde3			:= -V'kmid-kde3 (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_tdemid-kde3			:= -V'tdemid-kde3 (>= 4:3.5.8-1)'
 DEB_DH_MAKESHLIBS_ARGS_libkcddb1-kde3			:= -V'libkcddb1-kde3 (>= 4:3.5.8-1)'
 DEB_DH_MAKESHLIBS_ARGS_mpeglib-kde3			:= -V'mpeglib-kde3 (>= 4:3.5.8-1)'
 DEB_DH_MAKESHLIBS_ARGS_noatun-kde3			:= -V'noatun-kde3 (>= 4:3.5.8-1)'

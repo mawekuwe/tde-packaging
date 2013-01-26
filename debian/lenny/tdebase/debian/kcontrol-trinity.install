@@ -6,7 +6,7 @@ debian/tmp/opt/trinity/bin/kfontinst
 debian/tmp/opt/trinity/bin/kfontview
 debian/tmp/opt/trinity/bin/kinfocenter
 debian/tmp/opt/trinity/bin/klocaldomainurifilterhelper
-debian/tmp/opt/trinity/bin/krandrtray
+debian/tmp/opt/trinity/bin/tderandrtray
 debian/tmp/opt/trinity/bin/krdb
 debian/tmp/opt/trinity/lib/trinity/fontthumbnail.la
 debian/tmp/opt/trinity/lib/trinity/fontthumbnail.so
@@ -58,8 +58,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_kded.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kded.so
 debian/tmp/opt/trinity/lib/trinity/kcm_tdm.la
 debian/tmp/opt/trinity/lib/trinity/kcm_tdm.so
-debian/tmp/opt/trinity/lib/trinity/kcm_kdnssd.so
-debian/tmp/opt/trinity/lib/trinity/kcm_kdnssd.la
+debian/tmp/opt/trinity/lib/trinity/kcm_tdednssd.so
+debian/tmp/opt/trinity/lib/trinity/kcm_tdednssd.la
 debian/tmp/opt/trinity/lib/trinity/kcm_keys.la
 debian/tmp/opt/trinity/lib/trinity/kcm_keys.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kicker.la
@@ -158,7 +158,7 @@ debian/tmp/opt/trinity/share/applications/tde/interrupts.desktop
 debian/tmp/opt/trinity/share/applications/tde/ioports.desktop
 debian/tmp/opt/trinity/share/applications/tde/ioslaveinfo.desktop
 debian/tmp/opt/trinity/share/applications/tde/joystick.desktop
-debian/tmp/opt/trinity/share/applications/tde/kcm_kdnssd.desktop
+debian/tmp/opt/trinity/share/applications/tde/kcm_tdednssd.desktop
 debian/tmp/opt/trinity/share/applications/tde/kcmaccess.desktop
 debian/tmp/opt/trinity/share/applications/tde/kcmcss.desktop
 debian/tmp/opt/trinity/share/applications/tde/kcmfontinst.desktop
@@ -174,11 +174,11 @@ debian/tmp/opt/trinity/share/applications/tde/KControl.desktop
 debian/tmp/opt/trinity/share/applications/tde/tdm.desktop
 debian/tmp/opt/trinity/share/applications/tde/keys.desktop
 debian/tmp/opt/trinity/share/applications/tde/kfontview.desktop
-debian/tmp/opt/trinity/share/applications/tde/khtml_behavior.desktop
-debian/tmp/opt/trinity/share/applications/tde/khtml_fonts.desktop
-debian/tmp/opt/trinity/share/applications/tde/khtml_java_js.desktop
-debian/tmp/opt/trinity/share/applications/tde/krandrtray.desktop
-debian/tmp/opt/trinity/share/autostart/krandrtray-autostart.desktop
+debian/tmp/opt/trinity/share/applications/tde/tdehtml_behavior.desktop
+debian/tmp/opt/trinity/share/applications/tde/tdehtml_fonts.desktop
+debian/tmp/opt/trinity/share/applications/tde/tdehtml_java_js.desktop
+debian/tmp/opt/trinity/share/applications/tde/tderandrtray.desktop
+debian/tmp/opt/trinity/share/autostart/tderandrtray-autostart.desktop
 debian/tmp/opt/trinity/share/applications/tde/kthememanager.desktop
 debian/tmp/opt/trinity/share/applications/tde/iccconfig.desktop
 debian/tmp/opt/trinity/share/applications/tde/lanbrowser.desktop
@@ -218,7 +218,7 @@ debian/tmp/opt/trinity/share/applnk/Settings/LookNFeel/kcmtaskbar.desktop
 debian/tmp/opt/trinity/share/applnk/Settings/LookNFeel/panel_appearance.desktop
 debian/tmp/opt/trinity/share/applnk/Settings/LookNFeel/panel.desktop
 debian/tmp/opt/trinity/share/applnk/Settings/LookNFeel/Themes/iconthemes.desktop
-debian/tmp/opt/trinity/share/applnk/Settings/WebBrowsing/khtml_appearance.desktop
+debian/tmp/opt/trinity/share/applnk/Settings/WebBrowsing/tdehtml_appearance.desktop
 debian/tmp/opt/trinity/share/applnk/Settings/WebBrowsing/nsplugin.desktop
 debian/tmp/opt/trinity/share/applnk/Settings/WebBrowsing/smb.desktop
 debian/tmp/opt/trinity/share/apps/kcm_componentchooser/kcm_browser.desktop

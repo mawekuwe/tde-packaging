@@ -63,14 +63,14 @@ kpf-trinity
 kppp-trinity
 krdc-trinity
 krfb-trinity
-kscreensaver-trinity
+tdescreensaver-trinity
 ksysguard-trinity
 ktorrent-trinity
 kubuntu-default-settings-trinity
 kubuntu-trinity-docs
 kubuntu-konqueror-shortcuts-trinity
 kvkbd-trinity
-kwalletmanager-trinity
+tdewalletmanager-trinity
 landscape-client
 laptop-detect
 libgl1-mesa-dri

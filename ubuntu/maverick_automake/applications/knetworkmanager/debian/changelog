@@ -272,7 +272,7 @@ knetworkmanager (1:0.1-3) unstable; urgency=low
     - debian/patches/07-overlay_icon_vpn.patch
       + Show overlay icon (lock) for active VPN connections.
     - debian/patches/08-disable_sm.patch
-      + Disable session management to avoid a deadlock when accessing kwallet.
+      + Disable session management to avoid a deadlock when accessing tdewallet.
         Install an autostart file into /usr/share/autostart/ instead.
         Closes: #406162
     - debian/patches/09-dbus_bool_t.patch

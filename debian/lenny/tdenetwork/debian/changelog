@@ -173,10 +173,10 @@ tdenetwork (4:3.5.7-2) unstable; urgency=low
   * Don't do anything if lisa is already running. (Closes: #407892)
   * Pull patch from upstream to fix issue with format toolbar. (Closes: #392019)
   * Pull patch from upstream to fix webcam issues. (Closes: #414424)
-  * Remove libnss-mdns from kdnssd-depends. (Closes: 412084)
+  * Remove libnss-mdns from tdednssd-depends. (Closes: 412084)
   * Increase maximum count of lines in ksirc (Closes: 291968)
   * Don't build kwifimanager on s390 - they don't have wifi hardware.
-  * Don't build kwifimanager and kdnssd on !linux archs - tt doesn't built there.
+  * Don't build kwifimanager and tdednssd on !linux archs - tt doesn't built there.
   * Patch to fix builds on kfreebsd archs. (Closes: 398909)
   * Make ktalkd depend on update-inetd - we use it in maint scripts.
 
@@ -483,7 +483,7 @@ tdenetwork (4:3.5.3-1ubuntu5) edgy; urgency=low
 tdenetwork (4:3.5.3-1ubuntu4) edgy; urgency=low
 
   * Add debian/kubuntu_zeroconf/_{fish,sftp}._tcp to add FISH and sFTP support
-    to kdnssd (Closes: Malone 33034).
+    to tdednssd (Closes: Malone 33034).
 
  -- Raphaël Pinson <raphink@ubuntu.com>  Thu, 20 Jul 2006 12:13:01 +0200
 
@@ -558,7 +558,7 @@ tdenetwork (4:3.5.1-1) unstable; urgency=low
 
   +++ Changes by Isaac Clerencia:
 
-  * Put zeroconf kioslave and other kdnssd stuff in a new package, kdnssd.
+  * Put zeroconf kioslave and other tdednssd stuff in a new package, tdednssd.
 
   +++ Changes by Christopher Martin:
 
@@ -637,13 +637,13 @@ tdenetwork (4:3.5.2-0ubuntu5) dapper; urgency=low
 
   * Move libnss-mdns and avahi-daemon to Recommends since we don't want avahi
     installed by default.
-  * Add sftp, fish and ipp protocols to kdnssd in debian/zeroconf/.
+  * Add sftp, fish and ipp protocols to tdednssd in debian/zeroconf/.
 
  -- Raphaël Pinson <raphink@ubuntu.com>  Thu, 11 May 2006 19:09:40 +0200
 
 tdenetwork (4:3.5.2-0ubuntu4) dapper; urgency=low
 
-  * Add libnss-mdns and avahi-daemon to dependencies for kdnssd package.
+  * Add libnss-mdns and avahi-daemon to dependencies for tdednssd package.
 
  -- Raphaël Pinson <raphink@ubuntu.com>  Thu, 11 May 2006 18:52:54 +0200
 
@@ -707,14 +707,14 @@ tdenetwork (4:3.5.0-0ubuntu4) dapper; urgency=low
 
 tdenetwork (4:3.5.0-0ubuntu3) dapper; urgency=low
 
-  * Add kdnssd to tdenetwork meta package
-  * Remove libkdnssd dependency from kdnssd (now in tdelibs)
+  * Add tdednssd to tdenetwork meta package
+  * Remove libtdednssd dependency from tdednssd (now in tdelibs)
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 12 Jan 2006 09:51:13 +0000
 
 tdenetwork (4:3.5.0-0ubuntu2) dapper; urgency=low
 
-  * Add package kdnssd with zeroconf:/ ioslave
+  * Add package tdednssd with zeroconf:/ ioslave
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 11 Jan 2006 02:22:49 +0000
 

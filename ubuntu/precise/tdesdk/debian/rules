@@ -32,7 +32,7 @@ DEB_CMAKE_EXTRA_FLAGS := \
  -DWITH_DBSEARCHENGINE="ON" \
  -DWITH_KCAL="ON"
 
-PACKAGES_WITH_LIBS := kbabel-trinity kompare-trinity kspy-trinity kunittest-trinity libcvsservice0-trinity umbrello-trinity
+PACKAGES_WITH_LIBS := kbabel-trinity kompare-trinity kspy-trinity tdeunittest-trinity libcvsservice0-trinity umbrello-trinity
 
 #shlibs_ver = 4:3.5.0-1
 #$(foreach p,$(PACKAGES_WITH_LIBS),$(eval DEB_DH_MAKESHLIBS_ARGS_$(p) := -V'$(p) (>= $(shlibs_ver))'))

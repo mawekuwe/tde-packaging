@@ -136,8 +136,8 @@ install:
 	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/ksvg/"
 	install -m644 kpart-rc-files/ksvgplugin.rc "$(SETTINGS_DIR)/kde-profile/default/share/apps/ksvg/"
 
-	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/khtml/"
-	install -m644 kpart-rc-files/khtml_browser.rc "$(SETTINGS_DIR)/kde-profile/default/share/apps/khtml/"
+	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/tdehtml/"
+	install -m644 kpart-rc-files/tdehtml_browser.rc "$(SETTINGS_DIR)/kde-profile/default/share/apps/tdehtml/"
 
 	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/mimelnk/application/"
 	install -m644 mimelnk/x-tar.desktop "$(SETTINGS_DIR)/kde-profile/default/share/mimelnk/application/"
@@ -149,8 +149,8 @@ install:
 	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/konqiconview/kpartplugins/"
 	install -m644 kpart-plugins/dirfilterplugin.rc "$(SETTINGS_DIR)/kde-profile/default/share/apps/konqiconview/kpartplugins/"
 
-	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/kwallet/"
-	install -m644 kwallet-default-wallet/kdewallet.kwl "$(SETTINGS_DIR)/kde-profile/default/share/apps/kwallet/"
+	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/tdewallet/"
+	install -m644 tdewallet-default-wallet/kdewallet.kwl "$(SETTINGS_DIR)/kde-profile/default/share/apps/tdewallet/"
 
 	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/kwin/"
 	install -m644 artwork/window-decoration-gradient.png "$(SETTINGS_DIR)/kde-profile/default/share/apps/kwin/"

@@ -13,9 +13,9 @@
 /opt/kde3/lib/libkholidays.so.1
 /opt/kde3/lib/libkholidays.so.1.0.0
 /opt/kde3/share/apps/libkholidays
-/opt/kde3/share/services/kresources/kcal/imap.desktop
-/opt/kde3/share/services/kresources/kcal/kabc.desktop
-/opt/kde3/share/services/kresources/kcal/local.desktop
-/opt/kde3/share/services/kresources/kcal/localdir.desktop
-/opt/kde3/share/services/kresources/kcal/remote.desktop
-/opt/kde3/share/services/kresources/kcal_manager.desktop
+/opt/kde3/share/services/tderesources/kcal/imap.desktop
+/opt/kde3/share/services/tderesources/kcal/kabc.desktop
+/opt/kde3/share/services/tderesources/kcal/local.desktop
+/opt/kde3/share/services/tderesources/kcal/localdir.desktop
+/opt/kde3/share/services/tderesources/kcal/remote.desktop
+/opt/kde3/share/services/tderesources/kcal_manager.desktop

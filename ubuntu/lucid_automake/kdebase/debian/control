@@ -106,7 +106,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, libpam-runtime (>= 0.76-14)
 Suggests: khelpcenter-kde3, gdb
 Conflicts: kdebase-libs-kde3 (<< 4:3.0.0), tdm-kde3 (<< 4:3.4.1-2), kdebase-workspace-data-kde3 (<< 7:3.5.0)
-Replaces: kcontrol-kde3 (<< 4:3.3.0), kdebase-kde3 (<< 4:3.0.0), kdebase-kde3-doc (<< 4:3.0.0), kdebase-libs-kde3 (<< 4:3.0.0), kscreensaver-kde3 (<< 4:3.0.0), tdm-kde3 (= 4:3.3.2-1b)
+Replaces: kcontrol-kde3 (<< 4:3.3.0), kdebase-kde3 (<< 4:3.0.0), kdebase-kde3-doc (<< 4:3.0.0), kdebase-libs-kde3 (<< 4:3.0.0), tdescreensaver-kde3 (<< 4:3.0.0), tdm-kde3 (= 4:3.3.2-1b)
 Description: core binaries for the KDE base module
  This package contains miscellaneous programs needed by other
  KDE applications, particularly those in the KDE base module.

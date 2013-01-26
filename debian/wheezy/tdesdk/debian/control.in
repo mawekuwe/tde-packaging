@@ -13,7 +13,7 @@ Standards-Version: 3.7.2
 Package: tdesdk
 Architecture: all
 Section: tde
-Depends: cervisia (>= ${Source-Version}), kapptemplate (>= ${Source-Version}), kbabel (>= ${Source-Version}), kbugbuster (>= ${Source-Version}), tdecachegrind (>= ${Source-Version}), tdesdk-kfile-plugins (>= ${Source-Version}), tdesdk-kio-plugins (>= ${Source-Version}) | tdesvn-kio-plugins, tdesdk-misc (>= ${Source-Version}), tdesdk-scripts (>= ${Source-Version}), kmtrace (>= ${Source-Version}), kompare (>= ${Source-Version}), kspy (>= ${Source-Version}), kuiviewer (>= ${Source-Version}), kunittest (>= ${Source-Version}), poxml (>= ${Source-Version}), umbrello (>= ${Source-Version})
+Depends: cervisia (>= ${Source-Version}), kapptemplate (>= ${Source-Version}), kbabel (>= ${Source-Version}), kbugbuster (>= ${Source-Version}), tdecachegrind (>= ${Source-Version}), tdesdk-kfile-plugins (>= ${Source-Version}), tdesdk-kio-plugins (>= ${Source-Version}) | tdesvn-kio-plugins, tdesdk-misc (>= ${Source-Version}), tdesdk-scripts (>= ${Source-Version}), kmtrace (>= ${Source-Version}), kompare (>= ${Source-Version}), kspy (>= ${Source-Version}), kuiviewer (>= ${Source-Version}), tdeunittest (>= ${Source-Version}), poxml (>= ${Source-Version}), umbrello (>= ${Source-Version})
 Suggests: tdecachegrind-converters, kbabel-dev, tdesdk-doc-html
 Description: software development kit from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -356,7 +356,7 @@ Description: subversion ioslave for KDE
  This package is part of KDE, and a component of the KDE SDK module.
  See the 'kde' and 'tdesdk' packages for more information.
 
-Package: kunittest
+Package: tdeunittest
 Architecture: any
 Section: devel
 Depends: ${shlibs:Depends}
@@ -364,8 +364,8 @@ Suggests: tdelibs4-doc
 Description: unit testing library for KDE
  KUnitTest is a small library that facilitates the writing of tests for
  KDE developers. There are two ways to use the KUnitTest library. One is
- to create dynamically loadable modules and use the kunittestmodrunner or
- kunittestguimodrunner programs to run the tests. The other is to use the
+ to create dynamically loadable modules and use the tdeunittestmodrunner or
+ tdeunittestguimodrunner programs to run the tests. The other is to use the
  libraries to create your own testing application.
  .
  This package is part of KDE, and a component of the KDE SDK module.

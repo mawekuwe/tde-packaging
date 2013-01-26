@@ -1035,7 +1035,7 @@ tdepim (4:3.5.0-0ubuntu4) dapper; urgency=low
 
 tdepim (4:3.5.0-0ubuntu3) dapper; urgency=low
 
-  * Increase version number on Replaces for tdepim-kresources
+  * Increase version number on Replaces for tdepim-tderesources
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri,  6 Jan 2006 18:42:44 +0000
 
@@ -1127,7 +1127,7 @@ tdepim (4:3.4.1-2) UNRELEASED; urgency=low
 tdepim (4:3.4.1-1) experimental; urgency=low
 
   * New upstream release.
-  * Split kresources into new package tdepim-kresources.
+  * Split tderesources into new package tdepim-tderesources.
   * Split tdepimmacros.h into new package libtdepim1-dev, and make all
     the other -dev packages depend on it.
 

@@ -296,7 +296,7 @@ meta-kde (4:2.2) unstable; urgency=low
 
 meta-kde (4:2.1.44) unstable; urgency=low
  
-  * Fix libkmid | libkmid-alsa dep (Closes: #107585)
+  * Fix libtdemid | libtdemid-alsa dep (Closes: #107585)
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Fri, 03 Aug 2001 11:28:00 -0700
 
@@ -395,7 +395,7 @@ task-kde (4:2.1.30) unstable; urgency=low
 
 task-kde (4:2.1.29) unstable; urgency=low
   
-  * New depends: kscreensaver, kdebase-audiolibs
+  * New depends: tdescreensaver, kdebase-audiolibs
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Sat, 12 May 2001 01:11:00 -0700
 

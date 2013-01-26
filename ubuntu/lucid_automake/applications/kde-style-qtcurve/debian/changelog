@@ -83,8 +83,8 @@ kde-style-qtcurve (0.52.3-1) unstable; urgency=low
 
   * Don't lighten border of disabled check/radio buttons.
   * Lighten trough of disabled slider.
-  * Modify khtml check to also check to see if widget name == "__khtml"
-  * Store khtml widgets in a map, to speed up checking.
+  * Modify tdehtml check to also check to see if widget name == "__tdehtml"
+  * Store tdehtml widgets in a map, to speed up checking.
   * Fix shadow on comboboxes.
   * Draw background of checked menuitem icons as per KDE4. 
 

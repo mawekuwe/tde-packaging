@@ -148,13 +148,13 @@ stock["gtk-dnd"]={
 	{ "22x22/mimetypes/empty.png" }
 }
 stock["gtk-dnd-multiple"]={
-	{ "22x22/mimetypes/kmultiple.png", *, *, "gtk-large-toolbar" },
-	{ "32x32/mimetypes/kmultiple.png", *, *, "gtk-dnd" },
-	{ "32x32/mimetypes/kmultiple.png", *, *, "gtk-dialog" },
-	{ "16x16/mimetypes/kmultiple.png", *, *, "gtk-button" },
-	{ "16x16/mimetypes/kmultiple.png", *, *, "gtk-menu" },
-	{ "16x16/mimetypes/kmultiple.png", *, *, "gtk-small-toolbar" },
-	{ "22x22/mimetypes/kmultiple.png" }
+	{ "22x22/mimetypes/tdemultiple.png", *, *, "gtk-large-toolbar" },
+	{ "32x32/mimetypes/tdemultiple.png", *, *, "gtk-dnd" },
+	{ "32x32/mimetypes/tdemultiple.png", *, *, "gtk-dialog" },
+	{ "16x16/mimetypes/tdemultiple.png", *, *, "gtk-button" },
+	{ "16x16/mimetypes/tdemultiple.png", *, *, "gtk-menu" },
+	{ "16x16/mimetypes/tdemultiple.png", *, *, "gtk-small-toolbar" },
+	{ "22x22/mimetypes/tdemultiple.png" }
 }
 stock["gtk-execute"]={
 	{ "22x22/actions/exec.png", *, *, "gtk-large-toolbar" },

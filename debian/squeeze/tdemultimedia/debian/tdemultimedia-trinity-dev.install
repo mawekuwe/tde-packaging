@@ -155,8 +155,8 @@ debian/tmp/opt/trinity/lib/libtdeinit_kmix.la
 debian/tmp/opt/trinity/lib/libtdeinit_kmixctrl.la
 debian/tmp/opt/trinity/lib/libtdeinit_krec.la
 debian/tmp/opt/trinity/lib/libtdeinit_noatun.la
-debian/tmp/opt/trinity/lib/libkmidlib.la
-debian/tmp/opt/trinity/lib/libkmidlib.so
+debian/tmp/opt/trinity/lib/libtdemidlib.la
+debian/tmp/opt/trinity/lib/libtdemidlib.so
 debian/tmp/opt/trinity/lib/libmpeg.la
 debian/tmp/opt/trinity/lib/libmpeg.so
 debian/tmp/opt/trinity/lib/libnoatun.la

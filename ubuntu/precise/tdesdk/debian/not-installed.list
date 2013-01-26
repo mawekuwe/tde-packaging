@@ -4,8 +4,8 @@ This is deliberate.
 /usr/share/man/man1/cvscheck.1
  - This manpage is junk, so we don't ship it, and include our own instead.
 
-/usr/bin/kunittest
-/usr/bin/kunittest_debughelper
+/usr/bin/tdeunittest
+/usr/bin/tdeunittest_debughelper
  - These are not useful without the dcopperl bindings which are not built
    in the Debian tdebindings packages.
 

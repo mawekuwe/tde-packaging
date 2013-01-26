@@ -27,7 +27,7 @@ Homepage: http://opensuse.org/Projects/KNetworkManager
 Package: network-manager-kde-kde3
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, network-manager (>= 0.7.0)
-Recommends: kwalletmanager-kde3, network-manager-vpnc, network-manager-openvpn, network-manager-strongswan, network-manager-pptp
+Recommends: tdewalletmanager-kde3, network-manager-vpnc, network-manager-openvpn, network-manager-strongswan, network-manager-pptp
 Provides: knetworkmanager-kde3
 Conflicts: network-manager-kde
 Description: KDE systray applet for controlling NetworkManager [KDE3]

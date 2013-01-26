@@ -2,8 +2,8 @@ debian/tmp/opt/kde3/bin/kttsd
 debian/tmp/opt/kde3/bin/kttsmgr
 debian/tmp/opt/kde3/lib/kde3/kcm_kttsd.la
 debian/tmp/opt/kde3/lib/kde3/kcm_kttsd.so
-debian/tmp/opt/kde3/lib/kde3/ktexteditor_kttsd.la
-debian/tmp/opt/kde3/lib/kde3/ktexteditor_kttsd.so
+debian/tmp/opt/kde3/lib/kde3/tdetexteditor_kttsd.la
+debian/tmp/opt/kde3/lib/kde3/tdetexteditor_kttsd.so
 debian/tmp/opt/kde3/lib/kde3/libkttsd_akodeplugin.la
 debian/tmp/opt/kde3/lib/kde3/libkttsd_akodeplugin.so
 debian/tmp/opt/kde3/lib/kde3/libkttsd_alsaplugin.la
@@ -34,7 +34,7 @@ debian/tmp/opt/kde3/lib/libkttsd.so.1
 debian/tmp/opt/kde3/lib/libkttsd.so.1.0.0
 debian/tmp/opt/kde3/share/applications/kde/kcmkttsd.desktop
 debian/tmp/opt/kde3/share/applications/kde/kttsmgr.desktop
-debian/tmp/opt/kde3/share/apps/ktexteditor_kttsd/ktexteditor_kttsdui.rc
+debian/tmp/opt/kde3/share/apps/tdetexteditor_kttsd/tdetexteditor_kttsdui.rc
 debian/tmp/opt/kde3/share/apps/kttsd/festivalint/sabletowave.scm
 debian/tmp/opt/kde3/share/apps/kttsd/festivalint/voices
 debian/tmp/opt/kde3/share/apps/kttsd/festivalint/xslt/SSMLtoSable.xsl
@@ -72,7 +72,7 @@ debian/tmp/opt/kde3/share/doc/kde/HTML/en/kttsd/talkers.png
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kttsd/xmltransformer.png
 debian/tmp/opt/kde3/share/icons/hicolor/16x16/actions/female.png
 debian/tmp/opt/kde3/share/icons/hicolor/16x16/actions/male.png
-debian/tmp/opt/kde3/share/services/ktexteditor_kttsd.desktop
+debian/tmp/opt/kde3/share/services/tdetexteditor_kttsd.desktop
 debian/tmp/opt/kde3/share/services/kttsd.desktop
 debian/tmp/opt/kde3/share/services/kttsd_akodeplugin.desktop
 debian/tmp/opt/kde3/share/services/kttsd_alsaplugin.desktop

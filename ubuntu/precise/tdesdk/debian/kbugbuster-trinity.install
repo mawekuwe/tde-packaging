@@ -18,5 +18,5 @@ debian/tmp/opt/trinity/share/icons/hicolor/64x64/apps/kbugbuster.png
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/kbugbuster.png
 debian/tmp/opt/trinity/share/icons/locolor/16x16/apps/kbugbuster.png
 debian/tmp/opt/trinity/share/icons/locolor/32x32/apps/kbugbuster.png
-debian/tmp/opt/trinity/share/services/kresources/kcal/bugzilla.desktop
+debian/tmp/opt/trinity/share/services/tderesources/kcal/bugzilla.desktop
 debian/icons/kbugbuster.xpm /opt/trinity/share/pixmaps

@@ -20,7 +20,7 @@ Conflicts: python-trinity-trinity
 Description: Trinity bindings for Python [Trinity]
  Python binding module that provides wide access to the Trinity API,
  also known as PyKDE. Using this, you'll get (for example) classes
- from kio, kjs, khtml and kprint.
+ from kio, kjs, tdehtml and kprint.
 
 Package: python-trinity-trinity-dbg
 Priority: extra
@@ -32,7 +32,7 @@ XB-Python-Version: ${python:Versions}
 Description: Trinity bindings for Python (debug extensions) [Trinity]
  Python binding module that provides wide access to the Trinity API,
  also known as PyKDE. Using this, you'll get (for example) classes
- from kio, kjs, khtml and kprint.
+ from kio, kjs, tdehtml and kprint.
  .
  This package contains the extension built for the Python debug interpreter.
 

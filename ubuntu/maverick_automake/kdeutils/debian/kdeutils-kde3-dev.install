@@ -1,6 +1,6 @@
-debian/tmp/opt/kde3/include/tde/kmultiformlistbox.h
-debian/tmp/opt/kde3/include/tde/kmultiformlistboxentry.h
-debian/tmp/opt/kde3/include/tde/kmultiformlistboxfactory.h
+debian/tmp/opt/kde3/include/tde/tdemultiformlistbox.h
+debian/tmp/opt/kde3/include/tde/tdemultiformlistboxentry.h
+debian/tmp/opt/kde3/include/tde/tdemultiformlistboxfactory.h
 debian/tmp/opt/kde3/include/tde/ksim/chart.h
 debian/tmp/opt/kde3/include/tde/ksim/common.h
 debian/tmp/opt/kde3/include/tde/ksim/ksimconfig.h

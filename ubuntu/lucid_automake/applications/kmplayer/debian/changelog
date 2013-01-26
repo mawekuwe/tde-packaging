@@ -52,7 +52,7 @@ kmplayer (1:0.10.0b-1) unstable; urgency=low
 kmplayer (1:0.10.0b-0ubuntu1) hardy; urgency=low
 
   * New upstream release.
-  * Dropped kubuntu_02_use_default_config_with_kparts_.diff - applied upstream.
+  * Dropped kubuntu_02_use_default_config_with_tdeparts_.diff - applied upstream.
   * Updated email in kmplayer.1.docbook.
   * Updated Standards-Version to 3.7.3.0.
 
@@ -335,7 +335,7 @@ kmplayer (0.9.1.99+0.9.2-pre3-0ubuntu1) dapper; urgency=low
   [Anthony Mercatante]
   * Package polishing (debian/copyright, debian/rules...)
   * Added kubuntu_01_use_xine_by_default.patch to make usage of wine by default
-  * Added kubuntu_02_use_default_config_with_kparts_.patch to enable default
+  * Added kubuntu_02_use_default_config_with_tdeparts_.patch to enable default
     config in the konqueror plugin
   * Tarball rebuilt to remove obsolete debian/ folder in it
 

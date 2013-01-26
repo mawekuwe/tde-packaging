@@ -388,7 +388,7 @@ tdelibs (4:3.5.7.dfsg.1-5) unstable; urgency=low
   +++ Changes by Fathi Boudra:
 
   * Move binaries to tdelibs4-dev: kconfig_compiler, ksvgtopng,
-    kunittestmodrunner, makekdewidgets, preparetips.
+    tdeunittestmodrunner, makekdewidgets, preparetips.
     Allow tdelibs5-dev co-installable alongside tdelibs4c2a.
 
   * Suggests perl-suid instead Recommends. (Closes: #437414)
@@ -602,7 +602,7 @@ tdelibs (4:3.5.7.dfsg.1-1) unstable; urgency=low
   * Resync debian/patches:
     - Remove, applied upstream: 
        22_konq_scroll2top_before_new_page_fix.diff,
-       25_khtml_non_existant_page_crash.diff,
+       25_tdehtml_non_existant_page_crash.diff,
        45_konqueror-CVE-2007-0537.diff,
        46_CVE-2007-1564-tdelibs-3.5.6.diff,
        47_tdelibs-kjs-utf8-parsing.diff.
@@ -731,7 +731,7 @@ tdelibs (4:3.5.6-0ubuntu3) feisty; urgency=low
 
 tdelibs (4:3.5.6-0ubuntu2) feisty; urgency=low
 
-  * Add kubuntu_67_kwallet_auto_save.diff
+  * Add kubuntu_67_tdewallet_auto_save.diff
     Kwallet auto-saves any modification.
     Closes Malone #67521
 
@@ -740,7 +740,7 @@ tdelibs (4:3.5.6-0ubuntu2) feisty; urgency=low
 tdelibs (4:3.5.6-0ubuntu1) feisty; urgency=low
 
   * Remove 02_kate_tdeprint_fixes_branch.diff
-  * Update 27_kdnssd_avahi.dif
+  * Update 27_tdednssd_avahi.dif
   * Remove 33_cups12_kprinter_fixes.diff
   * Remove 35_cups_unify_ipp_uri_assembling.diff
   * Remove 36_tdeprintd_64bit_fix.diff
@@ -823,8 +823,8 @@ tdelibs (4:3.5.6.r1.dfsg.1-3) unstable; urgency=low
 
   +++ Changes by Ana Beatriz Guerrero Lopez:
 
-  * Add 44_sync_kwallet_changes to make kwallet write changes to disk
-    immediately, avoiding losing passwords if kwallet doesn't shutdown
+  * Add 44_sync_tdewallet_changes to make tdewallet write changes to disk
+    immediately, avoiding losing passwords if tdewallet doesn't shutdown
     cleanly. Patch by Josh Metzler. (Closes: #407272)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 18 Apr 2007 14:45:54 +0100
@@ -835,7 +835,7 @@ tdelibs (4:3.5.6.r1.dfsg.1-2) experimental; urgency=low
 
   * Fix the bug of KDE 3.5.6 - an annoying issue with konqueror scrolling to the top
     of the old page before loading a new one. Patch from upstream svn (22nd patch).
-  * New patch (No. 25) from KDE bug #128564. Fixes khtml crash on loading
+  * New patch (No. 25) from KDE bug #128564. Fixes tdehtml crash on loading
     some non existing pages when javascript is disabled (Closes: #408413).
     Probably fixes these KDE bugs too: #126812, #127137, #135117, #138449.
 
@@ -861,11 +861,11 @@ tdelibs (4:3.5.6.dfsg.1-1) experimental; urgency=low
 
   * New upstream release:
     * Fixes "Up arrow confused with PrintScrn on evdev keyboards". (Closes: #400887)
-    * Fixes infinite recursion in khtml when rendering combination of blocks
+    * Fixes infinite recursion in tdehtml when rendering combination of blocks
       with overflow:auto and float:right styles. (Closes: #392547)
     * Fixes "Fatal IO error: client killed" problem in knode. (Closes: #356142)
-    * Fixes non-standard rendering of floats (khtml). (Closes: #357017)
-    * Fixes konqueror (khtml) crash when resolving ns in a stylesheet
+    * Fixes non-standard rendering of floats (tdehtml). (Closes: #357017)
+    * Fixes konqueror (tdehtml) crash when resolving ns in a stylesheet
       @imported from external one. (Closes: #401937)
 
   +++ Changes by Modestas Vainius:
@@ -1016,7 +1016,7 @@ tdelibs (4:3.5.4-1) unstable; urgency=low
 
   * new upstreal release:
 
-    + Fixes null dereference in khtml, which could cause the browser to crash.
+    + Fixes null dereference in tdehtml, which could cause the browser to crash.
       This resolves CVE-2006-3672. Thankfully not every reproducible Konq crash
       bug gets a CVE number... (Closes: #378962)
 
@@ -1297,7 +1297,7 @@ tdelibs (4:3.5.3-1) unstable; urgency=low
 
 tdelibs (4:3.5.2-2) unstable; urgency=low
 
-  * KDE_3_5_BRANCH update (up to r526316). Contains important fixes for khtml.
+  * KDE_3_5_BRANCH update (up to r526316). Contains important fixes for tdehtml.
     Pages which, since the last upload, didn't render at all, or only showed
     headers, should be fixed.
 
@@ -1384,7 +1384,7 @@ tdelibs (4:3.5.1-1) unstable; urgency=low
 
   +++ Changes by Isaac Clerencia:
 
-  * Apply patch 27_kdnssd_avahi.diff to replace dummy tdelibs kdnssd
+  * Apply patch 27_tdednssd_avahi.diff to replace dummy tdelibs tdednssd
     implementation with a working avahi-based one.
 
   * Add Build-Depends on libavahi-client-dev and libavahi-qt3-dev to get
@@ -1432,7 +1432,7 @@ tdelibs (4:3.5.0-1) alioth; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * Remove an old conffile from KDE 3.3, ktexteditor_autobookmarkerrc, on
+  * Remove an old conffile from KDE 3.3, tdetexteditor_autobookmarkerrc, on
     upgrade. (Closes: #339491)
 
   * Bump DH_COMPAT to 5. No changes, except tdelibs4c2a-dbg is replaced by
@@ -1607,20 +1607,20 @@ tdelibs (4:3.5.2-0ubuntu0) dapper; urgency=low
 tdelibs (4:3.5.1-0ubuntu11) dapper; urgency=low
 
   * Remove stray comma from configure.in.in in 
-    kubuntu_27_kdnssd_avahi.diff that stopped it picking up 
+    kubuntu_27_tdednssd_avahi.diff that stopped it picking up 
     -lavahi-common
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 15 Mar 2006 17:35:07 +0000
 
 tdelibs (4:3.5.1-0ubuntu10) dapper; urgency=low
 
-  * Fix include path in kubuntu_27_kdnssd_avahi.diff patch
+  * Fix include path in kubuntu_27_tdednssd_avahi.diff patch
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 10 Mar 2006 15:34:38 +0000
 
 tdelibs (4:3.5.1-0ubuntu9) dapper; urgency=low
 
-  * Update 27_kdnssd_avahi.diff now called kubuntu_27_kdnssd_avahi.diff to 
+  * Update 27_tdednssd_avahi.diff now called kubuntu_27_tdednssd_avahi.diff to 
     fix crash when avahi is not installed
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  9 Mar 2006 09:59:35 +0000
@@ -1675,7 +1675,7 @@ tdelibs (4:3.5.1-0ubuntu2) dapper; urgency=low
 tdelibs (4:3.5.1-0ubuntu1) dapper; urgency=low
 
   * New upstream release
-  * Sync 27_kdnssd_avahi.diff with Debian
+  * Sync 27_tdednssd_avahi.diff with Debian
   * Use control-dapper and control-breezy for to allow for backports
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 23 Jan 2006 15:04:54 +0000
@@ -1726,22 +1726,22 @@ tdelibs (4:3.5.0-0ubuntu7) dapper; urgency=low
 
 tdelibs (4:3.5.0-0ubuntu6) dapper; urgency=low
 
-  * Remove libkdnssd depend from tdelibs4-dev
+  * Remove libtdednssd depend from tdelibs4-dev
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 12 Jan 2006 09:09:29 +0000
 
 tdelibs (4:3.5.0-0ubuntu5) dapper; urgency=low
 
-  * Add kubuntu_27_kdnssd_avahi.diff for avahi support directly in
+  * Add kubuntu_27_tdednssd_avahi.diff for avahi support directly in
     tdelibs
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 11 Jan 2006 21:14:20 +0000
 
 tdelibs (4:3.5.0-0ubuntu4) dapper; urgency=low
 
-  * Do not install kdnssd library files, they now come from
-    libkdnssd1-avahi package.  Development files stay in tdelibs4-dev.
-  * Add depends on libkdnssd1-avahi from tdelibs4-dev
+  * Do not install tdednssd library files, they now come from
+    libtdednssd1-avahi package.  Development files stay in tdelibs4-dev.
+  * Add depends on libtdednssd1-avahi from tdelibs4-dev
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 11 Jan 2006 01:25:52 +0000
 
@@ -1754,7 +1754,7 @@ tdelibs (4:3.5.0-0ubuntu3) dapper; urgency=low
 
 tdelibs (4:3.5.0-0ubuntu2) dapper; urgency=low
 
-  * Add back updated kubuntu_06_kwallet_simplify_string.diff
+  * Add back updated kubuntu_06_tdewallet_simplify_string.diff
     and kubuntu_03_applications_menu_entries_move.diff
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 15 Dec 2005 14:34:41 +0000
@@ -1849,7 +1849,7 @@ tdelibs (4:3.4.2-4) unstable; urgency=low
 
   +++ Changes by Adeodato Simó:
 
-  * Use khtml/html/htmltokenizer.cpp from 3.5 to fix bogus parsing of
+  * Use tdehtml/html/htmltokenizer.cpp from 3.5 to fix bogus parsing of
     whitespace around tags found inside <pre>. This was making konqueror
     sometimes ignore blank lines in pre mode, which made this friendly
     maintainer of yours terribly unhappy when visiting bts.turmzimmer.net.
@@ -2010,7 +2010,7 @@ tdelibs (4:3.4.1-0ubuntu9) breezy; urgency=low
 
 tdelibs (4:3.4.1-0ubuntu8) breezy; urgency=low
 
-  * Add kubuntu_06_kwallet_simplify_string.diff to simplify KWallet question
+  * Add kubuntu_06_tdewallet_simplify_string.diff to simplify KWallet question
   * Add kubuntu_07_rubberband.diff for pretty file manager selection
   * Add versioned build-dep on libxrender-dev and tighten version 
     build-dep of Qt to ensure libXrender.la changes
@@ -2374,7 +2374,7 @@ tdelibs (4:3.3.2-0pre1) experimental; urgency=low
     for CAN-2004-1158. [CM]
 
   * Removed patches:
-    - post-3.3.1-tdelibs-khtml.diff and post-3.3.1-tdelibs-kio.diff since
+    - post-3.3.1-tdelibs-tdehtml.diff and post-3.3.1-tdelibs-kio.diff since
       these fixes are in KDE_3_3_BRANCH. [CM]
 
   * New patches:
@@ -2395,7 +2395,7 @@ tdelibs (4:3.3.2-0pre1) experimental; urgency=low
 
   * New entries in debian/tdelibs4-dev.install:
     - usr/include/kiobuffer.h
-    - usr/include/kwallettypes.h
+    - usr/include/tdewallettypes.h
 
   * debian/control:
     - removed unneeded build-dependency on automake1.9. [CM]
@@ -2437,8 +2437,8 @@ tdelibs (4:3.3.1-2) unstable; urgency=medium
   * Include patch to fix CAN-2004-1171 ("plain text password exposure").
     Closes half of #285126. Notes about the patches:
 
-    - post-3.3.1-tdelibs-khtml.diff: dropped hunks #2 and #3 of patch to
-      khtml_part.cpp, since they were whitespace adjustments and were causing
+    - post-3.3.1-tdelibs-tdehtml.diff: dropped hunks #2 and #3 of patch to
+      tdehtml_part.cpp, since they were whitespace adjustments and were causing
       failures to apply.
 
     - post-3.3.1-tdelibs-kio.diff: the patch as given in the KDE Advisory
@@ -2838,7 +2838,7 @@ tdelibs (4:2.2.2-2) unstable; urgency=low
   * Remove recommends for libssl as I'm breaking policy by recommending
     something outside of main.  Will put this back once libssl goes into
     main.
-  * libkmid | libkmid-alsa to help users out a bit
+  * libtdemid | libtdemid-alsa to help users out a bit
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 22 Nov 2001 20:14:00 -0700
 
@@ -3027,7 +3027,7 @@ tdelibs (4:2.2.0-0.1beta1-1) unstable; urgency=low
  
   * synce with upstream
   * Drop optimization down for cross arch building
-  * Move libkscreensaver.so over to -dev package where it belongs
+  * Move libtdescreensaver.so over to -dev package where it belongs
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Wed, 25 Jul 2001 03:35:00 -0700
 
@@ -3106,7 +3106,7 @@ tdelibs (4:2.2.0-0beta1-1) unstable; urgency=low
   * Add Debian menu items: cupsdconf
   * New packages: tdelibs3-cups
   * Moving kdoc and qt-doc into Build-Depends-Indep
-  * Add Provides in for libarts-alsa/libkmid-alsa
+  * Add Provides in for libarts-alsa/libtdemid-alsa
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Fri, 22 Jun 2001 06:30:00 -0700
 
@@ -3150,7 +3150,7 @@ tdelibs (4:2.1.1-4) unstable; urgency=low
 tdelibs (4:2.1.1-3) unstable; urgency=low
  
   * Sync with upstream.  
-    Includes several khtml fixes
+    Includes several tdehtml fixes
     Memory leak fix
     Proxy Authentication fix
   * Update pam file for kde, add more documentation in it and modify defaults
@@ -3198,7 +3198,7 @@ tdelibs (4:2.1.0.1-3) unstable; urgency=low
 tdelibs (4:2.1.0.1-2) unstable; urgency=low
  
   * More upstream fixes
-    several khtml fixes especially with css
+    several tdehtml fixes especially with css
     more font fixes
     more session fixes..hopefully solving some of the reports
   * built with new kdoc
@@ -3298,8 +3298,8 @@ tdelibs (4:2.1-20010118-1) unstable; urgency=low
      fix JS and onmouseovers
    * mimetype fixes (Closes: #76455)
    * fix build order for libarts-alsa
-   * breaking out libkmid to avoid unnessary depends (Closes: #82901, #82924)
-   * libarts and libkmid are Recommends of tdelibs3 and not dependant now
+   * breaking out libtdemid to avoid unnessary depends (Closes: #82901, #82924)
+   * libarts and libtdemid are Recommends of tdelibs3 and not dependant now
 
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 18 Jan 2001 13:00:00 -0700
 

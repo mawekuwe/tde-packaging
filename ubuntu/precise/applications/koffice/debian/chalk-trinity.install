@@ -73,8 +73,8 @@ debian/tmp/opt/trinity/lib/trinity/chalkroundcornersfilter.la
 debian/tmp/opt/trinity/lib/trinity/chalkroundcornersfilter.so
 debian/tmp/opt/trinity/lib/trinity/chalkscreenshot.la
 debian/tmp/opt/trinity/lib/trinity/chalkscreenshot.so
-debian/tmp/opt/trinity/lib/trinity/chalkscripting.la
-debian/tmp/opt/trinity/lib/trinity/chalkscripting.so
+debian/tmp/opt/trinity/lib/trinity/chaltdescripting.la
+debian/tmp/opt/trinity/lib/trinity/chaltdescripting.so
 debian/tmp/opt/trinity/lib/trinity/chalkselectiontools.la
 debian/tmp/opt/trinity/lib/trinity/chalkselectiontools.so
 debian/tmp/opt/trinity/lib/trinity/chalkselectopaque.la
@@ -152,6 +152,6 @@ debian/tmp/opt/trinity/lib/libchalkimage.so.*
 debian/tmp/opt/trinity/lib/libchalk_lms_*.so.*
 debian/tmp/opt/trinity/lib/libchalk_rgb_*.so.*
 debian/tmp/opt/trinity/lib/libchalkrgb.so.*
-debian/tmp/opt/trinity/lib/libchalkscripting.so.*
+debian/tmp/opt/trinity/lib/libchaltdescripting.so.*
 debian/tmp/opt/trinity/lib/libchalkui.so.*
 debian/tmp/opt/trinity/lib/libchalk_ycbcr_*.so.*

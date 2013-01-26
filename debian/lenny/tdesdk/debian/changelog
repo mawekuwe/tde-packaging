@@ -222,9 +222,9 @@ tdesdk (4:3.5.5-2) unstable; urgency=low
   +++ Changes by Sune Vuorela:
 
   * Add support for automake 1.10 to kapptemplate. (Closes: #396985)
-  * Add Suggests: tdelibs4-doc to kunittest. tdelibs4-doc contains kunittest
+  * Add Suggests: tdelibs4-doc to tdeunittest. tdelibs4-doc contains tdeunittest
     documentation. (Closes: #386040)
-  * Don't install /usr/bin/kunittest and /usr/bin/kunittest_debughelper. These
+  * Don't install /usr/bin/tdeunittest and /usr/bin/tdeunittest_debughelper. These
     are not useful without the dcopperl bindings which are not built in the
     Debian tdebindings packages. (Closes: #386039)
 
@@ -427,7 +427,7 @@ tdesdk (4:3.5.0-1) alioth; urgency=low
 
   * Add a tdesdk-dbg package for helping to trace problems.
 
-  * New packages: kunittest, and tdesdk-kio-plugins, which splits
+  * New packages: tdeunittest, and tdesdk-kio-plugins, which splits
     out the svn ioslave from tdesdk-misc.
 
   * Re-libtoolize. This fixes GNU/kFreeBSD, and prunes poxml's

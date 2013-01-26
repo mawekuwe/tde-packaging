@@ -19,7 +19,7 @@ Standards-Version: 3.7.2
 Package: tdepim
 Section: tde
 Architecture: all
-Depends: akregator (>= ${Source-Version}), kaddressbook (>= ${Source-Version}), kalarm (>= ${Source-Version}), kandy (>= ${Source-Version}), karm (>= ${Source-Version}), tdepim-kfile-plugins (>= ${Source-Version}), tdepim-kio-plugins (>= ${Source-Version}), tdepim-kresources (>= ${Source-Version}), tdepim-wizards (>= ${Source-Version}), kitchensync (>= ${Source-Version}), kleopatra (>= ${Source-Version}), kmail (>= ${Source-Version}), kmailcvt (>= ${Source-Version}), knode (>= ${Source-Version}), knotes (>= ${Source-Version}), konsolekalendar (>= ${Source-Version}), kontact (>= ${Source-Version}), korganizer (>= ${Source-Version}), korn (>= ${Source-Version}), ktnef (>= ${Source-Version}), networkstatus (>= ${Source-Version}), libindex0 (>= ${Source-Version}), libkcal2b (>= ${Source-Version}), libtdepim1a (>= ${Source-Version}), libkgantt0 (>= ${Source-Version}), libkleopatra1 (>= ${Source-Version}), libkpimexchange1 (>= ${Source-Version}), libkpimidentities1 (>= ${Source-Version}), libksieve0 (>= ${Source-Version}), libktnef1 (>= ${Source-Version}), libmimelib1c2a (>= ${Source-Version})
+Depends: akregator (>= ${Source-Version}), kaddressbook (>= ${Source-Version}), kalarm (>= ${Source-Version}), kandy (>= ${Source-Version}), karm (>= ${Source-Version}), tdepim-kfile-plugins (>= ${Source-Version}), tdepim-kio-plugins (>= ${Source-Version}), tdepim-tderesources (>= ${Source-Version}), tdepim-wizards (>= ${Source-Version}), kitchensync (>= ${Source-Version}), kleopatra (>= ${Source-Version}), kmail (>= ${Source-Version}), kmailcvt (>= ${Source-Version}), knode (>= ${Source-Version}), knotes (>= ${Source-Version}), konsolekalendar (>= ${Source-Version}), kontact (>= ${Source-Version}), korganizer (>= ${Source-Version}), korn (>= ${Source-Version}), ktnef (>= ${Source-Version}), networkstatus (>= ${Source-Version}), libindex0 (>= ${Source-Version}), libkcal2b (>= ${Source-Version}), libtdepim1a (>= ${Source-Version}), libkgantt0 (>= ${Source-Version}), libkleopatra1 (>= ${Source-Version}), libkpimexchange1 (>= ${Source-Version}), libkpimidentities1 (>= ${Source-Version}), libksieve0 (>= ${Source-Version}), libktnef1 (>= ${Source-Version}), libmimelib1c2a (>= ${Source-Version})
 Suggests: tdepim-doc-html
 Description: Personal Information Management apps from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -45,7 +45,7 @@ Description: debugging symbols for tdepim
 Package: tdepim-dev
 Section: devel
 Architecture: any
-Depends: kaddressbook (= ${Source-Version}), kalarm (= ${Source-Version}), tdepim-kresources (= ${Source-Version}), kitchensync (= ${Source-Version}), kmail (= ${Source-Version}), knotes (= ${Source-Version}), kontact (= ${Source-Version}), korganizer (= ${Source-Version}), libkpimidentities1 (= ${Source-Version}), libkcal2-dev (= ${Source-Version}), libtdepim1-dev (= ${Source-Version}), libkgantt0-dev (= ${Source-Version}), libkleopatra1-dev (= ${Source-Version}), libkpimexchange1-dev (= ${Source-Version}), libksieve0-dev (= ${Source-Version}), libktnef1-dev (= ${Source-Version}), libmimelib1-dev (= ${Source-Version})
+Depends: kaddressbook (= ${Source-Version}), kalarm (= ${Source-Version}), tdepim-tderesources (= ${Source-Version}), kitchensync (= ${Source-Version}), kmail (= ${Source-Version}), knotes (= ${Source-Version}), kontact (= ${Source-Version}), korganizer (= ${Source-Version}), libkpimidentities1 (= ${Source-Version}), libkcal2-dev (= ${Source-Version}), libtdepim1-dev (= ${Source-Version}), libkgantt0-dev (= ${Source-Version}), libkleopatra1-dev (= ${Source-Version}), libkpimexchange1-dev (= ${Source-Version}), libksieve0-dev (= ${Source-Version}), libktnef1-dev (= ${Source-Version}), libmimelib1-dev (= ${Source-Version})
 Replaces: libkcal2-dev (<< 4:3.4.1), libmimelib1-dev (<< 4:3.4.2)
 Description: KDE Personal Information Management [development]
  This package contains development files needed to compile tdepim applications.
@@ -102,7 +102,7 @@ Package: kaddressbook
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}
-Suggests: tdepim-kresources, tdebase-kio-plugins
+Suggests: tdepim-tderesources, tdebase-kio-plugins
 Description: KDE NG addressbook application
  KAddressBook is the main address book application for KDE; it enables you
  to manage your contacts efficiently and comfortably. It can load and save
@@ -183,7 +183,7 @@ Description: KDE pim I/O Slaves
  This package is part of KDE, and a component of the KDE PIM module.
  See the 'kde' and 'tdepim' packages for more information.
 
-Package: tdepim-kresources
+Package: tdepim-tderesources
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -286,7 +286,7 @@ Package: knotes
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
-Suggests: tdepim-kresources
+Suggests: tdepim-tderesources
 Description: KDE sticky notes
  KNotes is a program that lets you write sticky notes. The notes are saved
  automatically when you exit the program, and they display when you open the
@@ -441,7 +441,7 @@ Depends: ${shlibs:Depends}
 Recommends: ${shlibs:Recommends}
 Conflicts: libkcal2, libkcal2a
 Replaces: libkcal2a
-Suggests: tdepim-kresources
+Suggests: tdepim-tderesources
 Description: KDE calendaring library
  This library provides a C++ API for handling the vCalendar and iCalendar
  formats.

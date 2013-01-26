@@ -584,7 +584,7 @@ kdemultimedia (4:3.4.0-0ubuntu3) hoary; urgency=low
 
 kdemultimedia (4:3.4.0-0ubuntu2) hoary; urgency=low
 
-  * Remove artsbuilder, kmid, krec depends from kdemultimedia meta-package.
+  * Remove artsbuilder, tdemid, krec depends from kdemultimedia meta-package.
 
  -- Jonathan Riddell <jr@jriddell.org>  Wed, 16 Mar 2005 22:37:33 +0000
 
@@ -784,7 +784,7 @@ kdemultimedia (4:3.1.5-1) unstable; urgency=low
 kdemultimedia (4:3.1.4-1) unstable; urgency=low
 
   * New upstream release.
-  * Document how to use timidity with kmid. (Closes: #195019)
+  * Document how to use timidity with tdemid. (Closes: #195019)
   * kaudiocreator Depends kdemultimedia-kio-plugins. (Closes: #196686)
   * kaboodle Recommends libarts1-xine. (Closes: #214118)
 
@@ -1013,10 +1013,10 @@ kdemultimedia (4:2.2-cvs20010622-1) unstable; urgency=low
     is the proper name for it.
   * rename timidity to ktimidity and provide timidity yet we don't conflict
     with it. Move timidity.cfg to /etc/kde2/ktimidity.cfg and move conf files
-    for timidity/kmidi to /etc/kde2/kmidi and conffile them all.  kmidi and
+    for timidity/tdemidi to /etc/kde2/tdemidi and conffile them all.  tdemidi and
     ktimidity both seem to work find for me here now...hopefully it will do
     the same for you folks.
-  * Build kmidi/ktimidity with support for most of it's different interfaces. 
+  * Build tdemidi/ktimidity with support for most of it's different interfaces. 
     Not sure if this is how it'll end up being in the end.  This includes the
     default Xaw, Ncurses, and Slang.
   * Fixes these problems: 
@@ -1030,7 +1030,7 @@ kdemultimedia (4:2.1.1-2) unstable; urgency=low
   * Update menu bits to include new kde menu removal tag
   * a few upstream fixes
   * Update build-depends to recognize real | virtual
-  * Adding menu entry for kmid...oops
+  * Adding menu entry for tdemid...oops
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Sun, 08 Apr 2001 15:34:00 -0700
 
@@ -1160,7 +1160,7 @@ kdemultimedia (4:2.0-final-6) unstable; urgency=low
 
 kdemultimedia (4:2.0-final-5) unstable; urgency=low
  
-  * building with --enable-debug as it seems kmidi croaks if built without
+  * building with --enable-debug as it seems tdemidi croaks if built without
     debug
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 16 Nov 2000 01:10:00 -0700
@@ -1189,7 +1189,7 @@ kdemultimedia (4:2.0-final-4) unstable; urgency=low
 kdemultimedia (4:2.0-final-3.1) unstable; urgency=low
  
   * minor upstream fixes
-  * more work on kmidi, kmid, and kaiman
+  * more work on tdemidi, tdemid, and kaiman
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Tue, 07 Nov 2000 00:30:00 -0700
                                                                                 
@@ -1216,7 +1216,7 @@ kdemultimedia (4:2.0-final-0) unstable; urgency=low
 
 kdemultimedia (4:2.0-20001011-2) unstable; urgency=low
  
-  * Trying to fix up kmidi
+  * Trying to fix up tdemidi
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Fri, 13 Oct 2000 19:30:00 -0700
                                                                                 
@@ -1248,7 +1248,7 @@ kdemultimedia (4:2.0-20001002-0) unstable; urgency=low
 kdemultimedia (4:2.0-20000925-2) unstable; urgency=low
  
   * More upstream fixes
-  * More work on kmidi - Moving timidity patches into the proper dir
+  * More work on tdemidi - Moving timidity patches into the proper dir
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 28 Sep 2000 06:00:00 -0700
 
@@ -1283,7 +1283,7 @@ kdemultimedia (4:2.0-20000911-1) unstable; urgency=low
 kdemultimedia (4:2.0-20000911-0) unstable; urgency=low
  
   * more upstream fixes
-  * More kmidi fixes
+  * More tdemidi fixes
   * Breaking kdemultimedia down
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Mon, 11 Sep 2000 04:30:00 -0700

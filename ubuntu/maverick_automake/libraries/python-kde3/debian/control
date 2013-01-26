@@ -18,7 +18,7 @@ Conflicts: python-kde3-kde3
 Description: KDE3 bindings for Python [KDE3]
  Python binding module that provides wide access to the KDE3 API,
  also known as PyKDE. Using this, you'll get (for example) classes
- from kio, kjs, khtml and kprint.
+ from kio, kjs, tdehtml and kprint.
 
 Package: python-kde3-kde3-dbg
 Priority: extra
@@ -28,7 +28,7 @@ XB-Python-Version: ${python:Versions}
 Description: KDE3 bindings for Python (debug extensions) [KDE3]
  Python binding module that provides wide access to the KDE3 API,
  also known as PyKDE. Using this, you'll get (for example) classes
- from kio, kjs, khtml and kprint.
+ from kio, kjs, tdehtml and kprint.
  .
  This package contains the extension built for the Python debug interpreter.
 

@@ -13,9 +13,9 @@
 /opt/trinity/lib/libkholidays.so.1
 /opt/trinity/lib/libkholidays.so.1.0.0
 /opt/trinity/share/apps/libkholidays
-/opt/trinity/share/services/kresources/kcal/imap.desktop
-/opt/trinity/share/services/kresources/kcal/kabc.desktop
-/opt/trinity/share/services/kresources/kcal/local.desktop
-/opt/trinity/share/services/kresources/kcal/localdir.desktop
-/opt/trinity/share/services/kresources/kcal/remote.desktop
-/opt/trinity/share/services/kresources/kcal_manager.desktop
+/opt/trinity/share/services/tderesources/kcal/imap.desktop
+/opt/trinity/share/services/tderesources/kcal/kabc.desktop
+/opt/trinity/share/services/tderesources/kcal/local.desktop
+/opt/trinity/share/services/tderesources/kcal/localdir.desktop
+/opt/trinity/share/services/tderesources/kcal/remote.desktop
+/opt/trinity/share/services/tderesources/kcal_manager.desktop

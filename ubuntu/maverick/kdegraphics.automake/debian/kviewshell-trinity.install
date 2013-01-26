@@ -7,8 +7,8 @@ debian/tmp/opt/trinity/lib/trinity/emptymultipagepart.la
 debian/tmp/opt/trinity/lib/trinity/emptymultipagepart.so
 debian/tmp/opt/trinity/lib/trinity/kviewerpart.la
 debian/tmp/opt/trinity/lib/trinity/kviewerpart.so
-debian/tmp/opt/trinity/lib/libkmultipage.so.0
-debian/tmp/opt/trinity/lib/libkmultipage.so.0.0.0
+debian/tmp/opt/trinity/lib/libtdemultipage.so.0
+debian/tmp/opt/trinity/lib/libtdemultipage.so.0.0.0
 debian/tmp/opt/trinity/share/apps/djvumultipage.rc
 debian/tmp/opt/trinity/share/apps/kviewerpart/icons/hicolor/16x16/actions/movetool.png
 debian/tmp/opt/trinity/share/apps/kviewerpart/icons/hicolor/16x16/actions/selectiontool.png
@@ -25,4 +25,4 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/kviewshell.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/kviewshell.png
 debian/tmp/opt/trinity/share/services/emptymultipage.desktop
 debian/tmp/opt/trinity/share/services/djvumultipage.desktop
-debian/tmp/opt/trinity/share/servicetypes/kmultipage.desktop
+debian/tmp/opt/trinity/share/servicetypes/tdemultipage.desktop

@@ -4,5 +4,5 @@ debian/tmp/opt/kde3/lib/kde3/kcm_nsplugins.la
 debian/tmp/opt/kde3/lib/kde3/kcm_nsplugins.so
 debian/tmp/opt/kde3/lib/kde3/libnsplugin.la
 debian/tmp/opt/kde3/lib/kde3/libnsplugin.so
-debian/tmp/opt/kde3/share/applications/kde/khtml_plugins.desktop
+debian/tmp/opt/kde3/share/applications/kde/tdehtml_plugins.desktop
 debian/tmp/opt/kde3/share/apps/plugin/nspluginpart.rc

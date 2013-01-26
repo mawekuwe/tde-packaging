@@ -16,12 +16,12 @@ DEB_DH_STRIP_ARGS := --dbg-package=kdesdk-kde3-dbg
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib
 
-PACKAGES_WITH_LIBS := kbabel-kde3 kompare-kde3 kspy-kde3 kunittest-kde3 libcvsservice0-kde3 umbrello-kde3
+PACKAGES_WITH_LIBS := kbabel-kde3 kompare-kde3 kspy-kde3 tdeunittest-kde3 libcvsservice0-kde3 umbrello-kde3
 
 DEB_DH_MAKESHLIBS_ARGS_kbabel-kde3			:= -V'kbabel-kde3 (>= 4:3.5.8-1)'
 DEB_DH_MAKESHLIBS_ARGS_kompare-kde3			:= -V'kompare-kde3 (>= 4:3.5.8-1)'
 DEB_DH_MAKESHLIBS_ARGS_kspy-kde3			:= -V'kspy-kde3 (>= 4:3.5.8-1)'
-DEB_DH_MAKESHLIBS_ARGS_kunittest-kde3			:= -V'kunittest-kde3 (>= 4:3.5.8-1)'
+DEB_DH_MAKESHLIBS_ARGS_tdeunittest-kde3			:= -V'tdeunittest-kde3 (>= 4:3.5.8-1)'
 DEB_DH_MAKESHLIBS_ARGS_libcvsservice0-kde3		:= -V'libcvsservice0-kde3 (>= 4:3.5.8-1)'
 DEB_DH_MAKESHLIBS_ARGS_umbrello-kde3			:= -V'umbrello-kde3 (>= 4:3.5.8-1)'
 

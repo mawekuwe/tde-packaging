@@ -20,7 +20,7 @@ Standards-Version: 3.8.3
 Package: kdepim-kde3
 Section: kde
 Architecture: all
-Depends: akregator-kde3 (>= ${Source-Version}), kaddressbook-kde3 (>= ${Source-Version}), kalarm-kde3 (>= ${Source-Version}), kandy-kde3 (>= ${Source-Version}), karm-kde3 (>= ${Source-Version}), kdepim-kfile-plugins-kde3 (>= ${Source-Version}), kdepim-kio-plugins-kde3 (>= ${Source-Version}), kdepim-kresources-kde3 (>= ${Source-Version}), kdepim-wizards-kde3 (>= ${Source-Version}), kitchensync-kde3 (>= ${Source-Version}), kleopatra-kde3 (>= ${Source-Version}), kmail-kde3 (>= ${Source-Version}), kmailcvt-kde3 (>= ${Source-Version}), knode-kde3 (>= ${Source-Version}), knotes-kde3 (>= ${Source-Version}), konsolekalendar-kde3 (>= ${Source-Version}), kontact-kde3 (>= ${Source-Version}), korganizer-kde3 (>= ${Source-Version}), korn-kde3 (>= ${Source-Version}), kpilot-kde3 (>= ${Source-Version}), ktnef-kde3 (>= ${Source-Version}), libindex0-kde3 (>= ${Source-Version}), libkcal2b-kde3 (>= ${Source-Version}), libkdepim1a-kde3 (>= ${Source-Version}), libkgantt0-kde3 (>= ${Source-Version}), libkleopatra1-kde3 (>= ${Source-Version}), libkpimexchange1-kde3 (>= ${Source-Version}), libkpimidentities1-kde3 (>= ${Source-Version}), libksieve0-kde3 (>= ${Source-Version}), libktnef1-kde3 (>= ${Source-Version}), libmimelib1c2a-kde3 (>= ${Source-Version})
+Depends: akregator-kde3 (>= ${Source-Version}), kaddressbook-kde3 (>= ${Source-Version}), kalarm-kde3 (>= ${Source-Version}), kandy-kde3 (>= ${Source-Version}), karm-kde3 (>= ${Source-Version}), kdepim-kfile-plugins-kde3 (>= ${Source-Version}), kdepim-kio-plugins-kde3 (>= ${Source-Version}), kdepim-tderesources-kde3 (>= ${Source-Version}), kdepim-wizards-kde3 (>= ${Source-Version}), kitchensync-kde3 (>= ${Source-Version}), kleopatra-kde3 (>= ${Source-Version}), kmail-kde3 (>= ${Source-Version}), kmailcvt-kde3 (>= ${Source-Version}), knode-kde3 (>= ${Source-Version}), knotes-kde3 (>= ${Source-Version}), konsolekalendar-kde3 (>= ${Source-Version}), kontact-kde3 (>= ${Source-Version}), korganizer-kde3 (>= ${Source-Version}), korn-kde3 (>= ${Source-Version}), kpilot-kde3 (>= ${Source-Version}), ktnef-kde3 (>= ${Source-Version}), libindex0-kde3 (>= ${Source-Version}), libkcal2b-kde3 (>= ${Source-Version}), libkdepim1a-kde3 (>= ${Source-Version}), libkgantt0-kde3 (>= ${Source-Version}), libkleopatra1-kde3 (>= ${Source-Version}), libkpimexchange1-kde3 (>= ${Source-Version}), libkpimidentities1-kde3 (>= ${Source-Version}), libksieve0-kde3 (>= ${Source-Version}), libktnef1-kde3 (>= ${Source-Version}), libmimelib1c2a-kde3 (>= ${Source-Version})
 Suggests: kdepim-kde3-doc-html
 Description: Personal Information Management apps from the official KDE3 release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -46,7 +46,7 @@ Description: debugging symbols for kdepim-kde3
 Package: kdepim-kde3-dev
 Section: devel
 Architecture: any
-Depends: kaddressbook-kde3 (= ${Source-Version}), kalarm-kde3 (= ${Source-Version}), kdepim-kresources-kde3 (= ${Source-Version}), kmail-kde3 (= ${Source-Version}), knotes-kde3 (= ${Source-Version}), kontact-kde3 (= ${Source-Version}), korganizer-kde3 (= ${Source-Version}), kpilot-kde3 (= ${Source-Version}), libkpimidentities1-kde3 (= ${Source-Version}), libkcal2-kde3-dev (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version}), libkgantt0-kde3-dev (= ${Source-Version}), libkleopatra1-kde3-dev (= ${Source-Version}), libkpimexchange1-kde3-dev (= ${Source-Version}), libksieve0-kde3-dev (= ${Source-Version}), libktnef1-kde3-dev (= ${Source-Version}), libmimelib1-kde3-dev (= ${Source-Version})
+Depends: kaddressbook-kde3 (= ${Source-Version}), kalarm-kde3 (= ${Source-Version}), kdepim-tderesources-kde3 (= ${Source-Version}), kmail-kde3 (= ${Source-Version}), knotes-kde3 (= ${Source-Version}), kontact-kde3 (= ${Source-Version}), korganizer-kde3 (= ${Source-Version}), kpilot-kde3 (= ${Source-Version}), libkpimidentities1-kde3 (= ${Source-Version}), libkcal2-kde3-dev (= ${Source-Version}), libkdepim1-kde3-dev (= ${Source-Version}), libkgantt0-kde3-dev (= ${Source-Version}), libkleopatra1-kde3-dev (= ${Source-Version}), libkpimexchange1-kde3-dev (= ${Source-Version}), libksieve0-kde3-dev (= ${Source-Version}), libktnef1-kde3-dev (= ${Source-Version}), libmimelib1-kde3-dev (= ${Source-Version})
 Replaces: libkcal2-kde3-dev (<< 4:3.4.1), libmimelib1-kde3-dev (<< 4:3.4.2)
 Description: KDE Personal Information Management [development]
  This package contains development files needed to compile kdepim applications.
@@ -105,7 +105,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
 Conflicts: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
-Suggests: kdepim-kresources-kde3, kdebase-kio-plugins-kde3
+Suggests: kdepim-tderesources-kde3, kdebase-kio-plugins-kde3
 Description: KDE NG addressbook application
  KAddressBook is the main address book application for KDE; it enables you
  to manage your contacts efficiently and comfortably. It can load and save
@@ -188,7 +188,7 @@ Description: KDE3 pim I/O Slaves
  This package is part of KDE3, and a component of the KDE PIM module.
  See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
 
-Package: kdepim-kresources-kde3
+Package: kdepim-tderesources-kde3
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -293,7 +293,7 @@ Package: knotes-kde3
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
-Suggests: kdepim-kresources-kde3
+Suggests: kdepim-tderesources-kde3
 Replaces: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
 Conflicts: kontact-kde3 (<< 4:3.5.7-1ubuntu5)
 Description: KDE3 sticky notes
@@ -444,7 +444,7 @@ Depends: ${shlibs:Depends}
 Recommends: ${shlibs:Recommends}
 Conflicts: libkcal2-kde3, libkcal2a-kde3
 Replaces: libkcal2a-kde3
-Suggests: kdepim-kresources-kde3
+Suggests: kdepim-tderesources-kde3
 Description: KDE3 calendaring library
  This library provides a C++ API for handling the vCalendar and iCalendar
  formats.

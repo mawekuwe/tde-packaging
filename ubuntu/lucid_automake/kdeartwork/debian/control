@@ -11,8 +11,8 @@ Standards-Version: 3.8.3
 Package: kdeartwork-kde3
 Architecture: all
 Section: kde
-Depends: kdeartwork-misc-kde3 (>= ${Source-Version}), kdeartwork-emoticons-kde3 (>= ${Source-Version}), kdeartwork-style-kde3 (>= ${Source-Version}), kdeartwork-theme-icon-kde3 (>= ${Source-Version}), kdeartwork-theme-window-kde3 (>= ${Source-Version}), kdewallpapers-kde3 (>= ${Source-Version}), kscreensaver-kde3 (>= ${Source-Version})
-Recommends: kscreensaver-xsavers-kde3
+Depends: kdeartwork-misc-kde3 (>= ${Source-Version}), kdeartwork-emoticons-kde3 (>= ${Source-Version}), kdeartwork-style-kde3 (>= ${Source-Version}), kdeartwork-theme-icon-kde3 (>= ${Source-Version}), kdeartwork-theme-window-kde3 (>= ${Source-Version}), kdewallpapers-kde3 (>= ${Source-Version}), tdescreensaver-kde3 (>= ${Source-Version})
+Recommends: tdescreensaver-xsavers-kde3
 Description: themes, styles and more from the official KDE3 release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
@@ -98,11 +98,11 @@ Description: wallpapers released with KDE3
  This package is part of KDE3, and a component of the KDE artwork module.
  See the 'kde-kde3' and 'kdeartwork-kde3' packages for more information.
 
-Package: kscreensaver-kde3
+Package: tdescreensaver-kde3
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdebase-kde3-bin
-Recommends: kwin-kde3, kscreensaver-xsavers-kde3 (= ${Source-Version})
+Recommends: kwin-kde3, tdescreensaver-xsavers-kde3 (= ${Source-Version})
 Description: additional screen savers released with KDE3
  This package contains the screen savers for KDE3. They can be tested and
  selected within the Appearance and Themes section of the KDE3 Control
@@ -110,17 +110,17 @@ Description: additional screen savers released with KDE3
  .
  The hooks for the standard xscreensavers are no longer part of this
  package. To select and/or configure the standard xscreensavers through
- the KDE Control Center, install the separate package kscreensaver-xsavers.
+ the KDE Control Center, install the separate package tdescreensaver-xsavers.
  .
  This package is part of KDE3, and a component of the KDE artwork module.
  See the 'kde-kde3' and 'kdeartwork-kde3' packages for more information.
 
-Package: kscreensaver-xsavers-kde3
+Package: tdescreensaver-xsavers-kde3
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kdebase-kde3-bin, xscreensaver-data
-Recommends: kwin-kde3, kscreensaver-kde3 (= ${Source-Version}), xscreensaver-gl
-Suggests: kscreensaver-xsavers-webcollage-kde3
+Recommends: kwin-kde3, tdescreensaver-kde3 (= ${Source-Version}), xscreensaver-gl
+Suggests: tdescreensaver-xsavers-webcollage-kde3
 Description: KDE3 hooks for standard xscreensavers
  This package allows a smooth integration of the standard xscreensavers
  into KDE3. With this package installed you can select and/or configure
@@ -129,17 +129,17 @@ Description: KDE3 hooks for standard xscreensavers
  .
  Note that this package does not actually contain any screensavers itself.
  For the additional screensavers shipped with KDE3, see the separate package
- kscreensaver-kde3. This package does depend on the xscreensaver package, and
+ tdescreensaver-kde3. This package does depend on the xscreensaver package, and
  recommend the xscreensaver-gl package, as well as contain the necessary
  files to integrate these packages into KDE3.
  .
  This package is part of KDE3, and a component of the KDE artwork module.
  See the 'kde-kde3' and 'kdeartwork-kde3' packages for more information.
 
-Package: kscreensaver-xsavers-webcollage-kde3
+Package: tdescreensaver-xsavers-webcollage-kde3
 Architecture: all
 Section: kde
-Depends: kscreensaver-xsavers-extra-kde3, miscfiles | wordlist, netpbm
+Depends: tdescreensaver-xsavers-extra-kde3, miscfiles | wordlist, netpbm
 Description: webcollage screensaver KDE3 hook
  This package give access to the webcollage screensaver through the KDE3
  screensaver configuration.
@@ -153,17 +153,17 @@ Description: webcollage screensaver KDE3 hook
  your computer in a working environment or in an environment with children.
  .
  If you still want to install this package, please read the file
- /usr/share/doc/kscreensaver-xsavers-webcollage/README.Debian after the 
+ /usr/share/doc/tdescreensaver-xsavers-webcollage/README.Debian after the 
  installation.
  .
  This package is part of KDE3, and a component of the KDE artwork module.
  See the 'kde-kde3' and 'kdeartwork-kde3' packages for more information.
 
-Package: kscreensaver-xsavers-extra-kde3
+Package: tdescreensaver-xsavers-extra-kde3
 Architecture: all
 Section: kde
-Depends: ${shlibs:Depends}, kscreensaver-xsavers-kde3, xscreensaver-data-extra, xscreensaver-gl-extra
-Recommends: kwin-kde3, kscreensaver-kde3 (= ${Source-Version})
+Depends: ${shlibs:Depends}, tdescreensaver-xsavers-kde3, xscreensaver-data-extra, xscreensaver-gl-extra
+Recommends: kwin-kde3, tdescreensaver-kde3 (= ${Source-Version})
 Description: KDE3 hooks for standard xscreensavers
  This package allows a smooth integration of the universe xscreensavers
  into KDE3. With this package installed you can select and/or configure
@@ -172,7 +172,7 @@ Description: KDE3 hooks for standard xscreensavers
  .
  Note that this package does not actually contain any screensavers itself.
  For the additional screensavers shipped with KDE, see the separate package
- kscreensaver.
+ tdescreensaver.
  .
  This package is part of KDE3, and a component of the KDE artwork module.
  See the 'kde-kde3' and 'kdeartwork-kde3' packages for more information.

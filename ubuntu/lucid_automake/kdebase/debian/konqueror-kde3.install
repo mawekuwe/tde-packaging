@@ -35,8 +35,8 @@ debian/tmp/opt/kde3/lib/kde3/konqsidebar_web.la
 debian/tmp/opt/kde3/lib/kde3/konqsidebar_web.so
 debian/tmp/opt/kde3/lib/kde3/konqueror.la
 debian/tmp/opt/kde3/lib/kde3/konqueror.so
-debian/tmp/opt/kde3/lib/kde3/libkhtmlkttsdplugin.la
-debian/tmp/opt/kde3/lib/kde3/libkhtmlkttsdplugin.so
+debian/tmp/opt/kde3/lib/kde3/libtdehtmlkttsdplugin.la
+debian/tmp/opt/kde3/lib/kde3/libtdehtmlkttsdplugin.so
 debian/tmp/opt/kde3/lib/libkdeinit_keditbookmarks.so
 debian/tmp/opt/kde3/lib/libkdeinit_kfmclient.so
 debian/tmp/opt/kde3/lib/libkdeinit_konqueror.so
@@ -48,7 +48,7 @@ debian/tmp/opt/kde3/share/applications/kde/kfmclient.desktop
 debian/tmp/opt/kde3/share/applications/kde/kfmclient_dir.desktop
 debian/tmp/opt/kde3/share/applications/kde/kfmclient_html.desktop
 debian/tmp/opt/kde3/share/applications/kde/kfmclient_war.desktop
-debian/tmp/opt/kde3/share/applications/kde/khtml_filter.desktop
+debian/tmp/opt/kde3/share/applications/kde/tdehtml_filter.desktop
 debian/tmp/opt/kde3/share/applications/kde/konqbrowser.desktop
 debian/tmp/opt/kde3/share/applications/kde/konquerorsu.desktop
 debian/tmp/opt/kde3/share/applnk/.hidden/konqfilemgr.desktop
@@ -60,8 +60,8 @@ debian/tmp/opt/kde3/share/apps/kconf_update/konqsidebartng.upd
 debian/tmp/opt/kde3/share/apps/kconf_update/move_konqsidebartng_entries.sh
 debian/tmp/opt/kde3/share/apps/keditbookmarks/keditbookmarks-genui.rc
 debian/tmp/opt/kde3/share/apps/keditbookmarks/keditbookmarksui.rc
-debian/tmp/opt/kde3/share/apps/khtml/kpartplugins/khtmlkttsd.desktop
-debian/tmp/opt/kde3/share/apps/khtml/kpartplugins/khtmlkttsd.rc
+debian/tmp/opt/kde3/share/apps/tdehtml/kpartplugins/tdehtmlkttsd.desktop
+debian/tmp/opt/kde3/share/apps/tdehtml/kpartplugins/tdehtmlkttsd.rc
 debian/tmp/opt/kde3/share/apps/konqiconview/konq_iconview.rc
 debian/tmp/opt/kde3/share/apps/konqiconview/konq_multicolumnview.rc
 debian/tmp/opt/kde3/share/apps/konqiconview/kpartplugins/kremoteencodingplugin.desktop

@@ -14,7 +14,7 @@ Standards-Version: 3.8.3
 Package: kdesdk-kde3
 Architecture: all
 Section: kde
-Depends: cervisia-kde3 (>= ${Source-Version}), kapptemplate-kde3 (>= ${Source-Version}), kbabel-kde3 (>= ${Source-Version}), kbugbuster-kde3 (>= ${Source-Version}), tdecachegrind-kde3 (>= ${Source-Version}), kdesdk-kfile-plugins-kde3 (>= ${Source-Version}), kdesdk-kio-plugins-kde3 (>= ${Source-Version}) | kdesvn-kio-plugins-kde3, kdesdk-misc-kde3 (>= ${Source-Version}), kdesdk-scripts-kde3, kmtrace-kde3 (>= ${Source-Version}), kompare-kde3 (>= ${Source-Version}), kspy-kde3 (>= ${Source-Version}), kuiviewer-kde3 (>= ${Source-Version}), kunittest-kde3 (>= ${Source-Version}), poxml-kde3 (>= ${Source-Version}), umbrello-kde3 (>= ${Source-Version})
+Depends: cervisia-kde3 (>= ${Source-Version}), kapptemplate-kde3 (>= ${Source-Version}), kbabel-kde3 (>= ${Source-Version}), kbugbuster-kde3 (>= ${Source-Version}), tdecachegrind-kde3 (>= ${Source-Version}), kdesdk-kfile-plugins-kde3 (>= ${Source-Version}), kdesdk-kio-plugins-kde3 (>= ${Source-Version}) | kdesvn-kio-plugins-kde3, kdesdk-misc-kde3 (>= ${Source-Version}), kdesdk-scripts-kde3, kmtrace-kde3 (>= ${Source-Version}), kompare-kde3 (>= ${Source-Version}), kspy-kde3 (>= ${Source-Version}), kuiviewer-kde3 (>= ${Source-Version}), tdeunittest-kde3 (>= ${Source-Version}), poxml-kde3 (>= ${Source-Version}), umbrello-kde3 (>= ${Source-Version})
 Suggests: tdecachegrind-converters-kde3, kbabel-kde3-dev, kdesdk-kde3-doc-html
 Description: software development kit from the official KDE3 release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -373,17 +373,17 @@ Description: subversion ioslave for KDE3
  This package is part of KDE3, and a component of the KDE SDK module.
  See the 'kde-kde3' and 'kdesdk-kde3' packages for more information.
 
-Package: kunittest-kde3
+Package: tdeunittest-kde3
 Architecture: any
 Section: devel
 Depends: ${shlibs:Depends}
-Conflicts: kunittest
+Conflicts: tdeunittest
 Suggests: kdelibs4-kde3-doc
 Description: unit testing library for KDE3
  KUnitTest is a small library that facilitates the writing of tests for
  KDE developers. There are two ways to use the KUnitTest library. One is
- to create dynamically loadable modules and use the kunittestmodrunner or
- kunittestguimodrunner programs to run the tests. The other is to use the
+ to create dynamically loadable modules and use the tdeunittestmodrunner or
+ tdeunittestguimodrunner programs to run the tests. The other is to use the
  libraries to create your own testing application.
  .
  This package is part of KDE3, and a component of the KDE SDK module.

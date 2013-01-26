@@ -11,7 +11,7 @@ Standards-Version: 3.7.2
 Package: kdeutils
 Section: kde
 Architecture: all
-Depends: ark (>= ${Source-Version}), kcalc (>= ${Source-Version}), kcharselect (>= ${Source-Version}), kdelirc (>= ${Source-Version}), kdessh (>= ${Source-Version}), kdf (>= ${Source-Version}), kedit (>= ${Source-Version}), kfloppy (>= ${Source-Version}), kgpg (>= ${Source-Version}), khexedit (>= ${Source-Version}), kjots (>= ${Source-Version}), klaptopdaemon (>= ${Source-Version}) | kpowersave, kmilo (>= ${Source-Version}), kregexpeditor (>= ${Source-Version}), ksim (>= ${Source-Version}), ktimer (>= ${Source-Version}), kwalletmanager (>= ${Source-Version}), superkaramba (>= ${Source-Version})
+Depends: ark (>= ${Source-Version}), kcalc (>= ${Source-Version}), kcharselect (>= ${Source-Version}), kdelirc (>= ${Source-Version}), kdessh (>= ${Source-Version}), kdf (>= ${Source-Version}), kedit (>= ${Source-Version}), kfloppy (>= ${Source-Version}), kgpg (>= ${Source-Version}), khexedit (>= ${Source-Version}), kjots (>= ${Source-Version}), klaptopdaemon (>= ${Source-Version}) | kpowersave, kmilo (>= ${Source-Version}), kregexpeditor (>= ${Source-Version}), ksim (>= ${Source-Version}), ktimer (>= ${Source-Version}), tdewalletmanager (>= ${Source-Version}), superkaramba (>= ${Source-Version})
 Suggests: kdeutils-doc-html (>= ${Source-Version})
 Description: general purpose utilities from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -287,7 +287,7 @@ Description: timer utility for KDE
  This package is part of KDE, as a component of the KDE utilities module.
  See the 'kde' and 'kdeutils' packages for more information.
 
-Package: kwalletmanager
+Package: tdewalletmanager
 Section: utils
 Architecture: any
 Depends: ${shlibs:Depends}

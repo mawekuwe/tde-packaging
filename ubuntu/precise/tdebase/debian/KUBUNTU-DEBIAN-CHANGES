@@ -20,7 +20,7 @@ install/klipper::
 
 binary-install/tdebase-bin::
 	install -p -D -m644 debian/kcheckpass.pam debian/tdebase-bin/etc/pam.d/kcheckpass
-	install -p -D -m644 debian/kscreensaver.pam debian/tdebase-bin/etc/pam.d/kscreensaver
+	install -p -D -m644 debian/tdescreensaver.pam debian/tdebase-bin/etc/pam.d/tdescreensaver
 	install -p -D -m644 debian/ubuntu.xmodmap debian/tdebase-bin/usr/share/apps/kxkb/ubuntu.xmodmap
 	install -p -D -m644 debian/80ubuntu-xmodmap debian/tdebase-bin/etc/X11/Xsession.d/80ubuntu-xmodmap
 

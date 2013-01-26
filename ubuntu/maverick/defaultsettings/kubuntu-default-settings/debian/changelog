@@ -240,7 +240,7 @@ kubuntu-default-settings (1:7.10-27) gutsy; urgency=low
 
 kubuntu-default-settings (1:7.10-26) gutsy; urgency=low
 
-  * Fixed khtmlrc, now uses easylist instead of filterset.g. Fixes LP:
+  * Fixed tdehtmlrc, now uses easylist instead of filterset.g. Fixes LP:
     #99535
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Sat, 29 Sep 2007 11:41:52 +0200
@@ -1110,7 +1110,7 @@ kubuntu-default-settings (1:6.10-13) edgy; urgency=low
 
 kubuntu-default-settings (1:6.10-12) edgy; urgency=low
 
-  * Improved khtmlrc for better adblock filters
+  * Improved tdehtmlrc for better adblock filters
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Mon, 20 Aug 2006 20:55:01 +0200
 
@@ -1423,7 +1423,7 @@ kubuntu-default-settings (1:6.04-12) dapper; urgency=low
 
 kubuntu-default-settings (1:6.04-11) dapper; urgency=low
 
-  * Added khtmlrc with a disabled list of filters for adblock
+  * Added tdehtmlrc with a disabled list of filters for adblock
   * Changed log directory for konversation, from $HOME to
     $HOME/.kde/share/apps/konversation/logs
   * knemorc improved with different iconsets depending the kind of connection.
@@ -1444,7 +1444,7 @@ kubuntu-default-settings (1:6.04-10) dapper; urgency=low
     konversation and keep tabs arround the focus
   * Added dirfilterplugin.rc to make usage of dirfilter in konqueror's filemanagement
     profile by default
-  * Added kwalletrc and kdewallet.kwl for confortable default config on new profiles
+  * Added tdewalletrc and kdewallet.kwl for confortable default config on new profiles
   * Changed kdeprintrc to use localhost as default CUPS server
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 28 Feb 2006 15:38:52 +0000
@@ -1507,10 +1507,10 @@ kubuntu-default-settings (1:6.04-5) dapper; urgency=low
   * Added ark_part.rc, ark_part_readonly.rc, gvimagepart.rc, part.rc in folder
     kpart-rc-files, with integration set to "contextToolBar"
   * Updated konquerorrc, setting contextToolBar's "NewLine" value to "true"
-    (doesn't work if set in kparts' configuration files while clicking another tab and
+    (doesn't work if set in tdeparts' configuration files while clicking another tab and
     coming back)
     MediumFontSize set to 10
-  * Added khtml_browser.rc, removing DOM entries in the konq's "view" menu
+  * Added tdehtml_browser.rc, removing DOM entries in the konq's "view" menu
   * Updated filemagement profile, adding Sidebar by default
   * Added x-tar.desktop, x-tarz.desktop, x-tbz.desktop, x-tgz.desktop, x-zip.desktop
     in folder mimelnk, with blanked "LocalProtocol" value, to remove tar and zip

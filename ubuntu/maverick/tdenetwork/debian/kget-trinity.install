@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/bin/kget
-debian/tmp/opt/trinity/lib/trinity/khtml_kget.la
-debian/tmp/opt/trinity/lib/trinity/khtml_kget.so
+debian/tmp/opt/trinity/lib/trinity/tdehtml_kget.la
+debian/tmp/opt/trinity/lib/trinity/tdehtml_kget.so
 debian/tmp/opt/trinity/share/applications/tde/kget.desktop
 debian/tmp/opt/trinity/share/apps/kget/eventsrc
 debian/tmp/opt/trinity/share/apps/kget/icons/crystalsvg/22x22/actions/bar0.png
@@ -52,8 +52,8 @@ debian/tmp/opt/trinity/share/apps/kget/pics/try4.png
 debian/tmp/opt/trinity/share/apps/kget/pics/try5.png
 debian/tmp/opt/trinity/share/apps/kget/pics/try6.png
 debian/tmp/opt/trinity/share/apps/kget/pics/try7.png
-debian/tmp/opt/trinity/share/apps/khtml/kpartplugins/kget_plug_in.desktop
-debian/tmp/opt/trinity/share/apps/khtml/kpartplugins/kget_plug_in.rc
+debian/tmp/opt/trinity/share/apps/tdehtml/kpartplugins/kget_plug_in.desktop
+debian/tmp/opt/trinity/share/apps/tdehtml/kpartplugins/kget_plug_in.rc
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kget_download.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kget/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kget/fileopen.png
@@ -66,7 +66,7 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kget/kget4.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kget/kget5.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/kget.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/mimetypes/kget_list.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/khtml_kget.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/tdehtml_kget.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/kget.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/mimetypes/kget_list.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/kget.png

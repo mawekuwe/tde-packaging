@@ -302,7 +302,7 @@ kaffeine (0.8.4-0ubuntu1) gutsy; urgency=low
   * Added libxcb builddep.
   * Added back kaffeine-gstreamer package
   * Removed obsolete kubuntu_05_restore_contrast.diff
-  * Add kubuntu_06_kparts_mimetype_checking.diff:
+  * Add kubuntu_06_tdeparts_mimetype_checking.diff:
     - Makes it possible to select the engine to use.
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Wed, 05 Mai 2007 11:02:23 +0100

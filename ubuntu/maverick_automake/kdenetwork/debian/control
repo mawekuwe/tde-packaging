@@ -10,7 +10,7 @@ Standards-Version: 3.8.3
 Package: kdenetwork-kde3
 Section: kde
 Architecture: all
-Depends: dcoprss-kde3 (>= ${Source-Version}), kdenetwork-kfile-plugins-kde3 (>= ${Source-Version}), kdict-kde3 (>= ${Source-Version}), kdnssd-kde3 (>= ${Source-Version}), kget-kde3 (>= ${Source-Version}), knewsticker-kde3 (>= ${Source-Version}), kopete-kde3 (>= ${Source-Version}), kpf-kde3 (>= ${Source-Version}), kppp-kde3 (>= ${Source-Version}), krdc-kde3 (>= ${Source-Version}), krfb-kde3 (>= ${Source-Version}), ksirc-kde3 (>= ${Source-Version}), kwifimanager-kde3 (>= ${Source-Version}), librss1-kde3 (>= ${Source-Version})
+Depends: dcoprss-kde3 (>= ${Source-Version}), kdenetwork-kfile-plugins-kde3 (>= ${Source-Version}), kdict-kde3 (>= ${Source-Version}), tdednssd-kde3 (>= ${Source-Version}), kget-kde3 (>= ${Source-Version}), knewsticker-kde3 (>= ${Source-Version}), kopete-kde3 (>= ${Source-Version}), kpf-kde3 (>= ${Source-Version}), kppp-kde3 (>= ${Source-Version}), krdc-kde3 (>= ${Source-Version}), krfb-kde3 (>= ${Source-Version}), ksirc-kde3 (>= ${Source-Version}), kwifimanager-kde3 (>= ${Source-Version}), librss1-kde3 (>= ${Source-Version})
 Recommends: kdenetwork-filesharing-kde3 (>= ${Source-Version}), ktalkd-kde3 (>= ${Source-Version}), lisa-kde3 (>= ${Source-Version})
 Suggests: kdenetwork-kde3-doc-html (>= ${Source-Version})
 Description: network-related apps from the official KDE3 release
@@ -297,7 +297,7 @@ Description: LAN information server for KDE3
  This package is part of KDE3, as a component of the KDE network module.
  See the 'kde-kde3' and 'kdenetwork-kde3' packages for more information.
 
-Package: kdnssd-kde3
+Package: tdednssd-kde3
 Section: net
 Architecture: any
 Depends: ${shlibs:Depends}

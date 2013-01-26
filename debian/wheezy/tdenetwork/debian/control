@@ -12,7 +12,7 @@ Section: tde
 Architecture: all
 Replaces: kdenetwork-trinity (<< 4:14.0.0)
 Breaks: kdenetwork-trinity (<< 4:14.0.0)
-Depends: dcoprss-trinity (>= ${Source-Version}), tdenetwork-kfile-plugins-trinity (>= ${Source-Version}), kdict-trinity (>= ${Source-Version}), kdnssd-trinity (>= ${Source-Version}), kget-trinity (>= ${Source-Version}), knewsticker-trinity (>= ${Source-Version}), kopete-trinity (>= ${Source-Version}), kpf-trinity (>= ${Source-Version}), kppp-trinity (>= ${Source-Version}), krdc-trinity (>= ${Source-Version}), krfb-trinity (>= ${Source-Version}), ksirc-trinity (>= ${Source-Version}), kwifimanager-trinity (>= ${Source-Version}), librss1-trinity (>= ${Source-Version})
+Depends: dcoprss-trinity (>= ${Source-Version}), tdenetwork-kfile-plugins-trinity (>= ${Source-Version}), kdict-trinity (>= ${Source-Version}), tdednssd-trinity (>= ${Source-Version}), kget-trinity (>= ${Source-Version}), knewsticker-trinity (>= ${Source-Version}), kopete-trinity (>= ${Source-Version}), kpf-trinity (>= ${Source-Version}), kppp-trinity (>= ${Source-Version}), krdc-trinity (>= ${Source-Version}), krfb-trinity (>= ${Source-Version}), ksirc-trinity (>= ${Source-Version}), kwifimanager-trinity (>= ${Source-Version}), librss1-trinity (>= ${Source-Version})
 Recommends: tdenetwork-filesharing-trinity (>= ${Source-Version}), ktalkd-trinity (>= ${Source-Version}), lisa-trinity (>= ${Source-Version})
 Suggests: tdenetwork-trinity-doc-html (>= ${Source-Version})
 Description: network-related apps from the official Trinity release
@@ -331,11 +331,11 @@ Description: LAN information server for Trinity
  This package is part of Trinity, as a component of the KDE network module.
  See the 'kde-trinity' and 'tdenetwork-trinity' packages for more information.
 
-Package: kdnssd-trinity
+Package: tdednssd-trinity
 Section: net
 Architecture: any
-Replaces: kdnssd-trinity (<< 4:14.0.0)
-Breaks: kdnssd-trinity (<< 4:14.0.0)
+Replaces: tdednssd-trinity (<< 4:14.0.0)
+Breaks: tdednssd-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: avahi-daemon
 Suggests: avahi-autoipd | zeroconf

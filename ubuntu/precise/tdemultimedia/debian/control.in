@@ -10,7 +10,7 @@ Standards-Version: 3.7.2
 Package: tdemultimedia
 Section: tde
 Architecture: all
-Depends: artsbuilder (>= ${Source-Version}), juk (>= ${Source-Version}), kaboodle (>= ${Source-Version}), kaudiocreator (>= ${Source-Version}), tdemultimedia-kappfinder-data (>= ${Source-Version}), tdemultimedia-kfile-plugins (>= ${Source-Version}), tdemultimedia-kio-plugins (>= ${Source-Version}), kmid (>= ${Source-Version}), kmix (>= ${Source-Version}), krec (>= ${Source-Version}), kscd (>= ${Source-Version}), libarts1-akode (>= ${Source-Version}), libarts1-audiofile (>= ${Source-Version}), libarts1-mpeglib (>= ${Source-Version}), libarts1-xine (>= ${Source-Version}), mpeglib (>= ${Source-Version}), noatun (>= ${Source-Version})
+Depends: artsbuilder (>= ${Source-Version}), juk (>= ${Source-Version}), kaboodle (>= ${Source-Version}), kaudiocreator (>= ${Source-Version}), tdemultimedia-kappfinder-data (>= ${Source-Version}), tdemultimedia-kfile-plugins (>= ${Source-Version}), tdemultimedia-kio-plugins (>= ${Source-Version}), tdemid (>= ${Source-Version}), kmix (>= ${Source-Version}), krec (>= ${Source-Version}), kscd (>= ${Source-Version}), libarts1-akode (>= ${Source-Version}), libarts1-audiofile (>= ${Source-Version}), libarts1-mpeglib (>= ${Source-Version}), libarts1-xine (>= ${Source-Version}), mpeglib (>= ${Source-Version}), noatun (>= ${Source-Version})
 Suggests: tdemultimedia-doc-html (>= ${Source-Version})
 Description: multimedia apps from the official KDE release 
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -27,7 +27,7 @@ Description: multimedia apps from the official KDE release
 Package: tdemultimedia-dev
 Section: devel
 Architecture: any
-Depends: tdelibs4-dev, artsbuilder (= ${Source-Version}), tdemultimedia-kio-plugins (= ${Source-Version}), kmid (= ${Source-Version}), kmix (= ${Source-Version}), krec (= ${Source-Version}), kscd (= ${Source-Version}), libarts1-akode (= ${Source-Version}), libarts1-mpeglib (= ${Source-Version}), libkcddb1 (= ${Source-Version}), mpeglib (= ${Source-Version}), noatun (= ${Source-Version})
+Depends: tdelibs4-dev, artsbuilder (= ${Source-Version}), tdemultimedia-kio-plugins (= ${Source-Version}), tdemid (= ${Source-Version}), kmix (= ${Source-Version}), krec (= ${Source-Version}), kscd (= ${Source-Version}), libarts1-akode (= ${Source-Version}), libarts1-mpeglib (= ${Source-Version}), libkcddb1 (= ${Source-Version}), mpeglib (= ${Source-Version}), noatun (= ${Source-Version})
 Conflicts: libmpeg-dev
 Replaces: artsbuilder (<< 4:3.0.0), mpeglib (<< 4:3.0.0), noatun (<< 4:3.0.0)
 Description: development files for the KDE multimedia module
@@ -154,7 +154,7 @@ Description: enables the browsing of audio CDs under Konqueror
  This package is part of KDE, as a component of the KDE multimedia module.
  See the 'kde' and 'tdemultimedia' packages for more information.
 
-Package: kmid
+Package: tdemid
 Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}

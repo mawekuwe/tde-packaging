@@ -172,7 +172,7 @@ We've chosen KDE as our desktop user interface of choice
 == kdenetwork-trinity ==
 
  * kdenetwork-filesharing-trinity
- * kdnssd-trinity
+ * tdednssd-trinity
  * (kopete-trinity)
  * (kpf-trinity)
  * (kppp-trinity)
@@ -196,7 +196,7 @@ We've chosen KDE as our desktop user interface of choice
  * ark-trinity
  * (speedcrunch-trinity)
  * (kmilo-trinity)
- * (kwalletmanager-trinity)
+ * (tdewalletmanager-trinity)
 
 == koffice-trinity ==
 
@@ -273,7 +273,7 @@ Accessibility tools:
  * (openoffice.org-draw) [i386 powerpc amd64]
  * (openoffice.org-math) [i386 powerpc amd64]
  * (openoffice.org-java-common) [i386 powerpc amd64]
- * (kscreensaver-trinity)
+ * (tdescreensaver-trinity)
 
 = Games =
 

@@ -162,7 +162,7 @@ kpowersave (0.6.2-5) unstable; urgency=low
 
   * Prepend a sequence number to all patches.
   * debian/patches/03-reset_blankonly_to_default.patch
-    - Added. Reset kscreensaver settings to correct default values on scheme 
+    - Added. Reset tdescreensaver settings to correct default values on scheme 
       changes and on application shutdown.
       Patch by Modestas Vainius, thanks! Closes: #399473
 

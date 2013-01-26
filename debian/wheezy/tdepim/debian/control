@@ -22,7 +22,7 @@ Section: tde
 Architecture: all
 Replaces: kdepim-trinity (<< 4:14.0.0)
 Breaks: kdepim-trinity (<< 4:14.0.0)
-Depends: akregator-trinity (>= ${Source-Version}), kaddressbook-trinity (>= ${Source-Version}), kalarm-trinity (>= ${Source-Version}), kandy-trinity (>= ${Source-Version}), karm-trinity (>= ${Source-Version}), tdepim-kfile-plugins-trinity (>= ${Source-Version}), tdepim-kio-plugins-trinity (>= ${Source-Version}), tdepim-kresources-trinity (>= ${Source-Version}), tdepim-wizards-trinity (>= ${Source-Version}), kitchensync-trinity (>= ${Source-Version}), kleopatra-trinity (>= ${Source-Version}), kmail-trinity (>= ${Source-Version}), kmailcvt-trinity (>= ${Source-Version}), knode-trinity (>= ${Source-Version}), knotes-trinity (>= ${Source-Version}), konsolekalendar-trinity (>= ${Source-Version}), kontact-trinity (>= ${Source-Version}), korganizer-trinity (>= ${Source-Version}), korn-trinity (>= ${Source-Version}), ktnef-trinity (>= ${Source-Version}), libindex0-trinity (>= ${Source-Version}), libkcal2b-trinity (>= ${Source-Version}), libtdepim1a-trinity (>= ${Source-Version}), libkgantt0-trinity (>= ${Source-Version}), libkleopatra1-trinity (>= ${Source-Version}), libkpimexchange1-trinity (>= ${Source-Version}), libkpimidentities1-trinity (>= ${Source-Version}), libksieve0-trinity (>= ${Source-Version}), libktnef1-trinity (>= ${Source-Version}), libmimelib1c2a-trinity (>= ${Source-Version})
+Depends: akregator-trinity (>= ${Source-Version}), kaddressbook-trinity (>= ${Source-Version}), kalarm-trinity (>= ${Source-Version}), kandy-trinity (>= ${Source-Version}), karm-trinity (>= ${Source-Version}), tdepim-kfile-plugins-trinity (>= ${Source-Version}), tdepim-kio-plugins-trinity (>= ${Source-Version}), tdepim-tderesources-trinity (>= ${Source-Version}), tdepim-wizards-trinity (>= ${Source-Version}), kitchensync-trinity (>= ${Source-Version}), kleopatra-trinity (>= ${Source-Version}), kmail-trinity (>= ${Source-Version}), kmailcvt-trinity (>= ${Source-Version}), knode-trinity (>= ${Source-Version}), knotes-trinity (>= ${Source-Version}), konsolekalendar-trinity (>= ${Source-Version}), kontact-trinity (>= ${Source-Version}), korganizer-trinity (>= ${Source-Version}), korn-trinity (>= ${Source-Version}), ktnef-trinity (>= ${Source-Version}), libindex0-trinity (>= ${Source-Version}), libkcal2b-trinity (>= ${Source-Version}), libtdepim1a-trinity (>= ${Source-Version}), libkgantt0-trinity (>= ${Source-Version}), libkleopatra1-trinity (>= ${Source-Version}), libkpimexchange1-trinity (>= ${Source-Version}), libkpimidentities1-trinity (>= ${Source-Version}), libksieve0-trinity (>= ${Source-Version}), libktnef1-trinity (>= ${Source-Version}), libmimelib1c2a-trinity (>= ${Source-Version})
 Suggests: tdepim-trinity-doc-html
 Description: Personal Information Management apps from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -52,7 +52,7 @@ Section: devel
 Architecture: any
 Replaces: kdepim-trinity-dev (<< 4:14.0.0)
 Breaks: kdepim-trinity-dev (<< 4:14.0.0)
-Depends: kaddressbook-trinity (= ${Source-Version}), kalarm-trinity (= ${Source-Version}), tdepim-kresources-trinity (= ${Source-Version}), kmail-trinity (= ${Source-Version}), knotes-trinity (= ${Source-Version}), kontact-trinity (= ${Source-Version}), korganizer-trinity (= ${Source-Version}), libkpimidentities1-trinity (= ${Source-Version}), libkcal2-trinity-dev (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version}), libkgantt0-trinity-dev (= ${Source-Version}), libkleopatra1-trinity-dev (= ${Source-Version}), libkpimexchange1-trinity-dev (= ${Source-Version}), libksieve0-trinity-dev (= ${Source-Version}), libktnef1-trinity-dev (= ${Source-Version}), libmimelib1-trinity-dev (= ${Source-Version})
+Depends: kaddressbook-trinity (= ${Source-Version}), kalarm-trinity (= ${Source-Version}), tdepim-tderesources-trinity (= ${Source-Version}), kmail-trinity (= ${Source-Version}), knotes-trinity (= ${Source-Version}), kontact-trinity (= ${Source-Version}), korganizer-trinity (= ${Source-Version}), libkpimidentities1-trinity (= ${Source-Version}), libkcal2-trinity-dev (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version}), libkgantt0-trinity-dev (= ${Source-Version}), libkleopatra1-trinity-dev (= ${Source-Version}), libkpimexchange1-trinity-dev (= ${Source-Version}), libksieve0-trinity-dev (= ${Source-Version}), libktnef1-trinity-dev (= ${Source-Version}), libmimelib1-trinity-dev (= ${Source-Version})
 Description: KDE Personal Information Management [development]
  This package contains development files needed to compile tdepim applications.
  .
@@ -116,7 +116,7 @@ Architecture: any
 Replaces: kaddressbook-trinity (<< 4:14.0.0)
 Breaks: kaddressbook-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Suggests: tdepim-kresources-trinity, tdebase-kio-plugins-trinity
+Suggests: tdepim-tderesources-trinity, tdebase-kio-plugins-trinity
 Description: KDE NG addressbook application
  KAddressBook is the main address book application for KDE; it enables you
  to manage your contacts efficiently and comfortably. It can load and save
@@ -206,11 +206,11 @@ Description: Trinity pim I/O Slaves
  This package is part of Trinity, and a component of the KDE PIM module.
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
-Package: tdepim-kresources-trinity
+Package: tdepim-tderesources-trinity
 Section: tde
 Architecture: any
-Replaces: kdepim-kresources-trinity (<< 4:14.0.0)
-Breaks: kdepim-kresources-trinity (<< 4:14.0.0)
+Replaces: kdepim-tderesources-trinity (<< 4:14.0.0)
+Breaks: kdepim-tderesources-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: ${shlibs:Recommends}, korganizer-trinity
 Suggests: knotes-trinity
@@ -321,7 +321,7 @@ Architecture: any
 Replaces: knotes-trinity (<< 4:14.0.0)
 Breaks: knotes-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Suggests: tdepim-kresources-trinity
+Suggests: tdepim-tderesources-trinity
 Description: Trinity sticky notes
  KNotes is a program that lets you write sticky notes. The notes are saved
  automatically when you exit the program, and they display when you open the
@@ -470,7 +470,7 @@ Breaks: libkcal2b-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: ${shlibs:Recommends}
 Conflicts: libkcal2-trinity, libkcal2a-trinity
-Suggests: tdepim-kresources-trinity
+Suggests: tdepim-tderesources-trinity
 Description: Trinity calendaring library
  This library provides a C++ API for handling the vCalendar and iCalendar
  formats.

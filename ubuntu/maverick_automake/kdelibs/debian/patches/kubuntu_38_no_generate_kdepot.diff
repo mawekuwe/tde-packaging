@@ -4,9 +4,9 @@
  	find $$dirs -maxdepth 1 -name "*.cc" -print >> files ;\
  	find $$dirs -maxdepth 1 -name "*.h" -print >> files ;\
  	echo ./kdecore/kde-config.cpp.in >> files ;\
--	$(EXTRACTRC) `find $$dirs -maxdepth 1 \( -name "*.rc" -o -name "*.ui" \) ` ./dnssd/kcm_kdnssd.kcfg > rc.cpp; \
+-	$(EXTRACTRC) `find $$dirs -maxdepth 1 \( -name "*.rc" -o -name "*.ui" \) ` ./dnssd/kcm_tdednssd.kcfg > rc.cpp; \
 -	: > kde.pot ;\
-+	$(EXTRACTRC) `find $$dirs -maxdepth 1 \( -name "*.rc" -o -name "*.ui" \) ` ./dnssd/kcm_kdnssd.kcfg > rc.cpp;
++	$(EXTRACTRC) `find $$dirs -maxdepth 1 \( -name "*.rc" -o -name "*.ui" \) ` ./dnssd/kcm_tdednssd.kcfg > rc.cpp;
  	$(XGETTEXT) -ktranslate -x qt-messages.pot rc.cpp `cat files` && cat messages.po qt-messages.pot > $(podir)/kdelibs.pot
 -	$(XGETTEXT) common_texts.cpp -o kde.pot
  	rm -f dirs

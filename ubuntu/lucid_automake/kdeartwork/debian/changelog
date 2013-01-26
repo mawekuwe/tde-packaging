@@ -33,13 +33,13 @@ kdeartwork (4:3.5.9-0ubuntu1) hardy; urgency=low
 
 kdeartwork (4:3.5.8-1ubuntu4) hardy; urgency=low
 
-  * Fix kscreensaver-xsavers-webcollage.install
+  * Fix tdescreensaver-xsavers-webcollage.install
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 10 Dec 2007 16:06:47 +0000
 
 kdeartwork (4:3.5.8-1ubuntu3) hardy; urgency=low
 
-  * Edit kscreensaver-xsaver-webcollage.install to use the file
+  * Edit tdescreensaver-xsaver-webcollage.install to use the file
     from sources, since it does not get installed during build.
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 15 Nov 2007 23:36:57 +0000
@@ -53,7 +53,7 @@ kdeartwork (4:3.5.8-1ubuntu2) hardy; urgency=low
 kdeartwork (4:3.5.8-1ubuntu1) hardy; urgency=low
 
   * Merge with Debian, remaining change:
-   - Add package kscreensaver-xsavers-extra
+   - Add package tdescreensaver-xsavers-extra
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 14 Nov 2007 17:25:44 +0000
 
@@ -68,7 +68,7 @@ kdeartwork (4:3.5.8-1) unstable; urgency=low
 
   +++ Changes by Sune Vuorela:
 
-  * Only make kdeartwork recommend kscreensaver-xsavers, not depend. It pulls
+  * Only make kdeartwork recommend tdescreensaver-xsavers, not depend. It pulls
     all sorts of weird gtk-stuff in.
   * Fix spelling error in control file.
 
@@ -106,7 +106,7 @@ kdeartwork (4:3.5.7-1ubuntu3) gutsy; urgency=low
 kdeartwork (4:3.5.7-1ubuntu2) gutsy; urgency=low
  .
    * Removed TryExec=xscreensaver from all the
-     kscreensaver/kxsconfig/ScreenSavers/*.desktop files, so that they can be
+     tdescreensaver/kxsconfig/ScreenSavers/*.desktop files, so that they can be
      controlled in the KDE screensavers control panel.  Closes LP: #49228
 
  -- Sarah Hobbs <hobbsee@ubuntu.com>  Mon, 02 Jul 2007 17:13:01 +1000
@@ -149,7 +149,7 @@ kdeartwork (4:3.5.6-2) experimental; urgency=low
 
   +++ Changes by Ana Beatriz Guerrero Lopez:
   
-  * Add kscreensaver-xsavers-webcollage.README.Debian.
+  * Add tdescreensaver-xsavers-webcollage.README.Debian.
   * Remade screensaver-xsavers-webcollage description in debian/control.
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Wed, 31 Jan 2007 06:01:40 +0100
@@ -210,7 +210,7 @@ kdeartwork (4:3.5.4-0ubuntu1) edgy; urgency=low
 
 kdeartwork (4:3.5.3-1ubuntu2) edgy; urgency=low
 
-  * Removed kpartsaver.desktop from debian/kscreensavers-xsaver.install.  
+  * Removed tdepartsaver.desktop from debian/tdescreensavers-xsaver.install.  
     Closes bug #53065
 
  -- Sarah Hobbs <hobbsee@ubuntu.com>  Fri, 21 Jul 2006 23:10:26 +1000
@@ -218,7 +218,7 @@ kdeartwork (4:3.5.3-1ubuntu2) edgy; urgency=low
 kdeartwork (4:3.5.3-1ubuntu1) edgy; urgency=low
 
   * Sync with Debian
-  * Create kscreensaver-xsavers-extra with the universe xscreensavers
+  * Create tdescreensaver-xsavers-extra with the universe xscreensavers
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  4 Jul 2006 12:39:40 +0000
 
@@ -315,7 +315,7 @@ kdeartwork (4:3.4.3-2) unstable; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * Remove ant.desktop from kscreensaver-xsavers, as the xscreensaver package
+  * Remove ant.desktop from tdescreensaver-xsavers, as the xscreensaver package
     has itself dropped this 'saver. (Closes: #338011)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Thu,  1 Dec 2005 15:58:30 +0100
@@ -329,8 +329,8 @@ kdeartwork (4:3.5.2-0ubuntu4) dapper; urgency=low
 kdeartwork (4:3.5.2-0ubuntu3) dapper; urgency=low
 
   * Reverse previous change and list screensavers explicity, can't use
-    wildcard as some .desktop files should go into kscreensavers 
-    and not kscreensavers-xsaver
+    wildcard as some .desktop files should go into tdescreensavers 
+    and not tdescreensavers-xsaver
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 30 Mar 2006 16:54:24 +0100
 
@@ -437,7 +437,7 @@ kdeartwork (4:3.4.0-0pre2) alioth; urgency=low
     Kopete emoticons, now usable by everyone).
   * Forward port a patch from KDE 3.3 that fixes the building of the
     KFireSaver screensaver.
-  * Lower kscreensaver-xsavers's dependency on xscreensaver-gl to a Recommends.
+  * Lower tdescreensaver-xsavers's dependency on xscreensaver-gl to a Recommends.
     (Closes: #278263)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Fri, 25 Mar 2005 08:48:21 -0500
@@ -468,7 +468,7 @@ kdeartwork (4:3.3.0-1) unstable; urgency=low
   * New upstream release (closes: #267571).
   * The previous versioned libqt3-mt-dev build-depends is no longer
     necessary, since kdelibs4-dev already forces Qt 3.3.
-  * Split xscreensaver hooks into a separate package kscreensaver-xsavers,
+  * Split xscreensaver hooks into a separate package tdescreensaver-xsavers,
     along with kxsconfig and kxsrun (closes: #208769, #244538).  Two years
     of confusion is enough.
   * Build-depends on both xscreensaver and xscreensaver-gl, which are
@@ -524,7 +524,7 @@ kdeartwork (4:3.2.0-1) unstable; urgency=low
 
 kdeartwork (4:3.1.5-2) unstable; urgency=low
 
-  * Made kscreensaver depend on kdebase-bin (closes: #203185).
+  * Made tdescreensaver depend on kdebase-bin (closes: #203185).
 
  -- Ben Burton <bab@debian.org>  Mon, 19 Jan 2004 11:08:45 +1100
 
@@ -573,7 +573,7 @@ kdeartwork (4:3.1.2-1) unstable; urgency=low
 kdeartwork (4:3.1.1-1) unstable; urgency=low
 
   * New upstream release.
-  * Package kscreensaver recommends xscreensaver-gl.
+  * Package tdescreensaver recommends xscreensaver-gl.
   * Removed alpha compile flags.
 
  -- Ben Burton <bab@debian.org>  Sun, 23 Mar 2003 15:23:23 +1100
@@ -595,8 +595,8 @@ kdeartwork (4:3.1.0-2) unstable; urgency=low
 kdeartwork (4:3.1.0-1) unstable; urgency=low
 
   * New upstream release.
-  * Renamed kdeartwork-screensaver to kscreensaver.
-  * Shifted epoch to 4: since kdebase used to provide kscreensaver 4:3.0.x.
+  * Renamed kdeartwork-screensaver to tdescreensaver.
+  * Shifted epoch to 4: since kdebase used to provide tdescreensaver 4:3.0.x.
 
  -- Ben Burton <bab@debian.org>  Sat,  4 Jan 2003 20:06:44 +1100
 

@@ -223,10 +223,10 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/keyboard/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/keys/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/keys/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/keys/index.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/khtml/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/khtml/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/khtml/index.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/khtml/nsplugin.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/tdehtml/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/tdehtml/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/tdehtml/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/tdehtml/nsplugin.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/twindecoration/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/twindecoration/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/twindecoration/index.docbook
@@ -357,7 +357,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/kcontrol.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/tdmconfig.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/key_bindings.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/kfm_home.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/kscreensaver.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/tdescreensaver.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/kthememgr.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/licq.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/linuxconf.png
@@ -461,7 +461,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/keyboard_layout.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/keyboard.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/kfm_home.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/knotify.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/kscreensaver.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/tdescreensaver.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/kthememgr.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/kvirc.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/licq.png
@@ -563,7 +563,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/kcmx.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/tdmconfig.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/key_bindings.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/keyboard.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/kscreensaver.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/tdescreensaver.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/kthememgr.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/kvirc.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/locale.png
@@ -648,7 +648,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/keyboard_layout.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/keyboard.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/kfm_home.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/knotify.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/kscreensaver.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/tdescreensaver.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/kthememgr.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/kvirc.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/licq.png
@@ -792,7 +792,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/keyboard_layout.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/keyboard.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/kfm_home.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/knotify.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/kscreensaver.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/tdescreensaver.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/kthememgr.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/kvirc.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/licq.png
@@ -888,7 +888,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/tdmconfig.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/key_bindings.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/kfm_home.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/knotify.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/kscreensaver.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/tdescreensaver.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/kthememgr.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/kvirc.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/64x64/apps/licq.png

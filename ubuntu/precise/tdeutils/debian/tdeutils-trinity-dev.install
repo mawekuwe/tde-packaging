@@ -1,6 +1,6 @@
-debian/tmp/opt/trinity/include/kmultiformlistbox.h
-debian/tmp/opt/trinity/include/kmultiformlistboxentry.h
-debian/tmp/opt/trinity/include/kmultiformlistboxfactory.h
+debian/tmp/opt/trinity/include/tdemultiformlistbox.h
+debian/tmp/opt/trinity/include/tdemultiformlistboxentry.h
+debian/tmp/opt/trinity/include/tdemultiformlistboxfactory.h
 debian/tmp/opt/trinity/include/ksim/chart.h
 debian/tmp/opt/trinity/include/ksim/common.h
 debian/tmp/opt/trinity/include/ksim/ksimconfig.h

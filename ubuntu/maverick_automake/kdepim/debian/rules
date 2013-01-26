@@ -44,7 +44,7 @@ DEB_DH_MAKESHLIBS_ARGS_libksieve0-kde3 := -V'libksieve0-kde3 (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libktnef1-kde3 := -V'libktnef1-kde3 (>= $(shlibs_ver))'
 DEB_DH_MAKESHLIBS_ARGS_libmimelib1c2a-kde3 := -V'libmimelib1c2a-kde3 (>= $(shlibs_ver))'
 
-#PACKAGES_WITH_LIBS := akregator-kde3 kaddressbook-kde3 kalarm-kde3 kdepim-kresources-kde3 \
+#PACKAGES_WITH_LIBS := akregator-kde3 kaddressbook-kde3 kalarm-kde3 kdepim-tderesources-kde3 \
 #	kdepim-wizards-kde3 kitchensync-kde3 kleopatra-kde3 kmail-kde3 knode-kde3 knotes-kde3 kode-kde3 kontact-kde3 \
 #	korganizer-kde3 kpilot-kde3 ksync-kde3 ktnef-kde3 libindex0-kde3 libkcal2b-kde3 libkdenetwork2-kde3 \
 #	libkdepim1a-kde3 libkgantt0-kde3 libkleopatra1-kde3 libkmime2-kde3 libkpimexchange1-kde3 \
@@ -64,10 +64,10 @@ DEB_DH_SHLIBDEPS_ARGS_kontact-kde3 := \
 	-dDepends	# Since -u args go first in dpkg-shlibdeps call
 
 # Move kaddressbook-kde3 dependency (from libkabc_xmlrpc.so) to Recommends
-DEB_DH_SHLIBDEPS_ARGS_kdepim-kresources-kde3 := \
+DEB_DH_SHLIBDEPS_ARGS_kdepim-tderesources-kde3 := \
 	-Xopt/lib/kde3/libkabc_xmlrpc.so.1 \
 	-- -dRecommends \
-	debian/kdepim-kresources/opt/kde3/lib/libkabc_xmlrpc.so.1.* \
+	debian/kdepim-tderesources/opt/kde3/lib/libkabc_xmlrpc.so.1.* \
 	-dDepends
 
 # Move kaddressbook dependency of libkcal2b-kde3 to Recommends

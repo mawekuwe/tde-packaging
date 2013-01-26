@@ -7,8 +7,8 @@ debian/tmp/opt/kde3/lib/kde3/emptymultipagepart.la
 debian/tmp/opt/kde3/lib/kde3/emptymultipagepart.so
 debian/tmp/opt/kde3/lib/kde3/kviewerpart.la
 debian/tmp/opt/kde3/lib/kde3/kviewerpart.so
-debian/tmp/opt/kde3/lib/libkmultipage.so.0
-debian/tmp/opt/kde3/lib/libkmultipage.so.0.0.0
+debian/tmp/opt/kde3/lib/libtdemultipage.so.0
+debian/tmp/opt/kde3/lib/libtdemultipage.so.0.0.0
 debian/tmp/opt/kde3/share/apps/djvumultipage.rc
 debian/tmp/opt/kde3/share/apps/kviewerpart/icons/hicolor/16x16/actions/movetool.png
 debian/tmp/opt/kde3/share/apps/kviewerpart/icons/hicolor/16x16/actions/selectiontool.png
@@ -25,4 +25,4 @@ debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/kviewshell.png
 debian/tmp/opt/kde3/share/icons/crystalsvg/48x48/apps/kviewshell.png
 debian/tmp/opt/kde3/share/services/emptymultipage.desktop
 debian/tmp/opt/kde3/share/services/djvumultipage.desktop
-debian/tmp/opt/kde3/share/servicetypes/kmultipage.desktop
+debian/tmp/opt/kde3/share/servicetypes/tdemultipage.desktop
