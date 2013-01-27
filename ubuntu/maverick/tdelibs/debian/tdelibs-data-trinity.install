@@ -43,7 +43,7 @@ debian/tmp/opt/trinity/share/apps/tdeconf_update/kded.upd
 debian/tmp/opt/trinity/share/apps/tdeconf_update/tdeprintrc.upd
 debian/tmp/opt/trinity/share/apps/tdeconf_update/tdeio_help.upd
 debian/tmp/opt/trinity/share/apps/tdeconf_update/tdeioslave.upd
-debian/tmp/opt/trinity/share/apps/tdeconf_update/move_kio_help_cache.sh
+debian/tmp/opt/trinity/share/apps/tdeconf_update/move_tdeio_help_cache.sh
 debian/tmp/opt/trinity/share/apps/tdeconf_update/proxytype.pl
 debian/tmp/opt/trinity/share/apps/tdeconf_update/useragent.pl
 debian/tmp/opt/trinity/share/apps/tdeprint/apsdriver1
