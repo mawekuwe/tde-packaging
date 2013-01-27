@@ -23,5 +23,5 @@ debian/tmp/opt/kde3/lib/kde3/libk3baudioprojectcddbplugin.so
 debian/tmp/opt/kde3/lib/kde3/libk3baudioprojectcddbplugin.la
 debian/tmp/opt/kde3/lib/kde3/libk3baudiometainforenamerplugin.so
 debian/tmp/opt/kde3/lib/kde3/libk3baudiometainforenamerplugin.la
-debian/tmp/opt/kde3/lib/kde3/kio_videodvd.so
-debian/tmp/opt/kde3/lib/kde3/kio_videodvd.la
+debian/tmp/opt/kde3/lib/kde3/tdeio_videodvd.so
+debian/tmp/opt/kde3/lib/kde3/tdeio_videodvd.la

@@ -41,8 +41,8 @@ install/krusader-kde3::
 	install -D -p -m0644 pics/cr32-app-krusader_user.xpm \
 		$(DEB_DESTDIR)/opt/kde3/share/pixmaps/krusader_user.xpm
 	# install properly kio_isorc
-	install -D -p -m0644 iso/kio_isorc \
-		$(DEB_DESTDIR)/opt/kde3/share/config/kio_isorc
+	install -D -p -m0644 iso/tdeio_isorc \
+		$(DEB_DESTDIR)/opt/kde3/share/config/tdeio_isorc
 	# install lintian override
 	install -D -p -m0644 debian/krusader.lintian-overrides \
 		$(DEB_DESTDIR)/opt/kde3/share/lintian/overrides/krusader

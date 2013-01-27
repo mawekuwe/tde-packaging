@@ -1,7 +1,7 @@
 debian/tmp/etc/kde3/translaterc
 debian/tmp/opt/kde3/bin/fsview
 debian/tmp/opt/kde3/bin/jpegorient
-debian/tmp/opt/kde3/bin/kio_media_realfolder
+debian/tmp/opt/kde3/bin/tdeio_media_realfolder
 debian/tmp/opt/kde3/lib/kde3/konq_sidebarnews.la
 debian/tmp/opt/kde3/lib/kde3/konq_sidebarnews.so
 debian/tmp/opt/kde3/lib/kde3/konqsidebar_delicious.la

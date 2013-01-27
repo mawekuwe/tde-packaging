@@ -7,7 +7,7 @@ debian/man/kdebugdialog-trinity.1
 debian/man/tdesu-trinity.1
 debian/man/kdialog-trinity.1
 debian/man/khotkeys-trinity.1
-debian/man/kio_system_documenthelper-trinity.1
+debian/man/tdeio_system_documenthelper-trinity.1
 debian/man/knetattach-trinity.1
 debian/man/krandom.kss-trinity.1
 debian/man/kreadconfig-trinity.1

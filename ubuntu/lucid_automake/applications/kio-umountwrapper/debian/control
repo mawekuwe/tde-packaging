@@ -12,4 +12,4 @@ Description: progress dialog for safely removing devices in KDE3.
  Wrapper around kio_media_mountwrapper.
  Provides a progress dialog for Safely Removing of devices in KDE3.
  .
-  Homepage: http://frode.kde.no/misc/kio_umountwrapper/
+  Homepage: http://frode.kde.no/misc/tdeio_umountwrapper/

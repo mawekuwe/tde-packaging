@@ -3,8 +3,8 @@ debian/tmp/opt/kde3/bin/kjobviewer
 debian/tmp/opt/kde3/bin/kprinter
 debian/tmp/opt/kde3/lib/kde3/kcm_printmgr.la
 debian/tmp/opt/kde3/lib/kde3/kcm_printmgr.so
-debian/tmp/opt/kde3/lib/kde3/kio_print.la
-debian/tmp/opt/kde3/lib/kde3/kio_print.so
+debian/tmp/opt/kde3/lib/kde3/tdeio_print.la
+debian/tmp/opt/kde3/lib/kde3/tdeio_print.so
 debian/tmp/opt/kde3/lib/kde3/kjobviewer.la
 debian/tmp/opt/kde3/lib/kde3/kjobviewer.so
 debian/tmp/opt/kde3/lib/kde3/kprinter.la

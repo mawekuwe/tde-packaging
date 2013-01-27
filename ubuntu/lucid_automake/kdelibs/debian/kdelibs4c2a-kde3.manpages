@@ -13,7 +13,7 @@ debian/man/out/kded-kde3.1
 debian/man/out/kdontchangethehostname-kde3.1
 debian/man/out/tdefile-kde3.1
 debian/man/out/kinstalltheme-kde3.1
-debian/man/out/kio_http_cache_cleaner-kde3.1
+debian/man/out/tdeio_http_cache_cleaner-kde3.1
 debian/man/out/tdeio_uiserver-kde3.1
 debian/man/out/tdemailservice-kde3.1
 debian/man/out/tdesendbugmail-kde3.1

@@ -3,8 +3,8 @@ debian/tmp/opt/trinity/bin/kjobviewer
 debian/tmp/opt/trinity/bin/kprinter
 debian/tmp/opt/trinity/lib/trinity/kcm_printmgr.la
 debian/tmp/opt/trinity/lib/trinity/kcm_printmgr.so
-debian/tmp/opt/trinity/lib/trinity/kio_print.la
-debian/tmp/opt/trinity/lib/trinity/kio_print.so
+debian/tmp/opt/trinity/lib/trinity/tdeio_print.la
+debian/tmp/opt/trinity/lib/trinity/tdeio_print.so
 debian/tmp/opt/trinity/lib/trinity/kjobviewer.la
 debian/tmp/opt/trinity/lib/trinity/kjobviewer.so
 debian/tmp/opt/trinity/lib/trinity/kprinter.la

@@ -9,7 +9,7 @@ debian/tmp/etc/kde3/katesyntaxhighlightingrc
 debian/tmp/etc/kde3/kdebug.areas
 debian/tmp/etc/kde3/kdebugrc
 debian/tmp/etc/kde3/kdeprintrc
-debian/tmp/etc/kde3/kio_isorc
+debian/tmp/etc/kde3/tdeio_isorc
 debian/tmp/etc/kde3/ksslcalist
 debian/tmp/etc/kde3/kthemestylerc
 debian/tmp/etc/kde3/language.codes
@@ -41,7 +41,7 @@ debian/tmp/opt/kde3/share/apps/kcm_componentchooser/kcm_tdetexteditor.desktop
 debian/tmp/opt/kde3/share/apps/tdeconf_update/kcookiescfg.upd
 debian/tmp/opt/kde3/share/apps/tdeconf_update/kded.upd
 debian/tmp/opt/kde3/share/apps/tdeconf_update/kdeprintrc.upd
-debian/tmp/opt/kde3/share/apps/tdeconf_update/kio_help.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/tdeio_help.upd
 debian/tmp/opt/kde3/share/apps/tdeconf_update/tdeioslave.upd
 debian/tmp/opt/kde3/share/apps/tdeconf_update/move_kio_help_cache.sh
 debian/tmp/opt/kde3/share/apps/tdeconf_update/proxytype.pl
@@ -3561,7 +3561,7 @@ debian/tmp/opt/kde3/share/services/http_cache_cleaner.desktop
 debian/tmp/opt/kde3/share/services/http.protocol
 debian/tmp/opt/kde3/share/services/https.protocol
 debian/tmp/opt/kde3/share/services/iso.protocol
-debian/tmp/opt/kde3/share/applnk/kio_iso.desktop
+debian/tmp/opt/kde3/share/applnk/tdeio_iso.desktop
 debian/tmp/opt/kde3/share/services/ico.kimgio
 debian/tmp/opt/kde3/share/services/jp2.kimgio
 debian/tmp/opt/kde3/share/services/jpeg.kimgio

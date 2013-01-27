@@ -26,10 +26,10 @@ debian/stamp-bootstrap:
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-configure/kio-apt-kde3::
+configure/tdeio-apt-kde3::
 	#fix rpath issue
 	# -chmod +x debian/fixrpath
 	# debian/fixrpath $(DEB_BUILDDIR)
 
-install/kio-apt-kde3::
-	uudecode debian/kdedeb_logo.png.uu -o $(DEB_DESTDIR)/opt/kde3/share/apps/kio_apt/kdedeb_logo.png
+install/tdeio-apt-kde3::
+	uudecode debian/kdedeb_logo.png.uu -o $(DEB_DESTDIR)/opt/kde3/share/apps/tdeio_apt/kdedeb_logo.png

@@ -7,7 +7,7 @@ debian/man/kdebugdialog-kde3.1
 debian/man/kdesu-kde3.1
 debian/man/kdialog-kde3.1
 debian/man/khotkeys-kde3.1
-debian/man/kio_system_documenthelper-kde3.1
+debian/man/tdeio_system_documenthelper-kde3.1
 debian/man/knetattach-kde3.1
 debian/man/krandom.kss-kde3.1
 debian/man/kreadconfig-kde3.1

@@ -29,10 +29,10 @@ debian/stamp-bootstrap:
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-configure/kio-apt-trinity::
+configure/tdeio-apt-trinity::
 	#fix rpath issue
 	# -chmod +x debian/fixrpath
 	# debian/fixrpath $(DEB_BUILDDIR)
 
-install/kio-apt-trinity::
-	uudecode debian/kdedeb_logo.png.uu -o $(DEB_DESTDIR)/opt/trinity/share/apps/kio_apt/kdedeb_logo.png
+install/tdeio-apt-trinity::
+	uudecode debian/kdedeb_logo.png.uu -o $(DEB_DESTDIR)/opt/trinity/share/apps/tdeio_apt/kdedeb_logo.png

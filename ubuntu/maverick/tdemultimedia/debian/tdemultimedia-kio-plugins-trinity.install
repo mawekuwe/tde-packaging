@@ -1,7 +1,7 @@
 debian/tmp/opt/trinity/lib/trinity/kcm_audiocd.la
 debian/tmp/opt/trinity/lib/trinity/kcm_audiocd.so
-debian/tmp/opt/trinity/lib/trinity/kio_audiocd.la
-debian/tmp/opt/trinity/lib/trinity/kio_audiocd.so
+debian/tmp/opt/trinity/lib/trinity/tdeio_audiocd.la
+debian/tmp/opt/trinity/lib/trinity/tdeio_audiocd.so
 debian/tmp/opt/trinity/lib/trinity/libaudiocd_encoder_flac.la
 debian/tmp/opt/trinity/lib/trinity/libaudiocd_encoder_flac.so
 debian/tmp/opt/trinity/lib/trinity/libaudiocd_encoder_lame.la

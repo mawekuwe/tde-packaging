@@ -5,8 +5,8 @@
 /opt/trinity/lib/libatlantikclient.so.*
 /opt/trinity/lib/libatlantikui.la
 /opt/trinity/lib/libatlantikui.so.*
-/opt/trinity/lib/trinity/kio_atlantik.la
-/opt/trinity/lib/trinity/kio_atlantik.so
+/opt/trinity/lib/trinity/tdeio_atlantik.la
+/opt/trinity/lib/trinity/tdeio_atlantik.so
 /opt/trinity/share/services/atlantik.protocol
 /opt/trinity/share/doc/tde/HTML/en/atlantik/*
 /opt/trinity/share/applications/tde/atlantik.desktop

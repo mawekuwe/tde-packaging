@@ -43,8 +43,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_kopete_translator.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_translator.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_webpresence.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_webpresence.so
-debian/tmp/opt/trinity/lib/trinity/kio_jabberdisco.la
-debian/tmp/opt/trinity/lib/trinity/kio_jabberdisco.so
+debian/tmp/opt/trinity/lib/trinity/tdeio_jabberdisco.la
+debian/tmp/opt/trinity/lib/trinity/tdeio_jabberdisco.so
 debian/tmp/opt/trinity/lib/trinity/kopete_addbookmarks.la
 debian/tmp/opt/trinity/lib/trinity/kopete_addbookmarks.so
 debian/tmp/opt/trinity/lib/trinity/kopete_aim.la

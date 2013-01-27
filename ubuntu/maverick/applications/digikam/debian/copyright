@@ -139,7 +139,7 @@ digikam/
 	o from tdefiletip source copies (tdebase, konqueror)
 	    © 1998, 1999 Torben Weis <weis@kde.org>
 	    © 2000, 2001, 2002 David Faure <david@mandrakesoft.com>
-	o Concept copied from tdelibs/kio/kio/netaccess.h/cpp
+	o Concept copied from tdelibs/tdeio/tdeio/netaccess.h/cpp
 	    © 1997 Torben Weis (weis@kde.org)
 	    © 1998 Matthias Ettrich (ettrich@kde.org)
 	    © 1999 David Faure (faure@kde.org)

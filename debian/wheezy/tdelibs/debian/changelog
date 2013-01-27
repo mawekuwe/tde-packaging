@@ -2394,7 +2394,7 @@ tdelibs (4:3.3.2-0pre1) experimental; urgency=low
     - usr/share/apps/ksgmltools2/customization/cs/entities/underLGPL.docbook
 
   * New entries in debian/tdelibs4-dev.install:
-    - usr/include/kiobuffer.h
+    - usr/include/tdeiobuffer.h
     - usr/include/tdewallettypes.h
 
   * debian/control:
@@ -2443,9 +2443,9 @@ tdelibs (4:3.3.1-2) unstable; urgency=medium
 
     - post-3.3.1-tdelibs-kio.diff: the patch as given in the KDE Advisory
       can't be used, since tdelibs 3.3.1-1 includes a KDE_3_3_BRANCH pull that
-      already modifies kio/kio/job.cpp and makes the supplied patch unusable.
+      already modifies tdeio/tdeio/job.cpp and makes the supplied patch unusable.
 
-      Regenerated patch from CVS: Diff for /tdelibs/kio/kio/job.cpp between
+      Regenerated patch from CVS: Diff for /tdelibs/tdeio/tdeio/job.cpp between
       version 1.397.2.7 and 1.397.2.8.
 
  -- Adeodato Simó <asp16@alu.ua.es>  Sat, 11 Dec 2004 00:23:09 +0100

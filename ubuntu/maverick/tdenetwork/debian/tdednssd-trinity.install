@@ -9,7 +9,7 @@ debian/tmp/opt/trinity/share/apps/zeroconf/_webdav._tcp
 debian/tmp/opt/trinity/share/apps/zeroconf/_nfs._tcp
 debian/tmp/opt/trinity/share/apps/zeroconf/_ssh._tcp
 debian/tmp/opt/trinity/share/apps/zeroconf/_rfb._tcp
-debian/tmp/opt/trinity/lib/trinity/kio_zeroconf.so
-debian/tmp/opt/trinity/lib/trinity/kio_zeroconf.la
+debian/tmp/opt/trinity/lib/trinity/tdeio_zeroconf.so
+debian/tmp/opt/trinity/lib/trinity/tdeio_zeroconf.la
 debian/tmp/opt/trinity/lib/trinity/kded_dnssdwatcher.so
 debian/tmp/opt/trinity/lib/trinity/kded_dnssdwatcher.la

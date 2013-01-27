@@ -108,8 +108,8 @@ debian/tmp/opt/kde3/lib/kde3/kcontrol.la
 debian/tmp/opt/kde3/lib/kde3/kcontrol.so
 debian/tmp/opt/kde3/lib/kde3/tdefile_font.la
 debian/tmp/opt/kde3/lib/kde3/tdefile_font.so
-debian/tmp/opt/kde3/lib/kde3/kio_fonts.la
-debian/tmp/opt/kde3/lib/kde3/kio_fonts.so
+debian/tmp/opt/kde3/lib/kde3/tdeio_fonts.la
+debian/tmp/opt/kde3/lib/kde3/tdeio_fonts.so
 debian/tmp/opt/kde3/lib/kde3/kstyle_keramik_config.la
 debian/tmp/opt/kde3/lib/kde3/kstyle_keramik_config.so
 debian/tmp/opt/kde3/lib/kde3/libkfontviewpart.la

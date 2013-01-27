@@ -1,7 +1,7 @@
 debian/tmp/etc/trinity/translaterc
 debian/tmp/opt/trinity/bin/fsview
 debian/tmp/opt/trinity/bin/jpegorient
-debian/tmp/opt/trinity/bin/kio_media_realfolder
+debian/tmp/opt/trinity/bin/tdeio_media_realfolder
 debian/tmp/opt/trinity/lib/trinity/konq_sidebarnews.la
 debian/tmp/opt/trinity/lib/trinity/konq_sidebarnews.so
 debian/tmp/opt/trinity/lib/trinity/konqsidebar_delicious.la

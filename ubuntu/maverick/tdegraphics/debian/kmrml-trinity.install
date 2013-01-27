@@ -3,8 +3,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_kmrml.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kmrml.so
 debian/tmp/opt/trinity/lib/trinity/kded_daemonwatcher.la
 debian/tmp/opt/trinity/lib/trinity/kded_daemonwatcher.so
-debian/tmp/opt/trinity/lib/trinity/kio_mrml.la
-debian/tmp/opt/trinity/lib/trinity/kio_mrml.so
+debian/tmp/opt/trinity/lib/trinity/tdeio_mrml.la
+debian/tmp/opt/trinity/lib/trinity/tdeio_mrml.so
 debian/tmp/opt/trinity/lib/trinity/libkmrmlpart.la
 debian/tmp/opt/trinity/lib/trinity/libkmrmlpart.so
 debian/tmp/opt/trinity/lib/trinity/mrmlsearch.la

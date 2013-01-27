@@ -21,5 +21,5 @@ debian/tmp/usr/lib/trinity/libk3baudioprojectcddbplugin.so
 debian/tmp/usr/lib/trinity/libk3baudioprojectcddbplugin.la
 debian/tmp/usr/lib/trinity/libk3baudiometainforenamerplugin.so
 debian/tmp/usr/lib/trinity/libk3baudiometainforenamerplugin.la
-debian/tmp/usr/lib/trinity/kio_videodvd.so
-debian/tmp/usr/lib/trinity/kio_videodvd.la
+debian/tmp/usr/lib/trinity/tdeio_videodvd.so
+debian/tmp/usr/lib/trinity/tdeio_videodvd.la

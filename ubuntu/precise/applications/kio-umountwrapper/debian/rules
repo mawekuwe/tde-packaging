@@ -31,19 +31,19 @@ debian/stamp-bootstrap:
 common-post-build-arch::
 	XGETTEXT=/usr/bin/kde-xgettext sh admin/cvs.sh extract-messages
 
-install/kio-umountwrapper-trinity::
-	mkdir -p $(CURDIR)/debian/kio-umountwrapper-trinity/opt/trinity/share/apps/konqueror/servicemenus/
+install/tdeio-umountwrapper-trinity::
+	mkdir -p $(CURDIR)/debian/tdeio-umountwrapper-trinity/opt/trinity/share/apps/konqueror/servicemenus/
 	cp $(CURDIR)/debian/media_safelyremove.desktop \
-		$(CURDIR)/debian/kio-umountwrapper-trinity/opt/trinity/share/apps/konqueror/servicemenus/
+		$(CURDIR)/debian/tdeio-umountwrapper-trinity/opt/trinity/share/apps/konqueror/servicemenus/
 
-	mkdir -p $(CURDIR)/debian/kio-umountwrapper-trinity/opt/trinity/share/apps/dolphin/servicemenus/
+	mkdir -p $(CURDIR)/debian/tdeio-umountwrapper-trinity/opt/trinity/share/apps/dolphin/servicemenus/
 	cp $(CURDIR)/debian/media_safelyremove.desktop \
-		$(CURDIR)/debian/kio-umountwrapper-trinity/opt/trinity/share/apps/dolphin/servicemenus/
+		$(CURDIR)/debian/tdeio-umountwrapper-trinity/opt/trinity/share/apps/dolphin/servicemenus/
 
-	mkdir -p $(CURDIR)/debian/kio-umountwrapper-trinity/opt/trinity/share/apps/d3lphin/servicemenus/
+	mkdir -p $(CURDIR)/debian/tdeio-umountwrapper-trinity/opt/trinity/share/apps/d3lphin/servicemenus/
 	cp $(CURDIR)/debian/media_safelyremove.desktop \
-		$(CURDIR)/debian/kio-umountwrapper-trinity/opt/trinity/share/apps/d3lphin/servicemenus/
+		$(CURDIR)/debian/tdeio-umountwrapper-trinity/opt/trinity/share/apps/d3lphin/servicemenus/
 clean::
-	rm -rf $(CURDIR)/debian/kio-umountwrapper-trinity/opt/trinity/share/apps/
+	rm -rf $(CURDIR)/debian/tdeio-umountwrapper-trinity/opt/trinity/share/apps/
 	rm -f po/*.pot
 

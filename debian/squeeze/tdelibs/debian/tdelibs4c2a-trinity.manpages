@@ -13,7 +13,7 @@ debian/man/out/kded-trinity.1
 debian/man/out/kdontchangethehostname-trinity.1
 debian/man/out/tdefile-trinity.1
 debian/man/out/kinstalltheme-trinity.1
-debian/man/out/kio_http_cache_cleaner-trinity.1
+debian/man/out/tdeio_http_cache_cleaner-trinity.1
 debian/man/out/tdeio_uiserver-trinity.1
 debian/man/out/tdemailservice-trinity.1
 debian/man/out/tdesendbugmail-trinity.1

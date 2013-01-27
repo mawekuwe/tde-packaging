@@ -5,8 +5,8 @@
 /opt/kde3/lib/libatlantikclient.so.*
 /opt/kde3/lib/libatlantikui.la
 /opt/kde3/lib/libatlantikui.so.*
-/opt/kde3/lib/kde3/kio_atlantik.la
-/opt/kde3/lib/kde3/kio_atlantik.so
+/opt/kde3/lib/kde3/tdeio_atlantik.la
+/opt/kde3/lib/kde3/tdeio_atlantik.so
 /opt/kde3/share/services/atlantik.protocol
 /opt/kde3/share/doc/kde/HTML/en/atlantik/*
 /opt/kde3/share/applications/kde/atlantik.desktop
