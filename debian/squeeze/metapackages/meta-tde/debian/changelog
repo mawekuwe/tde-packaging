@@ -130,7 +130,7 @@ meta-kde (4:2.2.21) unstable; urgency=low
 
 meta-kde (4:2.2.20) unstable; urgency=low
 
-  * Remove kfilereplace
+  * Remove tdefilereplace
   * Move several packages to suggests as they are either buggy or not 
     avail on all archs
 

@@ -13,7 +13,7 @@ Standards-Version: 3.7.2
 Package: tdesdk
 Architecture: all
 Section: tde
-Depends: cervisia (>= ${Source-Version}), kapptemplate (>= ${Source-Version}), kbabel (>= ${Source-Version}), kbugbuster (>= ${Source-Version}), tdecachegrind (>= ${Source-Version}), tdesdk-kfile-plugins (>= ${Source-Version}), tdesdk-kio-plugins (>= ${Source-Version}) | tdesvn-kio-plugins, tdesdk-misc (>= ${Source-Version}), tdesdk-scripts (>= ${Source-Version}), kmtrace (>= ${Source-Version}), kompare (>= ${Source-Version}), kspy (>= ${Source-Version}), kuiviewer (>= ${Source-Version}), tdeunittest (>= ${Source-Version}), poxml (>= ${Source-Version}), umbrello (>= ${Source-Version})
+Depends: cervisia (>= ${Source-Version}), kapptemplate (>= ${Source-Version}), kbabel (>= ${Source-Version}), kbugbuster (>= ${Source-Version}), tdecachegrind (>= ${Source-Version}), tdesdk-tdefile-plugins (>= ${Source-Version}), tdesdk-kio-plugins (>= ${Source-Version}) | tdesvn-kio-plugins, tdesdk-misc (>= ${Source-Version}), tdesdk-scripts (>= ${Source-Version}), kmtrace (>= ${Source-Version}), kompare (>= ${Source-Version}), kspy (>= ${Source-Version}), kuiviewer (>= ${Source-Version}), tdeunittest (>= ${Source-Version}), poxml (>= ${Source-Version}), umbrello (>= ${Source-Version})
 Suggests: tdecachegrind-converters, kbabel-dev, tdesdk-doc-html
 Description: software development kit from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -162,7 +162,7 @@ Description: format converters for KCachegrind profiling visualisation tool
  This package is part of KDE, and a component of the KDE SDK module.
  See the 'kde' and 'tdesdk' packages for more information.
 
-Package: tdesdk-kfile-plugins
+Package: tdesdk-tdefile-plugins
 Architecture: any
 Section: tde
 Depends: ${shlibs:Depends}

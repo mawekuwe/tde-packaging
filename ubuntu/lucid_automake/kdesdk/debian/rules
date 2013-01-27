@@ -59,10 +59,10 @@ binary-install/kdesdk-scripts-kde3::
 binary-install/kdesdk-misc-kde3::
 	install -p -D -m644 kdeaccounts-plugin/README \
 		debian/kdesdk-misc-kde3/opt/kde3/share/doc/kdesdk-misc/README.kdeaccounts-plugin
-	install -p -D -m644 kioslave/svn/AUTHORS \
-		debian/kdesdk-misc-kde3/opt/kde3/share/doc/kdesdk-misc/AUTHORS.kioslave-svn
-	install -p -D -m644 kioslave/svn/README \
-		debian/kdesdk-misc-kde3/opt/kde3/share/doc/kdesdk-misc/README.kioslave-svn
+	install -p -D -m644 tdeioslave/svn/AUTHORS \
+		debian/kdesdk-misc-kde3/opt/kde3/share/doc/kdesdk-misc/AUTHORS.tdeioslave-svn
+	install -p -D -m644 tdeioslave/svn/README \
+		debian/kdesdk-misc-kde3/opt/kde3/share/doc/kdesdk-misc/README.tdeioslave-svn
 	install -p -D -m644 kprofilemethod/README \
 		debian/kdesdk-misc-kde3/opt/kde3/share/doc/kdesdk-misc/README.kprofilemethod
 	install -p -D -m644 scheck/README \

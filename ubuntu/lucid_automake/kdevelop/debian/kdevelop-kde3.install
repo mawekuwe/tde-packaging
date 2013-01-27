@@ -6,7 +6,7 @@ debian/tmp/opt/kde3/bin/kdevprofileeditor
 debian/tmp/opt/kde3/bin/kdevassistant
 debian/tmp/opt/kde3/bin/kdevprj2kdevelop
 debian/tmp/opt/kde3/bin/kdevelop
-debian/tmp/opt/kde3/lib/kconf_update_bin/kdev-gen-settings-kconf_update
+debian/tmp/opt/kde3/lib/tdeconf_update_bin/kdev-gen-settings-tdeconf_update
 debian/tmp/opt/kde3/share/services
 debian/tmp/opt/kde3/share/servicetypes
 debian/tmp/opt/kde3/lib/kde3

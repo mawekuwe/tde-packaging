@@ -18,7 +18,7 @@ debian/tmp/opt/kde3/bin/knetattach
 debian/tmp/opt/kde3/bin/krandom.kss
 debian/tmp/opt/kde3/bin/ksystraycmd
 debian/tmp/opt/kde3/bin/kxkb
-debian/tmp/opt/kde3/lib/kconf_update_bin/khotkeys_update
+debian/tmp/opt/kde3/lib/tdeconf_update_bin/khotkeys_update
 debian/tmp/opt/kde3/lib/kde3/kcminit.la
 debian/tmp/opt/kde3/lib/kde3/kcminit.so
 debian/tmp/opt/kde3/lib/kde3/kcminit_startup.la
@@ -58,9 +58,9 @@ debian/tmp/opt/kde3/share/apps/drkonqi/debuggers/gdbrc
 debian/tmp/opt/kde3/share/apps/drkonqi/pics/konqi.png
 debian/tmp/opt/kde3/share/apps/drkonqi/presets/developerrc
 debian/tmp/opt/kde3/share/apps/drkonqi/presets/enduserrc
-debian/tmp/opt/kde3/share/apps/kconf_update/khotkeys_32b1_update.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/khotkeys_printscreen.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/konqueror_gestures_kde321_update.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/khotkeys_32b1_update.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/khotkeys_printscreen.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/konqueror_gestures_kde321_update.upd
 debian/tmp/opt/kde3/share/apps/kdcop/kdcopui.rc
 debian/tmp/opt/kde3/share/apps/khotkeys/kde32b1.khotkeys
 debian/tmp/opt/kde3/share/apps/khotkeys/konqueror_gestures_kde321.khotkeys

@@ -14,7 +14,7 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/kde3 --with-extra-libs=/opt/kde3/lib
 
-DEB_INSTALL_CHANGELOGS_kfilereplace-kde3    := kfilereplace/ChangeLog
+DEB_INSTALL_CHANGELOGS_tdefilereplace-kde3    := tdefilereplace/ChangeLog
 DEB_INSTALL_CHANGELOGS_kimagemapeditor-kde3 := kimagemapeditor/ChangeLog
 DEB_INSTALL_CHANGELOGS_klinkstatus-kde3     := klinkstatus/ChangeLog
 DEB_INSTALL_CHANGELOGS_kommander-kde3       := kommander/ChangeLog

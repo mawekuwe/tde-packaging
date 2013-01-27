@@ -176,12 +176,12 @@ Suggests: khelpcenter-kde3, mtools
 Conflicts: kdebase-libs-kde3 (<< 4:3.0.0), mediamanager
 Replaces: kdebase-kde3 (<< 4:3.0.0), kdebase-kde3-doc (<< 4:3.0.0), kdebase-libs-kde3 (<< 4:3.0.0), konqueror-kde3 (<< 4:3.0.0), kdebase-kde3-bin (<< 4:3.5.5a.dfsg.1-1ubuntu18), kdebase-data-kde3 (<< 4:3.5.8-2ubuntu18)
 Description: core I/O slaves for KDE
- This package includes the base kioslaves. They include, amongst many
+ This package includes the base tdeioslaves. They include, amongst many
  others, file, http, ftp, smtp, pop and imap.
  .
- It also includes the media kioslave, which handles removable devices,
+ It also includes the media tdeioslave, which handles removable devices,
  and which works best with hal (and therefore udev) and pmount. Media
- also extends the functionality of many other kioslaves. To use this
+ also extends the functionality of many other tdeioslaves. To use this
  service, please make sure that your user is a member of the plugdev
  group.
  .

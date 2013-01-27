@@ -3,4 +3,4 @@
 	section="Applications/System/Administration"\
 	hints="TDE"\
 	title="lilo-config"\
-	command="/opt/trinity/bin/tdesu kcmshell lilo"
+	command="/opt/trinity/bin/tdesu tdecmshell lilo"

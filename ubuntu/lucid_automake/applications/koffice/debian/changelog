@@ -228,7 +228,7 @@ koffice (1:1.6.3-3) unstable; urgency=high
     (Closes: #443673)
   * Add not-installed.list file to keep track of not installed files.
   * Add a missing dependency on kcontrol to kformula, in order to provide the
-    fonts kioslave. Thanks to Eike Hein for reporting.
+    fonts tdeioslave. Thanks to Eike Hein for reporting.
 
  -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Wed, 26 Sep 2007 23:29:24 +0200
 
@@ -748,7 +748,7 @@ koffice (1:1.3.5-1) unstable; urgency=high
     - http://kde.org/info/security/advisory-20041223-1.txt
     References: CAN-2004-1125, DSA-619
   * Added README.MimeType to most binary packages to explain how to fix
-    the missing MimeType error by running kbuildsycoca (closes: #288950).
+    the missing MimeType error by running tdebuildsycoca (closes: #288950).
 
  -- Ben Burton <bab@debian.org>  Mon, 17 Jan 2005 20:57:22 +1100
 

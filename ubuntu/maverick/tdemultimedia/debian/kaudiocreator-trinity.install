@@ -3,9 +3,9 @@ debian/tmp/opt/trinity/share/applications/tde/kaudiocreator.desktop
 debian/tmp/opt/trinity/share/apps/kaudiocreator/eventsrc
 debian/tmp/opt/trinity/share/apps/kaudiocreator/kaudiocreatorui.rc
 debian/tmp/opt/trinity/share/apps/kaudiocreator/pics/check.png
-debian/tmp/opt/trinity/share/apps/kconf_update/kaudiocreator-libkcddb.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/kaudiocreator-meta.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/upgrade-kaudiocreator-metadata.sh
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kaudiocreator-libkcddb.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kaudiocreator-meta.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/upgrade-kaudiocreator-metadata.sh
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/audiocd_extract.desktop
 debian/tmp/opt/trinity/share/config.kcfg/kaudiocreator.kcfg
 debian/tmp/opt/trinity/share/config.kcfg/kaudiocreator_encoders.kcfg

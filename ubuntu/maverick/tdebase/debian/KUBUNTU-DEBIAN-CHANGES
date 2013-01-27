@@ -36,7 +36,7 @@ in konsole.README.Debian s/fontconfig/fontconfig-config
 
 in tdm.postinst install at s/99/13/
 
-from tdebase-kio-plugins.install remove debian/tmp/usr/share/services/kfile_trash.desktop (that's to remove the trash from the "system applet")
+from tdebase-kio-plugins.install remove debian/tmp/usr/share/services/tdefile_trash.desktop (that's to remove the trash from the "system applet")
 
 add debian/ubuntu.xmodmap  debian/80ubuntu-xmodmap and add install rules to binary-install/tdebase-bin::
 

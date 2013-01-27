@@ -558,7 +558,7 @@ tdenetwork (4:3.5.1-1) unstable; urgency=low
 
   +++ Changes by Isaac Clerencia:
 
-  * Put zeroconf kioslave and other tdednssd stuff in a new package, tdednssd.
+  * Put zeroconf tdeioslave and other tdednssd stuff in a new package, tdednssd.
 
   +++ Changes by Christopher Martin:
 
@@ -928,7 +928,7 @@ tdenetwork (4:3.4.0-0ubuntu1) hoary; urgency=low
 
 tdenetwork (4:3.4.0-0pre1ubuntu2) hoary; urgency=low
 
-  * Add dependency on tdenetwork-kfile-plugins to tdenetwork meta-package.
+  * Add dependency on tdenetwork-tdefile-plugins to tdenetwork meta-package.
 
  -- Jonathan Riddell <jr@jriddell.org>  Tue,  8 Mar 2005 13:09:19 +0000
 
@@ -951,7 +951,7 @@ tdenetwork (4:3.4.0-0pre2) alioth; urgency=low
 
   * Switch to CDBS for packaging.
 
-  * Added new package tdenetwork-kfile-plugins.
+  * Added new package tdenetwork-tdefile-plugins.
 
   * ksirc now recommends libio-socket-ssl-perl, needed for SSL IRC servers
    (Closes: #294331)

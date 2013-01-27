@@ -9,7 +9,7 @@ if [ "$TOPLEVEL" = "" ]; then
 	echo "Please provide the toplevel directory as the argument."
 	exit 1
 else
-	rm -f $TOPLEVEL/kioslave/http/kcookiejar/rfc*
+	rm -f $TOPLEVEL/tdeioslave/http/kcookiejar/rfc*
 fi
 
 exit 0

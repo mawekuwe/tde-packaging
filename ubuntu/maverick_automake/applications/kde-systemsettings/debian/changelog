@@ -191,7 +191,7 @@ kde-systemsettings (0.0svn20060314-0ubuntu3) dapper; urgency=low
 
 kde-systemsettings (0.0svn20060314-0ubuntu2) dapper; urgency=low
 
-  * Add kubuntu_03_no_kbuildsycoca.diff, stop it running kbuildsycocoa 
+  * Add kubuntu_03_no_tdebuildsycoca.diff, stop it running kbuildsycocoa 
     during 'make install'
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 15 Mar 2006 01:12:43 +0000

@@ -19,7 +19,7 @@ FreeSpace2=1
 
 [Applet_5]
 ConfigFile=launcher_panelapplet_kubuntu_rc
-DesktopFile=quicklauncher.desktop
+DesktopFile=quictdelauncher.desktop
 FreeSpace2=0
 
 [Applet_6]

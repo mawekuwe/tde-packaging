@@ -10,7 +10,7 @@ Standards-Version: 3.7.2
 Package: kdemultimedia
 Section: kde
 Architecture: all
-Depends: artsbuilder (>= ${Source-Version}), juk (>= ${Source-Version}), kaboodle (>= ${Source-Version}), kaudiocreator (>= ${Source-Version}), kdemultimedia-kappfinder-data (>= ${Source-Version}), kdemultimedia-kfile-plugins (>= ${Source-Version}), kdemultimedia-kio-plugins (>= ${Source-Version}), tdemid (>= ${Source-Version}), kmix (>= ${Source-Version}), krec (>= ${Source-Version}), kscd (>= ${Source-Version}), libarts1-akode (>= ${Source-Version}), libarts1-audiofile (>= ${Source-Version}), libarts1-mpeglib (>= ${Source-Version}), libarts1-xine (>= ${Source-Version}), mpeglib (>= ${Source-Version}), noatun (>= ${Source-Version})
+Depends: artsbuilder (>= ${Source-Version}), juk (>= ${Source-Version}), kaboodle (>= ${Source-Version}), kaudiocreator (>= ${Source-Version}), kdemultimedia-kappfinder-data (>= ${Source-Version}), kdemultimedia-tdefile-plugins (>= ${Source-Version}), kdemultimedia-kio-plugins (>= ${Source-Version}), tdemid (>= ${Source-Version}), kmix (>= ${Source-Version}), krec (>= ${Source-Version}), kscd (>= ${Source-Version}), libarts1-akode (>= ${Source-Version}), libarts1-audiofile (>= ${Source-Version}), libarts1-mpeglib (>= ${Source-Version}), libarts1-xine (>= ${Source-Version}), mpeglib (>= ${Source-Version}), noatun (>= ${Source-Version})
 Suggests: kdemultimedia-doc-html (>= ${Source-Version})
 Description: multimedia apps from the official KDE release 
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -119,12 +119,12 @@ Description: CD ripper and audio encoder frontend for KDE
  This package is part of KDE, as a component of the KDE multimedia module.
  See the 'kde' and 'kdemultimedia' packages for more information.
 
-Package: kdemultimedia-kfile-plugins
+Package: kdemultimedia-tdefile-plugins
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: kdemultimedia-kio-plugins (<< 4:3.4.1-1)
-Description: au/avi/m3u/mp3/ogg/wav plugins for kfile
+Description: au/avi/m3u/mp3/ogg/wav plugins for tdefile
  au/avi/m3u/mp3/ogg/wav file metainformation plugins for KDE.
  .
  This package is part of KDE, as a component of the KDE multimedia module.

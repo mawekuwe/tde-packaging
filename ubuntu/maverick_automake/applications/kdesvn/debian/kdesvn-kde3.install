@@ -4,7 +4,7 @@ debian/tmp/opt/kde3/lib/libkdesvnpart.*
 debian/tmp/opt/kde3/share/apps/kdesvn/
 debian/tmp/opt/kde3/share/apps/kdesvnpart/
 debian/tmp/opt/kde3/share/apps/konqueror/servicemenus/
-debian/tmp/opt/kde3/share/apps/kconf_update/
+debian/tmp/opt/kde3/share/apps/tdeconf_update/
 debian/tmp/opt/kde3/share/icons/
 debian/tmp/opt/kde3/share/locale/*/LC_MESSAGES/*.mo
 debian/tmp/opt/kde3/share/config.kcfg/

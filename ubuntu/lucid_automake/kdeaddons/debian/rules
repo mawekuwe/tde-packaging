@@ -28,9 +28,9 @@ binary-install/konq-plugins-kde3::
 #		debian/konq-plugins-kde3/opt/kde3/share/man/man1/orient.py.1; \
 #	rm -rf debian/konq-plugins-kde3/opt/kde3/share/man/py;
 
-binary-install/kdeaddons-kfile-plugins-kde3::
+binary-install/kdeaddons-tdefile-plugins-kde3::
 	install -p -D -m644 renamedlgplugins/README \
-		debian/kdeaddons-kfile-plugins-kde3/opt/kde3/share/doc/kdeaddons-kfile-plugins/README.renamedlgplugins
+		debian/kdeaddons-tdefile-plugins-kde3/opt/kde3/share/doc/kdeaddons-tdefile-plugins/README.renamedlgplugins
 
 binary-install/knewsticker-scripts-kde3::
 	chmod 755 debian/knewsticker-scripts-kde3/opt/kde3/share/apps/knewsticker/scripts/*.pl

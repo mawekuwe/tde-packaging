@@ -10,7 +10,7 @@ Standards-Version: 3.8.3
 Package: kdemultimedia-kde3
 Section: kde
 Architecture: all
-Depends: artsbuilder-kde3 (>= ${Source-Version}), juk-kde3 (>= ${Source-Version}), kaboodle-kde3 (>= ${Source-Version}), kaudiocreator-kde3 (>= ${Source-Version}), kdemultimedia-kappfinder-data-kde3 (>= ${Source-Version}), kdemultimedia-kfile-plugins-kde3 (>= ${Source-Version}), kdemultimedia-kio-plugins-kde3 (>= ${Source-Version}), tdemid-kde3 (>= ${Source-Version}), kmix-kde3 (>= ${Source-Version}), krec-kde3 (>= ${Source-Version}), kscd-kde3 (>= ${Source-Version}), libarts1-akode-kde3 (>= ${Source-Version}), libarts1-audiofile-kde3 (>= ${Source-Version}), libarts1-mpeglib-kde3 (>= ${Source-Version}), libarts1-xine-kde3 (>= ${Source-Version}), mpeglib-kde3 (>= ${Source-Version}), noatun-kde3 (>= ${Source-Version})
+Depends: artsbuilder-kde3 (>= ${Source-Version}), juk-kde3 (>= ${Source-Version}), kaboodle-kde3 (>= ${Source-Version}), kaudiocreator-kde3 (>= ${Source-Version}), kdemultimedia-kappfinder-data-kde3 (>= ${Source-Version}), kdemultimedia-tdefile-plugins-kde3 (>= ${Source-Version}), kdemultimedia-kio-plugins-kde3 (>= ${Source-Version}), tdemid-kde3 (>= ${Source-Version}), kmix-kde3 (>= ${Source-Version}), krec-kde3 (>= ${Source-Version}), kscd-kde3 (>= ${Source-Version}), libarts1-akode-kde3 (>= ${Source-Version}), libarts1-audiofile-kde3 (>= ${Source-Version}), libarts1-mpeglib-kde3 (>= ${Source-Version}), libarts1-xine-kde3 (>= ${Source-Version}), mpeglib-kde3 (>= ${Source-Version}), noatun-kde3 (>= ${Source-Version})
 Suggests: kdemultimedia-kde3-doc-html (>= ${Source-Version})
 Description: multimedia apps from the official KDE3 release 
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -119,12 +119,12 @@ Description: CD ripper and audio encoder frontend for KDE3
  This package is part of KDE3, as a component of the KDE multimedia module.
  See the 'kde-kde3' and 'kdemultimedia-kde3' packages for more information.
 
-Package: kdemultimedia-kfile-plugins-kde3
+Package: kdemultimedia-tdefile-plugins-kde3
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: kdemultimedia-kio-plugins (<< 4:3.4.1-1)
-Description: au/avi/m3u/mp3/ogg/wav plugins for kfile
+Description: au/avi/m3u/mp3/ogg/wav plugins for tdefile
  au/avi/m3u/mp3/ogg/wav file metainformation plugins for KDE3.
  .
  This package is part of KDE3, as a component of the KDE multimedia module.

@@ -20,7 +20,7 @@ debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/faq.desktop
 debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/info.desktop
 debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/kcontrolmodules.desktop
 debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/kicmodules.desktop
-debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/kioslaves.desktop
+debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/tdeioslaves.desktop
 debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/konqplugins.desktop
 debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/links.desktop
 debian/tmp/opt/kde3/share/apps/khelpcenter/plugins/Manpages/.directory

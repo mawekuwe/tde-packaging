@@ -22,7 +22,7 @@ Section: tde
 Architecture: all
 Replaces: kdepim-trinity (<< 4:14.0.0)
 Breaks: kdepim-trinity (<< 4:14.0.0)
-Depends: akregator-trinity (>= ${Source-Version}), kaddressbook-trinity (>= ${Source-Version}), kalarm-trinity (>= ${Source-Version}), kandy-trinity (>= ${Source-Version}), karm-trinity (>= ${Source-Version}), tdepim-kfile-plugins-trinity (>= ${Source-Version}), tdepim-kio-plugins-trinity (>= ${Source-Version}), tdepim-tderesources-trinity (>= ${Source-Version}), tdepim-wizards-trinity (>= ${Source-Version}), kitchensync-trinity (>= ${Source-Version}), kleopatra-trinity (>= ${Source-Version}), kmail-trinity (>= ${Source-Version}), kmailcvt-trinity (>= ${Source-Version}), knode-trinity (>= ${Source-Version}), knotes-trinity (>= ${Source-Version}), konsolekalendar-trinity (>= ${Source-Version}), kontact-trinity (>= ${Source-Version}), korganizer-trinity (>= ${Source-Version}), korn-trinity (>= ${Source-Version}), ktnef-trinity (>= ${Source-Version}), libindex0-trinity (>= ${Source-Version}), libkcal2b-trinity (>= ${Source-Version}), libtdepim1a-trinity (>= ${Source-Version}), libkgantt0-trinity (>= ${Source-Version}), libkleopatra1-trinity (>= ${Source-Version}), libkpimexchange1-trinity (>= ${Source-Version}), libkpimidentities1-trinity (>= ${Source-Version}), libksieve0-trinity (>= ${Source-Version}), libktnef1-trinity (>= ${Source-Version}), libmimelib1c2a-trinity (>= ${Source-Version})
+Depends: akregator-trinity (>= ${Source-Version}), kaddressbook-trinity (>= ${Source-Version}), kalarm-trinity (>= ${Source-Version}), kandy-trinity (>= ${Source-Version}), karm-trinity (>= ${Source-Version}), tdepim-tdefile-plugins-trinity (>= ${Source-Version}), tdepim-kio-plugins-trinity (>= ${Source-Version}), tdepim-tderesources-trinity (>= ${Source-Version}), tdepim-wizards-trinity (>= ${Source-Version}), kitchensync-trinity (>= ${Source-Version}), kleopatra-trinity (>= ${Source-Version}), kmail-trinity (>= ${Source-Version}), kmailcvt-trinity (>= ${Source-Version}), knode-trinity (>= ${Source-Version}), knotes-trinity (>= ${Source-Version}), konsolekalendar-trinity (>= ${Source-Version}), kontact-trinity (>= ${Source-Version}), korganizer-trinity (>= ${Source-Version}), korn-trinity (>= ${Source-Version}), ktnef-trinity (>= ${Source-Version}), libindex0-trinity (>= ${Source-Version}), libkcal2b-trinity (>= ${Source-Version}), libtdepim1a-trinity (>= ${Source-Version}), libkgantt0-trinity (>= ${Source-Version}), libkleopatra1-trinity (>= ${Source-Version}), libkpimexchange1-trinity (>= ${Source-Version}), libkpimidentities1-trinity (>= ${Source-Version}), libksieve0-trinity (>= ${Source-Version}), libktnef1-trinity (>= ${Source-Version}), libmimelib1c2a-trinity (>= ${Source-Version})
 Suggests: tdepim-trinity-doc-html
 Description: Personal Information Management apps from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -181,11 +181,11 @@ Description: Trinity time tracker tool
  This package is part of Trinity, and a component of the KDE PIM module.
  See the 'kde-trinity' and 'tdepim-trinity' packages for more information.
 
-Package: tdepim-kfile-plugins-trinity
+Package: tdepim-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdepim-kfile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdepim-kfile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdepim-tdefile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdepim-tdefile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: KDE File dialog plugins for palm and vcf files
  File dialog plugins for palm and vcf files.
@@ -200,7 +200,7 @@ Replaces: kdepim-kio-plugins-trinity (<< 4:14.0.0)
 Breaks: kdepim-kio-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity pim I/O Slaves
- This package includes the pim kioslaves. This includes imap4, sieve,
+ This package includes the pim tdeioslaves. This includes imap4, sieve,
  and mbox.
  .
  This package is part of Trinity, and a component of the KDE PIM module.

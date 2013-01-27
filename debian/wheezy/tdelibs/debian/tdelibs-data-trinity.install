@@ -1,4 +1,4 @@
-debian/tmp/etc/trinity/khotnewstuffrc
+debian/tmp/etc/trinity/tdehotnewstuffrc
 debian/tmp/etc/trinity/colors/40.colors
 debian/tmp/etc/trinity/colors/Rainbow.colors
 debian/tmp/etc/trinity/colors/Royal.colors
@@ -38,14 +38,14 @@ debian/tmp/opt/trinity/share/apps/katepart/syntax/*.xml
 debian/tmp/opt/trinity/share/apps/tdecertpart/tdecertpart.rc
 debian/tmp/opt/trinity/share/apps/kcm_componentchooser/kcm_instantmessenger.desktop
 debian/tmp/opt/trinity/share/apps/kcm_componentchooser/kcm_tdetexteditor.desktop
-debian/tmp/opt/trinity/share/apps/kconf_update/kcookiescfg.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/kded.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/tdeprintrc.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/kio_help.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/kioslave.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/move_kio_help_cache.sh
-debian/tmp/opt/trinity/share/apps/kconf_update/proxytype.pl
-debian/tmp/opt/trinity/share/apps/kconf_update/useragent.pl
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kcookiescfg.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kded.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/tdeprintrc.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kio_help.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/tdeioslave.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/move_kio_help_cache.sh
+debian/tmp/opt/trinity/share/apps/tdeconf_update/proxytype.pl
+debian/tmp/opt/trinity/share/apps/tdeconf_update/useragent.pl
 debian/tmp/opt/trinity/share/apps/tdeprint/apsdriver1
 debian/tmp/opt/trinity/share/apps/tdeprint/apsdriver2
 debian/tmp/opt/trinity/share/apps/tdeprint/cupsd.conf.template
@@ -245,7 +245,7 @@ debian/tmp/opt/trinity/share/apps/tdehtml/icons/crystalsvg/64x64/actions/bug.png
 debian/tmp/opt/trinity/share/apps/tdehtml/tdehtml_browser.rc
 debian/tmp/opt/trinity/share/apps/tdehtml/tdehtml_popupmenu.rc
 debian/tmp/opt/trinity/share/apps/tdehtml/tdehtml.rc
-debian/tmp/opt/trinity/share/apps/kio_uiserver/icons/crystalsvg/16x16/apps/kio_uiserver.png
+debian/tmp/opt/trinity/share/apps/tdeio_uiserver/icons/crystalsvg/16x16/apps/tdeio_uiserver.png
 debian/tmp/opt/trinity/share/apps/kjava/icons/crystalsvg/16x16/actions/java.png
 debian/tmp/opt/trinity/share/apps/kjava/kjava.jar
 debian/tmp/opt/trinity/share/apps/kjava/kjava.policy
@@ -1724,7 +1724,7 @@ debian/tmp/opt/trinity/share/apps/LICENSES/GPL_V2
 debian/tmp/opt/trinity/share/apps/LICENSES/LGPL_V2
 debian/tmp/opt/trinity/share/apps/LICENSES/QPL_V1.0
 debian/tmp/opt/trinity/share/apps/proxyscout/eventsrc
-debian/tmp/opt/trinity/share/autostart/kab2kabc.desktop
+debian/tmp/opt/trinity/share/autostart/tdeab2tdeabc.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/10.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/1.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/2.png
@@ -3611,9 +3611,9 @@ debian/tmp/opt/trinity/share/services/kded/proxyscout.desktop
 debian/tmp/opt/trinity/share/services/kgzipfilter.desktop
 debian/tmp/opt/trinity/share/services/tdehtml.desktop
 debian/tmp/opt/trinity/share/services/tdehtmlimage.desktop
-debian/tmp/opt/trinity/share/services/kio_uiserver.desktop
+debian/tmp/opt/trinity/share/services/tdeio_uiserver.desktop
 debian/tmp/opt/trinity/share/services/kjavaappletviewer.desktop
-debian/tmp/opt/trinity/share/services/kmailservice.protocol
+debian/tmp/opt/trinity/share/services/tdemailservice.protocol
 debian/tmp/opt/trinity/share/services/tdemultipart.desktop
 debian/tmp/opt/trinity/share/services/knotify.desktop
 debian/tmp/opt/trinity/share/services/tderesources/kabc/dir.desktop
@@ -3666,7 +3666,7 @@ debian/tmp/opt/trinity/share/servicetypes/tdecmodule.desktop
 debian/tmp/opt/trinity/share/servicetypes/kcomprfilter.desktop
 debian/tmp/opt/trinity/share/servicetypes/kdatatool.desktop
 debian/tmp/opt/trinity/share/servicetypes/kdedmodule.desktop
-debian/tmp/opt/trinity/share/servicetypes/kfileplugin.desktop
+debian/tmp/opt/trinity/share/servicetypes/tdefileplugin.desktop
 debian/tmp/opt/trinity/share/servicetypes/tdemediaplayer.desktop
 debian/tmp/opt/trinity/share/servicetypes/tdemediaplayerengine.desktop
 debian/tmp/opt/trinity/share/servicetypes/kpart.desktop

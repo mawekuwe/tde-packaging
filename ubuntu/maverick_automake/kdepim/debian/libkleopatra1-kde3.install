@@ -7,8 +7,8 @@
 /opt/kde3/lib/libkpgp.so.2.2.0
 /opt/kde3/lib/libqgpgme.so.0
 /opt/kde3/lib/libqgpgme.so.0.0.0
-/opt/kde3/share/apps/kconf_update/kpgp-3.1-upgrade-address-data.pl
-/opt/kde3/share/apps/kconf_update/kpgp.upd
+/opt/kde3/share/apps/tdeconf_update/kpgp-3.1-upgrade-address-data.pl
+/opt/kde3/share/apps/tdeconf_update/kpgp.upd
 /opt/kde3/share/apps/libkleopatra
 /opt/kde3/share/icons/crystalsvg/16x16/apps/gpg.png
 /opt/kde3/share/icons/crystalsvg/16x16/apps/gpgsm.png

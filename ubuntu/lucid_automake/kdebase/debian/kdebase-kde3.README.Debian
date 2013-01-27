@@ -4,16 +4,16 @@ Kdm
 For notes on tdm, read: /opt/kde3/share/doc/tdm/README.Debian
 
 
-KDE and media kioslave support
+KDE and media tdeioslave support
 ==============================
 
-The media kioslave, new in KDE 3.4, supports the automatic mounting of
+The media tdeioslave, new in KDE 3.4, supports the automatic mounting of
 removable devices, such as CD-ROM and DVD drives, USB pen drives, digital
 cameras, and many other types of equipment.
 
 While some functionality is available without the use of HAL, media works
 best with HAL (and therefore udev), in combination with pmount. Media
-also extends the functionality of many other kioslaves. Check which
+also extends the functionality of many other tdeioslaves. Check which
 packages are recommended by the kdebase-kio-plugins package, and install
 accordingly.
 

@@ -110,8 +110,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_xinerama.la
 debian/tmp/opt/trinity/lib/trinity/kcm_xinerama.so
 debian/tmp/opt/trinity/lib/trinity/kcontrol.la
 debian/tmp/opt/trinity/lib/trinity/kcontrol.so
-debian/tmp/opt/trinity/lib/trinity/kfile_font.la
-debian/tmp/opt/trinity/lib/trinity/kfile_font.so
+debian/tmp/opt/trinity/lib/trinity/tdefile_font.la
+debian/tmp/opt/trinity/lib/trinity/tdefile_font.so
 debian/tmp/opt/trinity/lib/trinity/kio_fonts.la
 debian/tmp/opt/trinity/lib/trinity/kio_fonts.so
 debian/tmp/opt/trinity/lib/trinity/kstyle_keramik_config.la
@@ -233,7 +233,7 @@ debian/tmp/opt/trinity/share/mimelnk/fonts/system-folder.desktop
 debian/tmp/opt/trinity/share/services/fonts.protocol
 debian/tmp/opt/trinity/share/services/fontthumbnail.desktop
 debian/tmp/opt/trinity/share/services/kaccess.desktop
-debian/tmp/opt/trinity/share/services/kfile_font.desktop
+debian/tmp/opt/trinity/share/services/tdefile_font.desktop
 debian/tmp/opt/trinity/share/services/kfontviewpart.desktop
 debian/tmp/opt/trinity/share/services/kshorturifilter.desktop
 debian/tmp/opt/trinity/share/services/kuriikwsfilter.desktop

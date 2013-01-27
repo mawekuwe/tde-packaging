@@ -240,7 +240,7 @@ knemo (0.1.9-1) unstable; urgency=low
     for i[fw]config (instead of hardcoded path in *.cpp files)
   * added home page on kde-apps to control
   * Add to depends: tdelibs-bin (contains kded), kicker
-  * Add to recommends: kcontrol  (contains kcmshell, kcontrol)
+  * Add to recommends: kcontrol  (contains tdecmshell, kcontrol)
   * fixed version in VERSION file s/0.1.8/0.1.9/
   * README: s/&lt;/</
 

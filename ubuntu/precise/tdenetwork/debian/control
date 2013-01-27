@@ -12,7 +12,7 @@ Section: tde
 Architecture: all
 Replaces: kdenetwork-trinity (<< 4:14.0.0)
 Breaks: kdenetwork-trinity (<< 4:14.0.0)
-Depends: dcoprss-trinity (>= ${Source-Version}), tdenetwork-kfile-plugins-trinity (>= ${Source-Version}), kdict-trinity (>= ${Source-Version}), tdednssd-trinity (>= ${Source-Version}), kget-trinity (>= ${Source-Version}), knewsticker-trinity (>= ${Source-Version}), kopete-trinity (>= ${Source-Version}), kpf-trinity (>= ${Source-Version}), kppp-trinity (>= ${Source-Version}), krdc-trinity (>= ${Source-Version}), krfb-trinity (>= ${Source-Version}), ksirc-trinity (>= ${Source-Version}), kwifimanager-trinity (>= ${Source-Version}), librss1-trinity (>= ${Source-Version})
+Depends: dcoprss-trinity (>= ${Source-Version}), tdenetwork-tdefile-plugins-trinity (>= ${Source-Version}), kdict-trinity (>= ${Source-Version}), tdednssd-trinity (>= ${Source-Version}), kget-trinity (>= ${Source-Version}), knewsticker-trinity (>= ${Source-Version}), kopete-trinity (>= ${Source-Version}), kpf-trinity (>= ${Source-Version}), kppp-trinity (>= ${Source-Version}), krdc-trinity (>= ${Source-Version}), krfb-trinity (>= ${Source-Version}), ksirc-trinity (>= ${Source-Version}), kwifimanager-trinity (>= ${Source-Version}), librss1-trinity (>= ${Source-Version})
 Recommends: tdenetwork-filesharing-trinity (>= ${Source-Version}), ktalkd-trinity (>= ${Source-Version}), lisa-trinity (>= ${Source-Version})
 Suggests: tdenetwork-trinity-doc-html (>= ${Source-Version})
 Description: network-related apps from the official Trinity release
@@ -61,17 +61,17 @@ Description: Trinity network documentation in HTML format
  This package is part of KDE, and a component of the KDE network module.
  See the 'kde-trinity' and 'tdenetwork-trinity' packages for more information.
 
-Package: tdenetwork-kfile-plugins-trinity
+Package: tdenetwork-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdenetwork-kfile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdenetwork-kfile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdenetwork-tdefile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdenetwork-tdefile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Enhances: konqueror-trinity
 Description: torrent metainfo plugin for Trinity
  This package provides a metainformation plugin for bittorrent files.
  .
- Kde uses kfile-plugins to provide metainfo tab in the files properties
+ Kde uses tdefile-plugins to provide metainfo tab in the files properties
  dialog in konqueror and other file-handling applications.
  .
  This package is part of Trinity, as a component of the KDE network module.
@@ -340,7 +340,7 @@ Depends: ${shlibs:Depends}
 Recommends: avahi-daemon
 Suggests: avahi-autoipd | zeroconf
 Description: Zeroconf support for KDE
- A kioslave and kded module that provide Zeroconf support. Try
+ A tdeioslave and kded module that provide Zeroconf support. Try
  "zeroconf:/" in Konqueror.
  .
  This package is part of KDE, as a component of the KDE network module.

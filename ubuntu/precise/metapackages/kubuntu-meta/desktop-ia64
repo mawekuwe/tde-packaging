@@ -26,13 +26,13 @@ kcron
 kde-guidance
 kde-style-qtcurve
 kde-systemsettings
-kdeadmin-kfile-plugins
+kdeadmin-tdefile-plugins
 kdebase-kio-plugins
-kdegraphics-kfile-plugins
-kdemultimedia-kfile-plugins
+kdegraphics-tdefile-plugins
+kdemultimedia-tdefile-plugins
 kdemultimedia-kio-plugins
 kdenetwork-filesharing
-kdenetwork-kfile-plugins
+kdenetwork-tdefile-plugins
 kdepasswd
 kdeprint
 kdesktop
@@ -45,7 +45,7 @@ kio-apt
 kio-locate
 kmenuedit
 kmix
-knetworkconf
+knetwortdeconf
 konq-plugins
 konsole
 kpdf

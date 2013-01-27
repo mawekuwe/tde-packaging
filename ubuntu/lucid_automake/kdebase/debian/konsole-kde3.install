@@ -11,8 +11,8 @@ debian/tmp/opt/kde3/lib/libkdeinit_konsole.so
 debian/tmp/opt/kde3/share/applications/kde/konsole.desktop
 debian/tmp/opt/kde3/share/applications/kde/konsolesu.desktop
 debian/tmp/opt/kde3/share/applnk/.hidden/kcmkonsole.desktop
-debian/tmp/opt/kde3/share/apps/kconf_update/konsole.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/schemaStrip.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/konsole.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/schemaStrip.pl
 debian/tmp/opt/kde3/share/apps/konqueror/servicemenus/konsolehere.desktop
 debian/tmp/opt/kde3/share/apps/konsole/BlackOnLightColor.schema
 debian/tmp/opt/kde3/share/apps/konsole/BlackOnLightYellow.schema

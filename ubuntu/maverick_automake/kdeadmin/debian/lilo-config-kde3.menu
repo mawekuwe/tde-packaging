@@ -3,4 +3,4 @@
 	section="Applications/System/Administration"\
 	hints="KDE"\
 	title="lilo-config"\
-	command="/opt/kde3/bin/kdesu kcmshell lilo"
+	command="/opt/kde3/bin/kdesu tdecmshell lilo"

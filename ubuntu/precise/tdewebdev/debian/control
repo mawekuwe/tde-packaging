@@ -13,7 +13,7 @@ Architecture: all
 Section: tde
 Replaces: kdewebdev-trinity (<< 4:14.0.0)
 Breaks: kdewebdev-trinity (<< 4:14.0.0)
-Depends: quanta-trinity (>= ${source:Version}), kfilereplace-trinity (>= ${source:Version}), kimagemapeditor-trinity (>= ${source:Version}), klinkstatus-trinity (>= ${source:Version}), kommander-trinity (>= ${source:Version}), kxsldbg-trinity (>= ${source:Version})
+Depends: quanta-trinity (>= ${source:Version}), tdefilereplace-trinity (>= ${source:Version}), kimagemapeditor-trinity (>= ${source:Version}), klinkstatus-trinity (>= ${source:Version}), kommander-trinity (>= ${source:Version}), kxsldbg-trinity (>= ${source:Version})
 Suggests: kommander-trinity-dev (>= ${source:Version}), tdewebdev-trinity-doc-html (>= ${source:Version})
 Description: web development apps from the official KDE release [Trinity]
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -49,7 +49,7 @@ Architecture: any
 Section: web
 Replaces: quanta-trinity (<< 4:14.0.0)
 Breaks: quanta-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, kfilereplace-trinity, klinkstatus-trinity, kommander-trinity, quanta-data-trinity, tidy
+Depends: ${shlibs:Depends}, tdefilereplace-trinity, klinkstatus-trinity, kommander-trinity, quanta-data-trinity, tidy
 Recommends: cervisia-trinity, gnupg, kompare-trinity, kxsldbg-trinity, docbook-defguide
 Suggests: gubed, kimagemapeditor-trinity, wget, khelpcenter-trinity, php-doc
 Description: web development environment for KDE [Trinity]
@@ -85,11 +85,11 @@ Description: data files for Quanta Plus web development environment [Trinity]
  This package is part of KDE, as a component of the KDE web development module.
  See the 'kde-trinity' and 'tdewebdev-trinity' packages for more information.
 
-Package: kfilereplace-trinity
+Package: tdefilereplace-trinity
 Architecture: any
 Section: tde
-Replaces: kfilereplace-trinity (<< 4:14.0.0)
-Breaks: kfilereplace-trinity (<< 4:14.0.0)
+Replaces: tdefilereplace-trinity (<< 4:14.0.0)
+Breaks: tdefilereplace-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: quanta-trinity
 Description: batch search-and-replace component for KDE [Trinity]

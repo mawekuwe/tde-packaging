@@ -33,7 +33,7 @@ debian/tmp/opt/trinity/share/apps/kate/icons/locolor/22x22/actions/unindent.png
 debian/tmp/opt/trinity/share/apps/kate/kateui.rc
 debian/tmp/opt/trinity/share/apps/kate/pics/sessionchooser.png
 debian/tmp/opt/trinity/share/apps/kate/tips
-debian/tmp/opt/trinity/share/apps/kconf_update/kate-2.4.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kate-2.4.upd
 debian/tmp/opt/trinity/share/apps/kwrite/kwriteui.rc
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate/advanced.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate/common

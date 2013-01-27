@@ -25,7 +25,7 @@ DEB_FIXPERMS_EXCLUDE := usr/bin/kdesud
 
 DEB_DH_STRIP_ARGS  := --dbg-package=kdebase-kde3-dbg
 
-DOC_HTML_PRUNE := kinfocenter ksplashml kcontrol khelpcenter kdesu knetattach kioslave kxkb kdebugdialog kdcop
+DOC_HTML_PRUNE := kinfocenter ksplashml kcontrol khelpcenter kdesu knetattach tdeioslave kxkb kdebugdialog kdcop
 
 PACKAGES_WITH_LIBS := kate-kde3 kcontrol-kde3 kdebase-kde3-bin kicker-kde3 konqueror-kde3 ksplash-kde3 \
 			ksysguard-kde3 kwin-kde3 libkonq4-kde3

@@ -1,4 +1,4 @@
-./debian/man/kconfig_compiler-trinity.1
+./debian/man/tdeconfig_compiler-trinity.1
 ./debian/man/ksvgtopng-trinity.1
 ./debian/man/tdeunittestmodrunner-trinity.1
 ./debian/man/makekdewidgets-trinity.1

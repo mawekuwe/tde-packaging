@@ -1,4 +1,0 @@
-#!/bin/sh
-
-export TDEDIRS=/usr/:/opt/trinity/
-/opt/trinity/bin/kcmshell.real $1 $2 $3 $4 $5 $6 $7 $8

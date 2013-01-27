@@ -18,7 +18,7 @@
 /opt/kde3/lib/libkorganizer_eventviewer.so.1
 /opt/kde3/lib/libkorganizer_eventviewer.so.1.0.0
 /opt/kde3/share/applications/kde/korganizer.desktop
-/opt/kde3/share/apps/kconf_update/korganizer.upd
+/opt/kde3/share/apps/tdeconf_update/korganizer.upd
 /opt/kde3/share/apps/korgac
 /opt/kde3/share/apps/korganizer
 /opt/kde3/share/autostart/korgac.desktop

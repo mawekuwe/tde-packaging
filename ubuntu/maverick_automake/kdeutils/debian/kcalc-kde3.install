@@ -4,7 +4,7 @@ debian/tmp/opt/kde3/lib/kde3/kcalc.so
 debian/tmp/opt/kde3/lib/libkdeinit_kcalc.so
 debian/tmp/opt/kde3/share/applications/kde/kcalc.desktop
 debian/tmp/opt/kde3/share/apps/kcalc/kcalcui.rc
-debian/tmp/opt/kde3/share/apps/kconf_update/kcalcrc.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kcalcrc.upd
 debian/tmp/opt/kde3/share/config.kcfg/kcalc.kcfg
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcalc/common
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcalc/index.cache.bz2

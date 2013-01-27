@@ -10,7 +10,7 @@ Standards-Version: 3.8.3
 Package: kdeaddons-kde3
 Architecture: all
 Section: kde
-Depends: atlantikdesigner-kde3 (>= ${Source-Version}), kaddressbook-plugins-kde3 (>= ${Source-Version}), kate-plugins-kde3 (>= ${Source-Version}), kdeaddons-kfile-plugins-kde3 (>= ${Source-Version}), kicker-applets-kde3 (>= ${Source-Version}), konq-plugins-kde3 (>= ${Source-Version}), ksig-kde3 (>= ${Source-Version}), noatun-plugins-kde3 (>= ${Source-Version})
+Depends: atlantikdesigner-kde3 (>= ${Source-Version}), kaddressbook-plugins-kde3 (>= ${Source-Version}), kate-plugins-kde3 (>= ${Source-Version}), kdeaddons-tdefile-plugins-kde3 (>= ${Source-Version}), kicker-applets-kde3 (>= ${Source-Version}), konq-plugins-kde3 (>= ${Source-Version}), ksig-kde3 (>= ${Source-Version}), noatun-plugins-kde3 (>= ${Source-Version})
 Suggests: kdeaddons-kde3-doc-html
 Description: add-on plugins and applets provided with KDE3
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -92,7 +92,7 @@ Description: plugins for Kate, the KDE Advanced Text Editor
  This package is part of KDE3, as a component of the KDE addons module.
  See the 'kde-kde3' and 'kdeaddons-kde3' packages for more information.
 
-Package: kdeaddons-kfile-plugins-kde3
+Package: kdeaddons-tdefile-plugins-kde3
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}

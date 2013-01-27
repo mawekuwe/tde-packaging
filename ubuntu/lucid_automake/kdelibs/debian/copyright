@@ -12,8 +12,8 @@ systems, the complete text of the BSD, GPL and LGPL licenses can be found
 in the /usr/share/common-licenses/BSD, /usr/share/common-licenses/GPL and
 /usr/share/common-licenses/LGPL files.
 
-libartskde, interfaces, kabc, kate, tdecert, kconf_update, kdecore, kded, kdefx,
-kdeprint, kdesu, kdeui, kdewidgets, tdehtml, kimgio, kinit, kio, kioslave, kjs,
+libartskde, interfaces, kabc, kate, tdecert, tdeconf_update, kdecore, kded, kdefx,
+kdeprint, kdesu, kdeui, kdewidgets, tdehtml, kimgio, kinit, kio, tdeioslave, kjs,
 tdeparts, ksmartcard, tdespell, kstyles, libtdemid, libtdescreensaver
 ------------------------------------------------------------------------------
 LGPL

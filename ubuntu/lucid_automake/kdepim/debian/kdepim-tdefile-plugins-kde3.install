@@ -1,0 +1,9 @@
+/opt/kde3/lib/kde3/tdefile_ics.la
+/opt/kde3/lib/kde3/tdefile_ics.so
+/opt/kde3/lib/kde3/tdefile_palm.la
+/opt/kde3/lib/kde3/tdefile_palm.so
+/opt/kde3/lib/kde3/tdefile_vcf.la
+/opt/kde3/lib/kde3/tdefile_vcf.so
+/opt/kde3/share/services/tdefile_ics.desktop
+/opt/kde3/share/services/tdefile_palm.desktop
+/opt/kde3/share/services/tdefile_vcf.desktop

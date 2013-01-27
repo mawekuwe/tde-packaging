@@ -54,10 +54,10 @@ debian/tmp/opt/trinity/share/applications/tde/konquerorsu.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/konqfilemgr.desktop
 debian/tmp/opt/trinity/share/applnk/Internet/keditbookmarks.desktop
 debian/tmp/opt/trinity/share/applnk/konqueror.desktop
-debian/tmp/opt/trinity/share/apps/kconf_update/kfmclient_3_2.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/kfmclient_3_2_update.sh
-debian/tmp/opt/trinity/share/apps/kconf_update/konqsidebartng.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/move_konqsidebartng_entries.sh
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kfmclient_3_2.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kfmclient_3_2_update.sh
+debian/tmp/opt/trinity/share/apps/tdeconf_update/konqsidebartng.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/move_konqsidebartng_entries.sh
 debian/tmp/opt/trinity/share/apps/keditbookmarks/keditbookmarks-genui.rc
 debian/tmp/opt/trinity/share/apps/keditbookmarks/keditbookmarksui.rc
 debian/tmp/opt/trinity/share/apps/tdehtml/kpartplugins/tdehtmlkttsd.desktop

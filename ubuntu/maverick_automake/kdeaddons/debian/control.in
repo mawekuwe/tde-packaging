@@ -10,7 +10,7 @@ Standards-Version: 3.7.2
 Package: kdeaddons
 Architecture: all
 Section: kde
-Depends: atlantikdesigner (>= ${Source-Version}), kaddressbook-plugins (>= ${Source-Version}), kate-plugins (>= ${Source-Version}), kdeaddons-kfile-plugins (>= ${Source-Version}), kicker-applets (>= ${Source-Version}), knewsticker-scripts (>= ${Source-Version}), konq-plugins (>= ${Source-Version}), ksig (>= ${Source-Version}), noatun-plugins (>= ${Source-Version})
+Depends: atlantikdesigner (>= ${Source-Version}), kaddressbook-plugins (>= ${Source-Version}), kate-plugins (>= ${Source-Version}), kdeaddons-tdefile-plugins (>= ${Source-Version}), kicker-applets (>= ${Source-Version}), knewsticker-scripts (>= ${Source-Version}), konq-plugins (>= ${Source-Version}), ksig (>= ${Source-Version}), noatun-plugins (>= ${Source-Version})
 Suggests: kdeaddons-doc-html
 Description: add-on plugins and applets provided with KDE
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -92,7 +92,7 @@ Description: plugins for Kate, the KDE Advanced Text Editor
  This package is part of KDE, as a component of the KDE addons module.
  See the 'kde' and 'kdeaddons' packages for more information.
 
-Package: kdeaddons-kfile-plugins
+Package: kdeaddons-tdefile-plugins
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}

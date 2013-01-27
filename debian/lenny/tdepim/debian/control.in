@@ -19,7 +19,7 @@ Standards-Version: 3.7.2
 Package: tdepim
 Section: tde
 Architecture: all
-Depends: akregator (>= ${Source-Version}), kaddressbook (>= ${Source-Version}), kalarm (>= ${Source-Version}), kandy (>= ${Source-Version}), karm (>= ${Source-Version}), tdepim-kfile-plugins (>= ${Source-Version}), tdepim-kio-plugins (>= ${Source-Version}), tdepim-tderesources (>= ${Source-Version}), tdepim-wizards (>= ${Source-Version}), kitchensync (>= ${Source-Version}), kleopatra (>= ${Source-Version}), kmail (>= ${Source-Version}), kmailcvt (>= ${Source-Version}), knode (>= ${Source-Version}), knotes (>= ${Source-Version}), konsolekalendar (>= ${Source-Version}), kontact (>= ${Source-Version}), korganizer (>= ${Source-Version}), korn (>= ${Source-Version}), ktnef (>= ${Source-Version}), networkstatus (>= ${Source-Version}), libindex0 (>= ${Source-Version}), libkcal2b (>= ${Source-Version}), libtdepim1a (>= ${Source-Version}), libkgantt0 (>= ${Source-Version}), libkleopatra1 (>= ${Source-Version}), libkpimexchange1 (>= ${Source-Version}), libkpimidentities1 (>= ${Source-Version}), libksieve0 (>= ${Source-Version}), libktnef1 (>= ${Source-Version}), libmimelib1c2a (>= ${Source-Version})
+Depends: akregator (>= ${Source-Version}), kaddressbook (>= ${Source-Version}), kalarm (>= ${Source-Version}), kandy (>= ${Source-Version}), karm (>= ${Source-Version}), tdepim-tdefile-plugins (>= ${Source-Version}), tdepim-kio-plugins (>= ${Source-Version}), tdepim-tderesources (>= ${Source-Version}), tdepim-wizards (>= ${Source-Version}), kitchensync (>= ${Source-Version}), kleopatra (>= ${Source-Version}), kmail (>= ${Source-Version}), kmailcvt (>= ${Source-Version}), knode (>= ${Source-Version}), knotes (>= ${Source-Version}), konsolekalendar (>= ${Source-Version}), kontact (>= ${Source-Version}), korganizer (>= ${Source-Version}), korn (>= ${Source-Version}), ktnef (>= ${Source-Version}), networkstatus (>= ${Source-Version}), libindex0 (>= ${Source-Version}), libkcal2b (>= ${Source-Version}), libtdepim1a (>= ${Source-Version}), libkgantt0 (>= ${Source-Version}), libkleopatra1 (>= ${Source-Version}), libkpimexchange1 (>= ${Source-Version}), libkpimidentities1 (>= ${Source-Version}), libksieve0 (>= ${Source-Version}), libktnef1 (>= ${Source-Version}), libmimelib1c2a (>= ${Source-Version})
 Suggests: tdepim-doc-html
 Description: Personal Information Management apps from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -161,7 +161,7 @@ Description: KDE time tracker tool
  This package is part of KDE, and a component of the KDE PIM module.
  See the 'kde' and 'tdepim' packages for more information.
 
-Package: tdepim-kfile-plugins
+Package: tdepim-tdefile-plugins
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -177,7 +177,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: tdebase-kio-plugins (<< 4:3.4.0)
 Description: KDE pim I/O Slaves
- This package includes the pim kioslaves. This includes imap4, sieve,
+ This package includes the pim tdeioslaves. This includes imap4, sieve,
  and mbox.
  .
  This package is part of KDE, and a component of the KDE PIM module.

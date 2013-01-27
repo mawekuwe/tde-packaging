@@ -1079,7 +1079,7 @@ konversation (0.13+20031123-1) experimental; urgency=low
   * debian/rules:
     + install examples/dcop-away.sh executable, as linda does not like it
       otherwise, and some other packages also do this (exim4, autotools, ...)
-    + make usr/share/apps/kconf_update/*.pl executable as well, for a similar
+    + make usr/share/apps/tdeconf_update/*.pl executable as well, for a similar
       reason (quiets lintian, and there is precedent for either way)
 
  -- Nathaniel W. Turner <nate@houseofnate.net>  Sun, 23 Nov 2003 18:22:31 -0500

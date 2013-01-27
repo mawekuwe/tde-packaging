@@ -1,5 +1,5 @@
 debian/tmp/opt/trinity/bin/noatun
-debian/tmp/opt/trinity/lib/kconf_update_bin/noatun20update
+debian/tmp/opt/trinity/lib/tdeconf_update_bin/noatun20update
 debian/tmp/opt/trinity/lib/trinity/noatun.la
 debian/tmp/opt/trinity/lib/trinity/noatun.so
 debian/tmp/opt/trinity/lib/trinity/noatun_dcopiface.la
@@ -72,7 +72,7 @@ debian/tmp/opt/trinity/lib/mcop/noatunarts.mcoptype
 debian/tmp/opt/trinity/lib/mcop/winskinvis.mcopclass
 debian/tmp/opt/trinity/lib/mcop/winskinvis.mcoptype
 debian/tmp/opt/trinity/share/applications/tde/noatun.desktop
-debian/tmp/opt/trinity/share/apps/kconf_update/noatun.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/noatun.upd
 debian/tmp/opt/trinity/share/apps/noatun/dcopiface.plugin
 debian/tmp/opt/trinity/share/apps/noatun/eq.preset/preset.dance
 debian/tmp/opt/trinity/share/apps/noatun/eq.preset/preset.jazz

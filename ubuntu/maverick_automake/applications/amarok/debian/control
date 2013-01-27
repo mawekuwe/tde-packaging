@@ -29,7 +29,7 @@ Description: versatile and easy to use audio player for KDE3
    - rapid playlist creation, with drag and drop from a directory view
    - nice playlist browser for your existing playlists (PLS or M3U formats)
    - collection-indexing support, for smart browsing and playlist creation
-   - possibility of accessing media via kioslaves, allowing you to play
+   - possibility of accessing media via tdeioslaves, allowing you to play
      via smb:// or fish:// (normal streams are of course supported)
    - inline ID3 tag editing, capable of retrieving tags via MusicBrainz
    - album cover support: automatically displays album covers from the

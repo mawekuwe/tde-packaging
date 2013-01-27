@@ -12,7 +12,7 @@ Section: tde
 Architecture: all
 Replaces: kdeadmin-trinity (<< 4:14.0.0)
 Breaks: kdeadmin-trinity (<< 4:14.0.0)
-Depends: kcron-trinity (>= ${Source-Version}), kdat-trinity (>= ${Source-Version}), tdeadmin-kfile-plugins-trinity (>= ${Source-Version}), knetworkconf-trinity (>= ${Source-Version}), kpackage-trinity (>= ${Source-Version}), ksysv-trinity (>= ${Source-Version}), kuser-trinity (>= ${Source-Version})
+Depends: kcron-trinity (>= ${Source-Version}), kdat-trinity (>= ${Source-Version}), tdeadmin-tdefile-plugins-trinity (>= ${Source-Version}), knetwortdeconf-trinity (>= ${Source-Version}), kpackage-trinity (>= ${Source-Version}), ksysv-trinity (>= ${Source-Version}), kuser-trinity (>= ${Source-Version})
 Recommends: lilo-config-trinity (>= ${Source-Version})
 Suggests: tdeadmin-trinity-doc-html (>= ${Source-Version})
 Description: system administration tools from the official Trinity release
@@ -79,11 +79,11 @@ Description: a Trinity tape backup tool
  This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
-Package: tdeadmin-kfile-plugins-trinity
+Package: tdeadmin-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdeadmin-kfile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdeadmin-kfile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdeadmin-tdefile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdeadmin-tdefile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity file metainfo plugins for deb and rpm files
  File metainfo plugins for deb and rpm package files.
@@ -91,11 +91,11 @@ Description: Trinity file metainfo plugins for deb and rpm files
  This package is part of Trinity, as a component of the KDE administration module.
  See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
 
-Package: knetworkconf-trinity
+Package: knetwortdeconf-trinity
 Section: tde
 Architecture: any
-Replaces: knetworkconf-trinity (<< 4:14.0.0)
-Breaks: knetworkconf-trinity (<< 4:14.0.0)
+Replaces: knetwortdeconf-trinity (<< 4:14.0.0)
+Breaks: knetwortdeconf-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity network configuration tool
  This is a KDE control center module to configure TCP/IP settings.  It

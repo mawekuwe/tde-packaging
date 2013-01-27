@@ -10,7 +10,7 @@ Standards-Version: 3.8.3
 Package: kdegraphics-kde3
 Section: kde
 Architecture: all
-Depends: kamera-kde3 (>= ${source:Version}), kcoloredit-kde3 (>= ${source:Version}), kdegraphics-kfile-plugins-kde3 (>= ${source:Version}), kdvi-kde3 (>= ${source:Version}), kfax-kde3 (>= ${source:Version}), kfaxview-kde3 (>= ${source:Version}), kgamma-kde3 (>= ${source:Version}), kghostview-kde3 (>= ${source:Version}), kiconedit-kde3 (>= ${source:Version}), kmrml-kde3 (>= ${source:Version}), kolourpaint-kde3 (>= ${source:Version}), kooka-kde3 (>= ${source:Version}), kpdf-kde3 (>= ${source:Version}), kpovmodeler-kde3 (>= ${source:Version}), kruler-kde3 (>= ${source:Version}), ksnapshot-kde3 (>= ${source:Version}), ksvg-kde3 (>= ${source:Version}), kview-kde3 (>= ${source:Version}), kviewshell-kde3 (>= ${source:Version}), libkscan1-kde3 (>= ${source:Version})
+Depends: kamera-kde3 (>= ${source:Version}), kcoloredit-kde3 (>= ${source:Version}), kdegraphics-tdefile-plugins-kde3 (>= ${source:Version}), kdvi-kde3 (>= ${source:Version}), kfax-kde3 (>= ${source:Version}), kfaxview-kde3 (>= ${source:Version}), kgamma-kde3 (>= ${source:Version}), kghostview-kde3 (>= ${source:Version}), kiconedit-kde3 (>= ${source:Version}), kmrml-kde3 (>= ${source:Version}), kolourpaint-kde3 (>= ${source:Version}), kooka-kde3 (>= ${source:Version}), kpdf-kde3 (>= ${source:Version}), kpovmodeler-kde3 (>= ${source:Version}), kruler-kde3 (>= ${source:Version}), ksnapshot-kde3 (>= ${source:Version}), ksvg-kde3 (>= ${source:Version}), kview-kde3 (>= ${source:Version}), kviewshell-kde3 (>= ${source:Version}), libkscan1-kde3 (>= ${source:Version})
 Suggests: kdegraphics-kde3-doc-html (>= ${source:Version})
 Description: graphics apps from the official KDE3 release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -74,7 +74,7 @@ Description: development files for the KDE graphics module
  This package is part of KDE3, as a component of the KDE graphics module.
  See the 'kde-kde3' and 'kdegraphics-kde3' packages for more information.
 
-Package: kdegraphics-kfile-plugins-kde3
+Package: kdegraphics-tdefile-plugins-kde3
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}

@@ -10,7 +10,7 @@ Standards-Version: 3.7.2
 Package: tdenetwork
 Section: tde
 Architecture: all
-Depends: dcoprss (>= ${Source-Version}), tdenetwork-kfile-plugins (>= ${Source-Version}), kdict (>= ${Source-Version}), tdednssd (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64], kget (>= ${Source-Version}), knewsticker (>= ${Source-Version}), kopete (>= ${Source-Version}), kpf (>= ${Source-Version}), kppp (>= ${Source-Version}), krdc (>= ${Source-Version}), krfb (>= ${Source-Version}), ksirc (>= ${Source-Version}), kwifimanager (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], librss1 (>= ${Source-Version})
+Depends: dcoprss (>= ${Source-Version}), tdenetwork-tdefile-plugins (>= ${Source-Version}), kdict (>= ${Source-Version}), tdednssd (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64], kget (>= ${Source-Version}), knewsticker (>= ${Source-Version}), kopete (>= ${Source-Version}), kpf (>= ${Source-Version}), kppp (>= ${Source-Version}), krdc (>= ${Source-Version}), krfb (>= ${Source-Version}), ksirc (>= ${Source-Version}), kwifimanager (>= ${Source-Version}) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !s390 !s390x], librss1 (>= ${Source-Version})
 Recommends: tdenetwork-filesharing (>= ${Source-Version}), ktalkd (>= ${Source-Version}), lisa (>= ${Source-Version})
 Suggests: tdenetwork-doc-html (>= ${Source-Version})
 Description: network-related apps from the official KDE release
@@ -55,7 +55,7 @@ Description: KDE network documentation in HTML format
  This package is part of KDE, and a component of the KDE network module.
  See the 'kde' and 'tdenetwork' packages for more information.
 
-Package: tdenetwork-kfile-plugins
+Package: tdenetwork-tdefile-plugins
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -63,7 +63,7 @@ Enhances: konqueror
 Description: torrent metainfo plugin for KDE
  This package provides a metainformation plugin for bittorrent files.
  .
- Kde uses kfile-plugins to provide metainfo tab in the files properties
+ Kde uses tdefile-plugins to provide metainfo tab in the files properties
  dialog in konqueror and other file-handling applications.
  .
  This package is part of KDE, as a component of the KDE network module.
@@ -306,7 +306,7 @@ Depends: ${shlibs:Depends}
 Recommends: avahi-daemon
 Suggests: avahi-autoipd | zeroconf
 Description: Zeroconf support for KDE
- A kioslave and kded module that provide Zeroconf support. Try
+ A tdeioslave and kded module that provide Zeroconf support. Try
  "zeroconf:/" in Konqueror.
  .
  This package is part of KDE, as a component of the KDE network module.

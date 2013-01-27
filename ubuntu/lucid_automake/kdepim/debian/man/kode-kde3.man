@@ -15,8 +15,8 @@ Create a class.
 .B -d, --create-dialog
 Create a dialog.
 .TP
-.B --create-kioslave
-Create a kioslave.
+.B --create-tdeioslave
+Create a tdeioslave.
 .TP
 .B -y, --codify
 Create generator code for the given source.
@@ -55,7 +55,7 @@ Add a QT exception to the GPL.
 Create a singleton class.
 .TP
 .B --protocol
-Specifies the kioslave protocol name.
+Specifies the tdeioslave protocol name.
 .TP
 .B filename
 Specifies the source code file name for output.

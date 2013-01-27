@@ -20,7 +20,7 @@ Standards-Version: 3.8.3
 Package: kdepim-kde3
 Section: kde
 Architecture: all
-Depends: akregator-kde3 (>= ${Source-Version}), kaddressbook-kde3 (>= ${Source-Version}), kalarm-kde3 (>= ${Source-Version}), kandy-kde3 (>= ${Source-Version}), karm-kde3 (>= ${Source-Version}), kdepim-kfile-plugins-kde3 (>= ${Source-Version}), kdepim-kio-plugins-kde3 (>= ${Source-Version}), kdepim-tderesources-kde3 (>= ${Source-Version}), kdepim-wizards-kde3 (>= ${Source-Version}), kitchensync-kde3 (>= ${Source-Version}), kleopatra-kde3 (>= ${Source-Version}), kmail-kde3 (>= ${Source-Version}), kmailcvt-kde3 (>= ${Source-Version}), knode-kde3 (>= ${Source-Version}), knotes-kde3 (>= ${Source-Version}), konsolekalendar-kde3 (>= ${Source-Version}), kontact-kde3 (>= ${Source-Version}), korganizer-kde3 (>= ${Source-Version}), korn-kde3 (>= ${Source-Version}), kpilot-kde3 (>= ${Source-Version}), ktnef-kde3 (>= ${Source-Version}), libindex0-kde3 (>= ${Source-Version}), libkcal2b-kde3 (>= ${Source-Version}), libkdepim1a-kde3 (>= ${Source-Version}), libkgantt0-kde3 (>= ${Source-Version}), libkleopatra1-kde3 (>= ${Source-Version}), libkpimexchange1-kde3 (>= ${Source-Version}), libkpimidentities1-kde3 (>= ${Source-Version}), libksieve0-kde3 (>= ${Source-Version}), libktnef1-kde3 (>= ${Source-Version}), libmimelib1c2a-kde3 (>= ${Source-Version})
+Depends: akregator-kde3 (>= ${Source-Version}), kaddressbook-kde3 (>= ${Source-Version}), kalarm-kde3 (>= ${Source-Version}), kandy-kde3 (>= ${Source-Version}), karm-kde3 (>= ${Source-Version}), kdepim-tdefile-plugins-kde3 (>= ${Source-Version}), kdepim-kio-plugins-kde3 (>= ${Source-Version}), kdepim-tderesources-kde3 (>= ${Source-Version}), kdepim-wizards-kde3 (>= ${Source-Version}), kitchensync-kde3 (>= ${Source-Version}), kleopatra-kde3 (>= ${Source-Version}), kmail-kde3 (>= ${Source-Version}), kmailcvt-kde3 (>= ${Source-Version}), knode-kde3 (>= ${Source-Version}), knotes-kde3 (>= ${Source-Version}), konsolekalendar-kde3 (>= ${Source-Version}), kontact-kde3 (>= ${Source-Version}), korganizer-kde3 (>= ${Source-Version}), korn-kde3 (>= ${Source-Version}), kpilot-kde3 (>= ${Source-Version}), ktnef-kde3 (>= ${Source-Version}), libindex0-kde3 (>= ${Source-Version}), libkcal2b-kde3 (>= ${Source-Version}), libkdepim1a-kde3 (>= ${Source-Version}), libkgantt0-kde3 (>= ${Source-Version}), libkleopatra1-kde3 (>= ${Source-Version}), libkpimexchange1-kde3 (>= ${Source-Version}), libkpimidentities1-kde3 (>= ${Source-Version}), libksieve0-kde3 (>= ${Source-Version}), libktnef1-kde3 (>= ${Source-Version}), libmimelib1c2a-kde3 (>= ${Source-Version})
 Suggests: kdepim-kde3-doc-html
 Description: Personal Information Management apps from the official KDE3 release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -166,7 +166,7 @@ Description: KDE3 time tracker tool
  This package is part of KDE3, and a component of the KDE PIM module.
  See the 'kde-kde3' and 'kdepim-kde3' packages for more information.
 
-Package: kdepim-kfile-plugins-kde3
+Package: kdepim-tdefile-plugins-kde3
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -182,7 +182,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: kdebase-kio-plugins-kde3 (<< 4:3.4.0)
 Description: KDE3 pim I/O Slaves
- This package includes the pim kioslaves. This includes imap4, sieve,
+ This package includes the pim tdeioslaves. This includes imap4, sieve,
  and mbox.
  .
  This package is part of KDE3, and a component of the KDE PIM module.

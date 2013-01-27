@@ -31,9 +31,9 @@ binary-install/konq-plugins-trinity::
 #		debian/konq-plugins-trinity/opt/trinity/share/man/man1/orient.py.1; \
 #	rm -rf debian/konq-plugins-trinity/opt/trinity/share/man/py;
 
-binary-install/tdeaddons-kfile-plugins-trinity::
+binary-install/tdeaddons-tdefile-plugins-trinity::
 	install -p -D -m644 renamedlgplugins/README \
-		debian/tdeaddons-kfile-plugins-trinity/opt/trinity/share/doc/tdeaddons-kfile-plugins/README.renamedlgplugins
+		debian/tdeaddons-tdefile-plugins-trinity/opt/trinity/share/doc/tdeaddons-tdefile-plugins/README.renamedlgplugins
 
 binary-install/knewsticker-scripts-trinity::
 	chmod 755 debian/knewsticker-scripts-trinity/opt/trinity/share/apps/knewsticker/scripts/*.pl

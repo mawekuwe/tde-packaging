@@ -25,7 +25,7 @@ debian/tmp/opt/kde3/share/apps/irkick/icons/hicolor/32x32/actions/ledorange.png
 debian/tmp/opt/kde3/share/apps/irkick/icons/hicolor/32x32/actions/ledpurple.png
 debian/tmp/opt/kde3/share/apps/irkick/icons/hicolor/32x32/actions/ledred.png
 debian/tmp/opt/kde3/share/apps/irkick/icons/hicolor/32x32/actions/ledyellow.png
-debian/tmp/opt/kde3/share/apps/profiles/klauncher.profile.xml
+debian/tmp/opt/kde3/share/apps/profiles/tdelauncher.profile.xml
 debian/tmp/opt/kde3/share/apps/profiles/konqueror.profile.xml
 debian/tmp/opt/kde3/share/apps/profiles/noatun.profile.xml
 debian/tmp/opt/kde3/share/apps/profiles/profile.dtd

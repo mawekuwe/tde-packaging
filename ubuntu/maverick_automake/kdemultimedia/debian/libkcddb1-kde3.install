@@ -3,5 +3,5 @@ debian/tmp/opt/kde3/lib/kde3/kcm_cddb.so
 debian/tmp/opt/kde3/lib/libkcddb.so.1
 debian/tmp/opt/kde3/lib/libkcddb.so.1.0.0
 debian/tmp/opt/kde3/share/applications/kde/libkcddb.desktop
-debian/tmp/opt/kde3/share/apps/kconf_update/kcmcddb-emailsettings.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kcmcddb-emailsettings.upd
 debian/tmp/opt/kde3/share/config.kcfg/libkcddb.kcfg

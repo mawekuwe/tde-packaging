@@ -228,7 +228,7 @@ tdebase-trinity (4:3.5.10-0ubuntu3~intrepid8) intrepid; urgency=low
 
 tdebase-trinity (4:3.5.10-0ubuntu3~intrepid5) intrepid; urgency=low
 
-  * Fixed kioslave fish
+  * Fixed tdeioslave fish
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sun, 07 Dec 2008 21:58:00 -0600
 
@@ -1340,7 +1340,7 @@ tdebase (4:3.5.5a.dfsg.1-1ubuntu8) feisty; urgency=low
 
 tdebase (4:3.5.5a.dfsg.1-1ubuntu7) feisty; urgency=low
 
-  * Removed debian/tmp/usr/share/services/kfile_trash.desktop
+  * Removed debian/tmp/usr/share/services/tdefile_trash.desktop
     from tdebase-kio-plugins.install
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 21 Nov 2006 00:01:43 +0200
@@ -3052,7 +3052,7 @@ tdebase (4:3.4.0-0pre4) alioth; urgency=low
 
   * Added README.Debian files for kcontrol and tdebase-kio-plugins, explaining
     how to setup Logitech mouse advanced configuration, and the media
-    kioslave.
+    tdeioslave.
 
   * New tdebase-doc-html package, containing doc-base registered HTML versions
     of application handbooks, for users without Konqueror or KHelpCenter.
@@ -4264,7 +4264,7 @@ tdebase (4:2.1-final-1) unstable; urgency=low
   * Fixes for khelpcenter hangs (Closes: #81683)
   * konq provides ftp-client as well
   * Update /usr/bin/kde2 script
-  * Compile ldap kioslave
+  * Compile ldap tdeioslave
   * Updated tdm init.d script
   * Fix these rendering issues (Closes: #87183)
  

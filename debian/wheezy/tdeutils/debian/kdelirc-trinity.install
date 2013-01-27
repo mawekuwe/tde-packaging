@@ -25,7 +25,7 @@ debian/tmp/opt/trinity/share/apps/irkick/icons/hicolor/32x32/actions/ledorange.p
 debian/tmp/opt/trinity/share/apps/irkick/icons/hicolor/32x32/actions/ledpurple.png
 debian/tmp/opt/trinity/share/apps/irkick/icons/hicolor/32x32/actions/ledred.png
 debian/tmp/opt/trinity/share/apps/irkick/icons/hicolor/32x32/actions/ledyellow.png
-debian/tmp/opt/trinity/share/apps/profiles/klauncher.profile.xml
+debian/tmp/opt/trinity/share/apps/profiles/tdelauncher.profile.xml
 debian/tmp/opt/trinity/share/apps/profiles/konqueror.profile.xml
 debian/tmp/opt/trinity/share/apps/profiles/noatun.profile.xml
 debian/tmp/opt/trinity/share/apps/profiles/profile.dtd

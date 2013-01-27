@@ -10,7 +10,7 @@ Standards-Version: 3.8.3
 Package: kdenetwork-kde3
 Section: kde
 Architecture: all
-Depends: dcoprss-kde3 (>= ${Source-Version}), kdenetwork-kfile-plugins-kde3 (>= ${Source-Version}), kdict-kde3 (>= ${Source-Version}), tdednssd-kde3 (>= ${Source-Version}), kget-kde3 (>= ${Source-Version}), knewsticker-kde3 (>= ${Source-Version}), kopete-kde3 (>= ${Source-Version}), kpf-kde3 (>= ${Source-Version}), kppp-kde3 (>= ${Source-Version}), krdc-kde3 (>= ${Source-Version}), krfb-kde3 (>= ${Source-Version}), ksirc-kde3 (>= ${Source-Version}), kwifimanager-kde3 (>= ${Source-Version}), librss1-kde3 (>= ${Source-Version})
+Depends: dcoprss-kde3 (>= ${Source-Version}), kdenetwork-tdefile-plugins-kde3 (>= ${Source-Version}), kdict-kde3 (>= ${Source-Version}), tdednssd-kde3 (>= ${Source-Version}), kget-kde3 (>= ${Source-Version}), knewsticker-kde3 (>= ${Source-Version}), kopete-kde3 (>= ${Source-Version}), kpf-kde3 (>= ${Source-Version}), kppp-kde3 (>= ${Source-Version}), krdc-kde3 (>= ${Source-Version}), krfb-kde3 (>= ${Source-Version}), ksirc-kde3 (>= ${Source-Version}), kwifimanager-kde3 (>= ${Source-Version}), librss1-kde3 (>= ${Source-Version})
 Recommends: kdenetwork-filesharing-kde3 (>= ${Source-Version}), ktalkd-kde3 (>= ${Source-Version}), lisa-kde3 (>= ${Source-Version})
 Suggests: kdenetwork-kde3-doc-html (>= ${Source-Version})
 Description: network-related apps from the official KDE3 release
@@ -55,7 +55,7 @@ Description: KDE3 network documentation in HTML format
  This package is part of KDE, and a component of the KDE network module.
  See the 'kde-kde3' and 'kdenetwork-kde3' packages for more information.
 
-Package: kdenetwork-kfile-plugins-kde3
+Package: kdenetwork-tdefile-plugins-kde3
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -63,7 +63,7 @@ Enhances: konqueror-kde3
 Description: torrent metainfo plugin for KDE3
  This package provides a metainformation plugin for bittorrent files.
  .
- Kde uses kfile-plugins to provide metainfo tab in the files properties
+ Kde uses tdefile-plugins to provide metainfo tab in the files properties
  dialog in konqueror and other file-handling applications.
  .
  This package is part of KDE3, as a component of the KDE network module.
@@ -304,7 +304,7 @@ Depends: ${shlibs:Depends}
 Recommends: avahi-daemon
 Suggests: avahi-autoipd | zeroconf
 Description: Zeroconf support for KDE
- A kioslave and kded module that provide Zeroconf support. Try
+ A tdeioslave and kded module that provide Zeroconf support. Try
  "zeroconf:/" in Konqueror.
  .
  This package is part of KDE, as a component of the KDE network module.

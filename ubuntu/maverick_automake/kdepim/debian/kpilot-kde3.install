@@ -10,8 +10,8 @@
 /opt/kde3/share/applications/kde/kpalmdoc.desktop
 /opt/kde3/share/applications/kde/kpilot.desktop
 /opt/kde3/share/applications/kde/kpilotdaemon.desktop
-/opt/kde3/share/apps/kconf_update/kpalmdoc.upd
-/opt/kde3/share/apps/kconf_update/kpilot.upd
+/opt/kde3/share/apps/tdeconf_update/kpalmdoc.upd
+/opt/kde3/share/apps/tdeconf_update/kpilot.upd
 /opt/kde3/share/apps/kpilot
 /opt/kde3/share/config.kcfg/abbrowserconduit.kcfg
 /opt/kde3/share/config.kcfg/docconduit.kcfg

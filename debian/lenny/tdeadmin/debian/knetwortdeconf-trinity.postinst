@@ -1,0 +1,27 @@
+#! /bin/sh -e
+
+case "$1" in
+
+    configure)
+	dpkg-divert --remove /usr/share/icons/hicolor/16x16/apps/knetwortdeconf.png
+	dpkg-divert --remove /usr/share/icons/hicolor/22x22/apps/knetwortdeconf.png
+	dpkg-divert --remove /usr/share/icons/hicolor/32x32/apps/knetwortdeconf.png
+	dpkg-divert --remove /usr/share/icons/hicolor/22x22/actions/network_connected_lan_knc.png
+	dpkg-divert --remove /usr/share/icons/hicolor/22x22/actions/network_disconnected_lan.png
+	dpkg-divert --remove /usr/share/icons/hicolor/22x22/actions/network_disconnected_wlan.png
+	dpkg-divert --remove /usr/share/icons/hicolor/22x22/actions/network_traffic_wlan.png
+    ;;
+
+    abort-upgrade)
+    ;;
+
+    *)
+        echo "preinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+
+esac
+
+#DEBHELPER#
+
+exit 0

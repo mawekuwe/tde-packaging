@@ -11,7 +11,7 @@ debian/tmp/opt/trinity/share/services/qprocess_plugin.desktop
 
 debian/tmp/opt/trinity/lib/trinity/libfileitemplugin.la
 debian/tmp/opt/trinity/lib/trinity/libfileitemplugin.so
-debian/tmp/opt/trinity/share/services/kfileitem_plugin.desktop
+debian/tmp/opt/trinity/share/services/tdefileitem_plugin.desktop
 
 debian/tmp/opt/trinity/share/apps/kjsembed/cmdline.js
 debian/tmp/opt/trinity/share/servicetypes/binding_type.desktop

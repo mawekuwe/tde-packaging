@@ -10,7 +10,7 @@ Standards-Version: 3.7.2
 Package: tdewebdev
 Architecture: all
 Section: tde
-Depends: quanta (>= ${Source-Version}), kfilereplace (>= ${Source-Version}), kimagemapeditor (>= ${Source-Version}), klinkstatus (>= ${Source-Version}), kommander (>= ${Source-Version}), kxsldbg (>= ${Source-Version})
+Depends: quanta (>= ${Source-Version}), tdefilereplace (>= ${Source-Version}), kimagemapeditor (>= ${Source-Version}), klinkstatus (>= ${Source-Version}), kommander (>= ${Source-Version}), kxsldbg (>= ${Source-Version})
 Suggests: kommander-dev (>= ${Source-Version}), tdewebdev-doc-html (>= ${Source-Version})
 Description: web development apps from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -43,7 +43,7 @@ Description: KDE web development documentation in HTML format
 Package: quanta
 Architecture: any
 Section: web
-Depends: ${shlibs:Depends}, kfilereplace (= ${Source-Version}), klinkstatus (= ${Source-Version}), kommander (= ${Source-Version}), quanta-data (>> ${KDE-Version3}), quanta-data (<< ${KDE-Next-Version3}), tidy
+Depends: ${shlibs:Depends}, tdefilereplace (= ${Source-Version}), klinkstatus (= ${Source-Version}), kommander (= ${Source-Version}), quanta-data (>> ${KDE-Version3}), quanta-data (<< ${KDE-Next-Version3}), tidy
 Recommends: cervisia, gnupg, kompare, kxsldbg (= ${Source-Version}), docbook-defguide
 Suggests: gubed, kimagemapeditor (= ${Source-Version}), wget, khelpcenter, php-doc
 Description: web development environment for KDE
@@ -80,7 +80,7 @@ Description: data files for Quanta Plus web development environment
  This package is part of KDE, as a component of the KDE web development module.
  See the 'kde' and 'tdewebdev' packages for more information.
 
-Package: kfilereplace
+Package: tdefilereplace
 Architecture: any
 Section: tde
 Depends: ${shlibs:Depends}

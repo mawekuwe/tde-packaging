@@ -14,7 +14,7 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
 
-DEB_INSTALL_CHANGELOGS_kfilereplace-trinity    := kfilereplace/ChangeLog
+DEB_INSTALL_CHANGELOGS_tdefilereplace-trinity    := tdefilereplace/ChangeLog
 DEB_INSTALL_CHANGELOGS_kimagemapeditor-trinity := kimagemapeditor/ChangeLog
 DEB_INSTALL_CHANGELOGS_klinkstatus-trinity     := klinkstatus/ChangeLog
 DEB_INSTALL_CHANGELOGS_kommander-trinity       := kommander/ChangeLog

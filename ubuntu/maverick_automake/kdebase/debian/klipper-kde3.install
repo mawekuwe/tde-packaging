@@ -6,10 +6,10 @@ debian/tmp/opt/kde3/lib/kde3/klipper_panelapplet.so
 debian/tmp/opt/kde3/lib/kde3/klipper.so
 debian/tmp/opt/kde3/lib/libkdeinit_klipper.so
 debian/tmp/opt/kde3/share/applications/kde/klipper.desktop
-debian/tmp/opt/kde3/share/apps/kconf_update/klipper-1-2.pl
-debian/tmp/opt/kde3/share/apps/kconf_update/klipper-kde31.sh
-debian/tmp/opt/kde3/share/apps/kconf_update/klipperrc.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/klippershortcuts.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/klipper-1-2.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/klipper-kde31.sh
+debian/tmp/opt/kde3/share/apps/tdeconf_update/klipperrc.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/klippershortcuts.upd
 debian/tmp/opt/kde3/share/apps/kicker/applets/klipper.desktop
 debian/tmp/opt/kde3/share/autostart/klipper.desktop
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/klipper/common

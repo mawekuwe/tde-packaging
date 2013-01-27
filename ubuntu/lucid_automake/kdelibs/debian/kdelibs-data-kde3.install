@@ -1,4 +1,4 @@
-debian/tmp/etc/kde3/khotnewstuffrc
+debian/tmp/etc/kde3/tdehotnewstuffrc
 debian/tmp/etc/kde3/colors/40.colors
 debian/tmp/etc/kde3/colors/Rainbow.colors
 debian/tmp/etc/kde3/colors/Royal.colors
@@ -38,14 +38,14 @@ debian/tmp/opt/kde3/share/apps/katepart/syntax/*.xml
 debian/tmp/opt/kde3/share/apps/tdecertpart/tdecertpart.rc
 debian/tmp/opt/kde3/share/apps/kcm_componentchooser/kcm_instantmessenger.desktop
 debian/tmp/opt/kde3/share/apps/kcm_componentchooser/kcm_tdetexteditor.desktop
-debian/tmp/opt/kde3/share/apps/kconf_update/kcookiescfg.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/kded.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/kdeprintrc.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/kio_help.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/kioslave.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/move_kio_help_cache.sh
-debian/tmp/opt/kde3/share/apps/kconf_update/proxytype.pl
-debian/tmp/opt/kde3/share/apps/kconf_update/useragent.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kcookiescfg.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kded.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kdeprintrc.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kio_help.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/tdeioslave.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/move_kio_help_cache.sh
+debian/tmp/opt/kde3/share/apps/tdeconf_update/proxytype.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/useragent.pl
 debian/tmp/opt/kde3/share/apps/kdeprint/apsdriver1
 debian/tmp/opt/kde3/share/apps/kdeprint/apsdriver2
 debian/tmp/opt/kde3/share/apps/kdeprint/cupsd.conf.template
@@ -245,7 +245,7 @@ debian/tmp/opt/kde3/share/apps/tdehtml/icons/crystalsvg/64x64/actions/bug.png
 debian/tmp/opt/kde3/share/apps/tdehtml/tdehtml_browser.rc
 debian/tmp/opt/kde3/share/apps/tdehtml/tdehtml_popupmenu.rc
 debian/tmp/opt/kde3/share/apps/tdehtml/tdehtml.rc
-debian/tmp/opt/kde3/share/apps/kio_uiserver/icons/crystalsvg/16x16/apps/kio_uiserver.png
+debian/tmp/opt/kde3/share/apps/tdeio_uiserver/icons/crystalsvg/16x16/apps/tdeio_uiserver.png
 debian/tmp/opt/kde3/share/apps/kjava/icons/crystalsvg/16x16/actions/java.png
 debian/tmp/opt/kde3/share/apps/kjava/kjava.jar
 debian/tmp/opt/kde3/share/apps/kjava/kjava.policy
@@ -1723,7 +1723,7 @@ debian/tmp/opt/kde3/share/apps/LICENSES/GPL_V2
 debian/tmp/opt/kde3/share/apps/LICENSES/LGPL_V2
 debian/tmp/opt/kde3/share/apps/LICENSES/QPL_V1.0
 debian/tmp/opt/kde3/share/apps/proxyscout/eventsrc
-debian/tmp/opt/kde3/share/autostart/kab2kabc.desktop
+debian/tmp/opt/kde3/share/autostart/tdeab2tdeabc.desktop
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/common/10.png
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/common/1.png
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/common/2.png
@@ -3578,9 +3578,9 @@ debian/tmp/opt/kde3/share/services/kded/proxyscout.desktop
 debian/tmp/opt/kde3/share/services/kgzipfilter.desktop
 debian/tmp/opt/kde3/share/services/tdehtml.desktop
 debian/tmp/opt/kde3/share/services/tdehtmlimage.desktop
-debian/tmp/opt/kde3/share/services/kio_uiserver.desktop
+debian/tmp/opt/kde3/share/services/tdeio_uiserver.desktop
 debian/tmp/opt/kde3/share/services/kjavaappletviewer.desktop
-debian/tmp/opt/kde3/share/services/kmailservice.protocol
+debian/tmp/opt/kde3/share/services/tdemailservice.protocol
 debian/tmp/opt/kde3/share/services/tdemultipart.desktop
 debian/tmp/opt/kde3/share/services/knotify.desktop
 debian/tmp/opt/kde3/share/services/tderesources/kabc/dir.desktop
@@ -3633,7 +3633,7 @@ debian/tmp/opt/kde3/share/servicetypes/tdecmodule.desktop
 debian/tmp/opt/kde3/share/servicetypes/kcomprfilter.desktop
 debian/tmp/opt/kde3/share/servicetypes/kdatatool.desktop
 debian/tmp/opt/kde3/share/servicetypes/kdedmodule.desktop
-debian/tmp/opt/kde3/share/servicetypes/kfileplugin.desktop
+debian/tmp/opt/kde3/share/servicetypes/tdefileplugin.desktop
 debian/tmp/opt/kde3/share/servicetypes/tdemediaplayer.desktop
 debian/tmp/opt/kde3/share/servicetypes/tdemediaplayerengine.desktop
 debian/tmp/opt/kde3/share/servicetypes/kpart.desktop

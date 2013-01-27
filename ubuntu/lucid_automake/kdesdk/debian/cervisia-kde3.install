@@ -9,11 +9,11 @@ debian/tmp/opt/kde3/share/applications/kde/cervisia.desktop
 debian/tmp/opt/kde3/share/apps/cervisia/cervisiashellui.rc
 debian/tmp/opt/kde3/share/apps/cervisia/eventsrc
 debian/tmp/opt/kde3/share/apps/cervisiapart/cervisiaui.rc
-debian/tmp/opt/kde3/share/apps/kconf_update/cervisia.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/cervisia-change_repos_list.pl
-debian/tmp/opt/kde3/share/apps/kconf_update/cervisia-normalize_cvsroot.pl
-debian/tmp/opt/kde3/share/apps/kconf_update/move_repositories.pl
-debian/tmp/opt/kde3/share/apps/kconf_update/change_colors.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/cervisia.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/cervisia-change_repos_list.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/cervisia-normalize_cvsroot.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/move_repositories.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/change_colors.pl
 debian/tmp/opt/kde3/share/config.kcfg/cervisiapart.kcfg
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/cervisia/*.bz2
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/cervisia/common

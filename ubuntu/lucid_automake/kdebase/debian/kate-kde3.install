@@ -33,7 +33,7 @@ debian/tmp/opt/kde3/share/apps/kate/icons/locolor/22x22/actions/unindent.png
 debian/tmp/opt/kde3/share/apps/kate/kateui.rc
 debian/tmp/opt/kde3/share/apps/kate/pics/sessionchooser.png
 debian/tmp/opt/kde3/share/apps/kate/tips
-debian/tmp/opt/kde3/share/apps/kconf_update/kate-2.4.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kate-2.4.upd
 debian/tmp/opt/kde3/share/apps/kwrite/kwriteui.rc
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kate/advanced.docbook
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kate/common

@@ -12,7 +12,7 @@ Architecture: all
 Section: tde
 Replaces: kdeaddons-trinity (<< 4:14.0.0)
 Breaks: kdeaddons-trinity (<< 4:14.0.0)
-Depends: atlantikdesigner-trinity (>= ${Source-Version}), kaddressbook-plugins-trinity (>= ${Source-Version}), kate-plugins-trinity (>= ${Source-Version}), tdeaddons-kfile-plugins-trinity (>= ${Source-Version}), kicker-applets-trinity (>= ${Source-Version}), konq-plugins-trinity (>= ${Source-Version}), ksig-trinity (>= ${Source-Version}), noatun-plugins-trinity (>= ${Source-Version})
+Depends: atlantikdesigner-trinity (>= ${Source-Version}), kaddressbook-plugins-trinity (>= ${Source-Version}), kate-plugins-trinity (>= ${Source-Version}), tdeaddons-tdefile-plugins-trinity (>= ${Source-Version}), kicker-applets-trinity (>= ${Source-Version}), konq-plugins-trinity (>= ${Source-Version}), ksig-trinity (>= ${Source-Version}), noatun-plugins-trinity (>= ${Source-Version})
 Suggests: tdeaddons-trinity-doc-html
 Description: add-on plugins and applets provided with Trinity
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -102,11 +102,11 @@ Description: plugins for Kate, the KDE Advanced Text Editor
  This package is part of Trinity, as a component of the KDE addons module.
  See the 'kde-trinity' and 'tdeaddons-trinity' packages for more information.
 
-Package: tdeaddons-kfile-plugins-trinity
+Package: tdeaddons-tdefile-plugins-trinity
 Architecture: any
 Section: tde
-Replaces: kdeaddons-kfile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdeaddons-kfile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdeaddons-tdefile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdeaddons-tdefile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Provides: renamedlg-plugins-trinity
 Description: Trinity file dialog plugins for text files and folders

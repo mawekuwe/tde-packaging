@@ -3,7 +3,7 @@ debian/tmp/opt/trinity/lib/trinity/kcharselect_panelapplet.la
 debian/tmp/opt/trinity/lib/trinity/kcharselect_panelapplet.so
 debian/tmp/opt/trinity/share/applications/tde/KCharSelect.desktop
 debian/tmp/opt/trinity/share/apps/kcharselect/kcharselectui.rc
-debian/tmp/opt/trinity/share/apps/kconf_update/kcharselect.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/kcharselect.upd
 debian/tmp/opt/trinity/share/apps/kicker/applets/kcharselectapplet.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcharselect/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcharselect/index.cache.bz2

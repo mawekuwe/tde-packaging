@@ -27,13 +27,13 @@ kcontrol-trinity
 kcron-trinity
 tde-guidance-trinity
 tde-style-qtcurve-trinity
-tdeadmin-kfile-plugins-trinity
+tdeadmin-tdefile-plugins-trinity
 tdebase-kio-plugins-trinity
-tdegraphics-kfile-plugins-trinity
-tdemultimedia-kfile-plugins-trinity
+tdegraphics-tdefile-plugins-trinity
+tdemultimedia-tdefile-plugins-trinity
 tdemultimedia-kio-plugins-trinity
 tdenetwork-filesharing-trinity
-tdenetwork-kfile-plugins-trinity
+tdenetwork-tdefile-plugins-trinity
 kdepasswd-trinity
 tdeprint-trinity
 kdesktop-trinity
@@ -45,7 +45,7 @@ kicker-trinity
 kio-locate-trinity
 kmenuedit-trinity
 kmix-trinity
-knetworkconf-trinity
+knetwortdeconf-trinity
 konq-plugins-trinity
 konsole-trinity
 kpdf-trinity

@@ -5,8 +5,8 @@ debian/tmp/opt/kde3/lib/kde3/konq_sound.so
 debian/tmp/opt/kde3/lib/libkonq.so.4
 debian/tmp/opt/kde3/lib/libkonq.so.4.2.0
 debian/tmp/opt/kde3/share/apps/kbookmark/directory_bookmarkbar.desktop
-debian/tmp/opt/kde3/share/apps/kconf_update/favicons.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/move_favicons.sh
+debian/tmp/opt/kde3/share/apps/tdeconf_update/favicons.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/move_favicons.sh
 debian/tmp/opt/kde3/share/apps/konqueror/pics/arrow_bottomleft.png
 debian/tmp/opt/kde3/share/apps/konqueror/pics/arrow_bottomright.png
 debian/tmp/opt/kde3/share/apps/konqueror/pics/arrow_topleft.png

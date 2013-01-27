@@ -70,10 +70,10 @@ binary-install/tdesdk-scripts-trinity::
 binary-install/tdesdk-misc-trinity::
 	install -p -D -m644 kdeaccounts-plugin/README \
 		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/README.kdeaccounts-plugin
-	install -p -D -m644 kioslave/svn/AUTHORS \
-		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/AUTHORS.kioslave-svn
-	install -p -D -m644 kioslave/svn/README \
-		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/README.kioslave-svn
+	install -p -D -m644 tdeioslave/svn/AUTHORS \
+		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/AUTHORS.tdeioslave-svn
+	install -p -D -m644 tdeioslave/svn/README \
+		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/README.tdeioslave-svn
 	install -p -D -m644 kprofilemethod/README \
 		debian/tdesdk-misc-trinity/opt/trinity/share/doc/tdesdk-misc/README.kprofilemethod
 	install -p -D -m644 scheck/README \

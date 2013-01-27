@@ -11,7 +11,7 @@ Homepage: http://trinity.pearsoncomputing.net
 Package: kdewebdev-kde3
 Architecture: all
 Section: kde
-Depends: quanta-kde3 (>= ${source:Version}), kfilereplace-kde3 (>= ${source:Version}), kimagemapeditor-kde3 (>= ${source:Version}), klinkstatus-kde3 (>= ${source:Version}), kommander-kde3 (>= ${source:Version}), kxsldbg-kde3 (>= ${source:Version})
+Depends: quanta-kde3 (>= ${source:Version}), tdefilereplace-kde3 (>= ${source:Version}), kimagemapeditor-kde3 (>= ${source:Version}), klinkstatus-kde3 (>= ${source:Version}), kommander-kde3 (>= ${source:Version}), kxsldbg-kde3 (>= ${source:Version})
 Suggests: kommander-kde3-dev (>= ${source:Version}), kdewebdev-kde3-doc-html (>= ${source:Version})
 Description: web development apps from the official KDE release [KDE3]
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -43,7 +43,7 @@ Description: KDE web development documentation in HTML format [KDE3]
 Package: quanta-kde3
 Architecture: any
 Section: web
-Depends: ${shlibs:Depends}, kfilereplace-kde3, klinkstatus-kde3, kommander-kde3, quanta-data-kde3, tidy
+Depends: ${shlibs:Depends}, tdefilereplace-kde3, klinkstatus-kde3, kommander-kde3, quanta-data-kde3, tidy
 Recommends: cervisia, gnupg, kompare-kde3, kxsldbg-kde3, docbook-defguide
 Suggests: gubed, kimagemapeditor-kde3, wget, khelpcenter-kde3, php-doc
 Description: web development environment for KDE [KDE3]
@@ -77,7 +77,7 @@ Description: data files for Quanta Plus web development environment [KDE3]
  This package is part of KDE, as a component of the KDE web development module.
  See the 'kde-kde3' and 'kdewebdev-kde3' packages for more information.
 
-Package: kfilereplace-kde3
+Package: tdefilereplace-kde3
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}

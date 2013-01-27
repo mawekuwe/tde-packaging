@@ -3,7 +3,7 @@ debian/tmp/opt/kde3/lib/kde3/kcharselect_panelapplet.la
 debian/tmp/opt/kde3/lib/kde3/kcharselect_panelapplet.so
 debian/tmp/opt/kde3/share/applications/kde/KCharSelect.desktop
 debian/tmp/opt/kde3/share/apps/kcharselect/kcharselectui.rc
-debian/tmp/opt/kde3/share/apps/kconf_update/kcharselect.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kcharselect.upd
 debian/tmp/opt/kde3/share/apps/kicker/applets/kcharselectapplet.desktop
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcharselect/common
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kcharselect/index.cache.bz2

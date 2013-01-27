@@ -25,7 +25,7 @@ debian/tmp/opt/trinity/bin/knetattach
 debian/tmp/opt/trinity/bin/krandom.kss
 debian/tmp/opt/trinity/bin/ksystraycmd
 debian/tmp/opt/trinity/bin/kxkb
-debian/tmp/opt/trinity/lib/kconf_update_bin/khotkeys_update
+debian/tmp/opt/trinity/lib/tdeconf_update_bin/khotkeys_update
 debian/tmp/opt/trinity/lib/trinity/kcminit.la
 debian/tmp/opt/trinity/lib/trinity/kcminit.so
 debian/tmp/opt/trinity/lib/trinity/kcminit_startup.la
@@ -65,9 +65,9 @@ debian/tmp/opt/trinity/share/apps/drkonqi/debuggers/gdbrc
 debian/tmp/opt/trinity/share/apps/drkonqi/pics/konqi.png
 debian/tmp/opt/trinity/share/apps/drkonqi/presets/developerrc
 debian/tmp/opt/trinity/share/apps/drkonqi/presets/enduserrc
-debian/tmp/opt/trinity/share/apps/kconf_update/khotkeys_32b1_update.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/khotkeys_printscreen.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/konqueror_gestures_trinity21_update.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/khotkeys_32b1_update.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/khotkeys_printscreen.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/konqueror_gestures_trinity21_update.upd
 debian/tmp/opt/trinity/share/apps/kdcop/kdcopui.rc
 debian/tmp/opt/trinity/share/apps/khotkeys/trinity2b1.khotkeys
 debian/tmp/opt/trinity/share/apps/khotkeys/konqueror_gestures_trinity21.khotkeys

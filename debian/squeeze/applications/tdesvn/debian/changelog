@@ -54,7 +54,7 @@ tdesvn (1.0.2-1) unstable; urgency=low
 tdesvn (1.0.1-1) experimental; urgency=low
 
   * New upstream release.
-  * debian/patches/01-bashisms_kconf_update.patch
+  * debian/patches/01-bashisms_tdeconf_update.patch
     - Removed, merged upstream. 
   * debian/patches/02-docimages.patch
     - Removed, fixed upstream. 
@@ -138,14 +138,14 @@ tdesvn (0.14.0-1) unstable; urgency=low
   * debian/tdesvn.menu
     - Change section to "Applications/Programming" to comply with the new menu
       spec.
-  * debian/patches/01-bashisms_kconf_update.patch
-    - Fix a bashism in the kconf_update script.
+  * debian/patches/01-bashisms_tdeconf_update.patch
+    - Fix a bashism in the tdeconf_update script.
   * debian/control
     - Use the new "Homepage:" field to specify the upstream URL.
     - SONAME bump, rename the libsvnqt3 package to libsvnqt4.
   * Rename libsvnqt3.install to libsvnqt4.install.
   * debian/tdesvn.install
-    - Install the kconf_update files.
+    - Install the tdeconf_update files.
   * debian/libsvnqt-dev.install
     - No longer install the libtool *.la files for libsvnqt.
 

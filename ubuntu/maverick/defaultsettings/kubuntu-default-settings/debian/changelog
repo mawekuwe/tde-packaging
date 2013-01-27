@@ -1514,7 +1514,7 @@ kubuntu-default-settings (1:6.04-5) dapper; urgency=low
   * Updated filemagement profile, adding Sidebar by default
   * Added x-tar.desktop, x-tarz.desktop, x-tbz.desktop, x-tgz.desktop, x-zip.desktop
     in folder mimelnk, with blanked "LocalProtocol" value, to remove tar and zip
-    kioslaves default activation in order to have an homogenous ark integration in kde with
+    tdeioslaves default activation in order to have an homogenous ark integration in kde with
     rar, 7z and other compressed files
   * Makefile updated to install all new files
   * Add postinst and postrm scripts to edit kdmrc for Debian KDM theme, stops kdm 

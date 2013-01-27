@@ -5,8 +5,8 @@ debian/tmp/opt/kde3/lib/libkbabelcommon.so.3
 debian/tmp/opt/kde3/lib/libkbabelcommon.so.3.2.0
 debian/tmp/opt/kde3/lib/libkbabeldictplugin.so.1
 debian/tmp/opt/kde3/lib/libkbabeldictplugin.so.1.2.0
-debian/tmp/opt/kde3/lib/kde3/kfile_po.la
-debian/tmp/opt/kde3/lib/kde3/kfile_po.so
+debian/tmp/opt/kde3/lib/kde3/tdefile_po.la
+debian/tmp/opt/kde3/lib/kde3/tdefile_po.so
 debian/tmp/opt/kde3/lib/kde3/pothumbnail.la
 debian/tmp/opt/kde3/lib/kde3/pothumbnail.so
 debian/tmp/opt/kde3/lib/kde3/kbabel_accelstool.la
@@ -61,9 +61,9 @@ debian/tmp/opt/kde3/share/apps/kbabel/kbabelui.rc
 debian/tmp/opt/kde3/share/apps/kbabel/regexplist.xml
 debian/tmp/opt/kde3/share/apps/kbabel/pics
 debian/tmp/opt/kde3/share/apps/kbabel/icons
-debian/tmp/opt/kde3/share/apps/kconf_update/kbabel-difftoproject.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/kbabel-project.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/kbabel-projectrename.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kbabel-difftoproject.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kbabel-project.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/kbabel-projectrename.upd
 debian/tmp/opt/kde3/share/config.kcfg/kbabel.kcfg
 debian/tmp/opt/kde3/share/config.kcfg/kbprojectsettings.kcfg
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/kbabel/*.bz2
@@ -88,7 +88,7 @@ debian/tmp/opt/kde3/share/icons/locolor/32x32/apps/catalogmanager.png
 debian/tmp/opt/kde3/share/icons/locolor/32x32/apps/kbabel.png
 debian/tmp/opt/kde3/share/icons/locolor/32x32/apps/kbabeldict.png
 debian/tmp/opt/kde3/share/services/dbsearchengine.desktop
-debian/tmp/opt/kde3/share/services/kfile_po.desktop
+debian/tmp/opt/kde3/share/services/tdefile_po.desktop
 debian/tmp/opt/kde3/share/services/pothumbnail.desktop
 debian/tmp/opt/kde3/share/services/kbabel_accelstool.desktop
 debian/tmp/opt/kde3/share/services/kbabel_argstool.desktop

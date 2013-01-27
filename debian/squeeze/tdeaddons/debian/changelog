@@ -592,7 +592,7 @@ tdeaddons (4:3.3.2-1) unstable; urgency=low
 tdeaddons (4:3.3.1-1) unstable; urgency=medium
 
   * New upstream bugfix release.
-  * Patched .lnk kfile plugin and /usr/bin/lnkforward so that they can
+  * Patched .lnk tdefile plugin and /usr/bin/lnkforward so that they can
     distinguish between drive and path information.  Previously, lnkforward
     would lose path information altogether (and thus fail to work).
   * Removed the rellinks plugin, which is terribly broken at this stage
@@ -668,7 +668,7 @@ tdeaddons (4:3.2.0-1) unstable; urgency=low
   * New binary packages kaddressbook-plugins, kontact-plugins, ksig and
     vimpart.
   * Note that the rename dialog plugins have been merged into the
-    tdeaddons-kfile-plugins package.
+    tdeaddons-tdefile-plugins package.
 
  -- Ben Burton <bab@debian.org>  Sat, 31 Jan 2004 12:08:48 +1100
 

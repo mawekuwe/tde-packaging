@@ -37,7 +37,7 @@ DEB_DH_STRIP_ARGS  := --dbg-package=tdebase-trinity-dbg
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
 
-DOC_HTML_PRUNE := kinfocenter ksplashml kcontrol khelpcenter tdesu knetattach kioslave kxkb kdebugdialog kdcop
+DOC_HTML_PRUNE := kinfocenter ksplashml kcontrol khelpcenter tdesu knetattach tdeioslave kxkb kdebugdialog kdcop
 
 PACKAGES_WITH_LIBS := kate-trinity kcontrol-trinity tdebase-trinity-bin kicker-trinity konqueror-trinity ksplash-trinity \
 			ksysguard-trinity twin-trinity libkonq4-trinity

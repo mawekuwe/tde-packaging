@@ -1,5 +1,5 @@
 debian/tmp/opt/kde3/bin/noatun
-debian/tmp/opt/kde3/lib/kconf_update_bin/noatun20update
+debian/tmp/opt/kde3/lib/tdeconf_update_bin/noatun20update
 debian/tmp/opt/kde3/lib/kde3/noatun.la
 debian/tmp/opt/kde3/lib/kde3/noatun.so
 debian/tmp/opt/kde3/lib/kde3/noatun_dcopiface.la
@@ -72,7 +72,7 @@ debian/tmp/opt/kde3/lib/mcop/noatunarts.mcoptype
 debian/tmp/opt/kde3/lib/mcop/winskinvis.mcopclass
 debian/tmp/opt/kde3/lib/mcop/winskinvis.mcoptype
 debian/tmp/opt/kde3/share/applications/kde/noatun.desktop
-debian/tmp/opt/kde3/share/apps/kconf_update/noatun.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/noatun.upd
 debian/tmp/opt/kde3/share/apps/noatun/dcopiface.plugin
 debian/tmp/opt/kde3/share/apps/noatun/eq.preset/preset.dance
 debian/tmp/opt/kde3/share/apps/noatun/eq.preset/preset.jazz

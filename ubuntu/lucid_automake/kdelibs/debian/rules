@@ -96,6 +96,6 @@ common-install-prehook-impl::
 	fi
 
 binary-install/kdelibs4c2a-kde3::
-	mv debian/tmp/opt/kde3/bin/kcmshell debian/tmp/opt/kde3/bin/kcmshell.real
-	install -p -D -m755 debian/tmp/opt/kde3/bin/kcmshell.real debian/kdelibs4c2a-kde3/opt/kde3/bin/kcmshell.real
-	install -p -D -m755 debian/kcmshell debian/kdelibs4c2a-kde3/opt/kde3/bin/kcmshell
+	mv debian/tmp/opt/kde3/bin/tdecmshell debian/tmp/opt/kde3/bin/tdecmshell.real
+	install -p -D -m755 debian/tmp/opt/kde3/bin/tdecmshell.real debian/kdelibs4c2a-kde3/opt/kde3/bin/tdecmshell.real
+	install -p -D -m755 debian/tdecmshell debian/kdelibs4c2a-kde3/opt/kde3/bin/tdecmshell

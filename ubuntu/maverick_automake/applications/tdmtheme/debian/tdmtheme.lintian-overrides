@@ -1,5 +1,5 @@
 # provided by kdelibs
-tdmtheme: desktop-command-not-in-package ./usr/share/applications/kde/tdmtheme.desktop kcmshell
+tdmtheme: desktop-command-not-in-package ./usr/share/applications/kde/tdmtheme.desktop tdecmshell
 # kcontrol module
 tdmtheme: desktop-entry-invalid-category X-KDE-settings-system ./usr/share/applications/kde/tdmtheme.desktop
 tdmtheme: desktop-entry-lacks-main-category ./usr/share/applications/kde/tdmtheme.desktop

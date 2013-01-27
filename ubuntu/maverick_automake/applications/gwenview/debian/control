@@ -9,7 +9,7 @@ Homepage: http://gwenview.sourceforge.net
 Package: gwenview-kde3
 Architecture: any
 Depends: ${shlibs:Depends}
-Recommends: kdegraphics-kfile-plugins-kde3, kipi-plugins-kde3
+Recommends: kdegraphics-tdefile-plugins-kde3, kipi-plugins-kde3
 Suggests: gwenview-i18n
 Description: image viewer for KDE3
  Gwenview is an image viewer for the K Desktop Environment. It features a
@@ -21,7 +21,7 @@ Description: image viewer for KDE3
  Image loading is handled by the Qt library, so Gwenview supports all image
  formats your Qt installation supports. Gwenview correctly displays images
  with an alpha channel. Gwenview supports the displaying and editing of EXIF
- comments, and, if the kdegraphics-kfile-plugins package is installed, other
+ comments, and, if the kdegraphics-tdefile-plugins package is installed, other
  image meta-information as well. Also supported is KIPI, the KDE Image Plugin
  Interface, a collection of helpful tools provided by the kipi-plugins
  package. The ability to perform lossless JPEG transforms is built in.

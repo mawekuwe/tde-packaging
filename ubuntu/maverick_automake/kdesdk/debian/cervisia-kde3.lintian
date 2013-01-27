@@ -1,6 +1,6 @@
-# kconf_update scripts don't need to be executable.
-cervisia: script-not-executable ./usr/share/apps/kconf_update/change_colors.pl
-cervisia: script-not-executable ./usr/share/apps/kconf_update/move_repositories.pl
+# tdeconf_update scripts don't need to be executable.
+cervisia: script-not-executable ./usr/share/apps/tdeconf_update/change_colors.pl
+cervisia: script-not-executable ./usr/share/apps/tdeconf_update/move_repositories.pl
 
 # This is from kdeinit black magic.
 cervisia: no-shlibs-control-file opt/kde3/lib/libkdeinit_cervisia.so

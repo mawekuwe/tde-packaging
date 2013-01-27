@@ -28,7 +28,7 @@ tde-style-lipstik (2.2.2-1) unstable; urgency=low
 
   * New upstream version
     - Added new automake1.9 dependency
-    - Created style/lipstik.moc and style/config/listikconf.moc 
+    - Created style/lipstik.moc and style/config/listitdeconf.moc 
 
  -- Bastian Venthur <venthur@debian.org>  Thu, 24 May 2007 23:32:09 +0200
 

@@ -11,7 +11,7 @@ debian/tmp/opt/kde3/share/services/qprocess_plugin.desktop
 
 debian/tmp/opt/kde3/lib/kde3/libfileitemplugin.la
 debian/tmp/opt/kde3/lib/kde3/libfileitemplugin.so
-debian/tmp/opt/kde3/share/services/kfileitem_plugin.desktop
+debian/tmp/opt/kde3/share/services/tdefileitem_plugin.desktop
 
 debian/tmp/opt/kde3/share/apps/kjsembed/cmdline.js
 debian/tmp/opt/kde3/share/servicetypes/binding_type.desktop

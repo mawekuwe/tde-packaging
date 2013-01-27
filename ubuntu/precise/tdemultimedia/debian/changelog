@@ -404,7 +404,7 @@ tdemultimedia (4:3.5.1-0ubuntu1) dapper; urgency=low
 
 tdemultimedia (4:3.5.0-0ubuntu2) dapper; urgency=low
 
-  * Tighten version of Replaces on tdemultimedia-kfile-plugins
+  * Tighten version of Replaces on tdemultimedia-tdefile-plugins
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri,  6 Jan 2006 18:33:11 +0000
 

@@ -14,7 +14,7 @@ in the /usr/share/common-licenses/BSD, /usr/share/common-licenses/GPL and
 
 
 aktion, arts/builder, arts/runtime, arts/tools,
-kfile-plugins, tdemid, tdemidi, koncd, kscd
+tdefile-plugins, tdemid, tdemidi, koncd, kscd
 -----------------------------------------------
 GPL
 

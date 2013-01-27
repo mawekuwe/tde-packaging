@@ -69,10 +69,10 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/sqrt.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/sum.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/under.png
 debian/tmp/opt/trinity/share/services/clipartthumbnail.desktop
-debian/tmp/opt/trinity/share/services/kfile_abiword.desktop
-debian/tmp/opt/trinity/share/services/kfile_gnumeric.desktop
-debian/tmp/opt/trinity/share/services/kfile_koffice.desktop
-debian/tmp/opt/trinity/share/services/kfile_ooo.desktop
+debian/tmp/opt/trinity/share/services/tdefile_abiword.desktop
+debian/tmp/opt/trinity/share/services/tdefile_gnumeric.desktop
+debian/tmp/opt/trinity/share/services/tdefile_koffice.desktop
+debian/tmp/opt/trinity/share/services/tdefile_ooo.desktop
 debian/tmp/opt/trinity/share/services/kformula_latex_export.desktop
 debian/tmp/opt/trinity/share/services/kformula_mathml_export.desktop
 debian/tmp/opt/trinity/share/services/kformula_mathml_import.desktop

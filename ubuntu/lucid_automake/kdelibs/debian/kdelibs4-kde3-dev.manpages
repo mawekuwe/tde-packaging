@@ -1,4 +1,4 @@
-./debian/man/kconfig_compiler-kde3.1
+./debian/man/tdeconfig_compiler-kde3.1
 ./debian/man/ksvgtopng-kde3.1
 ./debian/man/tdeunittestmodrunner-kde3.1
 ./debian/man/makekdewidgets-kde3.1

@@ -6,10 +6,10 @@ debian/tmp/opt/trinity/lib/trinity/klipper_panelapplet.so
 debian/tmp/opt/trinity/lib/trinity/klipper.so
 debian/tmp/opt/trinity/lib/libtdeinit_klipper.so
 debian/tmp/opt/trinity/share/applications/tde/klipper.desktop
-debian/tmp/opt/trinity/share/apps/kconf_update/klipper-1-2.pl
-debian/tmp/opt/trinity/share/apps/kconf_update/klipper-trinity1.sh
-debian/tmp/opt/trinity/share/apps/kconf_update/klipperrc.upd
-debian/tmp/opt/trinity/share/apps/kconf_update/klippershortcuts.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/klipper-1-2.pl
+debian/tmp/opt/trinity/share/apps/tdeconf_update/klipper-trinity1.sh
+debian/tmp/opt/trinity/share/apps/tdeconf_update/klipperrc.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/klippershortcuts.upd
 debian/tmp/opt/trinity/share/apps/kicker/applets/klipper.desktop
 debian/tmp/opt/trinity/share/autostart/klipper.desktop
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/klipper/common

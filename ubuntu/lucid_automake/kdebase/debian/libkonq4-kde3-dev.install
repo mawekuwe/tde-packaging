@@ -1,4 +1,4 @@
-debian/tmp/opt/kde3/include/tde/kfileivi.h
+debian/tmp/opt/kde3/include/tde/tdefileivi.h
 debian/tmp/opt/kde3/include/tde/kivdirectoryoverlay.h
 debian/tmp/opt/kde3/include/tde/knewmenu.h
 debian/tmp/opt/kde3/include/tde/konqbookmarkmanager.h

@@ -10,7 +10,7 @@ kdeinit
 .sp 1
 \fBkdeinit\fP is used to start all other KDE programs. It can start binary program files as well as kdeinit loadable modules (KLMs).
 .sp 1
-When \fBkdeinit\fP starts for the first time it launches \fBdcopserver\fP, \fBklauncher\fP, \fBkded\fP and some additional programs specified on its command line in the \fBstartkde\fP script (normally \fBkcminit\fP and \fBknotify\fP).
+When \fBkdeinit\fP starts for the first time it launches \fBdcopserver\fP, \fBtdelauncher\fP, \fBkded\fP and some additional programs specified on its command line in the \fBstartkde\fP script (normally \fBkcminit\fP and \fBknotify\fP).
 .sp 1
 The \fBkdeinit\fP master process can be used to start additional KDE programs via \fBkdeinit_wrapper\fP, \fBkshell\fP and \fBkwrapper\fP.
 .sp 1
@@ -29,7 +29,7 @@ Terminate when no KDE applications are left running
 .I /usr/lib/kde3
 directory with KLMs (kdeinit loadable modules)
 .SH SEE ALSO
-.BR dcopserver (1),\  kded (1),\  kcminit (1),\  kdeinit_wrapper (1),\  klauncher (1),\  kshell (1),\  kwrapper (1),\  startkde (1)
+.BR dcopserver (1),\  kded (1),\  kcminit (1),\  kdeinit_wrapper (1),\  tdelauncher (1),\  kshell (1),\  kwrapper (1),\  startkde (1)
 .SH AUTHORS
 .nf
 Waldo Bastian <bastian@kde.org>

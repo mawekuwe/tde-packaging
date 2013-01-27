@@ -5,8 +5,8 @@ debian/tmp/opt/kde3/lib/kde3/libkntsrcfilepropsdlg.la
 debian/tmp/opt/kde3/lib/kde3/libkntsrcfilepropsdlg.so
 debian/tmp/opt/kde3/share/applications/kde/knewsticker-standalone.desktop
 debian/tmp/opt/kde3/share/applnk/.hidden/knewstickerstub.desktop
-debian/tmp/opt/kde3/share/apps/kconf_update/knewsticker.upd
-debian/tmp/opt/kde3/share/apps/kconf_update/knt-0.1-0.2.pl
+debian/tmp/opt/kde3/share/apps/tdeconf_update/knewsticker.upd
+debian/tmp/opt/kde3/share/apps/tdeconf_update/knt-0.1-0.2.pl
 debian/tmp/opt/kde3/share/apps/kicker/applets/knewsticker.desktop
 debian/tmp/opt/kde3/share/apps/knewsticker/eventsrc
 debian/tmp/opt/kde3/share/doc/kde/HTML/en/knewsticker/TODO

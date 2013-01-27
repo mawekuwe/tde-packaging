@@ -593,7 +593,7 @@ tdegraphics (4:3.5.0-1) alioth; urgency=low
 
   * Add the new kfaxview package.
 
-  * Add build-depends on libpoppler-qt-dev to build the kfile_pdf info plugin.
+  * Add build-depends on libpoppler-qt-dev to build the tdefile_pdf info plugin.
 
   * Remove obsolete replaces against package versions not
     present in Sarge.
@@ -716,7 +716,7 @@ tdegraphics (4:3.4.1-0ubuntu1) breezy; urgency=low
 
   * Update version number due to KDE 3.4.1 release
   * Move remove xpdf-utils depend on kpdf, add as 
-    suggests on tdegraphics-kfile-plugins
+    suggests on tdegraphics-tdefile-plugins
   * Add all packages back to meta package
 
  -- Jonathan Riddell <jr@jriddell.org>  Tue, 31 May 2005 16:33:00 +0000
@@ -1143,7 +1143,7 @@ tdegraphics (4:2.2.2-6) unstable; urgency=low
     Alternately, the "I'm-under-peer-pressure-to-give-this-a-name" release,
     or the "no-notice-NMUs-suck-donkey-balls" release (hi lamont!).
   * Acknowledge lamont's NMU. (closes: #125871, #125956)
-  * kamera/kioslave/kamera.cpp:
+  * kamera/tdeioslave/kamera.cpp:
     - Apply patch to fix dodgy Canon camera drivers. (closes: #125873).
   * debian/rules:
     - Build with a different builddir to srcdir, thanks to Eray Ozkural.

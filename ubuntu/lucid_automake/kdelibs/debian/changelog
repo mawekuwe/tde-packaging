@@ -73,13 +73,13 @@ kdelibs-kde3 (4:3.5.10-0ubuntu3~intrepid5) intrepid; urgency=low
 
 kdelibs-kde3 (4:3.5.10-0ubuntu3~intrepid4) intrepid; urgency=low
 
-  * Repaired kcmshell root environment default data directory
+  * Repaired tdecmshell root environment default data directory
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 20 Mar 2009 11:56:00 -0600
 
 kdelibs-kde3 (4:3.5.10-0ubuntu3~intrepid1) intrepid; urgency=low
 
-  * Repaired kcmshell root environment
+  * Repaired tdecmshell root environment
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Mon, 09 Mar 2009 13:21:00 -0600
 
@@ -116,7 +116,7 @@ kdelibs-kde3 (4:3.5.10-0ubuntu1~intrepid9) intrepid; urgency=low
 
 kdelibs-kde3 (4:3.5.10-0ubuntu1~intrepid7) intrepid; urgency=low
 
-  * Changed kstartupconfig default HOME of /.kde to /.kde3
+  * Changed tdestartupconfig default HOME of /.kde to /.kde3
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 25 Nov 2008 09:45:00 -0600
 
@@ -372,7 +372,7 @@ kdelibs (4:3.5.7.dfsg.1-7) unstable; urgency=low
 
 kdelibs (4:3.5.7.dfsg.1-6) unstable; urgency=low
 
-  * Move back kstartupconfig to kdelibs4c2a. (Closes: #439411)
+  * Move back tdestartupconfig to kdelibs4c2a. (Closes: #439411)
 
  -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Sat, 25 Aug 2007 03:09:34 +0200
 
@@ -387,7 +387,7 @@ kdelibs (4:3.5.7.dfsg.1-5) unstable; urgency=low
   
   +++ Changes by Fathi Boudra:
 
-  * Move binaries to kdelibs4-dev: kconfig_compiler, ksvgtopng,
+  * Move binaries to kdelibs4-dev: tdeconfig_compiler, ksvgtopng,
     tdeunittestmodrunner, makekdewidgets, preparetips.
     Allow kdelibs5-dev co-installable alongside kdelibs4c2a.
 
@@ -419,7 +419,7 @@ kdelibs (4:3.5.7.dfsg.1-2) unstable; urgency=low
   * Add patch to fix issue with saving after redo in kate. (Closes: #431920)
   * Better error messages when opening a tty fails. Thanks to Robert Millan.
     (Closes: #334974)
-  * Don't refer to help:/kcmshell in kcmshell manpage. (Closes: #408470)
+  * Don't refer to help:/tdecmshell in tdecmshell manpage. (Closes: #408470)
   * Make sure kdeinit closes all files before terminating kde. (Closes: #425314)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Thu, 19 Jul 2007 22:52:17 +0200
@@ -479,7 +479,7 @@ kdelibs (4:3.5.7-1ubuntu13) gutsy; urgency=low
     causes building issues. We'll have to take care with the next
     version of the patch.
   * Droped kubuntu_57_nomediaioslave_fileio.diff and
-    kubuntu_59_nomediaioslave_kfile_speedbar.diff:
+    kubuntu_59_nomediaioslave_tdefile_speedbar.diff:
     -  it's been decided to switch back to the standard media:/
        protocol, as /media create as many problems as it resolves...
 
@@ -594,7 +594,7 @@ kdelibs (4:3.5.7-1ubuntu1) gutsy; urgency=low
 kdelibs (4:3.5.7.dfsg.1-1) unstable; urgency=low
 
   * New upstream release.
-    - Ability to have addressbook on remote kioslaves is disabled.
+    - Ability to have addressbook on remote tdeioslaves is disabled.
       It is quite broken. (Closes: #416366)
 
   +++ Changes by Ana Beatriz Guerrero Lopez:
@@ -1126,7 +1126,7 @@ kdelibs (4:3.5.4-0ubuntu11) edgy; urgency=low
 kdelibs (4:3.5.4-0ubuntu10) edgy; urgency=low
 
   * Update kubuntu_52_xinerama.diff with improved patch by Lubos Lunak
-  * Add kubuntu_59_nomediaioslave_kfile_speedbar.diff from Simon Edwards
+  * Add kubuntu_59_nomediaioslave_tdefile_speedbar.diff from Simon Edwards
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri,  1 Sep 2006 17:20:58 +0000
 
@@ -1692,7 +1692,7 @@ kdelibs (4:3.5.0-0ubuntu10) dapper; urgency=low
   * Add kubuntu_28_fix_sudo.diff to set home directory when 
     run as root via sudo, stops KDE apps settings wrong permissions on 
     files in users home directory
-  * Add kubuntu_29_quiet_kbuildsycoca.diff stop kbuildsycoca complaining
+  * Add kubuntu_29_quiet_tdebuildsycoca.diff stop tdebuildsycoca complaining
     about unknown mimetypes
   * SECURITY UPDATE: kjs encodeuri/decodeuri heap overflow vulnerability
   * Add kubuntu_20_post_3.4.3_kdelibs_kjs.diff
@@ -1817,7 +1817,7 @@ kdelibs (4:3.5-rc1-0ubuntu1) dapper; urgency=low
   * Sync with Debian
   * Remove 16_default_fonts.diff, merged upstream
   * Remove 22_htmltokenizer_cpp_from_3_5.diff, already upstream
-  * Remove 23_kfiledialog.diff, merged upstream
+  * Remove 23_tdefiledialog.diff, merged upstream
   * kdelibs-data replaces old kttsd
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 10 Nov 2005 17:24:33 +0000
@@ -1965,7 +1965,7 @@ kdelibs (4:3.4.91-0ubuntu1) breezy; urgency=low
 
 kdelibs (4:3.4.2-0ubuntu4) breezy; urgency=low
 
-  * Add replaces on old knetworkconf for kdelibs-data
+  * Add replaces on old knetwortdeconf for kdelibs-data
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed,  3 Aug 2005 12:44:18 +0000
 

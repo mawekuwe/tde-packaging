@@ -52,10 +52,10 @@ debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kview.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kview.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kview.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kview.png
-debian/tmp/opt/trinity/share/services/kconfiguredialog/kviewcanvasconfig.desktop
-debian/tmp/opt/trinity/share/services/kconfiguredialog/kviewgeneralconfig.desktop
-debian/tmp/opt/trinity/share/services/kconfiguredialog/kviewpluginsconfig.desktop
-debian/tmp/opt/trinity/share/services/kconfiguredialog/kviewviewerpluginsconfig.desktop
+debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kviewcanvasconfig.desktop
+debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kviewgeneralconfig.desktop
+debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kviewpluginsconfig.desktop
+debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kviewviewerpluginsconfig.desktop
 debian/tmp/opt/trinity/share/services/kviewcanvas.desktop
 debian/tmp/opt/trinity/share/services/kviewviewer.desktop
 debian/tmp/opt/trinity/share/services/photobook.desktop

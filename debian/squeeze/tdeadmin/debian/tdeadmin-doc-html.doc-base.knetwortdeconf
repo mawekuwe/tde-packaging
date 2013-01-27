@@ -1,0 +1,10 @@
+Document: tdeadmin-doc-html-knetwortdeconf
+Title: KNetworkConf Handbook
+Author: Sean Wheller, Christoph Eckert
+Abstract: KNetworkConf is a graphical manager for network devices and settings.
+Section: Admin
+
+Format: HTML
+Index: /usr/share/doc/tde/HTML/en/knetwortdeconf/index.html
+Files: /usr/share/doc/tde/HTML/en/knetwortdeconf/*.html
+

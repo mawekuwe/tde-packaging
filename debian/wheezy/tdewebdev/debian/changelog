@@ -156,7 +156,7 @@ tdewebdev (4:3.5.4-1) unstable; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * Add kfilereplace manpage, thanks to Holger Hartmann. (Closes: #370237)
+  * Add tdefilereplace manpage, thanks to Holger Hartmann. (Closes: #370237)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Sat, 26 Aug 2006 14:11:51 -0400
 
@@ -437,7 +437,7 @@ tdewebdev (1:3.3.0-1) unstable; urgency=low
     fixing a FTBFS on sid (closes: #261629, #269340, #272767).
   * Pumped up the dependencies for quanta, which with each new release makes
     more use of external tools:
-      - kfilereplace and tidy have moved from recommends to depends;
+      - tdefilereplace and tidy have moved from recommends to depends;
       - cervisia and kompare have moved from suggests to recommends;
       - also added klinkstatus (depends), gnupg (recommends), gubed
         and kimagemapeditor (suggests).

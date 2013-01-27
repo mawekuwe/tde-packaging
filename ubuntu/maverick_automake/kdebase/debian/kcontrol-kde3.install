@@ -106,8 +106,8 @@ debian/tmp/opt/kde3/lib/kde3/kcm_xinerama.la
 debian/tmp/opt/kde3/lib/kde3/kcm_xinerama.so
 debian/tmp/opt/kde3/lib/kde3/kcontrol.la
 debian/tmp/opt/kde3/lib/kde3/kcontrol.so
-debian/tmp/opt/kde3/lib/kde3/kfile_font.la
-debian/tmp/opt/kde3/lib/kde3/kfile_font.so
+debian/tmp/opt/kde3/lib/kde3/tdefile_font.la
+debian/tmp/opt/kde3/lib/kde3/tdefile_font.so
 debian/tmp/opt/kde3/lib/kde3/kio_fonts.la
 debian/tmp/opt/kde3/lib/kde3/kio_fonts.so
 debian/tmp/opt/kde3/lib/kde3/kstyle_keramik_config.la
@@ -227,7 +227,7 @@ debian/tmp/opt/kde3/share/mimelnk/fonts/system-folder.desktop
 debian/tmp/opt/kde3/share/services/fonts.protocol
 debian/tmp/opt/kde3/share/services/fontthumbnail.desktop
 debian/tmp/opt/kde3/share/services/kaccess.desktop
-debian/tmp/opt/kde3/share/services/kfile_font.desktop
+debian/tmp/opt/kde3/share/services/tdefile_font.desktop
 debian/tmp/opt/kde3/share/services/kfontviewpart.desktop
 debian/tmp/opt/kde3/share/services/kshorturifilter.desktop
 debian/tmp/opt/kde3/share/services/kuriikwsfilter.desktop

@@ -1,7 +1,7 @@
 debian/tmp/opt/kde3/bin/rbkdesh
 debian/tmp/opt/kde3/bin/rbkdeapi
 debian/tmp/opt/kde3/bin/krubyinit
-debian/tmp/opt/kde3/bin/rbkconfig_compiler
+debian/tmp/opt/kde3/bin/rbtdeconfig_compiler
 
 debian/tmp/opt/kde3/lib/ruby/1.8/Korundum.rb
 debian/tmp/opt/kde3/lib/ruby/1.8/KDE/korundum.rb

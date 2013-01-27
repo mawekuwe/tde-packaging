@@ -1,6 +1,6 @@
 debian/tmp/opt/kde3/bin/konversation
 debian/tmp/opt/kde3/share/applications/kde/konversation.desktop
-debian/tmp/opt/kde3/share/apps/kconf_update/*
+debian/tmp/opt/kde3/share/apps/tdeconf_update/*
 debian/tmp/opt/kde3/share/apps/konversation/eventsrc
 debian/tmp/opt/kde3/share/apps/konversation/konversationui.rc
 debian/tmp/opt/kde3/share/apps/konversation/scripts/*

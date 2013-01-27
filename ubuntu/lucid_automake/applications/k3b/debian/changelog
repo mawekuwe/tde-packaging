@@ -85,7 +85,7 @@ k3b (1.0.5-2) unstable; urgency=low
 
   [ Francois Marier ]
   * Sync with Ubuntu
-    - Add kfile_k3b.so to k3b.install
+    - Add tdefile_k3b.so to k3b.install
     - libk3b3-extracodecs replaces libk3b2-extracodecs
   * Bump Standards-Version up to 3.8.0 (no changes)
   * Remove the KUBUNTU difference file
@@ -133,7 +133,7 @@ k3b (1.0.5-1ubuntu1) intrepid; urgency=low
      kubuntu_111_advice_kubuntu_restricted_extras.diff and add "or
      kubuntu-restricted-extras."), -
   * Add libk3bffmpegdecoder.so to libk3b3.install
-  * Add kfile_k3b.so to k3b.install
+  * Add tdefile_k3b.so to k3b.install
   * libk3b3-extracodecs replaces libk3b2-extracodecs
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 11 Jun 2008 17:32:09 +0000
@@ -776,7 +776,7 @@ k3b (0.12.14-0ubuntu2) dapper; urgency=low
 
   * Remove kubuntu_01_hide_k3bsetup.diff patch and replace it with
     kubuntu_06_hide_k3bsetup.diff:
-     - Remove NoDisplay=true to prevent hiding k3bsetup in kcmshell
+     - Remove NoDisplay=true to prevent hiding k3bsetup in tdecmshell
        (Closes: Malone #23007, KDE Bug #117455, Debian #353826)
      - Change the Category field so k3bsetup doesn't appear in the KDE menu
        (Was the goal of the original patch)

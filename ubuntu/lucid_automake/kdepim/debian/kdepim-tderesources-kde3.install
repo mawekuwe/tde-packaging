@@ -100,5 +100,5 @@
 /opt/kde3/share/services/tderesources/knotes/kolabresource.desktop
 /opt/kde3/share/services/tderesources/knotes/scalix.desktop
 
-/opt/kde3/share/apps/kconf_update/upgrade-resourcetype.pl
-/opt/kde3/share/apps/kconf_update/kolab-resource.upd
+/opt/kde3/share/apps/tdeconf_update/upgrade-resourcetype.pl
+/opt/kde3/share/apps/tdeconf_update/kolab-resource.upd

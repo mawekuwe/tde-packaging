@@ -44,9 +44,9 @@ tdeadmin (4:3.5.9-0ubuntu5) hardy; urgency=low
 tdeadmin (4:3.5.9-0ubuntu4) hardy; urgency=low
 
   * Added kubuntu_13_no_samba_tweak.diff.
-    Knetworkconf reads smb.conf parameters but doesn't write them
+    Knetwortdeconf reads smb.conf parameters but doesn't write them
     causing the parameters to be removed from the config file.
-    Knetworkconf doesn't allow changing those, so there is no reason
+    Knetwortdeconf doesn't allow changing those, so there is no reason
     to let it read them.
 
  -- Anthony Mercatante <tonio@ubuntu.com>  Thu, 03 Apr 2008 15:30:44 +0200
@@ -60,7 +60,7 @@ tdeadmin (4:3.5.9-0ubuntu3) hardy; urgency=low
 
 tdeadmin (4:3.5.9-0ubuntu2) hardy; urgency=low
 
-  * Add kubuntu_11_knetworkconf_icons.diff from Adam Spain, 
+  * Add kubuntu_11_knetwortdeconf_icons.diff from Adam Spain, 
     closes LP: #93878  "low quality icons"
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 03 Mar 2008 14:20:34 +0000
@@ -81,8 +81,8 @@ tdeadmin (4:3.5.8-1ubuntu1) hardy; urgency=low
 
   * Merge with Debian, remaining changes
    - kubuntu_08_kpackage_sudo.diff, sudo support
-   - kubuntu_10_knetworkconf_localhost.diff, LP #66813
-  * Add kubuntu_11_knetworkconf_8.04.diff for 8.04 detection in knetworkconf
+   - kubuntu_10_knetwortdeconf_localhost.diff, LP #66813
+  * Add kubuntu_11_knetwortdeconf_8.04.diff for 8.04 detection in knetwortdeconf
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 14 Nov 2007 17:25:38 +0000
 
@@ -135,7 +135,7 @@ tdeadmin (4:3.5.6-2) unstable; urgency=low
 
   +++ Changes by Modestas Vainius:
 
-  * knetworkconf RC bug fix: recognize allow-* statements in
+  * knetwortdeconf RC bug fix: recognize allow-* statements in
     /etc/network/interfaces as stanzas, not as ordinary options. This
     misrecognition led to corruption of the interfaces file in case allow-*
     stanza followed the iface stanza that new options were added to. Patch
@@ -179,7 +179,7 @@ tdeadmin (4:3.5.5-2) unstable; urgency=low
 tdeadmin (4:3.5.6-0ubuntu1) feisty; urgency=low
 
   * New upstream release
-  * Remove kubuntu_12_knetworkconf_feisty.diff, applied upstream
+  * Remove kubuntu_12_knetwortdeconf_feisty.diff, applied upstream
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 17 Jan 2007 11:22:29 +0000
 
@@ -192,8 +192,8 @@ tdeadmin (4:3.5.5-1ubuntu4) feisty; urgency=low
 
 tdeadmin (4:3.5.5-1ubuntu3) feisty; urgency=low
 
-  * Added kubuntu_12_knetworkconf_feisty.diff to properly autodetect
-    feisty as knetworkconf backend.
+  * Added kubuntu_12_knetwortdeconf_feisty.diff to properly autodetect
+    feisty as knetwortdeconf backend.
 
  -- Luka Renko <lure@ubuntu.com>  Sun, 10 Dec 2006 16:16:12 +0100
 
@@ -235,7 +235,7 @@ tdeadmin (4:3.5.4-1) unstable; urgency=low
 
 tdeadmin (4:3.5.5-0ubuntu2) edgy; urgency=low
 
-  * kubuntu_10_knetworkconf_localhost.diff added, hostname should not 
+  * kubuntu_10_knetwortdeconf_localhost.diff added, hostname should not 
     be appended as alias to localhost in /etc/hosts
     Closes Malone #66813
 
@@ -244,7 +244,7 @@ tdeadmin (4:3.5.5-0ubuntu2) edgy; urgency=low
 tdeadmin (4:3.5.5-0ubuntu1) edgy; urgency=low
 
   * New upstream release
-  * kubuntu_09_networkconf_edgy.diff removed, merged upstream
+  * kubuntu_09_networtdeconf_edgy.diff removed, merged upstream
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  3 Oct 2006 10:56:07 +0000
 
@@ -257,7 +257,7 @@ tdeadmin (4:3.5.4-0ubuntu3) edgy; urgency=low
 
 tdeadmin (4:3.5.4-0ubuntu2) edgy; urgency=low
 
-  * Add kubuntu_09_networkconf_edgy.diff to support Edgy in knetworkconf
+  * Add kubuntu_09_networtdeconf_edgy.diff to support Edgy in knetwortdeconf
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon,  7 Aug 2006 09:08:39 -0400
 
@@ -315,7 +315,7 @@ tdeadmin (4:3.5.1-2) unstable; urgency=low
 
   +++ Changes by Christopher Martin:
 
-  * Drop system-tools-backends.pc from knetworkconf, since it conflicts with
+  * Drop system-tools-backends.pc from knetwortdeconf, since it conflicts with
     gnome-system-tools. (Closes: #353321)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Sun, 19 Feb 2006 14:30:28 -0500
@@ -416,9 +416,9 @@ tdeadmin (4:3.5.1-0ubuntu1) dapper; urgency=low
 
 tdeadmin (4:3.5.0-0ubuntu2) dapper; urgency=low
 
-  * Add kubuntu_01_knetworkconf_branch_fixes.diff fixes
-    - http://bugzilla.ubuntu.com/9871 knetworkconf doesn't save gateway
-    - http://bugzilla.ubuntu.com/16921 knetworkconf too big for 1024x768
+  * Add kubuntu_01_knetwortdeconf_branch_fixes.diff fixes
+    - http://bugzilla.ubuntu.com/9871 knetwortdeconf doesn't save gateway
+    - http://bugzilla.ubuntu.com/16921 knetwortdeconf too big for 1024x768
     - Ensure changes are applied when clicking OK and don't leave zombie
     processes around
 
@@ -449,7 +449,7 @@ tdeadmin (4:3.5.0-2) alioth; urgency=low
 
   +++ Changes by Josh Metzler:
 
-  * Create the new knetworkconf package.
+  * Create the new knetwortdeconf package.
 
   +++ Changes by Christopher Martin:
 

@@ -10,7 +10,7 @@ Standards-Version: 3.8.3
 Package: kdeadmin-kde3
 Section: kde
 Architecture: all
-Depends: kcron-kde3 (>= ${Source-Version}), kdat-kde3 (>= ${Source-Version}), kdeadmin-kfile-plugins-kde3 (>= ${Source-Version}), knetworkconf-kde3 (>= ${Source-Version}), kpackage-kde3 (>= ${Source-Version}), ksysv-kde3 (>= ${Source-Version}), kuser-kde3 (>= ${Source-Version})
+Depends: kcron-kde3 (>= ${Source-Version}), kdat-kde3 (>= ${Source-Version}), kdeadmin-tdefile-plugins-kde3 (>= ${Source-Version}), knetwortdeconf-kde3 (>= ${Source-Version}), kpackage-kde3 (>= ${Source-Version}), ksysv-kde3 (>= ${Source-Version}), kuser-kde3 (>= ${Source-Version})
 Recommends: lilo-config-kde3 (>= ${Source-Version})
 Suggests: kdeadmin-kde3-doc-html (>= ${Source-Version})
 Description: system administration tools from the official KDE3 release
@@ -71,7 +71,7 @@ Description: a KDE3 tape backup tool
  This package is part of KDE3, as a component of the KDE administration module.
  See the 'kde-kde3' and 'kdeadmin-kde3' packages for more information.
 
-Package: kdeadmin-kfile-plugins-kde3
+Package: kdeadmin-tdefile-plugins-kde3
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
@@ -81,7 +81,7 @@ Description: KDE3 file metainfo plugins for deb and rpm files
  This package is part of KDE3, as a component of the KDE administration module.
  See the 'kde-kde3' and 'kdeadmin-kde3' packages for more information.
 
-Package: knetworkconf-kde3
+Package: knetwortdeconf-kde3
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
