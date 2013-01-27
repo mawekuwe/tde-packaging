@@ -761,7 +761,7 @@ debian/tmp/opt/trinity/lib/libtdeinit_tdecmshell.la
 debian/tmp/opt/trinity/lib/libtdeinit_tdeconf_update.la
 debian/tmp/opt/trinity/lib/libtdeinit_kcookiejar.la
 debian/tmp/opt/trinity/lib/libtdeinit_kded.la
-debian/tmp/opt/trinity/lib/libtdeinit_kio_http_cache_cleaner.la
+debian/tmp/opt/trinity/lib/libtdeinit_tdeio_http_cache_cleaner.la
 debian/tmp/opt/trinity/lib/libtdeinit_tdeio_uiserver.la
 debian/tmp/opt/trinity/lib/libtdeinit_tdelauncher.la
 debian/tmp/opt/trinity/lib/libtdeprint.la

@@ -2,7 +2,7 @@ tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_kaddprinte
 tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_cupsdconf.so
 tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_dcopserver.so
 tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_tdecmshell.so
-tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_kio_http_cache_cleaner.so
+tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_tdeio_http_cache_cleaner.so
 tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_tdebuildsycoca.so
 tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_kded.so
 tdelibs4c2a binary: no-shlibs-control-file opt/trinity/lib/libtdeinit_kcookiejar.so

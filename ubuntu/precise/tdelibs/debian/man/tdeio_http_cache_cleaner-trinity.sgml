@@ -26,8 +26,8 @@ manpage.1: manpage.sgml
   <!ENTITY dhsection   "<manvolnum>1</manvolnum>">
   <!ENTITY dhemail     "<email>ccheney@debian.org</email>">
   <!ENTITY dhusername  "Chris Cheney">
-  <!ENTITY dhucpackage "<refentrytitle>KIO_HTTP_CACHE_CLEANER</refentrytitle>">
-  <!ENTITY dhpackage   "kio_http_cache_cleaner">
+  <!ENTITY dhucpackage "<refentrytitle>TDEIO_HTTP_CACHE_CLEANER</refentrytitle>">
+  <!ENTITY dhpackage   "tdeio_http_cache_cleaner">
 
   <!ENTITY debian      "<productname>Debian</productname>">
   <!ENTITY gnu         "<acronym>GNU</acronym>">
