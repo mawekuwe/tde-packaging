@@ -90,7 +90,7 @@ debian/tmp/opt/trinity/include/kabc/plugin.h
 debian/tmp/opt/trinity/include/kabc/resourcedir.h
 debian/tmp/opt/trinity/include/kabc/resourcefile.h
 debian/tmp/opt/trinity/include/kabc/resource.h
-debian/tmp/opt/trinity/include/kabc/resourceldapkio.h
+debian/tmp/opt/trinity/include/kabc/resourceldaptdeio.h
 
 debian/tmp/opt/trinity/include/kabc/resourceselectdialog.h
 debian/tmp/opt/trinity/include/kabc/secrecy.h
@@ -739,8 +739,8 @@ debian/tmp/opt/trinity/lib/libkabc_file.so
 debian/tmp/opt/trinity/lib/libkabc_net.la
 debian/tmp/opt/trinity/lib/libkabc_net.so
 debian/tmp/opt/trinity/lib/libkabc.la
-debian/tmp/opt/trinity/lib/libkabc_ldapkio.la
-debian/tmp/opt/trinity/lib/libkabc_ldapkio.so
+debian/tmp/opt/trinity/lib/libkabc_ldaptdeio.la
+debian/tmp/opt/trinity/lib/libkabc_ldaptdeio.so
 
 debian/tmp/opt/trinity/lib/libkabc.so
 debian/tmp/opt/trinity/lib/libkatepartinterfaces.la

@@ -66,8 +66,8 @@ debian/tmp/opt/trinity/lib/trinity/kabc_net.la
 debian/tmp/opt/trinity/lib/trinity/kabc_net.so
 debian/tmp/opt/trinity/lib/trinity/kabcformat_binary.la
 debian/tmp/opt/trinity/lib/trinity/kabcformat_binary.so
-debian/tmp/opt/trinity/lib/trinity/kabc_ldapkio.la
-debian/tmp/opt/trinity/lib/trinity/kabc_ldapkio.so
+debian/tmp/opt/trinity/lib/trinity/kabc_ldaptdeio.la
+debian/tmp/opt/trinity/lib/trinity/kabc_ldaptdeio.so
 
 debian/tmp/opt/trinity/lib/trinity/kaddprinterwizard.la
 debian/tmp/opt/trinity/lib/trinity/kaddprinterwizard.so
@@ -221,8 +221,8 @@ debian/tmp/opt/trinity/lib/libkabc_dir.so.1
 debian/tmp/opt/trinity/lib/libkabc_dir.so.1.0.0
 debian/tmp/opt/trinity/lib/libkabc_file.so.1
 debian/tmp/opt/trinity/lib/libkabc_file.so.1.0.0
-debian/tmp/opt/trinity/lib/libkabc_ldapkio.so.1
-debian/tmp/opt/trinity/lib/libkabc_ldapkio.so.1.0.0
+debian/tmp/opt/trinity/lib/libkabc_ldaptdeio.so.1
+debian/tmp/opt/trinity/lib/libkabc_ldaptdeio.so.1.0.0
 debian/tmp/opt/trinity/lib/libkabc_net.so.1
 debian/tmp/opt/trinity/lib/libkabc_net.so.1.0.0
 

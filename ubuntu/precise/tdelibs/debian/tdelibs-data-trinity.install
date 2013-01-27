@@ -3619,7 +3619,7 @@ debian/tmp/opt/trinity/share/services/knotify.desktop
 debian/tmp/opt/trinity/share/services/tderesources/kabc/dir.desktop
 debian/tmp/opt/trinity/share/services/tderesources/kabc/file.desktop
 debian/tmp/opt/trinity/share/services/tderesources/kabc/net.desktop
-debian/tmp/opt/trinity/share/services/tderesources/kabc/ldapkio.desktop
+debian/tmp/opt/trinity/share/services/tderesources/kabc/ldaptdeio.desktop
 debian/tmp/opt/trinity/share/services/tderesources/kabc_manager.desktop
 
 debian/tmp/opt/trinity/share/services/tdespell_aspell.desktop
