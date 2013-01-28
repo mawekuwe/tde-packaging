@@ -523,7 +523,7 @@ qt-x11-free (3:3.3.7-1) unstable; urgency=medium
 
   * New upstream release. Includes the fix to CVE-2006-4811, an integer
     overflow that might (in theory) lead to the arbitrary execution of
-    code, particularly for those using KHTML (Konqueror's page rendering
+    code, particularly for those using TDEHTML (Konqueror's page rendering
     engine). Urgency is medium as this is a security problem.
     (Closes: #394313)
 
@@ -722,7 +722,7 @@ qt-x11-free (3:3.3.4-8) unstable; urgency=low
     + 29_qtc_fix_rotated_randr: Improve height/width calculations for rotated
       screens.
     + 30_qtc_qtoolbar_77047: Fix for the toolbar extension menu.
-    + 33_qtc_qlistbox-crash: Fixes a crash that shows up in KHTML.
+    + 33_qtc_qlistbox-crash: Fixes a crash that shows up in TDEHTML.
     + 34_qtc_dnd_optimization: Massive DND speedups.
     + 35_qtc_dnd_active_window_fix: Fixes DND when windows are changing focus.
     + 36_qtc_dnd-timestamp-fix: Suppresses needless popups when using DND.

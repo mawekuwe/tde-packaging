@@ -51,7 +51,7 @@ Section: tde
 Replaces: kmplayer-konq-plugins-trinity (<< 4:14.0.0)
 Breaks: kmplayer-konq-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, kmplayer-base-trinity (= ${binary:Version}), konqueror-trinity
-Description: KMPlayer plugin for KHTML/Konqueror [Trinity]
+Description: KMPlayer plugin for TDEHTML/Konqueror [Trinity]
  This plugin enables audio/video playback inside konqueror, using Xine (with
  *kxineplayer) or GStreamer (with *kgstplayer), such as movie trailers, web
  tv or radio. It mimics QuickTime, MS Media Player and RealPlayer plugin

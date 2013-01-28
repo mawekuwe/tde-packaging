@@ -45,7 +45,7 @@ Package: kmplayer-konq-plugins-kde3
 Architecture: any
 Section: kde
 Depends: ${shlibs:Depends}, kmplayer-base-kde3 (= ${binary:Version}), konqueror-kde3
-Description: KMPlayer plugin for KHTML/Konqueror [KDE3]
+Description: KMPlayer plugin for TDEHTML/Konqueror [KDE3]
  This plugin enables audio/video playback inside konqueror, using Xine (with
  *kxineplayer) or GStreamer (with *kgstplayer), such as movie trailers, web
  tv or radio. It mimics QuickTime, MS Media Player and RealPlayer plugin

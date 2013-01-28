@@ -2303,7 +2303,7 @@ kdelibs (4:3.3.2-2) unstable; urgency=high
 
   * KDE_3_3_BRANCH update.
 
-  * Include patch from CVS to fix XMLHttpRequest POST being broken in KHTML
+  * Include patch from CVS to fix XMLHttpRequest POST being broken in TDEHTML
     due to a blank line in headers. (Closes: #292765)
 
   +++ Changes by Christopher Martin:
@@ -2697,7 +2697,7 @@ kdelibs (4:2.2.2-13.woody.4) stable-security; urgency=high
 kdelibs (4:2.2.2-13.woody.3) stable-security; urgency=high
 
   * Non-maintainer upload authored by security team (Joey)
-  * Fixes cross-site scripting vulnerability in KHTML.
+  * Fixes cross-site scripting vulnerability in TDEHTML.
     (http://www.kde.org/info/security/advisory-20020908-2.txt)
 
  -- Daniel Stone <dstone@trinity.unimelb.edu.au>  Wed, 11 Sep 2002 22:24:35 +1000

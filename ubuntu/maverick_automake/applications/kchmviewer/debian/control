@@ -15,7 +15,7 @@ Description: CHM viewer for KDE3
  KchmViewer is a chm (MS HTML help file format) viewer, written in C++.
  Unlike most existing CHM viewers for Unix, it uses Trolltech Qt widget
  library, and does not depend on KDE or GNOME. However, it may be compiled
- with full KDE3 support, including KDE3 widgets and KIO/KHTML. 
+ with full KDE3 support, including KDE3 widgets and KIO/TDEHTML. 
  .
  The main advantage of KchmViewer is non-English language support. Unlike
  others, KchmViewer in most cases correctly detects help file encoding,
@@ -39,7 +39,7 @@ Description: CHM viewer for KDE3
  KchmViewer is a chm (MS HTML help file format) viewer, written in C++.
  Unlike most existing CHM viewers for Unix, it uses Trolltech Qt widget
  library, and does not depend on KDE or GNOME. However, it may be compiled
- with full KDE3 support, including KDE widgets and KIO/KHTML. 
+ with full KDE3 support, including KDE widgets and KIO/TDEHTML. 
  .
  The main advantage of KchmViewer is non-English language support. Unlike
  others, KchmViewer in most cases correctly detects help file encoding,
