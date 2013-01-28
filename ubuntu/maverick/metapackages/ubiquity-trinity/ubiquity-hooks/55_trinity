@@ -13,13 +13,13 @@ db_get passwd/username
 USER="$RET"
 db_get passwd/auto-login
 if [ -n "$USER" ] && [ "$RET" = true ]; then
-    if $chroot $ROOT [ -f /etc/trinity/tdm/kdmrc ]; then
+    if $chroot $ROOT [ -f /etc/trinity/kdm/kdmrc ]; then
         # Configure KDM autologin
         $log $chroot $ROOT sed -i$BACKUP -r \
             -e "s/^#?AutoLoginEnable=.*\$/AutoLoginEnable=true/" \
             -e "s/^#?AutoLoginUser=.*\$/AutoLoginUser=$USER/" \
             -e "s/^#?AutoLoginAgain=.*\$/AutoLoginAgain=true/" \
-            /etc/trinity/tdm/kdmrc
+            /etc/trinity/kdm/kdmrc
     fi
 
     if $chroot $ROOT [ -f /etc/trinity/tdm/tdmrc ]; then

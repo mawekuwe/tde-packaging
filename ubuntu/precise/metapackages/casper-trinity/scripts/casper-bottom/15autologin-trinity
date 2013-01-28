@@ -20,13 +20,13 @@ esac
 
 log_begin_msg "$DESCRIPTION"
 
-if [ -f /root/etc/trinity/tdm/kdmrc ]; then
+if [ -f /root/etc/trinity/kdm/kdmrc ]; then
     # Configure KDM-Trinity autologin
     sed -i -r \
         -e "s/^#?AutoLoginEnable=.*\$/AutoLoginEnable=true/" \
         -e "s/^#?AutoLoginUser=.*\$/AutoLoginUser=$USERNAME/" \
         -e "s/^#?AutoLoginAgain=.*\$/AutoLoginAgain=true/" \
-        /root/etc/trinity/tdm/kdmrc
+        /root/etc/trinity/kdm/kdmrc
 fi
 
 if [ -f /root/etc/trinity/tdm/tdmrc ]; then
