@@ -277,7 +277,7 @@ python-trinity (3.15.2+20060422-2) unstable; urgency=low
 python-trinity (3.15.2+20060422-1) unstable; urgency=low
 
   * New upstream release
-    * KConfigSkeleton works now (Closes: #310919)
+    * TDEConfigSkeleton works now (Closes: #310919)
     * KABC is included (Closes: #362443)
   * Depend on python2.x-sip4 instead of python2.x-sip4-qt3
   * Bump build-depends on sip4 to 4.4.2 and dependencies on PyQt to 3.16

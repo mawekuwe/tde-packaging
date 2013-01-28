@@ -11,11 +11,11 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: compizconfig-backend-tdeconfig-trinity (<< 4:14.0.0)
 Breaks: compizconfig-backend-tdeconfig-trinity (<< 4:14.0.0)
 Conflicts: libcompizconfig-backend-tdeconfig-trinity
-Description: KConfig [Trinity] Settings library for plugins - OpenCompositing Project
+Description: TDEConfig [Trinity] Settings library for plugins - OpenCompositing Project
  The OpenCompositing Project brings 3D desktop visual effects that improve
  usability of the X Window System and provide increased productivity
  through plugins and themes contributed by the community giving a
  rich desktop experience.
  .
- This package contains the KConfig (Trinity) settings backend for
+ This package contains the TDEConfig (Trinity) settings backend for
  libcompizconfig.
