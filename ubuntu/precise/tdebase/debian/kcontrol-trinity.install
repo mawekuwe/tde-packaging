@@ -64,8 +64,8 @@ debian/tmp/opt/trinity/lib/trinity/kcm_keys.la
 debian/tmp/opt/trinity/lib/trinity/kcm_keys.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kicker.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kicker.so
-debian/tmp/opt/trinity/lib/trinity/kcm_kio.la
-debian/tmp/opt/trinity/lib/trinity/kcm_kio.so
+debian/tmp/opt/trinity/lib/trinity/kcm_tdeio.la
+debian/tmp/opt/trinity/lib/trinity/kcm_tdeio.so
 debian/tmp/opt/trinity/lib/trinity/kcm_knotify.la
 debian/tmp/opt/trinity/lib/trinity/kcm_knotify.so
 debian/tmp/opt/trinity/lib/trinity/kcm_konqhtml.la
