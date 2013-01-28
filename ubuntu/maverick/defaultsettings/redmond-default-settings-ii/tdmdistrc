@@ -121,9 +121,9 @@ Enable=false
 #Port=177
 # File with the private keys of X-terminals. Required for XDM authentication.
 # Default is ""
-#KeyFile=/etc/trinity/kdm/kdmkeys
+#KeyFile=/etc/trinity/tdm/kdmkeys
 # XDMCP access control file in the usual XDM-Xaccess format.
-# Default is "/etc/trinity/kdm/Xaccess"
+# Default is "/etc/trinity/tdm/Xaccess"
 #Xaccess=
 # Number of seconds to wait for display to respond after the user has
 # selected a host from the chooser.
@@ -141,7 +141,7 @@ Enable=false
 # DirectQuery or BroadcastQuery requests.
 # If empty, no program is invoked and "Willing to manage" is sent.
 # Default is ""
-Willing=/etc/trinity/kdm/Xwilling
+Willing=/etc/trinity/tdm/Xwilling
 
 [Shutdown]
 # The command (subject to word splitting) to run to halt the system.
@@ -214,18 +214,18 @@ Willing=/etc/trinity/kdm/Xwilling
 # A program to run before the greeter is shown. Can be used to start an
 # xconsole or an alternative background generator. Subject to word splitting.
 # Default is ""
-Setup=/etc/trinity/kdm/Xsetup
+Setup=/etc/trinity/tdm/Xsetup
 # A program to run before a user session starts. Subject to word splitting.
 # Default is ""
-Startup=/etc/trinity/kdm/Xstartup
+Startup=/etc/trinity/tdm/Xstartup
 # A program to run after a user session exits. Subject to word splitting.
 # Default is ""
-Reset=/etc/trinity/kdm/Xreset
+Reset=/etc/trinity/tdm/Xreset
 # The program which is run as the user which logs in. It is supposed to
 # interpret the session argument (see SessionsDirs) and start an appropriate
 # session according to it. Subject to word splitting.
 # Default is "/usr/bin/xterm -ls -T"
-Session=/etc/trinity/kdm/Xsession
+Session=/etc/trinity/tdm/Xsession
 # The program to run if Session fails.
 # Default is "/usr/bin/xterm"
 #FailsafeClient=
@@ -420,7 +420,7 @@ MaxShowUID=29999
 # Default is true
 #UseBackground=false
 # The configuration file to be used by krootimage.
-# Default is "/etc/trinity/kdm/backgroundrc"
+# Default is "/etc/trinity/tdm/backgroundrc"
 #BackgroundCfg=
 # Hold the X-server grabbed the whole time the greeter is visible. This
 # may be more secure, but it will disable any background and other
