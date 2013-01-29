@@ -283,7 +283,7 @@ kvirc (2:2.1.2.99pre6-1) unstable; urgency=low
     - Prevent KDE Help browser from starting when using "What is This?"
       in the User Configuration, Server, and Registered Users dialogs.
     - Listview field editors now work properly.
-    - Use KProcess for spawning processes.
+    - Use TDEProcess for spawning processes.
     - Make user toolbar editor more easy to use.
     - Taskbar indicates better which window is active.
     - Fix crash when updating application font.
