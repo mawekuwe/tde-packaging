@@ -50,11 +50,11 @@ binary-indep: build
 # Build architecture-dependent files here.
 binary-arch: build
 	mkdir -p debian/kbfx-trinity/opt/trinity/lib64/
-	touch debian/kbfx-trinity/opt/trinity/lib64/BLANKFILE
+	touch debian/kbfx-trinity/opt/trinity/lib64/BLANTDEFILE
 	mkdir -p debian/kbfx-trinity/opt/trinity/lib/
 	cp -Rp debian/kbfx-trinity/opt/trinity/lib64/* debian/kbfx-trinity/opt/trinity/lib/
 	rm -rf debian/kbfx-trinity/opt/trinity/lib64/
-	rm -f debian/kbfx-trinity/opt/trinity/lib/BLANKFILE
+	rm -f debian/kbfx-trinity/opt/trinity/lib/BLANTDEFILE
 	dh_testdir
 	dh_testroot
 	dh_installexamples

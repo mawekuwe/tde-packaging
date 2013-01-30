@@ -46,11 +46,11 @@ binary-indep: build
 # Build architecture-dependent files here.
 binary-arch: build
 	mkdir -p debian/kbfx-kde3/opt/kde3/lib64/
-	touch debian/kbfx-kde3/opt/kde3/lib64/BLANKFILE
+	touch debian/kbfx-kde3/opt/kde3/lib64/BLANTDEFILE
 	mkdir -p debian/kbfx-kde3/opt/kde3/lib/
 	cp -Rp debian/kbfx-kde3/opt/kde3/lib64/* debian/kbfx-kde3/opt/kde3/lib/
 	rm -rf debian/kbfx-kde3/opt/kde3/lib64/
-	rm -f debian/kbfx-kde3/opt/kde3/lib/BLANKFILE
+	rm -f debian/kbfx-kde3/opt/kde3/lib/BLANTDEFILE
 	dh_testdir
 	dh_testroot
 	dh_installexamples
