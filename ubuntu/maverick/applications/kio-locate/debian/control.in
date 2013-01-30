@@ -1,4 +1,4 @@
-Source: kio-locate-trinity
+Source: tdeio-locate-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
@@ -7,12 +7,12 @@ Uploaders: @@@UPLOADERS@@@
 Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev, bzip2, python (>= 2.3), cmake
 Standards-Version: 3.8.4
 
-Package: kio-locate-trinity
+Package: tdeio-locate-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: kio-locate-kde3 (<< 4:3.5.13)
 Breaks: kio-locate-kde3 (<< 4:3.5.13)
-Description: kio-slave for the locate command [Trinity]
+Description: tdeio-slave for the locate command [Trinity]
  Adds support for the "locate:" and "locater:"
  protocols to Konqueror and other KDE applications.
  .
