@@ -338,7 +338,7 @@ digikam (2:0.9.1-3) unstable; urgency=low
 digikam (2:0.9.1-2) unstable; urgency=low
 
   [ Achim Bohnet ]
-  * Depend on tdebase-kio-plugins.  The pkg contains kio_trash and makes
+  * Depend on tdebase-kio-plugins.  The pkg contains tdeio_trash and makes
    'Move to Trash' working for e.g. Gnome sessions. Fixes report on
    digikam-user mailing list and closes malone #75435.
 

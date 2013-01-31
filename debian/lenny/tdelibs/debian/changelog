@@ -2816,7 +2816,7 @@ tdelibs (4:2.2.2-4) unstable; urgency=low
   * Cleanup documentation for freeze
   * Cleanup dh-make files
   * Default to Reject for cookie acceptions. (Closes: #121750)
-  * kio_https.* no longer exists and due to diversions we could end up 
+  * tdeio_https.* no longer exists and due to diversions we could end up 
     with the files existing but not tied to any package..so let's make
     sure to remove them.
 

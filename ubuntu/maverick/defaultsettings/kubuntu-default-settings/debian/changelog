@@ -1608,7 +1608,7 @@ kubuntu-default-settings (1:5.10-12) breezy; urgency=low
 
 kubuntu-default-settings (1:5.10-11) breezy; urgency=low
 
-  * Add kio_httprc to make Konqueror identify as safari for gmail/google maps
+  * Add tdeio_httprc to make Konqueror identify as safari for gmail/google maps
   * Add kuriikwsfilterrc to set default search engine to locate:/
   * Fix name on filemanagement profile (was called filebrowsing)
   * Set filemanagement profile to have $HOME as default

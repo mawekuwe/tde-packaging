@@ -229,14 +229,14 @@ k3b (1.0.4-2ubuntu4) hardy; urgency=low
 k3b (1.0.4-2ubuntu3) hardy; urgency=low
 
   * Fixed libk3b2.install:
-    - kio_videodvd.so and kio_videodvd.la are installed
+    - tdeio_videodvd.so and tdeio_videodvd.la are installed
 
  -- Anthony Mercatante <tonio@kubuntu.org>  Tue, 22 Jan 2008 13:27:55 +0100
 
 k3b (1.0.4-2ubuntu2) hardy; urgency=low
 
   [ Stefan Skotte ]
-  * kio_videodvd wasn't installed correctly
+  * tdeio_videodvd wasn't installed correctly
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 20 Dec 2007 11:08:20 +0000
 

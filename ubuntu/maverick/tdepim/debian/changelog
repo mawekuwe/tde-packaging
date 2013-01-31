@@ -978,7 +978,7 @@ tdepim (4:3.5.2-0ubuntu3) dapper; urgency=low
 
   * Add kubuntu_10_imap4_loop.diff from Dirk Mueller
     "When a message is sent to a kmail user with a > 71 characters long filename in
-     the content disposition header and kio_imap4 was compiled with gcc >= 4.0,
+     the content disposition header and tdeio_imap4 was compiled with gcc >= 4.0,
      then it goes into an endless loop eating up all available system memory."
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  4 May 2006 19:07:10 +0100

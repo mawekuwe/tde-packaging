@@ -463,7 +463,7 @@ tdevelop3 (4:3.2.2-0.1) unstable; urgency=low
   * Fix lintian warnings:
    - Update to Standards-Version 3.6.2
    - Replace possible bashism "-a" by "&&" in debian/config  
-  * Add Suggests on tdesdk-misc to provide kio_svn files
+  * Add Suggests on tdesdk-misc to provide tdeio_svn files
   * Translation fixes:
    - Fix debian/templates.master, run debconf-updatepo (Closes: #312161) 
    - Add Vietnamese debconf translation (Closes: #312160)
@@ -504,7 +504,7 @@ tdevelop3 (4:3.2.1-0ubuntu1) breezy; urgency=low
 
 tdevelop3 (4:3.2.0-3) unstable; urgency=low
 
-  * Fixed up the creation and removal of the symlinks for kio_svn
+  * Fixed up the creation and removal of the symlinks for tdeio_svn
     files (Closes: #310684)
 
  -- Norman Jordan <njordan@debian.org>  Wed, 25 May 2005 10:18:35 -0700
@@ -516,7 +516,7 @@ tdevelop3 (4:3.2.0-2) unstable; urgency=medium
     (Closes: #308198)
   * Fixed icon path (Closes: #299522)
   * Added pt_BR debconf translation (Closes: #304419)
-  * Moved the kio_svn files out of the way. Symlinks are created for
+  * Moved the tdeio_svn files out of the way. Symlinks are created for
     them if they are not already there. (Closes: #309379)
 
  -- Norman Jordan <njordan@debian.org>  Mon,  23 May 2005 03:52:16 -0700

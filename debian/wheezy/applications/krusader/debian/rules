@@ -43,7 +43,7 @@ install/krusader-trinity::
 		$(DEB_DESTDIR)/opt/trinity/share/pixmaps/krusader_root.xpm
 	install -D -p -m0644 pics/cr32-app-krusader_user.xpm \
 		$(DEB_DESTDIR)/opt/trinity/share/pixmaps/krusader_user.xpm
-	# install properly kio_isorc
+	# install properly tdeio_isorc
 	install -D -p -m0644 iso/tdeio_isorc \
 		$(DEB_DESTDIR)/opt/trinity/share/config/tdeio_isorc
 	# install lintian override

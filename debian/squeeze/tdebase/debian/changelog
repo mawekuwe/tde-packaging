@@ -367,7 +367,7 @@ tdebase (4:3.5.9-0ubuntu3) hardy; urgency=low
 
 tdebase (4:3.5.9-0ubuntu2) hardy; urgency=low
 
-  * Add kubuntu_9922_kio_man_utf8.diff: Recode manual pages to UTF-8 
+  * Add kubuntu_9922_tdeio_man_utf8.diff: Recode manual pages to UTF-8 
     (LP: #44548)
     - Patch thanks to Colin Watson <cjwatson@ubuntu.com>
   * Update 25_khelp_htdig.diff with correct $kdekdehtmldir location
@@ -850,7 +850,7 @@ tdebase (4:3.5.7-1ubuntu13) gutsy; urgency=low
 tdebase (4:3.5.7-1ubuntu12) gutsy; urgency=low
 
   * Remove kubuntu_95_safely-remove_umount_dialog.diff as
-    kio_umountwrapper is being promoted to main
+    tdeio_umountwrapper is being promoted to main
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 23 Jul 2007 11:41:02 +0100
 
