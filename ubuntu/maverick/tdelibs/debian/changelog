@@ -2578,7 +2578,7 @@ tdelibs (4:3.1.4-2) unstable; urgency=low
   * Added patch to update autotools files.
   * Added patch to remove pedantic-errors from KDE_CHECK_FUNC_EXT since it
     causes configure checks to fail due to #line numbers being > 32767.
-  * Added patch to make KStandardDirs::addKDEDefaults look in /usr/local as
+  * Added patch to make TDEStandardDirs::addKDEDefaults look in /usr/local as
     well.
 
  -- Christopher L Cheney <ccheney@debian.org>  Sun,  5 Oct 2003 18:00:00 -0500
