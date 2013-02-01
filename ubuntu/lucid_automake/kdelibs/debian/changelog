@@ -433,7 +433,7 @@ kdelibs (4:3.5.8-0ubuntu4) hardy; urgency=low
 kdelibs (4:3.5.8-0ubuntu3.1) gutsy-proposed; urgency=low
 
   * Add kubuntu_94_kselectaction.diff Closes: LP #155144
-    Editable KSelectAction stopped working for custom values
+    Editable TDESelectAction stopped working for custom values
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 21 Oct 2007 00:09:25 +0100
 

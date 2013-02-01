@@ -817,7 +817,7 @@ tdemultimedia (4:3.1.2-1.2) unstable; urgency=low
       sense. (Closes: #220174)
     - Comment out inline assembly macro. (Closes: #220176)
     - Make sure subclasses inherit publicly from class
-      KListViewItem. (Closes: #220179)
+      TDEListViewItem. (Closes: #220179)
 
  -- Petter Reinholdtsen <pere@debian.org>  Tue, 11 Nov 2003 16:31:46 +0000
 

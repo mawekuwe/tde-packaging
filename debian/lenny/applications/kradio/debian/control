@@ -12,10 +12,10 @@ Depends: ${shlibs:Depends}
 Replaces: kradio-trinity (<< 4:14.0.0)
 Breaks: kradio-trinity (<< 4:14.0.0)
 Description: Comfortable Radio Application for KDE [Trinity]
- KRadio is a comfortable radio application for KDE 3.x with support for 
+ TDERadio is a comfortable radio application for KDE 3.x with support for 
  V4L and V4L2 radio cards drivers.
  .
- KRadio currently provides
+ TDERadio currently provides
  .
    * V4L/V4L2 radio support
    * Remote control support (LIRC)
@@ -26,8 +26,8 @@ Description: Comfortable Radio Application for KDE [Trinity]
    * Extendable plugin architecture
  .
  This package also includes a growing collection of station preset
- files for many cities around the world contributed by KRadio users.
+ files for many cities around the world contributed by TDERadio users.
  .
- As KRadio is based on an extendable plugin architecture, contributions
+ As TDERadio is based on an extendable plugin architecture, contributions
  of new plugins (e.g. Internet Radio Streams, new cool GUIs) are welcome.
  .

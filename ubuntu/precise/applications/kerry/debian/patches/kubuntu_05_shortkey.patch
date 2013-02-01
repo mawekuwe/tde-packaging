@@ -5,9 +5,9 @@ diff -Nur kerry-0.2.1/kerry/src/kerryapp.cpp kerry-0.2.1.new/kerry/src/kerryapp.
    globalKeys = new TDEGlobalAccel(TQT_TQOBJECT(this));
    globalKeys->insert( "Program:kerry", i18n("Kerry Beagle Search") );
 
--  KShortcut showDialogShortcut = KShortcut(ALT+Key_Space);
+-  TDEShortcut showDialogShortcut = TDEShortcut(ALT+Key_Space);
 -  showDialogShortcut.append( KKey( Key_F12 ) );
-+  KShortcut showDialogShortcut = KShortcut(CTRL+SHIFT+Key_Space);
++  TDEShortcut showDialogShortcut = TDEShortcut(CTRL+SHIFT+Key_Space);
    globalKeys->insert( "Show Kerry Dialog", i18n("Show Search Dialog"), TQString(), showDialogShortcut, showDialogShortcut, TQT_TQOBJECT(hitListWindow), TQT_SLOT(showSearchDialog()) );
    globalKeys->insert( "Search Primary Selection with Kerry", i18n("Search Primary Selection"), TQString(), CTRL+ALT+Key_Space, CTRL+ALT+Key_Space, TQT_TQOBJECT(this), TQT_SLOT(searchPrimarySelection()) );
    configChanged();

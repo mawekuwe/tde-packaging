@@ -26,7 +26,7 @@ diff -Nur kdelibs-3.5.8/kdeui/khelpmenu.cpp kdelibs-3.5.8.new/kdeui/khelpmenu.cp
 +    mMenu->insertItem( SmallIcon("locale"), i18n( "&Translate this Application" ), this, TQT_SLOT(kubuntuTranslate()) );
 +    mMenu->insertSeparator();
 +
-     if (kapp->authorizeKAction("help_about_app"))
+     if (kapp->authorizeTDEAction("help_about_app"))
      {
        mMenu->insertItem( kapp->miniIcon(),
 @@ -233,6 +240,24 @@
@@ -72,11 +72,11 @@ diff -Nur kdelibs-3.5.8/kdeui/kstdaction.cpp kdelibs-3.5.8.new/kdeui/kstdaction.
 +++ kdelibs-3.5.8.new/kdeui/kstdaction.cpp	2007-10-09 09:39:54.000000000 +0100
 @@ -319,5 +319,9 @@
  	{ return KStdAction::create( AboutApp, name, recvr, slot, parent ); }
- KAction *aboutKDE( const TQObject *recvr, const char *slot, KActionCollection* parent, const char *name )
+ TDEAction *aboutKDE( const TQObject *recvr, const char *slot, TDEActionCollection* parent, const char *name )
  	{ return KStdAction::create( AboutKDE, name, recvr, slot, parent ); }
-+KAction *kubuntuTranslate( const TQObject *recvr, const char *slot, KActionCollection* parent, const char *name )
++TDEAction *kubuntuTranslate( const TQObject *recvr, const char *slot, TDEActionCollection* parent, const char *name )
 +	{ return KStdAction::create( KubuntuTranslate, name, recvr, slot, parent ); }
-+KAction *kubuntuGetHelpOnline( const TQObject *recvr, const char *slot, KActionCollection* parent, const char *name )
++TDEAction *kubuntuGetHelpOnline( const TQObject *recvr, const char *slot, TDEActionCollection* parent, const char *name )
 +	{ return KStdAction::create( KubuntuGetHelpOnline, name, recvr, slot, parent ); }
  
  }
@@ -93,14 +93,14 @@ diff -Nur kdelibs-3.5.8/kdeui/kstdaction.h kdelibs-3.5.8.new/kdeui/kstdaction.h
  
 @@ -609,6 +610,12 @@
  	*/
- 	KDEUI_EXPORT KAction *switchApplicationLanguage(const TQObject *recvr, const char *slot,
- 				KActionCollection* parent, const char *name = 0 );
+ 	KDEUI_EXPORT TDEAction *switchApplicationLanguage(const TQObject *recvr, const char *slot,
+ 				TDEActionCollection* parent, const char *name = 0 );
 +
-+	KDEUI_EXPORT KAction *kubuntuTranslate(const TQObject *recvr, const char *slot,
-+				KActionCollection* parent, const char *name = 0 );
++	KDEUI_EXPORT TDEAction *kubuntuTranslate(const TQObject *recvr, const char *slot,
++				TDEActionCollection* parent, const char *name = 0 );
 +
-+	KDEUI_EXPORT KAction *kubuntuGetHelpOnline(const TQObject *recvr, const char *slot,
-+				KActionCollection* parent, const char *name = 0 );
++	KDEUI_EXPORT TDEAction *kubuntuGetHelpOnline(const TQObject *recvr, const char *slot,
++				TDEActionCollection* parent, const char *name = 0 );
  }
  
  #endif // KSTDACTION_H
@@ -108,12 +108,12 @@ diff -Nur kdelibs-3.5.8/kdeui/kstdaction_p.h kdelibs-3.5.8.new/kdeui/kstdaction_
 --- kdelibs-3.5.8/kdeui/kstdaction_p.h	2007-10-08 10:52:12.000000000 +0100
 +++ kdelibs-3.5.8.new/kdeui/kstdaction_p.h	2007-10-09 09:39:54.000000000 +0100
 @@ -112,6 +112,8 @@
- 	{ SwitchApplicationLanguage,     KStdAccel::AccelNone, "switch_application_language", I18N_NOOP("Switch application &language..."), 0, 0 },
- 	{ AboutApp,      KStdAccel::AccelNone, "help_about_app", I18N_NOOP("&About %1"), 0, 0 },
- 	{ AboutKDE,      KStdAccel::AccelNone, "help_about_kde", I18N_NOOP("About &Trinity"), 0,"about_kde" },
-+	{ KubuntuGetHelpOnline,      KStdAccel::AccelNone, "kubuntu_get_help_online", I18N_NOOP("&Get Help Online"), 0, "launchpad" },
-+	{ KubuntuTranslate,      KStdAccel::AccelNone, "kubuntu_translate", I18N_NOOP("&Translate This Application"), 0, "locale" },
- 	{ ActionNone, KStdAccel::AccelNone, 0, 0, 0, 0 }
+ 	{ SwitchApplicationLanguage,     TDEStdAccel::AccelNone, "switch_application_language", I18N_NOOP("Switch application &language..."), 0, 0 },
+ 	{ AboutApp,      TDEStdAccel::AccelNone, "help_about_app", I18N_NOOP("&About %1"), 0, 0 },
+ 	{ AboutKDE,      TDEStdAccel::AccelNone, "help_about_kde", I18N_NOOP("About &Trinity"), 0,"about_kde" },
++	{ KubuntuGetHelpOnline,      TDEStdAccel::AccelNone, "kubuntu_get_help_online", I18N_NOOP("&Get Help Online"), 0, "launchpad" },
++	{ KubuntuTranslate,      TDEStdAccel::AccelNone, "kubuntu_translate", I18N_NOOP("&Translate This Application"), 0, "locale" },
+ 	{ ActionNone, TDEStdAccel::AccelNone, 0, 0, 0, 0 }
  };
  
 diff -Nur kdelibs-3.5.8/kdeui/ui_standards.rc kdelibs-3.5.8.new/kdeui/ui_standards.rc
