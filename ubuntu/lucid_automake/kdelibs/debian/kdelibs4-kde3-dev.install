@@ -444,7 +444,7 @@ debian/tmp/opt/kde3/include/tde/tdeparts/browserextension.h
 debian/tmp/opt/kde3/include/tde/tdeparts/browserinterface.h
 debian/tmp/opt/kde3/include/tde/tdeparts/browserrun.h
 debian/tmp/opt/kde3/include/tde/tdeparts/componentfactory.h
-debian/tmp/opt/kde3/include/tde/tdeparts/doctdemainwindow.h
+debian/tmp/opt/kde3/include/tde/tdeparts/dockmainwindow.h
 debian/tmp/opt/kde3/include/tde/tdeparts/event.h
 debian/tmp/opt/kde3/include/tde/tdeparts/factory.h
 debian/tmp/opt/kde3/include/tde/tdeparts/genericfactory.h

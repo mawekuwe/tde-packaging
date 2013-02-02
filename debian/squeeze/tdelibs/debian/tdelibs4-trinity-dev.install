@@ -446,7 +446,7 @@ debian/tmp/opt/trinity/include/tdeparts/browserextension.h
 debian/tmp/opt/trinity/include/tdeparts/browserinterface.h
 debian/tmp/opt/trinity/include/tdeparts/browserrun.h
 debian/tmp/opt/trinity/include/tdeparts/componentfactory.h
-debian/tmp/opt/trinity/include/tdeparts/doctdemainwindow.h
+debian/tmp/opt/trinity/include/tdeparts/dockmainwindow.h
 debian/tmp/opt/trinity/include/tdeparts/event.h
 debian/tmp/opt/trinity/include/tdeparts/factory.h
 debian/tmp/opt/trinity/include/tdeparts/genericfactory.h
