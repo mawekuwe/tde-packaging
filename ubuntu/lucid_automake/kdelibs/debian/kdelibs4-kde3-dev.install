@@ -604,7 +604,7 @@ debian/tmp/opt/kde3/include/tde/ktempdir.h
 debian/tmp/opt/kde3/include/tde/ktempfile.h
 debian/tmp/opt/kde3/include/tde/ktextbrowser.h
 debian/tmp/opt/kde3/include/tde/ktextedit.h
-debian/tmp/opt/kde3/include/tde/tdetexteditor/bloctdeselectioninterface.h
+debian/tmp/opt/kde3/include/tde/tdetexteditor/blockselectioninterface.h
 debian/tmp/opt/kde3/include/tde/tdetexteditor/clipboardinterface.h
 debian/tmp/opt/kde3/include/tde/tdetexteditor/codecompletioninterface.h
 debian/tmp/opt/kde3/include/tde/tdetexteditor/configinterfaceextension.h

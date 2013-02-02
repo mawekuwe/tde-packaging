@@ -606,7 +606,7 @@ debian/tmp/opt/trinity/include/ktempdir.h
 debian/tmp/opt/trinity/include/ktempfile.h
 debian/tmp/opt/trinity/include/ktextbrowser.h
 debian/tmp/opt/trinity/include/ktextedit.h
-debian/tmp/opt/trinity/include/tdetexteditor/bloctdeselectioninterface.h
+debian/tmp/opt/trinity/include/tdetexteditor/blockselectioninterface.h
 debian/tmp/opt/trinity/include/tdetexteditor/clipboardinterface.h
 debian/tmp/opt/trinity/include/tdetexteditor/codecompletioninterface.h
 debian/tmp/opt/trinity/include/tdetexteditor/configinterfaceextension.h

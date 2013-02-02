@@ -37,8 +37,8 @@ debian/tmp/opt/kde3/include/tde/kopete/kopeteversion.h
 debian/tmp/opt/kde3/include/tde/kopete/managedconnectionaccount.h
 debian/tmp/opt/kde3/include/tde/kopete/ui/accountselector.h
 debian/tmp/opt/kde3/include/tde/kopete/ui/addcontactpage.h
-debian/tmp/opt/kde3/include/tde/kopete/ui/addressbootdeselectordialog.h
-debian/tmp/opt/kde3/include/tde/kopete/ui/addressbootdeselectorwidget.h
+debian/tmp/opt/kde3/include/tde/kopete/ui/addressbookselectordialog.h
+debian/tmp/opt/kde3/include/tde/kopete/ui/addressbookselectorwidget.h
 debian/tmp/opt/kde3/include/tde/kopete/ui/editaccountwidget.h
 debian/tmp/opt/kde3/include/tde/kopete/ui/fileconfirmbase.h
 debian/tmp/opt/kde3/include/tde/kopete/ui/kopeteawaydialogbase.h

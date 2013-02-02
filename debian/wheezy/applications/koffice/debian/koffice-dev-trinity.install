@@ -79,8 +79,8 @@ debian/tmp/opt/trinity/lib/libchalkimage.la
 debian/tmp/opt/trinity/lib/libchalkimage.so
 debian/tmp/opt/trinity/lib/libchalkrgb.la
 debian/tmp/opt/trinity/lib/libchalkrgb.so
-debian/tmp/opt/trinity/lib/libchaltdescripting.la
-debian/tmp/opt/trinity/lib/libchaltdescripting.so
+debian/tmp/opt/trinity/lib/libchalkscripting.la
+debian/tmp/opt/trinity/lib/libchalkscripting.so
 debian/tmp/opt/trinity/lib/libchalkui.la
 debian/tmp/opt/trinity/lib/libchalkui.so
 debian/tmp/opt/trinity/lib/libkrossapi.la

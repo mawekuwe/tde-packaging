@@ -1,5 +1,5 @@
---- kiosktool/kiosktool/tdeioskrun.h	2005-04-25 10:46:33.000000000 +0100
-+++ kiosktool/kiosktool/tdeioskrun.h	2007-07-18 17:47:04.000000000 +0100
+--- kiosktool/kiosktool/kioskrun.h	2005-04-25 10:46:33.000000000 +0100
++++ kiosktool/kiosktool/kioskrun.h	2007-07-18 17:47:04.000000000 +0100
 @@ -37,6 +37,18 @@
  
  class KioskGui;
@@ -19,8 +19,8 @@
  class KioskRun : public TQObject
  {
    friend class KioskGui;
---- kiosktool/kiosktool/tdeioskrun.cpp	2005-04-25 10:46:33.000000000 +0100
-+++ kiosktool/kiosktool/tdeioskrun.cpp	2007-07-20 16:56:07.000000000 +0100
+--- kiosktool/kiosktool/kioskrun.cpp	2005-04-25 10:46:33.000000000 +0100
++++ kiosktool/kiosktool/kioskrun.cpp	2007-07-20 16:56:07.000000000 +0100
 @@ -28,6 +28,7 @@
  
  #include <tqdir.h>
@@ -34,7 +34,7 @@
  
  #include <tdeio/netaccess.h>
 -#define NETACCESS	KIO::NetAccess
-+// Kiostdetool wants to use fish://root@localhost/... which won't work on Kubuntu because we don't run ssh by default, we don't allow ssh to do root logins and root doesn't even have a password, so implement the functions here for local copies using tdesu instead
++// Kiosktool wants to use fish://root@localhost/... which won't work on Kubuntu because we don't run ssh by default, we don't allow ssh to do root logins and root doesn't even have a password, so implement the functions here for local copies using tdesu instead
 +// #define NETACCESS	KIO::NetAccess
  
  #undef DEBUG_ENTRIES
@@ -71,7 +71,7 @@
 +
 +TQString NETACCESS::lastErrorString()
 +{
-+  return "Error in Kiostdetool Kubuntu modifications";
++  return "Error in Kiosktool Kubuntu modifications";
 +}
 +
 +int NETACCESS::lastError()

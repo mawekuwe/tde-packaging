@@ -23,8 +23,8 @@ debian/tmp/opt/kde3/share/apps/kplato/kplato.rc
 debian/tmp/opt/kde3/share/apps/kplato/kplato_readonly.rc
 debian/tmp/opt/kde3/share/apps/kplato/reports/resourcelist.desktop
 debian/tmp/opt/kde3/share/apps/kplato/reports/.source/resourcelist.ktf
-debian/tmp/opt/kde3/share/apps/kplato/reports/.source/tastdelist.ktf
-debian/tmp/opt/kde3/share/apps/kplato/reports/tastdelist.desktop
+debian/tmp/opt/kde3/share/apps/kplato/reports/.source/tasklist.ktf
+debian/tmp/opt/kde3/share/apps/kplato/reports/tasklist.desktop
 debian/tmp/opt/kde3/share/apps/kplato/templates/Simple/8HourDay-40HourWeek.desktop
 debian/tmp/opt/kde3/share/apps/kplato/templates/Simple/.directory
 debian/tmp/opt/kde3/share/apps/kplato/templates/Simple/Plain.desktop
