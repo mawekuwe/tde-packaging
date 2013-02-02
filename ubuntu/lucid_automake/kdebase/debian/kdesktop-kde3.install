@@ -45,6 +45,6 @@ debian/tmp/opt/kde3/share/apps/kdesktop/Desktop/Web_Browser
 debian/tmp/opt/kde3/share/apps/konqueror/servicemenus/kdesktopSetAsBackground.desktop
 debian/tmp/opt/kde3/share/autostart/kdesktop.desktop
 debian/tmp/opt/kde3/share/config.kcfg/kdesktop.kcfg
-debian/tmp/opt/kde3/share/config.kcfg/klaunch.kcfg
+debian/tmp/opt/kde3/share/config.kcfg/tdelaunch.kcfg
 debian/tmp/opt/kde3/share/config.kcfg/kwebdesktop.kcfg
 debian/tmp/opt/kde3/share/icons/crystalsvg/32x32/apps/error.png

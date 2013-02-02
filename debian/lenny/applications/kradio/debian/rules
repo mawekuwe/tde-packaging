@@ -30,7 +30,7 @@ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	INSTALL_PROGRAM += -s
 endif
 
-debian/kradio.xpm: kradio3/icons/hi32-app-kradio.png
+debian/tderadio.xpm: tderadio3/icons/hi32-app-tderadio.png
 	convert $< $@
 
 configure:
@@ -55,7 +55,7 @@ config.status: configure
 															
 
 
-build: build-stamp debian/kradio.xpm
+build: build-stamp debian/tderadio.xpm
 
 build-stamp:  config.status
 	dh_testdir
@@ -68,10 +68,10 @@ clean:
 	dh_testroot
 	rm -f build-stamp 
 	rm -f debian/debiandirs 
-	rm -f debian/kradio.xpm 
+	rm -f debian/tderadio.xpm 
 	# Add here commands to clean up after the build process.
 	[ ! -f Makefile ] || $(MAKE) distclean
-#	[ ! -kradio3/src && $(MAKE) clean
+#	[ ! -tderadio3/src && $(MAKE) clean
 	for i in `find | grep .gmo` ; do rm -f $$i ; done
 	find -name Makefile.in -delete
 	rm -f config.sub config.guess configure
@@ -83,25 +83,25 @@ install:
 	dh_testroot
 	dh_clean -k 
 	dh_installdirs
-	# Add here commands to install the package into debian/kradio.
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/kradio-trinity
-	install -D -m 644 debian/kradio.xpm debian/kradio-trinity/opt/trinity/share/pixmaps/kradio.xpm
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libalsa-sound.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libtimeshifter.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libstandard-display.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/liblirc.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libstreaming.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libradio.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libquickbar.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/librecording.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libv4lradio.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libtimecontrol.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libdocking-menu.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/liboss-sound.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/liberror-log.so
-#	chrpath -d debian/kradio/usr/lib/kradio/plugins/libsoundserver.so
-#	chrpath -d debian/kradio/usr/bin/convert-presets
-#	chrpath -d debian/kradio/usr/bin/kradio
+	# Add here commands to install the package into debian/tderadio.
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tderadio-trinity
+	install -D -m 644 debian/tderadio.xpm debian/tderadio-trinity/opt/trinity/share/pixmaps/tderadio.xpm
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libalsa-sound.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libtimeshifter.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libstandard-display.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/liblirc.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libstreaming.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libradio.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libquickbar.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/librecording.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libv4lradio.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libtimecontrol.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libdocking-menu.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/liboss-sound.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/liberror-log.so
+#	chrpath -d debian/tderadio/usr/lib/tderadio/plugins/libsoundserver.so
+#	chrpath -d debian/tderadio/usr/bin/convert-presets
+#	chrpath -d debian/tderadio/usr/bin/tderadio
 
 # Build architecture-independent files here.
 binary-indep: build install
@@ -111,11 +111,11 @@ binary-indep: build install
 binary-arch: build install
 	dh_testdir
 	dh_testroot
-	dh_installchangelogs kradio3/ChangeLog
+	dh_installchangelogs tderadio3/ChangeLog
 	dh_installdocs 
 	dh_installmenu
 	dh_installman
-	mv debian/kradio-trinity/usr/share/man debian/kradio-trinity/opt/trinity/share/
+	mv debian/tderadio-trinity/usr/share/man debian/tderadio-trinity/opt/trinity/share/
 	dh_link
 	dh_strip
 	dh_compress

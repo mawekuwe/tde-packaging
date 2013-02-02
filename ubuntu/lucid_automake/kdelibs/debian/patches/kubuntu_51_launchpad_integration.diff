@@ -2,8 +2,8 @@ diff -Nur kdelibs-3.5.8/kdeui/khelpmenu.cpp kdelibs-3.5.8.new/kdeui/khelpmenu.cp
 --- kdelibs-3.5.8/kdeui/khelpmenu.cpp	2007-10-08 10:52:12.000000000 +0100
 +++ kdelibs-3.5.8.new/kdeui/khelpmenu.cpp	2007-10-09 09:42:02.000000000 +0100
 @@ -41,6 +41,7 @@
- #include <kpopupmenu.h>
- #include <kstdaccel.h>
+ #include <tdepopupmenu.h>
+ #include <tdestdaccel.h>
  #include <kstdaction.h>
 +#include <kprocess.h>
  

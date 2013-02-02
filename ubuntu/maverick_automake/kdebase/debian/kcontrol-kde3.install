@@ -2,8 +2,8 @@ debian/tmp/opt/kde3/bin/kaccess
 debian/tmp/opt/kde3/bin/kcontrol
 debian/tmp/opt/kde3/bin/kdeinstallktheme
 debian/tmp/opt/kde3/bin/keditfiletype
-debian/tmp/opt/kde3/bin/kfontinst
-debian/tmp/opt/kde3/bin/kfontview
+debian/tmp/opt/kde3/bin/tdefontinst
+debian/tmp/opt/kde3/bin/tdefontview
 debian/tmp/opt/kde3/bin/kinfocenter
 debian/tmp/opt/kde3/bin/klocaldomainurifilterhelper
 debian/tmp/opt/kde3/bin/tderandrtray
@@ -112,10 +112,10 @@ debian/tmp/opt/kde3/lib/kde3/tdeio_fonts.la
 debian/tmp/opt/kde3/lib/kde3/tdeio_fonts.so
 debian/tmp/opt/kde3/lib/kde3/kstyle_keramik_config.la
 debian/tmp/opt/kde3/lib/kde3/kstyle_keramik_config.so
-debian/tmp/opt/kde3/lib/kde3/libkfontviewpart.la
-debian/tmp/opt/kde3/lib/kde3/libkfontviewpart.so
-debian/tmp/opt/kde3/lib/kde3/libkshorturifilter.la
-debian/tmp/opt/kde3/lib/kde3/libkshorturifilter.so
+debian/tmp/opt/kde3/lib/kde3/libtdefontviewpart.la
+debian/tmp/opt/kde3/lib/kde3/libtdefontviewpart.so
+debian/tmp/opt/kde3/lib/kde3/libtdeshorturifilter.la
+debian/tmp/opt/kde3/lib/kde3/libtdeshorturifilter.so
 debian/tmp/opt/kde3/lib/kde3/libkuriikwsfilter.la
 debian/tmp/opt/kde3/lib/kde3/libkuriikwsfilter.so
 debian/tmp/opt/kde3/lib/kde3/libkurisearchfilter.la
@@ -124,8 +124,8 @@ debian/tmp/opt/kde3/lib/kde3/liblocaldomainurifilter.la
 debian/tmp/opt/kde3/lib/kde3/liblocaldomainurifilter.so
 debian/tmp/opt/kde3/lib/libkdeinit_kaccess.so
 debian/tmp/opt/kde3/lib/libkdeinit_kcontrol.so
-debian/tmp/opt/kde3/lib/libkfontinst.so.0
-debian/tmp/opt/kde3/lib/libkfontinst.so.0.0.0
+debian/tmp/opt/kde3/lib/libtdefontinst.so.0
+debian/tmp/opt/kde3/lib/libtdefontinst.so.0.0.0
 debian/tmp/opt/kde3/share/applications/kde/arts.desktop
 debian/tmp/opt/kde3/share/applications/kde/background.desktop
 debian/tmp/opt/kde3/share/applications/kde/bell.desktop
@@ -167,7 +167,7 @@ debian/tmp/opt/kde3/share/applications/kde/kcmview1394.desktop
 debian/tmp/opt/kde3/share/applications/kde/KControl.desktop
 debian/tmp/opt/kde3/share/applications/kde/tdm.desktop
 debian/tmp/opt/kde3/share/applications/kde/keys.desktop
-debian/tmp/opt/kde3/share/applications/kde/kfontview.desktop
+debian/tmp/opt/kde3/share/applications/kde/tdefontview.desktop
 debian/tmp/opt/kde3/share/applications/kde/tdehtml_behavior.desktop
 debian/tmp/opt/kde3/share/applications/kde/tdehtml_fonts.desktop
 debian/tmp/opt/kde3/share/applications/kde/tdehtml_java_js.desktop
@@ -228,8 +228,8 @@ debian/tmp/opt/kde3/share/services/fonts.protocol
 debian/tmp/opt/kde3/share/services/fontthumbnail.desktop
 debian/tmp/opt/kde3/share/services/kaccess.desktop
 debian/tmp/opt/kde3/share/services/tdefile_font.desktop
-debian/tmp/opt/kde3/share/services/kfontviewpart.desktop
-debian/tmp/opt/kde3/share/services/kshorturifilter.desktop
+debian/tmp/opt/kde3/share/services/tdefontviewpart.desktop
+debian/tmp/opt/kde3/share/services/tdeshorturifilter.desktop
 debian/tmp/opt/kde3/share/services/kuriikwsfilter.desktop
 debian/tmp/opt/kde3/share/services/kurisearchfilter.desktop
 debian/tmp/opt/kde3/share/services/localdomainurifilter.desktop

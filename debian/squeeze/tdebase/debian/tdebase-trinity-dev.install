@@ -69,8 +69,8 @@ debian/tmp/opt/trinity/lib/libtdeinit_twin.la
 debian/tmp/opt/trinity/lib/libtdeinit_twin_rules_dialog.la
 debian/tmp/opt/trinity/lib/libtdeinit_kwrite.la
 debian/tmp/opt/trinity/lib/libtdeinit_kxkb.la
-debian/tmp/opt/trinity/lib/libkfontinst.la
-debian/tmp/opt/trinity/lib/libkfontinst.so
+debian/tmp/opt/trinity/lib/libtdefontinst.la
+debian/tmp/opt/trinity/lib/libtdefontinst.so
 debian/tmp/opt/trinity/lib/libkhotkeys_shared.la
 debian/tmp/opt/trinity/lib/libkhotkeys_shared.so
 debian/tmp/opt/trinity/lib/libkickermain.la

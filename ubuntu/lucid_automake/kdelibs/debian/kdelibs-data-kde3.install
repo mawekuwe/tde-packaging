@@ -186,7 +186,7 @@ debian/tmp/opt/kde3/share/apps/kdeui/about/top-middle.png
 debian/tmp/opt/kde3/share/apps/kdeui/pics/aboutkde.png
 debian/tmp/opt/kde3/share/apps/kdeui/pics/ktip-background.png
 debian/tmp/opt/kde3/share/apps/kdeui/pics/ktip-bulb.png
-debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kactionselector.png
+debian/tmp/opt/kde3/share/apps/kdewidgets/pics/tdeactionselector.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kactivelabel.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kcharselect.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/tdecmodule.png
@@ -202,8 +202,8 @@ debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kdoublenuminput.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kdoublespinbox.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kdualcolorbutton.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/keditlistbox.png
-debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kfontcombo.png
-debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kfontrequester.png
+debian/tmp/opt/kde3/share/apps/kdewidgets/pics/tdefontcombo.png
+debian/tmp/opt/kde3/share/apps/kdewidgets/pics/tdefontrequester.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kgradientselector.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/khistorycombo.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/khsselector.png
@@ -214,8 +214,8 @@ debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kintspinbox.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kkeybutton.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kled.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/klineedit.png
-debian/tmp/opt/kde3/share/apps/kdewidgets/pics/klistbox.png
-debian/tmp/opt/kde3/share/apps/kdewidgets/pics/klistview.png
+debian/tmp/opt/kde3/share/apps/kdewidgets/pics/tdelistbox.png
+debian/tmp/opt/kde3/share/apps/kdewidgets/pics/tdelistview.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kpalettetable.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kpasswordedit.png
 debian/tmp/opt/kde3/share/apps/kdewidgets/pics/kprogress.png

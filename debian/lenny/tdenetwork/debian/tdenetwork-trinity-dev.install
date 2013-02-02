@@ -37,8 +37,8 @@ debian/tmp/opt/trinity/include/kopete/kopeteversion.h
 debian/tmp/opt/trinity/include/kopete/managedconnectionaccount.h
 debian/tmp/opt/trinity/include/kopete/ui/accountselector.h
 debian/tmp/opt/trinity/include/kopete/ui/addcontactpage.h
-debian/tmp/opt/trinity/include/kopete/ui/addressbookselectordialog.h
-debian/tmp/opt/trinity/include/kopete/ui/addressbookselectorwidget.h
+debian/tmp/opt/trinity/include/kopete/ui/addressbootdeselectordialog.h
+debian/tmp/opt/trinity/include/kopete/ui/addressbootdeselectorwidget.h
 debian/tmp/opt/trinity/include/kopete/ui/editaccountwidget.h
 debian/tmp/opt/trinity/include/kopete/ui/fileconfirmbase.h
 debian/tmp/opt/trinity/include/kopete/ui/kopeteawaydialogbase.h

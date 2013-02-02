@@ -69,8 +69,8 @@ debian/tmp/opt/kde3/lib/libkdeinit_kwin.la
 debian/tmp/opt/kde3/lib/libkdeinit_kwin_rules_dialog.la
 debian/tmp/opt/kde3/lib/libkdeinit_kwrite.la
 debian/tmp/opt/kde3/lib/libkdeinit_kxkb.la
-debian/tmp/opt/kde3/lib/libkfontinst.la
-debian/tmp/opt/kde3/lib/libkfontinst.so
+debian/tmp/opt/kde3/lib/libtdefontinst.la
+debian/tmp/opt/kde3/lib/libtdefontinst.so
 debian/tmp/opt/kde3/lib/libkhotkeys_shared.la
 debian/tmp/opt/kde3/lib/libkhotkeys_shared.so
 debian/tmp/opt/kde3/lib/libkickermain.la

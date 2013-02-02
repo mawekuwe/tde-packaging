@@ -1,0 +1,7 @@
+--- kdebase/kcontrol/tdefontinst/viewpart/tdefontview.desktop	2005-03-17 02:18:04.198547424 +0000
++++ kdebase/kcontrol/tdefontinst/viewpart/tdefontview.desktop	2005-03-17 02:18:12.320312728 +0000
+@@ -71,3 +71,4 @@
+ Terminal=false
+ InitialPreference=1
+ Categories=Qt;KDE;Utility;X-KDE-More;
++NoDisplay=true

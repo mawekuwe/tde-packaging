@@ -28,7 +28,7 @@ kommander/working/kmdr2po /opt/trinity/bin
 debian/tmp/opt/trinity/lib/trinity/libkommander_part.so
 debian/tmp/opt/trinity/lib/trinity/libkommander_part.la
 debian/tmp/opt/trinity/share/apps/kommander/pics/toolbox.png
-debian/tmp/opt/trinity/share/apps/kommander/pics/kfontcombo.png
+debian/tmp/opt/trinity/share/apps/kommander/pics/tdefontcombo.png
 debian/tmp/opt/trinity/share/apps/kommander/translating/extractkmdr
 debian/tmp/opt/trinity/share/apps/kommander/translating/kmdr2po
 debian/tmp/opt/trinity/share/apps/kommander/icons/hicolor/22x22/actions/arrow.png

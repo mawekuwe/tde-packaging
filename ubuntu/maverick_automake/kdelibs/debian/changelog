@@ -432,7 +432,7 @@ kdelibs (4:3.5.8-0ubuntu4) hardy; urgency=low
 
 kdelibs (4:3.5.8-0ubuntu3.1) gutsy-proposed; urgency=low
 
-  * Add kubuntu_94_kselectaction.diff Closes: LP #155144
+  * Add kubuntu_94_tdeselectaction.diff Closes: LP #155144
     Editable TDESelectAction stopped working for custom values
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 21 Oct 2007 00:09:25 +0100
@@ -1921,7 +1921,7 @@ kdelibs (4:3.4.2-2) unstable; urgency=low
 kdelibs (4:3.4.2-1) unstable; urgency=low
 
   * New upstream release. Includes a forward declaration of KXMLGUIClient in
-    kactioncollection.h, which makes gcc-4.0 happy and thus closes: #317543,
+    tdeactioncollection.h, which makes gcc-4.0 happy and thus closes: #317543,
     #318017, #319154, #323093 (arson, smb4k, kile and amarok FTBFS).
 
   * KDE_3_4_BRANCH update.
@@ -2240,7 +2240,7 @@ kdelibs (4:3.3.2-5) unstable; urgency=medium
 
   * Add GFDL to debian/copyright.
 
-  * Add another kaccel patch that fixes non-English keyboards on
+  * Add another tdeaccel patch that fixes non-English keyboards on
     SunRay terminals. Thanks to Nikita Youshchenko. (Closes: #301971)
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Fri, 22 Apr 2005 11:21:11 -0400
@@ -2354,7 +2354,7 @@ kdelibs (4:3.3.2-1) unstable; urgency=medium
   * Add patch to change the group set by KDE CUPS configurator to Debian's
     default, lpadmin, rather than sys. (Closes: #263430)
 
-  * Add kaccel hack that works around a Konqueror crash with Russian keyboards.
+  * Add tdeaccel hack that works around a Konqueror crash with Russian keyboards.
     (Closes: #287566)
 
   * Change debian/copyright file to refer to licenses, instead of copyright,

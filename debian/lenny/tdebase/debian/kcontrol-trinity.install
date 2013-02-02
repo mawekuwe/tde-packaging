@@ -2,8 +2,8 @@ debian/tmp/opt/trinity/bin/kaccess
 debian/tmp/opt/trinity/bin/kcontrol
 debian/tmp/opt/trinity/bin/kdeinstallktheme
 debian/tmp/opt/trinity/bin/keditfiletype
-debian/tmp/opt/trinity/bin/kfontinst
-debian/tmp/opt/trinity/bin/kfontview
+debian/tmp/opt/trinity/bin/tdefontinst
+debian/tmp/opt/trinity/bin/tdefontview
 debian/tmp/opt/trinity/bin/kinfocenter
 debian/tmp/opt/trinity/bin/klocaldomainurifilterhelper
 debian/tmp/opt/trinity/bin/tderandrtray
@@ -116,10 +116,10 @@ debian/tmp/opt/trinity/lib/trinity/tdeio_fonts.la
 debian/tmp/opt/trinity/lib/trinity/tdeio_fonts.so
 debian/tmp/opt/trinity/lib/trinity/kstyle_keramik_config.la
 debian/tmp/opt/trinity/lib/trinity/kstyle_keramik_config.so
-debian/tmp/opt/trinity/lib/trinity/libkfontviewpart.la
-debian/tmp/opt/trinity/lib/trinity/libkfontviewpart.so
-debian/tmp/opt/trinity/lib/trinity/libkshorturifilter.la
-debian/tmp/opt/trinity/lib/trinity/libkshorturifilter.so
+debian/tmp/opt/trinity/lib/trinity/libtdefontviewpart.la
+debian/tmp/opt/trinity/lib/trinity/libtdefontviewpart.so
+debian/tmp/opt/trinity/lib/trinity/libtdeshorturifilter.la
+debian/tmp/opt/trinity/lib/trinity/libtdeshorturifilter.so
 debian/tmp/opt/trinity/lib/trinity/libkuriikwsfilter.la
 debian/tmp/opt/trinity/lib/trinity/libkuriikwsfilter.so
 debian/tmp/opt/trinity/lib/trinity/libkurisearchfilter.la
@@ -128,8 +128,8 @@ debian/tmp/opt/trinity/lib/trinity/liblocaldomainurifilter.la
 debian/tmp/opt/trinity/lib/trinity/liblocaldomainurifilter.so
 debian/tmp/opt/trinity/lib/libtdeinit_kaccess.so
 debian/tmp/opt/trinity/lib/libtdeinit_kcontrol.so
-debian/tmp/opt/trinity/lib/libkfontinst.so.0
-debian/tmp/opt/trinity/lib/libkfontinst.so.0.0.0
+debian/tmp/opt/trinity/lib/libtdefontinst.so.0
+debian/tmp/opt/trinity/lib/libtdefontinst.so.0.0.0
 debian/tmp/opt/trinity/share/applications/tde/arts.desktop
 debian/tmp/opt/trinity/share/applications/tde/background.desktop
 debian/tmp/opt/trinity/share/applications/tde/bell.desktop
@@ -173,7 +173,7 @@ debian/tmp/opt/trinity/share/applications/tde/kcmview1394.desktop
 debian/tmp/opt/trinity/share/applications/tde/KControl.desktop
 debian/tmp/opt/trinity/share/applications/tde/tdm.desktop
 debian/tmp/opt/trinity/share/applications/tde/keys.desktop
-debian/tmp/opt/trinity/share/applications/tde/kfontview.desktop
+debian/tmp/opt/trinity/share/applications/tde/tdefontview.desktop
 debian/tmp/opt/trinity/share/applications/tde/tdehtml_behavior.desktop
 debian/tmp/opt/trinity/share/applications/tde/tdehtml_fonts.desktop
 debian/tmp/opt/trinity/share/applications/tde/tdehtml_java_js.desktop
@@ -234,8 +234,8 @@ debian/tmp/opt/trinity/share/services/fonts.protocol
 debian/tmp/opt/trinity/share/services/fontthumbnail.desktop
 debian/tmp/opt/trinity/share/services/kaccess.desktop
 debian/tmp/opt/trinity/share/services/tdefile_font.desktop
-debian/tmp/opt/trinity/share/services/kfontviewpart.desktop
-debian/tmp/opt/trinity/share/services/kshorturifilter.desktop
+debian/tmp/opt/trinity/share/services/tdefontviewpart.desktop
+debian/tmp/opt/trinity/share/services/tdeshorturifilter.desktop
 debian/tmp/opt/trinity/share/services/kuriikwsfilter.desktop
 debian/tmp/opt/trinity/share/services/kurisearchfilter.desktop
 debian/tmp/opt/trinity/share/services/localdomainurifilter.desktop

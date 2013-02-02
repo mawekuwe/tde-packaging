@@ -28,7 +28,7 @@ kommander/working/kmdr2po /opt/kde3/bin
 debian/tmp/opt/kde3/lib/kde3/libkommander_part.so
 debian/tmp/opt/kde3/lib/kde3/libkommander_part.la
 debian/tmp/opt/kde3/share/apps/kommander/pics/toolbox.png
-debian/tmp/opt/kde3/share/apps/kommander/pics/kfontcombo.png
+debian/tmp/opt/kde3/share/apps/kommander/pics/tdefontcombo.png
 debian/tmp/opt/kde3/share/apps/kommander/translating/extractkmdr
 debian/tmp/opt/kde3/share/apps/kommander/translating/kmdr2po
 debian/tmp/opt/kde3/share/apps/kommander/icons/hicolor/22x22/actions/arrow.png

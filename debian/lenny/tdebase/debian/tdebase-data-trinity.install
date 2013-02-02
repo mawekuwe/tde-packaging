@@ -1,4 +1,4 @@
-debian/tmp/etc/trinity/kshorturifilterrc
+debian/tmp/etc/trinity/tdeshorturifilterrc
 debian/tmp/opt/trinity/share/applnk/.hidden/battery.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/bwarning.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/cwarning.desktop
@@ -28,7 +28,7 @@ debian/tmp/opt/trinity/share/apps/kcmkeys/win4.kksrc
 debian/tmp/opt/trinity/share/apps/kcmkeys/wm3.kksrc
 debian/tmp/opt/trinity/share/apps/kcmlocale/pics/background.png
 debian/tmp/opt/trinity/share/apps/tdeconf_update/convertShortcuts.pl
-debian/tmp/opt/trinity/share/apps/tdeconf_update/kaccel.upd
+debian/tmp/opt/trinity/share/apps/tdeconf_update/tdeaccel.upd
 debian/tmp/opt/trinity/share/apps/tdeconf_update/kcmdisplayrc.upd
 debian/tmp/opt/trinity/share/apps/tdeconf_update/kuriikwsfilter.upd
 debian/tmp/opt/trinity/share/apps/tdeconf_update/mouse_cursor_theme.upd
@@ -103,8 +103,8 @@ debian/tmp/opt/trinity/share/apps/kdisplay/color-schemes/Windows2000.kcsrc
 debian/tmp/opt/trinity/share/apps/kdisplay/color-schemes/Windows95.kcsrc
 debian/tmp/opt/trinity/share/apps/kdisplay/color-schemes/WindowsXP.kcsrc
 debian/tmp/opt/trinity/share/apps/kdisplay/color-schemes/YellowOnBlue.kcsrc
-debian/tmp/opt/trinity/share/apps/kfontview/kfontviewpart.rc
-debian/tmp/opt/trinity/share/apps/kfontview/kfontviewui.rc
+debian/tmp/opt/trinity/share/apps/tdefontview/tdefontviewpart.rc
+debian/tmp/opt/trinity/share/apps/tdefontview/tdefontviewui.rc
 debian/tmp/opt/trinity/share/apps/kinfocenter/kinfocenterui.rc
 debian/tmp/opt/trinity/share/apps/kthememanager/themes/HighContrastDark-big/HighContrastDark-big.preview.png
 debian/tmp/opt/trinity/share/apps/kthememanager/themes/HighContrastDark-big/HighContrastDark-big.xml

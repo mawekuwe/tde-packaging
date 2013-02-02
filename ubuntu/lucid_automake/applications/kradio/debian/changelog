@@ -1,10 +1,10 @@
-kradio-kde3 (0.1.1.1~0ubuntu0) karmic; urgency=low
+tderadio-kde3 (0.1.1.1~0ubuntu0) karmic; urgency=low
 
   * Karmic upload
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Sun, 22 Nov 2009 23:25:00 -6000
 
-kradio (0.1.1.1~20061112-4) unstable; urgency=low
+tderadio (0.1.1.1~20061112-4) unstable; urgency=low
 
   * QA upload ; orphaning after discussion with maintainer
   * fix up autoconf things (Closes: 543013)
@@ -17,14 +17,14 @@ kradio (0.1.1.1~20061112-4) unstable; urgency=low
 
  -- Sune Vuorela <debian@pusling.com>  Wed, 02 Sep 2009 00:45:55 +0200
 
-kradio (0.1.1.1~20061112-3.1) unstable; urgency=low
+tderadio (0.1.1.1~20061112-3.1) unstable; urgency=low
 
   * Non-maintainer upload.
   * Fix gcc-4.3 FTBFS, patch by Kibi (Closes: #455390)
 
  -- Marc 'HE' Brockschmidt <he@debian.org>  Sun, 16 Mar 2008 19:00:02 +0100
 
-kradio (0.1.1.1~20061112-3) unstable; urgency=low
+tderadio (0.1.1.1~20061112-3) unstable; urgency=low
 
   * Modify build-system to use automake
    - Remove build-depends against unsermake as it shall be removed from
@@ -39,13 +39,13 @@ kradio (0.1.1.1~20061112-3) unstable; urgency=low
 
  -- Steffen Joeris <white@debian.org>  Wed, 20 Jun 2007 22:14:59 +0200
 
-kradio (0.1.1.1~20061112-2) unstable; urgency=low
+tderadio (0.1.1.1~20061112-2) unstable; urgency=low
 
   * Upload to unstable
 
  -- Steffen Joeris <white@debian.org>  Mon, 23 Apr 2007 05:59:03 +1000
 
-kradio (0.1.1.1~20061112-1) experimental; urgency=low
+tderadio (0.1.1.1~20061112-1) experimental; urgency=low
 
   * New upstream release
   * Fix small typo in debian/copyright
@@ -54,7 +54,7 @@ kradio (0.1.1.1~20061112-1) experimental; urgency=low
 
  -- Steffen Joeris <white@debian.org>  Sun,  7 Jan 2007 18:42:05 +0100
 
-kradio (0.1.1.1~20060920-1) unstable; urgency=low
+tderadio (0.1.1.1~20060920-1) unstable; urgency=low
 
   * New upstream version
   * Drop 10-configure.dpatch
@@ -65,13 +65,13 @@ kradio (0.1.1.1~20060920-1) unstable; urgency=low
 
  -- Steffen Joeris <steffen.joeris@skolelinux.de>  Tue,  3 Oct 2006 15:01:07 +1000
 
-kradio (0.1beta1.0snapshot20051127-2) unstable; urgency=low
+tderadio (0.1beta1.0snapshot20051127-2) unstable; urgency=low
 
   * Upload to unstable, no changes
 
  -- Steffen Joeris <steffen.joeris@skolelinux.de>  Sun,  5 Feb 2006 18:42:11 +0100
 
-kradio (0.1beta1.0snapshot20051127-1) experimental; urgency=low
+tderadio (0.1beta1.0snapshot20051127-1) experimental; urgency=low
 
   * Initial release for Debian (Closes: #341954)
   * drop debian dir from upstream and use own debian dir

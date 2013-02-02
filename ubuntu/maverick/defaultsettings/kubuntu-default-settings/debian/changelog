@@ -69,7 +69,7 @@ kubuntu-default-settings (1:8.04-19) hardy; urgency=low
 kubuntu-default-settings (1:8.04-18) hardy; urgency=low
 
   * Stop April Fools sillyness
-  * Added klaunchrc file to limit jumping busy icon to 10 seconds:
+  * Added tdelaunchrc file to limit jumping busy icon to 10 seconds:
     - Workarrounds some gtk, java ant other apps to have their icon
       jumping for ages when the applications is started.
   * Fixed Makefile for konversation oxygen theme.

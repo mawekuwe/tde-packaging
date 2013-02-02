@@ -4,7 +4,7 @@ index 7c45fcf..b933832 100644
 +++ b/src/main.cpp
 @@ -24,6 +24,7 @@
  #include <kmessagebox.h>
- #include <kmainwindow.h>
+ #include <tdemainwindow.h>
  #include <kapp.h>
 +#include <kuser.h>
  

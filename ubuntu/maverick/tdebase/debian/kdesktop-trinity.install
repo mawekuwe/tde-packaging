@@ -43,6 +43,6 @@ debian/tmp/opt/trinity/share/apps/kdesktop/Desktop/Web_Browser
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/kdesktopSetAsBackground.desktop
 debian/tmp/opt/trinity/share/autostart/kdesktop.desktop
 debian/tmp/opt/trinity/share/config.kcfg/kdesktop.kcfg
-debian/tmp/opt/trinity/share/config.kcfg/klaunch.kcfg
+debian/tmp/opt/trinity/share/config.kcfg/tdelaunch.kcfg
 debian/tmp/opt/trinity/share/config.kcfg/kwebdesktop.kcfg
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/error.png
