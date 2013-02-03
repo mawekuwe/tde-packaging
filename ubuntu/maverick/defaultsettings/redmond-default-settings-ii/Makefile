@@ -223,8 +223,8 @@ install:
 	install -m644 kde-rc-files/startupconfig "$(SETTINGS_DIR)/kde-profile/default/share/config/"
 	install -m644 kde-rc-files/cryptodefaults "$(SETTINGS_DIR)/kde-profile/default/share/config/"
 
-	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/kdisplay/color-schemes/"
-	install -m644 colour-schemes/*rc "$(SETTINGS_DIR)/kde-profile/default/share/apps/kdisplay/color-schemes/"
+	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/tdedisplay/color-schemes/"
+	install -m644 colour-schemes/*rc "$(SETTINGS_DIR)/kde-profile/default/share/apps/tdedisplay/color-schemes/"
 
 	mkdir -p "$(CURSOR_DIR)/cursors"
 	install -m644 cursors/index.theme "$(CURSOR_DIR)/"
