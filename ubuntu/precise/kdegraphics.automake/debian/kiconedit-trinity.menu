@@ -2,7 +2,7 @@
 	needs="X11"\
 	section="Applications/Graphics"\
 	hints="TDE"\
-	title="KIconEdit"\
+	title="TDEIconEdit"\
 	icon32x32="/usr/share/pixmaps/kiconedit.xpm"\
 	icon16x16="/usr/share/pixmaps/kiconedit-16.xpm"\
 	command="/opt/trinity/bin/kiconedit"

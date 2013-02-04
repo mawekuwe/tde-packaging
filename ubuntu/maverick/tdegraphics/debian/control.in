@@ -160,7 +160,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
 Description: an icon editor for KDE
- KIconedit allows you easily to create and edit icons.
+ TDEIconedit allows you easily to create and edit icons.
  .
  This package is part of KDE, as a component of the KDE graphics module.
  See the 'kde' and 'tdegraphics' packages for more information.

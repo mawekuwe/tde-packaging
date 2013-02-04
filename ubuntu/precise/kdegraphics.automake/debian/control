@@ -183,7 +183,7 @@ Breaks: kiconedit-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: an icon editor for Trinity
- KIconedit allows you easily to create and edit icons.
+ TDEIconedit allows you easily to create and edit icons.
  .
  This package is part of Trinity, as a component of the KDE graphics module.
  See the 'kde-trinity' and 'kdegraphics-trinity' packages for more information.
