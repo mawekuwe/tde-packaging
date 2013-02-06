@@ -148,7 +148,7 @@ We've chosen KDE as our desktop user interface of choice
 
  * kcron-trinity
  * kdeadmin-tdefile-plugins-trinity
- * knetwortdeconf-trinity
+ * knetworkconf-trinity
 
 == kdegraphics-trinity ==
 

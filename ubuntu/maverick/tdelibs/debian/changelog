@@ -1965,7 +1965,7 @@ tdelibs (4:3.4.91-0ubuntu1) breezy; urgency=low
 
 tdelibs (4:3.4.2-0ubuntu4) breezy; urgency=low
 
-  * Add replaces on old knetwortdeconf for tdelibs-data
+  * Add replaces on old knetworkconf for tdelibs-data
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed,  3 Aug 2005 12:44:18 +0000
 

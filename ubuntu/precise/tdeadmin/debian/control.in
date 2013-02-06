@@ -10,7 +10,7 @@ Standards-Version: 3.7.2
 Package: tdeadmin
 Section: tde
 Architecture: all
-Depends: kcron (>= ${Source-Version}), kdat (>= ${Source-Version}), tdeadmin-tdefile-plugins (>= ${Source-Version}), knetwortdeconf (>= ${Source-Version}), kpackage (>= ${Source-Version}), ksysv (>= ${Source-Version}), kuser (>= ${Source-Version})
+Depends: kcron (>= ${Source-Version}), kdat (>= ${Source-Version}), tdeadmin-tdefile-plugins (>= ${Source-Version}), knetworkconf (>= ${Source-Version}), kpackage (>= ${Source-Version}), ksysv (>= ${Source-Version}), kuser (>= ${Source-Version})
 Recommends: lilo-config (>= ${Source-Version})
 Suggests: tdeadmin-doc-html (>= ${Source-Version})
 Description: system administration tools from the official KDE release
@@ -81,7 +81,7 @@ Description: KDE file metainfo plugins for deb and rpm files
  This package is part of KDE, as a component of the KDE administration module.
  See the 'kde' and 'tdeadmin' packages for more information.
 
-Package: knetwortdeconf
+Package: knetworkconf
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
