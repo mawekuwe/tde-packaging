@@ -35,7 +35,7 @@ diff -Nur kdelibs-3.5.8/kdeui/khelpmenu.cpp kdelibs-3.5.8.new/kdeui/khelpmenu.cp
  
 +void KHelpMenu::kubuntuGetHelpOnline()
 +{
-+  const KAboutData *aboutData = KGlobal::instance()->aboutData();
++  const TDEAboutData *aboutData = KGlobal::instance()->aboutData();
 +  TQString path = KStandardDirs::findExe( aboutData->appName() );
 +  KProcess *proc = new KProcess;
 +  *proc << "launchpad-integration" << "--file" << path << "--info";
@@ -44,7 +44,7 @@ diff -Nur kdelibs-3.5.8/kdeui/khelpmenu.cpp kdelibs-3.5.8.new/kdeui/khelpmenu.cp
 +
 +void KHelpMenu::kubuntuTranslate()
 +{
-+  const KAboutData *aboutData = KGlobal::instance()->aboutData();
++  const TDEAboutData *aboutData = KGlobal::instance()->aboutData();
 +  TQString path = KStandardDirs::findExe( aboutData->appName() );
 +  KProcess *proc = new KProcess;
 +  *proc << "launchpad-integration" << "--file" << path << "--translate";
