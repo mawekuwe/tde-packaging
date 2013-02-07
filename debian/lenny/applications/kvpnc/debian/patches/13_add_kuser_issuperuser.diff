@@ -25,5 +25,5 @@ index 7c45fcf..b933832 100644
 + 			exit(0);
 + 		}
  
- 		KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+ 		TDECmdLineArgs *args = TDECmdLineArgs::parsedArgs();
  
