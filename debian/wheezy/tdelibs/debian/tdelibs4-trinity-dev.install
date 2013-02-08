@@ -173,7 +173,7 @@ debian/tmp/opt/trinity/include/kcolordrag.h
 debian/tmp/opt/trinity/include/kcombiview.h
 debian/tmp/opt/trinity/include/kcombobox.h
 debian/tmp/opt/trinity/include/kcommand.h
-debian/tmp/opt/trinity/include/kcompletionbox.h
+debian/tmp/opt/trinity/include/tdecompletionbox.h
 debian/tmp/opt/trinity/include/kcompletion.h
 debian/tmp/opt/trinity/include/tdeconfigbackend.h
 debian/tmp/opt/trinity/include/tdeconfigbase.h

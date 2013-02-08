@@ -173,7 +173,7 @@ debian/tmp/opt/kde3/include/tde/kcolordrag.h
 debian/tmp/opt/kde3/include/tde/kcombiview.h
 debian/tmp/opt/kde3/include/tde/kcombobox.h
 debian/tmp/opt/kde3/include/tde/kcommand.h
-debian/tmp/opt/kde3/include/tde/kcompletionbox.h
+debian/tmp/opt/kde3/include/tde/tdecompletionbox.h
 debian/tmp/opt/kde3/include/tde/kcompletion.h
 debian/tmp/opt/kde3/include/tde/tdeconfigbackend.h
 debian/tmp/opt/kde3/include/tde/tdeconfigbase.h
