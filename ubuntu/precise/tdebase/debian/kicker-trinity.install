@@ -85,7 +85,7 @@ debian/tmp/opt/trinity/share/apps/kicker/applets/mediaapplet.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/menuapplet.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/minipagerapplet.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/naughtyapplet.desktop
-debian/tmp/opt/trinity/share/apps/kicker/applets/quictdelauncher.desktop
+debian/tmp/opt/trinity/share/apps/kicker/applets/quicklauncher.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/runapplet.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/systemtrayapplet.desktop
 debian/tmp/opt/trinity/share/apps/kicker/applets/taskbarapplet.desktop

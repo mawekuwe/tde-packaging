@@ -29,8 +29,8 @@ WidthForHeightHint=209
 FreeSpace2=0
 
 [Applet_5]
-ConfigFile=taskbar_quictdelaunchapplet_kubuntu_rc
-DesktopFile=quictdelauncher.desktop
+ConfigFile=taskbar_quicklaunchapplet_kubuntu_rc
+DesktopFile=quicklauncher.desktop
 WidthForHeightHint=141
 FreeSpace2=0
 

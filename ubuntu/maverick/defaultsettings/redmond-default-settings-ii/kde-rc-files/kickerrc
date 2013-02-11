@@ -24,7 +24,7 @@ FreeSpace2=0
 
 [Applet_4]
 ConfigFile=launcher_panelapplet_kubuntu_rc
-DesktopFile=quictdelauncher.desktop
+DesktopFile=quicklauncher.desktop
 FreeSpace2=0
 WidthForHeightHint=171
 
