@@ -33,9 +33,9 @@
  #include "kiosksync.h"
  
  #include <tdeio/netaccess.h>
--#define NETACCESS	KIO::NetAccess
+-#define NETACCESS	TDEIO::NetAccess
 +// Kiosktool wants to use fish://root@localhost/... which won't work on Kubuntu because we don't run ssh by default, we don't allow ssh to do root logins and root doesn't even have a password, so implement the functions here for local copies using tdesu instead
-+// #define NETACCESS	KIO::NetAccess
++// #define NETACCESS	TDEIO::NetAccess
  
  #undef DEBUG_ENTRIES
  
@@ -45,7 +45,7 @@
 +    bool exists = TQFile::exists(url.path());
 +    return exists;
 +  } else {
-+    bool result = KIO::NetAccess::exists(url, source, window);
++    bool result = TDEIO::NetAccess::exists(url, source, window);
 +    return result;
 +  }
 +}
@@ -64,7 +64,7 @@
 +    bool exists = TQFile::exists(url.path());
 +    return exists;
 +  } else {
-+    bool result = KIO::NetAccess::mkdir(url, window, permissions);
++    bool result = TDEIO::NetAccess::mkdir(url, window, permissions);
 +    return result;
 +  }
 +}
@@ -102,7 +102,7 @@
 +    bool exists = TQFile::exists(dest.path());
 +    return exists;
 +  } else {
-+    bool result = KIO::NetAccess::file_copy(src, dest, permissions, overwrite, resume, window);
++    bool result = TDEIO::NetAccess::file_copy(src, dest, permissions, overwrite, resume, window);
 +    return result;
 +  }
 +}
@@ -121,7 +121,7 @@
 +    bool exists = !TQFile::exists(url.path());
 +    return exists;
 +  } else {
-+    bool result = KIO::NetAccess::del(url, window);
++    bool result = TDEIO::NetAccess::del(url, window);
 +    return result;
 +  }
 +}
@@ -141,7 +141,7 @@
 +    bool exists = TQFile::exists(target.path());
 +    return exists;
 +  } else {
-+    bool result = KIO::NetAccess::file_move(src, target, permissions, overwrite, resume, window);
++    bool result = TDEIO::NetAccess::file_move(src, target, permissions, overwrite, resume, window);
 +    return result;
 +  }
 +}
@@ -149,7 +149,7 @@
 +//only used for local files
 +bool NETACCESS::copy(const KURL &src, const KURL &target, TQWidget *window)
 +{
-+  return KIO::NetAccess::copy(src, target, window);
++  return TDEIO::NetAccess::copy(src, target, window);
 +}
 +
  KioskRun *KioskRun::s_self = 0;
