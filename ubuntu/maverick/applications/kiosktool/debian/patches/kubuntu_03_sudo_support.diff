@@ -59,7 +59,7 @@
 +    TQByteArray buffer;
 +    proc.launch(buffer);
 +    while (!proc.normalExit()) {
-+      KApplication::kapp->processEvents();
++      TDEApplication::kapp->processEvents();
 +    }
 +    bool exists = TQFile::exists(url.path());
 +    return exists;
@@ -88,7 +88,7 @@
 +    TQByteArray buffer;
 +    proc.launch(buffer);
 +    while (!proc.normalExit()) {
-+      KApplication::kapp->processEvents();
++      TDEApplication::kapp->processEvents();
 +    }
 +
 +    TQProcess proc2;
@@ -96,7 +96,7 @@
 +    proc2.addArgument("chmod 0644 " + dest.path());
 +    proc2.launch(buffer);
 +    while (!proc2.normalExit()) {
-+      KApplication::kapp->processEvents();
++      TDEApplication::kapp->processEvents();
 +    }
 +
 +    bool exists = TQFile::exists(dest.path());
@@ -116,7 +116,7 @@
 +    TQByteArray buffer;
 +    proc.launch(buffer);
 +    while (!proc.normalExit()) {
-+      KApplication::kapp->processEvents();
++      TDEApplication::kapp->processEvents();
 +    }
 +    bool exists = !TQFile::exists(url.path());
 +    return exists;
@@ -135,7 +135,7 @@
 +    TQByteArray buffer;
 +    proc.launch(buffer);
 +    while (!proc.normalExit()) {
-+      KApplication::kapp->processEvents();
++      TDEApplication::kapp->processEvents();
 +    }
 +
 +    bool exists = TQFile::exists(target.path());
