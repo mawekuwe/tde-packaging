@@ -27,8 +27,8 @@
  #include <tqfile.h>
 +#include <tqprocess.h>
  
- #include <kapplication.h>
- #include <kcmdlineargs.h>
+ #include <tdeapplication.h>
+ #include <tdecmdlineargs.h>
 @@ -45,10 +46,124 @@
  #include "kiosksync.h"
  

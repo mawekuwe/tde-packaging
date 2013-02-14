@@ -104,10 +104,10 @@ debian/tmp/opt/kde3/include/tde/kabc/vcardformatplugin.h
 debian/tmp/opt/kde3/include/tde/kabc/vcard.h
 debian/tmp/opt/kde3/include/tde/kabc/vcardline.h
 debian/tmp/opt/kde3/include/tde/kabc/vcardparser.h
-debian/tmp/opt/kde3/include/tde/kaboutapplication.h
-debian/tmp/opt/kde3/include/tde/kaboutdata.h
-debian/tmp/opt/kde3/include/tde/kaboutdialog.h
-debian/tmp/opt/kde3/include/tde/kaboutkde.h
+debian/tmp/opt/kde3/include/tde/tdeaboutapplication.h
+debian/tmp/opt/kde3/include/tde/tdeaboutdata.h
+debian/tmp/opt/kde3/include/tde/tdeaboutdialog.h
+debian/tmp/opt/kde3/include/tde/tdeabouttde.h
 debian/tmp/opt/kde3/include/tde/tdeaccelgen.h
 debian/tmp/opt/kde3/include/tde/tdeaccel.h
 debian/tmp/opt/kde3/include/tde/tdeaccelmanager.h
@@ -121,7 +121,7 @@ debian/tmp/opt/kde3/include/tde/kactivelabel.h
 debian/tmp/opt/kde3/include/tde/kallocator.h
 debian/tmp/opt/kde3/include/tde/kanimwidget.h
 debian/tmp/opt/kde3/include/tde/kapp.h
-debian/tmp/opt/kde3/include/tde/kapplication.h
+debian/tmp/opt/kde3/include/tde/tdeapplication.h
 debian/tmp/opt/kde3/include/tde/karchive.h
 debian/tmp/opt/kde3/include/tde/kar.h
 debian/tmp/opt/kde3/include/tde/karrowbutton.h
@@ -156,7 +156,7 @@ debian/tmp/opt/kde3/include/tde/kcharselect.h
 debian/tmp/opt/kde3/include/tde/kcharsets.h
 debian/tmp/opt/kde3/include/tde/kclientsocketbase.h
 debian/tmp/opt/kde3/include/tde/kclipboard.h
-debian/tmp/opt/kde3/include/tde/kcmdlineargs.h
+debian/tmp/opt/kde3/include/tde/tdecmdlineargs.h
 debian/tmp/opt/kde3/include/tde/kcmenumngr.h
 debian/tmp/opt/kde3/include/tde/tdecmodulecontainer.h
 debian/tmp/opt/kde3/include/tde/tdecmodule.h
@@ -588,7 +588,7 @@ debian/tmp/opt/kde3/include/tde/kstdguiitem.h
 debian/tmp/opt/kde3/include/tde/kstreamsocket.h
 debian/tmp/opt/kde3/include/tde/kstringhandler.h
 debian/tmp/opt/kde3/include/tde/kstringvalidator.h
-debian/tmp/opt/kde3/include/tde/kstyle.h
+debian/tmp/opt/kde3/include/tde/tdestyle.h
 debian/tmp/opt/kde3/include/tde/ksvgiconengine.h
 debian/tmp/opt/kde3/include/tde/kswitchlanguagedialog.h
 debian/tmp/opt/kde3/include/tde/tdesycocaentry.h

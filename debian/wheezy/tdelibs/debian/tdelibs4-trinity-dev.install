@@ -104,10 +104,10 @@ debian/tmp/opt/trinity/include/kabc/vcardformatplugin.h
 debian/tmp/opt/trinity/include/kabc/vcard.h
 debian/tmp/opt/trinity/include/kabc/vcardline.h
 debian/tmp/opt/trinity/include/kabc/vcardparser.h
-debian/tmp/opt/trinity/include/kaboutapplication.h
-debian/tmp/opt/trinity/include/kaboutdata.h
-debian/tmp/opt/trinity/include/kaboutdialog.h
-debian/tmp/opt/trinity/include/kaboutkde.h
+debian/tmp/opt/trinity/include/tdeaboutapplication.h
+debian/tmp/opt/trinity/include/tdeaboutdata.h
+debian/tmp/opt/trinity/include/tdeaboutdialog.h
+debian/tmp/opt/trinity/include/tdeabouttde.h
 debian/tmp/opt/trinity/include/tdeaccelgen.h
 debian/tmp/opt/trinity/include/tdeaccel.h
 debian/tmp/opt/trinity/include/tdeaccelmanager.h
@@ -121,7 +121,7 @@ debian/tmp/opt/trinity/include/kactivelabel.h
 debian/tmp/opt/trinity/include/kallocator.h
 debian/tmp/opt/trinity/include/kanimwidget.h
 debian/tmp/opt/trinity/include/kapp.h
-debian/tmp/opt/trinity/include/kapplication.h
+debian/tmp/opt/trinity/include/tdeapplication.h
 debian/tmp/opt/trinity/include/karchive.h
 debian/tmp/opt/trinity/include/kar.h
 debian/tmp/opt/trinity/include/karrowbutton.h
@@ -156,7 +156,7 @@ debian/tmp/opt/trinity/include/kcharselect.h
 debian/tmp/opt/trinity/include/kcharsets.h
 debian/tmp/opt/trinity/include/kclientsocketbase.h
 debian/tmp/opt/trinity/include/kclipboard.h
-debian/tmp/opt/trinity/include/kcmdlineargs.h
+debian/tmp/opt/trinity/include/tdecmdlineargs.h
 debian/tmp/opt/trinity/include/kcmenumngr.h
 debian/tmp/opt/trinity/include/tdecmodulecontainer.h
 debian/tmp/opt/trinity/include/tdecmodule.h
@@ -590,7 +590,7 @@ debian/tmp/opt/trinity/include/kstdguiitem.h
 debian/tmp/opt/trinity/include/kstreamsocket.h
 debian/tmp/opt/trinity/include/kstringhandler.h
 debian/tmp/opt/trinity/include/kstringvalidator.h
-debian/tmp/opt/trinity/include/kstyle.h
+debian/tmp/opt/trinity/include/tdestyle.h
 debian/tmp/opt/trinity/include/ksvgiconengine.h
 debian/tmp/opt/trinity/include/kswitchlanguagedialog.h
 debian/tmp/opt/trinity/include/tdesycocaentry.h

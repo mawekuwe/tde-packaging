@@ -21,7 +21,7 @@ tdegames (4:3.5.10-0ubuntu1~hardy1) hardy-backports; urgency=low
 
   * New upstream bugfix release (LP: #261366)
     - Bump version of tdelibs4-dev build dep to 3.5.10
-    - Drop 11_include_kapplication.diff - applied upstream 
+    - Drop 11_include_tdeapplication.diff - applied upstream 
 
  -- Scott Kitterman <scott@kitterman.com>  Tue, 26 Aug 2008 00:42:38 -0400
 
@@ -62,7 +62,7 @@ tdegames (4:3.5.8-1) unstable; urgency=low
 
 tdegames (4:3.5.7-2) unstable; urgency=low
 
-  * Add patch to include kapplication.h in katomic. Fixes build failure on
+  * Add patch to include tdeapplication.h in katomic. Fixes build failure on
     alpha. Thanks to Steve Langasek for the fix.
 
  -- Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>  Mon, 22 Jan 2007 05:59:42 +0100
