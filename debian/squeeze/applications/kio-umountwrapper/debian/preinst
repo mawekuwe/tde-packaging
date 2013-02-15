@@ -33,24 +33,35 @@ case "$1" in
     --rename /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop
 
     dpkg-divert --package $package_name \
+    --divert /opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop.distrib \
+    --rename /opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop
+
+    dpkg-divert --package $package_name \
     --divert /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop.distrib \
     --rename /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop
-
-    rm -f /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop
-    rm -f /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop
 
     ;;
   upgrade)
-    dpkg-divert --package $package_name \
-    --divert /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop.distrib \
-    --rename /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop
+    divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop"`
+    if [ -z "$divert" ]; then
+        dpkg-divert --package $package_name \
+                    --divert /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop.distrib \
+                    --rename /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop
+    fi
 
-    dpkg-divert --package $package_name \
-    --divert /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop.distrib \
-    --rename /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop
+    divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop"`
+    if [ -z "$divert" ]; then
+        dpkg-divert --package $package_name \
+                    --divert /opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop.distrib \
+                    --rename /opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop
+    fi
 
-    rm -f /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop
-    rm -f /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop
+    divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop"`
+    if [ -z "$divert" ]; then
+        dpkg-divert --package $package_name \
+                    --divert /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop.distrib \
+                    --rename /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop
+    fi
 
     exit 0
     ;;

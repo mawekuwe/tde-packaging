@@ -11,8 +11,6 @@ fi
 
 case "$1" in
   configure)
-	dpkg-divert --package $package_name --rename --remove \
-                /usr/trinity/bin/kdesu || true
     ;;
   abort-upgrade)
     ;;
