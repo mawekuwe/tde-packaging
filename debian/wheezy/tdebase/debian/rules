@@ -263,5 +263,5 @@ binary-install/tdebase-trinity-bin::
 
 binary-install/ksmserver-trinity::
 	install -p -D -m644 debian/tmp/opt/trinity/share/apps/tdm/sessions/tde.desktop debian/ksmserver-trinity/usr/share/xsessions/trinity.desktop
-	install -p -D -m755 debian/plasma.autodetect debian/ksmserver-trinity/usr/bin/plasma.autodetect
-	install -p -D -m755 debian/plasma-desktop.autodetect debian/ksmserver-trinity/usr/bin/plasma-desktop.autodetect
+	install -p -D -m755 debian/plasma.autodetect debian/ksmserver-trinity/usr/bin/plasma
+	install -p -D -m755 debian/plasma-desktop.autodetect debian/ksmserver-trinity/usr/bin/plasma-desktop

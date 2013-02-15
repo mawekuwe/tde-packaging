@@ -16,9 +16,16 @@ case "$1" in
     --rename /opt/trinity/bin/tdesu
     ;;
   upgrade)
-    dpkg-divert --package $package_name \
-    --divert /opt/trinity/bin/tdesu.distrib \
-    --rename /opt/trinity/bin/tdesu
+    divert=`dpkg-divert --listpackage "/usr/trinity/bin/tdesu"`
+    if [ -n "$divert" ] && [ "$divert" = "$package_name" ]; then
+        dpkg-divert --remove --package $package_name --rename "/usr/trinity/bin/tdesu"
+    fi
+    divert=`dpkg-divert --listpackage "/opt/trinity/bin/tdesu"`
+    if [ -z "$divert" ]; then
+        dpkg-divert --package $package_name \
+                    --divert /opt/trinity/bin/tdesu.distrib \
+                    --rename /opt/trinity/bin/tdesu
+    fi
     ;;
   abort-upgrade)
     ;;
