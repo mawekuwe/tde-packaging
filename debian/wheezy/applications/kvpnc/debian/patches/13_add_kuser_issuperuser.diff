@@ -3,12 +3,12 @@ index 7c45fcf..b933832 100644
 --- a/src/main.cpp
 +++ b/src/main.cpp
 @@ -24,6 +24,7 @@
- #include <kmessagebox.h>
+ #include <tdemessagebox.h>
  #include <tdemainwindow.h>
  #include <kapp.h>
 +#include <kuser.h>
  
- #include <klocale.h>
+ #include <tdelocale.h>
  #include <dcopclient.h>
 @@ -134,11 +135,11 @@ int main ( int argc, char *argv[] )
  	}

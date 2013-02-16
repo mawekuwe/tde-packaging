@@ -1,5 +1,5 @@
---- a/tdeio/tdeio/kprotocolmanager.cpp
-+++ b/tdeio/tdeio/kprotocolmanager.cpp
+--- a/tdeio/tdeio/tdeprotocolmanager.cpp
++++ b/tdeio/tdeio/tdeprotocolmanager.cpp
 @@ -450,14 +450,19 @@
       return d->useragent;
  

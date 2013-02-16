@@ -29,7 +29,7 @@
 /opt/kde3/share/services/kabldapconfig.desktop
 /opt/kde3/share/services/kaddressbook
 /opt/kde3/share/services/kontact/kaddressbookplugin.desktop
-/opt/kde3/share/services/tderesources/kabc/imap.desktop
+/opt/kde3/share/services/tderesources/tdeabc/imap.desktop
 /opt/kde3/share/services/ldifvcardthumbnail.desktop
 /opt/kde3/share/servicetypes/dcopaddressbook.desktop
 /opt/kde3/share/servicetypes/kaddressbook_contacteditorwidget.desktop

@@ -3,7 +3,7 @@ debian/tmp/opt/trinity/lib/trinity/kabcformat_kdeaccounts.la
 debian/tmp/opt/trinity/lib/trinity/kabcformat_kdeaccounts.so
 debian/tmp/opt/trinity/lib/trinity/plugins/styles/scheck.so
 debian/tmp/opt/trinity/lib/trinity/plugins/styles/scheck.la
-debian/tmp/opt/trinity/share/apps/kabc/formats/kdeaccountsplugin.desktop
+debian/tmp/opt/trinity/share/apps/tdeabc/formats/kdeaccountsplugin.desktop
 debian/tmp/opt/trinity/share/apps/kstyle/themes/scheck.themerc
 kdepalettes/kde_xpaintrc /opt/trinity/share/kdepalettes
 kdepalettes/KDE_Gimp /opt/trinity/share/kdepalettes

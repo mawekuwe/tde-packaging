@@ -23,8 +23,8 @@ debian/tmp/opt/kde3/share/apps/dcopidlng/kalyptusCxxToDcopIDL.pm
 debian/tmp/opt/kde3/share/apps/dcopidlng/kdocAstUtil.pm
 debian/tmp/opt/kde3/share/apps/dcopidlng/kdocParseDoc.pm
 debian/tmp/opt/kde3/share/apps/dcopidlng/kdocUtil.pm
-debian/tmp/opt/kde3/share/apps/kabc/countrytransl.map
-debian/tmp/opt/kde3/share/apps/kabc/formats/binary.desktop
+debian/tmp/opt/kde3/share/apps/tdeabc/countrytransl.map
+debian/tmp/opt/kde3/share/apps/tdeabc/formats/binary.desktop
 debian/tmp/opt/kde3/share/apps/katepart/katepartreadonlyui.rc
 debian/tmp/opt/kde3/share/apps/katepart/katepartui.rc
 debian/tmp/opt/kde3/share/apps/katepart/scripts/indent/script-indent-c1-test.lua
@@ -3583,10 +3583,10 @@ debian/tmp/opt/kde3/share/services/kjavaappletviewer.desktop
 debian/tmp/opt/kde3/share/services/tdemailservice.protocol
 debian/tmp/opt/kde3/share/services/tdemultipart.desktop
 debian/tmp/opt/kde3/share/services/knotify.desktop
-debian/tmp/opt/kde3/share/services/tderesources/kabc/dir.desktop
-debian/tmp/opt/kde3/share/services/tderesources/kabc/file.desktop
-debian/tmp/opt/kde3/share/services/tderesources/kabc/net.desktop
-debian/tmp/opt/kde3/share/services/tderesources/kabc/ldapkio.desktop
+debian/tmp/opt/kde3/share/services/tderesources/tdeabc/dir.desktop
+debian/tmp/opt/kde3/share/services/tderesources/tdeabc/file.desktop
+debian/tmp/opt/kde3/share/services/tderesources/tdeabc/net.desktop
+debian/tmp/opt/kde3/share/services/tderesources/tdeabc/ldapkio.desktop
 debian/tmp/opt/kde3/share/services/tderesources/kabc_manager.desktop
 
 debian/tmp/opt/kde3/share/services/tdespell_aspell.desktop
