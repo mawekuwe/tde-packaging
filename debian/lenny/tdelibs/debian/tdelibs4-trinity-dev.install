@@ -732,17 +732,17 @@ debian/tmp/opt/trinity/lib/libartskde.la
 debian/tmp/opt/trinity/lib/libartskde.so
 debian/tmp/opt/trinity/lib/libDCOP.la
 debian/tmp/opt/trinity/lib/libDCOP.so
-debian/tmp/opt/trinity/lib/libkabc_dir.la
-debian/tmp/opt/trinity/lib/libkabc_dir.so
-debian/tmp/opt/trinity/lib/libkabc_file.la
-debian/tmp/opt/trinity/lib/libkabc_file.so
-debian/tmp/opt/trinity/lib/libkabc_net.la
-debian/tmp/opt/trinity/lib/libkabc_net.so
-debian/tmp/opt/trinity/lib/libkabc.la
-debian/tmp/opt/trinity/lib/libkabc_ldaptdeio.la
-debian/tmp/opt/trinity/lib/libkabc_ldaptdeio.so
+debian/tmp/opt/trinity/lib/libtdeabc_dir.la
+debian/tmp/opt/trinity/lib/libtdeabc_dir.so
+debian/tmp/opt/trinity/lib/libtdeabc_file.la
+debian/tmp/opt/trinity/lib/libtdeabc_file.so
+debian/tmp/opt/trinity/lib/libtdeabc_net.la
+debian/tmp/opt/trinity/lib/libtdeabc_net.so
+debian/tmp/opt/trinity/lib/libtdeabc.la
+debian/tmp/opt/trinity/lib/libtdeabc_ldaptdeio.la
+debian/tmp/opt/trinity/lib/libtdeabc_ldaptdeio.so
 
-debian/tmp/opt/trinity/lib/libkabc.so
+debian/tmp/opt/trinity/lib/libtdeabc.so
 debian/tmp/opt/trinity/lib/libkatepartinterfaces.la
 debian/tmp/opt/trinity/lib/libkatepartinterfaces.so
 debian/tmp/opt/trinity/lib/libtdecore.la

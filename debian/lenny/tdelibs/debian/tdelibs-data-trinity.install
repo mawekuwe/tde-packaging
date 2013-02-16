@@ -3786,7 +3786,7 @@ debian/tmp/opt/trinity/share/services/tderesources/tdeabc/dir.desktop
 debian/tmp/opt/trinity/share/services/tderesources/tdeabc/file.desktop
 debian/tmp/opt/trinity/share/services/tderesources/tdeabc/net.desktop
 debian/tmp/opt/trinity/share/services/tderesources/tdeabc/ldaptdeio.desktop
-debian/tmp/opt/trinity/share/services/tderesources/kabc_manager.desktop
+debian/tmp/opt/trinity/share/services/tderesources/tdeabc_manager.desktop
 
 debian/tmp/opt/trinity/share/services/tdespell_aspell.desktop
 debian/tmp/opt/trinity/share/services/tdespell_hspell.desktop

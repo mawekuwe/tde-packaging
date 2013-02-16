@@ -58,16 +58,16 @@ debian/tmp/opt/trinity/lib/trinity/cupsdconf.la
 debian/tmp/opt/trinity/lib/trinity/cupsdconf.so
 debian/tmp/opt/trinity/lib/trinity/dcopserver.la
 debian/tmp/opt/trinity/lib/trinity/dcopserver.so
-debian/tmp/opt/trinity/lib/trinity/kabc_dir.la
-debian/tmp/opt/trinity/lib/trinity/kabc_dir.so
-debian/tmp/opt/trinity/lib/trinity/kabc_file.la
-debian/tmp/opt/trinity/lib/trinity/kabc_file.so
-debian/tmp/opt/trinity/lib/trinity/kabc_net.la
-debian/tmp/opt/trinity/lib/trinity/kabc_net.so
-debian/tmp/opt/trinity/lib/trinity/kabcformat_binary.la
-debian/tmp/opt/trinity/lib/trinity/kabcformat_binary.so
-debian/tmp/opt/trinity/lib/trinity/kabc_ldaptdeio.la
-debian/tmp/opt/trinity/lib/trinity/kabc_ldaptdeio.so
+debian/tmp/opt/trinity/lib/trinity/tdeabc_dir.la
+debian/tmp/opt/trinity/lib/trinity/tdeabc_dir.so
+debian/tmp/opt/trinity/lib/trinity/tdeabc_file.la
+debian/tmp/opt/trinity/lib/trinity/tdeabc_file.so
+debian/tmp/opt/trinity/lib/trinity/tdeabc_net.la
+debian/tmp/opt/trinity/lib/trinity/tdeabc_net.so
+debian/tmp/opt/trinity/lib/trinity/tdeabcformat_binary.la
+debian/tmp/opt/trinity/lib/trinity/tdeabcformat_binary.so
+debian/tmp/opt/trinity/lib/trinity/tdeabc_ldaptdeio.la
+debian/tmp/opt/trinity/lib/trinity/tdeabc_ldaptdeio.so
 
 debian/tmp/opt/trinity/lib/trinity/kaddprinterwizard.la
 debian/tmp/opt/trinity/lib/trinity/kaddprinterwizard.so
@@ -217,14 +217,14 @@ debian/tmp/opt/trinity/lib/libartskde.so.1
 debian/tmp/opt/trinity/lib/libartskde.so.1.2.0
 debian/tmp/opt/trinity/lib/libDCOP.so.4
 debian/tmp/opt/trinity/lib/libDCOP.so.4.2.0
-debian/tmp/opt/trinity/lib/libkabc_dir.so.1
-debian/tmp/opt/trinity/lib/libkabc_dir.so.1.0.0
-debian/tmp/opt/trinity/lib/libkabc_file.so.1
-debian/tmp/opt/trinity/lib/libkabc_file.so.1.0.0
-debian/tmp/opt/trinity/lib/libkabc_ldaptdeio.so.1
-debian/tmp/opt/trinity/lib/libkabc_ldaptdeio.so.1.0.0
-debian/tmp/opt/trinity/lib/libkabc_net.so.1
-debian/tmp/opt/trinity/lib/libkabc_net.so.1.0.0
+debian/tmp/opt/trinity/lib/libtdeabc_dir.so.1
+debian/tmp/opt/trinity/lib/libtdeabc_dir.so.1.0.0
+debian/tmp/opt/trinity/lib/libtdeabc_file.so.1
+debian/tmp/opt/trinity/lib/libtdeabc_file.so.1.0.0
+debian/tmp/opt/trinity/lib/libtdeabc_ldaptdeio.so.1
+debian/tmp/opt/trinity/lib/libtdeabc_ldaptdeio.so.1.0.0
+debian/tmp/opt/trinity/lib/libtdeabc_net.so.1
+debian/tmp/opt/trinity/lib/libtdeabc_net.so.1.0.0
 
 debian/tmp/opt/trinity/lib/libnetworkstatus.so.0
 debian/tmp/opt/trinity/lib/libnetworkstatus.so.0.0.0
@@ -233,8 +233,8 @@ debian/tmp/opt/trinity/lib/libconnectionmanager.so.0.0.0
 #debian/tmp/opt/trinity/lib/libkdemm.so.0
 #debian/tmp/opt/trinity/lib/libkdemm.so.0.0.0
 
-debian/tmp/opt/trinity/lib/libkabc.so.1
-debian/tmp/opt/trinity/lib/libkabc.so.1.2.0
+debian/tmp/opt/trinity/lib/libtdeabc.so.1
+debian/tmp/opt/trinity/lib/libtdeabc.so.1.2.0
 debian/tmp/opt/trinity/lib/libkatepartinterfaces.so.0
 debian/tmp/opt/trinity/lib/libkatepartinterfaces.so.0.0.0
 debian/tmp/opt/trinity/lib/libtdecore.so.4

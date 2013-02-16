@@ -1627,7 +1627,7 @@ tdelibs (4:3.5.1-0ubuntu9) dapper; urgency=low
 
 tdelibs (4:3.5.1-0ubuntu8) dapper; urgency=low
 
-  * Add patch kubuntu_33_kabc_fix_save to fix loss of addressbook
+  * Add patch kubuntu_33_tdeabc_fix_save to fix loss of addressbook
     on exiting kontact (Closes: KDE Bug http://bugs.kde.org/118924). 
 
  -- Raphaël Pinson <raphink@ubuntu.com>  Mon,  6 Mar 2006 23:59:09 +0100
