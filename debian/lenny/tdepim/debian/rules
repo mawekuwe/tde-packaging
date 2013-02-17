@@ -62,11 +62,11 @@ DEB_DH_SHLIBDEPS_ARGS_kontact-trinity := \
 	$(foreach p,$(kontact-trinity_suggests_plugins),debian/kontact/opt/trinity/lib/trinity/libkontact_$(p)plugin.so) \
 	-dDepends	# Since -u args go first in dpkg-shlibdeps call
 
-## Move kaddressbook-trinity dependency (from libkabc_xmlrpc.so) to Recommends
+## Move kaddressbook-trinity dependency (from libtdeabc_xmlrpc.so) to Recommends
 #DEB_DH_SHLIBDEPS_ARGS_tdepim-tderesources-trinity := \
-#	-Xopt/lib/trinity/libkabc_xmlrpc.so.1 \
+#	-Xopt/lib/trinity/libtdeabc_xmlrpc.so.1 \
 #	-- -dRecommends \
-#	debian/tdepim-tderesources/opt/trinity/lib/libkabc_xmlrpc.so.1.* \
+#	debian/tdepim-tderesources/opt/trinity/lib/libtdeabc_xmlrpc.so.1.* \
 #	-dDepends
 #
 ## Move kaddressbook dependency of libkcal2b-trinity to Recommends
