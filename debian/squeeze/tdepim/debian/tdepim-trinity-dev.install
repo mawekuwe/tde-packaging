@@ -2,7 +2,7 @@
 /opt/trinity/include/KNotesIface.h
 /opt/trinity/include/akregator
 /opt/trinity/include/calendar
-/opt/trinity/include/kabc
+/opt/trinity/include/tdeabc
 /opt/trinity/include/kaddressbook
 /opt/trinity/include/kmail
 /opt/trinity/include/kmailIface.h
