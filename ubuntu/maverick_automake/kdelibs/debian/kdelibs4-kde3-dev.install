@@ -5,7 +5,7 @@ debian/tmp/opt/kde3/bin/dcopidlng
 debian/tmp/opt/kde3/bin/tdeconfig_compiler
 debian/tmp/opt/kde3/bin/ksvgtopng
 debian/tmp/opt/kde3/bin/tdeunittestmodrunner
-debian/tmp/opt/kde3/bin/makekdewidgets
+debian/tmp/opt/kde3/bin/maketdewidgets
 debian/tmp/opt/kde3/bin/preparetips
 
 debian/tmp/opt/kde3/include/tde/arts/artskde.h

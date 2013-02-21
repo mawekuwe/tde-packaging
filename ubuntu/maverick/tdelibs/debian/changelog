@@ -388,7 +388,7 @@ tdelibs (4:3.5.7.dfsg.1-5) unstable; urgency=low
   +++ Changes by Fathi Boudra:
 
   * Move binaries to tdelibs4-dev: tdeconfig_compiler, ksvgtopng,
-    tdeunittestmodrunner, makekdewidgets, preparetips.
+    tdeunittestmodrunner, maketdewidgets, preparetips.
     Allow tdelibs5-dev co-installable alongside tdelibs4c2a.
 
   * Suggests perl-suid instead Recommends. (Closes: #437414)

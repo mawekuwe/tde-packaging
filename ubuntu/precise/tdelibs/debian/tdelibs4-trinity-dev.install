@@ -5,7 +5,7 @@ debian/tmp/opt/trinity/bin/dcopidlng
 debian/tmp/opt/trinity/bin/tdeconfig_compiler
 debian/tmp/opt/trinity/bin/ksvgtopng
 debian/tmp/opt/trinity/bin/tdeunittestmodrunner
-debian/tmp/opt/trinity/bin/makekdewidgets
+debian/tmp/opt/trinity/bin/maketdewidgets
 debian/tmp/opt/trinity/bin/preparetips
 
 debian/tmp/opt/trinity/include/arts/artskde.h
