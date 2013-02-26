@@ -322,3 +322,8 @@ inactiveForeground=212,208,200
 inactiveFrame=212,208,200
 inactiveHandle=212,208,200
 inactiveTitleBtnBg=220,220,220
+
+[Logout]
+doFancyLogout=false
+doUbuntuLogout=false
+doNotUseKonqyPicture=true

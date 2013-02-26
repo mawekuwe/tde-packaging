@@ -16,7 +16,7 @@ MultiWallpaperMode=NoMulti
 ReverseBlending=false
 UseSHM=false
 Wallpaper=/usr/share/wallpapers/enterprise-desktop.png
-WallpaperMode=Scaled
+WallpaperMode=NoWallpaper
 
 [FMSettings]
 ItemTextBackground=invalid
