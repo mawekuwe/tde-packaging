@@ -8,6 +8,6 @@ Standards-Version: 3.8.4
 
 Package: kcontrol-ldap-bonding-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients, libpam-krb5, libpam-ldap, libnss-ldap, libnss-db, nss-updatedb, nscd, libpam-ccreds
+Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients, libpam-heimdal, libpam-ldap, libnss-ldap, libnss-db, nss-updatedb, nscd, libpam-ccreds
 Description: LDAP control module for the TDE control center
  LDAP is a TDE control center module to manage TDE connections to LDAP realms.
