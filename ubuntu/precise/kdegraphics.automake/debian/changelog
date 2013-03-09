@@ -716,7 +716,7 @@ kdegraphics (4:3.4.1-0ubuntu1) breezy; urgency=low
 
   * Update version number due to KDE 3.4.1 release
   * Move remove xpdf-utils depend on kpdf, add as 
-    suggests on kdegraphics-tdefile-plugins
+    suggests on kdegraphics-kfile-plugins
   * Add all packages back to meta package
 
  -- Jonathan Riddell <jr@jriddell.org>  Tue, 31 May 2005 16:33:00 +0000

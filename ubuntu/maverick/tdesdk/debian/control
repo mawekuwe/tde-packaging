@@ -189,8 +189,8 @@ Description: format converters for KCachegrind profiling visualisation tool
 Package: tdesdk-tdefile-plugins-trinity
 Architecture: any
 Section: tde
-Replaces: kdesdk-tdefile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdesdk-tdefile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdesdk-tdefile-plugins
 Description: Trinity file dialog plugins for software development files

@@ -105,8 +105,8 @@ Description: plugins for Kate, the KDE Advanced Text Editor
 Package: tdeaddons-tdefile-plugins-trinity
 Architecture: any
 Section: tde
-Replaces: kdeaddons-tdefile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdeaddons-tdefile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdeaddons-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdeaddons-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Provides: renamedlg-plugins-trinity
 Description: Trinity file dialog plugins for text files and folders

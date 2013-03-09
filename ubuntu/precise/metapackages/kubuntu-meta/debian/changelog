@@ -2290,7 +2290,7 @@ kubuntu-meta (0.56) dapper; urgency=low
   * Added kdepim-kio-plugins to desktop-hppa
   * Added kdepim-wizards to desktop-hppa
   * Added ark to desktop-hppa
-  * Added kdemultimedia-tdefile-plugins to desktop-hppa
+  * Added kdemultimedia-kfile-plugins to desktop-hppa
   * Added karm to desktop-hppa
   * Added kaffeine-gstreamer to desktop-hppa
   * Added konversation to desktop-hppa
@@ -2418,7 +2418,7 @@ kubuntu-meta (0.53) breezy; urgency=low
   * Added kcontrol to desktop-hppa
   * Added gstreamer0.8-vorbis to desktop-hppa
   * Added kwin to desktop-hppa
-  * Added kdeadmin-tdefile-plugins to desktop-hppa
+  * Added kdeadmin-kfile-plugins to desktop-hppa
   * Added usplash to desktop-sparc
   * Added ttf-dejavu to desktop-i386, desktop-amd64, desktop-powerpc,
     desktop-ia64, desktop-sparc, desktop-hppa
@@ -2759,7 +2759,7 @@ kubuntu-meta (0.47) breezy; urgency=low
   * Added alsa-utils to minimal-i386, minimal-amd64, minimal-powerpc,
     minimal-ia64, minimal-sparc, minimal-hppa
   * Added ksvg to desktop-hppa
-  * Added kdegraphics-tdefile-plugins to desktop-hppa
+  * Added kdegraphics-kfile-plugins to desktop-hppa
   * Added laptop-detect to live-i386, live-amd64, live-powerpc, live-
     ia64, live-sparc, live-hppa
   * Added xkeyboard-config to desktop-i386, desktop-amd64, desktop-
@@ -2789,7 +2789,7 @@ kubuntu-meta (0.47) breezy; urgency=low
   * Added krdc to desktop-hppa
   * Added kubuntu-konqueror-shortcuts to desktop-i386, desktop-amd64,
     desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
-  * Added kdenetwork-tdefile-plugins to desktop-hppa
+  * Added kdenetwork-kfile-plugins to desktop-hppa
   * Added ivman to desktop-hppa
   * Added dbus-1-utils to desktop-hppa
   * Added cupsys to desktop-hppa
@@ -3102,7 +3102,7 @@ kubuntu-meta (0.43) breezy; urgency=low
   * Sync update script with ubuntu-meta
   * Add hppa as a port architecture on request of lamont
   * Refreshed dependencies
-  * Added kdegraphics-tdefile-plugins to desktop-i386, desktop-amd64,
+  * Added kdegraphics-kfile-plugins to desktop-i386, desktop-amd64,
     desktop-powerpc, desktop-ia64, desktop-sparc
   * Added konqueror-nsplugins to desktop-i386, desktop-amd64, desktop-
     powerpc, desktop-ia64, desktop-sparc
@@ -3114,7 +3114,7 @@ kubuntu-meta (0.43) breezy; urgency=low
     desktop-ia64, desktop-sparc
   * Added kwin to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
     ia64, desktop-sparc
-  * Added kdeadmin-tdefile-plugins to desktop-i386, desktop-amd64,
+  * Added kdeadmin-kfile-plugins to desktop-i386, desktop-amd64,
     desktop-powerpc, desktop-ia64, desktop-sparc
   * Added kuser to desktop-i386, desktop-amd64, desktop-powerpc,
     desktop-ia64, desktop-sparc
@@ -3132,7 +3132,7 @@ kubuntu-meta (0.43) breezy; urgency=low
     powerpc, desktop-ia64, desktop-sparc
   * Added ark to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
     ia64, desktop-sparc
-  * Added kdemultimedia-tdefile-plugins to desktop-i386, desktop-amd64,
+  * Added kdemultimedia-kfile-plugins to desktop-i386, desktop-amd64,
     desktop-powerpc, desktop-ia64, desktop-sparc
   * Added readahead-list to desktop-i386, desktop-amd64, desktop-
     powerpc, desktop-ia64, desktop-sparc
@@ -3178,7 +3178,7 @@ kubuntu-meta (0.43) breezy; urgency=low
     desktop-ia64, desktop-sparc
   * Added kaddressbook to desktop-i386, desktop-amd64, desktop-powerpc,
     desktop-ia64, desktop-sparc
-  * Added kdenetwork-tdefile-plugins to desktop-i386, desktop-amd64,
+  * Added kdenetwork-kfile-plugins to desktop-i386, desktop-amd64,
     desktop-powerpc, desktop-ia64, desktop-sparc
   * Added kppp to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
     ia64, desktop-sparc

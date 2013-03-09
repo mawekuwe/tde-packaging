@@ -85,7 +85,7 @@ gwenview (1.4.0~debian.1-1) unstable; urgency=low
     + Fixes focus switching. (Closes: #301812)
 
   * Clarify the package description, as displaying EXIF tags don't require
-    kdegaphics-tdefile-plugins (but other features still do). (Closes: #368809)
+    kdegaphics-kfile-plugins (but other features still do). (Closes: #368809)
 
   * This rebuild eliminates all references to obsolete libX*.la files.
     (Closes: #381323)

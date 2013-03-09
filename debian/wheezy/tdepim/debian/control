@@ -184,8 +184,8 @@ Description: Trinity time tracker tool
 Package: tdepim-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdepim-tdefile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdepim-tdefile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdepim-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdepim-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: KDE File dialog plugins for palm and vcf files
  File dialog plugins for palm and vcf files.
@@ -209,8 +209,8 @@ Description: Trinity pim I/O Slaves
 Package: tdepim-tderesources-trinity
 Section: tde
 Architecture: any
-Replaces: kdepim-tderesources-trinity (<< 4:14.0.0)
-Breaks: kdepim-tderesources-trinity (<< 4:14.0.0)
+Replaces: kdepim-kresources-trinity (<< 4:14.0.0)
+Breaks: kdepim-kresources-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: ${shlibs:Recommends}, korganizer-trinity
 Suggests: knotes-trinity

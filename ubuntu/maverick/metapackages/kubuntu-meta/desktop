@@ -147,7 +147,7 @@ We've chosen KDE as our desktop user interface of choice
 == kdeadmin-trinity ==
 
  * kcron-trinity
- * kdeadmin-tdefile-plugins-trinity
+ * kdeadmin-kfile-plugins-trinity
  * knetworkconf-trinity
 
 == kdegraphics-trinity ==
@@ -155,7 +155,7 @@ We've chosen KDE as our desktop user interface of choice
  * (gwenview-trinity)
  * (kipi-plugins-trinity) [i386 amd64]		# set of plugins for digikam and gwenview
  * (kamera-trinity)
- * kdegraphics-tdefile-plugins-trinity
+ * kdegraphics-kfile-plugins-trinity
  * (kooka-trinity)
  * kpdf-trinity
  * ksnapshot-trinity
@@ -165,7 +165,7 @@ We've chosen KDE as our desktop user interface of choice
 == kdemultimedia-trinity ==
 
  * libarts1-akode-trinity
- * kdemultimedia-tdefile-plugins-trinity
+ * kdemultimedia-kfile-plugins-trinity
  * kdemultimedia-kio-plugins-trinity
  * kmix-trinity
 
@@ -178,7 +178,7 @@ We've chosen KDE as our desktop user interface of choice
  * (kppp-trinity)
  * (krdc-trinity)
  * (krfb-trinity)
- * kdenetwork-tdefile-plugins-trinity
+ * kdenetwork-kfile-plugins-trinity
 
 == kdepim-trinity ==
 

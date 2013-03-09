@@ -10,7 +10,7 @@ Standards-Version: 3.7.2
 Package: kdegraphics
 Section: tde
 Architecture: all
-Depends: kamera (>= ${source:Version}), kcoloredit (>= ${source:Version}), kdegraphics-tdefile-plugins (>= ${source:Version}), kdvi (>= ${source:Version}), kfax (>= ${source:Version}), kfaxview (>= ${source:Version}), kgamma (>= ${source:Version}), kghostview (>= ${source:Version}), kiconedit (>= ${source:Version}), kmrml (>= ${source:Version}), kolourpaint (>= ${source:Version}), kooka (>= ${source:Version}), kpdf (>= ${source:Version}), kpovmodeler (>= ${source:Version}), kruler (>= ${source:Version}), ksnapshot (>= ${source:Version}), ksvg (>= ${source:Version}), kuickshow (>= ${source:Version}), kview (>= ${source:Version}), kviewshell (>= ${source:Version}), libkscan1 (>= ${source:Version})
+Depends: kamera (>= ${source:Version}), kcoloredit (>= ${source:Version}), kdegraphics-kfile-plugins (>= ${source:Version}), kdvi (>= ${source:Version}), kfax (>= ${source:Version}), kfaxview (>= ${source:Version}), kgamma (>= ${source:Version}), kghostview (>= ${source:Version}), kiconedit (>= ${source:Version}), kmrml (>= ${source:Version}), kolourpaint (>= ${source:Version}), kooka (>= ${source:Version}), kpdf (>= ${source:Version}), kpovmodeler (>= ${source:Version}), kruler (>= ${source:Version}), ksnapshot (>= ${source:Version}), ksvg (>= ${source:Version}), kuickshow (>= ${source:Version}), kview (>= ${source:Version}), kviewshell (>= ${source:Version}), libkscan1 (>= ${source:Version})
 Suggests: kdegraphics-doc-html (>= ${source:Version})
 Description: graphics apps from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -74,7 +74,7 @@ Description: development files for the KDE graphics module
  This package is part of KDE, as a component of the KDE graphics module.
  See the 'kde' and 'kdegraphics' packages for more information.
 
-Package: kdegraphics-tdefile-plugins
+Package: kdegraphics-kfile-plugins
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}

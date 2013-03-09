@@ -82,8 +82,8 @@ Description: a Trinity tape backup tool
 Package: tdeadmin-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdeadmin-tdefile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdeadmin-tdefile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdeadmin-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdeadmin-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: Trinity file metainfo plugins for deb and rpm files
  File metainfo plugins for deb and rpm package files.

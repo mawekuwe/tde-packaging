@@ -64,8 +64,8 @@ Description: Trinity network documentation in HTML format
 Package: tdenetwork-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdenetwork-tdefile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdenetwork-tdefile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdenetwork-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdenetwork-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Enhances: konqueror-trinity
 Description: torrent metainfo plugin for Trinity
