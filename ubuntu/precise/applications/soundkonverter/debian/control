@@ -12,7 +12,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: soundkonverter-trinity (<< 4:14.0.0)
 Breaks: soundkonverter-trinity (<< 4:14.0.0)
-Recommends: cdda2wav, cdparanoia, faad, ffmpeg, flac, tdemultimedia-kio-plugins-trinity, mp3gain, mplayer, mppenc, speex, timidity, vorbis-tools, vorbisgain, wavpack
+Recommends: cdda2wav, cdparanoia, faad, ffmpeg, flac, tdemultimedia-tdeio-plugins-trinity, mp3gain, mplayer, mppenc, speex, timidity, vorbis-tools, vorbisgain, wavpack
 Suggests: soundkonverter-amarok-trinity
 Description: audio converter frontend for Trinity
  soundKonverter is a frontend to various audio converters.

@@ -16,7 +16,7 @@ Architecture: all
 Section: tde
 Replaces: kdesdk-trinity (<< 4:14.0.0)
 Breaks: kdesdk-trinity (<< 4:14.0.0)
-Depends: cervisia-trinity (>= ${Source-Version}), kapptemplate-trinity (>= ${Source-Version}), kbabel-trinity (>= ${Source-Version}), kbugbuster-trinity (>= ${Source-Version}), tdecachegrind-trinity (>= ${Source-Version}), tdesdk-tdefile-plugins-trinity (>= ${Source-Version}), tdesdk-kio-plugins-trinity (>= ${Source-Version}) | tdesvn-kio-plugins-trinity, tdesdk-misc-trinity (>= ${Source-Version}), tdesdk-scripts-trinity, kmtrace-trinity (>= ${Source-Version}), kompare-trinity (>= ${Source-Version}), kspy-trinity (>= ${Source-Version}), kuiviewer-trinity (>= ${Source-Version}), tdeunittest-trinity (>= ${Source-Version}), poxml-trinity (>= ${Source-Version}), umbrello-trinity (>= ${Source-Version})
+Depends: cervisia-trinity (>= ${Source-Version}), kapptemplate-trinity (>= ${Source-Version}), kbabel-trinity (>= ${Source-Version}), kbugbuster-trinity (>= ${Source-Version}), tdecachegrind-trinity (>= ${Source-Version}), tdesdk-tdefile-plugins-trinity (>= ${Source-Version}), tdesdk-tdeio-plugins-trinity (>= ${Source-Version}) | tdesvn-tdeio-plugins-trinity, tdesdk-misc-trinity (>= ${Source-Version}), tdesdk-scripts-trinity, kmtrace-trinity (>= ${Source-Version}), kompare-trinity (>= ${Source-Version}), kspy-trinity (>= ${Source-Version}), kuiviewer-trinity (>= ${Source-Version}), tdeunittest-trinity (>= ${Source-Version}), poxml-trinity (>= ${Source-Version}), umbrello-trinity (>= ${Source-Version})
 Suggests: tdecachegrind-converters-trinity, kbabel-trinity-dev, tdesdk-trinity-doc-html
 Description: software development kit from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -392,7 +392,7 @@ Description: UML modelling tool and code generator
  This package is part of Trinity, and a component of the KDE SDK module.
  See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
 
-Package: tdesdk-kio-plugins-trinity
+Package: tdesdk-tdeio-plugins-trinity
 Architecture: any
 Section: devel
 Replaces: kdesdk-kio-plugins-trinity (<< 4:14.0.0)

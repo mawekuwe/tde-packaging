@@ -12,7 +12,7 @@ Standards-Version: 3.8.4
 Package: tdebase
 Section: tde
 Architecture: all
-Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-kio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), tdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), twin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
+Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-tdeio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), tdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), twin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
 Recommends: tdm (>= ${Source-Version})
 Suggests: tdebase-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
@@ -158,11 +158,11 @@ Description: KDE base documentation in HTML format
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde' and 'tdebase' packages for more information.
 
-Package: tdebase-kio-plugins
+Package: tdebase-tdeio-plugins
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, kdesktop, libsasl2-modules, psmisc, cryptsetup, man-db (>= 2.5.1-1)
-Recommends: hal, pmount, kamera, tdemultimedia-kio-plugins
+Recommends: hal, pmount, kamera, tdemultimedia-tdeio-plugins
 Suggests: khelpcenter, mtools
 Conflicts: tdebase-libs (<< 4:3.0.0)
 Replaces: tdebase (<< 4:3.0.0), tdebase-doc (<< 4:3.0.0), tdebase-libs (<< 4:3.0.0), konqueror (<< 4:3.0.0), tdebase-bin (<< 4:3.5.5a.dfsg.1-1ubuntu18)
@@ -323,7 +323,7 @@ Package: konqueror
 Section: web
 Architecture: any
 Provides: info-browser, man-browser, www-browser
-Depends: ${shlibs:Depends}, kcontrol (= ${Source-Version}), tdebase-kio-plugins (= ${Source-Version}), kdesktop (= ${Source-Version}), kfind (= ${Source-Version})
+Depends: ${shlibs:Depends}, kcontrol (= ${Source-Version}), tdebase-tdeio-plugins (= ${Source-Version}), kdesktop (= ${Source-Version}), kfind (= ${Source-Version})
 Suggests: khelpcenter, konq-plugins, ksvg, gij-4.1, libgcj7-awt, libjessie-java
 Conflicts: tdebase-audiolibs (<< 4:3.0.0), tdebase-libs (<< 4:3.0.0)
 Replaces: tdebase (<< 4:3.0.0), tdebase-audiolibs (<< 4:3.0.0), tdebase-doc (<< 4:3.0.0), tdebase-libs (<< 4:3.0.0)

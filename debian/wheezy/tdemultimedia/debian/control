@@ -12,7 +12,7 @@ Section: tde
 Architecture: all
 Replaces: kdemultimedia-trinity (<< 4:14.0.0)
 Breaks: kdemultimedia-trinity (<< 4:14.0.0)
-Depends: artsbuilder-trinity (>= ${Source-Version}), juk-trinity (>= ${Source-Version}), kaboodle-trinity (>= ${Source-Version}), kaudiocreator-trinity (>= ${Source-Version}), tdemultimedia-kappfinder-data-trinity (>= ${Source-Version}), tdemultimedia-tdefile-plugins-trinity (>= ${Source-Version}), tdemultimedia-kio-plugins-trinity (>= ${Source-Version}), tdemid-trinity (>= ${Source-Version}), kmix-trinity (>= ${Source-Version}), krec-trinity (>= ${Source-Version}), kscd-trinity (>= ${Source-Version}), libarts1-akode-trinity (>= ${Source-Version}), libarts1-audiofile-trinity (>= ${Source-Version}), libarts1-mpeglib-trinity (>= ${Source-Version}), libarts1-xine-trinity (>= ${Source-Version}), mpeglib-trinity (>= ${Source-Version}), noatun-trinity (>= ${Source-Version})
+Depends: artsbuilder-trinity (>= ${Source-Version}), juk-trinity (>= ${Source-Version}), kaboodle-trinity (>= ${Source-Version}), kaudiocreator-trinity (>= ${Source-Version}), tdemultimedia-kappfinder-data-trinity (>= ${Source-Version}), tdemultimedia-tdefile-plugins-trinity (>= ${Source-Version}), tdemultimedia-tdeio-plugins-trinity (>= ${Source-Version}), tdemid-trinity (>= ${Source-Version}), kmix-trinity (>= ${Source-Version}), krec-trinity (>= ${Source-Version}), kscd-trinity (>= ${Source-Version}), libarts1-akode-trinity (>= ${Source-Version}), libarts1-audiofile-trinity (>= ${Source-Version}), libarts1-mpeglib-trinity (>= ${Source-Version}), libarts1-xine-trinity (>= ${Source-Version}), mpeglib-trinity (>= ${Source-Version}), noatun-trinity (>= ${Source-Version})
 Suggests: tdemultimedia-trinity-doc-html (>= ${Source-Version})
 Description: multimedia apps from the official Trinity release 
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -31,7 +31,7 @@ Section: devel
 Architecture: any
 Replaces: kdemultimedia-trinity-dev (<< 4:14.0.0)
 Breaks: kdemultimedia-trinity-dev (<< 4:14.0.0)
-Depends: tdelibs4-trinity-dev, artsbuilder-trinity (= ${Source-Version}), tdemultimedia-kio-plugins-trinity (= ${Source-Version}), tdemid-trinity (= ${Source-Version}), kmix-trinity (= ${Source-Version}), krec-trinity (= ${Source-Version}), kscd-trinity (= ${Source-Version}), libarts1-akode-trinity (= ${Source-Version}), libarts1-mpeglib-trinity (= ${Source-Version}), libkcddb1-trinity (= ${Source-Version}), mpeglib-trinity (= ${Source-Version}), noatun-trinity (= ${Source-Version})
+Depends: tdelibs4-trinity-dev, artsbuilder-trinity (= ${Source-Version}), tdemultimedia-tdeio-plugins-trinity (= ${Source-Version}), tdemid-trinity (= ${Source-Version}), kmix-trinity (= ${Source-Version}), krec-trinity (= ${Source-Version}), kscd-trinity (= ${Source-Version}), libarts1-akode-trinity (= ${Source-Version}), libarts1-mpeglib-trinity (= ${Source-Version}), libkcddb1-trinity (= ${Source-Version}), mpeglib-trinity (= ${Source-Version}), noatun-trinity (= ${Source-Version})
 Conflicts: libmpeg-trinity-dev
 Description: development files for the Trinity multimedia module
  Development files and headers for the Trinity multimedia module.
@@ -120,7 +120,7 @@ Section: sound
 Architecture: any
 Replaces: kaudiocreator-trinity (<< 4:14.0.0)
 Breaks: kaudiocreator-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdemultimedia-kio-plugins-trinity (= ${Source-Version})
+Depends: ${shlibs:Depends}, tdemultimedia-tdeio-plugins-trinity (= ${Source-Version})
 Recommends: vorbis-tools, flac
 Suggests: lame
 Description: CD ripper and audio encoder frontend for Trinity
@@ -155,7 +155,7 @@ Description: multimedia data for kappfinder-trinity
  This package is part of Trinity, as a component of the KDE multimedia module.
  See the 'kde-trinity' and 'tdemultimedia-trinity' packages for more information.
 
-Package: tdemultimedia-kio-plugins-trinity
+Package: tdemultimedia-tdeio-plugins-trinity
 Section: tde
 Architecture: any
 Replaces: kdemultimedia-kio-plugins-trinity (<< 4:14.0.0)

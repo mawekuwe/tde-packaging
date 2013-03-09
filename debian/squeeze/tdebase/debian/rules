@@ -203,11 +203,11 @@ makebuilddir::
 common-install-prehook-arch::
 	grep -v -e joystick -e view1394  debian/kcontrol-trinity.install > debian/kcontrol-trinity.install.kfreebsd-i386
 	grep -v -e joystick -e view1394  debian/kcontrol-trinity.install > debian/kcontrol-trinity.install.kfreebsd-amd64
-	grep -v -e media_propsdlgplugin  debian/tdebase-kio-plugins-trinity.install > debian/tdebase-kio-plugins-trinity.install.kfreebsd-i386
-	grep -v -e media_propsdlgplugin  debian/tdebase-kio-plugins-trinity.install > debian/tdebase-kio-plugins-trinity.install.kfreebsd-amd64
+	grep -v -e media_propsdlgplugin  debian/tdebase-tdeio-plugins-trinity.install > debian/tdebase-tdeio-plugins-trinity.install.kfreebsd-i386
+	grep -v -e media_propsdlgplugin  debian/tdebase-tdeio-plugins-trinity.install > debian/tdebase-tdeio-plugins-trinity.install.kfreebsd-amd64
 
 clean::
-	rm -f debian/kcontrol-trinity.install.kfreebsd* debian/tdebase-kio-plugins-trinity.install.kfreebs*
+	rm -f debian/kcontrol-trinity.install.kfreebsd* debian/tdebase-tdeio-plugins-trinity.install.kfreebs*
 	rm -f kcontrol/pics/cr*-app-energy_star.png kcontrol/energy/pics/energybig.png kcontrol/energy/pics/lo-energy.png
 	# KIO Media LUKS Icons
 	rm -f pics/crystalsvg/cr*decrypt.png pics/crystalsvg/cr*encrypt.png

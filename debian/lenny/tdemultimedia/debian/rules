@@ -26,7 +26,7 @@ DEB_DH_STRIP_ARGS  := --dbg-package=tdemultimedia-trinity-dbg
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
 
-PACKAGES_WITH_LIBS := artsbuilder-trinity tdemultimedia-kio-plugins-trinity tdemid-trinity kmix-trinity krec-trinity \
+PACKAGES_WITH_LIBS := artsbuilder-trinity tdemultimedia-tdeio-plugins-trinity tdemid-trinity kmix-trinity krec-trinity \
 	libarts1-akode-trinity libarts1-audiofile-trinity libarts1-mpeglib-trinity libarts1-xine-trinity \
 	libkcddb1-trinity mpeglib-trinity noatun-trinity
 

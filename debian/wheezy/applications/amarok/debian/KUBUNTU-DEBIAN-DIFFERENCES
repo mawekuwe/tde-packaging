@@ -10,5 +10,5 @@ make watch file actually work
 
 #### due to removal of KDE 3 packages ####
 remove tdemultimedia-dev, tdebase-dev from Build-Depends
-remove amarok-konqsidebar, tdemultimedia-kio-plugins from Recommends
+remove amarok-konqsidebar, tdemultimedia-tdeio-plugins from Recommends
 remove complete amarok-konqsidebar package

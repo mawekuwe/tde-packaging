@@ -34,7 +34,7 @@ Section: devel
 Architecture: any
 Replaces: kdesvn-trinity (<< 4:14.0.0)
 Breaks: kdesvn-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, ${misc:Depends}, tdesvn-kio-plugins-trinity (= ${binary:Version})
+Depends: ${shlibs:Depends}, ${misc:Depends}, tdesvn-tdeio-plugins-trinity (= ${binary:Version})
 Recommends: kompare-trinity, graphviz
 Suggests: khelpcenter-trinity, kdiff3-trinity
 Description: subversion client with tight KDE integration [Trinity]
@@ -45,13 +45,13 @@ Description: subversion client with tight KDE integration [Trinity]
  a tight integration into KDE and can be embedded into other KDE 
  applications like konqueror via the KDE component technology KParts.
 
-Package: tdesvn-kio-plugins-trinity
+Package: tdesvn-tdeio-plugins-trinity
 Section: devel
 Architecture: any
 Replaces: kdesvn-kio-plugins-trinity (<< 4:14.0.0)
 Breaks: kdesvn-kio-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Conflicts: tdesdk-kio-plugins-trinity
+Conflicts: tdesdk-tdeio-plugins-trinity
 Description: subversion I/O slaves for Trinity
  This packages includes KIO slaves for svn, svn+file, svn+http, 
  svn+https, svn+ssh. This allows you to access subversion repositories 

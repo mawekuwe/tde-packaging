@@ -14,7 +14,7 @@ cameras, and many other types of equipment.
 While some functionality is available without the use of HAL, media works
 best with HAL (and therefore udev), in combination with pmount. Media
 also extends the functionality of many other tdeioslaves. Check which
-packages are recommended by the tdebase-kio-plugins package, and install
+packages are recommended by the tdebase-tdeio-plugins package, and install
 accordingly.
 
 Note that for regular users to use media in conjunction with HAL, they must

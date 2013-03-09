@@ -10,7 +10,7 @@ Homepage: http://knights.sourceforge.net/
 
 Package: knights-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, tdebase-kio-plugins-trinity
+Depends: ${shlibs:Depends}, tdebase-tdeio-plugins-trinity
 Replaces: knights-trinity (<< 4:14.0.0)
 Breaks: knights-trinity (<< 4:14.0.0)
 Suggests: gnuchess | crafty | sjeng, knights-themepack-trinity

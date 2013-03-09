@@ -11,7 +11,7 @@ Package: ktorrent-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Suggests: php5-cli
-Recommends: tdebase-kio-plugins-trinity
+Recommends: tdebase-tdeio-plugins-trinity
 Description: BitTorrent client for Trinity
  KTorrent is a BitTorrent program for Trinity. Its features include speed capping
  (both down and up), integrated searching, UDP tracker support, preview of
