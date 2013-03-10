@@ -217,7 +217,7 @@ We've chosen KDE as our desktop user interface of choice
  * kde-systemsettings-trinity   # kcontrol replacement
  * dbus 		# for session dbus, #895.  Previously dbus-1-utils which brought in gtk, dbus-launch moved to dbus
  * (kubuntu-default-settings-trinity)
- * kio-locate-trinity           # file searching
+ * tdeio-locate-trinity           # file searching
  * (katapult-trinity)             # program launcher
  * (kubuntu-konqueror-shortcuts-trinity)
  * qca-tls		# used by Kopete Jabber plugin
@@ -228,7 +228,7 @@ We've chosen KDE as our desktop user interface of choice
  * (gtk-qt-engine-trinity)
  * kde-guidance-trinity		# configuration tools
  * (kde-guidance-powermanager-trinity)
- * kio-apt-trinity
+ * tdeio-apt-trinity
  * ksplash-engine-moodin-trinity
  * (ktorrent-trinity)
  * (cdrdao)

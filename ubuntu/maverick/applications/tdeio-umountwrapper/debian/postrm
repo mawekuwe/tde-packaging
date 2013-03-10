@@ -19,7 +19,7 @@
 
 set -e
 
-package_name=kio-umountwrapper-trinity
+package_name=tdeio-umountwrapper-trinity
 
 # make sure than the directories exist before running dpkg-divert
 mkdir -p /opt/trinity/share/apps/konqueror/servicemenus/

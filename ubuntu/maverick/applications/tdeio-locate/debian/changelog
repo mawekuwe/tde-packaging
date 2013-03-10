@@ -4,14 +4,14 @@ tdeio-locate-trinity (0.4.5-1ubuntu4) karmic; urgency=low
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 02 July 2009 16:08:00 -0600
 
-kio-locate-trinity (0.4.5-1ubuntu2) intrepid; urgency=low
+tdeio-locate-trinity (0.4.5-1ubuntu2) intrepid; urgency=low
 
   * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 05 March 2009 29:52:00 -0600
 
-kio-locate-trinity (0.4.5-1ubuntu1) intrepid; urgency=low
+tdeio-locate-trinity (0.4.5-1ubuntu1) intrepid; urgency=low
 
   * Added -trinity suffix
 

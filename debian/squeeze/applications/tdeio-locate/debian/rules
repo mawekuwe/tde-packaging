@@ -29,4 +29,4 @@ DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
 # never build in parallel, regardless of DEB_BUILD_OPTIONS.
 DEB_BUILD_PARALLEL = true
 
-DEB_INSTALL_DOCS_kio-locate-trinity := -XREADME -XNEWS -XTODO -XAUTHORS
+DEB_INSTALL_DOCS_tdeio-locate-trinity := -XREADME -XNEWS -XTODO -XAUTHORS

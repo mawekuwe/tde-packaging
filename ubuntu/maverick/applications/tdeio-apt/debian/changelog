@@ -4,14 +4,14 @@ tdeio-apt-trinity (0.13.2-5ubuntu0) karmic; urgency=low
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 02 July 2009 16:08:00 -0600
 
-kio-apt-trinity (0.13.2-4ubuntu5) intrepid; urgency=low
+tdeio-apt-trinity (0.13.2-4ubuntu5) intrepid; urgency=low
 
   * Moved Trinity to /opt/trinity
   * Integrated properly with KDE4.2+
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 05 March 2009 29:52:00 -0600
 
-kio-apt-trinity (0.13.2-4ubuntu4) intrepid; urgency=low
+tdeio-apt-trinity (0.13.2-4ubuntu4) intrepid; urgency=low
 
   * Added -trinity suffix
 

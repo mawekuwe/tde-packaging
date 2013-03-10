@@ -25,7 +25,7 @@ kubuntu-meta-trinity (1:65) karmic; urgency=low
 kubuntu-meta-trinity (1:61) intrepid; urgency=low
 
   * Removed dependency on obsolete non-KDE3 package software-properties-kde
-  * Changed kio-apt-trinity from depends to recommends
+  * Changed tdeio-apt-trinity from depends to recommends
 
  -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 25 Mar 2009 11:47:00 -0600
 

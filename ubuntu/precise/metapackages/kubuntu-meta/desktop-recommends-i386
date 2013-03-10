@@ -38,12 +38,12 @@ kbstate-trinity
 tde-guidance-powermanager-trinity
 tde-icons-mono-trinity
 tdebluetooth-trinity
-tdepim-kio-plugins-trinity
+tdepim-tdeio-plugins-trinity
 tdepim-wizards-trinity
 tdesudo-trinity
 keep-trinity
 kfind-trinity
-kio-umountwrapper-trinity
+tdeio-umountwrapper-trinity
 kipi-plugins-trinity
 klipper-trinity
 kmag-trinity

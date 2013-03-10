@@ -28,10 +28,10 @@ kcron-trinity
 tde-guidance-trinity
 tde-style-qtcurve-trinity
 tdeadmin-tdefile-plugins-trinity
-tdebase-kio-plugins-trinity
+tdebase-tdeio-plugins-trinity
 tdegraphics-tdefile-plugins-trinity
 tdemultimedia-tdefile-plugins-trinity
-tdemultimedia-kio-plugins-trinity
+tdemultimedia-tdeio-plugins-trinity
 tdenetwork-filesharing-trinity
 tdenetwork-tdefile-plugins-trinity
 kdepasswd-trinity
@@ -42,7 +42,7 @@ tdednssd-trinity
 kghostview-trinity
 khelpcenter-trinity
 kicker-trinity
-kio-locate-trinity
+tdeio-locate-trinity
 kmenuedit-trinity
 kmix-trinity
 knetworkconf-trinity
