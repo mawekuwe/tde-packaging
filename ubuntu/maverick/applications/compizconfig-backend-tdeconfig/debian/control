@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: compizconfig-backend-tdeconfig-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: compizconfig-backend-tdeconfig-trinity (<< 4:14.0.0)
-Breaks: compizconfig-backend-tdeconfig-trinity (<< 4:14.0.0)
+Replaces: compizconfig-backend-kconfig-trinity (<< 4:14.0.0)
+Breaks: compizconfig-backend-kconfig-trinity (<< 4:14.0.0)
 Conflicts: libcompizconfig-backend-tdeconfig-trinity
 Description: TDEConfig [Trinity] Settings library for plugins - OpenCompositing Project
  The OpenCompositing Project brings 3D desktop visual effects that improve

@@ -148,8 +148,8 @@ Description: a front end for the Trinity bug tracking system
 Package: tdecachegrind-trinity
 Architecture: any
 Section: devel
-Replaces: tdecachegrind-trinity (<< 4:14.0.0)
-Breaks: tdecachegrind-trinity (<< 4:14.0.0)
+Replaces: kcachegrind-trinity (<< 4:14.0.0)
+Breaks: kcachegrind-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdecachegrind
 Recommends: valgrind-callgrind-trinity | valgrind-calltree-trinity, graphviz
@@ -169,8 +169,8 @@ Description: visualisation tool for valgrind profiling output
 Package: tdecachegrind-converters-trinity
 Architecture: all
 Section: devel
-Replaces: tdecachegrind-converters-trinity (<< 4:14.0.0)
-Breaks: tdecachegrind-converters-trinity (<< 4:14.0.0)
+Replaces: kcachegrind-converters-trinity (<< 4:14.0.0)
+Breaks: kcachegrind-converters-trinity (<< 4:14.0.0)
 Depends: ${perl:Depends}, php5-cli, python
 Conflicts: tdecachegrind-converters
 Recommends: tdecachegrind-trinity
@@ -189,8 +189,8 @@ Description: format converters for KCachegrind profiling visualisation tool
 Package: tdesdk-tdefile-plugins-trinity
 Architecture: any
 Section: tde
-Replaces: kdesdk-tdefile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdesdk-tdefile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdesdk-tdefile-plugins
 Description: Trinity file dialog plugins for software development files
@@ -410,8 +410,8 @@ Description: subversion ioslave for Trinity
 Package: tdeunittest-trinity
 Architecture: any
 Section: devel
-Replaces: tdeunittest-trinity (<< 4:14.0.0)
-Breaks: tdeunittest-trinity (<< 4:14.0.0)
+Replaces: kunittest-trinity (<< 4:14.0.0)
+Breaks: kunittest-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdeunittest
 Suggests: tdelibs4-trinity-doc

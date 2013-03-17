@@ -113,8 +113,8 @@ Description: wallpapers released with Trinity
 Package: tdescreensaver-trinity
 Architecture: any
 Section: tde
-Replaces: tdescreensaver-trinity (<< 4:14.0.0)
-Breaks: tdescreensaver-trinity (<< 4:14.0.0)
+Replaces: kscreensaver-trinity (<< 4:14.0.0)
+Breaks: kscreensaver-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin
 Recommends: twin-trinity, tdescreensaver-xsavers-trinity (= ${Source-Version})
 Description: additional screen savers released with Trinity
@@ -132,8 +132,8 @@ Description: additional screen savers released with Trinity
 Package: tdescreensaver-xsavers-trinity
 Architecture: any
 Section: tde
-Replaces: tdescreensaver-xsavers-trinity (<< 4:14.0.0)
-Breaks: tdescreensaver-xsavers-trinity (<< 4:14.0.0)
+Replaces: kscreensaver-xsavers-trinity (<< 4:14.0.0)
+Breaks: kscreensaver-xsavers-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin, xscreensaver-data
 Recommends: twin-trinity, tdescreensaver-trinity (= ${Source-Version}), xscreensaver-gl
 Suggests: tdescreensaver-xsavers-webcollage-trinity
@@ -155,8 +155,8 @@ Description: Trinity hooks for standard xscreensavers
 Package: tdescreensaver-xsavers-webcollage-trinity
 Architecture: all
 Section: tde
-Replaces: tdescreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
-Breaks: tdescreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
+Replaces: kscreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
+Breaks: kscreensaver-xsavers-webcollage-trinity (<< 4:14.0.0)
 Depends: tdescreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
 Description: webcollage screensaver Trinity hook
  This package give access to the webcollage screensaver through the Trinity
@@ -180,8 +180,8 @@ Description: webcollage screensaver Trinity hook
 Package: tdescreensaver-xsavers-extra-trinity
 Architecture: all
 Section: tde
-Replaces: tdescreensaver-xsavers-extra-trinity (<< 4:14.0.0)
-Breaks: tdescreensaver-xsavers-extra-trinity (<< 4:14.0.0)
+Replaces: kscreensaver-xsavers-extra-trinity (<< 4:14.0.0)
+Breaks: kscreensaver-xsavers-extra-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdescreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
 Recommends: twin-trinity, tdescreensaver-trinity (= ${Source-Version})
 Description: Trinity hooks for standard xscreensavers

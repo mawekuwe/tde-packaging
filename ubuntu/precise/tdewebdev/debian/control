@@ -88,8 +88,8 @@ Description: data files for Quanta Plus web development environment [Trinity]
 Package: tdefilereplace-trinity
 Architecture: any
 Section: tde
-Replaces: tdefilereplace-trinity (<< 4:14.0.0)
-Breaks: tdefilereplace-trinity (<< 4:14.0.0)
+Replaces: kfilereplace-trinity (<< 4:14.0.0)
+Breaks: kfilereplace-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: quanta-trinity
 Description: batch search-and-replace component for KDE [Trinity]

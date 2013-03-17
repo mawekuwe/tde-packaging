@@ -346,8 +346,8 @@ Description: timer utility for Trinity
 Package: tdewalletmanager-trinity
 Section: utils
 Architecture: any
-Replaces: tdewalletmanager-trinity (<< 4:14.0.0)
-Breaks: tdewalletmanager-trinity (<< 4:14.0.0)
+Replaces: kwalletmanager-trinity (<< 4:14.0.0)
+Breaks: kwalletmanager-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: wallet manager for Trinity

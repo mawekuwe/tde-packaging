@@ -172,8 +172,8 @@ Description: enables the browsing of audio CDs under Konqueror
 Package: tdemid-trinity
 Section: sound
 Architecture: any
-Replaces: tdemid-trinity (<< 4:14.0.0)
-Breaks: tdemid-trinity (<< 4:14.0.0)
+Replaces: kmid-trinity (<< 4:14.0.0)
+Breaks: kmid-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: MIDI/karaoke player for Trinity

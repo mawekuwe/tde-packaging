@@ -252,8 +252,8 @@ Description: miscellaneous binaries and files for the KDE desktop
 Package: tdm-trinity
 Section: tde
 Architecture: any
-Replaces: tdm-trinity (<< 4:14.0.0)
-Breaks: tdm-trinity (<< 4:14.0.0)
+Replaces: kdm-trinity (<< 4:14.0.0)
+Breaks: kdm-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), debconf (>= 1.2.9) | debconf-2.0, libpam-runtime (>= 0.76-14), xbase-clients
 Recommends: logrotate, xserver-xorg
 Suggests: khelpcenter-trinity, ksmserver-trinity (= ${Source-Version}), kdepasswd-trinity (= ${Source-Version}), menu

@@ -134,8 +134,8 @@ Description: CD ripper and audio encoder frontend for Trinity
 Package: tdemultimedia-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdemultimedia-tdefile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdemultimedia-tdefile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdemultimedia-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdemultimedia-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: au/avi/m3u/mp3/ogg/wav plugins for tdefile
  au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
@@ -172,8 +172,8 @@ Description: enables the browsing of audio CDs under Konqueror
 Package: tdemid-trinity
 Section: sound
 Architecture: any
-Replaces: tdemid-trinity (<< 4:14.0.0)
-Breaks: tdemid-trinity (<< 4:14.0.0)
+Replaces: kmid-trinity (<< 4:14.0.0)
+Breaks: kmid-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: MIDI/karaoke player for Trinity
