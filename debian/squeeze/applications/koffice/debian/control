@@ -176,6 +176,8 @@ Description: data files for KPresenter presentation program [Trinity]
 Package: chalk-trinity
 Architecture: any
 Section: kde
+Replaces: krita-trinity (<< 4:3.5.13)
+Breaks: krita-trinity (<< 4:3.5.13)
 Depends: ${shlibs:Depends}, chalk-data-trinity (>> ${KDE-Version3}), chalk-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
 Recommends: dcraw, khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: a pixel-based image manipulation program for the KDE Office Suite [Trinity]
@@ -187,6 +189,8 @@ Description: a pixel-based image manipulation program for the KDE Office Suite [
 Package: chalk-data-trinity
 Architecture: all
 Section: kde
+Replaces: krita-data-trinity (<< 4:3.5.13)
+Breaks: krita-data-trinity (<< 4:3.5.13)
 Description: data files for Chalk painting program [Trinity]
  This package contains architecture-independent data files for Chalk,
  the painting program shipped with the KDE Office Suite.
