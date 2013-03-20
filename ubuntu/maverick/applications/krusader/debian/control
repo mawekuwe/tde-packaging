@@ -10,8 +10,8 @@ Homepage: http://krusader.sourceforge.net
 Package: krusader-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: krusader-trinity (<< 4:14.0.0)
-Breaks: krusader-trinity (<< 4:14.0.0)
+Replaces: krusader-kde3 (<< 4:14.0.0), krusader-trinity (<< 4:14.0.0)
+Breaks: krusader-kde3 (<< 4:14.0.0), krusader-trinity (<< 4:14.0.0)
 Suggests: md5deep | cfv, kedit-trinity, khexedit-trinity, konsole-trinity, kmail-trinity,
  krename-trinity, kdiff3-trinity | kompare-trinity | xxdiff, ark-trinity, arj, bzip2, cpio, lha,
  unrar | unrar-free | rar, rpm, unace, unzip, zip, p7zip, tdebase-trinity-bin,
@@ -38,8 +38,8 @@ Description: twin-panel (commander-style) file manager for KDE (and other deskto
 Package: krusader-trinity-dbg
 Section: devel
 Architecture: any
-Replaces: krusader-trinity-dbg (<< 4:14.0.0)
-Breaks: krusader-trinity-dbg (<< 4:14.0.0)
+Replaces: krusader-kde3-dbg (<< 4:14.0.0), krusader-trinity-dbg (<< 4:14.0.0)
+Breaks: krusader-kde3-dbg (<< 4:14.0.0), krusader-trinity-dbg (<< 4:14.0.0)
 Priority: extra
 Depends: krusader-trinity (= ${binary:Version})
 Description: debugging symbols for krusader-trinity

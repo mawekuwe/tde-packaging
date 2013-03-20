@@ -9,8 +9,8 @@ Homepage: http://tderadio.sourceforge.net/
 Package: tderadio-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: kradio-trinity (<< 4:14.0.0)
-Breaks: kradio-trinity (<< 4:14.0.0)
+Replaces: kradio-kde3 (<< 4:14.0.0), kradio-trinity (<< 4:14.0.0)
+Breaks: kradio-kde3 (<< 4:14.0.0), kradio-trinity (<< 4:14.0.0)
 Description: Comfortable Radio Application for KDE [Trinity]
  TDERadio is a comfortable radio application for KDE 3.x with support for 
  V4L and V4L2 radio cards drivers.

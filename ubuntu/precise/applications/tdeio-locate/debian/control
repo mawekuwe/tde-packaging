@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: tdeio-locate-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: kio-locate-trinity (<< 4:14.0.0)
-Breaks: kio-locate-trinity (<< 4:14.0.0)
+Replaces: kio-locate-kde3 (<< 4:14.0.0), kio-locate-trinity (<< 4:14.0.0)
+Breaks: kio-locate-kde3 (<< 4:14.0.0), kio-locate-trinity (<< 4:14.0.0)
 Description: tdeio-slave for the locate command [Trinity]
  Adds support for the "locate:" and "locater:"
  protocols to Konqueror and other KDE applications.

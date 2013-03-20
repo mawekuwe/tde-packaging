@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: katapult-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: katapult-trinity (<< 4:14.0.0)
-Breaks: katapult-trinity (<< 4:14.0.0)
+Replaces: katapult-kde3 (<< 4:14.0.0), katapult-trinity (<< 4:14.0.0)
+Breaks: katapult-kde3 (<< 4:14.0.0), katapult-trinity (<< 4:14.0.0)
 Description: item launcher for KDE [Trinity]
  Katapult is an application, which analyses text-based queries
  to launch items, such as bookmarks, directories or programs.

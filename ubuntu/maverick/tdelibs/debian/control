@@ -23,8 +23,8 @@ Standards-Version: 3.8.3
 Package: tdelibs-trinity
 Section: libs
 Architecture: all
-Replaces: kdelibs-trinity (<< 4:14.0.0)
-Breaks: kdelibs-trinity (<< 4:14.0.0)
+Replaces: kdelibs-kde3 (<< 4:14.0.0), kdelibs-trinity (<< 4:14.0.0)
+Breaks: kdelibs-kde3 (<< 4:14.0.0), kdelibs-trinity (<< 4:14.0.0)
 Provides: tdelibs
 Conflicts: tdelibs
 Depends: tdelibs4c2a-trinity (>= ${Source-Version}),
@@ -42,8 +42,8 @@ Description: core libraries from the official Trinity release
 Package: tdelibs-data-trinity
 Section: libs
 Architecture: all
-Replaces: kdelibs-data-trinity (<< 4:14.0.0)
-Breaks: kdelibs-data-trinity (<< 4:14.0.0)
+Replaces: kdelibs-data-kde3 (<< 4:14.0.0), kdelibs-data-trinity (<< 4:14.0.0)
+Breaks: kdelibs-data-kde3 (<< 4:14.0.0), kdelibs-data-trinity (<< 4:14.0.0)
 Depends: hicolor-icon-theme
 Provides: tdelibs-data
 Conflicts: tdelibs-data
@@ -58,8 +58,8 @@ Description: core shared data for all TDE applications
 Package: tdelibs4c2a-trinity
 Section: libs
 Architecture: any
-Replaces: kdelibs4c2a-trinity (<< 4:14.0.0)
-Breaks: kdelibs4c2a-trinity (<< 4:14.0.0)
+Replaces: kdelibs4c2a-kde3 (<< 4:14.0.0), kdelibs4c2a-trinity (<< 4:14.0.0)
+Breaks: kdelibs4c2a-kde3 (<< 4:14.0.0), kdelibs4c2a-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdelibs-data-trinity,
  tdelibs-data-trinity, libart-2.0-2 (>= 14.0.0), perl, xbase-clients, sudo
 Recommends: xdg-user-dirs
@@ -78,8 +78,8 @@ Description: core libraries and binaries for all TDE applications
 Package: tdelibs4-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: kdelibs4-trinity-dev (<< 4:14.0.0)
-Breaks: kdelibs4-trinity-dev (<< 4:14.0.0)
+Replaces: kdelibs4-kde3-dev (<< 4:14.0.0), kdelibs4-trinity-dev (<< 4:14.0.0)
+Breaks: kdelibs4-kde3-dev (<< 4:14.0.0), kdelibs4-trinity-dev (<< 4:14.0.0)
 Depends: tdelibs4c2a-trinity (= ${Source-Version}), libart-2.0-dev (>= 14.0.0),
  libarts1-trinity-dev (>= 1.5.0), ${libasound2-dev}, libacl1-dev, libattr1-dev,
  libaspell-dev, hspell, libbz2-dev, libcupsys2-dev | libcups2-dev,
@@ -101,8 +101,8 @@ Description: development files for the TDE core libraries
 Package: tdelibs4-trinity-doc
 Section: doc
 Architecture: all
-Replaces: kdelibs4-trinity-doc (<< 4:14.0.0)
-Breaks: kdelibs4-trinity-doc (<< 4:14.0.0)
+Replaces: kdelibs4-kde3-doc (<< 4:14.0.0), kdelibs4-trinity-doc (<< 4:14.0.0)
+Breaks: kdelibs4-kde3-doc (<< 4:14.0.0), kdelibs4-trinity-doc (<< 4:14.0.0)
 Provides: tdelibs-trinity-doc
 Description: developer documentation for the TDE core libraries
  This package contains documentation for the core TDE libraries, of
@@ -115,8 +115,8 @@ Description: developer documentation for the TDE core libraries
 Package: tdelibs-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: kdelibs-trinity-dbg (<< 4:14.0.0)
-Breaks: kdelibs-trinity-dbg (<< 4:14.0.0)
+Replaces: kdelibs-kde3-dbg (<< 4:14.0.0), kdelibs-trinity-dbg (<< 4:14.0.0)
+Breaks: kdelibs-kde3-dbg (<< 4:14.0.0), kdelibs-trinity-dbg (<< 4:14.0.0)
 Priority: extra
 Conflicts: tdelibs4-trinity-dbg, tdelibs4c2-trinity-dbg, tdelibs4c2a-trinity-dbg
 Depends: tdelibs4c2a-trinity (= ${Source-Version}), libtqtinterface-dbg, libc6-dbg [amd64]

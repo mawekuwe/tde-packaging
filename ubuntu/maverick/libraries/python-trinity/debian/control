@@ -12,8 +12,8 @@ XS-Python-Version: all
 Package: python-trinity-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${python:Depends}, python-tqt
-Replaces: python-trinity-trinity (<< 4:14.0.0)
-Breaks: python-trinity-trinity (<< 4:14.0.0)
+Replaces: python-kde3-kde3 (<< 4:14.0.0), python-trinity-trinity (<< 4:14.0.0)
+Breaks: python-kde3-kde3 (<< 4:14.0.0), python-trinity-trinity (<< 4:14.0.0)
 XB-Python-Version: ${python:Versions}
 Provides: ${python:Provides}
 Conflicts: python-trinity-trinity
@@ -25,8 +25,8 @@ Description: Trinity bindings for Python [Trinity]
 Package: python-trinity-trinity-dbg
 Priority: extra
 Architecture: any
-Replaces: python-trinity-trinity-dbg (<< 4:14.0.0)
-Breaks: python-trinity-trinity-dbg (<< 4:14.0.0)
+Replaces: python-kde3-kde3-dbg (<< 4:14.0.0), python-trinity-trinity-dbg (<< 4:14.0.0)
+Breaks: python-kde3-kde3-dbg (<< 4:14.0.0), python-trinity-trinity-dbg (<< 4:14.0.0)
 Depends: python-trinity-trinity (= ${binary:Version}), python-dbg, python-tqt-dbg, ${shlibs:Depends}
 XB-Python-Version: ${python:Versions}
 Description: Trinity bindings for Python (debug extensions) [Trinity]
@@ -39,8 +39,8 @@ Description: Trinity bindings for Python (debug extensions) [Trinity]
 Package: python-trinity-trinity-dev
 Section: python
 Architecture: all
-Replaces: python-trinity-trinity-dev (<< 4:14.0.0)
-Breaks: python-trinity-trinity-dev (<< 4:14.0.0)
+Replaces: python-kde3-kde3-dev (<< 4:14.0.0), python-trinity-trinity-dev (<< 4:14.0.0)
+Breaks: python-kde3-kde3-dev (<< 4:14.0.0), python-trinity-trinity-dev (<< 4:14.0.0)
 Depends: pytqt-tools, ${python:Depends}
 XB-Python-Version: ${python:Versions}
 Description: Trinity bindings for Python - Development files and scripts [Trinity]
@@ -53,8 +53,8 @@ Description: Trinity bindings for Python - Development files and scripts [Trinit
 Package: python-trinity-trinity-doc
 Section: doc
 Architecture: all
-Replaces: python-trinity-trinity-doc (<< 4:14.0.0)
-Breaks: python-trinity-trinity-doc (<< 4:14.0.0)
+Replaces: python-kde3-kde3-doc (<< 4:14.0.0), python-trinity-trinity-doc (<< 4:14.0.0)
+Breaks: python-kde3-kde3-doc (<< 4:14.0.0), python-trinity-trinity-doc (<< 4:14.0.0)
 Description: Documentation and examples for PyKDE [Trinity]
  General documentation and examples for PyKDE providing programming
  tips and working code you can use to learn from.

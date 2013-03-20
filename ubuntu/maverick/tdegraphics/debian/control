@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: tdegraphics-trinity
 Section: tde
 Architecture: all
-Replaces: kdegraphics-trinity (<< 4:14.0.0)
-Breaks: kdegraphics-trinity (<< 4:14.0.0)
+Replaces: kdegraphics-kde3 (<< 4:14.0.0), kdegraphics-trinity (<< 4:14.0.0)
+Breaks: kdegraphics-kde3 (<< 4:14.0.0), kdegraphics-trinity (<< 4:14.0.0)
 Depends: kamera-trinity (>= ${source:Version}), kcoloredit-trinity (>= ${source:Version}), tdegraphics-tdefile-plugins-trinity (>= ${source:Version}), kdvi-trinity (>= ${source:Version}), kfax-trinity (>= ${source:Version}), kfaxview-trinity (>= ${source:Version}), kgamma-trinity (>= ${source:Version}), kghostview-trinity (>= ${source:Version}), kiconedit-trinity (>= ${source:Version}), kmrml-trinity (>= ${source:Version}), kolourpaint-trinity (>= ${source:Version}), kooka-trinity (>= ${source:Version}), kpdf-trinity (>= ${source:Version}), kpovmodeler-trinity (>= ${source:Version}), kruler-trinity (>= ${source:Version}), ksnapshot-trinity (>= ${source:Version}), ksvg-trinity (>= ${source:Version}), kview-trinity (>= ${source:Version}), kviewshell-trinity (>= ${source:Version}), libkscan1-trinity (>= ${source:Version})
 Suggests: tdegraphics-trinity-doc-html (>= ${source:Version})
 Description: graphics apps from the official Trinity release
@@ -26,8 +26,8 @@ Description: graphics apps from the official Trinity release
 Package: tdegraphics-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: kdegraphics-trinity-doc-html (<< 4:14.0.0)
-Breaks: kdegraphics-trinity-doc-html (<< 4:14.0.0)
+Replaces: kdegraphics-kde3-doc-html (<< 4:14.0.0), kdegraphics-trinity-doc-html (<< 4:14.0.0)
+Breaks: kdegraphics-kde3-doc-html (<< 4:14.0.0), kdegraphics-trinity-doc-html (<< 4:14.0.0)
 Suggests: konqueror-trinity | www-browser, tdebase-trinity
 Description: KDE graphics documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -46,8 +46,8 @@ Description: KDE graphics documentation in HTML format
 Package: kamera-trinity
 Section: graphics
 Architecture: any
-Replaces: kamera-trinity (<< 4:14.0.0)
-Breaks: kamera-trinity (<< 4:14.0.0)
+Replaces: kamera-kde3 (<< 4:14.0.0), kamera-trinity (<< 4:14.0.0)
+Breaks: kamera-kde3 (<< 4:14.0.0), kamera-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: digital camera io_slave for Konqueror
@@ -60,8 +60,8 @@ Description: digital camera io_slave for Konqueror
 Package: kcoloredit-trinity
 Section: graphics
 Architecture: any
-Replaces: kcoloredit-trinity (<< 4:14.0.0)
-Breaks: kcoloredit-trinity (<< 4:14.0.0)
+Replaces: kcoloredit-kde3 (<< 4:14.0.0), kcoloredit-trinity (<< 4:14.0.0)
+Breaks: kcoloredit-kde3 (<< 4:14.0.0), kcoloredit-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a color palette editor and color picker for KDE
@@ -74,8 +74,8 @@ Description: a color palette editor and color picker for KDE
 Package: tdegraphics-trinity-dev
 Section: devel
 Architecture: any
-Replaces: kdegraphics-trinity-dev (<< 4:14.0.0)
-Breaks: kdegraphics-trinity-dev (<< 4:14.0.0)
+Replaces: kdegraphics-kde3-dev (<< 4:14.0.0), kdegraphics-trinity-dev (<< 4:14.0.0)
+Breaks: kdegraphics-kde3-dev (<< 4:14.0.0), kdegraphics-trinity-dev (<< 4:14.0.0)
 Depends: kghostview-trinity (= ${binary:Version}), kmrml-trinity (= ${binary:Version}), kpovmodeler-trinity (= ${binary:Version}), ksvg-trinity (= ${binary:Version}), kview-trinity (= ${binary:Version}), kviewshell-trinity (= ${binary:Version}), tdelibs4-trinity-dev
 Description: development files for the KDE graphics module
  This package contains headers and other development files for the KDE
@@ -87,8 +87,8 @@ Description: development files for the KDE graphics module
 Package: tdegraphics-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdegraphics-kfile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdegraphics-kfile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdegraphics-kfile-plugins-kde3 (<< 4:14.0.0), kdegraphics-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdegraphics-kfile-plugins-kde3 (<< 4:14.0.0), kdegraphics-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: KDE metainfo plugins for graphic files
  This packages provides meta information for graphic files (file sizes,
@@ -100,8 +100,8 @@ Description: KDE metainfo plugins for graphic files
 Package: kdvi-trinity
 Section: graphics
 Architecture: any
-Replaces: kdvi-trinity (<< 4:14.0.0)
-Breaks: kdvi-trinity (<< 4:14.0.0)
+Replaces: kdvi-kde3 (<< 4:14.0.0), kdvi-trinity (<< 4:14.0.0)
+Breaks: kdvi-kde3 (<< 4:14.0.0), kdvi-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, texlive-fonts-recommended
 Suggests: khelpcenter-trinity
 Description: dvi viewer for KDE
@@ -113,8 +113,8 @@ Description: dvi viewer for KDE
 Package: kfax-trinity
 Section: graphics
 Architecture: any
-Replaces: kfax-trinity (<< 4:14.0.0)
-Breaks: kfax-trinity (<< 4:14.0.0)
+Replaces: kfax-kde3 (<< 4:14.0.0), kfax-trinity (<< 4:14.0.0)
+Breaks: kfax-kde3 (<< 4:14.0.0), kfax-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, libtiff-tools
 Description: G3/G4 fax viewer for Trinity
  A fax viewer for Trinity, supporting the display of raw and tiffed fax images
@@ -126,8 +126,8 @@ Description: G3/G4 fax viewer for Trinity
 Package: kfaxview-trinity
 Section: graphics
 Architecture: any
-Replaces: kfaxview-trinity (<< 4:14.0.0)
-Breaks: kfaxview-trinity (<< 4:14.0.0)
+Replaces: kfaxview-kde3 (<< 4:14.0.0), kfaxview-trinity (<< 4:14.0.0)
+Breaks: kfaxview-kde3 (<< 4:14.0.0), kfaxview-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: G3/G4 fax viewer for Trinity using kviewshell
  A fax viewer for Trinity, supporting the display of raw and tiffed fax images
@@ -142,8 +142,8 @@ Description: G3/G4 fax viewer for Trinity using kviewshell
 Package: kgamma-trinity
 Section: graphics
 Architecture: any
-Replaces: kgamma-trinity (<< 4:14.0.0)
-Breaks: kgamma-trinity (<< 4:14.0.0)
+Replaces: kgamma-kde3 (<< 4:14.0.0), kgamma-trinity (<< 4:14.0.0)
+Breaks: kgamma-kde3 (<< 4:14.0.0), kgamma-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: gamma correction module for the Trinity Control Center
@@ -159,8 +159,8 @@ Description: gamma correction module for the Trinity Control Center
 Package: kghostview-trinity
 Section: graphics
 Architecture: any
-Replaces: kghostview-trinity (<< 4:14.0.0)
-Breaks: kghostview-trinity (<< 4:14.0.0)
+Replaces: kghostview-kde3 (<< 4:14.0.0), kghostview-trinity (<< 4:14.0.0)
+Breaks: kghostview-kde3 (<< 4:14.0.0), kghostview-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, ghostscript-x
 Suggests: khelpcenter-trinity
 Provides: postscript-viewer, pdf-viewer
@@ -178,8 +178,8 @@ Description: PostScript viewer for Trinity
 Package: kiconedit-trinity
 Section: graphics
 Architecture: any
-Replaces: kiconedit-trinity (<< 4:14.0.0)
-Breaks: kiconedit-trinity (<< 4:14.0.0)
+Replaces: kiconedit-kde3 (<< 4:14.0.0), kiconedit-trinity (<< 4:14.0.0)
+Breaks: kiconedit-kde3 (<< 4:14.0.0), kiconedit-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: an icon editor for Trinity
@@ -191,8 +191,8 @@ Description: an icon editor for Trinity
 Package: kmrml-trinity
 Section: tde
 Architecture: any
-Replaces: kmrml-trinity (<< 4:14.0.0)
-Breaks: kmrml-trinity (<< 4:14.0.0)
+Replaces: kmrml-kde3 (<< 4:14.0.0), kmrml-trinity (<< 4:14.0.0)
+Breaks: kmrml-kde3 (<< 4:14.0.0), kmrml-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: gnuift
 Description: a Konqueror plugin for searching pictures
@@ -207,8 +207,8 @@ Description: a Konqueror plugin for searching pictures
 Package: kolourpaint-trinity
 Section: graphics
 Architecture: any
-Replaces: kolourpaint-trinity (<< 4:14.0.0)
-Breaks: kolourpaint-trinity (<< 4:14.0.0)
+Replaces: kolourpaint-kde3 (<< 4:14.0.0), kolourpaint-trinity (<< 4:14.0.0)
+Breaks: kolourpaint-kde3 (<< 4:14.0.0), kolourpaint-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a simple paint program for Trinity
@@ -232,8 +232,8 @@ Description: a simple paint program for Trinity
 Package: kooka-trinity
 Section: graphics
 Architecture: any
-Replaces: kooka-trinity (<< 4:14.0.0)
-Breaks: kooka-trinity (<< 4:14.0.0)
+Replaces: kooka-kde3 (<< 4:14.0.0), kooka-trinity (<< 4:14.0.0)
+Breaks: kooka-kde3 (<< 4:14.0.0), kooka-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: ocrad | gocr
 Suggests: khelpcenter-trinity
@@ -258,8 +258,8 @@ Description: scanner program for Trinity
 Package: kpdf-trinity
 Section: graphics
 Architecture: any
-Replaces: kpdf-trinity (<< 4:14.0.0)
-Breaks: kpdf-trinity (<< 4:14.0.0)
+Replaces: kpdf-kde3 (<< 4:14.0.0), kpdf-trinity (<< 4:14.0.0)
+Breaks: kpdf-kde3 (<< 4:14.0.0), kpdf-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: kghostview-trinity (= ${binary:Version})
 Suggests: khelpcenter-trinity
@@ -275,8 +275,8 @@ Description: PDF viewer for Trinity
 Package: kpovmodeler-trinity
 Section: graphics
 Architecture: any
-Replaces: kpovmodeler-trinity (<< 4:14.0.0)
-Breaks: kpovmodeler-trinity (<< 4:14.0.0)
+Replaces: kpovmodeler-kde3 (<< 4:14.0.0), kpovmodeler-trinity (<< 4:14.0.0)
+Breaks: kpovmodeler-kde3 (<< 4:14.0.0), kpovmodeler-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, povray
 Description: a graphical editor for povray scenes
@@ -300,8 +300,8 @@ Description: a graphical editor for povray scenes
 Package: kruler-trinity
 Section: graphics
 Architecture: any
-Replaces: kruler-trinity (<< 4:14.0.0)
-Breaks: kruler-trinity (<< 4:14.0.0)
+Replaces: kruler-kde3 (<< 4:14.0.0), kruler-trinity (<< 4:14.0.0)
+Breaks: kruler-kde3 (<< 4:14.0.0), kruler-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a screen ruler and color measurement tool for Trinity
@@ -313,8 +313,8 @@ Description: a screen ruler and color measurement tool for Trinity
 Package: ksnapshot-trinity
 Section: graphics
 Architecture: any
-Replaces: ksnapshot-trinity (<< 4:14.0.0)
-Breaks: ksnapshot-trinity (<< 4:14.0.0)
+Replaces: ksnapshot-kde3 (<< 4:14.0.0), ksnapshot-trinity (<< 4:14.0.0)
+Breaks: ksnapshot-kde3 (<< 4:14.0.0), ksnapshot-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: screenshot utility for Trinity
@@ -328,8 +328,8 @@ Description: screenshot utility for Trinity
 Package: ksvg-trinity
 Section: graphics
 Architecture: any
-Replaces: ksvg-trinity (<< 4:14.0.0)
-Breaks: ksvg-trinity (<< 4:14.0.0)
+Replaces: ksvg-kde3 (<< 4:14.0.0), ksvg-trinity (<< 4:14.0.0)
+Breaks: ksvg-kde3 (<< 4:14.0.0), ksvg-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: SVG viewer for Trinity
  KSVG allows you view SVG (scalable vector graphics) files. This package
@@ -342,8 +342,8 @@ Description: SVG viewer for Trinity
 Package: kview-trinity
 Section: graphics
 Architecture: any
-Replaces: kview-trinity (<< 4:14.0.0)
-Breaks: kview-trinity (<< 4:14.0.0)
+Replaces: kview-kde3 (<< 4:14.0.0), kview-trinity (<< 4:14.0.0)
+Breaks: kview-kde3 (<< 4:14.0.0), kview-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: simple image viewer/converter for Trinity
@@ -357,8 +357,8 @@ Description: simple image viewer/converter for Trinity
 Package: kviewshell-trinity
 Section: graphics
 Architecture: any
-Replaces: kviewshell-trinity (<< 4:14.0.0)
-Breaks: kviewshell-trinity (<< 4:14.0.0)
+Replaces: kviewshell-kde3 (<< 4:14.0.0), kviewshell-trinity (<< 4:14.0.0)
+Breaks: kviewshell-kde3 (<< 4:14.0.0), kviewshell-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: generic framework for viewer applications in Trinity
  KViewShell is a generic viewing framework that allows the graphical
@@ -374,8 +374,8 @@ Description: generic framework for viewer applications in Trinity
 Package: libkscan-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libkscan-trinity-dev (<< 4:14.0.0)
-Breaks: libkscan-trinity-dev (<< 4:14.0.0)
+Replaces: libkscan-kde3-dev (<< 4:14.0.0), libkscan-trinity-dev (<< 4:14.0.0)
+Breaks: libkscan-kde3-dev (<< 4:14.0.0), libkscan-trinity-dev (<< 4:14.0.0)
 Depends: libkscan1-trinity (= ${binary:Version}), tdelibs4-trinity-dev
 Description: development files for the Trinity scanner library
  This package contains development files for Trinity's scanner library.
@@ -386,8 +386,8 @@ Description: development files for the Trinity scanner library
 Package: libkscan1-trinity
 Section: libs
 Architecture: any
-Replaces: libkscan1-trinity (<< 4:14.0.0)
-Breaks: libkscan1-trinity (<< 4:14.0.0)
+Replaces: libkscan1-kde3 (<< 4:14.0.0), libkscan1-trinity (<< 4:14.0.0)
+Breaks: libkscan1-kde3 (<< 4:14.0.0), libkscan1-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Description: scanner library for Trinity
  KScan is KDE's scanner library. It's used by kooka and by koffice currently.
@@ -426,8 +426,8 @@ Description: Development files for TQt support for Poppler
 Package: tdegraphics-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: kdegraphics-trinity-dbg (<< 4:14.0.0)
-Breaks: kdegraphics-trinity-dbg (<< 4:14.0.0)
+Replaces: kdegraphics-kde3-dbg (<< 4:14.0.0), kdegraphics-trinity-dbg (<< 4:14.0.0)
+Breaks: kdegraphics-kde3-dbg (<< 4:14.0.0), kdegraphics-trinity-dbg (<< 4:14.0.0)
 Priority: extra
 Depends: tdelibs-trinity-dbg, libkscan1-trinity (= ${binary:Version})
 Description: debugging symbols for tdegraphics

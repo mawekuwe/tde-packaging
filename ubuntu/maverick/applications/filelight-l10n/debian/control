@@ -10,8 +10,8 @@ Homepage: http://www.methylblue.com/filelight/
 Package: filelight-l10n-trinity
 Architecture: any
 Depends: ${shlibs:Depends} , filelight-trinity
-Replaces: filelight-l10n-trinity (<< 4:14.0.0)
-Breaks: filelight-l10n-trinity (<< 4:14.0.0)
+Replaces: filelight-l10n-kde3 (<< 4:14.0.0), filelight-l10n-trinity (<< 4:14.0.0)
+Breaks: filelight-l10n-kde3 (<< 4:14.0.0), filelight-l10n-trinity (<< 4:14.0.0)
 Description: Localization (l10n) for Filelight, disk space usage tool [Trinity]
  This package provides localization(l10n) files (translations and docs) for
  Filelight, Filelight allows you to understand your disk usage by graphically

@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: kdevelop-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, kdevelop-data-trinity (>= ${source:Version}), kdebase-trinity-bin
-Replaces: kdevelop-trinity (<< 4:14.0.0)
-Breaks: kdevelop-trinity (<< 4:14.0.0)
+Replaces: kdevelop-kde3 (<< 4:14.0.0), kdevelop-trinity (<< 4:14.0.0)
+Breaks: kdevelop-kde3 (<< 4:14.0.0), kdevelop-trinity (<< 4:14.0.0)
 Recommends: kdevelop-trinity-doc, make, libtool, autoconf, automaken, gdb (>= 6.4)
 Suggests: libqt3-mt-dev, kdelibs4-trinity-dev, sgmltools-lite, gettext, qt3-dev-tools, ark-trinity, kbabel-trinity, kiconedit-trinity, kdesdk-scripts-trinity, graphviz, kdebase-kio-plugins-trinity, exuberant-ctags, khelpcenter-trinity, kdelibs4-trinity-doc, qt3-doc, konsole-trinity, cmake, ruby, python
 Description: An IDE for Unix/X11
@@ -27,8 +27,8 @@ Description: An IDE for Unix/X11
 Package: kdevelop-trinity-doc
 Section: doc
 Architecture: all
-Replaces: kdevelop-trinity-doc (<< 4:14.0.0)
-Breaks: kdevelop-trinity-doc (<< 4:14.0.0)
+Replaces: kdevelop-kde3-doc (<< 4:14.0.0), kdevelop-trinity-doc (<< 4:14.0.0)
+Breaks: kdevelop-kde3-doc (<< 4:14.0.0), kdevelop-trinity-doc (<< 4:14.0.0)
 Description: An IDE for Unix/X11 - documentation
  KDevelop is an easy to use Integrated Development Environment
  for developing C/C++ applications under X11. It features 
@@ -45,8 +45,8 @@ Description: An IDE for Unix/X11 - documentation
 Package: kdevelop-data-trinity
 Architecture: all
 Description: An IDE for Unix/X11 - data
-Replaces: kdevelop-data-trinity (<< 4:14.0.0)
-Breaks: kdevelop-data-trinity (<< 4:14.0.0)
+Replaces: kdevelop-data-kde3 (<< 4:14.0.0), kdevelop-data-trinity (<< 4:14.0.0)
+Breaks: kdevelop-data-kde3 (<< 4:14.0.0), kdevelop-data-trinity (<< 4:14.0.0)
  KDevelop is an easy to use Integrated Development Environment
  for developing C/C++ applications under X11. It features 
  project management, an advanced editor, a class browser
@@ -62,8 +62,8 @@ Breaks: kdevelop-data-trinity (<< 4:14.0.0)
 Package: kdevelop-trinity-dev
 Architecture: any
 Depends: kdevelop-trinity (= ${binary:Version}), kdelibs4-trinity-dev
-Replaces: kdevelop-trinity-dev (<< 4:14.0.0)
-Breaks: kdevelop-trinity-dev (<< 4:14.0.0)
+Replaces: kdevelop-kde3-dev (<< 4:14.0.0), kdevelop-trinity-dev (<< 4:14.0.0)
+Breaks: kdevelop-kde3-dev (<< 4:14.0.0), kdevelop-trinity-dev (<< 4:14.0.0)
 Description: An IDE for Unix/X11 - development files
  KDevelop is an easy to use Integrated Development Environment
  for developing C/C++ applications under X11. It features 

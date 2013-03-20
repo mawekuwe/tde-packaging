@@ -16,8 +16,8 @@ Homepage: http://www.digikam.org
 Package: digikam-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: digikam-trinity (<< 4:14.0.0)
-Breaks: digikam-trinity (<< 4:14.0.0)
+Replaces: digikam-kde3 (<< 4:14.0.0), digikam-trinity (<< 4:14.0.0)
+Breaks: digikam-kde3 (<< 4:14.0.0), digikam-trinity (<< 4:14.0.0)
 Recommends: kipi-plugins-trinity, tdeprint-trinity, konqueror-trinity
 Suggests: digikam-trinity-doc
 Description: digital photo management application for KDE [Trinity]
@@ -43,8 +43,8 @@ Description: digital photo management application for KDE [Trinity]
 Package: showfoto-trinity
 Architecture: any
 Section: graphics
-Replaces: showfoto-trinity (<< 4:14.0.0)
-Breaks: showfoto-trinity (<< 4:14.0.0)
+Replaces: showfoto-kde3 (<< 4:14.0.0), showfoto-trinity (<< 4:14.0.0)
+Breaks: showfoto-kde3 (<< 4:14.0.0), showfoto-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, digikam-trinity
 Recommends: kipi-plugins-trinity, tdeprint-trinity, konqueror-trinity
 Description: image viewer/editor for KDE [Trinity]
@@ -54,8 +54,8 @@ Description: image viewer/editor for KDE [Trinity]
 Package: digikam-trinity-dbg
 Architecture: any
 Section: devel
-Replaces: digikam-trinity-dbg (<< 4:14.0.0)
-Breaks: digikam-trinity-dbg (<< 4:14.0.0)
+Replaces: digikam-kde3-dbg (<< 4:14.0.0), digikam-trinity-dbg (<< 4:14.0.0)
+Breaks: digikam-kde3-dbg (<< 4:14.0.0), digikam-trinity-dbg (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, digikam-trinity (= ${binary:Version}), showfoto-trinity (= ${binary:Version}), tdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for digikam [Trinity]

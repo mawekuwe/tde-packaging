@@ -11,8 +11,8 @@ Homepage: http://www.methylblue.com/filelight/
 Package: filelight-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: filelight-trinity (<< 4:14.0.0)
-Breaks: filelight-trinity (<< 4:14.0.0)
+Replaces: filelight-kde3 (<< 4:14.0.0), filelight-trinity (<< 4:14.0.0)
+Breaks: filelight-kde3 (<< 4:14.0.0), filelight-trinity (<< 4:14.0.0)
 Description: show where your diskspace is being used [Trinity]
  Filelight allows you to understand your disk usage by graphically
  representing your filesystem as a set of concentric, segmented rings.

@@ -14,8 +14,8 @@ Standards-Version: 3.8.4
 Package: tdesdk-trinity
 Architecture: all
 Section: tde
-Replaces: kdesdk-trinity (<< 4:14.0.0)
-Breaks: kdesdk-trinity (<< 4:14.0.0)
+Replaces: kdesdk-kde3 (<< 4:14.0.0), kdesdk-trinity (<< 4:14.0.0)
+Breaks: kdesdk-kde3 (<< 4:14.0.0), kdesdk-trinity (<< 4:14.0.0)
 Depends: cervisia-trinity (>= ${Source-Version}), kapptemplate-trinity (>= ${Source-Version}), kbabel-trinity (>= ${Source-Version}), kbugbuster-trinity (>= ${Source-Version}), tdecachegrind-trinity (>= ${Source-Version}), tdesdk-tdefile-plugins-trinity (>= ${Source-Version}), tdesdk-tdeio-plugins-trinity (>= ${Source-Version}) | tdesvn-tdeio-plugins-trinity, tdesdk-misc-trinity (>= ${Source-Version}), tdesdk-scripts-trinity, kmtrace-trinity (>= ${Source-Version}), kompare-trinity (>= ${Source-Version}), kspy-trinity (>= ${Source-Version}), kuiviewer-trinity (>= ${Source-Version}), tdeunittest-trinity (>= ${Source-Version}), poxml-trinity (>= ${Source-Version}), umbrello-trinity (>= ${Source-Version})
 Suggests: tdecachegrind-converters-trinity, kbabel-trinity-dev, tdesdk-trinity-doc-html
 Description: software development kit from the official Trinity release
@@ -30,8 +30,8 @@ Description: software development kit from the official Trinity release
 Package: tdesdk-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: kdesdk-trinity-doc-html (<< 4:14.0.0)
-Breaks: kdesdk-trinity-doc-html (<< 4:14.0.0)
+Replaces: kdesdk-kde3-doc-html (<< 4:14.0.0), kdesdk-trinity-doc-html (<< 4:14.0.0)
+Breaks: kdesdk-kde3-doc-html (<< 4:14.0.0), kdesdk-trinity-doc-html (<< 4:14.0.0)
 Suggests: konqueror-trinity | www-browser, tdesdk-trinity
 Description: Trinity Software Development Kit documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -50,8 +50,8 @@ Description: Trinity Software Development Kit documentation in HTML format
 Package: cervisia-trinity
 Architecture: any
 Section: devel
-Replaces: cervisia-trinity (<< 4:14.0.0)
-Breaks: cervisia-trinity (<< 4:14.0.0)
+Replaces: cervisia-kde3 (<< 4:14.0.0), cervisia-trinity (<< 4:14.0.0)
+Breaks: cervisia-kde3 (<< 4:14.0.0), cervisia-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html
 Conflicts: cervisia
@@ -70,8 +70,8 @@ Description: a graphical CVS front end for Trinity
 Package: kapptemplate-trinity
 Architecture: all
 Section: devel
-Replaces: kapptemplate-trinity (<< 4:14.0.0)
-Breaks: kapptemplate-trinity (<< 4:14.0.0)
+Replaces: kapptemplate-kde3 (<< 4:14.0.0), kapptemplate-trinity (<< 4:14.0.0)
+Breaks: kapptemplate-kde3 (<< 4:14.0.0), kapptemplate-trinity (<< 4:14.0.0)
 Conflicts: kapptemplate
 Recommends: automake1.9 | automaken, tdelibs4-trinity-dev
 Description: creates a framework to develop a Trinity application
@@ -86,8 +86,8 @@ Description: creates a framework to develop a Trinity application
 Package: kbabel-trinity
 Architecture: any
 Section: devel
-Replaces: kbabel-trinity (<< 4:14.0.0)
-Breaks: kbabel-trinity (<< 4:14.0.0)
+Replaces: kbabel-kde3 (<< 4:14.0.0), kbabel-trinity (<< 4:14.0.0)
+Breaks: kbabel-kde3 (<< 4:14.0.0), kbabel-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: kbabel
 Recommends: gettext
@@ -109,8 +109,8 @@ Description: PO-file editing suite for Trinity
 Package: kbabel-trinity-dev
 Architecture: any
 Section: libdevel
-Replaces: kbabel-trinity-dev (<< 4:14.0.0)
-Breaks: kbabel-trinity-dev (<< 4:14.0.0)
+Replaces: kbabel-kde3-dev (<< 4:14.0.0), kbabel-trinity-dev (<< 4:14.0.0)
+Breaks: kbabel-kde3-dev (<< 4:14.0.0), kbabel-trinity-dev (<< 4:14.0.0)
 Depends: kbabel-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Conflicts: kbabel
 Description: PO-file editing suite for Trinity (development files)
@@ -132,8 +132,8 @@ Description: PO-file editing suite for Trinity (development files)
 Package: kbugbuster-trinity
 Architecture: any
 Section: devel
-Replaces: kbugbuster-trinity (<< 4:14.0.0)
-Breaks: kbugbuster-trinity (<< 4:14.0.0)
+Replaces: kbugbuster-kde3 (<< 4:14.0.0), kbugbuster-trinity (<< 4:14.0.0)
+Breaks: kbugbuster-kde3 (<< 4:14.0.0), kbugbuster-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: kbugbuster
 Suggests: khelpcenter-trinity
@@ -148,8 +148,8 @@ Description: a front end for the Trinity bug tracking system
 Package: tdecachegrind-trinity
 Architecture: any
 Section: devel
-Replaces: kcachegrind-trinity (<< 4:14.0.0)
-Breaks: kcachegrind-trinity (<< 4:14.0.0)
+Replaces: kcachegrind-kde3 (<< 4:14.0.0), kcachegrind-trinity (<< 4:14.0.0)
+Breaks: kcachegrind-kde3 (<< 4:14.0.0), kcachegrind-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdecachegrind
 Recommends: valgrind-callgrind-trinity | valgrind-calltree-trinity, graphviz
@@ -169,8 +169,8 @@ Description: visualisation tool for valgrind profiling output
 Package: tdecachegrind-converters-trinity
 Architecture: all
 Section: devel
-Replaces: kcachegrind-converters-trinity (<< 4:14.0.0)
-Breaks: kcachegrind-converters-trinity (<< 4:14.0.0)
+Replaces: kcachegrind-converters-kde3 (<< 4:14.0.0), kcachegrind-converters-trinity (<< 4:14.0.0)
+Breaks: kcachegrind-converters-kde3 (<< 4:14.0.0), kcachegrind-converters-trinity (<< 4:14.0.0)
 Depends: ${perl:Depends}, php5-cli, python
 Conflicts: tdecachegrind-converters
 Recommends: tdecachegrind-trinity
@@ -189,8 +189,8 @@ Description: format converters for KCachegrind profiling visualisation tool
 Package: tdesdk-tdefile-plugins-trinity
 Architecture: any
 Section: tde
-Replaces: kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdesdk-kfile-plugins-kde3 (<< 4:14.0.0), kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
+Breaks: kdesdk-kfile-plugins-kde3 (<< 4:14.0.0), kdesdk-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdesdk-tdefile-plugins
 Description: Trinity file dialog plugins for software development files
@@ -204,8 +204,8 @@ Description: Trinity file dialog plugins for software development files
 Package: tdesdk-misc-trinity
 Architecture: any
 Section: devel
-Replaces: kdesdk-misc-trinity (<< 4:14.0.0)
-Breaks: kdesdk-misc-trinity (<< 4:14.0.0)
+Replaces: kdesdk-misc-kde3 (<< 4:14.0.0), kdesdk-misc-trinity (<< 4:14.0.0)
+Breaks: kdesdk-misc-kde3 (<< 4:14.0.0), kdesdk-misc-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Recommends: libqt3-mt-dev | libqt3-dev
 Suggests: gimp | xpaint
@@ -226,8 +226,8 @@ Description: various goodies from the Trinity Software Development Kit
 Package: tdesdk-scripts-trinity
 Architecture: all
 Section: devel
-Replaces: kdesdk-scripts-trinity (<< 4:14.0.0)
-Breaks: kdesdk-scripts-trinity (<< 4:14.0.0)
+Replaces: kdesdk-scripts-kde3 (<< 4:14.0.0), kdesdk-scripts-trinity (<< 4:14.0.0)
+Breaks: kdesdk-scripts-kde3 (<< 4:14.0.0), kdesdk-scripts-trinity (<< 4:14.0.0)
 Depends: ${perl:Depends}, python
 Recommends: automake1.9 | automaken, cvs, gawk
 Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html, dmalloc, gdb, tdelibs4-trinity-doc, qt3-doc, valgrind, devscripts
@@ -250,8 +250,8 @@ Description: a set of useful development scripts for Trinity
 Package: kmtrace-trinity
 Architecture: any
 Section: devel
-Replaces: kmtrace-trinity (<< 4:14.0.0)
-Breaks: kmtrace-trinity (<< 4:14.0.0)
+Replaces: kmtrace-kde3 (<< 4:14.0.0), kmtrace-trinity (<< 4:14.0.0)
+Breaks: kmtrace-kde3 (<< 4:14.0.0), kmtrace-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, less
 Conflicts: kmtrace
 Description: a Trinity memory leak tracer
@@ -264,8 +264,8 @@ Description: a Trinity memory leak tracer
 Package: kompare-trinity
 Architecture: any
 Section: devel
-Replaces: kompare-trinity (<< 4:14.0.0)
-Breaks: kompare-trinity (<< 4:14.0.0)
+Replaces: kompare-kde3 (<< 4:14.0.0), kompare-trinity (<< 4:14.0.0)
+Breaks: kompare-kde3 (<< 4:14.0.0), kompare-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: kompare
 Suggests: khelpcenter-trinity
@@ -280,8 +280,8 @@ Description: a Trinity GUI for viewing differences between files
 Package: kspy-trinity
 Architecture: any
 Section: devel
-Replaces: kspy-trinity (<< 4:14.0.0)
-Breaks: kspy-trinity (<< 4:14.0.0)
+Replaces: kspy-kde3 (<< 4:14.0.0), kspy-trinity (<< 4:14.0.0)
+Breaks: kspy-kde3 (<< 4:14.0.0), kspy-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdelibs4-trinity-dev
 Conflicts: kspy
 Description: examines the internal state of a Qt/KDE app
@@ -302,8 +302,8 @@ Description: examines the internal state of a Qt/KDE app
 Package: kuiviewer-trinity
 Architecture: any
 Section: devel
-Replaces: kuiviewer-trinity (<< 4:14.0.0)
-Breaks: kuiviewer-trinity (<< 4:14.0.0)
+Replaces: kuiviewer-kde3 (<< 4:14.0.0), kuiviewer-trinity (<< 4:14.0.0)
+Breaks: kuiviewer-kde3 (<< 4:14.0.0), kuiviewer-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: kuiviewer
 Suggests: qt3-designer
@@ -320,8 +320,8 @@ Description: viewer for Qt Designer user interface files
 Package: libcvsservice0-trinity
 Architecture: any
 Section: libs
-Replaces: libcvsservice0-trinity (<< 4:14.0.0)
-Breaks: libcvsservice0-trinity (<< 4:14.0.0)
+Replaces: libcvsservice0-kde3 (<< 4:14.0.0), libcvsservice0-trinity (<< 4:14.0.0)
+Breaks: libcvsservice0-kde3 (<< 4:14.0.0), libcvsservice0-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, cvs
 Conflicts: libcvsservice0
 Description: DCOP service for accessing CVS repositories
@@ -338,8 +338,8 @@ Description: DCOP service for accessing CVS repositories
 Package: libcvsservice-trinity-dev
 Architecture: any
 Section: libdevel
-Replaces: libcvsservice-trinity-dev (<< 4:14.0.0)
-Breaks: libcvsservice-trinity-dev (<< 4:14.0.0)
+Replaces: libcvsservice-kde3-dev (<< 4:14.0.0), libcvsservice-trinity-dev (<< 4:14.0.0)
+Breaks: libcvsservice-kde3-dev (<< 4:14.0.0), libcvsservice-trinity-dev (<< 4:14.0.0)
 Depends: libcvsservice0-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Conflicts: libcvsservice-dev
 Description: development files for CVS DCOP service
@@ -357,8 +357,8 @@ Description: development files for CVS DCOP service
 Package: poxml-trinity
 Architecture: any
 Section: devel
-Replaces: poxml-trinity (<< 4:14.0.0)
-Breaks: poxml-trinity (<< 4:14.0.0)
+Replaces: poxml-kde3 (<< 4:14.0.0), poxml-trinity (<< 4:14.0.0)
+Breaks: poxml-kde3 (<< 4:14.0.0), poxml-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: poxml
 Description: tools for using PO-files to translate DocBook XML files
@@ -374,8 +374,8 @@ Description: tools for using PO-files to translate DocBook XML files
 Package: umbrello-trinity
 Architecture: any
 Section: devel
-Replaces: umbrello-trinity (<< 4:14.0.0)
-Breaks: umbrello-trinity (<< 4:14.0.0)
+Replaces: umbrello-kde3 (<< 4:14.0.0), umbrello-trinity (<< 4:14.0.0)
+Breaks: umbrello-kde3 (<< 4:14.0.0), umbrello-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html
 Conflicts: umbrello-manual-trinity (<< 20040311), umbrello
@@ -395,8 +395,8 @@ Description: UML modelling tool and code generator
 Package: tdesdk-tdeio-plugins-trinity
 Architecture: any
 Section: devel
-Replaces: kdesdk-kio-plugins-trinity (<< 4:14.0.0)
-Breaks: kdesdk-kio-plugins-trinity (<< 4:14.0.0)
+Replaces: kdesdk-kio-plugins-kde3 (<< 4:14.0.0), kdesdk-kio-plugins-trinity (<< 4:14.0.0)
+Breaks: kdesdk-kio-plugins-kde3 (<< 4:14.0.0), kdesdk-kio-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, subversion
 Conflicts: tdesdk-kio-plugins
 Description: subversion ioslave for Trinity
@@ -410,8 +410,8 @@ Description: subversion ioslave for Trinity
 Package: tdeunittest-trinity
 Architecture: any
 Section: devel
-Replaces: kunittest-trinity (<< 4:14.0.0)
-Breaks: kunittest-trinity (<< 4:14.0.0)
+Replaces: kunittest-kde3 (<< 4:14.0.0), kunittest-trinity (<< 4:14.0.0)
+Breaks: kunittest-kde3 (<< 4:14.0.0), kunittest-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdeunittest
 Suggests: tdelibs4-trinity-doc
@@ -428,8 +428,8 @@ Description: unit testing library for Trinity
 Package: tdesdk-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: kdesdk-trinity-dbg (<< 4:14.0.0)
-Breaks: kdesdk-trinity-dbg (<< 4:14.0.0)
+Replaces: kdesdk-kde3-dbg (<< 4:14.0.0), kdesdk-trinity-dbg (<< 4:14.0.0)
+Breaks: kdesdk-kde3-dbg (<< 4:14.0.0), kdesdk-trinity-dbg (<< 4:14.0.0)
 Priority: extra
 Depends: tdelibs-trinity-dbg, libcvsservice-trinity-dev (= ${Source-Version}), kbabel-trinity-dev (= ${Source-Version})
 Conflicts: tdesdk-dbg

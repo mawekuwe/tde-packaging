@@ -15,8 +15,8 @@ Build-Depends: debhelper (>= 5), libdv4-dev, libquicktime-dev (>= 2:1.0.0),
 Package: libmlt0.2.5-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, libmlt-data
-Replaces: libmlt0.2.5-trinity (<< 4:14.0.0)
-Breaks: libmlt0.2.5-trinity (<< 4:14.0.0)
+Replaces: libmlt0.2.5-kde3 (<< 4:14.0.0), libmlt0.2.5-trinity (<< 4:14.0.0)
+Breaks: libmlt0.2.5-kde3 (<< 4:14.0.0), libmlt0.2.5-trinity (<< 4:14.0.0)
 Provides: libmlt-trinity
 Description: An open source multimedia framework - Core files [Trinity]
  MLT is an open source multimedia framework, designed and developed for
@@ -32,8 +32,8 @@ Description: An open source multimedia framework - Core files [Trinity]
 Package: libmiracle0.2.5-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, libmlt0.2.5-trinity (= ${binary:Version}), libvalerie0.2.5-trinity (= ${binary:Version})
-Replaces: libmiracle0.2.5-trinity (<< 4:14.0.0)
-Breaks: libmiracle0.2.5-trinity (<< 4:14.0.0)
+Replaces: libmiracle0.2.5-kde3 (<< 4:14.0.0), libmiracle0.2.5-trinity (<< 4:14.0.0)
+Breaks: libmiracle0.2.5-kde3 (<< 4:14.0.0), libmiracle0.2.5-trinity (<< 4:14.0.0)
 Description: An open source multimedia framework - Core files [Trinity]
  MLT is an open source multimedia framework, designed and developed for
  television broadcasting. It provides a toolkit for broadcasters, video
@@ -47,8 +47,8 @@ Description: An open source multimedia framework - Core files [Trinity]
 Package: libvalerie0.2.5-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, libmlt0.2.5-trinity (= ${binary:Version}), libmiracle0.2.5-trinity (= ${binary:Version})
-Replaces: libvalerie0.2.5-trinity (<< 4:14.0.0)
-Breaks: libvalerie0.2.5-trinity (<< 4:14.0.0)
+Replaces: libvalerie0.2.5-kde3 (<< 4:14.0.0), libvalerie0.2.5-trinity (<< 4:14.0.0)
+Breaks: libvalerie0.2.5-kde3 (<< 4:14.0.0), libvalerie0.2.5-trinity (<< 4:14.0.0)
 Description: An open source multimedia framework - Core files [Trinity]
  MLT is an open source multimedia framework, designed and developed for
  television broadcasting. It provides a toolkit for broadcasters, video
@@ -63,8 +63,8 @@ Description: An open source multimedia framework - Core files [Trinity]
 Package: libmlt-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libmlt-trinity-dev (<< 4:14.0.0)
-Breaks: libmlt-trinity-dev (<< 4:14.0.0)
+Replaces: libmlt-kde3-dev (<< 4:14.0.0), libmlt-trinity-dev (<< 4:14.0.0)
+Breaks: libmlt-kde3-dev (<< 4:14.0.0), libmlt-trinity-dev (<< 4:14.0.0)
 Depends: libmlt0.2.5-trinity (= ${binary:Version}), libmiracle0.2.5-trinity (= ${binary:Version}), libvalerie0.2.5-trinity (= ${binary:Version})
 Provides: libmiracle-trinity-dev, libvalerie-trinity-dev
 Description: An open source multimedia framework - Development files [Trinity]
