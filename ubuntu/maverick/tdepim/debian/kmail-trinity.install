@@ -58,6 +58,7 @@
 /opt/trinity/share/services/kontact/kmailplugin.desktop
 /opt/trinity/share/servicetypes/dcopimap.desktop
 /opt/trinity/share/servicetypes/dcopmail.desktop
+/opt/trinity/share/apps/konqueror/servicemenus/email.desktop
 ../icons/kmail.xpm /opt/trinity/share/pixmaps
 ../icons/kmail-16.xpm /opt/trinity/share/pixmaps
 ../man/out/kmail_antivir.sh-trinity.1 /opt/trinity/share/man/man1
