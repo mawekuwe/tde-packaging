@@ -251,7 +251,7 @@ binary-install/kcontrol-trinity::
 	debian/usermap.pl kcontrol/input/logitechmouse.usermap > debian/kcontrol/etc/udev/logitechmouse.rules
 
 binary-install/konqueror-trinity::
-	install -p -D -m644 debian/edit-as-root.desktop debian/konqueror-trinity/opt/trinity/share/apps/konqueror/servicemenus/edit-as-root.desktop
+	#install -p -D -m644 debian/edit-as-root.desktop debian/konqueror-trinity/opt/trinity/share/apps/konqueror/servicemenus/edit-as-root.desktop
 	#cp -Rp debian/konqueror-trinity/usr/* debian/konqueror-trinity/opt/trinity/
 	#rm -rf debian/konqueror-trinity/usr
 
