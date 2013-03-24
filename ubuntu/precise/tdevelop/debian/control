@@ -8,7 +8,7 @@ Standards-Version: 3.8.4
 
 Package: tdevelop-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, tdevelop-data-trinity (>= ${source:Version}), tdebase-trinity-bin
+Depends: ${shlibs:Depends}, tdevelop-data-trinity (>= ${source:Version}), tdebase-trinity-bin, tdelibs-trinity-dev, g++
 Replaces: kdevelop-kde3 (<< 4:14.0.0), kdevelop-trinity (<< 4:14.0.0)
 Breaks: kdevelop-kde3 (<< 4:14.0.0), kdevelop-trinity (<< 4:14.0.0)
 Recommends: tdevelop-trinity-doc, make, libtool, autoconf, automaken, gdb (>= 6.4)
