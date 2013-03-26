@@ -53,7 +53,7 @@ makebuilddir::
 	uudecode -o kcontrol/pics/cr32-app-energy_star.png debian/img/cr32-app-energy_star.png.uu
 	uudecode -o kcontrol/pics/cr48-app-energy_star.png debian/img/cr48-app-energy_star.png.uu
 	uudecode -o kcontrol/pics/cr64-app-energy_star.png debian/img/cr64-app-energy_star.png.uu
-	# KIO Media LUKS icons
+	# TDEIO Media LUKS icons
 	uudecode -o pics/crystalsvg/cr128-device-compact_flash_mount_decrypt.png debian/img/medialuks/cr128-device-compact_flash_mount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr128-device-compact_flash_unmount_decrypt.png debian/img/medialuks/cr128-device-compact_flash_unmount_decrypt.png.uu
 	uudecode -o pics/crystalsvg/cr128-device-compact_flash_unmount_encrypt.png debian/img/medialuks/cr128-device-compact_flash_unmount_encrypt.png.uu
@@ -212,10 +212,6 @@ clean::
 	# KIO Media LUKS Icons
 	rm -f pics/crystalsvg/cr*decrypt.png pics/crystalsvg/cr*encrypt.png
 
-binary-install/kate-trinity::
-	#cp -Rp debian/kate-trinity/usr/* debian/kate-trinity/opt/trinity/
-	#rm -rf debian/kate-trinity/usr
-
 binary-install/tdebase-data-trinity::
 	# hack the oui.db install, as under kfreebsd it does not get installed and then breaks at dh_install time
 	# it's in fact a linux specific file...
@@ -240,17 +236,8 @@ binary-install/kcontrol-trinity::
 	chmod +x debian/usermap.pl
 	debian/usermap.pl kcontrol/input/logitechmouse.usermap > debian/kcontrol/etc/udev/logitechmouse.rules
 
-binary-install/konqueror-trinity::
-	install -p -D -m644 debian/edit-as-root.desktop debian/konqueror-trinity/opt/trinity/share/apps/konqueror/servicemenus/edit-as-root.desktop
-	#cp -Rp debian/konqueror-trinity/usr/* debian/konqueror-trinity/opt/trinity/
-	#rm -rf debian/konqueror-trinity/usr
-
 install/klipper-trinity::
 	sed -i '/X-Ubuntu-Gettext-Domain=/d' debian/tmp/etc/trinity/klipperrc
-
-binary-install/klipper-trinity::
-	#cp -Rp debian/klipper-trinity/usr/* debian/klipper-trinity/opt/trinity/
-	#rm -rf debian/klipper-trinity/usr
 
 binary-install/tdebase-trinity-bin::
 	install -p -D -m644 debian/kcheckpass-trinity.pam debian/tdebase-trinity-bin/etc/pam.d/kcheckpass-trinity
