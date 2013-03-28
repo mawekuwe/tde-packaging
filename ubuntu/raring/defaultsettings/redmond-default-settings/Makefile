@@ -240,7 +240,6 @@ install:
 	install -m644 ui-rc-files/gwenviewui.rc "$(SETTINGS_DIR)/kde-profile/default/share/apps/gwenview/"
 
 	mkdir -p "$(SETTINGS_DIR)/kde-profile/default/share/apps/konqueror/servicemenus/"
-	install -m644 konqueror-profile/email.desktop "$(SETTINGS_DIR)/kde-profile/default/share/apps/konqueror/servicemenus/email.desktop"
 	mkdir -p "$(DESTDIR)/usr/bin"
 	install -m644 konqueror-profile/konq_plugins.xml "$(SETTINGS_DIR)/kde-profile/default/share/apps/konqueror/"
 
