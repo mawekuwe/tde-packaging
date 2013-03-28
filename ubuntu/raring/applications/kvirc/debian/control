@@ -1,0 +1,54 @@
+Source: kvirc-trinity
+Build-Depends: cdbs (>= 0.4.12), debhelper (>= 4.1.46), tdelibs4-trinity-dev (>= 4:3.1.3), libesd0-dev, libperl-dev, automake, autoconf, libtool, libltdl-dev
+Section: net
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Ral Snchez Siles <rasasi78@gmail.com>
+Standards-Version: 3.8.4
+Homepage: http://kvirc.net/
+
+Package: kvirc-trinity
+Architecture: any
+Depends: kvirc-data-trinity (= ${source:Version}), ${shlibs:Depends}
+Replaces: kvirc-kde3 (<< 4:14.0.0), kvirc-trinity (<< 4:14.0.0)
+Breaks: kvirc-kde3 (<< 4:14.0.0), kvirc-trinity (<< 4:14.0.0)
+Description:  Trinity based next generation IRC client with module support
+ A highly configurable graphical IRC client with an MDI interface,
+ built-in scripting language, support for IRC DCC, drag & drop file
+ browsing, and much more. KVIrc uses the KDE widget set, can be extended
+ using its own scripting language, integrates with KDE, and supports
+ custom plugins.
+ .
+ If you are a developer and you want to write a custom module for KVIrc,
+ you need to install the kvirc-dev package.
+
+Package: kvirc-data-trinity
+Section: net
+Architecture: all
+Replaces: kvirc-data-kde3 (<< 4:14.0.0), kvirc-data-trinity (<< 4:14.0.0)
+Breaks: kvirc-data-kde3 (<< 4:14.0.0), kvirc-data-trinity (<< 4:14.0.0)
+Depends: kvirc-trinity (>= ${source:Version})
+Description: Data files for KVIrc
+ This package contains the architecture-independent data needed by KVIrc in
+ order to run, such as icons and images, language files, and shell scripts.
+ It also contains complete reference guides on scripting and functions
+ within KVIrc in its internal help format. Unless you want to use KVIrc only
+ as a very simple IRC client you are likely to want to write scripts to
+ tailor KVIrc to your needs.
+ .
+ KVIrc is a graphical IRC client based on the KDE widget set which integrates
+ with the K Desktop Environment version 3.
+
+Package: kvirc-trinity-dev
+Section: devel
+Architecture: any
+Replaces: kvirc-kde3-dev (<< 4:14.0.0), kvirc-trinity-dev (<< 4:14.0.0)
+Breaks: kvirc-kde3-dev (<< 4:14.0.0), kvirc-trinity-dev (<< 4:14.0.0)
+Depends: kvirc-trinity (>= ${source:Version})
+Description: Development files for KVIrc
+ This package contains KVIrc libraries and include files you need if you
+ want to develop plugins for KVIrc.
+ .
+ KVIrc is a graphical IRC client based on the KDE widget set which integrates
+ with the K Desktop Environment version 3.

@@ -1,0 +1,3 @@
+usr/lib/python*/*-packages/*.so
+usr/lib/python*/*-packages/dcop*.py
+

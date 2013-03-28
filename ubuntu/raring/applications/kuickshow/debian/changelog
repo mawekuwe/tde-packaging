@@ -1,0 +1,42 @@
+kuickshow-trinity (4:3.5.8-0ubuntu3) karmic; urgency=low
+
+  * Karmic rebuild
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 02 July 2009 16:08:00 -0600
+
+kuickshow-trinity (4:3.5.8-0ubuntu2) intrepid; urgency=low
+
+  * Moved Trinity to /opt/trinity
+  * Integrated properly with KDE4.2+
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 06 March 2009 01:35:00 -0600
+
+kuickshow-trinity (4:3.5.8-0ubuntu1) intrepid; urgency=low
+
+  * Added -trinity suffix
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 12 Dec 2008 14:28:00 -0600
+
+kuickshow (4:3.5.8-0ubuntu2) hardy; urgency=low
+
+  * No change recompile to build against libgif (not libungif)
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 07 Jan 2008 10:26:21 +0000
+
+kuickshow (4:3.5.8-0ubuntu1) hardy; urgency=low
+
+  * New upstream release, extracted from tdegraphics 3.5.8
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 14 Nov 2007 17:59:49 +0000
+
+kuickshow (4:3.5.7-0ubuntu1) gutsy; urgency=low
+
+  * New upstream release, extracted from tdegraphics 3.5.7
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 03 Jun 2007 14:45:49 +0100
+
+kuickshow (4:3.5.6-0ubuntu1) feisty; urgency=low
+
+  * Initial package, separate from tdegraphics due to imlib11 not being in main
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 28 Feb 2007 16:29:08 +0000

@@ -1,0 +1,7 @@
+--- tdebase/kappfinder/kappfinder.desktop	2005-03-17 01:08:26.659629872 +0000
++++ tdebase/kappfinder/kappfinder.desktop	2005-03-17 01:08:34.189485160 +0000
+@@ -80,3 +80,4 @@
+ GenericName[zh_TW]=選單更新工具
+ X-DCOP-ServiceType=Multi
+ Categories=Qt;TDE;Settings;
++NoDisplay=true

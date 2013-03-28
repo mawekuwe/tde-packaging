@@ -1,0 +1,53 @@
+#! /usr/bin/make -f
+
+DEB_PATCHDIRS := debian/patches/common debian/patches
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+-include debian/debiandirs
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+DEB_INSTALL_DOCS_ALL :=
+
+DOC_LANGS = da de et fr it nl pl pt ru sv pt_BR
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	dh_testdir
+
+	# Regenerate build system
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+
+	autoreconf && automake -f && \
+	$(MAKE) -f admin/Makefile.common && \
+	./configure $(configkde)
+	touch debian/stamp-bootstrap
+
+build: debian/build-stamp
+
+debian/build-stamp:
+	dh_testdir
+	$(MAKE)
+	touch debian/build-stamp
+
+install/gwenview-i18n-trinity::
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/gwenview-i18n-trinity
+
+	for LANG in $(DOC_LANGS); do \
+		cd $(CURDIR)/debian/gwenview-i18n-trinity/$(kde_htmldir)/$$LANG/gwenview; \
+		$(kde_prefix)/bin/meinproc $(DEB_DESTDIR)$(kde_htmldir)/$$LANG/gwenview/index.docbook; \
+	done

@@ -1,0 +1,54 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+-include /usr/share/gnome-pkg-tools/1/rules/sf-get-source.mk
+
+DEB_DESTDIR = $(CURDIR)/debian/krusader-trinity/
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+install/krusader-trinity::
+	# install xpm files used by menu
+	install -D -p -m0644 pics/cr16-app-krusader_root.xpm \
+		$(DEB_DESTDIR)/opt/trinity/share/pixmaps/krusader_root-16.xpm
+	install -D -p -m0644 pics/cr16-app-krusader_user.xpm \
+		$(DEB_DESTDIR)/opt/trinity/share/pixmaps/krusader_user-16.xpm
+	install -D -p -m0644 pics/cr32-app-krusader_root.xpm \
+		$(DEB_DESTDIR)/opt/trinity/share/pixmaps/krusader_root.xpm
+	install -D -p -m0644 pics/cr32-app-krusader_user.xpm \
+		$(DEB_DESTDIR)/opt/trinity/share/pixmaps/krusader_user.xpm
+	# install properly tdeio_isorc
+	install -D -p -m0644 iso/tdeio_isorc \
+		$(DEB_DESTDIR)/opt/trinity/share/config/tdeio_isorc
+	# install lintian override
+	install -D -p -m0644 debian/krusader.lintian-overrides \
+		$(DEB_DESTDIR)/opt/trinity/share/lintian/overrides/krusader
+
+binary-post-install/krusader-trinity::
+	rm -rf debian/krusader-trinity/etc/trinity/

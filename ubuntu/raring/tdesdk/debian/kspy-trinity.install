@@ -1,0 +1,5 @@
+debian/tmp/opt/trinity/include/kspy.h
+debian/tmp/opt/trinity/lib/libkspy.la
+debian/tmp/opt/trinity/lib/libkspy.so
+debian/tmp/opt/trinity/lib/libkspy.so.1
+debian/tmp/opt/trinity/lib/libkspy.so.1.2.0

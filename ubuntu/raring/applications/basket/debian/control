@@ -1,0 +1,40 @@
+Source: basket-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Sune Vuorela <debian@pusling.com>
+Build-Depends: libasound2-dev, debhelper (>= 5), tdelibs4-trinity-dev, tdepim-trinity-dev, libgpgme11-dev, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: basket-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: basket-kde3 (<< 4:14.0.0), basket-trinity (<< 4:14.0.0)
+Breaks: basket-kde3 (<< 4:14.0.0), basket-trinity (<< 4:14.0.0)
+Recommends: basket-kontact-integration-trinity
+Description: a multi-purpose note-taking application for TDE [Trinity]
+ This application provides as many baskets (drawers) as you wish; Several
+ kinds of objects (texts, URLs, images,...) can be drag-n-drop'd into it. 
+ .
+ Objects can be edited, copied, dragged... So, they can be arranged
+ according to users' taste. Moreover, Basket allows you to keep all objects 
+ you want in one place, keep data on hand, take notes...
+ .
+  Homepage: http://basket.kde.org/
+
+Package: basket-kontact-integration-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Replaces: basket-kontact-integration-kde3 (<< 4:14.0.0), basket-kontact-integration-trinity (<< 4:14.0.0)
+Breaks: basket-kontact-integration-kde3 (<< 4:14.0.0), basket-kontact-integration-trinity (<< 4:14.0.0)
+Description: a multi-purpose note-taking appliction, Kontact integration [Trinity]
+ This application provides as many baskets (drawers) as you wish; Several
+ kinds of objects (texts, URLs, images,...) can be drag-n-drop'd into it.
+ .
+ Objects can be edited, copied, dragged... So, they can be arranged
+ according to users' taste. Moreover, Basket allows you to keep all objects
+ you want in one place, keep data on hand, take notes...
+ .
+ This package contains the kontact-trinity plugin
+ .

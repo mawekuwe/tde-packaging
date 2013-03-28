@@ -1,0 +1,37 @@
+#! /bin/sh
+
+set -e
+
+package_name=kpowersave-nohal-trinity
+
+if [ -z "$package_name" ]; then
+    print >&2 "Internal Error. Please report a bug."
+    exit 1;
+fi
+
+case "$1" in
+  install)
+    divert=`dpkg-divert --listpackage "/etc/acpi/powerbtn.sh"`
+    if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
+        dpkg-divert --remove --local --rename "/etc/acpi/powerbtn.sh"
+        divert=""
+    fi
+    dpkg-divert --package $package_name --divert /etc/acpi/powerbtn.sh.distrib --rename /etc/acpi/powerbtn.sh
+    ;;
+  upgrade)
+    divert=`dpkg-divert --listpackage "/etc/acpi/powerbtn.sh"`
+    if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
+        dpkg-divert --remove --local --rename "/etc/acpi/powerbtn.sh"
+        divert=""
+    fi
+    if [ -z "$divert" ]; then
+      dpkg-divert --package $package_name --divert /etc/acpi/powerbtn.sh.distrib --rename /etc/acpi/powerbtn.sh
+    fi
+    ;;
+  abort-upgrade)
+    ;;
+  *) echo "$0: didn't understand being called with \`$1'" 1>&2
+     exit 0;;
+esac
+
+exit 0

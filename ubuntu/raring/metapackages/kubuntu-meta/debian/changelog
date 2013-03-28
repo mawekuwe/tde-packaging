@@ -1,0 +1,3571 @@
+kubuntu-meta-trinity (1:83) lucid; urgency=low
+
+  * R14.0.0 rebuild
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 01 May 2012 02:27:00 -0600
+
+kubuntu-meta-trinity (1:78) lucid; urgency=low
+
+  * 3.5.13 rebuild
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 16 Aug 2011 02:09:00 -0600
+
+kubuntu-meta-trinity (1:73) maverick; urgency=low
+
+  * Maverick rebuild
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 07 Sep 2010 18:37:00 -0600
+
+kubuntu-meta-trinity (1:65) karmic; urgency=low
+
+  * Karmic rebuild
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Thu, 02 July 2009 16:08:00 -0600
+
+kubuntu-meta-trinity (1:61) intrepid; urgency=low
+
+  * Removed dependency on obsolete non-KDE3 package software-properties-kde
+  * Changed tdeio-apt-trinity from depends to recommends
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Wed, 25 Mar 2009 11:47:00 -0600
+
+kubuntu-meta-trinity (1:58) intrepid; urgency=low
+
+  * Removed dependency on obsolete non-KDE3 package language-selector-qt
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Fri, 06 Mar 2009 13:47:00 -0600
+
+kubuntu-meta-trinity (1:57) intrepid; urgency=low
+
+  * Refreshed dependencies and Intrepid versioning update
+
+ -- Timothy Pearson <kb9vqf@pearsoncomputing.net>  Tue, 02 Dec 2008 17:01:00 -0600
+
+kubuntu-meta (1.75) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added foomatic-db-gutenprint to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Added ijsgutenprint to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 16 Apr 2008 14:23:47 +0100
+
+kubuntu-meta (1.74) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added hpijs-ppds to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 11 Apr 2008 13:48:20 +0100
+
+kubuntu-meta (1.73) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added ca-certificates to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+
+ -- Steve Langasek <steve.langasek@ubuntu.com>  Tue, 08 Apr 2008 00:21:16 -0700
+
+kubuntu-meta (1.72) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added dmz-cursor-theme to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 13 Mar 2008 12:07:23 +0000
+
+kubuntu-meta (1.71) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added desktop-effects-kde to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 12 Mar 2008 21:15:49 +0000
+
+kubuntu-meta (1.70) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added kde-style-qtcurve to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Removed hwdb-client-kde from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Removed kde-style-polyester from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-
+    lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 12 Mar 2008 11:32:00 +0000
+
+kubuntu-meta (1.69) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added scim-bridge-agent to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Added scim-bridge-client-qt to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Removed discover1 from desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+  * Removed ksplash-engine-moodin from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-
+    lpia
+  * Removed ttf-mgopen from desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+  * Removed ttf-sil-gentium from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Removed xresprobe from desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 10 Mar 2008 18:16:34 +0000
+
+kubuntu-meta (1.68) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Removed kde-icons-mono from desktop-recommends-amd64, desktop-
+    recommends-powerpc, desktop-recommends-ia64, desktop-recommends-
+    sparc, desktop-recommends-hppa, desktop-recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 21 Feb 2008 18:42:48 +0000
+
+kubuntu-meta (1.67) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added alsa-base to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Added alsa-utils to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Added jockey-kde to desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-hppa, desktop-recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 20 Feb 2008 16:26:04 +0000
+
+kubuntu-meta (1.66) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added jockey-kde to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-sparc
+  * Added kwin-style-crystal to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Removed slocate from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 17 Feb 2008 11:12:18 +0000
+
+kubuntu-meta (1.65) hardy; urgency=low
+
+  * Add desktop-kubuntu-common to update.cfg
+  * Refreshed dependencies
+  * Added cupsys-driver-gutenprint to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-
+    lpia
+  * Removed foomatic-db-gutenprint from desktop-recommends-i386,
+    desktop-recommends-amd64, desktop-recommends-powerpc, desktop-
+    recommends-ia64, desktop-recommends-sparc, desktop-recommends-hppa,
+    desktop-recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 13 Feb 2008 13:00:04 +0000
+
+kubuntu-meta (1.64) hardy; urgency=low
+
+  * Add seed_map/desktop to update.cfg to cope with seed reorganisation.
+  * Remove output_seeds from update.cfg (and 'required' from seeds option),
+    since germinate deals with this automatically now. Build-depend on
+    germinate (>= 0.38) for this.
+  * Point to specific GPL version in debian/copyright.
+  * Policy version 3.7.3.
+
+  * Refreshed dependencies
+  * Added foomatic-db-hpijs to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Removed foomatic-db-hpijs from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 12 Feb 2008 14:32:26 +0000
+
+kubuntu-meta (1.63) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added cups-pdf to desktop-recommends-hppa
+  * Added kmplayer-konq-plugins to desktop-recommends-hppa
+  * Added system-config-printer-kde to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Added ttf-sil-gentium to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Removed restricted-manager-kde from desktop-recommends-i386,
+    desktop-recommends-amd64, desktop-recommends-powerpc, desktop-
+    recommends-ia64, desktop-recommends-sparc, desktop-recommends-hppa,
+    desktop-recommends-lpia
+  * Removed ttf-gentium from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 29 Jan 2008 16:45:15 +0000
+
+kubuntu-meta (1.62) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added ttf-gentium to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+  * Removed openoffice.org-draw from desktop-recommends-i386, desktop-
+    recommends-amd64
+  * Removed openoffice.org-java-common from desktop-recommends-i386,
+    desktop-recommends-amd64
+  * Removed openoffice.org-math from desktop-recommends-i386, desktop-
+    recommends-amd64
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 19 Dec 2007 11:17:25 +0000
+
+kubuntu-meta (1.61) hardy; urgency=low
+
+  * Refreshed dependencies
+  * Added kaffeine to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+  * Removed kaffeine-xine from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Removed ttf-gentium from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 30 Nov 2007 13:39:29 +0000
+
+kubuntu-meta (1.60) hardy; urgency=low
+
+  * update.cfg:
+    - Switch to Hardy.
+    - Switch from sftp:// to bzr+ssh:// for seed checkout for faster
+      operation.
+  * Refreshed dependencies
+  * Added gtk-qt-engine to desktop-recommends-hppa
+  * Added kde-style-polyester to desktop-sparc
+  * Added xdg-user-dirs to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Removed ksplash from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Removed libpam-foreground from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Removed openoffice.org-calc from desktop-recommends-powerpc
+  * Removed openoffice.org-draw from desktop-recommends-powerpc
+  * Removed openoffice.org-impress from desktop-recommends-powerpc
+  * Removed openoffice.org-java-common from desktop-recommends-powerpc
+  * Removed openoffice.org-kde from desktop-recommends-powerpc
+  * Removed openoffice.org-math from desktop-recommends-powerpc
+  * Removed openoffice.org-writer from desktop-recommends-powerpc
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Fri, 23 Nov 2007 09:06:50 +0100
+
+kubuntu-meta (1.59) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Removed cupsys-driver-gutenprint from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-
+    lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 08 Oct 2007 14:51:05 +0100
+
+kubuntu-meta (1.58) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added foomatic-db-gutenprint to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Sat, 06 Oct 2007 13:15:22 +0200
+
+kubuntu-meta (1.57) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added avahi-autoipd to desktop-recommends-hppa
+  * Added hplip-gui to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+  * Added kde-style-polyester to desktop-hppa
+  * Added libgl1-mesa-glx to desktop-hppa
+  * Added network-manager-kde to desktop-recommends-hppa
+  * Added restricted-manager-kde to desktop-recommends-hppa
+  * Added strigi-daemon to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa, desktop-recommends-lpia
+  * Removed strigi-plugins from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 05 Oct 2007 13:32:59 +0100
+
+kubuntu-meta (1.56) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added dolphin to desktop-recommends-hppa
+  * Added genisoimage to desktop-hppa
+  * Added ghostscript-x to desktop-hppa
+  * Added kde-guidance-powermanager to desktop-recommends-hppa
+  * Added kdesudo to desktop-recommends-hppa
+  * Added kio-umountwrapper to desktop-recommends-hppa
+  * Added kvkbd to desktop-recommends-hppa
+  * Added make to desktop-recommends-hppa
+  * Added pxljr to desktop-recommends-hppa
+  * Added splix to desktop-recommends-hppa
+  * Added strigi-applet to desktop-recommends-hppa
+  * Added strigi-plugins to desktop-recommends-hppa
+  * Added ttf-dejavu-core to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Added ttf-indic-fonts-core to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Added ttf-unfonts-core to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Added wodim to desktop-recommends-hppa
+  * Removed ttf-baekmuk from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+  * Removed ttf-dejavu from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa, desktop-lpia
+  * Removed ttf-indic-fonts from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa, desktop-
+    recommends-lpia
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Thu, 20 Sep 2007 11:12:16 +0200
+
+kubuntu-meta (1.55) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added kdebluetooth to desktop-recommends-lpia
+  * Added kdesudo to desktop-recommends-lpia
+  * Added keep to desktop-recommends-lpia
+  * Added kvkbd to desktop-recommends-lpia
+  * Added qca-tls to desktop-lpia
+  * Added restricted-manager-kde to desktop-recommends-lpia
+  * Added scim-qtimm to desktop-recommends-lpia
+  * Added splix to desktop-recommends-lpia
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 07 Sep 2007 23:18:01 +0100
+
+kubuntu-meta (1.54) gutsy; urgency=low
+
+  * Generate packages for lpia.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 22 Aug 2007 17:24:37 +0000
+
+kubuntu-meta (1.53) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added cups-pdf to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+  * Added kvkbd to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 22 Aug 2007 15:38:24 +0100
+
+kubuntu-meta (1.52) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added rdesktop to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 17 Aug 2007 15:52:54 +0100
+
+kubuntu-meta (1.51) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added foo2zjs to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added min12xxw to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added pxljr to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+  * Added splix to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+  * Removed foo2zjs from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed min12xxw from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 17 Aug 2007 12:01:37 +0100
+
+kubuntu-meta (1.50) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added kdesudo to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 13 Aug 2007 13:42:30 +0100
+
+kubuntu-meta (1.49) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added wvdial to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Removed openoffice.org-gtk from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc
+  * Removed wvdial from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Fri, 10 Aug 2007 11:45:42 +0200
+
+kubuntu-meta (1.48) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added openoffice.org-gtk to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc. This is a temporary
+    workaround for LP #127944 for Tribe 4.
+  * Added restricted-manager-kde to desktop-recommends-sparc
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Wed, 08 Aug 2007 09:02:48 +0200
+
+kubuntu-meta (1.47) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added kmplayer-konq-plugins to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    sparc
+  * Added restricted-manager-kde to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 06 Aug 2007 19:11:35 +0100
+
+kubuntu-meta (1.46) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added network-manager-kde to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc
+  * Added xdg-utils to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kmplayer-konq-plugins to desktop-recommends-ia64
+  * Removed knetworkmanager from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 04 Aug 2007 09:33:54 +0100
+
+kubuntu-meta (1.45) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added avahi-autoipd to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+  * Added kio-umountwrapper to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc
+  * Added libgl1-mesa-dri to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+  * Added libnss-mdns to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Removed avahi-autoipd from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed libnss-mdns from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 24 Jul 2007 10:07:24 +0100
+
+kubuntu-meta (1.44) gutsy; urgency=low
+
+  * Include a copy of GPLv2 (LP: #80513).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 19 Jul 2007 22:09:50 +0100
+
+kubuntu-meta (1.43) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added strigi-plugins to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 16 Jul 2007 13:03:03 +0100
+
+kubuntu-meta (1.42) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added strigi-applet to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Mon, 16 Jul 2007 13:01:18 +0100
+
+kubuntu-meta (1.41) gutsy; urgency=low
+
+  [ Anthony Mercatante ]
+  * Refreshed dependencies
+  * Added pinentry-qt to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Removed xterm from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Wed, 04 Jul 2007 13:26:22 +0200
+
+kubuntu-meta (1.40) gutsy; urgency=low
+
+  * Fix update.cfg so that update works from bzr.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 03 Jul 2007 15:46:15 +0100
+
+kubuntu-meta (1.39) gutsy; urgency=low
+
+  * Switch powerpc to http://ports.ubuntu.com/ubuntu-ports/.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 03 Jul 2007 15:20:11 +0100
+
+kubuntu-meta (1.38) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added gdebi-kde to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Removed kpager from desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 26 Jun 2007 00:43:59 +0100
+
+kubuntu-meta (1.37) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added adept to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added amarok to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added cdparanoia to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added cdrdao to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added dolphin to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+  * Added dvd+rw-tools to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added fortune-mod to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added k3b to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kaffeine-xine to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kamera to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kate to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added keep to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kfind to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added klipper to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kmailcvt to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added konversation to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kooka to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kopete to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kpager to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kpf to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kppp to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added krdc to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added krfb to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added ksysguard to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added ktorrent to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kubuntu-default-settings to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+  * Added wodim to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+  * Removed adept from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed amarok from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed cdparanoia from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed cdrdao from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed dolphin from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed dvd+rw-tools from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed fortune-mod from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed k3b from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kaffeine-xine from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kamera from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kate from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed keep from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kfind from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed klipper from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kmailcvt from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed konversation from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kooka from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kopete from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kpf from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kppp from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed krdc from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed krfb from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ksysguard from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ktorrent from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kubuntu-default-settings from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed wodim from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Closes LP #44778, LP #119467
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Tue, 26 Jun 2007 01:26:20 +1000
+
+kubuntu-meta (1.36) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Added dolphin to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Fri, 22 Jun 2007 15:53:43 +0200
+
+kubuntu-meta (1.35) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Removed kmplayer-konq-plugins from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Tue, 05 Jun 2007 22:35:18 +1000
+
+kubuntu-meta (1.34) gutsy; urgency=low
+
+  * Refreshed dependencies
+  * Removed kexi from desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 31 May 2007 19:24:37 +0100
+
+kubuntu-meta (1.33) gutsy; urgency=low
+
+  * update.cfg: feisty -> gutsy
+  * Refreshed dependencies
+  * Added discover1 to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added ghostscript-x to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added laptop-detect to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added xresprobe to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Removed bluez-pin from desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Removed gs-esp-x from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kde-style-polyester from desktop-sparc, desktop-hppa
+  * Removed pmount from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Fri, 25 May 2007 13:35:04 +0200
+
+kubuntu-meta (1.32ubuntu1) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Removed libstdc++5 from desktop-i386
+  * Removed scim-tables-additional from desktop-recommends-i386
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri,  6 Apr 2007 17:50:51 +0100
+
+kubuntu-meta (1.32) feisty; urgency=low
+
+  * changed Section to metapackages (LP#82876)
+
+ -- Michael Vogt <michael.vogt@ubuntu.com>  Tue,  3 Apr 2007 13:20:50 +0200
+
+kubuntu-meta (1.31) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added scim-tables-additional to desktop-recommends-i386
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Fri, 16 Mar 2007 12:10:41 +0100
+
+kubuntu-meta (1.30) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added akregator to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added apport-qt to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added bogofilter to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added genisoimage to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kaddressbook to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added karm to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added katapult to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kdepim-kio-plugins to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+  * Added kdepim-wizards to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kexi to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kmail to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kmilo to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added knotes to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added konqueror to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added konqueror-nsplugins to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+  * Added kontact to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added korganizer to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kubuntu-docs to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kubuntu-konqueror-shortcuts to desktop-recommends-i386,
+    desktop-recommends-amd64, desktop-recommends-powerpc, desktop-
+    recommends-ia64, desktop-recommends-sparc, desktop-recommends-hppa
+  * Added tdewalletmanager to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added landscape-client to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+  * Added speedcrunch to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added wodim to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed akregator from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed apport-qt from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed bogofilter from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed cdrecord from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed doc-base from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kaddressbook from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed karm from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed katapult from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kdepim-kio-plugins from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kdepim-wizards from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kexi from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kipi-plugins from desktop-recommends-powerpc, desktop-
+    recommends-ia64, desktop-recommends-sparc, desktop-recommends-hppa
+  * Removed kmail from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kmilo from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed knotes from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed konqueror from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed konqueror-nsplugins from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kontact from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed korganizer from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kubuntu-docs from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kubuntu-konqueror-shortcuts from desktop-i386, desktop-
+    amd64, desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed tdewalletmanager from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed landscape-client from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed mkisofs from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed speedcrunch from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 13 Mar 2007 10:32:30 +0000
+
+kubuntu-meta (1.29ubuntu1) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Removed digikam from desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  8 Mar 2007 20:26:06 +0000
+
+kubuntu-meta (1.29) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added digikam to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added gwenview to desktop-recommends-i386, desktop-recommends-amd64,
+    desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kipi-plugins to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added networkstatus to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Removed digikam from desktop-powerpc
+  * Removed gwenview from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kipi-plugins from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed networkstatus from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  6 Mar 2007 11:38:14 +0000
+
+kubuntu-meta (1.28) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Removed digikam from desktop-i386
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Wed, 14 Feb 2007 11:00:56 +0100
+
+kubuntu-meta (1.27) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added openprinting-ppds to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed linuxprinting.org-ppds from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Wed, 14 Feb 2007 10:35:25 +0100
+
+kubuntu-meta (1.26ubuntu2) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added apport-qt to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added software-properties-kde to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 13 Feb 2007 11:00:26 +0000
+
+kubuntu-meta (1.26ubuntu1) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added gs-esp-x to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kde-style-polyester to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added networkstatus to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gs-esp from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  8 Feb 2007 13:08:21 +0000
+
+kubuntu-meta (1.26) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Removed example-content from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  1 Feb 2007 12:23:33 +0000
+
+kubuntu-meta (1.25ubuntu1) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added gtk-qt-engine to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc
+  * Added libqt-perl to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added xkb-data to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed digikam from desktop-amd64, desktop-ia64, desktop-sparc,
+    desktop-hppa
+  * Removed gtk-qt-engine from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed xkeyboard-config from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  1 Feb 2007 09:05:31 +0000
+
+kubuntu-meta (1.25) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added gtk-qt-engine to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed gtk2-engines-gtk-qt from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  4 Jan 2007 14:39:17 +0000
+
+kubuntu-meta (1.24) feisty; urgency=low
+
+  * Refreshed dependencies
+  * Added avahi-autoipd to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added knetworkmanager to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc, desktop-recommends-hppa
+  * Removed diveintopython from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gdb from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed knetworkmanager from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed krita from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  4 Jan 2007 13:47:04 +0000
+
+kubuntu-meta (1.23) feisty; urgency=low
+
+  * Changed edgy to feisty in update.cfg
+  * Refreshed dependencies
+  * Added kde-guidance-powermanager to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc, desktop-recommends-
+    ia64, desktop-recommends-sparc
+  * Added kdebluetooth to desktop-recommends-i386, desktop-recommends-
+    amd64, desktop-recommends-powerpc, desktop-recommends-ia64, desktop-
+    recommends-sparc, desktop-recommends-hppa
+  * Added kexi to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc, desktop-hppa
+  * Added knetworkmanager to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added linuxprinting.org-ppds to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added openoffice.org-calc to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc
+  * Added openoffice.org-draw to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc
+  * Added openoffice.org-impress to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc
+  * Added openoffice.org-java-common to desktop-recommends-i386,
+    desktop-recommends-amd64, desktop-recommends-powerpc
+  * Added openoffice.org-math to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc
+  * Added openoffice.org-writer to desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc
+  * Removed kaudiocreator from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kde-guidance-powermanager from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Removed kdebluetooth from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kscd from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed openoffice.org from desktop-recommends-i386, desktop-
+    recommends-amd64, desktop-recommends-powerpc
+  * Removed wlassistant from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  5 Dec 2006 18:37:43 +0000
+
+kubuntu-meta (1.22) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added linux-headers-generic to desktop-recommends-i386
+  * Added openoffice.org-kde to desktop-recommends-amd64
+  * Removed linux-headers-386 from desktop-recommends-i386
+  * Robustify the update script.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 19 Oct 2006 20:04:12 +0200
+
+kubuntu-meta (1.21) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Removed linuxprinting.org-ppds from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 12 Oct 2006 23:14:16 +0100
+
+kubuntu-meta (1.20) edgy; urgency=low
+
+  * Fix build failure due to removal of kubuntu-live.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 12 Oct 2006 10:33:42 +0100
+
+kubuntu-meta (1.19) edgy; urgency=low
+
+  * Remove kubuntu-live metapackage; this is done using tasks now.
+  * Set output_seeds appropriately and remove some extraneous files.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 12 Oct 2006 03:43:21 +0100
+
+kubuntu-meta (1.18) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added kipi-plugins to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 10 Oct 2006 00:57:43 +0200
+
+kubuntu-meta (1.17) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added gdb to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc, desktop-hppa
+  * Added linuxprinting.org-ppds to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added util-linux-locales to minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  5 Oct 2006 15:04:36 +0100
+
+kubuntu-meta (1.16) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added kmplayer-konq-plugins to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Tue,  3 Oct 2006 18:43:12 +0200
+
+kubuntu-meta (1.15) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added digikam to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kmplayer-konq-plugins from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Tue,  3 Oct 2006 16:55:52 +0200
+
+kubuntu-meta (1.14) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added krita to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added libgl1-mesa-glx to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed language-support-en from live-amd64, live-ia64, live-sparc,
+    live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 27 Sep 2006 10:53:47 +0100
+
+kubuntu-meta (1.13) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added kde-guidance-powermanager to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Removed make from desktop-recommends-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 21 Sep 2006 10:48:58 +0100
+
+kubuntu-meta (1.12) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added upstart-logd to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 20 Sep 2006 12:38:15 +0100
+
+kubuntu-meta (1.11) edgy; urgency=low
+
+  * Edit debian/control to make use of Recommends
+  * Refreshed dependencies
+  * Added hwdb-client-kde to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 11 Sep 2006 16:51:21 +0100
+
+kubuntu-meta (1.10) edgy; urgency=low
+
+  * Meta packages now use Recommends for a number of packages that were
+    previously Depends (most of the packages marked as Removed below)
+  * Refreshed dependencies
+  * Added console-setup to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Added startup-tasks to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc
+  * Added system-services to minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc
+  * Removed bluez-cups from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed bluez-utils from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed brltty from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed example-content from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gcc from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed hplip from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kbstate from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kde-icons-mono from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kmag from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kmousetool from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed tdescreensaver from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed linux-headers-686 from desktop-i386
+  * Removed linux-headers-amd64-generic from desktop-amd64
+  * Removed linux-headers-hppa32 from desktop-hppa
+  * Removed linux-headers-hppa64 from desktop-hppa
+  * Removed linux-headers-itanium-smp from desktop-ia64
+  * Removed linux-headers-mckinley-smp from desktop-ia64
+  * Removed linux-headers-powerpc from desktop-powerpc
+  * Removed linux-headers-powerpc64-smp from desktop-powerpc
+  * Removed linux-headers-sparc64 from desktop-sparc
+  * Removed make from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed mtr-tiny from standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64, standard-sparc, standard-hppa
+  * Removed openoffice.org from desktop-i386, desktop-amd64, desktop-
+    powerpc
+  * Removed openoffice.org-kde from desktop-i386, desktop-powerpc
+  * Removed openssh-client from standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64, standard-sparc, standard-hppa
+  * Removed powernowd from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed scim-qtimm from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed skim from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-arabeyes from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-arphic-uming from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-baekmuk from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-gentium from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-indic-fonts from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-kochi-gothic from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-kochi-mincho from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-lao from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-malayalam-fonts from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-mgopen from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-thai-tlwg from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed xcursor-themes from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 11 Sep 2006 13:37:17 +0100
+
+kubuntu-meta (1.9) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added upstart-compat-sysv to minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc
+  * Added upstart to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc
+  * Removed sysvinit from minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon,  4 Sep 2006 22:29:21 +0000
+
+kubuntu-meta (1.8) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Removed festival from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kttsd from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 30 Aug 2006 14:20:29 +0000
+
+kubuntu-meta (1.7) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added vim-tiny to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed hpijs-ppds from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed foomatic-filters-ppds from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed vim from minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 30 Aug 2006 12:46:21 +0000
+
+kubuntu-meta (1.6) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added festival to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kbstate to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kmag to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc, desktop-hppa
+  * Added kttsd to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kde-icons-mono to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kmousetool to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed hwdb-client-kde from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed foomatic-db-gutenprint from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 29 Aug 2006 11:27:15 +0100
+
+kubuntu-meta (1.5) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added mktemp to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc
+  * Added hwdb-client-kde to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added gcc to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc, desktop-hppa
+  * Added linux-headers-powerpc to desktop-powerpc
+  * Added linux-headers-hppa32 to desktop-hppa
+  * Added linux-headers-mckinley-smp to desktop-ia64
+  * Added make to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc, desktop-hppa
+  * Added linux-headers-amd64-generic to desktop-amd64
+  * Added tasksel to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Added linux-headers-itanium-smp to desktop-ia64
+  * Added linux-headers-sparc64 to desktop-sparc
+  * Added linux-headers-686 to desktop-i386
+  * Added linux-headers-powerpc64-smp to desktop-powerpc
+  * Added linux-headers-hppa64 to desktop-hppa
+  * Added python-minimal to minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed initscripts from minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed klaptopdaemon from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed libgl1-mesa from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 17 Aug 2006 11:40:39 +0000
+
+kubuntu-meta (1.4) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added avahi-daemon to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added hfsplus to live-powerpc
+  * Added xfsprogs to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added jfsutils to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 20 Jul 2006 15:25:50 +0100
+
+kubuntu-meta (1.3) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Removed language-pack-ar from live-i386
+  * Removed language-pack-bn from live-i386
+  * Removed language-pack-kde-ar from live-i386
+  * Removed language-pack-hi from live-i386
+  * Removed language-pack-kde-bn from live-i386
+  * Removed language-pack-fr from live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Removed krita from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-kde-de from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Removed language-pack-de from live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Removed xserver-xorg-input-synaptics from desktop-i386, desktop-
+    amd64, desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-kde-nl from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Removed pbbuttonsd from desktop-i386
+  * Removed ubuntu-live from live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Removed language-pack-kde-hi from live-i386
+  * Removed language-pack-es from live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Removed language-pack-kde-fr from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Removed language-pack-nl from live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Removed language-pack-kde-zh from live-i386, live-powerpc
+  * Removed language-pack-kde-es from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Removed language-pack-zh from live-i386, live-powerpc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 17 Jul 2006 12:21:37 +0100
+
+kubuntu-meta (1.2) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added hpijs-ppds to desktop-ia64, desktop-hppa
+  * Added xorg to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc, desktop-hppa
+  * Removed x-window-system-core from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 13 Jul 2006 11:53:24 +0100
+
+kubuntu-meta (1.1) edgy; urgency=low
+
+  * Refreshed dependencies
+  * Added tzdata to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Added hfsutils to standard-powerpc
+  * Added ltrace to standard-ia64
+  * Added strace to standard-i386, standard-amd64, standard-powerpc,
+    standard-ia64, standard-sparc, standard-hppa
+  * Added dosfstools to standard-i386, standard-amd64, standard-powerpc,
+    standard-ia64, standard-sparc, standard-hppa
+  * Added ubuntu-live to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added memtest86+ to standard-i386, standard-amd64
+  * Added dash to minimal-i386, minimal-amd64, minimal-powerpc, minimal-
+    ia64, minimal-sparc, minimal-hppa
+  * Added pbbuttonsd to desktop-i386
+  * Added hpijs-ppds to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-sparc
+  * Added reiserfsprogs to standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64, standard-sparc, standard-hppa
+  * Removed bluez-pcmcia-support from desktop-i386, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-pyxattr from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed xfsprogs from minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed python-pylibacl from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed lvm2 from standard-i386, standard-amd64, standard-powerpc,
+    standard-ia64, standard-sparc, standard-hppa
+  * Removed dosfstools from minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed python-cddb from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed bicyclerepair from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-pqueue from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-htmlgen from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-xmpp from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed hplip-ppds from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python2.4-libxml2 from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python2.4-dbus from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-xdg from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-parted from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed mdadm from standard-i386, standard-amd64, standard-powerpc,
+    standard-ia64, standard-sparc, standard-hppa
+  * Removed python2.4-dictclient from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed doc-debian from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-ldap from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-pyorbit from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-id3lib from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-pexpect from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed grepmap from minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed python-pyao from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-imaging from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed evms-ncurses from standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64, standard-sparc, standard-hppa
+  * Removed python-adns from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed grub from live-i386, live-amd64
+  * Removed python-clientcookie from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-pgsql from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed yaboot from live-powerpc
+  * Removed python-genetic from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-pyopenssl from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-newt from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-egenix-mxstack from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-egenix-mxtools from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-stats from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-gdbm from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-gd from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-eunuchs from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-htmltmpl from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed pcmcia-cs from live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Removed python2.4-pycurl from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed evms from standard-i386, standard-amd64, standard-powerpc,
+    standard-ia64, standard-sparc, standard-hppa
+  * Removed python-epydoc from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-simpletal from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-kjbuckets from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed memtest86+ from minimal-i386, minimal-amd64
+  * Removed irssi from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed hfsplus from minimal-powerpc
+  * Removed python-netcdf from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed reiser4progs from minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed python-numeric from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python2.4-librdf from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-sqlite from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed reiserfsprogs from minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed python-geoip from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-pam from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-egenix-mxtexttools from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-jabber from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed hfsutils from minimal-powerpc
+  * Removed python-syck from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-soappy from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed strace from minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed python-pyvorbis from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed dmsetup from standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64, standard-sparc, standard-hppa
+  * Removed python-examples from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-egenix-mxproxy from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-gadfly from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-gnupginterface from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-pisock from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-imaging-sane from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python2.4-libxslt1 from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed jfsutils from minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed python-unit from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed reportbug from standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64, standard-sparc, standard-hppa
+  * Removed python-apt from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-mysqldb from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-crypto from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-reportlab from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 12 Jul 2006 02:23:15 +0100
+
+kubuntu-meta (1.0) edgy; urgency=low
+
+  * Add update.cfg for new germinate-update-metapackage (Build-Depends:
+    germinate (>= 0.16)). Replace update with a trivial wrapper. We now pull
+    seeds directly from bzr over sftp by default, so update will only work
+    if you're in the ubuntu-core-dev team; run germinate-update-metapackage
+    without options or temporarily replace "sftp" with "http" in update.cfg
+    to update without authentication.
+  * Switch to edgy seeds.
+  * Seems like as good a time as any to bump to 1.0.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri,  9 Jun 2006 13:13:18 +0100
+
+kubuntu-meta (0.85) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-kde-nl to live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Added language-pack-fr to live-amd64, live-ia64, live-sparc, live-
+    hppa
+  * Added language-pack-es to live-amd64, live-ia64, live-sparc, live-
+    hppa
+  * Added language-pack-kde-fr to live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Added language-pack-nl to live-amd64, live-ia64, live-sparc, live-
+    hppa
+  * Added language-pack-kde-es to live-amd64, live-ia64, live-sparc,
+    live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 30 May 2006 02:05:00 +0100
+
+kubuntu-meta (0.84) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Removed language-pack-ar from live-powerpc
+  * Removed language-pack-bn from live-powerpc
+  * Removed language-pack-kde-ar from live-powerpc
+  * Removed language-pack-hi from live-powerpc
+  * Removed language-pack-kde-bn from live-powerpc
+  * Removed language-pack-kde-hi from live-powerpc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 29 May 2006 15:03:21 +0100
+
+kubuntu-meta (0.83) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-ar to live-i386, live-powerpc
+  * Added language-pack-bn to live-i386, live-powerpc
+  * Added language-pack-kde-ar to live-i386, live-powerpc
+  * Added language-pack-hi to live-i386, live-powerpc
+  * Added language-pack-kde-bn to live-i386, live-powerpc
+  * Added language-pack-kde-hi to live-i386, live-powerpc
+  * Added language-pack-kde-nl to live-powerpc
+  * Added language-pack-fr to live-powerpc
+  * Added language-pack-es to live-powerpc
+  * Added language-pack-kde-fr to live-powerpc
+  * Added language-pack-nl to live-powerpc
+  * Added language-pack-kde-zh to live-i386, live-powerpc
+  * Added language-pack-kde-es to live-powerpc
+  * Added language-pack-zh to live-i386, live-powerpc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 28 May 2006 19:27:10 +0100
+
+kubuntu-meta (0.82) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added landscape-client to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed openoffice.org-kde from desktop-amd64, desktop-ia64,
+    desktop-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 28 May 2006 15:58:58 +0100
+
+kubuntu-meta (0.81) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Removed language-support-de from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 23 May 2006 15:09:51 +0100
+
+kubuntu-meta (0.80) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-kde-de to live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Added language-pack-de to live-amd64, live-ia64, live-sparc, live-
+    hppa
+  * Added language-support-de to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Removed language-pack-ar from live-i386, live-powerpc
+  * Removed language-pack-bn from live-i386, live-powerpc
+  * Removed language-pack-kde-ar from live-i386, live-powerpc
+  * Removed language-pack-hi from live-i386, live-powerpc
+  * Removed language-pack-kde-bn from live-i386, live-powerpc
+  * Removed language-pack-kde-hi from live-i386, live-powerpc
+  * Removed language-pack-fr from live-powerpc
+  * Removed language-pack-kde-nl from live-powerpc
+  * Removed language-pack-pt from live-i386
+  * Removed language-pack-kde-pt from live-i386
+  * Removed language-pack-es from live-powerpc
+  * Removed language-pack-kde-fr from live-powerpc
+  * Removed language-pack-nl from live-powerpc
+  * Removed language-pack-kde-zh from live-i386, live-powerpc
+  * Removed language-pack-kde-es from live-powerpc
+  * Removed language-pack-zh from live-i386, live-powerpc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 23 May 2006 08:28:12 +0100
+
+kubuntu-meta (0.79) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Removed language-pack-kde-de from live-amd64, live-ia64
+  * Removed language-pack-az from live-i386, live-powerpc
+  * Removed language-pack-ru from live-i386, live-powerpc
+  * Removed language-pack-kde-bg from live-i386, live-powerpc
+  * Removed language-pack-pt from live-powerpc
+  * Removed language-pack-af from live-i386, live-powerpc
+  * Removed language-pack-kde-fr from live-amd64, live-ia64
+  * Removed language-pack-kde-br from live-i386, live-powerpc
+  * Removed language-pack-kde-bs from live-i386, live-powerpc
+  * Removed language-pack-kde-az from live-i386, live-powerpc
+  * Removed language-pack-ca from live-i386, live-powerpc
+  * Removed language-pack-kde-pt from live-powerpc
+  * Removed language-pack-es from live-amd64, live-ia64
+  * Removed language-pack-kde-af from live-i386, live-powerpc
+  * Removed language-pack-ja from live-i386, live-powerpc
+  * Removed language-pack-kde-ca from live-i386, live-powerpc
+  * Removed language-pack-nl from live-amd64, live-ia64
+  * Removed language-pack-kde-es from live-amd64, live-ia64
+  * Removed language-pack-kde-ja from live-i386, live-powerpc
+  * Removed language-pack-bg from live-i386, live-powerpc
+  * Removed language-pack-de from live-amd64, live-ia64
+  * Removed language-pack-kde-ru from live-i386, live-powerpc
+  * Removed language-pack-kde-nl from live-amd64, live-ia64
+  * Removed language-pack-fr from live-amd64, live-ia64
+  * Removed language-pack-bs from live-i386, live-powerpc
+  * Removed language-pack-br from live-i386, live-powerpc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 23 May 2006 00:17:45 +0100
+
+kubuntu-meta (0.78) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Removed brltty-x11 from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-kde-de from live-sparc, live-hppa
+  * Removed language-pack-de from live-sparc, live-hppa
+  * Removed language-pack-kde-nl from live-sparc, live-hppa
+  * Removed language-pack-fr from live-sparc, live-hppa
+  * Removed language-pack-es from live-sparc, live-hppa
+  * Removed language-pack-kde-fr from live-sparc, live-hppa
+  * Removed language-pack-nl from live-sparc, live-hppa
+  * Removed language-pack-kde-es from live-sparc, live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 22 May 2006 14:36:49 +0300
+
+kubuntu-meta (0.77) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-kde-ja to live-powerpc
+  * Added language-pack-ja to live-powerpc
+  * Added language-pack-az to live-powerpc
+  * Added language-pack-kde-ca to live-powerpc
+  * Added language-pack-kde-az to live-powerpc
+  * Added language-pack-ca to live-powerpc
+  * Added language-pack-ru to live-powerpc
+  * Added language-pack-kde-bg to live-powerpc
+  * Added language-pack-bg to live-powerpc
+  * Added language-pack-kde-ru to live-powerpc
+  * Added language-pack-af to live-powerpc
+  * Added language-pack-kde-af to live-powerpc
+  * Added language-pack-kde-br to live-powerpc
+  * Added language-pack-kde-bs to live-powerpc
+  * Added language-pack-bs to live-powerpc
+  * Added language-pack-br to live-powerpc
+  * Added brltty-x11 to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-bn from live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Removed language-pack-kde-eo from live-i386
+  * Removed language-pack-kde-da from live-i386
+  * Removed language-pack-kde-bn from live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Removed language-pack-da from live-i386
+  * Removed language-pack-eo from live-i386
+  * Removed language-pack-kde-zh from live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Removed language-pack-kde-cy from live-i386
+  * Removed language-pack-cy from live-i386
+  * Removed language-pack-kde-cs from live-i386
+  * Removed language-pack-zh from live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Removed language-pack-cs from live-i386
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 22 May 2006 03:54:13 +0300
+
+kubuntu-meta (0.76) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-pt to live-powerpc
+  * Added language-pack-kde-pt to live-powerpc
+  * Removed language-pack-kde-el from live-i386
+  * Removed language-pack-el from live-i386
+  * Removed kwifimanager from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 12 May 2006 18:02:17 +0300
+
+kubuntu-meta (0.75) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-kde-da to live-i386
+  * Added language-pack-az to live-i386
+  * Added language-pack-kde-bg to live-i386
+  * Added language-pack-af to live-i386
+  * Added language-pack-kde-br to live-i386
+  * Added language-pack-kde-bs to live-i386
+  * Added language-pack-eo to live-i386
+  * Added language-pack-el to live-i386
+  * Added language-pack-kde-az to live-i386
+  * Added language-pack-ca to live-i386
+  * Added ubiquity-ubuntu-artwork to live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Added language-pack-cy to live-i386
+  * Added language-pack-kde-af to live-i386
+  * Added language-pack-cs to live-i386
+  * Added language-pack-kde-el to live-i386
+  * Added language-pack-kde-eo to live-i386
+  * Added language-pack-kde-ca to live-i386
+  * Added language-pack-kde-cy to live-i386
+  * Added language-pack-kde-cs to live-i386
+  * Added usplash to desktop-hppa
+  * Added language-pack-da to live-i386
+  * Added language-pack-bg to live-i386
+  * Added language-pack-bs to live-i386
+  * Added language-pack-br to live-i386
+  * Removed language-pack-hi from live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Removed ubiquity-ubuntu-doc from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Removed language-pack-kde-hi from live-amd64, live-ia64, live-sparc,
+    live-hppa
+  * Removed language-pack-pt from live-powerpc
+  * Removed language-pack-kde-pt from live-powerpc
+  * Removed language-pack-xh from live-i386, live-powerpc
+  * Removed language-pack-kde-xh from live-i386, live-powerpc
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 11 May 2006 22:47:16 +0100
+
+kubuntu-meta (0.74) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-ar to live-i386, live-powerpc
+  * Added language-pack-kde-fr to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added language-pack-kde-bn to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added language-pack-kde-de to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added language-pack-ru to live-i386
+  * Added language-pack-pt to live-i386, live-powerpc
+  * Added language-pack-kde-xh to live-i386, live-powerpc
+  * Added language-pack-kde-zh to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added language-pack-kde-ar to live-i386, live-powerpc
+  * Added language-pack-kde-ru to live-i386
+  * Added language-pack-kde-pt to live-i386, live-powerpc
+  * Added language-pack-es to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added language-pack-hi to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added language-pack-ja to live-i386
+  * Added language-pack-kde-ja to live-i386
+  * Added language-pack-nl to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added language-pack-kde-es to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added language-pack-bn to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added language-pack-kde-hi to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added language-pack-de to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added language-pack-kde-nl to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added language-pack-fr to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added language-pack-xh to live-i386, live-powerpc
+  * Added language-pack-zh to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 11 May 2006 01:09:32 +0300
+
+kubuntu-meta (0.73) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added wlassistant to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  4 May 2006 12:22:39 -0400
+
+kubuntu-meta (0.72) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added ttf-gentium to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added bogofilter to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kmplayer-konq-plugins to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed libreiserfs0.3-0 from minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed cdebconf from live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 29 Apr 2006 15:57:41 +0100
+
+kubuntu-meta (0.71) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added libc6-sparc64v to minimal-sparc
+  * Added ttf-lao to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added libc6-sparcv9b to minimal-sparc
+  * Added wpasupplicant to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Added kmailcvt to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added sparc-utils to minimal-sparc
+  * Added libc6-sparc64b to minimal-sparc
+  * Added libc6-sparcv9v to minimal-sparc
+  * Added libstdc++5 to desktop-i386
+  * Added ubiquity-frontend-kde to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added ubiquity-ubuntu-doc to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added brltty to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added xcursor-themes to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed wpasupplicant from standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64, standard-sparc, standard-hppa
+  * Removed espresso-frontend-kde from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Removed ttf-arphic-ukai from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed espresso-ubuntu-artwork from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Removed espresso-ubuntu-doc from live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 23 Apr 2006 00:13:42 +0100
+
+kubuntu-meta (0.70) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added espresso-ubuntu-doc to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added espresso-ubuntu-artwork to live-i386, live-amd64, live-
+    powerpc, live-ia64, live-sparc, live-hppa
+  * Removed espresso-grub from live-i386, live-amd64
+  * Removed espresso-utils from live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu,  6 Apr 2006 17:39:22 +0100
+
+kubuntu-meta (0.69) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added wpasupplicant to standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64, standard-sparc, standard-hppa
+  * Removed espresso from live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon,  3 Apr 2006 17:18:38 +0100
+
+kubuntu-meta (0.68) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Removed language-pack-bn from live-i386, live-amd64
+  * Removed language-pack-kde-bn from live-i386, live-amd64
+  * Removed language-pack-kde-de from live-i386, live-amd64
+  * Removed language-pack-de from live-i386, live-amd64
+  * Removed language-pack-fr from live-i386, live-amd64
+  * Removed language-pack-kde-fr from live-i386, live-amd64
+  * Removed language-pack-kde-zh from live-i386, live-amd64
+  * Removed language-pack-zh from live-i386, live-amd64
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 28 Mar 2006 19:34:10 +0100
+
+kubuntu-meta (0.67) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-bn to live-i386, live-amd64
+  * Added usplash to desktop-ia64
+  * Added language-pack-kde-fr to live-i386, live-amd64
+  * Added language-pack-kde-bn to live-i386, live-amd64
+  * Added language-pack-kde-de to live-i386, live-amd64
+  * Added inputattach to standard-hppa
+  * Added libnss-mdns to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added keep to desktop-hppa
+  * Added espresso to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added irssi to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added ttf-thai-tlwg to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added language-pack-fr to live-i386, live-amd64
+  * Added ktorrent to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added language-selector-qt to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added language-pack-kde-zh to live-i386, live-amd64
+  * Added language-pack-de to live-i386, live-amd64
+  * Added openoffice.org-kde to desktop-ia64
+  * Added language-pack-zh to live-i386, live-amd64
+  * Removed language-pack-ar from live-powerpc
+  * Removed language-pack-kde-bn from live-powerpc, live-ia64
+  * Removed language-pack-kde-de from live-powerpc, live-ia64
+  * Removed language-pack-ru from live-powerpc
+  * Removed language-pack-kde-ru from live-powerpc
+  * Removed language-pack-pt from live-powerpc
+  * Removed language-pack-kde-fr from live-powerpc, live-ia64
+  * Removed language-pack-kde-zh from live-powerpc, live-ia64
+  * Removed language-pack-kde-ar from live-powerpc
+  * Removed language-pack-ca from live-powerpc
+  * Removed language-pack-kde-pt from live-powerpc
+  * Removed language-pack-es from live-powerpc
+  * Removed irssi-text from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-hi from live-powerpc
+  * Removed language-pack-ja from live-powerpc
+  * Removed language-pack-kde-ja from live-powerpc
+  * Removed language-pack-kde-ca from live-powerpc
+  * Removed language-pack-kde-es from live-powerpc
+  * Removed language-pack-bn from live-powerpc, live-ia64
+  * Removed language-pack-kde-hi from live-powerpc
+  * Removed language-pack-de from live-powerpc, live-ia64
+  * Removed language-pack-fr from live-powerpc, live-ia64
+  * Removed language-pack-zh from live-powerpc, live-ia64
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 27 Mar 2006 14:03:47 +0100
+
+kubuntu-meta (0.66) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added ltrace to standard-sparc
+  * Added grub to live-i386, live-amd64
+  * Added openoffice.org to desktop-i386, desktop-amd64, desktop-powerpc
+  * Added yaboot to live-powerpc
+  * Added scim-qtimm to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added keep to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added inputattach to standard-sparc
+  * Added skim to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc, desktop-hppa
+  * Added espresso-frontend-kde to live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+  * Added cdrdao to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added openoffice.org-kde to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-sparc
+  * Removed openoffice.org2-kde from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Removed python-gdchart from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed openoffice.org2 from desktop-i386, desktop-amd64, desktop-
+    powerpc
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Wed,  8 Mar 2006 15:28:58 +0100
+
+kubuntu-meta (0.65) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added inputattach to standard-i386, standard-amd64, standard-
+    powerpc, standard-ia64
+  * Added example-content to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added ksplash-engine-moodin to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed konserve from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ifrename from minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * germinator.plantSeed() takes an extra argument
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 22 Feb 2006 13:30:56 +0000
+
+kubuntu-meta (0.64) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added espresso-grub to live-i386, live-amd64
+  * Added libpam-foreground to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kaffeine-xine to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added cdebconf to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Removed gstreamer0.8-dvd from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed grub from live-i386, live-amd64
+  * Removed gstreamer0.8-vorbis from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-hermes from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-flac from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed casper from live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Removed gstreamer0.8-sdl from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kaffeine-gstreamer from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-cdparanoia from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed user-setup from live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Removed gstreamer0.8-dv from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed os-prober from live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Removed gstreamer0.8-x from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-audiofile from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-theora from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed yaboot from live-powerpc
+  * Removed gstreamer0.8-speex from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed partman from live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Removed gstreamer0.8-misc from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-plugin-apps from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-gsm from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed libgstreamer0.8-0 from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-jpeg from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed libgstreamer-plugins0.8-0 from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-musepack from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-osd from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-oss from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed gstreamer0.8-alsa from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri,  3 Feb 2006 12:29:24 +0000
+
+kubuntu-meta (0.63) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added cupsys-driver-gutenprint to desktop-ia64
+  * Added ttf-arphic-ukai to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added tdednssd to desktop-ia64, desktop-hppa
+  * Added ttf-arphic-uming to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-musicbrainz from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 19 Jan 2006 09:25:12 +0000
+
+kubuntu-meta (0.62) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added tdednssd to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 13 Jan 2006 01:00:35 +0000
+
+kubuntu-meta (0.61) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added cupsys-driver-gutenprint to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-sparc, desktop-hppa
+  * Added foomatic-db-gutenprint to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added user-setup to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added kde-guidance to desktop-hppa
+  * Added xserver-xorg-input-synaptics to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added casper to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added os-prober to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added espresso-utils to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added hotkey-setup to desktop-amd64
+  * Removed foomatic-db-gimp-print from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed xorg-driver-synaptics from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed cupsys-driver-gimpprint from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed kdemultimedia-kappfinder-data from desktop-i386, desktop-
+    amd64, desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed base-config from minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed ubuntu-express from live-i386, live-amd64, live-powerpc,
+    live-ia64, live-sparc, live-hppa
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 11 Jan 2006 18:57:11 +0000
+
+kubuntu-meta (0.60) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Removed ivman from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 12 Dec 2005 16:16:26 +0000
+
+kubuntu-meta (0.59) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added partman to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added konq-plugins to desktop-hppa
+  * Added min12xxw to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added hplip to desktop-hppa
+  * Added pcmciautils to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Added amarok to desktop-hppa
+  * Added foo2zjs to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kdebluetooth to desktop-hppa
+  * Added libarts1-akode to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed akode from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-arphic-bsmi00lp from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-arphic-bkai00mp from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed hotplug from minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed kuser from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-arphic-gbsn00lp from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed ttf-arphic-gkai00mp from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 11 Dec 2005 22:49:19 +0000
+
+kubuntu-meta (0.58) dapper; urgency=low
+
+  * Refreshed dependencies
+  * Added hplip to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed hplip-base from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 17 Nov 2005 10:43:59 +0000
+
+kubuntu-meta (0.57) dapper; urgency=low
+
+  * Really build-depend on germinate (>= 0.6).
+  * Update Maintainer to Jonathan Riddell; Andreas Mueller has not worked on
+    this package for some time.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 16 Nov 2005 17:20:24 +0000
+
+kubuntu-meta (0.56) dapper; urgency=low
+
+  * Merged update script changes from ubuntu-meta:
+    - Rewrite large parts of update to use germinate modules for Packages,
+      Sources, and seed parsing; this allows us to take advantage of new
+      seed syntax without having to duplicate code from germinate.
+    - Build-depend on germinate (>= 0.6) for the above. This isn't really
+      needed on the buildds, but you'll need it to run the update script.
+    - Turn off HTTP caching while fetching seed lists.
+
+  * Refreshed dependencies
+  * Added knetworkconf to desktop-hppa
+  * Added krita to desktop-hppa
+  * Added tdewalletmanager to desktop-hppa
+  * Added knotes to desktop-hppa
+  * Added kdepim-kio-plugins to desktop-hppa
+  * Added kdepim-wizards to desktop-hppa
+  * Added ark to desktop-hppa
+  * Added kdemultimedia-kfile-plugins to desktop-hppa
+  * Added karm to desktop-hppa
+  * Added kaffeine-gstreamer to desktop-hppa
+  * Added konversation to desktop-hppa
+  * Added kmilo to desktop-hppa
+  * Added ksystemlog to desktop-hppa
+  * Added kmail to desktop-hppa
+  * Added kscd to desktop-hppa
+  * Added kdemultimedia-kappfinder-data to desktop-hppa
+  * Added kde-guidance to desktop-sparc
+  * Added korganizer to desktop-hppa
+  * Added kaddressbook to desktop-hppa
+  * Added klaptopdaemon to desktop-hppa
+  * Added kaudiocreator to desktop-hppa
+  * Added akode to desktop-hppa
+  * Added kdemultimedia-kio-plugins to desktop-hppa
+  * Added akregator to desktop-hppa
+  * Added kmix to desktop-hppa
+  * Added kontact to desktop-hppa
+  * Removed bogofilter from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed fetchmail from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed procmail from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed python-opengl from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 16 Nov 2005 16:34:17 +0000
+
+kubuntu-meta (0.55) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-kde-zh to live-powerpc
+  * Added openoffice.org2-kde to desktop-ia64, desktop-sparc
+  * Added language-pack-kde-ca to live-powerpc
+  * Added kio-apt to desktop-hppa
+  * Removed language-pack-ar from live-ia64
+  * Removed language-pack-sk from live-ia64
+  * Removed language-pack-kde-da from live-ia64
+  * Removed language-pack-kde-eu from live-ia64
+  * Removed language-pack-pl from live-ia64
+  * Removed language-pack-ru from live-ia64
+  * Removed language-pack-ko from live-ia64
+  * Removed language-pack-kde-fi from live-ia64
+  * Removed language-pack-kde-bg from live-ia64
+  * Removed language-pack-ro from live-ia64
+  * Removed language-pack-hu from live-ia64
+  * Removed language-pack-kde-xh from live-ia64
+  * Removed language-pack-vi from live-ia64
+  * Removed language-pack-it from live-ia64
+  * Removed language-pack-kde-tr from live-ia64
+  * Removed language-pack-kde-sk from live-ia64
+  * Removed language-pack-kde-ar from live-ia64
+  * Removed language-pack-el from live-ia64
+  * Removed language-pack-kde-ko from live-ia64
+  * Removed language-pack-ca from live-ia64
+  * Removed language-pack-pt from live-ia64
+  * Removed language-pack-kde-pt from live-ia64
+  * Removed language-pack-eu from live-ia64
+  * Removed language-pack-es from live-ia64
+  * Removed language-pack-kde-ms from live-ia64
+  * Removed language-pack-kde-ro from live-ia64
+  * Removed python2.4-samba from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-kde-it from live-ia64
+  * Removed language-pack-cs from live-ia64
+  * Removed language-pack-kde-el from live-ia64
+  * Removed language-pack-tr from live-ia64
+  * Removed language-pack-hi from live-ia64
+  * Removed language-pack-ja from live-ia64
+  * Removed language-pack-kde-ca from live-ia64
+  * Removed language-pack-sq from live-ia64
+  * Removed language-pack-sr from live-ia64
+  * Removed language-pack-ms from live-ia64
+  * Removed language-pack-sl from live-ia64
+  * Removed language-pack-no from live-ia64
+  * Removed python-twisted from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-nl from live-ia64
+  * Removed language-pack-kde-cs from live-ia64
+  * Removed language-pack-nb from live-ia64
+  * Removed language-pack-uk from live-ia64
+  * Removed language-pack-kde-es from live-ia64
+  * Removed language-pack-hr from live-ia64
+  * Removed language-pack-kde-ja from live-ia64
+  * Removed language-pack-sv from live-ia64
+  * Removed language-pack-kde-hi from live-ia64
+  * Removed language-pack-bg from live-ia64
+  * Removed language-pack-kde-sr from live-ia64
+  * Removed language-pack-fi from live-ia64
+  * Removed language-pack-kde-ru from live-ia64
+  * Removed language-pack-kde-lt from live-ia64
+  * Removed language-pack-kde-nl from live-ia64
+  * Removed language-pack-da from live-ia64
+  * Removed language-pack-kde-no from live-ia64
+  * Removed language-pack-xh from live-ia64
+  * Removed language-pack-kde-uk from live-ia64
+  * Removed language-pack-kde-sl from live-ia64
+  * Removed language-pack-kde-sv from live-ia64
+  * Removed language-pack-kde-hu from live-ia64
+  * Removed language-pack-kde-pl from live-ia64
+  * Removed language-pack-kde-nb from live-ia64
+  * Removed language-pack-lt from live-ia64
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon, 10 Oct 2005 17:15:31 +0100
+
+kubuntu-meta (0.54) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added kio-apt to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kde-guidance to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri,  7 Oct 2005 17:23:45 +0100
+
+kubuntu-meta (0.53) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added kdm to desktop-hppa
+  * Added kicker to desktop-hppa
+  * Added konqueror-nsplugins to desktop-hppa
+  * Added kio-locate to desktop-hppa
+  * Added gstreamer0.8-dvd to desktop-hppa
+  * Added kcontrol to desktop-hppa
+  * Added gstreamer0.8-vorbis to desktop-hppa
+  * Added kwin to desktop-hppa
+  * Added kdeadmin-kfile-plugins to desktop-hppa
+  * Added usplash to desktop-sparc
+  * Added ttf-dejavu to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added gstreamer0.8-flac to desktop-hppa
+  * Added kdebase-kio-plugins to desktop-hppa
+  * Added gstreamer0.8-hermes to desktop-hppa
+  * Added kate to desktop-hppa
+  * Added readahead to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added konserve to desktop-hppa
+  * Added kdepasswd to desktop-hppa
+  * Added gstreamer0.8-cdparanoia to desktop-hppa
+  * Added kmenuedit to desktop-hppa
+  * Added kghostview to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added khelpcenter to desktop-hppa
+  * Added gstreamer0.8-dv to desktop-hppa
+  * Added katapult to desktop-hppa
+  * Added gstreamer0.8-x to desktop-hppa
+  * Added gstreamer0.8-musepack to desktop-hppa
+  * Added gtk2-engines-gtk-qt to desktop-sparc, desktop-hppa
+  * Added gstreamer0.8-theora to desktop-hppa
+  * Added tdescreensaver to desktop-hppa
+  * Added kdesktop to desktop-hppa
+  * Added klipper to desktop-hppa
+  * Added konsole to desktop-hppa
+  * Added ksmserver to desktop-hppa
+  * Added gstreamer0.8-speex to desktop-hppa
+  * Added gstreamer0.8-sdl to desktop-hppa
+  * Added kfind to desktop-hppa
+  * Added gwenview to desktop-hppa
+  * Added adept to desktop-sparc, desktop-hppa
+  * Added gstreamer0.8-misc to desktop-hppa
+  * Added kubuntu-artwork-usplash to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added gstreamer0.8-gsm to desktop-hppa
+  * Added kuser to desktop-hppa
+  * Added konqueror to desktop-hppa
+  * Added gstreamer0.8-jpeg to desktop-hppa
+  * Added ksplash to desktop-hppa
+  * Added kcron to desktop-hppa
+  * Added libxp6 to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added ksysguard to desktop-hppa
+  * Added libgstreamer-plugins0.8-0 to desktop-hppa
+  * Added gstreamer0.8-audiofile to desktop-hppa
+  * Added gstreamer0.8-plugin-apps to desktop-hppa
+  * Added kdeprint to desktop-hppa
+  * Added gstreamer0.8-oss to desktop-hppa
+  * Added gstreamer0.8-alsa to desktop-hppa
+  * Removed powermanagement-interface from desktop-sparc, desktop-hppa
+  * Removed readahead-list from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  4 Oct 2005 22:58:38 +0100
+
+kubuntu-meta (0.52) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added gtk2-engines-gtk-qt to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64
+  * Added ttf-mgopen to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added iproute to minimal-hppa
+  * Added dbus to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc, desktop-hppa
+  * Added usplash to desktop-powerpc
+  * Added adept to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64
+  * Added kdebluetooth to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed dbus-1-utils from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-kde-zh from live-powerpc
+  * Removed language-pack-kde-ca from live-powerpc
+  * Removed kynaptic from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 21 Sep 2005 01:09:58 +0100
+
+kubuntu-meta (0.51) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-kde-da to live-ia64
+  * Added lvm2 to standard-hppa
+  * Added language-pack-kde-eu to live-ia64
+  * Added language-pack-pl to live-ia64
+  * Added language-pack-kde-sr to live-ia64
+  * Added language-pack-kde-fi to live-ia64
+  * Added language-pack-kde-bg to live-ia64
+  * Added language-pack-ro to live-ia64
+  * Added kdepim-kio-plugins to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added kdebase-kio-plugins to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added language-pack-kde-xh to live-ia64
+  * Added language-pack-vi to live-ia64
+  * Added language-pack-it to live-ia64
+  * Added language-pack-kde-tr to live-ia64
+  * Added language-pack-kde-sk to live-ia64
+  * Added language-pack-el to live-ia64
+  * Added language-pack-kde-ko to live-ia64
+  * Added language-pack-sk to live-ia64
+  * Added language-pack-eu to live-ia64
+  * Added language-pack-tr to live-ia64
+  * Added language-pack-kde-ms to live-ia64
+  * Added language-pack-kde-ro to live-ia64
+  * Added language-pack-hu to live-ia64
+  * Added language-pack-kde-it to live-ia64
+  * Added language-pack-cs to live-ia64
+  * Added language-pack-kde-el to live-ia64
+  * Added language-pack-ko to live-ia64
+  * Added xorg-driver-synaptics to desktop-hppa
+  * Added language-pack-sv to live-ia64
+  * Added language-pack-sq to live-ia64
+  * Added language-pack-sr to live-ia64
+  * Added language-pack-ms to live-ia64
+  * Added language-pack-sl to live-ia64
+  * Added language-pack-no to live-ia64
+  * Added language-pack-lt to live-ia64
+  * Added language-pack-nl to live-ia64
+  * Added language-pack-kde-cs to live-ia64
+  * Added language-pack-nb to live-ia64
+  * Added language-pack-uk to live-ia64
+  * Added language-pack-hr to live-ia64
+  * Added language-pack-da to live-ia64
+  * Added speedcrunch to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added language-pack-fi to live-ia64
+  * Added language-pack-kde-sv to live-ia64
+  * Added language-pack-kde-lt to live-ia64
+  * Added language-pack-kde-nl to live-ia64
+  * Added language-pack-bg to live-ia64
+  * Added language-pack-kde-no to live-ia64
+  * Added language-pack-xh to live-ia64
+  * Added language-pack-kde-uk to live-ia64
+  * Added language-pack-kde-sl to live-ia64
+  * Added language-pack-kde-hu to live-ia64
+  * Added language-pack-kde-pl to live-ia64
+  * Added language-pack-kde-nb to live-ia64
+  * Removed language-pack-ar from live-amd64
+  * Removed language-pack-kde-bn from live-i386, live-amd64, live-sparc,
+    live-hppa
+  * Removed language-pack-kde-de from live-amd64
+  * Removed language-pack-ru from live-amd64
+  * Removed language-pack-kde-ru from live-amd64
+  * Removed language-pack-pt from live-amd64
+  * Removed language-pack-kde-fr from live-amd64
+  * Removed language-pack-kde-zh from live-i386, live-amd64, live-sparc,
+    live-hppa
+  * Removed language-pack-kde-ar from live-amd64
+  * Removed libgstreamer-gconf0.8-0 from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Removed language-pack-ca from live-amd64
+  * Removed language-pack-kde-pt from live-amd64
+  * Removed language-pack-es from live-i386, live-amd64, live-sparc,
+    live-hppa
+  * Removed python-numarray from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed language-pack-hi from live-amd64
+  * Removed language-pack-ja from live-amd64
+  * Removed language-pack-kde-ja from live-amd64
+  * Removed language-pack-kde-ca from live-amd64
+  * Removed language-pack-kde-es from live-i386, live-amd64, live-sparc,
+    live-hppa
+  * Removed gstreamer0.8-esd from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed language-pack-bn from live-i386, live-amd64, live-sparc,
+    live-hppa
+  * Removed language-pack-kde-hi from live-amd64
+  * Removed language-pack-de from live-amd64
+  * Removed language-pack-fr from live-amd64
+  * Removed gstreamer0.8-gnomevfs from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Removed language-pack-zh from live-i386, live-amd64, live-sparc,
+    live-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed,  7 Sep 2005 18:57:57 +0100
+
+kubuntu-meta (0.50) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added krita to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added libgl1-mesa to desktop-hppa
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Fri, 26 Aug 2005 16:01:12 -0700
+
+kubuntu-meta (0.49) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added kio-locate to desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added language-pack-kde-bn to live-powerpc, live-ia64, live-sparc,
+    live-hppa
+  * Added language-pack-kde-de to live-powerpc, live-ia64
+  * Added hplip-ppds to desktop-powerpc, desktop-ia64, desktop-sparc,
+    desktop-hppa
+  * Added language-pack-kde-fr to live-powerpc, live-ia64
+  * Added language-pack-kde-zh to live-powerpc, live-ia64, live-sparc,
+    live-hppa
+  * Added libgl1-mesa to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kaffeine-gstreamer to desktop-sparc
+  * Added language-pack-kde-ar to live-powerpc, live-ia64
+  * Added python-syck to desktop-ia64
+  * Added ksystemlog to desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added language-pack-kde-ru to live-powerpc, live-ia64
+  * Added language-pack-kde-pt to live-powerpc, live-ia64
+  * Added katapult to desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added language-pack-kde-en to live-powerpc, live-ia64, live-sparc,
+    live-hppa
+  * Added language-pack-kde-ca to live-powerpc, live-ia64
+  * Added bogofilter to desktop-hppa
+  * Added language-pack-kde-es to live-powerpc, live-ia64, live-sparc,
+    live-hppa
+  * Added language-pack-kde-ja to live-powerpc, live-ia64
+  * Added language-pack-kde-hi to live-powerpc, live-ia64
+  * Added gstreamer0.8-musepack to desktop-powerpc, desktop-ia64,
+    desktop-sparc
+  * Added hplip-base to desktop-powerpc, desktop-ia64, desktop-sparc,
+    desktop-hppa
+  * Removed language-pack-ar from live-sparc, live-hppa
+  * Removed openoffice.org from desktop-ia64, desktop-sparc
+  * Removed language-pack-pl from live-powerpc, live-ia64
+  * Removed language-pack-ru from live-sparc, live-hppa
+  * Removed language-pack-ko from live-powerpc, live-ia64
+  * Removed language-pack-ms from live-ia64
+  * Removed language-pack-ro from live-ia64
+  * Removed language-pack-pt from live-sparc, live-hppa
+  * Removed language-pack-vi from live-ia64
+  * Removed language-pack-it from live-powerpc, live-ia64
+  * Removed libgl1-xorg from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed language-pack-fr from live-sparc, live-hppa
+  * Removed language-pack-el from live-powerpc, live-ia64
+  * Removed language-pack-ca from live-sparc, live-hppa
+  * Removed language-pack-nl from live-powerpc, live-ia64
+  * Removed language-pack-eu from live-ia64
+  * Removed bind9-host from standard-powerpc, standard-ia64, standard-
+    sparc, standard-hppa
+  * Removed language-pack-cs from live-powerpc, live-ia64
+  * Removed language-pack-tr from live-powerpc, live-ia64
+  * Removed language-pack-hi from live-sparc, live-hppa
+  * Removed language-pack-ja from live-sparc, live-hppa
+  * Removed language-pack-sv from live-powerpc, live-ia64
+  * Removed language-pack-sq from live-ia64
+  * Removed language-pack-sr from live-powerpc, live-ia64
+  * Removed language-pack-sl from live-ia64
+  * Removed language-pack-no from live-powerpc, live-ia64
+  * Removed language-pack-lt from live-ia64
+  * Removed language-pack-sk from live-powerpc, live-ia64
+  * Removed language-pack-hu from live-powerpc, live-ia64
+  * Removed language-pack-nb from live-powerpc, live-ia64
+  * Removed language-pack-uk from live-powerpc, live-ia64
+  * Removed language-pack-hr from live-ia64
+  * Removed language-pack-da from live-powerpc, live-ia64
+  * Removed language-pack-fi from live-powerpc, live-ia64
+  * Removed language-pack-de from live-sparc, live-hppa
+  * Removed language-pack-bg from live-ia64
+  * Removed language-pack-xh from live-ia64
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Mon, 22 Aug 2005 17:34:55 -0700
+
+kubuntu-meta (0.48) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added bluez-pcmcia-support to desktop-i386, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added gstreamer0.8-dvd to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-vorbis to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added usplash to desktop-i386, desktop-amd64
+  * Added gstreamer0.8-hermes to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-flac to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-sdl to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added bluez-cups to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kaffeine-gstreamer to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64
+  * Added libgl1-xorg to desktop-amd64
+  * Added openoffice.org2 to desktop-amd64
+  * Added gstreamer0.8-cdparanoia to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added libgstreamer-gconf0.8-0 to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-dv to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added hotkey-setup to desktop-i386
+  * Added gstreamer0.8-x to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added openoffice.org2-kde to desktop-amd64
+  * Added gstreamer0.8-theora to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-speex to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-misc to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-gsm to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added libgstreamer0.8-0 to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added gstreamer0.8-esd to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-jpeg to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added bluez-utils to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added libgstreamer-plugins0.8-0 to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-gnomevfs to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-audiofile to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added initramfs-tools to minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Added gstreamer0.8-plugin-apps to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-oss to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added gstreamer0.8-alsa to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed initrd-tools from minimal-i386, minimal-amd64, minimal-
+    powerpc, minimal-ia64, minimal-sparc, minimal-hppa
+  * Removed kaffeine from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed openoffice.org from desktop-amd64
+  * Removed openoffice.org-kde from desktop-sparc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Fri, 12 Aug 2005 10:17:36 -0700
+
+kubuntu-meta (0.47) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added alsa-utils to minimal-i386, minimal-amd64, minimal-powerpc,
+    minimal-ia64, minimal-sparc, minimal-hppa
+  * Added ksvg to desktop-hppa
+  * Added kdegraphics-kfile-plugins to desktop-hppa
+  * Added laptop-detect to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added xkeyboard-config to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added lshw to standard-hppa
+  * Added kaffeine to desktop-hppa
+  * Added kubuntu-docs to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added python2.4-dbus to desktop-hppa
+  * Added kppp to desktop-hppa
+  * Added xresprobe to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added libgl1-xorg to desktop-i386, desktop-powerpc, desktop-ia64,
+    desktop-sparc
+  * Added hal to desktop-hppa
+  * Added qca-tls to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kooka to desktop-hppa
+  * Added cupsys-client to desktop-hppa
+  * Added wvdial to desktop-hppa
+  * Added ksnapshot to desktop-hppa
+  * Added kde-systemsettings to desktop-hppa
+  * Added kpdf to desktop-hppa
+  * Added yaboot to live-powerpc
+  * Added discover1 to live-i386, live-amd64, live-powerpc, live-ia64,
+    live-sparc, live-hppa
+  * Added krdc to desktop-hppa
+  * Added kubuntu-konqueror-shortcuts to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Added kdenetwork-kfile-plugins to desktop-hppa
+  * Added ivman to desktop-hppa
+  * Added dbus-1-utils to desktop-hppa
+  * Added cupsys to desktop-hppa
+  * Added krfb to desktop-hppa
+  * Added kopete to desktop-hppa
+  * Added nano to standard-hppa
+  * Added strace to minimal-hppa
+  * Added kdenetwork-filesharing to desktop-hppa
+  * Added kwifimanager to desktop-hppa
+  * Added kpf to desktop-hppa
+  * Added k3b to desktop-hppa
+  * Added cupsys-bsd to desktop-hppa
+  * Added pmount to desktop-hppa
+  * Added kamera to desktop-hppa
+  * Removed xlibmesa-gl from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Mon,  8 Aug 2005 01:50:42 +0100
+
+kubuntu-meta (0.46) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added python-cddb to desktop-hppa
+  * Added bsdutils to minimal-hppa
+  * Added cupsys-driver-gimpprint to desktop-hppa
+  * Added less to minimal-hppa
+  * Added sysvinit to minimal-hppa
+  * Added passwd to minimal-hppa
+  * Added findutils to minimal-hppa
+  * Added util-linux to minimal-hppa
+  * Added python2.4-librdf to desktop-hppa
+  * Added grepmap to minimal-hppa
+  * Added python-musicbrainz to desktop-hppa
+  * Added ethtool to minimal-hppa
+  * Added lftp to desktop-hppa
+  * Added unzip to desktop-hppa
+  * Added python2.4-pycurl to desktop-hppa
+  * Added mkisofs to desktop-hppa
+  * Added xterm to desktop-hppa
+  * Added dc to desktop-hppa
+  * Added vim to minimal-hppa
+  * Added libfribidi0 to minimal-hppa
+  * Added python-netcdf to desktop-hppa
+  * Added ivman to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added ifrename to minimal-hppa
+  * Added reiserfsprogs to minimal-hppa
+  * Added bind9-host to standard-hppa
+  * Added powermanagement-interface to desktop-hppa
+  * Added dmsetup to standard-hppa
+  * Added psmisc to standard-hppa
+  * Added net-tools to minimal-hppa
+  * Added gettext-base to minimal-hppa
+  * Added dselect to standard-hppa
+  * Added python-pyvorbis to desktop-hppa
+  * Added python2.4-libxslt1 to desktop-hppa
+  * Added x-window-system-core to desktop-hppa
+  * Added parted to standard-hppa
+  * Added ed to standard-hppa
+  * Added dosfstools to minimal-hppa
+  * Added fetchmail to desktop-hppa
+  * Added udev to minimal-hppa
+  * Added cron to standard-hppa
+  * Added sed to minimal-hppa
+  * Added python2.4-libxml2 to desktop-hppa
+  * Added mdadm to standard-hppa
+  * Added python-newt to desktop-hppa
+  * Added kde-systemsettings to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added sysklogd to minimal-hppa
+  * Added ftp to standard-hppa
+  * Added rsync to standard-hppa
+  * Added openssh-client to standard-hppa
+  * Added evms-ncurses to standard-hppa
+  * Added dvd+rw-tools to desktop-hppa
+  * Added slocate to desktop-hppa
+  * Added console-tools to minimal-hppa
+  * Added screen to desktop-hppa
+  * Added irssi-text to desktop-hppa
+  * Added evms to standard-hppa
+  * Added bc to desktop-hppa
+  * Added ubuntu-minimal to minimal-hppa
+  * Added smbclient to desktop-hppa
+  * Added iputils-tracepath to standard-hppa
+  * Added procmail to desktop-hppa
+  * Added wget to standard-hppa
+  * Added pcmcia-cs to live-hppa
+  * Added bash to minimal-hppa
+  * Added mawk to minimal-hppa
+  * Added foomatic-db-engine to desktop-hppa
+  * Added cdrecord to desktop-hppa
+  * Added python-pisock to desktop-hppa
+  * Added jfsutils to minimal-hppa
+  * Added login to minimal-hppa
+  * Added lsof to standard-hppa
+  * Added fortune-mod to desktop-hppa
+  * Added python-pqueue to desktop-hppa
+  * Added ppp to standard-hppa
+  * Added aptitude to minimal-hppa
+  * Added libreiserfs0.3-0 to minimal-hppa
+  * Added diff to minimal-hppa
+  * Added python-parted to desktop-hppa
+  * Added lsb-release to minimal-hppa
+  * Added ifupdown to minimal-hppa
+  * Added zip to desktop-hppa
+  * Added ntpdate to minimal-hppa
+  * Added w3m to standard-hppa
+  * Added dnsutils to standard-hppa
+  * Added python2.4-samba to desktop-hppa
+  * Added ubuntu-standard to standard-hppa
+  * Added mtr-tiny to standard-hppa
+  * Added python-gdchart to desktop-hppa
+  * Added dhcp3-client to minimal-hppa
+  * Added python-pyao to desktop-hppa
+  * Added telnet to standard-hppa
+  * Added fdutils to standard-hppa
+  * Added hdparm to standard-hppa
+  * Added debianutils to minimal-hppa
+  * Added cdparanoia to desktop-hppa
+  * Added dpkg to minimal-hppa
+  * Added iputils-ping to minimal-hppa
+  * Added info to standard-hppa
+  * Added grep to minimal-hppa
+  * Added tcpdump to standard-hppa
+  * Added mount to minimal-hppa
+  * Added initscripts to minimal-hppa
+  * Added gnupg to minimal-hppa
+  * Added procps to minimal-hppa
+  * Added iptables to standard-hppa
+  * Added xfsprogs to minimal-hppa
+  * Added powernowd to desktop-hppa
+  * Added gs-esp to desktop-hppa
+  * Added man-db to standard-hppa
+  * Added sudo to minimal-hppa
+  * Added logrotate to standard-hppa
+  * Added vorbis-tools to desktop-hppa
+  * Added at to standard-hppa
+  * Added file to standard-hppa
+  * Added base-files to minimal-hppa
+  * Added mii-diag to minimal-hppa
+  * Added tar to minimal-hppa
+  * Added bzip2 to minimal-hppa
+  * Added python-syck to desktop-hppa
+  * Added xlibmesa-gl to desktop-hppa
+  * Added hostname to minimal-hppa
+  * Added coreutils to minimal-hppa
+  * Added libsasl2-modules to desktop-hppa
+  * Added readahead-list to desktop-hppa
+  * Added python-numarray to desktop-hppa
+  * Added pnm2ppa to desktop-hppa
+  * Added wireless-tools to minimal-hppa
+  * Added ntfsprogs to live-hppa
+  * Added ncurses-bin to minimal-hppa
+  * Added time to standard-hppa
+  * Added anacron to desktop-hppa
+  * Added cpio to standard-hppa
+  * Added iputils-arping to standard-hppa
+  * Added netcat to minimal-hppa
+  * Added eject to minimal-hppa
+  * Added usbutils to minimal-hppa
+  * Added e2fsprogs to minimal-hppa
+  * Added python-crypto to desktop-hppa
+  * Added perl-base to minimal-hppa
+  * Added module-init-tools to minimal-hppa
+  * Added pciutils to minimal-hppa
+  * Added gzip to minimal-hppa
+  * Added base-passwd to minimal-hppa
+  * Added reiser4progs to minimal-hppa
+  * Removed ubuntu-quickguide from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc, desktop-hppa
+  * Removed juk from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kcalc from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed python-gst from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 13 Jul 2005 19:06:47 +0100
+
+kubuntu-meta (0.45) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added ksmserver to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added ubuntu-express to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc, live-hppa
+  * Added grub to live-i386, live-amd64
+  * Removed cupsys-driver-gimpprint from desktop-hppa
+  * Removed sysvinit from minimal-hppa
+  * Removed findutils from minimal-hppa
+  * Removed hal from desktop-hppa
+  * Removed python-musicbrainz from desktop-hppa
+  * Removed vorbis-tools from desktop-hppa
+  * Removed python2.4-pycurl from desktop-hppa
+  * Removed mkisofs from desktop-hppa
+  * Removed ntfsprogs from live-hppa
+  * Removed dc from desktop-hppa
+  * Removed python-netcdf from desktop-hppa
+  * Removed ifrename from minimal-hppa
+  * Removed util-linux from minimal-hppa
+  * Removed bind9-host from standard-hppa
+  * Removed powermanagement-interface from desktop-hppa
+  * Removed dmsetup from standard-hppa
+  * Removed psmisc from standard-hppa
+  * Removed gettext-base from minimal-hppa
+  * Removed dselect from standard-hppa
+  * Removed python2.4-libxslt1 from desktop-hppa
+  * Removed x-window-system-core from desktop-hppa
+  * Removed cupsys-bsd from desktop-hppa
+  * Removed parted from standard-hppa
+  * Removed fetchmail from desktop-hppa
+  * Removed udev from minimal-hppa
+  * Removed cron from standard-hppa
+  * Removed sed from minimal-hppa
+  * Removed python2.4-libxml2 from desktop-hppa
+  * Removed mdadm from standard-hppa
+  * Removed python-newt from desktop-hppa
+  * Removed ftp from standard-hppa
+  * Removed openssh-client from standard-hppa
+  * Removed nano from standard-hppa
+  * Removed evms-ncurses from standard-hppa
+  * Removed passwd from minimal-hppa
+  * Removed console-tools from minimal-hppa
+  * Removed irssi-text from desktop-hppa
+  * Removed evms from standard-hppa
+  * Removed bc from desktop-hppa
+  * Removed smbclient from desktop-hppa
+  * Removed procmail from desktop-hppa
+  * Removed bogofilter from desktop-hppa
+  * Removed pcmcia-cs from live-hppa
+  * Removed bash from minimal-hppa
+  * Removed mawk from minimal-hppa
+  * Removed foomatic-db-engine from desktop-hppa
+  * Removed cdrecord from desktop-hppa
+  * Removed python-pisock from desktop-hppa
+  * Removed jfsutils from minimal-hppa
+  * Removed pmount from desktop-hppa
+  * Removed login from minimal-hppa
+  * Removed lsof from standard-hppa
+  * Removed lvm2 from standard-hppa
+  * Removed fortune-mod from desktop-hppa
+  * Removed vim from minimal-hppa
+  * Removed ppp from standard-hppa
+  * Removed libreiserfs0.3-0 from minimal-hppa
+  * Removed diff from minimal-hppa
+  * Removed lsb-release from minimal-hppa
+  * Removed powernowd from desktop-hppa
+  * Removed zip from desktop-hppa
+  * Removed ntpdate from minimal-hppa
+  * Removed w3m from standard-hppa
+  * Removed dnsutils from standard-hppa
+  * Removed python2.4-samba from desktop-hppa
+  * Removed mtr-tiny from standard-hppa
+  * Removed dhcp3-client from minimal-hppa
+  * Removed fdutils from standard-hppa
+  * Removed hdparm from standard-hppa
+  * Removed reiser4progs from minimal-hppa
+  * Removed bsdutils from minimal-hppa
+  * Removed cupsys from desktop-hppa
+  * Removed dpkg from minimal-hppa
+  * Removed grep from minimal-hppa
+  * Removed tcpdump from standard-hppa
+  * Removed mount from minimal-hppa
+  * Removed initscripts from minimal-hppa
+  * Removed gnupg from minimal-hppa
+  * Removed procps from minimal-hppa
+  * Removed xfsprogs from minimal-hppa
+  * Removed tar from minimal-hppa
+  * Removed logrotate from standard-hppa
+  * Removed at from standard-hppa
+  * Removed base-files from minimal-hppa
+  * Removed mii-diag from minimal-hppa
+  * Removed bzip2 from minimal-hppa
+  * Removed python-syck from desktop-hppa
+  * Removed xlibmesa-gl from desktop-hppa
+  * Removed hostname from minimal-hppa
+  * Removed coreutils from minimal-hppa
+  * Removed libsasl2-modules from desktop-hppa
+  * Removed readahead-list from desktop-hppa
+  * Removed python-numarray from desktop-hppa
+  * Removed pnm2ppa from desktop-hppa
+  * Removed wireless-tools from minimal-hppa
+  * Removed ncurses-bin from minimal-hppa
+  * Removed anacron from desktop-hppa
+  * Removed cpio from standard-hppa
+  * Removed cupsys-client from desktop-hppa
+  * Removed eject from minimal-hppa
+  * Removed e2fsprogs from minimal-hppa
+  * Removed python-crypto from desktop-hppa
+  * Removed perl-base from minimal-hppa
+  * Removed module-init-tools from minimal-hppa
+  * Removed ifupdown from minimal-hppa
+  * Removed time from standard-hppa
+  * Removed gzip from minimal-hppa
+  * Removed base-passwd from minimal-hppa
+  * Removed debianutils from minimal-hppa
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 30 Jun 2005 14:25:59 +0100
+
+kubuntu-meta (0.44) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Added tdewalletmanager to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu,  9 Jun 2005 23:32:00 +0000
+
+kubuntu-meta (0.43) breezy; urgency=low
+
+  * Sync update script with ubuntu-meta
+  * Add hppa as a port architecture on request of lamont
+  * Refreshed dependencies
+  * Added kdegraphics-kfile-plugins to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added konqueror-nsplugins to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added kcontrol to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kmenuedit to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added knotes to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kwin to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kdeadmin-kfile-plugins to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added kuser to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added korganizer to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added ksysguard to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kcron to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added ksvg to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added krdc to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kdepim-wizards to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added ark to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kdemultimedia-kfile-plugins to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added readahead-list to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added karm to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kpdf to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kdepasswd to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kooka to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kmilo to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kscd to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kate to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added khelpcenter to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added ntfsprogs to live-ia64
+  * Added kmail to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdeprint to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added ksnapshot to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added vorbis-tools to desktop-ia64
+  * Added kdesktop to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added konqueror to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added klipper to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added juk to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kdemultimedia-kappfinder-data to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added kcalc to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kfind to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kaudiocreator to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kaddressbook to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdenetwork-kfile-plugins to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added kppp to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added krfb to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kopete to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added klaptopdaemon to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added gwenview to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added akode to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added konsole to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added ksplash to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdemultimedia-kio-plugins to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added kdenetwork-filesharing to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added akregator to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kwifimanager to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kpf to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kontact to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kmix to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kamera to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kicker to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kdepim from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed lsb from desktop-ia64
+  * Removed kdebase from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed dbus-qt-1 from desktop-ia64, desktop-sparc
+  * Removed kdemultimedia from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed kdeutils from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kdegraphics from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed readahead from desktop-ia64
+  * Removed kdeadmin from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kdenetwork from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+
+ -- Jonathan Riddell <jr@jriddell.org>  Mon,  6 Jun 2005 10:44:17 +0000
+
+kubuntu-meta (0.42) breezy; urgency=low
+
+  * Refreshed dependencies
+  * Removed lsb from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-sparc
+  * Removed readahead from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-sparc
+  * Removed dbus-qt-1 from desktop-i386, desktop-amd64, desktop-powerpc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Mon, 23 May 2005 17:20:05 -0700
+
+kubuntu-meta (0.41) breezy; urgency=low
+
+  * Merge changes to update script from ubuntu-meta
+  * Refreshed dependencies
+  * Added openoffice.org2-kde to desktop-i386, desktop-powerpc
+  * Added vorbis-tools to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-sparc
+  * Added openoffice.org2 to desktop-i386, desktop-powerpc
+  * Added ntfsprogs to live-i386, live-amd64, live-powerpc, live-sparc
+  * Removed openoffice.org from desktop-i386, desktop-powerpc
+  * Removed openoffice.org-kde from desktop-i386, desktop-powerpc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Fri, 15 Apr 2005 07:58:52 -0700
+
+kubuntu-meta (0.40) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added pmount to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 30 Mar 2005 03:17:50 +0100
+
+kubuntu-meta (0.39) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added knetworkconf to desktop-sparc
+  * Added konq-plugins to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added openoffice.org-kde to desktop-sparc
+  * Removed hal-device-manager from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Tue, 29 Mar 2005 10:20:45 -0800
+
+kubuntu-meta (0.38) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added tdescreensaver to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed python-glade2 from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed xscreensaver from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed xscreensaver-gl from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed rss-glx from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed python-gnome2 from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed python-gtk2 from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+
+ -- Jonathan Riddell <jr@jriddell.org>  Tue, 29 Mar 2005 02:52:52 +0100
+
+kubuntu-meta (0.37) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added kdm to desktop-sparc
+  * Added knetworkconf to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64
+  * Added konserve to desktop-sparc
+  * Added konversation to desktop-sparc
+  * Added amarok to desktop-sparc
+  * Added kaffeine to desktop-sparc
+  * Added k3b to desktop-sparc
+  * Added openoffice.org-kde to desktop-i386, desktop-powerpc
+
+ -- Jonathan Riddell <jr@jriddell.org>  Mon, 28 Mar 2005 16:49:55 +0100
+
+kubuntu-meta (0.36) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added openoffice.org to desktop-ia64
+  * Added language-pack-pl to live-powerpc, live-ia64
+  * Added language-pack-tr to live-powerpc, live-ia64
+  * Added language-pack-ms to live-ia64
+  * Added language-pack-ro to live-ia64
+  * Added language-pack-vi to live-ia64
+  * Added language-pack-it to live-powerpc, live-ia64
+  * Added language-pack-el to live-powerpc, live-ia64
+  * Added language-pack-ca to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added language-pack-nl to live-powerpc, live-ia64
+  * Added language-pack-eu to live-ia64
+  * Added language-pack-cs to live-powerpc, live-ia64
+  * Added language-pack-ko to live-powerpc, live-ia64
+  * Added language-pack-sv to live-powerpc, live-ia64
+  * Added language-pack-sq to live-ia64
+  * Added language-pack-sr to live-powerpc, live-ia64
+  * Added language-pack-sl to live-ia64
+  * Added language-pack-no to live-powerpc, live-ia64
+  * Added language-pack-lt to live-ia64
+  * Added language-pack-sk to live-powerpc, live-ia64
+  * Added language-pack-hu to live-powerpc, live-ia64
+  * Added language-pack-nb to live-powerpc, live-ia64
+  * Added language-pack-uk to live-powerpc, live-ia64
+  * Added language-pack-hr to live-ia64
+  * Added language-pack-da to live-powerpc, live-ia64
+  * Added language-pack-fi to live-powerpc, live-ia64
+  * Added language-pack-bg to live-ia64
+  * Added language-pack-xh to live-ia64
+  * Removed ubuntu-faqguide from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Thu, 17 Mar 2005 10:29:00 -0800
+
+kubuntu-meta (0.35) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added kubuntu-default-settings to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Added powermanagement-interface to desktop-sparc
+  * Removed ubuntu-sounds from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+
+ -- Jonathan Riddell <jr@jriddell.org>  Thu, 17 Mar 2005 06:33:34 +0000
+
+kubuntu-meta (0.34) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Removed scribus from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kdegames from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Tue,  8 Mar 2005 14:23:21 -0800
+
+kubuntu-meta (0.33) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Removed kdeartwork from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed kdeaddons from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kdewebdev from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kdetoys from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+
+ -- LaMont Jones <lamont@ubuntu.com>  Tue,  8 Mar 2005 12:36:48 -0700
+
+kubuntu-meta (0.32) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added amarok to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Tue,  8 Mar 2005 06:57:51 -0800
+
+kubuntu-meta (0.31) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added scribus to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed gimp-python from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Mon,  7 Mar 2005 17:35:18 -0800
+
+kubuntu-meta (0.30) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added language-pack-ar to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added language-pack-bn to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added language-pack-hi to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added language-pack-ja to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added language-pack-pt to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added language-pack-ru to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added language-pack-de to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added ubuntu-quickguide to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added language-pack-fr to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added ubuntu-faqguide to desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Added language-pack-es to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Added language-pack-zh to live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+  * Removed update-notifier from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Fri,  4 Mar 2005 12:49:54 -0800
+
+kubuntu-meta (0.29) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Added acpi-support to desktop-ia64
+  * Removed ubuntu-live from live-i386, live-amd64, live-powerpc, live-
+    ia64, live-sparc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Thu,  3 Mar 2005 11:56:10 -0800
+
+kubuntu-meta (0.28) hoary; urgency=low
+
+  * Remove kubuntu-base metapackage, add kubuntu-live
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Wed,  2 Mar 2005 11:46:13 -0800
+
+kubuntu-meta (0.27) hoary; urgency=low
+
+  * Refreshed dependencies
+  * Kubuntu is now in main!
+  * Added kdeaddons to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added konversation to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64
+  * Added konserve to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64
+  * Added kdebase to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kynaptic to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdeartwork to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added dbus-qt-1 to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdetoys to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdeadmin to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added arts to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64, desktop-sparc
+  * Added kdemultimedia to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdegames to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdeutils to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdegraphics to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kaffeine to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64
+  * Added k3b to desktop-i386, desktop-amd64, desktop-powerpc, desktop-
+    ia64
+  * Added kdepim to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added powermanagement-interface to desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64
+  * Added ubuntu-sounds to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdewebdev to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Added kdenetwork to desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kde from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed apmd from desktop-amd64, desktop-powerpc, desktop-ia64,
+    desktop-sparc
+  * Removed kdm from desktop-sparc
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Wed,  2 Mar 2005 08:14:47 -0800
+
+kubuntu-meta (0.26) hoary; urgency=low
+
+  * Fix update script
+  * Refreshed dependencies
+  * Added libglut3 to desktop-i386
+  * Removed kdm from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed vino from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed kde from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed myspell-en-us from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed gucharmap from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed xvncviewer from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed xsane from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed gimp from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed tsclient from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed openoffice.org-hyphenation-en-gb from desktop-i386, desktop-
+    amd64, desktop-powerpc, desktop-sparc
+  * Removed synaptic from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed mozilla-firefox from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed file-roller from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed desktop-file-utils from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Removed openoffice.org-help-en from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-sparc
+  * Removed ubuntu-sounds from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed xchat from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed python-hip from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed contact-lookup-applet from desktop-i386, desktop-amd64,
+    desktop-powerpc, desktop-ia64, desktop-sparc
+  * Removed eog from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed xpdf from desktop-i386, desktop-amd64, desktop-powerpc,
+    desktop-ia64, desktop-sparc
+  * Removed scrollkeeper from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed ssh-askpass-gnome from desktop-amd64
+  * Removed openoffice.org-hyphenation-en-us from desktop-i386, desktop-
+    amd64, desktop-powerpc, desktop-sparc
+  * Removed myspell-en-gb from desktop-i386, desktop-amd64, desktop-
+    powerpc, desktop-ia64, desktop-sparc
+  * Removed sound-juicer from desktop-amd64
+  * Re-add kde and kdm by hand
+
+ -- Matt Zimmerman <mdz@ubuntu.com>  Sun, 27 Feb 2005 16:48:38 -0800
+
+kubuntu-meta (0.25) hoary; urgency=low
+
+  * Initial release
+
+ -- Andreas Mueller <amu@ubuntu.com>  Thu,  7 Oct 2004 12:13:43 -0700

@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+# include /usr/share/cdbs/1/class/kde.mk
+include debian/cdbs/debian-qt-kde.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+
+DEB_INSTALL_MANPAGES_kerry-trinity = kerry.1
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+build/kerry-trinity::
+	docbook2x-man debian/kerry.1.docbook
+
+clean::
+	rm -f kerry.1
+
+binary-post-install/kerry-trinity::
+	chrpath -d debian/kerry-trinity/opt/trinity/lib/libtdeinit_kerry.so
+	chrpath -d debian/kerry-trinity/opt/trinity/bin/kerry
+	chrpath -d debian/kerry-trinity/opt/trinity/lib/trinity/kerry.so
+	chrpath -d debian/kerry-trinity/opt/trinity/lib/trinity/kcm_beagle.so
+	mkdir -p debian/kerry-trinity/opt/trinity/share/man/man1/
+	mv debian/kerry-trinity/usr/share/man/man1/kerry.1 debian/kerry-trinity/opt/trinity/share/man/man1/kerry.1
+	rm -rf debian/kerry-trinity/usr/share/man

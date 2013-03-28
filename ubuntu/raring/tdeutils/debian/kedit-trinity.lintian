@@ -1,0 +1,3 @@
+kedit: no-shlibs-control-file opt/trinity/lib/libtdeinit_kedit.so
+kedit: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kedit.so
+kedit: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kedit.so

@@ -1,0 +1,23 @@
+Source: tqca-tls
+Section: libs
+Priority: optional
+Maintainer: Jan Niehusmann <jan@debian.org>
+Build-Depends: debhelper (>= 4.0.0), libtqtinterface-dev, libssl-dev
+Standards-Version: 3.8.4
+
+Package: tqca-tls
+Section: libs
+Architecture: any
+Replaces: tqca-tls (<< 4:14.0.0)
+Breaks: tqca-tls (<< 4:14.0.0)
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: TLS plugin for the TQt Cryptographic Architecture (TQCA)
+ This is a plugin to provide SSL/TLS capability to programs that
+ utilize the TQt Cryptographic Architecture (TQCA).
+ .
+ TQCA is a library providing an easy API for several cryptographic algorithms 
+ to TQt programs.
+ .
+ At the moment only the tqca-tls plugin is packaged for debian, as it's
+ used by the package 'psi'. The generic library and several other plugins
+ will be packaged when upstream releases them.

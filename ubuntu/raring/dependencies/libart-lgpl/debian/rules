@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+include /usr/share/cdbs/1/class/gnome.mk
+include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
+include /usr/share/gnome-pkg-tools/1/rules/clean-la.mk
+-include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
+
+makebuilddir/kvpnc-trinity::
+	cp -Rp /usr/share/aclocal/libtool.m4 libtool.m4.in
+	cp -Rp /usr/share/libtool/config/ltmain.sh ltmain.sh
+	autoconf
+	automake
+
+libart-2.0-N := $(shell sed -rn 's/^Package:[[:space:]]*(libart-2\.0-[0-9]+)[[:space:]]*$$/\1/p' debian/control)
+
+GNOME_MODULE := libart_lgpl
+
+DEB_DH_MAKESHLIBS_ARGS_$(libart-2.0-N) += -V '$(libart-2.0-N)(>= 2.3.18)'
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)

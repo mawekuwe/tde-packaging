@@ -1,0 +1,7 @@
+?package(kaffeine):\
+	needs="X11"\
+	section="Apps/Sound"\
+	hints="TDE"\
+	title="Kaffeine"\
+	command="/opt/trinity/bin/kaffeine"\
+	icon="/usr/share/pixmaps/kaffeine.xpm"

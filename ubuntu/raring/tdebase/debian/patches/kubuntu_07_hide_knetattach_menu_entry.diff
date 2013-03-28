@@ -1,0 +1,7 @@
+--- tdebase/knetattach/knetattach.desktop	2005-03-17 02:33:16.506855480 +0000
++++ tdebase/knetattach/knetattach.desktop	2005-03-17 02:33:22.186991968 +0000
+@@ -45,3 +45,4 @@
+ X-TDE-StartupNotify=true
+ Categories=Qt;TDE;Network;
+ DocPath=knetattach/index.html
++OnlyShowIn=Old;

@@ -1,0 +1,22 @@
+Source: potracegui-trinity
+Section: graphics
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Christoph Wegscheider <christoph.wegscheider@wegi.net>
+Uploaders: Bartosz Fenski <fenio@debian.org>
+Build-Depends: debhelper (>= 5.0.51), tdelibs4-trinity-dev, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: potracegui-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, potrace
+Replaces: potracegui-kde3 (<< 4:14.0.0), potracegui-trinity (<< 4:14.0.0)
+Breaks: potracegui-kde3 (<< 4:14.0.0), potracegui-trinity (<< 4:14.0.0)
+Suggests: autotrace
+Description: KDE frontend for potrace [Trinity]
+ A KDE interface for the commandline tracing tools potrace and/or autotrace. It
+ supports drag and drop as well as all image types recognized by KDE, which are
+ a lot more than the 4 recognized by the potrace commandline tool. Loading of
+ remote files (web, ftp, ...) is also supported.  
+ .  
+ Homepage: http://potracegui.sourceforge.net

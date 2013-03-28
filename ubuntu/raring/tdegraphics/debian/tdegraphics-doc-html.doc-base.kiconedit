@@ -1,0 +1,11 @@
+Document: tdegraphics-doc-html-kiconedit
+Title: TDEIconEdit Handbook
+Author: Thomas Tanghus, Lauri Watts
+Abstract: TDEIconEdit is designed to help create icons for KDE using the
+ standard icon palette.
+Section: Apps/Graphics
+
+Format: HTML
+Index: /usr/share/doc/tde/HTML/en/kiconedit/index.html
+Files: /usr/share/doc/tde/HTML/en/kiconedit/*.html
+

@@ -1,0 +1,7 @@
+--- tdebase/kpersonalizer/kpersonalizer.desktop-orig	2005-03-17 01:05:16.091600616 +0000
++++ tdebase/kpersonalizer/kpersonalizer.desktop	2005-03-17 01:05:23.678447240 +0000
+@@ -77,3 +77,4 @@
+ X-DCOP-ServiceType=Multi
+ Categories=Qt;TDE;Settings;
+ OnlyShowIn=TDE;
++NoDisplay=true

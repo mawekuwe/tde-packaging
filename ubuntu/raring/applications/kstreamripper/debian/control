@@ -1,0 +1,17 @@
+Source: kstreamripper-trinity
+Section: sound 
+Priority: optional
+Maintainer: Michael Ablassmeier <abi@debian.org>
+Build-Depends: debhelper (>= 4.1.0), cdbs, libxmu-dev, libjpeg-dev, tdelibs4-trinity-dev, scons
+Standards-Version: 3.8.4
+
+Package: kstreamripper-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, streamripper
+Replaces: kstreamripper-kde3 (<< 4:14.0.0), kstreamripper-trinity (<< 4:14.0.0)
+Breaks: kstreamripper-kde3 (<< 4:14.0.0), kstreamripper-trinity (<< 4:14.0.0)
+Description: TDE frontend for streamripper
+ KStreamRipper is a small frontend for the streamripper command 
+ line utility. Streamripper captures internet shoutcast radio streams 
+ on your harddisk and splits them up in mp3 files. KStreamRipper helps 
+ you with managing/ripping your preferred streams.                             

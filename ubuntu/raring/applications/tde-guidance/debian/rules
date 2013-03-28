@@ -1,0 +1,229 @@
+#!/usr/bin/make -f
+
+DEB_PYTHON_SYSTEM = pysupport
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+#include /usr/share/cdbs/1/class/python-distutils.mk
+include debian/python-distutils-jaunty.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
+DEB_UPDATE_RCD_PARAMS := multiuser
+DEB_INSTALL_MANPAGES_tde-guidance-trinity := debian/displayconfig-trinity.1  debian/mountconfig-trinity.1  debian/serviceconfig-trinity.1  debian/userconfig-trinity.1
+PYSUPPORT_PATH = $(DEB_DESTDIR)/opt/trinity/share/python-support
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
+LDFLAGS_APPEND := -L/opt/trinity/lib
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+install/tde-guidance-trinity::
+	# install icons to right place
+	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/hi32-app-daemons.png \
+		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/daemons.png
+	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/kcmpartitions.png \
+		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/disksfilesystems.png
+	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/hi32-user.png \
+		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/userconfig.png
+	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/hi32-display.png \
+		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/displayconfig.png
+	install -D -p -m0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/32-wine.png \
+		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/32x32/apps/wineconfig.png
+	install -D -p -m0644 kde/wineconfig/pics/16x16/wineconfig.png \
+		$(DEB_DESTDIR)/opt/trinity/share/icons/crystalsvg/16x16/apps/wineconfig.png
+
+	# install lintian overrides
+	install -D -p -m0644 debian/tde-guidance-trinity.lintian-overrides \
+		$(DEB_DESTDIR)/usr/share/lintian/overrides/tde-guidance-trinity
+
+	# fix binary-or-shlib-defines-rpath
+	chrpath -d $(DEB_DESTDIR)/opt/trinity/lib/trinity/kcm_*.so*
+
+	# fix executable-not-elf-or-script
+	chmod 0644 $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/kdewinewizard.png
+
+	# fix the link properly
+	mkdir -p debian/tde-guidance-trinity/opt/trinity/bin
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/displayconfig.py displayconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/mountconfig.py mountconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/serviceconfig.py serviceconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/userconfig.py userconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/wineconfig.py wineconfig)
+#	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/grubconfig.py grubconfig)
+
+	# put this here since gnome people probably don't want it by default
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf ../share/python-support/guidance-backends-trinity/displayconfig-restore.py displayconfig-restore)
+
+	# move python modules in PYSUPPORT_PATH
+	mkdir -p $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/SMBShareSelectDialog.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/SimpleCommandRunner.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/displayconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/displayconfigwidgets.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/fuser.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/fuser_ui.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+#	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/grubconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/ktimerdialog.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/mountconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/servertestdialog.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/serviceconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/sizeview.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/unixauthdb.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/userconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/wineconfig.py $(PYSUPPORT_PATH)/tde-guidance-trinity
+
+        # fix script-not-executable
+	chmod 0755 $(PYSUPPORT_PATH)/tde-guidance-trinity/fuser.py
+#	chmod 0755 $(PYSUPPORT_PATH)/tde-guidance-trinity/grubconfig.py
+
+	: # Replace all '#!' calls to python with /usr/bin/python
+	: # and make them executable
+	for i in `find debian/tde-guidance-trinity -type f`; do \
+		sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
+			$$i > $$i.temp; \
+		if cmp --quiet $$i $$i.temp; then \
+			rm -f $$i.temp; \
+		else \
+			mv -f $$i.temp $$i; \
+			chmod 755 $$i; \
+			echo "fixed interpreter: $$i"; \
+		fi; \
+	done
+
+install/guidance-backends-trinity::
+	# install displayconfig-hwprobe.py script
+	install -D -p -m0755 displayconfig/displayconfig-hwprobe.py \
+		$(PYSUPPORT_PATH)/guidance-backends-trinity/displayconfig-hwprobe.py
+
+	for PYDIR in python2.5 python2.6 python2.7 python2.8; do \
+		echo "Looking for $(DEB_DESTDIR)/usr/lib/$$PYDIR"; \
+		if test -d $(DEB_DESTDIR)/usr/lib/$$PYDIR; then \
+			cp $(DEB_DESTDIR)/usr/lib/$$PYDIR/site-packages/xf86misc.py $(PYSUPPORT_PATH)/guidance-backends-trinity; \
+		fi; \
+	done
+
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MicroHAL.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/ScanPCI.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/infimport.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/displayconfigabstraction.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/displayconfig-restore.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/drivedetect.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/execwithcapture.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/wineread.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/winewrite.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/xorgconfig.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+
+	rm -f $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MonitorsDB
+	ln -s /usr/share/hwdata/MonitorsDB $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MonitorsDB
+
+install/tde-guidance-powermanager-trinity::
+	# install icon to right place
+	install -D -p -m0644 kde/powermanager/pics/battery-charging-100.png \
+		$(DEB_DESTDIR)/opt/trinity/share/icons/hicolor/22x22/apps/power-manager.png
+	install -D -p -m0644 kde/powermanager/pics/*.png \
+		$(DEB_DESTDIR)/opt/trinity/share/apps/guidance/pics/
+
+	# install desktop file
+	install -D -p -m0644 powermanager/guidance-power-manager.desktop \
+		$(DEB_DESTDIR)/opt/trinity/share/autostart/guidance-power-manager.desktop
+
+	# copy python modules in PYSUPPORT_PATH
+	mkdir -p $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/MicroHAL.py $(PYSUPPORT_PATH)/guidance-backends-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/guidance-power-manager.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/powermanage.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/gpmhelper.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
+	cp $(DEB_DESTDIR)/opt/trinity/share/apps/guidance/powermanager_ui.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
+	cp powermanager/guidance_power_manager_ui.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
+	cp powermanager/notify.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
+	cp powermanager/tooltip.py $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity
+
+	# generate guidance-power-manager script
+	echo "#!/bin/sh" > $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
+	echo "/usr/share/python-support/tde-guidance-powermanager-trinity/guidance-power-manager.py &" >> $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
+	chmod +x $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
+
+	# fix script-not-executable
+	chmod 0755 $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity/powermanage.py
+	chmod 0755 $(PYSUPPORT_PATH)/tde-guidance-powermanager-trinity/gpmhelper.py
+
+	: # Replace all '#!' calls to python with /usr/bin/python
+	: # and make them executable
+	for i in `find debian/tde-guidance-powermanager-trinity -type f`; do \
+		sed '1s,#!.*python[^ ]*\(.*\),#! /usr/bin/python\1,' \
+			$$i > $$i.temp; \
+		if cmp --quiet $$i $$i.temp; then \
+			rm -f $$i.temp; \
+		else \
+			mv -f $$i.temp $$i; \
+			chmod 755 $$i; \
+			echo "fixed interpreter: $$i"; \
+		fi; \
+	done
+
+clean::
+	rm -rf build
+
+	rm -rf doc/en/*html doc/en/*bz2
+	rm -f serviceconfig/kcm_serviceconfig.cpp
+	rm -f mountconfig/kcm_mountconfig.cpp
+	rm -f displayconfig/kcm_displayconfig.cpp
+	rm -f userconfig/kcm_userconfig.cpp
+	rm -f install_log.txt
+	rm -f po/*.gmo
+	rm -f po/*.pot
+
+	# clean up edited .desktop etc files
+	if [ -f /usr/lib/kubuntu-desktop-i18n/createdesktop.pl ]; then \
+		sh /usr/lib/kubuntu-desktop-i18n/findfiles LIST; \
+		for file in `cat LIST`; do \
+			sed -i '/X-Ubuntu-Gettext-Domain=/d' $${file}; \
+		done; \
+		rm -f LIST; \
+	fi
+
+common-install-prehook-impl::
+	# generate form implementation using pytde user interface compiler
+	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n guidance_power_manager_ui.ui)
+	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n tooltip.ui)
+	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n notify.ui)
+
+	mkdir -p po
+	touch list
+	find -name "*.py" >> list
+	xgettext -ki18n -LPython -flist -o po/guidance.pot
+	rm list
+
+	for file in po/*pot; do \
+		sed "s/charset=CHARSET/charset=UTF-8/" -i $$file; \
+	done
+
+	# generate .po files for .desktop etc files
+	if [ -z $${KUBUNTU_DESKTOP_POT} ]; then \
+		KUBUNTU_DESKTOP_POT=$(DEB_SOURCE_PACKAGE); \
+	fi; \
+	echo KUBUNTU_DESKTOP_POT: $${KUBUNTU_DESKTOP_POT}; \
+	if [ -f /usr/lib/kubuntu-desktop-i18n/createdesktop.pl ]; then \
+		sh /usr/lib/kubuntu-desktop-i18n/findfiles LIST; \
+		cat LIST; \
+		perl /usr/lib/kubuntu-desktop-i18n/createdesktop.pl --file-list=LIST --base-dir=. > desktop.$${KUBUNTU_DESKTOP_POT}.tmp; \
+		msguniq --to-code=UTF-8 --no-wrap -o desktop.$${KUBUNTU_DESKTOP_POT} desktop.$${KUBUNTU_DESKTOP_POT}.tmp 2>/dev/null; \
+		python /usr/lib/kubuntu-desktop-i18n/msgsplit desktop.$${KUBUNTU_DESKTOP_POT}; \
+		mv desktop.$${KUBUNTU_DESKTOP_POT} po/desktop_$${KUBUNTU_DESKTOP_POT}.pot; \
+		rm -f desktop.$${KUBUNTU_DESKTOP_POT} desktop.$${KUBUNTU_DESKTOP_POT}.tmp; \
+		# add translation domain to files \
+		for file in `cat LIST`; do \
+			echo X-Ubuntu-Gettext-Domain=desktop_$${KUBUNTU_DESKTOP_POT} >> $${file}; \
+		done; \
+		rm -f LIST; \
+	fi
+
+	rm -f tde-guidance-trinity/usr/share/python-support/tde-guidance-trinity/.version
+	rm -f tde-guidance-trinity/usr/share/python-support/tde-guidance-powermanager-trinity/.version
+
+get-orig-source:
+	@@dh_testdir
+	@@[ -d ../tarballs/. ]
+	@@dpatch-get-origtargz ../tarballs
+

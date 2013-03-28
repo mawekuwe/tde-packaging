@@ -1,0 +1,9 @@
+?package(ksnake):\
+	needs="x11"\
+	section="Games/Arcade"\
+	hints="TDE"\
+	title="KDE Snake Race"\
+	icon32x32="/usr/share/pixmaps/ksnake.xpm"\
+	icon16x16="/usr/share/pixmaps/ksnake-16.xpm"\
+	command="/opt/trinity/games/ksnake"
+

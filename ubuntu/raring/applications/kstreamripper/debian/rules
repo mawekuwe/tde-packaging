@@ -1,0 +1,26 @@
+#!/usr/bin/make -f
+include /usr/share/cdbs/1/rules/debhelper.mk
+#DEB_INSTALL_MANPAGES_kstreamripper-trinity:=debian/kstreamripper.1
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+PATH := /opt/trinity/bin:$(PATH)
+
+build/kstreamripper-trinity::
+	env PATH=/opt/trinity/bin:$(PATH) QTDIR=/usr/share/tqt3 $(MAKE)
+
+install/kstreamripper-trinity::
+	env PATH=/opt/trinity/bin:$(PATH) QTDIR=/usr/share/tqt3 DESTDIR=$(DEB_DESTDIR) $(MAKE) install
+	mkdir -p $(DEB_DESTDIR)/opt/trinity/share/pixmaps/
+	mkdir -p $(DEB_DESTDIR)/opt/trinity/share/doc/tde/HTML/
+	install -m 644 ./src/hi32-app-kstreamripper.png \
+		$(DEB_DESTDIR)/opt/trinity/share/pixmaps/kstreamripper.png
+	rm -rf $(DEB_DESTDIR)/opt/trinity/share/doc/tde/HTML
+	rm -rf $(DEB_DESTDIR)/usr
+
+clean::
+	-$(MAKE) clean	
+	rm -f scons_signatures.dblite
+	rm -f *.pyc admin/*.pyc
+	rm -rf cache/

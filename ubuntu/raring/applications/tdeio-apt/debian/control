@@ -1,0 +1,23 @@
+Source: tdeio-apt-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Emmanuel Bouthenot <kolter@openics.org>
+Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, sharutils, automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: tdeio-apt-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, apt, adept-batch-trinity
+Replaces: kio-apt-kde3 (<< 4:14.0.0), kio-apt-trinity (<< 4:14.0.0)
+Breaks: kio-apt-kde3 (<< 4:14.0.0), kio-apt-trinity (<< 4:14.0.0)
+Description: an apt-cache ioslave for Trinity
+ tdeio-apt is an ioslave which provides the apt:/ protocol. It
+ integrates apt-cache functionalities into Konqueror, making
+ browsing the packages easier. It provides:
+  - apt-cache search: apt:/search?expression
+  - apt-cache show: apt:/show?package . The show? target
+    prints the policy too.
+  - apt-cache policy: apt:/policy?package
+ .
+ Homepage : http://lpnotfr.free.fr/

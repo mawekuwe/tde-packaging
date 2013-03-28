@@ -1,0 +1,23 @@
+Source: kpilot-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net> 
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 4.0.0), tdelibs4-trinity-dev, tdepim-trinity-dev,
+               libopensync0-dev, libpisock-dev,
+               bison, byacc, bzip2, flex, groff-base,
+               libboost-dev (>= 1.33.1), libgpgme11-dev, liblockdev1-dev,
+               automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+
+Package: kpilot-trinity
+Section: utils
+Architecture: any
+Replaces: kpilot-kde3 (<< 4:14.0.0), kpilot-trinity (<< 4:14.0.0)
+Breaks: kpilot-kde3 (<< 4:14.0.0), kpilot-trinity (<< 4:14.0.0)
+Depends: ${shlibs:Depends}, ${misc:Depends}, debconf (>= 0.5) | debconf-2.0
+Suggests: knotes-trinity, korganizer-trinity
+Description: TDE Palm Pilot hot-sync tool
+ KPilot is an application that synchronizes your Palm Pilot or similar device
+ (like the Handspring Visor) with your KDE desktop, much like the Palm HotSync
+ software does for Windows.  KPilot can back-up and restore your Palm Pilot
+ and synchronize the built-in applications with their KDE counterparts.

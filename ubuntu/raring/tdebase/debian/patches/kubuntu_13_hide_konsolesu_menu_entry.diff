@@ -1,0 +1,7 @@
+--- tdebase/konsole/konsolesu.desktop
++++ tdebase/konsole/konsolesu.desktop
+@@ -81,3 +81,4 @@
+ Name[zh_TW]=終端機程式 - 超級使用者模式
+ X-TDE-AuthorizeAction=shell_access
+ Categories=Qt;TDE;X-TDE-System-su;
++NoDisplay=true

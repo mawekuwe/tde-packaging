@@ -1,0 +1,7 @@
+--- tdebase/tdeprint/tdeprintfax/tdeprintfax.desktop
++++ tdebase/tdeprint/tdeprintfax/tdeprintfax.desktop
+@@ -90,3 +90,4 @@
+ Terminal=false
+ X-DCOP-ServiceType=Multi
+ Categories=Qt;TDE;Utility;X-TDE-Utilities-Peripherals;
++NoDisplay=true

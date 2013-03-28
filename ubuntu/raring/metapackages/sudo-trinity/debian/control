@@ -1,0 +1,15 @@
+Source: sudo-trinity
+Section: tde
+Priority: extra
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Uploaders: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>=5.0), cdbs
+Standards-Version: 3.8.4
+
+Package: sudo-trinity
+Architecture: all
+Depends: sudo
+Replaces: sudo-kde3 (<< 4:14.0.0), sudo-trinity (<< 4:14.0.0)
+Breaks: sudo-kde3 (<< 4:14.0.0), sudo-trinity (<< 4:14.0.0)
+Description: TDE sudo
+ TDE configuration files for sudo

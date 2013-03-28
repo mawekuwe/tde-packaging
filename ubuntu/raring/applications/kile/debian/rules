@@ -1,0 +1,66 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CONFIGURE_SCRIPT_ENV += LDFLAGS="-Wl,--as-needed"
+DEB_DH_INSTALL_ARGS := --sourcedir=debian/tmp
+DEB_INSTALL_MANPAGES_kile := debian/kile.1
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	
+	make -f admin/Makefile.common cvs
+	touch debian/stamp-bootstrap
+
+install/kile-trinity-i18n-br::
+	-for language in `cd translations; ls -1d */`; do \
+		cd $(CURDIR)/$(DEB_BUILDDIR)/translations/$$language; \
+		$(MAKE) install DESTDIR=$(CURDIR)/debian/kile-trinity-i18n-$$language; \
+	done
+
+	cd $(CURDIR)/$(DEB_BUILDDIR)/translations/en_GB/; \
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/kile-trinity-i18n-engb
+
+	cd $(CURDIR)/$(DEB_BUILDDIR)/translations/pt_BR/; \
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/kile-trinity-i18n-ptbr
+
+	cd $(CURDIR)/$(DEB_BUILDDIR)/translations/sr@Latn/;\
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/kile-trinity-i18n-srlatin
+
+	cd $(CURDIR)/$(DEB_BUILDDIR)/translations/zh_CN/; \
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/kile-trinity-i18n-zhcn
+
+install/kile-trinity::
+	# Install pixmap
+	install -D -p -m0644 debian/kile.xpm debian/kile-trinity/opt/trinity/share/pixmaps/kile.xpm
+
+	chmod +x debian/tmp/opt/trinity/share/apps/kile/test/runTests.sh
+
+clean::
+	rm -rf debian/kile-trinity-i18n-*
+
+get-orig-source:
+	@@dh_testdir
+	@@[ -d ../tarballs/. ]
+	@@dpatch-get-origtargz ../tarballs
+

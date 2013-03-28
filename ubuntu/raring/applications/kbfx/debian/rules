@@ -1,0 +1,82 @@
+#!/usr/bin/make -f
+
+FILENAME = $(DEB_SOURCE_PACKAGE)_$(DEB_UPSTREAM_VERSION).orig.tar.gz
+UPFILENAME = $(DEB_SOURCE_PACKAGE)-$(shell echo $(DEB_UPSTREAM_VERSION) | sed 's/~/-/').tar.bz2
+URL = http://www.$(DEB_SOURCE_PACKAGE).org/release/0.4.9/testing/$(UPFILENAME)
+
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib
+
+#CMAKE_LIBRARY_PATH := /opt/trinity/lib 
+#CMAKE_INCLUDE_PATH := /opt/trinity/include/tde
+
+include debian/cmake.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/utils.mk
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+
+DEB_CMAKE_EXTRA_FLAGS = -DLIB_SUFFIX="" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/tde" -DCMAKE_INSTALL_PREFIX="/opt/trinity/" \
+-DCMAKE_BUILD_TYPE=RelWithDebInfo
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+get-orig-source:
+	@@dh_testdir
+	@@[ -d ../tarballs/. ]
+	@@echo Downloading $(UPFILENAME) from $(URL) ...
+	@@wget -N -nv -T10 -t3 -O ../tarballs/$(UPFILENAME) $(URL)
+	@@echo Converting $(UPFILENAME) to $(FILENAME)
+	@@bzcat ../tarballs/$(UPFILENAME) | gzip -9 > ../tarballs/$(FILENAME)
+
+print-version:
+	@@echo DEB_SOURCE_PACKAGE: $(DEB_SOURCE_PACKAGE)
+	@@echo DEB_VERSION: $(DEB_VERSION)
+	@@echo DEB_NO_EPOCH_VERSION: $(DEB_NOEPOCH_VERSION)
+	@@echo DEB_UPSTREAM_VERSION: $(DEB_UPSTREAM_VERSION)
+	@@echo FILENAME: $(FILENAME)
+	@@echo URL: $(URL)
+
+# Build architecture-independent files here.
+binary-indep: build
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build
+	mkdir -p debian/kbfx-trinity/opt/trinity/lib64/
+	touch debian/kbfx-trinity/opt/trinity/lib64/BLANTDEFILE
+	mkdir -p debian/kbfx-trinity/opt/trinity/lib/
+	cp -Rp debian/kbfx-trinity/opt/trinity/lib64/* debian/kbfx-trinity/opt/trinity/lib/
+	rm -rf debian/kbfx-trinity/opt/trinity/lib64/
+	rm -f debian/kbfx-trinity/opt/trinity/lib/BLANTDEFILE
+	dh_testdir
+	dh_testroot
+	dh_installexamples
+	dh_installdirs
+	dh_installdocs
+	dh_installmenu
+	dh_installmime
+	dh_installcron
+	dh_installman
+	dh_desktop
+	dh_installinfo
+	dh_installchangelogs
+	dh_install
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb $(DEB_DH_BUILDDEB_ARGS)
+
+binary: binary-indep binary-arch

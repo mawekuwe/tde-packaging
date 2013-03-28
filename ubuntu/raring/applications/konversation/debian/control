@@ -1,0 +1,48 @@
+Source: konversation-trinity
+Section: tde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Modestas Vainius <modestas@vainius.eu>
+Build-Depends: debhelper (>= 5.0), cdbs (>= 0.4.27-3), tdelibs4-trinity-dev, xsltproc, docbook-xsl, libxi-dev, quilt (>= 0.40), automake, autoconf, libtool, libltdl-dev
+Standards-Version: 3.8.4
+DM-Upload-Allowed: yes
+Homepage: http://konversation.kde.org/
+
+Package: konversation-trinity
+Architecture: any
+Depends: ${shlibs:Depends}
+Replaces: konversation-kde3 (<< 4:14.0.0), konversation-trinity (<< 4:14.0.0)
+Breaks: konversation-kde3 (<< 4:14.0.0), konversation-trinity (<< 4:14.0.0)
+Recommends: python, ruby
+Suggests: libsoap-lite-perl
+Description: user friendly Internet Relay Chat (IRC) client for KDE [Trinity]
+ Konversation is a client for the Internet Relay Chat (IRC) protocol.
+ It is easy to use and well-suited for novice IRC users, but novice
+ and experienced users alike will appreciate its many features:
+ .
+       * Standard IRC features
+       * Easy to use graphical interface
+       * Multiple server and channel tabs in a single window
+       * IRC color support
+       * Pattern-based message highlighting and OnScreen Display
+       * Multiple identities for different servers
+       * Multi-language scripting support (with DCOP)
+       * Customizable command aliases
+       * NickServ-aware log-on (for registered nicknames)
+       * Smart logging
+       * Traditional or enhanced-shell-style nick completion
+       * DCC file transfer with resume support
+
+Package: konversation-trinity-dbg
+Architecture: any
+Priority: extra
+Replaces: konversation-kde3-dbg (<< 4:14.0.0), konversation-trinity-dbg (<< 4:14.0.0)
+Breaks: konversation-kde3-dbg (<< 4:14.0.0), konversation-trinity-dbg (<< 4:14.0.0)
+Depends: konversation-trinity (= ${binary:Version})
+Recommends: tdelibs-trinity-dbg
+Description: debugging symbols for konversation
+ This package contains the debugging symbols associated with konversation.
+ They will automatically be used by gdb for debugging konversation-related
+ issues.
+
