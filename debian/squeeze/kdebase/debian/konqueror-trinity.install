@@ -156,6 +156,7 @@ debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/text-tcl-print.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/text-tex-print.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/text-xml-print.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/text-xslt-print.desktop
+debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/edit-as-root.desktop
 debian/tmp/opt/trinity/share/apps/konqueror/tiles/bluemorning.png
 debian/tmp/opt/trinity/share/apps/konqueror/tiles/canvas.png
 debian/tmp/opt/trinity/share/apps/konqueror/tiles/kde4ever.png
