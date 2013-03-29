@@ -7,6 +7,6 @@ Standards-Version: 3.8.4
 
 Package: kcontrol-ldap-controller-trinity
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients, heimdal-kdc, slapd, libsasl2-modules-gssapi-heimdal, sasl2-bin, openssl
+Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients, heimdal-kdc, slapd, libsasl2-modules-gssapi-heimdal, sasl2-bin, openssl, libpam-ldap, libnss-ldap, nss-updatedb, libnss-db, nscd
 Description: Kerberos realm controller module for the TDE control center
  This is a TDE control center module to configure a Kerberos Realm Controller
