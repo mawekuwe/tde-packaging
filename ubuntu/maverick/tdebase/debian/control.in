@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev, libdbus-qt-1-dev (>= 0.60), libldap2-dev, libhal-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libhal-storage-dev (>= 0.5.5.1-2) [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, libxss-dev, libxxf86misc-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev, libdbus-qt-1-dev (>= 0.60), libldap2-dev, libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, libxss-dev, libxxf86misc-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf
 Build-Depends-Indep: doxygen, qt3-doc, graphviz, gsfonts-x11, tdelibs4-doc
 Build-Conflicts: nvidia-glx (<< 1.0.8774-6)
 Standards-Version: 3.8.4
@@ -12,7 +12,7 @@ Standards-Version: 3.8.4
 Package: tdebase
 Section: tde
 Architecture: all
-Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-tdeio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), tdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), twin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), hal | kfreebsd-gnu | hurd, pmount | kfreebsd-gnu | hurd
+Depends: kappfinder (>= ${Source-Version}), kate (>= ${Source-Version}), kcontrol (>= ${Source-Version}), tdebase-bin (>= ${Source-Version}), tdebase-data (>= ${Source-Version}), tdebase-tdeio-plugins (>= ${Source-Version}), kdepasswd (>= ${Source-Version}), tdeprint (>= ${Source-Version}), kdesktop (>= ${Source-Version}), kfind (>= ${Source-Version}), khelpcenter (>= ${Source-Version}), kicker (>= ${Source-Version}), klipper (>= ${Source-Version}), kmenuedit (>= ${Source-Version}), konqueror-nsplugins (>= ${Source-Version}), konqueror (>= ${Source-Version}), konsole (>= ${Source-Version}), kpager (>= ${Source-Version}), kpersonalizer (>= ${Source-Version}), ksmserver (>= ${Source-Version}), ksplash (>= ${Source-Version}), ksysguard (>= ${Source-Version}), ktip (>= ${Source-Version}), twin (>= ${Source-Version}), libkonq4 (>= ${Source-Version}), pmount | kfreebsd-gnu | hurd
 Recommends: tdm (>= ${Source-Version})
 Suggests: tdebase-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
@@ -162,7 +162,7 @@ Package: tdebase-tdeio-plugins
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}, kdesktop, libsasl2-modules, psmisc, cryptsetup, man-db (>= 2.5.1-1)
-Recommends: hal, pmount, kamera, tdemultimedia-tdeio-plugins
+Recommends: pmount, kamera, tdemultimedia-tdeio-plugins
 Suggests: khelpcenter, mtools
 Conflicts: tdebase-libs (<< 4:3.0.0)
 Replaces: tdebase (<< 4:3.0.0), tdebase-doc (<< 4:3.0.0), tdebase-libs (<< 4:3.0.0), konqueror (<< 4:3.0.0), tdebase-bin (<< 4:3.5.5a.dfsg.1-1ubuntu18)
@@ -171,7 +171,7 @@ Description: core I/O slaves for KDE
  others, file, http, ftp, smtp, pop and imap.
  .
  It also includes the media tdeioslave, which handles removable devices,
- and which works best with hal (and therefore udev) and pmount. Media
+ and which works best with procfs, udev, and pmount. Media
  also extends the functionality of many other tdeioslaves. To use this
  service, please make sure that your user is a member of the plugdev
  group.
