@@ -13,7 +13,7 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 
 DEB_INSTALL_MANPAGES_k9copy = k9copy-trinity.1
 
-DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --includedir="/opt/trinity/include/tde" --mandir="/opt/trinity/share/man" --infodir="/opt/trinity/share/info"
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --includedir="/opt/trinity/include/tde" --mandir="/opt/trinity/share/man" --infodir="/opt/trinity/share/info" --enable-k3bdevices
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
