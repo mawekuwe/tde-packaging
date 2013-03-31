@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Francois Marier <francois@debian.org>, Fathi Boudra <fabo@debian.org>
-Build-Depends: libdvdread4, libdvdread-dev, alsa, libasound2-dev, lame, libmp3lame-dev, debhelper (>= 6), cdbs (>= 0.4.52ubuntu18), tdelibs4-trinity-dev (>= 3.5.0), libflac++-dev (>= 1.1.2), flac, libdbus-tqt-1-dev, libhal-dev (>= 0.5.5.1), libhal-storage-dev (>= 0.5.5.1), libpopt-dev, libmpcdec-dev, libtag1-dev (>= 1.4-3), libmad0-dev, chrpath, libavformat-dev, libavcodec-dev, libvorbis-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: libdvdread4, libdvdread-dev, alsa, libasound2-dev, lame, libmp3lame-dev, debhelper (>= 6), cdbs (>= 0.4.52ubuntu18), tdelibs4-trinity-dev (>= 3.5.0), libflac++-dev (>= 1.1.2), flac, libdbus-tqt-1-dev, libpopt-dev, libmpcdec-dev, libtag1-dev (>= 1.4-3), libmad0-dev, chrpath, libavformat-dev, libavcodec-dev, libvorbis-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://www.k3b.org
 
