@@ -42,6 +42,7 @@ HideAppletHandles=false
 HideAnimation=true
 HideAnimationSpeed=40
 IExist=true
+Locked=true
 Position=3
 ShowDeepButtons=true
 ShowIconActivationEffect=false
