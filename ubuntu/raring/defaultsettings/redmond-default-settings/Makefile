@@ -297,7 +297,7 @@ install:
 	install -m644 gtk-qt-engine-rc-files/gtkrc-2.0-kde4 "$(SETTINGS_DIR)/.gtkrc-2.0-kde4"
 	install -m644 gtk-qt-engine-rc-files/gtk_qt_engine_rc "$(SETTINGS_DIR)/.gtk_qt_engine_rc"
 	install -m644 gtk-qt-engine-rc-files/gtk-qt-engine.rc.sh "$(SETTINGS_DIR)/gtk-qt-engine.rc.sh"
-	install -m644 hal/hal-policy-ntfs-config-write-policy.fdi "$(SETTINGS_DIR)/hal-policy-ntfs-config-write-policy.fdi"
+#	install -m644 hal/hal-policy-ntfs-config-write-policy.fdi "$(SETTINGS_DIR)/hal-policy-ntfs-config-write-policy.fdi"
 
 	mkdir -p "$(DESTDIR)/etc/skel"
 	install -m644 gtk-qt-engine-rc-files/gtkrc-2.0-kde4 "$(DESTDIR)/etc/skel/.gtkrc-2.0-kde4"

@@ -23,10 +23,6 @@ case "$1" in
 			rm /media/.hidden || \
 				echo "Could not remove symlink /media/.hidden, skipping."
 		fi
-		if [ -h /usr/share/hal/fdi/policy/10osvendor/home/20-ntfs-config-write-policy.fdi ]; then
-			rm /usr/share/hal/fdi/policy/10osvendor/home/20-ntfs-config-write-policy.fdi || \
-				echo "Could not remove symlink /usr/share/hal/fdi/policy/10osvendor/home/20-ntfs-config-write-policy.fdi, skipping."
-		fi
 	;;
 
   upgrade)

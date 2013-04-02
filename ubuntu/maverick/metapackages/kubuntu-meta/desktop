@@ -211,7 +211,6 @@ We've chosen KDE as our desktop user interface of choice
  * (amarok-trinity) 		# audio multimediaplayer
  * (kaffeine-xine-trinity)	# video multimediaplayer
  * (keep-trinity) 		# kde backuptool
- * hal			# it's not very polished but it's the future
  * (adept-trinity)		# better package manager
  * konq-plugins-trinity
  * kde-systemsettings-trinity   # kcontrol replacement

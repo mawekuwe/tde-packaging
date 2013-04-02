@@ -33,14 +33,6 @@ case "$1" in
 				echo "Could not create symlink /home/.directory, skipping."
 		fi
 	fi
-
-	if [ -f /usr/share/redmond-default-settings-trinity/hal-policy-ntfs-config-write-policy.fdi ]; then
-		if [ -d /usr/share/hal/fdi/policy/10osvendor ]; then
-			ln -sf /usr/share/redmond-default-settings-trinity/hal-policy-ntfs-config-write-policy.fdi \
-				/usr/share/hal/fdi/policy/10osvendor/20-ntfs-config-write-policy.fdi || \
-				echo "Could not create symlink /usr/share/hal/fdi/policy/10osvendor/20-ntfs-config-write-policy.fdi, skipping."
-		fi
-	fi
     ;;
 esac
 
