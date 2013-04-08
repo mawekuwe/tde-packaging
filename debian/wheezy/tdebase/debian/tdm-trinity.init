@@ -15,6 +15,9 @@
 #
 # description: TDE Display Manager
 #
+
+. /lib/lsb/init-functions
+
 set -e
 
 # To start tdm-trinity even if it is not the default display manager, change
@@ -110,11 +113,16 @@ case "$1" in
     if [ -e $DEFAULT_DISPLAY_MANAGER_FILE ] &&
        [ "$HEED_DEFAULT_DISPLAY_MANAGER" = "true" ] &&
        [ "$(cat $DEFAULT_DISPLAY_MANAGER_FILE)" != "$DAEMON" ]; then
-      echo "Not starting TDE Display Manager (tdm-trinity); it is not the default display manager."
+      log_warning_msg "Not starting TDE Display Manager (tdm-trinity); it is not the default display manager."
+      log_action_end_msg 0
     else
-      echo -n "Starting TDE Display Manager: tdm-trinity"
-      start-stop-daemon --start --quiet $SSD_ARGS -- $ARG || echo -n " already running"
-      echo "."
+      log_action_begin_msg "Starting TDE Display Manager: tdm-trinity"
+      if start-stop-daemon --start --quiet $SSD_ARGS -- $ARG; then
+        log_action_end_msg 0
+      else
+        log_action_end_msg 0
+        log_warning_msg "TDE Display Manager tdm-trinity already running"
+      fi
     fi
   ;;
 
@@ -129,11 +137,12 @@ case "$1" in
   ;;
 
   reload)
-    echo -n "Reloading TDE Display Manager configuration..."
+    log_action_begin_msg "Reloading TDE Display Manager configuration..."
     if start-stop-daemon --stop --signal 1 --quiet $SSD_ARGS; then
-      echo "done."
+      log_action_end_msg 0
     else
-      echo "tdm-trinity not running."
+      log_action_end_msg 1
+      log_failure_msg "tdm-trinity not running."
     fi
   ;;
 
@@ -142,9 +151,10 @@ case "$1" in
   ;;
 
   stop)
-    echo -n "Stopping TDE Display Manager: tdm-trinity"
+    log_action_begin_msg "Stopping TDE Display Manager: tdm-trinity"
     if [ ! -f $PIDFILE ]; then
-      echo " not running ($PIDFILE not found)."
+      log_action_end_msg 0
+      log_failure_msg "TDE Display Manager tdm-trinity not running ($PIDFILE not found)."
       exit 0
     else
       DAEMONPID=$(cat $PIDFILE | tr -d '[:blank:]')
@@ -154,7 +164,8 @@ case "$1" in
           # give tdm's signal handler a second to catch its breath
           sleep 1
         else
-          echo -n " not running"
+          log_action_end_msg 0
+          log_failure_msg "TDE Display Manager tdm-trinity not running"
         fi
       fi
       while [ $KILLCOUNT -le 5 ]; do
@@ -167,12 +178,13 @@ case "$1" in
         KILLCOUNT=$(( $KILLCOUNT + 1 ))
       done
       if stillrunning; then
-        echo -n " not responding to TERM signal (pid $DAEMONPID)"
+        log_action_end_msg 1
+        log_failure_msg "TDE Display Manager tdm-trinity not responding to TERM signal (pid $DAEMONPID)"
       else
         rm -f $UPGRADEFILE
       fi
     fi
-    echo "."
+    log_action_end_msg 0
 
     # Launches usplash on shutdown
     if ( `grep -q '\( \|^\)splash\( \|$\)' /proc/cmdline` && `which usplash_down >/dev/null` ) ; then
