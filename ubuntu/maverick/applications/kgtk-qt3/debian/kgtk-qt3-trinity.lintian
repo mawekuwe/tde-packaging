@@ -1,0 +1,8 @@
+kgtk-qt3-trinity: no-shlibs-control-file opt/trinity/lib/kgtk/libkgtk2.so
+kgtk-qt3-trinity: no-shlibs-control-file opt/trinity/lib/kgtk/libkqt3.so
+
+kgtk-qt3-trinity: postinst-must-call-ldconfig opt/trinity/lib/kgtk/libkgtk2.so
+kgtk-qt3-trinity: postinst-must-call-ldconfig opt/trinity/lib/kgtk/libkqt3.so
+
+kgtk-qt3-trinity: postrm-should-call-ldconfig opt/trinity/lib/kgtk/libkgtk2.so
+kgtk-qt3-trinity: postrm-should-call-ldconfig opt/trinity/lib/kgtk/libkqt3.so
