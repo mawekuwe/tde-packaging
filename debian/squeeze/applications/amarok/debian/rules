@@ -31,7 +31,6 @@ DEB_CONFIGURE_EXTRA_FLAGS  :=	--without-included-sqlite \
 				--with-libgpod  \
 				--with-libnjb   \
 				--with-libmtp   \
-				--with-mp4v2    \
 				--enable-mysql  \
 				--enable-postgresql \
 				--with-yauap \
