@@ -593,8 +593,8 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/entities/update-d
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/lang.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/strings.entities
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/ja/user.entities
-debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/kde-chunk-online.xsl
-debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/kde-chunk.xsl
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tde-chunk-online.xsl
+debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/tde-chunk.xsl
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/kde-man.xsl
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/kde-navig-online.xsl
 debian/tmp/opt/trinity/share/apps/ksgmltools2/customization/kde-navig.xsl
