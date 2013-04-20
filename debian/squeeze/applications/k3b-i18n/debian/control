@@ -11,7 +11,6 @@ Package: k3b-i18n-trinity
 Architecture: all 
 Depends: k3b-trinity
 Pre-Depends: dpkg (>= 1.10.24)
-Recommends: kde-i18n-trinity
 Description: Internationalized (i18n) files for k3b-trinity
  This package contains the translations for k3b-trinity.
  .
