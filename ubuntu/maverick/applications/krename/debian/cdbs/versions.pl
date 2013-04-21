@@ -7,7 +7,7 @@ my $version = `dpkg-parsechangelog | awk '/^Version/ {print \$2}'`;
 my ($version3, $version3_next);
 my ($version2, $version2_next);
 
-($version3 = $version)  =~ s/-[^-]+$//;
+($version3 = $version)  =~ s/^(([^.]+\.){2}[^.+~-]+)[.+~-]?[^-]*-[^-]+$/$1/;
 ($version2 = $version3) =~ s/\.[^.]+$//;
 
 ($version3_next = $version3) =~ s/(?<=\.)(\d+)[a-z]?$/($1+1)/e;
