@@ -13,7 +13,7 @@ Architecture: all
 Depends: ${python:Depends}
 Replaces: pykdeextensions-kde3 (<< 4:14.0.0), pykdeextensions-trinity (<< 4:14.0.0)
 Breaks: pykdeextensions-kde3 (<< 4:14.0.0), pykdeextensions-trinity (<< 4:14.0.0)
-Conflicts: pytdeextensions
+Conflicts: pykdeextensions
 Provides: ${python:Provides}
 Description: Python packages to support KDE applications (scripts) [Trinity]
  PyKDE Extensions is a collection of software and Python packages
