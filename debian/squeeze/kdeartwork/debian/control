@@ -63,8 +63,9 @@ Description: widget styles released with Trinity
 Package: kdeartwork-theme-icon-trinity
 Architecture: all
 Section: kde
-Recommends: kdesktop-trinity, kicker-trinity
 Replaces: kdelibs-data-trinity (<< 4:3.5)
+Conflicts: kbabel-trinity (<< 4:3.5.13.2~), kicker-applets-trinity (<< 4:3.5.13.2~)
+Recommends: kdesktop-trinity, kicker-trinity
 Description: icon themes released with Trinity
  This package contains additional icon themes for Trinity. Icon themes can be
  used to customise the appearance of standard icons throughout KDE. They

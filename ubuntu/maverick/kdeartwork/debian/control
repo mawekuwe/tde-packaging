@@ -73,6 +73,7 @@ Architecture: all
 Section: kde
 Replaces: kdeartwork-theme-icon-kde3 (<< 4:3.5.13)
 Breaks: kdeartwork-theme-icon-kde3 (<< 4:3.5.13)
+Conflicts: kbabel-trinity (<< 4:3.5.13.2~), kicker-applets-trinity (<< 4:3.5.13.2~)
 Recommends: kdesktop-trinity, kicker-trinity
 Description: icon themes released with Trinity
  This package contains additional icon themes for Trinity. Icon themes can be
