@@ -1,6 +1,6 @@
 debian/icons/kdesvn.xpm	/opt/trinity/share/pixmaps/
 debian/tmp/opt/trinity/bin/
-debian/tmp/opt/trinity/lib/libkdesvnpart.*
+debian/tmp/opt/trinity/lib/trinity/libkdesvnpart.*
 debian/tmp/opt/trinity/share/apps/kdesvn/
 debian/tmp/opt/trinity/share/apps/kdesvnpart/
 debian/tmp/opt/trinity/share/apps/konqueror/servicemenus/

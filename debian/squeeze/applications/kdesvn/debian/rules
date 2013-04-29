@@ -14,8 +14,15 @@ DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
-DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/kde" -DCMAKE_CXX_FLAGS="-I/opt/trinity/include/kde" -DCMAKE_LDFLAGS="-L/opt/trinity/lib" \
- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+DEB_CMAKE_EXTRA_FLAGS := \
+ -DCMAKE_INSTALL_PREFIX="/opt/trinity" \
+ -DCONFIG_INSTALL_DIR="/etc/trinity" \
+ -DSYSCONF_INSTALL_DIR="/etc/trinity" \
+ -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+ -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+ -DCMAKE_VERBOSE_MAKEFILE="ON" \
+ -DCMAKE_SKIP_RPATH="OFF" \
+ -DLIB_SUFFIX=""
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
@@ -26,35 +33,6 @@ DEB_DH_MAKESHLIBS_ARGS_libsvnqt4 := -V
 
 # Tell dh_shlibdeps where to find our own libs.
 DEB_SHLIBDEPS_INCLUDE := debian/tmp/opt/trinity/lib
-
-common-install-impl::
-	mkdir -p debian/tmp/opt/trinity
-	mkdir -p debian/tmp/opt/trinity/include/kde
-	mkdir -p debian/tmp/usr/lib
-	mkdir -p debian/tmp/opt/trinity/lib
-	mkdir -p debian/tmp/usr/lib/trinity
-	mkdir -p debian/tmp/usr/lib64/trinity
-	touch debian/tmp/usr/lib/trinity/removeme
-	touch debian/tmp/usr/lib64/trinity/removeme
-	mv debian/tmp/usr/lib/trinity/* debian/tmp/usr/lib/
-	mv debian/tmp/usr/lib64/trinity/* debian/tmp/usr/lib64/
-	rm -rf debian/tmp/usr/lib/trinity
-	rm -rf debian/tmp/usr/lib64/trinity
-	cp -Rp debian/tmp/usr/bin debian/tmp/opt/trinity/
-	cp -Rp debian/tmp/usr/lib/* debian/tmp/opt/trinity/lib/
-	cp -Rp debian/tmp/usr/lib64/* debian/tmp/opt/trinity/lib/
-	cp -Rp debian/tmp/usr/share debian/tmp/opt/trinity/
-	cp -Rp debian/tmp/usr/include/* debian/tmp/opt/trinity/include/kde/
-	rm -rf debian/tmp/usr/bin
-	rm -rf debian/tmp/usr/lib/trinity
-	rm -rf debian/tmp/usr/lib64/trinity
-	rm -rf debian/tmp/usr/share
-	rm -rf debian/tmp/usr/include
-	mkdir -p debian/tmp/opt/trinity/lib/trinity
-	touch debian/tmp/opt/trinity/lib/trinity/removeme
-	cp -Rp debian/tmp/opt/trinity/lib/trinity/* debian/tmp/opt/trinity/lib/
-	rm -rf debian/tmp/opt/trinity/lib/trinity
-	rm -rf debian/tmp/opt/trinity/lib/removeme
 
 binary-install/kdesvn-trinity::
 	mv debian/kdesvn-trinity/usr/share/man debian/kdesvn-trinity/opt/trinity/share/
