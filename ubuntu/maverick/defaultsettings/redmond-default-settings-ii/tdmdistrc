@@ -316,7 +316,7 @@ UseSAK=true
 # "Logo" - the image specified by LogoPixmap
 # "Clock" - a neat analog clock
 # Default is Clock
-LogoArea=Logo
+LogoArea=None
 # The image to show when LogoArea=Logo.
 # Default is ""
 LogoPixmap=/opt/trinity/share/apps/tdm/pics/kdelogo.png
@@ -365,7 +365,7 @@ AntiAliasing=true
 #UserCompletion=true
 # Enable user list (names along with images) in the greeter.
 # Default is true
-#UserList=false
+UserList=false
 # User selection for UserCompletion and UserList:
 # "NotHidden" - all users except those listed in HiddenUsers
 # "Selected" - only the users listed in SelectedUsers

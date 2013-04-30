@@ -1761,7 +1761,7 @@ kubuntu-default-settings (1:5.04-03) hoary; urgency=low
 
 kubuntu-default-settings (1:5.04-02) hoary; urgency=low
 
-  * Move rc files from /etc/kde-profile to /usr/share/kubuntu-default-settings
+  * Move rc files from /etc/tde-profile to /usr/share/kubuntu-default-settings
   * Add kmixrc to hide kmix window by default
 
  -- Jonathan Riddell <jr@jriddell.org>  Wed, 16 Mar 2005 21:52:11 +0000
