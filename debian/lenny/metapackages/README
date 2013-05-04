@@ -1,0 +1,3 @@
+!!!WARNING!!!
+kubuntu-meta is required for operation of the QuickBuild automated nightly build system
+!!!DO NOT REMOVE THE kubuntu-meta SYMBOLIC LINK!!!
