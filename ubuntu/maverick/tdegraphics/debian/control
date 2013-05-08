@@ -90,6 +90,7 @@ Architecture: any
 Replaces: kdegraphics-kfile-plugins-kde3 (<< 4:14.0.0), kdegraphics-kfile-plugins-trinity (<< 4:14.0.0)
 Breaks: kdegraphics-kfile-plugins-kde3 (<< 4:14.0.0), kdegraphics-kfile-plugins-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
+Recommends: ghostscript
 Description: KDE metainfo plugins for graphic files
  This packages provides meta information for graphic files (file sizes,
  tags, etc. all from within the file manager).
