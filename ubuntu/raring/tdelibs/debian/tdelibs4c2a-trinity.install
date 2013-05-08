@@ -185,6 +185,8 @@ debian/tmp/opt/trinity/lib/trinity/tdetexteditor_isearch.la
 debian/tmp/opt/trinity/lib/trinity/tdetexteditor_isearch.so
 debian/tmp/opt/trinity/lib/trinity/tdetexteditor_kdatatool.la
 debian/tmp/opt/trinity/lib/trinity/tdetexteditor_kdatatool.so
+debian/tmp/opt/trinity/lib/trinity/kxzfilter.la
+debian/tmp/opt/trinity/lib/trinity/kxzfilter.so
 debian/tmp/opt/trinity/lib/trinity/libkatepart.la
 debian/tmp/opt/trinity/lib/trinity/libkatepart.so
 debian/tmp/opt/trinity/lib/trinity/libtdecertpart.la
