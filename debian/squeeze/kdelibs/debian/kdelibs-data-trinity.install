@@ -3599,6 +3599,7 @@ debian/tmp/opt/trinity/share/services/ktexteditor_docwordcompletion.desktop
 debian/tmp/opt/trinity/share/services/ktexteditor_insertfile.desktop
 debian/tmp/opt/trinity/share/services/ktexteditor_isearch.desktop
 debian/tmp/opt/trinity/share/services/ktexteditor_kdatatool.desktop
+debian/tmp/opt/trinity/share/services/kxzfilter.desktop
 debian/tmp/opt/trinity/share/services/metainfo.protocol
 debian/tmp/opt/trinity/share/services/mms.protocol
 debian/tmp/opt/trinity/share/services/mmst.protocol

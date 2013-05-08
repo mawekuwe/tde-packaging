@@ -183,6 +183,8 @@ debian/tmp/opt/trinity/lib/trinity/ktexteditor_isearch.la
 debian/tmp/opt/trinity/lib/trinity/ktexteditor_isearch.so
 debian/tmp/opt/trinity/lib/trinity/ktexteditor_kdatatool.la
 debian/tmp/opt/trinity/lib/trinity/ktexteditor_kdatatool.so
+debian/tmp/opt/trinity/lib/trinity/kxzfilter.la
+debian/tmp/opt/trinity/lib/trinity/kxzfilter.so
 debian/tmp/opt/trinity/lib/trinity/libkatepart.la
 debian/tmp/opt/trinity/lib/trinity/libkatepart.so
 debian/tmp/opt/trinity/lib/trinity/libkcertpart.la
