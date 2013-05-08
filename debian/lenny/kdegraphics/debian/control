@@ -78,6 +78,7 @@ Package: kdegraphics-kfile-plugins-trinity
 Section: kde
 Architecture: any
 Depends: ${shlibs:Depends}
+Recommends: ghostscript
 Description: KDE metainfo plugins for graphic files
  This packages provides meta information for graphic files (file sizes,
  tags, etc. all from within the file manager).
