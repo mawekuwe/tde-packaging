@@ -185,8 +185,8 @@ Section: tde
 Architecture: any
 Replaces: kdebase-kio-plugins-kde3 (<< 4:14.0.0), kdebase-kio-plugins-trinity (<< 4:14.0.0)
 Breaks: kdebase-kio-plugins-kde3 (<< 4:14.0.0), kdebase-kio-plugins-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, kdesktop-trinity, libsasl2-modules, psmisc, cryptsetup, man-db (>= 2.5.1-1)
-Recommends: pmount, kamera-trinity, tdemultimedia-tdeio-plugins-trinity
+Depends: ${shlibs:Depends}, kdesktop-trinity, libsasl2-modules, psmisc, man-db (>= 2.5.1-1)
+Recommends: pmount, cryptsetup, kamera-trinity, tdemultimedia-tdeio-plugins-trinity
 Suggests: khelpcenter-trinity, mtools
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0), mediamanager
 Description: core I/O slaves for KDE
