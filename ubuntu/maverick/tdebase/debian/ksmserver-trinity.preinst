@@ -5,85 +5,13 @@ package_name=ksmserver-trinity
 case "$1" in
 
     upgrade)
-	rm -f /etc/gdm/Sessions/KDE
-	rm -f /etc/trinity/debian/starttde
-	/usr/sbin/update-alternatives --remove x-session-manager /usr/bin/kde2
-	/usr/sbin/update-alternatives --remove x-session-manager /usr/bin/trinity
+	# Remove old-style Plasma diversions
+	dpkg-divert --package $package_name --rename --remove /usr/bin/plasma || true
+	dpkg-divert --package $package_name --rename --remove /usr/bin/plasma-desktop || true
 	mkdir -p /usr/share/autostart
-
-	# Intrepid plasma
-	divert=`dpkg-divert --listpackage /usr/share/autostart/plasma.desktop`
-	if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-	    dpkg-divert --remove --local --rename /usr/share/autostart/plasma.desktop
-	fi
-	divert=`dpkg-divert --listpackage /usr/bin/plasma`
-	if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-	    if [ -L /usr/bin/plasma ]; then
-	        rm -f /usr/bin/plasma
-	    fi
-	    dpkg-divert --remove --local --rename /usr/bin/plasma
-	    divert=""
-	fi
-	if [ -z "$divert" ]; then
-	    dpkg-divert --package $package_name --rename \
-	                --divert /usr/bin/plasma.kde4 \
-	                --add /usr/bin/plasma
-	fi
-
-	# Jaunty plasma-desktop
-	divert=`dpkg-divert --listpackage /usr/share/autostart/plasma-desktop.desktop`
-	if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-	    dpkg-divert --remove --local --rename /usr/share/autostart/plasma-desktop.desktop
-	fi
-	divert=`dpkg-divert --listpackage /usr/bin/plasma-desktop`
-	if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-	    if [ -L /usr/bin/plasma-desktop ]; then
-	        rm -f /usr/bin/plasma-desktop
-	    fi
-	    dpkg-divert --remove --local --rename /usr/bin/plasma-desktop
-	    divert=""
-	fi
-	if [ -z "$divert" ]; then
-	    dpkg-divert --package $package_name --rename \
-	                --divert /usr/bin/plasma-desktop.kde4 \
-	                --add /usr/bin/plasma-desktop
-	fi
     ;;
 
     install)
-	# Intrepid plasma
-	divert=`dpkg-divert --listpackage /usr/share/autostart/plasma.desktop`
-	if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-	    dpkg-divert --remove --local --rename /usr/share/autostart/plasma.desktop
-	fi
-	divert=`dpkg-divert --listpackage /usr/bin/plasma`
-	if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-	    if [ -L /usr/bin/plasma ]; then
-	        rm -f /usr/bin/plasma
-	    fi
-	    dpkg-divert --remove --local --rename /usr/bin/plasma
-	    divert=""
-	fi
-	dpkg-divert --package $package_name --rename \
-	            --divert /usr/bin/plasma.kde4 \
-	            --add /usr/bin/plasma
-
-	# Jaunty plasma-desktop
-	divert=`dpkg-divert --listpackage /usr/share/autostart/plasma-desktop.desktop`
-	if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-	    dpkg-divert --remove --local --rename /usr/share/autostart/plasma-desktop.desktop
-	fi
-	divert=`dpkg-divert --listpackage /usr/bin/plasma-desktop`
-	if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-	    if [ -L /usr/bin/plasma-desktop ]; then
-	        rm -f /usr/bin/plasma-desktop
-	    fi
-	    dpkg-divert --remove --local --rename /usr/bin/plasma-desktop
-	    divert=""
-	fi
-	dpkg-divert --package $package_name --rename \
-	            --divert /usr/bin/plasma-desktop.kde4 \
-	            --add /usr/bin/plasma-desktop
     ;;
 
     abort-upgrade)

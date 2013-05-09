@@ -4,13 +4,6 @@ package_name=ksmserver-trinity
 
 case "$1" in
     remove)
-	# Intrepid plasma
-	dpkg-divert --package $package_name \
-	            --rename --remove /usr/bin/plasma
-
-	# Jaunty plasma-desktop
-	dpkg-divert --package $package_name \
-	            --rename --remove /usr/bin/plasma-desktop
     ;;
 
     purge|upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)
