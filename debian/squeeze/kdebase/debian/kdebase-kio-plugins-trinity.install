@@ -364,6 +364,7 @@ debian/tmp/opt/trinity/share/services/kfile_trash_system.desktop
 debian/tmp/opt/trinity/share/services/kmanpart.desktop
 debian/tmp/opt/trinity/share/services/ldap.protocol
 debian/tmp/opt/trinity/share/services/ldaps.protocol
+debian/tmp/opt/trinity/share/services/lzma.protocol
 debian/tmp/opt/trinity/share/services/mac.protocol
 debian/tmp/opt/trinity/share/services/man.protocol
 debian/tmp/opt/trinity/share/services/media.protocol
@@ -386,5 +387,6 @@ debian/tmp/opt/trinity/share/services/tar.protocol
 debian/tmp/opt/trinity/share/services/textthumbnail.desktop
 debian/tmp/opt/trinity/share/services/thumbnail.protocol
 debian/tmp/opt/trinity/share/services/trash.protocol
+debian/tmp/opt/trinity/share/services/xz.protocol
 debian/tmp/opt/trinity/share/services/zip.protocol
 debian/tmp/opt/trinity/share/servicetypes/thumbcreator.desktop
