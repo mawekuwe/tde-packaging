@@ -185,8 +185,8 @@ Section: kde
 Architecture: any
 Replaces: kdebase-kio-plugins-kde3 (<< 4:3.5.13)
 Breaks: kdebase-kio-plugins-kde3 (<< 4:3.5.13)
-Depends: ${shlibs:Depends}, kdesktop-trinity, libsasl2-modules, psmisc, cryptsetup, man-db (>= 2.5.1-1)
-Recommends: hal-trinity, pmount, kamera-trinity, kdemultimedia-kio-plugins-trinity
+Depends: ${shlibs:Depends}, kdesktop-trinity, libsasl2-modules, psmisc, man-db (>= 2.5.1-1)
+Recommends: hal-trinity, pmount, cryptsetup, kamera-trinity, kdemultimedia-kio-plugins-trinity
 Suggests: khelpcenter-trinity, mtools
 Conflicts: kdebase-libs-trinity (<< 4:3.0.0), mediamanager
 Description: core I/O slaves for KDE

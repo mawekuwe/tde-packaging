@@ -170,8 +170,8 @@ Description: KDE base documentation in HTML format
 Package: kdebase-kio-plugins-trinity
 Section: kde
 Architecture: any
-Depends: ${shlibs:Depends}, kdesktop-trinity, libsasl2-modules, psmisc, cryptsetup, man-db (>= 2.5.1-1)
-Recommends: hal-trinity, pmount, kamera-trinity, kdemultimedia-kio-plugins-trinity
+Depends: ${shlibs:Depends}, kdesktop-trinity, libsasl2-modules, psmisc, man-db (>= 2.5.1-1)
+Recommends: hal-trinity, pmount, cryptsetup, kamera-trinity, kdemultimedia-kio-plugins-trinity
 Suggests: khelpcenter-trinity, mtools
 Conflicts: kdebase-libs-trinity (<< 4:3.0.0), mediamanager
 Replaces: kdebase-trinity (<< 4:3.0.0), kdebase-trinity-doc (<< 4:3.0.0), kdebase-libs-trinity (<< 4:3.0.0), konqueror-trinity (<< 4:3.0.0), kdebase-trinity-bin (<< 4:3.5.5a.dfsg.1-1ubuntu18), kdebase-data-trinity (<< 4:3.5.8-2ubuntu18)
