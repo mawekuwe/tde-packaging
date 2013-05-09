@@ -97,6 +97,7 @@ debian/tmp/opt/trinity/share/apps/kicker/builtins/exec.desktop
 debian/tmp/opt/trinity/share/apps/kicker/builtins/kmenu.desktop
 debian/tmp/opt/trinity/share/apps/kicker/builtins/windowlist.desktop
 debian/tmp/opt/trinity/share/apps/kicker/default-apps
+debian/tmp/opt/trinity/share/apps/kicker/default-favs
 debian/tmp/opt/trinity/share/apps/kicker/extensions/childpanelextension.desktop
 debian/tmp/opt/trinity/share/apps/kicker/extensions/dockbarextension.desktop
 debian/tmp/opt/trinity/share/apps/kicker/extensions/kasbarextension.desktop
