@@ -185,7 +185,7 @@ kubuntu-default-settings (1:8.04-7) hardy; urgency=low
 kubuntu-default-settings (1:8.04-6) hardy; urgency=low
 
   * Fixed kdm-settings/20_kubuntu_default_settings, uses PreferUser to
-    match the user's choosen photo in KDM
+    match the user's choosen photo in TDM
 
  -- Anthony Mercatante <tonio@kubuntu.org>  Fri, 04 Jan 2008 15:52:46 +0100
 
@@ -255,7 +255,7 @@ kubuntu-default-settings (1:7.10-25) gutsy; urgency=low
 
 kubuntu-default-settings (1:7.10-24) gutsy; urgency=low
 
-  * Removed now useless KDM dependency
+  * Removed now useless TDM dependency
 
  -- Anthony Mercatante <tonio@kubuntu.org>  Wed, 26 Sep 2007 13:49:47 +0200
 
@@ -416,15 +416,15 @@ kubuntu-default-settings (1:7.10-4) gutsy; urgency=low
 
 kubuntu-default-settings (1:7.10-3) gutsy; urgency=low
 
-  * Remove KDM hacking from postinst and postrm
+  * Remove TDM hacking from postinst and postrm
   * Add kdm-settings/20_kubuntu_default_settings for
-    /etc/defaults/kdm.d/ for nice overloading of KDM settings
+    /etc/defaults/kdm.d/ for nice overloading of TDM settings
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 06 Jun 2007 17:55:53 +0100
 
 kubuntu-default-settings (1:7.10-2) gutsy; urgency=low
 
-  * Modify KDM theme to include user list, change by Timo Freyer lumpi_online@gmx.ch
+  * Modify TDM theme to include user list, change by Timo Freyer lumpi_online@gmx.ch
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Fri,  1 Jun 2007 13:29:20 +0100
 
@@ -1038,13 +1038,13 @@ kubuntu-default-settings (1:6.10-24) edgy; urgency=low
 
 kubuntu-default-settings (1:6.10-23) edgy; urgency=low
 
-  * Fix path to background image in KDM theme
+  * Fix path to background image in TDM theme
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 30 Aug 2006 13:30:20 +0000
 
 kubuntu-default-settings (1:6.10-22) edgy; urgency=low
 
-  * KDM theme fixes from Ken Wimer
+  * TDM theme fixes from Ken Wimer
   * New Konqueror background from Ken Wimer
   * Add Edgy amarok theme
 
@@ -1058,7 +1058,7 @@ kubuntu-default-settings (1:6.10-21) edgy; urgency=low
 
 kubuntu-default-settings (1:6.10-20) edgy; urgency=low
 
-  * Improved KDM theme from Ken Wimer
+  * Improved TDM theme from Ken Wimer
   * New KSplash theme from Ken Wimer
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 24 Aug 2006 13:43:12 +0100
@@ -1137,7 +1137,7 @@ kubuntu-default-settings (1:6.10-9) edgy; urgency=low
 
 kubuntu-default-settings (1:6.10-8) edgy; urgency=low
 
-  * New KDM theme from Ken Wimer
+  * New TDM theme from Ken Wimer
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 19 Aug 2006 22:05:11 +0100
 
@@ -1234,7 +1234,7 @@ kubuntu-default-settings (1:6.06-18) dapper; urgency=low
 
 kubuntu-default-settings (1:6.06-17) dapper; urgency=low
 
-  * Updated KDM artwork from Ken Wimer
+  * Updated TDM artwork from Ken Wimer
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 17 May 2006 00:16:19 +0100
 
@@ -1386,7 +1386,7 @@ kubuntu-default-settings (1:6.04-16) dapper; urgency=low
 kubuntu-default-settings (1:6.04-15) dapper; urgency=low
 
   * Make default window style kwin3_crystal
-  * Give ksplash same background as KDM
+  * Give ksplash same background as TDM
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 13 Mar 2006 23:58:24 +0000
 
@@ -1410,7 +1410,7 @@ kubuntu-default-settings (1:6.04-12) dapper; urgency=low
 
   * Change selected colours and button forground colour
   * Dapper usplash image
-  * Dapper KDM theme
+  * Dapper TDM theme
   * Dapper KSplash Moodin theme
   * Tweak lipstick settings
   * Menu drop shadow in kstylerc
@@ -1474,7 +1474,7 @@ kubuntu-default-settings (1:6.04-7) dapper; urgency=low
   * Added tabs on top for konversation and default theme set to "Square"
     for better visibility
   * Added ksvgplugin with integration set to "contextToolBar"
-  * Added new KDM theme and KSplash Moodin theme
+  * Added new TDM theme and KSplash Moodin theme
   * Changed font effect on the desktop for better visibility
   * Correct amarok's kubuntu theme installation
   * Added knemorc
@@ -1517,7 +1517,7 @@ kubuntu-default-settings (1:6.04-5) dapper; urgency=low
     tdeioslaves default activation in order to have an homogenous ark integration in kde with
     rar, 7z and other compressed files
   * Makefile updated to install all new files
-  * Add postinst and postrm scripts to edit kdmrc for Debian KDM theme, stops kdm 
+  * Add postinst and postrm scripts to edit kdmrc for Debian TDM theme, stops kdm 
     having to depend on kubuntu-default-settings
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon,  9 Jan 2006 04:50:25 +0000
@@ -1619,7 +1619,7 @@ kubuntu-default-settings (1:5.10-11) breezy; urgency=low
 
 kubuntu-default-settings (1:5.10-10) breezy; urgency=low
 
-  * Update KDM theme and add matching splash screen
+  * Update TDM theme and add matching splash screen
   * Add login sound
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 24 Sep 2005 13:21:08 +0100
@@ -1632,7 +1632,7 @@ kubuntu-default-settings (1:5.10-9) breezy; urgency=low
 
 kubuntu-default-settings (1:5.10-8) breezy; urgency=low
 
-  * New KDM theme and background
+  * New TDM theme and background
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 19 Sep 2005 15:39:44 +0100
 

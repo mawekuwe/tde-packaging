@@ -2,7 +2,7 @@
 <!DOCTYPE greeter SYSTEM "greeter.dtd">
 <greeter>
 	<item type="pixmap" >
-		<normal file="@@@KDMBACKGROUND@@@" />
+		<normal file="@@@TDMBACKGROUND@@@" />
 		<pos width="100%" x="0" y="0" height="100%" />
 	</item>
 	<item type="pixmap" >

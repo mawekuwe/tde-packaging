@@ -6,7 +6,7 @@ Version = 1.5.1
 Author = Jim Bustos <jimbustos@gmail.com>
 URL = http://www.kde-look.org/usermanager/search.php?username=jbus
 
-This theme also has a matching KDM theme located @
+This theme also has a matching TDM theme located @
 http://kdelook.org/content/show.php?content=29331
 
 This theme requires Moodwrod's Moodin Engine.

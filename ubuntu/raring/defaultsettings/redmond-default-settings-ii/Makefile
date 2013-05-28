@@ -5,10 +5,10 @@ WALLPAPER_DIR = $(DESTDIR)/usr/share/wallpapers
 SOUNDS_DIR = $(DESTDIR)/usr/share/sounds
 KICKER_DIR = $(DESTDIR)/usr/share/apps/kicker
 KONQ_TILES_DIR = $(DESTDIR)/usr/share/apps/konqueror/tiles
-KDM_THEME_DIR = $(DESTDIR)/opt/trinity/share/apps/tdm/themes/kubuntu-trinity
-KDM_THEME_NO_USERLIST_DIR = $(DESTDIR)/opt/trinity/share/apps/tdm/themes/kubuntu-no-userlist-trinity
-KDM_OVERRIDE = $(DESTDIR)/etc/default/tdm-trinity.d/
-KDM_SETTINGS_DIR = $(DESTDIR)/etc/trinity/tdm/
+TDM_THEME_DIR = $(DESTDIR)/opt/trinity/share/apps/tdm/themes/kubuntu-trinity
+TDM_THEME_NO_USERLIST_DIR = $(DESTDIR)/opt/trinity/share/apps/tdm/themes/kubuntu-no-userlist-trinity
+TDM_OVERRIDE = $(DESTDIR)/etc/default/tdm-trinity.d/
+TDM_SETTINGS_DIR = $(DESTDIR)/etc/trinity/tdm/
 KSPLASH_THEME_DIR = $(DESTDIR)/opt/trinity/share/apps/ksplash/Themes/kubuntu
 SETTINGS_DIR = $(DESTDIR)/usr/share/redmond-default-settings-trinity
 CURSOR_DIR = $(DESTDIR)/usr/share/icons/contrastlarge
@@ -21,9 +21,9 @@ build:
 clean:
 
 install:
-	mkdir -p "$(KDM_SETTINGS_DIR)"
-	install -m644 backgroundrc "$(KDM_SETTINGS_DIR)"
-	install -m644 tdmdistrc "$(KDM_SETTINGS_DIR)"
+	mkdir -p "$(TDM_SETTINGS_DIR)"
+	install -m644 backgroundrc "$(TDM_SETTINGS_DIR)"
+	install -m644 tdmdistrc "$(TDM_SETTINGS_DIR)"
 
 	mkdir -p "$(WALLPAPER_DIR)"
 	install -m644 artwork/kubuntu-wallpaper.png  "$(WALLPAPER_DIR)"
@@ -189,11 +189,11 @@ install:
 	mkdir -p "$(KICKER_DIR)/wallpapers"
 	install -m644 artwork/kubuntu-panel.png  "$(KICKER_DIR)/wallpapers/"
 
-	mkdir -p "$(KDM_THEME_DIR)"
-	install -m644 artwork/tdm-theme/*  "$(KDM_THEME_DIR)"
+	mkdir -p "$(TDM_THEME_DIR)"
+	install -m644 artwork/tdm-theme/*  "$(TDM_THEME_DIR)"
 
-	mkdir -p "$(KDM_THEME_NO_USERLIST_DIR)"
-	install -m644 artwork/tdm-theme-no-userlist/*  "$(KDM_THEME_NO_USERLIST_DIR)"
+	mkdir -p "$(TDM_THEME_NO_USERLIST_DIR)"
+	install -m644 artwork/tdm-theme-no-userlist/*  "$(TDM_THEME_NO_USERLIST_DIR)"
 
 	mkdir -p "$(KSPLASH_THEME_DIR)"
 	install -m644 artwork/ksplash/*  "$(KSPLASH_THEME_DIR)"
