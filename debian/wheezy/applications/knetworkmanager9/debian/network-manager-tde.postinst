@@ -1,0 +1,12 @@
+#!/bin/sh
+# postinst script for network-manager-tde
+
+set -e
+
+if [ "$1" = "configure" ] ; then
+  ldconfig
+fi
+
+#DEBHELPER#
+
+exit 0
