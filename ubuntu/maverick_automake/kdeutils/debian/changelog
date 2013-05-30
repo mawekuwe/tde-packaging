@@ -630,7 +630,7 @@ kdeutils (4:3.4.2-1) unstable; urgency=low
 
   +++ Changes by Pierre Habouzit:
 
-  * Change kdessh depends: ssh becomes (open)ssh-client. (Closes: #315045)
+  * Change tdessh depends: ssh becomes (open)ssh-client. (Closes: #315045)
 
   +++ Changes by Christopher Martin:
 
@@ -781,7 +781,7 @@ kdeutils (4:3.3.1-1) unstable; urgency=low
 
   * New upstream release.
   * KDE_3_3_BRANCH update.
-  * Added kdessh Depends on ssh. (Closes: #271875)
+  * Added tdessh Depends on ssh. (Closes: #271875)
   * Added Build-Depends libxtst-dev. (Closes: #276835)
 
  -- Christopher L Cheney <ccheney@debian.org>  Mon,  8 Nov 2004 14:30:00 -0600
@@ -1228,13 +1228,13 @@ kdeutils (4:2.0-20000925-0) unstable; urgency=low
  
   * More upstream fixes
   * Build-Depends fixes
-  * Fixing kdf-kdessh file mixup (Closes: #72413)
+  * Fixing kdf-tdessh file mixup (Closes: #72413)
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Mon, 25 Sep 2000 15:30:00 -0700
 
 kdeutils (4:2.0-20000920-2) unstable; urgency=low
  
-  * Removing kdessh and setting proper depends for ark
+  * Removing tdessh and setting proper depends for ark
  
  -- Ivan E. Moore II <rkrusty@debian.org>  Thu, 21 Sep 2000 17:30:00 -0700
 

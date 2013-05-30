@@ -284,7 +284,7 @@ meta-kde (4:2.2) unstable; urgency=low
   * New packages added to kde-extras: kooka, libkscan1, kandy, kmsn, 
     skam, mp3kult, licq-plugin-kde, knapster2, kaptain, wordtrans-kde
   * New packages added to kde-devel: kspy, kbabel
-  * New packages added to kde: kdelibs3-crypto, kdebase-crypto, kdessh,
+  * New packages added to kde: kdelibs3-crypto, kdebase-crypto, tdessh,
     aktion, kde-i18n (all as suggests)
   * New packages added to kde-games: kdecarddecks
   * Moved kde-games from a suggests to a recommends for kde.
