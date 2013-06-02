@@ -1,0 +1,15 @@
+Source: kubuntu-default-settings-trinity
+Section: kde
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>= 5.0), quilt, cdbs
+Standards-Version: 3.7.3
+
+Package: kubuntu-default-settings-trinity
+Architecture: all
+Depends: crystalcursors
+Conflicts: kubuntu-default-settings
+Recommends: kdmtheme-trinity, kubuntu-kdm-themes
+Description: Default settings and artwork for the Debian KDE3 desktop
+ This package contains the default settings used by Ubuntu [Trinity].  It also
+ includes artwork and Ubuntu branding.
