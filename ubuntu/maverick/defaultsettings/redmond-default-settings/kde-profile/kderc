@@ -1,0 +1,5 @@
+[Directories]
+userProfileMapFile=/etc/kde-user-profile
+
+[Directories-default]
+prefixes=/usr/share/redmond-default-settings-trinity/kde-profile/default/
