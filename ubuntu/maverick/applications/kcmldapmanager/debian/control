@@ -8,5 +8,6 @@ Standards-Version: 3.8.4
 Package: kcontrol-ldap-manager-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients
+Recommends: tde-ldap-cert-updater
 Description: Kerberos realm management module for the TDE control center
  This is a TDE control center module to manage users, groups, and machines in Kerberos realms.
