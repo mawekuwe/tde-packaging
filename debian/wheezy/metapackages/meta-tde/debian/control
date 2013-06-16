@@ -1,60 +1,66 @@
-Source: meta-kde-trinity
-Section: kde
+Source: meta-tde-trinity
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Sune Vuorela <debian@pusling.com>, Fathi Boudra <fabo@debian.org>, Armin Berres <trigger+debian@space-based.de>
 Build-Depends: debhelper (>= 6)
 Standards-Version: 3.7.3
-Homepage: http://www.kde.org
+Homepage: http://www.trinitydesktop.org
 
-Package: kde-trinity
+Package: tde-trinity
 Architecture: all
-Section: kde
+Section: tde
 Priority: optional
-Depends: kde-core-trinity (>= 5:47), kde-core-trinity (>= 5:47), kdeedu-trinity (>= 4:3.5.5), kdegames-trinity (>= 4:3.5.5), kdetoys-trinity (>= 4:3.5.5), kdeaccessibility-trinity (>= 4:3.5.5), kdeaddons-trinity (>= 4:3.5.5), kdeadmin-trinity (>= 4:3.5.5), kdeartwork-trinity (>= 4:3.5.5), kdegraphics-trinity (>= 4:3.5.5), kdemultimedia-trinity (>= 4:3.5.5), kdenetwork-trinity (>= 4:3.5.5), kdepim-trinity (>= 4:3.5.5), kdeutils-trinity (>= 4:3.5.5), kdewebdev-trinity (>= 4:3.5.5), desktop-base-trinity
-Suggests: kde-i18n-trinity (>= 4:3.5.5), x-window-system-core, kdesudo-trinity, gtk-qt-engine-trinity, gtk3-tqt-engine-trinity, qt4-tqt-theme-engine
-Description: the K Desktop Environment official modules [Trinity]
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Replaces: kde-trinity (<< 5:55)
+Breaks: kde-trinity (<< 5:55)
+Depends: tde-core-trinity (>= 4:14.0.0), tdeedu-trinity (>= 4:14.0.0), tdegames-trinity (>= 4:14.0.0), tdetoys-trinity (>= 4:14.0.0), tdeaccessibility-trinity (>= 4:14.0.0), tdeaddons-trinity (>= 4:14.0.0), tdeadmin-trinity (>= 4:14.0.0), tdeartwork-trinity (>= 4:14.0.0), tdegraphics-trinity (>= 4:14.0.0), tdemultimedia-trinity (>= 4:14.0.0), tdenetwork-trinity (>= 4:14.0.0), tdepim-trinity (>= 4:14.0.0), tdeutils-trinity (>= 4:14.0.0), tdewebdev-trinity (>= 4:14.0.0), desktop-base-trinity
+Suggests: tde-i18n-trinity (>= 4:14.0.0), x-window-system-core, tdesudo-trinity, gtk-qt-engine-trinity, gtk3-tqt-engine-trinity, qt4-tqt-theme-engine
+Description: Trinity Desktop Environment official modules [Trinity]
+ TDE (Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
- This metapackage includes all the official modules released with KDE that
- are not specific to development. In addition to the core KDE modules, this
+ This metapackage includes all the official modules released with TDE that
+ are not specific to development. In addition to the core TDE modules, this
  includes multimedia, networking, personal information manager (PIM),
  graphics, education, games, web development, system administration tools,
  and other artwork and utilities.
 
 
-Package: kde-core-trinity
+Package: tde-core-trinity
 Architecture: all
-Section: kde
+Section: tde
 Priority: optional
-Depends: arts-trinity (>= 1.5.5), kdebase-trinity (>= 4:3.5.5), kdelibs-trinity (>= 4:3.5.5), sudo-trinity
-Suggests: kde-i18n-trinity (>= 4:3.5.5)
-Description: the K Desktop Environment core modules [Trinity]
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Replaces: kde-core-trinity (<< 5:55)
+Breaks: kde-core-trinity (<< 5:55)
+Depends: arts-trinity (>= 1.5.5), tdebase-trinity (>= 4:14.0.0), tdelibs-trinity (>= 4:14.0.0), sudo-trinity
+Suggests: tde-i18n-trinity (>= 4:14.0.0)
+Description: Trinity Desktop Environment core modules [Trinity]
+ TDE (Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
- This metapackage includes the core official modules released with KDE. This
+ This metapackage includes the core official modules released with TDE. This
  includes just the basic desktop (browser, file manager, text editor, control
  center, panel, etc.) and important libraries and data, in addition to the
  aRts soundserver.
 
-Package: kde-devel-trinity
+Package: tde-devel-trinity
 Architecture: all
-Section: kde
+Section: tde
 Priority: optional
-Depends: kde-core-trinity (>= 5:48), kdesdk-trinity (>= 4:3.5.5), libartsc0-trinity-dev (>= 1.5.5), libarts1-trinity-dev (>= 1.5.5), kdelibs4-trinity-dev (>= 4:3.5.5), kdebase-trinity-dev (>= 4:3.5.5), libkonq4-trinity-dev (>= 4:3.5.5), qt3-designer
-Suggests: kde-i18n-trinity (>= 4:3.5.5), kdbg-trinity, kdevelop-trinity (>= 4:3.3.5), kprof-trinity
-Description: the K Desktop Environment development files and modules [Trinity]
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Replaces: kde-devel-trinity (<< 5:55)
+Breaks: kde-devel-trinity (<< 5:55)
+Depends: tde-core-trinity (>= 4:14.0.0), tdesdk-trinity (>= 4:14.0.0), libartsc0-trinity-dev (>= 1.5.5), libarts1-trinity-dev (>= 1.5.5), tdelibs4-trinity-dev (>= 4:14.0.0), tdebase-trinity-dev (>= 4:14.0.0), libkonq4-trinity-dev (>= 4:14.0.0), tqt3-designer
+Suggests: tde-i18n-trinity (>= 4:14.0.0), kdbg-trinity, tdevelop-trinity (>= 4:14.0.0), kprof-trinity
+Description: Trinity Desktop Environment development files and modules [Trinity]
+ TDE (Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
- This metapackage includes official KDE modules that are useful to developers,
- including KDE's software development kit (SDK), Qt3's designer tool, and all
- core KDE header and development packages.
+ This metapackage includes official TDE modules that are useful to developers,
+ including TDE's software development kit (SDK), TQt3's designer tool, and all
+ core TDE header and development packages.
