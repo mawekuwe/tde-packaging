@@ -1,4 +1,4 @@
 [Misc]
 startkdeScan=true
 useArtsdsp=true
-PluginsListFile=/usr/share/kubuntu-default-settings-trinity/kde-profile/default/share/apps/konqueror/konq_plugins.xml
+PluginsListFile=/usr/share/kubuntu-default-settings-trinity/tde-profile/default/share/apps/konqueror/konq_plugins.xml

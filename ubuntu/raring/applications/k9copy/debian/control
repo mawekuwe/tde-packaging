@@ -3,9 +3,8 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Anthony Mercatante <tonio@ubuntu.com>
-Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, docbook2x, libdvdread-dev, libdbus-1-dev, libhal-dev, libhal-storage-dev, libavformat-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, docbook2x, libdvdread-dev, libdbus-1-dev, libk3b-trinity-dev, libavformat-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
-Homepage: http://k9copy.sourceforge.net/
 
 Package: k9copy-trinity
 Architecture: any
@@ -14,6 +13,6 @@ Replaces: k9copy-kde3 (<< 4:14.0.0), k9copy-trinity (<< 4:14.0.0)
 Breaks: k9copy-kde3 (<< 4:14.0.0), k9copy-trinity (<< 4:14.0.0)
 Description: DVD backup tool for Trinity
  k9copy is a tabbed tool that allows to copy of one or more titles from a DVD9
- to a DVD5, in thesame way than DVDShrink for Microsoft Windows (R).
+ to a DVD5, in much the same way as DVDShrink for Microsoft Windows (R).
  This is the Trinity version
 

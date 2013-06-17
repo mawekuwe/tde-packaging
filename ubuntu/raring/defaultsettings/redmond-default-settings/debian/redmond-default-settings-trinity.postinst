@@ -14,7 +14,7 @@ case "$1" in
     fi
 
 	# Clean this file, as it seems to be removal resistant...
-	rm -rf /etc/default/kdm-trinity.d/20_kubuntu_default_settings
+	rm -rf /etc/default/tdm-trinity.d/20_kubuntu_default_settings
 
 	# create links for .hidden files, don't bail out if s.th. goes wrong.
 	if [ -d /media ]; then

@@ -1,12 +1,12 @@
-# KDM master configuration file
+# TDM master configuration file
 #
 # Please note: Settings in this file are sometimes ignored (overridden).
-# The default KDM startup script /etc/init.d/kdm looks in /etc/default/kdm.d
+# The default TDM startup script /etc/init.d/tdm looks in /etc/default/tdm.d
 # for theme-related settings which, if found, take precedence. The possibly 
 # overridden settings are: UseBackground, BackgroundCfg, UseTheme, Theme.
-# See /usr/share/doc/kdm/README.Debian for details
+# See /usr/share/doc/tdm/README.Debian for details
 #
-# Definition: the greeter is the login dialog, i.e., the part of KDM
+# Definition: the greeter is the login dialog, i.e., the part of TDM
 # which the user sees.
 #
 # You can configure every X-display individually.
@@ -42,7 +42,7 @@
 #
 # Every comment applies to the following section or key. Note that all
 # comments will be lost if you change this file with the kcontrol frontend.
-# The defaults refer to KDM's built-in values, not anything set in this file.
+# The defaults refer to TDM's built-in values, not anything set in this file.
 #
 # Special characters need to be backslash-escaped (leading and trailing
 # spaces (\s), tab (\t), linefeed (\n), carriage return (\r) and the
@@ -72,26 +72,26 @@ ServerVTs=-7
 # TTYs (without /dev/) to monitor for activity while in console mode.
 # Default is ""
 ConsoleTTYs=tty1,tty2,tty3,tty4,tty5,tty6
-# Where KDM should store its PID (do not store if empty).
+# Where TDM should store its PID (do not store if empty).
 # Default is ""
-PidFile=/var/run/kdm.pid
-# Whether KDM should lock the PID file to prevent having multiple KDM
+PidFile=/var/run/tdm.pid
+# Whether TDM should lock the PID file to prevent having multiple TDM
 # instances running at once. Do not change unless you are brave.
 # Default is true
 #LockPidFile=false
 # Where to store authorization files.
 # Default is "/var/run/xauth"
 #AuthDir=/tmp
-# Whether KDM should automatically re-read configuration files, if it
+# Whether TDM should automatically re-read configuration files, if it
 # finds them having changed.
 # Default is true
 #AutoRescan=false
-# Additional environment variables KDM should pass on to all programs it runs.
+# Additional environment variables TDM should pass on to all programs it runs.
 # LD_LIBRARY_PATH and XCURSOR_THEME are good candidates;
 # otherwise, it should not be necessary very often.
 # Default is ""
 #ExportList=LD_LIBRARY_PATH,ANOTHER_IMPORTANT_VAR
-# A character device KDM should read entropy from.
+# A character device TDM should read entropy from.
 # Empty means use the system's preferred entropy device.
 # Default is ""
 #RandomDevice=/dev/altrandom
@@ -103,25 +103,25 @@ PidFile=/var/run/kdm.pid
 # can be either a name or a numerical ID.
 # Default is 0
 #FifoGroup=xdmctl
-# The directory in which KDM should store persistent working data.
-# Default is "/var/lib/kdm"
+# The directory in which TDM should store persistent working data.
+# Default is "/var/lib/tdm"
 #DataDir=
-# The directory in which KDM should store users' .dmrc files. This is only
+# The directory in which TDM should store users' .dmrc files. This is only
 # needed if the home directories are not readable before actually logging in
 # (like with AFS).
 # Default is ""
 #DmrcDir=/nfs-shared/var/dmrcs
 
 [Xdmcp]
-# Whether KDM should listen to incoming XDMCP requests.
+# Whether TDM should listen to incoming XDMCP requests.
 # Default is true
 Enable=false
-# The UDP port on which KDM should listen for XDMCP requests. Do not change.
+# The UDP port on which TDM should listen for XDMCP requests. Do not change.
 # Default is 177
 #Port=177
 # File with the private keys of X-terminals. Required for XDM authentication.
 # Default is ""
-#KeyFile=/etc/trinity/tdm/kdmkeys
+#KeyFile=/etc/trinity/tdm/tdmkeys
 # XDMCP access control file in the usual XDM-Xaccess format.
 # Default is "/etc/trinity/tdm/Xaccess"
 #Xaccess=
@@ -157,7 +157,7 @@ Willing=/etc/trinity/tdm/Xwilling
 # system via the global command FiFo.
 # Default is true
 #AllowFifoNow=false
-# The boot manager KDM should use for offering boot options in the
+# The boot manager TDM should use for offering boot options in the
 # shutdown dialog.
 # "None" - no boot manager
 # "Grub" - Grub boot manager
@@ -165,7 +165,7 @@ Willing=/etc/trinity/tdm/Xwilling
 # Default is None
 #BootManager=Grub
 
-# Rough estimations about how many seconds KDM will spend at most on
+# Rough estimations about how many seconds TDM will spend at most on
 # - opening a connection to the X-server (OpenTime) if the attempt
 #   - times out: OpenTimeout
 #   - is refused: OpenRepeat * OpenDelay
@@ -279,13 +279,13 @@ AllowShutdown=Root
 # Default is Never
 #ScheduledSd=Optional
 # The directories containing session type definitions in .desktop format.
-# Default is "/usr/share/xsessions,/var/lib/menu-xdg/xsessions,/usr/share/apps/kdm/sessions"
-#SessionsDirs=/usr/share/xsessions,/var/lib/menu-xdg/xsessions,/usr/share/apps/kdm/sessions
+# Default is "/usr/share/xsessions,/var/lib/menu-xdg/xsessions,/usr/share/apps/tdm/sessions"
+#SessionsDirs=/usr/share/xsessions,/var/lib/menu-xdg/xsessions,/usr/share/apps/tdm/sessions
 # The file (relative to $HOME) to redirect the session output to. This is
 # a printf format string; one %s will be replaced with the display name.
 # Default is ".xsession-errors"
 ClientLogFile=.xsession-errors-%s
-# Whether KDM's built-in utmp/wtmp/lastlog registration should be used.
+# Whether TDM's built-in utmp/wtmp/lastlog registration should be used.
 # Default is false
 #UseSessReg=true
 
@@ -316,10 +316,10 @@ UseSAK=true
 # "Logo" - the image specified by LogoPixmap
 # "Clock" - a neat analog clock
 # Default is Clock
-LogoArea=Logo
+LogoArea=None
 # The image to show when LogoArea=Logo.
 # Default is ""
-LogoPixmap=/opt/trinity/share/apps/kdm/pics/kdelogo.png
+LogoPixmap=/opt/trinity/share/apps/tdm/pics/kdelogo.png
 # The relative coordinates (X,Y in percent) of the center of the greeter.
 # Default is "50,50"
 #GreeterPos=30,40
@@ -365,7 +365,7 @@ AntiAliasing=true
 #UserCompletion=true
 # Enable user list (names along with images) in the greeter.
 # Default is true
-#UserList=false
+UserList=false
 # User selection for UserCompletion and UserList:
 # "NotHidden" - all users except those listed in HiddenUsers
 # "Selected" - only the users listed in SelectedUsers
@@ -397,7 +397,7 @@ MaxShowUID=29999
 # Default is AdminOnly
 #FaceSource=PreferUser
 # The directory containing the user images if FaceSource is not UserOnly.
-# Default is "/opt/trinity/share/apps/kdm/faces"
+# Default is "/opt/trinity/share/apps/tdm/faces"
 #FaceDir=/usr/share/faces
 # Specify, if/which user should be preselected for log in.
 # "None" - do not preselect any user
@@ -415,7 +415,7 @@ MaxShowUID=29999
 # "NoEcho" - nothing is shown at all, the cursor does not move
 # Default is OneStar
 #EchoMode=NoEcho
-# If true, krootimage will be automatically started by KDM; otherwise, the
+# If true, krootimage will be automatically started by TDM; otherwise, the
 # Setup script should be used to setup the background.
 # Default is true
 #UseBackground=false
@@ -464,8 +464,8 @@ Preloader=/opt/trinity/bin/preloadkde
 UseTheme=false
 # The theme to use for the greeter. Can point to either a directory or an XML
 # file.
-# Default is "/opt/trinity/share/apps/kdm/themes/o2_enterprise"
-Theme=/opt/trinity/share/apps/kdm/themes/kubuntu-trinity
+# Default is "/opt/trinity/share/apps/tdm/themes/o2_enterprise"
+Theme=/opt/trinity/share/apps/tdm/themes/kubuntu-trinity
 
 # Core config for local displays
 [X-:*-Core]
@@ -563,7 +563,7 @@ AllowClose=true
 #AutoLoginUser=fred
 # The password for the user to log in automatically. This is NOT required
 # unless the user is logged into a NIS or Kerberos domain. If you use this
-# option, you should "chmod 600 kdmrc" for obvious reasons.
+# option, you should "chmod 600 tdmrc" for obvious reasons.
 # Default is ""
 #AutoLoginPass=secret!
 # Immediately lock the automatically started session. This works only with
