@@ -1,0 +1,9 @@
+#!/bin/sh
+
+case "$1" in
+    remove|purge)
+	if [ -x /usr/bin/apt-key ]; then
+		/usr/bin/apt-key del 2B8638D0
+	fi
+	;;
+esac

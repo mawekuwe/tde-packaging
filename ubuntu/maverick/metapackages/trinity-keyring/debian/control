@@ -1,0 +1,13 @@
+Source: trinity-keyring
+Section: misc
+Priority: optional
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Standards-Version: 3.8.4
+
+Package: trinity-keyring
+Priority: important
+Architecture: all
+Depends: gnupg (>= 1.0.6-4)
+Description: GnuPG key of the Trinity Desktop Environment repository
+ The Trinity repository digitally signs its Release files. This package
+ contains the repository key used for that.
