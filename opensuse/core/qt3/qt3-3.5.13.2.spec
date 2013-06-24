@@ -3,40 +3,17 @@
 #
 
 Name:           qt3
-#Remember also to modify Requires in -devel package
-BuildRequires:  Mesa-devel
-BuildRequires:  c++_compiler
-BuildRequires:  cups-devel
-BuildRequires:  freetype2-devel
-BuildRequires:  libjpeg-devel
-BuildRequires:  libmng-devel
-BuildRequires:  pkgconfig
-BuildRequires:  update-desktop-files
-BuildRequires:  xorg-x11-devel
-BuildRequires:	tar
-Url:            http://www.trolltech.com/
-%if %suse_version > 1220
-BuildRequires:  libpng15-compat-devel
-%else
-BuildRequires:  libpng14-compat-devel
-%endif
-# bug437293
-%ifarch ppc64
-Obsoletes:      qt3-64bit
-%endif
-#
 Summary:        A library for developing applications with graphical user interfaces
+Url:            http://www.trolltech.com/
 License:        GPL-2.0 or GPL-3.0 or QPL-1.0
 Group:          System/Libraries
 Version:        3.3.8d
-Release:        2
+Release:        2%{?dist}
 Provides:       qt_library_%version
-Recommends:     kdelibs3-default-style
 PreReq:         /bin/grep
 # COMMON-BEGIN
 %define x11_free -x11-free-
-%define rversion 3.3.8b
-Source0:        trinity-qt3-3.5.13.2.tar.gz
+Source0:		trinity-qt3-3.5.13.2%{?preversion:~%{preversion}}.tar.gz
 Source1:        build_script.sh
 Source2:        qtconfig3.desktop
 Source3:        qtrc
@@ -68,7 +45,6 @@ Patch23:        fix-accessible.diff
 # From http://www.freedesktop.org/wiki/Software_2fImmoduleQtDownload
 # Current version from http://freedesktop.org/~daisuke/qt-x11-immodule-unified-qt3.3.5-20060318.diff.bz2
 Patch31:        limit-image-size.diff
-Patch35:        qt-transparency.patch
 Patch37:        0055-qtextedit_zoom.patch
 Patch39:        fix-qtranslator-crash.diff
 Patch42:        add_qexport_visibility.patch
@@ -85,6 +61,36 @@ Patch139:       gcc46.diff
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
+#Remember also to modify Requires in -devel package
+BuildRequires:  c++_compiler
+BuildRequires:  cups-devel
+BuildRequires:  freetype2-devel
+BuildRequires:  libjpeg-devel
+BuildRequires:  libmng-devel
+BuildRequires:  pkgconfig
+BuildRequires:  update-desktop-files
+BuildRequires:  xorg-x11-devel
+BuildRequires:	tar
+
+# OPENGL support
+BuildRequires:  Mesa-devel
+%if 0%{?suse_version} >= 1230
+BuildRequires:	glu-devel
+%endif
+
+# PNG support
+%if %suse_version > 1220
+BuildRequires:  libpng15-compat-devel
+%else
+BuildRequires:  libpng14-compat-devel
+%endif
+
+# bug437293
+%ifarch ppc64
+Obsoletes:      qt3-64bit
+%endif
+#
+
 %description
 Qt is a program library for developing applications with graphical user
 interfaces. It allows you to rapidly develop professional programs. The
@@ -98,10 +104,12 @@ be acquired from sales@trolltech.com.
 See /usr/share/doc/packages/qt3 for details about the new features of
 the current Qt library!
 
-%define build_sub_dirs src plugins/src tools/designer/uilib/ tools/designer/uic tools/qtconfig tools/assistant/lib tools/assistant tutorial
+%define build_sub_dirs src plugins/src tools/designer/uilib/ tools/designer/uic tools/qtconfig tools/assistant/lib tools/assistant tutorial tools/linguist/lrelease
+
+%debug_package
 
 %prep
-%setup -q -n trinity-qt3-3.5.13.2
+%setup -q -n trinity-qt3-3.5.13.2%{?preversion:~%{preversion}}
 %patch1
 %patch2
 %patch4
@@ -115,7 +123,6 @@ fi
 %patch19
 %patch23
 %patch31
-%patch35
 %patch37
 %patch39
 %patch42
@@ -145,6 +152,7 @@ cd ..
 %package devel
 Summary:        Include Files and Libraries mandatory for Development
 Group:          Development/Libraries/X11
+Requires:		%{name} = %{version}-%{release}
 Requires:       c++_compiler
 Requires:       cups-devel
 Requires:       freetype2-devel
@@ -155,16 +163,9 @@ Requires:       qt3 = %version
 Requires:       xorg-x11-devel
 %if %suse_version > 1120
 Recommends:     libpng14-compat-devel
-Requires:       libpng-devel
-%else
-Requires:       libpng-devel
 %endif
-%if %suse_version > 1000
-Requires:       Mesa-devel
-%else
-Requires:       xorg-x11-Mesa
-Requires:       xorg-x11-Mesa-devel
-%endif
+Requires:       libpng-devel
+
 %ifnarch x86_64 s390x sparc64 ppc64 mips64
 Conflicts:      devel_libs-32bit
 %endif
@@ -173,6 +174,13 @@ Conflicts:      devel_libs-32bit
 Obsoletes:      qt3-devel-64bit
 %endif
 #
+
+%if %suse_version > 1000
+Requires:       Mesa-devel
+%else
+Requires:       xorg-x11-Mesa
+Requires:       xorg-x11-Mesa-devel
+%endif
 
 %description devel
 You need this package if you want to compile programs with Qt 3. It
@@ -219,7 +227,7 @@ sed -i -e 's, on: .*,,' $RPM_BUILD_ROOT/usr/lib/qt3/%_lib/*.la
 #
 # copy additional files
 #
-install -m 0755 bin/qmake bin/moc ${RPM_BUILD_ROOT}/usr/lib/qt3/bin/
+install -m 0755 bin/qmake bin/moc bin/lrelease ${RPM_BUILD_ROOT}/usr/lib/qt3/bin/
 install -m 0755 -d ${RPM_BUILD_ROOT}/usr/lib/qt3/translations/
 install -m 0644 translations/*.qm ${RPM_BUILD_ROOT}/usr/lib/qt3/translations/
 if [ %_lib = lib64 ]; then
@@ -333,6 +341,7 @@ fi
 %defattr(-,root,root,755)
 # FIXME provide new changelog if kb9vqf will give one
 %doc changes-3.3.8b
+/usr/lib/qt3/bin/lrelease
 /usr/lib/qt3/bin/moc
 /usr/lib/qt3/bin/qmake
 /usr/lib/qt3/bin/uic
