@@ -1,0 +1,22 @@
+--- trinity-digikam-3.5.13.2/digikam/libs/dimg/loaders/pngloader.cpp.ORI	2013-03-10 21:44:37.468543760 +0100
++++ trinity-digikam-3.5.13.2/digikam/libs/dimg/loaders/pngloader.cpp	2013-03-10 21:45:23.246560198 +0100
+@@ -258,7 +258,7 @@
+ #ifdef ENABLE_DEBUG_MESSAGES
+                 DDebug() << "PNG in PNG_COLOR_TYPE_GRAY" << endl;
+ #endif
+-                png_set_expand_gray_1_2_4_to_8(png_ptr);
++                png_set_gray_1_2_4_to_8(png_ptr);
+                 png_set_gray_to_rgb(png_ptr);
+ 
+                 if (TQImage::systemByteOrder() == TQImage::LittleEndian)       // Intel
+--- trinity-digikam-3.5.13.2/digikam/kioslave/digikamthumbnail.cpp.ORI	2013-03-10 21:50:56.994910746 +0100
++++ trinity-digikam-3.5.13.2/digikam/kioslave/digikamthumbnail.cpp	2013-03-10 21:51:09.150668622 +0100
+@@ -465,7 +465,7 @@
+     {
+         png_set_gray_to_rgb(png_ptr);
+         if (png_get_bit_depth(png_ptr, info_ptr) < 8)
+-            png_set_expand_gray_1_2_4_to_8(png_ptr);
++            png_set_gray_1_2_4_to_8(png_ptr);
+     }
+ 
+     int sizeOfUint = sizeof(unsigned int);

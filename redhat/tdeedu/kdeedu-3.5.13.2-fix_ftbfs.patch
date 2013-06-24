@@ -1,0 +1,170 @@
+commit c5dacf57e07e93dd186692d4de64fbe9784af87d
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1365376170 -0500
+
+    Allow kvoctrain to build even if undefined symbols have been disallowed
+    This relates to Bug 1134
+
+diff --git a/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp b/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp
+index d48a7eb..d148f85 100644
+--- a/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp
++++ b/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp
+@@ -32,6 +32,55 @@
+ #include <vector>
+ using namespace std;
+ 
++vector<int> getCsvOrder(kvoctrainDoc *doc)
++{
++  vector<int> csv_order;
++  TQStringList lang_order = Prefs::pasteOrder();
++
++  if (!Prefs::useCurrent())
++  {
++    if (/*lang_order &&*/ lang_order.count() != 0) {
++      for (int i = 0; i < (int) lang_order.count(); i++)
++      {
++        int j = doc->findIdent((lang_order)[i]);
++        if (j >= 0)
++          csv_order.push_back (j);
++        else
++          csv_order.push_back (-1);
++      }
++    }
++  }
++/*
++  for (int i = 0; i < csv_order.size(); i++)
++    cout << csv_order[i] << " ";
++  cout << endl;
++*/
++
++/*  perhaps skip missing ??
++  for (int i = csv_order.size()-1; i >= 0; i--)
++    if (csv_order[i] == -1)
++      csv_order.erase(csv_order.begin() + i);
++*/
++  // append indices from doc if no order given
++  for (int i = 0; i < doc->numLangs(); i++)
++    if (::find (csv_order.begin(), csv_order.end(), i) == csv_order.end())
++       csv_order.push_back(i);
++/*
++  if (csv_order.size() > doc->numLangs() )
++    csv_order.erase(csv_order.begin() + doc->numLangs(), csv_order.end());
++*/
++
++  // remove trailing garbage
++  for (int i = csv_order.size()-1; i >= 0; i--) {
++    if (csv_order[i] != -1)
++      break;
++    else
++      csv_order.erase(csv_order.begin() + i);
++  }
++
++  return csv_order;
++}
++
+ bool kvoctrainDoc::saveTypeNameCsv (TQTextStream &)
+ {
+  return true;
+@@ -70,7 +119,7 @@ bool kvoctrainDoc::saveToCsv (TQTextStream& os, TQString &)
+   os << i18n("! Title:")  << separator << getTitle() << "\n";
+   os << i18n("! Author:") << separator << getAuthor() << "\n";
+ 
+-  vector <int> csv_order = kvoctrainApp::getCsvOrder(this);
++  vector <int> csv_order = getCsvOrder(this);
+ 
+   vector<kvoctrainExpr>::const_iterator first =  vocabulary.begin ();
+   TQString exp;
+commit 2e1267ad62d5a62f6ace0e5452c07f4c8b685d6a
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1365377332 -0500
+
+    Reconsolidate split code from prior commit
+
+diff --git a/kvoctrain/kvoctrain/kva_clip.cpp b/kvoctrain/kvoctrain/kva_clip.cpp
+index 881fbed..66e1ca9 100644
+--- a/kvoctrain/kvoctrain/kva_clip.cpp
++++ b/kvoctrain/kvoctrain/kva_clip.cpp
+@@ -35,6 +35,8 @@
+ #include <algorithm>
+ using namespace std;
+ 
++extern vector<int> getCsvOrderStatic(kvoctrainDoc *doc);
++
+ void kvoctrainApp::slotSmartSearchClip()
+ {
+   TQString s;
+@@ -62,51 +64,7 @@ void kvoctrainApp::slotSmartSearchClip()
+ 
+ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc)
+ {
+-  vector<int> csv_order;
+-  TQStringList lang_order = Prefs::pasteOrder();
+-
+-  if (!Prefs::useCurrent())
+-  {
+-    if (/*lang_order &&*/ lang_order.count() != 0) {
+-      for (int i = 0; i < (int) lang_order.count(); i++)
+-      {
+-        int j = doc->findIdent((lang_order)[i]);
+-        if (j >= 0)
+-          csv_order.push_back (j);
+-        else
+-          csv_order.push_back (-1);
+-      }
+-    }
+-  }
+-/*
+-  for (int i = 0; i < csv_order.size(); i++)
+-    cout << csv_order[i] << " ";
+-  cout << endl;
+-*/
+-
+-/*  perhaps skip missing ??
+-  for (int i = csv_order.size()-1; i >= 0; i--)
+-    if (csv_order[i] == -1)
+-      csv_order.erase(csv_order.begin() + i);
+-*/
+-  // append indices from doc if no order given
+-  for (int i = 0; i < doc->numLangs(); i++)
+-    if (::find (csv_order.begin(), csv_order.end(), i) == csv_order.end())
+-       csv_order.push_back(i);
+-/*
+-  if (csv_order.size() > doc->numLangs() )
+-    csv_order.erase(csv_order.begin() + doc->numLangs(), csv_order.end());
+-*/
+-
+-  // remove trailing garbage
+-  for (int i = csv_order.size()-1; i >= 0; i--) {
+-    if (csv_order[i] != -1)
+-      break;
+-    else
+-      csv_order.erase(csv_order.begin() + i);
+-  }
+-
+-  return csv_order;
++  return getCsvOrderStatic(doc);
+ }
+ 
+ 
+diff --git a/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp b/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp
+index d148f85..d1d2212 100644
+--- a/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp
++++ b/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp
+@@ -32,7 +32,7 @@
+ #include <vector>
+ using namespace std;
+ 
+-vector<int> getCsvOrder(kvoctrainDoc *doc)
++vector<int> getCsvOrderStatic(kvoctrainDoc *doc)
+ {
+   vector<int> csv_order;
+   TQStringList lang_order = Prefs::pasteOrder();
+@@ -119,7 +119,7 @@ bool kvoctrainDoc::saveToCsv (TQTextStream& os, TQString &)
+   os << i18n("! Title:")  << separator << getTitle() << "\n";
+   os << i18n("! Author:") << separator << getAuthor() << "\n";
+ 
+-  vector <int> csv_order = getCsvOrder(this);
++  vector <int> csv_order = getCsvOrderStatic(this);
+ 
+   vector<kvoctrainExpr>::const_iterator first =  vocabulary.begin ();
+   TQString exp;

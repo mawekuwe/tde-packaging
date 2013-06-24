@@ -1,0 +1,26 @@
+--- trinity-tdemultimedia-3.5.13.2~pre21+6e6307c6/kmix/kmixdockwidget.cpp.ORI	2013-05-21 23:07:46.511834317 +0200
++++ trinity-tdemultimedia-3.5.13.2~pre21+6e6307c6/kmix/kmixdockwidget.cpp	2013-05-21 23:07:04.202716141 +0200
+@@ -109,6 +109,7 @@
+      _oldToolTipValue = -1;
+      _oldPixmapType   = '-';
+ 
++/*
+     if (m_mixer == 0) {
+         // In case that there is no mixer installed, there will be no newVolumeLevels() signal's
+         // Thus we prepare the dock areas manually
+@@ -116,6 +117,7 @@
+         updatePixmap(false);
+         return;
+     }
++*/
+     // create devices
+ 
+     _dockAreaPopup = new ViewDockAreaPopup(0, "dockArea", m_mixer, 0, this);
+@@ -376,7 +378,6 @@
+ 		if ( md != 0 ) {
+         		md->setMuted( !md->isMuted() );
+         		m_mixer->commitVolumeChange( md );
+-        		updatePixmap(false);
+ 		}
+ 	}
+ }

@@ -1,0 +1,186 @@
+--- trinity-tdebase-3.5.13.2~pre102+43d29f86/kcontrol/screensaver/scrnsave.h.ORI	2013-05-14 22:12:18.159235590 +0200
++++ trinity-tdebase-3.5.13.2~pre102+43d29f86/kcontrol/screensaver/scrnsave.h	2013-05-14 22:12:56.657422259 +0200
+@@ -58,6 +58,7 @@
+     void slotLock( bool );
+     void slotDelaySaverStart( bool );
+     void slotUseTSAK( bool );
++    void slotVibrateUnlock( bool );
+     void slotUseUnmanagedLockWindows( bool );
+     void slotHideActiveWindowsFromSaver( bool );
+     void processLockouts();
+@@ -101,6 +102,7 @@
+     TQGroupBox   *mSettingsGroup;
+     TQCheckBox   *mDelaySaverStartCheckBox;
+     TQCheckBox   *mUseTSAKCheckBox;
++    TQCheckBox   *mVibrateUnlockCheckBox;
+     TQCheckBox   *mUseUnmanagedLockWindowsCheckBox;
+     TQCheckBox   *mHideActiveWindowsFromSaverCheckBox;
+ 
+@@ -119,6 +121,7 @@
+     bool        mImmutable;
+     bool        mDelaySaverStart;
+     bool        mUseTSAK;
++    bool        mVibrateUnlock;
+     bool        mUseUnmanagedLockWindows;
+     bool        mHideActiveWindowsFromSaver;
+ 
+--- trinity-tdebase-3.5.13.2~pre102+43d29f86/kcontrol/screensaver/scrnsave.cpp.vibrate_dialog	2013-04-26 22:15:23.000000000 +0200
++++ trinity-tdebase-3.5.13.2~pre102+43d29f86/kcontrol/screensaver/scrnsave.cpp	2013-05-14 22:24:37.354375502 +0200
+@@ -270,6 +270,13 @@
+     settingsGroupLayout->addWidget(mHideActiveWindowsFromSaverCheckBox, 3, 1);
+     TQWhatsThis::add( mHideActiveWindowsFromSaverCheckBox, i18n("Hide all active windows from the screen saver and use the desktop background as the screen saver input.") );
+ 
++    mVibrateUnlockCheckBox = new TQCheckBox( i18n("&Vibrate unlock dialog box on failure"), mSettingsGroup );
++    mVibrateUnlockCheckBox->setEnabled( true );
++    mVibrateUnlockCheckBox->setChecked( mVibrateUnlock );
++    connect( mVibrateUnlockCheckBox, TQT_SIGNAL( toggled( bool ) ), this, TQT_SLOT( slotVibrateUnlock( bool ) ) );
++    settingsGroupLayout->addWidget(mVibrateUnlockCheckBox, 4, 1);
++    TQWhatsThis::add( mVibrateUnlockCheckBox, i18n("Makes the unlock dialog box vibrate when entering an incorrect password.") );
++
+     // right column
+     TQBoxLayout* rightColumnLayout = new TQVBoxLayout(topLayout, KDialog::spacingHint());
+ 
+@@ -429,6 +436,7 @@
+     mLock = config->readBoolEntry("Lock", false);
+     mDelaySaverStart = config->readBoolEntry("DelaySaverStart", true);
+     mUseTSAK = config->readBoolEntry("UseTDESAK", true);
++    mVibrateUnlock = config->readBoolEntry("VibrateUnlock", true);
+     mUseUnmanagedLockWindows = config->readBoolEntry("UseUnmanagedLockWindows", false);
+     mHideActiveWindowsFromSaver = config->readBoolEntry("HideActiveWindowsFromSaver", true);
+     mSaver = config->readEntry("Saver");
+@@ -481,6 +489,7 @@
+     config->writeEntry("Lock", mLock);
+     config->writeEntry("DelaySaverStart", mDelaySaverStart);
+     config->writeEntry("UseTDESAK", mUseTSAK);
++    config->writeEntry("VibrateUnlock", mVibrateUnlock);
+     config->writeEntry("UseUnmanagedLockWindows", mUseUnmanagedLockWindows);
+     config->writeEntry("HideActiveWindowsFromSaver", mHideActiveWindowsFromSaver);
+ 
+@@ -688,10 +697,14 @@
+         mUseTSAKCheckBox->setChecked( false );
+     }
+     if (!mUseUnmanagedLockWindows) {
++        mVibrateUnlockCheckBox->setEnabled( true );
++        mVibrateUnlockCheckBox->setChecked( mVibrateUnlock );
+         mHideActiveWindowsFromSaverCheckBox->setEnabled( true );
+         mHideActiveWindowsFromSaverCheckBox->setChecked( mHideActiveWindowsFromSaver );
+     }
+     else {
++        mVibrateUnlockCheckBox->setEnabled( false );
++        mVibrateUnlockCheckBox->setChecked( false );
+         mHideActiveWindowsFromSaverCheckBox->setEnabled( false );
+         mHideActiveWindowsFromSaverCheckBox->setChecked( false );
+     }
+@@ -936,6 +949,16 @@
+     processLockouts();
+     mChanged = true;
+     emit changed(true);
++}
++
++//---------------------------------------------------------------------------
++//
++void KScreenSaver::slotVibrateUnlock( bool u )
++{
++    if (mVibrateUnlockCheckBox->isEnabled()) mVibrateUnlock = u;
++    processLockouts();
++    mChanged = true;
++    emit changed(true);
+ }
+ 
+ //---------------------------------------------------------------------------
+--- trinity-tdebase-3.5.13.2~pre102+43d29f86/kdesktop/lock/lockdlg.h.vibrate_dialog	2013-01-09 02:12:13.000000000 +0100
++++ trinity-tdebase-3.5.13.2~pre102+43d29f86/kdesktop/lock/lockdlg.h	2013-05-14 22:42:50.562878532 +0200
+@@ -60,6 +60,7 @@
+     void slotOK();
+     void layoutClicked();
+     void slotActivity();
++    void moveTimerDone();
+ 
+ protected slots:
+     virtual void reject();
+@@ -79,6 +80,8 @@
+     void handleVerify();
+     void reapVerify();
+     void cantCheck();
++    void movedialog( int _move );
++    void badPasswordLogin();
+     GreeterPluginHandle *mPlugin;
+     KGreeterPlugin *greet;
+     TQFrame      *frame;
+@@ -95,6 +98,8 @@
+     int         sPid, sFd;
+     TQListView   *lv;
+     TQDateTime   m_lockStartDT;
++    bool        waitMoveDialog;
++    bool	VibrateUnlock;
+ };
+ 
+ #endif
+--- trinity-tdebase-3.5.13.2~pre102+43d29f86/kdesktop/lock/lockdlg.cc.vibrate_dialog	2013-01-09 02:12:13.000000000 +0100
++++ trinity-tdebase-3.5.13.2~pre102+43d29f86/kdesktop/lock/lockdlg.cc	2013-05-14 22:42:12.809621715 +0200
+@@ -55,6 +55,7 @@
+ #include <X11/keysym.h>
+ #include <X11/Xatom.h>
+ #include <fixx11h.h>
++#include <kapplication.h>
+ 
+ #ifndef AF_LOCAL
+ # define AF_LOCAL	AF_UNIX
+@@ -246,6 +247,11 @@
+         mLayoutButton->hide(); // no kxkb running
+     }
+     capsLocked();
++
++    KConfig* config = new KConfig("kdesktoprc");
++    config->setGroup("ScreenSaver");
++    VibrateUnlock = config->readBoolEntry("VibrateUnlock", true);
++    delete config;
+ }
+ 
+ PasswordDlg::~PasswordDlg()
+@@ -302,6 +308,37 @@
+     }
+ }
+ 
++void PasswordDlg::movedialog( int _move )
++{
++     waitMoveDialog = true;
++     this->move(pos().x()+_move, pos().y());
++     TQTimer::singleShot( 50, this, TQT_SLOT(moveTimerDone()) );
++     while (waitMoveDialog) {
++          kapp->processEvents();
++     }
++}
++
++void PasswordDlg::moveTimerDone()
++{
++     waitMoveDialog = false;
++}
++
++void PasswordDlg::badPasswordLogin()
++{
++     if ( VibrateUnlock && mUnlockingFailed )
++     {
++          for ( int i = 0 ; i<2 ; i++)
++          {
++               movedialog( 10 );
++               movedialog( -20 );
++               movedialog( 20 );
++               movedialog( -20 );
++               movedialog( 20 );
++               movedialog( -10 );
++          }
++     }
++}
++
+ //---------------------------------------------------------------------------
+ //
+ // Handle timer events.
+@@ -437,6 +474,7 @@
+             ok->setEnabled(false);
+             cancel->setEnabled(false);
+             mNewSessButton->setEnabled( false );
++            badPasswordLogin();
+             return;
+         case AuthAbort:
+             return;

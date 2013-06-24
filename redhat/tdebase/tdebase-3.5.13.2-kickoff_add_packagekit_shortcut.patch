@@ -1,0 +1,12 @@
+--- trinity-tdebase-3.5.13.2~pre100+073a32f9/CMakeLists.txt.ORI	2013-05-10 19:40:45.930287816 +0200
++++ trinity-tdebase-3.5.13.2~pre100+073a32f9/CMakeLists.txt	2013-05-10 19:40:57.593049243 +0200
+@@ -244,6 +244,9 @@
+ endif()
+ 
+ ##### Checks for a distribution-specific 2nd menu item, generally a shortcut to graphical package manager
++if(EXISTS "/usr/share/applications/gpk-application.desktop")
++  set( KICKOFF_DIST_CONFIG_SHORTCUT2 "/usr/share/applications/gpk-application.desktop" )
++endif()
+ if(EXISTS "/usr/share/applications/package-manager.desktop")
+   set( KICKOFF_DIST_CONFIG_SHORTCUT2 "/usr/share/applications/package-manager.desktop" )
+ endif()

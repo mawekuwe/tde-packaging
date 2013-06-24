@@ -1,0 +1,38 @@
+--- ./kio/kio/kzip.cpp.ORI	2013-05-31 23:15:23.021298550 +0200
++++ ./kio/kio/kzip.cpp	2013-05-31 23:16:43.525633640 +0200
+@@ -1051,6 +1051,21 @@
+     return true;
+ }
+ 
++bool KZip::writeDir(const TQString& name, const TQString& user, const TQString& group)
++{
++    // Zip files have no explicit directories, they are implicitly created during extraction time
++    // when file entries have paths in them.
++    // However, to support empty directories, we must create a dummy file entry which ends with '/'.
++    TQString dirName = name;
++    if (!name.endsWith("/")) {
++        dirName = dirName.append('/');
++    }
++
++    mode_t perm = 040755;
++    time_t the_time = time(0);
++    return writeFile(dirName, user, group, 0, perm, the_time, the_time, the_time, 0);
++}
++
+ // Doesn't need to be reimplemented anymore. Remove for KDE-4.0
+ bool KZip::writeFile( const TQString& name, const TQString& user, const TQString& group, uint size, const char* data )
+ {
+--- ./kio/kio/kzip.h.ORI	2013-05-31 23:18:30.829414791 +0200
++++ ./kio/kio/kzip.h	2013-05-31 23:19:10.763589109 +0200
+@@ -191,10 +191,7 @@
+     /// Closes the archive
+     virtual bool closeArchive();
+ 
+-    /**
+-     * @internal Not needed for zip
+-     */
+-    virtual bool writeDir( const TQString& name, const TQString& user, const TQString& group) { Q_UNUSED(name); Q_UNUSED(user); Q_UNUSED(group); return true; }
++    virtual bool writeDir(const QString& name, const QString& user, const QString& group);
+     // TODO(BIC) uncomment and make virtual for KDE 4.
+ //    bool writeDir( const TQString& name, const TQString& user, const TQString& group,
+ //                        mode_t perm, time_t atime, time_t mtime, time_t ctime );

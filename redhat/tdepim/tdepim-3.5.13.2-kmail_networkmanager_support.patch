@@ -1,0 +1,251 @@
+--- trinity-tdepim-3.5.13.2~pre23+6c74b892/kmail/CMakeLists.txt.ORI	2013-05-25 17:07:04.113241481 +0200
++++ trinity-tdepim-3.5.13.2~pre23+6c74b892/kmail/CMakeLists.txt	2013-05-25 17:09:01.115862006 +0200
+@@ -178,7 +178,7 @@
+   localsubscriptiondialog.cpp editorwatcher.cpp favoritefolderview.cpp
+   foldertreebase.cpp snippetdlgbase.ui snippetwidget.cpp snippetconfig.cpp
+   snippetdlg.cpp snippetitem.cpp snippetsettings.cpp snippetsettingsbase.ui
+-  messageactions.cpp korghelper.cpp foldersetselector.cpp stringutil.cpp
++  messageactions.cpp korghelper.cpp kmnetworkmonitor.cpp foldersetselector.cpp stringutil.cpp
+   treebase.cpp backupjob.cpp importjob.cpp folderutil.cpp archivefolderdialog.cpp
+   importarchivedialog.cpp ${CMAKE_SOURCE_DIR}/korganizer/kcalendariface.stub
+   ${CMAKE_SOURCE_DIR}/korganizer/korganizeriface.stub )
+@@ -192,7 +192,7 @@
+   SOURCES ${${target}_SRCS}
+   LINK
+     emailfunctions-static kmime-shared kpgp-shared kdepim-shared kpimidentities-shared
+-    mimelib-shared ksieve-shared khtml-shared ${INDEX_LIBRARY}
++    mimelib-shared ksieve-shared khtml-shared kdedbus-shared ${INDEX_LIBRARY}
+   DESTINATION ${LIB_INSTALL_DIR}
+ )
+ 
+--- trinity-tdepim-3.5.13.2~pre23+6c74b892/kmail/kmkernel.cpp.ORI	2013-05-25 17:10:26.899117831 +0200
++++ trinity-tdepim-3.5.13.2~pre23+6c74b892/kmail/kmkernel.cpp	2013-05-25 17:12:30.471605868 +0200
+@@ -72,6 +72,7 @@
+ #include <kwallet.h>
+ using KWallet::Wallet;
+ #include "actionscheduler.h"
++#include "kmnetworkmonitor.h" 
+ 
+ #include <qutf7codec.h>
+ #include <tqvbox.h>
+@@ -169,6 +170,9 @@
+ 
+   connectDCOPSignal( 0, 0, "kmailSelectFolder(TQString)",
+                      "selectFolder(TQString)", false );
++
++  networkMonitor = new KMNetworkMonitor(this, "KMNetworkMonitor");
++  connect(networkMonitor, TQT_SIGNAL(stateChanged(bool)), TQT_SLOT(slotNetworkStateChanged(bool)));
+ }
+ 
+ KMKernel::~KMKernel ()
+@@ -2056,6 +2060,15 @@
+   mPutJobs.remove(it);
+ }
+ 
++void KMKernel::slotNetworkStateChanged(bool state)
++{
++  if(state) {
++    resumeNetworkJobs();
++  } else {
++    stopNetworkJobs();
++  }
++}
++
+ void KMKernel::slotRequestConfigSync() {
+   // ### FIXME: delay as promised in the kdoc of this function ;-)
+   KMKernel::config()->sync();
+--- trinity-tdepim-3.5.13.2~pre23+6c74b892/kmail/kmkernel.h.ORI	2013-05-25 17:13:53.309922294 +0200
++++ trinity-tdepim-3.5.13.2~pre23+6c74b892/kmail/kmkernel.h	2013-05-25 17:15:29.587965912 +0200
+@@ -28,6 +28,8 @@
+   class Wallet;
+ }
+ 
++class KMNetworkMonitor; 
++
+ /** The KMail namespace contains classes used for KMail.
+ * This is to keep them out of the way from all the other
+ * un-namespaced classes in libs and the rest of PIM.
+@@ -434,6 +436,7 @@
+ protected slots:
+   void slotDataReq(KIO::Job*,TQByteArray&);
+   void slotResult(KIO::Job*);
++  void slotNetworkStateChanged(bool);
+ 
+ signals:
+   void configChanged();
+@@ -517,6 +520,8 @@
+   KPIM::ThreadWeaver::WeaverThreadLogger *the_weaverLogger;
+ 
+   KWallet::Wallet *mWallet;
++  
++  KMNetworkMonitor *networkMonitor; 
+ 
+   // variables used by dcopAddMessage()
+   TQStringList mAddMessageMsgIds;
+--- /dev/null	2013-05-25 09:16:59.792134055 +0200
++++ trinity-tdepim-3.5.13.2~pre23+6c74b892/kmail/kmnetworkmonitor.h	2013-05-25 17:20:02.351394952 +0200
+@@ -0,0 +1,45 @@
++/*
++   This file is part of the KDE3 Fork Project
++   Copyright (c) 2013 Serghei Amelian <serghei.amelian@gmail.com>
++
++   This library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Library General Public
++   License version 2 as published by the Free Software Foundation.
++
++   This library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Library General Public License for more details.
++
++   You should have received a copy of the GNU Library General Public License
++   along with this library; see the file COPYING.LIB.  If not, write to
++   the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
++   Boston, MA 02110-1301, USA.
++*/
++#ifndef _KMNETWORKMONITOR_H_
++#define _KMNETWORKMONITOR_H_
++
++#include <tqobject.h>
++
++class KMNetworkMonitorPrivate;
++
++
++class KMNetworkMonitor : public TQObject {
++
++    TQ_OBJECT
++
++    friend class KMNetworkMonitorPrivate;
++
++public:
++    KMNetworkMonitor(TQObject *parent = 0, const char *name = 0);
++    ~KMNetworkMonitor();
++
++signals:
++    void stateChanged(bool);
++
++private:
++    KMNetworkMonitorPrivate *d;
++};
++
++
++#endif
+--- /dev/null	2013-05-25 09:16:59.792134055 +0200
++++ trinity-tdepim-3.5.13.2~pre23+6c74b892/kmail/kmnetworkmonitor.cpp	2013-05-25 17:21:55.565054211 +0200
+@@ -0,0 +1,116 @@
++/*
++   This file is part of the KDE3 Fork Project
++   Copyright (c) 2013 Serghei Amelian <serghei.amelian@gmail.com>
++
++   This library is free software; you can redistribute it and/or
++   modify it under the terms of the GNU Library General Public
++   License version 2 as published by the Free Software Foundation.
++
++   This library is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++   Library General Public License for more details.
++
++   You should have received a copy of the GNU Library General Public License
++   along with this library; see the file COPYING.LIB.  If not, write to
++   the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
++   Boston, MA 02110-1301, USA.
++*/
++
++#include <TQTime.h>
++
++#include <dbus/TQDBusConnection.h>
++#include <dbus/qdbuserror.h>
++#include <dbus/TQDBusMessage.h>
++#include <dbus/qdbusproxy.h>
++
++#include <kdebug.h>
++
++#include "kmnetworkmonitor.h"
++
++
++class KMNetworkMonitorPrivate : public TQDBusProxy {
++
++    TQ_OBJECT
++
++public:
++    KMNetworkMonitorPrivate(KMNetworkMonitor *parent)
++        : TQDBusProxy(parent, "KMNetworkMonitorPrivate"), lastStatus(-1)
++    {
++        setService("org.freedesktop.NetworkManager");
++        setPath("/org/freedesktop/NetworkManager");
++        setInterface("org.freedesktop.NetworkManager");
++
++        TQTime::singleShot(0, this, TQT_SLOT(initialize()));
++    }
++
++protected slots:
++    void initialize()
++    {
++        // connect to DBUS
++        TQDBusConnection dbus = TQDBusConnection::systemBus();
++        if(!dbus.isConnected()) {
++            kdDebug() << "Unable to connect to DBus: " << dbus.lastError().message() << endl;
++            return;
++        }
++        setConnection(dbus);
++
++        // check for current status
++        int rc = sendWithAsyncReply("state", TQValueList<TQDBusData>());
++        if(0 == rc) {
++            kdDebug() << "Unable to send \"state\" command to DBus" << endl;
++            return;
++        }
++    }
++
++    void handleDBusSignal(const TQDBusMessage &message)
++    {
++        // the message is for us
++        if(path() == message.path() && interface() == message.interface() && "StateChanged" == message.member())
++            handleMessage(message);
++    }
++
++    void handleAsyncReply(const TQDBusMessage &message)
++    {
++        handleMessage(message);
++    }
++
++    void handleMessage(const TQDBusMessage &message)
++    {
++        bool ok;
++        TQ_UINT32 state = message[0].toUInt32(&ok);
++
++        if(!ok) {
++            kdDebug() << "KMNetworkMonitor: received unexpected type for state (" << message[0].typeName() << ")" << endl;
++            return;
++        }
++
++        int currStatus = (50 < state ? 1 : 0);
++
++        if(lastStatus != currStatus) {
++            emit static_cast<KMNetworkMonitor*>(parent())->stateChanged(1 == currStatus);
++            lastStatus = currStatus;
++        }
++    }
++
++private:
++    // -1 = unitialized, 0 = offline, 1 = online
++    int lastStatus;
++};
++
++
++KMNetworkMonitor::KMNetworkMonitor(TQObject *parent, const char *name)
++    : TQObject(parent, name)
++{
++    d = new KMNetworkMonitorPrivate(this);
++}
++
++
++KMNetworkMonitor::~KMNetworkMonitor()
++{
++    delete d;
++}
++
++
++#include "kmnetworkmonitor.moc"
++#include "kmnetworkmonitor.cpp.moc"

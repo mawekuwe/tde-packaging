@@ -1,0 +1,578 @@
+--- tde-i18n-fr/messages/kdelibs/kdelibs.po.ORI	2013-05-11 13:46:34.210204854 +0200
++++ tde-i18n-fr/messages/kdelibs/kdelibs.po	2013-05-11 13:47:23.882174000 +0200
+@@ -5659,8 +5659,36 @@
+ msgstr "À &propos"
+ 
+ #: kdeui/kaboutkde.cpp:84
+-msgid "&Report Bugs or Wishes"
+-msgstr "Rapport de bogues et &souhaits"
++msgid "&Report Bugs/Request Enhancements"
++msgstr "Rapport de bogues / &Améliorations"
++
++msgid "&Report Bug/Request Enhancement..."
++msgstr "&Rapport de bogue/Amélioration..."
++
++msgid ""
++"Reporting bugs and requesting enhancements are maintained using the Bugzilla reporting system.\n"
++"You'll need a login account and password to use the reporting system.\n"
++"To control spam and rogue elements the login requires a valid email address.\n"
++"Consider using any large email service if you want to avoid using your private email address.\n"
++"\n"
++"Selecting the button below opens your web browser to http://bugs.trinitydesktop.org,\n"
++"where you will find the report form.\n"
++"The information displayed above will be transferred to the reporting system.\n"
++"Session cookies must be enabled to use the reporting system.\n"
++"\n"
++"Thank you for helping!"
++msgstr ""
++"Les rapports de bogues et demandes d'améliorations sont traités par le système Bugzilla.\n"
++"Vous devez posséder un identifiant et un mot de passe pour utiliser le système de rapport.\n"
++"Pour éviter le spam et les rapports indésirables, vous devez avoir une adresse email valide.\n"
++"Vous pouvez créer une adresse email spécifique si vous ne voulez pas utiliser votre adresse email privée.\n"
++"\n"
++"Cliquez sur le bouton ci-dessous pour ouvrir votre navigateur à l'adresse http://bugs.trinitydesktop.org,\n"
++"où vous trouverez le formulaire de rapport.\n"
++"Les informations affichés ci-dessus seront transférées au système de rapport.\n"
++"Les cookies de session doivent être activés pour utiliser le système de rapport.\n"
++"\n"
++"Merci pour votre aide!"
+
+ #: kdeui/kaboutkde.cpp:85
+ msgid "&Join the Trinity Team"
+--- tde-i18n-fr/messages/kdebase/krandr.po.ORI	2013-05-11 13:51:27.100137014 +0200
++++ tde-i18n-fr/messages/kdebase/krandr.po	2013-05-11 13:57:36.051526232 +0200
+@@ -331,3 +331,24 @@
+ #: configdialog.cpp:49
+ msgid "Global &Shortcuts"
+ msgstr "Raccourcis Globaux"
++
++msgid "Start KRandRTray automatically when you log in?"
++msgstr "Démarrer KRandRTray automatiquement à l'ouverture de session ?"
++
++msgid "Start Automatically"
++msgstr "Démarrer automatiquement"
++
++msgid "Do Not Start"
++msgstr "Ne pas démarrer"
++
++msgid "Output Port"
++msgstr "Sortie Vidéo"
++
++msgid "Next available output"
++msgstr "Sortie Vidéo suivante"
++
++#, c-format
++msgid "%1 (Active)"
++msgstr "%1 (Active)"
++
++
+--- /dev/null	2013-05-11 10:08:04.442569174 +0200
++++ tde-i18n-fr/messages/kdebase/kcmdisplayconfig.po	2013-05-11 14:23:12.893229163 +0200
+@@ -0,0 +1,123 @@
++msgid "<b>The global display configuration is a system wide setting, and requires administrator access</b><br>To alter the system's global display configuration, click on the \"Administrator Mode\" button below."
++msgstr "<b>La configuration d'affichage globale est un réglage système, et nécessite les droits administrateur.</b><br>Pour modifier la configuration système globale, cliquer sur le bouton \"Mode superutilisateur\"."
++
++msgid "Color Profiles"
++msgstr "Profils de couleurs"
++
++msgid "<h1>Monitor & Display Configuration</h1> This module allows you to configure monitors attached to your computer via TDE."
++msgstr "<h1>Configuration de l'affichage</h1>Ce module permet de configurer les moniteurs attachés à votre ordinateur via TDE."
++
++msgid "Global Settings"
++msgstr "Paramètres globaux"
++
++msgid "Global"
++msgstr "Général"
++
++msgid "&Enable global display control"
++msgstr "&Activer le contrôle de l'affichage"
++
++msgid "Resolution and Layout"
++msgstr "Résolution et disposition"
++
++msgid "Monitors"
++msgstr "Moniteurs"
++
++msgid "Drag the monitor icons to match the physical arrangement of your monitors."
++msgstr "Déplacez les icônes pour qu'elles correspondent à la disposition de vos moniteurs."
++
++msgid "Display:"
++msgstr "Sortie Vidéo:"
++
++msgid "&Screen resolution"
++msgstr "&Résolution de l'écran:"
++
++msgid "Less"
++msgstr "Moins"
++
++msgid "More"
++msgstr "Plus"
++
++msgid "unset"
++msgstr "Non définie"
++
++msgid "&Refresh rate"
++msgstr "&Taux de rafraichissement"
++
++msgid "Screen Transformations"
++msgstr "Transformation de l'écran"
++
++msgid "&Mirror screen horizontally"
++msgstr "Miroir &horizonal"
++
++msgid "Mirror screen &vertically"
++msgstr "Miroir &vertical"
++
++msgid "&Use this device as the primary monitor."
++msgstr "Utiliser en tant que moniteur &primaire."
++
++msgid "&Extend my Trinity desktop onto this monitor."
++msgstr "&Etendre mon bureau Trinity sur ce moniteur."
++
++msgid "&Rescan Displays"
++msgstr "&Redétecter les écrans"
++
++msgid "Load &Existing Profile"
++msgstr "Charger un profil &existant."
++
++msgid "&Test Settings"
++msgstr "&Tester les réglages"
++
++msgid "&Identify"
++msgstr "&Identifier"
++
++msgid "Brightness and Gamma"
++msgstr "Luminosité et Gamma"
++
++msgid "Visual Calibration Aid"
++msgstr "Aide visuelle à la calibration"
++
++msgid "Target gamma:"
++msgstr "Gamma cible:"
++
++msgid "Hardware Gamma Control"
++msgstr "Contrôle du Gamma matériel"
++
++msgid "All"
++msgstr "Tous"
++
++msgid "Red"
++msgstr "Rouge"
++
++msgid "Green"
++msgstr "Vert"
++
++msgid "Blue"
++msgstr "Bleu"
++
++msgid "Adjust the gamma sliders to make the squares above fade into their backgrounds as much as possible."
++msgstr "Ajustez les niveaux de gamma jusqu'à ce que les carrés disparaissent dans le fond autant que possible."
++
++msgid "Tip: Most computer software expects a gamma of 2.2.\\nAdditionally, any ICC settings for the selected screen will override the gamma controls available on this tab."
++msgstr "Astuce: La plupart des logiciels attendent un gamma de 2.2.<br>De plus, les réglages ICC spécifiques pour l'écran sélectionné, s'ils existent, seront prioritaires sur ceux-ci."
++
++msgid "Power Management"
++msgstr "Gestion de l'Energie"
++
++msgid "Energy Star (DPMS)"
++msgstr "Energy Star (DPMS)"
++
++msgid "&Enable DPMS power save modes"
++msgstr "&Activer les modes d'économie d'énergie DPMS"
++
++msgid "Enable &standby after"
++msgstr "Interrompre l'écran après"
++
++msgid "Enable &suspend after"
++msgstr "Activer la mise en veille après"
++
++msgid "Enable &power down after"
++msgstr "Activer l'arrêt après"
++
++msgid "minutes."
++msgstr "minutes."
++
+--- tde-i18n-fr/messages/kdebase/kicker.po.ORI	2013-05-11 20:59:51.416285023 +0200
++++ tde-i18n-fr/messages/kdebase/kicker.po	2013-05-11 21:01:03.139885540 +0200
+@@ -889,6 +889,24 @@
+ msgid "My Documents"
+ msgstr "Mes Documents"
+ 
++msgid "My Images"
++msgstr "Mes Images"
++
++msgid "My Music"
++msgstr "Ma Musique"
++
++msgid "My Videos"
++msgstr "Mes Vidéos"
++
++msgid "My Downloads"
++msgstr "Mes Téléchargements"
++
++msgid "Switch to Kickoff Menu Style"
++msgstr "Utiliser le menu Kickoff"
++
++msgid "Switch to Trinity Classic Menu Style"
++msgstr "Utiliser le menu Classique"
++
+ msgid "Network Folders"
+ msgstr "Dossiers Réseau"
+ 
+--- tde-i18n-fr/messages/kdebase/kcmsmserver.po.ORI	2013-05-11 21:07:13.314644518 +0200
++++ tde-i18n-fr/messages/kdebase/kcmsmserver.po	2013-05-11 21:12:44.468153019 +0200
+@@ -63,6 +63,12 @@
+ "Cochez cette option si vous désirez que le gestionnaire de session affiche une "
+ "demande de confirmation avant d'arrêter la session."
+ 
++msgid "Show fancy &logout fadeaway"
++msgstr "Afficher un fondu gris lors de la déconnexion"
++
++msgid "Show logout stat&us dialog"
++msgstr "Afficher la fenêtre d'état de déconnexion"
++
+ #. i18n: file smserverconfigdlg.ui line 62
+ #: rc.cpp:15
+ #, no-c-format
+@@ -177,3 +180,16 @@
+ "Vous pouvez saisir ici une liste (séparée par des virgules) des applications "
+ "qui ne doivent pas être enregistrées, et qui ne seront par conséquent pas "
+ "relancées lorsque la session sera restaurée. Par exemple, « xterm,xconsole »."
++
++msgid "The new window manager will be used when TDE is started the next time."
++msgstr "Le nouveau gestionnaire de fenêtres sera utilisé au prochain démarrage de TDE."
++
++msgid "Window manager change"
++msgstr "Modification du gestionnaire de fenêtres"
++
++msgid "KWin (KDE default)"
++msgstr "TWin (par défaut)"
++
++msgid "Window Manager"
++msgstr "Gestionnaire de fenêtres"
++
+--- tde-i18n-fr/messages/kdebase/kcmkdnssd.po.ORI	2013-05-11 21:14:32.762027927 +0200
++++ tde-i18n-fr/messages/kdebase/kcmkdnssd.po	2013-05-11 21:15:59.767319820 +0200
+@@ -184,3 +184,7 @@
+ 
+ #~ msgid "Alt+I"
+ #~ msgstr "Alt+I"
++
++msgid "Enable &Zeroconf network browsing"
++msgstr "Activer le parcours du réseau avec Zeroconf"
++
+--- tde-i18n-fr/messages/kdebase/kcmenergy.po.ORI	2013-05-11 21:18:10.672748597 +0200
++++ tde-i18n-fr/messages/kdebase/kcmenergy.po	2013-05-11 21:19:44.590902968 +0200
+@@ -102,3 +102,10 @@
+ "Choisissez la période d'inactivité après laquelle l'affichage doit être éteint. "
+ "Ceci est le plus haut niveau d'économie d'énergie qui puisse être utilisé "
+ "lorsque l'écran est physiquement allumé."
++
++msgid "&Enable specific display power management"
++msgstr "&Activer la gestion spécifique de l'énergie"
++
++msgid "Configure KPowersave..."
++msgstr "Configurer KPowersave..."
++
+--- tde-i18n-fr/messages/kdebase/kio_media.po.ORI	2013-05-11 21:43:21.810972521 +0200
++++ tde-i18n-fr/messages/kdebase/kio_media.po	2013-05-11 21:43:43.080556048 +0200
+@@ -564,3 +564,7 @@
+ #: propsdlgplugin/propsdlgshareplugin.cpp:67
+ msgid "&Mounting"
+ msgstr "&Montage"
++
++msgid "Decrypt"
++msgstr "Décrypter"
++
+--- tde-i18n-fr/messages/kdebase/kcmmedia.po.ORI	2013-05-11 21:52:54.856736846 +0200
++++ tde-i18n-fr/messages/kdebase/kcmmedia.po	2013-05-11 21:53:11.780404569 +0200
+@@ -216,3 +216,10 @@
+ #, no-c-format
+ msgid "Command:"
+ msgstr "Commande :"
++
++msgid "Mount options"
++msgstr "Options de montage par défaut"
++
++msgid "Here you can specify default mount options for your storage media. Please note that some options are not supported for certain filesystems and/or medium. You will be able to redefine all these options on per-volume basis later, using Properties dialog of the corresponding volume.<br>\nSome of the options are tristate. Leave them \"undefined\" to let KDE choose the best value depending on your media."
++msgstr "Vous pouvez spécifier ici les options de montage par défaut pour les périphériques amovibles. Veuillez noter que certaines options ne sont pas supportées avec certains systèmes de fichiers ou médias. Vous pourrez redéfinir individuellement toutes ces options pour chaque média ultérieurement, en utilisant la boite de dialogue Propriétés sur ce média.<br>\nCertaines options ont 3 états. Laissez-les grisées pour laisser TDE choisir la meilleure valeur pour vous."
++
+--- tde-i18n-fr/messages/kdebase/kcmkonq.po.ORI	2013-05-11 22:03:57.845711507 +0200
++++ tde-i18n-fr/messages/kdebase/kcmkonq.po	2013-05-11 22:07:46.429213872 +0200
+@@ -64,6 +64,17 @@
+ "seule fenêtre. Quand cette option n'est pas cochée, tous les transferts "
+ "apparaissent dans des fenêtres séparées."
+ 
++msgid "Show archived &files as folders"
++msgstr "Afficher les fichiers &archives comme des dossiers"
++
++msgid ""
++"Checking this option will list archived"
++" files as folders when using tree view."
++
++msgstr ""
++"Si vous cochez cette option, tous les fichiers archives (ZIP, TAR ...)"
++" seront affichés comme des dossiers dans l'explorateur de fichiers."
++
+ #: behaviour.cpp:85
+ msgid "Show file &tips"
+ msgstr "Af&ficher les info-bulles des fichiers"
+--- tde-i18n-fr/messages/kdebase/kcmkicker.po.ORI	2013-05-11 23:14:47.566479096 +0200
++++ tde-i18n-fr/messages/kdebase/kcmkicker.po	2013-05-11 23:29:07.733152080 +0200
+@@ -1032,12 +1032,22 @@
+ "y configurer l'aspect et le comportement des poignées d'applets, la teinture de "
+ "la transparence et d'autres choses."
+ 
++
++msgid "Start menu style:"
++msgstr "Style de menu démarrer:"
++
++msgid "Trinity Classic"
++msgstr "Classique"
++
+ #. i18n: file menutab.ui line 27
+ #: rc.cpp:369
+ #, no-c-format
+ msgid "K Menu"
+ msgstr "Menu K"
+ 
++msgid "Open menu on mouse hover"
++msgstr "Ouvrir le menu au survol de la souris"
++
+ #. i18n: file menutab.ui line 49
+ #: rc.cpp:372
+ #, no-c-format
+@@ -1122,6 +1126,15 @@
+ msgid "Show side ima&ge"
+ msgstr "Afficher le &bandeau latéral"
+ 
++msgid "Display text in K Menu button"
++msgstr "Afficher du texte sur le bouton K Menu"
++
++msgid "Text:"
++msgstr "Texte:"
++
++msgid "K Menu button icon:"
++msgstr "Icone du bouton K Menu:"
++
+ #. i18n: file menutab.ui line 126
+ #: rc.cpp:405
+ #, no-c-format
+@@ -1281,6 +1300,42 @@
+ "Lorsque cette option est sélectionnée, la zone du menu « sous la main » "
+ "contiendra les applications les plus utilisées."
+ 
++msgid "Show T&ooltip"
++msgstr "Afficher les info-bulles"
++
++msgid "<qt>When this option is selected, a tooltip appears when hovering the mouse pointer over Application Launcher Menu items. Enabling this option also requires that tooltips are enabled in the Panels->Appearance configuration dialog."
++msgstr "<qt>Cette option affiche une info-bulle lorsque la souris survole les applications dans le menu de démarrage. Cette option nécessite que les bulles d'aide soient activées dans la rubrique Tableau de bords->Apparence"
++
++msgid "Recent Documents Menu"
++msgstr "Menus des documents récents"
++
++msgid "K Menu Search"
++msgstr "Menus de recherche"
++
++msgid "Show search field in K Menu"
++msgstr "Afficher le champ de recherche dans le menu K"
++
++msgid "Blur the background when transparency is enabled"
++msgstr "Flouter le fond d'écran lorsque la transparence est activée"
++
++msgid "When checked, the displayed semi-transparent background image will be blurred to reduce eyestrain"
++msgstr "Si vous cochez cette case, le fond d'écran semi-transparent sera flouté pour réduire la fatigue visuelle"
++
++msgid "Show resize handle on panels"
++msgstr "Afficher les poignées de redimensionnement"
++
++msgid "Enabling this option will show a resize handle on the resizable end of each panel."
++msgstr "Activer cette option affichera une poignée de redimensionnement à chaque extremité de chaque panneau."
++
++msgid "Use deep buttons"
++msgstr "Utiliser des textures profonds"
++
++msgid "Enabling this option will yield more highly textured panels."
++msgstr "Activer cette option affichera des panneaux davantage texturés."
++
++msgid "Enable icon activation effects"
++msgstr "Activer les effets d'activation des icones"
++
+ #. i18n: file positiontab.ui line 17
+ #: rc.cpp:464
+ #, no-c-format
+--- tde-i18n-fr/messages/kdebase/ksmserver.po.ORI	2013-05-12 22:22:06.947460769 +0200
++++ tde-i18n-fr/messages/kdebase/ksmserver.po	2013-05-12 22:26:35.822041371 +0200
+@@ -103,3 +103,39 @@
+ msgid "Saving your settings..."
+ msgstr "Enregistrement de vos paramètres ..."
+ 
++msgid "Would you like to turn off your computer?"
++msgstr "Souhaitez-vous éteindre votre ordinateur ?"
++
++msgid ""
++"This computer will turn off automatically\n"
++"after %1 seconds."
++msgstr ""
++"Cet ordinateur s'éteindra automatiquement\n"
++"dans %1 secondes."
++
++msgid "Would you like to reboot your computer?"
++msgstr "Souhaitez-vous redémarrer votre ordinateur ?"
++
++msgid "Would you like to reboot to \"%1\"?"
++msgstr "Voulez-vous redémarrer \"%1\" ?"
++
++msgid ""
++"This computer will reboot automatically\n"
++"after %1 seconds."
++msgstr ""
++"Cet ordinateur redémarrera automatiquement\n"
++"après %1 secondes."
++
++msgid "Would you like to end your current session?"
++msgstr "Souhaitez-vous fermer votre session ?"
++
++msgid ""
++"This session will end\n"
++"after %1 seconds automatically."
++msgstr ""
++"Cette session sera fermée automatiquement\n"
++"après %1 secondes."
++
++msgid "Confirm"
++msgstr "Confirmer"
++
+--- tde-i18n-fr/messages/kdebase/kcmkonqhtml.po.ORI	2013-05-12 22:40:57.371286882 +0200
++++ tde-i18n-fr/messages/kdebase/kcmkonqhtml.po	2013-05-12 22:45:34.458496871 +0200
+@@ -1546,3 +1546,21 @@
+ #, no-c-format
+ msgid "Use a&rtsdsp to pipe plugin sound through aRts"
+ msgstr "Utiliser « a&rtsdsp » pour rediriger le son du module vers aRts"
++
++msgid "Sm&ooth scrolling"
++msgstr "Déflilement fluide"
++
++msgid "Enabled"
++msgstr "Activé"
++
++msgid "Disabled"
++msgstr "Désactivé"
++
++msgid ""
++"Determines whether Konqueror should use smooth steps to scroll HTML pages, or whole steps:<br>"
++"<ul><li><b>Always</b>: Always use smooth steps when scrolling.</li>"
++"<li><b>Never</b>: Never use smooth scrolling, scroll with whole steps instead.</li>"
++msgstr ""
++"Détermine si Konqueror doit utiliser un défilement fluide des pages HTML, ou un défilement par étapes:<br>"
++"<ul><li><b>Toujours</b>: Toujours utiliser le défilement fluide.</li>"
++"<li><b>Jamais</b>: Ne jamais utiliser le défilement fluide, défiler pas par pas.</li>"
+--- tde-i18n-fr/messages/kdebase/kcmkwm.po.ORI	2013-05-12 22:53:03.442689656 +0200
++++ tde-i18n-fr/messages/kdebase/kcmkwm.po	2013-05-12 23:06:59.007771110 +0200
+@@ -1185,3 +1185,22 @@
+ msgstr ""
+ "<qt>La gestion de la transparence est récente et peut causer des problèmes, "
+ "<br> incluant des plantages (du moteur de transparence ou même de X).</qt>"
++
++msgid "Enable the Trinity window composition manager"
++msgstr "Activer le gestionnaire de composition de fenêtres de Trinity"
++
++msgid "Use shadows (standard effects should be disabled in the Styles module if this is checked)"
++msgstr "Utiliser les ombres (l'effet standard d'ombre doit être désactivé dans le menu Styles)"
++
++msgid "Base shadow size:"
++msgstr "Taille de base de l'ombre:"
++
++msgid "Active window shadow size multiplier:"
++msgstr "Multiplier la taille de l'ombre de la fenêtre active:"
++
++msgid "Dock shadow size multiplier:"
++msgstr "Multiplier la taille de l'ombre du dock:"
++
++msgid "Fade-in menus (requires menu fade effect to be disabled in the Styles module)"
++msgstr "Apparition progressive des menus (nécessite que l'apparition progressive soit désactivée dans le menu Styles)"
++
+--- tde-i18n-fr/messages/kdebase/kcmscreensaver.po.ORI	2013-05-14 23:49:35.272995867 +0200
++++ tde-i18n-fr/messages/kdebase/kcmscreensaver.po	2013-05-15 00:00:03.074900231 +0200
+@@ -338,3 +338,33 @@
+ #: scrnsave.cpp:470
+ msgid "Loading..."
+ msgstr "Chargement..."
++
++msgid "&Delay saver start after lock"
++msgstr "Retarder l'économiseur d'écran"
++
++msgid "When manually locking the screen, wait to start the screen saver until the configured start delay has elapsed."
++msgstr "Lors du verrouillage manuel de l'écran, attendre le délai indiqué pour démarrer l'économiseur d'écran."
++
++msgid "&Use Secure Attention Key"
++msgstr "Utiliser les touches de sécurité"
++
++msgid "Require Secure Attention Key prior to displaying the unlock dialog."
++msgstr "Exiger l'appui sur CTRL+ALT+SUPPR avant de demander le mot de passe."
++
++msgid "Use &legacy lock windows"
++msgstr "Utiliser l'ancienne fenêtre de verrouillage"
++
++msgid "Use old-style unmanaged X11 lock windows."
++msgstr "Utiliser l'ancienne fenêtre X11 de verrouillage, non gérée par Trinity."
++
++msgid "&Hide active windows from saver"
++msgstr "&Masquer les fenêtres actives"
++
++msgid "Hide all active windows from the screen saver and use the desktop background as the screen saver input."
++msgstr "Masquer toutes les fenêtres actives et afficher le fond d'écran lorsque l'économiseur d'écran est déclenché."
++
++msgid "&Vibrate unlock dialog box on failure"
++msgstr "&Vibrer en cas d'échec de déverrouillage"
++
++msgid "Makes the unlock dialog box vibrate when entering an incorrect password."
++msgstr "Faire vibrer la fenêtre de déverrouillage lorsqu'un mauvais mot de passe est saisi."
+--- tde-i18n-fr/messages/kdebase/kdmconfig.po.ORI	2013-05-15 00:01:50.557981168 +0200
++++ tde-i18n-fr/messages/kdebase/kdmconfig.po	2013-05-15 00:03:54.685758336 +0200
+@@ -895,3 +895,24 @@
+ "_: EMAIL OF TRANSLATORS\n"
+ "Your emails"
+ msgstr "cousin@kde.org,caulier.gilles@free.fr,kde@macolu.org"
++
++msgid "Secure Attention Key"
++msgstr "Touches de sécurité"
++
++msgid "Enable Secure Attention Key"
++msgstr "Activer les touches de sécurité"
++
++msgid "Secure Attention Key support is not available on your system.  Please check for the presence of evdev and uinput."
++msgstr "Le support des touches de sécurité n'est pas disponible sur votre système. Veuillez vérifier la présence de evdev et uinput."
++
++msgid "Here you can enable or disable the Secure Attention Key [SAK] anti-spoofing measure."
++msgstr "Vous pouvez activer ou désactiver les touches de sécurité, mesure anti-usurpation."
++
++msgid "Restart X-Server with session exit"
++msgstr "Redémarrer le serveur X après la fermeture de la session."
++
++msgid "Whether the login manager should restart the local X-Server after a session exit instead of resetting. Use this when the X-Server leaks memory, crashes the system on reset attempts, or otherwise exhibits display issues."
++msgstr "Spécifie si le gestionnaire de connexion doit redémarrer le serveur X local après une fermeture de session au lieu de le réinitialiser. Utilisez cette option si le serveur X a des problèmes de stabilité, d'affichage, ou des fuite mémoire."
++
++msgid "Allow &Root Login"
++msgstr "Autoriser la connexion en tant qu'utilisateur &Root"
+--- tde-i18n-fr/messages/kdebase/kcmbackground.po.ORI	2013-05-15 20:43:56.647074858 +0200
++++ tde-i18n-fr/messages/kdebase/kcmbackground.po	2013-05-15 20:46:02.044250812 +0200
+@@ -920,3 +920,9 @@
+ #, no-c-format
+ msgid "Move &Up"
+ msgstr "Mon&ter"
++
++msgid "Cross-fading background"
++msgstr "Affichage progressif du fond d'écran"
++
++msgid "Enables a smooth fading effect when changing background image."
++msgstr "Activer un effet de fondu lors du changement de fond d'écran."
+--- tde-i18n-fr/messages/kdebase/kminipagerapplet.po.ORI	2013-05-17 21:28:37.998756359 +0200
++++ tde-i18n-fr/messages/kdebase/kminipagerapplet.po	2013-05-17 21:29:50.398145568 +0200
+@@ -193,3 +193,6 @@
+ #, no-c-format
+ msgid "Show window icons in previews?"
+ msgstr "Afficher les icônes des fenêtres dans les aperçus ?"
++
++msgid "&Cycle on Wheel"
++msgstr "&Changer de bureau à la molette"

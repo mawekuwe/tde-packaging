@@ -1,0 +1,45 @@
+--- ./kicker/kicker/ui/k_new_mnu.cpp.ori	2013-05-08 21:56:01.084691260 +0200
++++ ./kicker/kicker/ui/k_new_mnu.cpp	2013-05-08 21:58:02.086130445 +0200
+@@ -1428,6 +1428,42 @@
+            m_systemView->insertItem( "folder_man", i18n( "My Documents" ), documentPath, documentPath, nId++, index++ );
+     }
+ 
++    if ( KStandardDirs::exists( KGlobalSettings::picturesPath() + "/" ) )
++    {
++        TQString picturesPath = KGlobalSettings::picturesPath();
++        if ( picturesPath.endsWith( "/" ) )
++            picturesPath = picturesPath.left( picturesPath.length() - 1 );
++        if (picturesPath!=TQDir::homeDirPath())
++           m_systemView->insertItem( "folder_image", i18n( "My Images" ), picturesPath, picturesPath, nId++, index++ );
++   }
++
++    if ( KStandardDirs::exists( KGlobalSettings::musicPath() + "/" ) )
++    {
++        TQString musicPath = KGlobalSettings::musicPath();
++        if ( musicPath.endsWith( "/" ) )
++            musicPath = musicPath.left( musicPath.length() - 1 );
++        if (musicPath!=TQDir::homeDirPath())
++           m_systemView->insertItem( "folder_sound", i18n( "My Music" ), musicPath, musicPath, nId++, index++ );
++    }
++
++    if ( KStandardDirs::exists( KGlobalSettings::videosPath() + "/" ) )
++    {
++        TQString videosPath = KGlobalSettings::videosPath();
++        if ( videosPath.endsWith( "/" ) )
++            videosPath = videosPath.left( videosPath.length() - 1 );
++        if (videosPath!=TQDir::homeDirPath())
++           m_systemView->insertItem( "folder_video", i18n( "My Videos" ), videosPath, videosPath, nId++, index++ );
++    }
++
++    if ( KStandardDirs::exists( KGlobalSettings::downloadPath() + "/" ) )
++    {
++        TQString downloadPath = KGlobalSettings::downloadPath();
++        if ( downloadPath.endsWith( "/" ) )
++            downloadPath = downloadPath.left( downloadPath.length() - 1 );
++        if (downloadPath!=TQDir::homeDirPath())
++           m_systemView->insertItem( "folder_inbox", i18n( "My Downloads" ), downloadPath, downloadPath, nId++, index++ );
++    }
++
+     m_systemView->insertItem( "network", i18n( "Network Folders" ),
+                               "remote:/", "remote:/", nId++, index++ );
+ 

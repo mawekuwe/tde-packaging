@@ -1,0 +1,11 @@
+--- trinity-tdelibs-3.5.13.2/kdeui/kpassivepopup.cpp.ORI	2013-02-16 23:33:04.657067698 +0100
++++ trinity-tdelibs-3.5.13.2/kdeui/kpassivepopup.cpp	2013-02-16 23:34:42.083107895 +0100
+@@ -152,7 +152,7 @@
+     }
+ 
+     if ( !text.isEmpty() ) {
+-        msg = new TQLabel( text, vb, "msg_label" );
++        const char* m = text.latin1(); msg = new TQLabel( TQString::fromUtf8(m), vb, "msg_label" );
+         msg->setAlignment( AlignLeft );
+     }
+ 

@@ -1,0 +1,11 @@
+--- trinity-tdemultimedia-3.5.13.2~pre17+a4c1404c/arts/modules/common/Makefile.am.ORI	2013-05-09 10:51:39.994294437 +0200
++++ trinity-tdemultimedia-3.5.13.2~pre17+a4c1404c/arts/modules/common/Makefile.am	2013-05-09 10:52:23.837409361 +0200
+@@ -25,7 +25,7 @@
+ 	$(top_builddir)/arts/gui/common/libartsgui_idl.la \
+ 	$(top_builddir)/arts/midi/libartsmidi_idl.la \
+ 	$(top_builddir)/arts/modules/synth/libartsmodulessynth.la \
+-	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) $(LIB_QT) $(VORBISFILE_LIBS) -lgthread-2.0
++	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) $(LIB_QT) $(VORBIS_LIBS) $(VORBISFILE_LIBS) -lgthread-2.0 -lmad
+ 
+ libartsmodulescommon_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -no-undefined
+ 
