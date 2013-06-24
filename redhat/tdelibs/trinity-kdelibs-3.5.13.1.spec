@@ -358,7 +358,7 @@ export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${CXXFLAGS} -L/usr/X11R6/%{_lib} -I/usr/X11R6/include"
+  export CXXFLAGS="${RPM_OPT_FLAGS} -L/usr/X11R6/%{_lib} -I/usr/X11R6/include"
 fi
 
 

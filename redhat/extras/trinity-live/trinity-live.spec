@@ -3,7 +3,7 @@
 %define tde_bindir %{tde_prefix}/bin
 
 Name:		trinity-live
-Version:	3.5.13.1
+Version:	3.5.13.2
 Release:	1%{?dist}
 License:	GPL
 Summary:	Trinity Spins

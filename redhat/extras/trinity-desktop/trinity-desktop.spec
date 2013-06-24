@@ -1,11 +1,12 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?_prefix}" != "/usr"
+%if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %define _docdir %{_datadir}/doc
+%define tde_datadir %{tde_prefix}/share
 %endif
 
 Name:		trinity-desktop
-Version:	3.5.13.1
+Version:	3.5.13.2
 Release:	1%{?dist}%{?_variant}
 License:	GPL
 Summary:	Meta-package to install TDE
@@ -21,9 +22,10 @@ BuildArch:	noarch
 
 Source0:	trinity-3.5.13-fedora.repo
 Source1:	trinity-3.5.13-rhel.repo
+Source2:	RPM-GPG-KEY-trinity
 
-Obsoletes:	trinity-desktop-extras < %{version}-%{release}
-Provides:	trinity-desktop-extras = %{version}-%{release}
+Source11:	pclinuxos201304-32.jpg
+Source12:	pclinuxos201304-64.jpg
 
 Requires:	trinity-tdeaccessibility >= %{version}
 Requires:	trinity-tdeaddons >= %{version}
@@ -82,7 +84,7 @@ Group:		User Interface/Desktops
 Summary:	Meta-package to install all TDE applications
 
 # Some applications are disabled for now ...
-# Compiz-related stuff
+# Compiz-related stuff does not work (obsolete)
 #Requires: trinity-compizconfig-backend-kconfig
 #Requires: trinity-desktop-effects-kde
 #Requires: trinity-fusion-icon
@@ -101,7 +103,7 @@ Summary:	Meta-package to install all TDE applications
 #Requires: trinity-qt4-tqt-theme-engine
 
 # Warning, k9copy requires ffmpeg
-# Warning, kradio requires libmp3lame
+# Warning, tderadio requires libmp3lame
 Requires: trinity-abakus
 Requires: trinity-amarok
 Requires: trinity-basket
@@ -112,34 +114,18 @@ Requires: trinity-filelight
 Requires: trinity-gwenview
 Requires: trinity-gwenview-i18n
 Requires: trinity-k3b
-Requires: trinity-k9copy
-Requires: trinity-kaffeine
-Requires: trinity-kaffeine-mozilla
 Requires: trinity-katapult
 Requires: trinity-kbarcode
 Requires: trinity-kbfx
 Requires: trinity-kbookreader
 Requires: trinity-kchmviewer
-Requires: trinity-kcmautostart
 Requires: trinity-kcpuload
-Requires: trinity-kdbusnotification
-Requires: trinity-guidance
-Requires: trinity-guidance-powermanager
-Requires: trinity-style-lipstik
-Requires: trinity-style-qtcurve
-Requires: trinity-systemsettings
-Requires: trinity-kdesudo
-Requires: trinity-kdesvn
+Requires: trinity-k9copy
 Requires: trinity-kdiff3
 Requires: trinity-kdirstat
-Requires: trinity-kdmtheme
 Requires: trinity-keep
 Requires: trinity-kile
-Requires: trinity-kima
-Requires: trinity-kio-locate
-Requires: trinity-kio-umountwrapper
 Requires: trinity-kiosktool
-Requires: trinity-kmplayer
 Requires: trinity-kmyfirewall
 Requires: trinity-kmymoney
 Requires: trinity-knemo
@@ -150,9 +136,7 @@ Requires: trinity-knowit
 Requires: trinity-knutclient
 Requires: trinity-koffice-suite
 Requires: trinity-konversation
-Requires: trinity-kopete-otr
 Requires: trinity-kpicosim
-Requires: trinity-kradio
 Requires: trinity-krename
 Requires: trinity-krusader
 Requires: trinity-ksplash-engine-moodin
@@ -161,17 +145,30 @@ Requires: trinity-kstreamripper
 Requires: trinity-ksystemlog
 Requires: trinity-ktechlab
 Requires: trinity-ktorrent
+Requires: trinity-kuickshow
 Requires: trinity-kvirc
 Requires: trinity-kvkbd
-Requires: trinity-kwin-style-crystal
+Requires: trinity-twin-style-crystal
 Requires: trinity-piklab
 Requires: trinity-potracegui
-Requires: trinity-smartcardauth
 Requires: trinity-smb4k
+Requires: trinity-smartcardauth
 Requires: trinity-soundkonverter
+Requires: trinity-tde-guidance
+Requires: trinity-tde-guidance-powermanager
+Requires: trinity-tde-style-lipstik
+Requires: trinity-tde-style-qtcurve
+Requires: trinity-tde-systemsettings
+Requires: trinity-tdeio-apt
+Requires: trinity-tdeio-locate
+Requires: trinity-tdeio-umountwrapper
+Requires: trinity-tderadio
+Requires: trinity-tdesudo
+Requires: trinity-tdmtheme
 Requires: trinity-tellico
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
+
 
 # Disabled applications for RHEL5
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -185,24 +182,33 @@ Requires: trinity-rosegarden
 Requires: trinity-kpilot
 %endif
 
-# This one causes several crashes .
+# This one causes several crashes . Obsolete.
 #Requires: trinity-kgtk-qt3
+Obsoletes: trinity-kgtk-qt3
 
-# Disabled applications for OPENSUSE 12.2, Mageia 2
-%if 0%{?rhel} || 0%{?fedora} >= 15
-# no imlib1.x library
-Requires: trinity-kuickshow
-%endif
-
+# OBSOLETE: beagle does not exist anymore. Kerry is now useless.
 # RHEL, openSUSE 12: no Beagle library
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
-Requires: trinity-kerry
-%endif
+Obsoletes: trinity-kerry
 
 # RHEL 6 only: knetworkmanager8
 #  knetworkmanager9 is too unstable for now.
 %if 0%{?rhel} == 6
 Requires: trinity-knetworkmanager
+%endif
+
+# RHEL 4
+%if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+# HAL is too old
+Requires: trinity-kima
+Requires: trinity-kaffeine
+Requires: trinity-kaffeine-mozilla
+Requires: trinity-kmplayer
+# No OTR support
+Requires: trinity-kopete-otr
+# No DBUS support
+Requires: trinity-kdbusnotification
+# Subversion 1.1 is too old
+Requires: trinity-tdesvn
 %endif
 
 %description applications
@@ -219,9 +225,31 @@ Summary:	Meta-package to install all extras (unofficial) TDE packages
 Requires:	trinity-akode
 Requires:	trinity-kasablanca
 #Requires:	trinity-kdebluetooth
+#Requires:	trinity-kcheckgmail
+Requires:	trinity-icons-crystalsvg-updated
+Requires:	trinity-icons-kfaenza
+Requires:	trinity-icons-oxygen
+Requires:	trinity-kbibtex
+Requires:	trinity-kbiff
+Requires:	trinity-kcmautostart
+Requires:	trinity-kftpgrabber
 Requires:	trinity-kickoff-i18n
+Requires:	trinity-knmap
+#Requires:	trinity-knoda
 Requires:	trinity-ksensors
+Requires:	trinity-kshowmail
+Requires:	trinity-mplayerthumbs
 Requires:	trinity-style-ia-ora
+Requires:	trinity-tdeio-ftps-plugin
+#Requires:	trinity-tdeio-sysinfo-plugin
+Requires:	trinity-theme-baghira
+Requires:	trinity-tork
+
+
+# GLIBC too old on RHEL <= 5
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel} >= 6
+Requires:	trinity-twinkle
+%endif
 
 %description extras
 %{summary}
@@ -254,10 +282,31 @@ Summary:	Yum configuration files for Trinity
 %description -n trinity-repo
 %{summary}
 
+%pre -n trinity-repo
+# Make sure every Trinity related repository is deleted before installing new one.
+%__rm -f %{_sysconfdir}/yum.repos.d/trinity-*.repo
+
 %files -n trinity-repo
+%defattr(-,root,root,-)
 %{_sysconfdir}/yum.repos.d/*.repo
+%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-trinity
 %endif
 
+##########
+
+%if 0%{?pclinuxos}
+%package -n trinity-wallpaper-theme-default
+Group:		User Interface/Desktops
+Summary:	Default wallpaper for Trinity
+
+%description -n trinity-wallpaper-theme-default
+%{summary}
+
+%files -n trinity-wallpaper-theme-default
+%defattr(-,root,root,-)
+%{tde_datadir}/wallpapers/pclinuxos32.jpg
+%{tde_datadir}/wallpapers/pclinuxos64.jpg
+%endif
 
 ##########
 
@@ -267,31 +316,46 @@ Summary:	Yum configuration files for Trinity
 
 %install
 %__rm -rf %{?buildroot}
-%__mkdir_p %{?buildroot}%{_sysconfdir}/yum.repos.d
+%__mkdir_p "%{?buildroot}%{_sysconfdir}/yum.repos.d"
 
-# Fedora repo file
-%if 0%{?fedora} > 0
+# FEDORA configuration for YUM
+%if 0%{?fedora}
 %__sed %{SOURCE0} \
   -e 's/\$releasever/%{fedora}/g' \
   -e 's/-fedora/-f%{fedora}/g' \
-  >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13.repo
+  >"%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13.repo"
 %endif
 
-# RHEL repo file
+# RHEL configuration for YUM
 # $releasever is replaced with its value
-%if 0%{?rhel} > 0
+%if 0%{?rhel}
 %__sed %{SOURCE1} \
   -e 's/\$releasever/%{rhel}/g' \
-  >%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13.repo
+  >"%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13.repo"
 %endif
 
 %if 0%{?fedora} || 0%{?rhel}
 %__chmod 644 %{?buildroot}%{_sysconfdir}/yum.repos.d/*.repo
 %endif
 
+# RPM signing key
+%if 0%{?rhel} || 0%{?fedora}
+%__install -D -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-trinity"
+%endif
+
+# PCLinuxOS wallpaper
+%if 0%{?pclinuxos} == 2013
+%__install -D -m 644 "%{SOURCE11}" "%{?buildroot}%{tde_datadir}/wallpapers/pclinuxos32.jpg"
+%__install -D -m 644 "%{SOURCE12}" "%{?buildroot}%{tde_datadir}/wallpapers/pclinuxos64.jpg"
+%endif
+
 %changelog
+* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
+- Update to version 3.5.13.2
+- Add GPG signing key
+
 * Mon Oct 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
-- Update to major version 3.5.13.1
+- Update to version 3.5.13.1
 
 * Mon Aug 06 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
 - Add 'applications' subpackage

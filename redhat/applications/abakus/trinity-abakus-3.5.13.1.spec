@@ -76,7 +76,7 @@ export KDEDIR=%{tde_prefix}
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${CXXFLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -121,6 +121,6 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_tdedocdir}/HTML/en/abakus/
 %{tde_datadir}/applnk/Utilities/abakus.desktop
 
-%Changelog
+%changelog
 * Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.91-4
 - Initial release for TDE 3.5.13.1

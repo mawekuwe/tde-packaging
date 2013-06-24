@@ -87,7 +87,7 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 %{tde_docdir}/HTML/*/*/
 %{_datadir}/applnk/Utilities/abakus.desktop
 
-%Changelog
+%changelog
 * Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.91-1
 - Initial build for RHEL 6 and Fedora 15
 - Import to GIT

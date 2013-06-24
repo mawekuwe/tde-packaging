@@ -95,7 +95,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_tdedocdir}/HTML/en/abakus/
 %{tde_datadir}/applnk/Utilities/abakus.desktop
 
-%Changelog
+%changelog
 * Wed Apr 25 2012 Francois Andriot <francois.andriot@free.fr> - 0.91-3
 - Fix postinstall
 

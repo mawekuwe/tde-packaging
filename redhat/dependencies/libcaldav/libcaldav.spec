@@ -103,10 +103,12 @@ autoreconf --force --install --symlink
 
 
 %files
+%defattr(-,root,root,-)
 %{tde_libdir}/*.so.*
 %{tde_docdir}/libcaldav/
 
 %files devel
+%defattr(-,root,root,-)
 %{tde_includedir}/caldav.h
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so

@@ -106,7 +106,7 @@ KDE Bluetooth framework development libraries and headers.
 %patch3 -p1 -b .gcc46
 
 %if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
-#patch4 -p1 -b .bluez4
+%patch4 -p1 -b .bluez4
 %endif
 
 %patch11 -p1
@@ -156,7 +156,7 @@ export CXXFLAGS="${CXXFLAGS} -I%{tde_includedir}/dbus-1.0"
 
 
 %install
-export PATH="%{_bindir}:${PATH}"
+export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT
 

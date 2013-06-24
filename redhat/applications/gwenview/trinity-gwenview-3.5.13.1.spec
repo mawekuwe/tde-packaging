@@ -40,10 +40,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{kdecomp}-3.5.13.1.tar.gz
 
-# [gwenview] Rename a few stragglers [Commit #b4881a61]
-Patch4:	gwenview-3.5.13-rename_a_few_stragglers.patch
-# [gwenview] Fix FTBFS [Commit #1ca2f739]
-Patch5:	gwenview-3.5.13-fix_ftbfs.patch
 # [gwenview] Define QT_CLEAN_NAMESPACE during libmng checks [Commit #59c7639f]
 Patch11:	gwenview-3.5.13-fix_libmng_check.patch
 

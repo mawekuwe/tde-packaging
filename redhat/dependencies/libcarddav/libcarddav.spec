@@ -100,9 +100,11 @@ autoreconf --force --install --symlink
 
 
 %files
+%defattr(-,root,root,-)
 %{tde_libdir}/*.so.*
 
 %files devel
+%defattr(-,root,root,-)
 %{tde_includedir}/*.h
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
