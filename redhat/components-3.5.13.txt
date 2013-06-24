@@ -6,6 +6,8 @@ dependencies/dbus-1-tqt
 dependencies/libcaldav
 dependencies/libcarddav
 dependencies/arts
+dependencies/tqca
+dependencies/tqca-tls
 main/kdelibs
 main/kdebase
 main/kdebindings
@@ -46,6 +48,7 @@ applications/gtk-qt-engine
 applications/gwenview
 applications/gwenview-i18n
 applications/k3b
+applications/k3b-i18n
 applications/k9copy
 applications/kaffeine
 applications/kaffeine-mozilla
@@ -54,7 +57,6 @@ applications/kbarcode
 applications/kbfx
 applications/kbookreader
 applications/kchmviewer
-applications/kcmautostart
 applications/kcpuload
 applications/kdbusnotification
 applications/kde-guidance
@@ -115,9 +117,13 @@ applications/tellico
 applications/wlassistant
 applications/yakuake
 extras/akode
+extras/icons-crystalsvg-updated
+extras/icons-kfaenza
+extras/icons-oxygen
 extras/kasablanca
-#extras/kdebluetooth
+extras/kcmautostart
 extras/ksensors
 extras/style-ia-ora
-extras/trinity-desktop
 extras/theme-baghira
+extras/trinity-desktop
+extras/twinkle

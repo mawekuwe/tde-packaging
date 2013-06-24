@@ -1,5 +1,5 @@
---- kasablanca-0.4.0.2/admin/cvs.sh.ORI	2011-12-04 15:24:44.405943353 +0100
-+++ kasablanca-0.4.0.2/admin/cvs.sh	2011-12-04 15:33:50.829581434 +0100
+--- kasablanca-0.4.0.2/admin/cvs.sh.autotools	2004-06-11 14:04:39.000000000 +0200
++++ kasablanca-0.4.0.2/admin/cvs.sh	2013-06-04 21:13:20.169314990 +0200
 @@ -30,7 +30,7 @@
  required_autoconf_version="2.53 or newer"
  AUTOCONF_VERSION=`$AUTOCONF --version | head -n 1`
@@ -23,10 +23,39 @@
      exit 1
      ;;
 -  automake*1.6.* | automake*1.7* | automake*1.8* ) : ;;
-+  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.10* | automake*1.1[012]* ) : ;;
++  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.10* | automake*1.1[0-9]* ) : ;;
    "" )
      echo "*** AUTOMAKE NOT FOUND!."
      echo "*** KDE requires automake $required_automake_version"
+@@ -122,7 +122,7 @@
+ echo "*** Creating configure"
+ call_and_fix_autoconf
+ 
+-if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
++if egrep "^A[CM]_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
+   echo "*** Creating config.h template"
+   $AUTOHEADER || exit 1
+ fi
+@@ -176,7 +176,7 @@
+   fi
+ fi
+ $ACLOCAL $ACLOCALFLAGS
+-if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
++if egrep "^A[CM]_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
+   echo "*** Creating config.h template"
+   $AUTOHEADER || exit 1
+ fi
+--- kasablanca-0.4.0.2/admin/configure.in.min.ORI	2013-06-04 21:14:53.495416780 +0200
++++ kasablanca-0.4.0.2/admin/configure.in.min	2013-06-04 21:15:00.293278499 +0200
+@@ -41,7 +41,7 @@
+ KDE_SET_PREFIX
+ 
+ dnl generate the config header
+-AM_CONFIG_HEADER(config.h) dnl at the distribution this done
++AC_CONFIG_HEADER(config.h) dnl at the distribution this done
+ 
+ dnl Checks for programs.
+ AC_CHECK_COMPILERS
 --- kasablanca-0.4.0.2/admin/acinclude.m4.in.ORI	2011-12-04 15:37:05.013464315 +0100
 +++ kasablanca-0.4.0.2/admin/acinclude.m4.in	2011-12-04 15:40:40.722904947 +0100
 @@ -468,14 +468,14 @@

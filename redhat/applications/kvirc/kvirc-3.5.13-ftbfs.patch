@@ -5,7 +5,7 @@
  $(SS_INCDIRS) $(SS_CPPFLAGS) -DGLOBAL_KVIRC_DIR=\"$(globalkvircdir)\"
  
 -kvirc_LDFLAGS = -export-dynamic $(SS_LDFLAGS) $(SS_LIBDIRS) $(SS_RPATH)
-+kvirc_LDFLAGS = -export-dynamic $(SS_LDFLAGS) $(SS_LIBDIRS) $(SS_RPATH) -lDCOP -lkdefx -lkio
++kvirc_LDFLAGS = -export-dynamic $(SS_LDFLAGS) $(SS_LIBDIRS) $(SS_RPATH) -lDCOP -lkdefx -lkio -lkdecore -lkdeui
  kvirc_LDADD = $(SS_LIBLINK) ../../kvilib/build/libkvilib.la
  
  bin_PROGRAMS = kvirc
