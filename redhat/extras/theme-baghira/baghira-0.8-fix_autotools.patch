@@ -1,0 +1,40 @@
+--- baghira-0.8/admin/configure.in.min.ORI	2013-06-04 22:19:10.519738419 +0200
++++ baghira-0.8/admin/configure.in.min	2013-06-04 22:19:15.564636810 +0200
+@@ -41,7 +41,7 @@
+ KDE_SET_PREFIX
+ 
+ dnl generate the config header
+-AM_CONFIG_HEADER(config.h) dnl at the distribution this done
++AC_CONFIG_HEADER(config.h) dnl at the distribution this done
+ 
+ dnl Checks for programs.
+ AC_PROG_CC
+--- baghira-0.8/admin/cvs.sh.ORI	2013-06-04 22:18:38.566381936 +0200
++++ baghira-0.8/admin/cvs.sh	2013-06-04 22:19:06.483819702 +0200
+@@ -68,7 +68,7 @@
+     echo "*** KDE requires automake $required_automake_version"
+     exit 1
+     ;;
+-  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.10* | automake*1.11* | automake*1.12*)
++  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.10* | automake*1.11* | automake*1.12* | automake*1.13*)
+     echo "*** $AUTOMAKE_STRING found."
+     UNSERMAKE=no
+     ;;
+@@ -128,7 +128,7 @@
+ echo "*** Creating configure"
+ call_and_fix_autoconf
+ 
+-if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
++if egrep "^A[CM]_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
+   echo "*** Creating config.h template"
+   $AUTOHEADER || exit 1
+   touch config.h.in
+@@ -184,7 +184,7 @@
+   fi
+ fi
+ $ACLOCAL $ACLOCALFLAGS
+-if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
++if egrep "^A[CM]_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
+   echo "*** Creating config.h template"
+   $AUTOHEADER || exit 1
+   touch config.h.in

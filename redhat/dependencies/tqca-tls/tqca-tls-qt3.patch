@@ -1,0 +1,105 @@
+--- tqca-tls-master/configure.qt	2012-06-20 03:30:48.000000000 +0200
++++ tqca-tls-master/configure	2013-05-28 20:30:52.827808679 +0200
+@@ -60,7 +60,7 @@
+ 	if [ "$QC_DEBUG" = "Y" ]; then
+ 		echo \$QTDIR not set... trying to find Qt manually
+ 	fi
+-	for p in /usr/lib/tqt /usr/share/tqt /usr/share/tqt3 /usr/local/lib/tqt /usr/local/share/tqt /usr/lib/tqt3 /usr/local/lib/tqt3 /usr/lib/qt /usr/share/qt /usr/share/qt3 /usr/local/lib/qt /usr/local/share/qt /usr/lib/qt3 /usr/local/lib/qt3 /usr/lib64/tqt /usr/local/lib64/tqt /usr/lib64/tqt3 /usr/local/lib64/tqt3 /usr/lib64/qt /usr/local/lib64/qt /usr/lib64/qt3 /usr/local/lib64/qt3 /usr/X11R6/share/qt /usr/qt/3 ; do
++	for p in /usr/lib/qt /usr/share/qt /usr/share/qt3 /usr/local/lib/qt /usr/local/share/qt /usr/lib/qt3 /usr/local/lib/qt3 /usr/lib/qt /usr/share/qt /usr/share/qt3 /usr/local/lib/qt /usr/local/share/qt /usr/lib/qt3 /usr/local/lib/qt3 /usr/lib64/qt /usr/local/lib64/qt /usr/lib64/qt3 /usr/local/lib64/qt3 /usr/lib64/qt /usr/local/lib64/qt /usr/lib64/qt3 /usr/local/lib64/qt3 /usr/X11R6/share/qt /usr/qt/3 ; do
+ 		if [ -d "$p/mkspecs" ]; then
+ 			QTDIR=$p
+ 			break;
+@@ -79,15 +79,15 @@
+ 	fi
+ fi
+ 
+-if [ ! -x "$QTDIR/bin/tqmake" ]; then
++if [ ! -x "$QTDIR/bin/qmake" ]; then
+ 	if [ "$QC_DEBUG" = "Y" ]; then
+-		echo Warning: tqmake not in \$QTDIR/bin/tqmake
++		echo Warning: qmake not in \$QTDIR/bin/qmake
+ 		echo trying to find it in \$PATH
+ 	fi
+-	qm=`type -p tqmake`
++	qm=`type -p qmake`
+ 	if [ -x "$qm" ]; then
+ 		if [ "$QC_DEBUG" = "Y" ]; then
+-			echo tqmake found in $qm
++			echo qmake found in $qm
+ 		fi
+ 	else
+ 		echo fail
+@@ -96,12 +96,12 @@
+ 		echo or I missdetected \$QTDIR=$QTDIR
+ 		echo
+ 		echo Please set \$QTDIR manually and make sure that
+-		echo \$QTDIR/bin/tqmake exists.
++		echo \$QTDIR/bin/qmake exists.
+ 		echo
+ 		exit 1;
+ 	fi
+ else
+-	qm=$QTDIR/bin/tqmake
++	qm=$QTDIR/bin/qmake
+ fi
+ 
+ gen_files() {
+@@ -184,7 +184,9 @@
+ 		conf->addLib("-lssl -lcrypto");
+ 
+ 		// Make sure tqtinterface can be found
+-		conf->addIncludePath("/usr/include/tqt");
++		conf->addIncludePath("/opt/trinity/include/tqt");
++		// Make sure tqt3 can be found
++		conf->addIncludePath("${QTINC:-${QTDIR}/include}");
+ 
+ 		return true;
+ 	}
+@@ -476,7 +478,7 @@
+ 
+ 		TQString str;
+ 		str += "# qconf\n";
+-		str += "QT_PATH_PLUGINS = " + TQString(tqInstallPathPlugins()) + '\n';
++		str += "QT_PATH_PLUGINS = " + TQString(qInstallPathPlugins()) + '\n';
+ 		if(!conf->DEFINES.isEmpty())
+ 			str += "DEFINES += " + conf->DEFINES + '\n';
+ 		if(!conf->INCLUDEPATH.isEmpty())
+@@ -511,7 +513,7 @@
+ TEMPLATE = app
+ CONFIG += qt x11 thread console
+ TARGET = conf
+-INCLUDEPATH += '/usr/include/tqt'
++INCLUDEPATH += '/opt/trinity/include/tqt' '${QTINC:-${QTDIR}/include}'
+ 
+ DEFINES += X11_INC='"\$\$QMAKE_INCDIR_X11"'
+ DEFINES += X11_LIBDIR='"\$\$QMAKE_LIBDIR_X11"'
+@@ -537,16 +539,16 @@
+ )
+ 
+ if [ "$?" != "0" ]; then
+-	rm -rf .qconftemp
++#	rm -rf .qconftemp
+ 	echo fail
+ 	echo
+ 	echo "There was an error compiling 'conf'.  Be sure you have a proper"
+ 	echo "TQt 3.x Multithreaded (MT) build environment set up."
+-	if [ ! -f "$QTDIR/lib/libtqt-mt.so.3" ]; then
+-		if [ ! -f "$QTDIR/lib64/libtqt-mt.so.3" ]; then
++	if [ ! -f "${QTLIB:-${QTDIR}/lib}/libqt-mt.so.3" ]; then
++		if [ ! -f "${QTLIB:-${QTDIR}/lib64}/libqt-mt.so.3" ]; then
+ 			echo
+ 			echo "One possible reason is that you don't have"
+-			echo "libtqt-mt.so.3 installed in $QTDIR/lib/"
++			echo "libqt-mt.so.3 installed in $QTDIR/lib/"
+ 			echo "or $QTDIR/lib64/."
+ 		fi
+ 	fi
+@@ -575,7 +577,7 @@
+ if [ -x "./qcextra" ]; then
+ 	./qcextra
+ fi
+-# run tqmake
++# run qmake
+ if expr match "$DEB_BUILD_OPTIONS" ".*nostrip"; then
+ 	$qm QMAKE_STRIP=true qca-tls.pro
+ else

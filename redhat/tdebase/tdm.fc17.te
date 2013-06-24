@@ -1,0 +1,13 @@
+
+module tdm.fc17 1.0;
+
+require {
+	type fprintd_t;
+	type initrc_t;
+	class dbus send_msg;
+}
+
+#============= fprintd_t ==============
+#!!!! This avc is allowed in the current policy
+
+allow fprintd_t initrc_t:dbus send_msg;

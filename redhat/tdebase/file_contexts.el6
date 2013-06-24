@@ -1,0 +1,8 @@
+/etc/trinity/kdm/Xreset	--	system_u:object_r:xsession_exec_t:s0
+/etc/trinity/kdm/Xsession	--	system_u:object_r:xsession_exec_t:s0
+/etc/trinity/kdm/Xstartup	--	system_u:object_r:xsession_exec_t:s0
+/etc/trinity/kdm/backgroundrc  system_u:object_r:xdm_var_run_t:s0
+/opt/trinity/bin/kdesu	--	system_u:object_r:su_exec_t:s0
+/opt/trinity/bin/kdm	--	system_u:object_r:xdm_exec_t:s0
+/root/\.trinity(/.*)?	system_u:object_r:config_home_t:s0
+/home/[^/]*/\.trinity(/.*)?  unconfined_u:object_r:config_home_t:s0

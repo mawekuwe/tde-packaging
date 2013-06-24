@@ -1,0 +1,4 @@
+[Arts]
+Arguments=\s-F 10 -S 4096 -a esd -n -s 1 -m artsmessage -c drkonqi -l 3 -f
+NetworkTransparent=true
+SuspendTime=1
