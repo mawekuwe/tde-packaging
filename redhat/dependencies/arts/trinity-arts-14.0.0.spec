@@ -13,7 +13,7 @@
 %define _docdir %{tde_datadir}/doc
 
 Name:		trinity-arts
-Version:	3.5.13.2
+Version:	14.0.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the TDE sound system
@@ -29,6 +29,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
+BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
@@ -196,10 +197,6 @@ Requires:	%{name} = %{version}-%{release}
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
-export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
@@ -210,7 +207,7 @@ cd build
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}/arts" \
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
-  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
+  -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
   -DWITH_ALSA=ON \
   -DWITH_AUDIOFILE=ON \
   -DWITH_VORBIS=ON \
@@ -238,6 +235,5 @@ cd build
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
-
+* Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial build for TDE R14, using 'tqt3' instead of 'qt3'

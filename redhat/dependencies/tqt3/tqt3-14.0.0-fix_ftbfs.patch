@@ -1,0 +1,18 @@
+--- ./tools/qvfb/qanimationwriter.cpp.ori	2013-06-25 20:52:34.636153035 +0200
++++ ./tools/qvfb/qanimationwriter.cpp	2013-06-25 20:52:59.673642835 +0200
+@@ -101,7 +101,15 @@
+ 
+     void writePNG(const TQImage& image)
+     {
++#if PNG_LIBPNG_VER_MAJOR>1 || ( PNG_LIBPNG_VER_MAJOR==1 && PNG_LIBPNG_VER_MINOR>=5 )
++#warning XXXtnn not too sure about this
++/* 
++according to png.h, channels is only used on read, not writes, so we
++should be able to comment this out.
++*/
++#else /* LIBPNG 1.5 */
+ 	info_ptr->channels = 4;
++#endif
+ 	png_set_sig_bytes(png_ptr, 8); // Pretend we already wrote the sig
+ 	png_set_IHDR(png_ptr, info_ptr, image.width(), image.height(),
+ 	    8, image.hasAlphaBuffer()

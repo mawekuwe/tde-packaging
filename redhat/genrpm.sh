@@ -3,7 +3,8 @@
 cd "$( dirname "$0" )"
 ARGS=""
 
-eval TARBALLS_DIR=~/tde/tde-tarballs/3.5.13.2
+#eval TARBALLS_DIR=~/tde/tde-tarballs/3.5.13.2
+eval TARBALLS_DIR=~/tde/tde-tarballs/14.0.0
 DIST="$(rpmdist.sh --dist)"
 
 # CCACHE related stuff
