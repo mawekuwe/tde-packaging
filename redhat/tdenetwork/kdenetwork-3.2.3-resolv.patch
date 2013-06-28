@@ -4,9 +4,9 @@
  
  void addpeerdns() {
    int fd, fd2;
-+  QString p = "/var/run/ppp/resolv.conf";
++  TQString p = "/var/run/ppp/resolv.conf";
 +
-+  if (!QFile::exists(p))
++  if (!TQFile::exists(p))
 +      p = "/etc/ppp/resolv.conf";
  
    if((fd = Requester::rq->openResolv(O_WRONLY|O_APPEND)) >= 0) {

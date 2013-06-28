@@ -549,6 +549,9 @@ ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
 # fix .prl files
 %__sed -i lib/*.prl -e "s|${QTDIR}|%{tde_datadir}/tqt3|g"
 
+# fix QTDIR in 'qmake.conf'
+%__sed -i mkspecs/*/qmake.conf -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= \$(QTDIR)/include/tqt3|"
+
 
 %install
 %__rm -rf %{buildroot}
