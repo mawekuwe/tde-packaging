@@ -3,8 +3,6 @@
 cd "$( dirname "$0" )"
 ARGS=""
 
-#eval TARBALLS_DIR=~/tde/tde-tarballs/3.5.13.2
-eval TARBALLS_DIR=~/tde/tde-tarballs/14.0.0
 DIST="$(rpmdist.sh --dist)"
 
 # CCACHE related stuff
@@ -24,6 +22,13 @@ while [ $# -gt 0 ]; do
   esac
   shift
 done
+
+if [ -d ~/tde/tde-tarballs/${REQVERSION} ]; then
+  eval TARBALLS_DIR=~/tde/tde-tarballs/${REQVERSION}
+else
+  eval TARBALLS_DIR=~/tde/tde-tarballs/3.5.13.2
+  #eval TARBALLS_DIR=~/tde/tde-tarballs/14.0.0
+fi
 
 clear
 cat <<EOF

@@ -28,7 +28,7 @@
 Name:		trinity-tde-guidance
 Summary:	A collection of system administration tools for Trinity
 Version:	0.8.0svn20080103
-Release:	5%{?dist}%{?_variant}
+Release:	6%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -41,6 +41,11 @@ Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	trinity-tde-guidance-3.5.13.2.tar.gz
+
+# [tde-guidance] Work around mountconfig incorrectly handling LABEL tag
+#  This resolves Bug 1545
+#  Add ext4 support
+Patch1:		tde-guidance-3.5.13.2-fix_mountconfig.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
 BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
@@ -149,7 +154,7 @@ suspend using HAL.
 
 %prep
 %setup -q -n trinity-tde-guidance-3.5.13.2
-
+%patch1 -p1 -b .mountconfig
 
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
@@ -423,6 +428,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-6
+- Work around mountconfig incorrectly handling LABEL tag
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-5
 - Initial release for TDE 3.5.13.2
 

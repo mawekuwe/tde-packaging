@@ -1,0 +1,51 @@
+commit 3b6ac8e5301bb482b02af7e2b1f0ec613be61218
+Author: Francois Andriot <albator78@libertysurf.fr>
+Date:   1371158323 -0500
+
+    Work around mountconfig incorrectly handling LABEL tag
+    This resolves Bug 1545
+    Add ext4 support
+
+diff --git a/mountconfig/MicroHAL.py b/mountconfig/MicroHAL.py
+index 9ce8b83..9a913fa 100755
+--- a/mountconfig/MicroHAL.py
++++ b/mountconfig/MicroHAL.py
+@@ -669,6 +669,10 @@ class MicroHAL(object):
+                                 
+                                 if u"volume.label" in parsed_hash:
+                                     new_device.label = self._parseString(parsed_hash[u"volume.label"][0])
++                                    # If HAL returns label beginning with '#', it usually means that the
++                                    # actual label contains an Unix path. So we replace '#' with '/'.
++                                    if len(new_device.label) and new_device.label[0]=='%':
++                                        new_device.label = new_device.label.replace('%', '/')
+                                 
+                                 if u"volume.size" in parsed_hash:
+                                     size = parsed_hash[u"volume.size"][0]
+diff --git a/mountconfig/mountconfig.py b/mountconfig/mountconfig.py
+index eefa9fd..9c00b7d 100755
+--- a/mountconfig/mountconfig.py
++++ b/mountconfig/mountconfig.py
+@@ -82,6 +82,7 @@ Supported filesystems
+ nfs
+ ext2
+ ext3
++ext4
+ reiserfs
+ vfat
+ ntfs
+@@ -1047,6 +1048,7 @@ class MountEntry(object):
+ 
+         'ext2' : (MountEntryExtCommonUnixLocal,i18n("Ext2 - Second Extended FS")),
+         'ext3' : (MountEntryExtCommonUnixLocal,i18n("Ext3 - Third Extended FS")),
++        'ext4' : (MountEntryExtCommonUnixLocal,i18n("Ext4 - Fourth Extended FS")),
+         'reiserfs' : (MountEntryExtCommonUnixLocal,i18n("ReiserFS")),
+         'reiser4' : (MountEntryExtCommonUnixLocal,i18n("Reiser4")),
+         'xfs' : (MountEntryExtCommonUnixLocal,i18n("XFS - SGI's journaling filesystem")),
+@@ -2389,6 +2391,7 @@ class MountEntryDialog(KDialogBase):
+     MountTypeEditorsDisk = {
+         'ext2' : MountEntryDialogOptionsCommonUnix,
+         'ext3' : MountEntryDialogOptionsCommonUnix,
++        'ext4' : MountEntryDialogOptionsCommonUnix,
+         'reiserfs' : MountEntryDialogOptionsCommonUnix,
+         'reiser4' : MountEntryDialogOptionsCommonUnix,
+         'xfs' : MountEntryDialogOptionsCommonUnix,

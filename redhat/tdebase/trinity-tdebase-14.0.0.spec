@@ -2622,7 +2622,7 @@ Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-konsole
 Konsole is an X terminal emulation which provides a command-line interface
-(CLI) while using the graphical K Desktop Environment. Konsole helps to
+(CLI) while using the graphical Trinity Desktop Environment. Konsole helps to
 better organize user's desktop by containing multiple sessions in a single
 window (a less cluttered desktop).
 
@@ -2759,15 +2759,15 @@ Requires:	%{name}-data = %{version}-%{release}
 Requires:	trinity-twin = %{version}-%{release}
 
 %description -n trinity-ksmserver
-This package contains the KDE session manager. It is responsible for
+This package contains the TDE session manager. It is responsible for
 restoring your TDE session on login. It is also needed to properly
-start a KDE session. It registers KDE with X display managers, and
-provides the 'starttde' command, for starting an X session with KDE
+start a TDE session. It registers KDE with X display managers, and
+provides the 'starttde' command, for starting an X session with TDE
 from the console.
 
 If you are running TDE for the first time for a certain user,
 kpersonalizer is used to help with setup. If it is not present,
-KDE will start, but many good defaults will not be set.
+TDE will start, but many good defaults will not be set.
 
 %files -n trinity-ksmserver
 %defattr(-,root,root,-)
@@ -3324,7 +3324,7 @@ cd build
 %endif
 
 # Mageia/Mandriva/PCLinuxOS stores its session file in different folder than RHEL/Fedora
-# Generated files for TDM/KDM4 go to '/usr/share/apps/tdm/sessions'
+# Generated files for TDM/KDM4 go to '/usr/share/apps/kdm/sessions'
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/X11/wmsession.d
 cat <<EOF >"%{?buildroot}%{_sysconfdir}/X11/wmsession.d/45TDE"

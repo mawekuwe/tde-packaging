@@ -149,7 +149,12 @@ BuildRequires:	libwpd-devel
 Obsoletes:		trinity-libwpd
 
 # WV2 support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:  %{_lib}wv2-devel
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires:  wv2-devel
+%endif
 
 # MESA support
 %if 0%{?mgaversion} || 0%{?mdkversion}

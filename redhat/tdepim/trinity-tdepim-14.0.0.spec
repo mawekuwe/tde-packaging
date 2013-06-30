@@ -11,7 +11,7 @@ BuildRequires: cmake >= 2.8
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -111,7 +111,7 @@ BuildRequires:	xscreensaver
 Requires:	trinity-libtdepim = %{version}-%{release}
 Requires:	%{name}-kfile-plugins = %{version}-%{release}
 Requires:	%{name}-tdeio-plugins = %{version}-%{release}
-Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-tderesources = %{version}-%{release}
 Requires:	%{name}-wizards = %{version}-%{release}
 Requires:	trinity-akregator = %{version}-%{release}
 Requires:	trinity-kaddressbook = %{version}-%{release}
@@ -186,7 +186,7 @@ Requires:	trinity-libkpimidentities-devel = %{version}-%{release}
 Requires:	trinity-libksieve-devel = %{version}-%{release}
 Requires:	trinity-libktnef-devel = %{version}-%{release}
 Requires:	trinity-libmimelib-devel = %{version}-%{release}
-Requires:	%{name}-kresources-devel = %{version}-%{release}
+Requires:	%{name}-tderesources-devel = %{version}-%{release}
 
 %description devel
 This metapackage includes all development files for TDE PIM.
@@ -276,7 +276,7 @@ Requires:	trinity-akregator = %{version}-%{release}
 Summary:	TDE addressbook application
 Group:		Applications/Communications
 Requires:	trinity-kdebase-pim-ioslaves
-Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-tderesources = %{version}-%{release}
 
 %description -n trinity-kaddressbook
 KAddressBook is the main address book application for TDE; it enables you
@@ -311,7 +311,7 @@ LDAP servers, and SQL databases.
 %{tde_datadir}/services/kabldapconfig.desktop
 %{tde_datadir}/services/kaddressbook
 %{tde_datadir}/services/kontact/kaddressbookplugin.desktop
-%{tde_datadir}/services/kresources/kabc/imap.desktop
+%{tde_datadir}/services/tderesources/tdeabc/imap.desktop
 %{tde_datadir}/services/ldifvcardthumbnail.desktop
 %{tde_datadir}/servicetypes/dcopaddressbook.desktop
 %{tde_datadir}/servicetypes/kaddressbook_contacteditorwidget.desktop
@@ -322,7 +322,7 @@ LDAP servers, and SQL databases.
 %{tde_tdedocdir}/HTML/en/kaddressbook/
 %{tde_datadir}/autostart/kabcdistlistupdater.desktop
 %{tde_tdeincludedir}/kaddressbook/
-%{tde_tdeincludedir}/kabc/
+%{tde_tdeincludedir}/tdeabc/
 
 %post -n trinity-kaddressbook
 /sbin/ldconfig || :
@@ -526,12 +526,12 @@ File dialog plugins for palm and vcf files.
 
 %files kfile-plugins
 %defattr(-,root,root,-)
-%{tde_tdelibdir}/kfile_ics.la
-%{tde_tdelibdir}/kfile_ics.so
-%{tde_tdelibdir}/kfile_vcf.la
-%{tde_tdelibdir}/kfile_vcf.so
-%{tde_datadir}/services/kfile_ics.desktop
-%{tde_datadir}/services/kfile_vcf.desktop
+%{tde_tdelibdir}/tdefile_ics.la
+%{tde_tdelibdir}/tdefile_ics.so
+%{tde_tdelibdir}/tdefile_vcf.la
+%{tde_tdelibdir}/tdefile_vcf.so
+%{tde_datadir}/services/tdefile_ics.desktop
+%{tde_datadir}/services/tdefile_vcf.desktop
 
 ##########
 
@@ -549,16 +549,16 @@ and mbox.
 
 %files tdeio-plugins
 %defattr(-,root,root,-)
-%{tde_tdelibdir}/kio_groupwise.la
-%{tde_tdelibdir}/kio_groupwise.so
-%{tde_tdelibdir}/kio_imap4.la
-%{tde_tdelibdir}/kio_imap4.so
-%{tde_tdelibdir}/kio_mbox.la
-%{tde_tdelibdir}/kio_mbox.so
-%{tde_tdelibdir}/kio_scalix.la
-%{tde_tdelibdir}/kio_scalix.so
-%{tde_tdelibdir}/kio_sieve.la
-%{tde_tdelibdir}/kio_sieve.so
+%{tde_tdelibdir}/tdeio_groupwise.la
+%{tde_tdelibdir}/tdeio_groupwise.so
+%{tde_tdelibdir}/tdeio_imap4.la
+%{tde_tdelibdir}/tdeio_imap4.so
+%{tde_tdelibdir}/tdeio_mbox.la
+%{tde_tdelibdir}/tdeio_mbox.so
+%{tde_tdelibdir}/tdeio_scalix.la
+%{tde_tdelibdir}/tdeio_scalix.so
+%{tde_tdelibdir}/tdeio_sieve.la
+%{tde_tdelibdir}/tdeio_sieve.so
 %{tde_datadir}/services/groupwise.protocol
 %{tde_datadir}/services/groupwises.protocol
 %{tde_datadir}/services/imap4.protocol
@@ -570,7 +570,7 @@ and mbox.
 
 ##########
 
-%package kresources
+%package tderesources
 Summary:	Trinity pim resource plugins
 Group:		Environment/Libraries
 #Requires:	trinity-kaddressbook = %{version}-%{release}
@@ -579,14 +579,14 @@ Group:		Environment/Libraries
 Requires:	libcaldav
 Requires:	libcarddav
 
-Obsoletes:	tdepim-kresources < %{version}-%{release}
+Obsoletes:	tdepim-tderesources < %{version}-%{release}
 
-%description kresources
+%description tderesources
 This package includes several plugins needed to interface with groupware
 servers. It also includes plugins for features such as blogging and
 tracking feature plans.
 
-%files kresources
+%files tderesources
 %defattr(-,root,root,-)
 %{tde_tdelibdir}/kcal_caldav.la
 %{tde_tdelibdir}/kcal_caldav.so
@@ -636,31 +636,31 @@ tracking feature plans.
 %{tde_libdir}/libknotes_xmlrpc.so.*
 %{tde_libdir}/libkslox.so.*
 %{tde_libdir}/libgwsoap.so.*
-%{tde_datadir}/services/kresources/kabc/kabc_groupdav.desktop
-%{tde_datadir}/services/kresources/kabc/kabc_groupwise.desktop
-%{tde_datadir}/services/kresources/kabc/kabc_newexchange.desktop
-%{tde_datadir}/services/kresources/kabc/kabc_opengroupware.desktop
-%{tde_datadir}/services/kresources/kabc/kabc_ox.desktop
-%{tde_datadir}/services/kresources/kabc/kabc_slox.desktop
-%{tde_datadir}/services/kresources/kabc/kabc_xmlrpc.desktop
-%{tde_datadir}/services/kresources/kabc/kolab.desktop
-%{tde_datadir}/services/kresources/kabc/scalix.desktop
-%{tde_datadir}/services/kresources/kcal/exchange.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_caldav.desktop
-%{tde_datadir}/services/kresources/kabc/kabc_carddav.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_groupdav.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_groupwise.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_newexchange.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_opengroupware.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_ox.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_resourcefeatureplan.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_slox.desktop
-%{tde_datadir}/services/kresources/kcal/kcal_xmlrpc.desktop
-%{tde_datadir}/services/kresources/kcal/kolab.desktop
-%{tde_datadir}/services/kresources/kcal/scalix.desktop
-%{tde_datadir}/services/kresources/knotes/knotes_xmlrpc.desktop
-%{tde_datadir}/services/kresources/knotes/kolabresource.desktop
-%{tde_datadir}/services/kresources/knotes/scalix.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kabc_groupdav.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kabc_groupwise.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kabc_newexchange.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kabc_opengroupware.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kabc_ox.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kabc_slox.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kabc_xmlrpc.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kolab.desktop
+%{tde_datadir}/services/tderesources/tdeabc/scalix.desktop
+%{tde_datadir}/services/tderesources/kcal/exchange.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_caldav.desktop
+%{tde_datadir}/services/tderesources/tdeabc/kabc_carddav.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_groupdav.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_groupwise.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_newexchange.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_opengroupware.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_ox.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_resourcefeatureplan.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_slox.desktop
+%{tde_datadir}/services/tderesources/kcal/kcal_xmlrpc.desktop
+%{tde_datadir}/services/tderesources/kcal/kolab.desktop
+%{tde_datadir}/services/tderesources/kcal/scalix.desktop
+%{tde_datadir}/services/tderesources/knotes/knotes_xmlrpc.desktop
+%{tde_datadir}/services/tderesources/knotes/kolabresource.desktop
+%{tde_datadir}/services/tderesources/knotes/scalix.desktop
 
 %{tde_datadir}/apps/kconf_update/upgrade-resourcetype.pl
 %{tde_datadir}/apps/kconf_update/kolab-resource.upd
@@ -682,27 +682,27 @@ tracking feature plans.
 %{tde_tdelibdir}/kabc_xmlrpc.la
 %{tde_tdelibdir}/kabc_xmlrpc.so
 
-%post kresources
+%post tderesources
 /sbin/ldconfig || :
 
-%postun kresources
+%postun tderesources
 /sbin/ldconfig || :
 
 ##########
 
-%package kresources-devel
-Summary:	Development files for kresources
+%package tderesources-devel
+Summary:	Development files for tderesources
 Group:		Development/Libraries
-Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-tderesources = %{version}-%{release}
 Requires:	libcaldav
 Requires:	libcarddav
 
-Obsoletes:	tdepim-kresources-devel < %{version}-%{release}
+Obsoletes:	tdepim-tderesources-devel < %{version}-%{release}
 
-%description kresources-devel
+%description tderesources-devel
 %{summary}
 
-%files kresources-devel
+%files tderesources-devel
 %defattr(-,root,root,-)
 %{tde_libdir}/libkslox.la
 %{tde_libdir}/libkslox.so
@@ -754,10 +754,10 @@ Obsoletes:	tdepim-kresources-devel < %{version}-%{release}
 %{tde_libdir}/libknotesscalix.so
 %{tde_tdeincludedir}/kpimprefs.h
 
-%post kresources-devel
+%post tderesources-devel
 /sbin/ldconfig || :
 
-%postun kresources-devel
+%postun tderesources-devel
 /sbin/ldconfig || :
 
 ##########
@@ -1122,7 +1122,7 @@ Requires:	trinity-knode = %{version}-%{release}
 %package -n trinity-knotes
 Summary:	Trinity sticky notes
 Group:		Applications/Utilities
-Requires:	trinity-tdepim-kresources = %{version}-%{release}
+Requires:	trinity-tdepim-tderesources = %{version}-%{release}
 
 %description -n trinity-knotes
 KNotes is a program that lets you write sticky notes. The notes are saved
@@ -1140,9 +1140,9 @@ program.  The program supports printing and mailing your notes.
 %{tde_datadir}/config.kcfg/knoteconfig.kcfg
 %{tde_datadir}/config.kcfg/knotesglobalconfig.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/knotes.png
-%{tde_datadir}/services/kresources/knotes/imap.desktop
-%{tde_datadir}/services/kresources/knotes/local.desktop
-%{tde_datadir}/services/kresources/knotes_manager.desktop
+%{tde_datadir}/services/tderesources/knotes/imap.desktop
+%{tde_datadir}/services/tderesources/knotes/local.desktop
+%{tde_datadir}/services/tderesources/knotes_manager.desktop
 %{tde_datadir}/services/kontact/knotesplugin.desktop
 %{tde_tdedocdir}/HTML/en/knotes/
 
@@ -1168,7 +1168,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 Summary:	Development files for knots
 Group:		Development/Libraries
 Requires:	trinity-knotes = %{version}-%{release}
-Requires:	%{name}-kresources-devel = %{version}-%{release}
+Requires:	%{name}-tderesources-devel = %{version}-%{release}
 
 %description -n trinity-knotes-devel
 %{summary}
@@ -1367,7 +1367,7 @@ Summary:	Trinity personal organizer
 Group:		Applications/Productivity
 Requires:	trinity-libkpimidentities = %{version}-%{release}
 Requires:	trinity-libkpimexchange = %{version}-%{release}
-Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-tderesources = %{version}-%{release}
 Requires:	perl
 
 %description -n trinity-korganizer
@@ -1597,7 +1597,7 @@ library.
 %package -n trinity-libkcal
 Summary:	Trinity calendaring library
 Group:		Environment/Libraries
-#Requires:	%{name}-kresources = %{version}-%{release}
+#Requires:	%{name}-tderesources = %{version}-%{release}
 
 %description -n trinity-libkcal
 This library provides a C++ API for handling the vCalendar and iCalendar
@@ -1619,12 +1619,12 @@ This is the runtime package for programs that use the libkcal-trinity library.
 %{tde_libdir}/libkcal_resourceremote.so.*
 %{tde_libdir}/libkholidays.so.*
 %{tde_datadir}/apps/libkholidays
-%{tde_datadir}/services/kresources/kcal/imap.desktop
-%{tde_datadir}/services/kresources/kcal/kabc.desktop
-%{tde_datadir}/services/kresources/kcal/local.desktop
-%{tde_datadir}/services/kresources/kcal/localdir.desktop
-%{tde_datadir}/services/kresources/kcal/remote.desktop
-%{tde_datadir}/services/kresources/kcal_manager.desktop
+%{tde_datadir}/services/tderesources/kcal/imap.desktop
+%{tde_datadir}/services/tderesources/kcal/kabc.desktop
+%{tde_datadir}/services/tderesources/kcal/local.desktop
+%{tde_datadir}/services/tderesources/kcal/localdir.desktop
+%{tde_datadir}/services/tderesources/kcal/remote.desktop
+%{tde_datadir}/services/tderesources/kcal_manager.desktop
 
 %post -n trinity-libkcal
 /sbin/ldconfig || :

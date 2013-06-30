@@ -2832,7 +2832,7 @@ KDE will start, but many good defaults will not be set.
 %files -n trinity-ksmserver
 %defattr(-,root,root,-)
 %{tde_bindir}/ksmserver
-%{tde_bindir}/start[kt]de
+%{tde_bindir}/startkde
 %{tde_bindir}/migratekde3
 %{tde_tdelibdir}/ksmserver.la
 %{tde_tdelibdir}/ksmserver.so
@@ -3281,19 +3281,19 @@ Windows and Samba shares.
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
 # TDM Background
-%__sed -i "tdm/kfrontend/gentdmconf.c" \
+%__sed -i "kdm/kfrontend/genkdmconf.c" \
 	-e 's|"Wallpaper=isadora.png\n"|"Wallpaper=%{tde_bg}\n"|'
 
 # TDE user default background
 %__sed -i "kpersonalizer/keyecandypage.cpp" \
 	-e 's|#define DEFAULT_WALLPAPER "isadora.png"|#define DEFAULT_WALLPAPER "%{tde_bg}"|'
-%__sed -i "start[kt]de" \
+%__sed -i "startkde" \
 	-e 's|/usr/share/wallpapers/isadora.png.desktop|%{tde_bg}|' \
 	-e 's|Wallpaper=isadora.png|Wallpaper=%{tde_bg}|'
 %endif
 
 # TDE branding: removes KUbuntu references [Bug #617]
-%__sed -i "kcontrol/[kt]dm/[kt]dm-appear.cpp" \
+%__sed -i "kcontrol/kdm/kdm-appear.cpp" \
 	-e "s|Welcome to Kubuntu |Welcome to %{tde_aboutlabel} |"
 %__sed -i "konqueror/about/konq_aboutpage.cc" \
 	-e "s|About Kubuntu|About %{tde_aboutlabel}|" \
@@ -3301,15 +3301,15 @@ Windows and Samba shares.
 	-e "s|Kubuntu Documentation|%{tde_aboutlabel} Documentation|"
 %__sed -i "konqueror/about/launch.html" \
 	-e "s|help:/kubuntu/about-kubuntu/index.html|%{tde_aboutpage}|"
-%__sed -i "[kt]dm/config.def" \
+%__sed -i "kdm/config.def" \
 	-e "s|Welcome to Trinity |Welcome to %{tde_aboutlabel} |"
 
 # TDE default directory in 'startkde' script (KDEDIR)
-%__sed -i "start[kt]de" \
+%__sed -i "startkde" \
 	-e "s|/opt/trinity|%{tde_prefix}|g"
 
 # TDE default start button icon
-%__sed -i "start[kt]de" \
+%__sed -i "startkde" \
 	-e "s|%%{tde_starticon}|%{tde_starticon}|g"
 
 

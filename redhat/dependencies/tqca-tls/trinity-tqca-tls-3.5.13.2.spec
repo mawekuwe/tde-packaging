@@ -14,7 +14,7 @@
 
 Name:		trinity-tqca-tls
 Version:	1.0
-Release:	1%{?dist}%{?_variant}
+Release:	2%{?dist}%{?_variant}
 
 Summary:	TLS plugin for the TQt Cryptographic Architecture
 License:	LGPLv2+
@@ -61,6 +61,9 @@ contains the TLS plugin.
 %patch2 -p1 -b .ossl10
 %patch10 -p1 -b .qt
 
+# Revert TQCA to QCA
+%__sed -i * -e "s|TQCA|QCA|g"
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
@@ -96,5 +99,8 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 
 %changelog
+* Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-2
+- Renames TQCA to QCA in source code
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-1
 - Initial build for TDE 3.5.13.2

@@ -28,7 +28,7 @@
 Name:		trinity-tde-systemsettings
 Summary:	easy to use control centre for TDE
 Version:	0.0svn20070312
-Release:	6%{?dist}%{?_variant}
+Release:	7%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -145,6 +145,9 @@ xdg-user-dirs-update
 
 
 %changelog
+* Sat Jun 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-7
+- Rebuild
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-6
 - Initial release for TDE 3.5.13.2
 

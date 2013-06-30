@@ -26,7 +26,7 @@
 Name:		trinity-%{tdecomp}
 Summary:	theme manager for TDM [Trinity]
 Version:	1.2.2
-Release:	4%{?dist}%{?_variant}
+Release:	5%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -39,6 +39,9 @@ Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-3.5.13.2.tar.gz
+
+# [tdmtheme] Fix tdmtheme crash. This resolves Bug 1544
+Patch1:		tdmtheme-3.5.13.2-fix_segv.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
 BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
@@ -63,6 +66,7 @@ that allows you to easily install, remove and change your KDM themes.
 
 %prep
 %setup -q -n %{name}-3.5.13.2
+%patch1 -p1 -b .segv
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -121,6 +125,9 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
+* Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.2-5
+- Fix tdmtheme crash. This resolves Bug 1544
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.2-4
 - Initial release for TDE 3.5.13.2
 

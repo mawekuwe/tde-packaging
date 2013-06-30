@@ -60,7 +60,7 @@ BuildRequires:	trinity-tdelibs-devel >= %{version}
 
 %if "%{?_with_akode}" != ""
 BuildRequires: trinity-akode-devel
-%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
 BuildRequires: trinity-akode-libmad
 %endif
 %endif

@@ -927,6 +927,7 @@ Requires:	trinity-libdcop-c = %{version}-%{release}
 Summary:	Development files for %{name}
 Group:		Development/Libraries
 Requires:	trinity-tdelibs-devel 
+Requires:	%{name} = %{version}-%{release}
 
 Obsoletes:	trinity-kdebindings-devel < %{version}-%{release}
 Provides:	trinity-kdebindings-devel = %{version}-%{release}
@@ -957,6 +958,10 @@ Development files for the TDE bindings.
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 %patch7 -p1 -b .dcopjavaldflags
+
+%if "%{?perl_vendorarch}" == ""
+exit 1
+%endif
 
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
 %patch18 -p1 -b .ruby

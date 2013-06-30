@@ -15,7 +15,7 @@
 
 Name:           trinity-tqca
 Version:        1.0
-Release:        1%{?dist}%{?_variant}
+Release:        2%{?dist}%{?_variant}
 
 Summary:        TQt Cryptographic Architecture
 
@@ -95,6 +95,9 @@ This packages contains the development files for TQCA
 # Fix 'lib64' library directory
 perl -pi -e 's,target\.path=\$PREFIX/lib,target.path=\$PREFIX/%{_lib},g' qcextra
 
+# Revert TQCA to QCA
+%__sed -i examples/*/*.cpp src/*.h src/*.cpp -e "s|TQCA|QCA|g"
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
@@ -121,5 +124,8 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 
 %changelog
+* Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-2
+- Renames TQCA to QCA in source code
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-1
 - Initial build for TDE 3.5.13.2

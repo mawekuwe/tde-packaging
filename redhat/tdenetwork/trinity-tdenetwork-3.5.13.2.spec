@@ -252,11 +252,12 @@ update-desktop-database 2> /dev/null || :
 %package devel
 Summary:		Development files for the Trinity network module
 Group:			Development/Libraries
+Requires:		trinity-tdenetwork = %{version}-%{release}
 Requires:		trinity-kdict = %{version}-%{release}
 Requires:		trinity-kopete = %{version}-%{release}
 Requires:		trinity-ksirc = %{version}-%{release}
 Requires:		trinity-librss = %{version}-%{release}
-Requires:		trinity-kdelibs-devel
+Requires:		trinity-tdelibs-devel
 
 Obsoletes:	trinity-kdenetwork-devel < %{version}-%{release}
 Provides:	trinity-kdenetwork-devel = %{version}-%{release}
