@@ -1,0 +1,5 @@
+debian-archive-keyring (2006.01.10) unstable; urgency=low
+
+  * Initial release
+
+ -- Michael Vogt <mvo@debian.org>  Tue, 10 Jan 2006 09:17:43 +0100

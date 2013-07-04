@@ -1,0 +1,6 @@
+# Trinity repositories
+
+deb http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-v3.5.13/ubuntu maverick main
+deb-src http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-v3.5.13/ubuntu maverick main
+deb http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-builddeps-v3.5.13/ubuntu maverick main
+deb-src http://ppa.quickbuild.pearsoncomputing.net/trinity/trinity-builddeps-v3.5.13/ubuntu maverick main

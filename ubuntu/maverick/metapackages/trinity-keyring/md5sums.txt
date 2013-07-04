@@ -1,0 +1,11 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+c92d44bfab485525f3078b6bcdafa0aa  keyrings/kde3-maintainers-keyring.gpg
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+
+iEYEARECAAYFAknxzxAACgkQ1qe3DOI85pKjkgCeLm9YEGnuXOvhzuCQF2UDLLAn
+pC0AoMNmSPQt2+W0jStHxn7lnHHnoqHd
+=068G
+-----END PGP SIGNATURE-----
