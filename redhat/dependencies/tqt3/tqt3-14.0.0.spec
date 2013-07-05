@@ -17,8 +17,8 @@
 # ...maybe others !!!!
 
 Name:		trinity-tqt3
-Version:	14.0.0%{?preversion:_%{preversion}}
-Release:	1%{?dist}
+Version:	3.5.0
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	The shared library for the Trinity Qt 3 GUI toolkit
 
 License:	QPL or GPLv2 or GPLv3
@@ -180,12 +180,6 @@ Requires(postun): /sbin/ldconfig
 Requires: coreutils
 Requires: fontconfig >= 2.0
 Requires: /etc/ld.so.conf.d
-
-%if 0%{?mdkversion} || 0%{?mgaversion}
-Obsoletes:		%{_lib}qt3
-Provides:		%{_lib}qt3 = 3.3.8.d
-%endif
-
 
 %description
 TQt is a GUI software toolkit which simplifies the task of writing and
@@ -537,7 +531,6 @@ ln -s ../src/inputmethod/ntqinputcontextfactory.h include/ntqinputcontextfactory
 ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
 
 # proceed
-#%__make %{?_smp_mflags} symlinks src-qmake src-moc
 %__make %{?_smp_mflags} sub-src sub-plugins sub-tools
 
 # build conv2ui
@@ -550,11 +543,16 @@ ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
 %__sed -i lib/*.prl -e "s|${QTDIR}|%{tde_datadir}/tqt3|g"
 
 # fix QTDIR in 'qmake.conf'
-%__sed -i mkspecs/*/qmake.conf -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= \$(QTDIR)/include/tqt3|"
+%__sed -i mkspecs/*/qmake.conf \
+  -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= \$(QTDIR)/include/tqt3|" \
+  -e "s|\$(QTDIR)|/usr|g" \
+  -e "s|-lqt|-ltqt|g"
 
 
 %install
 %__rm -rf %{buildroot}
+export QTDIR=$(pwd)
+export PATH=${QTDIR}/stripbin:${QTDIR}/bin:$PATH
 
 %__make -C src INSTALL_ROOT=%{?buildroot} install_target
 %__make INSTALL_ROOT=%{?buildroot} install
@@ -576,5 +574,5 @@ ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
 
 
 %changelog
-* Mon Feb 13 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Mon Feb 13 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.0-1
 - Initial build for TDE R14.0.0

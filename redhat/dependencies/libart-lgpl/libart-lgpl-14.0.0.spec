@@ -31,8 +31,8 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:  trinity-tqt3-devel >= %{version}
-BuildRequires:  trinity-tqtinterface-devel >= %{version}
+BuildRequires:  trinity-tqt3-devel >= 3.5.0
+BuildRequires:  trinity-tqtinterface-devel >= 3.5.0
 
 %description
 A library of functions for 2D graphics supporting a superset of the

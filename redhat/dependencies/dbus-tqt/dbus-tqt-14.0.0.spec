@@ -32,9 +32,9 @@ BuildRequires:	trinity-tqtinterface-devel >= %{version}
 
 # TDE 3.5.13 specific building variables
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqt3-devel >= %{version}
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
 
-Requires:		trinity-tqt3 >= %{version}
+Requires:		trinity-tqt3 >= 3.5.0
 
 Obsoletes:		dbus-tqt < %{version}-%{release}
 Provides:		dbus-tqt = %{version}-%{release}
@@ -43,6 +43,18 @@ Provides:		dbus-tqt = %{version}-%{release}
 %description
 Dbus TQT Interface
 
+%post
+/sbin/ldconfig || :
+
+%postun
+/sbin/ldconfig || :
+
+%files
+%defattr(-,root,root,-)
+%{tde_libdir}/libdbus-tqt-1.so.0
+%{tde_libdir}/libdbus-tqt-1.so.0.0.0
+
+##########
 
 %package devel
 Requires:		%{name}
@@ -55,6 +67,20 @@ Provides:		dbus-tqt-devel = %{version}-%{release}
 %description devel
 Development files for %{name}
 
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
+%files devel
+%defattr(-,root,root,-)
+%{tde_includedir}/dbus-1.0/*
+%{tde_libdir}/libdbus-tqt-1.so
+%{tde_libdir}/libdbus-tqt-1.la
+%{tde_libdir}/pkgconfig/dbus-tqt.pc
+
+##########
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
@@ -70,7 +96,7 @@ Development files for %{name}
 
 
 %build
-unset QTDIR
+unset QTDIR QTINC QTLIB
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 %if 0%{?rhel} == 4
@@ -94,32 +120,10 @@ cd build
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
 
+
 %clean
 %__rm -rf %{?buildroot}
 
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
-
-%post devel
-/sbin/ldconfig || :
-
-%postun devel
-/sbin/ldconfig || :
-
-%files
-%defattr(-,root,root,-)
-%{tde_libdir}/libdbus-tqt-1.so.0
-%{tde_libdir}/libdbus-tqt-1.so.0.0.0
-
-%files devel
-%defattr(-,root,root,-)
-%{tde_includedir}/dbus-1.0/*
-%{tde_libdir}/libdbus-tqt-1.so
-%{tde_libdir}/libdbus-tqt-1.la
-%{tde_libdir}/pkgconfig/dbus-tqt.pc
 
 %changelog
 * Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1

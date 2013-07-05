@@ -25,8 +25,8 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 # TDE 3.5.13 specific building variables
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqt3-devel >= 14.0.0
-Requires:		trinity-tqt3 >= 14.0.0
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
+Requires:		trinity-tqt3 >= 3.5.0
 
 BuildRequires:	gcc-c++
 
@@ -52,21 +52,66 @@ BuildRequires:	libXi6-devel
 Obsoletes:	tqtinterface < %{version}-%{release}
 Provides:	tqtinterface = %{version}-%{release}
 
-
 %description
 Trinity QT Interface
+
+%post
+/sbin/ldconfig || :
+
+%postun
+/sbin/ldconfig || :
+
+%files
+%defattr(-,root,root,-)
+%{tde_bindir}/convert_qt_tqt1
+%{tde_bindir}/convert_qt_tqt2
+%{tde_bindir}/convert_qt_tqt3
+%{tde_bindir}/dcopidl-tqt
+%{tde_bindir}/dcopidl2cpp-tqt
+%{tde_bindir}/dcopidlng-tqt
+%{tde_bindir}/mcopidl-tqt
+%{tde_bindir}/moc-tqt
+%{tde_bindir}/tmoc
+%{tde_bindir}/tqt-replace
+%{tde_bindir}/tqt-replace-stream
+%{tde_bindir}/uic-tqt
+%{tde_libdir}/libtqassistantclient.so.4
+%{tde_libdir}/libtqassistantclient.so.4.2.0
+%{tde_libdir}/libtqt.so.4
+%{tde_libdir}/libtqt.so.4.2.0
+
+##########
 
 %package devel
 Group:		Development/Libraries
 Summary:	%{name} - Development files
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-tqt3-devel >= 14.0.0
+Requires:	trinity-tqt3-devel >= 3.5.0
 
 Obsoletes:	tqtinterface-devel < %{version}-%{release}
 Provides:	tqtinterface-devel = %{version}-%{release}
 
 %description devel
 Development files for %{name}
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
+%files devel
+%defattr(-,root,root,-)
+%{tde_includedir}/tqt/
+%{tde_libdir}/libtqassistantclient.la
+%{tde_libdir}/libtqassistantclient.so
+%{tde_libdir}/libtqt.la
+%{tde_libdir}/libtqt.so
+%{tde_libdir}/pkgconfig/tqt.pc
+%{tde_libdir}/pkgconfig/tqtqui.pc
+%{cmake_modules_dir}/*.cmake
+
+##########
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
@@ -119,50 +164,9 @@ for i in cmake/modules/*.cmake; do
   %__install -m 644 $i %{?buildroot}%{cmake_modules_dir}
 done
 
+
 %clean
 %__rm -rf %{?buildroot}
-
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
-
-%post devel
-/sbin/ldconfig || :
-
-%postun devel
-/sbin/ldconfig || :
-
-%files
-%defattr(-,root,root,-)
-%{tde_bindir}/convert_qt_tqt1
-%{tde_bindir}/convert_qt_tqt2
-%{tde_bindir}/convert_qt_tqt3
-%{tde_bindir}/dcopidl-tqt
-%{tde_bindir}/dcopidl2cpp-tqt
-%{tde_bindir}/dcopidlng-tqt
-%{tde_bindir}/mcopidl-tqt
-%{tde_bindir}/moc-tqt
-%{tde_bindir}/tmoc
-%{tde_bindir}/tqt-replace
-%{tde_bindir}/tqt-replace-stream
-%{tde_bindir}/uic-tqt
-%{tde_libdir}/libtqassistantclient.so.4
-%{tde_libdir}/libtqassistantclient.so.4.2.0
-%{tde_libdir}/libtqt.so.4
-%{tde_libdir}/libtqt.so.4.2.0
-
-%files devel
-%defattr(-,root,root,-)
-%{tde_includedir}/tqt/
-%{tde_libdir}/libtqassistantclient.la
-%{tde_libdir}/libtqassistantclient.so
-%{tde_libdir}/libtqt.la
-%{tde_libdir}/libtqt.so
-%{tde_libdir}/pkgconfig/tqt.pc
-%{tde_libdir}/pkgconfig/tqtqui.pc
-%{cmake_modules_dir}/*.cmake
 
 
 %changelog

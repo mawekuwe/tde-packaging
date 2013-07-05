@@ -18,7 +18,7 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -48,6 +48,7 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Patch0:			tdebindings-14.0.0-ftbfs.patch
 
 # [kdebindings] Fix FTBFS in dcopjava/bindings
 Patch7:		kdebindings-3.5.13.1-fix_dcopjava_ldflags.patch
@@ -171,6 +172,9 @@ BuildRequires:	perl-devel
 %endif
 %define perl_vendorarch %{expand:%%(eval `perl -V:installvendorarch`; echo $installvendorarch)}
 
+## QScintilla
+BuildRequires:	trinity-tqscintilla-devel
+%define _enable_qscintilla --enable-qscintilla
 
 Obsoletes:	trinity-kdebindings < %{version}-%{release}
 Provides:	trinity-kdebindings = %{version}-%{release}
@@ -568,7 +572,7 @@ This package is part of the official TDE bindings module.
 %{tde_datadir}/services/qprocess_plugin.desktop
 %{tde_tdelibdir}/libfileitemplugin.la
 %{tde_tdelibdir}/libfileitemplugin.so
-%{tde_datadir}/services/kfileitem_plugin.desktop
+%{tde_datadir}/services/tdefileitem_plugin.desktop
 %{tde_datadir}/apps/kjsembed/cmdline.js
 %{tde_datadir}/servicetypes/binding_type.desktop
 %{tde_bindir}/embedjs
@@ -695,7 +699,7 @@ This package is part of the official TDE bindings module.
 %{tde_bindir}/rbkdesh
 %{tde_bindir}/rbkdeapi
 %{tde_bindir}/krubyinit
-%{tde_bindir}/rbkconfig_compiler
+%{tde_bindir}/rbtdeconfig_compiler
 %{ruby_rubylibdir}/Korundum.rb
 %{ruby_rubylibdir}/KDE/korundum.rb
 %{ruby_arch}/korundum.la
@@ -734,8 +738,8 @@ This package is part of the official TDE bindings module.
 %{ruby_rubylibdir}/Qt.rb
 %{ruby_arch}/qtruby.so*
 %{ruby_arch}/qtruby.la
-%{ruby_arch}/qui.so*
-%{ruby_arch}/qui.la
+%{ruby_arch}/tqui.so*
+%{ruby_arch}/tqui.la
 %doc qtruby/ChangeLog
 
 %post -n trinity-libqt0-ruby
@@ -845,7 +849,7 @@ Requires:	trinity-libkdexparts1 = %{version}-%{release}
 
 %files -n trinity-libxparts-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/xkparts/
+%{tde_tdeincludedir}/xtdeparts/
 %if 0%{?with_gtk1}
 %{tde_libdir}/libgtkxparts.so
 %endif
@@ -956,7 +960,8 @@ Development files for the TDE bindings.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch7 -p1 -b .dcopjavaldflags
+%patch0 -p1 -b .ftbfs
+#patch7 -p1 -b .dcopjavaldflags
 
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
 %patch18 -p1 -b .ruby
@@ -1014,16 +1019,14 @@ fi
   --enable-closure \
   --enable-final \
   %{?_with_java} %{!?_with_java:--without-java} \
-  %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla} \
-  --with-extra-includes=%{tde_includedir}/tqt
+  %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla}
 
+# Build dcopperl with specific options
 pushd dcopperl
 CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL INSTALLDIRS=vendor
 
-# Ugly hack to add TQT include directory in Makefile
-# Also modifies the man pages directory
+# Ugly hack to modify the man pages directory
 sed -i Makefile \
-  -e "s|^\(INC = .*\)|\1 -I%{tde_includedir}/tqt|" \
   -e "s|/usr/share/man|%{tde_mandir}|g"
 
 %__make OPTIMIZE="$RPM_OPT_FLAGS" ||:
@@ -1049,7 +1052,7 @@ find $RPM_BUILD_ROOT -type f -a \( -name perllocal.pod -o -name .packlist \
 
 # locale's
 %find_lang %{name} || touch %{name}.lang
-HTML_DIR=$(kde-config --expandvars --install html)
+HTML_DIR=$(tde-config --expandvars --install html)
 if [ -d $RPM_BUILD_ROOT$HTML_DIR ]; then
 for lang_dir in $RPM_BUILD_ROOT$HTML_DIR/* ; do
   if [ -d $lang_dir ]; then

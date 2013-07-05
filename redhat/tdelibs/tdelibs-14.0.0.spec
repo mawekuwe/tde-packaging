@@ -43,7 +43,7 @@ Provides:	trinity-kdelibs-apidocs = %{version}-%{release}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
-BuildRequires:	trinity-tqt3-devel >= %{version}
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	trinity-arts-devel >= %{version}
 BuildRequires:	trinity-dbus-1-tqt-devel >= %{version}
@@ -197,7 +197,7 @@ BuildRequires:	%{_lib}nm-util-devel
 %endif
 %endif
 
-Requires:		trinity-tqt3 >= %{version}
+Requires:		trinity-tqt3 >= 3.5.0
 Requires:		trinity-tqtinterface >= %{version}
 Requires:		trinity-arts >= %{version}
 

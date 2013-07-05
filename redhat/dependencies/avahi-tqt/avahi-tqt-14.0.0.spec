@@ -29,7 +29,7 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	gcc-c++
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqt3-devel >= %{version}
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
@@ -57,7 +57,7 @@ BuildRequires:	expat-devel
 %endif
 %endif
 
-Requires:		trinity-tqt3 >= %{version}
+Requires:		trinity-tqt3 >= 3.5.0
 Requires:		trinity-tqtinterface >= %{version}
 
 Obsoletes:		avahi-tqt < %{version}-%{release}

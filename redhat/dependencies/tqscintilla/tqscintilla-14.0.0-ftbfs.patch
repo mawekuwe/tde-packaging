@@ -1,0 +1,15 @@
+--- trinity-tqscintilla-14.0.0~pre20+a3562a94/qt/qscintilla.pro.ORI	2013-07-02 19:27:56.391143562 +0200
++++ trinity-tqscintilla-14.0.0~pre20+a3562a94/qt/qscintilla.pro	2013-07-02 19:30:59.279346578 +0200
+@@ -211,10 +211,10 @@
+ 	qscintilla_ru.ts
+ 
+ 
+-header.path = $(QTDIR)/include
++header.path = /usr/include/tqt3
+ header.files = qextscintilla*.h
+ 
+-trans.path = $(QTDIR)/translations
++trans.path = /usr/share/tqt3/translations
+ trans.files = qscintilla_*.qm
+ 
+ INSTALLS += header trans
