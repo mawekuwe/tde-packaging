@@ -1,0 +1,14 @@
+--- kcmautostart/src/autostart.cpp.crash_on_exit	2013-05-10 23:35:31.443410887 +0200
++++ kcmautostart/src/autostart.cpp	2013-05-10 23:46:31.852926622 +0200
+@@ -102,7 +102,10 @@
+   if (bisDesktop) service = new KService( fileName.path() );
+   }
+   ~desktop() {
+-    delete service;
++    if(service) {
++      service = NULL;
++      delete service;
++    }
+   }
+ };
+ 

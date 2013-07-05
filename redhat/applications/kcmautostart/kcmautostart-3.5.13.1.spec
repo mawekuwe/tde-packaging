@@ -1,5 +1,5 @@
 # Default version for this component
-%define tdecomp tdmtheme
+%define kdecomp kchmviewer
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -23,42 +23,39 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	theme manager for TDM [Trinity]
-Version:	1.2.2
-Release:	5%{?dist}%{?_variant}
+Name:		trinity-kcmautostart
+Summary:	Manage applications automatic startup.
+Version:	1.0
+Release:	2%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://beta.smileaf.org/projects
+URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
+Prefix:    %{_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:	kcmautostart-3.5.13.tar.gz
 
-# [tdmtheme] Fix tdmtheme crash. This resolves Bug 1544
-Patch1:		tdmtheme-3.5.13.2-fix_segv.patch
+# [kcmautostart] Fix FTBFS with TDE 3.5.13
+Patch1:		kcmautostart-3.5.13-ftbfs.patch
+# [kcmautostart] Add French support
+Patch2:		kcmautostart-3.5.13-add_french.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
-BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
+BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.1
+BuildRequires:	trinity-arts-devel >= 3.5.13.1
+BuildRequires:	trinity-tdelibs-devel >= 3.5.13.1
+BuildRequires:	trinity-tdebase-devel >= 3.5.13.1
+BuildRequires: desktop-file-utils
+BuildRequires: gcc-c++
 
-Obsoletes:		trinity-kdmtheme < %{version}-%{release}
-Provides:		trinity-kdmtheme = %{version}-%{release}
-
+Requires:		trinity-kdebase
 
 %description
-kdmtheme is a theme manager for KDM. It provides a TDE Control Module (KCM)
-that allows you to easily install, remove and change your KDM themes.
-
-
+%{summary}
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
@@ -66,8 +63,9 @@ that allows you to easily install, remove and change your KDM themes.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
-%patch1 -p1 -b .segv
+%setup -q -a 0 -n applications/kcmautostart
+%patch1 -p1
+%patch2 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -81,7 +79,7 @@ that allows you to easily install, remove and change your KDM themes.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
@@ -89,12 +87,12 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --libdir=%{tde_libdir} \
-  --mandir=%{tde_mandir} \
   --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt
+  --with-extra-includes=%{tde_includedir}/tqt \
+  --disable-static
 
 %__make %{?_smp_mflags}
 
@@ -104,41 +102,24 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+%find_lang autostart
 
 %clean
 %__rm -rf %{buildroot}
 
 
-
-%files
+%files -f autostart.lang
 %defattr(-,root,root,-)
-%{tde_tdelibdir}/kcm_kdmtheme.la
-%{tde_tdelibdir}/kcm_kdmtheme.so
-%{tde_tdeappdir}/kdmtheme.desktop
-%{tde_tdedocdir}/HTML/en/kdmtheme/
-
-
-%post
-update-desktop-database %{tde_appdir} &> /dev/null
-
-%postun
-update-desktop-database %{tde_appdir} &> /dev/null
+%doc AUTHORS ChangeLog COPYING INSTALL NEWS README TODO
+%{tde_tdelibdir}/kcm_autostart.la
+%{tde_tdelibdir}/kcm_autostart.so
+%{tde_tdeappdir}/autostart.desktop
+%{tde_tdedocdir}/HTML/en/autostart/
 
 
 %changelog
-* Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.2-5
-- Fix tdmtheme crash. This resolves Bug 1544
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.2-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.2.2-3
+* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-2
 - Initial build for TDE 3.5.13.1
 
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.2.2-2
-- Rebuilt for Fedora 17
-- Removes post and postun
-- Removes the 'lintian' stuff from Debian
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.2-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+* Thu May 10 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-1
+- Initial build for TDE 3.5.13

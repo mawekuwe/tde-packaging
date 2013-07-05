@@ -1,0 +1,67 @@
+--- kcmautostart.ORI/src/autostart.cpp	2012-05-10 11:36:44.887288951 +0200
++++ kcmautostart.P/src/autostart.cpp	2012-05-10 11:37:16.701639283 +0200
+@@ -88,10 +88,10 @@
+       path = kgs->autostartPath()+"/";
+       break;
+     case Shutdown:
+-      path = ksd->localtdedir()+"shutdown/";
++      path = ksd->localkdedir()+"shutdown/";
+       break;
+     case ENV:
+-      path = ksd->localtdedir()+"env/";
++      path = ksd->localkdedir()+"env/";
+       break;
+   }
+   KIO::file_move(fileName, KURL( path + fileName.fileName() ));
+@@ -190,9 +190,9 @@
+     if (x==0)
+       path = kgs->autostartPath();
+     else if (x==1)
+-      path = ksd->localtdedir() + "/shutdown";
++      path = ksd->localkdedir() + "/shutdown";
+     else if (x==2)
+-      path = ksd->localtdedir() + "/env";
++      path = ksd->localkdedir() + "/env";
+ 
+     if (! KStandardDirs::exists(path))
+       KStandardDirs::makeDir(path);
+--- kcmautostart/admin/cvs.sh.ftbfs	2012-05-10 11:30:01.000000000 +0200
++++ kcmautostart/admin/cvs.sh	2013-06-04 21:27:13.097359615 +0200
+@@ -68,7 +68,7 @@
+     echo "*** KDE requires automake $required_automake_version"
+     exit 1
+     ;;
+-  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.10* | automake*1.11* | automake*1.12*)
++  automake*1.6.* | automake*1.7* | automake*1.8* | automake*1.9* | automake*1.10* | automake*1.11* | automake*1.12* | automake*1.13*)
+     echo "*** $AUTOMAKE_STRING found."
+     UNSERMAKE=no
+     ;;
+@@ -128,7 +128,7 @@
+ echo "*** Creating configure"
+ call_and_fix_autoconf
+ 
+-if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
++if egrep "^A[CM]_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
+   echo "*** Creating config.h template"
+   $AUTOHEADER || exit 1
+   touch config.h.in
+@@ -184,7 +184,7 @@
+   fi
+ fi
+ $ACLOCAL $ACLOCALFLAGS
+-if egrep "^AM_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
++if egrep "^A[CM]_CONFIG_HEADER" configure.in >/dev/null 2>&1; then
+   echo "*** Creating config.h template"
+   $AUTOHEADER || exit 1
+   touch config.h.in
+--- kcmautostart/admin/configure.in.min.ORI	2013-06-04 21:28:06.399273569 +0200
++++ kcmautostart/admin/configure.in.min	2013-06-04 21:28:12.584147551 +0200
+@@ -41,7 +41,7 @@
+ KDE_SET_PREFIX
+ 
+ dnl generate the config header
+-AM_CONFIG_HEADER(config.h) dnl at the distribution this done
++AC_CONFIG_HEADER(config.h) dnl at the distribution this done
+ 
+ dnl Checks for programs.
+ AC_PROG_CC
