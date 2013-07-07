@@ -26,13 +26,13 @@
      }
 +
 +    // Add the extra path to the python script to the interpreter search path.
-+    QString extrapath = QString(EXTRA_MODULE_DIR);
++    TQString extrapath = TQString(EXTRA_MODULE_DIR);
 +    if(!pyize->appendToSysPath (extrapath.latin1 ())) {
 +      return report_error ("***Failed to set extra sys.path\n");
 +    }
 +
 +    // Add the PYQT path to the python script to the interpreter search path.
-+    QString pyqt_dir = QString(PYQT_DIR);
++    TQString pyqt_dir = TQString(PYQT_DIR);
 +    if(!pyize->appendToSysPath (pyqt_dir.latin1 ())) {
 +      return report_error ("***Failed to set PYQT sys.path\n");
 +    }

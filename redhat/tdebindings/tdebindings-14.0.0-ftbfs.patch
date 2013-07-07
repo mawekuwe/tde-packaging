@@ -1,0 +1,24 @@
+--- trinity-tdebindings-14.0.0~pre209+0615ff79/dcopperl/Makefile.PL.in.ORI	2013-07-02 21:20:35.443484858 +0200
++++ trinity-tdebindings-14.0.0~pre209+0615ff79/dcopperl/Makefile.PL.in	2013-07-02 21:20:46.551592113 +0200
+@@ -4,8 +4,8 @@
+ # the contents of the Makefile that is written.
+ 
+ print "Trying to find some configuration information...\n";
+-my $tde_inc = "@tde_includes@";
+-my $tde_lib = "@tde_libraries@";
++my $tde_inc = "@kde_includes@";
++my $tde_lib = "@kde_libraries@";
+ my $qt_inc = "@qt_includes@";
+ my $qt_lib = "@qt_libraries@";
+ 
+--- trinity-tdebindings-14.0.0~pre209+0615ff79/smoke/kde/Makefile.am.ORI	2013-07-02 21:30:55.952456509 +0200
++++ trinity-tdebindings-14.0.0~pre209+0615ff79/smoke/kde/Makefile.am	2013-07-02 21:31:07.962573744 +0200
+@@ -9,7 +9,7 @@
+ libsmokekde_la_LDFLAGS = -version-info 3:2:2 -no-undefined $(all_libraries) $(GLINC) $(KDE_RPATH)
+ 
+ # the libraries to link against.
+-libsmokekde_la_LIBADD   = $(LIB_TDEHTML) -lkjs -lfontconfig $(LIB_KMDI) $(LIB_KNS) $(LIB_KSPELL) $(LIB_KUTILS) $(LIB_TDEPRINT) $(GLLIB) $(LIB_QT) $(LIB_TDEUI) $(LIB_TDECORE) $(LIB_KIO) $(LIB_KPARTS) -lDCOP -ltdefx
++libsmokekde_la_LIBADD   = $(LIB_TDEHTML) -lkjs -lfontconfig $(LIB_KMDI) $(LIB_KNS) $(LIB_KSPELL) $(LIB_KUTILS) $(LIB_TDEPRINT) $(GLLIB) $(LIB_QT) $(LIB_TDEUI) $(LIB_TDECORE) $(LIB_KIO) $(LIB_KPARTS) -lDCOP -ltdefx -lknewstuff -ltdemdi
+ 
+ x_sources =  x_1.cpp x_2.cpp x_3.cpp x_4.cpp x_5.cpp x_6.cpp x_7.cpp \
+    x_8.cpp x_9.cpp x_10.cpp x_11.cpp x_12.cpp x_13.cpp x_14.cpp x_15.cpp \

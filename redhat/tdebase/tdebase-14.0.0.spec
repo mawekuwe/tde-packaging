@@ -249,7 +249,7 @@ Requires:	opensuse-manuals_en
 %endif
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqt3-devel >= %{version}
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	trinity-arts-devel >= %{version}
 BuildRequires:	trinity-tdelibs-devel >= %{version}
@@ -487,7 +487,7 @@ Requires: %{name}-tdeio-smb-plugin = %{version}-%{release}
 Requires:	trinity-tqtinterface >= %{version}
 Requires:	trinity-arts >= %{version}
 Requires:	trinity-tdelibs >= %{version}
-Requires:	trinity-tqt3 >= %{version}
+Requires:	trinity-tqt3 >= 3.5.0
 Requires:	openssl
 
 

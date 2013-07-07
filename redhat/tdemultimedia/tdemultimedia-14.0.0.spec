@@ -10,7 +10,7 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -39,6 +39,7 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Patch0:		tdemultimedia-14.0.0-ftbfs.patch
 
 Obsoletes:	trinity-kdemultimedia < %{version}-%{release}
 Provides:	trinity-kdemultimedia = %{version}-%{release}
@@ -164,7 +165,7 @@ Requires: trinity-kaudiocreator = %{version}-%{release}
 Requires: %{name}-kfile-plugins = %{version}-%{release}
 Requires: %{name}-kappfinder-data = %{version}-%{release}
 Requires: %{name}-tdeio-plugins = %{version}-%{release}
-Requires: trinity-kmid = %{version}-%{release}
+Requires: trinity-tdemid = %{version}-%{release}
 Requires: trinity-kmix = %{version}-%{release}
 Requires: trinity-krec = %{version}-%{release}
 Requires: trinity-kscd = %{version}-%{release}
@@ -183,7 +184,7 @@ System. The %{name} package contains multimedia applications for
 TDE, including:
   artsbuilder, Synthesizer designer for aRts
   juk, a media player
-  kmid, a midi player
+  tdemid, a midi player
   kmix, an audio mixer
   arts, additional functionality for the aRts sound system
   krec, a recording tool
@@ -482,9 +483,9 @@ searches CDDB to retrieve the information of the disk.
 %{tde_bindir}/kaudiocreator
 %{tde_tdeappdir}/kaudiocreator.desktop
 %{tde_datadir}/apps/kaudiocreator/
-%{tde_datadir}/apps/kconf_update/kaudiocreator-libkcddb.upd
-%{tde_datadir}/apps/kconf_update/kaudiocreator-meta.upd
-%{tde_datadir}/apps/kconf_update/upgrade-kaudiocreator-metadata.sh
+%{tde_datadir}/apps/tdeconf_update/kaudiocreator-libkcddb.upd
+%{tde_datadir}/apps/tdeconf_update/kaudiocreator-meta.upd
+%{tde_datadir}/apps/tdeconf_update/upgrade-kaudiocreator-metadata.sh
 %{tde_datadir}/apps/konqueror/servicemenus/audiocd_extract.desktop
 %{tde_datadir}/config.kcfg/kaudiocreator.kcfg
 %{tde_datadir}/config.kcfg/kaudiocreator_encoders.kcfg
@@ -517,39 +518,39 @@ au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
 
 %files kfile-plugins
 %defattr(-,root,root,-)
-%{tde_tdelibdir}/kfile_au.la
-%{tde_tdelibdir}/kfile_au.so
-%{tde_tdelibdir}/kfile_avi.la
-%{tde_tdelibdir}/kfile_avi.so
-%{tde_tdelibdir}/kfile_flac.la
-%{tde_tdelibdir}/kfile_flac.so
-%{tde_tdelibdir}/kfile_m3u.la
-%{tde_tdelibdir}/kfile_m3u.so
-%{tde_tdelibdir}/kfile_mp3.la
-%{tde_tdelibdir}/kfile_mp3.so
-%{tde_tdelibdir}/kfile_mpc.la
-%{tde_tdelibdir}/kfile_mpc.so
-%{tde_tdelibdir}/kfile_mpeg.la
-%{tde_tdelibdir}/kfile_mpeg.so
-%{tde_tdelibdir}/kfile_ogg.la
-%{tde_tdelibdir}/kfile_ogg.so
-%{tde_tdelibdir}/kfile_sid.la
-%{tde_tdelibdir}/kfile_sid.so
-%{tde_tdelibdir}/kfile_theora.la
-%{tde_tdelibdir}/kfile_theora.so
-%{tde_tdelibdir}/kfile_wav.la
-%{tde_tdelibdir}/kfile_wav.so
-%{tde_datadir}/services/kfile_au.desktop
-%{tde_datadir}/services/kfile_avi.desktop
-%{tde_datadir}/services/kfile_flac.desktop
-%{tde_datadir}/services/kfile_m3u.desktop
-%{tde_datadir}/services/kfile_mp3.desktop
-%{tde_datadir}/services/kfile_mpc.desktop
-%{tde_datadir}/services/kfile_mpeg.desktop
-%{tde_datadir}/services/kfile_ogg.desktop
-%{tde_datadir}/services/kfile_sid.desktop
-%{tde_datadir}/services/kfile_theora.desktop
-%{tde_datadir}/services/kfile_wav.desktop
+%{tde_tdelibdir}/tdefile_au.la
+%{tde_tdelibdir}/tdefile_au.so
+%{tde_tdelibdir}/tdefile_avi.la
+%{tde_tdelibdir}/tdefile_avi.so
+%{tde_tdelibdir}/tdefile_flac.la
+%{tde_tdelibdir}/tdefile_flac.so
+%{tde_tdelibdir}/tdefile_m3u.la
+%{tde_tdelibdir}/tdefile_m3u.so
+%{tde_tdelibdir}/tdefile_mp3.la
+%{tde_tdelibdir}/tdefile_mp3.so
+%{tde_tdelibdir}/tdefile_mpc.la
+%{tde_tdelibdir}/tdefile_mpc.so
+%{tde_tdelibdir}/tdefile_mpeg.la
+%{tde_tdelibdir}/tdefile_mpeg.so
+%{tde_tdelibdir}/tdefile_ogg.la
+%{tde_tdelibdir}/tdefile_ogg.so
+%{tde_tdelibdir}/tdefile_sid.la
+%{tde_tdelibdir}/tdefile_sid.so
+%{tde_tdelibdir}/tdefile_theora.la
+%{tde_tdelibdir}/tdefile_theora.so
+%{tde_tdelibdir}/tdefile_wav.la
+%{tde_tdelibdir}/tdefile_wav.so
+%{tde_datadir}/services/tdefile_au.desktop
+%{tde_datadir}/services/tdefile_avi.desktop
+%{tde_datadir}/services/tdefile_flac.desktop
+%{tde_datadir}/services/tdefile_m3u.desktop
+%{tde_datadir}/services/tdefile_mp3.desktop
+%{tde_datadir}/services/tdefile_mpc.desktop
+%{tde_datadir}/services/tdefile_mpeg.desktop
+%{tde_datadir}/services/tdefile_ogg.desktop
+%{tde_datadir}/services/tdefile_sid.desktop
+%{tde_datadir}/services/tdefile_theora.desktop
+%{tde_datadir}/services/tdefile_wav.desktop
 
 ##########
 
@@ -585,8 +586,8 @@ Konqueror and the audiocd:/ URL.
 %defattr(-,root,root,-)
 %{tde_tdelibdir}/kcm_audiocd.la
 %{tde_tdelibdir}/kcm_audiocd.so
-%{tde_tdelibdir}/kio_audiocd.la
-%{tde_tdelibdir}/kio_audiocd.so
+%{tde_tdelibdir}/tdeio_audiocd.la
+%{tde_tdelibdir}/tdeio_audiocd.so
 %{tde_tdelibdir}/libaudiocd_encoder_flac.la
 %{tde_tdelibdir}/libaudiocd_encoder_flac.so
 %{tde_tdelibdir}/libaudiocd_encoder_lame.la
@@ -597,12 +598,12 @@ Konqueror and the audiocd:/ URL.
 %{tde_tdelibdir}/libaudiocd_encoder_wav.so
 %{tde_libdir}/libaudiocdplugins.so.*
 %{tde_tdeappdir}/audiocd.desktop
-%{tde_datadir}/apps/kconf_update/audiocd.upd
-%{tde_datadir}/apps/kconf_update/upgrade-metadata.sh
+%{tde_datadir}/apps/tdeconf_update/audiocd.upd
+%{tde_datadir}/apps/tdeconf_update/upgrade-metadata.sh
 %{tde_datadir}/config.kcfg/audiocd_lame_encoder.kcfg
 %{tde_datadir}/config.kcfg/audiocd_vorbis_encoder.kcfg
 %{tde_datadir}/services/audiocd.protocol
-%{tde_tdedocdir}/HTML/en/kioslave/audiocd.docbook
+%{tde_tdedocdir}/HTML/en/tdeioslave/audiocd.docbook
 
 %post tdeio-plugins
 /sbin/ldconfig
@@ -614,27 +615,30 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%package -n trinity-kmid
+%package -n trinity-tdemid
 Summary:	MIDI/karaoke player for Trinity
 Group:		Applications/Multimedia
 
-%description -n trinity-kmid
+Obsoletes:	trinity-kmid < %{version}-%{release}
+Provides:	trinity-kmid = %{version}-%{release}
+
+%description -n trinity-tdemid
 This package provides a MIDI and karaoke player for TDE.
 
-%files -n trinity-kmid
+%files -n trinity-tdemid
 %defattr(-,root,root,-)
-%{tde_bindir}/kmid
-%{tde_tdelibdir}/libkmidpart.la
-%{tde_tdelibdir}/libkmidpart.so
-%{tde_libdir}/libkmidlib.so.*
-%{tde_tdeappdir}/kmid.desktop
-%{tde_datadir}/apps/kmid/
-%{tde_datadir}/icons/hicolor/*/apps/kmid.png
+%{tde_bindir}/tdemid
+%{tde_tdelibdir}/libtdemidpart.la
+%{tde_tdelibdir}/libtdemidpart.so
+%{tde_libdir}/libtdemidlib.so.*
+%{tde_tdeappdir}/tdemid.desktop
+%{tde_datadir}/apps/tdemid/
+%{tde_datadir}/icons/hicolor/*/apps/tdemid.png
 %{tde_datadir}/mimelnk/audio/x-karaoke.desktop
 %{tde_datadir}/servicetypes/audiomidi.desktop
-%{tde_tdedocdir}/HTML/en/kmid/
+%{tde_tdedocdir}/HTML/en/tdemid/
 
-%post -n trinity-kmid
+%post -n trinity-tdemid
 /sbin/ldconfig
 for f in hicolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
@@ -642,7 +646,7 @@ for f in hicolor ; do
 done
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
-%postun -n trinity-kmid
+%postun -n trinity-tdemid
 /sbin/ldconfig
 for f in hicolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
@@ -919,7 +923,7 @@ databases, for TDE applications.
 %{tde_tdelibdir}/kcm_cddb.so
 %{tde_libdir}/libkcddb.so.*
 %{tde_tdeappdir}/libkcddb.desktop
-%{tde_datadir}/apps/kconf_update/kcmcddb-emailsettings.upd
+%{tde_datadir}/apps/tdeconf_update/kcmcddb-emailsettings.upd
 %{tde_datadir}/config.kcfg/libkcddb.kcfg
 
 %post -n trinity-libkcddb
@@ -979,7 +983,7 @@ formats supported by your installation of aRts (including aRts plugins).
 %files -n trinity-noatun
 %defattr(-,root,root,-)
 %{tde_bindir}/noatun
-%{tde_libdir}/kconf_update_bin/noatun20update
+%{tde_libdir}/tdeconf_update_bin/noatun20update
 %{tde_tdelibdir}/noatun.la
 %{tde_tdelibdir}/noatun.so
 %{tde_tdelibdir}/noatun_dcopiface.la
@@ -1038,7 +1042,7 @@ formats supported by your installation of aRts (including aRts plugins).
 %{tde_libdir}/mcop/winskinvis.mcopclass
 %{tde_libdir}/mcop/winskinvis.mcoptype
 %{tde_tdeappdir}/noatun.desktop
-%{tde_datadir}/apps/kconf_update/noatun.upd
+%{tde_datadir}/apps/tdeconf_update/noatun.upd
 %{tde_datadir}/apps/noatun/
 %{tde_datadir}/icons/hicolor/*/apps/noatun.png
 %{tde_datadir}/mimelnk/interface/x-winamp-skin.desktop
@@ -1107,8 +1111,8 @@ noatun plugins.
 %{tde_libdir}/lib[kt]deinit_kmixctrl.la
 %{tde_libdir}/lib[kt]deinit_krec.la
 %{tde_libdir}/lib[kt]deinit_noatun.la
-%{tde_libdir}/libkmidlib.la
-%{tde_libdir}/libkmidlib.so
+%{tde_libdir}/libtdemidlib.la
+%{tde_libdir}/libtdemidlib.so
 %{tde_libdir}/libmpeg.la
 %{tde_libdir}/libmpeg.so
 %{tde_libdir}/libnoatun.la
@@ -1137,6 +1141,7 @@ noatun plugins.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%patch0 -p1 -b .ftbfs
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -1193,7 +1198,7 @@ export PATH="%{tde_bindir}:${PATH}"
 chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
 
 # locale's
-HTML_DIR=$(kde-config --expandvars --install html)
+HTML_DIR=$(tde-config --expandvars --install html)
 if [ -d %{buildroot}$HTML_DIR ]; then
 for lang_dir in %{buildroot}$HTML_DIR/* ; do
   if [ -d $lang_dir ]; then
@@ -1211,7 +1216,7 @@ fi
 
 # Moves the XDG configuration files to TDE directory
 %__install -p -D -m644 \
-	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications-merged/kde-multimedia-music.menu" \
+	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu" \
 	"%{?buildroot}%{tde_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu"
 %__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
 
@@ -1221,8 +1226,5 @@ fi
 
 
 %changelog
-* Mon Jun 17 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
-- Enable "LAME" support
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
+* Mon Jun 17 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial build for TDE 14.0.0

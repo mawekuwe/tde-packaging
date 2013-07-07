@@ -1,0 +1,11 @@
+--- trinity-python-tqt-14.0.0~pre36+d3f27c3e/sip/qt/qobject.sip.ORI	2013-07-03 20:23:06.054830311 +0200
++++ trinity-python-tqt-14.0.0~pre36+d3f27c3e/sip/qt/qobject.sip	2013-07-03 20:23:14.833911835 +0200
+@@ -2196,7 +2196,7 @@
+     // See if it is a TQt signal.
+     if (*sig == '2')
+     {
+-        pyqt3TQtSignal *tab;
++        pyqt3QtSignal *tab;
+ 
+         // Search the table.
+         for (tab = ((pyqt3ClassTypeDef *)((sipWrapperType *)(self->ob_type))->type)->qt3_emit; tab->st_name != NULL; ++tab)
