@@ -1,7 +1,7 @@
 Source: kbibtex-trinity
 Section: kde
 Priority: optional
-Maintainer: Michael Hanke <michael.hanke@gmail.com>
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>= 5), quilt, autotools-dev, cdbs, automake, libtool, kdelibs4-trinity-dev (>= 3.3.2), libxslt1-dev, libyaz4-dev | libyaz-dev
 Standards-Version: 3.9.0
 Homepage: http://www.unix-ag.uni-kl.de/~fischer/kbibtex

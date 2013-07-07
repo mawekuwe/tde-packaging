@@ -1,7 +1,7 @@
 Source: kbiff-trinity
 Section: mail
 Priority: optional
-Maintainer: Debian QA Group <packages@qa.debian.org>
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>= 5.0.0), quilt, cdbs, autotools-dev, automake, libtool, kdelibs4-trinity-dev (>= 4:3.4.2), libqt3-compat-headers
 Standards-Version: 3.9.1
 
