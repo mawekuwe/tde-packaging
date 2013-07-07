@@ -26,7 +26,7 @@
 Name:           trinity-%{tde_pkg}
 Version:        3.9
 Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-Summary:        An NMAP frontend for TDE
+Summary:        TDE mail notification utility 
 
 Group:          Applications/Internet
 License:        GPLv2+
@@ -42,10 +42,12 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
-Requires:		nmap
-
 %description
-
+Kbiff is a "xbiff"-like mail notification utility. It has  multiple pixmaps,
+session management, and GUI configuration.  It can "dock" into the TDE panel.
+It can display animated gifs, play system sounds, or run arbitrary shell
+command when new mail arrives. It supports mbox, maildir, mh, POP3, IMAP4, and
+NNTP mailboxes.
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
