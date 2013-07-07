@@ -210,4 +210,6 @@ fi
 
 set -x
 rm -rf "${SOURCEDIR}"
-#rm -rf "${BUILDDIR}/"*${COMP}-${VERSION}*
+
+# Removes BUILDDIR if build succeeded
+rm -rf "${BUILDDIR}/"*${COMP##*/}-${VERSION}*

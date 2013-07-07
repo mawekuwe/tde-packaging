@@ -1,5 +1,5 @@
 # Default version for this component
-%define tde_pkg abakus
+%define tde_pkg knetstats
 %define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -14,25 +14,27 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
+%define tde_appdir %{tde_datadir}/applications
 
-%define tde_tdeappdir %{tde_datadir}/applications/tde
+%define tde_tdeappdir %{tde_appdir}/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
 
 %define _docdir %{tde_docdir}
 
+
 Name:			trinity-%{tde_pkg}
-Summary:		Calculator for TDE
-Version:		0.91
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Summary:		network interfaces monitor for the Trinity systray
+Version:		1.6.1
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
 
 Vendor:			Trinity Project
 Packager:		Francois Andriot <francois.andriot@free.fr>
-URL:			http://www.trinitydesktop.org/
+URL:			http://www.trinitydesktop.org
 
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -40,18 +42,15 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	cmake >= 2.8
-BuildRequires:	bison
+BuildRequires:	gettext
+
 
 %description
-AbaKus is a complex calculator, which provides
-many different kinds of calculations.
-Think of it as bc (the command-line calculator) with a nice GUI.
-It also gives information about mathematical variables and
-has the user-friendly menu options of a normal TDE application.
+A simple TDE network monitor that show rx/tx LEDs of any
+network interface on a system tray icon
 
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
@@ -62,36 +61,38 @@ has the user-friendly menu options of a normal TDE application.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__make -f "admin/Makefile.common"
+
 
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-# Specific path for RHEL4
-if [ -d "/usr/X11R6" ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-fi
+%configure \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  --disable-rpath \
+  --with-extra-includes=
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
-
-%cmake \
-  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
-  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DBUILD_ALL=ON \
-  ..
-
+# SMP safe !
 %__make %{?_smp_mflags}
 
 
 %install
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot} -C build
+%__make install DESTDIR=%{buildroot}
+
+%find_lang %{tde_pkg}
+
 
 
 %clean
@@ -99,29 +100,34 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %post
+update-desktop-database %{tde_appdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %postun
+update-desktop-database %{tde_appdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
-%files
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
-%doc AUTHORS COPYING
-%{tde_bindir}/abakus
-%{tde_datadir}/apps/abakus/
-%{tde_datadir}/icons/hicolor/*/apps/abakus.png
-%{tde_tdedocdir}/HTML/en/abakus/
-%{tde_datadir}/applnk/Utilities/abakus.desktop
+%{tde_bindir}/knetstats
+%{tde_tdeappdir}/knetstats.desktop
+%{tde_datadir}/apps/knetstats
+%{tde_tdedocdir}/HTML/en/knetstats/
+%{tde_datadir}/icons/hicolor/*/apps/knetstats.png
+
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.91-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.1-4
 - Initial release for TDE 14.0.0
 
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
+* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.1-3
 - Initial release for TDE 3.5.13.2
 
-* Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.91-4
+* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.1-2
 - Initial release for TDE 3.5.13.1
+
+* Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.1-1
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

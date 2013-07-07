@@ -98,8 +98,7 @@ Summary:	Meta-package to install all TDE applications
 #Requires: trinity-adept
 
 # Future R14 packages
-#Requires: trinity-kvpnc
-#Requires: trinity-qt4-tqt-theme-engine
+Requires: trinity-qt4-tqt-theme-engine
 
 # Warning, k9copy requires ffmpeg
 # Warning, tderadio requires libmp3lame
@@ -113,16 +112,23 @@ Requires: trinity-filelight
 Requires: trinity-gwenview
 Requires: trinity-gwenview-i18n
 Requires: trinity-k3b
+Requires: trinity-k9copy
 Requires: trinity-katapult
 Requires: trinity-kbarcode
 Requires: trinity-kbfx
+Requires: trinity-kbibtex
+Requires: trinity-kbiff
 Requires: trinity-kbookreader
 Requires: trinity-kchmviewer
+Requires: trinity-kcmautostart
+Requires: trinity-kcmldap
+Requires: trinity-kcmldapcontroller
+Requires: trinity-kcmldapmanager
 Requires: trinity-kcpuload
-Requires: trinity-k9copy
 Requires: trinity-kdiff3
 Requires: trinity-kdirstat
 Requires: trinity-keep
+Requires: trinity-kerberostray
 Requires: trinity-kile
 Requires: trinity-kiosktool
 Requires: trinity-kmyfirewall
@@ -147,7 +153,7 @@ Requires: trinity-ktorrent
 Requires: trinity-kuickshow
 Requires: trinity-kvirc
 Requires: trinity-kvkbd
-Requires: trinity-twin-style-crystal
+Requires: trinity-kvpnc
 Requires: trinity-piklab
 Requires: trinity-potracegui
 Requires: trinity-smb4k
@@ -165,9 +171,11 @@ Requires: trinity-tderadio
 Requires: trinity-tdesudo
 Requires: trinity-tdmtheme
 Requires: trinity-tellico
+Requires: trinity-twin-style-crystal
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
 
+Requires: trinity-gtk3-tqt-engine
 
 # Disabled applications for RHEL5
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -192,8 +200,9 @@ Obsoletes: trinity-kerry
 # RHEL 6 only: knetworkmanager8
 #  knetworkmanager9 is too unstable for now.
 %if 0%{?rhel} == 6
-Requires: trinity-knetworkmanager
+Requires: trinity-knetworkmanager8
 %endif
+Requires: trinity-knetworkmanager9
 
 # RHEL 4
 %if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -228,9 +237,6 @@ Requires:	trinity-kasablanca
 Requires:	trinity-icons-crystalsvg-updated
 Requires:	trinity-icons-kfaenza
 Requires:	trinity-icons-oxygen
-Requires:	trinity-kbibtex
-Requires:	trinity-kbiff
-Requires:	trinity-kcmautostart
 Requires:	trinity-kftpgrabber
 Requires:	trinity-kickoff-i18n
 Requires:	trinity-knmap

@@ -55,6 +55,7 @@ BuildRequires:	gettext
 
 BuildRequires:	trinity-python-tqt-devel
 BuildRequires:	trinity-python-trinity-devel
+BuildRequires:	trinity-pytqt-tools
 
 Requires:		trinity-libpythonize0 = %{version}-%{release}
 
@@ -106,14 +107,14 @@ for f in src/*.py; do
   %__sed -i "${f}" \
     -e "s|%{tde_prefix}/lib/|%{tde_libdir}/|g" \
     -e "s|/usr/lib/pyshared/python\*|%{python_sitearch}|g" \
-    -e "s|'pykde-dir=',None,|'pykde-dir=','%{python_sitearch}',|g" \
-    -e "s|self.pykde_dir = None|self.pykde_dir = \"%{python_sitearch}\"|g" \
+    -e "s|'pytde-dir=',None,|'pytde-dir=','%{python_sitearch}',|g" \
+    -e "s|self.pytde_dir = None|self.pytde_dir = \"%{python_sitearch}\"|g" \
     -e "s|%{tde_includedir}/kde|%{tde_tdeincludedir}|g" \
     -e 's|"/kde"|"/tde"|'
 done
 
 # Do not look for 'libpython2.x.so' (from -devel) package.
-# Instead look for runtime library.
+# Instead look for versioned runtime library.
 LIBPYTHON="$(readlink %{_libdir}/libpython2.*.so)"
 if [ -f "%{_libdir}/${LIBPYTHON}" ]; then
   %__sed -i "src/kdedistutils.py" \
@@ -185,8 +186,8 @@ done
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{tde_datadir}/apps/pykdeextensions
-%{tde_tdedocdir}/HTML/en/pykdeextensions
+%{tde_datadir}/apps/pytdeextensions/
+%{tde_tdedocdir}/HTML/en/pytdeextensions/
 %{python_sitearch}/*
 
 %files -n trinity-libpythonize0
