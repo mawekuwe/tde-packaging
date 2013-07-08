@@ -1,0 +1,46 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+#export DH_VERBOSE=1
+
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/kde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
+	dh_testdir
+
+	# Regenerate build system
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+
+	autoreconf --install && automake -f && \
+	$(MAKE) -f admin/Makefile.common && \
+	touch debian/stamp-bootstrap
+
+clean::
+	dh_testdir
+	rm -f debian/stamp-bootstrap
+
+install/kdbg-trinity::
+	dh_testdir
+
+	dh_install debian/kdbg.xpm opt/trinity/share/pixmaps
+
+	dh_installman debian/kdbg.1
+	mkdir -p debian/kdbg-trinity/opt/trinity/share/man
+	mv debian/kdbg-trinity/usr/share/man/man1 debian/kdbg-trinity/opt/trinity/share/man/
+	rmdir debian/kdbg-trinity/usr/share/man
+
