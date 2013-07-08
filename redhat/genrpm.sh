@@ -198,6 +198,9 @@ rpmbuild -ba \
 eval "$(grep ^RET= ${LOGFILE})"
 set +x
 
+# Removes temporary source directory
+rm -rf "${SOURCEDIR}"
+
 if [ "${RET}" -gt 0 ]; then
 	exit ${RET}
 fi
@@ -208,7 +211,6 @@ if grep -q "error: Failed build dependencies:" ${LOGFILE}; then
 	exit 2
 fi
 
-set -x
 rm -rf "${SOURCEDIR}"
 
 # Removes BUILDDIR if build succeeded
