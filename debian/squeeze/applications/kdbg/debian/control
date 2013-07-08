@@ -1,5 +1,5 @@
 Source: kdbg-trinity
-Section: devel
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Build-Depends: debhelper (>= 5), quilt, cdbs, tdelibs4-trinity-dev, autotools-dev, automake, libtool
