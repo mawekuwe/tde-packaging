@@ -1,0 +1,1061 @@
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdebase/kcmiccconfig.po tde-i18n-fr-3.5.10.p/messages/tdebase/kcmiccconfig.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/kcmiccconfig.po	1970-01-01 01:00:00.000000000 +0100
++++ tde-i18n-fr-3.5.10/messages/tdebase/kcmiccconfig.po	2011-12-18 12:12:34.087743324 +0100
+@@ -0,0 +1,76 @@
++# TDE 3.5.13 'iccconfig.cpp' translation
++
++#: iccconfig.cpp:82
++msgid "<b>The global ICC color profile is a system wide setting, and requires administrator access</b><br>To alter the system's global ICC profile, click on the \"Administrator Mode\" button below."
++msgstr "<b>Le profil de couleurs ICC global est un réglage système, et nécessite les droits d'administrateur.</b><br>Pour modifier le profil ICC global, cliquez sur le bouton \"Mode administrateur\" ci-dessous."
++
++#: iccconfig.cpp:155
++#: iccconfig.cpp:189
++msgid "Please enter the new profile name below:"
++msgstr "Veuillez indiquer le nom du nouveau profil:"
++
++#: iccconfig.cpp:159
++#: iccconfig.cpp:193
++msgid "ICC Profile Configuration"
++msgstr "Configuration du profil ICC"
++
++#: iccconfig.cpp:166
++#: iccconfig.cpp:200
++msgid "Error: A profile with that name already exists"
++msgstr "Erreur: Il existe déja un profil portant ce nom."
++
++#: iccconfig.cpp:406
++msgid ""
++"<h1>ICC Profile Configuration</h1> This module allows you to configure TDE support"
++" for ICC profiles. This allows you to easily color correct your monitor"
++" for a more lifelike and vibrant image."
++msgstr ""
++"<h1>Configuration du profil ICC</h1> Ce module vous permet de configurer le support"
++" ICC de Trinity. Il permet de calibrer  les couleurs de votre moniteur, "
++" afin d'obtenir une image plus vivante et plus vibrante."
++
++#: iccconfigbase.ui:31
++msgid "ICC Color Profile Configuration"
++msgstr "Configuration des profils de couleurs ICC"
++
++#: iccconfigbase.ui:42
++msgid "System Settings"
++msgstr "Paramètres Système"
++
++#: iccconfigbase.ui:53
++msgid "&Enable global ICC color profile support"
++msgstr "Activer le profil ICC global"
++
++#: iccconfigbase.ui:61
++#: iccconfigbase.ui:148
++msgid "*.icc|ICC Standard Color Profiles (*.icc)\n*.icm|Windows(R) Color Profiles (*.icm)"
++msgstr "*.icc|Profils de couleurs ICC standards (*.icc)\n*.icm|Profils de couleurs Windows(R) (*.icm)"
++
++#: iccconfigbase.ui:69
++#: iccconfigbase.ui:156
++msgid "ICC File"
++msgstr "Fichier ICC"
++
++#: iccconfigbase.ui:79
++msgid "User Settings"
++msgstr "Paramètres Utilisateurs"
++
++#: iccconfigbase.ui:90
++msgid "&Enable user ICC color profile support"
++msgstr "Activer le profil ICC utilisateur"
++
++#: iccconfigbase.ui:103
++msgid "Current Profile"
++msgstr "Profil actuel"
++
++#: iccconfigbase.ui:111
++msgid "Create New"
++msgstr "Créer"
++
++#: iccconfigbase.ui:119
++msgid "Rename"
++msgstr "Renommer"
++
++#: iccconfigbase.ui:140
++msgid "Settings for output"
++msgstr "Appliquer à la sortie"
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdebase/kdesktop.po tde-i18n-fr-3.5.10.p/messages/tdebase/kdesktop.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/kdesktop.po	2008-08-19 20:29:30.000000000 +0200
++++ tde-i18n-fr-3.5.10/messages/tdebase/kdesktop.po	2011-12-18 18:12:48.482642367 +0100
+@@ -553,6 +553,36 @@
+ "</ul>\n"
+ "</qt>"
+ 
++# kdesktop/minicli_ui.ui:188
++msgid "Autocomplete shows available &applications"
++msgstr "L'autocomplétion affiche les &applications disponibles"
++
++# kdesktop/minicli_ui.ui:191
++msgid ""
++"<qt>When enabled, the system shows available applications in the autocompletion area."
++"</qt>"
++msgstr ""
++"<qt>Lorsque cette case est cochée, le système affiche les applications "
++"disponibles dans la zone d'autocomplétion.</qt>"
++
++
++# kdesktop/minicli_ui.ui:200
++msgid "Autocomplete uses &filesystem instead of history"
++msgstr "L'autocomplétion utilise le système de &fichiers au lieu de l'historique"
++
++# kdesktop/minicli_ui.ui:203
++msgid ""
++"<qt>This selects whether the filesystem and the past command history will be used for autocompletion."
++"</qt>"
++msgstr ""
++"<qt>En cochant cette case, l'autocomplétion utilise le système de fichiers à la place  de l'historique."
++"</qt>"
++
++
++# kdesktop/minicli_ui.ui:212
++msgid "Autocomplete uses &both history and filesystem"
++msgstr "L'autocomplétion utilise l'historique &et le système de fichiers"
++
+ #. i18n: file minicli_ui.ui line 199
+ #: rc.cpp:14
+ #, no-c-format
+@@ -1144,3 +1182,20 @@
+ "Cependant, certains écrans de veille\n"
+ "       effectuent des calculs utiles, dans ces cas, il est souhaitable de ne "
+ "pas les désactiver."
++
++### TDE 3.5.13 ###
++#: lockdlg.cc:109
++msgid "Desktop Session Locked"
++msgstr "Session de bureau verrouillée"
++
++#: lockdlg.cc:128
++msgid "This computer is in use and has been locked."
++msgstr "Cet ordinateur est en cours d'utilisation et a été verrouillé."
++
++#: lockdlg.cc:129
++msgid "Only '%1' may unlock this session."
++msgstr "Seul '%1' peut déverouiller cette session."
++
++#: lockdlg.cc:139
++msgid "This session has been locked since %1"
++msgstr "Cette session est verrouillée depuis %1"
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdebase/kicker.po tde-i18n-fr-3.5.10.p/messages/tdebase/kicker.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/kicker.po	2008-08-19 20:29:30.000000000 +0200
++++ tde-i18n-fr-3.5.10/messages/tdebase/kicker.po	2011-12-18 20:30:31.365135597 +0100
+@@ -754,3 +754,292 @@
+ #, no-c-format
+ msgid "Custom size"
+ msgstr "Taille personnalisée"
++
++### TDE 3.5.13 ###
++#: panelextension.cpp:385
++msgid "&Launch Process Manager..."
++msgstr "Gestionnaire de taches..."
++
++## Kickoff menu (k_new_mnu.cpp) 
++msgid "User&nbsp;<b>%1</b>&nbsp;on&nbsp;<b>%2</b>"
++msgstr "Utilisateur&nbsp;<b>%1</b>&nbsp;sur&nbsp;<b>%2</b>"
++
++msgid "Most commonly used applications and documents"
++msgstr "Applications et documents utilisés récemment"
++
++msgid "Search:"
++msgstr "Chercher:"
++
++msgid "List of installed applications"
++msgstr "Liste des applications installées"
++
++msgid ""
++"Information and configuration of your "
++"system, access to personal files, network resources and connected disk drives"
++msgstr ""
++"Informations et configuration de votre "
++"système, accès aux fichiers personnels, ressources réseau et disques connectés"
++
++msgid "Recently used applications and documents"
++msgstr "Applications et documents utilisés récemment"
++
++msgid ""
++"<qt>Logout, switch user, switch off or reset,"
++" suspend of the system"
++msgstr ""
++"<qt>Se déconnecter, changer d'utilisateur, éteindre,"
++" redémarrer ou interrompre le système"
++               
++msgid "<p align=\"center\"> <u>F</u>avorites</p>"
++msgstr "<p align=\"center\"> <u>F</u>avoris</p>"
++
++msgid "<p align=\"center\"><u>H</u>istory</p>"
++msgstr "<p align=\"center\"><u>H</u>istorique</p>"
++
++msgid "<p align=\"center\"> <u>C</u>omputer</p>"
++msgstr "<p align=\"center\"> <u>O</u>rdinateur</p>"
++
++msgid "<p align=\"center\"><u>A</u>pplications</p>"
++msgstr "<p align=\"center\"><u>A</u>pplications</p>"
++
++msgid "<p align=\"center\"><u>L</u>eave</p>"
++msgstr "<p align=\"center\"><u>Q</u>uitter</p>"
++
++msgid "Search Internet"
++msgstr "Chercher sur Internet"
++
++msgid "Search Index"
++msgstr "Chercher dans l'index"
++
++msgid "Applications, Contacts and Documents"
++msgstr "Applications, Concacts et Documents"
++
++msgid "Start '%1'"
++msgstr "Démarrer '%1'"
++
++msgid "Start '%1' (current)"
++msgstr "Démarrer '%1' (actuel)"
++
++msgid "Restart and boot directly into '%1'"
++msgstr "Redémarrer et amorcer directement '%1'"
++
++msgid "Start a parallel session"
++msgstr "Démarrer une session parallèle"
++
++msgid "Switch to Session of User '%1'"
++msgstr "Basculer vers la session de l'utilisateur '%1'"
++
++msgid "Session: %1"
++msgstr "Session: %1"
++
++msgid "New Applications"
++msgstr "Nouvelles Applications"
++
++msgid "Session"
++msgstr "Session"
++
++msgid "Logout"
++msgstr "Déconnexion"
++
++msgid "End session"
++msgstr "Terminer la session"
++
++msgid "Lock"
++msgstr "Verrouiller"
++
++msgid "Lock screen"
++msgstr "Verrouiller l'écran"
++
++msgid "Save current Session for next login"
++msgstr "Enregistrer la session courante pour la prochaine connexion"
++
++msgid "Manage parallel sessions"
++msgstr "Gérer les sessions parallèles"
++
++msgid "System"
++msgstr "Système"
++
++msgid "Shutdown Computer"
++msgstr "Eteindre l'ordinateur"
++
++msgid "Turn off computer"
++msgstr "Eteindre l'ordinateur"
++
++msgid "&Restart Computer"
++msgstr "&Redémarrer l'ordinateur"
++
++msgid "Restart and boot the default system"
++msgstr "Redémarrer et amorcer le système par défaut"
++
++msgid "Start Operating System"
++msgstr "Démarrer le système d'Exploitation"
++
++msgid "Restart and boot another operating system"
++msgstr "Redémarrer et amorcer un autre système d'exploitation"
++
++msgid "System Information"
++msgstr "Informations Système"
++
++msgid "System Folders"
++msgstr "Dossiers Système"
++
++msgid "Home Folder"
++msgstr "Dossier personnel"
++
++msgid "My Documents"
++msgstr "Mes Documents"
++
++msgid "Network Folders"
++msgstr "Dossiers Réseau"
++
++msgid ""
++"<center><b>%1</b></center>\n"
++"You do not have permission to execute "
++"this command."
++msgstr ""
++"<center><b>%1</b></center>\n"
++"Vous n'êst pas autorisé(e) à exécuter "
++"cette commande."
++
++msgid ""
++"<center><b>%1</b></center>\n"
++"Could not run the specified command."
++msgstr ""
++"<center><b>%1</b></center>\n"
++"La commande spécifiée n'a pas pu être exécutée."
++
++msgid ""
++"<center><b>%1</b></center>\n"
++"The specified command does not exist."
++msgstr ""
++"<center><b>%1</b></center>\n"
++"La commande spécifiée n'existe pas."
++
++msgid "Documents"
++msgstr "Documents"
++
++msgid "Open Addressbook at %1"
++msgstr "Ouvrir le carnet d'adresse à %1"
++
++msgid "- Add ext:type to specify a file extension."
++msgstr "- Ajouter ext:type pour indiquer une extension de fichier"
++
++msgid "- When searching for a phrase, add quotes."
++msgstr "- Pour chercher une phrase, ajouter des guillemets."
++
++msgid "- To exclude search terms, use the minus symbol in front."
++msgstr "- Pour exclure des éléments recherchés, utiliser le préfixe moins."
++
++msgid "- To search for optional terms, use OR."
++msgstr "- Pour chercher des termes optionnels, utiliser OR."
++
++msgid "- You can use upper and lower case."
++msgstr "- Vous pouvez écrire en majuscules ou minuscules."
++
++msgid "Search Quick Tips"
++msgstr "Astuces de la recherche rapide"
++
++msgid "%1 = %2"
++msgstr "%1 = %2"
++
++msgid "Send Email to %1"
++msgstr "Envoyer un Email à %1"
++
++msgid "Open Local File: %1"
++msgstr "Ouvrir le fichier local: %1"
++
++msgid "Open Local Dir: %1"
++msgstr "Ouvrir le répertoire local: %1"
++
++msgid "Open Remote Location: %1"
++msgstr "Ouvrir l'emplacement distant: %1"
++
++msgid "Run '%1'"
++msgstr "Exécuter '%1'"
++
++msgid "No matches found"
++msgstr "Aucune correspondance trouvée"
++
++msgid "top %1 of %2"
++msgstr "Haut %1 de %2"
++
++msgid "%1 (top %2 of %3)"
++msgstr "%1 (haut %2 de %3)"
++
++msgid "Do you really want to end the session?"
++msgstr "Voulez-vous vraiment terminer cette session ?"
++
++msgid "Logout Confirmation"
++msgstr "Confirmer la déconnexion"
++
++msgid "Do you really want to turn off the computer?"
++msgstr "Voulez-vous vraiment éteindre l'ordinateur ?"
++
++msgid "Shutdown Confirmation"
++msgstr "Confirmer l'arrêt"
++
++msgid "Shutdown"
++msgstr "Arrêter"
++
++msgid "Do you really want to reset the computer and boot (another operating system)?"
++msgstr "Voulez-vous réellement redémarrer l'ordinateur et amorcer (un autre système d'exploitation) ?"
++
++msgid "Restart Confirmation"
++msgstr "Confirmer le redémarrage"
++
++msgid "Restart"
++msgstr "Redémarrer"
++
++msgid "Do you really want to reset the computer and boot Microsoft Windows"
++msgstr "Voulez-vous réellement redémarrer l'ordinateur et amorcer Windows"
++
++msgid "Start Windows Confirmation"
++msgstr "Confirmer le démarrage de Windows"
++
++msgid "Start Windows"
++msgstr "Démarrer Windows"
++
++msgid "Could not start Tomboy."
++msgstr "Impossible de démarrer Tomboy."
++
++msgid "Remove From Favorites"
++msgstr "Supprimer des favoris"
++
++msgid "Add to Favorites"
++msgstr "Ajouter aux favoris"
++
++msgid "Advanced"
++msgstr "Avancé"
++
++msgid "Clear Recently Used Applications"
++msgstr "Vider la liste d'applications récentes"
++
++msgid "Clear Recently Used Documents"
++msgstr "Vider la liste des documents récents"
++
++msgid "Media"
++msgstr "Media"
++
++msgid "(%1 available)"
++msgstr "(%1 disponible)"
++
++msgid "Directory: %1"
++msgstr "Répertoire: %1"
++
++msgid "Suspend Computer"
++msgstr "Mettre en veille l'ordinateur"
++
++msgid "Suspend to Disk"
++msgstr "Mettre en veille l'ordinateur (sur disque)"
++
++msgid "Pause without logging out"
++msgstr "Mettre en pause sans se déconnecter"
++
++msgid "Suspend to RAM"
++msgstr "Mettre en veille l'ordinateur (en RAM)"
++
++msgid "Standby"
++msgstr "Mettre en veille"
++
++msgid "Suspend failed"
++msgstr "La mise en veille a échoué"
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdebase/konsole.po tde-i18n-fr-3.5.10.p/messages/tdebase/konsole.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/konsole.po	2008-08-19 20:29:30.000000000 +0200
++++ tde-i18n-fr-3.5.10/messages/tdebase/konsole.po	2011-12-18 12:12:34.093743256 +0100
+@@ -1475,3 +1475,8 @@
+ #: zmodem_dialog.cpp:28
+ msgid "&Stop"
+ msgstr "A&rrêter"
++
++### TDE 3.5.13 ###
++#: konsole.cpp:736
++msgid "&Open.."
++msgstr "Ouvrir.."
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdebase/tderandr.po tde-i18n-fr-3.5.10.p/messages/tdebase/tderandr.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/tderandr.po	2008-08-19 20:29:30.000000000 +0200
++++ tde-i18n-fr-3.5.10/messages/tdebase/tderandr.po	2011-12-18 12:12:34.094743245 +0100
+@@ -301,3 +301,33 @@
+ "_: Refresh rate in Hertz (Hz)\n"
+ "%1 Hz"
+ msgstr "%1 Hz"
++
++### TDE 3.5.13 ###
++
++#: tderandrtray.cpp:237
++msgid "Global Configuation"
++msgstr "Configuration Globale"
++
++#: tderandrtray.cpp:239
++msgid "Configure Color Profiles..."
++msgstr "Configurer les profils de couleurs ..."
++
++#: tderandrtray.cpp:249
++msgid "Configure Shortcut Keys..."
++msgstr "Configurer les raccourcis clavier..."
++
++#: tderandrtray.cpp:477
++msgid "Configure Display Color Profiles"
++msgstr "Configuration des profils de couleurs"
++
++#: tderandrbindings.cpp:29
++msgid "Display Control"
++msgstr "Paramètres d'affichage"
++
++#: tderandrbindings.cpp:31
++msgid "Switch Displays"
++msgstr "Permuter l'affichage"
++
++#: configdialog.cpp:49
++msgid "Global &Shortcuts"
++msgstr "Raccourcis Globaux"
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdebase/ksmserver.po tde-i18n-fr-3.5.10.p/messages/tdebase/ksmserver.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/ksmserver.po	2007-05-14 10:07:36.000000000 +0200
++++ tde-i18n-fr-3.5.10/messages/tdebase/ksmserver.po	2011-12-18 12:12:34.095743233 +0100
+@@ -92,3 +92,14 @@
+ "_: current option in boot loader\n"
+ " (current)"
+ msgstr " (courant)"
++
++### TDE 3.5.13 ###
++
++#: shutdown.cpp:202
++msgid "Synchronizing remote folders"
++msgstr "Synchronisation des dossiers distants"
++
++#: shutdown.cpp:207
++msgid "Saving your settings..."
++msgstr "Enregistrement de vos paramètres ..."
++
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdebase/ksplash.po tde-i18n-fr-3.5.10.p/messages/tdebase/ksplash.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/ksplash.po	2005-09-10 13:02:44.000000000 +0200
++++ tde-i18n-fr-3.5.10/messages/tdebase/ksplash.po	2011-12-18 12:12:34.095743233 +0100
+@@ -105,5 +105,5 @@
+ msgstr "Rétablissement de la session"
+ 
+ #: themeengine/objkstheme.cpp:135
+-msgid "TDE is up and running"
+-msgstr "TDE est prêt"
++msgid "Trinity is up and running"
++msgstr "Trinity est prêt"
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr-3.5.10.p/messages/tdelibs/tdelibs.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdelibs/tdelibs.po	2008-08-19 20:29:58.000000000 +0200
++++ tde-i18n-fr-3.5.10/messages/tdelibs/tdelibs.po	2011-12-18 12:19:38.552013274 +0100
+@@ -5557,123 +5557,104 @@
+ 
+ #: tdeui/kaboutkde.cpp:34
+ msgid ""
+-"The <b>K Desktop Environment</b> is written and maintained by the TDE Team, a "
+-"world-wide network of software engineers committed to <a "
++"The <b>Trinity Desktop Environment</b> is a fork of the "
++"K Desktop Environment version 3.5, which was originally written by the TDE Team, "
++"a world-wide network of software engineers committed to <a "
+ "href=\"http://www.gnu.org/philosophy/free-sw.html\">Free Software</a> "
+-"development."
+-"<br>"
+-"<br>No single group, company or organization controls the TDE source code. "
+-"Everyone is welcome to contribute to TDE."
+-"<br>"
+-"<br>Visit <A HREF=\"http://www.kde.org/\">http://www.kde.org</A> "
++"development.<br><br>No single group, company or organization controls the "
++"Trinity source code. Everyone is welcome to contribute to Trinity.<br><br>Visit <A "
++"HREF=\"http://www.trinitydesktop.org/\">http://www.trinitydesktop.org</A> for more information "
++"about Trinity, and <A HREF=\"http://www.kde.org/\">http://www.kde.org</A> "
+ "for more information on the TDE project. "
+ msgstr ""
+-"L'<b>Environnement Bureautique TDE</b> est écrit et maintenu par l'équipe de "
+-"TDE, des informaticiens du monde entier travaillant sur Internet au "
+-"développement de <a href=\"http://www.gnu.org/philosophy/free-sw.fr.html\">"
+-"logiciels libres</a>."
+-"<br>"
+-"<br>Aucune société ni organisation ne contrôle le code source de TDE, et chacun "
+-"est invité à y contribuer."
+-"<br>"
+-"<br>Visitez <a href=\"http://www.kde.org/fr\">http://www.kde.org/fr</A> "
++"L'<b>Environnement Bureautique Trinity</b> est un clone de l'environnement "
++"TDE version 3.5, originellement écrit par l'équipe TDE, des informaticiens "
++"du monde entier travaillant sur Internet au développement de <a "
++"href=\"http://www.gnu.org/philosophy/free-sw.fr.html\">logiciels libres</a>."
++"<br><br>Aucune société ni organisation ne contrôle le code source de Trinity, et chacun "
++"est invité à y contribuer.<br><br>Visitez <A HREF=\"http://www.trinitydesktop.org/\">"
++"http://www.trinitydesktop.org</A> pour plus d'informations sur Trinity, et <a "
++"href=\"http://www.kde.org/fr\">http://www.kde.org/fr</A> "
+ "pour plus d'informations sur le projet TDE."
+ 
+ #: tdeui/kaboutkde.cpp:43
+ msgid ""
+-"Software can always be improved, and the TDE Team is ready to do so. However, "
+-"you - the user - must tell us when something does not work as expected or could "
+-"be done better."
+-"<br>"
+-"<br>The K Desktop Environment has a bug tracking system. Visit <A "
+-"HREF=\"http://bugs.kde.org/\">http://bugs.kde.org</A> "
+-"or use the \"Report Bug...\" dialog from the \"Help\" menu to report bugs."
+-"<br>"
+-"<br>If you have a suggestion for improvement then you are welcome to use the "
+-"bug tracking system to register your wish. Make sure you use the severity "
+-"called \"Wishlist\"."
++"Software can always be improved, and the Trinity Team is ready to "
++"do so. However, you - the user - must tell us when "
++"something does not work as expected or could be done better.<br><br>"
++"The Trinity Desktop Environment has a bug tracking system. Visit "
++"<A HREF=\"http://bugs.pearsoncomputing.net/\">http://bugs.pearsoncomputing.net</A> or "
++"use the \"Report Bug...\" dialog from the \"Help\" menu to report bugs.<br><br>"
++"If you have a suggestion for improvement then you are welcome to use "
++"the bug tracking system to register your wish. Make sure you use the "
++"severity called \"Wishlist\"."
+ msgstr ""
+-"Les logiciels peuvent toujours être améliorés et l'équipe TDE est prête à le "
++"Les logiciels peuvent toujours être améliorés et l'équipe Trinity est prête à le "
+ "faire. Cependant, vous - l'utilisateur(trice) - devez nous signaler ce qui ne "
+-"fonctionne pas correctement ou pourrait être perfectionné."
+-"<br>"
+-"<br>L'Environnement de Bureau TDE possède un système de suivi des bogues. Allez "
+-"sur <A HREF=\"http://bugs.kde.org/\">http://bugs.kde.org/</A> "
+-"ou utilisez la boîte de dialogue « Rapport de bogue » du menu « Aide » pour "
+-"signaler les erreurs."
+-"<br>"
+-"<br>Si vous voulez suggérer une amélioration, vous êtes invité(e) à utiliser le "
++"fonctionne pas correctement ou pourrait être perfectionné.<br><br>"
++"L'Environnement de Bureau Trinity possède un système de suivi des bogues. Allez "
++"sur <A HREF=\"http://bugs.pearsoncomputing.net/\">http://bugs.pearsoncomputing.net</A> "
++"ou utilisez la boîte de dialogue « Rapport de bogue » du menu « Aide » pour signaler les "
++"erreurs.<br><br>Si vous voulez suggérer une amélioration, vous êtes invité(e) à utiliser le "
+ "système de suivi des bogues pour enregistrer votre souhait. Assurez-vous "
+ "d'avoir utilisé l'option « Souhait » (wish)."
+ 
+ #: tdeui/kaboutkde.cpp:54
+ msgid ""
+-"You do not have to be a software developer to be a member of the TDE team. You "
+-"can join the national teams that translate program interfaces. You can provide "
+-"graphics, themes, sounds, and improved documentation. You decide!"
+-"<br>"
+-"<br>Visit <A HREF=\"http://www.kde.org/jobs/\">http://www.kde.org/jobs/</A> "
++"You do not have to be a software developer to be a member of the "
++"Trinity team. You can join the national teams that translate "
++"program interfaces. You can provide graphics, themes, sounds, and "
++"improved documentation. You decide!"
++"<br><br>"
++"Visit "
++"<A HREF=\"http://www.trinitydesktop.org/jobs/\">http://www.trinitydesktop.org/jobs/</A> "
+ "for information on some projects in which you can participate."
+-"<br>"
+-"<br>If you need more information or documentation, then a visit to <A "
+-"HREF=\"http://developer.kde.org/\">http://developer.kde.org</A> "
++"<br><br>"
++"If you need more information or documentation, then a visit to "
++"<A HREF=\"http://www.trinitydesktop.org/docs/\">http://www.trinitydesktop.org/docs/</A> "
+ "will provide you with what you need."
+ msgstr ""
+-"Il n'est pas nécessaire d'être programmeur pour être membre de l'équipe de TDE. "
++"Il n'est pas nécessaire d'être programmeur pour être membre de l'équipe de Trinity. "
+ "Vous pouvez rejoindre les équipes nationales qui traduisent les interfaces des "
+ "programmes. Vous pouvez réaliser des images, des thèmes, des sons et des "
+ "documentations enrichies. C'est vous qui décidez !"
+-"<br>"
+-"<br>Visitez <A HREF=\"http://www.kde.org/fr/jobs.html\">"
+-"http://www.kde.org/fr/jobs.html</A> pour des informations sur certains projets "
+-"auxquels vous pouvez participer."
+-"<br>"
+-"<br>Pour plus d'informations ou de documentations, une visite de <A "
+-"HREF=\"http://developer.kde.org/\">http://developer.kde.org/</A> "
++"<br><br>"
++"Visitez "
++"<A HREF=\"http://www.trinitydesktop.org/jobs/\">http://www.trinitydesktop.org/jobs/</A>"
++"pour des informations sur certains projets auxquels vous pouvez participer."
++"<br><br>"
++"Pour plus d'informations ou de documentations, une visite de <A "
++"HREF=\"http://www.trinitydesktop.org/docs/\">http://www.trinitydesktop.org/docs/</A> "
+ "devrait vous fournir ce dont vous avez besoin."
+ 
+ #: tdeui/kaboutkde.cpp:67
+ msgid ""
+-"TDE is available free of charge, but making it is not free."
+-"<br>"
+-"<br>Thus, the TDE team formed the TDE e.V., a non-profit organization legally "
+-"founded in Tuebingen, Germany. The TDE e.V. represents the TDE project in legal "
+-"and financial matters. See <a href=\"http://www.kde-ev.org/\">"
+-"http://www.kde-ev.org</a> for information on the TDE e.V."
+-"<br>"
+-"<br>The TDE team does need financial support. Most of the money is used to "
+-"reimburse members and others on expenses they experienced when contributing to "
+-"TDE. You are encouraged to support TDE through a financial donation, using one "
+-"of the ways described at <a href=\"http://www.kde.org/support/\">"
+-"http://www.kde.org/support/</a>."
+-"<br>"
+-"<br>Thank you very much in advance for your support."
+-msgstr ""
+-"TDE est disponible gratuitement, mais sa réalisation a un coût."
+-"<br>"
+-"<br>C'est pourquoi l'équipe de TDE a formé l'association TDE, une association à "
+-"but non lucratif fondée à Tübingen (Allemagne). L'association TDE représente "
+-"les aspects juridiques et financiers du Projet TDE. Consultez <a "
+-"href=\"http://www.kde-ev.org\">http://www.kde-ev.org/</a> "
+-"pour plus d'informations sur l'association TDE."
+-"<br>"
+-"<br>L'équipe de TDE a besoin d'un appui financier. La majeure partie de ses "
++"Trinity is available free of charge, but making it is not free.<br><br>"
++"<br><br>"
++"The Trinity team does need financial support. Most of the money is used to "
++"reimburse members and others on expenses they experienced when "
++"contributing to Trinity. You are encouraged to support Trinity through a financial "
++"donation, using one of the ways described at "
++"<a href=\"http://www.trinitydesktop.org/donate.php\">http://www.trinitydesktop.org/donate.php</a>."
++"<br><br>Thank you very much in advance for your support!"
++msgstr ""
++"Trinity est disponible gratuitement, mais sa réalisation a un coût."
++"<br><br>"
++"<br>L'équipe de Trinity a besoin d'un appui financier. La majeure partie de ses "
+ "fonds sert à rembourser les membres et d'autres intervenants des dépenses "
+-"qu'ils ont engagées lors de leur contribution à TDE. Pour apporter votre "
+-"participation financière à TDE, utilisez l'une des possibilités décrites à "
+-"l'adresse <a "
+-"href=\"http://www.kde.org/support/\">http://www.kde.org/support/</a>."
+-"<br>"
+-"<br>Nous vous remercions vivement de votre soutien."
++"qu'ils ont engagées lors de leur contribution à Trinity. Pour apporter votre "
++"participation financière à Trinity, utilisez l'une des possibilités décrites à "
++"l'adresse <a href=\"http://www.trinitydesktop.org/donate.php\">http://www.trinitydesktop.org/donate.php</a>."
++"<br><br>Nous vous remercions vivement de votre soutien."
+ 
+ #: tdeui/kaboutkde.cpp:81
+ #, c-format
+-msgid "K Desktop Environment. Release %1"
+-msgstr "Environnement de bureau TDE. Version %1"
++msgid "Trinity Desktop Environment. Release %1"
++msgstr "Environnement de bureau Trinity. Version %1"
+ 
+ #: tdeui/kaboutkde.cpp:83
+ msgid ""
+-"_: About TDE\n"
++"_: About Trinity\n"
+ "&About"
+ msgstr "À &propos"
+ 
+@@ -5682,12 +5663,12 @@
+ msgstr "Rapport de bogues et &souhaits"
+ 
+ #: tdeui/kaboutkde.cpp:85
+-msgid "&Join the TDE Team"
+-msgstr "Re&joignez l'équipe de TDE"
++msgid "&Join the Trinity Team"
++msgstr "Re&joignez l'équipe de Trinity"
+ 
+ #: tdeui/kaboutkde.cpp:86
+-msgid "&Support TDE"
+-msgstr "&Soutenez TDE"
++msgid "&Support Trinity"
++msgstr "&Soutenez Trinity"
+ 
+ #: tdeui/kstdguiitem.cpp:110 khtml/java/kjavaappletserver.cpp:804
+ msgid "&Yes"
+@@ -6286,6 +6267,10 @@
+ msgid "&Browse..."
+ msgstr "&Parcourir..."
+ 
++#: tdeui/kdialog.cpp:428
++msgid "Please wait..."
++msgstr "Veuillez patienter ..."
++
+ #: tdeui/kdialogbase.cpp:636
+ msgid "&Try"
+ msgstr "&Essayer"
+@@ -6623,8 +6608,8 @@
+ msgstr "À &propos de : %1"
+ 
+ #: tdeui/khelpmenu.cpp:176 tdeui/kstdaction_p.h:114
+-msgid "About &TDE"
+-msgstr "À propos de &TDE"
++msgid "About &Trinity"
++msgstr "À propos de &Trinity"
+ 
+ #: tdeui/kactionclasses.cpp:2072
+ msgid "Exit F&ull Screen Mode"
+diff -Nuar tde-i18n-fr-3.5.10.ORI/messages/tdebase/kcontrol.po tde-i18n-fr-3.5.10/messages/tdebase/kcontrol.po
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/kcontrol.po	2011-12-18 22:34:04.982863520 +0100
++++ tde-i18n-fr-3.5.10/messages/tdebase/kcontrol.po	2011-12-18 22:40:37.574949536 +0100
+@@ -34,8 +34,8 @@
+ msgstr "duranceau@kde.org,caulier.gilles@free.fr,cousin@kde.org,kde@macolu.org"
+ 
+ #: aboutwidget.cpp:43 main.cpp:104
+-msgid "TDE Control Center"
+-msgstr "Centre de configuration de TDE"
++msgid "Trinity Control Center"
++msgstr "Centre de configuration de Trinity"
+ 
+ #: aboutwidget.cpp:45
+ msgid "Configure your desktop environment."
+@@ -43,17 +43,17 @@
+ 
+ #: aboutwidget.cpp:47
+ msgid ""
+-"Welcome to the \"TDE Control Center\", a central place to configure your "
++"Welcome to the \"Trinity Control Center\", a central place to configure your "
+ "desktop environment. Select an item from the index on the left to load a "
+ "configuration module."
+ msgstr ""
+-"Bienvenue dans le « Centre de configuration de TDE », l'endroit où configurer "
++"Bienvenue dans le « Centre de configuration de Trinity », l'endroit où configurer "
+ "votre environnement. Sélectionnez un élément dans l'index à gauche pour charger "
+ "le module de configuration correspondant."
+ 
+ #: aboutwidget.cpp:53 main.cpp:108
+-msgid "TDE Info Center"
+-msgstr "Centre d'informations de TDE"
++msgid "Trinity Info Center"
++msgstr "Centre d'informations de Trinity"
+ 
+ #: aboutwidget.cpp:55
+ msgid "Get system and desktop environment information"
+@@ -61,10 +61,10 @@
+ 
+ #: aboutwidget.cpp:57
+ msgid ""
+-"Welcome to the \"TDE Info Center\", a central place to find information about "
++"Welcome to the \"Trinity Info Center\", a central place to find information about "
+ "your computer system."
+ msgstr ""
+-"Bienvenue dans le « Centre d'informations de TDE », l'endroit où trouver des "
++"Bienvenue dans le « Centre d'informations de Trinity », l'endroit où trouver des "
+ "informations sur votre système."
+ 
+ #: aboutwidget.cpp:61
+@@ -76,8 +76,8 @@
+ "configuration particulière."
+ 
+ #: aboutwidget.cpp:64
+-msgid "TDE version:"
+-msgstr "Version de TDE :"
++msgid "Trinity version:"
++msgstr "Version de Trinity :"
+ 
+ #: aboutwidget.cpp:65
+ msgid "User:"
+@@ -137,13 +137,13 @@
+ 
+ #: helpwidget.cpp:51
+ msgid ""
+-"<h1>TDE Info Center</h1>There is no quick help available for the active info "
++"<h1>Trinity Info Center</h1>There is no quick help available for the active info "
+ "module."
+ "<br>"
+ "<br>Click <a href = \"kinfocenter/index.html\">here</a> "
+ "to read the general Info Center manual."
+ msgstr ""
+-"<h1>Centre d'informations de TDE</h1> Désolé, aucune aide rapide n'est "
++"<h1>Centre d'informations de Trinity</h1> Désolé, aucune aide rapide n'est "
+ "disponible pour le module d'information courant."
+ "<br>"
+ "<br> Cliquez <a href = \"kinfocenter/index.html\">ici</a> "
+@@ -151,13 +151,13 @@
+ 
+ #: helpwidget.cpp:56
+ msgid ""
+-"<h1>TDE Control Center</h1>There is no quick help available for the active "
++"<h1>Trinity Control Center</h1>There is no quick help available for the active "
+ "control module."
+ "<br>"
+ "<br>Click <a href = \"kcontrol/index.html\">here</a> "
+ "to read the general Control Center manual."
+ msgstr ""
+-"<h1>Centre de configuration de TDE</h1> Désolé, aucune aide rapide n'est "
++"<h1>Centre de configuration de Trinity</h1> Désolé, aucune aide rapide n'est "
+ "disponible pour le module de configuration courant."
+ "<br>"
+ "<br> Cliquez <a href = \"kcontrol/index.html\">ici</a> "
+@@ -173,16 +173,16 @@
+ "<br>Cliquez sur le bouton « Mode superutilisateur » ci-dessous."
+ 
+ #: main.cpp:105
+-msgid "The TDE Control Center"
+-msgstr "Le Centre de configuration de TDE"
++msgid "The Trinity Control Center"
++msgstr "Le Centre de configuration de Trinity"
+ 
+ #: main.cpp:106 main.cpp:110
+ msgid "(c) 1998-2004, The TDE Control Center Developers"
+ msgstr "(c) 1998-2004, Les développeurs du Centre de configuration de TDE"
+ 
+ #: main.cpp:109
+-msgid "The TDE Info Center"
+-msgstr "Le Centre d'informations de TDE"
++msgid "The Trinity Info Center"
++msgstr "Le Centre d'informations de Trinity"
+ 
+ #: main.cpp:128 main.cpp:130
+ msgid "Current Maintainer"
+--- tde-i18n-fr-3.5.10.ORI/messages/tdebase/kpersonalizer.po	2011-12-19 21:25:27.471340645 +0100
++++ tde-i18n-fr-3.5.10/messages/tdebase/kpersonalizer.po	2011-12-19 21:29:05.386322708 +0100
+@@ -79,8 +79,8 @@
+ msgstr "Le style Platinium"
+ 
+ #: kcountrypage.cpp:48
+-msgid "<h3>Welcome to TDE %1</h3>"
+-msgstr "<h3>Bienvenue dans TDE %1</h3>"
++msgid "<h3>Welcome to Trinity %1</h3>"
++msgstr "<h3>Bienvenue dans Trinity %1</h3>"
+ 
+ #: kcountrypage.cpp:90 kcountrypage.cpp:117 kfindlanguage.cpp:82
+ msgid "without name"
+@@ -111,8 +111,8 @@
+ msgstr "L'assistant se redémarre lui-même"
+ 
+ #: main.cpp:32
+-msgid "Personalizer is running before TDE session"
+-msgstr "L'assistant démarre avant la session TDE elle-même"
++msgid "Personalizer is running before Trinity session"
++msgstr "L'assistant démarre avant la session Trinity elle-même"
+ 
+ #: kpersonalizer.cpp:67
+ msgid "Step 1: Introduction"
+@@ -141,13 +141,13 @@
+ #: kpersonalizer.cpp:152
+ msgid ""
+ "<p>Are you sure you want to quit the Desktop Settings Wizard?</p>"
+-"<p>The Desktop Settings Wizard helps you to configure the TDE desktop to your "
++"<p>The Desktop Settings Wizard helps you to configure the Trinity desktop to your "
+ "personal liking.</p>"
+ "<p>Click <b>Cancel</b> to return and finish your setup.</p>"
+ msgstr ""
+ "<p>Voulez-vous vraiment quitter l'assistant de configuration du bureau ?</p> "
+ "<p>L'assistant de configuration du bureau vous aide à configurer le bureau de "
+-"TDE selon vos convenances.</p> "
++"Trinity selon vos convenances.</p> "
+ "<p>Cliquez sur « <b>Annuler</b> » pour retourner et terminer vos réglages.</p>"
+ 
+ #: kpersonalizer.cpp:156
+@@ -171,14 +171,14 @@
+ "<br><b>Titlebar double-click:</b> <i>Shade window</i>"
+ "<br><b>Mouse selection:</b> <i>Single click</i>"
+ "<br><b>Application startup notification:</b> <i>busy cursor</i>"
+-"<br><b>Keyboard scheme:</b> <i>TDE default</i>"
++"<br><b>Keyboard scheme:</b> <i>Trinity default</i>"
+ "<br>"
+ msgstr ""
+ "<b>Activation des fenêtres :</b> <i>Cliquer pour avoir le focus</i>"
+ "<br><b>Double-clic sur la barre de titre :</b> <i>Enroule la fenêtre</i>"
+ "<br><b>Sélection par la souris :</b> <i>Simple clic</i>"
+ "<br><b>Notification de démarrage des applications :</b><i> Curseur occupé</i>"
+-"<br><b>Actions du clavier :</b> <i>TDE par défaut</i>"
++"<br><b>Actions du clavier :</b> <i>Trinity par défaut</i>"
+ "<br>"
+ 
+ #: kospage.cpp:364
+@@ -320,34 +320,34 @@
+ #: rc.cpp:6
+ #, no-c-format
+ msgid ""
+-"<p>This Personalizer will help you configure the basic setup of your TDE "
++"<p>This Personalizer will help you configure the basic setup of your Trinity "
+ "desktop in five quick, easy steps. You can set things like your country (for "
+ "date and time formats, etc.), language, desktop behavior and more.</p>\n"
+-"<p>You will be able to change all the settings later using the TDE Control "
++"<p>You will be able to change all the settings later using the Trinity Control "
+ "Center. You may choose to postpone your personalization until later by clicking "
+ "on <b>Skip Wizard</b>. Any changes made so far, will then be reversed, except "
+ "for the country and language settings. However, new users are encouraged to use "
+ "this simple method.</p>\n"
+-"<p>If you already like your TDE configuration and wish to quit the Wizard, "
++"<p>If you already like your Trinity configuration and wish to quit the Wizard, "
+ "click <b>Skip Wizard</b>, then <b>Quit</b>.</p>"
+ msgstr ""
+ "<p>Cet assistant vous aidera à configurer les réglages de base de votre bureau "
+-"TDE en cinq étapes simples. Vous pouvez régler des paramètres comme votre pays "
++"Trinity en cinq étapes simples. Vous pouvez régler des paramètres comme votre pays "
+ "(pour les formats de date et d'heure, etc.), votre langue, le comportement du "
+ "bureau et plein d'autres encore.</p>\n"
+ "<p>Vous pourrez changer tous ces réglages ultérieurement en utilisant le Centre "
+-"de configuration de TDE. Vous pouvez choisir de différer votre personnalisation "
++"de configuration de Trinity. Vous pouvez choisir de différer votre personnalisation "
+ "en cliquant sur « <b>Passer l'assistant</b> ». Cependant, il est conseillé pour "
+ "les nouveaux utilisateurs d'utiliser cette méthode.</p>\n"
+-"<p>Si votre configuration de TDE est déjà à votre goût et que vous désirez "
++"<p>Si votre configuration de Trinity est déjà à votre goût et que vous désirez "
+ "quitter l'assistant, cliquez sur « <b>Passer l'assistant</b> » puis sur  « <b>"
+ "Quitter</b> ».</p>"
+ 
+ #. i18n: file kcountrypagedlg.ui line 100
+ #: rc.cpp:11
+ #, no-c-format
+-msgid "<h3>Welcome to TDE %VERSION%!</h3>"
+-msgstr "<h3>Bienvenue dans TDE %VERSION% !</h3>"
++msgid "<h3>Welcome to Trinity %VERSION%!</h3>"
++msgstr "<h3>Bienvenue dans Trinity %VERSION% !</h3>"
+ 
+ #. i18n: file kcountrypagedlg.ui line 148
+ #: rc.cpp:14
+@@ -359,14 +359,14 @@
+ #: rc.cpp:17
+ #, no-c-format
+ msgid ""
+-"<P>TDE offers many visually appealing special effects, such as smoothed fonts, "
++"<P>Trinity offers many visually appealing special effects, such as smoothed fonts, "
+ "previews in the file manager and animated menus. All this beauty, however, "
+ "comes at a small performance cost. </P>\n"
+ "If you have a fast, new processor, you might want to turn them all on, but for "
+ "those of us with slower processors, starting off with less eye candy helps to "
+ "keep your desktop more responsive."
+ msgstr ""
+-"<P>TDE offre de nombreux effets visuels, comme les polices lissées, les aperçus "
++"<P>Trinity offre de nombreux effets visuels, comme les polices lissées, les aperçus "
+ "dans le gestionnaire de fichiers et les menus animés. Toutes ces choses "
+ "superbes ont un coût en termes de performances.</P>\n"
+ "Si vous avez un processeur récent et rapide, vous pouvez toutes les activer, "
+@@ -426,8 +426,8 @@
+ #. i18n: file kospagedlg.ui line 79
+ #: rc.cpp:44
+ #, no-c-format
+-msgid "TDE (TM)"
+-msgstr "TDE ™"
++msgid "Trinity (TM)"
++msgstr "Trinity"
+ 
+ #. i18n: file kospagedlg.ui line 90
+ #: rc.cpp:47
+@@ -454,22 +454,22 @@
+ "<b>System Behavior</b>"
+ "<br>\n"
+ "Graphical User Interfaces behave differently on various Operating Systems.\n"
+-"TDE allows you to customize its behavior according to your needs."
++"Trinity allows you to customize its behavior according to your needs."
+ msgstr ""
+ "<b>Comportement du système</b>"
+ "<br>\n"
+ "Les interfaces utilisateur graphiques se comportent différemment sur les "
+ "différents systèmes d'exploitation.\n"
+-"TDE vous permet de personnaliser son comportement selon vos désirs."
++"Trinity vous permet de personnaliser son comportement selon vos désirs."
+ 
+ #. i18n: file kospagedlg.ui line 168
+ #: rc.cpp:61
+ #, no-c-format
+ msgid ""
+-"For motion impaired users, TDE provides keyboard gestures to activate special "
++"For motion impaired users, Trinity provides keyboard gestures to activate special "
+ "keyboard settings."
+ msgstr ""
+-"Pour les utilisateurs à déplacement réduit, TDE fournit des gestes permettant "
++"Pour les utilisateurs à déplacement réduit, Trinity fournit des gestes permettant "
+ "d'activer des réglages spéciaux du clavier."
+ 
+ #. i18n: file kospagedlg.ui line 179
+@@ -494,26 +494,26 @@
+ #: rc.cpp:71
+ #, no-c-format
+ msgid ""
+-"You can refine the settings you made by starting the TDE Control Center by "
++"You can refine the settings you made by starting the Trinity Control Center by "
+ "choosing the entry <b>Control Center</b> in the TDE menu."
+ msgstr ""
+ "Vous pouvez affiner les réglages que vous avez faits en lançant le <b>"
+-"Centre de configuration de TDE</b> en choisissant l'entrée <b>"
++"Centre de configuration de Trinity</b> en choisissant l'entrée <b>"
+ "Centre de configuration</b> du menu K."
+ 
+ #. i18n: file krefinepagedlg.ui line 133
+ #: rc.cpp:74
+ #, no-c-format
+-msgid "You can also start the TDE Control Center using the button below."
++msgid "You can also start the Trinity Control Center using the button below."
+ msgstr ""
+-"Vous pouvez également démarrer le Centre de configuration de TDE à l'aide du "
++"Vous pouvez également démarrer le Centre de configuration de Trinity à l'aide du "
+ "bouton ci-dessous."
+ 
+ #. i18n: file krefinepagedlg.ui line 203
+ #: rc.cpp:77
+ #, no-c-format
+-msgid "&Launch TDE Control Center"
+-msgstr "&Lancer le Centre de configuration de TDE"
++msgid "&Launch Trinity Control Center"
++msgstr "&Lancer le Centre de configuration de Trinity"
+ 
+ #. i18n: file kstylepagedlg.ui line 32
+ #: rc.cpp:80
+--- tde-i18n-fr-3.5.10/messages/tdebase/konqueror.po.ORI	2011-12-19 21:45:36.416030332 +0100
++++ tde-i18n-fr-3.5.10/messages/tdebase/konqueror.po	2011-12-19 21:51:16.528801717 +0100
+@@ -1203,6 +1203,9 @@
+ msgid "Open in &New Tab"
+ msgstr "Ouvrir dans un &nouvel onglet"
+ 
++msgid "Open in &Background Tab"
++msgstr "Ouvrir dans un onglet en arrière-&plan"
++
+ #: konq_mainwindow.cc:4689
+ msgid "Open the document in a new tab"
+ msgstr "Ouvrir le document dans un nouvel onglet"
