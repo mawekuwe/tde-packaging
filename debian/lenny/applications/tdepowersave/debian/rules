@@ -30,8 +30,8 @@ debian/stamp-bootstrap:
 	touch debian/stamp-bootstrap
 
 install/kpowersave::
-	install -p -D -m644 debian/kpowersave-nohal-trinity.lintian debian/kpowersave/opt/trinity/share/lintian/overrides/kpowersave
-	install -p -D -m644 debian/kpowersave-nohal-trinity.linda debian/kpowersave/opt/trinity/share/linda/overrides/kpowersave
+	install -p -D -m644 debian/tdepowersave-trinity.lintian debian/kpowersave/opt/trinity/share/lintian/overrides/kpowersave
+	install -p -D -m644 debian/tdepowersave-trinity.linda debian/kpowersave/opt/trinity/share/linda/overrides/kpowersave
 
 clean::
 	find . -name Makefile.in | xargs rm -f

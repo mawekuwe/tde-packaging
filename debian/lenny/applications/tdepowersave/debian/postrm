@@ -2,7 +2,7 @@
 
 set -e
 
-package_name=kpowersave-nohal-trinity
+package_name=tdepowersave-trinity
 
 if [ -z "$package_name" ]; then
     print >&2 "Internal Error. Please report a bug."

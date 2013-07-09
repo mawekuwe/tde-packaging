@@ -1,4 +1,4 @@
-Source: kpowersave-nohal-trinity
+Source: tdepowersave-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
@@ -8,10 +8,10 @@ Build-Conflicts: autoconf2.13
 Standards-Version: 3.8.4
 Homepage: http://sourceforge.net/projects/powersave/
 
-Package: kpowersave-nohal-trinity
+Package: tdepowersave-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Conflicts: kpowersave-trinity
+Conflicts: kpowersave-trinity, kpowersave-nohal-trinity
 Description: Power management applet for Trinity
  KPowersave is a TDE systray applet which allows to control the power 
  management settings and policies of your computer.
