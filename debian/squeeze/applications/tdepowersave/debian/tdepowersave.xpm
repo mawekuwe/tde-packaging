@@ -1,5 +1,5 @@
 /* XPM */
-static char * kpowersave_xpm[] = {
+static char * tdepowersave_xpm[] = {
 "32 32 593 2",
 "  	c None",
 ". 	c #6D2121",
