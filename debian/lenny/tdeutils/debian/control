@@ -13,7 +13,7 @@ Section: tde
 Architecture: all
 Replaces: kdeutils-trinity (<< 4:14.0.0)
 Breaks: kdeutils-trinity (<< 4:14.0.0)
-Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), kdelirc-trinity (>= ${Source-Version}), tdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}) | kpowersave-trinity, kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), tdewalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version})
+Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), tdelirc-trinity (>= ${Source-Version}), tdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}) | kpowersave-trinity, kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), tdewalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version})
 Suggests: tdeutils-trinity-doc-html (>= ${Source-Version})
 Description: general purpose utilities from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -61,7 +61,7 @@ Section: utils
 Architecture: any
 Replaces: kdeutils-trinity-dev (<< 4:14.0.0)
 Breaks: kdeutils-trinity-dev (<< 4:14.0.0)
-Depends: ark-trinity (= ${Source-Version}), kcalc-trinity (= ${Source-Version}), kdelirc-trinity (= ${Source-Version}), kedit-trinity (= ${Source-Version}), khexedit-trinity (= ${Source-Version}), klaptopdaemon-trinity (= ${Source-Version}), kmilo-trinity (= ${Source-Version}), kregexpeditor-trinity (= ${Source-Version}), ksim-trinity (= ${Source-Version}), tdelibs4-trinity-dev
+Depends: ark-trinity (= ${Source-Version}), kcalc-trinity (= ${Source-Version}), tdelirc-trinity (= ${Source-Version}), kedit-trinity (= ${Source-Version}), khexedit-trinity (= ${Source-Version}), klaptopdaemon-trinity (= ${Source-Version}), kmilo-trinity (= ${Source-Version}), kregexpeditor-trinity (= ${Source-Version}), ksim-trinity (= ${Source-Version}), tdelibs4-trinity-dev
 Description: development files for the Trinity utilities module
  This package contains development files needed to compile tdeutils
  applications.
@@ -124,7 +124,7 @@ Description: character selector for Trinity
  This package is part of Trinity, as a component of the KDE utilities module.
  See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
 
-Package: kdelirc-trinity
+Package: tdelirc-trinity
 Section: utils
 Architecture: any
 Replaces: kdelirc-trinity (<< 4:14.0.0)
@@ -140,8 +140,8 @@ Description: infrared control for Trinity
 Package: tdessh-trinity
 Section: tde
 Architecture: any
-Replaces: tdessh-trinity (<< 4:14.0.0)
-Breaks: tdessh-trinity (<< 4:14.0.0)
+Replaces: kdessh-trinity (<< 4:14.0.0)
+Breaks: kdessh-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, openssh-client | ssh-client
 Description: ssh frontend for Trinity
  This package contains KDE's frontend for ssh.

@@ -13,7 +13,7 @@ Architecture: all
 Replaces: kdeaccessibility-trinity (<< 4:14.0.0)
 Breaks: kdeaccessibility-trinity (<< 4:14.0.0)
 Depends: kmag-trinity (>= ${Source-Version}), kmousetool-trinity (>= ${Source-Version}), kmouth-trinity (>= ${Source-Version}), kbstate-trinity (>= ${Source-Version}), ksayit-trinity (>= ${Source-Version}), kttsd-trinity (>= ${Source-Version})
-Recommends: kde-icons-mono-trinity (>= ${Source-Version})
+Recommends: tde-icons-mono-trinity (>= ${Source-Version})
 Suggests: kttsd-contrib-plugins-trinity (>= ${Source-Version}), tdeaccessibility-trinity-doc-html (>= ${Source-Version})
 Description: accessibility packages from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -46,7 +46,7 @@ Description: KDE accessibility documentation in HTML format
  This package is part of Trinity, and a component of the KDE accessibility
  module. See the 'kde-trinity' and 'tdeaccessibility-trinity' packages for more information.
 
-Package: kde-icons-mono-trinity
+Package: tde-icons-mono-trinity
 Section: tde
 Architecture: all
 Replaces: kde-icons-mono-trinity (<< 4:14.0.0)

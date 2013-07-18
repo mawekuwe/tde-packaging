@@ -13,7 +13,7 @@ Architecture: all
 Section: tde
 Replaces: kdeartwork-trinity (<< 4:14.0.0)
 Breaks: kdeartwork-trinity (<< 4:14.0.0)
-Depends: tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), kdewallpapers-trinity (>= ${Source-Version}), tdescreensaver-trinity (>= ${Source-Version})
+Depends: tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), tdewallpapers-trinity (>= ${Source-Version}), tdescreensaver-trinity (>= ${Source-Version})
 Recommends: tdescreensaver-xsavers-trinity
 Description: themes, styles and more from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -98,7 +98,7 @@ Description: window decoration themes released with Trinity
  This package is part of Trinity, and a component of the KDE artwork module.
  See the 'kde-trinity' and 'tdeartwork-trinity' packages for more information.
 
-Package: kdewallpapers-trinity
+Package: tdewallpapers-trinity
 Architecture: all
 Section: tde
 Replaces: kdewallpapers-trinity (<< 4:14.0.0)
