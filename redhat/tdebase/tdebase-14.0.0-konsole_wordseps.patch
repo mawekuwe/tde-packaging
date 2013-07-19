@@ -1,0 +1,48 @@
+diff -Nuar trinity-tdebase-14.0.0~pre737+02bf1e69.ORI/kcontrol/konsole/kcmkonsole.cpp trinity-tdebase-14.0.0~pre737+02bf1e69/kcontrol/konsole/kcmkonsole.cpp
+--- trinity-tdebase-14.0.0~pre737+02bf1e69.ORI/kcontrol/konsole/kcmkonsole.cpp	2013-07-10 07:56:40.070802259 +0200
++++ trinity-tdebase-14.0.0~pre737+02bf1e69/kcontrol/konsole/kcmkonsole.cpp	2013-07-10 07:58:53.680465150 +0200
+@@ -107,7 +107,7 @@
+     dialog->frameCB->setChecked(config.readBoolEntry("has frame",true));
+     dialog->line_spacingSB->setValue(config.readUnsignedNumEntry( "LineSpacing", 0 ));
+     dialog->silence_secondsSB->setValue(config.readUnsignedNumEntry( "SilenceSeconds", 10 ));
+-    dialog->word_connectorLE->setText(config.readEntry("wordseps",":@-./_~"));
++    dialog->word_connectorLE->setText(config.readEntry("wordseps",":@-./_~+"));
+ 
+     dialog->SchemaEditor1->setSchema(config.readEntry("schema"));
+ 
+diff -Nuar trinity-tdebase-14.0.0~pre737+02bf1e69.ORI/konsole/konsole/konsole.cpp trinity-tdebase-14.0.0~pre737+02bf1e69/konsole/konsole/konsole.cpp
+--- trinity-tdebase-14.0.0~pre737+02bf1e69.ORI/konsole/konsole/konsole.cpp	2013-07-10 07:56:40.112802782 +0200
++++ trinity-tdebase-14.0.0~pre737+02bf1e69/konsole/konsole/konsole.cpp	2013-07-10 07:58:53.698465376 +0200
+@@ -1573,7 +1573,7 @@
+      b_warnQuit=config->readBoolEntry( "WarnQuit", true );
+      b_allowResize=config->readBoolEntry( "AllowResize", false);
+      b_bidiEnabled = config->readBoolEntry("EnableBidi",false);
+-     s_word_seps= config->readEntry("wordseps",":@-./_~");
++     s_word_seps= config->readEntry("wordseps",":@-./_~+");
+      b_framevis = config->readBoolEntry("has frame",true);
+      TQPtrList<TEWidget> tes = activeTEs();
+      for (TEWidget *_te = tes.first(); _te; _te = tes.next()) {
+diff -Nuar trinity-tdebase-14.0.0~pre737+02bf1e69.ORI/konsole/konsole/konsole_part.cpp trinity-tdebase-14.0.0~pre737+02bf1e69/konsole/konsole/konsole_part.cpp
+--- trinity-tdebase-14.0.0~pre737+02bf1e69.ORI/konsole/konsole/konsole_part.cpp	2013-07-10 07:56:40.112802782 +0200
++++ trinity-tdebase-14.0.0~pre737+02bf1e69/konsole/konsole/konsole_part.cpp	2013-07-10 07:58:53.684465202 +0200
+@@ -565,7 +565,7 @@
+   n_keytab=config->readNumEntry("keytab",0); // act. the keytab for this session
+   n_scroll = TQMIN(config->readUnsignedNumEntry("scrollbar",TEWidget::SCRRIGHT),2);
+   m_histSize = config->readNumEntry("history",DEFAULT_HISTORY_SIZE);
+-  s_word_seps= config->readEntry("wordseps",":@-./_~");
++  s_word_seps= config->readEntry("wordseps",":@-./_~+");
+ 
+   n_encoding = config->readNumEntry("encoding",0);
+ 
+diff -Nuar trinity-tdebase-14.0.0~pre737+02bf1e69.ORI/konsole/konsole/TEWidget.cpp trinity-tdebase-14.0.0~pre737+02bf1e69/konsole/konsole/TEWidget.cpp
+--- trinity-tdebase-14.0.0~pre737+02bf1e69.ORI/konsole/konsole/TEWidget.cpp	2013-07-10 07:56:40.112802782 +0200
++++ trinity-tdebase-14.0.0~pre737+02bf1e69/konsole/konsole/TEWidget.cpp	2013-07-10 07:58:53.690465276 +0200
+@@ -352,7 +352,7 @@
+ ,preserve_line_breaks(true)
+ ,column_selection_mode(false)
+ ,scrollLoc(SCRNONE)
+-,word_characters(":@-./_~")
++,word_characters(":@-./_~+")
+ ,m_bellMode(BELLSYSTEM)
+ ,blinking(false)
+ ,cursorBlinking(false)

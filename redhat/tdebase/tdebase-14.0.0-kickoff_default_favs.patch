@@ -1,0 +1,16 @@
+--- trinity-tdebase-3.5.13.2~pre86+807a5445/kicker/kicker/ui/default-favs.ORI	2013-05-09 22:50:36.607264087 +0200
++++ trinity-tdebase-3.5.13.2~pre86+807a5445/kicker/kicker/ui/default-favs	2013-05-09 22:50:46.935039753 +0200
+@@ -1,9 +1,7 @@
+-MozillaFirefox.desktop
+-tde-Kontact.desktop
+-writer.desktop
+-tde-amarok.desktop
+-tde-digikam.desktop
+ tde-Home.desktop
++tde-konqbrowser.desktop
++tde-Kfind.desktop
++tde-kate.desktop
++tde-konsole.desktop
+ tde-KControl.desktop
+ tde-Help.desktop
+-tde-konsole.desktop

@@ -1,5 +1,5 @@
 # Default version for this component
-%define tdecomp kpowersave-nohal
+%define tdecomp tdepowersave
 %define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -48,9 +48,11 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
+Obsoletes:		trinity-kpowersave < %{version}-%{release}
+Provides:		trinity-kpowersave = %{version}-%{release}
 
 %description
-KPowersave is a TDE systray applet which allows to control the power 
+TDEPowersave is a TDE systray applet which allows to control the power 
 management settings and policies of your computer.
 
 Current feature list:
@@ -86,6 +88,7 @@ settings for:
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -125,6 +128,7 @@ update-desktop-database %{tde_appdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
+
 %postun
 update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
@@ -147,6 +151,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/autostart/kpowersave-autostart.desktop
 %{tde_datadir}/config/kpowersaverc
 
+
 %changelog
 * Thu Jul 04 2013 Francois Andriot <francois.andriot@free.fr> - 0.7.3-5
 - Initial release for TDE 14.0.0
@@ -155,7 +160,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.7.3-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-2
 - Add missing /sbin/ldconfig

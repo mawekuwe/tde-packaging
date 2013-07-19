@@ -1,0 +1,11 @@
+--- trinity-kbiff-14.0.0~pre6+b63c54d4/kbiff/Makefile.am.ORI	2013-07-07 13:17:16.270257111 +0200
++++ trinity-kbiff-14.0.0~pre6+b63c54d4/kbiff/Makefile.am	2013-07-07 13:17:41.911536825 +0200
+@@ -24,7 +24,7 @@
+ 
+ # the libraries to link against. Be aware of the order. First the libraries,
+ # that depend on the following ones.
+-kbiff_la_LIBADD = $(LIB_KFILE) $(LIB_KIO)
++kbiff_la_LIBADD = $(LIB_KFILE) $(LIB_KIO) $(LIB_QT) $(LIB_TDECORE) -lDCOP $(LIB_TDEUI)
+ 
+ # this option you can leave out. Just, if you use "make dist", you need it
+ noinst_HEADERS = setupdlg.h kbiff.h kbiffmonitor.h notify.h kbiffurl.h \

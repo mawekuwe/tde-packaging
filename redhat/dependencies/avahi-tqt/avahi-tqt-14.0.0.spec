@@ -33,6 +33,8 @@ BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
+
+# DBUS support
 %if 0%{?suse_version}
 BuildRequires:	dbus-1-devel
 %else

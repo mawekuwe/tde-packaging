@@ -1,0 +1,20 @@
+--- ./kcontrol/kcontrol/KControl.desktop~	2013-01-09 02:12:13.000000000 +0100
++++ ./kcontrol/kcontrol/KControl.desktop	2013-05-08 17:55:54.250733219 +0200
+@@ -5,7 +5,7 @@
+ DocPath=kcontrol/index.html
+ X-TDE-StartupNotify=true
+ 
+-Name=Control Center
++Name=Trinity Control Center
+ Name[af]=Beheer Sentrum
+ Name[ar]=مركز التحكم
+ Name[az]=İdarə Mərkəzi
+@@ -28,7 +28,7 @@
+ Name[eu]=Kontrol gunea
+ Name[fa]=مرکز کنترل
+ Name[fi]=Ohjauskeskus
+-Name[fr]=Centre de configuration de TDE
++Name[fr]=Centre de configuration de Trinity
+ Name[fy]=Konfiguraasjesintrum
+ Name[ga]=Lárionad Rialaithe
+ Name[gl]=Centro de Control

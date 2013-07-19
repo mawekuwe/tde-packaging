@@ -1,0 +1,20 @@
+--- trinity-tdebase-14.0.0~pre737+02bf1e69/starttde.ORI	2013-07-07 20:01:47.656584924 +0200
++++ trinity-tdebase-14.0.0~pre737+02bf1e69/starttde	2013-07-07 20:04:37.039608089 +0200
+@@ -347,6 +347,17 @@
+   fi
+ fi
+ 
++# Default Start Button icon for TDE
++if [ ! -e  $tdehome/share/config/kickerrc ]; then
++  if [ -r "%{tde_starticon}" ]; then
++    cat <<EOF >$tdehome/share/config/kickerrc
++[KMenu]
++CustomIcon=%{tde_starticon}
++EOF
++  fi
++fi
++
++
+ # XCursor mouse theme needs to be applied here to work even for kded or ksmserver.
+ if test -n "$kcminputrc_mouse_cursortheme" -o -n "$kcminputrc_mouse_cursorsize" ; then
+   kapplymousetheme "$kcminputrc_mouse_cursortheme" "$kcminputrc_mouse_cursorsize"

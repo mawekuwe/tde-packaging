@@ -814,7 +814,7 @@ diff -p -up kdebase-3.5.9/kcontrol/background/KCrossBGRender.cc.crossfade-efect 
  #include <tqstring.h>
  #include <tqptrvector.h>
  
-+#include <tqdatetime.h>
++#include <qdatetime.h>
  #include <KBackgroundIface.h>
  
  #if defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300

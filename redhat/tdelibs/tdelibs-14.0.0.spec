@@ -32,6 +32,12 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
+# Patches from Mandriva
+Patch1:		tdelibs-14.0.0-xdg_dirs_set_path.patch
+Patch2:		tdelibs-14.0.0-cups_by_default.patch
+
+# Fix battery charge detection
+Patch3:		tdelibs-14.0.0-fix_battery_charge.patch
 
 Obsoletes:	tdelibs < %{version}-%{release}
 Provides:	tdelibs = %{version}-%{release}
@@ -232,13 +238,13 @@ kimgio (image manipulation).
 %{tde_bindir}/tdecmshell
 %{tde_bindir}/tdeconf_update
 %{tde_bindir}/kcookiejar
-%{tde_bindir}/[kt]de-config
-%{tde_bindir}/[kt]de-menu
+%{tde_bindir}/tde-config
+%{tde_bindir}/tde-menu
 %{tde_bindir}/kded
-%{tde_bindir}/[kt]deinit
-%{tde_bindir}/[kt]deinit_shutdown
-%{tde_bindir}/[kt]deinit_wrapper
-%{tde_bindir}/[kt]desu_stub
+%{tde_bindir}/tdeinit
+%{tde_bindir}/tdeinit_shutdown
+%{tde_bindir}/tdeinit_wrapper
+%{tde_bindir}/tdesu_stub
 %{tde_bindir}/kdetcompmgr
 %{tde_bindir}/kdontchangethehostname
 %{tde_bindir}/tdedostartupconfig
@@ -265,8 +271,8 @@ kimgio (image manipulation).
 %{tde_bindir}/make_driver_db_lpr
 %{tde_bindir}/meinproc
 %{tde_bindir}/networkstatustestservice
-%{tde_bindir}/start_[kt]deinit
-%{tde_bindir}/start_[kt]deinit_wrapper
+%{tde_bindir}/start_tdeinit
+%{tde_bindir}/start_tdeinit_wrapper
 %attr(4755,root,root) %{tde_bindir}/kgrantpty
 %{tde_bindir}/tde_dbus_hardwarecontrol
 %{tde_bindir}/checkXML
@@ -275,9 +281,9 @@ kimgio (image manipulation).
 %{tde_bindir}/preparetips
 %{tde_tdelibdir}/*
 %{tde_libdir}/lib*.so.*
-%{tde_libdir}/lib[kt]deinit_*.la
-%{tde_libdir}/lib[kt]deinit_*.so
-%{tde_datadir}/applications/[kt]de/*.desktop
+%{tde_libdir}/libtdeinit_*.la
+%{tde_libdir}/libtdeinit_*.so
+%{tde_datadir}/applications/tde/*.desktop
 %{tde_datadir}/autostart/tdeab2tdeabc.desktop
 %{tde_datadir}/applnk/tdeio_iso.desktop
 %{tde_datadir}/apps/*
@@ -333,16 +339,16 @@ applications for TDE.
 %defattr(-,root,root,-)
 %{tde_bindir}/dcopidl*
 %{tde_bindir}/*config_compiler
-%{tde_bindir}/make[kt]dewidgets
+%{tde_bindir}/maketdewidgets
 %{tde_datadir}/apps/ksgmltools2/
 %{tde_tdeincludedir}/*
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
 %{tde_libdir}/*.a
 %{tde_libdir}/pkgconfig/tdelibs.pc
-%exclude %{tde_libdir}/lib[kt]deinit_*.la
-%exclude %{tde_libdir}/lib[kt]deinit_*.so
-%{tde_datadir}/cmake/[kt]delibs.cmake
+%exclude %{tde_libdir}/libtdeinit_*.la
+%exclude %{tde_libdir}/libtdeinit_*.so
+%{tde_datadir}/cmake/tdelibs.cmake
 
 %post devel
 /sbin/ldconfig || :
@@ -360,6 +366,9 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .xdg_path
+%patch2 -p1 -b .cups_by_default
+%patch3 -p1 -b .batterycharge
 
 
 %build

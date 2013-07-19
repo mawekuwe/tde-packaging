@@ -1,0 +1,37 @@
+--- trinity-tdebase-3.5.13.2~pre100+073a32f9/kcontrol/displayconfig/displayconfig.desktop.ORI	2013-05-11 14:53:30.914170537 +0200
++++ trinity-tdebase-3.5.13.2~pre100+073a32f9/kcontrol/displayconfig/displayconfig.desktop	2013-05-11 14:53:59.495582944 +0200
+@@ -2,6 +2,7 @@
+ Categories=Qt;TDE;X-TDE-settings-system;
+ Comment=Configure display
+ Comment[en_US]=Configure display
++Comment[fr]=Configuration de l'affichage
+ DocPath=kcontrol/displayconfig.html
+ Exec=tdecmshell displayconfig
+ GenericName=
+@@ -11,6 +12,7 @@
+ MimeType=
+ Name=Monitor & Display
+ Name[en_US]=Monitor & Display
++Name[fr]=Moniteurs & Affichage
+ NoDisplay=false
+ Path=
+ StartupNotify=true
+--- trinity-tdebase-3.5.13.2~pre100+073a32f9/kcontrol/iccconfig/iccconfig.desktop.ORI	2013-05-11 21:21:04.241337141 +0200
++++ trinity-tdebase-3.5.13.2~pre100+073a32f9/kcontrol/iccconfig/iccconfig.desktop	2013-05-11 21:21:44.782537929 +0200
+@@ -12,6 +12,7 @@
+ Categories=Qt;TDE;X-TDE-settings-hardware;
+ Comment=Configure display ICC profile
+ Comment[en_US]=Configure display ICC profile
++Comment[fr]=Configurer les profils de couleurs ICC
+ DocPath=kcontrol/iccconfig.html
+ GenericName=
+ GenericName[en_US]=
+@@ -19,5 +20,6 @@
+ MimeType=
+ Name=ICC Color Profile
+ Name[en_US]=ICC Color Profile
++Name[fr]=Profils de couleurs ICC
+ 
+-NoDisplay=false
+\ Pas de fin de ligne à la fin du fichier
++NoDisplay=false

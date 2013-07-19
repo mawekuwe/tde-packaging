@@ -1,0 +1,11 @@
+--- trinity-tdebase-14.0.0~pre737+02bf1e69/kdesktop/krootwm.c.ORI	2013-07-07 19:52:01.913986986 +0200
++++ trinity-tdebase-14.0.0~pre737+02bf1e69/kdesktop/krootwm.cc	2013-07-07 19:52:49.676516510 +0200
+@@ -760,7 +760,7 @@
+     TDEConfigGroupSaver gs(TDEGlobal::config(), "General");
+     TQString terminal = TDEGlobal::config()->readPathEntry("TerminalApplication", "konsole");
+ 
+-    *p << terminal << "--workdir=" + TDEGlobalSettings::desktopPath() + "/";
++    *p << terminal;
+ 
+     p->start(TDEProcess::DontCare);
+ 

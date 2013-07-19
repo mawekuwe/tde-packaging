@@ -159,7 +159,7 @@ diff -p -up kdebase-3.5.9/kcontrol/background/crossfade.h.crossfade-efect kdebas
 +TQ_OBJECT
 +
 +public:
-+	KCrossBGRender(int desk, int screen, bool drawBackgroundPerScreen, KConfig *config=0);
++	KCrossBGRender(int desk, int screen, bool drawBackgroundPerScreen, TDEConfig *config=0);
 +	~KCrossBGRender();
 +
 +	bool needWallpaperChange();
@@ -193,13 +193,13 @@ diff -p -up kdebase-3.5.9/kcontrol/background/crossfade.h.crossfade-efect kdebas
 @@ -28,6 +28,7 @@
  class KTempFile;
  class KShellProcess;
- class KStandardDirs;
+ class TDEStandardDirs;
 +class KCrossBGRender;
  
  /**
   * This class renders a desktop background to a TQImage. The operation is
 @@ -127,7 +128,7 @@
-     KVirtualBGRenderer(int desk, KConfig *config=0l);
+     KVirtualBGRenderer(int desk, TDEConfig *config=0l);
      ~KVirtualBGRenderer();
      
 -    KBackgroundRenderer * renderer(unsigned screen);
@@ -252,7 +252,7 @@ diff -p -up kdebase-3.5.9/kcontrol/background/KCrossBGRender.cc.crossfade-efect 
 +#include <kimageeffect.h>
 +
 +
-+KCrossBGRender::KCrossBGRender(int desk, int screen, bool drawBackgroundPerScreen, KConfig *config): KBackgroundRenderer(desk,screen,drawBackgroundPerScreen,config)
++KCrossBGRender::KCrossBGRender(int desk, int screen, bool drawBackgroundPerScreen, TDEConfig *config): KBackgroundRenderer(desk,screen,drawBackgroundPerScreen,config)
 +{
 +	useCrossEfect = false;
 +	if ( wallpaperList()[0].endsWith("xml",false) ) {
@@ -583,8 +583,8 @@ diff -p -up kdebase-3.5.9/kcontrol/background/KCrossBGRender.cc.crossfade-efect 
 +}
 +
 +#include "KCrossBGRender.moc"
---- ./kdm/kfrontend/krootimage.h.ORI	2013-05-08 18:54:48.631599139 +0200
-+++ ./kdm/kfrontend/krootimage.h	2013-05-08 18:55:02.365339708 +0200
+--- ./tdm/kfrontend/krootimage.h.ORI	2013-05-08 18:54:48.631599139 +0200
++++ ./tdm/kfrontend/krootimage.h	2013-05-08 18:55:02.365339708 +0200
 @@ -27,6 +27,7 @@
  #include <tqtimer.h>
  
@@ -592,7 +592,7 @@ diff -p -up kdebase-3.5.9/kcontrol/background/KCrossBGRender.cc.crossfade-efect 
 +#include <KCrossBGRender.h>
  
  
- class MyApplication : public KApplication
+ class MyApplication : public TDEApplication
 --- ./kdesktop/bgmanager.cc.ORI	2013-05-08 18:56:29.915684768 +0200
 +++ ./kdesktop/bgmanager.cc	2013-05-08 19:12:04.451954803 +0200
 @@ -16,10 +16,16 @@
@@ -611,7 +611,7 @@ diff -p -up kdebase-3.5.9/kcontrol/background/KCrossBGRender.cc.crossfade-efect 
 +#include <tqdesktopwidget.h>
  
  #include <kiconloader.h>
- #include <kconfig.h>
+ #include <tdeconfig.h>
 @@ -34,6 +40,8 @@
  #include <X11/X.h>
  #include <X11/Xlib.h>
@@ -817,7 +817,7 @@ diff -p -up kdebase-3.5.9/kcontrol/background/KCrossBGRender.cc.crossfade-efect 
 +#include <tqdatetime.h>
  #include <KBackgroundIface.h>
  
- #if defined(Q_WS_X11) && defined(HAVE_XRENDER) && QT_VERSION >= 0x030300
+ #if defined(Q_WS_X11) && defined(HAVE_XRENDER) && TQT_VERSION >= 0x030300
 @@ -89,6 +90,7 @@
      void desktopResized();
      void clearRoot();

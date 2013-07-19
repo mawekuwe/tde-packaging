@@ -1,0 +1,10 @@
+--- trinity-gtk3-tqt-engine-14.0.0~pre82+f0afd14d/tdegtk/Makefile.am.ORI	2013-07-07 15:07:12.912770044 +0200
++++ trinity-gtk3-tqt-engine-14.0.0~pre82+f0afd14d/tdegtk/Makefile.am	2013-07-07 15:11:43.224706604 +0200
+@@ -55,6 +55,6 @@
+ libtqtcairo_la_CFLAGS = $(TDEGTK_CFLAGS) $(CAIRO_CFLAGS) $(GTK3_CFLAGS)
+ libtqtcairo_la_CXXFLAGS = $(TDEGTK_CXXFLAGS) $(TDEGTK_CFLAGS) $(CAIRO_CFLAGS) $(GTK3_CFLAGS)
+ 
+-libtqtcairo_la_LIBADD = $(TDEGTK_LIBADD)
++libtqtcairo_la_LIBADD = $(TDEGTK_LIBADD) $(LIB_QT) $(LIB_TDEUI)
+ 
+ libtqtcairo_la_LDFLAGS = $(TDEGTK_LDFLAGS) $(CAIRO_LIBS) $(GTK3_LIBS)

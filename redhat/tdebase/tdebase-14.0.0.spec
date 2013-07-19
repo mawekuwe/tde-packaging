@@ -71,6 +71,26 @@ Source8:	tdm%{?dist}.pp
 Source9:	mgabutton.svg
 %endif
 
+# Patch party !
+## [tdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
+Patch1:		tdebase-14.0.0-open_terminal_here.patch
+## [tdebase/starttde] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
+Patch2:		tdebase-14.0.0-default_menu_icon.patch
+## [kdebase/kcontrol] Adds FR translation for KCM ICC
+Patch3:		tdebase-14.0.0-displayconfig_translation.patch
+## [kdebase/kcontrol] Adds FR translation for KCM ICC
+Patch4:		tdebase-14.0.0-kickoff_default_favs.patch
+## [kdebase] Changes konsole default word separator
+Patch5:		tdebase-14.0.0-konsole_wordseps.patch
+
+# Patches from Mandriva
+Patch101:	tdebase-14.0.0-vibrate_dialog.patch
+Patch102:	tdebase-14.0.0-kcontrol_menu_entry.patch
+Patch103:	tdebase-14.0.0-kdesktop_crossfade.patch
+Patch104:	tdebase-14.0.0-kickoff_xdg_dirs.patch
+Patch105:	tdebase-14.0.0-suspend_unmount.patch
+Patch106:	tdebase-14.0.0-bookmark_global_copy.patch
+
 
 ### Distribution-specific settings ###
 
@@ -2793,9 +2813,15 @@ TDE will start, but many good defaults will not be set.
 
 %post -n trinity-ksmserver
 /sbin/ldconfig || :
+%if 0%{?mdkversion} || 0%{?mgaversion}
+fndSession
+%endif
 
 %postun -n trinity-ksmserver
 /sbin/ldconfig || :
+%if 0%{?mdkversion} || 0%{?mgaversion}
+fndSession
+%endif
 
 ##########
 
@@ -3191,7 +3217,18 @@ Windows and Samba shares.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .openterminalhere
+%patch2 -p1 -b .startmenuicon
+%patch3 -p1 -b .displayconfigtranslation
+%patch4 -p1 -b .kickoffdefaultsfav
+%patch5 -p1 -b .konsolewordseps
 
+%patch101 -p1 -b .vibrate_dialog
+%patch102 -p1 -b .kcontrol_menu_entry
+%patch103 -p1 -b .kdesktop_crossfade
+%patch104 -p1 -b .kickoff_xdg
+%patch105 -p1 -b .suspend_unmount
+%patch106 -p1 -b .bookmark_global_copy
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -3223,6 +3260,14 @@ Windows and Samba shares.
 %__sed -i "starttde" \
 	-e "s|/opt/trinity|%{tde_prefix}|g" \
 	-e "s|%%{tde_starticon}|%{tde_starticon}|g"
+
+# Xsession script location may vary on some distro
+%if 0%{?rhel} || 0%{?fedora}
+%__sed -i "tdm/kfrontend/gentdmconf.c" -e "s|/etc/X11/Xsession|/etc/X11/xinit/Xsession|"
+%endif
+%if 0%{?suse_version}
+%__sed -i "tdm/kfrontend/gentdmconf.c" -e "s|/etc/X11/Xsession|/etc/X11/xdm/Xsession|"
+%endif
 
 
 %build
@@ -3410,7 +3455,7 @@ EOF
 
 # Mageia icon
 %if 0%{?mgaversion} >= 3
-%__install -D -m 644 %{SOURCE9} %{?buildroot}%{tde_datadir}/oxygen/scalable/mgabutton.svg
+%__install -D -m 644 "%{SOURCE9}" "%{?buildroot}%{tde_datadir}/oxygen/scalable/mgabutton.svg"
 %endif
 
 

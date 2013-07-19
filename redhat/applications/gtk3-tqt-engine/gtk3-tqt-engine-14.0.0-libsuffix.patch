@@ -1,0 +1,11 @@
+--- trinity-gtk3-tqt-engine-14.0.0~pre82+f0afd14d/tdegtk/Makefile.am	2013-07-07 15:16:58.922069997 +0200
++++ trinity-gtk3-tqt-engine-14.0.0~pre82+f0afd14d/tdegtk/Makefile.am.libsuffix	2013-07-07 15:23:35.272293968 +0200
+@@ -36,7 +36,7 @@
+ 	$(srcdir)/tdegtk-baseengine.cpp \
+ 	$(srcdir)/tdegtk-theme.cpp
+ 
+-enginedir = $(GTK3_PREFIX)/lib/gtk-3.0/$(GTK3_VERSION)/theming-engines
++enginedir = $(GTK3_PREFIX)/lib64/gtk-3.0/$(GTK3_VERSION)/theming-engines
+ engine_LTLIBRARIES = libtdegtk.la
+ 
+ libtdegtk_la_SOURCES = $(source_h) $(source_c)

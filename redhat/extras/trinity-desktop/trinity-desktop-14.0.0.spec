@@ -125,6 +125,7 @@ Requires: trinity-kcmldap
 Requires: trinity-kcmldapcontroller
 Requires: trinity-kcmldapmanager
 Requires: trinity-kcpuload
+Requires: trinity-kdbg
 Requires: trinity-kdiff3
 Requires: trinity-kdirstat
 Requires: trinity-keep
@@ -159,8 +160,6 @@ Requires: trinity-potracegui
 Requires: trinity-smb4k
 Requires: trinity-smartcardauth
 Requires: trinity-soundkonverter
-Requires: trinity-tde-guidance
-Requires: trinity-tde-guidance-powermanager
 Requires: trinity-tde-style-lipstik
 Requires: trinity-tde-style-qtcurve
 Requires: trinity-tde-systemsettings
@@ -180,7 +179,7 @@ Requires: trinity-gtk3-tqt-engine
 # Disabled applications for RHEL5
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 # On RHEL 5, HAL version is too old for kpowersave .
-Requires: trinity-kpowersave-nohal
+Requires: trinity-tdekpowersave
 # On RHEL 5, GTK2 version is too old for GTK stuff ...
 Requires: trinity-gtk-qt-engine
 # On RHEL 5, lilypond is not available, so no rosegarden :'-(
@@ -188,6 +187,14 @@ Requires: trinity-rosegarden
 # RHEL5: kpilot library is too old
 Requires: trinity-kpilot
 %endif
+
+# These python stuff have not been ported to TQT3 and still rely on HAL
+#Requires: trinity-tde-guidance
+#Requires: trinity-tde-guidance-powermanager
+Obsoletes: trinity-guidance
+Obsoletes: trinity-guidance-powermanager
+Obsoletes: trinity-tde-guidance
+Obsoletes: trinity-tde-guidance-powermanager
 
 # This one causes several crashes . Obsolete.
 #Requires: trinity-kgtk-qt3
@@ -198,11 +205,13 @@ Obsoletes: trinity-kgtk-qt3
 Obsoletes: trinity-kerry
 
 # RHEL 6 only: knetworkmanager8
-#  knetworkmanager9 is too unstable for now.
 %if 0%{?rhel} == 6
 Requires: trinity-knetworkmanager8
 %endif
-Requires: trinity-knetworkmanager9
+# Other distros: tdenetworkmanager (knetworkmanager9)
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?fedora}
+Requires: trinity-tdenetworkmanager
+%endif
 
 # RHEL 4
 %if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}

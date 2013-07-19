@@ -1,5 +1,5 @@
 # Default version for this component
-%define tde_pkg knetworkmanager9
+%define tde_pkg tdenetworkmanager
 %define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -32,7 +32,8 @@ Summary:		Trinity applet for Network Manager
 
 Group:			Applications/Internet
 License:		GPLv2+
-URL:			http://en.opensuse.org/Projects/KNetworkManager
+#URL:			http://en.opensuse.org/Projects/KNetworkManager
+URL:			http://www.trinitydesktop.org/
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
@@ -43,6 +44,10 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
+
+
+Obsoletes:		trinity-knetworkmanager < %{version}-%{release}
+Provides:		trinity-knetworkmanager = %{version}-%{release}
 
 %if 0%{?rhel} || 0%{?fedora}
 Requires:		NetworkManager-gnome
