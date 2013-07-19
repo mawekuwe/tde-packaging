@@ -52,6 +52,7 @@ BuildRequires: fontconfig-devel
 BuildRequires: gcc-c++
 BuildRequires: libuuid-devel
 BuildRequires: glib2-devel
+BuildRequires: make
 
 # NAS support
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}

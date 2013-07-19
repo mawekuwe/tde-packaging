@@ -30,7 +30,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:  trinity-tqt3-devel >= %{tde_version}
+BuildRequires:  trinity-tqt3-devel >= 3.5.0
 BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tqca-devel >= 1.0
 BuildRequires:	openssl-devel >= 0.9.8
@@ -82,4 +82,3 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-3
 - Initial build for TDE 14.0.0
-

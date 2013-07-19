@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -14,7 +16,7 @@
 
 
 Name:           trinity-libart-lgpl
-Version:        14.0.0
+Version:        2.3.22
 Release:        1%{?dist}%{?_variant}
 
 Summary:        Library of functions for 2D graphics - runtime files
@@ -29,10 +31,10 @@ Packager:		Francois Andriot <francois.andriot@free.fr>
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:  trinity-tqt3-devel >= 3.5.0
-BuildRequires:  trinity-tqtinterface-devel >= 3.5.0
+BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
 
 %description
 A library of functions for 2D graphics supporting a superset of the
@@ -134,7 +136,7 @@ especially suitable for embedded applications.
 ##########
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "ltmain.sh"
@@ -174,5 +176,5 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-1
-- Initial build for TDE 3.5.13.2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.3.22-1
+- Initial build for TDE 14.0.0

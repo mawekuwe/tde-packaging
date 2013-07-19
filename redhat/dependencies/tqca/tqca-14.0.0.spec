@@ -33,7 +33,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:  trinity-tqt3-devel >= %{tde_version}
+BuildRequires:  trinity-tqt3-devel >= 3.5.0
 BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
 
 
