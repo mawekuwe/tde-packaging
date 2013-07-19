@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -31,10 +33,15 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Patch0:		tdelibs-14.0.0-ftbfs.patch
+Patch1:		tdelibs-14.0.0-fix_xdg_menu.patch
+# Fix battery charge detection
+Patch2:		tdelibs-14.0.0-fix_battery_charge.patch
 
 # Patches from Mandriva
-Patch1:		tdelibs-14.0.0-xdg_dirs_set_path.patch
-Patch2:		tdelibs-14.0.0-cups_by_default.patch
+Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
+Patch102:		tdelibs-14.0.0-cups_by_default.patch
+
 
 # Fix battery charge detection
 Patch3:		tdelibs-14.0.0-fix_battery_charge.patch
@@ -50,14 +57,13 @@ Provides:	trinity-kdelibs-apidocs = %{version}-%{release}
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-dbus-1-tqt-devel >= %{version}
-BuildRequires:	trinity-dbus-tqt-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-dbus-1-tqt-devel >= %{tde_version}
+BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
-BuildRequires:	trinity-libart-lgpl-devel
 BuildRequires:	openssl-devel
 BuildRequires:	gcc-c++
 BuildRequires:	alsa-lib-devel
@@ -66,6 +72,9 @@ BuildRequires:	libtiff-devel
 BuildRequires:	glib2-devel
 # LUA support are not ready yet
 #BuildRequires:	lua-devel
+
+# LIBART_LGPL support
+BuildRequires:	trinity-libart-lgpl-devel
 
 # ASPELL support
 BuildRequires:	aspell
@@ -94,6 +103,15 @@ BuildRequires:	pcre-devel
 BuildRequires:	libbz2-devel
 %else
 BuildRequires:	bzip2-devel
+%endif
+
+# UDEV support
+BuildRequires:	libudev-devel
+
+# UDISKS2 support
+BuildRequires:	udisks-devel
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+%define with_udisks2 1
 %endif
 
 # UTEMPTER support
@@ -130,7 +148,7 @@ BuildRequires:	jasper-devel
 # AVAHI support
 %if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_avahi 1
-BuildRequires:	trinity-avahi-tqt-devel >= %{version}
+BuildRequires:	trinity-avahi-tqt-devel >= %{tde_version}
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
 Requires:		%{_lib}avahi-client3
@@ -201,11 +219,14 @@ BuildRequires:	xz-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}nm-util-devel
 %endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	NetworkManager-glib-devel
+%endif
 %endif
 
 Requires:		trinity-tqt3 >= 3.5.0
-Requires:		trinity-tqtinterface >= %{version}
-Requires:		trinity-arts >= %{version}
+Requires:		trinity-tqtinterface >= %{tde_version}
+Requires:		trinity-arts >= %{tde_version}
 
 %description
 Libraries for the Trinity Desktop Environment:
@@ -302,7 +323,8 @@ kimgio (image manipulation).
 %{tde_tdedocdir}/HTML/en/tdespell/
 
 %{_sysconfdir}/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
-%{tde_prefix}/etc/xdg/menus/tde-applications.menu
+%{_sysconfdir}/xdg/menus/tde-applications.menu
+%{_sysconfdir}/xdg/menus/tde-applications.menu-no-kde
 %{_sysconfdir}/ld.so.conf.d/trinity.conf
 %{_datadir}/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service
 
@@ -366,9 +388,12 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .xdg_path
-%patch2 -p1 -b .cups_by_default
-%patch3 -p1 -b .batterycharge
+%patch0 -p1 -b .ftbfs
+%patch1 -p1 -b .xdg
+%patch2 -p1 -b .batterycharge
+
+%patch101 -p1 -b .xdg_path
+%patch102 -p1 -b .cups_by_default
 
 
 %build
@@ -418,7 +443,7 @@ cd build
   %{?!with_gamin:-DWITH_GAMIN=OFF} %{?with_gamin:-DWITH_GAMIN=ON} \
   -DWITH_UPOWER=ON \
   -DWITH_UDISKS=ON \
-  -DWITH_UDISKS2=ON \
+  %{?with_udisks2:-DWITH_UDISKS2=ON} %{?!with_udisks2:-DWITH_UDISKS2=OFF} \
   -DWITH_CONSOLEKIT=ON \
   %{?with_nm:-DWITH_NETWORK_MANAGER_BACKEND=ON} \
   -DWITH_SUDO_TDESU_BACKEND=OFF \
@@ -442,16 +467,6 @@ cat <<EOF >"%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf"
 EOF
 %endif
 
-# Moves the XDG configuration files to TDE directory
-%if "%{tde_prefix}" != "/usr"
-%__install -p -D -m644 \
-  "%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" \
-  "%{?buildroot}%{tde_prefix}/etc/xdg/menus/tde-applications.menu"
-%__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
-%else
-%__mv -f "%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" "%{?buildroot}%{_sysconfdir}/xdg/menus/tde-applications.menu"
-%endif
-
 # Appends TDE version to '.pc' file
 echo "Version: %{version}" >>"%{?buildroot}%{tde_libdir}/pkgconfig/tdelibs.pc"
 
@@ -461,5 +476,5 @@ echo "Version: %{version}" >>"%{?buildroot}%{tde_libdir}/pkgconfig/tdelibs.pc"
 
 
 %changelog
-* Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial build for TDE R14, using 'tqt3' instead of 'qt3'
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial build for TDE 14.0.0

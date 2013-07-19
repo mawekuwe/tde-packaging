@@ -1,0 +1,44 @@
+--- trinity-tdelibs-14.0.0~pre599+bae79307/tdecore/CMakeLists.txt.ftbfs	2013-07-16 15:59:42.000000000 +0200
++++ trinity-tdelibs-14.0.0~pre599+bae79307/tdecore/CMakeLists.txt	2013-07-17 14:39:37.553649801 +0200
+@@ -83,6 +83,7 @@
+   ${TQT_LIBRARY_DIRS}
+   ${LIBIDN_LIBRARY_DIRS}
+   ${GAMIN_LIBDIR}
++  ${LIBART_LIBRARY_DIRS}
+ )
+ 
+ ##### headers ###################################
+--- trinity-tdelibs-14.0.0~pre599+bae79307/pics/CMakeLists.txt.ORI	2013-07-17 14:56:14.633297689 +0200
++++ trinity-tdelibs-14.0.0~pre599+bae79307/pics/CMakeLists.txt	2013-07-17 14:56:25.145239757 +0200
+@@ -28,6 +28,7 @@
+ 
+ link_directories(
+   ${TQT_LIBRARY_DIRS}
++  ${LIBART_LIBRARY_DIRS}
+ )
+ 
+ 
+--- trinity-tdelibs-14.0.0~pre599+bae79307/tdecore/tdehardwaredevices.h.ORI	2013-07-17 14:47:03.918290078 +0200
++++ trinity-tdelibs-14.0.0~pre599+bae79307/tdecore/tdehardwaredevices.h	2013-07-17 14:47:22.080194401 +0200
+@@ -27,7 +27,9 @@
+ #include "tdelibs_export.h"
+ 
+ // udev includes
++extern "C" {
+ #include <libudev.h>
++}
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <locale.h>
+--- trinity-tdelibs-14.0.0~pre599+bae79307/tdecore/tdehardwaredevices.cpp.ORI	2013-07-17 14:47:29.718154173 +0200
++++ trinity-tdelibs-14.0.0~pre599+bae79307/tdecore/tdehardwaredevices.cpp	2013-07-17 14:47:47.204062091 +0200
+@@ -33,7 +33,9 @@
+ #include <tdeapplication.h>
+ #include <dcopclient.h>
+ 
++extern "C" {
+ #include <libudev.h>
++}
+ 
+ #include <fcntl.h>
+ #include <poll.h>

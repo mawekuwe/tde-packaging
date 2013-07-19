@@ -7,10 +7,15 @@ tdm_start_proc() {
 }
 
 tdm_vars() {
-    TDM_BIN=/opt/trinity/bin/kdm
+    if [ -x /opt/trinity/bin/kdm ]; then
+      TDM_BIN=/opt/trinity/bin/kdm
+      export KDEROOTHOME=/root/.tdm
+    else
+      TDM_BIN=/opt/trinity/bin/tdm
+      export TDEROOTHOME=/root/.tdm
+    fi
     case "${DISPLAYMANAGER##*/}" in
        tdm)
-            export KDEROOTHOME=/root/.kdm
             DISPLAYMANAGER=$TDM_BIN
             STARTPROC=tdm_start_proc
             ;;

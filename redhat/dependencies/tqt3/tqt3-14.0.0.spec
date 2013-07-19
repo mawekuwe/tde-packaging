@@ -49,6 +49,16 @@ BuildRequires: cups-devel
 BuildRequires: tar
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
+BuildRequires: gcc-c++
+BuildRequires: libuuid-devel
+BuildRequires: glib2-devel
+BuildRequires: make
+
+# NAS support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%define with_nas 1
+BuildRequires: nas-devel
+%endif
 
 # Xrender support
 %if 0%{?rhel} || 0%{?fedora}
@@ -219,8 +229,8 @@ applications, as well as the README files for TQt 3.
 %{tde_libdir}/tqt3/plugins/inputmethods/libqsimple.so
 %{tde_libdir}/tqt3/plugins/inputmethods/libqxim.so
 %{tde_libdir}/libtqt-mt.so.3
-%{tde_libdir}/libtqt-mt.so.3.3
-%{tde_libdir}/libtqt-mt.so.3.3.8
+%{tde_libdir}/libtqt-mt.so.3.5
+%{tde_libdir}/libtqt-mt.so.3.5.0
 %{tde_libdir}/libtqt-mt.la
 %{tde_libdir}/libtqui.so.1
 %{tde_libdir}/libtqui.so.1.0
@@ -238,7 +248,7 @@ applications, as well as the README files for TQt 3.
 ##########
 
 %package config
-Summary: Graphical configuration tool for programs using Qt 3
+Summary: Graphical configuration tool for programs using TQt 3
 Group: User Interface/Desktops
 Requires: %{name} = %{version}-%{release}
 
@@ -258,7 +268,7 @@ This package contains a graphical configuration tool for programs using TQt 3.
 ##########
 
 %package devel
-Summary: Development files for the Qt 3 GUI toolkit
+Summary: Development files for the TQt 3 GUI toolkit
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
@@ -387,7 +397,7 @@ sqlite driver for TQt 3's SQL classes (QSQL)
 
 ##########
 
-%if %{?with_ibase}
+%if 0%{?with_ibase}
 %package ibase
 Summary: ibase drivers for TQt 3's SQL classes
 Group: System Environment/Libraries
@@ -404,7 +414,7 @@ ibase driver for TQt 3's SQL classes (QSQL)
 ##########
 
 %package designer
-Summary: In3erface designer (IDE) for the Qt 3 toolkit
+Summary: In3erface designer (IDE) for the TQt 3 toolkit
 Group: Development/Tools
 Requires: %{name}-devel = %{version}-%{release}
 
@@ -435,13 +445,13 @@ export LD_LIBRARY_PATH=${QTDIR}/lib:$LD_LIBRARY_PATH
 # Checks for supplementary include dir
 INCDIRS=""
 for d in \
-	/usr/include/fontconfig \
-	/usr/include/pgsql/server \
-	/usr/include/postgresql/server \
-	/usr/include/Xft2 \
-	/usr/include/Xft2/X11/Xft \
-	/usr/include/mysql \
-	/usr/include/libpng15 \
+	%{_includedir}/fontconfig \
+	%{_includedir}/pgsql/server \
+	%{_includedir}/postgresql/server \
+	%{_includedir}/Xft2 \
+	%{_includedir}/Xft2/X11/Xft \
+	%{_includedir}/mysql \
+	%{_includedir}/libpng15 \
 ; do
 	if [ -d "${d}" ]; then
 		INCDIRS="${INCDIRS} -I${d}"
@@ -503,7 +513,7 @@ echo yes | ./configure \
 		-system-libpng			\
 		-system-libmng			\
 		-system-libjpeg			\
-		-system-nas-sound		\
+		%{?with_nas:-system-nas-sound} %{?!with_nas:-no-nas-sound}		\
 						\
 		-enable-opengl			\
 		-dlopen-opengl			\
@@ -544,7 +554,7 @@ ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
 
 # fix QTDIR in 'qmake.conf'
 %__sed -i mkspecs/*/qmake.conf \
-  -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= \$(QTDIR)/include/tqt3|" \
+  -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= /usr/include/tqt3|" \
   -e "s|\$(QTDIR)|/usr|g" \
   -e "s|-lqt|-ltqt|g"
 
@@ -574,5 +584,5 @@ export PATH=${QTDIR}/stripbin:${QTDIR}/bin:$PATH
 
 
 %changelog
-* Mon Feb 13 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.0-1
 - Initial build for TDE R14.0.0
