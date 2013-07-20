@@ -24,7 +24,7 @@
   </refmeta>
   <refnamediv>
     <refname>keep</refname>
-    <refpurpose>backup system for KDE</refpurpose>
+    <refpurpose>backup system for TDE</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -33,14 +33,14 @@
         <option><replaceable>Qt-options</replaceable></option>
       </arg>
       <arg choice="opt">
-        <option><replaceable>KDE-options</replaceable></option>
+        <option><replaceable>TDE-options</replaceable></option>
       </arg>
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
     <title>DESCRIPTION</title>
     <para>
-      backup system for KDE.
+      backup system for TDE.
     </para>
     <para>
       The behavior is quite simple: you choose the files you want to backup, you set up the frequency and the number of backup you want to have, and Keep will backup them automatically.
@@ -49,7 +49,7 @@
   <refsect1>
     <title>OPTIONS</title>
     <para>
-      All <productname>KDE</productname> and <productname>Qt</productname>
+      All <productname>TDE</productname> and <productname>Qt</productname>
       programs accept a some common command-line options. keep has no
       application-specific options.
     </para>
@@ -65,8 +65,8 @@
           <listitem> <para>Show Qt specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
-          <term> <option>--help-kde</option> </term>
-          <listitem> <para>Show KDE specific options</para> </listitem>
+          <term> <option>--help-tde</option> </term>
+          <listitem> <para>Show TDE specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
           <term> <option>--help-all</option> </term>
