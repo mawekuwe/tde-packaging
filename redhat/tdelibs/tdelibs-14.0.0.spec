@@ -33,7 +33,9 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+# Fix FTBFS
 Patch0:		tdelibs-14.0.0-ftbfs.patch
+# Fix categories in T-menu
 Patch1:		tdelibs-14.0.0-fix_xdg_menu.patch
 # Fix battery charge detection
 Patch2:		tdelibs-14.0.0-fix_battery_charge.patch
@@ -42,9 +44,6 @@ Patch2:		tdelibs-14.0.0-fix_battery_charge.patch
 Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
 Patch102:		tdelibs-14.0.0-cups_by_default.patch
 
-
-# Fix battery charge detection
-Patch3:		tdelibs-14.0.0-fix_battery_charge.patch
 
 Obsoletes:	tdelibs < %{version}-%{release}
 Provides:	tdelibs = %{version}-%{release}
@@ -108,10 +107,15 @@ BuildRequires:	bzip2-devel
 # UDEV support
 BuildRequires:	libudev-devel
 
-# UDISKS2 support
+# UDISKS support
+Requires:		udisks
 BuildRequires:	udisks-devel
-%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+
+# UDISKS2 support
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 %define with_udisks2 1
+Requires:		udisks2
+BuildRequires:	udisks2-devel
 %endif
 
 # UTEMPTER support

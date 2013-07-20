@@ -17,7 +17,7 @@
 
 Name:           trinity-libart-lgpl
 Version:        2.3.22
-Release:        1%{?dist}%{?_variant}
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 Summary:        Library of functions for 2D graphics - runtime files
 
@@ -144,7 +144,7 @@ autoreconf -fiv
 
 
 %build
-unset QTDIR
+unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"

@@ -139,17 +139,17 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{tde_bindir}/kpowersave
-%{tde_libdir}/libtdeinit_kpowersave.la
-%{tde_libdir}/libtdeinit_kpowersave.so
-%{tde_tdelibdir}/kpowersave.la
-%{tde_tdelibdir}/kpowersave.so
-%{tde_tdeappdir}/kpowersave.desktop
-%{tde_datadir}/apps/kpowersave/eventsrc
-%{tde_datadir}/apps/kpowersave/icons/*/*/*/*.png
+%{tde_bindir}/tdepowersave
+%{tde_libdir}/libtdeinit_tdepowersave.la
+%{tde_libdir}/libtdeinit_tdepowersave.so
+%{tde_tdelibdir}/tdepowersave.la
+%{tde_tdelibdir}/tdepowersave.so
+%{tde_tdeappdir}/tdepowersave.desktop
+%{tde_datadir}/apps/tdepowersave/eventsrc
+%{tde_datadir}/apps/tdepowersave/icons/*/*/*/*.png
 %{tde_datadir}/icons/hicolor/*/*/*.png
-%{tde_datadir}/autostart/kpowersave-autostart.desktop
-%{tde_datadir}/config/kpowersaverc
+%{tde_datadir}/autostart/tdepowersave-autostart.desktop
+%{tde_datadir}/config/tdepowersaverc
 
 
 %changelog
