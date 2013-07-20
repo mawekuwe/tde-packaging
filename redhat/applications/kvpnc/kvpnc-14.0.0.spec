@@ -41,6 +41,8 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:			kvpnc-14.0.0-fix_install.patch
+
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
@@ -65,6 +67,7 @@ It supports :
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .installdir
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -119,7 +122,7 @@ update-desktop-database %{tde_appdir} -q &> /dev/null ||:
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README TODO
 %{tde_bindir}/kvpnc
-%{tde_datadir}/applnk/kvpnc.desktop
+%{tde_tdeappdir}/kvpnc.desktop
 %{tde_datadir}/apps/kvpnc/
 %lang(de) %{tde_datadir}/doc/tde/HTML/de/kvpnc/
 %lang(en) %{tde_datadir}/doc/tde/HTML/en/kvpnc/
