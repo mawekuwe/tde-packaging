@@ -30,11 +30,12 @@ debian/stamp-bootstrap:
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-install/k9copy::
-	dh_install src/k9copy.desktop opt/trinity/share/applications/tde
-	dh_link usr/share/doc/tde/HTML/en/k9copy usr/share/doc/k9copy/html
+install/k9copy-trinity::
+	dh_installman k9copy.1
+	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
+	dh_link opt/trinity/share/doc/tde/HTML/en/k9copy usr/share/doc/$(cdbs_curpkg)/html
 
-build/k9copy::
+build/k9copy-trinity::
 	docbook2x-man debian/k9copy.1.docbook
 
 clean::
