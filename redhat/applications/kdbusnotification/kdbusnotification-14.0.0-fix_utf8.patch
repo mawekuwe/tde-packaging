@@ -1,0 +1,15 @@
+--- trinity-kdbusnotification-14.0.0~pre89+e169a4e3/src/daemon/daemon.cpp.ORI	2013-07-20 11:16:18.010011618 +0200
++++ trinity-kdbusnotification-14.0.0~pre89+e169a4e3/src/daemon/daemon.cpp	2013-07-20 11:27:19.135889426 +0200
+@@ -231,9 +231,10 @@
+ 	}
+ 
+ 	// Send a notification request to KDE here...
+-	TQString messageText = TQString(body);
++	TQString messageCaption = TQString::fromLocal8Bit(summary);
++	TQString messageText = TQString::fromLocal8Bit(body);
+ 
+-	GTKNotifierContainer->displayMessage(TQString(summary), TQString(body), TQString(icon), x, y);
++	GTKNotifierContainer->displayMessage(messageCaption, messageText, TQString(icon), x, y);
+ 
+ 	return_id = 0;
+ 
