@@ -1,8 +1,8 @@
 ?package(tdevelop):\
         needs="X11"\
         section="Applications/Programming"\
-        hints="KDE,Development"\
+        hints="TDE,Development"\
         title="KDevelop"\
         longtitle="KDevelop (Development Environment)"\
-        icon="/usr/share/pixmaps/tdevelop.xpm"\
+        icon="/opt/trinity/share/pixmaps/tdevelop.xpm"\
         command="/opt/trinity/bin/tdevelop"

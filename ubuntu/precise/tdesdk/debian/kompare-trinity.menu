@@ -4,6 +4,6 @@
         hints="TDE"\
         title="Kompare"\
         longtitle="Kompare (Diff/Patch Frontend)"\
-        icon="/usr/share/pixmaps/kompare.xpm"\
+        icon="/opt/trinity/share/pixmaps/kompare.xpm"\
         command="/opt/trinity/bin/kompare"
 

@@ -16,7 +16,7 @@
 	needs="X11"\
 	section="Applications/Network/Communication"\
 	hints="TDE"\
-	title="KDE Groupware Wizard"\
+	title="TDE Groupware Wizard"\
 	command="/opt/trinity/bin/groupwarewizard"
 
 ?package(tdepim-wizards):\

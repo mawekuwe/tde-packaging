@@ -3,7 +3,7 @@
 	section="Games/Board"\
 	hints="TDE"\
 	title="KWin4"\
-	icon32x32="/usr/share/pixmaps/twin4.xpm"\
-	icon16x16="/usr/share/pixmaps/twin4-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/twin4.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/twin4-16.xpm"\
 	command="/opt/trinity/games/twin4"
 

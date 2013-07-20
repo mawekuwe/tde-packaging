@@ -1,10 +1,10 @@
 ?package(kpovmodeler):\
 	needs="X11"\
 	section="Applications/Graphics"\
-	hints="KDE,Modeler"\
+	hints="TDE,Modeler"\
 	title="KPovModeler"\
-	icon32x32="/usr/share/pixmaps/kpovmodeler.xpm"\
-	icon16x16="/usr/share/pixmaps/kpovmodeler-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kpovmodeler.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kpovmodeler-16.xpm"\
 	command="/opt/trinity/bin/kpovmodeler"
 
 # Icon 32x32 kpovmodeler/cr32-app-kpovmodeler.png kpovmodeler.xpm

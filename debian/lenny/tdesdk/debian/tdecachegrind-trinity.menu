@@ -4,6 +4,6 @@
   hints="TDE"\
   title="KCachegrind"\
   longtitle="KCachegrind (Profiler Frontend)"\
-  icon="/usr/share/pixmaps/tdecachegrind.xpm"\
+  icon="/opt/trinity/share/pixmaps/tdecachegrind.xpm"\
   command="/opt/trinity/bin/tdecachegrind"
 

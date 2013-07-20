@@ -3,4 +3,4 @@
   hints="TDE" \
   title="KTechLab" \
   command="/opt/trinity/bin/ktechlab" \
-  icon="/usr/share/pixmaps/ktechlab.xpm"
+  icon="/opt/trinity/share/pixmaps/ktechlab.xpm"

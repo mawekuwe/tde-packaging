@@ -3,6 +3,6 @@
 	section="Applications/Data Management"\
 	hints="TDE"\
 	title="KAddressbook"\
-	icon32x32="/usr/share/pixmaps/kaddressbook.xpm"\
-	icon16x16="/usr/share/pixmaps/kaddressbook-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kaddressbook.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kaddressbook-16.xpm"\
 	command="/opt/trinity/bin/kaddressbook"

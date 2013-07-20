@@ -2,7 +2,7 @@
 	needs="X11"\
 	section="Applications/System/Monitoring"\
 	hints="TDE"\
-	title="KDE System Guard"\
+	title="TDE System Guard"\
 	icon32x32="/opt/trinity/share/pixmaps/ksysguard.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/ksysguard-16.xpm"\
 	command="/opt/trinity/bin/ksysguard"
@@ -11,7 +11,7 @@
 	needs="X11"\
 	section="Applications/System/Monitoring"\
 	hints="TDE"\
-	title="KDE System Guard - Process Table"\
+	title="TDE System Guard - Process Table"\
 	command="/opt/trinity/bin/kpm"
 
 # Icon 32x32 ksysguard/cr32-app-ksysguard.png ksysguard.xpm

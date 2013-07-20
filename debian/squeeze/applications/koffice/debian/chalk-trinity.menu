@@ -1,7 +1,7 @@
 ?package(chalk):\
 	needs="x11"\
 	section="Applications/Graphics"\
-	hints="KDE,Bitmap"\
+	hints="TDE,Bitmap"\
 	title="Chalk"\
 	longtitle="Chalk (Image Manipulation)"\
 	icon="/opt/trinity/share/pixmaps/chalk.xpm"\

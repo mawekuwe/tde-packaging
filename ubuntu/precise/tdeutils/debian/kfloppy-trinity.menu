@@ -3,8 +3,8 @@
 	section="Apps/System"\
 	hints="TDE"\
 	title="KFloppy"\
-	icon32x32="/usr/share/pixmaps/kfloppy.xpm"\
-	icon16x16="/usr/share/pixmaps/kfloppy-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kfloppy.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kfloppy-16.xpm"\
 	command="/opt/trinity/bin/kfloppy"
 
 # Icon 32x32 kfloppy/cr32-app-kfloppy.png kfloppy.xpm

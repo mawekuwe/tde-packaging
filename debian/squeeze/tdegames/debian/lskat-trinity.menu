@@ -2,8 +2,8 @@
 	needs="x11"\
 	section="Games/Card"\
 	hints="TDE"\
-	title="KDE Lieutnant Skat"\
-	icon32x32="/usr/share/pixmaps/lskat.xpm"\
-	icon16x16="/usr/share/pixmaps/lskat-16.xpm"\
+	title="TDE Lieutnant Skat"\
+	icon32x32="/opt/trinity/share/pixmaps/lskat.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/lskat-16.xpm"\
 	command="/opt/trinity/games/lskat"
 

@@ -3,4 +3,4 @@
  title="AbaKus"\
  command="/opt/trinity/bin/abakus"\
  hints="TDE"\
- icon="/usr/share/pixmaps/abakus.xpm"
+ icon="/opt/trinity/share/pixmaps/abakus.xpm"

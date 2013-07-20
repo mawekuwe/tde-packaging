@@ -1,10 +1,10 @@
 ?package(kcalc):\
 	needs="X11"\
 	section="Apps/Math"\
-	hints="KDE,Calculators"\
+	hints="TDE,Calculators"\
 	title="KCalc"\
-	icon32x32="/usr/share/pixmaps/kcalc.xpm"\
-	icon16x16="/usr/share/pixmaps/kcalc-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kcalc.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kcalc-16.xpm"\
 	command="/opt/trinity/bin/kcalc"
 
 # Icon 32x32 kcalc/cr32-app-kcalc.png kcalc.xpm

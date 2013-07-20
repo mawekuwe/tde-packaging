@@ -3,4 +3,4 @@
   hints="TDE"\
   title="KNetLoad"\
   command="/opt/trinity/bin/knetload"\
-  icon="/usr/share/pixmaps/knetload.xpm"
+  icon="/opt/trinity/share/pixmaps/knetload.xpm"
