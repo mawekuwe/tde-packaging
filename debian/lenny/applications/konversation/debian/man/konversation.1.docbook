@@ -25,7 +25,7 @@
   </refmeta>
   <refnamediv>
     <refname>konversation</refname>
-    <refpurpose>user friendly IRC client for KDE</refpurpose>
+    <refpurpose>user friendly IRC client for TDE</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -34,7 +34,7 @@
         <option><replaceable>Qt-options</replaceable></option>
       </arg>
       <arg choice="opt">
-        <option><replaceable>KDE-options</replaceable></option>
+        <option><replaceable>TDE-options</replaceable></option>
       </arg>
       <arg choice="opt">
         <option><replaceable>options</replaceable></option>
@@ -57,7 +57,7 @@
   <refsect1>
     <title>OPTIONS</title>
     <para>
-      All <productname>KDE</productname> and <productname>Qt</productname>
+      All <productname>TDE</productname> and <productname>Qt</productname>
       programs accept a some common command-line options.
     </para>
     <para>
@@ -72,8 +72,8 @@
           <listitem> <para>Show Qt specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
-          <term> <option>--help-kde</option> </term>
-          <listitem> <para>Show KDE specific options</para> </listitem>
+          <term> <option>--help-tde</option> </term>
+          <listitem> <para>Show TDE specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
           <term> <option>--help-all</option> </term>
@@ -138,9 +138,9 @@
   <refsect1>
     <title>SCRIPTING</title>
     <para>Konversation looks for scripts in <filename
-        class="directory">/usr/share/apps/konversation/scripts</filename> and
+        class="directory">/opt/trinity/share/apps/konversation/scripts</filename> and
       in <filename
-        class="directory">~/.kde/share/apps/konversation/scripts</filename>.
+        class="directory">~/.trinity/share/apps/konversation/scripts</filename>.
       To execute a script, use the <command>exec</command> command:</para>
     <cmdsynopsis>
       <command>/exec</command> 
@@ -157,19 +157,19 @@
     <para>
       <variablelist>
         <varlistentry>
-          <term><filename>~/.kde/share/config/konversationrc</filename></term>
+          <term><filename>~/.trinity/share/config/konversationrc</filename></term>
           <listitem><para>Main configuration</para></listitem>
         </varlistentry>
         <varlistentry>
           <term>
-            <filename>~/.kde/share/config/konversation.eventsrc</filename>
+            <filename>~/.trinity/share/config/konversation.eventsrc</filename>
           </term>
           <listitem><para>Notification settings</para></listitem>
         </varlistentry>
         <varlistentry>
           <term>
             <filename
-              class="directory">~/.kde/share/apps/konversation/logs</filename>
+              class="directory">~/.trinity/share/apps/konversation/logs</filename>
           </term>
           <listitem><para>Directory containing channel log
               files</para></listitem>
