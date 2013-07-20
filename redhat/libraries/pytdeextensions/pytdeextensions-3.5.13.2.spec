@@ -220,7 +220,7 @@ done
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
+* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0-4
 - Initial release for TDE 3.5.13.2
 
 * Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.0-3

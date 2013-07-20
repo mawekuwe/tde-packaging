@@ -27,7 +27,7 @@
 Name:		trinity-pytdeextensions
 Summary:	Python packages to support TDE applications (scripts) [Trinity]
 Version:	0.4.0
-Release:	%{?!preversion:5}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -166,6 +166,7 @@ done
 # Fix permissions on include files
 %__chmod 644 %{?buildroot}%{tde_tdeincludedir}/*.h
 
+
 %clean
 %__rm -rf %{buildroot}
 
@@ -202,7 +203,10 @@ done
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0-5
+- Initial build for TDE 14.0.0
+
+* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0-4
 - Initial release for TDE 3.5.13.2
 
 * Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.0-3
