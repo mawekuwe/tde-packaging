@@ -1,2 +1,2 @@
 # this is not a script but a template, so it should not be executable
-umbrello: script-not-executable ./usr/share/apps/umbrello/headings/heading.py
+umbrello-trinity: script-not-executable ./opt/trinity/share/apps/umbrello/headings/heading.py

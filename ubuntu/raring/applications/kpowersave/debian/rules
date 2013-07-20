@@ -30,8 +30,8 @@ debian/stamp-bootstrap:
 	touch debian/stamp-bootstrap
 
 install/kpowersave-trinity::
-	install -p -D -m644 debian/kpowersave-trinity.lintian debian/kpowersave/opt/trinity/share/lintian/overrides/kpowersave
-	install -p -D -m644 debian/kpowersave-trinity.linda debian/kpowersave/opt/trinity/share/linda/overrides/kpowersave
+	install -p -D -m644 debian/$(cdbs_curpkg).lintian debian/kpowersave/usr/share/lintian/overrides/$(cdbs_curpkg)
+	install -p -D -m644 debian/$(cdbs_curpkg).linda debian/kpowersave/usr/share/linda/overrides/$(cdbs_curpkg)
 
 binary-install/kpowersave-trinity::
 	mv debian/kpowersave-trinity/usr/share/man debian/kpowersave-trinity/opt/trinity/share/

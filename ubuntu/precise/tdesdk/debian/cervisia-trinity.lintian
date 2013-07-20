@@ -1,9 +1,9 @@
 # tdeconf_update scripts don't need to be executable.
-cervisia: script-not-executable ./usr/share/apps/tdeconf_update/change_colors.pl
-cervisia: script-not-executable ./usr/share/apps/tdeconf_update/move_repositories.pl
+cervisia-trinity: script-not-executable ./opt/trinity/share/apps/tdeconf_update/change_colors.pl
+cervisia-trinity: script-not-executable ./opt/trinity/share/apps/tdeconf_update/move_repositories.pl
 
 # This is from tdeinit black magic.
-cervisia: no-shlibs-control-file opt/trinity/lib/libtdeinit_cervisia.so
-cervisia: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_cervisia.so
-cervisia: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_cervisia.so
-cervisia: package-name-doesnt-match-sonames libtdeinit-cervisia
+cervisia-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_cervisia.so
+cervisia-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_cervisia.so
+cervisia-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_cervisia.so
+cervisia-trinity: package-name-doesnt-match-sonames libtdeinit-cervisia

@@ -1,4 +1,4 @@
-tdeprint: no-shlibs-control-file usr/lib/libtdeinit_kjobviewer.so
-tdeprint: no-shlibs-control-file usr/lib/libtdeinit_kprinter.so
-tdeprint: postinst-must-call-ldconfig usr/lib/libtdeinit_kjobviewer.so
-tdeprint: postrm-should-call-ldconfig usr/lib/libtdeinit_kjobviewer.so
+tdeprint-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kjobviewer.so
+tdeprint-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kprinter.so
+tdeprint-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kjobviewer.so
+tdeprint-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kjobviewer.so

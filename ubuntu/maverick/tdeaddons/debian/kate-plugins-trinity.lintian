@@ -1,2 +1,2 @@
 # Doesn't need to be executable - only run from within kate.
-kate-plugins: script-not-executable ./usr/share/apps/kate/scripts/html-tidy.sh
+kate-plugins-trinity: script-not-executable ./opt/trinity/share/apps/kate/scripts/html-tidy.sh

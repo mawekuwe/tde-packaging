@@ -1,4 +1,4 @@
-kformula: no-shlibs-control-file usr/lib/libtdeinit_kformula.so
-kformula: postinst-must-call-ldconfig usr/lib/libtdeinit_kformula.so
-kformula: postrm-should-call-ldconfig usr/lib/libtdeinit_kformula.so
-kformula: package-name-doesnt-match-sonames libtdeinit-kformula
+kformula-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kformula.so
+kformula-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kformula.so
+kformula-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kformula.so
+kformula-trinity: package-name-doesnt-match-sonames libtdeinit-kformula
