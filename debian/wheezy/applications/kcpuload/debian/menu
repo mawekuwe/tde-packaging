@@ -4,4 +4,4 @@
   kderemove="1"\
   title="KCPULoad"\
   command="/opt/trinity/bin/kcpuload"\
-  icon="/usr/share/pixmaps/kcpuload.xpm"
+  icon="/opt/trinity/share/pixmaps/kcpuload.xpm"

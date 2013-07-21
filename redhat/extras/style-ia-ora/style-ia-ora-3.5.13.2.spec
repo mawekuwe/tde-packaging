@@ -119,7 +119,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.8-2
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Fri Aug 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.8-1
 - Initial version for TDE 3.5.13

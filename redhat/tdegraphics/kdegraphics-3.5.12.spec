@@ -365,5 +365,5 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 - Correct macro to install under "/opt", if desired
 
 * Thu Jun 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-0
-- Initial build for RHEL 6.0
+- Initial release for RHEL 6.0
 - SPEC file taken from Fedora 8 "kdegraphics 7:3.5.10-1"

@@ -499,4 +499,4 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %Changelog
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial build for TDE 3.5.13.2
+- Initial release for TDE 3.5.13.2

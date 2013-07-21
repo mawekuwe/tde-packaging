@@ -4,4 +4,4 @@
 	hints="TDE"\
 	title="Kaffeine"\
 	command="/opt/trinity/bin/kaffeine"\
-	icon="/usr/share/pixmaps/kaffeine.xpm"
+	icon="/opt/trinity/share/pixmaps/kaffeine.xpm"

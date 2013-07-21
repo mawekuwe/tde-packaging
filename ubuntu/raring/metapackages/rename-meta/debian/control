@@ -102,12 +102,6 @@ Depends: tdeprint-trinity
 Conflicts: kdeprint-trinity (< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
-Package: kdesktop-trinity
-Architecture: all
-Depends: tdesktop-trinity
-Conflicts: kdesktop-trinity (< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
 Package: kwin-trinity
 Architecture: all
 Depends: twin-trinity
@@ -514,12 +508,6 @@ Package: kdeaddons-trinity-doc-html
 Architecture: all
 Depends: tdeaddons-trinity-doc-html
 Conflicts: kdeaddons-trinity-doc-html (< 4:13.9.9)
-Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
-
-Package: atlantikdesigner-trinity
-Architecture: all
-Depends: atlantitdesigner-trinity
-Conflicts: atlantikdesigner-trinity (< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
 Package: kdeaddons-kfile-plugins-trinity

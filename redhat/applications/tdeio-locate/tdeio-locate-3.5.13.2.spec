@@ -136,7 +136,7 @@ export PATH="%{tde_bindir}:${PATH}"
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.5-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.5-2
 - Rebuilt for Fedora 17
@@ -144,5 +144,5 @@ export PATH="%{tde_bindir}:${PATH}"
 - Fix compilation with GCC 4.7
 
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.5-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 

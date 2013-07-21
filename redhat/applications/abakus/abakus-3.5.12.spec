@@ -89,5 +89,5 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %changelog
 * Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.91-1
-- Initial build for RHEL 6 and Fedora 15
+- Initial release for RHEL 6 and Fedora 15
 - Import to GIT

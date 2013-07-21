@@ -377,5 +377,5 @@ done
 - Add konqueror sidebar
 
 * Wed Nov 09 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.10-1
-- Initial build for TDE 3.5.13 on RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for TDE 3.5.13 on RHEL 5, RHEL 6, Fedora 15, Fedora 16
 - Spec file based on Fedora 8 'amarok-1.4.10-1'

@@ -1,2 +1,2 @@
 # This does not include a separate library package.
-kbabel: package-name-doesnt-match-sonames libkbabelcommon3 libkbabeldictplugin1
+kbabel-trinity: package-name-doesnt-match-sonames libkbabelcommon3 libkbabeldictplugin1

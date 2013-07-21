@@ -1,5 +1,5 @@
-kthesaurus: no-shlibs-control-file usr/lib/libtdeinit_kthesaurus.so
-kthesaurus: postinst-must-call-ldconfig usr/lib/libtdeinit_kthesaurus.so
-kthesaurus: postrm-should-call-ldconfig usr/lib/libtdeinit_kthesaurus.so
-kthesaurus: package-name-doesnt-match-sonames libtdeinit-kthesaurus
+kthesaurus-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kthesaurus.so
+kthesaurus-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kthesaurus.so
+kthesaurus-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kthesaurus.so
+kthesaurus-trinity: package-name-doesnt-match-sonames libtdeinit-kthesaurus
 

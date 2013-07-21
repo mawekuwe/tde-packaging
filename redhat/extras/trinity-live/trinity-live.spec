@@ -76,7 +76,7 @@ EOF
 
 %changelog
 * Sun Oct 07 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Wed Jul 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
 - Updates with new split packages
@@ -91,4 +91,4 @@ EOF
 - Add more applications
 
 * Wed Nov 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial build
+- Initial release

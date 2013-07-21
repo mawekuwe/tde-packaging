@@ -201,4 +201,4 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Change default configuration to use external geoip database when found and use internal database only when external database is not found. [Bug #443] [Commit #355c6b69]
 
 * Tue Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 2.2.6-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

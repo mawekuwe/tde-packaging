@@ -4,6 +4,6 @@
   hints="TDE"\
   title="Umbrello"\
   longtitle="Umbrello (UML Modeller)"\
-  icon="/usr/share/pixmaps/umbrello.xpm"\
+  icon="/opt/trinity/share/pixmaps/umbrello.xpm"\
   command="/opt/trinity/bin/umbrello"
 

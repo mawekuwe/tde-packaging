@@ -3,8 +3,8 @@
 	section="Applications/Graphics"\
 	hints="TDE"\
 	title="KColorChooser"\
-	icon32x32="/usr/share/pixmaps/kcolorchooser.xpm"\
-	icon16x16="/usr/share/pixmaps/kcolorchooser-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kcolorchooser.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kcolorchooser-16.xpm"\
 	command="/opt/trinity/bin/kcolorchooser"
 
 ?package(kcoloredit):\
@@ -12,8 +12,8 @@
 	section="Applications/Graphics"\
 	hints="TDE"\
 	title="KColorEdit"\
-	icon32x32="/usr/share/pixmaps/kcoloredit.xpm"\
-	icon16x16="/usr/share/pixmaps/kcoloredit-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kcoloredit.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kcoloredit-16.xpm"\
 	command="/opt/trinity/bin/kcoloredit"
 
 # Icon 22x22 kcoloredit/cr22-app-kcolorchooser.png kcolorchooser.xpm

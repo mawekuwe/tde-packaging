@@ -4,6 +4,6 @@
   hints="TDE"\
   title="KUIViewer"\
   longtitle="KUIViewer (Qt Designer UI File Viewer)"\
-  icon="/usr/share/pixmaps/kuiviewer.xpm"\
+  icon="/opt/trinity/share/pixmaps/kuiviewer.xpm"\
   command="/opt/trinity/bin/kuiviewer"
 

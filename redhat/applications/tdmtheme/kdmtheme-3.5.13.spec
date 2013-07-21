@@ -118,4 +118,4 @@ update-desktop-database %{tde_appdir} &> /dev/null
 - Removes the 'lintian' stuff from Debian
 
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.2-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

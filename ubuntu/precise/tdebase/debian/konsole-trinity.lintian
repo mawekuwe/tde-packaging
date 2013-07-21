@@ -1,3 +1,3 @@
-konsole: no-shlibs-control-file usr/lib/libtdeinit_konsole.so
-konsole: postinst-must-call-ldconfig usr/lib/libtdeinit_konsole.so
-konsole: postrm-should-call-ldconfig usr/lib/libtdeinit_konsole.so
+konsole-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_konsole.so
+konsole-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_konsole.so
+konsole-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_konsole.so

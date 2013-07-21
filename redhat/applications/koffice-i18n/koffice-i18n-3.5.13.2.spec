@@ -1082,8 +1082,8 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-2
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sun Jul 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-1
-- Initial build for TDE 3.5.13
+- Initial release for TDE 3.5.13
 

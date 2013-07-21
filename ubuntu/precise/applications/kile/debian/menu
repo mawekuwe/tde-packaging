@@ -4,4 +4,4 @@
   title="Kile" \
   longtitle="Kile (LaTeX development environment)" \
   command="/opt/trinity/bin/kile" \
-  icon="/usr/share/pixmaps/kile.xpm"
+  icon="/opt/trinity/share/pixmaps/kile.xpm"

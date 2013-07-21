@@ -223,6 +223,6 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 - Add support for RHEL5
 
 * Thu Sep 15 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
-- Initial build for RHEL 6 / Fedora 15
+- Initial release for RHEL 6 / Fedora 15
 - Use Spec file from Fedora8 "kdewebdev-3.5.10-1"
 - Import to GIT

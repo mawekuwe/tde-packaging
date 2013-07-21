@@ -172,7 +172,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.2-6
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.2-5
 - Add alternatives with 'kio-umountwrapper'
@@ -191,6 +191,6 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Correct macro to install under "/opt", if desired
 
 * Thu Jun 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.2-0
-- Initial build for RHEL 6.0
+- Initial release for RHEL 6.0
 - Based on FC7 'Dolphin 0.8.2-2" SPEC file.
 

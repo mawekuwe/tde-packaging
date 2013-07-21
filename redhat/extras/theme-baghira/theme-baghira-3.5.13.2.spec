@@ -174,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 - Initial release for TDE 3.5.13.2
 
 * Tue Nov 20 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.1
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Tue Jan 8 2008 Javier Rodas <jrodas@zarb.org> 0.8-2plf2008.1
 - KDE 3.5.8 version in Mandriva 2008.1

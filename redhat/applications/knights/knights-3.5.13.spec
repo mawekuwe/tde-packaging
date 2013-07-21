@@ -134,4 +134,4 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Fix HTML directory location
 
 * Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.6-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

@@ -19,6 +19,6 @@ DEB_INSTALL_DOCS_ALL := AUTHORS NEWS
 
 DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF"
 
-install/kpowersave::
-	install -p -D -m644 debian/kpowersave-trinity.lintian debian/kpowersave/opt/trinity/share/lintian/overrides/kpowersave
-	install -p -D -m644 debian/kpowersave-trinity.linda debian/kpowersave/opt/trinity/share/linda/overrides/kpowersave
+install/kpowersave-trinity::
+	install -p -D -m644 debian/$(cdbs_curpkg).lintian debian/$(cdbs_curpkg)/usr/share/lintian/overrides/$(cdbs_curpkg)
+	install -p -D -m644 debian/$(cdbs_curpkg).linda debian/$(cdbs_curpkg)/usr/share/linda/overrides/$(cdbs_curpkg)

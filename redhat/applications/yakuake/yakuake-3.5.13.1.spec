@@ -118,7 +118,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.8.1-4
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 2.8.1-3
 - Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
@@ -130,5 +130,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Correct macro to install under "/opt", if desired
 
 * Sun Aug 14 2011 Francois Andriot <francois.andriot@free.fr> - 2.8.1-0
-- Initial build for RHEL 6.0
+- Initial release for RHEL 6.0
 

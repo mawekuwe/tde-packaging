@@ -38,7 +38,7 @@ DB2MAN = /usr/share/xml/docbook/stylesheet/nwalsh/manpages/docbook.xsl
 	$(XP) $(DB2MAN) $<
 
 GENERATED_MANPAGES := $(patsubst %.docbook,%,$(wildcard debian/man/*.docbook))
-build/konversation:: $(GENERATED_MANPAGES)
+build/konversation-trinity:: $(GENERATED_MANPAGES)
 clean::
 	-rm -f $(GENERATED_MANPAGES)
 	-rm -f po/*/konversation.gmo
@@ -47,3 +47,5 @@ clean::
 install/konversation-trinity::
 	install -D -m 644 konversation/scripts/README \
 	  debian/konversation-trinity/opt/trinity/share/doc/konversation/README.scripts
+	dh_installman debian/man/*.1
+	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/

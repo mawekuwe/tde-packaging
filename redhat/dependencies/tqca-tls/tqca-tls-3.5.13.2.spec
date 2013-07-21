@@ -103,4 +103,4 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 - Renames TQCA to QCA in source code
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-1
-- Initial build for TDE 3.5.13.2
+- Initial release for TDE 3.5.13.2

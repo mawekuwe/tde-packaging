@@ -2,8 +2,8 @@
 	needs="x11"\
 	section="Games/Puzzles"\
 	hints="TDE"\
-	title="KDE Atomic Entertainment"\
-	icon32x32="/usr/share/pixmaps/katomic.xpm"\
-	icon16x16="/usr/share/pixmaps/katomic-16.xpm"\
+	title="TDE Atomic Entertainment"\
+	icon32x32="/opt/trinity/share/pixmaps/katomic.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/katomic-16.xpm"\
 	command="/opt/trinity/games/katomic"
 

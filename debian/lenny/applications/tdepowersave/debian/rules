@@ -29,9 +29,9 @@ debian/stamp-bootstrap:
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-install/kpowersave::
-	install -p -D -m644 debian/tdepowersave-trinity.lintian debian/kpowersave/opt/trinity/share/lintian/overrides/kpowersave
-	install -p -D -m644 debian/tdepowersave-trinity.linda debian/kpowersave/opt/trinity/share/linda/overrides/kpowersave
+install/tdepowersave-trinity::
+	install -p -D -m644 debian/tdepowersave-trinity.lintian debian/tdepowersave-trinity/usr/share/lintian/overrides/tdepowersave-trinity
+	install -p -D -m644 debian/tdepowersave-trinity.linda debian/tdepowersave-trinity/usr/share/linda/overrides/tdepowersave-trinity
 
 clean::
 	find . -name Makefile.in | xargs rm -f

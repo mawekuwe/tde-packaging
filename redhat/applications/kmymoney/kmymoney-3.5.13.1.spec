@@ -264,7 +264,7 @@ done
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-2
 - Rebuild for Fedora 17

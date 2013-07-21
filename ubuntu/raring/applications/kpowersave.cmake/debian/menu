@@ -3,5 +3,5 @@
   section="Applications/System/Monitoring"\
   title="KPowersave"\
   longtitle="Battery monitor and general power management"\
-  icon="/usr/share/pixmaps/kpowersave.xpm"\
+  icon="/opt/trinity/share/pixmaps/kpowersave.xpm"\
   command="/opt/trinity/bin/kpowersave"

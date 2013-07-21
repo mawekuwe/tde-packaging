@@ -20,7 +20,7 @@
 	needs="X11"\
 	section="Applications/System/Administration"\
 	hints="TDE"\
-	title="KDEPrintFax"\
+	title="TDEPrintFax"\
 	icon32x32="/opt/trinity/share/pixmaps/tdeprintfax.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/tdeprintfax-16.xpm"\
 	command="/opt/trinity/bin/tdeprintfax"

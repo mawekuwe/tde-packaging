@@ -151,4 +151,4 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %Changelog
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial build for TDE 14.0.0
+- Initial release for TDE 14.0.0

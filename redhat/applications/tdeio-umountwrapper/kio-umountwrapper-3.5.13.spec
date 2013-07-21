@@ -136,5 +136,5 @@ fi
 - Removes post and postun
 
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.2-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 

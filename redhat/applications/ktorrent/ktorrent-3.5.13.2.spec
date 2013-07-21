@@ -168,7 +168,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.2.8-2
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 2.2.8-1
 - Rename old tq methods that no longer need a unique name [Commit #a90eb215]
@@ -181,4 +181,4 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Change default configuration to use external geoip database when found and use internal database only when external database is not found. [Bug #443] [Commit #355c6b69]
 
 * Tue Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 2.2.6-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

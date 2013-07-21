@@ -13,7 +13,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: kpowersave-trinity, kpowersave-nohal-trinity
 Description: Power management applet for Trinity
- KPowersave is a TDE systray applet which allows to control the power 
+ TDEPowersave is a TDE systray applet which allows to control the power 
  management settings and policies of your computer.
  It relies on the TDE hardware library to do the heavy lifting.
  .
@@ -33,7 +33,7 @@ Description: Power management applet for Trinity
   * KNotify support
   * online help
   * localisations for many languages
- KPowersave supports schemes with following configurable specific 
+ TDEPowersave supports schemes with following configurable specific 
  settings for:
   * screensaver
   * DPMS

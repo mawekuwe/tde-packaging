@@ -1,8 +1,8 @@
 ?package(kmail):\
 	needs="X11"\
 	section="Applications/Network/Communication"\
-	hints="KDE,Mail"\
+	hints="TDE,Mail"\
 	title="KMail"\
-	icon32x32="/usr/share/pixmaps/kmail.xpm"\
-	icon16x16="/usr/share/pixmaps/kmail-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kmail.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kmail-16.xpm"\
 	command="/opt/trinity/bin/kmail"

@@ -44,8 +44,8 @@
       connection to the specified IRC server in a running Konversation client.
     </para>
     <para>
-      This program is registered with KDE as a handler for the irc URI scheme,
-      and KDE applications will use this program to handle such URI.
+      This program is registered with TDE as a handler for the irc URI scheme,
+      and TDE applications will use this program to handle such URI.
       (For example, it will be called if a user clicks on an irc:// link on a
       web page in Konqueror.)
     </para>

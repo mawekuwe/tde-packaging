@@ -1,6 +1,6 @@
 ?package(bibletime):\
     needs="X11"\
-    hints="KDE,Bible"\
+    hints="TDE,Bible"\
     section="Applications/Education"\
     title="BibleTime"\
     icon="/opt/trinity/share/pixmaps/bibletime.xpm"\

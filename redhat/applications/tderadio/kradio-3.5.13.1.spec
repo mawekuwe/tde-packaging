@@ -168,7 +168,7 @@ update-desktop-database %{tde_appdir} -q &> /dev/null ||:
 - Updates presets
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-4
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-3
 - Rebuild for RHEL 5
@@ -179,4 +179,4 @@ update-desktop-database %{tde_appdir} -q &> /dev/null ||:
 - Fix HTML directory location
 
 * Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

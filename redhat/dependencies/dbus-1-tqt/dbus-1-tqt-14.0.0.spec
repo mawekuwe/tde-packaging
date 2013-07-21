@@ -119,5 +119,5 @@ cd build
 
 %changelog
 * Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial build for TDE R14, using 'tqt3' instead of 'qt3'
+- Initial release for TDE R14, using 'tqt3' instead of 'qt3'
 

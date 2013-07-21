@@ -123,7 +123,7 @@ fi
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.3.4-2
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Wed Nov 02 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.4-1
 - Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

@@ -1,7 +1,7 @@
 ?package(kview):\
 	needs="X11"\
 	section="Applications/Viewers"\
-	hints="KDE,Images"\
+	hints="TDE,Images"\
 	title="KView"\
 	icon32x32="/opt/trinity/share/pixmaps/kview.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kview-16.xpm"\

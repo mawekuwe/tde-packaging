@@ -144,11 +144,11 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.0-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.1-2
 - Rebuild for Fedora 17
 - Fix HTML directory location
 
 * Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.0-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

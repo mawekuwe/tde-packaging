@@ -1,5 +1,5 @@
-kpowersave: no-shlibs-control-file opt/trinity/lib/libtdeinit_kpowersave.so
-kpowersave: package-name-doesnt-match-sonames libtdeinit-kpowersave
-kpowersave: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kpowersave.so
-kpowersave: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kpowersave.so
+kpowersave-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kpowersave.so
+kpowersave-trinity: package-name-doesnt-match-sonames libtdeinit-kpowersave
+kpowersave-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kpowersave.so
+kpowersave-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kpowersave.so
 

@@ -629,7 +629,7 @@ rm -rf %{buildroot}
 - Initial release for TDE 3.5.13.2
 
 * Sat Sep 29 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-9
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sat Apr 28 2012 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-8
 - Fix Provides and Obsoletes, again and again ...
@@ -653,6 +653,6 @@ rm -rf %{buildroot}
 - Add missing BuildRequires
 
 * Fri Sep 02 2011 Francois Andriot <francois.andriot@free.fr> - 3.3.8.d-1
-- Initial build for RHEL 6, RHEL 5, and Fedora 15
+- Initial release for RHEL 6, RHEL 5, and Fedora 15
 - Switch to Trinity Version
 - Spec file based on RHEL 6 'qt3-3.3.8b-29'

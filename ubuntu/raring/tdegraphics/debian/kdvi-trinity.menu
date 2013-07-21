@@ -1,7 +1,7 @@
 ?package(kdvi):\
 	needs="X11"\
 	section="Applications/Viewers"\
-	hints="KDE,DVI,Documents"\
+	hints="TDE,DVI,Documents"\
 	title="KDVI"\
 	icon32x32="/opt/trinity/share/pixmaps/kdvi.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kdvi-16.xpm"\

@@ -33,24 +33,24 @@ debian/stamp-bootstrap:
 	touch debian/stamp-bootstrap
 
 install/kaffeine-trinity::
-	install -D -p -m0644 debian/kaffeine.xpm debian/kaffeine/opt/trinity/share/pixmaps/kaffeine.xpm
-	install -D -p -m0644 debian/kaffeine-trinity.lintian-overrides debian/kaffeine/opt/trinity/share/lintian/overrides/kaffeine
-	install -D -p -m0755 debian/install-css.sh debian/kaffeine/opt/trinity/share/doc/kaffeine/install-css.sh
-	install -D -p -m0644 debian/kaffeine-iso.desktop debian/kaffeine/opt/trinity/share/applications/tde/kaffeine-iso.desktop
+	install -D -p -m0644 debian/kaffeine.xpm debian/$(cdbs_curpkg)/opt/trinity/share/pixmaps/kaffeine.xpm
+	install -D -p -m0644 debian/kaffeine-trinity.lintian-overrides debian/$(cdbs_curpkg)/usr/share/lintian/overrides/$(cdbs_curpkg)
+	install -D -p -m0755 debian/install-css.sh debian/$(cdbs_curpkg)/opt/trinity/share/doc/kaffeine/install-css.sh
+	install -D -p -m0644 debian/kaffeine-iso.desktop debian/$(cdbs_curpkg)/opt/trinity/share/applications/tde/kaffeine-iso.desktop
 
 	#Debian additions
-	install -D -p -m0755 debian/install-codecs debian/kaffeine/opt/trinity/lib/kaffeine/install-codecs
-	install -D -p -m0644 debian/kaffeine_xine-install-dvdcss.desktop debian/kaffeine/opt/trinity/share/services/kaffeine_xine-install-dvdcss.desktop
-	install -D -p -m0644 debian/kaffeine_xine-install-ffmpeg.desktop debian/kaffeine/opt/trinity/share/services/kaffeine_xine-install-ffmpeg.desktop
-	install -D -p -m0644 debian/kaffeine_codecinstall.desktop debian/kaffeine/opt/trinity/share/servicetypes/kaffeine_codecinstall.desktop
+	install -D -p -m0755 debian/install-codecs debian/$(cdbs_curpkg)/opt/trinity/lib/kaffeine/install-codecs
+	install -D -p -m0644 debian/kaffeine_xine-install-dvdcss.desktop debian/$(cdbs_curpkg)/opt/trinity/share/services/kaffeine_xine-install-dvdcss.desktop
+	install -D -p -m0644 debian/kaffeine_xine-install-ffmpeg.desktop debian/$(cdbs_curpkg)/opt/trinity/share/services/kaffeine_xine-install-ffmpeg.desktop
+	install -D -p -m0644 debian/kaffeine_codecinstall.desktop debian/$(cdbs_curpkg)/opt/trinity/share/servicetypes/kaffeine_codecinstall.desktop
 
 	# file shipped by tdelibs
-	rm -f debian/kaffeine/opt/trinity/share/mimelnk/application/x-mplayer2.desktop
+	rm -f debian/$(cdbs_curpkg)/opt/trinity/share/mimelnk/application/x-mplayer2.desktop
 	# Bogus, shouldn't be shipped..
-	rm -f debian/kaffeine/opt/trinity/share/doc/tde/HTML/en/doc/CMakeLists.txt
+	rm -f debian/$(cdbs_curpkg)/opt/trinity/share/doc/tde/HTML/en/doc/CMakeLists.txt
 
 binary-install/kaffeine-trinity::
-	mv debian/kaffeine-trinity/usr/share/man debian/kaffeine-trinity/opt/trinity/share/
+	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
 
 get-orig-source:
 	 @@dh_testdir

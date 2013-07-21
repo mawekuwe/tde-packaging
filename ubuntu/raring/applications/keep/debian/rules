@@ -31,8 +31,13 @@ debian/stamp-bootstrap:
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-build/keep::
+build/keep-trinity::
 	/usr/bin/docbook2x-man debian/keep.xml
 
+install/keep-trinity::
+	dh_installman keep.1
+	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
+
 clean::
+	rm -f debian/stamp-bootstrap
 	rm -f keep.1

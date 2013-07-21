@@ -1,10 +1,10 @@
 ?package(kcharselect):\
 	needs="X11"\
 	section="Apps/Tools"\
-	hints="KDE,Characters"\
+	hints="TDE,Characters"\
 	title="KCharSelect"\
-	icon32x32="/usr/share/pixmaps/kcharselect.xpm"\
-	icon16x16="/usr/share/pixmaps/kcharselect-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kcharselect.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kcharselect-16.xpm"\
 	command="/opt/trinity/bin/kcharselect"
 
 # Icon 32x32 kcharselect/cr48-app-kcharselect.png kcharselect.xpm

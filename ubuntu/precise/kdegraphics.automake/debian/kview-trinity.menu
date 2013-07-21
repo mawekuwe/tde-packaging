@@ -1,10 +1,10 @@
 ?package(kview):\
 	needs="X11"\
 	section="Applications/Viewers"\
-	hints="KDE,Images"\
+	hints="TDE,Images"\
 	title="KView"\
-	icon32x32="/usr/share/pixmaps/kview.xpm"\
-	icon16x16="/usr/share/pixmaps/kview-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kview.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kview-16.xpm"\
 	command="/opt/trinity/bin/kview"
 
 # Icon 32x32 kview/cr32-app-kview.png kview.xpm

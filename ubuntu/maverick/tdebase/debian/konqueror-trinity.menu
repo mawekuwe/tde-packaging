@@ -10,7 +10,7 @@
 ?package(konqueror):\
 	needs="X11"\
 	section="Applications/Network/Web Browsing"\
-	hints="KDE,Web browsers"\
+	hints="TDE,Web browsers"\
 	title="Konqueror"\
 	icon32x32="/opt/trinity/share/pixmaps/konqueror.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/konqueror-16.xpm"\
@@ -19,7 +19,7 @@
 ?package(konqueror):\
 	needs="X11"\
 	section="Applications/File Management"\
-	hints="KDE,File managers"\
+	hints="TDE,File managers"\
 	title="Konqueror"\
 	icon32x32="/opt/trinity/share/pixmaps/kfm.xpm"\
 	icon16x16="/opt/trinity/share/pixmaps/kfm-16.xpm"\

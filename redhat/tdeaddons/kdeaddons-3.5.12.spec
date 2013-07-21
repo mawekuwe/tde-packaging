@@ -244,6 +244,6 @@ gtk-update-icon-cache -q %{_datadir}/icons/hicolor 2> /dev/null ||:
 - Add support for RHEL5
 
 * Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
-- Initial build for RHEL 6
+- Initial release for RHEL 6
 - Spec file based on Fedora 8 "kdeaddons-3.5.10-1"
 - Import to GIT

@@ -98,7 +98,7 @@ Obsoletes:	arts
 %endif
 
 %description
-arts (analog real-time synthesizer) is the sound system of KDE 3.
+arts (analog real-time synthesizer) is the sound system of TDE.
 
 The principle of arts is to create/process sound using small modules which do
 certain tasks. These may be create a waveform (oscillators), play samples,
@@ -235,5 +235,5 @@ cd build
 
 
 %changelog
-* Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial build for TDE R14, using 'tqt3' instead of 'qt3'
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE R14.0.0

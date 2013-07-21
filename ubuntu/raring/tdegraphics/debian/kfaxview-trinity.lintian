@@ -1,4 +1,4 @@
-kfaxview: no-shlibs-control-file opt/trinity/lib/libkfaximage.so
-kfaxview: postinst-must-call-ldconfig opt/trinity/lib/libkfaximage.so
-kfaxview: postrm-should-call-ldconfig opt/trinity/lib/libkfaximage.so
-kfaxview: package-name-doesnt-match-sonames libkfaximage
+kfaxview-trinity: no-shlibs-control-file opt/trinity/lib/libkfaximage.so
+kfaxview-trinity: postinst-must-call-ldconfig opt/trinity/lib/libkfaximage.so
+kfaxview-trinity: postrm-should-call-ldconfig opt/trinity/lib/libkfaximage.so
+kfaxview-trinity: package-name-doesnt-match-sonames libkfaximage

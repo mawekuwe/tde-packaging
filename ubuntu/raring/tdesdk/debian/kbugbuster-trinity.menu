@@ -3,6 +3,6 @@
         section="Applications/Project Management"\
         hints="TDE"\
         title="KBugBuster"\
-        longtitle="KBugBuster (KDE Bug Management)"\
-        icon="/usr/share/pixmaps/kbugbuster.xpm"\
+        longtitle="KBugBuster (TDE Bug Management)"\
+        icon="/opt/trinity/share/pixmaps/kbugbuster.xpm"\
         command="/opt/trinity/bin/kbugbuster"

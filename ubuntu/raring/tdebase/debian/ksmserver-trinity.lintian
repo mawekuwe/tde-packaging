@@ -1,2 +1,2 @@
-ksmserver: no-shlibs-control-file usr/lib/libtdeinit_ksmserver.so
-ksmserver: postinst-must-call-ldconfig usr/lib/libtdeinit_ksmserver.so
+ksmserver-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_ksmserver.so
+ksmserver-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_ksmserver.so

@@ -3,8 +3,8 @@
 	section="Applications/Viewers"\
 	hints="TDE"\
 	title="KPDF"\
-	icon32x32="/usr/share/pixmaps/kpdf.xpm"\
-	icon16x16="/usr/share/pixmaps/kpdf-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/kpdf.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/kpdf-16.xpm"\
 	command="/opt/trinity/bin/kpdf"
 
 # Icon 32x32 kpdf/cr32-app-kpdf.png kpdf.xpm

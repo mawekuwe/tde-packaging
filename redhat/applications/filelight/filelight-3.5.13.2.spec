@@ -140,7 +140,7 @@ done
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-5
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 - Obsoletes package 'filelight-l10n'
 
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-4
@@ -157,5 +157,5 @@ done
 - Correct macro to install under "/opt", if desired
 
 * Sun Aug 14 2011 Francois Andriot <francois.andriot@free.fr> - 1.0-0
-- Initial build for RHEL 6.0
+- Initial release for RHEL 6.0
 

@@ -153,4 +153,4 @@ export CXXFLAGS="${CXXFLAGS} ${LDFLAGS}"
 
 %changelog
 * Tue Sep 11 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1

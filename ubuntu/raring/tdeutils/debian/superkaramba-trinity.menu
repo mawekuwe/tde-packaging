@@ -3,8 +3,8 @@
 	section="Apps/Tools"\
 	hints="TDE"\
 	title="Superkaramba"\
-	icon32x32="/usr/share/pixmaps/superkaramba.xpm"\
-	icon16x16="/usr/share/pixmaps/superkaramba-16.xpm"\
+	icon32x32="/opt/trinity/share/pixmaps/superkaramba.xpm"\
+	icon16x16="/opt/trinity/share/pixmaps/superkaramba-16.xpm"\
 	command="/opt/trinity/bin/superkaramba"
 
 # Icon 32x32 superkaramba/icons/cr32-app-superkaramba.png superkaramba.xpm

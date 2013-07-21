@@ -72,7 +72,7 @@ debian/stamp-automake:
 $(patsubst %,binary-install/%,$(DEB_PACKAGES))::
 	if test -e debian/$(cdbs_curpkg).lintian; then \
 		install -p -D -m644 debian/$(cdbs_curpkg).lintian \
-		    debian/$(cdbs_curpkg)/opt/trinity/share/lintian/overrides/$(cdbs_curpkg); \
+		    debian/$(cdbs_curpkg)/usr/share/lintian/overrides/$(cdbs_curpkg); \
 	fi
 
 clean::
