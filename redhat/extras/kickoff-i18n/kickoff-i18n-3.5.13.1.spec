@@ -95,7 +95,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-2
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Fri Aug 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-1
-- Initial build for TDE 3.5.13
+- Initial release for TDE 3.5.13

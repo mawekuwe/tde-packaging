@@ -312,7 +312,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-4
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Fri Aug 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-3
 - Add support for Mageia 2 and Mandriva 2011

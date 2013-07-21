@@ -260,7 +260,7 @@ done
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Tue Jul 30 2012 Francois Andriot <francois.andriot@free.fr> 2.0.2-2
 - Re-adds '.la' files

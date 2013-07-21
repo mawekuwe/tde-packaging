@@ -136,4 +136,4 @@ autoreconf --force --install --symlink
 - Add missing BuildRequires
 
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2.1
-- Initial build for RHEL 6, RHEL 5, and Fedora 15
+- Initial release for RHEL 6, RHEL 5, and Fedora 15

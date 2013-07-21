@@ -124,11 +124,11 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.2-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.2-2
 - Rebuild for Fedora 17
 - Removes post and postun
 
 * Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.2-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

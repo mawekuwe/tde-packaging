@@ -106,5 +106,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Correct macro to install under "/opt", if desired
 
 * Sat Aug 13 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.13-0
-- Initial build for RHEL 6.0
+- Initial release for RHEL 6.0
 

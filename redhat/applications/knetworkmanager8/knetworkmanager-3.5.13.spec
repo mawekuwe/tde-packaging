@@ -177,4 +177,4 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Remove faulty patch for WPA authentication
 
 * Tue Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-1 / 0.9-1
-- Initial build
+- Initial release

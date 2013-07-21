@@ -176,5 +176,5 @@ done
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-1
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 

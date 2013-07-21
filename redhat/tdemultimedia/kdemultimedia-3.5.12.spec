@@ -392,5 +392,5 @@ update-desktop-database %{_datadir}/applications > /dev/null 2>&1 || :
 - Add support for RHEL5
 
 * Sat Sep 09 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.12-1
-- Initial build for RHEL 6
+- Initial release for RHEL 6
 - Spec file based on Fedora 8 "kdemultimedia-6:3.5.10-2"

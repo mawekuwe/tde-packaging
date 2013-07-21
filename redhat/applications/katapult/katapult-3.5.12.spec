@@ -115,6 +115,6 @@ gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
 
 %Changelog
 * Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-1
-- Initial build for RHEL 6.0
+- Initial release for RHEL 6.0
 - Import to GIT
 

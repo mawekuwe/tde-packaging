@@ -1254,7 +1254,7 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Wed Aug 15 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
 - Renames to 'trinity-i18n'

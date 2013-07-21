@@ -128,7 +128,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.55.2-4
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sun Sep 09 2012 Francois Andriot <francois.andriot@free.fr> - 0.55.2-3
 - Switch to v3.5.13-sru branch
@@ -138,4 +138,4 @@ export PATH="%{tde_bindir}:${PATH}"
 - Removes post and postun
 
 * Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.55.2-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

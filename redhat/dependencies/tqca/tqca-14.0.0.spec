@@ -120,4 +120,4 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-3
-- Initial build for TDE 14.0.0
+- Initial release for TDE 14.0.0

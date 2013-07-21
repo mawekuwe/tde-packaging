@@ -211,11 +211,11 @@ done
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sun Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-2
 - Updated to build with gcc 4.7. [Commit #15276f36]
 - Enables JACK support
 
 * Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 1.7.0-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

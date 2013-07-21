@@ -7,14 +7,6 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
-# The following QT4 packages should NOT be installed to
-# allow QT3 compilation (please uninstall them prior to compile)
-#  qt
-#  qt-sqlite
-#  qt-mysql
-#  qt-x11
-#  qt-devel
-# ...maybe others !!!!
 
 Name:		trinity-tqt3
 Version:	3.5.0
@@ -585,4 +577,4 @@ export PATH=${QTDIR}/stripbin:${QTDIR}/bin:$PATH
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.0-1
-- Initial build for TDE R14.0.0
+- Initial release for TDE R14.0.0

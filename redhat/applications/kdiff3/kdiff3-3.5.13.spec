@@ -156,5 +156,5 @@ done
 - Correct macro to install under "/opt", if desired
 
 * Sun Aug 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.91-0
-- Initial build for RHEL 6.0
+- Initial release for RHEL 6.0
 

@@ -132,4 +132,4 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 - Rebuild for Fedora 17
 
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.8-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

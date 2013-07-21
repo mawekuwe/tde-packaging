@@ -221,7 +221,7 @@ done
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-9
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sat Aug 04 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-8
 - Add support for Mageia 2 and Mandriva 2011
@@ -251,5 +251,5 @@ done
 - Correct macro to install under "/opt", if desired
 
 * Sat Aug 13 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-0
-- Initial build for RHEL 6.0
+- Initial release for RHEL 6.0
 

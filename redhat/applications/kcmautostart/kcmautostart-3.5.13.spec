@@ -113,4 +113,4 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %Changelog
 * Thu May 10 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-1
-- Initial build for TDE 3.5.13
+- Initial release for TDE 3.5.13

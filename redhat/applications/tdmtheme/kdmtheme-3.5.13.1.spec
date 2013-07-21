@@ -119,7 +119,7 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.2.2-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.2.2-2
 - Rebuilt for Fedora 17
@@ -127,4 +127,4 @@ update-desktop-database %{tde_appdir} &> /dev/null
 - Removes the 'lintian' stuff from Debian
 
 * Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.2-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

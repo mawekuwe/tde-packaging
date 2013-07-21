@@ -115,4 +115,4 @@ export PATH="%{tde_bindir}:${PATH}"
 - Fix post and postun
 
 * Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3.2-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

@@ -177,7 +177,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang adept
+%find_lang %{tde_pkg}
 
 
 %clean

@@ -181,4 +181,4 @@ export PATH="%{tde_bindir}:${PATH}"
 - Fix compilation with GCC 4.7 |Commit #b4c7fd48]
 
 * Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.4-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

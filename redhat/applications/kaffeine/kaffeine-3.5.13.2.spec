@@ -278,7 +278,7 @@ rm -rf $RPM_BUILD_ROOT
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-4
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Fri Aug 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-3
 - Add support for Mageia 2 and Mandriva 2011

@@ -161,7 +161,7 @@ done
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.7.3-19p3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Thu Dec 22 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-19p2
 - Update Debian patch to -18 release

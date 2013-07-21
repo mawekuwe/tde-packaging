@@ -118,7 +118,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %changelog
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.1-3
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.1-2
 - Rebuilt for Fedora 17

@@ -1076,6 +1076,6 @@ update-desktop-database -q &> /dev/null ||:
 - Fix HTML directory location
 
 * Tue Nov 22 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.3-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 - Based on Spec file from Fedora 11 'koffice-2:1.6.3-25.20090306svn'
 - Removed 'krita', added 'chalk'

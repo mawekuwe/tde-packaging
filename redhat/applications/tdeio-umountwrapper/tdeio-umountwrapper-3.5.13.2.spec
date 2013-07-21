@@ -140,7 +140,7 @@ fi
 - Initial release for TDE 3.5.13.2
 
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.2-4
-- Initial build for TDE 3.5.13.1
+- Initial release for TDE 3.5.13.1
 
 * Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.2-3
 - Add 'desktop' file, to make this program useful :-)
@@ -150,5 +150,5 @@ fi
 - Removes post and postun
 
 * Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.2-1
-- Initial build for RHEL 5, RHEL 6, Fedora 15, Fedora 16
+- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
 
