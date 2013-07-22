@@ -1146,6 +1146,18 @@ Depends: tdebindings-java-trinity
 Conflicts: kdebindings-java-trinity (< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
+Package: libsmokeqt1-trinity
+Architecture: all
+Depends: libsmoketqt1-trinity
+Conflicts: libsmokeqt1-trinity (< 4:13.9.9)
+Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
+
+Package: libsmokeqt-trinity-dev
+Architecture: all
+Depends: libsmoketqt-trinity-dev
+Conflicts: libsmokeqt-trinity-dev (< 4:13.9.9)
+Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
+
 Package: libsmokekde1-trinity
 Architecture: all
 Depends: libsmoketde1-trinity
