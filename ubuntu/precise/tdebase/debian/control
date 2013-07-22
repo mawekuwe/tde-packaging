@@ -14,7 +14,7 @@ Section: tde
 Architecture: all
 Replaces: kdebase-kde3 (<< 4:14.0.0), kdebase-trinity (<< 4:14.0.0)
 Breaks: kdebase-kde3 (<< 4:14.0.0), kdebase-trinity (<< 4:14.0.0)
-Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-tdeio-plugins-trinity (>= ${Source-Version}), kdepasswd-trinity (>= ${Source-Version}), tdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), twin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), xcalib
+Depends: kappfinder-trinity (>= ${Source-Version}), kate-trinity (>= ${Source-Version}), kcontrol-trinity (>= ${Source-Version}), tdebase-trinity-bin (>= ${Source-Version}), tdebase-data-trinity (>= ${Source-Version}), tdebase-tdeio-plugins-trinity (>= ${Source-Version}), tdepasswd-trinity (>= ${Source-Version}), tdeprint-trinity (>= ${Source-Version}), kdesktop-trinity (>= ${Source-Version}), kfind-trinity (>= ${Source-Version}), khelpcenter-trinity (>= ${Source-Version}), kicker-trinity (>= ${Source-Version}), klipper-trinity (>= ${Source-Version}), kmenuedit-trinity (>= ${Source-Version}), konqueror-nsplugins-trinity (>= ${Source-Version}), konqueror-trinity (>= ${Source-Version}), konsole-trinity (>= ${Source-Version}), kpager-trinity (>= ${Source-Version}), kpersonalizer-trinity (>= ${Source-Version}), ksmserver-trinity (>= ${Source-Version}), ksplash-trinity (>= ${Source-Version}), ksysguard-trinity (>= ${Source-Version}), ktip-trinity (>= ${Source-Version}), twin-trinity (>= ${Source-Version}), libkonq4-trinity (>= ${Source-Version}), xcalib
 Recommends: tdm-trinity (>= ${Source-Version}), tdebase-runtime-data-common-trinity, libtqt3-integration-trinity
 Suggests: tdebase-trinity-doc-html (>= ${Source-Version})
 Description: base components from the official KDE release
@@ -202,7 +202,7 @@ Description: core I/O slaves for KDE
  This package is part of KDE, and a component of the KDE base module.
  See the 'kde-trinity' and 'tdebase-trinity' packages for more information.
 
-Package: kdepasswd-trinity
+Package: tdepasswd-trinity
 Section: utils
 Architecture: any
 Replaces: kdepasswd-kde3 (<< 4:14.0.0), kdepasswd-trinity (<< 4:14.0.0)
@@ -256,7 +256,7 @@ Replaces: kdm-kde3 (<< 4:14.0.0), kdm-trinity (<< 4:14.0.0)
 Breaks: kdm-kde3 (<< 4:14.0.0), kdm-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}, tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), debconf (>= 1.2.9) | debconf-2.0, libpam-runtime (>= 0.76-14), xbase-clients
 Recommends: logrotate, xserver-xorg
-Suggests: khelpcenter-trinity, ksmserver-trinity (= ${Source-Version}), kdepasswd-trinity (= ${Source-Version}), menu
+Suggests: khelpcenter-trinity, ksmserver-trinity (= ${Source-Version}), tdepasswd-trinity (= ${Source-Version}), menu
 Provides: x-display-manager
 Description: X display manager for KDE
  tdm manages a collection of X servers, which may be on the local host or
@@ -268,7 +268,7 @@ Description: X display manager for KDE
  XDMCP display management.
  .
  A collection of icons to associate with individual users is included with
- KDE, but as part of the kdepasswd package.
+ KDE, but as part of the tdepasswd package.
  .
  The menu package will help to provide TDM with a list of window managers
  that can be launched, if the window manager does not register with TDM
