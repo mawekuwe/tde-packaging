@@ -40,7 +40,7 @@ DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
 
 # These are not all the packages with libraries, but only those that
 # need to be in DEB_SHLIBDEPS_INCLUDE...
-PACKAGES_WITH_LIBS = libqt3-jni-trinity libsmokeqt1-trinity libsmoketde1-trinity libkjsembed1-trinity
+PACKAGES_WITH_LIBS = libqt3-jni-trinity libsmoketqt1-trinity libsmoketde1-trinity libkjsembed1-trinity
 
 # These packages do not ship files in /usr/lib so need not call ldconfig.
 DEB_DH_MAKESHLIBS_ARGS_libtrinity-jni-trinity          = -n
@@ -65,8 +65,8 @@ clean::
 	rm -f dcopjava/dcopidl2java/dcopidl2java.all_cpp.cpp
 	rm -f smoke/tde/qtdefines
 	rm -f smoke/tde/smokedata.cpp.diff
-	rm -f smoke/qt/qtdefines
-	rm -f smoke/qt/smokedata.cpp.diff
+	rm -f smoke/tqt/qtdefines
+	rm -f smoke/tqt/smokedata.cpp.diff
 
 
 common-build-indep:: stamp-build-dcopjava
@@ -138,5 +138,5 @@ common-binary-post-install-indep::
 
 PACKAGES_WITH_USD_SYMLINK = tdebindings-java-trinity libtrinity-java-trinity libqt3-java-trinity \
 			    libdcop3-java-trinity-dev libdcop3-java-trinity \
-			    libsmoketde-trinity-dev libsmokeqt-trinity-dev \
+			    libsmoketde-trinity-dev libsmoketqt-trinity-dev \
 			    kjscmd-trinity libkjsembed-trinity-dev
