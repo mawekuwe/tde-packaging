@@ -52,16 +52,14 @@ Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 
 
 BuildRequires:	autoconf automake libtool m4
-BuildRequires:	trinity-tqt3-devel >= %{version}
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	trinity-arts-devel >= %{version}
 BuildRequires:	trinity-tdelibs-devel >= %{version}
 
 %if "%{?_with_akode}" != ""
 BuildRequires: trinity-akode-devel
-%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: trinity-akode-libmad
-%endif
 %endif
 
 BuildRequires:	desktop-file-utils

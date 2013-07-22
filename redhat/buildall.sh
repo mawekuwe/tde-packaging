@@ -1,7 +1,8 @@
 #!/bin/bash
 
 tdp='cd ~/tde/tde-packaging/redhat'
-grp='tdp; ./genrpm.sh -v 3.5.13.2 -a'
+#grp='tdp; ./genrpm.sh -v 3.5.13.2 -a'
+grp='tdp; ./genrpm.sh -v 14.0.0 -a'
 
 BUILDDIR="/dev/shm/BUILD${DIST}.$(uname -i)"
 BUILDROOTDIR="/dev/shm/BUILDROOT${DIST}.$(uname -i)"
@@ -75,10 +76,11 @@ grpiud() {
 
 # Build dependencies
 rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
-if ! rpm -q libqt3-devel && ! rpm -q lib64qt3-devel && ! rpm -q qt3-devel; then
-  grpiu dependencies/qt3
-  eval ${PKGINST} qt3-devel
-fi
+#if ! rpm -q libqt3-devel && ! rpm -q lib64qt3-devel && ! rpm -q qt3-devel; then
+#  grpiu dependencies/qt3
+#  eval ${PKGINST} qt3-devel
+#fi
+grpiud dependencies/tqt3
 grpiud dependencies/tqtinterface
 grpi dependencies/arts
 grpi dependencies/avahi-tqt

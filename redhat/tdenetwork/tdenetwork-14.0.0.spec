@@ -76,7 +76,6 @@ BuildRequires:	sqlite3-devel
 BuildRequires:	sqlite-devel
 %endif
 BuildRequires:	gnutls-devel
-BuildRequires:	libxtst-devel
 
 # GADU support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
@@ -89,6 +88,10 @@ BuildRequires:	libXmu-devel
 BuildRequires:	libXScrnSaver-devel
 BuildRequires:	libXtst-devel
 BuildRequires:	libXxf86vm-devel
+%endif
+
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+BuildRequires:	libxtst-devel
 %endif
 
 # Wifi support
@@ -153,9 +156,9 @@ BuildRequires:	meanwhile-devel
 %endif
 
 # ORTP support
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
-BuildRequires:	ortp-devel
-%endif
+#%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+#BuildRequires:	ortp-devel
+#%endif
 
 # SPEEX support
 %if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
@@ -257,6 +260,7 @@ update-desktop-database 2> /dev/null || :
 %package devel
 Summary:		Development files for the Trinity network module
 Group:			Development/Libraries
+Requires:		%{name} = %{version}-%{release}
 Requires:		trinity-kdict = %{version}-%{release}
 Requires:		trinity-kopete = %{version}-%{release}
 Requires:		trinity-ksirc = %{version}-%{release}
@@ -1193,5 +1197,5 @@ EOF
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
 - Initial release for TDE 14.0.0

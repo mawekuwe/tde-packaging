@@ -262,7 +262,9 @@ This package contains a graphical configuration tool for programs using TQt 3.
 %package devel
 Summary: Development files for the TQt 3 GUI toolkit
 Group: Development/Libraries
+
 Requires: %{name} = %{version}-%{release}
+Requires: %{name}-designer = %{version}-%{release}
 
 %description devel
 The %{name}-devel package contains the files necessary to develop

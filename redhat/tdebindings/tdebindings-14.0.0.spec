@@ -5,6 +5,8 @@
 # or 64 bits:
 #  ln -s /usr/lib64/libgcj.so.5.0.0 /usr/lib/jvm/java/lib/libgcj.so
 
+%define tde_version 14.0.0
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
@@ -107,7 +109,8 @@ BuildRequires:	libgdk_pixbuf2.0-devel
 %else
 BuildRequires:	%{_lib}gdk_pixbuf2.0-devel
 %endif
-%else
+%endif
+%if 0%{?fedora}
 %if 0%{?fedora} >= 17
 BuildRequires: gdk-pixbuf2-devel
 %else
@@ -930,7 +933,9 @@ Requires:	trinity-libdcop-c = %{version}-%{release}
 %package devel
 Summary:	Development files for %{name}
 Group:		Development/Libraries
-Requires:	trinity-tdelibs-devel 
+
+Requires:	trinity-tdelibs-devel >= %{tde_version}
+Requires:	%{name} = %{version}-%{release}
 
 Obsoletes:	trinity-kdebindings-devel < %{version}-%{release}
 Provides:	trinity-kdebindings-devel = %{version}-%{release}
@@ -1019,7 +1024,8 @@ fi
   --enable-closure \
   --enable-final \
   %{?_with_java} %{!?_with_java:--without-java} \
-  %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla}
+  %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla} \
+  --with-extra-includes=%{_includedir}/tqscintilla
 
 # Build dcopperl with specific options
 pushd dcopperl
@@ -1100,5 +1106,5 @@ fi
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE R14.0.0

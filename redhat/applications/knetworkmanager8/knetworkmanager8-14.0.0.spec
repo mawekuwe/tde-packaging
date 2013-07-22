@@ -1,11 +1,6 @@
 # Default version for this component
-%define tde_pkg knetworkmanager
+%define tde_pkg knetworkmanager8
 %define tde_version 14.0.0
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
-%define version 0.9
-%else
-%define version 0.8
-%endif
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -30,7 +25,7 @@
 
 
 Name:			trinity-%{tde_pkg}
-Version:		%{?version}
+Version:		0.8
 Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 Summary:		Trinity applet for Network Manager
@@ -39,16 +34,9 @@ Group:			Applications/Internet
 License:		GPLv2+
 URL:			http://en.opensuse.org/Projects/KNetworkManager
 
-%if "%{?version}" == "0.9"
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-%else
-Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-%endif
 
 Patch0:			knetworkmanager-3.5.13-missing_includes.patch
-
-# For knetworkmanager 0.9 only !
-Patch10:		knetworkmanager-3.5.13-subdir_version.patch
 
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -65,6 +53,9 @@ BuildRequires:	trinity-dbus-1-tqt-devel
 BuildRequires:	trinity-dbus-tqt-devel
 BuildRequires:	NetworkManager-glib-devel
 
+Obsoletes:		trinity-knetworkmanager < %{version}-%{release}
+Provides:		trinity-knetworkmanager = %{version}-%{release}
+
 %description
 KNetworkManager is a system tray applet for controlling network
 connections on systems that use the NetworkManager daemon.
@@ -74,6 +65,9 @@ connections on systems that use the NetworkManager daemon.
 Summary:		Common data shared among the MySQL GUI Suites
 Group:			Development/Libraries
 Requires:		%{name} = %{version}-%{release}
+
+Obsoletes:		trinity-knetworkmanager-devel < %{version}-%{release}
+Provides:		trinity-knetworkmanager-devel = %{version}-%{release}
 
 %description devel
 Development headers for knetworkmanager
@@ -85,19 +79,10 @@ Development headers for knetworkmanager
 
 
 %prep 
-%if "%{?version}" == "0.9"
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%else
-%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%endif
-
-%if "%{?version}" == "0.9"
-%patch10 -p1
-%endif
 
 cd knetworkmanager-0.*/src
 %patch0 -p3
-
 
 
 %build
@@ -125,7 +110,8 @@ cd build
   -DCMAKE_SKIP_RPATH="OFF" \
   ..
   
-%__make %{?_smp_mflags} 
+%__make %{?_smp_mflags} || %__make
+
 
 %install
 %__rm -rf $RPM_BUILD_ROOT
@@ -142,17 +128,21 @@ update-desktop-database %{tde_appdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
+
 %postun
 update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
+
 %post devel
 /sbin/ldconfig
 
+
 %postun devel
 /sbin/ldconfig
+
 
 %files 
 %defattr(-,root,root,-)

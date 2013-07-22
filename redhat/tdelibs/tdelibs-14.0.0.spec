@@ -1,3 +1,5 @@
+# Remove qt-devel and qt3-devel and any kde*-devel that may interfere !!!
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt

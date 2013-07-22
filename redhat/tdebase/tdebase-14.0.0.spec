@@ -473,7 +473,7 @@ Requires: trinity-kappfinder = %{version}-%{release}
 Requires: trinity-kate = %{version}-%{release}
 Requires: trinity-kwrite = %{version}-%{release}
 Requires: trinity-kcontrol = %{version}-%{release}
-Requires: trinity-kdepasswd = %{version}-%{release}
+Requires: trinity-tdepasswd = %{version}-%{release}
 Requires: trinity-tdeprint = %{version}-%{release}
 Requires: trinity-kdesktop = %{version}-%{release}
 Requires: trinity-tdm = %{version}-%{release}
@@ -1744,21 +1744,24 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 ##########
 
-%package -n trinity-kdepasswd
+%package -n trinity-tdepasswd
 Summary:	password changer for TDE
 Group:		Applications/Utilities
 
-%description -n trinity-kdepasswd
+Obsoletes:	trinity-kdepasswd < %{version}-%{release}
+Provides:	trinity-kdepasswd = %{version}-%{release}
+
+%description -n trinity-tdepasswd
 This is a simple application which allows users to change their
 system passwords.
 
-%files -n trinity-kdepasswd
+%files -n trinity-tdepasswd
 %defattr(-,root,root,-)
-%{tde_bindir}/kdepasswd
+%{tde_bindir}/tdepasswd
 %{tde_tdelibdir}/kcm_useraccount.la
 %{tde_tdelibdir}/kcm_useraccount.so
 %{tde_tdeappdir}/kcm_useraccount.desktop
-%{tde_tdeappdir}/kdepasswd.desktop
+%{tde_tdeappdir}/tdepasswd.desktop
 %exclude %{tde_datadir}/apps/tdm/pics/users/default1.png
 %exclude %{tde_datadir}/apps/tdm/pics/users/default2.png
 %exclude %{tde_datadir}/apps/tdm/pics/users/default3.png
@@ -1767,10 +1770,10 @@ system passwords.
 %{tde_datadir}/config.kcfg/kcm_useraccount.kcfg
 %{tde_datadir}/config.kcfg/kcm_useraccount_pass.kcfg
 
-%post -n trinity-kdepasswd
+%post -n trinity-tdepasswd
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
 
-%postun -n trinity-kdepasswd
+%postun -n trinity-tdepasswd
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
 
 ##########
@@ -1959,7 +1962,7 @@ process which presents the user with a menu of possible hosts that offer
 XDMCP display management.
 
 A collection of icons to associate with individual users is included with
-TDE, but as part of the kdepasswd package.
+TDE, but as part of the tdepasswd package.
 
 The menu package will help to provide TDM with a list of window managers
 that can be launched, if the window manager does not register with TDM

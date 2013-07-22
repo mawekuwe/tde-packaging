@@ -1248,7 +1248,7 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %endif
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
 - Initial release for TDE 14.0.0
 
 * Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1

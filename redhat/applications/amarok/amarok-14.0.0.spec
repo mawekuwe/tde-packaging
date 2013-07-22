@@ -126,7 +126,7 @@ BuildRequires:	libvisual-devel
 %if 0%{?mgaversion} && 0%{?mgaversion} <= 2
 BuildRequires:	libtunepimp-devel
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?suse_version}
 BuildRequires:	libtunepimp-devel
 %endif
 

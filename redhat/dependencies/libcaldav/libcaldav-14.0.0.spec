@@ -59,6 +59,7 @@ easy to integrate CalDAV support into any PIM application.
 Summary:	Development files for %{name}
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+
 Obsoletes:	libcaldav-devel < %{version}-%{release}
 Provides:	libcaldav-devel = %{version}-%{release}
 

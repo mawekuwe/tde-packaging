@@ -29,9 +29,15 @@ Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch0:		python-tqt-14.0.0-ftbfs.patch
 
 BuildRequires:	gcc-c++
-BuildRequires:	python-sip
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	trinity-tqscintilla-devel
+
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	sip-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires:	python-sip
+%endif
 
 # TDE specific building variables
 BuildRequires:	cmake >= 2.8

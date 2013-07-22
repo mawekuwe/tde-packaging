@@ -710,7 +710,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --with-sdl \
 %if 0%{?with_db4}
   --with-berkeley-db \
-%if 0%{?fedora} == 18
+%if 0%{?fedora} >= 18
   --with-db-lib=db_cxx-4 \
 %endif
 %endif
@@ -747,6 +747,5 @@ fi
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
-
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE 14.0.0

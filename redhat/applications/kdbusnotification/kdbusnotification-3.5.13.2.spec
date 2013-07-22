@@ -27,7 +27,7 @@ Name:		trinity-%{kdecomp}
 Summary:	a DBUS notification service [Trinity]
 
 Version:	0.1
-Release:	4%{?dist}%{?_variant}
+Release:	4.1%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -40,6 +40,8 @@ Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-3.5.13.2.tar.gz
+
+Patch1:			kdbusnotification-14.0.0-fix_utf8.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
 BuildRequires:	trinity-arts-devel >= 3.5.13.2
@@ -66,6 +68,7 @@ DBUS notifications via unobtrusive, easily dismissed passive popups.
 
 %prep
 %setup -q -n %{name}-3.5.13.2
+%patch1 -p1 -b .utf8
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -117,6 +120,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Sun Jul 21 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-4.1
+- Fix UTF8 messages
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-4
 - Initial release for TDE 3.5.13.2
 

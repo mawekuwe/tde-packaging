@@ -56,7 +56,7 @@ Build dependencies are minimal, requiring only libcurl.
 %package devel
 Summary:	Development files for %{name}
 Group:		Development/Libraries
-Requires:	%{name}
+Requires:	%{name} = %{version}-%{release}
 
 Obsoletes:	libcarddav-devel < %{version}-%{release}
 Provides:	libcarddav-devel = %{version}-%{release}

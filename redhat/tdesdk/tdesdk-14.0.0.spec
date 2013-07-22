@@ -18,7 +18,7 @@
 
 
 Name:			trinity-tdesdk
-Summary:		The KDE Software Development Kit (SDK)
+Summary:		The Trinity Software Development Kit (SDK)
 Version:		14.0.0
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
@@ -1148,15 +1148,11 @@ fi
 # Removes useless stuff
 %__rm -f %{?buildroot}%{tde_datadir}/apps/kapptemplate/admin/debianrules
 
+
 %clean
 %__rm -rf %{buildroot}
 
 
-
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
-
-* Wed Nov 07 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-2
-- Fix various cmake issues [Bug #1262]
-
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE 14.0.0

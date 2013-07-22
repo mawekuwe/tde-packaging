@@ -17,7 +17,7 @@
 
 Name:           trinity-tqca
 Version:        1.0
-Release:        3%{?dist}%{?_variant}
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 Summary:        TQt Cryptographic Architecture
 

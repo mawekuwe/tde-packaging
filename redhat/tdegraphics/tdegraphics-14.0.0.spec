@@ -640,7 +640,7 @@ MRML server.
 %{tde_tdelibdir}/libkmrmlpart.so
 %{tde_tdelibdir}/mrmlsearch.la
 %{tde_tdelibdir}/mrmlsearch.so
-%{tde_libdir}/lib[kt]deinit_mrmlsearch.so
+%{tde_libdir}/libtdeinit_mrmlsearch.so
 %{tde_tdeappdir}/kcmkmrml.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/mrml-servicemenu.desktop
 %{tde_datadir}/mimelnk/text/mrml.desktop
@@ -965,7 +965,7 @@ as well.
 %{tde_tdelibdir}/libkviewcanvas.so
 %{tde_tdelibdir}/libkviewviewer.la
 %{tde_tdelibdir}/libkviewviewer.so
-%{tde_libdir}/lib[kt]deinit_kview.so
+%{tde_libdir}/libtdeinit_kview.so
 %{tde_libdir}/libkimageviewer.so.*
 %{tde_tdelibdir}/libphotobook.la
 %{tde_tdelibdir}/libphotobook.so
@@ -1181,8 +1181,8 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 %{tde_tdeincludedir}/libtext2path-0.1/BezierPath.h
 %{tde_tdeincludedir}/libtext2path-0.1/Glyph.h
 %{tde_tdeincludedir}/libtext2path-0.1/GlyphTracer.h
-%{tde_libdir}/lib[kt]deinit_kview.la
-%{tde_libdir}/lib[kt]deinit_mrmlsearch.la
+%{tde_libdir}/libtdeinit_kview.la
+%{tde_libdir}/libtdeinit_mrmlsearch.la
 %{tde_libdir}/libkghostviewlib.la
 %{tde_libdir}/libkghostviewlib.so
 %{tde_libdir}/libkimageviewer.la
@@ -1213,8 +1213,8 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 #%exclude %{tde_bindir}/kuickshow
 #%exclude %{tde_tdelibdir}/kuickshow.la
 #%exclude %{tde_tdelibdir}/kuickshow.so
-#%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.la
-#%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.so
+#%exclude %{tde_libdir}/libtdeinit_kuickshow.la
+#%exclude %{tde_libdir}/libtdeinit_kuickshow.so
 #%exclude %{tde_tdeappdir}/kuickshow.desktop
 #%exclude %{tde_datadir}/apps/kuickshow/
 #%exclude %{tde_datadir}/icons/hicolor/*/apps/kuickshow.png
@@ -1318,5 +1318,5 @@ done
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE R14.0.0
