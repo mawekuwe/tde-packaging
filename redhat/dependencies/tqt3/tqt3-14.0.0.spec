@@ -26,6 +26,8 @@ Source0: %{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch1:		tqt3-14.0.0-shared_lib.patch
 # [tqt3] Fix FTBFS
 Patch2:		tqt3-14.0.0-fix_ftbfs.patch
+# [tqt3] Fix GLIB initialization
+Patch3:		tqt3-14.0.0-fix_glib_init.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
@@ -428,6 +430,7 @@ for the TQt 3 toolkit.
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .sharedlibs
 %patch2 -p1 -b .ftbfs
+%patch3 -p1 -b .glibinit
 
 %build
 unset QTDIR QTINC QTLIB
