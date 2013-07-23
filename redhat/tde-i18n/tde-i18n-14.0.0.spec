@@ -26,7 +26,7 @@ BuildRequires:	autoconf automake libtool m4
 Name:			trinity-%{tde_pkg}
 Summary:		Internationalization support for Trinity
 Version:		14.0.0
-Release:		%{?!preversion:1}%{?preversion:_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:			Trinity Project
 Packager:		Francois Andriot <francois.andriot@free.fr>

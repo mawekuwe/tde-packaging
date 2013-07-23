@@ -184,8 +184,8 @@ Provides:	trinity-kdebindings = %{version}-%{release}
 
 # Metapackage requires
 Requires: trinity-tdebindings-java = %{version}-%{release}
-Requires: trinity-libsmokeqt1 = %{version}-%{release}
-Requires: trinity-libsmokekde1 = %{version}-%{release}
+Requires: trinity-libsmoketqt = %{version}-%{release}
+Requires: trinity-libsmoketde = %{version}-%{release}
 Requires: trinity-perl-dcop = %{version}-%{release}
 Requires: trinity-python-dcop = %{version}-%{release}
 Requires: trinity-libkjsembed1 = %{version}-%{release}
@@ -406,35 +406,41 @@ This package is part of the official TDE bindings module.
 
 ##########
 
-%package -n trinity-libsmokeqt1
+%package -n trinity-libsmoketqt
 Summary:	SMOKE Binding Library to Qt
 Group:		Environment/Libraries
 
-%description -n trinity-libsmokeqt1
+Obsoletes:	trinity-libsmokeqt1 < %{version}-%{release}
+Provides:	trinity-libsmokeqt1 = %{version}-%{release}
+
+%description -n trinity-libsmoketqt
 The "Scripting Meta Object Kompiler Engine" library is used by
 various TDE language bindings packages to provide interfaces to the
 Qt library.
 
 This package is part of the official TDE bindings module.
 
-%files -n trinity-libsmokeqt1
+%files -n trinity-libsmoketqt
 %defattr(-,root,root,-)
-%{tde_libdir}/libsmokeqt.so.*
+%{tde_libdir}/libsmoketqt.so.*
 
-%post -n trinity-libsmokeqt1
+%post -n trinity-libsmoketqt
 /sbin/ldconfig || :
 
-%postun -n trinity-libsmokeqt1
+%postun -n trinity-libsmoketqt
 /sbin/ldconfig || :
 
 ##########
 
-%package -n trinity-libsmokeqt-devel
+%package -n trinity-libsmoketqt-devel
 Summary:	SMOKE Binding Library to Qt - Development Files
 Group:		Development/Libraries
-Requires:	trinity-libsmokeqt1 = %{version}-%{release}
+Requires:	trinity-libsmoketqt = %{version}-%{release}
 
-%description -n trinity-libsmokeqt-devel
+Obsoletes:	trinity-libsmokeqt-devel < %{version}-%{release}
+Provides:	trinity-libsmokeqt-devel = %{version}-%{release}
+
+%description -n trinity-libsmoketqt-devel
 The "Scripting Meta Object Kompiler Engine" library is used by
 various TDE language bindings packages to provide interfaces to the
 Qt library. This package contains the development files for the
@@ -445,49 +451,55 @@ package.
 
 This package is part of the official TDE bindings module.
 
-%files -n trinity-libsmokeqt-devel
+%files -n trinity-libsmoketqt-devel
 %defattr(-,root,root,-)
 %{tde_tdeincludedir}/smoke.h
-%{tde_libdir}/libsmokeqt.so
-%{tde_libdir}/libsmokeqt.la
+%{tde_libdir}/libsmoketqt.so
+%{tde_libdir}/libsmoketqt.la
 
-%post -n trinity-libsmokeqt-devel
+%post -n trinity-libsmoketqt-devel
 /sbin/ldconfig || :
 
-%postun -n trinity-libsmokeqt-devel
+%postun -n trinity-libsmoketqt-devel
 /sbin/ldconfig || :
 
 ##########
 
-%package -n trinity-libsmokekde1
+%package -n trinity-libsmoketde
 Summary:	SMOKE Binding Library to TDE
 Group:		Environment/Libraries
 
-%description -n trinity-libsmokekde1
+Obsoletes:	trinity-libsmokekde1 < %{version}-%{release}
+Provides:	trinity-libsmokekde1 = %{version}-%{release}
+
+%description -n trinity-libsmoketde
 The "Scripting Meta Object Kompiler Engine" library is used by
 various TDE language bindings packages to provide interfaces to the
 TDE libraries.
 
 This package is part of the official TDE bindings module.
 
-%files -n trinity-libsmokekde1
+%files -n trinity-libsmoketde
 %defattr(-,root,root,-)
-%{tde_libdir}/libsmokekde.so.*
+%{tde_libdir}/libsmoketde.so.*
 
-%post -n trinity-libsmokekde1
+%post -n trinity-libsmoketde
 /sbin/ldconfig || :
 
-%postun -n trinity-libsmokekde1
+%postun -n trinity-libsmoketde
 /sbin/ldconfig || :
 
 ##########
 
-%package -n trinity-libsmokekde-devel
+%package -n trinity-libsmoketde-devel
 Summary:	SMOKE Binding Library to TDE - Development Files
 Group:		Development/Libraries
-Requires:	trinity-libsmokekde1 = %{version}-%{release}
+Requires:	trinity-libsmoketde = %{version}-%{release}
 
-%description -n trinity-libsmokekde-devel
+Obsoletes:	trinity-libsmokekde-devel < %{version}-%{release}
+Provides:	trinity-libsmokekde-devel = %{version}-%{release}
+
+%description -n trinity-libsmoketde-devel
 The "Scripting Meta Object Kompiler Engine" library is used by
 various TDE language bindings packages to provide interfaces to the
 Qt and TDE libraries. This package contains the development files for
@@ -498,15 +510,15 @@ package.
 
 This package is part of the official TDE bindings module.
 
-%files -n trinity-libsmokekde-devel
+%files -n trinity-libsmoketde-devel
 %defattr(-,root,root,-)
-%{tde_libdir}/libsmokekde.so
-%{tde_libdir}/libsmokekde.la
+%{tde_libdir}/libsmoketde.so
+%{tde_libdir}/libsmoketde.la
 
-%post -n trinity-libsmokekde-devel
+%post -n trinity-libsmoketde-devel
 /sbin/ldconfig || :
 
-%postun -n trinity-libsmokekde-devel
+%postun -n trinity-libsmoketde-devel
 /sbin/ldconfig || :
 
 ##########
@@ -941,7 +953,7 @@ Obsoletes:	trinity-kdebindings-devel < %{version}-%{release}
 Provides:	trinity-kdebindings-devel = %{version}-%{release}
 
 # Metapackage
-Requires:	trinity-libsmokeqt-devel = %{version}-%{release}
+Requires:	trinity-libsmoketqt-devel = %{version}-%{release}
 Requires:	trinity-libdcop3-java-devel = %{version}-%{release}
 Requires:	trinity-libsmokekde-devel = %{version}-%{release}
 Requires:	trinity-libkjsembed-devel = %{version}-%{release}

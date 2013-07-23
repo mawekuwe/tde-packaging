@@ -14,19 +14,19 @@
 
 %define _docdir %{tde_datadir}/doc
 
-Name:		trinity-tqca-tls
-Version:	1.0
-Release:	3%{?dist}%{?_variant}
+Name:			trinity-tqca-tls
+Version:		1.0
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
-Summary:	TLS plugin for the TQt Cryptographic Architecture
-License:	LGPLv2+
-Group:		Applications/Internet
+Summary:		TLS plugin for the TQt Cryptographic Architecture
+License:		LGPLv2+
+Group:			Applications/Internet
 
-URL:		http://delta.affinix.com/qca/
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+URL:			http://delta.affinix.com/qca/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
@@ -78,6 +78,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 %defattr(0644,root,root,0755)
 %doc README COPYING
 %{_libdir}/tqt3/plugins/crypto/libqca-tls.so
+
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-3

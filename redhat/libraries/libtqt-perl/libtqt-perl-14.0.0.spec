@@ -16,7 +16,7 @@
 %define tde_mandir %{tde_datadir}/man
 %define tde_appdir %{tde_datadsir}/applications
 
-%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdeappdir %{tde_appdir}/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -26,7 +26,7 @@
 
 Name:		trinity-%{tdecomp}
 Summary:	Perl bindings for the TQt library
-Version:	14.0.0
+Version:	3.008
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
@@ -39,7 +39,7 @@ URL:		http://www.trinitydesktop.org/
 Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch0:		libtqt-perl-14.0.0-ftbfs.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -48,7 +48,7 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
-BuildRequires:	trinity-libsmokeqt-devel
+BuildRequires:	trinity-libsmoketqt-devel >= %{tde_version}
 
 %description
 This module lets you use the TQt library from Perl.
@@ -78,7 +78,7 @@ It provides an object-oriented interface and is easy to use.
 %{perl_vendorarch}/TQt/properties.pm
 %{perl_vendorarch}/TQt/signals.pm
 %{perl_vendorarch}/TQt/slots.pm
-%{perl_vendorarch}/auto/TQt/TQt.so
+%{perl_vendorarch}/auto/TQt/
 %{_mandir}/man3/TQt.3pm.*
 
 ##########
@@ -90,7 +90,7 @@ It provides an object-oriented interface and is easy to use.
 ##########
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch0 -p1 -b .ftbfs
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
@@ -121,11 +121,13 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+%__rm -f %{buildroot}%{perl_archlib}/perllocal.pod
+
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %Changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.008-1
 - Initial release for TDE 14.0.0
