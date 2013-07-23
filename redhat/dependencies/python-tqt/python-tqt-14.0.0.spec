@@ -141,6 +141,7 @@ packages based on them, like PyKDE.
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch0 -p1 -b .ftbfs
 
+
 %build
 unset QTDIR QTINC QTLIB
 
@@ -169,7 +170,6 @@ echo yes | python ../configure.py \
 
 %clean
 %__rm -rf %{?buildroot}
-
 
 
 %changelog
