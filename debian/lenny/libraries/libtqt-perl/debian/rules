@@ -15,7 +15,7 @@ SAVERESTORE=\
 	Makefile.in \
 	puic/Makefile.in \
 	smoke/Makefile.in \
-	smoke/qt/Makefile.in \
+	smoke/tqt/Makefile.in \
 	PerlTQt/bin \
 
 DEB_AUTO_UPDATE_AUTOCONF := 2.61

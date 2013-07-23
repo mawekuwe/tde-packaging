@@ -124,29 +124,29 @@ Description: tdelibs bindings for java ( Native libraries ) [Trinity]
  .
  This package is part of the official TDE bindings module.
 
-Package: libsmokeqt1-trinity
+Package: libsmoketqt1-trinity
 Architecture: any
 Section: libs
 Replaces: libsmokeqt1-trinity (<< 4:14.0.0)
 Breaks: libsmokeqt1-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
-Description: SMOKE Binding Library to Qt
+Description: SMOKE Binding Library to TQt
  The "Scripting Meta Object Kompiler Engine" library is used by
  various TDE language bindings packages to provide interfaces to the
- Qt library.
+ TQt library.
  .
  This package is part of the official TDE bindings module.
 
-Package: libsmokeqt-trinity-dev
+Package: libsmoketqt-trinity-dev
 Architecture: any
 Section: libdevel
 Replaces: libsmokeqt-trinity-dev (<< 4:14.0.0)
 Breaks: libsmokeqt-trinity-dev (<< 4:14.0.0)
-Depends: libsmokeqt1-trinity (= ${binary:Version})
-Description: SMOKE Binding Library to Qt - Development Files
+Depends: libsmoketqt1-trinity (= ${binary:Version})
+Description: SMOKE Binding Library to TQt - Development Files
  The "Scripting Meta Object Kompiler Engine" library is used by
  various TDE language bindings packages to provide interfaces to the
- Qt library. This package contains the development files for the
+ TQt library. This package contains the development files for the
  library.
  .
  If you are a normal Debian user, you probably don't need this
@@ -154,7 +154,7 @@ Description: SMOKE Binding Library to Qt - Development Files
  .
  This package is part of the official TDE bindings module.
 
-Package: libsmokekde1-trinity
+Package: libsmoketde1-trinity
 Architecture: any
 Section: libs
 Replaces: libsmokekde1-trinity (<< 4:14.0.0)
@@ -167,12 +167,12 @@ Description: SMOKE Binding Library to TDE
  .
  This package is part of the official TDE bindings module.
 
-Package: libsmokekde-trinity-dev
+Package: libsmoketde-trinity-dev
 Architecture: any
 Section: libdevel
 Replaces: libsmokekde-trinity-dev (<< 4:14.0.0)
 Breaks: libsmokekde-trinity-dev (<< 4:14.0.0)
-Depends: libsmokekde1-trinity (= ${binary:Version})
+Depends: libsmoketde1-trinity (= ${binary:Version})
 Description: SMOKE Binding Library to TDE - Development Files
  The "Scripting Meta Object Kompiler Engine" library is used by
  various TDE language bindings packages to provide interfaces to the
