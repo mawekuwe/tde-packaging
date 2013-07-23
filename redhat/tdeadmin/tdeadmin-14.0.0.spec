@@ -437,23 +437,6 @@ comps="kcron kdat knetworkconf kpackage ksysv kuser"
 %endif
 %endif
 
-# locale's
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d %{buildroot}/$HTML_DIR ]; then
-for lang_dir in %{buildroot}/$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
 # rpmdocs
 for dir in $comps ; do
   for file in AUTHORS ChangeLog README TODO ; do
@@ -480,5 +463,5 @@ done
 
 
 %changelog
-* Fri Jun 28 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial release for TDE 14.0.0
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE R14.0.0

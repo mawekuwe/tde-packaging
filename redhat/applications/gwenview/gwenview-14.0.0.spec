@@ -117,28 +117,9 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-
-
-## File lists
-# HTML (1.0)
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
 # Removes useless files (-devel ?)
 %__rm -f %{?buildroot}%{tde_libdir}/libgwenviewcore.so
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -151,12 +132,14 @@ for f in crystalsvg hicolor ; do
 done
 /sbin/ldconfig
 
+
 %postun
 for f in crystalsvg hicolor ; do
   touch --no-create %{tde_datadir}/icons/${f} || :
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig
+
 
 %files
 %defattr(-,root,root,-)

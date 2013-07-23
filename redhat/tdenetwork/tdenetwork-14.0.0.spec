@@ -49,8 +49,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kppp.pamd
 Source2:	ktalk
-Source4:	lisarc
-Source5:	lisa.redhat
 
 # RedHat/Fedora legacy patches
 Patch4: 	kdenetwork-3.2.3-resolv.patch
@@ -495,7 +493,7 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kopete
-Summary:		instant messenger for Trinity
+Summary:		instant gwenview-i18n/gwenview-i18n-14.0.0.spec:HTML_DIRmessenger for Trinity
 Group:			Applications/Internet
 URL:			http://kopete.kde.org
 
@@ -993,13 +991,6 @@ automatically when needed.
 %package -n trinity-lisa
 Summary:			LAN information server for Trinity
 Group:				Applications/Internet
-%if 0%{?suse_version}
-Requires(preun):	aaa_base
-Requires(post):		aaa_base
-%else
-Requires(preun):	chkconfig
-Requires(post):		chkconfig
-%endif
 
 %description -n trinity-lisa
 LISa is intended to provide TDE with a kind of "network neighborhood"
@@ -1007,8 +998,6 @@ but relying only on the TCP/IP protocol.
 
 %files -n trinity-lisa
 %defattr(-,root,root,-)
-%config(noreplace) %{_sysconfdir}/lisarc*
-%config(noreplace) %{_initrddir}/lisa
 %{tde_tdelibdir}/kcm_lanbrowser.la
 %{tde_tdelibdir}/kcm_lanbrowser.so
 %{tde_tdelibdir}/tdeio_lan.la
@@ -1028,20 +1017,15 @@ but relying only on the TCP/IP protocol.
 %{tde_bindir}/reslisa
 
 %post -n trinity-lisa
-/sbin/chkconfig --add lisa ||:
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-lisa
-if [ $1 -eq 0 ]; then
-  /sbin/service lisa stop > /dev/null 2>&1 ||:
-  /sbin/chkconfig --del lisa ||:
-fi
 update-desktop-database 2> /dev/null || : 
 
 ##########
 
 %package -n trinity-kdnssd
-Summary: Zeroconf support for KDE
+Summary: Zeroconf support for TDE
 Group:			Applications/Internet
 
 %description -n trinity-kdnssd
@@ -1137,26 +1121,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
-
-## File lists
-# HTML (1.0)
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && %{__rm} -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
-
 %if 0%{?with_consolehelper}
 # Run kppp through consolehelper, and rename it to 'kppp3'
 %__install -p -m644 -D %{SOURCE1} %{buildroot}/etc/pam.d/kppp3
@@ -1178,10 +1142,6 @@ EOF
 
 # ktalk
 %__install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
-
-# Add lisa startup script
-%__install -p -m 0644 -D %{SOURCE4} %{buildroot}%{_sysconfdir}/lisarc
-%__install -p -m 0755 -D %{SOURCE5} %{buildroot}%{_initrddir}/lisa
 
 # RHEL 5: Avoids conflict with 'kdenetwork'
 %if 0%{?rhel} == 5

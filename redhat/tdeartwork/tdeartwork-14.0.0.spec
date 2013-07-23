@@ -683,25 +683,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install -C build DESTDIR=%{buildroot}
 
-# webcollage -root -directory /usr/share/backgrounds/images #227683
-
-# File lists
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
 # Duplicate with trinity-kbabel (from tdesdk)
 %__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/16x16/apps/kbabel.png
 %__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/32x32/apps/kbabel.png

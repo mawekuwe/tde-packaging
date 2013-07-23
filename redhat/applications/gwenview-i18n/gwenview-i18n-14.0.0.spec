@@ -120,32 +120,12 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-
-
-
 ## File lists
 %find_lang gwenview
 
-# HTML (1.0)
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> gwenview.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
-
 # Removes useless files (-devel ?)
 %__rm -f %{?buildroot}%{tde_libdir}/libgwenviewcore.so
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -158,6 +138,7 @@ for f in crystalsvg hicolor ; do
 done
 /sbin/ldconfig
 
+
 %postun
 for f in crystalsvg hicolor ; do
   touch --no-create %{tde_datadir}/icons/${f} || :
@@ -165,9 +146,22 @@ for f in crystalsvg hicolor ; do
 done
 /sbin/ldconfig
 
+
 %files -f gwenview.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING TODO
+%lang(da) %{tde_tdedocdir}/HTML/da/gwenview/
+%lang(de) %{tde_tdedocdir}/HTML/de/gwenview/
+%lang(et) %{tde_tdedocdir}/HTML/et/gwenview/
+%lang(fr) %{tde_tdedocdir}/HTML/fr/gwenview/
+%lang(it) %{tde_tdedocdir}/HTML/it/gwenview/
+%lang(nl) %{tde_tdedocdir}/HTML/nl/gwenview/
+%lang(pl) %{tde_tdedocdir}/HTML/pl/gwenview/
+%lang(pt) %{tde_tdedocdir}/HTML/pt/gwenview/
+%lang(pt_BR) %{tde_tdedocdir}/HTML/pt_BR/gwenview/
+%lang(ru) %{tde_tdedocdir}/HTML/ru/gwenview/
+%lang(sv) %{tde_tdedocdir}/HTML/sv/gwenview/
+
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-3

@@ -724,23 +724,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-# File lists for locale
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d %{buildroot}/$HTML_DIR ]; then
- for lang_dir in %{buildroot}/$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
- done
-fi
-
 
 %clean
 %__rm -rf %{buildroot}

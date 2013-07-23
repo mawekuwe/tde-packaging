@@ -1068,24 +1068,6 @@ export PATH="%{tde_bindir}:${PATH}"
 find $RPM_BUILD_ROOT -type f -a \( -name perllocal.pod -o -name .packlist \
   -o \( -name '*.bs' -a -empty \) \) -exec rm -f {} ';'
 
-# locale's
-%find_lang %{name} || touch %{name}.lang
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d $RPM_BUILD_ROOT$HTML_DIR ]; then
-for lang_dir in $RPM_BUILD_ROOT$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done  
-fi  
-
 # Installs juic
 %__install -D -m 755 qtjava/designer/juic/bin/juic	%{?buildroot}%{tde_bindir}/juic
 %__install -d -m 755 %{?buildroot}%{tde_datadir}/juic/common

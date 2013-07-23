@@ -564,8 +564,8 @@ This package provides data on multimedia applications for kappfinder.
 %files kappfinder-data
 %defattr(-,root,root,-)
 %{tde_datadir}/apps/kappfinder/*
-%{tde_datadir}/desktop-directories/[kt]de-multimedia-music.directory
-%{tde_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu
+%{tde_datadir}/desktop-directories/tde-multimedia-music.directory
+%{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu
 
 ##########
 
@@ -671,8 +671,8 @@ This package includes TDE's dockable sound mixer applet.
 %{tde_tdelibdir}/kmix_panelapplet.so
 %{tde_tdelibdir}/kmixctrl.la
 %{tde_tdelibdir}/kmixctrl.so
-%{tde_libdir}/lib[kt]deinit_kmix.so
-%{tde_libdir}/lib[kt]deinit_kmixctrl.so
+%{tde_libdir}/libtdeinit_kmix.so
+%{tde_libdir}/libtdeinit_kmixctrl.so
 %{tde_tdeappdir}/kmix.desktop
 %{tde_datadir}/apps/kicker/applets/kmixapplet.desktop
 %{tde_datadir}/apps/kmix/
@@ -725,7 +725,7 @@ This is a sound recording utility for Trinity.
 %{tde_tdelibdir}/libkrecexport_ogg.so
 %{tde_tdelibdir}/libkrecexport_wave.la
 %{tde_tdelibdir}/libkrecexport_wave.so
-%{tde_libdir}/lib[kt]deinit_krec.so
+%{tde_libdir}/libtdeinit_krec.so
 %{tde_tdeappdir}/krec.desktop
 %{tde_datadir}/apps/krec/
 %{tde_datadir}/icons/hicolor/*/apps/krec.png
@@ -1020,7 +1020,7 @@ formats supported by your installation of aRts (including aRts plugins).
 %{tde_tdelibdir}/noatunsimple.so
 %{tde_libdir}/libartseffects.la
 %{tde_libdir}/libartseffects.so
-%{tde_libdir}/lib[kt]deinit_noatun.so
+%{tde_libdir}/libtdeinit_noatun.so
 %{tde_libdir}/libnoatun.so.*
 %{tde_libdir}/libnoatunarts.la
 %{tde_libdir}/libnoatunarts.so
@@ -1105,10 +1105,10 @@ noatun plugins.
 %{tde_libdir}/libaudiocdplugins.so
 %{tde_libdir}/libkcddb.la
 %{tde_libdir}/libkcddb.so
-%{tde_libdir}/lib[kt]deinit_kmix.la
-%{tde_libdir}/lib[kt]deinit_kmixctrl.la
-%{tde_libdir}/lib[kt]deinit_krec.la
-%{tde_libdir}/lib[kt]deinit_noatun.la
+%{tde_libdir}/libtdeinit_kmix.la
+%{tde_libdir}/libtdeinit_kmixctrl.la
+%{tde_libdir}/libtdeinit_krec.la
+%{tde_libdir}/libtdeinit_noatun.la
 %{tde_libdir}/libtdemidlib.la
 %{tde_libdir}/libtdemidlib.so
 %{tde_libdir}/libmpeg.la
@@ -1181,7 +1181,7 @@ fi
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?with_xine:--with-xine} %{!?with_xine:--without-xine} \
-   --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_includedir}/tqt:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
+   --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
    --enable-closure
 
 %__make %{?_smp_mflags}
@@ -1194,29 +1194,6 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # don't make these world-writeable
 chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
-
-# locale's
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
-# Moves the XDG configuration files to TDE directory
-%__install -p -D -m644 \
-	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu" \
-	"%{?buildroot}%{tde_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu"
-%__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
 
 
 %clean

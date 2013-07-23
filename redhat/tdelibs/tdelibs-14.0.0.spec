@@ -77,6 +77,13 @@ BuildRequires:	glib2-devel
 # LIBART_LGPL support
 BuildRequires:	trinity-libart-lgpl-devel
 
+# ELFICON support
+#  It's an Ubuntu gadget, not useful for us.
+%if 0
+%define with_elficon 1
+BuildRequires:	libr-devel
+%endif
+
 # ASPELL support
 BuildRequires:	aspell
 BuildRequires:	aspell-devel
@@ -111,6 +118,7 @@ BuildRequires:	libudev-devel
 
 # UDISKS support
 Requires:		udisks
+Requires:		pmount
 BuildRequires:	udisks-devel
 
 # UDISKS2 support
@@ -237,7 +245,7 @@ Requires:		trinity-arts >= %{tde_version}
 %description
 Libraries for the Trinity Desktop Environment:
 TDE Libraries included: tdecore (TDE core library), kdeui (user interface),
-kfm (file manager), khtmlw (HTML widget), kio (Input/Output, networking),
+kfm (file manager), khtmlw (HTML widget), tdeio (Input/Output, networking),
 kspell (spelling checker), jscript (javascript), kab (addressbook),
 kimgio (image manipulation).
 
@@ -284,6 +292,9 @@ kimgio (image manipulation).
 %{tde_bindir}/tdeioexec
 %{tde_bindir}/tdeioslave
 %{tde_bindir}/tdelauncher
+%if 0%{?with_elficon}
+%{tde_bindir}/tdelfeditor
+%endif
 %{tde_bindir}/tdemailservice
 %{tde_bindir}/tdemimelist
 %attr(4755,root,root) %{tde_bindir}/kpac_dhcp_helper
@@ -403,7 +414,7 @@ applications for TDE.
 
 
 %build
-unset QTDIR
+unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
@@ -430,6 +441,7 @@ cd build
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DWITH_ALL_OPTIONS=ON \
   -DWITH_ARTS=ON \
   -DWITH_ALSA=ON \
   -DWITH_LIBART=ON \
@@ -441,20 +453,20 @@ cd build
   %{?with_jasper:-DWITH_JASPER=ON} \
   %{?with_openexr:-DWITH_OPENEXR=ON} \
   -DWITH_UTEMPTER=ON \
-  -DWITH_ELFICON=OFF \
+  %{?!with_elficon:-DWITH_ELFICON=OFF} \
   %{?with_avahi:-DWITH_AVAHI=ON} \
   %{?!with_pcre:-DWITH_PCRE=OFF} \
   -DWITH_GCC_VISIBILITY=ON \
   %{?!with_inotify:-DWITH_INOTIFY=OFF} \
-  %{?!with_gamin:-DWITH_GAMIN=OFF} %{?with_gamin:-DWITH_GAMIN=ON} \
+  %{?!with_gamin:-DWITH_GAMIN=OFF} \
   -DWITH_UPOWER=ON \
   -DWITH_UDISKS=ON \
-  %{?with_udisks2:-DWITH_UDISKS2=ON} %{?!with_udisks2:-DWITH_UDISKS2=OFF} \
+  %{?!with_udisks2:-DWITH_UDISKS2=OFF} \
   -DWITH_CONSOLEKIT=ON \
   %{?with_nm:-DWITH_NETWORK_MANAGER_BACKEND=ON} \
   -DWITH_SUDO_TDESU_BACKEND=OFF \
   -DWITH_OLD_XDG_STD=OFF \
-  %{?with_lzma:-DWITH_LZMA=ON} %{?!with_lzma:-DWITH_LZMA=OFF} \
+  %{?!with_lzma:-DWITH_LZMA=OFF} \
   -DWITH_ASPELL=ON \
   %{?with_hspell:-DWITH_HSPELL=ON} \
   ..

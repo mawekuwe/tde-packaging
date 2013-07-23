@@ -241,22 +241,6 @@ export PATH="%{tde_bindir}:${PATH}"
 ## File lists
 # locale's
 %find_lang %{tde_pkg}
-# HTML (1.0)
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d $RPM_BUILD_ROOT$HTML_DIR ]; then
-for lang_dir in $RPM_BUILD_ROOT$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
 
 # Unpackaged files
 rm -f $RPM_BUILD_ROOT%{tde_libdir}/lib*.la

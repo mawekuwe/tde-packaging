@@ -38,9 +38,7 @@ URL:			http://www.trinitydesktop.org/
 Prefix:			%{_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-#Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source0:		kdbg-master.tar.gz
-Source1:		admin-master.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -80,10 +78,7 @@ Features include the following:
 ##########
 
 %prep
-#setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%setup -q -a 1 -n kdbg-master
-rmdir admin
-mv admin-master admin
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"

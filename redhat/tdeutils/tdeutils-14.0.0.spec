@@ -1027,31 +1027,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
 
-
-## File lists
-# HTML (1.0)
-HTML_DIR=$(tde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-    pushd $lang_dir/kcontrol
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
-
 %if 0%{?build_klaptopdaemon}
 ### Use consolehelper for 'klaptop_acpi_helper'
 %if 0%{?with_consolehelper}
@@ -1074,7 +1049,7 @@ fi
 
 %else
 
-# Klaptop's documentation is installed even if we did not build it ...
+# Klaptop's documentation is installed even if we did not build the program ...
 %__rm -fr %{?buildroot}%{tde_tdedocdir}/HTML/en/kcontrol/kcmlowbatcrit/
 %__rm -fr %{?buildroot}%{tde_tdedocdir}/HTML/en/kcontrol/kcmlowbatwarn/
 %__rm -fr %{?buildroot}%{tde_tdedocdir}/HTML/en/kcontrol/laptop/
