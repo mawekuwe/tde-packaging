@@ -117,6 +117,18 @@ common-install-arch:: stamp-install-dcopjava
 
 ###
 
+binary-install/juic-trinity::
+	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
+
+binary-install/libdcop3-java-trinity-dev::
+	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
+
+binary-install/libkorundum0-ruby1.8-trinity::
+	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
+
+binary-install/libqt0-ruby1.8-trinity::
+	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
+
 binary-install/python-dcop-trinity::
 	dh_pysupport -p$(cdbs_curpkg)
 
