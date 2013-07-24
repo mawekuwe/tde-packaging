@@ -71,7 +71,7 @@ install: build
 
 	# Add here commands to install the package into debian/tmp
 	$(MAKE) install INSTALL_ROOT=$(CURDIR)/debian/tmp/
-	[ -e $(CURDIR)/debian/tmp/usr/lib/tqt3/plugins/crypto/libqca-tls.so ] || ( echo "libqca-tls.so not in usr/lib/tqt3/plugins/crypto/libqca-tls.so" && exit 1 )
+	[ -e $(CURDIR)/debian/tmp/usr/lib/tqt3/plugins/crypto/libtqca-tls.so ] || ( echo "libtqca-tls.so not in usr/lib/tqt3/plugins/crypto/libtqca-tls.so" && exit 1 )
 
 
 # Build architecture-independent files here.
