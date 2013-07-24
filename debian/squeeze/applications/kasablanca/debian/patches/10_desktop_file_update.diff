@@ -1,0 +1,146 @@
+diff -Nur kasablanca-0.4.0.2/acinclude.m4 kasablanca-0.4.0.2.new/acinclude.m4
+--- kasablanca-0.4.0.2/acinclude.m4	2005-01-31 14:54:38.000000000 +0100
++++ kasablanca-0.4.0.2.new/acinclude.m4	2006-03-22 11:03:39.000000000 +0100
+@@ -420,7 +420,7 @@
+     kde_htmldir='\${datadir}/doc/HTML'
+   fi
+   if test -z "$kde_appsdir"; then
+-    kde_appsdir='\${datadir}/applnk'
++    kde_appsdir='\${datadir}/applications'
+   fi
+   if test -z "$kde_icondir"; then
+     kde_icondir='\${datadir}/icons'
+diff -Nur kasablanca-0.4.0.2/admin/acinclude.m4.in kasablanca-0.4.0.2.new/admin/acinclude.m4.in
+--- kasablanca-0.4.0.2/admin/acinclude.m4.in	2006-03-22 11:00:42.000000000 +0100
++++ kasablanca-0.4.0.2.new/admin/acinclude.m4.in	2006-03-22 11:03:55.000000000 +0100
+@@ -420,7 +420,7 @@
+     kde_htmldir='\${datadir}/doc/HTML'
+   fi
+   if test -z "$kde_appsdir"; then
+-    kde_appsdir='\${datadir}/applnk'
++    kde_appsdir='\${datadir}/applications'
+   fi
+   if test -z "$kde_icondir"; then
+     kde_icondir='\${datadir}/icons'
+diff -Nur kasablanca-0.4.0.2/configure kasablanca-0.4.0.2.new/configure
+--- kasablanca-0.4.0.2/configure	2005-01-31 14:55:25.000000000 +0100
++++ kasablanca-0.4.0.2.new/configure	2006-03-22 11:08:30.000000000 +0100
+@@ -29766,7 +29766,7 @@
+     kde_htmldir='\${datadir}/doc/HTML'
+   fi
+   if test -z "$kde_appsdir"; then
+-    kde_appsdir='\${datadir}/applnk'
++    kde_appsdir='\${datadir}/applications'
+   fi
+   if test -z "$kde_icondir"; then
+     kde_icondir='\${datadir}/icons'
+@@ -30069,7 +30069,7 @@
+     kde_htmldir='\${datadir}/doc/HTML'
+   fi
+   if test -z "$kde_appsdir"; then
+-    kde_appsdir='\${datadir}/applnk'
++    kde_appsdir='\${datadir}/applications'
+   fi
+   if test -z "$kde_icondir"; then
+     kde_icondir='\${datadir}/icons'
+diff -Nur kasablanca-0.4.0.2/src/Makefile.am kasablanca-0.4.0.2.new/src/Makefile.am
+--- kasablanca-0.4.0.2/src/Makefile.am	2004-08-18 01:43:43.000000000 +0200
++++ kasablanca-0.4.0.2.new/src/Makefile.am	2006-03-22 11:06:14.000000000 +0100
+@@ -25,7 +25,7 @@
+ kasablanca_LDADD = -lssl $(LIB_KDEUI)
+ 
+ # this is where the desktop file will go 
+-shelldesktopdir = $(kde_appsdir)/Utilities
++shelldesktopdir = $(kde_appsdir)/kde
+ shelldesktop_DATA = kasablanca.desktop
+ 
+ # this is where the shell's XML-GUI resource file goes
+diff -Nur kasablanca-0.4.0.2/src/Makefile.in kasablanca-0.4.0.2.new/src/Makefile.in
+--- kasablanca-0.4.0.2/src/Makefile.in	2005-01-31 15:02:13.000000000 +0100
++++ kasablanca-0.4.0.2.new/src/Makefile.in	2006-03-22 11:06:49.000000000 +0100
+@@ -407,7 +407,7 @@
+ kasablanca_LDADD = -lssl $(LIB_KDEUI)
+ 
+ # this is where the desktop file will go 
+-shelldesktopdir = $(kde_appsdir)/Utilities
++shelldesktopdir = $(kde_appsdir)/kde
+ shelldesktop_DATA = kasablanca.desktop
+ 
+ # this is where the shell's XML-GUI resource file goes
+diff -Nur kasablanca-0.4.0.2/src/kasablanca.desktop kasablanca-0.4.0.2.new/src/kasablanca.desktop
+--- kasablanca-0.4.0.2/src/kasablanca.desktop	2004-03-22 19:58:39.000000000 +0100
++++ kasablanca-0.4.0.2.new/src/kasablanca.desktop	2006-03-22 14:09:46.000000000 +0100
+@@ -1,26 +1,53 @@
+ [Desktop Entry]
+ Encoding=UTF-8
+ Name=kasablanca
+-Name[xx]=xxkasablancaxx
+ Exec=kasablanca
+ Icon=kasablanca
+ Type=Application
+-Comment=A simple KDE Application
+-Comment[ca]=Una simple aplicació KDE
+-Comment[da]=Et simpelt KDE program
+-Comment[de]=Eine einfache KDE-Anwendung
+-Comment[el]=Μια απλή εφαρμογή του KDE
+-Comment[es]=Una aplicación de KDE sencilla
+-Comment[et]=Lihtne KDE rakendus
+-Comment[fr]=Une application simple pour KDE.
+-Comment[hu]=Egyszerű KDE-alkalmazás
+-Comment[it]=Una semplice applicazione KDE
+-Comment[nl]=Een eenvoudige KDE-toepassing
+-Comment[pt]=Uma aplicação KDE simples
+-Comment[pt_BR]=Um simples Aplicativo do KDE
+-Comment[ru]=Простое приложение KDE
+-Comment[sl]=Preprost program za KDE
+-Comment[sr]=Једноставан KDE програм
+-Comment[sv]=Ett enkelt KDE-program
+-Comment[xx]=xxA simple KDE Applicationxx
+-Comment[zh_CN]=一个简单的KDE应用程序
++Categories=Qt;KDE;Network
++GenericName=FTP Client
++GenericName[br]=Kliant FTP
++GenericName[ca]=Client FTP
++GenericName[cs]=FTP klient
++GenericName[cy]=Dibynnydd FTP
++GenericName[da]=FTP klient
++GenericName[el]=Πελάτης FTP
++GenericName[es]=Cliente FTP
++GenericName[et]=FTP-klient
++GenericName[fr]=Client FTP
++GenericName[ga]=Cliant FTP
++GenericName[it]=Client FTP
++GenericName[nl]=FTP-cliënt
++GenericName[pa]=FTP ਕਲਾਇਟ
++GenericName[pt]=Cliente de FTP
++GenericName[pt_BR]=Cliente de FTP
++GenericName[ru]=Клиент FTP
++GenericName[rw]=Umukiriya FTP
++GenericName[sr]=FTP клијент
++GenericName[sr@Latn]=FTP klijent
++GenericName[sv]=FTP-klient
++GenericName[xh]=Umxhasi we FTP
++GenericName[zu]=Umthengi we FTP
++Comment=FTP Client
++Comment[br]=Kliant FTP
++Comment[ca]=Client FTP
++Comment[cs]=FTP klient
++Comment[cy]=Dibynnydd FTP
++Comment[da]=FTP klient
++Comment[el]=Πελάτης FTP
++Comment[es]=Cliente FTP
++Comment[et]=FTP-klient
++Comment[fr]=Client FTP
++Comment[ga]=Cliant FTP
++Comment[it]=Client FTP
++Comment[nl]=FTP-cliënt
++Comment[pa]=FTP ਕਲਾਇਟ
++Comment[pt]=Cliente de FTP
++Comment[pt_BR]=Cliente de FTP
++Comment[ru]=Клиент FTP
++Comment[rw]=Umukiriya FTP
++Comment[sr]=FTP клијент
++Comment[sr@Latn]=FTP klijent
++Comment[sv]=FTP-klient
++Comment[xh]=Umxhasi we FTP
++Comment[zu]=Umthengi we FTP

@@ -1665,7 +1665,6 @@ debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xsl/README
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xsl/TODO
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xsl/VERSION
 debian/tmp/opt/trinity/share/apps/ksgmltools2/docbook/xsl/WhatsNew
-debian/tmp/opt/trinity/share/apps/kssl/ca-bundle.crt
 debian/tmp/opt/trinity/share/apps/kstyle/pixmaps/riscos/arrowdown_down.png
 debian/tmp/opt/trinity/share/apps/kstyle/pixmaps/riscos/arrowdown.png
 debian/tmp/opt/trinity/share/apps/kstyle/pixmaps/riscos/arrowleft_down.png

@@ -1,0 +1,31 @@
+#!/usr/bin/make -f
+
+cdbs_kde_enable_debug = --disable-debug 
+
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/kde.mk
+
+DEB_INSTALL_MANPAGES_knmap-trinity = knmap.1
+
+post-patches::
+	# regenerating files to build app
+	$(MAKE) -f Makefile.cvs
+
+install/knmap-trinity::
+	dh_install src/knmap.desktop usr/share/applications/tde
+	dh_link opt/trinity/share/doc/tde/HTML/en/knmap usr/share/doc/knmap/html
+	dh_iconcache
+
+build/knmap-trinity::
+	docbook2x-man debian/knmap.1.docbook
+
+clean::
+	rm -f knmap.1
+	# removing files not cleaned by upstream
+	rm -f doc/en/Makefile.in
+	rm -f src/Makefile.in
+	rm -f configure
+	rm -f Makefile.in
+	rm -f subdirs
+	rm -f aclocal.m4
