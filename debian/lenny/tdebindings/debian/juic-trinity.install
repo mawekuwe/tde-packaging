@@ -1,4 +1,4 @@
-qtjava/designer/juic/bin/juic	usr/bin
+qtjava/designer/juic/bin/juic	/opt/trinity/bin
 qtjava/designer/juic/common/*.xml	/opt/trinity/share/juic/common
 qtjava/designer/juic/common/*.xsl	/opt/trinity/share/juic/common
 qtjava/designer/juic/java/*.xml	/opt/trinity/share/juic/java
