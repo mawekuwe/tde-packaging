@@ -1,0 +1,28 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/kde.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+DEB_INSTALL_MANPAGES_kasablanca-trinity := kasablanca.1
+
+build-stamp:
+	dh_testdir
+
+	/usr/bin/libtoolize -f
+	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
+	cp -f /usr/share/misc/config.guess admin/config.guess
+	cp -f /usr/share/misc/config.sub admin/config.sub
+
+	$(MAKE) -f admin/Makefile.common
+	
+	QTDIR=/usr/share/tqt3 ./configure $(configkde) --disable-final 
+	$(MAKE)
+	touch build-stamp
+
+build/kasablanca-trinity::
+	/usr/bin/docbook2x-man debian/kasablanca.xml
+
+clean::
+	rm -f kasablanca.1
+

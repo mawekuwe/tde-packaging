@@ -1,0 +1,24 @@
+Source: kasablanca-trinity
+Section: tde
+Priority: optional
+Maintainer: Debian TDE Extras Team <pkg-tde-extras@lists.alioth.debian.org>
+Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
+Build-Depends: cdbs, debhelper (>= 5), automake, tdelibs4-trinity-dev, docbook2x
+Standards-Version: 3.8.3
+
+Package: kasablanca-trinity
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: fast and free ftp client for TDE
+ Kasablanca is an ftp client, written in c++, using the tde libraries.
+ .
+ Features:
+  * ftps encryption via AUTH TLS
+  * fxp (direct server to server transfer), supporting alternative mode
+  * advanced bookmarking system
+  * fast responsive multithreaded engine
+  * concurrent connections to multiple hosts
+  * interactive transfer queue, movable by drag and drop
+  * small nifty features, like a skiplist
+ .
+  Homepage: http://kasablanca.berlios.de
