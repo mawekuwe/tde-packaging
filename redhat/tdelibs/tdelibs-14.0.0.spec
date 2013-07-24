@@ -41,6 +41,8 @@ Patch0:		tdelibs-14.0.0-ftbfs.patch
 Patch1:		tdelibs-14.0.0-fix_xdg_menu.patch
 # Fix battery charge detection
 Patch2:		tdelibs-14.0.0-fix_battery_charge.patch
+# Enable Devkit Power support (older than upower)
+Patch3:		tdelibs-14.0.0-devkitpower_support.patch
 
 # Patches from Mandriva
 Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
@@ -117,15 +119,30 @@ BuildRequires:	bzip2-devel
 BuildRequires:	libudev-devel
 
 # UDISKS support
-Requires:		udisks
-Requires:		pmount
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%define with_udisks 1
 BuildRequires:	udisks-devel
+Requires:		udisks
+%endif
+
+# PMOUNT support
+Requires:		pmount
 
 # UDISKS2 support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 %define with_udisks2 1
-Requires:		udisks2
 BuildRequires:	udisks2-devel
+Requires:		udisks2
+%endif
+
+# UPOWER support
+%if 0%{?rhel} >= 6
+%define with_devkitpower 1
+Requires:		DeviceKit-power
+%endif
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
+%define with_upower 1
+Requires:		upower
 %endif
 
 # UTEMPTER support
@@ -233,7 +250,7 @@ BuildRequires:	xz-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}nm-util-devel
 %endif
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?suse_version}
 BuildRequires:	NetworkManager-glib-devel
 %endif
 %endif
@@ -408,6 +425,7 @@ applications for TDE.
 %patch0 -p1 -b .ftbfs
 %patch1 -p1 -b .xdg
 %patch2 -p1 -b .batterycharge
+%patch3 -p1 -b .devkitpower
 
 %patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default
@@ -459,8 +477,9 @@ cd build
   -DWITH_GCC_VISIBILITY=ON \
   %{?!with_inotify:-DWITH_INOTIFY=OFF} \
   %{?!with_gamin:-DWITH_GAMIN=OFF} \
-  -DWITH_UPOWER=ON \
-  -DWITH_UDISKS=ON \
+  %{?with_devkitpower:-DWITH_DEVKITPOWER=ON} \
+  %{?!with_upower:-DWITH_UPOWER=OFF} \
+  %{?!with_udisks:-DWITH_UDISKS=OFF} \
   %{?!with_udisks2:-DWITH_UDISKS2=OFF} \
   -DWITH_CONSOLEKIT=ON \
   %{?with_nm:-DWITH_NETWORK_MANAGER_BACKEND=ON} \

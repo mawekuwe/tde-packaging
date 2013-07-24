@@ -1,3 +1,6 @@
+# Starting with TDE R14.0.0, TDE is not intended to run in RHEL4 and older.
+# Minimum (oldest) distribution supported is RHEL5.
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
@@ -82,26 +85,6 @@ Requires:	trinity-tdewebdev >= %{version}
 Group:		User Interface/Desktops
 Summary:	Meta-package to install all TDE applications
 
-# Some applications are disabled for now ...
-# Compiz-related stuff does not work (obsolete)
-#Requires: trinity-compizconfig-backend-kconfig
-#Requires: trinity-desktop-effects-kde
-#Requires: trinity-fusion-icon
-
-# Obsolete l10n package
-#Requires: trinity-filelight-l10n
-
-# Not even an RPM package ...
-#Requires: trinity-konstruct
-
-# Debian/Ubuntu specific ...
-#Requires: trinity-adept
-
-# Future R14 packages
-Requires: trinity-qt4-tqt-theme-engine
-
-# Warning, k9copy requires ffmpeg
-# Warning, tderadio requires libmp3lame
 Requires: trinity-abakus
 Requires: trinity-amarok
 Requires: trinity-basket
@@ -113,6 +96,8 @@ Requires: trinity-gwenview
 Requires: trinity-gwenview-i18n
 Requires: trinity-k3b
 Requires: trinity-k9copy
+Requires: trinity-kaffeine
+Requires: trinity-kaffeine-mozilla
 Requires: trinity-katapult
 Requires: trinity-kbarcode
 Requires: trinity-kbfx
@@ -126,12 +111,15 @@ Requires: trinity-kcmldapcontroller
 Requires: trinity-kcmldapmanager
 Requires: trinity-kcpuload
 Requires: trinity-kdbg
+Requires: trinity-kdbusnotification
 Requires: trinity-kdiff3
 Requires: trinity-kdirstat
 Requires: trinity-keep
 Requires: trinity-kerberostray
 Requires: trinity-kile
+Requires: trinity-kima
 Requires: trinity-kiosktool
+Requires: trinity-kmplayer
 Requires: trinity-kmyfirewall
 Requires: trinity-kmymoney
 Requires: trinity-knemo
@@ -142,7 +130,9 @@ Requires: trinity-knowit
 Requires: trinity-knutclient
 Requires: trinity-koffice-suite
 Requires: trinity-konversation
+Requires: trinity-kopete-otr
 Requires: trinity-kpicosim
+Requires: trinity-kpilot
 Requires: trinity-krename
 Requires: trinity-krusader
 Requires: trinity-ksplash-engine-moodin
@@ -157,76 +147,52 @@ Requires: trinity-kvkbd
 Requires: trinity-kvpnc
 Requires: trinity-piklab
 Requires: trinity-potracegui
+Requires: trinity-rosegarden
 Requires: trinity-smb4k
 Requires: trinity-smartcardauth
 Requires: trinity-soundkonverter
+Requires: trinity-tde-guidance
+Requires: trinity-tde-guidance-powermanager
 Requires: trinity-tde-style-lipstik
 Requires: trinity-tde-style-qtcurve
 Requires: trinity-tde-systemsettings
 Requires: trinity-tdeio-apt
 Requires: trinity-tdeio-locate
 Requires: trinity-tdeio-umountwrapper
+Requires: trinity-tdenetworkmanager
+Requires: trinity-tdepowersave
 Requires: trinity-tderadio
 Requires: trinity-tdesudo
+Requires: trinity-tdesvn
 Requires: trinity-tdmtheme
 Requires: trinity-tellico
 Requires: trinity-twin-style-crystal
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
 
-Requires: trinity-gtk3-tqt-engine
-
-# Disabled applications for RHEL5
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-# On RHEL 5, HAL version is too old for kpowersave .
-Requires: trinity-tdekpowersave
-# On RHEL 5, GTK2 version is too old for GTK stuff ...
-Requires: trinity-gtk-qt-engine
-# On RHEL 5, lilypond is not available, so no rosegarden :'-(
-Requires: trinity-rosegarden
-# RHEL5: kpilot library is too old
-Requires: trinity-kpilot
-%endif
-
-# These python stuff have not been ported to TQT3 and still rely on HAL
-#Requires: trinity-tde-guidance
-#Requires: trinity-tde-guidance-powermanager
-Obsoletes: trinity-guidance
-Obsoletes: trinity-guidance-powermanager
-Obsoletes: trinity-tde-guidance
-Obsoletes: trinity-tde-guidance-powermanager
-
-# This one causes several crashes . Obsolete.
+# Decoration-related stuff (not installed by default)
 #Requires: trinity-kgtk-qt3
-Obsoletes: trinity-kgtk-qt3
+#Requires: trinity-gtk-qt-engine
+#Requires: trinity-gtk3-tqt-engine
+#Requires: trinity-qt4-tqt-theme-engine
 
-# OBSOLETE: beagle does not exist anymore. Kerry is now useless.
-# RHEL, openSUSE 12: no Beagle library
-Obsoletes: trinity-kerry
+# Compiz-related stuff does not work (obsolete)
+#Requires: trinity-compizconfig-backend-kconfig
+#Requires: trinity-desktop-effects-kde
+#Requires: trinity-fusion-icon
 
-# RHEL 6 only: knetworkmanager8
-%if 0%{?rhel} == 6
-Requires: trinity-knetworkmanager8
-%endif
-# Other distros: tdenetworkmanager (knetworkmanager9)
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?fedora}
-Requires: trinity-tdenetworkmanager
-%endif
+# Useless l10n package
+#Requires: trinity-filelight-l10n
 
-# RHEL 4
-%if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-# HAL is too old
-Requires: trinity-kima
-Requires: trinity-kaffeine
-Requires: trinity-kaffeine-mozilla
-Requires: trinity-kmplayer
-# No OTR support
-Requires: trinity-kopete-otr
-# No DBUS support
-Requires: trinity-kdbusnotification
-# Subversion 1.1 is too old
-Requires: trinity-tdesvn
-%endif
+# Not even an RPM package ...
+#Requires: trinity-konstruct
+
+# Debian/Ubuntu specific ...
+#Requires: trinity-adept
+
+
+# Beagle does not exist anymore, so Kerry is now useless.
+#Requires: trinity-kerry
 
 %description applications
 %{summary}

@@ -155,8 +155,6 @@ export PATH="%{_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot} -C build
 
 
-%find_lang kdesvn
-
 # Installs SVN protocols as alternatives
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+file.protocol %{?buildroot}%{tde_datadir}/services/svn+file.protocol_tdesvn
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+http.protocol %{?buildroot}%{tde_datadir}/services/svn+http.protocol_tdesvn
@@ -209,7 +207,7 @@ fi
 /sbin/ldconfig || :
 
 
-%files -f kdesvn.lang
+%files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{tde_bindir}/tdesvn

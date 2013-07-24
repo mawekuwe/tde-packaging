@@ -68,7 +68,7 @@ BuildRequires:	jack-audio-connection-kit-devel
 %endif
 
 # LIRC support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6
 %define with_lirc 1
 BuildRequires:	lirc-devel
 %endif

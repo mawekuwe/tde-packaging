@@ -833,7 +833,7 @@ task.
 %{tde_datadir}/services/kinetd_krfb.desktop
 %{tde_datadir}/services/kinetd_krfb_httpd.desktop
 %{tde_datadir}/servicetypes/kinetdmodule.desktop
-%{tde_tdedocdir}/HTML/en/krfb
+%{tde_tdedocdir}/HTML/en/krfb/
 
 %post -n trinity-krfb
 for f in crystalsvg locolor ; do

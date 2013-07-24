@@ -1,0 +1,64 @@
+diff --git a/configure b/configure
+index 0ced074..7a6fcfe 100755
+--- a/configure
++++ b/configure
+@@ -44,7 +44,7 @@ while [ $# -gt 0 ]; do
+ done
+ 
+ 
+-echo "Configuring qca-tls ..."
++echo "Configuring tqca-tls ..."
+ 
+ if [ "$QC_DEBUG" = "Y" ]; then
+ echo
+diff --git a/qca-tls.pro b/qca-tls.pro
+index c1541bf..2457746 100644
+--- a/qca-tls.pro
++++ b/qca-tls.pro
+@@ -1,8 +1,8 @@
+-# qca-tls qmake profile
++# tqca-tls qmake profile
+ 
+ TEMPLATE = lib
+ CONFIG  += qt thread release plugin
+-TARGET   = qca-tls
++TARGET   = tqca-tls
+ 
+ !exists(qcaprovider.h) {
+   Q_PREFIX = ../../src
+@@ -13,9 +13,9 @@ HEADERS += ($$Q_PREFIX)qcaprovider.h
+ HEADERS = qca-tls.h
+ SOURCES = qca-tls.cpp
+ 
+-DEFINES += QCA_PLUGIN
++DEFINES += TQCA_PLUGIN
+ win32:{
+-	DEFINES += QCA_PLUGIN_DLL OSSL_097
++	DEFINES += TQCA_PLUGIN_DLL OSSL_097
+ 	INCLUDEPATH += c:\local\include
+ 	LIBS += c:\local\lib\libeay32.lib c:\local\lib\ssleay32.lib
+ }
+diff --git a/qca-tls.qc b/qca-tls.qc
+index ef0a739..91179cf 100644
+--- a/qca-tls.qc
++++ b/qca-tls.qc
+@@ -1,5 +1,5 @@
+ <qconf>
+- <name>qca-tls</name>
++ <name>tqca-tls</name>
+  <profile>qca-tls.pro</profile>
+  <noprefix/>
+  <dep type='openssl'>
+diff --git a/qca.h b/qca.h
+index 184a4b0..ccd6d03 100644
+--- a/qca.h
++++ b/qca.h
+@@ -49,7 +49,7 @@
+ #  endif
+ #endif
+ #ifndef TQCA_PLUGIN_EXPORT
+-#define TQCA_PLUGIN_EXPORT extern "C"
++#define TQCA_PLUGIN_EXPORT extern "C" __attribute__ ((visibility ("default")))
+ #endif
+ 
+ class TQHostAddress;

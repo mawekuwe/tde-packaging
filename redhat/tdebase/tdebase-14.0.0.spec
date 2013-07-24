@@ -83,6 +83,8 @@ Patch4:		tdebase-14.0.0-kickoff_default_favs.patch
 ## [kdebase] Changes konsole default word separator
 Patch5:		tdebase-14.0.0-konsole_wordseps.patch
 
+Patch10:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
+
 # Patches from Mandriva
 Patch101:	tdebase-14.0.0-vibrate_dialog.patch
 Patch102:	tdebase-14.0.0-kcontrol_menu_entry.patch
@@ -3207,6 +3209,8 @@ Windows and Samba shares.
 %patch3 -p1 -b .displayconfigtranslation
 %patch4 -p1 -b .kickoffdefaultsfav
 %patch5 -p1 -b .konsolewordseps
+%patch10 -p1 -b .kcmxcursor
+
 
 %patch101 -p1 -b .vibrate_dialog
 %patch102 -p1 -b .kcontrol_menu_entry

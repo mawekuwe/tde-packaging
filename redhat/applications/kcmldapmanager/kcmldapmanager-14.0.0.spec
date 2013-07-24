@@ -70,7 +70,7 @@ update-desktop-database %{tde_tdeappdir} > /dev/null
 %postun -n trinity-kcontrol-ldap-manager
 update-desktop-database %{tde_tdeappdir} > /dev/null
 
-%files -n trinity-kcontrol-ldap-manager -f %{tde_pkg}.lang
+%files -n trinity-kcontrol-ldap-manager
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING
 %{tde_bindir}/tdeldapmanager
@@ -115,8 +115,6 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
-
-%find_lang %{tde_pkg}
 
 
 %clean

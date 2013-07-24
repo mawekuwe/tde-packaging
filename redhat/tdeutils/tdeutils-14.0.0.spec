@@ -88,7 +88,7 @@ BuildRequires:	libXtst-devel
 Requires: trinity-ark = %{version}-%{release}
 Requires: trinity-kcalc = %{version}-%{release}
 Requires: trinity-kcharselect = %{version}-%{release}
-Requires: trinity-kdelirc = %{version}-%{release}
+Requires: trinity-tdelirc = %{version}-%{release}
 Requires: trinity-tdessh = %{version}-%{release}
 Requires: trinity-kdf = %{version}-%{release}
 Requires: trinity-kedit = %{version}-%{release}
@@ -111,7 +111,7 @@ Utilities for the Trinity Desktop Environment, including:
   * ark (tar/gzip archive manager)
   * kcalc (scientific calculator)
   * kcharselect (character selector)
-  * kdepasswd (change password)
+  * tdelirc (infrared control)
   * tdessh (ssh front end)
   * kdf (view disk usage)
   * kedit (simple text editor)
@@ -271,14 +271,17 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%package -n trinity-kdelirc
+%package -n trinity-tdelirc
 Summary:	infrared control for Trinity
 Group:		Applications/Utilities
 
-%description -n trinity-kdelirc
+Obsoletes:	trinity-kdelirc < %{version}-%{release}
+Provides:	trinity-kdelirc = %{version}-%{release}
+
+%description -n trinity-tdelirc
 This is a frontend for the LIRC suite to use infrared devices with TDE.
 
-%files -n trinity-kdelirc
+%files -n trinity-tdelirc
 %defattr(-,root,root,-)
 %{tde_bindir}/irkick
 %{tde_tdelibdir}/irkick.la
@@ -305,7 +308,7 @@ This is a frontend for the LIRC suite to use infrared devices with TDE.
 %{tde_tdedocdir}/HTML/en/irkick/
 %{tde_tdedocdir}/HTML/en/kcmlirc/
 
-%post -n trinity-kdelirc
+%post -n trinity-tdelirc
 /sbin/ldconfig
 for f in hicolor locolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
@@ -313,7 +316,7 @@ for f in hicolor locolor ; do
 done
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
-%postun -n trinity-kdelirc
+%postun -n trinity-tdelirc
 /sbin/ldconfig
 for f in hicolor locolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null  ||:

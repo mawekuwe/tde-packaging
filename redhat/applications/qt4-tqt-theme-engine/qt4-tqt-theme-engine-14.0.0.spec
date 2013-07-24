@@ -75,8 +75,13 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
+if [ -x "%{_libdir}/qt4/bin/qmake" ]; then
+  export PATH="%{_libdir}/qt4/bin:${PATH}"
+fi
+
 # Use QT4's qmake
-%{_bindir}/qmake
+qmake
+
 
 # Not SMP SAFE !
 %__make

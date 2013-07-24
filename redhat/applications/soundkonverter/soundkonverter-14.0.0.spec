@@ -105,7 +105,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
   --disable-rpath \
-  --with-extra-includes=:/usr/include/cdda \
+  --with-extra-includes=/usr/include/cdda \
   --enable-closure
    
 %__make %{?_smp_mflags}

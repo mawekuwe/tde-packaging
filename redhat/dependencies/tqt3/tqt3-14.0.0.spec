@@ -26,8 +26,6 @@ Source0: %{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch1:		tqt3-14.0.0-shared_lib.patch
 # [tqt3] Fix FTBFS
 Patch2:		tqt3-14.0.0-fix_ftbfs.patch
-# [tqt3] Fix GLIB initialization
-Patch3:		tqt3-14.0.0-fix_glib_init.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
@@ -430,7 +428,15 @@ for the TQt 3 toolkit.
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .sharedlibs
 %patch2 -p1 -b .ftbfs
-%patch3 -p1 -b .glibinit
+
+# fix variables in 'qmake.conf'
+%__sed -i mkspecs/*/qmake.conf \
+  -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= /usr/include/tqt3|" \
+  -e "s|\$(QTDIR)|/usr|g" \
+  -e "s|-lqt|-ltqt|g" \
+  -e "s|^QMAKE_STRIP             =.*|QMAKE_STRIP             =|" \
+  -e "s|^QMAKE_STRIPFLAGS_LIB 	+=.*|QMAKE_STRIPFLAGS_LIB 	+=|"
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -548,12 +554,6 @@ ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
 
 # fix .prl files
 %__sed -i lib/*.prl -e "s|${QTDIR}|%{tde_datadir}/tqt3|g"
-
-# fix QTDIR in 'qmake.conf'
-%__sed -i mkspecs/*/qmake.conf \
-  -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= /usr/include/tqt3|" \
-  -e "s|\$(QTDIR)|/usr|g" \
-  -e "s|-lqt|-ltqt|g"
 
 
 %install

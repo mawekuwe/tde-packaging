@@ -50,6 +50,10 @@ BuildRequires:	gettext
 
 BuildRequires:	trinity-libsmoketqt-devel >= %{tde_version}
 
+Provides:		perl(TQtShell)
+Provides:		perl(TQtShellControl)
+
+
 %description
 This module lets you use the TQt library from Perl.
 It provides an object-oriented interface and is easy to use.

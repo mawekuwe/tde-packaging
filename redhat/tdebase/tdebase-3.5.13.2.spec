@@ -24,7 +24,7 @@
 
 Name:		trinity-tdebase
 Version:	3.5.13.2
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
@@ -96,6 +96,8 @@ Patch7:	kdebase-3.5.13.1-fix_tdm_pid_file.patch
 Patch8:	tdebase-3.5.13.2-kickoff_default_favs.patch
 ## [kdebase/kcontrol] Adds FR translation for KCM ICC
 Patch9:	tdebase-3.5.13.2-displayconfig_translation.patch
+
+Patch10: tdebase-3.5.13.2-kcm_xcursor_applytheme.patch
 
 # Patches from Mandriva
 Patch101:	tdebase-3.5.13.2-vibrate_dialog.patch
@@ -3260,6 +3262,7 @@ Windows and Samba shares.
 %patch7 -p1 -b .pid
 %patch8 -p1 -b .kickoff_default_favs
 %patch9 -p1 -b .translation
+%patch10 -p1 -b .kcmxcursor
 
 %patch101 -p1 -b .vibrate_dialog
 %patch102 -p1 -b .kcontrol_menu_entry

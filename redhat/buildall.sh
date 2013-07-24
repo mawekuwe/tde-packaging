@@ -2,10 +2,11 @@
 
 tdp='cd ~/tde/tde-packaging/redhat'
 #grp='tdp; ./genrpm.sh -v 3.5.13.2 -a'
-grp='tdp; ./genrpm.sh -v 14.0.0 -a'
+grp='./genrpm.sh -v 14.0.0 -a'
 
 BUILDDIR="/dev/shm/BUILD${DIST}.$(uname -i)"
 BUILDROOTDIR="/dev/shm/BUILDROOT${DIST}.$(uname -i)"
+DIST="$(rpm -E %{dist})"
 
 if [ -x /usr/sbin/urpmi ]; then
   PKGMGR="urpmi"
@@ -82,34 +83,36 @@ rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
 #fi
 grpiud dependencies/tqt3
 grpiud dependencies/tqtinterface
-grpi dependencies/arts
-grpi dependencies/avahi-tqt
-grpi dependencies/dbus-1-tqt
-grpi dependencies/dbus-tqt
-grpi dependencies/libcaldav
-grpi dependencies/libcarddav
+grpiud dependencies/arts
+grpiud dependencies/avahi-tqt
+grpiud dependencies/dbus-1-tqt
+grpiud dependencies/dbus-tqt
+grpiud dependencies/libart-lgpl
+grpiud dependencies/libcaldav
+grpiud dependencies/libcarddav
 grpiud dependencies/tqca
 grpiu dependencies/tqca-tls
-eval ${PKGINST} trinity-tqca-tls trinity-dbus-1-tqt-devel
+
+# Build akode now, required for some packages later ...
+grpiud extras/akode
 
 # Build main
 # basic packages
 rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
-eval ${PKGINST} trinity-arts-devel trinity-avahi-tqt-devel trinity-dbus-tqt-devel
 grpiud tdelibs
 grpiud tdebase
-# packages which are required by others
+# Back to remaining dependencies ...
+grpiud dependencies/tqscintilla
+grpiud dependencies/python-tqt
+# Main packages which are required by later main packages
 rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
-eval ${PKGINST} trinity-libcaldav-devel trinity-libcarddav-devel
 grpiud tdepim
-grpiu extras/akode
-eval ${PKGINST} trinity-akode-libmad trinity-akode-devel
 grpiud tdemultimedia
 grpiud tdegames
 grpiud tdebindings
 grpiud tdegraphics
 grpiud tdenetwork
-# other packages
+# other main packages
 rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
 grpiui tdeaccessibility
 grpiui tdeaddons
@@ -132,13 +135,16 @@ grpiud libraries/libkdcraw
 grpiud libraries/libkexiv2
 grpiud libraries/libkipi
 grpiud libraries/libksquirrel
+grpiud libraries/libtdeldap
+grpiui libraries/libtqt-perl
 grpiud libraries/python-trinity
-grpiu libraries/pytdeextensions
-eval ${PKGINST} trinity-libpythonize0-devel trinity-pytdeextensions
+grpiud libraries/pytdeextensions
 
 # Build applications
 rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
+# K3B is required later for k9copy
 grpiud applications/k3b
+# other applications, any order ...
 grpiui applications/abakus
 #grpiui applications/adept
 grpiui applications/amarok
@@ -150,13 +156,11 @@ grpiui applications/dolphin
 grpiui applications/filelight
 #grpiui applications/filelight-l10n
 #grpiui applications/fusion-icon
-grpiui applications/gtk-qt-engine
 grpiui applications/gwenview
 grpiui applications/gwenview-i18n
-#grpiui applications/k3b
-if ! is_installed trinity-k3b-i18n-fr; then
+if ! is_installed trinity-k3b-i18n-French; then
   grpiu applications/k3b-i18n
-  eval ${PKGINST} trinity-k3b-i18n-fr
+  eval ${PKGINST} trinity-k3b-i18n-French
 fi
 grpiui applications/k9copy
 grpiui applications/kaffeine
@@ -164,15 +168,22 @@ grpiui applications/kaffeine-mozilla
 grpiui applications/katapult
 grpiui applications/kbarcode
 grpiui applications/kbfx
+grpiui applications/kbibtex
+grpiui applications/kbiff
 grpiui applications/kbookreader
 grpiui applications/kchmviewer
+grpiui applications/kcmautostart
+grpiui applications/kcmldap
+grpiui applications/kcmldapcontroller
+grpiui applications/kcmldapmanager
 grpiui applications/kcpuload
+grpiui applications/kdbg
 grpiui applications/kdbusnotification
 grpiui applications/kdiff3
 grpiui applications/kdirstat
 grpiui applications/keep
+grpiui applications/kerberostray
 #grpiui applications/kerry
-#grpiui applications/kgtk-qt3
 grpiui applications/kile
 grpiui applications/kima
 grpiui applications/kiosktool
@@ -210,7 +221,7 @@ grpiui applications/ktorrent
 grpiui applications/kuickshow
 grpiui applications/kvirc
 grpiui applications/kvkbd
-#grpiui applications/kvpnc
+grpiui applications/kvpnc
 grpiui applications/piklab
 grpiui applications/potracegui
 grpiui applications/rosegarden
@@ -221,6 +232,8 @@ grpiui applications/tde-guidance
 grpiui applications/tdeio-apt
 grpiui applications/tdeio-locate
 grpiui applications/tdeio-umountwrapper
+grpiui applications/tdenetworkmanager
+grpiui applications/tdepowersave
 grpiui applications/tderadio
 grpiui applications/tde-style-lipstik
 grpiui applications/tde-style-qtcurve
@@ -234,15 +247,19 @@ grpiui applications/wlassistant
 grpiui applications/yakuake
 eval ${PKGINST} trinity-desktop-applications
 
+# Decoration-related stuff are distribution-dependant.
+grpiui applications/gtk-qt-engine
+[ "${DIST:0:3}" = ".el" ] || grpiui applications/gtk3-tqt-engine
+grpiui applications/qt4-tqt-theme-engine
+grpiui applications/kgtk-qt3
+
+
 # Build extra packages
 grpiui extras/icons-crystalsvg-updated
 grpiui extras/icons-kfaenza
 grpiui extras/icons-oxygen
 grpiui extras/kasablanca
-grpiui extras/kbibtex
-grpiui extras/kbiff
 #grpiui extras/kcheckgmail
-grpiui extras/kcmautostart
 #grpiui extras/kdebluetooth
 grpiui extras/kftpgrabber
 grpiui extras/kickoff-i18n

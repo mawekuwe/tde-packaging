@@ -72,7 +72,7 @@ touch --no-create %{tde_datadir}/icons/hicolor || :
 %postun -n trinity-kcontrol-ldap-bonding
 touch --no-create %{tde_datadir}/icons/hicolor || :
 
-%files -n trinity-kcontrol-ldap-bonding -f %{tde_pkg}.lang
+%files -n trinity-kcontrol-ldap-bonding
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING
 %{tde_bindir}/tdeldapbonding
@@ -98,7 +98,7 @@ touch --no-create %{tde_datadir}/icons/hicolor || :
 %postun -n trinity-tde-ldap-cert-updater
 touch --no-create %{tde_datadir}/icons/hicolor || :
 
-%files -n trinity-tde-ldap-cert-updater -f %{tde_pkg}.lang
+%files -n trinity-tde-ldap-cert-updater
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING
 %{tde_bindir}/tdeldapcertupdater
@@ -140,8 +140,6 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
-
-%find_lang %{tde_pkg}
 
 
 %clean

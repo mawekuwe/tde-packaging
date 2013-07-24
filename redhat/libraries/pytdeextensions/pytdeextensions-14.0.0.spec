@@ -68,6 +68,15 @@ PyTDE Extensions is a collection of software and Python packages
 to support the creation and installation of TDE applications.
 
 
+%files
+%defattr(-,root,root,-)
+%doc AUTHORS ChangeLog COPYING NEWS README TODO
+%{tde_datadir}/apps/pytdeextensions/
+%{tde_tdedocdir}/HTML/en/pytdeextensions/
+%{python_sitearch}/*
+
+##########
+
 %package -n trinity-libpythonize0
 Summary:		Python packages to support KDE applications (library) [Trinity]	
 Group:			Environment/Libraries
@@ -78,6 +87,17 @@ to support the creation and installation of KDE applications.
 
 This package contains the libpythonize library files.
 
+%post -n trinity-libpythonize0
+/sbin/ldconfig
+
+%postun -n trinity-libpythonize0
+/sbin/ldconfig
+
+%files -n trinity-libpythonize0
+%defattr(-,root,root,-)
+%{tde_libdir}/libpythonize.so.*
+
+##########
 
 %package -n trinity-libpythonize0-devel
 Summary:		Python packages to support KDE applications (development) [Trinity]
@@ -90,11 +110,38 @@ to support the creation and installation of TDE applications.
 
 This package contains the libpythonize development files.
 
+%post -n trinity-libpythonize0-devel
+/sbin/ldconfig
+
+%postun -n trinity-libpythonize0-devel
+/sbin/ldconfig
+
+%files -n trinity-libpythonize0-devel
+%defattr(-,root,root,-)
+%{tde_tdeincludedir}/*.h
+%{tde_libdir}/libpythonize.la
+%{tde_libdir}/libpythonize.so
+
+##########
+
+%package devel
+Summary:		Meta-package to install all pytdeextensions development files
+Group:			Development/Libraries
+Requires:		%{name}-devel = %{version}-%{release}
+Requires:		trinity-libpythonize0-devel = %{version}-%{release}
+
+%description devel
+%{summary}
+
+%files devel
+
+##########
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -169,37 +216,6 @@ done
 
 %clean
 %__rm -rf %{buildroot}
-
-
-%post -n trinity-libpythonize0
-/sbin/ldconfig
-
-%postun -n trinity-libpythonize0
-/sbin/ldconfig
-
-%post -n trinity-libpythonize0-devel
-/sbin/ldconfig
-
-%postun -n trinity-libpythonize0-devel
-/sbin/ldconfig
-
-
-%files
-%defattr(-,root,root,-)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO
-%{tde_datadir}/apps/pytdeextensions/
-%{tde_tdedocdir}/HTML/en/pytdeextensions/
-%{python_sitearch}/*
-
-%files -n trinity-libpythonize0
-%defattr(-,root,root,-)
-%{tde_libdir}/libpythonize.so.*
-
-%files -n trinity-libpythonize0-devel
-%defattr(-,root,root,-)
-%{tde_tdeincludedir}/*.h
-%{tde_libdir}/libpythonize.la
-%{tde_libdir}/libpythonize.so
 
 
 %changelog

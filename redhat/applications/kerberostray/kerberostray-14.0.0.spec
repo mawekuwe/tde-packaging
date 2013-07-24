@@ -89,8 +89,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{tde_pkg}
-
 
 %clean
 %__rm -rf %{buildroot}

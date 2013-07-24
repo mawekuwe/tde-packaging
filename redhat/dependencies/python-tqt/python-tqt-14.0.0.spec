@@ -119,6 +119,7 @@ Linguist translation files from Python code.
 %package devel
 Summary:	TQt bindings for Python - Development files
 Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-tools = %{version}-%{release}
 
 %description devel
 Development .sip files with definitions of PyQt classes. They
@@ -127,7 +128,7 @@ packages based on them, like PyKDE.
 
 %files devel
 %defattr(-,root,root,-)
-%{python_sitearch}/pyqtconfig.py
+%{python_sitearch}/pyqtconfig.py*
 %{_datadir}/sip/tqt/
 
 ##########
@@ -147,6 +148,10 @@ unset QTDIR QTINC QTLIB
 
 mkdir build
 cd build
+
+# WTF ? CentOS 6 !
+cp -rf ../pyuic3 ../pylupdate3 .
+
 echo yes | python ../configure.py \
 	-c -n %{_includedir}/tqscintilla \
 	-q /usr/share/tqt3 \

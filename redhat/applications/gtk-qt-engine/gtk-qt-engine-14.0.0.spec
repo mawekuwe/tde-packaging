@@ -40,9 +40,11 @@ Prefix:			%{_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	gtk-qt-engine.rc.sh
-Source2:	gtkrc-2.0-kde4
-Source3:	gtkrc-2.0-kde-kde4
+Source1:		gtk-qt-engine.rc.sh
+Source2:		gtkrc-2.0-kde4
+Source3:		gtkrc-2.0-kde-kde4
+
+Patch1:			gtk-qt-engine-14.0.0-fix_gtk3_segv.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -68,6 +70,7 @@ a way to configure it from within KControl.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .segv
 
 # Renames the '.po' files
 for f in po/*/*.po; do

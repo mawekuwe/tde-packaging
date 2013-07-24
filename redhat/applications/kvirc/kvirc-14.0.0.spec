@@ -109,8 +109,8 @@ with the K Desktop Environment version 3.
 ./autogen.sh
 
 # Fix Q_OBJECT => TQ_OBJECT
-#%__sed -i src/*/*/*.h src/*/*/*.sh \
-#  -e "s|Q_OBJECT|TQ_OBJECT|"
+%__sed -i src/*/*/*.h src/*/*/*.sh \
+  -e "s|Q_OBJECT|TQ_OBJECT|"
 
 
 %build

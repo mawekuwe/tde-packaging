@@ -433,7 +433,7 @@ This package is part of the official TDE bindings module.
 ##########
 
 %package -n trinity-libsmoketqt-devel
-Summary:	SMOKE Binding Library to Qt - Development Files
+Summary:	SMOKE Binding Library to TQt - Development Files
 Group:		Development/Libraries
 Requires:	trinity-libsmoketqt = %{version}-%{release}
 

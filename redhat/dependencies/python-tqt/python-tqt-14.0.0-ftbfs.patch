@@ -9,3 +9,25 @@
  
          // Search the table.
          for (tab = ((pyqt3ClassTypeDef *)((sipWrapperType *)(self->ob_type))->type)->qt3_emit; tab->st_name != NULL; ++tab)
+--- trinity-python-tqt-14.0.0~pre36+d3f27c3e/configure.py.ORI	2013-07-23 18:00:47.017942165 +0200
++++ trinity-python-tqt-14.0.0~pre36+d3f27c3e/configure.py	2013-07-23 18:01:40.757575552 +0200
+@@ -321,6 +321,9 @@
+                 makefile.extra_include_dirs.append(qt_dir + "/src/3rdparty/zlib")
+             makefile.extra_include_dirs.append(os.path.join(src_dir, "pyuic3"))
+             
++            if not os.access("pyuic3", os.F_OK):
++                os.mkdir("pyuic3")
++
+             makefile.generate()
+             tool_dirs.append("pyuic3")
+ 
+@@ -350,6 +353,9 @@
+ 
+             makefile.extra_include_dirs.append(os.path.join(src_dir, "pylupdate3"))
+ 
++            if not os.access("pylupdate3", os.F_OK):
++                os.mkdir("pylupdate3")
++
+             makefile.generate()
+             tool_dirs.append("pylupdate3")
+         elif qt_version >= 0x020000:
