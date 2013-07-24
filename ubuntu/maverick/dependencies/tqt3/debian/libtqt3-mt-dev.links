@@ -2,6 +2,6 @@
 /usr/lib/libtqui.prl /usr/share/tqt3/lib/libtqui.prl
 /usr/lib/libtqui.so.1.0.0 /usr/share/tqt3/lib/libtqui.so
 /usr/lib/libtqt-mt.prl /usr/share/tqt3/lib/libtqt-mt.prl
-/usr/lib/libtqt-mt.so.3.3.8 /usr/share/tqt3/lib/libtqt-mt.so
+/usr/lib/libtqt-mt.so.3.5.0 /usr/share/tqt3/lib/libtqt-mt.so
 /usr/include/tqt3 /usr/share/tqt3/include
 /usr/lib/tqt3/plugins /usr/share/tqt3/plugins
