@@ -1,0 +1,19 @@
+Source: ksensors
+Section: kde
+Priority: optional
+Maintainer: Aurelien Jarno <aurel32@debian.org>
+Build-Depends: debhelper (>> 5), autotools-dev, automake1.7, autoconf, libtool, perl, libsensors4-dev, libqt3-mt-dev (>= 3:3.3.4-7), kdelibs4-dev (>= 4:3.4.2), imagemagick
+Build-Conflicts: autoconf2.13
+Standards-Version: 3.8.3
+Homepage: http://ksensors.sourceforge.net
+
+Package: ksensors
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, lm-sensors
+Recommends: hddtemp (>= 0.3beta2-1)
+Description: lm-sensors frontend for KDE
+ This is a lm-sensors frontend for KDE for monitoring a motherboard.
+ It allows you to access information from temperature and fan speed
+ sensors.
+ .
+ You will need lm-sensors kernel modules to use this package.
