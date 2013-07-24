@@ -1,5 +1,5 @@
 # Default version for this component
-%define tdecomp tdepowersave
+%define tde_pkg tdepowersave
 %define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -24,7 +24,7 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
+Name:		trinity-%{tde_pkg}
 Version:	0.7.3
 Release:	%{?!preversion:5}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	Power management applet for Trinityfiles or directories.
@@ -41,6 +41,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:		tdepowersave-14.0.0-fix_hibernate.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
@@ -88,6 +89,7 @@ settings for:
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .hibernate
 
 
 %build

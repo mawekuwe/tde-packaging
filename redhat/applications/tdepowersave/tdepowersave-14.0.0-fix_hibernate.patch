@@ -1,0 +1,11 @@
+--- trinity-tdepowersave/src/hardware.cpp.ORI	2013-07-24 12:19:52.432706499 +0200
++++ trinity-tdepowersave/src/hardware.cpp	2013-07-24 12:20:01.956723548 +0200
+@@ -546,7 +546,7 @@
+ 			}
+ 			if ((*it) == TDESystemPowerState::Hibernate) {
+ 				suspend_states.suspend2disk = true;
+-				suspend_states.suspend2disk_allowed = rdevice->canSuspend();
++				suspend_states.suspend2disk_allowed = rdevice->canHibernate();
+ 				suspend_states.suspend2disk_can = suspend_states.suspend2disk_allowed & suspend_states.suspend2disk;
+ 			}
+ 			if ((*it) == TDESystemPowerState::PowerOff) {

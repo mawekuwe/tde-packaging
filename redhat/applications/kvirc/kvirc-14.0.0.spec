@@ -100,17 +100,13 @@ with the K Desktop Environment version 3.
 
 # Hardcoded absolute PATH to TDEDIR in source code ! That sucks !
 %__sed -i "src/kvirc/kernel/kvi_app_fs.cpp" \
-  -e "s|/opt/kde3/lib|%{tde_prefix}/%{_lib}|g"
+  -e "s|/opt/kde3/lib|%{tde_libdir}|g"
 %__sed -i "src/kvirc/kernel/kvi_app_setup.cpp" \
   -e "s|/opt/kde3|%{tde_prefix}|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 ./autogen.sh
-
-# Fix Q_OBJECT => TQ_OBJECT
-%__sed -i src/*/*/*.h src/*/*/*.sh \
-  -e "s|Q_OBJECT|TQ_OBJECT|"
 
 
 %build
@@ -135,7 +131,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --with-qt-name=tqt \
   --with-qt-library-dir=%{_libdir} \
   --with-qt-include-dir=%{_includedir}/tqt3 \
-  --with-qt-moc=%{_bindir}/tqmoc
+  --with-qt-moc=%{_bindir}/tmoc
 
 # Symbolic links must exist prior to parallel building
 %__make symlinks -C src/kvilib/build
