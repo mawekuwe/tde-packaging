@@ -1,18 +1,17 @@
-Source: ksensors
-Section: kde
+Source: ksensors-trinity
+Section: tde
 Priority: optional
-Maintainer: Aurelien Jarno <aurel32@debian.org>
-Build-Depends: debhelper (>> 5), autotools-dev, automake1.7, autoconf, libtool, perl, libsensors4-dev, libqt3-mt-dev (>= 3:3.3.4-7), kdelibs4-dev (>= 4:3.4.2), imagemagick
+Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Build-Depends: debhelper (>> 5), autotools-dev, automake, autoconf, libtool, perl, libsensors4-dev, libtqtinterface-dev, tdelibs4-trinity-dev, imagemagick
 Build-Conflicts: autoconf2.13
 Standards-Version: 3.8.3
-Homepage: http://ksensors.sourceforge.net
 
-Package: ksensors
+Package: ksensors-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, lm-sensors
 Recommends: hddtemp (>= 0.3beta2-1)
-Description: lm-sensors frontend for KDE
- This is a lm-sensors frontend for KDE for monitoring a motherboard.
+Description: lm-sensors frontend for TDE
+ This is a lm-sensors frontend for TDE for monitoring a motherboard.
  It allows you to access information from temperature and fan speed
  sensors.
  .

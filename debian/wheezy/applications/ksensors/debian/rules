@@ -58,18 +58,18 @@ install: build
 	dh_installdirs
 
 	# Install overrides.
-	install -p -o root -g root -m 644 $(CURDIR)/debian/overrides $(CURDIR)/debian/ksensors/usr/share/lintian/overrides/ksensors
+	install -p -o root -g root -m 644 $(CURDIR)/debian/overrides $(CURDIR)/debian/ksensors-trinity/usr/share/lintian/overrides/ksensors-trinity
 
 	# Main install.
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/ksensors
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/ksensors-trinity
 
 	# Make common links for docs.
 	for p in `dh_listpackages`; do \
-	  for i in `find $(CURDIR)/debian/ksensors/usr/share/doc/kde/HTML -type d -name $$p -name $$p -not -regex .*/en/$$p`; do \
+	  for i in `find $(CURDIR)/debian/ksensors-trinity/usr/share/doc/kde/HTML -type d -name $$p -name $$p -not -regex .*/en/$$p`; do \
 	    ln -f -n -s ../common $$i/common; done; done
 	
 	# Installing icons
-	/usr/bin/convert $(CURDIR)/src/pics/hi16-app-ksensors.png $(CURDIR)/debian/ksensors/usr/share/pixmaps/ksensors.xpm
+	/usr/bin/convert $(CURDIR)/src/pics/hi16-app-ksensors.png $(CURDIR)/debian/ksensors-trinity/usr/share/pixmaps/ksensors.xpm
 
 	perl -w admin/debianrules cleanup
 
