@@ -1,11 +1,11 @@
-# Default version for this component
-%define tde_pkg kasablanca
-%define tde_version 14.0.0
-
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
+
+# Default version for this component
+%define tde_pkg kasablanca
+%define tde_version 14.0.0
 
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
