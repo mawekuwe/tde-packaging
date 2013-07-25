@@ -22,9 +22,9 @@
 
 %define _docdir %{tde_docdir}
 
-Name:           trinity-mplayerthumbs
+Name:           trinity-%{tde_pkg}
 Version:        0.5b
-Release:        2%{?dist}%{?_variant}
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 Summary:        A video thumbnail generator for TDE file managers.
 
 Group:          Applications/Multimedia
@@ -35,7 +35,10 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	desktop-file-utils
-BuildRequires:	trinity-tdelibs-devel >= 14.0.0
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 Requires:		mplayer
 
@@ -72,6 +75,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 	--prefix=%{tde_prefix} \
 	--exec-prefix=%{tde_prefix} \
 	--disable-dependency-tracking \
+	--disable-static \
 	--disable-rpath \
 	--bindir=%{tde_bindir} \
 	--libdir=%{tde_libdir} \
@@ -87,8 +91,6 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 %__rm -rf $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT
 
-# Useless files ..
-%__rm -f %{?buildroot}%{tde_tdelibdir}/*.a
 
 %clean
 %__rm -rf $RPM_BUILD_ROOT
