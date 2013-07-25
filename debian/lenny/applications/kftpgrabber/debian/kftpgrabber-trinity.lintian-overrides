@@ -1,0 +1,4 @@
+# It isn't a library or a development package and no other packages uses libkftpinterfaces
+# kftpgrabber needs it and maybe a split can happen later if needed
+kftpgrabber: non-dev-pkg-with-shlib-symlink usr/lib/libkftpinterfaces.so.0.0.0 usr/lib/libkftpinterfaces.so
+kftpgrabber: package-name-doesnt-match-sonames libkftpinterfaces0
