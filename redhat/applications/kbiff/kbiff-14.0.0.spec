@@ -70,6 +70,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 	--exec-prefix=%{tde_prefix} \
 	--disable-dependency-tracking \
 	--disable-rpath \
+	--disable-static \
 	--bindir=%{tde_bindir} \
 	--libdir=%{tde_libdir} \
 	--mandir=%{tde_mandir} \
@@ -83,14 +84,12 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 %__rm -rf $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT
 
-# Useless files ..
-%__rm -f %{?buildroot}%{tde_libdir}/*.a
-%__rm -f %{?buildroot}%{tde_tdelibdir}/*.a
+%find_lang %{tde_pkg}
 
-%find_lang kbiff
 
 %clean
 %__rm -rf $RPM_BUILD_ROOT
+
 
 %post
 for i in hicolor locolor ; do
@@ -98,13 +97,15 @@ for i in hicolor locolor ; do
  gtk-update-icon-cache --quiet %{tde_datadir}/icons/$i 2>/dev/null || :
 done
 
+
 %postun
 for i in hicolor locolor ; do
  touch --no-create %{tde_datadir}/icons/$i 2>/dev/null || :
  gtk-update-icon-cache --quiet %{tde_datadir}/icons/$i 2>/dev/null || :
 done
 
-%files -f kbiff.lang
+
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING README ChangeLog
 %{tde_bindir}/kbiff
@@ -114,10 +115,13 @@ done
 %{tde_tdelibdir}/kbiff.so
 %{tde_datadir}/applnk/Internet/kbiff.desktop
 %{tde_datadir}/apps/kbiff/
-%{tde_tdedocdir}/HTML/kbiff/
 %{tde_datadir}/icons/hicolor/*/apps/kbiff.png
 %{tde_datadir}/icons/locolor/*/apps/kbiff.png
 %{tde_mandir}/man1/kbiff.1*
+%lang(de) %{tde_tdedocdir}/HTML/de/kbiff/
+%lang(en) %{tde_tdedocdir}/HTML/en/kbiff/
+%lang(es) %{tde_tdedocdir}/HTML/es/kbiff/
+%lang(fr) %{tde_tdedocdir}/HTML/fr/kbiff/
 
 
 %changelog

@@ -30,8 +30,7 @@ alias grp4='./genrpm.sh -v 14.0.0 -a'
 
 # Check if tarballs are more recent than installed packages
 checknew() {
-  cd ~/tde/tde-tarballs/14.0.0
-  find . -name "trinity-*.tar.gz" | while read f; do
+  find ~/tde/tde-tarballs/14.0.0 -name "trinity-*.tar.gz" | while read f; do
     TAR="${f##*/}"
     NAME="${TAR%-*}"
     

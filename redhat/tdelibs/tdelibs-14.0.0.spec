@@ -119,7 +119,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	libudev-devel
 
 # UDISKS support
-%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 6
 %define with_udisks 1
 BuildRequires:	udisks-devel
 Requires:		udisks

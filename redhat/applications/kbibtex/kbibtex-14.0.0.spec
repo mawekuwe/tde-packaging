@@ -117,10 +117,10 @@ update-desktop-database %{tde_tdeappdir} > /dev/null
 %{tde_datadir}/apps/kbibtexpart/xslt/MARC21slimUtils.xsl
 %{tde_datadir}/apps/kbibtexpart/xslt/UNIMARC2MODS3.xsl
 %{tde_datadir}/apps/kbibtexpart/xslt/html.xsl
-%{tde_tdedocdir}/HTML/kbibtex/
 %{tde_datadir}/icons/hicolor/*/apps/kbibtex.png
 %{tde_datadir}/services/kbibtex_part.desktop
 %{tde_mandir}/man1/kbibtex.1*
+%{tde_tdedocdir}/HTML/en/kbibtex/
 
 
 %changelog

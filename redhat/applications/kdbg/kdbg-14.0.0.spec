@@ -116,14 +116,14 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %post
-update-desktop-database %{tde_appdir} > /dev/null
+update-desktop-database %{tde_tdeappdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/locolor || :
 
 
 %postun
-update-desktop-database %{tde_appdir} > /dev/null
+update-desktop-database %{tde_tdeappdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/locolor || :
