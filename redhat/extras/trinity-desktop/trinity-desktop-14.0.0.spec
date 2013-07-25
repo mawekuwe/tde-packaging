@@ -98,6 +98,7 @@ Requires: trinity-k3b
 Requires: trinity-k9copy
 Requires: trinity-kaffeine
 Requires: trinity-kaffeine-mozilla
+Requires: trinity-kasablanca
 Requires: trinity-katapult
 Requires: trinity-kbarcode
 Requires: trinity-kbfx
@@ -116,6 +117,7 @@ Requires: trinity-kdiff3
 Requires: trinity-kdirstat
 Requires: trinity-keep
 Requires: trinity-kerberostray
+Requires: trinity-kftpgrabber
 Requires: trinity-kile
 Requires: trinity-kima
 Requires: trinity-kiosktool
@@ -127,6 +129,7 @@ Requires: trinity-knetload
 Requires: trinity-knetstats
 Requires: trinity-knights
 Requires: trinity-knowit
+Requires: trinity-knmap
 Requires: trinity-knutclient
 Requires: trinity-koffice-suite
 Requires: trinity-konversation
@@ -135,8 +138,10 @@ Requires: trinity-kpicosim
 Requires: trinity-kpilot
 Requires: trinity-krename
 Requires: trinity-krusader
+Requires: trinity-ksensors
 Requires: trinity-ksplash-engine-moodin
 Requires: trinity-ksquirrel
+Requires: trinity-kshowmail
 Requires: trinity-kstreamripper
 Requires: trinity-ksystemlog
 Requires: trinity-ktechlab
@@ -145,6 +150,7 @@ Requires: trinity-kuickshow
 Requires: trinity-kvirc
 Requires: trinity-kvkbd
 Requires: trinity-kvpnc
+Requires: trinity-mplayerthumbs
 Requires: trinity-piklab
 Requires: trinity-potracegui
 Requires: trinity-rosegarden
@@ -157,6 +163,7 @@ Requires: trinity-tde-style-lipstik
 Requires: trinity-tde-style-qtcurve
 Requires: trinity-tde-systemsettings
 Requires: trinity-tdeio-apt
+Requires: trinity-tdeio-ftps
 Requires: trinity-tdeio-locate
 Requires: trinity-tdeio-umountwrapper
 Requires: trinity-tdenetworkmanager
@@ -206,21 +213,14 @@ Group:		User Interface/Desktops
 Summary:	Meta-package to install all extras (unofficial) TDE packages
 
 Requires:	trinity-akode
-Requires:	trinity-kasablanca
 #Requires:	trinity-kdebluetooth
 #Requires:	trinity-kcheckgmail
 Requires:	trinity-icons-crystalsvg-updated
 Requires:	trinity-icons-kfaenza
 Requires:	trinity-icons-oxygen
-Requires:	trinity-kftpgrabber
 Requires:	trinity-kickoff-i18n
-Requires:	trinity-knmap
 #Requires:	trinity-knoda
-Requires:	trinity-ksensors
-Requires:	trinity-kshowmail
-Requires:	trinity-mplayerthumbs
 Requires:	trinity-style-ia-ora
-Requires:	trinity-tdeio-ftps-plugin
 #Requires:	trinity-tdeio-sysinfo-plugin
 Requires:	trinity-theme-baghira
 Requires:	trinity-tork
