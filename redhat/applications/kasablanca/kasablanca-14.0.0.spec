@@ -1,11 +1,13 @@
-%define tdecomp kasablanca
+# Default version for this component
+%define tde_pkg kasablanca
+%define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -13,7 +15,7 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -21,27 +23,25 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	Graphical FTP client
-Version:	0.4.0.2
-Release:	3%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Graphical FTP client
+Version:		0.4.0.2
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Url:		http://kasablanca.berlios.de/ 
-Source:		kasablanca-0.4.0.2.tar.gz
-Group:		Applications/Internet 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+License:		GPLv2+
+Url:			http://kasablanca.berlios.de/ 
+Group:			Applications/Internet 
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-# [kasablanca] Fix bad content in icon (?)
-Patch1:		kasablanca-0.4.0.2-dt.patch
-# [kasablanca] Fix detection of newer autotools
-Patch2:		kasablanca-0.4.0.2-fix_autotools_detection.patch
-# [kasablanca] Missing LDFLAGS cause FTBFS
-Patch3:		kasablanca-0.4.0.2-missing_ldflags.patch
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	desktop-file-utils
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+
 BuildRequires:	gettext 
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
 BuildRequires:	openssl-devel
 
 %if 0%{?suse_version}
@@ -70,16 +70,7 @@ Kasablanca is an ftp client, among its features are currently:
 
 
 %prep
-%setup -q -n %{tdecomp}-%{version}
-%patch1 -p1 -b .dt
-%patch2 -p1 -b .autotools
-%patch3 -p1 -b .ldflags
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -87,10 +78,9 @@ Kasablanca is an ftp client, among its features are currently:
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-export KDEDIR=%{tde_prefix}
 
 ## Needed(?) for older/legacy setups, harmless otherwise
 if pkg-config openssl ; then
@@ -104,50 +94,23 @@ fi
   --libdir=%{tde_libdir} \
   --includedir=%{tde_tdeincludedir} \
   --datadir=%{tde_datadir} \
-  --with-qt-libraries=${QTLIB:-${QTDIR}/%{_lib}} \
   --disable-static \
   --disable-rpath \
   --disable-debug --disable-warnings \
   --disable-dependency-tracking --enable-final \
-  --with-extra-includes=%{tde_includedir}/tqt
+  --enable-closure
 
-%__make %{?_smp_mflags} LIBTOOL=$(which libtool)
+%__make %{?_smp_mflags}
 
 
 %install
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf $RPM_BUILD_ROOT 
-
 %__make install DESTDIR=$RPM_BUILD_ROOT
 
-desktop-file-install \
-  --dir $RPM_BUILD_ROOT%{tde_datadir}/applications/kde \
-  --vendor="" \
-  --add-category="Network" \
-  --add-category="KDE" \
-  --delete-original \
-  $RPM_BUILD_ROOT%{tde_datadir}/applnk/*/*.desktop
-
-## File lists
-# HTML (1.0)
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d $RPM_BUILD_ROOT$HTML_DIR ]; then
-for lang_dir in $RPM_BUILD_ROOT$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
 # locale's
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf $RPM_BUILD_ROOT 
@@ -156,27 +119,33 @@ fi
 %post
 touch --no-create %{tde_datadir}/icons/hicolor &> /dev/null || :
 
+
 %postun
 if [ $1 -eq 0 ] ; then
   touch --no-create %{_datadir}/icons/hicolor &> /dev/null
   gtk-update-icon-cache %{tde_datadir}/icons/hicolor &> /dev/null || :
 fi
 
+
 %posttrans
 gtk-update-icon-cache %{tde_datadir}/icons/hicolor &> /dev/null || :
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README 
 %{tde_bindir}/kasablanca
-%{tde_tdeappdir}/kasablanca.desktop
 %{tde_datadir}/apps/kasablanca/
 %{tde_datadir}/config.kcfg/kbconfig.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/kasablanca.png
 %{tde_tdedocdir}/HTML/en/kasablanca/
+%{tde_datadir}/applnk/Utilities/kasablanca.desktop
+
 
 %changelog
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0.2-4
+- Initial release for TDE 14.0.0
+
 * Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0.2-3
 - Initial release for TDE 3.5.13.2
 
