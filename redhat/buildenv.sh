@@ -53,3 +53,6 @@ checknew() {
 # Build local repository metadata (Mageia)
 alias cru='(cdrpm; genhdlist2 noarch; genhdlist2 $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
 alias cruc='(cdrpm; genhdlist2 --clean noarch; genhdlist2 --clean $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
+
+# Build local repository (RHEL)
+alias cry='(cdrpm; createrepo $(uname -i); createrepo noarch; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
