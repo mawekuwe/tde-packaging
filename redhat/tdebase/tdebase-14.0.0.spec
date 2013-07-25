@@ -1166,6 +1166,7 @@ TDE applications, particularly those in the TDE base module.
 %{tde_bindir}/kcminit
 %{tde_bindir}/kcminit_startup
 %{tde_bindir}/kdcop
+%{tde_bindir}/tdekbdledsync
 %{tde_bindir}/tdesu
 %attr(0755,root,root) %{tde_bindir}/tdesud
 %{tde_bindir}/kdialog
