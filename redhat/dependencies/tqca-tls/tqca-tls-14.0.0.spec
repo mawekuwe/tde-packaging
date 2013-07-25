@@ -30,8 +30,6 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			tqca-tls-14.0.0-visibility.patch
-
 BuildRequires:  trinity-tqt3-devel >= 3.5.0
 BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tqca-devel >= 1.0
@@ -54,7 +52,6 @@ contains the TLS plugin.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .visibility
 
 
 %build
