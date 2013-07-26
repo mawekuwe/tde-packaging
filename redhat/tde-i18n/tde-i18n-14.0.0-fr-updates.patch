@@ -13,8 +13,8 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmbackground.po tde-i18n-fr/message
 +msgstr "Activer un effet de fondu lors du changement de fond d'écran."
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po tde-i18n-fr/messages/tdebase/kcmdisplayconfig.po
 --- tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po	1970-01-01 01:00:00.000000000 +0100
-+++ tde-i18n-fr/messages/tdebase/kcmdisplayconfig.po	2013-07-26 18:39:56.625075270 +0200
-@@ -0,0 +1,198 @@
++++ tde-i18n-fr/messages/tdebase/kcmdisplayconfig.po	2013-07-26 20:00:46.303178565 +0200
+@@ -0,0 +1,188 @@
 +msgid "<b>The global display configuration is a system wide setting, and requires administrator access</b><br>To alter the system's global display configuration, click on the \"Administrator Mode\" button below."
 +msgstr "<b>La configuration d'affichage globale est un réglage système, et nécessite les droits administrateur.</b><br>Pour modifier la configuration système globale, cliquer sur le bouton \"Mode superutilisateur\"."
 +
@@ -114,7 +114,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po tde-i18n-fr/mess
 +msgid "Adjust the gamma sliders to make the squares above fade into their backgrounds as much as possible."
 +msgstr "Ajustez les niveaux de gamma jusqu'à ce que les carrés disparaissent dans le fond autant que possible."
 +
-+msgid "Tip: Most computer software expects a gamma of 2.2<br>Additionally, any ICC settings for the selected screen will override the gamma controls available on this tab.
++msgid "Tip: Most computer software expects a gamma of 2.2<br>Additionally, any ICC settings for the selected screen will override the gamma controls available on this tab."
 +msgstr "Astuce: La plupart des logiciels attendent un gamma de 2.2.<br>De plus, les réglages ICC spécifiques pour l'écran sélectionné, s'ils existent, seront prioritaires sur ceux-ci."
 +
 +msgid "Power Management"
@@ -143,9 +143,6 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po tde-i18n-fr/mess
 +
 +msgid "&Enable local display control for this session"
 +msgstr "&Activer le controle local de l'affichage pour cette session"
-+
-+msgid "Color Profiles"
-+msgstr "Profils de couleurs"
 +
 +msgid "You cannot delete the default profile!"
 +msgstr "Vous ne pouvez pas supprimer le profil par défaut!"
@@ -192,13 +189,6 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po tde-i18n-fr/mess
 +msgid  "Add New Rule"
 +msgstr "Ajouter une règle"
 + 
-+msgid ""
-+"<h1>Monitor & Display Configuration</h1> This module allows you to configure monitors attached to your"
-+" computer via TDE."
-+msgstr ""
-+"<h1>Configuration des moniteurs et de l'affichage</h1> Ce module vous permet de configurer les moniteurs"
-+" attachés à votre ordinateur."
-+
 +msgid "&Automatically apply profile on startup"
 +msgstr "Appliquer automatiquement le profil au démarrage"
 +
@@ -229,7 +219,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmenergy.po tde-i18n-fr/messages/td
 +
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmiccconfig.po tde-i18n-fr/messages/tdebase/kcmiccconfig.po
 --- tde-i18n-fr.ORI/messages/tdebase/kcmiccconfig.po	1970-01-01 01:00:00.000000000 +0100
-+++ tde-i18n-fr/messages/tdebase/kcmiccconfig.po	2013-07-26 18:43:17.034010571 +0200
++++ tde-i18n-fr/messages/tdebase/kcmiccconfig.po	2013-07-26 19:48:22.142618069 +0200
 @@ -0,0 +1,80 @@
 +# TDE 3.5.13 'iccconfig.cpp' translation
 +
@@ -1451,8 +1441,8 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/ksplash.po tde-i18n-fr/messages/tdeb
 +msgstr "Trinity est prêt"
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tdeio_media.po tde-i18n-fr/messages/tdebase/tdeio_media.po
 --- tde-i18n-fr.ORI/messages/tdebase/tdeio_media.po	2013-07-26 17:53:39.995658788 +0200
-+++ tde-i18n-fr/messages/tdebase/tdeio_media.po	2013-07-26 17:53:59.001152385 +0200
-@@ -564,3 +564,7 @@
++++ tde-i18n-fr/messages/tdebase/tdeio_media.po	2013-07-26 19:24:29.653214462 +0200
+@@ -564,3 +564,9 @@
  #: propsdlgplugin/propsdlgshareplugin.cpp:67
  msgid "&Mounting"
  msgstr "&Montage"
@@ -1460,6 +1450,8 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tdeio_media.po tde-i18n-fr/messages/
 +msgid "Decrypt"
 +msgstr "Décrypter"
 +
++msgid "Use default mount options"
++msgstr "Utiliser les options de montage par défaut"
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tderandr.po tde-i18n-fr/messages/tdebase/tderandr.po
 --- tde-i18n-fr.ORI/messages/tdebase/tderandr.po	2013-07-26 17:53:39.995658788 +0200
 +++ tde-i18n-fr/messages/tdebase/tderandr.po	2013-07-26 17:53:58.998152466 +0200
