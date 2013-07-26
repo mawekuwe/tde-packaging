@@ -24,7 +24,7 @@
   </refmeta>
   <refnamediv>
     <refname>knmap</refname>
-    <refpurpose>nmap graphical interface for KDE</refpurpose>
+    <refpurpose>nmap graphical interface for TDE</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -33,17 +33,17 @@
         <option><replaceable>Qt-options</replaceable></option>
       </arg>
       <arg choice="opt">
-        <option><replaceable>KDE-options</replaceable></option>
+        <option><replaceable>TDE-options</replaceable></option>
       </arg>
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
     <title>DESCRIPTION</title>
     <para>
-      nmap graphical interface for KDE.
+      nmap graphical interface for TDE.
     </para>
     <para>
-       Knmap is a KDE-based interface to the 'nmap' facility.
+       Knmap is a TDE-based interface to the 'nmap' facility.
        
        The main Knmap window provides for the entry of nmap options and the
        display of nmap-generated output.
@@ -51,7 +51,7 @@
        This program is a complete re-write of one by the same name written by
        Alexandre Sagala. The last version of that program was 0.9 which was
        released on 2003-03-09 and targeted the KDE 2.2 and QT 2.3 environments.
-       Unfortunately it does not compile on today's KDE / QT environments.
+       Unfortunately it does not compile on today's TDE / QT environments.
  
        Not to mention that it did not cater for the full set of 'nmap' options.
        Or, perhaps, 'nmap' progressed whilst that version of Knmap languished.
@@ -60,7 +60,7 @@
   <refsect1>
     <title>OPTIONS</title>
     <para>
-      All <productname>KDE</productname> and <productname>Qt</productname>
+      All <productname>TDE</productname> and <productname>Qt</productname>
       programs accept a some common command-line options. kommando has no
       application-specific options.
     </para>
@@ -76,8 +76,8 @@
           <listitem> <para>Show Qt specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
-          <term> <option>--help-kde</option> </term>
-          <listitem> <para>Show KDE specific options</para> </listitem>
+          <term> <option>--help-tde</option> </term>
+          <listitem> <para>Show TDE specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
           <term> <option>--help-all</option> </term>

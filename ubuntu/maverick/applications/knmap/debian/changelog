@@ -1,3 +1,9 @@
+knmap-trinity (2.1-1ubuntu2) edgy; urgency=low
+
+  * Initial Release for TDE
+
+ -- Slávek Banko <slavek.banko@axis.cz>  Fri, 26 Jul 2013 12:43:38 +0200
+
 knmap (2.1-1ubuntu2) edgy; urgency=low
 
   * Add kubuntu_00_autoconf2.60.diff and change pre-build to post-patches

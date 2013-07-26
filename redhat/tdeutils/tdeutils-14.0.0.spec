@@ -980,7 +980,7 @@ Development files for %{name}.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}"
 
 # Do not build against any "/usr" installed KDE
 export KDEDIR="%{tde_prefix}"
