@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -35,7 +37,8 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tdebase-devel >= %{version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 
 BuildRequires:	gettext
 BuildRequires:	esound-devel
@@ -129,7 +132,7 @@ technological superiority of the Unix operating system.
 
 This metapackage includes a collection of artistic extras (themes, widget
 styles, screen savers, wallpaper, icons, emoticons and so on) provided
-with the official release of KDE.
+with the official release of TDE.
 
 Homepage: http://artist.kde.org 
 
@@ -143,9 +146,9 @@ Group:		User Interface/Desktops
 
 %description emoticons
 This package contains several collections of emoticons used by official
-and unofficial KDE chat clients, such as Kopete and Konversation.
+and unofficial TDE chat clients, such as Kopete and Konversation.
 
-This package is part of KDE, and a component of the KDE artwork module.
+This package is part of TDE, and a component of the TDE artwork module.
 
 %files emoticons
 %defattr(-,root,root,-)
@@ -158,7 +161,7 @@ Summary:	various multimedia goodies released with TDE
 Group:		User Interface/Desktops
 
 %description misc
-This package contains miscellaneous multimedia goodies for KDE.
+This package contains miscellaneous multimedia goodies for TDE.
 Included are additional TDE sounds and kworldclock themes.
 
 This package is part of Trinity, and a component of the TDE artwork module.
@@ -201,7 +204,7 @@ Provides:	trinity-kdeartwork-icons = %{version}-%{release}
 
 %description theme-icon
 This package contains additional icon themes for Trinity. Icon themes can be
-used to customise the appearance of standard icons throughout KDE. They
+used to customise the appearance of standard icons throughout TDE. They
 can be applied using the icon manager in the Trinity Control Centre.
 
 This package is part of Trinity, and a component of the TDE artwork module.
@@ -336,7 +339,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %package -n trinity-tdescreensaver-xsavers
 Summary:	Trinity hooks for standard xscreensavers
 Group:		User Interface/Desktops
-Requires:	trinity-tdebase-bin >= 3.5.13
+Requires:	trinity-tdebase-bin >= %{tde_version}
 Requires:	xscreensaver
 
 Obsoletes:	trinity-kscreensaver-xsavers < %{version}-%{release}
@@ -648,7 +651,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Specific path for RHEL4

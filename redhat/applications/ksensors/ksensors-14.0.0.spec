@@ -86,7 +86,6 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 	--includedir=%{tde_tdeincludedir} \
 	--enable-closure
 
-%__make clean
 %__make %{?_smp_mflags}
 
 

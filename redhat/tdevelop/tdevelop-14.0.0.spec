@@ -569,7 +569,7 @@ Provides:	trinity-tdevelop-libs = %{version}-%{release}
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}"
 export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Specific path for RHEL4
@@ -586,8 +586,6 @@ pushd c_cpp_reference-2.0.2_for_KDE_3.0
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --with-qt-libraries=${QTLIB:-${QTDIR}/%{_lib}} \
-  --with-qt-includes=${QTINC:-${QTDIR}/include} \
   --with-extra-libs=%{tde_libdir}
 popd
 
@@ -622,6 +620,7 @@ cd ..
 # Moves C reference to correct location
 %__mv -f %{?buildroot}%{tde_tdedocdir}/HTML/en/kdevelop/reference %{?buildroot}%{tde_tdedocdir}/HTML/en/tdevelop/
 %__rm -rf %{?buildroot}%{tde_tdedocdir}/HTML/en/kdevelop
+
 
 %clean
 %__rm -rf %{buildroot}
