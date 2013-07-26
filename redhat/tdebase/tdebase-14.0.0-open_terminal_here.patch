@@ -1,5 +1,14 @@
---- trinity-tdebase-14.0.0~pre737+02bf1e69/kdesktop/krootwm.c.ORI	2013-07-07 19:52:01.913986986 +0200
-+++ trinity-tdebase-14.0.0~pre737+02bf1e69/kdesktop/krootwm.cc	2013-07-07 19:52:49.676516510 +0200
+--- tdebase/kdesktop/krootwm.cc.openterminalhere	2013-07-24 21:45:14.083030776 +0200
++++ tdebase/kdesktop/krootwm.cc	2013-07-26 17:37:34.561203115 +0200
+@@ -132,7 +132,7 @@
+   if (kapp->authorize("run_command"))
+   {
+      new TDEAction(i18n("Run Command..."), "run", 0, TQT_TQOBJECT(m_pDesktop), TQT_SLOT( slotExecuteCommand() ), m_actionCollection, "exec" );
+-     new TDEAction(i18n("Open Terminal Here..." ), "terminal", CTRL+Key_T, this, TQT_SLOT( slotOpenTerminal() ),
++     new TDEAction(i18n("Open Terminal..." ), "terminal", CTRL+Key_T, this, TQT_SLOT( slotOpenTerminal() ),
+ 	m_actionCollection, "open_terminal" );
+   }
+ 
 @@ -760,7 +760,7 @@
      TDEConfigGroupSaver gs(TDEGlobal::config(), "General");
      TQString terminal = TDEGlobal::config()->readPathEntry("TerminalApplication", "konsole");

@@ -8,7 +8,7 @@ diff -rcb kde-i18n-fr-3.5.10.ori/messages/kdebase/kdesktop.po kde-i18n-fr-3.5.10
   msgstr "Exécuter une commande..."
   
 + #: krootwm.cc:135 (Trinity Specific)
-+ msgid "Open Terminal Here..."
++ msgid "Open Terminal..."
 + msgstr "Ouvrir un Terminal..."
 + 
   #: krootwm.cc:137

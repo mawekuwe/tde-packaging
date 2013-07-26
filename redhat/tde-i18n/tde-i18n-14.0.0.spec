@@ -47,20 +47,15 @@ AutoReq: no
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+# Main patch: lots of updates for TDE R14.0.0
+Patch1:		tde-i18n-14.0.0-fr-updates.patch
+
 # Translate 'tdesu' message was modified in 'tdebase' package
-Patch0:		tde-i18n-14.0.0-fr-tdesu_no_ignore_button.patch
+Patch2:		tde-i18n-14.0.0-fr-tdesu_no_ignore_button.patch
 
 # Translate 'Open Terminal Here' desktop shortcut
-Patch1:		tde-i18n-14.0.0-fr-openterminalhere.patch
+Patch3:		tde-i18n-14.0.0-fr-openterminalhere.patch
 
-# TDE 3.5.13: French translations for new features
-Patch2:		tde-i18n-14.0.0-fr-add_french_translations.patch
-
-# TDE 3.5.13: Updated translations for zh_TW, thanks to Wei-Lun Chao !
-Patch3:		kde-i18n-zh_TW-3.5.10.patch.gz
-
-# TDE 3.5.13.2: Updated french translations
-Patch4:		tde-i18n-14.0.0-fr-updates.patch
 
 BuildRequires:	findutils
 BuildRequires:	gettext
@@ -697,15 +692,9 @@ Provides:	 trinity-kde-i18n-Chinese-Big5 = %{version}-%{release}
 
 # Patches for French translations
 pushd tde-i18n-fr
-%patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch4 -p1
-popd
-
-# Patches for Chinese (zh_TW) translations
-pushd tde-i18n-zh_TW
-zcat %{PATCH3} | patch -p1 || :
+%patch3 -p1
 popd
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"

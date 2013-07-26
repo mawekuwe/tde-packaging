@@ -78,7 +78,7 @@ Patch1:		tdebase-14.0.0-open_terminal_here.patch
 Patch2:		tdebase-14.0.0-default_menu_icon.patch
 ## [kdebase/kcontrol] Adds FR translation for KCM ICC
 Patch3:		tdebase-14.0.0-displayconfig_translation.patch
-## [kdebase/kcontrol] Adds FR translation for KCM ICC
+## [kdebase/kcontrol] Adds default entries for Kickoff menu
 Patch4:		tdebase-14.0.0-kickoff_default_favs.patch
 ## [kdebase] Changes konsole default word separator
 Patch5:		tdebase-14.0.0-konsole_wordseps.patch

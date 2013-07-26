@@ -18,15 +18,15 @@
 
 %define _docdir %{tde_docdir}
 
-Summary: Audio-decoding framework 
-Name:	 trinity-akode 
-Version: 2.0.2
+Summary: 	Audio-decoding framework 
+Name:		trinity-akode 
+Version:	2.0.2
 Release:	5%{?dist}%{?_variant}
 
-License: LGPLv2+
-Group: 	 System Environment/Libraries
-#URL:	 http://carewolf.com/akode/  
-URL:	 http://www.kde-apps.org/content/show.php?content=30375
+License:	LGPLv2+
+Group: 		System Environment/Libraries
+#URL:		http://carewolf.com/akode/  
+URL:		http://www.kde-apps.org/content/show.php?content=30375
 Source0:	akode-2.0.2.tar.bz2
 
 Prefix:		%{tde_prefix}
@@ -39,7 +39,7 @@ Patch2: akode-2.0.2-multilib.patch
 Patch3: akode-2.0.2-flac113-portable.patch
 Patch4: akode-2.0.2-gcc43.patch
 
-# New patch for Fedora 16 / TDE 3.5.13
+# New patches
 Patch10: akode-autotools.patch
 Patch11: akode-2.0.2-fix_ffmpeg_include.patch
 Patch12: akode-2.0.2-fix_ftbfs.patch
@@ -117,6 +117,8 @@ aKode currently has the following decoder plugins:
 
 aKode also has the following audio outputs:
 * alsa: Outputs to ALSA (dmix is recommended).
+* jack
+* pulseaudio
 
 %files
 %defattr(-,root,root,-)
@@ -318,15 +320,12 @@ Requires: %{name} = %{version}-%{release}
   --enable-new-ldflags \
   --enable-final
 
-%__make %{?_smp_mflags} LIBTOOL=$(which libtool)
+%__make %{?_smp_mflags}
 
 
 %install
 %__rm -rf %{buildroot} 
 %__make install DESTDIR=%{buildroot}
-
-# unpackaged files
-%__rm -f %{buildroot}%{tde_libdir}/*.a
 
 # rpmdocs
 for file in AUTHORS COPYING NEWS README TODO ; do
