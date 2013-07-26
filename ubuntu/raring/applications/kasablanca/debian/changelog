@@ -1,3 +1,9 @@
+kasablanca-trinity (0.4.0.2-2ubuntu1) feisty; urgency=low
+
+  * Initial Release for TDE
+
+ -- Slávek Banko <slavek.banko@axis.cz>  Fri, 26 Jul 2013 03:25:28 +0200
+
 kasablanca (0.4.0.2-2ubuntu1) feisty; urgency=low
 
   * Fake sync.

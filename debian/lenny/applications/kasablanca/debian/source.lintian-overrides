@@ -1,2 +1,2 @@
 # Upstream distributes it like this ATM but cleans it in next release
-kasablanca source: source-contains-CVS-dir admin/CVS
+kasablanca-trinity source: source-contains-CVS-dir admin/CVS
