@@ -1,15 +1,14 @@
-Source: mplayerthumbs
-Section: graphics
+Source: mplayerthumbs-trinity
+Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: cdbs, debhelper (>= 5), autotools-dev, tdelibs4-trinity-dev
+Build-Depends: cdbs, debhelper (>= 5), automake, libtool, autotools-dev, tdelibs4-trinity-dev
 Standards-Version: 3.8.2
 
-Package: mplayerthumbs
+Package: mplayerthumbs-trinity
 Architecture: any
-Depends: ${misc:Depends}, mplayer
-Conflicts: libarts1-xine
-Description: thumbnail generator for video files on Konqueror
+Depends: ${misc:Depends}, ${shlibs:Depends}, mplayer
+Description: thumbnail generator for video files on Konqueror [Trinity]
  MPlayerThumbs is a thumbnail generator for video files on
  Konqueror. Unlike the original konqueror plugin (libarts1-xine),
  it depends on neither xine nor arts, instead it uses only

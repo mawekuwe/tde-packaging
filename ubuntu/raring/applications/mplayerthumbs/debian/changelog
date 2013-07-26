@@ -1,3 +1,9 @@
+mplayerthumbs-trinity (0.5~b-0ubuntu1) gusty; urgency=low
+
+  * Initial Release for TDE
+
+ -- Slávek Banko <slavek.banko@axis.cz>  Fri, 26 Jul 2013 02:42:34 +0200
+
 mplayerthumbs (0.5~b-0ubuntu1) gutsy; urgency=low
 
   * Initial release (LP: #110368)
