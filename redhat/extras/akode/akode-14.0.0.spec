@@ -42,7 +42,7 @@ Patch4: akode-2.0.2-gcc43.patch
 # New patch for Fedora 16 / TDE 3.5.13
 Patch10: akode-autotools.patch
 Patch11: akode-2.0.2-fix_ffmpeg_include.patch
-
+Patch12: akode-2.0.2-fix_ftbfs.patch
 
 # FLAC support
 %define _with_flac --with-flac
@@ -288,12 +288,7 @@ Requires: %{name} = %{version}-%{release}
 
 %patch10 -p1 -b .autotools
 %patch11 -p1 -b .ffmpeg
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%patch12 -p1 -b .ftbfs
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"

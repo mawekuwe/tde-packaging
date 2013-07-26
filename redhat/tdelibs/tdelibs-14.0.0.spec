@@ -255,9 +255,14 @@ BuildRequires:	NetworkManager-glib-devel
 %endif
 %endif
 
+# Certificates support
+Requires:		ca-certificates
+
+# Trinity dependencies
 Requires:		trinity-tqt3 >= 3.5.0
 Requires:		trinity-tqtinterface >= %{tde_version}
 Requires:		trinity-arts >= %{tde_version}
+
 
 %description
 Libraries for the Trinity Desktop Environment:
@@ -435,7 +440,7 @@ applications for TDE.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}"
 
 # We need LD_LIBRARY_PATH here because ld.so.conf file has not been written yet
 export LD_LIBRARY_PATH="%{tde_libdir}"
@@ -506,6 +511,10 @@ EOF
 
 # Appends TDE version to '.pc' file
 echo "Version: %{version}" >>"%{?buildroot}%{tde_libdir}/pkgconfig/tdelibs.pc"
+
+# Use system-wide CA certificate
+%__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
+%__ln_s "%{_sysconfdir}/ssl/certs/ca-certificates.crt" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 
 
 %clean
