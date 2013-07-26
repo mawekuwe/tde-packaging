@@ -37,7 +37,7 @@
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>ftp client for KDE</refpurpose>
+    <refpurpose>ftp client for TDE</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -50,7 +50,7 @@
   <refsect1>
     <title>DESCRIPTION</title>
 
-    <para><command>&dhpackage;</command> is a graphical ftp client for KDE.
+    <para><command>&dhpackage;</command> is a graphical ftp client for TDE.
     It supports technologies like ZeroConf, TLS/SSL and FXP</para>
 
     <para>Some features:
@@ -86,7 +86,7 @@
   <refsect1>
     <title>OPTIONS</title>
 
-    <para>All KDE and Qt programs accept some common command-line options.
+    <para>All TDE and Qt programs accept some common command-line options.
     <command>&dhpackage;</command> has no application-specific options.</para>
 
     <variablelist>
@@ -108,10 +108,10 @@
       </varlistentry>
       <varlistentry>
         <term>
-          <option>--help-kde</option>
+          <option>--help-tde</option>
         </term>
         <listitem>
-          <para>Show KDE specific options</para>
+          <para>Show TDE specific options</para>
         </listitem>
       </varlistentry>
       <varlistentry>

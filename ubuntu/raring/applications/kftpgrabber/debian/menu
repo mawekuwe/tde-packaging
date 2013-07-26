@@ -1,7 +1,7 @@
-?package(kftpgrabber):\
+?package(kftpgrabber-trinity):\
 	needs="X11" \
-	hints="KDE" \
+	hints="TDE" \
 	section="Applications/Network/File Transfer"\
 	title="kftpgrabber" \
 	longtitle="kftpgrabber - ftp client" \
-	command="/usr/bin/kftpgrabber"
+	command="/opt/trinity/bin/kftpgrabber"
