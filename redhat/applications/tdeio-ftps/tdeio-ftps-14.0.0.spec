@@ -91,8 +91,8 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 %files
 %defattr(-,root,root,-)
 %doc README Changelog COPYING AUTHORS
-%{tde_tdelibdir}/kio_ftps.la
-%{tde_tdelibdir}/kio_ftps.so
+%{tde_tdelibdir}/tdeio_ftps.la
+%{tde_tdelibdir}/tdeio_ftps.so
 %{tde_datadir}/services/ftps.protocol
 
 

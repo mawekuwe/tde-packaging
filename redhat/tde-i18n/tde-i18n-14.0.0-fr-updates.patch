@@ -646,6 +646,97 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmtdednssd.po tde-i18n-fr/messages/
 +msgid "Enable &Zeroconf network browsing"
 +msgstr "Activer le parcours du réseau avec Zeroconf"
 +
+diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmtwindecoration.po tde-i18n-fr/messages/tdebase/kcmtwindecoration.po
+--- tde-i18n-fr.ORI/messages/tdebase/kcmtwindecoration.po	2013-07-26 17:53:39.996658761 +0200
++++ tde-i18n-fr/messages/tdebase/kcmtwindecoration.po	2013-07-27 10:52:40.328507220 +0200
+@@ -233,3 +233,87 @@
+ #: preview.cpp:330
+ msgid "Inactive Window"
+ msgstr "Fenêtre inactive"
++
++## TDE NEW
++# twindecoration.cpp, // Page 3 (Window Shadows)
++msgid "&Draw a drop shadow under windows"
++msgstr "&Dessiner une ombre sous les fenêtres"
++
++msgid ""
++"Enabling this checkbox will allow you to choose a kind of "
++"drop shadow to draw under each window."
++msgstr ""
++"Activer cette option vous permettra de choisir le type"
++"d'ombre à dessiner sous chaque fenêtre."
++				 
++msgid "Active Window Shadow"
++msgstr "Ombre de la fenêtre active"
++
++msgid "Inactive Window Shadows"
++msgstr "Ombre des fenêtres inactives"
++
++msgid "Draw Shadow Under Normal Windows And..."
++msgstr "Dessiner une ombre sous les fenêtres et"
++
++msgid "Docks and &panels"
++msgstr "Les docks et les &panneaux"
++
++msgid "O&verride windows"
++msgstr "Les fenêtres en surimpression"
++
++msgid "&Top menu"
++msgstr "Le &Menu du haut"
++
++msgid "Draw shadow under &inactive windows"
++msgstr "Dessiner une ombre sous les fenêtres &inactives"
++
++msgid "Colour:"
++msgstr "Couleur:"
++
++msgid "Maximum opacity:"
++msgstr "Opacité maximale:"
++
++msgid " pixels"
++msgstr " pixels"
++
++msgid "Offset rightward (may be negative):"
++msgstr "Décalage vers la droite (peut être négatif):"
++
++msgid "Offset downward (may be negative):"
++msgstr "Décalage vers le bas (peut être négatif):"
++
++msgid "Thickness to either side of window:"
++msgstr "Epaisseur de chaque coté de la fenêtre:"
++
++# twindecoration.cpp, // Page 4 (WM selector)
++
++msgid ""
++"Select the window manager. Selecting a window manager "
++"other than \"twin\" will require you to use a third party program for configuration and may increase the risk of system crashes or security problems."
++msgstr ""
++"Sélection du gestionnaire de fenêtres. Choisir un gestionnaire autre que \"twin\" "
++"nécessite l'utilisation d'un program tierce partie pour sa configuration, et peut augmenter le risque de plantage ou de problème de sécurité."
++                             
++msgid "Window Manager to use in your TDE session:"
++msgstr "Gestionnaire de fenêtres à utiliser dans votre session TDE:"
++
++msgid "Specify any command line arguments to be passed to the selected WM on startup, separated with whitespace.  A common example is --replace"
++msgstr "Spécifier les paramètres de la ligne de commande passés au démarrage du gestionnaire de fenêtre, séparés par des espaces. Par exemple: --replace"
++
++msgid "Command line arguments to pass to the Window Manager (should remain blank unless needed):"
++msgstr "Paramètres de la ligne de commande du gestionnaire de fenêtres (devrait être vide sauf si nécessaire):"
++
++msgid "&Shadows"
++msgstr "&Ombres"
++
++msgid "&Window Manager"
++msgstr "&Gestionnaire de fenêtres"
++
++msgid "NOTICE:"
++msgstr "REMARQUE:"
++
++msgid "A third party Window Manager has been selected for use with TDE."
++msgstr "Un gestionnaire de fenêtres tierce partie a été sélectionné."
++
++msgid "As a result, the built-in Window Manager configuration system will not function and has been disabled."
++msgstr "En conséquence, les options de configuration du gestionnaire de fenêtres intégré à TDE sont désactivées."
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmtwinrules.po tde-i18n-fr/messages/tdebase/kcmtwinrules.po
 --- tde-i18n-fr.ORI/messages/tdebase/kcmtwinrules.po	2013-07-26 17:53:39.995658788 +0200
 +++ tde-i18n-fr/messages/tdebase/kcmtwinrules.po	2013-07-26 19:01:57.471255641 +0200
@@ -1560,7 +1651,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tdmgreet.po tde-i18n-fr/messages/tde
 +msgstr "Connexion à TDE"
 diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdelibs/tdelibs.po
 --- tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po	2013-07-26 17:53:39.979659213 +0200
-+++ tde-i18n-fr/messages/tdelibs/tdelibs.po	2013-07-26 17:53:58.997152491 +0200
++++ tde-i18n-fr/messages/tdelibs/tdelibs.po	2013-07-27 10:50:15.966218371 +0200
 @@ -5557,137 +5557,146 @@
  
  #: tdeui/kaboutkde.cpp:34
@@ -1568,7 +1659,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 -"The <b>K Desktop Environment</b> is written and maintained by the TDE Team, a "
 -"world-wide network of software engineers committed to <a "
 +"The <b>Trinity Desktop Environment</b> is a fork of the "
-+"K Desktop Environment version 3.5, which was originally written by the TDE Team, "
++"K Desktop Environment version 3.5, which was originally written by the KDE Team, "
 +"a world-wide network of software engineers committed to <a "
  "href=\"http://www.gnu.org/philosophy/free-sw.html\">Free Software</a> "
 -"development."
@@ -1577,12 +1668,8 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 -"Everyone is welcome to contribute to TDE."
 -"<br>"
 -"<br>Visit <A HREF=\"http://www.kde.org/\">http://www.kde.org</A> "
-+"development.<br><br>No single group, company or organization controls the "
-+"Trinity source code. Everyone is welcome to contribute to Trinity.<br><br>Visit <A "
-+"HREF=\"http://www.trinitydesktop.org/\">http://www.trinitydesktop.org</A> for more information "
-+"about Trinity, and <A HREF=\"http://www.kde.org/\">http://www.kde.org</A> "
- "for more information on the TDE project. "
- msgstr ""
+-"for more information on the TDE project. "
+-msgstr ""
 -"L'<b>Environnement Bureautique TDE</b> est écrit et maintenu par l'équipe de "
 -"TDE, des informaticiens du monde entier travaillant sur Internet au "
 -"développement de <a href=\"http://www.gnu.org/philosophy/free-sw.fr.html\">"
@@ -1592,15 +1679,22 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 -"est invité à y contribuer."
 -"<br>"
 -"<br>Visitez <a href=\"http://www.kde.org/fr\">http://www.kde.org/fr</A> "
+-"pour plus d'informations sur le projet TDE."
++"development.<br><br>No single group, company or organization controls the "
++"Trinity source code. Everyone is welcome to contribute to Trinity.<br><br>Visit <A "
++"HREF=\"http://www.trinitydesktop.org/\">http://www.trinitydesktop.org</A> for more information "
++"about Trinity, and <A HREF=\"http://www.kde.org/\">http://www.kde.org</A> "
++"for more information on the KDE project. "
++msgstr ""
 +"L'<b>Environnement Bureautique Trinity</b> est un clone de l'environnement "
-+"TDE version 3.5, originellement écrit par l'équipe TDE, des informaticiens "
++"TDE version 3.5, originellement écrit par l'équipe KDE, des informaticiens "
 +"du monde entier travaillant sur Internet au développement de <a "
 +"href=\"http://www.gnu.org/philosophy/free-sw.fr.html\">logiciels libres</a>."
 +"<br><br>Aucune société ni organisation ne contrôle le code source de Trinity, et chacun "
 +"est invité à y contribuer.<br><br>Visitez <A HREF=\"http://www.trinitydesktop.org/\">"
 +"http://www.trinitydesktop.org</A> pour plus d'informations sur Trinity, et <a "
 +"href=\"http://www.kde.org/fr\">http://www.kde.org/fr</A> "
- "pour plus d'informations sur le projet TDE."
++"pour plus d'informations sur le projet KDE."
  
  #: tdeui/kaboutkde.cpp:43
  msgid ""
