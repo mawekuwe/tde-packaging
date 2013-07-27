@@ -1,3 +1,9 @@
+tdeio-ftps-trinity (0.1-0ubuntu3+build2) hardy; urgency=low
+
+  * Initial Release for TDE
+
+ -- Slávek Banko <slavek.banko@axis.cz>  Sat, 27 Jul 2013 12:21:12 +0200
+
 kio-ftps (0.1-0ubuntu3+build2) hardy; urgency=low
 
   * Ported to hardy 
