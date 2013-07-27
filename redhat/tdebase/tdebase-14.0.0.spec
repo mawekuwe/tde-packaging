@@ -76,14 +76,14 @@ Source9:	mgabutton.svg
 Patch1:		tdebase-14.0.0-open_terminal_here.patch
 ## [tdebase/starttde] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
 Patch2:		tdebase-14.0.0-default_menu_icon.patch
-## [kdebase/kcontrol] Adds FR translation for KCM ICC
+## [tdebase/kcontrol] Adds FR translation for KCM ICC
 Patch3:		tdebase-14.0.0-displayconfig_translation.patch
-## [kdebase/kcontrol] Adds default entries for Kickoff menu
+## [tdebase/kcontrol] Adds default entries for Kickoff menu
 Patch4:		tdebase-14.0.0-kickoff_default_favs.patch
-## [kdebase] Changes konsole default word separator
+## [tdebase] Changes konsole default word separator
 Patch5:		tdebase-14.0.0-konsole_wordseps.patch
-
-Patch10:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
+## [tdebase] Fix i18n description loading in 'twin_update_default_rules'
+Patch6:		tdebase-14.0.0-fix_twin_rules_translation.patch
 
 # Patches from Mandriva
 Patch101:	tdebase-14.0.0-vibrate_dialog.patch
@@ -92,6 +92,9 @@ Patch103:	tdebase-14.0.0-kdesktop_crossfade.patch
 Patch104:	tdebase-14.0.0-kickoff_xdg_dirs.patch
 Patch105:	tdebase-14.0.0-suspend_unmount.patch
 Patch106:	tdebase-14.0.0-bookmark_global_copy.patch
+
+# Experimental patches
+Patch201:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
 
 
 ### Distribution-specific settings ###
@@ -3216,8 +3219,7 @@ Windows and Samba shares.
 %patch3 -p1 -b .displayconfigtranslation
 %patch4 -p1 -b .kickoffdefaultsfav
 %patch5 -p1 -b .konsolewordseps
-%patch10 -p1 -b .kcmxcursor
-
+%patch6 -p1 -b .twintranslation
 
 %patch101 -p1 -b .vibrate_dialog
 %patch102 -p1 -b .kcontrol_menu_entry
@@ -3225,6 +3227,8 @@ Windows and Samba shares.
 %patch104 -p1 -b .kickoff_xdg
 %patch105 -p1 -b .suspend_unmount
 %patch106 -p1 -b .bookmark_global_copy
+
+%patch201 -p1 -b .kcmxcursor
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""

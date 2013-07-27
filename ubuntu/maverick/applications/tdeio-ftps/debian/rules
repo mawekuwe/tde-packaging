@@ -1,22 +1,32 @@
 #!/usr/bin/make -f
 
-cdbs_kde_enable_debug = --disable-debug
-
 include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/kde.mk
+include debian/cdbs/kde.mk
 
-DEB_CONFIGURE_EXTRA_FLAGS := --disable-rpath --libdir=/usr/lib/kde3
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
-build-stamp:
+DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
+                               && echo xz || echo bzip2)
+
+post-patches:: debian/stamp-bootstrap
+
+debian/stamp-bootstrap:
 	dh_testdir
 
-	/usr/bin/libtoolize -f
+	# Regenerate build system
+	! [ -f /usr/share/libtool/ltmain.sh ] || \
+	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
+	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
+	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	cp -f /usr/share/misc/config.guess admin/config.guess
-	cp -f /usr/share/misc/config.sub admin/config.sub
 
-	$(MAKE) -f admin/Makefile.common
-	
-	QTDIR=/usr/share/tqt3 ./configure $(configkde) --disable-final 
-	$(MAKE)
-	touch build-stamp
+	autoreconf --install && automake -f && \
+	$(MAKE) -f admin/Makefile.common && \
+	touch debian/stamp-bootstrap
+
+clean::
+	dh_testdir
+	rm -f debian/stamp-bootstrap

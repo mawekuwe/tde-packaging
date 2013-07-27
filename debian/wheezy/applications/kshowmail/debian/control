@@ -3,13 +3,13 @@ Section: tde
 Priority: extra
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Lionel Le Folgoc <mrpouit@ubuntu.com>
-Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev, automake, libmimelib1-dev, libqt3-compat-headers
+Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev, automake, libtool, libmimelib1-trinity-dev, libtqt3-compat-headers
 Standards-Version: 3.7.2
 
 Package: kshowmail-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: show mails on a POP3 server without actually downloading them
+Description: show mails on a POP3 server without actually downloading them [Trinity]
  KShowmail can be used to show mails on a POP3 server without actually
  downloading them. The headers or the complete mails can be viewed, and
  unwanted mails can be deleted. An initial and an interval timer can be set to

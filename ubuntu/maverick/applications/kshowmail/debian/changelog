@@ -1,3 +1,9 @@
+kshowmail-trinity (3.2.1-0ubuntu1) gutsy; urgency=low
+
+  * Initial Release for TDE
+
+ -- Slávek Banko <slavek.banko@axis.cz>  Sat, 27 Jul 2013 02:42:42 +0200
+
 kshowmail (3.2.1-0ubuntu1) gutsy; urgency=low
 
   * New upstream release.

@@ -709,6 +709,7 @@ export TDEDIR=%{tde_prefix}
 
 export kde_htmldir="%{tde_tdedocdir}/HTML"
 
+(
 for l in %{TDE_LANGS}; do
   for f in tde-i18n-${l}/; do
     if [ -d "${f}" ]; then 
@@ -727,8 +728,15 @@ for l in %{TDE_LANGS}; do
     fi
   done
 done
+) 2>&1 | tee /tmp/rpmbuild.$$
+
+if grep -q Error /tmp/rpmbuild.$$; then
+  echo Error while building. See '/tmp/rpmbuild.$$'
+  exit 1
+fi
 
 wait
+rm -f /tmp/rpmbuild.$$
 
 %install
 %__rm -rf %{?buildroot}

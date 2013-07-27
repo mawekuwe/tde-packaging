@@ -1,3 +1,3 @@
 usr/share/lintian/overrides
-usr/share/pixmaps
-usr/share/sounds
+opt/trinity/share/pixmaps
+opt/trinity/share/sounds
