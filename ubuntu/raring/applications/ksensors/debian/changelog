@@ -1,3 +1,9 @@
+ksensors-trinity (0.7.3-18) unstable; urgency=low
+
+  * Initial Release for TDE
+
+ -- Slávek Banko <slavek.banko@axis.cz>  Fri, 26 Jul 2013 15:48:38 +0200
+
 ksensors (0.7.3-18) unstable; urgency=low
 
   * Link the ksensors binary with libtqt-mt (closes: bug#555063).
