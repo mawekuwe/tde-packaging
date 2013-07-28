@@ -1,0 +1,115 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH KSHUTDOWN 1 "avril 14, 2005"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+kshutdown \- A Shut Down Utility for TDE
+.SH SYNOPSIS
+.B kshutdown
+.RI [ Qt-options ] 
+.RI [ TDE-options ] 
+.RI [ options ]
+.RI time
+.SH DESCRIPTION
+This manual page was written for the Debian distribution
+because the original program does not have a manual page.
+.PP
+This manual page documents briefly the
+.B kshutdown
+utility.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics, 
+.\" respectively.
+.SH OPTIONS
+A summary of options is included below.
+
+.TP
+Generic options:
+.TP
+.B   \-\-help
+Show help about options
+.TP
+.B  \-\-help\-qt
+Show Qt specific options
+.TP
+.B  \-\-help\-tde
+Show TDE specific options
+.TP
+.B  \-\-help\-all
+Show all options
+.TP
+.B  \-\-author
+Show author information
+.TP
+.B  \-v, \-\-version
+Show version information
+.TP
+.B  \-\-license
+Show license information
+.TP
+.B  \-\-
+End of options
+
+.TP
+Options:
+.TP
+.B \-s, \-\-shutdown
+ Turn off computer
+.TP
+.B  \-h, \-\-halt
+Turn off computer
+.TP
+.B  \-r, \-\-reboot
+Restart computer
+.TP
+.B  \-k, \-\-lock
+Lock session
+.TP
+.B  \-l, \-\-logout
+End current session
+.TP
+.B  \-w, \-\-wizard
+Wizard
+.TP
+.B  \-\-standard
+Show standard logout dialog
+.TP
+.B  \-c, \-\-cancel
+Cancel an active action
+.TP
+.B  \-\-init
+Don't show window at startup
+.TP
+.B  \-\-test
+Enable test mode
+.TP
+.B  \-\-default
+Disable test mode
+
+.TP
+Arguments:
+.TP
+.B  time
+Time; Examples: 01:30 - absolute time (HH:MM); 10 - number of minutes to wait from now
+.SH AUTHOR
+kshutdown was written by Konrad Twardowski <kdtonline@poczta.onet.pl>.
+.PP
+This manual page was written by Romain Beauxis <toots@rastageeks.org>,
+for the Debian project  Permission is granted to copy, distribute and/or
+modify this document under the terms of the GNU General Public
+License, Version 2 any later version published by the Free Software Foundation.
+		  
