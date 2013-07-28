@@ -12,6 +12,7 @@ fi
 case "$1" in
   configure)
 	chmod +s /opt/trinity/bin/kcheckpass || true
+	chmod +s /opt/trinity/bin/tdekbdledsync || true
     ;;
   abort-upgrade)
     ;;
