@@ -2044,10 +2044,16 @@ fi
 %if 0%{?with_selinux_policy}
 /usr/sbin/semodule -i "%{?_sysconfdir}/trinity/tdm/tdm.pp"
 %endif
-# Default user icon in TDM
+# Sets default user icon in TDM
 if [ ! -r "%{tde_datadir}/apps/tdm/faces/.default.face.icon" ]; then
   [ -d "%{tde_datadir}/apps/tdm/faces" ] || mkdir -p "%{tde_datadir}/apps/tdm/faces"
   %__cp -f "%{tde_datadir}/apps/tdm/pics/users/default2.png" "%{tde_datadir}/apps/tdm/faces/.default.face.icon"
+fi
+# Sets default language for TDM
+if [ "$1" = "1" ]; then
+  if [ -n "${LANG}" ] && [ "${LANG}" != "C" ]; then
+    %__sed -i "%{_sysconfdir}/trinity/tdm/tdmrc" -e "s|^#*Language=.*|Language=${LANG}|"
+  fi
 fi
 
 %posttrans -n trinity-tdm
