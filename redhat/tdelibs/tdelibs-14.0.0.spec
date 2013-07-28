@@ -21,7 +21,7 @@
 %define _docdir %{tde_docdir}
 
 Name:		trinity-tdelibs
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Libraries
@@ -48,6 +48,7 @@ Patch3:		tdelibs-14.0.0-devkitpower_support.patch
 Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
 Patch102:		tdelibs-14.0.0-cups_by_default.patch
 
+Patch201:		tdelibs-14.0.0-debug.patch
 
 Obsoletes:	tdelibs < %{version}-%{release}
 Provides:	tdelibs = %{version}-%{release}
@@ -435,6 +436,8 @@ applications for TDE.
 %patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default
 
+%patch201 -p1 -b .debug
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -456,6 +459,12 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DDOC_INSTALL_DIR="%{tde_docdir}" \
@@ -463,7 +472,7 @@ cd build
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
-  -DCMAKE_SKIP_RPATH=OFF \
+  \
   -DWITH_ALL_OPTIONS=ON \
   -DWITH_ARTS=ON \
   -DWITH_ALSA=ON \

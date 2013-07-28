@@ -19,7 +19,7 @@
 
 
 Name:		trinity-tdebase
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
@@ -1740,13 +1740,11 @@ group.
 %{tde_tdelibdir}/media_propsdlgplugin.so
 %{tde_datadir}/services/media_propsdlgplugin.desktop
 
-
 %post tdeio-plugins
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
 
 %postun tdeio-plugins
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
-
 
 ##########
 
@@ -3289,14 +3287,20 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}" \
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
-  -DCMAKE_SKIP_RPATH="OFF" \
   -DCONFIG_INSTALL_DIR="/etc/trinity" \
   -DSYSCONF_INSTALL_DIR="/etc/trinity" \
   -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+  \
   -DWITH_SASL=ON \
   -DWITH_LDAP=ON \
   -DWITH_SAMBA=ON \
