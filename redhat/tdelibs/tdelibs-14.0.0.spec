@@ -256,7 +256,14 @@ BuildRequires:	NetworkManager-glib-devel
 %endif
 
 # Certificates support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+%define	cacert %{_sysconfdir}/ssl/certs/ca-certificates.crt
 Requires:		ca-certificates
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%define	cacert %{_sysconfdir}/ssl/certs/ca-bundle.crt
+Requires:		openssl
+%endif
 
 # Trinity dependencies
 Requires:		trinity-tqt3 >= 3.5.0
@@ -514,8 +521,7 @@ echo "Version: %{version}" >>"%{?buildroot}%{tde_libdir}/pkgconfig/tdelibs.pc"
 
 # Use system-wide CA certificate
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
-%__ln_s "%{_sysconfdir}/ssl/certs/ca-certificates.crt" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
-
+%__ln_s "%{cacert}" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 
 %clean
 %__rm -rf "%{?buildroot}"
