@@ -40,7 +40,7 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	media_safelyremove.desktop
+Source1:		media_safelyremove.desktop_tdeio
 
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -83,8 +83,13 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --disable-final \
+  --enable-new-ldflags \
+  --enable-closure \
+  --disable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -94,9 +99,8 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_kio-umountwrapper
-#%__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/apps/dolphin/servicemenus/media_safelyremove.desktop_kio-umountwrapper
-%__install -D -m 644 %{SOURCE1} %{?buildroot}%{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_kio-umountwrapper
+%__install -D -m 644 "%{SOURCE1}" %{?buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdeio-umountwrapper
+%__install -D -m 644 "%{SOURCE1}" %{?buildroot}%{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_tdeio-umountwrapper
 
 
 %clean
@@ -107,17 +111,17 @@ for f in konqueror d3lphin; do
   update-alternatives --install \
     %{tde_datadir}/apps/${f}/servicemenus/media_safelyremove.desktop \
     media_safelyremove.desktop_${f} \
-    %{tde_datadir}/apps/${f}/servicemenus/media_safelyremove.desktop_kio-umountwrapper \
+    %{tde_datadir}/apps/${f}/servicemenus/media_safelyremove.desktop_tdeio-umountwrapper \
     20
 done
 
-  
+
 %postun
 if [ $1 -eq 0 ]; then
   for f in konqueror d3lphin; do
     update-alternatives --remove \
       media_safelyremove.desktop_${f} \
-      %{tde_datadir}/apps/${f}/servicemenus/media_safelyremove.desktop_kio-umountwrapper
+      %{tde_datadir}/apps/${f}/servicemenus/media_safelyremove.desktop_tdeio-umountwrapper
   done
 fi
 
@@ -125,9 +129,9 @@ fi
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{tde_bindir}/tdeio_umountwrapper
-%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_kio-umountwrapper
-#%{tde_datadir}/apps/dolphin/servicemenus/media_safelyremove.desktop_kio-umountwrapper
-%{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_kio-umountwrapper
+%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdeio-umountwrapper
+%{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_tdeio-umountwrapper
+
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.2-6
