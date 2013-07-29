@@ -247,6 +247,7 @@ binary-install/tdebase-trinity-bin::
 	install -p -D -m644 debian/80ubuntu-xmodmap debian/tdebase-trinity-bin/etc/X11/Xsession.d/80ubuntu-trinity-xmodmap
 	mkdir -p debian/tdebase-trinity-bin/opt/trinity/share/autostart/
 	chmod +s debian/tdebase-trinity-bin/opt/trinity/bin/kcheckpass
+	chmod +s debian/tdebase-trinity-bin/opt/trinity/bin/tdekbdledsync
 
 binary-install/ksmserver-trinity::
 	install -p -D -m644 debian/tmp/opt/trinity/share/apps/tdm/sessions/tde.desktop debian/ksmserver-trinity/usr/share/xsessions/trinity.desktop
