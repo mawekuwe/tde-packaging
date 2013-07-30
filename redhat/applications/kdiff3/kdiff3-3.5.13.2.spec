@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp kdiff3
+%define tde_pkg kdiff3
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,27 +24,27 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	KDiff3 is a utility for comparing and/or merging two or three text files or directories.
-Version:	0.9.91
-Release:	6%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		KDiff3 is a utility for comparing and/or merging two or three text files or directories.
+Version:		0.9.91
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 %description
@@ -60,7 +61,7 @@ Unicode & UTF-8 support
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -86,9 +87,15 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
-  --enable-closure
+  \
+  --with-extra-includes=%{tde_includedir}/tqt
 
 %__make %{?_smp_mflags}
 
@@ -101,7 +108,7 @@ export PATH="%{tde_bindir}:${PATH}"
 # Unwanted files
 %__rm -rf %{?buildroot}%{tde_tdedocdir}/HTML/kdiff3/
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
 
 %clean
 %__rm -rf %{buildroot}
@@ -120,7 +127,7 @@ for f in hicolor locolor; do
 done
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
 %{tde_bindir}/kdiff3
@@ -140,6 +147,9 @@ done
 %{tde_tdelibdir}/libkdiff3plugin.so
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-7
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-6
 - Initial release for TDE 3.5.13.2
 

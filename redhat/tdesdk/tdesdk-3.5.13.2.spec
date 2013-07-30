@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -18,9 +20,9 @@
 
 
 Name:			trinity-tdesdk
-Summary:		The KDE Software Development Kit (SDK)
-Version:	3.5.13.2
-Release:	1%{?dist}%{?_variant}
+Summary:		The Trinity Software Development Kit (SDK)
+Version:		%{tde_version}
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			User Interface/Desktops
@@ -31,7 +33,7 @@ Packager:		Francois Andriot <francois.andriot@free.fr>
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}.tar.gz
+Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
@@ -1060,7 +1062,7 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
  
 
 %build
@@ -1081,13 +1083,19 @@ cd build
 
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DMAN_INSTALL_DIR=%{tde_mandir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  \
   -DWITH_DBSEARCHENGINE=ON \
   -DWITH_KCAL=ON \
   -DBUILD_ALL=ON \
@@ -1145,12 +1153,15 @@ fi
 # Removes useless stuff
 %__rm -f %{?buildroot}%{tde_datadir}/apps/kapptemplate/admin/debianrules
 
+
 %clean
 %__rm -rf %{buildroot}
 
 
-
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2
 

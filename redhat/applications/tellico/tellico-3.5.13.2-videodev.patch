@@ -1,0 +1,11 @@
+--- trinity-tellico-3.5.13.2/src/barcode/barcode_v4l.h.ORI	2013-07-28 22:22:41.390223800 +0200
++++ trinity-tellico-3.5.13.2/src/barcode/barcode_v4l.h	2013-07-28 22:23:10.085637439 +0200
+@@ -31,7 +31,7 @@
+ #endif
+ 
+ //#include <linux/videodev2.h>
+-#include <linux/videodev.h>
++#include <libv4l1.h>
+ 
+ #include <tqstring.h>
+ #include <tqimage.h>

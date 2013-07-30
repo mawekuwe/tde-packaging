@@ -1,0 +1,19 @@
+--- trinity-tellico-3.5.13.2/src/barcode/barcode.cpp.ORI	2013-07-29 17:21:06.358915613 +0200
++++ trinity-tellico-3.5.13.2/src/barcode/barcode.cpp	2013-07-29 17:22:29.505126885 +0200
+@@ -172,14 +172,14 @@
+   for (int i = 0; i < 10; i++) {
+     TQCString temp;
+     temp.setNum( i );
+-    fprintf( stderr, temp + " :   " );
++    fprintf( stderr, "%s :   ", *(temp) );
+     for (int j = 0; j < 13; j++) {
+       if (array[i][j][level] == -1)
+         fprintf( stderr, "x  " );
+       else {
+         TQCString temp;
+         temp.setNum( array[i][j][level] );
+-        fprintf( stderr, temp + "  " );
++        fprintf( stderr, "%s  ", *(temp) );
+       }
+     }
+     fprintf( stderr, "\n" );

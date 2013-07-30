@@ -3,8 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -29,8 +30,8 @@ BuildRequires:	gnokii-devel
 
 
 Name:		trinity-tdepim
-Version:	3.5.13.2
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Group:		Applications/Productivity
 
@@ -47,12 +48,13 @@ Patch14:	kdepim-3.5.13-missing_ldflags.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-libcaldav-devel
 BuildRequires:	trinity-libcarddav-devel
 
+BuildRequires:	cmake >= 2.8
 BuildRequires:	gpgme-devel
 BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
@@ -2187,6 +2189,11 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 %patch14 -p1 -b .ldflags
 
+# Fix 'ical2vcal' contains '/bin/perl' instead of '/usr/bin/perl'
+if [ -x /usr/bin/perl ]; then
+  %__sed -i "korganizer/ical2vcal.in" -e "s|@PERL@|/usr/bin/perl|"
+fi
+
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
@@ -2206,12 +2213,18 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  \
   -DWITH_ARTS=ON \
   -DWITH_SASL=ON \
   -DWITH_NEWDISTRLISTS=ON  \
@@ -2247,5 +2260,8 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

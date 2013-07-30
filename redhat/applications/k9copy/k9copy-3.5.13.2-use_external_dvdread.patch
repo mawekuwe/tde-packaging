@@ -1,0 +1,102 @@
+--- ./k9author/Makefile.am.dvdread	2013-06-06 19:29:20.000000000 +0200
++++ ./k9author/Makefile.am	2013-07-28 20:05:20.857621477 +0200
+@@ -14,5 +14,5 @@
+ 	k9import.h k9importfiles.h k9lvitemimport.h k9menu.h k9menubutton.h k9menuedit.h \
+ 	k9menueditor.h k9newdvd.h k9newtitle.h k9title.h
+ libk9author_la_LIBADD = $(top_builddir)/libk9copy/libk9copy.la $(LIB_KDEUI)
+-INCLUDES = -I$(top_srcdir)/dvdread -I$(top_srcdir)/k9devices \
++INCLUDES = -I/usr/include/dvdread -I$(top_srcdir)/k9devices \
+ 	-I$(top_srcdir)/k9vamps -I$(top_srcdir)/libk9copy -I$(top_srcdir)/src $(all_includes)
+--- ./k9decmpeg/Makefile.am.dvdread	2013-06-06 19:29:20.000000000 +0200
++++ ./k9decmpeg/Makefile.am	2013-07-28 20:05:20.857621477 +0200
+@@ -12,7 +12,7 @@
+ 	motion_comp_altivec.cpp motion_comp.cpp motion_comp_mmx.cpp motion_comp_vis.cpp mpeg2convert.h \
+ 	mpeg2.h mpeg2_internal.h rgb.cpp rgb_mmx.cpp rgb_vis.cpp slice.cpp tendra.h \
+ 	uyvy.cpp video_out.h vis.h vlc.h k9decodethread.cpp k9plaympeg2.cpp
+-INCLUDES = -I$(top_srcdir)/dvdread -I$(top_srcdir)/k9vamps \
++INCLUDES = -I/usr/include/dvdread -I$(top_srcdir)/k9vamps \
+ 	-I$(top_srcdir)/libdvdnav -I$(top_srcdir)/libk9copy
+ 
+ noinst_HEADERS = k9decodethread.h k9plaympeg2.h
+--- ./k9devices/Makefile.am.dvdread	2013-06-06 19:29:20.000000000 +0200
++++ ./k9devices/Makefile.am	2013-07-28 20:05:20.857621477 +0200
+@@ -1,4 +1,4 @@
+-INCLUDES = -I$(top_srcdir)/dvdread -I$(top_srcdir)/libk9copy $(DBUS_INCS) \
++INCLUDES = -I/usr/include/dvdread -I$(top_srcdir)/libk9copy $(DBUS_INCS) \
+ 	$(HAL_INCS) $(K3B_INCS) $(all_includes)
+ METASOURCES = AUTO
+ libk9devices_la_LDFLAGS = $(all_libraries) 
+--- ./k9Mplayer/Makefile.am.dvdread	2013-06-06 19:29:20.000000000 +0200
++++ ./k9Mplayer/Makefile.am	2013-07-28 20:05:20.857621477 +0200
+@@ -1,4 +1,4 @@
+-INCLUDES = -I$(top_srcdir)/dvdread -I$(top_srcdir)/libk9copy $(all_includes)
++INCLUDES = -I/usr/include/dvdread -I$(top_srcdir)/libk9copy $(all_includes)
+ METASOURCES = AUTO
+ 
+ noinst_LTLIBRARIES = libk9mplayer.la
+--- ./k9vamps/Makefile.am.dvdread	2013-06-06 19:29:20.000000000 +0200
++++ ./k9vamps/Makefile.am	2013-07-28 20:05:20.858621351 +0200
+@@ -7,6 +7,6 @@
+ noinst_LTLIBRARIES = libk9vamps.la
+ libk9vamps_la_SOURCES = cputest.cpp getvlc.h k9fifo.cpp k9requant.cpp \
+ 	k9vamps.cpp k9vamps.h putvlc.h qTable.h tcmemcpy.cpp
+-INCLUDES = -I$(top_srcdir)/dvdread -I$(top_srcdir)/k9vamps \
++INCLUDES = -I/usr/include/dvdread -I$(top_srcdir)/k9vamps \
+ 	-I$(top_srcdir)/libk9copy
+ noinst_HEADERS = k9requant.h ac.h k9fifo.h
+--- ./libdvdnav/Makefile.am.dvdread	2013-06-06 19:29:20.000000000 +0200
++++ ./libdvdnav/Makefile.am	2013-07-28 20:05:20.858621351 +0200
+@@ -11,4 +11,4 @@
+ 
+ 
+ 
+-INCLUDES = -I$(top_srcdir)/dvdread
++INCLUDES = -I/usr/include/dvdread
+--- ./libk9copy/Makefile.am.dvdread	2013-06-06 19:29:20.000000000 +0200
++++ ./libk9copy/Makefile.am	2013-07-28 20:05:20.858621351 +0200
+@@ -24,6 +24,6 @@
+ 	k9saveimage.h k9script.h k9titleencopt.h k9tools.h k9videocodecs.h
+ 
+ 
+-INCLUDES = -I$(top_srcdir)/dvdread -I$(top_srcdir)/k9decmpeg \
++INCLUDES = -I/usr/include/dvdread -I$(top_srcdir)/k9decmpeg \
+ 	-I$(top_srcdir)/k9vamps -I$(top_srcdir)/libdvdnav
+ libk9copy_la_LDFLAGS = $(all_libraries)
+--- ./src/Makefile.am.dvdread	2013-07-28 20:05:20.855621729 +0200
++++ ./src/Makefile.am	2013-07-28 20:09:10.620642017 +0200
+@@ -1,5 +1,5 @@
+ # set the include path for X, qt and KDE
+-INCLUDES = -I$(top_srcdir)/dvdread -I$(top_srcdir)/k9Mplayer \
++INCLUDES = -I/usr/include/dvdread -I$(top_srcdir)/k9Mplayer \
+ 	-I$(top_srcdir)/k9author -I$(top_srcdir)/k9decmpeg -I$(top_srcdir)/k9devices \
+ 	-I$(top_srcdir)/k9vamps -I$(top_srcdir)/libdvdnav -I$(top_srcdir)/libk9copy $(all_includes)
+ 
+@@ -35,7 +35,7 @@
+ 	$(top_builddir)/k9author/libk9author.la $(top_builddir)/k9decmpeg/libk9decmpeg.la \
+ 	$(top_builddir)/k9devices/libk9devices.la $(top_builddir)/k9vamps/libk9vamps.la \
+ 	$(top_builddir)/libdvdnav/libk9dvdnav.la $(top_builddir)/libk9copy/libk9copy.la \
+-	$(top_builddir)/dvdread/libdvdread.la $(LIB_KDEUI) -lkmdi $(LIBDL) -lk3b -lk3bdevice
++	-ldvdread $(LIB_KDEUI) -lkmdi $(LIBDL) -lk3b -lk3bdevice
+ 
+ # this is where the desktop file will go 
+ shelldesktopdir = $(kde_appsdir)/Utilities
+--- ./Makefile.am.ORI	2013-07-28 20:15:29.961786846 +0200
++++ ./Makefile.am	2013-07-28 20:15:43.375094511 +0200
+@@ -1,4 +1,4 @@
+-SUBDIRS = doc dvdread libdvdnav k9Mplayer libk9copy k9author k9decmpeg k9devices k9vamps  \
++SUBDIRS = doc libdvdnav k9Mplayer libk9copy k9author k9decmpeg k9devices k9vamps  \
+ 	 po src
+ 
+ $(top_srcdir)/configure.in: configure.in.in $(top_srcdir)/subdirs
+@@ -29,11 +29,3 @@
+ 
+ AM_CXXFLAGS = -O0 -g3
+ 
+-
+-
+-
+-
+-
+-
+-
+-INCLUDES = -I$(top_srcdir)/dvdread

@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -25,8 +27,8 @@
 
 Name:		trinity-tdemultimedia
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
-Version:	3.5.13.2
-Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		Applications/Multimedia
@@ -39,8 +41,8 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-
 Patch0:		tdemultimedia-3.5.13.2-ftbfs.patch
+Patch1:		tdemultimedia-3.5.13.2-fix_xdg_menu.patch
 
 Obsoletes:	trinity-kdemultimedia < %{version}-%{release}
 Provides:	trinity-kdemultimedia = %{version}-%{release}
@@ -53,16 +55,14 @@ Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 
 
 BuildRequires:	autoconf automake libtool m4
-BuildRequires:	qt3-devel
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	qt3-devel >= 3.3.8.d
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 %if "%{?_with_akode}" != ""
 BuildRequires: trinity-akode-devel
-%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?fedora} || 0%{?suse_version} || 0%{?rhel}
 BuildRequires: trinity-akode-libmad
-%endif
 %endif
 
 BuildRequires:	desktop-file-utils
@@ -567,8 +567,8 @@ This package provides data on multimedia applications for kappfinder.
 %files kappfinder-data
 %defattr(-,root,root,-)
 %{tde_datadir}/apps/kappfinder/*
-%{tde_datadir}/desktop-directories/[kt]de-multimedia-music.directory
-%{tde_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu
+%{tde_datadir}/desktop-directories/tde-multimedia-music.directory
+%{_sysconfdir}/xdg/menus/applications-merged/tde-multimedia-music.menu
 
 ##########
 
@@ -671,8 +671,8 @@ This package includes TDE's dockable sound mixer applet.
 %{tde_tdelibdir}/kmix_panelapplet.so
 %{tde_tdelibdir}/kmixctrl.la
 %{tde_tdelibdir}/kmixctrl.so
-%{tde_libdir}/lib[kt]deinit_kmix.so
-%{tde_libdir}/lib[kt]deinit_kmixctrl.so
+%{tde_libdir}/libkdeinit_kmix.so
+%{tde_libdir}/libkdeinit_kmixctrl.so
 %{tde_tdeappdir}/kmix.desktop
 %{tde_datadir}/apps/kicker/applets/kmixapplet.desktop
 %{tde_datadir}/apps/kmix/
@@ -725,7 +725,7 @@ This is a sound recording utility for Trinity.
 %{tde_tdelibdir}/libkrecexport_ogg.so
 %{tde_tdelibdir}/libkrecexport_wave.la
 %{tde_tdelibdir}/libkrecexport_wave.so
-%{tde_libdir}/lib[kt]deinit_krec.so
+%{tde_libdir}/libkdeinit_krec.so
 %{tde_tdeappdir}/krec.desktop
 %{tde_datadir}/apps/krec/
 %{tde_datadir}/icons/hicolor/*/apps/krec.png
@@ -1020,7 +1020,7 @@ formats supported by your installation of aRts (including aRts plugins).
 %{tde_tdelibdir}/noatunsimple.so
 %{tde_libdir}/libartseffects.la
 %{tde_libdir}/libartseffects.so
-%{tde_libdir}/lib[kt]deinit_noatun.so
+%{tde_libdir}/libkdeinit_noatun.so
 %{tde_libdir}/libnoatun.so.*
 %{tde_libdir}/libnoatunarts.la
 %{tde_libdir}/libnoatunarts.so
@@ -1105,10 +1105,10 @@ noatun plugins.
 %{tde_libdir}/libaudiocdplugins.so
 %{tde_libdir}/libkcddb.la
 %{tde_libdir}/libkcddb.so
-%{tde_libdir}/lib[kt]deinit_kmix.la
-%{tde_libdir}/lib[kt]deinit_kmixctrl.la
-%{tde_libdir}/lib[kt]deinit_krec.la
-%{tde_libdir}/lib[kt]deinit_noatun.la
+%{tde_libdir}/libkdeinit_kmix.la
+%{tde_libdir}/libkdeinit_kmixctrl.la
+%{tde_libdir}/libkdeinit_krec.la
+%{tde_libdir}/libkdeinit_noatun.la
 %{tde_libdir}/libkmidlib.la
 %{tde_libdir}/libkmidlib.so
 %{tde_libdir}/libmpeg.la
@@ -1139,8 +1139,8 @@ noatun plugins.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-
 %patch0 -p1 -b .ftbfs
+%patch1 -p1 -b .xdgmenu
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -1168,31 +1168,33 @@ if [ -d "/usr/X11R6" ]; then
 fi
 
 %configure  \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --libdir=%{tde_libdir} \
-   --includedir=%{tde_tdeincludedir} \
-   --datadir=%{tde_datadir} \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --with-cdparanoia \
-   --with-flac \
-   --with-theora \
-   --with-vorbis \
-   --with-alsa \
-   --with-gstreamer \
-   --with-lame \
-   --disable-debug \
-   --disable-warnings \
-   --enable-final \
-   --disable-rpath \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --includedir=%{tde_tdeincludedir} \
+  --datadir=%{tde_datadir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  \
+  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_includedir}/tqt:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
+  \
+  --with-cdparanoia \
+  --with-flac \
+  --with-theora \
+  --with-vorbis \
+  --with-alsa \
+  --with-gstreamer \
+  --with-lame \
   %{?_with_akode} %{!?_with_akode:--without-akode} \
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
-  %{?with_xine:--with-xine} %{!?with_xine:--without-xine} \
-   --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_includedir}/tqt:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
-   --enable-closure
+  %{?with_xine:--with-xine} %{!?with_xine:--without-xine}
 
 %__make %{?_smp_mflags}
 
@@ -1205,35 +1207,16 @@ export PATH="%{tde_bindir}:${PATH}"
 # don't make these world-writeable
 chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
 
-# locale's
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
-# Moves the XDG configuration files to TDE directory
-%__install -p -D -m644 \
-	"%{?buildroot}%{_sysconfdir}/xdg/menus/applications-merged/kde-multimedia-music.menu" \
-	"%{?buildroot}%{tde_prefix}/etc/xdg/menus/applications-merged/trinity-multimedia-music.menu"
-%__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
-
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Rebuild with NDEBUG option
+- Fix XDG menu
+
 * Mon Jun 17 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Enable "LAME" support
 

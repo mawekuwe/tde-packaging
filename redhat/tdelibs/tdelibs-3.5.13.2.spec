@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific variables
+%define tde_version 3.5.13.2
+
+# TDE specific variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -17,8 +19,8 @@
 %define _docdir %{tde_docdir}
 
 Name:		trinity-tdelibs
-Version:	3.5.13.2
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Libraries
 Group:		Environment/Libraries
@@ -31,9 +33,12 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+# Fix categories in T-menu
+Patch1:		tdelibs-3.5.13.2-fix_xdg_menu.patch
 
-Patch1:		tdelibs-3.5.13.2-xdg_dirs_set_path.patch
-Patch2:		tdelibs-3.5.13.2-cups_by_default.patch
+# Patches from Mandriva
+Patch101:		tdelibs-3.5.13.2-xdg_dirs_set_path.patch
+Patch102:		tdelibs-3.5.13.2-cups_by_default.patch
 
 Obsoletes:	tdelibs < %{version}-%{release}
 Provides:	tdelibs = %{version}-%{release}
@@ -45,13 +50,12 @@ Provides:	trinity-kdelibs-apidocs = %{version}-%{release}
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
-BuildRequires:	qt3-devel
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
+BuildRequires:	qt3-devel >= 3.3.8.d
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
-BuildRequires:	libart_lgpl-devel
 BuildRequires:	openssl-devel
 BuildRequires:	gcc-c++
 BuildRequires:	alsa-lib-devel
@@ -60,6 +64,9 @@ BuildRequires:	libtiff-devel
 BuildRequires:	glib2-devel
 # LUA support are not ready yet
 #BuildRequires:	lua-devel
+
+# LIBART_LGPL support
+BuildRequires:	libart_lgpl-devel
 
 # ASPELL support
 BuildRequires:	aspell
@@ -124,7 +131,7 @@ BuildRequires:	jasper-devel
 # AVAHI support
 %if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_avahi 1
-BuildRequires:	trinity-avahi-tqt-devel >= %{version}
+BuildRequires:	trinity-avahi-tqt-devel >= %{tde_version}
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
 Requires:		%{_lib}avahi-client3
@@ -189,9 +196,21 @@ BuildRequires:	xz-devel
 %endif
 %endif
 
-Requires:		trinity-tqtinterface >= %{version}
-Requires:		trinity-arts >= %{version}
+# Certificates support
+%if 0%{?rhel} || 0%{?fedora}
+%define	cacert %{_sysconfdir}/ssl/certs/ca-certificates.crt
+Requires:		ca-certificates
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%define	cacert %{_sysconfdir}/ssl/certs/ca-bundle.crt
+Requires:		openssl
+%endif
+
+# Trinity dependencies
 Requires:		qt3 >= 3.3.8.d
+Requires:		trinity-tqtinterface >= %{tde_version}
+Requires:		trinity-arts >= %{tde_version}
+
 
 %description
 Libraries for the Trinity Desktop Environment:
@@ -231,6 +250,7 @@ kimgio (image manipulation).
 %{tde_bindir}/kdeinit_shutdown
 %{tde_bindir}/kdeinit_wrapper
 %{tde_bindir}/kdesu_stub
+%{tde_bindir}/kdetcompmgr
 %{tde_bindir}/kdontchangethehostname
 %{tde_bindir}/kdostartupconfig
 %{tde_bindir}/kfile
@@ -259,10 +279,14 @@ kimgio (image manipulation).
 %{tde_bindir}/start_kdeinit
 %{tde_bindir}/start_kdeinit_wrapper
 %attr(4755,root,root) %{tde_bindir}/kgrantpty
+%{tde_bindir}/checkXML
+%{tde_bindir}/ksvgtopng
+%{tde_bindir}/kunittestmodrunner
+%{tde_bindir}/preparetips
 %{tde_tdelibdir}/*
 %{tde_libdir}/lib*.so.*
-%{tde_libdir}/lib[kt]deinit_*.la
-%{tde_libdir}/lib[kt]deinit_*.so
+%{tde_libdir}/libkdeinit_*.la
+%{tde_libdir}/libkdeinit_*.so
 %{tde_datadir}/applications/kde/*.desktop
 %{tde_datadir}/autostart/kab2kabc.desktop
 %{tde_datadir}/applnk/kio_iso.desktop
@@ -270,48 +294,19 @@ kimgio (image manipulation).
 %exclude %{tde_datadir}/apps/ksgmltools2/
 %config(noreplace) %{tde_datadir}/config/*
 %{tde_datadir}/emoticons/*
+%{tde_datadir}/icons/crystalsvg/
 %{tde_datadir}/icons/default.kde
-%{_sysconfdir}/alternatives/default.kde
+%{tde_datadir}/icons/hicolor/index.theme
+%{tde_datadir}/locale/all_languages
 %{tde_datadir}/mimelnk/magic
 %{tde_datadir}/mimelnk/*/*.desktop
 %{tde_datadir}/services/*
 %{tde_datadir}/servicetypes/*
-%{tde_datadir}/icons/crystalsvg/
-%{tde_tdedocdir}/HTML/en/kspell/
-# remove conflicts with kdelibs-4
-%if "%{?tde_prefix}" != "/usr"
-%{tde_bindir}/checkXML
-%{tde_bindir}/ksvgtopng
-%{tde_bindir}/kunittestmodrunner
-%{tde_bindir}/preparetips
-%{tde_datadir}/icons/hicolor/index.theme
-%{tde_datadir}/locale/all_languages
 %{tde_tdedocdir}/HTML/en/common/*
+%{tde_tdedocdir}/HTML/en/kspell/
+
+%{_sysconfdir}/xdg/menus/tde-applications.menu
 %{_sysconfdir}/ld.so.conf.d/trinity.conf
-%else
-%exclude %{tde_bindir}/checkXML
-%exclude %{tde_bindir}/ksvgtopng
-%exclude %{tde_bindir}/kunittestmodrunner
-%exclude %{tde_bindir}/preparetips
-%exclude %{tde_datadir}/config/colors
-%exclude %{tde_datadir}/config/kdebug.areas
-%exclude %{tde_datadir}/config/kdebugrc
-%exclude %{tde_datadir}/config/ksslcalist
-%exclude %{tde_datadir}/config/ui/ui_standards.rc
-%exclude %{tde_datadir}/icons/hicolor/index.theme
-%exclude %{tde_datadir}/locale/all_languages
-%exclude %{tde_tdedocdir}/HTML/en/common/*
-%endif
-
-# Avoid conflict with 'redhat-menus' package
-%if "%{tde_prefix}" == "/usr"
-%{_sysconfdir}/xdg/menus/kde-applications.menu
-%else
-%{tde_prefix}/etc/xdg/menus/kde-applications.menu
-%endif
-
-# New in TDE 3.5.13
-%{tde_bindir}/kdetcompmgr
 
 %pre
 # TDE Bug #1074
@@ -321,19 +316,6 @@ fi
 
 %post
 /sbin/ldconfig || :
-# Sets default theme as 'crystalsvg'
-update-alternatives --install \
-  %{tde_datadir}/icons/default.kde \
-  default.kde \
-  %{tde_datadir}/icons/crystalsvg \
-  10 || :
-
-%preun
-if [ $1 -eq 0 ]; then
-  update-alternatives --remove \
-    default.kde \
-    %{tde_datadir}/icons/crystalsvg || :
-fi
 
 %postun
 /sbin/ldconfig || :
@@ -364,11 +346,9 @@ applications for TDE.
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
 %{tde_libdir}/*.a
-%exclude %{tde_libdir}/lib[kt]deinit_*.la
-%exclude %{tde_libdir}/lib[kt]deinit_*.so
-
-# New in TDE 3.5.13
-%{tde_datadir}/cmake/[kt]delibs.cmake
+%exclude %{tde_libdir}/libkdeinit_*.la
+%exclude %{tde_libdir}/libkdeinit_*.so
+%{tde_datadir}/cmake/kdelibs.cmake
 
 %post devel
 /sbin/ldconfig || :
@@ -386,12 +366,13 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .xdg_path
-%patch2 -p1 -b .cups_by_default
+%patch1 -p1 -b .xdg
+%patch101 -p1 -b .xdg_path
+%patch102 -p1 -b .cups_by_default
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
@@ -412,6 +393,12 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DDOC_INSTALL_DIR="%{tde_docdir}" \
@@ -419,7 +406,8 @@ cd build
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
-  -DCMAKE_SKIP_RPATH=OFF \
+  \
+  -DWITH_ALL_OPTIONS=ON \
   -DWITH_ARTS=ON \
   -DWITH_ALSA=ON \
   -DWITH_LIBART=ON \
@@ -434,9 +422,9 @@ cd build
   %{?with_avahi:-DWITH_AVAHI=ON} \
   %{?!with_pcre:-DWITH_PCRE=OFF} \
   %{?!with_inotify:-DWITH_INOTIFY=OFF} \
-  %{?!with_gamin:-DWITH_GAMIN=OFF} %{?with_gamin:-DWITH_GAMIN=ON} \
+  %{?!with_gamin:-DWITH_GAMIN=OFF} \
   -DWITH_SUDO_KDESU_BACKEND=OFF \
-  %{?with_lzma:-DWITH_LZMA=ON} %{?!with_lzma:-DWITH_LZMA=OFF} \
+  %{?!with_lzma:-DWITH_LZMA=OFF} \
   -DWITH_ASPELL=ON \
   %{?with_hspell:-DWITH_HSPELL=ON} \
   ..
@@ -455,21 +443,11 @@ cat <<EOF >"%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf"
 EOF
 %endif
 
-# Moves the XDG configuration files to TDE directory
-%if "%{tde_prefix}" != "/usr"
-%__install -p -D -m644 \
-  "%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" \
-  "%{?buildroot}%{tde_prefix}/etc/xdg/menus/kde-applications.menu"
-%__rm -rf "%{?buildroot}%{_sysconfdir}/xdg"
-%else
-%__mv -f "%{?buildroot}%{_sysconfdir}/xdg/menus/applications.menu" "%{?buildroot}%{_sysconfdir}/xdg/menus/kde-applications.menu"
+# Use system-wide CA certificate
+%if "%{?cacert}" != ""
+%__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
+%__ln_s "%{cacert}" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 %endif
-
-# Makes 'default.kde' theme an alternative with 'crystalsvg-updated'
-%__rm -f "%{?buildroot}%{tde_datadir}/icons/default.kde"
-%__ln_s "%{_sysconfdir}/alternatives/default.kde" "%{?buildroot}%{tde_datadir}/icons/default.kde"
-%__mkdir_p "%{?buildroot}%{_sysconfdir}/alternatives"
-%__ln_s "%{tde_datadir}/icons/crystalsvg" "%{?buildroot}%{_sysconfdir}/alternatives/default.kde"
 
 
 %clean
@@ -477,5 +455,9 @@ EOF
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Rebuild with NDEBUG option
+- Fix XDG menu
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

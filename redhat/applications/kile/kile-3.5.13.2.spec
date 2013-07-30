@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp kile
+%define tde_pkg kile
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,26 +24,26 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	KDE Integrated LaTeX Environment [Trinity]
-Version:	2.0.2
-Release:	5%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		TDE Integrated LaTeX Environment [Trinity]
+Version:		2.0.2
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Publishing
+License:		GPLv2+
+Group:			Applications/Publishing
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -113,7 +114,7 @@ Kile can support large projects consisting of several smaller files.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -139,7 +140,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
+    \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
+  \
   --with-extra-includes=%{tde_includedir}/tqt
 
 %__make %{?_smp_mflags}
@@ -156,7 +164,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -f %{?buildroot}%{tde_datadir}/apps/katepart/syntax/bibtex.xml
 %__rm -f %{?buildroot}%{tde_datadir}/apps/katepart/syntax/latex.xml
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
 
 %clean
 %__rm -rf %{buildroot}
@@ -173,7 +181,7 @@ touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %{tde_bindir}/kile
 %{tde_tdeappdir}/kile.desktop
@@ -196,6 +204,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-6
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-5
 - Initial release for TDE 3.5.13.2
 

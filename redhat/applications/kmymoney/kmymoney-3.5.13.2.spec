@@ -1,5 +1,6 @@
 # Default version for this component
-%define tdecomp kmymoney
+%define tde_pkg kmymoney
+%define tde_version 3.5.13.2
 
 # Required for Mageia 2: removes the ldflag '--no-undefined'
 %define _disable_ld_no_undefined 1
@@ -19,7 +20,7 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -36,24 +37,27 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	personal finance manager for TDE
+Name:			trinity-%{tde_pkg}
+Summary:		personal finance manager for TDE
 
-Version:	1.0.5
-Release:	4%{?dist}%{?_variant}
+Version:		1.0.5
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
-Source1:	kmymoneytitlelabel.png
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+Source1:		kmymoneytitlelabel.png
+
+# [kmymoney] Fix FTBFS
+Patch1:		kmymoney-3.5.13.2-ftbfs.patch
 
 # [kmymoney] Missing LDFLAGS causing FTBFS
 Patch4:		kmymoney-3.5.13-missing_ldflags.patch
@@ -61,10 +65,10 @@ Patch4:		kmymoney-3.5.13-missing_ldflags.patch
 # [kmymoney] Fix QT3 plugins directory location
 Patch5:		kmymoney-3.5.13-fix_qt3_plugins_location.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	recode
@@ -101,9 +105,9 @@ support.
 
 
 %package common
-Summary:	KMyMoney architecture independent files
-Group:		Applications/Utilities
-Requires:	%{name} == %{version}
+Summary:		KMyMoney architecture independent files
+Group:			Applications/Utilities
+Requires:		%{name} == %{version}
 
 %description common
 This package contains architecture independent files needed for KMyMoney to
@@ -112,9 +116,9 @@ have '%{name}' package installed, you will hardly find this package useful.
 
 
 %package devel
-Summary:	KMyMoney development files
-Group:		Development/Libraries
-Requires:	%{name} == %{version}
+Summary:		KMyMoney development files
+Group:			Development/Libraries
+Requires:		%{name} == %{version}
 
 %description devel
 This package contains development files needed for KMyMoney plugins.
@@ -126,7 +130,8 @@ This package contains development files needed for KMyMoney plugins.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .ftbfs
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %patch5 -p1 -b .qtpluginsdir
 %endif
@@ -165,6 +170,7 @@ export QTPLUGINS="%{_libdir}/qt3/plugins"
 grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
 %endif
 
+# NOTICE: --enable-final causes FTBFS !
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -173,9 +179,16 @@ grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
   --enable-closure \
+  --disable-rpath \
+  \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  \
   %{?with_pdf:--enable-pdf-docs} %{?!with_pdf:--disable-pdf-docs} \
   --enable-ofxplugin \
   --enable-ofxbanking \
@@ -198,28 +211,8 @@ export QTPLUGINS=%{_libdir}/qt3/plugins
 
 %__make install DESTDIR=%{buildroot}
 
-
-
-
-## File lists
-# HTML (1.0)
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-	for lang_dir in %{buildroot}$HTML_DIR/* ; do
-	  if [ -d $lang_dir ]; then
-		lang=$(basename $lang_dir)
-		echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-		# replace absolute symlinks with relative ones
-		pushd $lang_dir
-		  for i in *; do
-			[ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-		  done
-		popd
-	  fi
-	done
-fi
-
 %find_lang kmymoney2
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -240,6 +233,7 @@ for f in hicolor locolor Tango oxygen; do
   touch --no-create %{tde_datadir}/icons/${f} || :
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
+
 
 %files
 %defattr(-,root,root,-)
@@ -286,6 +280,9 @@ done
 %{qt3pluginsdir}/designer/libkmymoney.so
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-5
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-4
 - Initial release for TDE 3.5.13.2
 

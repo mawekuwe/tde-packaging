@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp kaffeine
+%define tde_pkg kaffeine
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -21,55 +22,60 @@
 
 %define _docdir %{tde_docdir}
 
-Name:		trinity-%{kdecomp}
-Summary:	Xine-based media player
+Name:			trinity-%{tde_pkg}
+Summary:		Xine-based media player
 
-Version:	0.8.8
-Release:	5%{?dist}%{?_variant}
+Version:		0.8.8
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License: GPLv2+
-Group:   Applications/Multimedia
-URL:     http://kaffeine.sourceforge.net/
+License:		GPLv2+
+Group:			Applications/Multimedia
+URL:			http://kaffeine.sourceforge.net/
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	gettext
-BuildRequires:	libvorbis-devel
-BuildRequires:	libcdio-devel
 
+# VORBIS support
+BuildRequires:	libvorbis-devel
+
+# CDDA support
+BuildRequires:	libcdio-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	libcdda-devel
-BuildRequires:	%{_lib}xext%{?mgaversion:6}-devel
-BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
-BuildRequires:	%{_lib}xinerama%{?mgaversion:1}-devel
-# dvb
-%if 0%{?pclinuxos} == 0
-BuildRequires:	kernel-headers
 %endif
-BuildRequires:	libgstreamer-devel >= 0.10
-BuildRequires:	libgstreamer-plugins-base-devel >= 0.10
-%else
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
 BuildRequires:	cdparanoia
 BuildRequires:	cdparanoia-devel
+%endif
 %if 0%{?suse_version} >= 1220
 BuildRequires:	libcdio-paranoia-devel
 %endif
 
 # X11 stuff
-%if 0%{?rhel} || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1220
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xext%{?mgaversion:6}-devel
+BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+BuildRequires:	%{_lib}xinerama%{?mgaversion:1}-devel
+%endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel 
-%else
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1220
 BuildRequires:	libXext-devel 
 BuildRequires:	libXtst-devel
 BuildRequires:	libXinerama-devel
 %endif
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+BuildRequires: libxcb-devel
 %endif
 
-# dvb
+# GSTREAMER support
+%if 0%{?rhel} >= 5 || 0%{?suse_version} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_gstreamer 1
 BuildRequires:	gstreamer-devel
 %if 0%{?suse_version}
 BuildRequires:	gstreamer-0_10-plugins-base-devel
@@ -80,15 +86,14 @@ BuildRequires:	gstreamer-plugins-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10
-BuildRequires:	glibc-kernheaders 
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libgstreamer-devel >= 0.10
+BuildRequires:	libgstreamer-plugins-base-devel >= 0.10
 %endif
 %endif
 
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
-BuildRequires: libxcb-devel
-%endif
-
-# xine-lib
+# XINE support
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 BuildRequires:  libxine-devel
 %endif
@@ -96,31 +101,41 @@ BuildRequires:  libxine-devel
 BuildRequires:  xine-lib-devel
 %endif
 
-# LAME
+# LAME support
 %if 0%{?suse_version}
 BuildRequires:	libmp3lame-devel
 %else
 BuildRequires:	lame-devel
 %endif
 
+# WTF support
+%if 0%{?pclinuxos} == 0
+BuildRequires:	kernel-headers
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	glibc-kernheaders 
+%endif
+
 Requires: %{name}-libs = %{version}-%{release}
 
 %description
-Kaffeine is a xine-based media player for KDE.  It plays back CDs,
+Kaffeine is a xine-based media player for TDE.  It plays back CDs,
 and VCDs, and can decode all (local or streamed) multimedia formats 
 supported by xine-lib.
-Additionally, Kaffeine is fully integrated in KDE, it supports drag
+Additionally, Kaffeine is fully integrated in TDE, it supports drag
 and drop and provides an editable playlist, a bookmark system, a
 Konqueror plugin, OSD and much more.
 
-%files -f %{kdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING README TODO
 %{tde_bindir}/kaffeine
 %{tde_libdir}/libkaffeinepart.so
 %{tde_tdelibdir}/lib*.*
 %{tde_datadir}/appl*/*/*.desktop
+%if 0%{?with_gstreamer}
 %{tde_datadir}/apps/gstreamerpart/
+%endif
 %{tde_datadir}/apps/kaffeine/
 %{tde_datadir}/apps/konqueror/servicemenus/*.desktop
 %{tde_datadir}/apps/profiles/
@@ -144,10 +159,10 @@ update-desktop-database >& /dev/null ||:
 ##########
 
 %package devel
-Summary: Development files for %{name}
-Group:   Development/Libraries
-Requires:	%{name}-libs = %{version}-%{release}
-Requires:	trinity-tdelibs-devel
+Summary:		Development files for %{name}
+Group:			Development/Libraries
+Requires:		%{name}-libs = %{version}-%{release}
+Requires:		trinity-tdelibs-devel
 
 %description devel
 %{summary}.
@@ -167,11 +182,11 @@ Requires:	trinity-tdelibs-devel
 ##########
 
 %package libs
-Summary: %{name} runtime libraries
-Group:   System Environment/Libraries
+Summary:		%{name} runtime libraries
+Group:			System Environment/Libraries
 
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
-Requires: %{name} = %{version}-%{release}
+Requires:		%{name} = %{version}-%{release}
 
 %description libs
 %{summary}.
@@ -195,7 +210,7 @@ Requires: %{name} = %{version}-%{release}
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -221,16 +236,19 @@ export KDEDIR=%{tde_prefix}
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
   --mandir=%{tde_mandir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
-  --disable-debug --disable-warnings \
-  --disable-dependency-tracking --enable-final \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
+  \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  \
   --with-xinerama \
   --with-gstreamer \
   --with-lame \
-  --with-extra-includes=%{tde_includedir}/tqt \
-  --with-extra-libs=%{_prefix}/%{_lib} \
-  --enable-closure \
 %if 0%{?rhel} > 0 && 0%{?rhel} <= 5
   --without-dvb \
 %endif
@@ -246,23 +264,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 ## File lists
 # locale's
-%find_lang %{kdecomp}
-# HTML (1.0)
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d $RPM_BUILD_ROOT$HTML_DIR ]; then
-for lang_dir in $RPM_BUILD_ROOT$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
+%find_lang %{tde_pkg}
 
 # Unpackaged files
 rm -f $RPM_BUILD_ROOT%{tde_libdir}/lib*.la
@@ -270,7 +272,6 @@ rm -f $RPM_BUILD_ROOT%{tde_datadir}/mimelnk/application/x-mplayer2.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 
 
 %changelog

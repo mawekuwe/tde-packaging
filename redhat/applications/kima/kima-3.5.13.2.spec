@@ -46,6 +46,13 @@ BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
+# HAL support
+#  On RHEL4, we do not use HAL (too old)
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?suse_version}
+%define with_hal 1
+BuildRequires:	hal-devel >= 0.4.8
+%endif
+
 
 %description
 This applet monitors various temperature,
@@ -85,7 +92,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
+  \
   --with-extra-includes=%{tde_includedir}/tqt:%{tde_tdeincludedir}
 
 # SMP safe !

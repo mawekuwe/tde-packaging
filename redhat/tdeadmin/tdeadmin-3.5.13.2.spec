@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_sbindir %{tde_prefix}/sbin
 %define tde_datadir %{tde_prefix}/share
@@ -21,7 +23,7 @@
 
 Name:			trinity-tdeadmin
 Summary:		Administrative tools for TDE
-Version:		3.5.13.2
+Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
@@ -400,24 +402,27 @@ if [ -d /usr/X11R6 ]; then
 fi
 
 %configure \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --sbindir=%{tde_sbindir} \
-   --libdir=%{tde_libdir} \
-   --datadir=%{tde_datadir} \
-   --includedir=%{tde_tdeincludedir} \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --disable-rpath \
-   --with-rpm \
-   --with-pam=kde \
-   --with-shadow \
-   --with-private-groups \
-   --enable-final \
-   --enable-closure \
-   --with-private-groups \
-   --with-extra-includes=%{tde_includedir}/tqt
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --sbindir=%{tde_sbindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  \
+  --with-rpm \
+  --with-pam=kde \
+  --with-shadow \
+  --with-private-groups
 
 %__make %{?_smp_mflags}
 
@@ -446,23 +451,6 @@ comps="kcron kdat knetworkconf kpackage ksysv kuser"
 %__ln_s %{tde_sbindir}/kuser %{?buildroot}%{_sbindir}/kuser
 %endif
 %endif
-
-# locale's
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}/$HTML_DIR ]; then
-for lang_dir in %{buildroot}/$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
 
 # rpmdocs
 for dir in $comps ; do

@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp tellico
+%define tde_pkg tellico
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,26 +24,29 @@
 %define _docdir %{tde_tdedocdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	Icollection manager for books, videos, music [Trinity]
-Version:	1.3.2.1
-Release:	5%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Icollection manager for books, videos, music [Trinity]
+Version:		1.3.2.1
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://periapsis.org/tellico/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://periapsis.org/tellico/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+Patch1:			tellico-3.5.13.2-videodev.patch
+Patch2:			tellico-3.5.13.2-ftbfs.patch
+
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -51,8 +55,16 @@ BuildRequires:	yaz
 BuildRequires:	%{_lib}yaz-devel
 %endif
 
-Requires:	%{name}-data = %{version}-%{release}
-Requires:	%{name}-scripts = %{version}-%{release}
+# V4L support
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?suse_version}
+BuildRequires:	libv4l-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}v4l-devel
+%endif
+
+Requires:		%{name}-data = %{version}-%{release}
+Requires:		%{name}-scripts = %{version}-%{release}
 
 %description
 Tellico is a collection manager for TDE. It includes default collections for
@@ -70,8 +82,8 @@ It also makes it easy for other softwares to use the Tellico data.
 
 
 %package data
-Group:		Applications/Utilities
-Summary:	collection manager for books, videos, music [data] [Trinity]
+Group:			Applications/Utilities
+Summary:		collection manager for books, videos, music [data] [Trinity]
 
 %description data
 Tellico is a collection manager for TDE. It includes default collections for
@@ -91,8 +103,8 @@ This package contains the architecture independent files, such data files and
 documentation.
 
 %package scripts
-Group:		Applications/Utilities
-Summary:	collection manager for books, videos, music [scripts] [Trinity]
+Group:			Applications/Utilities
+Summary:		collection manager for books, videos, music [scripts] [Trinity]
 
 %description scripts
 Tellico is a collection manager for TDE. It includes default collections for
@@ -119,7 +131,12 @@ as a separate package which can be updated through debian-volatile.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+
+if [ -r /usr/include/libv4l1-videodev.h ]; then
+%patch1 -p1 -b .videodev
+fi
+%patch2 -p1 -b .ftbfs
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -137,6 +154,7 @@ unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
+# Warning, --enable-final causes FTBFS §
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -145,8 +163,17 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
+  --enable-closure \
   --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt
+  \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  \
+  --enable-webcam
 
 %__make %{?_smp_mflags} || %__make
 
@@ -164,7 +191,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm %{?buildroot}%{tde_tdedocdir}/HTML/fr/tellico/common
 
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
 
 
 %clean
@@ -180,7 +207,7 @@ touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %{tde_bindir}/tellico
 #%{tde_datadir}/pixmaps
@@ -217,6 +244,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-6
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-5
 - Initial release for TDE 3.5.13.2
 

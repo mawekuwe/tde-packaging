@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp kiosktool
+%define tde_pkg kiosktool
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,24 +24,24 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Version:	1.0
-Release:	4%{?dist}%{?_variant}
-Summary:	tool to configure the TDE kiosk framework
+Name:			trinity-%{tde_pkg}
+Version:		1.0
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Summary:		tool to configure the TDE kiosk framework
 
-License:	GPLv2+
-Group:		Applications/Multimedia
+License:		GPLv2+
+Group:			Applications/Multimedia
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
 
-Source0:	%{name}-3.5.13.2.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires: gettext
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
+BuildRequires:	gettext
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 
 %description
@@ -55,7 +56,7 @@ groups of users.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -82,14 +83,16 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
-  --disable-debug --disable-warnings \
-  --disable-dependency-tracking --enable-final \
+  --enable-final \
   --enable-closure \
-  --with-extra-includes=%{tde_includedir}/tqt
+  --disable-rpath \
+  \
+  --with-extra-includes=%{tde_includedir}/tqt \
   
-
 %__make %{?_smp_mflags}
 
 
@@ -98,25 +101,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT
 
-## File lists
-# locale's
-%find_lang %{tdecomp}
-# HTML (1.0)
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d $RPM_BUILD_ROOT$HTML_DIR ]; then
-for lang_dir in $RPM_BUILD_ROOT$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
+%find_lang %{tde_pkg}
 
 
 %clean
@@ -135,7 +120,7 @@ update-desktop-database >& /dev/null ||:
 
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc ChangeLog COPYING README TODO
 %{tde_bindir}/kiosktool
@@ -148,6 +133,9 @@ update-desktop-database >& /dev/null ||:
 %{tde_datadir}/apps/kiosktool/kiosktoolui.rc
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-5
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-4
 - Initial release for TDE 3.5.13.2
 

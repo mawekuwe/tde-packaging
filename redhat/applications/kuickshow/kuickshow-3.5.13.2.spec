@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp kuickshow
+%define tde_pkg kuickshow
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,25 +24,25 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	Quick picture viewer for KDE 
-Version:	0.8.13
-Release:	6%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Quick picture viewer for TDE 
+Version:		0.8.13
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mdkversion}
@@ -52,7 +53,7 @@ BuildRequires:	imlib1-devel
 %endif
 
 %description
-Kuickshow is a picture viewer for KDE. It displays the directory structure,
+Kuickshow is a picture viewer for TDE. It displays the directory structure,
 displaying images as thumbnails.
 Clicking on an image shows the image in its normal size. 
 
@@ -63,7 +64,7 @@ Clicking on an image shows the image in its normal size.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -89,9 +90,15 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
-  --enable-closure
+  \
+  --with-extra-includes=%{tde_includedir}/tqt
 
 %__make %{?_smp_mflags}
 
@@ -123,7 +130,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/applications/*/*.desktop
 %{tde_datadir}/apps/*/
 %{tde_datadir}/icons/hicolor/*/*/*
-%{tde_libdir}/lib[kt]deinit_%{tdecomp}.so
+%{tde_libdir}/lib[kt]deinit_%{tde_pkg}.so
 %{tde_libdir}/*.la
 %{tde_tdelibdir}/*.so
 %{tde_tdelibdir}/*.la
@@ -131,6 +138,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-7
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-6
 - Initial release for TDE 3.5.13.2
 

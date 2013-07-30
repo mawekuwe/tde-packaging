@@ -1,5 +1,6 @@
 # Default version for this component
-%define tdecomp rosegarden
+%define tde_pkg rosegarden
+%define tde_version 3.5.13.2
 
 # Required for Mageia 2: removes the ldflag '--no-undefined'
 %define _disable_ld_no_undefined 1
@@ -9,7 +10,7 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -26,33 +27,37 @@
 %define _docdir %{tde_tdedocdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	music editor and MIDI/audio sequencer [Trinity]
-Version:	1.7.0
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		music editor and MIDI/audio sequencer [Trinity]
+Version:		1.7.0
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group: 	    Applications/Multimedia
+License:		GPLv2+
+Group:			Applications/Multimedia
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.rosegardenmusic.com/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.rosegardenmusic.com/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
 BuildRequires:	fftw-devel
-BuildRequires:	dssi-devel
 BuildRequires:	liblo-devel
 BuildRequires:	fontconfig-devel
+
+# DSSI support
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	dssi-devel
+%endif
 
 # LRDF support
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
@@ -67,40 +72,40 @@ BuildRequires:	jack-audio-connection-kit-devel
 %endif
 
 # LIRC support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6
 %define with_lirc 1
 BuildRequires:	lirc-devel
 %endif
 
-Requires:	lilypond
-Requires:	perl-XML-Twig
+Requires:		lilypond
+Requires:		perl-XML-Twig
 
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-Requires:	libsndfile-progs
+Requires:		libsndfile-progs
 %else
 %if 0%{?rhel}
-Requires:	libsndfile
+Requires:		libsndfile
 %else
-Requires:	libsndfile-utils
+Requires:		libsndfile-utils
 %endif
 %endif
 
 
-Requires:	%{name}-data == %{version}-%{release}
+Requires:		%{name}-data == %{version}-%{release}
 
 %description
-Rosegarden is a KDE application which provides a mixed Audio/MIDI
+Rosegarden is a TDE application which provides a mixed Audio/MIDI
 sequencer (for playback and recording), a multi-track editor, music
 editing using both piano-roll and score notation, MIDI file IO,
 lilypond and Csound files export, etc.
 
 %package data
-Group: 	    Applications/Multimedia
-Requires:	%{name} == %{version}-%{release}
-Summary:	music editor and MIDI/audio sequencer data files [Trinity]
+Group:			Applications/Multimedia
+Requires:		%{name} == %{version}-%{release}
+Summary:		music editor and MIDI/audio sequencer data files [Trinity]
 
 %description data
-Rosegarden is a KDE application which provides a mixed Audio/MIDI
+Rosegarden is a TDE application which provides a mixed Audio/MIDI
 sequencer (for playback and recording), a multi-track editor, music
 editing using both piano-roll and score notation, MIDI file IO,
 lilypond and Csound files export, etc.
@@ -114,7 +119,7 @@ This package provides the data files necessary for running Rosegarden
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Hard-coded path to TQT binaries spotted !!!
 %__sed -i CMakeLists.txt \
@@ -134,14 +139,20 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH="OFF" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWANT_DEBUG=OFF \
+  -DWANT_FULLDBG=OFF \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
-  -DWANT_DEBUG=OFF \
-  -DWANT_FULLDBG=OFF \
+  \
   -DWANT_SOUND=ON \
   -DWANT_JACK=ON \
   -DWANT_DSSI=ON \
@@ -159,8 +170,11 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
+# Unwanted files
+%__rm -f %{?buildroot}%{tde_libdir}/*.a
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -189,7 +203,7 @@ done
 %{tde_bindir}/rosegarden-project-package
 %{tde_bindir}/rosegardensequencer
 
-%files data -f %{tdecomp}.lang
+%files data -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %{tde_tdeappdir}/rosegarden.desktop
 %{tde_datadir}/apps/profiles/rosegarden.profile.xml
@@ -207,6 +221,9 @@ done
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-5
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-4
 - Initial release for TDE 3.5.13.2
 

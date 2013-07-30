@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp kpilot
+%define tde_pkg kpilot
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,38 +24,38 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	TDE Palm Pilot hot-sync tool
-Version:	0.7
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		TDE Palm Pilot hot-sync tool
+Version:		0.7
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
 BuildRequires:	pilot-link-devel
-BuildRequires:	trinity-kdepim-devel
+BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 
 %description
 KPilot is an application that synchronizes your Palm Pilot or similar device
-(like the Handspring Visor) with your KDE desktop, much like the Palm HotSync
+(like the Handspring Visor) with your TDE desktop, much like the Palm HotSync
 software does for Windows.  KPilot can back-up and restore your Palm Pilot
-and synchronize the built-in applications with their KDE counterparts.
+and synchronize the built-in applications with their TDE counterparts.
 
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
@@ -63,7 +64,7 @@ and synchronize the built-in applications with their KDE counterparts.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -89,7 +90,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
+  \
   --with-extra-includes=%{tde_includedir}/tqt:%{tde_tdeincludedir}
 
 # SMP safe !
@@ -174,6 +182,9 @@ done
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-5
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-4
 - Initial release for TDE 3.5.13.2
 

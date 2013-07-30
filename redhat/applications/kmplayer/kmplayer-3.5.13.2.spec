@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp kmplayer
+%define tde_pkg kmplayer
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,30 +24,34 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	media player for Trinity
-Version:	0.10.0c
-Release:	5%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		media player for Trinity
+Version:		0.10.0c
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Multimedia
+License:		GPLv2+
+Group:			Applications/Multimedia
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://kmplayer.kde.org
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://kmplayer.kde.org
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-dbus-tqt-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
+# DBUS support
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
+%endif
 
+# GSTREAMER support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
 BuildRequires:	libgstreamer0.10-devel
@@ -54,24 +59,35 @@ BuildRequires:	libgstreamer0.10-devel
 BuildRequires:	%{_lib}gstreamer0.10-devel
 %endif
 BuildRequires:	%{_lib}gstreamer-plugins-base0.10-devel
-BuildRequires:	libxv-devel
 %endif
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} == 4
+BuildRequires:	gstreamer-devel
+BuildRequires:	gstreamer-plugins-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-plugins-base-devel
-BuildRequires:	libXv-devel
 %endif
 %if 0%{?suse_version}
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-0_10-plugins-base-devel
-%if 0%{?suse_version} == 1140
-BuildRequires:	xorg-x11-libXv-devel
-%else
-BuildRequires:	libXv-devel
-%endif
 %endif
 
-Requires:	%{name}-base
+# X11 stuff
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libxv-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1210
+BuildRequires:	libXv-devel
+%endif
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel 
+%endif
+%if 0%{?suse_version} == 1140
+BuildRequires:	xorg-x11-libXv-devel
+%endif
+
+Requires:		%{name}-base
 
 %description
 A basic audio/video viewer application for Trinity.
@@ -84,7 +100,7 @@ KMPlayer can:
 * show backend player's console output
 * launch ffserver (only 0.4.8 works) when viewing from a v4l device
 * DCOP KMediaPlayer interface support
-* VDR viewer frontend (with *kxvplayer), configure VDR keys with standard KDE
+* VDR viewer frontend (with *kxvplayer), configure VDR keys with standard TDE
   shortcut configure window
 * Lots of configurable shortcuts. Highly recommended for the VDR keys
   (if you have VDR) and volume increase/decrease
@@ -125,7 +141,7 @@ Documention for KMPlayer, a basic audio/video viewer application for TDE.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -152,11 +168,17 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
-  --enable-closure
+  \
+  --with-extra-includes=%{tde_includedir}/tqt
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
@@ -164,7 +186,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
 
 # Removes unwanted files
 %__rm -f %{?buildroot}%{tde_datadir}/mimelnk/application/x-mplayer2.desktop
@@ -191,7 +213,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING ChangeLog INSTALL README TODO kmplayer.lsm
 %{tde_bindir}/kmplayer

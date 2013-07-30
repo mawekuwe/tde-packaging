@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 3.5.13.2
+
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -13,8 +15,8 @@
 %define _docdir %{tde_datadir}/doc
 
 Name:		trinity-arts
-Version:	3.5.13.2
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
@@ -29,7 +31,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
+BuildRequires:	cmake >= 2.8
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
@@ -97,7 +100,7 @@ Obsoletes:	arts
 %endif
 
 %description
-arts (analog real-time synthesizer) is the sound system of KDE 3.
+arts (analog real-time synthesizer) is the sound system of TDE.
 
 The principle of arts is to create/process sound using small modules which do
 certain tasks. These may be create a waveform (oscillators), play samples,
@@ -205,20 +208,25 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 cd build
 %endif
 
-%cmake \
+%cmake .. \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}/arts" \
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
+  \
   -DWITH_ALSA=ON \
   -DWITH_AUDIOFILE=ON \
   -DWITH_VORBIS=ON \
   %{?with_libmad:-DWITH_MAD=ON} %{!?with_libmad:-DWITH_MAD=OFF} \
   %{?with_esound:-DWITH_ESOUND=ON} \
-  %{?with_jack:-DWITH_JACK=ON} \
-  -DCMAKE_SKIP_RPATH=OFF \
-  ..
+  %{?with_jack:-DWITH_JACK=ON}
 
 %__make %{?_smp_mflags} || %__make
 
@@ -238,6 +246,9 @@ cd build
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2
 

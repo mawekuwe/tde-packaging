@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -19,8 +21,8 @@
 
 Name:		trinity-tdevelop
 Summary:	Integrated Development Environment for C++/C
-Version:	3.5.13.2
-Release:	1%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		Development/Tools
@@ -32,17 +34,17 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	ftp://129.187.206.68/pub/unix/ide/KDevelop/c_cpp_reference-2.0.2_for_KDE_3.0.tar.bz2
 
 # [c_cpp_ref] Fix library directories detection
-Patch1: c_cpp_reference-2.0.2-config.patch
-
+Patch1: 	c_cpp_reference-2.0.2-config.patch
 # [kdevelop] fix FTBFS
 Patch2: kdevelop-3.5.13-kdevdesigner-ftbfs.patch
-
+# [kdevelop] Fix XDG menu
+Patch3:		tdevelop-3.5.13.2-fix_xdg_menu.patch
 # [c_cpp_ref] Fix installation of 'asm' files
-Patch4:	c_cpp_reference-2.0.2-install.patch
+Patch4:		c_cpp_reference-2.0.2-install.patch
 
 Requires: %{name}-libs = %{version}-%{release}
 
@@ -51,13 +53,13 @@ Requires: make
 Requires: perl
 Requires: flex >= 2.5.4
 %if 0%{?rhel} || 0%{?fedora}
-Requires:	qt3-designer
+Requires:	qt3-designer >= 3.3.8.d
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
-Requires:	%{_lib}qt3-devel
+Requires:	%{_lib}qt3-devel >= 3.3.8.d
 %endif
 %if 0%{?suse_version}
-Requires:	qt3-devel
+Requires:	qt3-devel >= 3.3.8.d
 %endif
 Requires: gettext
 Requires: ctags
@@ -71,7 +73,7 @@ BuildRequires:	trinity-tdesdk-devel >= %{version}
 BuildRequires:	db4-devel
 %endif
 BuildRequires:	flex
-# FIXME: No CVS support in KDevelop? This is going to suck...
+# FIXME: No CVS support in tdevelop? This is going to suck...
 # Requires kdesdk3.
 BuildRequires:	subversion-devel
 BuildRequires:	neon-devel
@@ -444,7 +446,7 @@ individual needs.
 %{tde_datadir}/apps/kio_pydoc/kde_pydoc.py*
 %{tde_datadir}/config/kdevassistantrc
 %{tde_datadir}/config/kdeveloprc
-%{tde_datadir}/desktop-directories/kde-development-kdevelop.directory
+%{tde_datadir}/desktop-directories/tde-development-kdevelop.directory
 %{tde_tdedocdir}/HTML/en/kdevelop/
 %{tde_libdir}/libd.so.0
 %{tde_libdir}/libd.so.0.0.0
@@ -503,7 +505,7 @@ Provides:	trinity-kdevelop-devel = %{version}-%{release}
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-kdelibs
+Requires: trinity-tdelibs >= %{tde_version}
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
 Requires: %{name} = %{version}-%{release}
 
@@ -566,6 +568,7 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 %setup -q -a1
 %patch1 -p0 -b .config
 %patch2 -p1
+%patch3 -p1 -b .xdgmenu
 %patch4 -p1
 
 # Ugly hack to modify TQT include directory inside autoconf files.
@@ -583,7 +586,7 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
@@ -614,11 +617,17 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  \
   -DWITH_BUILDTOOL_ALL=ON \
   -DWITH_LANGUAGE_ALL=ON \
   -DWITH_VCS_ALL=OFF \
@@ -642,5 +651,8 @@ cd ..
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

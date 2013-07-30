@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp digikam
+%define tde_pkg digikam
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -22,33 +23,33 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
-Summary:	digital photo management application for KDE [Trinity]
-Version:	0.9.6
-Release:	5%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		digital photo management application for TDE [Trinity]
+Version:		0.9.6
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # [Digikam] Revert PNG support to libpng12 (for RHEL4)
 Patch1:		digikam-3.5.13.2-fix_png12_support.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
-BuildRequires:	trinity-libkexiv2-devel >= 3.5.13.2
-BuildRequires:	trinity-libkdcraw-devel >= 3.5.13.2
-BuildRequires:	trinity-libkipi-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	trinity-libkexiv2-devel >= %{tde_version}
+BuildRequires:	trinity-libkdcraw-devel >= %{tde_version}
+BuildRequires:	trinity-libkipi-devel >= %{tde_version}
 %if 0%{?rhel} == 4 || 0%{?rhel} == 5 || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	gphoto2-devel
 %else
@@ -76,9 +77,9 @@ BuildRequires:	libexiv2-devel
 BuildRequires:	exiv2-devel
 %endif
 
-Requires:	trinity-libkexiv2 >= 3.5.13.1
-Requires:	trinity-libkdcraw >= 3.5.13.1
-Requires:	trinity-libkipi >= 3.5.13.1
+Requires:		trinity-libkexiv2 >= %{tde_version}
+Requires:		trinity-libkdcraw >= %{tde_version}
+Requires:		trinity-libkipi >= %{tde_version}
 
 %description
 An easy to use and powerful digital photo management
@@ -102,9 +103,9 @@ digiKam is based in part on the work of the Independent JPEG Group.
 
 
 %package devel
-Group:		Development/Libraries
-Summary:	Development files for %{name}
-Requires:	%{name} = %{version}
+Group:			Development/Libraries
+Summary:		Development files for %{name}
+Requires:		%{name} = %{version}
 
 %description devel
 %{summary}
@@ -116,7 +117,7 @@ Requires:	%{name} = %{version}
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %if 0%{?rhel} == 4
 %patch1 -p1 -b .png12
 %endif
@@ -146,9 +147,15 @@ export KDEDIR="%{tde_prefix}"
   --datadir=%{tde_datadir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
-  --with-extra-includes=%{tde_tdeincludedir}/tqt \
-  --enable-closure
+  \
+  --with-extra-includes=%{tde_tdeincludedir}/tqt
 
 %__make %{?_smp_mflags} || %__make
 
@@ -159,7 +166,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 
-%find_lang %{kdecomp}
+%find_lang %{tde_pkg}
 
 
 %clean
@@ -185,7 +192,7 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 /sbin/ldconfig || :
 
 
-%files -f %{kdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
 %{tde_bindir}/digikam
@@ -312,6 +319,9 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-6
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-5
 - Initial release for TDE 3.5.13.2
 

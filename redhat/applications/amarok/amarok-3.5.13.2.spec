@@ -1,13 +1,13 @@
 # Basic package informations
-%define tdecomp amarok
-%define tdeversion 3.5.13.2
+%define tde_pkg amarok
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,43 +23,43 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	Media player
-Version:	1.4.10
-Release:	9%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Media player
+Version:		1.4.10
+Release:		%{?!preversion:10}%{?preversion:9_%{preversion}}%{?dist}%{?_variant}
 
-Group: 	    Applications/Multimedia
-License:    GPLv2+
+Group:			Applications/Multimedia
+License:		GPLv2+
 Url:        http://amarok.kde.org
 
-Prefix:     %{tde_prefix}
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{tdeversion}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 Patch3:		amarok-3.5.13.1-fix_rhel4_libs.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
-BuildRequires:	trinity-konqueror-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	trinity-konqueror-devel >= %{tde_version}
 
-BuildRequires:  alsa-lib-devel
-BuildRequires:  desktop-file-utils
-BuildRequires:  esound-devel
-BuildRequires:  gettext
+BuildRequires:	alsa-lib-devel
+BuildRequires:	desktop-file-utils
+BuildRequires:	esound-devel
+BuildRequires:	gettext
 BuildRequires:	pcre-devel
-BuildRequires:  taglib-devel 
+BuildRequires:	taglib-devel 
 
-BuildRequires:  libtool
+BuildRequires:	libtool
 %if 0%{?fedora} > 4 || 0%{?rhel} > 4
-BuildRequires:  libtool-ltdl-devel
+BuildRequires:	libtool-ltdl-devel
 %endif
-BuildRequires:  libusb-devel
-BuildRequires:  mysql-devel
-BuildRequires:  postgresql-devel
-BuildRequires:  SDL-devel
-BuildRequires:  taglib-devel
+BuildRequires:	libusb-devel
+BuildRequires:	mysql-devel
+BuildRequires:	postgresql-devel
+BuildRequires:	SDL-devel
+BuildRequires:	taglib-devel
 BuildRequires:	sqlite-devel
 # not used anymore, in favor of libvisual ? -- Rex
 #{?fedora:BuildRequires:  xmms-devel}
@@ -76,7 +76,7 @@ BuildRequires:	dbus-devel
 %if 0%{?rhel} == 4
 BuildRequires:	dbus-qt
 %else
-BuildRequires:	trinity-dbus-tqt-devel >= 3.5.13.2
+BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
 %endif
 
 # IFP support
@@ -84,7 +84,7 @@ BuildRequires:	trinity-dbus-tqt-devel >= 3.5.13.2
 %if 0%{?pclinuxos} == 0
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_ifp 1
-BuildRequires:  libifp-devel
+BuildRequires:	libifp-devel
 %endif
 %endif
 
@@ -100,34 +100,34 @@ BuildRequires:	karma-sharp
 # GPOD (ipod) support
 %if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 %define with_gpod 1
-BuildRequires:  libgpod-devel >= 0.4.2
+BuildRequires:	libgpod-devel >= 0.4.2
 %endif
 
 # MTP players
 %if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 %define with_mtp 1
-BuildRequires:  libmtp-devel
-BuildRequires:  libmusicbrainz-devel
+BuildRequires:	libmtp-devel
+BuildRequires:	libmusicbrainz-devel
 %endif
 
 # Creative Nomad Jukebox
 %if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} >= 1220
 %define with_njb 1
-BuildRequires:  libnjb-devel
+BuildRequires:	libnjb-devel
 %endif
 
 # VISUAL support
 %if 0%{?rhel} >= 4 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 %define with_libvisual 1
-BuildRequires:  libvisual-devel
+BuildRequires:	libvisual-devel
 %endif
 
 # TUNEPIMP support
 %if 0%{?mgaversion} && 0%{?mgaversion} <= 2
-BuildRequires:  libtunepimp-devel
+BuildRequires:	libtunepimp-devel
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?suse_version}
-BuildRequires:  libtunepimp-devel
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?suse_version}
+BuildRequires:	libtunepimp-devel
 %endif
 
 # INOTIFY support
@@ -142,10 +142,10 @@ BuildRequires:	%{_lib}inotifytools-devel
 %if 0%{?rhel} >= 4 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-BuildRequires:  libxine-devel
+BuildRequires:	libxine-devel
 %endif
 %if 0%{?rhel} || 0%{?fedora}
-BuildRequires:  xine-lib-devel
+BuildRequires:	xine-lib-devel
 %endif
 %endif
 
@@ -168,10 +168,10 @@ BuildRequires:	libmp4v2-devel
 
 # ruby
 BuildRequires:	ruby
-BuildRequires:  ruby-devel
+BuildRequires:	ruby-devel
 
 # To open the selected browser, works with Patch2
-Requires:  xdg-utils
+Requires:		xdg-utils
 Requires(post): xdg-utils
 Requires(postun): xdg-utils
 
@@ -193,7 +193,7 @@ Amarok is a multimedia player with:
 %{tde_bindir}/amarok_proxy.rb
 %{tde_datadir}/apps/amarok/
 %{tde_datadir}/icons/hicolor/*/*/*
-%{tde_datadir}/applications/kde/*.desktop
+%{tde_tdeappdir}/*.desktop
 %{tde_datadir}/servicetypes/*.desktop
 %{tde_datadir}/apps/profiles/amarok.profile.xml
 %{tde_datadir}/config/amarokrc
@@ -281,11 +281,11 @@ xdg-desktop-menu forceupdate 2> /dev/null || :
 ##########
 
 %package ruby
-Summary:	%{name} Ruby support
-Group:		Applications/Multimedia
-Requires: %{name} = %{version}-%{release}
+Summary:		%{name} Ruby support
+Group:			Applications/Multimedia
+Requires:		%{name} = %{version}-%{release}
 # For dir ownership and some default plugins (lyrics)
-Requires:  ruby
+Requires:		ruby
 
 %description ruby
 %{summary}.
@@ -297,11 +297,11 @@ Requires:  ruby
 ##########
 
 %package konqueror
-Summary:	Amarok konqueror (service menus, sidebar) support
-Group:		Applications/Multimedia
+Summary:		Amarok konqueror (service menus, sidebar) support
+Group:			Applications/Multimedia
 
-Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-konqueror
+Requires:		%{name} = %{version}-%{release}
+Requires:		trinity-konqueror
 
 %description konqueror
 %{summary}.
@@ -318,9 +318,9 @@ Requires:	trinity-konqueror
 %if 0%{?with_libvisual}
 
 %package visualisation
-Summary:    Visualisation plugins for Amarok
-Group:      Applications/Multimedia
-Requires:   %{name} = %{version}-%{release}
+Summary:		Visualisation plugins for Amarok
+Group:			Applications/Multimedia
+Requires:		%{name} = %{version}-%{release}
 # No plugins by default, we need libvisual-plugins
 #Requires:   libvisual-plugins
 
@@ -344,7 +344,7 @@ use any of xmms' visualisation plugins with Amarok.
 ##########
 
 %prep
-%setup -q -n %{name}-%{tdeversion}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %if 0%{?rhel} == 4
 %patch3 -p1 -b .rhel4
 %endif
@@ -370,12 +370,18 @@ cd build
 %endif
 
 %cmake \
+	-DCMAKE_BUILD_TYPE="" \
+	-DCMAKE_C_FLAGS="-DNDEBUG" \
+	-DCMAKE_CXX_FLAGS="-DNDEBUG" \
+	-DCMAKE_SKIP_RPATH=OFF \
+	-DCMAKE_VERBOSE_MAKEFILE=ON \
+	\
 	-DBIN_INSTALL_DIR=%{tde_bindir} \
 	-DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
 	-DLIB_INSTALL_DIR=%{tde_libdir} \
 	-DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-	-DCMAKE_SKIP_RPATH="OFF" \
 	-DQT_LIBRARY_DIRS="${QTLIB:-${QTDIR}/%{_lib}}" \
+	\
 	%{?with_libvisual:-DWITH_LIBVISUAL=ON} \
 	-DWITH_KONQSIDEBAR=ON \
 	%{?with_xine:-DWITH_XINE=ON} \
@@ -394,6 +400,7 @@ cd build
 
 %__make %{?_smp_mflags} || %__make
 
+
 %install
 %__rm -fr $RPM_BUILD_ROOT
 %__make install DESTDIR=$RPM_BUILD_ROOT -C build
@@ -405,7 +412,7 @@ cd build
 %__rm -f $RPM_BUILD_ROOT%{tde_libdir}/libamarok.so
 
 # Locales
-%find_lang amarok
+%find_lang %{tde_pkg}
 
 # HTML
 for lang_dir in $RPM_BUILD_ROOT%{tde_tdedocdir}/HTML/* ; do
@@ -423,6 +430,9 @@ done
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-10
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-9
 - Initial release for TDE 3.5.13.2
 

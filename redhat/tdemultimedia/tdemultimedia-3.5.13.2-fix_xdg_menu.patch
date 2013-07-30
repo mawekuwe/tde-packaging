@@ -1,0 +1,250 @@
+diff -Nuar trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/kde-multimedia-music.directory trinity-tdemultimedia-3.5.13.2/kappfinder-data/kde-multimedia-music.directory
+--- trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/kde-multimedia-music.directory	2013-07-28 16:37:31.827222470 +0200
++++ trinity-tdemultimedia-3.5.13.2/kappfinder-data/kde-multimedia-music.directory	1970-01-01 01:00:00.000000000 +0100
+@@ -1,89 +0,0 @@
+-[Desktop Entry]
+-Encoding=UTF-8
+-Name=Music
+-Name[br]=Sonerezh
+-Name[bs]=Muzika
+-Name[ca]=Música
+-Name[da]=Musik
+-Name[el]=Μουσική
+-Name[eo]=Muziko
+-Name[es]=Musica
+-Name[et]=Muusika
+-Name[eu]=Musika
+-Name[fa]=موسیقی
+-Name[fi]=Musiikki
+-Name[fr]=Musique
+-Name[ga]=Ceol
+-Name[gl]=Música
+-Name[he]=מוזיקה
+-Name[hu]=Zene
+-Name[is]=Tónlist
+-Name[it]=Musica
+-Name[ja]=音楽
+-Name[km]=តន្ត្រី
+-Name[lt]=Muzika
+-Name[nb]=Musikk
+-Name[ne]=सङ्गित
+-Name[nl]=Muziek
+-Name[nn]=Musikk
+-Name[pa]=ਸੰਗੀਤ
+-Name[pl]=Muzyka
+-Name[pt]=Música
+-Name[pt_BR]=Música
+-Name[sk]=Hudba
+-Name[sl]=Glasba
+-Name[sr]=Музика
+-Name[sr@Latn]=Muzika
+-Name[sv]=Musik
+-Name[tr]=Müzik
+-Name[uk]=Музика
+-Name[zh_CN]=音乐
+-Name[zh_HK]=音樂
+-GenericName=Professional Audio
+-GenericName[bg]=Професионално аудио
+-GenericName[bs]=Profesionalni audio
+-GenericName[ca]=Àudio professional
+-GenericName[cs]=Profesionální zvuk
+-GenericName[da]=Professionel lyd
+-GenericName[el]=Επαγγελματικός ήχος
+-GenericName[es]=Audio profesional
+-GenericName[et]=Professionaalne audio
+-GenericName[eu]=Audio profesionala
+-GenericName[fa]=صوتی حرفه‌ای
+-GenericName[fi]=Ammattilaisääni
+-GenericName[fr]=Audio professionnel
+-GenericName[ga]=Fuaim Phroifisiúnta
+-GenericName[gl]=Son Profesional
+-GenericName[he]=שמע מקצועי
+-GenericName[hu]=Professzinonális minőségű hanganyag
+-GenericName[is]=Atvinnumannahljóð
+-GenericName[it]=Audio professionale
+-GenericName[ja]=プロフェッショナルオーディオ
+-GenericName[kk]=Кәсіпқой Аудио
+-GenericName[km]=អូឌីយ៉ូ​ឯកទេស
+-GenericName[ko]=전문가 오디오
+-GenericName[lt]=Profesionalus audio
+-GenericName[mk]=Професионално аудио
+-GenericName[nb]=Profesjonell lyd
+-GenericName[nds]=Profeschonell Klang
+-GenericName[ne]=पेशागत अडियो
+-GenericName[nl]=Professionele audio
+-GenericName[nn]=Profesjonell lydhandsaming
+-GenericName[pa]=ਵਪਾਰਕ ਆਡੀਓ
+-GenericName[pl]=Profesjonalne audio
+-GenericName[pt]=Áudio Profissional
+-GenericName[pt_BR]=Áudio Profissional
+-GenericName[ru]=Профессиональное аудио
+-GenericName[sk]=Profesionálne audio
+-GenericName[sl]=Profesionalni zvok
+-GenericName[sr]=Професионални звук
+-GenericName[sr@Latn]=Profesionalni zvuk
+-GenericName[sv]=Professionellt ljud
+-GenericName[th]=โปรแกรมจัดการเสียงสำหรับมืออาชีพ
+-GenericName[tr]=Profesyonel Ses
+-GenericName[uk]=Професійне аудіо
+-GenericName[zh_CN]=专业音频
+-GenericName[zh_HK]=專業音效
+-GenericName[zh_TW]=專業音效
+-Icon=package
+-
+diff -Nuar trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/kde-multimedia-music.menu trinity-tdemultimedia-3.5.13.2/kappfinder-data/kde-multimedia-music.menu
+--- trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/kde-multimedia-music.menu	2013-07-28 16:37:31.827222470 +0200
++++ trinity-tdemultimedia-3.5.13.2/kappfinder-data/kde-multimedia-music.menu	1970-01-01 01:00:00.000000000 +0100
+@@ -1,21 +0,0 @@
+- <!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+-  "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+-
+-<Menu>
+-<Name>Applications</Name>
+-<Menu>
+-	<Name>Multimedia</Name>
+-	<Exclude>
+-		<Category>Music</Category>
+-	</Exclude>
+-	<Menu>
+-		<Name>Jack and More</Name>
+-		<Directory>kde-multimedia-music.directory</Directory>
+-		<Include>
+-			<And>
+-				<Category>Music</Category>
+-			</And>
+-		</Include>
+-	</Menu>
+-</Menu>
+-</Menu>
+diff -Nuar trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/Makefile.am trinity-tdemultimedia-3.5.13.2/kappfinder-data/Makefile.am
+--- trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/Makefile.am	2013-07-28 16:37:31.827222470 +0200
++++ trinity-tdemultimedia-3.5.13.2/kappfinder-data/Makefile.am	2013-07-28 16:38:07.202464444 +0200
+@@ -22,8 +22,8 @@
+ 
+ EXTRA_DIST = $(kappfinder_multimedia_data_DATA)
+ 
+-xdg_directory_DATA = kde-multimedia-music.directory
++xdg_directory_DATA = tde-multimedia-music.directory
+ 
+-xdg_mergedmenu_DATA = kde-multimedia-music.menu
++xdg_mergedmenu_DATA = tde-multimedia-music.menu
+ xdg_mergedmenudir = $(xdg_menudir)/applications-merged
+ 
+diff -Nuar trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/tde-multimedia-music.directory trinity-tdemultimedia-3.5.13.2/kappfinder-data/tde-multimedia-music.directory
+--- trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/tde-multimedia-music.directory	1970-01-01 01:00:00.000000000 +0100
++++ trinity-tdemultimedia-3.5.13.2/kappfinder-data/tde-multimedia-music.directory	2013-06-07 19:26:15.000000000 +0200
+@@ -0,0 +1,89 @@
++[Desktop Entry]
++Encoding=UTF-8
++Name=Music
++Name[br]=Sonerezh
++Name[bs]=Muzika
++Name[ca]=Música
++Name[da]=Musik
++Name[el]=Μουσική
++Name[eo]=Muziko
++Name[es]=Musica
++Name[et]=Muusika
++Name[eu]=Musika
++Name[fa]=موسیقی
++Name[fi]=Musiikki
++Name[fr]=Musique
++Name[ga]=Ceol
++Name[gl]=Música
++Name[he]=מוזיקה
++Name[hu]=Zene
++Name[is]=Tónlist
++Name[it]=Musica
++Name[ja]=音楽
++Name[km]=តន្ត្រី
++Name[lt]=Muzika
++Name[nb]=Musikk
++Name[ne]=सङ्गित
++Name[nl]=Muziek
++Name[nn]=Musikk
++Name[pa]=ਸੰਗੀਤ
++Name[pl]=Muzyka
++Name[pt]=Música
++Name[pt_BR]=Música
++Name[sk]=Hudba
++Name[sl]=Glasba
++Name[sr]=Музика
++Name[sr@Latn]=Muzika
++Name[sv]=Musik
++Name[tr]=Müzik
++Name[uk]=Музика
++Name[zh_CN]=音乐
++Name[zh_HK]=音樂
++GenericName=Professional Audio
++GenericName[bg]=Професионално аудио
++GenericName[bs]=Profesionalni audio
++GenericName[ca]=Àudio professional
++GenericName[cs]=Profesionální zvuk
++GenericName[da]=Professionel lyd
++GenericName[el]=Επαγγελματικός ήχος
++GenericName[es]=Audio profesional
++GenericName[et]=Professionaalne audio
++GenericName[eu]=Audio profesionala
++GenericName[fa]=صوتی حرفه‌ای
++GenericName[fi]=Ammattilaisääni
++GenericName[fr]=Audio professionnel
++GenericName[ga]=Fuaim Phroifisiúnta
++GenericName[gl]=Son Profesional
++GenericName[he]=שמע מקצועי
++GenericName[hu]=Professzinonális minőségű hanganyag
++GenericName[is]=Atvinnumannahljóð
++GenericName[it]=Audio professionale
++GenericName[ja]=プロフェッショナルオーディオ
++GenericName[kk]=Кәсіпқой Аудио
++GenericName[km]=អូឌីយ៉ូ​ឯកទេស
++GenericName[ko]=전문가 오디오
++GenericName[lt]=Profesionalus audio
++GenericName[mk]=Професионално аудио
++GenericName[nb]=Profesjonell lyd
++GenericName[nds]=Profeschonell Klang
++GenericName[ne]=पेशागत अडियो
++GenericName[nl]=Professionele audio
++GenericName[nn]=Profesjonell lydhandsaming
++GenericName[pa]=ਵਪਾਰਕ ਆਡੀਓ
++GenericName[pl]=Profesjonalne audio
++GenericName[pt]=Áudio Profissional
++GenericName[pt_BR]=Áudio Profissional
++GenericName[ru]=Профессиональное аудио
++GenericName[sk]=Profesionálne audio
++GenericName[sl]=Profesionalni zvok
++GenericName[sr]=Професионални звук
++GenericName[sr@Latn]=Profesionalni zvuk
++GenericName[sv]=Professionellt ljud
++GenericName[th]=โปรแกรมจัดการเสียงสำหรับมืออาชีพ
++GenericName[tr]=Profesyonel Ses
++GenericName[uk]=Професійне аудіо
++GenericName[zh_CN]=专业音频
++GenericName[zh_HK]=專業音效
++GenericName[zh_TW]=專業音效
++Icon=package
++
+diff -Nuar trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/tde-multimedia-music.menu trinity-tdemultimedia-3.5.13.2/kappfinder-data/tde-multimedia-music.menu
+--- trinity-tdemultimedia-3.5.13.2/kappfinder-data.ORI/tde-multimedia-music.menu	1970-01-01 01:00:00.000000000 +0100
++++ trinity-tdemultimedia-3.5.13.2/kappfinder-data/tde-multimedia-music.menu	2013-07-28 16:38:14.396310283 +0200
+@@ -0,0 +1,21 @@
++ <!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
++  "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
++
++<Menu>
++<Name>Applications</Name>
++<Menu>
++	<Name>Multimedia</Name>
++	<Exclude>
++		<Category>Music</Category>
++	</Exclude>
++	<Menu>
++		<Name>Jack and More</Name>
++		<Directory>tde-multimedia-music.directory</Directory>
++		<Include>
++			<And>
++				<Category>Music</Category>
++			</And>
++		</Include>
++	</Menu>
++</Menu>
++</Menu>

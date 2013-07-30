@@ -6,7 +6,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -32,8 +34,8 @@
 %endif
 
 Name:    	trinity-tdenetwork
-Version:	3.5.13.2
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 Summary:	Trinity Desktop Environment - Network Applications
 
 Vendor:		Trinity Project
@@ -49,8 +51,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kppp.pamd
 Source2:	ktalk
-Source4:	lisarc
-Source5:	lisa.redhat
 
 # RedHat/Fedora legacy patches
 Patch3:		kdenetwork-3.5.8-kppp.patch
@@ -65,12 +65,17 @@ Patch1:		kdenetwork-3.5.13-missing_ldflags.patch
 Patch201:	kdenetwork-3.5.13.1-fix_rhel4_libraries.patch
 Patch202:	tdenetwork-3.5.13.2-fix_conflicting_definitions.patch
 
+BuildRequires:	cmake >= 2.8
 BuildRequires:	gettext
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	trinity-tdelibs-devel >= %{version}
 BuildRequires:	coreutils 
 BuildRequires:	openssl-devel
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	sqlite3-devel
+%else
 BuildRequires:	sqlite-devel
+%endif
 BuildRequires:	gnutls-devel
 
 # GADU support
@@ -84,6 +89,10 @@ BuildRequires:	libXmu-devel
 BuildRequires:	libXScrnSaver-devel
 BuildRequires:	libXtst-devel
 BuildRequires:	libXxf86vm-devel
+%endif
+
+%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+BuildRequires:	libxtst-devel
 %endif
 
 # Wifi support
@@ -148,9 +157,9 @@ BuildRequires:	meanwhile-devel
 %endif
 
 # ORTP support
-%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
-BuildRequires:	ortp-devel
-%endif
+#%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
+#BuildRequires:	ortp-devel
+#%endif
 
 # SPEEX support
 %if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
@@ -252,12 +261,12 @@ update-desktop-database 2> /dev/null || :
 %package devel
 Summary:		Development files for the Trinity network module
 Group:			Development/Libraries
-Requires:		trinity-tdenetwork = %{version}-%{release}
+Requires:		%{name} = %{version}-%{release}
 Requires:		trinity-kdict = %{version}-%{release}
 Requires:		trinity-kopete = %{version}-%{release}
 Requires:		trinity-ksirc = %{version}-%{release}
 Requires:		trinity-librss = %{version}-%{release}
-Requires:		trinity-tdelibs-devel
+Requires:		trinity-tdelibs-devel >= %{tde_version}
 
 Obsoletes:	trinity-kdenetwork-devel < %{version}-%{release}
 Provides:	trinity-kdenetwork-devel = %{version}-%{release}
@@ -775,11 +784,11 @@ Servers using RDP.
 %{tde_bindir}/krdc
 %{tde_tdeappdir}/krdc.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/smb2rdc.desktop
-%{tde_datadir}/apps/krdc
+%{tde_datadir}/apps/krdc/
 %{tde_datadir}/icons/crystalsvg/*/apps/krdc.png
 %{tde_datadir}/services/rdp.protocol
 %{tde_datadir}/services/vnc.protocol
-%{tde_tdedocdir}/HTML/en/krdc
+%{tde_tdedocdir}/HTML/en/krdc/
 
 %post -n trinity-krdc
 for f in crystalsvg ; do
@@ -825,7 +834,7 @@ task.
 %{tde_datadir}/services/kinetd_krfb.desktop
 %{tde_datadir}/services/kinetd_krfb_httpd.desktop
 %{tde_datadir}/servicetypes/kinetdmodule.desktop
-%{tde_tdedocdir}/HTML/en/krfb
+%{tde_tdedocdir}/HTML/en/krfb/
 
 %post -n trinity-krfb
 for f in crystalsvg locolor ; do
@@ -983,13 +992,6 @@ automatically when needed.
 %package -n trinity-lisa
 Summary:			LAN information server for Trinity
 Group:				Applications/Internet
-%if 0%{?suse_version}
-Requires(preun):	aaa_base
-Requires(post):		aaa_base
-%else
-Requires(preun):	chkconfig
-Requires(post):		chkconfig
-%endif
 
 %description -n trinity-lisa
 LISa is intended to provide TDE with a kind of "network neighborhood"
@@ -997,8 +999,6 @@ but relying only on the TCP/IP protocol.
 
 %files -n trinity-lisa
 %defattr(-,root,root,-)
-%config(noreplace) %{_sysconfdir}/lisarc*
-%config(noreplace) %{_initrddir}/lisa
 %{tde_tdelibdir}/kcm_lanbrowser.la
 %{tde_tdelibdir}/kcm_lanbrowser.so
 %{tde_tdelibdir}/kio_lan.la
@@ -1018,20 +1018,15 @@ but relying only on the TCP/IP protocol.
 %{tde_bindir}/reslisa
 
 %post -n trinity-lisa
-/sbin/chkconfig --add lisa ||:
 update-desktop-database 2> /dev/null || : 
 
 %postun -n trinity-lisa
-if [ $1 -eq 0 ]; then
-  /sbin/service lisa stop > /dev/null 2>&1 ||:
-  /sbin/chkconfig --del lisa ||:
-fi
 update-desktop-database 2> /dev/null || : 
 
 ##########
 
 %package -n trinity-kdnssd
-Summary: Zeroconf support for KDE
+Summary: Zeroconf support for TDE
 Group:			Applications/Internet
 
 %description -n trinity-kdnssd
@@ -1101,10 +1096,17 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  \
   -DWITH_JINGLE=ON \
   %{?with_speex:-DWITH_SPEEX=ON} \
   -DWITH_WEBCAM=ON \
@@ -1128,33 +1130,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
-
-## File lists
-# HTML (1.0)
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && %{__rm} -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
-# Show only in KDE, FIXME, need to re-evaluate these -- Rex
-for i in fileshare kcmkrfb kcmktalkd kcmwifi krfb kppp kppplogview \
-   kwifimanager kget knewsticker ksirc kdict ; do
-   if [ -f %{buildroot}%{tde_tdeappdir}/$i.desktop ] ; then
-      echo "OnlyShowIn=KDE;" >> %{buildroot}%{tde_datadir}/applications/kde/$i.desktop
-   fi
-done
-
 %if 0%{?with_consolehelper}
 # Run kppp through consolehelper, and rename it to 'kppp3'
 %__install -p -m644 -D %{SOURCE1} %{buildroot}/etc/pam.d/kppp3
@@ -1177,15 +1152,6 @@ EOF
 # ktalk
 %__install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
 
-# Add lisa startup script
-%__install -p -m 0644 -D %{SOURCE4} %{buildroot}%{_sysconfdir}/lisarc
-%__install -p -m 0755 -D %{SOURCE5} %{buildroot}%{_initrddir}/lisa
-
-# RHEL 5: Avoids conflict with 'kdenetwork'
-%if 0%{?rhel} == 5
-%__mv -f %{buildroot}%{_sysconfdir}/lisarc %{buildroot}%{_sysconfdir}/lisarc.tde
-%endif
-
 # Avoids conflict with trinity-kvirc
 %__mv -f %{buildroot}%{tde_datadir}/services/irc.protocol %{buildroot}%{tde_datadir}/apps/kopete/
 
@@ -1195,5 +1161,9 @@ EOF
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Rebuild with NDEBUG option
+- Disable 'lisa' service
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

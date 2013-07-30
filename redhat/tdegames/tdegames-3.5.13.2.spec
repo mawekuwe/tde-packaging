@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -20,8 +22,8 @@
 
 Name:			trinity-tdegames
 Summary:		Trinity Desktop Environment - Games
-Version:		3.5.13.2
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:		%{tde_version}
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			Amusements/Games
@@ -38,11 +40,11 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	libtool
 
-BuildRequires:	tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
-BuildRequires:	trinity-tdemultimedia-devel >= %{version}
-BuildRequires:	qt3-devel
+BuildRequires:	tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
+BuildRequires:	qt3-devel >= 3.3.8.d
 
 Obsoletes:		trinity-kdegames < %{version}-%{release}
 Provides:		trinity-kdegames = %{version}-%{release}
@@ -1546,21 +1548,23 @@ if [ -d "/usr/X11R6" ]; then
 fi
 
 %configure \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --libdir=%{tde_libdir} \
-   --datadir=%{tde_datadir} \
-   --includedir=%{tde_tdeincludedir} \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --disable-rpath \
-   --enable-final \
-   --disable-debug \
-   --disable-warnings \
-   --enable-closure \
-   --disable-setgid \
-   --with-extra-includes=%{tde_includedir}/tqt
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  \
+   --with-extra-includes=%{tde_includedir}/tqt \
+  \
+  --disable-setgid
 
 # WTF hack for RHEL4
 %if 0%{?rhel} == 4
@@ -1576,28 +1580,14 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-# locale's
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

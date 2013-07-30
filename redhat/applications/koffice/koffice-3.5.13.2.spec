@@ -1,5 +1,6 @@
 # Default version for this component
-%define tdecomp koffice
+%define tde_pkg koffice
+%define tde_version 3.5.13.2
 
 # Required for Mageia 2: removes the ldflag '--no-undefined'
 %define _disable_ld_no_undefined 1
@@ -9,7 +10,7 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -37,80 +38,80 @@
 %global	_normalized_cpu	%(echo %{_target_cpu} | sed 's/^ppc/powerpc/;s/i.86/i386/;s/sparcv./sparc/;s/armv.*/arm/')
 
 
-Name:		trinity-%{tdecomp}
-Summary:	An integrated office suite
-Version:	1.6.3
-Release:	7%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		An integrated office suite
+Version:		1.6.3
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
-Group:          Applications/Productivity
-License:        GPLv2+
+Group:			Applications/Productivity
+License:		GPLv2+
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
 # BuildRequires: world-devel ;)
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:  trinity-tdegraphics-devel >= 3.5.13.2
-BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel >= 3.5.13.2
-BuildRequires:  automake libtool
-BuildRequires:  fontconfig-devel
-BuildRequires:  libart_lgpl-devel
-BuildRequires:  libtiff-devel
-BuildRequires:  libjpeg-devel
-BuildRequires:  ImageMagick-devel
-BuildRequires:  zlib-devel
-BuildRequires:  openssl-devel
-BuildRequires:  python-devel
-BuildRequires:  pcre-devel
-BuildRequires:  gettext-devel
-BuildRequires:  mysql-devel
-BuildRequires:  desktop-file-utils
-BuildRequires:  perl
-BuildRequires:  doxygen
-BuildRequires:  aspell-devel
-BuildRequires:  libxslt-devel
-BuildRequires:  OpenEXR-devel
-BuildRequires:  libexif-devel
-BuildRequires:  readline-devel
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdegraphics-devel >= %{tde_version}
+BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel >= %{tde_version}
+BuildRequires:	automake libtool
+BuildRequires:	fontconfig-devel
+BuildRequires:	libart_lgpl-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	ImageMagick-devel
+BuildRequires:	zlib-devel
+BuildRequires:	openssl-devel
+BuildRequires:	python-devel
+BuildRequires:	pcre-devel
+BuildRequires:	gettext-devel
+BuildRequires:	mysql-devel
+BuildRequires:	desktop-file-utils
+BuildRequires:	perl
+BuildRequires:	doxygen
+BuildRequires:	aspell-devel
+BuildRequires:	libxslt-devel
+BuildRequires:	OpenEXR-devel
+BuildRequires:	libexif-devel
+BuildRequires:	readline-devel
 
 %if 0%{?suse_version}
 BuildRequires:	libbz2-devel
-BuildRequires:  liblcms-devel
+BuildRequires:	liblcms-devel
 %else
-BuildRequires:  bzip2-devel
-BuildRequires:  lcms-devel
+BuildRequires:	bzip2-devel
+BuildRequires:	lcms-devel
 
-BuildRequires:  libpaper-devel
+BuildRequires:	libpaper-devel
 %endif
 
 # RUBY support
 %if 0%{?with_ruby}
-BuildRequires:  ruby ruby-devel >= 1.8.1
+BuildRequires:	ruby ruby-devel >= 1.8.1
 %endif
 
 # FREETYPE support
 %if 0%{?suse_version} == 1140
-BuildRequires:  freetype2-devel
+BuildRequires:	freetype2-devel
 %else
-BuildRequires:  freetype-devel
+BuildRequires:	freetype-devel
 %endif
 
 # LIBPNG support
 %if 0%{?mgaversion}
-BuildRequires:  %{_lib}png-devel
+BuildRequires:	%{_lib}png-devel
 %endif
 %if 0%{?mdkversion} && 0%{?pclinuxos} == 0
-BuildRequires:  %{_lib}png15-devel
+BuildRequires:	%{_lib}png15-devel
 %endif
 %if 0%{?suse_version} || 0%{?fedora} || 0%{?rhel}
-BuildRequires:  libpng-devel
+BuildRequires:	libpng-devel
 %endif
 
 # GRAPHICSMAGICK support
@@ -139,7 +140,7 @@ BuildRequires:	libutempter-devel
 #  Requires 'libpqxx', for kexi-driver-pgqsl
 %if 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
 %define with_postgresql 1
-BuildRequires:  libpqxx-devel
+BuildRequires:	libpqxx-devel
 %endif
 Obsoletes:		trinity-libpqxx
 
@@ -150,10 +151,10 @@ Obsoletes:		trinity-libwpd
 
 # WV2 support
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:  %{_lib}wv2-devel
+BuildRequires:	%{_lib}wv2-devel
 %endif
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-BuildRequires:  wv2-devel
+BuildRequires:	wv2-devel
 %endif
 
 # MESA support
@@ -162,11 +163,11 @@ BuildRequires:	%{_lib}mesagl1-devel
 BuildRequires:	%{_lib}mesaglu1-devel
 %endif
 %if 0%{?fedora} || 0%{?rhel}
-BuildRequires:  libGL-devel
+BuildRequires:	libGL-devel
 BuildRequires:	libGLU-devel
 %endif
 %if 0%{?suse_version} >= 1220
-BuildRequires:  Mesa-libGL-devel
+BuildRequires:	Mesa-libGL-devel
 BuildRequires:	Mesa-libGLU-devel
 %endif
 
@@ -180,13 +181,13 @@ BuildRequires:	%{_lib}openjpeg-devel
 BuildRequires:	%{_lib}xi-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora}
-BuildRequires:  libXi-devel
+BuildRequires:	libXi-devel
 %endif
 %if 0%{?suse_version} == 1140
-BuildRequires:  libXi6-devel
+BuildRequires:	libXi6-devel
 %endif
 %if 0%{?suse_version} >= 1220
-BuildRequires:  libXi-devel
+BuildRequires:	libXi-devel
 %endif
 
 
@@ -196,25 +197,25 @@ KOffice is an integrated office suite.
 ##########
 
 %package suite
-Summary:        An integrated office suite
-Group:          Applications/Productivity
+Summary:		An integrated office suite
+Group:			Applications/Productivity
 Obsoletes:      %{name} <= %{version}-%{release}
 Obsoletes:      %{name}-i18n < 4:%{version}
-Requires:       %{name}-core = %{version}-%{release} 
-Requires:       %{name}-kword = %{version}-%{release} 
-Requires:       %{name}-kspread = %{version}-%{release} 
-Requires:       %{name}-kpresenter = %{version}-%{release}
-Requires:       %{name}-kivio = %{version}-%{release}
-Requires:       %{name}-karbon = %{version}-%{release}
-Requires:       %{name}-kugar = %{version}-%{release}
-Requires:       %{name}-kexi = %{version}-%{release}
-Requires:       %{name}-kexi-driver-mysql = %{version}-%{release}
+Requires:		%{name}-core = %{version}-%{release} 
+Requires:		%{name}-kword = %{version}-%{release} 
+Requires:		%{name}-kspread = %{version}-%{release} 
+Requires:		%{name}-kpresenter = %{version}-%{release}
+Requires:		%{name}-kivio = %{version}-%{release}
+Requires:		%{name}-karbon = %{version}-%{release}
+Requires:		%{name}-kugar = %{version}-%{release}
+Requires:		%{name}-kexi = %{version}-%{release}
+Requires:		%{name}-kexi-driver-mysql = %{version}-%{release}
 %{?with_postgresql:Requires:       %{name}-kexi-driver-pgsql = %{version}-%{release}}
-Requires:       %{name}-kchart = %{version}-%{release}
-Requires:       %{name}-kformula = %{version}-%{release}
-Requires:       %{name}-filters = %{version}-%{release}
-Requires:       %{name}-kplato = %{version}-%{release}
-Requires:       %{name}-chalk = %{version}-%{release}
+Requires:		%{name}-kchart = %{version}-%{release}
+Requires:		%{name}-kformula = %{version}-%{release}
+Requires:		%{name}-filters = %{version}-%{release}
+Requires:		%{name}-kplato = %{version}-%{release}
+Requires:		%{name}-chalk = %{version}-%{release}
 
 %description suite
 KOffice is an integrated office suite.
@@ -225,10 +226,10 @@ KOffice is an integrated office suite.
 ##########
 
 %package core
-Summary:        Core support files for %{name} 
-Group:          Applications/Productivity
-Requires:       %{name}-libs = %{version}-%{release}
-Requires:       perl
+Summary:		Core support files for %{name} 
+Group:			Applications/Productivity
+Requires:		%{name}-libs = %{version}-%{release}
+Requires:		perl
 Conflicts:      koffice-i18n < %{version}
 
 %description core
@@ -317,11 +318,11 @@ fi
 ##########
 
 %package libs
-Summary:        Runtime libraries for %{name} 
-Group:          System Environment/Libraries
+Summary:		Runtime libraries for %{name} 
+Group:			System Environment/Libraries
 Conflicts:      %{name} <= %{version}-%{release}
-Requires:       trinity-kdelibs
-License:        LGPLv2+
+Requires:		trinity-kdelibs
+License:		LGPLv2+
 
 %description libs
 %{summary}.
@@ -359,10 +360,10 @@ License:        LGPLv2+
 ##########
 
 %package devel
-Summary:        Development files for %{name} 
-Group:          Development/Libraries
-Requires:       %{name}-libs = %{version}-%{release}
-License:        LGPLv2+
+Summary:		Development files for %{name} 
+Group:			Development/Libraries
+Requires:		%{name}-libs = %{version}-%{release}
+License:		LGPLv2+
 
 %description devel
 %{summary}.
@@ -379,9 +380,9 @@ License:        LGPLv2+
 ##########
 
 %package kword
-Summary:	A frame-based word processor capable of professional standard documents
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		A frame-based word processor capable of professional standard documents
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %description kword
 %{summary}.
@@ -413,9 +414,9 @@ update-desktop-database -q &> /dev/null ||:
 ##########
 
 %package kspread
-Summary:        A powerful spreadsheet application
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		A powerful spreadsheet application
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %description kspread
 %{summary}.
@@ -450,9 +451,9 @@ Requires:       %{name}-core = %{version}-%{release}
 ##########
 
 %package kpresenter
-Summary:        A full-featured presentation program
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		A full-featured presentation program
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %description kpresenter
 %{summary}.
@@ -484,9 +485,9 @@ update-desktop-database -q &> /dev/null ||:
 ##########
 
 %package kivio
-Summary:        A flowcharting application
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		A flowcharting application
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 Obsoletes:      kivio < %{version}-%{release}
 
 %description kivio
@@ -508,9 +509,9 @@ Obsoletes:      kivio < %{version}-%{release}
 ##########
 
 %package karbon
-Summary:        A vector drawing application
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		A vector drawing application
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %description karbon
 %{summary}.
@@ -539,9 +540,9 @@ Requires:       %{name}-core = %{version}-%{release}
 ##########
 
 %package kugar
-Summary:        A tool for generating business quality reports
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		A tool for generating business quality reports
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %description kugar
 %{summary}.
@@ -577,9 +578,9 @@ update-desktop-database -q &> /dev/null ||:
 ##########
 
 %package kexi
-Summary:        An integrated environment for managing data
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		An integrated environment for managing data
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %if 0%{?with_postgresql} == 0
 Obsoletes:		%{name}-kexi-driver-pgsql
@@ -631,9 +632,9 @@ update-desktop-database -q &> /dev/null ||:
 ##########
 
 %package kexi-driver-mysql
-Summary:        Mysql-driver for kexi
-Group:          Applications/Productivity
-Requires:       %{name}-kexi = %{version}-%{release}
+Summary:		Mysql-driver for kexi
+Group:			Applications/Productivity
+Requires:		%{name}-kexi = %{version}-%{release}
 
 %description kexi-driver-mysql
 %{summary}.
@@ -650,9 +651,9 @@ Requires:       %{name}-kexi = %{version}-%{release}
 %if 0%{?with_postgresql}
 
 %package kexi-driver-pgsql
-Summary:        Postgresql driver for kexi
-Group:          Applications/Productivity
-Requires:       %{name}-kexi = %{version}-%{release}
+Summary:		Postgresql driver for kexi
+Group:			Applications/Productivity
+Requires:		%{name}-kexi = %{version}-%{release}
 
 %description kexi-driver-pgsql
 %{summary}.
@@ -669,9 +670,9 @@ Requires:       %{name}-kexi = %{version}-%{release}
 ##########
 
 %package kchart
-Summary:        An integrated graph and chart drawing tool
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		An integrated graph and chart drawing tool
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %description kchart
 %{summary}.
@@ -699,26 +700,26 @@ update-desktop-database -q &> /dev/null ||:
 ##########
 
 %package kformula
-Summary:        A powerful formula editor
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		A powerful formula editor
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 Requires:		fonts-ttf-dejavu
 %else
 %if 0%{?fedora} >= 11 || 0%{?rhel} >= 6
-Requires:       dejavu-lgc-sans-fonts
-Requires:       lyx-cmex10-fonts
+Requires:		dejavu-lgc-sans-fonts
+Requires:		lyx-cmex10-fonts
 %endif
 %if 0%{?rhel} == 5
-Requires:       dejavu-lgc-fonts 
-Requires:       lyx-cmex10-fonts
+Requires:		dejavu-lgc-fonts 
+Requires:		lyx-cmex10-fonts
 %endif
 %if 0%{?suse_version} >= 1220
-Requires:       dejavu-fonts 
+Requires:		dejavu-fonts 
 %endif
 %if 0%{?suse_version} == 1140
-Requires:       dejavu
+Requires:		dejavu
 %endif
 %endif
 
@@ -738,9 +739,9 @@ Requires:       dejavu
 ##########
 
 %package filters
-Summary:        Import and Export Filters for KOffice
-Group:          Applications/Productivity
-Requires:       %{name}-core = %{version}-%{release}
+Summary:		Import and Export Filters for KOffice
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %description filters
 %{summary}.
@@ -808,9 +809,9 @@ Requires:       %{name}-core = %{version}-%{release}
 ##########
 
 %package kplato
-Summary:         An integrated project management and planning tool
-Group:           Applications/Productivity
-Requires:        %{name}-core = %{version}-%{release}
+Summary:		An integrated project management and planning tool
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
 
 %description kplato
 %{summary}.
@@ -829,11 +830,11 @@ Requires:        %{name}-core = %{version}-%{release}
 ##########
 
 %package chalk
-Summary:		 pixel-based image manipulation program for the TDE Office Suite [Trinity]
-Group:           Applications/Productivity
-Requires:        %{name}-core = %{version}-%{release}
-Requires:        %{name}-chalk-data = %{version}-%{release}
-Requires:        %{name}-filters
+Summary:		pixel-based image manipulation program for the TDE Office Suite [Trinity]
+Group:			Applications/Productivity
+Requires:		%{name}-core = %{version}-%{release}
+Requires:		%{name}-chalk-data = %{version}-%{release}
+Requires:		%{name}-filters
 
 %description chalk
 Chalk is a painting and image editing application for KOffice. Chalk contains
@@ -1022,7 +1023,7 @@ update-desktop-database -q &> /dev/null ||:
 
 %package chalk-data
 Summary:		data files for Chalk painting program [Trinity]
-Group:           Applications/Productivity
+Group:			Applications/Productivity
 
 %description chalk-data
 This package contains architecture-independent data files for Chalk,
@@ -1053,7 +1054,7 @@ This package is part of the TDE Office Suite.
 ##########
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013
 %__cp /usr/share/automake-1.13/test-driver admin/
@@ -1097,6 +1098,7 @@ export CXXFLAGS="${CXXFLAGS} -I${RD}/%_normalized_cpu-linux"
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
   --disable-rpath --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
   --disable-debug --disable-warnings \
   --with-pic --enable-shared --disable-static \

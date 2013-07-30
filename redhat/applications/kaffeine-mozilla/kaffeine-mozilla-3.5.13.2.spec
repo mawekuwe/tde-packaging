@@ -1,5 +1,6 @@
 # Default version for this component
-%define kdecomp kaffeine-mozilla
+%define tde_pkg kaffeine-mozilla
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -23,29 +24,29 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
-Summary:	mozilla plugin that lanches kaffeine for supported media types [Trinity]
-Version:	0.4.3.1
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		mozilla plugin that lanches kaffeine for supported media types [Trinity]
+Version:		0.4.3.1
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Multimedia
+License:		GPLv2+
+Group:			Applications/Multimedia
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # Fix 'nspr' includes location
 Patch1:		kaffeine-mozilla-3.5.13-fix_nspr_include.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 %if 0%{?suse_version}
@@ -57,14 +58,14 @@ BuildRequires:	nspr-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xaw-devel
 %endif
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1220
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXaw-devel
 %endif
 
 Requires:		trinity-kaffeine
 
 %description
-This mozilla plugin launches kaffeine, the xine-based media player for KDE,
+This mozilla plugin launches kaffeine, the xine-based media player for TDE,
 when a page containing a supported media format is loaded.
 
 
@@ -74,8 +75,7 @@ when a page containing a supported media format is loaded.
 
 
 %prep
-unset QTDIR; . /etc/profile.d/qt3.sh
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .nspr
 
 # Ugly hack to modify TQT include directory inside autoconf files.
@@ -90,16 +90,22 @@ unset QTDIR; . /etc/profile.d/qt3.sh
 
 
 %build
+unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --with-extra-includes=%{tde_includedir}/tqt \
-    --enable-closure \
-    --prefix=%{_libdir}/mozilla
+  --prefix=%{_libdir}/mozilla \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath
 
 %__make %{?_smp_mflags}
+
 
 %install
 export PATH="%{tde_bindir}:${PATH}"
@@ -108,6 +114,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Remove useless filess
 %__rm -f %{?buildroot}%{_libdir}/mozilla/plugins/kaffeineplugin.a
+
 
 %clean
 %__rm -rf %{buildroot}

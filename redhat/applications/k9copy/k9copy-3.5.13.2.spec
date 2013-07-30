@@ -1,13 +1,13 @@
 # Default version for this component
-%define tdecomp k9copy
-%define tdeversion 3.5.13.2
+%define tde_pkg k9copy
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -24,35 +24,38 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	DVD backup tool for Trinity
-Version:	1.2.3
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		DVD backup tool for Trinity
+Version:		1.2.3
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{tdeversion}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:		k9copy-3.5.13.2-fix_k3b_link.patch
+Patch1:			k9copy-3.5.13.2-fix_k3b_link.patch
+Patch2:			k9copy-3.5.13.2-ftbfs.patch
+Patch3:			k9copy-3.5.13.2-use_external_dvdread.patch
+Patch4:			k9copy-3.5.13.2-avcodec.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	trinity-k3b-devel
 
 # Warning: the target distribution must have ffmpeg !
-BuildRequires: ffmpeg-devel
-Requires:	ffmpeg
+BuildRequires:	ffmpeg-devel
+Requires:		ffmpeg
 
 %description
 k9copy is a tabbed tool that allows to copy of one or more titles from a DVD9
@@ -66,8 +69,14 @@ This is the Trinity version
 
 
 %prep
-%setup -q -n %{name}-%{tdeversion}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .ftbfs
+%patch2 -p1 -b .ftbfs
+%patch3 -p1 -b .dvdread
+%patch4 -p1 -b .avcodec
+
+# Removes internal dvdread headers
+%__rm -rf dvdread
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -80,7 +89,6 @@ This is the Trinity version
 %__make -f "admin/Makefile.common"
 
 
-
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
@@ -90,16 +98,25 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 if [ -d /usr/include/ffmpeg ]; then
 	export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/include/ffmpeg"
 fi
-
+ 
+# NOTICE: --enable-final causes FTBFS !
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --disable-final \
+  --enable-new-ldflags \
+  --enable-closure \
   --disable-rpath \
+  \
   --with-extra-includes=%{tde_includedir}/tqt \
-  --enable-closure
+  \
+  --enable-k3bdevices
 
 %__make %{?_smp_mflags} || %__make
 
@@ -109,7 +126,8 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -126,7 +144,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 update-desktop-database %{tde_appdir} &> /dev/null
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
 %{tde_bindir}/k9copy
@@ -138,6 +156,9 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-5
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-4
 - Initial release for TDE 3.5.13.2
 

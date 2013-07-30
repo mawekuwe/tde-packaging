@@ -1,0 +1,30 @@
+diff -Nuar trinity-tdevelop-3.5.13.2.ORI/CMakeLists.txt trinity-tdevelop-3.5.13.2/CMakeLists.txt
+--- trinity-tdevelop-3.5.13.2.ORI/CMakeLists.txt	2013-07-28 16:47:38.143269451 +0200
++++ trinity-tdevelop-3.5.13.2/CMakeLists.txt	2013-07-28 16:48:05.207700906 +0200
+@@ -142,7 +142,7 @@
+   DESTINATION ${XDG_APPS_INSTALL_DIR} )
+ 
+ install( FILES
+-    kde-development-kdevelop.directory
++    tde-development-kdevelop.directory
+   DESTINATION ${XDG_DIRECTORY_INSTALL_DIR} )
+ 
+ install( FILES
+diff -Nuar trinity-tdevelop-3.5.13.2.ORI/kde-development-kdevelop.directory trinity-tdevelop-3.5.13.2/kde-development-kdevelop.directory
+--- trinity-tdevelop-3.5.13.2.ORI/kde-development-kdevelop.directory	2013-07-28 16:47:38.101270333 +0200
++++ trinity-tdevelop-3.5.13.2/kde-development-kdevelop.directory	1970-01-01 01:00:00.000000000 +0100
+@@ -1,5 +0,0 @@
+-[Desktop Entry]
+-Encoding=UTF-8
+-Name=KDevelop
+-Name[ne]=केडीई विकास
+-Icon=kdevelop
+diff -Nuar trinity-tdevelop-3.5.13.2.ORI/tde-development-kdevelop.directory trinity-tdevelop-3.5.13.2/tde-development-kdevelop.directory
+--- trinity-tdevelop-3.5.13.2.ORI/tde-development-kdevelop.directory	1970-01-01 01:00:00.000000000 +0100
++++ trinity-tdevelop-3.5.13.2/tde-development-kdevelop.directory	2013-06-07 19:41:29.000000000 +0200
+@@ -0,0 +1,5 @@
++[Desktop Entry]
++Encoding=UTF-8
++Name=KDevelop
++Name[ne]=केडीई विकास
++Icon=kdevelop

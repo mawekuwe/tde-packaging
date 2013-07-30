@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp basket
+%define tde_pkg basket
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -22,30 +23,30 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
-Summary:	Taking care of your ideas.
-Version:	1.0.3.1
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Taking care of your ideas.
+Version:		1.0.3.1
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires: trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires: trinity-tdebase-devel >= 3.5.13.2
-BuildRequires: trinity-tdepim-devel >= 3.5.13.2
-BuildRequires: desktop-file-utils
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	trinity-tdepim-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
 
-BuildRequires: gpgme-devel
+BuildRequires:	gpgme-devel
 
 %description
 This application is mainly an all-purpose notes taker. It provide several baskets where
@@ -63,7 +64,7 @@ baskets to HTML.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Ugly hack to modify TQT include directory inside autoconf files.
 # If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
@@ -89,6 +90,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 	--libdir=%{tde_libdir} \
 	--datadir=%{tde_datadir} \
 	--disable-rpath \
+	--disable-debug \
     --with-extra-includes=%{tde_includedir}/tqt \
     --disable-static
 
@@ -100,7 +102,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{kdecomp}
+%find_lang %{tde_pkg}
 
 %clean
 %__rm -rf %{buildroot}
@@ -121,7 +123,7 @@ done
 /sbin/ldconfig
 
 
-%files -f %{kdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
 %{tde_bindir}/basket
@@ -157,6 +159,9 @@ done
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-5
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-4
 - Initial release for TDE 3.5.13.2
 

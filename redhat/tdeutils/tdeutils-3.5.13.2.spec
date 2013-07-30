@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -19,8 +21,8 @@
 %define _docdir %{tde_docdir}
 
 Name:		trinity-tdeutils
-Version:	3.5.13.2
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Utilities
 Group:		Applications/System
@@ -989,6 +991,12 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DDOC_INSTALL_DIR="%{tde_docdir}" \
@@ -996,7 +1004,7 @@ cd build
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
-  -DCMAKE_SKIP_RPATH=OFF \
+  \
   -DWITH_DPMS=ON \
   %{?with_xscreensaver:-DWITH_XSCREENSAVER=ON} \
   -DWITH_ASUS=ON \
@@ -1021,31 +1029,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
 
-
-## File lists
-# HTML (1.0)
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-    pushd $lang_dir/kcontrol
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
-
 %if 0%{?build_klaptopdaemon}
 ### Use consolehelper for 'klaptop_acpi_helper'
 %if 0%{?with_consolehelper}
@@ -1068,7 +1051,7 @@ fi
 
 %else
 
-# Klaptop's documentation is installed even if we did not build it ...
+# Klaptop's documentation is installed even if we did not build the program ...
 %__rm -fr %{?buildroot}%{tde_tdedocdir}/HTML/en/kcontrol/kcmlowbatcrit/
 %__rm -fr %{?buildroot}%{tde_tdedocdir}/HTML/en/kcontrol/kcmlowbatwarn/
 %__rm -fr %{?buildroot}%{tde_tdedocdir}/HTML/en/kcontrol/laptop/
@@ -1082,5 +1065,8 @@ fi
 
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Rebuild with NDEBUG option
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2
