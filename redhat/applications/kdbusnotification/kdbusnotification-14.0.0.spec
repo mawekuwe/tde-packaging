@@ -28,7 +28,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		a DBUS notification service [Trinity]
 
 Version:		0.1
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -41,8 +41,6 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-
-Patch1:			kdbusnotification-14.0.0-fix_utf8.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= %{tde_version}
@@ -69,7 +67,6 @@ DBUS notifications via unobtrusive, easily dismissed passive popups.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .utf8
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -88,8 +85,15 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
   --disable-rpath \
-  --enable-closure
+  \
+  --with-extra-includes=%{tde_includedir}/tqt
 
 %__make %{?_smp_mflags}
 
@@ -114,8 +118,11 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-5
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-6
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-5
+- Fix UTF8 messages
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-4
 - Initial release for TDE 3.5.13.2

@@ -42,7 +42,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			kdbusnotification-14.0.0-fix_utf8.patch
+Patch1:			kdbusnotification-3.5.13.2-fix_utf8.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= %{tde_version}
