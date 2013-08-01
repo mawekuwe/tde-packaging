@@ -41,9 +41,6 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-# [kcmautostart] kcmautostart crash on exit
-Patch3:		kcmautostart-3.5.13-fix_crash_on_exit.patch
-
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= %{tde_version}
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -63,7 +60,6 @@ Requires:		trinity-kdebase
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch3 -p1 -b .crash_on_exit
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -82,8 +78,13 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --disable-static
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -94,6 +95,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 %find_lang autostart
+
 
 %clean
 %__rm -rf %{buildroot}
