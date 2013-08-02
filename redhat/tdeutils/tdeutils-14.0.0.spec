@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -19,7 +21,7 @@
 %define _docdir %{tde_docdir}
 
 Name:		trinity-tdeutils
-Version:		14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Utilities
@@ -164,7 +166,7 @@ package.
 %{tde_tdelibdir}/ark.so
 %{tde_tdelibdir}/libarkpart.la
 %{tde_tdelibdir}/libarkpart.so
-%{tde_libdir}/lib[kt]deinit_ark.so
+%{tde_libdir}/libtdeinit_ark.so
 %{tde_tdeappdir}/ark.desktop
 %{tde_datadir}/apps/ark/
 %{tde_datadir}/config.kcfg/ark.kcfg
@@ -209,7 +211,7 @@ It provides:
 %{tde_bindir}/kcalc
 %{tde_tdelibdir}/kcalc.la
 %{tde_tdelibdir}/kcalc.so
-%{tde_libdir}/lib[kt]deinit_kcalc.so
+%{tde_libdir}/libtdeinit_kcalc.so
 %{tde_tdeappdir}/kcalc.desktop
 %{tde_datadir}/apps/kcalc/
 %{tde_datadir}/apps/tdeconf_update/kcalcrc.upd
@@ -288,7 +290,7 @@ This is a frontend for the LIRC suite to use infrared devices with TDE.
 %{tde_tdelibdir}/irkick.so
 %{tde_tdelibdir}/kcm_kcmlirc.la
 %{tde_tdelibdir}/kcm_kcmlirc.so
-%{tde_libdir}/lib[kt]deinit_irkick.so
+%{tde_libdir}/libtdeinit_irkick.so
 %{tde_tdeappdir}/irkick.desktop
 %{tde_tdeappdir}/kcmlirc.desktop
 %{tde_datadir}/apps/irkick/
@@ -406,7 +408,7 @@ reasonably fast start.
 %{tde_bindir}/kedit
 %{tde_tdelibdir}/kedit.la
 %{tde_tdelibdir}/kedit.so
-%{tde_libdir}/lib[kt]deinit_kedit.so
+%{tde_libdir}/libtdeinit_kedit.so
 %{tde_tdeappdir}/KEdit.desktop
 %{tde_datadir}/apps/kedit/keditui.rc
 %{tde_datadir}/config.kcfg/kedit.kcfg
@@ -941,10 +943,10 @@ Development files for %{name}.
 %{tde_libdir}/libkcmlaptop.la
 %{tde_libdir}/libkcmlaptop.so
 %endif
-%{tde_libdir}/lib[kt]deinit_ark.la
-%{tde_libdir}/lib[kt]deinit_irkick.la
-%{tde_libdir}/lib[kt]deinit_kcalc.la
-%{tde_libdir}/lib[kt]deinit_kedit.la
+%{tde_libdir}/libtdeinit_ark.la
+%{tde_libdir}/libtdeinit_irkick.la
+%{tde_libdir}/libtdeinit_kcalc.la
+%{tde_libdir}/libtdeinit_kedit.la
 %{tde_libdir}/libkmilo.la
 %{tde_libdir}/libkmilo.so
 %{tde_libdir}/libkregexpeditorcommon.la
@@ -982,9 +984,6 @@ export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}"
 
-# Do not build against any "/usr" installed KDE
-export KDEDIR="%{tde_prefix}"
-
 # Shitty hack for RHEL4 ...
 if [ -d "/usr/X11R6" ]; then
   export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH}:/usr/X11R6/include:/usr/X11R6/%{_lib}"
@@ -998,6 +997,13 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DDOC_INSTALL_DIR="%{tde_docdir}" \
@@ -1005,7 +1011,7 @@ cd build
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
-  -DCMAKE_SKIP_RPATH=OFF \
+  \
   -DWITH_DPMS=ON \
   %{?with_xscreensaver:-DWITH_XSCREENSAVER=ON} \
   -DWITH_ASUS=ON \
