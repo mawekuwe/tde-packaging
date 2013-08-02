@@ -76,7 +76,6 @@ grpiud() {
 }
 
 # Build dependencies
-rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
 #if ! rpm -q libqt3-devel && ! rpm -q lib64qt3-devel && ! rpm -q qt3-devel; then
 #  grpiu dependencies/qt3
 #  eval ${PKGINST} qt3-devel
@@ -98,14 +97,12 @@ grpiud extras/akode
 
 # Build main
 # basic packages
-rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
 grpiud tdelibs
 grpiud tdebase
 # Back to remaining dependencies ...
 grpiud dependencies/tqscintilla
 grpiud dependencies/python-tqt
 # Main packages which are required by later main packages
-rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
 grpiud tdepim
 grpiud tdemultimedia
 grpiud tdegames
@@ -113,7 +110,6 @@ grpiud tdebindings
 grpiud tdegraphics
 grpiud tdenetwork
 # other main packages
-rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
 grpiui tdeaccessibility
 grpiui tdeaddons
 grpiui tdeadmin
@@ -130,7 +126,6 @@ grpiui tdewebdev
 eval ${PKGINST} trinity-desktop-devel
 
 # Build libraries
-rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
 grpiud libraries/libkdcraw
 grpiud libraries/libkexiv2
 grpiud libraries/libkipi
@@ -141,7 +136,6 @@ grpiud libraries/python-trinity
 grpiud libraries/pytdeextensions
 
 # Build applications
-rm -rf "${BUILDDIR}" "${BUILDROOTDIR}"
 # K3B is required later for k9copy
 grpiud applications/k3b
 # other applications, any order ...

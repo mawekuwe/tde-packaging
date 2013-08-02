@@ -161,13 +161,8 @@ cp -f "${COMP}/${SPEC}" "${SOURCEDIR}"
 echo "Copying TARBALL ..."
 cp -fv "${TARBALL}" "${SOURCEDIR}"
 
-if [ $(hostname) = "aria.vtf" ]; then
-	BUILDDIR="$HOME/rpmbuild/BUILD/BUILD${DIST}.$(uname -i)"
-	BUILDROOTDIR="$HOME/rpmbuild/BUILDROOT/BUILDROOT${DIST}.$(uname -i)"
-else
-	BUILDDIR="/dev/shm/BUILD${DIST}.$(uname -i)"
-	BUILDROOTDIR="/dev/shm/BUILDROOT${DIST}.$(uname -i)"
-fi
+BUILDDIR="/dev/shm/BUILD${DIST}.$(uname -i)"
+BUILDROOTDIR="/dev/shm/BUILDROOT${DIST}.$(uname -i)"
 
 TOPSRCRPMDIR="$(rpm -E %_srcrpmdir)"
 TOPRPMDIR="$(rpm -E %_rpmdir)"

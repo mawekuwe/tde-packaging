@@ -12,6 +12,7 @@ export PATH="${PATH}:${TDE_GITBASEPKG}"
 
 # Distribution suffix (e.g: .el6 , .mga3 ...)
 export DIST="$( "${TDE_GITBASEPKG}/rpmdist.sh" --dist )"
+alias dist='~/bin/rpmdist.sh --dist'
 
 # Go to the RPMS folder
 alias cdrpm='cd ~/rpmbuild/RPMS/RPMS${DIST}'
@@ -50,8 +51,16 @@ checknew() {
 }
 
 # Build local repository metadata (Mageia)
-alias cru='(cdrpm; genhdlist2 noarch; genhdlist2 $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
-alias cruc='(cdrpm; genhdlist2 --clean noarch; genhdlist2 --clean $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
+alias cru='(cdrpm; genhdlist2 --allow-empty-media noarch; genhdlist2 $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
+alias cruc='(cdrpm; genhdlist2 --clean --allow-empty-media  noarch; genhdlist2 --clean $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
 
 # Build local repository (RHEL)
 alias cry='(cdrpm; createrepo $(uname -i); createrepo noarch; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
+alias sy='sudo yum localinstall -y --nogpgcheck'
+
+# Build local repository (openSUSE)
+alias crz='(cdrpm; createrepo $(uname -i); createrepo noarch; sudo zypper refresh)'
+
+# Build local repository (PCLOS)
+alias cra='(cdrpm; genpkglist $PWD noarch; genpkglist $PWD i586; genpkglist $PWD x86_64; genbasedir $PWD i586 x86_64 noarch; sudo apt-get update)'
+alias crac='(cdrpm; for i in i586 noarch x86_64; do cd $i; tdesortrpm.sh; cd -; done; rpmsign --addsign */RPMS.*/*.rpm; for i in i586 noarch x86_64; do for j in 3rdparty applications dependencies extras libraries main; do genpkglist $PWD/$i $j; done; done; for i in i586 noarch x86_64; do genbasedir $PWD/$i 3rdparty applications dependencies extras libraries main; done; sudo apt-get update)'
