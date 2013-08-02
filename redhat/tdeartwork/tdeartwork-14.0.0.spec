@@ -35,6 +35,7 @@ Url:		http://www.trinitydesktop.org/
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:			tdeartwork-14.0.0-fix_update_screensaver_list.patch
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -56,11 +57,8 @@ BuildRequires:	nas-devel
 %endif
 
 # LIBART support
-#  On RHEL, libart is too old !
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_libart 1
-BuildRequires:	libart_lgpl-devel
-%endif
+BuildRequires:	trinity-libart-lgpl-devel
 
 # XSCREENSAVER support
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
@@ -431,11 +429,6 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/photopile.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/skytentacles.desktop
 
-# These screensavers do not exist on Mageia 2
-%if 0%{?mgaversion} == 0 && 0%{?mdkversion} == 0
-%{tde_datadir}/applnk/System/ScreenSavers/glmatrix.desktop
-%endif
-
 ##########
 
 %if 0%{?with_webcollage}
@@ -622,15 +615,29 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/xspirograph.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/zoom.desktop
 
-# These screensavers do not exist on OpenSuse 12.2
-%if 0%{?suse_version} == 0
+# These screensavers do not exist on OpenSuse
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %{tde_datadir}/applnk/System/ScreenSavers/vidwhacker.desktop
 %endif
 
-# These screensavers do not exist on Mageia 2 and Mandriva 2011
-%if 0%{?mgaversion} == 0 && 0%{?mdkversion} == 0
+# These screensavers do not exist on Mageia / Mandriva
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+%{tde_datadir}/applnk/System/ScreenSavers/glmatrix.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/xjack.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/xmatrix.desktop
+%endif
+
+%if 0%{?rhel} == 6
+%{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
+%endif
+
+%if 0%{?mgaversion}
+%{tde_datadir}/applnk/System/ScreenSavers/companioncube.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/hilbert.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
 %endif
@@ -645,6 +652,12 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .screenlist
+
+# http://www.trinitydesktop.org/wiki/bin/view/Developers/HowToBuild
+# NOTE: Before building tdeartwork, install any and all xhack screensavers that might be uses, then:
+cd tdescreensaver/kxsconfig/
+./update_hacks.sh
 
 
 %build
@@ -665,12 +678,19 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  \
   %{!?with_xscreensaver:-DWITH_XSCREENSAVER=OFF} \
   %{!?with_libart}:-DWITH_LIBART=OFF} \
   -DWITH_OPENGL=ON \
