@@ -91,11 +91,18 @@ cd build
 %endif
 
 %cmake \
-	-DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
-	-DDATA_INSTALL_DIR=%{tde_datadir} \
-	-DLIB_INSTALL_DIR=%{tde_libdir} \
-	-DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-	..
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+  -DDATA_INSTALL_DIR=%{tde_datadir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  ..
 
 %__make %{?_smp_mflags}
 
@@ -112,9 +119,9 @@ export PATH="%{tde_bindir}:${PATH}"
 %__install -D -m 644 %{SOURCE2} %{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde4
 %__install -D -m 644 %{SOURCE3} %{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde-kde4
 
+
 %clean
 %__rm -rf %{buildroot}
-
 
 
 %files -f %{tde_pkg}.lang
