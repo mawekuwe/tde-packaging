@@ -6,7 +6,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 14.0.0
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -32,7 +34,7 @@
 %endif
 
 Name:    	trinity-tdenetwork
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 Summary:	Trinity Desktop Environment - Network Applications
 
@@ -263,7 +265,7 @@ Requires:		trinity-kdict = %{version}-%{release}
 Requires:		trinity-kopete = %{version}-%{release}
 Requires:		trinity-ksirc = %{version}-%{release}
 Requires:		trinity-librss = %{version}-%{release}
-Requires:		trinity-kdelibs-devel
+Requires:		trinity-tdelibs-devel >= %{tde_version}
 
 Obsoletes:	trinity-kdenetwork-devel < %{version}-%{release}
 Provides:	trinity-kdenetwork-devel = %{version}-%{release}
@@ -493,7 +495,7 @@ update-desktop-database 2> /dev/null || :
 ##########
 
 %package -n trinity-kopete
-Summary:		instant gwenview-i18n/gwenview-i18n-14.0.0.spec:HTML_DIRmessenger for Trinity
+Summary:		instant messenger for Trinity
 Group:			Applications/Internet
 URL:			http://kopete.kde.org
 
@@ -1077,7 +1079,7 @@ update-desktop-database 2> /dev/null || :
 %endif
 
 %build
-unset QTDIRs
+unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
@@ -1094,10 +1096,18 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  \
   -DWITH_JINGLE=ON \
   %{?with_speex:-DWITH_SPEEX=ON} \
   -DWITH_WEBCAM=ON \
@@ -1142,11 +1152,6 @@ EOF
 
 # ktalk
 %__install -p -m 0644 -D  %{SOURCE2} %{buildroot}%{_sysconfdir}/xinetd.d/ktalk
-
-# RHEL 5: Avoids conflict with 'kdenetwork'
-%if 0%{?rhel} == 5
-%__mv -f %{buildroot}%{_sysconfdir}/lisarc %{buildroot}%{_sysconfdir}/lisarc.tde
-%endif
 
 # Avoids conflict with trinity-kvirc
 %__mv -f %{buildroot}%{tde_datadir}/services/irc.protocol %{buildroot}%{tde_datadir}/apps/kopete/
