@@ -43,7 +43,6 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-Patch0:		tdebase-14.0.0-ftbfs.patch
 
 # Pam configuration files for RHEL / Fedora
 %if 0%{?suse_version} == 0
@@ -72,18 +71,21 @@ Source9:	mgabutton.svg
 %endif
 
 # Patch party !
+
+# Permanent patches, all TDE versions
 ## [tdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
 Patch1:		tdebase-14.0.0-open_terminal_here.patch
-## [tdebase/starttde] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
+## [tdebase] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
 Patch2:		tdebase-14.0.0-default_menu_icon.patch
 ## [tdebase/kcontrol] Adds FR translation for KCM ICC
 Patch3:		tdebase-14.0.0-displayconfig_translation.patch
-## [tdebase/kcontrol] Adds default entries for Kickoff menu
+## [tdebase/kicker] Adds default entries for Kickoff menu
 Patch4:		tdebase-14.0.0-kickoff_default_favs.patch
 ## [tdebase] Changes konsole default word separator
 Patch5:		tdebase-14.0.0-konsole_wordseps.patch
-## [tdebase] Fix i18n description loading in 'twin_update_default_rules'
-Patch6:		tdebase-14.0.0-fix_twin_rules_translation.patch
+
+# Permanent patches, this TDE version only
+# None !
 
 # Patches from Mandriva
 Patch101:	tdebase-14.0.0-vibrate_dialog.patch
@@ -95,7 +97,8 @@ Patch106:	tdebase-14.0.0-bookmark_global_copy.patch
 
 # Experimental patches
 Patch201:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
-
+## [tdebase] Fix i18n description loading in 'twin_update_default_rules'
+Patch202:	tdebase-14.0.0-fix_twin_rules_translation.patch
 
 ### Distribution-specific settings ###
 
@@ -1169,7 +1172,7 @@ TDE applications, particularly those in the TDE base module.
 %{tde_bindir}/kcminit
 %{tde_bindir}/kcminit_startup
 %{tde_bindir}/kdcop
-%{tde_bindir}/tdekbdledsync
+%attr(4755,root,root) %{tde_bindir}/tdekbdledsync
 %{tde_bindir}/tdesu
 %attr(0755,root,root) %{tde_bindir}/tdesud
 %{tde_bindir}/kdialog
@@ -1536,6 +1539,7 @@ needed for a basic TDE desktop installation.
 %exclude %{tde_datadir}/sounds/pop.wav
 %{tde_datadir}/sounds/
 %{tde_datadir}/wallpapers/*
+
 # XDG directories information
 %{_sysconfdir}/xdg/menus/applications-merged/tde-essential.menu
 %{_sysconfdir}/xdg/menus/tde-information.menu
@@ -3211,13 +3215,11 @@ Windows and Samba shares.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
 %patch1 -p1 -b .openterminalhere
 %patch2 -p1 -b .startmenuicon
 %patch3 -p1 -b .displayconfigtranslation
 %patch4 -p1 -b .kickoffdefaultsfav
 %patch5 -p1 -b .konsolewordseps
-%patch6 -p1 -b .twintranslation
 
 %patch101 -p1 -b .vibrate_dialog
 %patch102 -p1 -b .kcontrol_menu_entry
@@ -3227,6 +3229,7 @@ Windows and Samba shares.
 %patch106 -p1 -b .bookmark_global_copy
 
 %patch201 -p1 -b .kcmxcursor
+%patch202 -p1 -b .twintranslation
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
@@ -3254,7 +3257,7 @@ Windows and Samba shares.
 %__sed -i "tdm/config.def" \
 	-e "s|Welcome to Trinity |Welcome to %{tde_aboutlabel} |"
 
-# TDE default directory in 'starttde' script (KDEDIR)
+# TDE default directory and icon in startup script
 %__sed -i "starttde" \
 	-e "s|/opt/trinity|%{tde_prefix}|g" \
 	-e "s|%%{tde_starticon}|%{tde_starticon}|g"
@@ -3269,7 +3272,7 @@ Windows and Samba shares.
 
 
 %build
-unset QTDIR
+unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
@@ -3298,6 +3301,7 @@ cd build
   -DCMAKE_CXX_FLAGS="-DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
   \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}" \
@@ -3330,7 +3334,7 @@ cd build
   -DWITH_XINERAMA=ON \
   -DWITH_ARTS=ON \
   -DWITH_I8K=ON \
-  %{?with_hal:-DWITH_HAL=ON} %{?!with_hal:-DWITH_HAL=OFF} \
+  %{?with_hal:-DWITH_HAL=ON} \
   -DWITH_TDEHWLIB=ON \
   -DWITH_UPOWER=ON \
   -DWITH_GCC_VISIBILITY=ON \
