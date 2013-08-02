@@ -40,7 +40,6 @@ Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Patch0:		libtqt-perl-14.0.0-ftbfs.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= %{tde_version}
@@ -95,7 +94,6 @@ It provides an object-oriented interface and is easy to use.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -115,7 +113,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
