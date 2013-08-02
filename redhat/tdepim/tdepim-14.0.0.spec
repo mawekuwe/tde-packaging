@@ -3,8 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
+%define tde_version 14.0.0
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -29,7 +30,7 @@ BuildRequires:	gnokii-devel
 
 
 Name:		trinity-tdepim
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Group:		Applications/Productivity
@@ -53,6 +54,7 @@ BuildRequires:	trinity-tdelibs-devel >= %{version}
 BuildRequires:	trinity-libcaldav-devel
 BuildRequires:	trinity-libcarddav-devel
 
+BuildRequires:	cmake >= 2.8
 BuildRequires:	gpgme-devel
 BuildRequires:	libgpg-error-devel
 BuildRequires:	flex
@@ -2185,7 +2187,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch14 -p1 -b .ldflags
+#patch14 -p1 -b .ldflags
 
 
 %build
@@ -2205,12 +2207,19 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  \
   -DWITH_ARTS=ON \
   -DWITH_SASL=ON \
   -DWITH_NEWDISTRLISTS=ON  \
@@ -2235,6 +2244,7 @@ cd build
 
 %__make %{?_smp_mflags} || %__make
 
+
 %install
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
@@ -2246,5 +2256,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE 14.0.0
