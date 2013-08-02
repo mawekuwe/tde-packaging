@@ -392,6 +392,13 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DDOC_INSTALL_DIR="%{tde_docdir}" \
@@ -399,7 +406,7 @@ cd build
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
-  -DCMAKE_SKIP_RPATH=OFF \
+  \
   -DBUILD_ALL=ON \
   ..
 
