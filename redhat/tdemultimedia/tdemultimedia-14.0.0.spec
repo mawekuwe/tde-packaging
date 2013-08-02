@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -25,8 +27,8 @@
 
 Name:		trinity-tdemultimedia
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
-Version:	14.0.0
-Release:	%{?!preversion:2}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		Applications/Multimedia
@@ -53,9 +55,9 @@ Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 %if "%{?_with_akode}" != ""
 BuildRequires: trinity-akode-devel
@@ -1158,31 +1160,34 @@ if [ -d "/usr/X11R6" ]; then
 fi
 
 %configure  \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --libdir=%{tde_libdir} \
-   --includedir=%{tde_tdeincludedir} \
-   --datadir=%{tde_datadir} \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --with-cdparanoia \
-   --with-flac \
-   --with-theora \
-   --with-vorbis \
-   --with-alsa \
-   --with-gstreamer \
-   --with-lame \
-   --disable-debug \
-   --disable-warnings \
-   --enable-final \
-   --disable-rpath \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --includedir=%{tde_tdeincludedir} \
+  --datadir=%{tde_datadir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  --disable-gcc-hidden-visibility \
+  \
+  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
+  \
+  --with-cdparanoia \
+  --with-flac \
+  --with-theora \
+  --with-vorbis \
+  --with-alsa \
+  --with-gstreamer \
+  --with-lame \
   %{?_with_akode} %{!?_with_akode:--without-akode} \
   %{?_with_musicbrainz} %{!?_with_musicbrainz:--without-musicbrainz} \
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
-  %{?with_xine:--with-xine} %{!?with_xine:--without-xine} \
-   --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
-   --enable-closure
+  %{?with_xine:--with-xine} %{!?with_xine:--without-xine}
 
 %__make %{?_smp_mflags}
 
@@ -1201,5 +1206,5 @@ chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
 
 
 %changelog
-* Mon Jun 17 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
 - Initial release for TDE 14.0.0
