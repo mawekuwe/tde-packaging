@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -19,7 +21,7 @@
 
 
 Name:		trinity-tdegraphics
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPL
@@ -1260,13 +1262,20 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
   -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  \
   %{?with_t1lib:-DWITH_T1LIB=ON} \
   %{?with_paper:-DWITH_LIBPAPER=ON} \
   -DWITH_TIFF=ON \
