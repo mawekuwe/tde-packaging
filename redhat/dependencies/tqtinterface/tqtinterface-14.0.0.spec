@@ -130,19 +130,26 @@ cd build
 %endif
 
 %cmake \
-	-DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
-	-DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
-	-DINCLUDE_INSTALL_DIR=%{tde_includedir}/tqt \
-	-DCMAKE_LIBRARY_PATH="%{tde_libdir}" \
-	-DCMAKE_INCLUDE_PATH="%{tde_includedir}" \
-	-DCMAKE_VERBOSE_MAKEFILE="ON" \
-	-DWITH_QT3="ON" \
-	-DQTDIR="%{tde_datadir}/tqt3" \
-	-DQT_INCLUDE_DIRS="%{tde_includedir}/tqt3" \
-	-DQT_LIBRARY_DIRS="%{tde_libdir}" \
-	-DBUILD_ALL="ON" \
-	-DUSE_QT3="ON" \
-	..
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  -DQTDIR="%{tde_datadir}/tqt3" \
+  -DQT_INCLUDE_DIRS="%{tde_includedir}/tqt3" \
+  -DQT_LIBRARY_DIRS="%{tde_libdir}" \
+  \
+  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
+  -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
+  -DINCLUDE_INSTALL_DIR=%{tde_includedir}/tqt \
+  -DCMAKE_LIBRARY_PATH="%{tde_libdir}" \
+  -DCMAKE_INCLUDE_PATH="%{tde_includedir}" \
+  \
+  -DWITH_QT3="ON" \
+  -DBUILD_ALL="ON" \
+  -DUSE_QT3="ON" \
+  ..
 
 %__make %{?_smp_mflags}
 
