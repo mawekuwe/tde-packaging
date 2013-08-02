@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -19,7 +21,7 @@
 
 Name:			trinity-tdesdk
 Summary:		The Trinity Software Development Kit (SDK)
-Version:		14.0.0
+Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
@@ -1084,13 +1086,20 @@ cd build
 
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="" \
+  -DCMAKE_C_FLAGS="-DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DMAN_INSTALL_DIR=%{tde_mandir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  \
   -DWITH_DBSEARCHENGINE=ON \
   -DWITH_KCAL=ON \
   -DBUILD_ALL=ON \
