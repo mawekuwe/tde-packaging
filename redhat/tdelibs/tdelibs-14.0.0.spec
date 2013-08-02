@@ -35,12 +35,6 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-# Fix FTBFS
-Patch0:		tdelibs-14.0.0-ftbfs.patch
-# Fix categories in T-menu
-Patch1:		tdelibs-14.0.0-fix_xdg_menu.patch
-# Fix battery charge detection
-Patch2:		tdelibs-14.0.0-fix_battery_charge.patch
 # Enable Devkit Power support (older than upower)
 Patch3:		tdelibs-14.0.0-devkitpower_support.patch
 
@@ -257,7 +251,7 @@ BuildRequires:	NetworkManager-glib-devel
 %endif
 
 # Certificates support
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?rhel} || 0%{?fedora}
 %define	cacert %{_sysconfdir}/ssl/certs/ca-certificates.crt
 Requires:		ca-certificates
 %endif
@@ -369,12 +363,11 @@ kimgio (image manipulation).
 %{tde_tdedocdir}/HTML/en/common/*
 %{tde_tdedocdir}/HTML/en/tdespell/
 
-%{_sysconfdir}/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
 %{_sysconfdir}/xdg/menus/tde-applications.menu
 %{_sysconfdir}/xdg/menus/tde-applications.menu-no-kde
 %{_sysconfdir}/ld.so.conf.d/trinity.conf
+%{_sysconfdir}/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
 %{_datadir}/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service
-
 
 %pre
 # TDE Bug #1074
@@ -414,10 +407,10 @@ applications for TDE.
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
 %{tde_libdir}/*.a
-%{tde_libdir}/pkgconfig/tdelibs.pc
 %exclude %{tde_libdir}/libtdeinit_*.la
 %exclude %{tde_libdir}/libtdeinit_*.so
 %{tde_datadir}/cmake/tdelibs.cmake
+%{tde_libdir}/pkgconfig/tdelibs.pc
 
 %post devel
 /sbin/ldconfig || :
@@ -435,9 +428,6 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
-%patch1 -p1 -b .xdg
-%patch2 -p1 -b .batterycharge
 %patch3 -p1 -b .devkitpower
 
 %patch101 -p1 -b .xdg_path
@@ -471,6 +461,7 @@ cd build
   -DCMAKE_CXX_FLAGS="-DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
   \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
@@ -525,12 +516,15 @@ cat <<EOF >"%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf"
 EOF
 %endif
 
+# Use system-wide CA certificate
+%if "%{?cacert}" != ""
+%__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
+%__ln_s "%{cacert}" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
+%endif
+
 # Appends TDE version to '.pc' file
 echo "Version: %{version}" >>"%{?buildroot}%{tde_libdir}/pkgconfig/tdelibs.pc"
 
-# Use system-wide CA certificate
-%__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
-%__ln_s "%{cacert}" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 
 %clean
 %__rm -rf "%{?buildroot}"
