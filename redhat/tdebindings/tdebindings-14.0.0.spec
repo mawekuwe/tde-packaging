@@ -36,7 +36,7 @@ Source91:  filter-requires.sh
 
 Name:			trinity-tdebindings
 Summary:		TDE bindings to non-C++ languages
-Version:		14.0.0
+Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
@@ -1018,6 +1018,7 @@ if [ -d /usr/evolution28 ]; then
   export PKG_CONFIG_PATH="/usr/evolution28/%{_lib}/pkgconfig:${PKG_CONFIG_PATH}"
 fi
 
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -1027,17 +1028,21 @@ fi
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
-  --enable-new-ldflags \
-  --disable-debug --disable-warnings \
+  \
   --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  --disable-gcc-hidden-visibility \
+  \
+  --with-extra-includes=%{_includedir}/tqscintilla \
   --with-extra-libs=%{tde_libdir} \
   --with-pythondir=%{_usr} \
-  --enable-closure \
-  --enable-final \
+  \
   %{?_with_java} %{!?_with_java:--without-java} \
-  %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla} \
-  --with-extra-includes=%{_includedir}/tqscintilla
+  %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla}
 
 # Build dcopperl with specific options
 pushd dcopperl

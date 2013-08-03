@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -20,7 +22,7 @@
 
 Name:			trinity-tdegames
 Summary:		Trinity Desktop Environment - Games
-Version:		14.0.0
+Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
@@ -38,11 +40,11 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	libtool
 
-BuildRequires:	tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
-BuildRequires:	trinity-tdemultimedia-devel >= %{version}
-BuildRequires:	trinity-tqt3-devel
+BuildRequires:	tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
 
 Obsoletes:		trinity-kdegames < %{version}-%{release}
 Provides:		trinity-kdegames = %{version}-%{release}
@@ -101,7 +103,7 @@ Group:		Development/Libraries
 License:	LGPLv2
 
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-tdelibs-devel >= 3.5.13
+Requires:	trinity-tdelibs-devel >= %{tde_version}
 Requires:	trinity-libtdegames-devel = %{version}-%{release}
 Requires:	trinity-atlantik-devel = %{version}-%{release}
 Requires:	trinity-kolf-devel = %{version}-%{release}
@@ -1537,20 +1539,22 @@ if [ -d "/usr/X11R6" ]; then
 fi
 
 %configure \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --libdir=%{tde_libdir} \
-   --datadir=%{tde_datadir} \
-   --includedir=%{tde_tdeincludedir} \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --disable-rpath \
-   --enable-final \
-   --disable-debug \
-   --disable-warnings \
-   --enable-closure \
-   --disable-setgid
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
+  --disable-setgid
 
 # WTF hack for RHEL4
 %if 0%{?rhel} == 4

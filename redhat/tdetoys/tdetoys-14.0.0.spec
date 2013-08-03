@@ -23,7 +23,7 @@
 Summary:	Trinity Desktop Environment - Toys and Amusements
 Name:		trinity-tdetoys
 Group:		Amusements/Graphics
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
@@ -392,9 +392,9 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \

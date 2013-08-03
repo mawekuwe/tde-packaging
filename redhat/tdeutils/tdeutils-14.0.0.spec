@@ -48,9 +48,9 @@ Provides:	trinity-kdeutils-extras = %{version}-%{release}
 Obsoletes:	tdeutils < %{version}-%{release}
 Provides:	tdeutils = %{version}-%{release}
 
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gettext
 BuildRequires:	net-snmp-devel
@@ -997,9 +997,9 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \

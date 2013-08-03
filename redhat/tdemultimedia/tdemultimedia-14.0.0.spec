@@ -1159,6 +1159,7 @@ if [ -d "/usr/X11R6" ]; then
   export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %configure  \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \

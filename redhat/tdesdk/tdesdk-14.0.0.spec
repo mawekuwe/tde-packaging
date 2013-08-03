@@ -1086,9 +1086,9 @@ cd build
 
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
@@ -1115,17 +1115,6 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %__make install DESTDIR=%{?buildroot} -C build
 
-# make symlinks relative
-if [ -d %{buildroot}%{tde_tdedocdir}/HTML/en ]; then
-  pushd %{buildroot}%{tde_tdedocdir}/HTML/en
-  for i in *; do
-     if [ -d $i -a -L $i/common ]; then
-        rm -f $i/common
-        ln -nfs ../common $i
-     fi
-  done
-  popd
-fi
 
 # Installs kdepalettes
 %__install -D -m 644 kdepalettes/kde_xpaintrc %{?buildroot}%{tde_datadir}/kdepalettes

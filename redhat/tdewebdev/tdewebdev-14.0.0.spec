@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -19,7 +21,7 @@
 %define _docdir %{tde_docdir}
 
 Name:		trinity-tdewebdev
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Web development applications 
@@ -43,8 +45,8 @@ Patch1:		kdewebdev-3.5.4-kxsldbg-icons.patch
 
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
-BuildRequires:	trinity-tdelibs-devel >= %{version}
-BuildRequires:	trinity-tdesdk-devel >= %{version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
 BuildRequires:	libxslt-devel
 BuildRequires:	libxml2-devel
 %if 0%{?rhel} == 4
@@ -502,14 +504,12 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-# Do not build against any "/usr" installed KDE
-export KDEDIR="%{tde_prefix}"
-
 # Specific path for RHEL4
 if [ -d "/usr/X11R6" ]; then
   export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -517,11 +517,14 @@ fi
   --datadir=%{tde_datadir} \
   --libdir=%{tde_libdir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
+  --enable-final \
   --enable-closure \
-  --disable-debug --disable-warnings \
-  --disable-dependancy-tracking --enable-final
+  --disable-rpath \
+  --disable-gcc-hidden-visibility
 
 # WTF hack for RHEL4
 %if 0%{?rhel} == 4
@@ -549,17 +552,6 @@ EOF
    rm -rf $i
 done
 cp -a php php.docrc %{buildroot}%{tde_datadir}/apps/quanta/doc/
-
-# make symlinks relative
-pushd %{buildroot}%{tde_tdedocdir}/HTML/en
-for i in *; do
-   if [ -d $i -a -L $i/common ]; then
-      rm -f $i/common
-      ln -nfs ../common $i
-   fi
-done
-popd
-
 
 
 %clean

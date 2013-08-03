@@ -22,7 +22,7 @@
 
 Name:			trinity-tdeartwork
 Summary:		Additional artwork (themes, sound themes, ...) for TDE
-Version:		14.0.0
+Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
@@ -239,8 +239,8 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %files theme-window
 %defattr(-,root,root,-)
-%{tde_tdelibdir}/[kt]win*
-%{tde_datadir}/apps/[kt]win/
+%{tde_tdelibdir}/twin*
+%{tde_datadir}/apps/twin/
 
 ##########
 
@@ -678,9 +678,9 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \

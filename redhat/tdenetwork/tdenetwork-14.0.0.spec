@@ -66,16 +66,18 @@ Patch202:	tdenetwork-3.5.13.2-fix_conflicting_definitions.patch
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gettext
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	coreutils 
 BuildRequires:	openssl-devel
+BuildRequires:	gnutls-devel
+
+# SQLITE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	sqlite3-devel
 %else
 BuildRequires:	sqlite-devel
 %endif
-BuildRequires:	gnutls-devel
 
 # GADU support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
@@ -1096,9 +1098,9 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \

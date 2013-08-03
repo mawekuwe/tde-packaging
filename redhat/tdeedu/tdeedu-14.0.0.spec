@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -19,7 +21,7 @@
 
 Name:			trinity-tdeedu
 Summary:		Educational/Edutainment applications
-Version:		14.0.0
+Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
@@ -36,7 +38,7 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires: autoconf automake libtool m4
 BuildRequires: desktop-file-utils
-BuildRequires: trinity-kdelibs-devel
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: python-devel python
 BuildRequires: boost-devel
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
@@ -1110,9 +1112,9 @@ This package is part of Trinity, as a component of the TDE education module.
 %files -n trinity-libtdeedu3
 %defattr(-,root,root,-)
 %{tde_libdir}/libextdate.so.*
-%{tde_libdir}/lib[kt]deeducore.so.*
-%{tde_libdir}/lib[kt]deeduplot.so.*
-%{tde_libdir}/lib[kt]deeduui.so.*
+%{tde_libdir}/libtdeeducore.so.*
+%{tde_libdir}/libtdeeduplot.so.*
+%{tde_libdir}/libtdeeduui.so.*
 
 %post -n trinity-libtdeedu3
 /sbin/ldconfig || :
@@ -1138,15 +1140,15 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %files -n trinity-libtdeedu-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/lib[kt]deedu/
+%{tde_tdeincludedir}/libtdeedu/
 %{tde_libdir}/libextdate.la
 %{tde_libdir}/libextdate.so
-%{tde_libdir}/lib[kt]deeducore.la
-%{tde_libdir}/lib[kt]deeducore.so
-%{tde_libdir}/lib[kt]deeduui.la
-%{tde_libdir}/lib[kt]deeduui.so
-%{tde_libdir}/lib[kt]deeduplot.la
-%{tde_libdir}/lib[kt]deeduplot.so
+%{tde_libdir}/libtdeeducore.la
+%{tde_libdir}/libtdeeducore.so
+%{tde_libdir}/libtdeeduui.la
+%{tde_libdir}/libtdeeduui.so
+%{tde_libdir}/libtdeeduplot.la
+%{tde_libdir}/libtdeeduplot.so
 
 %post -n trinity-libtdeedu-devel
 /sbin/ldconfig || :
@@ -1327,25 +1329,28 @@ if [ -d "/usr/X11R6" ]; then
   export CFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %configure \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --libdir=%{tde_libdir} \
-   --datadir=%{tde_datadir} \
-   --includedir=%{tde_tdeincludedir} \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --disable-rpath \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  --disable-gcc-hidden-visibility \
+  \
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
    --enable-kig-python-scripting \
 %else
    --disable-kig-python-scripting \
 %endif
-   --disable-debug \
-   --disable-warnings \
-   --enable-final \
-   --enable-closure \
    --enable-ocamlsolver
 
 %__make %{_smp_mflags} \

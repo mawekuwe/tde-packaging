@@ -48,9 +48,9 @@ Patch14:	kdepim-3.5.13-missing_ldflags.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-libcaldav-devel
 BuildRequires:	trinity-libcarddav-devel
 
@@ -62,7 +62,8 @@ BuildRequires:	libical-devel
 BuildRequires:	boost-devel
 BuildRequires:	pcre-devel
 BuildRequires:	glib2-devel
-BuildRequires:	gcc-c++ make
+BuildRequires:	gcc-c++
+BuildRequires:	make
 BuildRequires:	libidn-devel
 
 # CURL support
@@ -1682,14 +1683,14 @@ This is the runtime package for programs that use the trinity-libtdepim library.
 
 %files -n trinity-libtdepim
 %defattr(-,root,root,-)
-%{tde_tdelibdir}/plugins/designer/[kt]depimwidgets.la
-%{tde_tdelibdir}/plugins/designer/[kt]depimwidgets.so
+%{tde_tdelibdir}/plugins/designer/tdepimwidgets.la
+%{tde_tdelibdir}/plugins/designer/tdepimwidgets.so
 %{tde_tdelibdir}/plugins/designer/tdepartsdesignerplugin.la
 %{tde_tdelibdir}/plugins/designer/tdepartsdesignerplugin.so
-%{tde_libdir}/lib[kt]depim.so.*
-%{tde_datadir}/apps/[kt]depimwidgets
-%{tde_datadir}/apps/lib[kt]depim
-%{tde_datadir}/apps/[kt]depim
+%{tde_libdir}/libtdepim.so.*
+%{tde_datadir}/apps/tdepimwidgets
+%{tde_datadir}/apps/libtdepim
+%{tde_datadir}/apps/tdepim
 %{tde_datadir}/config.kcfg/pimemoticons.kcfg
 %{tde_datadir}/icons/crystalsvg/22x22/actions/button_fewer.png
 %{tde_datadir}/icons/crystalsvg/22x22/actions/button_more.png
@@ -1725,9 +1726,9 @@ library.
 
 %files -n trinity-libtdepim-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/[kt]depimmacros.h
-%{tde_libdir}/lib[kt]depim.la
-%{tde_libdir}/lib[kt]depim.so
+%{tde_tdeincludedir}/tdepimmacros.h
+%{tde_libdir}/libtdepim.la
+%{tde_libdir}/libtdepim.so
 
 %post -n trinity-libtdepim-devel
 /sbin/ldconfig || :
@@ -1933,8 +1934,8 @@ libkpimexchange-trinity library.
 
 %files -n trinity-libkpimexchange-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/[kt]depim/exchangeaccount.h
-%{tde_tdeincludedir}/[kt]depim/exchangeclient.h
+%{tde_tdeincludedir}/tdepim/exchangeaccount.h
+%{tde_tdeincludedir}/tdepim/exchangeclient.h
 %{tde_libdir}/libkpimexchange.la
 %{tde_libdir}/libkpimexchange.so
 
@@ -2206,10 +2207,11 @@ fi
 cd build
 %endif
 
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=OFF \

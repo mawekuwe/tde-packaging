@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -19,7 +21,7 @@
 
 Name:		trinity-tdevelop
 Summary:	Integrated Development Environment for C++/C
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
@@ -47,16 +49,16 @@ Requires: %{name}-libs = %{version}-%{release}
 Requires: make
 Requires: perl
 Requires: flex >= 2.5.4
-Requires:	trinity-tqt3-designer
-Requires:	trinity-tqt3-devel
+Requires:	trinity-tqt3-designer >= 3.5.0
+Requires:	trinity-tqt3-devel >= 3.5.0
 Requires: gettext
 Requires: ctags
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
-BuildRequires:	trinity-tdesdk-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
 %if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	db4-devel
 %endif
@@ -65,13 +67,16 @@ BuildRequires:	flex
 # Requires kdesdk3.
 BuildRequires:	subversion-devel
 BuildRequires:	neon-devel
-# looks like this is dragged in by apr-devel (dep of subversion-devel), but not
-# a dependency
+
+# LDAP support
 %if 0%{?suse_version}
 BuildRequires:	openldap2-devel
 %else
 BuildRequires:	openldap-devel
 %endif
+
+#ACL support
+BuildRequires:	libacl-devel
 
 Obsoletes:	trinity-tdevelop < %{version}-%{release}
 Provides:	trinity-tdevelop = %{version}-%{release}
@@ -594,12 +599,20 @@ popd
 cd build
 %endif
 
+# Warning: GCC visibility causes FTBFS [Bug #1285]
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
+  \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  \
   -DWITH_BUILDTOOL_ALL=ON \
   -DWITH_LANGUAGE_ALL=ON \
   -DWITH_VCS_ALL=OFF \

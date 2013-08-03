@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -19,7 +21,7 @@
 
 Name:		trinity-tdeaddons
 Summary:	Trinity Desktop Environment - Plugins
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
@@ -40,14 +42,14 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires: autoconf automake libtool m4
-BuildRequires: trinity-tqt3-devel >= 3.3.8d
-BuildRequires: trinity-arts-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
-BuildRequires: trinity-tdebase-devel >= %{version}
-BuildRequires: trinity-tdegames-devel >= %{version}
-BuildRequires: trinity-tdemultimedia-devel >= %{version}
-BuildRequires: trinity-tdepim-devel >= %{version}
-BuildRequires: trinity-tqtinterface-devel >= %{version}
+BuildRequires: trinity-tqt3-devel >= 3.5.0
+BuildRequires: trinity-arts-devel >= %{tde_version}
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
+BuildRequires: trinity-tdebase-devel >= %{tde_version}
+BuildRequires: trinity-tdegames-devel >= %{tde_version}
+BuildRequires: trinity-tdemultimedia-devel >= %{tde_version}
+BuildRequires: trinity-tdepim-devel >= %{tde_version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
 
 BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
@@ -72,8 +74,6 @@ BuildRequires:	libdb-4_8-devel
 #define with_xmms 1
 #BuildRequires:	xmms-devel
 #%endif
-
-#Requires: which
 
 Requires: trinity-atlantikdesigner = %{version}-%{release}
 Requires: trinity-kaddressbook-plugins = %{version}-%{release}
@@ -700,12 +700,17 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
+  --enable-final \
   --enable-closure \
-  --disable-debug --disable-warnings \
-  --disable-dependency-tracking --enable-final \
+  --disable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
   --with-extra-includes=%{_includedir}/db4:%{_includedir}/libdb4:%{tde_includedir}/arts \
+  \
   %{?with_xmms:--with-xmms} %{?!with_xmms:--without-xmms} \
   --with-sdl \
 %if 0%{?with_db4}

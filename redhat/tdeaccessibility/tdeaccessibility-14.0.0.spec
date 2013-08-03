@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 # TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
@@ -18,29 +20,29 @@
 %define _docdir %{tde_docdir}
 
 
-Summary:	Trinity Desktop Environment - Accessibility
-Name:		trinity-tdeaccessibility
-Version:		14.0.0
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:		Trinity Desktop Environment - Accessibility
+Name:			trinity-tdeaccessibility
+Version:		%{tde_version}
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2
-Group:		User Interface/Desktops
+License:		GPLv2
+Group:			User Interface/Desktops
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
 BuildRequires:	trinity-akode-devel
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
-BuildRequires:	trinity-tdemultimedia-devel >= %{version}
+BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
 
 BuildRequires:	alsa-lib-devel
 
@@ -467,11 +469,15 @@ fi
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
-  --enable-closure \
-  --disable-debug --disable-warnings \
   --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
   --enable-ksayit-audio-plugins \
   --with-akode
   

@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 14.0.0
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_sbindir %{tde_prefix}/sbin
 %define tde_datadir %{tde_prefix}/share
@@ -21,7 +23,7 @@
 
 Name:			trinity-tdeadmin
 Summary:		Administrative tools for TDE
-Version:		14.0.0
+Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
@@ -45,9 +47,9 @@ Source6:		ksysvrc
 Source7:		kuserrc
 
 BuildRequires: autoconf automake libtool m4
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-arts-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= %{tde_version}
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: rpm-devel
 BuildRequires: pam-devel
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -391,23 +393,28 @@ if [ -d /usr/X11R6 ]; then
 fi
 
 %configure \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --sbindir=%{tde_sbindir} \
-   --libdir=%{tde_libdir} \
-   --datadir=%{tde_datadir} \
-   --includedir=%{tde_tdeincludedir} \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --disable-rpath \
-   --with-rpm \
-   --with-pam=kde \
-   --with-shadow \
-   --with-private-groups \
-   --enable-final \
-   --enable-closure \
-   --with-private-groups
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --sbindir=%{tde_sbindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
+  --with-extra-includes=%{tde_includedir}/tqt \
+  \
+  --with-rpm \
+  --with-pam=kde \
+  --with-shadow \
+  --with-private-groups
 
 %__make %{?_smp_mflags}
 
