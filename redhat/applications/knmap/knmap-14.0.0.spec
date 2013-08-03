@@ -78,15 +78,20 @@ export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--prefix=%{tde_prefix} \
-	--exec-prefix=%{tde_prefix} \
-	--disable-dependency-tracking \
-	--disable-rpath \
-	--bindir=%{tde_bindir} \
-	--libdir=%{tde_libdir} \
-	--datadir=%{tde_datadir} \
-	--includedir=%{tde_tdeincludedir} \
-	--enable-closure
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --disable-rpath \
+  --enable-gcc-hidden-visibility
   
 %__make %{?_smp_mflags}
 
@@ -118,7 +123,7 @@ done
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING README ChangeLog
 %{tde_bindir}/knmap
-%{tde_datadir}/applnk/Utilities/knmap.desktop
+%{tde_datadir}/applnk/Internet/knmap.desktop
 %{tde_datadir}/apps/knmap/knmapui.rc
 %{tde_datadir}/apps/knmap/nmap_manpage.html
 %{tde_datadir}/apps/knmap/nmap_manpage.html.diff

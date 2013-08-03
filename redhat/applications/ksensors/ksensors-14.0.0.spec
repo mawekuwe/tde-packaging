@@ -75,16 +75,22 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
+# Warning: --enable-final causes FTBFS
 %configure \
-	--prefix=%{tde_prefix} \
-	--exec-prefix=%{tde_prefix} \
-	--disable-dependency-tracking \
-	--disable-rpath \
-	--bindir=%{tde_bindir} \
-	--libdir=%{tde_libdir} \
-	--datadir=%{tde_datadir} \
-	--includedir=%{tde_tdeincludedir} \
-	--enable-closure
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
+  --enable-closure \
+  --disable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
