@@ -2,6 +2,8 @@
 %define tde_prefix /usr
 %define cmake_modules_dir %{_datadir}/cmake/Modules
 
+%define tde_version 14.0.0
+
 # TQT include files may conflict with QT4 includes, so we move them to a subdirectory.
 # Later compiled Trinity products should be aware of that !
 %define tde_bindir %{tde_prefix}/bin
@@ -9,7 +11,7 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-tqtinterface
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
@@ -23,7 +25,6 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-# TDE 3.5.13 specific building variables
 BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 Requires:		trinity-tqt3 >= 3.5.0
@@ -122,7 +123,7 @@ Development files for %{name}
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
 %build
-unset QTDIR
+unset QTDIR QTINC QTLIB
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
@@ -130,12 +131,13 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
+  \
   -DQTDIR="%{tde_datadir}/tqt3" \
   -DQT_INCLUDE_DIRS="%{tde_includedir}/tqt3" \
   -DQT_LIBRARY_DIRS="%{tde_libdir}" \

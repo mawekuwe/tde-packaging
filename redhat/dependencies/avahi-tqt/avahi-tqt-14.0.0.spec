@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 14.0.0
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_datadir %{tde_prefix}/share
@@ -12,7 +14,7 @@
 
 
 Name:		trinity-avahi-tqt
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Avahi TQT Interface
@@ -30,33 +32,33 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	gcc-c++
 BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
 
 # DBUS support
 %if 0%{?suse_version}
 BuildRequires:	dbus-1-devel
-%else
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	dbus-devel
 %endif
 
+# AVAHI support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
-%if 0%{?pclinuxos}
-BuildRequires:	libexpat-devel
-%else
-# On Mageia 2, package is 'lib64expat1-devel', but on Mandriva, 'lib64expat-devel'
-BuildRequires:	%{_lib}expat%{?mgaversion:1}-devel
-%endif
 Provides:		%{_lib}avahi-qt3
-%else
+%endif
+%if 0%{?suse_version} || 0%{?rhel} || 0%{?fedora}
 BuildRequires:	avahi-devel
-%if 0%{?suse_version}
-BuildRequires:	libexpat-devel
-%else
+%endif
+
+# EXPAT support
+%if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	expat-devel
 %endif
+%if 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libexpat-devel
 %endif
 
 Requires:		trinity-tqt3 >= 3.5.0
@@ -94,10 +96,12 @@ Development files for %{name}
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
+unset QTDIR QTINC QTLIB
+./autogen.sh
+
 
 %build
-unset QTDIR
-./autogen.sh
+unset QTDIR QTINC QTLIB
 
 %configure \
   --exec-prefix=%{tde_prefix} \
@@ -106,11 +110,15 @@ unset QTDIR
   --docdir=%{tde_docdir} \
   --includedir=%{tde_includedir} \
   --libdir=%{tde_libdir} \
+  \
+  --disable-static \
+  --disable-dependency-tracking \
+  \
   --enable-compat-libdns_sd \
-  --with-systemdsystemunitdir=/lib/systemd/system \
-  --disable-static
+  --with-systemdsystemunitdir=/lib/systemd/system
 
 %__make %{?_smp_mflags}
+
 
 %install
 %__rm -rf %{?buildroot}
@@ -145,5 +153,5 @@ unset QTDIR
 %{tde_libdir}/pkgconfig/avahi-tqt.pc
 
 %changelog
-* Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial release for TDE R14, using 'tqt3' instead of 'qt3'
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE 14.0.0

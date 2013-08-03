@@ -174,5 +174,5 @@ done
 %{tde_docdir}/HTML/en/%{name}
 
 %changelog
-* Tue Jul 02 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.1-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.1-1
 - Initial release for TDE 14.0.0

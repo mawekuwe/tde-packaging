@@ -156,11 +156,14 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
+  --enable-final \
   --enable-closure \
-  --disable-debug --disable-warnings \
-  --enable-final
+  --disable-rpath \
+  --enable-gcc-hidden-visibility
   
 %__make %{?_smp_mflags}
 

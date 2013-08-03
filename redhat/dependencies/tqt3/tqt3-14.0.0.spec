@@ -534,7 +534,8 @@ echo yes | ./configure \
 						\
 		-lfontconfig			\
 		-inputmethod			\
-		-glibmainloop
+		-glibmainloop \
+		-debug
 
 
 # Fix bad headers

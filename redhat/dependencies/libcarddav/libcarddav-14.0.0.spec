@@ -25,7 +25,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-
+# CURL support
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version}
 BuildRequires:	libcurl-devel
 %else
@@ -76,26 +76,29 @@ Provides:	libcarddav-devel = %{version}-%{release}
 
 %build
 # CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
-export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${CFLAGS}"
+export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${RPM_OPT_FLAGS}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
+# RHEL4 stuff
 if [ -d /usr/evolution28 ]; then
   export PKG_CONFIG_PATH="/usr/evolution28/%{_lib}/pkgconfig:${PKG_CONFIG_PATH}"
 fi
 
-#autoreconf --force --install --symlink
-
 %configure \
   --includedir=%{tde_includedir} \
   --libdir=%{tde_libdir} \
-  
-%__make %{?_smp_mflags} LIBTOOL=$(which libtool)
+  \
+  --disable-dependency-tracking
+
+%__make %{?_smp_mflags}
+
 
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} LIBTOOL=$(which libtool)
 
 %__rm -f %{buildroot}%{tde_libdir}/libcarddav.a
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -126,9 +129,12 @@ fi
 
 
 %Changelog
-* Sun Jul 28 2012 Francois Andriot <francois.andriot@free.fr> - 0.6.5-3
-- Renames to 'trinity-libcaldav'
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.3-4
+- Initial release for TDE R14.0.0
+
+* Sun Jul 28 2012 Francois Andriot <francois.andriot@free.fr> - 0.6.2-3
+- Renames to 'trinity-libcarddav'
 - Build on MGA2
 
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2 .1
+* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.2-2
 - Initial release for RHEL 6, RHEL 5, and Fedora 15

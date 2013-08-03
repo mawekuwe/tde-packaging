@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 14.0.0
+
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -13,7 +15,7 @@
 %define _docdir %{tde_datadir}/doc
 
 Name:		trinity-arts
-Version:	14.0.0
+Version:	%{tde_version}
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the TDE sound system
@@ -30,7 +32,7 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	audiofile-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	glib2-devel
@@ -202,20 +204,26 @@ Requires:	%{name} = %{version}-%{release}
 cd build
 %endif
 
-%cmake \
+%cmake .. \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}/arts" \
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
-  -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
+  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
+  \
   -DWITH_ALSA=ON \
   -DWITH_AUDIOFILE=ON \
   -DWITH_VORBIS=ON \
   %{?with_libmad:-DWITH_MAD=ON} %{!?with_libmad:-DWITH_MAD=OFF} \
   %{?with_esound:-DWITH_ESOUND=ON} \
-  %{?with_jack:-DWITH_JACK=ON} \
-  -DCMAKE_SKIP_RPATH=OFF \
-  ..
+  %{?with_jack:-DWITH_JACK=ON}
 
 %__make %{?_smp_mflags} || %__make
 

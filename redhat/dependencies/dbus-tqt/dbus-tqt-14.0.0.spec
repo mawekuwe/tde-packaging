@@ -109,6 +109,13 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   ..
@@ -126,5 +133,5 @@ cd build
 
 
 %changelog
-* Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial release for TDE 14.0.0
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial release for TDE R14.0.0

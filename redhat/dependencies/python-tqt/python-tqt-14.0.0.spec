@@ -154,7 +154,7 @@ cp -rf ../pyuic3 ../pylupdate3 .
 
 echo yes | python ../configure.py \
 	-c -n %{_includedir}/tqscintilla \
-	-q /usr/share/tqt3 \
+	-q %{_datadir}/tqt3 \
 	-y tqt-mt \
 	-o %{_libdir} -u -j 10 \
 	-d %{python_sitearch} \
@@ -178,5 +178,5 @@ echo yes | python ../configure.py \
 
 
 %changelog
-* Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial release for TDE R14, using 'tqt3' instead of 'qt3'
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.18.1-1
+- Initial release for TDE R14.0.0

@@ -78,7 +78,7 @@ Provides:	libcaldav-devel = %{version}-%{release}
 
 %build
 # CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
-export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${CFLAGS}"
+export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${RPM_OPT_FLAGS}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 if [ -d /usr/evolution28 ]; then
@@ -89,7 +89,9 @@ fi
   --docdir=%{tde_docdir}/libcaldav \
   --includedir=%{tde_includedir} \
   --libdir=%{tde_libdir} \
-  
+  \
+  --disable-dependency-tracking
+
 %__make %{?_smp_mflags}
 
 %install
@@ -97,6 +99,7 @@ fi
 %__make install DESTDIR=%{buildroot}
 
 %__rm -f %{buildroot}%{tde_libdir}/*.a
+
 
 %clean
 %__rm -rf %{buildroot}
