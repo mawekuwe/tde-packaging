@@ -1,11 +1,10 @@
-# Always build under "/usr"
-%define cmake_modules_dir %{_datadir}/cmake/Modules
-
+# TDE specific building variables
 %define tde_version 14.0.0
 %define tde_prefix /usr
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
+%define cmake_modules_dir %{_datadir}/cmake/Modules
 
 Name:		trinity-tqtinterface
 Version:	%{tde_version}
