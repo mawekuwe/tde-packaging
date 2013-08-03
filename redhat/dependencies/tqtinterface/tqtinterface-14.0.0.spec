@@ -1,11 +1,8 @@
 # Always build under "/usr"
-%define tde_prefix /usr
 %define cmake_modules_dir %{_datadir}/cmake/Modules
 
 %define tde_version 14.0.0
-
-# TQT include files may conflict with QT4 includes, so we move them to a subdirectory.
-# Later compiled Trinity products should be aware of that !
+%define tde_prefix /usr
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}

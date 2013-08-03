@@ -1,20 +1,13 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%endif
-
-%define tde_version 14.0.0
-
 # TDE specific building variables
-%define tde_bindir %{tde_prefix}/bin
+%define tde_version 14.0.0
+%define tde_prefix /usr
 %define tde_includedir %{tde_prefix}/include
-%define tde_datadir %{tde_prefix}/share
-%define tde_docdir %{tde_datadir}/doc
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 
 Name:		trinity-avahi-tqt
-Version:	%{tde_version}
+Epoch:		1
+Version:	0.6.30
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Avahi TQT Interface
@@ -27,7 +20,7 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	gcc-c++
 BuildRequires:	cmake >= 2.8
@@ -62,10 +55,10 @@ BuildRequires:	libexpat-devel
 %endif
 
 Requires:		trinity-tqt3 >= 3.5.0
-Requires:		trinity-tqtinterface >= %{version}
+Requires:		trinity-tqtinterface >= %{tde_version}
 
-Obsoletes:		avahi-tqt < %{version}-%{release}
-Provides:		avahi-tqt = %{version}-%{release}
+Obsoletes:		avahi-tqt < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		avahi-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 
 %description
@@ -73,16 +66,16 @@ Avahi TQT Interface
 
 
 %package devel
-Requires:	%{name}
 Summary:	%{name} - Development files
 Group:		Development/Libraries
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 Provides:		%{_lib}avahi-qt3-devel
 %endif
 
-Obsoletes:		avahi-tqt-devel < %{version}-%{release}
-Provides:		avahi-tqt-devel = %{version}-%{release}
+Obsoletes:		avahi-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		avahi-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 Development files for %{name}
@@ -94,9 +87,7 @@ Development files for %{name}
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-
-unset QTDIR QTINC QTLIB
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 ./autogen.sh
 
 
@@ -153,5 +144,5 @@ unset QTDIR QTINC QTLIB
 %{tde_libdir}/pkgconfig/avahi-tqt.pc
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.30-1
 - Initial release for TDE 14.0.0

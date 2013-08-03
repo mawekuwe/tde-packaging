@@ -15,7 +15,8 @@
 %define _docdir %{tde_datadir}/doc
 
 Name:		trinity-arts
-Version:	%{tde_version}
+Epoch:		1
+Version:	1.5.10
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the TDE sound system
@@ -28,7 +29,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
 BuildRequires:	cmake >= 2.8
@@ -89,10 +90,7 @@ BuildRequires:		libmad-devel
 %define with_pulseaudio 1
 %endif
 
-# TDE 3.5.13 specific building variables
-BuildRequires: cmake >= 2.8
-
-Requires:		trinity-tqtinterface >= %{version}
+Requires:		trinity-tqtinterface >= %{tde_version}
 Requires:		audiofile
 
 %if "%{?tde_prefix}" == "/usr"
@@ -141,7 +139,7 @@ playing a wave file with some effects.
 %package devel
 Group:		Development/Libraries
 Summary:	%{name} - Development files
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if "%{?tde_prefix}" == "/usr"
 Obsoletes:	arts-devel
 %endif
@@ -174,7 +172,7 @@ Development files for %{name}
 %package config-pulseaudio
 Group:		System Environment/Daemons
 Summary:	%{name} - Default configuration file for Pulseaudio
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description config-pulseaudio
 %{summary}
@@ -195,7 +193,7 @@ Requires:	%{name} = %{version}-%{release}
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 
 %build
@@ -204,11 +202,11 @@ Requires:	%{name} = %{version}-%{release}
 cd build
 %endif
 
-%cmake .. \
+%cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
-  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
   \
@@ -223,7 +221,8 @@ cd build
   -DWITH_VORBIS=ON \
   %{?with_libmad:-DWITH_MAD=ON} %{!?with_libmad:-DWITH_MAD=OFF} \
   %{?with_esound:-DWITH_ESOUND=ON} \
-  %{?with_jack:-DWITH_JACK=ON}
+  %{?with_jack:-DWITH_JACK=ON} \
+  ..
 
 %__make %{?_smp_mflags} || %__make
 
@@ -243,5 +242,5 @@ cd build
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.5.10-1
 - Initial release for TDE R14.0.0

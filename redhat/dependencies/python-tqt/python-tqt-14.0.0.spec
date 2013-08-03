@@ -1,9 +1,7 @@
 %{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
+
 %define tde_version 14.0.0
-
-# Always install under standard prefix
 %define tde_prefix /usr
-
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -91,7 +89,7 @@ Requires:	%{name} = %{version}-%{release}
 %description tqtext
 PyQt Extensions. Contains:
 
-* QScintilla: a featureful TQt source code editing component based
+* TQScintilla: a featureful TQt source code editing component based
               on Scintilla.
 
 %files tqtext
@@ -119,12 +117,12 @@ Linguist translation files from Python code.
 %package devel
 Summary:	TQt bindings for Python - Development files
 Requires:	%{name} = %{version}-%{release}
-Requires:	%{name}-tools = %{version}-%{release}
+Requires:	trinity-pytqt-tools = %{version}-%{release}
 
 %description devel
 Development .sip files with definitions of PyQt classes. They
 are needed to build PyQt, but also as building blocks of other
-packages based on them, like PyKDE.
+packages based on them, like PyTDE.
 
 %files devel
 %defattr(-,root,root,-)

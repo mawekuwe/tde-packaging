@@ -1,11 +1,12 @@
-# Always install under standard prefix
+# TDE specific building variables
+%define tde_version 14.0.0
 %define tde_prefix /usr
-
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-dbus-tqt
-Version:	14.0.0
+Epoch:		1
+Version:	0.63
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Dbus TQT Interface
@@ -17,7 +18,7 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # [dbus-tqt] Fix build on RHEL 4
 Patch1:		dbus-tqt-3.5.13-fix_old_dbus_types.patch
@@ -30,14 +31,12 @@ BuildRequires:	dbus-devel
 %endif
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 
-# TDE 3.5.13 specific building variables
 BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
-
 Requires:		trinity-tqt3 >= 3.5.0
 
-Obsoletes:		dbus-tqt < %{version}-%{release}
-Provides:		dbus-tqt = %{version}-%{release}
+Obsoletes:		dbus-tqt < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		dbus-tqt = %{?epoch:%{epoch}:}%{version}-%{release}
 
 
 %description
@@ -61,8 +60,8 @@ Requires:		%{name}
 Summary:		%{name} - Development files
 Group:			Development/Libraries
 
-Obsoletes:		dbus-tqt-devel < %{version}-%{release}
-Provides:		dbus-tqt-devel = %{version}-%{release}
+Obsoletes:		dbus-tqt-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:		dbus-tqt-devel = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 Development files for %{name}
@@ -88,7 +87,7 @@ Development files for %{name}
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %if 0%{?rhel} == 4
 %patch1 -p1 -b .dbustypes
@@ -133,5 +132,5 @@ cd build
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.63-1
 - Initial release for TDE R14.0.0

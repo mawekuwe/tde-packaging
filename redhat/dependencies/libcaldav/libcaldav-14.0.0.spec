@@ -94,10 +94,12 @@ fi
 
 %__make %{?_smp_mflags}
 
+
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# Unwanted files
 %__rm -f %{buildroot}%{tde_libdir}/*.a
 
 
