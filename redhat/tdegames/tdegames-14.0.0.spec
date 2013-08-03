@@ -136,8 +136,8 @@ This package is part of TDE, and a component of the TDE games module.
 
 %files -n trinity-libtdegames1
 %defattr(-,root,root,-)
-%{tde_libdir}/lib[kt]degames.so.*
-%{tde_datadir}/apps/[kt]degames/pics/star.png
+%{tde_libdir}/libtdegames.so.*
+%{tde_datadir}/apps/tdegames/pics/star.png
 %{tde_datadir}/icons/crystalsvg/*/actions/roll.png
 %{tde_datadir}/icons/crystalsvg/*/actions/highscore.png
 #%{tde_tdedocdir}/HTML/en/%{name}-%{version}-apidocs/
@@ -173,8 +173,8 @@ This package is part of Trinity, and a component of the TDE games module.
 %defattr(-,root,root,-)
 %{tde_tdeincludedir}/*.h
 %{tde_tdeincludedir}/kgame
-%{tde_libdir}/lib[kt]degames.so
-%{tde_libdir}/lib[kt]degames.la
+%{tde_libdir}/libtdegames.so
+%{tde_libdir}/libtdegames.la
 
 ##########
 
@@ -876,8 +876,8 @@ This package is part of Trinity, and a component of the TDE games module.
 %{tde_datadir}/icons/hicolor/*/apps/kolf.png
 %{tde_datadir}/mimelnk/application/x-kolf.desktop
 %{tde_datadir}/mimelnk/application/x-kourse.desktop
-%{tde_libdir}/lib[kt]deinit_kolf.so
-%{tde_libdir}/lib[kt]deinit_kolf.la
+%{tde_libdir}/libtdeinit_kolf.so
+%{tde_libdir}/libtdeinit_kolf.la
 %{tde_tdelibdir}/kolf.la
 %{tde_tdelibdir}/kolf.so
 %{tde_libdir}/libkolf.so.1
@@ -1448,13 +1448,13 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %files -n trinity-twin4
 %defattr(-,root,root,-)
-%{tde_bindir}/[kt]win4
-%{tde_bindir}/[kt]win4proc
-%{tde_datadir}/apps/[kt]win4/
-%{tde_datadir}/config.kcfg/[kt]win4.kcfg
-%{tde_datadir}/icons/hicolor/*/apps/[kt]win4.png
-%{tde_tdeappdir}/[kt]win4.desktop
-%{tde_tdedocdir}/HTML/en/[kt]win4/
+%{tde_bindir}/twin4
+%{tde_bindir}/twin4proc
+%{tde_datadir}/apps/twin4/
+%{tde_datadir}/config.kcfg/twin4.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/twin4.png
+%{tde_tdeappdir}/twin4.desktop
+%{tde_tdedocdir}/HTML/en/twin4/
 
 %post -n trinity-twin4
 for f in hicolor ; do

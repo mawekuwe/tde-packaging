@@ -135,8 +135,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-cervisia
 %{tde_bindir}/cervisia
-%{tde_libdir}/lib[kt]deinit_cervisia.la
-%{tde_libdir}/lib[kt]deinit_cervisia.so
+%{tde_libdir}/libtdeinit_cervisia.la
+%{tde_libdir}/libtdeinit_cervisia.so
 %{tde_tdelibdir}/cervisia.la
 %{tde_tdelibdir}/cervisia.so
 %{tde_tdelibdir}/libcervisiapart.la
@@ -599,7 +599,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/svnrevertlast
 %{tde_bindir}/svnforwardport
 %{tde_bindir}/nonsvnlist
-%{tde_bindir}/[kt]desvn-build
+%{tde_bindir}/tdesvn-build
 %{tde_bindir}/svnlastlog
 %{tde_bindir}/svnversions
 %{tde_bindir}/create_svnignore
@@ -610,15 +610,15 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/svngettags
 %{tde_bindir}/svnchangesince
 %{tde_bindir}/svn-clean
-%{tde_datadir}/apps/katepart/syntax/[kt]desvn-buildrc.xml
+%{tde_datadir}/apps/katepart/syntax/tdesvn-buildrc.xml
 %{tde_mandir}/man1/cvsblame.1
 %{tde_mandir}/man1/cvscheck.1
 %{tde_mandir}/man1/cvsversion.1
 %{tde_mandir}/man1/kde-build.1
 %{tde_mandir}/man1/includemocs.1
 %{tde_mandir}/man1/noncvslist.1
-%{tde_mandir}/man1/[kt]desvn-build.1
-%{tde_tdedocdir}/HTML/en/[kt]desvn-build/
+%{tde_mandir}/man1/tdesvn-build.1
+%{tde_tdedocdir}/HTML/en/tdesvn-build/
 #scripts/kde-devel-gdb /opt/trinity/share/tdesdk-scripts
 #scripts/kde-devel-vim.vim /opt/trinity/share/tdesdk-scripts
 #scripts/kde-emacs/*.el /opt/trinity/share/emacs/site-lisp/tdesdk-scripts
@@ -801,8 +801,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/cvsaskpass
 %{tde_bindir}/cvsservice
 %{tde_libdir}/libcvsservice.so.*
-%{tde_libdir}/lib[kt]deinit_cvsaskpass.so
-%{tde_libdir}/lib[kt]deinit_cvsservice.so
+%{tde_libdir}/libtdeinit_cvsaskpass.so
+%{tde_libdir}/libtdeinit_cvsservice.so
 %{tde_tdelibdir}/cvsaskpass.la
 %{tde_tdelibdir}/cvsaskpass.so
 %{tde_tdelibdir}/cvsservice.la
@@ -839,8 +839,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdeincludedir}/repository_stub.h
 %{tde_libdir}/libcvsservice.la
 %{tde_libdir}/libcvsservice.so
-%{tde_libdir}/lib[kt]deinit_cvsaskpass.la
-%{tde_libdir}/lib[kt]deinit_cvsservice.la
+%{tde_libdir}/libtdeinit_cvsaskpass.la
+%{tde_libdir}/libtdeinit_cvsservice.la
 %{tde_datadir}/cmake/cervisia.cmake
 
 %post -n trinity-libcvsservice-devel

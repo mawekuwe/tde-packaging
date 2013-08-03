@@ -299,8 +299,8 @@ This package is part of Trinity, and a component of the TDE toys module.
 %defattr(-,root,root,-)
 %{tde_bindir}/kweatherservice
 %{tde_bindir}/kweatherreport
-%{tde_libdir}/lib[kt]deinit_kweatherreport.so
-%{tde_libdir}/lib[kt]deinit_kweatherreport.la
+%{tde_libdir}/libtdeinit_kweatherreport.so
+%{tde_libdir}/libtdeinit_kweatherreport.la
 %{tde_tdelibdir}/kcm_weather.so
 %{tde_tdelibdir}/kcm_weather.la
 %{tde_tdelibdir}/kcm_weatherservice.so
