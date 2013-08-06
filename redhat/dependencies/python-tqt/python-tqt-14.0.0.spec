@@ -38,7 +38,6 @@ BuildRequires:	python-sip
 %endif
 
 # TDE specific building variables
-BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 Requires:		trinity-tqt3 >= 3.5.0
 

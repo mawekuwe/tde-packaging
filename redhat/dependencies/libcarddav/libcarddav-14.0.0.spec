@@ -71,10 +71,14 @@ Provides:	libcarddav-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+# Fix empty ChangeLog cause invalid macro in 'configure.ac'
+echo "%{name} (%{version})" >ChangeLog
 ./autogen.sh
 
 
 %build
+unset QTDIR QTINC QTLIB
+
 # CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
 export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${RPM_OPT_FLAGS}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
@@ -129,10 +133,10 @@ fi
 
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.3-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.2-4
 - Initial release for TDE R14.0.0
 
-* Sun Jul 28 2012 Francois Andriot <francois.andriot@free.fr> - 0.6.2-3
+* Sat Jul 28 2012 Francois Andriot <francois.andriot@free.fr> - 0.6.2-3
 - Renames to 'trinity-libcarddav'
 - Build on MGA2
 

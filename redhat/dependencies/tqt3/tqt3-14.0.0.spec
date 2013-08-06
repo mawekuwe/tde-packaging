@@ -434,8 +434,10 @@ for the TQt 3 toolkit.
   -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= /usr/include/tqt3|" \
   -e "s|\$(QTDIR)|/usr|g" \
   -e "s|-lqt|-ltqt|g" \
+  -e "s|^QMAKE_INCDIR		=.*|QMAKE_INCDIR		= %{_includedir}|" \
+  -e "s|^QMAKE_LIBDIR		=.*|QMAKE_LIBDIR		= %{_libdir}|" \
   -e "s|^QMAKE_STRIP             =.*|QMAKE_STRIP             =|" \
-  -e "s|^QMAKE_STRIPFLAGS_LIB 	+=.*|QMAKE_STRIPFLAGS_LIB 	+=|"
+  -e "s|^QMAKE_STRIPFLAGS_LIB 	+=.*|QMAKE_STRIPFLAGS_LIB 	+=|" \
 
 
 %build

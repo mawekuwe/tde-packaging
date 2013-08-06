@@ -23,7 +23,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	gcc-c++
-BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	gettext-devel
@@ -96,9 +95,6 @@ unset QTDIR QTINC QTLIB
 
 %configure \
   --exec-prefix=%{tde_prefix} \
-  --bindir=%{tde_bindir} \
-  --datadir=%{tde_datadir} \
-  --docdir=%{tde_docdir} \
   --includedir=%{tde_includedir} \
   --libdir=%{tde_libdir} \
   \
