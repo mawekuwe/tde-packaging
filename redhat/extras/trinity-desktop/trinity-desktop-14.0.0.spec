@@ -136,12 +136,14 @@ Requires: trinity-konversation
 Requires: trinity-kopete-otr
 Requires: trinity-kpicosim
 Requires: trinity-kpilot
+Requires: trinity-krecipes
 Requires: trinity-krename
 Requires: trinity-krusader
 Requires: trinity-ksensors
 Requires: trinity-ksplash-engine-moodin
 Requires: trinity-ksquirrel
 Requires: trinity-kshowmail
+Requires: trinity-kshutdown
 Requires: trinity-kstreamripper
 Requires: trinity-ksystemlog
 Requires: trinity-ktechlab
@@ -173,6 +175,7 @@ Requires: trinity-tdesudo
 Requires: trinity-tdesvn
 Requires: trinity-tdmtheme
 Requires: trinity-tellico
+Requires: trinity-tork
 Requires: trinity-twin-style-crystal
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
@@ -223,7 +226,6 @@ Requires:	trinity-kickoff-i18n
 Requires:	trinity-style-ia-ora
 #Requires:	trinity-tdeio-sysinfo-plugin
 Requires:	trinity-theme-baghira
-Requires:	trinity-tork
 
 
 # GLIBC too old on RHEL <= 5

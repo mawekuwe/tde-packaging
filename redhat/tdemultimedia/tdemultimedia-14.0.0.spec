@@ -56,7 +56,7 @@ Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 %if "%{?_with_akode}" != ""
@@ -1070,7 +1070,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 Summary:	Development files for %{name}, aRts and noatun plugins
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-tdelibs-devel >= 3.5.13
+Requires:	trinity-tdelibs-devel >= %{tde_version}
 
 Obsoletes:	trinity-kdemultimedia-devel < %{version}-%{release}
 Provides:	trinity-kdemultimedia-devel = %{version}-%{release}
@@ -1173,7 +1173,7 @@ fi
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
   --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \

@@ -301,6 +301,18 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmiccconfig.po tde-i18n-fr/messages
 +msgid "Rotate screen by:"
 +msgstr "Rotation:"
 +
+diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmkeys.po tde-i18n-fr/messages/tdebase/kcmkeys.po
+--- tde-i18n-fr.ORI/messages/tdebase/kcmkeys.po	2013-07-26 17:53:39.998658707 +0200
++++ tde-i18n-fr/messages/tdebase/kcmkeys.po	2013-07-30 19:07:57.740589937 +0200
+@@ -798,3 +798,8 @@
+ #: ../../kxkb/kxkbbindings.cpp:10
+ msgid "Switch to Next Keyboard Layout"
+ msgstr "Passer à la disposition de clavier suivante"
++
++# TDE
++msgid "Use Win key as modifier (uncheck to bind Win key to Menu)"
++msgstr "Utiliser la touche Windows comme touche morte (décocher pour qu'elle affiche le menu)"
++
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmkicker.po tde-i18n-fr/messages/tdebase/kcmkicker.po
 --- tde-i18n-fr.ORI/messages/tdebase/kcmkicker.po	2013-07-26 17:53:39.997658734 +0200
 +++ tde-i18n-fr/messages/tdebase/kcmkicker.po	2013-07-26 19:03:14.389313481 +0200
@@ -868,7 +880,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcontrol.po tde-i18n-fr/messages/tde
  msgid "Current Maintainer"
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kdesktop.po tde-i18n-fr/messages/tdebase/kdesktop.po
 --- tde-i18n-fr.ORI/messages/tdebase/kdesktop.po	2013-07-26 17:53:39.996658761 +0200
-+++ tde-i18n-fr/messages/tdebase/kdesktop.po	2013-07-26 17:53:51.199360249 +0200
++++ tde-i18n-fr/messages/tdebase/kdesktop.po	2013-07-30 18:33:19.477513086 +0200
 @@ -553,6 +553,36 @@
  "</ul>\n"
  "</qt>"
@@ -906,19 +918,19 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kdesktop.po tde-i18n-fr/messages/tde
  #. i18n: file minicli_ui.ui line 199
  #: rc.cpp:14
  #, no-c-format
-@@ -1144,3 +1174,20 @@
+@@ -1144,3 +1174,29 @@
  "Cependant, certains écrans de veille\n"
  "       effectuent des calculs utiles, dans ces cas, il est souhaitable de ne "
  "pas les désactiver."
 +
-+### TDE 3.5.13 ###
++### TDE ###
 +#: lockdlg.cc:109
 +msgid "Desktop Session Locked"
 +msgstr "Session de bureau verrouillée"
 +
 +#: lockdlg.cc:128
 +msgid "This computer is in use and has been locked."
-+msgstr "Cet ordinateur est en cours d'utilisation et a été verrouillé."
++msgstr "Cet ordinateur est utilisé et verrouillé."
 +
 +#: lockdlg.cc:129
 +msgid "Only '%1' may unlock this session."
@@ -927,6 +939,15 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kdesktop.po tde-i18n-fr/messages/tde
 +#: lockdlg.cc:139
 +msgid "This session has been locked since %1"
 +msgstr "Cette session est verrouillée depuis %1"
++
++msgid "Task Manager"
++msgstr "Gestionnaire de taches"
++
++msgid "Logoff Menu"
++msgstr "Menu de déconnexion"
++
++msgid "'%1' is currently logged on"
++msgstr "'%1' est actuellement connecté"
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kicker.po tde-i18n-fr/messages/tdebase/kicker.po
 --- tde-i18n-fr.ORI/messages/tdebase/kicker.po	2013-07-26 17:53:39.996658761 +0200
 +++ tde-i18n-fr/messages/tdebase/kicker.po	2013-07-26 17:53:59.000152412 +0200
@@ -1467,13 +1488,13 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kpersonalizer.po tde-i18n-fr/message
  #: rc.cpp:80
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/ksmserver.po tde-i18n-fr/messages/tdebase/ksmserver.po
 --- tde-i18n-fr.ORI/messages/tdebase/ksmserver.po	2013-07-26 17:53:39.995658788 +0200
-+++ tde-i18n-fr/messages/tdebase/ksmserver.po	2013-07-26 17:53:59.003152332 +0200
-@@ -92,3 +92,50 @@
++++ tde-i18n-fr/messages/tdebase/ksmserver.po	2013-07-29 11:12:48.861837356 +0200
+@@ -92,3 +92,82 @@
  "_: current option in boot loader\n"
  " (current)"
  msgstr " (courant)"
 +
-+### TDE 3.5.13 ###
++### TDE ###
 +
 +#: shutdown.cpp:202
 +msgid "Synchronizing remote folders"
@@ -1519,6 +1540,38 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/ksmserver.po tde-i18n-fr/messages/td
 +msgid "Confirm"
 +msgstr "Confirmer"
 +
++msgid "Notifying applications of logout request..."
++msgstr "Notification des applications de la déconnexion..."
++
++msgid "Notifying remaining applications of logout request (%1/%2)..."
++msgstr "Notification des applications restantes de la déconnexion... (%1/%2)..."
++
++msgid "Notifying remaining applications of logout request (%1/%2, %3)..."
++msgstr "Notification des applications restantes de la déconnexion... (%1/%2, %3)..."
++
++msgid "Notifying applications of logout request (%1/%2)..."
++msgstr "Notification des applications de la déconnexion (%1/%2)..."
++
++msgid "Notifying applications of logout request (%1/%2, %3)..."
++msgstr "Notification des applications de la déconnexion (%1/%2, %3)..."
++
++msgid "Skip Notification"
++msgstr "Ignorer la notification"
++
++msgid "Skip Notification (%1)"
++msgstr "Ignorer la notification (%1)"
++
++msgid "Abort Logout"
++msgstr "Annuler la déconnexion"
++
++msgid "Closing applications (%1/%2)..."
++msgstr "Fermeture des applications (%1/%2)..."
++
++msgid "Closing applications (%1/%2, %3)..."
++msgstr "Fermeture des applications (%1/%2, %3)..."
++
++msgid "Terminating services..."
++msgstr "Arrêt des services..."
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/ksplash.po tde-i18n-fr/messages/tdebase/ksplash.po
 --- tde-i18n-fr.ORI/messages/tdebase/ksplash.po	2013-07-26 17:53:39.998658707 +0200
 +++ tde-i18n-fr/messages/tdebase/ksplash.po	2013-07-26 17:53:51.201360190 +0200

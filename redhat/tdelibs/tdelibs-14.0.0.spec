@@ -56,9 +56,9 @@ BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
-BuildRequires:	trinity-dbus-1-tqt-devel >= %{tde_version}
-BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-dbus-1-tqt-devel >= 1:0.9
+BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
@@ -263,7 +263,7 @@ Requires:		openssl
 # Trinity dependencies
 Requires:		trinity-tqt3 >= 3.5.0
 Requires:		trinity-tqtinterface >= %{tde_version}
-Requires:		trinity-arts >= %{tde_version}
+Requires:		trinity-arts >= 1:1.5.10
 
 
 %description
@@ -365,7 +365,6 @@ kimgio (image manipulation).
 
 %{_sysconfdir}/xdg/menus/tde-applications.menu
 %{_sysconfdir}/xdg/menus/tde-applications.menu-no-kde
-%{_sysconfdir}/ld.so.conf.d/trinity.conf
 %{_sysconfdir}/dbus-1/system.d/org.trinitydesktop.hardwarecontrol.conf
 %{_datadir}/dbus-1/system-services/org.trinitydesktop.hardwarecontrol.service
 
@@ -460,6 +459,7 @@ cd build
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
   \
@@ -508,13 +508,6 @@ cd build
 %install
 %__rm -rf "%{?buildroot}"
 %__make install DESTDIR="%{?buildroot}" -C build
-
-%if "%{?tde_prefix}" != "/usr"
-%__mkdir_p "%{?buildroot}%{_sysconfdir}/ld.so.conf.d"
-cat <<EOF >"%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf"
-%{tde_libdir}
-EOF
-%endif
 
 # Use system-wide CA certificate
 %if "%{?cacert}" != ""

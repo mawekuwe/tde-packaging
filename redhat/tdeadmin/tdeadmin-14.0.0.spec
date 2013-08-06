@@ -48,7 +48,7 @@ Source7:		kuserrc
 
 BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires: trinity-arts-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: rpm-devel
 BuildRequires: pam-devel
@@ -406,7 +406,7 @@ fi
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   --enable-gcc-hidden-visibility \
   \
   --with-extra-includes=%{tde_includedir}/tqt \

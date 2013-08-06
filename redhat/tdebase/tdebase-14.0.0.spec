@@ -279,7 +279,7 @@ Requires:	opensuse-manuals_en
 BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	gcc-c++
 BuildRequires:	make
@@ -393,8 +393,8 @@ BuildRequires:	nas-devel
 BuildRequires:	dbus-devel >= 0.22-12.EL.9p1
 Requires:		dbus-qt >= 0.22-12.EL.9p1
 %else
-BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
-Requires:		trinity-dbus-tqt >= %{tde_version}
+BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
+Requires:		trinity-dbus-tqt >= 1:0.63
 %endif
 
 %if 0%{?fedora} >= 17
@@ -505,10 +505,10 @@ Requires: trinity-libkonq = %{version}-%{release}
 Requires: %{name}-libtqt3-integration = %{version}-%{release}
 Requires: %{name}-tdeio-smb-plugin = %{version}-%{release}
  
-Requires:	trinity-tqtinterface >= %{tde_version}
-Requires:	trinity-arts >= %{tde_version}
-Requires:	trinity-tdelibs >= %{tde_version}
 Requires:	trinity-tqt3 >= 3.5.0
+Requires:	trinity-tqtinterface >= %{tde_version}
+Requires:	trinity-arts >= 1:1.5.10
+Requires:	trinity-tdelibs >= %{tde_version}
 Requires:	openssl
 
 
@@ -545,7 +545,9 @@ web browser, X terminal emulator, and many other programs and components.
 Summary:	%{summary} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-tdelibs-devel
+Requires:	trinity-tqtinterface-devel >= %{tde_version}
+Requires:	trinity-arts-devel >= 1:1.5.10
+Requires:	trinity-tdelibs-devel >= %{tde_version}
 
 Requires:	%{name}-bin-devel = %{version}-%{release}
 Requires:	trinity-kate-devel = %{version}-%{release}
@@ -3300,6 +3302,7 @@ cd build
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   -DWITH_GCC_VISIBILITY=ON \
   \

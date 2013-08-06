@@ -9,3 +9,14 @@
  
  libartsmodulescommon_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -no-undefined
  
+--- trinity-tdemultimedia-14.0.0~pre178+601a5c5f/arts/modules/synth/Makefile.am.ORI	2013-08-04 19:15:24.030530158 +0200
++++ trinity-tdemultimedia-14.0.0~pre178+601a5c5f/arts/modules/synth/Makefile.am	2013-08-04 19:15:32.878625492 +0200
+@@ -31,7 +31,7 @@
+ libartsmodulessynth_la_LIBADD = \
+ 	$(top_builddir)/arts/runtime/libartsbuilder.la \
+ 	$(top_builddir)/arts/midi/libartsmidi_idl.la \
+-	-lartsflow -lartsgsl -lartsflow_idl -lmcop -lglib-2.0
++	-lartsflow -lartsgsl -lartsflow_idl -lmcop -lglib-2.0 $(VORBIS_LIBS) $(VORBISFILE_LIBS) -lmad
+ 
+ #libartsmodulessynth_la_LIBADD = $(top_builddir)/arts/gui/common/libartsgui_idl.la $(top_builddir)/arts/midi/libartsmidi_idl.la -lartsflow -lartsflow_idl -lmcop $(LIBDL) $(LIB_TDEUI) $(LIB_TDECORE)
+ libartsmodulessynth_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -lartsflow -lartsgsl -no-undefined

@@ -40,7 +40,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
 BuildRequires:	trinity-akode-devel
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
 
@@ -475,7 +475,7 @@ fi
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   --enable-gcc-hidden-visibility \
   \
   --enable-ksayit-audio-plugins \

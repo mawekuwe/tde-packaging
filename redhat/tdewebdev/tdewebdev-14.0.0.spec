@@ -523,7 +523,7 @@ fi
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   --disable-gcc-hidden-visibility
 
 # WTF hack for RHEL4

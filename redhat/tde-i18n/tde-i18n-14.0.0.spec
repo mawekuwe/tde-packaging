@@ -59,7 +59,7 @@ Patch3:		tde-i18n-14.0.0-fr-openterminalhere.patch
 
 BuildRequires:	findutils
 BuildRequires:	gettext
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 %description

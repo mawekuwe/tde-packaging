@@ -60,7 +60,7 @@ Patch18:	kdebindings-3.5.13.1-fix_rhel5_ftbfs.patch
 
 BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-arts-devel >= %{version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{version}
 
 BuildRequires: desktop-file-utils
@@ -1034,7 +1034,7 @@ fi
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
   --with-extra-includes=%{_includedir}/tqscintilla \

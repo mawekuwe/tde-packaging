@@ -43,13 +43,13 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-tqt3-devel >= 3.5.0
-BuildRequires: trinity-arts-devel >= %{tde_version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: trinity-tdebase-devel >= %{tde_version}
 BuildRequires: trinity-tdegames-devel >= %{tde_version}
 BuildRequires: trinity-tdemultimedia-devel >= %{tde_version}
 BuildRequires: trinity-tdepim-devel >= %{tde_version}
-BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
 
 BuildRequires: SDL-devel
 BuildRequires: alsa-lib-devel
@@ -706,7 +706,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   --enable-gcc-hidden-visibility \
   \
   --with-extra-includes=%{_includedir}/db4:%{_includedir}/libdb4:%{tde_includedir}/arts \
