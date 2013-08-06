@@ -1,6 +1,6 @@
 # Default version for this component
-%define tdecomp libkipi
-
+%define tde_pkg libkipi
+%define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -15,7 +15,6 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -23,10 +22,11 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
+Name:		trinity-%{tde_pkg}
 Summary:	library for apps that want to use kipi-plugins (runtime version) [Trinity]
 
-Version:	14.0.0
+Epoch:		1
+Version:	0.1.5
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
@@ -39,11 +39,11 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-arts-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: desktop-file-utils
 %if 0%{?suse_version}
 BuildRequires: liblcms-devel
@@ -75,7 +75,7 @@ Homepage: http://www.kipi-plugins.org/
 %package devel
 Group:		Development/Libraries
 Summary:	library for apps that want to use kipi-plugins (development version) [Trinity]
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 Libkipi is a library
@@ -93,7 +93,7 @@ Homepage: http://www.kipi-plugins.org/
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -101,17 +101,24 @@ Homepage: http://www.kipi-plugins.org/
 
 
 %build
-unset QTDIR
+unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-    --prefix=%{tde_prefix} \
-    --exec-prefix=%{tde_prefix} \
-	--datadir=%{tde_datadir} \
-	--libdir=%{tde_libdir} \
-	--includedir=%{tde_tdeincludedir} \
-	--disable-rpath
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -121,7 +128,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
 
 
 %clean
@@ -149,7 +156,7 @@ done
 /sbin/ldconfig || :
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %{tde_libdir}/libkipi.so.0
 %{tde_libdir}/libkipi.so.0.1.1
@@ -165,5 +172,5 @@ done
 %{tde_libdir}/pkgconfig/libkipi.pc
 
 %Changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.5-1
+- Initial release for TDE 14.0.0

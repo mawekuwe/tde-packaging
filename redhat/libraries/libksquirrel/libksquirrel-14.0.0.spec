@@ -1,5 +1,5 @@
 # Default version for this component
-%define tdecomp libksquirrel
+%define tde_pkg libksquirrel
 %define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -16,7 +16,6 @@
 %define tde_mandir %{tde_datadir}/man
 %define tde_appdir %{tde_datadsir}/applications
 
-%define tde_tdeappdir %{tde_appdir}/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -24,9 +23,10 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
+Name:		trinity-%{tde_pkg}
 Summary:	Trinity image viewer
-Version:	14.0.0
+Epoch:		1
+Version:	0.8.0
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
@@ -39,11 +39,11 @@ URL:		http://www.trinitydesktop.org/
 Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch0:		libksquirrel-3.5.13-detect_netpbm.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
@@ -129,7 +129,7 @@ Runtime libraries for KSquirrel.
 %package devel
 Group:		Development/Libraries
 Summary:	Trinity image viewer
-Requires:	%{name}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 Development libraries for KSquirrel.
@@ -138,7 +138,7 @@ Development libraries for KSquirrel.
 %package tools
 Summary:	Trinity image viewer
 Group:		Environment/Libraries
-Requires:	%{name}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description tools
 Tools for KSquirrel.
@@ -150,7 +150,7 @@ Tools for KSquirrel.
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch0 -p1 -b .netpbm
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
@@ -171,7 +171,15 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_includedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
   %{?with_djvu:--enable-djvu}
 
 %__make %{?_smp_mflags}
@@ -498,5 +506,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %Changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0-1
+- Initial release for TDE 14.0.0

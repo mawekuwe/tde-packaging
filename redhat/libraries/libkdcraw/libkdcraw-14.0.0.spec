@@ -1,5 +1,6 @@
 # Default version for this component
-%define kdecomp libkdcraw
+%define tde_pkg libkdcraw
+%define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
@@ -14,7 +15,7 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
+%define tde_tdeappdir %{tde_datadir}/applications/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -22,10 +23,11 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
+Name:		trinity-%{tde_pkg}
 Summary:	Raw picture decoding C++ library (runtime) [Trinity]
 
-Version:	14.0.0
+Epoch:		1
+Version:	0.1.9
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
@@ -38,11 +40,11 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-arts-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: desktop-file-utils
 %if 0%{?suse_version}
 BuildRequires: liblcms-devel
@@ -71,7 +73,7 @@ libkdcraw contains the library of libkdcraw.
 %package devel
 Group:		Development/Libraries
 Summary:	RAW picture decoding C++ library (development) [Trinity]
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 Libkdcraw is a C++ interface around dcraw binary program used to
@@ -86,7 +88,7 @@ library documentation is available on kdcraw.h header file.
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -94,17 +96,24 @@ library documentation is available on kdcraw.h header file.
 
 
 %build
-unset QTDIR
+unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-    --prefix=%{tde_prefix} \
-    --exec-prefix=%{tde_prefix} \
-	--datadir=%{tde_datadir} \
-	--libdir=%{tde_libdir} \
-	--includedir=%{tde_tdeincludedir} \
-	--disable-rpath
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -114,7 +123,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{kdecomp}
+%find_lang %{tde_pkg}
 
 # RHEL4: pkgconfig files do not support 'URL' keyword .
 %if 0%{?rhel} == 4
@@ -147,7 +156,7 @@ done
 /sbin/ldconfig || :
 
 
-%files -f %{kdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %{tde_libdir}/libkdcraw.so.4
 %{tde_libdir}/libkdcraw.so.4.0.3
@@ -161,5 +170,5 @@ done
 %{tde_libdir}/pkgconfig/libkdcraw.pc
 
 %Changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.9-1
+- Initial release for TDE R14.0.0

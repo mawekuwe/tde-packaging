@@ -46,9 +46,9 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 # Fix include subdirectory 'tde' instead of 'kde'
 Patch1:		python-trinity-14.0.0-tde_includedir.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -123,8 +123,6 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-#export LDFLAGS="${LDFLAGS} -lpython2.7"
-
 export DH_OPTIONS
 
 %__python configure.py \
@@ -169,5 +167,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Wed Jul 03 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.16.3-1
 - Initial release for TDE 14.0.0

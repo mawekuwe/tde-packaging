@@ -48,7 +48,7 @@ Patch2:		pykdeextensions-3.5.13.2-fix_extra_module_dir.patch
 Patch5:		pytdeextensions-14.0.0-fix_include_dir.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
