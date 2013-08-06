@@ -50,6 +50,7 @@ Provides:	trinity-systemsettings = %{version}-%{release}
 Obsoletes:	trinity-systemsettings < %{version}-%{release}
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
@@ -87,8 +88,14 @@ export TDEDIR="%{tde_prefix}"
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
   --sysconfdir=%{tde_sysconfdir} \
-  --disable-rpath \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-final \
+  --enable-new-ldflags \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

@@ -36,9 +36,11 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 %description
@@ -66,16 +68,21 @@ export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--prefix=%{tde_prefix} \
-	--exec-prefix=%{tde_prefix} \
-	--disable-dependency-tracking \
-	--disable-rpath \
-	--disable-static \
-	--bindir=%{tde_bindir} \
-	--libdir=%{tde_libdir} \
-	--mandir=%{tde_mandir} \
-	--datadir=%{tde_datadir} \
-	--includedir=%{tde_tdeincludedir} 
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
   
 %__make %{?_smp_mflags}
 

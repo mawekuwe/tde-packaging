@@ -40,9 +40,11 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	cmake >= 2.8
 BuildRequires:	bison
 
@@ -80,6 +82,14 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
   -DBUILD_ALL=ON \
@@ -120,7 +130,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.91-6
 - Initial release for TDE 14.0.0
 
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
+* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.91-5
 - Initial release for TDE 3.5.13.2
 
 * Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.91-4

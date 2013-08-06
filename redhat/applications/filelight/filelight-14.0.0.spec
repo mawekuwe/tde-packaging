@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Graphical disk usage display
 Version:		1.0
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -41,9 +41,11 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 
 Obsoletes:	filelight-l10n < %{version}-%{release}
 Provides:	filelight-l10n = %{version}-%{release}
@@ -79,8 +81,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --docdir=%{tde_tdedocdir} \
   --libdir=%{tde_libdir} \
-  --disable-rpath \
-  --with-extra-includes=
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -90,7 +98,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{tde_pkg} --with-kde
+%find_lang %{tde_pkg}
 
 %clean
 %__rm -rf %{buildroot}
@@ -131,8 +139,11 @@ done
 %lang(sv) %{tde_tdedocdir}/HTML/sv/filelight/
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-7
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-8
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-7
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-6
 - Initial release for TDE 3.5.13.2

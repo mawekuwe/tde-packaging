@@ -31,7 +31,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		personal finance manager for TDE
 
 Version:		1.0.5
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -47,7 +47,7 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:		kmymoneytitlelabel.png
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
@@ -129,6 +129,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
 %endif
 
+# Warning: --enable-final causes FTBFS
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -137,15 +138,23 @@ grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
   --enable-closure \
+  --enable-rpath \
+  --disable-gcc-hidden-visibility \
+  \
+  --with-qmake=%{_bindir}/tqmake \
+  --with-qt-dir=%{_libdir}/tqt3 \
+  \
   --disable-pdf-docs \
   --enable-ofxplugin \
   --enable-ofxbanking \
   --enable-qtdesigner \
-  --disable-sqlite3 \
-  --with-qmake=%{_bindir}/tqmake \
-  --with-qt-dir=%{_libdir}/tqt3
+  --disable-sqlite3
 
 %__make %{?_smp_mflags}
 
@@ -189,7 +198,6 @@ done
 %{tde_libdir}/*.so.*
 %{tde_tdelibdir}/kmm_ofximport.la
 %{tde_tdelibdir}/kmm_ofximport.so
-%{_libdir}/tqt3/plugins/designer/libkmymoney.so
 
 %files common -f kmymoney2.lang
 %defattr(-,root,root,-)
@@ -220,10 +228,14 @@ done
 %{tde_libdir}/libkmm_mymoney.la
 %{tde_libdir}/libkmm_plugin.la
 %{tde_libdir}/*.so
+%{_libdir}/tqt3/plugins/designer/libkmymoney.so
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-5
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-6
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-5
+- Initial release for TDE 3.5.13.2
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-4
 - Initial release for TDE 3.5.13.2

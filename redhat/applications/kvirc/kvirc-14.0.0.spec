@@ -43,10 +43,14 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:			kvirc-14.0.0-install_directory.patch
+
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 Requires:		%{name}-data = %{version}-%{release}
@@ -75,7 +79,7 @@ as a very simple IRC client you are likely to want to write scripts to
 tailor KVIrc to your needs.
 
 KVIrc is a graphical IRC client based on the TDE widget set which integrates
-with the K Desktop Environment version 3.
+with the Trinity Desktop Environment version 3.
 
 %package devel
 Group:			Development/Libraries
@@ -97,12 +101,9 @@ with the K Desktop Environment version 3.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .installdir
 
 # Hardcoded absolute PATH to TDEDIR in source code ! That sucks !
-%__sed -i "src/kvirc/kernel/kvi_app_fs.cpp" \
-  -e "s|/opt/kde3/lib|%{tde_libdir}|g"
-%__sed -i "src/kvirc/kernel/kvi_app_setup.cpp" \
-  -e "s|/opt/kde3|%{tde_prefix}|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -122,8 +123,15 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-wall \
+  \
+  --with-pic \
+  \
   --with-big-channels \
-  --enable-perl --with-pic --enable-wall \
+  --enable-perl \
   --with-ix86-asm \
   --with-kde-services-dir=%{tde_datadir}/services \
   --with-kde-library-dir=%{tde_libdir} \
@@ -137,7 +145,8 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 %__make symlinks -C src/kvilib/build
 %__make symlinks -C src/kvirc/build
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags
+}
 
 
 %install
@@ -147,8 +156,8 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Debian maintainer has renamed 'COPYING' file to 'EULA', so we do the same ...
 %__mv \
-  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/COPYING \
-  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/EULA
+  %{?buildroot}%{tde_libdir}/kvirc/3.4/license/COPYING \
+  %{?buildroot}%{tde_libdir}/kvirc/3.4/license/EULA
 
 
 %clean
@@ -171,18 +180,18 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %doc ChangeLog FAQ README TODO
 %{tde_bindir}/kvirc
 %{tde_libdir}/*.so.*
-#%{tde_libdir}/kvirc/*/modules/*.so
+%{tde_libdir}/kvirc/*/modules/*.so
 
 %files data
 %defattr(-,root,root,-)
 %{tde_bindir}/kvi_run_netscape
 %{tde_bindir}/kvi_search_help
-#%{tde_libdir}/kvirc/*/modules/caps/
+%{tde_libdir}/kvirc/
 %{tde_datadir}/applnk/Internet/kvirc.desktop
 %{tde_datadir}/icons/hicolor/*/*/*.png
 %{tde_datadir}/icons/hicolor/*/*/*.svgz
 %{tde_datadir}/icons/hicolor/*/*/*.xpm
-%{tde_datadir}/kvirc
+#%{tde_datadir}/kvirc
 %{tde_datadir}/mimelnk/text/*.desktop
 %{tde_datadir}/services/*.protocol
 %{tde_mandir}/man1/kvirc.1

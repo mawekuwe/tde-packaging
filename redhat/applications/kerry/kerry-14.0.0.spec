@@ -40,13 +40,15 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	kerry.1.docbook
+Source1:		kerry.1.docbook
 
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 BuildRequires:	libbeagle-devel >= 0.3.0
 
@@ -62,7 +64,6 @@ Kerry is a Trinity frontend for the Beagle desktop search daemon.
 
 A program for indexing and searching user's data. At the moment, it can index
 filesystems, chat logs, mail and data, RSS and other.
-
 
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
@@ -91,8 +92,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
-  --with-extra-includes=:%{tde_includedir}
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

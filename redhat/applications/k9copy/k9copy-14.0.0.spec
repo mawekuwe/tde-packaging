@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		DVD backup tool for Trinity
 Version:		1.2.3
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -41,13 +41,18 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:		k9copy-3.5.13.2-fix_k3b_link.patch
+Patch1:			k9copy-14.0.0-fix_k3b_link.patch
+Patch2:			k9copy-3.5.13.2-ftbfs.patch
+Patch3:			k9copy-14.0.0-use_external_dvdread.patch
+Patch4:			k9copy-14.0.0-fix_author.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
+BuildRequires:	trinity-k3b-devel
 
 # Warning: the target distribution must have ffmpeg !
 BuildRequires:	ffmpeg-devel
@@ -66,7 +71,13 @@ This is the Trinity version
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-#patch1 -p1 -b .ftbfs
+%patch1 -p1 -b .ftbfs
+%patch2 -p1 -b .ftbfs
+%patch3 -p1 -b .dvdread
+%patch4 -p1 -b .k9author
+
+# Removes internal dvdread headers
+%__rm -rf dvdread
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -82,16 +93,24 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 if [ -d /usr/include/ffmpeg ]; then
 	export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/include/ffmpeg"
 fi
-
+ 
+# NOTICE: --enable-final causes FTBFS !
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
   --bindir=%{tde_bindir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --disable-final \
+  --enable-new-ldflags \
   --enable-closure \
-  --disable-k3bdevices
+  --enable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
+  --enable-k3bdevices
 
 %__make %{?_smp_mflags} || %__make
 
@@ -131,8 +150,11 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-5
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-6
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-5
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-4
 - Initial release for TDE 3.5.13.2

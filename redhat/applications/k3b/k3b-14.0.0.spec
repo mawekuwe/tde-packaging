@@ -1,5 +1,5 @@
 # Default version for this component
-%define tde_pkg abakus
+%define tde_pkg k3b
 %define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -24,9 +24,10 @@
 %define _docdir %{tde_docdir}
 
 
-Name:			trinity-k3b
+Name:			trinity-%{tde_pkg}
 Summary:		CD/DVD burning application
-Version:		14.0.0
+Epoch:			1
+Version:		1.0.5
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:			Trinity Project
@@ -44,12 +45,14 @@ Source2:		k3brc
 
 # Legacy RedHat / Fedora patches
 # manual bufsize (upstream?)
-Patch4:		k3b-1.0.4-manualbufsize.patch
+Patch4:			k3b-1.0.4-manualbufsize.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	alsa-lib-devel
 BuildRequires:	audiofile-devel
 BuildRequires:	gettext
@@ -62,8 +65,8 @@ BuildRequires:	zlib-devel
 Requires(post): coreutils
 Requires(postun): coreutils
 
-Requires:		%{name}-libs = %{version}-%{release}
-Requires:		%{name}-common = %{version}-%{release}
+Requires:		%{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:		%{name}-common = %{?epoch:%{epoch}:}%{version}-%{release}
 
 Requires:		cdrecord mkisofs
 Requires:		dvd+rw-tools
@@ -78,10 +81,10 @@ Requires:		cdrdao
 %if 0%{?rhel} == 4
 # Dbus bindings were rebuilt with Qt support
 BuildRequires:	dbus-devel >= 0.22-12.EL.9p1
-Requires:		dbus-qt
+Requires:		dbus-qt >= 0.22-12.EL.9p1
 %else
-BuildRequires:	trinity-dbus-tqt-devel
-Requires:		trinity-dbus-tqt >= %{version}
+BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
+Requires:		trinity-dbus-tqt >= 1:0.63
 %endif
 
 # SNDFILE support
@@ -210,7 +213,7 @@ start.
 %package common
 Summary:		Common files of %{name}
 Group:			Applications/Archiving
-Requires:		%{name} = %{version}-%{release}
+Requires:		%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
 BuildArch: noarch
 %endif
@@ -260,7 +263,7 @@ update-desktop-database %{tde_appdir} -q &> /dev/null
 %package libs
 Summary:		Runtime libraries for %{name}
 Group:			System Environment/Libraries
-Requires:		%{name} = %{version}-%{release}
+Requires:		%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description libs
 %{summary}.
@@ -283,7 +286,7 @@ Requires:		%{name} = %{version}-%{release}
 %package devel
 Summary:		Files for the development of applications which will use %{name} 
 Group:			Development/Libraries
-Requires:		%{name}-libs = %{version}-%{release}
+Requires:		%{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 %{summary}.
@@ -306,7 +309,7 @@ Requires:		%{name}-libs = %{version}-%{release}
 %package plugin-mad
 Summary:		The MAD plugin for K3B
 Group:			System Environment/Libraries
-Requires:		%{name} = %{version}-%{release}
+Requires:		%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description plugin-mad
 %{summary}.
@@ -328,7 +331,7 @@ and Layer III a.k.a. MP3) are fully implemented.
 %package plugin-lame
 Summary:		The LAME plugin for K3B
 Group:			System Environment/Libraries
-Requires:		%{name} = %{version}-%{release}
+Requires:		%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description plugin-lame
 %{summary}.
@@ -350,7 +353,7 @@ This package is in tainted, as MP3 encoding is covered by software patents.
 %package plugin-ffmpeg
 Summary:		The FFMPEG plugin for K3B
 Group:			System Environment/Libraries
-Requires:		%{name} = %{version}-%{release}
+Requires:		%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description plugin-ffmpeg
 %{summary}.
@@ -395,6 +398,7 @@ if [ -d /usr/include/ffmpeg ]; then
 	export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/include/ffmpeg"
 fi
 
+# Notice: extra-includes is required to find arts headers
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -403,10 +407,17 @@ fi
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
-  --disable-debug --disable-warnings \
-  --disable-dependency-tracking --enable-final \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
+  --with-extra-includes=%{tde_includedir} \
+  \
   --with-k3bsetup=no \
   --without-cdrecord-suid-root \
   --with-oggvorbis \
@@ -420,8 +431,7 @@ fi
   %{?with_libmad:--with-libmad} %{?!with_libmad:--without-libmad} \
   --with-musepack \
   --without-resmgr \
-  --without-hal \
-  --with-extra-includes=%{tde_includedir}
+  --without-hal
 
 # Strange behaviour on RHEL4 ...
 %if 0%{?rhel} == 4
@@ -448,7 +458,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-1
 - Initial release for TDE 14.0.0
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1

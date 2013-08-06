@@ -173,17 +173,17 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_tdelibdir}/*.so
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - %{?version}-5
+* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8-5
 - Initial release for TDE 3.5.13.2
 
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - %{?version}-4
+* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-4
 - Initial release for TDE 3.5.13.1
 
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-3 / 0.9-3
+* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-3
 - Rebuild for Fedora 17
 
-* Sat Nov 13 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-2 / 0.9-2
+* Sat Nov 13 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-2
 - Remove faulty patch for WPA authentication
 
-* Tue Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-1 / 0.9-1
+* Tue Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-1
 - Initial release

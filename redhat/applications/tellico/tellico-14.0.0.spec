@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Icollection manager for books, videos, music [Trinity]
 Version:		1.3.2.1
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -41,15 +41,27 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:			tellico-3.5.13.2-videodev.patch
+
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	yaz
 BuildRequires:	%{_lib}yaz-devel
+%endif
+
+# V4L support
+%if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?suse_version}
+BuildRequires:	libv4l-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}v4l-devel
 %endif
 
 Requires:		%{name}-data = %{version}-%{release}
@@ -122,6 +134,10 @@ as a separate package which can be updated through debian-volatile.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
+if [ -r /usr/include/libv4l1-videodev.h ]; then
+%patch1 -p1 -b .videodev
+fi
+
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -132,6 +148,7 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
+# Warning, --enable-final causes FTBFS §
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -140,8 +157,16 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --with-extra-includes=
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --disable-final \
+  --enable-new-ldflags \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
+  --enable-webcam
 
 %__make %{?_smp_mflags} || %__make
 
@@ -154,10 +179,6 @@ export PATH="%{tde_bindir}:${PATH}"
 # Add svg icons to xdg directories
 %__install -D -c -p -m 644 icons/tellico.svg %{?buildroot}%{tde_datadir}/icons/hicolor/scalable/apps/tellico.svg
 %__install -D -c -p -m 644 icons/tellico_mime.svg %{?buildroot}%{tde_datadir}/icons/hicolor/scalable/mimetypes/application-x-tellico.svg
-
-# Remove  dead symlink from French translation
-%__rm %{?buildroot}%{tde_tdedocdir}/HTML/fr/tellico/common
-
 
 %find_lang %{tde_pkg}
 
@@ -212,8 +233,11 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-7
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-6
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-5
 - Initial release for TDE 3.5.13.2

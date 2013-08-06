@@ -40,15 +40,15 @@ Prefix:			%{_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Patch0:			gtk3-tqt-engine-14.0.0-ftbfs.patch
 Patch1:			gtk3-tqt-engine-14.0.0-libsuffix.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
+BuildRequires:	gettext
 BuildRequires:	gtk+3.0-devel
 
 %description
@@ -62,7 +62,6 @@ GTK3 style engine which uses the active TDE style to draw its widgets
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
 %if "%_lib" == "lib64"
 %patch1 -p1 -b .libsuffix
 %endif
@@ -85,7 +84,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --docdir=%{tde_tdedocdir} \
   --libdir=%{tde_libdir} \
-  --disable-rpath
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

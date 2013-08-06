@@ -43,9 +43,11 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 
 %description
 KBFX is an alternative to the classical K-Menu button and its menu.
@@ -91,6 +93,14 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DDATA_INSTALL_DIR=%{tde_datadir}/apps \
@@ -98,6 +108,7 @@ cd build
   -DXDG_APPS_INSTALL_DIR=%{tde_tdeappdir} \
   -DDOC_INSTALL_DIR=%{tde_tdedocdir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
+  \
   -DUSE_STRIGI=OFF \
   -DUSE_MENUDRAKE=OFF \
   -DBUILD_DOC=ON \

@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Quick picture viewer for TDE 
 Version:		0.8.13
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -41,6 +41,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
@@ -84,8 +85,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-final \
+  --enable-new-ldflags \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -113,20 +120,23 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{tde_bindir}/*
+%{tde_bindir}/kuickshow
 %{tde_datadir}/applications/*/*.desktop
-%{tde_datadir}/apps/*/
+%{tde_datadir}/apps/kuickshow/
 %{tde_datadir}/icons/hicolor/*/*/*
-%{tde_libdir}/lib[kt]deinit_%{tde_pkg}.so
+%{tde_libdir}/libtdeinit_%{tde_pkg}.so
 %{tde_libdir}/*.la
 %{tde_tdelibdir}/*.so
 %{tde_tdelibdir}/*.la
-%{tde_tdedocdir}/HTML/en/*/
+%{tde_tdedocdir}/HTML/en/kuickshow/
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-7
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-8
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-7
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-6
 - Initial release for TDE 3.5.13.2

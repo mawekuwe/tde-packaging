@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		TDE Palm Pilot hot-sync tool
 Version:		0.7
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -43,13 +43,14 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
+BuildRequires:	gettext
 BuildRequires:	pilot-link-devel
-BuildRequires:	trinity-kdepim-devel
+BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 
 %description
 KPilot is an application that synchronizes your Palm Pilot or similar device
@@ -84,8 +85,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --with-extra-includes=:%{tde_tdeincludedir}
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --disable-gcc-hidden-visibility
 
 # SMP safe !
 %__make %{?_smp_mflags}
@@ -169,8 +176,11 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-5
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-6
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-5
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-4
 - Initial release for TDE 3.5.13.2

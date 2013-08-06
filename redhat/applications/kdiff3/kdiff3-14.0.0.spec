@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		KDiff3 is a utility for comparing and/or merging two or three text files or directories.
 Version:		0.9.91
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -42,10 +42,11 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 
 %description
 Shows the differences line by line and character by character (!).
@@ -81,8 +82,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -134,8 +141,11 @@ done
 %{tde_tdelibdir}/libkdiff3plugin.so
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-7
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-8
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-7
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-6
 - Initial release for TDE 3.5.13.2

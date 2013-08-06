@@ -42,6 +42,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
@@ -82,7 +83,8 @@ unset QTDIR QTINC QTLIB
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__sed -i "Makefile" \
-	-e "s|/usr/lib/perl5/Chipcard|/usr/lib64/perl5/vendor_perl/Chipcard|g"
+	-e "s|/usr/lib/perl5/Chipcard|%{_libdir}/perl5/vendor_perl/Chipcard|g"
+
 
 %build
 export PATH="%{tde_bindir}:${PATH}"

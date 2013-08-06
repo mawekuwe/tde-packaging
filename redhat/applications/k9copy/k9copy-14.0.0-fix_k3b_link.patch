@@ -1,0 +1,11 @@
+--- trinity-k9copy-14.0.0~pre130+76443cbb/src/Makefile.am.ftbfs	2013-07-21 09:56:44.000000000 +0200
++++ trinity-k9copy-14.0.0~pre130+76443cbb/src/Makefile.am	2013-08-02 11:00:55.291717387 +0200
+@@ -35,7 +35,7 @@
+ 	$(top_builddir)/k9author/libk9author.la $(top_builddir)/k9decmpeg/libk9decmpeg.la \
+ 	$(top_builddir)/k9devices/libk9devices.la $(top_builddir)/k9vamps/libk9vamps.la \
+ 	$(top_builddir)/libdvdnav/libk9dvdnav.la $(top_builddir)/libk9copy/libk9copy.la \
+-	$(top_builddir)/dvdread/libdvdread.la $(LIB_TDEUI) -ltdemdi $(LIBDL)
++	$(top_builddir)/dvdread/libdvdread.la $(LIB_TDEUI) -ltdemdi $(LIBDL) -lk3b -lk3bdevice
+ 
+ # this is where the desktop file will go 
+ shelldesktopdir = $(kde_appsdir)/Utilities

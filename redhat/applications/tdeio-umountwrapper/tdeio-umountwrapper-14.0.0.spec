@@ -44,6 +44,7 @@ Source1:		media_safelyremove.desktop_tdeio
 
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
@@ -86,10 +87,11 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   \
   --disable-dependency-tracking \
   --disable-debug \
-  --disable-final \
+  --enable-final \
   --enable-new-ldflags \
   --enable-closure \
-  --disable-rpath
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

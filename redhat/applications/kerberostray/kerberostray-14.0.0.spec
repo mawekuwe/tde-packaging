@@ -41,12 +41,13 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
-BuildRequires:	trinity-libtdeldap-devel >= %{tde_version}
+BuildRequires:	gettext
+BuildRequires:	trinity-libtdeldap-devel >= 0.5
 
 %description
 Kerberos ticket manager which sits in the system tray and allows viewing/control of Kerberos tickets
@@ -79,7 +80,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --docdir=%{tde_tdedocdir} \
   --libdir=%{tde_libdir} \
-  --disable-rpath
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

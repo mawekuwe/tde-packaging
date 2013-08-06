@@ -34,11 +34,12 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	desktop-file-utils
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
 
 %description
 It has 4 main commands:
@@ -84,7 +85,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-final \
   --enable-new-ldflags \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
@@ -134,4 +135,3 @@ done
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-1
 - Initial release for TDE 14.0.0
-

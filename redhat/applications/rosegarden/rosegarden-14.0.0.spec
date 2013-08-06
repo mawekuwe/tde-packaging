@@ -30,7 +30,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		music editor and MIDI/audio sequencer [Trinity]
 Version:		1.7.0
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -45,15 +45,20 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
+BuildRequires:	gettext
 BuildRequires:	fftw-devel
-BuildRequires:	dssi-devel
 BuildRequires:	liblo-devel
 BuildRequires:	fontconfig-devel
+
+# DSSI support
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	dssi-devel
+%endif
 
 # LRDF support
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
@@ -130,20 +135,28 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
-  -DWANT_DEBUG=OFF \
-  -DWANT_FULLDBG=OFF \
+  \
   -DWANT_SOUND=ON \
   -DWANT_JACK=ON \
   -DWANT_DSSI=ON \
   %{?with_lirc:-DWANT_LIRC=ON} %{?!with_lirc:-DWANT_LIRC=OFF} \
   -DWANT_PCH=OFF \
   -DWANT_TEST=OFF \
+  -DWANT_DEBUG=OFF \
+  -DWANT_FULLDBG=OFF \
   -DBUILD_ALL=ON \
   ..
 
@@ -159,6 +172,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -f %{?buildroot}%{tde_libdir}/*.a
 
 %find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -205,8 +219,11 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-5
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-6
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-5
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-4
 - Initial release for TDE 3.5.13.2

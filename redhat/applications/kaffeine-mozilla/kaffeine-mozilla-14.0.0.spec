@@ -45,9 +45,11 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch1:		kaffeine-mozilla-3.5.13-fix_nspr_include.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 
 %if 0%{?suse_version}
 BuildRequires:	mozilla-nspr-devel
@@ -58,7 +60,7 @@ BuildRequires:	nspr-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xaw-devel
 %endif
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1220
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXaw-devel
 %endif
 
@@ -75,7 +77,6 @@ when a page containing a supported media format is loaded.
 
 
 %prep
-unset QTDIR QTINC QTLIB
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .nspr
 
@@ -85,15 +86,23 @@ unset QTDIR QTINC QTLIB
 
 
 %build
+unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-	--disable-rpath \
-    --enable-closure \
-    --prefix=%{_libdir}/mozilla
+  --prefix=%{_libdir}/mozilla \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
+
 
 %install
 export PATH="%{tde_bindir}:${PATH}"
@@ -102,6 +111,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Remove useless filess
 %__rm -f %{?buildroot}%{_libdir}/mozilla/plugins/kaffeineplugin.a
+
 
 %clean
 %__rm -rf %{buildroot}

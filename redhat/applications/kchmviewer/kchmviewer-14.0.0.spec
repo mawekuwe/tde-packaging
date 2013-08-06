@@ -42,9 +42,11 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 
 %description
 KchmViewer is a chm (MS HTML help file format) viewer, written in C++.
@@ -90,6 +92,7 @@ if [ -d /usr/X11R6 ]; then
   export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
+# Warning: --enable-final causes FTBFS !
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -97,12 +100,17 @@ fi
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
   --with-x \
-  --with-kde \
-  --with-extra-includes=%{_includedir}/tqt \
-  --enable-closure
-
+  --with-kde
 
 %__make %{?_smp_mflags}
 

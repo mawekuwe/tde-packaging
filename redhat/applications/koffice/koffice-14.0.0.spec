@@ -41,7 +41,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		An integrated office suite
 Version:		1.6.3
-Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
 Group:			Applications/Productivity
 License:		GPLv2+
@@ -57,7 +57,12 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
 # BuildRequires: world-devel ;)
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
 BuildRequires:	trinity-tdegraphics-devel >= %{tde_version}
 BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel >= %{tde_version}
 BuildRequires:	automake libtool
@@ -72,7 +77,6 @@ BuildRequires:	python-devel
 BuildRequires:	pcre-devel
 BuildRequires:	gettext-devel
 BuildRequires:	mysql-devel
-BuildRequires:	desktop-file-utils
 BuildRequires:	perl
 BuildRequires:	doxygen
 BuildRequires:	aspell-devel
@@ -140,6 +144,7 @@ BuildRequires:	libutempter-devel
 #  Requires 'libpqxx', for kexi-driver-pgqsl
 %if 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
 %define with_postgresql 1
+BuildRequires:	postgresql-devel
 BuildRequires:	libpqxx-devel
 %endif
 Obsoletes:		trinity-libpqxx
@@ -230,7 +235,6 @@ Summary:		Core support files for %{name}
 Group:			Applications/Productivity
 Requires:		%{name}-libs = %{version}-%{release}
 Requires:		perl
-Conflicts:      koffice-i18n < %{version}
 
 %description core
 %{summary}.
@@ -1079,7 +1083,6 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
-export TDEDIR="%{tde_prefix}"
 
 %if 0%{?suse_version} == 1220
 RD=$(ruby -r rbconfig -e 'printf("%s",Config::CONFIG["rubyhdrdir"])')
@@ -1094,14 +1097,18 @@ export CXXFLAGS="${CXXFLAGS} -I${RD}/%_normalized_cpu-linux"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath --disable-dependency-tracking \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
-  --disable-debug --disable-warnings \
-  --with-pic --enable-shared --disable-static \
-  --with-extra-libs=%{tde_libdir} \
   --enable-final \
-  --with-extra-includes=:%{tde_includedir}/arts \
   --enable-closure \
+  --enable-rpath \
+  --disable-gcc-hidden-visibility \
+  \
+  --with-extra-libs=%{tde_libdir} \
+  --with-extra-includes=%{tde_includedir}/arts \
+  \
   --disable-kexi-macros \
   %{?with_kross:--enable-scripting} %{!?with_kross:--disable-scripting} \
   %{?with_postgresql:--enable-pgsql} %{!?with_postgresql:--disable-pgsql} \

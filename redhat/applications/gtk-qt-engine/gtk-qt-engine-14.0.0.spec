@@ -47,9 +47,11 @@ Source3:		gtkrc-2.0-kde-kde4
 Patch1:			gtk-qt-engine-14.0.0-fix_gtk3_segv.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 
@@ -72,13 +74,6 @@ a way to configure it from within KControl.
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .segv
 
-# Renames the '.po' files
-for f in po/*/*.po; do
-  pushd ${f%/*}
-  mv -f *.po gtk-qt-engine.po
-  popd
-done
-
 
 %build
 unset QTDIR QTINC QTLIB
@@ -90,13 +85,15 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 cd build
 %endif
 
+# Warning: GCC visibility causes the KCM not to work at all !
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
-  -DWITH_GCC_VISIBILITY=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
   \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DDATA_INSTALL_DIR=%{tde_datadir} \
@@ -112,7 +109,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
-%find_lang %{tde_pkg}
+%find_lang gtkqtengine
 
 # Adds TDE's specific GTKRC
 %__install -D -m 644 %{SOURCE1} %{buildroot}%{tde_datadir}/kgtk/gtk-qt-engine.rc.sh
@@ -124,7 +121,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
 
-%files -f %{tde_pkg}.lang
+%files -f gtkqtengine.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{tde_tdelibdir}/kcm_kcmgtk.la

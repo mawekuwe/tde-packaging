@@ -47,10 +47,10 @@ Obsoletes:		trinity-style-lipstik < %{version}-%{release}
 Provides:		trinity-style-lipstik = %{version}-%{release}
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
 
 %description
@@ -84,8 +84,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
-  --disable-rpath \
-  --with-extra-includes=
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-final \
+  --enable-new-ldflags \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

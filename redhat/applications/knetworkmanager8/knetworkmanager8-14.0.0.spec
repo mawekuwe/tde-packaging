@@ -49,8 +49,8 @@ Requires:		NetworkManager-gnome
 Requires:		networkmanager
 %endif
 
-BuildRequires:	trinity-dbus-1-tqt-devel
-BuildRequires:	trinity-dbus-tqt-devel
+BuildRequires:	trinity-dbus-1-tqt-devel >= 1:0.9
+BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
 BuildRequires:	NetworkManager-glib-devel
 
 Obsoletes:		trinity-knetworkmanager < %{version}-%{release}
@@ -81,35 +81,38 @@ Development headers for knetworkmanager
 %prep 
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-cd knetworkmanager-0.*/src
-%patch0 -p3
+%__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__make -f "admin/Makefile.common"
 
 
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}"
-export LD_LIBRARY_PATH="%{tde_libdir}"
+export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
-# Missing TDE macros
-%__mkdir_p cmake
-%__ln_s %{tde_datadir}/cmake cmake/modules
+# Warning: --enable-final causes FTBFS
+%configure \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
+  --enable-closure \
+  --enable-rpath \
+  --disable-gcc-hidden-visibility \
+  \
+  --with-openvpn \
+  --with-vpnc \
+  --with-pptp
 
-%if 0%{?rhel} || 0%{?fedora}
-%__mkdir_p build
-cd build
-%endif
-
-%cmake \
-  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
-  -DBIN_INSTALL_DIR=%{tde_bindir} \
-  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
-  -DLIB_INSTALL_DIR=%{tde_libdir} \
-  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
-  ..
-  
 %__make %{?_smp_mflags} || %__make
 
 

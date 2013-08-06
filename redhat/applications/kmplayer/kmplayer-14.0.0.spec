@@ -42,12 +42,13 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 
+# GSTREAMER support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
 BuildRequires:	libgstreamer0.10-devel
@@ -55,24 +56,35 @@ BuildRequires:	libgstreamer0.10-devel
 BuildRequires:	%{_lib}gstreamer0.10-devel
 %endif
 BuildRequires:	%{_lib}gstreamer-plugins-base0.10-devel
-BuildRequires:	libxv-devel
 %endif
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} == 4
+BuildRequires:	gstreamer-devel
+BuildRequires:	gstreamer-plugins-devel
+%endif
+%if 0%{?rhel} >= 5|| 0%{?fedora}
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-plugins-base-devel
-BuildRequires:	libXv-devel
 %endif
 %if 0%{?suse_version}
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-0_10-plugins-base-devel
-%if 0%{?suse_version} == 1140
-BuildRequires:	xorg-x11-libXv-devel
-%else
-BuildRequires:	libXv-devel
-%endif
 %endif
 
-Requires:		%{name}-base
+# X11 stuff
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libxv-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1210
+BuildRequires:	libXv-devel
+%endif
+%if 0%{?rhel} == 4
+BuildRequires:	xorg-x11-devel 
+%endif
+%if 0%{?suse_version} == 1140
+BuildRequires:	xorg-x11-libXv-devel
+%endif
+
+Requires:		%{name}-base = %{version}-%{release}
 
 %description
 A basic audio/video viewer application for Trinity.
@@ -101,7 +113,8 @@ Core files needed for KMPlayer.
 
 %package konq-plugins
 Group:			Applications/Multimedia
-Requires:		trinity-kmplayer-base, trinity-kdebase
+Requires:		%{name}-base = %{version}-%{release}
+Requires:		trinity-tdebase >= %{tde_version}
 Summary:		KMPlayer plugin for KHTML/Konqueror [Trinity]
 
 %description konq-plugins
@@ -147,8 +160,14 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --disable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Taking care of your ideas.
 Version:		1.0.3.1
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -41,9 +41,9 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gpgme-devel
@@ -76,15 +76,22 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
+# Warning: --enable-final causes FTBFS
 %configure \
-	--prefix=%{tde_prefix} \
-	--exec-prefix=%{tde_prefix} \
-	--bindir=%{tde_bindir} \
-	--includedir=%{tde_tdeincludedir} \
-	--libdir=%{tde_libdir} \
-	--datadir=%{tde_datadir} \
-	--disable-rpath \
-    --disable-static
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --includedir=%{tde_tdeincludedir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
+  --enable-closure \
+  --enable-rpath \
+  --disable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -106,6 +113,7 @@ for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig
+update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 
 %postun
 for f in crystalsvg ; do
@@ -113,6 +121,7 @@ for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig
+update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 
 
 %files -f %{tde_pkg}.lang
@@ -151,8 +160,11 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-5
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-6
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-5
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-4
 - Initial release for TDE 3.5.13.2

@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		subversion client with tight TDE integration [Trinity]
 Version:		1.0.4
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -42,10 +42,10 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
 BuildRequires:	subversion-devel
 Requires:		%{name}-tdeio-plugins = %{version}-%{release}
@@ -111,10 +111,6 @@ This package is part of tdesvn-trinity.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# More ugly hack to add TQT include directory in CMakeLists.txt	
-%__sed -i CMakeLists.txt \
-  -e "s,^\(INCLUDE_DIRECTORIES (\)$,\1\n,"
-
 # Moves HTML files to the correect location
 find . -name "*.cmake" -exec %__sed -i {} \
   -e "s,/doc/HTML,/doc/tde/HTML,g" \
@@ -134,6 +130,14 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_includedir} \
@@ -142,7 +146,9 @@ cd build
   -DDATA_INSTALL_DIR=%{tde_datadir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  \
+  -DBUILD_DOC=ON \
+  -DBUILD_TRANSLATIONS=ON \
   ..
 
 # SMP safe !
@@ -166,6 +172,8 @@ export PATH="%{_bindir}:${PATH}"
 %__ln_s /etc/alternatives/svn+https.protocol %{?buildroot}%{tde_datadir}/services/svn+https.protocol
 %__ln_s /etc/alternatives/svn+ssh.protocol %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol
 %__ln_s /etc/alternatives/svn.protocol %{?buildroot}%{tde_datadir}/services/svn.protocol
+
+%find_lang %{tde_pkg}
 
 
 %clean
@@ -207,7 +215,7 @@ fi
 /sbin/ldconfig || :
 
 
-%files
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{tde_bindir}/tdesvn
@@ -223,9 +231,10 @@ fi
 %{tde_datadir}/config.kcfg/tdesvn_part.kcfg
 %{tde_datadir}/icons/hicolor/*/*/*.png
 %{tde_datadir}/icons/hicolor/*/*/*.svgz
-#%{tde_mandir}/man1/tdesvn.1
-#%{tde_mandir}/man1/tdesvnaskpass.1
-#%{tde_tdedocdir}/HTML/*/
+%{tde_mandir}/man1/tdesvn.1*
+%{tde_mandir}/man1/tdesvnaskpass.1*
+%lang(en) %{tde_tdedocdir}/HTML/en/tdesvn/
+%lang(nl) %{tde_tdedocdir}/HTML/nl/tdesvn/
 %{tde_libdir}/libksvnwidgets.la
 %{tde_libdir}/libksvnwidgets.so
 %{tde_libdir}/libsvnfrontend.la
@@ -274,8 +283,11 @@ fi
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-7
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-6
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-5
 - Initial release for TDE 3.5.13.2

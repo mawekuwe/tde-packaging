@@ -42,13 +42,14 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gcc-c++
 
-Requires:		trinity-kdebase
+Requires:		trinity-tdebase >= %{tde_version}
 
 %description
 %{summary}
@@ -84,7 +85,8 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

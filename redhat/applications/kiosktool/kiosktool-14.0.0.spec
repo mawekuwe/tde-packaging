@@ -26,7 +26,7 @@
 
 Name:			trinity-%{tde_pkg}
 Version:		1.0
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 Summary:		tool to configure the TDE kiosk framework
 
 License:		GPLv2+
@@ -40,8 +40,13 @@ URL:			http://www.trinitydesktop.org/
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:	gettext
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
+BuildRequires:	gettext
 
 
 %description
@@ -77,14 +82,15 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
-  --disable-debug --disable-warnings \
-  --disable-dependency-tracking --enable-final \
+  --enable-final \
   --enable-closure \
-  --with-extra-includes=
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
   
-
 %__make %{?_smp_mflags}
 
 
@@ -125,8 +131,11 @@ update-desktop-database >& /dev/null ||:
 %{tde_datadir}/apps/kiosktool/kiosktoolui.rc
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-5
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-6
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-5
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-4
 - Initial release for TDE 3.5.13.2

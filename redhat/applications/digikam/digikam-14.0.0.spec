@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		digital photo management application for TDE [Trinity]
 Version:		0.9.6
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -44,20 +44,24 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch1:		digikam-3.5.13.2-fix_png12_support.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:	trinity-libkexiv2-devel >= %{tde_version}
-BuildRequires:	trinity-libkdcraw-devel >= %{tde_version}
-BuildRequires:	trinity-libkipi-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
+BuildRequires:	trinity-libkexiv2-devel
+BuildRequires:	trinity-libkdcraw-devel
+BuildRequires:	trinity-libkipi-devel
+
+BuildRequires:	libtiff-devel
+BuildRequires:	gettext
+
+# GPHOTO2 support
 %if 0%{?rhel} == 4 || 0%{?rhel} == 5 || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	gphoto2-devel
 %else
 BuildRequires:	libgphoto2-devel
 %endif
-BuildRequires:	libtiff-devel
-BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
 # JASPER support
 %if 0%{?suse_version}
@@ -77,9 +81,9 @@ BuildRequires:	libexiv2-devel
 BuildRequires:	exiv2-devel
 %endif
 
-Requires:		trinity-libkexiv2 >= 3.5.13.1
-Requires:		trinity-libkdcraw >= 3.5.13.1
-Requires:		trinity-libkipi >= 3.5.13.1
+Requires:		trinity-libkexiv2
+Requires:		trinity-libkdcraw
+Requires:		trinity-libkipi
 
 %description
 An easy to use and powerful digital photo management
@@ -105,7 +109,7 @@ digiKam is based in part on the work of the Independent JPEG Group.
 %package devel
 Group:			Development/Libraries
 Summary:		Development files for %{name}
-Requires:		%{name} = %{version}
+Requires:		%{name} = %{version}-%{release}
 
 %description devel
 %{summary}
@@ -131,7 +135,6 @@ Requires:		%{name} = %{version}
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_tdeincludedir}"
-export TDEDIR="%{tde_prefix}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -141,9 +144,14 @@ export TDEDIR="%{tde_prefix}"
   --datadir=%{tde_datadir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --with-extra-includes=%{tde_tdeincludedir}/tqt \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags} || %__make
 
@@ -307,8 +315,11 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-7
 - Initial release for TDE 14.0.0
+
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-6
+- Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-5
 - Initial release for TDE 3.5.13.2

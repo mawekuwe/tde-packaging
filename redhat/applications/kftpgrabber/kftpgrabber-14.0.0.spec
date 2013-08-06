@@ -36,13 +36,37 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
-BuildRequires:	desktop-file-utils
-BuildRequires:	trinity-tqt3-devel >= 3.5.0
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
 
 %description
+KFTPgrabber is a graphical FTP client for the Trinity Desktop Environment. It
+implements many features required for usable FTP interaction.
+
+Feature list:
+- Multiple simultaneous FTP sessions in separate tabs
+- A tree-oriented transfer queue
+- TLS/SSL support for the control connection and the data channel
+- X509 certificate support for authentication
+- FXP site-to-site transfer support
+- One-time password (OTP) support using S/KEY, MD5, RMD160 or SHA1
+- Site bookmarks with many options configurable per-site
+- Distributed FTP daemon support (implementing the PRET command)
+- Can use Zeroconf for local site discovery
+- Bookmark import plugins from other FTP clients
+- Support for the SFTP protocol
+- A nice traffic graph
+- Ability to limit upload and download speed
+- Priority and skip lists
+- Integrated SFV checksum verifier
+- Direct viewing/editing of remote files
+- Advanced default "on file exists" action configuration
+- Filter displayed files/directories as you type
+
 
 %package devel
 Summary:  	Development files for %{name}
@@ -70,17 +94,22 @@ unset QTDIR QTINC QTDIR
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
+# Warning: --enable-final causes FTBFS
 %configure \
-	--prefix=%{tde_prefix} \
-	--exec-prefix=%{tde_prefix} \
-	--disable-dependency-tracking \
-	--disable-rpath \
-	--bindir=%{tde_bindir} \
-	--libdir=%{tde_libdir} \
-	--datadir=%{tde_datadir} \
-	--includedir=%{tde_tdeincludedir} \
-	--disable-static \
-	--enable-closure
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
   
 %__make %{?_smp_mflags}
 
