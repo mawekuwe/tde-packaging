@@ -4,8 +4,9 @@
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
+%define tde_version 3.5.13.2
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -27,50 +28,59 @@
 Name:		trinity-python-trinity
 Summary:	Trinity bindings for Python [Trinity]
 Version:	3.16.3
-Release:	4%{?dist}%{?_variant}
+Release:	%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.simonzone.com/software/pykdeextensions
+#URL:		http://www.simonzone.com/software/pykdeextensions
+URL:		http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:		%{_prefix}
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # Fix include subdirectory 'tde' instead of 'kde'
 Patch1:		python-trinity-3.5.13.2-fix_tde_includedir.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
+# PYTHON support
 BuildRequires:	python
+%if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
+# RHEL 4/5 comes with old version, so we brought ours ...
+BuildRequires:	trinity-PyQt-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	python-qt
+%endif
+%if 0%{?rhel} >= 6 || 0%{?fedora}
+BuildRequires:	PyQt-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	trinity-PyQt-devel
+%endif
 
+# SIP support
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
 # RHEL 4/5 comes with old version, so we brought ours ...
 BuildRequires:	trinity-sip-devel
-BuildRequires:	trinity-PyQt-devel
 %endif
-
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	python-sip
-BuildRequires:	python-qt
 %endif
-
 %if 0%{?rhel} >= 6 || 0%{?fedora}
 BuildRequires:	sip-devel
-BuildRequires:	PyQt-devel
 %endif
-
 %if 0%{?suse_version}
 BuildRequires:	python-sip-devel
-BuildRequires:	trinity-PyQt-devel
 %endif
 
 Obsoletes:	python-trinity < %{version}-%{release}
@@ -91,7 +101,7 @@ Obsoletes:	python-trinity-devel < %{version}-%{release}
 Provides:	python-trinity-devel = %{version}-%{release}
 
 %description devel
-Development .sip files with definitions of PyKDE classes. They
+Development .sip files with definitions of PyTDE classes. They
 are needed to build PyTDE, but also as building blocks of other
 packages based on them. 
 The package also contains kdepyuic, a wrapper script around PyQt's 
@@ -99,14 +109,14 @@ user interface compiler.
 
 
 %package doc
-Summary:		Documentation and examples for PyKDE [Trinity]
+Summary:		Documentation and examples for PyTDE [Trinity]
 Group:			Development/Libraries
 
 Obsoletes:	python-trinity-doc < %{version}-%{release}
 Provides:	python-trinity-doc = %{version}-%{release}
 
 %description doc
-General documentation and examples for PyKDE providing programming
+General documentation and examples for PyTDE providing programming
 tips and working code you can use to learn from.
 
 
@@ -116,24 +126,17 @@ tips and working code you can use to learn from.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .inc
-
-# Hack to get TQT include files under /opt
-%__sed -i "configure.py" \
-	-e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
 
 
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export LD_RUN_PATH="%{tde_libdir}"
 export KDEDIR=%{tde_prefix}
 
-#export LDFLAGS="${LDFLAGS} -lpython2.7"
-
 export DH_OPTIONS
-export QMAKESPEC=$(QTDIR)/mkspecs/linux-g++
 
 export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
 
@@ -189,7 +192,10 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.6.13-5
+- Build for Fedora 19
+
+* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.16.3-4
 - Initial release for TDE 3.5.13.2
 
 * Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.16.3-3

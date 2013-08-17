@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp libksquirrel
+%define tde_pkg libksquirrel
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -15,7 +16,6 @@
 %define tde_mandir %{tde_datadir}/man
 %define tde_appdir %{tde_datadir}/applications
 
-%define tde_tdeappdir %{tde_appdir}/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -23,10 +23,11 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
+Name:		trinity-%{tde_pkg}
 Summary:	Trinity image viewer
-Version:	3.5.13.2
-Release:	1%{?dist}%{?_variant}
+Epoch:		1
+Version:	0.8.0
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Environment/Libraries
@@ -38,12 +39,12 @@ URL:		http://www.trinitydesktop.org/
 Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch0:		libksquirrel-3.5.13-detect_netpbm.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
@@ -77,6 +78,9 @@ BuildRequires:	xmedcon-devel
 %define with_svg 1
 %if 0%{?fedora} || 0%{?rhel} 
 BuildRequires:	librsvg2
+%endif
+%if 0%{?fedora}
+BuildRequires:	librsvg2-tools
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	librsvg
@@ -128,7 +132,7 @@ Runtime libraries for KSquirrel.
 %package devel
 Group:		Development/Libraries
 Summary:	Trinity image viewer
-Requires:	%{name}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 Development libraries for KSquirrel.
@@ -137,7 +141,7 @@ Development libraries for KSquirrel.
 %package tools
 Summary:	Trinity image viewer
 Group:		Environment/Libraries
-Requires:	%{name}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description tools
 Tools for KSquirrel.
@@ -149,14 +153,8 @@ Tools for KSquirrel.
 
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch0 -p1 -b .netpbm
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -176,8 +174,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_includedir} \
-  --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  \
   %{?with_djvu:--enable-djvu}
 
 %__make %{?_smp_mflags}
@@ -197,6 +201,12 @@ export PATH="%{tde_bindir}:${PATH}"
 /sbin/ldconfig || :
 
 %postun
+/sbin/ldconfig || :
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
 /sbin/ldconfig || :
 
 
@@ -498,5 +508,8 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %Changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0-1
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

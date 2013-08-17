@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -18,29 +20,29 @@
 %define _docdir %{tde_docdir}
 
 
-Summary:	Trinity Desktop Environment - Accessibility
-Name:		trinity-tdeaccessibility
-Version:	3.5.13.2
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Summary:		Trinity Desktop Environment - Accessibility
+Name:			trinity-tdeaccessibility
+Version:		%{tde_version}
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2
-Group:		User Interface/Desktops
+License:		GPLv2
+Group:			User Interface/Desktops
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
 BuildRequires:	trinity-akode-devel
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
-BuildRequires:	trinity-tdemultimedia-devel >= %{version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
 
 BuildRequires:	alsa-lib-devel
 
@@ -441,12 +443,6 @@ Provides:		trinity-kdeaccessibility-devel = %{version}-%{release}
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -456,7 +452,6 @@ Provides:		trinity-kdeaccessibility-devel = %{version}-%{release}
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Avoids conflict with KDE4, if installed
 # see file: '/etc/profile.d/kde.sh' from package 'kde-settings'
@@ -475,15 +470,17 @@ fi
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
-  --enable-closure \
-  --disable-debug --disable-warnings \
   --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  \
   --enable-ksayit-audio-plugins \
-  --with-akode \
-  --with-extra-includes=%{tde_includedir}:%{tde_includedir}/tqt
-
+  --with-akode
+  
 %__make %{?_smp_mflags}
 
 
@@ -492,28 +489,14 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-# file lists for locale
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}/$HTML_DIR ]; then
-  for lang_dir in %{buildroot}/$HTML_DIR/* ; do
-    if [ -d $lang_dir ]; then
-      lang=$(basename $lang_dir)
-      echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-      # replace absolute symlinks with relative ones
-      pushd $lang_dir
-         for i in *; do
-           [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-         done
-      popd
-    fi
-  done
-fi
-
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

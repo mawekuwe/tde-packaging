@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		TDE Integrated LaTeX Environment [Trinity]
 Version:		2.0.2
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Publishing
@@ -42,9 +42,11 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 Obsoletes: %{name}-i18n-ar
@@ -116,12 +118,6 @@ Kile can support large projects consisting of several smaller files.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -130,7 +126,6 @@ Kile can support large projects consisting of several smaller files.
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -140,15 +135,13 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-    \
+  \
   --disable-dependency-tracking \
   --disable-debug \
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
-  \
-  --with-extra-includes=%{tde_includedir}/tqt
+  --enable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -204,6 +197,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-7
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-6
 - Rebuild with NDEBUG option
 

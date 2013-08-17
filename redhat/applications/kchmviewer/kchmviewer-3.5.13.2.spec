@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp kchmviewer
+%define tde_pkg kchmviewer
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,32 +24,34 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
-Summary:	CHM viewer for Trinity
-Version:	3.1.2
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		CHM viewer for Trinity
+Version:		3.1.2
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
-BuildRequires: desktop-file-utils
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
 
 %description
 KchmViewer is a chm (MS HTML help file format) viewer, written in C++.
 Unlike most existing CHM viewers for Unix, it uses Trolltech Qt widget
-library, and does not depend on KDE or GNOME. However, it may be compiled
+library, and does not depend on TDE or GNOME. However, it may be compiled
 with full Trinity support, including Trinity widgets and KIO/KHTML. 
 
 The main advantage of KchmViewer is non-English language support. Unlike
@@ -72,13 +75,7 @@ support. Correctly detects and shows encoding of any valid chm file.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -88,13 +85,13 @@ support. Correctly detects and shows encoding of any valid chm file.
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{_includedir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
   export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
+# Warning: --enable-final causes FTBFS !
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -102,12 +99,16 @@ fi
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
+  --enable-closure \
+  --enable-rpath \
+  \
   --with-x \
-  --with-kde \
-  --with-extra-includes=%{_includedir}/tqt \
-  --enable-closure
-
+  --with-kde
 
 %__make %{?_smp_mflags}
 
@@ -117,7 +118,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{kdecomp}
+%find_lang %{tde_pkg}
 
 # Removes useless files
 %__rm -f %{?buildroot}%{tde_libdir}/*.a
@@ -135,7 +136,7 @@ touch --no-create %{tde_datadir}/icons/crystalsvg || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 
 
-%files -f %{kdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc ChangeLog COPYING FAQ README
 %{tde_bindir}/kchmviewer
@@ -147,6 +148,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.1.2-5
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.1.2-4
 - Initial release for TDE 3.5.13.2
 

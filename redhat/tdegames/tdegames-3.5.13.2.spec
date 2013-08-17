@@ -23,7 +23,7 @@
 Name:			trinity-tdegames
 Summary:		Trinity Desktop Environment - Games
 Version:		%{tde_version}
-Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			Amusements/Games
@@ -40,11 +40,11 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	libtool
 
-BuildRequires:	tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	qt3-devel >= 3.3.8.d
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdemultimedia-devel >= %{tde_version}
-BuildRequires:	qt3-devel >= 3.3.8.d
 
 Obsoletes:		trinity-kdegames < %{version}-%{release}
 Provides:		trinity-kdegames = %{version}-%{release}
@@ -103,7 +103,7 @@ Group:		Development/Libraries
 License:	LGPLv2
 
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-tdelibs-devel >= 3.5.13
+Requires:	trinity-tdelibs-devel >= %{tde_version}
 Requires:	trinity-libtdegames-devel = %{version}-%{release}
 Requires:	trinity-atlantik-devel = %{version}-%{release}
 Requires:	trinity-kolf-devel = %{version}-%{release}
@@ -136,8 +136,8 @@ This package is part of TDE, and a component of the TDE games module.
 
 %files -n trinity-libtdegames1
 %defattr(-,root,root,-)
-%{tde_libdir}/lib[kt]degames.so.*
-%{tde_datadir}/apps/[kt]degames/pics/star.png
+%{tde_libdir}/libkdegames.so.*
+%{tde_datadir}/apps/kdegames/pics/star.png
 %{tde_datadir}/icons/crystalsvg/*/actions/roll.png
 %{tde_datadir}/icons/crystalsvg/*/actions/highscore.png
 #%{tde_tdedocdir}/HTML/en/%{name}-%{version}-apidocs/
@@ -173,8 +173,8 @@ This package is part of Trinity, and a component of the TDE games module.
 %defattr(-,root,root,-)
 %{tde_tdeincludedir}/*.h
 %{tde_tdeincludedir}/kgame
-%{tde_libdir}/lib[kt]degames.so
-%{tde_libdir}/lib[kt]degames.la
+%{tde_libdir}/libkdegames.so
+%{tde_libdir}/libkdegames.la
 
 ##########
 
@@ -876,8 +876,8 @@ This package is part of Trinity, and a component of the TDE games module.
 %{tde_datadir}/icons/hicolor/*/apps/kolf.png
 %{tde_datadir}/mimelnk/application/x-kolf.desktop
 %{tde_datadir}/mimelnk/application/x-kourse.desktop
-%{tde_libdir}/lib[kt]deinit_kolf.so
-%{tde_libdir}/lib[kt]deinit_kolf.la
+%{tde_libdir}/libkdeinit_kolf.so
+%{tde_libdir}/libkdeinit_kolf.la
 %{tde_tdelibdir}/kolf.la
 %{tde_tdelibdir}/kolf.so
 %{tde_libdir}/libkolf.so.1
@@ -1448,13 +1448,13 @@ This package is part of Trinity, and a component of the TDE games module.
 
 %files -n trinity-twin4
 %defattr(-,root,root,-)
-%{tde_bindir}/[kt]win4
-%{tde_bindir}/[kt]win4proc
-%{tde_datadir}/apps/[kt]win4/
-%{tde_datadir}/config.kcfg/[kt]win4.kcfg
-%{tde_datadir}/icons/hicolor/*/apps/[kt]win4.png
-%{tde_tdeappdir}/[kt]win4.desktop
-%{tde_tdedocdir}/HTML/en/[kt]win4/
+%{tde_bindir}/kwin4
+%{tde_bindir}/kwin4proc
+%{tde_datadir}/apps/kwin4/
+%{tde_datadir}/config.kcfg/kwin4.kcfg
+%{tde_datadir}/icons/hicolor/*/apps/kwin4.png
+%{tde_tdeappdir}/kwin4.desktop
+%{tde_tdedocdir}/HTML/en/kwin4/
 
 %post -n trinity-twin4
 for f in hicolor ; do
@@ -1523,12 +1523,6 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -1537,7 +1531,6 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Do not build against any "/usr" installed KDE
 export KDEDIR="%{tde_prefix}"
@@ -1560,9 +1553,7 @@ fi
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
-  \
-   --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-rpath \
   \
   --disable-setgid
 
@@ -1586,6 +1577,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 

@@ -26,7 +26,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		Xine-based media player
 
 Version:		0.8.8
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -36,7 +36,12 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 # VORBIS support
@@ -51,7 +56,7 @@ BuildRequires:	libcdda-devel
 BuildRequires:	cdparanoia
 BuildRequires:	cdparanoia-devel
 %endif
-%if 0%{?suse_version} >= 1220
+%if 0%{?suse_version} >= 1220 || 0%{?fedora} >= 19
 BuildRequires:	libcdio-paranoia-devel
 %endif
 
@@ -64,7 +69,7 @@ BuildRequires:	%{_lib}xinerama%{?mgaversion:1}-devel
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel 
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1220
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXext-devel 
 BuildRequires:	libXtst-devel
 BuildRequires:	libXinerama-devel
@@ -76,15 +81,15 @@ BuildRequires: libxcb-devel
 # GSTREAMER support
 %if 0%{?rhel} >= 5 || 0%{?suse_version} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_gstreamer 1
-BuildRequires:	gstreamer-devel
 %if 0%{?suse_version}
+BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-0_10-plugins-base-devel
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-plugins-devel
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -109,10 +114,10 @@ BuildRequires:	lame-devel
 %endif
 
 # WTF support
-%if 0%{?pclinuxos} == 0
+%if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	kernel-headers
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	glibc-kernheaders 
 %endif
 
@@ -212,12 +217,6 @@ Requires:		%{name} = %{version}-%{release}
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -225,7 +224,6 @@ Requires:		%{name} = %{version}-%{release}
 %build
 unset QTDIR || : ; source /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export KDEDIR=%{tde_prefix}
 
 %configure \
@@ -242,9 +240,7 @@ export KDEDIR=%{tde_prefix}
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
-  \
-  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-rpath \
   \
   --with-xinerama \
   --with-gstreamer \
@@ -275,6 +271,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-6
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-5
 - Initial release for TDE 3.5.13.2
 

@@ -22,7 +22,7 @@
 
 Name:		trinity-tdeutils
 Version:	%{tde_version}
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	TDE Utilities
 Group:		Applications/System
@@ -48,9 +48,10 @@ Provides:	trinity-kdeutils-extras = %{version}-%{release}
 Obsoletes:	tdeutils < %{version}-%{release}
 Provides:	tdeutils = %{version}-%{release}
 
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	cmake >= 2.8
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	gettext
 BuildRequires:	net-snmp-devel
@@ -166,7 +167,7 @@ package.
 %{tde_tdelibdir}/ark.so
 %{tde_tdelibdir}/libarkpart.la
 %{tde_tdelibdir}/libarkpart.so
-%{tde_libdir}/lib[kt]deinit_ark.so
+%{tde_libdir}/libkdeinit_ark.so
 %{tde_tdeappdir}/ark.desktop
 %{tde_datadir}/apps/ark/
 %{tde_datadir}/config.kcfg/ark.kcfg
@@ -211,7 +212,7 @@ It provides:
 %{tde_bindir}/kcalc
 %{tde_tdelibdir}/kcalc.la
 %{tde_tdelibdir}/kcalc.so
-%{tde_libdir}/lib[kt]deinit_kcalc.so
+%{tde_libdir}/libkdeinit_kcalc.so
 %{tde_tdeappdir}/kcalc.desktop
 %{tde_datadir}/apps/kcalc/
 %{tde_datadir}/apps/kconf_update/kcalcrc.upd
@@ -287,7 +288,7 @@ This is a frontend for the LIRC suite to use infrared devices with TDE.
 %{tde_tdelibdir}/irkick.so
 %{tde_tdelibdir}/kcm_kcmlirc.la
 %{tde_tdelibdir}/kcm_kcmlirc.so
-%{tde_libdir}/lib[kt]deinit_irkick.so
+%{tde_libdir}/libkdeinit_irkick.so
 %{tde_tdeappdir}/irkick.desktop
 %{tde_tdeappdir}/kcmlirc.desktop
 %{tde_datadir}/apps/irkick/
@@ -402,7 +403,7 @@ reasonably fast start.
 %{tde_bindir}/kedit
 %{tde_tdelibdir}/kedit.la
 %{tde_tdelibdir}/kedit.so
-%{tde_libdir}/lib[kt]deinit_kedit.so
+%{tde_libdir}/libkdeinit_kedit.so
 %{tde_tdeappdir}/KEdit.desktop
 %{tde_datadir}/apps/kedit/keditui.rc
 %{tde_datadir}/config.kcfg/kedit.kcfg
@@ -934,10 +935,10 @@ Development files for %{name}.
 %{tde_libdir}/libkcmlaptop.la
 %{tde_libdir}/libkcmlaptop.so
 %endif
-%{tde_libdir}/lib[kt]deinit_ark.la
-%{tde_libdir}/lib[kt]deinit_irkick.la
-%{tde_libdir}/lib[kt]deinit_kcalc.la
-%{tde_libdir}/lib[kt]deinit_kedit.la
+%{tde_libdir}/libkdeinit_ark.la
+%{tde_libdir}/libkdeinit_irkick.la
+%{tde_libdir}/libkdeinit_kcalc.la
+%{tde_libdir}/libkdeinit_kedit.la
 %{tde_libdir}/libkmilo.la
 %{tde_libdir}/libkmilo.so
 %{tde_libdir}/libkregexpeditorcommon.la
@@ -973,7 +974,6 @@ Development files for %{name}.
 unset QTDIR || : ; source /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 
 # Do not build against any "/usr" installed KDE
 export KDEDIR="%{tde_prefix}"
@@ -991,10 +991,11 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
@@ -1065,6 +1066,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 

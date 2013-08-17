@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp adept
+%define tde_pkg adept
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,26 +24,26 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	Package management suite for Trinity
-Version:	2.1.3
-Release:	1%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Package management suite for Trinity
+Version:		2.1.3
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://lpnotfr.free.fr/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://lpnotfr.free.fr/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 Requires:		%{name}-manager = %{version}-%{release}
@@ -67,8 +68,8 @@ These packages belong to the adept suite:
 ##########
 
 %package common
-Requires:	trinity-konsole
-Summary:	Package manager for Trinity -- common files
+Requires:		trinity-konsole
+Summary:		Package manager for Trinity -- common files
 
 %description common
 Icons and other common files for all adept components.
@@ -76,8 +77,8 @@ Icons and other common files for all adept components.
 ##########
 
 %package manager
-Requires:	%{name}-common = %{version}-%{release}
-Summary:	package manager for Trinity
+Requires:		%{name}-common = %{version}-%{release}
+Summary:		package manager for Trinity
  
 %description manager
 Adept Manager is a graphical user interface for package management.
@@ -88,26 +89,26 @@ Besides these basic functions the following features are provided:
  * Edit the list of used repositories (sources.list)
  * Configure packages through the debconf system
 
-Please also install libtqt-perl if you want the KDE Debconf frontend
+Please also install libtqt-perl if you want the TDE Debconf frontend
 to function.
 
 ##########
 
 %package installer
-Requires:	%{name}-common = %{version}-%{release}
-Summary:	simple user interface for application management (for Trinity)
+Requires:		%{name}-common = %{version}-%{release}
+Summary:		simple user interface for application management (for Trinity)
 
 %description installer
 Adept Installer presents a list of applications available through the
 Advanced Package Tool (APT). An application is considered a package
-that contains a .desktop file for use with KDE, GNOME or other
+that contains a .desktop file for use with TDE, GNOME or other
 desktop environment.
 
 ##########
 
 %package updater
-Requires:	%{name}-common = %{version}-%{release}
-Summary:	system update tool for Trinity
+Requires:		%{name}-common = %{version}-%{release}
+Summary:		system update tool for Trinity
 
 %description updater
 Adept Updater provides a simple wizard-style user interface to system
@@ -116,9 +117,9 @@ upgrades. It uses same algorithms as apt-get dist-upgrade.
 ##########
 
 %package notifier
-Requires:	%{name}-common = %{version}-%{release}
-Requires:	%{name}-updater = %{version}-%{release}
-Summary:	System tray notifier of available system updates
+Requires:		%{name}-common = %{version}-%{release}
+Requires:		%{name}-updater = %{version}-%{release}
+Summary:		System tray notifier of available system updates
  
 %description notifier
 Adept Notifier provides a system tray icon notifying the user of
@@ -128,8 +129,8 @@ clicked.
 ##########
 
 %package batch
-Requires:	%{name}-manager = %{version}-%{release}
-Summary:	command line install for Adept
+Requires:		%{name}-manager = %{version}-%{release}
+Summary:		command line install for Adept
 
 %description batch
 Adept Batch lets you install packages with Adept from the
@@ -145,13 +146,7 @@ by external applications.
 ##########
 
 %prep
-%setup -q -n %{name}-3.5.13.2
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -161,7 +156,6 @@ by external applications.
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -172,7 +166,6 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
   --enable-closure
 
 %__make %{?_smp_mflags} -C adept
@@ -183,7 +176,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang adept
+%find_lang %{tde_pkg}
 
 
 %clean

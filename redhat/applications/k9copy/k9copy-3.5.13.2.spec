@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		DVD backup tool for Trinity
 Version:		1.2.3
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -47,20 +47,22 @@ Patch3:			k9copy-3.5.13.2-use_external_dvdread.patch
 Patch4:			k9copy-3.5.13.2-avcodec.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	trinity-k3b-devel
 
 # Warning: the target distribution must have ffmpeg !
 BuildRequires:	ffmpeg-devel
 Requires:		ffmpeg
 
+
 %description
 k9copy is a tabbed tool that allows to copy of one or more titles from a DVD9
 to a DVD5, in thesame way than DVDShrink for Microsoft Windows (R).
-This is the Trinity version
+This is the Trinity version.
 
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
@@ -78,12 +80,6 @@ This is the Trinity version
 # Removes internal dvdread headers
 %__rm -rf dvdread
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -92,11 +88,10 @@ This is the Trinity version
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # FFMPEG ...
 if [ -d /usr/include/ffmpeg ]; then
-	export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/include/ffmpeg"
+  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/include/ffmpeg"
 fi
  
 # NOTICE: --enable-final causes FTBFS !
@@ -112,9 +107,7 @@ fi
   --disable-final \
   --enable-new-ldflags \
   --enable-closure \
-  --disable-rpath \
-  \
-  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-rpath \
   \
   --enable-k3bdevices
 
@@ -156,6 +149,9 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-6
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-5
 - Rebuild with NDEBUG option
 

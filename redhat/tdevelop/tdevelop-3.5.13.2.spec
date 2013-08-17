@@ -22,7 +22,7 @@
 Name:		trinity-tdevelop
 Summary:	Integrated Development Environment for C++/C
 Version:	%{tde_version}
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		Development/Tools
@@ -65,10 +65,10 @@ Requires: gettext
 Requires: ctags
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-arts-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
-BuildRequires:	trinity-tdesdk-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
 %if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	db4-devel
 %endif
@@ -77,16 +77,19 @@ BuildRequires:	flex
 # Requires kdesdk3.
 BuildRequires:	subversion-devel
 BuildRequires:	neon-devel
-# looks like this is dragged in by apr-devel (dep of subversion-devel), but not
-# a dependency
+
+# LDAP support
 %if 0%{?suse_version}
 BuildRequires:	openldap2-devel
 %else
 BuildRequires:	openldap-devel
 %endif
 
-Obsoletes:	trinity-kdevelop < %{version}-%{release}
-Provides:	trinity-kdevelop = %{version}-%{release}
+#ACL support
+BuildRequires:	libacl-devel
+
+Obsoletes:	trinity-tdevelop < %{version}-%{release}
+Provides:	trinity-tdevelop = %{version}-%{release}
 
 %description
 The TDevelop Integrated Development Environment provides many features
@@ -105,7 +108,7 @@ cross-references to the used libraries; Internationalization support
 for your application, allowing translators to easily add their target
 language to a project;
 
-KDevelop also includes WYSIWYG (What you see is what you get)-creation
+tdevelop also includes WYSIWYG (What you see is what you get)-creation
 of user interfaces with a built-in dialog editor; Debugging your
 application by integrating KDbg; Editing of project-specific pixmaps
 with KIconEdit; The inclusion of any other program you need for
@@ -565,17 +568,11 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 ##########
 
 %prep
-%setup -q -a1
+%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}} -a 1
 %patch1 -p0 -b .config
 %patch2 -p1
 %patch3 -p1 -b .xdgmenu
 %patch4 -p1
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -589,8 +586,6 @@ Provides:	trinity-kdevelop-libs = %{version}-%{release}
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
@@ -617,10 +612,11 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
@@ -651,6 +647,9 @@ cd ..
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 

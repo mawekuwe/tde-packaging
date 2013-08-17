@@ -1,5 +1,6 @@
 # Default version for this component
-%define tdecomp kopete-otr
+%define tde_pkg kopete-otr
+%define tde_version 3.5.13.2
 
 # Required for Mageia 2: removes the ldflag '--no-undefined'
 %define _disable_ld_no_undefined 1
@@ -11,7 +12,7 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -28,31 +29,33 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	Off-The-Record encryption for Kopete [Trinity]
-Version:	0.7
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Off-The-Record encryption for Kopete [Trinity]
+Version:		0.7
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
-BuildRequires:	trinity-tdenetwork-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
+BuildRequires:	trinity-tdenetwork-devel >= %{tde_version}
+
 # Kopete is provided by kdenetwork
-Requires:		trinity-kopete >= 3.5.13.2
+Requires:		trinity-kopete >= %{tde_version}
 %if 0%{?suse_version} >= 1230
 BuildRequires:	libotr2-devel
 %else
@@ -60,7 +63,7 @@ BuildRequires:	libotr-devel
 %endif
 
 %description
-This plugin enables Off-The-Record encryption for the KDE instant
+This plugin enables Off-The-Record encryption for the TDE instant
 messenger Kopete. Using this plugin you can encrypt chatsessions to other
 users with IM-Cients supporting the OTR encryption method.
 
@@ -71,13 +74,7 @@ users with IM-Cients supporting the OTR encryption method.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -87,7 +84,6 @@ users with IM-Cients supporting the OTR encryption method.
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -97,11 +93,16 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath
 
 %__make %{_smp_mflags}
+
 
 %install
 export PATH="%{tde_bindir}:${PATH}"
@@ -112,6 +113,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -f %{?buildroot}%{tde_libdir}/libkotr.so
 
 %find_lang kopete_otr
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -147,6 +149,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-5
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-4
 - Initial release for TDE 3.5.13.2
 

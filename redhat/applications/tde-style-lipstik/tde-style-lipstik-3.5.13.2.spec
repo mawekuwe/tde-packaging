@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp tde-style-lipstik
+%define tde_pkg tde-style-lipstik
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,33 +24,33 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-tde-style-lipstik
-Summary:	Lipstik style for TDE
-Version:	2.2.3
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-tde-style-lipstik
+Summary:		Lipstik style for TDE
+Version:		2.2.3
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	trinity-%{tdecomp}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 Obsoletes:		trinity-kde-style-lipstik < %{version}-%{release}
 Provides:		trinity-kde-style-lipstik = %{version}-%{release}
 Obsoletes:		trinity-style-lipstik < %{version}-%{release}
 Provides:		trinity-style-lipstik = %{version}-%{release}
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
 
 %description
@@ -65,13 +66,7 @@ Lipstik also provides Lipstik-color-schemes
 
 
 %prep
-%setup -q -n trinity-%{tdecomp}-3.5.13.2
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -81,7 +76,6 @@ Lipstik also provides Lipstik-color-schemes
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -89,8 +83,13 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
-  --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-final \
+  --enable-new-ldflags \
+  --enable-closure \
+  --enable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -120,6 +119,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.3-5
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.3-4
 - Initial release for TDE 3.5.13.2
 

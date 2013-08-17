@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp kchmviewer
+%define tde_pkg kchmviewer
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,20 +24,20 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-kcmautostart
-Summary:	Manage applications automatic startup.
-Version:	1.0
-Release:	3%{?dist}%{?_variant}
+Name:			trinity-kcmautostart
+Summary:		Manage applications automatic startup.
+Version:		1.0
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	kcmautostart-3.5.13.tar.gz
 
@@ -49,14 +50,15 @@ Patch3:		kcmautostart-3.5.13-fix_crash_on_exit.patch
 # [kcmautostart] Fix french translation
 Patch4:		kcmautostart-3.5.13-fix_fr_translation.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
-BuildRequires: desktop-file-utils
-BuildRequires: gcc-c++
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
 
-Requires:		trinity-kdebase
+BuildRequires:	gcc-c++
+
+Requires:		trinity-tdebase >= %{tde_version}
 
 %description
 %{summary}
@@ -73,10 +75,7 @@ Requires:		trinity-kdebase
 %patch3 -p1 -b .crash_on_exit
 %patch4 -p1 -b .fr_translation
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
 %__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
   -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
@@ -87,7 +86,6 @@ Requires:		trinity-kdebase
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -96,9 +94,13 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
-  --disable-static
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -109,6 +111,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 %find_lang autostart
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -124,6 +127,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-4
+- Build for Fedora 19
+
 * Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-3
 - Initial release for TDE 3.5.13.2
 

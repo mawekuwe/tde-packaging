@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp kbfx
+%define tde_pkg kbfx
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,28 +24,30 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
-Summary:	an alternative to K-Menu for KDE [Trinity]
-Version:	0.4.9.3.1
-Release:	3%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		an alternative to K-Menu for TDE [Trinity]
+Version:		0.4.9.3.1
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 
 %description
 KBFX is an alternative to the classical K-Menu button and its menu.
@@ -63,7 +66,7 @@ Homepage: http://www.kbfx.org
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 # Fix TDE executable path in 'CMakeLists.txt' ...
 %__sed -i "CMakeLists.txt" \
@@ -75,7 +78,6 @@ Homepage: http://www.kbfx.org
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_tdeincludedir}:%{tde_includedir}/tqt"
 
 # Shitty hack for RHEL4 ...
 if [ -d "/usr/X11R6" ]; then
@@ -90,6 +92,13 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DDATA_INSTALL_DIR=%{tde_datadir}/apps \
@@ -97,6 +106,7 @@ cd build
   -DXDG_APPS_INSTALL_DIR=%{tde_tdeappdir} \
   -DDOC_INSTALL_DIR=%{tde_tdedocdir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
+  \
   -DUSE_STRIGI=OFF \
   -DUSE_MENUDRAKE=OFF \
   -DBUILD_DOC=ON \
@@ -165,6 +175,9 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.9.3.1-4
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.9.3.1-3
 - Initial release for TDE 3.5.13.2
 

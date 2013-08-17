@@ -1,20 +1,14 @@
-# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
-%if "%{?tde_prefix}" != "/usr"
-%define _variant .opt
-%define cmake_modules_dir %{tde_prefix}/share/cmake
-%else
-%define cmake_modules_dir %{_datadir}/cmake/Modules
-%endif
-
-# TQT include files may conflict with QT4 includes, so we move them to a subdirectory.
-# Later compiled Trinity products should be aware of that !
+# TDE specific building variables
+%define tde_version 3.5.13.2
+%define tde_prefix /usr
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
+%define cmake_modules_dir %{_datadir}/cmake/Modules
 
 Name:		trinity-tqtinterface
-Version:	3.5.13.2
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity QT Interface
 Group:		System Environment/Libraries
@@ -27,7 +21,6 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-# TDE 3.5.13 specific building variables
 BuildRequires:	cmake >= 2.8
 BuildRequires:	qt3-devel >= 3.3.8d
 Requires:		qt3 >= 3.3.8d
@@ -60,17 +53,63 @@ Provides:	tqtinterface = %{version}-%{release}
 %description
 Trinity QT Interface
 
+
+%post
+/sbin/ldconfig || :
+
+%postun
+/sbin/ldconfig || :
+
+%files
+%defattr(-,root,root,-)
+%{tde_bindir}/convert_qt_tqt1
+%{tde_bindir}/convert_qt_tqt2
+%{tde_bindir}/convert_qt_tqt3
+%{tde_bindir}/dcopidl-tqt
+%{tde_bindir}/dcopidl2cpp-tqt
+%{tde_bindir}/dcopidlng-tqt
+%{tde_bindir}/mcopidl-tqt
+%{tde_bindir}/moc-tqt
+%{tde_bindir}/tmoc
+%{tde_bindir}/tqt-replace
+%{tde_bindir}/tqt-replace-stream
+%{tde_bindir}/uic-tqt
+%{tde_libdir}/libtqassistantclient.so.4
+%{tde_libdir}/libtqassistantclient.so.4.2.0
+%{tde_libdir}/libtqt.so.4
+%{tde_libdir}/libtqt.so.4.2.0
+
+##########
+
 %package devel
 Group:		Development/Libraries
 Summary:	%{name} - Development files
 Requires:	%{name} = %{version}-%{release}
-Requires:	qt3-devel
+Requires:	qt3-devel >= 3.3.8d
 
 Obsoletes:	tqtinterface-devel < %{version}-%{release}
 Provides:	tqtinterface-devel = %{version}-%{release}
 
 %description devel
 Development files for %{name}
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
+%files devel
+%defattr(-,root,root,-)
+%{tde_includedir}/tqt/
+%{tde_libdir}/libtqassistantclient.la
+%{tde_libdir}/libtqassistantclient.so
+%{tde_libdir}/libtqt.la
+%{tde_libdir}/libtqt.so
+%{tde_libdir}/pkgconfig/tqt.pc
+%{cmake_modules_dir}/*.cmake
+
+##########
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
@@ -92,14 +131,25 @@ cd build
 #  another directory than QT3_PREFIX. (E.g. Mageia 2, Mandriva ...)
 #  Otherwise, it defaults to ${QTDIR}/lib !
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=ON \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DQT_PREFIX_DIR=${QTDIR} \
   -DQT_VERSION=3 \
-  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+  -DQT_LIBRARY_DIR="${QTLIB:-${QTDIR}/%{_lib}}" \
+  \
+  -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
+  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DINCLUDE_INSTALL_DIR=%{tde_includedir}/tqt \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
-  -DPKGCONFIG_INSTALL_DIR=%{tde_libdir}/pkgconfig \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
-  -DQT_LIBRARY_DIR=${QTLIB:-${QTDIR}/%{_lib}} \
+  \
+  -DWITH_QT3="ON" \
+  -DBUILD_ALL="ON" \
+  -DUSE_QT3="ON" \
   ..
 
 %__make %{?_smp_mflags}
@@ -107,7 +157,6 @@ cd build
 
 %install
 %__rm -rf %{?buildroot}
-%__mkdir_p %{?buildroot}%{_includedir}
 %__make install DESTDIR=%{?buildroot} -C build
 
 # RHEL 5: add newline at end of include files to avoid warnings
@@ -123,35 +172,14 @@ for i in cmake/modules/*.cmake; do
   %__install -m 644 $i %{?buildroot}%{cmake_modules_dir}
 done
 
+
 %clean
 %__rm -rf %{?buildroot}
 
-%post
-/sbin/ldconfig || :
-
-%postun
-/sbin/ldconfig || :
-
-%post devel
-/sbin/ldconfig || :
-
-%postun devel
-/sbin/ldconfig || :
-
-%files
-%defattr(-,root,root,-)
-%{tde_bindir}/*
-%{tde_libdir}/*.so.*
-
-%files devel
-%defattr(-,root,root,-)
-%{tde_includedir}/tqt
-%{tde_libdir}/*.so
-%{tde_libdir}/*.la
-%{tde_libdir}/pkgconfig/*.pc
-%{cmake_modules_dir}/*.cmake
-
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

@@ -26,7 +26,7 @@
 
 Name:		trinity-tdebase
 Version:	%{tde_version}
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Trinity Base Programs
 Group:		User Interface/Desktops
@@ -70,7 +70,7 @@ Source7:	tdm.service%{?dist}
 %endif
 
 # Fedora 17: special selinux policy required
-%if 0%{?fedora} == 17 || 0%{?rhel} == 6
+%if 0%{?fedora} >= 17 || 0%{?rhel} == 6
 %define with_selinux_policy 1
 Source8:	tdm%{?dist}.pp
 %endif
@@ -92,6 +92,8 @@ Patch3:		tdebase-3.5.13.2-displayconfig_translation.patch
 Patch4:		tdebase-3.5.13.2-kickoff_default_favs.patch
 ## [tdebase] Changes konsole default word separator
 Patch5:		tdebase-14.0.0-konsole_wordseps.patch
+## [tdebase] Fix '%' caracter in hal volumes
+Patch6:		tdebase-3.5.13.2-fix_halbackend_slash.patch
 
 # Permanent patches, this TDE version only
 ## [tdebase/kdm] Fix PID file is 'tdm.pid' instead of 'kdm.pid' (needed for openSUSE)
@@ -108,9 +110,6 @@ Patch103:	tdebase-3.5.13.2-kdesktop_crossfade.patch
 Patch104:	tdebase-3.5.13.2-kickoff_xdg_dirs.patch
 Patch105:	tdebase-3.5.13.2-suspend_unmount.patch
 Patch106:	tdebase-3.5.13.2-bookmark_global_copy.patch
-
-# Experimental patches
-Patch201: 	tdebase-3.5.13.2-kcm_xcursor_applytheme.patch
 
 ### Specific patches for RHEL4 (should not go upstream)
 
@@ -173,6 +172,19 @@ Requires:	fedora-release-notes
 %define tde_aboutlabel Fedora 18
 %define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
+
+# Fedora 19 Theme: "Schroedinger's cat"
+%if 0%{?fedora} == 19
+Requires:	schroedinger-cat-backgrounds-base
+%define tde_bg /usr/share/backgrounds/schroedinger-cat/default/standard/schroedinger-cat.jpg
+Requires:	fedora-logos
+%define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
+
+Requires:	fedora-release-notes
+%define tde_aboutlabel Fedora 19
+%define tde_aboutpage /usr/share/doc/fedora-release-notes-19/index.html
+%endif
+
 
 # RHEL 4 Theme
 %if 0%{?rhel} == 4
@@ -304,9 +316,9 @@ Requires:	opensuse-manuals_en
 %endif
 
 BuildRequires:	cmake >= 2.8
-BuildRequires:	qt%{?_qt_suffix}-devel
+BuildRequires:	qt%{?_qt_suffix}-devel >= 3.3.8.d
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	gcc-c++
 BuildRequires:	make
@@ -427,8 +439,8 @@ BuildRequires:	nas-devel
 BuildRequires:	dbus-devel >= 0.22-12.EL.9p1
 Requires:		dbus-qt >= 0.22-12.EL.9p1
 %else
-BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
-Requires:		trinity-dbus-tqt >= %{tde_version}
+BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
+Requires:		trinity-dbus-tqt >= 1:0.63
 %endif
 
 %if 0%{?fedora} >= 17
@@ -546,10 +558,10 @@ Requires: trinity-libkonq = %{version}-%{release}
 Requires: %{name}-libtqt3-integration = %{version}-%{release}
 Requires: %{name}-tdeio-smb-plugin = %{version}-%{release}
  
-Requires:	trinity-tqtinterface >= %{tde_version}
-Requires:	trinity-arts >= %{tde_version}
-Requires:	trinity-tdelibs >= %{tde_version}
 Requires:	qt%{?_qt_suffix}
+Requires:	trinity-tqtinterface >= %{tde_version}
+Requires:	trinity-arts >= 1:1.5.10
+Requires:	trinity-tdelibs >= %{tde_version}
 Requires:	openssl
 
 
@@ -586,7 +598,9 @@ web browser, X terminal emulator, and many other programs and components.
 Summary:	%{summary} - Development files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-tdelibs-devel
+Requires:	trinity-tqtinterface-devel >= %{tde_version}
+Requires:	trinity-arts-devel >= 1:1.5.10
+Requires:	trinity-tdelibs-devel >= %{tde_version}
 
 Requires:	%{name}-bin-devel = %{version}-%{release}
 Requires:	trinity-kate-devel = %{version}-%{release}
@@ -790,7 +804,7 @@ Some random features:
 %{tde_tdeappdir}/kate.desktop
 %{tde_datadir}/apps/kate/
 %{tde_datadir}/apps/kconf_update/kate-2.4.upd
-%{_sysconfdir}/trinity/katerc
+%config(noreplace) %{_sysconfdir}/trinity/katerc
 %{tde_datadir}/icons/hicolor/*/apps/kate.png
 %{tde_datadir}/icons/hicolor/*/apps/kate2.svgz
 %{tde_datadir}/servicetypes/kateplugin.desktop
@@ -1193,7 +1207,6 @@ TDE applications, particularly those in the TDE base module.
 %files bin
 %defattr(-,root,root,-)
 %{tde_bindir}/krootbacking
-#%{tde_bindir}/tdeinit_phase1
 %if 0%{?with_tsak}
 %attr(4511,root,root) %{tde_bindir}/kdmtsak
 %{tde_bindir}/tsak
@@ -1202,7 +1215,7 @@ TDE applications, particularly those in the TDE base module.
 %{tde_bindir}/kreadconfig
 %{tde_bindir}/kwriteconfig
 %{tde_bindir}/kstart
-%{_sysconfdir}/trinity/kxkb_groups
+%config(noreplace) %{_sysconfdir}/trinity/kxkb_groups
 %{tde_bindir}/drkonqi
 %{tde_bindir}/crashtest
 %{tde_bindir}/kapplymousetheme
@@ -1265,8 +1278,8 @@ TDE applications, particularly those in the TDE base module.
 %{tde_datadir}/services/kded/khotkeys.desktop
 %{tde_datadir}/services/kxkb.desktop
 %if 0%{?suse_version} == 0
-%{_sysconfdir}/pam.d/kcheckpass-trinity
-%{_sysconfdir}/pam.d/kscreensaver-trinity
+%config(noreplace) %{_sysconfdir}/pam.d/kcheckpass-trinity
+%config(noreplace) %{_sysconfdir}/pam.d/tdescreensaver-trinity
 %endif
 %{tde_tdedocdir}/HTML/en/kdcop/
 %{tde_tdedocdir}/HTML/en/kdebugdialog//
@@ -1322,7 +1335,7 @@ needed for a basic TDE desktop installation.
 
 %files data
 %defattr(-,root,root,-)
-%{_sysconfdir}/trinity/kshorturifilterrc
+%config(noreplace) %{_sysconfdir}/trinity/kshorturifilterrc
 %{tde_datadir}/applnk/.hidden/battery.desktop
 %{tde_datadir}/applnk/.hidden/bwarning.desktop
 %{tde_datadir}/applnk/.hidden/cwarning.desktop
@@ -1579,10 +1592,10 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/wallpapers/*
 
 # XDG directories information
-%{_sysconfdir}/xdg/menus/applications-merged/tde-essential.menu
-%{_sysconfdir}/xdg/menus/tde-information.menu
-%{_sysconfdir}/xdg/menus/tde-screensavers.menu
-%{_sysconfdir}/xdg/menus/tde-settings.menu
+%config(noreplace) %{_sysconfdir}/xdg/menus/applications-merged/tde-essential.menu
+%config(noreplace) %{_sysconfdir}/xdg/menus/tde-information.menu
+%config(noreplace) %{_sysconfdir}/xdg/menus/tde-screensavers.menu
+%config(noreplace) %{_sysconfdir}/xdg/menus/tde-settings.menu
 
 %{tde_tdedocdir}/HTML/en/kcontrol/
 %exclude %{tde_tdedocdir}/HTML/en/kcontrol/kcmkonsole/
@@ -1917,8 +1930,8 @@ the TDE desktop.
 
 %files -n trinity-kdesktop
 %defattr(-,root,root,-)
-%{_sysconfdir}/trinity/kdesktop_custom_menu1
-%{_sysconfdir}/trinity/kdesktop_custom_menu2
+%config(noreplace) %{_sysconfdir}/trinity/kdesktop_custom_menu1
+%config(noreplace) %{_sysconfdir}/trinity/kdesktop_custom_menu2
 %{tde_bindir}/kcheckrunning
 %{tde_bindir}/kxdglauncher
 %{tde_bindir}/kdeeject
@@ -2035,11 +2048,12 @@ already. Most users won't need this.
 %{tde_datadir}/apps/kdm/sessions/*.desktop
 %{tde_datadir}/apps/kdm/themes/
 %{tde_datadir}/config/kdm
-%{_sysconfdir}/trinity/kdm/
+%dir %{_sysconfdir}/trinity/kdm
+%config(noreplace) %{_sysconfdir}/trinity/kdm/*
 %{tde_tdedocdir}/HTML/en/kdm/
 %if 0%{?suse_version} == 0
-%{_sysconfdir}/pam.d/kdm-trinity
-%{_sysconfdir}/pam.d/kdm-trinity-np
+%config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity
+%config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity-np
 %endif
 %if 0%{?suse_version}
 /usr/lib/X11/displaymanagers/tdm
@@ -2088,10 +2102,16 @@ fi
 %if 0%{?with_selinux_policy}
 /usr/sbin/semodule -i "%{?_sysconfdir}/trinity/kdm/tdm.pp"
 %endif
-# Default user icon in TDM
+# Sets default user icon in TDM
 if [ ! -r "%{tde_datadir}/apps/kdm/faces/.default.face.icon" ]; then
   [ -d "%{tde_datadir}/apps/kdm/faces" ] || mkdir -p "%{tde_datadir}/apps/kdm/faces"
   %__cp -f "%{tde_datadir}/apps/kdm/pics/users/default2.png" "%{tde_datadir}/apps/kdm/faces/.default.face.icon"
+fi
+# Sets default language for TDM
+if [ "$1" = "1" ]; then
+  if [ -n "${LANG}" ] && [ "${LANG}" != "C" ]; then
+    %__sed -i "%{_sysconfdir}/trinity/kdm/kdmrc" -e "s|^#*Language=.*|Language=${LANG}|"
+  fi
 fi
 
 %posttrans -n trinity-tdm
@@ -2166,7 +2186,7 @@ Requires:	%{name}-data = %{version}-%{release}
 Requires:	htdig
 
 %description -n trinity-khelpcenter
-The TDE Help Center provides documentation on how to use the KDE desktop.
+The TDE Help Center provides documentation on how to use the TDE desktop.
 
 The htdig package is needed to build a searchable archive of TDE
 documentation.
@@ -2390,7 +2410,7 @@ web browser if the clipboard contains a URL.
 %files -n trinity-klipper
 %defattr(-,root,root,-)
 %{tde_bindir}/klipper
-%{_sysconfdir}/trinity/klipperrc
+%config(noreplace) %{_sysconfdir}/trinity/klipperrc
 %{tde_tdelibdir}/klipper.la
 %{tde_tdelibdir}/klipper.so
 %{tde_tdelibdir}/klipper_panelapplet.la
@@ -2431,7 +2451,7 @@ Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kmenuedit
-The TDE menu editor allows you to make customisations to the KDE menu
+The TDE menu editor allows you to make customisations to the TDE menu
 structure.
 
 %files -n trinity-kmenuedit
@@ -2599,11 +2619,13 @@ for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 /sbin/ldconfig || :
-update-alternatives --install \
-  %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop \
-  media_safelyremove.desktop_konqueror \
-  %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase \
-  10 || :
+if [ $1 -eq 1 ]; then
+  update-alternatives --install \
+    %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop \
+    media_safelyremove.desktop_konqueror \
+    %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase \
+    10 || :
+fi
 
 %postun -n trinity-konqueror
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -2818,7 +2840,7 @@ Requires:	trinity-twin = %{version}-%{release}
 %description -n trinity-ksmserver
 This package contains the TDE session manager. It is responsible for
 restoring your TDE session on login. It is also needed to properly
-start a TDE session. It registers KDE with X display managers, and
+start a TDE session. It registers TDE with X display managers, and
 provides the 'starttde' command, for starting an X session with TDE
 from the console.
 
@@ -3019,7 +3041,7 @@ ktip provides many useful tips on using TDE when you log in.
 %{tde_tdeappdir}/ktip.desktop
 %{tde_datadir}/applnk/Toys/ktip.desktop
 %{tde_datadir}/apps/kdewizard/pics/wizard_small.png
-%{tde_datadir}/apps/kdewizard/tips/
+%{tde_datadir}/apps/kdewizard/tips
 %{tde_datadir}/autostart/ktip.desktop
 %{tde_datadir}/icons/hicolor/*/apps/ktip.*
 
@@ -3254,6 +3276,7 @@ Windows and Samba shares.
 %patch3 -p1 -b .displayconfigtranslation
 %patch4 -p1 -b .kickoffdefaultsfav
 %patch5 -p1 -b .konsolewordseps
+%patch6 -p1 -b .halbackend
 
 %patch11 -p1 -b .tdmpid
 %patch12 -p1 -b .kdesunoignorebutton
@@ -3265,8 +3288,6 @@ Windows and Samba shares.
 %patch104 -p1 -b .kickoff_xdg
 %patch105 -p1 -b .suspend_unmount
 %patch106 -p1 -b .bookmark_global_copy
-
-%patch201 -p1 -b .kcmxcursor
 
 
 %if 0%{?rhel} == 4
@@ -3321,9 +3342,7 @@ Windows and Samba shares.
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
-export LD_LIBRARY_PATH="%{tde_libdir}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 # Avoids building against KDE3's old stuff, if installed
 export KDEDIR=%{tde_prefix}
@@ -3346,19 +3365,20 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \
   -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}" \
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
-  -DCONFIG_INSTALL_DIR="/etc/trinity" \
-  -DSYSCONF_INSTALL_DIR="/etc/trinity" \
-  -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+  -DCONFIG_INSTALL_DIR="%{_sysconfdir}/trinity" \
+  -DSYSCONF_INSTALL_DIR="%{_sysconfdir}/trinity" \
+  -DXDG_MENU_INSTALL_DIR="%{_sysconfdir}/xdg/menus" \
   \
   -DWITH_SASL=ON \
   -DWITH_LDAP=ON \
@@ -3392,8 +3412,8 @@ cd build
   -DKSCREENSAVER_PAM_SERVICE="xdm" \
 %else
   -DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" \
-  -DKDM_PAM_SERVICE="kdm-trinity" \
-  -DKSCREENSAVER_PAM_SERVICE="kscreensaver-trinity" \
+  -DKDM_PAM_SERVICE="tdm-trinity" \
+  -DKSCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
 %endif
   %{!?with_tsak:-DBUILD_TSAK=OFF} \
   ..
@@ -3452,13 +3472,13 @@ EOF
 
 # PAM configuration files (except openSUSE)
 %if 0%{?suse_version} == 0
-%__install -D -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity"
-%__install -D -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/kdm-trinity-np"
+%__install -D -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pam.d/tdm-trinity"
+%__install -D -m 644 "%{SOURCE3}" "%{?buildroot}%{_sysconfdir}/pam.d/tdm-trinity-np"
 %__install -D -m 644 "%{SOURCE4}" "%{?buildroot}%{_sysconfdir}/pam.d/kcheckpass-trinity"
-%__install -D -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/kscreensaver-trinity"
+%__install -D -m 644 "%{SOURCE5}" "%{?buildroot}%{_sysconfdir}/pam.d/tdescreensaver-trinity"
 %endif
 
-# KDM configuration
+# TDM configuration
 %__sed -i "%{?buildroot}%{_sysconfdir}/trinity/kdm/kdmrc" \
 %if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1220
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
@@ -3503,7 +3523,7 @@ EOF
 
 # Mageia icon
 %if 0%{?mgaversion} >= 3
-%__install -D -m 644 %{SOURCE9} %{?buildroot}%{tde_datadir}/oxygen/scalable/mgabutton.svg
+%__install -D -m 644 "%{SOURCE9}" "%{?buildroot}%{tde_datadir}/oxygen/scalable/mgabutton.svg"
 %endif
 
 
@@ -3512,6 +3532,9 @@ EOF
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 - Fix XDG menu

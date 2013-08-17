@@ -5,12 +5,14 @@
 # or 64 bits:
 #  ln -s /usr/lib64/libgcj.so.5.0.0 /usr/lib/jvm/java/lib/libgcj.so
 
+%define tde_version 3.5.13.2
+
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -34,8 +36,8 @@ Source91:  filter-requires.sh
 
 Name:			trinity-tdebindings
 Summary:		TDE bindings to non-C++ languages
-Version:		3.5.13.2
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:		%{tde_version}
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			User Interface/Desktops
@@ -49,6 +51,9 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
+# [tdebindings] Fix RUBY path ending with '/' causing fail to install
+Patch1:		tdebindings-3.5.13.2-fix_ruby_path.patch
+
 # [kdebindings] Fix FTBFS in dcopjava/bindings
 Patch7:		kdebindings-3.5.13.1-fix_dcopjava_ldflags.patch
 
@@ -56,9 +61,9 @@ Patch7:		kdebindings-3.5.13.1-fix_dcopjava_ldflags.patch
 Patch18:	kdebindings-3.5.13.1-fix_rhel5_ftbfs.patch
 
 BuildRequires: autoconf automake libtool m4
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-arts-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires: desktop-file-utils
 BuildRequires: zlib-devel
@@ -106,7 +111,8 @@ BuildRequires:	libgdk_pixbuf2.0-devel
 %else
 BuildRequires:	%{_lib}gdk_pixbuf2.0-devel
 %endif
-%else
+%endif
+%if 0%{?fedora}
 %if 0%{?fedora} >= 17
 BuildRequires: gdk-pixbuf2-devel
 %else
@@ -121,8 +127,18 @@ BuildRequires: python-devel
 
 ## ruby
 BuildRequires: ruby-devel >= 1.8, ruby
+%if "%{?ruby_libarchdir}" != ""
+%define ruby_arch %{?ruby_libarchdir}
+%else
 %{!?ruby_arch: %define ruby_arch %(ruby -rrbconfig -e 'puts Config::CONFIG["archdir"]')}
+%endif
+
+%if "%{?ruby_libdir}" != ""
+%define ruby_rubylibdir %{?ruby_libdir}
+%else
 %{!?ruby_rubylibdir: %define ruby_rubylibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["rubylibdir"]')}
+%endif
+
 # Ruby 1.9 includes are located in strance directories ... (taken from ruby 1.9 spec file)
 %global	_normalized_cpu	%(echo %{_target_cpu} | sed 's/^ppc/powerpc/;s/i.86/i386/;s/sparcv./sparc/;s/armv.*/arm/')
 
@@ -926,7 +942,8 @@ Requires:	trinity-libdcop-c = %{version}-%{release}
 %package devel
 Summary:	Development files for %{name}
 Group:		Development/Libraries
-Requires:	trinity-tdelibs-devel 
+
+Requires:	trinity-tdelibs-devel >= %{tde_version}
 Requires:	%{name} = %{version}-%{release}
 
 Obsoletes:	trinity-kdebindings-devel < %{version}-%{release}
@@ -957,6 +974,7 @@ Development files for the TDE bindings.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .rubypath
 %patch7 -p1 -b .dcopjavaldflags
 
 %if "%{?perl_vendorarch}" == ""
@@ -968,19 +986,13 @@ exit 1
 %endif
 
 # Workarounds strange issue in MGA3
-%if 0%{?mgaversion} == 3 || 0%{?pclinuxos} >= 2013
+%if 0%{?mgaversion} == 3 || 0%{?pclinuxos} >= 2013 || 0%{?fedora} >= 19
 %__cp /usr/share/automake-1.13/test-driver admin/
 %endif
 
 # Disable kmozilla, it does not build with recent xulrunner (missing 'libmozjs.so')
 %__sed -i "xparts/Makefile.am" \
   -e "s|SUBDIRS = .*|SUBDIRS = src xpart_notepad|"
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -1016,25 +1028,27 @@ fi
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
-  --enable-new-ldflags \
-  --disable-debug --disable-warnings \
+  \
   --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  \
+  --with-extra-includes=%{_includedir}/tqscintilla \
   --with-extra-libs=%{tde_libdir} \
   --with-pythondir=%{_usr} \
-  --enable-closure \
-  --enable-final \
+  \
   %{?_with_java} %{!?_with_java:--without-java} \
-  %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla} \
-  --with-extra-includes=%{tde_includedir}/tqt
+  %{?_enable_qscintilla} %{!?_enable_qscintilla:--disable-qscintilla}
 
+# Build dcopperl with specific options
 pushd dcopperl
 CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL INSTALLDIRS=vendor
 
-# Ugly hack to add TQT include directory in Makefile
-# Also modifies the man pages directory
+# Ugly hack to modify the man pages directory
 sed -i Makefile \
-  -e "s|^\(INC = .*\)|\1 -I%{tde_includedir}/tqt|" \
   -e "s|/usr/share/man|%{tde_mandir}|g"
 
 %__make OPTIMIZE="$RPM_OPT_FLAGS" ||:
@@ -1057,24 +1071,6 @@ export PATH="%{tde_bindir}:${PATH}"
 # Removes some perl files
 find $RPM_BUILD_ROOT -type f -a \( -name perllocal.pod -o -name .packlist \
   -o \( -name '*.bs' -a -empty \) \) -exec rm -f {} ';'
-
-# locale's
-%find_lang %{name} || touch %{name}.lang
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d $RPM_BUILD_ROOT$HTML_DIR ]; then
-for lang_dir in $RPM_BUILD_ROOT$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done  
-fi  
 
 # Installs juic
 %__install -D -m 755 qtjava/designer/juic/bin/juic	%{?buildroot}%{tde_bindir}/juic
@@ -1108,5 +1104,8 @@ fi
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

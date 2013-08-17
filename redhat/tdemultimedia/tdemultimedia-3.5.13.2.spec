@@ -28,7 +28,7 @@
 Name:		trinity-tdemultimedia
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
 Version:	%{tde_version}
-Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		Applications/Multimedia
@@ -57,7 +57,7 @@ Provides:	trinity-kdemultimedia-extras-libs = %{version}-%{release}
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	qt3-devel >= 3.3.8.d
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 
 %if "%{?_with_akode}" != ""
@@ -1068,7 +1068,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 Summary:	Development files for %{name}, aRts and noatun plugins
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	trinity-tdelibs-devel >= 3.5.13
+Requires:	trinity-tdelibs-devel >= %{tde_version}
 
 Obsoletes:	trinity-kdemultimedia-devel < %{version}-%{release}
 Provides:	trinity-kdemultimedia-devel = %{version}-%{release}
@@ -1142,12 +1142,6 @@ noatun plugins.
 %patch0 -p1 -b .ftbfs
 %patch1 -p1 -b .xdgmenu
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -1156,7 +1150,6 @@ noatun plugins.
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 # Required for some distro
@@ -1180,9 +1173,9 @@ fi
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   \
-  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_includedir}/tqt:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
+  --with-extra-includes="%{_includedir}/cdda:%{_includedir}/cddb:%{tde_tdeincludedir}/arts:%{tde_includedir}/artsc" \
   \
   --with-cdparanoia \
   --with-flac \
@@ -1213,6 +1206,9 @@ chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-4
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
 - Rebuild with NDEBUG option
 - Fix XDG menu

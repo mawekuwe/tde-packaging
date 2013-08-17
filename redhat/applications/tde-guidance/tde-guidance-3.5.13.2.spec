@@ -1,3 +1,7 @@
+# Default version for this component
+%define tde_pkg tde-guidance
+%define tde_version 3.5.13.2
+
 # REMOVE KDELIBS4-DEVEL before building !!!!
 
 %{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
@@ -7,7 +11,7 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -25,33 +29,33 @@
 
 %define __arch_install_post %{nil}
 
-Name:		trinity-tde-guidance
-Summary:	A collection of system administration tools for Trinity
-Version:	0.8.0svn20080103
-Release:	6%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		A collection of system administration tools for Trinity
+Version:		0.8.0svn20080103
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.simonzone.com/software/guidance
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.simonzone.com/software/guidance
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	trinity-tde-guidance-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # [tde-guidance] Work around mountconfig incorrectly handling LABEL tag
 #  This resolves Bug 1545
 #  Add ext4 support
-Patch1:		tde-guidance-3.5.13.2-fix_mountconfig.patch
+Patch1:			tde-guidance-3.5.13.2-fix_mountconfig.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
 BuildRequires:	trinity-pytdeextensions
 BuildRequires:	trinity-libpythonize0-devel
@@ -87,7 +91,6 @@ BuildRequires:	PyQt-devel
 Requires:	PyQt
 %endif
 
-
 Requires:		trinity-python-trinity
 Requires:		trinity-pytdeextensions
 Requires:		%{name}-backends = %{version}-%{release}
@@ -97,10 +100,8 @@ Requires:		hwdata
 %endif
 
 
-%if "%{tde_prefix}" == "/usr"
-Conflicts:	guidance-power-manager
-Conflicts:	kde-guidance-powermanager
-%endif
+# POWERMANAGER support (requires HAL)
+%define with_powermanager 1
 
 Obsoletes:		trinity-guidance < %{version}-%{release}
 Provides:		trinity-guidance = %{version}-%{release}
@@ -116,15 +117,70 @@ look after your system:
 These tools are available in Trinity Control Center, System Settings 
 or can be run as standalone applications.
 
+%files
+%defattr(-,root,root,-)
+%doc ChangeLog COPYING README TODO
+#%{tde_bindir}/displayconfig
+#%{tde_bindir}/displayconfig-restore
+%{tde_bindir}/grubconfig
+%{tde_bindir}/mountconfig
+%{tde_bindir}/serviceconfig
+%{tde_bindir}/userconfig
+%{tde_bindir}/wineconfig
+%attr(0644,root,root) %{tde_tdelibdir}/*.so
+%attr(0644,root,root) %{tde_tdelibdir}/*.la
+%{tde_datadir}/apps/guidance/
+%{tde_tdeappdir}/*.desktop
+%{tde_datadir}/icons/crystalsvg/*/*/*.png
+%{tde_datadir}/icons/crystalsvg/*/*/*.svg
+%{python_sitearch}/%{name}/SMBShareSelectDialog.py*
+%{python_sitearch}/%{name}/SimpleCommandRunner.py*
+%{python_sitearch}/%{name}/fuser.py*
+%{python_sitearch}/%{name}/fuser_ui.py*
+%{python_sitearch}/%{name}/grubconfig.py*
+%{python_sitearch}/%{name}/ktimerdialog.py*
+%{python_sitearch}/%{name}/mountconfig.py*
+%{python_sitearch}/%{name}/servertestdialog.py*
+%{python_sitearch}/%{name}/serviceconfig.py*
+%{python_sitearch}/%{name}/sizeview.py*
+%{python_sitearch}/%{name}/unixauthdb.py*
+%{python_sitearch}/%{name}/userconfig.py*
+%{python_sitearch}/%{name}/wineconfig.py*
+%{tde_tdedocdir}/HTML/en/guidance/
 
+# Files from backends
+%exclude %{tde_datadir}/apps/guidance/vesamodes
+%exclude %{tde_datadir}/apps/guidance/extramodes
+%exclude %{tde_datadir}/apps/guidance/widescreenmodes
+%exclude %{tde_datadir}/apps/guidance/Cards+
+%exclude %{tde_datadir}/apps/guidance/pcitable
+%exclude %{tde_datadir}/apps/guidance/MonitorsDB
+
+# Files from powermanager
+%exclude %{tde_datadir}/icons/hicolor/22x22/apps/power-manager.png
+%exclude %{tde_datadir}/apps/guidance/pics/ac-adapter.png
+%exclude %{tde_datadir}/apps/guidance/pics/battery*.png
+%exclude %{tde_datadir}/apps/guidance/pics/processor.png
+
+%post
+touch --no-create %{tde_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
+/sbin/ldconfig || :
+
+%postun
+touch --no-create %{tde_datadir}/icons/crystalsvg || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
+/sbin/ldconfig || :
+
+##########
 
 %package backends
-Group:		Applications/Utilities
-Summary:	collection of system administration tools for GNU/Linux [Trinity]
+Group:			Applications/Utilities
+Summary:		collection of system administration tools for GNU/Linux [Trinity]
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
-Requires:	hwdata
+Requires:		hwdata
 %endif
-Requires:	python
+Requires:		python
 
 Obsoletes:		trinity-guidance-backends < %{version}-%{release}
 Provides:		trinity-guidance-backends = %{version}-%{release}
@@ -133,41 +189,104 @@ Provides:		trinity-guidance-backends = %{version}-%{release}
 This package contains the platform neutral backends used in the
 Guidance configuration tools.
 
+%files backends
+%defattr(-,root,root,-)
+%{python_sitearch}/%{name}/MicroHAL.py*
+%{python_sitearch}/%{name}/ScanPCI.py*
+%{python_sitearch}/%{name}/infimport.py*
+%{python_sitearch}/%{name}/displayconfigabstraction.py*
+%{python_sitearch}/%{name}/displayconfig-hwprobe.py*
+%{python_sitearch}/%{name}/displayconfig-restore.py*
+%{python_sitearch}/%{name}/drivedetect.py*
+%{python_sitearch}/%{name}/execwithcapture.py*
+%{python_sitearch}/%{name}/wineread.py*
+%{python_sitearch}/%{name}/winewrite.py*
+%{python_sitearch}/%{name}/xf86misc.py*
+%{python_sitearch}/%{name}/xorgconfig.py*
+%{python_sitearch}/ixf86misc.so
+%{tde_datadir}/apps/guidance/vesamodes
+%{tde_datadir}/apps/guidance/extramodes
+%{tde_datadir}/apps/guidance/widescreenmodes
+%{tde_datadir}/apps/guidance/Cards+
+%{tde_datadir}/apps/guidance/pcitable
+%{tde_datadir}/apps/guidance/MonitorsDB
+
+##########
+
+%if 0%{?with_powermanager}
 
 %package powermanager
-Group:		Applications/Utilities
-Summary:	HAL based power manager applet [Trinity]
-Requires:	%{name} = %{version}-%{release}
+Group:			Applications/Utilities
+Summary:		HAL based power manager applet [Trinity]
+Requires:		%{name} = %{version}-%{release}
+Requires:		hal
 
 Obsoletes:		trinity-guidance-powermanager < %{version}-%{release}
 Provides:		trinity-guidance-powermanager = %{version}-%{release}
+
+%if "%{tde_prefix}" == "/usr"
+Conflicts:	guidance-power-manager
+Conflicts:	kde-guidance-powermanager
+%endif
 
 %description powermanager
 A power management applet to indicate battery levels and perform hibernate or
 suspend using HAL.
 
+%files powermanager
+%defattr(-,root,root,-)
+%{tde_bindir}/guidance-power-manager
+%{python_sitearch}/%{name}/MicroHAL.py*
+%{python_sitearch}/%{name}/guidance-power-manager.py*
+%{python_sitearch}/%{name}/powermanage.py*
+%{python_sitearch}/%{name}/gpmhelper.py*
+%{python_sitearch}/%{name}/powermanager_ui.py*
+%{python_sitearch}/%{name}/guidance_power_manager_ui.py*
+%{python_sitearch}/%{name}/notify.py*
+%{python_sitearch}/%{name}/tooltip.py*
+%{tde_datadir}/icons/hicolor/22x22/apps/power-manager.png
+%{tde_datadir}/apps/guidance/pics/ac-adapter.png
+%{tde_datadir}/apps/guidance/pics/battery*.png
+%{tde_datadir}/apps/guidance/pics/processor.png
+%{tde_datadir}/autostart/guidance-power-manager.desktop
+
+%post powermanager
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+
+%postun powermanager
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+
+%endif
+
+##########
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
+##########
 
 %prep
-%setup -q -n trinity-tde-guidance-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .mountconfig
+
+%if 0%{?rhel} || 0%{?mgaversion} || 0%{?mdkversion}
+%__sed -i "userconfig/unixauthdb.py" \
+  -e "s|self.first_uid = .*|self.first_uid = 500|" \
+  -e "s|self.first_gid = .*|self.first_gid = 500|"
+%endif
+
 
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export KDEDIR=%{tde_prefix}
 
 # Avoids 'error: byte-compiling is disabled.' on Mandriva/Mageia
 export PYTHONDONTWRITEBYTECODE=
-
-# Ugly hack for building Guidance in a non-standard python directory
-export EXTRA_MODULE_DIR="%{python_sitearch}/%{name}"
 
 # FTBFS on PCLOS ...
 export CXXFLAGS="${RPM_OPT_FLAGS} -I%{tde_tdeincludedir} -I%{tde_includedir}"
@@ -184,7 +303,6 @@ fi
 %install
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export EXTRA_MODULE_DIR="%{python_sitearch}/%{name}"
 
 # For RHEL4 only
@@ -220,7 +338,7 @@ done
 	%{buildroot}%{tde_datadir}/icons/crystalsvg/16x16/apps/wineconfig.png
 
 # fix binary-or-shlib-defines-rpath
-chrpath -d %{buildroot}%{tde_tdelibdir}/kcm_*.so
+chrpath -r %{tde_libdir} %{buildroot}%{tde_tdelibdir}/kcm_*.so
 
 # fix executable-not-elf-or-script
 %__chmod 0644 %{buildroot}%{tde_datadir}/apps/guidance/pics/kdewinewizard.png
@@ -245,7 +363,7 @@ chrpath -d %{buildroot}%{tde_tdelibdir}/kcm_*.so
 %__chmod 0755 %{buildroot}%{python_sitearch}/%{name}/fuser.py
 %__chmod 0755 %{buildroot}%{python_sitearch}/%{name}/grubconfig.py
 
-%__mv -f %{buildroot}%{tde_datadir}/applications/kde/displayconfig.desktop %{buildroot}%{tde_datadir}/applications/kde/guidance-displayconfig.desktop
+%__mv -f %{buildroot}%{tde_tdeappdir}/displayconfig.desktop %{buildroot}%{tde_tdeappdir}/guidance-displayconfig.desktop
 
 ##### BACKENDS INSTALLATION
 # install displayconfig-hwprobe.py script
@@ -261,7 +379,7 @@ chrpath -d %{buildroot}%{tde_tdelibdir}/kcm_*.so
 %__ln_s -f /usr/share/hwdata/MonitorsDB %{buildroot}%{tde_datadir}/apps/guidance/MonitorsDB
 %endif
 
-
+%if 0%{?with_powermanager}
 ##### POWERMANAGER INSTALLATION
 # install icon to right place
 %__install -D -p -m0644 kde/powermanager/pics/battery-charging-100.png \
@@ -290,6 +408,15 @@ chmod +x %{buildroot}%{tde_bindir}/guidance-power-manager
 chmod 0755 %{buildroot}%{python_sitearch}/%{name}/powermanage.py
 chmod 0755 %{buildroot}%{python_sitearch}/%{name}/gpmhelper.py
 
+%else
+
+%__rm -f %{buildroot}%{python_sitearch}/%{name}/gpmhelper.py*
+%__rm -f %{buildroot}%{python_sitearch}/%{name}/guidance-power-manager.py*
+%__rm -f %{buildroot}%{python_sitearch}/%{name}/guidance_power_manager_ui.py*
+%__rm -f %{buildroot}%{python_sitearch}/%{name}/powermanage.py*
+%__rm -f %{buildroot}%{python_sitearch}/%{name}/powermanager_ui.py*
+ 
+%endif
 
 # Replace all '#!' calls to python with /usr/bin/python
 # and make them executable
@@ -320,114 +447,10 @@ find %{buildroot}%{tde_libdir} -name "*.a" -exec rm -f {} \;
 %__rm -rf %{buildroot}
 
 
-%post
-touch --no-create %{tde_datadir}/icons/crystalsvg || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
-/sbin/ldconfig || :
-
-%postun
-touch --no-create %{tde_datadir}/icons/crystalsvg || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
-/sbin/ldconfig || :
-
-%post powermanager
-touch --no-create %{tde_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
-
-%postun powermanager
-touch --no-create %{tde_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
-
-
-%files
-%defattr(-,root,root,-)
-%doc ChangeLog COPYING README TODO
-#%{tde_bindir}/displayconfig
-#%{tde_bindir}/displayconfig-restore
-%{tde_bindir}/grubconfig
-%{tde_bindir}/mountconfig
-%{tde_bindir}/serviceconfig
-%{tde_bindir}/userconfig
-%{tde_bindir}/wineconfig
-%attr(0644,root,root) %{tde_tdelibdir}/*.so
-%attr(0644,root,root) %{tde_tdelibdir}/*.la
-%{tde_datadir}/apps/guidance/
-%{tde_datadir}/applications/kde/*.desktop
-%{tde_datadir}/icons/crystalsvg/*/*/*.png
-%{tde_datadir}/icons/crystalsvg/*/*/*.svg
-%{python_sitearch}/%{name}/SMBShareSelectDialog.py*
-%{python_sitearch}/%{name}/SimpleCommandRunner.py*
-%{python_sitearch}/%{name}/fuser.py*
-%{python_sitearch}/%{name}/fuser_ui.py*
-%{python_sitearch}/%{name}/grubconfig.py*
-%{python_sitearch}/%{name}/ktimerdialog.py*
-%{python_sitearch}/%{name}/mountconfig.py*
-%{python_sitearch}/%{name}/servertestdialog.py*
-%{python_sitearch}/%{name}/serviceconfig.py*
-%{python_sitearch}/%{name}/sizeview.py*
-%{python_sitearch}/%{name}/unixauthdb.py*
-%{python_sitearch}/%{name}/userconfig.py*
-%{python_sitearch}/%{name}/wineconfig.py*
-%{tde_tdedocdir}/HTML/en/guidance/
-
-# Files from backends
-%exclude %{tde_datadir}/apps/guidance/vesamodes
-%exclude %{tde_datadir}/apps/guidance/extramodes
-%exclude %{tde_datadir}/apps/guidance/widescreenmodes
-%exclude %{tde_datadir}/apps/guidance/Cards+
-%exclude %{tde_datadir}/apps/guidance/pcitable
-%exclude %{tde_datadir}/apps/guidance/MonitorsDB
-
-# Files from powermanager
-%exclude %{tde_datadir}/icons/hicolor/22x22/apps/power-manager.png
-%exclude %{tde_datadir}/apps/guidance/pics/ac-adapter.png
-%exclude %{tde_datadir}/apps/guidance/pics/battery*.png
-%exclude %{tde_datadir}/apps/guidance/pics/processor.png
-
-%files backends
-%defattr(-,root,root,-)
-%{python_sitearch}/%{name}/MicroHAL.py*
-%{python_sitearch}/%{name}/ScanPCI.py*
-%{python_sitearch}/%{name}/infimport.py*
-%{python_sitearch}/%{name}/displayconfigabstraction.py*
-%{python_sitearch}/%{name}/displayconfig-hwprobe.py*
-%{python_sitearch}/%{name}/displayconfig-restore.py*
-%{python_sitearch}/%{name}/drivedetect.py*
-%{python_sitearch}/%{name}/execwithcapture.py*
-%{python_sitearch}/%{name}/wineread.py*
-%{python_sitearch}/%{name}/winewrite.py*
-%{python_sitearch}/%{name}/xf86misc.py*
-%{python_sitearch}/%{name}/xorgconfig.py*
-%{python_sitearch}/ixf86misc.so
-%{tde_datadir}/apps/guidance/vesamodes
-%{tde_datadir}/apps/guidance/extramodes
-%{tde_datadir}/apps/guidance/widescreenmodes
-%{tde_datadir}/apps/guidance/Cards+
-%{tde_datadir}/apps/guidance/pcitable
-%{tde_datadir}/apps/guidance/MonitorsDB
-
-
-
-%files powermanager
-%defattr(-,root,root,-)
-%{tde_bindir}/guidance-power-manager
-%{python_sitearch}/%{name}/MicroHAL.py*
-%{python_sitearch}/%{name}/guidance-power-manager.py*
-%{python_sitearch}/%{name}/powermanage.py*
-%{python_sitearch}/%{name}/gpmhelper.py*
-%{python_sitearch}/%{name}/powermanager_ui.py*
-%{python_sitearch}/%{name}/guidance_power_manager_ui.py*
-%{python_sitearch}/%{name}/notify.py*
-%{python_sitearch}/%{name}/tooltip.py*
-%{tde_datadir}/icons/hicolor/22x22/apps/power-manager.png
-%{tde_datadir}/apps/guidance/pics/ac-adapter.png
-%{tde_datadir}/apps/guidance/pics/battery*.png
-%{tde_datadir}/apps/guidance/pics/processor.png
-%{tde_datadir}/autostart/guidance-power-manager.desktop
-
-
-
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-9
+- Build for Fedora 19
+
 * Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0svn20080103-6
 - Work around mountconfig incorrectly handling LABEL tag
 

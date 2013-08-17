@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		media player for Trinity
 Version:		0.10.0c
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -42,6 +42,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
@@ -87,7 +88,7 @@ BuildRequires:	xorg-x11-devel
 BuildRequires:	xorg-x11-libXv-devel
 %endif
 
-Requires:		%{name}-base
+Requires:		%{name}-base = %{version}-%{release}
 
 %description
 A basic audio/video viewer application for Trinity.
@@ -116,7 +117,8 @@ Core files needed for KMPlayer.
 
 %package konq-plugins
 Group:			Applications/Multimedia
-Requires:		trinity-kmplayer-base, trinity-kdebase
+Requires:		%{name}-base = %{version}-%{release}
+Requires:		trinity-tdebase >= %{tde_version}
 Summary:		KMPlayer plugin for KHTML/Konqueror [Trinity]
 
 %description konq-plugins
@@ -143,12 +145,6 @@ Documention for KMPlayer, a basic audio/video viewer application for TDE.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -157,7 +153,6 @@ Documention for KMPlayer, a basic audio/video viewer application for TDE.
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
@@ -174,11 +169,9 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
-  \
-  --with-extra-includes=%{tde_includedir}/tqt
+  --enable-rpath
 
-%__make %{?_smp_mflags} || %__make
+%__make %{?_smp_mflags}
 
 
 %install
@@ -257,6 +250,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-6
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-5
 - Initial release for TDE 3.5.13.2
 

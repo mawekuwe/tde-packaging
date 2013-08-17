@@ -1,13 +1,13 @@
 # Default version for this component
-%define tdecomp libkipi
-
+%define tde_pkg libkipi
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -15,7 +15,6 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
 
-%define tde_tdeappdir %{tde_datadir}/applications/kde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -23,11 +22,12 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
+Name:		trinity-%{tde_pkg}
 Summary:	library for apps that want to use kipi-plugins (runtime version) [Trinity]
 
-Version:	3.5.13.2
-Release:	1%{?dist}%{?_variant}
+Epoch:		1
+Version:	0.1.5
+Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Environment/Libraries
@@ -39,11 +39,11 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-arts-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: desktop-file-utils
 %if 0%{?suse_version}
 BuildRequires: liblcms-devel
@@ -75,7 +75,7 @@ Homepage: http://www.kipi-plugins.org/
 %package devel
 Group:		Development/Libraries
 Summary:	library for apps that want to use kipi-plugins (development version) [Trinity]
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %description devel
 Libkipi is a library
@@ -93,13 +93,7 @@ Homepage: http://www.kipi-plugins.org/
 
 
 %prep
-%setup -q
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -109,16 +103,20 @@ Homepage: http://www.kipi-plugins.org/
 %build
 unset QTDIR || : ; source /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
-    --prefix=%{tde_prefix} \
-    --exec-prefix=%{tde_prefix} \
-	--datadir=%{tde_datadir} \
-	--libdir=%{tde_libdir} \
-	--includedir=%{tde_tdeincludedir} \
-	--disable-rpath \
-    --with-extra-includes=%{tde_includedir}/tqt
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --datadir=%{tde_datadir} \
+  --libdir=%{tde_libdir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -128,7 +126,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
 
 
 %clean
@@ -156,7 +154,7 @@ done
 /sbin/ldconfig || :
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %{tde_libdir}/libkipi.so.0
 %{tde_libdir}/libkipi.so.0.1.1
@@ -172,5 +170,8 @@ done
 %{tde_libdir}/pkgconfig/libkipi.pc
 
 %Changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.5-1
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

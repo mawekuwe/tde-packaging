@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp gwenview-i18n
+%define tde_pkg gwenview-i18n
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,31 +24,32 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
-Summary:	Gwenview is an image viewer for KDE.
-Version:	1.4.2
-Release:	2%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Gwenview is an image viewer for TDE.
+Version:		1.4.2
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildArch:	noarch
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-arts-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 # EXIV2 support
@@ -86,13 +88,7 @@ KIPI image framework.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -114,9 +110,13 @@ export KDEDIR="%{tde_prefix}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
-  --disable-rpath \
-  --with-extra-includes=%{tde_includedir}/tqt \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -126,32 +126,12 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-
-
-
 ## File lists
 %find_lang gwenview
 
-# HTML (1.0)
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> gwenview.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
-
 # Removes useless files (-devel ?)
 %__rm -f %{?buildroot}%{tde_libdir}/libgwenviewcore.so
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -164,6 +144,7 @@ for f in crystalsvg hicolor ; do
 done
 /sbin/ldconfig
 
+
 %postun
 for f in crystalsvg hicolor ; do
   touch --no-create %{tde_datadir}/icons/${f} || :
@@ -171,11 +152,27 @@ for f in crystalsvg hicolor ; do
 done
 /sbin/ldconfig
 
+
 %files -f gwenview.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING TODO
+%lang(da) %{tde_tdedocdir}/HTML/da/gwenview/
+%lang(de) %{tde_tdedocdir}/HTML/de/gwenview/
+%lang(et) %{tde_tdedocdir}/HTML/et/gwenview/
+%lang(fr) %{tde_tdedocdir}/HTML/fr/gwenview/
+%lang(it) %{tde_tdedocdir}/HTML/it/gwenview/
+%lang(nl) %{tde_tdedocdir}/HTML/nl/gwenview/
+%lang(pl) %{tde_tdedocdir}/HTML/pl/gwenview/
+%lang(pt) %{tde_tdedocdir}/HTML/pt/gwenview/
+%lang(pt_BR) %{tde_tdedocdir}/HTML/pt_BR/gwenview/
+%lang(ru) %{tde_tdedocdir}/HTML/ru/gwenview/
+%lang(sv) %{tde_tdedocdir}/HTML/sv/gwenview/
+
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-3
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-2
 - Initial release for TDE 3.5.13.2
 

@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -19,8 +21,8 @@
 
 Name:			trinity-tdeedu
 Summary:		Educational/Edutainment applications
-Version:		3.5.13.2
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Version:		%{tde_version}
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			Amusements/Games
@@ -36,7 +38,7 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires: autoconf automake libtool m4
 BuildRequires: desktop-file-utils
-BuildRequires: trinity-kdelibs-devel
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: python-devel python
 BuildRequires: boost-devel
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15
@@ -1110,9 +1112,9 @@ This package is part of Trinity, as a component of the TDE education module.
 %files -n trinity-libtdeedu3
 %defattr(-,root,root,-)
 %{tde_libdir}/libextdate.so.*
-%{tde_libdir}/lib[kt]deeducore.so.*
-%{tde_libdir}/lib[kt]deeduplot.so.*
-%{tde_libdir}/lib[kt]deeduui.so.*
+%{tde_libdir}/libkdeeducore.so.*
+%{tde_libdir}/libkdeeduplot.so.*
+%{tde_libdir}/libkdeeduui.so.*
 
 %post -n trinity-libtdeedu3
 /sbin/ldconfig || :
@@ -1138,15 +1140,15 @@ This package is part of Trinity, as a component of the TDE education module.
 
 %files -n trinity-libtdeedu-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/lib[kt]deedu/
+%{tde_tdeincludedir}/libkdeedu/
 %{tde_libdir}/libextdate.la
 %{tde_libdir}/libextdate.so
-%{tde_libdir}/lib[kt]deeducore.la
-%{tde_libdir}/lib[kt]deeducore.so
-%{tde_libdir}/lib[kt]deeduui.la
-%{tde_libdir}/lib[kt]deeduui.so
-%{tde_libdir}/lib[kt]deeduplot.la
-%{tde_libdir}/lib[kt]deeduplot.so
+%{tde_libdir}/libkdeeducore.la
+%{tde_libdir}/libkdeeducore.so
+%{tde_libdir}/libkdeeduui.la
+%{tde_libdir}/libkdeeduui.so
+%{tde_libdir}/libkdeeduplot.la
+%{tde_libdir}/libkdeeduplot.so
 
 %post -n trinity-libtdeedu-devel
 /sbin/ldconfig || :
@@ -1311,12 +1313,6 @@ Provides:	trinity-kdeedu-devel = %{version}-%{release}
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -1337,26 +1333,26 @@ if [ -d "/usr/X11R6" ]; then
 fi
 
 %configure \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --libdir=%{tde_libdir} \
-   --datadir=%{tde_datadir} \
-   --includedir=%{tde_tdeincludedir} \
-   --enable-new-ldflags \
-   --disable-dependency-tracking \
-   --disable-rpath \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  \
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
    --enable-kig-python-scripting \
 %else
    --disable-kig-python-scripting \
 %endif
-   --disable-debug \
-   --disable-warnings \
-   --enable-final \
-   --enable-closure \
-   --enable-ocamlsolver \
-   --with-extra-includes=%{tde_includedir}/tqt
+   --enable-ocamlsolver
 
 %__make %{_smp_mflags} \
   OCAMLLIB=$(ocamlc -where) \
@@ -1368,28 +1364,14 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-# locale's
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
-
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

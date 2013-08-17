@@ -22,7 +22,7 @@
 Name:			trinity-tdesdk
 Summary:		The Trinity Software Development Kit (SDK)
 Version:		%{tde_version}
-Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			User Interface/Desktops
@@ -34,6 +34,8 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+
+Patch1:			tdesdk-3.5.13.2-fix_cervisia_pod.patch
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
@@ -135,8 +137,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-cervisia
 %{tde_bindir}/cervisia
-%{tde_libdir}/lib[kt]deinit_cervisia.la
-%{tde_libdir}/lib[kt]deinit_cervisia.so
+%{tde_libdir}/libkdeinit_cervisia.la
+%{tde_libdir}/libkdeinit_cervisia.so
 %{tde_tdelibdir}/cervisia.la
 %{tde_tdelibdir}/cervisia.so
 %{tde_tdelibdir}/libcervisiapart.la
@@ -524,7 +526,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdelibdir}/plugins/styles/scheck.la
 %{tde_datadir}/apps/kabc/formats/kdeaccountsplugin.desktop
 %{tde_datadir}/apps/kstyle/themes/scheck.themerc
-%{tde_datadir}/kdepalettes/
+%{tde_datadir}/kdepalettes
 
 %{tde_libdir}/libkstartperf.so.*
 %{tde_libdir}/libkstartperf.so
@@ -599,7 +601,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/svnrevertlast
 %{tde_bindir}/svnforwardport
 %{tde_bindir}/nonsvnlist
-%{tde_bindir}/[kt]desvn-build
+%{tde_bindir}/kdesvn-build
 %{tde_bindir}/svnlastlog
 %{tde_bindir}/svnversions
 %{tde_bindir}/create_svnignore
@@ -610,15 +612,15 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/svngettags
 %{tde_bindir}/svnchangesince
 %{tde_bindir}/svn-clean
-%{tde_datadir}/apps/katepart/syntax/[kt]desvn-buildrc.xml
+%{tde_datadir}/apps/katepart/syntax/kdesvn-buildrc.xml
 %{tde_mandir}/man1/cvsblame.1
 %{tde_mandir}/man1/cvscheck.1
 %{tde_mandir}/man1/cvsversion.1
 %{tde_mandir}/man1/kde-build.1
 %{tde_mandir}/man1/includemocs.1
 %{tde_mandir}/man1/noncvslist.1
-%{tde_mandir}/man1/[kt]desvn-build.1
-%{tde_tdedocdir}/HTML/en/[kt]desvn-build/
+%{tde_mandir}/man1/kdesvn-build.1
+%{tde_tdedocdir}/HTML/en/kdesvn-build/
 #scripts/kde-devel-gdb /opt/trinity/share/tdesdk-scripts
 #scripts/kde-devel-vim.vim /opt/trinity/share/tdesdk-scripts
 #scripts/kde-emacs/*.el /opt/trinity/share/emacs/site-lisp/tdesdk-scripts
@@ -801,8 +803,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/cvsaskpass
 %{tde_bindir}/cvsservice
 %{tde_libdir}/libcvsservice.so.*
-%{tde_libdir}/lib[kt]deinit_cvsaskpass.so
-%{tde_libdir}/lib[kt]deinit_cvsservice.so
+%{tde_libdir}/libkdeinit_cvsaskpass.so
+%{tde_libdir}/libkdeinit_cvsservice.so
 %{tde_tdelibdir}/cvsaskpass.la
 %{tde_tdelibdir}/cvsaskpass.so
 %{tde_tdelibdir}/cvsservice.la
@@ -839,8 +841,8 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdeincludedir}/repository_stub.h
 %{tde_libdir}/libcvsservice.la
 %{tde_libdir}/libcvsservice.so
-%{tde_libdir}/lib[kt]deinit_cvsaskpass.la
-%{tde_libdir}/lib[kt]deinit_cvsservice.la
+%{tde_libdir}/libkdeinit_cvsaskpass.la
+%{tde_libdir}/libkdeinit_cvsservice.la
 %{tde_datadir}/cmake/cervisia.cmake
 
 %post -n trinity-libcvsservice-devel
@@ -1063,14 +1065,13 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
- 
+%patch1 -p1 -b .cervisiapod
+
 
 %build
 unset QTDIR || :; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
@@ -1081,12 +1082,12 @@ fi
 cd build
 %endif
 
-
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
@@ -1102,7 +1103,7 @@ cd build
   %{!?build_kioslave:-DBUILD_KIOSLAVE=OFF} \
   ..
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
@@ -1111,17 +1112,6 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %__make install DESTDIR=%{?buildroot} -C build
 
-# make symlinks relative
-if [ -d %{buildroot}%{tde_tdedocdir}/HTML/en ]; then
-  pushd %{buildroot}%{tde_tdedocdir}/HTML/en
-  for i in *; do
-     if [ -d $i -a -L $i/common ]; then
-        rm -f $i/common
-        ln -nfs ../common $i
-     fi
-  done
-  popd
-fi
 
 # Installs kdepalettes
 %__install -D -m 644 kdepalettes/kde_xpaintrc %{?buildroot}%{tde_datadir}/kdepalettes
@@ -1159,12 +1149,11 @@ fi
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2
-
-* Wed Nov 07 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-2
-- Fix various cmake issues [Bug #1262]
-

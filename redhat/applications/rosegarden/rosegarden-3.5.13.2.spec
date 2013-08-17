@@ -30,7 +30,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		music editor and MIDI/audio sequencer [Trinity]
 Version:		1.7.0
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -45,11 +45,12 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
+BuildRequires:	gettext
 BuildRequires:	fftw-devel
 BuildRequires:	liblo-devel
 BuildRequires:	fontconfig-devel
@@ -121,17 +122,13 @@ This package provides the data files necessary for running Rosegarden
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# Hard-coded path to TQT binaries spotted !!!
-%__sed -i CMakeLists.txt \
-	-e "s|/usr/bin/uic-tqt|%{tde_bindir}/uic-tqt|g" \
-	-e "s|/usr/bin/tmoc|%{tde_bindir}/tmoc|g" \
-	-e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
 
 %build
 unset QTDIR && . %{_sysconfdir}/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
+
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt:%{tde_tdeincludedir}"
+export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_tdeincludedir}"
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
@@ -139,13 +136,12 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
-  -DCMAKE_SKIP_RPATH="OFF" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
-  -DWANT_DEBUG=OFF \
-  -DWANT_FULLDBG=OFF \
   \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
@@ -159,6 +155,8 @@ cd build
   %{?with_lirc:-DWANT_LIRC=ON} %{?!with_lirc:-DWANT_LIRC=OFF} \
   -DWANT_PCH=OFF \
   -DWANT_TEST=OFF \
+  -DWANT_DEBUG=OFF \
+  -DWANT_FULLDBG=OFF \
   -DBUILD_ALL=ON \
   ..
 
@@ -221,6 +219,9 @@ done
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-6
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-5
 - Rebuild with NDEBUG option
 
@@ -230,7 +231,7 @@ done
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-3
 - Initial release for TDE 3.5.13.1
 
-* Sun Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-2
+* Fri Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-2
 - Updated to build with gcc 4.7. [Commit #15276f36]
 - Enables JACK support
 

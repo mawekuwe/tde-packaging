@@ -24,7 +24,7 @@
 Name:			trinity-tdeadmin
 Summary:		Administrative tools for TDE
 Version:		%{tde_version}
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2
 Group:			User Interface/Desktops
@@ -47,9 +47,9 @@ Source6:		ksysvrc
 Source7:		kuserrc
 
 BuildRequires: autoconf automake libtool m4
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-arts-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: rpm-devel
 BuildRequires: pam-devel
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -377,12 +377,6 @@ touch /etc/lilo.conf
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -391,7 +385,6 @@ touch /etc/lilo.conf
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Do not build against any "/usr" installed KDE
 export KDEDIR=%{tde_prefix}
@@ -415,9 +408,7 @@ fi
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
-  \
-  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-rpath \
   \
   --with-rpm \
   --with-pam=kde \
@@ -478,5 +469,8 @@ done
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

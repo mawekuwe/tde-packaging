@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Icollection manager for books, videos, music [Trinity]
 Version:		1.3.2.1
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -45,9 +45,11 @@ Patch1:			tellico-3.5.13.2-videodev.patch
 Patch2:			tellico-3.5.13.2-ftbfs.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -138,12 +140,6 @@ if [ -r /usr/include/libv4l1-videodev.h ]; then
 fi
 %patch2 -p1 -b .ftbfs
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -166,12 +162,10 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   \
   --disable-dependency-tracking \
   --disable-debug \
-  --enable-new-ldflags \
   --disable-final \
+  --enable-new-ldflags \
   --enable-closure \
-  --disable-rpath \
-  \
-  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-rpath \
   \
   --enable-webcam
 
@@ -186,9 +180,6 @@ export PATH="%{tde_bindir}:${PATH}"
 # Add svg icons to xdg directories
 %__install -D -c -p -m 644 icons/tellico.svg %{?buildroot}%{tde_datadir}/icons/hicolor/scalable/apps/tellico.svg
 %__install -D -c -p -m 644 icons/tellico_mime.svg %{?buildroot}%{tde_datadir}/icons/hicolor/scalable/mimetypes/application-x-tellico.svg
-
-# Remove  dead symlink from French translation
-%__rm %{?buildroot}%{tde_tdedocdir}/HTML/fr/tellico/common
 
 
 %find_lang %{tde_pkg}
@@ -244,6 +235,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-7
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-6
 - Rebuild with NDEBUG option
 

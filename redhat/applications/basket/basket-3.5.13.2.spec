@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Taking care of your ideas.
 Version:		1.0.3.1
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -41,6 +41,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	trinity-tdepim-devel >= %{tde_version}
@@ -66,12 +67,6 @@ baskets to HTML.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -82,17 +77,21 @@ unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
+# Warning: --enable-final causes FTBFS
 %configure \
-	--prefix=%{tde_prefix} \
-	--exec-prefix=%{tde_prefix} \
-	--bindir=%{tde_bindir} \
-	--includedir=%{tde_tdeincludedir} \
-	--libdir=%{tde_libdir} \
-	--datadir=%{tde_datadir} \
-	--disable-rpath \
-	--disable-debug \
-    --with-extra-includes=%{tde_includedir}/tqt \
-    --disable-static
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --includedir=%{tde_tdeincludedir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --disable-final \
+  --enable-closure \
+  --enable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -114,6 +113,7 @@ for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig
+update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 
 %postun
 for f in crystalsvg ; do
@@ -121,6 +121,7 @@ for f in crystalsvg ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f} || :
 done
 /sbin/ldconfig
+update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 
 
 %files -f %{tde_pkg}.lang
@@ -159,6 +160,9 @@ done
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-6
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-5
 - Rebuild with NDEBUG option
 

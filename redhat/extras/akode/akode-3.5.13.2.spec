@@ -18,15 +18,16 @@
 
 %define _docdir %{tde_docdir}
 
-Summary: Audio-decoding framework 
-Name:	 trinity-akode 
-Version: 2.0.2
-Release:	4%{?dist}%{?_variant}
+Summary: 	Audio-decoding framework 
+Name:		trinity-akode 
+Version:	2.0.2
+Release:	5%{?dist}%{?_variant}
 
-License: LGPLv2+
-Group: 	 System Environment/Libraries
-#URL:	 http://carewolf.com/akode/  
-URL:	 http://www.kde-apps.org/content/show.php?content=30375
+License:	LGPLv2+
+Group: 		System Environment/Libraries
+#URL:		http://carewolf.com/akode/  
+URL:		http://www.kde-apps.org/content/show.php?content=30375
+
 Source0:	akode-2.0.2.tar.bz2
 
 Prefix:		%{tde_prefix}
@@ -39,10 +40,9 @@ Patch2: akode-2.0.2-multilib.patch
 Patch3: akode-2.0.2-flac113-portable.patch
 Patch4: akode-2.0.2-gcc43.patch
 
-# New patch for Fedora 16 / TDE 3.5.13
+# New patches
 Patch10: akode-autotools.patch
 Patch11: akode-2.0.2-fix_ffmpeg_include.patch
-
 
 # FLAC support
 %define _with_flac --with-flac
@@ -117,6 +117,8 @@ aKode currently has the following decoder plugins:
 
 aKode also has the following audio outputs:
 * alsa: Outputs to ALSA (dmix is recommended).
+* jack
+* pulseaudio
 
 %files
 %defattr(-,root,root,-)
@@ -144,7 +146,12 @@ aKode also has the following audio outputs:
 Summary: Headers for developing programs that will use %{name} 
 Group:   Development/Libraries
 Requires: %{name} = %{version}-%{release}
+%{?_with_jack:Requires: %{name}-jack = %{version}-%{release}}
+%{?_with_pulseaudio:Requires: %{name}-pulseaudio = %{version}-%{release}}
+%{?_with_libsamplerate:Requires: %{name}-libsamplerate = %{version}-%{release}}
+%{?_with_libmad:Requires: %{name}-libmad = %{version}-%{release}}
 Requires: pkgconfig
+
 %description devel
 %{summary}.
 
@@ -284,12 +291,6 @@ Requires: %{name} = %{version}-%{release}
 %patch10 -p1 -b .autotools
 %patch11 -p1 -b .ffmpeg
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f admin/Makefile.common cvs
@@ -300,9 +301,14 @@ Requires: %{name} = %{version}-%{release}
   --libdir=%{tde_libdir} \
   --includedir=%{tde_includedir} \
   --datadir=%{tde_datadir} \
-  --disable-static \
-  --enable-shared \
-  --disable-debug --disable-warnings --disable-dependency-tracking \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  \
   --without-libltdl \
   --with-alsa \
   --with-oss \
@@ -313,10 +319,7 @@ Requires: %{name} = %{version}-%{release}
   --with-speex \
   --with-vorbis \
   --without-ffmpeg \
-  %{?_with_libmad} %{!?_with_libmad:--without-libmad} \
-  --enable-closure \
-  --enable-new-ldflags \
-  --enable-final
+  %{?_with_libmad} %{!?_with_libmad:--without-libmad}
 
 %__make %{?_smp_mflags} LIBTOOL=$(which libtool)
 
@@ -339,6 +342,9 @@ done
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-5
+- Build for Fedora 19
+
 * Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-4
 - Initial release for TDE 3.5.13.2
 

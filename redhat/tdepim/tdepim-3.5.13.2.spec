@@ -31,7 +31,7 @@ BuildRequires:	gnokii-devel
 
 Name:		trinity-tdepim
 Version:	%{tde_version}
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Group:		Applications/Productivity
 
@@ -49,7 +49,7 @@ Patch14:	kdepim-3.5.13-missing_ldflags.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-libcaldav-devel
 BuildRequires:	trinity-libcarddav-devel
@@ -62,7 +62,8 @@ BuildRequires:	libical-devel
 BuildRequires:	boost-devel
 BuildRequires:	pcre-devel
 BuildRequires:	glib2-devel
-BuildRequires:	gcc-c++ make
+BuildRequires:	gcc-c++
+BuildRequires:	make
 BuildRequires:	libidn-devel
 
 # CURL support
@@ -2199,8 +2200,6 @@ fi
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Specific path for RHEL4
 if [ -d "/usr/X11R6" ]; then
@@ -2213,10 +2212,11 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
@@ -2249,6 +2249,7 @@ cd build
 
 %__make %{?_smp_mflags} || %__make
 
+
 %install
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{?buildroot}
@@ -2260,6 +2261,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 

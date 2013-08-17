@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 3.5.13.2
+
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
 %define tde_includedir %{tde_prefix}/include
@@ -10,7 +12,7 @@
 
 Name:		trinity-libcaldav
 Version:	0.6.5
-Release:	3%{?dist}%{?_variant}
+Release:	%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
@@ -60,6 +62,7 @@ easy to integrate CalDAV support into any PIM application.
 Summary:	Development files for %{name}
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+
 Obsoletes:	libcaldav-devel < %{version}-%{release}
 Provides:	libcaldav-devel = %{version}-%{release}
 
@@ -74,29 +77,35 @@ Provides:	libcaldav-devel = %{version}-%{release}
 %prep
 %setup -q -n libcaldav-%{version}
 %patch1 -p1 -b .dir
+autoreconf --force --install --symlink
+
 
 %build
 # CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
-export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${CFLAGS}"
+export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${RPM_OPT_FLAGS}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 if [ -d /usr/evolution28 ]; then
   export PKG_CONFIG_PATH="/usr/evolution28/%{_lib}/pkgconfig:${PKG_CONFIG_PATH}"
 fi
 
-autoreconf --force --install --symlink
 %configure \
   --docdir=%{tde_docdir}/libcaldav \
   --includedir=%{tde_includedir} \
   --libdir=%{tde_libdir} \
-  
+  \
+  --disable-dependency-tracking
+
 %__make %{?_smp_mflags}
+
 
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# Unwanted files
 %__rm -f %{buildroot}%{tde_libdir}/*.a
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -104,14 +113,14 @@ autoreconf --force --install --symlink
 
 %files
 %defattr(-,root,root,-)
-%{tde_libdir}/*.so.*
+%{tde_libdir}/libcaldav.so.*
 %{tde_docdir}/libcaldav/
 
 %files devel
 %defattr(-,root,root,-)
 %{tde_includedir}/caldav.h
-%{tde_libdir}/*.la
-%{tde_libdir}/*.so
+%{tde_libdir}/libcaldav.la
+%{tde_libdir}/libcaldav.so
 %{tde_libdir}/pkgconfig/libcaldav.pc
 
 %post
@@ -128,7 +137,10 @@ autoreconf --force --install --symlink
 
 
 %Changelog
-* Sun Jul 28 2012 Francois Andriot <francois.andriot@free.fr> - 0.6.5-3
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.5-4
+- Build for Fedora 19
+
+* Sat Jul 28 2012 Francois Andriot <francois.andriot@free.fr> - 0.6.5-3
 - Renames to 'trinity-libcaldav'
 - Build on MGA2
 

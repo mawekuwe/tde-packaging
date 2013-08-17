@@ -16,7 +16,7 @@
 %define tde_mandir %{tde_datadir}/man
 %define tde_appdir %{tde_datadir}/applications
 
-%define tde_tdeappdir %{tde_appdir}/kde
+%define tde_tdeappdir %{tde_appdir}/tde
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
 %define tde_tdelibdir %{tde_libdir}/trinity
@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		KDiff3 is a utility for comparing and/or merging two or three text files or directories.
 Version:		0.9.91
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -42,10 +42,11 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 
 %description
 Shows the differences line by line and character by character (!).
@@ -63,12 +64,6 @@ Unicode & UTF-8 support
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -77,7 +72,6 @@ Unicode & UTF-8 support
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -93,9 +87,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --disable-rpath \
-  \
-  --with-extra-includes=%{tde_includedir}/tqt
+  --enable-rpath
 
 %__make %{?_smp_mflags}
 
@@ -106,9 +98,11 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 # Unwanted files
+# These are not HTML files but weird files in wrong place ??
 %__rm -rf %{?buildroot}%{tde_tdedocdir}/HTML/kdiff3/
 
 %find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -147,6 +141,9 @@ done
 %{tde_tdelibdir}/libkdiff3plugin.so
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-8
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-7
 - Rebuild with NDEBUG option
 

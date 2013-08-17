@@ -22,7 +22,7 @@
 
 Name:		trinity-tdegraphics
 Version:	%{tde_version}
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPL
 Summary:    Trinity Desktop Environment - Graphics Applications
@@ -188,12 +188,18 @@ BuildRequires: lcms-devel
 BuildRequires: libart_lgpl-devel
 
 # kuickshow
+#define build_kuickshow 1
 BuildRequires: fribidi-devel
 
 # kamera
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
 %define build_kamera 1
 %endif
+
+# kmrml
+#define build_kmrml 1
+#Requires:		gift
+Obsoletes:		trinity-kmrml
 
 Obsoletes:	trinity-kdegraphics < %{version}-%{release}
 Provides:	trinity-kdegraphics = %{version}-%{release}
@@ -212,7 +218,7 @@ Requires: trinity-kfaxview = %{version}-%{release}
 Requires: trinity-kgamma = %{version}-%{release}
 Requires: trinity-kghostview = %{version}-%{release}
 Requires: trinity-kiconedit = %{version}-%{release}
-Requires: trinity-kmrml = %{version}-%{release}
+%{?build_kmrml:Requires: trinity-kmrml = %{version}-%{release}}
 Requires: trinity-kolourpaint = %{version}-%{release}
 Requires: trinity-kooka = %{version}-%{release}
 Requires: trinity-kpdf = %{version}-%{release}
@@ -244,6 +250,8 @@ Graphics applications for the Trinity Desktop Environment, including
 * kview (image viewer for GIF, JPEG, TIFF, etc.)
 
 %files
+%defattr(-,root,root,-)
+%doc AUTHORS ChangeLog README
 
 ##########
 
@@ -441,7 +449,6 @@ A fax viewer for Trinity, supporting the display of raw and tiffed fax images
 
 %files -n trinity-kfax
 %defattr(-,root,root,-)
-%doc rpmdocs/kfax/
 %{tde_bindir}/kfax
 %{tde_tdeappdir}/kfax.desktop
 %{tde_datadir}/apps/kfax/
@@ -619,6 +626,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
+%if 0%{?build_kmrml}
+
 %package -n trinity-kmrml
 Summary: 	A Konqueror plugin for searching pictures
 Group:		Applications/Graphics
@@ -642,7 +651,7 @@ MRML server.
 %{tde_tdelibdir}/libkmrmlpart.so
 %{tde_tdelibdir}/mrmlsearch.la
 %{tde_tdelibdir}/mrmlsearch.so
-%{tde_libdir}/lib[kt]deinit_mrmlsearch.so
+%{tde_libdir}/libkdeinit_mrmlsearch.so
 %{tde_tdeappdir}/kcmkmrml.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/mrml-servicemenu.desktop
 %{tde_datadir}/mimelnk/text/mrml.desktop
@@ -657,6 +666,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %postun -n trinity-kmrml
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 /sbin/ldconfig || :
+
+%endif
 
 ##########
 
@@ -801,7 +812,6 @@ Homepage: http://www.kpovmodeler.org
 
 %files -n trinity-kpovmodeler
 %defattr(-,root,root,-)
-%doc rpmdocs/kpovmodeler/
 %{tde_bindir}/kpovmodeler
 %{tde_libdir}/libkpovmodeler.so.*
 %{tde_tdelibdir}/libkpovmodelerpart.*
@@ -967,7 +977,7 @@ as well.
 %{tde_tdelibdir}/libkviewcanvas.so
 %{tde_tdelibdir}/libkviewviewer.la
 %{tde_tdelibdir}/libkviewviewer.so
-%{tde_libdir}/lib[kt]deinit_kview.so
+%{tde_libdir}/libkdeinit_kview.so
 %{tde_libdir}/libkimageviewer.so.*
 %{tde_tdelibdir}/libphotobook.la
 %{tde_tdelibdir}/libphotobook.so
@@ -1183,8 +1193,10 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 %{tde_tdeincludedir}/libtext2path-0.1/BezierPath.h
 %{tde_tdeincludedir}/libtext2path-0.1/Glyph.h
 %{tde_tdeincludedir}/libtext2path-0.1/GlyphTracer.h
-%{tde_libdir}/lib[kt]deinit_kview.la
-%{tde_libdir}/lib[kt]deinit_mrmlsearch.la
+%{tde_libdir}/libkdeinit_kview.la
+%if 0%{?build_kmrml}
+%{tde_libdir}/libkdeinit_mrmlsearch.la
+%endif
 %{tde_libdir}/libkghostviewlib.la
 %{tde_libdir}/libkghostviewlib.so
 %{tde_libdir}/libkimageviewer.la
@@ -1215,8 +1227,8 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 #%exclude %{tde_bindir}/kuickshow
 #%exclude %{tde_tdelibdir}/kuickshow.la
 #%exclude %{tde_tdelibdir}/kuickshow.so
-#%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.la
-#%exclude %{tde_libdir}/lib[kt]deinit_kuickshow.so
+#%exclude %{tde_libdir}/libkdeinit_kuickshow.la
+#%exclude %{tde_libdir}/libkdeinit_kuickshow.so
 #%exclude %{tde_tdeappdir}/kuickshow.desktop
 #%exclude %{tde_datadir}/apps/kuickshow/
 #%exclude %{tde_datadir}/icons/hicolor/*/apps/kuickshow.png
@@ -1249,7 +1261,6 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 
 # Do not build against any "/usr" installed KDE
 export KDEDIR=%{tde_prefix}
@@ -1265,10 +1276,11 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
@@ -1285,6 +1297,7 @@ cd build
   -DWITH_PDF=ON \
   -DBUILD_ALL=ON \
   -DBUILD_KUICKSHOW=OFF \
+  %{!?build_kmrml:-DBUILD_KMRML=OFF} \
   %{!?build_kamera:-DBUILD_KAMERA=OFF} \
   ..
 
@@ -1296,15 +1309,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
-# rpmdocs
-for dir in k* ; do
-  for file in AUTHORS ChangeLog README TODO ; do
-    if test -s "$dir/$file" ; then
-       install -p -m644 -D "$dir/$file" "rpmdocs/$dir/$file"
-       echo "%doc rpmdocs/$dir/" >> %{name}.lang
-    fi
-  done
-done
 
 
 %clean
@@ -1312,6 +1316,9 @@ done
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 

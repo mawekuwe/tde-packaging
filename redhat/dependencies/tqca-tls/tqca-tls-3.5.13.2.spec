@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 3.5.13.2
+
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -12,21 +14,21 @@
 
 %define _docdir %{tde_datadir}/doc
 
-Name:		trinity-tqca-tls
-Version:	1.0
-Release:	2%{?dist}%{?_variant}
+Name:			trinity-tqca-tls
+Version:		1.0
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
-Summary:	TLS plugin for the TQt Cryptographic Architecture
-License:	LGPLv2+
-Group:		Applications/Internet
+Summary:		TLS plugin for the TQt Cryptographic Architecture
+License:		LGPLv2+
+Group:			Applications/Internet
 
-URL:		http://delta.affinix.com/qca/
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
+URL:			http://delta.affinix.com/qca/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	tqca-tls-master.tar.gz
+Source0:		tqca-tls-master.tar.gz
 
 # Fix build in mach for QT apps
 Patch0:		qca-tls-1.0-mach.patch
@@ -35,8 +37,8 @@ Patch2:     qca-tls-1.0-ossl10.patch
 # Allows building with TQT3 from TDE
 Patch10:	tqca-tls-qt3.patch
 
-BuildRequires:  qt3-devel >= 3.3.8.d
-BuildRequires:  trinity-tqtinterface-devel >= 3.5.13.2
+BuildRequires:	qt3-devel >= 3.3.8.d
+BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tqca-devel >= 1.0
 BuildRequires:	openssl-devel >= 0.9.8
 
@@ -99,6 +101,9 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-3
+- Build for Fedora 19
+
 * Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-2
 - Renames TQCA to QCA in source code
 

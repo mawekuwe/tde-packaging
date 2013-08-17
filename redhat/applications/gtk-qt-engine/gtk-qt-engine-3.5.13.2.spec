@@ -1,12 +1,13 @@
 # Default version for this component
-%define kdecomp gtk-qt-engine
+%define tde_pkg gtk-qt-engine
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,30 +24,32 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{kdecomp}
-Summary:	theme engine using Qt for GTK+ 2.x and Trinity
-Version:	0.8
-Release:	5%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		theme engine using Qt for GTK+ 2.x and Trinity
+Version:		0.8
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:    %{_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2%{?preversion:~%{preversion}}.tar.gz
-Source1:	gtk-qt-engine.rc.sh
-Source2:	gtkrc-2.0-kde4
-Source3:	gtkrc-2.0-kde-kde4
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+Source1:		gtk-qt-engine.rc.sh
+Source2:		gtkrc-2.0-kde4
+Source3:		gtkrc-2.0-kde-kde4
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
 
@@ -68,18 +71,6 @@ a way to configure it from within KControl.
 %prep
 %setup -q -n %{name}-3.5.13.2%{?preversion:~%{preversion}}
 
-# Renames the '.po' files
-for f in po/*/*.po; do
-  pushd ${f%/*}
-  mv -f *.po gtk-qt-engine.po
-  popd
-done
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "CMakeLists.txt" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g"
-
 
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
@@ -92,11 +83,18 @@ cd build
 %endif
 
 %cmake \
-	-DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
-	-DDATA_INSTALL_DIR=%{tde_datadir} \
-	-DLIB_INSTALL_DIR=%{tde_libdir} \
-	-DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-	..
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
+  -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
+  -DDATA_INSTALL_DIR=%{tde_datadir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  ..
 
 %__make %{?_smp_mflags}
 
@@ -106,19 +104,19 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
-%find_lang %{kdecomp}
+%find_lang gtkqtengine
 
 # Adds TDE's specific GTKRC
 %__install -D -m 644 %{SOURCE1} %{buildroot}%{tde_datadir}/kgtk/gtk-qt-engine.rc.sh
 %__install -D -m 644 %{SOURCE2} %{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde4
 %__install -D -m 644 %{SOURCE3} %{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde-kde4
 
+
 %clean
 %__rm -rf %{buildroot}
 
 
-
-%files -f %{kdecomp}.lang
+%files -f gtkqtengine.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{tde_tdelibdir}/kcm_kcmgtk.la
@@ -134,6 +132,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.8-6
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8-5
 - Initial release for TDE 3.5.13.2
 

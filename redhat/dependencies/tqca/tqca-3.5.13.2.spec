@@ -3,6 +3,8 @@
 %define _variant .opt
 %endif
 
+%define tde_version 3.5.13.2
+
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -15,7 +17,7 @@
 
 Name:           trinity-tqca
 Version:        1.0
-Release:        2%{?dist}%{?_variant}
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 Summary:        TQt Cryptographic Architecture
 
@@ -31,11 +33,12 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:        tqca-master.tar.gz
+
 Patch0:         qca-1.0-mach.patch
 Patch1:			tqca-1.0-fix_qt3_detection.patch
 
 BuildRequires:  qt3-devel >= 3.3.8.d
-BuildRequires:  trinity-tqtinterface-devel >= 3.5.13.2
+BuildRequires:  trinity-tqtinterface-devel >= %{tde_version}
 
 %description
 Taking a hint from the similarly-named Java Cryptography Architecture,
@@ -124,6 +127,9 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-3
+- Build for Fedora 19
+
 * Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-2
 - Renames TQCA to QCA in source code
 

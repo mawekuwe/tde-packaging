@@ -26,22 +26,25 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Media player
 Version:		1.4.10
-Release:		%{?!preversion:10}%{?preversion:9_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:11}%{?preversion:10_%{preversion}}%{?dist}%{?_variant}
 
 Group:			Applications/Multimedia
 License:		GPLv2+
-Url:        http://amarok.kde.org
+Url:			http://amarok.kde.org
 
 Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch3:		amarok-3.5.13.1-fix_rhel4_libs.patch
+Patch3:			amarok-3.5.13.1-fix_rhel4_libs.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
 BuildRequires:	trinity-konqueror-devel >= %{tde_version}
 
 BuildRequires:	alsa-lib-devel
@@ -51,10 +54,12 @@ BuildRequires:	gettext
 BuildRequires:	pcre-devel
 BuildRequires:	taglib-devel 
 
+# LIBTOOL
 BuildRequires:	libtool
 %if 0%{?fedora} > 4 || 0%{?rhel} > 4
 BuildRequires:	libtool-ltdl-devel
 %endif
+
 BuildRequires:	libusb-devel
 BuildRequires:	mysql-devel
 BuildRequires:	postgresql-devel
@@ -76,7 +81,7 @@ BuildRequires:	dbus-devel
 %if 0%{?rhel} == 4
 BuildRequires:	dbus-qt
 %else
-BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
+BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
 %endif
 
 # IFP support
@@ -184,7 +189,7 @@ Amarok is a multimedia player with:
  - compatible with the .m3u and .pls formats for playlists
  - nice GUI, integrates into the TDE look, but with a unique touch
 
-%files -f amarok.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc COPYING AUTHORS ChangeLog README
 %{tde_bindir}/amarok
@@ -353,8 +358,6 @@ use any of xmms' visualisation plugins with Amarok.
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt:%{tde_tdeincludedir}"
 
 # Do not build against any "/usr" installed KDE
 export KDEDIR=%{tde_prefix}
@@ -370,33 +373,33 @@ cd build
 %endif
 
 %cmake \
-	-DCMAKE_BUILD_TYPE="" \
-	-DCMAKE_C_FLAGS="-DNDEBUG" \
-	-DCMAKE_CXX_FLAGS="-DNDEBUG" \
-	-DCMAKE_SKIP_RPATH=OFF \
-	-DCMAKE_VERBOSE_MAKEFILE=ON \
-	\
-	-DBIN_INSTALL_DIR=%{tde_bindir} \
-	-DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
-	-DLIB_INSTALL_DIR=%{tde_libdir} \
-	-DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-	-DQT_LIBRARY_DIRS="${QTLIB:-${QTDIR}/%{_lib}}" \
-	\
-	%{?with_libvisual:-DWITH_LIBVISUAL=ON} \
-	-DWITH_KONQSIDEBAR=ON \
-	%{?with_xine:-DWITH_XINE=ON} \
-	%{?with_yauap:-DWITH_YAUAP=ON} \
-	%{?with_akode:-DWITH_AKODE=ON} \
-	%{?with_gpod:-DWITH_IPOD=ON} \
-	%{?with_ifp:-DWITH_IFP=ON} \
-	%{?with_njb:-DWITH_NJB=ON} \
-	%{?with_mtp:-DWITH_MTP=ON} \
-	%{?with_karma:-DWITH_RIOKARMA=ON} \
-	-DWITH_DAAP=ON \
-	%{?with_mp4v2:-DWITH_MP4V2=ON} \
-	%{?with_inotify:-DWITH_INOTIFY=ON} \
-	-DBUILD_ALL=ON \
-	..
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+  -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  \
+  %{?with_libvisual:-DWITH_LIBVISUAL=ON} \
+  -DWITH_KONQSIDEBAR=ON \
+  %{?with_xine:-DWITH_XINE=ON} \
+  %{?with_yauap:-DWITH_YAUAP=ON} \
+  %{?with_akode:-DWITH_AKODE=ON} \
+  %{?with_gpod:-DWITH_IPOD=ON} \
+  %{?with_ifp:-DWITH_IFP=ON} \
+  %{?with_njb:-DWITH_NJB=ON} \
+  %{?with_mtp:-DWITH_MTP=ON} \
+  %{?with_karma:-DWITH_RIOKARMA=ON} \
+  -DWITH_DAAP=ON \
+  %{?with_mp4v2:-DWITH_MP4V2=ON} \
+  %{?with_inotify:-DWITH_INOTIFY=ON} \
+  -DBUILD_ALL=ON \
+  ..
 
 %__make %{?_smp_mflags} || %__make
 
@@ -430,6 +433,9 @@ done
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-11
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-10
 - Rebuild with NDEBUG option
 

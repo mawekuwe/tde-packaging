@@ -1,12 +1,13 @@
 # Default version for this component
-%define tdecomp ktorrent
+%define tde_pkg ktorrent
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -23,29 +24,46 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	BitTorrent client for Trinity
-Version:	2.2.8
-Release:	3%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		BitTorrent client for Trinity
+Version:		2.2.8
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://ktorrent.org
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://ktorrent.org
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
+
+# AVAHI support
+#  Disabled on RHEL4 and RHEL5
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%define with_avahi 1
+BuildRequires:	trinity-avahi-tqt-devel
+Requires:		trinity-avahi-tqt
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}avahi-client-devel
+Requires:		%{_lib}avahi-client3
+%else
+BuildRequires:	avahi-devel
+Requires:		avahi
+%endif
+%endif
 
 
 %description
@@ -61,13 +79,7 @@ enabling background downloading.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -77,7 +89,6 @@ enabling background downloading.
 %build
 unset QTDIR; . "/etc/profile.d/qt3.sh"
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix="%{tde_prefix}" \
@@ -87,8 +98,15 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir="%{tde_libdir}" \
   --mandir="%{tde_mandir}" \
   --includedir="%{tde_tdeincludedir}" \
-  --disable-rpath \
-  --with-extra-includes="%{tde_includedir}/tqt"
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-final \
+  --enable-new-ldflags \
+  --enable-closure \
+  --enable-rpath \
+  \
+  %{?!with_avahi:--without-avahi}
 
 
 # Not SMP safe !
@@ -100,7 +118,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf "%{buildroot}"
 %__make install DESTDIR="%{buildroot}"
 
-%find_lang %{tdecomp}
+%find_lang %{tde_pkg}
 
 # Unwanted files
 %__rm -f "%{?buildroot}%{tde_libdir}/libktorrent.so"
@@ -123,7 +141,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 /sbin/ldconfig || :
 
 
-%files -f %{tdecomp}.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %{tde_bindir}/ktcachecheck
 %{tde_bindir}/ktorrent
@@ -162,8 +180,16 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/services/*.desktop
 %{tde_datadir}/servicetypes/ktorrentplugin.desktop
 
+%if 0%{?with_avahi}
+%{tde_tdelibdir}/ktzeroconfplugin.la
+%{tde_tdelibdir}/ktzeroconfplugin.so
+%endif
+
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.8-4
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.8-3
 - Initial release for TDE 3.5.13.2
 

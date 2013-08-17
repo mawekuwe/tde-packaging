@@ -41,7 +41,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		An integrated office suite
 Version:		1.6.3
-Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
 Group:			Applications/Productivity
 License:		GPLv2+
@@ -55,9 +55,15 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:			koffice-3.5.13.2-fix_kformula_ftbfs.patch
 
 # BuildRequires: world-devel ;)
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
 BuildRequires:	trinity-tdegraphics-devel >= %{tde_version}
 BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel >= %{tde_version}
 BuildRequires:	automake libtool
@@ -72,7 +78,6 @@ BuildRequires:	python-devel
 BuildRequires:	pcre-devel
 BuildRequires:	gettext-devel
 BuildRequires:	mysql-devel
-BuildRequires:	desktop-file-utils
 BuildRequires:	perl
 BuildRequires:	doxygen
 BuildRequires:	aspell-devel
@@ -140,6 +145,7 @@ BuildRequires:	libutempter-devel
 #  Requires 'libpqxx', for kexi-driver-pgqsl
 %if 0%{?mdkversion} || 0%{?fedora} || 0%{?suse_version}
 %define with_postgresql 1
+BuildRequires:	postgresql-devel
 BuildRequires:	libpqxx-devel
 %endif
 Obsoletes:		trinity-libpqxx
@@ -230,7 +236,6 @@ Summary:		Core support files for %{name}
 Group:			Applications/Productivity
 Requires:		%{name}-libs = %{version}-%{release}
 Requires:		perl
-Conflicts:      koffice-i18n < %{version}
 
 %description core
 %{summary}.
@@ -1055,8 +1060,9 @@ This package is part of the TDE Office Suite.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .ftbfs
 
-%if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013
+%if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013 || 0%{?fedora} >= 19
 %__cp /usr/share/automake-1.13/test-driver admin/
 %endif
 
@@ -1066,12 +1072,6 @@ This package is part of the TDE Office Suite.
   -e 's|dejavu sans|dejavu lgc sans|' \
   lib/kformula/{contextstyle,fontstyle,symboltable}.cc 
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -1080,7 +1080,6 @@ This package is part of the TDE Office Suite.
 %build
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 export KDEDIR="%{tde_prefix}"
 
@@ -1097,26 +1096,34 @@ export CXXFLAGS="${CXXFLAGS} -I${RD}/%_normalized_cpu-linux"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath --disable-dependency-tracking \
+  \
+  --disable-dependency-tracking \
   --disable-debug \
   --enable-new-ldflags \
-  --disable-debug --disable-warnings \
-  --with-pic --enable-shared --disable-static \
-  --with-extra-libs=%{tde_libdir} \
   --enable-final \
-  --with-extra-includes=%{tde_includedir}/tqt:%{tde_includedir}/arts \
   --enable-closure \
+  --enable-rpath \
+  \
+  --with-extra-libs=%{tde_libdir} \
+  --with-extra-includes=%{tde_includedir}/arts \
+  \
   --disable-kexi-macros \
   %{?with_kross:--enable-scripting} %{!?with_kross:--disable-scripting} \
   %{?with_postgresql:--enable-pgsql} %{!?with_postgresql:--disable-pgsql} \
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
+# Moves menu elements to XDG folder
+desktop-file-install \
+  --dir=%{buildroot}%{tde_tdeappdir} \
+  --vendor="" \
+  --delete-original \
+  %{buildroot}%{tde_datadir}/applnk/Office/*.desktop
 
 # Replace absolute symlinks with relative ones
 pushd %{buildroot}%{tde_tdedocdir}/HTML
@@ -1131,20 +1138,6 @@ for lang in *; do
 done
 popd
 
-desktop-file-install \
-  --dir=%{buildroot}%{tde_tdeappdir} \
-  --vendor="" \
-  --delete-original \
-  %{buildroot}%{tde_datadir}/applnk/Office/*.desktop
-
-## Hack-in NoDisplay=True (http://bugzilla.redhat.com/245061)
-## until http://bugzilla.redhat.com/245190 is fixed
-%if 0%{?rhel} || 0%{?fedora}
-for desktop_file in %{buildroot}%{tde_datadir}/applnk/.hidden/*.desktop ; do
-  grep "^NoDisplay=" ${desktop_file} || \
-    echo "NoDisplay=True" >> ${desktop_file}
-done
-%endif
 
 ## unpackaged files
 # fonts
@@ -1174,6 +1167,9 @@ rm -f %{buildroot}%{tde_libdir}/libkugar*.so
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-9
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-7
 - Initial release for TDE 3.5.13.2
 

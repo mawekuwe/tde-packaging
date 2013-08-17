@@ -41,7 +41,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		personal finance manager for TDE
 
 Version:		1.0.5
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -66,19 +66,13 @@ Patch4:		kmymoney-3.5.13-missing_ldflags.patch
 Patch5:		kmymoney-3.5.13-fix_qt3_plugins_location.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	recode
 BuildRequires:	libofx-devel
-
-# PDF support
-%if 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion}
-%define with_pdf 1
-BuildRequires:	html2ps
-%endif
 
 # OPENSP support
 %if 0%{?mgaversion} || 0%{?pclinuxos} || 0%{?mdkversion}
@@ -136,17 +130,11 @@ This package contains development files needed for KMyMoney plugins.
 %patch5 -p1 -b .qtpluginsdir
 %endif
 
-%if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013
+%if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013 || 0%{?fedora} >= 19
 %__cp /usr/share/automake-1.13/test-driver admin/
 %endif
 
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -156,7 +144,6 @@ This package contains development files needed for KMyMoney plugins.
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 export KDEDIR="%{tde_prefix}"
 
@@ -170,7 +157,7 @@ export QTPLUGINS="%{_libdir}/qt3/plugins"
 grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
 %endif
 
-# NOTICE: --enable-final causes FTBFS !
+# Warning: --enable-final causes FTBFS
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -185,11 +172,9 @@ grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
   --enable-new-ldflags \
   --disable-final \
   --enable-closure \
-  --disable-rpath \
+  --enable-rpath \
   \
-  --with-extra-includes=%{tde_includedir}/tqt \
-  \
-  %{?with_pdf:--enable-pdf-docs} %{?!with_pdf:--disable-pdf-docs} \
+  --disable-pdf-docs \
   --enable-ofxplugin \
   --enable-ofxbanking \
   --enable-qtdesigner \
@@ -280,6 +265,9 @@ done
 %{qt3pluginsdir}/designer/libkmymoney.so
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-6
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-5
 - Rebuild with NDEBUG option
 

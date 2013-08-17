@@ -18,41 +18,42 @@
 
 %define _docdir %{tde_docdir}
 
-Name:		trinity-tdelibs
-Version:	%{tde_version}
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
-Summary:	TDE Libraries
-Group:		Environment/Libraries
+Name:			trinity-tdelibs
+Version:		%{tde_version}
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
+License:		GPL
+Summary:		TDE Libraries
+Group:			Environment/Libraries
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+
 # Fix categories in T-menu
-Patch1:		tdelibs-3.5.13.2-fix_xdg_menu.patch
+Patch1:			tdelibs-3.5.13.2-fix_xdg_menu.patch
 
 # Patches from Mandriva
 Patch101:		tdelibs-3.5.13.2-xdg_dirs_set_path.patch
 Patch102:		tdelibs-3.5.13.2-cups_by_default.patch
 
-Obsoletes:	tdelibs < %{version}-%{release}
-Provides:	tdelibs = %{version}-%{release}
-Obsoletes:	trinity-kdelibs < %{version}-%{release}
-Provides:	trinity-kdelibs = %{version}-%{release}
-Obsoletes:	trinity-kdelibs-apidocs < %{version}-%{release}
-Provides:	trinity-kdelibs-apidocs = %{version}-%{release}
+Obsoletes:		tdelibs < %{version}-%{release}
+Provides:		tdelibs = %{version}-%{release}
+Obsoletes:		trinity-kdelibs < %{version}-%{release}
+Provides:		trinity-kdelibs = %{version}-%{release}
+Obsoletes:		trinity-kdelibs-apidocs < %{version}-%{release}
+Provides:		trinity-kdelibs-apidocs = %{version}-%{release}
 
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	qt3-devel >= 3.3.8.d
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
-BuildRequires:	trinity-arts-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	krb5-devel
 BuildRequires:	libxslt-devel
 BuildRequires:	cups-devel
@@ -131,7 +132,7 @@ BuildRequires:	jasper-devel
 # AVAHI support
 %if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_avahi 1
-BuildRequires:	trinity-avahi-tqt-devel >= %{tde_version}
+BuildRequires:	trinity-avahi-tqt-devel >= 1:0.6.30
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
 Requires:		%{_lib}avahi-client3
@@ -209,13 +210,13 @@ Requires:		openssl
 # Trinity dependencies
 Requires:		qt3 >= 3.3.8.d
 Requires:		trinity-tqtinterface >= %{tde_version}
-Requires:		trinity-arts >= %{tde_version}
+Requires:		trinity-arts >= 1:1.5.10
 
 
 %description
 Libraries for the Trinity Desktop Environment:
 TDE Libraries included: tdecore (TDE core library), kdeui (user interface),
-kfm (file manager), khtmlw (HTML widget), kio (Input/Output, networking),
+kfm (file manager), khtmlw (HTML widget), tdeio (Input/Output, networking),
 kspell (spelling checker), jscript (javascript), kab (addressbook),
 kimgio (image manipulation).
 
@@ -306,7 +307,6 @@ kimgio (image manipulation).
 %{tde_tdedocdir}/HTML/en/kspell/
 
 %{_sysconfdir}/xdg/menus/tde-applications.menu
-%{_sysconfdir}/ld.so.conf.d/trinity.conf
 
 %pre
 # TDE Bug #1074
@@ -393,10 +393,11 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
@@ -436,13 +437,6 @@ cd build
 %__rm -rf "%{?buildroot}"
 %__make install DESTDIR="%{?buildroot}" -C build
 
-%if "%{?tde_prefix}" != "/usr"
-%__mkdir_p "%{?buildroot}%{_sysconfdir}/ld.so.conf.d"
-cat <<EOF >"%{?buildroot}%{_sysconfdir}/ld.so.conf.d/trinity.conf"
-%{tde_libdir}
-EOF
-%endif
-
 # Use system-wide CA certificate
 %if "%{?cacert}" != ""
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
@@ -455,6 +449,9 @@ EOF
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 - Fix XDG menu

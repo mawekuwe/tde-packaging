@@ -1,14 +1,15 @@
 # REMOVE KDELIBS4-DEVEL before building !!!!
 
 # Default version for this component
-%define tdecomp kvirc
+%define tde_pkg kvirc
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -25,50 +26,53 @@
 %define _docdir %{tde_docdir}
 
 
-Name:		trinity-%{tdecomp}
-Summary:	Trinity based next generation IRC client with module support
-Version:	3.4.0
-Release:	4%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Summary:		Trinity based next generation IRC client with module support
+Version:		3.4.0
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-License:	GPLv2+
-Group:		Applications/Utilities
+License:		GPLv2+
+Group:			Applications/Utilities
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://kvirc.net/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://kvirc.net/
 
-Prefix:    %{tde_prefix}
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-3.5.13.2.tar.gz
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # [kvirc] Modules do not install in correct folder [RHEL/Fedora]
-Patch0:		kvirc-3.5.13.2-fix_ftbfs.patch
+Patch0:			kvirc-3.5.13.2-fix_ftbfs.patch
 # [kvirc] FTBFS because of missing link libraries [Bug #991]
-Patch1:		kvirc-3.5.13-ftbfs.patch
+Patch1:			kvirc-3.5.13-ftbfs.patch
+Patch2:			kvirc-14.0.0-install_directory.patch
 
-BuildRequires:	trinity-tqtinterface-devel >= 3.5.13.2
-BuildRequires:	trinity-tdelibs-devel >= 3.5.13.2
-BuildRequires:	trinity-tdebase-devel >= 3.5.13.2
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
+
 BuildRequires:	gettext
 
-Requires:	%{name}-data = %{version}-%{release}
+Requires:		%{name}-data = %{version}-%{release}
 
 %description
 A highly configurable graphical IRC client with an MDI interface,
 built-in scripting language, support for IRC DCC, drag & drop file
-browsing, and much more. KVIrc uses the KDE widget set, can be extended
-using its own scripting language, integrates with KDE, and supports
+browsing, and much more. KVIrc uses the TDE widget set, can be extended
+using its own scripting language, integrates with TDE, and supports
 custom plugins.
 
 If you are a developer and you want to write a custom module for KVIrc,
 you need to install the kvirc-dev package.
 
 %package data
-Group:		Applications/Utilities
-Summary:	Data files for KVIrc
-Requires:	%{name} = %{version}-%{release}
+Group:			Applications/Utilities
+Summary:		Data files for KVIrc
+Requires:		%{name} = %{version}-%{release}
 
 %description data
 This package contains the architecture-independent data needed by KVIrc in
@@ -78,19 +82,19 @@ within KVIrc in its internal help format. Unless you want to use KVIrc only
 as a very simple IRC client you are likely to want to write scripts to
 tailor KVIrc to your needs.
 
-KVIrc is a graphical IRC client based on the KDE widget set which integrates
-with the K Desktop Environment version 3.
+KVIrc is a graphical IRC client based on the TDE widget set which integrates
+with the Trinity Desktop Environment version 3.
 
 %package devel
-Group:		Development/Libraries
-Summary:	Development files for KVIrc
-Requires:	%{name} = %{version}-%{release}
+Group:			Development/Libraries
+Summary:		Development files for KVIrc
+Requires:		%{name} = %{version}-%{release}
 
 %description devel
 This package contains KVIrc libraries and include files you need if you
 want to develop plugins for KVIrc.
 
-KVIrc is a graphical IRC client based on the KDE widget set which integrates
+KVIrc is a graphical IRC client based on the TDE widget set which integrates
 with the K Desktop Environment version 3.
 
 
@@ -100,15 +104,10 @@ with the K Desktop Environment version 3.
 
 
 %prep
-%setup -q -n %{name}-3.5.13.2
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch0 -p1
 %patch1 -p1
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
+%patch2 -p1 -b .installdir
 
 # Hardcoded absolute PATH to KDEDIR in source code ! That sucks !
 %__sed -i "src/kvirc/kernel/kvi_app_fs.cpp" \
@@ -124,7 +123,6 @@ with the K Desktop Environment version 3.
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export KDEDIR=%{tde_prefix}
 
 %configure \
@@ -135,18 +133,22 @@ export KDEDIR=%{tde_prefix}
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --with-fno-rtti --with-aa-fonts --with-big-channels \
-  --enable-perl --with-pic --enable-wall \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-wall \
+  \
+  --with-pic \
+  \
+  --with-big-channels \
+  --enable-perl \
   --with-ix86-asm \
-  --with-extra-includes=%{tde_includedir}/tqt:%{tde_includedir} \
   --with-kde-services-dir=%{tde_datadir}/services \
   --with-kde-library-dir=%{tde_libdir} \
   --with-kde-include-dir=%{tde_tdeincludedir} \
   --with-qt-library-dir=${QTLIB:-${QTDIR}/%{_lib}} \
   --with-qt-include-dir=${QTINC:-${QTDIR}/include} \
-  --with-qt-moc=${QTDIR}/bin/moc \
-  --enable-closure
+  --with-qt-moc=${QTDIR}/bin/moc
 
 # Symbolic links must exist prior to parallel building
 %__make symlinks -C src/kvilib/build
@@ -162,8 +164,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Debian maintainer has renamed 'COPYING' file to 'EULA', so we do the same ...
 %__mv \
-  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/COPYING \
-  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/EULA
+  %{?buildroot}%{tde_libdir}/kvirc/3.4/license/COPYING \
+  %{?buildroot}%{tde_libdir}/kvirc/3.4/license/EULA
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -185,18 +188,18 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %doc ChangeLog FAQ README TODO
 %{tde_bindir}/kvirc
 %{tde_libdir}/*.so.*
-#%{tde_libdir}/kvirc/*/modules/*.so
+%{tde_libdir}/kvirc/*/modules/*.so
 
 %files data
 %defattr(-,root,root,-)
 %{tde_bindir}/kvi_run_netscape
 %{tde_bindir}/kvi_search_help
-#%{tde_libdir}/kvirc/*/modules/caps/
+%{tde_libdir}/kvirc/
 %{tde_datadir}/applnk/Internet/kvirc.desktop
 %{tde_datadir}/icons/hicolor/*/*/*.png
 %{tde_datadir}/icons/hicolor/*/*/*.svgz
 %{tde_datadir}/icons/hicolor/*/*/*.xpm
-%{tde_datadir}/kvirc
+#%{tde_datadir}/kvirc
 %{tde_datadir}/mimelnk/text/*.desktop
 %{tde_datadir}/services/*.protocol
 %{tde_mandir}/man1/kvirc.1
@@ -211,6 +214,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.4.0-5
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.4.0-4
 - Initial release for TDE 3.5.13.2
 

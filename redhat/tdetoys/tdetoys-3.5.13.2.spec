@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -18,14 +20,14 @@
 %define _docdir %{tde_docdir}
 
 
-Summary:		Trinity Desktop Environment - Toys and Amusements
-Name:			trinity-tdetoys
-Group:			Amusements/Graphics
-Version:	3.5.13.2
-Release:	1%{?dist}%{?_variant}
+Summary:	Trinity Desktop Environment - Toys and Amusements
+Name:		trinity-tdetoys
+Group:		Amusements/Graphics
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
-License: GPLv2+
-Source0:	%{name}-%{version}.tar.gz
+License:	GPLv2+
+Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 Vendor:		Trinity Project
 Packager:	Francois Andriot <francois.andriot@free.fr>
@@ -34,10 +36,11 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires: autoconf automake libtool m4
+BuildRequires: cmake >= 2.8
 BuildRequires: desktop-file-utils
-BuildRequires: trinity-tqtinterface-devel >= %{version}
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires: trinity-arts-devel >= 1:1.5.10
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: gettext
 
 Obsoletes:		trinity-kdetoys < %{version}-%{release}
@@ -68,7 +71,7 @@ Includes:
 * kworldwatch: application and kicker applet showing daylight area on the world
                globe
 
-NOTE: kicker applets and screen savers require kdebase to be installed, 
+NOTE: kicker applets and screen savers require tdebase to be installed, 
 and user to be logged-in to TDE.
 
 %files
@@ -85,8 +88,8 @@ Group:		Amusements/Graphics
 AMOR stands for Amusing Misuse Of Resources. It provides several different
 characters who prance around your X screen doing tricks and giving you tips.
 
-Note that AMOR will only work with some window managers. Both KWin (the
-KDE window manager) and Metacity (a GTK2 window manager) are supported.
+Note that AMOR will only work with some window managers. Both TWin (the
+TDE window manager) and Metacity (a GTK2 window manager) are supported.
 
 This package is part of Trinity, and a component of the TDE toys module.
 
@@ -116,7 +119,7 @@ Summary:	eyes applet for Trinity
 Group:		Amusements/Graphics
 
 %description -n trinity-eyesapplet
-An applet for the KDE panel containing a pair of eyes that follow your mouse
+An applet for the TDE panel containing a pair of eyes that follow your mouse
 around the screen.
 
 This package is part of Trinity, and a component of the TDE toys module.
@@ -135,7 +138,7 @@ Summary:	fifteen pieces puzzle for Trinity
 Group:		Amusements/Graphics
 
 %description -n trinity-fifteenapplet
-An applet for the KDE panel that lets you play the Fifteen Pieces
+An applet for the TDE panel that lets you play the Fifteen Pieces
 sliding block puzzle. You have to order 15 pieces in a 4x4 square by
 moving them around.
 
@@ -155,7 +158,7 @@ Summary:	moon phase indicator for Trinity
 Group:		Amusements/Graphics
 
 %description -n trinity-kmoon
-An applet for the KDE panel that displays the current phase of the moon.
+An applet for the TDE panel that displays the current phase of the moon.
 
 This package is part of Trinity, and a component of the TDE toys module.
 
@@ -224,7 +227,7 @@ drink.
 KTeaTime sits in the Trinity system tray.
 
 Please note that KTeaTime is written explicitly for Trinity. If you are
-using a non-KDE window manager or desktop environment then it is quite
+using a non-TDE window manager or desktop environment then it is quite
 possible that KTeaTime will not work on your system.
 
 This package is part of Trinity, and a component of the TDE toys module.
@@ -255,7 +258,7 @@ Summary:	Tux screensaver for Trinity
 Group:		Amusements/Graphics
 
 %description -n trinity-ktux
-A neat Tux-in-a-spaceship screensaver for the K Desktop Environment (KDE).
+A neat Tux-in-a-spaceship screensaver for the Trinity Desktop Environment (TDE).
 
 This package is part of Trinity, and a component of the TDE toys module.
 
@@ -282,7 +285,7 @@ Summary:	weather display applet for Trinity
 Group:		Amusements/Graphics
 
 %description -n trinity-kweather
-An applet for the KDE panel that displays your area's current weather.
+An applet for the TDE panel that displays your area's current weather.
 Information shown includes the temperature, wind speed, air pressure
 and more. By pressing a button a full weather report can be obtained.
 
@@ -296,8 +299,8 @@ This package is part of Trinity, and a component of the TDE toys module.
 %defattr(-,root,root,-)
 %{tde_bindir}/kweatherservice
 %{tde_bindir}/kweatherreport
-%{tde_libdir}/lib[kt]deinit_kweatherreport.so
-%{tde_libdir}/lib[kt]deinit_kweatherreport.la
+%{tde_libdir}/libkdeinit_kweatherreport.so
+%{tde_libdir}/libkdeinit_kweatherreport.la
 %{tde_tdelibdir}/kcm_weather.so
 %{tde_tdelibdir}/kcm_weather.la
 %{tde_tdelibdir}/kcm_weatherservice.so
@@ -375,17 +378,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %prep
-%setup -q
-
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i admin/acinclude.m4.in \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-%__make -f "admin/Makefile.common"
+%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
 
 %build
@@ -394,19 +387,29 @@ export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export KDEDIR=%{tde_prefix}
 
-%configure \
-   --prefix=%{tde_prefix} \
-   --exec-prefix=%{tde_prefix} \
-   --bindir=%{tde_bindir} \
-   --libdir=%{tde_libdir} \
-   --datadir=%{tde_datadir} \
-   --includedir=%{tde_tdeincludedir} \
-   --disable-rpath \
-   --enable-new-ldflags \
-   --enable-closure \
-   --disable-debug --disable-warnings \
-   --disable-dependency-tracking --enable-final \
-   --with-extra-includes=%{tde_includedir}/tqt
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+%__mkdir_p build
+cd build
+%endif
+
+%cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
+  -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
+  -DBIN_INSTALL_DIR="%{tde_bindir}" \
+  -DDOC_INSTALL_DIR="%{tde_docdir}" \
+  -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}" \
+  -DLIB_INSTALL_DIR="%{tde_libdir}" \
+  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
+  -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
+  \
+  -DBUILD_ALL=ON \
+  ..
 
 %__make %{?_smp_mflags}
 
@@ -414,28 +417,7 @@ export KDEDIR=%{tde_prefix}
 %install
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf "%{buildroot}"
-%__make install DESTDIR=%{buildroot}
-
-# replace absolute symlink with relative
-ln -nfs tips-en %{buildroot}%{tde_datadir}/apps/amor/tips
-
-## File lists
-# HTML (1.0)
-HTML_DIR=$(kde-config --expandvars --install html)
-if [ -d %{buildroot}$HTML_DIR ]; then
-for lang_dir in %{buildroot}$HTML_DIR/* ; do
-  if [ -d $lang_dir ]; then
-    lang=$(basename $lang_dir)
-    echo "%lang($lang) $HTML_DIR/$lang/*" >> %{name}.lang
-    # replace absolute symlinks with relative ones
-    pushd $lang_dir
-      for i in *; do
-        [ -d $i -a -L $i/common ] && ln -nsf ../common $i/common
-      done
-    popd
-  fi
-done
-fi
+%__make install DESTDIR=%{buildroot} -C build
 
 # Useless include file from Amor
 %__rm -f %{buildroot}%{tde_tdeincludedir}/AmorIface.h
@@ -446,6 +428,9 @@ fi
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2
 

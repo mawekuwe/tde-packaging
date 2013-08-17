@@ -35,7 +35,7 @@
 
 Name:    	trinity-tdenetwork
 Version:	%{tde_version}
-Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 Summary:	Trinity Desktop Environment - Network Applications
 
 Vendor:		Trinity Project
@@ -67,16 +67,18 @@ Patch202:	tdenetwork-3.5.13.2-fix_conflicting_definitions.patch
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	gettext
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	coreutils 
 BuildRequires:	openssl-devel
+BuildRequires:	gnutls-devel
+
+# SQLITE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	sqlite3-devel
 %else
 BuildRequires:	sqlite-devel
 %endif
-BuildRequires:	gnutls-devel
 
 # GADU support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
@@ -1082,8 +1084,6 @@ update-desktop-database 2> /dev/null || :
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
@@ -1096,10 +1096,11 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
@@ -1161,6 +1162,9 @@ EOF
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-3
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
 - Rebuild with NDEBUG option
 - Disable 'lisa' service

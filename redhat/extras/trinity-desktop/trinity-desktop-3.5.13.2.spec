@@ -7,7 +7,7 @@
 
 Name:		trinity-desktop
 Version:	3.5.13.2
-Release:	1%{?dist}%{?_variant}
+Release:	2%{?dist}%{?_variant}
 License:	GPL
 Summary:	Meta-package to install TDE
 Group:		User Interface/Desktops
@@ -114,6 +114,8 @@ Requires: trinity-filelight
 Requires: trinity-gwenview
 Requires: trinity-gwenview-i18n
 Requires: trinity-k3b
+Requires: trinity-kaffeine
+Requires: trinity-kaffeine-mozilla
 Requires: trinity-katapult
 Requires: trinity-kbarcode
 Requires: trinity-kbfx
@@ -198,10 +200,8 @@ Requires: trinity-knetworkmanager
 
 # RHEL 4
 %if 0%{?rhel} >= 5 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-# HAL is too old
+# HAL is mandatory for these apps, but too old
 Requires: trinity-kima
-Requires: trinity-kaffeine
-Requires: trinity-kaffeine-mozilla
 Requires: trinity-kmplayer
 # No OTR support
 Requires: trinity-kopete-otr
@@ -350,6 +350,9 @@ Summary:	Default wallpaper for Trinity
 %endif
 
 %changelog
+* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Update for RHEL4
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Update to version 3.5.13.2
 - Add GPG signing key

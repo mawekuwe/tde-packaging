@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		subversion client with tight TDE integration [Trinity]
 Version:		1.0.4
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -42,10 +42,10 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-BuildRequires:	gettext
 
 BuildRequires:	subversion-devel
 Requires:		%{name}-tdeio-plugins = %{version}-%{release}
@@ -111,18 +111,6 @@ This package is part of tdesvn-trinity.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-find . -name CMakeLists.txt -exec %__sed -i {} \
-  -e "s,/usr/include/tqt,%{tde_includedir}/tqt,g" \
-  -e "s,/usr/bin/tmoc,%{tde_bindir}/tmoc,g" \
-  -e "s,/usr/bin/uic-tqt,%{tde_bindir}/uic-tqt,g" \
-  \;
-
-# More ugly hack to add TQT include directory in CMakeLists.txt	
-%__sed -i CMakeLists.txt \
-  -e "s,^\(INCLUDE_DIRECTORIES (\)$,\1\n%{tde_includedir}/tqt,"
-
 # Moves HTML files to the correect location
 find . -name "*.cmake" -exec %__sed -i {} \
   -e "s,/doc/HTML,/doc/tde/HTML,g" \
@@ -132,8 +120,6 @@ find . -name "*.cmake" -exec %__sed -i {} \
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
 export CMAKE_INCLUDE_PATH="%{tde_tdeincludedir}"
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -142,10 +128,11 @@ cd build
 %endif
 
 %cmake \
-  -DCMAKE_BUILD_TYPE="" \
-  -DCMAKE_C_FLAGS="-DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="-DNDEBUG" \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
   -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
   \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
@@ -156,6 +143,9 @@ cd build
   -DDATA_INSTALL_DIR=%{tde_datadir} \
   -DPKGCONFIG_INSTALL_DIR=%{tde_tdelibdir}/pkgconfig \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  \
+  -DBUILD_DOC=ON \
+  -DBUILD_TRANSLATIONS=ON \
   ..
 
 # SMP safe !
@@ -180,7 +170,7 @@ export PATH="%{_bindir}:${PATH}"
 %__ln_s /etc/alternatives/svn+ssh.protocol %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol
 %__ln_s /etc/alternatives/svn.protocol %{?buildroot}%{tde_datadir}/services/svn.protocol
 
-%find_lang %{tde_pkg}
+%find_lang kdesvn
 
 
 %clean
@@ -277,6 +267,9 @@ fi
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-7
+- Build for Fedora 19
+
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-6
 - Rebuild with NDEBUG option
 

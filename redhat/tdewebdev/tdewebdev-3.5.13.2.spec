@@ -3,7 +3,9 @@
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+%define tde_version 3.5.13.2
+
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -19,8 +21,8 @@
 %define _docdir %{tde_docdir}
 
 Name:		trinity-tdewebdev
-Version:	3.5.13.2
-Release:	1%{?dist}%{?_variant}
+Version:	%{tde_version}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Web development applications 
 Group:		Applications/Editors
@@ -32,7 +34,7 @@ URL:		http://www.trinitydesktop.org/
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	http://download.sourceforge.net/quanta/css.tar.bz2
 Source2:	http://download.sourceforge.net/quanta/html.tar.bz2
 Source3:	http://download.sourceforge.net/quanta/php_manual_en_20030401.tar.bz2
@@ -43,8 +45,8 @@ Patch1:		kdewebdev-3.5.4-kxsldbg-icons.patch
 
 BuildRequires:	autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
-BuildRequires:	trinity-tdelibs-devel >= %{version}
-BuildRequires:	trinity-tdesdk-devel >= %{version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
 BuildRequires:	libxslt-devel
 BuildRequires:	libxml2-devel
 %if 0%{?rhel} == 4
@@ -463,7 +465,8 @@ Summary:	Header files and documentation for %{name}
 Obsoletes:	trinity-kdewebdev-devel < %{version}-%{release}
 Provides:	trinity-kdewebdev-devel = %{version}-%{release}
 
-Requires:	trinity-tdelibs-devel
+Requires:	trinity-tdelibs-devel >= %{tde_version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-kommander-devel = %{version}-%{release}
 
 %description devel
@@ -488,15 +491,10 @@ Requires:	trinity-kommander-devel = %{version}-%{release}
 %__rm -rf kxsldbg/ doc/kxsldbg/ doc/xsldbg/
 %endif
 
-# Ugly hack to modify TQT include directory inside autoconf files.
-# If TQT detection fails, it fallbacks to TQT4 instead of TQT3 !
-%__sed -i "admin/acinclude.m4.in" \
-  -e "s|/usr/include/tqt|%{tde_includedir}/tqt|g" \
-  -e "s|kde_htmldir='.*'|kde_htmldir='%{tde_tdedocdir}/HTML'|g"
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
+
 
 %build
 unset QTDIR || : ; source /etc/profile.d/qt3.sh
@@ -518,12 +516,13 @@ fi
   --datadir=%{tde_datadir} \
   --libdir=%{tde_libdir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
   --enable-new-ldflags \
+  --enable-final \
   --enable-closure \
-  --disable-debug --disable-warnings \
-  --disable-dependancy-tracking --enable-final \
-  --with-extra-includes=%{tde_includedir}/tqt \
+  --enable-rpath
 
 # WTF hack for RHEL4
 %if 0%{?rhel} == 4
@@ -552,22 +551,14 @@ EOF
 done
 cp -a php php.docrc %{buildroot}%{tde_datadir}/apps/quanta/doc/
 
-# make symlinks relative
-pushd %{buildroot}%{tde_tdedocdir}/HTML/en
-for i in *; do
-   if [ -d $i -a -L $i/common ]; then
-      rm -f $i/common
-      ln -nfs ../common $i
-   fi
-done
-popd
-
-
 
 %clean
 %__rm -rf %{buildroot}
 
 
 %changelog
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2
+- Build for Fedora 19
+
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
 - Initial release for TDE 3.5.13.2

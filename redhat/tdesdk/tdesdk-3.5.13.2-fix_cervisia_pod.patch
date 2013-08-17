@@ -1,0 +1,11 @@
+--- trinity-tdesdk-3.5.13.2/cervisia/cervisia.pod	2013-06-07 19:36:41.000000000 +0200
++++ trinity-tdesdk-3.5.13.2/cervisia/cervisia.pod.new	2013-08-17 11:48:28.289517241 +0200
+@@ -84,6 +84,8 @@
+ 
+ Sets the geometry of the main window
+ 
++=back
++
+ =head1 FILES
+ 
+ F<_KDECONFDIR_/cervisiarc> - global configuration file
