@@ -1,0 +1,11 @@
+--- trinity-krusader-3.5.13.2/krusader/VFS/temp_vfs.cpp.ORI	2013-08-17 18:57:18.857074444 +0200
++++ trinity-krusader-3.5.13.2/krusader/VFS/temp_vfs.cpp	2013-08-17 18:57:21.352017680 +0200
+@@ -56,7 +56,7 @@
+ }
+ 
+ temp_vfs::~temp_vfs(){
+-	if( vfs_type == "-iso" ){
++	if( vfs_type == TEMP ){
+ 		// unmount the ISO image
+     KShellProcess umount;
+ 		umount << "umount -f" << tmpDir;

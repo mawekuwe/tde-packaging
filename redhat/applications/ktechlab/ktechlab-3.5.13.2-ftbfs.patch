@@ -1,0 +1,11 @@
+--- trinity-ktechlab-3.5.13.2/microbe/pic14.cpp.ORI	2013-08-17 17:57:55.624307580 +0200
++++ trinity-ktechlab-3.5.13.2/microbe/pic14.cpp	2013-08-17 17:58:11.174961943 +0200
+@@ -277,7 +277,7 @@
+ 
+ bool PIC14::isValidInterrupt( const TQString & interruptName ) const
+ {
+-	if(m_type == "P16F84" || m_type =="P16C84")
++	if(m_type == P16F84 || m_type == P16C84)
+ 	{
+ 		return ( interruptName == "change" ||
+ 				 interruptName == "timer" ||

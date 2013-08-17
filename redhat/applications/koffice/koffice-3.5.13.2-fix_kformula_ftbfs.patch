@@ -1,0 +1,11 @@
+--- trinity-koffice-3.5.13.2/lib/kformula/creationstrategy.h.ORI	2013-08-17 16:45:10.505854525 +0200
++++ trinity-koffice-3.5.13.2/lib/kformula/creationstrategy.h	2013-08-17 16:45:15.120749288 +0200
+@@ -86,7 +86,7 @@
+  */
+ class OrdinaryCreationStrategy : public ElementCreationStrategy {
+ public:
+-    virtual BasicElement* createElement( TQString type, const TQDomElement& element = 0 );
++    virtual BasicElement* createElement( TQString type, const TQDomElement& element );
+ 
+     virtual TextElement* createTextElement( const TQChar& ch, bool symbol=false );
+     virtual EmptyElement* createEmptyElement();
