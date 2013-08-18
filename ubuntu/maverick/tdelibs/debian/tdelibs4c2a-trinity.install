@@ -174,10 +174,10 @@ debian/tmp/opt/trinity/lib/trinity/tdespell_hspell.la
 debian/tmp/opt/trinity/lib/trinity/tdespell_hspell.so
 debian/tmp/opt/trinity/lib/trinity/tdespell_ispell.la
 debian/tmp/opt/trinity/lib/trinity/tdespell_ispell.so
-debian/tmp/opt/trinity/lib/trinity/kstyle_highcontrast_config.la
-debian/tmp/opt/trinity/lib/trinity/kstyle_highcontrast_config.so
-debian/tmp/opt/trinity/lib/trinity/kstyle_plastik_config.la
-debian/tmp/opt/trinity/lib/trinity/kstyle_plastik_config.so
+debian/tmp/opt/trinity/lib/trinity/tdestyle_highcontrast_config.la
+debian/tmp/opt/trinity/lib/trinity/tdestyle_highcontrast_config.so
+debian/tmp/opt/trinity/lib/trinity/tdestyle_plastik_config.la
+debian/tmp/opt/trinity/lib/trinity/tdestyle_plastik_config.so
 debian/tmp/opt/trinity/lib/trinity/tdetexteditor_docwordcompletion.la
 debian/tmp/opt/trinity/lib/trinity/tdetexteditor_docwordcompletion.so
 debian/tmp/opt/trinity/lib/trinity/tdetexteditor_insertfile.la

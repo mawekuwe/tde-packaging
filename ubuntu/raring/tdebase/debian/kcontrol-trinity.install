@@ -114,8 +114,8 @@ debian/tmp/opt/trinity/lib/trinity/tdefile_font.la
 debian/tmp/opt/trinity/lib/trinity/tdefile_font.so
 debian/tmp/opt/trinity/lib/trinity/tdeio_fonts.la
 debian/tmp/opt/trinity/lib/trinity/tdeio_fonts.so
-debian/tmp/opt/trinity/lib/trinity/kstyle_keramik_config.la
-debian/tmp/opt/trinity/lib/trinity/kstyle_keramik_config.so
+debian/tmp/opt/trinity/lib/trinity/tdestyle_keramik_config.la
+debian/tmp/opt/trinity/lib/trinity/tdestyle_keramik_config.so
 debian/tmp/opt/trinity/lib/trinity/libtdefontviewpart.la
 debian/tmp/opt/trinity/lib/trinity/libtdefontviewpart.so
 debian/tmp/opt/trinity/lib/trinity/libtdeshorturifilter.la
