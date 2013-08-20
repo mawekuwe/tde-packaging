@@ -21,8 +21,13 @@ alias cdrpm='cd ~/rpmbuild/RPMS/RPMS${DIST}'
 alias tdp4='TARGET=14.0.0 SUFFIX=0 TARBALL_DIR=${TDE_TARBALLS}/main COMPRESS=gzip ${TDE_GITBASESRC}/scripts/create_tarball'
 
 # Rebuild all tarballs
-alias tdep3='(rm -rf ~/tde/tde-tarballs/3.5.13.2; cd ~/tde/tde_v3.5.13-sru; export SUFFIX=0; export COMPRESS=gzip; export TDE_REBRAND=1; ./scripts/create_all_tarballs)'
-alias tdep4='(rm -rf ${TDE_TARBALLS}; cd ${TDE_GITBASESRC}; export SUFFIX=0; export COMPRESS=gzip; export TDE_REBRAND=1; ./scripts/create_all_tarballs)'
+if [ -x /usr/bin/pigz ]; then
+  export TDE_COMPRESS=pigz
+else
+  export TDE_COMPRESS=gzip
+fi
+alias tdep3='(rm -rf ~/tde/tde-tarballs/3.5.13.2; cd ~/tde/tde_v3.5.13-sru; export SUFFIX=0; export COMPRESS=${TDE_COMPRESS:-gzip}; export TDE_REBRAND=1; ./scripts/create_all_tarballs)'
+alias tdep4='(rm -rf ${TDE_TARBALLS}; cd ${TDE_GITBASESRC}; export SUFFIX=0; export COMPRESS=${TDE_COMPRESS:-gzip}; export TDE_REBRAND=1; ./scripts/create_all_tarballs)'
 
 # Build a single package
 alias cdp='cd ~/tde/tde-packaging/redhat'
@@ -49,6 +54,9 @@ checknew() {
     fi
   done
 }
+
+# Update main repository
+export tdu='(export GIT_ASKPASS=/bin/true; cd ~/tde/tde_r14; ./scripts/update_all_submodules)'
 
 # Build local repository metadata (Mageia)
 alias cru='(cdrpm; genhdlist2 --allow-empty-media noarch; genhdlist2 $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
