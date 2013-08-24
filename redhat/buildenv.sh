@@ -56,7 +56,7 @@ checknew() {
 }
 
 # Update main repository
-export tdu='(export GIT_ASKPASS=/bin/true; cd ~/tde/tde_r14; ./scripts/update_all_submodules)'
+alias tdu='(export GIT_ASKPASS=/bin/true; cd ~/tde/tde_r14; ./scripts/switch_all_submodules_to_head_and_clean)'
 
 # Build local repository metadata (Mageia)
 alias cru='(cdrpm; genhdlist2 --allow-empty-media noarch; genhdlist2 $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'

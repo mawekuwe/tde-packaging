@@ -14,8 +14,9 @@ if [ -x /usr/sbin/urpmi ]; then
   REPOUPDATE='(cd $(rpm -E %{_rpmdir}); genhdlist2 --clean --allow-empty noarch; genhdlist2 --clean --allow-empty $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
 elif [ -x /usr/bin/zypper ]; then
   PKGMGR="zypper"
-  PKGINST="zypper install -y"
-  PKGDEL="zypper remove -y"
+  PKGINST="sudo zypper install -y"
+  PKGDEL="sudo zypper remove -y"
+  REPOUPDATE='(cd $(rpm -E %{_rpmdir}); createrepo $(uname -i); createrepo noarch; sudo zypper refresh)'
 elif [ -x /usr/bin/yum ]; then
   PKGMGR="yum"
   PKGINST='sudo yum install -y'
@@ -190,7 +191,9 @@ grpiui applications/konversation
 grpiui applications/kopete-otr
 grpiui applications/kpicosim
 grpiui applications/kpilot
+if [ "${DIST}" != ".el4" ] && [ "${DIST}" != ".el5" ]; then
 grpiui applications/kpowersave
+fi
 grpiui applications/krename
 grpiui applications/krusader
 grpiui applications/ksplash-engine-moodin
@@ -226,9 +229,14 @@ grpiui applications/yakuake
 eval ${PKGINST} trinity-desktop-applications
 
 # Decoration-related stuff are distribution-dependant.
+if [ "${DIST}" != ".el4" ] && [ "${DIST}" != ".el5" ]; then
 grpiui applications/gtk-qt-engine
 grpiui applications/kgtk-qt3
+fi
 
+eval ${PKGINST} trinity-desktop-all
+
+exit 0
 
 # Build extra packages
 grpiui extras/icons-crystalsvg-updated
@@ -261,4 +269,3 @@ grpiui extras/style-ia-ora
 #grpiui extras/twinkle
 #eval ${PKGINST} trinity-desktop-extras
 
-eval ${PKGINST} trinity-desktop-all

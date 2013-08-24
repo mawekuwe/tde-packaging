@@ -187,7 +187,7 @@ rpmbuild -ba \
 	--define "tde_prefix ${PREFIX:-/opt/trinity}" \
 	--define "version ${VERSION:-3.5.13.2}" \
 	--define "preversion ${PREVERSION}" \
-	${SOURCEDIR}/${SPEC}
+	"${SOURCEDIR}/${SPEC}"
 	echo "RET=$?"
 ) 2>&1 | tee ${LOGFILE}
 eval "$(grep ^RET= ${LOGFILE})"
