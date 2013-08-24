@@ -198,12 +198,16 @@ BuildRequires:	xz-devel
 %endif
 
 # Certificates support
-%if 0%{?rhel} || 0%{?fedora}
-%define	cacert %{_sysconfdir}/ssl/certs/ca-certificates.crt
+%if 0%{?rhel} >= 6 || 0%{?fedora}
+%define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
 Requires:		ca-certificates
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
-%define	cacert %{_sysconfdir}/ssl/certs/ca-bundle.crt
+%define	cacert	%{_sysconfdir}/ssl/certs/ca-bundle.crt
+Requires:		openssl
+%endif
+%if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
+%define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
 Requires:		openssl
 %endif
 
@@ -427,7 +431,7 @@ cd build
   -DWITH_SUDO_KDESU_BACKEND=OFF \
   %{?!with_lzma:-DWITH_LZMA=OFF} \
   -DWITH_ASPELL=ON \
-  %{?with_hspell:-DWITH_HSPELL=ON} \
+  %{?!with_hspell:-DWITH_HSPELL=OFF} \
   ..
 
 %__make %{?_smp_mflags} || %__make

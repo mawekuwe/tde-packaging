@@ -79,8 +79,6 @@ autoreconf --force --install --symlink
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
-
 # CFLAGS required if CURL is installed on /opt/trinity, e.g. RHEL 5
 export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${RPM_OPT_FLAGS}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
@@ -96,13 +94,19 @@ fi
   \
   --disable-dependency-tracking
 
+# FIXME: bad libtool ??
+%if 0%{?rhel} == 5
+%__make %{?_smp_mflags} LIBTOOL=/usr/bin/libtool
+%else
 %__make %{?_smp_mflags}
+%endif
 
 
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} LIBTOOL=$(which libtool)
 
+# Unwanted files
 %__rm -f %{buildroot}%{tde_libdir}/libcarddav.a
 
 

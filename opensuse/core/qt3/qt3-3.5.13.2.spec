@@ -79,9 +79,13 @@ BuildRequires:	glu-devel
 %endif
 
 # PNG support
-%if %suse_version > 1220
+%if %suse_version >= 1310
+BuildRequires:  libpng16-compat-devel
+%endif
+%if %suse_version >= 1210 && %suse_version < 1300
 BuildRequires:  libpng15-compat-devel
-%else
+%endif
+%if %suse_version >= 1110 && %suse_version < 1200
 BuildRequires:  libpng14-compat-devel
 %endif
 
