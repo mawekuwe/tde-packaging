@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Adeodato Sim <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Daniel Schepler <schepler@debian.org>, Fathi Boudra <fboudra@free.fr>, Sune Vuorela <debian@pusling.com>
 Build-Depends: cdbs (>= 0.4.41ubuntu2), debhelper (>= 5.0.31), autotools-dev,
- binutils (>= 2.14.90.0.7), docbook-to-man, gawk, gettext,
+ binutils (>= 2.14.90.0.7), binutils-dev, docbook-to-man, gawk, gettext,
  libart-2.0-dev (>= 14.0.0), libarts1-trinity-dev (>= 1.5.0), libacl1-dev,
  libattr1-dev, libasound2-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386],
  aspell, libaspell-dev, hspell, libbz2-dev, liblzma-dev, libcupsys2-dev | libcups2-dev, libnm-util-dev,
