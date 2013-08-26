@@ -38,7 +38,7 @@ Description: Transitional dummy package.  This can be safely removed after your 
 
 Package: kdelibs4c2a-trinity
 Architecture: all
-Depends: tdelibs4c2a-trinity
+Depends: tdelibs14-trinity
 Conflicts: kdelibs4c2a-trinity (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 

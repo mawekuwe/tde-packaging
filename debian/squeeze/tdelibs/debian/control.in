@@ -22,7 +22,7 @@ Standards-Version: 3.7.2
 Package: tdelibs
 Section: libs
 Architecture: all
-Depends: tdelibs4c2a (>= ${Source-Version}),
+Depends: tdelibs14 (>= ${Source-Version}),
  tdelibs-data (>= ${Source-Version})
 Description: core libraries from the official KDE release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -52,7 +52,7 @@ Description: core shared data for all KDE applications
  This package is part of KDE, and a component of the KDE libraries module.
  See the 'kde' and 'tdelibs' packages for more information.
 
-Package: tdelibs4c2a
+Package: tdelibs14
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, tdelibs-data (>> ${KDE-Version3}),
@@ -76,7 +76,7 @@ Description: core libraries and binaries for all KDE applications
 Package: tdelibs4-dev
 Section: libdevel
 Architecture: any
-Depends: tdelibs4c2a (= ${Source-Version}), libart-2.0-dev (>= 2.3.17),
+Depends: tdelibs14 (= ${Source-Version}), libart-2.0-dev (>= 2.3.17),
  libarts1-dev (>= 1.5.0), ${libasound2-dev}, libacl1-dev, libattr1-dev,
  libaspell-dev, hspell, libbz2-dev, libcupsys2-dev | libcups2-dev,
  libidn11-dev, libjasper-dev (>= 1.900.1), libkrb5-dev,
@@ -86,7 +86,7 @@ Depends: tdelibs4c2a (= ${Source-Version}), libart-2.0-dev (>= 2.3.17),
  libavahi-client-dev (>= 0.4), libavahi-qt3-dev (>= 0.4),
  gettext-kde, tdesdk-scripts
 Provides: tdelibs-dev
-Replaces: tdebase-dev (<< 4:3.4.0), tdelibs4c2a (<< 4:3.5.7.dfsg.1-5)
+Replaces: tdebase-dev (<< 4:3.4.0), tdelibs14 (<< 4:3.5.7.dfsg.1-5)
 Description: development files for the KDE core libraries
  This package contains all the headers and other related files needed
  to compile KDE applications, or develop applications which use the
@@ -111,9 +111,9 @@ Package: tdelibs-dbg
 Section: libdevel
 Architecture: any
 Priority: extra
-Conflicts: tdelibs4-dbg, tdelibs4c2-dbg, tdelibs4c2a-dbg
-Replaces: tdelibs4-dbg, tdelibs4c2-dbg, tdelibs4c2a-dbg
-Depends: tdelibs4c2a (= ${Source-Version}), qt-x11-free-dbg, libc6-dbg [amd64]
+Conflicts: tdelibs4-dbg, tdelibs4c2-dbg, tdelibs14-dbg
+Replaces: tdelibs4-dbg, tdelibs4c2-dbg, tdelibs14-dbg
+Depends: tdelibs14 (= ${Source-Version}), qt-x11-free-dbg, libc6-dbg [amd64]
 Description: debugging symbols for tdelibs
  This package contains the debugging symbols associated with tdelibs.
  They will automatically be used by gdb for debugging tdelibs-related

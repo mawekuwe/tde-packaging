@@ -98,7 +98,7 @@ common-install-prehook-impl::
 	  rm -f LIST; \
 	fi
 
-binary-install/tdelibs4c2a-trinity::
+binary-install/tdelibs14-trinity::
 	mv debian/tmp/opt/trinity/bin/tdecmshell debian/tmp/opt/trinity/bin/tdecmshell.real
-	install -p -D -m755 debian/tmp/opt/trinity/bin/tdecmshell.real debian/tdelibs4c2a-trinity/opt/trinity/bin/tdecmshell.real
-	install -p -D -m755 debian/tdecmshell debian/tdelibs4c2a-trinity/opt/trinity/bin/tdecmshell
+	install -p -D -m755 debian/tmp/opt/trinity/bin/tdecmshell.real debian/tdelibs14-trinity/opt/trinity/bin/tdecmshell.real
+	install -p -D -m755 debian/tdecmshell debian/tdelibs14-trinity/opt/trinity/bin/tdecmshell
