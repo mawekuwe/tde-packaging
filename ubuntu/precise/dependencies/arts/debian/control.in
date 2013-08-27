@@ -32,7 +32,7 @@ Architecture: any
 Section: libs
 Depends: ${shlibs:Depends}, oss-compat
 Recommends: libarts1-akode-trinity
-Conflicts: libarts1, libarts1c2, libarts (<< 4:3.0.0), libarts-alsa (<< 4:3.0.0), tdelibs4c2a (<< 4:3.5.9)
+Conflicts: libarts1, libarts1c2, libarts (<< 4:3.0.0), libarts-alsa (<< 4:3.0.0), tdelibs14 (<< 4:3.5.9)
 Replaces: libarts1, libarts1c2, libarts (<< 4:3.0.0), libarts-alsa (<< 4:3.0.0)
 Description: aRts sound system core components
  aRts is a short form for "analog realtime synthesizer". aRts is highly

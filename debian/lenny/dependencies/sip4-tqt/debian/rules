@@ -19,6 +19,9 @@ endif
 
 PYTHONS	:= $(shell pyversions -vr debian/control)
 
+DEB_PYTHON_SYSTEM = $(if $(wildcard /usr/bin/dh_python2),,pysupport)
+DH_PYTHON2 = $(if $(wildcard /usr/bin/dh_python2),dh_python2 --no-dbg-cleaning,dh_pysupport)
+
 -include /usr/share/python/python.mk
 ifeq (,$(py_sitename))
 py_sitename = site-packages
@@ -132,7 +135,7 @@ ifneq (,$(findstring -a, $(DH_OPTIONS)))
 endif
 	dh_compress 
 	dh_fixperms
-	dh_pysupport
+	${DH_PYTHON2}
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol

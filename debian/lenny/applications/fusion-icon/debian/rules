@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-DEB_PYTHON_SYSTEM=pycentral
+DEB_PYTHON_SYSTEM=pysupport
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 # include /usr/share/cdbs/1/class/python-distutils.mk
@@ -17,5 +17,5 @@ binary-install/fusion-icon-trinity::
 	mkdir -p debian/fusion-icon-trinity/opt/trinity
 	cp -Rp debian/fusion-icon-trinity/usr/* debian/fusion-icon-trinity/opt/trinity/
 	rm -rf debian/fusion-icon-trinity/usr
-	dh_pycentral -pfusion-icon-trinity
+	dh_pysupport -pfusion-icon-trinity
 	dh_icons

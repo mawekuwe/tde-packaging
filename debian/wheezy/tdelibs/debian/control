@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Adeodato Sim <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Daniel Schepler <schepler@debian.org>, Fathi Boudra <fboudra@free.fr>, Sune Vuorela <debian@pusling.com>
 Build-Depends: cdbs (>= 0.4.41ubuntu2), debhelper (>= 5.0.31), autotools-dev,
- binutils (>= 2.14.90.0.7), docbook-to-man, gawk, gettext,
+ binutils (>= 2.14.90.0.7), binutils-dev, docbook-to-man, gawk, gettext,
  libart-2.0-dev (>= 14.0.0), libarts1-trinity-dev (>= 1.5.0), libacl1-dev,
  libattr1-dev, libasound2-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386],
  aspell, libaspell-dev, hspell, libbz2-dev, liblzma-dev, libcupsys2-dev | libcups2-dev, libnm-util-dev,
@@ -26,7 +26,7 @@ Architecture: all
 Replaces: kdelibs-trinity (<< 4:14.0.0)
 Breaks: kdelibs-trinity (<< 4:14.0.0)
 Provides: tdelibs
-Depends: tdelibs4c2a-trinity (>= ${Source-Version}),
+Depends: tdelibs14-trinity (>= ${Source-Version}),
  tdelibs-data-trinity (>= ${Source-Version})
 Description: core libraries from the official Trinity release
  TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
@@ -53,11 +53,12 @@ Description: core shared data for all TDE applications
  This package is part of TDE, and a component of the TDE libraries module.
  See the 'kde-trinity' and 'tdelibs-trinity' packages for more information.
 
-Package: tdelibs4c2a-trinity
+Package: tdelibs14-trinity
 Section: libs
 Architecture: any
-Replaces: kdelibs4c2a-trinity (<< 4:14.0.0)
-Breaks: kdelibs4c2a-trinity (<< 4:14.0.0)
+Replaces: kdelibs4c2a-kde3 (<< 4:14.0.0), kdelibs4c2a-trinity (<< 4:14.0.0), tdelibs4c2a-trinity
+Provides: tdelibs4c2a-trinity
+Breaks: kdelibs4c2a-kde3 (<< 4:14.0.0), kdelibs4c2a-trinity (<< 4:14.0.0), tdelibs4c2a-trinity
 Depends: ${shlibs:Depends}, tdelibs-data-trinity,
  tdelibs-data-trinity, libart-2.0-2 (>= 14.0.0), perl, xbase-clients, sudo
 Recommends: xdg-user-dirs, upower
@@ -79,7 +80,7 @@ Section: libdevel
 Architecture: any
 Replaces: kdelibs4-trinity-dev (<< 4:14.0.0)
 Breaks: kdelibs4-trinity-dev (<< 4:14.0.0)
-Depends: tdelibs4c2a-trinity (= ${Source-Version}), libart-2.0-dev (>= 14.0.0),
+Depends: tdelibs14-trinity (= ${Source-Version}), libart-2.0-dev (>= 14.0.0),
  libarts1-trinity-dev (>= 1.5.0), ${libasound2-dev}, libacl1-dev, libattr1-dev,
  libaspell-dev, hspell, libbz2-dev, libcupsys2-dev | libcups2-dev,
  libidn11-dev, libjasper-dev (>= 1.900.1), libkrb5-dev,
@@ -117,8 +118,8 @@ Architecture: any
 Replaces: kdelibs-trinity-dbg (<< 4:14.0.0)
 Breaks: kdelibs-trinity-dbg (<< 4:14.0.0)
 Priority: extra
-Conflicts: tdelibs4-trinity-dbg, tdelibs4c2-trinity-dbg, tdelibs4c2a-trinity-dbg
-Depends: tdelibs4c2a-trinity (= ${Source-Version}), libtqtinterface-dbg, libc6-dbg [amd64]
+Conflicts: tdelibs4-trinity-dbg, tdelibs4c2-trinity-dbg, tdelibs14-trinity-dbg
+Depends: tdelibs14-trinity (= ${Source-Version}), libtqtinterface-dbg, libc6-dbg [amd64]
 Description: debugging symbols for tdelibs
  This package contains the debugging symbols associated with tdelibs.
  They will automatically be used by gdb for debugging tdelibs-related

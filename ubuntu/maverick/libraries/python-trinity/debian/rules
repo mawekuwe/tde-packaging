@@ -31,6 +31,9 @@ endif
 PYTHONS := $(shell pyversions -vr debian/control)
 DBG_PYTHONS := $(shell pyversions -vd)
 
+DEB_PYTHON_SYSTEM = $(if $(wildcard /usr/bin/dh_python2),,pysupport)
+DH_PYTHON2 = $(if $(wildcard /usr/bin/dh_python2),dh_python2,dh_pysupport)
+
 GCCVER := $(shell gcc --version | sed -n '/^gcc (GCC)/s/.*(GCC) \(...\).*/\1/p')
 ifneq (,$(filter $(GCCVER),4.2 4.3))
         SPLIT=20
@@ -149,7 +152,7 @@ ifeq (,$(findstring -i, $(DH_OPTIONS)))
 endif
 	dh_compress -X.py -X.ui -X.dtd
 	dh_fixperms
-	DH_PYCENTRAL=nomove dh_pycentral
+	${DH_PYTHON2}
 	dh_installdeb
 	dh_shlibdeps -l /opt/trinity/lib
 	dh_gencontrol
