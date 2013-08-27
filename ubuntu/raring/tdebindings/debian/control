@@ -1,6 +1,6 @@
 Source: tdebindings-trinity
 Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5),
- python-dev (>= 2.3.5-11), python-support (>= 0.5), quilt, gawk,
+ python-dev (>= 2.3.5-11), python-support (>= 0.5) | python-dev (>= 2.6.6-3~), quilt, gawk,
  gettext, default-jdk [amd64 i386 ia64 lpia powerpc s390 sparc],
  tdelibs4-trinity-dev, libtqt3-compat-headers (>= 3:3.3.5),
  ruby, ruby-dev, flex, bison,

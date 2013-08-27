@@ -2,7 +2,7 @@ Source: desktop-effects-tde-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends-Indep: cdbs (>= 0.4.43), debhelper (>= 5.0.38), python-central (>= 0.5.6)
+Build-Depends-Indep: cdbs (>= 0.4.43), debhelper (>= 5.0.38), python-support (>= 0.6) | python-dev (>= 2.6.6-3~)
 Standards-Version: 3.8.4
 XS-Python-Version: all
 

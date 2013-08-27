@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Uploaders: Torsten Marek <shlomme@debian.org>, Bernd Zeimetz <bzed@debian.org>, Michael Casadevall <mcasadevall@debian.org>
-Build-Depends: debhelper (>= 7), python-all-dev (>= 2.3.5-10), python-all-dbg, python-support (>= 0.7.1), libtqtinterface-dev
+Build-Depends: debhelper (>= 7), python-all-dev (>= 2.3.5-10), python-all-dbg, python-support (>= 0.7.1) | python-dev (>= 2.6.6-3~), libtqtinterface-dev
 Standards-Version: 3.8.4
 XS-Python-Version: all
 
