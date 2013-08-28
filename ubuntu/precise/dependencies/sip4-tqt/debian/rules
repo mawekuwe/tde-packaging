@@ -20,7 +20,7 @@ endif
 PYTHONS	:= $(shell pyversions -vr debian/control)
 
 DEB_PYTHON_SYSTEM = $(if $(wildcard /usr/bin/dh_python2),,pysupport)
-DH_PYTHON2 = $(if $(wildcard /usr/bin/dh_python2),dh_python2 --no-dbg-cleaning,dh_pysupport)
+DH_PYTHON2 = $(if $(wildcard /usr/bin/dh_python2),dh_python2,dh_pysupport)
 
 -include /usr/share/python/python.mk
 ifeq (,$(py_sitename))
@@ -104,7 +104,8 @@ install-arch-%:
 	mkdir -p debian/python-sip/usr/lib/python$*/$(call py_sitename,$*)/
 	install -m 644 -o root -g root debian/sipconfig.py debian/python-sip/usr/lib/python$*/$(call py_sitename,$*)/
 	install -m 644 -o root -g root build-$*/sipconfig.py debian/python-sip/usr/lib/python$*/$(call py_sitename,$*)/sipconfig_nd.py
-	install -m 644 -o root -g root dbg-build-$*/sipconfig.py debian/python-sip-dbg/usr/lib/python$*/$(call py_sitename,$*)/sipconfig_d.py
+	# install *_d.py into wrong package to prevent deletion in dh_python2
+	install -m 644 -o root -g root dbg-build-$*/sipconfig.py debian/python-sip/usr/lib/python$*/$(call py_sitename,$*)/sipconfig_d.py
 	mkdir -p debian/python-sip-dev/usr/include/python$*
 	install -m 644 -o root -g root siplib/sip.h debian/python-sip-dev/usr/include/python$*/
 	mkdir -p debian/python-sip-dev/usr/include/python$*_d
@@ -136,6 +137,12 @@ endif
 	dh_compress 
 	dh_fixperms
 	${DH_PYTHON2}
+	# move *_d.py back into right package
+	find debian/python-sip -name "*_d.py" | \
+	while read f; do \
+	    mkdir -p $${f%/*}; \
+	    mv "$${f}" "debian/python-sip-dbg/$${f#debian/python-sip/}" ; \
+	done
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
