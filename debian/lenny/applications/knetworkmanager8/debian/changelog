@@ -318,7 +318,7 @@ knetworkmanager (0.09+0.1r586773-1) unstable; urgency=low
 knetworkmanager (0.09+0.1r577960-1) unstable; urgency=low
 
   * Updated to svn revision 577960.
-    - Access KWallet on demand, not on startup. Closes: #379606
+    - Access TDEWallet on demand, not on startup. Closes: #379606
   * Added a Recommends: pppconfig. Closes: #380316
 
  -- Michael Biebl <biebl@teco.edu>  Mon, 28 Aug 2006 01:14:29 +0200

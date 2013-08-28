@@ -2010,7 +2010,7 @@ tdelibs (4:3.4.1-0ubuntu9) breezy; urgency=low
 
 tdelibs (4:3.4.1-0ubuntu8) breezy; urgency=low
 
-  * Add kubuntu_06_tdewallet_simplify_string.diff to simplify KWallet question
+  * Add kubuntu_06_tdewallet_simplify_string.diff to simplify TDEWallet question
   * Add kubuntu_07_rubberband.diff for pretty file manager selection
   * Add versioned build-dep on libxrender-dev and tighten version 
     build-dep of Qt to ensure libXrender.la changes
