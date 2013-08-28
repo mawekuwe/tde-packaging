@@ -53,7 +53,7 @@ Section: tde
 Priority: optional
 Replaces: kde-devel-trinity (<< 5:55)
 Breaks: kde-devel-trinity (<< 5:55)
-Depends: tde-core-trinity (>= 4:14.0.0), tdesdk-trinity (>= 4:14.0.0), libartsc0-trinity-dev (>= 1.5.5), libarts1-trinity-dev (>= 1.5.5), tdelibs4-trinity-dev (>= 4:14.0.0), tdebase-trinity-dev (>= 4:14.0.0), libkonq4-trinity-dev (>= 4:14.0.0), tqt3-designer
+Depends: tde-core-trinity (>= 4:14.0.0), tdesdk-trinity (>= 4:14.0.0), libartsc0-trinity-dev (>= 1.5.5), libarts1-trinity-dev (>= 1.5.5), tdelibs14-trinity-dev (>= 4:14.0.0), tdebase-trinity-dev (>= 4:14.0.0), libkonq4-trinity-dev (>= 4:14.0.0), tqt3-designer
 Suggests: tde-i18n-trinity (>= 4:14.0.0), kdbg-trinity, tdevelop-trinity (>= 4:14.0.0), kprof-trinity
 Description: Trinity Desktop Environment development files and modules [Trinity]
  TDE (Trinity Desktop Environment) is a powerful Open Source graphical

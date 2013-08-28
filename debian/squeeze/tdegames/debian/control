@@ -4,8 +4,8 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Daniel Schepler <schepler@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev, tdemultimedia-trinity-dev, libtool, groff-base, sharutils, bzip2, sharutils, libogg-dev, automake, autoconf, libtool, libltdl-dev
-Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, libtqtinterface-doc, tdelibs4-trinity-doc
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs14-trinity-dev, tdemultimedia-trinity-dev, libtool, groff-base, sharutils, bzip2, sharutils, libogg-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, libtqtinterface-doc, tdelibs14-trinity-doc
 Standards-Version: 3.8.4
 
 Package: tdegames-trinity
@@ -76,7 +76,7 @@ Architecture: any
 Section: libdevel
 Replaces: libkdegames-trinity-dev (<< 4:14.0.0)
 Breaks: libkdegames-trinity-dev (<< 4:14.0.0)
-Depends: tdelibs4-trinity-dev, libtdegames1-trinity (= ${Source-Version})
+Depends: tdelibs14-trinity-dev, libtdegames1-trinity (= ${Source-Version})
 Description: Trinity games library headers
  This package is necessary if you want to develop your own games using
  the KDE games library.
@@ -89,7 +89,7 @@ Architecture: all
 Section: doc
 Replaces: libkdegames-trinity-doc (<< 4:14.0.0)
 Breaks: libkdegames-trinity-doc (<< 4:14.0.0)
-Recommends: tdelibs4-trinity-doc, libtqtinterface-doc
+Recommends: tdelibs14-trinity-doc, libtqtinterface-doc
 Suggests: konqueror-trinity | www-browser, libtdegames-trinity-dev
 Description: API documentation for the Trinity games library
  This package contains the developers' documentation for libtdegames.

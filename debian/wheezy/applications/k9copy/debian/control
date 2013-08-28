@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Anthony Mercatante <tonio@ubuntu.com>
-Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, docbook2x, docbook-xml, libdvdread-dev, libdbus-1-dev, libk3b-trinity-dev, libavformat-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5), cdbs, tdelibs14-trinity-dev, docbook2x, docbook-xml, libdvdread-dev, libdbus-1-dev, libk3b-trinity-dev, libavformat-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: k9copy-trinity

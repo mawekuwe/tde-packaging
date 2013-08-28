@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: autotools-dev, debhelper (>= 4.1.0), cdbs (>= 0.4.0), cmake, imagemagick, tdelibs4-trinity-dev, chrpath, bison, flex
+Build-Depends: autotools-dev, debhelper (>= 4.1.0), cdbs (>= 0.4.0), cmake, imagemagick, tdelibs14-trinity-dev, chrpath, bison, flex
 Standards-Version: 3.8.4
 
 Package: abakus-trinity

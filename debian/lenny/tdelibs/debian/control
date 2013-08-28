@@ -75,7 +75,7 @@ Description: core libraries and binaries for all TDE applications
  This package is part of TDE, and a component of the TDE libraries module.
  See the 'kde-trinity' and 'tdelibs-trinity' packages for more information.
 
-Package: tdelibs4-trinity-dev
+Package: tdelibs14-trinity-dev
 Section: libdevel
 Architecture: any
 Replaces: kdelibs4-trinity-dev (<< 4:14.0.0)
@@ -98,7 +98,7 @@ Description: development files for the TDE core libraries
  This package is part of TDE, and a component of the TDE libraries module.
  See the 'kde-trinity' and 'tdelibs-trinity' packages for more information.
 
-Package: tdelibs4-trinity-doc
+Package: tdelibs14-trinity-doc
 Section: doc
 Architecture: all
 Replaces: kdelibs4-trinity-doc (<< 4:14.0.0)
@@ -118,7 +118,7 @@ Architecture: any
 Replaces: kdelibs-trinity-dbg (<< 4:14.0.0)
 Breaks: kdelibs-trinity-dbg (<< 4:14.0.0)
 Priority: extra
-Conflicts: tdelibs4-trinity-dbg, tdelibs4c2-trinity-dbg, tdelibs14-trinity-dbg
+Conflicts: tdelibs4-trinity-dbg, tdelibs4c2-trinity-dbg, tdelibs4c2a-trinity-dbg
 Depends: tdelibs14-trinity (= ${Source-Version}), libtqtinterface-dbg, libc6-dbg [amd64]
 Description: debugging symbols for tdelibs
  This package contains the debugging symbols associated with tdelibs.

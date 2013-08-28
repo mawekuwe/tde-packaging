@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Hebrew Packaging Team <debian-hebrew-package@lists.alioth.debian.org>
 Uploaders: Baruch Even <baruch@debian.org>, Lior Kaplan <kaplan@debian.org>, Shachar Shemesh <shachar@debian.org>
-Build-Depends: debhelper (>= 5.0.0), cdbs, automake, libtool, tdelibs4-trinity-dev
+Build-Depends: debhelper (>= 5.0.0), cdbs, automake, libtool, tdelibs14-trinity-dev
 Standards-Version: 3.7.3
 Homepage: http://kkbswitch.sourceforge.net/
 

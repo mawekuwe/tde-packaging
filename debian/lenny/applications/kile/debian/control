@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Fathi Boudra <fabo@debian.org>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 6), quilt, tdelibs4-trinity-dev, pkg-config, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>= 6), quilt, tdelibs14-trinity-dev, pkg-config, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://kile.sourceforge.net
 

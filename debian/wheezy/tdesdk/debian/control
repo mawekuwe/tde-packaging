@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fboudra@free.fr>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
 Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), cmake, autotools-dev, gawk,
- gettext, pkg-config, tdelibs4-trinity-dev, binutils-dev, bison, flex,
+ gettext, pkg-config, tdelibs14-trinity-dev, binutils-dev, bison, flex,
  tdepim-trinity-dev, libapr1-dev, libkcal2-trinity-dev,
  libktnef1-trinity-dev, libsvn-dev, libdb-dev,
  automake, autoconf, libtool, libltdl-dev
@@ -73,7 +73,7 @@ Section: devel
 Replaces: kapptemplate-trinity (<< 4:14.0.0)
 Breaks: kapptemplate-trinity (<< 4:14.0.0)
 Conflicts: kapptemplate
-Recommends: automake1.9 | automaken, tdelibs4-trinity-dev
+Recommends: automake1.9 | automaken, tdelibs14-trinity-dev
 Description: creates a framework to develop a Trinity application
  KAppTemplate is a shell script that will create the necessary
  framework to develop various KDE applications.  It takes care of the
@@ -111,7 +111,7 @@ Architecture: any
 Section: libdevel
 Replaces: kbabel-trinity-dev (<< 4:14.0.0)
 Breaks: kbabel-trinity-dev (<< 4:14.0.0)
-Depends: kbabel-trinity (= ${Source-Version}), tdelibs4-trinity-dev
+Depends: kbabel-trinity (= ${Source-Version}), tdelibs14-trinity-dev
 Conflicts: kbabel
 Description: PO-file editing suite for Trinity (development files)
  This is a suite of programs for editing gettext message files (PO-files).
@@ -230,7 +230,7 @@ Replaces: kdesdk-scripts-trinity (<< 4:14.0.0)
 Breaks: kdesdk-scripts-trinity (<< 4:14.0.0)
 Depends: ${perl:Depends}, python
 Recommends: automake1.9 | automaken, cvs, gawk
-Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html, dmalloc, gdb, tdelibs4-trinity-doc, qt3-doc, valgrind, devscripts
+Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html, dmalloc, gdb, tdelibs14-trinity-doc, qt3-doc, valgrind, devscripts
 Enhances: kate-trinity
 Description: a set of useful development scripts for Trinity
  This package contains a number of scripts which can be used to help in
@@ -282,7 +282,7 @@ Architecture: any
 Section: devel
 Replaces: kspy-trinity (<< 4:14.0.0)
 Breaks: kspy-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdelibs4-trinity-dev
+Depends: ${shlibs:Depends}, tdelibs14-trinity-dev
 Conflicts: kspy
 Description: examines the internal state of a Qt/KDE app
  KSpy is a tiny library which can be used to graphically display
@@ -340,7 +340,7 @@ Architecture: any
 Section: libdevel
 Replaces: libcvsservice-trinity-dev (<< 4:14.0.0)
 Breaks: libcvsservice-trinity-dev (<< 4:14.0.0)
-Depends: libcvsservice0-trinity (= ${Source-Version}), tdelibs4-trinity-dev
+Depends: libcvsservice0-trinity (= ${Source-Version}), tdelibs14-trinity-dev
 Conflicts: libcvsservice-dev
 Description: development files for CVS DCOP service
  The library libcvsservice provides a DCOP service for accessing and
@@ -414,7 +414,7 @@ Replaces: kunittest-trinity (<< 4:14.0.0)
 Breaks: kunittest-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Conflicts: tdeunittest
-Suggests: tdelibs4-trinity-doc
+Suggests: tdelibs14-trinity-doc
 Description: unit testing library for Trinity
  KUnitTest is a small library that facilitates the writing of tests for
  KDE developers. There are two ways to use the KUnitTest library. One is

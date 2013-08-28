@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Isaac Clerencia <isaac@debian.org>, Ben Burton <bab@debian.org>
-Build-Depends-Indep: tdelibs4-trinity-dev
+Build-Depends-Indep: tdelibs14-trinity-dev
 Build-Depends: debhelper (>= 5.0.0), quilt, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.7.2
 

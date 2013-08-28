@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), cmake, autotools-dev, tdelibs4-trinity-dev, gawk, gettext, sharutils, tdebase-trinity-dev, twin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), cmake, autotools-dev, tdelibs14-trinity-dev, gawk, gettext, sharutils, tdebase-trinity-dev, twin-trinity, libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, xscreensaver, xscreensaver-gl, xscreensaver-data, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies, automake, autoconf, libtool, libltdl-dev
 Build-Conflicts: autoconf2.13, nvidia-glx
 Standards-Version: 3.8.4
 

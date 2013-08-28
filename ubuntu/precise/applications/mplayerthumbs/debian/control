@@ -2,7 +2,7 @@ Source: mplayerthumbs-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: cdbs, debhelper (>= 5), automake, libtool, autotools-dev, tdelibs4-trinity-dev
+Build-Depends: cdbs, debhelper (>= 5), automake, libtool, autotools-dev, tdelibs14-trinity-dev
 Standards-Version: 3.8.2
 
 Package: mplayerthumbs-trinity

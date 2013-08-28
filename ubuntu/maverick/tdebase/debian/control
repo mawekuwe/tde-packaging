@@ -4,8 +4,8 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fboudra@free.fr>, Modestas Vainius <geromanas@mailas.com>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev, libldap2-dev, libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors4-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, xscreensaver, xscreensaver-data, xscreensaver-data-extra, libxss-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf | xutils-dev, tdelibs14-trinity, libogg-dev, libdbus-tqt-1-dev, libavahi-tqt-dev, libudev-dev, libdbus-1-tqt-dev, libart-2.0-dev (>= 14.0.0), libtool, libltdl-dev, binutils-dev, cmake
-Build-Depends-Indep: doxygen, libtqtinterface-doc, graphviz, gsfonts-x11, tdelibs4-trinity-doc
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs14-trinity-dev, libldap2-dev, libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors4-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, xscreensaver, xscreensaver-data, xscreensaver-data-extra, libxss-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf | xutils-dev, tdelibs14-trinity, libogg-dev, libdbus-tqt-1-dev, libavahi-tqt-dev, libudev-dev, libdbus-1-tqt-dev, libart-2.0-dev (>= 14.0.0), libtool, libltdl-dev, binutils-dev, cmake
+Build-Depends-Indep: doxygen, libtqtinterface-doc, graphviz, gsfonts-x11, tdelibs14-trinity-doc
 Build-Conflicts: nvidia-glx (<< 1.0.8774-6)
 Standards-Version: 3.8.4
 
@@ -140,7 +140,7 @@ Section: devel
 Architecture: any
 Replaces: kdebase-kde3-dev (<< 4:14.0.0), kdebase-trinity-dev (<< 4:14.0.0)
 Breaks: kdebase-kde3-dev (<< 4:14.0.0), kdebase-trinity-dev (<< 4:14.0.0)
-Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), tdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), twin-trinity (= ${Source-Version}), tdelibs4-trinity-dev
+Depends: kate-trinity (= ${Source-Version}), kcontrol-trinity (= ${Source-Version}), tdebase-trinity-bin (= ${Source-Version}), tdeprint-trinity (= ${Source-Version}), kdesktop-trinity (= ${Source-Version}), khelpcenter-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), klipper-trinity (= ${Source-Version}), kmenuedit-trinity (= ${Source-Version}), konqueror-nsplugins-trinity (= ${Source-Version}), konqueror-trinity (= ${Source-Version}), konsole-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version}), ksysguard-trinity (= ${Source-Version}), twin-trinity (= ${Source-Version}), tdelibs14-trinity-dev
 Description: development files for the KDE base module
  This package contains headers and other development files needed to
  compile software based on the KDE base module.
@@ -579,7 +579,7 @@ Section: libdevel
 Architecture: any
 Replaces: libkonq4-kde3-dev (<< 4:14.0.0), libkonq4-trinity-dev (<< 4:14.0.0)
 Breaks: libkonq4-kde3-dev (<< 4:14.0.0), libkonq4-trinity-dev (<< 4:14.0.0)
-Depends: libkonq4-trinity (= ${Source-Version}), tdelibs4-trinity-dev
+Depends: libkonq4-trinity (= ${Source-Version}), tdelibs14-trinity-dev
 Conflicts: libkonq-trinity-dev (<< 4:3.0.0), libkonq3-trinity (<< 4:3.0.0)
 Description: development files for Konqueror's core libraries
  This package contains headers and other development files for the core
