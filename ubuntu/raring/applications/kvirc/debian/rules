@@ -72,9 +72,6 @@ common-install-indep::
 	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc/3.4/license/COPYING \
 	   $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc/3.4/license/EULA
 
-common-install-arch::
-	mv $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/share/kvirc $(CURDIR)/debian/tmp/$(DEB_CONFIGURE_PREFIX)/lib/
-
 post-patches:: debian/stamp-bootstrap
 
 debian/stamp-bootstrap:
