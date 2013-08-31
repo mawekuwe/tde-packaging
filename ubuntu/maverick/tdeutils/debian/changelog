@@ -518,7 +518,7 @@ tdeutils (4:3.5.1-0ubuntu1) dapper; urgency=low
 tdeutils (4:3.5.0-0ubuntu4) dapper; urgency=low
 
   * Add kubuntu_08_kwallermanager_menu_tidy.diff to 
-    remove KWallet from menu (can be launched from systray)
+    remove TDEWallet from menu (can be launched from systray)
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 18 Jan 2006 15:20:43 +0000
 

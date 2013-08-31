@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Ral Snchez Siles <rasasi78@gmail.com>
-Build-Depends: cdbs (>= 0.4.52ubuntu18), debhelper (>= 5), binutils (>= 2.14.90.0.7), recode, docbook-to-man, gawk, gettext, flex, tdelibs4-trinity-dev (>= 4:3.4.3), libaspell-dev, libfontconfig1-dev, libopenexr-dev, libpaper-dev, libreadline5-dev | libreadline6-dev, libtiff-dev, libwv2-dev (>= 0.2.2-4), libxml2-dev, libxslt1-dev, python-dev, ruby, ruby-dev, libwpd-dev, libpqxx-dev | libpqxx3-dev, libmysqlclient15-dev | libmysqlclient16-dev | libmysqlclient18-dev, sharutils, bzip2, libpoppler-tqt-dev, libexif-dev, libasound2-dev, libogg-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.52ubuntu18), debhelper (>= 5), binutils (>= 2.14.90.0.7), recode, docbook-to-man, gawk, gettext, flex, tdelibs14-trinity-dev (>= 4:3.4.3), libaspell-dev, libfontconfig1-dev, libopenexr-dev, libpaper-dev, libreadline5-dev | libreadline6-dev, libtiff-dev, libwv2-dev (>= 0.2.2-4), libxml2-dev, libxslt1-dev, python-dev, ruby, ruby-dev, libwpd-dev, libpqxx-dev | libpqxx3-dev, libmysqlclient15-dev | libmysqlclient16-dev | libmysqlclient18-dev, sharutils, bzip2, libpoppler-tqt-dev, libexif-dev, libasound2-dev, libogg-dev, automake, autoconf, libtool, libltdl-dev
 Build-Depends-Indep: libtqtinterface-doc, graphviz, gsfonts-x11
 Standards-Version: 3.8.4
 Homepage: http://www.koffice.org
@@ -328,7 +328,7 @@ Architecture: any
 Section: libdevel
 Replaces: koffice-trinity-dev (<< 4:14.0.0)
 Breaks: koffice-trinity-dev (<< 4:14.0.0)
-Depends: koffice-libs-trinity (= ${binary:Version}), karbon-trinity (= ${binary:Version}), kchart-trinity (= ${binary:Version}), kexi-trinity (= ${binary:Version}), kformula-trinity (= ${binary:Version}), kivio-trinity (= ${binary:Version}), koshell-trinity (= ${binary:Version}), kplato-trinity (= ${binary:Version}), kpresenter-trinity (= ${binary:Version}), chalk-trinity (= ${binary:Version}), kspread-trinity (= ${binary:Version}), kthesaurus-trinity (= ${binary:Version}), kugar-trinity (= ${binary:Version}), kword-trinity (= ${binary:Version}), tdelibs4-trinity-dev
+Depends: koffice-libs-trinity (= ${binary:Version}), karbon-trinity (= ${binary:Version}), kchart-trinity (= ${binary:Version}), kexi-trinity (= ${binary:Version}), kformula-trinity (= ${binary:Version}), kivio-trinity (= ${binary:Version}), koshell-trinity (= ${binary:Version}), kplato-trinity (= ${binary:Version}), kpresenter-trinity (= ${binary:Version}), chalk-trinity (= ${binary:Version}), kspread-trinity (= ${binary:Version}), kthesaurus-trinity (= ${binary:Version}), kugar-trinity (= ${binary:Version}), kword-trinity (= ${binary:Version}), tdelibs14-trinity-dev
 Description: common libraries for KOffice (development files) [Trinity]
  This package provides the development files for the libraries that are
  shared amongst the various components of KOffice.

@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs, debhelper (>> 4.1), libexif-dev, tdelibs4-trinity-dev (>= 4:3.4.3-2), autotools-dev
+Build-Depends: cdbs, debhelper (>> 4.1), libexif-dev, tdelibs14-trinity-dev (>= 4:3.4.3-2), autotools-dev
 Standards-Version: 3.8.3
 
 Package: libkipi0-trinity-dev

@@ -63,7 +63,7 @@
         <member>- One Time Password (OTP) support - S/Key, MD5, RMD160, SHA1</member>
         <member>- Drag and Drop support</member>
         <member>- Site bookmarking</member>
-        <member>- Encrypted bookmark support (password can be saved to KWallet)</member>
+        <member>- Encrypted bookmark support (password can be saved to TDEWallet)</member>
         <member>- Distributed FTP support (PRET)</member>
         <member>- SSCN and CPSV support</member>
         <member>- Skiplist</member>

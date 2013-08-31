@@ -2,7 +2,7 @@ Source: kbiff-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5.0.0), quilt, cdbs, autotools-dev, automake, libtool, tdelibs4-trinity-dev (>= 4:3.4.2), libtqt3-compat-headers
+Build-Depends: debhelper (>= 5.0.0), quilt, cdbs, autotools-dev, automake, libtool, tdelibs14-trinity-dev (>= 4:3.4.2), libtqt3-compat-headers
 Standards-Version: 3.9.1
 
 Package: kbiff-trinity

@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Matthias Julius <mdeb@julius-net.net>
-Build-Depends: cdbs, debhelper (>= 7), autotools-dev, automake, libtool, chrpath, tdelibs4-trinity-dev, libsqlite3-dev, libmysqlclient-dev, libpq-dev
+Build-Depends: cdbs, debhelper (>= 7), autotools-dev, automake, libtool, chrpath, tdelibs14-trinity-dev, libsqlite3-dev, libmysqlclient-dev, libpq-dev
 Standards-Version: 3.8.1
 Homepage: http://krecipes.sourceforge.net/
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-kde/kde-extras/krecipes/trunk/

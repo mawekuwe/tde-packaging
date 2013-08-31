@@ -2,7 +2,7 @@ Source: kstreamripper-trinity
 Section: sound 
 Priority: optional
 Maintainer: Michael Ablassmeier <abi@debian.org>
-Build-Depends: debhelper (>= 4.1.0), cdbs, libxmu-dev, libjpeg-dev, tdelibs4-trinity-dev, scons
+Build-Depends: debhelper (>= 4.1.0), cdbs, libxmu-dev, libjpeg-dev, tdelibs14-trinity-dev, scons
 Standards-Version: 3.8.4
 
 Package: kstreamripper-trinity

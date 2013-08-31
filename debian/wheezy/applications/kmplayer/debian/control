@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev,
+Build-Depends: cdbs, debhelper (>= 5), tdelibs14-trinity-dev,
  libcairo2-dev, libdbus-1-dev, libdbus-glib-1-dev, libdbus-tqt-1-dev,
  libgstreamer-plugins-base0.10-dev, libgtk2.0-dev, libxine2-dev | libxine-dev, libxv-dev, docbook2x,
  automake, autoconf, libtool, libltdl-dev

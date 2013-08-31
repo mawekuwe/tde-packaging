@@ -66,9 +66,9 @@ binary-install/tdelibs-data-trinity::
 
 DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
-binary-predeb/tdelibs4-trinity-dev::
+binary-predeb/tdelibs14-trinity-dev::
 ifeq (linux,$(DEB_HOST_ARCH_OS))
-	echo "libasound2-trinity-dev=libasound2-trinity-dev" >> debian/tdelibs4-trinity-dev.substvars
+	echo "libasound2-trinity-dev=libasound2-trinity-dev" >> debian/tdelibs14-trinity-dev.substvars
 endif
 
 common-install-prehook-impl::

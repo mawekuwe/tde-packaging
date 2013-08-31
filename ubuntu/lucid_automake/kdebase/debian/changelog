@@ -2409,7 +2409,7 @@ kdebase (4:3.5.1-0ubuntu12) dapper; urgency=low
 
   [ Anthony Mercatante ]
   * Add kubuntu_53_tdewallet_config.diff copy a default 
-    KWallet config for new users
+    TDEWallet config for new users
   * Add kubuntu_54_system_protocol_home_dir.diff make
     system:/ use /home/foo not system:/home/foo keep 
     Kaffeine etc happy

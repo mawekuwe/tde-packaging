@@ -3,7 +3,7 @@ Section: tde
 Priority: extra
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Lionel Le Folgoc <mrpouit@ubuntu.com>
-Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev, automake, libtool, libmimelib1-trinity-dev, libtqt3-compat-headers
+Build-Depends: cdbs, debhelper (>= 5), tdelibs14-trinity-dev, automake, libtool, libmimelib1-trinity-dev, libtqt3-compat-headers
 Standards-Version: 3.7.2
 
 Package: kshowmail-trinity

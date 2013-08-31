@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.50), debhelper (>= 5.0.0), cmake (>= 2.4), tdelibs4-trinity-dev (>= 4:3.4.3-2), libsvn-dev (>= 1.2.0), libssl-dev (>= 0.9.8a), libsqlite3-dev, gettext, quilt, libaprutil1-dev
+Build-Depends: cdbs (>= 0.4.50), debhelper (>= 5.0.0), cmake (>= 2.4), tdelibs14-trinity-dev (>= 4:3.4.3-2), libsvn-dev (>= 1.2.0), libssl-dev (>= 0.9.8a), libsqlite3-dev, gettext, quilt, libaprutil1-dev
 Standards-Version: 3.8.4
 
 Package: libsvnqt4-trinity

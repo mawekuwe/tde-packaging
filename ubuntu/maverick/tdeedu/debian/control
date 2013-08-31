@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Daniel Schepler <schepler@debian.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: ocaml-nox, libfacile-ocaml-dev, libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-trinity-dev, libboost-python-dev (>= 1.33.1), libusb-dev, sharutils, doxygen, libogg-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: ocaml-nox, libfacile-ocaml-dev, libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs14-trinity-dev, libboost-python-dev (>= 1.33.1), libusb-dev, sharutils, doxygen, libogg-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdeedu-trinity
@@ -550,7 +550,7 @@ Architecture: any
 Section: libdevel
 Replaces: libkdeedu-kde3-dev (<< 4:14.0.0), libkdeedu-trinity-dev (<< 4:14.0.0)
 Breaks: libkdeedu-kde3-dev (<< 4:14.0.0), libkdeedu-trinity-dev (<< 4:14.0.0)
-Depends: libtdeedu3-trinity (= ${Source-Version}), tdelibs4-trinity-dev
+Depends: libtdeedu3-trinity (= ${Source-Version}), tdelibs14-trinity-dev
 Description: development files for Trinity educational library
  The KDE-based library libtdeedu is used with educational
  applications.  It currently provides support for data plotting and
@@ -586,7 +586,7 @@ Architecture: any
 Section: libdevel
 Replaces: libkiten-kde3-dev (<< 4:14.0.0), libkiten-trinity-dev (<< 4:14.0.0)
 Breaks: libkiten-kde3-dev (<< 4:14.0.0), libkiten-trinity-dev (<< 4:14.0.0)
-Depends: libkiten1-trinity (= ${Source-Version}), tdelibs4-trinity-dev
+Depends: libkiten1-trinity (= ${Source-Version}), tdelibs14-trinity-dev
 Description: development files for Kiten library
  Kiten is a Japanese reference/study tool for KDE.  The library
  libkiten contains portions of Kiten that may be useful for other

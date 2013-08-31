@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: debhelper (>> 5.0.0), cdbs, cmake, tdelibs4-trinity-dev, libasound2-dev (>= 1.0.0), libjack-dev, ladspa-sdk, liblrdf0-dev, liblircclient-dev, dssi-dev (>= 0.4 ), liblo-dev, libxft-dev, dpatch, libfftw3-dev
+Build-Depends: debhelper (>> 5.0.0), cdbs, cmake, tdelibs14-trinity-dev, libasound2-dev (>= 1.0.0), libjack-dev, ladspa-sdk, liblrdf0-dev, liblircclient-dev, dssi-dev (>= 0.4 ), liblo-dev, libxft-dev, dpatch, libfftw3-dev
 Standards-Version: 3.8.4
 Homepage: http://www.rosegardenmusic.com/
 

@@ -2,7 +2,7 @@ Source: libtdeldap-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5), cdbs, tdelibs4-trinity-dev, libldap2-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5), cdbs, tdelibs14-trinity-dev, libldap2-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: libtdeldap-trinity
@@ -15,7 +15,7 @@ Description: LDAP interface library for TDE
 
 Package: libtdeldap-trinity-dev
 Architecture: any
-Depends: libtdeldap-trinity (= ${binary:Version}), tdelibs4-trinity-dev, libldap2-dev
+Depends: libtdeldap-trinity (= ${binary:Version}), tdelibs14-trinity-dev, libldap2-dev
 Description: LDAP interface library for TDE
  LDAP interface library for TDE management modules.
  .

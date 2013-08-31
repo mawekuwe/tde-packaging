@@ -2,7 +2,7 @@ Source: tderadio-trinity
 Section: sound
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5), tdelibs4-trinity-dev, liblircclient-dev, libsndfile1-dev, imagemagick, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5), tdelibs14-trinity-dev, liblircclient-dev, libsndfile1-dev, imagemagick, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://tderadio.sourceforge.net/
 

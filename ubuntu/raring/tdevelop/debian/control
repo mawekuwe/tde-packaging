@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Jeremy Lain <jeremy.laine@m4x.org>
-Build-Depends: cdbs (>= 0.4.38), debhelper (>= 5), cmake, tdelibs4-trinity-dev, gettext, tdelibs4-trinity-doc, libtqtinterface-doc, flex, python, libcvsservice-trinity-dev, groff-base, libsvn-dev, libaprutil1-dev, libdb-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.38), debhelper (>= 5), cmake, tdelibs14-trinity-dev, gettext, tdelibs14-trinity-doc, libtqtinterface-doc, flex, python, libcvsservice-trinity-dev, groff-base, libsvn-dev, libaprutil1-dev, libdb-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdevelop-trinity
@@ -12,7 +12,7 @@ Depends: ${shlibs:Depends}, tdevelop-data-trinity (>= ${source:Version}), tdebas
 Replaces: kdevelop-kde3 (<< 4:14.0.0), kdevelop-trinity (<< 4:14.0.0)
 Breaks: kdevelop-kde3 (<< 4:14.0.0), kdevelop-trinity (<< 4:14.0.0)
 Recommends: tdevelop-trinity-doc, make, libtool, autoconf, automaken, gdb (>= 6.4)
-Suggests: libtqtinterface-dev, tdelibs4-trinity-dev, sgmltools-lite, gettext, ark-trinity, kbabel-trinity, kiconedit-trinity, tdesdk-scripts-trinity, graphviz, tdebase-tdeio-plugins-trinity, exuberant-ctags, khelpcenter-trinity, tdelibs4-trinity-doc, libtqtinterface-doc, konsole-trinity, cmake, ruby, python
+Suggests: libtqtinterface-dev, tdelibs14-trinity-dev, sgmltools-lite, gettext, ark-trinity, kbabel-trinity, kiconedit-trinity, tdesdk-scripts-trinity, graphviz, tdebase-tdeio-plugins-trinity, exuberant-ctags, khelpcenter-trinity, tdelibs14-trinity-doc, libtqtinterface-doc, konsole-trinity, cmake, ruby, python
 Description: An IDE for Unix/X11
  KDevelop is an easy to use Integrated Development Environment
  for developing C/C++ applications under X11. It features 
@@ -61,7 +61,7 @@ Description: An IDE for Unix/X11 - data
 
 Package: tdevelop-trinity-dev
 Architecture: any
-Depends: tdevelop-trinity (= ${binary:Version}), tdelibs4-trinity-dev
+Depends: tdevelop-trinity (= ${binary:Version}), tdelibs14-trinity-dev
 Replaces: kdevelop-kde3-dev (<< 4:14.0.0), kdevelop-trinity-dev (<< 4:14.0.0)
 Breaks: kdevelop-kde3-dev (<< 4:14.0.0), kdevelop-trinity-dev (<< 4:14.0.0)
 Description: An IDE for Unix/X11 - development files

@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
 Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31),
- cdparanoia, gawk, gettext, tdelibs4-trinity-dev, bison, byacc, bzip2,
+ cdparanoia, gawk, gettext, tdelibs14-trinity-dev, bison, byacc, bzip2,
  flex, groff-base, libopensync0-dev, libogg-dev,
  libboost-dev (>= 1.33.1), libgpgme11-dev, liblockdev1-dev,
  libpisock-dev, libreadline5-dev | libreadline6-dev, libsasl2-dev, libssl-dev,
@@ -13,7 +13,7 @@ Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31),
  libgpg-error-dev (>= 1.4-2), gpgsm, libical-dev,
  libcaldav-dev (>= 0.6.5), libcarddav-dev (>= 0.6.2), libcurl4-gnutls-dev,
  cmake, libtool, libltdl-dev
-Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, libtqtinterface-doc, tdelibs4-trinity-doc
+Build-Depends-Indep: doxygen, graphviz, gsfonts-x11, libtqtinterface-doc, tdelibs14-trinity-doc
 Build-Conflicts: libkleopatra0-trinity-dev
 Standards-Version: 3.8.4
 
@@ -513,7 +513,7 @@ Section: libdevel
 Architecture: any
 Replaces: libkdepim1-trinity-dev (<< 4:14.0.0)
 Breaks: libkdepim1-trinity-dev (<< 4:14.0.0)
-Depends: libtdepim1a-trinity (= ${Source-Version}), tdelibs4-trinity-dev
+Depends: libtdepim1a-trinity (= ${Source-Version}), tdelibs14-trinity-dev
 Description: Trinity PIM library [development]
  This is the development package which contains the headers for the libtdepim-trinity
  library.

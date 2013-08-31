@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs, debhelper (>= 5), tdelibs4-trinity-dev,
+Build-Depends: cdbs, debhelper (>= 5), tdelibs14-trinity-dev,
  libtiff-dev, libgphoto2-2-dev, libkipi0-trinity-dev,
  libsqlite3-dev, liblcms1-dev, libltdl3-dev, libkexiv2-3-trinity-dev (>= 0.1.6),
  libjasper-dev, libpng12-dev | libpng-dev, libexiv2-trinity-dev (>= 0.16),

@@ -2,7 +2,7 @@ Source: klcddimmer-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5.0.0), cdbs, automake, libtool, tdelibs4-trinity-dev
+Build-Depends: debhelper (>= 5.0.0), cdbs, automake, libtool, tdelibs14-trinity-dev
 Standards-Version: 3.7.3
 Homepage: http://klcddimeer.sourceforge.net/
 

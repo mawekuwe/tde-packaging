@@ -44,13 +44,13 @@ Description: Transitional dummy package.  This can be safely removed after your 
 
 Package: kdelibs4-trinity-dev
 Architecture: all
-Depends: tdelibs4-trinity-dev
+Depends: tdelibs14-trinity-dev
 Conflicts: kdelibs4-trinity-dev (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
 Package: kdelibs4-trinity-doc
 Architecture: all
-Depends: tdelibs4-trinity-doc
+Depends: tdelibs14-trinity-doc
 Conflicts: kdelibs4-trinity-doc (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 

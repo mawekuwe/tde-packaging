@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Adeodato Sim <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Armin Berres <trigger+debian@space-based.de>, Sune Vuorela <debian@pusling.com>
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5), autotools-dev, gawk, gettext, tdelibs4-trinity-dev, libreadline5-dev | libreadline6-dev, libxml2-dev, libxslt1-dev, sharutils, texinfo, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5), autotools-dev, gawk, gettext, tdelibs14-trinity-dev, libreadline5-dev | libreadline6-dev, libxml2-dev, libxslt1-dev, sharutils, texinfo, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://trinity.pearsoncomputing.net
 
@@ -171,7 +171,7 @@ Architecture: any
 Section: libdevel
 Replaces: kommander-kde3-dev (<< 4:14.0.0), kommander-trinity-dev (<< 4:14.0.0)
 Breaks: kommander-kde3-dev (<< 4:14.0.0), kommander-trinity-dev (<< 4:14.0.0)
-Depends: kommander-trinity (= ${binary:Version}), tdelibs4-trinity-dev
+Depends: kommander-trinity (= ${binary:Version}), tdelibs14-trinity-dev
 Description: development files for Kommander [Trinity]
  This package contains the headers and other development files for
  building plugins or otherwise extending Kommander.
