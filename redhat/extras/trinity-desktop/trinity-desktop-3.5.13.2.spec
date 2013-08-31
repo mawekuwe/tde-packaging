@@ -278,6 +278,7 @@ Requires:	%{name}-devel = %{version}
 %package -n trinity-repo
 Group:		User Interface/Desktops
 Summary:	Yum configuration files for Trinity
+Requires(pre):	coreutils
 
 %description -n trinity-repo
 %{summary}

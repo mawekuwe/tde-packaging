@@ -78,6 +78,7 @@ unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 # Warning: --enable-final causes FTBFS
+# Warning: RHEL5 FTBFS: https://bugzilla.redhat.com/show_bug.cgi?id=499837
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -92,7 +93,10 @@ export PATH="%{tde_bindir}:${PATH}"
   --disable-final \
   --enable-new-ldflags \
   --enable-closure \
-  --enable-rpath
+  --enable-rpath \
+%if 0%{?rhel} == 5
+  --disable-libreadline \
+%endif
 
 %__make %{?_smp_mflags}
 
@@ -153,7 +157,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 * Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.15.2-4
 - Initial release for TDE 3.5.13.1
 
-* Sun Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 0.15.2-3
+* Fri Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 0.15.2-3
 - Fix MAN directory location
 - Fix compilation with GCC 4.7 [Bug #958]
 

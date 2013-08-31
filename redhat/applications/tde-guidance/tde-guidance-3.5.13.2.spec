@@ -78,18 +78,8 @@ BuildRequires:	sip-devel
 %endif
 
 # PYTHON-QT support
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	python-qt
-Requires:	python-qt
-%endif
-%if 0%{?rhel} == 5 || 0%{?suse_version}
-BuildRequires:	trinity-PyQt-devel
-Requires:	trinity-PyQt
-%endif
-%if 0%{?rhel} >= 6 || 0%{?fedora}
-BuildRequires:	PyQt-devel
-Requires:	PyQt
-%endif
+BuildRequires:	python-qt3-devel
+Requires:		python-qt3
 
 Requires:		trinity-python-trinity
 Requires:		trinity-pytdeextensions
@@ -282,7 +272,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %build
 unset QTDIR; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
+export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 export KDEDIR=%{tde_prefix}
 
 # Avoids 'error: byte-compiling is disabled.' on Mandriva/Mageia
@@ -306,7 +296,7 @@ export PATH="%{tde_bindir}:${PATH}"
 export EXTRA_MODULE_DIR="%{python_sitearch}/%{name}"
 
 # For RHEL4 only
-export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
+export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 
 # For Mageia/Mandriva: Avoids 'error: byte-compiling must be disabled.
 export PYTHONDONTWRITEBYTECODE=

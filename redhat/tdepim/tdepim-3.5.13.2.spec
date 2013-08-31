@@ -2218,6 +2218,7 @@ cd build
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DCMAKE_PROGRAM_PATH="%{tde_bindir}" \
   \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \

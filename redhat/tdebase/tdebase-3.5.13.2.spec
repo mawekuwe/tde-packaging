@@ -315,6 +315,18 @@ Requires:	opensuse-manuals_en
 %define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
 %endif
 
+# OpenSuse 13.1 Theme
+%if "%{?suse_version}" == "1310"
+Requires:	wallpaper-branding
+%define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
+Requires:	hicolor-icon-theme-branding
+%define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
+
+Requires:	opensuse-manuals_en
+%define tde_aboutlabel OpenSuse 13.1
+%define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
+%endif
+
 BuildRequires:	cmake >= 2.8
 BuildRequires:	qt%{?_qt_suffix}-devel >= 3.3.8.d
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}

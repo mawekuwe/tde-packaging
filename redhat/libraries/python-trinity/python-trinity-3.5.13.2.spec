@@ -54,19 +54,7 @@ BuildRequires:	gettext
 
 # PYTHON support
 BuildRequires:	python
-%if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
-# RHEL 4/5 comes with old version, so we brought ours ...
-BuildRequires:	trinity-PyQt-devel
-%endif
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	python-qt
-%endif
-%if 0%{?rhel} >= 6 || 0%{?fedora}
-BuildRequires:	PyQt-devel
-%endif
-%if 0%{?suse_version}
-BuildRequires:	trinity-PyQt-devel
-%endif
+BuildRequires:	python-qt3-devel
 
 # SIP support
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
@@ -104,7 +92,7 @@ Provides:	python-trinity-devel = %{version}-%{release}
 Development .sip files with definitions of PyTDE classes. They
 are needed to build PyTDE, but also as building blocks of other
 packages based on them. 
-The package also contains kdepyuic, a wrapper script around PyQt's 
+The package also contains kdepyuic, a wrapper script around python-qt3's 
 user interface compiler.
 
 
@@ -138,7 +126,7 @@ export KDEDIR=%{tde_prefix}
 
 export DH_OPTIONS
 
-export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
+export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 
 %__python configure.py \
 	-k %{tde_prefix} \

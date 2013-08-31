@@ -1,0 +1,30 @@
+--- ./qtruby/rubylib/qtruby/configure.in.in.ruby2	2013-08-24 15:44:24.933359206 +0200
++++ ./qtruby/rubylib/qtruby/configure.in.in	2013-08-24 15:49:41.820696908 +0200
+@@ -21,6 +21,12 @@
+       fi
+     fi
+     if test -z "$RUBY_VERSION"; then
++      RUBY_VERSION=`$PKGCONFIG ruby-2.0 --modversion 2>/dev/null`
++      if test -n "$RUBY_VERSION"; then
++        RUBY_CFLAGS=`$PKGCONFIG ruby-2.0 --cflags`
++      fi
++    fi
++    if test -z "$RUBY_VERSION"; then
+       # pkgconfig file does not exist but might be 1.9.1: RUBY_VERSION defined in ruby/version.h
+       if test -n "$RUBY -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"rubyhdrdir"@:>@)'"; then
+         # rubyhdrdir parameter works only in >=1.9.1; this is 1.9.1
+--- ./korundum/rubylib/korundum/configure.in.in.ruby2	2013-08-24 15:44:24.933359206 +0200
++++ ./korundum/rubylib/korundum/configure.in.in	2013-08-24 15:50:46.666333349 +0200
+@@ -19,6 +19,12 @@
+       if test -n "$RUBY_VERSION"; then
+         RUBY_CFLAGS=`$PKGCONFIG ruby-1.9 --cflags`
+       fi
++    fi
++    if test -z "$RUBY_VERSION"; then
++      RUBY_VERSION=`$PKGCONFIG ruby-2.0 --modversion 2>/dev/null`
++      if test -n "$RUBY_VERSION"; then
++        RUBY_CFLAGS=`$PKGCONFIG ruby-2.0 --cflags`
++      fi
+     fi
+     if test -z "$RUBY_VERSION"; then
+       # pkgconfig file does not exist but might be 1.9.1: RUBY_VERSION defined in ruby/version.h

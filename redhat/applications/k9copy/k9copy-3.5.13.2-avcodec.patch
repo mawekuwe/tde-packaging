@@ -4,7 +4,7 @@
  #else
  typedef int (*av_find_stream_info_t)(AVFormatContext *);
  #endif
-+#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(53, 26, 0)
++#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(54, 26, 0)
 +typedef AVCodec* (*avcodec_find_decoder_t)(enum AVCodecID);
 +#else
  typedef AVCodec* (*avcodec_find_decoder_t)(enum CodecID);

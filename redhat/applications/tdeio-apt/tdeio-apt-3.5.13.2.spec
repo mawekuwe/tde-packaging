@@ -41,7 +41,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			tdeio-apt-14.0.0-ftbfs.patch
+Patch1:			tdeio-apt-3.5.13.2-ftbfs.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10

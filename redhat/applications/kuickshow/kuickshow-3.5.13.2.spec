@@ -151,7 +151,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 - Rename obsolete tq methods to standard names [Commit #bdeb8b3a]
 - Remove inadvertent renaming [Commit #d97e403f] [Bug #863]
 
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.13-2
+* Wed Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.13-2
 - Import to GIT
 
 * Mon Aug 22 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.13-1

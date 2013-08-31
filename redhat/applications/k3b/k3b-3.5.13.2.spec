@@ -71,7 +71,13 @@ Requires(postun): coreutils
 Requires:		%{name}-libs = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:		%{name}-common = %{?epoch:%{epoch}:}%{version}-%{release}
 
-Requires:		cdrecord mkisofs
+%if 0%{?suse_version} >= 1310
+Requires:		wodim
+REquires:		genisoimage
+%else
+Requires:		cdrecord
+REquires:		mkisofs
+%endif
 Requires:		dvd+rw-tools
 
 # CDRDAO support

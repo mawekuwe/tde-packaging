@@ -195,7 +195,7 @@ update-desktop-database %{tde_appdir} &> /dev/null
 * Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-2
 - Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
 
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-1
+* Wed Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-1
 - Initial release for RHEL 6.0
 - Import to GIT
 

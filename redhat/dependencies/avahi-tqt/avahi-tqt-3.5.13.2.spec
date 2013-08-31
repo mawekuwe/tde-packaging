@@ -33,6 +33,7 @@ BuildRequires:	dbus-1-devel
 %if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	dbus-devel
 %endif
+BuildRequires:	libcap-devel
 
 # AVAHI support
 %if 0%{?mgaversion} || 0%{?mdkversion}

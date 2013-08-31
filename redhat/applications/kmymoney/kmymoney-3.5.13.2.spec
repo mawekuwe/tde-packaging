@@ -59,6 +59,9 @@ Source1:		kmymoneytitlelabel.png
 # [kmymoney] Fix FTBFS
 Patch1:		kmymoney-3.5.13.2-ftbfs.patch
 
+# [admin] Fix automake 1.13 build issue
+Patch2:			admin-fix-parallel-test.diff
+
 # [kmymoney] Missing LDFLAGS causing FTBFS
 Patch4:		kmymoney-3.5.13-missing_ldflags.patch
 
@@ -126,12 +129,9 @@ This package contains development files needed for KMyMoney plugins.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .ftbfs
+%patch2 -p1 -b .automake113
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %patch5 -p1 -b .qtpluginsdir
-%endif
-
-%if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013 || 0%{?fedora} >= 19
-%__cp /usr/share/automake-1.13/test-driver admin/
 %endif
 
 %__install -m644 %{SOURCE1} kmymoney2/widgets/

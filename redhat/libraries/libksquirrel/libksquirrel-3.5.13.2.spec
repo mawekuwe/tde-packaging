@@ -41,6 +41,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch0:		libksquirrel-3.5.13-detect_netpbm.patch
+Patch1:		libksquirrel-3.5.13.2-fix_giflib5_support.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -155,6 +156,7 @@ Tools for KSquirrel.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch0 -p1 -b .netpbm
+%patch1 -p1 -b .giflib5
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"

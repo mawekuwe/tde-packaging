@@ -1275,10 +1275,11 @@ fi
 cd build
 %endif
 
+# Note: the "-L%{tde_libdir}" is required for RHEL5, where poppler is under /opt/trinity.
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG -L%{tde_libdir}" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \

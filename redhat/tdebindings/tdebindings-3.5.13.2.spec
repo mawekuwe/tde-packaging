@@ -52,13 +52,19 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 # [tdebindings] Fix RUBY path ending with '/' causing fail to install
-Patch1:		tdebindings-3.5.13.2-fix_ruby_path.patch
+Patch1:			tdebindings-3.5.13.2-fix_ruby_path.patch
+
+# [tdebindings] Fix ruby 2.x detection
+Patch2:			tdebindings-3.5.13.2-fix_ruby2_detection.patch
+
+# [tdebindings] Fix automake 1.13 build issue
+Patch3:			admin-fix-parallel-test.diff
 
 # [kdebindings] Fix FTBFS in dcopjava/bindings
-Patch7:		kdebindings-3.5.13.1-fix_dcopjava_ldflags.patch
+Patch4:			kdebindings-3.5.13.1-fix_dcopjava_ldflags.patch
 
 # [tdebindings] Function 'rb_frame_this_func' does not exist in RHEL5
-Patch18:	kdebindings-3.5.13.1-fix_rhel5_ftbfs.patch
+Patch5:		kdebindings-3.5.13.1-fix_rhel5_ftbfs.patch
 
 BuildRequires: autoconf automake libtool m4
 BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
@@ -975,19 +981,16 @@ Development files for the TDE bindings.
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .rubypath
-%patch7 -p1 -b .dcopjavaldflags
+%patch2 -p1 -b .ruby2
+%patch3 -p1 -b .automake113
+%patch4 -p1 -b .dcopjavaldflags
 
 %if "%{?perl_vendorarch}" == ""
 exit 1
 %endif
 
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
-%patch18 -p1 -b .ruby
-%endif
-
-# Workarounds strange issue in MGA3
-%if 0%{?mgaversion} == 3 || 0%{?pclinuxos} >= 2013 || 0%{?fedora} >= 19
-%__cp /usr/share/automake-1.13/test-driver admin/
+%patch5 -p1 -b .ruby
 %endif
 
 # Disable kmozilla, it does not build with recent xulrunner (missing 'libmozjs.so')
@@ -1019,6 +1022,11 @@ if [ -d /usr/evolution28 ]; then
   export PKG_CONFIG_PATH="/usr/evolution28/%{_lib}/pkgconfig:${PKG_CONFIG_PATH}"
 fi
 
+# Warning: openSUSE 13.1: /usr/include/ruby-2.0.0/ruby.h
+%if 0%{?suse_version} >= 1310
+EXTRA_INCLUDES="/usr/include/ruby-%{rb20_ver}:/usr/include/ruby-%{rb20_ver}/%{_target}"
+%endif
+
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -1036,7 +1044,7 @@ fi
   --enable-closure \
   --enable-rpath \
   \
-  --with-extra-includes=%{_includedir}/tqscintilla \
+  --with-extra-includes=%{_includedir}/tqscintilla:${EXTRA_INCLUDES} \
   --with-extra-libs=%{tde_libdir} \
   --with-pythondir=%{_usr} \
   \

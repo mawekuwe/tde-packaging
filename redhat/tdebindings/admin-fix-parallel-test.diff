@@ -1,0 +1,11 @@
+--- trinity-tdebindings-14.0.0~pre214+2cf2b76c/admin/cvs.sh.automake113	2013-06-26 22:35:42.000000000 +0200
++++ trinity-tdebindings-14.0.0~pre214+2cf2b76c/admin/cvs.sh	2013-08-29 22:27:18.546349736 +0200
+@@ -123,7 +123,7 @@
+ fi
+ 
+ echo "*** Creating Makefile templates"
+-$AUTOMAKE || exit 1
++$AUTOMAKE --add-missing || exit 1
+ 
+ if test "$UNSERMAKE" = no; then
+   echo "*** Postprocessing Makefile templates"

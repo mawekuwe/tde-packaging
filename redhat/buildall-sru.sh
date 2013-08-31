@@ -1,7 +1,9 @@
 #!/bin/bash
 
+export PATH="$(dirname $0):${PATH}"
+
 tdp='cd ~/tde/tde-packaging/redhat'
-grp='tdp; ./genrpm.sh -v 3.5.13.2 -a'
+grp='./genrpm.sh -v 3.5.13.2 -a'
 
 BUILDDIR="/dev/shm/BUILD${DIST}.$(uname -i)"
 BUILDROOTDIR="/dev/shm/BUILDROOT${DIST}.$(uname -i)"
@@ -43,7 +45,7 @@ is_installed() {
 
 # Build package if not already installed
 grpi() {
-  if ! is_installed "${1##*/}" && ! is_installed trinity-"${1##*/}"; then
+  if ! is_installed trinity-"${1##*/}"; then
     eval ${grp} ${1}
     RET=$?
     if [ $RET -gt 0 ]; then
@@ -54,31 +56,40 @@ grpi() {
 }
 # Build package if not already installed, then update repo
 grpiu() {
-  if ! is_installed "${1##*/}" && ! is_installed trinity-"${1##*/}"; then
+  if ! is_installed trinity-"${1##*/}"; then
     grpi "$1"
-    eval ${REPOUPDATE}
+    eval ${REPOUPDATE} || exit 1
   fi
 }
 # Build package if not already installed, then update repo, then install package
 grpiui() {
-  if ! is_installed "${1##*/}" && ! is_installed trinity-"${1##*/}"; then
+  if ! is_installed trinity-"${1##*/}"; then
     grpiu "$1"
-    eval ${PKGINST} "trinity-${1##*/}"
+    eval ${PKGINST} "trinity-${1##*/}" || exit 1
   fi
 }
 # Build package if not already installed, then update repo, then install -devel package
 grpiud() {
-  if ! is_installed "${1##*/}" && ! is_installed trinity-"${1##*/}"; then
+  if ! is_installed trinity-"${1##*/}"; then
     grpiu "$1"
-    eval ${PKGINST} "trinity-${1##*/}"
-    eval ${PKGINST} "trinity-${1##*/}-devel"
+    eval ${PKGINST} "trinity-${1##*/}" || exit 1
+    eval ${PKGINST} "trinity-${1##*/}-devel" || exit 1
   fi
 }
 
+# Build akode now, required for some packages later ...
+grpiud extras/akode
+
 # Build dependencies
-if ! rpm -q libqt3-devel && ! rpm -q lib64qt3-devel && ! rpm -q qt3-devel; then
+if ! rpm -q libqt3-devel &>/dev/null && ! rpm -q lib64qt3-devel &>/dev/null && ! rpm -q qt3-devel &>/dev/null; then
+  if [ -r /etc/SuSE-release ]; then
+    pushd ../opensuse/core
+  else
+    pushd .
+  fi
   grpiu dependencies/qt3
-  eval ${PKGINST} qt3-devel
+  eval ${PKGINST} qt3-devel || exit 1
+  popd
 fi
 grpiud dependencies/tqtinterface
 grpiud dependencies/arts
@@ -88,10 +99,7 @@ grpiud dependencies/dbus-tqt
 grpiud dependencies/libcaldav
 grpiud dependencies/libcarddav
 grpiud dependencies/tqca
-grpiu dependencies/tqca-tls
-
-# Build akode now, required for some packages later ...
-grpiud extras/akode
+grpiui dependencies/tqca-tls
 
 # Build main
 # basic packages
@@ -112,15 +120,29 @@ grpiui tdeartwork
 grpiui tdeedu
 grpiui tdetoys
 grpiui tdeutils
-grpiu extras/trinity-desktop
-eval ${PKGINST} trinity-desktop
-# Disable trinity repository from here !!!
+
+if ! is_installed trinity-desktop; then
+  grpiu extras/trinity-desktop
+  eval ${PKGINST} trinity-desktop || exit 1
+  # Disable trinity repository from here !!!
+  if [ -r "/etc/yum.repos.d/trinity-3.5.13.repo" ]; then
+    sed -i "/etc/yum.repos.d/trinity-3.5.13.repo" -e "s|enabled=.*|enabled=0|g"
+  fi
+fi
 
 # devel packages
 grpiud tdesdk
 grpiui tdevelop
 grpiui tdewebdev
-eval ${PKGINST} trinity-desktop-devel
+if ! is_installed trinity-desktop-devel; then
+  eval ${PKGINST} trinity-desktop-devel || exit 1
+fi
+
+# Extra libraries
+if ! is_installed python-qt3; then
+  grpiu 3rdparty/python-qt3
+  eval ${PKGINST} python-qt3-devel || exit 1
+fi
 
 # Build libraries
 grpiud libraries/libkdcraw
@@ -149,7 +171,7 @@ grpiui applications/gwenview
 grpiui applications/gwenview-i18n
 if ! is_installed trinity-k3b-i18n-French; then
   grpiu applications/k3b-i18n
-  eval ${PKGINST} trinity-k3b-i18n-French
+  eval ${PKGINST} trinity-k3b-i18n-French || exit 1
 fi
 grpiui applications/k9copy
 grpiui applications/kaffeine
@@ -175,7 +197,9 @@ grpiui applications/kmymoney
 grpiui applications/knemo
 grpiui applications/knetload
 grpiui applications/knetstats
-#grpiui applications/knetworkmanager
+if [ "${DIST}" = ".el6" ]; then
+  grpiui applications/knetworkmanager
+fi
 grpiui applications/knights
 grpiui applications/knowit
 grpiui applications/knutclient
@@ -192,7 +216,7 @@ grpiui applications/kopete-otr
 grpiui applications/kpicosim
 grpiui applications/kpilot
 if [ "${DIST}" != ".el4" ] && [ "${DIST}" != ".el5" ]; then
-grpiui applications/kpowersave
+  grpiui applications/kpowersave
 fi
 grpiui applications/krename
 grpiui applications/krusader
@@ -226,15 +250,20 @@ grpiui applications/tellico
 grpiui applications/twin-style-crystal
 grpiui applications/wlassistant
 grpiui applications/yakuake
-eval ${PKGINST} trinity-desktop-applications
 
 # Decoration-related stuff are distribution-dependant.
 if [ "${DIST}" != ".el4" ] && [ "${DIST}" != ".el5" ]; then
-grpiui applications/gtk-qt-engine
-grpiui applications/kgtk-qt3
+  grpiui applications/gtk-qt-engine
+  #grpiui applications/kgtk-qt3
 fi
 
-eval ${PKGINST} trinity-desktop-all
+if ! is_installed trinity-desktop-applications; then
+  eval ${PKGINST} trinity-desktop-applications || exit 1
+fi
+
+if ! is_installed trinity-desktop-all; then
+  eval ${PKGINST} trinity-desktop-all || exit 1
+fi
 
 exit 0
 
@@ -253,7 +282,8 @@ grpiui extras/kickoff-i18n
 #grpiui extras/knoda
 #grpiui extras/ksensors
 #grpiui extras/kshowmail
-#grpiui extras/mplayerthumbs
+#grpiui extras/mplayerthumbseval ${PKGINST} trinity-desktop-applications || exit 1
+
 grpiui extras/style-ia-ora
 #if ! is_installed trinity-tdeio-ftps-plugin; then
 #  grpiu extras/tdeio-ftps

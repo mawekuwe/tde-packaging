@@ -1,0 +1,114 @@
+--- trinity-libksquirrel-3.5.13.2/kernel/kls_gif/fmt_codec_gif.cpp.giflib5	2013-06-07 20:05:31.000000000 +0200
++++ trinity-libksquirrel-3.5.13.2/kernel/kls_gif/fmt_codec_gif.cpp	2013-08-24 17:58:13.978555540 +0200
+@@ -43,14 +43,26 @@
+ /* libgif 4.2.0 has retired PrintGifError() and added GifErrorString() */ 
+ #if defined(GIFLIB_MAJOR) && defined(GIFLIB_MINOR) && \ 
+         ((GIFLIB_MAJOR == 4 && GIFLIB_MINOR >= 2) || GIFLIB_MAJOR > 4) 
++#if GIFLIB_MAJOR > 4
++static void PrintGifError(int ErrorCode)
++#else
+ static void PrintGifError(void)
++#endif
+ {
++#if GIFLIB_MAJOR > 4
++  char *Err = GifErrorString(ErrorCode);
++#else
+   char *Err = GifErrorString();
++#endif
+ 
+   if (Err != NULL) {
+     fprintf(stderr, "\nGIF-LIB error: %s.\n", Err);
+   } else {
++#if GIFLIB_MAJOR > 4
++    fprintf(stderr, "\nGIF-LIB undefined error %d.\n", ErrorCode);
++#else
+     fprintf(stderr, "\nGIF-LIB undefined error %d.\n", GifError());
++#endif
+   }
+ } 
+ #endif 
+@@ -107,7 +119,12 @@
+     buf = 0;
+     saved = 0;
+ 
++#if GIFLIB_MAJOR > 4
++    int ErrorCode;
++    gif = DGifOpenFileName(file.c_str(), &ErrorCode);
++#else
+     gif = DGifOpenFileName(file.c_str());
++#endif
+ 
+     // for safety...
+     if(!gif)
+@@ -198,7 +215,11 @@
+     {
+         if (DGifGetRecordType(gif, &record) == GIF_ERROR)
+ 	{
++#if GIFLIB_MAJOR > 4
++	    PrintGifError(gif->Error);
++#else
+ 	    PrintGifError();
++#endif
+ 	    return SQE_R_BADFILE;
+ 	}
+ 
+@@ -207,7 +228,11 @@
+ 	    case IMAGE_DESC_RECORD_TYPE:
+ 		if(DGifGetImageDesc(gif) == GIF_ERROR)
+ 		{
++#if GIFLIB_MAJOR > 4
++		    PrintGifError(gif->Error);
++#else
+ 		    PrintGifError();
++#endif
+ 		    return SQE_R_BADFILE;
+ 		}
+ 
+@@ -243,7 +268,11 @@
+ 	    case EXTENSION_RECORD_TYPE:
+ 		if(DGifGetExtension(gif, &ExtCode, &Extension) == GIF_ERROR)
+ 		{
++#if GIFLIB_MAJOR > 4
++		    PrintGifError(gif->Error);
++#else
+ 		    PrintGifError();
++#endif
+ 		    return SQE_R_BADFILE;
+ 		}
+ 
+@@ -287,7 +316,11 @@
+ 		{
+ 		    if(DGifGetExtensionNext(gif, &Extension) == GIF_ERROR)
+ 		    {
++#if GIFLIB_MAJOR > 4
++		    PrintGifError(gif->Error);
++#else
+ 			PrintGifError();
++#endif
+ 			return SQE_R_BADFILE;
+ 		    }
+ 		}
+@@ -366,7 +399,11 @@
+ 	{
+ 	    if(DGifGetLine(gif, buf, Width) == GIF_ERROR)
+ 	    {
++#if GIFLIB_MAJOR > 4
++		    PrintGifError(gif->Error);
++#else
+ 	        PrintGifError();
++#endif
+ 	        memset(scan, 255, im->w * sizeof(RGBA));
+ 	        return SQE_R_BADFILE;
+ 	    }
+@@ -439,7 +476,11 @@
+         if(DGifGetLine(gif, buf, Width) == GIF_ERROR)
+         {
+ 	    memset(scan, 255, im->w * sizeof(RGBA));
++#if GIFLIB_MAJOR > 4
++	    PrintGifError(gif->Error);
++#else
+ 	    PrintGifError();
++#endif
+ 	    return SQE_R_BADFILE;
+ 	}
+ 	else

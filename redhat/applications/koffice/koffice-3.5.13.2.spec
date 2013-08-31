@@ -27,7 +27,7 @@
 %define _docdir %{tde_docdir}
 
 # Disable Kross support for RHEL <= 5 (python is too old)
-%if 0%{?fedora} > 0 || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_kross 1
 %endif
 
@@ -56,6 +56,8 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 Patch1:			koffice-3.5.13.2-fix_kformula_ftbfs.patch
+Patch2:			koffice-3.5.13.2-fix_ruby2_detection.patch
+Patch3:			admin-fix-parallel-test.diff
 
 # BuildRequires: world-devel ;)
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -1061,10 +1063,8 @@ This package is part of the TDE Office Suite.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .ftbfs
-
-%if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013 || 0%{?fedora} >= 19
-%__cp /usr/share/automake-1.13/test-driver admin/
-%endif
+%patch2 -p1 -b .ruby2
+%patch3 -p1 -b .automake113
 
 # use LGC variant instead
 %__sed -i.dejavu-lgc \
@@ -1078,7 +1078,7 @@ This package is part of the TDE Office Suite.
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 export KDEDIR="%{tde_prefix}"

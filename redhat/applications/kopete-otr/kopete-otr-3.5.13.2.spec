@@ -1,3 +1,5 @@
+# openSUSE 12.3: do NOT install libotr-devel, use libotr2-devel instead !
+
 # Default version for this component
 %define tde_pkg kopete-otr
 %define tde_version 3.5.13.2
@@ -82,8 +84,9 @@ users with IM-Cients supporting the OTR encryption method.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
+export 
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -99,7 +102,9 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-new-ldflags \
   --enable-final \
   --enable-closure \
-  --enable-rpath
+  --enable-rpath \
+  \
+  --with-extra-includes=/usr/include/tqt
 
 %__make %{_smp_mflags}
 

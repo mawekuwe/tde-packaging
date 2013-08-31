@@ -53,17 +53,9 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
+# Python stuff
 BuildRequires:	trinity-python-trinity-devel
-
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	python-qt
-%else
-%if 0%{?rhel} == 4 || 0%{?rhel} == 5 || 0%{?suse_version}
-BuildRequires:	trinity-PyQt-devel
-%else
-BuildRequires:	PyQt-devel
-%endif
-%endif
+BuildRequires:	python-qt3-devel
 
 Requires:		trinity-libpythonize0 = %{version}-%{release}
 
@@ -176,24 +168,24 @@ if [ -f "%{_libdir}/${LIBPYTHON}" ]; then
     -e "s|#define LIB_PYTHON \".*\"|#define LIB_PYTHON \"%{_libdir}/${LIBPYTHON}\"|"
 fi
 
-if [ -d "%{python_sitearch}/trinity-PyQt" ]; then
-  %__sed -i "src/kdedistutils.py" \
-    -e "s|'pyqt-dir=','%{python_sitearch}'|'pyqt-dir=','%{python_sitearch}/trinity-PyQt'|g" \
-    -e "s|self.pyqt_dir = \"%{python_sitearch}\"|self.pyqt_dir = \"%{python_sitearch}/trinity-PyQt\"|g"
-fi
+# Set PyQt directory to actual directory
+%__sed -i "src/kdedistutils.py" \
+  -e "s|'pyqt-dir=','%{python_sitearch}'|'pyqt-dir=','%{python_sitearch}/python-qt3'|g" \
+  -e "s|self.pyqt_dir = \"%{python_sitearch}\"|self.pyqt_dir = \"%{python_sitearch}/python-qt3\"|g"
+
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
+export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 
 %__mkdir_p build
 ./setup.py build_libpythonize
 
 %install
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/trinity-PyQt
+export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 
 # Avoids 'error: byte-compiling is disabled.' on Mandriva/Mageia
 export PYTHONDONTWRITEBYTECODE=
