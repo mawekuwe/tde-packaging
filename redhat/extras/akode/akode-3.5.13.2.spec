@@ -321,7 +321,7 @@ Requires: %{name} = %{version}-%{release}
   --without-ffmpeg \
   %{?_with_libmad} %{!?_with_libmad:--without-libmad}
 
-%__make %{?_smp_mflags} LIBTOOL=$(which libtool)
+%__make %{?_smp_mflags} LIBTOOL=/usr/bin/libtool
 
 
 %install

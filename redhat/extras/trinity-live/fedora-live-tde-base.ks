@@ -1,19 +1,59 @@
 # Copied from 'fedora-live-kde-base.ks'
 
 %include fedora-live-base.ks
+
+# Local repository
+repo --name="rpmbuild" --baseurl=file:///home/francois/rpmbuild/RPMS/RPMS.fc$releasever/$basearch
+repo --name="rpmbuild-noarch" --baseurl=file:///home/francois/rpmbuild/RPMS/RPMS.fc$releasever/noarch
+
+# Trinity repositories, main mirror.
 repo --name=trinity --baseurl=http://trinity.mangafrance.com/f$releasever/trinity-3.5.13/RPMS/$basearch
 repo --name=trinity-noarch --baseurl=http://trinity.mangafrance.com/f$releasever/trinity-3.5.13/RPMS/noarch
+
+# RPM Fusion repository
+repo --name="RPM Fusion for Fedora - Free" --baseurl=http://download1.rpmfusion.org/free/fedora/releases/$releasever/Everything/$basearch/os/
+repo --name="RPM Fusion for Fedora - Free - Updates" --baseurl=http://download1.rpmfusion.org/free/fedora/updates/$releasever/$basearch/
+repo --name="RPM Fusion for Fedora - Nonfree" --baseurl=http://download1.rpmfusion.org/nonfree/fedora/releases/$releasever/Everything/$basearch/os/
+repo --name="RPM Fusion for Fedora - Nonfree - Updates" --baseurl="http://download1.rpmfusion.org/nonfree/fedora/updates/$releasever/$basearch/"
 
 %packages
 
 ### The Trinity Desktop
 
-trinity-desktop
-hal
+# Required
+trinity-hal
+trinity-repo
+
+# Main packages
+#trinity-tdeaccessibility
+#trinity-tdeaddons
+trinity-tdeadmin
+#trinity-tdeartwork
+trinity-tdebase
+#trinity-tdebindings
+#trinity-tdeedu
+#trinity-tdegames
+trinity-tdegraphics
+trinity-tdemultimedia
+trinity-tdenetwork
+trinity-tdepim
+trinity-tdeutils
+#trinity-tdetoys
+
+# Subset of tdeaddons
+#trinity-atlantikdesigner
+trinity-kaddressbook-plugins
+trinity-kate-plugins
+trinity-tdeaddons-kfile-plugins
+trinity-kicker-applets
+trinity-knewsticker-scripts
+trinity-konq-plugins
+trinity-ksig
+trinity-noatun-plugins
+
 
 # TDE is missing a Network Applet, so we use Gnome...
-NetworkManager-gnome
-
+/usr/bin/nm-applet
 
 ### fixes
 
@@ -23,6 +63,9 @@ alsa-utils
 # make sure gnome-packagekit doesn't end up the KDE live images
 -gnome-packagekit*
 
+# use kde-print-manager instead of system-config-printer
+-system-config-printer-libs
+
 %end
 
 
@@ -30,9 +73,14 @@ alsa-utils
 
 # create /etc/sysconfig/desktop (needed for installation)
 cat > /etc/sysconfig/desktop <<EOF
-DESKTOP="KDE"
+DESKTOP="TDE"
 DISPLAYMANAGER="/opt/trinity/bin/kdm"
 EOF
+
+# Enable TDM service (systemd)
+if [ -r /usr/lib/systemd/system/tdm.service ]; then
+  ln -s '/usr/lib/systemd/system/tdm.service' '/etc/systemd/system/display-manager.service'
+fi
 
 # make oxygen-gtk the default GTK+ theme for root (see #683855, #689070, #808062)
 cat > /root/.gtkrc-2.0 << EOF

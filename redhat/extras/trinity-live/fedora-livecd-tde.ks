@@ -13,42 +13,45 @@
 
 %packages
 # Additional packages that are not default in trinity-desktop but useful
-trinity-desktop-extras
 trinity-live-openbox
 
 # Some TDE applications
 trinity-amarok
+trinity-amarok-konqueror
 trinity-digikam
-trinity-dolphin
-#trinity-gtk-qt-engine
+#trinity-dolphin
+trinity-gtk-qt-engine
 trinity-gwenview
 trinity-k3b
+trinity-k3b-plugin-ffmpeg
+trinity-k3b-plugin-lame
+trinity-k3b-plugin-mad
 trinity-kaffeine
-trinity-kasablanca
-trinity-kbookreader
-#trinity-kdebluetooth
-trinity-style-lipstik
+#trinity-kbookreader
+#trinity-kdiff3
 #trinity-kgtk-qt3
-trinity-kio-umountwrapper
-trinity-kwin-style-crystal
 #trinity-knetworkmanager
-trinity-konversation
+#trinity-konversation
 trinity-kpowersave
-trinity-ksensors
-trinity-kstreamripper
+#trinity-krusader
+#trinity-kstreamripper
 #trinity-smb4k
-trinity-yakuake
+#trinity-tde-style-lipstik
+#trinity-tdeio-umountwrapper
+#trinity-tdmtheme
+#trinity-twin-style-crystal
+#trinity-yakuake
 
 # Some TDE translations
-#trinity-kde-i18n-French
-#trinity-kde-i18n-German
-#trinity-kde-i18n-Spanish
-#trinity-kde-i18n-Chinese-Big5
+#trinity-tde-i18n-French
+#trinity-tde-i18n-German
+#trinity-tde-i18n-Spanish
+#trinity-tde-i18n-Chinese-Big5
 
 # Fedora stuff
 fuse
 liveusb-creator
-yumex
+#yumex
 
 # use yum-presto by default
 yum-presto

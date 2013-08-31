@@ -46,6 +46,7 @@ libpqxx-devel
 libwpd-devel
 wv2-devel
 fftw-devel
+fftw3-devel
 dssi-devel
 liblo-devel
 liblrdf-devel
@@ -154,3 +155,12 @@ libtiff-devel
 aspell
 hunspell-devel
 cyrus-sasl-devel
+xulrunner-devel
+java-1.7.0-openjdk-devel
+libacl-devel
+python-sip-devel
+trinity-PyQt-devel
+postgresql
+xscreensaver-data-extra
+ffmpeg1-devel
+recode
