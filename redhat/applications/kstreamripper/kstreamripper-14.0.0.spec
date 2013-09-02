@@ -28,7 +28,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		TDE frontend for streamripper
 
 Version:		0.3.4
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -70,7 +70,6 @@ you with managing/ripping your preferred streams.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 export QTDIR=/usr
 scons -Q -j4
@@ -96,14 +95,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.4-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.4-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.4-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.3.4-2
-- Initial release for TDE 3.5.13.1
-
-* Wed Nov 02 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.4-1
-- Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

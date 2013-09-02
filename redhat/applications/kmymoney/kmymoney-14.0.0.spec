@@ -31,7 +31,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		personal finance manager for TDE
 
 Version:		1.0.5
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -107,10 +107,6 @@ This package contains development files needed for KMyMoney plugins.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-%if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013
-%__cp /usr/share/automake-1.13/test-driver admin/
-%endif
-
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
@@ -121,7 +117,6 @@ This package contains development files needed for KMyMoney plugins.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 # Fix strange FTBFS on RHEL4
@@ -231,24 +226,5 @@ done
 %{_libdir}/tqt3/plugins/designer/libkmymoney.so
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-7
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-5
-- Initial release for TDE 3.5.13.2
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-3
-- Initial release for TDE 3.5.13.1
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-2
-- Rebuild for Fedora 17
-- Fix compilation with GCC 4.7 [Bug #958]
-
-* Sun Jan 15 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-1
-- Updates to upstream 1.0.5
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.0.4-1
-- Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

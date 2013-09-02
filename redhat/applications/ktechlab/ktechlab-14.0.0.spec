@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		circuit simulator for microcontrollers and electronics [Trinity]
 Version:		0.3
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -74,7 +74,6 @@ Homepage: http://ktechlab.org/
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -134,18 +133,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.3-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.3-3
-- Initial release for TDE 3.5.13.1
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.3-2
-- Fix HTML directory location
-
-* Thu Nov 24 2011 Francois Andriot <francois.andriot@free.fr> - 0.3-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-- Fix list of icons to install [Bug #990]

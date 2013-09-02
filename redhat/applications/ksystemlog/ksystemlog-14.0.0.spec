@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		system log viewer tool for Trinity
 Version:		0.3.2
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/System
@@ -74,7 +74,6 @@ quickly see problems occuring on their server.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -84,8 +83,14 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
   --includedir=%{tde_tdeincludedir} \
-  --disable-rpath \
-  --enable-closure
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --disable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -121,15 +126,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.2-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.2-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.2-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.3.2-2
-- Initial release for TDE 3.5.13.1
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-

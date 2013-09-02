@@ -1,4 +1,4 @@
-# REMOVE TDELIBS4-DEVEL before building !!!!
+# REMOVE KDELIBS4-DEVEL before building !!!!
 
 # Default version for this component
 %define tde_pkg kvirc
@@ -29,7 +29,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Trinity based next generation IRC client with module support
 Version:		3.4.0
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -42,8 +42,6 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-
-Patch1:			kvirc-14.0.0-install_directory.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -101,9 +99,7 @@ with the K Desktop Environment version 3.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .installdir
 
-# Hardcoded absolute PATH to TDEDIR in source code ! That sucks !
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -113,7 +109,6 @@ with the K Desktop Environment version 3.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -145,8 +140,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 %__make symlinks -C src/kvilib/build
 %__make symlinks -C src/kvirc/build
 
-%__make %{?_smp_mflags
-}
+%__make %{?_smp_mflags}
 
 
 %install
@@ -156,8 +150,8 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Debian maintainer has renamed 'COPYING' file to 'EULA', so we do the same ...
 %__mv \
-  %{?buildroot}%{tde_libdir}/kvirc/3.4/license/COPYING \
-  %{?buildroot}%{tde_libdir}/kvirc/3.4/license/EULA
+  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/COPYING \
+  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/EULA
 
 
 %clean
@@ -191,7 +185,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/icons/hicolor/*/*/*.png
 %{tde_datadir}/icons/hicolor/*/*/*.svgz
 %{tde_datadir}/icons/hicolor/*/*/*.xpm
-#%{tde_datadir}/kvirc
+%{tde_datadir}/kvirc
 %{tde_datadir}/mimelnk/text/*.desktop
 %{tde_datadir}/services/*.protocol
 %{tde_mandir}/man1/kvirc.1
@@ -202,30 +196,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_includedir}/kvirc/
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
-#%{tde_libdir}/kvirc/*/modules/*.la
+%{tde_libdir}/kvirc/*/modules/*.la
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.4.0-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.4.0-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.4.0-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 3.4.0-3
-- Initial release for TDE 3.5.13.1
-
-* Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 3.4.0-2
-- Rebuilt for Fedora 17
-- Fix HTML directory location
-- Rename old tq methods that no longer need a unique name [Commit #32a249ba]
-- Remove additional unneeded tq method conversions [Commit #f9114981]
-- Rename obsolete tq methods to standard names [Commit #2dd6d32b]
-- Rename a few stragglers [Commit #1c00d6ff]
-- Fix FTBFS [Commits #ff96f491, #2285efe5]
-- Fix linear alphabet string errors [Commit #51bbe9e5]
-- Fix inadvertent "TQ" changes. [Commit #a24a8595]
-- Fix "acinclude.m4" file [Bug #980]
- 
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.4.0-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

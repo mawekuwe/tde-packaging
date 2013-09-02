@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		An apt-cache ioslave for Trinity
 Version:		0.13.2
-Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -40,8 +40,6 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-
-Patch1:			tdeio-apt-14.0.0-ftbfs.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -67,7 +65,6 @@ browsing the packages easier. It provides:
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .ftbfs
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -77,7 +74,6 @@ browsing the packages easier. It provides:
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -126,9 +122,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.13.2-2
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.13.2-3
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.13.2-1
-- Initial release for TDE 3.5.13.2
-

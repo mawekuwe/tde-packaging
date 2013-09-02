@@ -4,8 +4,8 @@
  	$(top_builddir)/k9author/libk9author.la $(top_builddir)/k9decmpeg/libk9decmpeg.la \
  	$(top_builddir)/k9devices/libk9devices.la $(top_builddir)/k9vamps/libk9vamps.la \
  	$(top_builddir)/libdvdnav/libk9dvdnav.la $(top_builddir)/libk9copy/libk9copy.la \
--	$(top_builddir)/dvdread/libdvdread.la $(LIB_TDEUI) -ltdemdi $(LIBDL)
-+	$(top_builddir)/dvdread/libdvdread.la $(LIB_TDEUI) -ltdemdi $(LIBDL) -lk3b -lk3bdevice
+-	$(LIB_TDEUI) -ltdemdi $(LIBDL) -ldvdread
++	$(LIB_TDEUI) -ltdemdi $(LIBDL) -ldvdread -lk3b -lk3bdevice
  
  # this is where the desktop file will go 
  shelldesktopdir = $(kde_appsdir)/Utilities

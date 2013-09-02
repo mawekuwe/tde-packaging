@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		eBook reader for Trinity.
 Version:		0.2.0
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -70,7 +70,6 @@ within the Trinity Desktop Environment.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -123,19 +122,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.2.0-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.2.0-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.2.0-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.2.0-3
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.2.0-2
-- Rebuilt for Fedora 17
-- Fix post and postun
-- Fix HTML directory location
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.2.0-1
-- Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

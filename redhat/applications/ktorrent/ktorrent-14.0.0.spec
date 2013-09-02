@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		BitTorrent client for Trinity
 Version:		2.2.8
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -49,6 +49,21 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext
+
+# AVAHI support
+#  Disabled on RHEL4 and RHEL5
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%define with_avahi 1
+BuildRequires:	trinity-avahi-tqt-devel
+Requires:		trinity-avahi-tqt
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}avahi-client-devel
+Requires:		%{_lib}avahi-client3
+%else
+BuildRequires:	avahi-devel
+Requires:		avahi
+%endif
+%endif
 
 
 %description
@@ -74,7 +89,6 @@ enabling background downloading.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix="%{tde_prefix}" \
@@ -91,7 +105,9 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-new-ldflags \
   --enable-closure \
   --enable-rpath \
-  --disable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility \
+  \
+  %{?!with_avahi:--without-avahi}
 
 
 # Not SMP safe !
@@ -165,26 +181,12 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/services/*.desktop
 %{tde_datadir}/servicetypes/ktorrentplugin.desktop
 
+%if 0%{?with_avahi}
+%{tde_tdelibdir}/ktzeroconfplugin.la
+%{tde_tdelibdir}/ktzeroconfplugin.so
+%endif
+
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.8-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.8-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.8-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.2.8-2
-- Initial release for TDE 3.5.13.1
-
-* Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 2.2.8-1
-- Rename old tq methods that no longer need a unique name [Commit #a90eb215]
-- Remove additional unneeded tq method conversions [Commit #bb37c405]
-- Rename obsolete tq methods to standard names [Commit #0d48fca8]
-- Rename a few stragglers [Commit #c3480dfe]
-- Fix inadvertent "TQ" changes. [Commit #445a5152]
-- Fix configure output message to clarify that missing avahi support is caused by missing avahi-tqt package as well as avahi-client. [Commit #03d0c794]
-- Update ktorrent package to 2.2.8 and fix internal geoip database. [Bug #363] [Commit #5af9907f]
-- Change default configuration to use external geoip database when found and use internal database only when external database is not found. [Bug #443] [Commit #355c6b69]
-
-* Tue Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 2.2.6-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

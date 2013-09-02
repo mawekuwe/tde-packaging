@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		DVD backup tool for Trinity
 Version:		1.2.3
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -43,8 +43,7 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 Patch1:			k9copy-14.0.0-fix_k3b_link.patch
 Patch2:			k9copy-3.5.13.2-ftbfs.patch
-Patch3:			k9copy-14.0.0-use_external_dvdread.patch
-Patch4:			k9copy-14.0.0-fix_author.patch
+Patch3:			k9copy-14.0.0-fix_author.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -58,10 +57,11 @@ BuildRequires:	trinity-k3b-devel
 BuildRequires:	ffmpeg-devel
 Requires:		ffmpeg
 
+
 %description
 k9copy is a tabbed tool that allows to copy of one or more titles from a DVD9
 to a DVD5, in thesame way than DVDShrink for Microsoft Windows (R).
-This is the Trinity version
+This is the Trinity version.
 
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
@@ -73,8 +73,7 @@ This is the Trinity version
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .ftbfs
 %patch2 -p1 -b .ftbfs
-%patch3 -p1 -b .dvdread
-%patch4 -p1 -b .k9author
+%patch3 -p1 -b .k9author
 
 # Removes internal dvdread headers
 %__rm -rf dvdread
@@ -87,11 +86,10 @@ This is the Trinity version
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # FFMPEG ...
 if [ -d /usr/include/ffmpeg ]; then
-	export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/include/ffmpeg"
+  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/include/ffmpeg"
 fi
  
 # NOTICE: --enable-final causes FTBFS !
@@ -150,30 +148,5 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-7
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-5
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.3-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.2.3-3
-- Initial release for TDE 3.5.13.1
-
-* Sat Aug 04 2012 Francois Andriot <francois.andriot@free.fr> - 1.2.3-2
-- Add support for MGA2 and MDV2011
-- Fix 'format not a string literal' error. Clean up warning. [Commit #3bfc84b0]
-- Fix FTBFS [Commit #62acebb7]
-- Fix 'format not a string literal' error [Commit #d9ed8b32]
-- Fix remaining string format errors [Commit #a8e98ad9]
-- Fix another string format error [Commit #b3bb8a8f]
-- Fix FTBFS [Commit #ca864ede]
-- Fix format string error [Commit #a016df82]
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.3-2
-- Fix HTML directory location
-
-* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.3-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

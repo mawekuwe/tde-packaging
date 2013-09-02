@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Package management suite for Trinity
 Version:		2.1.3
-Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -156,7 +156,6 @@ by external applications.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \

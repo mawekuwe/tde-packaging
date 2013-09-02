@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Quick picture viewer for TDE 
 Version:		0.8.13
-Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -75,7 +75,6 @@ Clicking on an image shows the image in its normal size.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -132,33 +131,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-8
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-9
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-7
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.13-6
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.13-5
-- Initial release for TDE 3.5.13.1
-
-* Mon Jul 09 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.13-3
-- Removes conflict with 'kdegraphics'
-
-* Sat May 05 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.13-3
-- Rename old tq methods that no longer need a unique name [Commit #8712ab46]
-- Remove additional unneeded tq method conversions [Commit #28d9c774]
-- Rename obsolete tq methods to standard names [Commit #bdeb8b3a]
-- Remove inadvertent renaming [Commit #d97e403f] [Bug #863]
-
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.13-2
-- Import to GIT
-
-* Mon Aug 22 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.13-1
-- Correct macro to install under "/opt", if desired
-
-* Sat Aug 13 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.13-0
-- Initial release for RHEL 6.0
-

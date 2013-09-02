@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		TDE Palm Pilot hot-sync tool
 Version:		0.7
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -75,7 +75,6 @@ and synchronize the built-in applications with their TDE counterparts.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -176,20 +175,5 @@ done
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-7
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-5
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.7-3
-- Initial release for TDE 3.5.13.1
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.7-2
-- Rebuild for Fedora 17
-
-* Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.7-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

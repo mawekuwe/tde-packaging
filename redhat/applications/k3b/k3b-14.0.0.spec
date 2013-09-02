@@ -28,7 +28,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		CD/DVD burning application
 Epoch:			1
 Version:		1.0.5
-Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:			Trinity Project
 Packager:		Francois Andriot <francois.andriot@free.fr>
@@ -390,7 +390,6 @@ and a generic audio and video file converter.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 # FFMPEG trick ...
@@ -458,38 +457,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1:1.0.5-2
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
-
-* Sun Jan 06 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-2
-- Enables FFMPEG support
-- Enables LAME support
-- Enables MAD support
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
-- Initial release for TDE 3.5.13.1
-- Remove requirement for resmgr
-
-* Sat Aug 04 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
-- Add support for Mageia 2 and Mandriva 2011
-- Fix DBUS-TQT detection that prevented HAL support
-- Adds requirement for resmgr
-
-* Wed May 09 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
-- Removes i18 files (built separately)
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Rebuilt for Fedora 17
-- Fix compilation with GCC 4.7 [Bug #958]
-
-* Sat Nov 05 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Updates BuildRequires
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Sun Sep 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Import to GIT

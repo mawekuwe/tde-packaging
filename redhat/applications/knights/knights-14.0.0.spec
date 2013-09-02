@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		A chess interface for the K Desktop Environment [Trinity]
 Version:		0.6
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Amusements/Games
@@ -82,7 +82,6 @@ Here's a quick list of Knights' key features:
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -112,6 +111,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %find_lang %{tde_pkg}
 
+
 %clean
 %__rm -rf %{buildroot}
 
@@ -136,20 +136,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.6-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.6-4
-- Initial release for TDE 3.5.13.1
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.6-3
-- Rebuild for Fedora 17
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.6-2
-- Fix HTML directory location
-
-* Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.6-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

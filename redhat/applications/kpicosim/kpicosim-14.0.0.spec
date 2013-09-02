@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		IDE and simulator for the Xilinx PicoBlaze-3 [Trinity]
 Version:		0.6a
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -103,9 +103,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 
-%find_lang %{tde_pkg}
-
-
 %clean
 %__rm -rf %{buildroot}
 
@@ -119,7 +116,7 @@ touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
-%files -f %{tde_pkg}.lang
+%files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README
 %{tde_bindir}/kpicosim
@@ -131,14 +128,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6a-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6a-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.6a-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.6a-2
-- Initial release for TDE 3.5.13.1
-
-* Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6a-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

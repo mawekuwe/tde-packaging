@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		TDE Integrated LaTeX Environment [Trinity]
 Version:		2.0.2
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Publishing
@@ -126,7 +126,6 @@ Kile can support large projects consisting of several smaller files.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -199,24 +198,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-7
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-8
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-6
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-4
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-3
-- Rebuilt for Fedora 17
-- Removes the XPM icon
-
-* Fri Apr 20 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-2
-- Fix file conflict with trinity-kdelibs
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 2.0.2-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Media player
 Version:		1.4.10
-Release:		%{?!preversion:11}%{?preversion:10_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:12}%{?preversion:11_%{preversion}}%{?dist}%{?_variant}
 
 Group:			Applications/Multimedia
 License:		GPLv2+
@@ -358,8 +358,6 @@ use any of xmms' visualisation plugins with Amarok.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}::%{tde_tdeincludedir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
@@ -434,14 +432,5 @@ done
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-11
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-12
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-10
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-9
-- Initial release for TDE 3.5.13.2
-
-* Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.10-8
-- Initial release for TDE 3.5.13.1

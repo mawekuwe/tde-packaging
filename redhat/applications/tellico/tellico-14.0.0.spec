@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Icollection manager for books, videos, music [Trinity]
 Version:		1.3.2.1
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -233,23 +233,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-7
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-8
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-6
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-4
-- Initial release for TDE 3.5.13.1
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-3
-- Fix compilation with GCC 4.7 [Bug #958]
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-2
-- Fix HTML directory location
-
-* Thu Nov 24 2011 Francois Andriot <francois.andriot@free.fr> - 1.3.2.1-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

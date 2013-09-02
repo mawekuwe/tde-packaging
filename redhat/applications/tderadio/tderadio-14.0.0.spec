@@ -30,7 +30,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Comfortable Radio Application for TDE [Trinity]
 Version:		0.1.1.1
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -107,7 +107,6 @@ of new plugins (e.g. Internet Radio Streams, new cool GUIs) are welcome.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -176,25 +175,5 @@ update-desktop-database %{tde_appdir} -q &> /dev/null ||:
 %lang(ru) %{tde_datadir}/locale/ru/LC_MESSAGES/*.mo
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-7
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-8
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-6
-- Initial release for TDE 3.5.13.2
-
-* Sat Dec 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-5
-- Updates presets
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-4
-- Initial release for TDE 3.5.13.1
-
-* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-3
-- Rebuild for RHEL 5
-- Fix postinstall
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-2
-- Rebuild for Fedora 17
-- Fix HTML directory location
-
-* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

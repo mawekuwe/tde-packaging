@@ -27,7 +27,7 @@
 Name:			trinity-kcmautostart
 Summary:		Manage applications automatic startup.
 Version:		1.0
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -70,7 +70,6 @@ Requires:		trinity-tdebase >= %{tde_version}
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -113,14 +112,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-5
 - Initial release for TDE 14.0.0
-
-* Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-2
-- Initial release for TDE 3.5.13.1
-
-* Thu May 10 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-1
-- Initial release for TDE 3.5.13

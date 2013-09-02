@@ -28,7 +28,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		a DBUS notification service [Trinity]
 
 Version:		0.1
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -48,7 +48,6 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
-BuildRequires:	desktop-file-utils
 BuildRequires:	gtk2-devel
 
 %if 0%{?suse_version}
@@ -119,22 +118,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-7
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-5
-- Fix UTF8 messages
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.1-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.1-3
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.1-2
-- Rebuilt for Fedora 17
-- Fix HTML directory location
-- Removes post and postun
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.1-1
-- Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		media player for Trinity
 Version:		0.10.0c
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -47,6 +47,10 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
+# DBUS support
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	trinity-dbus-tqt-devel >= %{tde_version}
+%endif
 
 # GSTREAMER support
 %if 0%{?mgaversion} || 0%{?mdkversion}
@@ -61,7 +65,7 @@ BuildRequires:	%{_lib}gstreamer-plugins-base0.10-devel
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-plugins-devel
 %endif
-%if 0%{?rhel} >= 5|| 0%{?fedora}
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-plugins-base-devel
 %endif
@@ -149,7 +153,6 @@ Documention for KMPlayer, a basic audio/video viewer application for TDE.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
@@ -248,21 +251,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-5
-- Initial release for TDE 3.5.13.2
-
-* Sat Nov 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-4
-- Fix xine 1.2 support (openSUSE 12.2 only)
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-3
-- Initial release for TDE 3.5.13.1
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-2
-- Fix compilation with GCC 4.7 [Commit #5106117b]
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-

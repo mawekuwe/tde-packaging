@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		KDiff3 is a utility for comparing and/or merging two or three text files or directories.
 Version:		0.9.91
-Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -52,7 +52,7 @@ BuildRequires:	desktop-file-utils
 Shows the differences line by line and character by character (!).
 Provides an automatic merge-facility and
 an integrated editor for comfortable solving of merge-conflicts.
-Supports KIO on TDE (allows accessing ftp, sftp, fish, smb etc.).
+Supports TDEIO on TDE (allows accessing ftp, sftp, fish, smb etc.).
 Unicode & UTF-8 support
 
 
@@ -72,7 +72,6 @@ Unicode & UTF-8 support
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -89,7 +88,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -100,9 +99,11 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 # Unwanted files
+# These are not HTML files but weird files in wrong place ??
 %__rm -rf %{?buildroot}%{tde_tdedocdir}/HTML/kdiff3/
 
 %find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -141,35 +142,5 @@ done
 %{tde_tdelibdir}/libkdiff3plugin.so
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-8
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-9
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-7
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.91-6
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.91-5
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.91-4
-- Rebuilt for Fedora 17
-- Fix HTML directory location
-- Fix post and postun
-- Rename old tq methods that no longer need a unique name [Commit #c7e29c46]
-- Remove additional unneeded tq method conversions [Commit #9b57232f]
-- Rename obsolete tq methods to standard names [Commit #d654b107]
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.91-3
-- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
-
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.91-2
-- Import to GIT
-
-* Wed Aug 24 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.91-1
-- Correct macro to install under "/opt", if desired
-
-* Sun Aug 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.91-0
-- Initial release for RHEL 6.0
-

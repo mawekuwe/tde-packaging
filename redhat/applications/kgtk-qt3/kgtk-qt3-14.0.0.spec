@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Use TDE dialogs in Gtk apps
 Version:		0.10.2
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -71,10 +71,7 @@ This package includes the kqt3-wrapper
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir} -L${QTLIB} -lX11"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
-
-export CMAKE_INCLUDE_PATH="%{tde_tdeincludedir}"
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
@@ -134,21 +131,5 @@ echo "%{tde_libdir}/kgtk/libkgtk2.so" >"%{buildroot}%{tde_datadir}/kgtk/preload"
 %{tde_datadir}/kgtk/preload
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.2-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.2-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.2-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.2-4
-- Initial release for TDE 3.5.13.1
-
-* Sun Aug 26 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.2-3
-- Add 'preload' file for startkde script
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.10.2-2
-- Rebuilt for Fedora 17
-- Removes post and postun
-
-* Thu Dec 01 2011 Francois Andriot <francois.andriot@free.fr> - 0.10.2-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

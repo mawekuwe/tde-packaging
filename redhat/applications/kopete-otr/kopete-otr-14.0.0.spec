@@ -32,7 +32,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Off-The-Record encryption for Kopete [Trinity]
 Version:		0.7
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -84,7 +84,6 @@ users with IM-Cients supporting the OTR encryption method.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -151,18 +150,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.7-3
-- Initial release for TDE 3.5.13.1
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.7-2
-- Rebuild for Fedora 17
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.7-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-

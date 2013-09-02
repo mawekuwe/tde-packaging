@@ -1,5 +1,5 @@
 # Default version for this component
-%define tde_pkg abakus
+%define tde_pkg koffice-i18n
 %define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -29,10 +29,10 @@
 %endif
 
 
-Name:			trinity-koffice-i18n
+Name:			trinity-%{tde_pkg}
 Summary:		Internationalization support for Trinity
 Version:		1.6.3
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:			Trinity Project
 Packager:		Francois Andriot <francois.andriot@free.fr>
@@ -44,7 +44,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # GFDL, with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 License:		GFDL
 Group:			User Interface/Desktops
-BuildArch:	noarch
+BuildArch:		noarch
 
 # Speed build options
 %define debug_package %{nil}
@@ -62,7 +62,6 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	findutils
 BuildRequires:	gettext
 BuildRequires:	autoconf automake libtool m4
-
 
 %description
 %{summary}.
@@ -1081,15 +1080,5 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %endif
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-2
-- Initial release for TDE 3.5.13.1
-
-* Sun Jul 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-1
-- Initial release for TDE 3.5.13
-

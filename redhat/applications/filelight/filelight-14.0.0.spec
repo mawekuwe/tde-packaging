@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Graphical disk usage display
 Version:		1.0
-Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -45,7 +45,6 @@ BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
-
 
 Obsoletes:	filelight-l10n < %{version}-%{release}
 Provides:	filelight-l10n = %{version}-%{release}
@@ -139,32 +138,5 @@ done
 %lang(sv) %{tde_tdedocdir}/HTML/sv/filelight/
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-8
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-9
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-7
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-6
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-5
-- Initial release for TDE 3.5.13.1
-- Obsoletes package 'filelight-l10n'
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-4
-- Rebuilt for Fedora 17
-- Fix HTML directory location
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.0-3
-- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
-
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 1.0-2
-- Import to GIT
-
-* Wed Aug 24 2011 Francois Andriot <francois.andriot@free.fr> - 1.0-1
-- Correct macro to install under "/opt", if desired
-
-* Sun Aug 14 2011 Francois Andriot <francois.andriot@free.fr> - 1.0-0
-- Initial release for RHEL 6.0
-

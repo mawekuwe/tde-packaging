@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		IDE for PIC-microcontroller development [Trinity]
 Version:		0.15.2
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -76,7 +76,6 @@ are supported. A command-line programmer and debugger are also available.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -146,21 +145,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.15.2-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.15.2-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.15.2-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.15.2-4
-- Initial release for TDE 3.5.13.1
-
-* Sun Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 0.15.2-3
-- Fix MAN directory location
-- Fix compilation with GCC 4.7 [Bug #958]
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.15.2-2
-- Fix HTML directory location
-
-* Thu Nov 24 2011 Francois Andriot <francois.andriot@free.fr> - 0.15.2-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

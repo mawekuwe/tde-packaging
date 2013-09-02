@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		audio converter frontend for Trinity
 Version:		0.3.8
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Application/Multimedia
@@ -95,7 +95,6 @@ See the 'soundkonverter-trinity' package for more information.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -176,15 +175,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.8-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.8-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.8-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.3.8-2
-- Initial release for TDE 3.5.13.1
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.8-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-

@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		A TDE batch file renaming utility. 
 Version:		3.0.14
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -70,7 +70,6 @@ or Exif informations of an image.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -132,28 +131,5 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.0.14-7
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.0.14-8
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.0.14-6
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 3.0.14-5
-- Initial release for TDE 3.5.13.1
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 3.0.14-4
-- Rebuild for Fedora 17
-- Fix HTML directory location
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.0.14-3
-- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
-
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 3.0.14-2
-- Import to GIT
-
-* Wed Aug 24 2011 Francois Andriot <francois.andriot@free.fr> - 3.0.14-1
-- Correct macro to install under "/opt", if desired
-
-* Sun Aug 14 2011 Francois Andriot <francois.andriot@free.fr> - 3.0.14-0
-- Initial release for RHEL 6.0
-

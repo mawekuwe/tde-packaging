@@ -5,7 +5,7 @@
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
-# Currently, menu files under /etc/xdg conflict with TDE4
+# Currently, menu files under /etc/xdg conflict with KDE4
 %define tde_sysconfdir %{tde_prefix}/etc
 %endif
 
@@ -29,7 +29,7 @@
 Name:			trinity-tde-systemsettings
 Summary:		easy to use control centre for TDE
 Version:		0.0svn20070312
-Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -78,8 +78,7 @@ Control Centre with an improved user interface.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-export TDEDIR="%{tde_prefix}"
+
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -119,12 +118,12 @@ export PATH="%{tde_bindir}:${PATH}"
 %post
 touch --no-create %{tde_datadir}/icons/crystalsvg || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
-xdg-user-dirs-update
+update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 
 %postun
 touch --no-create %{tde_datadir}/icons/crystalsvg || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
-xdg-user-dirs-update
+update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 
 %files
 %defattr(-,root,root,-)
@@ -146,27 +145,5 @@ xdg-user-dirs-update
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-8
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-9
 - Initial release for TDE 14.0.0
-
-* Sat Jun 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-7
-- Rebuild
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-6
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-5
-- Initial release for TDE 3.5.13.1
-
-* Wed Jul 11 2012 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-4
-- Fix XDG menu directory location (again)
-
-* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-3
-- Updates 'Requires: trinity-guidance' to reflect package renaming
-
-* Wed Dec 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-2
-- Fix XDG menu directory location
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.0svn20070312-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-

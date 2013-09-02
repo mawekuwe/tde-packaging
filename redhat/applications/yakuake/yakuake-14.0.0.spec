@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Yakuake is a Quake-style terminal emulator based on TDE Konsole technology.
 Version:		2.8.1
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -67,7 +67,6 @@ Yakuake is a Quake-style terminal emulator based on TDE Konsole technology.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -119,24 +118,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/config.kcfg/*.kcfg
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.8.1-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.8.1-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 2.8.1-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.8.1-4
-- Initial release for TDE 3.5.13.1
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 2.8.1-3
-- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
-
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 2.8.1-2
-- Import to GIT
-
-* Mon Aug 22 2011 Francois Andriot <francois.andriot@free.fr> - 2.8.1-1
-- Correct macro to install under "/opt", if desired
-
-* Sun Aug 14 2011 Francois Andriot <francois.andriot@free.fr> - 2.8.1-0
-- Initial release for RHEL 6.0
-

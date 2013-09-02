@@ -30,7 +30,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		music editor and MIDI/audio sequencer [Trinity]
 Version:		1.7.0
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -126,8 +126,6 @@ This package provides the data files necessary for running Rosegarden
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}::%{tde_tdeincludedir}"
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
@@ -219,21 +217,5 @@ done
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-7
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-5
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.7.0-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-3
-- Initial release for TDE 3.5.13.1
-
-* Sun Apr 06 2012 Francois Andriot <francois.andriot@free.fr> - 1.7.0-2
-- Updated to build with gcc 4.7. [Commit #15276f36]
-- Enables JACK support
-
-* Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 1.7.0-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

@@ -26,7 +26,7 @@
 
 Name:			trinity-%{tde_pkg}
 Version:		0.7.3
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 Summary:		HAL based power management applet for Trinityfiles or directories.
 
 License:		GPLv2+
@@ -94,7 +94,6 @@ settings for:
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 	
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -103,6 +102,14 @@ cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
@@ -153,18 +160,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/config/kpowersaverc
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.7.3-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.7.3-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.7.3-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.7.3-3
-- Initial release for TDE 3.5.13.1
-
-* Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-2
-- Add missing /sbin/ldconfig
-- Add missing doc file
-
-* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

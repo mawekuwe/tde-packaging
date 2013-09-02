@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Tool for managing notes [Trinity]
 Version:		0.10
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -139,14 +139,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.10-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.10-2
-- Initial release for TDE 3.5.13.1
-
-* Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.10-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

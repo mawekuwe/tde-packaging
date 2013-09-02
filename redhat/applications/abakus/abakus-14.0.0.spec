@@ -25,7 +25,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Calculator for TDE
 Version:		0.91
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -69,7 +69,6 @@ has the user-friendly menu options of a normal TDE application.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}"
 
 # Specific path for RHEL4
 if [ -d "/usr/X11R6" ]; then
@@ -127,11 +126,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/applnk/Utilities/abakus.desktop
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.91-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.91-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.91-5
-- Initial release for TDE 3.5.13.2
-
-* Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.91-4
-- Initial release for TDE 3.5.13.1

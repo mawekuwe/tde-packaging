@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		an alternative to K-Menu for TDE [Trinity]
 Version:		0.4.9.3.1
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -78,7 +78,6 @@ Homepage: http://www.kbfx.org
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_tdeincludedir}"
 
 # Shitty hack for RHEL4 ...
 if [ -d "/usr/X11R6" ]; then
@@ -177,14 +176,5 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.9.3.1-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.9.3.1-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.9.3.1-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.9.3.1-2
-- Initial release for TDE 3.5.13.1
-
-* Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.9.3.1-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

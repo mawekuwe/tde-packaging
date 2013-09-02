@@ -1,5 +1,5 @@
 # Default version for this component
-%define tde_pkg abakus
+%define tde_pkg k3n-i18n
 %define tde_version 14.0.0
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
@@ -27,7 +27,7 @@
 Name:			trinity-k3b-i18n
 Summary:		Locale files for K3B
 Version:		1.0.5
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:			Trinity Project
 Packager:		Francois Andriot <francois.andriot@free.fr>
@@ -336,7 +336,6 @@ This package contains the Ukrainian translations for K3B.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 ./configure \
   --prefix=%{tde_prefix} \
@@ -412,12 +411,3 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-4
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-2
-- Initial release for TDE 3.5.13.1
-
-* Thu May 10 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.5-1
-- Initial release for TDE 3.5.13

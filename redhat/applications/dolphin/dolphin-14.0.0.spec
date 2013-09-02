@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		File manager for TDE focusing on usability 
 Version:		0.9.2
-Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -71,7 +71,6 @@ interface for the task of file management.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -147,32 +146,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.2-8
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.2-9
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.2-7
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.2-6
-- Initial release for TDE 3.5.13.1
-
-* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.2-5
-- Add alternatives with 'kio-umountwrapper'
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.2-4
-- Rebuild for Fedora 17
-- Fix HTML installation directory
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.2-3
-- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
-
-* Wed Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.2-2
-- Import to GIT
-
-* Mon Aug 22 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.2-1
-- Correct macro to install under "/opt", if desired
-
-* Thu Jun 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.2-0
-- Initial release for RHEL 6.0
-- Based on FC7 'Dolphin 0.8.2-2" SPEC file.
-

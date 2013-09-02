@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		A Samba (SMB) share advanced browser for Trinity
 Version:		0.9.4
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -141,9 +141,6 @@ Requires:		%{name} = %{version}-%{release}
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
-export TDEDIR="%{tde_prefix}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -179,18 +176,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.4-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.4-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.4-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.4-3
-- Initial release for TDE 3.5.13.1
-
-* Sun Apr 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.4-2
-- Rebuild for Fedora 17
-- Fix compilation with GCC 4.7 |Commit #b4c7fd48]
-
-* Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.4-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

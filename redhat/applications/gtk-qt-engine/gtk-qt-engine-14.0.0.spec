@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		theme engine using Qt for GTK+ 2.x and Trinity
 Version:		0.8
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -137,22 +137,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-4
-- Initial release for TDE 3.5.13.1
-
-* Mon Aug 27 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-3
-- Add missing gtkrc files
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.8-2
-- Rebuilt for Fedora 17
-- Fix FTBFS with newer glib
-- Removes useless post and postun
-
-* Sun Nov 20 2011 Francois Andriot <francois.andriot@free.fr> - 0.8-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

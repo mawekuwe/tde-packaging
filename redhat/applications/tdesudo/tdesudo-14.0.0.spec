@@ -28,7 +28,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		sudo frontend for Trinity
 
 Version:		2.5.1
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -74,7 +74,6 @@ It allows you to run programs as another user by entering your password.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -114,19 +113,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.5.1-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.5.1-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 2.5.1-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.5.1-3
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 2.5.1-2
-- Rebuilt for Fedora 17
-- Fix HTML directory location
-- Removes post and postun
-
-* Wed Nov 02 2011 Francois Andriot <francois.andriot@free.fr> - 2.5.1-1
-- Initial release for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15

@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Taking care of your ideas.
 Version:		1.0.3.1
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -44,6 +44,7 @@ BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gpgme-devel
@@ -160,14 +161,5 @@ update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-7
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-5
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-4
-- Initial release for TDE 3.5.13.2
-
-* Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.3.1-3
-- Initial release for TDE 3.5.13.1

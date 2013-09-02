@@ -41,6 +41,10 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:		trinity-cmake-translations.patch
+Patch2:		tdepowersave-cmake-add-translation-and-documentation.patch
+Patch3:		tdepowersave-14.0.0-test.patch
+
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -87,6 +91,9 @@ settings for:
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .lang
+%patch2 -p1 -b .lang
+#patch3 -p1 -b .test
 
 
 %build
@@ -113,6 +120,8 @@ cd build
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
+  \
+  -DBUILD_ALL=ON \
   ..
 
 %__make %{?_smp_mflags}
@@ -122,6 +131,8 @@ cd build
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
+
+%find_lang %{tde_pkg}
 
 
 %clean
@@ -134,6 +145,11 @@ update-desktop-database %{tde_appdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
+# Disables automatic poweroff, make sure we match both "kpowersave" and "tdepowersave"
+if [ $1 = 1 ] && [ -r /etc/acpi/actions/power.sh ]; then
+  %__cp -f "/etc/acpi/actions/power.sh" "/etc/acpi/actions/power.sh.tdepowersavebackup"
+  %__sed -i "/etc/acpi/actions/power.sh" -e "s|kpowersave|powersave|"
+fi
 
 %postun
 update-desktop-database %{tde_appdir} > /dev/null
@@ -141,8 +157,12 @@ update-desktop-database %{tde_appdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
+if [ $1 = 0 ] && [ -r "/etc/acpi/actions/power.sh.tdepowersavebackup" ]; then
+  %__mv -f "/etc/acpi/actions/power.sh.tdepowersavebackup" "/etc/acpi/actions/power.sh"
+fi
 
-%files
+
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO
 %{tde_bindir}/tdepowersave
@@ -157,20 +177,14 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/autostart/tdepowersave-autostart.desktop
 %{tde_datadir}/config/tdepowersaverc
 
+%lang(cs) %{tde_tdedocdir}/HTML/cs/tdepowersave/
+%lang(de) %{tde_tdedocdir}/HTML/de/tdepowersave/
+%lang(en) %{tde_tdedocdir}/HTML/en/tdepowersave/
+%lang(fi) %{tde_tdedocdir}/HTML/fi/tdepowersave/
+%lang(hu) %{tde_tdedocdir}/HTML/hu/tdepowersave/
+%lang(nb) %{tde_tdedocdir}/HTML/nb/tdepowersave/
+
 
 %changelog
 * Thu Jul 04 2013 Francois Andriot <francois.andriot@free.fr> - 0.7.3-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.7.3-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.7.3-3
-- Initial release for TDE 3.5.13.1
-
-* Sat Nov 26 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-2
-- Add missing /sbin/ldconfig
-- Add missing doc file
-
-* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.7.3-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

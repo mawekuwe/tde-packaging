@@ -26,7 +26,7 @@
 
 Name:			trinity-%{tde_pkg}
 Version:		1.0
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 Summary:		tool to configure the TDE kiosk framework
 
 License:		GPLv2+
@@ -71,8 +71,6 @@ groups of users.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -131,21 +129,5 @@ update-desktop-database >& /dev/null ||:
 %{tde_datadir}/apps/kiosktool/kiosktoolui.rc
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-6
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-7
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-5
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-3
-- Initial release for TDE 3.5.13.1
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.0-2
-- Rebuilt for Fedora 17
-- Fix post and postun
-
-* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 1.0-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

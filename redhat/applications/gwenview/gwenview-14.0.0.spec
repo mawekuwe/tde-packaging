@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Gwenview is an image viewer for TDE.
 Version:		1.4.2
-Release:		%{?!preversion:11}%{?preversion:10_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:12}%{?preversion:11_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -191,42 +191,5 @@ done
 %lang(en) %{tde_tdedocdir}/HTML/en/gwenview/
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-11
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-12
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-10
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-9
-- Initial release for TDE 3.5.13.1
-
-* Sat Aug 04 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-8
-- Add support for Mageia 2 and Mandriva 2011
-- Define QT_CLEAN_NAMESPACE during libmng checks [Commit #59c7639f]
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-7
-- Rebuilt for Fedora 17
-- Fix post and postun
-- Adds patches from GIT
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-6
-- Fix HTML directory location
-
-* Fri Nov 04 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-5
-- Adds missing files
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-4
-- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
-
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-3
-- Import to GIT
-
-* Wed Aug 24 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-2
-- Add fix for Fedora 15
-
-* Mon Aug 22 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-1
-- Correct macro to install under "/opt", if desired
-
-* Sat Aug 13 2011 Francois Andriot <francois.andriot@free.fr> - 1.4.2-0
-- Initial release for RHEL 6.0
-

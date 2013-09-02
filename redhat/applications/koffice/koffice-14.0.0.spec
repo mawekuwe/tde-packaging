@@ -27,7 +27,7 @@
 %define _docdir %{tde_docdir}
 
 # Disable Kross support for RHEL <= 5 (python is too old)
-%if 0%{?fedora} > 0 || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_kross 1
 %endif
 
@@ -41,7 +41,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		An integrated office suite
 Version:		1.6.3
-Release:		%{?!preversion:9}%{?preversion:8_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:10}%{?preversion:9_%{preversion}}%{?dist}%{?_variant}
 
 Group:			Applications/Productivity
 License:		GPLv2+
@@ -54,7 +54,6 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-
 
 # BuildRequires: world-devel ;)
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -1063,16 +1062,6 @@ This package is part of the TDE Office Suite.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-%if 0%{?mgaversion} >= 3 || 0%{?pclinuxos} >= 2013
-%__cp /usr/share/automake-1.13/test-driver admin/
-%endif
-
-# use LGC variant instead
-%__sed -i.dejavu-lgc \
-  -e 's|DejaVu Sans|DejaVu LGC Sans|' \
-  -e 's|dejavu sans|dejavu lgc sans|' \
-  lib/kformula/{contextstyle,fontstyle,symboltable}.cc 
-
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
@@ -1081,7 +1070,6 @@ This package is part of the TDE Office Suite.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %if 0%{?suse_version} == 1220
@@ -1113,13 +1101,12 @@ export CXXFLAGS="${CXXFLAGS} -I${RD}/%_normalized_cpu-linux"
   %{?with_kross:--enable-scripting} %{!?with_kross:--disable-scripting} \
   %{?with_postgresql:--enable-pgsql} %{!?with_postgresql:--disable-pgsql} \
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
-
 
 # Replace absolute symlinks with relative ones
 pushd %{buildroot}%{tde_tdedocdir}/HTML
@@ -1163,38 +1150,5 @@ rm -f %{buildroot}%{tde_libdir}/libkugar*.so
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-8
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-10
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.6.3-7
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-6
-- Initial release for TDE 3.5.13.1
-
-* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-5
-- Fix kformula dependancies (for RHEL6)
-- Fix FTBFS due to missing libraries [Bug #657] [Commit #5c69fcd3]
-  Clean up lib paths in LDFLAGS - moved to LIBADD
-  For KWord and and KPresenter added linking kspell2
-  For KSpread added linking kutils
-- Fix accidental conversions of binary files [Bug #1033] [Commit #dbe89307]
-
-* Thu Apr 26 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-4
-- Updates BuildRequires
-- Build for Fedora 17
-- Fix compilation with GCC 4.7 [Bug #958]
-- Fix compilation with Ruby 1.9 [Bug #735]
-- Fix compilation with libpng [Bug #603]
-
-* Sat Jan 07 2012 Francois Andriot <francois.andriot@free.fr> - 1.6.3-3
-- Fix GraphicksMagick 1.3 support [Bug #353]
-- Various patches for kexi [Bug #777]
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.3-2
-- Fix HTML directory location
-
-* Tue Nov 22 2011 Francois Andriot <francois.andriot@free.fr> - 1.6.3-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-- Based on Spec file from Fedora 11 'koffice-2:1.6.3-25.20090306svn'
-- Removed 'krita', added 'chalk'

@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		digital photo management application for TDE [Trinity]
 Version:		0.9.6
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -134,7 +134,6 @@ Requires:		%{name} = %{version}-%{release}
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_tdeincludedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -315,40 +314,5 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-7
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-8
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-6
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.9.6-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-4
-- Initial release for TDE 3.5.13.1
-
-* Fri Aug 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-3
-- Add support for Mageia 2 and Mandriva 2011
-- Removes old patches, adds GIT patches.
-- Fix digikam FTBFS due to jpeg code [Commit #b9419cd5]
-- Fix FTBFS due to png code [Bug #595] [Commit #3e27b07f]
-- Remove version.h. Cruft from an older version prior to 0.9.6.
-- Fix usage of obsolete libpng jmpbuf member [Commit #7d0d82b7]
-- GCC 4.7 fix. [Bug #958] [Commit #a9489034]
-- GCC 4.7 fix. [Bug #958] [Commit #a209c81b]
-- Fix 'format not a string literal' error [Commit #029218cd]
-- Update patch in GIT hash a9489034 to use reinterpret_cast. [Commit #5a043853]
-- Fix FTBFS on png >= 0.15 [Commit #18ecd512]
-
-* Sun Jul 08 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-3
-- Fix man directory location
-- Fix postinstall
-- Fix description
-- Add "BuildRequires: exiv2-devel"
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.9.6-2
-- gcc 4.7 + libpng 1.5 patch for digikam (consolidated) [Bug #958]
-
-* Sun Nov 06 2011 Francois Andriot <francois.andriot@free.fr> - 0.9.6-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-

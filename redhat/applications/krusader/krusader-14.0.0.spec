@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		twin-panel (commander-style) file manager for TDE (and other desktops)
 Version:		1.90.0
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -86,7 +86,6 @@ great on your desktop.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -115,6 +114,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 %find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}
@@ -156,19 +156,5 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.90.0-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.90.0-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.90.0-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.90.0-3
-- Initial release for TDE 3.5.13.1
-
-* Wed May 02 2012 Francois Andriot <francois.andriot@free.fr> - 1.90.0-2
-- Rebuild for Fedora 17
-- GCC 4.7 fixes. [Commit #fdf6d340]
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 1.90.0-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-

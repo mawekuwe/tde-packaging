@@ -27,7 +27,7 @@
 Name:			trinity-tde-style-lipstik
 Summary:		Lipstik style for TDE
 Version:		2.2.3
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -76,7 +76,6 @@ Lipstik also provides Lipstik-color-schemes
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -110,30 +109,16 @@ export PATH="%{tde_bindir}:${PATH}"
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{tde_tdelibdir}/kstyle_lipstik_config.la
-%{tde_tdelibdir}/kstyle_lipstik_config.so
+%{tde_tdelibdir}/tdestyle_lipstik_config.la
+%{tde_tdelibdir}/tdestyle_lipstik_config.so
 %{tde_tdelibdir}/plugins/styles/lipstik.la
 %{tde_tdelibdir}/plugins/styles/lipstik.so
 %{tde_datadir}/apps/tdedisplay/color-schemes/lipstiknoble.kcsrc
 %{tde_datadir}/apps/tdedisplay/color-schemes/lipstikstandard.kcsrc
 %{tde_datadir}/apps/tdedisplay/color-schemes/lipstikwhite.kcsrc
-%{tde_datadir}/apps/kstyle/themes/lipstik.themerc
+%{tde_datadir}/apps/tdestyle/themes/lipstik.themerc
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.3-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.3-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 2.2.3-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.2.3-3
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 2.2.3-2
-- Rebuilt for Fedora 17
-- Fix HTML directory location
-- Removes post and postun
-
-* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 2.2.3-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

@@ -26,7 +26,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		Xine-based media player
 
 Version:		0.8.8
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -224,7 +224,6 @@ Requires:		%{name} = %{version}-%{release}
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -272,34 +271,5 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-4
-- Initial release for TDE 3.5.13.1
-
-* Fri Aug 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-3
-- Add support for Mageia 2 and Mandriva 2011
-- Added automake initialization with proper program name and version [Bug #858] [Commit #4e982fa3]
-- Fixed online hyperlink to win32 codecs download location. [Commit #5086f358]
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-2
-- Rebuilt for Fedora 17
-- Adds more patches from GIT.
-
-* Mon Apr 23 2012 Francois Andriot <francois.andriot@free.fr> - 0.8.8-1
-- Updates version to 0.8.8
-- Fix nominal "tqt" typos and fix slow DVB start. [Bug #729, #899]
-- Change location where Kaffeine stores temporary pipe files from $HOME to the more appropriate $TDEHOME/tmp-$HOSTNAME.
-- Work around Xine crash when displaying still logo image by creating a small movie file to replace it [Bug #511, #559]
-- Add man page
-
-* Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.6-2
-- Disable 'libxcb-devel' for RHEL 5 compilation
-- Fix HTML directory location
-
-* Wed Nov 09 2011 Francois Andriot <francois.andriot@free.fr> - 0.8.6-1
-- Spec file based on Fedora 8 'kaffeine-0.8.6-3'

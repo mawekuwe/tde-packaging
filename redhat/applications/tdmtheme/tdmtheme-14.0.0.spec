@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		theme manager for TDM [Trinity]
 Version:		1.2.2
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -75,7 +75,6 @@ that allows you to easily install, remove and change your KDM themes.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -124,22 +123,5 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.2-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.2-7
 - Initial release for TDE 14.0.0
-
-* Thu Jun 27 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.2-5
-- Fix tdmtheme crash. This resolves Bug 1544
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.2.2-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.2.2-3
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.2.2-2
-- Rebuilt for Fedora 17
-- Removes post and postun
-- Removes the 'lintian' stuff from Debian
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 1.2.2-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

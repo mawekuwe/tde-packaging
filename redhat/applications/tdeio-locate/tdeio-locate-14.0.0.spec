@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		kio-slave for the locate command [Trinity]
 Version:		0.4.5
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -73,23 +73,12 @@ as a directory.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
-
-export CMAKE_INCLUDE_PATH="%{tde_tdeincludedir}"
-
-# Shitty hack for RHEL4 ...
-if [ -d "/usr/X11R6" ]; then
-  export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH}:/usr/X11R6/include:/usr/X11R6/%{_lib}"
-  export CFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-fi
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
-
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
@@ -137,20 +126,5 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_datadir}/services/searchproviders/locate.desktop
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.5-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.5-6
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.5-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.5-3
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.5-2
-- Rebuilt for Fedora 17
-- Removes post and postun
-- Fix compilation with GCC 4.7
-
-* Sat Dec 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.4.5-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16
-

@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Gwenview is an image viewer for TDE.
 Version:		1.4.2
-Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -170,12 +170,5 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-3
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-4
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.2-2
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.4.2-1
-- Initial release for TDE 3.5.13.1
-

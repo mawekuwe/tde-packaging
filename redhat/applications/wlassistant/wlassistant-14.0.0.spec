@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		User friendly TDE frontend for wireless network connection [Trinity]
 Version:		0.5.7
-Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -73,7 +73,6 @@ remembered so next time the user won't have to enter them again.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Shitty hack for RHEL4 ...
 if [ -d "/usr/X11R6" ]; then
@@ -145,14 +144,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.5.7-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.5.7-5
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.5.7-3
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.5.7-2
-- Initial release for TDE 3.5.13.1
-
-* Tue Nov 29 2011 Francois Andriot <francois.andriot@free.fr> - 0.5.7-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

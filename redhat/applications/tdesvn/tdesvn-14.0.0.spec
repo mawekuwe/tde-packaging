@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		subversion client with tight TDE integration [Trinity]
 Version:		1.0.4
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -120,8 +120,6 @@ find . -name "*.cmake" -exec %__sed -i {} \
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-
 export CMAKE_INCLUDE_PATH="%{tde_tdeincludedir}"
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -283,25 +281,5 @@ fi
 
 
 %changelog
-* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-7
+* Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-8
 - Initial release for TDE 14.0.0
-
-* Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-6
-- Rebuild with NDEBUG option
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.4-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.4-4
-- Initial release for TDE 3.5.13.1
-
-* Mon Jul 30 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.4-3
-- Installs SVN protocols as alternative, avoids conlict with TDESDK
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 1.0.4-2
-- Rebuilt for Fedora 17
-- Fix post and postun
-- Fix compilation with GCC 4.7
- 
-* Thu Dec 01 2011 Francois Andriot <francois.andriot@free.fr> - 1.0.4-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

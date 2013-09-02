@@ -27,7 +27,7 @@
 Name:			trinity-tde-style-qtcurve
 Summary:		This is a set of widget styles for Trinity based apps
 Version:		0.55.2
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -75,8 +75,6 @@ gtk2-engines-qtcurve.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
-export TDEDIR="%{tde_prefix}"
 
 export CXXFLAGS="-I${QTINC} -I%{tde_tdeincludedir} ${CXXFLAGS}"
 
@@ -136,31 +134,15 @@ export PATH="%{tde_bindir}:${PATH}"
 %files -f qtcurve.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
-%{tde_tdelibdir}/kstyle_qtcurve_config.la
-%{tde_tdelibdir}/kstyle_qtcurve_config.so
+%{tde_tdelibdir}/tdestyle_qtcurve_config.la
+%{tde_tdelibdir}/tdestyle_qtcurve_config.so
 %{tde_tdelibdir}/plugins/styles/qtcurve.so
 %{tde_tdelibdir}/plugins/styles/qtcurve.la
 %{tde_datadir}/apps/tdedisplay/color-schemes/QtCurve.kcsrc
-%{tde_datadir}/apps/kstyle/themes/qtcurve.themerc
+%{tde_datadir}/apps/tdestyle/themes/qtcurve.themerc
 %{tde_datadir}/apps/QtCurve/*.qtcurve
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.55.2-6
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.55.2-7
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.55.2-5
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.55.2-4
-- Initial release for TDE 3.5.13.1
-
-* Sun Sep 09 2012 Francois Andriot <francois.andriot@free.fr> - 0.55.2-3
-- Switch to v3.5.13-sru branch
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.55.2-2
-- Rebuilt for Fedora 17
-- Removes post and postun
-
-* Sat Nov 19 2011 Francois Andriot <francois.andriot@free.fr> - 0.55.2-1
-- Initial release for RHEL 5, RHEL 6, Fedora 15, Fedora 16

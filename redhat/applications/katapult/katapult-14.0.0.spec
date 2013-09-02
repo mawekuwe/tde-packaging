@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Faster access to applications, bookmarks, and other items.
 Version:		0.3.2.1
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -72,7 +72,6 @@ inspired by Quicksilver for OS X.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -178,26 +177,5 @@ update-desktop-database %{tde_appdir} &> /dev/null
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-7
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-8
 - Initial release for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-6
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-5
-- Initial release for TDE 3.5.13.1
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-4
-- Rebuilt for Fedora 17
-- Fix post and postun
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-3
-- Fix HTML directory location
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-2
-- Rebuilt for TDE 3.5.13 on RHEL 6, RHEL 5 and Fedora 15
-
-* Tue Sep 14 2011 Francois Andriot <francois.andriot@free.fr> - 0.3.2.1-1
-- Initial release for RHEL 6.0
-- Import to GIT
-
