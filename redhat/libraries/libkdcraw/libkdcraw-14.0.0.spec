@@ -28,7 +28,7 @@ Summary:	Raw picture decoding C++ library (runtime) [Trinity]
 
 Epoch:		1
 Version:	0.1.9
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Environment/Libraries
@@ -98,8 +98,8 @@ library documentation is available on kdcraw.h header file.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
+# Warning: gcc-hidden-visibility causes FTBFS in digikam !
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -113,7 +113,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -170,5 +170,5 @@ done
 %{tde_libdir}/pkgconfig/libkdcraw.pc
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.9-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1:0.1.9-2
 - Initial release for TDE R14.0.0

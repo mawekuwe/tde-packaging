@@ -14,7 +14,7 @@
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 %define tde_mandir %{tde_datadir}/man
-%define tde_appdir %{tde_datadsir}/applications
+%define tde_appdir %{tde_datadir}/applications
 
 %define tde_tdedocdir %{tde_docdir}/tde
 %define tde_tdeincludedir %{tde_includedir}/tde
@@ -27,7 +27,7 @@ Name:		trinity-%{tde_pkg}
 Summary:	Trinity image viewer
 Epoch:		1
 Version:	0.8.0
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Environment/Libraries
@@ -78,6 +78,9 @@ BuildRequires:	xmedcon-devel
 %define with_svg 1
 %if 0%{?fedora} || 0%{?rhel} 
 BuildRequires:	librsvg2
+%endif
+%if 0%{?fedora}
+BuildRequires:	librsvg2-tools
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	librsvg
@@ -506,5 +509,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.0-2
 - Initial release for TDE 14.0.0

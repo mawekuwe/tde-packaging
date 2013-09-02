@@ -28,7 +28,7 @@ Summary:	Qt like interface for the libexiv2 library (runtime) [Trinity]
 
 Epoch:		1
 Version:	0.1.7
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Environment/Libraries
@@ -42,9 +42,9 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires: trinity-tqtinterface-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires: trinity-arts-devel >= 1:1.5.10
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
 
@@ -159,5 +159,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.7-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.7-2
 - Initial release for TDE 14.0.0

@@ -40,7 +40,6 @@ Prefix:    %{tde_prefix}
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Patch0:		libtdeldap-14.0.0-ftbfs.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -48,7 +47,13 @@ BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
+# OPENLDAP support
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
 BuildRequires:	openldap-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	openldap2-devel
+%endif
 
 
 %description
@@ -100,7 +105,6 @@ libtdeldap-trinity-dev contains development files and documentation.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -110,7 +114,6 @@ libtdeldap-trinity-dev contains development files and documentation.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \

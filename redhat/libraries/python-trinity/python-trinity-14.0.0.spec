@@ -28,7 +28,7 @@
 Name:		trinity-python-trinity
 Summary:	Trinity bindings for Python [Trinity]
 Version:	3.16.3
-Release:	%{?!preversion:5}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -43,15 +43,13 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-# Fix include subdirectory 'tde' instead of 'kde'
-Patch1:		python-trinity-14.0.0-tde_includedir.patch
-
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
+# PYTHON support
 BuildRequires:	python
 BuildRequires:	trinity-python-tqt-devel
 
@@ -115,13 +113,12 @@ tips and working code you can use to learn from.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .inc
 
 
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+export LD_RUN_PATH="%{tde_libdir}"
 
 export DH_OPTIONS
 
@@ -167,5 +164,5 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.16.3-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 3.16.3-5
 - Initial release for TDE 14.0.0

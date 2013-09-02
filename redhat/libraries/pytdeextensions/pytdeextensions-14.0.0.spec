@@ -27,7 +27,7 @@
 Name:		trinity-pytdeextensions
 Summary:	Python packages to support TDE applications (scripts) [Trinity]
 Version:	0.4.0
-Release:	%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Applications/Utilities
@@ -172,7 +172,6 @@ fi
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %__mkdir_p build
 ./setup.py build_libpythonize
@@ -190,7 +189,8 @@ export PYTHONDONTWRITEBYTECODE=
 	--root=%{buildroot} \
 	--prefix=%{tde_prefix} \
 	--install-clib=%{tde_libdir} \
-	--install-cheaders=%{tde_tdeincludedir} -v
+	--install-cheaders=%{tde_tdeincludedir} \
+   -v
 
 # Removes BUILDROOT directory reference in installed files
 for f in \
@@ -219,11 +219,5 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0-6
 - Initial build for TDE 14.0.0
-
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.4.0-4
-- Initial release for TDE 3.5.13.2
-
-* Tue Oct 02 2012 Francois Andriot <francois.andriot@free.fr> - 0.4.0-3
-- Initial release for TDE 3.5.13.1

@@ -27,7 +27,7 @@ Summary:	library for apps that want to use kipi-plugins (runtime version) [Trini
 
 Epoch:		1
 Version:	0.1.5
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2+
 Group:		Environment/Libraries
@@ -103,7 +103,6 @@ Homepage: http://www.kipi-plugins.org/
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -172,5 +171,5 @@ done
 %{tde_libdir}/pkgconfig/libkipi.pc
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.5-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.5-2
 - Initial release for TDE 14.0.0
