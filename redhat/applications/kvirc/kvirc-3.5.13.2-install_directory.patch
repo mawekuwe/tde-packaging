@@ -1,11 +1,15 @@
 --- trinity-kvirc-14.0.0~pre102+3e8fea2e/admin/acinclude.m4.in.ROI	2013-08-04 20:37:52.076477391 +0200
 +++ trinity-kvirc-14.0.0~pre102+3e8fea2e/admin/acinclude.m4.in	2013-08-04 20:37:57.402529614 +0200
-@@ -2633,7 +2633,7 @@
- 	AC_DEFINE_UNQUOTED([VERSION_BRANCH], "$SS_DIRTAG", [MAJOR.MINOR part of version])
- 	AC_DEFINE_UNQUOTED([BUILD_FLAGS],"$target_cpu-$build_flags", [these are the build flags])
+@@ -2603,10 +2603,10 @@
+ 	helpdir="\${globalkvircdir}/help/en"
+ 	AC_SUBST(helpdir)
  
--	globalkvircdir="\${datadir}/kvirc/$SS_DIRTAG"
-+	globalkvircdir="\${libdir}/kvirc/$SS_DIRTAG"
- 	AC_SUBST(globalkvircdir)
+-	pluglibdir="\${globalkvircdir}/modules"
++	pluglibdir="\${libdir}/kvirc/$SS_DIRTAG/modules"
+ 	AC_SUBST(pluglibdir)
  
- 	configdir="\${globalkvircdir}/config"
+-	modulelibdir="\${globalkvircdir}/modules"
++	modulelibdir="\${libdir}/kvirc/$SS_DIRTAG/modules"
+ 	AC_SUBST(modulelibdir)
+ 
+ 	defscriptdir="\${globalkvircdir}/defscript"

@@ -47,7 +47,7 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Patch0:			kvirc-3.5.13.2-fix_ftbfs.patch
 # [kvirc] FTBFS because of missing link libraries [Bug #991]
 Patch1:			kvirc-3.5.13-ftbfs.patch
-Patch2:			kvirc-14.0.0-install_directory.patch
+Patch2:			kvirc-3.5.13.2-install_directory.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
