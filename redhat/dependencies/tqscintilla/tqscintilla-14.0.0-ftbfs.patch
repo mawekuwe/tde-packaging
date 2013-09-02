@@ -1,5 +1,14 @@
---- trinity-tqscintilla-14.0.0~pre20+a3562a94/qt/qscintilla.pro.ORI	2013-07-02 19:27:56.391143562 +0200
-+++ trinity-tqscintilla-14.0.0~pre20+a3562a94/qt/qscintilla.pro	2013-07-02 19:30:59.279346578 +0200
+--- trinity-tqscintilla-14.0.0~pre20+a3562a94/qt/qscintilla.pro.ftbfs	2013-07-21 10:56:22.714582322 +0200
++++ trinity-tqscintilla-14.0.0~pre20+a3562a94/qt/qscintilla.pro	2013-09-02 20:00:39.455251114 +0200
+@@ -27,7 +27,7 @@
+ TARGET = qscintilla
+ # DESTDIR = $(QTDIR)/lib
+ CONFIG += qt warn_off release dll thread
+-INCLUDEPATH = . ../include ../src /usr/include/tqt
++INCLUDEPATH = . ../include ../src /usr/include/tqt /usr/include/tqt3
+ DEFINES = QEXTSCINTILLA_MAKE_DLL QT SCI_LEXER
+ 
+ HEADERS = \
 @@ -211,10 +211,10 @@
  	qscintilla_ru.ts
  

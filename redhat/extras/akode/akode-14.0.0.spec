@@ -21,13 +21,15 @@
 Summary: 	Audio-decoding framework 
 Name:		trinity-akode 
 Version:	2.0.2
-Release:	5%{?dist}%{?_variant}
+Release:	6%{?dist}%{?_variant}
 
 License:	LGPLv2+
 Group: 		System Environment/Libraries
 #URL:		http://carewolf.com/akode/  
 URL:		http://www.kde-apps.org/content/show.php?content=30375
+
 Source0:	akode-2.0.2.tar.bz2
+Source1:	admin-14.0.0.tar.gz
 
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -43,6 +45,7 @@ Patch4: akode-2.0.2-gcc43.patch
 Patch10: akode-autotools.patch
 Patch11: akode-2.0.2-fix_ffmpeg_include.patch
 Patch12: akode-2.0.2-fix_ftbfs.patch
+Patch13: akode-14.0.0-ftbfs.patch
 
 # FLAC support
 %define _with_flac --with-flac
@@ -282,29 +285,44 @@ Requires: %{name} = %{version}-%{release}
 
 %prep
 %setup -q -n akode-%{version}
+%__rm -rf admin
+tar xfz %{SOURCE1}
 
 %patch1 -p1 -b .pulseaudio
 %patch2 -p1 -b .multilib
 %patch3 -p4 -b .flac113_portable
 %patch4 -p1 -b .gcc43
 
-%patch10 -p1 -b .autotools
+#patch10 -p1 -b .autotools
 %patch11 -p1 -b .ffmpeg
 %patch12 -p1 -b .ftbfs
+%patch13 -p1 -b .ftbfs
+
+%__rm -f libtool acinclude.m4 configure.in Makefile.cvs aclocal.m4
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-%__make -f admin/Makefile.common cvs
+%__make -f admin/Makefile.common
+
 
 %build
+unset QTDIR QTINC QTLIB
+export PATH="%{tde_bindir}:${PATH}"
+
 %configure \
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \
   --includedir=%{tde_includedir} \
   --datadir=%{tde_datadir} \
-  --disable-static \
-  --enable-shared \
-  --disable-debug --disable-warnings --disable-dependency-tracking \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility \
+  \
   --without-libltdl \
   --with-alsa \
   --with-oss \
@@ -315,17 +333,17 @@ Requires: %{name} = %{version}-%{release}
   --with-speex \
   --with-vorbis \
   --without-ffmpeg \
-  %{?_with_libmad} %{!?_with_libmad:--without-libmad} \
-  --enable-closure \
-  --enable-new-ldflags \
-  --enable-final
+  %{?_with_libmad} %{!?_with_libmad:--without-libmad}
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} LIBTOOL=/usr/bin/libtool
 
 
 %install
 %__rm -rf %{buildroot} 
 %__make install DESTDIR=%{buildroot}
+
+# unpackaged files
+%__rm -f %{buildroot}%{tde_libdir}/*.a
 
 # rpmdocs
 for file in AUTHORS COPYING NEWS README TODO ; do
@@ -338,18 +356,5 @@ done
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-5
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-6
 - Initial release for TDE 14.0.0
-
-* Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> - 2.0.2-4
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-3
-- Initial release for TDE 3.5.13.1
-
-* Mon Jul 30 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-2
-- Re-adds '.la' files
-
-* Tue May 01 2012 Francois Andriot <francois.andriot@free.fr> - 2.0.2-1
-- Port to TDE 3.5.13
-- Based on spec file from Fedora 9 'akode-2.0.2-5'

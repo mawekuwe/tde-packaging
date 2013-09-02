@@ -96,7 +96,7 @@
  TARGET = conf
 -INCLUDEPATH += '/usr/include/tqt'
 +INCLUDEPATH += '${QTINC:-${QTDIR}/include}'
-+INCLUDEPATH += '/opt/trinity/include/tqt'
++INCLUDEPATH += '/usr/include/tqt'
  
  DEFINES += X11_INC='"\$\$QMAKE_INCDIR_X11"'
  DEFINES += X11_LIBDIR='"\$\$QMAKE_LIBDIR_X11"'

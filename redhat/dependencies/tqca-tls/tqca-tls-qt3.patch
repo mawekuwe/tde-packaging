@@ -49,7 +49,7 @@
  
  		// Make sure tqtinterface can be found
 -		conf->addIncludePath("/usr/include/tqt");
-+		conf->addIncludePath("/opt/trinity/include/tqt");
++		conf->addIncludePath("/usr/include/tqt");
 +		// Make sure tqt3 can be found
 +		conf->addIncludePath("${QTINC:-${QTDIR}/include}");
  
@@ -69,7 +69,7 @@
  CONFIG += qt x11 thread console
  TARGET = conf
 -INCLUDEPATH += '/usr/include/tqt'
-+INCLUDEPATH += '/opt/trinity/include/tqt' '${QTINC:-${QTDIR}/include}'
++INCLUDEPATH += '/usr/include/tqt' '${QTINC:-${QTDIR}/include}'
  
  DEFINES += X11_INC='"\$\$QMAKE_INCDIR_X11"'
  DEFINES += X11_LIBDIR='"\$\$QMAKE_LIBDIR_X11"'

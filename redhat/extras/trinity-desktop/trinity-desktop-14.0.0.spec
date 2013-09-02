@@ -160,7 +160,6 @@ Requires: trinity-smb4k
 Requires: trinity-smartcardauth
 Requires: trinity-soundkonverter
 Requires: trinity-tde-guidance
-Requires: trinity-tde-guidance-powermanager
 Requires: trinity-tde-style-lipstik
 Requires: trinity-tde-style-qtcurve
 Requires: trinity-tde-systemsettings
@@ -179,6 +178,9 @@ Requires: trinity-tork
 Requires: trinity-twin-style-crystal
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
+
+# Obsolete stuff in R14
+Obsoletes: trinity-tde-guidance-powermanager
 
 # Decoration-related stuff (not installed by default)
 #Requires: trinity-kgtk-qt3
