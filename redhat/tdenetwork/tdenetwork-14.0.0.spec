@@ -85,16 +85,21 @@ BuildRequires:	sqlite-devel
 BuildRequires:	libgadu-devel
 %endif
 
+# XTST support
+%if 0%{?fedora} >= 5 || 0%{?rhel} >= 5 || 0%{?suse_version}
+BuildRequires:	libXtst-devel
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires:	libxtst-devel
+%endif
+
+# Other stuff
 %if 0%{?fedora} >= 5 || 0%{?rhel} >= 5
 BuildRequires:	libXmu-devel
 BuildRequires:	libXScrnSaver-devel
-BuildRequires:	libXtst-devel
 BuildRequires:	libXxf86vm-devel
 %endif
 
-%if 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
-BuildRequires:	libxtst-devel
-%endif
 
 # Wifi support
 %if "%{?_with_wifi:1}" == "1"
@@ -1084,8 +1089,6 @@ update-desktop-database 2> /dev/null || :
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then

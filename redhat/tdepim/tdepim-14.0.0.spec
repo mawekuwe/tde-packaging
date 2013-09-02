@@ -582,7 +582,9 @@ Group:		Environment/Libraries
 Requires:	libcaldav
 Requires:	libcarddav
 
-Obsoletes:	tdepim-tderesources < %{version}-%{release}
+Obsoletes:	tdepim-kresources < %{version}-%{release}
+Obsoletes:	trinity-tdepim-kresources < %{version}-%{release}
+Provides:	trinity-tdepim-kresources = %{version}-%{release}
 
 %description tderesources
 This package includes several plugins needed to interface with groupware
@@ -2195,12 +2197,6 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export LD_LIBRARY_PATH="%{tde_libdir}"
-
-# Specific path for RHEL4
-if [ -d "/usr/X11R6" ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-fi
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build

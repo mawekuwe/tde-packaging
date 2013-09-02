@@ -751,7 +751,7 @@ Some random features:
 %{tde_tdeappdir}/kate.desktop
 %{tde_datadir}/apps/kate/
 %{tde_datadir}/apps/tdeconf_update/kate-2.4.upd
-%{_sysconfdir}/trinity/katerc
+%config(noreplace) %{_sysconfdir}/trinity/katerc
 %{tde_datadir}/icons/hicolor/*/apps/kate.png
 %{tde_datadir}/icons/hicolor/*/apps/kate2.svgz
 %{tde_datadir}/servicetypes/kateplugin.desktop
@@ -970,8 +970,8 @@ plugdev group.
 %{tde_tdelibdir}/tdefile_font.so
 %{tde_tdelibdir}/tdeio_fonts.la
 %{tde_tdelibdir}/tdeio_fonts.so
-%{tde_tdelibdir}/kstyle_keramik_config.la
-%{tde_tdelibdir}/kstyle_keramik_config.so
+%{tde_tdelibdir}/tdestyle_keramik_config.la
+%{tde_tdelibdir}/tdestyle_keramik_config.so
 %{tde_tdelibdir}/libtdefontviewpart.la
 %{tde_tdelibdir}/libtdefontviewpart.so
 %{tde_tdelibdir}/libtdeshorturifilter.la
@@ -1156,7 +1156,6 @@ TDE applications, particularly those in the TDE base module.
 %files bin
 %defattr(-,root,root,-)
 %{tde_bindir}/krootbacking
-#%{tde_bindir}/tdeinit_phase1
 %if 0%{?with_tsak}
 %attr(4511,root,root) %{tde_bindir}/tdmtsak
 %{tde_bindir}/tsak
@@ -1165,7 +1164,7 @@ TDE applications, particularly those in the TDE base module.
 %{tde_bindir}/kreadconfig
 %{tde_bindir}/kwriteconfig
 %{tde_bindir}/kstart
-%{_sysconfdir}/trinity/kxkb_groups
+%config(noreplace) %{_sysconfdir}/trinity/kxkb_groups
 %{tde_bindir}/drkonqi
 %{tde_bindir}/crashtest
 %{tde_bindir}/kapplymousetheme
@@ -1229,8 +1228,8 @@ TDE applications, particularly those in the TDE base module.
 %{tde_datadir}/services/kded/khotkeys.desktop
 %{tde_datadir}/services/kxkb.desktop
 %if 0%{?suse_version} == 0
-%{_sysconfdir}/pam.d/kcheckpass-trinity
-%{_sysconfdir}/pam.d/tdescreensaver-trinity
+%config(noreplace) %{_sysconfdir}/pam.d/kcheckpass-trinity
+%config(noreplace) %{_sysconfdir}/pam.d/tdescreensaver-trinity
 %endif
 %{tde_tdedocdir}/HTML/en/kdcop/
 %{tde_tdedocdir}/HTML/en/kdebugdialog//
@@ -1286,7 +1285,7 @@ needed for a basic TDE desktop installation.
 
 %files data
 %defattr(-,root,root,-)
-%{_sysconfdir}/trinity/tdeshorturifilterrc
+%config(noreplace) %{_sysconfdir}/trinity/tdeshorturifilterrc
 %{tde_datadir}/applnk/.hidden/battery.desktop
 %{tde_datadir}/applnk/.hidden/bwarning.desktop
 %{tde_datadir}/applnk/.hidden/cwarning.desktop
@@ -1543,10 +1542,10 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/wallpapers/*
 
 # XDG directories information
-%{_sysconfdir}/xdg/menus/applications-merged/tde-essential.menu
-%{_sysconfdir}/xdg/menus/tde-information.menu
-%{_sysconfdir}/xdg/menus/tde-screensavers.menu
-%{_sysconfdir}/xdg/menus/tde-settings.menu
+%config(noreplace) %{_sysconfdir}/xdg/menus/applications-merged/tde-essential.menu
+%config(noreplace) %{_sysconfdir}/xdg/menus/tde-information.menu
+%config(noreplace) %{_sysconfdir}/xdg/menus/tde-screensavers.menu
+%config(noreplace) %{_sysconfdir}/xdg/menus/tde-settings.menu
 
 %{tde_tdedocdir}/HTML/en/kcontrol/
 %exclude %{tde_tdedocdir}/HTML/en/kcontrol/kcmkonsole/
@@ -1880,8 +1879,8 @@ the TDE desktop.
 
 %files -n trinity-kdesktop
 %defattr(-,root,root,-)
-%{_sysconfdir}/trinity/kdesktop_custom_menu1
-%{_sysconfdir}/trinity/kdesktop_custom_menu2
+%config(noreplace) %{_sysconfdir}/trinity/kdesktop_custom_menu1
+%config(noreplace) %{_sysconfdir}/trinity/kdesktop_custom_menu2
 %{tde_bindir}/kcheckrunning
 %{tde_bindir}/kxdglauncher
 %{tde_bindir}/kdeeject
@@ -1997,11 +1996,12 @@ already. Most users won't need this.
 %{tde_datadir}/apps/tdm/sessions/*.desktop
 %{tde_datadir}/apps/tdm/themes/
 %{tde_datadir}/config/tdm
-%{_sysconfdir}/trinity/tdm/
+%dir %{_sysconfdir}/trinity/tdm
+%config(noreplace) %{_sysconfdir}/trinity/tdm/*
 %{tde_tdedocdir}/HTML/en/tdm/
 %if 0%{?suse_version} == 0
-%{_sysconfdir}/pam.d/tdm-trinity
-%{_sysconfdir}/pam.d/tdm-trinity-np
+%config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity
+%config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity-np
 %endif
 %if 0%{?suse_version}
 /usr/lib/X11/displaymanagers/tdm
@@ -2134,7 +2134,7 @@ Requires:	%{name}-data = %{version}-%{release}
 Requires:	htdig
 
 %description -n trinity-khelpcenter
-The TDE Help Center provides documentation on how to use the KDE desktop.
+The TDE Help Center provides documentation on how to use the TDE desktop.
 
 The htdig package is needed to build a searchable archive of TDE
 documentation.
@@ -2358,7 +2358,7 @@ web browser if the clipboard contains a URL.
 %files -n trinity-klipper
 %defattr(-,root,root,-)
 %{tde_bindir}/klipper
-%{_sysconfdir}/trinity/klipperrc
+%config(noreplace) %{_sysconfdir}/trinity/klipperrc
 %{tde_tdelibdir}/klipper.la
 %{tde_tdelibdir}/klipper.so
 %{tde_tdelibdir}/klipper_panelapplet.la
@@ -2399,7 +2399,7 @@ Group:		Applications/Utilities
 Requires:	%{name}-data = %{version}-%{release}
 
 %description -n trinity-kmenuedit
-The TDE menu editor allows you to make customisations to the KDE menu
+The TDE menu editor allows you to make customisations to the TDE menu
 structure.
 
 %files -n trinity-kmenuedit
@@ -2461,7 +2461,7 @@ ever launching another application.
 
 %files -n trinity-konqueror
 %defattr(-,root,root,-)
-%{_sysconfdir}/trinity/konqsidebartng.rc
+%config(noreplace) %{_sysconfdir}/trinity/konqsidebartng.rc
 %{tde_bindir}/kbookmarkmerger
 %{tde_bindir}/keditbookmarks
 %{tde_bindir}/kfmclient
@@ -2567,11 +2567,13 @@ for f in crystalsvg hicolor ; do
   gtk-update-icon-cache --quiet %{tde_datadir}/icons/${f}  2> /dev/null || :
 done
 /sbin/ldconfig || :
-update-alternatives --install \
-  %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop \
-  media_safelyremove.desktop_konqueror \
-  %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase \
-  10 || :
+if [ $1 -eq 1 ]; then
+  update-alternatives --install \
+    %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop \
+    media_safelyremove.desktop_konqueror \
+    %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase \
+    10 || :
+fi
 
 %postun -n trinity-konqueror
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -2786,7 +2788,7 @@ Requires:	trinity-twin = %{version}-%{release}
 %description -n trinity-ksmserver
 This package contains the TDE session manager. It is responsible for
 restoring your TDE session on login. It is also needed to properly
-start a TDE session. It registers KDE with X display managers, and
+start a TDE session. It registers TDE with X display managers, and
 provides the 'starttde' command, for starting an X session with TDE
 from the console.
 
@@ -3276,16 +3278,7 @@ Windows and Samba shares.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
-export LD_LIBRARY_PATH="%{tde_libdir}"
-
-# Shitty hack for RHEL4 ...
-if [ -d "/usr/X11R6" ]; then
-  export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH}:/usr/X11R6/include:/usr/X11R6/%{_lib}"
-  export CFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-fi
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 # Samba 4.0 includes (Fedora 18)
 if [ -d "/usr/include/samba-4.0" ]; then
@@ -3310,9 +3303,9 @@ cd build
   -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}" \
   -DLIB_INSTALL_DIR="%{tde_libdir}" \
   -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
-  -DCONFIG_INSTALL_DIR="/etc/trinity" \
-  -DSYSCONF_INSTALL_DIR="/etc/trinity" \
-  -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+  -DCONFIG_INSTALL_DIR="%{_sysconfdir}/trinity" \
+  -DSYSCONF_INSTALL_DIR="%{_sysconfdir}/trinity" \
+  -DXDG_MENU_INSTALL_DIR="%{_sysconfdir}/xdg/menus" \
   \
   -DWITH_SASL=ON \
   -DWITH_LDAP=ON \

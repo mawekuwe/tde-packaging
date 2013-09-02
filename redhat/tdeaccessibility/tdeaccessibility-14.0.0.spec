@@ -455,7 +455,6 @@ Provides:		trinity-kdeaccessibility-devel = %{version}-%{release}
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then

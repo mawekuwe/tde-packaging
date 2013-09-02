@@ -475,8 +475,8 @@ Summary: Development files for %{name}
 Group: Development/Libraries
 Requires: %{name}-libs = %{version}-%{release}
 
-Obsoletes:	trinity-tdevelop-devel < %{version}-%{release}
-Provides:	trinity-tdevelop-devel = %{version}-%{release}
+Obsoletes:	trinity-kdevelop-devel < %{version}-%{release}
+Provides:	trinity-kdevelop-devel = %{version}-%{release}
 
 %description devel
 %{summary}.
@@ -498,12 +498,12 @@ Provides:	trinity-tdevelop-devel = %{version}-%{release}
 %package libs
 Summary: %{name} runtime libraries
 Group:   System Environment/Libraries
-Requires: trinity-tdelibs
+Requires: trinity-tdelibs >= %{tde_version}
 # include to be paranoid, installing libs-only is still mostly untested -- Rex
 Requires: %{name} = %{version}-%{release}
 
-Obsoletes:	trinity-tdevelop-libs < %{version}-%{release}
-Provides:	trinity-tdevelop-libs = %{version}-%{release}
+Obsoletes:	trinity-kdevelop-libs < %{version}-%{release}
+Provides:	trinity-kdevelop-libs = %{version}-%{release}
 
 %description libs
 %{summary}.
@@ -574,8 +574,6 @@ Provides:	trinity-tdevelop-libs = %{version}-%{release}
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then

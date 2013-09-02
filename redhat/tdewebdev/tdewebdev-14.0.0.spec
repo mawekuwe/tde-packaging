@@ -468,7 +468,7 @@ Summary:	Header files and documentation for %{name}
 Obsoletes:	trinity-kdewebdev-devel < %{version}-%{release}
 Provides:	trinity-kdewebdev-devel = %{version}-%{release}
 
-Requires:	trinity-tdelibs-devel
+Requires:	trinity-tdelibs-devel >= %{tde_version}
 Requires:	%{name} = %{version}-%{release}
 Requires:	trinity-kommander-devel = %{version}-%{release}
 

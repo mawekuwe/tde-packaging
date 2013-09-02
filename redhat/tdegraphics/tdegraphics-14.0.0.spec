@@ -188,12 +188,18 @@ BuildRequires: lcms-devel
 BuildRequires: libart_lgpl-devel
 
 # kuickshow
+#define build_kuickshow 1
 BuildRequires: fribidi-devel
 
 # kamera
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
 %define build_kamera 1
 %endif
+
+# kmrml
+#define build_kmrml 1
+#Requires:		gift
+Obsoletes:		trinity-kmrml
 
 Obsoletes:	trinity-kdegraphics < %{version}-%{release}
 Provides:	trinity-kdegraphics = %{version}-%{release}
@@ -212,7 +218,7 @@ Requires: trinity-kfaxview = %{version}-%{release}
 Requires: trinity-kgamma = %{version}-%{release}
 Requires: trinity-kghostview = %{version}-%{release}
 Requires: trinity-kiconedit = %{version}-%{release}
-Requires: trinity-kmrml = %{version}-%{release}
+%{?build_kmrml:Requires: trinity-kmrml = %{version}-%{release}}
 Requires: trinity-kolourpaint = %{version}-%{release}
 Requires: trinity-kooka = %{version}-%{release}
 Requires: trinity-kpdf = %{version}-%{release}
@@ -244,6 +250,8 @@ Graphics applications for the Trinity Desktop Environment, including
 * kview (image viewer for GIF, JPEG, TIFF, etc.)
 
 %files
+%defattr(-,root,root,-)
+%doc AUTHORS ChangeLog README
 
 ##########
 
@@ -441,7 +449,6 @@ A fax viewer for Trinity, supporting the display of raw and tiffed fax images
 
 %files -n trinity-kfax
 %defattr(-,root,root,-)
-%doc rpmdocs/kfax/
 %{tde_bindir}/kfax
 %{tde_tdeappdir}/kfax.desktop
 %{tde_datadir}/apps/kfax/
@@ -619,6 +626,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
+%if 0%{?build_kmrml}
+
 %package -n trinity-kmrml
 Summary: 	A Konqueror plugin for searching pictures
 Group:		Applications/Graphics
@@ -657,6 +666,8 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %postun -n trinity-kmrml
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 /sbin/ldconfig || :
+
+%endif
 
 ##########
 
@@ -801,7 +812,6 @@ Homepage: http://www.kpovmodeler.org
 
 %files -n trinity-kpovmodeler
 %defattr(-,root,root,-)
-%doc rpmdocs/kpovmodeler/
 %{tde_bindir}/kpovmodeler
 %{tde_libdir}/libkpovmodeler.so.*
 %{tde_tdelibdir}/libkpovmodelerpart.*
@@ -1184,7 +1194,9 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 %{tde_tdeincludedir}/libtext2path-0.1/Glyph.h
 %{tde_tdeincludedir}/libtext2path-0.1/GlyphTracer.h
 %{tde_libdir}/libtdeinit_kview.la
+%if 0%{?build_kmrml}
 %{tde_libdir}/libtdeinit_mrmlsearch.la
+%endif
 %{tde_libdir}/libkghostviewlib.la
 %{tde_libdir}/libkghostviewlib.so
 %{tde_libdir}/libkimageviewer.la
@@ -1249,7 +1261,6 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
@@ -1285,6 +1296,7 @@ cd build
   -DWITH_PDF=ON \
   -DBUILD_ALL=ON \
   -DBUILD_KUICKSHOW=OFF \
+  %{!?build_kmrml:-DBUILD_KMRML=OFF} \
   %{!?build_kamera:-DBUILD_KAMERA=OFF} \
   ..
 
@@ -1296,15 +1308,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
-# rpmdocs
-for dir in k* ; do
-  for file in AUTHORS ChangeLog README TODO ; do
-    if test -s "$dir/$file" ; then
-       install -p -m644 -D "$dir/$file" "rpmdocs/$dir/$file"
-       echo "%doc rpmdocs/$dir/" >> %{name}.lang
-    fi
-  done
-done
 
 
 %clean

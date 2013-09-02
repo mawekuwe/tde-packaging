@@ -983,7 +983,6 @@ Development files for %{name}.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}"
 
 # Shitty hack for RHEL4 ...
 if [ -d "/usr/X11R6" ]; then

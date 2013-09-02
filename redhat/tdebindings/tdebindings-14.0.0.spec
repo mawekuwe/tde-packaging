@@ -50,18 +50,14 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-Patch0:			tdebindings-14.0.0-ftbfs.patch
-
-# [kdebindings] Fix FTBFS in dcopjava/bindings
-Patch7:		kdebindings-3.5.13.1-fix_dcopjava_ldflags.patch
 
 # [tdebindings] Function 'rb_frame_this_func' does not exist in RHEL5
-Patch18:	kdebindings-3.5.13.1-fix_rhel5_ftbfs.patch
+Patch5:		kdebindings-3.5.13.1-fix_rhel5_ftbfs.patch
 
 BuildRequires: autoconf automake libtool m4
-BuildRequires: trinity-tqtinterface-devel >= %{version}
+BuildRequires: trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires: trinity-arts-devel >= 1:1.5.10
-BuildRequires: trinity-tdelibs-devel >= %{version}
+BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 
 BuildRequires: desktop-file-utils
 BuildRequires: zlib-devel
@@ -955,7 +951,7 @@ Provides:	trinity-kdebindings-devel = %{version}-%{release}
 # Metapackage
 Requires:	trinity-libsmoketqt-devel = %{version}-%{release}
 Requires:	trinity-libdcop3-java-devel = %{version}-%{release}
-Requires:	trinity-libsmokekde-devel = %{version}-%{release}
+Requires:	trinity-libsmoketde-devel = %{version}-%{release}
 Requires:	trinity-libkjsembed-devel = %{version}-%{release}
 Requires:	trinity-libxparts-devel = %{version}-%{release}
 Requires:	trinity-libdcop-c-devel = %{version}-%{release}
@@ -977,16 +973,9 @@ Development files for the TDE bindings.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
-#patch7 -p1 -b .dcopjavaldflags
 
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
-%patch18 -p1 -b .ruby
-%endif
-
-# Workarounds strange issue in MGA3
-%if 0%{?mgaversion} == 3 || 0%{?pclinuxos} >= 2013
-%__cp /usr/share/automake-1.13/test-driver admin/
+%patch5 -p1 -b .ruby
 %endif
 
 # Disable kmozilla, it does not build with recent xulrunner (missing 'libmozjs.so')

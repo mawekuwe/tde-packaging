@@ -523,7 +523,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdelibdir}/plugins/styles/scheck.so
 %{tde_tdelibdir}/plugins/styles/scheck.la
 %{tde_datadir}/apps/tdeabc/formats/kdeaccountsplugin.desktop
-%{tde_datadir}/apps/kstyle/themes/scheck.themerc
+%{tde_datadir}/apps/tdestyle/themes/scheck.themerc
 %{tde_datadir}/kdepalettes/
 
 %{tde_libdir}/libkstartperf.so.*
@@ -1066,24 +1066,17 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
- 
+
 
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
 
-# Specific path for RHEL4
-if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-fi
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
-
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
@@ -1107,7 +1100,7 @@ cd build
   %{!?build_kioslave:-DBUILD_KIOSLAVE=OFF} \
   ..
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

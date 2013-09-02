@@ -25,7 +25,7 @@ BuildRequires:	autoconf automake libtool m4
 
 Name:			trinity-%{tde_pkg}
 Summary:		Internationalization support for Trinity
-Version:		14.0.0
+Version:		%{tde_version}
 Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:			Trinity Project
@@ -704,8 +704,6 @@ popd
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
-export TDEDIR=%{tde_prefix}
 
 export kde_htmldir="%{tde_tdedocdir}/HTML"
 
@@ -789,12 +787,12 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 # See http://fedoraproject.org/wiki/Languages (???)
 %__rm -f %{buildroot}%{tde_datadir}/locale/*/flag.png
 
-# Removes conflict with TDE4
+# Removes conflict with KDE4
 %if "%{?tde_prefix}" == "/usr"
 %__rm -f %{buildroot}%{tde_datadir}/locale/*/entry.desktop
 %endif
 
-# remove obsolete TDE 3 application data translations
+# remove obsolete KDE 3 application data translations
 %__rm -rf "%{buildroot}%{tde_datadir}/apps"
 
 %clean
@@ -1246,37 +1244,4 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
-- Initial release for TDE 14.0.0
-
-* Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Initial release for TDE 3.5.13.2
-
-* Wed Oct 03 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
-- Initial release for TDE 3.5.13.1
-
-* Wed Aug 15 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-7
-- Renames to 'trinity-i18n'
-- Updates 'zh_TW' translations
-
-* Sun Dec 18 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
-- Updates French translations (mostly Kickoff Menu related)
-
-* Sun Dec 04 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
-- Removes 'kde-filesystem" dependancy
-
-* Fri Nov 25 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
-- Fix HTML directory location
-
-* Fri Nov 11 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Re-adds missing files 'entry.desktop'
-- Updates zh_TW translation, thanks to Wei-Lun Chao
-
-* Tue Nov 01 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Add missing french translations for TDE 3.5.13
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-1
-- Initial release for RHEL 6, RHEL 5 and Fedora 15
-
-* Sun Dec 19 2010 Francois Andriot <francois.andriot@free.fr> - 3.5.13-0
-- Initial version (French language only)
-- Based on RHEL SPEC file 'kde-i18n'
+- Initial release for

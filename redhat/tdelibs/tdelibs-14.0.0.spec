@@ -20,36 +20,32 @@
 
 %define _docdir %{tde_docdir}
 
-Name:		trinity-tdelibs
-Version:	%{tde_version}
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
-License:	GPL
-Summary:	TDE Libraries
-Group:		Environment/Libraries
+Name:			trinity-tdelibs
+Version:		%{tde_version}
+Release:		%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+License:		GPL
+Summary:		TDE Libraries
+Group:			Environment/Libraries
 
-Vendor:		Trinity Project
-Packager:	Francois Andriot <francois.andriot@free.fr>
-URL:		http://www.trinitydesktop.org/
+Vendor:			Trinity Project
+Packager:		Francois Andriot <francois.andriot@free.fr>
+URL:			http://www.trinitydesktop.org/
 
-Prefix:		%{tde_prefix}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Prefix:			%{tde_prefix}
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
-# Enable Devkit Power support (older than upower)
-Patch3:		tdelibs-14.0.0-devkitpower_support.patch
+Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 # Patches from Mandriva
 Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
 Patch102:		tdelibs-14.0.0-cups_by_default.patch
 
-Patch201:		tdelibs-14.0.0-debug.patch
-
-Obsoletes:	tdelibs < %{version}-%{release}
-Provides:	tdelibs = %{version}-%{release}
-Obsoletes:	trinity-kdelibs < %{version}-%{release}
-Provides:	trinity-kdelibs = %{version}-%{release}
-Obsoletes:	trinity-kdelibs-apidocs < %{version}-%{release}
-Provides:	trinity-kdelibs-apidocs = %{version}-%{release}
+Obsoletes:		tdelibs < %{version}-%{release}
+Provides:		tdelibs = %{version}-%{release}
+Obsoletes:		trinity-kdelibs < %{version}-%{release}
+Provides:		trinity-kdelibs = %{version}-%{release}
+Obsoletes:		trinity-kdelibs-apidocs < %{version}-%{release}
+Provides:		trinity-kdelibs-apidocs = %{version}-%{release}
 
 
 BuildRequires:	cmake >= 2.8
@@ -111,7 +107,15 @@ BuildRequires:	bzip2-devel
 %endif
 
 # UDEV support
+%if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%define with_tdehwlib 1
 BuildRequires:	libudev-devel
+%endif
+
+# HAL support
+%if 0%{?rhel} == 5
+%define with_hal 1
+%endif
 
 # UDISKS support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} || 0%{?rhel} >= 6
@@ -130,11 +134,13 @@ BuildRequires:	udisks2-devel
 Requires:		udisks2
 %endif
 
-# UPOWER support
+# DEVICEKIT POWER support
 %if 0%{?rhel} >= 6
 %define with_devkitpower 1
 Requires:		DeviceKit-power
 %endif
+
+# UPOWER support
 %if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
 %define with_upower 1
 Requires:		upower
@@ -174,7 +180,7 @@ BuildRequires:	jasper-devel
 # AVAHI support
 %if 0%{?rhel} >=5 || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_avahi 1
-BuildRequires:	trinity-avahi-tqt-devel >= %{tde_version}
+BuildRequires:	trinity-avahi-tqt-devel >= 1:0.6.30
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}avahi-client-devel
 Requires:		%{_lib}avahi-client3
@@ -245,8 +251,11 @@ BuildRequires:	xz-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}nm-util-devel
 %endif
-%if 0%{?rhel} >= 6 || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?rhel} >= 6 || 0%{?fedora}
 BuildRequires:	NetworkManager-glib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	NetworkManager-devel
 %endif
 %endif
 
@@ -315,6 +324,7 @@ kimgio (image manipulation).
 %{tde_bindir}/tdeio_uiserver
 %{tde_bindir}/tdeioexec
 %{tde_bindir}/tdeioslave
+%{tde_bindir}/tdeiso_info
 %{tde_bindir}/tdelauncher
 %if 0%{?with_elficon}
 %{tde_bindir}/tdelfeditor
@@ -427,27 +437,15 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch3 -p1 -b .devkitpower
 
 %patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default
-
-%patch201 -p1 -b .debug
 
 
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}"
-
-# We need LD_LIBRARY_PATH here because ld.so.conf file has not been written yet
-export LD_LIBRARY_PATH="%{tde_libdir}"
-
-if [ -d "/usr/X11R6" ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -L/usr/X11R6/%{_lib} -I/usr/X11R6/include"
-fi
-
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
@@ -480,15 +478,16 @@ cd build
   -DWITH_CUPS=ON \
   -DWITH_LUA=OFF \
   -DWITH_TIFF=ON \
-  %{?with_jasper:-DWITH_JASPER=ON} \
-  %{?with_openexr:-DWITH_OPENEXR=ON} \
+  %{?!with_jasper:-DWITH_JASPER=OFF} \
+  %{?!with_openexr:-DWITH_OPENEXR=OFF} \
   -DWITH_UTEMPTER=ON \
   %{?!with_elficon:-DWITH_ELFICON=OFF} \
-  %{?with_avahi:-DWITH_AVAHI=ON} \
+  %{?!with_avahi:-DWITH_AVAHI=OFF} \
   %{?!with_pcre:-DWITH_PCRE=OFF} \
-  -DWITH_GCC_VISIBILITY=ON \
   %{?!with_inotify:-DWITH_INOTIFY=OFF} \
   %{?!with_gamin:-DWITH_GAMIN=OFF} \
+  -DWITH_TDEHWLIB_DAEMONS=ON \
+  %{?with_hal:-DWITH_HAL=ON} \
   %{?with_devkitpower:-DWITH_DEVKITPOWER=ON} \
   %{?!with_upower:-DWITH_UPOWER=OFF} \
   %{?!with_udisks:-DWITH_UDISKS=OFF} \
@@ -498,8 +497,10 @@ cd build
   -DWITH_SUDO_TDESU_BACKEND=OFF \
   -DWITH_OLD_XDG_STD=OFF \
   %{?!with_lzma:-DWITH_LZMA=OFF} \
+  -DWITH_LIBBFD=OFF \
+  -DWITH_KDE4_MENU_SUFFIX=OFF \
   -DWITH_ASPELL=ON \
-  %{?with_hspell:-DWITH_HSPELL=ON} \
+  %{?!with_hspell:-DWITH_HSPELL=OFF} \
   ..
 
 %__make %{?_smp_mflags} || %__make
@@ -514,9 +515,6 @@ cd build
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 %__ln_s "%{cacert}" "%{?buildroot}%{tde_datadir}/apps/kssl/ca-bundle.crt"
 %endif
-
-# Appends TDE version to '.pc' file
-echo "Version: %{version}" >>"%{?buildroot}%{tde_libdir}/pkgconfig/tdelibs.pc"
 
 
 %clean

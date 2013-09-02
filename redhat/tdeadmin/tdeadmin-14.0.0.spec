@@ -385,7 +385,6 @@ touch /etc/lilo.conf
 %build
 unset QTDIR QTLIB QTINC
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
@@ -408,8 +407,6 @@ fi
   --enable-closure \
   --enable-rpath \
   --enable-gcc-hidden-visibility \
-  \
-  --with-extra-includes=%{tde_includedir}/tqt \
   \
   --with-rpm \
   --with-pam=kde \

@@ -35,8 +35,6 @@ Url:		http://www.trinitydesktop.org/
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			tdeartwork-14.0.0-fix_update_screensaver_list.patch
-
 BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
@@ -187,9 +185,9 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %files style
 %defattr(-,root,root,-)
 %{tde_tdelibdir}/plugins/styles/
-%{tde_tdelibdir}/kstyle_phase_config.la
-%{tde_tdelibdir}/kstyle_phase_config.so
-%{tde_datadir}/apps/kstyle/
+%{tde_tdelibdir}/tdestyle_phase_config.la
+%{tde_tdelibdir}/tdestyle_phase_config.so
+%{tde_datadir}/apps/tdestyle/
 
 ##########
 
@@ -640,6 +638,18 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
+%if 0%{?fedora} >= 19
+%{tde_datadir}/applnk/System/ScreenSavers/companioncube.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/hexadrop.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/hilbert.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/kaleidocycle.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/quasicrystal.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/unknownpleasures.desktop
+%endif
+
 %endif
 
 ##########
@@ -652,7 +662,6 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .screenlist
 
 # http://www.trinitydesktop.org/wiki/bin/view/Developers/HowToBuild
 # NOTE: Before building tdeartwork, install any and all xhack screensavers that might be uses, then:
@@ -664,13 +673,6 @@ cd tdescreensaver/kxsconfig/
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}"
-export LD_LIBRARY_PATH="%{tde_libdir}"
-
-# Specific path for RHEL4
-if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-fi
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
@@ -707,15 +709,15 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install -C build DESTDIR=%{buildroot}
 
-# Duplicate with trinity-kbabel (from tdesdk)
-%__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/16x16/apps/kbabel.png
-%__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/32x32/apps/kbabel.png
-
 # Should not be here if xscreensaver is disabled
 %if 0%{?with_xscreensaver} == 0
 %__rm -f %{?buildroot}%{tde_bindir}/xscreensaver-getimage
 %__rm -f %{?buildroot}%{tde_bindir}/xscreensaver-getimage-file
 %endif
+
+# Duplicate with trinity-kbabel (from tdesdk)
+%__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/16x16/apps/kbabel.png
+%__rm -f %{?buildroot}%{tde_datadir}/icons/locolor/32x32/apps/kbabel.png
 
 
 %clean
