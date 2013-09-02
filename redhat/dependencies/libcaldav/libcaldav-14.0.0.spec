@@ -12,7 +12,7 @@
 
 Name:		trinity-libcaldav
 Version:	0.6.5
-Release:	%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
@@ -26,6 +26,8 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+
+Patch1:		libcaldav-14.0.0-older_libcurl.patch
 
 BuildRequires:	libtool
 %if 0%{?rhel} == 4
@@ -46,7 +48,7 @@ BuildRequires:	libcurl-devel
 BuildRequires:	%{_lib}curl-devel
 %else
 # Specific CURL version for TDE on RHEL 5 (and older)
-BuildRequires:	trinity-libcurl-devel
+#BuildRequires:	trinity-libcurl-devel
 %endif
 %endif
 
@@ -73,6 +75,7 @@ Provides:	libcaldav-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .libcurl
 ./autogen.sh
 
 
@@ -81,6 +84,7 @@ Provides:	libcaldav-devel = %{version}-%{release}
 export CFLAGS="-I%{tde_includedir} -L%{tde_libdir} ${RPM_OPT_FLAGS}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
+# RHEL4 stuff
 if [ -d /usr/evolution28 ]; then
   export PKG_CONFIG_PATH="/usr/evolution28/%{_lib}/pkgconfig:${PKG_CONFIG_PATH}"
 fi
@@ -133,15 +137,5 @@ fi
 
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.5-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.5-5
 - Initial release for TDE R14.0.0
-
-* Sun Jul 28 2012 Francois Andriot <francois.andriot@free.fr> - 0.6.5-3
-- Renames to 'trinity-libcaldav'
-- Build on MGA2
-
-* Thu Nov 03 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2.2
-- Add missing BuildRequires
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.5-2debian2.1
-- Initial release for RHEL 6, RHEL 5, and Fedora 15

@@ -16,7 +16,7 @@
 
 Name:			trinity-tqca-tls
 Version:		1.0
-Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
 
 Summary:		TLS plugin for the TQt Cryptographic Architecture
 License:		LGPLv2+
@@ -57,11 +57,11 @@ contains the TLS plugin.
 %build
 unset QTDIR
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 ./configure \
   --qtdir=/usr
+
 %__make %{?_smp_mflags}
 
 

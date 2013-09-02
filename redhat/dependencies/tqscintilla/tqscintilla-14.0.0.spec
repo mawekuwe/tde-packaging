@@ -91,6 +91,7 @@ Requires:       %{name} = %{version}-%{release}
   -e "s|\$(QTDIR)|%{_libdir}/tqt3|" \
   -e "s|# DESTDIR|DESTDIR|"
 
+export QTDIR=%{_libdir}/tqt3
 ( cd qt; tqmake "DESTDIR=$PWD/../tmplib" )
 ( cd designer; tqmake )
 

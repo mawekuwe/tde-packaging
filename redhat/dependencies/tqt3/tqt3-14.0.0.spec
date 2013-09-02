@@ -20,12 +20,10 @@ Url:		http://www.trinitydesktop.org
 
 Prefix:		%{tde_prefix}
 
-Source0: %{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # [tqt3] Build shared libraries
 Patch1:		tqt3-14.0.0-shared_lib.patch
-# [tqt3] Fix FTBFS
-Patch2:		tqt3-14.0.0-fix_ftbfs.patch
 
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
@@ -37,23 +35,38 @@ BuildRequires: giflib-devel
 BuildRequires: perl
 BuildRequires: sed
 BuildRequires: findutils
-BuildRequires: cups-devel
 BuildRequires: tar
 BuildRequires: freetype-devel
 BuildRequires: fontconfig-devel
 BuildRequires: gcc-c++
-BuildRequires: libuuid-devel
-BuildRequires: glib2-devel
 BuildRequires: make
+BuildRequires: desktop-file-utils
+
+# CUPS support
+BuildRequires: cups-devel
+
+# GLIB2 support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%define with_glibmainloop 1
+BuildRequires: glib2-devel
+%endif
+
+# UUID support
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+BuildRequires: libuuid-devel
+%endif
+%if 0%{?rhel} == 5
+BuildRequires: e2fsprogs-devel
+%endif
 
 # NAS support
-%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_nas 1
 BuildRequires: nas-devel
 %endif
 
 # Xrender support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXrender-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -61,7 +74,7 @@ BuildRequires: libxrender-devel
 %endif
 
 # Xrandr support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXrandr-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -69,7 +82,7 @@ BuildRequires: libxrandr-devel
 %endif
 
 # Xcursor support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXcursor-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -77,7 +90,7 @@ BuildRequires: libxcursor-devel
 %endif
 
 # Xinerama support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXinerama-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -85,7 +98,7 @@ BuildRequires: libxinerama-devel
 %endif
 
 # Xft support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXft-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -93,7 +106,7 @@ BuildRequires: libxft-devel
 %endif
 
 # Xext support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXext-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -101,7 +114,7 @@ BuildRequires: libxext-devel
 %endif
 
 # X11 support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libX11-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -109,7 +122,7 @@ BuildRequires: libx11-devel
 %endif
 
 # SM support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libSM-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -117,7 +130,7 @@ BuildRequires: libsm-devel
 %endif
 
 # ICE support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libICE-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -125,12 +138,12 @@ BuildRequires: libice-devel
 %endif
 
 # XT support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXt-devel
 %endif
 
 # XMU support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXmu-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -138,12 +151,12 @@ BuildRequires: libxmu-devel
 %endif
 
 # XI support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: libXi-devel
 %endif
 
 # Xorg support
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 BuildRequires: xorg-x11-proto-devel
 %endif
 
@@ -155,12 +168,23 @@ BuildRequires: mesa-libGLU-devel
 %if 0%{?mdkversion} || 0%{?mgaversion}
 BuildRequires: mesaglu-devel
 %endif
+%if 0%{?suse_version}
+BuildRequires: Mesa-libGL-devel
+BuildRequires: Mesa-libGLU-devel
+%endif
 
-BuildRequires: desktop-file-utils
+# MYSQL support
 BuildRequires: mysql-devel
-BuildRequires: postgresql-devel
+
+# unixODBC support
 BuildRequires: unixODBC-devel
+
+# SQLITE support
 BuildRequires: sqlite-devel
+
+# POSTGRESQL support
+BuildRequires: postgresql
+BuildRequires: postgresql-devel
 
 # Firebird support
 %if 0%{?mdkversion} || 0%{?mgaversion}
@@ -177,6 +201,11 @@ BuildRequires: util-linux
 %endif
 %endif
 
+# GCC visibility stuff
+%if 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} || 0%{?rhel} >= 6
+%define EXTRA_CFLAGS -fvisibility=hidden -fvisibility-inlines-hidden
+%endif 
+ 
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 Requires: coreutils
@@ -427,30 +456,35 @@ for the TQt 3 toolkit.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .sharedlibs
-%patch2 -p1 -b .ftbfs
 
 # fix variables in 'qmake.conf'
 %__sed -i mkspecs/*/qmake.conf \
-  -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= /usr/include/tqt3|" \
+  -e "s|^QMAKE_INCDIR_QT.*|QMAKE_INCDIR_QT		= %{_includedir}/tqt3|" \
   -e "s|\$(QTDIR)|/usr|g" \
   -e "s|-lqt|-ltqt|g" \
+  -e "s|^QMAKE_CFLAGS		=.*|QMAKE_CFLAGS		= %{?optflags}|" \
   -e "s|^QMAKE_INCDIR		=.*|QMAKE_INCDIR		= %{_includedir}|" \
   -e "s|^QMAKE_LIBDIR		=.*|QMAKE_LIBDIR		= %{_libdir}|" \
+  -e "s|^QMAKE_RPATH		= .*|QMAKE_RPATH		=|" \
   -e "s|^QMAKE_STRIP             =.*|QMAKE_STRIP             =|" \
   -e "s|^QMAKE_STRIPFLAGS_LIB 	+=.*|QMAKE_STRIPFLAGS_LIB 	+=|" \
-
+  -e "s|^QMAKE_MOC		=.*|QMAKE_MOC		= %{_bindir}/tqmoc|" \
+  -e "s|^QMAKE_UIC		=.*|QMAKE_UIC		= %{_bindir}/tquic|" \
+  -e "s|^QMAKE_INCDIR_QT		=.*|QMAKE_INCDIR_QT		= %{_includedir}/tqt3|" \
+  -e "s|^QMAKE_LIBDIR_QT         =.*|QMAKE_LIBDIR_QT         = %{_libdir}|" \
 
 %build
 unset QTDIR QTINC QTLIB
 export QTDIR=$(pwd)
-export PATH=${QTDIR}/stripbin:${QTDIR}/bin:$PATH
+export PATH=${QTDIR}/bin:$PATH
 export MANPATH=${QTDIR}/doc/man:$MANPATH
-export LD_LIBRARY_PATH=${QTDIR}/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH="${QTDIR}/lib"
 
 # Checks for supplementary include dir
 INCDIRS=""
 for d in \
 	%{_includedir}/fontconfig \
+	%{_includedir}/pgsql \
 	%{_includedir}/pgsql/server \
 	%{_includedir}/postgresql/server \
 	%{_includedir}/Xft2 \
@@ -536,15 +570,9 @@ echo yes | ./configure \
 						\
 		-lfontconfig			\
 		-inputmethod			\
-		-glibmainloop \
-		-debug
-
-
-# Fix bad headers
-rm -rf include/ntqinputcontext.h include/ntqinputcontextfactory.h include/ntqinputcontextplugin.h
-ln -s ../src/kernel/ntqinputcontext.h include/ntqinputcontext.h
-ln -s ../src/inputmethod/ntqinputcontextfactory.h include/ntqinputcontextfactory.h
-ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
+		%{?with_glibmainloop:-glibmainloop} \
+		-debug \
+		-v
 
 # proceed
 %__make %{?_smp_mflags} sub-src sub-plugins sub-tools
@@ -562,9 +590,12 @@ ln -s ../src/inputmethod/ntqinputcontextplugin.h include/ntqinputcontextplugin.h
 %install
 %__rm -rf %{buildroot}
 export QTDIR=$(pwd)
-export PATH=${QTDIR}/stripbin:${QTDIR}/bin:$PATH
+export PATH=${QTDIR}/bin:$PATH
 
+# Installs 'libtqt-mt.so.3' library
 %__make -C src INSTALL_ROOT=%{?buildroot} install_target
+
+# Installs all the remaining
 %__make INSTALL_ROOT=%{?buildroot} install
 %__make INSTALL_ROOT=%{?buildroot} plugins-install
 

@@ -17,7 +17,7 @@
 Name:		trinity-arts
 Epoch:		1
 Version:	1.5.10
-Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:2}%{?preversion:1_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	aRts (analog realtime synthesizer) - the TDE sound system
 Group:		System Environment/Daemons 
@@ -197,6 +197,10 @@ Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 
 %build
+unset QTDIR QTINC QTLIB
+export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
@@ -243,5 +247,5 @@ cd build
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1.5.10-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 1:1.5.10-2
 - Initial release for TDE R14.0.0

@@ -146,7 +146,6 @@ autoreconf -fiv
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
@@ -157,13 +156,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --datadir=%{tde_datadir} \
   --includedir=%{tde_tdeincludedir} \
   \
-  --disable-dependency-tracking \
-  --disable-debug \
-  --enable-new-ldflags \
-  --enable-final \
-  --enable-closure \
-  --disable-rpath \
-  --enable-gcc-hidden-visibility
+  --disable-dependency-tracking
   
 %__make %{?_smp_mflags}
 

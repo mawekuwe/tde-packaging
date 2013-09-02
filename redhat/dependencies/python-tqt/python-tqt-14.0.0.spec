@@ -30,11 +30,14 @@ BuildRequires:	gcc-c++
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 BuildRequires:	trinity-tqscintilla-devel
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?rhel} || 0%{?fedora}
 BuildRequires:	sip-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}
 BuildRequires:	python-sip
+%endif
+%if 0%{?suse_version}
+BuildRequires:	python-sip-devel
 %endif
 
 # TDE specific building variables
@@ -137,7 +140,7 @@ packages based on them, like PyTDE.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
+%patch0 -p1
 
 
 %build

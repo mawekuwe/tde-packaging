@@ -5,7 +5,7 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-dbus-tqt
-Epoch:		1
+Epoch:		2
 Version:	0.63
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
@@ -132,5 +132,5 @@ cd build
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.63-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.63-1
 - Initial release for TDE R14.0.0

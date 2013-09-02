@@ -6,7 +6,7 @@
 
 
 Name:		trinity-avahi-tqt
-Epoch:		1
+Epoch:		2
 Version:	0.6.30
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
@@ -92,6 +92,7 @@ Development files for %{name}
 
 %build
 unset QTDIR QTINC QTLIB
+export PATH="%{tde_bindir}:${PATH}"
 
 %configure \
   --exec-prefix=%{tde_prefix} \

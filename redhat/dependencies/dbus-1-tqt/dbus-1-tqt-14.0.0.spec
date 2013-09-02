@@ -6,7 +6,7 @@
 %define tde_libdir %{tde_prefix}/%{_lib}
 
 Name:		trinity-dbus-1-tqt
-Epoch:		1
+Epoch:		2
 Version:	0.9
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
@@ -90,7 +90,7 @@ Development files for %{name}
 
 
 %build
-unset QTDIR
+unset QTDIR QTINC QTLIB
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -124,5 +124,5 @@ cd build
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2:0.9-1
 - Initial release for TDE R14.0.0

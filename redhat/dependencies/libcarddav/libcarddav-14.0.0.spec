@@ -10,7 +10,7 @@
 
 Name:		trinity-libcarddav
 Version:	0.6.2
-Release:	%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 Vendor:		Trinity Project
 URL:		http://www.trinitydesktop.org/
@@ -133,12 +133,5 @@ fi
 
 
 %Changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.2-4
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.6.2-5
 - Initial release for TDE R14.0.0
-
-* Sat Jul 28 2012 Francois Andriot <francois.andriot@free.fr> - 0.6.2-3
-- Renames to 'trinity-libcarddav'
-- Build on MGA2
-
-* Sun Oct 30 2011 Francois Andriot <francois.andriot@free.fr> - 0.6.2-2
-- Initial release for RHEL 6, RHEL 5, and Fedora 15

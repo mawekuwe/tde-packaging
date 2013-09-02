@@ -49,8 +49,10 @@ BuildRequires:	libXi6-devel
 Obsoletes:	tqtinterface < %{version}-%{release}
 Provides:	tqtinterface = %{version}-%{release}
 
+
 %description
 Trinity QT Interface
+
 
 %post
 /sbin/ldconfig || :
@@ -138,9 +140,12 @@ cd build
   -DQT_INCLUDE_DIRS="%{tde_includedir}/tqt3" \
   -DQT_LIBRARY_DIRS="%{tde_libdir}" \
   \
-  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
+  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
   -DINCLUDE_INSTALL_DIR=%{tde_includedir}/tqt \
+  -DLIB_INSTALL_DIR=%{tde_libdir} \
+  -DBIN_INSTALL_DIR=%{tde_bindir} \
+\
   -DCMAKE_LIBRARY_PATH="%{tde_libdir}" \
   -DCMAKE_INCLUDE_PATH="%{tde_includedir}" \
   \
