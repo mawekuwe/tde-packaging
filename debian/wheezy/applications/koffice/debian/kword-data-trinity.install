@@ -10,7 +10,7 @@ debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/kword.png
 debian/tmp/opt/trinity/share/icons/hicolor/22x22/apps/kword.png
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kword.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kword.png
-debian/tmp/opt/trinity/share/services/kwmailmerge_kabc.desktop
+debian/tmp/opt/trinity/share/services/kwmailmerge_tdeabc.desktop
 debian/tmp/opt/trinity/share/services/kwmailmerge_kspread.desktop
 debian/tmp/opt/trinity/share/services/kword_abiword_export.desktop
 debian/tmp/opt/trinity/share/services/kword_abiword_import.desktop

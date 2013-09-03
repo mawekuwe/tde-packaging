@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/kword
 debian/tmp/opt/trinity/lib/trinity/kwmailmerge_classic.la
 debian/tmp/opt/trinity/lib/trinity/kwmailmerge_classic.so
-debian/tmp/opt/trinity/lib/trinity/kwmailmerge_kabc.la
-debian/tmp/opt/trinity/lib/trinity/kwmailmerge_kabc.so
+debian/tmp/opt/trinity/lib/trinity/kwmailmerge_tdeabc.la
+debian/tmp/opt/trinity/lib/trinity/kwmailmerge_tdeabc.so
 debian/tmp/opt/trinity/lib/trinity/kwmailmerge_kspread.la
 debian/tmp/opt/trinity/lib/trinity/kwmailmerge_kspread.so
 debian/tmp/opt/trinity/lib/trinity/kwmailmerge_qtsqldb.la

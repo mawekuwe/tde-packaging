@@ -10,10 +10,10 @@
 /opt/trinity/include/kmailpartIface.h
 /opt/trinity/include/kontact
 /opt/trinity/include/korganizer
-/opt/trinity/lib/libkabckolab.la
-/opt/trinity/lib/libkabckolab.so
-/opt/trinity/lib/libkabcscalix.la
-/opt/trinity/lib/libkabcscalix.so
+/opt/trinity/lib/libtdeabckolab.la
+/opt/trinity/lib/libtdeabckolab.so
+/opt/trinity/lib/libtdeabcscalix.la
+/opt/trinity/lib/libtdeabcscalix.so
 /opt/trinity/lib/libtdeabc_groupdav.la
 /opt/trinity/lib/libtdeabc_groupdav.so
 /opt/trinity/lib/libtdeabc_groupwise.la

@@ -1,6 +1,6 @@
 debian/tmp/opt/trinity/include/kprofilemethod.h
-debian/tmp/opt/trinity/lib/trinity/kabcformat_kdeaccounts.la
-debian/tmp/opt/trinity/lib/trinity/kabcformat_kdeaccounts.so
+debian/tmp/opt/trinity/lib/trinity/tdeabcformat_kdeaccounts.la
+debian/tmp/opt/trinity/lib/trinity/tdeabcformat_kdeaccounts.so
 debian/tmp/opt/trinity/lib/trinity/plugins/styles/scheck.so
 debian/tmp/opt/trinity/lib/trinity/plugins/styles/scheck.la
 debian/tmp/opt/trinity/share/apps/tdeabc/formats/kdeaccountsplugin.desktop

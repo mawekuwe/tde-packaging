@@ -1,11 +1,11 @@
-.TH KABC2MUTT 1
+.TH TDEABC2MUTT 1
 .SH NAME
-kabc2mutt \- kabc to mutt converter
+tdeabc2mutt \- tdeabc to mutt converter
 .SH SYNOPSIS
-.B kabc2mutt
+.B tdeabc2mutt
 .I [Qt-options] [KDE-options] [options]
 .SH DESCRIPTION
-kabc2mutt converts the KDE address book's entries to Mutt format.
+tdeabc2mutt converts the KDE address book's entries to Mutt format.
 .SH PROGRAM OPTIONS
 .TP
 .B --query \fI<substring>\fB

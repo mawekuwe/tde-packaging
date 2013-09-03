@@ -1,5 +1,5 @@
-/opt/trinity/lib/trinity/kcal_kabc.la
-/opt/trinity/lib/trinity/kcal_kabc.so
+/opt/trinity/lib/trinity/kcal_tdeabc.la
+/opt/trinity/lib/trinity/kcal_tdeabc.so
 /opt/trinity/lib/trinity/kcal_localdir.la
 /opt/trinity/lib/trinity/kcal_localdir.so
 /opt/trinity/lib/trinity/kcal_local.la
@@ -14,7 +14,7 @@
 /opt/trinity/lib/libkholidays.so.1.0.0
 /opt/trinity/share/apps/libkholidays
 /opt/trinity/share/services/tderesources/kcal/imap.desktop
-/opt/trinity/share/services/tderesources/kcal/kabc.desktop
+/opt/trinity/share/services/tderesources/kcal/tdeabc.desktop
 /opt/trinity/share/services/tderesources/kcal/local.desktop
 /opt/trinity/share/services/tderesources/kcal/localdir.desktop
 /opt/trinity/share/services/tderesources/kcal/remote.desktop
