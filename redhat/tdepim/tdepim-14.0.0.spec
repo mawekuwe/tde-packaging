@@ -289,9 +289,9 @@ LDAP servers, and SQL databases.
 
 %files -n trinity-kaddressbook
 %defattr(-,root,root,-)
-%{tde_bindir}/kabc2mutt
+%{tde_bindir}/tdeabc2mutt
 %{tde_bindir}/kaddressbook
-%{tde_bindir}/kabcdistlistupdater
+%{tde_bindir}/tdeabcdistlistupdater
 %{tde_tdelibdir}/kcm_kabconfig.la
 %{tde_tdelibdir}/kcm_kabconfig.so
 %{tde_tdelibdir}/kcm_kabcustomfields.la
@@ -323,7 +323,7 @@ LDAP servers, and SQL databases.
 %{tde_datadir}/servicetypes/kaddressbook_view.desktop
 %{tde_datadir}/servicetypes/kaddressbook_xxport.desktop
 %{tde_tdedocdir}/HTML/en/kaddressbook/
-%{tde_datadir}/autostart/kabcdistlistupdater.desktop
+%{tde_datadir}/autostart/tdeabcdistlistupdater.desktop
 %{tde_tdeincludedir}/kaddressbook/
 %{tde_tdeincludedir}/tdeabc/
 
@@ -617,8 +617,8 @@ tracking feature plans.
 %{tde_tdelibdir}/knotes_scalix.so
 %{tde_tdelibdir}/knotes_xmlrpc.la
 %{tde_tdelibdir}/knotes_xmlrpc.so
-%{tde_libdir}/libkabckolab.so.*
-%{tde_libdir}/libkabcscalix.so.*
+%{tde_libdir}/libtdeabckolab.so.*
+%{tde_libdir}/libtdeabcscalix.so.*
 %{tde_libdir}/libtdeabc_groupdav.so.*
 %{tde_libdir}/libtdeabc_groupwise.so.*
 %{tde_libdir}/libtdeabc_newexchange.so.*
@@ -725,10 +725,10 @@ Obsoletes:	tdepim-tderesources-devel < %{version}-%{release}
 %{tde_libdir}/libtdeabc_slox.so
 %{tde_libdir}/libtdeabc_xmlrpc.la
 %{tde_libdir}/libtdeabc_xmlrpc.so
-%{tde_libdir}/libkabckolab.la
-%{tde_libdir}/libkabckolab.so
-%{tde_libdir}/libkabcscalix.la
-%{tde_libdir}/libkabcscalix.so
+%{tde_libdir}/libtdeabckolab.la
+%{tde_libdir}/libtdeabckolab.so
+%{tde_libdir}/libtdeabcscalix.la
+%{tde_libdir}/libtdeabcscalix.so
 %{tde_libdir}/libkcal_caldav.la
 %{tde_libdir}/libkcal_caldav.so
 %{tde_libdir}/libkcal_groupdav.la
@@ -1612,8 +1612,8 @@ This is the runtime package for programs that use the libkcal-trinity library.
 
 %files -n trinity-libkcal
 %defattr(-,root,root,-)
-%{tde_tdelibdir}/kcal_kabc.la
-%{tde_tdelibdir}/kcal_kabc.so
+%{tde_tdelibdir}/kcal_tdeabc.la
+%{tde_tdelibdir}/kcal_tdeabc.so
 %{tde_tdelibdir}/kcal_localdir.la
 %{tde_tdelibdir}/kcal_localdir.so
 %{tde_tdelibdir}/kcal_local.la
@@ -1625,7 +1625,7 @@ This is the runtime package for programs that use the libkcal-trinity library.
 %{tde_libdir}/libkholidays.so.*
 %{tde_datadir}/apps/libkholidays
 %{tde_datadir}/services/tderesources/kcal/imap.desktop
-%{tde_datadir}/services/tderesources/kcal/kabc.desktop
+%{tde_datadir}/services/tderesources/kcal/tdeabc.desktop
 %{tde_datadir}/services/tderesources/kcal/local.desktop
 %{tde_datadir}/services/tderesources/kcal/localdir.desktop
 %{tde_datadir}/services/tderesources/kcal/remote.desktop

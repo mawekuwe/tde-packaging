@@ -275,7 +275,7 @@ fi
 %{tde_tdelibdir}/koshell.*
 %{tde_tdelibdir}/kthesaurus.*
 %{tde_tdelibdir}/kwmailmerge_classic.*
-%{tde_tdelibdir}/kwmailmerge_kabc.*
+%{tde_tdelibdir}/kwmailmerge_tdeabc.*
 %{tde_tdelibdir}/kwmailmerge_qtsqldb_power.*
 %{tde_tdelibdir}/kwmailmerge_qtsqldb.*
 %{tde_tdelibdir}/libkounavailpart.*

@@ -100,14 +100,14 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang kio-apt
+%find_lang %{tde_pkg}
 
 
 %clean
 %__rm -rf %{buildroot}
 
 
-%files -f kio-apt.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS CHANGELOG ChangeLog COPYING
 %{tde_tdelibdir}/tdeio_apt.la

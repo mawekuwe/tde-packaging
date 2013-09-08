@@ -11,9 +11,9 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmbackground.po tde-i18n-fr/message
 +
 +msgid "Enables a smooth fading effect when changing background image."
 +msgstr "Activer un effet de fondu lors du changement de fond d'écran."
-diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po tde-i18n-fr/messages/tdebase/kcmdisplayconfig.po
---- tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po	1970-01-01 01:00:00.000000000 +0100
-+++ tde-i18n-fr/messages/tdebase/kcmdisplayconfig.po	2013-07-26 20:00:46.303178565 +0200
+diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tdecmdisplayconfig.po tde-i18n-fr/messages/tdebase/tdecmdisplayconfig.po
+--- tde-i18n-fr.ORI/messages/tdebase/tdecmdisplayconfig.po	1970-01-01 01:00:00.000000000 +0100
++++ tde-i18n-fr/messages/tdebase/tdecmdisplayconfig.po	2013-07-26 20:00:46.303178565 +0200
 @@ -0,0 +1,188 @@
 +msgid "<b>The global display configuration is a system wide setting, and requires administrator access</b><br>To alter the system's global display configuration, click on the \"Administrator Mode\" button below."
 +msgstr "<b>La configuration d'affichage globale est un réglage système, et nécessite les droits administrateur.</b><br>Pour modifier la configuration système globale, cliquer sur le bouton \"Mode superutilisateur\"."
@@ -217,9 +217,9 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmenergy.po tde-i18n-fr/messages/td
 +msgid "Configure KPowersave..."
 +msgstr "Configurer KPowersave..."
 +
-diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmiccconfig.po tde-i18n-fr/messages/tdebase/kcmiccconfig.po
---- tde-i18n-fr.ORI/messages/tdebase/kcmiccconfig.po	1970-01-01 01:00:00.000000000 +0100
-+++ tde-i18n-fr/messages/tdebase/kcmiccconfig.po	2013-07-26 19:48:22.142618069 +0200
+diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tdecmiccconfig.po tde-i18n-fr/messages/tdebase/tdecmiccconfig.po
+--- tde-i18n-fr.ORI/messages/tdebase/tdecmiccconfig.po	1970-01-01 01:00:00.000000000 +0100
++++ tde-i18n-fr/messages/tdebase/tdecmiccconfig.po	2013-07-26 19:48:22.142618069 +0200
 @@ -0,0 +1,80 @@
 +# TDE 3.5.13 'iccconfig.cpp' translation
 +
@@ -1707,7 +1707,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 +++ tde-i18n-fr/messages/tdelibs/tdelibs.po	2013-07-27 10:50:15.966218371 +0200
 @@ -5557,137 +5557,146 @@
  
- #: tdeui/kaboutkde.cpp:34
+ #: tdeui/tdeabouttde.cpp:34
  msgid ""
 -"The <b>K Desktop Environment</b> is written and maintained by the TDE Team, a "
 -"world-wide network of software engineers committed to <a "
@@ -1749,7 +1749,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 +"href=\"http://www.kde.org/fr\">http://www.kde.org/fr</A> "
 +"pour plus d'informations sur le projet KDE."
  
- #: tdeui/kaboutkde.cpp:43
+ #: tdeui/tdeabouttde.cpp:43
  msgid ""
 -"Software can always be improved, and the TDE Team is ready to do so. However, "
 -"you - the user - must tell us when something does not work as expected or could "
@@ -1791,7 +1791,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
  "système de suivi des bogues pour enregistrer votre souhait. Assurez-vous "
  "d'avoir utilisé l'option « Souhait » (wish)."
  
- #: tdeui/kaboutkde.cpp:54
+ #: tdeui/tdeabouttde.cpp:54
  msgid ""
 -"You do not have to be a software developer to be a member of the TDE team. You "
 -"can join the national teams that translate program interfaces. You can provide "
@@ -1835,7 +1835,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 +"HREF=\"http://www.trinitydesktop.org/docs/\">http://www.trinitydesktop.org/docs/</A> "
  "devrait vous fournir ce dont vous avez besoin."
  
- #: tdeui/kaboutkde.cpp:67
+ #: tdeui/tdeabouttde.cpp:67
  msgid ""
 -"TDE is available free of charge, but making it is not free."
 -"<br>"
@@ -1885,21 +1885,21 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 +"l'adresse <a href=\"http://www.trinitydesktop.org/donate.php\">http://www.trinitydesktop.org/donate.php</a>."
 +"<br><br>Nous vous remercions vivement de votre soutien."
  
- #: tdeui/kaboutkde.cpp:81
+ #: tdeui/tdeabouttde.cpp:81
  #, c-format
 -msgid "K Desktop Environment. Release %1"
 -msgstr "Environnement de bureau TDE. Version %1"
 +msgid "Trinity Desktop Environment. Release %1"
 +msgstr "Environnement de bureau Trinity. Version %1"
  
- #: tdeui/kaboutkde.cpp:83
+ #: tdeui/tdeabouttde.cpp:83
  msgid ""
 -"_: About TDE\n"
 +"_: About Trinity\n"
  "&About"
  msgstr "À &propos"
  
- #: tdeui/kaboutkde.cpp:84
+ #: tdeui/tdeabouttde.cpp:84
 -msgid "&Report Bugs or Wishes"
 -msgstr "Rapport de bogues et &souhaits"
 +msgid "&Report Bugs/Request Enhancements"
@@ -1933,19 +1933,19 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 +"\n"
 +"Merci pour votre aide!"
  
- #: tdeui/kaboutkde.cpp:85
+ #: tdeui/tdeabouttde.cpp:85
 -msgid "&Join the TDE Team"
 -msgstr "Re&joignez l'équipe de TDE"
 +msgid "&Join the Trinity Team"
 +msgstr "Re&joignez l'équipe de Trinity"
  
- #: tdeui/kaboutkde.cpp:86
+ #: tdeui/tdeabouttde.cpp:86
 -msgid "&Support TDE"
 -msgstr "&Soutenez TDE"
 +msgid "&Support Trinity"
 +msgstr "&Soutenez Trinity"
  
- #: tdeui/kstdguiitem.cpp:110 khtml/java/kjavaappletserver.cpp:804
+ #: tdeui/kstdguiitem.cpp:110 tdehtml/java/kjavaappletserver.cpp:804
  msgid "&Yes"
 @@ -6286,6 +6295,10 @@
  msgid "&Browse..."
@@ -1967,5 +1967,5 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdelibs/tdelibs.po tde-i18n-fr/messages/tdel
 +msgid "About &Trinity"
 +msgstr "À propos de &Trinity"
  
- #: tdeui/kactionclasses.cpp:2072
+ #: tdeui/tdeactionclasses.cpp:2072
  msgid "Exit F&ull Screen Mode"

@@ -25,7 +25,7 @@
 
 
 Name:			trinity-%{tde_pkg}
-Summary:		kio-slave for the locate command [Trinity]
+Summary:		tdeio-slave for the locate command [Trinity]
 Version:		0.4.5
 Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
@@ -107,19 +107,19 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
-%find_lang kio-locate
+%find_lang %{tde_pkg}
 
 %clean
 %__rm -rf %{buildroot}
 
 
 
-%files -f kio-locate.lang
+%files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING TODO
 %{tde_tdelibdir}/tdeio_locate.la
 %{tde_tdelibdir}/tdeio_locate.so
-%{tde_tdedocdir}/HTML/en/kio-locate/
+%{tde_tdedocdir}/HTML/en/tdeio-locate/
 %{tde_datadir}/services/locate.protocol
 %{tde_datadir}/services/locater.protocol
 %{tde_datadir}/services/rlocate.protocol

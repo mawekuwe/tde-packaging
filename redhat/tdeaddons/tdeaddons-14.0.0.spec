@@ -57,15 +57,19 @@ BuildRequires: openssl-devel
 
 # DB4 support
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1220 || 0%{?mdkversion} || 0%{?mgaversion}
-%define with_db4 1
-%if 0%{?rhel} || 0%{?fedora} || 0%{?mgaversion}
-BuildRequires:	db4-devel
+%define with_db 1
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	db5-devel
 %endif
 %if 0%{?fedora} >= 18
-BuildRequires:	libdb4-cxx-devel
+BuildRequires:	libdb-devel
+BuildRequires:	libdb-cxx-devel
 %endif
 %if 0%{?suse_version}
 BuildRequires:	libdb-4_8-devel
+%endif
+%if 0%{?rhel}
+BuildRequires:	db4-devel
 %endif
 %endif
 
@@ -636,7 +640,7 @@ of user interfaces, playlists and visualisation plugins.
 %{tde_tdelibdir}/noatunlyrics.so
 %{tde_tdelibdir}/noatunmadness.la
 %{tde_tdelibdir}/noatunmadness.so
-%if 0%{?with_db4}
+%if 0%{?with_db}
 %{tde_tdelibdir}/noatun_oblique.la
 %{tde_tdelibdir}/noatun_oblique.so
 %endif
@@ -708,15 +712,12 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-rpath \
   --enable-gcc-hidden-visibility \
   \
-  --with-extra-includes=%{_includedir}/db4:%{_includedir}/libdb4:%{tde_includedir}/arts \
+  --with-extra-includes=%{_includedir}/db4:%{_includedir}/db53:%{_includedir}/libdb4:%{tde_includedir}/arts \
   \
   %{?with_xmms:--with-xmms} %{?!with_xmms:--without-xmms} \
   --with-sdl \
-%if 0%{?with_db4}
+%if 0%{?with_db}
   --with-berkeley-db \
-%if 0%{?fedora} >= 18
-  --with-db-lib=db_cxx-4 \
-%endif
 %endif
 
 

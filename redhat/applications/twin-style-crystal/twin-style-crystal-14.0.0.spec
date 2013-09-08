@@ -79,6 +79,7 @@ And it is of course nice to look at. Upstream says:
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 
+# Warning: --enable-gcc-visibility makes decoration unusable.
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -94,7 +95,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-new-ldflags \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

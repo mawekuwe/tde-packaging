@@ -60,8 +60,13 @@ Source6:	suse-displaymanagers-tdm
 Source7:	tdm.service%{?dist}
 %endif
 
+# openSUSE 11.4: overwrite distribution-provided '/etc/init.d/xdm' !!!
+%if 0%{?suse_version} == 1140
+Source7:	xdm.oss114
+%endif
+
 # Fedora 17: special selinux policy required
-%if 0%{?fedora} == 17 || 0%{?rhel} == 6
+%if 0%{?fedora} >= 17 || 0%{?rhel} == 6
 %define with_selinux_policy 1
 Source8:	tdm%{?dist}.pp
 %endif
@@ -146,6 +151,19 @@ Requires:	fedora-release-notes
 %define tde_aboutlabel Fedora 18
 %define tde_aboutpage /usr/share/doc/HTML/fedora-release-notes/index.html
 %endif
+
+# Fedora 19 Theme: "Schroedinger's cat"
+%if 0%{?fedora} == 19
+Requires:	schroedinger-cat-backgrounds-base
+%define tde_bg /usr/share/backgrounds/schroedinger-cat/default/standard/schroedinger-cat.jpg
+Requires:	fedora-logos
+%define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
+
+Requires:	fedora-release-notes
+%define tde_aboutlabel Fedora 19
+%define tde_aboutpage /usr/share/doc/fedora-release-notes-19/index.html
+%endif
+
 
 # RHEL 4 Theme
 %if 0%{?rhel} == 4
@@ -273,6 +291,18 @@ Requires:	hicolor-icon-theme-branding
 
 Requires:	opensuse-manuals_en
 %define tde_aboutlabel OpenSuse 12.3
+%define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
+%endif
+
+# OpenSuse 13.1 Theme
+%if "%{?suse_version}" == "1310"
+Requires:	wallpaper-branding
+%define tde_bg /usr/share/wallpapers/openSUSEdefault/contents/images/1600x1200.jpg
+Requires:	hicolor-icon-theme-branding
+%define tde_starticon /usr/share/icons/hicolor/scalable/apps/distributor.svg
+
+Requires:	opensuse-manuals_en
+%define tde_aboutlabel OpenSuse 13.1
 %define tde_aboutpage /usr/share/doc/manual/opensuse-manuals_en/book.opensuse.startup.html
 %endif
 

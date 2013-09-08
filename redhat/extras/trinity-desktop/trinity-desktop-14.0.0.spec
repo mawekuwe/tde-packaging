@@ -121,6 +121,8 @@ Requires: trinity-kftpgrabber
 Requires: trinity-kile
 Requires: trinity-kima
 Requires: trinity-kiosktool
+Requires: trinity-kkbswitch
+Requires: trinity-klcddimmer
 Requires: trinity-kmplayer
 Requires: trinity-kmyfirewall
 Requires: trinity-kmymoney

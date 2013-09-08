@@ -115,6 +115,7 @@ A collection of applications and tools used by developers, including:
 * umbrello: UML modeller and UML diagram tool
 
 %files
+%defattr(-,root,root,-)
 
 ##########
 
@@ -134,6 +135,7 @@ with the commit dialog.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-cervisia
+%defattr(-,root,root,-)
 %{tde_bindir}/cervisia
 %{tde_libdir}/libtdeinit_cervisia.la
 %{tde_libdir}/libtdeinit_cervisia.so
@@ -215,6 +217,7 @@ for common translations.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kbabel
+%defattr(-,root,root,-)
 %{tde_bindir}/catalogmanager
 %{tde_bindir}/kbabel
 %{tde_bindir}/kbabeldict
@@ -353,6 +356,7 @@ This package contains the KBabel development files.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kbabel-devel
+%defattr(-,root,root,-)
 %{tde_tdeincludedir}/kbabel/
 %{tde_libdir}/libkbabelcommon.la
 %{tde_libdir}/libkbabelcommon.so
@@ -379,6 +383,7 @@ variety of options for searching through reports.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kbugbuster
+%defattr(-,root,root,-)
 %{tde_bindir}/kbugbuster
 %{tde_tdelibdir}/kcal_bugzilla.la
 %{tde_tdelibdir}/kcal_bugzilla.so
@@ -421,6 +426,7 @@ can be found in the tdecachegrind-converters package.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-tdecachegrind
+%defattr(-,root,root,-)
 %{tde_bindir}/tdecachegrind
 %{tde_tdeappdir}/tdecachegrind.desktop
 %{tde_datadir}/apps/tdecachegrind/
@@ -467,6 +473,7 @@ and plugin architectures are supported.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-tdecachegrind-converters
+%defattr(-,root,root,-)
 %{tde_bindir}/dprof2calltree
 %{tde_bindir}/hotshot2calltree
 %{tde_bindir}/memprof2calltree
@@ -487,6 +494,7 @@ patch files and Qt Linguist data.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files kfile-plugins
+%defattr(-,root,root,-)
 %{tde_tdelibdir}/tdefile_cpp.so
 %{tde_tdelibdir}/tdefile_cpp.la
 %{tde_tdelibdir}/tdefile_diff.so
@@ -517,9 +525,10 @@ Included are:
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files misc
+%defattr(-,root,root,-)
 %{tde_tdeincludedir}/kprofilemethod.h
-%{tde_tdelibdir}/kabcformat_kdeaccounts.la
-%{tde_tdelibdir}/kabcformat_kdeaccounts.so
+%{tde_tdelibdir}/tdeabcformat_kdeaccounts.la
+%{tde_tdelibdir}/tdeabcformat_kdeaccounts.so
 %{tde_tdelibdir}/plugins/styles/scheck.so
 %{tde_tdelibdir}/plugins/styles/scheck.la
 %{tde_datadir}/apps/tdeabc/formats/kdeaccountsplugin.desktop
@@ -559,6 +568,7 @@ In addition to these scripts, this package provides:
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files scripts
+%defattr(-,root,root,-)
 %{tde_bindir}/adddebug
 %{tde_bindir}/build-progress.sh
 %{tde_bindir}/cheatmake
@@ -649,6 +659,7 @@ KMtrace is a TDE tool to assist with malloc debugging using glibc's
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kmtrace
+%defattr(-,root,root,-)
 %{tde_bindir}/demangle
 %{tde_bindir}/kminspector
 %{tde_bindir}/kmmatch
@@ -673,6 +684,7 @@ file and/or blend a diff file back into the original documents.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kompare
+%defattr(-,root,root,-)
 %{tde_bindir}/kompare
 %{tde_libdir}/libkompareinterface.la
 %{tde_libdir}/libkompareinterface.so
@@ -728,6 +740,7 @@ loaded dynamically using KLibLoader.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kspy
+%defattr(-,root,root,-)
 %{tde_tdeincludedir}/kspy.h
 %{tde_libdir}/libkspy.la
 %{tde_libdir}/libkspy.so
@@ -755,6 +768,7 @@ The Qt Designer itself is in the package qt3-designer.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-kuiviewer
+%defattr(-,root,root,-)
 %{tde_bindir}/kuiviewer
 %{tde_tdelibdir}/libkuiviewerpart.so
 %{tde_tdelibdir}/libkuiviewerpart.la
@@ -798,6 +812,7 @@ DCOP is the Desktop Communication Protocol used throughout TDE.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-libcvsservice0
+%defattr(-,root,root,-)
 %{tde_bindir}/cvsaskpass
 %{tde_bindir}/cvsservice
 %{tde_libdir}/libcvsservice.so.*
@@ -834,6 +849,7 @@ Development files for libcvsservice are included in this package.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-libcvsservice-devel
+%defattr(-,root,root,-)
 %{tde_tdeincludedir}/cvsjob_stub.h
 %{tde_tdeincludedir}/cvsservice_stub.h
 %{tde_tdeincludedir}/repository_stub.h
@@ -865,6 +881,7 @@ manipulating DocBook XML files, PO-files and PO-template files.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-poxml
+%defattr(-,root,root,-)
 %{tde_bindir}/po2xml
 %{tde_bindir}/split2po
 %{tde_bindir}/swappo
@@ -890,6 +907,7 @@ diagrams and deployment diagrams.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files -n trinity-umbrello
+%defattr(-,root,root,-)
 %{tde_bindir}/umbodoc
 %{tde_bindir}/umbrello
 %{tde_tdeappdir}/umbrello.desktop
@@ -937,6 +955,7 @@ filesystem, using URLs like svn://hostname/path, or svn+ssh://, etc.
 This package is part of Trinity, and a component of the TDE SDK module.
 
 %files tdeio-plugins
+%defattr(-,root,root,-)
 %{tde_bindir}/tdeio_svn_helper
 %{tde_tdelibdir}/kded_ksvnd.la
 %{tde_tdelibdir}/kded_ksvnd.so
@@ -1054,6 +1073,7 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 %{summary}.
 
 %files devel
+%defattr(-,root,root,-)
 
 ##########
 

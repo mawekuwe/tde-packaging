@@ -1,0 +1,22 @@
+--- akode-2.0.2/configure.in.in.ORI	2013-08-10 11:51:41.617074169 +0200
++++ akode-2.0.2/configure.in.in	2013-08-10 11:51:49.295565706 +0200
+@@ -55,7 +55,7 @@
+ 
+ dnl without this order in this file, automake will be confused!
+ dnl
+-AM_CONFIG_HEADER(config.h)
++AC_CONFIG_HEADER(config.h)
+ 
+ dnl checks for programs.
+ dnl first check for c/c++ compilers
+--- akode-2.0.2/akode/configure.in.in.ORI	2013-08-10 11:53:11.355740687 +0200
++++ akode-2.0.2/akode/configure.in.in	2013-08-10 11:53:18.498367142 +0200
+@@ -2,7 +2,7 @@
+ dnl AC_OUTPUT(akode/akode-config)
+ dnl AC_OUTPUT(akode/akode.pc)
+ 
+-AM_CONFIG_HEADER(akode/lib/akode_export.h)
++AC_CONFIG_HEADER(akode/lib/akode_export.h)
+ 
+ AC_DEFUN([AC_CHECK_LIBFLAC],
+ [

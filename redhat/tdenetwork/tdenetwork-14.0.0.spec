@@ -86,7 +86,7 @@ BuildRequires:	libgadu-devel
 %endif
 
 # XTST support
-%if 0%{?fedora} >= 5 || 0%{?rhel} >= 5 || 0%{?suse_version}
+%if 0%{?fedora} >= 5 || 0%{?rhel} >= 5 || 0%{?suse_version} >= 1210
 BuildRequires:	libXtst-devel
 %endif
 %if 0%{?mdkversion} || 0%{?mgaversion}

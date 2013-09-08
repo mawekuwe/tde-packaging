@@ -51,18 +51,27 @@ BuildRequires:	gettext
 Obsoletes:		trinity-knetworkmanager < %{version}-%{release}
 Provides:		trinity-knetworkmanager = %{version}-%{release}
 
+# NETWORKMANAGER support
 %if 0%{?rhel} || 0%{?fedora}
 Requires:		NetworkManager-gnome
-%else
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
 Requires:		networkmanager
 %endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires:	NetworkManager-glib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	NetworkManager-devel
+Requires:		NetworkManager
+%endif
 
+# DBUS support
 BuildRequires:	trinity-dbus-1-tqt-devel >= 1:0.9
 BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
-BuildRequires:	NetworkManager-glib-devel
 
 %description
-KNetworkManager is a system tray applet for controlling network
+TDENetworkManager is a system tray applet for controlling network
 connections on systems that use the NetworkManager daemon.
 
 
@@ -72,7 +81,7 @@ Group:			Development/Libraries
 Requires:		%{name} = %{version}-%{release}
 
 %description devel
-Development headers for knetworkmanager
+Development headers for tdenetworkmanager
 
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
@@ -88,10 +97,8 @@ Development headers for knetworkmanager
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
@@ -165,6 +172,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_tdeincludedir}/*.h
 %{tde_tdelibdir}/*.la
 %{tde_tdelibdir}/*.so
+
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.9-1
