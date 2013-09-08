@@ -120,7 +120,7 @@ subversion-devel
 neon-devel
 lib64binutils-devel
 SDL-devel
-db4-devel
+db5-devel
 sqlite-devel
 sqlite3-devel
 libgadu-devel

@@ -28,6 +28,17 @@ fi
 
 BUILDDIR=$(rpm -E "%{_builddir}")
 
+
+if [ "${DIST:0:4}" = ".oss" ]; then
+  if [ ! -r /etc/rpm/macros.cmake ]; then
+    sudo cp macros.cmake /etc/rpm/macros.cmake
+  fi
+fi
+
+if [ ! -r /usr/include/jpegint.h ]; then
+  sudo cp extras/jpegint.h.el6 /usr/include/jpegint.h
+fi
+
 echo "Package Manager is '${PKGMGR}'"
 
 pkg_listlocal() {
@@ -77,8 +88,10 @@ grpiud() {
   fi
 }
 
-# TDE dependencies
+# TQT3
 grpiud dependencies/tqt3
+
+# TDE dependencies
 grpiud dependencies/tqtinterface
 grpiud dependencies/arts
 grpiud dependencies/avahi-tqt
@@ -88,6 +101,7 @@ grpiud dependencies/libart-lgpl
 grpiud dependencies/libcaldav
 grpiud dependencies/libcarddav
 grpiud dependencies/tqca
+grpiui dependencies/tqca-tls
 
 # Extra dependencies
 grpiud extras/akode
@@ -96,9 +110,11 @@ grpiud extras/akode
 # basic packages
 grpiud tdelibs
 grpiud tdebase
+
 # Back to remaining dependencies ...
 grpiud dependencies/tqscintilla
 grpiud dependencies/python-tqt
+
 # Main packages which are required by later main packages
 grpiud tdepim
 grpiud tdemultimedia
@@ -106,6 +122,7 @@ grpiud tdegames
 grpiud tdebindings
 grpiud tdegraphics
 grpiud tdenetwork
+
 # other main packages
 grpiui tdeaccessibility
 grpiui tdeaddons
@@ -132,7 +149,35 @@ if ! is_installed trinity-desktop-devel; then
   eval ${PKGINST} trinity-desktop-devel || exit 1
 fi
 
-# Build libraries
+# Extra libraries
+
+## IMLIB1: required for kuickshow
+if ! is_installed imlib1-devel; then
+  grpiu 3rdparty/imlib1
+  eval ${PKGINST} imlib1-devel || exit 1
+fi
+
+## WV2: for Koffice, not needed on Mageia (already provided)
+if [ "${DIST:0:4}" != ".mga" ]; then
+  if ! is_installed wv2; then
+    grpiu 3rdparty/wv2
+    eval ${PKGINST} wv2 || exit 1
+    eval ${PKGINST} wv2-devel || exit 1
+  fi
+fi
+## TORSOCKS: required for tork
+if ! is_installed torsocks; then
+  grpiu 3rdparty/torsocks
+  eval ${PKGINST} torsocks || exit 1
+fi
+if [ "${DIST:0:4}" = ".oss" ]; then
+  if ! is_installed pcsc-perl; then
+    grpiu 3rdparty/pcsc-perl
+    eval ${PKGINST} pcsc-perl || exit 1
+  fi
+fi
+
+# TDE libraries
 grpiud libraries/libkdcraw
 grpiud libraries/libkexiv2
 grpiud libraries/libkipi
@@ -141,16 +186,6 @@ grpiud libraries/libtdeldap
 grpiui libraries/libtqt-perl
 grpiud libraries/python-trinity
 grpiud libraries/pytdeextensions
-
-# Extra libraries
-if ! is_installed imlib1-devel; then
-  grpiu 3rdparty/imlib1
-  eval ${PKGINST} imlib1-devel || exit 1
-fi
-if ! is_installed torsocks; then
-  grpiu 3rdparty/torsocks
-  eval ${PKGINST} torsocks || exit 1
-fi
 
 # Build applications
 # K3B is required later for k9copy
@@ -168,11 +203,6 @@ grpiui applications/filelight
 #grpiui applications/filelight-l10n
 #grpiui applications/fusion-icon
 grpiui applications/gwenview
-grpiui applications/gwenview-i18n
-if ! is_installed trinity-k3b-i18n-French; then
-  grpiu applications/k3b-i18n
-  eval ${PKGINST} trinity-k3b-i18n-French || exit 1
-fi
 grpiui applications/k9copy
 grpiui applications/kaffeine
 grpiui applications/kaffeine-mozilla
@@ -200,13 +230,14 @@ grpiui applications/kftpgrabber
 grpiui applications/kile
 grpiui applications/kima
 grpiui applications/kiosktool
+grpiui applications/kkbswitch
+grpiui applications/klcddimmer
 grpiui applications/kmplayer
 grpiui applications/kmyfirewall
 grpiui applications/kmymoney
 grpiui applications/knemo
 grpiui applications/knetload
 grpiui applications/knetstats
-#grpiui applications/knetworkmanager
 grpiui applications/knights
 grpiui applications/knowit
 grpiui applications/knmap
@@ -215,15 +246,10 @@ if ! is_installed trinity-koffice-suite; then
   grpiu applications/koffice
   eval ${PKGINST} trinity-koffice-suite
 fi
-if ! is_installed trinity-koffice-i18n-French; then
-  grpiu applications/koffice-i18n
-  eval ${PKGINST} trinity-koffice-i18n-French
-fi
 grpiui applications/konversation
 grpiui applications/kopete-otr
 grpiui applications/kpicosim
 grpiui applications/kpilot
-#grpiui applications/kpowersave
 grpiui applications/krecipes
 grpiui applications/krename
 grpiui applications/krusader
@@ -249,10 +275,7 @@ grpiui applications/smb4k
 grpiui applications/soundkonverter
 grpiui applications/tde-guidance
 grpiui applications/tdeio-apt
-if ! is_installed trinity-tdeio-ftps; then
-  grpiu applications/tdeio-ftps
-  eval ${PKGINST} trinity-tdeio-ftps || exit 1
-fi
+grpiui applications/tdeio-ftps
 grpiui applications/tdeio-locate
 grpiui applications/tdeio-umountwrapper
 grpiui applications/tdenetworkmanager
@@ -282,6 +305,21 @@ fi
 
 if ! is_installed trinity-desktop-all; then
   eval ${PKGINST} trinity-desktop-all || exit 1
+fi
+
+# Locales packages
+grpiui applications/gwenview-i18n
+if ! is_installed trinity-k3b-i18n-French; then
+  grpiu applications/k3b-i18n
+  eval ${PKGINST} trinity-k3b-i18n-French || exit 1
+fi
+if ! is_installed trinity-koffice-i18n-French; then
+  grpiu applications/koffice-i18n
+  eval ${PKGINST} trinity-koffice-i18n-French
+fi
+if ! is_installed trinity-tde-i18n-French; then
+  grpiu tde-i18n
+  eval ${PKGINST} trinity-tde-i18n-French || exit 1
 fi
 
 exit 0

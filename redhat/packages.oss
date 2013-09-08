@@ -165,3 +165,5 @@ xscreensaver-data-extra
 ffmpeg1-devel
 recode
 NetworkManager-devel
+update-desktop-files
+pcsc-lite-devel

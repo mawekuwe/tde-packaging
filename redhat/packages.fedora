@@ -18,7 +18,6 @@ cmake
 commoncpp2-devel
 cppunit-devel
 createrepo
-db4-devel
 djvulibre
 djvulibre-devel
 esound-devel
@@ -59,7 +58,8 @@ libblkid-devel
 libcdio-devel
 libcdio-paranoia-devel
 libcurl-devel
-libdb4-cxx-devel
+libdb-devel
+libdb-cxx-devel
 libdvdread-devel
 libfontenc-devel
 libgadu-devel

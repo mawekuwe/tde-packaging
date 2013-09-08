@@ -28,6 +28,17 @@ fi
 
 BUILDDIR=$(rpm -E "%{_builddir}")
 
+
+if [ "${DIST:0:4}" = ".oss" ]; then
+  if [ ! -r /etc/rpm/macros.cmake ]; then
+    sudo cp macros.cmake /etc/rpm/macros.cmake
+  fi
+fi
+
+if [ ! -r /usr/include/jpegint.h ]; then
+  sudo cp extras/jpegint.h.el6 /usr/include/jpegint.h
+fi
+
 echo "Package Manager is '${PKGMGR}'"
 
 pkg_listlocal() {
@@ -77,10 +88,7 @@ grpiud() {
   fi
 }
 
-# Build akode now, required for some packages later ...
-grpiud extras/akode
-
-# Build dependencies
+# QT3
 if ! rpm -q libqt3-devel &>/dev/null && ! rpm -q lib64qt3-devel &>/dev/null && ! rpm -q qt3-devel &>/dev/null; then
   if [ -r /etc/SuSE-release ]; then
     pushd ../opensuse/core
@@ -91,6 +99,8 @@ if ! rpm -q libqt3-devel &>/dev/null && ! rpm -q lib64qt3-devel &>/dev/null && !
   eval ${PKGINST} qt3-devel || exit 1
   popd
 fi
+
+# TDE dependencies
 grpiud dependencies/tqtinterface
 grpiud dependencies/arts
 grpiud dependencies/avahi-tqt
@@ -101,10 +111,14 @@ grpiud dependencies/libcarddav
 grpiud dependencies/tqca
 grpiui dependencies/tqca-tls
 
-# Build main
+# Extra dependencies
+grpiud extras/akode
+
+# TDE main
 # basic packages
 grpiud tdelibs
 grpiud tdebase
+
 # Main packages which are required by later main packages
 grpiud tdepim
 grpiud tdemultimedia
@@ -112,6 +126,7 @@ grpiud tdegames
 grpiud tdebindings
 grpiud tdegraphics
 grpiud tdenetwork
+
 # other main packages
 grpiui tdeaccessibility
 grpiui tdeaddons
@@ -139,12 +154,33 @@ if ! is_installed trinity-desktop-devel; then
 fi
 
 # Extra libraries
+
+## IMLIB1: required for kuickshow
+if ! is_installed imlib1-devel; then
+  grpiu 3rdparty/imlib1
+  eval ${PKGINST} imlib1-devel || exit 1
+fi
+
+## WV2: for Koffice, not needed on Mageia (already provided)
+if [ "${DIST:0:4}" != ".mga" ]; then
+  if ! is_installed wv2; then
+    grpiu 3rdparty/wv2
+    eval ${PKGINST} wv2 || exit 1
+    eval ${PKGINST} wv2-devel || exit 1
+  fi
+fi
 if ! is_installed python-qt3; then
   grpiu 3rdparty/python-qt3
   eval ${PKGINST} python-qt3-devel || exit 1
 fi
+if [ "${DIST:0:4}" = ".oss" ]; then
+  if ! is_installed pcsc-perl; then
+    grpiu 3rdparty/pcsc-perl
+    eval ${PKGINST} pcsc-perl || exit 1
+  fi
+fi
 
-# Build libraries
+# TDE libraries
 grpiud libraries/libkdcraw
 grpiud libraries/libkexiv2
 grpiud libraries/libkipi
@@ -168,11 +204,6 @@ grpiui applications/filelight
 #grpiui applications/filelight-l10n
 #grpiui applications/fusion-icon
 grpiui applications/gwenview
-grpiui applications/gwenview-i18n
-if ! is_installed trinity-k3b-i18n-French; then
-  grpiu applications/k3b-i18n
-  eval ${PKGINST} trinity-k3b-i18n-French || exit 1
-fi
 grpiui applications/k9copy
 grpiui applications/kaffeine
 grpiui applications/kaffeine-mozilla
@@ -197,8 +228,8 @@ grpiui applications/kmymoney
 grpiui applications/knemo
 grpiui applications/knetload
 grpiui applications/knetstats
-if [ "${DIST}" = ".el6" ]; then
-  grpiui applications/knetworkmanager
+if [ "${DIST}" = ".el6" ] || [ "${DIST:0:6}" = ".oss11" ]; then
+  grpiui applications/knetworkmanager8
 fi
 grpiui applications/knights
 grpiui applications/knowit
@@ -206,10 +237,6 @@ grpiui applications/knutclient
 if ! is_installed trinity-koffice-suite; then
   grpiu applications/koffice
   eval ${PKGINST} trinity-koffice-suite
-fi
-if ! is_installed trinity-koffice-i18n-French; then
-  grpiu applications/koffice-i18n
-  eval ${PKGINST} trinity-koffice-i18n-French
 fi
 grpiui applications/konversation
 grpiui applications/kopete-otr
@@ -265,6 +292,21 @@ if ! is_installed trinity-desktop-all; then
   eval ${PKGINST} trinity-desktop-all || exit 1
 fi
 
+# Locales packages
+grpiui applications/gwenview-i18n
+if ! is_installed trinity-k3b-i18n-French; then
+  grpiu applications/k3b-i18n
+  eval ${PKGINST} trinity-k3b-i18n-French || exit 1
+fi
+if ! is_installed trinity-koffice-i18n-French; then
+  grpiu applications/koffice-i18n
+  eval ${PKGINST} trinity-koffice-i18n-French
+fi
+if ! is_installed trinity-tde-i18n-French; then
+  grpiu tde-i18n
+  eval ${PKGINST} trinity-tde-i18n-French || exit 1
+fi
+
 exit 0
 
 # Build extra packages
@@ -282,7 +324,8 @@ grpiui extras/kickoff-i18n
 #grpiui extras/knoda
 #grpiui extras/ksensors
 #grpiui extras/kshowmail
-#grpiui extras/mplayerthumbseval ${PKGINST} trinity-desktop-applications || exit 1
+#grpiui extras/mplayerthumbs
+eval ${PKGINST} trinity-desktop-applications || exit 1
 
 grpiui extras/style-ia-ora
 #if ! is_installed trinity-tdeio-ftps-plugin; then
