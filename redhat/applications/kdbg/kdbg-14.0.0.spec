@@ -110,7 +110,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-rpath \
   --enable-gcc-hidden-visibility
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

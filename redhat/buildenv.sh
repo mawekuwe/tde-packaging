@@ -55,6 +55,8 @@ checknew() {
   done
 }
 
+alias rr='rpm -qa --qf "%{name} %{buildhost}\n" | grep "\.vtf" | awk "{print \$1}"'
+
 # Update main repository
 alias tdu='(export GIT_ASKPASS=/bin/true; cd ~/tde/tde_r14; ./scripts/switch_all_submodules_to_head_and_clean)'
 
