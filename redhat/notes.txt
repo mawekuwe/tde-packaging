@@ -1,0 +1,48 @@
+This is a unsorted quick notes about TDE build issues, by distribution.
+
+ALL DISTRIBUTIONS (or almost)
+Some libraries are required but not provided by distribution anymore.
+You can find them in "3rdparty" folder.
+
+imlib1 : required for kuickshow
+python-qt3 (also known as PyQt) : required for python-related packages (TDE 3.5.13 only, not R14)
+hal : required for TDE 3.5.13.2, most recent distribution do NOT ship it.
+wv2 : required for koffice
+
+
+CENTOS 6:
+ligogg-devel package is missing: /usr/lib[64]/libogg.la .
+Missing header 'jpegint.h'
+
+
+MAGEIA 2/3:
+Remove db4-devel and install db5-devel only.
+Several version of postgresl-devel exist.
+Ensure you have the latest one installed, or you will build against
+an old one !
+MGA2: 9.1
+MGA3: 9.2
+
+
+CENTOS 4 / CENTOS 5
+Some mandatory packages are missing or too old.
+I had to build newer version in order to have TDE function correctly.
+ curl (built as trinity-curl)
+ poppler (built as trinity-poppler)
+
+
+OPENSUSE (all version)
+Missing cmake macros for RPM.
+Manually copy file 'macros.cmake' to '/etc/rpm'
+
+
+OPENSUSE 11.4
+Bug in 'libical-devel' package. (causes FTBFS in tdepim)
+Edit file '/usr/lib/pkgconfig/libical.pc'
+Then change as follow:
+  Cflags: -I${includedir}/libical
+
+Avoid relinking error on i18n (e.g. rpmbuild fails in amarok):
+ for i in ar bg bn ca cs da de el en_GB es et fi fr he hi hu is it ja lt nl nb nn pa pl pt pt_BR ro ru sk sl sr sv ta tr uk zh_CN zh_TW; do
+   mkdir -p /opt/trinity/share/doc/tde/HTML/$i/common
+ done
