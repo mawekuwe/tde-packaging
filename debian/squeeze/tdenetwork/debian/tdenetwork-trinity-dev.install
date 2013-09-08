@@ -1,4 +1,4 @@
-debian/tmp/opt/trinity/include/kopete/kabcpersistence.h
+debian/tmp/opt/trinity/include/kopete/tdeabcpersistence.h
 debian/tmp/opt/trinity/include/kopete/kopete_export.h
 debian/tmp/opt/trinity/include/kopete/kopeteaccount.h
 debian/tmp/opt/trinity/include/kopete/kopeteaccountmanager.h

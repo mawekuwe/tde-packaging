@@ -71,9 +71,9 @@ DEB_DH_SHLIBDEPS_ARGS_kontact-trinity := \
 #
 ## Move kaddressbook dependency of libkcal2b-trinity to Recommends
 #DEB_DH_SHLIBDEPS_ARGS_libkcal2b-trinity := \
-#	-Xopt/trinity/lib/trinity/kcal_kabc.so \
+#	-Xopt/trinity/lib/trinity/kcal_tdeabc.so \
 #	-- -dRecommends \
-#	debian/libkcal2b/opt/trinity/lib/trinity/kcal_kabc.so \
+#	debian/libkcal2b/opt/trinity/lib/trinity/kcal_tdeabc.so \
 #	-dDepends
 
 test-shlibdeps:

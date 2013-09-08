@@ -26,10 +26,10 @@
 /opt/trinity/lib/trinity/knotes_scalix.so
 /opt/trinity/lib/trinity/knotes_xmlrpc.la
 /opt/trinity/lib/trinity/knotes_xmlrpc.so
-/opt/trinity/lib/libkabckolab.so.0
-/opt/trinity/lib/libkabckolab.so.0.0.0
-/opt/trinity/lib/libkabcscalix.so.0
-/opt/trinity/lib/libkabcscalix.so.0.0.0
+/opt/trinity/lib/libtdeabckolab.so.0
+/opt/trinity/lib/libtdeabckolab.so.0.0.0
+/opt/trinity/lib/libtdeabcscalix.so.0
+/opt/trinity/lib/libtdeabcscalix.so.0.0.0
 /opt/trinity/lib/libtdeabc_groupdav.so.1
 /opt/trinity/lib/libtdeabc_groupdav.so.1.0.0
 /opt/trinity/lib/libtdeabc_groupwise.so.1

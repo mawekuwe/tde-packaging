@@ -141,9 +141,10 @@ $(patsubst %,install/%,$(DEB_PYTHON_SIMPLE_PACKAGES)) :: install/% :
 ifdef _cdbs_rules_debhelper
 
 DEB_DH_PYTHON_ARGS = $(addprefix -V ,$(DEB_PYTHON_COMPILE_VERSION)) $(DEB_DH_PYTHON_ARGS_ALL) $(DEB_DH_PYTHON_ARGS_$(cdbs_curpkg))
+DH_PYTHON2 = $(if $(wildcard /usr/bin/dh_python2),dh_python2,dh_python)
 
 $(patsubst %,binary-install/%,$(DEB_PACKAGES)) :: binary-install/%:
-	dh_python -p$(cdbs_curpkg) $(DEB_DH_PYTHON_ARGS)
+	${DH_PYTHON2} -p$(cdbs_curpkg) $(DEB_DH_PYTHON_ARGS)
 endif
 
 
