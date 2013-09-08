@@ -38,6 +38,8 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Patch1:			tdelibs-3.5.13.2-fix_xdg_menu.patch
 # Fix startup of KDE4 applications
 Patch2:			tdelibs-3.5.13.2-fix-starting-kde4-applications.patch
+# Fix ARTS includes directory
+Patch3:			tdelibs-3.5.13.2-fix_arts_include.patch
 
 # Patches from Mandriva
 Patch101:		tdelibs-3.5.13.2-xdg_dirs_set_path.patch
@@ -374,6 +376,7 @@ applications for TDE.
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .xdg
 %patch2 -p1 -b .kde4
+%patch3 -p1 -b .arts
 %patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default
 

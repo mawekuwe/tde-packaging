@@ -125,7 +125,6 @@ pilot-link-devel
 poppler-devel
 pth-devel
 pulseaudio-libs-devel
-PyQt-devel
 redhat-rpm-config
 rpm-build
 ruby
@@ -182,7 +181,6 @@ liblrdf-devel
 unixODBC-devel
 gtk-doc
 librsvg2-tools
-
 libXv-devel
 net-tools
 libcap-devel

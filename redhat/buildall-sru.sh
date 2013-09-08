@@ -139,10 +139,10 @@ grpiui tdeutils
 if ! is_installed trinity-desktop; then
   grpiu extras/trinity-desktop
   eval ${PKGINST} trinity-desktop || exit 1
-  # Disable trinity repository from here !!!
-  if [ -r "/etc/yum.repos.d/trinity-3.5.13.repo" ]; then
-    sed -i "/etc/yum.repos.d/trinity-3.5.13.repo" -e "s|enabled=.*|enabled=0|g"
-  fi
+fi
+# Disable trinity repository from here !!!
+if [ -r "/etc/yum.repos.d/trinity-3.5.13.repo" ]; then
+  sudo sed -i "/etc/yum.repos.d/trinity-3.5.13.repo" -e "s|enabled=.*|enabled=0|g"
 fi
 
 # devel packages
@@ -153,10 +153,10 @@ if ! is_installed trinity-desktop-devel; then
   eval ${PKGINST} trinity-desktop-devel || exit 1
 fi
 
-# Extra libraries
+# 3rd party libraries
 
 ## IMLIB1: required for kuickshow
-if ! is_installed imlib1-devel; then
+if ! is_installed imlib1-devel && ! is_installed imlib-devel; then
   grpiu 3rdparty/imlib1
   eval ${PKGINST} imlib1-devel || exit 1
 fi
@@ -169,14 +169,33 @@ if [ "${DIST:0:4}" != ".mga" ]; then
     eval ${PKGINST} wv2-devel || exit 1
   fi
 fi
+
+## PYTHON-QT3: for Python-stuff
 if ! is_installed python-qt3; then
+  if [ "${DIST:0:3}" = ".el" ] || [ "${DIST:0:3}" = ".fc" ]; then
+    eval ${PKGINST} qt3-MySQL qt3-ODBC qt3-PostgreSQL
+  fi
   grpiu 3rdparty/python-qt3
   eval ${PKGINST} python-qt3-devel || exit 1
 fi
-if [ "${DIST:0:4}" = ".oss" ]; then
+
+## PCSC-PERL: for smartcardauth
+if [ "${DIST:0:4}" = ".oss" ] || [ "${DIST:0:3}" = ".el" ]; then
   if ! is_installed pcsc-perl; then
     grpiu 3rdparty/pcsc-perl
     eval ${PKGINST} pcsc-perl || exit 1
+  fi
+fi
+
+## Lilypond: needed for rosegarden
+if [ "${DIST}" = ".el6" ]; then
+  if ! is_installed mftrace; then
+    grpiu 3rdparty/mftrace
+    eval ${PKGINST} mftrace || exit 1
+  fi
+  if ! is_installed lilypond; then
+    grpiu 3rdparty/lilypond
+    eval ${PKGINST} lilypond || exit 1
   fi
 fi
 
@@ -258,7 +277,9 @@ grpiui applications/kvirc
 grpiui applications/kvkbd
 grpiui applications/piklab
 grpiui applications/potracegui
-grpiui applications/rosegarden
+if [ "${DIST}" != ".el4" ] && [ "${DIST}" != ".el5" ]; then
+  grpiui applications/rosegarden
+fi
 grpiui applications/smartcardauth
 grpiui applications/smb4k
 grpiui applications/soundkonverter

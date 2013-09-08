@@ -5,7 +5,39 @@
  	$(top_builddir)/arts/midi/libartsmidi_idl.la \
  	$(top_builddir)/arts/modules/synth/libartsmodulessynth.la \
 -	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) $(LIB_QT) $(VORBISFILE_LIBS) -lgthread-2.0
-+	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) $(LIB_QT) $(VORBIS_LIBS) $(VORBISFILE_LIBS) -lgthread-2.0 -lmad
++	-lartsflow -lartsflow_idl -lmcop $(LIB_KDECORE) $(LIB_QT) -lgthread-2.0 $(ARTS_LIBS)
  
  libartsmodulescommon_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -no-undefined
  
+--- trinity-tdemultimedia-14.0.0~pre178+601a5c5f/arts/modules/synth/Makefile.am.ORI	2013-08-04 19:15:24.030530158 +0200
++++ trinity-tdemultimedia-14.0.0~pre178+601a5c5f/arts/modules/synth/Makefile.am	2013-08-04 19:15:32.878625492 +0200
+@@ -31,7 +31,7 @@
+ libartsmodulessynth_la_LIBADD = \
+ 	$(top_builddir)/arts/runtime/libartsbuilder.la \
+ 	$(top_builddir)/arts/midi/libartsmidi_idl.la \
+-	-lartsflow -lartsgsl -lartsflow_idl -lmcop -lglib-2.0
++	-lartsflow -lartsgsl -lartsflow_idl -lmcop -lglib-2.0 $(ARTS_LIBS)
+ 
+ #libartsmodulessynth_la_LIBADD = $(top_builddir)/arts/gui/common/libartsgui_idl.la $(top_builddir)/arts/midi/libartsmidi_idl.la -lartsflow -lartsflow_idl -lmcop $(LIBDL) $(LIB_KDEUI) $(LIB_KDECORE)
+ libartsmodulessynth_la_LDFLAGS = $(all_libraries) -L$(arts_libraries) -lartsflow -lartsgsl -no-undefined
+--- trinity-tdemultimedia-14.0.0~pre183+1859432c/configure.in.in.ORI	2013-09-08 17:50:11.453897325 +0200
++++ trinity-tdemultimedia-14.0.0~pre183+1859432c/configure.in.in	2013-09-08 17:54:24.503460785 +0200
+@@ -544,15 +544,18 @@
+ 	LIB_ARTS="-lartskde"
+ 	ARTS_PREFIX=[`$ARTSCCONFIG --arts-prefix`]
+ 	ARTS_CFLAGS="-I$ARTS_PREFIX/include/arts"
++	ARTS_LIBS=[`$PKG_CONFIG --libs-only-l arts`]
+ 	AC_DEFINE(HAVE_ARTS, 1, [have arts support in juk])
+ else
+ 	build_arts="no"
+ 	LIB_ARTS=""
+ 	ARTS_CFLAGS=""
++	ARTS_LIBS=""
+ 	AC_DEFINE(HAVE_ARTS, 0, [no arts support in juk])
+ fi
+ 
+ AC_SUBST(LIB_ARTS)
+ AC_SUBST(ARTS_CFLAGS)
++AC_SUBST(ARTS_LIBS)
+ 
+ KDE_CHECK_MPEGLIB_ARTS

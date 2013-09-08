@@ -1,0 +1,25 @@
+diff --git a/arts/kde/CMakeLists.txt b/arts/kde/CMakeLists.txt
+index 3b58525..091be35 100644
+--- a/arts/kde/CMakeLists.txt
++++ b/arts/kde/CMakeLists.txt
+@@ -27,11 +27,6 @@ link_directories(
+   ${ARTS_LIBRARY_DIRS}
+ )
+ 
+-# pkg-config stripping -I/usr/include
+-if( NOT ARTS_INCLUDE_DIRS )
+-  set( ARTS_INCLUDE_DIRS "/usr/include" )
+-endif()
+-
+ 
+ ##### headers ###################################
+ 
+@@ -58,7 +53,7 @@ set( ${target}_SRCS
+ add_custom_command(
+   OUTPUT artskde.cc artskde.h
+   COMMAND ${ARTS_MCOPIDL_EXECUTABLE}
+-    -I${ARTS_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/artskde.idl
++    -I${ARTS_INCLUDEDIR} ${CMAKE_CURRENT_SOURCE_DIR}/artskde.idl
+   DEPENDS artskde.idl
+ )
+ 
