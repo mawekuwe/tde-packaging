@@ -43,11 +43,15 @@ License:		GPLv2+
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source2:		k3brc
 
+# Fix FTBFS because AVCODEC_MAX_AUDIO_FRAME_SIZE is obsolete
+Patch1:			k3b-3.5.13.2-fix_ffmpeg_support.patch
+
 # Legacy RedHat / Fedora patches
 # manual bufsize (upstream?)
 Patch4:			k3b-1.0.4-manualbufsize.patch
 # RHEL6: Fix K3B icon
 Patch106:	trinity-k3b-icons.patch
+
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -388,7 +392,7 @@ and a generic audio and video file converter.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
-# set in k3brc too 
+%patch1 -p1 -b .ffmpeg
 %patch4 -p1 -b .manualbufsize
 %patch106 -p1 -b .desktopfile
 

@@ -36,6 +36,8 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 # Fix categories in T-menu
 Patch1:			tdelibs-3.5.13.2-fix_xdg_menu.patch
+# Fix startup of KDE4 applications
+Patch2:			tdelibs-3.5.13.2-fix-starting-kde4-applications.patch
 
 # Patches from Mandriva
 Patch101:		tdelibs-3.5.13.2-xdg_dirs_set_path.patch
@@ -371,6 +373,7 @@ applications for TDE.
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .xdg
+%patch2 -p1 -b .kde4
 %patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default
 

@@ -112,7 +112,7 @@ Requires: trinity-digikam
 Requires: trinity-dolphin
 Requires: trinity-filelight
 Requires: trinity-gwenview
-Requires: trinity-gwenview-i18n
+#Requires: trinity-gwenview-i18n
 Requires: trinity-k3b
 Requires: trinity-kaffeine
 Requires: trinity-kaffeine-mozilla
@@ -192,9 +192,11 @@ Obsoletes: trinity-kgtk-qt3
 # RHEL, openSUSE 12: no Beagle library
 Obsoletes: trinity-kerry
 
-# RHEL 6 only: knetworkmanager8
-#  knetworkmanager9 is too unstable for now.
+# RHEL 6 and openSUSE 11.x: knetworkmanager8
 %if 0%{?rhel} == 6
+Requires: trinity-knetworkmanager
+%endif
+%if 0%{?suse_version} && 0%{?suse_version} <= 1140
 Requires: trinity-knetworkmanager
 %endif
 
@@ -217,6 +219,8 @@ Requires: trinity-tdesvn
 %files  applications
 
 ##########
+
+%if 0
 
 %package extras
 Group:		User Interface/Desktops
@@ -255,6 +259,8 @@ Requires:	trinity-twinkle
 %{summary}
 
 %files extras
+
+%endif
 
 ##########
 

@@ -82,7 +82,7 @@ BuildRequires: libxcb-devel
 %if 0%{?rhel} >= 5 || 0%{?suse_version} || 0%{?fedora} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_gstreamer 1
 %if 0%{?suse_version}
-BuildRequires:	gstreamer-devel
+BuildRequires:	gstreamer-0_10-devel
 BuildRequires:	gstreamer-0_10-plugins-base-devel
 %endif
 %if 0%{?rhel} == 4

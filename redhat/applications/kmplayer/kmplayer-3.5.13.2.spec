@@ -70,7 +70,7 @@ BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-plugins-base-devel
 %endif
 %if 0%{?suse_version}
-BuildRequires:	gstreamer-devel
+BuildRequires:	gstreamer-0_10-devel
 BuildRequires:	gstreamer-0_10-plugins-base-devel
 %endif
 

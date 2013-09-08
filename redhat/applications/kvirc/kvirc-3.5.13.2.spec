@@ -164,8 +164,8 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Debian maintainer has renamed 'COPYING' file to 'EULA', so we do the same ...
 %__mv \
-  %{?buildroot}%{tde_libdir}/kvirc/3.4/license/COPYING \
-  %{?buildroot}%{tde_libdir}/kvirc/3.4/license/EULA
+  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/COPYING \
+  %{?buildroot}%{tde_datadir}/kvirc/3.4/license/EULA
 
 
 %clean
@@ -199,7 +199,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/icons/hicolor/*/*/*.png
 %{tde_datadir}/icons/hicolor/*/*/*.svgz
 %{tde_datadir}/icons/hicolor/*/*/*.xpm
-#%{tde_datadir}/kvirc
+%{tde_datadir}/kvirc
 %{tde_datadir}/mimelnk/text/*.desktop
 %{tde_datadir}/services/*.protocol
 %{tde_mandir}/man1/kvirc.1
@@ -210,7 +210,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_includedir}/kvirc/
 %{tde_libdir}/*.la
 %{tde_libdir}/*.so
-#%{tde_libdir}/kvirc/*/modules/*.la
+%{tde_libdir}/kvirc/*/modules/*.la
 
 
 %changelog

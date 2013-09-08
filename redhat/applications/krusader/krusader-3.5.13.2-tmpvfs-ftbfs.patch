@@ -1,0 +1,62 @@
+diff --git a/krusader/VFS/temp_vfs.cpp b/krusader/VFS/temp_vfs.cpp
+index 25f3a15..ee68521 100644
+--- a/krusader/VFS/temp_vfs.cpp
++++ b/krusader/VFS/temp_vfs.cpp
+@@ -56,7 +56,7 @@ temp_vfs::temp_vfs( TQString origin, TQString type, TQWidget* panel, bool ):
+ }
+ 
+ temp_vfs::~temp_vfs(){
+-	if( vfs_type == "-iso" ){
++	if( tmpvfs_type == ISO ){
+ 		// unmount the ISO image
+     KShellProcess umount;
+ 		umount << "umount -f" << tmpDir;
+@@ -94,6 +94,13 @@ bool temp_vfs::vfs_refresh(const KURL& origin){
+ }
+ 
+ void temp_vfs::handleAceArj(TQString origin, TQString type){
++    if (type == "-ace") {
++	tmpvfs_type = ACE;
++    }
++    else if (type == "-arj") {
++	tmpvfs_type = ARJ;
++    }
++
+ 	// for ace and arj we just unpack to the tmpDir
+ 	if( !KRarcHandler::arcHandled(type) ){
+   	if (!quietMode) KMessageBox::error(krApp,"This archive type is NOT supported");
+@@ -117,6 +124,7 @@ void temp_vfs::handleRpm(TQString origin){
+ 	rpm.clearArguments();
+ 	rpm << "rpm -lpq"<<"\""+origin+"\""+" > "+tmpDir+"/filelist.txt";
+ 	rpm.start(KProcess::Block);
++	tmpvfs_type = RPM;
+ }
+ 
+ void temp_vfs::handleIso(TQString origin){
+@@ -124,4 +132,5 @@ void temp_vfs::handleIso(TQString origin){
+ 	KShellProcess mount;
+ 	mount << KrServices::fullPathName( "mount" ) << "-o loop" << origin << tmpDir;
+ 	mount.start(KProcess::Block);
++	tmpvfs_type = ISO;
+ }
+diff --git a/krusader/VFS/temp_vfs.h b/krusader/VFS/temp_vfs.h
+index 3b94248..d35169b 100644
+--- a/krusader/VFS/temp_vfs.h
++++ b/krusader/VFS/temp_vfs.h
+@@ -37,6 +37,8 @@
+ 
+ class temp_vfs : public normal_vfs  {
+ public: 
++	enum TMPVFS_TYPE{ERROR=0,ACE,ARJ,RPM,ISO};
++
+ 	temp_vfs( TQString origin, TQString type, TQWidget* panel, bool writeable);
+ 	~temp_vfs();
+ 	TQString vfs_workingDir();
+@@ -50,6 +52,7 @@ protected:
+ 	void handleAceArj(TQString origin, TQString type);
+ 	void handleRpm(TQString origin);
+ 	void handleIso(TQString origin);
++	TMPVFS_TYPE tmpvfs_type;     //< the tmp vfs type.
+   TQString tmpDir;
+ 
+ };

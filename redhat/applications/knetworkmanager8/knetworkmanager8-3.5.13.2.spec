@@ -1,17 +1,13 @@
 # Default version for this component
-%define tdecomp knetworkmanager
-%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion}
-%define version 0.9
-%else
-%define version 0.8
-%endif
+%define tde_pkg knetworkmanager8
+%define tde_version 3.5.13.2
 
 # If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
 %if "%{?tde_prefix}" != "/usr"
 %define _variant .opt
 %endif
 
-# TDE 3.5.13 specific building variables
+# TDE specific building variables
 %define tde_bindir %{tde_prefix}/bin
 %define tde_datadir %{tde_prefix}/share
 %define tde_docdir %{tde_datadir}/doc
@@ -28,41 +24,47 @@
 %define _docdir %{tde_tdedocdir}
 
 
-Name:			trinity-%{tdecomp}
-Version:		%{?version}
-Release:		5%{?dist}%{?_variant}
+Name:			trinity-%{tde_pkg}
+Version:		0.8
+Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
-Summary:        Trinity applet for Network Manager
+Summary:		Trinity applet for Network Manager
 
-Group:          Applications/Internet
-License:        GPLv2+
-URL:            http://en.opensuse.org/Projects/KNetworkManager
+Group:			Applications/Internet
+License:		GPLv2+
+URL:			http://en.opensuse.org/Projects/KNetworkManager
 
-%if "%{?version}" == "0.9"
-Source0:	trinity-knetworkmanager9-3.5.13.2.tar.gz
-%else
-Source0:	trinity-knetworkmanager8-3.5.13.2.tar.gz
-%endif
+Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 Patch0:			knetworkmanager-3.5.13-missing_includes.patch
 
 # For knetworkmanager 0.9 only !
 Patch10:		knetworkmanager-3.5.13-subdir_version.patch
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-#Requires:       kde-filesystem
-BuildRequires:  desktop-file-utils
+BuildRequires:	desktop-file-utils
 
+# NETWORKMANAGER support
 %if 0%{?rhel} || 0%{?fedora}
-Requires:       NetworkManager-gnome
-%else
-Requires:       networkmanager
+Requires:		NetworkManager-gnome
+%endif
+%if 0%{?mdkversion} || 0%{?mgaversion}
+Requires:		networkmanager
+%endif
+%if 0%{?rhel} || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion}
+BuildRequires:	NetworkManager-glib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires:	NetworkManager-devel
+Requires:		NetworkManager
 %endif
 
-BuildRequires:	trinity-dbus-1-tqt-devel
-BuildRequires:	trinity-dbus-tqt-devel
-BuildRequires:	NetworkManager-glib-devel
+BuildRequires:	trinity-dbus-1-tqt-devel >= 1:0.9
+BuildRequires:	trinity-dbus-tqt-devel >= 1:0.63
+
+Obsoletes:		trinity-knetworkmanager < %{version}-%{release}
+Provides:		trinity-knetworkmanager = %{version}-%{release}
 
 %description
 KNetworkManager is a system tray applet for controlling network
@@ -70,9 +72,12 @@ connections on systems that use the NetworkManager daemon.
 
 
 %package devel
-Summary:        Common data shared among the MySQL GUI Suites
-Group:          Development/Libraries
-Requires:       %{name} = %{version}-%{release}
+Summary:		Common data shared among the MySQL GUI Suites
+Group:			Development/Libraries
+Requires:		%{name} = %{version}-%{release}
+
+Obsoletes:		trinity-knetworkmanager-devel < %{version}-%{release}
+Provides:		trinity-knetworkmanager-devel = %{version}-%{release}
 
 %description devel
 Development headers for knetworkmanager
@@ -84,11 +89,7 @@ Development headers for knetworkmanager
 
 
 %prep 
-%if "%{?version}" == "0.9"
-%setup -q -n %{name}9-3.5.13.2
-%else
-%setup -q -n %{name}8-3.5.13.2
-%endif
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %if "%{?version}" == "0.9"
 %patch10 -p1
@@ -103,25 +104,29 @@ cd knetworkmanager-0.*/src
 unset QTDIR || : ; . /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
-export CMAKE_INCLUDE_PATH="%{tde_includedir}:%{tde_includedir}/tqt"
-export LD_LIBRARY_PATH="%{tde_libdir}"
 
 # Missing TDE macros
 %__mkdir_p cmake
 %__ln_s %{tde_datadir}/cmake cmake/modules
 
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %__mkdir_p build
 cd build
 %endif
 
 %cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  \
   -DCMAKE_INSTALL_PREFIX=%{tde_prefix} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DSHARE_INSTALL_PREFIX=%{tde_datadir} \
-  -DCMAKE_SKIP_RPATH="OFF" \
   ..
   
 %__make %{?_smp_mflags} 
@@ -141,17 +146,21 @@ update-desktop-database %{tde_appdir} > /dev/null
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
+
 %postun
 update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
+
 %post devel
 /sbin/ldconfig
 
+
 %postun devel
 /sbin/ldconfig
+
 
 %files 
 %defattr(-,root,root,-)

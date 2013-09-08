@@ -1,0 +1,13 @@
+diff --git a/tdeio/tdeio/kservice.cpp b/tdeio/tdeio/kservice.cpp
+index 67031d0..a4c67f3 100644
+--- a/kio/kio/kservice.cpp
++++ b/kio/kio/kservice.cpp
+@@ -103,7 +103,7 @@ KService::init( KDesktopFile *config )
+     // extract prefix
+     kde4applicationprefix = config->fileName();
+     int pos = kde4applicationprefix.find("/share/applications/kde4/");
+-    kde4applicationprefix.truncate(pos-1);
++    kde4applicationprefix.truncate(pos);
+   }
+ 
+   config->setDesktopGroup();

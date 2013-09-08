@@ -1,0 +1,11 @@
+--- trinity-k3b-3.5.13.2/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp.ORI	2013-09-07 12:10:15.846286823 +0200
++++ trinity-k3b-3.5.13.2/plugins/decoder/ffmpeg/k3bffmpegwrapper.cpp	2013-09-07 12:11:08.020207223 +0200
+@@ -49,7 +49,7 @@
+   K3b::Msf length;
+ 
+   // for decoding
+-  char outputBuffer[AVCODEC_MAX_AUDIO_FRAME_SIZE];
++  char outputBuffer[192000];
+   char* outputBufferPos;
+   int outputBufferSize;
+   AVPacket packet;
