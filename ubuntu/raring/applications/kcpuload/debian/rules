@@ -45,11 +45,6 @@ ifeq ($(DEB_BUILD_GNU_TYPE),i386-linux)
   #export CXXFLAGS=-O3 -march=i686 -ffast-math -finline-functions
 endif
 
--include debian/debiandirs
-
-debian/debiandirs: admin/debianrules
-	perl -w admin/debianrules echodirs > debian/debiandirs
-
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
@@ -104,7 +99,7 @@ debian-clean:
 clean:
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp configure-stamp debian/debiandirs
+	rm -f build-stamp configure-stamp
 
 	# Remove Debian specific patches
 	if test -f patch-stamp; then \
@@ -169,8 +164,6 @@ binary-common:
 	dh_testroot
 	dh_installchangelogs kcpuload/ChangeLog
 	dh_installdocs
-	mkdir -p debian/kcpuload-trinity/opt/trinity/share/doc
-	mv debian/kcpuload-trinity/usr/share/doc/tde debian/kcpuload-trinity/opt/trinity/share/doc/
 	rm -fr debian/kcpuload-trinity/usr/share/doc-base
 	dh_installexamples
 	dh_installmanpages
