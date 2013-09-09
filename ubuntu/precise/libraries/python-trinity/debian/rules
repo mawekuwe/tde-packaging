@@ -14,7 +14,6 @@ cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xine
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
 
-include /usr/share/dpatch/dpatch.make
 # This has to be exported to make some magic below work.
 export DH_OPTIONS
 export QTDIR=/usr/share/qt3
@@ -31,8 +30,7 @@ endif
 PYTHONS := $(shell pyversions -vr debian/control)
 DBG_PYTHONS := $(shell pyversions -vd)
 
-DEB_PYTHON_SYSTEM = $(if $(wildcard /usr/bin/dh_python2),,pysupport)
-DH_PYTHON2 = $(if $(wildcard /usr/bin/dh_python2),dh_python2,dh_pysupport)
+DH_PYTHON2 = $(if $(wildcard /usr/bin/dh_python2),dh_python2,dh_python)
 
 GCCVER := $(shell gcc --version | sed -n '/^gcc (GCC)/s/.*(GCC) \(...\).*/\1/p')
 ifneq (,$(filter $(GCCVER),4.2 4.3))
@@ -45,7 +43,7 @@ endif
 
 configure: $(PYTHONS:%=build-%/configure-stamp) $(DBG_PYTHONS:%=dbg-build-%/configure-stamp)
 
-build-%/configure-stamp: patch-stamp
+build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
 	cd build-$* && python$* ../configure.py \
@@ -53,7 +51,7 @@ build-%/configure-stamp: patch-stamp
 		-v /opt/trinity/share/sip/trinity -j $(SPLIT)
 	touch $@
 
-dbg-build-%/configure-stamp: patch-stamp
+dbg-build-%/configure-stamp:
 	dh_testdir
 	mkdir -p dbg-build-$*
 	cd dbg-build-$* && python$*-dbg ../configure.py \
@@ -73,7 +71,7 @@ dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 	$(MAKE) -C dbg-build-$*
 	touch $@
 
-clean: unpatch
+clean:
 	dh_testdir
 	dh_testroot
 	rm -f *-stamp

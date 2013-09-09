@@ -4,17 +4,15 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Ricardo Javier Cardenes Medina <rcardenes@debian.org>
 Uploaders: Torsten Marek <shlomme@debian.org>, Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
-Build-Depends: debhelper (>= 5.0.38), libtqtinterface-dev, python, python-all-dev, python-all-dbg, sip4 (>= 4.10), python-sip4-dev (>= 4.10), python-tqt-dev, tdelibs14-trinity-dev, python-support (>= 0.6) | python-dev (>= 2.6.6-3~), dpatch, python-sip4, python-sip4-dbg, python-sip4-dev
+Build-Depends: debhelper (>= 5.0.38), libtqtinterface-dev, python, python-all-dev, python-all-dbg, sip4 (>= 4.10), python-sip4-dev (>= 4.10), python-tqt-dev, tdelibs14-trinity-dev, python-sip4, python-sip4-dbg, python-sip4-dev
 Standards-Version: 3.8.4
 Homepage: http://www.riverbankcomputing.co.uk/pytde/index.php
-XS-Python-Version: all
 
 Package: python-trinity-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${python:Depends}, python-tqt
 Replaces: python-trinity-trinity (<< 4:14.0.0)
 Breaks: python-trinity-trinity (<< 4:14.0.0)
-XB-Python-Version: ${python:Versions}
 Provides: ${python:Provides}
 Conflicts: python-trinity-trinity
 Description: Trinity bindings for Python [Trinity]
@@ -28,7 +26,6 @@ Architecture: any
 Replaces: python-trinity-trinity-dbg (<< 4:14.0.0)
 Breaks: python-trinity-trinity-dbg (<< 4:14.0.0)
 Depends: python-trinity-trinity (= ${binary:Version}), python-dbg, python-tqt-dbg, ${shlibs:Depends}
-XB-Python-Version: ${python:Versions}
 Description: Trinity bindings for Python (debug extensions) [Trinity]
  Python binding module that provides wide access to the Trinity API,
  also known as PyKDE. Using this, you'll get (for example) classes
@@ -42,7 +39,6 @@ Architecture: all
 Replaces: python-trinity-trinity-dev (<< 4:14.0.0)
 Breaks: python-trinity-trinity-dev (<< 4:14.0.0)
 Depends: pytqt-tools, ${python:Depends}
-XB-Python-Version: ${python:Versions}
 Description: Trinity bindings for Python - Development files and scripts [Trinity]
  Development .sip files with definitions of PyKDE classes. They
  are needed to build PyKDE, but also as building blocks of other
