@@ -1027,6 +1027,7 @@ fi
 EXTRA_INCLUDES="/usr/include/ruby-%{rb20_ver}:/usr/include/ruby-%{rb20_ver}/%{_target}"
 %endif
 
+# Do NOT remove "%{_includedir}/tqt" from extra-includes !!!
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -1044,7 +1045,7 @@ EXTRA_INCLUDES="/usr/include/ruby-%{rb20_ver}:/usr/include/ruby-%{rb20_ver}/%{_t
   --enable-closure \
   --enable-rpath \
   \
-  --with-extra-includes=%{_includedir}/tqscintilla:${EXTRA_INCLUDES} \
+  --with-extra-includes=%{_includedir}/tqt:${EXTRA_INCLUDES} \
   --with-extra-libs=%{tde_libdir} \
   --with-pythondir=%{_usr} \
   \

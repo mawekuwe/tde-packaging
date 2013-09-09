@@ -377,7 +377,7 @@ Requires:	%{_lib}jpeg8
 %if 0%{?rhel} || 0%{?fedora}
 Requires:	libjpeg
 %endif
-%if 0%{?suse_version} >= 1220
+%if 0%{?suse_version} == 1220
 Requires:	libjpeg62
 %endif
 %if 0%{?pclinuxos}

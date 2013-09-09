@@ -8,6 +8,7 @@ grp='./genrpm.sh -v 3.5.13.2 -a'
 BUILDDIR="/dev/shm/BUILD${DIST}.$(uname -i)"
 BUILDROOTDIR="/dev/shm/BUILDROOT${DIST}.$(uname -i)"
 DIST="$(rpm -E %{dist})"
+LIB="$(rpm -E %_lib)"
 
 if [ -x /usr/sbin/urpmi ]; then
   PKGMGR="urpmi"
@@ -92,12 +93,35 @@ grpiud() {
 if ! rpm -q libqt3-devel &>/dev/null && ! rpm -q lib64qt3-devel &>/dev/null && ! rpm -q qt3-devel &>/dev/null; then
   if [ -r /etc/SuSE-release ]; then
     pushd ../opensuse/core
+  elif [ -r /etc/mandriva-release ]; then
+    pushd ../mageia
   else
     pushd .
   fi
   grpiu dependencies/qt3
   eval ${PKGINST} qt3-devel || exit 1
   popd
+fi
+
+# Extra dependencies
+grpiud extras/akode
+
+if [ "${DIST:0:6}" = ".oss12" ] || [ "${DIST:0:4}" = ".mga" ] || [ "${DIST:0:3}" = ".fc" ]; then
+  if ! is_installed trinity-hal-devel; then
+    grpiu 3rdparty/hal
+    grpiu 3rdparty/hal-info
+    eval ${PKGINST} trinity-hal-devel || exit 1
+  fi
+fi
+if [ "${DIST:0:4}" = ".mga" ]; then
+  if ! is_installed ${LIB}esound-devel; then
+    grpiu 3rdparty/esound
+    eval ${PKGINST} esound-devel || exit 1
+  fi
+  if ! is_installed htdig; then
+    grpiu 3rdparty/htdig
+    eval ${PKGINST} htdig || exit 1
+  fi
 fi
 
 # TDE dependencies
@@ -111,8 +135,6 @@ grpiud dependencies/libcarddav
 grpiud dependencies/tqca
 grpiui dependencies/tqca-tls
 
-# Extra dependencies
-grpiud extras/akode
 
 # TDE main
 # basic packages
