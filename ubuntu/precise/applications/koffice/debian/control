@@ -61,7 +61,7 @@ Architecture: any
 Section: graphics
 Replaces: karbon-kde3 (<< 4:14.0.0), karbon-trinity (<< 4:14.0.0)
 Breaks: karbon-kde3 (<< 4:14.0.0), karbon-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Description: a vector graphics application for the KDE Office Suite
  Karbon is a vector graphics application.
  .
@@ -72,7 +72,7 @@ Architecture: any
 Section: tde
 Replaces: kchart-kde3 (<< 4:14.0.0), kchart-trinity (<< 4:14.0.0)
 Breaks: kchart-kde3 (<< 4:14.0.0), kchart-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: a chart drawing program for the KDE Office Suite [Trinity]
  KChart is a chart drawing application.  It can be used to embed charts
@@ -85,7 +85,7 @@ Architecture: any
 Section: tde
 Replaces: kexi-kde3 (<< 4:14.0.0), kexi-trinity (<< 4:14.0.0)
 Breaks: kexi-kde3 (<< 4:14.0.0), kexi-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Suggests: kexi-mdb-plugin-trinity
 Description: integrated database environment for the KDE Office Suite [Trinity]
  Kexi is an integrated data management application. It can be used for
@@ -107,7 +107,7 @@ Architecture: any
 Section: tde
 Replaces: kformula-kde3 (<< 4:14.0.0), kformula-trinity (<< 4:14.0.0)
 Breaks: kformula-kde3 (<< 4:14.0.0), kformula-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: a formula editor for the KDE Office Suite [Trinity]
  KFormula is a formula editor that provides the basic input facilities
@@ -124,7 +124,7 @@ Architecture: any
 Section: graphics
 Replaces: kivio-kde3 (<< 4:14.0.0), kivio-trinity (<< 4:14.0.0)
 Breaks: kivio-kde3 (<< 4:14.0.0), kivio-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, kivio-data-trinity (>> 1:1.4.90.2-1), kivio-data-trinity (>> ${KDE-Version3}), kivio-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, kivio-data-trinity (>> 1:1.4.90.2-1), kivio-data-trinity (>> ${KDE-Version3}~), kivio-data-trinity (<< ${KDE-Next-Version3}~), koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Description: a flowcharting program for the KDE Office Suite [Trinity]
  Kivio is a flowcharting program that offers basic flowcharting abilities,
  but with a twist.  Objects are scriptable, and a backend plugin system
@@ -150,7 +150,7 @@ Architecture: any
 Section: tde
 Replaces: koshell-kde3 (<< 4:14.0.0), koshell-trinity (<< 4:14.0.0)
 Breaks: koshell-kde3 (<< 4:14.0.0), koshell-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: koffice-trinity, khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: the KDE Office Suite workspace [Trinity]
  The KOffice workspace is a desktop with easy one-click launchers for
@@ -163,7 +163,7 @@ Architecture: any
 Section: tde
 Replaces: kplato-kde3 (<< 4:14.0.0), kplato-trinity (<< 4:14.0.0)
 Breaks: kplato-kde3 (<< 4:14.0.0), kplato-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: an integrated project management and planning tool [Trinity]
  KPlato is a project management application, allowing for the planning and
@@ -177,7 +177,7 @@ Architecture: any
 Section: tde
 Replaces: kpresenter-kde3 (<< 4:14.0.0), kpresenter-trinity (<< 4:14.0.0)
 Breaks: kpresenter-kde3 (<< 4:14.0.0), kpresenter-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, ${perl:Depends}, kpresenter-data-trinity (>> ${KDE-Version3}), kpresenter-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, ${perl:Depends}, kpresenter-data-trinity (>> ${KDE-Version3}~), kpresenter-data-trinity (<< ${KDE-Next-Version3}~), koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: a presentation program for the KDE Office Suite [Trinity]
  KPresenter is a fully-featured presentation program.  Presentations can
@@ -204,7 +204,7 @@ Architecture: any
 Section: tde
 Replaces: krita-kde3 (<< 4:14.0.0), chalk-trinity (<< 4:14.0.0)
 Breaks: krita-kde3 (<< 4:14.0.0), chalk-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, chalk-data-trinity (>> ${KDE-Version3}), chalk-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, chalk-data-trinity (>> ${KDE-Version3}~), chalk-data-trinity (<< ${KDE-Next-Version3}~), koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: dcraw, khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: a pixel-based image manipulation program for the KDE Office Suite [Trinity]
  Chalk is a painting and image editing application for KOffice. Chalk contains
@@ -230,7 +230,7 @@ Architecture: any
 Section: tde
 Replaces: kspread-kde3 (<< 4:14.0.0), kspread-trinity (<< 4:14.0.0)
 Breaks: kspread-kde3 (<< 4:14.0.0), kspread-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: a spreadsheet for the KDE Office Suite [Trinity]
  KSpread is a powerful spreadsheet application.  It is scriptable and
@@ -244,7 +244,7 @@ Architecture: any
 Section: tde
 Replaces: kugar-kde3 (<< 4:14.0.0), kugar-trinity (<< 4:14.0.0)
 Breaks: kugar-kde3 (<< 4:14.0.0), kugar-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: a business report maker for the KDE Office Suite [Trinity]
  Kugar is a tool for generating business quality reports that can
@@ -260,7 +260,7 @@ Architecture: any
 Section: tde
 Replaces: kword-kde3 (<< 4:14.0.0), kword-trinity (<< 4:14.0.0)
 Breaks: kword-kde3 (<< 4:14.0.0), kword-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, kword-data-trinity (>> ${KDE-Version3}), kword-data-trinity (<< ${KDE-Next-Version3}), koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, kword-data-trinity (>> ${KDE-Version3}~), kword-data-trinity (<< ${KDE-Next-Version3}~), koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: a word processor for the KDE Office Suite [Trinity]
  KWord is a FrameMaker-like word processing and desktop publishing
@@ -288,7 +288,7 @@ Architecture: any
 Section: tde
 Replaces: kthesaurus-kde3 (<< 4:14.0.0), kthesaurus-trinity (<< 4:14.0.0)
 Breaks: kthesaurus-kde3 (<< 4:14.0.0), kthesaurus-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-libs-trinity (<< ${KDE-Next-Version3}~)
 Recommends: khelpcenter-trinity | koffice-trinity-doc-html (= ${source:Version})
 Description: thesaurus for the KDE Office Suite [Trinity]
  KThesaurus lists words related to a given term and offers a user interface
@@ -302,7 +302,7 @@ Architecture: any
 Section: libs
 Replaces: koffice-libs-kde3 (<< 4:14.0.0), koffice-libs-trinity (<< 4:14.0.0)
 Breaks: koffice-libs-kde3 (<< 4:14.0.0), koffice-libs-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, koffice-data-trinity (>> ${KDE-Version3}), koffice-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, koffice-data-trinity (>> ${KDE-Version3}~), koffice-data-trinity (<< ${KDE-Next-Version3}~)
 Recommends: latex-xft-fonts, ruby, python
 Suggests: wordnet, texlive-base
 Description: common libraries and binaries for the KDE Office Suite [Trinity]
