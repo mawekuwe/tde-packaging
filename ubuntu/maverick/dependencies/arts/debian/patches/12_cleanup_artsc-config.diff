@@ -1,3 +1,5 @@
+Index: b/artsc/artsc-config.in
+===================================================================
 --- a/artsc/artsc-config.in
 +++ b/artsc/artsc-config.in
 @@ -27,7 +27,7 @@
@@ -8,4 +10,4 @@
 +	  flags="$flags -L$libdir -lartsc"
  	  ;;
      --cflags)
- 	  flags="$flags -I$includedir/artsc @GLIB_CFLAGS@"
+ 	  flags="$flags -I$includedir @GLIB_CFLAGS@"

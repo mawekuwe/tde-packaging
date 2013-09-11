@@ -88,7 +88,7 @@ Section: tde
 Architecture: any
 Replaces: kcontrol-trinity (<< 4:14.0.0)
 Breaks: kcontrol-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), usbutils
+Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}~), tdebase-data-trinity (<< ${KDE-Next-Version3}~), usbutils
 Recommends: udev
 Suggests: khelpcenter-trinity, ntpdate | ntp-simple
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0)
@@ -254,7 +254,7 @@ Section: tde
 Architecture: any
 Replaces: kdm-trinity (<< 4:14.0.0)
 Breaks: kdm-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), debconf (>= 1.2.9) | debconf-2.0, libpam-runtime (>= 0.76-14), xbase-clients
+Depends: ${shlibs:Depends}, tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}~), tdebase-data-trinity (<< ${KDE-Next-Version3}~), debconf (>= 1.2.9) | debconf-2.0, libpam-runtime (>= 0.76-14), xbase-clients
 Recommends: logrotate, xserver-xorg
 Suggests: khelpcenter-trinity, ksmserver-trinity (= ${Source-Version}), tdepasswd-trinity (= ${Source-Version}), menu
 Provides: x-display-manager
@@ -313,7 +313,7 @@ Section: tde
 Architecture: any
 Replaces: kicker-trinity (<< 4:14.0.0)
 Breaks: kicker-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}~), tdebase-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, kicker-applets-trinity, menu
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0)
 Description: desktop panel for KDE
@@ -446,7 +446,7 @@ Section: tde
 Architecture: any
 Replaces: kpersonalizer-trinity (<< 4:14.0.0)
 Breaks: kpersonalizer-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}~), tdebase-data-trinity (<< ${KDE-Next-Version3}~)
 Description: installation personalizer for KDE
  KDE Personalizer is the application that configures the KDE desktop for you.
  It's a very useful wizard that allows you to quickly change the KDE desktop to
@@ -483,7 +483,7 @@ Section: tde
 Architecture: any
 Replaces: ksplash-trinity (<< 4:14.0.0)
 Breaks: ksplash-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}~), tdebase-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity
 Description: the KDE splash screen
  This package includes the KDE Splash screen, which is seen when
@@ -540,7 +540,7 @@ Replaces: kwin-trinity (<< 4:14.0.0)
 Breaks: kwin-trinity (<< 4:14.0.0)
 Depends: ${shlibs:Depends}
 Provides: x-window-manager
-Suggests: tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}), tdebase-data-trinity (<< ${KDE-Next-Version3}), kdesktop-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), kpager-trinity (= ${Source-Version}), kpersonalizer-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version})
+Suggests: tdebase-trinity-bin (= ${Source-Version}), tdebase-data-trinity (>> ${KDE-Version3}~), tdebase-data-trinity (<< ${KDE-Next-Version3}~), kdesktop-trinity (= ${Source-Version}), kicker-trinity (= ${Source-Version}), kpager-trinity (= ${Source-Version}), kpersonalizer-trinity (= ${Source-Version}), ksmserver-trinity (= ${Source-Version}), ksplash-trinity (= ${Source-Version})
 Conflicts: kde-window-manager-trinity (<< 7:3.5.0)
 Description: the KDE window manager
  This package contains the default X window manager for KDE.

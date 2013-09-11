@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Francesco Pedrini <francesco.pedrini@gmail.com>, Josh Metzler <joshdeb@metzlers.org>, Sune Vuorela <debian@pusling.com>
-Build-Depends: imlib11-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs14-trinity-dev, libexif-dev (>= 0.6.9-1), libfribidi-dev, freeglut3-dev, libgphoto2-2-dev, libopenexr-dev (>= 1.2.1), libpaper-dev, libpoppler-dev, libpoppler-private-dev, libsane-dev (>> 1.0.15), libtiff-dev, libtiff-tools, libusb-dev, sharutils, libxxf86vm-dev, chrpath [powerpc], cmake, libtool, libltdl-dev
+Build-Depends: imlib11-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs14-trinity-dev, libexif-dev (>= 0.6.9-1), libfribidi-dev, freeglut3-dev, libgphoto2-6-dev | libgphoto2-2-dev, libopenexr-dev (>= 1.2.1), libpaper-dev, libpoppler-private-dev | libpoppler-dev (<< 0.18.4-3), libpoppler-dev, libsane-dev (>> 1.0.15), libtiff-dev, libtiff-tools, libusb-dev, sharutils, libxxf86vm-dev, chrpath [powerpc], cmake, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdegraphics-trinity

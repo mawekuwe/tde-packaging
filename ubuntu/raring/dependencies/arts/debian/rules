@@ -41,6 +41,6 @@ DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
 binary-predeb/libarts1-trinity-dev::
 ifeq (linux,$(DEB_HOST_ARCH_OS))
-	    echo "libasound2-trinity-dev=libasound2-trinity-dev" >> debian/libarts1-dev.substvars
+	    echo "libasound2-dev=libasound2-dev" >> debian/libarts1-trinity-dev.substvars
 endif
 

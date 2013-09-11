@@ -29,7 +29,7 @@ Architecture: all
 Section: libs
 Replaces: libdcop3-java-kde3 (<< 4:14.0.0), libdcop3-java-trinity (<< 4:14.0.0)
 Breaks: libdcop3-java-kde3 (<< 4:14.0.0), libdcop3-java-trinity (<< 4:14.0.0)
-Depends: libdcop3-jni-trinity (>> ${KDE-Version3}), libdcop3-jni-trinity (<< ${KDE-Next-Version3}), gij | java1-runtime | java2-runtime
+Depends: libdcop3-jni-trinity (>> ${KDE-Version3}~), libdcop3-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Description: DCOP bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
  using the Java DCOP bindings. DCOP is the TDE Desktop COmmunications
@@ -56,7 +56,7 @@ Architecture: amd64 i386 ia64 powerpc s390 sparc
 Section: libdevel
 Replaces: libdcop3-java-kde3-dev (<< 4:14.0.0), libdcop3-java-trinity-dev (<< 4:14.0.0)
 Breaks: libdcop3-java-kde3-dev (<< 4:14.0.0), libdcop3-java-trinity-dev (<< 4:14.0.0)
-Depends: libdcop3-java-trinity (>> ${KDE-Version3}), libdcop3-java-trinity (<< ${KDE-Next-Version3})
+Depends: libdcop3-java-trinity (>> ${KDE-Version3}~), libdcop3-java-trinity (<< ${KDE-Next-Version3}~)
 Description: DCOP bindings for Java (dcopidl2java program) [Trinity]
  This package contains the dcopidl2java program which generates Java 
  stubs from DCOP IDL files, necessary to do development with the DCOP Java
@@ -70,7 +70,7 @@ Architecture: all
 Section: libs
 Replaces: libqt3-java-kde3 (<< 4:14.0.0), libqt3-java-trinity (<< 4:14.0.0)
 Breaks: libqt3-java-kde3 (<< 4:14.0.0), libqt3-java-trinity (<< 4:14.0.0)
-Depends: libqt3-jni-trinity (>> ${KDE-Version3}), libqt3-jni-trinity (<< ${KDE-Next-Version3}), gij | java1-runtime | java2-runtime
+Depends: libqt3-jni-trinity (>> ${KDE-Version3}~), libqt3-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Suggests: juic-trinity
 Description: Java bindings for Qt [Trinity]
  This package contains the Java classes necessary to run Java programs
@@ -100,7 +100,7 @@ Architecture: all
 Section: libs
 Replaces: libtrinity-java-kde3 (<< 4:14.0.0), libtrinity-java-trinity (<< 4:14.0.0)
 Breaks: libtrinity-java-kde3 (<< 4:14.0.0), libtrinity-java-trinity (<< 4:14.0.0)
-Depends: libtrinity-jni-trinity (>> ${KDE-Version3}), libtrinity-jni-trinity (<< ${KDE-Next-Version3}), gij | java1-runtime | java2-runtime
+Depends: libtrinity-jni-trinity (>> ${KDE-Version3}~), libtrinity-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Description: tdelibs bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
  using the Java tdelibs bindings. TDE is the Trinity Desktop Environment, a

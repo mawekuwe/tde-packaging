@@ -74,7 +74,7 @@ Architecture: any
 Section: games
 Replaces: blinken-trinity (<< 4:14.0.0)
 Breaks: blinken-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, ttf-sjfonts, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, ttf-sjfonts, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: Trinity version of the Simon Says electronic memory game
  Blinken is based on an electronic game released in 1978, which
@@ -94,7 +94,7 @@ Architecture: any
 Section: science
 Replaces: kalzium-trinity (<< 4:14.0.0)
 Breaks: kalzium-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, kalzium-data-trinity (>> ${KDE-Version3}), kalzium-data-trinity (<< ${KDE-Next-Version3}), tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, kalzium-data-trinity (>> ${KDE-Version3}~), kalzium-data-trinity (<< ${KDE-Next-Version3}~), tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: chemistry teaching tool for Trinity
  Kalzium is a program which shows you the Periodic System of Elements
@@ -137,7 +137,7 @@ Architecture: any
 Section: games
 Replaces: kanagram-trinity (<< 4:14.0.0)
 Breaks: kanagram-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: letter order game for Trinity
  KAnagram is a game that is based on the word/letter puzzles that the
@@ -160,7 +160,7 @@ Architecture: any
 Section: math
 Replaces: kbruch-trinity (<< 4:14.0.0)
 Breaks: kbruch-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: fraction calculation teaching tool for Trinity
  KBruch is a small program to practice calculating with fractions.
@@ -175,7 +175,7 @@ Architecture: any
 Section: tde
 Replaces: keduca-trinity (<< 4:14.0.0)
 Breaks: keduca-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: interactive form-based tests for Trinity
  KEduca is a flash-card application which allows you to make
@@ -189,7 +189,7 @@ Architecture: any
 Section: tde
 Replaces: kgeography-trinity (<< 4:14.0.0)
 Breaks: kgeography-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, kgeography-data-trinity (>> ${KDE-Version3}), kgeography-data-trinity (<< ${KDE-Next-Version3}), tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, kgeography-data-trinity (>> ${KDE-Version3}~), kgeography-data-trinity (<< ${KDE-Next-Version3}~), tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: Geography learning tool for Trinity
  KGeography contains maps allowing you to learn various countries or
@@ -220,7 +220,7 @@ Architecture: any
 Section: games
 Replaces: khangman-trinity (<< 4:14.0.0)
 Breaks: khangman-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, ttf-dustin, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, ttf-dustin, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: the classical hangman game for Trinity
  KHangMan is a game based on the well known hangman game.  It is aimed
@@ -240,7 +240,7 @@ Architecture: any
 Section: math
 Replaces: kig-trinity (<< 4:14.0.0)
 Breaks: kig-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: interactive geometry program for KDE
  Kig is an application for interactive geometry.  It is intended to
@@ -268,7 +268,7 @@ Architecture: any
 Section: tde
 Replaces: kiten-trinity (<< 4:14.0.0)
 Breaks: kiten-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3}), ttf-kochi-gothic | ttf-kochi-mincho
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~), ttf-kochi-gothic | ttf-kochi-mincho
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: Japanese reference/study tool for Trinity
  Kiten is a Japanese reference and study tool for KDE.  It is an
@@ -285,7 +285,7 @@ Architecture: any
 Section: tde
 Replaces: klatin-trinity (<< 4:14.0.0)
 Breaks: klatin-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: application to help revise/teach Latin
  KLatin is a program to help revise Latin.  There are three "sections"
@@ -310,7 +310,7 @@ Architecture: any
 Section: tde
 Replaces: klettres-trinity (<< 4:14.0.0)
 Breaks: klettres-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, klettres-data-trinity (>> ${KDE-Version3}), klettres-data-trinity (<< ${KDE-Next-Version3}), tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, klettres-data-trinity (>> ${KDE-Version3}~), klettres-data-trinity (<< ${KDE-Next-Version3}~), tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: foreign alphabet tutor for Trinity
  KLettres is an application specially designed to help the user to
@@ -344,7 +344,7 @@ Architecture: any
 Section: math
 Replaces: kmplot-trinity (<< 4:14.0.0)
 Breaks: kmplot-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: mathematical function plotter for Trinity
  KmPlot is a mathematical function plotter for KDE.  It has a powerful
@@ -368,7 +368,7 @@ Architecture: any
 Section: math
 Replaces: kpercentage-trinity (<< 4:14.0.0)
 Breaks: kpercentage-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: percentage calculation teaching tool for Trinity
  KPercentage is a small math application that will help pupils to
@@ -386,7 +386,7 @@ Architecture: any
 Section: science
 Replaces: kstars-trinity (<< 4:14.0.0)
 Breaks: kstars-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, kstars-data-trinity (>> ${KDE-Version3}), kstars-data-trinity (<< ${KDE-Next-Version3}), tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3}), indi-trinity (= ${Source-Version})
+Depends: ${shlibs:Depends}, kstars-data-trinity (>> ${KDE-Version3}~), kstars-data-trinity (<< ${KDE-Next-Version3}~), tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~), indi-trinity (= ${Source-Version})
 Suggests: konqueror-trinity, khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: desktop planetarium for Trinity
  KStars is a graphical desktop planetarium for KDE.  It depicts an
@@ -424,7 +424,7 @@ Architecture: any
 Section: tde
 Replaces: ktouch-trinity (<< 4:14.0.0)
 Breaks: ktouch-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: touch typing tutor for Trinity
  KTouch is a program for learning touch typing - it helps you learn to
@@ -444,7 +444,7 @@ Architecture: any
 Section: devel
 Replaces: kturtle-trinity (<< 4:14.0.0)
 Breaks: kturtle-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: educational Logo programming environment
  KTurtle is an educational programming environment using the Logo
@@ -472,7 +472,7 @@ Architecture: any
 Section: tde
 Replaces: kverbos-trinity (<< 4:14.0.0)
 Breaks: kverbos-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: Spanish verb form study application for Trinity
  Kverbos allows the user to learn the forms of Spanish verbs.  The
@@ -491,7 +491,7 @@ Architecture: any
 Section: tde
 Replaces: kvoctrain-trinity (<< 4:14.0.0)
 Breaks: kvoctrain-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, ${perl:Depends}, libwww-perl, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, ${perl:Depends}, libwww-perl, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: vocabulary trainer for Trinity
  KVocTrain is a little utility to help you train your vocabulary when
@@ -517,7 +517,7 @@ Architecture: any
 Section: tde
 Replaces: kwordquiz-trinity (<< 4:14.0.0)
 Breaks: kwordquiz-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}), tdeedu-data-trinity (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: flashcard and vocabulary learning program for Trinity
  KWordQuiz is a flashcard-based tool that helps you to master new
