@@ -220,7 +220,7 @@ Architecture: any
 Section: games
 Replaces: khangman-kde3 (<< 4:14.0.0), khangman-trinity (<< 4:14.0.0)
 Breaks: khangman-kde3 (<< 4:14.0.0), khangman-trinity (<< 4:14.0.0)
-Depends: ${shlibs:Depends}, ttf-dustin, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
+Depends: ${shlibs:Depends}, fonts-dustin | ttf-dustin, tdeedu-data-trinity (>> ${KDE-Version3}~), tdeedu-data-trinity (<< ${KDE-Next-Version3}~)
 Suggests: khelpcenter-trinity, tdeedu-trinity-doc-html
 Description: the classical hangman game for Trinity
  KHangMan is a game based on the well known hangman game.  It is aimed
