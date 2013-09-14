@@ -1,0 +1,13 @@
+#! /bin/sh
+
+set -e
+
+package_name=kdesudo-trinity
+
+divert=`dpkg-divert --listpackage "/opt/trinity/bin/kdesu"`
+if [ -n "$divert" ] && [ "$divert" = $package_name ]; then
+    dpkg-divert --package $package_name --rename --remove \
+                /opt/trinity/bin/kdesu
+fi
+
+exit 0

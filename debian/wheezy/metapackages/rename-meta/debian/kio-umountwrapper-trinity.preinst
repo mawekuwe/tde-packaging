@@ -1,0 +1,22 @@
+#! /bin/sh
+
+set -e
+
+package_name=kio-umountwrapper-trinity
+
+divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop"`
+if [ -n "$divert" ] && [ "$divert" = $package_name ]; then
+    dpkg-divert --package $package_name --remove --rename /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop
+fi
+
+divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop"`
+if [ -n "$divert" ] && [ "$divert" = $package_name ]; then
+    dpkg-divert --package $package_name --remove --rename /opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop
+fi
+
+divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop"`
+if [ -n "$divert" ] && [ "$divert" = $package_name ]; then
+    dpkg-divert --package $package_name --remove --rename /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop
+fi
+
+exit 0

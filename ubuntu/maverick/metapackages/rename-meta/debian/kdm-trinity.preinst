@@ -1,5 +1,5 @@
 #! /bin/sh
-# postinst script for kdm-trinity
+# preinst script for kdm-trinity
 #
 # see: dh_installdeb(1)
 
@@ -11,6 +11,63 @@ if [ -e /usr/share/debconf/confmodule ]; then
   . /usr/share/debconf/confmodule
   HAVE_DEBCONF=yes
 fi
+
+# remove former service
+if [ -e /etc/init.d/kdm-trinity ]; then
+    REMOVING=yes
+    rm -f /etc/init.d/kdm-trinity
+fi
+
+if [ -n "$REMOVING" ]; then
+  # is there an kdm process running?
+  if start-stop-daemon --stop --quiet --signal 0 --name kdm-trinity; then
+    # any children?
+    PARENTS=$(pidof /usr/bin/kdm-trinity || true)
+    CHILDREN=
+    if [ -n "$PARENTS" ]; then
+      for PROCESS in $PARENTS; do
+        # make sure we got numbers back
+        [ $PROCESS -eq $PROCESS ] 2> /dev/null ||
+        exit
+        # FIXME - redo this part uses shell-lib.sh from xfree86
+        #  die "pidof returned non-numeric value"
+        # we could use grep -q here if ps would ignore SIGPIPE :-P
+        if (ps axj | grep "^ *$PROCESS" > /dev/null 2>&1); then
+          CHILDREN=yes
+        fi
+      done
+      if [ -n "$CHILDREN" ]; then
+        if [ -n "$HAVE_DEBCONF" ]; then
+          # ask the question
+          db_input high kdm/stop_running_server_with_children || true
+          db_go
+          # what did the user say?
+          ANSWER=
+          if db_get kdm/stop_running_server_with_children; then
+            ANSWER="$RET"
+          fi
+          if [ "$ANSWER" = "true" ]; then
+            STOP=yes
+          fi
+          # forget that we have seen the question; this is the sort of
+          # non-configuration question that should be asked every time
+          db_fset kdm/stop_running_server_with_children seen false
+        fi
+      else
+        STOP=yes
+      fi
+    fi
+  fi
+fi
+
+if [ -n "$STOP" ]; then
+  if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
+    invoke-rc.d kdm-trinity stop || true
+  else
+    /etc/init.d/kdm-trinity stop || true
+  fi
+fi
+
 
 DEFAULT_DISPLAY_MANAGER_FILE=/etc/X11/default-display-manager
 
