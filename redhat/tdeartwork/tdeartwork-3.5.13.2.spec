@@ -636,15 +636,18 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
-%if 0%{?fedora} >= 19
+%if 0%{?fedora} >= 15
 %{tde_datadir}/applnk/System/ScreenSavers/companioncube.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/hexadrop.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/hilbert.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/kaleidocycle.desktop
-%{tde_datadir}/applnk/System/ScreenSavers/quasicrystal.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/surfaces.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
+%endif
+
+%if 0%{?fedora} >= 18
+%{tde_datadir}/applnk/System/ScreenSavers/hexadrop.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/kaleidocycle.desktop
+%{tde_datadir}/applnk/System/ScreenSavers/quasicrystal.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/unknownpleasures.desktop
 %endif
 
@@ -675,7 +678,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}

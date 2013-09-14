@@ -63,7 +63,7 @@ BuildRequires:	%{_lib}gstreamer-plugins-base0.10-devel
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	gstreamer-devel
-BuildRequires:	gstreamer-plugins-devel
+#BuildRequires:	gstreamer-plugins-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	gstreamer-devel

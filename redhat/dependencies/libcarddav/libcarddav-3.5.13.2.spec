@@ -95,7 +95,7 @@ fi
   --disable-dependency-tracking
 
 # FIXME: bad libtool ??
-%if 0%{?rhel} == 5
+%if 0%{?rhel} == 4 || 0%{?rhel} == 5
 %__make %{?_smp_mflags} LIBTOOL=/usr/bin/libtool
 %else
 %__make %{?_smp_mflags}
@@ -104,7 +104,7 @@ fi
 
 %install
 %__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot} LIBTOOL=$(which libtool)
+%__make install DESTDIR=%{buildroot} LIBTOOL=/usr/bin/libtool
 
 # Unwanted files
 %__rm -f %{buildroot}%{tde_libdir}/libcarddav.a

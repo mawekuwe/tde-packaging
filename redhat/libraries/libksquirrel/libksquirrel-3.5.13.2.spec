@@ -62,7 +62,7 @@ BuildRequires:	libungif-devel
 %endif
 
 # DJVU support
-%if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_djvu 1
 BuildRequires:	djvulibre
 %endif
@@ -79,9 +79,6 @@ BuildRequires:	xmedcon-devel
 %define with_svg 1
 %if 0%{?fedora} || 0%{?rhel} 
 BuildRequires:	librsvg2
-%endif
-%if 0%{?fedora}
-BuildRequires:	librsvg2-tools
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	librsvg

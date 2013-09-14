@@ -174,7 +174,7 @@ BuildRequires:	%{_lib}poppler-devel
 %endif
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
 # On RHEL 5, the distro-provided poppler is too old. We built a newer one.
-BuildRequires:	trinity-poppler-devel
+BuildRequires:	trinity-poppler-devel >= 0.12
 BuildRequires:	trinity-poppler-qt3-devel >= 0.12
 %endif
 
@@ -1267,7 +1267,7 @@ export KDEDIR=%{tde_prefix}
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
@@ -1279,7 +1279,7 @@ cd build
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
   -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
-  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG -L%{tde_libdir}" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG -L%{tde_libdir} -I%{tde_includedir}" \
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \

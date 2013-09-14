@@ -708,7 +708,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-closure \
   --enable-rpath \
   \
-  --with-extra-includes=%{_includedir}/db4:%{_includedir}/db53:%{_includedir}/libdb4:%{tde_includedir}/arts \
+  --with-extra-includes=%{_includedir}/db4:%{_includedir}/db51:%{_includedir}/db53:%{_includedir}/libdb4:%{tde_includedir}/arts \
   \
   %{?with_xmms:--with-xmms} %{?!with_xmms:--without-xmms} \
   --with-sdl \

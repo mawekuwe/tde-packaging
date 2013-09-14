@@ -75,7 +75,7 @@ Source7:	xdm.oss114
 %endif
 
 # Fedora 17: special selinux policy required
-%if 0%{?fedora} >= 17 || 0%{?rhel} == 6
+%if 0%{?fedora} == 17 ||0%{?fedora} == 19 || 0%{?rhel} == 6
 %define with_selinux_policy 1
 Source8:	tdm%{?dist}.pp
 %endif
@@ -3378,8 +3378,7 @@ export KDEDIR=%{tde_prefix}
 # Shitty hack for RHEL4 ...
 if [ -d "/usr/X11R6" ]; then
   export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH}:/usr/X11R6/include:/usr/X11R6/%{_lib}"
-  export CFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 # Samba 4.0 includes (Fedora 18)

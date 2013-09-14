@@ -210,7 +210,7 @@ Requires:		ca-certificates
 %define	cacert	%{_sysconfdir}/ssl/certs/ca-bundle.crt
 Requires:		openssl
 %endif
-%if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
+%if 0%{?rhel} == 5
 %define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
 Requires:		openssl
 %endif
@@ -393,7 +393,7 @@ export LD_LIBRARY_PATH="%{tde_libdir}"
 export KDEDIR="%{tde_prefix}"
 
 if [ -d "/usr/X11R6" ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -L/usr/X11R6/%{_lib} -I/usr/X11R6/include"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -L/usr/X11R6/%{_lib} -I/usr/X11R6/include"
 fi
 
 
