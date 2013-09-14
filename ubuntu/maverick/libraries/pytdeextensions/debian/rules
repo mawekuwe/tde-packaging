@@ -58,9 +58,3 @@ clean::
 
 	# remove  byte-compiled file
 	find . -type f -name '*.py[co]' | xargs rm -f
-
-get-orig-source:
-	@@dh_testdir
-	@@[ -d ../tarballs/. ]
-	@@dpatch-get-origtargz ../tarballs
-

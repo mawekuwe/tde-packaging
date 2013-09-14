@@ -221,9 +221,3 @@ common-install-prehook-impl::
 
 	rm -f tde-guidance-trinity/usr/share/python-support/tde-guidance-trinity/.version
 	rm -f tde-guidance-trinity/usr/share/python-support/tde-guidance-powermanager-trinity/.version
-
-get-orig-source:
-	@@dh_testdir
-	@@[ -d ../tarballs/. ]
-	@@dpatch-get-origtargz ../tarballs
-

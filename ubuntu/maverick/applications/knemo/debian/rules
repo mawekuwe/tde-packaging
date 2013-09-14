@@ -29,9 +29,3 @@ debian/stamp-bootstrap:
 	
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
-
-get-orig-source:
-	@@dh_testdir
-	@@[ -d ../tarballs/. ]||mkdir -p ../tarballs
-	@@dpatch-get-origtargz ../tarballs
-

@@ -33,9 +33,3 @@ debian/stamp-bootstrap:
 install/tdmtheme-trinity::
 	install -D -p -m644 debian/tdmtheme.lintian-overrides \
 	debian/tdmtheme-trinity/usr/share/lintian/overrides/tdmtheme-trinity
-
-get-orig-source:
-	@@dh_testdir
-	@@[ -d ../tarballs/. ]||mkdir -p ../tarballs
-	@@dpatch-get-origtargz ../tarballs
-

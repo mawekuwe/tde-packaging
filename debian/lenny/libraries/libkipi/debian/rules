@@ -23,9 +23,3 @@ DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
 
 clean ::
 	rm -f po/*/*.gmo
-
-get-orig-source:
-	 @@dh_testdir
-	 @@[ -d ../tarballs/. ]
-	 @@dpatch-get-origtargz ../tarballs
-

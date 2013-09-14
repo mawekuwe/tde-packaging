@@ -35,11 +35,6 @@ debian/stamp-bootstrap:
 	make -f admin/Makefile.common cvs
 	touch debian/stamp-bootstrap
 
-#get-orig-source-dpatch:
-#	@@dh_testdir
-#	@@[ -d ../tarballs/. ]
-#	@@dpatch-get-origtargz ../tarballs
-
 common-install-arch::
 	rm -rf debian/filelight/usr/share/locale/
 	rm -rf debian/filelight/usr/share/doc/tde/

@@ -35,10 +35,5 @@ makebuilddir/kbarcode-trinity::
 	find . -type f -name Makefile.in | xargs rm -f
 	$(MAKE) -f admin/Makefile.common
 
-get-orig-source:
-	@@dh_testdir
-	@@[ -d ../tarballs/. ]
-	@@dpatch-get-origtargz ../tarballs
-
 binary-install/kbarcode-trinity::
 	mv debian/kbarcode-trinity/usr/share/man debian/kbarcode-trinity/opt/trinity/share/

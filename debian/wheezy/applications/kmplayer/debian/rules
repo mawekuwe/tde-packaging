@@ -42,8 +42,3 @@ build/kmplayer-trinity::
 
 clean::
 	rm -f kmplayer.1
-
-get-orig-source-dpatch:
-	 @@dh_testdir
-	 @@[ -d ../tarballs/. ]
-	 @@dpatch-get-origtargz ../tarballs

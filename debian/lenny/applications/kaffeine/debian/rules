@@ -51,9 +51,3 @@ install/kaffeine-trinity::
 
 binary-install/kaffeine-trinity::
 	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
-
-get-orig-source:
-	 @@dh_testdir
-	 @@[ -d ../tarballs/. ]
-	 @@dpatch-get-origtargz ../tarballs
-

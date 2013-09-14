@@ -58,9 +58,3 @@ install/kile-trinity::
 
 clean::
 	rm -rf debian/kile-trinity-i18n-*
-
-get-orig-source:
-	@@dh_testdir
-	@@[ -d ../tarballs/. ]
-	@@dpatch-get-origtargz ../tarballs
-
