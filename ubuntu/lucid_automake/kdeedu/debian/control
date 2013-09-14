@@ -194,7 +194,7 @@ Description: data files for KGeography
 Package: khangman-kde3
 Architecture: any
 Section: games
-Depends: ${shlibs:Depends}, ttf-dustin, kdeedu-data-kde3 (>> ${KDE-Version3}), kdeedu-data-kde3 (<< ${KDE-Next-Version3})
+Depends: ${shlibs:Depends}, fonts-dustin | ttf-dustin, kdeedu-data-kde3 (>> ${KDE-Version3}), kdeedu-data-kde3 (<< ${KDE-Next-Version3})
 Suggests: khelpcenter-kde3, kdeedu-kde3-doc-html
 Description: the classical hangman game for KDE3
  KHangMan is a game based on the well known hangman game.  It is aimed
