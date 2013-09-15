@@ -123,6 +123,9 @@ ifeq ($(DEB_HOST_ARCH),arm)
 	CONFIGURE_OPTS += -DQT_QLOCALE_USES_FCVT
 endif
 
+post-patches::
+	dh_testdir
+
 build: libqt-thread-stamp
 
 	touch build-stamp

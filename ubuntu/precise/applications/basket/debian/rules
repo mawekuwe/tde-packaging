@@ -28,6 +28,8 @@ endif
 
 include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
+post-patches::
+	dh_testdir
 
 config.status: post-patches
 	dh_testdir

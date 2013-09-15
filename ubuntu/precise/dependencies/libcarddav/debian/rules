@@ -28,6 +28,9 @@ no_auto_tools = ACLOCAL="`pwd`/missing aclocal" \
 
 make_flags = moduledir=/usr/lib/gdk-imlib2 $(no_auto_tools)
 
+post-patches::
+	dh_testdir
+
 build: post-patches build-stamp
 build-stamp:
 	dh_testdir

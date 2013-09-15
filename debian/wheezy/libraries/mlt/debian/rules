@@ -44,11 +44,14 @@ ifeq "$(DEBIAN_ARCH)" "amd64"
 	CONFIGURE_OPTS = --enable-motion-est
 endif
 
-configure: configure-stamp
-configure-stamp:
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+
+post-patches::
 	dh_testdir
 
-	QUILT_PATCHES=debian/patches quilt push -a || test $$? = 2
+configure: configure-stamp
+configure-stamp: post-patches
+	dh_testdir
 
 	CFLAGS="$(CFLAGS)" PATH=/opt/trinity/bin:$(PATH) LD_LIBRARY_PATH=/opt/trinity/lib:$(LD_LIBRARY_PATH) CMAKE_LIBRARY_PATH=/opt/trinity/lib CMAKE_INCLUDE_PATH=/opt/trinity/include/tde ./configure --enable-gpl \
 	--luma-compress --disable-mmx $(CONFIGURE_OPTS) \
@@ -65,14 +68,12 @@ build-stamp:
 
 	touch build-stamp
 
-clean:
+clean::
 	dh_testdir
 	dh_testroot
 	rm -f build-stamp configure-stamp
 
 	[ ! -f config.mak ] || $(MAKE) dist-clean
-
-	QUILT_PATCHES=debian/patches quilt pop -a -R || test $$? = 2
 
 	dh_clean *.pc src/modules/gtk2/config.h config.log
 

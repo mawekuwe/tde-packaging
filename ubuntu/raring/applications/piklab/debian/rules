@@ -28,6 +28,9 @@ endif
 
 include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
+post-patches::
+	dh_testdir
+
 config: post-patches config-stamp
 config-stamp:  configure
 	dh_testdir
