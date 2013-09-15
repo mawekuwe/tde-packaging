@@ -2,7 +2,7 @@ Source: libtqtinterface
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>> 4.0.0), libtqt3-mt-dev, tqt3-apps-dev, cmake, cdbs
+Build-Depends: debhelper (>> 4.0.0), quilt, libtqt3-mt-dev, tqt3-apps-dev, cmake, cdbs
 Standards-Version: 3.8.4
 
 Package: libtqtinterface

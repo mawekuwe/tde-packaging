@@ -1,5 +1,5 @@
 Source: libcaldav
-Build-Depends: debhelper (>= 5), quilt, libcurl4-gnutls-dev (>= 7.19), libglib2.0-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>= 5), quilt, libcurl4-gnutls-dev (>= 7.19), libglib2.0-dev, automake, autoconf, libtool, libltdl-dev
 Section: graphics
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>

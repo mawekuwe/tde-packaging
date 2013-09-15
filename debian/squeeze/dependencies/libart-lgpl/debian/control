@@ -9,7 +9,7 @@ Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Loic Minier <lool@dooz.org>, Sebastian Drge <slomo@debian.org>, Sebastien Bacher <seb128@debian.org>
 Standards-Version: 3.8.4
-Build-Depends: debhelper (>= 5),
+Build-Depends: debhelper (>= 5), quilt,
                gnome-pkg-tools (>= 0.7),
                cdbs,
                dpkg-dev (>= 1.13.19),

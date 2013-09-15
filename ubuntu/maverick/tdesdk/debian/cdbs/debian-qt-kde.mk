@@ -20,7 +20,9 @@ endif
 include debian/cdbs/kde.mk$(_cdbs_makefile_suffix)
 include debian/cdbs/uploaders.mk
 
+ifndef _cdbs_rules_patchsys_quilt
 DEB_PATCHDIRS := debian/patches/common debian/patches
+endif
 
 DEB_KDE_ENABLE_FINAL := yes
 DEB_INSTALL_DOCS_ALL :=

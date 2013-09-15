@@ -4,7 +4,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/TDE Maintainers <debian-qt-tde@lists.debian.org>
 Priority: optional
 Uploaders: Adeodato Sim <dato@net.com.org.es>, Ana Beatriz Guerrero Lopez <ana@debian.org>, Fathi Boudra <fabo@debian.org>, Modestas Vainius <modestas@vainius.eu>
-Build-Depends: cdbs (>= 0.4.48), debhelper (>= 6),
+Build-Depends: cdbs (>= 0.4.48), debhelper (>= 6), quilt,
  docbook-to-man, gawk, gettext, sharutils, texinfo,
  libasound2-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386],
  libaudio-dev, libaudiofile-dev, libesd0-dev, libglib2.0-dev, libmad0-dev,

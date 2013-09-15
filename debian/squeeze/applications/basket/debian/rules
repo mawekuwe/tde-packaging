@@ -26,10 +26,10 @@ else
 	CFLAGS += -O2
 endif
 
-include /usr/share/quilt/quilt.make
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 
-config.status: $(QUILT_STAMPFN)
+config.status: post-patches
 	dh_testdir
 	test -e config.sub -a -L config.sub || \
 		ln -sf /usr/share/misc/config.sub config.sub
@@ -59,7 +59,7 @@ build-stamp:  config.status
 
 	touch build-stamp
 
-clean: unpatch
+clean::
 	dh_testdir
 	dh_testroot
 

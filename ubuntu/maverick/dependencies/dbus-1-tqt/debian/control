@@ -2,7 +2,7 @@ Source: dbus-1-tqt
 Section: devel
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), libtqtinterface-dev, libdbus-1-dev (>= 0.90), cmake
+Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5.0.37.2), quilt, libtqtinterface-dev, libdbus-1-dev (>= 0.90), cmake
 Standards-Version: 3.8.3
 
 Package: libdbus-1-tqt-dev

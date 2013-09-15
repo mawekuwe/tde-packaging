@@ -5,7 +5,7 @@ Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Riku Voipio <riku.voipio@iki.fi>, Fathi Boudra <fboudra@free.fr>,
  Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), tdelibs14-trinity-dev,
+Build-Depends: cdbs, debhelper (>= 5), quilt, tdelibs14-trinity-dev,
  libcdparanoia0-dev, libogg-dev, libxine2-dev | libxine-dev (>= 1.1.7), libxcb1-dev,
  libxtst-dev, libgstreamer0.10-dev, libgstreamer-plugins-base0.10-dev,
  libcdio-cdda-dev, libcdio-paranoia-dev,

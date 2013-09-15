@@ -2,7 +2,7 @@ Source: ktorrent-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5.0), cdbs, docbook2x, tdelibs14-trinity-dev, libpcre3-dev, libx11-dev, libgmp3-dev, libavahi-tqt-dev, libgeoip-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0), quilt, cdbs, docbook2x, tdelibs14-trinity-dev, libpcre3-dev, libx11-dev, libgmp3-dev, libavahi-tqt-dev, libgeoip-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: ktorrent-trinity

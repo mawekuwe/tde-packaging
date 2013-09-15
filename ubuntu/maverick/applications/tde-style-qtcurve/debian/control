@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Bastian Venthur <venthur@debian.org>
-Build-Depends: debhelper (>= 5), tdelibs14-trinity-dev, cmake, cdbs
+Build-Depends: debhelper (>= 5), quilt, tdelibs14-trinity-dev, cmake, cdbs
 Standards-Version: 3.8.4
 
 Package: tde-style-qtcurve-trinity

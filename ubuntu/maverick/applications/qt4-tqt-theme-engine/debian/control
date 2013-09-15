@@ -2,7 +2,7 @@ Source: qt4-tqt-theme-engine
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5), cdbs, tdelibs14-trinity-dev, libqt4-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5), quilt, cdbs, tdelibs14-trinity-dev, libqt4-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: qt4-tqt-theme-engine

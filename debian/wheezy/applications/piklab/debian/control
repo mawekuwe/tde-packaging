@@ -2,7 +2,7 @@ Source: piklab-trinity
 Section: electronics
 Priority: extra
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5), autotools-dev, quilt, chrpath,
+Build-Depends: cdbs, debhelper (>= 5), autotools-dev, quilt, chrpath,
  libusb-dev, tdelibs14-trinity-dev, libreadline5-dev | libreadline6-dev, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 Homepage: http://piklab.sourceforge.net/

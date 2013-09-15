@@ -1,5 +1,5 @@
 Source: libcarddav
-Build-Depends: debhelper (>= 5), libcurl4-gnutls-dev, libglib2.0-dev, quilt, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>= 5), libcurl4-gnutls-dev, libglib2.0-dev, quilt, automake, autoconf, libtool, libltdl-dev
 Section: graphics
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>

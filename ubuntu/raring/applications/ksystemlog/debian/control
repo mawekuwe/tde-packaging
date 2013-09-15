@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), tdelibs14-trinity-dev, docbook2x, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>= 5), quilt, tdelibs14-trinity-dev, docbook2x, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: ksystemlog-trinity

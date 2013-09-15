@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Debian TDE Extras Team <pkg-tde-extras@lists.alioth.debian.org>
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
-Build-Depends: cdbs, debhelper (>= 5), automake, libtool, tdelibs14-trinity-dev, docbook2x, docbook-xml
+Build-Depends: cdbs, debhelper (>= 5), quilt, automake, libtool, tdelibs14-trinity-dev, docbook2x, docbook-xml
 Standards-Version: 3.8.3
 
 Package: kasablanca-trinity

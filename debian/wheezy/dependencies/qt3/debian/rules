@@ -29,7 +29,7 @@ endif #sparc
 endif #hurd
 
 # quilt stuff
-include /usr/share/quilt/quilt.make
+include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 # build variables (directorys)
 DEBIAN = $(shell pwd)/debian
@@ -123,7 +123,7 @@ build: libqt-thread-stamp
 
 	touch build-stamp
 
-libqt-thread-stamp: $(QUILT_STAMPFN)
+libqt-thread-stamp: post-patches
 
 	@echo "QTDIR is ${QTDIR}"
 
@@ -171,7 +171,7 @@ libqt-thread-stamp: $(QUILT_STAMPFN)
 
 	touch libqt-thread-stamp
 
-clean: unpatch
+clean::
 
 	dh_testdir
 
@@ -475,4 +475,4 @@ binary-arch: build install
 	dh_builddeb -a $(IBASE) $(DEB_DH_BUILDDEB_ARGS)
 
 binary: binary-indep binary-arch
-.PHONY: build binary-indep binary-arch binary install clean patch unpatch
+.PHONY: build binary-indep binary-arch binary install clean

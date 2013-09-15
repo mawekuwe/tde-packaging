@@ -2,7 +2,7 @@ Source: qt-x11-free
 Maintainer: Debian Developers <kubuntu-devel@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Sune Vuorela <debian@pusling.com>, Fathi Boudra <fabo@debian.org>, Modestas Vainius <modestas@vainius.eu>
-Build-Depends: debhelper (>= 5.0.31), quilt, cpio, libxext-dev (>= 4.3.0.dfsg.1-4),
+Build-Depends: cdbs, debhelper (>= 5.0.31), quilt, cpio, libxext-dev (>= 4.3.0.dfsg.1-4),
  libxrandr-dev (>= 4.3.0.dfsg.1-4), libsm-dev (>= 4.3.0.dfsg.1-4),
  libxmu-dev (>= 4.3.0.dfsg.1-4), libice-dev (>= 4.3.0.dfsg.1-4),
  libx11-dev (>= 4.3.0.dfsg.1-4), libxt-dev (>= 4.3.0.dfsg.1-4), libxrender-dev,

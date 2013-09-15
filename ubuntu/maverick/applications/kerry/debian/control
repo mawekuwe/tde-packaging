@@ -2,7 +2,7 @@ Source: kerry-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 5.0.0), cdbs, tdelibs14-trinity-dev, libkonq4-trinity-dev, libbeagle-dev (>= 0.3.0), docbook2x, chrpath, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 5.0.0), quilt, cdbs, tdelibs14-trinity-dev, libkonq4-trinity-dev, libbeagle-dev (>= 0.3.0), docbook2x, chrpath, automake, autoconf, libtool, libltdl-dev
 Homepage: http://en.opensuse.org/Kerry
 Standards-Version: 3.8.4
 

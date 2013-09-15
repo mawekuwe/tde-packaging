@@ -2,7 +2,7 @@ Source: knmap-trinity
 Section: tde
 Priority: extra
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>> 5), autotools-dev, tdelibs14-trinity-dev, automake, libtool, cdbs, docbook2x, docbook-xml
+Build-Depends: debhelper (>> 5), quilt, autotools-dev, tdelibs14-trinity-dev, automake, libtool, cdbs, docbook2x, docbook-xml
 Standards-Version: 3.8.2
 
 Package: knmap-trinity

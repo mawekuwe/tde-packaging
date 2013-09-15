@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Ana Beatriz Guerrero Lopez <ana@debian.org>, Christopher Martin <chrsmrtn@debian.org>, Fathi Boudra <fboudra@free.fr>, Modestas Vainius <geromanas@mailas.com>, Sune Vuorela <debian@pusling.com>
-Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), autotools-dev, debhelper (>= 5.0.31), docbook-to-man, gawk, gettext, tdelibs14-trinity-dev, libbz2-dev, libpam0g-dev, sharutils, texinfo, rpm, automake, autoconf, libtool, libltdl-dev
+Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), autotools-dev, debhelper (>= 5.0.31), quilt, docbook-to-man, gawk, gettext, tdelibs14-trinity-dev, libbz2-dev, libpam0g-dev, sharutils, texinfo, rpm, automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tdeadmin-trinity
