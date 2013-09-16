@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, imlib11-dev, kdelibs4-dev, libexif-dev (>= 0.6.9-1), libfribidi-dev, freeglut3-dev, libgphoto2-2-dev, libltdl3-dev, libopenexr-dev (>= 1.2.1), libpaper-dev, libpoppler-qt-dev, libsane-dev (>> 1.0.15), libtiff4-dev, libtiff-tools, libusb-dev, sharutils, libxxf86vm-dev, xpdf-common, chrpath [powerpc]
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), quilt, autotools-dev, gawk, gettext, imlib11-dev, kdelibs4-dev, libexif-dev (>= 0.6.9-1), libfribidi-dev, freeglut3-dev, libgphoto2-2-dev, libltdl3-dev, libopenexr-dev (>= 1.2.1), libpaper-dev, libpoppler-qt-dev, libsane-dev (>> 1.0.15), libtiff4-dev, libtiff-tools, libusb-dev, sharutils, libxxf86vm-dev, xpdf-common, chrpath [powerpc]
 Standards-Version: 3.7.2
 
 Package: kdegraphics

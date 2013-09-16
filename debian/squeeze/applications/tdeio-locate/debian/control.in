@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs, debhelper (>= 5), tdelibs14-trinity-dev, bzip2, python (>= 2.3), cmake
+Build-Depends: cdbs, debhelper (>= 5), quilt, tdelibs14-trinity-dev, bzip2, python (>= 2.3), cmake
 Standards-Version: 3.8.4
 
 Package: tdeio-locate-trinity

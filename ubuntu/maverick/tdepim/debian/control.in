@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), automake1.9,
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), quilt, automake1.9,
  cdparanoia, gawk, gettext, tdelibs4-dev, bison, byacc, bzip2,
  flex, groff-base, libopensync0-dev,
  libbluetooth2-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64],

@@ -2,7 +2,7 @@ Source: tde-style-lipstik-trinity
 Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
-Build-Depends: debhelper (>= 4.0.0), quilt, tdelibs14-trinity-dev (>= 4:3.2), automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 4.0.0), cdbs, quilt, tdelibs14-trinity-dev (>= 4:3.2), automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
 Package: tde-style-lipstik-trinity

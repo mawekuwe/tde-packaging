@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 Uploaders: Francois Marier <francois@debian.org>, Fathi Boudra <fabo@debian.org>
-Build-Depends: debhelper (>= 6), quilt, automake, autoconf, libtool, libltdl-dev
+Build-Depends: debhelper (>= 6), cdbs, quilt, automake, autoconf, libtool, libltdl-dev
 Build-Depends-Indep: tdelibs14-trinity-dev
 Standards-Version: 3.8.3
 

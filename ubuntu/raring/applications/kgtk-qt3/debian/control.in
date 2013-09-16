@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: debhelper (>= 7), cdbs, tdelibs14-trinity-dev, libgtk2.0-dev, libtqtinterface-dev, cmake
+Build-Depends: debhelper (>= 7), quilt, cdbs, tdelibs14-trinity-dev, libgtk2.0-dev, libtqtinterface-dev, cmake
 Standards-Version: 3.8.4
 Homepage: http://trinity.pearsoncomputing.net
 

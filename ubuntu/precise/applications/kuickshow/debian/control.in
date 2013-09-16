@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), gawk, tdelibs14-trinity-dev, imlib11-dev, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), quilt, gawk, tdelibs14-trinity-dev, imlib11-dev, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
 Standards-Version: 3.8.3
 
 Package: kuickshow-trinity

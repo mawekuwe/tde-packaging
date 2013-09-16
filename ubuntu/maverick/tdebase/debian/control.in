@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Core developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), autotools-dev, gawk, gettext, tdelibs4-dev, libdbus-qt-1-dev (>= 0.60), libldap2-dev, libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, libxss-dev, libxxf86misc-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf
+Build-Depends: cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), quilt, autotools-dev, gawk, gettext, tdelibs4-dev, libdbus-qt-1-dev (>= 0.60), libldap2-dev, libncurses5-dev, libpam0g-dev, libpopt-dev, libraw1394-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsensors-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386], libsmbclient-dev, libusb-dev, libxtst-dev, libfontenc-dev, libxss-dev, libxxf86misc-dev, libxcomposite-dev, libxdamage-dev, libxkbfile-dev, xutils, sharutils, texinfo, libavahi-compat-libdnssd-dev (>= 0.4), x11proto-kb-dev, xmkmf
 Build-Depends-Indep: doxygen, qt3-doc, graphviz, gsfonts-x11, tdelibs4-doc
 Build-Conflicts: nvidia-glx (<< 1.0.8774-6)
 Standards-Version: 3.8.4

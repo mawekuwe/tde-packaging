@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs (>= 0.4.48), debhelper (>= 6), autotools-dev,
+Build-Depends: cdbs (>= 0.4.48), debhelper (>= 6), quilt, autotools-dev,
  docbook-to-man, gawk, gettext, sharutils, texinfo,
  libasound2-dev [!kfreebsd-i386 !kfreebsd-amd64 !hurd-i386],
  libaudio-dev, libaudiofile-dev, libesd0-dev, libglib2.0-dev,
