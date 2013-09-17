@@ -11,8 +11,8 @@ Standards-Version: 3.8.4
 Package: pytdeextensions-trinity
 Architecture: all
 Depends: ${python:Depends}
-Replaces: pykdeextensions-kde3 (<< 4:14.0.0), pykdeextensions-trinity (<< 4:14.0.0)
-Breaks: pykdeextensions-kde3 (<< 4:14.0.0), pykdeextensions-trinity (<< 4:14.0.0)
+Replaces: pykdeextensions-kde3 (<< 4:14.0.0~), pykdeextensions-trinity (<< 4:14.0.0~)
+Breaks: pykdeextensions-kde3 (<< 4:14.0.0~), pykdeextensions-trinity (<< 4:14.0.0~)
 Conflicts: pykdeextensions
 Provides: ${python:Provides}
 Description: Python packages to support KDE applications (scripts) [Trinity]
@@ -24,8 +24,8 @@ Description: Python packages to support KDE applications (scripts) [Trinity]
 Package: libpythonize0-trinity-dev
 Architecture: any
 Section: libdevel
-Replaces: libpythonize0-kde3-dev (<< 4:14.0.0), libpythonize0-trinity-dev (<< 4:14.0.0)
-Breaks: libpythonize0-kde3-dev (<< 4:14.0.0), libpythonize0-trinity-dev (<< 4:14.0.0)
+Replaces: libpythonize0-kde3-dev (<< 4:14.0.0~), libpythonize0-trinity-dev (<< 4:14.0.0~)
+Breaks: libpythonize0-kde3-dev (<< 4:14.0.0~), libpythonize0-trinity-dev (<< 4:14.0.0~)
 Depends: libpythonize0-trinity (= ${binary:Version}), python-all-dev
 Description: Python packages to support KDE applications (development) [Trinity]
  PyKDE Extensions is a collection of software and Python packages
@@ -38,8 +38,8 @@ Description: Python packages to support KDE applications (development) [Trinity]
 Package: libpythonize0-trinity
 Architecture: any
 Section: libs
-Replaces: libpythonize0-kde3 (<< 4:14.0.0), libpythonize0-trinity (<< 4:14.0.0)
-Breaks: libpythonize0-kde3 (<< 4:14.0.0), libpythonize0-trinity (<< 4:14.0.0)
+Replaces: libpythonize0-kde3 (<< 4:14.0.0~), libpythonize0-trinity (<< 4:14.0.0~)
+Breaks: libpythonize0-kde3 (<< 4:14.0.0~), libpythonize0-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: libpythonize0
 Description: Python packages to support KDE applications (library) [Trinity]

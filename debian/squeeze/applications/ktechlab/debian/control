@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: ktechlab-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: ktechlab-trinity (<< 4:14.0.0)
-Breaks: ktechlab-trinity (<< 4:14.0.0)
+Replaces: ktechlab-trinity (<< 4:14.0.0~)
+Breaks: ktechlab-trinity (<< 4:14.0.0~)
 Recommends: gputils
 Description: circuit simulator for microcontrollers and electronics [Trinity]
  KTechlab is a circuit simulator with a nice, clickable and discoverable

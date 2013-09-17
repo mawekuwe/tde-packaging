@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: tdeio-apt-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, apt, adept-batch-trinity
-Replaces: kio-apt-trinity (<< 4:14.0.0)
-Breaks: kio-apt-trinity (<< 4:14.0.0)
+Replaces: kio-apt-trinity (<< 4:14.0.0~)
+Breaks: kio-apt-trinity (<< 4:14.0.0~)
 Description: an apt-cache ioslave for Trinity
  tdeio-apt is an ioslave which provides the apt:/ protocol. It
  integrates apt-cache functionalities into Konqueror, making

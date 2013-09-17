@@ -20,8 +20,8 @@ Homepage: http://www.trinitydesktop.org/
 Package: libqt3-mt
 Architecture: any
 Section: libs
-Replaces: libqt3-mt (<< 4:14.0.0)
-Breaks: libqt3-mt (<< 4:14.0.0)
+Replaces: libqt3-mt (<< 4:14.0.0~)
+Breaks: libqt3-mt (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, fontconfig
 Recommends: libgl1-mesa-glx | libgl1, libglu1-mesa | libglu1, libxmu6 (>= 4.3.0.dfsg.1-4)
 Conflicts: libqt3c102-mt, libqui1-emb, libqt3c-mt
@@ -34,8 +34,8 @@ Description: Qt GUI Library (Threaded runtime version), Version 3
 Package: libqt3-mt-mysql
 Architecture: any
 Section: libs
-Replaces: libqt3-mt-mysql (<< 4:14.0.0)
-Breaks: libqt3-mt-mysql (<< 4:14.0.0)
+Replaces: libqt3-mt-mysql (<< 4:14.0.0~)
+Breaks: libqt3-mt-mysql (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Conflicts: libqt3c102-mt-mysql, libqt3c-mt-mysql
 Description: MySQL database driver for Qt3 (Threaded)
@@ -45,8 +45,8 @@ Description: MySQL database driver for Qt3 (Threaded)
 Package: libqt3-mt-odbc
 Architecture: any
 Section: libs
-Replaces: libqt3-mt-odbc (<< 4:14.0.0)
-Breaks: libqt3-mt-odbc (<< 4:14.0.0)
+Replaces: libqt3-mt-odbc (<< 4:14.0.0~)
+Breaks: libqt3-mt-odbc (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Conflicts: libqt3c102-mt-odbc, libqt3c-mt-odbc
 Description: ODBC database driver for Qt3 (Threaded)
@@ -56,8 +56,8 @@ Description: ODBC database driver for Qt3 (Threaded)
 Package: libqt3-mt-psql
 Architecture: any
 Section: libs
-Replaces: libqt3-mt-psql (<< 4:14.0.0)
-Breaks: libqt3-mt-psql (<< 4:14.0.0)
+Replaces: libqt3-mt-psql (<< 4:14.0.0~)
+Breaks: libqt3-mt-psql (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Conflicts: libqt3c102-mt-psql, libqt3c-mt-psql
 Description: PostgreSQL database driver for Qt3 (Threaded)
@@ -79,8 +79,8 @@ Description: InterBase/FireBird database driver for Qt3 (Threaded)
 Package: libqt3-mt-sqlite
 Architecture: any
 Section: libs
-Replaces: libqt3-mt-sqlite (<< 4:14.0.0)
-Breaks: libqt3-mt-sqlite (<< 4:14.0.0)
+Replaces: libqt3-mt-sqlite (<< 4:14.0.0~)
+Breaks: libqt3-mt-sqlite (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Conflicts: libqt3c102-mt-sqlite
 Description: SQLite database driver for Qt3 (Threaded)
@@ -91,8 +91,8 @@ Description: SQLite database driver for Qt3 (Threaded)
 Package: libqt3-mt-dev
 Architecture: any
 Section: libdevel
-Replaces: libqt3-mt-dev (<< 4:14.0.0)
-Breaks: libqt3-mt-dev (<< 4:14.0.0)
+Replaces: libqt3-mt-dev (<< 4:14.0.0~)
+Breaks: libqt3-mt-dev (<< 4:14.0.0~)
 Depends: libxext-dev (>= 4.3.0.dfsg.1-4), libxrandr-dev (>= 4.3.0.dfsg.1-4),
  libsm-dev (>= 4.3.0.dfsg.1-4), libxmu-dev (>= 4.3.0.dfsg.1-4),
  libice-dev (>= 4.3.0.dfsg.1-4), libx11-dev (>= 4.3.0.dfsg.1-4),
@@ -122,8 +122,8 @@ Description: Qt development files (Threaded)
 Package: libqt3-headers
 Architecture: any
 Section: devel
-Replaces: libqt3-headers (<< 4:14.0.0)
-Breaks: libqt3-headers (<< 4:14.0.0)
+Replaces: libqt3-headers (<< 4:14.0.0~)
+Breaks: libqt3-headers (<< 4:14.0.0~)
 Recommends: libqt3-mt-dev
 Description:  Qt3 header files
  This package contains all header files for libqt and libqt-mt which come
@@ -133,8 +133,8 @@ Description:  Qt3 header files
 Package: libqt3-compat-headers
 Architecture: any
 Section: devel
-Replaces: libqt3-compat-headers (<< 4:14.0.0)
-Breaks: libqt3-compat-headers (<< 4:14.0.0)
+Replaces: libqt3-compat-headers (<< 4:14.0.0~)
+Breaks: libqt3-compat-headers (<< 4:14.0.0~)
 Depends: libqt3-headers (= ${binary:Version})
 Recommends: libqt3-mt-dev
 Description: Qt 1.x and 2.x compatibility includes
@@ -149,8 +149,8 @@ Description: Qt 1.x and 2.x compatibility includes
 Package: qt3-dev-tools
 Architecture: any
 Section: devel
-Replaces: qt3-dev-tools (<< 4:14.0.0)
-Breaks: qt3-dev-tools (<< 4:14.0.0)
+Replaces: qt3-dev-tools (<< 4:14.0.0~)
+Breaks: qt3-dev-tools (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: libqt3-mt-dev
 Conflicts: libqt-dev (<< 3:2.3.2-10), uic (<= 3:2.3.2-9)
@@ -162,8 +162,8 @@ Description: Qt3 development tools
 Package: qt3-designer
 Architecture: any
 Section: devel
-Replaces: qt3-designer (<< 4:14.0.0)
-Breaks: qt3-designer (<< 4:14.0.0)
+Replaces: qt3-designer (<< 4:14.0.0~)
+Breaks: qt3-designer (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: qt3-dev-tools
 Suggests: qt3-assistant, qt3-doc
@@ -181,8 +181,8 @@ Description: Qt3 Designer
 Package: qt3-apps-dev
 Architecture: any
 Section: devel
-Replaces: qt3-apps-dev (<< 4:14.0.0)
-Breaks: qt3-apps-dev (<< 4:14.0.0)
+Replaces: qt3-apps-dev (<< 4:14.0.0~)
+Breaks: qt3-apps-dev (<< 4:14.0.0~)
 Depends: libqt3-mt-dev
 Description: Qt3 Developer applications development files
  This package is intended for developers who want to develop applications
@@ -196,8 +196,8 @@ Description: Qt3 Developer applications development files
 Package: qt3-linguist
 Architecture: any
 Section: devel
-Replaces: qt3-linguist (<< 4:14.0.0)
-Breaks: qt3-linguist (<< 4:14.0.0)
+Replaces: qt3-linguist (<< 4:14.0.0~)
+Breaks: qt3-linguist (<< 4:14.0.0~)
 Suggests: qt3-assistant
 Depends: ${shlibs:Depends}
 Description: The Qt3 Linguist
@@ -209,8 +209,8 @@ Description: The Qt3 Linguist
 Package: qt3-assistant
 Architecture: any
 Section: x11
-Replaces: qt3-assistant (<< 4:14.0.0)
-Breaks: qt3-assistant (<< 4:14.0.0)
+Replaces: qt3-assistant (<< 4:14.0.0~)
+Breaks: qt3-assistant (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, qt3-doc
 Description: The Qt3 assistant application
  This package contains the Qt3 Assistant, an easy to use frontend for
@@ -227,8 +227,8 @@ Description: The Qt3 assistant application
 Package: qt3-qtconfig
 Architecture: any
 Section: x11
-Replaces: qt3-qtconfig (<< 4:14.0.0)
-Breaks: qt3-qtconfig (<< 4:14.0.0)
+Replaces: qt3-qtconfig (<< 4:14.0.0~)
+Breaks: qt3-qtconfig (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: The Qt3 Configuration Application
  The Qt Configuration program allows endusers to configure the look
@@ -242,8 +242,8 @@ Description: The Qt3 Configuration Application
 Package: qt3-dev-tools-embedded
 Architecture: any
 Section: devel
-Replaces: qt3-dev-tools-embedded (<< 4:14.0.0)
-Breaks: qt3-dev-tools-embedded (<< 4:14.0.0)
+Replaces: qt3-dev-tools-embedded (<< 4:14.0.0~)
+Breaks: qt3-dev-tools-embedded (<< 4:14.0.0~)
 Recommends: libqt3-mt-dev
 Depends: ${shlibs:Depends}
 Description: Tools to develop embedded Qt applications
@@ -256,8 +256,8 @@ Description: Tools to develop embedded Qt applications
 Package: qt3-dev-tools-compat
 Architecture: any
 Section: devel
-Replaces: qt3-dev-tools-compat (<< 4:14.0.0)
-Breaks: qt3-dev-tools-compat (<< 4:14.0.0)
+Replaces: qt3-dev-tools-compat (<< 4:14.0.0~)
+Breaks: qt3-dev-tools-compat (<< 4:14.0.0~)
 Recommends: libqt3-mt-dev
 Depends: ${shlibs:Depends}
 Description: Conversion utilities for Qt3 development
@@ -272,8 +272,8 @@ Description: Conversion utilities for Qt3 development
 Package: libqt3-i18n
 Architecture: all
 Section: libs
-Replaces: libqt3-i18n (<< 4:14.0.0)
-Breaks: libqt3-i18n (<< 4:14.0.0)
+Replaces: libqt3-i18n (<< 4:14.0.0~)
+Breaks: libqt3-i18n (<< 4:14.0.0~)
 Recommends: libqt3-mt
 Description: i18n files for Qt3 library
  This package contains the internationalization files for the Qt library.
@@ -283,8 +283,8 @@ Description: i18n files for Qt3 library
 Package: qt3-doc
 Architecture: all
 Section: doc
-Replaces: qt3-doc (<< 4:14.0.0)
-Breaks: qt3-doc (<< 4:14.0.0)
+Replaces: qt3-doc (<< 4:14.0.0~)
+Breaks: qt3-doc (<< 4:14.0.0~)
 Priority: extra
 Suggests: libqt3-headers, qt3-assistant | www-browser
 Description: Qt3 API documentation
@@ -296,8 +296,8 @@ Description: Qt3 API documentation
 Package: qt3-examples
 Architecture: all
 Section: doc
-Replaces: qt3-examples (<< 4:14.0.0)
-Breaks: qt3-examples (<< 4:14.0.0)
+Replaces: qt3-examples (<< 4:14.0.0~)
+Breaks: qt3-examples (<< 4:14.0.0~)
 Priority: extra
 Depends: libqt3-mt-dev (>= ${binary:Version})
 Suggests: qt3-apps-dev
@@ -309,8 +309,8 @@ Description:  Examples for Qt3
 Package: qt-x11-free-dbg
 Section: libdevel
 Architecture: any
-Replaces: qt-x11-free-dbg (<< 4:14.0.0)
-Breaks: qt-x11-free-dbg (<< 4:14.0.0)
+Replaces: qt-x11-free-dbg (<< 4:14.0.0~)
+Breaks: qt-x11-free-dbg (<< 4:14.0.0~)
 Priority: extra
 Depends: libqt3-mt (= ${binary:Version}), gdb
 Conflicts: libqt3-mt-dbg

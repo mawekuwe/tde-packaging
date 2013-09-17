@@ -12,8 +12,8 @@ Standards-Version: 3.8.4
 Package: kpilot-trinity
 Section: utils
 Architecture: any
-Replaces: kpilot-kde3 (<< 4:14.0.0), kpilot-trinity (<< 4:14.0.0)
-Breaks: kpilot-kde3 (<< 4:14.0.0), kpilot-trinity (<< 4:14.0.0)
+Replaces: kpilot-kde3 (<< 4:14.0.0~), kpilot-trinity (<< 4:14.0.0~)
+Breaks: kpilot-kde3 (<< 4:14.0.0~), kpilot-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}, debconf (>= 0.5) | debconf-2.0
 Suggests: knotes-trinity, korganizer-trinity
 Description: TDE Palm Pilot hot-sync tool

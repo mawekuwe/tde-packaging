@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: adept-trinity
 Section: tde
 Depends: adept-manager-trinity, adept-installer-trinity, adept-updater-trinity, adept-notifier-trinity, adept-batch-trinity
-Replaces: adept-trinity (<< 4:14.0.0)
-Breaks: adept-trinity (<< 4:14.0.0)
+Replaces: adept-trinity (<< 4:14.0.0~)
+Breaks: adept-trinity (<< 4:14.0.0~)
 Architecture: all
 Description: package management suite for Trinity
  These packages belong to the adept suite:
@@ -23,8 +23,8 @@ Description: package management suite for Trinity
 Package: adept-common-trinity
 Section: tde
 Depends: debtags (>= 1.6.1), konsole-trinity (>= 3.5.0), ${shlibs:Depends}
-Replaces: adept-common-trinity (<< 4:14.0.0)
-Breaks: adept-common-trinity (<< 4:14.0.0)
+Replaces: adept-common-trinity (<< 4:14.0.0~)
+Breaks: adept-common-trinity (<< 4:14.0.0~)
 Architecture: all
 Description: package manager for Trinity -- common files
  Icons and other common files for all adept components.
@@ -32,8 +32,8 @@ Description: package manager for Trinity -- common files
 Package: adept-manager-trinity
 Section: tde
 Depends: adept-common-trinity, ${shlibs:Depends}
-Replaces: adept-manager-trinity (<< 4:14.0.0)
-Breaks: adept-manager-trinity (<< 4:14.0.0)
+Replaces: adept-manager-trinity (<< 4:14.0.0~)
+Breaks: adept-manager-trinity (<< 4:14.0.0~)
 Recommends: libtqt-perl
 Architecture: any
 Description: package manager for Trinity
@@ -51,8 +51,8 @@ Description: package manager for Trinity
 Package: adept-installer-trinity
 Section: tde
 Depends: adept-common-trinity, app-install-data, ${shlibs:Depends}
-Replaces: adept-installer-trinity (<< 4:14.0.0)
-Breaks: adept-installer-trinity (<< 4:14.0.0)
+Replaces: adept-installer-trinity (<< 4:14.0.0~)
+Breaks: adept-installer-trinity (<< 4:14.0.0~)
 Recommends: libtqt-perl
 Architecture: any
 Description: simple user interface for application management (for Trinity)
@@ -67,8 +67,8 @@ Description: simple user interface for application management (for Trinity)
 Package: adept-updater-trinity
 Section: tde
 Depends: adept-common-trinity, ${shlibs:Depends}
-Replaces: adept-updater-trinity (<< 4:14.0.0)
-Breaks: adept-updater-trinity (<< 4:14.0.0)
+Replaces: adept-updater-trinity (<< 4:14.0.0~)
+Breaks: adept-updater-trinity (<< 4:14.0.0~)
 Recommends: libtqt-perl
 Architecture: any
 Description: system update tool for Trinity
@@ -81,8 +81,8 @@ Description: system update tool for Trinity
 Package: adept-notifier-trinity
 Section: tde
 Depends: ${shlibs:Depends}, adept-updater-trinity, update-notifier-common
-Replaces: adept-notifier-trinity (<< 4:14.0.0)
-Breaks: adept-notifier-trinity (<< 4:14.0.0)
+Replaces: adept-notifier-trinity (<< 4:14.0.0~)
+Breaks: adept-notifier-trinity (<< 4:14.0.0~)
 Architecture: any
 Description: system tray notifier of available system updates
  Adept Notifier provides a system tray icon notifying the user of
@@ -92,8 +92,8 @@ Description: system tray notifier of available system updates
 Package: adept-batch-trinity
 Section: tde
 Depends: ${shlibs:Depends}, adept-manager-trinity
-Replaces: adept-batch-trinity (<< 4:14.0.0)
-Breaks: adept-batch-trinity (<< 4:14.0.0)
+Replaces: adept-batch-trinity (<< 4:14.0.0~)
+Breaks: adept-batch-trinity (<< 4:14.0.0~)
 Architecture: any
 Description: command line install for Adept
  Adept Batch lets you install packages with Adept from the

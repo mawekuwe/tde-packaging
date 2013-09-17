@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: tdemultimedia-trinity
 Section: tde
 Architecture: all
-Replaces: kdemultimedia-kde3 (<< 4:14.0.0), kdemultimedia-trinity (<< 4:14.0.0)
-Breaks: kdemultimedia-kde3 (<< 4:14.0.0), kdemultimedia-trinity (<< 4:14.0.0)
+Replaces: kdemultimedia-kde3 (<< 4:14.0.0~), kdemultimedia-trinity (<< 4:14.0.0~)
+Breaks: kdemultimedia-kde3 (<< 4:14.0.0~), kdemultimedia-trinity (<< 4:14.0.0~)
 Depends: artsbuilder-trinity (>= ${Source-Version}), juk-trinity (>= ${Source-Version}), kaboodle-trinity (>= ${Source-Version}), kaudiocreator-trinity (>= ${Source-Version}), tdemultimedia-kappfinder-data-trinity (>= ${Source-Version}), tdemultimedia-tdefile-plugins-trinity (>= ${Source-Version}), tdemultimedia-tdeio-plugins-trinity (>= ${Source-Version}), tdemid-trinity (>= ${Source-Version}), kmix-trinity (>= ${Source-Version}), krec-trinity (>= ${Source-Version}), kscd-trinity (>= ${Source-Version}), libarts1-akode-trinity (>= ${Source-Version}), libarts1-audiofile-trinity (>= ${Source-Version}), libarts1-mpeglib-trinity (>= ${Source-Version}), libarts1-xine-trinity (>= ${Source-Version}), mpeglib-trinity (>= ${Source-Version}), noatun-trinity (>= ${Source-Version})
 Suggests: tdemultimedia-trinity-doc-html (>= ${Source-Version})
 Description: multimedia apps from the official Trinity release 
@@ -29,8 +29,8 @@ Description: multimedia apps from the official Trinity release
 Package: tdemultimedia-trinity-dev
 Section: devel
 Architecture: any
-Replaces: kdemultimedia-kde3-dev (<< 4:14.0.0), kdemultimedia-trinity-dev (<< 4:14.0.0)
-Breaks: kdemultimedia-kde3-dev (<< 4:14.0.0), kdemultimedia-trinity-dev (<< 4:14.0.0)
+Replaces: kdemultimedia-kde3-dev (<< 4:14.0.0~), kdemultimedia-trinity-dev (<< 4:14.0.0~)
+Breaks: kdemultimedia-kde3-dev (<< 4:14.0.0~), kdemultimedia-trinity-dev (<< 4:14.0.0~)
 Depends: tdelibs14-trinity-dev, artsbuilder-trinity (= ${Source-Version}), tdemultimedia-tdeio-plugins-trinity (= ${Source-Version}), tdemid-trinity (= ${Source-Version}), kmix-trinity (= ${Source-Version}), krec-trinity (= ${Source-Version}), kscd-trinity (= ${Source-Version}), libarts1-akode-trinity (= ${Source-Version}), libarts1-mpeglib-trinity (= ${Source-Version}), libkcddb1-trinity (= ${Source-Version}), mpeglib-trinity (= ${Source-Version}), noatun-trinity (= ${Source-Version})
 Conflicts: libmpeg-trinity-dev
 Description: development files for the Trinity multimedia module
@@ -42,8 +42,8 @@ Description: development files for the Trinity multimedia module
 Package: tdemultimedia-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: kdemultimedia-kde3-doc-html (<< 4:14.0.0), kdemultimedia-trinity-doc-html (<< 4:14.0.0)
-Breaks: kdemultimedia-kde3-doc-html (<< 4:14.0.0), kdemultimedia-trinity-doc-html (<< 4:14.0.0)
+Replaces: kdemultimedia-kde3-doc-html (<< 4:14.0.0~), kdemultimedia-trinity-doc-html (<< 4:14.0.0~)
+Breaks: kdemultimedia-kde3-doc-html (<< 4:14.0.0~), kdemultimedia-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdebase-trinity
 Description: Trinity multimedia documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -62,8 +62,8 @@ Description: Trinity multimedia documentation in HTML format
 Package: artsbuilder-trinity
 Section: sound
 Architecture: any
-Replaces: artsbuilder-kde3 (<< 4:14.0.0), artsbuilder-trinity (<< 4:14.0.0)
-Breaks: artsbuilder-kde3 (<< 4:14.0.0), artsbuilder-trinity (<< 4:14.0.0)
+Replaces: artsbuilder-kde3 (<< 4:14.0.0~), artsbuilder-trinity (<< 4:14.0.0~)
+Breaks: artsbuilder-kde3 (<< 4:14.0.0~), artsbuilder-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: synthesizer designer for aRts
@@ -75,8 +75,8 @@ Description: synthesizer designer for aRts
 Package: juk-trinity
 Section: tde
 Architecture: any
-Replaces: juk-kde3 (<< 4:14.0.0), juk-trinity (<< 4:14.0.0)
-Breaks: juk-kde3 (<< 4:14.0.0), juk-trinity (<< 4:14.0.0)
+Replaces: juk-kde3 (<< 4:14.0.0~), juk-trinity (<< 4:14.0.0~)
+Breaks: juk-kde3 (<< 4:14.0.0~), juk-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: music organizer and player for Trinity
@@ -103,8 +103,8 @@ Description: music organizer and player for Trinity
 Package: kaboodle-trinity
 Section: sound
 Architecture: any
-Replaces: kaboodle-kde3 (<< 4:14.0.0), kaboodle-trinity (<< 4:14.0.0)
-Breaks: kaboodle-kde3 (<< 4:14.0.0), kaboodle-trinity (<< 4:14.0.0)
+Replaces: kaboodle-kde3 (<< 4:14.0.0~), kaboodle-trinity (<< 4:14.0.0~)
+Breaks: kaboodle-kde3 (<< 4:14.0.0~), kaboodle-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: libarts1-xine-trinity
 Suggests: khelpcenter-trinity
@@ -118,8 +118,8 @@ Description: light, embedded media player for Trinity
 Package: kaudiocreator-trinity
 Section: sound
 Architecture: any
-Replaces: kaudiocreator-kde3 (<< 4:14.0.0), kaudiocreator-trinity (<< 4:14.0.0)
-Breaks: kaudiocreator-kde3 (<< 4:14.0.0), kaudiocreator-trinity (<< 4:14.0.0)
+Replaces: kaudiocreator-kde3 (<< 4:14.0.0~), kaudiocreator-trinity (<< 4:14.0.0~)
+Breaks: kaudiocreator-kde3 (<< 4:14.0.0~), kaudiocreator-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, tdemultimedia-tdeio-plugins-trinity (= ${Source-Version})
 Recommends: vorbis-tools, flac
 Suggests: lame
@@ -134,8 +134,8 @@ Description: CD ripper and audio encoder frontend for Trinity
 Package: tdemultimedia-tdefile-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdemultimedia-kfile-plugins-kde3 (<< 4:14.0.0), kdemultimedia-kfile-plugins-trinity (<< 4:14.0.0)
-Breaks: kdemultimedia-kfile-plugins-kde3 (<< 4:14.0.0), kdemultimedia-kfile-plugins-trinity (<< 4:14.0.0)
+Replaces: kdemultimedia-kfile-plugins-kde3 (<< 4:14.0.0~), kdemultimedia-kfile-plugins-trinity (<< 4:14.0.0~)
+Breaks: kdemultimedia-kfile-plugins-kde3 (<< 4:14.0.0~), kdemultimedia-kfile-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: au/avi/m3u/mp3/ogg/wav plugins for tdefile
  au/avi/m3u/mp3/ogg/wav file metainformation plugins for Trinity.
@@ -146,8 +146,8 @@ Description: au/avi/m3u/mp3/ogg/wav plugins for tdefile
 Package: tdemultimedia-kappfinder-data-trinity
 Section: tde
 Architecture: any
-Replaces: kdemultimedia-kappfinder-data-kde3 (<< 4:14.0.0), kdemultimedia-kappfinder-data-trinity (<< 4:14.0.0)
-Breaks: kdemultimedia-kappfinder-data-kde3 (<< 4:14.0.0), kdemultimedia-kappfinder-data-trinity (<< 4:14.0.0)
+Replaces: kdemultimedia-kappfinder-data-kde3 (<< 4:14.0.0~), kdemultimedia-kappfinder-data-trinity (<< 4:14.0.0~)
+Breaks: kdemultimedia-kappfinder-data-kde3 (<< 4:14.0.0~), kdemultimedia-kappfinder-data-trinity (<< 4:14.0.0~)
 Depends: kappfinder-trinity
 Description: multimedia data for kappfinder-trinity
  This package provides data on multimedia applications for kappfinder-trinity.
@@ -158,8 +158,8 @@ Description: multimedia data for kappfinder-trinity
 Package: tdemultimedia-tdeio-plugins-trinity
 Section: tde
 Architecture: any
-Replaces: kdemultimedia-kio-plugins-kde3 (<< 4:14.0.0), kdemultimedia-kio-plugins-trinity (<< 4:14.0.0)
-Breaks: kdemultimedia-kio-plugins-kde3 (<< 4:14.0.0), kdemultimedia-kio-plugins-trinity (<< 4:14.0.0)
+Replaces: kdemultimedia-kio-plugins-kde3 (<< 4:14.0.0~), kdemultimedia-kio-plugins-trinity (<< 4:14.0.0~)
+Breaks: kdemultimedia-kio-plugins-kde3 (<< 4:14.0.0~), kdemultimedia-kio-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: lame
 Description: enables the browsing of audio CDs under Konqueror
@@ -172,8 +172,8 @@ Description: enables the browsing of audio CDs under Konqueror
 Package: tdemid-trinity
 Section: sound
 Architecture: any
-Replaces: kmid-kde3 (<< 4:14.0.0), kmid-trinity (<< 4:14.0.0)
-Breaks: kmid-kde3 (<< 4:14.0.0), kmid-trinity (<< 4:14.0.0)
+Replaces: kmid-kde3 (<< 4:14.0.0~), kmid-trinity (<< 4:14.0.0~)
+Breaks: kmid-kde3 (<< 4:14.0.0~), kmid-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: MIDI/karaoke player for Trinity
@@ -185,8 +185,8 @@ Description: MIDI/karaoke player for Trinity
 Package: kmix-trinity
 Section: sound
 Architecture: any
-Replaces: kmix-kde3 (<< 4:14.0.0), kmix-trinity (<< 4:14.0.0)
-Breaks: kmix-kde3 (<< 4:14.0.0), kmix-trinity (<< 4:14.0.0)
+Replaces: kmix-kde3 (<< 4:14.0.0~), kmix-trinity (<< 4:14.0.0~)
+Breaks: kmix-kde3 (<< 4:14.0.0~), kmix-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Provides: x-audio-mixer
@@ -199,8 +199,8 @@ Description: sound mixer applet for Trinity
 Package: krec-trinity
 Section: sound
 Architecture: any
-Replaces: krec-kde3 (<< 4:14.0.0), krec-trinity (<< 4:14.0.0)
-Breaks: krec-kde3 (<< 4:14.0.0), krec-trinity (<< 4:14.0.0)
+Replaces: krec-kde3 (<< 4:14.0.0~), krec-trinity (<< 4:14.0.0~)
+Breaks: krec-kde3 (<< 4:14.0.0~), krec-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: sound recorder utility for Trinity
@@ -212,8 +212,8 @@ Description: sound recorder utility for Trinity
 Package: kscd-trinity
 Section: sound
 Architecture: any
-Replaces: kscd-kde3 (<< 4:14.0.0), kscd-trinity (<< 4:14.0.0)
-Breaks: kscd-kde3 (<< 4:14.0.0), kscd-trinity (<< 4:14.0.0)
+Replaces: kscd-kde3 (<< 4:14.0.0~), kscd-trinity (<< 4:14.0.0~)
+Breaks: kscd-kde3 (<< 4:14.0.0~), kscd-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
 Description: audio CD player for Trinity
@@ -225,8 +225,8 @@ Description: audio CD player for Trinity
 Package: libarts1-akode-trinity
 Section: libs
 Architecture: any
-Replaces: libarts1-akode-kde3 (<< 4:14.0.0), libarts1-akode-trinity (<< 4:14.0.0)
-Breaks: libarts1-akode-kde3 (<< 4:14.0.0), libarts1-akode-trinity (<< 4:14.0.0)
+Replaces: libarts1-akode-kde3 (<< 4:14.0.0~), libarts1-akode-trinity (<< 4:14.0.0~)
+Breaks: libarts1-akode-kde3 (<< 4:14.0.0~), libarts1-akode-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: akode plugin for aRts
  This package contains akode plugins for aRts.
@@ -237,8 +237,8 @@ Description: akode plugin for aRts
 Package: libarts1-audiofile-trinity
 Section: libs
 Architecture: any
-Replaces: libarts1-audiofile-kde3 (<< 4:14.0.0), libarts1-audiofile-trinity (<< 4:14.0.0)
-Breaks: libarts1-audiofile-kde3 (<< 4:14.0.0), libarts1-audiofile-trinity (<< 4:14.0.0)
+Replaces: libarts1-audiofile-kde3 (<< 4:14.0.0~), libarts1-audiofile-trinity (<< 4:14.0.0~)
+Breaks: libarts1-audiofile-kde3 (<< 4:14.0.0~), libarts1-audiofile-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: audiofile plugin for aRts
  This package contains audiofile plugins for aRts.
@@ -249,8 +249,8 @@ Description: audiofile plugin for aRts
 Package: libarts1-mpeglib-trinity
 Section: libs
 Architecture: any
-Replaces: libarts1-mpeglib-kde3 (<< 4:14.0.0), libarts1-mpeglib-trinity (<< 4:14.0.0)
-Breaks: libarts1-mpeglib-kde3 (<< 4:14.0.0), libarts1-mpeglib-trinity (<< 4:14.0.0)
+Replaces: libarts1-mpeglib-kde3 (<< 4:14.0.0~), libarts1-mpeglib-trinity (<< 4:14.0.0~)
+Breaks: libarts1-mpeglib-kde3 (<< 4:14.0.0~), libarts1-mpeglib-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: mpeglib plugin for aRts, supporting mp3 and mpeg audio/video
  This package contains the mpeglib aRts plugin, supporting mp3 and mpeg
@@ -264,8 +264,8 @@ Description: mpeglib plugin for aRts, supporting mp3 and mpeg audio/video
 Package: libarts1-xine-trinity
 Section: libs
 Architecture: any
-Replaces: libarts1-xine-kde3 (<< 4:14.0.0), libarts1-xine-trinity (<< 4:14.0.0)
-Breaks: libarts1-xine-kde3 (<< 4:14.0.0), libarts1-xine-trinity (<< 4:14.0.0)
+Replaces: libarts1-xine-kde3 (<< 4:14.0.0~), libarts1-xine-trinity (<< 4:14.0.0~)
+Breaks: libarts1-xine-kde3 (<< 4:14.0.0~), libarts1-xine-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: aRts plugin enabling xine support
  This package contains aRts' xine plugin, allowing the use of the xine
@@ -277,8 +277,8 @@ Description: aRts plugin enabling xine support
 Package: libkcddb1-trinity
 Section: libs
 Architecture: any
-Replaces: libkcddb1-kde3 (<< 4:14.0.0), libkcddb1-trinity (<< 4:14.0.0)
-Breaks: libkcddb1-kde3 (<< 4:14.0.0), libkcddb1-trinity (<< 4:14.0.0)
+Replaces: libkcddb1-kde3 (<< 4:14.0.0~), libkcddb1-trinity (<< 4:14.0.0~)
+Breaks: libkcddb1-kde3 (<< 4:14.0.0~), libkcddb1-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: CDDB library for Trinity
  The Trinity native CDDB (CD Data Base) library, providing easy access to Audio
@@ -291,8 +291,8 @@ Description: CDDB library for Trinity
 Package: mpeglib-trinity
 Section: libs
 Architecture: any
-Replaces: mpeglib-kde3 (<< 4:14.0.0), mpeglib-trinity (<< 4:14.0.0)
-Breaks: mpeglib-kde3 (<< 4:14.0.0), mpeglib-trinity (<< 4:14.0.0)
+Replaces: mpeglib-kde3 (<< 4:14.0.0~), mpeglib-trinity (<< 4:14.0.0~)
+Breaks: mpeglib-kde3 (<< 4:14.0.0~), mpeglib-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: libarts1-mpeglib-trinity (= ${Source-Version})
 Description: MP3 and MPEG-1 audio and video library
@@ -306,8 +306,8 @@ Description: MP3 and MPEG-1 audio and video library
 Package: noatun-trinity
 Section: sound
 Architecture: any
-Replaces: noatun-kde3 (<< 4:14.0.0), noatun-trinity (<< 4:14.0.0)
-Breaks: noatun-kde3 (<< 4:14.0.0), noatun-trinity (<< 4:14.0.0)
+Replaces: noatun-kde3 (<< 4:14.0.0~), noatun-trinity (<< 4:14.0.0~)
+Breaks: noatun-kde3 (<< 4:14.0.0~), noatun-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, noatun-plugins-trinity
 Description: media player for Trinity
@@ -320,8 +320,8 @@ Description: media player for Trinity
 Package: tdemultimedia-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: kdemultimedia-kde3-dbg (<< 4:14.0.0), kdemultimedia-trinity-dbg (<< 4:14.0.0)
-Breaks: kdemultimedia-kde3-dbg (<< 4:14.0.0), kdemultimedia-trinity-dbg (<< 4:14.0.0)
+Replaces: kdemultimedia-kde3-dbg (<< 4:14.0.0~), kdemultimedia-trinity-dbg (<< 4:14.0.0~)
+Breaks: kdemultimedia-kde3-dbg (<< 4:14.0.0~), kdemultimedia-trinity-dbg (<< 4:14.0.0~)
 Priority: extra
 Depends: tdelibs-trinity-dbg, libkcddb1-trinity (= ${Source-Version})
 Description: debugging symbols for tdemultimedia

@@ -9,8 +9,8 @@ XS-Python-Version: all
 Package: desktop-effects-tde-trinity
 Architecture: all
 Depends: ${python:Depends}, python-qt4
-Replaces: desktop-effects-kde-kde3 (<< 4:14.0.0), desktop-effects-kde-trinity (<< 4:14.0.0)
-Breaks: desktop-effects-kde-kde3 (<< 4:14.0.0), desktop-effects-kde-trinity (<< 4:14.0.0)
+Replaces: desktop-effects-kde-kde3 (<< 4:14.0.0~), desktop-effects-kde-trinity (<< 4:14.0.0~)
+Breaks: desktop-effects-kde-kde3 (<< 4:14.0.0~), desktop-effects-kde-trinity (<< 4:14.0.0~)
 XB-Python-Version: ${python:Versions}
 Description: compiz setup tool for Trinity
  A simple Compiz configuration tool for Trinity.  Installs and sets Compiz

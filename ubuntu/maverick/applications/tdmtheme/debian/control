@@ -12,8 +12,8 @@ Homepage: http://beta.smileaf.org/projects
 Package: tdmtheme-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, tdm-trinity
-Replaces: kdmtheme-kde3 (<< 4:14.0.0), kdmtheme-trinity (<< 4:14.0.0)
-Breaks: kdmtheme-kde3 (<< 4:14.0.0), kdmtheme-trinity (<< 4:14.0.0)
+Replaces: kdmtheme-kde3 (<< 4:14.0.0~), kdmtheme-trinity (<< 4:14.0.0~)
+Breaks: kdmtheme-kde3 (<< 4:14.0.0~), kdmtheme-trinity (<< 4:14.0.0~)
 Description: theme manager for TDM [Trinity]
  tdmtheme is a theme manager for TDM. It provides a KDE Control Module (KCM)
  that allows you to easily install, remove and change your TDM themes.

@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: tdeaccessibility-trinity
 Section: tde
 Architecture: all
-Replaces: kdeaccessibility-trinity (<< 4:14.0.0)
-Breaks: kdeaccessibility-trinity (<< 4:14.0.0)
+Replaces: kdeaccessibility-trinity (<< 4:14.0.0~)
+Breaks: kdeaccessibility-trinity (<< 4:14.0.0~)
 Depends: kmag-trinity (>= ${Source-Version}), kmousetool-trinity (>= ${Source-Version}), kmouth-trinity (>= ${Source-Version}), kbstate-trinity (>= ${Source-Version}), ksayit-trinity (>= ${Source-Version}), kttsd-trinity (>= ${Source-Version})
 Recommends: tde-icons-mono-trinity (>= ${Source-Version})
 Suggests: kttsd-contrib-plugins-trinity (>= ${Source-Version}), tdeaccessibility-trinity-doc-html (>= ${Source-Version})
@@ -29,8 +29,8 @@ Description: accessibility packages from the official Trinity release
 Package: tdeaccessibility-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: kdeaccessibility-trinity-doc-html (<< 4:14.0.0)
-Breaks: kdeaccessibility-trinity-doc-html (<< 4:14.0.0)
+Replaces: kdeaccessibility-trinity-doc-html (<< 4:14.0.0~)
+Breaks: kdeaccessibility-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdebase-trinity
 Description: KDE accessibility documentation in HTML format
  By default the modules provided by KDE only provide their documentation
@@ -49,8 +49,8 @@ Description: KDE accessibility documentation in HTML format
 Package: tde-icons-mono-trinity
 Section: tde
 Architecture: all
-Replaces: kde-icons-mono-trinity (<< 4:14.0.0)
-Breaks: kde-icons-mono-trinity (<< 4:14.0.0)
+Replaces: kde-icons-mono-trinity (<< 4:14.0.0~)
+Breaks: kde-icons-mono-trinity (<< 4:14.0.0~)
 Description: a monochromatic icons theme for KDE
  A monochromatic icon theme for KDE, designed for accessibility purposes.
  .
@@ -60,8 +60,8 @@ Description: a monochromatic icons theme for KDE
 Package: kbstate-trinity
 Section: utils
 Architecture: any
-Replaces: kbstate-trinity (<< 4:14.0.0)
-Breaks: kbstate-trinity (<< 4:14.0.0)
+Replaces: kbstate-trinity (<< 4:14.0.0~)
+Breaks: kbstate-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a keyboard status applet for KDE
@@ -73,8 +73,8 @@ Description: a keyboard status applet for KDE
 Package: kmag-trinity
 Section: utils
 Architecture: any
-Replaces: kmag-trinity (<< 4:14.0.0)
-Breaks: kmag-trinity (<< 4:14.0.0)
+Replaces: kmag-trinity (<< 4:14.0.0~)
+Breaks: kmag-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a screen magnifier for KDE
@@ -91,8 +91,8 @@ Description: a screen magnifier for KDE
 Package: kmousetool-trinity
 Section: utils
 Architecture: any
-Replaces: kmousetool-trinity (<< 4:14.0.0)
-Breaks: kmousetool-trinity (<< 4:14.0.0)
+Replaces: kmousetool-trinity (<< 4:14.0.0~)
+Breaks: kmousetool-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: KDE mouse manipulation tool for the disabled
@@ -106,8 +106,8 @@ Description: KDE mouse manipulation tool for the disabled
 Package: kmouth-trinity
 Section: utils
 Architecture: any
-Replaces: kmouth-trinity (<< 4:14.0.0)
-Breaks: kmouth-trinity (<< 4:14.0.0)
+Replaces: kmouth-trinity (<< 4:14.0.0~)
+Breaks: kmouth-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a type-and-say KDE frontend for speech synthesizers
@@ -122,8 +122,8 @@ Description: a type-and-say KDE frontend for speech synthesizers
 Package: ksayit-trinity
 Section: utils
 Architecture: any
-Replaces: ksayit-trinity (<< 4:14.0.0)
-Breaks: ksayit-trinity (<< 4:14.0.0)
+Replaces: ksayit-trinity (<< 4:14.0.0~)
+Breaks: ksayit-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a frontend for the KDE Text-to-Speech system
@@ -136,8 +136,8 @@ Description: a frontend for the KDE Text-to-Speech system
 Package: kttsd-trinity
 Section: utils
 Architecture: any
-Replaces: kttsd-trinity (<< 4:14.0.0)
-Breaks: kttsd-trinity (<< 4:14.0.0)
+Replaces: kttsd-trinity (<< 4:14.0.0~)
+Breaks: kttsd-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: ksayit-trinity (= ${Source-Version}) | kmouth-trinity (= ${Source-Version}), festival | flite | epos
 Suggests: kttsd-contrib-plugins-trinity (= ${Source-Version})
@@ -156,8 +156,8 @@ Description: a Text-to-Speech system for KDE
 Package: kttsd-contrib-plugins-trinity
 Section: utils
 Architecture: any
-Replaces: kttsd-contrib-plugins-trinity (<< 4:14.0.0)
-Breaks: kttsd-contrib-plugins-trinity (<< 4:14.0.0)
+Replaces: kttsd-contrib-plugins-trinity (<< 4:14.0.0~)
+Breaks: kttsd-contrib-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: the KDE Text-to-Speech system
  kttsd synthetizer plugins that depends on non-free software :
@@ -172,8 +172,8 @@ Description: the KDE Text-to-Speech system
 Package: tdeaccessibility-trinity-dbg
 Section: libdevel
 Architecture: any
-Replaces: kdeaccessibility-trinity-dbg (<< 4:14.0.0)
-Breaks: kdeaccessibility-trinity-dbg (<< 4:14.0.0)
+Replaces: kdeaccessibility-trinity-dbg (<< 4:14.0.0~)
+Breaks: kdeaccessibility-trinity-dbg (<< 4:14.0.0~)
 Depends: tdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for tdeaccessibility-trinity

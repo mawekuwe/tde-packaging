@@ -11,8 +11,8 @@ Standards-Version: 3.8.4
 Package: tdegames-trinity
 Architecture: all
 Section: tde
-Replaces: kdegames-trinity (<< 4:14.0.0)
-Breaks: kdegames-trinity (<< 4:14.0.0)
+Replaces: kdegames-trinity (<< 4:14.0.0~)
+Breaks: kdegames-trinity (<< 4:14.0.0~)
 Depends: atlantik-trinity (>= ${Source-Version}), kasteroids-trinity (>= ${Source-Version}), katomic-trinity (>= ${Source-Version}), kbackgammon-trinity (>= ${Source-Version}), kbattleship-trinity (>= ${Source-Version}), kblackbox-trinity (>= ${Source-Version}), kbounce-trinity (>= ${Source-Version}), kenolaba-trinity (>= ${Source-Version}), kfouleggs-trinity (>= ${Source-Version}), kgoldrunner-trinity (>= ${Source-Version}), kjumpingcube-trinity (>= ${Source-Version}), klickety-trinity (>= ${Source-Version}), klines-trinity (>= ${Source-Version}), kmahjongg-trinity (>= ${Source-Version}), kmines-trinity (>= ${Source-Version}), knetwalk-trinity (>= ${Source-Version}), kolf-trinity (>= ${Source-Version}), konquest-trinity (>= ${Source-Version}), kpat-trinity (>= ${Source-Version}), kpoker-trinity (>= ${Source-Version}), kreversi-trinity (>= ${Source-Version}), ksame-trinity (>= ${Source-Version}), kshisen-trinity (>= ${Source-Version}), ksirtet-trinity (>= ${Source-Version}), ksmiletris-trinity (>= ${Source-Version}), ksnake-trinity (>= ${Source-Version}), ksokoban-trinity (>= ${Source-Version}), kspaceduel-trinity (>= ${Source-Version}), ktron-trinity (>= ${Source-Version}), ktuberling-trinity (>= ${Source-Version}), twin4-trinity (>= ${Source-Version}), lskat-trinity (>= ${Source-Version})
 Suggests: tdegames-trinity-doc-html (>= ${Source-Version}), khelpcenter-trinity
 Description: games from the official Trinity release
@@ -27,8 +27,8 @@ Description: games from the official Trinity release
 Package: tdegames-trinity-doc-html
 Architecture: all
 Section: doc
-Replaces: kdegames-trinity-doc-html (<< 4:14.0.0)
-Breaks: kdegames-trinity-doc-html (<< 4:14.0.0)
+Replaces: kdegames-trinity-doc-html (<< 4:14.0.0~)
+Breaks: kdegames-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdegames-trinity
 Description: KDE games documentation in HTML format
  By default the games provided with KDE (the K Desktop Environment)
@@ -47,8 +47,8 @@ Description: KDE games documentation in HTML format
 Package: libtdegames1-trinity
 Architecture: any
 Section: games
-Replaces: libkdegames1-trinity (<< 4:14.0.0)
-Breaks: libkdegames1-trinity (<< 4:14.0.0)
+Replaces: libkdegames1-trinity (<< 4:14.0.0~)
+Breaks: libkdegames1-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Trinity games library and common files
  This library provides a common infrastructure for several of the
@@ -62,8 +62,8 @@ Description: Trinity games library and common files
 Package: tdegames-trinity-dbg
 Architecture: any
 Depends: tdelibs-trinity-dbg
-Replaces: kdegames-trinity-dbg (<< 4:14.0.0)
-Breaks: kdegames-trinity-dbg (<< 4:14.0.0)
+Replaces: kdegames-trinity-dbg (<< 4:14.0.0~)
+Breaks: kdegames-trinity-dbg (<< 4:14.0.0~)
 Priority: extra
 Section: tde
 Description: debugging symbols for tdegames
@@ -74,8 +74,8 @@ Description: debugging symbols for tdegames
 Package: libtdegames-trinity-dev
 Architecture: any
 Section: libdevel
-Replaces: libkdegames-trinity-dev (<< 4:14.0.0)
-Breaks: libkdegames-trinity-dev (<< 4:14.0.0)
+Replaces: libkdegames-trinity-dev (<< 4:14.0.0~)
+Breaks: libkdegames-trinity-dev (<< 4:14.0.0~)
 Depends: tdelibs14-trinity-dev, libtdegames1-trinity (= ${Source-Version})
 Description: Trinity games library headers
  This package is necessary if you want to develop your own games using
@@ -87,8 +87,8 @@ Description: Trinity games library headers
 Package: libtdegames-trinity-doc
 Architecture: all
 Section: doc
-Replaces: libkdegames-trinity-doc (<< 4:14.0.0)
-Breaks: libkdegames-trinity-doc (<< 4:14.0.0)
+Replaces: libkdegames-trinity-doc (<< 4:14.0.0~)
+Breaks: libkdegames-trinity-doc (<< 4:14.0.0~)
 Recommends: tdelibs14-trinity-doc, libtqtinterface-doc
 Suggests: konqueror-trinity | www-browser, libtdegames-trinity-dev
 Description: API documentation for the Trinity games library
@@ -101,8 +101,8 @@ Description: API documentation for the Trinity games library
 Package: tdegames-card-data-trinity
 Architecture: all
 Section: games
-Replaces: kdegames-card-data-trinity (<< 4:14.0.0)
-Breaks: kdegames-card-data-trinity (<< 4:14.0.0)
+Replaces: kdegames-card-data-trinity (<< 4:14.0.0~)
+Breaks: kdegames-card-data-trinity (<< 4:14.0.0~)
 Description: Card decks for Trinity games
  Several different collections of card images for use by KDE games.
  .
@@ -112,8 +112,8 @@ Description: Card decks for Trinity games
 Package: atlantik-trinity
 Architecture: any
 Section: games
-Replaces: atlantik-trinity (<< 4:14.0.0)
-Breaks: atlantik-trinity (<< 4:14.0.0)
+Replaces: atlantik-trinity (<< 4:14.0.0~)
+Breaks: atlantik-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: atlantikdesigner-trinity, monopd
 Description: KDE client for Monopoly-like network games
@@ -129,8 +129,8 @@ Description: KDE client for Monopoly-like network games
 Package: atlantik-trinity-dev
 Architecture: any
 Section: devel
-Replaces: atlantik-trinity-dev (<< 4:14.0.0)
-Breaks: atlantik-trinity-dev (<< 4:14.0.0)
+Replaces: atlantik-trinity-dev (<< 4:14.0.0~)
+Breaks: atlantik-trinity-dev (<< 4:14.0.0~)
 Priority: extra
 Depends: ${shlibs:Depends}, atlantik-trinity (= ${Source-Version}), libtdegames-trinity-dev (= ${Source-Version})
 Description: Development files for Atlantik
@@ -143,8 +143,8 @@ Description: Development files for Atlantik
 Package: kasteroids-trinity
 Architecture: any
 Section: games
-Replaces: kasteroids-trinity (<< 4:14.0.0)
-Breaks: kasteroids-trinity (<< 4:14.0.0)
+Replaces: kasteroids-trinity (<< 4:14.0.0~)
+Breaks: kasteroids-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Asteroids for Trinity
  You know this game.  It is based on Warwick Allison's QwSpriteField
@@ -160,8 +160,8 @@ Description: Asteroids for Trinity
 Package: katomic-trinity
 Architecture: any
 Section: games
-Replaces: katomic-trinity (<< 4:14.0.0)
-Breaks: katomic-trinity (<< 4:14.0.0)
+Replaces: katomic-trinity (<< 4:14.0.0~)
+Breaks: katomic-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Atomic Entertainment game for Trinity
  This is a puzzle game, in which the object is to assemble a molecule
@@ -175,8 +175,8 @@ Description: Atomic Entertainment game for Trinity
 Package: kbackgammon-trinity
 Architecture: any
 Section: games
-Replaces: kbackgammon-trinity (<< 4:14.0.0)
-Breaks: kbackgammon-trinity (<< 4:14.0.0)
+Replaces: kbackgammon-trinity (<< 4:14.0.0~)
+Breaks: kbackgammon-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: gnubg
 Description: A Backgammon game for Trinity
@@ -192,8 +192,8 @@ Description: A Backgammon game for Trinity
 Package: kbattleship-trinity
 Architecture: any
 Section: games
-Replaces: kbattleship-trinity (<< 4:14.0.0)
-Breaks: kbattleship-trinity (<< 4:14.0.0)
+Replaces: kbattleship-trinity (<< 4:14.0.0~)
+Breaks: kbattleship-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Battleship game for Trinity
  This is an implementation of the Battleship game.  Each player tries
@@ -207,8 +207,8 @@ Description: Battleship game for Trinity
 Package: kblackbox-trinity
 Architecture: any
 Section: games
-Replaces: kblackbox-trinity (<< 4:14.0.0)
-Breaks: kblackbox-trinity (<< 4:14.0.0)
+Replaces: kblackbox-trinity (<< 4:14.0.0~)
+Breaks: kblackbox-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: A simple logical game for the Trinity project
  KBlackBox is a game of hide and seek played on an grid of boxes. Your
@@ -224,8 +224,8 @@ Description: A simple logical game for the Trinity project
 Package: kbounce-trinity
 Architecture: any
 Section: games
-Replaces: kbounce-trinity (<< 4:14.0.0)
-Breaks: kbounce-trinity (<< 4:14.0.0)
+Replaces: kbounce-trinity (<< 4:14.0.0~)
+Breaks: kbounce-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Jezzball clone for the K Desktop Environment
  This is a clone of the popular Jezzball game originally created by
@@ -251,8 +251,8 @@ Description: Jezzball clone for the K Desktop Environment
 Package: kenolaba-trinity
 Architecture: any
 Section: games
-Replaces: kenolaba-trinity (<< 4:14.0.0)
-Breaks: kenolaba-trinity (<< 4:14.0.0)
+Replaces: kenolaba-trinity (<< 4:14.0.0~)
+Breaks: kenolaba-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Enolaba board game for Trinity
  kenolaba is a simple board strategy game that is played by two
@@ -270,8 +270,8 @@ Description: Enolaba board game for Trinity
 Package: kfouleggs-trinity
 Architecture: any
 Section: games
-Replaces: kfouleggs-trinity (<< 4:14.0.0)
-Breaks: kfouleggs-trinity (<< 4:14.0.0)
+Replaces: kfouleggs-trinity (<< 4:14.0.0~)
+Breaks: kfouleggs-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: A KDE clone of the Japanese PuyoPuyo game
  KFouleggs is a clone of the Japanese PuyoPuyo game, with advanced
@@ -285,8 +285,8 @@ Description: A KDE clone of the Japanese PuyoPuyo game
 Package: kgoldrunner-trinity
 Architecture: any
 Section: games
-Replaces: kgoldrunner-trinity (<< 4:14.0.0)
-Breaks: kgoldrunner-trinity (<< 4:14.0.0)
+Replaces: kgoldrunner-trinity (<< 4:14.0.0~)
+Breaks: kgoldrunner-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: A Trinity clone of the Loderunner arcade game
  KGoldrunner, a game of action and puzzle solving.  Run through the
@@ -310,8 +310,8 @@ Description: A Trinity clone of the Loderunner arcade game
 Package: kjumpingcube-trinity
 Architecture: any
 Section: games
-Replaces: kjumpingcube-trinity (<< 4:14.0.0)
-Breaks: kjumpingcube-trinity (<< 4:14.0.0)
+Replaces: kjumpingcube-trinity (<< 4:14.0.0~)
+Breaks: kjumpingcube-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Tactical one or two player game
  KJumpingCube is a simple tactical game. You can play it against the
@@ -327,8 +327,8 @@ Description: Tactical one or two player game
 Package: klickety-trinity
 Architecture: any
 Section: games
-Replaces: klickety-trinity (<< 4:14.0.0)
-Breaks: klickety-trinity (<< 4:14.0.0)
+Replaces: klickety-trinity (<< 4:14.0.0~)
+Breaks: klickety-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: A Clickomania-like game for Trinity
  Klickety is an adaptation of the (perhaps) well-known Clickomania
@@ -340,8 +340,8 @@ Description: A Clickomania-like game for Trinity
 Package: klines-trinity
 Architecture: any
 Section: games
-Replaces: klines-trinity (<< 4:14.0.0)
-Breaks: klines-trinity (<< 4:14.0.0)
+Replaces: klines-trinity (<< 4:14.0.0~)
+Breaks: klines-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Color lines for Trinity
  KLines is a simple game. It is played by one player, so there is only
@@ -362,8 +362,8 @@ Description: Color lines for Trinity
 Package: kmahjongg-trinity
 Architecture: any
 Section: games
-Replaces: kmahjongg-trinity (<< 4:14.0.0)
-Breaks: kmahjongg-trinity (<< 4:14.0.0)
+Replaces: kmahjongg-trinity (<< 4:14.0.0~)
+Breaks: kmahjongg-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: the classic mahjongg game for Trinity project
  Your mission in this game is to remove all tiles from the game board. A
@@ -376,8 +376,8 @@ Description: the classic mahjongg game for Trinity project
 Package: kmines-trinity
 Architecture: any
 Section: games
-Replaces: kmines-trinity (<< 4:14.0.0)
-Breaks: kmines-trinity (<< 4:14.0.0)
+Replaces: kmines-trinity (<< 4:14.0.0~)
+Breaks: kmines-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Minesweeper for Trinity
  KMines is the classic Minesweeper game. You must uncover all the
@@ -395,8 +395,8 @@ Description: Minesweeper for Trinity
 Package: knetwalk-trinity
 Architecture: any
 Section: games
-Replaces: knetwalk-trinity (<< 4:14.0.0)
-Breaks: knetwalk-trinity (<< 4:14.0.0)
+Replaces: knetwalk-trinity (<< 4:14.0.0~)
+Breaks: knetwalk-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: A game for system administrators
  This game presents the player with a rectangular field consisting of
@@ -410,8 +410,8 @@ Description: A game for system administrators
 Package: kolf-trinity
 Architecture: any
 Section: games
-Replaces: kolf-trinity (<< 4:14.0.0)
-Breaks: kolf-trinity (<< 4:14.0.0)
+Replaces: kolf-trinity (<< 4:14.0.0~)
+Breaks: kolf-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Minigolf game for KDE
  This is a minigolf game for KDE that allows you to go through different
@@ -423,8 +423,8 @@ Description: Minigolf game for KDE
 Package: kolf-trinity-dev
 Architecture: any
 Section: devel
-Replaces: kolf-trinity-dev (<< 4:14.0.0)
-Breaks: kolf-trinity-dev (<< 4:14.0.0)
+Replaces: kolf-trinity-dev (<< 4:14.0.0~)
+Breaks: kolf-trinity-dev (<< 4:14.0.0~)
 Priority: extra
 Depends: ${shlibs:Depends}, kolf-trinity (= ${Source-Version}), libtdegames-trinity-dev (= ${Source-Version})
 Description: Development files for Kolf
@@ -437,8 +437,8 @@ Description: Development files for Kolf
 Package: konquest-trinity
 Architecture: any
 Section: games
-Replaces: konquest-trinity (<< 4:14.0.0)
-Breaks: konquest-trinity (<< 4:14.0.0)
+Replaces: konquest-trinity (<< 4:14.0.0~)
+Breaks: konquest-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: KDE based GNU-Lactic Konquest game
  This the KDE version of Gnu-Lactic Konquest, a multi-player strategy
@@ -451,8 +451,8 @@ Description: KDE based GNU-Lactic Konquest game
 Package: kpat-trinity
 Architecture: any
 Section: games
-Replaces: kpat-trinity (<< 4:14.0.0)
-Breaks: kpat-trinity (<< 4:14.0.0)
+Replaces: kpat-trinity (<< 4:14.0.0~)
+Breaks: kpat-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, tdebase-data-trinity, tdegames-card-data-trinity
 Description: Trinity solitaire patience game
  KPatience is a collection of 14 card games. All the games are single
@@ -464,8 +464,8 @@ Description: Trinity solitaire patience game
 Package: kpoker-trinity
 Architecture: any
 Section: games
-Replaces: kpoker-trinity (<< 4:14.0.0)
-Breaks: kpoker-trinity (<< 4:14.0.0)
+Replaces: kpoker-trinity (<< 4:14.0.0~)
+Breaks: kpoker-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, tdegames-card-data-trinity
 Description: Trinity based Poker clone
  KPoker is a KDE compliant clone of those highly addictive pocket
@@ -477,8 +477,8 @@ Description: Trinity based Poker clone
 Package: kreversi-trinity
 Architecture: any
 Section: games
-Replaces: kreversi-trinity (<< 4:14.0.0)
-Breaks: kreversi-trinity (<< 4:14.0.0)
+Replaces: kreversi-trinity (<< 4:14.0.0~)
+Breaks: kreversi-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Reversi for Trinity
  Reversi is a simple strategy game that is played by two
@@ -494,8 +494,8 @@ Description: Reversi for Trinity
 Package: ksame-trinity
 Architecture: any
 Section: games
-Replaces: ksame-trinity (<< 4:14.0.0)
-Breaks: ksame-trinity (<< 4:14.0.0)
+Replaces: ksame-trinity (<< 4:14.0.0~)
+Breaks: ksame-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: SameGame for Trinity
  KSame is a simple game. It's played by one player, so there is only
@@ -509,8 +509,8 @@ Description: SameGame for Trinity
 Package: kshisen-trinity
 Architecture: any
 Section: games
-Replaces: kshisen-trinity (<< 4:14.0.0)
-Breaks: kshisen-trinity (<< 4:14.0.0)
+Replaces: kshisen-trinity (<< 4:14.0.0~)
+Breaks: kshisen-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Shisen-Sho for Trinity
  KShisen-Sho is a single-player-game similar to Mahjongg and uses the
@@ -524,8 +524,8 @@ Description: Shisen-Sho for Trinity
 Package: ksirtet-trinity
 Architecture: any
 Section: games
-Replaces: ksirtet-trinity (<< 4:14.0.0)
-Breaks: ksirtet-trinity (<< 4:14.0.0)
+Replaces: ksirtet-trinity (<< 4:14.0.0~)
+Breaks: ksirtet-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Tetris and Puyo-Puyo games for Trinity
  This program is a clone of the well known game Tetris. You must fit
@@ -543,8 +543,8 @@ Description: Tetris and Puyo-Puyo games for Trinity
 Package: ksmiletris-trinity
 Architecture: any
 Section: games
-Replaces: ksmiletris-trinity (<< 4:14.0.0)
-Breaks: ksmiletris-trinity (<< 4:14.0.0)
+Replaces: ksmiletris-trinity (<< 4:14.0.0~)
+Breaks: ksmiletris-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Tetris like game for Trinity
  This is a game with falling blocks composed of different types of
@@ -557,8 +557,8 @@ Description: Tetris like game for Trinity
 Package: ksnake-trinity
 Architecture: any
 Section: games
-Replaces: ksnake-trinity (<< 4:14.0.0)
-Breaks: ksnake-trinity (<< 4:14.0.0)
+Replaces: ksnake-trinity (<< 4:14.0.0~)
+Breaks: ksnake-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Snake Race for Trinity
  Snake Race is a game of speed and agility. You are a hungry snake and
@@ -570,8 +570,8 @@ Description: Snake Race for Trinity
 Package: ksokoban-trinity
 Architecture: any
 Section: games
-Replaces: ksokoban-trinity (<< 4:14.0.0)
-Breaks: ksokoban-trinity (<< 4:14.0.0)
+Replaces: ksokoban-trinity (<< 4:14.0.0~)
+Breaks: ksokoban-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Sokoban game for Trinity
  The first sokoban game was created in 1982 by Hiroyuki Imabayashi at
@@ -599,8 +599,8 @@ Description: Sokoban game for Trinity
 Package: kspaceduel-trinity
 Architecture: any
 Section: games
-Replaces: kspaceduel-trinity (<< 4:14.0.0)
-Breaks: kspaceduel-trinity (<< 4:14.0.0)
+Replaces: kspaceduel-trinity (<< 4:14.0.0~)
+Breaks: kspaceduel-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Arcade two-player space game for Trinity
  KSpaceduel is an space arcade game for two players.
@@ -616,8 +616,8 @@ Description: Arcade two-player space game for Trinity
 Package: ktron-trinity
 Architecture: any
 Section: games
-Replaces: ktron-trinity (<< 4:14.0.0)
-Breaks: ktron-trinity (<< 4:14.0.0)
+Replaces: ktron-trinity (<< 4:14.0.0~)
+Breaks: ktron-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Tron clone for the K Desktop Environment
  The object of the game is to avoid running into walls, your own tail,
@@ -629,8 +629,8 @@ Description: Tron clone for the K Desktop Environment
 Package: ktuberling-trinity
 Architecture: any
 Section: games
-Replaces: ktuberling-trinity (<< 4:14.0.0)
-Breaks: ktuberling-trinity (<< 4:14.0.0)
+Replaces: ktuberling-trinity (<< 4:14.0.0~)
+Breaks: ktuberling-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Potato Guy for Trinity
  KTuberling is a game intended for small children. Of course, it may
@@ -655,8 +655,8 @@ Description: Potato Guy for Trinity
 Package: twin4-trinity
 Architecture: any
 Section: games
-Replaces: kwin4-trinity (<< 4:14.0.0)
-Breaks: kwin4-trinity (<< 4:14.0.0)
+Replaces: kwin4-trinity (<< 4:14.0.0~)
+Breaks: kwin4-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Connect Four clone for Trinity
  Four wins is a game for two players. Each player is represented by a
@@ -676,8 +676,8 @@ Description: Connect Four clone for Trinity
 Package: lskat-trinity
 Architecture: any
 Section: games
-Replaces: lskat-trinity (<< 4:14.0.0)
-Breaks: lskat-trinity (<< 4:14.0.0)
+Replaces: lskat-trinity (<< 4:14.0.0~)
+Breaks: lskat-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, tdegames-card-data-trinity
 Description: Lieutnant Skat card game for Trinity
  Lieutnant Skat (from German Offiziersskat) is a card game for two

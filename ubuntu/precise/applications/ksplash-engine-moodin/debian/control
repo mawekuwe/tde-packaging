@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: ksplash-engine-moodin-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: ksplash-engine-moodin-kde3 (<< 4:14.0.0), ksplash-engine-moodin-trinity (<< 4:14.0.0)
-Breaks: ksplash-engine-moodin-kde3 (<< 4:14.0.0), ksplash-engine-moodin-trinity (<< 4:14.0.0)
+Replaces: ksplash-engine-moodin-kde3 (<< 4:14.0.0~), ksplash-engine-moodin-trinity (<< 4:14.0.0~)
+Breaks: ksplash-engine-moodin-kde3 (<< 4:14.0.0~), ksplash-engine-moodin-trinity (<< 4:14.0.0~)
 Description: fading splash screen engine for Trinity
  Heavily customizable engine for various types of themes.
  .

@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: kiosktool-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, tdesudo-trinity
-Replaces: kiosktool-trinity (<< 4:14.0.0)
-Breaks: kiosktool-trinity (<< 4:14.0.0)
+Replaces: kiosktool-trinity (<< 4:14.0.0~)
+Breaks: kiosktool-trinity (<< 4:14.0.0~)
 Description: tool to configure the TDE kiosk framework
  A Point&Click tool for system administrators to enable 
  TDE's KIOSK features or otherwise preconfigure TDE for 

@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: kdpkg-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, apt, dpkg (>=1.14), sudo-trinity, menu
-Replaces: kdpkg-kde3 (<< 4:14.0.0), kdpkg-trinity (<< 4:14.0.0)
-Breaks: kdpkg-kde3 (<< 4:14.0.0), kdpkg-trinity (<< 4:14.0.0)
+Replaces: kdpkg-kde3 (<< 4:14.0.0~), kdpkg-trinity (<< 4:14.0.0~)
+Breaks: kdpkg-kde3 (<< 4:14.0.0~), kdpkg-trinity (<< 4:14.0.0~)
 Description: KDE frontend for dpkg [Trinity]
  kdpkg is a utility for installing .deb package files.
  It is similar to gdebi, except that kdpkg is a KDE application

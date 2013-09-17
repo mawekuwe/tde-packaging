@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: tqca-tls
 Section: libs
 Architecture: any
-Replaces: tqca-tls (<< 4:14.0.0)
-Breaks: tqca-tls (<< 4:14.0.0)
+Replaces: tqca-tls (<< 4:14.0.0~)
+Breaks: tqca-tls (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: TLS plugin for the TQt Cryptographic Architecture (TQCA)
  This is a plugin to provide SSL/TLS capability to programs that

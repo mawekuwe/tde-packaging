@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: ktorrent-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: ktorrent-trinity (<< 4:14.0.0)
-Breaks: ktorrent-trinity (<< 4:14.0.0)
+Replaces: ktorrent-trinity (<< 4:14.0.0~)
+Breaks: ktorrent-trinity (<< 4:14.0.0~)
 Suggests: php5-cli
 Recommends: tdebase-tdeio-plugins-trinity
 Description: BitTorrent client for Trinity

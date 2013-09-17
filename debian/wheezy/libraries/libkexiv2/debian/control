@@ -11,8 +11,8 @@ Homepage: http://www.kipi-plugins.org/
 Package: libkexiv2-3-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libkexiv2-3-trinity-dev (<< 4:14.0.0)
-Breaks: libkexiv2-3-trinity-dev (<< 4:14.0.0)
+Replaces: libkexiv2-3-trinity-dev (<< 4:14.0.0~)
+Breaks: libkexiv2-3-trinity-dev (<< 4:14.0.0~)
 Depends: libkexiv2-3-trinity (= ${binary:Version}), pkg-config
 Description: Qt like interface for the libexiv2 library (development) [Trinity]
  libkexif2-dev contains development files and documentation for libkexiv2
@@ -23,8 +23,8 @@ Description: Qt like interface for the libexiv2 library (development) [Trinity]
 Package: libkexiv2-3-trinity
 Section: libs
 Architecture: any
-Replaces: libkexiv2-3-trinity (<< 4:14.0.0)
-Breaks: libkexiv2-3-trinity (<< 4:14.0.0)
+Replaces: libkexiv2-3-trinity (<< 4:14.0.0~)
+Breaks: libkexiv2-3-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Qt like interface for the libexiv2 library (runtime) [Trinity]
  libkexif2 contains the library of libkexiv2.

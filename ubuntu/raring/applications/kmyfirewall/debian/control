@@ -9,8 +9,8 @@ Homepage: http://kmyfirewall.sourceforge.net/
 Package: kmyfirewall-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: kmyfirewall-kde3 (<< 4:14.0.0), kmyfirewall-trinity (<< 4:14.0.0)
-Breaks: kmyfirewall-kde3 (<< 4:14.0.0), kmyfirewall-trinity (<< 4:14.0.0)
+Replaces: kmyfirewall-kde3 (<< 4:14.0.0~), kmyfirewall-trinity (<< 4:14.0.0~)
+Breaks: kmyfirewall-kde3 (<< 4:14.0.0~), kmyfirewall-trinity (<< 4:14.0.0~)
 Description: iptables based firewall configuration tool for KDE [Trinity]
  KMyFirewall attempts to make it easier to setup iptables based firewalls on
  Linux systems. It will be the right tool if you like to have a so called

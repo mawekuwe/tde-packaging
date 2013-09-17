@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: potracegui-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, potrace
-Replaces: potracegui-trinity (<< 4:14.0.0)
-Breaks: potracegui-trinity (<< 4:14.0.0)
+Replaces: potracegui-trinity (<< 4:14.0.0~)
+Breaks: potracegui-trinity (<< 4:14.0.0~)
 Suggests: autotrace
 Description: KDE frontend for potrace [Trinity]
  A KDE interface for the commandline tracing tools potrace and/or autotrace. It

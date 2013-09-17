@@ -18,8 +18,8 @@ Build-Depends: debhelper (>= 5), quilt,
 Package: libart-2.0-2
 Architecture: any
 Section: libs
-Replaces: libart-2.0-2 (<< 4:14.0.0)
-Breaks: libart-2.0-2 (<< 4:14.0.0)
+Replaces: libart-2.0-2 (<< 4:14.0.0~)
+Breaks: libart-2.0-2 (<< 4:14.0.0~)
 Depends: ${misc:Depends},
          ${shlibs:Depends}
 Description: Library of functions for 2D graphics - runtime files
@@ -32,8 +32,8 @@ Description: Library of functions for 2D graphics - runtime files
 Package: libart-2.0-dev
 Architecture: any
 Section: libdevel
-Replaces: libart-2.0-dev (<< 4:14.0.0)
-Breaks: libart-2.0-dev (<< 4:14.0.0)
+Replaces: libart-2.0-dev (<< 4:14.0.0~)
+Breaks: libart-2.0-dev (<< 4:14.0.0~)
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          libart-2.0-2 (= ${binary:Version}),

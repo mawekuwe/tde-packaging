@@ -15,8 +15,8 @@ Standards-Version: 3.8.4
 Package: tdebindings-java-trinity
 Section: libs
 Architecture: all
-Replaces: kdebindings-java-trinity (<< 4:14.0.0)
-Breaks: kdebindings-java-trinity (<< 4:14.0.0)
+Replaces: kdebindings-java-trinity (<< 4:14.0.0~)
+Breaks: kdebindings-java-trinity (<< 4:14.0.0~)
 Depends: libdcop3-java-trinity (= ${source:Version}), libqt3-java-trinity (= ${source:Version}), libtrinity-java-trinity (= ${source:Version})
 Description: TDE Java bindings metapackage [Trinity]
  A metapackage depending on all TDE, Qt and DCOP bindings libraries
@@ -27,8 +27,8 @@ Description: TDE Java bindings metapackage [Trinity]
 Package: libdcop3-java-trinity
 Architecture: all
 Section: libs
-Replaces: libdcop3-java-trinity (<< 4:14.0.0)
-Breaks: libdcop3-java-trinity (<< 4:14.0.0)
+Replaces: libdcop3-java-trinity (<< 4:14.0.0~)
+Breaks: libdcop3-java-trinity (<< 4:14.0.0~)
 Depends: libdcop3-jni-trinity (>> ${KDE-Version3}~), libdcop3-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Description: DCOP bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
@@ -40,8 +40,8 @@ Description: DCOP bindings for Java [Trinity]
 Package: libdcop3-jni-trinity
 Architecture: amd64 i386 ia64 powerpc s390 sparc
 Section: libs
-Replaces: libdcop3-jni-trinity (<< 4:14.0.0)
-Breaks: libdcop3-jni-trinity (<< 4:14.0.0)
+Replaces: libdcop3-jni-trinity (<< 4:14.0.0~)
+Breaks: libdcop3-jni-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: DCOP bindings for Java ( Native libraries ) [Trinity]
  This package contains the shared libraries and scripts necessary to
@@ -54,8 +54,8 @@ Description: DCOP bindings for Java ( Native libraries ) [Trinity]
 Package: libdcop3-java-trinity-dev
 Architecture: amd64 i386 ia64 powerpc s390 sparc
 Section: libdevel
-Replaces: libdcop3-java-trinity-dev (<< 4:14.0.0)
-Breaks: libdcop3-java-trinity-dev (<< 4:14.0.0)
+Replaces: libdcop3-java-trinity-dev (<< 4:14.0.0~)
+Breaks: libdcop3-java-trinity-dev (<< 4:14.0.0~)
 Depends: libdcop3-java-trinity (>> ${KDE-Version3}~), libdcop3-java-trinity (<< ${KDE-Next-Version3}~)
 Description: DCOP bindings for Java (dcopidl2java program) [Trinity]
  This package contains the dcopidl2java program which generates Java 
@@ -68,8 +68,8 @@ Description: DCOP bindings for Java (dcopidl2java program) [Trinity]
 Package: libqt3-java-trinity
 Architecture: all
 Section: libs
-Replaces: libqt3-java-trinity (<< 4:14.0.0)
-Breaks: libqt3-java-trinity (<< 4:14.0.0)
+Replaces: libqt3-java-trinity (<< 4:14.0.0~)
+Breaks: libqt3-java-trinity (<< 4:14.0.0~)
 Depends: libqt3-jni-trinity (>> ${KDE-Version3}~), libqt3-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Suggests: juic-trinity
 Description: Java bindings for Qt [Trinity]
@@ -85,8 +85,8 @@ Description: Java bindings for Qt [Trinity]
 Package: libqt3-jni-trinity
 Architecture: amd64 i386 ia64 powerpc s390 sparc
 Section: libs
-Replaces: libqt3-jni-trinity (<< 4:14.0.0)
-Breaks: libqt3-jni-trinity (<< 4:14.0.0)
+Replaces: libqt3-jni-trinity (<< 4:14.0.0~)
+Breaks: libqt3-jni-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Java bindings for Qt ( Native libraries ) [Trinity]
  This package contains the shared libraries necessary to run Java
@@ -98,8 +98,8 @@ Description: Java bindings for Qt ( Native libraries ) [Trinity]
 Package: libtrinity-java-trinity
 Architecture: all
 Section: libs
-Replaces: libtrinity-java-trinity (<< 4:14.0.0)
-Breaks: libtrinity-java-trinity (<< 4:14.0.0)
+Replaces: libtrinity-java-trinity (<< 4:14.0.0~)
+Breaks: libtrinity-java-trinity (<< 4:14.0.0~)
 Depends: libtrinity-jni-trinity (>> ${KDE-Version3}~), libtrinity-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Description: tdelibs bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
@@ -114,8 +114,8 @@ Description: tdelibs bindings for Java [Trinity]
 Package: libtrinity-jni-trinity
 Architecture: amd64 i386 ia64 powerpc s390 sparc
 Section: libs
-Replaces: libtrinity-jni-trinity (<< 4:14.0.0)
-Breaks: libtrinity-jni-trinity (<< 4:14.0.0)
+Replaces: libtrinity-jni-trinity (<< 4:14.0.0~)
+Breaks: libtrinity-jni-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: tdelibs bindings for java ( Native libraries ) [Trinity]
  This package contains the shared libraries necessary to run Java
@@ -127,8 +127,8 @@ Description: tdelibs bindings for java ( Native libraries ) [Trinity]
 Package: libsmoketqt1-trinity
 Architecture: any
 Section: libs
-Replaces: libsmokeqt1-trinity (<< 4:14.0.0)
-Breaks: libsmokeqt1-trinity (<< 4:14.0.0)
+Replaces: libsmokeqt1-trinity (<< 4:14.0.0~)
+Breaks: libsmokeqt1-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: SMOKE Binding Library to TQt
  The "Scripting Meta Object Kompiler Engine" library is used by
@@ -140,8 +140,8 @@ Description: SMOKE Binding Library to TQt
 Package: libsmoketqt-trinity-dev
 Architecture: any
 Section: libdevel
-Replaces: libsmokeqt-trinity-dev (<< 4:14.0.0)
-Breaks: libsmokeqt-trinity-dev (<< 4:14.0.0)
+Replaces: libsmokeqt-trinity-dev (<< 4:14.0.0~)
+Breaks: libsmokeqt-trinity-dev (<< 4:14.0.0~)
 Depends: libsmoketqt1-trinity (= ${binary:Version})
 Description: SMOKE Binding Library to TQt - Development Files
  The "Scripting Meta Object Kompiler Engine" library is used by
@@ -157,8 +157,8 @@ Description: SMOKE Binding Library to TQt - Development Files
 Package: libsmoketde1-trinity
 Architecture: any
 Section: libs
-Replaces: libsmokekde1-trinity (<< 4:14.0.0)
-Breaks: libsmokekde1-trinity (<< 4:14.0.0)
+Replaces: libsmokekde1-trinity (<< 4:14.0.0~)
+Breaks: libsmokekde1-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: SMOKE Binding Library to TDE
  The "Scripting Meta Object Kompiler Engine" library is used by
@@ -170,8 +170,8 @@ Description: SMOKE Binding Library to TDE
 Package: libsmoketde-trinity-dev
 Architecture: any
 Section: libdevel
-Replaces: libsmokekde-trinity-dev (<< 4:14.0.0)
-Breaks: libsmokekde-trinity-dev (<< 4:14.0.0)
+Replaces: libsmokekde-trinity-dev (<< 4:14.0.0~)
+Breaks: libsmokekde-trinity-dev (<< 4:14.0.0~)
 Depends: libsmoketde1-trinity (= ${binary:Version})
 Description: SMOKE Binding Library to TDE - Development Files
  The "Scripting Meta Object Kompiler Engine" library is used by
@@ -187,8 +187,8 @@ Description: SMOKE Binding Library to TDE - Development Files
 Package: python-dcop-trinity
 Architecture: any
 Section: python
-Replaces: python-dcop-trinity (<< 4:14.0.0)
-Breaks: python-dcop-trinity (<< 4:14.0.0)
+Replaces: python-dcop-trinity (<< 4:14.0.0~)
+Breaks: python-dcop-trinity (<< 4:14.0.0~)
 Depends: ${python:Depends}, ${shlibs:Depends}
 Provides: ${python:Provides}
 Description: DCOP bindings for Python
@@ -202,8 +202,8 @@ Description: DCOP bindings for Python
 Package: libkjsembed1-trinity
 Architecture: any
 Section: libs
-Replaces: libkjsembed1-trinity (<< 4:14.0.0)
-Breaks: libkjsembed1-trinity (<< 4:14.0.0)
+Replaces: libkjsembed1-trinity (<< 4:14.0.0~)
+Breaks: libkjsembed1-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Embedded JavaScript library
  This package contains the shared libraries necessary to run programs
@@ -215,8 +215,8 @@ Description: Embedded JavaScript library
 Package: libkjsembed-trinity-dev
 Architecture: any
 Section: libdevel
-Replaces: libkjsembed-trinity-dev (<< 4:14.0.0)
-Breaks: libkjsembed-trinity-dev (<< 4:14.0.0)
+Replaces: libkjsembed-trinity-dev (<< 4:14.0.0~)
+Breaks: libkjsembed-trinity-dev (<< 4:14.0.0~)
 Depends: libkjsembed1-trinity (= ${binary:Version})
 Description: Embedded JavaScript library (Development files)
  This package contains the header files and symbolic links necessary
@@ -232,8 +232,8 @@ Description: Embedded JavaScript library (Development files)
 Package: kjscmd-trinity
 Architecture: any
 Section: interpreters
-Replaces: kjscmd-trinity (<< 4:14.0.0)
-Breaks: kjscmd-trinity (<< 4:14.0.0)
+Replaces: kjscmd-trinity (<< 4:14.0.0~)
+Breaks: kjscmd-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: A script interpreter using the TDE JavaScript library
  This package contains the kjscmd program, which is a standalone
@@ -244,8 +244,8 @@ Description: A script interpreter using the TDE JavaScript library
 Package: juic-trinity
 Architecture: all
 Section: libdevel
-Replaces: juic-trinity (<< 4:14.0.0)
-Breaks: juic-trinity (<< 4:14.0.0)
+Replaces: juic-trinity (<< 4:14.0.0~)
+Breaks: juic-trinity (<< 4:14.0.0~)
 Depends: xsltproc
 Recommends: libqt3-java-trinity
 Suggests: qt3-designer
@@ -261,8 +261,8 @@ Description: The Qt Java UI Compiler
 Package: libkorundum0-ruby1.8-trinity
 Architecture: any
 Section: interpreters
-Replaces: libkorundum0-ruby1.8-trinity (<< 4:14.0.0)
-Breaks: libkorundum0-ruby1.8-trinity (<< 4:14.0.0)
+Replaces: libkorundum0-ruby1.8-trinity (<< 4:14.0.0~)
+Breaks: libkorundum0-ruby1.8-trinity (<< 4:14.0.0~)
 Depends: libqt0-ruby1.8-trinity (= ${binary:Version}), ${shlibs:Depends}
 Description: TDE bindings for Ruby [Trinity]
  This package contains the files necessary for running and developing
@@ -276,8 +276,8 @@ Description: TDE bindings for Ruby [Trinity]
 Package: libqt0-ruby1.8-trinity
 Architecture: any
 Section: interpreters
-Replaces: libqt0-ruby1.8-trinity (<< 4:14.0.0)
-Breaks: libqt0-ruby1.8-trinity (<< 4:14.0.0)
+Replaces: libqt0-ruby1.8-trinity (<< 4:14.0.0~)
+Breaks: libqt0-ruby1.8-trinity (<< 4:14.0.0~)
 Depends: ruby, ${shlibs:Depends}
 Description: Qt bindings for Ruby [Trinity]
  This package contains the files necessary for running and developing
@@ -291,8 +291,8 @@ Description: Qt bindings for Ruby [Trinity]
 Package: tde-xparts-extras-trinity
 Architecture: any
 Depends: ${shlibs:Depends}
-Replaces: kde-xparts-extras-trinity (<< 4:14.0.0)
-Breaks: kde-xparts-extras-trinity (<< 4:14.0.0)
+Replaces: kde-xparts-extras-trinity (<< 4:14.0.0~)
+Breaks: kde-xparts-extras-trinity (<< 4:14.0.0~)
 Description: Extra xparts for TDE [Trinity]
  This package contains extra xparts-based modules for Trinity
  This includes the mozilla-konqueror plugin

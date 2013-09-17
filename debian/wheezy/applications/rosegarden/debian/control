@@ -11,8 +11,8 @@ Homepage: http://www.rosegardenmusic.com/
 Package: rosegarden-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, khelpcenter-trinity, rosegarden-data-trinity (= ${source:Version}), libxml-twig-perl, sndfile-programs, xterm, tdebase-trinity-bin, konqueror-trinity | www-browser, flac
-Replaces: rosegarden-trinity (<< 4:14.0.0)
-Breaks: rosegarden-trinity (<< 4:14.0.0)
+Replaces: rosegarden-trinity (<< 4:14.0.0~)
+Breaks: rosegarden-trinity (<< 4:14.0.0~)
 Recommends: jackd, lilypond, swh-plugins | ladspa-plugin
 Suggests: qjackctl
 Description: music editor and MIDI/audio sequencer [Trinity]
@@ -24,8 +24,8 @@ Description: music editor and MIDI/audio sequencer [Trinity]
 Package: rosegarden-data-trinity
 Architecture: all
 Recommends: rosegarden-trinity
-Replaces: rosegarden-data-trinity (<< 4:14.0.0)
-Breaks: rosegarden-data-trinity (<< 4:14.0.0)
+Replaces: rosegarden-data-trinity (<< 4:14.0.0~)
+Breaks: rosegarden-data-trinity (<< 4:14.0.0~)
 Priority: optional
 Description: music editor and MIDI/audio sequencer data files [Trinity]
  Rosegarden is a KDE application which provides a mixed Audio/MIDI

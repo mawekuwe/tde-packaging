@@ -8,8 +8,8 @@ Standards-Version: 3.8.4
 Package: tde-systemsettings-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, kcontrol-trinity
-Replaces: kde-systemsettings-kde3 (<< 4:14.0.0), kde-systemsettings-trinity (<< 4:14.0.0)
-Breaks: kde-systemsettings-kde3 (<< 4:14.0.0), kde-systemsettings-trinity (<< 4:14.0.0)
+Replaces: kde-systemsettings-kde3 (<< 4:14.0.0~), kde-systemsettings-trinity (<< 4:14.0.0~)
+Breaks: kde-systemsettings-kde3 (<< 4:14.0.0~), kde-systemsettings-trinity (<< 4:14.0.0~)
 Description: easy to use control centre for TDE
  System preferences is a replacement for the TDE
  Control Centre with an improved user interface.

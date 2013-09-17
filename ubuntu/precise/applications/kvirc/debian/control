@@ -11,8 +11,8 @@ Homepage: http://kvirc.net/
 Package: kvirc-trinity
 Architecture: any
 Depends: kvirc-data-trinity (= ${source:Version}), ${shlibs:Depends}
-Replaces: kvirc-kde3 (<< 4:14.0.0), kvirc-trinity (<< 4:14.0.0)
-Breaks: kvirc-kde3 (<< 4:14.0.0), kvirc-trinity (<< 4:14.0.0)
+Replaces: kvirc-kde3 (<< 4:14.0.0~), kvirc-trinity (<< 4:14.0.0~)
+Breaks: kvirc-kde3 (<< 4:14.0.0~), kvirc-trinity (<< 4:14.0.0~)
 Description:  Trinity based next generation IRC client with module support
  A highly configurable graphical IRC client with an MDI interface,
  built-in scripting language, support for IRC DCC, drag & drop file
@@ -26,8 +26,8 @@ Description:  Trinity based next generation IRC client with module support
 Package: kvirc-data-trinity
 Section: net
 Architecture: all
-Replaces: kvirc-data-kde3 (<< 4:14.0.0), kvirc-data-trinity (<< 4:14.0.0)
-Breaks: kvirc-data-kde3 (<< 4:14.0.0), kvirc-data-trinity (<< 4:14.0.0)
+Replaces: kvirc-data-kde3 (<< 4:14.0.0~), kvirc-data-trinity (<< 4:14.0.0~)
+Breaks: kvirc-data-kde3 (<< 4:14.0.0~), kvirc-data-trinity (<< 4:14.0.0~)
 Depends: kvirc-trinity (>= ${source:Version})
 Description: Data files for KVIrc
  This package contains the architecture-independent data needed by KVIrc in
@@ -43,8 +43,8 @@ Description: Data files for KVIrc
 Package: kvirc-trinity-dev
 Section: devel
 Architecture: any
-Replaces: kvirc-kde3-dev (<< 4:14.0.0), kvirc-trinity-dev (<< 4:14.0.0)
-Breaks: kvirc-kde3-dev (<< 4:14.0.0), kvirc-trinity-dev (<< 4:14.0.0)
+Replaces: kvirc-kde3-dev (<< 4:14.0.0~), kvirc-trinity-dev (<< 4:14.0.0~)
+Breaks: kvirc-kde3-dev (<< 4:14.0.0~), kvirc-trinity-dev (<< 4:14.0.0~)
 Depends: kvirc-trinity (>= ${source:Version})
 Description: Development files for KVIrc
  This package contains KVIrc libraries and include files you need if you

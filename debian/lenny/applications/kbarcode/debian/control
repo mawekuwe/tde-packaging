@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: kbarcode-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, barcode, imagemagick
-Replaces: kbarcode-trinity (<< 4:14.0.0)
-Breaks: kbarcode-trinity (<< 4:14.0.0)
+Replaces: kbarcode-trinity (<< 4:14.0.0~)
+Breaks: kbarcode-trinity (<< 4:14.0.0~)
 Recommends: libqt3-mt-mysql | libqt3-mt-psql | libqt3-mt-odbc | libqt3-mt-sqlite |
  libqt3-mt-ibase
 Description: barcode and label printing application for Trinity

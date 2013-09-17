@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: basket-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: basket-kde3 (<< 4:14.0.0), basket-trinity (<< 4:14.0.0)
-Breaks: basket-kde3 (<< 4:14.0.0), basket-trinity (<< 4:14.0.0)
+Replaces: basket-kde3 (<< 4:14.0.0~), basket-trinity (<< 4:14.0.0~)
+Breaks: basket-kde3 (<< 4:14.0.0~), basket-trinity (<< 4:14.0.0~)
 Recommends: basket-kontact-integration-trinity
 Description: a multi-purpose note-taking application for TDE [Trinity]
  This application provides as many baskets (drawers) as you wish; Several
@@ -26,8 +26,8 @@ Description: a multi-purpose note-taking application for TDE [Trinity]
 Package: basket-kontact-integration-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: basket-kontact-integration-kde3 (<< 4:14.0.0), basket-kontact-integration-trinity (<< 4:14.0.0)
-Breaks: basket-kontact-integration-kde3 (<< 4:14.0.0), basket-kontact-integration-trinity (<< 4:14.0.0)
+Replaces: basket-kontact-integration-kde3 (<< 4:14.0.0~), basket-kontact-integration-trinity (<< 4:14.0.0~)
+Breaks: basket-kontact-integration-kde3 (<< 4:14.0.0~), basket-kontact-integration-trinity (<< 4:14.0.0~)
 Description: a multi-purpose note-taking appliction, Kontact integration [Trinity]
  This application provides as many baskets (drawers) as you wish; Several
  kinds of objects (texts, URLs, images,...) can be drag-n-drop'd into it.

@@ -10,8 +10,8 @@ Homepage: http://k9copy.sourceforge.net/
 Package: kbookreader-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: kbookreader-kde3 (<< 4:14.0.0), kbookreader-trinity (<< 4:14.0.0)
-Breaks: kbookreader-kde3 (<< 4:14.0.0), kbookreader-trinity (<< 4:14.0.0)
+Replaces: kbookreader-kde3 (<< 4:14.0.0~), kbookreader-trinity (<< 4:14.0.0~)
+Breaks: kbookreader-kde3 (<< 4:14.0.0~), kbookreader-trinity (<< 4:14.0.0~)
 Description: eBook reader for Trinity
  kbookreader is an application which allows you to view eBooks
  within the Trinity Desktop Environment

@@ -10,8 +10,8 @@ Homepage: http://www.kchmviewer.net/
 Package: kchmviewer-trinity
 Architecture: any
 Conflicts: kchmviewer-nokde-trinity
-Replaces: kchmviewer-kde3 (<< 4:14.0.0), kchmviewer-trinity (<< 4:14.0.0)
-Breaks: kchmviewer-kde3 (<< 4:14.0.0), kchmviewer-trinity (<< 4:14.0.0)
+Replaces: kchmviewer-kde3 (<< 4:14.0.0~), kchmviewer-trinity (<< 4:14.0.0~)
+Breaks: kchmviewer-kde3 (<< 4:14.0.0~), kchmviewer-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: CHM viewer for Trinity
  KchmViewer is a chm (MS HTML help file format) viewer, written in C++.

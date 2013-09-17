@@ -10,8 +10,8 @@ Standards-Version: 3.8.4
 Package: python-tqt
 Architecture: any
 Depends: ${shlibs:Depends}, ${python:Depends}, ${sip:Depends}, ${misc:Depends}
-Replaces: python-tqt (<< 4:14.0.0)
-Breaks: python-tqt (<< 4:14.0.0)
+Replaces: python-tqt (<< 4:14.0.0~)
+Breaks: python-tqt (<< 4:14.0.0~)
 Suggests: python-tqt-gl, python-tqt-doc, libtqt3-mt-mysql|libtqt3-mt-odbc|libtqt3-mt-psql
 Provides: ${python:Provides}
 Description: TQt bindings for Python
@@ -27,8 +27,8 @@ Description: TQt bindings for Python
 Package: python-tqt-dbg
 Architecture: any
 Priority: extra
-Replaces: python-tqt-dbg (<< 4:14.0.0)
-Breaks: python-tqt-dbg (<< 4:14.0.0)
+Replaces: python-tqt-dbg (<< 4:14.0.0~)
+Breaks: python-tqt-dbg (<< 4:14.0.0~)
 Section: debug
 Depends: ${shlibs:Depends}, python-dbg, python-tqt (= ${binary:Version}), python-sip-dbg, ${misc:Depends}
 Description: TQt bindings for Python (debug extension)
@@ -41,8 +41,8 @@ Description: TQt bindings for Python (debug extension)
 Package: python-tqt-gl
 Architecture: any
 Depends: ${shlibs:Depends}, ${python:Depends}, python-tqt (= ${binary:Version}), python-opengl (>= 2.0.1.09-2.2), ${misc:Depends}
-Replaces: python-tqt-gl (<< 4:14.0.0)
-Breaks: python-tqt-gl (<< 4:14.0.0)
+Replaces: python-tqt-gl (<< 4:14.0.0~)
+Breaks: python-tqt-gl (<< 4:14.0.0~)
 Suggests: python-tqt-doc
 Provides: ${python:Provides}
 Description: TQt OpenGL bindings for Python
@@ -54,8 +54,8 @@ Description: TQt OpenGL bindings for Python
 Package: python-tqt-gl-dbg
 Priority: extra
 Section: debug
-Replaces: python-tqt-gl-dbg (<< 4:14.0.0)
-Breaks: python-tqt-gl-dbg (<< 4:14.0.0)
+Replaces: python-tqt-gl-dbg (<< 4:14.0.0~)
+Breaks: python-tqt-gl-dbg (<< 4:14.0.0~)
 Architecture: any
 Depends: ${shlibs:Depends}, python-dbg, python-tqt-gl (= ${binary:Version}), python-tqt-dbg (= ${binary:Version}), ${misc:Depends}
 Description: TQt OpenGL bindings for Python (debug extension)
@@ -69,8 +69,8 @@ Description: TQt OpenGL bindings for Python (debug extension)
 Package: python-tqtext
 Architecture: any
 Depends: ${shlibs:Depends}, ${python:Depends}, python-tqt (= ${binary:Version}), ${misc:Depends}
-Replaces: python-tqtext (<< 4:14.0.0)
-Breaks: python-tqtext (<< 4:14.0.0)
+Replaces: python-tqtext (<< 4:14.0.0~)
+Breaks: python-tqtext (<< 4:14.0.0~)
 Provides: ${python:Provides}
 Description: TQt extensions for PyQt
  PyQt Extensions. Contains:
@@ -81,8 +81,8 @@ Description: TQt extensions for PyQt
 Package: python-tqtext-dbg
 Priority: extra
 Section: debug
-Replaces: python-tqtext-dbg (<< 4:14.0.0)
-Breaks: python-tqtext-dbg (<< 4:14.0.0)
+Replaces: python-tqtext-dbg (<< 4:14.0.0~)
+Breaks: python-tqtext-dbg (<< 4:14.0.0~)
 Architecture: any
 Depends: ${shlibs:Depends}, python-dbg, python-tqtext (= ${binary:Version}), python-tqt-dbg (= ${binary:Version}), ${misc:Depends}
 Description: TQt debug extensions for PyQt
@@ -94,8 +94,8 @@ Description: TQt debug extensions for PyQt
 Package: pytqt-tools
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Replaces: pytqt-tools (<< 4:14.0.0)
-Breaks: pytqt-tools (<< 4:14.0.0)
+Replaces: pytqt-tools (<< 4:14.0.0~)
+Breaks: pytqt-tools (<< 4:14.0.0~)
 Description: pyuic and pylupdate for TQt
  pyuic is the PyQt counterpart for TQt's uic. It takes an XML
  user interface file and generates Python code.
@@ -106,8 +106,8 @@ Description: pyuic and pylupdate for TQt
 Package: python-tqt-dev
 Depends: ${python:Depends}, ${misc:Depends}
 Suggests: python-sip-dev
-Replaces: python-tqt-dev (<< 4:14.0.0)
-Breaks: python-tqt-dev (<< 4:14.0.0)
+Replaces: python-tqt-dev (<< 4:14.0.0~)
+Breaks: python-tqt-dev (<< 4:14.0.0~)
 Architecture: all
 Description: TQt bindings for Python - Development files
  Development .sip files with definitions of PyQt classes. They
@@ -117,8 +117,8 @@ Description: TQt bindings for Python - Development files
 Package: python-tqt-doc
 Section: doc
 Architecture: all
-Replaces: python-tqt-doc (<< 4:14.0.0)
-Breaks: python-tqt-doc (<< 4:14.0.0)
+Replaces: python-tqt-doc (<< 4:14.0.0~)
+Breaks: python-tqt-doc (<< 4:14.0.0~)
 Depends: ${misc:Depends}
 Suggests: python-tqt
 Description: TQt bindings for Python - Documentation and examples

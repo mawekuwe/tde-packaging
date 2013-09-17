@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: libsvnqt4-trinity
 Section: libs
 Architecture: any
-Replaces: libsvnqt4-kde3 (<< 4:14.0.0), libsvnqt4-trinity (<< 4:14.0.0)
-Breaks: libsvnqt4-kde3 (<< 4:14.0.0), libsvnqt4-trinity (<< 4:14.0.0)
+Replaces: libsvnqt4-kde3 (<< 4:14.0.0~), libsvnqt4-trinity (<< 4:14.0.0~)
+Breaks: libsvnqt4-kde3 (<< 4:14.0.0~), libsvnqt4-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Qt wrapper library for subversion [Trinity]
  This package provides svnqt, a Qt wrapper library around the 
@@ -22,8 +22,8 @@ Description: Qt wrapper library for subversion [Trinity]
 Package: libsvnqt-trinity-dev
 Section: libdevel
 Architecture: any
-Replaces: libsvnqt-kde3-dev (<< 4:14.0.0), libsvnqt-trinity-dev (<< 4:14.0.0)
-Breaks: libsvnqt-kde3-dev (<< 4:14.0.0), libsvnqt-trinity-dev (<< 4:14.0.0)
+Replaces: libsvnqt-kde3-dev (<< 4:14.0.0~), libsvnqt-trinity-dev (<< 4:14.0.0~)
+Breaks: libsvnqt-kde3-dev (<< 4:14.0.0~), libsvnqt-trinity-dev (<< 4:14.0.0~)
 Depends: libsvnqt4-trinity (= ${binary:Version}), libqt3-mt-dev, libsvn-dev
 Description: Qt wrapper library for subversion (development files) [Trinity]
  This package contains the header files and symbolic links that developers
@@ -32,8 +32,8 @@ Description: Qt wrapper library for subversion (development files) [Trinity]
 Package: tdesvn-trinity
 Section: devel
 Architecture: any
-Replaces: kdesvn-kde3 (<< 4:14.0.0), kdesvn-trinity (<< 4:14.0.0)
-Breaks: kdesvn-kde3 (<< 4:14.0.0), kdesvn-trinity (<< 4:14.0.0)
+Replaces: kdesvn-kde3 (<< 4:14.0.0~), kdesvn-trinity (<< 4:14.0.0~)
+Breaks: kdesvn-kde3 (<< 4:14.0.0~), kdesvn-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}, tdesvn-tdeio-plugins-trinity (= ${binary:Version})
 Recommends: kompare-trinity, graphviz
 Suggests: khelpcenter-trinity, kdiff3-trinity
@@ -48,8 +48,8 @@ Description: subversion client with tight KDE integration [Trinity]
 Package: tdesvn-tdeio-plugins-trinity
 Section: devel
 Architecture: any
-Replaces: kdesvn-kio-plugins-kde3 (<< 4:14.0.0), kdesvn-kio-plugins-trinity (<< 4:14.0.0)
-Breaks: kdesvn-kio-plugins-kde3 (<< 4:14.0.0), kdesvn-kio-plugins-trinity (<< 4:14.0.0)
+Replaces: kdesvn-kio-plugins-kde3 (<< 4:14.0.0~), kdesvn-kio-plugins-trinity (<< 4:14.0.0~)
+Breaks: kdesvn-kio-plugins-kde3 (<< 4:14.0.0~), kdesvn-kio-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Conflicts: tdesdk-tdeio-plugins-trinity
 Description: subversion I/O slaves for Trinity

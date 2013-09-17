@@ -14,8 +14,8 @@ Homepage: http://kmplayer.kde.org
 Package: kmplayer-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, kmplayer-base-trinity (= ${binary:Version}), libxine2-x | libxine1-x (<< 1.1.20) | libxine1 (<< 1.1.8-2)
-Replaces: kmplayer-trinity (<< 4:14.0.0)
-Breaks: kmplayer-trinity (<< 4:14.0.0)
+Replaces: kmplayer-trinity (<< 4:14.0.0~)
+Breaks: kmplayer-trinity (<< 4:14.0.0~)
 Recommends: kmplayer-plugin-trinity (= ${binary:Version})
 Suggests: ffmpeg, vdr, xawtv, mplayer
 Description: media player for Trinity
@@ -37,8 +37,8 @@ Description: media player for Trinity
 Package: kmplayer-base-trinity
 Architecture: any
 Section: tde
-Replaces: kmplayer-base-trinity (<< 4:14.0.0)
-Breaks: kmplayer-base-trinity (<< 4:14.0.0)
+Replaces: kmplayer-base-trinity (<< 4:14.0.0~)
+Breaks: kmplayer-base-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Base files for KMPlayer [Trinity]
  Core files needed for KMPlayer.
@@ -48,8 +48,8 @@ Description: Base files for KMPlayer [Trinity]
 Package: kmplayer-konq-plugins-trinity
 Architecture: any
 Section: tde
-Replaces: kmplayer-konq-plugins-trinity (<< 4:14.0.0)
-Breaks: kmplayer-konq-plugins-trinity (<< 4:14.0.0)
+Replaces: kmplayer-konq-plugins-trinity (<< 4:14.0.0~)
+Breaks: kmplayer-konq-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, kmplayer-base-trinity (= ${binary:Version}), konqueror-trinity
 Description: KMPlayer plugin for TDEHTML/Konqueror [Trinity]
  This plugin enables audio/video playback inside konqueror, using Xine (with
@@ -60,8 +60,8 @@ Description: KMPlayer plugin for TDEHTML/Konqueror [Trinity]
 Package: kmplayer-trinity-doc
 Architecture: all
 Section: tde
-Replaces: kmplayer-trinity-doc (<< 4:14.0.0)
-Breaks: kmplayer-trinity-doc (<< 4:14.0.0)
+Replaces: kmplayer-trinity-doc (<< 4:14.0.0~)
+Breaks: kmplayer-trinity-doc (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, kmplayer-trinity
 Description: Handbook for KMPlayer [Trinity]
  Documention for KMPlayer, a basic audio/video viewer application for KDE.
