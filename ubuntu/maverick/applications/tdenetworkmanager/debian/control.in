@@ -17,7 +17,7 @@ Homepage: http://www.trinitydesktop.org/
 
 Package: network-manager-tde
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, network-manager (>= 0.7.0)
 Recommends: tdewalletmanager-trinity
 Provides: tdenetworkmanager-trinity
 Description: TDE systray applet for controlling networking [Trinity]
