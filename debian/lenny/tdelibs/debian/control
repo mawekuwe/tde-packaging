@@ -60,7 +60,7 @@ Replaces: kdelibs4c2a-kde3 (<< 4:14.0.0~), kdelibs4c2a-trinity (<< 4:14.0.0~), t
 Breaks: kdelibs4c2a-kde3 (<< 4:14.0.0~), kdelibs4c2a-trinity (<< 4:14.0.0~), tdelibs4c2a-trinity
 Depends: ${shlibs:Depends}, tdelibs-data-trinity,
  tdelibs-data-trinity, libart-2.0-2 (>= 4:14.0.0~), perl, xbase-clients, sudo
-Recommends: xdg-user-dirs, upower
+Recommends: xdg-user-dirs
 Suggests: fam, perl-suid
 Conflicts: tdelibs4-trinity, tdelibs4c2-trinity (>> 4:1.0.0), tdelibs-bin-trinity (<< 4:3.3.3), tdelibs4-trinity-dev (<< 4:3.5.7.dfsg.1-6)
 Description: core libraries and binaries for all TDE applications
