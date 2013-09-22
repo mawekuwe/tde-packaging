@@ -11,7 +11,7 @@ Build-Depends: cdbs, debhelper (>= 5.0.31), quilt, cpio, libxext-dev (>= 4.3.0.d
  libfreetype6-dev, libxft-dev, unixodbc-dev, uuid-dev, libglib2.0-dev,
  libmysqlclient-dev, flex, libpq-dev, libaudio-dev, libcups2-dev,
  libgl1-mesa-dev | libgl-dev, libglu1-mesa-dev | libglu-dev, libsqlite3-dev,
- firebird-dev | firebird2.1-dev [i386 kfreebsd-i386 kfreebsd-amd64 knetbsd-i386 netbsd-i386 amd64 sparc powerpc] | firebird2-dev [i386 amd64]
+ firebird-dev | firebird2.1-dev [i386 kfreebsd-i386 kfreebsd-amd64 knetbsd-i386 netbsd-i386 amd64 sparc powerpc armel] | firebird2-dev [i386 amd64]
 Section: libs
 Priority: optional
 Standards-Version: 3.8.4
