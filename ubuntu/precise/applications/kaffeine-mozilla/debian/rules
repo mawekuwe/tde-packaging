@@ -45,7 +45,7 @@ config.status:
 
 	aclocal	
 	autoconf
-	automake
+	automake --add-missing
 
 	# Apply Debian specific patches
 	if test -d $(CURDIR)/debian/patches ;\
@@ -93,7 +93,7 @@ clean:
 	cp -f /usr/share/libtool/config/ltmain.sh ltmain.sh
 
 	aclocal
-	automake
+	automake --add-missing
 
 	rm -f build-stamp 
 
