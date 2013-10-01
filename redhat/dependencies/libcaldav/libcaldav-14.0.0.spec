@@ -27,7 +27,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:		libcaldav-14.0.0-older_libcurl.patch
+#Patch1:		libcaldav-14.0.0-older_libcurl.patch
 
 BuildRequires:	libtool
 %if 0%{?rhel} == 4
@@ -75,7 +75,7 @@ Provides:	libcaldav-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .libcurl
+#patch1 -p1 -b .libcurl
 ./autogen.sh
 
 
