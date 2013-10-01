@@ -99,8 +99,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{tde_pkg}
-
 
 %clean
 %__rm -rf %{buildroot}
@@ -115,7 +113,7 @@ touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
-%files -f %{tde_pkg}.lang
+%files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING LICENSE NEWS README
 %{tde_libdir}/klcddimmer_panelapplet.la

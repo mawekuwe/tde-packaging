@@ -14,6 +14,7 @@ License:	GPL
 Summary:	TQt bindings for Python
 Group:		System Environment/Libraries
 
+Obsoletes:		PyQt
 Obsoletes:		trinity-PyQt
 Obsoletes:		trinity-python-qt3
 

@@ -389,6 +389,7 @@ BuildRequires:	gnome-screensaver
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
 %endif
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
+BuildRequires:	xscreensaver
 BuildRequires:	libXScrnSaver-devel
 %endif
 %if 0%{?suse_version} == 1140
@@ -3337,20 +3338,22 @@ cd build
   -DSYSCONF_INSTALL_DIR="%{_sysconfdir}/trinity" \
   -DXDG_MENU_INSTALL_DIR="%{_sysconfdir}/xdg/menus" \
   \
+  -DWITH_ALL_OPTIONS=ON \
   -DWITH_SASL=ON \
   -DWITH_LDAP=ON \
   -DWITH_SAMBA=ON \
-  %{?with_exr:-DWITH_OPENEXR=ON} \
+  %{?!with_exr:-DWITH_OPENEXR=OFF} \
   -DWITH_XCOMPOSITE=ON \
   -DWITH_XCURSOR=ON \
   -DWITH_XFIXES=ON \
-  %{?with_xrandr:-DWITH_XRANDR=ON} \
+  %{?!with_xrandr:-DWITH_XRANDR=OFF} \
   -DWITH_XRENDER=ON \
   -DWITH_XDAMAGE=ON \
   -DWITH_XEXT=ON \
-  %{?with_xtest:-DWITH_XTEST=ON} \
-  %{?with_xscreensaver:-DWITH_XSCREENSAVER=ON} \
-  %{?with_libart:-DWITH_LIBART=ON} \
+  %{?!with_xtest:-DWITH_XTEST=OFF} \
+  -DWITH_OPENGL=ON \
+  %{?!with_xscreensaver:-DWITH_XSCREENSAVER=OFF} \
+  %{?!with_libart:-DWITH_LIBART=OFF} \
   -DWITH_LIBUSB=ON \
   -DWITH_LIBRAW1394=ON \
   -DWITH_SUDO_TDESU_BACKEND=OFF \
@@ -3360,11 +3363,12 @@ cd build
   -DWITH_XINERAMA=ON \
   -DWITH_ARTS=ON \
   -DWITH_I8K=ON \
-  %{?with_hal:-DWITH_HAL=ON} \
+  -DWITH_SENSORS=ON \
+  %{?!with_hal:-DWITH_HAL=OFF} \
   -DWITH_TDEHWLIB=ON \
   -DWITH_UPOWER=ON \
   -DWITH_GCC_VISIBILITY=ON \
-  -DWITH_KDESKTOP_LOCK_BACKTRACE=OFF \
+  \
   -DBUILD_ALL=ON \
 %if 0%{?suse_version}
   -DKCHECKPASS_PAM_SERVICE="xdm" \
@@ -3373,7 +3377,7 @@ cd build
 %else
   -DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" \
   -DTDM_PAM_SERVICE="tdm-trinity" \
-  -DKSCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
+  -DTDESCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
 %endif
   %{!?with_tsak:-DBUILD_TSAK=OFF} \
   ..
@@ -3396,10 +3400,6 @@ cd build
 %__install -D -m 644 \
 	"%{?buildroot}%{tde_datadir}/apps/tdm/sessions/tde.desktop" \
 	"%{?buildroot}%{_datadir}/xsessions/tde.desktop"
-
-# Force session name to be 'TDE'
-%__sed -i "%{?buildroot}%{_datadir}/xsessions/tde.desktop" \
-	-e "s,^Name=.*,Name=TDE,"
 %endif
 
 # Mageia/Mandriva/PCLinuxOS stores its session file in different folder than RHEL/Fedora
@@ -3435,7 +3435,7 @@ EOF
 
 # TDM configuration
 %__sed -i "%{?buildroot}%{_sysconfdir}/trinity/tdm/tdmrc" \
-%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1220
+%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1210
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
 %else
 	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
@@ -3455,9 +3455,9 @@ EOF
 %__mkdir_p "%{?buildroot}%{_sysconfdir}/alternatives"
 %__ln_s "%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase" "%{?buildroot}%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase"
 
-# SUSE: creates DM config file, used by '/etc/init.d/xdm'
+# SUSE >= 12 : creates DM config file, used by '/etc/init.d/xdm'
 #  You must set 'DISPLAYMANAGER=tdm' in '/etc/sysconfig/displaymanager'
-%if 0%{?suse_version}
+%if 0%{?suse_version} >= 1210
 %__install -D -m 644 "%{SOURCE6}" "%{?buildroot}/usr/lib/X11/displaymanagers/tdm"
 %__sed -i "%{?buildroot}/usr/lib/X11/displaymanagers/tdm" -e "s|/opt/trinity/bin|%{tde_bindir}|g"
 %endif

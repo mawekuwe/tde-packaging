@@ -135,10 +135,10 @@ grpiui tdeutils
 if ! is_installed trinity-desktop; then
   grpiu extras/trinity-desktop
   eval ${PKGINST} trinity-desktop || exit 1
-  # Disable trinity repository from here !!!
-  if [ -r "/etc/yum.repos.d/trinity-3.5.13.repo" ]; then
-    sed -i "/etc/yum.repos.d/trinity-3.5.13.repo" -e "s|enabled=.*|enabled=0|g"
-  fi
+fi
+# Disable trinity repository from here !!!
+if [ -r "/etc/yum.repos.d/trinity.repo" ]; then
+  sudo sed -i "/etc/yum.repos.d/trinity.repo" -e "s|enabled=.*|enabled=0|g"
 fi
 
 # devel packages
@@ -152,7 +152,7 @@ fi
 # Extra libraries
 
 ## IMLIB1: required for kuickshow
-if ! is_installed imlib1-devel; then
+if ! is_installed imlib1-devel && ! is_installed imlib-devel; then
   grpiu 3rdparty/imlib1
   eval ${PKGINST} imlib1-devel || exit 1
 fi
