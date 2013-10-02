@@ -168,6 +168,7 @@ Requires: trinity-tde-systemsettings
 Requires: trinity-tdeio-apt
 Requires: trinity-tdeio-ftps
 Requires: trinity-tdeio-locate
+Requires: trinity-tdeio-sword
 Requires: trinity-tdeio-umountwrapper
 Requires: trinity-tdenetworkmanager
 Requires: trinity-tdepowersave

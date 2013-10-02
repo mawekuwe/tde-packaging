@@ -1,6 +1,6 @@
 --- gtk-qt-engine/kcm_gtk/kcmgtk.cpp.ORI	2013-07-23 23:35:16.614406882 +0200
 +++ gtk-qt-engine/kcm_gtk/kcmgtk.cpp	2013-07-23 23:56:39.121594541 +0200
-@@ -261,13 +261,21 @@
+@@ -261,13 +261,22 @@
  		}
  	}
  	
@@ -20,6 +20,7 @@
 +	if(gtk3installed) {
 +		widget->styleBox3->insertStringList(otherGtk3Styles);
 +	}
++	otherGtk3Styles.clear();
  	widget->styleKde3->setEnabled(gtk3installed);
 +	widget->styleBox3->setEnabled(gtk3installed);
 +	widget->styleOther3->setEnabled(gtk3installed);

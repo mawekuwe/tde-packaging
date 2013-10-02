@@ -41,8 +41,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:		trinity-cmake-translations.patch
-Patch2:		tdepowersave-cmake-add-translation-and-documentation.patch
 Patch3:		tdepowersave-14.0.0-test.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -91,8 +89,6 @@ settings for:
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .lang
-%patch2 -p1 -b .lang
 #patch3 -p1 -b .test
 
 

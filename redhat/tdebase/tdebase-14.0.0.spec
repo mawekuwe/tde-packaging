@@ -544,9 +544,6 @@ Requires:	openssl
 
 # RHEL 6 Configuration files are provided in separate packages
 %if 0%{?rhel} || 0%{?fedora}
-%if "%{?tde_prefix}" == "/usr"
-Requires:	kde-settings-kdm
-%endif
 Requires:	redhat-menus
 %endif
 
@@ -3337,20 +3334,22 @@ cd build
   -DSYSCONF_INSTALL_DIR="%{_sysconfdir}/trinity" \
   -DXDG_MENU_INSTALL_DIR="%{_sysconfdir}/xdg/menus" \
   \
+  -DWITH_ALL_OPTIONS=ON \
   -DWITH_SASL=ON \
   -DWITH_LDAP=ON \
   -DWITH_SAMBA=ON \
-  %{?with_exr:-DWITH_OPENEXR=ON} \
+  %{?!with_exr:-DWITH_OPENEXR=OFF} \
   -DWITH_XCOMPOSITE=ON \
   -DWITH_XCURSOR=ON \
   -DWITH_XFIXES=ON \
-  %{?with_xrandr:-DWITH_XRANDR=ON} \
+  %{?!with_xrandr:-DWITH_XRANDR=OFF} \
   -DWITH_XRENDER=ON \
   -DWITH_XDAMAGE=ON \
   -DWITH_XEXT=ON \
-  %{?with_xtest:-DWITH_XTEST=ON} \
-  %{?with_xscreensaver:-DWITH_XSCREENSAVER=ON} \
-  %{?with_libart:-DWITH_LIBART=ON} \
+  %{?!with_xtest:-DWITH_XTEST=OFF} \
+  -DWITH_OPENGL=ON \
+  %{?!with_xscreensaver:-DWITH_XSCREENSAVER=OFF} \
+  %{?!with_libart:-DWITH_LIBART=OFF} \
   -DWITH_LIBUSB=ON \
   -DWITH_LIBRAW1394=ON \
   -DWITH_SUDO_TDESU_BACKEND=OFF \
@@ -3360,7 +3359,8 @@ cd build
   -DWITH_XINERAMA=ON \
   -DWITH_ARTS=ON \
   -DWITH_I8K=ON \
-  %{?with_hal:-DWITH_HAL=ON} \
+  -DWITH_SENSORS=ON \
+  -DWITH_HAL=OFF \
   -DWITH_TDEHWLIB=ON \
   -DWITH_UPOWER=ON \
   -DWITH_GCC_VISIBILITY=ON \
@@ -3369,11 +3369,11 @@ cd build
 %if 0%{?suse_version}
   -DKCHECKPASS_PAM_SERVICE="xdm" \
   -DTDM_PAM_SERVICE="xdm" \
-  -DKSCREENSAVER_PAM_SERVICE="xdm" \
+  -DTDESCREENSAVER_PAM_SERVICE="xdm" \
 %else
   -DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" \
   -DTDM_PAM_SERVICE="tdm-trinity" \
-  -DKSCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
+  -DTDESCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
 %endif
   %{!?with_tsak:-DBUILD_TSAK=OFF} \
   ..
