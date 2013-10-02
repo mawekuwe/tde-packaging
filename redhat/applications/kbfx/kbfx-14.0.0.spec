@@ -105,13 +105,13 @@ cd build
   -DDATA_INSTALL_DIR=%{tde_datadir}/apps \
   -DMIME_INSTALL_DIR=%{tde_datadir}/mimelnk \
   -DXDG_APPS_INSTALL_DIR=%{tde_tdeappdir} \
+  -DSHARE_INSTALL_PREFIX="%{tde_datadir}"\
   -DDOC_INSTALL_DIR=%{tde_tdedocdir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   \
   -DUSE_STRIGI=OFF \
   -DUSE_MENUDRAKE=OFF \
-  -DBUILD_DOC=ON \
-  -DBUILD_ALL=OFF \
+  -DBUILD_ALL=ON \
   ..
 
 # Not SMP safe !
@@ -166,12 +166,14 @@ update-desktop-database %{tde_appdir} &> /dev/null
 %{tde_datadir}/apps/kicker/applets/kbfxspinx.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/kbfx_install_theme.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/kbfx_prepare_theme.desktop
-#%{tde_tdedocdir}/HTML/en/common/kbfx-*.jpg
-#%{tde_tdedocdir}/HTML/en/kbfxconfigapp/
-%{tde_tdedocdir}/kbfx/
+%{tde_tdedocdir}/HTML/en/kbfxconfigapp/
+%{tde_docdir}/kbfx/
 %{tde_datadir}/icons/hicolor/*/apps/kbfx.png
 %{tde_datadir}/icons/hicolor/*/apps/kbfxconfigapp.png
-#%{tde_datadir}/locale/*/LC_MESSAGES/kbfxconfigapp.mo
+%lang(bg) %{tde_datadir}/locale/bg/LC_MESSAGES/kbfxconfigapp.mo
+%lang(hu) %{tde_datadir}/locale/hu/LC_MESSAGES/kbfxconfigapp.mo
+%lang(it) %{tde_datadir}/locale/it/LC_MESSAGES/kbfxconfigapp.mo
+%lang(nl) %{tde_datadir}/locale/nl/LC_MESSAGES/kbfxconfigapp.mo
 %{tde_datadir}/mimelnk/application/x-kbfxtheme.desktop
 
 

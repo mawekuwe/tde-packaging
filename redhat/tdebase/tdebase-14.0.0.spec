@@ -389,6 +389,7 @@ BuildRequires:	gnome-screensaver
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
 %endif
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
+BuildRequires:	xscreensaver
 BuildRequires:	libXScrnSaver-devel
 %endif
 %if 0%{?suse_version} == 1140
@@ -3364,7 +3365,7 @@ cd build
   -DWITH_TDEHWLIB=ON \
   -DWITH_UPOWER=ON \
   -DWITH_GCC_VISIBILITY=ON \
-  -DWITH_KDESKTOP_LOCK_BACKTRACE=OFF \
+  \
   -DBUILD_ALL=ON \
 %if 0%{?suse_version}
   -DKCHECKPASS_PAM_SERVICE="xdm" \
@@ -3396,10 +3397,6 @@ cd build
 %__install -D -m 644 \
 	"%{?buildroot}%{tde_datadir}/apps/tdm/sessions/tde.desktop" \
 	"%{?buildroot}%{_datadir}/xsessions/tde.desktop"
-
-# Force session name to be 'TDE'
-%__sed -i "%{?buildroot}%{_datadir}/xsessions/tde.desktop" \
-	-e "s,^Name=.*,Name=TDE,"
 %endif
 
 # Mageia/Mandriva/PCLinuxOS stores its session file in different folder than RHEL/Fedora
@@ -3435,7 +3432,7 @@ EOF
 
 # TDM configuration
 %__sed -i "%{?buildroot}%{_sysconfdir}/trinity/tdm/tdmrc" \
-%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1220
+%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1210
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
 %else
 	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
@@ -3455,9 +3452,9 @@ EOF
 %__mkdir_p "%{?buildroot}%{_sysconfdir}/alternatives"
 %__ln_s "%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase" "%{?buildroot}%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase"
 
-# SUSE: creates DM config file, used by '/etc/init.d/xdm'
+# SUSE >= 12 : creates DM config file, used by '/etc/init.d/xdm'
 #  You must set 'DISPLAYMANAGER=tdm' in '/etc/sysconfig/displaymanager'
-%if 0%{?suse_version}
+%if 0%{?suse_version} >= 1210
 %__install -D -m 644 "%{SOURCE6}" "%{?buildroot}/usr/lib/X11/displaymanagers/tdm"
 %__sed -i "%{?buildroot}/usr/lib/X11/displaymanagers/tdm" -e "s|/opt/trinity/bin|%{tde_bindir}|g"
 %endif

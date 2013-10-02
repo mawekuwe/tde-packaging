@@ -14,6 +14,7 @@ License:	GPL
 Summary:	TQt bindings for Python
 Group:		System Environment/Libraries
 
+Obsoletes:		PyQt
 Obsoletes:		trinity-PyQt
 Obsoletes:		trinity-python-qt3
 
@@ -24,10 +25,9 @@ Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Patch0:		python-tqt-14.0.0-ftbfs.patch
 
 BuildRequires:	gcc-c++
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tqscintilla-devel
 
 %if 0%{?rhel} || 0%{?fedora}
@@ -140,7 +140,6 @@ packages based on them, like PyTDE.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1
 
 
 %build

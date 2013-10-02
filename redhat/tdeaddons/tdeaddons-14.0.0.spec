@@ -244,8 +244,8 @@ a tab bar, a Python browser and even more.
 Summary:	Trinity file dialog plugins for text files and folders
 Group:		Applications/Utilities
 
-Obsoletes:	trinity-kfile-plugins < %{version}-%{release}
-Provides:	trinity-kfile-plugins = %{version}-%{release}
+Obsoletes:	trinity-tdeaddons-kfile-plugins < %{version}-%{release}
+Provides:	trinity-tdeaddons-kfile-plugins = %{version}-%{release}
 
 %description tdefile-plugins
 This is a collection of plugins for the TDE file dialog.  These plugins

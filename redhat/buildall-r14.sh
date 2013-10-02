@@ -273,7 +273,6 @@ grpiui applications/klcddimmer
 if [ "${DIST}" != ".el4" ]; then
   grpiui applications/kmplayer
 fi
-
 grpiui applications/kmyfirewall
 grpiui applications/kmymoney
 grpiui applications/knemo
