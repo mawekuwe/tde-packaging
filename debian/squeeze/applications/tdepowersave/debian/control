@@ -3,7 +3,7 @@ Section: tde
 Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Michael Biebl <biebl@debian.org>
-Build-Depends: cdbs, debhelper (>= 5.0.0), quilt, tdelibs14-trinity-dev, libxss-dev, libxtst-dev, libdbus-1-dev (>= 0.6), libdbus-tqt-1-dev, automake, autoconf, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>= 5.0.0), quilt, tdelibs14-trinity-dev, libxss-dev, libxtst-dev, libdbus-1-dev (>= 0.6), libdbus-tqt-1-dev, cmake, automake, autoconf, libtool, libltdl-dev
 Build-Conflicts: autoconf2.13
 Standards-Version: 3.8.4
 Homepage: http://sourceforge.net/projects/powersave/
