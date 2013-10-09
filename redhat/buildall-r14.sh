@@ -8,6 +8,7 @@ grp='./genrpm.sh -v 14.0.0 -a'
 BUILDDIR="/dev/shm/BUILD${DIST}.$(uname -i)"
 BUILDROOTDIR="/dev/shm/BUILDROOT${DIST}.$(uname -i)"
 DIST="$(rpm -E %{dist})"
+LIB="$(rpm -E %_lib)"
 
 if [ -x /usr/sbin/urpmi ]; then
   PKGMGR="urpmi"
@@ -91,17 +92,26 @@ grpiud() {
 # TQT3
 grpiud dependencies/tqt3
 
+if [ "${DIST}" = ".el4" ] || [ "${DIST}" = ".el5" ]; then
+  grpiud 3rdparty/poppler
+fi
+if [ "${DIST}" = ".el4" ] || [ "${DIST}" = ".el5" ]; then
+  grpiud 3rdparty/sip
+fi
+
 # TDE dependencies
 grpiud dependencies/tqtinterface
 grpiud dependencies/arts
-grpiud dependencies/avahi-tqt
-grpiud dependencies/dbus-1-tqt
-grpiud dependencies/dbus-tqt
 grpiud dependencies/libart-lgpl
 grpiud dependencies/libcaldav
 grpiud dependencies/libcarddav
 grpiud dependencies/tqca
-grpiui dependencies/tqca-tls
+if [ "${DIST}" != ".el4" ]; then
+  grpiud dependencies/avahi-tqt
+  grpiud dependencies/dbus-1-tqt
+  grpiud dependencies/dbus-tqt
+  grpiui dependencies/tqca-tls
+fi
 
 # Extra dependencies
 grpiud extras/akode
@@ -135,10 +145,10 @@ grpiui tdeutils
 if ! is_installed trinity-desktop; then
   grpiu extras/trinity-desktop
   eval ${PKGINST} trinity-desktop || exit 1
-  # Disable trinity repository from here !!!
-  if [ -r "/etc/yum.repos.d/trinity-3.5.13.repo" ]; then
-    sed -i "/etc/yum.repos.d/trinity-3.5.13.repo" -e "s|enabled=.*|enabled=0|g"
-  fi
+fi
+# Disable trinity repository from here !!!
+if [ -r "/etc/yum.repos.d/trinity-3.5.13.repo" ]; then
+  sudo sed -i "/etc/yum.repos.d/trinity-3.5.13.repo" -e "s|enabled=.*|enabled=0|g"
 fi
 
 # devel packages
@@ -149,10 +159,10 @@ if ! is_installed trinity-desktop-devel; then
   eval ${PKGINST} trinity-desktop-devel || exit 1
 fi
 
-# Extra libraries
+# 3rd party libraries
 
 ## IMLIB1: required for kuickshow
-if ! is_installed imlib1-devel; then
+if ! is_installed imlib1-devel && ! is_installed imlib-devel; then
   grpiu 3rdparty/imlib1
   eval ${PKGINST} imlib1-devel || exit 1
 fi
@@ -165,15 +175,39 @@ if [ "${DIST:0:4}" != ".mga" ]; then
     eval ${PKGINST} wv2-devel || exit 1
   fi
 fi
+
+## LIBOTR3: required for kopete-otr
+if [ "${DIST:0:5}" = ".mga3" ]; then
+  if ! is_installed libotr3; then
+    grpiu 3rdparty/libotr3
+    eval ${PKGINST} libotr3 || exit 1
+    eval ${PKGINST} libotr3-devel || exit 1
+  fi
+fi
+
 ## TORSOCKS: required for tork
 if ! is_installed torsocks; then
   grpiu 3rdparty/torsocks
   eval ${PKGINST} torsocks || exit 1
 fi
-if [ "${DIST:0:4}" = ".oss" ]; then
+
+## PCSC-PERL: for smartcardauth
+if [ "${DIST:0:4}" = ".oss" ] || [ "${DIST:0:3}" = ".el" ]; then
   if ! is_installed pcsc-perl; then
     grpiu 3rdparty/pcsc-perl
     eval ${PKGINST} pcsc-perl || exit 1
+  fi
+fi
+
+## Lilypond: needed for rosegarden
+if [ "${DIST}" = ".el6" ]; then
+  if ! is_installed mftrace; then
+    grpiu 3rdparty/mftrace
+    eval ${PKGINST} mftrace || exit 1
+  fi
+  if ! is_installed lilypond; then
+    grpiu 3rdparty/lilypond
+    eval ${PKGINST} lilypond || exit 1
   fi
 fi
 
@@ -220,7 +254,9 @@ grpiui applications/kcmldapcontroller
 grpiui applications/kcmldapmanager
 grpiui applications/kcpuload
 grpiui applications/kdbg
-grpiui applications/kdbusnotification
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/kdbusnotification
+fi
 grpiui applications/kdiff3
 grpiui applications/kdirstat
 grpiui applications/keep
@@ -228,11 +264,15 @@ grpiui applications/kerberostray
 #grpiui applications/kerry
 grpiui applications/kftpgrabber
 grpiui applications/kile
-grpiui applications/kima
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/kima
+fi
 grpiui applications/kiosktool
 grpiui applications/kkbswitch
 grpiui applications/klcddimmer
-grpiui applications/kmplayer
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/kmplayer
+fi
 grpiui applications/kmyfirewall
 grpiui applications/kmymoney
 grpiui applications/knemo
@@ -249,7 +289,9 @@ fi
 grpiui applications/konversation
 grpiui applications/kopete-otr
 grpiui applications/kpicosim
-grpiui applications/kpilot
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/kpilot
+fi
 grpiui applications/krecipes
 grpiui applications/krename
 grpiui applications/krusader
@@ -269,7 +311,9 @@ grpiui applications/kvpnc
 grpiui applications/mplayerthumbs
 grpiui applications/piklab
 grpiui applications/potracegui
-grpiui applications/rosegarden
+if [ "${DIST}" != ".el4" ] && [ "${DIST}" != ".el5" ]; then
+  grpiui applications/rosegarden
+fi
 grpiui applications/smartcardauth
 grpiui applications/smb4k
 grpiui applications/soundkonverter
@@ -277,6 +321,7 @@ grpiui applications/tde-guidance
 grpiui applications/tdeio-apt
 grpiui applications/tdeio-ftps
 grpiui applications/tdeio-locate
+grpiui applications/tdeio-sword
 grpiui applications/tdeio-umountwrapper
 grpiui applications/tdenetworkmanager
 grpiui applications/tdepowersave
@@ -284,7 +329,9 @@ grpiui applications/tderadio
 grpiui applications/tde-style-lipstik
 grpiui applications/tde-style-qtcurve
 grpiui applications/tdesudo
-grpiui applications/tdesvn
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/tdesvn
+fi
 grpiui applications/tde-systemsettings
 grpiui applications/tdmtheme
 grpiui applications/tellico

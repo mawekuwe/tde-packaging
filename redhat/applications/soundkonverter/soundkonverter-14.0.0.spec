@@ -111,9 +111,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-new-ldflags \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
-  \
-  --with-extra-includes=/usr/include/cdda
+  --enable-gcc-hidden-visibility
    
 %__make %{?_smp_mflags}
 

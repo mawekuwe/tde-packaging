@@ -54,8 +54,6 @@ Source2:	ktalk
 
 # RedHat/Fedora legacy patches
 Patch4: 	kdenetwork-3.2.3-resolv.patch
-# include more/proper ppp headers
-Patch6:		kdenetwork-3.5.9-krfb_httpd.patch
 
 # [kdenetwork] Missing LDFLAGS cause FTBFS
 Patch1:		kdenetwork-3.5.13-missing_ldflags.patch
@@ -1078,7 +1076,6 @@ update-desktop-database 2> /dev/null || :
 
 %patch1 -p1 -b .ldflags
 %patch4 -p1 -b .resolv
-%patch6 -p1 -b .krfb_httpd
 
 %if 0%{?rhel} == 4
 %patch201 -p1 -b .rhel4

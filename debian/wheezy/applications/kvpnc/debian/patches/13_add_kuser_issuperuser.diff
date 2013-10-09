@@ -14,16 +14,16 @@ index 7c45fcf..b933832 100644
  	}
  	else
  	{
--// 		if (getenv("USER") != "root")
+-// 		if (getenv("USER") != TQString("root"))
 -// 		{
 -// 			KMessageBox::error( 0, I18N_NOOP( "Kvpnc must be started as root!" ) );
 -// 			exit(0);
 -// 		}
-+ 		if (getenv("USER") != "root")
-+ 		{
-+ 			KMessageBox::error( 0, I18N_NOOP( "Kvpnc must be started as root!" ) );
-+ 			exit(0);
-+ 		}
++		if (getenv("USER") != TQString("root"))
++		{
++			KMessageBox::error( 0, I18N_NOOP( "Kvpnc must be started as root!" ) );
++			exit(0);
++		}
  
  		TDECmdLineArgs *args = TDECmdLineArgs::parsedArgs();
  

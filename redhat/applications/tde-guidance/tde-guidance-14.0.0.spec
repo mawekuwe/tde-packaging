@@ -46,7 +46,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			tde-guidance-14.0.0-tqt3.patch
+#Patch1:			tde-guidance-14.0.0-tqt3.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -146,7 +146,9 @@ or can be run as standalone applications.
 %exclude %{tde_datadir}/apps/guidance/MonitorsDB
 
 # Files from powermanager
+%if 0%{?with_powermanager}
 %exclude %{tde_datadir}/icons/hicolor/22x22/apps/power-manager.png
+%endif
 %exclude %{tde_datadir}/apps/guidance/pics/ac-adapter.png
 %exclude %{tde_datadir}/apps/guidance/pics/battery*.png
 %exclude %{tde_datadir}/apps/guidance/pics/processor.png
@@ -259,7 +261,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .tqt3
+#patch1 -p1 -b .tqt3
 
 %if 0%{?rhel} || 0%{?mgaversion} || 0%{?mdkversion}
 %__sed -i "userconfig/unixauthdb.py" \

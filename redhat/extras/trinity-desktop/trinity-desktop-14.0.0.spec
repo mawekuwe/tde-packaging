@@ -93,7 +93,6 @@ Requires: trinity-digikam
 Requires: trinity-dolphin
 Requires: trinity-filelight
 Requires: trinity-gwenview
-Requires: trinity-gwenview-i18n
 Requires: trinity-k3b
 Requires: trinity-k9copy
 Requires: trinity-kaffeine
@@ -168,6 +167,7 @@ Requires: trinity-tde-systemsettings
 Requires: trinity-tdeio-apt
 Requires: trinity-tdeio-ftps
 Requires: trinity-tdeio-locate
+Requires: trinity-tdeio-sword
 Requires: trinity-tdeio-umountwrapper
 Requires: trinity-tdenetworkmanager
 Requires: trinity-tdepowersave
@@ -204,6 +204,7 @@ Obsoletes: trinity-tde-guidance-powermanager
 # Debian/Ubuntu specific ...
 #Requires: trinity-adept
 
+#Requires: trinity-gwenview-i18n
 
 # Beagle does not exist anymore, so Kerry is now useless.
 #Requires: trinity-kerry
@@ -309,7 +310,7 @@ Summary:	Default wallpaper for Trinity
 %__sed %{SOURCE0} \
   -e 's/\$releasever/%{fedora}/g' \
   -e 's/-fedora/-f%{fedora}/g' \
-  >"%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13.repo"
+  >"%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity.repo"
 %endif
 
 # RHEL configuration for YUM
@@ -317,10 +318,11 @@ Summary:	Default wallpaper for Trinity
 %if 0%{?rhel}
 %__sed %{SOURCE1} \
   -e 's/\$releasever/%{rhel}/g' \
-  >"%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity-3.5.13.repo"
+  >"%{?buildroot}%{_sysconfdir}/yum.repos.d/trinity.repo"
 %endif
 
 %if 0%{?fedora} || 0%{?rhel}
+%__sed -i %{?buildroot}%{_sysconfdir}/yum.repos.d/*.repo -e "s|3.5.13|r14|g"
 %__chmod 644 %{?buildroot}%{_sysconfdir}/yum.repos.d/*.repo
 %endif
 
@@ -336,26 +338,5 @@ Summary:	Default wallpaper for Trinity
 %endif
 
 %changelog
-* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-1
-- Update to version 3.5.13.2
-- Add GPG signing key
-
-* Mon Oct 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13.1-1
-- Update to version 3.5.13.1
-
-* Mon Aug 06 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-6
-- Add 'applications' subpackage
-
-* Wed Aug 01 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-5
-- Updates to reflect new packages names
-- Add Mageia 2 support
-- Removes 'extras' packages
-
-* Wed Jun 06 2012 Francois Andriot <francois.andriot@free.fr> - 3.5.13-4
-- Enable mirrorlist
-
-* Wed Nov 30 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-3
-- Fix repo files name and content
-
-* Sat Nov 12 2011 Francois Andriot <francois.andriot@free.fr> - 3.5.13-2
-- Add 'repo' package
+* Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+- Initial build for TDE R14
