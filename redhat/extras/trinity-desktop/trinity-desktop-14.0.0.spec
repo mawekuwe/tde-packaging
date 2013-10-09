@@ -140,6 +140,7 @@ Requires: trinity-kpilot
 Requires: trinity-krecipes
 Requires: trinity-krename
 Requires: trinity-krusader
+Requires: trinity-kscope
 Requires: trinity-ksensors
 Requires: trinity-ksplash-engine-moodin
 Requires: trinity-ksquirrel
