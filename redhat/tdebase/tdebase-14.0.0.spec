@@ -3369,11 +3369,11 @@ cd build
 %if 0%{?suse_version}
   -DKCHECKPASS_PAM_SERVICE="xdm" \
   -DTDM_PAM_SERVICE="xdm" \
-  -DKSCREENSAVER_PAM_SERVICE="xdm" \
+  -DTDESCREENSAVER_PAM_SERVICE="xdm" \
 %else
   -DKCHECKPASS_PAM_SERVICE="kcheckpass-trinity" \
   -DTDM_PAM_SERVICE="tdm-trinity" \
-  -DKSCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
+  -DTDESCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
 %endif
   %{!?with_tsak:-DBUILD_TSAK=OFF} \
   ..
