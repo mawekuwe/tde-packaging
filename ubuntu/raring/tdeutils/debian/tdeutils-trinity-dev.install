@@ -27,3 +27,5 @@ debian/tmp/opt/trinity/lib/libksimcore.la
 debian/tmp/opt/trinity/lib/libksimcore.so
 debian/tmp/opt/trinity/lib/libkhexeditcommon.la
 debian/tmp/opt/trinity/lib/libkhexeditcommon.so
+
+debian/tmp/opt/trinity/share/cmake
