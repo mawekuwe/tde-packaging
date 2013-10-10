@@ -82,3 +82,5 @@
 /opt/trinity/lib/libgwsoap.so
 
 /opt/trinity/include/kpimprefs.h
+
+/opt/trinity/share/cmake
