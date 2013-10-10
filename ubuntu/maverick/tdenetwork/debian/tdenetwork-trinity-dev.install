@@ -74,3 +74,5 @@ debian/tmp/opt/trinity/lib/libkopete_videodevice.so
 debian/tmp/opt/trinity/lib/librss.la
 debian/tmp/opt/trinity/lib/librss.so
 debian/tmp/opt/trinity/include/kopete/kopetepluginmanager.h
+
+debian/tmp/opt/trinity/share/cmake
