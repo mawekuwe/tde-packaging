@@ -193,3 +193,5 @@ debian/tmp/opt/trinity/lib/libksvg.la
 debian/tmp/opt/trinity/lib/libksvg.so
 debian/tmp/opt/trinity/lib/libtext2path.la
 debian/tmp/opt/trinity/lib/libtext2path.so
+
+debian/tmp/opt/trinity/share/cmake
