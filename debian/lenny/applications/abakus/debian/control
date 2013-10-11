@@ -11,11 +11,11 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: abakus-trinity (<< 4:14.0.0~)
 Breaks: abakus-trinity (<< 4:14.0.0~)
-Description: calculator for KDE [Trinity]
+Description: calculator for TDE [Trinity]
  AbaKus is a complex calculator, which provides
  many different kinds of calculations.
  Think of it as bc (the command-line calculator) with a nice GUI.
  It also gives information about mathematical variables and
- has the user-friendly menu options of a normal KDE application.
+ has the user-friendly menu options of a normal TDE application.
  .
  Web site: http://grammarian.homelinux.net/abakus/
