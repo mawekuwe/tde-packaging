@@ -96,11 +96,9 @@ opt/trinity/share/icons/crystalsvg/48x48/mimetypes/baskett.png
 opt/trinity/share/icons/crystalsvg/48x48/mimetypes/baskets.png
 opt/trinity/share/mimelnk/application/x-basket-template.desktop
 opt/trinity/share/mimelnk/application/x-basket-archive.desktop
-opt/trinity/share/services/basket_config_notes.desktop
 opt/trinity/share/services/basket_config_new_notes.desktop
 opt/trinity/share/services/basket_config_general.desktop
 opt/trinity/share/services/basketthumbcreator.desktop
-opt/trinity/share/services/basket_config_features.desktop
 opt/trinity/share/services/basket_config_notes_appearance.desktop
 opt/trinity/share/services/basket_part.desktop
 opt/trinity/share/services/basket_config_baskets.desktop
