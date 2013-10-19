@@ -52,7 +52,22 @@ Section: devel
 Architecture: any
 Replaces: kdepim-kde3-dev (<< 4:14.0.0~), kdepim-trinity-dev (<< 4:14.0.0~)
 Breaks: kdepim-kde3-dev (<< 4:14.0.0~), kdepim-trinity-dev (<< 4:14.0.0~)
-Depends: kaddressbook-trinity (= ${Source-Version}), kalarm-trinity (= ${Source-Version}), tdepim-tderesources-trinity (= ${Source-Version}), kmail-trinity (= ${Source-Version}), knotes-trinity (= ${Source-Version}), kontact-trinity (= ${Source-Version}), korganizer-trinity (= ${Source-Version}), libkpimidentities1-trinity (= ${Source-Version}), libkcal2-trinity-dev (= ${Source-Version}), libtdepim1-trinity-dev (= ${Source-Version}), libkgantt0-trinity-dev (= ${Source-Version}), libkleopatra1-trinity-dev (= ${Source-Version}), libkpimexchange1-trinity-dev (= ${Source-Version}), libksieve0-trinity-dev (= ${Source-Version}), libktnef1-trinity-dev (= ${Source-Version}), libmimelib1-trinity-dev (= ${Source-Version})
+Depends: kaddressbook-trinity (= ${Source-Version}),
+ kalarm-trinity (= ${Source-Version}),
+ tdepim-tderesources-trinity (= ${Source-Version}),
+ kmail-trinity (= ${Source-Version}),
+ knotes-trinity (= ${Source-Version}),
+ kontact-trinity (= ${Source-Version}),
+ korganizer-trinity (= ${Source-Version}),
+ libkpimidentities1-trinity (= ${Source-Version}),
+ libkcal2-trinity-dev (= ${Source-Version}), libical-dev,
+ libtdepim1-trinity-dev (= ${Source-Version}),
+ libkgantt0-trinity-dev (= ${Source-Version}),
+ libkleopatra1-trinity-dev (= ${Source-Version}),
+ libkpimexchange1-trinity-dev (= ${Source-Version}),
+ libksieve0-trinity-dev (= ${Source-Version}),
+ libktnef1-trinity-dev (= ${Source-Version}),
+ libmimelib1-trinity-dev (= ${Source-Version})
 Description: KDE Personal Information Management [development]
  This package contains development files needed to compile tdepim applications.
  .
