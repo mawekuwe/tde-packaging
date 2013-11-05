@@ -54,7 +54,6 @@ Replaces: cervisia-trinity (<< 4:14.0.0~)
 Breaks: cervisia-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html
-Conflicts: cervisia
 Description: a graphical CVS front end for Trinity
  Cervisia is a KDE-based graphical front end for the CVS client.
  .
@@ -72,7 +71,6 @@ Architecture: all
 Section: devel
 Replaces: kapptemplate-trinity (<< 4:14.0.0~)
 Breaks: kapptemplate-trinity (<< 4:14.0.0~)
-Conflicts: kapptemplate
 Recommends: automake1.9 | automaken, tdelibs14-trinity-dev
 Description: creates a framework to develop a Trinity application
  KAppTemplate is a shell script that will create the necessary
@@ -89,7 +87,6 @@ Section: devel
 Replaces: kbabel-trinity (<< 4:14.0.0~)
 Breaks: kbabel-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: kbabel
 Recommends: gettext
 Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html
 Description: PO-file editing suite for Trinity
@@ -112,7 +109,6 @@ Section: libdevel
 Replaces: kbabel-trinity-dev (<< 4:14.0.0~)
 Breaks: kbabel-trinity-dev (<< 4:14.0.0~)
 Depends: kbabel-trinity (= ${Source-Version}), tdelibs14-trinity-dev
-Conflicts: kbabel
 Description: PO-file editing suite for Trinity (development files)
  This is a suite of programs for editing gettext message files (PO-files).
  It is designed to help you translate fast and consistently.
@@ -135,7 +131,6 @@ Section: devel
 Replaces: kbugbuster-trinity (<< 4:14.0.0~)
 Breaks: kbugbuster-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: kbugbuster
 Suggests: khelpcenter-trinity
 Description: a front end for the Trinity bug tracking system
  KBugBuster is a GUI front end for the KDE bug tracking system.
@@ -151,11 +146,10 @@ Section: devel
 Replaces: kcachegrind-trinity (<< 4:14.0.0~)
 Breaks: kcachegrind-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: tdecachegrind
 Recommends: valgrind-callgrind-trinity | valgrind-calltree-trinity, graphviz
 Suggests: tdecachegrind-converters-trinity, khelpcenter-trinity, tdesdk-trinity-doc-html
 Description: visualisation tool for valgrind profiling output
- KCachegrind is a visualisation tool for the profiling data generated
+ TDECachegrind is a visualisation tool for the profiling data generated
  by calltree, a profiling skin for valgrind.  Applications can be
  profiled using calltree without being recompiled, and shared libraries
  and plugin architectures are supported.
@@ -172,13 +166,12 @@ Section: devel
 Replaces: kcachegrind-converters-trinity (<< 4:14.0.0~)
 Breaks: kcachegrind-converters-trinity (<< 4:14.0.0~)
 Depends: ${perl:Depends}, php5-cli, python
-Conflicts: tdecachegrind-converters
 Recommends: tdecachegrind-trinity
-Description: format converters for KCachegrind profiling visualisation tool
+Description: format converters for TDECachegrind profiling visualisation tool
  This is a collection of scripts for converting the output from
- different profiling tools into a format that KCachegrind can use.
+ different profiling tools into a format that TDECachegrind can use.
  .
- KCachegrind is a visualisation tool for the profiling data generated
+ TDECachegrind is a visualisation tool for the profiling data generated
  by calltree, a profiling skin for valgrind.  Applications can be
  profiled using calltree without being recompiled, and shared libraries
  and plugin architectures are supported.
@@ -192,7 +185,6 @@ Section: tde
 Replaces: kdesdk-kfile-plugins-trinity (<< 4:14.0.0~)
 Breaks: kdesdk-kfile-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: tdesdk-tdefile-plugins
 Description: Trinity file dialog plugins for software development files
  This is a collection of plugins for the KDE file dialog.  These plugins
  extend the file dialog to offer advanced meta-information for source files,
@@ -207,9 +199,8 @@ Section: devel
 Replaces: kdesdk-misc-trinity (<< 4:14.0.0~)
 Breaks: kdesdk-misc-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Recommends: libqt3-mt-dev | libqt3-dev
+Recommends: libtqt3-mt-dev | libtqt3-dev
 Suggests: gimp | xpaint
-Conflicts: kdepalettes-trinity (<= 4:3.1.0-1), scheck-trinity (<< 4:3.2.0-0), tdesdk-misc
 Description: various goodies from the Trinity Software Development Kit
  This package contains miscellaneous goodies provided with the official
  KDE release to assist with KDE software development.
@@ -230,7 +221,7 @@ Replaces: kdesdk-scripts-trinity (<< 4:14.0.0~)
 Breaks: kdesdk-scripts-trinity (<< 4:14.0.0~)
 Depends: ${perl:Depends}, python
 Recommends: automake1.9 | automaken, cvs, gawk
-Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html, dmalloc, gdb, tdelibs14-trinity-doc, qt3-doc, valgrind, devscripts
+Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html, dmalloc, gdb, tdelibs14-trinity-doc, tqt3-doc, valgrind, devscripts
 Enhances: kate-trinity
 Description: a set of useful development scripts for Trinity
  This package contains a number of scripts which can be used to help in
@@ -253,7 +244,6 @@ Section: devel
 Replaces: kmtrace-trinity (<< 4:14.0.0~)
 Breaks: kmtrace-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, less
-Conflicts: kmtrace
 Description: a Trinity memory leak tracer
  KMtrace is a KDE tool to assist with malloc debugging using glibc's
  "mtrace" functionality.
@@ -267,7 +257,6 @@ Section: devel
 Replaces: kompare-trinity (<< 4:14.0.0~)
 Breaks: kompare-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: kompare
 Suggests: khelpcenter-trinity
 Description: a Trinity GUI for viewing differences between files
  Kompare is a graphical user interface for viewing the differences between
@@ -283,7 +272,6 @@ Section: devel
 Replaces: kspy-trinity (<< 4:14.0.0~)
 Breaks: kspy-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, tdelibs14-trinity-dev
-Conflicts: kspy
 Description: examines the internal state of a Qt/KDE app
  KSpy is a tiny library which can be used to graphically display
  the QObjects in use by a Qt/KDE app.  In addition to the object tree,
@@ -305,14 +293,13 @@ Section: devel
 Replaces: kuiviewer-trinity (<< 4:14.0.0~)
 Breaks: kuiviewer-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: kuiviewer
-Suggests: qt3-designer
-Description: viewer for Qt Designer user interface files
+Suggests: tqt3-designer
+Description: viewer for TQt Designer user interface files
  KUIViewer is a utility to display and test the user interface (.ui) files
- generated by Qt Designer.  The interfaces can be displayed in a variety of
+ generated by TQt Designer.  The interfaces can be displayed in a variety of
  different widget styles.
  .
- The Qt Designer itself is in the package qt3-designer.
+ The TQt Designer itself is in the package tqt3-designer.
  .
  This package is part of Trinity, and a component of the KDE SDK module.
  See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
@@ -323,7 +310,6 @@ Section: libs
 Replaces: libcvsservice0-trinity (<< 4:14.0.0~)
 Breaks: libcvsservice0-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, cvs
-Conflicts: libcvsservice0
 Description: DCOP service for accessing CVS repositories
  This library provides a DCOP service for accessing and working with
  remote CVS repositories.  Applications may link with this library to
@@ -341,7 +327,6 @@ Section: libdevel
 Replaces: libcvsservice-trinity-dev (<< 4:14.0.0~)
 Breaks: libcvsservice-trinity-dev (<< 4:14.0.0~)
 Depends: libcvsservice0-trinity (= ${Source-Version}), tdelibs14-trinity-dev
-Conflicts: libcvsservice-dev
 Description: development files for CVS DCOP service
  The library libcvsservice provides a DCOP service for accessing and
  working with remote CVS repositories.  Applications may link with this
@@ -360,7 +345,6 @@ Section: devel
 Replaces: poxml-trinity (<< 4:14.0.0~)
 Breaks: poxml-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: poxml
 Description: tools for using PO-files to translate DocBook XML files
  This is a collection of tools that facilitate translating DocBook XML
  files using gettext message files (PO-files).
@@ -378,7 +362,6 @@ Replaces: umbrello-trinity (<< 4:14.0.0~)
 Breaks: umbrello-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html
-Conflicts: umbrello-manual-trinity (<< 20040311), umbrello
 Description: UML modelling tool and code generator
  Umbrello UML Modeller is a Unified Modelling Language editor for KDE.
  With UML you can create diagrams of software and other systems in an
@@ -398,7 +381,6 @@ Section: devel
 Replaces: kdesdk-kio-plugins-trinity (<< 4:14.0.0~)
 Breaks: kdesdk-kio-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, subversion
-Conflicts: tdesdk-kio-plugins
 Description: subversion ioslave for Trinity
  This package provides easy access to remote SVN repositories from within
  Konqueror, and KDE generally, by browsing them as if they were a
@@ -413,11 +395,10 @@ Section: devel
 Replaces: kunittest-trinity (<< 4:14.0.0~)
 Breaks: kunittest-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: tdeunittest
 Suggests: tdelibs14-trinity-doc
 Description: unit testing library for Trinity
- KUnitTest is a small library that facilitates the writing of tests for
- KDE developers. There are two ways to use the KUnitTest library. One is
+ TDEUnitTest is a small library that facilitates the writing of tests for
+ KDE developers. There are two ways to use the TDEUnitTest library. One is
  to create dynamically loadable modules and use the tdeunittestmodrunner or
  tdeunittestguimodrunner programs to run the tests. The other is to use the
  libraries to create your own testing application.
@@ -432,7 +413,6 @@ Replaces: kdesdk-trinity-dbg (<< 4:14.0.0~)
 Breaks: kdesdk-trinity-dbg (<< 4:14.0.0~)
 Priority: extra
 Depends: tdelibs-trinity-dbg, libcvsservice-trinity-dev (= ${Source-Version}), kbabel-trinity-dev (= ${Source-Version})
-Conflicts: tdesdk-dbg
 Description: debugging symbols for tdesdk-trinity
  This package contains the debugging symbols associated with tdesdk-trinity.
  They will automatically be used by gdb for debugging tdesdk-related
