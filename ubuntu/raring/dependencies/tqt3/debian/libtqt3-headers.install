@@ -253,7 +253,7 @@ usr/include/tqt3/ntqvaluevector.h
 usr/include/tqt3/ntqvariant.h
 usr/include/tqt3/ntqvbox.h
 usr/include/tqt3/ntqvbuttongroup.h
-usr/include/tqt3/nttqvfbhdr.h
+usr/include/tqt3/ntqvfbhdr.h
 usr/include/tqt3/ntqvgroupbox.h
 usr/include/tqt3/ntqwaitcondition.h
 usr/include/tqt3/ntqwhatsthis.h
