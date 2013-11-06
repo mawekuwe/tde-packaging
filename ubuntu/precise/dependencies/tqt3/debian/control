@@ -249,7 +249,7 @@ Depends: ${shlibs:Depends}
 Description: Tools to develop embedded TQt applications
  This package contains applications only suitable for developing
  applications with TQt Embedded and/or Qtopia. It provides the QVFB
- program for simulating an embedded device desktop as well as makeqpf
+ program for simulating an embedded device desktop as well as maketqpf
  for converting fonts to embedded fonts suitable for being utilized
  by TQt Embedded applications.
 
@@ -261,8 +261,8 @@ Breaks: tqt3-dev-tools-compat (<< 4:14.0.0~)
 Recommends: libtqt3-mt-dev
 Depends: ${shlibs:Depends}
 Description: Conversion utilities for TQt3 development
- This package contains some older TQt tools (namely qt20fix qtrename140,
- qm2ts, mergetr, findtr and msg2qm). These tools are needed only by
+ This package contains some older TQt tools (namely tqt20fix tqtrename140,
+ tqm2ts, tqtmergetr, tqtfindtr and msg2tqm). These tools are needed only by
  application developers who need to migrate any TQt application written
  for TQt 1.x or 2.x over to TQt 3.x. The purpose of the tools are to
  help fixing the changes with include file renaming as well as migrating

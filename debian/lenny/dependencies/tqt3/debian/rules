@@ -152,17 +152,17 @@ libqt-thread-stamp: post-patches
 	# archives get accidentally stripped by make install. Copy over unstripped ones for now.
 	cp lib/lib*.a $(TMP_INSTALL)/usr/lib/
 
-	cp bin/qtrename140 $(TMP_INSTALL)/usr/bin/
-	cp bin/qt20fix $(TMP_INSTALL)/usr/bin/
-	cp bin/findtr $(TMP_INSTALL)/usr/bin/
+	cp bin/tqtrename140 $(TMP_INSTALL)/usr/bin/
+	cp bin/tqt20fix $(TMP_INSTALL)/usr/bin/
+	cp bin/tqtfindtr $(TMP_INSTALL)/usr/bin/
 
-	# build conv2ui
-	cd tools/designer/tools/conv2ui && $(MAKE)
-	cp bin/conv2ui $(TMP_INSTALL)/usr/bin/conv2ui
+	# build tqtconv2ui
+	cd tools/designer/tools/tqtconv2ui && $(MAKE)
+	cp bin/tqtconv2ui $(TMP_INSTALL)/usr/bin/tqtconv2ui
 
-	# build qvfb
-	cd tools/qvfb/ && $(MAKE)
-	cp tools/qvfb/qvfb $(TMP_INSTALL)/usr/bin/qvfb
+	# build tqvfb
+	cd tools/tqvfb/ && $(MAKE)
+	cp tools/tqvfb/tqvfb $(TMP_INSTALL)/usr/bin/tqvfb
 
 	# install qmake.cache file
 	install -d $(P_QTMTDEV)/usr/share/tqt3/
@@ -190,9 +190,9 @@ clean::
 
 	if [ -f "src/Makefile" ]; then \
 		$(MAKE) -C src clean; $(MAKE) -C plugins/src distclean; $(MAKE) -C tools distclean; \
-		$(MAKE) -C tools/makeqpf distclean; $(MAKE) -C tools/qconfig distclean; $(MAKE) -C tools/qvfb distclean; \
-		$(MAKE) -C tools/msg2qm distclean; $(MAKE) -C tools/mergetr distclean; $(MAKE) -C tools/qembed distclean; \
-		$(MAKE) -C tools/designer/tools/conv2ui distclean; $(MAKE) -C tools/designer/tools/createcw distclean; \
+		$(MAKE) -C tools/maketqpf distclean; $(MAKE) -C tools/qconfig distclean; $(MAKE) -C tools/tqvfb distclean; \
+		$(MAKE) -C tools/msg2tqm distclean; $(MAKE) -C tools/tqtmergetr distclean; $(MAKE) -C tools/qembed distclean; \
+		$(MAKE) -C tools/designer/tools/tqtconv2ui distclean; $(MAKE) -C tools/designer/tools/tqtcreatecw distclean; \
 		$(MAKE) -C tools/designer/plugins/glade distclean; $(MAKE) -C tools/designer/plugins/qglwidget distclean; \
 		$(MAKE) -C config.tests/unix/largefile distclean; $(MAKE) -C qmake distclean; \
 	fi
@@ -351,10 +351,10 @@ binary-arch: build install
 	cp `pwd`/tools/designer/editor/*.h $(P_APPSDEV)/usr/include/tqt3/
 	rm -rf `pwd`/debian/tqt3-apps-dev/usr/include/tqt3/preferences.ui.h
 
-	## qvfb package
-	install -m644 -D `pwd`/tools/qvfb/pda.skin `pwd`/debian/tqt3-dev-tools-embedded/etc/tqt3/qvfb/pda.skin
-	install -m644 -D `pwd`/tools/qvfb/pda_down.png `pwd`/debian/tqt3-dev-tools-embedded/usr/share/qvfb/pda_down.png
-	install -m644 -D `pwd`/tools/qvfb/pda_up.png `pwd`/debian/tqt3-dev-tools-embedded/usr/share/qvfb/pda_up.png
+	## tqvfb package
+	install -m644 -D `pwd`/tools/tqvfb/pda.skin `pwd`/debian/tqt3-dev-tools-embedded/etc/tqt3/tqvfb/pda.skin
+	install -m644 -D `pwd`/tools/tqvfb/pda_down.png `pwd`/debian/tqt3-dev-tools-embedded/usr/share/tqvfb/pda_down.png
+	install -m644 -D `pwd`/tools/tqvfb/pda_up.png `pwd`/debian/tqt3-dev-tools-embedded/usr/share/tqvfb/pda_up.png
 
 	# remove utterly ugle symlink
 	rm -rf `pwd`/debian/tqt3-dev-tools//usr/share/tqt3/mkspecs/linux-g++/linux-g++
@@ -431,16 +431,16 @@ binary-arch: build install
 	rm -rf `pwd`/debian/tqt3-dev-tools/usr/bin/tqmake
 	install -D `pwd`/qmake/tqmake `pwd`/debian/tqt3-dev-tools/usr/bin/tqmake
 
-	# Install source for the designer tools, such as createcw.
+	# Install source for the designer tools, such as tqtcreatecw.
 	cp -ra tools/designer/tools debian/tqt3-designer/usr/share/tqt3/tools
-	rm -f debian/tqt3-designer/usr/share/tqt3/tools/createcw/createcw
-	rm -rf debian/tqt3-designer/usr/share/tqt3/tools/createcw/.moc
-	rm -rf debian/tqt3-designer/usr/share/tqt3/tools/createcw/.obj
-	rm -f debian/tqt3-designer/usr/share/tqt3/tools/createcw/Makefile
-	rm -f debian/tqt3-designer/usr/share/tqt3/tools/conv2ui/conv2ui
-	rm -rf debian/tqt3-designer/usr/share/tqt3/tools/conv2ui/.moc
-	rm -rf debian/tqt3-designer/usr/share/tqt3/tools/conv2ui/.obj
-	rm -f debian/tqt3-designer/usr/share/tqt3/tools/conv2ui/Makefile
+	rm -f debian/tqt3-designer/usr/share/tqt3/tools/tqtcreatecw/tqtcreatecw
+	rm -rf debian/tqt3-designer/usr/share/tqt3/tools/tqtcreatecw/.moc
+	rm -rf debian/tqt3-designer/usr/share/tqt3/tools/tqtcreatecw/.obj
+	rm -f debian/tqt3-designer/usr/share/tqt3/tools/tqtcreatecw/Makefile
+	rm -f debian/tqt3-designer/usr/share/tqt3/tools/tqtconv2ui/tqtconv2ui
+	rm -rf debian/tqt3-designer/usr/share/tqt3/tools/tqtconv2ui/.moc
+	rm -rf debian/tqt3-designer/usr/share/tqt3/tools/tqtconv2ui/.obj
+	rm -f debian/tqt3-designer/usr/share/tqt3/tools/tqtconv2ui/Makefile
 
 	# run remaining debhelper scripts
 	dh_installdocs -a $(IBASE) -XREADME.Debian
@@ -464,7 +464,7 @@ binary-arch: build install
 	for a in `find debian/ -name '*.substvars'`; do cat "$$a" | sed 's/, xlibs (>> 4.1.0)//g' > "$$a".new &&  mv "$$a.new" "$$a"; done
 
 	# fix conffiles file for tqt3-dev-tools-embedded
-	echo "/etc/tqt3/qvfb/pda.skin" > `pwd`/debian/tqt3-dev-tools-embedded/DEBIAN/conffiles
+	echo "/etc/tqt3/tqvfb/pda.skin" > `pwd`/debian/tqt3-dev-tools-embedded/DEBIAN/conffiles
 
 	dh_gencontrol -a $(IBASE)
 	dh_md5sums -a $(IBASE)

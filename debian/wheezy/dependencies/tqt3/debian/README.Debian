@@ -136,8 +136,8 @@ Designer or extend the Designer as well as utilizing the Qt Assistant by
 calling it from within your program, install tqt3-apps-dev, which contains
 the static libraries and header files retquired for this functionality.
 
-For Embedded Developers, the program qvfb (Qt Virtual Frambuffer) and 
-makeqpf (embedded fonts tool)have been packaged into 
+For Embedded Developers, the program tqvfb (Qt Virtual Frambuffer) and 
+maketqpf (embedded fonts tool)have been packaged into 
 qt3-dev-tools-embedded. For developers that work on migrating their program 
 from any Qt version prior to Qt 3.x to the Qt 3.x platform you will find 
 additional tools in the tqt3-dev-tools-compat.
@@ -257,8 +257,8 @@ the naming convention. The filenames are now all following the scheme
 ClassName -> classname.h. 
 
 Therefore, if you are the developer of the affected program, change your 
-sources according to this scheme. Qt ships with two tools, qt20fix and 
-qtrename140, to help developers migrate their API to the Qt 3 version, 
+sources according to this scheme. Qt ships with two tools, tqt20fix and 
+tqtrename140, to help developers migrate their API to the Qt 3 version, 
 which can help you in the transition upgrade to Qt 3.
 
 If you are affected by this as a packager, notify upstream to fix those 

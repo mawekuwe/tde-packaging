@@ -1,6 +1,6 @@
 usr/bin/tqdesigner
-usr/bin/createcw
-usr/bin/conv2ui
+usr/bin/tqtcreatecw
+usr/bin/tqtconv2ui
 usr/share/tqt3/templates/*
 usr/share/tqt3/doc/html/designer*html
 usr/share/tqt3/doc/html/designer*dcf

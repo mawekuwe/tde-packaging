@@ -1,6 +1,6 @@
-usr/bin/qt20fix
-usr/bin/qtrename140
-usr/bin/qm2ts
-usr/bin/mergetr
-usr/bin/findtr
-usr/bin/msg2qm
+usr/bin/tqt20fix
+usr/bin/tqtrename140
+usr/bin/tqm2ts
+usr/bin/tqtmergetr
+usr/bin/tqtfindtr
+usr/bin/msg2tqm
