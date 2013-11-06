@@ -34,4 +34,4 @@ configure/tdeio-apt-trinity::
 	# debian/fixrpath $(DEB_BUILDDIR)
 
 install/tdeio-apt-trinity::
-	uudecode debian/kdedeb_logo.png.uu -o $(DEB_DESTDIR)/opt/trinity/share/apps/tdeio_apt/kdedeb_logo.png
+	uudecode -o $(DEB_DESTDIR)/opt/trinity/share/apps/tdeio_apt/kdedeb_logo.png debian/kdedeb_logo.png.uu
