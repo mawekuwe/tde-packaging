@@ -52,11 +52,12 @@ Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kppp.pamd
 Source2:	ktalk
 
-# RedHat/Fedora legacy patches
-Patch4: 	kdenetwork-3.2.3-resolv.patch
 
 # [kdenetwork] Missing LDFLAGS cause FTBFS
 Patch1:		kdenetwork-3.5.13-missing_ldflags.patch
+
+# RedHat/Fedora legacy patches
+Patch4: 	kdenetwork-3.2.3-resolv.patch
 
 # RHEL4 specific
 Patch201:	kdenetwork-3.5.13.1-fix_rhel4_libraries.patch
@@ -79,7 +80,7 @@ BuildRequires:	sqlite-devel
 
 # GADU support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
-%define with_gadu 1
+%define with_gadu 1tdenetwork-14.0.0-fix_kget.patch
 BuildRequires:	libgadu-devel
 %endif
 

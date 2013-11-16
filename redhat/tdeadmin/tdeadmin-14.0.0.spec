@@ -413,7 +413,7 @@ fi
   --with-shadow \
   --with-private-groups
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

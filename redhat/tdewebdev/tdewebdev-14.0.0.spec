@@ -47,8 +47,8 @@ BuildRequires:	autoconf automake libtool m4
 BuildRequires:	desktop-file-utils
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdesdk-devel >= %{tde_version}
+
 BuildRequires:	libxslt-devel
-BuildRequires:	libxml2-devel
 %if 0%{?rhel} == 4
 # a bogus dep in libexslt.la file from EL-4 (WONTFIX bug http://bugzilla.redhat.com/142241)
 BuildRequires:	libgcrypt-devel
@@ -58,6 +58,7 @@ BuildRequires:	perl
 # KXSLDBG requires libxml2
 #if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || ( 0%{?fedora} > 0 && %{?fedora} <= 17 ) || 0%{?suse_version}
 %define build_kxsldbg 1
+BuildRequires:	libxml2-devel
 #endif
 
 
@@ -426,8 +427,8 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_tdelibdir}/libkxsldbgpart.la
 %{tde_tdelibdir}/libkxsldbgpart.so
 %{tde_tdeappdir}/kxsldbg.desktop
-%{tde_datadir}/apps/kxsldbg
-%{tde_datadir}/apps/kxsldbgpart
+%{tde_datadir}/apps/kxsldbg/
+%{tde_datadir}/apps/kxsldbgpart/
 %{tde_tdedocdir}/HTML/en/kxsldbg/
 %{tde_tdedocdir}/HTML/en/xsldbg/
 %{tde_datadir}/icons/hicolor/*/actions/1downarrow.png
@@ -524,7 +525,10 @@ fi
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --disable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility \
+  \
+  --enable-editors
+  
 
 # WTF hack for RHEL4
 %if 0%{?rhel} == 4

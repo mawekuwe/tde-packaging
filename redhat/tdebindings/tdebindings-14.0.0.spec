@@ -1037,7 +1037,7 @@ fi
 pushd dcopperl
 CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL INSTALLDIRS=vendor
 
-# Ugly hack to modify the man pages directory
+# [Bug #348] Ugly hack to modify the man pages directory
 sed -i Makefile \
   -e "s|/usr/share/man|%{tde_mandir}|g"
 

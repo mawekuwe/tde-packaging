@@ -974,11 +974,6 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_datadir}/services/svn+https.protocol
 %{tde_datadir}/services/svn+ssh.protocol
 %{tde_datadir}/services/svn.protocol
-%{_sysconfdir}/alternatives/svn+file.protocol
-%{_sysconfdir}/alternatives/svn+http.protocol
-%{_sysconfdir}/alternatives/svn+https.protocol
-%{_sysconfdir}/alternatives/svn+ssh.protocol
-%{_sysconfdir}/alternatives/svn.protocol
 %{tde_datadir}/icons/crystalsvg/*/actions/svn_switch.png
 %{tde_datadir}/icons/crystalsvg/*/actions/svn_merge.png
 %{tde_datadir}/icons/crystalsvg/*/actions/svn_branch.png
@@ -1148,13 +1143,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__ln_s -f /etc/alternatives/svn+https.protocol %{?buildroot}%{tde_datadir}/services/svn+https.protocol
 %__ln_s -f /etc/alternatives/svn+ssh.protocol %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol
 %__ln_s -f /etc/alternatives/svn.protocol %{?buildroot}%{tde_datadir}/services/svn.protocol
-
-%__mkdir_p %{?buildroot}/etc/alternatives
-%__ln_s -f %{tde_datadir}/services/svn+file.protocol %{?buildroot}/etc/alternatives/svn+file.protocol
-%__ln_s -f %{tde_datadir}/services/svn+http.protocol %{?buildroot}/etc/alternatives/svn+http.protocol
-%__ln_s -f %{tde_datadir}/services/svn+https.protocol %{?buildroot}/etc/alternatives/svn+https.protocol
-%__ln_s -f %{tde_datadir}/services/svn+ssh.protocol %{?buildroot}/etc/alternatives/svn+ssh.protocol
-%__ln_s -f %{tde_datadir}/services/svn.protocol %{?buildroot}/etc/alternatives/svn.protocol
 %endif
 
 # Removes useless stuff

@@ -125,7 +125,7 @@ Requires:		udisks
 %endif
 
 # PMOUNT support
-Requires:		pmount
+#Requires:		pmount
 
 # UDISKS2 support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
@@ -501,6 +501,7 @@ cd build
   -DWITH_KDE4_MENU_SUFFIX=OFF \
   -DWITH_ASPELL=ON \
   %{?!with_hspell:-DWITH_HSPELL=OFF} \
+  -DWITH_TDEICONLOADER_DEBUG=OFF \
   ..
 
 %__make %{?_smp_mflags} || %__make

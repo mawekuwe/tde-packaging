@@ -90,7 +90,6 @@ Patch4:		tdebase-14.0.0-kickoff_default_favs.patch
 Patch5:		tdebase-14.0.0-konsole_wordseps.patch
 
 # Permanent patches, this TDE version only
-# None !
 
 # Patches from Mandriva
 Patch101:	tdebase-14.0.0-vibrate_dialog.patch
@@ -104,6 +103,9 @@ Patch106:	tdebase-14.0.0-bookmark_global_copy.patch
 Patch201:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
 ## [tdebase] Fix i18n description loading in 'twin_update_default_rules'
 Patch202:	tdebase-14.0.0-fix_twin_rules_translation.patch
+
+Patch203:	tdebase-14.0.0-tdehardwarebackend_fix_iocharset.patch
+
 
 ### Distribution-specific settings ###
 
@@ -163,7 +165,6 @@ Requires:	fedora-release-notes
 %define tde_aboutlabel Fedora 19
 %define tde_aboutpage /usr/share/doc/fedora-release-notes-19/index.html
 %endif
-
 
 # RHEL 4 Theme
 %if 0%{?rhel} == 4
@@ -457,18 +458,24 @@ BuildRequires:	libsmbclient-devel
 BuildRequires:	imake
 %endif
 
+# XKB support
+%if 0%{?suse_version} == 1140
+BuildRequires:	xorg-x11-libxkbfile-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1210
+BuildRequires:	libxkbfile-devel
+%endif
+
 # X11 stuff ...
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
 %endif
 
 %if 0%{?suse_version} == 1140
-BuildRequires:	xorg-x11-libxkbfile-devel
 BuildRequires:	xorg-x11-libfontenc-devel
 %endif
 
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1220
-BuildRequires:	libxkbfile-devel
 BuildRequires:	libfontenc-devel
 %endif
 
@@ -602,7 +609,7 @@ This is a meta-package that installs all tdebase development packages.
 
 Header files for developing applications using %{name}.
 Install tdebase-devel if you want to develop or compile Konqueror,
-Kate plugins or KWin styles.
+Kate plugins or TWin styles.
 
 %files devel
 %defattr(-,root,root,-)
@@ -3263,6 +3270,8 @@ Windows and Samba shares.
 %patch201 -p1 -b .kcmxcursor
 %patch202 -p1 -b .twintranslation
 
+%patch203 -p1 -b .iocharset
+
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""
 # TDM Background
@@ -3301,6 +3310,21 @@ Windows and Samba shares.
 %if 0%{?suse_version}
 %__sed -i "tdm/kfrontend/gentdmconf.c" -e "s|/etc/X11/Xsession|/etc/X11/xdm/Xsession|"
 %endif
+
+# Reboot command location may vary on some distributions
+if [ -x "/usr/bin/reboot" ]; then
+  POWEROFF="/usr/bin/poweroff"
+  REBOOT="/usr/bin/reboot"
+fi
+if [ -n "${REBOOT}" ]; then
+  %__sed -i \
+    "doc/tdm/index.docbook" \
+    "doc/kcontrol/tdm/index.docbook" \
+    "kcontrol/tdm/tdm-shut.cpp" \
+    "tdm/config.def" \
+  -e "s|/sbin/poweroff|${POWEROFF}|g" \
+  -e "s|/sbin/reboot|${REBOOT}|g"
+fi
 
 
 %build

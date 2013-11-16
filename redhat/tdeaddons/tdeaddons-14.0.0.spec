@@ -416,7 +416,7 @@ graphical disk usage viewer and image conversions and transformations.
 %files -n trinity-konq-plugins
 %defattr(-,root,root,-)
 %doc konq-plugins/README
-%{tde_datadir}/config/translaterc
+%{_sysconfdir}/trinity/translaterc
 %{tde_bindir}/fsview
 %{tde_bindir}/jpegorient
 %{tde_bindir}/tdeio_media_realfolder
@@ -504,44 +504,25 @@ graphical disk usage viewer and image conversions and transformations.
 %{tde_datadir}/apps/metabar/themes/default/layout.html
 %{tde_datadir}/apps/microformat/pics/microformat.png
 %{tde_datadir}/config.kcfg/konq_sidebarnews.kcfg
-%{tde_datadir}/icons/locolor/16x16/apps/autorefresh.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/babelfish.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/cssvalidator.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/domtreeviewer.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/htmlvalidator.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/imagegallery.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/remotesync.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/remotesyncconfig.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/minitools.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/validators.png
-%{tde_datadir}/icons/crystalsvg/16x16/actions/webarchiver.png
-%{tde_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_delicious.png
-%{tde_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_mediaplayer.png
-%{tde_datadir}/icons/crystalsvg/16x16/apps/konqsidebar_news.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/babelfish.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/cssvalidator.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/domtreeviewer.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/htmlvalidator.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/imagegallery.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/remotesync.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/remotesyncconfig.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/minitools.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/validators.png
-%{tde_datadir}/icons/crystalsvg/22x22/actions/webarchiver.png
-%{tde_datadir}/icons/crystalsvg/22x22/apps/konqsidebar_mediaplayer.png
-%{tde_datadir}/icons/crystalsvg/32x32/actions/minitools.png
-%{tde_datadir}/icons/crystalsvg/32x32/apps/konqsidebar_mediaplayer.png
-%{tde_datadir}/icons/crystalsvg/48x48/actions/minitools.png
-%{tde_datadir}/icons/crystalsvg/48x48/apps/konqsidebar_mediaplayer.png
-%{tde_datadir}/icons/hicolor/16x16/apps/metabar.png
-%{tde_datadir}/icons/hicolor/22x22/apps/fsview.png
-%{tde_datadir}/icons/hicolor/32x32/apps/fsview.png
-%{tde_datadir}/icons/hicolor/32x32/apps/metabar.png
-%{tde_datadir}/icons/hicolor/48x48/apps/metabar.png
-%{tde_datadir}/icons/hicolor/64x64/apps/metabar.png
+%{tde_datadir}/icons/crystalsvg/*/actions/babelfish.png
+%{tde_datadir}/icons/crystalsvg/*/actions/cssvalidator.png
+%{tde_datadir}/icons/crystalsvg/*/actions/domtreeviewer.png
+%{tde_datadir}/icons/crystalsvg/*/actions/htmlvalidator.png
+%{tde_datadir}/icons/crystalsvg/*/actions/imagegallery.png
+%{tde_datadir}/icons/crystalsvg/*/actions/remotesync.png
+%{tde_datadir}/icons/crystalsvg/*/actions/remotesyncconfig.png
+%{tde_datadir}/icons/crystalsvg/*/actions/minitools.png
+%{tde_datadir}/icons/crystalsvg/*/actions/validators.png
+%{tde_datadir}/icons/crystalsvg/*/actions/webarchiver.png
+%{tde_datadir}/icons/crystalsvg/*/apps/konqsidebar_delicious.png
+%{tde_datadir}/icons/crystalsvg/*/apps/konqsidebar_mediaplayer.png
+%{tde_datadir}/icons/crystalsvg/*/apps/konqsidebar_news.png
+%{tde_datadir}/icons/crystalsvg/*/actions/minitools.png
+%{tde_datadir}/icons/hicolor/*/apps/metabar.png
+%{tde_datadir}/icons/hicolor/*/apps/fsview.png
 %{tde_datadir}/icons/hicolor/scalable/apps/metabar.svgz
-%{tde_datadir}/icons/hicolor/128x128/apps/metabar.png
-%{tde_datadir}/icons/locolor/32x32/apps/konqsidebar_mediaplayer.png
+%{tde_datadir}/icons/locolor/*/apps/autorefresh.png
+%{tde_datadir}/icons/locolor/*/apps/konqsidebar_mediaplayer.png
 %{tde_datadir}/services/akregator_konqplugin.desktop
 %{tde_datadir}/services/ark_plugin.desktop
 %{tde_datadir}/services/fsview_part.desktop
@@ -611,7 +592,7 @@ Requires:	trinity-noatun
 
 %description -n trinity-noatun-plugins
 This package contains a variety of useful plugins for Noatun, the audio and
-video media player for TDE.  These plugins can be loaded through the plugin
+video media player for TDE. These plugins can be loaded through the plugin
 manager in Noatun settings.
 
 Highlights include an alarm clock, guessing tags from filenames, adjustable
@@ -683,51 +664,67 @@ done
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-%__make -f "admin/Makefile.common"
-
 
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
-# Note about DB4:
-#  Fedora 18: /usr/include/libdb4/db_cxx.h , /usr/lib64/libdb_cxx-4.so
-
-%configure \
-  --prefix=%{tde_prefix} \
-  --exec-prefix=%{tde_prefix} \
-  --bindir=%{tde_bindir} \
-  --libdir=%{tde_libdir} \
-  --datadir=%{tde_datadir} \
-  --includedir=%{tde_tdeincludedir} \
-  \
-  --disable-dependency-tracking \
-  --disable-debug \
-  --enable-new-ldflags \
-  --enable-final \
-  --enable-closure \
-  --enable-rpath \
-  --enable-gcc-hidden-visibility \
-  \
-  --with-extra-includes=%{_includedir}/db4:%{_includedir}/db53:%{_includedir}/libdb4:%{tde_includedir}/arts \
-  \
-  %{?with_xmms:--with-xmms} %{?!with_xmms:--without-xmms} \
-  --with-sdl \
-%if 0%{?with_db}
-  --with-berkeley-db \
+%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
+%__mkdir_p build
+cd build
 %endif
 
+if [ -d "/usr/include/db53" ]; then
+  export CMAKE_INCLUDE_PATH="/usr/include/db53"
+fi
 
-%__make %{?_smp_mflags}
+%cmake \
+  -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+  -DCMAKE_C_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_CXX_FLAGS="${RPM_OPT_FLAGS} -DNDEBUG" \
+  -DCMAKE_SKIP_RPATH=OFF \
+  -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
+  -DCMAKE_VERBOSE_MAKEFILE=ON \
+  -DWITH_GCC_VISIBILITY=ON \
+  \
+  -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
+  -DBIN_INSTALL_DIR="%{tde_bindir}" \
+  -DDOC_INSTALL_DIR="%{tde_docdir}" \
+  -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}" \
+  -DLIB_INSTALL_DIR="%{tde_libdir}" \
+  -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
+  -DSYSCONF_INSTALL_DIR="%{_sysconfdir}/trinity" \
+  -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
+  \
+  -DWITH_ALL_OPTIONS=ON \
+  -DWITH_ARTS=ON \
+  -DWITH_SDL=ON \
+  -DWITH_BERKELEY_DB=ON \
+  -DWITH_XMMS=OFF \
+  -DWITH_TEST=OFF \
+  \
+  -DBUILD_ALL=ON \
+  -DBUILD_ATLANTIKDESIGNER=ON \
+  -DBUILD_DOC=ON \
+  -DBUILD_KADDRESSBOOK_PLUGINS=ON \
+  -DBUILD_KATE_PLUGINS=ON \
+  -DBUILD_KICKER_APPLETS=ON \
+  -DBUILD_KNEWSTICKER_SCRIPTS=ON \
+  -DBUILD_KONQ_PLUGINS=ON \
+  -DBUILD_KSIG=ON \
+  -DBUILD_NOATUN_PLUGINS=ON \
+  -DBUILD_RENAMEDLG_PLUGINS=ON \
+  -DBUILD_TDEFILE_PLUGINS=ON \
+  ..
+
+%__make %{?_smp_mflags} || %__make
 
 
 %install
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot}
+%__make install DESTDIR=%{buildroot} -C build
 
 
 %clean
