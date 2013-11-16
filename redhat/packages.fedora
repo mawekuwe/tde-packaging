@@ -184,3 +184,13 @@ librsvg2-tools
 libXv-devel
 net-tools
 libcap-devel
+libmng-devel
+libXcomposite-devel
+libXdamage-devel
+libXxf86vm-devel
+java-1.4.2-gcj-compat-devel
+libgcj-devel
+gcc-java
+
+ocaml
+pcsc-lite-devel

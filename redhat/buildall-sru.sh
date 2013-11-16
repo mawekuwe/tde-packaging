@@ -106,7 +106,13 @@ fi
 # Extra dependencies
 grpiud extras/akode
 
-if [ "${DIST:0:6}" = ".oss12" ] || [ "${DIST:0:4}" = ".mga" ] || [ "${DIST:0:3}" = ".fc" ]; then
+# HAL already exists in:
+#   Mageia <= 2
+#   RHEL <= 6
+#   openSUSE <= 11.4
+#   Fedora <= 15
+if [ "${DIST:0:6}" = ".oss12" ] || [ "${DIST}" = ".mga3" ] \
+|| [ "${DIST}" = ".fc16" ]|| [ "${DIST}" = ".fc17" ] || [ "${DIST}" = ".fc18" ] || [ "${DIST}" = ".fc19" ]; then
   if ! is_installed trinity-hal-devel; then
     grpiu 3rdparty/hal
     grpiu 3rdparty/hal-info
@@ -123,18 +129,28 @@ if [ "${DIST:0:4}" = ".mga" ]; then
     eval ${PKGINST} htdig || exit 1
   fi
 fi
+if [ "${DIST}" = ".el4" ] || [ "${DIST}" = ".el5" ]; then
+  grpiud 3rdparty/poppler
+fi
+if [ "${DIST}" = ".el4" ] || [ "${DIST}" = ".el5" ]; then
+  grpiud 3rdparty/sip
+fi
 
 # TDE dependencies
 grpiud dependencies/tqtinterface
 grpiud dependencies/arts
-grpiud dependencies/avahi-tqt
-grpiud dependencies/dbus-1-tqt
-grpiud dependencies/dbus-tqt
 grpiud dependencies/libcaldav
 grpiud dependencies/libcarddav
 grpiud dependencies/tqca
-grpiui dependencies/tqca-tls
+if [ "${DIST}" != ".el4" ]; then
+  grpiud dependencies/avahi-tqt
+  grpiud dependencies/dbus-1-tqt
+  grpiud dependencies/dbus-tqt
+  grpiui dependencies/tqca-tls
+fi
 
+# Extra dependencies
+grpiud extras/akode
 
 # TDE main
 # basic packages
@@ -189,6 +205,15 @@ if [ "${DIST:0:4}" != ".mga" ]; then
     grpiu 3rdparty/wv2
     eval ${PKGINST} wv2 || exit 1
     eval ${PKGINST} wv2-devel || exit 1
+  fi
+fi
+
+## LIBOTR3: required for kopete-otr
+if [ "${DIST:0:5}" = ".mga3" ]; then
+  if ! is_installed libotr3; then
+    grpiu 3rdparty/libotr3
+    eval ${PKGINST} libotr3 || exit 1
+    eval ${PKGINST} libotr3-devel || exit 1
   fi
 fi
 
@@ -255,15 +280,21 @@ grpiui applications/kbookreader
 grpiui applications/kchmviewer
 grpiui applications/kcmautostart
 grpiui applications/kcpuload
-grpiui applications/kdbusnotification
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/kdbusnotification
+fi
 grpiui applications/kdiff3
 grpiui applications/kdirstat
 grpiui applications/keep
 #grpiui applications/kerry
 grpiui applications/kile
-grpiui applications/kima
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/kima
+fi
 grpiui applications/kiosktool
-grpiui applications/kmplayer
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/kmplayer
+fi
 grpiui applications/kmyfirewall
 grpiui applications/kmymoney
 grpiui applications/knemo
@@ -282,7 +313,9 @@ fi
 grpiui applications/konversation
 grpiui applications/kopete-otr
 grpiui applications/kpicosim
-grpiui applications/kpilot
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/kpilot
+fi
 if [ "${DIST}" != ".el4" ] && [ "${DIST}" != ".el5" ]; then
   grpiui applications/kpowersave
 fi
@@ -313,7 +346,9 @@ grpiui applications/tderadio
 grpiui applications/tde-style-lipstik
 grpiui applications/tde-style-qtcurve
 grpiui applications/tdesudo
-grpiui applications/tdesvn
+if [ "${DIST}" != ".el4" ]; then
+  grpiui applications/tdesvn
+fi
 grpiui applications/tde-systemsettings
 grpiui applications/tdmtheme
 grpiui applications/tellico

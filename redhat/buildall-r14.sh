@@ -295,6 +295,7 @@ fi
 grpiui applications/krecipes
 grpiui applications/krename
 grpiui applications/krusader
+grpiui applications/kscope
 grpiui applications/ksensors
 grpiui applications/kshowmail
 grpiui applications/kshutdown
