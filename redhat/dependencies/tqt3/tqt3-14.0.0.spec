@@ -305,24 +305,24 @@ toolkit.
 
 %files devel
 %defattr(-,root,root,-)
-%{tde_bindir}/conv2ui
-%{tde_bindir}/qvfb
+%{tde_bindir}/tqtconv2ui
+%{tde_bindir}/tqvfb
 %{tde_bindir}/tqmoc
 %{tde_bindir}/tquic
-%{tde_bindir}/findtr
-%{tde_bindir}/qt20fix
-%{tde_bindir}/qtrename140
+%{tde_bindir}/tqtfindtr
+%{tde_bindir}/tqt20fix
+%{tde_bindir}/tqtrename140
 %{tde_bindir}/tqassistant
-%{tde_bindir}/qm2ts
+%{tde_bindir}/tqm2ts
 %{tde_bindir}/tqmake
 %{tde_bindir}/tqembed
 %{tde_bindir}/tqlinguist
 %{tde_bindir}/tqlupdate
 %{tde_bindir}/tqlrelease
-%{tde_bindir}/createcw
-%{tde_bindir}/makeqpf
-%{tde_bindir}/mergetr
-%{tde_bindir}/msg2qm
+%{tde_bindir}/tqtcreatecw
+%{tde_bindir}/maketqpf
+%{tde_bindir}/tqtmergetr
+%{tde_bindir}/msg2tqm
 %{tde_datadir}/tqt3/mkspecs/
 %{tde_datadir}/tqt3/phrasebooks/
 %{tde_includedir}/tqt3/
@@ -452,6 +452,12 @@ for the TQt 3 toolkit.
 
 ##########
 
+%if 0%{?suse_version} || 0%{?pclinuxos}
+%debug_package
+%endif
+
+##########
+
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -472,6 +478,7 @@ for the TQt 3 toolkit.
   -e "s|^QMAKE_UIC		=.*|QMAKE_UIC		= %{_bindir}/tquic|" \
   -e "s|^QMAKE_INCDIR_QT		=.*|QMAKE_INCDIR_QT		= %{_includedir}/tqt3|" \
   -e "s|^QMAKE_LIBDIR_QT         =.*|QMAKE_LIBDIR_QT         = %{_libdir}|" \
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -513,31 +520,31 @@ echo yes | ./configure \
 		${INCDIRS} \
 		${LIBDIRS} \
 		-L%{_libdir} \
-		-prefix		"%{tde_prefix}"				\
+		-prefix		"%{tde_prefix}" \
 		-libdir		"%{tde_libdir}" \
-		-sysconfdir	"%{_sysconfdir}/tqt3"			\
-		-datadir	"%{tde_datadir}/tqt3"		\
-		-headerdir	"%{tde_includedir}/tqt3"		\
-		-docdir		"%{tde_datadir}/tqt3/doc"		\
-		-plugindir	"%{tde_libdir}/tqt3/plugins"		\
-		-translationdir	"%{tde_datadir}/tqt3/translations"	\
-						\
-		-thread				\
-		-shared				\
-		-fast				\
-		-no-exceptions			\
+		-sysconfdir	"%{_sysconfdir}/tqt3" \
+		-datadir	"%{tde_datadir}/tqt3" \
+		-headerdir	"%{tde_includedir}/tqt3" \
+		-docdir		"%{tde_datadir}/tqt3/doc" \
+		-plugindir	"%{tde_libdir}/tqt3/plugins" \
+		-translationdir	"%{tde_datadir}/tqt3/translations" \
+		\
+		-thread \
+		-shared \
+		-fast \
+		-no-exceptions \
 %if "%{_lib}" == "lib64"
 		-platform linux-g++-64 \
 %else
 		-platform linux-g++ \
 %endif
-						\
+		\
 		-nis				\
 		-no-pch				\
 		-cups				\
 		-stl				\
 		-ipv6				\
-						\
+		\
 		-sm				\
 		-xshape				\
 		-xinerama			\
@@ -547,27 +554,27 @@ echo yes | ./configure \
 		-xft				\
 		-tablet				\
 		-xkb				\
-						\
+		\
 		-system-zlib			\
 		-system-libpng			\
 		-system-libmng			\
 		-system-libjpeg			\
 		%{?with_nas:-system-nas-sound} %{?!with_nas:-no-nas-sound}		\
-						\
+		\
 		-enable-opengl			\
 		-dlopen-opengl			\
-						\
+		\
 		-qt-gif				\
 		-qt-imgfmt-png			\
 		-qt-imgfmt-jpeg			\
 		-plugin-imgfmt-mng		\
-						\
+		\
 		-plugin-sql-odbc		\
 		-plugin-sql-psql		\
 		-plugin-sql-mysql		\
 		%{?with_ibase:-plugin-sql-ibase}		\
 		-plugin-sql-sqlite		\
-						\
+		\
 		-lfontconfig			\
 		-inputmethod			\
 		%{?with_glibmainloop:-glibmainloop} \
@@ -577,11 +584,11 @@ echo yes | ./configure \
 # proceed
 %__make %{?_smp_mflags} sub-src sub-plugins sub-tools
 
-# build conv2ui
-%__make -C tools/designer/tools/conv2ui
+# build tqtconv2ui
+%__make -C tools/designer/tools/tqtconv2ui
 
-# build qvfb
-%__make -C tools/qvfb
+# build tqvfb
+%__make -C tools/tqvfb
 
 # fix .prl files
 %__sed -i lib/*.prl -e "s|${QTDIR}|%{tde_datadir}/tqt3|g"
@@ -599,15 +606,15 @@ export PATH=${QTDIR}/bin:$PATH
 %__make INSTALL_ROOT=%{?buildroot} install
 %__make INSTALL_ROOT=%{?buildroot} plugins-install
 
-%__install -m755 bin/qtrename140 %{?buildroot}%{_bindir}
-%__install -m755 bin/qt20fix %{?buildroot}%{_bindir}
-%__install -m755 bin/findtr %{?buildroot}%{_bindir}
+%__install -m755 bin/tqtrename140 %{?buildroot}%{_bindir}
+%__install -m755 bin/tqt20fix %{?buildroot}%{_bindir}
+%__install -m755 bin/tqtfindtr %{?buildroot}%{_bindir}
 
-# install conv2ui
-%__install -m755 bin/conv2ui %{?buildroot}%{_bindir}/conv2ui
+# install tqtconv2ui
+%__install -m755 bin/tqtconv2ui %{?buildroot}%{_bindir}/tqtconv2ui
 
-# install qvfb
-%__install -m755 tools/qvfb/qvfb %{?buildroot}%{_bindir}/qvfb
+# install tqvfb
+%__install -m755 tools/tqvfb/tqvfb %{?buildroot}%{_bindir}/tqvfb
 
 
 %clean

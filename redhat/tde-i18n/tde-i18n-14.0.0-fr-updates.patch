@@ -11,9 +11,9 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmbackground.po tde-i18n-fr/message
 +
 +msgid "Enables a smooth fading effect when changing background image."
 +msgstr "Activer un effet de fondu lors du changement de fond d'écran."
-diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tdecmdisplayconfig.po tde-i18n-fr/messages/tdebase/tdecmdisplayconfig.po
---- tde-i18n-fr.ORI/messages/tdebase/tdecmdisplayconfig.po	1970-01-01 01:00:00.000000000 +0100
-+++ tde-i18n-fr/messages/tdebase/tdecmdisplayconfig.po	2013-07-26 20:00:46.303178565 +0200
+diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po tde-i18n-fr/messages/tdebase/kcmdisplayconfig.po
+--- tde-i18n-fr.ORI/messages/tdebase/kcmdisplayconfig.po	1970-01-01 01:00:00.000000000 +0100
++++ tde-i18n-fr/messages/tdebase/kcmdisplayconfig.po	2013-07-26 20:00:46.303178565 +0200
 @@ -0,0 +1,188 @@
 +msgid "<b>The global display configuration is a system wide setting, and requires administrator access</b><br>To alter the system's global display configuration, click on the \"Administrator Mode\" button below."
 +msgstr "<b>La configuration d'affichage globale est un réglage système, et nécessite les droits administrateur.</b><br>Pour modifier la configuration système globale, cliquer sur le bouton \"Mode superutilisateur\"."
@@ -217,9 +217,9 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmenergy.po tde-i18n-fr/messages/td
 +msgid "Configure KPowersave..."
 +msgstr "Configurer KPowersave..."
 +
-diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tdecmiccconfig.po tde-i18n-fr/messages/tdebase/tdecmiccconfig.po
---- tde-i18n-fr.ORI/messages/tdebase/tdecmiccconfig.po	1970-01-01 01:00:00.000000000 +0100
-+++ tde-i18n-fr/messages/tdebase/tdecmiccconfig.po	2013-07-26 19:48:22.142618069 +0200
+diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kcmiccconfig.po tde-i18n-fr/messages/tdebase/kcmiccconfig.po
+--- tde-i18n-fr.ORI/messages/tdebase/kcmiccconfig.po	1970-01-01 01:00:00.000000000 +0100
++++ tde-i18n-fr/messages/tdebase/kcmiccconfig.po	2013-07-26 19:48:22.142618069 +0200
 @@ -0,0 +1,80 @@
 +# TDE 3.5.13 'iccconfig.cpp' translation
 +
@@ -918,7 +918,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kdesktop.po tde-i18n-fr/messages/tde
  #. i18n: file minicli_ui.ui line 199
  #: rc.cpp:14
  #, no-c-format
-@@ -1144,3 +1174,29 @@
+@@ -1144,3 +1174,39 @@
  "Cependant, certains écrans de veille\n"
  "       effectuent des calculs utiles, dans ces cas, il est souhaitable de ne "
  "pas les désactiver."
@@ -948,6 +948,16 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kdesktop.po tde-i18n-fr/messages/tde
 +
 +msgid "'%1' is currently logged on"
 +msgstr "'%1' est actuellement connecté"
++
++# SAK dialog (sakdlg.cpp)
++msgid "Press Ctrl+Alt+Del to begin."
++msgstr "Appuyez sur Ctrl+Alt+Suppr pour commencer."
++
++msgid "This process helps keep your password secure."
++msgstr "Ce processus permet de protéger votre mot de passe."
++
++msgid "It prevents unauthorized users from emulating the login screen."
++msgstr "Il empêche l'usurpation du panneau de connexion par d'autres processus."
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kicker.po tde-i18n-fr/messages/tdebase/kicker.po
 --- tde-i18n-fr.ORI/messages/tdebase/kicker.po	2013-07-26 17:53:39.996658761 +0200
 +++ tde-i18n-fr/messages/tdebase/kicker.po	2013-07-26 17:53:59.000152412 +0200
@@ -1489,7 +1499,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/kpersonalizer.po tde-i18n-fr/message
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/ksmserver.po tde-i18n-fr/messages/tdebase/ksmserver.po
 --- tde-i18n-fr.ORI/messages/tdebase/ksmserver.po	2013-07-26 17:53:39.995658788 +0200
 +++ tde-i18n-fr/messages/tdebase/ksmserver.po	2013-07-29 11:12:48.861837356 +0200
-@@ -92,3 +92,82 @@
+@@ -92,3 +92,91 @@
  "_: current option in boot loader\n"
  " (current)"
  msgstr " (courant)"
@@ -1572,6 +1582,15 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/ksmserver.po tde-i18n-fr/messages/td
 +
 +msgid "Terminating services..."
 +msgstr "Arrêt des services..."
++
++msgid "&Freeze Computer"
++msgstr "Mettre en veille (&Freeze)"
++
++msgid "&Hibernate Computer"
++msgstr "Mettre en veille (sur &disque)"
++
++msgid "&Suspend Computer"
++msgstr "Mettre en veille (en R&AM)"
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/ksplash.po tde-i18n-fr/messages/tdebase/ksplash.po
 --- tde-i18n-fr.ORI/messages/tdebase/ksplash.po	2013-07-26 17:53:39.998658707 +0200
 +++ tde-i18n-fr/messages/tdebase/ksplash.po	2013-07-26 17:53:51.201360190 +0200
@@ -1620,7 +1639,10 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tderandr.po tde-i18n-fr/messages/tde
 +
 +#: tderandrtray.cpp:477
 +msgid "Configure Display Color Profiles"
-+msgstr "Configuration des profils de couleurs"
++msgstr "Configurer les profils de couleurs"
++
++msgid "Configure Displays..."
++msgstr "Configurer l'affichage"
 +
 +#: tderandrbindings.cpp:29
 +msgid "Display Control"
