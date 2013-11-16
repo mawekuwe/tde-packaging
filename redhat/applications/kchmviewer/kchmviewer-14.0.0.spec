@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		CHM viewer for Trinity
 Version:		3.1.2
-Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities

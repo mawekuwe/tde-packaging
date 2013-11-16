@@ -44,8 +44,6 @@ Source1:		gtk-qt-engine.rc.sh
 Source2:		gtkrc-2.0-kde4
 Source3:		gtkrc-2.0-kde-kde4
 
-Patch0:			gtk-qt-engine-14.0.0-debug.patch
-
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -72,7 +70,6 @@ a way to configure it from within KControl.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .debug
 
 
 %build

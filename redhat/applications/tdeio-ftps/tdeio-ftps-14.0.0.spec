@@ -29,7 +29,7 @@ Summary:        An ftps TDEIO slave for Trinity
 
 Group:          Productivity/Networking/Ftp/Clients
 License:        GPLv2+
-URL:            http://kasablanca.berlios.de/kio-ftps/
+URL:            http://www.trinitydesktop.org/
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 

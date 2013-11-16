@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		progress dialog for safely removing devices in Trinity.
 Version:		0.2
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -40,7 +40,7 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:		media_safelyremove.desktop_tdeio
+Source1:		media_safelyremove.desktop
 
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -53,9 +53,8 @@ Obsoletes:		trinity-kio-umountwrapper < %{version}-%{release}
 Provides:		trinity-kio-umountwrapper = %{version}-%{release}
 
 %description
-Wrapper around tdeio_media_mountwrapper.
+Wrapper around kio_media_mountwrapper.
 Provides a progress dialog for Safely Removing of devices in Trinity.
-
 
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
@@ -72,7 +71,8 @@ Provides a progress dialog for Safely Removing of devices in Trinity.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 %configure \
@@ -131,8 +131,12 @@ fi
 %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_kio-umountwrapper
 %{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_kio-umountwrapper
 
+
 %changelog
-* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.2.5-6
+* Sat Sep 28 2013 Francois Andriot <francois.andriot@free.fr> - 0.2-7
+- Fix inadvertent 'kio' renaming
+
+* Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.2-6
 - Build for Fedora 19
 
 * Mon Jun 03 2013 Francois Andriot <francois.andriot@free.fr> - 0.2-5

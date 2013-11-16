@@ -30,7 +30,7 @@ Summary:        TDE mail notification utility
 
 Group:          Applications/Internet
 License:        GPLv2+
-URL:            http://sourceforge.net/projects/knmap/
+URL:            http://www.trinitydesktop.org/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
@@ -65,7 +65,6 @@ NNTP mailboxes.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
 %configure \
   --prefix=%{tde_prefix} \

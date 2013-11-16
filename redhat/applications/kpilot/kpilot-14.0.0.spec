@@ -49,7 +49,7 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext
-BuildRequires:	pilot-link-devel
+BuildRequires:	pilot-link-devel >= 0.12
 BuildRequires:	trinity-tdepim-devel >= %{tde_version}
 
 %description

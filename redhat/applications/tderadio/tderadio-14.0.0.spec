@@ -108,6 +108,7 @@ of new plugins (e.g. Internet Radio Streams, new cool GUIs) are welcome.
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 
+# Warning: --enable-visibility causes applications fails to start !
 %configure \
   --prefix=%{tde_prefix} \
   --exec-prefix=%{tde_prefix} \
@@ -123,7 +124,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-new-ldflags \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
+  --disable-gcc-hidden-visibility \
   \
   %{?with_lirc:--enable-lirc} %{?!with_lirc:--disable-lirc} \
   --enable-v4l2 \
@@ -141,6 +142,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__make install DESTDIR=%{buildroot}
 
 %find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}

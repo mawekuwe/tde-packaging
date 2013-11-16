@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		progress dialog for safely removing devices in Trinity.
 Version:		0.2
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
@@ -55,7 +55,6 @@ Provides:		trinity-kio-umountwrapper = %{version}-%{release}
 %description
 Wrapper around tdeio_media_mountwrapper.
 Provides a progress dialog for Safely Removing of devices in Trinity.
-
 
 
 %if 0%{?suse_version} || 0%{?pclinuxos}
@@ -134,5 +133,5 @@ fi
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.2-7
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.2-8
 - Initial release for TDE 14.0.0
