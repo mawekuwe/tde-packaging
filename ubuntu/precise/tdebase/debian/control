@@ -186,7 +186,7 @@ Architecture: any
 Replaces: kdebase-kio-plugins-kde3 (<< 4:14.0.0~), kdebase-kio-plugins-trinity (<< 4:14.0.0~)
 Breaks: kdebase-kio-plugins-kde3 (<< 4:14.0.0~), kdebase-kio-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, kdesktop-trinity, libsasl2-modules, psmisc, man-db (>= 2.5.1-1)
-Recommends: pmount, cryptsetup, kamera-trinity, tdemultimedia-tdeio-plugins-trinity
+Recommends: udisks2 | udisks | pmount, cryptsetup, kamera-trinity, tdemultimedia-tdeio-plugins-trinity
 Suggests: khelpcenter-trinity, mtools
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0), mediamanager
 Description: core I/O slaves for KDE
@@ -194,7 +194,7 @@ Description: core I/O slaves for KDE
  others, file, http, ftp, smtp, pop and imap.
  .
  It also includes the media tdeioslave, which handles removable devices,
- and which works best with procfs, udev, and pmount. Media
+ and which works best with procfs, udev, and udisks2/udisks/pmount. Media
  also extends the functionality of many other tdeioslaves. To use this
  service, please make sure that your user is a member of the plugdev
  group.
