@@ -19,6 +19,8 @@ debian/tmp/opt/trinity/share/apps/kcminput/cursor_large_white.pcf.gz
 debian/tmp/opt/trinity/share/apps/kcminput/cursor_small_white.pcf.gz
 debian/tmp/opt/trinity/share/apps/kcminput/pics/mouse_lh.png
 debian/tmp/opt/trinity/share/apps/kcminput/pics/mouse_rh.png
+debian/tmp/opt/trinity/share/apps/kcminput/pics/doubleclick_1.png
+debian/tmp/opt/trinity/share/apps/kcminput/pics/doubleclick_2.png
 debian/tmp/opt/trinity/share/apps/kcmkeys/trinity.kksrc
 debian/tmp/opt/trinity/share/apps/kcmkeys/kde4.kksrc
 debian/tmp/opt/trinity/share/apps/kcmkeys/mac4.kksrc
