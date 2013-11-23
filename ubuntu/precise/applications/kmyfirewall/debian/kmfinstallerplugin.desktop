@@ -37,8 +37,8 @@ Name[xx]=xxKMyFirewall Installer Pluginxx
 Name[zh_CN]=KMyFirewall 安装程序插件
 
 [PropertyDef::X-KMyFirewall-Platform]
-Type=QString
+Type=TQString
 
 [PropertyDef::X-KMyFirewall-Language]
-Type=QString
+Type=TQString
 

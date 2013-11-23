@@ -5,10 +5,10 @@ X-TDE-ServiceType=Kaffeine/CodecInstall
 
 # The unplayable codec
 [PropertyDef::X-TDE-Kaffeine-codec]
-Type=QString
+Type=TQString
 
 [PropertyDef::X-TDE-Kaffeine-engine]
-Type=QString
+Type=TQString
 
 [PropertyDef::Exec]
-Type=QString
+Type=TQString
