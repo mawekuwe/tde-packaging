@@ -88,12 +88,16 @@ BuildRequires:	libpaper-devel
 %endif
 
 # T1LIB support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?suse_version} && 0%{?suse_version} <= 1230
+%define with_t1lib 1
+BuildRequires:	t1lib-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora}
 %define with_t1lib 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}t1lib-devel
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	t1lib-devel
 %endif
 %endif
@@ -1270,10 +1274,10 @@ if [ -d /usr/X11R6 ]; then
   export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 # Note: the "-L%{tde_libdir}" is required for RHEL5, where poppler is under /opt/trinity.
 %cmake \

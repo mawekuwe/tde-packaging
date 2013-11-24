@@ -322,6 +322,9 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	glib2-devel
 BuildRequires:	pcre-devel
 
+# SASL support
+BuildRequires:	cyrus-sasl-devel
+
 # LIBUSB support
 BuildRequires:	pam-devel
 %if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
@@ -3337,10 +3340,10 @@ if [ -d "/usr/include/samba-4.0" ]; then
   export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH}:/usr/include/samba-4.0"
 fi
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \

@@ -1088,10 +1088,10 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
@@ -1126,9 +1126,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 # Installs kdepalettes
-%__install -D -m 644 kdepalettes/kde_xpaintrc %{?buildroot}%{tde_datadir}/kdepalettes
-%__install -D -m 644 kdepalettes/KDE_Gimp %{?buildroot}%{tde_datadir}/kdepalettes
-%__install -D -m 644 kdepalettes/README %{?buildroot}%{tde_datadir}/kdepalettes
+%__install -D -m 644 kdepalettes/kde_xpaintrc %{?buildroot}%{tde_datadir}/kdepalettes/kde_xpaintrc
+%__install -D -m 644 kdepalettes/KDE_Gimp %{?buildroot}%{tde_datadir}/kdepalettes/KDE_Gimp
+%__install -D -m 644 kdepalettes/README %{?buildroot}%{tde_datadir}/kdepalettes/README
 
 # Installs SVN protocols as alternatives
 %if 0%{?build_kioslave}

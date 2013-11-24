@@ -1,0 +1,25 @@
+--- tdebase/tdeioslave/media/mediamanager/tdehardwarebackend.cpp.new	2013-11-11 21:27:09.960234089 +0100
++++ tdebase/tdeioslave/media/mediamanager/tdehardwarebackend.cpp	2013-11-11 21:32:16.081679386 +0100
+@@ -979,9 +979,21 @@
+ 	}
+ 
+ 	if (valids.contains("utf8")) {
+-		value = config.readBoolEntry("utf8", true);
++		// From "man mount": only some filesystems support 'iocharset' option.
++		if( (sdevice->fileSystemName() == "fat")
++		 || (sdevice->fileSystemName() == "iso9660")
++		 || (sdevice->fileSystemName() == "jfs")
++		 || (sdevice->fileSystemName() == "msdos")
++		 || (sdevice->fileSystemName() == "ntfs")
++		 || (sdevice->fileSystemName() == "umsdos")
++		 || (sdevice->fileSystemName() == "vfat")
++		) {
++			value = false; //config.readBoolEntry("utf8", true);
++		} else {
++			value = false;
++       }
+ 		tmp = TQString("utf8=%1").arg(value ? "true" : "false");
+ 		result << tmp;
+ 	}
+ 
+ 	if (valids.contains("shortname")) {

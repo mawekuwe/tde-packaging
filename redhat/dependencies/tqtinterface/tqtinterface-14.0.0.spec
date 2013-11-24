@@ -123,10 +123,10 @@ Development files for %{name}
 %build
 unset QTDIR QTINC QTLIB
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \

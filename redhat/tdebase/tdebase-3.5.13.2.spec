@@ -192,7 +192,6 @@ Requires:	fedora-release-notes
 %define tde_aboutpage /usr/share/doc/fedora-release-notes-19/index.html
 %endif
 
-
 # RHEL 4 Theme
 %if 0%{?rhel} == 4
 Requires:	desktop-backgrounds-basic
@@ -349,6 +348,9 @@ BuildRequires:	libvorbis-devel
 BuildRequires:	glib2-devel
 BuildRequires:	pcre-devel
 
+# SASL support
+BuildRequires:	cyrus-sasl-devel
+
 # LIBUSB support
 BuildRequires:	pam-devel
 %if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
@@ -424,6 +426,7 @@ BuildRequires:	gnome-screensaver
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
 %endif
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
+BuildRequires:	xscreensaver
 BuildRequires:	libXScrnSaver-devel
 %endif
 %if 0%{?suse_version} == 1140
@@ -498,18 +501,24 @@ BuildRequires:	libsmbclient-devel
 BuildRequires:	imake
 %endif
 
+# XKB support
+%if 0%{?suse_version} == 1140
+BuildRequires:	xorg-x11-libxkbfile-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1210
+BuildRequires:	libxkbfile-devel
+%endif
+
 # X11 stuff ...
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
 %endif
 
 %if 0%{?suse_version} == 1140
-BuildRequires:	xorg-x11-libxkbfile-devel
 BuildRequires:	xorg-x11-libfontenc-devel
 %endif
 
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version} >= 1220
-BuildRequires:	libxkbfile-devel
 BuildRequires:	libfontenc-devel
 %endif
 
@@ -586,9 +595,6 @@ Requires:	openssl
 
 # RHEL 6 Configuration files are provided in separate packages
 %if 0%{?rhel} || 0%{?fedora}
-%if "%{?tde_prefix}" == "/usr"
-Requires:	kde-settings-kdm
-%endif
 Requires:	redhat-menus
 %endif
 
@@ -3368,7 +3374,8 @@ Windows and Samba shares.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
@@ -3386,10 +3393,10 @@ if [ -d "/usr/include/samba-4.0" ]; then
   export CMAKE_INCLUDE_PATH="${CMAKE_INCLUDE_PATH}:/usr/include/samba-4.0"
 fi
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \

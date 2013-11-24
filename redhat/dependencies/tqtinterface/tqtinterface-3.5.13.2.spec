@@ -120,12 +120,15 @@ Development files for %{name}
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
+
+pwd
 
 # Note: specifying 'QT_LIBRARY_DIR' allow using QT3 libraries under
 #  another directory than QT3_PREFIX. (E.g. Mageia 2, Mandriva ...)

@@ -536,7 +536,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_tdelibdir}/plugins/styles/scheck.la
 %{tde_datadir}/apps/kabc/formats/kdeaccountsplugin.desktop
 %{tde_datadir}/apps/kstyle/themes/scheck.themerc
-%{tde_datadir}/kdepalettes
+%{tde_datadir}/kdepalettes/
 
 %{tde_libdir}/libkstartperf.so.*
 %{tde_libdir}/libkstartperf.so
@@ -1091,7 +1091,8 @@ Provides:	trinity-kdesdk-devel = %{version}-%{release}
 
 
 %build
-unset QTDIR || :; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
@@ -1099,10 +1100,11 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 if [ -d /usr/X11R6 ]; then
   export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
@@ -1136,9 +1138,9 @@ export PATH="%{tde_bindir}:${PATH}"
 
 
 # Installs kdepalettes
-%__install -D -m 644 kdepalettes/kde_xpaintrc %{?buildroot}%{tde_datadir}/kdepalettes
-%__install -D -m 644 kdepalettes/KDE_Gimp %{?buildroot}%{tde_datadir}/kdepalettes
-%__install -D -m 644 kdepalettes/README %{?buildroot}%{tde_datadir}/kdepalettes
+%__install -D -m 644 kdepalettes/kde_xpaintrc %{?buildroot}%{tde_datadir}/kdepalettes/kde_xpaintrc
+%__install -D -m 644 kdepalettes/KDE_Gimp %{?buildroot}%{tde_datadir}/kdepalettes/KDE_Gimp
+%__install -D -m 644 kdepalettes/README %{?buildroot}%{tde_datadir}/kdepalettes/README
 
 # Installs SVN protocols as alternatives
 %if 0%{?build_kioslave}

@@ -80,7 +80,7 @@ BuildRequires:	sqlite-devel
 
 # GADU support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
-%define with_gadu 1tdenetwork-14.0.0-fix_kget.patch
+%define with_gadu 1
 BuildRequires:	libgadu-devel
 %endif
 
@@ -1090,13 +1090,13 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \

@@ -260,12 +260,16 @@ BuildRequires:	NetworkManager-devel
 %endif
 
 # Certificates support
-%if 0%{?rhel} || 0%{?fedora}
-%define	cacert %{_sysconfdir}/ssl/certs/ca-certificates.crt
+%if 0%{?rhel} >= 6 || 0%{?fedora}
+%define	cacert	%{_sysconfdir}/ssl/certs/ca-certificates.crt
 Requires:		ca-certificates
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
-%define	cacert %{_sysconfdir}/ssl/certs/ca-bundle.crt
+%define	cacert	%{_sysconfdir}/ssl/certs/ca-bundle.crt
+Requires:		openssl
+%endif
+%if 0%{?rhel} == 5
+%define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
 Requires:		openssl
 %endif
 
@@ -447,10 +451,10 @@ unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \

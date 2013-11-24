@@ -88,12 +88,16 @@ BuildRequires:	libpaper-devel
 %endif
 
 # T1LIB support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?suse_version} && 0%{?suse_version} <= 1230
+%define with_t1lib 1
+BuildRequires:	t1lib-devel
+%endif
+%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 5 || 0%{?fedora}
 %define with_t1lib 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}t1lib-devel
 %endif
-%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
+%if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	t1lib-devel
 %endif
 %endif
@@ -174,7 +178,7 @@ BuildRequires:	%{_lib}poppler-devel
 %endif
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
 # On RHEL 5, the distro-provided poppler is too old. We built a newer one.
-BuildRequires:	trinity-poppler-devel
+BuildRequires:	trinity-poppler-devel >= 0.12
 BuildRequires:	trinity-poppler-qt3-devel >= 0.12
 %endif
 
@@ -1267,10 +1271,10 @@ if [ -d /usr/X11R6 ]; then
   export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 # Warning: GCC visibility causes FTBFS [Bug #1285]
 %cmake \
