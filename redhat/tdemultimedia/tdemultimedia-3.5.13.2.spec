@@ -28,7 +28,7 @@
 Name:		trinity-tdemultimedia
 Summary:	Multimedia applications for the Trinity Desktop Environment (TDE)
 Version:	%{tde_version}
-Release:	%{?!preversion:4}%{?preversion:3_%{preversion}}%{?dist}%{?_variant}
+Release:	%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
 License:	GPLv2
 Group:		Applications/Multimedia
@@ -131,7 +131,7 @@ BuildRequires:	libXt-devel
 %if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires: %{_lib}xine-devel
+BuildRequires: %{_lib}xine1.2-devel
 %endif
 %if 0%{?fedora} || 0%{?rhel}
 BuildRequires: xine-lib-devel
@@ -1206,6 +1206,9 @@ chmod go-w %{buildroot}%{tde_datadir}/apps/kscd/*
 
 
 %changelog
+* Sun Nov 24 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-5
+- Mageia 3: rebuild against Xine 1.2
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-4
 - Build for Fedora 19
 

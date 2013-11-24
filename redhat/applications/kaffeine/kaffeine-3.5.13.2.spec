@@ -26,7 +26,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		Xine-based media player
 
 Version:		0.8.8
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -99,11 +99,17 @@ BuildRequires:	libgstreamer-plugins-base-devel >= 0.10
 %endif
 
 # XINE support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-BuildRequires:  libxine-devel
+%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_xine 1
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires: %{_lib}xine1.2-devel
 %endif
-%if 0%{?rhel} || 0%{?fedora}
-BuildRequires:  xine-lib-devel
+%if 0%{?fedora} || 0%{?rhel}
+BuildRequires: xine-lib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: libxine-devel
+%endif
 %endif
 
 # LAME support
@@ -271,6 +277,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Nov 24 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-7
+- Mageia 3: rebuild against Xine 1.2
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-6
 - Build for Fedora 19
 

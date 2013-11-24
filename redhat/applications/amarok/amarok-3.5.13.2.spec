@@ -26,7 +26,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		Media player
 Version:		1.4.10
-Release:		%{?!preversion:11}%{?preversion:10_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:12}%{?preversion:11_%{preversion}}%{?dist}%{?_variant}
 
 Group:			Applications/Multimedia
 License:		GPLv2+
@@ -144,13 +144,16 @@ BuildRequires:	%{_lib}inotifytools-devel
 %endif
 
 # XINE support
-%if 0%{?rhel} >= 4 || 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_xine 1
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-BuildRequires:	libxine-devel
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires: %{_lib}xine1.2-devel
 %endif
-%if 0%{?rhel} || 0%{?fedora}
-BuildRequires:	xine-lib-devel
+%if 0%{?fedora} || 0%{?rhel}
+BuildRequires: xine-lib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: libxine-devel
 %endif
 %endif
 
@@ -367,10 +370,10 @@ if [ -d /usr/X11R6 ]; then
   export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
@@ -433,6 +436,9 @@ done
 
 
 %changelog
+* Sun Nov 24 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-12
+- Mageia 3: rebuild against Xine 1.2
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 1.4.10-11
 - Build for Fedora 19
 

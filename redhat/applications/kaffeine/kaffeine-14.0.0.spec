@@ -26,7 +26,7 @@ Name:			trinity-%{tde_pkg}
 Summary:		Xine-based media player
 
 Version:		0.8.8
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -99,11 +99,17 @@ BuildRequires:	libgstreamer-plugins-base-devel >= 0.10
 %endif
 
 # XINE support
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
-BuildRequires:  libxine-devel
+%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_xine 1
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires: %{_lib}xine1.2-devel
 %endif
-%if 0%{?rhel} || 0%{?fedora}
-BuildRequires:  xine-lib-devel
+%if 0%{?fedora} || 0%{?rhel}
+BuildRequires: xine-lib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: libxine-devel
+%endif
 %endif
 
 # LAME support
@@ -271,5 +277,5 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-7
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.8.8-8
 - Initial release for TDE 14.0.0

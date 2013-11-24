@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		media player for Trinity
 Version:		0.10.0c
-Release:		%{?!preversion:6}%{?preversion:5_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -74,8 +74,23 @@ BuildRequires:	gstreamer-0_10-devel
 BuildRequires:	gstreamer-0_10-plugins-base-devel
 %endif
 
+# XINE support
+%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_xine 1
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires: %{_lib}xine1.2-devel
+%endif
+%if 0%{?fedora} || 0%{?rhel}
+BuildRequires: xine-lib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: libxine-devel
+%endif
+%endif
+
 # X11 stuff
 %if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libxt-devel
 BuildRequires:	libxv-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1210
@@ -86,6 +101,16 @@ BuildRequires:	xorg-x11-devel
 %endif
 %if 0%{?suse_version} == 1140
 BuildRequires:	xorg-x11-libXv-devel
+%endif
+
+# GTK2 stuff
+BuildRequires:	gtk2-devel
+
+# DBUS stuff
+%if 0%{?suse_version}
+BuildRequires:	dbus-1-glib-devel
+%else
+BuildRequires:	dbus-glib-devel
 %endif
 
 Requires:		%{name}-base = %{version}-%{release}
@@ -171,7 +196,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-closure \
   --enable-rpath
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
@@ -235,7 +260,6 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/mimelnk/application/x-kmplayer.desktop
 %{tde_datadir}/mimelnk/video/x-ms-wmp.desktop
 
-
 %files doc
 %defattr(-,root,root,-)
 %{tde_tdedocdir}/HTML/*/kmplayer
@@ -250,6 +274,9 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
+* Sun Nov 24 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-7
+- Mageia 3: rebuild against Xine 1.2
+
 * Fri Aug 16 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-6
 - Build for Fedora 19
 

@@ -1,5 +1,6 @@
 rpm-build
 ccache
+cmake
 mysql-devel
 unixODBC-devel
 libpq-devel
@@ -91,8 +92,8 @@ libgstreamer0.10-devel
 lib64gstreamer0.10-devel
 libxxf86dga-devel
 lib64xxf86dga-devel
-libxine-devel
-lib64xine-devel
+libxine1.2-devel
+lib64xine1.2-devel
 gnokii-devel
 gpgme-devel
 flex
@@ -240,7 +241,6 @@ cdparanoia
 libcdda-devel
 lib64gstreamer0.10-devel
 lib64xxf86dga-devel
-lib64xine-devel
 lib64lame-devel
 rpm-devel
 SDL-devel

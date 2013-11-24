@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		media player for Trinity
 Version:		0.10.0c
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Multimedia
@@ -74,6 +74,20 @@ BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-0_10-plugins-base-devel
 %endif
 
+# XINE support
+%if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
+%define with_xine 1
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires: %{_lib}xine1.2-devel
+%endif
+%if 0%{?fedora} || 0%{?rhel}
+BuildRequires: xine-lib-devel
+%endif
+%if 0%{?suse_version}
+BuildRequires: libxine-devel
+%endif
+%endif
+
 # X11 stuff
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	libxv-devel
@@ -86,6 +100,16 @@ BuildRequires:	xorg-x11-devel
 %endif
 %if 0%{?suse_version} == 1140
 BuildRequires:	xorg-x11-libXv-devel
+%endif
+
+# GTK2 stuff
+BuildRequires:	gtk2-devel
+
+# DBUS stuff
+%if 0%{?suse_version}
+BuildRequires:	dbus-1-glib-devel
+%else
+BuildRequires:	dbus-glib-devel
 %endif
 
 Requires:		%{name}-base = %{version}-%{release}
@@ -236,7 +260,6 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/mimelnk/application/x-kmplayer.desktop
 %{tde_datadir}/mimelnk/video/x-ms-wmp.desktop
 
-
 %files doc
 %defattr(-,root,root,-)
 %{tde_tdedocdir}/HTML/*/kmplayer
@@ -251,5 +274,5 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %changelog
-* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-7
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.10.0c-8
 - Initial release for TDE 14.0.0
