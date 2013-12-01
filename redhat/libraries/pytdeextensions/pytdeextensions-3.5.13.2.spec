@@ -54,8 +54,8 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gettext
 
 # Python stuff
-BuildRequires:	trinity-python-trinity-devel
 BuildRequires:	python-qt3-devel
+BuildRequires:	trinity-python-trinity-devel
 
 Requires:		trinity-libpythonize0 = %{version}-%{release}
 
@@ -175,7 +175,8 @@ fi
 
 
 %build
-unset QTDIR QTINC QTLIB; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 
@@ -183,7 +184,8 @@ export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 ./setup.py build_libpythonize
 
 %install
-unset QTDIR QTINC QTLIB; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 

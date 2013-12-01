@@ -75,7 +75,8 @@ Homepage: http://www.kbfx.org
   -e "s|/usr/include/tqt|%{tde_includedir}/tqt|"
   
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
@@ -85,10 +86,10 @@ if [ -d "/usr/X11R6" ]; then
   export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
@@ -103,6 +104,7 @@ cd build
   -DDATA_INSTALL_DIR=%{tde_datadir}/apps \
   -DMIME_INSTALL_DIR=%{tde_datadir}/mimelnk \
   -DXDG_APPS_INSTALL_DIR=%{tde_tdeappdir} \
+  -DSHARE_INSTALL_PREFIX="%{tde_datadir}"\
   -DDOC_INSTALL_DIR=%{tde_tdedocdir} \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   \

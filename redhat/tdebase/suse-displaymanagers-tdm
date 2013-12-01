@@ -7,7 +7,7 @@ tdm_start_proc() {
 }
 
 tdm_vars() {
-    if [ -x /opt/trinity/bin/kdm ]; then
+    if [ -x /opt/trinity/bin/kdm ]; then
       TDM_BIN=/opt/trinity/bin/kdm
       export KDEROOTHOME=/root/.tdm
     else
