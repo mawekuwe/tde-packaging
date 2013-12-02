@@ -12,6 +12,7 @@ Architecture: any
 Depends: ${misc:Depends}, ${perl:Depends}, ${shlibs:Depends}
 Replaces: libtqt-perl (<< 4:14.0.0~)
 Breaks: libtqt-perl (<< 4:14.0.0~)
+Conflicts: libqt-perl
 Description: Perl bindings for the TQt library
  This module lets you use the TQt library from Perl.
  It provides an object-oriented interface and is easy to use.

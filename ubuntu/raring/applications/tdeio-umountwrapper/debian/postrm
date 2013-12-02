@@ -1,7 +1,7 @@
 #! /bin/sh
-#                               -*- Mode: Sh -*- 
+#                               -*- Mode: Sh -*-
 # Author: Frode M. Døving <frode@lnix.net> (C) 2007
-# 
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -23,6 +23,7 @@ package_name=tdeio-umountwrapper-trinity
 
 # make sure than the directories exist before running dpkg-divert
 mkdir -p /opt/trinity/share/apps/konqueror/servicemenus/
+mkdir -p /opt/trinity/share/apps/dolphin/servicemenus/
 mkdir -p /opt/trinity/share/apps/d3lphin/servicemenus/
 
 case "$1" in
@@ -38,6 +39,7 @@ case "$1" in
 
     # try to remove the dirs we've created for pkg-divert
     rmdir --ignore-fail-on-non-empty /opt/trinity/share/apps/konqueror/servicemenus/
+    rmdir --ignore-fail-on-non-empty /opt/trinity/share/apps/dolphin/servicemenus/
     rmdir --ignore-fail-on-non-empty /opt/trinity/share/apps/d3lphin/servicemenus/
     ;;
 

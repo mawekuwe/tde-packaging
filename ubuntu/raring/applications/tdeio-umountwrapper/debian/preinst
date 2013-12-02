@@ -1,5 +1,5 @@
 #! /bin/sh
-#                               -*- Mode: Sh -*- 
+#                               -*- Mode: Sh -*-
 # Author: Frode M. Døving <frode@lnix.net> (C) 2007
 #
 # This program is free software; you can redistribute it and/or modify
@@ -24,10 +24,17 @@ package_name=tdeio-umountwrapper-trinity
 
 # make sure than the directories exist before running dpkg-divert
 mkdir -p /opt/trinity/share/apps/konqueror/servicemenus/
+mkdir -p /opt/trinity/share/apps/dolphin/servicemenus/
 mkdir -p /opt/trinity/share/apps/d3lphin/servicemenus/
 
 case "$1" in
   install)
+    # remove old diversions if present
+    dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop || true
+    dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop || true
+    dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop || true
+
+    # add new diversions
     dpkg-divert --package $package_name \
     --divert /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop.distrib \
     --rename /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop
