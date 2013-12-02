@@ -1,7 +1,7 @@
-usr/lib/libeditor.prl
-usr/lib/libeditor.a
-usr/lib/libdesignercore.prl
-usr/lib/libdesignercore.a
-usr/lib/libqassistantclient.prl
-usr/lib/libqassistantclient.a
+usr/lib/libtqteditor.prl
+usr/lib/libtqteditor.a
+usr/lib/libtqtdesignercore.prl
+usr/lib/libtqtdesignercore.a
+usr/lib/libtqassistantclient.prl
+usr/lib/libtqassistantclient.a
 usr/include/tqt3/ntqassistantclient.h
