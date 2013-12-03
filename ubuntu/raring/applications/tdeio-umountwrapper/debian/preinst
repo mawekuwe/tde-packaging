@@ -30,9 +30,18 @@ mkdir -p /opt/trinity/share/apps/d3lphin/servicemenus/
 case "$1" in
   install)
     # remove old diversions if present
-    dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop || true
-    dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop || true
-    dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop || true
+    divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop"`
+    if [ -n "$divert" ] && [ "$divert" = "kio-umountwrapper-trinity" ]; then
+        dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/konqueror/servicemenus/media_safelyremove.desktop
+    fi
+    divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop"`
+    if [ -n "$divert" ] && [ "$divert" = "kio-umountwrapper-trinity" ]; then
+        dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/dolphin/servicemenus/media_safelyremove.desktop
+    fi
+    divert=`dpkg-divert --listpackage "/opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop"`
+    if [ -n "$divert" ] && [ "$divert" = "kio-umountwrapper-trinity" ]; then
+        dpkg-divert --package kio-umountwrapper-trinity --rename --remove /opt/trinity/share/apps/d3lphin/servicemenus/media_safelyremove.desktop
+    fi
 
     # add new diversions
     dpkg-divert --package $package_name \
