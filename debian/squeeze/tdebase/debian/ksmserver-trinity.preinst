@@ -6,8 +6,14 @@ case "$1" in
 
     upgrade)
 	# Remove old-style Plasma diversions
-	dpkg-divert --package $package_name --rename --remove /usr/bin/plasma || true
-	dpkg-divert --package $package_name --rename --remove /usr/bin/plasma-desktop || true
+	divert=`dpkg-divert --listpackage "/usr/bin/plasma"`
+	if [ -n "$divert" ]; then
+	    dpkg-divert --package $package_name --rename --remove /usr/bin/plasma
+	fi
+	divert=`dpkg-divert --listpackage "/usr/bin/plasma-desktop"`
+	if [ -n "$divert" ]; then
+	    dpkg-divert --package $package_name --rename --remove /usr/bin/plasma-desktop
+	fi
 	mkdir -p /usr/share/autostart
     ;;
 
