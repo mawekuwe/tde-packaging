@@ -24,7 +24,6 @@ Replaces: libtqt3-mt (<< 4:14.0.0~)
 Breaks: libtqt3-mt (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, fontconfig
 Recommends: libgl1-mesa-glx | libgl1, libglu1-mesa | libglu1, libxmu6 (>= 4.3.0.dfsg.1-4)
-Conflicts: libtqt3c102-mt, libtqui1-emb, libtqt3c-mt
 Suggests: libtqt3-mt-psql, libtqt3-mt-mysql, libtqt3-mt-odbc
 Description: TQt GUI Library (Threaded runtime version), Version 3
  This is the Trolltech TQt library, version 3. It's necessary for
@@ -37,7 +36,6 @@ Section: libs
 Replaces: libtqt3-mt-mysql (<< 4:14.0.0~)
 Breaks: libtqt3-mt-mysql (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: libtqt3c102-mt-mysql, libtqt3c-mt-mysql
 Description: MySQL database driver for TQt3 (Threaded)
  This package contains the threaded MySQL plugin for TQt3. Install it if
  you intend to use or write TQt programs that are to access a MySQL DB.
@@ -48,7 +46,6 @@ Section: libs
 Replaces: libtqt3-mt-odbc (<< 4:14.0.0~)
 Breaks: libtqt3-mt-odbc (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: libtqt3c102-mt-odbc, libtqt3c-mt-odbc
 Description: ODBC database driver for TQt3 (Threaded)
  This package contains the threaded ODBC plugin for TQt3. Install it if
  you intend to use or write TQt programs that are to access an ODBC DB.
@@ -59,7 +56,6 @@ Section: libs
 Replaces: libtqt3-mt-psql (<< 4:14.0.0~)
 Breaks: libtqt3-mt-psql (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: libtqt3c102-mt-psql, libtqt3c-mt-psql
 Description: PostgreSQL database driver for TQt3 (Threaded)
  This package contains the threaded PostgreSQL plugin for TQt3.
  Install it if you intend to use or write TQt programs that are
@@ -69,8 +65,6 @@ Package: libtqt3-mt-ibase
 Architecture: i386 kfreebsd-i386 kfreebsd-amd64 knetbsd-i386 netbsd-i386 amd64 sparc powerpc
 Section: libs
 Depends: ${shlibs:Depends}
-Conflicts: libtqt3c102-mt-ibase
-Replaces: libtqt3c102-mt-ibase
 Description: InterBase/FireBird database driver for TQt3 (Threaded)
  This package contains the threaded InterBase/FireBird plugin
  for TQt3. Install it if you intend to use or write TQt programs
@@ -82,7 +76,6 @@ Section: libs
 Replaces: libtqt3-mt-sqlite (<< 4:14.0.0~)
 Breaks: libtqt3-mt-sqlite (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
-Conflicts: libtqt3c102-mt-sqlite
 Description: SQLite database driver for TQt3 (Threaded)
  This package contains the threaded SQLite plugin for TQt3. Install
  it if you intend to use or write TQt programs that are to access an
@@ -102,7 +95,6 @@ Depends: libxext-dev (>= 4.3.0.dfsg.1-4), libxrandr-dev (>= 4.3.0.dfsg.1-4),
  libxft-dev, libaudio-dev, libcups2-dev, libgl1-mesa-dev | libgl-dev,
  libglu1-mesa-dev | libglu-dev, libc6-dev, libtqt3-mt (= ${binary:Version}),
  libtqt3-headers (= ${binary:Version}), tqt3-dev-tools (= ${binary:Version})
-Conflicts: libtqt-mt-dev, libtqt3-emb (<= 3:3.0.3-1), libtqt3-dev
 Recommends: libtqt3-compat-headers
 Suggests: libtqt3-i18n, tqt3-doc
 Description: TQt development files (Threaded)
@@ -153,7 +145,6 @@ Replaces: tqt3-dev-tools (<< 4:14.0.0~)
 Breaks: tqt3-dev-tools (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: libtqt3-mt-dev
-Conflicts: libqt-dev (<< 3:2.3.2-10), uic (<= 3:2.3.2-9), qt3-dev-tools
 Description: TQt3 development tools
  This package contains all tools that are necessary to build programs
  that are written using TQt3. These are: qmake, uic and moc.
@@ -167,7 +158,6 @@ Breaks: tqt3-designer (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: tqt3-dev-tools
 Suggests: tqt3-assistant, tqt3-doc
-Conflicts: qt-designer (<= 3:2.3.2-9), qt-designer-doc
 Description: TQt3 Designer
  The TQt Designer is a GUI design program that interactively lets you
  construct user interfaces for the TQt library. Additionally it lets you
@@ -313,7 +303,6 @@ Replaces: tqt-x11-free-dbg (<< 4:14.0.0~)
 Breaks: tqt-x11-free-dbg (<< 4:14.0.0~)
 Priority: extra
 Depends: libtqt3-mt (= ${binary:Version}), gdb
-Conflicts: libtqt3-mt-dbg
 Description: debugging symbols for tqt-x11-free binaries
  This package contains the debugging symbols associated with tqt-x11-free.
  They will automatically be used by gdb for debugging TQt-related
