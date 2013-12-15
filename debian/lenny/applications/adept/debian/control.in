@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: @@@MAINTAINER@@@
 Uploaders: @@@UPLOADERS@@@
-Build-Depends: cdbs, debhelper (>> 4.1), quilt, dh-buildinfo, libapt-front-dev (>= 0.4.0-0.1ubuntu5), libapt-front-dev (<< 0.5), libept-dev (>= 0.5.7), libept-dev (<< 0.6), libtagcoll2-dev (>= 2.0.6), libtagcoll2-dev (<< 2.1), libwibble-dev (>= 0.1.10), libwibble-dev (<< 0.2), tdelibs14-trinity-dev (>= 3.5.0), sharutils, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
+Build-Depends: cdbs, debhelper (>> 4.1), quilt, dh-buildinfo, libapt-front-dev (>= 0.4.0-0.1ubuntu5), libapt-front-dev (<< 0.5), libept-dev (>= 0.5.7), libept-dev (<< 0.6), libtagcoll2-dev (>= 2.0.6), libtagcoll2-dev (<< 2.1), libwibble-dev (>= 0.1.10), libwibble-dev (>= 1.1) | libwibble-dev (<< 0.2), tdelibs14-trinity-dev (>= 3.5.0), sharutils, automake1.11-trinity, autoconf2.63, libtool, libltdl-dev
 Standards-Version: 3.8.3
 
 Package: adept-trinity
