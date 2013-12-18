@@ -2089,12 +2089,13 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/identity.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/info.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/inline_image.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/inline_table.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/kde1.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/trinity1.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/trinity2.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/trinity3.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/trinity4.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/trinity5.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/trinity6.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/trinity.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/kde4.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/kde5.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/kde6.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/kde.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/key_enter.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/knewstuff.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/actions/launch.png
@@ -2554,7 +2555,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/idea.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/identity.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/inline_image.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/inline_table.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/kde.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/trinity.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/key_enter.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/launch.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/actions/leftjust.png
@@ -2920,7 +2921,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/halfencrypted.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/help.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/identity.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/indent.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/kde.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/trinity.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/tdevelop_down.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/knewstuff.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/actions/launch.png
@@ -3287,7 +3288,7 @@ debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/gear.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/gohome.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/identity.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/indent.png
-debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/kde.png
+debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/trinity.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/launch.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/lock.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/actions/mail_new.png
