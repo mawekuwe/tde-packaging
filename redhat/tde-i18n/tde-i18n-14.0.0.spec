@@ -38,7 +38,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # GFDL, with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
 License:		GFDL
 Group:			User Interface/Desktops
-BuildArch:	noarch
+BuildArch:		noarch
 
 # Speed build options
 %define debug_package %{nil}
@@ -719,7 +719,7 @@ for l in %{TDE_LANGS}; do
         --prefix=%{tde_prefix} \
         --datadir=%{tde_datadir} \
         --docdir=%{tde_tdedocdir}
-      %__make %{?_smp_mflags}
+      %__make %{?_smp_mflags} || %__make || echo Error
       ) &
       sleep 3
       popd
@@ -736,6 +736,7 @@ fi
 wait
 rm -f /tmp/rpmbuild.$$
 
+
 %install
 %__rm -rf %{?buildroot}
 export PATH="%{tde_bindir}:${PATH}"
@@ -747,6 +748,7 @@ for l in %{TDE_LANGS}; do
     fi
   done
 done
+
 
 # make symlinks relative
 %if "%{tde_prefix}" == "/usr"

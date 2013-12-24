@@ -130,7 +130,11 @@ Requires:		udisks
 # UDISKS2 support
 %if 0%{?fedora} || 0%{?mdkversion} || 0%{?mgaversion} || 0%{?suse_version}
 %define with_udisks2 1
+%if 0%{?fedora} >= 20
+BuildRequires:	libudisks2-devel
+%else
 BuildRequires:	udisks2-devel
+%endif
 Requires:		udisks2
 %endif
 

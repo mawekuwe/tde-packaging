@@ -127,10 +127,10 @@ This package provides the data files necessary for running Rosegarden
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 
-%if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
-%__mkdir_p build
-cd build
-%endif
+if ! rpm -E %%cmake|grep -q "cd build"; then
+  %__mkdir_p build
+  cd build
+fi
 
 %cmake \
   -DCMAKE_BUILD_TYPE="RelWithDebInfo" \

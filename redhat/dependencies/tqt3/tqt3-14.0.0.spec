@@ -256,15 +256,15 @@ applications, as well as the README files for TQt 3.
 %{tde_libdir}/libtqui.so.1
 %{tde_libdir}/libtqui.so.1.0
 %{tde_libdir}/libtqui.so.1.0.0
-%{tde_libdir}/libdesignercore.so.1
-%{tde_libdir}/libdesignercore.so.1.0
-%{tde_libdir}/libdesignercore.so.1.0.0
-%{tde_libdir}/libeditor.so.1
-%{tde_libdir}/libeditor.so.1.0
-%{tde_libdir}/libeditor.so.1.0.0
-%{tde_libdir}/libqassistantclient.so.1
-%{tde_libdir}/libqassistantclient.so.1.0
-%{tde_libdir}/libqassistantclient.so.1.0.0
+%{tde_libdir}/libtqtdesignercore.so.1
+%{tde_libdir}/libtqtdesignercore.so.1.0
+%{tde_libdir}/libtqtdesignercore.so.1.0.0
+%{tde_libdir}/libtqteditor.so.1
+%{tde_libdir}/libtqteditor.so.1.0
+%{tde_libdir}/libtqteditor.so.1.0.0
+%{tde_libdir}/libtqassistantclient.so.1
+%{tde_libdir}/libtqassistantclient.so.1.0
+%{tde_libdir}/libtqassistantclient.so.1.0.0
 
 ##########
 
@@ -326,12 +326,12 @@ toolkit.
 %{tde_datadir}/tqt3/mkspecs/
 %{tde_datadir}/tqt3/phrasebooks/
 %{tde_includedir}/tqt3/
-%{tde_libdir}/libdesignercore.prl
-%{tde_libdir}/libdesignercore.so
-%{tde_libdir}/libeditor.prl
-%{tde_libdir}/libeditor.so
-%{tde_libdir}/libqassistantclient.prl
-%{tde_libdir}/libqassistantclient.so
+%{tde_libdir}/libtqtdesignercore.prl
+%{tde_libdir}/libtqtdesignercore.so
+%{tde_libdir}/libtqteditor.prl
+%{tde_libdir}/libtqteditor.so
+%{tde_libdir}/libtqassistantclient.prl
+%{tde_libdir}/libtqassistantclient.so
 %{tde_libdir}/libtqt-mt.so
 %{tde_libdir}/libtqt-mt.prl
 %{tde_libdir}/libtqui.so

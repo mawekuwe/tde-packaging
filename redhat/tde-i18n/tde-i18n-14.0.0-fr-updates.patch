@@ -1618,7 +1618,7 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tdeio_media.po tde-i18n-fr/messages/
 diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tderandr.po tde-i18n-fr/messages/tdebase/tderandr.po
 --- tde-i18n-fr.ORI/messages/tdebase/tderandr.po	2013-07-26 17:53:39.995658788 +0200
 +++ tde-i18n-fr/messages/tdebase/tderandr.po	2013-07-26 17:53:58.998152466 +0200
-@@ -301,3 +301,54 @@
+@@ -301,3 +301,55 @@
  "_: Refresh rate in Hertz (Hz)\n"
  "%1 Hz"
  msgstr "%1 Hz"
@@ -1671,7 +1671,6 @@ diff -Nuar tde-i18n-fr.ORI/messages/tdebase/tderandr.po tde-i18n-fr/messages/tde
 +msgid "Next available output"
 +msgstr "Sortie Vidéo suivante"
 +
-+#, c-format
 +msgid "%1 (Active)"
 +msgstr "%1 (Active)"
 +

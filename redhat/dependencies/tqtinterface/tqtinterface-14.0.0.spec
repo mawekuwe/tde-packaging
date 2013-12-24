@@ -74,8 +74,6 @@ Trinity QT Interface
 %{tde_bindir}/tqt-replace
 %{tde_bindir}/tqt-replace-stream
 %{tde_bindir}/uic-tqt
-%{tde_libdir}/libtqassistantclient.so.4
-%{tde_libdir}/libtqassistantclient.so.4.2.0
 %{tde_libdir}/libtqt.so.4
 %{tde_libdir}/libtqt.so.4.2.0
 
@@ -102,8 +100,6 @@ Development files for %{name}
 %files devel
 %defattr(-,root,root,-)
 %{tde_includedir}/tqt/
-%{tde_libdir}/libtqassistantclient.la
-%{tde_libdir}/libtqassistantclient.so
 %{tde_libdir}/libtqt.la
 %{tde_libdir}/libtqt.so
 %{tde_libdir}/pkgconfig/tqt.pc
@@ -116,9 +112,11 @@ Development files for %{name}
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -145,7 +143,7 @@ fi
   -DINCLUDE_INSTALL_DIR=%{tde_includedir}/tqt \
   -DLIB_INSTALL_DIR=%{tde_libdir} \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
-\
+  \
   -DCMAKE_LIBRARY_PATH="%{tde_libdir}" \
   -DCMAKE_INCLUDE_PATH="%{tde_includedir}" \
   \
@@ -154,19 +152,12 @@ fi
   -DUSE_QT3="ON" \
   ..
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
-
-# RHEL 5: add newline at end of include files to avoid warnings
-%if 0%{?rhel} && 0%{?rhel} <= 5
-for i in %{?buildroot}%{tde_includedir}/tqt/*.h; do
-  echo "" >>${i}
-done
-%endif
 
 # Install 'cmake' modules for development use
 %__mkdir_p %{?buildroot}%{cmake_modules_dir}

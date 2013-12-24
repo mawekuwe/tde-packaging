@@ -323,7 +323,12 @@ BuildRequires:	glib2-devel
 BuildRequires:	pcre-devel
 
 # SASL support
+%if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
+BuildRequires:	%{_lib}sasl2-devel
+%endif
+%if 0%{?suse_version}
 BuildRequires:	cyrus-sasl-devel
+%endif
 
 # LIBUSB support
 BuildRequires:	pam-devel
@@ -1997,6 +2002,7 @@ Provides:	service(graphical-login)
 # Required for Mandriva's installer
 %if 0%{?mgaversion} || 0%{?mdkversion}
 Provides:	dm
+Provides:	tdm
 %endif
 
 %description -n trinity-tdm
@@ -3026,7 +3032,7 @@ ktip provides many useful tips on using TDE when you log in.
 %{tde_tdeappdir}/ktip.desktop
 %{tde_datadir}/applnk/Toys/ktip.desktop
 %{tde_datadir}/apps/kdewizard/pics/wizard_small.png
-%{tde_datadir}/apps/kdewizard/tips/
+%{tde_datadir}/apps/kdewizard/tips
 %{tde_datadir}/autostart/ktip.desktop
 %{tde_datadir}/icons/hicolor/*/apps/ktip.*
 
@@ -3489,6 +3495,7 @@ EOF
 # Fedora 18: no more SYSV init script, we have to use systemd.
 %if 0%{?fedora} >= 18
 %__install -D -m 644 "%{SOURCE7}" "%{?buildroot}/usr/lib/systemd/system/tdm.service"
+%__sed -i "s|kdm|tdm|g" "%{?buildroot}/usr/lib/systemd/system/tdm.service"
 %endif
 
 # Symlink TDM configuration
