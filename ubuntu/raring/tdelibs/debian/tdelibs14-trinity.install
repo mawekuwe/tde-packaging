@@ -200,8 +200,8 @@ debian/tmp/opt/trinity/lib/trinity/libtdemultipart.la
 debian/tmp/opt/trinity/lib/trinity/libtdemultipart.so
 debian/tmp/opt/trinity/lib/trinity/libshellscript.la
 debian/tmp/opt/trinity/lib/trinity/libshellscript.so
-debian/tmp/opt/trinity/lib/trinity/plugins/designer/kdewidgets.la
-debian/tmp/opt/trinity/lib/trinity/plugins/designer/kdewidgets.so
+debian/tmp/opt/trinity/lib/trinity/plugins/designer/tdewidgets.la
+debian/tmp/opt/trinity/lib/trinity/plugins/designer/tdewidgets.so
 debian/tmp/opt/trinity/lib/trinity/plugins/styles/asteroid.la
 debian/tmp/opt/trinity/lib/trinity/plugins/styles/asteroid.so
 debian/tmp/opt/trinity/lib/trinity/plugins/styles/highcolor.la
