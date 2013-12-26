@@ -76,7 +76,6 @@ ttf-freefont
 unzip
 usplash
 vorbis-tools
-x-ttcidfont-conf
 xdg-user-dirs
 xkb-data
 xorg
