@@ -69,7 +69,8 @@ interface for the task of file management.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 %configure \
@@ -96,13 +97,10 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-
 # Makes 'media_safelyremove.desktop' an alternative
 %__mv -f %{buildroot}%{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop %{buildroot}%{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_d3lphin
-%__ln_s %{_sysconfdir}/alternatives/media_safelyremove.desktop_d3lphin %{buildroot}%{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop
-%__mkdir_p %{?buildroot}%{_sysconfdir}/alternatives
-%__ln_s %{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop %{?buildroot}%{_sysconfdir}/alternatives/media_safelyremove.desktop_d3lphin
 
+# Locales
 %find_lang d3lphin
 
 
@@ -124,7 +122,7 @@ update-alternatives --install \
 if [ $1 -eq 0 ]; then
   update-alternatives --remove \
     media_safelyremove.desktop_d3lphin \
-    %{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_d3lphin
+    %{tde_datadir}/apps/d3lphin/servicemenus/media_safelyremove.desktop_d3lphin || :
 fi
 
 %postun
@@ -141,7 +139,6 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/apps/d3lphin/
 %{tde_datadir}/icons/hicolor/*/apps/d3lphin.png
 %lang(en) %{tde_tdedocdir}/HTML/en/d3lphin/
-%{_sysconfdir}/alternatives/media_safelyremove.desktop_d3lphin
 
 
 %changelog

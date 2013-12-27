@@ -75,7 +75,7 @@ Source7:	xdm.oss114
 %endif
 
 # Fedora 17: special selinux policy required
-%if 0%{?fedora} == 17 ||0%{?fedora} == 19 || 0%{?rhel} == 6
+%if 0%{?fedora} >= 17 || 0%{?rhel} == 6
 %define with_selinux_policy 1
 Source8:	tdm%{?dist}.pp
 %endif
@@ -349,7 +349,12 @@ BuildRequires:	glib2-devel
 BuildRequires:	pcre-devel
 
 # SASL support
+%if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
+BuildRequires:	%{_lib}sasl2-devel
+%endif
+%if 0%{?suse_version}
 BuildRequires:	cyrus-sasl-devel
+%endif
 
 # LIBUSB support
 BuildRequires:	pam-devel
@@ -2035,6 +2040,7 @@ Provides:	service(graphical-login)
 # Required for Mandriva's installer
 %if 0%{?mgaversion} || 0%{?mdkversion}
 Provides:	dm
+Provides:	tdm
 %endif
 
 %description -n trinity-tdm
@@ -2630,7 +2636,6 @@ ever launching another application.
 %exclude %{tde_datadir}/apps/konqueror/servicemenus/installfont.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/*.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
-%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase
 %{tde_datadir}/apps/konqueror/tiles/*.png
 %{tde_datadir}/autostart/konqy_preload.desktop
 %{tde_datadir}/config.kcfg/keditbookmarks.kcfg
@@ -2894,7 +2899,7 @@ TDE will start, but many good defaults will not be set.
 %{tde_datadir}/apps/kconf_update/move_session_config.sh
 %{tde_datadir}/apps/ksmserver/pics/shutdownkonq.png
 
-# Remove conflicts with redhat-menus
+# Remove conflicts with KDE4
 %if "%{?tde_prefix}" != "/usr"
 %{tde_bindir}/plasma-desktop
 %endif
@@ -3372,6 +3377,21 @@ Windows and Samba shares.
 %__sed -i "kdm/kfrontend/genkdmconf.c" -e "s|/etc/X11/Xsession|/etc/X11/xdm/Xsession|"
 %endif
 
+# Reboot command location may vary on some distributions
+if [ -x "/usr/bin/reboot" ]; then
+  POWEROFF="/usr/bin/poweroff"
+  REBOOT="/usr/bin/reboot"
+fi
+if [ -n "${REBOOT}" ]; then
+  %__sed -i \
+    "doc/tdm/index.docbook" \
+    "doc/kcontrol/tdm/index.docbook" \
+    "kcontrol/tdm/tdm-shut.cpp" \
+    "tdm/config.def" \
+  -e "s|/sbin/poweroff|${POWEROFF}|g" \
+  -e "s|/sbin/reboot|${REBOOT}|g"
+fi
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -3414,6 +3434,7 @@ fi
   -DSYSCONF_INSTALL_DIR="%{_sysconfdir}/trinity" \
   -DXDG_MENU_INSTALL_DIR="%{_sysconfdir}/xdg/menus" \
   \
+  -DWITH_ALL_OPTIONS=ON \
   -DWITH_SASL=ON \
   -DWITH_LDAP=ON \
   -DWITH_SAMBA=ON \
@@ -3514,7 +3535,7 @@ EOF
 
 # TDM configuration
 %__sed -i "%{?buildroot}%{_sysconfdir}/trinity/kdm/kdmrc" \
-%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1220
+%if 0%{?fedora} >= 16 || 0%{?suse_version} >= 1210
 	-e "s/^#*MinShowUID=.*/MinShowUID=1000/"
 %else
 	-e "s/^#*MinShowUID=.*/MinShowUID=500/"
@@ -3530,11 +3551,8 @@ EOF
 
 # Makes 'media_safelyremove.desktop' an alternative
 %__mv -f "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase"
-%__ln_s "%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop"
-%__mkdir_p "%{?buildroot}%{_sysconfdir}/alternatives"
-%__ln_s "%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase" "%{?buildroot}%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase"
 
-# SUSE: creates DM config file, used by '/etc/init.d/xdm'
+# SUSE >= 12 : creates DM config file, used by '/etc/init.d/xdm'
 #  You must set 'DISPLAYMANAGER=tdm' in '/etc/sysconfig/displaymanager'
 %if 0%{?suse_version} >= 1210
 %__install -D -m 644 "%{SOURCE6}" "%{?buildroot}/usr/lib/X11/displaymanagers/tdm"

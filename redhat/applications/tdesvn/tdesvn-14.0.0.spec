@@ -158,19 +158,14 @@ export PATH="%{_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot} -C build
 
-
 # Installs SVN protocols as alternatives
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+file.protocol %{?buildroot}%{tde_datadir}/services/svn+file.protocol_tdesvn
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+http.protocol %{?buildroot}%{tde_datadir}/services/svn+http.protocol_tdesvn
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+https.protocol %{?buildroot}%{tde_datadir}/services/svn+https.protocol_tdesvn
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol_tdesvn
 %__mv -f %{?buildroot}%{tde_datadir}/services/svn.protocol %{?buildroot}%{tde_datadir}/services/svn.protocol_tdesvn
-%__ln_s /etc/alternatives/svn+file.protocol %{?buildroot}%{tde_datadir}/services/svn+file.protocol
-%__ln_s /etc/alternatives/svn+http.protocol %{?buildroot}%{tde_datadir}/services/svn+http.protocol
-%__ln_s /etc/alternatives/svn+https.protocol %{?buildroot}%{tde_datadir}/services/svn+https.protocol
-%__ln_s /etc/alternatives/svn+ssh.protocol %{?buildroot}%{tde_datadir}/services/svn+ssh.protocol
-%__ln_s /etc/alternatives/svn.protocol %{?buildroot}%{tde_datadir}/services/svn.protocol
 
+# Locales
 %find_lang %{tde_pkg}
 
 
@@ -203,7 +198,7 @@ if [ $1 -eq 0 ]; then
   for proto in svn+file svn+http svn+https svn+ssh svn; do
     update-alternatives --remove \
       ${proto}.protocol \
-      %{tde_datadir}/services/${proto}.protocol_tdesvn
+      %{tde_datadir}/services/${proto}.protocol_tdesvn || :
   done
 fi
 
@@ -264,11 +259,6 @@ fi
 %{tde_datadir}/services/ksvn+https.protocol
 %{tde_datadir}/services/ksvn+ssh.protocol
 %{tde_datadir}/services/ksvn.protocol
-%{tde_datadir}/services/svn+file.protocol
-%{tde_datadir}/services/svn+http.protocol
-%{tde_datadir}/services/svn+https.protocol
-%{tde_datadir}/services/svn+ssh.protocol
-%{tde_datadir}/services/svn.protocol
 %{tde_datadir}/services/svn+file.protocol_tdesvn
 %{tde_datadir}/services/svn+http.protocol_tdesvn
 %{tde_datadir}/services/svn+https.protocol_tdesvn

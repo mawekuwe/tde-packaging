@@ -2047,14 +2047,17 @@ already. Most users won't need this.
 %config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity
 %config(noreplace) %{_sysconfdir}/pam.d/tdm-trinity-np
 %endif
-%if 0%{?suse_version}
+
+# Distribution specific stuff
+%if 0%{?suse_version} == 1140
+%{_sysconfdir}/init.d/xdm.tde
+%endif
+%if 0%{?suse_version} >= 1210
 /usr/lib/X11/displaymanagers/tdm
 %endif
 %if 0%{?fedora} >= 18
 /usr/lib/systemd/system/tdm.service
 %endif
-
-# Distribution specific stuff
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version}
 %{_datadir}/xsessions/tde.desktop
 %endif
@@ -2105,6 +2108,11 @@ if [ "$1" = "1" ]; then
     %__sed -i "%{_sysconfdir}/trinity/tdm/tdmrc" -e "s|^#*Language=.*|Language=${LANG}|"
   fi
 fi
+# openSUSE 11.4 tdm's startup script
+if [ -r "%{_sysconfdir}/init.d/xdm.tde" ]; then
+  cat "%{_sysconfdir}/init.d/xdm.tde" >"%{_sysconfdir}/init.d/xdm"
+fi
+
 
 %posttrans -n trinity-tdm
 # Make sure that TDM configuration files are now under '/etc/trinity/tdm'
@@ -2589,7 +2597,6 @@ ever launching another application.
 %exclude %{tde_datadir}/apps/konqueror/servicemenus/installfont.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/*.desktop
 %{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase
-%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase
 %{tde_datadir}/apps/konqueror/tiles/*.png
 %{tde_datadir}/autostart/konqy_preload.desktop
 %{tde_datadir}/config.kcfg/keditbookmarks.kcfg
@@ -3481,9 +3488,6 @@ EOF
 
 # Makes 'media_safelyremove.desktop' an alternative
 %__mv -f "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase"
-%__ln_s "%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase" "%{buildroot}%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop"
-%__mkdir_p "%{?buildroot}%{_sysconfdir}/alternatives"
-%__ln_s "%{tde_datadir}/apps/konqueror/servicemenus/media_safelyremove.desktop_tdebase" "%{?buildroot}%{_sysconfdir}/alternatives/media_safelyremove.desktop_tdebase"
 
 # SUSE >= 12 : creates DM config file, used by '/etc/init.d/xdm'
 #  You must set 'DISPLAYMANAGER=tdm' in '/etc/sysconfig/displaymanager'
@@ -3510,6 +3514,11 @@ EOF
 # Mageia icon
 %if 0%{?mgaversion} >= 3
 %__install -D -m 644 "%{SOURCE9}" "%{?buildroot}%{tde_datadir}/oxygen/scalable/mgabutton.svg"
+%endif
+
+# openSUSE 11.4: tdm startup script
+%if 0%{?suse_version} == 1140
+%__install -D -m 755 "%{SOURCE7}" "%{?buildroot}%{?_sysconfdir}/init.d/xdm.tde"
 %endif
 
 
