@@ -1,6 +1,6 @@
 This is a unsorted quick notes about TDE build issues, by distribution.
 
-ALL DISTRIBUTIONS (or almost)
+ALL DISTRIBUTIONS (or almost):
 Some libraries are required but not provided by distribution anymore.
 You can find them in "3rdparty" folder.
 
@@ -11,15 +11,14 @@ wv2 : required for koffice
 
 
 CENTOS 6:
-ligogg-devel package is missing: /usr/lib[64]/libogg.la .
+ligogg-devel package is missing file '/usr/lib[64]/libogg.la'
 Missing header 'jpegint.h'
 
 
 MAGEIA 2/3:
 Remove db4-devel and install db5-devel only.
 Several version of postgresl-devel exist.
-Ensure you have the latest one installed, or you will build against
-an old one !
+Ensure you have the latest one installed, or you will build against an old one !
 MGA2: 9.1
 MGA3: 9.2
 
@@ -31,9 +30,14 @@ I had to build newer version in order to have TDE function correctly.
  poppler (built as trinity-poppler)
 
 
-OPENSUSE (all version)
+OPENSUSE 11.x and 12.x 
 Missing cmake macros for RPM.
-Manually copy file 'macros.cmake' to '/etc/rpm'
+Manually copy file 'macros.cmake' from Fedora to '/etc/rpm'
+Starting with OSS 13.1, the cmake macro is here.
+
+
+OPENSUSE 13.1
+Macro '%suse_version' has value 1230 instead of 1310. Need manual fixing.
 
 
 OPENSUSE 11.4
@@ -42,7 +46,16 @@ Edit file '/usr/lib/pkgconfig/libical.pc'
 Then change as follow:
   Cflags: -I${includedir}/libical
 
-Avoid relinking error on i18n (e.g. rpmbuild fails in amarok):
+To avoid relinking error on i18n (e.g. rpmbuild fails in amarok), create symlink manually on build system:
  for i in ar bg bn ca cs da de el en_GB es et fi fr he hi hu is it ja lt nl nb nn pa pl pt pt_BR ro ru sk sl sr sv ta tr uk zh_CN zh_TW; do
    mkdir -p /opt/trinity/share/doc/tde/HTML/$i/common
  done
+
+
+FEDORA 20
+kopete-otr: Missing 'libotr3' autotools macros. Need to put manually '.m4' file from source package in correct folder.
+
+
+PCLINUXOS:
+Many '.la' files are missing under '/usr/lib'. Need manual creation.
+

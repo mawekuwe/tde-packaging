@@ -43,8 +43,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch0:			python-trinity-14.0.0-ftbfs.patch
-Patch1:			python-trinity-14.0.0-ftbfs2.patch
+#Patch0:			python-trinity-14.0.0-ftbfs.patch
+#Patch1:			python-trinity-14.0.0-ftbfs2.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -117,7 +117,7 @@ tips and working code you can use to learn from.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %if 0%{?suse_version} == 1310
-%patch0 -p1 -b .ftbfs
+#patch0 -p1 -b .ftbfs
 #patch1 -p1 -b .ftbfs
 %endif
 

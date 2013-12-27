@@ -147,8 +147,8 @@ if ! is_installed trinity-desktop; then
   eval ${PKGINST} trinity-desktop || exit 1
 fi
 # Disable trinity repository from here !!!
-if [ -r "/etc/yum.repos.d/trinity-3.5.13.repo" ]; then
-  sudo sed -i "/etc/yum.repos.d/trinity-3.5.13.repo" -e "s|enabled=.*|enabled=0|g"
+if [ -r "/etc/yum.repos.d/trinity-r14.repo" ]; then
+  sudo sed -i "/etc/yum.repos.d/trinity-r14.repo" -e "s|enabled=.*|enabled=0|g"
 fi
 
 # devel packages

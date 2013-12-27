@@ -233,7 +233,7 @@ Requires: trinity-ksvg = %{version}-%{release}
 Requires: trinity-kview = %{version}-%{release}
 Requires: trinity-kviewshell = %{version}-%{release}
 Requires: trinity-libkscan = %{version}-%{release}
-Requires: %{name}-libpoppler-tqt = %{version}-%{release}
+Requires: trinity-libpoppler-tqt = %{version}-%{release}
 
 %description
 Graphics applications for the Trinity Desktop Environment, including
@@ -1125,38 +1125,44 @@ This package contains development files for Trinity's scanner library.
 
 ##########
 
-%package libpoppler-tqt
+%package -n trinity-libpoppler-tqt
 Summary:	TQt support for Poppler
 Group:		Environment/Libraries
+Obsoletes:	poppler-tqt < %{version}-%{release}
 Provides:	poppler-tqt = %{version}-%{release}
+Obsoletes:	%{name}-poppler-tqt < %{version}-%{release}
+Provides:	%{name}-poppler-tqt = %{version}-%{release}
 
-%description libpoppler-tqt
+%description -n trinity-libpoppler-tqt
 TQt support library for Poppler.
 This library is used by the Trinity graphics file plugins for PDF support.
 
-%files libpoppler-tqt
+%files -n trinity-libpoppler-tqt
 %defattr(-,root,root,-)
 %{tde_libdir}/libpoppler-tqt.so.*
 
-%post libpoppler-tqt
+%post -n trinity-libpoppler-tqt
 /sbin/ldconfig || :
 
-%postun libpoppler-tqt
+%postun -n trinity-libpoppler-tqt
 /sbin/ldconfig || :
 
 ##########
 
-%package libpoppler-tqt-devel
+%package -n trinity-libpoppler-tqt-devel
 Summary:	Development files for TQt support for Poppler
 Group:		Development/Libraries
-Requires:	%{name}-libpoppler-tqt
+Requires:	trinity-libpoppler-tqt = %{version}-%{release}
+Obsoletes:	poppler-tqt-devel < %{version}-%{release}
 Provides:	poppler-tqt-devel = %{version}-%{release}
+Obsoletes:	%{name}-poppler-tqt-devel < %{version}-%{release}
+Provides:	%{name}-poppler-tqt-devel = %{version}-%{release}
 
-%description libpoppler-tqt-devel
+%description -n trinity-libpoppler-tqt-devel
 Development files of TQt support library for Poppler.
 This package contains the development files needed to compile applications against poppler-tqt.
 
-%files libpoppler-tqt-devel
+%files -n trinity-libpoppler-tqt-devel
 %defattr(-,root,root,-)
 %{tde_tdeincludedir}/poppler-link-qt3.h
 %{tde_tdeincludedir}/poppler-page-transition.h
@@ -1165,10 +1171,10 @@ This package contains the development files needed to compile applications again
 %{tde_libdir}/libpoppler-tqt.so
 %{tde_libdir}/pkgconfig/poppler-tqt.pc
 
-%post libpoppler-tqt-devel
+%post -n trinity-libpoppler-tqt-devel
 /sbin/ldconfig || :
 
-%postun libpoppler-tqt-devel
+%postun -n trinity-libpoppler-tqt-devel
 /sbin/ldconfig || :
 
 ##########
@@ -1182,7 +1188,7 @@ Provides:	trinity-kdegraphics-devel = %{version}-%{release}
 
 Requires: %{name} = %{version}-%{release}
 Requires: trinity-libkscan-devel = %{version}-%{release}
-Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
+Requires: trinity-libpoppler-tqt-devel = %{version}-%{release}
 
 %description devel
 %{summary}.
