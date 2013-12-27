@@ -94,7 +94,6 @@ Packages used for X preconfiguration are just Recommends; removing them after in
 
 Fonts:
 
- * x-ttcidfont-conf
  * ttf-bitstream-vera
  * ttf-dejavu                    # includes characters missing in Vera
  * ttf-freefont
