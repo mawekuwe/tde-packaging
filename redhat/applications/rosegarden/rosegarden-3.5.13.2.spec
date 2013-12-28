@@ -124,7 +124,8 @@ This package provides the data files necessary for running Rosegarden
 
 
 %build
-unset QTDIR && . %{_sysconfdir}/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. %{_sysconfdir}/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"

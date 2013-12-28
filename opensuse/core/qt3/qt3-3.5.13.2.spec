@@ -59,7 +59,7 @@ Patch135:       parseFontName.diff
 Patch136:       qt3-no-date.diff
 Patch139:       gcc46.diff
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 #Remember also to modify Requires in -devel package
 BuildRequires:  c++_compiler
@@ -82,10 +82,10 @@ BuildRequires:	glu-devel
 %if %suse_version >= 1310
 BuildRequires:  libpng16-compat-devel
 %endif
-%if %suse_version >= 1210 && %suse_version < 1300
+%if %suse_version == 1230
 BuildRequires:  libpng15-compat-devel
 %endif
-%if %suse_version >= 1110 && %suse_version < 1200
+%if %suse_version >= 1110 && %suse_version <= 1220
 BuildRequires:  libpng14-compat-devel
 %endif
 
@@ -338,7 +338,7 @@ fi
 %lang(zh) /usr/lib/qt3/translations/qt_zh-tw.qm
 %config(noreplace) /etc/X11/qtrc
 %ifarch s390x sparc64 x86_64 ppc64 mips64
-%dir %{_libdir}/qt3
+%{_libdir}/qt3
 %endif
 
 %files devel

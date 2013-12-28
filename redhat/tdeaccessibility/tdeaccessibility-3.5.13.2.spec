@@ -56,7 +56,9 @@ BuildRequires: libXtst-devel
 BuildRequires:	libxcb-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?pclinuxos} == 0
 BuildRequires:	%{_lib}xcb-devel
+%endif
 %endif
 
 %if 0%{?mgaversion} || 0%{?mdkversion}

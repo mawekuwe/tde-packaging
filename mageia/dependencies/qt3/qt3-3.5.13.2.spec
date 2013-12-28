@@ -27,7 +27,7 @@
 
 Name: qt3
 Version: 3.3.8.d
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv3+ and QPL
 Summary: Qt3 Sources
 Group: System/Libraries
@@ -73,7 +73,7 @@ Buildroot: %_tmppath/%name-%version-%release-root
 %if %buildSQL
 BuildRequires: mysql-devel 
 BuildRequires: unixODBC-devel 
-BuildRequires: libpq-devel
+BuildRequires: postgresql-devel
 %endif
 BuildRequires: freetype2-devel
 BuildRequires: mesaglu-devel
@@ -99,7 +99,6 @@ BuildRequires: pkgconfig(libpng15)
 BuildRequires: zlib-devel 
 BuildRequires: nas-devel
 BuildRequires: libiodbc-devel
-BuildRequires: postgresql-devel
 BuildRequires: cups-devel
 
 %if "%{_lib}" != "lib"
@@ -787,11 +786,20 @@ install -m 0755 %SOURCE9 %buildroot/%_sysconfdir/X11/xinit.d/
 
 # Fix all buildroot paths
 
+#
+# Fix path in qmake.conf
+#
+%__sed -i ${RPM_BUILD_ROOT}/usr/lib/qt3/mkspecs/*/qmake.conf \
+  -e "s|QMAKE_LIBDIR_QT		=.*|QMAKE_LIBDIR_QT		= %{_libdir}|"
+
 %clean
 rm -fr %buildroot
 
 
 %changelog
+* Mon Sep 09 2013 Francois Andriot <francois.andriot@free.fr> 3.3.8.d-5
+- Fix path in qmake.conf
+
 * Sat Jan 19 2013 Francois Andriot <francois.andriot@free.fr> 3.3.8.d-4
 - Initial release for TDE 3.5.13.2
 

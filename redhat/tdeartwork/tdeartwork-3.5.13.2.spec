@@ -636,7 +636,7 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
-%if 0%{?fedora} >= 15
+%if 0%{?fedora} >= 15 || 0%{?pclinuxos}
 %{tde_datadir}/applnk/System/ScreenSavers/companioncube.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/hilbert.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/rubikblocks.desktop
@@ -644,11 +644,15 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
-%if 0%{?fedora} >= 18
+%if 0%{?fedora} >= 18 || 0%{?pclinuxos}
 %{tde_datadir}/applnk/System/ScreenSavers/hexadrop.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/kaleidocycle.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/quasicrystal.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/unknownpleasures.desktop
+%endif
+
+%if 0%{?fedora} >= 20
+%{tde_datadir}/applnk/System/ScreenSavers/geodesic.desktop
 %endif
 
 %endif

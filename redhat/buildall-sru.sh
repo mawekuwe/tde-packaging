@@ -25,6 +25,11 @@ elif [ -x /usr/bin/yum ]; then
   PKGINST='sudo yum install -y'
   PKGDEL='sudo yum remove -y'
   REPOUPDATE='(cd $(rpm -E %{_rpmdir}); createrepo $(uname -i); createrepo noarch; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
+elif [ -x /usr/bin/apt-get ]; then
+  PKGMGR="apt-get"
+  PKGINST='sudo apt-get install -y'
+  PKGDEL='sudo apt-get remove -y'
+  REPOUPDATE='(cd $(rpm -E %{_rpmdir}); genpkglist $PWD noarch; genpkglist $PWD i586; genpkglist $PWD x86_64; genbasedir $PWD i586 x86_64 noarch; sudo apt-get update)'
 fi
 
 BUILDDIR=$(rpm -E "%{_builddir}")

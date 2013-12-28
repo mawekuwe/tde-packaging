@@ -59,7 +59,11 @@ BuildRequires: openssl-devel
 %if 0%{?rhel} || 0%{?fedora} || 0%{?suse_version} >= 1220 || 0%{?mdkversion} || 0%{?mgaversion}
 %define with_db 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?pclinuxos}
+BuildRequires:	db4-devel
+%else
 BuildRequires:	db5-devel
+%endif
 %endif
 %if 0%{?fedora} >= 18
 BuildRequires:	libdb-devel

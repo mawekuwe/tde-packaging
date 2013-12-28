@@ -136,11 +136,7 @@ export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 # Shitty hack to add LDFLAGS
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %__sed -i */Makefile \
-%if 0%{?pclinuxos}
-	-e "/^LIBS = / s|$| -lpython2.6 -lDCOP -lkdecore -lkdefx -lkdeui -lkresources -lkabc -lkparts -lkio|"
-%else
 	-e "/^LIBS = / s|$| -lpython2.7 -lDCOP -lkdecore -lkdefx -lkdeui -lkresources -lkabc -lkparts -lkio|"
-%endif
 %endif
 
 %__make %{_smp_mflags}

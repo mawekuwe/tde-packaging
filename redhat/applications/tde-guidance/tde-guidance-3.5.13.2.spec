@@ -270,7 +270,8 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 export KDEDIR=%{tde_prefix}
@@ -291,7 +292,8 @@ fi
 
 
 %install
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export EXTRA_MODULE_DIR="%{python_sitearch}/%{name}"
 
@@ -389,7 +391,7 @@ chrpath -r %{tde_libdir} %{buildroot}%{tde_tdelibdir}/kcm_*.so
 # generate guidance-power-manager script
 cat <<EOF >%{buildroot}%{tde_bindir}/guidance-power-manager
 #!/bin/sh
-export PYTHONPATH=%{python_sitearch}/%{name}
+export PYTHONPATH=%{python_sitearch}/%{name}:%{python_sitearch}/python-qt3
 %{python_sitearch}/%{name}/guidance-power-manager.py &
 EOF
 chmod +x %{buildroot}%{tde_bindir}/guidance-power-manager

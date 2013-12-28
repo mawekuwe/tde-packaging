@@ -130,13 +130,15 @@ BuildRequires:	libXt-devel
 # XINE support
 %if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_xine 1
+%if 0%{?pclinuxos} == 0
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires: %{_lib}xine1.2-devel
+%endif
 %endif
 %if 0%{?fedora} || 0%{?rhel}
 BuildRequires: xine-lib-devel
 %endif
-%if 0%{?suse_version}
+%if 0%{?suse_version} || 0%{?pclinuxos}
 BuildRequires: libxine-devel
 %endif
 %endif

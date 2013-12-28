@@ -32,7 +32,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:	kcmartsrc-pulseaudio
 
-Patch0:		arts-3.5.13.2-pkgconfig_requires.patch
+Patch1:		arts-3.5.13.2-pkgconfig_requires.patch
 
 BuildRequires:	cmake >= 2.8
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -196,6 +196,7 @@ Requires:	%{name} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .mad
 
 
 %build

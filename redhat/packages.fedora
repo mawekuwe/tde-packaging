@@ -18,6 +18,7 @@ cmake
 commoncpp2-devel
 cppunit-devel
 createrepo
+db4-devel
 djvulibre
 djvulibre-devel
 esound-devel
@@ -64,6 +65,7 @@ libdvdread-devel
 libfontenc-devel
 libgadu-devel
 libgpod-devel
+libgsf-devel
 libgssapi-devel
 libical-devel
 libidn-devel
