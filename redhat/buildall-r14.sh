@@ -105,6 +105,7 @@ grpiud dependencies/arts
 grpiud dependencies/libart-lgpl
 grpiud dependencies/libcaldav
 grpiud dependencies/libcarddav
+grpiud dependencies/sip4-tqt
 grpiud dependencies/tqca
 if [ "${DIST}" != ".el4" ]; then
   grpiud dependencies/avahi-tqt

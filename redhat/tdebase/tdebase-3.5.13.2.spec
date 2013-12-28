@@ -198,18 +198,6 @@ Requires:	fedora-release-notes
 %define tde_aboutpage /usr/share/doc/fedora-release-notes-19/index.html
 %endif
 
-# Fedora 20 Theme: "Heisenburg"
-%if 0%{?fedora} == 20
-Requires:	heisenbug-backgrounds-base
-%define tde_bg /usr/share/backgrounds/heisenbug/default/standard/heisenbug.png
-Requires:	fedora-logos
-%define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
-
-Requires:	fedora-release-notes
-%define tde_aboutlabel Fedora 20
-%define tde_aboutpage /usr/share/doc/fedora-release-notes/index.html
-%endif
-
 # RHEL 4 Theme
 %if 0%{?rhel} == 4
 Requires:	desktop-backgrounds-basic
@@ -367,12 +355,7 @@ BuildRequires:	glib2-devel
 BuildRequires:	pcre-devel
 
 # SASL support
-%if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
-BuildRequires:	%{_lib}sasl2-devel
-%endif
-%if 0%{?suse_version}
 BuildRequires:	cyrus-sasl-devel
-%endif
 
 # LIBUSB support
 BuildRequires:	pam-devel
@@ -3567,7 +3550,6 @@ EOF
 # Fedora 18: no more SYSV init script, we have to use systemd.
 %if 0%{?fedora} >= 18
 %__install -D -m 644 "%{SOURCE7}" "%{?buildroot}/usr/lib/systemd/system/tdm.service"
-%__sed -i "s|tdm|kdm|g" "%{?buildroot}/usr/lib/systemd/system/tdm.service"
 %endif
 
 # Symlink TDM configuration

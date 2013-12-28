@@ -43,8 +43,8 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-#Patch0:			python-trinity-14.0.0-ftbfs.patch
-#Patch1:			python-trinity-14.0.0-ftbfs2.patch
+Patch1:			python-trinity-14.0.0-sip4_tqt.patch
+Patch2:			python-trinity-14.0.0-python_tqt.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -55,22 +55,11 @@ BuildRequires:	gettext
 # PYTHON support
 BuildRequires:	python
 BuildRequires:	trinity-python-tqt-devel
+Requires:		trinity-python-tqt
 
-
-# SIP support
-%if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
-# RHEL 4/5 comes with old version, so we brought ours ...
-BuildRequires:	trinity-sip-devel
-%endif
-%if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	python-sip
-%endif
-%if 0%{?rhel} >= 6 || 0%{?fedora}
-BuildRequires:	sip-devel
-%endif
-%if 0%{?suse_version}
-BuildRequires:	python-sip-devel
-%endif
+# SIP
+BuildRequires:	trinity-sip4-tqt-devel >= 4.10.5
+Requires:		trinity-sip4-tqt >= 4.10.5
 
 Obsoletes:	python-trinity < %{version}-%{release}
 Provides:	python-trinity = %{version}-%{release}
@@ -78,7 +67,7 @@ Provides:	python-trinity = %{version}-%{release}
 %description
 Python binding module that provides wide access to the Trinity API,
 also known as PyTDE. Using this, you'll get (for example) classes
-from kio, kjs, khtml and kprint.
+from tdeio, tdejs, tdehtml and tdeprint.
 
 
 %package devel
@@ -116,10 +105,8 @@ tips and working code you can use to learn from.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%if 0%{?suse_version} == 1310
-#patch0 -p1 -b .ftbfs
-#patch1 -p1 -b .ftbfs
-%endif
+%patch1 -p1 -b .sip4tqt
+%patch2 -p1 -b .pythontqt
 
 
 %build

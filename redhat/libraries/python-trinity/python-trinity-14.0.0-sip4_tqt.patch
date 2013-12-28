@@ -1,0 +1,23 @@
+--- python-trinity/configure.py.ORI	2013-12-28 15:55:54.269299304 +0100
++++ python-trinity/configure.py	2013-12-28 15:56:05.611221484 +0100
+@@ -30,7 +30,7 @@
+ import py_compile
+ 
+ try:
+-    import sipconfig
++    from sip4_tqt import sipconfig
+ except:
+     print ("Can't find sipconfig.py (expected in sys.path)")
+     print ("Have you built the correct version of sip?")
+--- python-trinity/pytdeconfig.py.in.ORI	2013-12-28 15:57:53.618481027 +0100
++++ python-trinity/pytdeconfig.py.in	2013-12-28 15:58:05.467399833 +0100
+@@ -22,7 +22,8 @@
+ # modules that %Import PyKDE modules.
+ 
+ 
+-import sipconfig, pyqtconfig
++from sip4_tqt import sipconfig
++import pyqtconfig
+ 
+ 
+ # These are installation specific values created when PyTQt was configured.

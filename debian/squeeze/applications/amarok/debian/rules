@@ -3,7 +3,7 @@
 ### CDBS INCLUDES
 include /usr/share/cdbs/1/rules/debhelper.mk
 include debian/cdbs/debian-qt-kde.mk
-include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+#include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man

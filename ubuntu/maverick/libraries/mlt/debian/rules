@@ -44,7 +44,7 @@ ifeq "$(DEBIAN_ARCH)" "amd64"
 	CONFIGURE_OPTS = --enable-motion-est
 endif
 
-include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+#include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 post-patches::
 	dh_testdir
