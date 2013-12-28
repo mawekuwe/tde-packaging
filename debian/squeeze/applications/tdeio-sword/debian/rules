@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+#include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 include debian/cdbs/kde.mk
 
 DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include

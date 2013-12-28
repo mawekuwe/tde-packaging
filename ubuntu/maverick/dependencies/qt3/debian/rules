@@ -29,7 +29,7 @@ endif #sparc
 endif #hurd
 
 # quilt stuff
-include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+#include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 # build variables (directorys)
 DEBIAN = $(shell pwd)/debian
