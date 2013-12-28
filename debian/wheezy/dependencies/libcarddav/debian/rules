@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-include /usr/share/cdbs/1/rules/patchsys-quilt.mk
+#include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
 # Uncomment this to turn on verbose mode. 
 #export DH_VERBOSE=1
