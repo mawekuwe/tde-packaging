@@ -120,7 +120,7 @@ if [ $1 -eq 0 ]; then
   for f in konqueror d3lphin; do
     update-alternatives --remove \
       media_safelyremove.desktop_${f} \
-      %{tde_datadir}/apps/${f}/servicemenus/media_safelyremove.desktop_tdeio-umountwrapper
+      %{tde_datadir}/apps/${f}/servicemenus/media_safelyremove.desktop_tdeio-umountwrapper || :
   done
 fi
 

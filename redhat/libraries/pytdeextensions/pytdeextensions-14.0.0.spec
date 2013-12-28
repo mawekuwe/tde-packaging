@@ -41,9 +41,11 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-
+# [pytdeextensions] Port to TQT3
+Patch1:		pytdeextensions-14.0.0-tqt.patch
+Patch2:		pytdeextensions-14.0.0-python_tqt.patch
 # [pykdeextensions] Fix hardcoded path to Guidance python libraries [Bug #999]
-Patch2:		pykdeextensions-3.5.13.2-fix_extra_module_dir.patch
+Patch3:		pytdeextensions-14.0.0-fix_extra_module_dir.patch
 # [pykdeextensions] Fix include directory search location
 Patch5:		pytdeextensions-14.0.0-fix_include_dir.patch
 
@@ -56,8 +58,15 @@ BuildRequires:	gettext
 BuildRequires:	trinity-python-tqt-devel
 BuildRequires:	trinity-python-trinity-devel
 BuildRequires:	trinity-pytqt-tools
+Requires:		trinity-python-tqt
+Requires:		trinity-python-trinity
 
 Requires:		trinity-libpythonize0 = %{version}-%{release}
+
+# SIP
+BuildRequires:	trinity-sip4-tqt-devel >= 4.10.5
+Requires:		trinity-sip4-tqt >= 4.10.5
+
 
 Obsoletes:		trinity-pykdeextensions < %{version}-%{release}
 Provides:		trinity-pykdeextensions = %{version}-%{release}
@@ -145,19 +154,23 @@ Requires:		trinity-libpythonize0-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch2 -p1 -b .extramodule
+%patch1 -p1 -b .tqt3
+%patch2 -p1 -b .pythontqt
+%patch3 -p1 -b .extramodule
 %patch5 -p1 -b .incdir
 
 # Changes library directory to 'lib64'
 # Also other fixes for distributions ...
 for f in src/*.py; do
   %__sed -i "${f}" \
-    -e "s|%{tde_prefix}/lib/|%{tde_libdir}/|g" \
-    -e "s|/usr/lib/pyshared/python\*|%{python_sitearch}|g" \
+    -e "s|'pyqt-dir='.*'|'pyqt-dir=','%{python_sitearch}/python_tqt'|g" \
+    -e "s|self.pyqt_dir = .*|self.pyqt_dir = \"%{python_sitearch}/python_tqt\"|g" \
     -e "s|'pytde-dir=',None,|'pytde-dir=','%{python_sitearch}',|g" \
     -e "s|self.pytde_dir = None|self.pytde_dir = \"%{python_sitearch}\"|g" \
-    -e "s|%{tde_includedir}/kde|%{tde_tdeincludedir}|g" \
-    -e 's|"/kde"|"/tde"|'
+    -e "s|%{tde_includedir}/tde|%{tde_tdeincludedir}|g" \
+    -e 's|"/kde"|"/tde"|' \
+    -e 's|"-I" + self.kde_inc_dir + "/tde"|"-I/opt/trinity/include"|' \
+    -e "s|/usr/lib/pyshared/python\*|%{python_sitearch}|g"
 done
 
 # Do not look for 'libpython2.x.so' (from -devel) package.
@@ -176,9 +189,14 @@ export PATH="%{tde_bindir}:${PATH}"
 %__mkdir_p build
 ./setup.py build_libpythonize
 
+
 %install
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
+#export PYTHONPATH=%{python_sitearch}/python-tqt
+
+# Support for 'sip4-tqt'
+#export PYTHONPATH=%{python_sitearch}/sip4_tqt:${PYTHONPATH}
 
 # Avoids 'error: byte-compiling is disabled.' on Mandriva/Mageia
 export PYTHONDONTWRITEBYTECODE=

@@ -1,17 +1,20 @@
-# Some distribution already provides this package.
-#  Mageia 3
+# Default version for this component
+%define tde_pkg sip4-tqt
+%define tde_version 14.0.0
+
+# If TDE is built in a specific prefix (e.g. /opt/trinity), the release will be suffixed with ".opt".
+%if "%{?tde_prefix}" != "/usr"
+%define _variant .opt
+%endif
 
 %{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
-# Always install under standard prefix
-%define tde_prefix /usr
-
+%define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
 
-Name:		trinity-sip4-tqt
-Epoch:		2
-Version:	14.0.0
+Name:		trinity-%{tde_pkg}
+Version:	4.10.5
 Release:	%{?!preversion:1}%{?preversion:0_%{preversion}}%{?dist}%{?_variant}
 License:	GPL
 Summary:	Python/C++ bindings generator runtime library
@@ -23,48 +26,41 @@ Packager:	Francois Andriot <francois.andriot@free.fr>
 Prefix:		%{tde_prefix}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
+Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{version}
 
 # TDE specific building variables
-BuildRequires:	cmake >= 2.8
-BuildRequires:	trinity-tqt3-devel >= %{version}
+BuildRequires:	python
+BuildRequires:	trinity-tqt3-devel >= 3.5.0
 
 %description
-
-##########
-
-%package -n python-sip
-Summary:	Python/C++ bindings generator runtime library
-Epoch:		2
-
-%description -n python-sip
 SIP is a tool for generating bindings for C++ classes with some ideas
 borrowed from SWIG, but capable of tighter bindings because of its
 specificity towards C++ and Python.
 
-%post -n python-sip
+%post
 /sbin/ldconfig || :
 
-%postun -n python-sip
+%postun
 /sbin/ldconfig || :
 
-%files -n python-sip
+%files
 %defattr(-,root,root,-)
-%{python_sitearch}/sip.so
-%{python_sitearch}/sipconfig.py
-%{python_sitearch}/sipdistutils.py
-
+%dir %{python_sitearch}/sip4_tqt
+%{python_sitearch}/sip4_tqt/sip.so
+%{python_sitearch}/sip4_tqt/sipconfig.py*
+%{python_sitearch}/sip4_tqt/sipdistutils.py*
+%{python_sitearch}/sip4_tqt/__init__.py*
 
 ##########
 
-%package -n python-sip-devel
+%package devel
 Summary:		Python/C++ bindings generator development files
 Group:			Development/Libraries
-Requires:		python-sip = %{version}-%{release}
+Requires:		%{name} = %{version}-%{release}
 
-%description -n python-sip-devel
+%description devel
 SIP is a tool for generating bindings for C++ classes with some ideas
 borrowed from SWIG, but capable of tighter bindings because of its
 specificity towards C++ and Python.
@@ -86,16 +82,16 @@ Features:
 This package contains the code generator tool and the development headers
 needed to develop Python bindings with sip.
 
-%post -n python-sip-devel
+%post devel
 /sbin/ldconfig || :
 
-%postun -n python-sip-devel
+%postun devel
 /sbin/ldconfig || :
 
-%files -n python-sip-devel
+%files devel
 %defattr(-,root,root,-)
-%{_bindir}/sip
-%{_includedir}/python*/sip.h
+%{tde_bindir}/sip
+%{tde_includedir}/sip.h
 
 ##########
 
@@ -103,9 +99,10 @@ needed to develop Python bindings with sip.
 %debug_package
 %endif
 
+##########
 
 %prep
-%setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 
 %build
@@ -115,7 +112,9 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 mkdir build
 cd build
 python ../configure.py \
-	-d %{python_sitearch} \
+	-b %{tde_bindir} \
+	-d %{python_sitearch}/sip4_tqt \
+	-e %{tde_includedir} \
 	-u STRIP="" \
 	CFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3" \
 	CFLAGS_RELEASE="" \
@@ -127,10 +126,14 @@ python ../configure.py \
 %__rm -rf %{?buildroot}
 %__make install DESTDIR=%{?buildroot} -C build
 
+# Dummy file to allow loading as a module
+touch %{?buildroot}%{python_sitearch}/sip4_tqt/__init__.py
+
+
 %clean
 %__rm -rf %{?buildroot}
 
 
 %changelog
-* Thu Feb 16 2012 Francois Andriot <francois.andriot@free.fr> - 14.0.0-1
+* Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 4.10.5-1
 - Initial release for TDE R14, using 'tqt3' instead of 'qt3'

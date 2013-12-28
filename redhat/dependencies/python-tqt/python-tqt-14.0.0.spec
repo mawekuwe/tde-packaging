@@ -1,7 +1,7 @@
 %{!?python_sitearch:%global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
 
 %define tde_version 14.0.0
-%define tde_prefix /usr
+%define tde_prefix /opt/trinity
 %define tde_bindir %{tde_prefix}/bin
 %define tde_includedir %{tde_prefix}/include
 %define tde_libdir %{tde_prefix}/%{_lib}
@@ -14,7 +14,7 @@ License:	GPL
 Summary:	TQt bindings for Python
 Group:		System Environment/Libraries
 
-Obsoletes:		PyQt
+#Obsoletes:		PyQt
 Obsoletes:		trinity-PyQt
 Obsoletes:		trinity-python-qt3
 
@@ -26,19 +26,15 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:		python-tqt-14.0.0-sip4_tqt.patch
+
 BuildRequires:	gcc-c++
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tqscintilla-devel
 
-%if 0%{?rhel} || 0%{?fedora}
-BuildRequires:	sip-devel
-%endif
-%if 0%{?mdkversion} || 0%{?mgaversion}
-BuildRequires:	python-sip
-%endif
-%if 0%{?suse_version}
-BuildRequires:	python-sip-devel
-%endif
+# SIP
+BuildRequires:	trinity-sip4-tqt-devel >= 4.10.5
+Requires:		trinity-sip4-tqt >= 4.10.5
 
 # TDE specific building variables
 BuildRequires:	trinity-tqt3-devel >= 3.5.0
@@ -58,13 +54,15 @@ same way in both languages (with syntax differences, of course)
 %files
 %defattr(-,root,root,-)
 %doc NEWS README
-%{python_sitearch}/qt.so
-%{python_sitearch}/qtcanvas.so
-%{python_sitearch}/qtnetwork.so
-%{python_sitearch}/qtsql.so
-%{python_sitearch}/qttable.so
-%{python_sitearch}/qtui.so
-%{python_sitearch}/qtxml.so
+%dir %{python_sitearch}/python_tqt
+%{python_sitearch}/python_tqt/__init__.py*
+%{python_sitearch}/python_tqt/qt.so
+%{python_sitearch}/python_tqt/qtcanvas.so
+%{python_sitearch}/python_tqt/qtnetwork.so
+%{python_sitearch}/python_tqt/qtsql.so
+%{python_sitearch}/python_tqt/qttable.so
+%{python_sitearch}/python_tqt/qtui.so
+%{python_sitearch}/python_tqt/qtxml.so
 
 ##########
 
@@ -80,7 +78,7 @@ Linux, Windows and MacOS X).
 
 %files gl
 %defattr(-,root,root,-)
-%{python_sitearch}/qtgl.so
+%{python_sitearch}/python_tqt/qtgl.so
 
 ##########
 
@@ -96,7 +94,7 @@ PyQt Extensions. Contains:
 
 %files tqtext
 %defattr(-,root,root,-)
-%{python_sitearch}/qtext.so
+%{python_sitearch}/python_tqt/qtext.so
 
 ##########
 
@@ -111,8 +109,8 @@ pylupdate is the counterpart for TQt's lupdate. It updates TQt
 Linguist translation files from Python code.
 
 %files -n trinity-pytqt-tools
-%{_bindir}/pylupdate
-%{_bindir}/pyuic
+%{tde_bindir}/pylupdate
+%{tde_bindir}/pyuic
 
 ##########
 
@@ -128,7 +126,7 @@ packages based on them, like PyTDE.
 
 %files devel
 %defattr(-,root,root,-)
-%{python_sitearch}/pyqtconfig.py*
+%{python_sitearch}/python_tqt/pyqtconfig.py*
 %{_datadir}/sip/tqt/
 
 ##########
@@ -137,9 +135,11 @@ packages based on them, like PyTDE.
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .sip4tqt
 
 
 %build
@@ -149,15 +149,16 @@ mkdir build
 cd build
 
 # WTF ? CentOS 6 !
-cp -rf ../pyuic3 ../pylupdate3 .
+cp -rf ../pyuic3 ../pylupdate3 
 
 echo yes | python ../configure.py \
 	-c -n %{_includedir}/tqscintilla \
 	-q %{_datadir}/tqt3 \
 	-y tqt-mt \
 	-o %{_libdir} -u -j 10 \
-	-d %{python_sitearch} \
+	-d %{python_sitearch}/python_tqt \
 	-v %{_datadir}/sip/tqt \
+	-b %{tde_bindir} \
 	-w \
 	CXXFLAGS_RELEASE="" CXXFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt" STRIP=""
 
@@ -171,9 +172,12 @@ echo yes | python ../configure.py \
 %__install -d %{?buildroot}%{_datadir}/sip/
 %__cp -rf sip/* %{?buildroot}%{_datadir}/sip/tqt/
 
+# Dummy file to make a Python module
+touch %{?buildroot}%{python_sitearch}/python_tqt/__init__.py
+
 
 %clean
-%__rm -rf %{?buildroot}
+%__rm -rf %{?buildroot}%{python_sitearch}/python_tqt/__init__.py
 
 
 %changelog

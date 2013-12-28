@@ -1,0 +1,33 @@
+--- pytdeextensions/src/qtuicompiler.py.ORI	2013-12-28 17:06:51.749357267 +0100
++++ pytdeextensions/src/qtuicompiler.py	2013-12-28 17:07:03.539275908 +0100
+@@ -17,7 +17,7 @@
+ 
+ import os
+ import sys
+-import pyqtconfig
++from python_tqt import pyqtconfig
+ from distutils.spawn import *
+ import traceback
+ 
+--- pytdeextensions/src/kdedistutils.py.ORI2	2013-12-28 17:20:38.828670001 +0100
++++ pytdeextensions/src/kdedistutils.py	2013-12-28 17:21:04.731492545 +0100
+@@ -930,8 +930,8 @@
+     }
+ 
+     // Inject a helper function
+-    TQString bridge = TQString("import sip\n" 
+-                            "import qt\n"
++    TQString bridge = TQString("from sip4_tqt import sip\n" 
++                            "from python_tqt import qt\n"
+                             "def kcontrol_bridge_" FACTORY "(parent,name):\n"
+                              "    if parent!=0:\n"
+ #if SIP_VERSION >= 0x040200
+@@ -2019,7 +2019,7 @@
+             self.announce("Found Qt version %s." % qtver)
+         try:
+             self.announce("Checking for a working PyQt...")
+-            import qt
++            from python_tqt import qt
+             self.announce("  ...PyQt is working")
+         except:
+             raise SystemExit, "Couldn't import Qt! Please make sure that PyQt is installed and working."

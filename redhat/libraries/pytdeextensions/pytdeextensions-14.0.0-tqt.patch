@@ -1,0 +1,58 @@
+--- pytdeextensions/src/kdedistutils.py.ORI	2013-12-28 14:50:50.209401866 +0100
++++ pytdeextensions/src/kdedistutils.py	2013-12-28 15:36:18.381316251 +0100
+@@ -892,7 +892,7 @@
+     return NULL;
+ }
+ 
+-static TDECModule* return_instance( QWidget *parent, const char *name ) {
++static TDECModule* return_instance( TQWidget *parent, const char *name ) {
+     TDECModule* tdecmodule;
+     PyObject *pyTDECModuleTuple; 
+     PyObject *pyTDECModule;
+@@ -901,7 +901,7 @@
+     
+     // Try to determine what py script we're loading. Note that "name"
+     // typically appears to be NULL.
+-    QString script(MODULE_NAME);
++    TQString script(MODULE_NAME);
+ 
+     // Reload libpython, but this time tell the runtime linker to make the
+     // symbols global and available for later loaded libraries/module.
+@@ -914,8 +914,8 @@
+     }
+     
+     // Add the path to the python script to the interpreter search path.
+-    QString path = QString(MODULE_DIR);
+-    if(path == QString::null) {
++    TQString path = TQString(MODULE_DIR);
++    if(path == TQString::null) {
+         return report_error ("***Failed to locate script path");
+     }
+     if(!pyize->appendToSysPath (path.latin1 ())) {
+@@ -930,14 +930,14 @@
+     }
+ 
+     // Inject a helper function
+-    QString bridge = QString("import sip\n" 
++    TQString bridge = TQString("import sip\n" 
+                             "import qt\n"
+                             "def kcontrol_bridge_" FACTORY "(parent,name):\n"
+                              "    if parent!=0:\n"
+ #if SIP_VERSION >= 0x040200
+-                             "        wparent = sip.wrapinstance(parent,qt.QWidget)\n"
++                             "        wparent = sip.wrapinstance(parent,qt.TQWidget)\n"
+ #else                             
+-                             "        wparent = sip.wrapinstance(parent,'QWidget')\n"
++                             "        wparent = sip.wrapinstance(parent,'TQWidget')\n"
+ #endif
+                              "    else:\n"
+                              "        wparent = None\n"
+@@ -997,7 +997,7 @@
+ 
+ extern "C" {
+     // Factory function that kcontrol will call.
+-    TDECModule* CPP_FACTORY(QWidget *parent, const char *name) {
++    TDECModule* CPP_FACTORY(TQWidget *parent, const char *name) {
+         return return_instance(parent, name);
+     }
+ }
