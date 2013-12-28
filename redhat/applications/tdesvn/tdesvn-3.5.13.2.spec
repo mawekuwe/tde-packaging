@@ -118,7 +118,8 @@ find . -name "*.cmake" -exec %__sed -i {} \
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${QTDIR}/bin:${PATH}"
 export CMAKE_INCLUDE_PATH="%{tde_tdeincludedir}"
 
