@@ -4,60 +4,67 @@
 #export DH_VERBOSE=1
 
 I18N_DIR_PREFIX := tde-i18n
-#I18N_VERSION := $(shell cat debian/changelog | head -n1 | sed 's/.*(\([[:digit:]]\+:\)\?\(.\+\)-.\+).*/\2/')
-I18N_VERSION := 3.5.10
+I18N_DEST_PREFIX := $(I18N_DIR_PREFIX)
 I18N_DIR_PAT := $(I18N_DIR_PREFIX)-%
 I18N_DIRS := $(wildcard $(I18N_DIR_PREFIX)-*)
-I18N_PATCHES := $(wildcard debian/patches/*.diff)
 
 # Stamps and support variables
 cur_lang = $(word 2,$(subst __, ,$@))
 cur_lang_dir = $(patsubst %,$(I18N_DIR_PREFIX)-%,$(cur_lang))
-cur_lang_patch = $(patsubst %,debian/patches/%.diff,$(cur_lang))
-cur_pkg = $(I18N_DIR_PREFIX)-$(cur_lang)
+cur_pkg = $(I18N_DEST_PREFIX)-$(cur_lang)
 
-STAMP_EXTRACT := $(patsubst $(I18N_DIR_PAT),debian/stamp__%__extract,$(I18N_DIRS))
-STAMP_PATCH := $(patsubst debian/patches/%.diff,debian/stamp__%__patch,$(I18N_PATCHES))
 STAMP_BUILD := $(patsubst $(I18N_DIR_PAT),debian/stamp__%__build,$(I18N_DIRS))
 I18N_INSTALL := $(patsubst $(I18N_DIR_PAT),install__%,$(I18N_DIRS))
+I18N_CLEAN := $(patsubst $(I18N_DIR_PAT),clean__%,$(I18N_DIRS))
 
-
--include debian/debiandirs
-
-DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
 DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
-cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+configkde=\
+ --disable-rpath \
+ --prefix=$(DEB_CONFIGURE_PREFIX) \
+ --sysconfdir=/etc \
+ --includedir=$(DEB_CONFIGURE_INCLUDEDIR) \
+ --infodir=$(DEB_CONFIGURE_INFODIR) \
+ --mandir=$(DEB_CONFIGURE_MANDIR)
+
+DEB_CMAKE_EXTRA_FLAGS := \
+ -DCMAKE_INSTALL_PREFIX="/opt/trinity" \
+ -DCONFIG_INSTALL_DIR="/etc/trinity" \
+ -DSYSCONF_INSTALL_DIR="/etc/trinity" \
+ -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+ -DCMAKE_VERBOSE_MAKEFILE="ON" \
+ -DBUILD_ALL="ON"
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
-
-debian/debiandirs: scripts/admin/debianrules
-	perl -w scripts/admin/debianrules echodirs > debian/debiandirs
-
-
-patch: $(STAMP_PATCH)
-
-$(STAMP_PATCH):
-	# Applying patch for the '$(cur_lang)' language ...
-	cd $(cur_lang_dir) && patch --set-utc -p1 < "$(CURDIR)/$(cur_lang_patch)" > $(CURDIR)/$@_log
-	mv $@_log $@
 
 
 build::
 	dh_testdir
 
-build:: $(STAMP_EXTRACT) patch $(STAMP_BUILD)
-
-$(STAMP_EXTRACT):
-#	tar xfj $(cur_lang_dir).tar.bz2
-	@touch $@
+build:: $(STAMP_BUILD)
 
 $(STAMP_BUILD):
 	# Building the '$(cur_lang)' language ...
-	cd $(cur_lang_dir) && autoreconf && automake -f && $(MAKE) -f ../admin/Makefile.common && ./configure $(configkde) && $(MAKE)
+	[ -d $(cur_lang_dir)/build ] || mkdir $(cur_lang_dir)/build
+	if [ ! -e $(cur_lang_dir)/CMakeLists.txt ]; then \
+	    ([ -e $(cur_lang_dir)/admin ] || ln -s ../admin $(cur_lang_dir)) && \
+	    cd $(cur_lang_dir) && \
+	    autoreconf && automake -f && \
+	    $(MAKE) -f ../admin/Makefile.common && \
+	    cd build && \
+	    ../configure --build=build $(configkde) && \
+	    $(MAKE); \
+	fi
+	if [ -e $(cur_lang_dir)/CMakeLists.txt ]; then \
+	    ([ -e $(cur_lang_dir)/cmake ] || ln -s ../cmake $(cur_lang_dir)) && \
+	    cd $(cur_lang_dir)/build && \
+	    cmake .. $(DEB_CMAKE_EXTRA_FLAGS) && \
+	    $(MAKE); \
+	fi
 	touch $@
 
 
@@ -68,26 +75,30 @@ install::
 
 install:: $(I18N_INSTALL)
 	# copying the non 2 letter languages into the correct directory
-	mkdir debian/tde-i18n-engb-trinity
-	cp -aR debian/tde-i18n-en_GB-trinity/* debian/tde-i18n-engb-trinity/
-	mkdir debian/tde-i18n-ptbr-trinity
-	cp -aR debian/tde-i18n-pt_BR-trinity/* debian/tde-i18n-ptbr-trinity/
-	mkdir debian/tde-i18n-srlatin-trinity
-	cp -aR debian/tde-i18n-sr@Latn-trinity/* debian/tde-i18n-srlatin-trinity/
-	mkdir debian/tde-i18n-zhcn-trinity
-	cp -aR debian/tde-i18n-zh_CN-trinity/* debian/tde-i18n-zhcn-trinity/
-	mkdir debian/tde-i18n-zhtw-trinity
-	cp -aR debian/tde-i18n-zh_TW-trinity/* debian/tde-i18n-zhtw-trinity/
+	mkdir debian/$(I18N_DEST_PREFIX)-engb-trinity
+	cp -aR debian/$(I18N_DEST_PREFIX)-en_GB-trinity/* debian/$(I18N_DEST_PREFIX)-engb-trinity/
+	mkdir debian/$(I18N_DEST_PREFIX)-ptbr-trinity
+	cp -aR debian/$(I18N_DEST_PREFIX)-pt_BR-trinity/* debian/$(I18N_DEST_PREFIX)-ptbr-trinity/
+	mkdir debian/$(I18N_DEST_PREFIX)-srlatin-trinity
+	cp -aR debian/$(I18N_DEST_PREFIX)-sr@Latn-trinity/* debian/$(I18N_DEST_PREFIX)-srlatin-trinity/
+	mkdir debian/$(I18N_DEST_PREFIX)-zhcn-trinity
+	cp -aR debian/$(I18N_DEST_PREFIX)-zh_CN-trinity/* debian/$(I18N_DEST_PREFIX)-zhcn-trinity/
+	mkdir debian/$(I18N_DEST_PREFIX)-zhtw-trinity
+	cp -aR debian/$(I18N_DEST_PREFIX)-zh_TW-trinity/* debian/$(I18N_DEST_PREFIX)-zhtw-trinity/
 
 $(I18N_INSTALL):
-	cd $(cur_lang_dir) && $(MAKE) install DESTDIR=$(CURDIR)/debian/$(cur_pkg)-trinity
+	cd $(cur_lang_dir)/build && $(MAKE) install DESTDIR=$(CURDIR)/debian/$(cur_pkg)-trinity
 
 
-clean: debian-clean
+clean: $(I18N_CLEAN) debian-clean
+
+$(I18N_CLEAN):
+	dh_testdir
+	rm -rf $(cur_lang_dir)/build
+
 debian-clean:
 	dh_testdir
-	# delete unpacked bzip2 languages
-	rm -rf $(I18N_DIR_PREFIX)-*-$(I18N_VERSION)/ debian/tde-i18n-*
+	rm -rf debian/$(I18N_DEST_PREFIX)-*
 	rm -f debian/stamp__*
 	dh_clean
 
@@ -116,4 +127,4 @@ binary-indep: build install
 # Below here is fairly generic really
 binary: binary-indep binary-arch
 
-.PHONY: binary binary-arch binary-indep clean patch build install $(I18N_INSTALL)
+.PHONY: binary binary-arch binary-indep clean build install $(I18N_INSTALL)
