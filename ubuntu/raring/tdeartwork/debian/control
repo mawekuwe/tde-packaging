@@ -13,7 +13,7 @@ Architecture: all
 Section: tde
 Replaces: kdeartwork-kde3 (<< 4:14.0.0~), kdeartwork-trinity (<< 4:14.0.0~)
 Breaks: kdeartwork-kde3 (<< 4:14.0.0~), kdeartwork-trinity (<< 4:14.0.0~)
-Depends: tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), tdewallpapers-trinity (>= ${Source-Version}), tdescreensaver-trinity (>= ${Source-Version})
+Depends: ${misc:Depends}, tdeartwork-misc-trinity (>= ${Source-Version}), tdeartwork-emoticons-trinity (>= ${Source-Version}), tdeartwork-style-trinity (>= ${Source-Version}), tdeartwork-theme-icon-trinity (>= ${Source-Version}), tdeartwork-theme-window-trinity (>= ${Source-Version}), tdewallpapers-trinity (>= ${Source-Version}), tdescreensaver-trinity (>= ${Source-Version})
 Recommends: tdescreensaver-xsavers-trinity
 Description: themes, styles and more from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -58,7 +58,7 @@ Architecture: any
 Section: tde
 Replaces: kdeartwork-style-kde3 (<< 4:14.0.0~), kdeartwork-style-trinity (<< 4:14.0.0~)
 Breaks: kdeartwork-style-kde3 (<< 4:14.0.0~), kdeartwork-style-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: widget styles released with Trinity
  This package contains additional widget styles for Trinity. Widget styles
  can be used to customise the look and feel of interface components such
@@ -88,7 +88,7 @@ Architecture: any
 Section: tde
 Replaces: kdeartwork-theme-window-kde3 (<< 4:14.0.0~), kdeartwork-theme-window-trinity (<< 4:14.0.0~)
 Breaks: kdeartwork-theme-window-kde3 (<< 4:14.0.0~), kdeartwork-theme-window-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: window decoration themes released with Trinity
  This package contains additional window decoration themes for Trinity. Window
  decoration themes can be used to customise the look of window borders and
@@ -116,7 +116,7 @@ Architecture: any
 Section: tde
 Replaces: kscreensaver-kde3 (<< 4:14.0.0~), kscreensaver-trinity (<< 4:14.0.0~)
 Breaks: kscreensaver-kde3 (<< 4:14.0.0~), kscreensaver-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}, tdebase-trinity-bin
+Depends: ${shlibs:Depends}, ${misc:Depends}, tdebase-trinity-bin
 Recommends: twin-trinity, tdescreensaver-xsavers-trinity (= ${Source-Version})
 Description: additional screen savers released with Trinity
  This package contains the screen savers for Trinity. They can be tested and
@@ -135,7 +135,7 @@ Architecture: any
 Section: tde
 Replaces: kscreensaver-xsavers-kde3 (<< 4:14.0.0~), kscreensaver-xsavers-trinity (<< 4:14.0.0~)
 Breaks: kscreensaver-xsavers-kde3 (<< 4:14.0.0~), kscreensaver-xsavers-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}, tdebase-trinity-bin, xscreensaver-data
+Depends: ${shlibs:Depends}, ${misc:Depends}, tdebase-trinity-bin, xscreensaver-data
 Recommends: twin-trinity, tdescreensaver-trinity (= ${Source-Version}), xscreensaver-gl
 Suggests: tdescreensaver-xsavers-webcollage-trinity
 Description: Trinity hooks for standard xscreensavers
@@ -158,7 +158,7 @@ Architecture: all
 Section: tde
 Replaces: kscreensaver-xsavers-webcollage-kde3 (<< 4:14.0.0~), kscreensaver-xsavers-webcollage-trinity (<< 4:14.0.0~)
 Breaks: kscreensaver-xsavers-webcollage-kde3 (<< 4:14.0.0~), kscreensaver-xsavers-webcollage-trinity (<< 4:14.0.0~)
-Depends: tdescreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
+Depends: ${misc:Depends}, tdescreensaver-xsavers-extra-trinity, miscfiles | wordlist, netpbm
 Description: webcollage screensaver Trinity hook
  This package give access to the webcollage screensaver through the Trinity
  screensaver configuration.
@@ -183,7 +183,7 @@ Architecture: all
 Section: tde
 Replaces: kscreensaver-xsavers-extra-kde3 (<< 4:14.0.0~), kscreensaver-xsavers-extra-trinity (<< 4:14.0.0~)
 Breaks: kscreensaver-xsavers-extra-kde3 (<< 4:14.0.0~), kscreensaver-xsavers-extra-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}, tdescreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
+Depends: ${shlibs:Depends}, ${misc:Depends}, tdescreensaver-xsavers-trinity, xscreensaver-data-extra, xscreensaver-gl-extra, rss-glx, fireflies
 Recommends: twin-trinity, tdescreensaver-trinity (= ${Source-Version})
 Description: Trinity hooks for standard xscreensavers
  This package allows a smooth integration of the universe xscreensavers
@@ -203,7 +203,7 @@ Section: libdevel
 Architecture: any
 Replaces: kdeartwork-kde3-dbg (<< 4:14.0.0~), kdeartwork-trinity-dbg (<< 4:14.0.0~)
 Breaks: kdeartwork-kde3-dbg (<< 4:14.0.0~), kdeartwork-trinity-dbg (<< 4:14.0.0~)
-Depends: tdelibs-trinity-dbg
+Depends: ${misc:Depends}, tdelibs-trinity-dbg
 Priority: extra
 Description: debugging symbols for tdeartwork-trinity
  This package contains the debugging symbols associated with tdeartwork.
