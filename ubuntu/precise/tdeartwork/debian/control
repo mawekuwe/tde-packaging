@@ -33,6 +33,7 @@ Section: tde
 Replaces: kdeartwork-emoticons-kde3 (<< 4:14.0.0~), kdeartwork-emoticons-trinity (<< 4:14.0.0~)
 Breaks: kdeartwork-emoticons-kde3 (<< 4:14.0.0~), kdeartwork-emoticons-trinity (<< 4:14.0.0~)
 Enhances: kopete-trinity
+Depends: ${misc:Depends}
 Description: emoticon collections for KDE chat clients
  This package contains several collections of emoticons used by official
  and unofficial KDE chat clients, such as Kopete and Konversation.
@@ -46,6 +47,7 @@ Section: tde
 Replaces: kdeartwork-misc-kde3 (<< 4:14.0.0~), kdeartwork-misc-trinity (<< 4:14.0.0~)
 Breaks: kdeartwork-misc-kde3 (<< 4:14.0.0~), kdeartwork-misc-trinity (<< 4:14.0.0~)
 Suggests: kworldclock
+Depends: ${misc:Depends}
 Description: various multimedia goodies released with KDE
  This package contains miscellaneous multimedia goodies for KDE.
  Included are additional KDE sounds and kworldclock themes.
@@ -75,6 +77,7 @@ Replaces: kdeartwork-theme-icon-kde3 (<< 4:14.0.0~), kdeartwork-theme-icon-trini
 Breaks: kdeartwork-theme-icon-kde3 (<< 4:14.0.0~), kdeartwork-theme-icon-trinity (<< 4:14.0.0~)
 Conflicts: kbabel-trinity (<< 4:3.5.13.2~), kicker-applets-trinity (<< 4:3.5.13.2~)
 Recommends: kdesktop-trinity, kicker-trinity
+Depends: ${misc:Depends}
 Description: icon themes released with Trinity
  This package contains additional icon themes for Trinity. Icon themes can be
  used to customise the appearance of standard icons throughout KDE. They
@@ -104,6 +107,7 @@ Section: tde
 Replaces: kdewallpapers-kde3 (<< 4:14.0.0~), kdewallpapers-trinity (<< 4:14.0.0~)
 Breaks: kdewallpapers-kde3 (<< 4:14.0.0~), kdewallpapers-trinity (<< 4:14.0.0~)
 Suggests: twin-trinity | x-window-manager
+Depends: ${misc:Depends}
 Description: wallpapers released with Trinity
  This package contains additional wallpapers for Trinity. Wallpapers can be
  applied using the background manager in the KDE Control Centre.
