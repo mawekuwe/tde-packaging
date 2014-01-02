@@ -8,7 +8,7 @@ debian/tmp/opt/trinity/share/apps/konversation/themes/*
 debian/tmp/opt/trinity/share/config.kcfg/konversation.kcfg
 debian/tmp/opt/trinity/share/doc/tde/HTML/da/konversation/*
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konversation/*
-debian/tmp/opt/trinity/share/doc/tde/HTML/es/konversation/*
+#debian/tmp/opt/trinity/share/doc/tde/HTML/es/konversation/*
 debian/tmp/opt/trinity/share/doc/tde/HTML/et/konversation/*
 debian/tmp/opt/trinity/share/doc/tde/HTML/it/konversation/*
 debian/tmp/opt/trinity/share/doc/tde/HTML/pt/konversation/*

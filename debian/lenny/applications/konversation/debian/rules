@@ -1,10 +1,11 @@
 #!/usr/bin/make -f
 
 include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/cmake.mk
 include debian/cdbs/kde.mk
 include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
 DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
@@ -15,12 +16,23 @@ DEB_DH_STRIP_ARGS := --dbg-package=konversation-trinity-dbg
 DEB_INSTALL_DOCS_ALL = 
 DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 
+DEB_CMAKE_EXTRA_FLAGS := \
+ -DCMAKE_INSTALL_PREFIX="/opt/trinity" \
+ -DCONFIG_INSTALL_DIR="/etc/trinity" \
+ -DSYSCONF_INSTALL_DIR="/etc/trinity" \
+ -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+ -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+ -DCMAKE_VERBOSE_MAKEFILE="ON" \
+ -DCMAKE_SKIP_RPATH="OFF" \
+ -DBUILD_ALL="ON"
+
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
 
 post-patches:: debian/stamp-bootstrap
 
 debian/stamp-bootstrap:
+ifndef _cdbs_class_cmake
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
@@ -28,6 +40,7 @@ debian/stamp-bootstrap:
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
 	
 	make -f admin/Makefile.common cvs
+endif
 	touch debian/stamp-bootstrap
 
 ### Manpages
@@ -40,6 +53,7 @@ DB2MAN = /usr/share/xml/docbook/stylesheet/nwalsh/manpages/docbook.xsl
 GENERATED_MANPAGES := $(patsubst %.docbook,%,$(wildcard debian/man/*.docbook))
 build/konversation-trinity:: $(GENERATED_MANPAGES)
 clean::
+	rm -f debian/stamp-bootstrap
 	-rm -f $(GENERATED_MANPAGES)
 	-rm -f po/*/konversation.gmo
 
