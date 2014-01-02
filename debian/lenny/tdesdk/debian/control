@@ -8,6 +8,7 @@ Build-Depends: libasound2-dev, cdbs (>= 0.4.39-0.1), debhelper (>= 5.0.31), quil
  gettext, pkg-config, tdelibs14-trinity-dev, binutils-dev, bison, flex,
  tdepim-trinity-dev, libapr1-dev, libkcal2-trinity-dev,
  libktnef1-trinity-dev, libsvn-dev, libdb-dev,
+ libiberty-dev | binutils-dev (<< 2.23.91.20131123-1~),
  automake, autoconf, libtool, libltdl-dev
 Standards-Version: 3.8.4
 
