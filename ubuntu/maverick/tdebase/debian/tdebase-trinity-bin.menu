@@ -2,8 +2,8 @@
 	needs="X11"\
 	section="Applications/System/Administration"\
 	hints="TDE"\
-	title="KDebugDialog"\
-	command="/opt/trinity/bin/kdebugdialog"
+	title="TDEDebugDialog"\
+	command="/opt/trinity/bin/tdedebugdialog"
 
 ?package(tdebase-bin):\
 	needs="X11"\

@@ -6,7 +6,7 @@ debian/tmp/opt/trinity/bin/tdeinit_displayconfig
 debian/tmp/opt/trinity/bin/tdmtsak
 debian/tmp/opt/trinity/bin/tsak
 debian/tmp/opt/trinity/bin/tdekbdledsync
-debian/tmp/opt/trinity/bin/kdebugdialog
+debian/tmp/opt/trinity/bin/tdedebugdialog
 debian/tmp/opt/trinity/bin/kreadconfig
 debian/tmp/opt/trinity/bin/kwriteconfig
 debian/tmp/opt/trinity/bin/kstart
@@ -76,9 +76,9 @@ debian/tmp/opt/trinity/share/apps/khotkeys/printscreen.khotkeys
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdcop/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdcop/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdcop/index.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdebugdialog/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdebugdialog/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdebugdialog/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdedebugdialog/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdedebugdialog/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdedebugdialog/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdesu/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdesu/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdesu/index.docbook

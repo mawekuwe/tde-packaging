@@ -29,7 +29,7 @@ konqueror, konsole, kpager, kpersonalizer, kreadconfig, kstart, ksysguard, ktip
 
 LGPL
 ----
-kdebugdialog, kdesktop, khotkeys, kxkb, libkonq, nsplugins
+tdedebugdialog, kdesktop, khotkeys, kxkb, libkonq, nsplugins
 
 ----------------------
 
