@@ -20,7 +20,7 @@ debian/man/fixkdeincludes.1
 debian/man/fixuifiles.1
 debian/man/findmissingcrystal.1
 debian/man/kdedoc.1
-debian/man/kdekillall.1
+debian/man/tdekillall.1
 debian/man/kdelnk2desktop.py.1
 debian/man/kdemangen.pl.1
 debian/man/makeobj.1

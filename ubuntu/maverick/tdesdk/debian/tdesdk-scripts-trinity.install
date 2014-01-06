@@ -24,7 +24,7 @@ debian/tmp/opt/trinity/bin/fixuifiles
 debian/tmp/opt/trinity/bin/includemocs
 debian/tmp/opt/trinity/bin/kde-build
 debian/tmp/opt/trinity/bin/kdedoc
-debian/tmp/opt/trinity/bin/kdekillall
+debian/tmp/opt/trinity/bin/tdekillall
 debian/tmp/opt/trinity/bin/kdelnk2desktop.py
 debian/tmp/opt/trinity/bin/kdemangen.pl
 debian/tmp/opt/trinity/bin/makeobj
