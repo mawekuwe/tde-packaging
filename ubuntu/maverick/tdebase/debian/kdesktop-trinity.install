@@ -2,7 +2,7 @@ debian/tmp/etc/trinity/kdesktop_custom_menu1
 debian/tmp/etc/trinity/kdesktop_custom_menu2
 debian/tmp/opt/trinity/bin/kcheckrunning
 debian/tmp/opt/trinity/bin/kxdglauncher
-debian/tmp/opt/trinity/bin/kdeeject
+debian/tmp/opt/trinity/bin/tdeeject
 debian/tmp/opt/trinity/bin/kdesktop
 debian/tmp/opt/trinity/bin/kdesktop_lock
 debian/tmp/opt/trinity/bin/kwebdesktop
