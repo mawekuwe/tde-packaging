@@ -12,4 +12,4 @@ debian/tmp/opt/trinity/lib/ruby/*/*/qtruby.la
 debian/tmp/opt/trinity/lib/ruby/*/*/tqui.so*
 debian/tmp/opt/trinity/lib/ruby/*/*/tqui.la
 
-qtruby/ChangeLog /opt/trinity/share/doc/libqt0-ruby1.8
+qtruby/ChangeLog /opt/trinity/share/doc/libqt0-ruby

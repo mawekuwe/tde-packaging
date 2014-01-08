@@ -258,12 +258,13 @@ Description: The Qt Java UI Compiler
  .
  This package is part of the official TDE bindings module.
 
-Package: libkorundum0-ruby1.8-trinity
+Package: libkorundum0-ruby-trinity
 Architecture: any
 Section: interpreters
 Replaces: libkorundum0-ruby1.8-trinity (<< 4:14.0.0~)
 Breaks: libkorundum0-ruby1.8-trinity (<< 4:14.0.0~)
-Depends: libqt0-ruby1.8-trinity (= ${binary:Version}), ${shlibs:Depends}
+Depends: libqt0-ruby-trinity (= ${binary:Version}), ${shlibs:Depends}
+Provides: libkorundum0-ruby1.8-trinity
 Description: TDE bindings for Ruby [Trinity]
  This package contains the files necessary for running and developing
  Ruby code using the Korundum TDE Ruby bindings.
@@ -273,12 +274,13 @@ Description: TDE bindings for Ruby [Trinity]
  .
  This package is part of the official TDE bindings module.
 
-Package: libqt0-ruby1.8-trinity
+Package: libqt0-ruby-trinity
 Architecture: any
 Section: interpreters
 Replaces: libqt0-ruby1.8-trinity (<< 4:14.0.0~)
 Breaks: libqt0-ruby1.8-trinity (<< 4:14.0.0~)
 Depends: ruby, ${shlibs:Depends}
+Provides: libqt0-ruby1.8-trinity
 Description: Qt bindings for Ruby [Trinity]
  This package contains the files necessary for running and developing
  Ruby code using the Qt Ruby bindings.

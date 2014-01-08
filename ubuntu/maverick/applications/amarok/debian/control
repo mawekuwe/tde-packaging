@@ -22,7 +22,7 @@ Depends:  amarok-common-trinity (>= ${source:Version}), amarok-engine-xine-trini
 Replaces: amarok-kde3 (<< 4:14.0.0~), amarok-trinity (<< 4:14.0.0~)
 Breaks: amarok-kde3 (<< 4:14.0.0~), amarok-trinity (<< 4:14.0.0~)
 Suggests: amarok-engines-trinity, moodbar, konqueror-trinity | www-browser,
- python, python-qt3, libqt0-ruby1.8-trinity, libvisual-0.4-plugins
+ python, python-tqt, libqt0-ruby-trinity, libvisual-0.4-plugins
 Description: versatile and easy to use audio player for Trinity
  Amarok tries to be a little different, providing a simple drag and drop
  interface that really makes playlist handling easy.
@@ -52,7 +52,7 @@ Depends: ruby
 Replaces: amarok-common-kde3 (<< 4:14.0.0~), amarok-common-trinity (<< 4:14.0.0~)
 Breaks: amarok-common-kde3 (<< 4:14.0.0~), amarok-common-trinity (<< 4:14.0.0~)
 Recommends: amarok-trinity (>= ${source:Version})
-Suggests: libqt0-ruby1.8-trinity, python, python-qt3
+Suggests: libqt0-ruby-trinity, python, python-tqt
 Description: architecture independent files for Amarok [Trinity]
  This package contains architecture independent files needed for Amarok to run
  properly. It also provides Amarok documentation. Therefore, unless you have

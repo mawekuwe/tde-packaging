@@ -47,8 +47,8 @@ PACKAGES_WITH_LIBS = libqt3-jni-trinity libsmoketqt1-trinity libsmoketde1-trinit
 
 # These packages do not ship files in /usr/lib so need not call ldconfig.
 DEB_DH_MAKESHLIBS_ARGS_libtrinity-jni-trinity          = -n
-DEB_DH_MAKESHLIBS_ARGS_libqt0-ruby1.8-trinity       = -n
-DEB_DH_MAKESHLIBS_ARGS_libkorundum0-ruby1.8-trinity = -n
+DEB_DH_MAKESHLIBS_ARGS_libqt0-ruby-trinity       = -n
+DEB_DH_MAKESHLIBS_ARGS_libkorundum0-ruby-trinity = -n
 
 ###
 
@@ -127,10 +127,10 @@ binary-install/juic-trinity::
 binary-install/libdcop3-java-trinity-dev::
 	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
 
-binary-install/libkorundum0-ruby1.8-trinity::
+binary-install/libkorundum0-ruby-trinity::
 	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
 
-binary-install/libqt0-ruby1.8-trinity::
+binary-install/libqt0-ruby-trinity::
 	mv debian/$(cdbs_curpkg)/usr/share/man debian/$(cdbs_curpkg)/opt/trinity/share/
 
 binary-install/python-dcop-trinity::
