@@ -5,6 +5,9 @@
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
 
+pre-build::
+	mv debian/distrospecific/* . || true
+
 clean:
 	dh_testdir
 	dh_clean
