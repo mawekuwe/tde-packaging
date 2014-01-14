@@ -39,9 +39,9 @@ ifeq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
     endif
 endif
 
-install/digikam-trinity::
+binary-install/digikam-trinity-doc::
 	# remove empty API-docs dirs tree
-	rm -rf $(CURDIR)/debian/digikam-trinity/opt/trinity/share/doc/tde
+	rm -rf $(CURDIR)/debian/digikam-trinity-doc/opt/trinity/share/doc/tde/HTML/en/digikam-apidocs
 
 binary-install/digikam-trinity::
 	mv debian/digikam-trinity/usr/share/man debian/digikam-trinity/opt/trinity/share/

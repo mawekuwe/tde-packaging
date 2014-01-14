@@ -61,3 +61,14 @@ Priority: extra
 Description: debugging symbols for digikam [Trinity]
  The debugging symbols associated with digikam and showfoto. They will
  automatically be used by gdb for debugging digikam-related issues.
+
+Package: digikam-trinity-doc
+Architecture: all
+Depends: ${misc:Depends}, khelpcenter-trinity
+Recommends: digikam-trinity
+Section: doc
+Description: handbook for digikam and showfoto in several languages [Trinity]
+ Digikam is an easy to use and powerful digital photo management
+ application.
+ .
+ This package contains the handbooks for digikam and showfoto.
