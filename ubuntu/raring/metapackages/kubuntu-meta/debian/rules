@@ -5,20 +5,25 @@
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
 
-pre-build::
-	mv debian/distrospecific/* . || true
+debian/stamp-distrospecific:
+	dh_testdir
+	[ -e debian/stamp-distrospecific ] || \
+	ls -a1 debian/distrospecific | grep -v "^\.*$$" | \
+	tee debian/stamp-distrospecific | \
+	tr "\n" "\0" | (cd debian/distrospecific && xargs -r0 mv -t ../..)
 
 clean:
-	mv debian/distrospecific/* . || true
-
 	dh_testdir
+	[ ! -e debian/stamp-distrospecific ] || \
+	cat debian/stamp-distrospecific | \
+	tr "\n" "\0" | xargs -r0 mv -t debian/distrospecific
+	rm -f debian/stamp-distrospecific
 	dh_clean
-
 	rm -rf build-stamp *.old debootstrap-dir
 
 DEB_BUILD_ARCH:=$(shell dpkg-architecture -qDEB_BUILD_ARCH)
 
-build: build-stamp
+build: debian/stamp-distrospecific build-stamp
 build-stamp:	desktop-$(DEB_BUILD_ARCH)
 	dh_clean
 
