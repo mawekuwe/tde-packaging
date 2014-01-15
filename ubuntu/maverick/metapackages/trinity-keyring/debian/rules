@@ -17,10 +17,22 @@ install_binary=install -m 755 -s
 VERSION := $(shell dpkg-parsechangelog | grep ^Version: | cut -d' ' -f2)
 DISTRIBUTION := $(shell dpkg-parsechangelog | grep ^Distribution: | cut -d' ' -f2)
 
-build:
+build: debian/stamp-distrospecific
+	$(checkdir)
+
+debian/stamp-distrospecific:
+	dh_testdir
+	[ -e debian/stamp-distrospecific ] || \
+	ls -a1 debian/distrospecific | grep -v "^\.*$$" | \
+	tee debian/stamp-distrospecific | \
+	tr "\n" "\0" | (cd debian/distrospecific && xargs -r0 mv -t ../..)
 
 clean:
-	$(checkdir)
+	dh_testdir
+	[ ! -e debian/stamp-distrospecific ] || \
+	cat debian/stamp-distrospecific | \
+	tr "\n" "\0" | xargs -r0 mv -t debian/distrospecific
+	rm -f debian/stamp-distrospecific
 	-rm -f foo foo.asc *.bak *~ */*~ debian/files* debian/*substvars
 	-rm -rf debian/tmp
 

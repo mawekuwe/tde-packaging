@@ -9,3 +9,19 @@ DEB_INSTALL_DOCS_ALL :=
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
+
+pre-build:: debian/stamp-distrospecific
+
+debian/stamp-distrospecific:
+	dh_testdir
+	[ -e debian/stamp-distrospecific ] || \
+	ls -a1 debian/distrospecific | grep -v "^\.*$$" | \
+	tee debian/stamp-distrospecific | \
+	tr "\n" "\0" | (cd debian/distrospecific && xargs -r0 mv -t ../..)
+
+clean::
+	dh_testdir
+	[ ! -e debian/stamp-distrospecific ] || \
+	cat debian/stamp-distrospecific | \
+	tr "\n" "\0" | xargs -r0 mv -t debian/distrospecific
+	rm -f debian/stamp-distrospecific
