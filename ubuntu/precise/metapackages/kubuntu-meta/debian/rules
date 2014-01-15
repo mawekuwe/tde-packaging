@@ -9,6 +9,8 @@ pre-build::
 	mv debian/distrospecific/* . || true
 
 clean:
+	mv debian/distrospecific/* . || true
+
 	dh_testdir
 	dh_clean
 
