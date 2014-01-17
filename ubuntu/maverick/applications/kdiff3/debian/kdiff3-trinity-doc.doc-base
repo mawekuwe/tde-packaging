@@ -1,4 +1,4 @@
-Document: kdiff3
+Document: kdiff3-trinity
 Title: KDiff3 Handbook
 Author: Joachim Eibl <joachim.eibl@gmx.de>
 Abstract:  The manual for KDiff3. KDiff3 compares two or three input files 
@@ -9,5 +9,5 @@ Abstract:  The manual for KDiff3. KDiff3 compares two or three input files
 Section: Apps/Programming
 
 Format: HTML
-Index: /usr/share/doc/kdiff3-doc/html/index.html
-Files: /usr/share/doc/kdiff3-doc/html/*.html
+Index: /opt/trinity/share/doc/kdiff3/html/index.html
+Files: /opt/trinity/share/doc/kdiff3/html/*.html

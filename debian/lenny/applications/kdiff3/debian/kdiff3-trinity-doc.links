@@ -83,15 +83,15 @@
 /opt/trinity/share/doc/tde/HTML/en/kdiff3/white_space.png		/opt/trinity/share/doc/tde/HTML/sv/kdiff3/white_space.png
 
 
-/opt/trinity/share/doc/tde/HTML/en/common						/opt/trinity/share/doc/kdiff3-doc/html/common
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/dirbrowser.png			/opt/trinity/share/doc/kdiff3-doc/html/dirbrowser.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/dirmergebig.png		/opt/trinity/share/doc/kdiff3-doc/html/dirmergebig.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/iteminfo.png			/opt/trinity/share/doc/kdiff3-doc/html/iteminfo.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/letter_by_letter.png	/opt/trinity/share/doc/kdiff3-doc/html/letter_by_letter.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/merge_current.png		/opt/trinity/share/doc/kdiff3-doc/html/merge_current.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/new.png				/opt/trinity/share/doc/kdiff3-doc/html/new.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/open_dialog.png		/opt/trinity/share/doc/kdiff3-doc/html/open_dialog.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/screenshot_diff.png	/opt/trinity/share/doc/kdiff3-doc/html/screenshot_diff.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/screenshot_merge.png	/opt/trinity/share/doc/kdiff3-doc/html/screenshot_merge.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/triple_diff.png		/opt/trinity/share/doc/kdiff3-doc/html/triple_diff.png
-/opt/trinity/share/doc/tde/HTML/en/kdiff3/white_space.png		/opt/trinity/share/doc/kdiff3-doc/html/white_space.png
+/opt/trinity/share/doc/tde/HTML/en/common						/opt/trinity/share/doc/kdiff3/html/common
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/dirbrowser.png			/opt/trinity/share/doc/kdiff3/html/dirbrowser.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/dirmergebig.png		/opt/trinity/share/doc/kdiff3/html/dirmergebig.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/iteminfo.png			/opt/trinity/share/doc/kdiff3/html/iteminfo.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/letter_by_letter.png	/opt/trinity/share/doc/kdiff3/html/letter_by_letter.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/merge_current.png		/opt/trinity/share/doc/kdiff3/html/merge_current.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/new.png				/opt/trinity/share/doc/kdiff3/html/new.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/open_dialog.png		/opt/trinity/share/doc/kdiff3/html/open_dialog.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/screenshot_diff.png	/opt/trinity/share/doc/kdiff3/html/screenshot_diff.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/screenshot_merge.png	/opt/trinity/share/doc/kdiff3/html/screenshot_merge.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/triple_diff.png		/opt/trinity/share/doc/kdiff3/html/triple_diff.png
+/opt/trinity/share/doc/tde/HTML/en/kdiff3/white_space.png		/opt/trinity/share/doc/kdiff3/html/white_space.png

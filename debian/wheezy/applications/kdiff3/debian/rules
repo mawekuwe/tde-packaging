@@ -74,14 +74,14 @@ install: build
 	dh_clean -k
 	dh_installdirs
 
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp \
-		kde_htmldir=/opt/trinity/share/doc/tde/HTML
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
 	rm -rf $(CURDIR)/debian/tmp/opt/trinity/share/doc/tde/HTML/kdiff3
 	# that's not where we want to have a man page
 	rm -rf $(CURDIR)/debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdiff3/kdiff3.1
 	# move HTML help /opt/trinity/share/doc/kdiff3/html/
-	mkdir --parents $(CURDIR)/debian/tmp/opt/trinity/share/doc/kdiff3-doc/html/
-	mv $(CURDIR)/debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdiff3/*.html $(CURDIR)/debian/tmp/opt/trinity/share/doc/kdiff3-doc/html/
+	mkdir --parents $(CURDIR)/debian/tmp/opt/trinity/share/doc/kdiff3/html/
+	mv $(CURDIR)/debian/tmp/opt/trinity/share/apps/kdiff3/doc/*.html $(CURDIR)/debian/tmp/opt/trinity/share/doc/kdiff3/html/
+	rmdir $(CURDIR)/debian/tmp/opt/trinity/share/apps/kdiff3/doc
 	# move kdiff3.desktop to freedesktop.org conforming place
 	mkdir --parents $(CURDIR)/debian/tmp/opt/trinity/share/applications/tde/
 	mv $(CURDIR)/debian/tmp/opt/trinity/share/applnk/Development/kdiff3.desktop $(CURDIR)/debian/tmp/opt/trinity/share/applications/tde/
