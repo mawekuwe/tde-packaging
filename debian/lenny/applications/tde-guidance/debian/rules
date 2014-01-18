@@ -45,12 +45,12 @@ install/tde-guidance-trinity::
 
 	# fix the link properly
 	mkdir -p debian/tde-guidance-trinity/opt/trinity/bin
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/displayconfig.py displayconfig)
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/mountconfig.py mountconfig)
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/serviceconfig.py serviceconfig)
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/userconfig.py userconfig)
-	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/wineconfig.py wineconfig)
-#	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /usr/share/python-support/tde-guidance-trinity/grubconfig.py grubconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/displayconfig.py displayconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/mountconfig.py mountconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/serviceconfig.py serviceconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/userconfig.py userconfig)
+	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/wineconfig.py wineconfig)
+#	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf /opt/trinity/share/python-support/tde-guidance-trinity/grubconfig.py grubconfig)
 
 	# put this here since gnome people probably don't want it by default
 	(cd debian/tde-guidance-trinity/opt/trinity/bin; ln -sf ../share/python-support/guidance-backends-trinity/displayconfig-restore.py displayconfig-restore)
@@ -141,7 +141,7 @@ install/tde-guidance-powermanager-trinity::
 
 	# generate guidance-power-manager script
 	echo "#!/bin/sh" > $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
-	echo "/usr/share/python-support/tde-guidance-powermanager-trinity/guidance-power-manager.py &" >> $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
+	echo "/opt/trinity/share/python-support/tde-guidance-powermanager-trinity/guidance-power-manager.py &" >> $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
 	chmod +x $(DEB_DESTDIR)/opt/trinity/bin/guidance-power-manager
 
 	# fix script-not-executable
@@ -185,9 +185,9 @@ clean::
 
 common-install-prehook-impl::
 	# generate form implementation using pytde user interface compiler
-	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n guidance_power_manager_ui.ui)
-	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n tooltip.ui)
-	(cd powermanager; /opt/trinity/bin/kdepyuic --usekdei18n notify.ui)
+	(cd powermanager; /opt/trinity/bin/tdepyuic --usetdei18n guidance_power_manager_ui.ui)
+	(cd powermanager; /opt/trinity/bin/tdepyuic --usetdei18n tooltip.ui)
+	(cd powermanager; /opt/trinity/bin/tdepyuic --usetdei18n notify.ui)
 
 	mkdir -p po
 	touch list

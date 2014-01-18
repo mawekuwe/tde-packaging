@@ -6,7 +6,7 @@ XSBC-Original-Maintainer: Debian KDE Extras Team <pkg-kde-extras@lists.alioth.de
 Uploaders: Fathi Boudra <fboudra@free.fr>, Mark Purcell <msp@debian.org>
 Build-Depends: cdbs, debhelper (>= 5), quilt, chrpath, tdelibs14-trinity-dev,
  libpythonize0-trinity-dev, libtool, libxml2-utils, libxss-dev, libxxf86vm-dev,
- pytdeextensions-trinity, pytqt-tools, python-tqt, python-trinity-trinity, python-trinity-trinity-dev, python-sip4-dev,
+ pytdeextensions-trinity, pytqt-tools, python-tqt, python-trinity-trinity, python-trinity-trinity-dev, python-sip-tqt-dev,
  python-support (>= 0.6), python (>= 2.5), python-dev (>= 2.5), x11proto-scrnsaver-dev, python-tqt-dev, hwdata
 Standards-Version: 3.8.4
 
