@@ -8,15 +8,19 @@ include debian/python-distutils-jaunty.mk
 #include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 include /usr/share/cdbs/1/rules/utils.mk
 
-DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include
 DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
 DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
+DEB_PYTHON_INSTALL_ARGS_ALL += \
+    --install-clib=/opt/trinity/lib \
+    --install-cheaders=/opt/trinity/include
+
 cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
 DEB_DH_INSTALL_ARGS = --sourcedir=debian/tmp
-DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
+DEB_CONFIGURE_EXTRA_FLAGS := --prefix=/opt/trinity --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
@@ -40,16 +44,8 @@ install/pytdeextensions-trinity::
 	find . -type f -name '*.py[co]' | xargs rm -f
 
 install/libpythonize0-trinity::
-	# Move the files where they belong
-	mkdir -p debian/tmp/opt/trinity/lib
-	mv debian/tmp/usr/lib/libpythonize* debian/tmp/opt/trinity/lib/ || echo "moving files 1/2"
-	mv debian/tmp/usr/include debian/tmp/opt/trinity/ || echo "moving files 2/2"
-
 	# fix binary-or-shlib-defines-rpath
 	chrpath -d debian/tmp/opt/trinity/lib/libpythonize.so.*
-	# fix include directory location
-	mkdir -p debian/tmp/opt/trinity/include/tde
-	mv debian/tmp/opt/trinity/include/*.h debian/tmp/opt/trinity/include/tde
 
 clean::
 	rm -rf build
