@@ -53,7 +53,7 @@ build-%/configure-stamp:
                 | python$* ../configure.py \
                         -c -n /usr/include/tqscintilla \
                         -o /usr/lib -u -j $(SPLIT) \
-                        -d /usr/lib/python$*/$(call py_sitename,$*) \
+                        -d /usr/lib/python$*/$(call py_sitename,$*)/python_tqt \
                         -l /usr/include/python$* \
                         -v /usr/share/sip/tqt \
                         -m /usr/lib/python$*/config \
@@ -67,7 +67,7 @@ dbg-build-%/configure-stamp:
                 | python$*-dbg ../configure.py \
                         -c -n /usr/include/tqscintilla \
                         -o /usr/lib -u -j $(SPLIT) \
-                        -d /usr/lib/python$*/$(call py_sitename,$*) \
+                        -d /usr/lib/python$*/$(call py_sitename,$*)/python_tqt \
                         -l /usr/include/python$*_d \
                         -v /usr/share/sip/tqt \
                         -m /usr/lib/python$*/config_d \
@@ -92,7 +92,7 @@ install-indep: configure
 	dh_clean -k -i
 	dh_installdirs -i
 	for version in ${PYTHONS}; do\
-		pylib=$$(python$$version -c 'from distutils import sysconfig; print sysconfig.get_python_lib()'); \
+		pylib=$$(python$$version -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')/python_tqt; \
 		mkdir -p debian/python-tqt-dev/$$pylib;\
 		install -m 644 -o root -g root build-$$version/pyqtconfig.py debian/python-tqt-dev/$$pylib;\
 	done
@@ -107,8 +107,10 @@ install-arch: build
 	  $(MAKE) -C build-$$version install DESTDIR=$(CURDIR)/debian/tmp;\
 	done
 	for version in ${PYTHONS}; do \
-	  pylib=$$(python$$version -c 'from distutils import sysconfig; print sysconfig.get_python_lib()'); \
+	  pylib=$$(python$$version -c 'from distutils import sysconfig; print sysconfig.get_python_lib()')/python_tqt; \
 	  $(MAKE) -C dbg-build-$$version install DESTDIR=$(CURDIR)/debian/python-tqt-dbg;\
+	  mkdir -p debian/python-tqt/$$pylib;\
+	  touch debian/python-tqt/$$pylib/__init__.py;\
 	  mkdir -p debian/python-tqt-gl-dbg/$$pylib;\
 	  mv debian/python-tqt-dbg/$$pylib/qtgl.so \
              debian/python-tqt-gl-dbg/$$pylib/;\
@@ -158,7 +160,7 @@ endif
 	dh_compress -X.py -X.bmp -X.ui -X.sql
 	dh_fixperms
 	${DH_PYTHON2}
-	dh_sip
+	dh_sip_tqt
 	dh_lintian
 	dh_installdeb
 	dh_shlibdeps

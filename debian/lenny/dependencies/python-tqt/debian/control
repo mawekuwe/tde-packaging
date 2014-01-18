@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Timothy Pearson <kb9vqf@pearsoncomputing.net>
 XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Uploaders: Torsten Marek <shlomme@debian.org>, Bernd Zeimetz <bzed@debian.org>, Michael Casadevall <mcasadevall@debian.org>
-Build-Depends: debhelper (>= 6.0.7~), python-all-dev (>= 2.3.5-10), libtqtinterface-dev, tqt3-dev-tools, tqt3-apps-dev, python-sip-dev (>= 4.10.0-2ubuntu1), libtqscintilla-dev, python-support (>= 0.7.1) | python-dev (>= 2.6.6-3~), python-sip-dbg, python-all-dbg
+Build-Depends: debhelper (>= 6.0.7~), python-all-dev (>= 2.3.5-10), libtqtinterface-dev, tqt3-dev-tools, tqt3-apps-dev, python-sip-tqt-dev, python-sip-tqt-dbg, libtqscintilla-dev, python-support (>= 0.7.1) | python-dev (>= 2.6.6-3~), python-all-dbg
 Standards-Version: 3.8.4
 
 Package: python-tqt
@@ -30,7 +30,7 @@ Priority: extra
 Replaces: python-tqt-dbg (<< 4:14.0.0~)
 Breaks: python-tqt-dbg (<< 4:14.0.0~)
 Section: debug
-Depends: ${shlibs:Depends}, python-dbg, python-tqt (= ${binary:Version}), python-sip-dbg, ${misc:Depends}
+Depends: ${shlibs:Depends}, python-dbg, python-tqt (= ${binary:Version}), python-sip-tqt-dbg, ${misc:Depends}
 Description: TQt bindings for Python (debug extension)
  Python binding module that allows use of TQt X Window toolkit v3.
  You can use it to create portable graphics-capable scripts (there
@@ -105,7 +105,7 @@ Description: pyuic and pylupdate for TQt
 
 Package: python-tqt-dev
 Depends: ${python:Depends}, ${misc:Depends}
-Suggests: python-sip-dev
+Suggests: python-sip-tqt-dev
 Replaces: python-tqt-dev (<< 4:14.0.0~)
 Breaks: python-tqt-dev (<< 4:14.0.0~)
 Architecture: all
