@@ -40,7 +40,7 @@ build-%/configure-stamp:
 	mkdir -p build-$*
 	cd build-$* \
 		&& python$* ../configure.py \
-			-d /usr/lib/python$*/$(call py_sitename,$*) \
+			-d /usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt \
 			-u STRIP="" CFLAGS="${CFLAGS} -I/usr/include/tqt -I/usr/include/tqt3 -I/usr/include/qt3" CFLAGS_RELEASE="" CXXFLAGS="${CFLAGS} -I/usr/include/tqt -I/usr/include/tqt3 -I/usr/include/qt3" CXXFLAGS_RELEASE=""
 	touch $@
 
@@ -49,7 +49,7 @@ dbg-build-%/configure-stamp:
 	mkdir -p dbg-build-$*
 	cd dbg-build-$* \
 		&& python$*-dbg ../configure.py \
-			-d /usr/lib/python$*/$(call py_sitename,$*) \
+			-d /usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt \
 			-e /usr/include/python$*_d \
 			-u CFLAGS="-O0 -g -I/usr/include/tqt -I/usr/include/tqt3 -I/usr/include/qt3" CFLAGS_RELEASE="" CXXFLAGS="-O0 -g -I/usr/include/tqt -I/usr/include/tqt3 -I/usr/include/qt3" CXXFLAGS_RELEASE="" STRIP=""
 	touch $@
@@ -88,35 +88,36 @@ install-arch: build
 		$(MAKE) -f debian/rules install-arch-$$p;\
 	done
 
-	for i in $$(find debian/python-sip-dbg -name '*.so'); do \
+	for i in $$(find debian/python-sip-tqt-dbg -name '*.so'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
 	done
-	find debian/python-sip-dbg ! -type d ! -name '*_d.*' | xargs rm -f
-	find debian/python-sip-dbg -depth -empty -exec rmdir {} \;
+	find debian/python-sip-tqt-dbg ! -type d ! -name '*_d.*' | xargs rm -f
+	find debian/python-sip-tqt-dbg -depth -empty -exec rmdir {} \;
 
 	dh_install -a --sourcedir=$(CURDIR)/debian/tmp
-	install -m 755 -o root -g root debian/dh_sip debian/python-sip-dev/usr/bin
+	install -m 755 -o root -g root debian/dh_sip_tqt debian/python-sip-tqt-dev/usr/bin
 
 install-arch-%:
 	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/tmp
-	$(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-sip-dbg
-	mkdir -p debian/python-sip/usr/lib/python$*/$(call py_sitename,$*)/
-	install -m 644 -o root -g root debian/sipconfig.py debian/python-sip/usr/lib/python$*/$(call py_sitename,$*)/
-	install -m 644 -o root -g root build-$*/sipconfig.py debian/python-sip/usr/lib/python$*/$(call py_sitename,$*)/sipconfig_nd.py
+	$(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-sip-tqt-dbg
+	mkdir -p debian/python-sip-tqt/usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt/
+	touch debian/python-sip-tqt/usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt/__init__.py
+	install -m 644 -o root -g root debian/sipconfig.py debian/python-sip-tqt/usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt/
+	install -m 644 -o root -g root build-$*/sipconfig.py debian/python-sip-tqt/usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt/sipconfig_nd.py
 ifneq (dh_pysupport,${DH_PYTHON2})
 	# install *_d.py into wrong package to prevent deletion in dh_python2
-	install -m 644 -o root -g root dbg-build-$*/sipconfig.py debian/python-sip/usr/lib/python$*/$(call py_sitename,$*)/sipconfig_d.py
+	install -m 644 -o root -g root dbg-build-$*/sipconfig.py debian/python-sip-tqt/usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt/sipconfig_d.py
 else
-	install -m 644 -o root -g root dbg-build-$*/sipconfig.py debian/python-sip-dbg/usr/lib/python$*/$(call py_sitename,$*)/sipconfig_d.py
+	install -m 644 -o root -g root dbg-build-$*/sipconfig.py debian/python-sip-tqt-dbg/usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt/sipconfig_d.py
 endif
-	mkdir -p debian/python-sip-dev/usr/include/python$*
-	install -m 644 -o root -g root siplib/sip.h debian/python-sip-dev/usr/include/python$*/
-	mkdir -p debian/python-sip-dev/usr/include/python$*_d
+	mkdir -p debian/python-sip-tqt-dev/usr/include/python$*
+	install -m 644 -o root -g root siplib/sip.h debian/python-sip-tqt-dev/usr/include/python$*/
+	mkdir -p debian/python-sip-tqt-dev/usr/include/python$*_d
 	ln -s ../python$*/sip.h \
-	    debian/python-sip-dev/usr/include/python$*_d/sip.h
-	mkdir -p debian/python-sip-dev/usr/lib/python$*/$(call py_sitename,$*)
-	install -m 644 -o root -g root sipdistutils.py debian/python-sip-dev/usr/lib/python$*/$(call py_sitename,$*)
+	    debian/python-sip-tqt-dev/usr/include/python$*_d/sip.h
+	mkdir -p debian/python-sip-tqt-dev/usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt
+	install -m 644 -o root -g root sipdistutils.py debian/python-sip-tqt-dev/usr/lib/python$*/$(call py_sitename,$*)/sip4_tqt
 
 
 # Must not depend on anything. This is to be called by
@@ -132,20 +133,20 @@ binary-common:
 	dh_link
 # don't call strip twice, it's in binary-common
 ifneq (,$(findstring -a, $(DH_OPTIONS)))
-	DH_OPTIONS= dh_strip -ppython-sip-dev
-	DH_OPTIONS= dh_strip -ppython-sip -Npython-sip-dev --dbg-package=python-sip-dbg
-	rm -rf debian/python-sip-dbg/usr/share/doc/python-sip-dbg
-	mkdir -p debian/python-sip-dbg/usr/share/doc
-	ln -s python-sip debian/python-sip-dbg/usr/share/doc/python-sip-dbg
+	DH_OPTIONS= dh_strip -ppython-sip-tqt-dev
+	DH_OPTIONS= dh_strip -ppython-sip-tqt -Npython-sip-tqt-dev --dbg-package=python-sip-tqt-dbg
+	rm -rf debian/python-sip-tqt-dbg/usr/share/doc/python-sip-tqt-dbg
+	mkdir -p debian/python-sip-tqt-dbg/usr/share/doc
+	ln -s python-sip-tqt debian/python-sip-tqt-dbg/usr/share/doc/python-sip-tqt-dbg
 endif
 	dh_compress 
 	dh_fixperms
 	${DH_PYTHON2}
 ifneq (dh_pysupport,${DH_PYTHON2})
 	# move *_d.py back into right package
-	find debian/python-sip -name "*_d.py" | \
+	find debian/python-sip-tqt -name "*_d.py" | \
 	while read f; do \
-	    f1="debian/python-sip-dbg/$${f#debian/python-sip/}"; \
+	    f1="debian/python-sip-tqt-dbg/$${f#debian/python-sip-tqt/}"; \
 	    mkdir -p "$${f1%/*}"; \
 	    mv "$${f}" "$${f1}" ; \
 	done

@@ -7,7 +7,7 @@ if getattr(sys, "pydebug", False):
         from sipconfig_d import *
         from sipconfig_d import _pkg_config, _default_macros
     except ImportError, msg:
-        raise ImportError, 'No module named sipconfig; package python-sip4-dbg not installed'
+        raise ImportError, 'No module named sipconfig; package python-sip-tqt-dbg not installed'
 else:
     from sipconfig_nd import *
     from sipconfig_nd import _pkg_config, _default_macros

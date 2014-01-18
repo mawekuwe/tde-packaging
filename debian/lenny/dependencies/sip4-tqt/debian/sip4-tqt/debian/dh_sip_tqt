@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-dh_sip - set the correct dependencies for Python packages using sip
+dh_sip_tqt - set the correct dependencies for Python packages using sip
 
 =cut
 
@@ -11,11 +11,11 @@ use Debian::Debhelper::Dh_Lib;
 
 =head1 SYNOPSIS
 
-B<dh_sip> 
+B<dh_sip_tqt>
 
 =head1 DESCRIPTION
 
-dh_sip creates the ${sip:Depends} substitution variable which must be used by
+dh_sip_tqt creates the ${sip:Depends} substitution variable which must be used by
 Python extensions built with sip in order to depend on a version of python-sip
 that exports the correct public API. 
 
@@ -23,7 +23,7 @@ that exports the correct public API.
 
 init();
 
-my $sip_provides = `dpkg -s python-sip`;
+my $sip_provides = `dpkg -s python-sip-tqt`;
 $sip_provides =~ /^Provides:\s*(.+)$/m;
 
 my @sip_apis = sort(grep(/sip\-api/, split(/,\s*/, $1)));
