@@ -1,8 +1,8 @@
-Document: PyKDE
-Title: PyKDE developer documentation
-Author: Jim Bublitz
-Abstract: This documentation describes the PyKDE API
- PyKDE contains the Python bindings to the KDE core library.
+Document: PyTDE
+Title: PyTDE developer documentation
+Author: Jim Bublitz, The TDE Team
+Abstract: This documentation describes the PyTDE API
+ PyTDE contains the Python bindings to the TDE core library.
  This manual contains general handling instructions and 
  a class reference.
 Section: Programming

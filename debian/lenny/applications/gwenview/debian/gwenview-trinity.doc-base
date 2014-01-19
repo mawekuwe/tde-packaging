@@ -1,0 +1,9 @@
+Document: gwenview-trinity
+Title: Gwenview Handbook
+Author: Aurélien Gâteau, Christopher Martin, The TDE Team
+Abstract: Gwenview is an image viewer for TDE.
+Section: Viewers
+
+Format: HTML
+Index: /opt/trinity/share/doc/tde/HTML/en/gwenview/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/gwenview/*.html
