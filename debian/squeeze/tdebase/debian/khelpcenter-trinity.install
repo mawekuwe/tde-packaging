@@ -33,8 +33,6 @@ debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Manpages/man7.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Manpages/man8.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Manpages/man9.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Manpages/mann.desktop
-debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Scrollkeeper/.directory
-debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/Scrollkeeper/scrollkeeper.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/support.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/quickstart.desktop
 debian/tmp/opt/trinity/share/apps/khelpcenter/plugins/visualdict.desktop
