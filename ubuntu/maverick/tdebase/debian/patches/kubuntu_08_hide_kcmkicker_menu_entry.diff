@@ -1,7 +1,7 @@
 --- tdebase/kicker/kicker/kcmkicker.desktop	2005-03-17 01:03:22.645846992 +0000
 +++ tdebase/kicker/kicker/kcmkicker.desktop	2005-03-17 01:03:30.907591016 +0000
 @@ -67,3 +67,4 @@
- X-TDE-StartupNotify=true
+ DocPath=kicker/index.html
  OnlyShowIn=TDE;
  Categories=Qt;TDE;Settings;
 +NoDisplay=true
