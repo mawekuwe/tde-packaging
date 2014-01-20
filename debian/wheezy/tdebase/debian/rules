@@ -38,7 +38,6 @@ DEB_CMAKE_EXTRA_FLAGS := \
  -DTDESCREENSAVER_PAM_SERVICE="tdescreensaver-trinity" \
  -DWITH_USBIDS="/usr/share/misc/usb.ids" \
  -DWITH_ARTS="ON" \
- -DWITH_SHADOW="ON" \
  -DWITH_PAM="ON" \
  -DWITH_SASL="ON" \
  -DWITH_SUDO_TDESU_BACKEND="OFF" \
