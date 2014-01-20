@@ -104,7 +104,7 @@ Description: pyuic and pylupdate for TQt
  Linguist translation files from Python code.
 
 Package: python-tqt-dev
-Depends: python-tqt, ${python:Depends}, ${misc:Depends}
+Depends: python-tqt (= ${binary:Version}), ${python:Depends}, ${misc:Depends}
 Suggests: python-sip-tqt-dev
 Replaces: python-tqt-dev (<< 4:14.0.0~)
 Breaks: python-tqt-dev (<< 4:14.0.0~)
