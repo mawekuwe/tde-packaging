@@ -13,9 +13,9 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdf/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdf/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdf/kdf.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdf/kdf_config.png
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kinfocenter/blockdevices/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kinfocenter/blockdevices/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kinfocenter/blockdevices/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kinfocenter/storagedevices/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kinfocenter/storagedevices/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kinfocenter/storagedevices/index.docbook
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/kcmdf.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/22x22/apps/kcmdf.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/kcmdf.png
