@@ -1130,8 +1130,8 @@ Summary:	TQt support for Poppler
 Group:		Environment/Libraries
 Obsoletes:	poppler-tqt < %{version}-%{release}
 Provides:	poppler-tqt = %{version}-%{release}
-Obsoletes:	%{name}-poppler-tqt < %{version}-%{release}
-Provides:	%{name}-poppler-tqt = %{version}-%{release}
+Obsoletes:	%{name}-libpoppler-tqt < %{version}-%{release}
+Provides:	%{name}-libpoppler-tqt = %{version}-%{release}
 
 %description -n trinity-libpoppler-tqt
 TQt support library for Poppler.
@@ -1155,8 +1155,8 @@ Group:		Development/Libraries
 Requires:	trinity-libpoppler-tqt = %{version}-%{release}
 Obsoletes:	poppler-tqt-devel < %{version}-%{release}
 Provides:	poppler-tqt-devel = %{version}-%{release}
-Obsoletes:	%{name}-poppler-tqt-devel < %{version}-%{release}
-Provides:	%{name}-poppler-tqt-devel = %{version}-%{release}
+Obsoletes:	%{name}-libpoppler-tqt-devel < %{version}-%{release}
+Provides:	%{name}-libpoppler-tqt-devel = %{version}-%{release}
 
 %description -n trinity-libpoppler-tqt-devel
 Development files of TQt support library for Poppler.

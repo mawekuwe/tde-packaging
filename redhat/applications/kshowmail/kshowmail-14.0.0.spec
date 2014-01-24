@@ -123,6 +123,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 %{tde_datadir}/apps/kshowmail/pics/tool.png
 %{tde_datadir}/apps/kshowmail/sounds/neuepost.wav
 %{tde_datadir}/apps/kshowmail/sounds/newmail.wav
+%{tde_datadir}/icons/crystalsvg/16x16/apps/kshowmail.png
 %{tde_datadir}/services/kshowmailconfigaccounts.desktop
 %{tde_datadir}/services/kshowmailconfigactions.desktop
 %{tde_datadir}/services/kshowmailconfigdisplay.desktop

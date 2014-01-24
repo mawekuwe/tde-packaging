@@ -26,7 +26,7 @@
 
 Name:			trinity-%{tde_pkg}
 Summary:		TDE Integrated LaTeX Environment [Trinity]
-Version:		2.0.2
+Version:		2.0.3
 Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
@@ -159,6 +159,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -f %{?buildroot}%{tde_datadir}/apps/katepart/syntax/latex.xml
 
 %find_lang %{tde_pkg}
+
 
 %clean
 %__rm -rf %{buildroot}

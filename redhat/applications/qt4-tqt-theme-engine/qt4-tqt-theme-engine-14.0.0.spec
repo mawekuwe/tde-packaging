@@ -1,3 +1,7 @@
+%if "%{?_qt4_plugindir}" == ""
+%define _qt4_plugindir %{_libdir}/qt4/plugins
+%endif
+
 # Default version for this component
 %define tde_pkg qt4-tqt-theme-engine
 %define tde_version 14.0.0
@@ -48,7 +52,13 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext
+
+# QT4 support
+%if 0%{?suse_version}
+BuildRequires:	qt-devel
+%else
 BuildRequires:	qt4-devel
+%endif
 
 %description
 TDE theme engine for Qt4

@@ -41,14 +41,6 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-# [pytdeextensions] Port to TQT3
-Patch1:		pytdeextensions-14.0.0-tqt.patch
-Patch2:		pytdeextensions-14.0.0-python_tqt.patch
-# [pykdeextensions] Fix hardcoded path to Guidance python libraries [Bug #999]
-Patch3:		pytdeextensions-14.0.0-fix_extra_module_dir.patch
-# [pykdeextensions] Fix include directory search location
-Patch5:		pytdeextensions-14.0.0-fix_include_dir.patch
-
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -154,19 +146,17 @@ Requires:		trinity-libpythonize0-devel = %{version}-%{release}
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .tqt3
-%patch2 -p1 -b .pythontqt
-%patch3 -p1 -b .extramodule
-%patch5 -p1 -b .incdir
 
 # Changes library directory to 'lib64'
 # Also other fixes for distributions ...
 for f in src/*.py; do
   %__sed -i "${f}" \
-    -e "s|'pyqt-dir='.*'|'pyqt-dir=','%{python_sitearch}/python_tqt'|g" \
-    -e "s|self.pyqt_dir = .*|self.pyqt_dir = \"%{python_sitearch}/python_tqt\"|g" \
     -e "s|'pytde-dir=',None,|'pytde-dir=','%{python_sitearch}',|g" \
     -e "s|self.pytde_dir = None|self.pytde_dir = \"%{python_sitearch}\"|g" \
+    -e "s|'kde-lib-dir=',None,|'kde-lib-dir=','%{tde_libdir}',|g" \
+    -e "s|self.kde_lib_dir = None|self.kde_lib_dir = \"%{tde_libdir}\"|g" \
+    -e "s|'kde-kcm-lib-dir=',None,|'kde-kcm-lib-dir=','%{tde_libdir}/trinity',|g" \
+    -e "s|self.kde_kcm_lib_dir = None|self.kde_kcm_lib_dir = \"%{tde_libdir}/trinity\"|g" \
     -e "s|%{tde_includedir}/tde|%{tde_tdeincludedir}|g" \
     -e 's|"/kde"|"/tde"|' \
     -e 's|"-I" + self.kde_inc_dir + "/tde"|"-I/opt/trinity/include"|' \
@@ -177,7 +167,7 @@ done
 # Instead look for versioned runtime library.
 LIBPYTHON="$(readlink %{_libdir}/libpython2.*.so)"
 if [ -f "%{_libdir}/${LIBPYTHON}" ]; then
-  %__sed -i "src/kdedistutils.py" \
+  %__sed -i "src/tdedistutils.py" \
     -e "s|#define LIB_PYTHON \".*\"|#define LIB_PYTHON \"%{_libdir}/${LIBPYTHON}\"|"
 fi
 
@@ -193,10 +183,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %install
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-#export PYTHONPATH=%{python_sitearch}/python-tqt
-
-# Support for 'sip4-tqt'
-#export PYTHONPATH=%{python_sitearch}/sip4_tqt:${PYTHONPATH}
 
 # Avoids 'error: byte-compiling is disabled.' on Mandriva/Mageia
 export PYTHONDONTWRITEBYTECODE=

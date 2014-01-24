@@ -38,10 +38,15 @@ Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	cmake >= 2.8
 BuildRequires:	libtool
 BuildRequires:	pcre-devel
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
-BuildRequires:	trinity-tdelibs-devel >= %{version}
+
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
+BuildRequires:	trinity-perl-dcop >= %{tde_version}
 # for kbugbuster/libkcal
-BuildRequires:	trinity-tdepim-devel >= %{version}
+BuildRequires:	trinity-tdepim-devel >= %{tde_version}
+BuildRequires:	desktop-file-utils
+
+# DB4 support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 #BuildRequires:	%{_lib}db4.8-devel
 %endif
@@ -51,7 +56,7 @@ BuildRequires:	db4-devel
 %if 0%{?suse_version}
 BuildRequires:	libdb-4_8-devel
 %endif
-BuildRequires:	desktop-file-utils
+
 # kbabel,  F-7+: flex >= 2.5.33-9
 BuildRequires:	flex
 # umbrello
@@ -596,7 +601,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_bindir}/includemocs
 %{tde_bindir}/kde-build
 %{tde_bindir}/kdedoc
-%{tde_bindir}/kdekillall
+%{tde_bindir}/tdekillall
 %{tde_bindir}/kdelnk2desktop.py*
 %{tde_bindir}/kdemangen.pl
 %{tde_bindir}/makeobj

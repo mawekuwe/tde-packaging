@@ -105,88 +105,6 @@ very useful extentions.
 
 digiKam is based in part on the work of the Independent JPEG Group.
 
-
-%package devel
-Group:			Development/Libraries
-Summary:		Development files for %{name}
-Requires:		%{name} = %{version}-%{release}
-
-%description devel
-%{summary}
-
-
-%if 0%{?suse_version} || 0%{?pclinuxos}
-%debug_package
-%endif
-
-
-%prep
-%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%if 0%{?rhel} == 4
-%patch1 -p1 -b .png12
-%endif
-
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-%__make -f "admin/Makefile.common"
-
-
-%build
-unset QTDIR QTINC QTLIB
-export PATH="%{tde_bindir}:${PATH}"
-
-%configure \
-  --prefix=%{tde_prefix} \
-  --exec-prefix=%{tde_prefix} \
-  --bindir=%{tde_bindir} \
-  --libdir=%{tde_libdir} \
-  --datadir=%{tde_datadir} \
-  --mandir=%{tde_mandir} \
-  --includedir=%{tde_tdeincludedir} \
-  \
-  --disable-dependency-tracking \
-  --disable-debug \
-  --enable-new-ldflags \
-  --enable-final \
-  --enable-closure \
-  --enable-rpath \
-  --enable-gcc-hidden-visibility
-
-%__make %{?_smp_mflags} || %__make
-
-
-%install
-export PATH="%{tde_bindir}:${PATH}"
-%__rm -rf %{buildroot}
-%__make install DESTDIR=%{buildroot}
-
-
-%find_lang %{tde_pkg}
-
-
-%clean
-%__rm -rf %{buildroot}
-
-
-%post
-touch --no-create %{tde_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
-/sbin/ldconfig
-update-desktop-database %{tde_appdir} 2> /dev/null || : 
-
-%postun
-touch --no-create %{tde_datadir}/icons/hicolor || :
-gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
-/sbin/ldconfig
-update-desktop-database %{tde_appdir} 2> /dev/null || : 
-
-%post devel
-/sbin/ldconfig || :
-
-%postun devel
-/sbin/ldconfig || :
-
-
 %files -f %{tde_pkg}.lang
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
@@ -304,13 +222,128 @@ update-desktop-database %{tde_appdir} 2> /dev/null || :
 %{tde_datadir}/servicetypes/digikamimageplugin.desktop
 %{tde_mandir}/man*/*
 #%{tde_tdedocdir}/HTML/en/digikam-apidocs/
+%{tde_tdedocdir}/HTML/en/digikam/
+%{tde_tdedocdir}/HTML/en/showfoto/
 
+%post
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+/sbin/ldconfig
+update-desktop-database %{tde_appdir} 2> /dev/null || : 
+
+%postun
+touch --no-create %{tde_datadir}/icons/hicolor || :
+gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+/sbin/ldconfig
+update-desktop-database %{tde_appdir} 2> /dev/null || : 
+
+##########
+
+%package devel
+Group:			Development/Libraries
+Summary:		Development files for %{name}
+Requires:		%{name} = %{version}-%{release}
+
+%description devel
+%{summary}
 
 %files devel
+%defattr(-,root,root,-)
 %{tde_tdeincludedir}/digikam_export.h
 %{tde_tdeincludedir}/digikam/
 %{tde_libdir}/libdigikam.so
 %{tde_libdir}/libdigikam.la
+
+%post devel
+/sbin/ldconfig || :
+
+%postun devel
+/sbin/ldconfig || :
+
+##########
+
+%package i18n
+Summary:		Translation files for %{tde_pkg}
+Group:			Applications/Utilities
+Requires:		%{name} = %{version}-%{release}
+
+%description i18n
+%{summary}
+
+%files i18n
+%defattr(-,root,root,-)
+%lang(da) %{tde_tdedocdir}/HTML/da/digikam/
+%lang(da) %{tde_tdedocdir}/HTML/da/showfoto/
+%lang(de) %{tde_tdedocdir}/HTML/de/digikam/
+%lang(de) %{tde_tdedocdir}/HTML/de/showfoto/
+%lang(es) %{tde_tdedocdir}/HTML/es/digikam/
+%lang(es) %{tde_tdedocdir}/HTML/es/showfoto/
+%lang(et) %{tde_tdedocdir}/HTML/et/digikam/
+%lang(et) %{tde_tdedocdir}/HTML/et/showfoto/
+%lang(it) %{tde_tdedocdir}/HTML/it/digikam/
+%lang(it) %{tde_tdedocdir}/HTML/it/showfoto/
+%lang(nl) %{tde_tdedocdir}/HTML/nl/digikam/
+%lang(nl) %{tde_tdedocdir}/HTML/nl/showfoto/
+%lang(pt_BR) %{tde_tdedocdir}/HTML/pt_BR/digikam/
+#%lang(pt_BR) %{tde_tdedocdir}/HTML/pt_BR/showfoto/
+%lang(ru) %{tde_tdedocdir}/HTML/ru/digikam/
+#%lang(ru) %{tde_tdedocdir}/HTML/ru/showfoto/
+%lang(sv) %{tde_tdedocdir}/HTML/sv/digikam/
+%lang(sv) %{tde_tdedocdir}/HTML/sv/showfoto/
+
+##########
+
+%if 0%{?suse_version} || 0%{?pclinuxos}
+%debug_package
+%endif
+
+##########
+
+%prep
+%setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%if 0%{?rhel} == 4
+%patch1 -p1 -b .png12
+%endif
+
+%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
+%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
+%__make -f "admin/Makefile.common"
+
+
+%build
+unset QTDIR QTINC QTLIB
+export PATH="%{tde_bindir}:${PATH}"
+
+%configure \
+  --prefix=%{tde_prefix} \
+  --exec-prefix=%{tde_prefix} \
+  --bindir=%{tde_bindir} \
+  --libdir=%{tde_libdir} \
+  --datadir=%{tde_datadir} \
+  --mandir=%{tde_mandir} \
+  --includedir=%{tde_tdeincludedir} \
+  \
+  --disable-dependency-tracking \
+  --disable-debug \
+  --enable-new-ldflags \
+  --enable-final \
+  --enable-closure \
+  --enable-rpath \
+  --enable-gcc-hidden-visibility
+
+%__make %{?_smp_mflags} || %__make
+
+
+%install
+export PATH="%{tde_bindir}:${PATH}"
+%__rm -rf %{buildroot}
+%__make install DESTDIR=%{buildroot}
+
+%find_lang %{tde_pkg}
+
+
+%clean
+%__rm -rf %{buildroot}
 
 
 %changelog

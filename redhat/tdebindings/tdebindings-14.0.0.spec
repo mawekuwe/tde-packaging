@@ -235,7 +235,7 @@ This package is part of the official TDE bindings module.
 %files -n trinity-libdcop3-java
 %defattr(-,root,root,-)
 #%{tde_datadir}/java/dcopjava*.jar
-%{tde_libdir}/java/org/kde/DCOP/*.class
+%{tde_libdir}/java/org/*/DCOP/*.class
 
 ##########
 
@@ -380,9 +380,9 @@ This package is part of the official TDE bindings module.
 
 %files -n trinity-libtrinity-jni
 %defattr(-,root,root,-)
-%{tde_libdir}/jni/libkdejava.la
-%{tde_libdir}/jni/libkdejava.so.*
-%doc kdejava/ChangeLog
+%{tde_libdir}/jni/libtdejava.la
+%{tde_libdir}/jni/libtdejava.so.*
+%doc tdejava/ChangeLog
 
 ##########
 
@@ -398,7 +398,7 @@ This package is part of the official TDE bindings module.
 
 %files -n trinity-libtrinity-jni-devel
 %defattr(-,root,root,-)
-%{tde_libdir}/jni/libkdejava.so
+%{tde_libdir}/jni/libtdejava.so
 
 ##########
 
@@ -707,12 +707,12 @@ This package is part of the official TDE bindings module.
 
 %files -n trinity-libkorundum0-ruby
 %defattr(-,root,root,-)
-%{tde_bindir}/rbkdesh
-%{tde_bindir}/rbkdeapi
+%{tde_bindir}/rbtdesh
+%{tde_bindir}/rbtdeapi
 %{tde_bindir}/krubyinit
 %{tde_bindir}/rbtdeconfig_compiler
 %{ruby_rubylibdir}/Korundum.rb
-%{ruby_rubylibdir}/KDE/korundum.rb
+%{ruby_rubylibdir}/TDE/korundum.rb
 %{ruby_arch}/korundum.la
 %{ruby_arch}/korundum.so*
 %doc korundum/ChangeLog
@@ -827,22 +827,25 @@ Group:		Environment/Libraries
 
 ##########
 
-%package -n trinity-libkdexparts1
-Summary:	Xparts library for KDE
+%package -n trinity-libtdexparts
+Summary:	Xparts library for TDE
 Group:		Environment/Libraries
 
-%description -n trinity-libkdexparts1
+Obsoletes:	trinity-libkdexparts1 < %{version}-%{release}
+Provides:	trinity-libkdexparts1 = %{version}-%{release}
+
+%description -n trinity-libtdexparts
 %{summary}
 
-%files -n trinity-libkdexparts1
+%files -n trinity-libtdexparts
 %defattr(-,root,root,-)
-%{tde_libdir}/libkdexparts.so.*
-%{tde_libdir}/libkdexparts.la
+%{tde_libdir}/libtdexparts.so.*
+%{tde_libdir}/libtdexparts.la
 
-%post -n trinity-libkdexparts1
+%post -n trinity-libtdexparts
 /sbin/ldconfig || :
 
-%postun -n trinity-libkdexparts1
+%postun -n trinity-libtdexparts
 /sbin/ldconfig || :
 
 ##########
@@ -853,7 +856,7 @@ Group:		Development/Libraries
 %if 0%{?with_gtk1}
 Requires:	trinity-libgtkxparts1 = %{version}-%{release}
 %endif
-Requires:	trinity-libkdexparts1 = %{version}-%{release}
+Requires:	trinity-libtdexparts = %{version}-%{release}
 
 %description -n trinity-libxparts-devel
 %{summary}
@@ -864,7 +867,7 @@ Requires:	trinity-libkdexparts1 = %{version}-%{release}
 %if 0%{?with_gtk1}
 %{tde_libdir}/libgtkxparts.so
 %endif
-%{tde_libdir}/libkdexparts.so
+%{tde_libdir}/libtdexparts.so
 
 %post -n trinity-libxparts-devel
 /sbin/ldconfig || :
@@ -883,7 +886,7 @@ Requires:	trinity-xpart-notepad = %{version}-%{release}
 %if 0%{?with_gtk1}
 Requires:	trinity-libgtkxparts1 = %{version}-%{release}
 %endif
-Requires:	trinity-libkdexparts1 = %{version}-%{release}
+Requires:	trinity-libtdexparts = %{version}-%{release}
 Requires:	trinity-libdcop-c = %{version}-%{release}
 
 %description xparts-extras

@@ -63,7 +63,7 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	trinity-tdegraphics-devel >= %{tde_version}
-BuildRequires:	trinity-tdegraphics-libpoppler-tqt-devel >= %{tde_version}
+BuildRequires:	trinity-libpoppler-tqt-devel >= %{tde_version}
 BuildRequires:	automake libtool
 BuildRequires:	fontconfig-devel
 BuildRequires:	libart_lgpl-devel

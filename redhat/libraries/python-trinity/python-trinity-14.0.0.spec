@@ -43,9 +43,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			python-trinity-14.0.0-sip4_tqt.patch
-Patch2:			python-trinity-14.0.0-python_tqt.patch
-
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -105,8 +102,6 @@ tips and working code you can use to learn from.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .sip4tqt
-%patch2 -p1 -b .pythontqt
 
 
 %build
@@ -138,7 +133,6 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 
 
-
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS ChangeLog COPYING NEWS README
@@ -148,7 +142,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 %files devel
 %defattr(-,root,root,-)
-%{tde_bindir}/kdepyuic
+%{tde_bindir}/tdepyuic
 # The SIP files are outside TDE's prefix
 %{_datadir}/sip/trinity/
 

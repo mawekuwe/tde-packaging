@@ -697,38 +697,50 @@ pushd tde-i18n-fr
 %patch3 -p1
 popd
 
-%__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
-%__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
-
 
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-
-export kde_htmldir="%{tde_tdedocdir}/HTML"
 
 (
 for l in %{TDE_LANGS}; do
   for f in tde-i18n-${l}/; do
     if [ -d "${f}" ]; then 
       pushd ${f}
-      (
-      %__sed -i "configure.in" -e "s|AM_CONFIG_HEADER|AC_CONFIG_HEADER|g"
-      %__make -f "admin/Makefile.common"
-      %configure \
-        --prefix=%{tde_prefix} \
-        --datadir=%{tde_datadir} \
-        --docdir=%{tde_tdedocdir}
-      %__make %{?_smp_mflags} || %__make || echo Error
-      ) &
-      sleep 3
+      if ! rpm -E %%cmake|grep -q "cd build"; then
+        %__mkdir_p build
+        cd build
+      fi
+      
+      %cmake \
+        -DCMAKE_BUILD_TYPE="RelWithDebInfo" \
+        -DCMAKE_VERBOSE_MAKEFILE=ON \
+        \
+        -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
+        -DBIN_INSTALL_DIR="%{tde_bindir}" \
+        -DINCLUDE_INSTALL_DIR="%{tde_tdeincludedir}" \
+        -DLIB_INSTALL_DIR="%{tde_libdir}" \
+        -DPKGCONFIG_INSTALL_DIR="%{tde_libdir}/pkgconfig" \
+        -DSHARE_INSTALL_PREFIX="%{tde_datadir}" \
+        \
+        -DBUILD_ALL=ON \
+        -DBUILD_DOC=ON \
+        -DBUILD_DATA=ON \
+        -DBUILD_MESSAGES=ON \
+      ..
+
+      # Run the build process in background
+      ( %__make -j4 || %__make || echo Error ) &
+      
+      # Do not build more than 4 languages at the same time
+      while [ $(jobs | wc -l) -ge 4 ]; do sleep 3; done
       popd
     fi
   done
 done
 ) 2>&1 | tee /tmp/rpmbuild.$$
 
-if grep -q Error /tmp/rpmbuild.$$; then
+if grep -qw Error /tmp/rpmbuild.$$; then
   echo Error while building. See '/tmp/rpmbuild.$$'
   exit 1
 fi
@@ -743,59 +755,17 @@ export PATH="%{tde_bindir}:${PATH}"
 
 for l in %{TDE_LANGS}; do
   for f in tde-i18n-${l}/; do
-    if [ -d "${f}" ] && [ -r "${f}/Makefile" ] ; then 
-      %__make install DESTDIR="%{?buildroot}" -C "${f}"
-    fi
+    %__make install DESTDIR="%{?buildroot}" -C "${f}/build"
   done
 done
 
 
-# make symlinks relative
-%if "%{tde_prefix}" == "/usr"
-pushd "%{buildroot}%{tde_tdedocdir}/HTML"
-for lang in *; do
-  if [ -d "$lang" ]; then
-    pushd "$lang"
-    for i in */*/*; do
-      if [ -d $i -a -L $i/common ]; then
-        rm -f $i/common
-        ln -sf ../../../docs/common $i
-      fi
-    done
-
-    for i in */*; do
-      if [ -d $i -a -L $i/common ]; then
-        rm -f $i/common
-        ln -sf ../../docs/common $i
-      fi
-    done
-
-    for i in *; do
-      if [ -d $i -a -L $i/common ]; then
-        rm -f $i/common
-        ln -sf ../docs/common $i
-      fi
-    done
-
-    popd
-  fi
-done
-popd   
-%endif
-
 # remove zero-length file
 find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 
-# See http://fedoraproject.org/wiki/Languages (???)
-%__rm -f %{buildroot}%{tde_datadir}/locale/*/flag.png
-
-# Removes conflict with KDE4
-%if "%{?tde_prefix}" == "/usr"
-%__rm -f %{buildroot}%{tde_datadir}/locale/*/entry.desktop
-%endif
-
 # remove obsolete KDE 3 application data translations
 %__rm -rf "%{buildroot}%{tde_datadir}/apps"
+
 
 %clean
 %__rm -rf %{buildroot}

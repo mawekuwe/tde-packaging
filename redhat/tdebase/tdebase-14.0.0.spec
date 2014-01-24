@@ -581,6 +581,8 @@ web browser, X terminal emulator, and many other programs and components.
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING COPYING-DOCS README README.pam
+%{tde_bindir}/release_notes
+%{tde_datadir}/autostart/release_notes.desktop
 
 ##########
 
@@ -1203,7 +1205,7 @@ TDE applications, particularly those in the TDE base module.
 %attr(4511,root,root) %{tde_bindir}/tdmtsak
 %{tde_bindir}/tsak
 %endif
-%{tde_bindir}/kdebugdialog
+%{tde_bindir}/tdedebugdialog
 %{tde_bindir}/kreadconfig
 %{tde_bindir}/kwriteconfig
 %{tde_bindir}/kstart
@@ -1275,7 +1277,7 @@ TDE applications, particularly those in the TDE base module.
 %config(noreplace) %{_sysconfdir}/pam.d/tdescreensaver-trinity
 %endif
 %{tde_tdedocdir}/HTML/en/kdcop/
-%{tde_tdedocdir}/HTML/en/kdebugdialog//
+%{tde_tdedocdir}/HTML/en/tdedebugdialog//
 %{tde_tdedocdir}/HTML/en/tdesu/
 %{tde_tdedocdir}/HTML/en/knetattach/
 %{tde_tdedocdir}/HTML/en/kxkb/
@@ -1926,7 +1928,7 @@ the TDE desktop.
 %config(noreplace) %{_sysconfdir}/trinity/kdesktop_custom_menu2
 %{tde_bindir}/kcheckrunning
 %{tde_bindir}/kxdglauncher
-%{tde_bindir}/kdeeject
+%{tde_bindir}/tdeeject
 %{tde_bindir}/kdesktop
 %{tde_bindir}/kdesktop_lock
 %{tde_bindir}/kwebdesktop

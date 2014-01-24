@@ -49,6 +49,7 @@ BuildRequires:	desktop-file-utils
 
 BuildRequires:	subversion-devel
 Requires:		%{name}-tdeio-plugins = %{version}-%{release}
+Requires:		trinity-libsvnqt = %{version}-%{release}
 
 Obsoletes:	trinity-kdesvn < %{version}-%{release}
 Provides:	trinity-kdesvn = %{version}-%{release}
@@ -238,8 +239,8 @@ fi
 %{tde_libdir}/libtdesvnevents.so
 %{tde_libdir}/libtdesvnhelpers.la
 %{tde_libdir}/libtdesvnhelpers.so
-%{tde_datadir}/tdesvn/icons/hicolor/*/apps/tdesvn.png
-%{tde_datadir}/tdesvn/icons/hicolor/scalable/apps/tdesvn.svgz
+#%{tde_datadir}/tdesvn/icons/hicolor/*/apps/tdesvn.png
+#%{tde_datadir}/tdesvn/icons/hicolor/scalable/apps/tdesvn.svgz
 
 %files -n trinity-libsvnqt
 %defattr(-,root,root,-)

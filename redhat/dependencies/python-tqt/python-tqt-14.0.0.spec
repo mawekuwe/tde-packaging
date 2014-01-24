@@ -26,8 +26,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:		python-tqt-14.0.0-sip4_tqt.patch
-
 BuildRequires:	gcc-c++
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tqscintilla-devel
@@ -139,7 +137,6 @@ packages based on them, like PyTDE.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .sip4tqt
 
 
 %build

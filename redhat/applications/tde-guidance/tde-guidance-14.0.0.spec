@@ -46,8 +46,6 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch1:			tde-guidance-14.0.0-userconfig.patch
-
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
@@ -258,7 +256,6 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .userconfig
 
 %if 0%{?rhel} || 0%{?mgaversion} || 0%{?mdkversion}
 %__sed -i "userconfig/unixauthdb.py" \
@@ -270,7 +267,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export PYTHONPATH=%{python_sitearch}/python-tqt
+#export PYTHONPATH=%{python_sitearch}/python-tqt
 
 # Avoids 'error: byte-compiling is disabled.' on Mandriva/Mageia
 export PYTHONDONTWRITEBYTECODE=
@@ -336,18 +333,11 @@ chrpath -r %{tde_libdir} %{buildroot}%{tde_tdelibdir}/kcm_*.so
 
 # Generates the startup scripts
 %__rm -f %{buildroot}%{tde_bindir}/*
+%__ln_s -f %{python_sitearch}/%{name}/userconfig.py %{buildroot}%{tde_bindir}/userconfig
 %__ln_s -f %{python_sitearch}/%{name}/mountconfig.py %{buildroot}%{tde_bindir}/mountconfig
 %__ln_s -f %{python_sitearch}/%{name}/serviceconfig.py %{buildroot}%{tde_bindir}/serviceconfig
 %__ln_s -f %{python_sitearch}/%{name}/wineconfig.py %{buildroot}%{tde_bindir}/wineconfig
 %__ln_s -f %{python_sitearch}/%{name}/grubconfig.py %{buildroot}%{tde_bindir}/grubconfig
-
-cat <<EOF >%{?buildroot}%{tde_bindir}/userconfig
-#!/bin/sh
-export PYTHONPATH=%{python_sitearch}/%{name}:%{python_sitearch}/sip4-tqt
-exec %{python_sitearch}/%{name}/userconfig.py
-EOF
-chmod +x %{buildroot}%{tde_bindir}/userconfig
-
 
 # (obsolete)  put this here since gnome people probably don't want it by default
 #%__ln_s -f %{_python_sitearch}/%{name}/displayconfig-restore.py %{buildroot}%{tde_bindir}/displayconfig-restore
@@ -402,6 +392,7 @@ chmod 0755 %{buildroot}%{python_sitearch}/%{name}/gpmhelper.py
 %__rm -f %{buildroot}%{python_sitearch}/%{name}/guidance_power_manager_ui.py*
 %__rm -f %{buildroot}%{python_sitearch}/%{name}/powermanage.py*
 %__rm -f %{buildroot}%{python_sitearch}/%{name}/powermanager_ui.py*
+%__rm -f %{buildroot}%{tde_datadir}/apps/guidance/powermanager_ui.ui
 
 %endif
 
@@ -423,6 +414,9 @@ chmod 0755 %{buildroot}%{python_sitearch}/%{name}/gpmhelper.py
 %__rm -f %{?buildroot}%{tde_tdelibdir}/kcm_displayconfig.*
 %__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfig.py*
 %__rm -f %{?buildroot}%{python_sitearch}/%{name}/displayconfigwidgets.py*
+%__rm -f %{buildroot}%{tde_tdeappdir}/displayconfig.desktop
+%__rm -f %{buildroot}%{tde_datadir}/icons/*/*/apps/displayconfig.png
+%__rm -fr %{buildroot}%{tde_datadir}/apps/guidance/pics/displayconfig
 %endif
 
 

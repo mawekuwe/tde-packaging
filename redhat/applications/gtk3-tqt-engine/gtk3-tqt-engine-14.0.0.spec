@@ -49,7 +49,12 @@ BuildRequires:	trinity-tdebase-devel >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext
+
+%if 0%{?fedora} || 0%{?suse_version}
+BuildRequires:	gtk3-devel
+%else
 BuildRequires:	gtk+3.0-devel
+%endif
 
 %description
 GTK3 style engine which uses the active TDE style to draw its widgets
@@ -101,15 +106,12 @@ export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
 
-%find_lang %{tde_pkg}
-
 
 %clean
 %__rm -rf %{buildroot}
 
 
-
-%files -f %{tde_pkg}.lang
+%files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING
 %{tde_libdir}/libtqtcairo.la

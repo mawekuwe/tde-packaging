@@ -36,6 +36,8 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:			tdelibs-14.0.0-fix_icon_path.patch
+
 # Patches from Mandriva
 Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
 Patch102:		tdelibs-14.0.0-cups_by_default.patch
@@ -445,6 +447,8 @@ applications for TDE.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+
+%patch1 -p1 -b .icons
 
 %patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default

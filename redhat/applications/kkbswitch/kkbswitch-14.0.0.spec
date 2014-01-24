@@ -132,6 +132,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/autostart/kkbswitch.desktop
 %{tde_tdedocdir}/HTML/en/kkbswitch/
 %{tde_mandir}/man1/kkbswitch.1
+%{tde_datadir}/icons/hicolor/*/apps/kkbswitch.png
 
 
 %changelog

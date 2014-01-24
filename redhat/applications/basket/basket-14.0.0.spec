@@ -148,10 +148,10 @@ update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 %{tde_datadir}/mimelnk/application/x-basket-template.desktop
 %{tde_datadir}/services/basket_config_apps.desktop
 %{tde_datadir}/services/basket_config_baskets.desktop
-%{tde_datadir}/services/basket_config_features.desktop
+#%{tde_datadir}/services/basket_config_features.desktop
 %{tde_datadir}/services/basket_config_general.desktop
 %{tde_datadir}/services/basket_config_new_notes.desktop
-%{tde_datadir}/services/basket_config_notes.desktop
+#%{tde_datadir}/services/basket_config_notes.desktop
 %{tde_datadir}/services/basket_config_notes_appearance.desktop
 %{tde_datadir}/services/basket_part.desktop
 %{tde_datadir}/services/basketthumbcreator.desktop

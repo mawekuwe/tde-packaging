@@ -52,7 +52,12 @@ BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: rpm-devel
 BuildRequires: pam-devel
+
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+#define with_lilo 1
+%endif
+
+%if 0%{?with_lilo}
 BuildRequires:	lilo
 %endif
 
@@ -64,8 +69,10 @@ Requires: trinity-knetworkconf = %{version}-%{release}
 Requires: trinity-kpackage = %{version}-%{release}
 Requires: trinity-ksysv = %{version}-%{release}
 Requires: trinity-kuser = %{version}-%{release}
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?with_lilo}
 Requires: trinity-lilo-config = %{version}-%{release}
+%else
+Obsoletes: trinity-lilo-config
 %endif
 
 # CONSOLEHELPER (usermode) support
@@ -83,10 +90,6 @@ kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 
 %files
 %defattr(-,root,root,-)
-# LILO is not provided in RHEL or Fedora
-%if 0%{?rhel} || 0%{?fedora}
-%exclude %{tde_tdedocdir}/HTML/en/lilo-config/
-%endif
 
 ##########
 
@@ -340,7 +343,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?with_lilo}
 %package -n trinity-lilo-config
 Summary:	Trinity frontend for lilo configuration
 Group:		Applications/Utilities
@@ -388,7 +391,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 %configure \
@@ -460,6 +463,14 @@ done
 #  +++ Changes by Ana Beatriz Guerrero Lopez:
 #  * Removed useless program secpolicy. (Closes: #399426)
 %__rm -f %{?buildroot}%{tde_bindir}/secpolicy
+
+# Remove lilo related files, if unwanted.
+%if 0%{?with_lilo} == 0
+%__rm -rf %{?buildroot}%{tde_tdedocdir}/HTML/en/lilo-config/
+%__rm -f %{?buildroot}%{tde_tdelibdir}/kcm_lilo.la
+%__rm -f %{?buildroot}%{tde_tdelibdir}/kcm_lilo.so
+%__rm -f %{?buildroot}%{tde_tdeappdir}/lilo.desktop
+%endif
 
 
 %clean

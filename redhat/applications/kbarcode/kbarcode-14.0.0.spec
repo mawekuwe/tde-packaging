@@ -144,9 +144,9 @@ update-desktop-database %{tde_appdir} &> /dev/null
 %{tde_tdelibdir}/tdefile_kbarcode.so
 %{tde_tdeappdir}/kbarcode-batch.desktop
 %{tde_tdeappdir}/kbarcode-editor.desktop
-%{tde_tdeappdir}/kbarcode-label.desktop
 %{tde_tdeappdir}/kbarcode-single.desktop
 %{tde_tdeappdir}/kbarcode.desktop
+%{tde_datadir}/mimelnk/application/kbarcode-label.desktop
 %{tde_datadir}/apps/kbarcode/
 %{tde_datadir}/icons/hicolor/*/actions/barcode.png
 %{tde_datadir}/icons/hicolor/*/actions/kbarcodeellipse.png

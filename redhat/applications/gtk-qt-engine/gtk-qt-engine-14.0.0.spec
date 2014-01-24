@@ -27,7 +27,7 @@
 Name:			trinity-%{tde_pkg}
 Summary:		theme engine using Qt for GTK+ 2.x and Trinity
 Version:		0.8
-Release:		%{?!preversion:7}%{?preversion:6_%{preversion}}%{?dist}%{?_variant}
+Release:		%{?!preversion:8}%{?preversion:7_%{preversion}}%{?dist}%{?_variant}
 
 License:		GPLv2+
 Group:			Applications/Utilities
