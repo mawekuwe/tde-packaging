@@ -1,0 +1,506 @@
+SHELL := /bin/bash
+PATH := $(PATH):$(shell pwd)
+
+buildpkg = \
+  @echo "Now processing '$(1)' ."; \
+  if ! is_latest_package_installed.sh "$(1)" 3.5.13.2; then \
+    echo "  Package '${1}' is not yet installed."; \
+    if ! is_latest_package_built.sh "$(1)" 3.5.13.2; then \
+      echo "  Building package."; \
+      build_rpm_package.sh "$(1)" 3.5.13.2 || exit 1; \
+      echo "  Updating repository."; \
+      update_repository.sh; \
+    fi; \
+    echo "  Now installing package '$(1)'"; \
+    install_rpm_package.sh "$(1)" || exit 2; \
+  fi; \
+  echo
+
+
+all:	dependencies main libraries applications i18n meta
+dependencies:	qt3 tqtinterface arts libcaldav libcarddav tqca tqca-tls avahi-tqt dbus-tqt dbus-1-tqt akode hal
+main:	tdelibs tdebase tdeaccessibility tdeadmin tdegames tdemultimedia tdepim tdetoys tdevelop tdeaddons tdeartwork tdebindings tdeedu tdegraphics tdenetwork tdesdk tdeutils tdewebdev
+libraries:	libkdcraw libkexiv2 libkipi libksquirrel pytdeextensions python-trinity
+applications:	abakus amarok basket bibletime digikam dolphin filelight gtk-qt-engine gwenview k3b k9copy kaffeine kaffeine-mozilla katapult kbarcode kbfx kbookreader kchmviewer kcmautostart kcpuload kdbusnotification kdiff3 kdirstat kgtk-qt3 keep kile kima kiosktool kmplayer kmyfirewall kmymoney knemo knetload knetstats knights knowit knutclient koffice konversation kopete-otr kpicosim kpilot krename krusader ksplash-engine-moodin ksquirrel kstreamripper ksystemlog ktechlab ktorrent kuickshow kvirc kvkbd piklab potracegui rosegarden smartcardauth smb4k soundkonverter tde-guidance tdeio-apt tdeio-locate tdeio-umountwrapper tderadio tde-style-lipstik tde-style-qtcurve tdesudo tdesvn tde-systemsettings tdmtheme tellico twin-style-crystal wlassistant yakuake
+i18n:	gwenview-i18n k3b-i18n koffice-i18n tde-i18n
+
+
+### Trinity Dependencies
+arts:	tqtinterface
+	$(call buildpkg,dependencies/arts)
+
+avahi-tqt:	tqtinterface
+	$(call buildpkg,dependencies/avahi-tqt)
+
+dbus-1-tqt:	tqtinterface
+	$(call buildpkg,dependencies/dbus-1-tqt)
+
+dbus-tqt: tqtinterface
+	$(call buildpkg,dependencies/dbus-tqt)
+
+libcaldav: tqtinterface libcurl
+	$(call buildpkg,dependencies/libcaldav)
+
+libcarddav:	tqtinterface libcurl
+	$(call buildpkg,dependencies/libcarddav)
+	
+tqca:	tqtinterface
+	$(call buildpkg,dependencies/tqca)
+
+tqca-tls: tqtinterface tqca
+	$(call buildpkg,dependencies/tqca-tls)
+
+qt3:
+	$(call buildpkg,dependencies/qt3)
+
+tqtinterface:	qt3
+	$(call buildpkg,dependencies/tqtinterface)
+
+# Main packages
+tdeaccessibility:	tdebase tdemultimedia
+	$(call buildpkg,tdeaccessibility)
+
+tdeaddons:	tdebase tdegames tdemultimedia tdenetwork tdepim
+	$(call buildpkg,tdeaddons)
+
+tdeadmin:	tdebase
+	$(call buildpkg,tdeadmin)
+
+tdeartwork:	tdebase
+	$(call buildpkg,tdeartwork)
+
+tdebase:	tdelibs
+	$(call buildpkg,tdebase)
+
+tdebindings:	tdebase
+	$(call buildpkg,tdebindings)
+
+tdeedu:	tdebase
+	$(call buildpkg,tdeedu)
+
+tdegames:	tdebase tdemultimedia
+	$(call buildpkg,tdegames)
+
+tdegraphics:	tdebase poppler
+	$(call buildpkg,tdegraphics)
+
+tdelibs:	qt3 tqtinterface arts dbus-tqt dbus-1-tqt
+	$(call buildpkg,tdelibs)
+
+tdemultimedia:	tdebase akode
+	$(call buildpkg,tdemultimedia)
+
+tdenetwork:	tdebase
+	$(call buildpkg,tdenetwork)
+
+tdepim:	tdebase libcaldav libcarddav
+	$(call buildpkg,tdepim)
+
+tdesdk:		tdebase tdebindings
+	$(call buildpkg,tdesdk)
+
+tdetoys:	tdebase
+	$(call buildpkg,tdetoys)
+
+tdeutils:	tdebase
+	$(call buildpkg,tdeutils)
+
+tdevelop:	tdebase tdesdk
+	$(call buildpkg,tdevelop)
+
+tdewebdev:	tdebase tdesdk
+	$(call buildpkg,tdewebdev)
+
+### 3rd party libraries and tools
+gnuchess:
+# Build on CentOS 5 only
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/gnuchess)
+endif
+
+hal: hal-info
+# Do NOT build on CentOS
+ifneq ($(wildcard /etc/centos-release),)
+	$(call buildpkg,3rdparty/hal)
+endif
+
+hal-info:
+# Do NOT build on CentOS
+ifneq ($(wildcard /etc/centos-release),)
+	$(call buildpkg,3rdparty/hal-info)
+endif
+
+htdig:
+	$(call buildpkg,3rdparty/htdig)
+
+imlib1:
+# Do NOT build on Fedora, nor CentOS
+ifeq ($(wildcard /etc/fedora-release),)
+ifeq ($(wildcard /etc/centos-release),)
+ifeq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/imlib1)
+endif
+endif
+endif
+
+libcurl:
+# Build on CentOS 5 only
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/curl)
+endif
+
+libotr3:
+# Build on Mageia only
+ifneq ($(wildcard /etc/mageia-release),)
+	$(call buildpkg,3rdparty/libotr3)
+endif
+
+lilypond: mftrace
+# Build on CentOS >= 6 only
+ifneq ($(wildcard /etc/centos-release),)
+	$(call buildpkg,3rdparty/lilypond)
+endif
+
+mftrace:
+# Build on CentOS >= only
+ifneq ($(wildcard /etc/centos-release),)
+	$(call buildpkg,3rdparty/mftrace)
+endif
+
+pcsc-perl:
+# Build on CentOS and openSUSE only
+ifneq ($(wildcard /etc/centos-release /etc/SuSE-release /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/pcsc-perl)
+endif
+
+poppler:
+# Build on CentOS 5 only (vendor-provided Poppler is too old)
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/poppler)
+endif
+
+python-qt3: tdelibs sip
+	$(call buildpkg,3rdparty/python-qt3)
+
+sip:
+# Build on CentOS 5 only (vendor-provided SIP is too old)
+ifneq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,3rdparty/sip)
+endif
+
+wv2:
+# Do NOT build on Mageia (package already exists)
+ifeq ($(wildcard /etc/mageia-release),)
+	$(call buildpkg,3rdparty/wv2)
+endif
+
+### Extra packages
+akode:	tqtinterface
+	$(call buildpkg,extras/akode)
+
+### Trinity Libraries
+kipi-plugins:	tqtinterface libkipi
+	$(call buildpkg,libraries/kipi-plugins)
+
+libkdcraw:	tqtinterface
+	$(call buildpkg,libraries/libkdcraw)
+
+libkexiv2:	tqtinterface
+	$(call buildpkg,libraries/libkexiv2)
+
+libkipi:	tqtinterface
+	$(call buildpkg,libraries/libkipi)
+
+libksquirrel:	tqtinterface
+	$(call buildpkg,libraries/libksquirrel)
+
+mlt:	tqtinterface
+	$(call buildpkg,libraries/mlt)
+
+mlt++:	tqtinterface
+	$(call buildpkg,libraries/mlt++)
+
+pytdeextensions:	tqtinterface python-trinity
+	$(call buildpkg,libraries/pytdeextensions)
+
+python-trinity:	tqtinterface python-qt3
+	$(call buildpkg,libraries/python-trinity)
+
+### Trinity Applications
+abakus:	tdebase
+	$(call buildpkg,applications/abakus)
+
+adept:	tdebase
+	$(call buildpkg,applications/adept)
+
+amarok:	tdebase
+	$(call buildpkg,applications/amarok)
+
+basket:	tdebase
+	$(call buildpkg,applications/basket)
+
+bibletime:	tdebase
+	$(call buildpkg,applications/bibletime)
+
+compizconfig-backend-kconfig:	tdebase
+	$(call buildpkg,applications/compizconfig-backend-kconfig)
+
+desktop-effects-tde:	tdebase
+	$(call buildpkg,applications/desktop-effects-tde)
+
+digikam:	tdebase libkdcraw libkexiv2 libkipi libksquirrel
+	$(call buildpkg,applications/digikam)
+
+dolphin:	tdebase
+	$(call buildpkg,applications/dolphin)
+
+filelight:	tdebase
+	$(call buildpkg,applications/filelight)
+
+filelight-l10n:	tdebase
+	$(call buildpkg,applications/filelight-l10n)
+
+fusion-icon:	tdebase
+	$(call buildpkg,applications/fusion-icon)
+
+gtk-qt-engine:	tdebase
+# Do NOT build on CentOS 5 (GTK2 is too old)
+ifeq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,applications/gtk-qt-engine)
+endif
+
+gwenview:	tdebase
+	$(call buildpkg,applications/gwenview)
+
+k3b:	tdebase
+	$(call buildpkg,applications/k3b)
+
+k9copy:	tdebase k3b
+	$(call buildpkg,applications/k9copy)
+
+kaffeine:	tdebase
+	$(call buildpkg,applications/kaffeine)
+
+kaffeine-mozilla:	tdebase kaffeine
+	$(call buildpkg,applications/kaffeine-mozilla)
+
+katapult:	tdebase
+	$(call buildpkg,applications/katapult)
+
+kbarcode:	tdebase
+	$(call buildpkg,applications/kbarcode)
+
+kbfx:	tdebase
+	$(call buildpkg,applications/kbfx)
+
+kbookreader:	tdebase
+	$(call buildpkg,applications/kbookreader)
+
+kchmviewer:	tdebase
+	$(call buildpkg,applications/kchmviewer)
+
+kcmautostart:	tdebase
+	$(call buildpkg,applications/kcmautostart)
+
+kcpuload:	tdebase
+	$(call buildpkg,applications/kcpuload)
+
+kdbusnotification:	tdebase
+	$(call buildpkg,applications/kdbusnotification)
+
+kdiff3:	tdebase
+	$(call buildpkg,applications/kdiff3)
+
+kdirstat:	tdebase
+	$(call buildpkg,applications/kdirstat)
+
+kdpkg:	tdebase
+	$(call buildpkg,applications/kdpkg)
+
+keep:	tdebase
+	$(call buildpkg,applications/keep)
+
+kerry:	tdebase
+	$(call buildpkg,applications/kerry)
+
+kgtk-qt3:	tdebase
+# Do NOT build on CentOS 5 (GTK2 is too old)
+ifeq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,applications/kgtk-qt3)
+endif
+
+kile:	tdebase
+	$(call buildpkg,applications/kile)
+
+kima:	tdebase
+	$(call buildpkg,applications/kima)
+
+kiosktool:	tdebase
+	$(call buildpkg,applications/kiosktool)
+
+kmplayer:	tdebase
+	$(call buildpkg,applications/kmplayer)
+
+kmyfirewall:	tdebase
+	$(call buildpkg,applications/kmyfirewall)
+
+kmymoney:	tdebase
+	$(call buildpkg,applications/kmymoney)
+
+knemo:	tdebase
+	$(call buildpkg,applications/knemo)
+
+knetload:	tdebase
+	$(call buildpkg,applications/knetload)
+
+knetstats:	tdebase
+	$(call buildpkg,applications/knetstats)
+
+knetworkmanager8:	tdebase
+	$(call buildpkg,applications/knetworkmanager8)
+
+knights:	tdebase gnuchess
+	$(call buildpkg,applications/knights)
+
+knowit:	tdebase
+	$(call buildpkg,applications/knowit)
+
+knutclient:	tdebase
+	$(call buildpkg,applications/knutclient)
+
+koffice:	tdebase wv2
+	$(call buildpkg,applications/koffice)
+
+konversation:	tdebase
+	$(call buildpkg,applications/konversation)
+
+kopete-otr:	tdebase
+	$(call buildpkg,applications/kopete-otr)
+
+kpicosim:	tdebase
+	$(call buildpkg,applications/kpicosim)
+
+kpilot:	tdebase
+# Do NOT build on CentOS 5
+ifeq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,applications/kpilot)
+endif
+
+kpowersave:	tdebase
+	$(call buildpkg,applications/kpowersave)
+
+krename:	tdebase
+	$(call buildpkg,applications/krename)
+
+krusader:	tdebase
+	$(call buildpkg,applications/krusader)
+
+ksplash-engine-moodin:	tdebase
+	$(call buildpkg,applications/ksplash-engine-moodin)
+
+ksquirrel:	tdebase libksquirrel
+	$(call buildpkg,applications/ksquirrel)
+
+kstreamripper:	tdebase
+	$(call buildpkg,applications/kstreamripper)
+
+ksystemlog:	tdebase
+	$(call buildpkg,applications/ksystemlog)
+
+ktechlab:	tdebase
+	$(call buildpkg,applications/ktechlab)
+
+ktorrent:	tdebase
+	$(call buildpkg,applications/ktorrent)
+
+kuickshow:	tdebase imlib1
+	$(call buildpkg,applications/kuickshow)
+
+kvirc:	tdebase
+	$(call buildpkg,applications/kvirc)
+
+kvkbd:	tdebase
+	$(call buildpkg,applications/kvkbd)
+
+piklab:	tdebase
+	$(call buildpkg,applications/piklab)
+
+potracegui:	tdebase
+	$(call buildpkg,applications/potracegui)
+
+rosegarden:	tdebase lilypond
+# Do NOT build on CentOS 5
+ifeq ($(wildcard /boot/vmlinuz*.el5*),)
+	$(call buildpkg,applications/rosegarden)
+endif
+
+smartcardauth:	tdebase pcsc-perl
+	$(call buildpkg,applications/smartcardauth)
+
+smb4k:	tdebase
+	$(call buildpkg,applications/smb4k)
+
+soundkonverter:	tdebase
+	$(call buildpkg,applications/soundkonverter)
+
+tde-guidance:	tdebase pytdeextensions
+	$(call buildpkg,applications/tde-guidance)
+
+tdeio-apt:	tdebase
+	$(call buildpkg,applications/tdeio-apt)
+
+tdeio-locate:	tdebase
+	$(call buildpkg,applications/tdeio-locate)
+
+tdeio-umountwrapper:	tdebase
+	$(call buildpkg,applications/tdeio-umountwrapper)
+
+tderadio:	tdebase
+	$(call buildpkg,applications/tderadio)
+
+tde-style-lipstik:	tdebase
+	$(call buildpkg,applications/tde-style-lipstik)
+
+tde-style-qtcurve:	tdebase
+	$(call buildpkg,applications/tde-style-qtcurve)
+
+tdesudo:	tdebase
+	$(call buildpkg,applications/tdesudo)
+
+tdesvn:	tdebase
+	$(call buildpkg,applications/tdesvn)
+
+tde-systemsettings:	tdebase
+	$(call buildpkg,applications/tde-systemsettings)
+
+tdmtheme:	tdebase
+	$(call buildpkg,applications/tdmtheme)
+
+tellico:	tdebase
+	$(call buildpkg,applications/tellico)
+
+twin-style-crystal:	tdebase
+	$(call buildpkg,applications/twin-style-crystal)
+
+wlassistant:	tdebase
+	$(call buildpkg,applications/wlassistant)
+
+yakuake:	tdebase
+	$(call buildpkg,applications/yakuake)
+
+### Trinity Translations
+gwenview-i18n:	tdebase
+	$(call buildpkg,applications/gwenview-i18n)
+
+k3b-i18n:	tdebase
+	$(call buildpkg,applications/k3b-i18n)
+
+koffice-i18n:	tdebase
+	$(call buildpkg,applications/koffice-i18n)
+
+tde-i18n:	tdebase
+	$(call buildpkg,tde-i18n)
+
+### Meta packages
+meta:
+	$(call buildpkg,extras/trinity-desktop)
