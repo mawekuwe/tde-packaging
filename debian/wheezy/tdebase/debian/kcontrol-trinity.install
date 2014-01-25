@@ -4,7 +4,6 @@ debian/tmp/opt/trinity/bin/kdeinstallktheme
 debian/tmp/opt/trinity/bin/keditfiletype
 debian/tmp/opt/trinity/bin/tdefontinst
 debian/tmp/opt/trinity/bin/tdefontview
-debian/tmp/opt/trinity/bin/kinfocenter
 debian/tmp/opt/trinity/bin/klocaldomainurifilterhelper
 debian/tmp/opt/trinity/bin/tderandrtray
 debian/tmp/opt/trinity/bin/krdb
@@ -242,5 +241,3 @@ debian/tmp/opt/trinity/share/services/localdomainurifilter.desktop
 
 debian/icons/kcontrol.xpm		/opt/trinity/share/pixmaps
 debian/icons/kcontrol-16.xpm		/opt/trinity/share/pixmaps
-debian/icons/kinfocenter.xpm		/opt/trinity/share/pixmaps
-debian/icons/kinfocenter-16.xpm		/opt/trinity/share/pixmaps
