@@ -36,7 +36,7 @@ DEB_CMAKE_EXTRA_FLAGS := \
  -DWITH_XMMS="ON" \
  -DWITH_KNEWSTUFF="ON"
 
-DOC_HTML_PRUNE := kcontrol-trinity kinfocenter-trinity ktimer-trinity kcharselect-trinity ksim-trinity
+DOC_HTML_PRUNE := kcontrol-trinity ktimer-trinity kcharselect-trinity ksim-trinity
 
 DEB_DH_STRIP_ARGS  := --exclude=examples --dbg-package=tdeutils-trinity-dbg
 
