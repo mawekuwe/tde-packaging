@@ -374,7 +374,7 @@ in a file manager.
 %{tde_datadir}/icons/hicolor/*/apps/kdf.png
 %{tde_datadir}/icons/hicolor/*/apps/kwikdisk.png
 %{tde_tdedocdir}/HTML/en/kdf/
-%{tde_tdedocdir}/HTML/en/kinfocenter/blockdevices/
+%{tde_tdedocdir}/HTML/en/kcontrol/storagedevices/
 
 %post -n trinity-kdf
 for f in crystalsvg hicolor ; do
@@ -728,6 +728,8 @@ plugin, if you need this package please file a bug.
 %{tde_datadir}/services/kmilo/kmilo_delli8k.desktop
 %{tde_datadir}/services/kmilo/kmilo_kvaio.desktop
 %{tde_datadir}/services/kmilo/kmilo_thinkpad.desktop
+%{tde_tdedocdir}/HTML/en/kcontrol/kvaio/
+%{tde_tdedocdir}/HTML/en/kcontrol/thinkpad/
 
 ##########
 
