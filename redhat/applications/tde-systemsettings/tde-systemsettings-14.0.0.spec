@@ -128,8 +128,8 @@ update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 %files
 %defattr(-,root,root,-)
 %doc README TODO
-%{tde_sysconfdir}/xdg/menus/applications-merged/system-settings-merge.menu
-%{tde_sysconfdir}/xdg/menus/system-settings.menu
+%{tde_sysconfdir}/xdg/menus/applications-merged/tde-system-settings-merge.menu
+%{tde_sysconfdir}/xdg/menus/tde-system-settings.menu
 %{tde_bindir}/systemsettings
 %{tde_datadir}/applications/tde/audioencoding.desktop
 %{tde_datadir}/applications/tde/defaultapplication.desktop

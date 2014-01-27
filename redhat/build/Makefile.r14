@@ -126,8 +126,8 @@ htdig:
 	$(call buildpkg,3rdparty/htdig)
 
 imlib1:
-# Do NOT build on Fedora
-ifeq ($(wildcard /etc/fedora-release),)
+# Do NOT build on Fedora / CentOS
+ifeq ($(wildcard /etc/fedora-release /etc/centos-release),)
 	$(call buildpkg,3rdparty/imlib1)
 endif
 
@@ -483,7 +483,10 @@ potracegui:	tdebase
 	$(call buildpkg,applications/potracegui)
 
 qt4-tqt-theme-engine:	tdebase
+# Do NOT build on CentOS
+ifeq ($(wildcard /etc/centos-release),)
 	$(call buildpkg,applications/qt4-tqt-theme-engine)
+endif
 
 rosegarden:	tdebase lilypond
 	$(call buildpkg,applications/rosegarden)
@@ -516,7 +519,10 @@ tdeio-umountwrapper:	tdebase
 	$(call buildpkg,applications/tdeio-umountwrapper)
 
 tdenetworkmanager:	tdebase
+# Do NOT build on CentOS
+ifeq ($(wildcard /etc/centos-release),)
 	$(call buildpkg,applications/tdenetworkmanager)
+endif
 
 tdepowersave:	tdebase
 	$(call buildpkg,applications/tdepowersave)

@@ -458,6 +458,7 @@ A fax viewer for Trinity, supporting the display of raw and tiffed fax images
 %{tde_datadir}/apps/kfax/
 %{tde_datadir}/icons/hicolor/??x??/apps/kfax.png
 %{tde_datadir}/icons/hicolor/scalable/apps/kfax.svgz
+%{tde_tdedocdir}/HTML/en/kfax/
 
 %post -n trinity-kfax
 for f in hicolor ; do
@@ -497,6 +498,7 @@ kfax application once it reproduces all of kfax's features.
 %{tde_datadir}/icons/hicolor/scalable/apps/kfaxview.svgz
 %{tde_datadir}/services/kfaxmultipage.desktop
 %{tde_datadir}/services/kfaxmultipage_tiff.desktop
+%{tde_tdedocdir}/HTML/en/kfaxview/
 
 %post -n trinity-kfaxview
 for f in hicolor ; do
@@ -532,7 +534,7 @@ Homepage: http://kgamma.berlios.de/index2.php
 %{tde_bindir}/xf86gammacfg
 %{tde_tdelibdir}/kcm_kgamma.la
 %{tde_tdelibdir}/kcm_kgamma.so
-%{tde_tdeappdir}/kgamma.desktop
+%{tde_datadir}/applnk/.hidden/kgamma.desktop
 %{tde_datadir}/apps/kgamma/
 %{tde_datadir}/icons/hicolor/*/apps/kgamma.png
 %{tde_tdedocdir}/HTML/en/kgamma/

@@ -12,6 +12,10 @@ export PATH="${PATH}:${TDE_GITBASEPKG}"
 
 # Distribution suffix (e.g: .el6 , .mga3 ...)
 export DIST="$( "${TDE_GITBASEPKG}/build/rpmdist.sh" --dist )"
+<<<<<<< HEAD
+=======
+#alias dist='~/bin/rpmdist.sh --dist'
+>>>>>>> 650867080ee48b3e555a57f7ac0dab05eb4c6447
 
 # Go to the RPMS folder
 alias cdrpm='cd ~/rpmbuild/RPMS/RPMS${DIST}'

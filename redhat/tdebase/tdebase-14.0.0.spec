@@ -914,7 +914,7 @@ plugdev group.
 %{tde_bindir}/keditfiletype
 %{tde_bindir}/tdefontinst
 %{tde_bindir}/tdefontview
-%{tde_bindir}/kinfocenter
+#%{tde_bindir}/kinfocenter
 %{tde_bindir}/klocaldomainurifilterhelper
 %{tde_bindir}/krdb
 %{tde_tdelibdir}/fontthumbnail.la
@@ -1078,7 +1078,7 @@ plugdev group.
 %{tde_tdeappdir}/tdehtml_behavior.desktop
 %{tde_tdeappdir}/tdehtml_fonts.desktop
 %{tde_tdeappdir}/tdehtml_java_js.desktop
-%{tde_tdeappdir}/kinfocenter.desktop
+#%{tde_tdeappdir}/kinfocenter.desktop
 %{tde_tdeappdir}/kthememanager.desktop
 %{tde_tdeappdir}/lanbrowser.desktop
 %{tde_tdeappdir}/language.desktop
@@ -1358,7 +1358,7 @@ needed for a basic TDE desktop installation.
 %{tde_datadir}/apps/kcontrol/
 %{tde_datadir}/apps/tdedisplay/
 %{tde_datadir}/apps/tdefontview/
-%{tde_datadir}/apps/kinfocenter/kinfocenterui.rc
+#%{tde_datadir}/apps/kinfocenter/kinfocenterui.rc
 %{tde_datadir}/apps/kthememanager/themes/*
 %{tde_datadir}/icons/crystalsvg/*/apps/access.png
 %{tde_datadir}/icons/crystalsvg/*/apps/acroread.png
@@ -1594,7 +1594,7 @@ needed for a basic TDE desktop installation.
 
 %{tde_tdedocdir}/HTML/en/kcontrol/
 %exclude %{tde_tdedocdir}/HTML/en/kcontrol/kcmkonsole/
-%{tde_tdedocdir}/HTML/en/kinfocenter/
+#%{tde_tdedocdir}/HTML/en/kinfocenter/
 
 %post data
 for f in crystalsvg ; do
@@ -1888,6 +1888,7 @@ Installation of smbclient will make you able to use smb shared printers.
 %{tde_datadir}/services/print.protocol
 %{tde_datadir}/services/printdb.protocol
 %{tde_tdedocdir}/HTML/en/tdeprint/
+%{tde_tdedocdir}/HTML/en/tdeprintfax/
 
 %post -n trinity-tdeprint
 /sbin/ldconfig || :

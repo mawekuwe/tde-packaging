@@ -44,7 +44,9 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:	desktop-file-utils
+BuildRequires:	desktop-file-util
+
+BuildRequires:	libapt-front-devel
 
 Requires:		%{name}-manager = %{version}-%{release}
 Requires:		%{name}-installer = %{version}-%{release}
@@ -165,10 +167,15 @@ export PATH="%{tde_bindir}:${PATH}"
   --includedir=%{tde_tdeincludedir} \
   --libdir=%{tde_libdir} \
   --mandir=%{tde_mandir} \
+  \
   --disable-rpath \
-  --enable-closure
+  --enable-closure \
+  \
+  --with-extra-includes=%{_includedir}/tqt3 \
+  \
+  --enable-adept
 
-%__make %{?_smp_mflags} -C adept
+%__make %{?_smp_mflags}
 
 
 %install

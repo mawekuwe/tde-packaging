@@ -882,6 +882,7 @@ keybox and for retrieving certificates from LDAP servers.
 %{tde_datadir}/apps/kleopatra
 %{tde_datadir}/apps/kwatchgnupg
 %{tde_datadir}/services/kleopatra_config_*.desktop
+%{tde_tdeappdir}/kleopatra.desktop
 %{tde_tdedocdir}/HTML/en/kleopatra/
 %{tde_tdedocdir}/HTML/en/kwatchgnupg/
 
