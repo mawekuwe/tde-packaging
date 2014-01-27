@@ -11,8 +11,7 @@ TDE_TARBALLS=${TDE_BASEDIR}/tde-tarballs/${TDE_VERSION}
 export PATH="${PATH}:${TDE_GITBASEPKG}"
 
 # Distribution suffix (e.g: .el6 , .mga3 ...)
-export DIST="$( "${TDE_GITBASEPKG}/rpmdist.sh" --dist )"
-alias dist='~/bin/rpmdist.sh --dist'
+export DIST="$( "${TDE_GITBASEPKG}/build/rpmdist.sh" --dist )"
 
 # Go to the RPMS folder
 alias cdrpm='cd ~/rpmbuild/RPMS/RPMS${DIST}'
