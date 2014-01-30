@@ -1,8 +1,11 @@
-diff -Nur tdebase-3.5.4/kcontrol/componentchooser/componentchooser.desktop tdebase-3.5.4.new/kcontrol/componentchooser/componentchooser.desktop
---- tdebase-3.5.4/kcontrol/componentchooser/componentchooser.desktop	2006-07-22 10:15:23.000000000 +0200
-+++ tdebase-3.5.4.new/kcontrol/componentchooser/componentchooser.desktop	2006-09-08 13:42:48.000000000 +0200
-@@ -6,3 +6,4 @@
+diff --git a/kcontrol/componentchooser/componentchooser.desktop b/kcontrol/componentchooser/componentchooser.desktop
+--- a/kcontrol/componentchooser/componentchooser.desktop
++++ b/kcontrol/componentchooser/componentchooser.desktop
+@@ -6,6 +6,7 @@ X-TDE-Library=componentchooser
  X-TDE-ParentApp=kcontrol
- DocPath=kcontrol/componentchooser/index.html 
+ DocPath=kcontrol/componentchooser/index.html
  Categories=Qt;TDE;X-TDE-settings-components;
 +NoDisplay=true
+ 
+ Name=Default Applications
+ Name[af]=Verstektoepassings
