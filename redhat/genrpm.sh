@@ -30,7 +30,7 @@ else
   #eval TARBALLS_DIR=~/tde/tde-tarballs/14.0.0
 fi
 
-clear
+#clear
 cat <<EOF
 $(< /etc/redhat-release) [$(uname -m)]
 This script generates RPM of TDE from source tarball.
@@ -123,8 +123,6 @@ About to build '${COMP}':
   Spec file: '${SPEC}'
   Tarball: '${TARBALL}'
 
-CCACHE_DIR='${CCACHE_DIR}'
-
 Press ENTER to build, or CTRL+C to abort.
 EOF
 [ -z "${AUTO}" ] && read rep
@@ -191,7 +189,6 @@ rpmbuild -ba \
 	echo "RET=$?"
 ) 2>&1 | tee ${LOGFILE}
 eval "$(grep ^RET= ${LOGFILE})"
-set +x
 
 # Removes temporary source directory
 rm -rf "${SOURCEDIR}"
@@ -199,6 +196,7 @@ rm -rf "${SOURCEDIR}"
 if [ "${RET}" -gt 0 ]; then
 	exit ${RET}
 fi
+set +x
 
 if grep -q "error: Failed build dependencies:" ${LOGFILE}; then
 #	DEPS=$( sed -n -e "/.* is needed by .*/ s/^[ \t]*\([a-zA-Z2-9_-]*\) .*/\1/p" ${LOGFILE} )

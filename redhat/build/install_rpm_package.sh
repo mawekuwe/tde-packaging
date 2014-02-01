@@ -1,5 +1,11 @@
 #!/bin/bash
 
+LOCKFILE="/tmp/lock.${0##*/}"
+while [ -e "${LOCKFILE}" ]; do
+  echo "Waiting for lock file '${LOCKFILE}' to vanish."
+  sleep 3
+done
+
 PKGCATEGORY="${1%%/*}"
 PKGNAME="${1##*/}"
 
