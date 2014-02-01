@@ -103,7 +103,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
+  --disable-gcc-hidden-visibility \
   \
   --with-extra-includes=%{_includedir}/pcre
 
@@ -155,6 +155,7 @@ update-desktop-database %{tde_appdir} &> /dev/null
 %{tde_datadir}/icons/hicolor/*/actions/kbarcoderect.png
 %{tde_datadir}/icons/hicolor/*/apps/kbarcode.png
 %{tde_datadir}/services/tdefile_kbarcode.desktop
+%{tde_tdedocdir}/HTML/en/kbarcode/
 
 
 %changelog

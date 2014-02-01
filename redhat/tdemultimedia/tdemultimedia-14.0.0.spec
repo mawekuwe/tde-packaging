@@ -603,6 +603,7 @@ Konqueror and the audiocd:/ URL.
 %{tde_datadir}/config.kcfg/audiocd_vorbis_encoder.kcfg
 %{tde_datadir}/services/audiocd.protocol
 %{tde_tdedocdir}/HTML/en/tdeioslave/audiocd.docbook
+%{tde_tdedocdir}/HTML/en/kcontrol/audiocd/
 
 %post tdeio-plugins
 /sbin/ldconfig
@@ -924,6 +925,7 @@ databases, for TDE applications.
 %{tde_tdeappdir}/libkcddb.desktop
 %{tde_datadir}/apps/tdeconf_update/kcmcddb-emailsettings.upd
 %{tde_datadir}/config.kcfg/libkcddb.kcfg
+%{tde_tdedocdir}/HTML/en/kcontrol/cddb/
 
 %post -n trinity-libkcddb
 /sbin/ldconfig

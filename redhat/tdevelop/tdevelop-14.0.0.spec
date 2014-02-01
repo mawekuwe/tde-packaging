@@ -452,7 +452,7 @@ individual needs.
 %{tde_tdedocdir}/HTML/en/kde_app_devel/
 %{tde_datadir}/mimelnk/text/x-fortran.desktop
 %{tde_datadir}/services/kdevvisualboyadvance.desktop
-
+%{tde_tdedocdir}/HTML/en/kdevdesigner/
 
 %post
 for f in hicolor locolor ; do

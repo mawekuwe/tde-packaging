@@ -175,6 +175,7 @@ update-desktop-database %{tde_appdir} -q &> /dev/null ||:
 %{tde_datadir}/icons/locolor/*/*/tderadio*.png
 %lang(de) %{tde_datadir}/locale/de/LC_MESSAGES/*.mo
 %lang(ru) %{tde_datadir}/locale/ru/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/en/tderadio/
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.1.1.1-8

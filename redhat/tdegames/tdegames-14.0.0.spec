@@ -840,6 +840,7 @@ This package is part of Trinity, and a component of the TDE games module.
 %{tde_datadir}/apps/knetwalk
 %{tde_datadir}/icons/hicolor/*/apps/knetwalk.png
 %{tde_tdeappdir}/knetwalk.desktop
+%{tde_tdedocdir}/HTML/en/knetwalk/
 
 %post -n trinity-knetwalk
 for f in hicolor ; do
@@ -1552,7 +1553,7 @@ fi
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
+  --disable-gcc-hidden-visibility \
   \
   --disable-setgid
 

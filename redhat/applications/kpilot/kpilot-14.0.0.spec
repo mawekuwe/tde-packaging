@@ -172,7 +172,7 @@ done
 %{tde_datadir}/icons/locolor/*/apps/*.png
 %{tde_datadir}/services/*.desktop
 %{tde_datadir}/servicetypes/kpilotconduit.desktop
-
+%{tde_tdedocdir}/HTML/en/kpilot/
 
 %changelog
 * Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 0.7-7

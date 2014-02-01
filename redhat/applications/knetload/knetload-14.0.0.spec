@@ -133,7 +133,7 @@ done
 %{tde_datadir}/apps/knetload
 %{tde_datadir}/icons/crystalsvg/*/apps/knetload.png
 %{tde_datadir}/icons/locolor/*/apps/knetload.png
-
+%{tde_tdedocdir}/HTML/en/knetload/
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.3-6

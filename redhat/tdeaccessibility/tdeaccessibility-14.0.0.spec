@@ -271,6 +271,7 @@ This package is part of Trinity, as a component of the TDE accessibility module.
 %{tde_datadir}/icons/hicolor/32x32/apps/ksayit_talking.png
 %{tde_datadir}/services/ksayit_libFreeverb.desktop
 %{tde_datadir}/servicetypes/ksayit_libFreeverb_service.desktop
+%{tde_tdedocdir}/HTML/en/ksayit/
 
 %post -n trinity-ksayit
 /sbin/ldconfig ||:
@@ -475,7 +476,7 @@ fi
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
+  --disable-gcc-hidden-visibility \
   \
   --enable-ksayit-audio-plugins \
   --with-akode

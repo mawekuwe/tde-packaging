@@ -137,6 +137,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 %{tde_datadir}/locale/*/LC_MESSAGES/knemod.mo
 %{tde_datadir}/locale/*/LC_MESSAGES/kcm_knemo.mo
 %{tde_datadir}/services/kded/knemod.desktop
+%{tde_tdedocdir}/HTML/en/kcontrol/knemo/
 
 
 %changelog

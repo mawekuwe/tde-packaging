@@ -17,15 +17,15 @@ trinity-live-openbox
 
 # Some TDE applications
 trinity-amarok
-trinity-amarok-konqueror
-trinity-digikam
+#trinity-amarok-konqueror
+#trinity-digikam
 #trinity-dolphin
 trinity-gtk-qt-engine
 trinity-gwenview
 trinity-k3b
-trinity-k3b-plugin-ffmpeg
-trinity-k3b-plugin-lame
-trinity-k3b-plugin-mad
+#trinity-k3b-plugin-ffmpeg
+#trinity-k3b-plugin-lame
+#trinity-k3b-plugin-mad
 trinity-kaffeine
 #trinity-kbookreader
 #trinity-kdiff3

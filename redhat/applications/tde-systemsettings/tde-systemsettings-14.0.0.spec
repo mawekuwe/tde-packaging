@@ -42,7 +42,7 @@ Prefix:			%{tde_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
-Source1:	kde-settings-laptops.directory
+Source1:		kde-settings-laptops.directory
 
 Provides:	trinity-kde-systemsettings = %{version}-%{release}
 Obsoletes:	trinity-kde-systemsettings < %{version}-%{release}
@@ -94,7 +94,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-new-ldflags \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 
@@ -141,7 +141,7 @@ update-desktop-database %{tde_tdeappdir} -q &> /dev/null
 %{tde_datadir}/config/systemsettingsrc
 %{tde_datadir}/desktop-directories/*.directory
 %{tde_datadir}/icons/crystalsvg/*/apps/systemsettings.png
-
+%{tde_tdedocdir}/HTML/en/systemsettings/
 
 
 %changelog

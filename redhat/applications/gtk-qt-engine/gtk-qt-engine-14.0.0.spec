@@ -127,6 +127,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_datadir}/kgtk/gtk-qt-engine.rc.sh
 %{tde_datadir}/kgtk/.gtkrc-2.0-kde4
 %{tde_datadir}/kgtk/.gtkrc-2.0-kde-kde4
+%{tde_tdedocdir}/HTML/en/kcmgtk/
 
 # The following files are outside TDE's directory
 %{_libdir}/gtk-2.0/2.10.0/engines/libqtengine.so

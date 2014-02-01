@@ -123,7 +123,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/config.kcfg/ksystemlog.kcfg
 %{tde_datadir}/icons/hicolor/*/apps/ksystemlog.png
 %{tde_datadir}/icons/hicolor/*/apps/ksystemlog.svgz
-
+%{tde_tdedocdir}/HTML/en/ksystemlog/
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 0.3.2-5

@@ -333,6 +333,8 @@ NFS and Samba.
 %{tde_tdeappdir}/kcmsambaconf.desktop
 %{tde_datadir}/icons/hicolor/*/apps/kcmsambaconf.png
 %{tde_datadir}/services/fileshare_propsdlgplugin.desktop
+%{tde_tdedocdir}/HTML/en/kcontrol/fileshare/
+%{tde_tdedocdir}/HTML/en/kcontrol/kcmsambaconf/
 
 %post filesharing
 for f in hicolor ; do
@@ -957,7 +959,8 @@ wavelan card that uses the wireless extensions interface.
 %{tde_datadir}/apps/kwifimanager
 %{tde_datadir}/icons/hicolor/*/apps/kwifimanager.png
 %{tde_datadir}/icons/hicolor/*/apps/kwifimanager.svgz
-%doc %{tde_tdedocdir}/HTML/en/kwifimanager
+%{tde_tdedocdir}/HTML/en/kwifimanager/
+%{tde_tdedocdir}/HTML/en/kcontrol/kcmwifi/
 
 %post -n trinity-kwifimanager
 for f in hicolor ; do

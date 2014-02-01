@@ -583,6 +583,7 @@ web browser, X terminal emulator, and many other programs and components.
 %doc AUTHORS COPYING COPYING-DOCS README README.pam
 %{tde_bindir}/release_notes
 %{tde_datadir}/autostart/release_notes.desktop
+%{tde_tdeappdir}/tdehtml_userinterface.desktop
 
 ##########
 

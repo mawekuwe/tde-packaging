@@ -20,36 +20,78 @@ repo --name="RPM Fusion for Fedora - Nonfree - Updates" --baseurl="http://downlo
 
 ### The Trinity Desktop
 
-# Required
-trinity-hal
-trinity-repo
-
 # Main packages
 #trinity-tdeaccessibility
 #trinity-tdeaddons
-trinity-tdeadmin
+#trinity-tdeadmin
 #trinity-tdeartwork
 trinity-tdebase
 #trinity-tdebindings
 #trinity-tdeedu
 #trinity-tdegames
-trinity-tdegraphics
-trinity-tdemultimedia
-trinity-tdenetwork
-trinity-tdepim
-trinity-tdeutils
+#trinity-tdegraphics
+trinity-tdelibs
+#trinity-tdemultimedia
+#trinity-tdenetwork
+#trinity-tdepim
+#trinity-tdeutils
 #trinity-tdetoys
+
+# Subset of tdegraphics
+trinity-kamera
+trinity-kcoloredit
+#trinity-tdegraphics-kfile-plugins
+#trinity-kdvi
+#trinity-kfax
+#trinity-kfaxview
+trinity-kgamma
+#trinity-kghostview
+#trinity-kiconedit
+#trinity-kmrml
+#trinity-kolourpaint
+#trinity-kooka
+trinity-kpdf
+#trinity-kpovmodeler
+#trinity-kruler
+trinity-ksnapshot
+#trinity-ksvg
+#trinity-kview
+trinity-kviewshell
+#trinity-libkscan
+trinity-tdegraphics-libpoppler-tqt
+
+# Subset of tdeutils
+trinity-ark
+trinity-kcalc
+#trinity-kcharselect
+#trinity-kdelirc
+#trinity-kdessh
+#trinity-kdf
+#trinity-kedit
+#trinity-kfloppy
+#trinity-kgpg
+#trinity-khexedit
+#trinity-kjots
+#trinity-klaptopdaemon
+#trinity-kmilo
+#trinity-kmilo-legacy
+trinity-kregexpeditor
+trinity-ksim
+#trinity-ktimer
+trinity-kwalletmanager
+#trinity-superkaramba
+
 
 # Subset of tdeaddons
 #trinity-atlantikdesigner
-trinity-kaddressbook-plugins
+#trinity-kaddressbook-plugins
 trinity-kate-plugins
-trinity-tdeaddons-kfile-plugins
+#trinity-tdeaddons-kfile-plugins
 trinity-kicker-applets
-trinity-knewsticker-scripts
+#trinity-knewsticker-scripts
 trinity-konq-plugins
-trinity-ksig
-trinity-noatun-plugins
+#trinity-ksig
+#trinity-noatun-plugins
 
 
 # TDE is missing a Network Applet, so we use Gnome...
@@ -63,8 +105,19 @@ alsa-utils
 # make sure gnome-packagekit doesn't end up the KDE live images
 -gnome-packagekit*
 
-# use kde-print-manager instead of system-config-printer
--system-config-printer-libs
+# Remove printing support
+-cups
+-cups-filters
+-cups-filesystem
+-cups-pk-helper
+-foomatic*
+-gutenprint*
+-paps
+-system-config-printer*
+
+# Remove bluetooth support
+-bluez
+-bluez-cups
 
 %end
 
