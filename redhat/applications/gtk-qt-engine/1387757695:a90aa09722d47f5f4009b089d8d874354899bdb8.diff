@@ -1,0 +1,435 @@
+commit a90aa09722d47f5f4009b089d8d874354899bdb8
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1387757695 -0600
+
+    Fix Firefox scrollbars
+
+diff --git a/kcm_gtk/kcmgtk.cpp b/kcm_gtk/kcmgtk.cpp
+index 28faded..ccd18c1 100644
+--- a/kcm_gtk/kcmgtk.cpp
++++ b/kcm_gtk/kcmgtk.cpp
+@@ -185,6 +185,5 @@ KcmGtk::KcmGtk(TQWidget *parent, const char *name, const TQStringList&)
+ 	widget->styleIcon->setPixmap(iconLoader.loadIcon("style", KIcon::Desktop));
+ 	widget->fontIcon->setPixmap(iconLoader.loadIcon("fonts", KIcon::Desktop));
+-	widget->firefoxIcon->setPixmap(iconLoader.loadIcon("firefox", KIcon::Desktop));
+ 	widget->keyboardIcon->setPixmap(iconLoader.loadIcon("keyboard", KIcon::Desktop));
+ 	
+ 	getInstalledThemes();
+@@ -199,5 +198,4 @@ KcmGtk::KcmGtk(TQWidget *parent, const char *name, const TQStringList&)
+ 	connect(widget->emacsBox, TQT_SIGNAL(toggled(bool)), TQT_SLOT(itemChanged()));
+ 	connect(widget->fontChange, TQT_SIGNAL(clicked()), TQT_SLOT(fontChangeClicked()));
+-	connect(widget->firefoxFix, TQT_SIGNAL(clicked()), TQT_SLOT(firefoxFixClicked()));
+ 	connect(widget->emacsDetails, TQT_SIGNAL(clicked()), TQT_SLOT(emacsDetailsClicked()));
+ 	connect(widget->warning3, TQT_SIGNAL(clicked()), TQT_SLOT(searchPathsClicked()));
+@@ -453,190 +451,6 @@ TQString KcmGtk::quickHelp() const
+ 	return i18n("");
+ }
+ 
+-
+-void KcmGtk::firefoxFixClicked()
+-{
+-	profiles.clear();
+-	getProfiles(TQDir::homeDirPath() + "/.mozilla/firefox/", 0);
+-	getProfiles(TQDir::homeDirPath() + "/.thunderbird/", 1);
+-	
+-	TQString profilePath;
+-	if (profiles.count() == 0)
+-	{
+-		KMessageBox::error(this, i18n("No Mozilla profiles found"), i18n("Could not load Mozilla profiles"));
+-		return;
+-	}
+-	else if (profiles.count() == 1)
+-	{
+-		fixProfile(profiles.begin().data());
+-	}
+-	else
+-	{
+-		KDialogBase* dialog = new KDialogBase(this, "", true, i18n("Mozilla profile"), KDialogBase::Ok | KDialogBase::Cancel);
+-		MozillaProfileWidget* w = new MozillaProfileWidget(dialog);
+-		w->profilesList->header()->hide();
+-		w->profilesList->hideColumn(1);
+-		
+-		TQPixmap icon = KGlobal::iconLoader()->loadIcon("kuser", KIcon::Small);
+-		
+-		for ( TQMapIterator<TQString,TQString> it = profiles.begin(); it != profiles.end(); ++it )
+-		{
+-			KListViewItem* i = new KListViewItem(w->profilesList);
+-			i->setPixmap(0, icon);
+-			i->setText(0, it.key());
+-			i->setText(1, it.data());
+-		}
+-		
+-		dialog->setMainWidget(w);
+-		if (dialog->exec() == TQDialog::Rejected)
+-		{
+-			delete dialog;
+-			return;
+-		}
+-		
+-		TQListViewItemIterator it2(w->profilesList, TQListViewItemIterator::Selected);
+-		while (it2.current())
+-		{
+-			KListViewItem* i = (KListViewItem*) it2.current();
+-			++it2;
+-			
+-			fixProfile(i->text(1));
+-		}
+-		delete dialog;
+-	}
+-	
+-	KMessageBox::information(this, i18n("Your Mozilla profile was updated sucessfully.  You must close and restart all Firefox and Thunderbird windows for the changes to take effect"), i18n("Mozilla profile"));
+-}
+-
+-void KcmGtk::getProfiles(const TQString& basePath, int type)
+-{
+-	TQString fileName = basePath + "/profiles.ini";
+-	if (TQFile::exists(fileName))
+-	{
+-		KConfig config(fileName, true, false);
+-		TQStringList groups = config.groupList();
+-		
+-		for ( TQStringList::Iterator it = groups.begin(); it != groups.end(); ++it )
+-		{
+-			if (!(*it).lower().startsWith("profile"))
+-				continue;
+-			
+-			config.setGroup(*it);
+-			TQString name = (type ? i18n("Thunderbird") : i18n("Firefox")) + " - " + config.readEntry("Name");
+-			TQString path = config.readEntry("Path");
+-			if (!path.startsWith("/"))
+-				path = basePath + path;
+-			profiles.insert(name, path);
+-		}
+-	}
+-}
+-
+-void KcmGtk::fixProfile(const TQString& path)
+-{
+-	if (!TQFile::exists(path + "/chrome"))
+-	{
+-		TQDir dir(path);
+-		dir.mkdir("chrome");
+-	}
+-	
+-	TQString data = scrollBarCSS();
+-	writeFirefoxCSS(path + "/chrome/userChrome.css", data);
+-	writeFirefoxCSS(path + "/chrome/userContent.css", data);
+-}
+-
+-TQString KcmGtk::scrollBarCSS()
+-{
+-	// The following code determines how many buttons are on a scrollbar
+-	// It works by looking at each pixel of the scrollbar's area not taken up by the groove,
+-	// and asking the style which subcontrol is at that location.
+-	TQScrollBar sbar(NULL);
+-	sbar.setOrientation(Qt::Horizontal);
+-	sbar.setValue(1);
+-	sbar.resize(200,25);
+-	
+-	TQRect rect = tqApp->style().querySubControlMetrics(TQStyle::CC_ScrollBar, &sbar, TQStyle::SC_ScrollBarGroove);
+-	
+-	bool back1 = false;
+-	bool forward1 = false;
+-	bool back2 = false;
+-	bool forward2 = false;
+-	
+-	TQStyle::SubControl sc = TQStyle::SC_None;
+-	for (TQPoint pos(0,7) ; pos.x()<rect.x() ; pos.setX(pos.x()+1))
+-	{
+-		TQStyle::SubControl sc2 = tqApp->style().querySubControl(TQStyle::CC_ScrollBar, &sbar, pos);
+-		if (sc != sc2)
+-		{
+-			if (sc2 == TQStyle::SC_ScrollBarAddLine) forward1 = true;
+-			if (sc2 == TQStyle::SC_ScrollBarSubLine) back1 = true;
+-			sc = sc2;
+-		}
+-	}
+-	sc = TQStyle::SC_None;
+-	for (TQPoint pos(rect.x()+rect.width(),7) ; pos.x()<200 ; pos.setX(pos.x()+1))
+-	{
+-		TQStyle::SubControl sc2 = tqApp->style().querySubControl(TQStyle::CC_ScrollBar, &sbar, pos);
+-		if (sc != sc2)
+-		{
+-			if (sc2 == TQStyle::SC_ScrollBarAddLine) forward2 = true;
+-			if (sc2 == TQStyle::SC_ScrollBarSubLine) back2 = true;
+-			sc = sc2;
+-		}
+-	}
+-	
+-	TQString upTop = (back1 ? "-moz-box" : "none");
+-	TQString downTop = (forward1 ? "-moz-box" : "none");
+-	TQString upBottom = (back2 ? "-moz-box" : "none");
+-	TQString downBottom = (forward2 ? "-moz-box" : "none");
+-	
+-	TQString data;
+-	data += "/* The following four lines were added by KDE */\n";
+-	data += "scrollbarbutton[sbattr=\"scrollbar-up-top\"] { display: " + upTop + " !important; }\n";
+-	data += "scrollbarbutton[sbattr=\"scrollbar-down-top\"] { display: " + downTop + " !important; }\n";
+-	data += "scrollbarbutton[sbattr=\"scrollbar-up-bottom\"] { display: " + upBottom + " !important; }\n";
+-	data += "scrollbarbutton[sbattr=\"scrollbar-down-bottom\"] { display: " + downBottom + " !important; }\n";
+-	
+-	return data;
+-}
+-
+-void KcmGtk::writeFirefoxCSS(const TQString& path, const TQString& data)
+-{
+-	TQString fileData;
+-	TQFile file(path);
+-	if (file.open(IO_ReadOnly))
+-	{
+-		TQTextStream stream(&file);
+-		for (;;)
+-		{
+-			TQString line = stream.readLine();
+-			if (line.isNull())
+-				break;
+-			
+-			if ((line == "# The following four lines were added by KDE") ||
+-			    (line == "/* The following four lines were added by KDE */"))
+-			{
+-				for (int i=0 ; i<4 ; i++)
+-					stream.readLine();
+-				continue;
+-			}
+-			
+-			fileData += line + "\n";
+-		}
+-		file.close();
+-	}
+-	
+-	if (!file.open(IO_WriteOnly | IO_Truncate))
+-	{
+-		KMessageBox::error(this, i18n("Could not write to %1").arg(path), i18n("Mozilla profile"));
+-		return;
+-	}
+-	TQTextStream stream(&file);
+-	stream << fileData << data;
+-	file.close();
+-	
+-	return;
+-}
+-
+ void KcmGtk::emacsDetailsClicked()
+ {
+ 	if (emacsDetailsDialog == NULL)
+diff --git a/kcm_gtk/kcmgtk.h b/kcm_gtk/kcmgtk.h
+index 542a043..2c04919 100644
+--- a/kcm_gtk/kcmgtk.h
++++ b/kcm_gtk/kcmgtk.h
+@@ -71,7 +71,6 @@ public slots:
+ 	void styleChanged();
+ 	void fontChangeClicked();
+ 	void itemChanged();
+-	void firefoxFixClicked();
+ 	void emacsDetailsClicked();
+ 	void searchPathsClicked();
+ 	void searchPathsOk();
+@@ -82,10 +81,6 @@ public slots:
+ 
+ private:
+ 	void updateFontPreview();
+-	void getProfiles(const TQString& basePath, int type);
+-	void fixProfile(const TQString& path);
+-	TQString scrollBarCSS();
+-	void writeFirefoxCSS(const TQString& path, const TQString& data);
+ 	void getInstalledThemes();
+	
+ 	TQString env(TQString key);
+diff --git a/kcm_gtk/kcmgtkwidget.ui b/kcm_gtk/kcmgtkwidget.ui
+index 512a610..705655b 100644
+--- a/kcm_gtk/kcmgtkwidget.ui
++++ b/kcm_gtk/kcmgtkwidget.ui
+@@ -481,118 +481,6 @@
+                 </widget>
+             </hbox>
+         </widget>
+-        <widget class="TQGroupBox">
+-            <property name="name">
+-                <cstring>groupBox1</cstring>
+-            </property>
+-            <property name="sizePolicy">
+-                <sizepolicy>
+-                    <hsizetype>5</hsizetype>
+-                    <vsizetype>4</vsizetype>
+-                    <horstretch>0</horstretch>
+-                    <verstretch>0</verstretch>
+-                </sizepolicy>
+-            </property>
+-            <property name="title">
+-                <string>Firefox and Thunderbird</string>
+-            </property>
+-            <hbox>
+-                <property name="name">
+-                    <cstring>unnamed</cstring>
+-                </property>
+-                <widget class="TQLayoutWidget">
+-                    <property name="name">
+-                        <cstring>layout7_2_2</cstring>
+-                    </property>
+-                    <vbox>
+-                        <property name="name">
+-                            <cstring>unnamed</cstring>
+-                        </property>
+-                        <widget class="TQLabel">
+-                            <property name="name">
+-                                <cstring>firefoxIcon</cstring>
+-                            </property>
+-                            <property name="scaledContents">
+-                                <bool>true</bool>
+-                            </property>
+-                        </widget>
+-                        <spacer>
+-                            <property name="name">
+-                                <cstring>spacer3_2_2</cstring>
+-                            </property>
+-                            <property name="orientation">
+-                                <enum>Vertical</enum>
+-                            </property>
+-                            <property name="sizeType">
+-                                <enum>Expanding</enum>
+-                            </property>
+-                            <property name="sizeHint">
+-                                <size>
+-                                    <width>20</width>
+-                                    <height>31</height>
+-                                </size>
+-                            </property>
+-                        </spacer>
+-                    </vbox>
+-                </widget>
+-                <widget class="TQLayoutWidget">
+-                    <property name="name">
+-                        <cstring>layout12</cstring>
+-                    </property>
+-                    <vbox>
+-                        <property name="name">
+-                            <cstring>unnamed</cstring>
+-                        </property>
+-                        <widget class="TQLabel">
+-                            <property name="name">
+-                                <cstring>textLabel1</cstring>
+-                            </property>
+-                            <property name="text">
+-                                <string>Scrollbar buttons may sometimes be displayed incorrectly in Firefox and Thunderbird.  This can be fixed by installing some files into your Mozilla profile.</string>
+-                            </property>
+-                            <property name="alignment">
+-                                <set>WordBreak|AlignVCenter</set>
+-                            </property>
+-                        </widget>
+-                        <widget class="TQLayoutWidget">
+-                            <property name="name">
+-                                <cstring>layout11</cstring>
+-                            </property>
+-                            <hbox>
+-                                <property name="name">
+-                                    <cstring>unnamed</cstring>
+-                                </property>
+-                                <widget class="TQPushButton">
+-                                    <property name="name">
+-                                        <cstring>firefoxFix</cstring>
+-                                    </property>
+-                                    <property name="text">
+-                                        <string>I&amp;nstall scrollbar fix...</string>
+-                                    </property>
+-                                </widget>
+-                                <spacer>
+-                                    <property name="name">
+-                                        <cstring>spacer11</cstring>
+-                                    </property>
+-                                    <property name="orientation">
+-                                        <enum>Horizontal</enum>
+-                                    </property>
+-                                    <property name="sizeType">
+-                                        <enum>Expanding</enum>
+-                                    </property>
+-                                    <property name="sizeHint">
+-                                        <size>
+-                                            <width>101</width>
+-                                            <height>21</height>
+-                                        </size>
+-                                    </property>
+-                                </spacer>
+-                            </hbox>
+-                        </widget>
+-                    </vbox>
+-                </widget>
+-            </hbox>
+-        </widget>
+         <widget class="TQLabel">
+             <property name="name">
+                 <cstring>textLabel1_2</cstring>
+@@ -634,7 +522,6 @@
+     <tabstop>fontChange</tabstop>
+     <tabstop>emacsBox</tabstop>
+     <tabstop>emacsDetails</tabstop>
+-    <tabstop>firefoxFix</tabstop>
+ </tabstops>
+ <layoutdefaults spacing="6" margin="11"/>
+ <includehints>
+diff --git a/src/qt_qt_wrapper.cpp b/src/qt_qt_wrapper.cpp
+index 928aef3..eebcc93 100644
+--- a/src/qt_qt_wrapper.cpp
++++ b/src/qt_qt_wrapper.cpp
+@@ -2085,7 +2085,7 @@ void setRcProperties(GtkRcStyle* rc_style, int forceRecreate)
+ 	stream << parse_rc_string("GtkScrollbar::stepper-size = " + TQString::number(tqApp->style().querySubControlMetrics(TQStyle::CC_ScrollBar, &sbar, TQStyle::SC_ScrollBarSubLine).width() - 1), "*");
+ 	
+ 	stream << parse_rc_string("GtkScrollbar::min-slider-length = " + TQString::number(tqApp->style().pixelMetric(TQStyle::PM_ScrollBarSliderMin)), "*");
+-	stream << parse_rc_string("GtkScrollbar::slider-width = " + TQString::number(tqApp->style().pixelMetric(TQStyle::PM_ScrollBarExtent)-2), "*");
++	stream << parse_rc_string("GtkScrollbar::slider-width = " + TQString::number(tqApp->style().pixelMetric(TQStyle::PM_ScrollBarExtent)), "*");
+ 
+ 	stream << parse_rc_string("GtkButton::child-displacement-x = " + TQString::number(tqApp->style().pixelMetric(TQStyle::PM_ButtonShiftHorizontal)), "*");
+ 	stream << parse_rc_string("GtkButton::child-displacement-y = " + TQString::number(tqApp->style().pixelMetric(TQStyle::PM_ButtonShiftVertical)), "*");
+diff --git a/src/qt_theme_draw.c b/src/qt_theme_draw.c
+index e84c4f7..4a2ee12 100644
+--- a/src/qt_theme_draw.c
++++ b/src/qt_theme_draw.c
+@@ -506,13 +506,16 @@ draw_arrow(GtkStyle* style,
+ {
+ 	sanitize_size(window, &width, &height);
+ 	
+-	if (gtkQtDebug)
++	if (gtkQtDebug) {
+ 		printf("Arrow (%d,%d,%d,%d) Widget: %s  Detail: %s\n", x, y, width, height,gtk_widget_get_name(widget),detail);
+-	
+-	if (DETAIL("hscrollbar") || DETAIL("vscrollbar"))
++	}
++
++	if (DETAIL("hscrollbar") || DETAIL("vscrollbar")) {
+ 		return;
+-	if (DETAIL("spinbutton"))
++	}
++	if (DETAIL("spinbutton")) {
+ 		return;
++	}
+ 	if (DETAIL("notebook"))
+ 	{
+ 		drawArrow(window, style, state_type, arrow_type, x, y, width, height);
+@@ -688,7 +691,12 @@ draw_box(GtkStyle * style,
+ 			int orientation = ((width>height) ? GTK_ORIENTATION_HORIZONTAL : GTK_ORIENTATION_VERTICAL);
+ 
+ 			if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], area);
+-			drawScrollBar(window, style, state_type, orientation, adj, x, y, width, height);
++			if (orientation == GTK_ORIENTATION_VERTICAL) {
++				drawScrollBar(window, style, state_type, orientation, adj, x+1, y, width, height);
++			}
++			else {
++				drawScrollBar(window, style, state_type, orientation, adj, x, y+1, width, height);
++			}
+ 			if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], NULL);
+ 		}
+ 		return;
+@@ -1363,12 +1371,12 @@ draw_slider(GtkStyle * style,
+ 		
+ 		if (orientation == GTK_ORIENTATION_VERTICAL) {
+ 			if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], area);
+-			drawScrollBarSlider(window, style, state_type, orientation, adj, x-1, y, width+2, height, y-widgetY, widget->allocation.height);
++			drawScrollBarSlider(window, style, state_type, orientation, adj, x, y, width, height, y-widgetY, widget->allocation.height);
+ 			if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], NULL);
+ 		}
+ 		else {
+ 			if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], area);
+-			drawScrollBarSlider(window, style, state_type, orientation, adj, x, y-1, width, height+2, x-widgetX, widget->allocation.width);
++			drawScrollBarSlider(window, style, state_type, orientation, adj, x, y, width, height, x-widgetX, widget->allocation.width);
+ 			if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], NULL);
+ 		}
+ 		return;

@@ -1,0 +1,138 @@
+commit 0330b848db129b3dc4daa2a57272ec3b2fb7984c
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1387965535 -0600
+
+    Fix Firefox text edit widget glitches
+    Clean up minor build warnings
+
+diff --git a/src/qt_theme_draw.c b/src/qt_theme_draw.c
+index 4a2ee12..c7992d5 100644
+--- a/src/qt_theme_draw.c
++++ b/src/qt_theme_draw.c
+@@ -29,7 +29,7 @@
+ extern gboolean tde_showIconsOnPushButtons;
+ 
+ static GdkPixbuf * (*stockRenderIcon)() = NULL;
+-static void * (*stockDrawString)() = NULL;
++// static void * (*stockDrawString)() = NULL;
+ 
+ static void qtengine_style_init       (QtEngineStyle      *style);
+ static void qtengine_style_class_init (QtEngineStyleClass *klass);
+@@ -128,13 +128,17 @@ draw_hline(GtkStyle* style,
+            gint x2,
+            gint y)
+ {
+-	if (gtkQtDebug)
++	if (gtkQtDebug) {
+ 		printf("HLINE (%d,%p,%d) Widget: %s  Detail: %s\n",x1,y1,y,gtk_widget_get_name(widget),detail);
++	}
+ 
+-	if (DETAIL("vscale"))
++	if (DETAIL("vscale")) {
+ 		return;
++	}
+ 
++	if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], area);
+ 	drawHLine(window,style,state_type,y,x1,x2);
++	if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], NULL);
+ }
+ 
+ 
+@@ -149,13 +153,17 @@ draw_vline(GtkStyle* style,
+            gint yDest,
+            gint x)
+ {
+-	if (gtkQtDebug)
++	if (gtkQtDebug) {
+ 		printf("VLINE (%d,%d,%d) Widget: %s  Detail: %s\n",ySource ,yDest ,x,gtk_widget_get_name(widget),detail);
++	}
+ 
+ 
+-	if (DETAIL("hscale"))
++	if (DETAIL("hscale")) {
+ 		return;
++	}
++	if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], area);
+ 	drawVLine(window,style,state_type,x,ySource,yDest);
++	if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], NULL);
+ }
+ 
+ static void
+@@ -192,7 +200,9 @@ draw_shadow(GtkStyle     *style,
+ 		return;
+ 	if (DETAIL("entry"))
+ 	{
++		if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], area);
+ 		drawLineEdit(window,style,state_type,gtk_widget_is_focus(widget),x,y,width,height);
++		if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], NULL);
+ 		return;
+ 	}
+ 	if (DETAIL("frame") || DETAIL("trough") || DETAIL("viewport"))
+@@ -200,7 +210,9 @@ draw_shadow(GtkStyle     *style,
+ 		if (!GTK_IS_SCALE(widget))
+ 		{
+ 			/*printf("Frame (%d,%d) %dx%d   %d %d\n", x,y,width,height,state_type, shadow_type);*/
++			if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], area);
+ 			drawFrame(window,style,state_type,shadow_type,x,y,width,height);
++			if (area) gdk_gc_set_clip_rectangle(style->bg_gc[state_type], NULL);
+ 			return;
+ 		}
+ 	}
+@@ -644,20 +656,20 @@ draw_diamond(GtkStyle * style,
+ {
+ }
+ 
+-static void
+-draw_string(GtkStyle		*style,
+-				 GdkWindow		*window,
+-				 GtkStateType		 state_type,
+-				 GdkRectangle		*area,
+-				 GtkWidget		*widget,
+-				 const gchar		*detail,
+-				 gint			 x,
+-				 gint			 y,
+-				 const gchar		*string)
+-{
+-	if (gtkQtDebug)
+-		printf("STRING Widget: %s  Detail: %s\n",gtk_widget_get_name(widget),detail);
+-}
++// static void
++// draw_string(GtkStyle		*style,
++// 				 GdkWindow		*window,
++// 				 GtkStateType		 state_type,
++// 				 GdkRectangle		*area,
++// 				 GtkWidget		*widget,
++// 				 const gchar		*detail,
++// 				 gint			 x,
++// 				 gint			 y,
++// 				 const gchar		*string)
++// {
++// 	if (gtkQtDebug)
++// 		printf("STRING Widget: %s  Detail: %s\n",gtk_widget_get_name(widget),detail);
++// }
+ 
+ static void
+ draw_box(GtkStyle * style,
+@@ -1464,13 +1476,11 @@ void  draw_layout  (GtkStyle *style,
+ 			PangoAttrList *layoutattr;
+ 		
+ 			const gchar *text;
+-			gint text_length = 0;
+ 			gint text_bytelen = 0;
+ 			text = pango_layout_get_text (layout);
+ 			if (text != 0)
+ 			{
+ 				PangoAttribute *textcolorattr;
+-				text_length = g_utf8_strlen (text, -1);
+ 				text_bytelen = strlen (text);
+ 				
+ 				textcolorattr = pango_attr_foreground_new(color.red, color.green, color.blue);
+@@ -2040,7 +2050,7 @@ qtengine_style_class_init (QtEngineStyleClass *klass)
+ 	parent_class = g_type_class_peek_parent (klass);
+ 
+ 	stockRenderIcon = style_class->render_icon;
+-	stockDrawString = style_class->draw_string;
++// 	stockDrawString = style_class->draw_string;
+ 
+ 	style_class->render_icon = draw_icon;
+ 	

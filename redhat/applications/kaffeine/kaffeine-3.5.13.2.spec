@@ -56,7 +56,7 @@ BuildRequires:	libcdda-devel
 BuildRequires:	cdparanoia
 BuildRequires:	cdparanoia-devel
 %endif
-%if 0%{?suse_version} >= 1220 || 0%{?fedora} >= 19
+%if 0%{?suse_version} >= 1210 || 0%{?fedora} >= 19
 BuildRequires:	libcdio-paranoia-devel
 %endif
 
@@ -228,7 +228,8 @@ Requires:		%{name} = %{version}-%{release}
 %__make -f "admin/Makefile.common"
 
 %build
-unset QTDIR || : ; source /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export KDEDIR=%{tde_prefix}
 

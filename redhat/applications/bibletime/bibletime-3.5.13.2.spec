@@ -62,7 +62,7 @@ Requires:		sword
 
 %description
 BibleTime is a free and easy to use bible study tool for UNIX systems.
-It requires a working KDE environment and the SWORD library.
+It requires a working TDE environment and the SWORD library.
 BibleTime provides easy handling of digitized texts (Bibles, commentaries
 and lexicons) and powerful features to work with these texts (search in
 texts, write own notes, save, print etc.).
@@ -82,7 +82,8 @@ texts, write own notes, save, print etc.).
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 %configure \

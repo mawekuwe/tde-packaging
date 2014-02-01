@@ -1003,7 +1003,8 @@ exit 1
 
 
 %build
-unset QTDIR || : ; source /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 
@@ -1056,7 +1057,7 @@ EXTRA_INCLUDES="/usr/include/ruby-%{rb20_ver}:/usr/include/ruby-%{rb20_ver}/%{_t
 pushd dcopperl
 CFLAGS="$RPM_OPT_FLAGS" perl Makefile.PL INSTALLDIRS=vendor
 
-# Ugly hack to modify the man pages directory
+# [Bug #348] Ugly hack to modify the man pages directory
 sed -i Makefile \
   -e "s|/usr/share/man|%{tde_mandir}|g"
 

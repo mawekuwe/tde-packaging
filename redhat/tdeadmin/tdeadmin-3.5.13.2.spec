@@ -52,11 +52,15 @@ BuildRequires: trinity-arts-devel >= 1:1.5.10
 BuildRequires: trinity-tdelibs-devel >= %{tde_version}
 BuildRequires: rpm-devel
 BuildRequires: pam-devel
+
 %if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%define with_lilo 1
+%endif
+
+%if 0%{?with_lilo}
 BuildRequires:	lilo
 %endif
 
-Requires: trinity-tdeadmin = %{version}-%{release}
 Requires: trinity-kcron = %{version}-%{release}
 Requires: trinity-kdat = %{version}-%{release}
 Requires: %{name}-kfile-plugins = %{version}-%{release}
@@ -64,7 +68,7 @@ Requires: trinity-knetworkconf = %{version}-%{release}
 Requires: trinity-kpackage = %{version}-%{release}
 Requires: trinity-ksysv = %{version}-%{release}
 Requires: trinity-kuser = %{version}-%{release}
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?with_lilo}
 Requires: trinity-lilo-config = %{version}-%{release}
 %endif
 
@@ -84,7 +88,7 @@ kcron, kdat, knetworkconf, kpackage, ksysv, kuser.
 %files
 %defattr(-,root,root,-)
 # LILO is not provided in RHEL or Fedora
-%if 0%{?rhel} || 0%{?fedora}
+%if 0%{?with_lilo} == 0
 %exclude %{tde_tdedocdir}/HTML/en/lilo-config/
 %endif
 
@@ -340,7 +344,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%if 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?with_lilo}
 %package -n trinity-lilo-config
 Summary:	Trinity frontend for lilo configuration
 Group:		Applications/Utilities
@@ -383,7 +387,8 @@ touch /etc/lilo.conf
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTLIB QTINC
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 # Do not build against any "/usr" installed KDE
@@ -391,7 +396,7 @@ export KDEDIR=%{tde_prefix}
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 %configure \
@@ -415,7 +420,7 @@ fi
   --with-shadow \
   --with-private-groups
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

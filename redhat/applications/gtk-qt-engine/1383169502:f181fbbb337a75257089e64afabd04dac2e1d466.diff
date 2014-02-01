@@ -1,0 +1,50 @@
+commit f181fbbb337a75257089e64afabd04dac2e1d466
+Author: Timothy Pearson <kb9vqf@pearsoncomputing.net>
+Date:   1383169502 -0500
+
+    Fix severe iceweasel/icedove tab bar corruption
+    Clean up minor build warnings
+
+diff --git a/src/qt_qt_wrapper.cpp b/src/qt_qt_wrapper.cpp
+index 067cf24..d3e13bb 100644
+--- a/src/qt_qt_wrapper.cpp
++++ b/src/qt_qt_wrapper.cpp
+@@ -337,7 +337,7 @@ void createTQApp()
+ #endif // USE_FREEBSD
+ #endif // USE_SOLARIS
+ 
+-	mozillaFix = (cmdLine.contains("mozilla") || cmdLine.contains("firefox") || cmdLine.contains("thunderbird"));
++	mozillaFix = (cmdLine.contains("mozilla") || cmdLine.contains("firefox") || cmdLine.contains("iceweasel") || cmdLine.contains("thunderbird") || cmdLine.contains("icedove"));
+ 
+ 	openOfficeFix = (cmdLine.endsWith("soffice.bin"))
+ 	              | (cmdLine.endsWith("swriter.bin"))
+@@ -692,10 +692,9 @@ void drawButton(GdkWindow* window, GtkStyle* style, GtkStateType state, int defa
+ 		TQPushButton button(meepWidget);	
+ 		button.setBackgroundOrigin(TQWidget::ParentOrigin);
+ 		button.setGeometry(x, y, w, h);
+-		if (style->rc_style->bg[GTK_STATE_NORMAL].pixel != 0)
++		if (style->rc_style->bg[GTK_STATE_NORMAL].pixel != 0) {
+ 			button.setPaletteBackgroundColor(gdkColorToTQColor(&style->rc_style->bg[GTK_STATE_NORMAL]));
+-		TQPoint p = button.backgroundOffset();
+-		TQPoint pos = button.pos();
++		}
+ 	
+ 		TQStyle::SFlags sflags = stateToSFlags(state);
+ 		
+@@ -730,8 +729,6 @@ void drawButton(GdkWindow* window, GtkStyle* style, GtkStateType state, int defa
+ 		button.setGeometry(x, y, w, h);
+ 		if (style->rc_style->bg[GTK_STATE_NORMAL].pixel != 0)
+ 			button.setPaletteBackgroundColor(gdkColorToTQColor(&style->rc_style->bg[GTK_STATE_NORMAL]));
+-		TQPoint p = button.backgroundOffset();
+-		TQPoint pos = button.pos();
+ 	
+ 		TQStyle::SFlags sflags = stateToSFlags(state);
+ 		
+@@ -1802,6 +1799,7 @@ void drawArrow(GdkWindow* window, GtkStyle* style, GtkStateType state, GtkArrowT
+ 		case GTK_ARROW_LEFT:  element = TQStyle::PE_ArrowLeft;  break;
+ 		case GTK_ARROW_RIGHT: element = TQStyle::PE_ArrowRight; break;
+ 		case GTK_ARROW_NONE:  return;
++		default:              return;
+ 	}
+ 
+ 	 

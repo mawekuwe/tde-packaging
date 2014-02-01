@@ -79,6 +79,7 @@ BuildRequires:	xmedcon-devel
 %define with_svg 1
 %if 0%{?fedora} || 0%{?rhel} 
 BuildRequires:	librsvg2
+BuildRequires:	librsvg2-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	librsvg

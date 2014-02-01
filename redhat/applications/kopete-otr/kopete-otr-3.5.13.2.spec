@@ -84,9 +84,9 @@ users with IM-Cients supporting the OTR encryption method.
 
 
 %build
-unset QTDIR QTINC QTLIB; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
-export 
 
 %configure \
   --prefix=%{tde_prefix} \
