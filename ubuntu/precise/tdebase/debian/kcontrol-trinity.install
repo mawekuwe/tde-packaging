@@ -176,6 +176,7 @@ debian/tmp/opt/trinity/share/applications/tde/tdefontview.desktop
 debian/tmp/opt/trinity/share/applications/tde/tdehtml_behavior.desktop
 debian/tmp/opt/trinity/share/applications/tde/tdehtml_fonts.desktop
 debian/tmp/opt/trinity/share/applications/tde/tdehtml_java_js.desktop
+debian/tmp/opt/trinity/share/applications/tde/tdehtml_userinterface.desktop
 debian/tmp/opt/trinity/share/applications/tde/tderandrtray.desktop
 debian/tmp/opt/trinity/share/autostart/tderandrtray-autostart.desktop
 debian/tmp/opt/trinity/share/applications/tde/kthememanager.desktop
