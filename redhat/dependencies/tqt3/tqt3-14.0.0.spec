@@ -22,9 +22,6 @@ Prefix:		%{tde_prefix}
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-# [tqt3] Build shared libraries
-Patch1:		tqt3-14.0.0-shared_lib.patch
-
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
 BuildRequires: glibc-devel
@@ -461,7 +458,6 @@ for the TQt 3 toolkit.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .sharedlibs
 
 # fix variables in 'qmake.conf'
 %__sed -i mkspecs/*/qmake.conf \

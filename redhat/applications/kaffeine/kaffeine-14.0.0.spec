@@ -62,9 +62,15 @@ BuildRequires:	libcdio-paranoia-devel
 
 # X11 stuff
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xext-devel
+BuildRequires:	%{_lib}xtst-devel
+BuildRequires:	%{_lib}xinerama-devel
+%else
 BuildRequires:	%{_lib}xext%{?mgaversion:6}-devel
 BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
 BuildRequires:	%{_lib}xinerama%{?mgaversion:1}-devel
+%endif
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel 
@@ -214,11 +220,11 @@ Requires:		%{name} = %{version}-%{release}
 
 ##########
 
-
 %if 0%{?suse_version} || 0%{?pclinuxos}
 %debug_package
 %endif
 
+##########
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
@@ -226,6 +232,7 @@ Requires:		%{name} = %{version}-%{release}
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
+
 
 %build
 unset QTDIR QTINC QTLIB
@@ -271,6 +278,7 @@ export PATH="%{tde_bindir}:${PATH}"
 # Unpackaged files
 rm -f $RPM_BUILD_ROOT%{tde_libdir}/lib*.la
 rm -f $RPM_BUILD_ROOT%{tde_datadir}/mimelnk/application/x-mplayer2.desktop
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
