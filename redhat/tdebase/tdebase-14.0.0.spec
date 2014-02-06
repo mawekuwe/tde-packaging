@@ -395,7 +395,11 @@ BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	gnome-screensaver
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xscrnsaver-devel
+%else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
 %endif
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
 BuildRequires:	xscreensaver
@@ -488,10 +492,16 @@ BuildRequires:	libfontenc-devel
 %endif
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
 BuildRequires:	%{_lib}xdamage-devel
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xcomposite-devel
+BuildRequires:	%{_lib}xdmcp-devel
+BuildRequires:	%{_lib}xtst-devel
+%else
+BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
 BuildRequires:	%{_lib}xdmcp%{?mgaversion:6}-devel
 BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+%endif
 BuildRequires:	x11-font-util
 BuildRequires:	x11-proto-devel
 %endif
@@ -3338,8 +3348,7 @@ if [ -x "/usr/bin/reboot" ]; then
 fi
 if [ -n "${REBOOT}" ]; then
   %__sed -i \
-    "doc/tdm/index.docbook" \
-    "doc/kcontrol/tdm/index.docbook" \
+    "doc/tdm/tdmrc-ref.docbook" \
     "kcontrol/tdm/tdm-shut.cpp" \
     "tdm/config.def" \
   -e "s|/sbin/poweroff|${POWEROFF}|g" \
