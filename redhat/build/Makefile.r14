@@ -24,7 +24,7 @@ i18n:	gwenview-i18n k3b-i18n koffice-i18n tde-i18n
 
 
 # Dependencies
-arts:	tqtinterface
+arts:	tqtinterface esound
 	$(call buildpkg,dependencies/arts)
 
 avahi-tqt:	tqtinterface
@@ -122,6 +122,12 @@ tdewebdev:	tdebase tdesdk
 	$(call buildpkg,tdewebdev)
 
 # 3rd party libraries and tools
+esound:
+# Build on Mageia only
+ifneq ($(wildcard /etc/mageia-release),)
+	$(call buildpkg,3rdparty/esound)
+endif
+
 htdig:
 	$(call buildpkg,3rdparty/htdig)
 
