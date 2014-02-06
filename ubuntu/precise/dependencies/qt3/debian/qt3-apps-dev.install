@@ -1,7 +1,4 @@
-usr/lib/libeditor.prl
-usr/lib/libeditor.a
-usr/lib/libdesignercore.prl
-usr/lib/libdesignercore.a
-usr/lib/libqassistantclient.prl
-usr/lib/libqassistantclient.a
+usr/lib/libeditor.*
+usr/lib/libdesignercore.*
+usr/lib/libqassistantclient.*
 usr/include/qt3/qassistantclient.h

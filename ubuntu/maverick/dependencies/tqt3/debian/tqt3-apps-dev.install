@@ -1,7 +1,4 @@
-usr/lib/libtqteditor.prl
-usr/lib/libtqteditor.a
-usr/lib/libtqtdesignercore.prl
-usr/lib/libtqtdesignercore.a
-usr/lib/libtqassistantclient.prl
-usr/lib/libtqassistantclient.a
+usr/lib/libtqteditor.*
+usr/lib/libtqtdesignercore.*
+usr/lib/libtqassistantclient.*
 usr/include/tqt3/ntqassistantclient.h

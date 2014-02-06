@@ -110,6 +110,9 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeprint/rlpr.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeprint/steinbruch_scaled.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeprint/tech-overview.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeprint/theory.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeprintfax/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeprintfax/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeprintfax/index.docbook
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/tdeprintfax.png
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/kjobviewer.png
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/printmgr.png

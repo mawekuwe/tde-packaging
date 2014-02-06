@@ -146,7 +146,7 @@ libqt-thread-stamp: post-patches
 	$(MAKE) INSTALL_ROOT=$(TMP_INSTALL) plugins-install
 
 	# archives get accidentally stripped by make install. Copy over unstripped ones for now.
-	cp lib/lib*.a $(TMP_INSTALL)/usr/lib/
+	-cp lib/lib*.a $(TMP_INSTALL)/usr/lib/
 
 	cp bin/qtrename140 $(TMP_INSTALL)/usr/bin/
 	cp bin/qt20fix $(TMP_INSTALL)/usr/bin/
