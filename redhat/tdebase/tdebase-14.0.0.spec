@@ -222,6 +222,17 @@ Requires:	indexhtml
 %define tde_aboutpage /usr/share/mga/about/index.html
 %endif
 
+# Mageia 4 Theme
+%if 0%{?mgaversion} == 4
+Requires:	mageia-theme-Default
+%define tde_bg /usr/share/mga/backgrounds/default.jpg
+%define tde_starticon %{tde_datadir}/oxygen/scalable/mgabutton.svg
+
+Requires:	indexhtml
+%define tde_aboutlabel Mageia 4
+%define tde_aboutpage /usr/share/mga/about/index.html
+%endif
+
 # Mandriva 2011 Theme: "rosa"
 %if "%{distribution}" == "Mandriva Linux" && "%{?mdkversion}" == "201100"
 Requires:	mandriva-theme
