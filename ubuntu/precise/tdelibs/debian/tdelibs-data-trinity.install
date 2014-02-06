@@ -1760,6 +1760,7 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/headerbg.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/header.html
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/tde-common.css
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/tde-default.css
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/tde-docs.css
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/kde_gear_64.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/tde-localised.css.template
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/common/kde_logo_bg.png
