@@ -11,21 +11,31 @@ fi
 
 case "$1" in
   install)
+    # remove obsolete divert for acpid
     divert=`dpkg-divert --listpackage "/etc/acpi/powerbtn.sh"`
     if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
         dpkg-divert --remove --local --rename "/etc/acpi/powerbtn.sh"
-        divert=""
     fi
-    dpkg-divert --package $package_name --divert /etc/acpi/powerbtn.sh.distrib --rename /etc/acpi/powerbtn.sh
+
+    # create new divert for acpi-support-base
+    dpkg-divert --package $package_name --rename /usr/share/acpi-support/policy-funcs
     ;;
   upgrade)
+    # remove obsolete divert acpid
     divert=`dpkg-divert --listpackage "/etc/acpi/powerbtn.sh"`
-    if [ -n "$divert" ] && [ "$divert" = "LOCAL" ]; then
-        dpkg-divert --remove --local --rename "/etc/acpi/powerbtn.sh"
-        divert=""
+    if [ -n "$divert" ]; then
+        if [ "$divert" = "LOCAL" ]; then
+            dpkg-divert --remove --local --rename "/etc/acpi/powerbtn.sh"
+        fi
+        if [ "$divert" = $package_name ]; then
+            dpkg-divert --remove --package $package_name --rename "/etc/acpi/powerbtn.sh"
+        fi
     fi
+
+    # create new divert for acpi-support-base
+    divert=`dpkg-divert --listpackage "/usr/share/acpi-support/policy-funcs"`
     if [ -z "$divert" ]; then
-      dpkg-divert --package $package_name --divert /etc/acpi/powerbtn.sh.distrib --rename /etc/acpi/powerbtn.sh
+        dpkg-divert --package $package_name --rename /usr/share/acpi-support/policy-funcs
     fi
     ;;
   abort-upgrade)
