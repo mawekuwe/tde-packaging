@@ -1,4 +1,4 @@
-?package(kooka):\
+?package(kooka-trinity):\
 	needs="X11"\
 	section="Applications/Graphics"\
 	hints="TDE"\

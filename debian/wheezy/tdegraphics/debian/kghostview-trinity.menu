@@ -1,4 +1,4 @@
-?package(kghostview):\
+?package(kghostview-trinity):\
 	needs="X11"\
 	section="Applications/Viewers"\
 	hints="TDE,Documents"\

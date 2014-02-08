@@ -12,7 +12,7 @@ Section: tde
 Architecture: all
 Replaces: kdegraphics-kde3 (<< 4:14.0.0~), kdegraphics-trinity (<< 4:14.0.0~)
 Breaks: kdegraphics-kde3 (<< 4:14.0.0~), kdegraphics-trinity (<< 4:14.0.0~)
-Depends: kamera-trinity (>= ${source:Version}), kcoloredit-trinity (>= ${source:Version}), tdegraphics-tdefile-plugins-trinity (>= ${source:Version}), kdvi-trinity (>= ${source:Version}), kfax-trinity (>= ${source:Version}), kfaxview-trinity (>= ${source:Version}), kgamma-trinity (>= ${source:Version}), kghostview-trinity (>= ${source:Version}), kiconedit-trinity (>= ${source:Version}), kmrml-trinity (>= ${source:Version}), kolourpaint-trinity (>= ${source:Version}), kooka-trinity (>= ${source:Version}), kpdf-trinity (>= ${source:Version}), kpovmodeler-trinity (>= ${source:Version}), kruler-trinity (>= ${source:Version}), ksnapshot-trinity (>= ${source:Version}), ksvg-trinity (>= ${source:Version}), kview-trinity (>= ${source:Version}), kviewshell-trinity (>= ${source:Version}), libkscan1-trinity (>= ${source:Version})
+Depends: kamera-trinity (>= ${source:Version}), kcoloredit-trinity (>= ${source:Version}), tdegraphics-tdefile-plugins-trinity (>= ${source:Version}), kdvi-trinity (>= ${source:Version}), kfax-trinity (>= ${source:Version}), kfaxview-trinity (>= ${source:Version}), kgamma-trinity (>= ${source:Version}), kghostview-trinity (>= ${source:Version}), tdeiconedit-trinity (>= ${source:Version}), kmrml-trinity (>= ${source:Version}), kolourpaint-trinity (>= ${source:Version}), kooka-trinity (>= ${source:Version}), kpdf-trinity (>= ${source:Version}), kpovmodeler-trinity (>= ${source:Version}), kruler-trinity (>= ${source:Version}), ksnapshot-trinity (>= ${source:Version}), ksvg-trinity (>= ${source:Version}), kview-trinity (>= ${source:Version}), kviewshell-trinity (>= ${source:Version}), libkscan1-trinity (>= ${source:Version})
 Suggests: tdegraphics-trinity-doc-html (>= ${source:Version})
 Description: graphics apps from the official Trinity release
  KDE (the K Desktop Environment) is a powerful Open Source graphical
@@ -176,7 +176,7 @@ Description: PostScript viewer for Trinity
  This package is part of Trinity, as a component of the KDE graphics module.
  See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
 
-Package: kiconedit-trinity
+Package: tdeiconedit-trinity
 Section: graphics
 Architecture: any
 Replaces: kiconedit-kde3 (<< 4:14.0.0~), kiconedit-trinity (<< 4:14.0.0~)

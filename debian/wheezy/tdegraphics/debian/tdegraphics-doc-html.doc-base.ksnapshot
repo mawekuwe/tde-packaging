@@ -5,6 +5,6 @@ Abstract: KSnapshot is a simple applet for taking screenshots.
 Section: Apps/Graphics
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/ksnapshot/index.html
-Files: /usr/share/doc/tde/HTML/en/ksnapshot/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/ksnapshot/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/ksnapshot/*.html
 

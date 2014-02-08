@@ -5,6 +5,6 @@ Abstract: KPDF is a KDE PDF viewer based on xpdf code.
 Section: Apps/Graphics
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/kpdf/index.html
-Files: /usr/share/doc/tde/HTML/en/kpdf/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kpdf/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kpdf/*.html
 

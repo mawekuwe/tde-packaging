@@ -5,6 +5,6 @@ Abstract: KuickShow is a comfortable image browser/viewer.
 Section: Apps/Graphics
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/kuickshow/index.html
-Files: /usr/share/doc/tde/HTML/en/kuickshow/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kuickshow/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kuickshow/*.html
 

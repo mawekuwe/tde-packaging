@@ -1,4 +1,4 @@
-?package(ksnapshot):\
+?package(ksnapshot-trinity):\
 	needs="X11"\
 	section="Applications/Graphics"\
 	hints="TDE"\

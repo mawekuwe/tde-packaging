@@ -1,4 +1,4 @@
-?package(kpovmodeler):\
+?package(kpovmodeler-trinity):\
 	needs="X11"\
 	section="Applications/Graphics"\
 	hints="TDE,Modeler"\

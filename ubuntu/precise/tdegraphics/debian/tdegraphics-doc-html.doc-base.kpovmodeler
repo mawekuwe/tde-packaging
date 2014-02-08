@@ -6,6 +6,6 @@ Abstract: KPovModeler is a graphical 3D modeler, which can generate
 Section: Apps/Graphics
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/kpovmodeler/index.html
-Files: /usr/share/doc/tde/HTML/en/kpovmodeler/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kpovmodeler/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kpovmodeler/*.html
 

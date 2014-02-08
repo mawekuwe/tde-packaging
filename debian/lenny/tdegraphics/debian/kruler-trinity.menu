@@ -1,4 +1,4 @@
-?package(kruler):\
+?package(kruler-trinity):\
 	needs="X11"\
 	section="Applications/Viewers"\
 	hints="TDE"\

@@ -5,6 +5,6 @@ Abstract: Kamera allows you to view and download images on a digital camera.
 Section: Apps/Graphics
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/kamera/index.html
-Files: /usr/share/doc/tde/HTML/en/kamera/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kamera/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kamera/*.html
 

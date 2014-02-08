@@ -1,4 +1,4 @@
-?package(kolourpaint):\
+?package(kolourpaint-trinity):\
 	needs="X11"\
 	section="Applications/Graphics"\
 	hints="TDE"\

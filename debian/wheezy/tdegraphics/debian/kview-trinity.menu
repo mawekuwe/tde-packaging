@@ -1,4 +1,4 @@
-?package(kview):\
+?package(kview-trinity):\
 	needs="X11"\
 	section="Applications/Viewers"\
 	hints="TDE,Images"\

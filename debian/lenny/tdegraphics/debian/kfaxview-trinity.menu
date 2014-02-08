@@ -1,4 +1,4 @@
-?package(kfaxview):\
+?package(kfaxview-trinity):\
 	needs="X11"\
 	section="Applications/Viewers"\
 	hints="TDE"\

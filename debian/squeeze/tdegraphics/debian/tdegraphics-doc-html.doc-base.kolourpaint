@@ -5,6 +5,6 @@ Abstract: KolourPaint is a free, easy-to-use paint program for KDE.
 Section: Apps/Graphics
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/kolourpaint/index.html
-Files: /usr/share/doc/tde/HTML/en/kolourpaint/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kolourpaint/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kolourpaint/*.html
 

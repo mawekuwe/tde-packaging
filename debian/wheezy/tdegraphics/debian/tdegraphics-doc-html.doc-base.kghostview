@@ -6,6 +6,6 @@ Abstract: KGhostView displays and prints PostScript and
 Section: Apps/Graphics
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/kghostview/index.html
-Files: /usr/share/doc/tde/HTML/en/kghostview/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kghostview/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kghostview/*.html
 

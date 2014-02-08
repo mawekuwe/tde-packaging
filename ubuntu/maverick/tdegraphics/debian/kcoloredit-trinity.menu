@@ -1,4 +1,4 @@
-?package(kcoloredit):\
+?package(kcoloredit-trinity):\
 	needs="X11"\
 	section="Applications/Graphics"\
 	hints="TDE"\
@@ -7,7 +7,7 @@
 	icon16x16="/opt/trinity/share/pixmaps/kcolorchooser-16.xpm"\
 	command="/opt/trinity/bin/kcolorchooser"
 
-?package(kcoloredit):\
+?package(kcoloredit-trinity):\
 	needs="X11"\
 	section="Applications/Graphics"\
 	hints="TDE"\

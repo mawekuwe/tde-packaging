@@ -264,6 +264,12 @@ Depends: tdegraphics-trinity-dbg
 Conflicts: kdegraphics-trinity-dbg (<< 4:13.9.9)
 Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
 
+Package: kiconedit-trinity
+Architecture: all
+Depends: tdeiconedit-trinity
+Conflicts: kiconedit-trinity (<< 4:13.9.9)
+Description: Transitional dummy package.  This can be safely removed after your TDE upgrade has completed.
+
 Package: kdesvn-trinity
 Architecture: all
 Depends: tdesvn-trinity
