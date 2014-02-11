@@ -49,8 +49,6 @@ debian/tmp/opt/trinity/lib/trinity/kcm_info.la
 debian/tmp/opt/trinity/lib/trinity/kcm_info.so
 debian/tmp/opt/trinity/lib/trinity/kcm_input.la
 debian/tmp/opt/trinity/lib/trinity/kcm_input.so
-debian/tmp/opt/trinity/lib/trinity/kcm_ioslaveinfo.la
-debian/tmp/opt/trinity/lib/trinity/kcm_ioslaveinfo.so
 debian/tmp/opt/trinity/lib/trinity/kcm_joystick.la
 debian/tmp/opt/trinity/lib/trinity/kcm_joystick.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kded.la
@@ -155,7 +153,6 @@ debian/tmp/opt/trinity/share/applications/tde/icons.desktop
 debian/tmp/opt/trinity/share/applications/tde/installktheme.desktop
 debian/tmp/opt/trinity/share/applications/tde/interrupts.desktop
 debian/tmp/opt/trinity/share/applications/tde/ioports.desktop
-debian/tmp/opt/trinity/share/applications/tde/ioslaveinfo.desktop
 debian/tmp/opt/trinity/share/applications/tde/joystick.desktop
 debian/tmp/opt/trinity/share/applications/tde/kcm_tdednssd.desktop
 debian/tmp/opt/trinity/share/applications/tde/kcmaccess.desktop
