@@ -5,5 +5,5 @@ Abstract: KonsoleKalendar is a command line interface to KDE calendars.
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/konsolekalendar/index.html
-Files: /usr/share/doc/tde/HTML/en/konsolekalendar/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/konsolekalendar/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/konsolekalendar/*.html

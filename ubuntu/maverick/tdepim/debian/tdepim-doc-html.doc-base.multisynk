@@ -5,5 +5,5 @@ Abstract: KDE synchronization application.
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/multisynk/index.html
-Files: /usr/share/doc/tde/HTML/en/multisynk/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/multisynk/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/multisynk/*.html

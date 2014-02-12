@@ -5,5 +5,5 @@ Abstract: KOrganizer is an easy to use personal information manager.
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/korganizer/index.html
-Files: /usr/share/doc/tde/HTML/en/korganizer/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/korganizer/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/korganizer/*.html

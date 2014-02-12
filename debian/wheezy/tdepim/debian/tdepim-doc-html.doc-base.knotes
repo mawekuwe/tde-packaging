@@ -5,5 +5,5 @@ Abstract: KNotes is a sticky notes application for the desktop.
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/knotes/index.html
-Files: /usr/share/doc/tde/HTML/en/knotes/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/knotes/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/knotes/*.html

@@ -1,6 +1,6 @@
 Not build using tar inside .orig, no DEB_KDE_CVS_MAKE := yes
 Don't build-dep on libgnokii-dev, not in main
-Install /usr/share/services/kontact/knode* in knode and add replaces
+Install /opt/trinity/share/services/kontact/knode* in knode and add replaces
 don't build-dep on gnokii or automake1.9
 make kontact depend on kmail, korganizer, kaddressbook
 Remove 16_kde_modulename.diff, module name isn't changed in Ubuntu

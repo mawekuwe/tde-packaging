@@ -5,5 +5,5 @@ Abstract: KMail is KDE's powerful and user friendly email client.
 Section: Apps/Net
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/kmail/index.html
-Files: /usr/share/doc/tde/HTML/en/kmail/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kmail/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kmail/*.html

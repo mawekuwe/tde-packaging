@@ -6,5 +6,5 @@ Abstract: Kandy is an application for synchronizing the data on a mobile
 Section: Apps/Tools
 
 Format: HTML
-Index: /usr/share/doc/tde/HTML/en/kandy/index.html
-Files: /usr/share/doc/tde/HTML/en/kandy/*.html
+Index: /opt/trinity/share/doc/tde/HTML/en/kandy/index.html
+Files: /opt/trinity/share/doc/tde/HTML/en/kandy/*.html
