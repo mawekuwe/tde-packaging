@@ -128,11 +128,13 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/mrml
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/news
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/nfs
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/nntp
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/nxfish
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/pnm
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/pop3
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/print
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/printdb
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/programs
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/rlan
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/rlogin
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/rtsp
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/settings
@@ -145,6 +147,7 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/telnet
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/thumbnail
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/webdav
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/xz
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/zeroconf
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/zip
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/devices/compact_flash_mount_decrypt.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/devices/compact_flash_unmount_decrypt.png
