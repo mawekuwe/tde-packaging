@@ -16,6 +16,7 @@ debian/tmp/opt/trinity/share/apps/kimagemapeditor/icons/hicolor/22x22/actions/po
 debian/tmp/opt/trinity/share/apps/kimagemapeditor/icons/hicolor/22x22/actions/raise.png
 debian/tmp/opt/trinity/share/apps/kimagemapeditor/icons/hicolor/22x22/actions/rectangle.png
 debian/tmp/opt/trinity/share/apps/kimagemapeditor/icons/hicolor/22x22/actions/removepoint.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kimagemapeditor
 debian/tmp/opt/trinity/share/icons/hicolor/32x32/apps/kimagemapeditor.png
 debian/tmp/opt/trinity/share/icons/hicolor/48x48/apps/kimagemapeditor.png
 debian/tmp/opt/trinity/share/icons/locolor/16x16/apps/kimagemapeditor.png
