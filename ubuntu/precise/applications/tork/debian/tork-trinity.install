@@ -2,6 +2,6 @@ debian/tmp/opt/trinity/bin/*
 debian/tmp/usr/share/menu/tork-trinity
 debian/tmp/opt/trinity/share/pixmaps/tork.xpm
 debian/tmp/opt/trinity/share/man/*
-debian/tmp/opt/trinity/share/apps/tork/icons/hicolor/48x48/apps/tork.png
+debian/tmp/opt/trinity/share/apps/tork/icons/hicolor/48x48/apps/tork.png opt/trinity/share/icons/hicolor/48x48/apps
 debian/tmp/opt/trinity/share/applications/*
 debian/tmp/opt/trinity/share/apps/konqueror/*
