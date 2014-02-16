@@ -85,7 +85,11 @@ BuildRequires:	cyrus-sasl-devel
 
 # XCOMPOSITE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xcomposite-devel
+%else
 BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXcomposite-devel
@@ -100,7 +104,11 @@ BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	gnome-screensaver
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xscrnsaver-devel
+%else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
 %endif
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
 BuildRequires:	libXScrnSaver-devel
@@ -234,6 +242,7 @@ thousands of internet feeds in a quick, efficient, and familiar way.
 %{tde_datadir}/services/kontact/akregatorplugin*.desktop
 %{tde_datadir}/servicetypes/akregator_plugin.desktop
 %{tde_tdedocdir}/HTML/en/akregator/
+%{tde_tdedocdir}/HTML/en/tdeioslave/feed/
 
 %post -n trinity-akregator
 /sbin/ldconfig || :
@@ -570,6 +579,9 @@ and mbox.
 %{tde_datadir}/services/scalix.protocol
 %{tde_datadir}/services/scalixs.protocol
 %{tde_datadir}/services/sieve.protocol
+%{tde_tdedocdir}/HTML/en/tdeioslave/groupwise/
+%{tde_tdedocdir}/HTML/en/tdeioslave/mbox/
+%{tde_tdedocdir}/HTML/en/tdeioslave/scalix/
 
 ##########
 
@@ -1423,6 +1435,7 @@ installed.
 %{tde_datadir}/servicetypes/korganizerpart.desktop
 %{tde_datadir}/servicetypes/korgprintplugin.desktop
 %{tde_tdedocdir}/HTML/en/korganizer/
+%{tde_tdedocdir}/HTML/en/tdeioslave/webcal/
 
 %post -n trinity-korganizer
 for f in hicolor ; do
@@ -2004,6 +2017,7 @@ This is the runtime package for programs that use the libksieve-trinity library.
 %files -n trinity-libksieve
 %defattr(-,root,root,-)
 %{tde_libdir}/libksieve.so.*
+%{tde_tdedocdir}/HTML/en/tdeioslave/sieve/
 
 %post -n trinity-libksieve
 /sbin/ldconfig || :

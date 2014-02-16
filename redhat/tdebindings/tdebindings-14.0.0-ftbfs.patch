@@ -1,0 +1,11 @@
+--- trinity-tdebindings-14.0.0~pre227+b584f8a9/qtruby/rubylib/qtruby/configure.in.in.ORI	2014-02-04 20:05:36.183889743 +0100
++++ trinity-tdebindings-14.0.0~pre227+b584f8a9/qtruby/rubylib/qtruby/configure.in.in	2014-02-04 20:05:44.991693984 +0100
+@@ -57,7 +57,7 @@
+     RUBY_SITEDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"sitelibdir"@:>@)'`
+     RUBY_RUBYLIBDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"rubylibdir"@:>@)'`
+     RUBY_LIBDIR=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"libdir"@:>@)'`
+-    RUBY_INCLUDEDIR=$RUBY_ARCHDIR
++    RUBY_INCLUDEDIR=`$RUBY -r rbconfig -e 'printf("%s",RbConfig::CONFIG@<:@"rubyhdrdir"@:>@)'`
+     RUBY_LIBRUBYARG=`$RUBY -r rbconfig -e 'printf("%s",Config::CONFIG@<:@"LIBRUBYARG_SHARED"@:>@)'`
+   fi
+ 

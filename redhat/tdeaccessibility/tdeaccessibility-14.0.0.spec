@@ -61,9 +61,15 @@ BuildRequires:	%{_lib}xcb-devel
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xi-devel
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xext-devel
+BuildRequires:	%{_lib}x11-devel
+BuildRequires:	%{_lib}xau-devel
+%else
 BuildRequires:	%{_lib}xext%{?mgaversion:6}-devel
 BuildRequires:	%{_lib}x11%{?mgaversion:_6}-devel
 BuildRequires:	%{_lib}xau%{?mgaversion:6}-devel
+%endif
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXi-devel

@@ -51,6 +51,8 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch1:			tdebindings-14.0.0-ftbfs.patch
+
 # [tdebindings] Function 'rb_frame_this_func' does not exist in RHEL5
 Patch5:		kdebindings-3.5.13.1-fix_rhel5_ftbfs.patch
 
@@ -81,7 +83,7 @@ BuildRequires:	gtk2-devel
 
 # XULRUNNER support
 %if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} >= 1220
-BuildRequires: xulrunner-devel
+#BuildRequires: xulrunner-devel
 %endif
 %if 0%{?suse_version} == 1140
 BuildRequires: mozilla-xulrunner20-devel
@@ -976,6 +978,7 @@ Development files for the TDE bindings.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
+%patch1 -p1 -b .ftbfs
 
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
 %patch5 -p1 -b .ruby
@@ -1001,9 +1004,14 @@ unset JAVA_HOME ||:
 # sip/PyQt/PyKDE built separately, not here
 export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
 
+# Ruby headers, strange location ...
+if [ -d "/usr/include/%{_normalized_cpu}-linux" ]; then
+  export EXTRA_INCLUDES="/usr/include/%{_normalized_cpu}-linux"
+fi
+
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 if [ -d /usr/evolution28 ]; then
   export PATH="/usr/evolution28/bin:${PATH}"
@@ -1029,7 +1037,7 @@ fi
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-  --with-extra-includes=%{_includedir}/tqscintilla \
+  --with-extra-includes=%{_includedir}/tqscintilla:${EXTRA_INCLUDES} \
   --with-extra-libs=%{tde_libdir} \
   --with-pythondir=%{_usr} \
   \

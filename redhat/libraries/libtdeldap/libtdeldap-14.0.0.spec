@@ -130,7 +130,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility
 
 %__make %{?_smp_mflags}
 

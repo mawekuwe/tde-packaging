@@ -27,7 +27,7 @@ esac
 
 # Trinity Prefix, or not.
 case "${PKGNAME}" in
-  "trinity-"*|"qt3"|"python-qt3") PREFIX="";;
+  "trinity-"*|"qt3"|"python-qt3"|"esound") PREFIX="";;
   "gnuchess"|"imlib1"|"lilypond"|"mftrace"|"pcsc-perl"|"torsocks"|"wv2") PREFIX="";;
   "curl") PREFIX="trinity-lib";;
   *) PREFIX="trinity-";;

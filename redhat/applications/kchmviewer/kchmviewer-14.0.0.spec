@@ -106,7 +106,7 @@ fi
   --disable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
+  --disable-gcc-hidden-visibility \
   \
   --with-x \
   --with-kde

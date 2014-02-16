@@ -114,7 +114,11 @@ BuildRequires:	gstreamer-0_10-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xxf86dga-devel
 BuildRequires:	%{_lib}xxf86vm-devel
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xtst-devel
+%else
 BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+%endif
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
@@ -602,7 +606,7 @@ Konqueror and the audiocd:/ URL.
 %{tde_datadir}/config.kcfg/audiocd_lame_encoder.kcfg
 %{tde_datadir}/config.kcfg/audiocd_vorbis_encoder.kcfg
 %{tde_datadir}/services/audiocd.protocol
-%{tde_tdedocdir}/HTML/en/tdeioslave/audiocd.docbook
+%{tde_tdedocdir}/HTML/en/tdeioslave/audiocd/
 %{tde_tdedocdir}/HTML/en/kcontrol/audiocd/
 
 %post tdeio-plugins

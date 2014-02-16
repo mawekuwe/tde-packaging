@@ -98,7 +98,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
+  --disable-gcc-hidden-visibility \
   \
   --with-sqlite \
   --with-mysql \

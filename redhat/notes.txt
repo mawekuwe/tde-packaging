@@ -23,6 +23,10 @@ MGA2: 9.1
 MGA3: 9.2
 
 
+MAGEIA 4:
+Bug in /usr/lib[64]/pkgconfig/ruby.pc : missing "ruby_version:" value
+
+
 CENTOS 4 / CENTOS 5
 Some mandatory packages are missing or too old.
 I had to build newer version in order to have TDE function correctly.

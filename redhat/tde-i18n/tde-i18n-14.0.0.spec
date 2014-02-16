@@ -741,7 +741,7 @@ done
 ) 2>&1 | tee /tmp/rpmbuild.$$
 
 if grep -qw Error /tmp/rpmbuild.$$; then
-  echo Error while building. See '/tmp/rpmbuild.$$'
+  echo "Error while building. See '/tmp/rpmbuild.$$'"
   exit 1
 fi
 

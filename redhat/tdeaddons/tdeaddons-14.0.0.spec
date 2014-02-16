@@ -217,6 +217,7 @@ a tab bar, a Python browser and even more.
 %{tde_tdelibdir}/katexmltoolsplugin.so
 %{tde_tdelibdir}/libkatetabbarextensionplugin.la
 %{tde_tdelibdir}/libkatetabbarextensionplugin.so
+%{tde_datadir}/applnk/.hidden/kate-plugins.desktop
 %{tde_datadir}/applnk/.hidden/katefll.desktop
 %{tde_datadir}/apps/kate
 %{tde_datadir}/apps/katepart
@@ -517,7 +518,6 @@ graphical disk usage viewer and image conversions and transformations.
 %{tde_datadir}/icons/crystalsvg/*/apps/konqsidebar_delicious.png
 %{tde_datadir}/icons/crystalsvg/*/apps/konqsidebar_mediaplayer.png
 %{tde_datadir}/icons/crystalsvg/*/apps/konqsidebar_news.png
-%{tde_datadir}/icons/crystalsvg/*/actions/minitools.png
 %{tde_datadir}/icons/hicolor/*/apps/metabar.png
 %{tde_datadir}/icons/hicolor/*/apps/fsview.png
 %{tde_datadir}/icons/hicolor/scalable/apps/metabar.svgz
@@ -686,7 +686,7 @@ fi
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
-  -DWITH_GCC_VISIBILITY=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
   \
   -DCMAKE_INSTALL_PREFIX="%{tde_prefix}" \
   -DBIN_INSTALL_DIR="%{tde_bindir}" \

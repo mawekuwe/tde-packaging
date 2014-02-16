@@ -106,7 +106,7 @@ fi
   --enable-new-ldflags \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
+  --disable-gcc-hidden-visibility \
   \
   --enable-k3bdevices
 
