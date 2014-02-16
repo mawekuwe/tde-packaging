@@ -28,6 +28,7 @@ debian/tmp/opt/trinity/lib/trinity/katexmltoolsplugin.la
 debian/tmp/opt/trinity/lib/trinity/katexmltoolsplugin.so
 debian/tmp/opt/trinity/lib/trinity/libkatetabbarextensionplugin.la
 debian/tmp/opt/trinity/lib/trinity/libkatetabbarextensionplugin.so
+debian/tmp/opt/trinity/share/applnk/.hidden/kate-plugins.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/katefll.desktop
 debian/tmp/opt/trinity/share/apps/kate
 debian/tmp/opt/trinity/share/apps/katepart
