@@ -630,6 +630,45 @@ Support for more IM protocols can be added through a plugin system.
 %{tde_datadir}/icons/hicolor/scalable/apps/kopete2.svgz
 %{tde_datadir}/icons/crystalsvg/*/actions/newmessage.mng
 %{tde_datadir}/icons/hicolor/*/actions/newmessage.mng
+%{tde_datadir}/icons/crystalsvg/*/apps/aim_protocol.png
+%{tde_datadir}/icons/crystalsvg/*/apps/icq_protocol.png
+%{tde_datadir}/icons/crystalsvg/*/apps/irc_protocol.png
+%{tde_datadir}/icons/crystalsvg/*/actions/aim_away.png
+%{tde_datadir}/icons/crystalsvg/*/actions/aim_connecting.mng
+%{tde_datadir}/icons/crystalsvg/*/actions/aim_offline.png
+%{tde_datadir}/icons/crystalsvg/*/actions/aim_online.png
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_away.png
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_connecting.mng
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_dnd.png
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_ffc.png
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_invisible.png
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_na.png
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_occupied.png
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_offline.png
+%{tde_datadir}/icons/crystalsvg/*/actions/icq_online.png
+%{tde_datadir}/icons/crystalsvg/*/actions/irc_away.png
+%{tde_datadir}/icons/crystalsvg/*/actions/irc_channel.png
+%{tde_datadir}/icons/crystalsvg/*/actions/irc_connecting.mng
+%{tde_datadir}/icons/crystalsvg/*/actions/irc_normal.png
+%{tde_datadir}/icons/crystalsvg/*/actions/irc_online.png
+%{tde_datadir}/icons/crystalsvg/*/actions/irc_op.png
+%{tde_datadir}/icons/crystalsvg/*/actions/irc_server.png
+%{tde_datadir}/icons/crystalsvg/*/actions/irc_voice.png
+%{tde_datadir}/icons/hicolor/*/actions/aim_away.png
+%{tde_datadir}/icons/hicolor/*/actions/aim_connecting.mng
+%{tde_datadir}/icons/hicolor/*/actions/aim_offline.png
+%{tde_datadir}/icons/hicolor/*/actions/aim_online.png
+%{tde_datadir}/icons/hicolor/*/actions/icq_away.png
+%{tde_datadir}/icons/hicolor/*/actions/icq_connecting.mng
+%{tde_datadir}/icons/hicolor/*/actions/icq_dnd.png
+%{tde_datadir}/icons/hicolor/*/actions/icq_ffc.png
+%{tde_datadir}/icons/hicolor/*/actions/icq_invisible.png
+%{tde_datadir}/icons/hicolor/*/actions/icq_na.png
+%{tde_datadir}/icons/hicolor/*/actions/icq_occupied.png
+%{tde_datadir}/icons/hicolor/*/actions/icq_offline.png
+%{tde_datadir}/icons/hicolor/*/actions/icq_online.png
+%{tde_datadir}/icons/hicolor/*/apps/aim_protocol.png
+%{tde_datadir}/icons/hicolor/*/apps/icq_protocol.png
 %{tde_datadir}/mimelnk/application/x-icq.desktop
 %{tde_datadir}/mimelnk/application/x-kopete-emoticons.desktop
 %{tde_datadir}/services/aim.protocol
@@ -1108,7 +1147,7 @@ fi
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
-  -DWITH_GCC_VISIBILITY=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
   \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \

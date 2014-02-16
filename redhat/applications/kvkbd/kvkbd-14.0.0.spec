@@ -86,7 +86,7 @@ export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
   --enable-new-ldflags \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility
     
 %__make %{?_smp_mflags}
 

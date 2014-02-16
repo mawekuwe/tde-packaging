@@ -62,7 +62,11 @@ BuildRequires:	trinity-libart-lgpl-devel
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
 %define with_xscreensaver 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xscrnsaver-devel
+%else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
 BuildRequires:	xscreensaver
 BuildRequires:	xscreensaver-base
 BuildRequires:	xscreensaver-extrusion
@@ -646,14 +650,14 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
-%if 0%{?fedora} >= 18 || 0%{?pclinuxos}
+%if 0%{?fedora} >= 18 || 0%{?pclinuxos} || 0%{?mgaversion} >= 4
 %{tde_datadir}/applnk/System/ScreenSavers/hexadrop.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/kaleidocycle.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/quasicrystal.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/unknownpleasures.desktop
 %endif
 
-%if 0%{?fedora} >= 20
+%if 0%{?fedora} >= 20 || 0%{?mgaversion} >= 4
 %{tde_datadir}/applnk/System/ScreenSavers/geodesic.desktop
 %endif
 
@@ -693,7 +697,7 @@ fi
   -DCMAKE_SKIP_RPATH=OFF \
   -DCMAKE_INSTALL_RPATH="%{tde_libdir}" \
   -DCMAKE_VERBOSE_MAKEFILE=ON \
-  -DWITH_GCC_VISIBILITY=ON \
+  -DWITH_GCC_VISIBILITY=OFF \
   \
   -DBIN_INSTALL_DIR=%{tde_bindir} \
   -DINCLUDE_INSTALL_DIR=%{tde_tdeincludedir} \

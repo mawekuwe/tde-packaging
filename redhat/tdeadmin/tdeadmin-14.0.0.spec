@@ -409,7 +409,7 @@ fi
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
+  --disable-gcc-hidden-visibility \
   \
   --with-rpm \
   --with-pam=kde \

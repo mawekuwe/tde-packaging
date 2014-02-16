@@ -99,7 +99,7 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility
 
 # Not SMP safe !
 %__make -C bibletime/frontend

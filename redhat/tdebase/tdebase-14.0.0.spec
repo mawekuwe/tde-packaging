@@ -979,8 +979,8 @@ plugdev group.
 %{tde_tdelibdir}/kcm_info.so
 %{tde_tdelibdir}/kcm_input.la
 %{tde_tdelibdir}/kcm_input.so
-%{tde_tdelibdir}/kcm_ioslaveinfo.la
-%{tde_tdelibdir}/kcm_ioslaveinfo.so
+#%{tde_tdelibdir}/kcm_ioslaveinfo.la
+#%{tde_tdelibdir}/kcm_ioslaveinfo.so
 %{tde_tdelibdir}/kcm_joystick.la
 %{tde_tdelibdir}/kcm_joystick.so
 %{tde_tdelibdir}/kcm_kded.la
@@ -1079,7 +1079,7 @@ plugdev group.
 %{tde_tdeappdir}/installktheme.desktop
 %{tde_tdeappdir}/interrupts.desktop
 %{tde_tdeappdir}/ioports.desktop
-%{tde_tdeappdir}/ioslaveinfo.desktop
+#%{tde_tdeappdir}/ioslaveinfo.desktop
 %{tde_tdeappdir}/joystick.desktop
 %{tde_tdeappdir}/kcm_tdednssd.desktop
 %{tde_tdeappdir}/kcmaccess.desktop
@@ -1123,6 +1123,7 @@ plugdev group.
 %{tde_tdeappdir}/sound.desktop
 %{tde_tdeappdir}/spellchecking.desktop
 %{tde_tdeappdir}/style.desktop
+%{tde_tdeappdir}/tde-kcontrol.desktop
 %{tde_tdeappdir}/useragent.desktop
 %{tde_tdeappdir}/xserver.desktop
 %{tde_datadir}/applnk/.hidden/energy.desktop
@@ -3428,7 +3429,6 @@ fi
   -DWITH_HAL=OFF \
   -DWITH_TDEHWLIB=ON \
   -DWITH_UPOWER=ON \
-  -DWITH_GCC_VISIBILITY=ON \
   \
   -DBUILD_ALL=ON \
 %if 0%{?suse_version}
@@ -3464,7 +3464,7 @@ fi
 %endif
 
 # Mageia/Mandriva/PCLinuxOS stores its session file in different folder than RHEL/Fedora
-# Generated files for TDM/KDM4 go to '/usr/share/apps/kdm/sessions'
+# Generated files for TDM go to '/usr/share/xsessions'
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %__install -d -m 755 %{?buildroot}%{_sysconfdir}/X11/wmsession.d
 cat <<EOF >"%{?buildroot}%{_sysconfdir}/X11/wmsession.d/45TDE"
@@ -3482,7 +3482,7 @@ NAME=TDM
 DESCRIPTION=TDM (Trinity Display Manager)
 PACKAGE=trinity-tdm
 EXEC=%{tde_bindir}/tdm
-FNDSESSION_EXEC="/usr/sbin/chksession -k"
+FNDSESSION_EXEC="/usr/sbin/chksession --generate=/usr/share/xsessions"
 EOF
 %endif
 
@@ -3504,7 +3504,7 @@ EOF
 
 # Symlinks 'usb.ids' (Use system-provided version, not TDE provided version)
 %__rm -f "%{?buildroot}%{tde_datadir}/apps/usb.ids"
-%if 0%{?suse_version} 
+%if 0%{?suse_version} || 0%{?mgaversion} >= 4
 %__ln_s -f "/usr/share/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"
 %else
 %__ln_s -f "/usr/share/hwdata/usb.ids" "%{?buildroot}%{tde_datadir}/apps/usb.ids"

@@ -32,6 +32,4 @@
  Name[en_US]=ICC Color Profile
 +Name[fr]=Profils de couleurs ICC
  
--NoDisplay=false
-\ Pas de fin de ligne à la fin du fichier
-+NoDisplay=false
+ NoDisplay=false

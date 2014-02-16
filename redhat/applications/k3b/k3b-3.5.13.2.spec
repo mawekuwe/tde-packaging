@@ -427,7 +427,6 @@ fi
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --enable-gcc-hidden-visibility \
   \
   --with-extra-includes=%{tde_includedir} \
   \

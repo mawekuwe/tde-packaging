@@ -215,7 +215,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-kimagemapeditor
-Summary:	HTML image map editor for KDE [Trinity]
+Summary:	HTML image map editor for TDE
 Group:		Applications/Development
 
 %description -n trinity-kimagemapeditor
@@ -235,6 +235,7 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_datadir}/icons/hicolor/*/apps/kimagemapeditor.png
 %{tde_datadir}/icons/locolor/*/apps/kimagemapeditor.png
 %{tde_datadir}/services/kimagemapeditorpart.desktop
+%{tde_tdedocdir}/HTML/en/kimagemapeditor/
 
 %post -n trinity-kimagemapeditor
 for f in hicolor locolor ; do
@@ -253,7 +254,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 ##########
 
 %package -n trinity-klinkstatus
-Summary:	web link validity checker for KDE [Trinity]
+Summary:	web link validity checker for TDE
 Group:		Applications/Development
 
 %description -n trinity-klinkstatus

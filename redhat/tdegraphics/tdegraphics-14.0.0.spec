@@ -111,7 +111,11 @@ BuildRequires:	%{_lib}xi-devel
 # kgamma
 BuildRequires:	%{_lib}xxf86vm-devel
 # ksvg
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xmu-devel
+%else
 BuildRequires:	%{_lib}xmu%{?mgaversion:6}-devel
+%endif
 # kpovmodeler
 BuildRequires:	%{_lib}mesagl1-devel
 BuildRequires:	%{_lib}mesaglu1-devel
@@ -601,29 +605,32 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%package -n trinity-kiconedit
+%package -n trinity-tdeiconedit
 Summary:	An icon editor for Trinity
 Group:		Applications/Graphics
 
-%description -n trinity-kiconedit
-KIconedit allows you easily to create and edit icons.
+Obsoletes:	trinity-kiconedit < %{version}-%{release}
+Provides:	trinity-kiconedit = %{version}-%{release}
 
-%files -n trinity-kiconedit
+%description -n trinity-tdeiconedit
+TDEIconedit allows you easily to create and edit icons.
+
+%files -n trinity-tdeiconedit
 %defattr(-,root,root,-)
-%{tde_bindir}/kiconedit
-%{tde_tdeappdir}/kiconedit.desktop
-%{tde_datadir}/apps/kiconedit/
-%{tde_datadir}/icons/hicolor/*/apps/kiconedit.png
-%{tde_tdedocdir}/HTML/en/kiconedit/
+%{tde_bindir}/tdeiconedit
+%{tde_tdeappdir}/tdeiconedit.desktop
+%{tde_datadir}/apps/tdeiconedit/
+%{tde_datadir}/icons/hicolor/*/apps/tdeiconedit.png
+%{tde_tdedocdir}/HTML/en/tdeiconedit/
 
-%post -n trinity-kiconedit
+%post -n trinity-tdeiconedit
 for f in hicolor ; do
   touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
   gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
-%postun -n trinity-kiconedit
+%postun -n trinity-tdeiconedit
 for f in hicolor ; do
   touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
   gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
