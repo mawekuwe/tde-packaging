@@ -428,6 +428,7 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_tdelibdir}/libkxsldbgpart.la
 %{tde_tdelibdir}/libkxsldbgpart.so
 %{tde_tdeappdir}/kxsldbg.desktop
+%{tde_datadir}/applnk/.hidden/xsldbg.desktop
 %{tde_datadir}/apps/kxsldbg/
 %{tde_datadir}/apps/kxsldbgpart/
 %{tde_tdedocdir}/HTML/en/kxsldbg/
