@@ -1,7 +1,9 @@
---- tdebase/konqueror/konquerorsu.desktop
-+++ tdebase/konqueror/konquerorsu.desktop
-@@ -82,3 +82,4 @@
+Index: b/konqueror/konquerorsu.desktop
+===================================================================
+--- a/konqueror/konquerorsu.desktop
++++ b/konqueror/konquerorsu.desktop
+@@ -88,3 +88,4 @@
  
  Categories=Qt;TDE;X-TDE-System-su;
- NotShowIn=GNOME;
+ OnlyShowIn=TDE;
 +NoDisplay=true
