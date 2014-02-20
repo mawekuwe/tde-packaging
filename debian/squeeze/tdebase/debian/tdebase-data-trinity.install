@@ -364,6 +364,9 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/xserver/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdefontview/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdefontview/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdefontview/index.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tderandrtray/common
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tderandrtray/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tderandrtray/index.docbook
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/access.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/acroread.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/128x128/apps/applixware.png
