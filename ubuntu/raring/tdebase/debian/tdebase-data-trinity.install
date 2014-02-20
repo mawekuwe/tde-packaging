@@ -251,9 +251,6 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/kcmsmserver/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/kcmstyle/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/kcmstyle/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/kcmstyle/index.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/kcmtaskbar/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/kcmtaskbar/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/kcmtaskbar/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/keyboard/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/keyboard/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/keyboard/index.docbook
@@ -287,12 +284,6 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/nics/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/opengl/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/opengl/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/opengl/index.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/panel/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/panel/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/panel/index.docbook
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/panelappearance/common
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/panelappearance/index.cache.bz2
-debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/panelappearance/index.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/partitions/common
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/partitions/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kcontrol/partitions/index.docbook

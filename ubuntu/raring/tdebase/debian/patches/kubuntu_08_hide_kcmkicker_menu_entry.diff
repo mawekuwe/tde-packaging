@@ -1,7 +1,9 @@
---- tdebase/kicker/kicker/kcmkicker.desktop	2005-03-17 01:03:22.645846992 +0000
-+++ tdebase/kicker/kicker/kcmkicker.desktop	2005-03-17 01:03:30.907591016 +0000
-@@ -67,3 +67,4 @@
- DocPath=kicker/index.html
+Index: b/kicker/kicker/kcmkicker.desktop
+===================================================================
+--- a/kicker/kicker/kcmkicker.desktop
++++ b/kicker/kicker/kcmkicker.desktop
+@@ -79,3 +79,4 @@
+ DocPath=kicker/configuring.html
  OnlyShowIn=TDE;
  Categories=Qt;TDE;Settings;
 +NoDisplay=true
