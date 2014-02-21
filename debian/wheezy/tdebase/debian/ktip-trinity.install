@@ -1,8 +1,8 @@
 debian/tmp/opt/trinity/bin/ktip
 debian/tmp/opt/trinity/share/applications/tde/ktip.desktop
 debian/tmp/opt/trinity/share/applnk/Toys/ktip.desktop
-debian/tmp/opt/trinity/share/apps/kdewizard/pics/wizard_small.png
-debian/tmp/opt/trinity/share/apps/kdewizard/tips
+debian/tmp/opt/trinity/share/apps/tdewizard/pics/wizard_small.png
+debian/tmp/opt/trinity/share/apps/tdewizard/tips
 debian/tmp/opt/trinity/share/autostart/ktip.desktop
 debian/tmp/opt/trinity/share/icons/hicolor/128x128/apps/ktip.png
 debian/tmp/opt/trinity/share/icons/hicolor/16x16/apps/ktip.png
