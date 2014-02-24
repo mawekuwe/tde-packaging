@@ -76,7 +76,6 @@ debian/tmp/opt/trinity/share/applnk/.hidden/kicker_config_hiding.desktop
 debian/tmp/opt/trinity/share/applnk/.hidden/kicker_config_menus.desktop
 debian/tmp/opt/trinity/share/apps/clockapplet/pics/lcd.png
 debian/tmp/opt/trinity/share/apps/tdeconf_update/kicker-3.1-properSizeSetting.pl
-debian/tmp/opt/trinity/share/apps/tdeconf_update/kicker-3.5-tdeconfigXTize.pl
 debian/tmp/opt/trinity/share/apps/tdeconf_update/kicker-3.5-taskbarEnums.pl
 debian/tmp/opt/trinity/share/apps/tdeconf_update/kickerrc.upd
 debian/tmp/opt/trinity/share/apps/kicker/applets/clockapplet.desktop
