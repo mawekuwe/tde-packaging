@@ -11,11 +11,11 @@ debian/tmp/opt/trinity/share/apps/ksysguard/KSysGuardApplet.xml
 debian/tmp/opt/trinity/share/apps/ksysguard/ksysguardui.rc
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/computer.png
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/daemon.png
-debian/tmp/opt/trinity/share/apps/ksysguard/pics/kdeapp.png
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/kernel.png
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/ksysguardd.png
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/running.png
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/shell.png
+debian/tmp/opt/trinity/share/apps/ksysguard/pics/tdeapp.png
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/tools.png
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/unknownapp.png
 debian/tmp/opt/trinity/share/apps/ksysguard/pics/waiting.png
