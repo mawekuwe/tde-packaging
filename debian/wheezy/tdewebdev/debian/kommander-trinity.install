@@ -81,7 +81,7 @@ debian/tmp/opt/trinity/share/apps/kmdr-editor/editor/old/simplelist.kmdr
 debian/tmp/opt/trinity/share/apps/kmdr-editor/editor/old/wizard.kmdr
 debian/tmp/opt/trinity/share/apps/kmdr-editor/editor/old/resize.kmdr
 debian/tmp/opt/trinity/share/apps/katepart/syntax/kommander-new.xml
-debian/tmp/opt/trinity/share/apps/kdevappwizard/kommanderplugin.png
-debian/tmp/opt/trinity/share/apps/kdevappwizard/kommanderplugin.tar.gz
-debian/tmp/opt/trinity/share/apps/kdevappwizard/templates/kommanderplugin.kdevtemplate
+debian/tmp/opt/trinity/share/apps/tdevappwizard/kommanderplugin.png
+debian/tmp/opt/trinity/share/apps/tdevappwizard/kommanderplugin.tar.gz
+debian/tmp/opt/trinity/share/apps/tdevappwizard/templates/kommanderplugin.tdevtemplate
 debian/tmp/opt/trinity/share/services/kommander_part.desktop
