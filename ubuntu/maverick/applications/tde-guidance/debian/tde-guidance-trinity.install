@@ -8,17 +8,6 @@ opt/trinity/share/icons/crystalsvg/32x32/apps/userconfig.png
 opt/trinity/share/icons/crystalsvg/32x32/apps/wineconfig.png
 opt/trinity/share/doc/tde/HTML/en/guidance/index.cache.bz2
 opt/trinity/share/doc/tde/HTML/en/guidance/index.html
-opt/trinity/share/doc/tde/HTML/en/guidance/introduction.html
-opt/trinity/share/doc/tde/HTML/en/guidance/using-testapp.html
-opt/trinity/share/doc/tde/HTML/en/guidance/commands.html
-opt/trinity/share/doc/tde/HTML/en/guidance/developers.html
-opt/trinity/share/doc/tde/HTML/en/guidance/re-1007-unmanagechildren-1.html
-opt/trinity/share/doc/tde/HTML/en/guidance/faq.html
-opt/trinity/share/doc/tde/HTML/en/guidance/credits.html
-opt/trinity/share/doc/tde/HTML/en/guidance/installation.html
-opt/trinity/share/doc/tde/HTML/en/guidance/requirements.html
-opt/trinity/share/doc/tde/HTML/en/guidance/compilation.html
-opt/trinity/share/doc/tde/HTML/en/guidance/configuration.html
 opt/trinity/share/applications/tde/serviceconfig.desktop
 opt/trinity/share/applications/tde/userconfig.desktop
 opt/trinity/share/applications/tde/mountconfig.desktop
