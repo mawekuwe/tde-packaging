@@ -22,6 +22,8 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/krdc/snapshot_nobrowse.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/krdc/snapshot_vncentry.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/krdc/window_fullscreen.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/krdc/window_nofullscreen.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/rdp
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/tdeioslave/vnc
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/krdc.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/krdc.png
 debian/tmp/opt/trinity/share/services/rdp.protocol
