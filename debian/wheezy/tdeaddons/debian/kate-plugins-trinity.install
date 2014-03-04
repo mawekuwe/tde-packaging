@@ -20,6 +20,8 @@ debian/tmp/opt/trinity/lib/trinity/katepybrowseplugin.la
 debian/tmp/opt/trinity/lib/trinity/katepybrowseplugin.so
 debian/tmp/opt/trinity/lib/trinity/katesnippetsplugin.la
 debian/tmp/opt/trinity/lib/trinity/katesnippetsplugin.so
+debian/tmp/opt/trinity/lib/trinity/katesortplugin.la
+debian/tmp/opt/trinity/lib/trinity/katesortplugin.so
 debian/tmp/opt/trinity/lib/trinity/katetextfilterplugin.la
 debian/tmp/opt/trinity/lib/trinity/katetextfilterplugin.so
 debian/tmp/opt/trinity/lib/trinity/katexmlcheckplugin.la
@@ -38,6 +40,9 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/index.cache.bz2
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/*.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/configure_insertcommand.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/insertcommand.png
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/kate-plugins/sort_plugin_en.png
+debian/tmp/opt/trinity/share/icons/hicolor/16x16/actions/katesort.png
+debian/tmp/opt/trinity/share/icons/hicolor/32x32/actions/katesort.png
 debian/tmp/opt/trinity/share/services/katecppsymbolviewer.desktop
 debian/tmp/opt/trinity/share/services/katefiletemplates.desktop
 debian/tmp/opt/trinity/share/services/katefll_plugin.desktop
@@ -49,6 +54,7 @@ debian/tmp/opt/trinity/share/services/katemodeline.desktop
 debian/tmp/opt/trinity/share/services/kateopenheader.desktop
 debian/tmp/opt/trinity/share/services/katepybrowse.desktop
 debian/tmp/opt/trinity/share/services/katesnippets.desktop
+debian/tmp/opt/trinity/share/services/katesort.desktop
 debian/tmp/opt/trinity/share/services/katetabbarextension.desktop
 debian/tmp/opt/trinity/share/services/katetextfilter.desktop
 debian/tmp/opt/trinity/share/services/katexmlcheck.desktop
