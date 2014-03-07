@@ -39,6 +39,7 @@ Prefix:			%{_prefix}
 BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
+Patch0:			bibletime-14.0.0-ftbfs.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -75,6 +76,7 @@ texts, write own notes, save, print etc.).
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch0 -p1 -b .ftbfs
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -84,6 +86,7 @@ texts, write own notes, save, print etc.).
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
+export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -99,13 +102,17 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-final \
   --enable-closure \
   --enable-rpath \
-  --disable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility \
+  \
+%if 0%{?fedora} >= 20
+  --with-sword-dir=%{tde_prefix}
+%endif
 
 # Not SMP safe !
 %__make -C bibletime/frontend
 
 # SMP safe !
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

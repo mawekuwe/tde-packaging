@@ -248,7 +248,7 @@ BuildArch: noarch
 %{tde_datadir}/sounds/k3b_error1.wav
 %{tde_datadir}/sounds/k3b_success1.wav
 %{tde_datadir}/sounds/k3b_wait_media1.wav
-
+%{tde_tdedocdir}/HTML/en/tdeioslave/videodvd/
 
 %post common
 touch --no-create %{tde_datadir}/icons/hicolor ||:

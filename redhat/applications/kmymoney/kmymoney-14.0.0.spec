@@ -45,6 +45,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:		kmymoneytitlelabel.png
+Source2:		23011-qt-sqlite3-0.2.tar.gz
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -58,7 +59,11 @@ BuildRequires:	libofx-devel
 # OPENSP support
 %if 0%{?mgaversion} || 0%{?pclinuxos} || 0%{?mdkversion}
 %if 0%{?mgaversion} || 0%{?pclinuxos}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}osp-devel
+%else
 BuildRequires:	%{_lib}OpenSP5-devel
+%endif
 %else
 BuildRequires:	opensp-devel
 %endif
@@ -70,7 +75,7 @@ BuildRequires:	opensp-devel
 BuildRequires:	openjade-devel
 %endif
 
-Requires:		%{name}-common == %{version}
+Requires:		%{name}-common == %{version}-%{release}
 
 %description
 KMyMoney is the Personal Finance Manager for TDE. It operates similar to
@@ -108,6 +113,7 @@ This package contains development files needed for KMyMoney plugins.
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
+%__install -m644 %{SOURCE2} .
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -123,6 +129,9 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 %if 0%{?rhel} == 4
 grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
 %endif
+
+# Needed for SQLITE3 plugin installation
+export QTDIR=%{_libdir}/tqt3
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -149,7 +158,7 @@ grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
   --enable-ofxplugin \
   --enable-ofxbanking \
   --enable-qtdesigner \
-  --disable-sqlite3
+  --enable-sqlite3
 
 %__make %{?_smp_mflags}
 
@@ -214,7 +223,8 @@ done
 %{tde_mandir}/man1/kmymoney2.*
 %{tde_datadir}/apps/kmm_ofximport/kmm_ofximport.rc
 %{tde_datadir}/services/kmm_ofximport.desktop
-
+# SQLITE3 plugin
+%{_libdir}/tqt3/plugins/sqldrivers/libsqlite3*.so
 
 %files devel
 %defattr(-,root,root,-)
@@ -224,6 +234,7 @@ done
 %{tde_libdir}/libkmm_plugin.la
 %{tde_libdir}/*.so
 %{_libdir}/tqt3/plugins/designer/libkmymoney.so
+
 
 %changelog
 * Mon Jul 29 2013 Francois Andriot <francois.andriot@free.fr> - 1.0.5-7

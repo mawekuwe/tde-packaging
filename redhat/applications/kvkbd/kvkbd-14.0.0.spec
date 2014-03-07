@@ -69,7 +69,7 @@ a systray widget as well as a dockwidget.
 %build
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
-export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
+
 
 %configure \
   --prefix=%{tde_prefix} \
@@ -105,6 +105,7 @@ export PATH="%{tde_bindir}:${PATH}"
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
+
 %postun
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
@@ -118,6 +119,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/apps/kvkbd/pics/dock.png
 %{tde_datadir}/apps/kvkbd/pics/tray.png
 %{tde_datadir}/icons/hicolor/*/apps/kvkbd.png
+%{tde_tdedocdir}/HTML/en/kvkbd/
 
 
 %changelog

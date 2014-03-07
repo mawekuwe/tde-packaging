@@ -88,7 +88,7 @@ export PATH="%{tde_bindir}:${PATH}"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 # Warning: --enable-final causes FTBFS !
@@ -132,6 +132,7 @@ export PATH="%{tde_bindir}:${PATH}"
 touch --no-create %{tde_datadir}/icons/crystalsvg || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 
+
 %postun
 touch --no-create %{tde_datadir}/icons/crystalsvg || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
@@ -146,6 +147,8 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/crystalsvg || :
 %{tde_datadir}/applnk/kchmviewer.desktop
 %{tde_datadir}/icons/crystalsvg/*/apps/kchmviewer.png
 %{tde_datadir}/services/msits.protocol
+%{tde_tdedocdir}/HTML/en/kchmviewer/
+%{tde_tdedocdir}/HTML/en/tdeioslave/msits/
 
 
 %changelog

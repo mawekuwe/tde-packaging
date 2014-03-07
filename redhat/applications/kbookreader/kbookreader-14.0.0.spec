@@ -114,7 +114,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %doc AUTHORS COPYING
 %{tde_bindir}/bookreader
 %{tde_bindir}/bookreader_client
-%{tde_datadir}/applnk/Utilities/bookreader.desktop
+%{tde_datadir}/applnk/Office/bookreader.desktop
 %{tde_datadir}/apps/bookreader/
 %{tde_datadir}/config.kcfg/bookreader.kcfg
 %{tde_tdedocdir}/HTML/en/bookreader/

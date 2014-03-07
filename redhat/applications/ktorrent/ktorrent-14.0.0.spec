@@ -180,6 +180,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/icons/hicolor/*/*/*.svgz
 %{tde_datadir}/services/*.desktop
 %{tde_datadir}/servicetypes/ktorrentplugin.desktop
+%{tde_tdedocdir}/HTML/en/ktorrent/
 
 %if 0%{?with_avahi}
 %{tde_tdelibdir}/ktzeroconfplugin.la

@@ -165,6 +165,8 @@ done
 %{tde_datadir}/services/kftpimportplugin_kftp.desktop
 %{tde_datadir}/services/kftpimportplugin_ncftp.desktop
 %{tde_datadir}/servicetypes/kftpbookmarkimportplugin.desktop
+%{tde_tdedocdir}/HTML/en/kftpgrabber/
+
 
 %files devel
 %defattr(-,root,root,-)

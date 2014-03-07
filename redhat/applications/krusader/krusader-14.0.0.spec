@@ -146,13 +146,15 @@ done
 %{tde_tdeappdir}/krusader.desktop
 %{tde_tdeappdir}/krusader_root-mode.desktop
 %{tde_datadir}/apps/krusader
-%{tde_tdedocdir}/HTML/en/krusader/
-%lang(ru) %{tde_tdedocdir}/HTML/ru/krusader/
 %{tde_datadir}/icons/crystalsvg/*/apps/*.png
 %{tde_datadir}/icons/locolor/*/apps/*.png
 %{tde_datadir}/services/krarc.protocol
 %{tde_datadir}/services/virt.protocol
 %{tde_mandir}/man1/krusader.1
+%{tde_tdedocdir}/HTML/en/krusader/
+%{tde_tdedocdir}/HTML/en/tdeioslave/krarc/
+%{tde_tdedocdir}/HTML/en/tdeioslave/virt/
+%lang(ru) %{tde_tdedocdir}/HTML/ru/krusader/
 
 
 %changelog

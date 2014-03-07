@@ -138,6 +138,8 @@ update-desktop-database %{tde_appdir} -q &> /dev/null ||:
 %lang(sv) %{tde_datadir}/doc/tde/HTML/sv/kvpnc/
 %{tde_datadir}/icons/hicolor/*/apps/kvpnc.png
 %{tde_datadir}/icons/locolor/*/apps/kvpnc.png
+%{tde_tdedocdir}/HTML/en/tdeioslave/pcf/
+%{tde_datadir}/services/pcf.protocol
 
 
 %Changelog

@@ -132,11 +132,11 @@ done
 %lang(de) %doc LIESMICH
 %lang(fr) %doc LISEZMOI
 %{tde_bindir}/ksensors
-%{tde_datadir}/applnk/Utilities/ksensors.desktop
+%{tde_datadir}/applnk/System/ksensors.desktop
 %{tde_datadir}/apps/ksensors/
 %{tde_datadir}/autostart/ksensors.desktop
 %{tde_datadir}/icons/hicolor/*/apps/ksensors.png
-%{tde_datadir}/icons/locolor/
+%{tde_datadir}/icons/locolor/*/apps/ksensors.png
 %{tde_datadir}/sounds/ksensors_alert.wav
 %{tde_tdedocdir}/HTML/en/ksensors/
 

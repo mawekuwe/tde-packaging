@@ -116,6 +116,8 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 %{tde_datadir}/icons/hicolor/*/*/*
 %{tde_datadir}/locale/*/*/*.mo
 %{tde_datadir}/config.kcfg/*.kcfg
+%{tde_tdedocdir}/HTML/en/yakuake/
+
 
 %changelog
 * Fri Jul 05 2013 Francois Andriot <francois.andriot@free.fr> - 2.8.1-7
