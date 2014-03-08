@@ -182,12 +182,18 @@ ifneq ($(wildcard /boot/vmlinuz*.el5*),)
 	$(call buildpkg,3rdparty/sip)
 endif
 
+sword:
+# Build on Fedora >= 20 only
+ifneq ($(wildcard /boot/vmlinuz*.fc20*),)
+	$(call buildpkg,3rdparty/sword)
+endif
+
 torsocks:
 	$(call buildpkg,3rdparty/torsocks)
 
 wv2:
-# Do NOT build on Mageia
-ifeq ($(wildcard /etc/mageia-release),)
+# Do NOT build on Mageia or openSUSE
+ifeq ($(wildcard /etc/mageia-release /etc/SuSE-release),)
 	$(call buildpkg,3rdparty/wv2)
 endif
 
@@ -242,7 +248,7 @@ amarok:	tdebase
 basket:	tdebase
 	$(call buildpkg,applications/basket)
 
-bibletime:	tdebase
+bibletime:	tdebase sword
 	$(call buildpkg,applications/bibletime)
 
 compizconfig-backend-kconfig:	tdebase
@@ -518,7 +524,7 @@ tdeio-ftps:	tdebase
 tdeio-locate:	tdebase
 	$(call buildpkg,applications/tdeio-locate)
 
-tdeio-sword:	tdebase
+tdeio-sword:	tdebase sword
 	$(call buildpkg,applications/tdeio-sword)
 
 tdeio-umountwrapper:	tdebase
