@@ -300,6 +300,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 %{tde_datadir}/icons/crystalsvg/*/places/camera.png
 %{tde_datadir}/services/camera.protocol
 %{tde_tdedocdir}/HTML/en/kamera/
+%{tde_tdedocdir}/HTML/en/tdeioslave/camera/
 
 %endif
 

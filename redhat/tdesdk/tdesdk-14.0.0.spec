@@ -787,6 +787,7 @@ This package is part of Trinity, and a component of the TDE SDK module.
 %{tde_datadir}/icons/locolor/*/apps/kuiviewer.png
 %{tde_datadir}/services/designerthumbnail.desktop
 %{tde_datadir}/services/kuiviewer_part.desktop
+%{tde_tdedocdir}/HTML/en/kuiviewer/
 
 %post -n trinity-kuiviewer
 for f in hicolor locolor ; do

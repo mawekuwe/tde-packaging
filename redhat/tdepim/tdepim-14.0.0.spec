@@ -43,9 +43,6 @@ Prefix:		%{tde_prefix}
 
 Source0:	%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
-# [tdepim] Missing LDFLAGS cause FTBFS on MGA2/MDV2011
-Patch14:	kdepim-3.5.13-missing_ldflags.patch
-
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -2206,7 +2203,6 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-#patch14 -p1 -b .ldflags
 
 
 %build

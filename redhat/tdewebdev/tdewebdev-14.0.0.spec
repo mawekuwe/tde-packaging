@@ -346,9 +346,9 @@ This package is part of TDE, as a component of the TDE web development module.
 %{tde_datadir}/apps/kommander/
 %{tde_datadir}/apps/kmdr-editor/editor/
 %{tde_datadir}/apps/katepart/syntax/kommander-new.xml
-%{tde_datadir}/apps/kdevappwizard/kommanderplugin.png
-%{tde_datadir}/apps/kdevappwizard/kommanderplugin.tar.gz
-%{tde_datadir}/apps/kdevappwizard/templates/kommanderplugin.kdevtemplate
+%{tde_datadir}/apps/tdevappwizard/kommanderplugin.png
+%{tde_datadir}/apps/tdevappwizard/kommanderplugin.tar.gz
+%{tde_datadir}/apps/tdevappwizard/templates/kommanderplugin.tdevtemplate
 %{tde_datadir}/services/kommander_part.desktop
 
 %post -n trinity-kommander

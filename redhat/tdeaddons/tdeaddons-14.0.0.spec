@@ -126,6 +126,7 @@ America and Europe.
 %{tde_datadir}/apps/atlantikdesigner
 %{tde_tdeappdir}/atlantikdesigner.desktop
 %{tde_datadir}/icons/hicolor/*/apps/atlantikdesigner.png
+%{tde_tdedocdir}/HTML/en/atlantikdesigner/
 
 %post -n trinity-atlantikdesigner
 for f in hicolor ; do
@@ -238,6 +239,11 @@ a tab bar, a Python browser and even more.
 %{tde_datadir}/services/katexmlcheck.desktop
 %{tde_datadir}/services/katexmltools.desktop
 %{tde_tdedocdir}/HTML/en/kate-plugins/
+# katesort plugin
+%{tde_tdelibdir}/katesortplugin.la
+%{tde_tdelibdir}/katesortplugin.so
+%{tde_datadir}/icons/hicolor/*/actions/katesort.png
+%{tde_datadir}/services/katesort.desktop
 
 ##########
 

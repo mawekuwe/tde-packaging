@@ -837,6 +837,8 @@ Servers using RDP.
 %{tde_datadir}/services/rdp.protocol
 %{tde_datadir}/services/vnc.protocol
 %{tde_tdedocdir}/HTML/en/krdc/
+%{tde_tdedocdir}/HTML/en/tdeioslave/rdp/
+%{tde_tdedocdir}/HTML/en/tdeioslave/vnc/
 
 %post -n trinity-krdc
 for f in crystalsvg ; do
