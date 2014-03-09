@@ -1,6 +1,0 @@
-qtjava/designer/juic/bin/juic	usr/bin
-qtjava/designer/juic/common/*.xml	/opt/kde3/share/juic/common
-qtjava/designer/juic/common/*.xsl	/opt/kde3/share/juic/common
-qtjava/designer/juic/java/*.xml	/opt/kde3/share/juic/java
-qtjava/designer/juic/java/*.xsl	/opt/kde3/share/juic/java
-qtjava/designer/juic/juic.xsl	/opt/kde3/share/juic

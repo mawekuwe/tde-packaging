@@ -1,2 +1,0 @@
-version=2
-ftp://ftp.buzuluk.cz/pub/alo/knutclient/stable/knutclient-(.*?)\.tar\.gz	debian	uupdate

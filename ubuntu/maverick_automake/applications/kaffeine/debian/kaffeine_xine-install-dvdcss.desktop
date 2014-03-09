@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Type=Service
-ServiceTypes=Kaffeine/CodecInstall
-X-KDE-Kaffeine-codec=dvdcss
-X-KDE-Kaffeine-engine=xine-engine
-Exec=kdialog --sorry "This DVD Video is encrypted.  To be able to watch it you will need to install libdvdcss by running from a console: sudo /usr/share/doc/kaffeine/install-css.sh.  In some countries it is illegal to install the decryption software without permission from the video copyright holder."
-

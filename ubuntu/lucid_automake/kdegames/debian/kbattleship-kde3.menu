@@ -1,8 +1,0 @@
-?package(kbattleship):\
-        needs="x11"\
-        section="Games/Board"\
-        hints="KDE"\
-        title="KBattleship"\
-	icon32x32="/usr/share/pixmaps/kbattleship.xpm"\
-	icon16x16="/usr/share/pixmaps/kbattleship-16.xpm"\
-        command="/opt/kde3/games/kbattleship"

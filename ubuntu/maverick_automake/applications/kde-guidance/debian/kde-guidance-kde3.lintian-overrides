@@ -1,4 +1,0 @@
-# false positive warnings from lintian
-kde-guidance-kde3: postinst-has-useless-call-to-ldconfig
-kde-guidance-kde3: postrm-has-useless-call-to-ldconfig
-kde-guidance-kde3: package-has-a-duplicate-relation depends

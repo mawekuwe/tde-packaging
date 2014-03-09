@@ -1,5 +1,0 @@
-debian/tmp/opt/kde3/bin/kvirc-config
-debian/tmp/opt/kde3/include/kvirc/
-debian/tmp/opt/kde3/lib/*.la
-debian/tmp/opt/kde3/lib/*.so
-debian/tmp/opt/kde3/lib/kvirc/*/modules/*.la

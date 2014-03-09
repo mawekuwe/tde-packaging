@@ -1,5 +1,0 @@
-# It isn't a library or a development package
-# and no other packages uses libkbfxcommon and libkbfxdata
-kbfx: no-shlibs-control-file usr/lib/libkbfxdata.so
-kbfx: no-shlibs-control-file usr/lib/libkbfxcommon.so
-kbfx: package-name-doesnt-match-sonames libkbfxcommon libkbfxdata

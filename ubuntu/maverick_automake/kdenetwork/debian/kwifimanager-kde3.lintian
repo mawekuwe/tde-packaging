@@ -1,3 +1,0 @@
-kwifimanager: no-shlibs-control-file opt/kde3/lib/libkwireless.so
-kwifimanager: postinst-must-call-ldconfig opt/kde3/lib/libkwireless.so
-kwifimanager: postrm-should-call-ldconfig opt/kde3/lib/libkwireless.so

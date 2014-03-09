@@ -1,4 +1,0 @@
-debian/tmp/opt/kde3/share/services/*.protocol
-debian/tmp/opt/kde3/lib/tdeio*
-debian/tmp/opt/kde3/lib/kded_kdesvnd.*
-debian/tmp/opt/kde3/share/services/kded/

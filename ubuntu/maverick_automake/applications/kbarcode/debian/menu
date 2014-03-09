@@ -1,6 +1,0 @@
-?package(kbarcode):\
-  needs="X11"\
-  section="Applications/Graphics"\
-  hints="KDE,Barcode"\
-  title="KBarcode"\
-  command="/usr/bin/kbarcode"

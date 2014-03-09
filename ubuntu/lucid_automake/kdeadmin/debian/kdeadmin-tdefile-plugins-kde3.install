@@ -1,6 +1,0 @@
-debian/tmp/opt/kde3/lib/kde3/tdefile_deb.la
-debian/tmp/opt/kde3/lib/kde3/tdefile_deb.so
-debian/tmp/opt/kde3/lib/kde3/tdefile_rpm.la
-debian/tmp/opt/kde3/lib/kde3/tdefile_rpm.so
-debian/tmp/opt/kde3/share/services/tdefile_deb.desktop
-debian/tmp/opt/kde3/share/services/tdefile_rpm.desktop

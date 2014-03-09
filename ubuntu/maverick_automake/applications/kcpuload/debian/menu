@@ -1,7 +1,0 @@
-?package(kcpuload):needs="X11"\
-  section="Applications/System/Monitoring"\
-  hints="KDE"\
-  kderemove="1"\
-  title="KCPULoad"\
-  command="/opt/kde3/bin/kcpuload"\
-  icon="/usr/share/pixmaps/kcpuload.xpm"

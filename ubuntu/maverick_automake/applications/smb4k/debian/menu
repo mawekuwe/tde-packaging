@@ -1,8 +1,0 @@
-?package(smb4k):\
-	needs="X11"\
-        section="Applications/Network"\
-	hints="KDE"\
-	kderemove="1"\
-        title="SAMBA for KDE"\
-	longtitle="SAMBA Advanced Browser"\
-        command="/opt/kde3/bin/smb4k"

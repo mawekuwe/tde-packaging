@@ -1,2 +1,0 @@
-  * Use -fpermissive when building with g++-4.3 (duplicate #define in
-    libxslt1-dev header). LP: #138601.

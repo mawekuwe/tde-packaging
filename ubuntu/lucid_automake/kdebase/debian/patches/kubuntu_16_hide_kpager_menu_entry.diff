@@ -1,7 +1,0 @@
---- kdebase/kpager/kpager.desktop	2005-11-08 22:36:23.000000000 +0000
-+++ kdebase/kpager/kpager.desktop	2005-11-11 00:25:22.000000000 +0000
-@@ -96,3 +96,4 @@
- X-KDE-StartupNotify=false
- X-DCOP-ServiceType=Unique
- Categories=Qt;KDE;Utility;X-KDE-Utilities-Desktop;
-+NoDisplay=true

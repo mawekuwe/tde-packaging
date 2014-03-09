@@ -1,2 +1,0 @@
-# This package contains several libraries.
-libkdeedu3-kde3: package-name-doesnt-match-sonames libkdeeduplot1-kde3 libkdeeducore1-kde3 libextdate1-kde3 libkdeeduui3-kde3

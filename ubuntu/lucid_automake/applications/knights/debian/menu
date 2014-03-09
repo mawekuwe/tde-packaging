@@ -1,6 +1,0 @@
-?package(knights):\
-needs="X11"\
-section="Games/Board"\
-title="Knights"\
-command="/usr/bin/knights"\
-icon="/usr/share/pixmaps/knights.xpm"

@@ -1,7 +1,0 @@
-opt/kde3/lib/libkdeinit_kmplayer.so
-opt/kde3/lib/kde3/kmplayer.so
-opt/kde3/bin/kmplayer
-opt/kde3/bin/kxvplayer
-/opt/kde3/share/apps/kmplayer/kmplayerui.rc
-/opt/kde3/share/applications/kde/kmplayer.desktop
-/opt/kde3/share/locale

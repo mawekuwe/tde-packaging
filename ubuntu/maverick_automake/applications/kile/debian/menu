@@ -1,7 +1,0 @@
-?package(kile):needs="X11" \
-  section="Applications/Editors" \
-  hints="KDE" \
-  title="Kile" \
-  longtitle="Kile (LaTeX development environment)" \
-  command="/opt/kde3/bin/kile" \
-  icon="/usr/share/pixmaps/kile.xpm"

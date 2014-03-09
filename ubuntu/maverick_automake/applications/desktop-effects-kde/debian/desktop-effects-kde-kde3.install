@@ -1,8 +1,0 @@
-desktop-effects-kde4 /opt/kde3/bin/
-25enable-compiz /etc/X11/Xsession.d/
-DesktopEffects/DesktopEffectsCommon.py /opt/kde3/share/pyshared/DesktopEffects/
-DesktopEffects/DesktopEffectsKDE4.py /opt/kde3/share/pyshared/DesktopEffects/
-DesktopEffects/DesktopEffectsQt4Dialog.py /opt/kde3/share/pyshared/DesktopEffects/
-DesktopEffects/__init__.py /opt/kde3/share/pyshared/DesktopEffects/
-data/* /opt/kde3/share/apps/desktop-effects-kde/
-desktop-effects-kde.desktop /opt/kde3/share/applications/

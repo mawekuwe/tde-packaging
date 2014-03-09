@@ -1,3 +1,0 @@
-kedit: no-shlibs-control-file opt/kde3/lib/libkdeinit_kedit.so
-kedit: postinst-must-call-ldconfig opt/kde3/lib/libkdeinit_kedit.so
-kedit: postrm-should-call-ldconfig opt/kde3/lib/libkdeinit_kedit.so

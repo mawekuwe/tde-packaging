@@ -1,6 +1,0 @@
-?package(kmplayer):\
-	needs="X11"\
-	section="Applications/Video"\
-	hints="KDE"\
-	title="Kmplayer"\
-	command="/opt/kde3/bin/kmplayer"
