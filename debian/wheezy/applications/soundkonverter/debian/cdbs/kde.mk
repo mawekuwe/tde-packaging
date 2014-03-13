@@ -56,7 +56,7 @@ ifneq (,$(filter debug,$(DEB_BUILD_OPTIONS)))
 	cdbs_kde_enable_debug = --enable-debug=full
 endif
 
-cdbs_configure_flags += --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
+cdbs_configure_flags += --with-qt-dir=/usr/share/qt3 --disable-rpath $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
 
 DEB_AC_AUX_DIR = $(DEB_SRCDIR)/admin
 DEB_CONFIGURE_INCLUDEDIR = "\$${prefix}/include/tde"
