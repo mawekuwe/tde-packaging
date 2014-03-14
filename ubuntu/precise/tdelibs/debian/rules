@@ -69,7 +69,7 @@ DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
 binary-install/tdelibs-data-trinity::
 	install -p -D -m644 kded/tde-applications.menu debian/tdelibs-data-trinity/opt/trinity/etc/xdg/menus/tde-applications.menu
 	install -p -D -m644 debian/trinitylibs.conf debian/tdelibs-data-trinity/etc/ld.so.conf.d/trinitylibs.conf
-#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/apps/tdeui/pics/aboutkde.png debian/icons/aboutkde-kubuntu.png.uu
+#	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/apps/tdeui/pics/abouttde.png debian/icons/abouttde-kubuntu.png.uu
 
 	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/16x16/devices/system.png debian/icons/cr16-device-system.png.uu
 	uudecode -o debian/tdelibs-data-trinity/opt/trinity/share/icons/crystalsvg/22x22/devices/system.png debian/icons/cr22-device-system.png.uu

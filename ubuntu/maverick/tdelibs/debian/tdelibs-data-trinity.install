@@ -183,7 +183,7 @@ debian/tmp/opt/trinity/share/apps/tdeui/about/kde_infopage.css
 debian/tmp/opt/trinity/share/apps/tdeui/about/kde_infopage_rtl.css
 debian/tmp/opt/trinity/share/apps/tdeui/about/top-left.png
 debian/tmp/opt/trinity/share/apps/tdeui/about/top-middle.png
-debian/tmp/opt/trinity/share/apps/tdeui/pics/aboutkde.png
+debian/tmp/opt/trinity/share/apps/tdeui/pics/abouttde.png
 debian/tmp/opt/trinity/share/apps/tdeui/pics/ktip-background.png
 debian/tmp/opt/trinity/share/apps/tdeui/pics/ktip-bulb.png
 debian/tmp/opt/trinity/share/apps/tdewidgets/pics/tdeactionselector.png
