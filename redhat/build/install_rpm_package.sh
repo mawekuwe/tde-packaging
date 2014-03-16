@@ -25,7 +25,7 @@ case "${PKGNAME}" in
   "koffice") PKGNAME="${PKGNAME}-suite";;
 esac
 
-# Trinity Prefix, or not.
+# Use the Trinity Prefix, or not.
 case "${PKGNAME}" in
   "trinity-"*|"qt3"|"python-qt3"|"esound") PREFIX="";;
   "gnuchess"|"imlib1"|"lilypond"|"mftrace"|"pcsc-perl"|"torsocks"|"wv2") PREFIX="";;
