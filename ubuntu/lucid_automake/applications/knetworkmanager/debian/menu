@@ -1,6 +1,0 @@
-?package(network-manager-kde): \
-	needs="X11" \
-	section="Applications/Network/Monitoring" \
-  	title="KNetworkManager" \
-	longtitle="A KDE frontend for NetworkManager" \
-	command="/opt/kde3/bin/knetworkmanager"

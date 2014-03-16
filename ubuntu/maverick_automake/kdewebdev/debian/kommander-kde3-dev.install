@@ -1,7 +1,0 @@
-debian/tmp/opt/kde3/include/tde/kommander*
-debian/tmp/opt/kde3/lib/libkommanderplugin.la
-debian/tmp/opt/kde3/lib/libkommanderplugin.so
-debian/tmp/opt/kde3/lib/libkommanderwidget.la
-debian/tmp/opt/kde3/lib/libkommanderwidget.so
-debian/tmp/opt/kde3/lib/libkommanderwidgets.so
-debian/tmp/opt/kde3/include/tde/specials.h

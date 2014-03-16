@@ -1,3 +1,0 @@
-?package(piklab):needs="X11" section="Applications/Programming" \
-	title="Piklab" command="/opt/kde3/bin/piklab" \
-	icon="/usr/share/pixmaps/piklab.xpm"

@@ -1,7 +1,0 @@
-?package(kaffeine):\
-	needs="X11"\
-	section="Apps/Sound"\
-	hints="KDE"\
-	title="Kaffeine"\
-	command="/opt/kde3/bin/kaffeine"\
-	icon="/usr/share/pixmaps/kaffeine.xpm"

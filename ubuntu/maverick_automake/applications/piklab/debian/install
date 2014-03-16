@@ -1,3 +1,0 @@
-debian/*.xpm usr/share/pixmaps/
-debian/*.desktop usr/share/applications/
-#debian/overrides/piklab usr/share/lintian/overrides/

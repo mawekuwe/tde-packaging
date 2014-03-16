@@ -1,7 +1,0 @@
-?package(tderadio):needs="X11" \
-  section="Applications/TV and Radio" \
-  hints="KDE" \
-  title="TDERadio" \
-  longtitle="K-Radio Application" \
-  command="/opt/kde3/bin/tderadio" \
-  icon="/opt/kde3/share/pixmaps/tderadio.xpm"

@@ -1,3 +1,0 @@
-kcalc: no-shlibs-control-file opt/kde3/lib/libkdeinit_kcalc.so
-kcalc: postinst-must-call-ldconfig opt/kde3/lib/libkdeinit_kcalc.so
-kcalc: postrm-should-call-ldconfig opt/kde3/lib/libkdeinit_kcalc.so

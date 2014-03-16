@@ -1,7 +1,0 @@
---- kdebase/konsole/konsolesu.desktop	2005-03-17 01:34:39.399537064 +0000
-+++ kdebase/konsole/konsolesu.desktop	2005-03-17 01:34:44.692732376 +0000
-@@ -64,3 +64,4 @@
- Name[zh_CN]=终端程序 - 超级用户模式
- X-KDE-AuthorizeAction=shell_access
- Categories=Qt;KDE;System;TerminalEmulator;X-KDE-More;
-+NoDisplay=true

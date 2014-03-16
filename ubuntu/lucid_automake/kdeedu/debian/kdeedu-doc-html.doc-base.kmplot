@@ -1,9 +1,0 @@
-Document: kmplot
-Title: KmPlot Handbook
-Author: Klaus-Dieter Moeller <kd.moeller@t-online.de> and Philip Rodrigues <phil.rod@ntlworld.com>
-Abstract: KmPlot is a mathematical function plotter for the KDE Desktop.
-Section: Apps/Math
-
-Format: HTML
-Index: /opt/kde3/share/doc/kde/HTML/en/kmplot/index.html
-Files: /opt/kde3/share/doc/kde/HTML/en/kmplot/*.html

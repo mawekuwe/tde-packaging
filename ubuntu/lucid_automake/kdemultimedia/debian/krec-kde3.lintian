@@ -1,3 +1,0 @@
-krec: no-shlibs-control-file opt/kde3/lib/libkdeinit_krec.so
-krec: postinst-must-call-ldconfig opt/kde3/lib/libkdeinit_krec.so
-krec: postrm-should-call-ldconfig opt/kde3/lib/libkdeinit_krec.so

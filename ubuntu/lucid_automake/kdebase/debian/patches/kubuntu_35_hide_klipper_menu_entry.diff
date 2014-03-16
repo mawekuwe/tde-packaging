@@ -1,7 +1,0 @@
---- kdebase/klipper/klipper.desktop	2006-10-03 11:53:50.000000000 +0000
-+++ kdebase/klipper/klipper.desktop	2006-10-03 11:58:00.000000000 +0000
-@@ -143,3 +143,4 @@
- Comment[zh_CN]=剪贴历史工具
- Comment[zh_TW]=剪貼紀錄公用程式
- 
-+NoDisplay=true

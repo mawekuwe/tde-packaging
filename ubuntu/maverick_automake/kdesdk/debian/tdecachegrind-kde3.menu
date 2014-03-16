@@ -1,9 +1,0 @@
-?package(tdecachegrind):\
-  needs="x11"\
-  section="Applications/Programming"\
-  hints="KDE"\
-  title="KCachegrind"\
-  longtitle="KCachegrind (Profiler Frontend)"\
-  icon="/usr/share/pixmaps/tdecachegrind.xpm"\
-  command="/opt/kde3/bin/tdecachegrind"
-

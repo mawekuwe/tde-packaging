@@ -1,2 +1,0 @@
-kdebase source: maintainer-script-lacks-debhelper-token debian/tdm-kde3.postinst
-kdebase source: maintainer-script-lacks-debhelper-token debian/tdm-kde3.prerm

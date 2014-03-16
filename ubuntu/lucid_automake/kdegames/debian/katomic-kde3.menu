@@ -1,9 +1,0 @@
-?package(katomic):\
-	needs="x11"\
-	section="Games/Puzzles"\
-	hints="KDE"\
-	title="KDE Atomic Entertainment"\
-	icon32x32="/usr/share/pixmaps/katomic.xpm"\
-	icon16x16="/usr/share/pixmaps/katomic-16.xpm"\
-	command="/opt/kde3/games/katomic"
-

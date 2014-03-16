@@ -1,3 +1,0 @@
-ark: no-shlibs-control-file opt/kde3/lib/libkdeinit_ark.so
-ark: postinst-must-call-ldconfig opt/kde3/lib/libkdeinit_ark.so
-ark: postrm-should-call-ldconfig opt/kde3/lib/libkdeinit_ark.so

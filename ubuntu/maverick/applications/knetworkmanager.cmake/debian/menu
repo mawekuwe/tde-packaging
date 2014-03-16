@@ -1,6 +1,0 @@
-?package(network-manager-tde): \
-	needs="X11" \
-	section="Applications/Network/Monitoring" \
-  	title="KNetworkManager" \
-	longtitle="A TDE frontend for NetworkManager" \
-	command="/opt/trinity/bin/knetworkmanager"

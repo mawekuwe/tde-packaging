@@ -1,4 +1,0 @@
-Tag: lib-not-in-shlibs
-
-Tag: no-shlib-file
-Data: /usr/kde3/lib/libkdeinit_*.so

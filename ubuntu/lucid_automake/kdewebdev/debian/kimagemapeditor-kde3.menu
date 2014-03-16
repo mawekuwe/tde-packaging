@@ -1,8 +1,0 @@
-?package(kimagemapeditor):\
-    needs="X11"\
-    hints="KDE"\
-    section="Apps/Editors"\
-    title="KImageMapEditor"\
-    longtitle="KImageMapEditor (HTML Image Map Editor)"\
-    icon="/opt/kde3/share/pixmaps/kimagemapeditor.xpm"\
-    command="/opt/kde3/bin/kimagemapeditor"

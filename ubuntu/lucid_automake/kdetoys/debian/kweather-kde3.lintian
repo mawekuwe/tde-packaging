@@ -1,2 +1,0 @@
-kweather: no-shlibs-control-file usr/lib/kde3/libkdeinit_kweatherreport.so
-kweather: package-name-doesnt-match-sonames libkdeinit-kweatherreport

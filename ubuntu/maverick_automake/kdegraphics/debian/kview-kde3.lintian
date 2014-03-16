@@ -1,3 +1,0 @@
-kview: shlib-missing-in-control-file libphotobook.so opt/kde3/lib/libphotobook.so
-kview: shlib-missing-in-control-file libkdeinit_kview.so opt/kde3/lib/libkdeinit_kview.so
-kview: package-name-doesnt-match-sonames libkdeinit-kview libkimageviewer0

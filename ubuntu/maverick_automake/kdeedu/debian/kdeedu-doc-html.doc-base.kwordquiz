@@ -1,9 +1,0 @@
-Document: kwordquiz
-Title: KWordQuiz Handbook
-Author: Peter Hedlund <peter@peterandlinda.com>
-Abstract: KWordQuiz is a flashcard and vocabulary learning program for KDE.
-Section: Apps/Tools
-
-Format: HTML
-Index: /opt/kde3/share/doc/kde/HTML/en/kwordquiz/index.html
-Files: /opt/kde3/share/doc/kde/HTML/en/kwordquiz/*.html

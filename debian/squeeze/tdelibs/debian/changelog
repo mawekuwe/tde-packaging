@@ -307,7 +307,7 @@ tdelibs (4:3.5.8-3ubuntu1) hardy; urgency=low
 
   * Merge with Debian, remaining changes:
    - --with-distribution="Debian (`lsb_release --codename --short`) $(DEB_VERSION)"
-   - binary-install/tdelibs-data installs aboutkde-kubuntu.png.uu and cr*-device-system.png.uu
+   - binary-install/tdelibs-data installs abouttde-kubuntu.png.uu and cr*-device-system.png.uu
    - none of libgamin-dev, libfam-dev
    - stop tdelibs4-dev depending on gamin/fam
    - don't install .svgz icons in tdelibs-data.install
@@ -2184,7 +2184,7 @@ tdelibs (4:3.4.0-0ubuntu2) hoary; urgency=low
 
 tdelibs (4:3.4.0-0ubuntu1) hoary; urgency=low
 
-  * Add aboutkde-kubuntu.png.uu konqi image for about kde dialogue
+  * Add abouttde-kubuntu.png.uu konqi image for about kde dialogue
   * Add kubuntu_03_applications_menu_editors_move.diff moving Editors menu entries to Utilities
 
  -- Jonathan Riddell <jr@jriddell.org>  Wed, 16 Mar 2005 01:04:26 +0000

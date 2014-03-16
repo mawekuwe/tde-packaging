@@ -1,2 +1,0 @@
-network-manager-kde: package-name-doesnt-match-sonames libkdeinit-knetworkmanager
-network-manager-kde: shlib-without-versioned-soname opt/kde3/lib/libkdeinit_knetworkmanager.so libkdeinit_knetworkmanager.so

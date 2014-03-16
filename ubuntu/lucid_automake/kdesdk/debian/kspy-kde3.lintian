@@ -1,5 +1,0 @@
-# There is no -dev package.
-kspy: non-dev-pkg-with-shlib-symlink opt/kde3/lib/libkspy.so.1.2.0 opt/kde3/lib/libkspy.so
-
-# This does not come with a separate library package.
-kspy: package-name-doesnt-match-sonames libkspy1

@@ -1,7 +1,0 @@
-?package(kpowersave):\
-  needs="X11"\
-  section="Applications/System/Monitoring"\
-  title="KPowersave"\
-  longtitle="Battery monitor and general power management"\
-  icon="/opt/trinity/share/pixmaps/kpowersave.xpm"\
-  command="/opt/trinity/bin/kpowersave"

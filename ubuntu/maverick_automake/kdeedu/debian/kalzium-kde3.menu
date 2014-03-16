@@ -1,7 +1,0 @@
-?package(kalzium):needs="X11"\
-  section="Apps/Science/Chemistry"\
-  hints="KDE"\
-  title="Kalzium"\
-  longtitle="Kalzium (Periodic Table of Elements)"\
-  command="/opt/kde3/bin/kalzium"\
-  icon="/opt/kde3/share/pixmaps/kalzium.xpm"

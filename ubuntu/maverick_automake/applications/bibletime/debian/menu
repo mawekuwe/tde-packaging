@@ -1,7 +1,0 @@
-?package(bibletime):\
-    needs="X11"\
-    hints="KDE,Bible"\
-    section="Applications/Education"\
-    title="BibleTime"\
-    icon="/opt/kde3/share/pixmaps/bibletime.xpm"\
-    command="/opt/kde3/bin/bibletime"
