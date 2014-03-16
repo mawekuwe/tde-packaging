@@ -59,6 +59,7 @@ BuildRequires:	libxcb-devel
 BuildRequires:	%{_lib}xcb-devel
 %endif
 
+# X11 stuff
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xi-devel
 %if 0%{?mgaversion} >= 4
@@ -79,6 +80,13 @@ BuildRequires:	libXau-devel
 %endif
 %if 0%{?rhel} == 4 || 0%{?suse_version} == 1140
 BuildRequires:	xorg-x11-devel
+%endif
+
+# Broken PNG images
+%if 0%{?mgaversion} >= 4 || 0%{?fedora} >= 20
+BuildRequires:	kde-dev-scripts
+BuildRequires:	optipng
+BuildRequires:	advancecomp
 %endif
 
 Obsoletes:		trinity-kdeaccessibility < %{version}-%{release}
@@ -465,7 +473,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 %configure \
@@ -494,6 +502,10 @@ fi
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
+
+if [ -x /usr/bin/optimizegraphics ]; then
+  (cd %{?buildroot} && /usr/bin/optimizegraphics)
+fi
 
 
 %clean

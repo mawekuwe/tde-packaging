@@ -81,7 +81,11 @@ export PATH="%{tde_bindir}:${PATH}"
   --enable-new-ldflags \
   --enable-closure \
   --enable-rpath \
-  --disable-gcc-hidden-visibility
+  --disable-gcc-hidden-visibility \
+  \
+%if 0%{?fedora} >= 20 || 0%{?pclinuxos}
+  --with-sword-dir=%{tde_prefix}
+%endif
 
 %__make %{?_smp_mflags}
 

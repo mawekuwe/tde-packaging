@@ -54,7 +54,11 @@ BuildRequires:	gettext
 BuildRequires:	clucene-core-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?pclinuxos}
+BuildRequires:	%{_lib}clucene2-devel
+%else
 BuildRequires:	%{_lib}clucene-devel
+%endif
 %endif
 
 # Requires: sword
@@ -104,7 +108,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility \
   \
-%if 0%{?fedora} >= 20
+%if 0%{?fedora} >= 20 || 0%{?pclinuxos}
   --with-sword-dir=%{tde_prefix}
 %endif
 

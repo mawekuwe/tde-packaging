@@ -133,7 +133,11 @@ BuildRequires:	libXt-devel
 %if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_xine 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?pclinuxos}
+BuildRequires: %{_lib}xine-devel
+%else
 BuildRequires: %{_lib}xine1.2-devel
+%endif
 %endif
 %if 0%{?fedora} || 0%{?rhel}
 BuildRequires: xine-lib-devel
@@ -1143,6 +1147,11 @@ noatun plugins.
 
 ##########
 
+# FIXME 2014/03/15: FTBFS on PCLINUXOS ... Need to remove -fstack-protector
+%if 0%{?pclinuxos}
+%define _ssp_cflags -fno-stack-protector --param=ssp-buffer-size=4%{?_serverbuild_flags: %_serverbuild_flags}
+%endif
+
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
@@ -1188,7 +1197,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?with_xine:--with-xine} %{!?with_xine:--without-xine}
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

@@ -76,35 +76,39 @@ Source9:	mgabutton.svg
 %endif
 
 # Patch party !
+Patch0:		tdebase-14.0.0-ftbfs.patch
+Patch2:		tdebase-14.0.0-kickoff_confirm_logout.patch
+Patch3:		tdebase-fadeaway.diff
+Patch4:		tdebase-fadeaway2.diff
 
 # Permanent patches, all TDE versions
 ## [tdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
-Patch1:		tdebase-14.0.0-open_terminal_here.patch
+Patch101:		tdebase-14.0.0-open_terminal_here.patch
 ## [tdebase] Sets default Start Icon in 'kickerrc' [RHEL/Fedora]
-Patch2:		tdebase-14.0.0-default_menu_icon.patch
+Patch102:		tdebase-14.0.0-default_menu_icon.patch
 ## [tdebase/kcontrol] Adds FR translation for KCM ICC
-Patch3:		tdebase-14.0.0-displayconfig_translation.patch
+Patch103:		tdebase-14.0.0-displayconfig_translation.patch
 ## [tdebase/kicker] Adds default entries for Kickoff menu
-Patch4:		tdebase-14.0.0-kickoff_default_favs.patch
+Patch104:		tdebase-14.0.0-kickoff_default_favs.patch
 ## [tdebase] Changes konsole default word separator
-Patch5:		tdebase-14.0.0-konsole_wordseps.patch
+Patch105:		tdebase-14.0.0-konsole_wordseps.patch
 
 # Permanent patches, this TDE version only
 
 # Patches from Mandriva
-Patch101:	tdebase-14.0.0-vibrate_dialog.patch
-Patch102:	tdebase-14.0.0-kcontrol_menu_entry.patch
-Patch103:	tdebase-14.0.0-kdesktop_crossfade.patch
-Patch104:	tdebase-14.0.0-kickoff_xdg_dirs.patch
-Patch105:	tdebase-14.0.0-suspend_unmount.patch
-Patch106:	tdebase-14.0.0-bookmark_global_copy.patch
+Patch201:	tdebase-14.0.0-vibrate_dialog.patch
+Patch202:	tdebase-14.0.0-kcontrol_menu_entry.patch
+Patch203:	tdebase-14.0.0-kdesktop_crossfade.patch
+Patch204:	tdebase-14.0.0-kickoff_xdg_dirs.patch
+Patch205:	tdebase-14.0.0-suspend_unmount.patch
+Patch206:	tdebase-14.0.0-bookmark_global_copy.patch
 
 # Experimental patches
-Patch201:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
+Patch301:	tdebase-14.0.0-kcm_xcursor_applytheme.patch
 ## [tdebase] Fix i18n description loading in 'twin_update_default_rules'
-Patch202:	tdebase-14.0.0-fix_twin_rules_translation.patch
+Patch302:	tdebase-14.0.0-fix_twin_rules_translation.patch
 
-Patch203:	tdebase-14.0.0-tdehardwarebackend_fix_iocharset.patch
+Patch303:	tdebase-14.0.0-tdehardwarebackend_fix_iocharset.patch
 
 
 ### Distribution-specific settings ###
@@ -1157,6 +1161,7 @@ plugdev group.
 %{tde_datadir}/services/kuriikwsfilter.desktop
 %{tde_datadir}/services/kurisearchfilter.desktop
 %{tde_datadir}/services/localdomainurifilter.desktop
+%{tde_tdedocdir}/HTML/en/tdefontview/
 
 %{tde_datadir}/apps/usb.ids
 %{tde_datadir}/apps/kcmview1394/oui.db
@@ -1175,6 +1180,7 @@ plugdev group.
 %{tde_tdeappdir}/tderandrtray.desktop
 %{tde_datadir}/applnk/.hidden/randr.desktop
 %{tde_datadir}/autostart/tderandrtray-autostart.desktop
+%{tde_tdedocdir}/HTML/en/tderandrtray/
 %endif
 
 %post -n trinity-kcontrol
@@ -1912,6 +1918,7 @@ Installation of smbclient will make you able to use smb shared printers.
 %{tde_datadir}/services/printdb.protocol
 %{tde_tdedocdir}/HTML/en/tdeprint/
 %{tde_tdedocdir}/HTML/en/tdeprintfax/
+%{tde_tdedocdir}/HTML/en/kjobviewer/
 
 %post -n trinity-tdeprint
 /sbin/ldconfig || :
@@ -2344,7 +2351,7 @@ functionality.
 %{tde_datadir}/applnk/.hidden/kicker_config_menus.desktop
 %{tde_datadir}/apps/clockapplet/pics/lcd.png
 %{tde_datadir}/apps/tdeconf_update/kicker-3.1-properSizeSetting.pl
-%{tde_datadir}/apps/tdeconf_update/kicker-3.5-tdeconfigXTize.pl
+#%{tde_datadir}/apps/tdeconf_update/kicker-3.5-tdeconfigXTize.pl
 %{tde_datadir}/apps/tdeconf_update/kicker-3.5-taskbarEnums.pl
 %{tde_datadir}/apps/tdeconf_update/kickerrc.upd
 %{tde_datadir}/apps/kicker/
@@ -3064,8 +3071,8 @@ ktip provides many useful tips on using TDE when you log in.
 %{tde_bindir}/ktip
 %{tde_tdeappdir}/ktip.desktop
 %{tde_datadir}/applnk/Toys/ktip.desktop
-%{tde_datadir}/apps/kdewizard/pics/wizard_small.png
-%{tde_datadir}/apps/kdewizard/tips
+%{tde_datadir}/apps/tdewizard/pics/wizard_small.png
+%{tde_datadir}/apps/tdewizard/tips
 %{tde_datadir}/autostart/ktip.desktop
 %{tde_datadir}/icons/hicolor/*/apps/ktip.*
 
@@ -3296,23 +3303,28 @@ Windows and Samba shares.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .openterminalhere
-%patch2 -p1 -b .startmenuicon
-%patch3 -p1 -b .displayconfigtranslation
-%patch4 -p1 -b .kickoffdefaultsfav
-%patch5 -p1 -b .konsolewordseps
+%patch0 -p1 -b .ftbfs
+%patch2 -p1 -b .kickofflogout
+%patch3 -p1 -b .fadeaway
+%patch4 -p1 -b .fadeaway2
 
-%patch101 -p1 -b .vibrate_dialog
-%patch102 -p1 -b .kcontrol_menu_entry
-%patch103 -p1 -b .kdesktop_crossfade
-%patch104 -p1 -b .kickoff_xdg
-%patch105 -p1 -b .suspend_unmount
-%patch106 -p1 -b .bookmark_global_copy
+%patch101 -p1 -b .openterminalhere
+%patch102 -p1 -b .startmenuicon
+%patch103 -p1 -b .displayconfigtranslation
+%patch104 -p1 -b .kickoffdefaultsfav
+%patch105 -p1 -b .konsolewordseps
 
-%patch201 -p1 -b .kcmxcursor
-%patch202 -p1 -b .twintranslation
+%patch201 -p1 -b .vibrate_dialog
+%patch202 -p1 -b .kcontrol_menu_entry
+%patch203 -p1 -b .kdesktop_crossfade
+%patch204 -p1 -b .kickoff_xdg
+%patch205 -p1 -b .suspend_unmount
+%patch206 -p1 -b .bookmark_global_copy
 
-%patch203 -p1 -b .iocharset
+%patch301 -p1 -b .kcmxcursor
+%patch302 -p1 -b .twintranslation
+
+%patch303 -p1 -b .iocharset
 
 # Applies an optional distro-specific graphical theme
 %if "%{?tde_bg}" != ""

@@ -36,9 +36,15 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
+Patch11:		tdelibs-14.0.0-displayconfig_crash.patch
+Patch12:		tdelibs-14.0.0-reduce_tdehwlib_cpueagerness.patch
+
 # Patches from Mandriva
 Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
 Patch102:		tdelibs-14.0.0-cups_by_default.patch
+
+# Enables the 'kddebug' feature even when built with '-DNDEBUG'
+Patch201:		tdelibs-14.0.0-enable_kddebug.patch
 
 Obsoletes:		tdelibs < %{version}-%{release}
 Provides:		tdelibs = %{version}-%{release}
@@ -450,8 +456,13 @@ applications for TDE.
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
+%patch11 -p1 -b .displayconfigcrash
+%patch12 -p1 -b .tdehwlib
+
 %patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default
+
+#patch201 -p1 -b .kddebug
 
 
 %build
@@ -501,6 +512,7 @@ fi
   -DWITH_TDEHWLIB_DAEMONS=ON \
   %{?with_hal:-DWITH_HAL=ON} \
   %{?with_devkitpower:-DWITH_DEVKITPOWER=ON} \
+  -DWITH_LOGINDPOWER=ON \
   %{?!with_upower:-DWITH_UPOWER=OFF} \
   %{?!with_udisks:-DWITH_UDISKS=OFF} \
   %{?!with_udisks2:-DWITH_UDISKS2=OFF} \
