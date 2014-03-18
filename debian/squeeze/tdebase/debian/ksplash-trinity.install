@@ -20,11 +20,6 @@ debian/tmp/opt/trinity/share/apps/ksplash/Themes/blue-bend/splash_bottom.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/blue-bend/splash_inactive_bar.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/blue-bend/splash_top.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/blue-bend/Theme.rc
-debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/locolor/splash_active_bar.png
-debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/locolor/splash_bottom.png
-debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/locolor/splash_inactive_bar.png
-debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/locolor/splash_top.png
-debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/locolor/Theme.rc
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/Preview.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/splash_active_bar.png
 debian/tmp/opt/trinity/share/apps/ksplash/Themes/Default/splash_bottom.png
