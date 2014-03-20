@@ -77,9 +77,6 @@ Source9:	mgabutton.svg
 
 # Patch party !
 Patch0:		tdebase-14.0.0-ftbfs.patch
-Patch2:		tdebase-14.0.0-kickoff_confirm_logout.patch
-Patch3:		tdebase-fadeaway.diff
-Patch4:		tdebase-fadeaway2.diff
 
 # Permanent patches, all TDE versions
 ## [tdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
@@ -248,31 +245,13 @@ Requires:	indexhtml
 %define tde_aboutpage /usr/share/mdk/about/index.html
 %endif
 
-# PCLINUXOS 2012
-%if "%{?pclinuxos}" == "2012"
-Requires:	trinity-wallpaper-theme-default
-%define tde_bg %{tde_datadir}/wallpapers/Pulse2012/contents/images/1600x1200.jpg
+# PCLINUXOS
+%if 0%{?pclinuxos}
 Requires:	desktop-common-data
 %define tde_starticon /usr/share/icons/pclinuxos.png
 
 Requires:	indexhtml
-%define tde_aboutlabel PCLinuxOS 2012
-%define tde_aboutpage /usr/share/mdk/about/index.html
-%endif
-
-# PCLINUXOS 2013
-%if "%{?pclinuxos}" == "2013"
-Requires:	trinity-wallpaper-theme-default
-%if "%{_lib}" == "lib64"
-%define tde_bg %{tde_datadir}/wallpapers/pclinuxos64.jpg
-%else
-%define tde_bg %{tde_datadir}/wallpapers/pclinuxos32.jpg
-%endif
-Requires:	desktop-common-data
-%define tde_starticon /usr/share/icons/pclinuxos.png
-
-Requires:	indexhtml
-%define tde_aboutlabel PCLinuxOS 2013
+%define tde_aboutlabel PCLinuxOS
 %define tde_aboutpage /usr/share/mdk/about/index.html
 %endif
 
@@ -3304,9 +3283,6 @@ Windows and Samba shares.
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 %patch0 -p1 -b .ftbfs
-%patch2 -p1 -b .kickofflogout
-%patch3 -p1 -b .fadeaway
-%patch4 -p1 -b .fadeaway2
 
 %patch101 -p1 -b .openterminalhere
 %patch102 -p1 -b .startmenuicon
@@ -3494,7 +3470,11 @@ NAME=TDM
 DESCRIPTION=TDM (Trinity Display Manager)
 PACKAGE=trinity-tdm
 EXEC=%{tde_bindir}/tdm
+%if 0%{?pclinuxos}
+FNDSESSION_EXEC="/usr/sbin/chksession -k"
+%else
 FNDSESSION_EXEC="/usr/sbin/chksession --generate=/usr/share/xsessions"
+%endif
 EOF
 %endif
 
