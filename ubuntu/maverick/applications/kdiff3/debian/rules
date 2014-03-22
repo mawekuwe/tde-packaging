@@ -9,119 +9,49 @@ DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
 DEB_CONFIGURE_PREFIX := /opt/trinity
 DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
 
-cdbs_configure_flags := --with-qt-dir=/usr/share/qt3 --disable-rpath --with-xinerama $(cdbs_kde_enable_final) $(cdbs_kde_enable_debug)
-
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
 
-# These are used for cross-compiling and for saving the configure script
-# from having to guess our platform (since we know it already)
-DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
-DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+include /usr/share/cdbs/1/rules/debhelper.mk
+include debian/cdbs/kde.mk
 
+post-patches:: debian/stamp-bootstrap
 
-CFLAGS = -Wall -g
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	CFLAGS += -O0
-else
-	CFLAGS += -O2
-endif
-ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-	INSTALL_PROGRAM += -s
-endif
-
-config.status:
+debian/stamp-bootstrap:
 	dh_testdir
+
+	# Regenerate build system
 	! [ -f /usr/share/libtool/ltmain.sh ] || \
 	cp -f /usr/share/libtool/ltmain.sh admin/ltmain.sh
 	! [ -f /usr/share/libtool/config/ltmain.sh ] || \
 	cp -f /usr/share/libtool/config/ltmain.sh admin/ltmain.sh
 	cp -f /usr/share/aclocal/libtool.m4 admin/libtool.m4.in
-	
-	make -f admin/Makefile.common cvs
-	CFLAGS="$(CFLAGS)" ./configure --disable-rpath --prefix=/opt/trinity --with-qt-includes=/usr/include/qt3 --host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) --mandir=/opt/trinity/share/man --infodir=/opt/trinity/share/info --with-extra-libs=/opt/trinity/lib --with-extra-includes=/opt/trinity/include/tde
 
+	autoreconf --install && automake -f && \
+	$(MAKE) -f admin/Makefile.common && \
+	touch debian/stamp-bootstrap
 
-build: build-stamp
-
-build-stamp:  config.status
+build/kdiff3-trinity::
 	dh_testdir
-
-	$(MAKE) LDFLAGS="-ltdecore -ltdeui" LIBS=""
 	/usr/bin/docbook-to-man debian/kdiff3.sgml > doc/en/kdiff3.1
-	touch build-stamp
 
-clean:
+install/kdiff3-trinity::
 	dh_testdir
-	dh_testroot
-
-	if test -e Makefile; then $(MAKE) distclean; fi
-	
-	# taken from /usr/share/doc/autotools-dev/README.Debian.gz
-	-test -r /usr/share/misc/config.sub && cp -f /usr/share/misc/config.sub config.sub
-	-test -r /usr/share/misc/config.guess && cp -f /usr/share/misc/config.sub config.guess
-
-	rm -f build-stamp
-	rm -f po/*.gmo
-	rm -f src/*.loT
-
-	dh_clean
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-	dh_installdirs
-
-	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
-	rm -rf $(CURDIR)/debian/tmp/opt/trinity/share/doc/tde/HTML/kdiff3
-	# that's not where we want to have a man page
-	rm -rf $(CURDIR)/debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdiff3/kdiff3.1
-	# move HTML help /opt/trinity/share/doc/kdiff3/html/
-	mkdir --parents $(CURDIR)/debian/tmp/opt/trinity/share/doc/kdiff3/html/
-	mv $(CURDIR)/debian/tmp/opt/trinity/share/apps/kdiff3/doc/*.html $(CURDIR)/debian/tmp/opt/trinity/share/doc/kdiff3/html/
-	rmdir $(CURDIR)/debian/tmp/opt/trinity/share/apps/kdiff3/doc
 	# move kdiff3.desktop to freedesktop.org conforming place
-	mkdir --parents $(CURDIR)/debian/tmp/opt/trinity/share/applications/tde/
-	mv $(CURDIR)/debian/tmp/opt/trinity/share/applnk/Development/kdiff3.desktop $(CURDIR)/debian/tmp/opt/trinity/share/applications/tde/
+	mkdir --parents debian/tmp/opt/trinity/share/applications/tde/
+	mv debian/tmp/opt/trinity/share/applnk/Development/kdiff3.desktop debian/tmp/opt/trinity/share/applications/tde/
+	rmdir debian/tmp/opt/trinity/share/applnk/Development
 
-
-# Build architecture-independent files here.
-binary-indep: build install
+install/kdiff3-trinity-doc::
 	dh_testdir
-	dh_testroot
-	dh_installchangelogs -i ChangeLog
-	dh_installdocs -i
-	dh_install -i --sourcedir=$(CURDIR)/debian/tmp
-	dh_link -i
-	dh_compress -i -X.docbook
-	dh_fixperms -i
-	dh_installdeb -i
-	dh_gencontrol -i
-	dh_md5sums -i
-	dh_builddeb -i $(DEB_DH_BUILDDEB_ARGS)
+	# that's not where we want to have a man page
+	rm -rf debian/tmp/opt/trinity/share/doc/tde/HTML/en/kdiff3/kdiff3.1
+	# move HTML help /opt/trinity/share/doc/kdiff3/html/
+	rm -rf debian/tmp/opt/trinity/share/doc/tde/HTML/kdiff3
+	mkdir --parents debian/tmp/opt/trinity/share/doc/kdiff3/html/
+	mv debian/tmp/opt/trinity/share/apps/kdiff3/doc/*.html debian/tmp/opt/trinity/share/doc/kdiff3/html/
+	rmdir debian/tmp/opt/trinity/share/apps/kdiff3/doc
 
-# Build architecture-dependent files here.
-binary-arch: build install
+clean::
 	dh_testdir
-	dh_testroot
-	dh_installchangelogs -a ChangeLog
-	dh_installdocs -a
-	dh_install -a --sourcedir=$(CURDIR)/debian/tmp
-#	dh_installexamples
-#	dh_installman $(CURDIR)/doc/en/kdiff3.1
-	dh_icons
-	dh_link 
-	dh_desktop
-	dh_strip
-	dh_compress -X.docbook
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb $(DEB_DH_BUILDDEB_ARGS)
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install
+	rm -f debian/stamp-bootstrap
