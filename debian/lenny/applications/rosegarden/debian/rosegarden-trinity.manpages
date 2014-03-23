@@ -1,0 +1,4 @@
+debian/rosegarden.1
+debian/rosegarden-lilypondview.1
+debian/rosegarden-project-package.1
+debian/rosegarden-audiofile-importer.1

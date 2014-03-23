@@ -1,13 +1,8 @@
 #!/usr/bin/make -f
+# -*- makefile -*-
 
-# Set LD_LIBRARY_PATH to the installed library directory to allow dh_shlibdeps to function
-# Also include the main Trinity path
-ifeq ("$(LD_LIBRARY_PATH)", "")
-LD_LIBRARY_PATH=debian/tmp/opt/trinity/lib
-else
-LD_LIBRARY_PATH += :debian/tmp/opt/trinity/lib
-endif
-export LD_LIBRARY_PATH
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/cmake.mk
@@ -15,12 +10,26 @@ include /usr/share/cdbs/1/class/cmake.mk
 include /usr/share/cdbs/1/rules/utils.mk
 include debian/cdbs/debian-qt-kde.mk
 
+DEB_CONFIGURE_INCLUDEDIR := /opt/trinity/include/tde
+DEB_CONFIGURE_MANDIR := /opt/trinity/share/man
+DEB_CONFIGURE_PREFIX := /opt/trinity
+DEB_CONFIGURE_INFODIR := /opt/trinity/share/info
+
+DEB_CMAKE_EXTRA_FLAGS := \
+ -DLIB_SUFFIX="" \
+ -DCMAKE_INSTALL_PREFIX="/opt/trinity" \
+ -DCONFIG_INSTALL_DIR="/etc/trinity" \
+ -DSYSCONF_INSTALL_DIR="/etc/trinity" \
+ -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" \
+ -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" \
+ -DCMAKE_VERBOSE_MAKEFILE="ON" \
+ -DBUILD_ALL="ON" \
+ -DCMAKE_SKIP_RPATH="OFF" \
+ -DCMAKE_BUILD_TYPE=RelWithDebInfo
+
 DEB_KDE_APIDOX := yes
 
-CXXFLAGS := -DSMB_CTX_FLAG_USE_KERBEROS -DSMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS -g -Wall $(DEB_OPT_FLAG)
-
-DEB_CMAKE_EXTRA_FLAGS := -DLIB_SUFFIX="" -DCMAKE_INSTALL_PREFIX="/opt/trinity" -DCONFIG_INSTALL_DIR="/etc/trinity" -DSYSCONF_INSTALL_DIR="/etc/trinity" -DXDG_MENU_INSTALL_DIR="/etc/xdg/menus" -DCMAKE_LIBRARY_PATH="/opt/trinity/lib" -DCMAKE_INCLUDE_PATH="/opt/trinity/include/" -DAUTODETECT_QT_DIRS="ON" -DCMAKE_VERBOSE_MAKEFILE="ON" -DBUILD_ALL="ON" -DCMAKE_SKIP_RPATH="OFF" \
--DCMAKE_BUILD_TYPE=RelWithDebInfo
+DEB_COMPRESS_EXCLUDE += .rg .wav .docbook
 
 DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
                                && echo xz || echo bzip2)
@@ -29,37 +38,11 @@ DEB_DH_BUILDDEB_ARGS += -- -Z$(shell dpkg-deb --help | grep -q ":.* xz[,.]" \
 # never build in parallel, regardless of DEB_BUILD_OPTIONS.
 DEB_BUILD_PARALLEL = true
 
-# Build architecture-dependent files here.
-binary-arch: build install
-	mkdir -p debian/rosegarden-trinity/opt/trinity/share/
+binary-install/rosegarden-trinity::
 	dh_testdir
-	dh_testroot
-	dh_installexamples
 	find debian/rosegarden-trinity/usr/share/doc/rosegarden-trinity/examples -type f -exec chmod 664 {} \;
-	dh_installdirs
-	dh_installdocs
-	dh_installmenu
-	dh_installmime
-	dh_installcron
-	dh_installman debian/rosegarden.1 debian/rosegarden-lilypondview.1 debian/rosegarden-project-package.1 debian/rosegarden-audiofile-importer.1
-	mkdir -p debian/rosegarden-trinity/opt/trinity/share/man/
 	cp -Rp debian/rosegarden-trinity/usr/share/man/* debian/rosegarden-trinity/opt/trinity/share/man/
 	rm -rf debian/rosegarden-trinity/usr/share/man
-	dh_desktop
-	cp debian/lintianoverrides debian/rosegarden-trinity/usr/share/lintian/overrides/rosegarden-trinity
-	dh_installinfo
-	dh_installchangelogs
-	dh_install
-	dh_link
-	dh_strip
-	dh_compress -X.rg -X.wav -X.docbook
-	dh_fixperms
-	dh_makeshlibs
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb $(DEB_DH_BUILDDEB_ARGS)
 
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure
+clean::
+	dh_testdir

@@ -1,4 +1,4 @@
-?package(rosegarden):\
+?package(rosegarden-trinity):\
         needs="X11"\
         section="Applications/Sound"\
         title="Rosegarden"\
