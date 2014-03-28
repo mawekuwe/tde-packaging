@@ -6,8 +6,6 @@ debian/tmp/opt/trinity/include/kopete/ui/addressbooklinkwidget.h
 debian/tmp/opt/trinity/include/kopete/webcamwidget.h
 debian/tmp/opt/trinity/lib/libkopete.so.1
 debian/tmp/opt/trinity/lib/libkopete.so.1.0.0
-debian/tmp/opt/trinity/lib/libkopete_msn_shared.so.0
-debian/tmp/opt/trinity/lib/libkopete_msn_shared.so.0.0.0
 debian/tmp/opt/trinity/lib/libkopete_oscar.so.2
 debian/tmp/opt/trinity/lib/libkopete_oscar.so.2.0.0
 debian/tmp/opt/trinity/lib/libkopete_videodevice.so.0
@@ -39,10 +37,6 @@ debian/tmp/opt/trinity/lib/trinity/kcm_kopete_identityconfig.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_identityconfig.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_latex.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_latex.so
-debian/tmp/opt/trinity/lib/trinity/kcm_kopete_msn.la
-debian/tmp/opt/trinity/lib/trinity/kcm_kopete_msn.so
-debian/tmp/opt/trinity/lib/trinity/kcm_kopete_netmeeting.la
-debian/tmp/opt/trinity/lib/trinity/kcm_kopete_netmeeting.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_nowlistening.la
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_nowlistening.so
 debian/tmp/opt/trinity/lib/trinity/kcm_kopete_texteffect.la
@@ -87,10 +81,6 @@ debian/tmp/opt/trinity/lib/trinity/kopete_latex.la
 debian/tmp/opt/trinity/lib/trinity/kopete_latex.so
 debian/tmp/opt/trinity/lib/trinity/kopete_meanwhile.la
 debian/tmp/opt/trinity/lib/trinity/kopete_meanwhile.so
-debian/tmp/opt/trinity/lib/trinity/kopete_msn.la
-debian/tmp/opt/trinity/lib/trinity/kopete_msn.so
-debian/tmp/opt/trinity/lib/trinity/kopete_netmeeting.la
-debian/tmp/opt/trinity/lib/trinity/kopete_netmeeting.so
 debian/tmp/opt/trinity/lib/trinity/kopete_nowlistening.la
 debian/tmp/opt/trinity/lib/trinity/kopete_nowlistening.so
 debian/tmp/opt/trinity/lib/trinity/kopete_statistics.la
@@ -119,7 +109,6 @@ debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/128x128
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/128x128/apps
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/128x128/apps/kopete_avdevice.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/128x128/apps/meanwhile_protocol.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/128x128/apps/msn_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/128x128/apps/sms_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/128x128/apps/testbed_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/128x128/apps/wp_protocol.png
@@ -152,18 +141,6 @@ debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/meanwhil
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/meanwhile_dnd.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/meanwhile_idle.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/meanwhile_unknown.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_away.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_blocked.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_brb.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_busy.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_connecting.mng
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_invisible.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_lunch.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_na.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_newmsg.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_offline.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_online.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/msn_phone.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/wp_away.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/yahoo_away.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/actions/yahoo_busy.png
@@ -176,7 +153,6 @@ debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/apps
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/apps/gadu_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/apps/groupwise_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/apps/meanwhile_protocol.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/apps/msn_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/apps/sms_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/apps/testbed_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/16x16/apps/wp_protocol.png
@@ -201,7 +177,6 @@ debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/32x32/apps/highlight.p
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/32x32/apps/kopete_avdevice.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/32x32/apps/latex.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/32x32/apps/meanwhile_protocol.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/32x32/apps/msn_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/32x32/apps/smpppdcs.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/32x32/apps/sms_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/32x32/apps/testbed_protocol.png
@@ -214,7 +189,6 @@ debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/48x48/actions/logging.
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/48x48/apps
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/48x48/apps/groupwise_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/48x48/apps/meanwhile_protocol.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/48x48/apps/msn_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/48x48/apps/sms_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/48x48/apps/testbed_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/48x48/apps/wp_protocol.png
@@ -226,7 +200,6 @@ debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/64x64/apps
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/64x64/apps/groupwise_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/64x64/apps/kopete_avdevice.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/64x64/apps/meanwhile_protocol.png
-debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/64x64/apps/msn_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/64x64/apps/sms_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/64x64/apps/testbed_protocol.png
 debian/tmp/opt/trinity/share/apps/kopete/icons/crystalsvg/64x64/apps/wp_protocol.png
@@ -255,8 +228,6 @@ debian/tmp/opt/trinity/share/apps/kopete_history/historychatui.rc
 debian/tmp/opt/trinity/share/apps/kopete_history/historyui.rc
 debian/tmp/opt/trinity/share/apps/kopete_jabber/jabberchatui.rc
 debian/tmp/opt/trinity/share/apps/kopete_latex/latexchatui.rc
-debian/tmp/opt/trinity/share/apps/kopete_msn/msnchatui.rc
-debian/tmp/opt/trinity/share/apps/kopete_netmeeting/netmeetingchatui.rc
 debian/tmp/opt/trinity/share/apps/kopete_statistics/statisticsui.rc
 debian/tmp/opt/trinity/share/apps/kopete_translator/translatorchatui.rc
 debian/tmp/opt/trinity/share/apps/kopete_translator/translatorui.rc
@@ -504,8 +475,6 @@ debian/tmp/opt/trinity/share/services/kopete_irc.desktop
 debian/tmp/opt/trinity/share/services/kopete_jabber.desktop
 debian/tmp/opt/trinity/share/services/kopete_latex.desktop
 debian/tmp/opt/trinity/share/services/kopete_meanwhile.desktop
-debian/tmp/opt/trinity/share/services/kopete_msn.desktop
-debian/tmp/opt/trinity/share/services/kopete_netmeeting.desktop
 debian/tmp/opt/trinity/share/services/kopete_nowlistening.desktop
 debian/tmp/opt/trinity/share/services/kopete_statistics.desktop
 debian/tmp/opt/trinity/share/services/kopete_testbed.desktop
@@ -521,8 +490,6 @@ debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_cryptography_con
 debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_highlight_config.desktop
 debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_history_config.desktop
 debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_latex_config.desktop
-debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_msn_config.desktop
-debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_netmeeting_config.desktop
 debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_nowlistening_config.desktop
 debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_texteffect_config.desktop
 debian/tmp/opt/trinity/share/services/tdeconfiguredialog/kopete_translator_config.desktop

@@ -65,8 +65,6 @@ debian/tmp/opt/trinity/lib/libtdeinit_kdict.la
 debian/tmp/opt/trinity/lib/libtdeinit_ksirc.la
 debian/tmp/opt/trinity/lib/libkopete.la
 debian/tmp/opt/trinity/lib/libkopete.so
-debian/tmp/opt/trinity/lib/libkopete_msn_shared.la
-debian/tmp/opt/trinity/lib/libkopete_msn_shared.so
 debian/tmp/opt/trinity/lib/libkopete_oscar.la
 debian/tmp/opt/trinity/lib/libkopete_oscar.so
 debian/tmp/opt/trinity/lib/libkopete_videodevice.la
