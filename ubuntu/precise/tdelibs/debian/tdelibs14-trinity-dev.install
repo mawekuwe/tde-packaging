@@ -360,6 +360,7 @@ debian/tmp/opt/trinity/include/tdeio/slave.h
 debian/tmp/opt/trinity/include/tdeio/slaveinterface.h
 debian/tmp/opt/trinity/include/tdeio/statusbarprogress.h
 debian/tmp/opt/trinity/include/tdeio/tcpslavebase.h
+debian/tmp/opt/trinity/include/tdeio/tdelficon.h
 debian/tmp/opt/trinity/include/tdeio/thumbcreator.h
 debian/tmp/opt/trinity/include/tdeio/uiserver.h
 debian/tmp/opt/trinity/include/tdeio/uiserver_stub.h
