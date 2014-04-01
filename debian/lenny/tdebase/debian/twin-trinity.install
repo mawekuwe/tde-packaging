@@ -1,4 +1,5 @@
 debian/tmp/opt/trinity/bin/kompmgr
+debian/tmp/opt/trinity/bin/compton-tde
 debian/tmp/opt/trinity/bin/twin
 debian/tmp/opt/trinity/bin/twin_killer_helper
 debian/tmp/opt/trinity/bin/twin_resumer_helper
