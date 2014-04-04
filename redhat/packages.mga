@@ -322,3 +322,5 @@ sword-devel
 drakconf
 imlib1-devel
 NetworkManager-glib-devel
+lib64xaw-devel
+libxv-devel

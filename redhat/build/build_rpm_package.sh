@@ -28,12 +28,14 @@ fi
 
 [ -d "${BUILDDIR}" ] || mkdir -p "${BUILDDIR}"
 
+RPMDIR="$(rpm -E %{_rpmdir}.tde-${TDE_VERSION})"
 
 rpmbuild -ba \
   --define "_specdir ${TEMPDIR}" \
   --define "_sourcedir ${TEMPDIR}" \
   --define "_builddir ${BUILDDIR}" \
   --define "_buildrootdir ${BUILDROOTDIR}" \
+  --define "_rpmdir ${RPMDIR}" \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
   --define "preversion ${PREVERSION}" \

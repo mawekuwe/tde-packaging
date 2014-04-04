@@ -3,7 +3,7 @@
 PKGNAME="${1##*/}"
 TDE_VERSION="${2:-14.0.0}"
 
-INSTALLED=$(get_installed_package_version.sh ${PKGNAME})
+INSTALLED=$(get_installed_package_version.sh ${PKGNAME} ${TDE_VERSION})
 TARBALL=$(get_latest_tarball_version.sh ${PKGNAME} ${TDE_VERSION})
 SPEC=$(get_spec_version.sh ${PKGNAME} ${TDE_VERSION})
 

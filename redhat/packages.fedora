@@ -197,3 +197,6 @@ xscreensaver
 xscreensaver-extras
 xulrunner-devel
 xz-devel
+texinfo
+fontpackages-devel
+texlive-utils

@@ -5,7 +5,7 @@ TDE_VERSION="${2:-14.0.0}"
 
 [ -z "${PKGNAME}" ] && echo "You must specify a package name !" && exit 1
 
-RPM=$(get_latest_built_package_filename.sh "${PKGNAME}")
+RPM=$(get_latest_built_package_filename.sh "${PKGNAME}" ${TDE_VERSION})
 
 [ ! -r "${RPM}" ] && echo "No package found for '${PKGNAME}' !" && exit 2
 

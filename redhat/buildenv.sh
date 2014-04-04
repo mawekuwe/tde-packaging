@@ -73,6 +73,7 @@ alias crz='(cdrpm; createrepo $(uname -i); createrepo noarch; sudo zypper refres
 # Build local repository (PCLOS)
 alias cra='(cdrpm; genpkglist $PWD noarch; genpkglist $PWD i586; genpkglist $PWD x86_64; genbasedir $PWD i586 x86_64 noarch; sudo apt-get update)'
 alias crac='(cdrpm; for i in i586 noarch x86_64; do cd $i; tdesortrpm.sh; cd -; done; rpmsign --addsign */RPMS.*/*.rpm; for i in i586 noarch x86_64; do for j in 3rdparty applications dependencies extras libraries main; do genpkglist $PWD/$i $j; done; done; for i in i586 noarch x86_64; do genbasedir $PWD/$i 3rdparty applications dependencies extras libraries main; done; sudo apt-get update)'
+alias cras='(cdrpm; cd $(uname -i); rm -rf base; mkdir base; for i in 3rdparty applications dependencies extras libraries main; do genpkglist $PWD $i; done; genbasedir $PWD 3rdparty applications dependencies extras libraries main; cd ../noarch; rm -rf base; mkdir base; for i in applications dependencies extras main; do genpkglist $PWD $i; done; genbasedir $PWD applications dependencies extras main )'
 
 # Reinstall packages (Mageia)
 getrpmfromsrpm() {

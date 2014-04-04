@@ -25,6 +25,8 @@ MGA3: 9.2
 
 MAGEIA 4:
 Bug in /usr/lib[64]/pkgconfig/ruby.pc : missing "ruby_version:" value
+Should be: ruby_version=2.0.0
+
 
 
 CENTOS 4 / CENTOS 5
