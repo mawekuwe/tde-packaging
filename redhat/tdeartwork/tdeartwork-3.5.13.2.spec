@@ -67,7 +67,11 @@ BuildRequires:	libart_lgpl-devel
 %if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
 %define with_xscreensaver 1
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xscrnsaver-devel
+%else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
 BuildRequires:	xscreensaver
 BuildRequires:	xscreensaver-base
 BuildRequires:	xscreensaver-extrusion
@@ -114,13 +118,13 @@ Requires: %{name}-style = %{version}-%{release}
 Requires: %{name}-theme-icon = %{version}-%{release}
 Requires: %{name}-theme-window = %{version}-%{release}
 Requires: trinity-tdewallpapers = %{version}-%{release}
-Requires: trinity-kscreensaver = %{version}-%{release}
+Requires: trinity-tdescreensaver = %{version}-%{release}
 
 %if 0%{?with_xscreensaver}
-Requires: trinity-kscreensaver-xsavers = %{version}-%{release}
-Requires: trinity-kscreensaver-xsavers-extra = %{version}-%{release}
+Requires: trinity-tdescreensaver-xsavers = %{version}-%{release}
+Requires: trinity-tdescreensaver-xsavers-extra = %{version}-%{release}
 %if 0%{?with_webcollage}
-Requires: trinity-kscreensaver-xsavers-webcollage = %{version}-%{release}
+Requires: trinity-tdescreensaver-xsavers-webcollage = %{version}-%{release}
 %endif
 %endif
 
@@ -265,22 +269,25 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 ##########
 
-%package -n trinity-kscreensaver
+%package -n trinity-tdescreensaver
 Summary:	additional screen savers released with Trinity
 Group:		User Interface/Desktops
 
-%description -n trinity-kscreensaver
+Obsoletes:	trinity-kscreensaver < %{version}-%{release}
+Provides:	trinity-kscreensaver = %{version}-%{release}
+
+%description -n trinity-tdescreensaver
 This package contains the screen savers for Trinity. They can be tested and
 selected within the Appearance and Themes section of the Trinity Control
 Center.
 
 The hooks for the standard xscreensavers are no longer part of this
 package. To select and/or configure the standard xscreensavers through
-the TDE Control Center, install the separate package kscreensaver-xsavers.
+the TDE Control Center, install the separate package tdescreensaver-xsavers.
 
 This package is part of Trinity, and a component of the TDE artwork module.
 
-%files -n trinity-kscreensaver
+%files -n trinity-tdescreensaver
 %defattr(-,root,root,-)
 %{tde_bindir}/kslideshow.kss
 %{tde_bindir}/kpolygon.kss
@@ -334,13 +341,16 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %if 0%{?with_xscreensaver}
 
-%package -n trinity-kscreensaver-xsavers
+%package -n trinity-tdescreensaver-xsavers
 Summary:	Trinity hooks for standard xscreensavers
 Group:		User Interface/Desktops
 Requires:	trinity-tdebase-bin >= %{tde_version}
 Requires:	xscreensaver
 
-%description -n trinity-kscreensaver-xsavers
+Obsoletes:	trinity-kscreensaver-xsavers < %{version}-%{release}
+Provides:	trinity-kscreensaver-xsavers = %{version}-%{release}
+
+%description -n trinity-tdescreensaver-xsavers
 This package allows a smooth integration of the standard xscreensavers
 into Trinity. With this package installed you can select and/or configure
 the standard xscreensavers through the Appearances and Themes section of
@@ -348,13 +358,13 @@ the Trinity Control Centre.
 
 Note that this package does not actually contain any screensavers itself.
 For the additional screensavers shipped with Trinity, see the separate package
-kscreensaver-trinity. This package does depend on the xscreensaver package, and
+tdescreensaver-trinity. This package does depend on the xscreensaver package, and
 recommend the xscreensaver-gl package, as well as contain the necessary
 files to integrate these packages into Trinity.
 
 This package is part of Trinity, and a component of the TDE artwork module.
 
-%files -n trinity-kscreensaver-xsavers
+%files -n trinity-tdescreensaver-xsavers
 %defattr(-,root,root,-)
 %{tde_bindir}/xscreensaver-getimage-file
 %{tde_bindir}/xscreensaver-getimage
@@ -435,13 +445,16 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 %if 0%{?with_webcollage}
 
-%package -n trinity-kscreensaver-xsavers-webcollage
+%package -n trinity-tdescreensaver-xsavers-webcollage
 Summary:	webcollage screensaver Trinity hook
 Group:		User Interface/Desktops
-Requires:	trinity-kscreensaver-xsavers-extra = %{version}-%{release}
+Requires:	trinity-tdescreensaver-xsavers-extra = %{version}-%{release}
 Requires:	netpbm
 
-%description -n trinity-kscreensaver-xsavers-webcollage
+Obsoletes:	trinity-kscreensaver-xsavers-webcollage < %{version}-%{release}
+Provides:	trinity-kscreensaver-xsavers-webcollage = %{version}-%{release}
+
+%description -n trinity-tdescreensaver-xsavers-webcollage
 This package give access to the webcollage screensaver through the Trinity
 screensaver configuration.
 
@@ -459,7 +472,7 @@ installation.
 
 This package is part of Trinity, and a component of the TDE artwork module.
 
-%files -n trinity-kscreensaver-xsavers-webcollage
+%files -n trinity-tdescreensaver-xsavers-webcollage
 %defattr(-,root,root,-)
 %{tde_datadir}/applnk/System/ScreenSavers/webcollage.desktop
 
@@ -467,12 +480,15 @@ This package is part of Trinity, and a component of the TDE artwork module.
 
 ##########
 
-%package -n trinity-kscreensaver-xsavers-extra
+%package -n trinity-tdescreensaver-xsavers-extra
 Summary:	Trinity hooks for standard xscreensavers
 Group:		User Interface/Desktops
-Requires:	trinity-kscreensaver-xsavers = %{version}-%{release}
+Requires:	trinity-tdescreensaver-xsavers = %{version}-%{release}
 
-%description -n trinity-kscreensaver-xsavers-extra
+Obsoletes:	trinity-kscreensaver-xsavers-extra < %{version}-%{release}
+Provides:	trinity-kscreensaver-xsavers-extra = %{version}-%{release}
+
+%description -n trinity-tdescreensaver-xsavers-extra
 This package allows a smooth integration of the universe xscreensavers
 into Trinity. With this package installed you can select and/or configure
 the universe xscreensavers through the Appearances and Themes section of
@@ -480,11 +496,11 @@ the Trinity Control Centre.
 
 Note that this package does not actually contain any screensavers itself.
 For the additional screensavers shipped with TDE, see the separate package
-kscreensaver.
+tdescreensaver.
 
 This package is part of Trinity, and a component of the TDE artwork module.
 
-%files -n trinity-kscreensaver-xsavers-extra
+%files -n trinity-tdescreensaver-xsavers-extra
 %defattr(-,root,root,-)
 %{tde_datadir}/applnk/System/ScreenSavers/anemone.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/anemotaxis.desktop
@@ -644,14 +660,14 @@ This package is part of Trinity, and a component of the TDE artwork module.
 %{tde_datadir}/applnk/System/ScreenSavers/tronbit.desktop
 %endif
 
-%if 0%{?fedora} >= 18 || 0%{?pclinuxos}
+%if 0%{?fedora} >= 18 || 0%{?pclinuxos} || 0%{?mgaversion} >= 4
 %{tde_datadir}/applnk/System/ScreenSavers/hexadrop.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/kaleidocycle.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/quasicrystal.desktop
 %{tde_datadir}/applnk/System/ScreenSavers/unknownpleasures.desktop
 %endif
 
-%if 0%{?fedora} >= 20
+%if 0%{?fedora} >= 20 || 0%{?mgaversion} >= 4
 %{tde_datadir}/applnk/System/ScreenSavers/geodesic.desktop
 %endif
 

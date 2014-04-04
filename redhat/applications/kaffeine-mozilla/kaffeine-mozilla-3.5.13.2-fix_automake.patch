@@ -1,0 +1,11 @@
+--- trinity-kaffeine-mozilla-3.5.13.2/admin/cvs.sh.ORI	2014-03-23 11:29:59.873837637 +0100
++++ trinity-kaffeine-mozilla-3.5.13.2/admin/cvs.sh	2014-03-23 11:30:39.942924217 +0100
+@@ -130,7 +130,7 @@
+ fi
+ 
+ echo "*** Creating Makefile templates"
+-$AUTOMAKE || exit 1
++$AUTOMAKE --add-missing || exit 1
+ 
+ if test "$UNSERMAKE" = no; then
+   echo "*** Postprocessing Makefile templates"

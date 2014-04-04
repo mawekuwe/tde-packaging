@@ -167,7 +167,11 @@ BuildRequires:	libtool
 # X11 support
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	x11-proto-devel
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xcomposite-devel
+%else
 BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version}
 BuildRequires:	xorg-x11-proto-devel

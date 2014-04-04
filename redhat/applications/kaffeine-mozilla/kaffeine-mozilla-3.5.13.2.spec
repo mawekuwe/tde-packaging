@@ -43,6 +43,8 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # Fix 'nspr' includes location
 Patch1:		kaffeine-mozilla-3.5.13-fix_nspr_include.patch
+# Fix build with newer automake
+Patch2:			kaffeine-mozilla-3.5.13.2-fix_automake.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -78,6 +80,7 @@ when a page containing a supported media format is loaded.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .nspr
+%patch2 -p1 -b .automake
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "ltmain.sh"
@@ -85,7 +88,8 @@ when a page containing a supported media format is loaded.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 %configure \

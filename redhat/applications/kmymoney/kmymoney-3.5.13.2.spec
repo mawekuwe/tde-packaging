@@ -80,7 +80,11 @@ BuildRequires:	libofx-devel
 # OPENSP support
 %if 0%{?mgaversion} || 0%{?pclinuxos} || 0%{?mdkversion}
 %if 0%{?mgaversion} || 0%{?pclinuxos}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}osp-devel
+%else
 BuildRequires:	%{_lib}OpenSP5-devel
+%endif
 %else
 BuildRequires:	opensp-devel
 %endif
@@ -92,7 +96,7 @@ BuildRequires:	opensp-devel
 BuildRequires:	openjade-devel
 %endif
 
-Requires:		%{name}-common == %{version}
+Requires:		%{name}-common == %{version}-%{release}
 
 %description
 KMyMoney is the Personal Finance Manager for TDE. It operates similar to
@@ -142,7 +146,8 @@ This package contains development files needed for KMyMoney plugins.
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 export KDEDIR="%{tde_prefix}"
@@ -183,7 +188,8 @@ grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
 # Fix FTBFS inside sqlite3 archive
 patch -p1 < %{PATCH4}
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
+
 
 %install
 export PATH="%{tde_bindir}:${PATH}"

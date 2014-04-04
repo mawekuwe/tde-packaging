@@ -45,6 +45,8 @@ Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
 # Fix include subdirectory 'tde' instead of 'kde'
 Patch1:		python-trinity-3.5.13.2-fix_tde_includedir.patch
+# Fix "is private" FTBFS using SIP >= 4.15
+Patch2:		python-trinity-3.5.13.2-fix_is_private.patch
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -116,10 +118,12 @@ tips and working code you can use to learn from.
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .inc
+%patch2 -p1 -b .private
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LD_RUN_PATH="%{tde_libdir}"
 export KDEDIR=%{tde_prefix}
@@ -139,7 +143,15 @@ export PYTHONPATH=%{python_sitearch}/trinity-sip:%{python_sitearch}/python-qt3
 	-e "/^LIBS = / s|$| -lpython2.7 -lDCOP -lkdecore -lkdefx -lkdeui -lkresources -lkabc -lkparts -lkio|"
 %endif
 
-%__make %{_smp_mflags}
+# Shitty hack to fix issue with SIP >= 4.15
+%__sed -i "kfile/sipkfilepart0.cpp" \
+  -e "s| KFileIconView::selectionMode(| KFileView::selectionMode(|g" \
+  -e "s| KFileIconView::clear()| KFileView::clear()|g" \
+  -e "s| KFileDetailView::selectionMode(| KFileView::selectionMode(|g" \
+  -e "s| KFileDetailView::clear()| KFileView::clear()|g"
+  
+
+%__make %{_smp_mflags} || %__make
 
 
 %install

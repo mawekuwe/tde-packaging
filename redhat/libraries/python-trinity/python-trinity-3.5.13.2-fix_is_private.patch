@@ -1,0 +1,56 @@
+--- trinity-python-trinity-3.5.13.2/sip/kdecore/kconfigbase.sip.ORI	2014-03-22 23:47:29.217935267 +0100
++++ trinity-python-trinity-3.5.13.2/sip/kdecore/kconfigbase.sip	2014-03-22 23:47:53.355370778 +0100
+@@ -153,10 +153,8 @@
+     bool                 deleteGroup (const QString&, bool = 1, bool = 0);
+     void                 setDollarExpansion (bool = 1);
+     bool                 isDollarExpansion () const;
+-    virtual void         rollback (bool = 1);
+     virtual void         sync ();
+     bool                 isDirty () const;
+-    virtual void         setReadOnly (bool);
+     bool                 isReadOnly () const;
+     bool                 hasKey (const QString&) const;
+     virtual QMap<QString,QString> entryMap (const QString&) const = 0;
+@@ -182,6 +180,9 @@
+     bool                 hasDefault (const QString&) const;
+ %End
+ 
++private:
++    virtual void         rollback (bool = 1);
++    virtual void         setReadOnly (bool);
+ 
+ protected:
+     void                 setLocale ();
+--- trinity-python-trinity-3.5.13.2/sip/kdeui/kactivelabel.sip.ORI	2014-03-22 23:56:28.448338190 +0100
++++ trinity-python-trinity-3.5.13.2/sip/kdeui/kactivelabel.sip	2014-03-22 23:58:44.540121011 +0100
+@@ -53,6 +53,8 @@
+     virtual void         keyPressEvent (QKeyEvent*);
+ %End
+ 
++private:
++    virtual void         setSource(const QString&);
+ 
+ };  // class KActiveLabel
+ 
+--- trinity-python-trinity-3.5.13.2/sip/kdeui/kpixmapregionselectorwidget.sip.ORI	2014-03-23 00:02:17.343077605 +0100
++++ trinity-python-trinity-3.5.13.2/sip/kdeui/kpixmapregionselectorwidget.sip	2014-03-23 00:03:42.151069824 +0100
+@@ -54,6 +54,8 @@
+ protected:
+     virtual KPopupMenu*  createPopupMenu ();
+ 
++private:
++    virtual bool         eventFilter(QObject*, QEvent*);
+ };  // class KPixmapRegionSelectorWidget
+ 
+ %End
+--- trinity-python-trinity-3.5.13.2/sip/kfile/knotifydialog.sip.ORI	2014-03-23 00:13:21.583382771 +0100
++++ trinity-python-trinity-3.5.13.2/sip/kfile/knotifydialog.sip	2014-03-23 00:17:02.715146838 +0100
+@@ -77,6 +77,8 @@
+     virtual void         addApplicationEvents (const QString&);
+     virtual void         clearApplicationEvents ();
+ 
++private slots:
++    virtual void         slotDefault();
+ };  // class KNotifyDialog
+ 
+ %End

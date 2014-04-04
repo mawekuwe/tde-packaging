@@ -61,11 +61,18 @@ BuildRequires:	%{_lib}xcb-devel
 %endif
 %endif
 
+# X11 stuff
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xi-devel
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xext-devel
+BuildRequires:	%{_lib}x11-devel
+BuildRequires:	%{_lib}xau-devel
+%else
 BuildRequires:	%{_lib}xext%{?mgaversion:6}-devel
 BuildRequires:	%{_lib}x11%{?mgaversion:_6}-devel
 BuildRequires:	%{_lib}xau%{?mgaversion:6}-devel
+%endif
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXi-devel
@@ -102,16 +109,19 @@ Included with this package are:
 
 ##########
 
-%package -n trinity-kde-icons-mono
+%package -n trinity-tde-icons-mono
 Summary:	A monochromatic icons theme for TDE
 Group:		User Interface/Desktops
 
-%description -n trinity-kde-icons-mono
+Obsoletes:	trinity-kde-icons-mono < %{version}-%{release}
+Provides:	trinity-kde-icons-mono = %{version}-%{release}
+
+%description -n trinity-tde-icons-mono
 A monochromatic icon theme for TDE, designed for accessibility purposes.
 
 This package is part of Trinity, as a component of the TDE accessibility module.
 
-%files -n trinity-kde-icons-mono
+%files -n trinity-tde-icons-mono
 %defattr(-,root,root,-)
 %{tde_datadir}/icons/mono/index.theme
 %{tde_datadir}/icons/mono/scalable/*/*.svgz
@@ -141,7 +151,7 @@ Summary:	A screen magnifier for TDE
 Group:		User Interface/Desktops
 
 %description -n trinity-kmag
-KDE's screen magnifier tool.
+TDE's screen magnifier tool.
 
 You can use KMagnifier to magnify a part of the screen just as you would use 
 a lens to magnify a newspaper fine-print or a photograph.  This application is
@@ -451,7 +461,8 @@ Provides:		trinity-kdeaccessibility-devel = %{version}-%{release}
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
 
@@ -462,7 +473,7 @@ export KDEDIR=%{tde_prefix}
 
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 
 %configure \

@@ -260,7 +260,7 @@ gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch1 -p1 -b .mountconfig
+#patch1 -p1 -b .mountconfig
 
 %if 0%{?rhel} || 0%{?mgaversion} || 0%{?mdkversion}
 %__sed -i "userconfig/unixauthdb.py" \

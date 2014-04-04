@@ -105,7 +105,7 @@ with the K Desktop Environment version 3.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1
+#patch0 -p1
 %patch1 -p1
 %patch2 -p1 -b .installdir
 

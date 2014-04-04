@@ -70,7 +70,8 @@ you with managing/ripping your preferred streams.
   -e "s|include/kde|include/tde|g"
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 
 scons -Q -j4 \

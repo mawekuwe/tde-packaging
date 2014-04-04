@@ -79,7 +79,9 @@ BuildRequires:	xmedcon-devel
 %define with_svg 1
 %if 0%{?fedora} || 0%{?rhel} 
 BuildRequires:	librsvg2
-BuildRequires:	librsvg2-devel
+%endif
+%if 0%{?fedora}
+BuildRequires:	librsvg2-tools
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	librsvg
@@ -156,13 +158,20 @@ Tools for KSquirrel.
 %patch0 -p1 -b .netpbm
 %patch1 -p1 -b .giflib5
 
+# FIXME: under PCLinuxOS, headers are under 'freetype2' not 'freetype'
+if [ -r /usr/include/freetype2/ftbitmap.h ]; then
+  %__sed -i "configure.ac" -e "s|freetype/ftbitmap.h|freetype2/ftbitmap.h|"
+  %__sed -i "kernel/kls_ttf/ttf2pnm.cpp" -e "s|freetype/config/|freetype2/config/|"
+fi
+
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
 %__make -f "admin/Makefile.common"
 
 
 %build
-unset QTDIR; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export LDFLAGS="-L%{tde_libdir} -I%{tde_includedir}"
 

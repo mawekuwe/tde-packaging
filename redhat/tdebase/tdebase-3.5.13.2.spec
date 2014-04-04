@@ -254,6 +254,17 @@ Requires:	indexhtml
 %define tde_aboutpage /usr/share/mga/about/index.html
 %endif
 
+# Mageia 4 Theme
+%if 0%{?mgaversion} == 4
+Requires:	mageia-theme-Default
+%define tde_bg /usr/share/mga/backgrounds/default.jpg
+%define tde_starticon %{tde_datadir}/oxygen/scalable/mgabutton.svg
+
+Requires:	indexhtml
+%define tde_aboutlabel Mageia 4
+%define tde_aboutpage /usr/share/mga/about/index.html
+%endif
+
 # Mandriva 2011 Theme: "rosa"
 %if "%{distribution}" == "Mandriva Linux" && "%{?mdkversion}" == "201100"
 Requires:	mandriva-theme
@@ -265,31 +276,13 @@ Requires:	indexhtml
 %define tde_aboutpage /usr/share/mdk/about/index.html
 %endif
 
-# PCLINUXOS 2012
-%if "%{?pclinuxos}" == "2012"
-Requires:	trinity-wallpaper-theme-default
-%define tde_bg %{tde_datadir}/wallpapers/Pulse2012/contents/images/1600x1200.jpg
+# PCLINUXOS
+%if 0%{?pclinuxos}
 Requires:	desktop-common-data
 %define tde_starticon /usr/share/icons/pclinuxos.png
 
 Requires:	indexhtml
-%define tde_aboutlabel PCLinuxOS 2012
-%define tde_aboutpage /usr/share/mdk/about/index.html
-%endif
-
-# PCLINUXOS 2013
-%if "%{?pclinuxos}" == "2013"
-Requires:	trinity-wallpaper-theme-default
-%if "%{_lib}" == "lib64"
-%define tde_bg %{tde_datadir}/wallpapers/pclinuxos64.jpg
-%else
-%define tde_bg %{tde_datadir}/wallpapers/pclinuxos32.jpg
-%endif
-Requires:	desktop-common-data
-%define tde_starticon /usr/share/icons/pclinuxos.png
-
-Requires:	indexhtml
-%define tde_aboutlabel PCLinuxOS 2013
+%define tde_aboutlabel PCLinuxOS
 %define tde_aboutpage /usr/share/mdk/about/index.html
 %endif
 
@@ -355,7 +348,12 @@ BuildRequires:	glib2-devel
 BuildRequires:	pcre-devel
 
 # SASL support
+%if 0%{?mageia} || 0%{?mandriva} || 0%{?pclinuxos}
+BuildRequires:	%{_lib}sasl2-devel
+%endif
+%if 0%{?suse_version}
 BuildRequires:	cyrus-sasl-devel
+%endif
 
 # LIBUSB support
 BuildRequires:	pam-devel
@@ -429,7 +427,11 @@ BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	gnome-screensaver
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xscrnsaver-devel
+%else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
 %endif
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
 BuildRequires:	xscreensaver
@@ -515,7 +517,51 @@ BuildRequires:	xorg-x11-libxkbfile-devel
 BuildRequires:	libxkbfile-devel
 %endif
 
-# X11 stuff ...
+# XDMCP support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xdmcp-devel
+%else
+BuildRequires:	%{_lib}xdmcp%{?mgaversion:6}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXdmcp-devel
+%endif
+
+# XTST support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xtst-devel
+%else
+BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXtst-devel
+%endif
+
+# XDAMAGE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xdamage-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXdamage-devel
+%endif
+
+# XCOMPOSITE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xcomposite-devel
+%else
+BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXcomposite-devel
+%endif
+
+# Other X11 stuff ...
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
 %endif
@@ -529,19 +575,11 @@ BuildRequires:	libfontenc-devel
 %endif
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
-BuildRequires:	%{_lib}xdamage-devel
-BuildRequires:	%{_lib}xdmcp%{?mgaversion:6}-devel
-BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
 BuildRequires:	x11-font-util
 BuildRequires:	x11-proto-devel
 %endif
 
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-BuildRequires:	libXcomposite-devel
-BuildRequires:	libXdamage-devel
-BuildRequires:	libXdmcp-devel
-BuildRequires:	libXtst-devel
 BuildRequires:	xorg-x11-proto-devel
 %endif
 

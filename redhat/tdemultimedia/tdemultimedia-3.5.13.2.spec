@@ -116,7 +116,11 @@ BuildRequires:	gstreamer-0_10-devel
 %if 0%{?mgaversion} || 0%{?mdkversion}
 BuildRequires:	%{_lib}xxf86dga-devel
 BuildRequires:	%{_lib}xxf86vm-devel
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xtst-devel
+%else
 BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+%endif
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel

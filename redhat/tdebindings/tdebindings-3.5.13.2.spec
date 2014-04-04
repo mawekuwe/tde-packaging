@@ -93,7 +93,7 @@ BuildRequires:	gtk2-devel
 
 # XULRUNNER support
 %if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version} >= 1220
-BuildRequires: xulrunner-devel
+#BuildRequires: xulrunner-devel
 %endif
 %if 0%{?suse_version} == 1140
 BuildRequires: mozilla-xulrunner20-devel
@@ -200,7 +200,7 @@ Provides:	trinity-kdebindings = %{version}-%{release}
 # Metapackage requires
 Requires: trinity-tdebindings-java = %{version}-%{release}
 Requires: trinity-libsmokeqt1 = %{version}-%{release}
-Requires: trinity-libsmokekde1 = %{version}-%{release}
+Requires: trinity-libsmoketde = %{version}-%{release}
 Requires: trinity-perl-dcop = %{version}-%{release}
 Requires: trinity-python-dcop = %{version}-%{release}
 Requires: trinity-libkjsembed1 = %{version}-%{release}
@@ -254,7 +254,7 @@ This package is part of the official TDE bindings module.
 %files -n trinity-libdcop3-java
 %defattr(-,root,root,-)
 #%{tde_datadir}/java/dcopjava*.jar
-%{tde_libdir}/java/org/kde/DCOP/*.class
+%{tde_libdir}/java/org/*/DCOP/*.class
 
 ##########
 
@@ -474,35 +474,41 @@ This package is part of the official TDE bindings module.
 
 ##########
 
-%package -n trinity-libsmokekde1
+%package -n trinity-libsmoketde
 Summary:	SMOKE Binding Library to TDE
 Group:		Environment/Libraries
 
-%description -n trinity-libsmokekde1
+Obsoletes:	trinity-libsmokekde1 < %{version}-%{release}
+Provides:	trinity-libsmokekde1 = %{version}-%{release}
+
+%description -n trinity-libsmoketde
 The "Scripting Meta Object Kompiler Engine" library is used by
 various TDE language bindings packages to provide interfaces to the
 TDE libraries.
 
 This package is part of the official TDE bindings module.
 
-%files -n trinity-libsmokekde1
+%files -n trinity-libsmoketde
 %defattr(-,root,root,-)
 %{tde_libdir}/libsmokekde.so.*
 
-%post -n trinity-libsmokekde1
+%post -n trinity-libsmoketde
 /sbin/ldconfig || :
 
-%postun -n trinity-libsmokekde1
+%postun -n trinity-libsmoketde
 /sbin/ldconfig || :
 
 ##########
 
-%package -n trinity-libsmokekde-devel
+%package -n trinity-libsmoketde-devel
 Summary:	SMOKE Binding Library to TDE - Development Files
 Group:		Development/Libraries
-Requires:	trinity-libsmokekde1 = %{version}-%{release}
+Requires:	trinity-libsmoketde = %{version}-%{release}
 
-%description -n trinity-libsmokekde-devel
+Obsoletes:	trinity-libsmokekde-devel < %{version}-%{release}
+Provides:	trinity-libsmokekde-devel = %{version}-%{release}
+
+%description -n trinity-libsmoketde-devel
 The "Scripting Meta Object Kompiler Engine" library is used by
 various TDE language bindings packages to provide interfaces to the
 Qt and TDE libraries. This package contains the development files for
@@ -513,15 +519,15 @@ package.
 
 This package is part of the official TDE bindings module.
 
-%files -n trinity-libsmokekde-devel
+%files -n trinity-libsmoketde-devel
 %defattr(-,root,root,-)
 %{tde_libdir}/libsmokekde.so
 %{tde_libdir}/libsmokekde.la
 
-%post -n trinity-libsmokekde-devel
+%post -n trinity-libsmoketde-devel
 /sbin/ldconfig || :
 
-%postun -n trinity-libsmokekde-devel
+%postun -n trinity-libsmoketde-devel
 /sbin/ldconfig || :
 
 ##########
@@ -834,22 +840,25 @@ Group:		Environment/Libraries
 
 ##########
 
-%package -n trinity-libkdexparts1
-Summary:	Xparts library for KDE
+%package -n trinity-libtdexparts
+Summary:	Xparts library for TDE
 Group:		Environment/Libraries
 
-%description -n trinity-libkdexparts1
+Obsoletes:	trinity-libkdexparts1 < %{version}-%{release}
+Provides:	trinity-libkdexparts1 = %{version}-%{release}
+
+%description -n trinity-libtdexparts
 %{summary}
 
-%files -n trinity-libkdexparts1
+%files -n trinity-libtdexparts
 %defattr(-,root,root,-)
 %{tde_libdir}/libkdexparts.so.*
 %{tde_libdir}/libkdexparts.la
 
-%post -n trinity-libkdexparts1
+%post -n trinity-libtdexparts
 /sbin/ldconfig || :
 
-%postun -n trinity-libkdexparts1
+%postun -n trinity-libtdexparts
 /sbin/ldconfig || :
 
 ##########
@@ -860,7 +869,7 @@ Group:		Development/Libraries
 %if 0%{?with_gtk1}
 Requires:	trinity-libgtkxparts1 = %{version}-%{release}
 %endif
-Requires:	trinity-libkdexparts1 = %{version}-%{release}
+Requires:	trinity-libtdexparts = %{version}-%{release}
 
 %description -n trinity-libxparts-devel
 %{summary}
@@ -890,7 +899,7 @@ Requires:	trinity-xpart-notepad = %{version}-%{release}
 %if 0%{?with_gtk1}
 Requires:	trinity-libgtkxparts1 = %{version}-%{release}
 %endif
-Requires:	trinity-libkdexparts1 = %{version}-%{release}
+Requires:	trinity-libtdexparts = %{version}-%{release}
 Requires:	trinity-libdcop-c = %{version}-%{release}
 
 %description xparts-extras
@@ -958,7 +967,7 @@ Provides:	trinity-kdebindings-devel = %{version}-%{release}
 # Metapackage
 Requires:	trinity-libsmokeqt-devel = %{version}-%{release}
 Requires:	trinity-libdcop3-java-devel = %{version}-%{release}
-Requires:	trinity-libsmokekde-devel = %{version}-%{release}
+Requires:	trinity-libsmoketde-devel = %{version}-%{release}
 Requires:	trinity-libkjsembed-devel = %{version}-%{release}
 Requires:	trinity-libxparts-devel = %{version}-%{release}
 Requires:	trinity-libdcop-c-devel = %{version}-%{release}
@@ -1014,9 +1023,14 @@ unset JAVA_HOME ||:
 # sip/PyQt/PyKDE built separately, not here
 export DO_NOT_COMPILE="$DO_NOT_COMPILE python"
 
+# Ruby headers, strange location ...
+if [ -d "/usr/include/%{_normalized_cpu}-linux" ]; then
+  export EXTRA_INCLUDES="/usr/include/%{_normalized_cpu}-linux"
+fi
+
 # Specific path for RHEL4
 if [ -d /usr/X11R6 ]; then
-  export CXXFLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
 fi
 if [ -d /usr/evolution28 ]; then
   export PATH="/usr/evolution28/bin:${PATH}"

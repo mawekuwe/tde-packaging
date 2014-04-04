@@ -85,7 +85,11 @@ BuildRequires:	cyrus-sasl-devel
 
 # XCOMPOSITE support
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xcomposite-devel
+%else
 BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
 BuildRequires:	libXcomposite-devel
@@ -100,7 +104,11 @@ BuildRequires:	xorg-x11-proto-devel
 BuildRequires:	gnome-screensaver
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xscrnsaver-devel
+%else
 BuildRequires:	%{_lib}xscrnsaver%{?mgaversion:1}-devel
+%endif
 %endif
 %if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?suse_version} >= 1220
 BuildRequires:	libXScrnSaver-devel
@@ -114,7 +122,7 @@ BuildRequires:	xscreensaver
 Requires:	trinity-libtdepim = %{version}-%{release}
 Requires:	%{name}-kfile-plugins = %{version}-%{release}
 Requires:	%{name}-tdeio-plugins = %{version}-%{release}
-Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-tderesources = %{version}-%{release}
 Requires:	%{name}-wizards = %{version}-%{release}
 Requires:	trinity-akregator = %{version}-%{release}
 Requires:	trinity-kaddressbook = %{version}-%{release}
@@ -189,7 +197,7 @@ Requires:	trinity-libkpimidentities-devel = %{version}-%{release}
 Requires:	trinity-libksieve-devel = %{version}-%{release}
 Requires:	trinity-libktnef-devel = %{version}-%{release}
 Requires:	trinity-libmimelib-devel = %{version}-%{release}
-Requires:	%{name}-kresources-devel = %{version}-%{release}
+Requires:	%{name}-tderesources-devel = %{version}-%{release}
 
 %description devel
 This metapackage includes all development files for TDE PIM.
@@ -279,7 +287,7 @@ Requires:	trinity-akregator = %{version}-%{release}
 Summary:	TDE addressbook application
 Group:		Applications/Communications
 Requires:	trinity-kdebase-pim-ioslaves
-Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-tderesources = %{version}-%{release}
 
 %description -n trinity-kaddressbook
 KAddressBook is the main address book application for TDE; it enables you
@@ -573,7 +581,7 @@ and mbox.
 
 ##########
 
-%package kresources
+%package tderesources
 Summary:	Trinity pim resource plugins
 Group:		Environment/Libraries
 #Requires:	trinity-kaddressbook = %{version}-%{release}
@@ -583,13 +591,15 @@ Requires:	libcaldav
 Requires:	libcarddav
 
 Obsoletes:	tdepim-kresources < %{version}-%{release}
+Obsoletes:	trinity-tdepim-kresources < %{version}-%{release}
+Provides:	trinity-tdepim-kresources = %{version}-%{release}
 
-%description kresources
+%description tderesources
 This package includes several plugins needed to interface with groupware
 servers. It also includes plugins for features such as blogging and
 tracking feature plans.
 
-%files kresources
+%files tderesources
 %defattr(-,root,root,-)
 %{tde_tdelibdir}/kcal_caldav.la
 %{tde_tdelibdir}/kcal_caldav.so
@@ -685,27 +695,29 @@ tracking feature plans.
 %{tde_tdelibdir}/kabc_xmlrpc.la
 %{tde_tdelibdir}/kabc_xmlrpc.so
 
-%post kresources
+%post tderesources
 /sbin/ldconfig || :
 
-%postun kresources
+%postun tderesources
 /sbin/ldconfig || :
 
 ##########
 
-%package kresources-devel
-Summary:	Development files for kresources
+%package tderesources-devel
+Summary:	Development files for tderesources
 Group:		Development/Libraries
-Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-tderesources = %{version}-%{release}
 Requires:	libcaldav
 Requires:	libcarddav
 
-Obsoletes:	tdepim-kresources-devel < %{version}-%{release}
+Obsoletes:	tdepim-tderesources-devel < %{version}-%{release}
+Obsoletes:	trinity-tdepim-kresources-devel < %{version}-%{release}
+Provides:	trinity-tdepim-kresources-devel = %{version}-%{release}
 
-%description kresources-devel
+%description tderesources-devel
 %{summary}
 
-%files kresources-devel
+%files tderesources-devel
 %defattr(-,root,root,-)
 %{tde_libdir}/libkslox.la
 %{tde_libdir}/libkslox.so
@@ -757,10 +769,10 @@ Obsoletes:	tdepim-kresources-devel < %{version}-%{release}
 %{tde_libdir}/libknotesscalix.so
 %{tde_tdeincludedir}/kpimprefs.h
 
-%post kresources-devel
+%post tderesources-devel
 /sbin/ldconfig || :
 
-%postun kresources-devel
+%postun tderesources-devel
 /sbin/ldconfig || :
 
 ##########
@@ -1125,7 +1137,7 @@ Requires:	trinity-knode = %{version}-%{release}
 %package -n trinity-knotes
 Summary:	Trinity sticky notes
 Group:		Applications/Utilities
-Requires:	trinity-tdepim-kresources = %{version}-%{release}
+Requires:	trinity-tdepim-tderesources = %{version}-%{release}
 
 %description -n trinity-knotes
 KNotes is a program that lets you write sticky notes. The notes are saved
@@ -1171,7 +1183,7 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 Summary:	Development files for knots
 Group:		Development/Libraries
 Requires:	trinity-knotes = %{version}-%{release}
-Requires:	%{name}-kresources-devel = %{version}-%{release}
+Requires:	%{name}-tderesources-devel = %{version}-%{release}
 
 %description -n trinity-knotes-devel
 %{summary}
@@ -1370,7 +1382,7 @@ Summary:	Trinity personal organizer
 Group:		Applications/Productivity
 Requires:	trinity-libkpimidentities = %{version}-%{release}
 Requires:	trinity-libkpimexchange = %{version}-%{release}
-Requires:	%{name}-kresources = %{version}-%{release}
+Requires:	%{name}-tderesources = %{version}-%{release}
 Requires:	perl
 
 %description -n trinity-korganizer
@@ -1600,7 +1612,7 @@ library.
 %package -n trinity-libkcal
 Summary:	Trinity calendaring library
 Group:		Environment/Libraries
-#Requires:	%{name}-kresources = %{version}-%{release}
+#Requires:	%{name}-tderesources = %{version}-%{release}
 
 %description -n trinity-libkcal
 This library provides a C++ API for handling the vCalendar and iCalendar
@@ -1726,9 +1738,9 @@ library.
 
 %files -n trinity-libtdepim-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/[kt]depimmacros.h
-%{tde_libdir}/lib[kt]depim.la
-%{tde_libdir}/lib[kt]depim.so
+%{tde_tdeincludedir}/kdepimmacros.h
+%{tde_libdir}/libkdepim.la
+%{tde_libdir}/libkdepim.so
 
 %post -n trinity-libtdepim-devel
 /sbin/ldconfig || :
@@ -1934,8 +1946,8 @@ libkpimexchange-trinity library.
 
 %files -n trinity-libkpimexchange-devel
 %defattr(-,root,root,-)
-%{tde_tdeincludedir}/[kt]depim/exchangeaccount.h
-%{tde_tdeincludedir}/[kt]depim/exchangeclient.h
+%{tde_tdeincludedir}/kdepim/exchangeaccount.h
+%{tde_tdeincludedir}/kdepim/exchangeclient.h
 %{tde_libdir}/libkpimexchange.la
 %{tde_libdir}/libkpimexchange.so
 

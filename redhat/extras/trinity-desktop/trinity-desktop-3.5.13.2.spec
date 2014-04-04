@@ -24,9 +24,6 @@ Source0:	trinity-3.5.13-fedora.repo
 Source1:	trinity-3.5.13-rhel.repo
 Source2:	RPM-GPG-KEY-trinity
 
-Source11:	pclinuxos201304-32.jpg
-Source12:	pclinuxos201304-64.jpg
-
 Requires:	trinity-tdeaccessibility >= %{version}
 Requires:	trinity-tdeaddons >= %{version}
 Requires:	trinity-tdeadmin >= %{version}
@@ -165,7 +162,9 @@ Requires: trinity-tdeio-apt
 Requires: trinity-tdeio-locate
 Requires: trinity-tdeio-umountwrapper
 Requires: trinity-tderadio
+%if 0%{?pclinuxos} == 0
 Requires: trinity-tdesudo
+%endif
 Requires: trinity-tdmtheme
 Requires: trinity-tellico
 Requires: trinity-wlassistant
@@ -301,22 +300,6 @@ Requires(pre):	coreutils
 
 ##########
 
-%if 0%{?pclinuxos}
-%package -n trinity-wallpaper-theme-default
-Group:		User Interface/Desktops
-Summary:	Default wallpaper for Trinity
-
-%description -n trinity-wallpaper-theme-default
-%{summary}
-
-%files -n trinity-wallpaper-theme-default
-%defattr(-,root,root,-)
-%{tde_datadir}/wallpapers/pclinuxos32.jpg
-%{tde_datadir}/wallpapers/pclinuxos64.jpg
-%endif
-
-##########
-
 %prep
 
 %build
@@ -350,11 +333,6 @@ Summary:	Default wallpaper for Trinity
 %__install -D -m 644 "%{SOURCE2}" "%{?buildroot}%{_sysconfdir}/pki/rpm-gpg/RPM-GPG-KEY-trinity"
 %endif
 
-# PCLinuxOS wallpaper
-%if 0%{?pclinuxos} == 2013
-%__install -D -m 644 "%{SOURCE11}" "%{?buildroot}%{tde_datadir}/wallpapers/pclinuxos32.jpg"
-%__install -D -m 644 "%{SOURCE12}" "%{?buildroot}%{tde_datadir}/wallpapers/pclinuxos64.jpg"
-%endif
 
 %changelog
 * Sun Jul 28 2013 Francois Andriot <francois.andriot@free.fr> - 3.5.13.2-2

@@ -111,7 +111,11 @@ BuildRequires:	%{_lib}xi-devel
 # kgamma
 BuildRequires:	%{_lib}xxf86vm-devel
 # ksvg
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xmu-devel
+%else
 BuildRequires:	%{_lib}xmu%{?mgaversion:6}-devel
+%endif
 # kpovmodeler
 BuildRequires:	%{_lib}mesagl1-devel
 BuildRequires:	%{_lib}mesaglu1-devel
@@ -233,7 +237,7 @@ Requires: trinity-ksvg = %{version}-%{release}
 Requires: trinity-kview = %{version}-%{release}
 Requires: trinity-kviewshell = %{version}-%{release}
 Requires: trinity-libkscan = %{version}-%{release}
-Requires: %{name}-libpoppler-tqt = %{version}-%{release}
+Requires: trinity-libpoppler-tqt = %{version}-%{release}
 
 %description
 Graphics applications for the Trinity Desktop Environment, including
@@ -599,14 +603,17 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%package -n trinity-kiconedit
+%package -n trinity-tdeiconedit
 Summary:	An icon editor for Trinity
 Group:		Applications/Graphics
 
-%description -n trinity-kiconedit
-KIconedit allows you easily to create and edit icons.
+Obsoletes:	trinity-kiconedit < %{version}-%{release}
+Provides:	trinity-kiconedit = %{version}-%{release}
 
-%files -n trinity-kiconedit
+%description -n trinity-tdeiconedit
+TDEIconedit allows you easily to create and edit icons.
+
+%files -n trinity-tdeiconedit
 %defattr(-,root,root,-)
 %{tde_bindir}/kiconedit
 %{tde_tdeappdir}/kiconedit.desktop
@@ -614,14 +621,14 @@ KIconedit allows you easily to create and edit icons.
 %{tde_datadir}/icons/hicolor/*/apps/kiconedit.png
 %{tde_tdedocdir}/HTML/en/kiconedit/
 
-%post -n trinity-kiconedit
+%post -n trinity-tdeiconedit
 for f in hicolor ; do
   touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
   gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
 done
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
-%postun -n trinity-kiconedit
+%postun -n trinity-tdeiconedit
 for f in hicolor ; do
   touch --no-create %{tde_datadir}/icons/${f} 2> /dev/null ||:
   gtk-update-icon-cache -q %{tde_datadir}/icons/${f} 2> /dev/null ||:
@@ -1125,38 +1132,44 @@ This package contains development files for Trinity's scanner library.
 
 ##########
 
-%package libpoppler-tqt
+%package -n trinity-libpoppler-tqt
 Summary:	TQt support for Poppler
 Group:		Environment/Libraries
+Obsoletes:	poppler-tqt < %{version}-%{release}
 Provides:	poppler-tqt = %{version}-%{release}
+Obsoletes:	%{name}-libpoppler-tqt < %{version}-%{release}
+Provides:	%{name}-libpoppler-tqt = %{version}-%{release}
 
-%description libpoppler-tqt
+%description -n trinity-libpoppler-tqt
 TQt support library for Poppler.
 This library is used by the Trinity graphics file plugins for PDF support.
 
-%files libpoppler-tqt
+%files -n trinity-libpoppler-tqt
 %defattr(-,root,root,-)
 %{tde_libdir}/libpoppler-tqt.so.*
 
-%post libpoppler-tqt
+%post -n trinity-libpoppler-tqt
 /sbin/ldconfig || :
 
-%postun libpoppler-tqt
+%postun -n trinity-libpoppler-tqt
 /sbin/ldconfig || :
 
 ##########
 
-%package libpoppler-tqt-devel
+%package -n trinity-libpoppler-tqt-devel
 Summary:	Development files for TQt support for Poppler
 Group:		Development/Libraries
-Requires:	%{name}-libpoppler-tqt
+Requires:	trinity-libpoppler-tqt = %{version}-%{release}
+Obsoletes:	poppler-tqt-devel < %{version}-%{release}
 Provides:	poppler-tqt-devel = %{version}-%{release}
+Obsoletes:	%{name}-libpoppler-tqt-devel < %{version}-%{release}
+Provides:	%{name}-libpoppler-tqt-devel = %{version}-%{release}
 
-%description libpoppler-tqt-devel
+%description -n trinity-libpoppler-tqt-devel
 Development files of TQt support library for Poppler.
 This package contains the development files needed to compile applications against poppler-tqt.
 
-%files libpoppler-tqt-devel
+%files -n trinity-libpoppler-tqt-devel
 %defattr(-,root,root,-)
 %{tde_tdeincludedir}/poppler-link-qt3.h
 %{tde_tdeincludedir}/poppler-page-transition.h
@@ -1165,10 +1178,10 @@ This package contains the development files needed to compile applications again
 %{tde_libdir}/libpoppler-tqt.so
 %{tde_libdir}/pkgconfig/poppler-tqt.pc
 
-%post libpoppler-tqt-devel
+%post -n trinity-libpoppler-tqt-devel
 /sbin/ldconfig || :
 
-%postun libpoppler-tqt-devel
+%postun -n trinity-libpoppler-tqt-devel
 /sbin/ldconfig || :
 
 ##########
@@ -1182,7 +1195,7 @@ Provides:	trinity-kdegraphics-devel = %{version}-%{release}
 
 Requires: %{name} = %{version}-%{release}
 Requires: trinity-libkscan-devel = %{version}-%{release}
-Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
+Requires: trinity-libpoppler-tqt-devel = %{version}-%{release}
 
 %description devel
 %{summary}.
@@ -1262,7 +1275,8 @@ Requires: %{name}-libpoppler-tqt-devel = %{version}-%{release}
 %endif
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
