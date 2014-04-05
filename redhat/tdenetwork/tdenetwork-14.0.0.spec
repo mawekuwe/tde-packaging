@@ -292,8 +292,8 @@ development-related files for the TDE network module.
 %{tde_libdir}/libtdeinit_ksirc.la
 %{tde_libdir}/libkopete.la
 %{tde_libdir}/libkopete.so
-%{tde_libdir}/libkopete_msn_shared.la
-%{tde_libdir}/libkopete_msn_shared.so
+#%{tde_libdir}/libkopete_msn_shared.la
+#%{tde_libdir}/libkopete_msn_shared.so
 %{tde_libdir}/libkopete_oscar.la
 %{tde_libdir}/libkopete_oscar.so
 %{tde_libdir}/libkopete_videodevice.la
@@ -509,7 +509,7 @@ URL:			http://kopete.kde.org
 
 %description -n trinity-kopete
 Kopete is an instant messenger program which can communicate with a variety
-of IM systems, such as Yahoo, ICQ, MSN, IRC and Jabber.
+of IM systems, such as Yahoo, ICQ, IRC and Jabber.
 
 Support for more IM protocols can be added through a plugin system.
 
@@ -536,7 +536,7 @@ Support for more IM protocols can be added through a plugin system.
 %{tde_tdelibdir}/kopete_*.so
 %{tde_tdelibdir}/libkrichtexteditpart.la
 %{tde_tdelibdir}/libkrichtexteditpart.so
-%{tde_libdir}/libkopete_msn_shared.so.*
+#%{tde_libdir}/libkopete_msn_shared.so.*
 %{tde_libdir}/libkopete_oscar.so.*
 %{tde_libdir}/libkopete.so.*
 %{tde_libdir}/libkopete_videodevice.so.*

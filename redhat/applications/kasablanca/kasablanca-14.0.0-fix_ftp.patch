@@ -1,0 +1,13 @@
+--- trinity-kasablanca-14.0.0~pre22+07aa7379/src/ftpthread.cpp.ORI	2014-02-19 22:52:20.875005485 +0100
++++ trinity-kasablanca-14.0.0~pre22+07aa7379/src/ftpthread.cpp	2014-02-19 22:53:01.488995960 +0100
+@@ -1094,8 +1094,8 @@
+ 
+ bool FtpThread::FormatFilelist(const char *filename, TQString current, filist *dirtable, filist *filetable)
+ {
+-	int i, blocks, space, month_int = 1;
+-	unsigned int loc, fileloc, datebegin, sizebegin = 0;
++	int i, blocks, space, month_int = 1, loc;
++	unsigned int fileloc, datebegin, sizebegin = 0;
+ 	string buffer, filestring;
+ 
+ 	FILE* dirfile;

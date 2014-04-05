@@ -123,8 +123,18 @@ BuildRequires: python-devel
 
 ## ruby
 BuildRequires: ruby-devel >= 1.8, ruby
+%if "%{?ruby_libarchdir}" != ""
+%define ruby_arch %{?ruby_libarchdir}
+%else
 %{!?ruby_arch: %define ruby_arch %(ruby -rrbconfig -e 'puts Config::CONFIG["archdir"]')}
+%endif
+
+%if "%{?ruby_libdir}" != ""
+%define ruby_rubylibdir %{?ruby_libdir}
+%else
 %{!?ruby_rubylibdir: %define ruby_rubylibdir %(ruby -rrbconfig -e 'puts Config::CONFIG["rubylibdir"]')}
+%endif
+
 # Ruby 1.9 includes are located in strance directories ... (taken from ruby 1.9 spec file)
 %global	_normalized_cpu	%(echo %{_target_cpu} | sed 's/^ppc/powerpc/;s/i.86/i386/;s/sparcv./sparc/;s/armv.*/arm/')
 
@@ -980,6 +990,10 @@ Development files for the TDE bindings.
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 %patch1 -p1 -b .ftbfs
 
+%if "%{?perl_vendorarch}" == ""
+exit 1
+%endif
+
 %if 0%{?rhel} >= 4 && 0%{?rhel} <= 5
 %patch5 -p1 -b .ruby
 %endif
@@ -1017,6 +1031,11 @@ if [ -d /usr/evolution28 ]; then
   export PATH="/usr/evolution28/bin:${PATH}"
   export PKG_CONFIG_PATH="/usr/evolution28/%{_lib}/pkgconfig:${PKG_CONFIG_PATH}"
 fi
+
+# Warning: openSUSE 13.1: /usr/include/ruby-2.0.0/ruby.h
+%if 0%{?suse_version} >= 1310
+EXTRA_INCLUDES="/usr/include/ruby-%{rb20_ver}:/usr/include/ruby-%{rb20_ver}/%{_target}"
+%endif
 
 # Warning: GCC visibility causes FTBFS [Bug #1285]
 %configure \

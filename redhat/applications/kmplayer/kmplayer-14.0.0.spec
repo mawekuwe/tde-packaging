@@ -63,14 +63,14 @@ BuildRequires:	%{_lib}gstreamer-plugins-base0.10-devel
 %endif
 %if 0%{?rhel} == 4
 BuildRequires:	gstreamer-devel
-BuildRequires:	gstreamer-plugins-devel
+#BuildRequires:	gstreamer-plugins-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora}
 BuildRequires:	gstreamer-devel
 BuildRequires:	gstreamer-plugins-base-devel
 %endif
 %if 0%{?suse_version}
-BuildRequires:	gstreamer-devel
+BuildRequires:	gstreamer-0_10-devel
 BuildRequires:	gstreamer-0_10-plugins-base-devel
 %endif
 
@@ -94,6 +94,7 @@ BuildRequires: libxine-devel
 
 # X11 stuff
 %if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	libxt-devel
 BuildRequires:	libxv-devel
 %endif
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1210
@@ -200,7 +201,7 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
   --enable-rpath \
   --disable-gcc-hidden-visibility
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install

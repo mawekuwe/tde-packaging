@@ -55,7 +55,7 @@ BuildRequires:	clucene-core-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
 %if 0%{?pclinuxos}
-BuildRequires:	%{_lib}clucene2-devel
+BuildRequires:	%{_lib}clucene-devel
 %else
 BuildRequires:	%{_lib}clucene-devel
 %endif

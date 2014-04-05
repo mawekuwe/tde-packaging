@@ -472,7 +472,51 @@ BuildRequires:	xorg-x11-libxkbfile-devel
 BuildRequires:	libxkbfile-devel
 %endif
 
-# X11 stuff ...
+# XDMCP support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xdmcp-devel
+%else
+BuildRequires:	%{_lib}xdmcp%{?mgaversion:6}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXdmcp-devel
+%endif
+
+# XTST support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xtst-devel
+%else
+BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXtst-devel
+%endif
+
+# XDAMAGE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+BuildRequires:	%{_lib}xdamage-devel
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXdamage-devel
+%endif
+
+# XCOMPOSITE support
+%if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?mgaversion} >= 4
+BuildRequires:	%{_lib}xcomposite-devel
+%else
+BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
+%endif
+%endif
+%if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
+BuildRequires:	libXcomposite-devel
+%endif
+
+# Other X11 stuff ...
 %if 0%{?rhel} == 4
 BuildRequires:	xorg-x11-devel
 %endif
@@ -486,25 +530,11 @@ BuildRequires:	libfontenc-devel
 %endif
 
 %if 0%{?mgaversion} || 0%{?mdkversion}
-BuildRequires:	%{_lib}xdamage-devel
-%if 0%{?mgaversion} >= 4
-BuildRequires:	%{_lib}xcomposite-devel
-BuildRequires:	%{_lib}xdmcp-devel
-BuildRequires:	%{_lib}xtst-devel
-%else
-BuildRequires:	%{_lib}xcomposite%{?mgaversion:1}-devel
-BuildRequires:	%{_lib}xdmcp%{?mgaversion:6}-devel
-BuildRequires:	%{_lib}xtst%{?mgaversion:6}-devel
-%endif
 BuildRequires:	x11-font-util
 BuildRequires:	x11-proto-devel
 %endif
 
 %if 0%{?rhel} >= 5 || 0%{?fedora} || 0%{?suse_version} >= 1220
-BuildRequires:	libXcomposite-devel
-BuildRequires:	libXdamage-devel
-BuildRequires:	libXdmcp-devel
-BuildRequires:	libXtst-devel
 BuildRequires:	xorg-x11-proto-devel
 %endif
 
@@ -520,6 +550,9 @@ BuildRequires:	bdftopcf
 %if 0%{?mdkversion} || 0%{?mgaversion}
 BuildRequires:	drakconf
 %endif
+
+# Needed for "compton" stuff
+BuildRequires:	libconfig-devel
 
 # tdebase is a metapackage that installs all sub-packages
 Requires: %{name}-runtime-data-common = %{version}-%{release}
@@ -1213,6 +1246,7 @@ TDE applications, particularly those in the TDE base module.
 %attr(4511,root,root) %{tde_bindir}/tdmtsak
 %{tde_bindir}/tsak
 %endif
+%{tde_bindir}/compton-tde
 %{tde_bindir}/tdedebugdialog
 %{tde_bindir}/kreadconfig
 %{tde_bindir}/kwriteconfig
@@ -3416,6 +3450,7 @@ fi
   -DWITH_SENSORS=ON \
   -DWITH_HAL=OFF \
   -DWITH_TDEHWLIB=ON \
+  -DWITH_ELFICON=OFF \
   -DWITH_UPOWER=ON \
   \
   -DBUILD_ALL=ON \

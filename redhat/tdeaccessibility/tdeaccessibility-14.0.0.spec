@@ -56,7 +56,9 @@ BuildRequires: libXtst-devel
 BuildRequires:	libxcb-devel
 %endif
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?pclinuxos} == 0
 BuildRequires:	%{_lib}xcb-devel
+%endif
 %endif
 
 # X11 stuff
@@ -156,7 +158,7 @@ Summary:	A screen magnifier for TDE
 Group:		User Interface/Desktops
 
 %description -n trinity-kmag
-KDE's screen magnifier tool.
+TDE's screen magnifier tool.
 
 You can use KMagnifier to magnify a part of the screen just as you would use 
 a lens to magnify a newspaper fine-print or a photograph.  This application is
@@ -377,8 +379,8 @@ Homepage: http://accessibility.kde.org/developer/kttsd
 %{tde_datadir}/servicetypes/kttsd_audioplugin.desktop
 %{tde_datadir}/servicetypes/kttsd_filterplugin.desktop
 %{tde_datadir}/servicetypes/kttsd_synthplugin.desktop
-%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.png
-%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.svgz
+#%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.png
+#%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.svgz
 %{tde_tdedocdir}/HTML/en/kttsd/
 
 %post -n trinity-kttsd
@@ -502,6 +504,11 @@ fi
 export PATH="%{tde_bindir}:${PATH}"
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
+
+# Avoid conflict with tdelibs
+%__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/*/apps/kttsd.png
+%__rm -f %{?buildroot}%{tde_datadir}/icons/crystalsvg/scalable/apps/kttsd.svgz
+
 
 if [ -x /usr/bin/optimizegraphics ]; then
   (cd %{?buildroot} && /usr/bin/optimizegraphics)

@@ -61,7 +61,7 @@ BuildRequires:	libungif-devel
 %endif
 
 # DJVU support
-%if 0%{?fedora} || 0%{?rhel} >= 5 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
+%if 0%{?fedora} || 0%{?rhel} >= 6 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
 %define with_djvu 1
 BuildRequires:	djvulibre
 %endif

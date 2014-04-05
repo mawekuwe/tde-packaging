@@ -1,0 +1,27 @@
+--- ./bibletime/backend/clanguagemgr.cpp.ORI	2014-02-23 21:50:05.169018790 +0100
++++ ./bibletime/backend/clanguagemgr.cpp	2014-02-23 21:55:06.105229001 +0100
+@@ -95,10 +95,10 @@
+ 
+ 		for (ListCSwordModuleInfo::iterator it(mods.begin()); it != end_it; ++it) {
+ 			//   for (CSwordModuleInfo* m = mods.first(); m; m = mods.next()) {
+-			abbrev = (*it)->module()->Lang();
++			const char* mod = (*it)->module()->Lang();
+ 
+-			if (abbrev && !abbrevs.contains(abbrev)) {
+-				abbrevs.append( abbrev );
++			if (mod && !abbrevs.contains(mod)) {
++				abbrevs.append( mod );
+ 			}
+ 		};
+ 
+--- ./sword.m4.ori	2014-02-23 22:31:45.119410870 +0100
++++ ./sword.m4	2014-02-23 22:32:45.468246504 +0100
+@@ -28,7 +28,7 @@
+ dnl try to find Sword library files
+ AC_MSG_CHECKING([for Sword library files])
+ AC_REQUIRE([AC_FIND_ZLIB])
+-ac_sword_library_dirs="$ac_sword_dir/lib $exec_prefix/lib $prefix/lib /usr/lib /usr/lib64 /usr/lib/sword /usr/local/lib /usr/local/lib/sword /usr/local/sword/lib"
++ac_sword_library_dirs="$ac_sword_dir/lib64 $ac_sword_dir/lib $exec_prefix/lib $prefix/lib64 $prefix/lib /usr/lib /usr/lib64 /usr/lib/sword /usr/local/lib /usr/local/lib/sword /usr/local/sword/lib"
+ 
+ if test "x$ac_static_sword" = "xYES"; then
+ 	SEARCH_LIBS="libsword.a";

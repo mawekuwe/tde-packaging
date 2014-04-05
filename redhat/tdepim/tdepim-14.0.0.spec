@@ -712,6 +712,8 @@ Requires:	libcaldav
 Requires:	libcarddav
 
 Obsoletes:	tdepim-tderesources-devel < %{version}-%{release}
+Obsoletes:	trinity-tdepim-kresources-devel < %{version}-%{release}
+Provides:	trinity-tdepim-kresources-devel = %{version}-%{release}
 
 %description tderesources-devel
 %{summary}
@@ -2209,6 +2211,11 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig"
+
+# Specific path for RHEL4
+if [ -d "/usr/X11R6" ]; then
+  export RPM_OPT_FLAGS="${RPM_OPT_FLAGS} -I/usr/X11R6/include -L/usr/X11R6/%{_lib}"
+fi
 
 if ! rpm -E %%cmake|grep -q "cd build"; then
   %__mkdir_p build
