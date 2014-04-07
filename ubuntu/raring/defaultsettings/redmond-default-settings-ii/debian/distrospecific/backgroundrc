@@ -18,4 +18,4 @@ WallpaperList=
 WallpaperMode=NoWallpaper
 
 [X-*-Greeter]
-Compositor=kompmgr
+Compositor=compton-tde
