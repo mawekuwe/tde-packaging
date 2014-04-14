@@ -1,7 +1,7 @@
 Source: tdebindings-trinity
 Build-Depends: cdbs (>= 0.4.43), debhelper (>= 5),
  python-dev (>= 2.3.5-11), python-support (>= 0.5) | python-dev (>= 2.6.6-3~), quilt, gawk,
- gettext, default-jdk [amd64 i386 ia64 lpia powerpc s390 sparc],
+ gettext, default-jdk [amd64 i386 armel armhf mips mipsel ia64 powerpc s390 sparc],
  tdelibs14-trinity-dev, libtqt3-compat-headers (>= 3:3.3.5),
  ruby, ruby-dev, flex, bison,
  automake, autoconf, libtool, libltdl-dev
@@ -38,7 +38,7 @@ Description: DCOP bindings for Java [Trinity]
  This package is part of the official TDE bindings module.
 
 Package: libdcop3-jni-trinity
-Architecture: amd64 i386 ia64 powerpc s390 sparc
+Architecture: amd64 i386 armel armhf mips mipsel ia64 powerpc s390 sparc
 Section: libs
 Replaces: libdcop3-jni-kde3 (<< 4:14.0.0~), libdcop3-jni-trinity (<< 4:14.0.0~)
 Breaks: libdcop3-jni-kde3 (<< 4:14.0.0~), libdcop3-jni-trinity (<< 4:14.0.0~)
@@ -52,7 +52,7 @@ Description: DCOP bindings for Java ( Native libraries ) [Trinity]
  This package is part of the official TDE bindings module.
 
 Package: libdcop3-java-trinity-dev
-Architecture: amd64 i386 ia64 powerpc s390 sparc
+Architecture: amd64 i386 armel armhf mips mipsel ia64 powerpc s390 sparc
 Section: libdevel
 Replaces: libdcop3-java-kde3-dev (<< 4:14.0.0~), libdcop3-java-trinity-dev (<< 4:14.0.0~)
 Breaks: libdcop3-java-kde3-dev (<< 4:14.0.0~), libdcop3-java-trinity-dev (<< 4:14.0.0~)
@@ -83,7 +83,7 @@ Description: Java bindings for Qt [Trinity]
  This package is part of the official TDE bindings module.
 
 Package: libqt3-jni-trinity
-Architecture: amd64 i386 ia64 powerpc s390 sparc
+Architecture: amd64 i386 armel armhf mips mipsel ia64 powerpc s390 sparc
 Section: libs
 Replaces: libqt3-jni-kde3 (<< 4:14.0.0~), libqt3-jni-trinity (<< 4:14.0.0~)
 Breaks: libqt3-jni-kde3 (<< 4:14.0.0~), libqt3-jni-trinity (<< 4:14.0.0~)
@@ -112,7 +112,7 @@ Description: tdelibs bindings for Java [Trinity]
  This package is part of the official TDE bindings module.
 
 Package: libtrinity-jni-trinity
-Architecture: amd64 i386 ia64 powerpc s390 sparc
+Architecture: amd64 i386 armel armhf mips mipsel ia64 powerpc s390 sparc
 Section: libs
 Replaces: libtrinity-jni-kde3 (<< 4:14.0.0~), libtrinity-jni-trinity (<< 4:14.0.0~)
 Breaks: libtrinity-jni-kde3 (<< 4:14.0.0~), libtrinity-jni-trinity (<< 4:14.0.0~)
