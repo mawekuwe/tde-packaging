@@ -99,6 +99,7 @@ CONFIGURE_OPTS = \
 		-I/usr/include/mysql		\
 		-I/usr/include/freetype2	\
 		-I`pg_config --includedir`	\
+		-I`pg_config --includedir-server`	\
 		-L/usr/lib/$(DEB_HOST_MULTIARCH)\
 						\
 		-lfontconfig			\
