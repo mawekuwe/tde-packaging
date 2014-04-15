@@ -167,3 +167,4 @@ recode
 NetworkManager-devel
 update-desktop-files
 pcsc-lite-devel
+libconfig-devel

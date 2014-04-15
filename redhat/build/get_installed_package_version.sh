@@ -7,7 +7,7 @@ PKGNAME="${1##*/}"
 
 # Language package: install only French language package
 case ${PKGNAME} in
-  "k3b-i18n"|"koffice-i18n"|"tde-i18n") PKGNAME="${PKGNAME}-French";;
+  "k3b-i18n"|"koffice-i18n"|"tde-i18n") PKGNAME="trinity-${PKGNAME}-French";;
   "koffice") PKGNAME="${PKGNAME}-suite";;
   "trinity-"*) PKGNAME="${PKGNAME#trinity-}";;
   "qt3") [ -r /etc/mandriva-release ] && PKGNAME="qt3-common";;
