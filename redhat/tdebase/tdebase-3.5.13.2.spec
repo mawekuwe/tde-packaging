@@ -3539,7 +3539,11 @@ NAME=TDM
 DESCRIPTION=TDM (Trinity Display Manager)
 PACKAGE=trinity-tdm
 EXEC=%{tde_bindir}/kdm
+%if 0%{?pclinuxos}
 FNDSESSION_EXEC="/usr/sbin/chksession -k"
+%else
+FNDSESSION_EXEC="/usr/sbin/chksession --generate=/usr/share/xsessions"
+%endif
 EOF
 %endif
 

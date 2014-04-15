@@ -162,14 +162,15 @@ Requires: trinity-tdeio-apt
 Requires: trinity-tdeio-locate
 Requires: trinity-tdeio-umountwrapper
 Requires: trinity-tderadio
-%if 0%{?pclinuxos} == 0
-Requires: trinity-tdesudo
-%endif
 Requires: trinity-tdmtheme
 Requires: trinity-tellico
 Requires: trinity-wlassistant
 Requires: trinity-yakuake
 
+# PCLinuxOS does not have sudo ...
+%if 0%{?pclinuxos} == 0
+Requires: trinity-tdesudo
+%endif
 
 # Disabled applications for RHEL5
 %if 0%{?rhel} >= 6 || 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?suse_version}
@@ -185,7 +186,7 @@ Requires: trinity-kpilot
 
 # This one causes several crashes . Obsolete.
 #Requires: trinity-kgtk-qt3
-Obsoletes: trinity-kgtk-qt3
+#Obsoletes: trinity-kgtk-qt3
 
 # OBSOLETE: beagle does not exist anymore. Kerry is now useless.
 # RHEL, openSUSE 12: no Beagle library
