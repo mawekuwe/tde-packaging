@@ -6,10 +6,10 @@ debian/tmp/opt/trinity/bin/qtrubyinit
 debian/tmp/opt/trinity/lib/ruby/*/Qt/qtruby.rb
 debian/tmp/opt/trinity/lib/ruby/*/Qt.rb
 
-debian/tmp/opt/trinity/lib/ruby/*/*/qtruby.so*
-debian/tmp/opt/trinity/lib/ruby/*/*/qtruby.la
+debian/tmp/opt/trinity/lib/*/*/*/qtruby.so*
+debian/tmp/opt/trinity/lib/*/*/*/qtruby.la
 
-debian/tmp/opt/trinity/lib/ruby/*/*/tqui.so*
-debian/tmp/opt/trinity/lib/ruby/*/*/tqui.la
+debian/tmp/opt/trinity/lib/*/*/*/tqui.so*
+debian/tmp/opt/trinity/lib/*/*/*/tqui.la
 
 qtruby/ChangeLog /opt/trinity/share/doc/libqt0-ruby

@@ -6,7 +6,7 @@ debian/tmp/opt/trinity/bin/rbtdeconfig_compiler
 debian/tmp/opt/trinity/lib/ruby/*/Korundum.rb
 debian/tmp/opt/trinity/lib/ruby/*/TDE/korundum.rb
 
-debian/tmp/opt/trinity/lib/ruby/*/*/korundum.so*
-debian/tmp/opt/trinity/lib/ruby/*/*/korundum.la
+debian/tmp/opt/trinity/lib/*/*/*/korundum.so*
+debian/tmp/opt/trinity/lib/*/*/*/korundum.la
 
 korundum/ChangeLog /opt/trinity/share/doc/libkorundum0-ruby
