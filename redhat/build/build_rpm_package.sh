@@ -29,6 +29,7 @@ fi
 [ -d "${BUILDDIR}" ] || mkdir -p "${BUILDDIR}"
 
 RPMDIR="$(rpm -E %{_rpmdir}.tde-${TDE_VERSION})"
+SRPMDIR="$(rpm -E %{_srcrpmdir}.tde-${TDE_VERSION})"
 
 rpmbuild -ba \
   --define "_specdir ${TEMPDIR}" \
@@ -36,6 +37,7 @@ rpmbuild -ba \
   --define "_builddir ${BUILDDIR}" \
   --define "_buildrootdir ${BUILDROOTDIR}" \
   --define "_rpmdir ${RPMDIR}" \
+  --define "_srcrpmdir ${SRPMDIR}" \
   --define "tde_version ${TDE_VERSION}" \
   --define "tde_prefix /opt/trinity" \
   --define "preversion ${PREVERSION}" \

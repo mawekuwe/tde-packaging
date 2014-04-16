@@ -1,12 +1,12 @@
 SHELL := /bin/bash
-PATH := $(PATH)/build:$(shell pwd)
+PATH := $(PATH):$(shell pwd)/build
 TDE_VERSION = 14.0.0
 
 buildpkg = \
   @echo "Now processing '$(1)' ."; \
-  if ! is_latest_package_installed.sh "$(1)" ${TDE_VERSION}; then \
+  if [ "${REBUILD}" = "$(1)" ] || ! is_latest_package_installed.sh "$(1)" ${TDE_VERSION}; then \
     echo "  Package '${1}' is not yet installed."; \
-    if ! is_latest_package_built.sh "$(1)" ${TDE_VERSION}; then \
+    if [ "${REBUILD}" = "$(1)" ] || ! is_latest_package_built.sh "$(1)" ${TDE_VERSION}; then \
       echo "  Building package."; \
       build_rpm_package.sh "$(1)" ${TDE_VERSION} || exit 1; \
       echo "  Updating repository."; \

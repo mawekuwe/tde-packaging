@@ -9,14 +9,20 @@ while [ -e "${LOCKFILE}" ]; do
   sleep 3
 done
 
+ARCH="$(rpm -E %{_target_cpu})"
+RPMDIR=$(rpm -E %{_rpmdir}.tde-${TDE_VERSION})
+
+[ -d "${RPMDIR}/noarch" ] || mkdir -p "${RPMDIR}/noarch"
+[ -d "${RPMDIR}/${ARCH}" ] || mkdir -p "${RPMDIR}/${ARCH}"
+
 if [ -x /usr/sbin/urpmi ]; then
-  REPOUPDATE='(cd $(rpm -E %{_rpmdir}.tde-${TDE_VERSION}); genhdlist2 --clean --allow-empty noarch; genhdlist2 --clean --allow-empty $(uname -i); sudo urpmi.update rpmbuild.$(uname -i) rpmbuild.noarch)'
+  REPOUPDATE='(cd ${RPMDIR}; genhdlist2 --clean --allow-empty noarch & genhdlist2 --clean --allow-empty ${ARCH} & wait; sudo urpmi.update rpmbuild.${ARCH} rpmbuild.noarch)'
 elif [ -x /usr/bin/zypper ]; then
-  REPOUPDATE='(cd $(rpm -E %{_rpmdir}.tde-${TDE_VERSION}); createrepo --workers=${WORKERS} $(uname -i); createrepo --workers=${WORKERS} noarch; sudo zypper refresh rpmbuild.$(uname -i) rpmbuild.noarch)'
+  REPOUPDATE='(cd ${RPMDIR}; createrepo --workers=${WORKERS} ${ARCH} & createrepo --workers=${WORKERS} noarch & wait; sudo zypper refresh rpmbuild.${ARCH} rpmbuild.noarch)'
 elif [ -x /usr/bin/yum ]; then
-  REPOUPDATE='(cd $(rpm -E %{_rpmdir}.tde-${TDE_VERSION}); createrepo $(uname -i); createrepo noarch; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
+  REPOUPDATE='(cd ${RPMDIR}; createrepo ${ARCH} & createrepo noarch & wait; sudo yum clean all --disablerepo="*" --enablerepo="rpmbuild*")'
 elif [ -x /usr/bin/apt-get ]; then
-  REPOUPDATE='(cd $(rpm -E %{_rpmdir}.tde-${TDE_VERSION}); genpkglist $PWD noarch; genpkglist $PWD i586; genpkglist $PWD x86_64; genbasedir $PWD i586 x86_64 noarch; sudo apt-get update)'
+  REPOUPDATE='(cd ${RPMDIR}; genpkglist $PWD noarch & genpkglist $PWD ${ARCH} & wait; genbasedir $PWD ${ARCH} noarch; sudo apt-get update)'
 fi
 
-eval "${REPOUPDATE}; rm -f ${LOCKFILE}"|| exit 1
+eval "${REPOUPDATE}; rm -f ${LOCKFILE}" || exit 1

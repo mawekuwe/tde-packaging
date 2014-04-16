@@ -31,7 +31,7 @@ echo "${PREFIX}${PKGNAME}"
 
 if [ -n "${DEVEL}" ]; then
   # Check if development package is required.
-  # Applications do NOT have development packages
+  # Applications do NOT have development packages, except K3B
   case "${PKGCATEGORY}" in
     "applications") if [ "${PKGNAME}" != "k3b" ]; then exit 0; fi;;
   esac

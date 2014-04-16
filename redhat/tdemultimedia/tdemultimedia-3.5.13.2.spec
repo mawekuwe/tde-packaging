@@ -134,15 +134,17 @@ BuildRequires:	libXt-devel
 # XINE support
 %if 0%{?fedora} || 0%{?rhel} >= 4 || 0%{?suse_version} || 0%{?mgaversion} || 0%{?mdkversion}
 %define with_xine 1
-%if 0%{?pclinuxos} == 0
 %if 0%{?mgaversion} || 0%{?mdkversion}
+%if 0%{?pclinuxos}
+BuildRequires: %{_lib}xine-devel
+%else
 BuildRequires: %{_lib}xine1.2-devel
 %endif
 %endif
 %if 0%{?fedora} || 0%{?rhel}
 BuildRequires: xine-lib-devel
 %endif
-%if 0%{?suse_version} || 0%{?pclinuxos}
+%if 0%{?suse_version}
 BuildRequires: libxine-devel
 %endif
 %endif
@@ -172,7 +174,7 @@ Requires: trinity-kaudiocreator = %{version}-%{release}
 Requires: %{name}-kfile-plugins = %{version}-%{release}
 Requires: %{name}-kappfinder-data = %{version}-%{release}
 Requires: %{name}-tdeio-plugins = %{version}-%{release}
-Requires: trinity-kmid = %{version}-%{release}
+Requires: trinity-tdemid = %{version}-%{release}
 Requires: trinity-kmix = %{version}-%{release}
 Requires: trinity-krec = %{version}-%{release}
 Requires: trinity-kscd = %{version}-%{release}
@@ -191,7 +193,7 @@ System. The %{name} package contains multimedia applications for
 TDE, including:
   artsbuilder, Synthesizer designer for aRts
   juk, a media player
-  kmid, a midi player
+  tdemid, a midi player
   kmix, an audio mixer
   arts, additional functionality for the aRts sound system
   krec, a recording tool
@@ -622,14 +624,17 @@ update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
 ##########
 
-%package -n trinity-kmid
+%package -n trinity-tdemid
 Summary:	MIDI/karaoke player for Trinity
 Group:		Applications/Multimedia
 
-%description -n trinity-kmid
+Obsoletes:	trinity-kmid < %{version}-%{release}
+Provides:	trinity-kmid = %{version}-%{release}
+
+%description -n trinity-tdemid
 This package provides a MIDI and karaoke player for TDE.
 
-%files -n trinity-kmid
+%files -n trinity-tdemid
 %defattr(-,root,root,-)
 %{tde_bindir}/kmid
 %{tde_tdelibdir}/libkmidpart.la
@@ -642,7 +647,7 @@ This package provides a MIDI and karaoke player for TDE.
 %{tde_datadir}/servicetypes/audiomidi.desktop
 %{tde_tdedocdir}/HTML/en/kmid/
 
-%post -n trinity-kmid
+%post -n trinity-tdemid
 /sbin/ldconfig
 for f in hicolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
@@ -650,7 +655,7 @@ for f in hicolor ; do
 done
 update-desktop-database %{tde_datadir}/applications > /dev/null 2>&1 || :
 
-%postun -n trinity-kmid
+%postun -n trinity-tdemid
 /sbin/ldconfig
 for f in hicolor ; do
   touch --no-create %{tde_datadir}/icons/$f 2> /dev/null ||:
@@ -1142,6 +1147,12 @@ noatun plugins.
 
 ##########
 
+# FIXME 2014/03/15: FTBFS on PCLINUXOS  ... Need to remove -fstack-protector
+# UPDATE 2014/04/07: FBTFS on Mageia 4 too !
+%if 0%{?pclinuxos} || 0%{?mgaversion} >= 4
+%define _ssp_cflags -fno-stack-protector --param=ssp-buffer-size=4%{?_serverbuild_flags: %_serverbuild_flags}
+%endif
+
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
@@ -1154,7 +1165,8 @@ noatun plugins.
 
 
 %build
-unset QTDIR || : ; . /etc/profile.d/qt3.sh
+unset QTDIR QTINC QTLIB
+. /etc/profile.d/qt3.sh
 export PATH="%{tde_bindir}:${PATH}"
 export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 
@@ -1195,7 +1207,7 @@ fi
   %{?_with_taglib} %{!?_with_taglib:--without-taglib} \
   %{?with_xine:--with-xine} %{!?with_xine:--without-xine}
 
-%__make %{?_smp_mflags}
+%__make %{?_smp_mflags} || %__make
 
 
 %install
