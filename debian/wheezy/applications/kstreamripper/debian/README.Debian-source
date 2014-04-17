@@ -1,8 +1,0 @@
-Changes done to the upstream source:
-====================================
-
-Removed:
- ./doc/en/CVS
-
-Also Removed:
- - All python byte compiled files (*.pyc)

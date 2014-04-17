@@ -1,3 +1,0 @@
-version=3
-http://www.riverbankcomputing.co.uk/software/sip/download \
-      /static/Downloads/sip4/sip-([\d\.]*)\.tar\.gz debian uupdate

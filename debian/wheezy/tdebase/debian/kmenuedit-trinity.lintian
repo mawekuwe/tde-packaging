@@ -1,4 +1,0 @@
-kmenuedit-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kcontroledit.so
-kmenuedit-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kmenuedit.so
-kmenuedit-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kcontroledit.so
-kmenuedit-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kcontroledit.so

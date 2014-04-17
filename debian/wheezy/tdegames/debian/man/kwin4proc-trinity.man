@@ -1,8 +1,0 @@
-.TH KWIN4PROC 6
-.SH NAME
-twin4proc \- AI backend for twin4
-.SH DESCRIPTION
-This program is used internally by twin4. Users should not run it
-directly.
-.SH SEE ALSO
-.BR twin4 (6).

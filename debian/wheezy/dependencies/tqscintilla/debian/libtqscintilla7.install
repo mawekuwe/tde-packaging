@@ -1,3 +1,0 @@
-usr/lib/*.so.*
-usr/lib/tqt3/plugins/designer/*.so
-usr/share/tqt3/translations/*.qm

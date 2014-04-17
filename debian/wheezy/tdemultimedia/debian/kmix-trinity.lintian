@@ -1,4 +1,0 @@
-kmix-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kmixctrl.so
-kmix-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kmix.so
-kmix-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kmixctrl.so
-kmix-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kmixctrl.so
