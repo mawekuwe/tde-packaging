@@ -1,9 +1,0 @@
-Index: b/konsole/konsolesu.desktop
-===================================================================
---- a/konsole/konsolesu.desktop
-+++ b/konsole/konsolesu.desktop
-@@ -82,3 +82,4 @@
- GenericName[zh_TW]=終端機程式 - 超級使用者模式
- X-TDE-AuthorizeAction=shell_access
- Categories=Qt;TDE;X-TDE-System-su;
-+NoDisplay=true

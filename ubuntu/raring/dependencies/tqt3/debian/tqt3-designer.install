@@ -1,8 +1,0 @@
-usr/bin/tqdesigner
-usr/bin/tqtcreatecw
-usr/bin/tqtconv2ui
-usr/share/tqt3/templates/*
-usr/share/tqt3/doc/html/designer*html
-usr/share/tqt3/doc/html/designer*dcf
-usr/share/tqt3/doc/html/designer*jpg
-usr/lib/tqt3/plugins/designer/*

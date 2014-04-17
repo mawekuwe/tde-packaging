@@ -1,9 +1,0 @@
-Index: b/kicker/kicker/kcmkicker.desktop
-===================================================================
---- a/kicker/kicker/kcmkicker.desktop
-+++ b/kicker/kicker/kcmkicker.desktop
-@@ -79,3 +79,4 @@
- DocPath=kicker/configuring.html
- OnlyShowIn=TDE;
- Categories=Qt;TDE;Settings;
-+NoDisplay=true

@@ -1,9 +1,0 @@
-Index: b/kcontrol/tdefontinst/viewpart/tdefontview.desktop
-===================================================================
---- a/kcontrol/tdefontinst/viewpart/tdefontview.desktop
-+++ b/kcontrol/tdefontinst/viewpart/tdefontview.desktop
-@@ -99,3 +99,4 @@
- InitialPreference=1
- Categories=Qt;TDE;Graphics;
- DocPath=tdefontview/index.html
-+NoDisplay=true

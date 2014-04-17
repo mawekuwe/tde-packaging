@@ -1,9 +1,0 @@
-Index: b/konqueror/konquerorsu.desktop
-===================================================================
---- a/konqueror/konquerorsu.desktop
-+++ b/konqueror/konquerorsu.desktop
-@@ -88,3 +88,4 @@
- 
- Categories=Qt;TDE;X-TDE-System-su;
- OnlyShowIn=TDE;
-+NoDisplay=true

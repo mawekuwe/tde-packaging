@@ -1,2 +1,0 @@
-ksmserver-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_ksmserver.so
-ksmserver-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_ksmserver.so

@@ -1,4 +1,0 @@
-kplato-trinity: no-shlibs-control-file opt/trinity/lib/libtdeinit_kplato.so
-kplato-trinity: postinst-must-call-ldconfig opt/trinity/lib/libtdeinit_kplato.so
-kplato-trinity: postrm-should-call-ldconfig opt/trinity/lib/libtdeinit_kplato.so
-kplato-trinity: package-name-doesnt-match-sonames libtdeinit-kplato

@@ -1,3 +1,0 @@
-version=3
-
-http://ktorrent.org/downloads/(^2\.[\d\.]+)/ktorrent-(.*)\.tar\.bz2

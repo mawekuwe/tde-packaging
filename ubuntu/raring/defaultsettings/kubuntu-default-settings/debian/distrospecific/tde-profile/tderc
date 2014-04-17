@@ -1,5 +1,0 @@
-[Directories]
-userProfileMapFile=/etc/kde-user-profile
-
-[Directories-default]
-prefixes=/usr/share/kubuntu-default-settings-trinity/tde-profile/default/

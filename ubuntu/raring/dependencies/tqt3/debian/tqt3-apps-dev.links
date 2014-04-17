@@ -1,8 +1,0 @@
-/usr/lib/libtqteditor.prl /usr/share/tqt3/lib/libtqteditor.prl
-/usr/lib/libtqteditor.a /usr/share/tqt3/lib/libtqteditor.a
-/usr/lib/libtqtdesignercore.prl /usr/share/tqt3/lib/libtqtdesignercore.prl
-/usr/lib/libtqtdesignercore.a /usr/share/tqt3/lib/libtqtdesignercore.a
-/usr/lib/libtqassistantclient.prl /usr/share/tqt3/lib/libtqassistantclient.prl
-/usr/lib/libtqassistantclient.a /usr/share/tqt3/lib/libtqassistantclient.a
-/usr/include/tqt3 /usr/share/tqt3/tools/designer/editor
-/usr/include/tqt3 /usr/share/tqt3/tools/designer/interfaces

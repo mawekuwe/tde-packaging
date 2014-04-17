@@ -1,3 +1,0 @@
-gwenview-trinity binary: non-dev-pkg-with-shlib-symlink opt/trinity/lib/libgwenviewcore.so.1.0.0 opt/trinity/lib/libgwenviewcore.so
-gwenview-trinity binary: shlib-missing-in-control-file libtdeinit_gwenview.so for opt/trinity/lib/libtdeinit_gwenview.so
-gwenview-trinity binary: package-name-doesnt-match-sonames libgwenviewcore1 libtdeinit-gwenview

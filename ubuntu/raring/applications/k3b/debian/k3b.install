@@ -1,5 +1,0 @@
-debian/tmp/usr/bin/*
-debian/tmp/usr/share/applications/*
-debian/k3b.xpm usr/share/pixmaps/
-debian/tmp/usr/lib/trinity/tdefile_k3b.so
-debian/tmp/usr/lib/trinity/tdefile_k3b.la
