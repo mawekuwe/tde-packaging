@@ -1,7 +1,0 @@
-?package(qt3-designer):\
-        needs="x11"\
-        section="Applications/Programming"\
-        hints="TDE"\
-        title="Qt3 Designer"\
-        command="/usr/bin/designer-qt3"
-

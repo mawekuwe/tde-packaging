@@ -1,9 +1,0 @@
-kaffeine can't depend on libxine1-ffmpeg
-kaffeine does depend on kaffeine-xine, remove conflicts/replaces
-add kaffeine-gstreamer.install and description
-build-dep on libgstreamer0.10-dev, libgstreamer-plugins-base0.10-dev
-remove --without-gstreamer
-remove DEB_DESTDIR line
-install/kaffeine:: Debian additions
-install-codecs 755
-DEB_FIXPERMS_EXCLUDE := install-css.sh install-codecs

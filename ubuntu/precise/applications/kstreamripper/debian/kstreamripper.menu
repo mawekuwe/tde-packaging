@@ -1,2 +1,0 @@
-?package(kstreamripper): needs="X11" section="Apps/Sound" title="Kstreamripper" \
-  longtitle="Streamripper Frontend" command="/opt/trinity/bin/kstreamripper" 

@@ -1,3 +1,0 @@
-?package(katapult):needs="X11" section="Apps/Tools"\
-  title="Katapult" command="katapult"
-

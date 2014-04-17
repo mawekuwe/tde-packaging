@@ -1,9 +1,0 @@
-export kde_prefix=/usr
-export sysconfdir=/etc
-export kde_includedir=/usr/include/tde
-export infodir=/usr/share/info
-export mandir=/usr/share/man
-export qtdir=/usr/share/qt3
-export kde_cgidir=/usr/lib/cgi-bin
-export kde_confdir=/etc/trinity
-export kde_htmldir=/usr/share/doc/tde/HTML

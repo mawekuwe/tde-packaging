@@ -1,7 +1,0 @@
-?package(knutclient):\
-	needs="X11"\
-	section="Applications/System/Monitoring"\
-	hints="TDE"\
-	title="KNutClient"\
-	command="/opt/trinity/bin/knutclient"
-

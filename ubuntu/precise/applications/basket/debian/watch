@@ -1,2 +1,0 @@
-version=2
-http://basket.kde.org/download.php (?:.*/)?downloads/\?file=basket-?_?([\w+\d+\.]+|\d+)(\.tar|\.tgz)(\.gz|\.bz2|) debian uupdate

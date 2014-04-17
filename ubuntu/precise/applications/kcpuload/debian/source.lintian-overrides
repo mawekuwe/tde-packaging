@@ -1,3 +1,0 @@
-# These are shipped with the upstream tarball.
-kcpuload source: cvsignore-file-in-source
-kcpuload source: source-contains-CVS-dir

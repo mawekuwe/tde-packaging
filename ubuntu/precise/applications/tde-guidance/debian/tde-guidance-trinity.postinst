@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# Remove shutdown and reboot links; this init script does not need them.
-rm -f /etc/rc0.d/K20tde-guidance /etc/rc6.d/K20tde-guidance
-
-#remove script from older times
-update-rc.d -f displayconfig-hwprobe.py remove
-
-#DEBHELPER#

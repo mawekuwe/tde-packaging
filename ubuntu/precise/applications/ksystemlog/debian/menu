@@ -1,4 +1,0 @@
-?package(ksystemlog):needs="X11"\
-  section="Apps/Tools"\
-  title="KSystemLog"\
-  command="ksystemlog"

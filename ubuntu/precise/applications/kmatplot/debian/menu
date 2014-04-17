@@ -1,2 +1,0 @@
-?package(kmatplot):needs="X11" section="Apps/Math"\
-  title="kmatplot" command="/opt/trinity/bin/kmatplot"
