@@ -88,7 +88,7 @@ Section: tde
 Architecture: any
 Replaces: kcontrol-trinity (<< 4:14.0.0~)
 Breaks: kcontrol-trinity (<< 4:14.0.0~)
-Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}~), tdebase-data-trinity (<< ${KDE-Next-Version3}~), usbutils
+Depends: ${shlibs:Depends}, tdebase-data-trinity (>> ${KDE-Version3}~), tdebase-data-trinity (<< ${KDE-Next-Version3}~), tdebase-runtime-data-common-trinity, usbutils
 Recommends: udev
 Suggests: khelpcenter-trinity, ntpdate | ntp-simple
 Conflicts: tdebase-libs-trinity (<< 4:3.0.0)
