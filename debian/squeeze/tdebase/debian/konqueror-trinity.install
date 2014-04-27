@@ -191,6 +191,9 @@ debian/tmp/opt/trinity/share/doc/tde/HTML/en/konqueror/save-settings.docbook
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konqueror/shortcut1.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konqueror/shortcut2.png
 debian/tmp/opt/trinity/share/doc/tde/HTML/en/konqueror/sidebar.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/keditbookmarks/bookmarks.docbook
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/keditbookmarks/index.cache.bz2
+debian/tmp/opt/trinity/share/doc/tde/HTML/en/keditbookmarks/index.docbook
 debian/tmp/opt/trinity/share/icons/crystalsvg/16x16/apps/keditbookmarks.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/32x32/apps/keditbookmarks.png
 debian/tmp/opt/trinity/share/icons/crystalsvg/48x48/apps/keditbookmarks.png
