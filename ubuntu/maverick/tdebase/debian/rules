@@ -56,14 +56,13 @@ DEB_CMAKE_EXTRA_FLAGS := \
  -DWITH_TDEHWLIB="ON" \
  -DWITH_XDMCP="ON" \
  -DWITH_XRENDER="ON" \
- -DWITH_XDAMAGE="ON" \
- -DWITH_XEXT="ON" \
  -DWITH_XTEST="ON" \
  -DWITH_OPENGL="ON" \
  -DWITH_XSCREENSAVER="ON" \
  -DWITH_UPOWER="ON" \
  -DWITH_LIBART="ON" \
- -DWITH_LIBCONFIG="ON"
+ -DWITH_LIBCONFIG="ON" \
+ -DWITH_PCRE="ON"
 
 # Honour "parallel=N" option of DEB_BUILD_OPTIONS.  Comment out to
 # never build in parallel, regardless of DEB_BUILD_OPTIONS.
