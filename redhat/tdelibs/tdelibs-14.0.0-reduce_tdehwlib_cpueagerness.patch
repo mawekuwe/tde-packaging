@@ -1,0 +1,934 @@
+--- tdelibs/tdecore/tdehw/tdehardwaredevices.h.ORI	2014-03-09 14:50:49.667308933 +0100
++++ tdelibs/tdecore/tdehw/tdehardwaredevices.h	2014-03-09 19:35:43.366162065 +0100
+@@ -23,6 +23,7 @@
+ #include <tqobject.h>
+ #include <tqptrlist.h>
+ #include <tqmap.h>
++#include <tqdict.h>
+ #include <tqstring.h>
+ #include <tqstringlist.h>
+ 
+@@ -75,6 +76,7 @@
+ 
+ typedef TQPtrList<TDEGenericDevice> TDEGenericHardwareList;
+ typedef TQMap<TQString, TQString> TDEDeviceIDMap;
++typedef TQDict<TDECPUDevice> TDECPUDeviceCache;
+ 
+ class TDECORE_EXPORT TDEHardwareDevices : public TQObject
+ {
+@@ -141,6 +143,12 @@
+ 		TDEStorageDevice* findDiskByUID(TQString uid);
+ 
+ 		/**
++		*  Return the CPU device with system path @arg syspath, or 0 if no device exists for that path
++		*  @return TDEGenericDevice
++		*/
++		TDECPUDevice* findCPUBySystemPath(TQString syspath, bool inCache);
++			
++		/**
+ 		*  Look up the device in the system PCI database
+ 		*  @param vendorid a TQString containing the vendor ID in hexadecimal
+ 		*  @param modelid a TQString containing the model ID in hexadecimal
+@@ -222,6 +230,15 @@
+ 		void setTriggerlessHardwareUpdatesEnabled(bool enable);
+ 
+ 		/**
++		*  Enable or disable automatic state updates of battery hardware devices.
++		*  When enabled, your application will use
++		*  additional CPU resources to continually poll triggerless hardware devices.
++		*  Automatic updates are disabled by default.
++		*  @param enable a bool specifiying whether or not automatic updates should be enabled
++		*/
++		void setBatteryUpdatesEnabled(bool enable);
++		
++		/**
+ 		*  Convert a byte count to human readable form
+ 		*  @param bytes a double containing the number of bytes
+ 		*  @return a TQString containing the human readable byte count
+@@ -246,6 +263,7 @@
+ 		void processHotPluggedHardware();
+ 		void processModifiedMounts();
+ 		void processModifiedCPUs();
++		void processBatteryDevices();
+ 		void processStatelessDevices();
+ 		void processEventDeviceKeyPressed(unsigned int keycode, TDEEventDevice* edevice);
+ 
+@@ -280,6 +298,7 @@
+ 		int m_procMountsFd;
+ 		KSimpleDirWatch* m_cpuWatch;
+ 		TQTimer* m_cpuWatchTimer;
++		TQTimer* m_batteryWatchTimer;
+ 		TQTimer* m_deviceWatchTimer;
+ 
+ 		TQSocketNotifier* m_devScanNotifier;
+@@ -292,6 +311,8 @@
+ 		TDEDeviceIDMap* usb_id_map;
+ 		TDEDeviceIDMap* pnp_id_map;
+ 		TDEDeviceIDMap* dpy_id_map;
++		
++		TDECPUDeviceCache m_cpuByPathCache;
+ 
+ 	friend class TDEGenericDevice;
+ 	friend class TDEStorageDevice;
+--- tdelibs/tdecore/tdehw/tdehardwaredevices.cpp.ORI	2014-03-09 10:18:31.643019852 +0100
++++ tdelibs/tdecore/tdehw/tdehardwaredevices.cpp	2014-03-09 19:37:30.389672774 +0100
+@@ -70,6 +70,24 @@
+ // Compile-time configuration
+ #include "config.h"
+ 
++// Profiling stuff
++//#define CPUPROFILING
++//#define STATELESSPROFILING
++
++#include <time.h>
++timespec diff(timespec start, timespec end)
++{
++	timespec temp;
++	if ((end.tv_nsec-start.tv_nsec)<0) {
++		temp.tv_sec = end.tv_sec-start.tv_sec-1;
++		temp.tv_nsec = 1000000000+end.tv_nsec-start.tv_nsec;
++	} else {
++		temp.tv_sec = end.tv_sec-start.tv_sec;
++		temp.tv_nsec = end.tv_nsec-start.tv_nsec;
++	}
++	return temp;
++}
++
+ // BEGIN BLOCK
+ // Copied from include/linux/genhd.h
+ #define GENHD_FL_REMOVABLE                      1
+@@ -199,6 +217,10 @@
+ 		m_deviceWatchTimer = new TQTimer(this);
+ 		connect( m_deviceWatchTimer, SIGNAL(timeout()), this, SLOT(processStatelessDevices()) );
+ 
++		// Special case for battery polling (longer delay, 5 seconds)
++		m_batteryWatchTimer = new TQTimer(this);
++		connect( m_batteryWatchTimer, SIGNAL(timeout()), this, SLOT(processBatteryDevices()) );
++
+ 		// Update internal device information
+ 		queryHardwareInformation();
+ 	}
+@@ -207,6 +229,7 @@
+ TDEHardwareDevices::~TDEHardwareDevices() {
+ 	// Stop device scanning
+ 	m_deviceWatchTimer->stop();
++	m_batteryWatchTimer->stop();
+ 
+ // [FIXME 0.01]
+ #if 0
+@@ -243,6 +266,7 @@
+ 		if (nodezerocpufreq.exists()) {
+ 			m_cpuWatchTimer->start( 500, FALSE ); // 0.5 second repeating timer
+ 		}
++		m_batteryWatchTimer->stop(); // Battery devices are included in stateless devices
+ 		m_deviceWatchTimer->start( 1000, FALSE ); // 1 second repeating timer
+ 	}
+ 	else {
+@@ -251,6 +275,20 @@
+ 	}
+ }
+ 
++void TDEHardwareDevices::setBatteryUpdatesEnabled(bool enable) {
++	if (enable) {
++		TQDir nodezerocpufreq("/sys/devices/system/cpu/cpu0/cpufreq");
++		if (nodezerocpufreq.exists()) {
++			m_cpuWatchTimer->start( 500, FALSE ); // 0.5 second repeating timer
++		}
++		m_batteryWatchTimer->start( 5000, FALSE ); // 5 second repeating timer
++	}
++	else {
++		m_cpuWatchTimer->stop();
++		m_batteryWatchTimer->stop();
++	}
++}
++
+ void TDEHardwareDevices::rescanDeviceInformation(TDEGenericDevice* hwdevice) {
+ 	rescanDeviceInformation(hwdevice, true);
+ }
+@@ -270,6 +308,7 @@
+ 		syspath += "/";
+ 	}
+ 	TDEGenericDevice *hwdevice;
++
+ 	// We can't use m_deviceList directly as m_deviceList can only have one iterator active against it at any given time
+ 	TDEGenericHardwareList devList = listAllPhysicalDevices();
+ 	for ( hwdevice = devList.first(); hwdevice; hwdevice = devList.next() ) {
+@@ -281,6 +320,30 @@
+ 	return 0;
+ }
+ 
++TDECPUDevice* TDEHardwareDevices::findCPUBySystemPath(TQString syspath, bool inCache=true) {
++	TDECPUDevice* cdevice;
++	
++	// Look for the device in the cache first
++	if(inCache && !m_cpuByPathCache.isEmpty()) {
++		cdevice = m_cpuByPathCache.find(syspath);
++		if(cdevice) {
++			return cdevice;
++		}
++	}
++
++	// If the CPU was not found in cache, we need to parse the entire device list to get it.
++	cdevice = dynamic_cast<TDECPUDevice*>(findBySystemPath(syspath));
++	if(cdevice) {
++		if(inCache) {
++			m_cpuByPathCache.insert(syspath, cdevice); // Add the device to the cache
++		}
++		return cdevice;
++	}
++	
++	return 0;
++}
++
++
+ TDEGenericDevice* TDEHardwareDevices::findByUniqueID(TQString uid) {
+ 	TDEGenericDevice *hwdevice;
+ 	// We can't use m_deviceList directly as m_deviceList can only have one iterator active against it at any given time
+@@ -410,17 +473,29 @@
+ 	// Detect what changed between the old cpu information and the new information,
+ 	// and emit appropriate events
+ 
++#ifdef CPUPROFILING
++	timespec time1, time2, time3;
++	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time1);
++	time3 = time1;
++	printf("TDEHardwareDevices::processModifiedCPUs() : begin at '%u'\n", time1.tv_nsec);
++#endif
++
+ 	// Read new CPU information table
+ 	m_cpuInfo.clear();
+ 	TQFile cpufile( "/proc/cpuinfo" );
+ 	if ( cpufile.open( IO_ReadOnly ) ) {
+ 		TQTextStream stream( &cpufile );
+-		while ( !stream.atEnd() ) {
+-			m_cpuInfo.append(stream.readLine());
+-		}
++		// Using read() instead of readLine() inside a loop is 4 times faster !
++		m_cpuInfo = TQStringList::split('\n', stream.read(), true);
+ 		cpufile.close();
+ 	}
+ 
++#ifdef CPUPROFILING
++	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
++	printf("TDEHardwareDevices::processModifiedCPUs() : checkpoint1 at %u [%u]\n", time2.tv_nsec, diff(time1,time2).tv_nsec);
++	time1 = time2;
++#endif
++
+ 	// Ensure "processor" is the first entry in each block and determine which cpuinfo type is in use
+ 	bool cpuinfo_format_x86 = true;
+ 	bool cpuinfo_format_arm = false;
+@@ -431,39 +506,43 @@
+ 	TQStringList::Iterator blockBegin = m_cpuInfo.begin();
+ 	for (TQStringList::Iterator cpuit1 = m_cpuInfo.begin(); cpuit1 != m_cpuInfo.end(); ++cpuit1) {
+ 		curline1 = *cpuit1;
+-		curline1 = curline1.stripWhiteSpace();
+ 		if (!(*blockBegin).startsWith("processor")) {
+ 			bool found = false;
+ 			TQStringList::Iterator cpuit2;
+ 			for (cpuit2 = blockBegin; cpuit2 != m_cpuInfo.end(); ++cpuit2) {
+ 				curline2 = *cpuit2;
+-				curline2 = curline2.stripWhiteSpace();
+ 				if (curline2.startsWith("processor")) {
+ 					found = true;
+ 					break;
+ 				}
+-				else if (curline2 == "") {
++				else if (curline2 == NULL || curline2 == "") {
+ 					break;
+ 				}
+ 			}
+ 			if (found) {
+ 				m_cpuInfo.insert(blockBegin, (*cpuit2));
+ 			}
+-			else {
++			else if(blockNumber == 0) {
+ 				m_cpuInfo.insert(blockBegin, "processor : 0");
+ 			}
+ 		}
+-		if (curline1 == "") {
++		if (curline1 == NULL || curline1 == "") {
+ 			blockNumber++;
+ 			blockBegin = cpuit1;
+ 			blockBegin++;
+ 		}
+-		if (curline1.startsWith("Processor")) {
++		else if (curline1.startsWith("Processor")) {
+ 			cpuinfo_format_x86 = false;
+ 			cpuinfo_format_arm = true;
+ 		}
+ 	}
+ 
++#ifdef CPUPROFILING
++	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
++	printf("TDEHardwareDevices::processModifiedCPUs() : checkpoint2 at %u [%u]\n", time2.tv_nsec, diff(time1,time2).tv_nsec);
++	time1 = time2;
++#endif
++
+ 	// Parse CPU information table
+ 	TDECPUDevice *cdevice;
+ 	cdevice = 0;
+@@ -482,44 +561,45 @@
+ 		for (cpuit = m_cpuInfo.begin(); cpuit != m_cpuInfo.end(); ++cpuit) {
+ 			curline = *cpuit;
+ 			if (curline.startsWith("processor")) {
+-				curline.remove(0, curline.find(":")+1);
+-				curline = curline.stripWhiteSpace();
++				curline.remove(0, curline.find(":")+2);
+ 				processorNumber = curline.toInt();
+-				if (!cdevice) cdevice = dynamic_cast<TDECPUDevice*>(findBySystemPath(TQString("/sys/devices/system/cpu/cpu%1").arg(processorNumber)));
++				if (!cdevice) {
++					cdevice = dynamic_cast<TDECPUDevice*>(findCPUBySystemPath(TQString("/sys/devices/system/cpu/cpu%1").arg(processorNumber)));
++				}
+ 				if (cdevice) {
+-					if (cdevice->coreNumber() != processorNumber) modified = true;
+-					cdevice->internalSetCoreNumber(processorNumber);
++					if (cdevice->coreNumber() != processorNumber) {
++						modified = true;
++						cdevice->internalSetCoreNumber(processorNumber);
++					}
+ 				}
+ 			}
+-			if (curline.startsWith("model name")) {
+-				curline.remove(0, curline.find(":")+1);
+-				curline = curline.stripWhiteSpace();
+-				if (cdevice) {
+-					if (cdevice->name() != curline) modified = true;
++			else if (cdevice && curline.startsWith("model name")) {
++				curline.remove(0, curline.find(":")+2);
++				if (cdevice->name() != curline) {
++					modified = true;
+ 					cdevice->internalSetName(curline);
+ 				}
+ 			}
+-			if (curline.startsWith("cpu MHz")) {
+-				curline.remove(0, curline.find(":")+1);
+-				curline = curline.stripWhiteSpace();
+-				if (cdevice) {
+-					if (cdevice->frequency() != curline.toDouble()) modified = true;
++			else if (cdevice && curline.startsWith("cpu MHz")) {
++				curline.remove(0, curline.find(":")+2);
++				if (cdevice->frequency() != curline.toDouble()) {
++					modified = true;
+ 					cdevice->internalSetFrequency(curline.toDouble());
+-					have_frequency = true;
+ 				}
++				have_frequency = true;
+ 			}
+-			if (curline.startsWith("vendor_id")) {
+-				curline.remove(0, curline.find(":")+1);
+-				curline = curline.stripWhiteSpace();
+-				if (cdevice) {
+-					if (cdevice->vendorName() != curline) modified = true;
++			else if (cdevice && curline.startsWith("vendor_id")) {
++				curline.remove(0, curline.find(":")+2);
++				if (cdevice->vendorName() != curline) {
++					modified = true;
+ 					cdevice->internalSetVendorName(curline);
+-					if (cdevice->vendorEncoded() != curline) modified = true;
++				}
++				if (cdevice->vendorEncoded() != curline) {
++					modified = true;
+ 					cdevice->internalSetVendorEncoded(curline);
+ 				}
+ 			}
+-			curline = curline.stripWhiteSpace();
+-			if (curline == "") {
++			else if (curline == NULL || curline == "") {
+ 				cdevice = 0;
+ 			}
+ 		}
+@@ -535,29 +615,25 @@
+ 		for (cpuit = m_cpuInfo.begin(); cpuit != m_cpuInfo.end(); ++cpuit) {
+ 			curline = *cpuit;
+ 			if (curline.startsWith("Processor")) {
+-				curline.remove(0, curline.find(":")+1);
+-				curline = curline.stripWhiteSpace();
++				curline.remove(0, curline.find(":")+2);
+ 				modelName = curline;
+ 			}
+-			if (curline.startsWith("Hardware")) {
+-				curline.remove(0, curline.find(":")+1);
+-				curline = curline.stripWhiteSpace();
++			else if (curline.startsWith("Hardware")) {
++				curline.remove(0, curline.find(":")+2);
+ 				vendorName = curline;
+ 			}
+-			if (curline.startsWith("Serial")) {
+-				curline.remove(0, curline.find(":")+1);
+-				curline = curline.stripWhiteSpace();
++			else if (curline.startsWith("Serial")) {
++				curline.remove(0, curline.find(":")+2);
+ 				serialNumber = curline;
+ 			}
+ 		}
+ 		for (TQStringList::Iterator cpuit = m_cpuInfo.begin(); cpuit != m_cpuInfo.end(); ++cpuit) {
+ 			curline = *cpuit;
+ 			if (curline.startsWith("processor")) {
+-				curline.remove(0, curline.find(":")+1);
+-				curline = curline.stripWhiteSpace();
++				curline.remove(0, curline.find(":")+2);
+ 				processorNumber = curline.toInt();
+ 				if (!cdevice) {
+-					cdevice = dynamic_cast<TDECPUDevice*>(findBySystemPath(TQString("/sys/devices/system/cpu/cpu%1").arg(processorNumber)));
++					cdevice = dynamic_cast<TDECPUDevice*>(findCPUBySystemPath(TQString("/sys/devices/system/cpu/cpu%1").arg(processorNumber)));
+ 					if (cdevice) {
+ 						// Set up CPU information structures
+ 						if (cdevice->coreNumber() != processorNumber) modified = true;
+@@ -573,8 +649,7 @@
+ 					}
+ 				}
+ 			}
+-			curline = curline.stripWhiteSpace();
+-			if (curline == "") {
++			if (curline == NULL || curline == "") {
+ 				cdevice = 0;
+ 			}
+ 		}
+@@ -582,9 +657,17 @@
+ 
+ 	processorCount = processorNumber+1;
+ 
++#ifdef CPUPROFILING
++	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
++	printf("TDEHardwareDevices::processModifiedCPUs() : checkpoint3 at %u [%u]\n", time2.tv_nsec, diff(time1,time2).tv_nsec);
++	time1 = time2;
++#endif
++
++	TDECPUDevice* firstCPU;
++	
+ 	// Read in other information from cpufreq, if available
+ 	for (processorNumber=0; processorNumber<processorCount; processorNumber++) {
+-		cdevice = dynamic_cast<TDECPUDevice*>(findBySystemPath(TQString("/sys/devices/system/cpu/cpu%1").arg(processorNumber)));
++		cdevice = dynamic_cast<TDECPUDevice*>(findCPUBySystemPath(TQString("/sys/devices/system/cpu/cpu%1").arg(processorNumber)));
+ 		TQDir cpufreq_dir(TQString("/sys/devices/system/cpu/cpu%1/cpufreq").arg(processorNumber));
+ 		TQString scalinggovernor;
+ 		TQString scalingdriver;
+@@ -595,107 +678,131 @@
+ 		TQStringList frequencylist;
+ 		TQStringList governorlist;
+ 		if (cpufreq_dir.exists()) {
+-			TQString nodename = cpufreq_dir.path();
+-			nodename.append("/scaling_governor");
+-			TQFile scalinggovernorfile(nodename);
+-			if (scalinggovernorfile.open(IO_ReadOnly)) {
+-				TQTextStream stream( &scalinggovernorfile );
+-				scalinggovernor = stream.readLine();
+-				scalinggovernorfile.close();
+-			}
+-			nodename = cpufreq_dir.path();
+-			nodename.append("/scaling_driver");
+-			TQFile scalingdriverfile(nodename);
+-			if (scalingdriverfile.open(IO_ReadOnly)) {
+-				TQTextStream stream( &scalingdriverfile );
+-				scalingdriver = stream.readLine();
+-				scalingdriverfile.close();
+-			}
+-			nodename = cpufreq_dir.path();
+-			nodename.append("/cpuinfo_min_freq");
+-			TQFile minfrequencyfile(nodename);
+-			if (minfrequencyfile.open(IO_ReadOnly)) {
+-				TQTextStream stream( &minfrequencyfile );
+-				minfrequency = stream.readLine().toDouble()/1000.0;
+-				minfrequencyfile.close();
+-			}
+-			nodename = cpufreq_dir.path();
+-			nodename.append("/cpuinfo_max_freq");
+-			TQFile maxfrequencyfile(nodename);
+-			if (maxfrequencyfile.open(IO_ReadOnly)) {
+-				TQTextStream stream( &maxfrequencyfile );
+-				maxfrequency = stream.readLine().toDouble()/1000.0;
+-				maxfrequencyfile.close();
++			TQString nodename;
++			if(processorNumber == 0) {
++				// Remember the first CPU options so that we can reuse it later.
++				firstCPU = cdevice;
++				
++				nodename = cpufreq_dir.path();
++				nodename.append("/scaling_governor");
++				TQFile scalinggovernorfile(nodename);
++				if (scalinggovernorfile.open(IO_ReadOnly)) {
++					TQTextStream stream( &scalinggovernorfile );
++					scalinggovernor = stream.readLine();
++					scalinggovernorfile.close();
++				}
++				nodename = cpufreq_dir.path();
++				nodename.append("/scaling_driver");
++				TQFile scalingdriverfile(nodename);
++				if (scalingdriverfile.open(IO_ReadOnly)) {
++					TQTextStream stream( &scalingdriverfile );
++					scalingdriver = stream.readLine();
++					scalingdriverfile.close();
++				}
++				nodename = cpufreq_dir.path();
++				nodename.append("/cpuinfo_min_freq");
++				TQFile minfrequencyfile(nodename);
++				if (minfrequencyfile.open(IO_ReadOnly)) {
++					TQTextStream stream( &minfrequencyfile );
++					minfrequency = stream.readLine().toDouble()/1000.0;
++					minfrequencyfile.close();
++				}
++				nodename = cpufreq_dir.path();
++				nodename.append("/cpuinfo_max_freq");
++				TQFile maxfrequencyfile(nodename);
++				if (maxfrequencyfile.open(IO_ReadOnly)) {
++					TQTextStream stream( &maxfrequencyfile );
++					maxfrequency = stream.readLine().toDouble()/1000.0;
++					maxfrequencyfile.close();
++				}
++				nodename = cpufreq_dir.path();
++				nodename.append("/cpuinfo_transition_latency");
++				TQFile trlatencyfile(nodename);
++				if (trlatencyfile.open(IO_ReadOnly)) {
++					TQTextStream stream( &trlatencyfile );
++					trlatency = stream.readLine().toDouble()/1000.0;
++					trlatencyfile.close();
++				}
++				nodename = cpufreq_dir.path();
++				nodename.append("/scaling_available_frequencies");
++				TQFile availfreqsfile(nodename);
++				if (availfreqsfile.open(IO_ReadOnly)) {
++					TQTextStream stream( &availfreqsfile );
++					frequencylist = TQStringList::split(" ", stream.readLine());
++					availfreqsfile.close();
++				}
++				nodename = cpufreq_dir.path();
++				nodename.append("/scaling_available_governors");
++				TQFile availgvrnsfile(nodename);
++				if (availgvrnsfile.open(IO_ReadOnly)) {
++					TQTextStream stream( &availgvrnsfile );
++					governorlist = TQStringList::split(" ", stream.readLine());
++					availgvrnsfile.close();
++				}
+ 			}
+-			nodename = cpufreq_dir.path();
+-			nodename.append("/cpuinfo_transition_latency");
+-			TQFile trlatencyfile(nodename);
+-			if (trlatencyfile.open(IO_ReadOnly)) {
+-				TQTextStream stream( &trlatencyfile );
+-				trlatency = stream.readLine().toDouble()/1000.0;
+-				trlatencyfile.close();
++			// Other CPU should have the same values as the first one. Simply copy them.
++			else {
++				scalinggovernor = firstCPU->governor();
++				scalingdriver = firstCPU->scalingDriver();
++				minfrequency = firstCPU->minFrequency();
++				maxfrequency = firstCPU->maxFrequency();
++				trlatency = firstCPU->transitionLatency();
++				frequencylist = firstCPU->availableFrequencies();
++				governorlist = firstCPU->availableGovernors();
+ 			}
++
++			// The following data are different on each CPU
+ 			nodename = cpufreq_dir.path();
+ 			nodename.append("/affected_cpus");
+ 			TQFile tiedcpusfile(nodename);
+ 			if (tiedcpusfile.open(IO_ReadOnly)) {
+ 				TQTextStream stream( &tiedcpusfile );
+ 				affectedcpulist = TQStringList::split(" ", stream.readLine());
+ 				tiedcpusfile.close();
+ 			}
+-			nodename = cpufreq_dir.path();
+-			nodename.append("/scaling_available_frequencies");
+-			TQFile availfreqsfile(nodename);
+-			if (availfreqsfile.open(IO_ReadOnly)) {
+-				TQTextStream stream( &availfreqsfile );
+-				frequencylist = TQStringList::split(" ", stream.readLine());
+-				availfreqsfile.close();
+-			}
+-			nodename = cpufreq_dir.path();
+-			nodename.append("/scaling_available_governors");
+-			TQFile availgvrnsfile(nodename);
+-			if (availgvrnsfile.open(IO_ReadOnly)) {
+-				TQTextStream stream( &availgvrnsfile );
+-				governorlist = TQStringList::split(" ", stream.readLine());
+-				availgvrnsfile.close();
+-			}
+ 
++			// We may already have the CPU Mhz information in '/proc/cpuinfo'
+ 			if (!have_frequency) {
+ 				nodename = cpufreq_dir.path();
+ 				nodename.append("/cpuinfo_cur_freq");
+ 				TQFile cpufreqfile(nodename);
+ 				if (cpufreqfile.open(IO_ReadOnly)) {
+ 					TQTextStream stream( &cpufreqfile );
+-					if (cdevice) cdevice->internalSetFrequency(stream.readLine().toDouble()/1000.0);
++					if (cdevice) {
++						cdevice->internalSetFrequency(stream.readLine().toDouble()/1000.0);
++					}
+ 					cpufreqfile.close();
+ 					have_frequency = true;
+ 				}
+ 			}
+ 
+-			bool frequencyFound;
++			bool minfrequencyFound = false;
++			bool maxfrequencyFound = false;
+ 			TQStringList::Iterator freqit;
+-			frequencyFound = false;
+ 			for ( freqit = frequencylist.begin(); freqit != frequencylist.end(); ++freqit ) {
+ 				double thisfrequency = (*freqit).toDouble()/1000.0;
+ 				if (thisfrequency == minfrequency) {
+-					frequencyFound = true;
++					minfrequencyFound = true;
++				}
++				if (thisfrequency == maxfrequency) {
++					maxfrequencyFound = true;
+ 				}
++
+ 			}
+-			if (!frequencyFound) {
++			if (!minfrequencyFound) {
+ 				int minFrequencyInt = (minfrequency*1000.0);
+ 				frequencylist.prepend(TQString("%1").arg(minFrequencyInt));
+ 			}
+-			frequencyFound = false;
+-			for ( freqit = frequencylist.begin(); freqit != frequencylist.end(); ++freqit ) {
+-				double thisfrequency = (*freqit).toDouble()/1000.0;
+-				if (thisfrequency == maxfrequency) {
+-					frequencyFound = true;
+-				}
+-			}
+-			if (!frequencyFound) {
++			if (!maxfrequencyFound) {
+ 				int maxfrequencyInt = (maxfrequency*1000.0);
+ 				frequencylist.append(TQString("%1").arg(maxfrequencyInt));
+ 			}
++
++#ifdef CPUPROFILING
++			clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
++			printf("TDEHardwareDevices::processModifiedCPUs() : checkpoint3.%u at %u [%u]\n", processorNumber, time2.tv_nsec, diff(time1,time2).tv_nsec);
++			time1 = time2;
++#endif
+ 		}
+ 		else {
+ 			if (have_frequency) {
+@@ -708,33 +815,61 @@
+ 
+ 		// Update CPU information structure
+ 		if (cdevice) {
+-			if (cdevice->governor() != scalinggovernor) modified = true;
+-			cdevice->internalSetGovernor(scalinggovernor);
+-			if (cdevice->scalingDriver() != scalingdriver) modified = true;
+-			cdevice->internalSetScalingDriver(scalingdriver);
+-			if (cdevice->minFrequency() != minfrequency) modified = true;
+-			cdevice->internalSetMinFrequency(minfrequency);
+-			if (cdevice->maxFrequency() != maxfrequency) modified = true;
+-			cdevice->internalSetMaxFrequency(maxfrequency);
+-			if (cdevice->transitionLatency() != trlatency) modified = true;
+-			cdevice->internalSetTransitionLatency(trlatency);
+-			if (cdevice->dependentProcessors().join(" ") != affectedcpulist.join(" ")) modified = true;
+-			cdevice->internalSetDependentProcessors(affectedcpulist);
+-			if (cdevice->availableFrequencies().join(" ") != frequencylist.join(" ")) modified = true;
+-			cdevice->internalSetAvailableFrequencies(frequencylist);
+-			if (cdevice->availableGovernors().join(" ") != governorlist.join(" ")) modified = true;
+-			cdevice->internalSetAvailableGovernors(governorlist);
++			if (cdevice->governor() != scalinggovernor) {
++				modified = true;
++				cdevice->internalSetGovernor(scalinggovernor);
++			}
++			if (cdevice->scalingDriver() != scalingdriver) {
++				modified = true;
++				cdevice->internalSetScalingDriver(scalingdriver);
++			}
++			if (cdevice->minFrequency() != minfrequency) {
++				modified = true;
++				cdevice->internalSetMinFrequency(minfrequency);
++			}
++			if (cdevice->maxFrequency() != maxfrequency) {
++				modified = true;
++				cdevice->internalSetMaxFrequency(maxfrequency);
++			}
++			if (cdevice->transitionLatency() != trlatency) {
++				modified = true;
++				cdevice->internalSetTransitionLatency(trlatency);
++			}
++			if (cdevice->dependentProcessors().join(" ") != affectedcpulist.join(" ")) {
++				modified = true;
++				cdevice->internalSetDependentProcessors(affectedcpulist);
++			}
++			if (cdevice->availableFrequencies().join(" ") != frequencylist.join(" ")) {
++				modified = true;
++				cdevice->internalSetAvailableFrequencies(frequencylist);
++			}
++			if (cdevice->availableGovernors().join(" ") != governorlist.join(" ")) {
++				modified = true;
++				cdevice->internalSetAvailableGovernors(governorlist);
++			}
+ 		}
+ 	}
+ 
++#ifdef CPUPROFILING
++	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
++	printf("TDEHardwareDevices::processModifiedCPUs() : checkpoint4 at %u [%u]\n", time2.tv_nsec, diff(time1,time2).tv_nsec);
++	time1 = time2;
++#endif
++
+ 	if (modified) {
+ 		for (processorNumber=0; processorNumber<processorCount; processorNumber++) {
+-			TDEGenericDevice* hwdevice = findBySystemPath(TQString("/sys/devices/system/cpu/cpu%1").arg(processorNumber));
++			TDEGenericDevice* hwdevice = findCPUBySystemPath(TQString("/sys/devices/system/cpu/cpu%1").arg(processorNumber));
+ 			// Signal new information available
+ 			emit hardwareUpdated(hwdevice);
+ 			emit hardwareEvent(TDEHardwareEvent::HardwareUpdated, hwdevice->uniqueID());
+ 		}
+ 	}
++	
++#ifdef CPUPROFILING
++	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
++	printf("TDEHardwareDevices::processModifiedCPUs() : end at %u [%u]\n", time2.tv_nsec, diff(time1,time2).tv_nsec);
++	printf("TDEHardwareDevices::processModifiedCPUs() : total time: %u\n", diff(time3,time2).tv_nsec);
++#endif
+ }
+ 
+ void TDEHardwareDevices::processStatelessDevices() {
+@@ -742,6 +877,13 @@
+ 	// So far, network cards and sensors need to be polled
+ 	TDEGenericDevice *hwdevice;
+ 
++#ifdef STATELESSPROFILING
++	timespec time1, time2, time3;
++	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time1);
++	printf("TDEHardwareDevices::processStatelessDevices() : begin at '%u'\n", time1.tv_nsec);
++	time3 = time1;
++#endif
++
+ 	// We can't use m_deviceList directly as m_deviceList can only have one iterator active against it at any given time
+ 	TDEGenericHardwareList devList = listAllPhysicalDevices();
+ 	for ( hwdevice = devList.first(); hwdevice; hwdevice = devList.next() ) {
+@@ -749,10 +891,36 @@
+ 			rescanDeviceInformation(hwdevice, false);
+ 			emit hardwareUpdated(hwdevice);
+ 			emit hardwareEvent(TDEHardwareEvent::HardwareUpdated, hwdevice->uniqueID());
++#ifdef STATELESSPROFILING
++			clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
++			printf("TDEHardwareDevices::processStatelessDevices() : '%s' finished at %u [%u]\n", (hwdevice->name()).ascii(), time2.tv_nsec, diff(time1,time2).tv_nsec);
++			time1 = time2;
++#endif
++		}
++	}
++
++#ifdef STATELESSPROFILING
++	clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &time2);
++	printf("TDEHardwareDevices::processStatelessDevices() : end at '%u'\n", time2.tv_nsec);
++	printf("TDEHardwareDevices::processStatelessDevices() : took '%u'\n", diff(time3,time2).tv_nsec);
++#endif
++}
++
++void TDEHardwareDevices::processBatteryDevices() {
++	TDEGenericDevice *hwdevice;
++
++	// We can't use m_deviceList directly as m_deviceList can only have one iterator active against it at any given time
++	TDEGenericHardwareList devList = listAllPhysicalDevices();
++	for ( hwdevice = devList.first(); hwdevice; hwdevice = devList.next() ) {
++		if (hwdevice->type() == TDEGenericDeviceType::Battery) {
++			rescanDeviceInformation(hwdevice, false);
++			emit hardwareUpdated(hwdevice);
++			emit hardwareEvent(TDEHardwareEvent::HardwareUpdated, hwdevice->uniqueID());
+ 		}
+ 	}
+ }
+ 
++
+ void TDEHardwareDevices::processEventDeviceKeyPressed(unsigned int keycode, TDEEventDevice* edevice) {
+ 	emit eventDeviceKeyPressed(keycode, edevice);
+ }
+@@ -2556,13 +2724,13 @@
+ 						if (nodename == "address") {
+ 							ndevice->internalSetMacAddress(line);
+ 						}
+-						if (nodename == "carrier") {
++						else if (nodename == "carrier") {
+ 							ndevice->internalSetCarrierPresent(line.toInt());
+ 						}
+-						if (nodename == "dormant") {
++						else if (nodename == "dormant") {
+ 							ndevice->internalSetDormant(line.toInt());
+ 						}
+-						if (nodename == "operstate") {
++						else if (nodename == "operstate") {
+ 							TQString friendlyState = line.lower();
+ 							friendlyState[0] = friendlyState[0].upper();
+ 							ndevice->internalSetState(friendlyState);
+@@ -2594,7 +2762,7 @@
+ 									if (family == AF_INET) {
+ 										ndevice->internalSetIpV4Address(address);
+ 									}
+-									if (family == AF_INET6) {
++									else if (family == AF_INET6) {
+ 										address.truncate(address.findRev("%"));
+ 										ndevice->internalSetIpV6Address(address);
+ 									}
+@@ -2605,7 +2773,7 @@
+ 									if (family == AF_INET) {
+ 										ndevice->internalSetIpV4Netmask(address);
+ 									}
+-									if (family == AF_INET6) {
++									else if (family == AF_INET6) {
+ 										address.truncate(address.findRev("%"));
+ 										ndevice->internalSetIpV6Netmask(address);
+ 									}
+@@ -2616,7 +2784,7 @@
+ 									if (family == AF_INET) {
+ 										ndevice->internalSetIpV4Broadcast(address);
+ 									}
+-									if (family == AF_INET6) {
++									else if (family == AF_INET6) {
+ 										address.truncate(address.findRev("%"));
+ 										ndevice->internalSetIpV6Broadcast(address);
+ 									}
+@@ -2627,7 +2795,7 @@
+ 									if (family == AF_INET) {
+ 										ndevice->internalSetIpV4Destination(address);
+ 									}
+-									if (family == AF_INET6) {
++									else if (family == AF_INET6) {
+ 										address.truncate(address.findRev("%"));
+ 										ndevice->internalSetIpV6Destination(address);
+ 									}
+@@ -2658,13 +2826,13 @@
+ 							if (nodename == "rx_bytes") {
+ 								ndevice->internalSetRxBytes(line.toDouble());
+ 							}
+-							if (nodename == "tx_bytes") {
++							else if (nodename == "tx_bytes") {
+ 								ndevice->internalSetTxBytes(line.toDouble());
+ 							}
+-							if (nodename == "rx_packets") {
++							else if (nodename == "rx_packets") {
+ 								ndevice->internalSetRxPackets(line.toDouble());
+ 							}
+-							if (nodename == "tx_packets") {
++							else if (nodename == "tx_packets") {
+ 								ndevice->internalSetTxPackets(line.toDouble());
+ 							}
+ 							file.close();
+@@ -2705,19 +2873,19 @@
+ 						if (sensornodetype == "label") {
+ 							sensors[sensornodename].label = line;
+ 						}
+-						if (sensornodetype == "input") {
++						else if (sensornodetype == "input") {
+ 							sensors[sensornodename].current = lineValue;
+ 						}
+-						if (sensornodetype == "min") {
++						else if (sensornodetype == "min") {
+ 							sensors[sensornodename].minimum = lineValue;
+ 						}
+-						if (sensornodetype == "max") {
++						else if (sensornodetype == "max") {
+ 							sensors[sensornodename].maximum = lineValue;
+ 						}
+-						if (sensornodetype == "warn") {
++						else if (sensornodetype == "warn") {
+ 							sensors[sensornodename].warning = lineValue;
+ 						}
+-						if (sensornodetype == "crit") {
++						else if (sensornodetype == "crit") {
+ 							sensors[sensornodename].critical = lineValue;
+ 						}
+ 						file.close();
+@@ -2752,40 +2920,40 @@
+ 					if (nodename == "alarm") {
+ 						bdevice->internalSetAlarmEnergy(line.toDouble()/1000000.0);
+ 					}
+-					if (nodename == "charge_full" || nodename == "energy_full") {
++					else if (nodename == "charge_full" || nodename == "energy_full") {
+ 						bdevice->internalSetMaximumEnergy(line.toDouble()/1000000.0);
+ 					}
+-					if (nodename == "charge_full_design" || nodename == "energy_full_design") {
++					else if (nodename == "charge_full_design" || nodename == "energy_full_design") {
+ 						bdevice->internalSetMaximumDesignEnergy(line.toDouble()/1000000.0);
+ 					}
+-					if (nodename == "charge_now" || nodename == "energy_now") {
++					else if (nodename == "charge_now" || nodename == "energy_now") {
+ 						bdevice->internalSetEnergy(line.toDouble()/1000000.0);
+ 					}
+-					if (nodename == "manufacturer") {
++					else if (nodename == "manufacturer") {
+ 						bdevice->internalSetVendorName(line.stripWhiteSpace());
+ 					}
+-					if (nodename == "model_name") {
++					else if (nodename == "model_name") {
+ 						bdevice->internalSetVendorModel(line.stripWhiteSpace());
+ 					}
+-					if (nodename == "power_now" || nodename == "current_now") {
++					else if (nodename == "power_now" || nodename == "current_now") {
+ 						bdevice->internalSetDischargeRate(line.toDouble()/1000000.0);
+ 					}
+-					if (nodename == "present") {
++					else if (nodename == "present") {
+ 						bdevice->internalSetInstalled(line.toInt());
+ 					}
+-					if (nodename == "serial_number") {
++					else if (nodename == "serial_number") {
+ 						bdevice->internalSetSerialNumber(line.stripWhiteSpace());
+ 					}
+-					if (nodename == "status") {
++					else if (nodename == "status") {
+ 						bdevice->internalSetStatus(line);
+ 					}
+-					if (nodename == "technology") {
++					else if (nodename == "technology") {
+ 						bdevice->internalSetTechnology(line);
+ 					}
+-					if (nodename == "voltage_min_design") {
++					else if (nodename == "voltage_min_design") {
+ 						bdevice->internalSetMinimumVoltage(line.toDouble()/1000000.0);
+ 					}
+-					if (nodename == "voltage_now") {
++					else if (nodename == "voltage_now") {
+ 						bdevice->internalSetVoltage(line.toDouble()/1000000.0);
+ 					}
+ 					file.close();
+@@ -2823,13 +2991,13 @@
+ 					if (nodename == "manufacturer") {
+ 						pdevice->internalSetVendorName(line.stripWhiteSpace());
+ 					}
+-					if (nodename == "model_name") {
++					else if (nodename == "model_name") {
+ 						pdevice->internalSetVendorModel(line.stripWhiteSpace());
+ 					}
+-					if (nodename == "online") {
++					else if (nodename == "online") {
+ 						pdevice->internalSetOnline(line.toInt());
+ 					}
+-					if (nodename == "serial_number") {
++					else if (nodename == "serial_number") {
+ 						pdevice->internalSetSerialNumber(line.stripWhiteSpace());
+ 					}
+ 					file.close();
+@@ -2868,10 +3036,10 @@
+ 						}
+ 						bdevice->internalSetPowerLevel(pl);
+ 					}
+-					if (nodename == "max_brightness") {
++					else if (nodename == "max_brightness") {
+ 						bdevice->internalSetMaximumRawBrightness(line.toInt());
+ 					}
+-					if (nodename == "actual_brightness") {
++					else if (nodename == "actual_brightness") {
+ 						bdevice->internalSetCurrentRawBrightness(line.toInt());
+ 					}
+ 					file.close();
+@@ -2901,10 +3069,10 @@
+ 					if (nodename == "status") {
+ 						mdevice->internalSetConnected(line.lower() == "connected");
+ 					}
+-					if (nodename == "enabled") {
++					else if (nodename == "enabled") {
+ 						mdevice->internalSetEnabled(line.lower() == "enabled");
+ 					}
+-					if (nodename == "modes") {
++					else if (nodename == "modes") {
+ 						TQStringList resinfo;
+ 						TQStringList resolutionsStringList = line.upper();
+ 						while ((!stream.atEnd()) && (!line.isNull())) {
+@@ -2921,7 +3089,7 @@
+ 						}
+ 						mdevice->internalSetResolutions(resolutions);
+ 					}
+-					if (nodename == "dpms") {
++					else if (nodename == "dpms") {
+ 						TDEDisplayPowerLevel::TDEDisplayPowerLevel pl = TDEDisplayPowerLevel::On;
+ 						if (line == "On") {
+ 							pl = TDEDisplayPowerLevel::On;
