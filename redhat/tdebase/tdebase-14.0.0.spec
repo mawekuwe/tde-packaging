@@ -76,7 +76,7 @@ Source9:	mgabutton.svg
 %endif
 
 # Patch party !
-Patch0:		tdebase-14.0.0-ftbfs.patch
+#Patch0:		tdebase-14.0.0-ftbfs.patch
 
 # Permanent patches, all TDE versions
 ## [tdebase/kdesktop] Modifies 'open terminal here' on desktop [RHEL/Fedora]
@@ -2656,6 +2656,7 @@ ever launching another application.
 %{tde_datadir}/services/konq_*.desktop
 %{tde_datadir}/servicetypes/konqaboutpage.desktop
 %{tde_tdedocdir}/HTML/en/konqueror/
+%{tde_tdedocdir}/HTML/en/keditbookmarks/
 
 %post -n trinity-konqueror
 update-desktop-database %{tde_appdir} 2> /dev/null || : 
@@ -3316,7 +3317,7 @@ Windows and Samba shares.
 
 %prep
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
+#patch0 -p1 -b .ftbfs
 
 %patch101 -p1 -b .openterminalhere
 %patch102 -p1 -b .startmenuicon

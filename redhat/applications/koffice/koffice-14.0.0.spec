@@ -55,7 +55,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-Patch0:			koffice-14.0.0-ftbfs.patch
+#Patch0:			koffice-14.0.0-ftbfs.patch
 
 # BuildRequires: world-devel ;)
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
@@ -1063,7 +1063,7 @@ This package is part of the TDE Office Suite.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
-%patch0 -p1 -b .ftbfs
+#patch0 -p1 -b .ftbfs
 
 %__cp -f "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp -f "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp -f "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -1110,20 +1110,6 @@ export CXXFLAGS="${CXXFLAGS} -I${RD}/%_normalized_cpu-linux"
 %install
 %__rm -rf %{buildroot}
 %__make install DESTDIR=%{buildroot}
-
-# Replace absolute symlinks with relative ones
-pushd %{buildroot}%{tde_tdedocdir}/HTML
-for lang in *; do
-  if [ -d $lang ]; then
-    pushd $lang
-    for i in */*; do
-      [ -d $i -a -L $i/common ] && rm -f $i/common && ln -sf ../../common $i/common
-    done
-    popd
-  fi
-done
-popd
-
 
 ## unpackaged files
 # fonts

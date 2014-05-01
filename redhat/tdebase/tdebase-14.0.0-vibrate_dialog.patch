@@ -7,26 +7,26 @@
 +    void slotVibrateUnlock( bool );
      void slotUseUnmanagedLockWindows( bool );
      void slotHideActiveWindowsFromSaver( bool );
-     void processLockouts();
-@@ -101,6 +102,7 @@
+     void slotHideCancelButton( bool );
+@@ -102,6 +103,7 @@
      TQGroupBox   *mSettingsGroup;
      TQCheckBox   *mDelaySaverStartCheckBox;
      TQCheckBox   *mUseTSAKCheckBox;
 +    TQCheckBox   *mVibrateUnlockCheckBox;
      TQCheckBox   *mUseUnmanagedLockWindowsCheckBox;
      TQCheckBox   *mHideActiveWindowsFromSaverCheckBox;
- 
-@@ -119,6 +121,7 @@
+     TQCheckBox   *mHideCancelButtonCheckBox;
+@@ -121,6 +123,7 @@
      bool        mImmutable;
      bool        mDelaySaverStart;
      bool        mUseTSAK;
 +    bool        mVibrateUnlock;
      bool        mUseUnmanagedLockWindows;
      bool        mHideActiveWindowsFromSaver;
- 
+     bool        mHideCancelButton;
 --- trinity-tdebase-3.5.13.2~pre102+43d29f86/kcontrol/screensaver/scrnsave.cpp.vibrate_dialog	2013-04-26 22:15:23.000000000 +0200
 +++ trinity-tdebase-3.5.13.2~pre102+43d29f86/kcontrol/screensaver/scrnsave.cpp	2013-05-14 22:24:37.354375502 +0200
-@@ -270,6 +270,13 @@
+@@ -271,6 +271,13 @@
      settingsGroupLayout->addWidget(mHideActiveWindowsFromSaverCheckBox, 3, 1);
      TQWhatsThis::add( mHideActiveWindowsFromSaverCheckBox, i18n("Hide all active windows from the screen saver and use the desktop background as the screen saver input.") );
  
@@ -37,26 +37,26 @@
 +    settingsGroupLayout->addWidget(mVibrateUnlockCheckBox, 4, 1);
 +    TQWhatsThis::add( mVibrateUnlockCheckBox, i18n("Makes the unlock dialog box vibrate when entering an incorrect password.") );
 +
-     // right column
-     TQBoxLayout* rightColumnLayout = new TQVBoxLayout(topLayout, KDialog::spacingHint());
- 
-@@ -429,6 +436,7 @@
+     mHideCancelButtonCheckBox = new TQCheckBox( i18n("&Hide Cancel &button"), mSettingsGroup );
+     mHideCancelButtonCheckBox->setEnabled( true );
+     mHideCancelButtonCheckBox->setChecked( mHideCancelButton );
+@@ -437,6 +444,7 @@
      mLock = config->readBoolEntry("Lock", false);
      mDelaySaverStart = config->readBoolEntry("DelaySaverStart", true);
      mUseTSAK = config->readBoolEntry("UseTDESAK", true);
 +    mVibrateUnlock = config->readBoolEntry("VibrateUnlock", true);
      mUseUnmanagedLockWindows = config->readBoolEntry("UseUnmanagedLockWindows", false);
      mHideActiveWindowsFromSaver = config->readBoolEntry("HideActiveWindowsFromSaver", true);
-     mSaver = config->readEntry("Saver");
-@@ -481,6 +489,7 @@
+     mHideCancelButton = config->readBoolEntry("HideCancelButton", false);
+@@ -490,6 +498,7 @@
      config->writeEntry("Lock", mLock);
      config->writeEntry("DelaySaverStart", mDelaySaverStart);
      config->writeEntry("UseTDESAK", mUseTSAK);
 +    config->writeEntry("VibrateUnlock", mVibrateUnlock);
      config->writeEntry("UseUnmanagedLockWindows", mUseUnmanagedLockWindows);
      config->writeEntry("HideActiveWindowsFromSaver", mHideActiveWindowsFromSaver);
- 
-@@ -688,10 +697,14 @@
+     config->writeEntry("HideCancelButton", mHideCancelButton);
+@@ -705,10 +714,14 @@
          mUseTSAKCheckBox->setChecked( false );
      }
      if (!mUseUnmanagedLockWindows) {
@@ -71,7 +71,7 @@
          mHideActiveWindowsFromSaverCheckBox->setEnabled( false );
          mHideActiveWindowsFromSaverCheckBox->setChecked( false );
      }
-@@ -936,6 +949,16 @@
+@@ -969,6 +982,16 @@
      processLockouts();
      mChanged = true;
      emit changed(true);
@@ -178,7 +178,7 @@
  // Handle timer events.
 @@ -442,6 +479,7 @@
                  ok->setEnabled(false);
-                 cancel->setEnabled(false);
+                 //cancel->setEnabled(false);
                  mNewSessButton->setEnabled( false );
 +                badPasswordLogin();
                  return;
