@@ -14,7 +14,6 @@ desktop-effects-kde
 dmz-cursor-theme
 dolphin
 dvd+rw-tools
-foo2zjs
 foomatic-db-gutenprint
 foomatic-db-hpijs
 fortune-mod
@@ -76,12 +75,17 @@ libgl1-mesa-dri
 libnss-mdns
 linux-headers-sparc64
 make
-min12xxw
 network-manager-kde
 networkstatus
 pinentry-qt
 powernowd
-pxljr
+printer-driver-c2esp
+printer-driver-foo2zjs|foo2zjs
+printer-driver-min12xxw|min12xxw
+printer-driver-ptouch
+printer-driver-pxljr|pxljr
+printer-driver-sag-gdi
+printer-driver-splix
 rdesktop
 scim-bridge-agent
 scim-bridge-client-qt

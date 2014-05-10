@@ -64,8 +64,8 @@ libqt-perl
 libsasl2-modules
 libxp6
 openprinting-ppds
-pnm2ppa
 powermanagement-interface
+printer-driver-pnm2ppa|pnm2ppa
 qca-tls
 readahead
 screen
