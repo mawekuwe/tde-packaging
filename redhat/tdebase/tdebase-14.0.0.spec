@@ -167,6 +167,18 @@ Requires:	fedora-release-notes
 %define tde_aboutpage /usr/share/doc/fedora-release-notes-19/index.html
 %endif
 
+# Fedora 20 Theme: "Heisenbug"
+%if 0%{?fedora} == 20
+Requires:	heisenbug-backgrounds-base
+%define tde_bg /usr/share/backgrounds/heisenbug/default/standard/heisenbug.png
+Requires:	fedora-logos
+%define tde_starticon /usr/share/icons/hicolor/96x96/apps/fedora-logo-icon.png
+
+Requires:	fedora-release-notes
+%define tde_aboutlabel Fedora 20
+%define tde_aboutpage /usr/share/doc/fedora-release-notes/index.html
+%endif
+
 # RHEL 4 Theme
 %if 0%{?rhel} == 4
 Requires:	desktop-backgrounds-basic

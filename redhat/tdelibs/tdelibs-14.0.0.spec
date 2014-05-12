@@ -37,7 +37,6 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0:		%{name}-%{version}%{?preversion:~%{preversion}}.tar.gz
 
 #Patch11:		tdelibs-14.0.0-displayconfig_crash.patch
-Patch12:		tdelibs-14.0.0-reduce_tdehwlib_cpueagerness.patch
 
 # Patches from Mandriva
 Patch101:		tdelibs-14.0.0-xdg_dirs_set_path.patch
@@ -154,6 +153,11 @@ Requires:		DeviceKit-power
 %if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
 %define with_upower 1
 Requires:		upower
+%endif
+
+# SYSTEMD support
+%if 0%{?fedora} || 0%{?suse_version} || 0%{?mdkversion} || 0%{?mgaversion}
+%define with_systemd 1
 %endif
 
 # UTEMPTER support
@@ -285,6 +289,12 @@ Requires:		openssl
 %if 0%{?rhel} == 5
 %define	cacert	%{_sysconfdir}/pki/tls/certs/ca-bundle.crt
 Requires:		openssl
+%endif
+
+# XRANDR support
+#  On RHEL5, xrandr library is too old.
+%if 0%{?fedora} >= 15 || 0%{?mgaversion} || 0%{?mdkversion} || 0%{?rhel} >= 6 || 0%{?suse_version}
+%define with_xrandr 1
 %endif
 
 # Trinity dependencies
@@ -457,7 +467,6 @@ applications for TDE.
 %setup -q -n %{name}-%{version}%{?preversion:~%{preversion}}
 
 #patch11 -p1 -b .displayconfigcrash
-%patch12 -p1 -b .tdehwlib
 
 %patch101 -p1 -b .xdg_path
 %patch102 -p1 -b .cups_by_default
@@ -509,10 +518,10 @@ fi
   %{?!with_pcre:-DWITH_PCRE=OFF} \
   %{?!with_inotify:-DWITH_INOTIFY=OFF} \
   %{?!with_gamin:-DWITH_GAMIN=OFF} \
-  -DWITH_TDEHWLIB_DAEMONS=ON \
+  %{?!with_tdehwlib:-DWITH_TDEHWLIB_DAEMONS=OFF} \
   %{?with_hal:-DWITH_HAL=ON} \
   %{?with_devkitpower:-DWITH_DEVKITPOWER=ON} \
-  -DWITH_LOGINDPOWER=ON \
+  %{?with_systemd:-DWITH_LOGINDPOWER=ON} \
   %{?!with_upower:-DWITH_UPOWER=OFF} \
   %{?!with_udisks:-DWITH_UDISKS=OFF} \
   %{?!with_udisks2:-DWITH_UDISKS2=OFF} \
@@ -522,7 +531,9 @@ fi
   -DWITH_OLD_XDG_STD=OFF \
   %{?!with_lzma:-DWITH_LZMA=OFF} \
   -DWITH_LIBBFD=OFF \
+  %{?!with_xrandr:-DWITH_XRANDR=OFF} \
   -DWITH_KDE4_MENU_SUFFIX=OFF \
+  \
   -DWITH_ASPELL=ON \
   %{?!with_hspell:-DWITH_HSPELL=OFF} \
   -DWITH_TDEICONLOADER_DEBUG=OFF \

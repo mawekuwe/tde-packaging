@@ -141,6 +141,12 @@ update-desktop-database %{tde_appdir} > /dev/null
 /sbin/ldconfig
 touch --no-create %{tde_datadir}/icons/hicolor || :
 gtk-update-icon-cache --quiet %{tde_datadir}/icons/hicolor || :
+# Prevent autostart of 'nm-applet', if installed.
+if [ -r "/etc/xdg/autostart/nm-applet.desktop" ]; then
+  if ! grep -qw "TDE" "/etc/xdg/autostart/nm-applet.desktop" ; then
+    sed -i "/etc/xdg/autostart/nm-applet.desktop" -e "s|\(NotShowIn=.*\)|\1TDE;|"
+  fi
+fi
 
 %postun
 update-desktop-database %{tde_appdir} > /dev/null

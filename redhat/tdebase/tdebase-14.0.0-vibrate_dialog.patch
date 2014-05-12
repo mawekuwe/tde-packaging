@@ -37,7 +37,7 @@
 +    settingsGroupLayout->addWidget(mVibrateUnlockCheckBox, 4, 1);
 +    TQWhatsThis::add( mVibrateUnlockCheckBox, i18n("Makes the unlock dialog box vibrate when entering an incorrect password.") );
 +
-     mHideCancelButtonCheckBox = new TQCheckBox( i18n("&Hide Cancel &button"), mSettingsGroup );
+     mHideCancelButtonCheckBox = new TQCheckBox( i18n("Hide &cancel button"), mSettingsGroup );
      mHideCancelButtonCheckBox->setEnabled( true );
      mHideCancelButtonCheckBox->setChecked( mHideCancelButton );
 @@ -437,6 +444,7 @@
@@ -177,8 +177,8 @@
  //
  // Handle timer events.
 @@ -442,6 +479,7 @@
+                 mFailedTimerId = startTimer(1500);
                  ok->setEnabled(false);
-                 //cancel->setEnabled(false);
                  mNewSessButton->setEnabled( false );
 +                badPasswordLogin();
                  return;

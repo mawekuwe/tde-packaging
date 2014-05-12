@@ -309,6 +309,8 @@ tar xfz %{SOURCE1}
 unset QTDIR QTINC QTLIB
 export PATH="%{tde_bindir}:${PATH}"
 
+export CXXFLAGS="${RPM_OPT_FLAGS} -DHAVE_STDINT_H"
+
 %configure \
   --bindir=%{tde_bindir} \
   --libdir=%{tde_libdir} \

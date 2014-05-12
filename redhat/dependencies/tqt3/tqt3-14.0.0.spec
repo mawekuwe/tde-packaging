@@ -22,6 +22,9 @@ Prefix:		%{tde_prefix}
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
+# [tqt3] Unexplained FTBFS on RHEL5
+Patch1:		tqt3-14.0.0-rhel5_ftbfs.patch
+
 BuildRequires: desktop-file-utils
 BuildRequires: libmng-devel
 BuildRequires: glibc-devel
@@ -458,6 +461,9 @@ for the TQt 3 toolkit.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%if 0%{?rhel} == 5
+%patch1 -p1 -b .ftbfs
+%endif
 
 # fix variables in 'qmake.conf'
 %__sed -i mkspecs/*/qmake.conf \
