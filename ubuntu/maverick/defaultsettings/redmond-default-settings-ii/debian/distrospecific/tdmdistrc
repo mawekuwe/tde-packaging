@@ -302,7 +302,7 @@ Compositor=compton-tde
 # Default is "twin"
 WindowManager=twin
 # SAK
-# Default is true
+# Default is false
 UseSAK=true
 # Admin session
 # Default is false

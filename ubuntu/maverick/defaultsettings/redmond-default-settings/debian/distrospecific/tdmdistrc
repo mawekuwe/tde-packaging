@@ -302,8 +302,8 @@ ClientLogFile=.xsession-errors-%s
 # Default is "twin"
 #WindowManager=
 # SAK
-# Default is true
-#UseSAK=false
+# Default is false
+UseSAK=true
 # Admin session
 # Default is false
 #UseAdminSession=true

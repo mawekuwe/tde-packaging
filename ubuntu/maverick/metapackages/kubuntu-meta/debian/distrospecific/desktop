@@ -74,11 +74,15 @@ Printing and printer configuration is a real weak spot in Debian, and in Linux i
  * foomatic-db-hpijs            # printer drivers from the hp inkjet project
  * cupsys-driver-gutenprint     # a ton of cupsys ppds, for real comprehensive printer support
  * openprinting-ppds            # Most common drivers we want in desktop; less common are in o-p-extra
- * pnm2ppa                      # several ppds require this
+ * printer-driver-pnm2ppa|pnm2ppa	# several ppds require this
+ * (hplip)				# support for HP all-in-one printers
+ * (printer-driver-min12xxw|min12xxw)	# support for KonicaMinolta PagePro 1200W, 1300W printers
+ * (printer-driver-foo2zjs|foo2zjs)	# support for printing to ZjStream-based printers
+ * (printer-driver-c2esp)		# support for Kodak ESP AiO color inkjet Series
+ * (printer-driver-ptouch)		# support for Brother P-touch label printers
+ * (printer-driver-sag-gdi)		# support for Ricoh Aficio SP 1000s/SP 1100s
+ * (printer-driver-splix)		# support for Samsung and Xerox SPL2 and SPLc laser printers
  * ghostscript-x
- * (hplip)     			# support for HP all-in-one printers
- * min12xxw			# support for KonicaMinolta PagePro 1200W, 1300W printers
- * foo2zjs			# Support for printing to ZjStream-based printers
 
 = GUI infrastructure =
 
@@ -200,7 +204,7 @@ We've chosen KDE as our desktop user interface of choice
 == koffice-trinity ==
 
 # * (krita-trinity)
-# * (kexi-trinity)                 # instead of openoffice-base
+# * (kexi-trinity)                 # instead of libreoffice-base|openoffice.org-base
 
 == everything else KDE ==
 
@@ -264,13 +268,13 @@ Accessibility tools:
 
 = Other Desktop GUI Apps =
 
- * (openoffice.org-kde) [i386 powerpc amd64]  # before OOo to avoid openoffice.org-style-default
- * (openoffice.org-writer) [i386 powerpc amd64]
- * (openoffice.org-calc) [i386 powerpc amd64]
- * (openoffice.org-impress) [i386 powerpc amd64]
- * (openoffice.org-draw) [i386 powerpc amd64]
- * (openoffice.org-math) [i386 powerpc amd64]
- * (openoffice.org-java-common) [i386 powerpc amd64]
+ * (libreoffice-trinity|openoffice.org-trinity) [i386 powerpc amd64]  # before OOo to avoid libreoffice-style-default|openoffice.org-style-default
+ * (libreoffice-writer|openoffice.org-writer) [i386 powerpc amd64]
+ * (libreoffice-calc|openoffice.org-calc) [i386 powerpc amd64]
+ * (libreoffice-impress|openoffice.org-impress) [i386 powerpc amd64]
+ * (libreoffice-draw|openoffice.org-draw) [i386 powerpc amd64]
+ * (libreoffice-math|openoffice.org-math) [i386 powerpc amd64]
+ * (libreoffice-java-common|openoffice.org-java-common) [i386 powerpc amd64]
  * (tdescreensaver-trinity)
 
 = Games =
