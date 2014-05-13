@@ -1,0 +1,5 @@
+debian/tmp/opt/trinity/lib/trinity/*.so*
+debian/tmp/opt/trinity/lib/trinity/*.la
+debian/tmp/opt/trinity/share/
+debian/usr/lib/gtk-2.0/2.10.0/engines/
+debian/usr/share/themes/Qt/gtk-2.0/

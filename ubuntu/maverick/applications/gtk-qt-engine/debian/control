@@ -21,3 +21,13 @@ Description: theme engine using Qt for GTK+ 2.x and Trinity
  .
  Please note that this package is targeted at Trinity users and therefore provides
  a way to configure it from within KControl.
+
+Package: gtk-qt-engine-trinity-dbg
+Section: devel
+Architecture: any
+Priority: extra
+Depends: gtk-qt-engine-trinity (= ${binary:Version}), tdelibs-trinity-dbg
+Description: debugging symbols for the GTK-Qt Theme Engine [Trinity]
+ This package contains the debugging symbols associated with gtk-qt-engine-trinity.
+ They will automatically be used by gdb for debugging gtk-qt-engine-trinity-related
+ issues.
