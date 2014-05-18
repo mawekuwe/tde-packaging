@@ -27,7 +27,7 @@
 
 Name: qt3
 Version: 3.3.8.d
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv3+ and QPL
 Summary: Qt3 Sources
 Group: System/Libraries
