@@ -91,15 +91,20 @@ BuildRequires: fontconfig-devel
 BuildRequires: bzip2-devel
 BuildRequires: libjpeg-devel
 BuildRequires: libmng-devel
-%if 0%{pclinuxos}
-BuildRequires: libpng-devel
-%else
-BuildRequires: pkgconfig(libpng15)
-%endif
 BuildRequires: zlib-devel 
 BuildRequires: nas-devel
 BuildRequires: libiodbc-devel
 BuildRequires: cups-devel
+
+# PNG support
+%if 0%{pclinuxos}
+BuildRequires: libpng-devel
+%endif
+%if 0%{?mgaversion} >= 4
+BuildRequires: pkgconfig(libpng16)
+%else
+BuildRequires: pkgconfig(libpng15)
+%endif
 
 %if "%{_lib}" != "lib"
 %if 0%{?mdkversion} || ( 0%{?mgaversion} && 0%{?mgaversion} <= 2)
@@ -797,6 +802,9 @@ rm -fr %buildroot
 
 
 %changelog
+* Sat Mar 22 2014 Francois Andriot <francois.andriot@free.fr> 3.3.8.d-6
+- Rebuild for PCLinuxOS
+
 * Mon Sep 09 2013 Francois Andriot <francois.andriot@free.fr> 3.3.8.d-5
 - Fix path in qmake.conf
 
