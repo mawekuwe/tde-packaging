@@ -25,7 +25,7 @@
 
 
 Name:			trinity-%{tde_pkg}
-Summary:		Gwenview is an image viewer for TDE.
+Summary:		Internationalization support for Gwenview [Trinity]
 Version:		1.4.2
 Release:		%{?!preversion:3}%{?preversion:2_%{preversion}}%{?dist}%{?_variant}
 

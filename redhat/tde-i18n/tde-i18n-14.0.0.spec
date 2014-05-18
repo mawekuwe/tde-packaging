@@ -773,445 +773,445 @@ find "%{buildroot}%{tde_tdedocdir}/HTML" -size 0 -exec rm -f {} \;
 %if "%( grep -w af <<< '%{TDE_LANGS}' )" != ""
 %files Afrikaans
 %defattr(-,root,root,-)
-%lang(af) %{tde_datadir}/locale/af/*
-%lang(af) %{tde_tdedocdir}/HTML/af/
+%{tde_datadir}/locale/af/*
+%{tde_tdedocdir}/HTML/af/
 %endif
 
 %if "%( grep -w ar <<< '%{TDE_LANGS}' )" != ""
 %files Arabic 
 %defattr(-,root,root,-)
-%lang(ar) %{tde_datadir}/locale/ar/*
+%{tde_datadir}/locale/ar/*
 %endif
 
 %if "%( grep -w az <<< '%{TDE_LANGS}' )" != ""
 %files Azerbaijani
 %defattr(-,root,root,-)
-%lang(az) %{tde_datadir}/locale/az/*
+%{tde_datadir}/locale/az/*
 %endif
 
 %if "%( grep -w be <<< '%{TDE_LANGS}' )" != ""
 %files Belarusian
 %defattr(-,root,root,-)
-%lang(be) %{tde_datadir}/locale/be/*
+%{tde_datadir}/locale/be/*
 %endif
 
 %if "%( grep -w bg <<< '%{TDE_LANGS}' )" != ""
 %files Bulgarian
 %defattr(-,root,root,-)
-%lang(bg) %{tde_datadir}/locale/bg/*
+%{tde_datadir}/locale/bg/*
 %endif
 
 %if "%( grep -w bn <<< '%{TDE_LANGS}' )" != ""
 %files Bengali
 %defattr(-,root,root,-)
-%lang(bn) %{tde_datadir}/locale/bn/*
+%{tde_datadir}/locale/bn/*
 %endif
 
 %if "%( grep -w bo <<< '%{TDE_LANGS}' )" != ""
 %files Tibetan
 %defattr(-,root,root,-)
-%lang(bo) %{tde_datadir}/locale/bo/*
+%{tde_datadir}/locale/bo/*
 %endif
 
 %if "%( grep -w br <<< '%{TDE_LANGS}' )" != ""
 %files Breton
 %defattr(-,root,root,-)
-%lang(br) %{tde_datadir}/locale/br/*
+%{tde_datadir}/locale/br/*
 %endif
 
 %if "%( grep -w bs <<< '%{TDE_LANGS}' )" != ""
 %files Bosnian
 %defattr(-,root,root,-)
-%lang(bs) %{tde_datadir}/locale/bs/*
+%{tde_datadir}/locale/bs/*
 %endif
 
 %if "%( grep -w ca <<< '%{TDE_LANGS}' )" != ""
 %files Catalan
 %defattr(-,root,root,-)
-%lang(ca) %{tde_datadir}/locale/ca/*
-%lang(ca) %{tde_tdedocdir}/HTML/ca/
+%{tde_datadir}/locale/ca/*
+%{tde_tdedocdir}/HTML/ca/
 %endif
 
 %if "%( grep -w cs <<< '%{TDE_LANGS}' )" != ""
 %files Czech
 %defattr(-,root,root,-)
-%lang(cs) %{tde_datadir}/locale/cs/*
-%lang(cs) %{tde_tdedocdir}/HTML/cs/
+%{tde_datadir}/locale/cs/*
+%{tde_tdedocdir}/HTML/cs/
 %endif
 
 %if "%( grep -w cy <<< '%{TDE_LANGS}' )" != ""
 %files Welsh
 %defattr(-,root,root,-)
-%lang(cy) %{tde_datadir}/locale/cy/*
+%{tde_datadir}/locale/cy/*
 %endif
 
 %if "%( grep -w da <<< '%{TDE_LANGS}' )" != ""
 %files Danish
 %defattr(-,root,root,-)
-%lang(da) %{tde_datadir}/locale/da/*
-%lang(da) %{tde_tdedocdir}/HTML/da/
+%{tde_datadir}/locale/da/*
+%{tde_tdedocdir}/HTML/da/
 %endif
 
 %if "%( grep -w de <<< '%{TDE_LANGS}' )" != ""
 %files German
 %defattr(-,root,root,-)
-%lang(de) %{tde_datadir}/locale/de/*
-%lang(de) %{tde_tdedocdir}/HTML/de/
+%{tde_datadir}/locale/de/*
+%{tde_tdedocdir}/HTML/de/
 %endif
 
 %if "%( grep -w el <<< '%{TDE_LANGS}' )" != ""
 %files Greek
 %defattr(-,root,root,-)
-%lang(el) %{tde_datadir}/locale/el/*
+%{tde_datadir}/locale/el/*
 %endif
 
 %if "%( grep -w en_GB <<< '%{TDE_LANGS}' )" != ""
 %files British
 %defattr(-,root,root,-)
-%lang(en_GB) %{tde_datadir}/locale/en_GB/*
-%lang(en_GB) %{tde_tdedocdir}/HTML/en_GB/
+%{tde_datadir}/locale/en_GB/*
+%{tde_tdedocdir}/HTML/en_GB/
 %endif
 
 %if "%( grep -w eo <<< '%{TDE_LANGS}' )" != ""
 %files Esperanto
 %defattr(-,root,root,-)
-%lang(eo) %{tde_datadir}/locale/eo/*
+%{tde_datadir}/locale/eo/*
 %endif
 
 %if "%( grep -w es <<< '%{TDE_LANGS}' )" != ""
 %files Spanish
 %defattr(-,root,root,-)
-%lang(es) %{tde_datadir}/locale/es/*
-%lang(es) %{tde_tdedocdir}/HTML/es/
+%{tde_datadir}/locale/es/*
+%{tde_tdedocdir}/HTML/es/
 %endif
 
 %if "%( grep -w et <<< '%{TDE_LANGS}' )" != ""
 %files Estonian
 %defattr(-,root,root,-)
-%lang(et) %{tde_datadir}/locale/et/*
-%lang(et) %{tde_tdedocdir}/HTML/et/
+%{tde_datadir}/locale/et/*
+%{tde_tdedocdir}/HTML/et/
 %endif
 
 %if "%( grep -w eu <<< '%{TDE_LANGS}' )" != ""
 %files Basque
 %defattr(-,root,root,-)
-%lang(eu) %{tde_datadir}/locale/eu/*
+%{tde_datadir}/locale/eu/*
 %endif
 
 %if "%( grep -w fa <<< '%{TDE_LANGS}' )" != ""
 %files Farsi
 %defattr(-,root,root,-)
-%lang(fa) %{tde_datadir}/locale/fa/*
+%{tde_datadir}/locale/fa/*
 %endif
 
 %if "%( grep -w fi <<< '%{TDE_LANGS}' )" != ""
 %files Finnish
 %defattr(-,root,root,-)
-%lang(fi) %{tde_datadir}/locale/fi/*
-%lang(fi) %{tde_tdedocdir}/HTML/fi/
+%{tde_datadir}/locale/fi/*
+%{tde_tdedocdir}/HTML/fi/
 %endif
 
 %if "%( grep -w fo <<< '%{TDE_LANGS}' )" != ""
 %files Faroese
 %defattr(-,root,root,-)
-%lang(fo) %{tde_datadir}/locale/fo/*
+%{tde_datadir}/locale/fo/*
 %endif
 
 %if "%( grep -w fr <<< '%{TDE_LANGS}' )" != ""
 %files French
 %defattr(-,root,root,-)
-%lang(fr) %{tde_datadir}/locale/fr/*
-%lang(fr) %{tde_tdedocdir}/HTML/fr/
+%{tde_datadir}/locale/fr/*
+%{tde_tdedocdir}/HTML/fr/
 %endif
 
 %if "%( grep -w fy <<< '%{TDE_LANGS}' )" != ""
 %files Frisian
 %defattr(-,root,root,-)
-%lang(fy) %{tde_datadir}/locale/fy/*
+%{tde_datadir}/locale/fy/*
 %endif
 
 %if "%( grep -w ga <<< '%{TDE_LANGS}' )" != ""
 %files Irish
 %defattr(-,root,root,-)
-%lang(ga) %{tde_datadir}/locale/ga/*
+%{tde_datadir}/locale/ga/*
 %endif
 
 %if "%( grep -w gl <<< '%{TDE_LANGS}' )" != ""
 %files Galician
 %defattr(-,root,root,-)
-%lang(gl) %{tde_datadir}/locale/gl/*
+%{tde_datadir}/locale/gl/*
 %endif
 
 %if "%( grep -w he <<< '%{TDE_LANGS}' )" != ""
 %files Hebrew
 %defattr(-,root,root,-)
-%lang(he) %{tde_datadir}/locale/he/*
-%lang(he) %{tde_tdedocdir}/HTML/he/
+%{tde_datadir}/locale/he/*
+%{tde_tdedocdir}/HTML/he/
 %endif
 
 %if "%( grep -w hi <<< '%{TDE_LANGS}' )" != ""
 %files Hindi
 %defattr(-,root,root,-)
-%lang(hi) %{tde_datadir}/locale/hi/*
+%{tde_datadir}/locale/hi/*
 %endif
 
 %if "%( grep -w hr <<< '%{TDE_LANGS}' )" != ""
 %files Croatian
 %defattr(-,root,root,-)
-%lang(hr) %{tde_datadir}/locale/hr/*
-%lang(hr) %{tde_tdedocdir}/HTML/hr/
+%{tde_datadir}/locale/hr/*
+%{tde_tdedocdir}/HTML/hr/
 %endif
 
 %if "%( grep -w hu <<< '%{TDE_LANGS}' )" != ""
 %files Hungarian
 %defattr(-,root,root,-)
-%lang(hu) %{tde_datadir}/locale/hu/*
-%lang(hu) %{tde_tdedocdir}/HTML/hu/
+%{tde_datadir}/locale/hu/*
+%{tde_tdedocdir}/HTML/hu/
 %endif
 
 %if "%( grep -w id <<< '%{TDE_LANGS}' )" != ""
 %files Indonesian
 %defattr(-,root,root,-)
-%lang(id) %{tde_datadir}/locale/id/*
-%lang(id) %{tde_tdedocdir}/HTML/id/
+%{tde_datadir}/locale/id/*
+%{tde_tdedocdir}/HTML/id/
 %endif
 
 %if "%( grep -w is <<< '%{TDE_LANGS}' )" != ""
 %files Icelandic
 %defattr(-,root,root,-)
-%lang(is) %{tde_datadir}/locale/is/*
+%{tde_datadir}/locale/is/*
 %endif
 
 %if "%( grep -w it <<< '%{TDE_LANGS}' )" != ""
 %files Italian
 %defattr(-,root,root,-)
-%lang(it) %{tde_datadir}/locale/it/*
-%lang(it) %{tde_tdedocdir}/HTML/it/
+%{tde_datadir}/locale/it/*
+%{tde_tdedocdir}/HTML/it/
 %endif
 
 %if "%( grep -w ja <<< '%{TDE_LANGS}' )" != ""
 %files Japanese
 %defattr(-,root,root,-)
-%lang(ja) %{tde_datadir}/locale/ja/*
-%lang(ja) %{tde_tdedocdir}/HTML/ja/
+%{tde_datadir}/locale/ja/*
+%{tde_tdedocdir}/HTML/ja/
 %endif
 
 %if "%( grep -w ko <<< '%{TDE_LANGS}' )" != ""
 %files Korean
 %defattr(-,root,root,-)
-%lang(ko) %{tde_datadir}/locale/ko/*
-%lang(ko) %{tde_tdedocdir}/HTML/ko/
+%{tde_datadir}/locale/ko/*
+%{tde_tdedocdir}/HTML/ko/
 %endif
 
 %if "%( grep -w ku <<< '%{TDE_LANGS}' )" != ""
 %files Kurdish
 %defattr(-,root,root,-)
-%lang(ku) %{tde_datadir}/locale/ku/*
-%lang(ku) %{tde_tdedocdir}/HTML/ku/
+%{tde_datadir}/locale/ku/*
+%{tde_tdedocdir}/HTML/ku/
 %endif
 
 %if "%( grep -w lao <<< '%{TDE_LANGS}' )" != ""
 %files Lao
 %defattr(-,root,root,-)
-%lang(lo) %{tde_datadir}/locale/lo/*
-%lang(lo) %{tde_tdedocdir}/HTML/lo/
+%{tde_datadir}/locale/lo/*
+%{tde_tdedocdir}/HTML/lo/
 %endif
 
 %if "%( grep -w lt <<< '%{TDE_LANGS}' )" != ""
 %files Lithuanian
 %defattr(-,root,root,-)
-%lang(lt) %{tde_datadir}/locale/lt/*
+%{tde_datadir}/locale/lt/*
 %endif
 
 %if "%( grep -w lv <<< '%{TDE_LANGS}' )" != ""
 %files Latvian
 %defattr(-,root,root,-)
-%lang(lv) %{tde_datadir}/locale/lv/*
+%{tde_datadir}/locale/lv/*
 %endif
 
 %if "%( grep -w mi <<< '%{TDE_LANGS}' )" != ""
 %files Maori
 %defattr(-,root,root,-)
-%lang(mi) %{tde_datadir}/locale/mi/*
+%{tde_datadir}/locale/mi/*
 %endif
 
 %if "%( grep -w mk <<< '%{TDE_LANGS}' )" != ""
 %files Macedonian
 %defattr(-,root,root,-)
-%lang(mk) %{tde_datadir}/locale/mk/*
+%{tde_datadir}/locale/mk/*
 %endif
 
 %if "%( grep -w mt <<< '%{TDE_LANGS}' )" != ""
 %files Maltese
 %defattr(-,root,root,-)
-%lang(mt) %{tde_datadir}/locale/mt/*
+%{tde_datadir}/locale/mt/*
 %endif
 
 %if "%( grep -w nl <<< '%{TDE_LANGS}' )" != ""
 %files Dutch
 %defattr(-,root,root,-)
-%lang(nl) %{tde_datadir}/locale/nl/*
-%lang(nl) %{tde_tdedocdir}/HTML/nl/
+%{tde_datadir}/locale/nl/*
+%{tde_tdedocdir}/HTML/nl/
 %endif
 
 %if "%( grep -w nb <<< '%{TDE_LANGS}' )" != ""
 %files Norwegian
 %defattr(-,root,root,-)
-%lang(nb) %{tde_datadir}/locale/nb/*
-#%lang(nb) %{tde_tdedocdir}/HTML/nb/
+%{tde_datadir}/locale/nb/*
+#%{tde_tdedocdir}/HTML/nb/
 %endif
 
 %if "%( grep -w nn <<< '%{TDE_LANGS}' )" != ""
 %files Norwegian-Nynorsk
 %defattr(-,root,root,-)
-%lang(nn) %{tde_datadir}/locale/nn/*
-#%lang(nn) %{tde_tdedocdir}/HTML/nn/
+%{tde_datadir}/locale/nn/*
+#%{tde_tdedocdir}/HTML/nn/
 %endif
 
 %if "%( grep -w oc <<< '%{TDE_LANGS}' )" != ""
 %files Occitan
 %defattr(-,root,root,-)
-%lang(oc) %{tde_datadir}/locale/oc/*
+%{tde_datadir}/locale/oc/*
 %endif
 
 %if "%( grep -w pa <<< '%{TDE_LANGS}' )" != ""
 %files Punjabi
 %defattr(-,root,root,-)
-%lang(pa) %{tde_datadir}/locale/pa/*
+%{tde_datadir}/locale/pa/*
 %endif
 
 %if "%( grep -w pl <<< '%{TDE_LANGS}' )" != ""
 %files Polish
 %defattr(-,root,root,-)
-%lang(pl) %{tde_datadir}/locale/pl/*
-%lang(pl) %{tde_tdedocdir}/HTML/pl/
+%{tde_datadir}/locale/pl/*
+%{tde_tdedocdir}/HTML/pl/
 %endif
 
 %if "%( grep -w pt <<< '%{TDE_LANGS}' )" != ""
 %files Portuguese
 %defattr(-,root,root,-)
-%lang(pt) %{tde_datadir}/locale/pt/*
-%lang(pt) %{tde_tdedocdir}/HTML/pt/
+%{tde_datadir}/locale/pt/*
+%{tde_tdedocdir}/HTML/pt/
 %endif
 
 %if "%( grep -w pt_BR <<< '%{TDE_LANGS}' )" != ""
 %files Brazil
 %defattr(-,root,root,-)
-%lang(pt_BR) %{tde_datadir}/locale/pt_BR/*
-%lang(pt_BR) %{tde_tdedocdir}/HTML/pt_BR/
+%{tde_datadir}/locale/pt_BR/*
+%{tde_tdedocdir}/HTML/pt_BR/
 %endif
 
 %if "%( grep -w ro <<< '%{TDE_LANGS}' )" != ""
 %files Romanian
 %defattr(-,root,root,-)
-%lang(ro) %{tde_datadir}/locale/ro/*
-%lang(ro) %{tde_tdedocdir}/HTML/ro/
+%{tde_datadir}/locale/ro/*
+%{tde_tdedocdir}/HTML/ro/
 %endif
 
 %if "%( grep -w ru <<< '%{TDE_LANGS}' )" != ""
 %files Russian
 %defattr(-,root,root,-)
-%lang(ru) %{tde_datadir}/locale/ru/*
-%lang(ru) %{tde_tdedocdir}/HTML/ru/
+%{tde_datadir}/locale/ru/*
+%{tde_tdedocdir}/HTML/ru/
 %endif
 
 %if "%( grep -w sk <<< '%{TDE_LANGS}' )" != ""
 %files Slovak
 %defattr(-,root,root,-)
-%lang(sk) %{tde_datadir}/locale/sk/*
-%lang(sk) %{tde_tdedocdir}/HTML/sk/
+%{tde_datadir}/locale/sk/*
+%{tde_tdedocdir}/HTML/sk/
 %endif
 
 %if "%( grep -w sl <<< '%{TDE_LANGS}' )" != ""
 %files Slovenian
 %defattr(-,root,root,-)
-%lang(sl) %{tde_datadir}/locale/sl/*
-%lang(sl) %{tde_tdedocdir}/HTML/sl/
+%{tde_datadir}/locale/sl/*
+%{tde_tdedocdir}/HTML/sl/
 %endif
 
 %if "%( grep -w sr <<< '%{TDE_LANGS}' )" != ""
 %files Serbian
 %defattr(-,root,root,-)
-%lang(sr) %{tde_datadir}/locale/sr/*
-%lang(sr) %{tde_tdedocdir}/HTML/sr/
+%{tde_datadir}/locale/sr/*
+%{tde_tdedocdir}/HTML/sr/
 %endif
 
 %if "%( grep -w sv <<< '%{TDE_LANGS}' )" != ""
 %files Swedish
 %defattr(-,root,root,-)
-%lang(sv) %{tde_datadir}/locale/sv/*
-%lang(sv) %{tde_tdedocdir}/HTML/sv/
+%{tde_datadir}/locale/sv/*
+%{tde_tdedocdir}/HTML/sv/
 %endif
 
 %if "%( grep -w ta <<< '%{TDE_LANGS}' )" != ""
 %files Tamil
 %defattr(-,root,root,-)
-%lang(ta) %{tde_datadir}/locale/ta/*
+%{tde_datadir}/locale/ta/*
 %endif
 
 %if "%( grep -w tg <<< '%{TDE_LANGS}' )" != ""
 %files Tajik
 %defattr(-,root,root,-)
-%lang(tg) %{tde_datadir}/locale/tg/*
+%{tde_datadir}/locale/tg/*
 %endif
 
 %if "%( grep -w th <<< '%{TDE_LANGS}' )" != ""
 %files Thai
 %defattr(-,root,root,-)
-%lang(th) %{tde_datadir}/locale/th/*
+%{tde_datadir}/locale/th/*
 %endif
 
 %if "%( grep -w tr <<< '%{TDE_LANGS}' )" != ""
 %files Turkish
 %defattr(-,root,root,-)
-%lang(tr) %{tde_datadir}/locale/tr/*
-%lang(tr) %{tde_tdedocdir}/HTML/tr/
+%{tde_datadir}/locale/tr/*
+%{tde_tdedocdir}/HTML/tr/
 %endif
 
 %if "%( grep -w uk <<< '%{TDE_LANGS}' )" != ""
 %files Ukrainian
 %defattr(-,root,root,-)
-%lang(uk) %{tde_tdedocdir}/HTML/uk/
-%lang(uk) %{tde_datadir}/locale/uk/*
+%{tde_tdedocdir}/HTML/uk/
+%{tde_datadir}/locale/uk/*
 %endif
 
 %if "%( grep -w ven <<< '%{TDE_LANGS}' )" != ""
 %files Venda
 %defattr(-,root,root,-)
-%lang(ven) %{tde_datadir}/locale/ven/*
+%{tde_datadir}/locale/ven/*
 %endif
 
 %if "%( grep -w vi <<< '%{TDE_LANGS}' )" != ""
 %files Vietnamese
 %defattr(-,root,root,-)
-%lang(vi) %{tde_datadir}/locale/vi/*
+%{tde_datadir}/locale/vi/*
 %endif
 
 %if "%( grep -w wa <<< '%{TDE_LANGS}' )" != ""
 %files Walloon
 %defattr(-,root,root,-)
-%lang(wa) %{tde_datadir}/locale/wa/*
+%{tde_datadir}/locale/wa/*
 %endif
 
 %if "%( grep -w xh <<< '%{TDE_LANGS}' )" != ""
 %files Xhosa
 %defattr(-,root,root,-)
-%lang(xh) %{tde_datadir}/locale/xh/*
-%lang(xh) %{tde_tdedocdir}/HTML/xh/
+%{tde_datadir}/locale/xh/*
+%{tde_tdedocdir}/HTML/xh/
 %endif
 
 %if "%( grep -w zh_CN <<< '%{TDE_LANGS}' )" != ""
 %files Chinese
 %defattr(-,root,root,-)
-%lang(zh_CN) %{tde_datadir}/locale/zh_CN/*
-%lang(zh_CN) %{tde_tdedocdir}/HTML/zh_CN/
+%{tde_datadir}/locale/zh_CN/*
+%{tde_tdedocdir}/HTML/zh_CN/
 %endif
 
 %if "%( grep -w zh_TW <<< '%{TDE_LANGS}' )" != ""
 %files Chinese-Big5
 %defattr(-,root,root,-)
-%lang(zh_TW) %{tde_datadir}/locale/zh_TW/*
-%lang(zh_TW) %{tde_tdedocdir}/HTML/zh_TW/
+%{tde_datadir}/locale/zh_TW/*
+%{tde_tdedocdir}/HTML/zh_TW/
 %endif
 
 %changelog

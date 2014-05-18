@@ -25,7 +25,7 @@
 
 
 Name:			trinity-k3b-i18n
-Summary:		Locale files for K3B
+Summary:		Internationalization support for TDE [Trinity]
 Version:		1.0.5
 Release:		%{?!preversion:5}%{?preversion:4_%{preversion}}%{?dist}%{?_variant}
 
@@ -84,8 +84,8 @@ This package contains the Danish translations for K3B.
 
 %files Danish
 %defattr(-,root,root,-)
-%lang(da) %{tde_tdedocdir}/HTML/da/k3b
-%lang(da) %{tde_datadir}/locale/da/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/da/k3b
+%{tde_datadir}/locale/da/LC_MESSAGES/*.mo
 
 ##########
 
@@ -102,8 +102,8 @@ This package contains the German translations for K3B.
 
 %files German
 %defattr(-,root,root,-)
-%lang(de) %{tde_tdedocdir}/HTML/de/k3b
-%lang(de) %{tde_datadir}/locale/de/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/de/k3b
+%{tde_datadir}/locale/de/LC_MESSAGES/*.mo
 
 ##########
 
@@ -120,8 +120,8 @@ This package contains the greek translations for K3B.
 
 %files Greek
 %defattr(-,root,root,-)
-#%lang(el) %{tde_tdedocdir}/HTML/el/k3b
-%lang(el) %{tde_datadir}/locale/el/LC_MESSAGES/*.mo
+#%{tde_tdedocdir}/HTML/el/k3b
+%{tde_datadir}/locale/el/LC_MESSAGES/*.mo
 
 ##########
 
@@ -138,8 +138,8 @@ This package contains the Spanish translations for K3B.
 
 %files Spanish
 %defattr(-,root,root,-)
-%lang(es) %{tde_tdedocdir}/HTML/es/k3b
-%lang(es) %{tde_datadir}/locale/es/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/es/k3b
+%{tde_datadir}/locale/es/LC_MESSAGES/*.mo
 
 ##########
 
@@ -156,8 +156,8 @@ This package contains the Estonian translations for K3B.
 
 %files Estonian
 %defattr(-,root,root,-)
-%lang(et) %{tde_tdedocdir}/HTML/et/k3b
-%lang(et) %{tde_datadir}/locale/et/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/et/k3b
+%{tde_datadir}/locale/et/LC_MESSAGES/*.mo
 
 ##########
 
@@ -174,8 +174,8 @@ This package contains the French translations for K3B.
 
 %files French
 %defattr(-,root,root,-)
-%lang(fr) %{tde_tdedocdir}/HTML/fr/k3b
-%lang(fr) %{tde_datadir}/locale/fr/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/fr/k3b
+%{tde_datadir}/locale/fr/LC_MESSAGES/*.mo
 
 ##########
 
@@ -192,8 +192,8 @@ This package contains the Italian translations for K3B.
 
 %files Italian
 %defattr(-,root,root,-)
-%lang(it) %{tde_tdedocdir}/HTML/it/k3b
-%lang(it) %{tde_datadir}/locale/it/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/it/k3b
+%{tde_datadir}/locale/it/LC_MESSAGES/*.mo
 
 ##########
 
@@ -210,8 +210,8 @@ This package contains the Dutch translations for K3B.
 
 %files Dutch
 %defattr(-,root,root,-)
-%lang(nl) %{tde_tdedocdir}/HTML/nl/k3b
-%lang(nl) %{tde_datadir}/locale/nl/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/nl/k3b
+%{tde_datadir}/locale/nl/LC_MESSAGES/*.mo
 
 ##########
 
@@ -228,8 +228,8 @@ This package contains the Polish translations for K3B.
 
 %files Polish
 %defattr(-,root,root,-)
-%lang(pl) %{tde_tdedocdir}/HTML/pl/k3b
-%lang(pl) %{tde_datadir}/locale/pl/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/pl/k3b
+%{tde_datadir}/locale/pl/LC_MESSAGES/*.mo
 
 ##########
 
@@ -246,8 +246,8 @@ This package contains the Portuguese translations for K3B.
 
 %files Portuguese
 %defattr(-,root,root,-)
-%lang(pt) %{tde_tdedocdir}/HTML/pt/k3b
-%lang(pt) %{tde_datadir}/locale/pt/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/pt/k3b
+%{tde_datadir}/locale/pt/LC_MESSAGES/*.mo
 
 ##########
 
@@ -266,8 +266,8 @@ This package contains the Brazilian Portuguese translations for K3B.
 
 %files Brazil
 %defattr(-,root,root,-)
-%lang(pt_BR) %{tde_tdedocdir}/HTML/pt_BR/k3b
-%lang(pt_BR) %{tde_datadir}/locale/pt_BR/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/pt_BR/k3b
+%{tde_datadir}/locale/pt_BR/LC_MESSAGES/*.mo
 
 ##########
 
@@ -284,8 +284,8 @@ This package contains the Russian translations for K3B.
 
 %files Russian
 %defattr(-,root,root,-)
-%lang(ru) %{tde_tdedocdir}/HTML/ru/k3b
-%lang(ru) %{tde_datadir}/locale/ru/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/ru/k3b
+%{tde_datadir}/locale/ru/LC_MESSAGES/*.mo
 
 ##########
 
@@ -302,8 +302,8 @@ This package contains the Swedish translations for K3B.
 
 %files Swedish
 %defattr(-,root,root,-)
-%lang(sv) %{tde_tdedocdir}/HTML/sv/k3b
-%lang(sv) %{tde_datadir}/locale/sv/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/sv/k3b
+%{tde_datadir}/locale/sv/LC_MESSAGES/*.mo
 
 ##########
 
@@ -320,8 +320,8 @@ This package contains the Ukrainian translations for K3B.
 
 %files Ukrainian
 %defattr(-,root,root,-)
-%lang(uk) %{tde_tdedocdir}/HTML/uk/k3b
-%lang(uk) %{tde_datadir}/locale/uk/LC_MESSAGES/*.mo
+%{tde_tdedocdir}/HTML/uk/k3b
+%{tde_datadir}/locale/uk/LC_MESSAGES/*.mo
 
 ##########
 
