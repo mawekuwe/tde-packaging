@@ -8,11 +8,19 @@ case "$1" in
 	# Remove old-style Plasma diversions
 	divert=`dpkg-divert --listpackage "/usr/bin/plasma"`
 	if [ -n "$divert" ]; then
-	    dpkg-divert --package $package_name --rename --remove /usr/bin/plasma
+	    if [ "$divert" = "LOCAL" ]; then
+	        dpkg-divert --local --rename --remove /usr/bin/plasma
+	    else
+	        dpkg-divert --package $package_name --rename --remove /usr/bin/plasma
+	    fi
 	fi
 	divert=`dpkg-divert --listpackage "/usr/bin/plasma-desktop"`
 	if [ -n "$divert" ]; then
-	    dpkg-divert --package $package_name --rename --remove /usr/bin/plasma-desktop
+	    if [ "$divert" = "LOCAL" ]; then
+	        dpkg-divert --local --rename --remove /usr/bin/plasma-desktop
+	    else
+	        dpkg-divert --package $package_name --rename --remove /usr/bin/plasma-desktop
+	    fi
 	fi
 	mkdir -p /usr/share/autostart
     ;;
