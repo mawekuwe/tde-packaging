@@ -95,6 +95,7 @@ CONFIGURE_OPTS = \
 		-plugin-sql-mysql		\
 		-plugin-sql-ibase		\
 		-plugin-sql-sqlite		\
+		-plugin-sql-sqlite3		\
 						\
 		-I/usr/include/mysql		\
 		-I/usr/include/freetype2	\

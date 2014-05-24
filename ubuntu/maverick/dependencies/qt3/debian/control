@@ -88,6 +88,15 @@ Description: SQLite database driver for Qt3 (Threaded)
  it if you intend to use or write Qt programs that are to access an
  SQLite DB.
 
+Package: libqt3-mt-sqlite3
+Architecture: any
+Section: libs
+Depends: ${shlibs:Depends}
+Description: SQLite3 database driver for Qt3 (Threaded)
+ This package contains the threaded SQLite3 plugin for Qt3. Install
+ it if you intend to use or write Qt programs that are to access an
+ SQLite3 DB.
+
 Package: libqt3-mt-dev
 Architecture: any
 Section: libdevel
