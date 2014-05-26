@@ -64,7 +64,7 @@ manpage.1: manpage.sgml
       <command>&dhpackage;</command>
 
       <arg><option>QT options</option></arg>
-      <arg><option>KDE options</option></arg>
+      <arg><option>TDE options</option></arg>
       <arg><option>KDiff3 options</option></arg>
       <arg><option><replaceable>File1/base</replaceable></option></arg>
       <arg><option><replaceable>File2</replaceable></option></arg>
@@ -90,7 +90,7 @@ manpage.1: manpage.sgml
 		<ListItem><para>provides an automatic merge-facility and</para></ListItem>
 		<ListItem><para>an integrated editor for comfortable solving of merge-conflicts</para></ListItem>
 		<ListItem><para>supports Unicode, UTF-8 and other codecs</para></ListItem>
-		<ListItem><para>supports KIO on KDE (allows accessing ftp, sftp, fish, smb etc.)</para></ListItem>
+		<ListItem><para>supports TDEIO on TDE (allows accessing ftp, sftp, fish, smb etc.)</para></ListItem>
 		<ListItem><para>Printing of differences</para></ListItem>
 		<ListItem><para>Manual alignment of lines</para></ListItem>
 		<ListItem><para>Automatic merging of version control history ($Log$)</para></ListItem>

@@ -4,12 +4,12 @@
 Wireless Assistant
 .SH "SYNTAX"
 .LP 
-wlassistant [Qt\-options] [KDE\-options]
+wlassistant [Qt\-options] [TDE\-options]
 
 Generic options:
   \-\-help                    Show help about options
   \-\-help\-qt                 Show Qt specific options
-  \-\-help\-kde                Show KDE specific options
+  \-\-help\-tde                Show TDE specific options
   \-\-help\-all                Show all options
   \-\-author                  Show author information
   \-v, \-\-version             Show version information
@@ -17,7 +17,7 @@ Generic options:
   \-\-                        End of options
 .SH "DESCRIPTION"
 .LP 
-Wireless Assistant is a full\-featured KDE application with an intuitive interface. It scans for wireless access points and displays link quality, encryption and other useful information. When user wants to connect to a  network, Wireless Assistant opens up its wizards and guides the user through Wi\-Fi settings. After a successful connection is made the settings are remembered so next time the user won't have to enter them again. 
+Wireless Assistant is a full\-featured TDE application with an intuitive interface. It scans for wireless access points and displays link quality, encryption and other useful information. When user wants to connect to a  network, Wireless Assistant opens up its wizards and guides the user through Wi\-Fi settings. After a successful connection is made the settings are remembered so next time the user won't have to enter them again. 
 
 Unlike other similar applications, Wireless Assistant requires virtually no  configuration, it is ready to use right after installation. Features include WEP  encryption, automatic (DHCP) and manual configuration, hidden ESSIDs and more.
 

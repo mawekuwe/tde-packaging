@@ -33,7 +33,7 @@ tdemultimedia-tdefile-plugins-trinity
 tdemultimedia-tdeio-plugins-trinity
 tdenetwork-filesharing-trinity
 tdenetwork-tdefile-plugins-trinity
-kdepasswd-trinity
+tdepasswd-trinity
 tdeprint-trinity
 kdesktop-trinity
 tdm-trinity
@@ -70,7 +70,7 @@ qca-tls
 readahead
 screen
 smbclient
-software-properties-kde
+software-properties-tde
 ttf-bitstream-vera
 ttf-dejavu-core
 ttf-freefont

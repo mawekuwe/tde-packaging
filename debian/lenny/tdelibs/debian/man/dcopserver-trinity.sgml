@@ -56,7 +56,7 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>KDE DCOP server</refpurpose>
+    <refpurpose>TDE DCOP server</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -81,7 +81,7 @@ manpage.1: manpage.sgml
     <para>This manual page documents briefly the
       <command>&dhpackage;</command> command.</para>
 
-    <para><command>&dhpackage;</command> is the server for KDE's Desktop Communications Protocol.</para>
+    <para><command>&dhpackage;</command> is the server for TDE's Desktop Communications Protocol.</para>
 
   </refsect1>
   <refsect1>

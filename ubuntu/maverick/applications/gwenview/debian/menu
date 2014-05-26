@@ -1,4 +1,4 @@
-?package(gwenview):\
+?package(gwenview-trinity):\
 	needs="X11"\
 	section="Applications/Viewers"\
 	hints="TDE,Images"\

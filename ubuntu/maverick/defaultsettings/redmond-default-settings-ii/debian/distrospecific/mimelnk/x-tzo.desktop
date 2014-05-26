@@ -2,8 +2,8 @@
 Comment=Lzopped Tar Archive
 Hidden=false
 Patterns=*.tar.lzo;*.tzo
-X-KDE-AutoEmbed=true
+X-TDE-AutoEmbed=true
 
-[Property::X-KDE-LocalProtocol]
+[Property::X-TDE-LocalProtocol]
 Type=
 Value=

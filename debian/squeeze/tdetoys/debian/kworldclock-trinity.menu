@@ -1,4 +1,4 @@
-?package(kworldclock):\
+?package(kworldclock-trinity):\
 	needs="x11"\
 	section="Games/Toys"\
 	hints="TDE"\

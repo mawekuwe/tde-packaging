@@ -2,7 +2,7 @@
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH FIXKDEINCLUDES 1 "January 31, 2004"
+.TH FIXTDEINCLUDES 1 "January 31, 2004"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -16,7 +16,7 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-fixkdeincludes \- reduce the number of #includes in KDE source files
+fixkdeincludes \- reduce the number of #includes in TDE source files
 .SH SYNOPSIS
 .B fixkdeincludes
 [ \fB\-v, \-\-verbose\fP ]
@@ -27,8 +27,8 @@ fixkdeincludes \- reduce the number of #includes in KDE source files
 .B fixkdeincludes \-\-help
 .SH DESCRIPTION
 \fBfixkdeincludes\fP tries to reduce the number of #includes in C++ source
-files.  Much of its processing is specific to KDE sources and so it
-might not work so well with sources for non-KDE applications.
+files.  Much of its processing is specific to TDE sources and so it
+might not work so well with sources for non-TDE applications.
 .PP
 The following problems are identified by fixkdeincludes:
 .PP
@@ -51,9 +51,9 @@ will simply be written to standard output.
 The list of C++ sources to examine should be given on the command-line.
 If no files are given, all C++ sources in or beneath the current
 directory will be examined (with the exception of directories whose
-\fIMakefile.am\fP contains \-UQT_NO_COMPAT or \-UKDE_NO_COMPAT).
+\fIMakefile.am\fP contains \-UQT_NO_COMPAT or \-UTDE_NO_COMPAT).
 .PP
-This utility is part of the KDE Software Development Kit.
+This utility is part of the TDE Software Development Kit.
 .SH OPTIONS
 .TP
 \fB\-v, \-\-verbose\fP

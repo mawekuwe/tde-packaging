@@ -16,8 +16,8 @@ Breaks: kile-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, konsole-trinity, texlive-latex-base
 Recommends: kdvi-trinity, dvipng, kghostview-trinity, kpdf-trinity
 Suggests: gbib, latex2html, pybliographer, xfig, kile-trinity-i18n, gv
-Description: KDE Integrated LaTeX Environment [Trinity]
- Kile is a user-friendly LaTeX source editor and TeX shell for KDE.
+Description: TDE Integrated LaTeX Environment [Trinity]
+ Kile is a user-friendly LaTeX source editor and TeX shell for TDE.
  .
  The source editor is a multi-document editor designed for .tex and .bib
  files.  Menus, wizards and auto-completion are provided to assist with
@@ -36,7 +36,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ar (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ar (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ar
+Recommends: tde-i18n-ar-trinity
 Provides: kile-trinity-i18n
 Description: Arabic (ar) translations for Kile [Trinity]
  This package contains the Arabic translations for Kile.
@@ -47,7 +47,7 @@ Section: tex
 Replaces: kile-trinity-i18n-bg (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-bg (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-bg
+Recommends: tde-i18n-bg-trinity
 Provides: kile-trinity-i18n
 Description: Bulgarian (bg) translations for Kile [Trinity]
  This package contains the Bulgarian translations for Kile.
@@ -58,7 +58,7 @@ Section: tex
 Replaces: kile-trinity-i18n-br (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-br (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-br
+Recommends: tde-i18n-br-trinity
 Provides: kile-trinity-i18n
 Description: Brazilian (br) translations for Kile [Trinity]
  This package contains the Brazilian translations for Kile.
@@ -69,7 +69,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ca (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ca (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ca
+Recommends: tde-i18n-ca-trinity
 Provides: kile-trinity-i18n
 Description: Catalan (ca) translations for Kile [Trinity]
  This package contains the Catalan translations for Kile.
@@ -80,7 +80,7 @@ Section: tex
 Replaces: kile-trinity-i18n-cs (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-cs (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-cs
+Recommends: tde-i18n-cs-trinity
 Provides: kile-trinity-i18n
 Description: Czech (cs) translations for Kile [Trinity]
  This package contains the Czech translations for Kile.
@@ -91,7 +91,7 @@ Section: tex
 Replaces: kile-trinity-i18n-cy (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-cy (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-cy
+Recommends: tde-i18n-cy-trinity
 Provides: kile-trinity-i18n
 Description: Welsh (cy) translations for Kile [Trinity]
  This package contains the Welsh translations for Kile.
@@ -102,7 +102,7 @@ Section: tex
 Replaces: kile-trinity-i18n-da (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-da (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-da
+Recommends: tde-i18n-da-trinity
 Provides: kile-trinity-i18n
 Description: Danish (da) translations for Kile [Trinity]
  This package contains the Danish translations for Kile.
@@ -113,7 +113,7 @@ Section: tex
 Replaces: kile-trinity-i18n-de (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-de (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-de
+Recommends: tde-i18n-de-trinity
 Provides: kile-trinity-i18n
 Description: German (de) translations for Kile [Trinity]
  This package contains the German translations for Kile.
@@ -124,7 +124,7 @@ Section: tex
 Replaces: kile-trinity-i18n-el (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-el (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-el
+Recommends: tde-i18n-el-trinity
 Provides: kile-trinity-i18n
 Description: Greek (el) translations for Kile [Trinity]
  This package contains the greek translations for Kile.
@@ -135,7 +135,7 @@ Section: tex
 Replaces: kile-trinity-i18n-engb (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-engb (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-engb
+Recommends: tde-i18n-engb-trinity
 Provides: kile-trinity-i18n
 Description: British English (en_GB) translations for Kile [Trinity]
  This package contains the British English (en_GB) translations for Kile [Trinity].
@@ -146,7 +146,7 @@ Section: tex
 Replaces: kile-trinity-i18n-es (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-es (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-es
+Recommends: tde-i18n-es-trinity
 Provides: kile-trinity-i18n
 Description: Spanish (es) translations for Kile [Trinity]
  This package contains the Spanish translations for Kile.
@@ -157,7 +157,7 @@ Section: tex
 Replaces: kile-trinity-i18n-et (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-et (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-et
+Recommends: tde-i18n-et-trinity
 Provides: kile-trinity-i18n
 Description: Estonian (et) translations for Kile [Trinity]
  This package contains the Estonian translations for Kile.
@@ -168,7 +168,7 @@ Section: tex
 Replaces: kile-trinity-i18n-eu (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-eu (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-eu
+Recommends: tde-i18n-eu-trinity
 Provides: kile-trinity-i18n
 Description: Basque (eu) translations for Kile [Trinity]
  This package contains the Basque translations for Kile.
@@ -179,7 +179,7 @@ Section: tex
 Replaces: kile-trinity-i18n-fi (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-fi (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-fi
+Recommends: tde-i18n-fi-trinity
 Provides: kile-trinity-i18n
 Description: Finnish (fi) translations for Kile [Trinity]
  This package contains the Finnish translations for Kile.
@@ -190,7 +190,7 @@ Section: tex
 Replaces: kile-trinity-i18n-fr (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-fr (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-fr
+Recommends: tde-i18n-fr-trinity
 Provides: kile-trinity-i18n
 Description: French (fr) translations for Kile [Trinity]
  This package contains the French translations for Kile.
@@ -201,7 +201,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ga (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ga (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ga
+Recommends: tde-i18n-ga-trinity
 Provides: kile-trinity-i18n
 Description: Irish Gaelic (ga) translations for Kile [Trinity]
  This package contains the Irish Gaelic translations for Kile.
@@ -212,7 +212,7 @@ Section: tex
 Replaces: kile-trinity-i18n-gl (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-gl (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-gl
+Recommends: tde-i18n-gl-trinity
 Provides: kile-trinity-i18n
 Description: Galician (gl) translations for Kile [Trinity]
  This package contains the Galician translations for Kile.
@@ -223,7 +223,7 @@ Section: tex
 Replaces: kile-trinity-i18n-hi (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-hi (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-hi
+Recommends: tde-i18n-hi-trinity
 Provides: kile-trinity-i18n
 Description: Hindi (hi) translations for Kile [Trinity]
  This package contains the Hindi translations for Kile.
@@ -234,7 +234,7 @@ Section: tex
 Replaces: kile-trinity-i18n-hu (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-hu (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-hu
+Recommends: tde-i18n-hu-trinity
 Provides: kile-trinity-i18n
 Description: Hungarian (hu) translations for Kile [Trinity]
  This package contains the Hungarian translations for Kile.
@@ -245,7 +245,7 @@ Section: tex
 Replaces: kile-trinity-i18n-is (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-is (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-is
+Recommends: tde-i18n-is-trinity
 Provides: kile-trinity-i18n
 Description: Icelandic (is) translations for Kile [Trinity]
  This package contains the Icelandic translations for Kile.
@@ -256,7 +256,7 @@ Section: tex
 Replaces: kile-trinity-i18n-it (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-it (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-it
+Recommends: tde-i18n-it-trinity
 Provides: kile-trinity-i18n
 Description: Italian (it) translations for Kile [Trinity]
  This package contains the Italian translations for Kile.
@@ -267,7 +267,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ja (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ja (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ja
+Recommends: tde-i18n-ja-trinity
 Provides: kile-trinity-i18n
 Description: Japanese (ja) translations for Kile [Trinity]
  This package contains the Japanese translations for Kile.
@@ -278,7 +278,7 @@ Section: tex
 Replaces: kile-trinity-i18n-lt (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-lt (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-lt
+Recommends: tde-i18n-lt-trinity
 Provides: kile-trinity-i18n
 Description: Lithuanian (lt) translations for Kile [Trinity]
  This package contains the Lithuanian translations for Kile.
@@ -289,7 +289,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ms (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ms (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ms
+Recommends: tde-i18n-ms-trinity
 Provides: kile-trinity-i18n
 Description: Malay (ms) translations for Kile [Trinity]
  This package contains the Malay translations for Kile.
@@ -310,7 +310,7 @@ Section: tex
 Replaces: kile-trinity-i18n-nb (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-nb (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-nb
+Recommends: tde-i18n-nb-trinity
 Provides: kile-trinity-i18n
 Description: Norwegian Bookmal (nb) translations for Kile [Trinity]
  This package contains the Norwegian Bookmal translations for Kile.
@@ -321,7 +321,7 @@ Section: tex
 Replaces: kile-trinity-i18n-nds (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-nds (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-nds
+Recommends: tde-i18n-nds-trinity
 Provides: kile-trinity-i18n
 Description: Low Saxon (nds) translations for Kile [Trinity]
  This package contains the Low Saxon translations for Kile.
@@ -332,7 +332,7 @@ Section: tex
 Replaces: kile-trinity-i18n-nl (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-nl (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-nl
+Recommends: tde-i18n-nl-trinity
 Provides: kile-trinity-i18n
 Description: Dutch (nl) translations for Kile [Trinity]
  This package contains the Dutch translations for Kile.
@@ -343,7 +343,7 @@ Section: tex
 Replaces: kile-trinity-i18n-nn (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-nn (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-nn
+Recommends: tde-i18n-nn-trinity
 Provides: kile-trinity-i18n
 Description: Norwegian Nynorsk (nn) translations for Kile [Trinity]
  This package contains the Norwegian Nynorsk translations for Kile.
@@ -354,7 +354,7 @@ Section: tex
 Replaces: kile-trinity-i18n-pa (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-pa (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-pa
+Recommends: tde-i18n-pa-trinity
 Provides: kile-trinity-i18n
 Description: Punjabi (pa) translations for Kile [Trinity]
  This package contains the Punjabi translations for Kile.
@@ -365,7 +365,7 @@ Section: tex
 Replaces: kile-trinity-i18n-pl (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-pl (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-pl
+Recommends: tde-i18n-pl-trinity
 Provides: kile-trinity-i18n
 Description: Polish (pl) translations for Kile [Trinity]
  This package contains the Polish translations for Kile.
@@ -376,7 +376,7 @@ Section: tex
 Replaces: kile-trinity-i18n-pt (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-pt (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-pt
+Recommends: tde-i18n-pt-trinity
 Provides: kile-trinity-i18n
 Description: Portuguese (pt) translations for Kile [Trinity]
  This package contains the Portuguese translations for Kile.
@@ -387,7 +387,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ptbr (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ptbr (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ptbr
+Recommends: tde-i18n-ptbr-trinity
 Provides: kile-trinity-i18n
 Description: Brazilian Portuguese (pt_BR) translations for Kile [Trinity]
  This package contains the Brazilian Portuguese translations for Kile.
@@ -398,7 +398,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ro (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ro (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ro
+Recommends: tde-i18n-ro-trinity
 Provides: kile-trinity-i18n
 Description: Romanian (ro) translations for Kile [Trinity]
  This package contains the Romanian translations for Kile.
@@ -409,7 +409,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ru (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ru (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ru
+Recommends: tde-i18n-ru-trinity
 Provides: kile-trinity-i18n
 Description: Russian (ru) translations for Kile [Trinity]
  This package contains the Russian translations for Kile.
@@ -420,7 +420,7 @@ Section: tex
 Replaces: kile-trinity-i18n-rw (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-rw (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-rw
+Recommends: tde-i18n-rw-trinity
 Provides: kile-trinity-i18n
 Description: Kinyarwanda (rw) translations for Kile [Trinity]
  This package contains the Kinyarwanda translations for Kile.
@@ -431,7 +431,7 @@ Section: tex
 Replaces: kile-trinity-i18n-sk (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-sk (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-sk
+Recommends: tde-i18n-sk-trinity
 Provides: kile-trinity-i18n
 Description: Slovak (sk) translations for Kile [Trinity]
  This package contains the Slovak translations for Kile.
@@ -442,7 +442,7 @@ Section: tex
 Replaces: kile-trinity-i18n-sr (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-sr (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-sr
+Recommends: tde-i18n-sr-trinity
 Provides: kile-trinity-i18n
 Description: Serbian (sr) translations for Kile [Trinity]
  This package contains the Serbian translations for Kile.
@@ -453,7 +453,7 @@ Section: tex
 Replaces: kile-trinity-i18n-srlatin (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-srlatin (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-srlatin
+Recommends: tde-i18n-srlatin-trinity
 Provides: kile-trinity-i18n
 Description: Latin Serbian (sr@Latn) translations for Kile [Trinity]
  This package contains the Latin Serbian translations for Kile.
@@ -464,7 +464,7 @@ Section: tex
 Replaces: kile-trinity-i18n-sv (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-sv (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-sv
+Recommends: tde-i18n-sv-trinity
 Provides: kile-trinity-i18n
 Description: Swedish (sv) translations for Kile [Trinity]
  This package contains the Swedish translations for Kile.
@@ -475,7 +475,7 @@ Section: tex
 Replaces: kile-trinity-i18n-ta (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-ta (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-ta
+Recommends: tde-i18n-ta-trinity
 Provides: kile-trinity-i18n
 Description: Tamil (ta) translations for Kile [Trinity]
  This package contains the Tamil translations for Kile.
@@ -486,7 +486,7 @@ Section: tex
 Replaces: kile-trinity-i18n-th (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-th (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-th
+Recommends: tde-i18n-th-trinity
 Provides: kile-trinity-i18n
 Description: Thai (th) translations for Kile [Trinity]
  This package contains the Thai translations for Kile.
@@ -497,7 +497,7 @@ Section: tex
 Replaces: kile-trinity-i18n-tr (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-tr (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-tr
+Recommends: tde-i18n-tr-trinity
 Provides: kile-trinity-i18n
 Description: Turkish (tr) translations for Kile [Trinity]
  This package contains the Turkish translations for Kile.
@@ -508,7 +508,7 @@ Section: tex
 Replaces: kile-trinity-i18n-uk (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-uk (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-uk
+Recommends: tde-i18n-uk-trinity
 Provides: kile-trinity-i18n
 Description: Ukrainian (uk) translations for Kile [Trinity]
  This package contains the Ukrainian translations for Kile.
@@ -519,7 +519,7 @@ Section: tex
 Replaces: kile-trinity-i18n-zhcn (<< 4:14.0.0~)
 Breaks: kile-trinity-i18n-zhcn (<< 4:14.0.0~)
 Depends: kile-trinity (>= ${source:Version})
-Recommends: kde-trinity-i18n-zhcn
+Recommends: tde-i18n-zhcn-trinity
 Provides: kile-trinity-i18n
 Description: Chinese Simplified (zh_CN) translations for Kile [Trinity]
  This package contains the Chinese Simplified translations for Kile.

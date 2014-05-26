@@ -1,9 +1,9 @@
 .TH KOLF 6
 .SH NAME
-kolf \- A miniature golf game for KDE
+kolf \- A miniature golf game for TDE
 .SH SYNOPSIS
 .B kolf
-.I [Qt-options] [KDE-options] [--course-info] file
+.I [Qt-options] [TDE-options] [--course-info] file
 .SH DESCRIPTION
 \fBKolf\fP is a miniature golf game with block graphics and a 2d
 top-down view. Courses are dynamic, and up to 10 people can play at

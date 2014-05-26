@@ -15,7 +15,7 @@ This is so that the default configuration files are created (only needed if you 
 
 Next, edit the following file
 
-~/.kde/share/config/yakuakerc
+~/.trinity/share/config/yakuakerc
 
 which should look something like this 
 

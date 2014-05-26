@@ -19,7 +19,7 @@ find $dir -name "index.theme" -print | grep -v debian >> $filelist
 find $dir -name "eventsrc" -print | grep -v debian >> $filelist
 find $dir -name "*.protocol" -print | grep -v debian >> $filelist
 
-### TEMPORARY START: we do not have KDE modules
+### TEMPORARY START: we do not have TDE modules
 if true; then
 find ./konqueror -name .svn -prune , -name "directory.*" -type f  2>/dev/null | grep -v debian >> $filelist
 find ./kdesktop -name .svn -prune , -name "directory.*" -type f 2>/dev/null | grep -v debian >> $filelist 
@@ -36,7 +36,7 @@ find . -name \*.kksrc -print 2>/dev/null | grep -v debian >> $filelist
 find ./kopete -name \*.plugin -print 2>/dev/null | grep -v debian >> $filelist
 find . -name \*.kdevtemplate -print 2>/dev/null | grep -v debian >> $filelist
 fi
-### TEMPORARY END: we do not have KDE modules
+### TEMPORARY END: we do not have TDE modules
 
 # Extract .directory files in template directories of KOffice
 find . -name .directory|fgrep templates >> $filelist

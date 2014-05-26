@@ -7,15 +7,15 @@ musical notation editor.
 
 .SH SYNOPSIS
 
-rosegarden [Qt-options] [KDE-options] [options] [File]
+rosegarden [Qt-options] [TDE-options] [options] [File]
 
-rosegardensequencer [Qt-options] [KDE-options] [playback_1 playback_2 capture_1 capture_2]
+rosegardensequencer [Qt-options] [TDE-options] [playback_1 playback_2 capture_1 capture_2]
 
 .SH DESCRIPTION
 
 This manual page documents briefly the rosegarden and rosegardensequencer commands.
 
-rosegarden is a MIDI and audio sequencer, notation editor, and general-purpose music composition and editing application for Unix and Linux. It is a KDE application, which means to build it you need the KDE 3.x libraries. However, once installed it can be run within the KDE environment or any other desktop or window manager environment.
+rosegarden is a MIDI and audio sequencer, notation editor, and general-purpose music composition and editing application for Unix and Linux. It is a TDE application, which means to build it you need the TDE libraries. However, once installed it can be run within the TDE environment or any other desktop or window manager environment.
 
 rosegardensequencer is part of the rosegarden application, the part which knows about and audio MIDI devices, and about real time. rosegardensequencer is executed automatically when rosegarden starts, so you will probably never need to execute it directly. You may want to specify command line options, though, to change the JACK ports used for audio capture and playback. In order to do that, you can invoque rosegardensequencer directly before running rosegarden, or you can specify the sequencer command line arguments using the rosegarden configuration dialog, and restarting the application. This program follows the usual GNU command line syntax, with long options starting with two dashes ('-'). A summary of options is included below.
 
@@ -29,8 +29,8 @@ rosegardensequencer is part of the rosegarden application, the part which knows 
 .BR \-\-help-all
      Show all options.
 
-.BR \-\-help-kde
-     Show KDE specific options.
+.BR \-\-help-tde
+     Show TDE specific options.
 
 .BR \-\-help-qt
      Show Qt specific options.
@@ -119,7 +119,7 @@ rosegardensequencer is part of the rosegarden application, the part which knows 
      Forces the application to use a TrueColor visual on an 8-bit display.
 
 
-.SH KDE OPTIONS
+.SH TDE OPTIONS
 .BR \-\-caption caption
      Use 'caption' as name in the titlebar.
 

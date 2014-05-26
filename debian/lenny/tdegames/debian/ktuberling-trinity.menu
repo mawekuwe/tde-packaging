@@ -1,4 +1,4 @@
-?package(ktuberling):\
+?package(ktuberling-trinity):\
 	needs="x11"\
 	section="Games/Toys"\
 	hints="TDE"\

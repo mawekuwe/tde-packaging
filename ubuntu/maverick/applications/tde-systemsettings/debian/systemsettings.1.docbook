@@ -24,7 +24,7 @@
   </refmeta>
   <refnamediv>
     <refname>systemsettings</refname>
-    <refpurpose>KDE System Settings.</refpurpose>
+    <refpurpose>TDE System Settings.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -33,20 +33,20 @@
         <option><replaceable>Qt-options</replaceable></option>
       </arg>
       <arg choice="opt">
-        <option><replaceable>KDE-options</replaceable></option>
+        <option><replaceable>TDE-options</replaceable></option>
       </arg>
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
     <title>DESCRIPTION</title>
     <para>
-        System Settings is a user friendly control centre for KDE.
+        System Settings is a user friendly control centre for TDE.
     </para>
   </refsect1>
   <refsect1>
     <title>OPTIONS</title>
     <para>
-      All <productname>KDE</productname> and <productname>Qt</productname>
+      All <productname>TDE</productname> and <productname>Qt</productname>
       programs accept a some common command-line options.
     </para>
     <para>
@@ -74,8 +74,8 @@
           <listitem> <para>Show Qt specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
-          <term> <option>--help-kde</option> </term>
-          <listitem> <para>Show KDE specific options</para> </listitem>
+          <term> <option>--help-tde</option> </term>
+          <listitem> <para>Show TDE specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
           <term> <option>--help-all</option> </term>

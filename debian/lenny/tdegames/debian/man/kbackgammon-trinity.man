@@ -1,12 +1,12 @@
 .TH KBACKGAMMON 6
 .SH NAME
-kbackgammon \- Graphical backgammon program for KDE
+kbackgammon \- Graphical backgammon program for TDE
 .SH SYNOPSIS
 .B kbackgammon
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B kbackgammon
-is a graphical backgammon program for KDE. It supports backgammon
+is a graphical backgammon program for TDE. It supports backgammon
 games with other players, games against computer engines like GNU bg
 and even on-line games on the First Internet Backgammon Server.
 .so kdeopt.part

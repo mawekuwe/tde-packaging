@@ -24,7 +24,7 @@
   </refmeta>
   <refnamediv>
     <refname>tdesudo</refname>
-    <refpurpose>a sudo frontend for KDE</refpurpose>
+    <refpurpose>a sudo frontend for TDE</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -40,7 +40,7 @@
   <refsect1>
     <title>DESCRIPTION</title>
     <para>
-      tdesudo is a frontend for sudo for the <productname>KDE</productname> desktop.
+      tdesudo is a frontend for sudo for the <productname>TDE</productname> desktop.
     </para>
   </refsect1>
   <refsect1>
@@ -57,8 +57,8 @@
           <listitem> <para>Show Qt specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
-          <term> <option>--help-kde</option> </term>
-          <listitem> <para>Show KDE specific options</para> </listitem>
+          <term> <option>--help-tde</option> </term>
+          <listitem> <para>Show TDE specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
           <term> <option>--help-all</option> </term>

@@ -3,7 +3,7 @@
 katomic \- The Atomic Entertainment Handbook
 .SH SYNOPSIS
 .B katomic
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 Atomic Entertainment is a smal game which resembles Sokoban. The
 object of the game is to build chemical molecules on a Sokoban-like

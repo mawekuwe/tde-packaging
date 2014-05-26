@@ -12,5 +12,5 @@ Depends: ${shlibs:Depends}
 Replaces: knetstats-kde3 (<< 4:14.0.0~), knetstats-trinity (<< 4:14.0.0~)
 Breaks: knetstats-kde3 (<< 4:14.0.0~), knetstats-trinity (<< 4:14.0.0~)
 Description: network interfaces monitor for the Trinity systray
- A simple KDE network monitor that show rx/tx LEDs of any
+ A simple TDE network monitor that show rx/tx LEDs of any
  network interface on a system tray icon

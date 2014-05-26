@@ -16,8 +16,8 @@ Breaks: kvirc-kde3 (<< 4:14.0.0~), kvirc-trinity (<< 4:14.0.0~)
 Description:  Trinity based next generation IRC client with module support
  A highly configurable graphical IRC client with an MDI interface,
  built-in scripting language, support for IRC DCC, drag & drop file
- browsing, and much more. KVIrc uses the KDE widget set, can be extended
- using its own scripting language, integrates with KDE, and supports
+ browsing, and much more. KVIrc uses the TDE widget set, can be extended
+ using its own scripting language, integrates with TDE, and supports
  custom plugins.
  .
  If you are a developer and you want to write a custom module for KVIrc,
@@ -37,8 +37,8 @@ Description: Data files for KVIrc
  as a very simple IRC client you are likely to want to write scripts to
  tailor KVIrc to your needs.
  .
- KVIrc is a graphical IRC client based on the KDE widget set which integrates
- with the K Desktop Environment version 3.
+ KVIrc is a graphical IRC client based on the TDE widget set which integrates
+ with the Trinity Desktop Environment.
 
 Package: kvirc-trinity-dev
 Section: devel
@@ -50,5 +50,5 @@ Description: Development files for KVIrc
  This package contains KVIrc libraries and include files you need if you
  want to develop plugins for KVIrc.
  .
- KVIrc is a graphical IRC client based on the KDE widget set which integrates
- with the K Desktop Environment version 3.
+ KVIrc is a graphical IRC client based on the TDE widget set which integrates
+ with the Trinity Desktop Environment.

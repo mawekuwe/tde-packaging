@@ -16,13 +16,13 @@ Depends: kcron-trinity (>= ${Source-Version}), kdat-trinity (>= ${Source-Version
 Recommends: lilo-config-trinity (>= ${Source-Version})
 Suggests: tdeadmin-trinity-doc-html (>= ${Source-Version})
 Description: system administration tools from the official Trinity release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of system administration tools
- provided with the official release of KDE.
+ provided with the official release of TDE.
 
 Package: tdeadmin-trinity-doc-html
 Architecture: all
@@ -30,19 +30,19 @@ Section: doc
 Replaces: kdeadmin-trinity-doc-html (<< 4:14.0.0~)
 Breaks: kdeadmin-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdebase-trinity
-Description: KDE administration documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE administration documentation
+Description: TDE administration documentation in HTML format
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE administration documentation
  converted to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /usr/share/doc/tde/HTML/<language>/<app>/, for instance
  /usr/share/doc/tde/HTML/en/kcron/. Documentation is provided for most
- KDE administration packages.
+ TDE administration packages.
  .
- This package is part of Trinity, and a component of the KDE administration
- module. See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE administration
+ module. See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: kcron-trinity
 Section: admin
@@ -55,8 +55,8 @@ Description: the Trinity crontab editor
  KCron is an application for scheduling programs to run in the background.
  It is a graphical user interface to cron, the UNIX system scheduler.
  .
- This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE administration module.
+ See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: kdat-trinity
 Section: admin
@@ -76,8 +76,8 @@ Description: a Trinity tape backup tool
   * Selective restore of files from an archive.
   * Backup profiles for frequently used backups.
  .
- This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE administration module.
+ See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: tdeadmin-tdefile-plugins-trinity
 Section: tde
@@ -88,8 +88,8 @@ Depends: ${shlibs:Depends}
 Description: Trinity file metainfo plugins for deb and rpm files
  File metainfo plugins for deb and rpm package files.
  .
- This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE administration module.
+ See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: knetworkconf-trinity
 Section: tde
@@ -98,11 +98,11 @@ Replaces: knetworkconf-trinity (<< 4:14.0.0~)
 Breaks: knetworkconf-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Trinity network configuration tool
- This is a KDE control center module to configure TCP/IP settings.  It
+ This is a Trinity control center module to configure TCP/IP settings.  It
  can be used to manage network devices and settings for each device.
  .
- This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE administration module.
+ See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: kpackage-trinity
 Section: admin
@@ -117,8 +117,8 @@ Description: Trinity package management tool
  to view currently installed packages, browse available packages, and
  install/remove them.
  .
- This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE administration module.
+ See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: ksysv-trinity
 Section: admin
@@ -131,8 +131,8 @@ Description: Trinity SysV-style init configuration editor
  This program allows you to edit your start and stop scripts using a
  drag and drop GUI.
  .
- This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE administration module.
+ See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: kuser-trinity
 Section: admin
@@ -142,10 +142,10 @@ Breaks: kuser-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: Trinity user/group administration tool
- A user/group administration tool for KDE.
+ A user/group administration tool for TDE.
  .
- This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE administration module.
+ See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: lilo-config-trinity
 Section: tde
@@ -156,14 +156,14 @@ Depends: ${shlibs:Depends}, kcontrol-trinity
 Recommends: tdebase-trinity-bin
 Suggests: lilo
 Description: Trinity frontend for lilo configuration
- lilo-config is a KDE based frontend to the lilo boot manager configuration.
- It runs out of the KDE Control Center.
+ lilo-config is a TDE based frontend to the lilo boot manager configuration.
+ It runs out of the Trinity Control Center.
  .
  If you want to use the menu entry to launch lilo-config, you need to install
  tdebase-bin since it uses the tdesu command to gain root privileges.
  .
- This package is part of Trinity, as a component of the KDE administration module.
- See the 'kde-trinity' and 'tdeadmin-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE administration module.
+ See the 'tde-trinity' and 'tdeadmin-trinity' packages for more information.
 
 Package: tdeadmin-trinity-dbg
 Section: libdevel

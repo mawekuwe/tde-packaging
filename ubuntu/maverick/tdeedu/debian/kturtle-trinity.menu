@@ -1,4 +1,4 @@
-?package(kturtle):needs="X11"\
+?package(kturtle-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KTurtle"\

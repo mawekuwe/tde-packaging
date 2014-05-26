@@ -1,9 +1,9 @@
 .TH KREVERSI 6
 .SH NAME
-kreversi \- Reversi for KDE
+kreversi \- Reversi for TDE
 .SH SYNOPSIS
 .B kreversi
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B kreversi
 is a simple one player strategy game played against the computer. The

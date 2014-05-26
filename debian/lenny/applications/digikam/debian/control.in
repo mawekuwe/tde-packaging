@@ -18,7 +18,7 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: kipi-plugins-trinity, tdeprint-trinity, konqueror-trinity
 Suggests: digikam-trinity-doc
-Description: digital photo management application for KDE [Trinity]
+Description: digital photo management application for TDE [Trinity]
  An easy to use and powerful digital photo management
  application, which makes importing, organizing and manipulating
  digital photos a "snap".  An interface is provided to connect to
@@ -43,7 +43,7 @@ Architecture: any
 Section: graphics
 Depends: ${shlibs:Depends}, digikam-trinity
 Recommends: kipi-plugins-trinity, tdeprint-trinity, konqueror-trinity
-Description: image viewer/editor for KDE [Trinity]
+Description: image viewer/editor for TDE [Trinity]
  Showphoto is part of the Digikam project.
  It allows to browse your photo collection and edit them with ease.
 

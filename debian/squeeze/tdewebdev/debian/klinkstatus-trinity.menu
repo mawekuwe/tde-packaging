@@ -1,4 +1,4 @@
-?package(klinkstatus):\
+?package(klinkstatus-trinity):\
     needs="X11"\
     hints="TDE"\
     section="Apps/Net"\

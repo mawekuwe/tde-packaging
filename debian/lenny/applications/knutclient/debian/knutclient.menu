@@ -1,4 +1,4 @@
-?package(knutclient):\
+?package(knutclient-trinity):\
 	needs="X11"\
 	section="Applications/System/Monitoring"\
 	hints="TDE"\

@@ -1,0 +1,14 @@
+.TH TDEVDESIGNER 1
+.SH NAME
+tdevdesigner \- TDE GUI Designer
+.SH SYNOPSIS
+.B tdevdesigner
+.I [Qt-options] [TDE-options] [URL]
+.SH DESCRIPTION
+.B TDevDesigner
+is a customised version of Qt Designer for TDE.
+.SH PROGRAM OPTIONS
+.TP
+.B URL
+Document to open.
+.so kdeopt.part

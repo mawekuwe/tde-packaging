@@ -1,4 +1,4 @@
-?package(tdepasswd):\
+?package(tdepasswd-trinity):\
 	needs="X11"\
 	section="Applications/System/Administration"\
 	hints="TDE"\

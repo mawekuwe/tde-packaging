@@ -1,4 +1,4 @@
-?package(bibletime):\
+?package(bibletime-trinity):\
     needs="X11"\
     hints="TDE,Bible"\
     section="Applications/Education"\

@@ -89,7 +89,7 @@ if [ -e /etc/trinity/tdm/Xservers ]; then
   fi
 fi
 
-# With KDE 3.4, /etc/trinity/tdm/Xservers is no longer required, so we remove it, if
+# From KDE 3.4, /etc/trinity/tdm/Xservers is no longer required, so we remove it, if
 # the user has updated their tdmrc (if they haven't, tdm notices and keeps using
 # Xservers), and if it wasn't touched, i.e. there are no local changes the user
 # will want to merge into tdmrc.

@@ -1,4 +1,4 @@
-?package(tdepowersave):\
+?package(tdepowersave-trinity):\
   needs="X11"\
   section="Applications/System/Monitoring"\
   title="TDEPowersave"\

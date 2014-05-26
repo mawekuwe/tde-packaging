@@ -70,10 +70,10 @@ msgstr "Zastaviť správcu obrazovky tdm?"
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Správca obrazovky K desktop manager (tdm) sa zvykne zastaviť pri "
+"Správca obrazovky Trinity desktop manager (tdm) sa zvykne zastaviť pri "
 "aktualizácii alebo odstraňovaní balíka, lenže teraz to vyzerá tak, že má na "
 "starosti aspoň jedno ďalšie spustené X sedenie."
 

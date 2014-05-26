@@ -1,27 +1,27 @@
 [application/x-deb - 1]
 AllowAsDefault=true
-Application=kde-kpackage.desktop
+Application=tde-kpackage.desktop
 GenericServiceType=Application
 Preference=2
 ServiceType=application/x-deb
 
 [application/x-deb - 2]
 AllowAsDefault=true
-Application=kde-kdpkg.desktop
+Application=tde-kdpkg.desktop
 GenericServiceType=Application
 Preference=2
 ServiceType=application/x-deb
 
 [application/x-deb - 3]
 AllowAsDefault=true
-Application=kde-ark.desktop
+Application=tde-ark.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=application/x-deb
 
 [video/avi - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/avi
@@ -42,7 +42,7 @@ ServiceType=video/avi
 
 [video/mp4 - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/mp4
@@ -63,7 +63,7 @@ ServiceType=video/mp4
 
 [video/mpeg - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/mpeg
@@ -84,7 +84,7 @@ ServiceType=video/mpeg
 
 [video/quicktime - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/quicktime
@@ -105,7 +105,7 @@ ServiceType=video/quicktime
 
 [video/vnd.rn-realvideo - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/vnd.rn-realvideo
@@ -126,7 +126,7 @@ ServiceType=video/vnd.rn-realvideo
 
 [video/x-flic - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/x-flic
@@ -147,7 +147,7 @@ ServiceType=video/x-flic
 
 [video/x-matroska - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/x-matroska
@@ -168,7 +168,7 @@ ServiceType=video/x-matroska
 
 [video/x-ms-asf - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/x-ms-asf
@@ -189,7 +189,7 @@ ServiceType=video/x-ms-asf
 
 [video/x-ms-wmp - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/x-ms-wmp
@@ -210,7 +210,7 @@ ServiceType=video/x-ms-wmp
 
 [video/x-ms-wmv - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/x-ms-wmv
@@ -231,7 +231,7 @@ ServiceType=video/x-ms-wmv
 
 [video/x-msvideo - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/x-msvideo
@@ -252,7 +252,7 @@ ServiceType=video/x-msvideo
 
 [video/x-ogm - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/x-ogm
@@ -273,7 +273,7 @@ ServiceType=video/x-ogm
 
 [video/x-theora - 1]
 AllowAsDefault=true
-Application=kde-kaffeine.desktop
+Application=tde-kaffeine.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=video/x-theora
@@ -294,28 +294,28 @@ ServiceType=video/x-theora
 
 [inode/directory - 1]
 AllowAsDefault=true
-Application=kde-d3lphin.desktop
+Application=tde-d3lphin.desktop
 GenericServiceType=Application
 Preference=2
 ServiceType=inode/directory
 
 [inode/directory - 2]
 AllowAsDefault=true
-Application=kde-kfmclient_dir.desktop
+Application=tde-kfmclient_dir.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=inode/directory
 
 [inode/system_directory - 1]
 AllowAsDefault=true
-Application=kde-d3lphin.desktop
+Application=tde-d3lphin.desktop
 GenericServiceType=Application
 Preference=2
 ServiceType=inode/system_directory
 
 [inode/system_directory - 2]
 AllowAsDefault=true
-Application=kde-kfmclient_dir.desktop
+Application=tde-kfmclient_dir.desktop
 GenericServiceType=Application
 Preference=1
 ServiceType=inode/system_directory

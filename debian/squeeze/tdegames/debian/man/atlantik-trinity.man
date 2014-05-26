@@ -1,11 +1,11 @@
 .TH ATLANTIK 6
 .SH NAME
-atlantik \- KDE monopd client
+atlantik \- TDE monopd client
 .SH SYNOPSIS
 .B atlantik
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
-\fBAtlantik\fP is a KDE client for playing Monopoly-like boardgames on
+\fBAtlantik\fP is a TDE client for playing Monopoly-like boardgames on
 the monopd network.
 
 Purpose of the \fBatlantik\fP board game is to acquire land in major

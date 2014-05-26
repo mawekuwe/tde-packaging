@@ -1,4 +1,4 @@
-?package(kfloppy):\
+?package(kfloppy-trinity):\
 	needs="X11"\
 	section="Apps/System"\
 	hints="TDE"\

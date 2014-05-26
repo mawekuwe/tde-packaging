@@ -14,9 +14,9 @@ Depends: ${shlibs:Depends}, tdebase-tdeio-plugins-trinity
 Replaces: knights-kde3 (<< 4:14.0.0~), knights-trinity (<< 4:14.0.0~)
 Breaks: knights-kde3 (<< 4:14.0.0~), knights-trinity (<< 4:14.0.0~)
 Suggests: gnuchess | crafty | sjeng, knights-themepack-trinity
-Description: A chess interface for the K Desktop Environment [Trinity]
+Description: A chess interface for the Trinity Desktop Environment [Trinity]
  Knights aims to be the ultimate chess resource on your computer. 
- Written for the K Desktop Environment, it's designed to be both friendly 
+ Written for the Trinity Desktop Environment, it's designed to be both friendly 
  to new chess players and functional for Grand Masters.
  .
  Here's a quick list of Knights' key features:

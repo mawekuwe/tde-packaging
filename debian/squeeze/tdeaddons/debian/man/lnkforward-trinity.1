@@ -16,7 +16,7 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-lnkforward \- open an URL in a Windows .lnk file under KDE
+lnkforward \- open an URL in a Windows .lnk file under TDE
 .SH SYNOPSIS
 .B lnkforward
 [ \fIgeneric-options\fP ]
@@ -25,7 +25,7 @@ lnkforward \- open an URL in a Windows .lnk file under KDE
 .SH DESCRIPTION
 \fBlnkforward\fP examines a Windows .lnk file, determines its target and
 then opens this target file.  In deciding how to open the target file,
-the usual KDE file associations will be used.
+the usual TDE file associations will be used.
 .PP
 The given URL must include a protocol.  Specifically, if it is simply a
 file on the local filesystem, it must be given in the form
@@ -35,7 +35,7 @@ Drive mappings must be supplied (via \-\-map) for any Windows drive
 referred to in the .lnk file.  See the OPTIONS section below for details.
 .PP
 This utility is used by the .lnk tdefile plugin, and is
-part of the official KDE add-ons module.
+part of the official TDE add-ons module.
 .SH OPTIONS
 Below are the lnkforward-specific options.
 For a full summary of options, run \fIlnkforward \-\-help\fP.
@@ -47,7 +47,7 @@ This option may be passed multiple times.
 .SH EXAMPLE
 Suppose that the Windows file \fIc:\\readme.txt.lnk\fP is a link to
 \fId:\\foo\\bar.txt\fP.  Then the following command will open the file
-\fI/mnt/data/foo/bar.txt\fP in the usual KDE text editor:
+\fI/mnt/data/foo/bar.txt\fP in the usual TDE text editor:
 .PP
 .RS
 \fIprompt$\fP

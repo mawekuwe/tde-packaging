@@ -8,8 +8,8 @@ Show help about options.
 .B \-\-help-qt
 Show Qt specific options.
 .TP
-.B \-\-help-kde
-Show KDE specific options.
+.B \-\-help-tde
+Show TDE specific options.
 .TP
 .B \-\-help-all
 Show all options.
@@ -83,7 +83,7 @@ Set XIM server.
 .TP
 .B \-\-noxim
 Disable XIM.
-.SH KDE OPTIONS
+.SH TDE OPTIONS
 .TP
 .B \-\-caption \fI<caption>\fB
 Use `caption' as name in the titlebar.

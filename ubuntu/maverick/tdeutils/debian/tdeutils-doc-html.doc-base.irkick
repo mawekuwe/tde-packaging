@@ -1,7 +1,7 @@
 Document: tdeutils-doc-html-irkick
-Title: IRKick: The KDE LIRC Server Handbook
+Title: IRKick: The TDE LIRC Server Handbook
 Author: Gav Wood
-Abstract: KDE LIRC is the infrastructure for the KDE's Infrared Remote
+Abstract: TDE LIRC is the infrastructure for the TDE's Infrared Remote
  Control functionality; IRKick is the server component of that infrastructure.
 Section: Tools
 

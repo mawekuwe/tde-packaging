@@ -1,9 +1,9 @@
 .TH KASTEROIDS 6
 .SH NAME
-kasteroids \- Asteroids for KDE
+kasteroids \- Asteroids for TDE
 .SH SYNOPSIS
 .B kasteroids
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 The objective of \fBkasteroids\fP is to destroy all the asteroids on
 the screen to advance to the next level. Your ship is destroyed if it

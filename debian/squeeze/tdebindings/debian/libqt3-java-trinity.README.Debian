@@ -26,7 +26,7 @@ should be completely similar to the Qt C++ API, so the standard Qt
 docs should translate pretty easily.  There are a lot of Qt Java usage
 examples in /usr/share/doc/libqt3-java/examples.
 
-If you're interested in developing KDE applications using Java, look
+If you're interested in developing TDE applications using Java, look
 at the libtrinity-java package.
 
 

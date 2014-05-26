@@ -109,7 +109,7 @@ manpage.1: manpage.sgml
         <term><option>--list-sessions</option>
         </term>
         <listitem>
-          <para>List all active KDE session for a user or all users.</para>
+          <para>List all active TDE session for a user or all users.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -123,7 +123,7 @@ manpage.1: manpage.sgml
         <term><option>--session <replaceable>session</replaceable></option>
         </term>
         <listitem>
-          <para>Send to the given KDE session. This option can only be used in combination with the --user option.</para>
+          <para>Send to the given TDE session. This option can only be used in combination with the --user option.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

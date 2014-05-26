@@ -1,12 +1,12 @@
 .TH KORN 1
 .SH NAME
-korn \- Sticky notes application for KDE
+korn \- Sticky notes application for TDE
 .SH SYNOPSIS
 .B korn
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B KOrn
-is a KDE mail checker that has the capability to dock itself to Kicker.
+is a TDE mail checker that has the capability to dock itself to Kicker.
 KOrn can check mbox, qmail, POP3, and Imap4 mailboxes, as well as nntp
 servers.  KOrn checks your mail on an interval that is user specified for
 each separate account.  Once mail is received you can have KOrn run a

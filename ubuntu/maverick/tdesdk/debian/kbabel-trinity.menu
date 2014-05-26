@@ -1,4 +1,4 @@
-?package(kbabel):\
+?package(kbabel-trinity):\
         needs="x11"\
         section="Applications/Text"\
         hints="TDE,l10n"\
@@ -7,7 +7,7 @@
         icon="/opt/trinity/share/pixmaps/kbabel.xpm"\
         command="/opt/trinity/bin/kbabel"
 
-?package(kbabel):\
+?package(kbabel-trinity):\
         needs="x11"\
         section="Applications/Text"\
         hints="TDE,l10n"\
@@ -16,7 +16,7 @@
         icon="/opt/trinity/share/pixmaps/kbabeldict.xpm"\
         command="/opt/trinity/bin/kbabeldict"
 
-?package(kbabel):\
+?package(kbabel-trinity):\
         needs="x11"\
         section="Applications/Text"\
         hints="TDE,l10n"\

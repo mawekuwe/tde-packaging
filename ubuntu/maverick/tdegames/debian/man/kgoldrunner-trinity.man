@@ -1,9 +1,9 @@
 .TH KGOLDRUNNER 6
 .SH NAME
-kgoldrunner \- KDE version of the Loderunner arcade game
+kgoldrunner \- TDE version of the Loderunner arcade game
 .SH SYNOPSIS
 .B kgoldrunner
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 \fBKGoldrunner\fP is a game of action and puzzle solving.  Run through
 the maze, dodge your enemies, collect all the gold and climb up to the

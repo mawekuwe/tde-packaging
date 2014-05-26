@@ -1,7 +1,7 @@
-KDE and media tdeioslave support
+TDE and media tdeioslave support
 ==============================
 
-The media tdeioslave, new in KDE 3.4, supports the automatic mounting of
+The media tdeioslave, new from KDE 3.4, supports the automatic mounting of
 removable devices, such as CD-ROM and DVD drives, USB pen drives, digital
 cameras, and many other types of equipment.
 

@@ -289,7 +289,7 @@ install:
 	install -m644 kpart-plugins/dirfilterplugin.rc "$(SETTINGS_DIR)/tde-profile/default/share/apps/konqiconview/kpartplugins/"
 
 	mkdir -p "$(SETTINGS_DIR)/tde-profile/default/share/apps/tdewallet/"
-	install -m644 tdewallet-default-wallet/kdewallet.kwl "$(SETTINGS_DIR)/tde-profile/default/share/apps/tdewallet/"
+	install -m644 tdewallet-default-wallet/tdewallet.kwl "$(SETTINGS_DIR)/tde-profile/default/share/apps/tdewallet/"
 
 	mkdir -p "$(SETTINGS_DIR)/tde-profile/default/share/apps/kwin/"
 	install -m644 artwork/window-decoration-gradient.png "$(SETTINGS_DIR)/tde-profile/default/share/apps/kwin/"

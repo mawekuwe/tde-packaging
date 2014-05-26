@@ -30,11 +30,11 @@ sub prepare
     print "msgid \"\"\n";
     print "msgstr \"\"\n";
     print "\"Project-Id-Version: desktop files\\n\"\n";
-    print "\"Report-Msgid-Bugs-To: http://bugs.kde.org\\n\"\n";
+    print "\"Report-Msgid-Bugs-To: http://bugs.trinitydesktop.org\\n\"\n";
     print "\"POT-Creation-Date: "; printdate( @now ); print "\\n\"\n";
     print "\"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\\n\"\n";
     print "\"Last-Translator: FULL NAME <EMAIL\@ADDRESS>\\n\"\n";
-    print "\"Language-Team: LANGUAGE <tde-i18n-doc\@kde.org>\\n\"\n";
+    print "\"Language-Team: LANGUAGE <kde-i18n-doc\@kde.org>\\n\"\n";
     print "\"MIME-Version: 1.0\\n\"\n";
     print "\"Content-Type: text/plain; charset=UTF-8\\n\"\n";
     print "\"Content-Transfer-Encoding: 8bit\\n\"\n";

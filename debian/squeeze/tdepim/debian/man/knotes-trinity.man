@@ -1,9 +1,9 @@
 .TH KNOTES 1
 .SH NAME
-knotes \- Sticky notes application for KDE
+knotes \- Sticky notes application for TDE
 .SH SYNOPSIS
 .B knotes
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B KNotes
 is a program that lets you write the computer equivalent of sticky notes.

@@ -1,9 +1,9 @@
 .TH KSMILETRIS 6
 .SH NAME
-ksmiletris \- Tetris like game for KDE
+ksmiletris \- Tetris like game for TDE
 .SH SYNOPSIS
 .B ksmiletris
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B ksmiletris
 is a game with falling blocks composed of different symbols. The

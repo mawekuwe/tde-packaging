@@ -8,7 +8,7 @@ case "$1" in
     # Set default cursor theme
     update-alternatives --set x-cursor-theme /etc/X11/cursors/crystalwhite.theme || true
 
-    # clean the driver database for kdeprint
+    # clean the driver database for tdeprint
     if [ -x /usr/sbin/foomatic-cleanupdrivers ]; then
       foomatic-cleanupdrivers
     fi

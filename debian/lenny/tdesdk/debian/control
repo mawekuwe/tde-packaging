@@ -20,13 +20,13 @@ Breaks: kdesdk-trinity (<< 4:14.0.0~)
 Depends: cervisia-trinity (>= ${Source-Version}), kapptemplate-trinity (>= ${Source-Version}), kbabel-trinity (>= ${Source-Version}), kbugbuster-trinity (>= ${Source-Version}), tdecachegrind-trinity (>= ${Source-Version}), tdesdk-tdefile-plugins-trinity (>= ${Source-Version}), tdesdk-tdeio-plugins-trinity (>= ${Source-Version}) | tdesvn-tdeio-plugins-trinity, tdesdk-misc-trinity (>= ${Source-Version}), tdesdk-scripts-trinity, kmtrace-trinity (>= ${Source-Version}), kompare-trinity (>= ${Source-Version}), kspy-trinity (>= ${Source-Version}), kuiviewer-trinity (>= ${Source-Version}), tdeunittest-trinity (>= ${Source-Version}), poxml-trinity (>= ${Source-Version}), umbrello-trinity (>= ${Source-Version})
 Suggests: tdecachegrind-converters-trinity, kbabel-trinity-dev, tdesdk-trinity-doc-html
 Description: software development kit from the official Trinity release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes the Trinity Software Development Kit, a collection
- of applications and tools useful for developing KDE applications.
+ of applications and tools useful for developing TDE applications.
 
 Package: tdesdk-trinity-doc-html
 Architecture: all
@@ -35,18 +35,18 @@ Replaces: kdesdk-trinity-doc-html (<< 4:14.0.0~)
 Breaks: kdesdk-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdesdk-trinity
 Description: Trinity Software Development Kit documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE SDK documentation converted to
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE SDK documentation converted to
  HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /usr/share/doc/tde/HTML/<language>/<app>/, for instance
  /usr/share/doc/tde/HTML/en/umbrello/. Documentation is provided for most
- KDE SDK packages.
+ TDE SDK packages.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: cervisia-trinity
 Architecture: any
@@ -56,7 +56,7 @@ Breaks: cervisia-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html
 Description: a graphical CVS front end for Trinity
- Cervisia is a KDE-based graphical front end for the CVS client.
+ Cervisia is a TDE-based graphical front end for the CVS client.
  .
  As well as providing both common and advanced CVS operations, it offers
  a variety of methods for graphically viewing information about the CVS
@@ -64,8 +64,8 @@ Description: a graphical CVS front end for Trinity
  versions of files.  A Changelog editor is also included and is coupled
  with the commit dialog.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: kapptemplate-trinity
 Architecture: all
@@ -75,12 +75,12 @@ Breaks: kapptemplate-trinity (<< 4:14.0.0~)
 Recommends: automake1.9 | automaken, tdelibs14-trinity-dev
 Description: creates a framework to develop a Trinity application
  KAppTemplate is a shell script that will create the necessary
- framework to develop various KDE applications.  It takes care of the
+ framework to develop various TDE applications.  It takes care of the
  autoconf/automake code as well as providing a skeleton and example of
  what the code typically looks like.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: kbabel-trinity
 Architecture: any
@@ -101,8 +101,8 @@ Description: PO-file editing suite for Trinity
  PO-files at once.  KBabelDict is a dictionary to assist with searching
  for common translations.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: kbabel-trinity-dev
 Architecture: any
@@ -123,8 +123,8 @@ Description: PO-file editing suite for Trinity (development files)
  .
  This package contains the KBabel development files.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: kbugbuster-trinity
 Architecture: any
@@ -134,12 +134,12 @@ Breaks: kbugbuster-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a front end for the Trinity bug tracking system
- KBugBuster is a GUI front end for the KDE bug tracking system.
+ KBugBuster is a GUI front end for the TDE bug tracking system.
  It allows the user to view and manipulate bug reports and provides a
  variety of options for searching through reports.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: tdecachegrind-trinity
 Architecture: any
@@ -158,8 +158,8 @@ Description: visualisation tool for valgrind profiling output
  For visualising the output from other profiling tools, several converters
  can be found in the tdecachegrind-converters package.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: tdecachegrind-converters-trinity
 Architecture: all
@@ -177,8 +177,8 @@ Description: format converters for TDECachegrind profiling visualisation tool
  profiled using calltree without being recompiled, and shared libraries
  and plugin architectures are supported.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: tdesdk-tdefile-plugins-trinity
 Architecture: any
@@ -187,12 +187,12 @@ Replaces: kdesdk-kfile-plugins-trinity (<< 4:14.0.0~)
 Breaks: kdesdk-kfile-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: Trinity file dialog plugins for software development files
- This is a collection of plugins for the KDE file dialog.  These plugins
+ This is a collection of plugins for the TDE file dialog.  These plugins
  extend the file dialog to offer advanced meta-information for source files,
  patch files and Qt Linguist data.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: tdesdk-misc-trinity
 Architecture: any
@@ -204,16 +204,16 @@ Recommends: libtqt3-mt-dev | libtqt3-dev
 Suggests: gimp | xpaint
 Description: various goodies from the Trinity Software Development Kit
  This package contains miscellaneous goodies provided with the official
- KDE release to assist with KDE software development.
+ TDE release to assist with TDE software development.
  .
  Included are:
-  - headers to assist with profiling KDE code;
-  - a widget style for checking conformity with the KDE/Qt style guide;
-  - palettes that match the KDE standard colour palette;
-  - a KDE address book plugin that reads the list of KDE CVS accounts.
+  - headers to assist with profiling TDE code;
+  - a widget style for checking conformity with the TDE/TQt style guide;
+  - palettes that match the TDE standard colour palette;
+  - a TDE address book plugin that reads the list of TDE CVS accounts.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: tdesdk-scripts-trinity
 Architecture: all
@@ -226,18 +226,18 @@ Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html, dmalloc, gdb, tdelibs14-
 Enhances: kate-trinity
 Description: a set of useful development scripts for Trinity
  This package contains a number of scripts which can be used to help in
- developing KDE-based applications.  Many of these scripts however are
- not specific to KDE, and in particular there are several general-use
+ developing TDE-based applications.  Many of these scripts however are
+ not specific to TDE, and in particular there are several general-use
  scripts to help users in working with SVN and CVS repositories.
  .
  In addition to these scripts, this package provides:
-  - gdb macros for Qt/KDE programming;
-  - vim and emacs helper files for Qt/KDE programming;
-  - bash and zsh completion controls for KDE apps;
-  - valgrind error suppressions for KDE apps.
+  - gdb macros for TQt/TDE programming;
+  - vim and emacs helper files for TQt/TDE programming;
+  - bash and zsh completion controls for TDE apps;
+  - valgrind error suppressions for TDE apps.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: kmtrace-trinity
 Architecture: any
@@ -246,11 +246,11 @@ Replaces: kmtrace-trinity (<< 4:14.0.0~)
 Breaks: kmtrace-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, less
 Description: a Trinity memory leak tracer
- KMtrace is a KDE tool to assist with malloc debugging using glibc's
+ KMtrace is a TDE tool to assist with malloc debugging using glibc's
  "mtrace" functionality.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: kompare-trinity
 Architecture: any
@@ -264,8 +264,8 @@ Description: a Trinity GUI for viewing differences between files
  files.  It can compare two documents, create a diff file, display a diff
  file and/or blend a diff file back into the original documents.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: kspy-trinity
 Architecture: any
@@ -273,9 +273,9 @@ Section: devel
 Replaces: kspy-trinity (<< 4:14.0.0~)
 Breaks: kspy-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, tdelibs14-trinity-dev
-Description: examines the internal state of a Qt/KDE app
+Description: examines the internal state of a TQt/TDE app
  KSpy is a tiny library which can be used to graphically display
- the QObjects in use by a Qt/KDE app.  In addition to the object tree,
+ the QObjects in use by a TQt/TDE app.  In addition to the object tree,
  you can also view the properties, signals and slots of any QObject.
  .
  Basically it provides much the same info as QObject::dumpObjectTree() and
@@ -285,8 +285,8 @@ Description: examines the internal state of a Qt/KDE app
  .
  See /usr/share/doc/kspy/README for usage instructions.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: kuiviewer-trinity
 Architecture: any
@@ -302,8 +302,8 @@ Description: viewer for TQt Designer user interface files
  .
  The TQt Designer itself is in the package tqt3-designer.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: libcvsservice0-trinity
 Architecture: any
@@ -317,10 +317,10 @@ Description: DCOP service for accessing CVS repositories
  access the DCOP service directly from C++.  Alternatively, scripts may
  access the service using the standard "dcop" command-line tool.
  .
- DCOP is the Desktop Communication Protocol used throughout KDE.
+ DCOP is the Desktop Communication Protocol used throughout TDE.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: libcvsservice-trinity-dev
 Architecture: any
@@ -337,8 +337,8 @@ Description: development files for CVS DCOP service
  .
  Development files for libcvsservice are included in this package.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: poxml-trinity
 Architecture: any
@@ -353,8 +353,8 @@ Description: tools for using PO-files to translate DocBook XML files
  Also included are some miscellaneous command-line utilities for
  manipulating DocBook XML files, PO-files and PO-template files.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: umbrello-trinity
 Architecture: any
@@ -364,7 +364,7 @@ Breaks: umbrello-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, tdesdk-trinity-doc-html
 Description: UML modelling tool and code generator
- Umbrello UML Modeller is a Unified Modelling Language editor for KDE.
+ Umbrello UML Modeller is a Unified Modelling Language editor for TDE.
  With UML you can create diagrams of software and other systems in an
  industry standard format.  Umbrello can also generate code from your
  UML diagrams in a number of programming languages.
@@ -373,8 +373,8 @@ Description: UML modelling tool and code generator
  diagrams, use case diagrams, state diagrams, activity diagrams, component
  diagrams and deployment diagrams.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: tdesdk-tdeio-plugins-trinity
 Architecture: any
@@ -384,11 +384,11 @@ Breaks: kdesdk-kio-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, subversion
 Description: subversion ioslave for Trinity
  This package provides easy access to remote SVN repositories from within
- Konqueror, and KDE generally, by browsing them as if they were a
+ Konqueror, and TDE generally, by browsing them as if they were a
  filesystem, using URLs like svn://hostname/path, or svn+ssh://, etc.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: tdeunittest-trinity
 Architecture: any
@@ -399,13 +399,13 @@ Depends: ${shlibs:Depends}
 Suggests: tdelibs14-trinity-doc
 Description: unit testing library for Trinity
  TDEUnitTest is a small library that facilitates the writing of tests for
- KDE developers. There are two ways to use the TDEUnitTest library. One is
+ TDE developers. There are two ways to use the TDEUnitTest library. One is
  to create dynamically loadable modules and use the tdeunittestmodrunner or
  tdeunittestguimodrunner programs to run the tests. The other is to use the
  libraries to create your own testing application.
  .
- This package is part of Trinity, and a component of the KDE SDK module.
- See the 'kde-trinity' and 'tdesdk-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE SDK module.
+ See the 'tde-trinity' and 'tdesdk-trinity' packages for more information.
 
 Package: tdesdk-trinity-dbg
 Section: libdevel

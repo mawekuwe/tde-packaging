@@ -12,7 +12,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, rdiff-backup
 Replaces: keep-trinity (<< 4:14.0.0~)
 Breaks: keep-trinity (<< 4:14.0.0~)
-Description: backup system for KDE [Trinity]
+Description: backup system for TDE [Trinity]
  Keep is an automatic backup program that allows users to set the parameters of
  the backup, including the frequency and the number of backups.
  .

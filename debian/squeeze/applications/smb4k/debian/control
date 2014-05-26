@@ -13,7 +13,7 @@ Replaces: smb4k-trinity (<< 4:14.0.0~)
 Breaks: smb4k-trinity (<< 4:14.0.0~)
 Recommends: super | sudo-trinity
 Description: A Samba (SMB) share advanced browser for Trinity
- Smb4K is a SMB (Windows) share browser for KDE. It uses the Samba software 
+ Smb4K is a SMB (Windows) share browser for TDE. It uses the Samba software 
  suite to access the SMB shares of the local network neighborhood. Its purpose
  is to provide a program that's easy to use and has as many features as 
  possible.

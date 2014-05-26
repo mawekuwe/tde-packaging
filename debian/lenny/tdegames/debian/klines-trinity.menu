@@ -1,4 +1,4 @@
-?package(klines):\
+?package(klines-trinity):\
 	needs="x11"\
 	section="Games/Board"\
 	hints="TDE"\

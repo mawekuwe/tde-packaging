@@ -1,4 +1,4 @@
-?package(kicker):\
+?package(kicker-trinity):\
 	needs="X11"\
 	section="Applications/System/Administration"\
 	hints="TDE"\

@@ -1,8 +1,8 @@
-Developing and using KDE based applications written in Java
+Developing and using TDE based applications written in Java
 ===========================================================
 
-This document explains how to develop and use KDE based programs
-written in Java.  This is what the KDE java bindings from the package
+This document explains how to develop and use TDE based programs
+written in Java.  This is what the TDE java bindings from the package
 libtrinity-java are designed to accomplish.
 
 Please read the document /usr/share/doc/libqt3-java/README.Debian.

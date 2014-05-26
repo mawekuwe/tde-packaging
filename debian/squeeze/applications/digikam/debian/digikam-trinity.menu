@@ -1,4 +1,4 @@
-?package(digikam):\
+?package(digikam-trinity):\
 	needs="X11"\
 	section="Applications/Viewers"\
 	title="digikam"\

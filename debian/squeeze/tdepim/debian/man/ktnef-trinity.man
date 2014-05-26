@@ -3,7 +3,7 @@
 ktnef \- TNEF file viewer
 .SH SYNOPSIS
 .B ktnef
-.I [Qt-options] [KDE-options] [file]
+.I [Qt-options] [TDE-options] [file]
 .SH DESCRIPTION
 .B Ktnef
 is an application for to view TNEF mail attachments.  These attachments are

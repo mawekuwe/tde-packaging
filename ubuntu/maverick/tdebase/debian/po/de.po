@@ -96,10 +96,10 @@ msgstr "Soll der tdm-Dienst gestoppt werden?"
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The TDE Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Der TDE Display Manager (tdm) Dienst wird meist beim Aktualisieren oder "
+"Der Trinity Display Manager (tdm) Dienst wird meist beim Aktualisieren oder "
 "Entfernen eines Pakets gestoppt, aber er scheint mindestens eine laufende X-"
 "Sitzung zu verwalten."
 

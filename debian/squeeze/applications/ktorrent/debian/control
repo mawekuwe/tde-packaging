@@ -15,7 +15,7 @@ Recommends: tdebase-tdeio-plugins-trinity
 Description: BitTorrent client for Trinity
  KTorrent is a BitTorrent program for Trinity. Its features include speed capping
  (both down and up), integrated searching, UDP tracker support, preview of
- certain file types (video and audio) and integration into the KDE Panel
+ certain file types (video and audio) and integration into the TDE Panel
  enabling background downloading.
  .
   Homepage: http://ktorrent.org

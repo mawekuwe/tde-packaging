@@ -1,4 +1,4 @@
-?package(juk):\
+?package(juk-trinity):\
 	needs="X11"\
 	section="Apps/Sound"\
 	hints="TDE"\

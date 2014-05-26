@@ -24,7 +24,7 @@
   </refmeta>
   <refnamediv>
     <refname>ktorrent</refname>
-    <refpurpose>BitTorrent client for KDE</refpurpose>
+    <refpurpose>BitTorrent client for TDE</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -33,23 +33,23 @@
         <option><replaceable>Qt-options</replaceable></option>
       </arg>
       <arg choice="opt">
-        <option><replaceable>KDE-options</replaceable></option>
+        <option><replaceable>TDE-options</replaceable></option>
       </arg>
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
     <title>DESCRIPTION</title>
     <para>
-      BitTorrent client for KDE.
+      BitTorrent client for TDE.
     </para>
     <para>
-      KTorrent is a BitTorrent program for KDE. Its features include speed capping (both down and up), integrated searching, UDP tracker support, preview of certain file types (video and audio) and integration into the KDE Panel enabling background downloading.
+      KTorrent is a BitTorrent program for TDE. Its features include speed capping (both down and up), integrated searching, UDP tracker support, preview of certain file types (video and audio) and integration into the TDE Panel enabling background downloading.
     </para>
   </refsect1>
   <refsect1>
     <title>OPTIONS</title>
     <para>
-      All <productname>KDE</productname> and <productname>Qt</productname>
+      All <productname>TDE</productname> and <productname>Qt</productname>
       programs accept a some common command-line options. ktorrent has no
       application-specific options.
     </para>
@@ -65,8 +65,8 @@
           <listitem> <para>Show Qt specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
-          <term> <option>--help-kde</option> </term>
-          <listitem> <para>Show KDE specific options</para> </listitem>
+          <term> <option>--help-tde</option> </term>
+          <listitem> <para>Show TDE specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
           <term> <option>--help-all</option> </term>

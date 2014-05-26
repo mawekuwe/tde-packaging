@@ -9,8 +9,8 @@ Standards-Version: 3.8.4
 Package: kcontrol-ldap-bonding-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, heimdal-clients, libpam-heimdal, libpam-ldap, libnss-ldap, libnss-db, nss-updatedb, nscd, libpam-ccreds, ntp, tde-ldap-cert-updater
-Description: Kerberos control module for the TDE control center
- This is a TDE control center module to manage TDE connections to Kerberos realms.
+Description: Kerberos control module for the Trinity control center
+ This is a Trinity control center module to manage TDE connections to Kerberos realms.
 
 Package: tde-ldap-cert-updater
 Architecture: any

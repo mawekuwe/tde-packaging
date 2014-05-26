@@ -1,4 +1,4 @@
-?package(kaddressbook):\
+?package(kaddressbook-trinity):\
 	needs="X11"\
 	section="Applications/Data Management"\
 	hints="TDE"\

@@ -1,13 +1,13 @@
 .TH KONTACT 1
 .SH NAME
-kontact \- Integrated KDE personal information management application
+kontact \- Integrated TDE personal information management application
 .SH SYNOPSIS
 .B kontact
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B Kontact
 is the integrated solution for personal information management.  It combines
-the well-known KDE applications for email, scheduling, address book, notes
+the well-known TDE applications for email, scheduling, address book, notes
 and newsgroups (KMail, KOrganizer, KAddressBook, KNotes and KNode) into a
 single interface.  Being based on a true component framework Kontact provides
 exactly the same functionality as the stand-alone applications, and adds

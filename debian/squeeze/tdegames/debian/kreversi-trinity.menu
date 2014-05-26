@@ -1,4 +1,4 @@
-?package(kreversi):\
+?package(kreversi-trinity):\
 	needs="x11"\
 	section="Games/Board"\
 	hints="TDE"\

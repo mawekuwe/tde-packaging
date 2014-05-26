@@ -12,5 +12,5 @@ Depends: kaffeine-trinity, ${shlibs:Depends}, ${misc:Depends}
 Replaces: kaffeine-mozilla-kde3 (<< 4:14.0.0~), kaffeine-mozilla-trinity (<< 4:14.0.0~)
 Breaks: kaffeine-mozilla-kde3 (<< 4:14.0.0~), kaffeine-mozilla-trinity (<< 4:14.0.0~)
 Description: mozilla plugin that lanches kaffeine for supported media types [Trinity]
- This mozilla plugin launches kaffeine, the xine-based media player for KDE,
+ This mozilla plugin launches kaffeine, the xine-based media player for TDE,
  when a page containing a supported media format is loaded.

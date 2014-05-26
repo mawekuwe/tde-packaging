@@ -1,9 +1,9 @@
 .TH KXML_COMPILER 1
 .SH NAME
-kxml_compiler \- KDE XML compiler
+kxml_compiler \- TDE XML compiler
 .SH SYNOPSIS
 .B kxml_compiler
-.I [Qt-options] [KDE-options] [options] dtd
+.I [Qt-options] [TDE-options] [options] dtd
 .SH DESCRIPTION
 .B kxml_compiler
 generates parsers and container classes for XML data described by

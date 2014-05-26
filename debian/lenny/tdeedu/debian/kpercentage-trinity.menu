@@ -1,4 +1,4 @@
-?package(kpercentage):needs="X11"\
+?package(kpercentage-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KPercentage"\

@@ -3,10 +3,10 @@
 networkstatustestservice \- Test application for the NetworkStatus monitor
 .SH SYNOPSIS
 .B networkstatustestservice
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B networkstatustestservice
-sets up a test application for the KDE network status monitor.  After it
+sets up a test application for the TDE network status monitor.  After it
 starts, you can communicate with it using
 .B dcop
 (1).

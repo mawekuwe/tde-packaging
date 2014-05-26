@@ -69,7 +69,7 @@ msgstr "Wilt u de tdm-achtergronddienst stoppen?"
 #. Type: boolean
 #. Description
 #: ../tdm.templates:3001
-msgid "The K Desktop manager (tdm) daemon is typically stopped on package upgrade and removal, but it appears to be managing at least one running X session."
+msgid "The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade and removal, but it appears to be managing at least one running X session."
 msgstr "Normaal wordt de tdm-achtergronddienst gestopt bij opwaardering en verwijdering van het pakket tdm; momenteel blijkt deze echter minstens 1 X-sessie te beheren."
 
 #. Type: boolean
@@ -110,13 +110,13 @@ msgstr "Als tdm nu gestopt wordt, worden alle door tdm beheerde X-sessies afgesl
 #~ msgid "Do you wish to stop the tdm daemon?"
 #~ msgstr "Wilt u de tdm-achtergronddienst stoppen?"
 #~ msgid ""
-#~ "The K Desktop manager (tdm) daemon is typically stopped on package "
+#~ "The Trinity Desktop manager (tdm) daemon is typically stopped on package "
 #~ "upgrade and removal, but it appears to be managing at least one running X "
 #~ "session. If tdm is stopped now, any X sessions it manages will be "
 #~ "terminated. Otherwise you may leave tdm running, and the new version will "
 #~ "take effect the next time the daemon is restarted."
 #~ msgstr ""
-#~ "De K Desktop manager (tdm) achtergronddienst wordt typisch gestopt bij "
+#~ "De Trinity Desktop manager (tdm) achtergronddienst wordt typisch gestopt bij "
 #~ "pakketopwaarderingen en -verwijderingen, maar het blijkt minstens één "
 #~ "actieve X-sessie te beheren. Als tdm nu wordt gestopt, dan zullen alle X-"
 #~ "sessies die het beheert worden beëindigd. Anders kunt u tdm laten draaien "

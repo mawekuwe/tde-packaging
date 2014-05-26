@@ -11,17 +11,17 @@ Standards-Version: 3.7.2
 Package: tdeartwork
 Architecture: all
 Section: tde
-Depends: tdeartwork-misc (>= ${Source-Version}), tdeartwork-emoticons (>= ${Source-Version}), tdeartwork-style (>= ${Source-Version}), tdeartwork-theme-icon (>= ${Source-Version}), tdeartwork-theme-window (>= ${Source-Version}), kdewallpapers (>= ${Source-Version}), tdescreensaver (>= ${Source-Version})
+Depends: tdeartwork-misc (>= ${Source-Version}), tdeartwork-emoticons (>= ${Source-Version}), tdeartwork-style (>= ${Source-Version}), tdeartwork-theme-icon (>= ${Source-Version}), tdeartwork-theme-window (>= ${Source-Version}), tdewallpapers (>= ${Source-Version}), tdescreensaver (>= ${Source-Version})
 Recommends: tdescreensaver-xsavers
-Description: themes, styles and more from the official KDE release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Description: themes, styles and more from the official TDE release
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of artistic extras (themes, widget
  styles, screen savers, wallpaper, icons, emoticons and so on) provided
- with the official release of KDE.
+ with the official release of TDE.
  .
  Homepage: http://artist.kde.org 
 
@@ -29,91 +29,91 @@ Package: tdeartwork-emoticons
 Architecture: all
 Section: tde
 Enhances: kopete
-Description: emoticon collections for KDE chat clients
+Description: emoticon collections for TDE chat clients
  This package contains several collections of emoticons used by official
- and unofficial KDE chat clients, such as Kopete and Konversation.
+ and unofficial TDE chat clients, such as Kopete and Konversation.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
 Package: tdeartwork-misc
 Architecture: all
 Section: tde
 Suggests: kworldclock
-Description: various multimedia goodies released with KDE
- This package contains miscellaneous multimedia goodies for KDE.
- Included are additional KDE sounds and kworldclock themes.
+Description: various multimedia goodies released with TDE
+ This package contains miscellaneous multimedia goodies for TDE.
+ Included are additional TDE sounds and kworldclock themes.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
 Package: tdeartwork-style
 Architecture: any
 Section: tde
 Depends: ${shlibs:Depends}
-Description: widget styles released with KDE
- This package contains additional widget styles for KDE. Widget styles
+Description: widget styles released with TDE
+ This package contains additional widget styles for TDE. Widget styles
  can be used to customise the look and feel of interface components such
  as buttons, scrollbars and so on.  They can be applied using the style
- manager in the KDE Control Centre.
+ manager in the Trinity Control Centre.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
 Package: tdeartwork-theme-icon
 Architecture: all
 Section: tde
 Recommends: kdesktop, kicker
 Replaces: tdelibs-data (<< 4:3.5)
-Description: icon themes released with KDE
- This package contains additional icon themes for KDE. Icon themes can be
- used to customise the appearance of standard icons throughout KDE. They
- can be applied using the icon manager in the KDE Control Centre.
+Description: icon themes released with TDE
+ This package contains additional icon themes for TDE. Icon themes can be
+ used to customise the appearance of standard icons throughout TDE. They
+ can be applied using the icon manager in the Trinity Control Centre.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
 Package: tdeartwork-theme-window
 Architecture: any
 Section: tde
 Depends: ${shlibs:Depends}
-Description: window decoration themes released with KDE
- This package contains additional window decoration themes for KDE. Window
+Description: window decoration themes released with TDE
+ This package contains additional window decoration themes for TDE. Window
  decoration themes can be used to customise the look of window borders and
- buttons, and can be applied using the window decoration manager in the KDE
+ buttons, and can be applied using the window decoration manager in the TDE
  Control Center.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
-Package: kdewallpapers
+Package: tdewallpapers
 Architecture: all
 Section: tde
 Suggests: twin | x-window-manager
 Replaces: tdebase-data (<< 4:3.5)
-Description: wallpapers released with KDE
- This package contains additional wallpapers for KDE. Wallpapers can be
- applied using the background manager in the KDE Control Centre.
+Description: wallpapers released with TDE
+ This package contains additional wallpapers for TDE. Wallpapers can be
+ applied using the background manager in the Trinity Control Centre.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
 Package: tdescreensaver
 Architecture: any
 Section: tde
 Depends: ${shlibs:Depends}, tdebase-bin
 Recommends: twin, tdescreensaver-xsavers (= ${Source-Version})
-Description: additional screen savers released with KDE
- This package contains the screen savers for KDE. They can be tested and
- selected within the Appearance and Themes section of the KDE Control
+Description: additional screen savers released with TDE
+ This package contains the screen savers for TDE. They can be tested and
+ selected within the Appearance and Themes section of the Trinity Control
  Center.
  .
  The hooks for the standard xscreensavers are no longer part of this
  package. To select and/or configure the standard xscreensavers through
- the KDE Control Center, install the separate package tdescreensaver-xsavers.
+ the Trinity Control Center, install the separate package tdescreensaver-xsavers.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
 Package: tdescreensaver-xsavers
 Architecture: any
@@ -121,27 +121,27 @@ Section: tde
 Depends: ${shlibs:Depends}, tdebase-bin, xscreensaver
 Recommends: twin, tdescreensaver (= ${Source-Version}), xscreensaver-gl
 Suggests: tdescreensaver-xsavers-webcollage
-Description: KDE hooks for standard xscreensavers
+Description: TDE hooks for standard xscreensavers
  This package allows a smooth integration of the standard xscreensavers
- into KDE. With this package installed you can select and/or configure
+ into TDE. With this package installed you can select and/or configure
  the standard xscreensavers through the Appearances and Themes section of
- the KDE Control Centre.
+ the Trinity Control Centre.
  .
  Note that this package does not actually contain any screensavers itself.
- For the additional screensavers shipped with KDE, see the separate package
+ For the additional screensavers shipped with TDE, see the separate package
  tdescreensaver. This package does depend on the xscreensaver package, and
  recommend the xscreensaver-gl package, as well as contain the necessary
- files to integrate these packages into KDE.
+ files to integrate these packages into TDE.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
 Package: tdescreensaver-xsavers-webcollage
 Architecture: all
 Section: tde
 Depends: tdescreensaver-xsavers, miscfiles | wordlist, netpbm
-Description: webcollage screensaver KDE hook
- This package give access to the webcollage screensaver through the KDE
+Description: webcollage screensaver TDE hook
+ This package give access to the webcollage screensaver through the TDE
  screensaver configuration.
  .
  This screensaver downloads random pictures from the internet and creates
@@ -156,8 +156,8 @@ Description: webcollage screensaver KDE hook
  /usr/share/doc/tdescreensaver-xsavers-webcollage/README.Debian after the 
  installation.
  .
- This package is part of KDE, and a component of the KDE artwork module.
- See the 'kde' and 'tdeartwork' packages for more information.
+ This package is part of TDE, and a component of the TDE artwork module.
+ See the 'tde' and 'tdeartwork' packages for more information.
 
 Package: tdeartwork-dbg
 Section: libdevel

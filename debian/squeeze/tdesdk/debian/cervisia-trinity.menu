@@ -1,4 +1,4 @@
-?package(cervisia):\
+?package(cervisia-trinity):\
   needs="x11"\
   section="Applications/Programming"\
   hints="TDE,Version control"\

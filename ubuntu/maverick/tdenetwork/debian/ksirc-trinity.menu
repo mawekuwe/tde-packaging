@@ -1,4 +1,4 @@
-?package(ksirc):\
+?package(ksirc-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE,IRC"\

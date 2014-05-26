@@ -425,4 +425,4 @@ debian/distrospecific/cursors/contrastlarge/cursors/9d800788f1b08800ae810202380a
 debian/distrospecific/cursors/contrastlarge/cursors/9081237383d90e509aa00f00170e968f
 debian/distrospecific/kaffeine/fileopen128.png
 debian/distrospecific/kaffeine/fileopen64.png
-debian/distrospecific/tdewallet-default-wallet/kdewallet.kwl
+debian/distrospecific/tdewallet-default-wallet/tdewallet.kwl

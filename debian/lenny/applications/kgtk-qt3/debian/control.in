@@ -14,11 +14,11 @@ Depends: ${shlibs:Depends}
 Replaces: kgtk-qt3-kde3 (<< 4:3.5.13)
 Breaks: kgtk-qt3-kde3 (<< 4:3.5.13)
 Conflicts: kgtk-config-bluefish, kgtk-config-eclipse, kgtk-config-firefox, kgtk-config-gimp, kgtk-config-inkscape, kgtk-config-kino, kgtk-config-openoffice, kgtk-config-opera-qt3, kgtk-config-opera-qt4, kgtk-config-scribus, kgtk-config-thunderbird, kubuntu-kgtk-trinity
-Description: Use KDE dialogs in Gtk apps
+Description: Use TDE dialogs in Gtk apps
  This is an LD_PRELOAD hack that allows most GTK
  applications to use Trinity's file dialogs when run under Trinity.
  .
  The Gtk file chooser functions have been overridden to communicate
- with this KDE module/application.
+ with this TDE module/application.
  .
  This package includes the kqt3-wrapper

@@ -1,9 +1,9 @@
 .TH KENOLABA 6
 .SH NAME
-kenolaba \- Abalone board game for KDE
+kenolaba \- Abalone board game for TDE
 .SH SYNOPSIS
 .B kabalone
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 KEnolaba is a simple board strategy game that is played by two players.
 There are red and yellow pieces for each player. Beginning from a
@@ -11,7 +11,7 @@ start position where each player has 14 pieces, moves are drawn until
 one player has pushed 6 of his opponent's pieces out of the board.
 
 The original program was developed in 1993 for DOS and pure Xlib. For
-KDE there was a major rewrite.
+TDE there was a major rewrite.
 .so kdeopt.part
 .SH PROGRAM OPTIONS
 .TP

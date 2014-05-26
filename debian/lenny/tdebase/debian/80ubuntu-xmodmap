@@ -1,4 +1,4 @@
-# Set the Ubuntu laptop keycode -> xkeysyms mapping (used by KDE)
+# Set the Ubuntu laptop keycode -> xkeysyms mapping (used by TDE)
 #
 # This file is sourced by Xsession(5), not executed.
 # The "|| true" is to ensure that the Xsession script does not terminate on error

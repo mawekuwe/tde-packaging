@@ -1,4 +1,4 @@
-?package(kmailcvt):\
+?package(kmailcvt-trinity):\
 	needs="X11"\
 	section="Applications/Data Management"\
 	hints="TDE,Mail"\

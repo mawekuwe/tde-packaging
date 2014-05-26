@@ -1,9 +1,9 @@
 .TH GROUPWAREWIZARD 1
 .SH NAME
-groupwarewizard \- KDE Groupware Wizard
+groupwarewizard \- TDE Groupware Wizard
 .SH SYNOPSIS
 .B groupwarewizard
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B groupwarewizard
 is a front end to configure eGroupware, Kolab, and SUSE Linux Openexchange

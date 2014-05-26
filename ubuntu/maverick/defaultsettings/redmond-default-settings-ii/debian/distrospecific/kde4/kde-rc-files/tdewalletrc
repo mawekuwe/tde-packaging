@@ -1,13 +1,13 @@
 [Auto Allow]
-kdewallet=tdewalletmanager
+tdewallet=tdewalletmanager
 
 [Auto Deny]
-kdewallet=
+tdewallet=
 
 [Wallet]
 Close When Idle=false
 Close on Screensaver=false
-Default Wallet=kdewallet
+Default Wallet=tdewallet
 Enabled=true
 First Use=false
 Idle Timeout=10

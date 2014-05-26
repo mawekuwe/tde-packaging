@@ -1,4 +1,4 @@
-?package(ktimer):\
+?package(ktimer-trinity):\
 	needs="X11"\
 	section="Apps/Tools"\
 	hints="TDE"\

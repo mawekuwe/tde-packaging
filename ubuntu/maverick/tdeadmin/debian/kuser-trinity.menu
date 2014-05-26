@@ -1,4 +1,4 @@
-?package(kuser):\
+?package(kuser-trinity):\
 	needs="X11"\
 	section="Applications/System/Administration"\
 	hints="TDE"\

@@ -1,2 +1,2 @@
-?package(kbibtex):needs="X11" section="Applications/Editors"\
+?package(kbibtex-trinity):needs="X11" section="Applications/Editors"\
   title="KBiBTeX" command="/opt/trinity/bin/kbibtex"

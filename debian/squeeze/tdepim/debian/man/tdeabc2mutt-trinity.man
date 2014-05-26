@@ -3,9 +3,9 @@
 tdeabc2mutt \- tdeabc to mutt converter
 .SH SYNOPSIS
 .B tdeabc2mutt
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
-tdeabc2mutt converts the KDE address book's entries to Mutt format.
+tdeabc2mutt converts the TDE address book's entries to Mutt format.
 .SH PROGRAM OPTIONS
 .TP
 .B --query \fI<substring>\fB

@@ -1,4 +1,4 @@
-?package(twin4):\
+?package(twin4-trinity):\
 	needs="x11"\
 	section="Games/Board"\
 	hints="TDE"\

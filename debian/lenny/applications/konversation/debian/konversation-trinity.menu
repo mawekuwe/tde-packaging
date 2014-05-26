@@ -1,4 +1,4 @@
-?package(konversation):\
+?package(konversation-trinity):\
 	needs="X11"\
 	section="Applications/Network/Communication"\
 	title="Konversation IRC Client"\

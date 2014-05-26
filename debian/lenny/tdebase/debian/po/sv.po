@@ -72,8 +72,8 @@ msgstr "Stoppa tdm-demonen?"
 #. Type: boolean
 #. Description
 #: ../tdm.templates:3001
-msgid "The K Desktop manager (tdm) daemon is typically stopped on package upgrade and removal, but it appears to be managing at least one running X session."
-msgstr "K Desktop manager-demonen (tdm) stoppas vanligtvis vid paketuppgradering och borttagning men det verkar som om den hanterar åtminstone en körande X-session."
+msgid "The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade and removal, but it appears to be managing at least one running X session."
+msgstr "Trinity Desktop manager-demonen (tdm) stoppas vanligtvis vid paketuppgradering och borttagning men det verkar som om den hanterar åtminstone en körande X-session."
 
 #. Type: boolean
 #. Description
@@ -112,13 +112,13 @@ msgstr "Om tdm stoppas nu kommer de X-sessioner som den hanterar att avslutas. O
 #~ msgid "Do you wish to stop the tdm daemon?"
 #~ msgstr "Vill du stoppa tdm-daemonen?"
 #~ msgid ""
-#~ "The K Desktop manager (tdm) daemon is typically stopped on package "
+#~ "The Trinity Desktop manager (tdm) daemon is typically stopped on package "
 #~ "upgrade and removal, but it appears to be managing at least one running X "
 #~ "session. If tdm is stopped now, any X sessions it manages will be "
 #~ "terminated. Otherwise you may leave tdm running, and the new version will "
 #~ "take effect the next time the daemon is restarted."
 #~ msgstr ""
-#~ "Daemonen (tdm) för skrivbordsmiljön KDE stoppas normalt vid uppgradering "
+#~ "Daemonen (tdm) för skrivbordsmiljön TDE stoppas normalt vid uppgradering "
 #~ "och avinstallation av paketet men det verkar som om den hanterar "
 #~ "åtminstone en körande X-session. Om tdm stoppas nu kommer de X-sessioner "
 #~ "den hanterar att avslutas. Annars kan du lämna tdm körande och den nya "

@@ -3,7 +3,7 @@ Title: Superkaramba API
 Author: Adam Geitgey
 Abstract: This Handbook documents the Superkaramba API
  SuperKaramba is a tool based on karamba that allows anyone to easily create
- and run little interactive widgets on a KDE desktop. Widgets are defined in a
+ and run little interactive widgets on a Trinity desktop. Widgets are defined in a
  simple text file and can be augmented with Python code to make them
  interactive.
 Section: Tools

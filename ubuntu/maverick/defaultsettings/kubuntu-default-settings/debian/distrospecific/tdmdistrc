@@ -203,7 +203,7 @@ Willing=/etc/trinity/tdm/Xwilling
 # Default is ""
 #AuthFile=
 # Specify a file with X-resources for the greeter, chooser and background.
-# The KDE frontend does not use this file, so you do not need it unless you
+# The TDE frontend does not use this file, so you do not need it unless you
 # use another background generator than krootimage.
 # Default is ""
 #Resources=
@@ -244,7 +244,7 @@ Session=/etc/trinity/tdm/Xsession
 #UserAuthDir=
 # Whether to automatically restart sessions after X-server crashes.
 # Note that enabling this makes circumventing screen lockers other than
-# KDE's built-in one possible!
+# TDE's built-in one possible!
 # Default is false
 #AutoReLogin=true
 # Allow root logins?
@@ -567,7 +567,7 @@ AllowClose=true
 # Default is ""
 #AutoLoginPass=secret!
 # Immediately lock the automatically started session. This works only with
-# KDE sessions.
+# TDE sessions.
 # Default is false
 #AutoLoginLocked=true
 # See above

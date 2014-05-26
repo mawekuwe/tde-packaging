@@ -1,4 +1,4 @@
-?package(kdf):\
+?package(kdf-trinity):\
 	needs="X11"\
 	section="Apps/System"\
 	hints="TDE"\
@@ -7,7 +7,7 @@
 	icon16x16="/opt/trinity/share/pixmaps/kdf-16.xpm"\
 	command="/opt/trinity/bin/kdf"
 
-?package(kdf):\
+?package(kdf-trinity):\
 	needs="X11"\
 	section="Apps/System"\
 	hints="TDE"\

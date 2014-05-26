@@ -18,14 +18,14 @@ Package: arts
 Architecture: all
 Section: sound
 Depends: libartsc0 (>= ${source:Version}), libarts1c2a (>= ${source:Version})
-Description: sound system from the official KDE release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Description: sound system from the official TDE release
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes the complete aRts sound system, without
- development packages. aRts is the core sound system for KDE.
+ development packages. aRts is the core sound system for TDE.
 
 Package: libarts1c2a
 Architecture: any
@@ -48,8 +48,8 @@ Description: aRts sound system core components
  improve performance and help maintain uninterrupted playback. Its use
  with aRts is recommended.
  .
- This package is part of KDE, and a component of the KDE aRts module.
- See the 'kde' and 'arts' packages for more information.
+ This package is part of TDE, and a component of the TDE aRts module.
+ See the 'tde' and 'arts' packages for more information.
 
 Package: libarts1-dev
 Architecture: any
@@ -61,8 +61,8 @@ Description: development files for the aRts sound system core components
  This package contains the header files needed to build applications that
  use the aRts sound system.
  .
- This package is part of KDE, and a component of the KDE aRts module.
- See the 'kde' and 'arts' packages for more information.
+ This package is part of TDE, and a component of the TDE aRts module.
+ See the 'tde' and 'arts' packages for more information.
 
 Package: libartsc0
 Architecture: any
@@ -73,8 +73,8 @@ Replaces: libarts (<< 4:3.0.0), libarts-alsa (<< 4:3.0.0)
 Description: aRts sound system C support library
  This package contains the C bindings for the aRts sound daemon.
  .
- This package is part of KDE, and a component of the KDE aRts module.
- See the 'kde' and 'arts' packages for more information.
+ This package is part of TDE, and a component of the TDE aRts module.
+ See the 'tde' and 'arts' packages for more information.
 
 Package: libartsc0-dev
 Architecture: any
@@ -86,8 +86,8 @@ Description: development files for the aRts sound system C support library
  This package contains the header files needed to build applications that
  use the aRts sound daemon's C bindings.
  .
- This package is part of KDE, and a component of the KDE aRts module.
- See the 'kde' and 'arts' packages for more information.
+ This package is part of TDE, and a component of the TDE aRts module.
+ See the 'tde' and 'arts' packages for more information.
 
 Package: arts-dbg
 Section: libdevel

@@ -1,4 +1,4 @@
-?package(korn):\
+?package(korn-trinity):\
 	needs="X11"\
 	section="Applications/Network/Web News"\
 	hints="TDE"\

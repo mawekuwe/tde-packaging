@@ -1,4 +1,4 @@
-?package(ark):\
+?package(ark-trinity):\
 	needs="X11"\
 	section="Apps/Tools"\
 	hints="TDE"\

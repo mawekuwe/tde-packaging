@@ -1,4 +1,4 @@
-?package(amarok):\
+?package(amarok-trinity):\
 	needs="X11"\
 	section="Applications/Sound"\
 	hints="TDE"\

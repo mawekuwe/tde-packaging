@@ -7,7 +7,7 @@ similar to the following:
   koffice (lib kofficecore): ERROR: Couldn't find the native MimeType in
   kword's desktop file. Check your installation !
 
-This is often caused by an out-of-date KDE system configuration cache.
+This is often caused by an out-of-date TDE system configuration cache.
 If you experience this error, try running "tdebuildsycoca" and see if it
 fixes the problem.
 

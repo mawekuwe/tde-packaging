@@ -1,4 +1,4 @@
-?package(kbruch):needs="X11"\
+?package(kbruch-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KBruch"\
