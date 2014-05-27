@@ -1,12 +1,12 @@
-.TH TDEVDESIGNER 1
+.TH KDEVDESIGNER 1
 .SH NAME
-tdevdesigner \- TDE GUI Designer
+kdevdesigner \- TDE GUI Designer
 .SH SYNOPSIS
-.B tdevdesigner
+.B kdevdesigner
 .I [Qt-options] [TDE-options] [URL]
 .SH DESCRIPTION
-.B TDevDesigner
-is a customised version of Qt Designer for TDE.
+.B KDevDesigner
+is a customised version of TQt Designer for TDE.
 .SH PROGRAM OPTIONS
 .TP
 .B URL

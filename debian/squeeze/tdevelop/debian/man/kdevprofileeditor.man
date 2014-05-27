@@ -1,10 +1,10 @@
-.TH TDEVPROFILEEDITOR 1
+.TH KDEVPROFILEEDITOR 1
 .SH NAME
-tdevprofileeditor \- TDevelop profile editor
+kdevprofileeditor \- TDevelop profile editor
 .SH SYNOPSIS
-.B tdevprofileeditor
+.B kdevprofileeditor
 .I [Qt-options] [TDE-options]
 .SH DESCRIPTION
-.B TDevProfileEditor
+.B KDevProfileEditor
 is a tool for editing TDevelop profiles.
 .so kdeopt.part

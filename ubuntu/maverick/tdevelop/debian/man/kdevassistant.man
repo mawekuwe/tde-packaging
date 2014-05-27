@@ -1,11 +1,11 @@
-.TH TDEVASSISTANT 1
+.TH KDEVASSISTANT 1
 .SH NAME
-tdevassistant \- TDevelop documentation viewer
+kdevassistant \- TDevelop documentation viewer
 .SH SYNOPSIS
-.B tdevdesigner
+.B kdevdesigner
 .I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
-.B TDevAssistant
+.B KDevAssistant
 is an API documentation browser with contents tree, index and full text
 search. It provides a simple and uniform access to a variety of
 documentation formats:
