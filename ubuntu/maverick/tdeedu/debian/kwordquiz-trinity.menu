@@ -1,4 +1,4 @@
-?package(kwordquiz):needs="X11"\
+?package(kwordquiz-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KWordQuiz"\

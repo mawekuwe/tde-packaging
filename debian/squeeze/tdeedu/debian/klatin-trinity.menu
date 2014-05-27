@@ -1,4 +1,4 @@
-?package(klatin):needs="X11"\
+?package(klatin-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KLatin"\

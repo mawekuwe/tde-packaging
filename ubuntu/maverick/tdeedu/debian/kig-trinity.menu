@@ -1,4 +1,4 @@
-?package(kig):needs="X11"\
+?package(kig-trinity):needs="X11"\
   section="Applications/Science/Mathematics"\
   hints="TDE"\
   title="Kig"\

@@ -1,4 +1,4 @@
-?package(karbon):\
+?package(karbon-trinity):\
 	needs="x11"\
 	section="Applications/Graphics"\
 	hints="TDE,Vector"\

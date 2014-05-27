@@ -1,4 +1,4 @@
-?package(krusader):\
+?package(krusader-trinity):\
 	needs="X11"\
 	section="Applications/Network/File Transfer"\
 	hints="TDE"\
@@ -7,7 +7,7 @@
 	icon16x16="/opt/trinity/share/pixmaps/krusader_user-16.xpm"\
 	command="/opt/trinity/bin/krusader"
 
-?package(krusader):\
+?package(krusader-trinity):\
 	needs="X11"\
 	section="Applications/Network/File Transfer"\
 	hints="TDE"\

@@ -85,9 +85,9 @@ msgstr "�Desea detener el daemon tdm?"
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
-msgstr "Normalmente se detiene el daemon del gestor de sesiones de KDE (tdm) al actualizar o borrar el paquete, pero parece que est� gestionando al menos una sesi�n X activa."
+msgstr "Normalmente se detiene el daemon del gestor de sesiones de TDE (tdm) al actualizar o borrar el paquete, pero parece que est� gestionando al menos una sesi�n X activa."
 
 #. Type: boolean
 #. Description

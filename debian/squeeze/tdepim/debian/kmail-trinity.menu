@@ -1,4 +1,4 @@
-?package(kmail):\
+?package(kmail-trinity):\
 	needs="X11"\
 	section="Applications/Network/Communication"\
 	hints="TDE,Mail"\

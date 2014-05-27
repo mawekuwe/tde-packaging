@@ -2,8 +2,8 @@
 Comment=Gzip File
 Hidden=false
 Patterns=*.gz;*.tgz
-X-KDE-AutoEmbed=true
+X-TDE-AutoEmbed=true
 
-[Property::X-KDE-LocalProtocol]
+[Property::X-TDE-LocalProtocol]
 Type=
 Value=

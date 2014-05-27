@@ -11,6 +11,6 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: kvkbd-kde3 (<< 4:14.0.0~), kvkbd-trinity (<< 4:14.0.0~)
 Breaks: kvkbd-kde3 (<< 4:14.0.0~), kvkbd-trinity (<< 4:14.0.0~)
-Description: Virtual keyboard for KDE [Trinity]
- Virtual keyboard for KDE for use with accessibility. Application contains
+Description: Virtual keyboard for TDE [Trinity]
+ Virtual keyboard for TDE for use with accessibility. Application contains
  a systray widget as well as a dockwidget.

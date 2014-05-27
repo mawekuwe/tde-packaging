@@ -16,7 +16,7 @@
 .\" .sp <n>    insert n+1 empty lines
 .\" for manpage-specific macros, see man(7)
 .SH NAME
-kmtrace \- a KDE memory leak tracer
+kmtrace \- a TDE memory leak tracer
 .SH SYNOPSIS
 .B kmtrace
 [ \fIgeneric-options\fP ]
@@ -27,7 +27,7 @@ kmtrace \- a KDE memory leak tracer
 [ \fB\-\-td, \-\-treedepth\fP \fIvalue\fP ]]
 [ \fItrace-log\fP ]
 .SH DESCRIPTION
-\fBKMtrace\fP is a KDE tool to assist with malloc debugging using
+\fBKMtrace\fP is a TDE tool to assist with malloc debugging using
 glibc's "mtrace" functionality. Unfortunately the mtrace that is part of
 current (9/9/2000) glibc versions only logs the return-address of the
 malloc/free call. The library included with KMtrace
@@ -36,7 +36,7 @@ logs a complete backtrace upon malloc/free.
 KMtrace will investigate the trace log specified on the command line,
 or \fIktrace.out\fP if no trace log is specified.
 .PP
-This utility is part of the KDE Software Development Kit.
+This utility is part of the TDE Software Development Kit.
 .SH OPTIONS
 Below are the kmtrace-specific options.
 For a full summary of options, run \fIkmtrace \-\-help\fP.

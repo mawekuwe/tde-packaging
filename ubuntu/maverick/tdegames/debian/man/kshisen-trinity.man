@@ -1,9 +1,9 @@
 .TH KSHISEN 6
 .SH NAME
-kshisen \- Shisen-Sho for KDE
+kshisen \- Shisen-Sho for TDE
 .SH SYNOPSIS
 .B kshisen
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B kshisen
 is a single-player game similar to Mahjongg and uses the same set of

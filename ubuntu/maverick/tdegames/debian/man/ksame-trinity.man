@@ -3,7 +3,7 @@
 ksame \- a little game about balls and how to get rid of them
 .SH SYNOPSIS
 .B ksame
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B ksame
 is a simple game. It is played by one player, so there is only one

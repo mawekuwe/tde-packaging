@@ -232,9 +232,9 @@ Depends: ${shlibs:Depends}
 Description: The TQt3 Configuration Application
  The TQt Configuration program allows endusers to configure the look
  and behavior of any TQt3 application. It is mostly only necessary
- on systems which don't run KDE because the KDE control center already
+ on systems which don't run TDE because the Trinity control center already
  covers this configuration automatically for the users TQt3 applications
- according to his desktop settings in KDE. However, if you need to run
+ according to his desktop settings in TDE. However, if you need to run
  CJK-fonts or other non-latin scripts, you will most likely want to
  install this package.
 

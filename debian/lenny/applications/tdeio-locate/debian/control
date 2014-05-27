@@ -13,7 +13,7 @@ Replaces: kio-locate-trinity (<< 4:14.0.0~)
 Breaks: kio-locate-trinity (<< 4:14.0.0~)
 Description: tdeio-slave for the locate command [Trinity]
  Adds support for the "locate:" and "locater:"
- protocols to Konqueror and other KDE applications.
+ protocols to Konqueror and other TDE applications.
  .
  This enables you to perform locate searches as you
  would in a terminal. The result is displayed just

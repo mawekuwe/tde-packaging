@@ -16,7 +16,7 @@ Breaks: kdeutils-trinity (<< 4:14.0.0~)
 Depends: ark-trinity (>= ${Source-Version}), kcalc-trinity (>= ${Source-Version}), kcharselect-trinity (>= ${Source-Version}), tdelirc-trinity (>= ${Source-Version}), tdessh-trinity (>= ${Source-Version}), kdf-trinity (>= ${Source-Version}), kedit-trinity (>= ${Source-Version}), kfloppy-trinity (>= ${Source-Version}), kgpg-trinity (>= ${Source-Version}), khexedit-trinity (>= ${Source-Version}), kjots-trinity (>= ${Source-Version}), klaptopdaemon-trinity (>= ${Source-Version}) | kpowersave-trinity, kmilo-trinity (>= ${Source-Version}), kregexpeditor-trinity (>= ${Source-Version}), ksim-trinity (>= ${Source-Version}), ktimer-trinity (>= ${Source-Version}), tdewalletmanager-trinity (>= ${Source-Version}), superkaramba-trinity (>= ${Source-Version})
 Suggests: tdeutils-trinity-doc-html (>= ${Source-Version})
 Description: general purpose utilities from the official Trinity release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
@@ -29,12 +29,12 @@ Section: doc
 Architecture: all
 Replaces: kdeutils-trinity-doc (<< 4:14.0.0~)
 Breaks: kdeutils-trinity-doc (<< 4:14.0.0~)
-Description: developer documentation for the KDE utilities module
- This package contains documentation for the KDE utilities module, of
+Description: developer documentation for the TDE utilities module
+ This package contains documentation for the TDE utilities module, of
  use more for developers creating applications than regular users.
  .
- This package is part of Trinity, and a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: tdeutils-trinity-doc-html
 Architecture: all
@@ -43,18 +43,18 @@ Replaces: kdeutils-trinity-doc-html (<< 4:14.0.0~)
 Breaks: kdeutils-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdebase-trinity
 Description: Trinity utilities documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE utilities documentation
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE utilities documentation
  converted to HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /usr/share/doc/tde/HTML/<language>/<app>/, for instance
  /usr/share/doc/tde/HTML/en/ark/. Documentation is provided for most
- KDE utilities packages.
+ TDE utilities packages.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: tdeutils-trinity-dev
 Section: utils
@@ -66,8 +66,8 @@ Description: development files for the Trinity utilities module
  This package contains development files needed to compile tdeutils
  applications.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: ark-trinity
 Section: utils
@@ -79,18 +79,18 @@ Recommends: ncompress, unzip, zip, zoo, bzip2, p7zip-full, xz-utils, lzma
 Suggests: khelpcenter-trinity, rar, unrar | unrar-free
 Description: graphical archiving tool for Trinity
  Ark is a graphical program for managing various archive formats within the
- KDE environment. Archives can be viewed, extracted, created and modified
+ TDE environment. Archives can be viewed, extracted, created and modified
  from within Ark.
  .
  The program can handle various formats such as tar, gzip, bzip2, zip, rar and
  lha (if appropriate command-line programs are installed).
  .
- Ark can work closely with Konqueror in the KDE environment to handle archives,
+ Ark can work closely with Konqueror in the TDE environment to handle archives,
  if you install the Konqueror Integration plugin available in the konq-plugins
  package.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kcalc-trinity
 Section: utils
@@ -100,7 +100,7 @@ Breaks: kcalc-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: calculator for Trinity
- KCalc is KDE's scientific calculator.
+ KCalc is TDE's scientific calculator.
  .
  It provides:
   * trigonometric functions, logic operations, and statistical calculations
@@ -108,8 +108,8 @@ Description: calculator for Trinity
   * a results-stack which lets you conveniently recall previous results
   * configurable precision, and number of digits after the period
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kcharselect-trinity
 Section: utils
@@ -119,10 +119,10 @@ Breaks: kcharselect-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: character selector for Trinity
- A character set selector for KDE.
+ A character set selector for TDE.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: tdelirc-trinity
 Section: utils
@@ -132,10 +132,10 @@ Breaks: kdelirc-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: infrared control for Trinity
- This is a frontend for the LIRC suite to use infrared devices with KDE.
+ This is a frontend for the LIRC suite to use infrared devices with TDE.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: tdessh-trinity
 Section: tde
@@ -144,10 +144,10 @@ Replaces: kdessh-trinity (<< 4:14.0.0~)
 Breaks: kdessh-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, openssh-client | ssh-client
 Description: ssh frontend for Trinity
- This package contains KDE's frontend for ssh.
+ This package contains TDE's frontend for ssh.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kdf-trinity
 Section: utils
@@ -162,8 +162,8 @@ Description: disk space utility for Trinity
  and mount point. It also allows you to mount and unmount drives and view them
  in a file manager.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kedit-trinity
 Section: editors
@@ -173,15 +173,15 @@ Breaks: kedit-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: basic text editor for Trinity
- A simple text editor for KDE.
+ A simple text editor for TDE.
  .
  It can be used with Konqueror for text and configuration file browsing.
  KEdit also serves well for creating small plain text documents. KEdit's
  functionality will intentionally remain rather limited to ensure a
  reasonably fast start.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kfloppy-trinity
 Section: utils
@@ -190,12 +190,12 @@ Replaces: kfloppy-trinity (<< 4:14.0.0~)
 Breaks: kfloppy-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, dosfstools
 Suggests: khelpcenter-trinity
-Description: floppy formatter for KDE
+Description: floppy formatter for TDE
  Kfloppy is a utility that provides a straightforward graphical means
  to format 3.5" and 5.25" floppy disks.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kgpg-trinity
 Section: tde
@@ -219,8 +219,8 @@ Description: GnuPG frontend for Trinity
      signing)
    * decrypting clipboard contents, including integration with Klipper
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: khexedit-trinity
 Section: utils
@@ -234,8 +234,8 @@ Description: Trinity hex editor
  find/replace functions, bookmarks, many configuration options, drag and drop
  support and other powerful features.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kjots-trinity
 Section: utils
@@ -248,8 +248,8 @@ Description: note taking utility for Trinity
  Kjots is a small note taker program. Name and idea are taken from the jots
  program included in the tkgoodstuff package.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: klaptopdaemon-trinity
 Section: tde
@@ -258,12 +258,12 @@ Replaces: klaptopdaemon-trinity (<< 4:14.0.0~)
 Breaks: klaptopdaemon-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: battery monitoring and management for laptops using KDE
+Description: battery monitoring and management for laptops using TDE
  This package contains utilities to monitor batteries and configure
- power management, for laptops, from within KDE.
+ power management, for laptops, from within TDE.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kmilo-trinity
 Section: utils
@@ -278,8 +278,8 @@ Description:  laptop special keys support for Trinity
  comes with plugins for Powerbooks, Thinkpads, Vaios and generic keyboards
  with special keys.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kmilo-legacy-trinity
 Section: utils
@@ -296,8 +296,8 @@ Description:  non-standard plugins for KMilo
  In Debian the intention is that all laptops work with the generic kmilo
  plugin, if you need this package please file a bug.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: kregexpeditor-trinity
 Section: tde
@@ -308,10 +308,10 @@ Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: graphical regular expression editor plugin for Trinity
  This package contains a graphical regular expression editor plugin for use
- with KDE. It let you draw your regular expression in an unambiguous way.
+ with TDE. It let you draw your regular expression in an unambiguous way.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: ksim-trinity
 Section: utils
@@ -325,8 +325,8 @@ Description: system information monitor for Trinity
  for GKrellm skins. It allows users to follow uptime, memory usage, network
  connections, power, etc.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: ktimer-trinity
 Section: utils
@@ -336,12 +336,12 @@ Breaks: ktimer-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: timer utility for Trinity
- This is a timer application for KDE. It allows you to execute commands after
+ This is a timer application for TDE. It allows you to execute commands after
  a certain amount of time. It supports looping commands as well as delayed
  command execution.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: tdewalletmanager-trinity
 Section: utils
@@ -355,8 +355,8 @@ Description: wallet manager for Trinity
  store encrypted with passwords and can also serve as a password manager that
  keeps a master password to all wallets.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: superkaramba-trinity
 Section: tde
@@ -366,9 +366,9 @@ Breaks: superkaramba-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Conflicts: karamba-trinity
-Description: a program based on karamba improving the eyecandy of KDE
+Description: a program based on karamba improving the eyecandy of TDE
  SuperKaramba is a tool based on karamba that allows anyone to easily create
- and run little interactive widgets on a KDE desktop. Widgets are defined in a
+ and run little interactive widgets on a Trinity desktop. Widgets are defined in a
  simple text file and can be augmented with Python code to make them
  interactive.
  .
@@ -379,8 +379,8 @@ Description: a program based on karamba improving the eyecandy of KDE
   * Create little games or virtual pets that live on your desktop.
   * Display information from the internet, such as weather and headlines.
  .
- This package is part of Trinity, as a component of the KDE utilities module.
- See the 'kde-trinity' and 'tdeutils-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE utilities module.
+ See the 'tde-trinity' and 'tdeutils-trinity' packages for more information.
 
 Package: tdeutils-trinity-dbg
 Section: libdevel

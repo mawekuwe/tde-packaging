@@ -1,9 +1,9 @@
 .TH LSKAT 6
 .SH NAME
-lskat \- Lieutnant Skat card game for KDE
+lskat \- Lieutnant Skat card game for TDE
 .SH SYNOPSIS
 .B lskat
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 Lieutnant skat (from German \fIOffiziersskat\fP) is a card game for
 two players. It is roughly played according to the rules of Skat but

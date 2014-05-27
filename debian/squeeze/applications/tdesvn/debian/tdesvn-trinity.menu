@@ -1,4 +1,4 @@
-?package(tdesvn):\
+?package(tdesvn-trinity):\
   needs="X11"\
   section="Applications/Programming"\
   hints="TDE,Version control"\

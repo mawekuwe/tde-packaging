@@ -1,9 +1,9 @@
 .TH KALARM 1
 .SH NAME
-kalarm \- Personal alarm message, command and email scheduler for KDE
+kalarm \- Personal alarm message, command and email scheduler for TDE
 .SH SYNOPSIS
 .B kalarm
-.I [Qt-options] [KDE-options] [options] [message]
+.I [Qt-options] [TDE-options] [options] [message]
 .SH DESCRIPTION
 \fBKAlarm\fP is a personal alarm message, command and email scheduler. It
 lets you set up personal alarm messages which pop up on the screen at the

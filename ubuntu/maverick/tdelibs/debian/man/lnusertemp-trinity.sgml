@@ -54,7 +54,7 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>tool to create KDE resources and symlinks to them</refpurpose>
+    <refpurpose>tool to create TDE resources and symlinks to them</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -70,7 +70,7 @@ manpage.1: manpage.sgml
     <para>This manual page documents briefly the
       <command>&dhpackage;</command> command.</para>
 
-    <para><command>&dhpackage;</command> is used to create KDE
+    <para><command>&dhpackage;</command> is used to create TDE
     resources in temporary directories and symlinks to them in
     <envar>TDEHOME</envar>. The resource that needs to be created is
     given as an argument and can be anyone of:</para>
@@ -121,7 +121,7 @@ manpage.1: manpage.sgml
   <refsect1>
     <title>SEE ALSO</title>
 
-    <para>You can find more information on the KDE's usage of
+    <para>You can find more information on the TDE's usage of
     temporary files in the Chapter <ulink
     url="http://i18n.kde.org/doc/admin/temp-files.html"><citetitle>Temporary
     and Other Files KDE Uses</citetitle></ulink> of the <ulink

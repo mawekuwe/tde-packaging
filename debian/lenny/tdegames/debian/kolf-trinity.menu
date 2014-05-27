@@ -1,4 +1,4 @@
-?package(kolf):\
+?package(kolf-trinity):\
 	needs="x11"\
 	section="Games/Arcade"\
 	hints="TDE"\

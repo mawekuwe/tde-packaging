@@ -1,4 +1,4 @@
-?package(kverbos):needs="X11"\
+?package(kverbos-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="Kverbos"\

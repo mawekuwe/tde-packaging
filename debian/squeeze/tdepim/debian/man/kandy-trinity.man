@@ -3,14 +3,14 @@
 kandy \- Synchronize mobile phone address books
 .SH SYNOPSIS
 .B kandy
-.I [Qt-options] [KDE-options] [options] [profile]
+.I [Qt-options] [TDE-options] [options] [profile]
 .SH DESCRIPTION
 At the moment
 .B kandy
 is more or less a terminal program with some special features to store
 commands and their parameters, but it also has a simple GUI to access the
 phone book of a mobile phone and it is able to save this phone book to the
-KDE address book.
+TDE address book.
 
 .B kandy
 is aimed at mobile phones with integrate (GSM) modems.

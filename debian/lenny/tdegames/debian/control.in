@@ -13,45 +13,45 @@ Architecture: all
 Section: tde
 Depends: atlantik (>= ${Source-Version}), kasteroids (>= ${Source-Version}), katomic (>= ${Source-Version}), kbackgammon (>= ${Source-Version}), kbattleship (>= ${Source-Version}), kblackbox (>= ${Source-Version}), kbounce (>= ${Source-Version}), kenolaba (>= ${Source-Version}), kfouleggs (>= ${Source-Version}), kgoldrunner (>= ${Source-Version}), kjumpingcube (>= ${Source-Version}), klickety (>= ${Source-Version}), klines (>= ${Source-Version}), kmahjongg (>= ${Source-Version}), kmines (>= ${Source-Version}), knetwalk (>= ${Source-Version}), kolf (>= ${Source-Version}), konquest (>= ${Source-Version}), kpat (>= ${Source-Version}), kpoker (>= ${Source-Version}), kreversi (>= ${Source-Version}), ksame (>= ${Source-Version}), kshisen (>= ${Source-Version}), ksirtet (>= ${Source-Version}), ksmiletris (>= ${Source-Version}), ksnake (>= ${Source-Version}), ksokoban (>= ${Source-Version}), kspaceduel (>= ${Source-Version}), ktron (>= ${Source-Version}), ktuberling (>= ${Source-Version}), twin4 (>= ${Source-Version}), lskat (>= ${Source-Version})
 Suggests: tdegames-doc-html (>= ${Source-Version})
-Description: games from the official KDE release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Description: games from the official TDE release
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of games provided with
- the official release of KDE.
+ the official release of TDE.
 
 Package: tdegames-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror | www-browser, tdegames
-Description: KDE games documentation in HTML format
- By default the games provided with KDE (the K Desktop Environment)
- only provide their documentation in KDE docbook format, which can
+Description: TDE games documentation in HTML format
+ By default the games provided with TDE (the Trinity Desktop Environment)
+ only provide their documentation in TDE docbook format, which can
  only be read by Konqueror or KHelpCenter.  This package provides all
- of the KDE games documentation converted to HTML format so it can be
+ of the TDE games documentation converted to HTML format so it can be
  read with any web browser.
  .
  The documentation will be installed into the usual directories
  /usr/share/doc/tde/HTML/en/<package>/, for instance
  /usr/share/doc/tde/HTML/en/kasteroids/.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: libtdegames1
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: KDE games library and common files
+Description: TDE games library and common files
  This library provides a common infrastructure for several of the
- games in the KDE distribution. Features include standardized menu
+ games in the TDE distribution. Features include standardized menu
  items, high score handling, card display, and network connections
  including chat capabilities.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: tdegames-dbg
 Architecture: any
@@ -67,48 +67,48 @@ Package: libtdegames-dev
 Architecture: any
 Section: libdevel
 Depends: tdelibs4-dev, libtdegames1 (= ${Source-Version})
-Description: KDE games library headers
+Description: TDE games library headers
  This package is necessary if you want to develop your own games using
- the KDE games library.
+ the TDE games library.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: libtdegames-doc
 Architecture: all
 Section: doc
 Recommends: tdelibs4-doc, qt3-doc
 Suggests: konqueror | www-browser, libtdegames-dev
-Description: API documentation for the KDE games library
+Description: API documentation for the TDE games library
  This package contains the developers' documentation for libtdegames.
- You may want to install it if you wish to develop games for KDE.
+ You may want to install it if you wish to develop games for TDE.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: tdegames-card-data
 Architecture: all
 Section: games
-Description: Card decks for KDE games
- Several different collections of card images for use by KDE games.
+Description: Card decks for TDE games
+ Several different collections of card images for use by TDE games.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: atlantik
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
 Suggests: atlantikdesigner, monopd
-Description: KDE client for Monopoly-like network games
- This is a KDE client for playing Monopoly-like boardgames on the
+Description: TDE client for Monopoly-like network games
+ This is a TDE client for playing Monopoly-like boardgames on the
  monopd network.  It can play any board supported by the network
  server, including the classic Monopoly game, as well as the Atlantik
  game in which the property includes several major cities in North
  America and Europe.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: atlantik-dev
 Architecture: any
@@ -119,14 +119,14 @@ Description: Development files for Atlantik
  This package contains header files for compiling programs against the
  libraries which come with Atlantik.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kasteroids
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Asteroids for KDE
+Description: Asteroids for TDE
  You know this game.  It is based on Warwick Allison's QwSpriteField
  widget.
  .
@@ -134,55 +134,55 @@ Description: Asteroids for KDE
  screen to advance to the next level. Your ship is destroyed if it
  makes contact with an asteroid.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: katomic
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Atomic Entertainment game for KDE
+Description: Atomic Entertainment game for TDE
  This is a puzzle game, in which the object is to assemble a molecule
  from its atoms on a Sokoban-like board.  On each move, an atom goes
  as far as it can in a specified direction before being stopped by a
  wall or another atom.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kbackgammon
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
 Suggests: gnubg
-Description: A Backgammon game for KDE
- KBackgammon is a backgammon program for KDE2. It is based on the
+Description: A Backgammon game for TDE
+ KBackgammon is a backgammon program for Trinity. It is based on the
  code, ideas and concepts of KFibs (which is a FIBS client for
  KDE1). For a short time, KBackgammon was called bacKgammon (if you
  know somebody who is still using bacKgammon, please force them to
  upgrade :-)).
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kbattleship
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Battleship game for KDE
+Description: Battleship game for TDE
  This is an implementation of the Battleship game.  Each player tries
  to be the first to sink all the opponent's ships by firing "blindly"
  at them.  The game has options to play over a network connection or
  against the computer.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kblackbox
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: A simple logical game for the KDE project
+Description: A simple logical game for the TDE project
  KBlackBox is a game of hide and seek played on an grid of boxes. Your
  opponent (Random number generator, in this case) has hidden several
  balls within this box. By shooting rays into the box and observing
@@ -190,14 +190,14 @@ Description: A simple logical game for the KDE project
  hidden balls. The fewer rays you use to find the balls, the lower
  your score.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kbounce
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Jezzball clone for the K Desktop Environment
+Description: Jezzball clone for the Trinity Desktop Environment
  This is a clone of the popular Jezzball game originally created by
  Microsoft. Jezzball is one of the rare and simple games requiring
  skill, timing, and patience in order to be successful.  A ball begins
@@ -215,14 +215,14 @@ Description: Jezzball clone for the K Desktop Environment
  .
  This game was previously known as kjezz.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kenolaba
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Enolaba board game for KDE
+Description: Enolaba board game for TDE
  kenolaba is a simple board strategy game that is played by two
  players. There are red and yellow pieces for each player. Beginning
  from a start position where each player has 14 pieces, moves are
@@ -232,27 +232,27 @@ Description: Enolaba board game for KDE
  This game was previously known as kabalone, and was inspired by the
  board game Abalone by Abalone SA, France.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kfouleggs
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: A KDE clone of the Japanese PuyoPuyo game
+Description: A TDE clone of the Japanese PuyoPuyo game
  KFouleggs is a clone of the Japanese PuyoPuyo game, with advanced
  features such as multiplayer games against human or AI, and network
  play.  If you have played Tetris or one of its many clones, you will
  find KFouleggs easy to learn.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kgoldrunner
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: A KDE clone of the Loderunner arcade game
+Description: A TDE clone of the Loderunner arcade game
  KGoldrunner, a game of action and puzzle solving.  Run through the
  maze, dodge your enemies, collect all the gold and climb up to the
  next level.
@@ -268,8 +268,8 @@ Description: A KDE clone of the Loderunner arcade game
  climbs out of his hole, but if it closes before that, he will die and
  reappear somewhere else.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kjumpingcube
 Architecture: any
@@ -283,25 +283,25 @@ Description: Tactical one or two player game
  the squares neighbours and take them over. Winner is the one, who
  owns all squares.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: klickety
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: A Clickomania-like game for KDE
+Description: A Clickomania-like game for TDE
  Klickety is an adaptation of the (perhaps) well-known Clickomania
  game; it is very similar to the "same" game.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: klines
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Color lines for KDE
+Description: Color lines for TDE
  KLines is a simple game. It is played by one player, so there is only
  one winner :-). You play for fun and against the high score. It was
  inspired by a well known game - "Color lines", written for DOS by
@@ -314,26 +314,26 @@ Description: Color lines for KDE
  are removed and your score grows. After each turn the computer drops
  three more marbles.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kmahjongg
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: the classic mahjongg game for KDE project
+Description: the classic mahjongg game for TDE project
  Your mission in this game is to remove all tiles from the game board. A
  matching pair of tiles can be removed, if they are 'free', which means that
  no other tiles block them on the left or right side.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kmines
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Minesweeper for KDE
+Description: Minesweeper for TDE
  KMines is the classic Minesweeper game. You must uncover all the
  empty cases without blowing on a mine.
  .
@@ -343,8 +343,8 @@ Description: Minesweeper for KDE
  cases, it is very useful to put a flag on the cases which contain a
  mine.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: knetwalk
 Architecture: any
@@ -356,19 +356,19 @@ Description: A game for system administrators
  rotate these elements until every client is connected to the server,
  and no wires are left unconnected.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kolf
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Minigolf game for KDE
- This is a minigolf game for KDE that allows you to go through different
+Description: Minigolf game for TDE
+ This is a minigolf game for TDE that allows you to go through different
  golf courses and waste an exorbitant amount of time.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kolf-dev
 Architecture: any
@@ -379,48 +379,48 @@ Description: Development files for Kolf
  This package contains headers and development libraries for compiling
  Kolf plugins.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: konquest
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: KDE based GNU-Lactic Konquest game
- This the KDE version of Gnu-Lactic Konquest, a multi-player strategy
+Description: TDE based GNU-Lactic Konquest game
+ This the TDE version of Gnu-Lactic Konquest, a multi-player strategy
  game. The goal of the game is to expand your interstellar empire
  across the galaxy and, of course, crush your rivals in the process.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kpat
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}, tdebase-data, tdegames-card-data
-Description: KDE solitaire patience game
+Description: TDE solitaire patience game
  KPatience is a collection of 14 card games. All the games are single
  player games.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kpoker
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}, tdegames-card-data
-Description: KDE based Poker clone
- KPoker is a KDE compliant clone of those highly addictive pocket
+Description: TDE based Poker clone
+ KPoker is a TDE compliant clone of those highly addictive pocket
  video poker games which are sometimes called "Videopoker" as well.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kreversi
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Reversi for KDE
+Description: Reversi for TDE
  Reversi is a simple strategy game that is played by two
  players. There is only one type of piece - one side of it is black,
  the other white. If a player captures a piece on the board, that
@@ -428,40 +428,40 @@ Description: Reversi for KDE
  that has more pieces of his own color on the board and if there are
  no more moves possible.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: ksame
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: SameGame for KDE
+Description: SameGame for TDE
  KSame is a simple game. It's played by one player, so there is only
  one winner :-) You play for fun and against the high score. It has
  been inspired by SameGame, that is only famous on the Macintosh
  platform.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kshisen
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Shisen-Sho for KDE
+Description: Shisen-Sho for TDE
  KShisen-Sho is a single-player-game similar to Mahjongg and uses the
  same set of tiles as Mahjongg.
  .
  The object of the game is to remove all tiles from the field.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: ksirtet
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Tetris and Puyo-Puyo games for KDE
+Description: Tetris and Puyo-Puyo games for TDE
  This program is a clone of the well known game Tetris. You must fit
  the falling pieces to form full lines. You can rotate and translate
  the falling piece. The game ends when no more piece can fall ie when
@@ -471,37 +471,37 @@ Description: Tetris and Puyo-Puyo games for KDE
  pieces fall quicker (exactly the piece falls from a line each
  1/(1+level) second).
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: ksmiletris
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Tetris like game for KDE
+Description: Tetris like game for TDE
  This is a game with falling blocks composed of different types of
  smilies. The object of the game is to "crack a smile" by guiding
  blocks so there are two or more of the same symbol vertically.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: ksnake
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Snake Race for KDE
+Description: Snake Race for TDE
  Snake Race is a game of speed and agility. You are a hungry snake and
  are trying to eat all the apples in the room before getting out!
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: ksokoban
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Sokoban game for KDE
+Description: Sokoban game for TDE
  The first sokoban game was created in 1982 by Hiroyuki Imabayashi at
  the Japanese company Thinking Rabbit, Inc. "Sokoban" is japanese for
  "warehouse keeper". The idea is that you are a warehouse keeper
@@ -521,14 +521,14 @@ Description: Sokoban game for KDE
  levels can be fun for adults too, for example if you don't want to
  expose yourself to too much mental strain.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: kspaceduel
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Arcade two-player space game for KDE
+Description: Arcade two-player space game for TDE
  KSpaceduel is an space arcade game for two players.
  .
  Each player controls a ship that flies around the sun and tries to
@@ -536,25 +536,25 @@ Description: Arcade two-player space game for KDE
  against the computer, or you can have the computer control both ships
  and play each other.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: ktron
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Tron clone for the K Desktop Environment
+Description: Tron clone for the Trinity Desktop Environment
  The object of the game is to avoid running into walls, your own tail,
  and that of your opponent.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: ktuberling
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Potato Guy for KDE
+Description: Potato Guy for TDE
  KTuberling is a game intended for small children. Of course, it may
  be suitable for adults who have remained young at heart.
  .
@@ -571,14 +571,14 @@ Description: Potato Guy for KDE
  send your own creations to the programmer, Eric Bischoff, who will
  include them in the museum if he gets some spare time.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: twin4
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}
-Description: Connect Four clone for KDE
+Description: Connect Four clone for TDE
  Four wins is a game for two players. Each player is represented by a
  colour (yellow and red). The goal of the game is to get four
  connected pieces of your colour into a row, column or any
@@ -590,14 +590,14 @@ Description: Connect Four clone for KDE
  pieces in a row, column or diagonal or no more moves are possible
  because the board is filled.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.
 
 Package: lskat
 Architecture: any
 Section: games
 Depends: ${shlibs:Depends}, tdegames-card-data
-Description: Lieutnant Skat card game for KDE
+Description: Lieutnant Skat card game for TDE
  Lieutnant Skat (from German Offiziersskat) is a card game for two
  players. It is roughly played according to the rules of Skat but with
  only two players and simplified rules.
@@ -607,5 +607,5 @@ Description: Lieutnant Skat card game for KDE
  of the 120 possible points. After 16 moves all cards are played and
  the game ends.
  .
- This package is part of KDE, and a component of the KDE games module.
- See the 'kde' and 'tdegames' packages for more information.
+ This package is part of TDE, and a component of the TDE games module.
+ See the 'tde' and 'tdegames' packages for more information.

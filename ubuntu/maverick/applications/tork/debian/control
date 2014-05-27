@@ -16,7 +16,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends}, tork-data-trinity (= ${source:Versi
 Recommends: tor, privoxy
 Suggests: konqueror-trinity, iceweasel-torbutton
 Description: anonymity manager for TDE
- TorK is an anonymity manager for the TDE desktop.
+ TorK is an anonymity manager for the Trinity desktop.
  Browse anonymously on Konqueror, Iceweasel or Opera.
  Send anonymous email via the MixMinion network.
  Use ssh, IRC and IM anonymously. Control and monitor
@@ -28,7 +28,7 @@ Architecture: all
 Depends: ${misc:Depends}
 Recommends: tork-trinity
 Description: anonymity manager for TDE (data files)
- TorK is an anonymity manager for the TDE desktop.
+ TorK is an anonymity manager for the Trinity desktop.
  Browse anonymously on Konqueror, Iceweasel or Opera.
  Send anonymous email via the MixMinion network.
  Use ssh, IRC and IM anonymously. Control and monitor

@@ -67,10 +67,10 @@ msgstr "Stoppe tdm-nissen?"
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"Nissen K Desktop Manager (tdm) stoppes normalt når dens pakke fjernes eller "
+"Nissen Trinity Desktop Manager (tdm) stoppes normalt når dens pakke fjernes eller "
 "oppgraderes, men det ser ut til at den styrer minst en pågående X-økt."
 
 #. Type: boolean

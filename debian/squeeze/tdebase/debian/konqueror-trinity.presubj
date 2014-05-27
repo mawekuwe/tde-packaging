@@ -26,5 +26,5 @@ be attached to the bug report. Screenshots of the "correct" behaviour
 
 Any bug that states "Site foo is not rendered correctly" with no further
 information will be discarded (even if at the time of the report the defect
-is obvious, with newer versions of KDE it can be hard to see if the defect
+is obvious, with newer versions of TDE it can be hard to see if the defect
 is still present, since the error might have been subtle for all we know).

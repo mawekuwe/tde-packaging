@@ -1,17 +1,17 @@
 .TH KONSOLEKALENDAR 1
 .SH NAME
-konsolekalendar \- Command line interface to KDE calendars
+konsolekalendar \- Command line interface to TDE calendars
 .SH SYNOPSIS
 .B konsolekalendar
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B KonsoleKalendar
-is a command line interface to KDE calendars.  It lets you view, insert,
+is a command line interface to TDE calendars.  It lets you view, insert,
 remove, or modify calendar events by way of the command line or from a
 scripting language.  Additionally,
 .B KonsoleKalendar
-can create a new KDE calendar, export a KDE calendar to a variety of other
-formats, and import another KDE calendar.
+can create a new TDE calendar, export a TDE calendar to a variety of other
+formats, and import another TDE calendar.
 .SH PROGRAM OPTIONS
 .TP
 .B --verbose

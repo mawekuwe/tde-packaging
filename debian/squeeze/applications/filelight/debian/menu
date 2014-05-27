@@ -1,4 +1,4 @@
-?package(filelight):needs="X11" \
+?package(filelight-trinity):needs="X11" \
         section="Apps/System" \
         hints="TDE, Monitoring, Files" \
         command="/opt/trinity/bin/filelight" \

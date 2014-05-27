@@ -1,4 +1,4 @@
-?package(kbugbuster):\
+?package(kbugbuster-trinity):\
         needs="x11"\
         section="Applications/Project Management"\
         hints="TDE"\

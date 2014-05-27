@@ -29,10 +29,10 @@ Architecture: all
 Section: libs
 Replaces: libdcop3-java-kde3 (<< 4:14.0.0~), libdcop3-java-trinity (<< 4:14.0.0~)
 Breaks: libdcop3-java-kde3 (<< 4:14.0.0~), libdcop3-java-trinity (<< 4:14.0.0~)
-Depends: libdcop3-jni-trinity (>> ${KDE-Version3}~), libdcop3-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
+Depends: libdcop3-jni-trinity (>> ${TDE-Version3}~), libdcop3-jni-trinity (<< ${TDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Description: DCOP bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
- using the Java DCOP bindings. DCOP is the TDE Desktop COmmunications
+ using the Java DCOP bindings. DCOP is the Trinity Desktop COmmunications
  Protocol, used for communicating with running TDE applications.
  .
  This package is part of the official TDE bindings module.
@@ -45,7 +45,7 @@ Breaks: libdcop3-jni-kde3 (<< 4:14.0.0~), libdcop3-jni-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: DCOP bindings for Java ( Native libraries ) [Trinity]
  This package contains the shared libraries and scripts necessary to
- run programs using the Java DCOP bindings. DCOP is the TDE Desktop
+ run programs using the Java DCOP bindings. DCOP is the Trinity Desktop
  COmmunications Protocol, used for communicating with running TDE
  applications.
  .
@@ -56,11 +56,11 @@ Architecture: amd64 i386 armel armhf mips mipsel ia64 powerpc s390 sparc
 Section: libdevel
 Replaces: libdcop3-java-kde3-dev (<< 4:14.0.0~), libdcop3-java-trinity-dev (<< 4:14.0.0~)
 Breaks: libdcop3-java-kde3-dev (<< 4:14.0.0~), libdcop3-java-trinity-dev (<< 4:14.0.0~)
-Depends: libdcop3-java-trinity (>> ${KDE-Version3}~), libdcop3-java-trinity (<< ${KDE-Next-Version3}~)
+Depends: libdcop3-java-trinity (>> ${TDE-Version3}~), libdcop3-java-trinity (<< ${TDE-Next-Version3}~)
 Description: DCOP bindings for Java (dcopidl2java program) [Trinity]
  This package contains the dcopidl2java program which generates Java 
  stubs from DCOP IDL files, necessary to do development with the DCOP Java
- bindings. DCOP is the TDE Desktop COmmunications Protocol, used for
+ bindings. DCOP is the Trinity Desktop COmmunications Protocol, used for
  communicating with running TDE applications.
  .
  This package is part of the official TDE bindings module.
@@ -70,12 +70,12 @@ Architecture: all
 Section: libs
 Replaces: libqt3-java-kde3 (<< 4:14.0.0~), libqt3-java-trinity (<< 4:14.0.0~)
 Breaks: libqt3-java-kde3 (<< 4:14.0.0~), libqt3-java-trinity (<< 4:14.0.0~)
-Depends: libqt3-jni-trinity (>> ${KDE-Version3}~), libqt3-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
+Depends: libqt3-jni-trinity (>> ${TDE-Version3}~), libqt3-jni-trinity (<< ${TDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Suggests: juic-trinity
 Description: Java bindings for Qt [Trinity]
  This package contains the Java classes necessary to run Java programs
  using the Java Qt bindings. Qt is a very popular GUI toolkit, used by
- the TDE desktop environment.
+ the Trinity desktop environment.
  .
  It also includes many example programs that make use of these bindings,
  plus many of the Qt Tutorial examples translated into Java.
@@ -91,7 +91,7 @@ Depends: ${shlibs:Depends}
 Description: Java bindings for Qt ( Native libraries ) [Trinity]
  This package contains the shared libraries necessary to run Java
  programs using the Java Qt bindings. Qt is a very popular GUI
- toolkit, used by the TDE desktop environment.
+ toolkit, used by the Trinity desktop environment.
  .
  This package is part of the official TDE bindings module.
 
@@ -100,7 +100,7 @@ Architecture: all
 Section: libs
 Replaces: libtrinity-java-kde3 (<< 4:14.0.0~), libtrinity-java-trinity (<< 4:14.0.0~)
 Breaks: libtrinity-java-kde3 (<< 4:14.0.0~), libtrinity-java-trinity (<< 4:14.0.0~)
-Depends: libtrinity-jni-trinity (>> ${KDE-Version3}~), libtrinity-jni-trinity (<< ${KDE-Next-Version3}~), gij | java1-runtime | java2-runtime
+Depends: libtrinity-jni-trinity (>> ${TDE-Version3}~), libtrinity-jni-trinity (<< ${TDE-Next-Version3}~), gij | java1-runtime | java2-runtime
 Description: tdelibs bindings for Java [Trinity]
  This package contains the Java classes necessary to run Java programs
  using the Java tdelibs bindings. TDE is the Trinity Desktop Environment, a
@@ -194,7 +194,7 @@ Provides: ${python:Provides}
 Description: DCOP bindings for Python
  This package contains the shared libraries necessary to run and
  develop Python programs using the Python DCOP bindings
- libraries. DCOP is the TDE Desktop COmmunications Protocol, used for
+ libraries. DCOP is the Trinity Desktop COmmunications Protocol, used for
  communicating with running TDE applications.
  .
  This package is part of the official TDE bindings module.

@@ -1,4 +1,4 @@
-?package(kaffeine):\
+?package(kaffeine-trinity):\
 	needs="X11"\
 	section="Apps/Sound"\
 	hints="TDE"\

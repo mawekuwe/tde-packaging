@@ -2,7 +2,7 @@ knewsticker-scripts for Debian
 ------------------------------
 
 This package contains a variety of scripts that provide additional news
-sources for KNewsTicker, the KDE news ticker applet for the KDE panel.
+sources for KNewsTicker, the TDE news ticker applet for the TDE panel.
 
 Documentation for the individual scripts can be found in directory
 /opt/trinity/share/doc/knewsticker-scripts/.

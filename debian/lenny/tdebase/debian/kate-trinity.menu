@@ -1,4 +1,4 @@
-?package(kate):\
+?package(kate-trinity):\
 	needs="X11"\
 	section="Applications/Editors"\
 	hints="TDE,Text"\
@@ -7,7 +7,7 @@
 	icon16x16="/opt/trinity/share/pixmaps/kate-16.xpm"\
 	command="/opt/trinity/bin/kate"
 
-?package(kate):\
+?package(kate-trinity):\
 	needs="X11"\
 	section="Applications/Editors"\
 	hints="TDE,Text"\

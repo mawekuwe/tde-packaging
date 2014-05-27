@@ -1,9 +1,9 @@
 .TH KSYNC 1
 .SH NAME
-ksync \- KDE synchronization framework
+ksync \- TDE synchronization framework
 .SH SYNOPSIS
 .B ksync
-.I [Qt-options] [KDE-options] [file]
+.I [Qt-options] [TDE-options] [file]
 .SH DESCRIPTION
 .B KSync
 allows you to synchronize calendar, bookmark, and address book data with

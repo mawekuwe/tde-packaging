@@ -60,11 +60,11 @@ clean::
 	# Just in case
 	rm -f $(DEB_SRCDIR)/dcopjava/dcopidl2java/dcopidl2java
 	rm -f $(DEB_SRCDIR)/dcopjava/dcopidl2java/dcopidl2java.all_cpp.o
-	rm -f $(DEB_SRCDIR)/dcopjava/binding/org/kde/DCOP/*.class
+	rm -f $(DEB_SRCDIR)/dcopjava/binding/org/trinitydesktop/DCOP/*.class
 	rm -rf $(DEB_SRCDIR)/dcopjava/binding/.libs
 	rm -f dcopjava/binding/client.lo
 	rm -f dcopjava/binding/libjavadcop.la
-	rm -f dcopjava/binding/org_kde_DCOP_Client.h
+	rm -f dcopjava/binding/org_trinitydesktop_DCOP_Client.h
 	rm -f dcopjava/dcopidl2java/dcopidl2java.all_cpp.cpp
 	rm -f smoke/tde/qtdefines
 	rm -f smoke/tde/smokedata.cpp.diff

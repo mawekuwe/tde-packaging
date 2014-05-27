@@ -17,7 +17,7 @@ Replaces: kde-guidance-kde3 (<< 4:14.0.0~), kde-guidance-trinity (<< 4:14.0.0~)
 Breaks: kde-guidance-kde3 (<< 4:14.0.0~), kde-guidance-trinity (<< 4:14.0.0~)
 Conflicts: guidance-power-manager, kde-guidance-powermanager
 Provides: ${python:Provides}
-Description: collection of KDE system administration tools for GNU/Linux [Trinity]
+Description: collection of TDE system administration tools for GNU/Linux [Trinity]
  Guidance currently consists of four programs designed to help you
  look after your system:
   o  userconfig - User and Group administration
@@ -26,7 +26,7 @@ Description: collection of KDE system administration tools for GNU/Linux [Trinit
   o  displayconfig - Screen and display configuration
   o  wineconfig - Wine configuration
  .
- These tools are available in KDE Control Center, System Settings 
+ These tools are available in Trinity Control Center, System Settings 
  or can be run as standalone applications.
  .
   Homepage: http://www.simonzone.com/software/guidance

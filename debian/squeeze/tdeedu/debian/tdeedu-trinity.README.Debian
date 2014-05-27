@@ -1,10 +1,10 @@
-KDE Educational Applications for Debian
+TDE Educational Applications for Debian
 ---------------------------------------
 
 Package tdeedu is a metapackage that depends on the full set of
-edutainment applications provided with the official release of KDE.
+edutainment applications provided with the official release of TDE.
 
-Each application provides documentation in a docbook format that the KDE
+Each application provides documentation in a docbook format that the TDE
 Help Centre can display.  For HTML documentation that can be read in any
 web browser, see the package tdeedu-doc-html.
 

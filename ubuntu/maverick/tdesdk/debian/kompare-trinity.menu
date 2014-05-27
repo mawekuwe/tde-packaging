@@ -1,4 +1,4 @@
-?package(kompare):\
+?package(kompare-trinity):\
         needs="x11"\
         section="Applications/Text"\
         hints="TDE"\

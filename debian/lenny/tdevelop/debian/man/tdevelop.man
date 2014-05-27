@@ -1,12 +1,12 @@
-.TH KDEVELOP 1
+.TH TDEVELOP 1
 .SH NAME
-tdevelop \- Integrated Development Environment for KDE
+tdevelop \- Integrated Development Environment for TDE
 .SH SYNOPSIS
 .B tdevelop
-.I [Qt-options] [KDE-options] [options] file(s)
+.I [Qt-options] [TDE-options] [options] file(s)
 .SH DESCRIPTION
-.B KDevelop
-is an integrated development environment for KDE.
+.B TDevelop
+is an integrated development environment for TDE.
 .SH PROGRAM OPTIONS
 .TP
 .B --profile \fI<profile>\fB

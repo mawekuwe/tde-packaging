@@ -1,4 +1,4 @@
-?package(kopete):\
+?package(kopete-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE,IM"\

@@ -1,4 +1,4 @@
-?package(kdict):\
+?package(kdict-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE"\

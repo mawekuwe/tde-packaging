@@ -15,7 +15,7 @@ Breaks: kdegraphics-trinity (<< 4:14.0.0~)
 Depends: kamera-trinity (>= ${source:Version}), kcoloredit-trinity (>= ${source:Version}), tdegraphics-tdefile-plugins-trinity (>= ${source:Version}), kdvi-trinity (>= ${source:Version}), kfax-trinity (>= ${source:Version}), kfaxview-trinity (>= ${source:Version}), kgamma-trinity (>= ${source:Version}), kghostview-trinity (>= ${source:Version}), tdeiconedit-trinity (>= ${source:Version}), kmrml-trinity (>= ${source:Version}), kolourpaint-trinity (>= ${source:Version}), kooka-trinity (>= ${source:Version}), kpdf-trinity (>= ${source:Version}), kpovmodeler-trinity (>= ${source:Version}), kruler-trinity (>= ${source:Version}), ksnapshot-trinity (>= ${source:Version}), ksvg-trinity (>= ${source:Version}), kview-trinity (>= ${source:Version}), kviewshell-trinity (>= ${source:Version}), libkscan1-trinity (>= ${source:Version})
 Suggests: tdegraphics-trinity-doc-html (>= ${source:Version})
 Description: graphics apps from the official Trinity release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
@@ -29,19 +29,19 @@ Section: doc
 Replaces: kdegraphics-trinity-doc-html (<< 4:14.0.0~)
 Breaks: kdegraphics-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdebase-trinity
-Description: KDE graphics documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE graphics documentation converted to
+Description: TDE graphics documentation in HTML format
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE graphics documentation converted to
  HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /usr/share/doc/tde/HTML/<language>/<app>/, for instance
  /usr/share/doc/tde/HTML/en/kamera/. Documentation is provided for most
- KDE graphics packages.
+ TDE graphics packages.
  .
- This package is part of Trinity, and a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kamera-trinity
 Section: graphics
@@ -51,11 +51,11 @@ Breaks: kamera-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: digital camera io_slave for Konqueror
- This is a digital camera io_slave for KDE which uses gphoto2 and libgpio
+ This is a digital camera io_slave for TDE which uses gphoto2 and libgpio
  to allow access to your camera's pictures with the URL camera:/
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kcoloredit-trinity
 Section: graphics
@@ -64,12 +64,12 @@ Replaces: kcoloredit-trinity (<< 4:14.0.0~)
 Breaks: kcoloredit-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: a color palette editor and color picker for KDE
+Description: a color palette editor and color picker for TDE
  This package contains two programs, a color palette editor and also a color
  picker.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: tdegraphics-trinity-dev
 Section: devel
@@ -77,12 +77,12 @@ Architecture: any
 Replaces: kdegraphics-trinity-dev (<< 4:14.0.0~)
 Breaks: kdegraphics-trinity-dev (<< 4:14.0.0~)
 Depends: kghostview-trinity (= ${binary:Version}), kmrml-trinity (= ${binary:Version}), kpovmodeler-trinity (= ${binary:Version}), ksvg-trinity (= ${binary:Version}), kview-trinity (= ${binary:Version}), kviewshell-trinity (= ${binary:Version}), tdelibs14-trinity-dev
-Description: development files for the KDE graphics module
- This package contains headers and other development files for the KDE
+Description: development files for the TDE graphics module
+ This package contains headers and other development files for the TDE
  graphics module.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: tdegraphics-tdefile-plugins-trinity
 Section: tde
@@ -91,12 +91,12 @@ Replaces: kdegraphics-kfile-plugins-trinity (<< 4:14.0.0~)
 Breaks: kdegraphics-kfile-plugins-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: ghostscript
-Description: KDE metainfo plugins for graphic files
+Description: TDE metainfo plugins for graphic files
  This packages provides meta information for graphic files (file sizes,
  tags, etc. all from within the file manager).
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kdvi-trinity
 Section: graphics
@@ -105,11 +105,11 @@ Replaces: kdvi-trinity (<< 4:14.0.0~)
 Breaks: kdvi-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, texlive-fonts-recommended
 Suggests: khelpcenter-trinity
-Description: dvi viewer for KDE
+Description: dvi viewer for TDE
  This program and KPart allow the user to display *.DVI files from TeX.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kfax-trinity
 Section: graphics
@@ -121,8 +121,8 @@ Description: G3/G4 fax viewer for Trinity
  A fax viewer for Trinity, supporting the display of raw and tiffed fax images
  (g3, g3-2d, g4).
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kfaxview-trinity
 Section: graphics
@@ -137,8 +137,8 @@ Description: G3/G4 fax viewer for Trinity using kviewshell
  This faxviewer uses kviewshell and is intended to replace the standalone
  kfax application once it reproduces all of kfax's features.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kgamma-trinity
 Section: graphics
@@ -152,8 +152,8 @@ Description: gamma correction module for the Trinity Control Center
  of XFree86. With proper gamma settings, your display (websites, images,
  etc.) will look the same on your monitor as on other monitors.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
  .
   Homepage: http://kgamma.berlios.de/index2.php
 
@@ -173,8 +173,8 @@ Description: PostScript viewer for Trinity
  useful to preview material intended for printing, or for reading documents
  online.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: tdeiconedit-trinity
 Section: graphics
@@ -186,8 +186,8 @@ Suggests: khelpcenter-trinity
 Description: an icon editor for Trinity
  TDEIconedit allows you easily to create and edit icons.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kmrml-trinity
 Section: tde
@@ -202,8 +202,8 @@ Description: a Konqueror plugin for searching pictures
  http://www.mrml.net about MRML and the GNU Image Finding Tool (GIFT), an 
  MRML server.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kolourpaint-trinity
 Section: graphics
@@ -225,8 +225,8 @@ Description: a simple paint program for Trinity
  drawing lines become near impossible. Nor is it so simple that it lacks
  essential features like Undo/Redo.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
  .
   Homepage: http://kolourpaint.sourceforge.net
 
@@ -246,13 +246,13 @@ Description: scanner program for Trinity
  correct image file format to save and manage your scanned images. It
  offers support for different OCR modules. Libkscan, a autonomous part
  of Kooka, provides a scan service for easy and consistent use to all
- KDE applications.
+ TDE applications.
  .
  Install ocrad or gocr if you wish to enable optical character recognition
  in kooka.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
  .
   Homepage: http://kooka.kde.org/
 
@@ -270,8 +270,8 @@ Description: PDF viewer for Trinity
  includes kpdfpart so you can embed in konqueror or run as a standalone
  application.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kpovmodeler-trinity
 Section: graphics
@@ -281,8 +281,8 @@ Breaks: kpovmodeler-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity, povray
 Description: a graphical editor for povray scenes
- KPovmodeler is KDE's graphical editor for povray scenes. KPovModeler is a
- modeling and composition program for creating POV-Ray scenes in KDE.
+ KPovmodeler is TDE's graphical editor for povray scenes. KPovModeler is a
+ modeling and composition program for creating POV-Ray scenes in TDE.
  .
  For most modelers, POV-Ray is nothing but a rendering engine. This greatly
  limits the innate possibilities of the POV-Ray scripted language. This
@@ -293,8 +293,8 @@ Description: a graphical editor for povray scenes
  kpovmodeler uses the povray package, currently available only in Debian's
  non-free, unsupported repository.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
  .
   Homepage: http://www.kpovmodeler.org
 
@@ -306,10 +306,10 @@ Breaks: kruler-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
 Description: a screen ruler and color measurement tool for Trinity
- Kruler is a screen ruler (using pixels) and color measurement tool for KDE.
+ Kruler is a screen ruler (using pixels) and color measurement tool for TDE.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: ksnapshot-trinity
 Section: graphics
@@ -323,8 +323,8 @@ Description: screenshot utility for Trinity
  capturing images of either the whole desktop or just a single window. 
  The images can then be saved in a variety of formats.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: ksvg-trinity
 Section: graphics
@@ -337,8 +337,8 @@ Description: SVG viewer for Trinity
  includes kpart so you can embed it in konqueror and a standalone
  application.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kview-trinity
 Section: graphics
@@ -352,8 +352,8 @@ Description: simple image viewer/converter for Trinity
  a number of plugins, which add an array of basic editing capabilities
  as well.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: kviewshell-trinity
 Section: graphics
@@ -364,13 +364,13 @@ Depends: ${shlibs:Depends}
 Description: generic framework for viewer applications in Trinity
  KViewShell is a generic viewing framework that allows the graphical
  applications, such as the kview image viewer, to be embedded in other
- KDE applications, such as Konqueror.
+ TDE applications, such as Konqueror.
  .
  KViewShell comes with a djvuviewpart plugin included, for viewing
  DjVu images.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: libkscan-trinity-dev
 Section: libdevel
@@ -381,8 +381,8 @@ Depends: libkscan1-trinity (= ${binary:Version}), tdelibs14-trinity-dev
 Description: development files for the Trinity scanner library
  This package contains development files for Trinity's scanner library.
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: libkscan1-trinity
 Section: libs
@@ -391,12 +391,12 @@ Replaces: libkscan1-trinity (<< 4:14.0.0~)
 Breaks: libkscan1-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Description: scanner library for Trinity
- KScan is KDE's scanner library. It's used by kooka and by koffice currently.
+ KScan is TDE's scanner library. It's used by kooka and by koffice currently.
  It provides an easy-to-use library, which allows you to access your scanner
  (as long as it's sane compatible).
  .
- This package is part of Trinity, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdegraphics-trinity' packages for more information.
+ This package is part of Trinity, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdegraphics-trinity' packages for more information.
 
 Package: libpoppler-tqt
 Section: net
@@ -408,7 +408,7 @@ Description: TQt support for Poppler
  TQt support library for Poppler.
  This library is used by the Trinity graphics file plugins for PDF support.
  .
- This package is part of KDE, as a component of the KDE graphics module.
+ This package is part of TDE, as a component of the TDE graphics module.
  See the 'kde-trinity' and 'tdenetwork-trinity' packages for more information.
 
 Package: libpoppler-tqt-dev
@@ -421,8 +421,8 @@ Description: Development files for TQt support for Poppler
  Development files of TQt support library for Poppler.
  This package contains the development files needed to compile applications against poppler-tqt.
  .
- This package is part of KDE, as a component of the KDE graphics module.
- See the 'kde-trinity' and 'tdenetwork-trinity' packages for more information.
+ This package is part of TDE, as a component of the TDE graphics module.
+ See the 'tde-trinity' and 'tdenetwork-trinity' packages for more information.
 
 Package: tdegraphics-trinity-dbg
 Section: libdevel

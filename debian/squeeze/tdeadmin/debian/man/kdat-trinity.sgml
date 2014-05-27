@@ -45,14 +45,14 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>tar-based DAT archiver for KDE.</refpurpose>
+    <refpurpose>tar-based DAT archiver for TDE.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
       <command>&dhpackage;</command>
 
       <arg><option>--help<replaceable></replaceable></option></arg>
-      <arg><option>--help-kde<replaceable></replaceable></option></arg>
+      <arg><option>--help-tde<replaceable></replaceable></option></arg>
       <arg><option>--help-qt<replaceable></replaceable></option></arg>
       <arg><option>--version<replaceable> -v</replaceable></option></arg>
       <arg><option>--license<replaceable></replaceable></option></arg>
@@ -155,7 +155,7 @@ manpage.1: manpage.sgml
         <term><option>--nocrashhandler</option>
 	</term>
 	<listitem>
-	  <para>Disable KDE crash handler (enables core dumps).</para>
+	  <para>Disable TDE crash handler (enables core dumps).</para>
 	</listitem>
       </varlistentry>
       <varlistentry>
@@ -169,7 +169,7 @@ manpage.1: manpage.sgml
         <term><option>--style &lt;style&gt;</option>
 	</term>
 	<listitem>
-	  <para>Sets the application's GUI style (overrides KDE).</para>
+	  <para>Sets the application's GUI style (overrides TDE).</para>
 	</listitem>
       </varlistentry>
       <varlistentry>

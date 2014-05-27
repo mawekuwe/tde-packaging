@@ -1,4 +1,4 @@
-?package(kdat):\
+?package(kdat-trinity):\
 	needs="X11"\
 	section="Applications/System/Hardware"\
 	hints="TDE"\

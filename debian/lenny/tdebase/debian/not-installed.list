@@ -45,12 +45,12 @@ This is deliberate.
  - cruft, as tdebase no longer installs any system fonts.
 
 /usr/share/apps/kappfinder/apps/Office/lyx.desktop
- - a lyx.desktop that works in KDE is provided by lyx-qt, so this just
+ - a lyx.desktop that works in TDE is provided by lyx-qt, so this just
    confuses users.
 
 /usr/share/apps/kcmview1394/oui.db
  - this file is installed, but manually, in debian/rules, since the
-   KDE build system can't be relied on to do it itself on !Linux.
+   TDE build system can't be relied on to do it itself on !Linux.
 
 /usr/share/apps/kcontrol/pics/energybig.png
 /usr/share/apps/kcontrol/pics/lo-energy.png

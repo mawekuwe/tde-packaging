@@ -1,4 +1,4 @@
-?package(kwifimanager):\
+?package(kwifimanager-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE"\

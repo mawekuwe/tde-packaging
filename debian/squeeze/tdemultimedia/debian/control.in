@@ -12,15 +12,15 @@ Section: tde
 Architecture: all
 Depends: artsbuilder (>= ${Source-Version}), juk (>= ${Source-Version}), kaboodle (>= ${Source-Version}), kaudiocreator (>= ${Source-Version}), tdemultimedia-kappfinder-data (>= ${Source-Version}), tdemultimedia-tdefile-plugins (>= ${Source-Version}), tdemultimedia-kio-plugins (>= ${Source-Version}), tdemid (>= ${Source-Version}), kmix (>= ${Source-Version}), krec (>= ${Source-Version}), kscd (>= ${Source-Version}), libarts1-akode (>= ${Source-Version}), libarts1-audiofile (>= ${Source-Version}), libarts1-mpeglib (>= ${Source-Version}), libarts1-xine (>= ${Source-Version}), mpeglib (>= ${Source-Version}), noatun (>= ${Source-Version})
 Suggests: tdemultimedia-doc-html (>= ${Source-Version})
-Description: multimedia apps from the official KDE release 
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+Description: multimedia apps from the official TDE release 
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
  .
  This metapackage includes a collection of multimedia applications
  (such as sound and movie player, mixers and plugins) provided with
- the official release of KDE.
+ the official release of TDE.
  .
  Homepage: http://www.kde.org/areas/multimedia
 
@@ -30,29 +30,29 @@ Architecture: any
 Depends: tdelibs4-dev, artsbuilder (= ${Source-Version}), tdemultimedia-kio-plugins (= ${Source-Version}), tdemid (= ${Source-Version}), kmix (= ${Source-Version}), krec (= ${Source-Version}), kscd (= ${Source-Version}), libarts1-akode (= ${Source-Version}), libarts1-mpeglib (= ${Source-Version}), libkcddb1 (= ${Source-Version}), mpeglib (= ${Source-Version}), noatun (= ${Source-Version})
 Conflicts: libmpeg-dev
 Replaces: artsbuilder (<< 4:3.0.0), mpeglib (<< 4:3.0.0), noatun (<< 4:3.0.0)
-Description: development files for the KDE multimedia module
- Development files and headers for the KDE multimedia module.
+Description: development files for the TDE multimedia module
+ Development files and headers for the TDE multimedia module.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: tdemultimedia-doc-html
 Architecture: all
 Section: doc
 Suggests: konqueror | www-browser, tdebase
-Description: KDE multimedia documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE multimedia documentation converted to
+Description: TDE multimedia documentation in HTML format
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE multimedia documentation converted to
  HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
  /opt/trinity/share/doc/tde/HTML/en/juk/. Documentation is provided for most
- KDE multimedia packages.
+ TDE multimedia packages.
  .
- This package is part of KDE, and a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, and a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: artsbuilder
 Section: sound
@@ -63,16 +63,16 @@ Replaces: tdebase-data (<< 4:3.3.91), tdemultimedia-dev (<< 4:3.5.0-2)
 Description: synthesizer designer for aRts
  This is the analog Realtime synthesizer's graphical design tool.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: juk
 Section: tde
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: music organizer and player for KDE
- JuK (pronounced "jook") is a jukebox and music manager for the KDE
+Description: music organizer and player for TDE
+ JuK (pronounced "jook") is a jukebox and music manager for the TDE
  desktop similar to jukebox software on other platforms such as
  iTunes or RealOne.
  .
@@ -81,16 +81,16 @@ Description: music organizer and player for KDE
   * Tag editing support for both formats, including ID3v2 for MP3 files.
     Multitagging or editing a selection of multiple files at once is also
     supported
-  * Output to either the aRts, default KDE sound system, or GStreamer
+  * Output to either the aRts, default TDE sound system, or GStreamer
   * Management of your "collection" and multiple playlists
   * Import and export to m3u playlists
   * Binary caching of audio meta-data and playlist information for faster
     load times (starting with the second time you run JuK)
-  * Integration into KDE that allows drag-and-drop and clipboard usage
-    with other KDE and X apps
+  * Integration into TDE that allows drag-and-drop and clipboard usage
+    with other TDE and X apps
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: kaboodle
 Section: sound
@@ -98,12 +98,12 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Recommends: libarts1-xine
 Suggests: khelpcenter
-Description: light, embedded media player for KDE
+Description: light, embedded media player for TDE
  Kaboodle is a light, embedded media player, supporting both video and audio,
- for KDE. It uses the aRts framework for playing media files.
+ for TDE. It uses the aRts framework for playing media files.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: kaudiocreator
 Section: sound
@@ -111,13 +111,13 @@ Architecture: any
 Depends: ${shlibs:Depends}, tdemultimedia-kio-plugins (= ${Source-Version})
 Recommends: vorbis-tools, flac
 Suggests: lame
-Description: CD ripper and audio encoder frontend for KDE
+Description: CD ripper and audio encoder frontend for TDE
  KAudioCreator is a tool for audio extraction (ripping) and encoding. It can
  keep your WAV files, or convert them to Ogg/Vorbis, MP3, or FLAC. It also
  searches CDDB to retrieve the information of the disk.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: tdemultimedia-tdefile-plugins
 Section: tde
@@ -125,10 +125,10 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Replaces: tdemultimedia-kio-plugins (<< 4:3.4.1-1)
 Description: au/avi/m3u/mp3/ogg/wav plugins for tdefile
- au/avi/m3u/mp3/ogg/wav file metainformation plugins for KDE.
+ au/avi/m3u/mp3/ogg/wav file metainformation plugins for TDE.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: tdemultimedia-kappfinder-data
 Section: tde
@@ -137,8 +137,8 @@ Depends: kappfinder
 Description: multimedia data for kappfinder
  This package provides data on multimedia applications for kappfinder.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: tdemultimedia-kio-plugins
 Section: tde
@@ -151,19 +151,19 @@ Description: enables the browsing of audio CDs under Konqueror
  This package allow audio CDs to be browsed like a file system using
  Konqueror and the audiocd:/ URL.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: tdemid
 Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: MIDI/karaoke player for KDE
- This package provides a MIDI and karaoke player for KDE.
+Description: MIDI/karaoke player for TDE
+ This package provides a MIDI and karaoke player for TDE.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: kmix
 Section: sound
@@ -171,33 +171,33 @@ Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
 Provides: x-audio-mixer
-Description: sound mixer applet for KDE
- This package includes KDE's dockable sound mixer applet.
+Description: sound mixer applet for TDE
+ This package includes TDE's dockable sound mixer applet.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: krec
 Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: sound recorder utility for KDE
- This is a sound recording utility for KDE.
+Description: sound recorder utility for TDE
+ This is a sound recording utility for TDE.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: kscd
 Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter
-Description: audio CD player for KDE
- This is KDE's audio CD player.
+Description: audio CD player for TDE
+ This is TDE's audio CD player.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: libarts1-akode
 Section: libs
@@ -207,8 +207,8 @@ Replaces: libakode2 (<< 2-beta3-2), akode
 Description: akode plugin for aRts
  This package contains akode plugins for aRts.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information
 
 Package: libarts1-audiofile
 Section: libs
@@ -217,8 +217,8 @@ Depends: ${shlibs:Depends}
 Description: audiofile plugin for aRts
  This package contains audiofile plugins for aRts.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: libarts1-mpeglib
 Section: libs
@@ -230,10 +230,10 @@ Description: mpeglib plugin for aRts, supporting mp3 and mpeg audio/video
  This package contains the mpeglib aRts plugin, supporting mp3 and mpeg
  audio and video.
  .
- This is the arts (KDE Sound daemon) plugin.
+ This is the arts (TDE Sound daemon) plugin.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: libarts1-xine
 Section: libs
@@ -243,20 +243,20 @@ Description: aRts plugin enabling xine support
  This package contains aRts' xine plugin, allowing the use of the xine
  multimedia engine though aRts.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: libkcddb1
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: CDDB library for KDE
- The KDE native CDDB (CD Data Base) library, providing easy access to Audio
+Description: CDDB library for TDE
+ The TDE native CDDB (CD Data Base) library, providing easy access to Audio
  CD meta-information (track titles, artist information, etc.) from on-line
- databases, for KDE applications.
+ databases, for TDE applications.
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: mpeglib
 Section: libs
@@ -269,20 +269,20 @@ Description: MP3 and MPEG-1 audio and video library
  MPEG-1 audio (layers 1, 2, 3), MPEG-1 video, MPEG-1 system layer,
  and WAV playback
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: noatun
 Section: sound
 Architecture: any
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter, noatun-plugins
-Description: media player for KDE
- Noatun is an aRts-based audio and video player for KDE. It supports all
+Description: media player for TDE
+ Noatun is an aRts-based audio and video player for TDE. It supports all
  formats supported by your installation of aRts (including aRts plugins).
  .
- This package is part of KDE, as a component of the KDE multimedia module.
- See the 'kde' and 'tdemultimedia' packages for more information.
+ This package is part of TDE, as a component of the TDE multimedia module.
+ See the 'tde' and 'tdemultimedia' packages for more information.
 
 Package: tdemultimedia-dbg
 Section: libdevel

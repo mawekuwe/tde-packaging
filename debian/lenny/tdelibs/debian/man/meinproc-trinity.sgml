@@ -56,14 +56,14 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>KDE Translator for XML</refpurpose>
+    <refpurpose>TDE Translator for XML</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
       <command>&dhpackage;</command>
 
       <arg><option><replaceable>Qt-options</replaceable></option></arg>
-      <arg><option><replaceable>KDE-options</replaceable></option></arg>
+      <arg><option><replaceable>TDE-options</replaceable></option></arg>
       <arg><option>--cache <replaceable>file</replaceable></option></arg>
       <arg><option>--check</option></arg>
       <arg><option>--htdig</option></arg>
@@ -80,7 +80,7 @@ manpage.1: manpage.sgml
     <para>This manual page documents briefly the
       <command>&dhpackage;</command> command.</para>
 
-    <para><command>&dhpackage;</command> KDE Translator for XML</para>
+    <para><command>&dhpackage;</command> TDE Translator for XML</para>
 
   </refsect1>
   <refsect1>
@@ -113,10 +113,10 @@ manpage.1: manpage.sgml
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term><option>--help-kde</option>
+        <term><option>--help-tde</option>
         </term>
         <listitem>
-          <para>Show KDE specific options.</para>
+          <para>Show TDE specific options.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -275,7 +275,7 @@ manpage.1: manpage.sgml
     </variablelist>
   </refsect1>
   <refsect1>
-    <title>KDE OPTIONS</title>
+    <title>TDE OPTIONS</title>
 
     <variablelist>
       <varlistentry>

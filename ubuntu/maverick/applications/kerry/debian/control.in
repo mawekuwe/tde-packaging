@@ -11,7 +11,7 @@ Standards-Version: 3.8.3
 Package: kerry-trinity
 Architecture: any
 Depends: ${shlibs:Depends}, beagle (>= 0.2.3)
-Description: a KDE frontend for the Beagle desktop search daemon [Trinity]
+Description: a TDE frontend for the Beagle desktop search daemon [Trinity]
  Kerry is a Trinity frontend for the Beagle desktop search daemon.
  .
  A program for indexing and searching user's data. At the moment, it can index

@@ -1,4 +1,4 @@
-?package(kregexpeditor):\
+?package(kregexpeditor-trinity):\
 	needs="X11"\
 	section="Apps/Tools"\
 	hints="TDE"\

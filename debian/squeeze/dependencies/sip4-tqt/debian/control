@@ -51,8 +51,8 @@ Description: Python/C++ bindings generator development files
  borrowed from SWIG, but capable of tighter bindings because of its
  specificity towards C++ and Python.
  .
- SIP was originally designed to generate Python bindings for KDE and so
- has explicit support for the signal slot mechanism used by the Qt/KDE
+ SIP was originally designed to generate Python bindings for TDE and so
+ has explicit support for the signal slot mechanism used by the TQt/TDE
  class libraries.
  .
  Features:

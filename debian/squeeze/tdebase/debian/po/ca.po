@@ -90,10 +90,10 @@ msgstr "Voleu detenir el dimoni «tdm»?"
 #. Description
 #: ../tdm.templates:3001
 msgid ""
-"The K Desktop manager (tdm) daemon is typically stopped on package upgrade "
+"The Trinity Desktop manager (tdm) daemon is typically stopped on package upgrade "
 "and removal, but it appears to be managing at least one running X session."
 msgstr ""
-"El dimoni gestor de pantalla de KDE, (tdm), sol ser detingut en actualitzar-ne "
+"El dimoni gestor de pantalla de TDE, (tdm), sol ser detingut en actualitzar-ne "
 "i eliminar-ne el paquet, però sembla que ara està gestionant almenys una "
 "sessió X activa."
 

@@ -1,9 +1,9 @@
 .TH KSIRTET 6
 .SH NAME
-ksirtet \- Tetris game for KDE
+ksirtet \- Tetris game for TDE
 .SH SYNOPSIS
 .B ksirtet
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 This program is a clone of the well known game Tetris. You must fit
 the falling pieces to form full lines.

@@ -1,4 +1,4 @@
-?package(blinken):needs="X11"\
+?package(blinken-trinity):needs="X11"\
   section="Games/Puzzles"\
   hints="TDE"\
   title="Blinken"\

@@ -15,7 +15,7 @@ Replaces: k3b-kde3 (<< 4:14.0.0~), k3b-trinity (<< 4:14.0.0~)
 Breaks: k3b-kde3 (<< 4:14.0.0~), k3b-trinity (<< 4:14.0.0~)
 Recommends: dvd+rw-tools, libk3b3-extracodecs-trinity
 Suggests: k3b-i18n-trinity, normalize-audio, toolame, sox, movixmaker-2, vcdimager (>= 0.7)
-Description: A sophisticated KDE CD burning application [Trinity]
+Description: A sophisticated TDE CD burning application [Trinity]
  K3b is a GUI frontend to the CD recording programs cdrdao and cdrecord.
  Its aim is to provide a very user friendly interface to all the tasks
  that come with cd recording.
@@ -33,7 +33,7 @@ Conflicts: k3b-trinity (<< 1.0.4-4)
 Architecture: all
 Replaces: k3b-data-kde3 (<< 4:14.0.0~), k3b-data-trinity (<< 4:14.0.0~)
 Breaks: k3b-data-kde3 (<< 4:14.0.0~), k3b-data-trinity (<< 4:14.0.0~)
-Description: A sophisticated KDE CD burning application - data files [Trinity]
+Description: A sophisticated TDE CD burning application - data files [Trinity]
  K3b is a GUI frontend to the CD recording programs cdrdao and cdrecord.
  Its aim is to provide a very user friendly interface to all the tasks
  that come with cd recording.
@@ -47,7 +47,7 @@ Replaces: libk3b-kde3-dev (<< 4:14.0.0~), libk3b-trinity-dev (<< 4:14.0.0~)
 Breaks: libk3b-kde3-dev (<< 4:14.0.0~), libk3b-trinity-dev (<< 4:14.0.0~)
 Architecture: any
 Depends: libk3b3-trinity (= ${binary:Version})
-Description: The KDE cd burning application library - development files [Trinity]
+Description: The TDE cd burning application library - development files [Trinity]
  K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
  Its aim is to provide a very user friendly interface to all the tasks
  that come with cd recording and a lot more.
@@ -61,7 +61,7 @@ Replaces: libk3b3-kde3 (<< 4:14.0.0~), libk3b3-trinity (<< 4:14.0.0~)
 Breaks: libk3b3-kde3 (<< 4:14.0.0~), libk3b3-trinity (<< 4:14.0.0~)
 Conflicts: libk3bcore-trinity, libk3bplugin-trinity, libk3btools-trinity, libk3bproject-trinity, k3blibs-trinity, libk3b2-trinity
 Depends: ${shlibs:Depends}
-Description: The KDE cd burning application library - runtime files [Trinity]
+Description: The TDE cd burning application library - runtime files [Trinity]
  K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
  Its aim is to provide a very user friendly interface to all the tasks
  that come with cd recording and a lot more.
@@ -75,7 +75,7 @@ Replaces: libk3b3-extracodecs-kde3 (<< 4:14.0.0~), libk3b3-extracodecs-trinity (
 Breaks: libk3b3-extracodecs-kde3 (<< 4:14.0.0~), libk3b3-extracodecs-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Conflicts: libk3b2-mp3-trinity
-Description: The KDE cd burning application library - extra decoders [Trinity]
+Description: The TDE cd burning application library - extra decoders [Trinity]
  K3b is a GUI frontend to the cd recording programs cdrdao and cdrecord.
  Its aim is to provide a very user friendly interface to all the tasks
  that come with cd recording and a lot more.

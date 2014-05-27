@@ -1,4 +1,4 @@
-?package(kimagemapeditor):\
+?package(kimagemapeditor-trinity):\
     needs="X11"\
     hints="TDE"\
     section="Apps/Editors"\

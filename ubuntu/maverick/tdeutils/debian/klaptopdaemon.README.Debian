@@ -2,8 +2,8 @@ klaptopdaemon and SUID permissions
 ----------------------------------
 
 To allow ordinary users to control certain power management features,
-klaptopdaemon's panel in the KDE Control Center has a button which prompts
-the user to enter the root password (KDE Control Center --> Power Control
+klaptopdaemon's panel in the Trinity Control Center has a button which prompts
+the user to enter the root password (Trinity Control Center --> Power Control
 --> Laptop Battery, then the ACPI Config tab, then the Setup Helper
 Application button). This button changes the permissions of
 /usr/bin/klaptop_acpi_helper from "0755 root.root" to "6755 root.root",

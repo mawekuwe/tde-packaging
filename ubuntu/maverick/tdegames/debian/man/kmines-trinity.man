@@ -1,9 +1,9 @@
 .TH KMINES 6
 .SH NAME
-kmines \- KDE mine sweeper game
+kmines \- TDE mine sweeper game
 .SH SYNOPSIS
 .B kmines
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B kmines
 is the classic Minesweeper game. You must uncover all the empty cases

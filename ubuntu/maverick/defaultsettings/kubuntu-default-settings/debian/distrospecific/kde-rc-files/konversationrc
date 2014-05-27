@@ -7,7 +7,7 @@ TrayNotify=true
 TrayNotifyOnlyOwnNick=true
 
 [Path Settings]
-LogfilePath=$HOME/.kde/share/apps/konversation/logs
+LogfilePath=$HOME/.trinity/share/apps/konversation/logs
 
 [Server 0]
 Server=irc.ubuntu.com

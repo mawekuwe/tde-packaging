@@ -1,4 +1,4 @@
-?package(kcron):\
+?package(kcron-trinity):\
 	needs="X11"\
 	section="Applications/Editors"\
 	hints="TDE"\

@@ -1,4 +1,4 @@
-?package(ksmiletris):\
+?package(ksmiletris-trinity):\
 	needs="x11"\
 	section="Games/Tetris-like"\
 	hints="TDE"\

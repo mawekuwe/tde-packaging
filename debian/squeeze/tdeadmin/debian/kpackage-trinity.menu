@@ -1,4 +1,4 @@
-?package(kpackage):\
+?package(kpackage-trinity):\
 	needs="X11"\
 	section="Applications/System/Package Management"\
 	hints="TDE"\

@@ -16,7 +16,7 @@ Recommends: gtk2-engines-qtcurve
 Provides: tde-style-qtcurve
 Description: This is a set of widget styles for Trinity based apps
  This package together with gtk2-engines-qtcurve aim to provide a unified look
- and feel on the desktop when using KDE and Gnome applications.
+ and feel on the desktop when using TDE and Gnome applications.
  .
  This package is most useful when installed together with 
  gtk2-engines-qtcurve.

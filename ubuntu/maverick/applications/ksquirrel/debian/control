@@ -19,9 +19,9 @@ Depends: libksquirrel0-trinity, ${shlibs:Depends}, ${misc:Depends}
 Replaces: ksquirrel-kde3 (<< 4:14.0.0~), ksquirrel-trinity (<< 4:14.0.0~)
 Breaks: ksquirrel-kde3 (<< 4:14.0.0~), ksquirrel-trinity (<< 4:14.0.0~)
 Description: Powerful Trinity image viewer
- KSquirrel is an image viewer for KDE with disk navigator, file tree,
+ KSquirrel is an image viewer for TDE with disk navigator, file tree,
  multiple directory view, thumbnails, extended thumbnails, dynamic
  format support, DCOP interface, KEXIF and KIPI plugins support.
  .
- KSquirrel is a fast and convenient image viewer for KDE featuring
+ KSquirrel is a fast and convenient image viewer for TDE featuring
  OpenGL and dynamic format support.

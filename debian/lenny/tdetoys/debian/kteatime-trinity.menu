@@ -1,4 +1,4 @@
-?package(kteatime):\
+?package(kteatime-trinity):\
 	needs="x11"\
 	section="Games/Toys"\
 	hints="TDE"\

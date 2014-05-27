@@ -1,4 +1,4 @@
-?package(kstars):needs="X11"\
+?package(kstars-trinity):needs="X11"\
   section="Applications/Science/Astronomy"\
   hints="TDE"\
   title="KStars"\

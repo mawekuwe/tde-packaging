@@ -15,7 +15,7 @@ Breaks: kdetoys-trinity (<< 4:14.0.0~)
 Depends: amor-trinity (>= ${Source-Version}), eyesapplet-trinity (>= ${Source-Version}), fifteenapplet-trinity (>= ${Source-Version}), kmoon-trinity (>= ${Source-Version}), kodo-trinity (>= ${Source-Version}), kteatime-trinity (>= ${Source-Version}), ktux-trinity (>= ${Source-Version}), kweather-trinity (>= ${Source-Version}), kworldclock-trinity (>= ${Source-Version})
 Suggests: tdetoys-trinity-doc-html (>= ${Source-Version})
 Description: toys from the official Trinity release
- KDE (the K Desktop Environment) is a powerful Open Source graphical
+ TDE (the Trinity Desktop Environment) is a powerful Open Source graphical
  desktop environment for Unix workstations. It combines ease of use,
  contemporary functionality, and outstanding graphical design with the
  technological superiority of the Unix operating system.
@@ -30,18 +30,18 @@ Replaces: kdetoys-trinity-doc-html (<< 4:14.0.0~)
 Breaks: kdetoys-trinity-doc-html (<< 4:14.0.0~)
 Suggests: konqueror-trinity | www-browser, tdetoys-trinity
 Description: Trinity toys documentation in HTML format
- By default the modules provided by KDE only provide their documentation
- in KDE docbook format, which can only be read by Konqueror or KHelpCenter.
- This package provides all of the KDE toys documentation converted to
+ By default the modules provided by TDE only provide their documentation
+ in TDE docbook format, which can only be read by Konqueror or KHelpCenter.
+ This package provides all of the TDE toys documentation converted to
  HTML format so it can be read with any web browser.
  .
  The documentation will be installed into the usual directories
  /opt/trinity/share/doc/tde/HTML/<language>/<app>/, for instance
  /opt/trinity/share/doc/tde/HTML/en/amor/. Documentation is provided for most
- KDE toys packages.
+ TDE toys packages.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: amor-trinity
 Architecture: any
@@ -57,10 +57,10 @@ Description: a Trinity creature for your desktop
  characters who prance around your X screen doing tricks and giving you tips.
  .
  Note that AMOR will only work with some window managers. Both KWin (the
- KDE window manager) and Metacity (a GTK2 window manager) are supported.
+ TDE window manager) and Metacity (a GTK2 window manager) are supported.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: eyesapplet-trinity
 Architecture: any
@@ -71,11 +71,11 @@ Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Conflicts: task-tdetoys-trinity
 Description: eyes applet for Trinity
- An applet for the KDE panel containing a pair of eyes that follow your mouse
+ An applet for the TDE panel containing a pair of eyes that follow your mouse
  around the screen.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: fifteenapplet-trinity
 Architecture: any
@@ -85,12 +85,12 @@ Breaks: fifteenapplet-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Description: fifteen pieces puzzle for Trinity
- An applet for the KDE panel that lets you play the Fifteen Pieces
+ An applet for the TDE panel that lets you play the Fifteen Pieces
  sliding block puzzle. You have to order 15 pieces in a 4x4 square by
  moving them around.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kmoon-trinity
 Architecture: any
@@ -102,10 +102,10 @@ Recommends: kicker-trinity
 Suggests: khelpcenter-trinity
 Conflicts: task-tdetoys-trinity
 Description: moon phase indicator for Trinity
- An applet for the KDE panel that displays the current phase of the moon.
+ An applet for the TDE panel that displays the current phase of the moon.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kodo-trinity
 Architecture: any
@@ -120,8 +120,8 @@ Description: mouse odometer for Trinity
  pointer across your desktop and renders it in inches/feet/miles! It can
  do cm/metres/km too. Its most exciting feature is the tripometer.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kteatime-trinity
 Architecture: any
@@ -140,11 +140,11 @@ Description: Trinity utility for making a fine cup of tea
  KTeaTime sits in the Trinity system tray.
  .
  Please note that KTeaTime is written explicitly for Trinity. If you are
- using a non-KDE window manager or desktop environment then it is quite
+ using a non-TDE window manager or desktop environment then it is quite
  possible that KTeaTime will not work on your system.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: ktux-trinity
 Architecture: any
@@ -155,10 +155,10 @@ Depends: ${shlibs:Depends}
 Suggests: twin-trinity
 Conflicts: task-tdetoys-trinity
 Description: Tux screensaver for Trinity
- A neat Tux-in-a-spaceship screensaver for the K Desktop Environment (KDE).
+ A neat Tux-in-a-spaceship screensaver for the Trinity Desktop Environment (TDE).
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kweather-trinity
 Architecture: any
@@ -169,7 +169,7 @@ Depends: ${shlibs:Depends}
 Recommends: kicker-trinity
 Suggests: khelpcenter-trinity
 Description: weather display applet for Trinity
- An applet for the KDE panel that displays your area's current weather.
+ An applet for the TDE panel that displays your area's current weather.
  Information shown includes the temperature, wind speed, air pressure
  and more. By pressing a button a full weather report can be obtained.
  .
@@ -177,8 +177,8 @@ Description: weather display applet for Trinity
  stations and provide this information to other applications, including
  Konqueror's sidebar and Kontact's summary page.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: kworldclock-trinity
 Architecture: any
@@ -192,13 +192,13 @@ Provides: kworldwatch-trinity
 Description: earth watcher for Trinity
  Displays where in the world it is light and dark depending on time, as
  well as offering the time in all of the major cities of the world.
- This can be run standalone, as an applet in the KDE panel or as a
+ This can be run standalone, as an applet in the TDE panel or as a
  desktop background.
  .
  Additional kworldclock themes are available in the tdeartwork-misc package.
  .
- This package is part of Trinity, and a component of the KDE toys module.
- See the 'kde-trinity' and 'tdetoys-trinity' packages for more information.
+ This package is part of Trinity, and a component of the TDE toys module.
+ See the 'tde-trinity' and 'tdetoys-trinity' packages for more information.
 
 Package: tdetoys-trinity-dbg
 Section: libdevel

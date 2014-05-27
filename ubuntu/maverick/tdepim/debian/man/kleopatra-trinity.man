@@ -1,12 +1,12 @@
 .TH KLEOPATRA 1
 .SH NAME
-kleopatra \- KDE X.509 key manager
+kleopatra \- TDE X.509 key manager
 .SH SYNOPSIS
 .B kleopatra
-.I [Qt-options] [KDE-options] [options] [address|URL]
+.I [Qt-options] [TDE-options] [options] [address|URL]
 .SH DESCRIPTION
 .B Kleopatra
-is the KDE tool for managing X.509 certificates in the GpgSM keybox and for
+is the TDE tool for managing X.509 certificates in the GpgSM keybox and for
 retrieving certificates from LDAP servers.
 .SH PROGRAM OPTIONS
 .TP

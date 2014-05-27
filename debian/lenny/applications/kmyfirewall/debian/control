@@ -11,7 +11,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: kmyfirewall-trinity (<< 4:14.0.0~)
 Breaks: kmyfirewall-trinity (<< 4:14.0.0~)
-Description: iptables based firewall configuration tool for KDE [Trinity]
+Description: iptables based firewall configuration tool for TDE [Trinity]
  KMyFirewall attempts to make it easier to setup iptables based firewalls on
  Linux systems. It will be the right tool if you like to have a so called
  "Personal Firewall" running on your Linux box, but don't have the time and/or

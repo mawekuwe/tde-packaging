@@ -13,7 +13,7 @@ Depends: tellico-data-trinity (= ${source:Version}), tellico-scripts-trinity, ${
 Replaces: tellico-kde3 (<< 4:14.0.0~), tellico-trinity (<< 4:14.0.0~)
 Breaks: tellico-kde3 (<< 4:14.0.0~), tellico-trinity (<< 4:14.0.0~)
 Description: collection manager for books, videos, music [Trinity]
- Tellico is a collection manager for KDE. It includes default collections for
+ Tellico is a collection manager for TDE. It includes default collections for
  books, bibliographies, comic books, videos, music, coins, stamps, trading
  cards, and wines, and also allows custom collections; with unlimited
  user-defined fields allowed. Automatically formatted names, sorting by any
@@ -34,7 +34,7 @@ Breaks: tellico-data-kde3 (<< 4:14.0.0~), tellico-data-trinity (<< 4:14.0.0~)
 Recommends: tellico-trinity
 Suggests: python
 Description: collection manager for books, videos, music [data] [Trinity]
- Tellico is a collection manager for KDE. It includes default collections for
+ Tellico is a collection manager for TDE. It includes default collections for
  books, bibliographies, comic books, videos, music, coins, stamps, trading
  cards, and wines, and also allows custom collections; with unlimited
  user-defined fields allowed. Automatically formatted names, sorting by any
@@ -57,7 +57,7 @@ Replaces: tellico-scripts-kde3 (<< 4:14.0.0~), tellico-scripts-trinity (<< 4:14.
 Breaks: tellico-scripts-kde3 (<< 4:14.0.0~), tellico-scripts-trinity (<< 4:14.0.0~)
 Suggests: python, ruby
 Description: collection manager for books, videos, music [scripts] [Trinity]
- Tellico is a collection manager for KDE. It includes default collections for
+ Tellico is a collection manager for TDE. It includes default collections for
  books, bibliographies, comic books, videos, music, coins, stamps, trading
  cards, and wines, and also allows custom collections; with unlimited
  user-defined fields allowed. Automatically formatted names, sorting by any

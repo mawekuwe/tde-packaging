@@ -1,4 +1,4 @@
-?package(ktux):\
+?package(ktux-trinity):\
 	needs="x11"\
 	section="Screen/Saving"\
 	hints="TDE"\

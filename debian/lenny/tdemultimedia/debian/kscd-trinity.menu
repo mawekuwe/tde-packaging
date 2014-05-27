@@ -1,4 +1,4 @@
-?package(kscd):\
+?package(kscd-trinity):\
 	needs="X11"\
 	section="Apps/Sound"\
 	hints="TDE"\

@@ -1,9 +1,9 @@
 .TH KALARMD 1
 .SH NAME
-kalarmd \- KDE alarm daemon
+kalarmd \- TDE alarm daemon
 .SH SYNOPSIS
 .B kalarmd
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B kalarmd
 runs in the background and handles displaying the events scheduled by
@@ -11,7 +11,7 @@ runs in the background and handles displaying the events scheduled by
 .SH PROGRAM OPTIONS
 .TP
 .B --autostart
-Application is being auto-started at KDE session start.
+Application is being auto-started at TDE session start.
 .so kdeopt.part
 .SH SEE ALSO
 .B kalarm

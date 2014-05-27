@@ -23,7 +23,7 @@ Note: you don't need all of the mentionned programs to use soundKonverter.
  -- Fathi Boudra <fboudra@free.fr>  Sat, 13 Oct 2007 14:50:28 +0200
 
 To enable the soundkonverter-amarok script just launch soundKonverter once. It
-will create a soundKonverter directory in ~/.kde/share/apps/amarok/scripts.
+will create a soundKonverter directory in ~/.trinity/share/apps/amarok/scripts.
 The soundkonvert script will now appear in the script manager window of a newly
 started amarok.
 

@@ -1,4 +1,4 @@
-?package(atlantikdesigner):needs="X11"\
+?package(atlantikdesigner-trinity):needs="X11"\
   section="Games/Tool"\
   hints="TDE,Monopoly"\
   title="Atlantik Designer"\

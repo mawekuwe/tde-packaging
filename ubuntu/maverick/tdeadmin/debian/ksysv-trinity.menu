@@ -1,4 +1,4 @@
-?package(ksysv):\
+?package(ksysv-trinity):\
 	needs="X11"\
 	section="Applications/Editors"\
 	hints="TDE"\

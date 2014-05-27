@@ -1,4 +1,4 @@
-?package(ksokoban):\
+?package(ksokoban-trinity):\
 	needs="x11"\
 	section="Games/Puzzles"\
 	hints="TDE,Sokoban"\

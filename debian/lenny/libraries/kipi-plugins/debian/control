@@ -20,7 +20,7 @@ Recommends: k3b-trinity, graphicsmagick-imagemagick-compat (>=1.1.7) | imagemagi
 Suggests: gimp, gallery, kipi-plugins-trinity-doc
 Enhances: digikam-trinity, kphotoalbum-trinity, showimg, gwenview-trinity
 Description: image manipulation/handling plugins for KIPI aware programs [Trinity]
- KIPI plugins (KDE Image Plugin Interface) is an effort to develop a
+ KIPI plugins (TDE Image Plugin Interface) is an effort to develop a
  common plugin structure for Digikam, KPhotoAlbum (formerly known as
  KimDaBa), Showimg and Gwenview.
  Its aim is to share image plugins among graphic applications.
@@ -72,7 +72,7 @@ Breaks: kipi-plugins-trinity-doc (<< 4:14.0.0~)
 Depends: khelpcenter-trinity
 Suggests: kipi-plugins-trinity
 Description: kipi-plugins documentation [Trinity]
- KIPI plugins (KDE Image Plugin Interface) is an effort to develop a
+ KIPI plugins (TDE Image Plugin Interface) is an effort to develop a
  common plugin structure for Digikam, KPhotoAlbum (formerly known as
  KimDaBa), Showimg and Gwenview.
  Its aim is to share image plugins among graphic applications.

@@ -1,4 +1,4 @@
-?package(kivio):\
+?package(kivio-trinity):\
 	needs="x11"\
 	section="Applications/Graphics"\
 	hints="TDE,Vector"\

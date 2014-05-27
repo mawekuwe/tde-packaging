@@ -1,9 +1,9 @@
 .TH KPAT 6
 .SH NAME
-kpat \- KDE patience game
+kpat \- TDE patience game
 .SH SYNOPSIS
 .B kpat
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B kpat
 is a collection of 14 single-player card games.

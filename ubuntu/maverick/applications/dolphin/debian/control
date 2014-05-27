@@ -13,8 +13,8 @@ Replaces: dolphin-kde3 (<< 4:14.0.0~), dolphin-trinity (<< 4:14.0.0~)
 Breaks: dolphin-kde3 (<< 4:14.0.0~), dolphin-trinity (<< 4:14.0.0~)
 Recommends: amarok-trinity, ark-trinity, k3b-trinity, kmail-trinity, digikam-trinity
 Suggests: kfloppy-trinity
-Description: File manager for KDE focusing on usability [Trinity]
- Dolphin is not intended to be a competitor to Konqueror, the default KDE
+Description: File manager for TDE focusing on usability [Trinity]
+ Dolphin is not intended to be a competitor to Konqueror, the default TDE
  file manager: Konqueror acts as universal viewer being able to show HTML
  pages, text documents, directories and a lot more, whereas Dolphin focuses
  on being only a file manager. This approach allows to optimize the user
@@ -30,6 +30,6 @@ Description: File manager for KDE focusing on usability [Trinity]
   Renaming of a variable number of selected items in one step.
  .
  This is the D3lphin fork of Dolphin, intended to keep development of
- the KDE 3 version of Dolphin active.
+ the TDE version of Dolphin active.
  .
   Homepage: https://marrat.homelinux.org/D3lphin

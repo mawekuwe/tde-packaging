@@ -1,4 +1,4 @@
-?package(k3b):\
+?package(k3b-trinity):\
 	needs="X11"\
 	section="Applications/File Management"\
 	title="K3b"\

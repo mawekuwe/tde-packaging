@@ -15,4 +15,4 @@ Breaks: knowit-trinity (<< 4:14.0.0~)
 Description: Tool for managing notes [Trinity]
  KnowIt is a tool for managing notes which are organized in
  tree-like hierarchy. It is similar to TuxCards,
- but KDE-based, and requires Trinity.
+ but TDE-based, and requires Trinity.

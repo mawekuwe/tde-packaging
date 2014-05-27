@@ -56,7 +56,7 @@ manpage.1: manpage.sgml
   <refnamediv>
     <refname>&dhpackage;</refname>
 
-    <refpurpose>Start a KDE service and return its DCOP reference</refpurpose>
+    <refpurpose>Start a TDE service and return its DCOP reference</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -70,8 +70,8 @@ manpage.1: manpage.sgml
   <refsect1>
     <title>DESCRIPTION</title>
 
-    <para><command>&dhpackage;</command> starts a KDE service (i.e. an application
-	that is registered in the KDE system of .desktop files) and returns its
+    <para><command>&dhpackage;</command> starts a TDE service (i.e. an application
+	that is registered in the TDE system of .desktop files) and returns its
 	reference for later use in shell scripts. If the service is not scriptable
 	via DCOP, dcopstart returns nothing, but starts the service.</para>
 
@@ -95,7 +95,7 @@ manpage.1: manpage.sgml
     <para><example>
       <title>Get the DCOP reference for a newly started konqueror instance</title>
         <blockquote><literallayout>
-KONQ_ID=$(dcopstart konqueror http://www.kde.org)
+KONQ_ID=$(dcopstart konqueror http://www.trinitydesktop.org)
         </literallayout></blockquote>
     </example></para>
 

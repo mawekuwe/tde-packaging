@@ -3,7 +3,7 @@
 ksokoban \- The Japanese warehouse keeper game
 .SH SYNOPSIS
 .B ksokoban
-.I [Qt-options] [KDE-options] [file]
+.I [Qt-options] [TDE-options] [file]
 .SH DESCRIPTION
 The first sokoban game was created in 1982 by Hiroyuki Imabayashi at
 the Japanese company Thinking Rabbit, Inc. ``Sokoban'' is Japanese for

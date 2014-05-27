@@ -1,9 +1,9 @@
 .TH KARM 1
 .SH NAME
-karm \- KDE time tracker tool
+lkarm \- TDE time tracker tool
 .SH SYNOPSIS
 .B karm
-.I [Qt-options] [KDE-options]
+.I [Qt-options] [TDE-options]
 .SH DESCRIPTION
 .B KArm
 tracks time spent on various tasks.  It is useful for tracking billable

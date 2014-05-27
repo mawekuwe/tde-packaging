@@ -1,4 +1,4 @@
-?package(tderadio):needs="X11" \
+?package(tderadio-trinity):needs="X11" \
   section="Applications/TV and Radio" \
   hints="TDE" \
   title="TDERadio" \

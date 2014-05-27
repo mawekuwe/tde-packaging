@@ -1,10 +1,10 @@
-KDE Software Development Kit for Debian
+TDE Software Development Kit for Debian
 ---------------------------------------
 
 Package tdesdk is a metapackage that depends on the core components of
-the KDE Software Development Kit and suggests the remaining components.
+the TDE Software Development Kit and suggests the remaining components.
 
-Some applications provide documentation in a docbook format that the KDE
+Some applications provide documentation in a docbook format that the TDE
 Help Centre can display.  For HTML documentation that can be read in any
 web browser, see the package tdesdk-doc-html.
 

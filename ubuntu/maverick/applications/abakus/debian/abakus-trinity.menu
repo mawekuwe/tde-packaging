@@ -1,4 +1,4 @@
-?package(abakus):needs="X11"\
+?package(abakus-trinity):needs="X11"\
  section="Apps/Math"\
  title="AbaKus"\
  command="/opt/trinity/bin/abakus"\

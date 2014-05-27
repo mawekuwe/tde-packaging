@@ -15,7 +15,7 @@ Depends: ${shlibs:Depends}
 Conflicts: knetload
 Suggests: kcpuload-trinity
 Description: a network meter for Kicker [Trinity]
- KNetLoad is a small network meter for Kicker (the KDE panel).  It shows
+ KNetLoad is a small network meter for Kicker (the TDE panel).  It shows
  a recent history of network usage in the form of two configurable
  diagrams in the system tray, one for incoming and one for outgoing
  data.  These diagrams have settings for colours and various different

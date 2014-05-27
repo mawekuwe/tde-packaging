@@ -12,7 +12,7 @@ Replaces: kuickshow-trinity (<< 4:14.0.0~)
 Breaks: kuickshow-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: khelpcenter-trinity
-Description: KDE image/slideshow viewer [Trinity]
+Description: TDE image/slideshow viewer [Trinity]
  KuickShow is an image browser/viewer with a nice filebrowser to
  select images to be shown, slideshow support and the ability to
  display the following image formats: jpg, gif, tiff, png, bmp, psd,
@@ -20,7 +20,7 @@ Description: KDE image/slideshow viewer [Trinity]
  window, as large as the image, or fullscreen (which shrinks images too
  large to display). KuickShow also has a slideshow mode.
  .
- This package is part of KDE, as a component of the KDE graphics
- module. See the 'kde' and 'tdegraphics' packages for more information.
+ This package is part of TDE, as a component of the TDE graphics
+ module. See the 'tde' and 'tdegraphics' packages for more information.
  .
  Homepage: http://kuickshow.sourceforge.net

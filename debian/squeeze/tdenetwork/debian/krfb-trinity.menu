@@ -1,4 +1,4 @@
-?package(krfb):\
+?package(krfb-trinity):\
 	needs="X11"\
 	section="Apps/Net"\
 	hints="TDE"\

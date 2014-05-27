@@ -3,7 +3,7 @@
 groupwisewizard \- Novell GroupWise Setup Wizard
 .SH SYNOPSIS
 .B groupwisewizard
-.I [Qt-options] [KDE-options] [options]
+.I [Qt-options] [TDE-options] [options]
 .SH DESCRIPTION
 .B groupwisewizard
 is a front end to configure Novell GroupWise servers.

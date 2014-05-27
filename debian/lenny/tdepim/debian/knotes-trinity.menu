@@ -1,4 +1,4 @@
-?package(knotes):\
+?package(knotes-trinity):\
 	needs="X11"\
 	section="Applications/Data Management"\
 	hints="TDE"\

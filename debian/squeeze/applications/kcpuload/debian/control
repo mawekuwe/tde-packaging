@@ -14,7 +14,7 @@ Breaks: kcpuload-trinity (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}
 Suggests: knetload-trinity
 Description: a CPU meter for Kicker [Trinity]
- KCPULoad is a small program for Kicker (the KDE panel).  It shows a
+ KCPULoad is a small program for Kicker (the TDE panel).  It shows a
  recent history of CPU usage in the form of one or two configurable
  diagrams in the system tray.  These diagrams have settings for colours
  and various different styles.

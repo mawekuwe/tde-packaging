@@ -29,7 +29,7 @@ Description: media player for Trinity
  * show backend player's console output
  * launch ffserver (only 0.4.8 works) when viewing from a v4l device
  * DCOP KMediaPlayer interface support
- * VDR viewer frontend (with *kxvplayer), configure VDR keys with standard KDE
+ * VDR viewer frontend (with *kxvplayer), configure VDR keys with standard TDE
    shortcut configure window
  * Lots of configurable shortcuts. Highly recommended for the VDR keys
    (if you have VDR) and volume increase/decrease
@@ -64,4 +64,4 @@ Replaces: kmplayer-kde3-doc (<< 4:14.0.0~), kmplayer-trinity-doc (<< 4:14.0.0~)
 Breaks: kmplayer-kde3-doc (<< 4:14.0.0~), kmplayer-trinity-doc (<< 4:14.0.0~)
 Depends: ${shlibs:Depends}, kmplayer-trinity
 Description: Handbook for KMPlayer [Trinity]
- Documention for KMPlayer, a basic audio/video viewer application for KDE.
+ Documention for KMPlayer, a basic audio/video viewer application for TDE.

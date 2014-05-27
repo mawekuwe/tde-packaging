@@ -1,4 +1,4 @@
-?package(kalzium):needs="X11"\
+?package(kalzium-trinity):needs="X11"\
   section="Apps/Science/Chemistry"\
   hints="TDE"\
   title="Kalzium"\

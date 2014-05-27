@@ -1,4 +1,4 @@
-?package(kmyfirewall):needs="X11" \
+?package(kmyfirewall-trinity):needs="X11" \
   section="Applications/System/Security" \
   title="KMyFirewall" \
   hints="TDE" \

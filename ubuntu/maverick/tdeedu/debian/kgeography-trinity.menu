@@ -1,4 +1,4 @@
-?package(kgeography):needs="X11"\
+?package(kgeography-trinity):needs="X11"\
   section="Applications/Education"\
   hints="TDE"\
   title="KGeography"\

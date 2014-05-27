@@ -31,7 +31,7 @@ Breaks: network-manager-kde-trinity (<< 4:14.0.0~)
 Recommends: tdewalletmanager-trinity, network-manager-vpnc, network-manager-openvpn, network-manager-strongswan, network-manager-pptp
 Provides: knetworkmanager-trinity
 Conflicts: network-manager-kde
-Description: KDE systray applet for controlling NetworkManager [Trinity]
+Description: TDE systray applet for controlling NetworkManager [Trinity]
  Systray applet for controlling network connections managed by 
  NetworkManager. It is mainly written for Trinity but also works for 
  other desktop environments like GNOME or Xfce.

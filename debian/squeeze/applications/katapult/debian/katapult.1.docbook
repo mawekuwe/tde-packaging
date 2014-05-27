@@ -24,7 +24,7 @@
   </refmeta>
   <refnamediv>
     <refname>katapult</refname>
-    <refpurpose>A KDE laucher</refpurpose>
+    <refpurpose>A TDE laucher</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <cmdsynopsis>
@@ -33,14 +33,14 @@
         <option><replaceable>Qt-options</replaceable></option>
       </arg>
       <arg choice="opt">
-        <option><replaceable>KDE-options</replaceable></option>
+        <option><replaceable>TDE-options</replaceable></option>
       </arg>
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
     <title>DESCRIPTION</title>
     <para>
-      Katapult is a KDE laucher.
+      Katapult is a TDE laucher.
     </para>
     <para>
       It uses text-based queries to launch a program, a bookmark or a directory.
@@ -49,7 +49,7 @@
   <refsect1>
     <title>OPTIONS</title>
     <para>
-      All <productname>KDE</productname> and <productname>Qt</productname>
+      All <productname>TDE</productname> and <productname>Qt</productname>
       programs accept a some common command-line options.  Katapult has no
       application-specific options.
     </para>
@@ -65,8 +65,8 @@
           <listitem> <para>Show Qt specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
-          <term> <option>--help-kde</option> </term>
-          <listitem> <para>Show KDE specific options</para> </listitem>
+          <term> <option>--help-tde</option> </term>
+          <listitem> <para>Show TDE specific options</para> </listitem>
         </varlistentry>
         <varlistentry>
           <term> <option>--help-all</option> </term>

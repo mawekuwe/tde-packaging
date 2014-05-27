@@ -1,4 +1,4 @@
-?package(kmahjongg):\
+?package(kmahjongg-trinity):\
 	needs="x11"\
 	section="Games/Board"\
 	hints="TDE,Mahjongg"\

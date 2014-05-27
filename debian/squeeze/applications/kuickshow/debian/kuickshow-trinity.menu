@@ -1,4 +1,4 @@
-?package(kuickshow):\
+?package(kuickshow-trinity):\
 	needs="X11"\
 	section="Apps/Graphics"\
 	hints="TDE"\

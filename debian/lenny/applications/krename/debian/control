@@ -11,7 +11,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Replaces: krename-trinity (<< 4:14.0.0~)
 Breaks: krename-trinity (<< 4:14.0.0~)
-Description: Powerful batch renamer for KDE 3.x [Trinity]
+Description: Powerful batch renamer for TDE [Trinity]
  This package contains a very powerful batch file renamer for Trinity 
  which can rename a list of files based on a set of expressions.
  It can copy/move the files to another directory or simply rename 

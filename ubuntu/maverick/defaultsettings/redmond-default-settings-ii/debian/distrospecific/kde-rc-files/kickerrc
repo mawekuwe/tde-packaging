@@ -86,6 +86,6 @@ Font=Tahoma,8,-1,5,75,0,0,0,0,0
 Extensions=find.desktop,remotemenu.desktop,printmenu.desktop,recentdocs.desktop,prefmenu.desktop,systemmenu.desktop,konsolemenu.desktop
 MenuEntryHeight=16
 NumVisibleEntries=4
-RecentAppsStat=20000 1225867511 /usr/share/applications/synaptic-kde.desktop,21000 1226223271 /opt/trinity/share/applications/kde/konsole.desktop
+RecentAppsStat=20000 1225867511 /usr/share/applications/synaptic-kde.desktop,21000 1226223271 /opt/trinity/share/applications/tde/konsole.desktop
 UseBookmarks=true
 MenuEntryFormat=NameAndDescription

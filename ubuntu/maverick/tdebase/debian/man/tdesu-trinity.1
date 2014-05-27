@@ -1,12 +1,12 @@
-.TH TDESU 1 "May 2005" "K Desktop Environment" "Runs a program with elevated privileges."
+.TH TDESU 1 "May 2005" "Trinity Desktop Environment" "Runs a program with elevated privileges."
 .SH NAME
 tdesu \- Runs a program with elevated privileges.
 .SH SYNOPSIS
-\fBtdesu\fR [Qt\-options] [KDE\-options] [tdesu options] command 
+\fBtdesu\fR [Qt\-options] [TDE\-options] [tdesu options] command 
 .SH DESCRIPTION
 Runs a program with elevated privileges.
 .PP
-KDE su is a graphical front end to the Unix \fBsu\fR utility. It allows you to run programs as another user by entering their password. It is not a SUID root program, but runs unprivileged. The system program \fBsu\fR is used for acquiring special privileges.
+TDE su is a graphical front end to the Unix \fBsu\fR utility. It allows you to run programs as another user by entering their password. It is not a SUID root program, but runs unprivileged. The system program \fBsu\fR is used for acquiring special privileges.
 .PP
 \fBtdesu\fR has the ability to store passwords for the convenience of users. The passwords are NOT written to disk, but stored in memory using a special program, \fBtdesud\fR. This is only done if the user specifies that the password be remembered. In this case, passwords are stored in memory for a certain period of time before being removed. \fBtdesud\fR runs in such a way that only the user who entered the password originally can use it, though no one, not even the user who originally entered the password, can retrieve the password that is stored by \fBtdesud\fR. Through these measures, users can avoid having to repeatedly enter root passwords or other passwords, without a significant risk to overall system security.
 .PP
@@ -20,8 +20,8 @@ Show help about options
 .B  --help-qt
 Show Qt specific options
 .TP
-.B  --help-kde
-Show KDE specific options
+.B  --help-tde
+Show TDE specific options
 .TP
 .B  --help-all
 Show all options
@@ -78,7 +78,7 @@ Specifies the command to run
 
 .SH CONFIGURATION FILES
 .PP
-\fBtdesu\fR can be configured with a default configuration file /etc/trinity/tdesurc and with a per user configuration file in .kde/share/config/tdesurc. Alternative a section could be added to kdeglobals.
+\fBtdesu\fR can be configured with a default configuration file /etc/trinity/tdesurc and with a per user configuration file in .trinity/share/config/tdesurc. Alternative a section could be added to kdeglobals.
 .SH EXAMPLE
 The configuration item for the configuration files is the following:
 .br
@@ -87,7 +87,7 @@ The configuration item for the configuration files is the following:
 super-user-command=sudo
 
 .SH SEE ALSO
-Full user documentation is available through the KDE Help Center. You can also enter the URL
+Full user documentation is available through the TDE Help Center. You can also enter the URL
 .BR help:/tdesu/
 directly into konqueror or you can run 
 .BR "`khelpcenter help:/tdesu/'"
