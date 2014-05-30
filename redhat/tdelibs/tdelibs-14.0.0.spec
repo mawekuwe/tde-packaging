@@ -305,8 +305,8 @@ Requires:		trinity-arts >= 1:1.5.10
 
 %description
 Libraries for the Trinity Desktop Environment:
-TDE Libraries included: tdecore (TDE core library), kdeui (user interface),
-kfm (file manager), khtmlw (HTML widget), tdeio (Input/Output, networking),
+TDE Libraries included: tdecore (TDE core library), tdeui (user interface),
+kfm (file manager), tdehtmlw (HTML widget), tdeio (Input/Output, networking),
 kspell (spelling checker), jscript (javascript), kab (addressbook),
 kimgio (image manipulation).
 

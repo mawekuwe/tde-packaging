@@ -28,7 +28,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:	%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 
-BuildRequires:	trinity-tqtinterface-devel >= %{version}
+BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 
 # TDE specific building variables
 BuildRequires:	python
@@ -116,9 +116,9 @@ python ../configure.py \
 	-d %{python_sitearch}/sip4_tqt \
 	-e %{tde_includedir} \
 	-u STRIP="" \
-	CFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3" \
+	CFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3 -I${PWD}/../sipgen" \
 	CFLAGS_RELEASE="" \
-	CXXFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3" \
+	CXXFLAGS="${RPM_OPT_FLAGS} -I%{_includedir}/tqt -I%{_includedir}/tqt3 -I${PWD}/../sipgen" \
 	CXXFLAGS_RELEASE=""
 
 

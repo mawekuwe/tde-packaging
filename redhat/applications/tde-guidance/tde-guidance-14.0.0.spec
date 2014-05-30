@@ -58,7 +58,7 @@ BuildRequires:	trinity-python-trinity
 BuildRequires:	chrpath
 BuildRequires:	gcc-c++
 
-# SIP
+# SIP support
 BuildRequires:	trinity-sip4-tqt-devel >= 4.10.5
 Requires:		trinity-sip4-tqt >= 4.10.5
 
@@ -333,9 +333,10 @@ chrpath -r %{tde_libdir} %{buildroot}%{tde_tdelibdir}/kcm_*.so
 
 # Generates the startup scripts
 %__rm -f %{buildroot}%{tde_bindir}/*
-%__ln_s -f %{python_sitearch}/%{name}/userconfig.py %{buildroot}%{tde_bindir}/userconfig
+#%__ln_s -f %{python_sitearch}/%{name}/displayconfig.py %{buildroot}%{tde_bindir}/displayconfig
 %__ln_s -f %{python_sitearch}/%{name}/mountconfig.py %{buildroot}%{tde_bindir}/mountconfig
 %__ln_s -f %{python_sitearch}/%{name}/serviceconfig.py %{buildroot}%{tde_bindir}/serviceconfig
+%__ln_s -f %{python_sitearch}/%{name}/userconfig.py %{buildroot}%{tde_bindir}/userconfig
 %__ln_s -f %{python_sitearch}/%{name}/wineconfig.py %{buildroot}%{tde_bindir}/wineconfig
 %__ln_s -f %{python_sitearch}/%{name}/grubconfig.py %{buildroot}%{tde_bindir}/grubconfig
 

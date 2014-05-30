@@ -420,6 +420,20 @@ sqlite driver for TQt 3's SQL classes (QSQL)
 
 ##########
 
+%package sqlite3
+Summary: sqlite3 drivers for TQt 3's SQL classes
+Group: System Environment/Libraries
+Requires: %{name} = %{version}-%{release}
+
+%description sqlite3
+sqlite3 driver for TQt 3's SQL classes (QSQL)
+
+%files sqlite3
+%defattr(-,root,root,-)
+%{tde_libdir}/tqt3/plugins/sqldrivers/libqsqlite3.so
+
+##########
+
 %if 0%{?with_ibase}
 %package ibase
 Summary: ibase drivers for TQt 3's SQL classes
@@ -576,6 +590,7 @@ echo yes | ./configure \
 		-plugin-sql-mysql		\
 		%{?with_ibase:-plugin-sql-ibase}		\
 		-plugin-sql-sqlite		\
+		-plugin-sql-sqlite3		\
 		\
 		-lfontconfig			\
 		-inputmethod			\

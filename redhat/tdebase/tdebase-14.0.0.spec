@@ -65,8 +65,14 @@ Source7:	tdm.service%{?dist}
 Source7:	xdm.oss114
 %endif
 
-# Fedora 17: special selinux policy required
-%if 0%{?fedora} >= 17 || 0%{?rhel} == 6
+# Fedora >= 17: special selinux policy required for TDM
+#  If login through TDM takes ages, then look at '/var/log/audit/audit.log'.
+#  Locate the line containing 'USER_AVC' and dbus stuff.
+#  Put this line into a temporary file, then (e.g for Fedora 17):
+#   audit2allow -i /tmp/file -m tdm.fc17 >tdm.fc17.te
+#   audit2allow -i /tmp/file -M tdm.fc17
+
+%if 0%{?fedora} >= 17 || 0%{?rhel} >= 6
 %define with_selinux_policy 1
 Source8:	tdm%{?dist}.pp
 %endif

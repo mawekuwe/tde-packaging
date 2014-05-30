@@ -45,7 +45,7 @@ BuildRoot:		%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 Source0:		%{name}-%{tde_version}%{?preversion:~%{preversion}}.tar.gz
 Source1:		kmymoneytitlelabel.png
-Source2:		23011-qt-sqlite3-0.2.tar.gz
+Patch0:			kmymoney-sqlite3-detection.diff
 
 BuildRequires:	trinity-tqtinterface-devel >= %{tde_version}
 BuildRequires:	trinity-arts-devel >= 1:1.5.10
@@ -74,6 +74,10 @@ BuildRequires:	opensp-devel
 %if 0%{?rhel} == 4
 BuildRequires:	openjade-devel
 %endif
+
+# TQT3-sqlite3
+BuildRequires:	trinity-tqt3-sqlite3
+Requires:		trinity-tqt3-sqlite3
 
 Requires:		%{name}-common == %{version}-%{release}
 
@@ -111,9 +115,9 @@ This package contains development files needed for KMyMoney plugins.
 
 %prep
 %setup -q -n %{name}-%{tde_version}%{?preversion:~%{preversion}}
+%patch0 -p1 -b .sqlite3
 
 %__install -m644 %{SOURCE1} kmymoney2/widgets/
-%__install -m644 %{SOURCE2} .
 
 %__cp "/usr/share/aclocal/libtool.m4" "admin/libtool.m4.in"
 %__cp "/usr/share/libtool/config/ltmain.sh" "admin/ltmain.sh" || %__cp "/usr/share/libtool/ltmain.sh" "admin/ltmain.sh"
@@ -129,9 +133,6 @@ export PKG_CONFIG_PATH="%{tde_libdir}/pkgconfig:${PKG_CONFIG_PATH}"
 %if 0%{?rhel} == 4
 grep -v "^#~" po/it.po >/tmp/it.po && mv -f /tmp/it.po po/it.po
 %endif
-
-# Needed for SQLITE3 plugin installation
-export QTDIR=%{_libdir}/tqt3
 
 # Warning: --enable-final causes FTBFS
 %configure \
@@ -158,7 +159,7 @@ export QTDIR=%{_libdir}/tqt3
   --enable-ofxplugin \
   --enable-ofxbanking \
   --enable-qtdesigner \
-  --enable-sqlite3
+  --disable-sqlite3
 
 %__make %{?_smp_mflags}
 
@@ -223,8 +224,6 @@ done
 %{tde_mandir}/man1/kmymoney2.*
 %{tde_datadir}/apps/kmm_ofximport/kmm_ofximport.rc
 %{tde_datadir}/services/kmm_ofximport.desktop
-# SQLITE3 plugin
-%{_libdir}/tqt3/plugins/sqldrivers/libsqlite3*.so
 
 %files devel
 %defattr(-,root,root,-)

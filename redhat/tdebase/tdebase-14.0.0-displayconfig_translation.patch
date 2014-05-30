@@ -1,35 +1,36 @@
---- trinity-tdebase-3.5.13.2~pre100+073a32f9/kcontrol/displayconfig/displayconfig.desktop.ORI	2013-05-11 14:53:30.914170537 +0200
-+++ trinity-tdebase-3.5.13.2~pre100+073a32f9/kcontrol/displayconfig/displayconfig.desktop	2013-05-11 14:53:59.495582944 +0200
-@@ -2,6 +2,7 @@
+--- ./kcontrol/displayconfig/displayconfig.desktop.displayconfigtranslation	2014-05-30 12:16:09.448919875 +0200
++++ ./kcontrol/displayconfig/displayconfig.desktop	2014-05-30 12:19:18.104578759 +0200
+@@ -13,6 +13,7 @@
  Categories=Qt;TDE;X-TDE-settings-system;
  Comment=Configure display
  Comment[en_US]=Configure display
 +Comment[fr]=Configuration de l'affichage
- DocPath=kcontrol/displayconfig/index.html
- Exec=tdecmshell displayconfig
+ Comment[ru]=Конфигурация экрана
+ Comment[uk]=Конфігурація екрану
  GenericName=
-@@ -11,6 +12,7 @@
+@@ -21,6 +22,7 @@
  MimeType=
  Name=Monitor & Display
  Name[en_US]=Monitor & Display
 +Name[fr]=Moniteurs & Affichage
+ Name[ru]=Монитор & Экран
+ Name[uk]=Монітор & Екран
  NoDisplay=false
- Path=
- StartupNotify=true
---- trinity-tdebase-3.5.13.2~pre100+073a32f9/kcontrol/iccconfig/iccconfig.desktop.ORI	2013-05-11 21:21:04.241337141 +0200
-+++ trinity-tdebase-3.5.13.2~pre100+073a32f9/kcontrol/iccconfig/iccconfig.desktop	2013-05-11 21:21:44.782537929 +0200
+--- ./kcontrol/iccconfig/iccconfig.desktop.displayconfigtranslation	2014-05-30 12:16:09.448919875 +0200
++++ ./kcontrol/iccconfig/iccconfig.desktop	2014-05-30 12:20:36.526770672 +0200
 @@ -12,6 +12,7 @@
  Categories=Qt;TDE;X-TDE-settings-hardware;
  Comment=Configure display ICC profile
  Comment[en_US]=Configure display ICC profile
 +Comment[fr]=Configurer les profils de couleurs ICC
+ Comment[ru]=Конфигурация профиля ICC экрана
+ Comment[uk]=Конфігурація профілю ICC екрану
  GenericName=
- GenericName[en_US]=
- Keywords=ICC,display,color,profile
-@@ -18,5 +19,6 @@
+@@ -20,6 +21,7 @@
  MimeType=
  Name=ICC Color Profile
  Name[en_US]=ICC Color Profile
 +Name[fr]=Profils de couleurs ICC
+ Name[ru]=ICC Профиль цвета
+ Name[uk]=ICC Профіль кольору
  
- NoDisplay=false

@@ -109,9 +109,9 @@ export PATH="%{tde_bindir}:${PATH}"
 %find_lang gtkqtengine
 
 # Adds TDE's specific GTKRC
-%__install -D -m 644 %{SOURCE1} %{buildroot}%{tde_datadir}/kgtk/gtk-qt-engine.rc.sh
-%__install -D -m 644 %{SOURCE2} %{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde4
-%__install -D -m 644 %{SOURCE3} %{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde-kde4
+%__install -D -m 644 "%{SOURCE1}" "%{buildroot}%{tde_datadir}/kgtk/gtk-qt-engine.rc.sh"
+%__install -D -m 644 "%{SOURCE2}" "%{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde4"
+%__install -D -m 644 "%{SOURCE3}" "%{buildroot}%{tde_datadir}/kgtk/.gtkrc-2.0-kde-kde4"
 
 
 %clean
@@ -130,6 +130,7 @@ export PATH="%{tde_bindir}:${PATH}"
 %{tde_tdedocdir}/HTML/en/kcmgtk/
 
 # The following files are outside TDE's directory
+%{_libdir}/gtk-2.0/2.10.0/engines/libqtengine.la
 %{_libdir}/gtk-2.0/2.10.0/engines/libqtengine.so
 %{_datadir}/themes/Qt/gtk-2.0/gtkrc
 
